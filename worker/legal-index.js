@@ -23,7 +23,9 @@ function secured(response, pathname) {
   for (const [name, value] of Object.entries(securityHeaders)) headers.set(name, value);
   headers.set(
     "Cache-Control",
-    pathname.startsWith("/assets/")
+    pathname === "/missing"
+      ? "no-store"
+      : pathname.startsWith("/assets/")
       ? "public, max-age=31536000, immutable"
       : "public, max-age=300, must-revalidate",
   );
@@ -45,7 +47,7 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    if (!['GET', 'HEAD'].includes(request.method)) return notFound();
+    if (!["GET", "HEAD"].includes(request.method)) return notFound();
     if (url.pathname === "/") {
       const location = new URL("/terms", url);
       return secured(Response.redirect(location, 308), "/");

@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
-import { access, readFile } from "node:fs/promises";
+import { gzipSync } from "node:zlib";
+import { access, readFile, readdir } from "node:fs/promises";
 import test from "node:test";
 import worker from "../worker/legal-index.js";
 
@@ -55,6 +56,7 @@ test("rejects account, API, unknown and write routes", async () => {
     const assetState = assets();
     const response = await worker.fetch(request, { ASSETS: assetState.binding });
     assert.equal(response.status, 404);
+    assert.equal(response.headers.get("cache-control"), "no-store");
     assert.deepEqual(assetState.calls, []);
   }
 });
@@ -77,4 +79,29 @@ test("emits a legal entry and the Sites package files", async () => {
   assert.doesNotMatch(scripts, /api\.|AccountPage|CookieNoticeBanner|localStorage|document\.cookie/);
   await access(new URL("../dist/server/index.js", import.meta.url));
   await access(new URL("../dist/.openai/hosting.json", import.meta.url));
+});
+
+test("keeps the legal artifact inside its performance and content budgets", async () => {
+  const assetDirectory = new URL("../dist/client/assets/", import.meta.url);
+  const files = await readdir(assetDirectory);
+  const javascriptFiles = files.filter((file) => file.endsWith(".js"));
+  const stylesheetFiles = files.filter((file) => file.endsWith(".css"));
+
+  assert.equal(javascriptFiles.length, 1);
+  assert.equal(stylesheetFiles.length, 1);
+  assert.ok(files.length <= 12, `Expected no more than 12 legal assets, received ${files.length}`);
+
+  const javascript = await readFile(new URL(javascriptFiles[0], assetDirectory));
+  const stylesheet = await readFile(new URL(stylesheetFiles[0], assetDirectory));
+  assert.ok(gzipSync(javascript).byteLength <= 100 * 1024);
+  assert.ok(gzipSync(stylesheet).byteLength <= 20 * 1024);
+
+  const source = javascript.toString("utf8");
+  for (const forbidden of [
+    "Create my private map",
+    "Opening secure sign in",
+    "/api/auth/session-status",
+  ]) {
+    assert.doesNotMatch(source, new RegExp(forbidden.replaceAll("/", "\\/")));
+  }
 });
