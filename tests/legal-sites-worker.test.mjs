@@ -74,7 +74,7 @@ test("emits a legal entry and the Sites package files", async () => {
   const index = await readFile(new URL("../dist/client/index.html", import.meta.url), "utf8");
   assert.match(index, /Rillora Legal/);
   const scripts = await readFile(new URL("../src/LegalPublicationApp.jsx", import.meta.url), "utf8");
-  assert.doesNotMatch(scripts, /api\.|AccountPage|CookieNoticeBanner/);
+  assert.doesNotMatch(scripts, /api\.|AccountPage|CookieNoticeBanner|localStorage|document\.cookie/);
   await access(new URL("../dist/server/index.js", import.meta.url));
   await access(new URL("../dist/.openai/hosting.json", import.meta.url));
 });
