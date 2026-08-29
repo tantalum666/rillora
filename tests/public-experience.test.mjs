@@ -94,6 +94,7 @@ test("public legal routes and registration clickwrap remain visible without fals
   assert.match(legalDocumentSource, /informational/);
   assert.match(legalDocumentSource, /prior consent for non-essential storage/i);
   assert.match(packageSource, /"build:release"/);
+  assert.match(packageSource, /"build:legal"/);
   assert.match(releaseValidationSource, /VITE_LEGAL_OPERATOR_NAME/);
   assert.match(releaseValidationSource, /VITE_LEGAL_SERVICE_ADDRESS/);
 

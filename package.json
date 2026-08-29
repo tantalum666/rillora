@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "vite build --mode internal && node scripts/prepare-sites-build.mjs",
     "build:release": "node scripts/validate-legal-release.mjs && vite build --mode production && node scripts/prepare-sites-build.mjs",
+    "build:legal": "node scripts/validate-legal-release.mjs && vite build --mode legal && node scripts/prepare-legal-sites-build.mjs",
     "preview": "vite preview",
     "test:api-client": "node --test tests/api-client.test.mjs",
     "test:first-use": "node --test tests/first-use.test.mjs",
@@ -14,7 +15,8 @@
     "test:commercial-access": "node --test tests/commercial-access.test.mjs",
     "test:product-truth": "node --test tests/contact-evidence.test.mjs",
     "test:crypto": "node --test tests/start-here-crypto.test.mjs",
-    "test:sites": "node --test tests/sites-worker.test.mjs"
+    "test:sites": "node --test tests/sites-worker.test.mjs",
+    "test:legal-sites": "node --test tests/legal-sites-worker.test.mjs"
   },
   "dependencies": {
     "@fontsource/inter": "^5.3.0",

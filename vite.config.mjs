@@ -1,9 +1,13 @@
+import { resolve } from "node:path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   build: {
     outDir: "dist/client",
+    rollupOptions: {
+      input: resolve(mode === "legal" ? "legal.html" : "index.html"),
+    },
   },
   optimizeDeps: {
     include: ["react", "react-dom/client"],
@@ -12,7 +16,7 @@ export default defineConfig({
     host: "0.0.0.0",
     allowedHosts: ["terminal.local"],
     warmup: {
-      clientFiles: ["./src/main.jsx"],
+      clientFiles: [mode === "legal" ? "./src/legal-main.jsx" : "./src/main.jsx"],
     },
     proxy: {
       "/api": {
@@ -23,4 +27,4 @@ export default defineConfig({
     },
   },
   plugins: [react()],
-});
+}));
