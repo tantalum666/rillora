@@ -1,5 +1,12 @@
 #!/usr/bin/env node
-import { copyFileSync, existsSync, mkdirSync } from "node:fs";
+import {
+  copyFileSync,
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  unlinkSync,
+  writeFileSync,
+} from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -15,7 +22,18 @@ for (const file of [legalIndex, worker, hosting]) {
 
 mkdirSync(path.join(dist, "server"), { recursive: true });
 mkdirSync(path.join(dist, ".openai"), { recursive: true });
-copyFileSync(worker, path.join(dist, "server", "index.js"));
+const workerSource = readFileSync(worker, "utf8");
+const legalShellMarker = 'const legalShell = /* __RILLORA_LEGAL_SHELL__ */ "";';
+if (!workerSource.includes(legalShellMarker)) {
+  throw new Error("Legal Sites worker shell marker is missing.");
+}
+const legalShell = readFileSync(legalIndex, "utf8");
+const bundledWorker = workerSource.replace(
+  legalShellMarker,
+  `const legalShell = ${JSON.stringify(legalShell)};`,
+);
+writeFileSync(path.join(dist, "server", "index.js"), bundledWorker);
+unlinkSync(legalIndex);
 copyFileSync(hosting, path.join(dist, ".openai", "hosting.json"));
 
 console.log("Prepared legal-only Sites build.");

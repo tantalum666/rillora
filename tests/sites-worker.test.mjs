@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { access } from "node:fs/promises";
+import { access, readFile } from "node:fs/promises";
 import test from "node:test";
 import worker from "../worker/index.js";
 
@@ -67,7 +67,11 @@ test("emits the files required by Sites packaging", async () => {
     new URL("../dist/client/legal.html", import.meta.url),
   ];
   const entryResults = await Promise.allSettled(clientEntries.map((entry) => access(entry)));
-  assert.ok(entryResults.some((result) => result.status === "fulfilled"));
+  const builtWorkerSource = await readFile(new URL("../dist/server/index.js", import.meta.url), "utf8");
+  assert.ok(
+    entryResults.some((result) => result.status === "fulfilled")
+      || builtWorkerSource.includes("Rillora Legal"),
+  );
   await access(new URL("../dist/server/index.js", import.meta.url));
   await access(new URL("../dist/.openai/hosting.json", import.meta.url));
 });

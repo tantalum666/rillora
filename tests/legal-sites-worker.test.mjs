@@ -39,7 +39,7 @@ test("serves only allowlisted legal routes through the app shell", async () => {
   );
 
   assert.equal(response.status, 200);
-  assert.deepEqual(assetState.calls, ["/legal.html"]);
+  assert.deepEqual(assetState.calls, []);
   assert.match(response.headers.get("content-security-policy"), /connect-src 'none'/);
   assert.match(response.headers.get("content-security-policy"), /frame-ancestors 'none'/);
   assert.equal(response.headers.get("x-content-type-options"), "nosniff");
@@ -73,14 +73,26 @@ test("caches fingerprinted assets immutably", async () => {
 });
 
 test("emits a legal entry and the Sites package files", async () => {
-  const index = await readFile(new URL("../dist/client/legal.html", import.meta.url), "utf8");
-  assert.match(index, /Rillora Legal/);
-  assert.match(index, /Content-Security-Policy/);
+  const builtWorkerSource = await readFile(new URL("../dist/server/index.js", import.meta.url), "utf8");
+  assert.match(builtWorkerSource, /Rillora Legal/);
+  assert.match(builtWorkerSource, /Content-Security-Policy/);
+  assert.doesNotMatch(builtWorkerSource, /__RILLORA_LEGAL_SHELL__/);
   await assert.rejects(access(new URL("../dist/client/index.html", import.meta.url)));
+  await assert.rejects(access(new URL("../dist/client/legal.html", import.meta.url)));
   const scripts = await readFile(new URL("../src/LegalPublicationApp.jsx", import.meta.url), "utf8");
   assert.doesNotMatch(scripts, /api\.|AccountPage|CookieNoticeBanner|localStorage|document\.cookie/);
   await access(new URL("../dist/server/index.js", import.meta.url));
   await access(new URL("../dist/.openai/hosting.json", import.meta.url));
+});
+
+test("embeds the built legal shell in the deployed Worker", async () => {
+  const builtWorker = (await import(`../dist/server/index.js?test=${Date.now()}`)).default;
+  const response = await builtWorker.fetch(new Request("https://legal.example.test/terms"), {
+    ASSETS: assets().binding,
+  });
+
+  assert.equal(response.status, 200);
+  assert.match(await response.text(), /Rillora Legal/);
 });
 
 test("keeps the legal artifact inside its performance and content budgets", async () => {

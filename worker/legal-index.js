@@ -1,3 +1,5 @@
+const legalShell = /* __RILLORA_LEGAL_SHELL__ */ "";
+
 const legalRoutes = new Set([
   "/privacy",
   "/terms",
@@ -53,15 +55,15 @@ export default {
       return secured(Response.redirect(location, 308), "/");
     }
 
-    if (url.pathname.startsWith("/assets/") || url.pathname === "/legal.html") {
+    if (url.pathname.startsWith("/assets/")) {
       return secured(await env.ASSETS.fetch(request), url.pathname);
     }
 
     if (!legalRoutes.has(url.pathname)) return notFound();
 
-    const indexUrl = new URL(request.url);
-    indexUrl.pathname = "/legal.html";
-    indexUrl.search = "";
-    return secured(await env.ASSETS.fetch(new Request(indexUrl, request)), url.pathname);
+    return secured(new Response(request.method === "HEAD" ? null : legalShell, {
+      status: 200,
+      headers: { "Content-Type": "text/html; charset=utf-8" },
+    }), url.pathname);
   },
 };
