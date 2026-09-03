@@ -62,7 +62,12 @@ test("does not turn missing API or write requests into the app shell", async () 
 });
 
 test("emits the files required by Sites packaging", async () => {
-  await access(new URL("../dist/client/index.html", import.meta.url));
+  const clientEntries = [
+    new URL("../dist/client/index.html", import.meta.url),
+    new URL("../dist/client/legal.html", import.meta.url),
+  ];
+  const entryResults = await Promise.allSettled(clientEntries.map((entry) => access(entry)));
+  assert.ok(entryResults.some((result) => result.status === "fulfilled"));
   await access(new URL("../dist/server/index.js", import.meta.url));
   await access(new URL("../dist/.openai/hosting.json", import.meta.url));
 });

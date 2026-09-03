@@ -53,17 +53,14 @@ export default {
       return secured(Response.redirect(location, 308), "/");
     }
 
-    if (url.pathname.startsWith("/assets/") || url.pathname === "/index.html") {
+    if (url.pathname.startsWith("/assets/") || url.pathname === "/legal.html") {
       return secured(await env.ASSETS.fetch(request), url.pathname);
     }
 
     if (!legalRoutes.has(url.pathname)) return notFound();
 
-    const response = await env.ASSETS.fetch(request);
-    if (response.status !== 404) return secured(response, url.pathname);
-
     const indexUrl = new URL(request.url);
-    indexUrl.pathname = "/index.html";
+    indexUrl.pathname = "/legal.html";
     indexUrl.search = "";
     return secured(await env.ASSETS.fetch(new Request(indexUrl, request)), url.pathname);
   },

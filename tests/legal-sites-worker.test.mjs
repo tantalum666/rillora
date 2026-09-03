@@ -12,8 +12,8 @@ function assets() {
       fetch: async (request) => {
         const pathname = new URL(request.url).pathname;
         calls.push(pathname);
-        return new Response(pathname === "/index.html" || pathname.startsWith("/assets/") ? "asset" : "missing", {
-          status: pathname === "/index.html" || pathname.startsWith("/assets/") ? 200 : 404,
+        return new Response(pathname === "/legal.html" || pathname.startsWith("/assets/") ? "asset" : "missing", {
+          status: pathname === "/legal.html" || pathname.startsWith("/assets/") ? 200 : 404,
         });
       },
     },
@@ -39,7 +39,7 @@ test("serves only allowlisted legal routes through the app shell", async () => {
   );
 
   assert.equal(response.status, 200);
-  assert.deepEqual(assetState.calls, ["/privacy", "/index.html"]);
+  assert.deepEqual(assetState.calls, ["/legal.html"]);
   assert.match(response.headers.get("content-security-policy"), /connect-src 'none'/);
   assert.match(response.headers.get("content-security-policy"), /frame-ancestors 'none'/);
   assert.equal(response.headers.get("x-content-type-options"), "nosniff");
@@ -73,8 +73,10 @@ test("caches fingerprinted assets immutably", async () => {
 });
 
 test("emits a legal entry and the Sites package files", async () => {
-  const index = await readFile(new URL("../dist/client/index.html", import.meta.url), "utf8");
+  const index = await readFile(new URL("../dist/client/legal.html", import.meta.url), "utf8");
   assert.match(index, /Rillora Legal/);
+  assert.match(index, /Content-Security-Policy/);
+  await assert.rejects(access(new URL("../dist/client/index.html", import.meta.url)));
   const scripts = await readFile(new URL("../src/LegalPublicationApp.jsx", import.meta.url), "utf8");
   assert.doesNotMatch(scripts, /api\.|AccountPage|CookieNoticeBanner|localStorage|document\.cookie/);
   await access(new URL("../dist/server/index.js", import.meta.url));
