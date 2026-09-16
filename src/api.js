@@ -1,4 +1,6 @@
 import { normalizeCommercialStatus, normalizePurchaseRoute } from "./commercialAccess.js";
+import { validateSharedResponse } from "./sharing.js";
+import { validateFamilyMaintenance } from "./familyMaintenance.js";
 
 export class ApiClientError extends Error {
   constructor(status, code, message, requestId) {
@@ -98,16 +100,48 @@ export function createApiClient({
   }
 
   return {
-    getSessionStatus: () => request("/auth/session-status", {}, { publicAuth: true }),
+    getCreatedMatter: (requestId) => request(`/matters/creation/${encodeURIComponent(requestId)}`),
+    archiveMatter: (id, expectedVersion) => request(`/matters/${encodeURIComponent(id)}`, {method:"DELETE",headers:{"if-match":String(expectedVersion)}}),
+    getFamilyMaintenance: () => request("/maintenance/overview").then(validateFamilyMaintenance),
+    startFamilyReview: (input) => request("/maintenance/rounds", { method: "POST", body: input }),
+    saveFamilyReviewSettings: (input) => request("/maintenance/settings", { method: "PATCH", body: input }),
+    respondToFamilyReview: (id,input) => request(`/maintenance/tasks/${encodeURIComponent(id)}/respond`, { method: "POST", body: input }),
+    decideFamilyReview: (id,input) => request(`/maintenance/tasks/${encodeURIComponent(id)}/decide`, { method: "POST", body: input }),
+    closeFamilyReview: (id,input) => request(`/maintenance/rounds/${encodeURIComponent(id)}/close`, { method: "POST", body: input }),
+    getSharingConnections: () => request("/sharing/connections"),
+    getAccountProfile: () => request("/account/profile"),
+    requestAccountDeletion: (receipt, acknowledgesBilling = false) => request("/account/delete", {method:"POST",body:{confirmation:"DELETE",receipt,acknowledgesSavedCopies:true,acknowledgesBilling}}),
+    getAccountDeletionStatus: receipt => request("/account-deletions/status", {headers:{authorization:`Deletion-Receipt ${receipt}`}}, {publicAuth:true}),
+    exportMapBackup: () => request("/account/map/export", {method:"POST",body:{acknowledgesPrivateCopy:true}}),
+    importMapBackup: backup => request("/account/map/import", {method:"POST",body:{backup,acknowledgesPrivateImport:true}}),
+    getArchivedMatters: () => request("/account/archived-matters"),
+    restoreArchivedMatter: (id, expectedVersion) => request(`/account/archived-matters/${encodeURIComponent(id)}/restore`, {method:"POST",body:{expectedVersion}}),
+    createSharingConnection: (input) => request("/sharing/connections", { method: "POST", body: input }),
+    updateSharingConnection: (id, input) => request(`/sharing/connections/${encodeURIComponent(id)}`, { method: "PATCH", body: input }),
+    regenerateSharingLink: (id, input) => request(`/sharing/connections/${encodeURIComponent(id)}/link`, { method: "POST", body: input }),
+    revokeSharingConnection: (id, version) => request(`/sharing/connections/${encodeURIComponent(id)}`, { method: "DELETE", headers: { "if-match": String(version) } }),
+    resolveSharingInvitation: (invitationToken) => request("/sharing/invitations/resolve", { method: "POST", body: { invitationToken } }, { publicAuth: true }),
+    getSharingInvitation: (id) => request(`/sharing/invitations/${encodeURIComponent(id)}`, {}, { publicAuth: true }),
+    acceptSharingInvitation: (input) => request("/sharing/invitations/accept", { method: "POST", body: input }),
+    getSharedWithMe: () => request("/sharing/shared-with-me").then(validateSharedResponse),
+    getSessionStatus: () => devPlannerId
+      ? request("/session").then((session) => ({
+        authenticated: session?.authenticationMode === "development"
+          && session?.plannerPublicId?.toLowerCase() === devPlannerId.toLowerCase(),
+      }))
+      : request("/auth/session-status", {}, { publicAuth: true }),
     startAuthentication: (input) => request("/auth/start", {
       method: "POST",
       body: input,
     }, { publicAuth: true }),
+    getOverview: () => request("/overview"),
     getSession: () => request("/session"),
     getLegalAcceptance: () => request("/legal/acceptance"),
     getPlan: () => request("/plan"),
     getMatters: () => request("/matters?limit=50"),
     getTrustedContacts: () => request("/trusted-contacts"),
+    createTrustedContact: (input) => request("/trusted-contacts", { method: "POST", body: input }),
+    updateTrustedContact: (publicId, input) => request(`/trusted-contacts/${encodeURIComponent(publicId)}`, { method: "PATCH", body: input }),
     getOfficialSetupChecks: () => request("/official-setup-checks"),
     getReadiness: () => request("/readiness"),
     getAuditEvents: () => request("/audit-events?limit=20"),
@@ -176,9 +210,9 @@ export function createApiClient({
         body: { expectedVersion, action, acknowledgesSimulationOnly: true },
       },
     ).then(validateDisclosureRehearsalPayload),
-    previewStartHere: () => request("/exports/start-here/preview", {
+    previewStartHere: (recipientConnectionPublicId = null) => request("/exports/start-here/preview", {
       method: "POST",
-      body: {},
+      body: recipientConnectionPublicId ? { recipientConnectionPublicId } : {},
     }),
     createPrintableStartHere: (previewPublicId) => request("/exports/start-here/printable", {
       method: "POST",

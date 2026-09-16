@@ -16,7 +16,7 @@ test("mobile keeps three primary destinations", () => {
 test("desktop-only destinations remain reachable through More", () => {
   assert.deepEqual(
     mobileMoreDestinationDefinitions.map(({ id }) => id),
-    ["access", "plan", "contacts", "guides", "activity", "settings"],
+    ["access", "plan", "contacts", "shared", "maintenance", "guides", "activity", "settings"],
   );
 
   for (const { id } of mobileMoreDestinationDefinitions) {

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { Check, Info, ShieldCheck, Trash, WarningCircle } from "@phosphor-icons/react";
+import { ArrowRight, Check, FileText, Info, Shield, ShieldCheck, Trash, UserCircle, WarningCircle } from "@phosphor-icons/react";
 import { ApiClientError } from "./api.js";
+import { useConfirmation } from "./ConfirmationDialog.jsx";
 
 const roleLabels = {
   trusted_contact: "Trusted contact",
@@ -21,6 +22,8 @@ export function RoleAssignmentPolicyPanel({
   matters,
   initialMatterId = null,
   onChanged,
+  onDirtyChange,
+  onBusyChange,
 }) {
   const [assignments, setAssignments] = useState([]);
   const [selectedMatterId, setSelectedMatterId] = useState(initialMatterId ?? matters[0]?.id ?? "");
@@ -30,6 +33,14 @@ export function RoleAssignmentPolicyPanel({
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState("");
   const [error, setError] = useState("");
+  const [dirtyRows, setDirtyRows] = useState(() => new Set());
+  const { confirm, confirmation } = useConfirmation();
+  const markDirty = useCallback((id, dirty) => setDirtyRows((current) => {
+    if (current.has(id) === dirty) return current;
+    const next = new Set(current); if (dirty) next.add(id); else next.delete(id); return next;
+  }), []);
+  useEffect(() => onDirtyChange?.(dirtyRows.size > 0), [dirtyRows, onDirtyChange]);
+  useEffect(() => onBusyChange?.(busy !== ""), [busy, onBusyChange]);
 
   const loadAssignments = useCallback(async () => {
     setLoading(true);
@@ -90,16 +101,15 @@ export function RoleAssignmentPolicyPanel({
   }
 
   async function revokeAssignment(assignment) {
-    const confirmed = window.confirm(
-      assignment.evidence === "record_only"
-        ? "Revoke this Rillora role record? No external account or legal status will change."
-        : "Revoke this role and its current Rillora invitation evidence? External authority and accounts are not changed.",
-    );
+    const confirmed = await confirm({ title: "Revoke this role?", message: assignment.evidence === "record_only"
+      ? "Only this Rillora record changes. External accounts and legal status stay separate."
+      : "This removes the Rillora role and invitation evidence. External authority and accounts stay separate.", confirmLabel: "Revoke role", cancelLabel: "Keep role" });
     if (!confirmed) return;
     setBusy(assignment.publicId);
     setError("");
     try {
       const response = await apiClient.revokeRoleAssignment(assignment.publicId, assignment.version);
+      markDirty(assignment.publicId, false);
       await loadAssignments();
       await onChanged?.(changeMessage(response.invalidatedDisclosureRehearsalCount));
     } catch (caught) {
@@ -116,32 +126,15 @@ export function RoleAssignmentPolicyPanel({
 
   return (
     <div className="role-policy-editor">
-      <p className="drawer-intro">Assign a person to the whole plan or one matter. This saves a Rillora policy record only—it sends no invitation, verifies no identity, and grants no access, ownership, recovery right, or legal authority.</p>
-      <div className="drawer-safety"><ShieldCheck size={19} /> Field visibility remains controlled by the locked death, incapacity, and missing-person policy. A role cannot expand its own fields.</div>
-
-      <section className="role-policy-section" aria-labelledby="role-policy-coverage-title">
-        <h3 id="role-policy-coverage-title">Matter coverage</h3>
-        <div className="role-coverage-grid">
-          {matters.map((matter) => {
-            const covered = assignments.filter((assignment) => (
-              assignment.scope === "plan_wide" || assignment.matter?.publicId === matter.id
-            ));
-            return (
-              <button
-                key={matter.id}
-                className={selectedMatterId === matter.id ? "is-selected" : ""}
-                onClick={() => setSelectedMatterId(matter.id)}
-              >
-                <strong>{matter.label}</strong>
-                <span>{covered.length} active role{covered.length === 1 ? "" : "s"}</span>
-              </button>
-            );
-          })}
-        </div>
-      </section>
-
+      {confirmation}
+      <div className="relationship-preview" aria-hidden="true"><span><UserCircle size={36} />{contacts.find((person) => person.publicId === personPublicId)?.displayName ?? "Person"}</span><ArrowRight size={18} /><span key={role}><Shield size={36} />{roleLabels[role]}</span><ArrowRight size={18} /><span key={`${scope}:${selectedMatterId}`}><FileText size={36} />{scope === "plan_wide" ? "Whole plan" : matters.find((matter) => matter.id === selectedMatterId)?.label ?? "Scope"}</span></div>
+      <label className="field-label">Matter<select value={selectedMatterId} disabled={busy !== ""} onChange={async (event) => {
+        const nextMatter = event.target.value;
+        if (dirtyRows.size > 0 && !await confirm({ title: "Discard role changes?" })) return;
+        setDirtyRows(new Set()); setSelectedMatterId(nextMatter);
+      }}>{matters.map((matter) => <option key={matter.id} value={matter.id}>{matter.label}</option>)}</select></label>
       <section className="role-policy-section" aria-labelledby="role-policy-add-title">
-        <h3 id="role-policy-add-title">Add a record-only role</h3>
+        <h3 id="role-policy-add-title" className="sr-only">Add role</h3>
         {contacts.length === 0 || matters.length === 0 ? (
           <p className="rehearsal-caption">Add an active person record and matter before assigning a role.</p>
         ) : (
@@ -156,29 +149,31 @@ export function RoleAssignmentPolicyPanel({
       </section>
 
       <section className="role-policy-section" aria-labelledby="role-policy-active-title">
-        <h3 id="role-policy-active-title">Roles affecting this matter</h3>
+        <h3 id="role-policy-active-title">Existing roles</h3>
         {loading ? <p className="rehearsal-caption">Loading role policy…</p> : visibleAssignments.length ? (
           <div className="role-assignment-list">
             {visibleAssignments.map((assignment) => (
               <AssignmentRow
-                key={assignment.publicId}
+                key={`${selectedMatterId}:${assignment.publicId}:${assignment.version}`}
                 assignment={assignment}
                 matters={matters}
                 disabled={busy !== ""}
                 onSave={updateAssignment}
                 onRevoke={revokeAssignment}
+                onDirtyChange={markDirty}
               />
             ))}
           </div>
         ) : <p className="rehearsal-caption">No active role applies to this matter yet.</p>}
       </section>
 
+      <details className="task-details"><summary><Info size={18} aria-hidden="true" /> Record only</summary><p>No invitation or account access is created. Event, identity, authority and field checks remain separate.</p></details>
       {error && <p className="start-here-error" role="alert"><WarningCircle size={18} /> {error}</p>}
     </div>
   );
 }
 
-function AssignmentRow({ assignment, matters, disabled, onSave, onRevoke }) {
+function AssignmentRow({ assignment, matters, disabled, onSave, onRevoke, onDirtyChange }) {
   const [draft, setDraft] = useState({
     role: assignment.role,
     scope: assignment.scope,
@@ -187,6 +182,8 @@ function AssignmentRow({ assignment, matters, disabled, onSave, onRevoke }) {
   const changed = draft.role !== assignment.role
     || draft.scope !== assignment.scope
     || (draft.scope === "matter_specific" && draft.matterPublicId !== assignment.matter?.publicId);
+
+  useEffect(() => onDirtyChange(assignment.publicId, assignment.editable && changed), [assignment.publicId, assignment.editable, changed, onDirtyChange]);
 
   function setRole(value) {
     setDraft((current) => ({
@@ -198,18 +195,18 @@ function AssignmentRow({ assignment, matters, disabled, onSave, onRevoke }) {
 
   if (!assignment.editable) {
     return (
-      <article className="role-assignment-row is-locked">
-        <header><strong>{assignment.person.displayName}</strong><span>{evidenceLabels[assignment.evidence]}</span></header>
+      <details className="role-assignment-row is-locked">
+        <summary><strong>{assignment.person.displayName}</strong><span>{evidenceLabels[assignment.evidence]}</span></summary>
         <p>{roleLabels[assignment.role]} · {scopeLabel(assignment)}</p>
-        <p className="rehearsal-caption">Invitation-backed evidence is displayed separately and cannot be repurposed as another role.</p>
+        <p className="rehearsal-caption">Invitation evidence is read-only.</p>
         <button className="text-button danger-text" disabled={disabled} onClick={() => void onRevoke(assignment)}><Trash size={17} /> Revoke role</button>
-      </article>
+      </details>
     );
   }
 
   return (
-    <article className="role-assignment-row">
-      <header><strong>{assignment.person.displayName}</strong><span>Record only</span></header>
+    <details className="role-assignment-row">
+      <summary><strong>{assignment.person.displayName}</strong><span>{roleLabels[assignment.role]} · {scopeLabel(assignment)}</span></summary>
       <div className="role-assignment-fields">
         <label>Role<select value={draft.role} disabled={disabled} onChange={(event) => setRole(event.target.value)}>{Object.entries(roleLabels).map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>
         <label>Scope<select value={draft.scope} disabled={disabled || draft.role === "recipient"} onChange={(event) => setDraft((current) => ({ ...current, scope: event.target.value }))}><option value="plan_wide">Whole plan</option><option value="matter_specific">One matter</option></select></label>
@@ -219,7 +216,7 @@ function AssignmentRow({ assignment, matters, disabled, onSave, onRevoke }) {
         <button className="secondary-button" disabled={disabled || !changed || (draft.scope === "matter_specific" && !draft.matterPublicId)} onClick={() => void onSave(assignment, draft)}>Save role</button>
         <button className="text-button danger-text" disabled={disabled} onClick={() => void onRevoke(assignment)}><Trash size={17} /> Revoke</button>
       </div>
-    </article>
+    </details>
   );
 }
 
@@ -229,8 +226,8 @@ function scopeLabel(assignment) {
 
 function changeMessage(invalidatedCount) {
   return invalidatedCount > 0
-    ? "Role policy saved. Earlier disclosure rehearsals are now marked stale; no invitation or release occurred."
-    : "Role policy saved. No invitation, authority, or release was created.";
+    ? "Role saved · earlier rehearsals are stale"
+    : "Role saved";
 }
 
 function messageFor(error, fallback) {

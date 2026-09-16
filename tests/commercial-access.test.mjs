@@ -67,8 +67,9 @@ test("commercial state is derived from the server catalog while billing remains 
   assert.equal(commercial.currentAccessLabel, "Rillora Free");
   assert.equal(commercial.offers[0].amountMinor, 999);
   assert.equal(commercial.offers[1].amountMinor, 9900);
-  assert.deepEqual(commercial.freeFeatures, ["Matter map", "Account deletion"]);
-  assert.deepEqual(commercial.familyFeatures, ["Household co-planner", "Adaptive review reminders"]);
+  assert.deepEqual(commercial.freeFeatures, ["Matter map"]);
+  assert.deepEqual(commercial.familyFeatures, []);
+  assert.deepEqual(commercial.futureFeatures, ["Household co-planner", "Adaptive review reminders"]);
   assert.equal(formatMoneyMinor(999, "USD", 2), "$9.99");
   assert.equal(formatMoneyMinor(9900, "USD", 2), "$99.00");
   assert.equal(formatMoneyMinor(69800, "CNY", 2), "CN¥698.00");

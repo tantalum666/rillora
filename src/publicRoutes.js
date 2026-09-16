@@ -1,6 +1,7 @@
 export const publicRoutes = Object.freeze({
   home: "/",
   account: "/account",
+  savedCopy: "/open-copy",
   privacy: "/privacy",
   terms: "/terms",
   subscriptions: "/subscription-terms",
@@ -13,6 +14,7 @@ export const publicRoutes = Object.freeze({
 export function resolvePublicView(pathname) {
   const normalizedPath = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
   if (normalizedPath === publicRoutes.account) return "account";
+  if (normalizedPath === publicRoutes.savedCopy) return "savedCopy";
   if (normalizedPath === publicRoutes.privacy) return "privacy";
   if (normalizedPath === publicRoutes.terms) return "terms";
   if (normalizedPath === publicRoutes.subscriptions) return "subscriptions";

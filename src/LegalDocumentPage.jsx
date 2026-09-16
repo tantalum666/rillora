@@ -122,7 +122,7 @@ const privacySections = [
     content: (
       <>
         <p>Depending on your location, you may have rights to access, correct, delete, restrict, object to, or receive a portable copy of personal information; withdraw consent without affecting earlier lawful processing; opt out of certain sales or sharing; and complain to a privacy regulator. Rillora does not currently make decisions that produce legal or similarly significant effects using solely automated processing.</p>
-        <p>These rights may have legal exceptions. Submit a request to {legalOperator.privacyEmail}. Rillora may request information reasonably necessary to verify identity and authority before acting. If you are recorded in another user’s plan, you may also have privacy rights, although access can be limited where disclosure would adversely affect another person’s rights or a legal duty.</p>
+        <p>These rights may have legal exceptions. Use My data to export your private map or request account deletion, or submit a request to {legalOperator.privacyEmail}. Rillora may request information reasonably necessary to verify identity and authority before acting. If you are recorded in another user’s plan, you may also have privacy rights, although access can be limited where disclosure would adversely affect another person’s rights or a legal duty.</p>
       </>
     ),
   },
@@ -130,7 +130,7 @@ const privacySections = [
     id: "cookies",
     title: "11. Cookies and similar storage",
     content: (
-      <p>The current service uses only strictly necessary browser storage and cookies for authentication, session continuity, request protection, and remembering that the necessary-storage notice was dismissed. The public notice is informational, not consent to future optional storage. Auth0, Google, Apple, Stripe, or another user-selected provider may use its own technologies when its page opens. Rillora does not currently use advertising cookies or third-party behavioural analytics. If that changes, optional technologies will remain off until any consent or opt-out controls required by law are available.</p>
+      <p>The current service uses only strictly necessary browser storage and cookies for authentication, session continuity, request protection, recovery of an unfinished user-requested matter draft, checking a deletion request, and remembering that the necessary-storage notice was dismissed. The public notice is informational, not consent to future optional storage. Auth0, Google, Apple, Stripe, or another user-selected provider may use its own technologies when its page opens. Rillora does not currently use advertising cookies or third-party behavioural analytics. If that changes, optional technologies will remain off until any consent or opt-out controls required by law are available.</p>
     ),
   },
   {
@@ -446,7 +446,7 @@ const cookieSections = [
   {
     id: "cookie-necessary",
     title: "1. Strictly necessary technologies",
-    content: <p>Rillora currently uses only storage that is necessary to provide a user-requested account or security function: an authentication-transaction cookie, an authenticated-session cookie, an anti-forgery cookie, and one local-storage value that remembers dismissal of the necessary-storage notice. Disabling or deleting the security cookies can prevent sign-in or private features from working. Deleting the notice value only causes the information notice to appear again.</p>,
+    content: <p>Rillora currently uses only storage that is necessary to provide a user-requested account or security function: an authentication-transaction cookie, an authenticated-session cookie, an anti-forgery cookie, tab-local draft recovery and deletion-reference values, and one local-storage value that remembers dismissal of the necessary-storage notice. Disabling or deleting the security cookies can prevent sign-in or private features from working. Deleting the notice value only causes the information notice to appear again.</p>,
   },
   {
     id: "cookie-details",
@@ -456,6 +456,8 @@ const cookieSections = [
         <li><strong>continuity_auth_tx:</strong> an HttpOnly authentication-transaction cookie used to bind a user-requested Auth0 redirect to its callback. The default maximum age is 10 minutes and it is cleared after callback or failure.</li>
         <li><strong>continuity_session:</strong> an HttpOnly authenticated-session cookie. The current default browser maximum age is 8 hours, while the server separately applies a 30-minute idle limit and revocation checks.</li>
         <li><strong>continuity_csrf:</strong> an anti-forgery cookie available to the same-origin Rillora Web client so it can protect state-changing requests. It has the same current default browser maximum age as the session and is not sufficient by itself to authenticate a user.</li>
+        <li><strong>rillora.matter-draft.v1:</strong> session storage scoped to a verified account, containing one unfinished matter form in the current browser tab. It is offered only after verifying the same account, expires after 24 hours and is cleared on save, explicit discard or sign out. Closing the tab or clearing browser storage removes the draft; some browsers may restore tab sessions.</li>
+        <li><strong>rillora.deletion-reference.v1:</strong> session storage containing a random status-only reference for a deletion request. It cannot sign in or read a private map. Keep the downloadable reference to check later from another tab or device. The public status is available while deletion is pending and for 30 days after completion.</li>
         <li><strong>rillora.cookie-notice:</strong> local storage containing only the current notice-version identifier after the user selects “Got it”. It contains no account or private-map content and remains until cleared or superseded by a newer notice version.</li>
       </ul>
     ),
@@ -478,12 +480,12 @@ const cookieSections = [
   {
     id: "cookie-choice",
     title: "6. Why the current notice is informational",
-    content: <p>The current first-party technologies are limited to necessary security, authentication, session, and notice-preference functions. The banner therefore says “Got it” rather than asking for consent that is not needed to provide those functions. It does not bundle consent to analytics or marketing. If Rillora later proposes optional analytics, advertising, or other non-essential storage, those technologies will remain disabled until a legally sufficient choice is available, including equally accessible rejection or withdrawal where required.</p>,
+    content: <p>The current first-party technologies are limited to necessary security, authentication, session, user-requested draft recovery, deletion-status and notice-preference functions. The banner therefore says “Got it” rather than asking for consent that is not needed to provide those functions. It does not bundle consent to analytics or marketing. If Rillora later proposes optional analytics, advertising, or other non-essential storage, those technologies will remain disabled until a legally sufficient choice is available, including equally accessible rejection or withdrawal where required.</p>,
   },
   {
     id: "cookie-controls",
     title: "7. Browser controls and future changes",
-    content: <p>You may clear cookies or local storage through your browser. Clearing security cookies signs you out or interrupts authentication; clearing the notice value shows the notice again. Rillora will update this notice before introducing a new category or purpose, identify relevant third parties and durations, respect legally required opt-out preference signals, and obtain prior consent for non-essential storage where applicable.</p>,
+    content: <p>You may clear cookies, session storage or local storage through your browser. Clearing draft storage removes unfinished text; clearing a deletion reference removes that device copy, so keep the downloadable reference if you need it. Clearing security cookies signs you out or interrupts authentication; clearing the notice value shows the notice again. Rillora will update this notice before introducing a new category or purpose, identify relevant third parties and durations, respect legally required opt-out preference signals, and obtain prior consent for non-essential storage where applicable.</p>,
   },
 ];
 
@@ -517,7 +519,7 @@ const documents = {
     eyebrow: "Legal",
     title: "Privacy Policy",
     summary: "How Rillora handles personal information while keeping planning, identity, and future disclosure separate.",
-    updated: "27 August 2026",
+    updated: "15 September 2026",
     version: LEGAL_CONTRACT.privacyVersion,
     sections: privacySections,
   },
@@ -557,8 +559,8 @@ const documents = {
     eyebrow: "Legal",
     title: "Cookie Notice",
     summary: "Strictly necessary storage and current tracking boundaries.",
-    updated: "27 August 2026",
-    version: "cookies-2026-08-27-1",
+    updated: "15 September 2026",
+    version: "cookies-2026-09-15-1",
     sections: cookieSections,
   },
   legalNotice: {

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   ArrowRight,
   ClockCounterClockwise,
@@ -20,9 +21,7 @@ export function FirstUseStarter({ plan, busy, onAddMatter, onOpenGuide, onPause 
     <section className="first-use-starter" aria-labelledby="first-use-heading">
       <div className="first-use-heading">
         <div>
-          <p className="section-label">Choose how to begin</p>
-          <h2 id="first-use-heading">Start with one useful step.</h2>
-          <p>Your overview is already available. Pick a path now, or leave and return whenever you want.</p>
+          <h2 id="first-use-heading">Get started</h2>
         </div>
         <Compass size={28} aria-hidden="true" />
       </div>
@@ -30,18 +29,18 @@ export function FirstUseStarter({ plan, busy, onAddMatter, onOpenGuide, onPause 
       <div className="first-use-options">
         <button className="first-use-option is-primary" type="button" disabled={busy} onClick={onAddMatter}>
           <span className="first-use-option-icon"><Plus size={21} aria-hidden="true" /></span>
-          <span><strong>Add your first matter</strong><small>Create a safe locator without entering a password.</small></span>
+          <span><strong>Add your first matter</strong></span>
           <ArrowRight size={19} aria-hidden="true" />
         </button>
         <button className="first-use-option" type="button" disabled={busy} onClick={onOpenGuide}>
           <span className="first-use-option-icon"><ClockCounterClockwise size={21} aria-hidden="true" /></span>
-          <span><strong>{guideActionLabel(plan)}</strong><small>{resumed ? "Continue from your saved step." : "Two optional steps with save and exit."}</small></span>
+          <span><strong>{guideActionLabel(plan)}</strong></span>
           <ArrowRight size={19} aria-hidden="true" />
         </button>
       </div>
 
       <button className="text-button first-use-not-now" type="button" disabled={busy} onClick={onPause}>
-        Not now — keep using the overview
+        Not now
       </button>
     </section>
   );
@@ -57,6 +56,7 @@ export function FirstUseGuide({
   onAddMatter,
   onSaveAndExit,
 }) {
+  const [category, setCategory] = useState("account");
   return (
     <div className="first-use-guide">
       <div className="first-use-progress" aria-label={`Step ${step} of 2`}>
@@ -66,9 +66,6 @@ export function FirstUseGuide({
 
       {step === 1 ? (
         <>
-          <p className="drawer-intro">Optional · Step 1 of 2</p>
-          <h3>What brought this to mind?</h3>
-          <p className="drawer-intro">One broad category helps Rillora order later guidance. It is not proof of urgency, death, incapacity or legal status.</p>
           <label className="field-label">Primary reason
             <select value={motivation} disabled={busy} onChange={(event) => onMotivationChange(event.target.value)}>
               <option value="">Choose only if useful</option>
@@ -86,14 +83,13 @@ export function FirstUseGuide({
         </>
       ) : (
         <>
-          <p className="drawer-intro">Optional · Step 2 of 2</p>
-          <h3>Add one matter when you’re ready.</h3>
-          <p className="drawer-intro">Record what exists, where an authorized person can find instructions and what outcome you prefer. Do not enter credentials.</p>
-          <div className="drawer-safety"><FileText size={19} aria-hidden="true" /> The first matter—not the questionnaire—is the first readiness action.</div>
-          <button className="primary-button drawer-primary" type="button" disabled={busy} onClick={onAddMatter}>Add a matter <ArrowRight size={20} aria-hidden="true" /></button>
+          <div className="task-symbol" aria-hidden="true"><FileText size={62} /></div>
+          <label className="field-label">Category<select value={category} disabled={busy} onChange={(event) => setCategory(event.target.value)}>{[["account","Account"],["document","Document"],["device","Device"],["financial_asset","Asset"],["debt","Debt"],["subscription","Subscription"],["crypto_asset","Crypto"]].map(([value,label]) => <option value={value} key={value}>{label}</option>)}</select></label>
+          <button className="primary-button drawer-primary" type="button" disabled={busy} onClick={() => onAddMatter(category)}>Add a matter <ArrowRight size={20} aria-hidden="true" /></button>
         </>
       )}
 
+      <details className="task-details"><summary>About this guide</summary><p>The choices tailor suggestions. The guide itself is not preparedness, evidence or legal authority.</p></details>
       <button className="text-button first-use-save-exit" type="button" disabled={busy} onClick={onSaveAndExit}>Save and exit</button>
     </div>
   );

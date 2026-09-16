@@ -7,6 +7,7 @@ const publicExperienceSource = await readFile(
   new URL("../src/PublicExperience.jsx", import.meta.url),
   "utf8",
 );
+const explorerSource = await readFile(new URL("../src/ContinuityExplorer.jsx", import.meta.url), "utf8");
 const legalDocumentSource = await readFile(
   new URL("../src/LegalDocumentPage.jsx", import.meta.url),
   "utf8",
@@ -34,24 +35,21 @@ test("public discovery explains the real product before plan creation", () => {
   assert.doesNotMatch(publicExperienceSource, /free plan|free account|no card/i);
   assert.match(publicExperienceSource, />Account</);
   assert.doesNotMatch(publicExperienceSource, /useState\(0\)/);
-  assert.match(publicExperienceSource, /architectural-index-row/);
+  assert.match(publicExperienceSource, /<ContinuityExplorer/);
   assert.match(publicExperienceSource, /architectural-event-grid/);
-  assert.match(publicExperienceSource, /What exists/);
-  assert.match(publicExperienceSource, /What happens/);
-  assert.match(publicExperienceSource, /Who can help/);
+  assert.match(explorerSource, /What exists/);
+  assert.match(explorerSource, /What happens/);
+  assert.match(explorerSource, /Who can help/);
   assert.doesNotMatch(publicExperienceSource, /example|synthetic/i);
 
-  const finalSection = publicExperienceSource.indexOf("architectural-final");
+  const productExplorer = publicExperienceSource.indexOf("<ContinuityExplorer");
   const eventFacts = publicExperienceSource.indexOf("architectural-event-grid");
-  const createAction = publicExperienceSource.indexOf("Create my private map");
+  const createAction = publicExperienceSource.indexOf("Add my first matter");
+  assert.ok(productExplorer >= 0 && eventFacts > productExplorer);
+  assert.ok(createAction > eventFacts);
+  assert.equal(publicExperienceSource.match(/Add my first matter/g)?.length, 1);
+  assert.match(publicExperienceSource, /accountPathForMatter/);
 
-  assert.ok(finalSection >= 0);
-  assert.ok(finalSection > eventFacts);
-  assert.ok(createAction > finalSection);
-  assert.equal(
-    publicExperienceSource.match(/Create my private map/g)?.length,
-    1,
-  );
 });
 
 test("public legal routes and registration clickwrap remain visible without false claims", () => {
@@ -72,7 +70,7 @@ test("public legal routes and registration clickwrap remain visible without fals
   assert.match(legalDocumentSource, /US\$100/);
   assert.doesNotMatch(legalDocumentSource, /binding arbitration|class-action waiver/i);
   assert.match(publicExperienceSource, /type="checkbox"/);
-  assert.match(publicExperienceSource, /aria-describedby="account-consent-note"/);
+  assert.match(publicExperienceSource, /checked=\{hasAccepted\}/);
   assert.doesNotMatch(publicExperienceSource, />Continue securely</);
   assert.match(publicExperienceSource, /"Create account"/);
   assert.match(publicExperienceSource, /"Sign in"/);
@@ -80,7 +78,7 @@ test("public legal routes and registration clickwrap remain visible without fals
   assert.match(publicExperienceSource, /acceptedElectronicRecords: true/);
   assert.match(publicExperienceSource, /api\.startAuthentication/);
   assert.match(publicExperienceSource, /Necessary cookies only/);
-  assert.match(publicExperienceSource, /This is information.not consent to future optional cookies/);
+  assert.match(publicExperienceSource, /No ads or behavioural analytics/);
   assert.match(publicExperienceSource, /rillora\.cookie-notice/);
   assert.match(publicExperienceSource, /Review Cookie Notice/);
   assert.match(publicExperienceSource, />Got it</);

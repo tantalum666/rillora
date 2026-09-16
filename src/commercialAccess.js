@@ -1,11 +1,12 @@
 const capabilityLabels = Object.freeze({
   matter_map_core: "Matter map",
   official_setup_guides: "Official provider guides",
-  trusted_person_basic: "One trusted person",
+  trusted_person_basic: "Sharing with a trusted person",
   rehearsal_basic: "Basic rehearsal",
-  data_export: "Data export",
+  data_export: "Export and read saved copies",
   account_deletion: "Account deletion",
   household_coplanner: "Household co-planner",
+  family_maintenance: "Shared reviews and approved corrections",
   trusted_people_multiple: "Multiple trusted people",
   role_packages_advanced: "Advanced role packages",
   adaptive_reviews: "Adaptive review reminders",
@@ -49,7 +50,8 @@ export function normalizeCommercialStatus(payload) {
     currentAccessLabel: planLabel(payload.currentAccess.planCode),
     currentAccess: payload.currentAccess,
     freeFeatures: Object.freeze(featuresFor(freePlan, "included")),
-    familyFeatures: Object.freeze(featuresFor(familyPlan, "planned")),
+    familyFeatures: Object.freeze(featuresFor(familyPlan, "planned").filter((label) => [capabilityLabels.family_maintenance, capabilityLabels.trusted_people_multiple].includes(label))),
+    futureFeatures: Object.freeze(featuresFor(familyPlan, "planned").filter((label) => ![capabilityLabels.family_maintenance, capabilityLabels.trusted_people_multiple].includes(label))),
     offers: Object.freeze(payload.offers.map((offer) => Object.freeze({ ...offer }))),
     boundaries: Object.freeze({ ...payload.boundaries }),
   });
@@ -79,6 +81,7 @@ export function unavailableCommercialStatus() {
     currentAccess: null,
     freeFeatures: Object.freeze([]),
     familyFeatures: Object.freeze([]),
+    futureFeatures: Object.freeze([]),
     offers: Object.freeze([]),
     boundaries: Object.freeze({ ...requiredBoundaries }),
   });
@@ -121,7 +124,9 @@ function isSafeOffer(offer) {
 function featuresFor(plan, enforcementMode) {
   if (!Array.isArray(plan?.capabilities)) return [];
   return plan.capabilities
-    .filter((capability) => capability.enforcementMode === enforcementMode)
+    .filter((capability) => capability.enforcementMode === enforcementMode && capability.code !== "rehearsal_basic"
+      && capability.availability !== "retired"
+      && (enforcementMode !== "included" || ((capability.availability === undefined || capability.availability === "available") && ["matter_map_core", "official_setup_guides", "trusted_person_basic", "data_export"].includes(capability.code))))
     .map((capability) => capabilityLabels[capability.code] ?? humanize(capability.code));
 }
 

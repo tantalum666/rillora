@@ -21,6 +21,6 @@ test("paused and completed guides do not keep nagging on the overview", () => {
 });
 
 test("resume copy follows saved progress without changing readiness", () => {
-  assert.equal(guideActionLabel({ firstUseState: "available", firstUseStep: 0 }), "Use the 2-minute guide");
+  assert.equal(guideActionLabel({ firstUseState: "available", firstUseStep: 0 }), "Optional guide");
   assert.equal(guideActionLabel({ firstUseState: "guide_in_progress", firstUseStep: 2 }), "Resume the guide");
 });

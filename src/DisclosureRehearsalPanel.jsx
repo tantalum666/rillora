@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import {
   ArrowRight,
+  Broadcast,
+  FirstAidKit,
+  HeartBreak,
+  Eye,
   Check,
   CheckCircle,
   Circle,
@@ -11,9 +15,9 @@ import {
 import { ApiClientError } from "./api.js";
 
 const lifeEvents = [
-  { value: "death", label: "Death", detail: "Authority and death-document review" },
-  { value: "incapacity", label: "Incapacity", detail: "Capacity and acting-authority review" },
-  { value: "missing", label: "Missing", detail: "Limited support and contact-attempt review" },
+  { value: "death", label: "Death", icon: HeartBreak, detail: "Authority and death-document review" },
+  { value: "incapacity", label: "Incapacity", icon: FirstAidKit, detail: "Capacity and acting-authority review" },
+  { value: "missing", label: "Unreachable", icon: Broadcast, detail: "Limited support and contact-attempt review" },
 ];
 
 const roleLabels = {
@@ -30,12 +34,14 @@ const actionLabels = {
   cancel: "Cancel this rehearsal",
 };
 
-export function DisclosureRehearsalPanel({ apiClient, onChanged }) {
+export function DisclosureRehearsalPanel({ apiClient, onChanged, onBusyChange }) {
   const [lifeEvent, setLifeEvent] = useState("death");
   const [rehearsal, setRehearsal] = useState(null);
   const [loadingHistory, setLoadingHistory] = useState(true);
   const [busyAction, setBusyAction] = useState(null);
   const [error, setError] = useState("");
+
+  useEffect(() => onBusyChange?.(busyAction !== null), [busyAction, onBusyChange]);
 
   useEffect(() => {
     let active = true;
@@ -61,7 +67,7 @@ export function DisclosureRehearsalPanel({ apiClient, onChanged }) {
     try {
       const response = await apiClient.createDisclosureRehearsal(lifeEvent);
       setRehearsal(response.disclosureRehearsal);
-      await onChanged?.("Disclosure-policy rehearsal created. No notification or release occurred.");
+      await onChanged?.("Rehearsal created");
     } catch (caught) {
       setError(messageFor(caught, "The disclosure rehearsal could not be created."));
     } finally {
@@ -80,7 +86,7 @@ export function DisclosureRehearsalPanel({ apiClient, onChanged }) {
         action,
       );
       setRehearsal(response.disclosureRehearsal);
-      await onChanged?.("Rehearsal state updated. No identity, document, or multi-party proof was verified.");
+      await onChanged?.("Simulated step updated");
     } catch (caught) {
       setError(messageFor(caught, "The rehearsal state could not be updated."));
     } finally {
@@ -95,25 +101,15 @@ export function DisclosureRehearsalPanel({ apiClient, onChanged }) {
   if (!rehearsal) {
     return (
       <div className="disclosure-rehearsal">
-        <p className="drawer-intro">Choose one event to preview its own policy path and the exact safe fields each role could eventually see. This planner-only rehearsal cannot establish death, incapacity, identity, authority, or a right to receive data.</p>
-        <label className="field-label" htmlFor="rehearsal-life-event">Life event</label>
-        <select
-          id="rehearsal-life-event"
-          value={lifeEvent}
-          disabled={busyAction !== null}
-          onChange={(event) => setLifeEvent(event.target.value)}
-        >
-          {lifeEvents.map((event) => (
-            <option key={event.value} value={event.value}>{event.label}</option>
-          ))}
-        </select>
-        <p className="field-helper">{lifeEvents.find((event) => event.value === lifeEvent)?.detail}</p>
-        <div className="drawer-safety"><ShieldCheck size={19} /> Three separate state machines. All cooling periods are illustrative policy values, not legal advice or elapsed real time.</div>
+        <div className="life-event-choices" role="group" aria-label="Life event">
+          {lifeEvents.map(({ value, label, icon: Icon }) => <button key={value} type="button" aria-pressed={lifeEvent === value} disabled={busyAction !== null} onClick={() => setLifeEvent(value)}><Icon size={34} aria-hidden="true" /><span>{label}</span></button>)}
+        </div>
         {error && <ErrorMessage>{error}</ErrorMessage>}
         <button className="primary-button drawer-primary" disabled={busyAction !== null} onClick={() => void createRehearsal()}>
-          {busyAction === "create" ? "Creating rehearsal…" : "Create policy rehearsal"}
+          {busyAction === "create" ? "Creating rehearsal…" : "Preview role access"}
           {busyAction !== "create" && <ArrowRight size={20} />}
         </button>
+        <details className="task-details"><summary><Info size={18} aria-hidden="true" /> Simulation only</summary><p>{lifeEvents.find((event) => event.value === lifeEvent)?.detail}</p><p>This preview verifies no evidence, contacts nobody and releases nothing. Cooling periods do not elapse automatically.</p></details>
       </div>
     );
   }
@@ -123,25 +119,36 @@ export function DisclosureRehearsalPanel({ apiClient, onChanged }) {
 
   return (
     <div className="disclosure-rehearsal">
-      <div className="rehearsal-status"><ShieldCheck size={20} weight="fill" /><span><strong>{eventLabel} · simulation only</strong><small>{rehearsal.stateLabel}</small></span></div>
-      <div className="rehearsal-boundaries" aria-label="Safety boundaries">
-        <span><Check size={15} /> No notification</span>
-        <span><Check size={15} /> No proof verified</span>
-        <span><Check size={15} /> No release</span>
-        <span><Check size={15} /> No authority granted</span>
-      </div>
+      <div className="rehearsal-current-state"><Eye size={46} aria-hidden="true" /><h3>{rehearsal.stateLabel}</h3><span>{eventLabel} · simulation only</span></div>
       {!rehearsal.snapshotFresh && (
         <div className="rehearsal-stale" role="alert">
           <WarningCircle size={20} weight="fill" />
-          <span><strong>Policy changed after this snapshot.</strong> This frozen view remains history only and cannot advance. Create a fresh rehearsal to review the current roles and matters.</span>
+          <span><strong>This snapshot is stale.</strong> Start a fresh rehearsal to continue.</span>
           <button className="primary-button" disabled={busyAction !== null} onClick={() => void createRehearsal()}>
             {busyAction === "create" ? "Creating fresh rehearsal…" : "Create fresh policy rehearsal"}
           </button>
         </div>
       )}
 
-      <section className="rehearsal-section" aria-labelledby="rehearsal-path-title">
-        <h3 id="rehearsal-path-title">Illustrative policy path</h3>
+      <div className="rehearsal-actions">
+        {rehearsal.availableActions.map((action) => (
+          <button
+            key={action}
+            className={action === "advance" || action === "simulate_cooling_off_elapsed" || action === "restart_review" ? "primary-button" : "secondary-button"}
+            disabled={busyAction !== null}
+            onClick={() => void performAction(action)}
+          >
+            {busyAction === action ? "Updating…" : actionLabels[action]}
+            {busyAction !== action && action !== "cancel" && <ArrowRight size={18} />}
+          </button>
+        ))}
+        <button className="text-button" disabled={busyAction !== null} onClick={() => { setRehearsal(null); setError(""); }}>
+          Start a separate event rehearsal
+        </button>
+      </div>
+
+      <details className="task-details">
+        <summary>Policy path</summary>
         <ol className="rehearsal-timeline">
           {rehearsal.stateSequence.map((state) => {
             const complete = completedCodes.has(state.key);
@@ -160,11 +167,10 @@ export function DisclosureRehearsalPanel({ apiClient, onChanged }) {
         {rehearsal.coolingOffEndsAt && !rehearsal.coolingOffSimulatedAt && (
           <p className="rehearsal-caption">Illustrative hold ends {formatDateTime(rehearsal.coolingOffEndsAt)}. It will not elapse automatically in this rehearsal.</p>
         )}
-      </section>
+      </details>
 
       <section className="rehearsal-section" aria-labelledby="role-preview-title">
         <h3 id="role-preview-title">Projected role views</h3>
-        <p className="rehearsal-caption">Shown only to you. No role received these fields.</p>
         <div className="role-preview-list">
           {rehearsal.projectedRoleViews.map((view) => (
             <RolePreview key={view.role} view={view} />
@@ -173,30 +179,15 @@ export function DisclosureRehearsalPanel({ apiClient, onChanged }) {
       </section>
 
       {error && <ErrorMessage>{error}</ErrorMessage>}
-      <div className="rehearsal-actions">
-        {rehearsal.availableActions.map((action) => (
-          <button
-            key={action}
-            className={action === "advance" || action === "simulate_cooling_off_elapsed" || action === "restart_review" ? "primary-button" : "secondary-button"}
-            disabled={busyAction !== null}
-            onClick={() => void performAction(action)}
-          >
-            {busyAction === action ? "Updating…" : actionLabels[action]}
-            {busyAction !== action && action !== "cancel" && <ArrowRight size={18} />}
-          </button>
-        ))}
-        <button className="text-button" disabled={busyAction !== null} onClick={() => { setRehearsal(null); setError(""); }}>
-          Start a separate event rehearsal
-        </button>
-      </div>
+
     </div>
   );
 }
 
 function RolePreview({ view }) {
   return (
-    <article className={`role-preview ${view.eligibleForProjectedPreview ? "is-eligible" : ""}`}>
-      <header><strong>{roleLabels[view.role] ?? view.role}</strong><span>{view.previewStage}</span></header>
+    <details className={`role-preview ${view.eligibleForProjectedPreview ? "is-eligible" : ""}`}>
+      <summary><strong>{roleLabels[view.role] ?? view.role}</strong><span>{view.previewStage}</span></summary>
       <p>{view.reason}</p>
       {view.assignedPeople.length > 0 && (
         <p className="role-people">{view.assignedPeople.map((person) => `${person.displayName} · ${evidenceLabel(person.invitationEvidence)}`).join(", ")}</p>
@@ -216,7 +207,7 @@ function RolePreview({ view }) {
       {view.summary.matterCount > 0 && view.matters.length === 0 && view.eligibleForProjectedPreview && (
         <p className="role-summary">Matter count only: {view.summary.matterCount}</p>
       )}
-    </article>
+    </details>
   );
 }
 

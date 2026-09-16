@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -10,29 +10,15 @@ import {
 } from "@phosphor-icons/react";
 import { api } from "./api.js";
 import { LegalDocumentPage } from "./LegalDocumentPage.jsx";
+import { SavedCopyReader } from "./SavedCopyReader.jsx";
+import "./interaction-refinement.css";
 import { LEGAL_CONTRACT } from "./legalContract.js";
 import { publicRoutes, resolvePublicView } from "./publicRoutes.js";
 import "./public-experience.css";
+import { ContinuityExplorer, PublicMatterExplorer } from "./ContinuityExplorer.jsx";
+import { accountPathForMatter, authenticationReturnPath } from "./publicIntent.js";
 
-const continuitySteps = [
-  {
-    icon: MapTrifold,
-    label: "What exists",
-    summary: "Accounts, files and records",
-  },
-  {
-    icon: FileText,
-    label: "What happens",
-    summary: "Keep, transfer or close",
-  },
-  {
-    icon: UserCircle,
-    label: "Who can help",
-    summary: "People you trust",
-  },
-];
-
-const cookieNoticeVersion = "necessary-storage-2026-08-27-1";
+const cookieNoticeVersion = "necessary-storage-2026-09-15-1";
 const cookieNoticeStorageKey = "rillora.cookie-notice";
 
 function hasDismissedCookieNotice() {
@@ -45,13 +31,19 @@ function hasDismissedCookieNotice() {
 
 export function PublicExperience({ sessionStatus, onRetry }) {
   const [view, setView] = useState(() => resolvePublicView(window.location.pathname));
+  const [hasVisitedHome, setHasVisitedHome] = useState(view === "home");
+  const homeScroll = useRef(0);
   const [cookieNoticeVisible, setCookieNoticeVisible] = useState(
     () => !hasDismissedCookieNotice(),
   );
   const showCookieNotice = cookieNoticeVisible && view !== "cookies";
 
   useEffect(() => {
-    const handlePopState = () => setView(resolvePublicView(window.location.pathname));
+    const handlePopState = () => {
+      const next = resolvePublicView(window.location.pathname);
+      if (next === "home") setHasVisitedHome(true);
+      setView(next);
+    };
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
   }, []);
@@ -60,6 +52,7 @@ export function PublicExperience({ sessionStatus, onRetry }) {
     const titles = {
       home: "Rillora — A clear plan for what comes next",
       account: "Account — Rillora",
+      savedCopy: "Open saved copy — Rillora",
       privacy: "Privacy Policy — Rillora",
       terms: "Terms of Service — Rillora",
       subscriptions: "Subscription Terms — Rillora",
@@ -72,14 +65,18 @@ export function PublicExperience({ sessionStatus, onRetry }) {
   }, [view]);
 
   function navigate(path) {
+    const next = resolvePublicView(new URL(path, window.location.origin).pathname);
+    if (view === "home" && next !== "home") homeScroll.current = window.scrollY;
+    if (next === "home") setHasVisitedHome(true);
     if (window.location.pathname !== path) window.history.pushState({}, "", path);
-    setView(resolvePublicView(path));
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    setView(next);
+    window.requestAnimationFrame(() => window.scrollTo({ top: next === "home" ? homeScroll.current : 0, behavior: "auto" }));
   }
 
   function handleNavigation(event, path) {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
+    if (path === publicRoutes.home) homeScroll.current = 0;
     navigate(path);
   }
 
@@ -101,7 +98,10 @@ export function PublicExperience({ sessionStatus, onRetry }) {
         </nav>
       </header>
 
-      {view === "account" ? (
+      {hasVisitedHome && <div hidden={view !== "home"}>
+        <PublicHome onStart={(category) => navigate(accountPathForMatter(category))} />
+      </div>}
+      {view === "savedCopy" ? <main className="public-copy-page"><button className="text-button" onClick={() => navigate(publicRoutes.home)}>Back to Rillora</button><h1>Open a saved copy</h1><SavedCopyReader /></main> : view === "account" ? (
         <AccountPage
           sessionStatus={sessionStatus}
           onRetry={onRetry}
@@ -109,9 +109,7 @@ export function PublicExperience({ sessionStatus, onRetry }) {
         />
       ) : ["privacy", "terms", "subscriptions", "refunds", "acceptableUse", "cookies", "legalNotice"].includes(view) ? (
         <LegalDocumentPage documentKey={view} onBack={() => navigate(publicRoutes.home)} />
-      ) : (
-        <PublicHome onStart={() => navigate(publicRoutes.account)} />
-      )}
+      ) : null}
 
       {showCookieNotice && (
         <CookieNoticeBanner
@@ -128,6 +126,7 @@ export function PublicExperience({ sessionStatus, onRetry }) {
           <a href={publicRoutes.terms} onClick={(event) => handleNavigation(event, publicRoutes.terms)}>Terms</a>
           <a href={publicRoutes.legalNotice} onClick={(event) => handleNavigation(event, publicRoutes.legalNotice)}>Legal</a>
           <a href={publicRoutes.account} onClick={(event) => handleNavigation(event, publicRoutes.account)}>Account</a>
+          <a href={publicRoutes.savedCopy} onClick={(event) => handleNavigation(event, publicRoutes.savedCopy)}>Open saved copy</a>
         </nav>
       </footer>
     </div>
@@ -139,7 +138,7 @@ function CookieNoticeBanner({ onDismiss, onReview }) {
     <aside className="cookie-notice-banner" role="region" aria-labelledby="cookie-notice-title">
       <div>
         <strong id="cookie-notice-title">Necessary cookies only</strong>
-        <p>Rillora uses only cookies and local storage needed for secure sign-in, sessions, request protection, and this notice. No advertising or behavioural analytics are active. This is information—not consent to future optional cookies.</p>
+        <p>For sign-in, security and draft recovery. No ads or behavioural analytics.</p>
       </div>
       <div className="cookie-notice-actions">
         <button type="button" className="cookie-notice-review" onClick={onReview}>Review Cookie Notice</button>
@@ -150,44 +149,34 @@ function CookieNoticeBanner({ onDismiss, onReview }) {
 }
 
 function PublicHome({ onStart }) {
+  function explore(event) {
+    event.preventDefault();
+    const target = document.getElementById("explore-matters");
+    target?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+    target?.focus({ preventScroll: true });
+  }
+
   return (
     <main className="architectural-home">
-      <section className="architectural-hero" id="how-it-works" aria-labelledby="public-hero-title">
-        <div className="architectural-hero-copy">
-          <p className="architectural-kicker">A private map for what comes next</p>
-          <h1 id="public-hero-title">A clear plan for what comes next.</h1>
-          <p className="architectural-lede">Map what matters and leave clear directions for someone you trust.</p>
-          <p className="architectural-boundary"><ShieldCheck size={18} weight="regular" aria-hidden="true" /> Directions, not passwords.</p>
+      <section className="public-motion-hero" aria-labelledby="public-hero-title">
+        <div className="public-motion-copy">
+          <p className="architectural-kicker">Digital legacy</p>
+          <h1 id="public-hero-title">Make the important things clear.</h1>
+          <p className="architectural-lede">Your important things, connected.</p>
         </div>
-
-        <div className="architectural-index" aria-label="A Rillora plan connects what exists, what happens, and who can help">
-          <p className="architectural-index-kicker">Your private map</p>
-          {continuitySteps.map(({ icon: Icon, label, summary }) => (
-            <article className="architectural-index-row" key={label}>
-              <span className="architectural-index-icon"><Icon size={22} aria-hidden="true" /></span>
-              <span><strong>{label}</strong><small>{summary}</small></span>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="architectural-safety" id="privacy" aria-labelledby="safety-title">
-        <div className="architectural-section-heading">
-          <p className="architectural-kicker">Separate processes</p>
-          <h2 id="safety-title">Life events never share one vague trigger.</h2>
-        </div>
-        <div className="architectural-event-grid" aria-label="Death, incapacity, and unreachable are separate processes">
-          <span><ShieldCheck size={18} aria-hidden="true" /> Death</span>
-          <span><UserCircle size={18} aria-hidden="true" /> Incapacity</span>
-          <span><LockKey size={18} aria-hidden="true" /> Unreachable</span>
+        <ContinuityExplorer />
+        <div className="public-motion-actions">
+          <div className="architectural-event-grid compact-event-strip" aria-label="Separate processes">
+            <span><ShieldCheck size={18} aria-hidden="true" /> Death</span>
+            <span><UserCircle size={18} aria-hidden="true" /> Incapacity</span>
+            <span><LockKey size={18} aria-hidden="true" /> Unreachable</span>
+          </div>
+          <a href="#explore-matters" onClick={explore}>Explore matters <ArrowRight size={20} aria-hidden="true" /></a>
+          <button className="architectural-primary" type="button" onClick={() => onStart("account")}>Add my first matter <ArrowRight size={21} aria-hidden="true" /></button>
         </div>
       </section>
+      <PublicMatterExplorer onStart={onStart} />
 
-      <section className="architectural-final" aria-labelledby="final-cta-title">
-        <p className="architectural-kicker">Ready when you are</p>
-        <h2 id="final-cta-title">Create your private map.</h2>
-        <button className="architectural-primary" type="button" onClick={onStart}>Create my private map <ArrowRight size={21} aria-hidden="true" /></button>
-      </section>
     </main>
   );
 }
@@ -206,7 +195,7 @@ function AccountPage({ sessionStatus, onRetry, onBack }) {
     try {
       const response = await api.startAuthentication({
         intent,
-        returnTo: "/",
+        returnTo: authenticationReturnPath(window.location.search),
         legalAcceptance: {
           termsVersion: LEGAL_CONTRACT.termsVersion,
           privacyVersion: LEGAL_CONTRACT.privacyVersion,
@@ -229,9 +218,7 @@ function AccountPage({ sessionStatus, onRetry, onBack }) {
       <button className="account-back" type="button" onClick={onBack}><ArrowLeft size={18} aria-hidden="true" /> Back to Rillora</button>
       <div className="account-layout">
         <section>
-          <p className="public-eyebrow">Account</p>
-          <h1 id="account-title">Continue with Rillora.</h1>
-          <p>Sign in to your private map, or create one when you are ready to save.</p>
+          <h1 id="account-title">{new URLSearchParams(window.location.search).get("next") === "reviews" ? "Open your review inbox" : "Your private map"}</h1>
         </section>
         <section className="account-actions" aria-label="Account options">
           {checking && <p className="account-status">Checking whether you already have an active session…</p>}
@@ -243,12 +230,10 @@ function AccountPage({ sessionStatus, onRetry, onBack }) {
                   <input
                     type="checkbox"
                     checked={hasAccepted}
-                    aria-describedby="account-consent-note"
                     onChange={(event) => setHasAccepted(event.target.checked)}
                   />
                   <span>I agree to the <a href={publicRoutes.terms} target="_blank" rel="noreferrer">Terms</a>, acknowledge the <a href={publicRoutes.privacy} target="_blank" rel="noreferrer">Privacy Policy</a>, and consent to electronic records.</span>
                 </label>
-                <small id="account-consent-note">Required for account access. No recurring charge.</small>
               </div>
               <button className="primary-button" type="button" disabled={!hasAccepted || Boolean(workingIntent)} onClick={() => beginAuthentication("signup")}>
                 {workingIntent === "signup" ? "Opening secure signup…" : "Create account"} <ArrowRight size={20} aria-hidden="true" />
@@ -258,7 +243,6 @@ function AccountPage({ sessionStatus, onRetry, onBack }) {
               </button>
             </div>
             {errorMessage && <p className="account-status is-error" role="alert">{errorMessage}</p>}
-            <p className="account-boundary"><LockKey size={17} aria-hidden="true" /> Secure identity domain</p>
           </>}
         </section>
       </div>

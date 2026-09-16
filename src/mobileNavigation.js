@@ -8,6 +8,8 @@ export const mobileMoreDestinationDefinitions = Object.freeze([
   Object.freeze({ id: "access", label: "Plan & access", detail: "Current access and future Family capabilities" }),
   Object.freeze({ id: "plan", label: "My plan", detail: "Progress, roles and Start Here" }),
   Object.freeze({ id: "contacts", label: "Trusted contacts", detail: "People, roles and invitation evidence" }),
+  Object.freeze({ id: "shared", label: "Shared with me", detail: "Read-only items from people you know" }),
+  Object.freeze({ id: "maintenance", label: "Shared reviews", detail: "Check directions and review suggested updates" }),
   Object.freeze({ id: "guides", label: "Official guides", detail: "Provider-specific settings to review" }),
   Object.freeze({ id: "activity", label: "Activity", detail: "Your private plan history" }),
   Object.freeze({ id: "settings", label: "Settings", detail: "Preferences, setup and account sessions" }),

@@ -22,5 +22,5 @@ export function guideActionLabel(plan) {
   const { state, step } = normalizeFirstUse(plan);
   return state === firstUseStates.guideInProgress || step > 0
     ? "Resume the guide"
-    : "Use the 2-minute guide";
+    : "Optional guide";
 }
