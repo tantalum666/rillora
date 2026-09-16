@@ -4,9 +4,9 @@ import mapArtwork from "./assets/continuity-map.png";
 import "./continuity-explorer.css";
 
 const topics = [
-  { id: "what", label: "What", title: "What exists", icon: FileText, tilt: 0, description: "Accounts · Documents · Devices" },
+  { id: "what", label: "What", title: "What exists", icon: FileText, tilt: 0, description: "Keep important accounts, documents and directions together." },
   { id: "next", label: "Next step", title: "What happens", icon: GitBranch, tilt: -8, description: "Your wishes: keep, transfer or close." },
-  { id: "who", label: "Who", title: "Who can help", icon: Users, tilt: 8, description: "Choose who can help." },
+  { id: "who", label: "Who", title: "Who can help", icon: Users, tilt: 8, description: "Invite by link. They use their own account and see only what you share." },
 ];
 
 export function ContinuityExplorer() {
@@ -14,7 +14,7 @@ export function ContinuityExplorer() {
   const topic = topics.find((item) => item.id === selected);
   return (
     <div className="continuity-explorer" data-focus={selected} style={{ "--map-tilt": `${topic.tilt}deg` }}>
-      <div className="continuity-scene">
+      <div className="continuity-scene" aria-hidden="true">
         <svg className="continuity-connections" viewBox="0 0 380 240" fill="none" aria-hidden="true">
           <path data-active={selected === "what"} d="M190 155 Q190 50 190 30" />
           <path data-active={selected === "next"} d="M190 155 Q38 55 38 158" />
@@ -22,7 +22,7 @@ export function ContinuityExplorer() {
         </svg>
         <img className="continuity-map" src={mapArtwork} alt="" width="1254" height="1254" fetchPriority="high" />
         {topics.map(({ id, title, icon: Icon }) => (
-          <button key={id} type="button" aria-label={`Explore ${title.toLowerCase()}`} aria-pressed={selected === id} className={`continuity-node node-${id}`} data-active={selected === id} onClick={() => setSelected(id)}>
+          <button key={id} type="button" tabIndex={-1} onMouseDown={event => event.preventDefault()} aria-label={`Explore ${title.toLowerCase()}`} aria-pressed={selected === id} className={`continuity-node node-${id}`} data-active={selected === id} onClick={() => setSelected(id)}>
             <Icon size={27} weight="fill" aria-hidden="true" />
           </button>
         ))}

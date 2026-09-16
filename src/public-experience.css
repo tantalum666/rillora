@@ -1843,7 +1843,9 @@
 
 /* Print legibility only; retain the existing on-screen document layout. */
 @media print {
-  .legal-page * { color:#111 !important; }
+  html, body, #root { background:#fff !important; color-scheme:light !important; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
+  .legal-page { animation:none !important; transform:none !important; opacity:1 !important; }
+  .legal-page * { color:#111 !important; animation:none !important; transition:none !important; }
   .public-shell { background:#fff; color:#111; }
   .cookie-notice-banner { display:none !important; }
   .public-shell.has-cookie-notice { padding-bottom:0; }

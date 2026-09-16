@@ -56,6 +56,6 @@ export function AuthenticatedOverview({ matters, contacts, apiClient, refreshVer
         {showGuide && <button className="text-button optional-guide" onClick={onGuide}>{guidePaused ? "Resume quick start guide" : "Quick start guide"}</button>}
       </div>
     </div>
-    {matters.length > 0 && <section className="folio-matters"><header><h2>Your matters</h2><button className="text-button" onClick={onOpenMatters}>View all<ArrowRight size={18} /></button></header><div className="matter-list">{matters.slice(0, 3).map(renderMatter)}</div></section>}
+    {matters.length > 0 && <section className="folio-matters"><header><h2>Your matters</h2><button className="text-button" onClick={onOpenMatters}>View all<ArrowRight size={18} /></button></header><div className="matter-list">{[...matters.filter(item => item.status !== "added"), ...matters.filter(item => item.status === "added")].slice(0, 3).map(renderMatter)}</div></section>}
   </div>;
 }
