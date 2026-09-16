@@ -1840,3 +1840,15 @@
 
   .public-account h1 { font-size: 42px; }
 }
+
+/* Print legibility only; retain the existing on-screen document layout. */
+@media print {
+  .legal-page * { color:#111 !important; }
+  .public-shell { background:#fff; color:#111; }
+  .cookie-notice-banner { display:none !important; }
+  .public-shell.has-cookie-notice { padding-bottom:0; }
+  .legal-document > section { break-inside:auto; }
+  .legal-document a { overflow-wrap:anywhere; }
+  .legal-document h2, .legal-document h3 { break-after:avoid; }
+  .legal-document p, .legal-document li { orphans:3; widows:3; }
+}

@@ -2,13 +2,13 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Check, CheckCircle, Copy, Envelope, FileText, LinkSimple, LockKey, Plus, ShareNetwork, UserCircle, Users, ArrowClockwise } from "@phosphor-icons/react";
 import { ConnectionVisual, InvitationSteps, InviteAction } from "./SharingMotion.jsx";
 import { useConfirmation } from "./ConfirmationDialog.jsx";
-import { sharingLevels, sharingStatus, sharedFieldLabels } from "./sharing.js";
+import { sharingLevels, sharingStatus, sharedFieldLabels, sharedFieldValue } from "./sharing.js";
 import "./sharing.css";
 
 const canonical = (grants) => JSON.stringify([...grants].sort((a, b) => a.matterPublicId.localeCompare(b.matterPublicId)));
 const initials = (name) => name.trim().split(/\s+/).slice(0, 2).map((part) => part[0]).join("").toUpperCase();
 
-export function PeoplePanel({ contacts, apiClient, onAdd, onEdit, onShare, onIncoming, refreshVersion }) {
+export function PeoplePanel({ contacts, apiClient, onAdd, onEdit, onShare, onIncoming, refreshVersion, matterContext, onReturnToMatter }) {
   const [connections, setConnections] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -21,12 +21,15 @@ export function PeoplePanel({ contacts, apiClient, onAdd, onEdit, onShare, onInc
   useEffect(() => { void load(); }, [load, refreshVersion]);
   useEffect(() => { const refresh = () => void load(); window.addEventListener("focus", refresh); return () => window.removeEventListener("focus", refresh); }, [load]);
   return <div className="people-panel">
-    <InviteAction onInvite={onAdd} /><div className="people-toolbar"><span className="sharing-expiry">Your people</span><button className="icon-button" aria-label="Refresh connections" disabled={loading} onClick={() => void load()}><ArrowClockwise size={21} /></button></div>
+    {matterContext && <button className="text-button" onClick={onReturnToMatter}><ArrowLeft size={18}/>Back to {matterContext.title}</button>}
+    <InviteAction onInvite={onAdd} /><div className="people-toolbar"><span className="sharing-expiry">{matterContext ? `Access to ${matterContext.title}` : "Your people"}</span><button className="icon-button" aria-label="Refresh connections" disabled={loading} onClick={() => void load()}><ArrowClockwise size={21} /></button></div>
     {error && <p className="drawer-alert" role="alert">{error}</p>}
     <div className="people-list">{contacts.filter((person) => !["revoked", "archived"].includes(person.status)).map((person) => {
       const connection = connections.find((item) => item.personPublicId === person.publicId);
+      const grant = connection?.status !== "revoked" && connection?.grants.find(item => item.matterPublicId === matterContext?.id);
+      const scope = matterContext ? grant ? `${sharingLevels.find(level => level.value === grant.detailLevel)?.label} · ` : "Not shared · " : "";
       return <div className="person-row" key={person.publicId}>
-        <button className="person-main" onClick={() => onShare(person)}><span className="person-avatar" aria-hidden="true">{initials(person.displayName)}</span><span><strong>{person.displayName}</strong><small>{loading ? "Checking connection…" : error ? "Connection unavailable" : sharingStatus[connection?.status] ?? "Not invited"}</small></span><ArrowRight size={20} aria-hidden="true" /></button>
+        <button className="person-main" onClick={() => onShare(person)}><span className="person-avatar" aria-hidden="true">{initials(person.displayName)}</span><span><strong>{person.displayName}</strong><small>{loading ? "Checking connection…" : error ? "Connection unavailable" : scope + (sharingStatus[connection?.status] ?? "Not invited")}</small></span><ArrowRight size={20} aria-hidden="true" /></button>
         <button className="text-button person-edit" aria-label={`Edit ${person.displayName}`} onClick={() => onEdit(person)}>Edit</button>
       </div>;
     })}</div>
@@ -34,7 +37,11 @@ export function PeoplePanel({ contacts, apiClient, onAdd, onEdit, onShare, onInc
   </div>;
 }
 
-export function ContactSharingPanel({ contact, matters, apiClient, onDirtyChange, onBusyChange, onChanged }) {
+export function ContactSharingPanel({ contact, matters, apiClient, onDirtyChange, onBusyChange, onChanged, focusMatterId }) {
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [preview, setPreview] = useState(null);
+  const [previewError, setPreviewError] = useState("");
+  const [previewRetry, setPreviewRetry] = useState(0);
   const [connection, setConnection] = useState(null);
   const connectionVersion = useRef(null);
   const [grants, setGrants] = useState([]);
@@ -71,6 +78,14 @@ export function ContactSharingPanel({ contact, matters, apiClient, onDirtyChange
     window.addEventListener("focus", refresh);
     return () => window.removeEventListener("focus", refresh);
   }, [load, dirty, busy]);
+
+  const grantKey = canonical(grants);
+  useEffect(() => {
+    let current = true; setPreview(null); setPreviewError("");
+    if (previewOpen) apiClient.previewSharing(JSON.parse(grantKey)).then(value => { if (current) setPreview(value); })
+      .catch(failure => { if (current) setPreviewError(failure.message || "The preview could not be loaded."); });
+    return () => { current = false; };
+  }, [apiClient, grantKey, previewOpen, previewRetry]);
 
   function toggle(id) {
     setGrants((items) => items.some((item) => item.matterPublicId === id)
@@ -125,7 +140,7 @@ export function ContactSharingPanel({ contact, matters, apiClient, onDirtyChange
       {!active ? <label className="field-label">Recipient's sign-in email · Required<input type="email" autoComplete="off" placeholder="person@example.com" value={email} disabled={busy} onChange={(event) => setEmail(event.target.value)} /></label>
         : <p className="sharing-email-hint"><Envelope size={18} />{connection.emailHint}</p>}
       <h3 className="sharing-section-title">Choose what to share</h3>
-      <div className="sharing-matter-list">{matters.map((matter) => {
+      <div className="sharing-matter-list">{[...matters].sort((a, b) => Number(b.id === focusMatterId) - Number(a.id === focusMatterId)).map((matter) => {
         const grant = grants.find((item) => item.matterPublicId === matter.id);
         const blocked = matter.desiredOutcome === "never_disclose";
         const level = sharingLevels.find((item) => item.value === grant?.detailLevel);
@@ -142,7 +157,13 @@ export function ContactSharingPanel({ contact, matters, apiClient, onDirtyChange
         <details className="task-details"><summary>Change invited email</summary><label className="field-label">New sign-in email<input type="email" value={email} disabled={busy} onChange={(event) => setEmail(event.target.value)} /></label></details>
       </>}
       {active && <button className="text-button danger-text sharing-revoke" disabled={busy} onClick={() => void revoke()}>Stop sharing</button>}
-      <details className="task-details"><summary><LockKey size={18} />Visible details</summary>{sharingLevels.map((level) => <p key={level.value}><strong>{level.label}:</strong> {level.value === "details" ? "All saved fields, including category details and Notes." : level.description}</p>)}<p>Read only. Unselected matters remain private.</p></details>
+      <details className="task-details" onToggle={event => setPreviewOpen(event.currentTarget.open)}><summary><LockKey size={18} />Visible details</summary>
+        {previewError ? <div role="alert"><p>{previewError}</p><button className="text-button" onClick={() => setPreviewRetry(value => value + 1)}>Retry preview</button></div> : preview ? <>
+          {preview.items.length === 0 && <p>No matters selected.</p>}
+          {preview.items.map(item => <section className="shared-item-detail" key={item.matterPublicId}><h3>{item.fields.title}</h3><p className="sharing-expiry">{item.fields.category.replaceAll("_", " ")}</p><SharedFields fields={item.fields} level={item.detailLevel}/></section>)}
+          <p>Read only. Unselected matters remain private.</p>
+        </> : <p role="status">Loading visible details…</p>}
+      </details>
     </>}
   </div>;
 }
@@ -161,11 +182,37 @@ export function InvitationQr({ value }) {
 
 export function SharedWithMePanel({ apiClient }) {
   const [data, setData] = useState(null); const [selected, setSelected] = useState(null); const [error, setError] = useState(""); const [needsSignIn, setNeedsSignIn] = useState(false);
-  const load = useCallback(async () => { setError(""); try { const current = await apiClient.getSharedWithMe(); setData(current); return current; } catch (failure) { setData(null); setSelected(null); setNeedsSignIn(failure.status === 401); setError(failure.message || "Shared information could not be loaded."); } }, [apiClient]);
-  useEffect(() => { void load(); const refresh = () => void load(); window.addEventListener("focus", refresh); return () => window.removeEventListener("focus", refresh); }, [load]);
+  const sequence = useRef(0);
+  const load = useCallback(async () => {
+    const request = ++sequence.current; setError(""); setData(null);
+    try {
+      const current = await apiClient.getSharedWithMe();
+      if (request !== sequence.current) return null;
+      setData(current); setNeedsSignIn(false); return current;
+    } catch (failure) {
+      if (request !== sequence.current) return null;
+      setData(null); setNeedsSignIn(failure.status === 401); setError(failure.message || "Shared information could not be loaded."); return null;
+    }
+  }, [apiClient]);
+  useEffect(() => {
+    void load();
+    const refresh = () => void load();
+    const visibility = () => { if (document.hidden) { sequence.current += 1; setData(null); } else void load(); };
+    window.addEventListener("focus", refresh); document.addEventListener("visibilitychange", visibility);
+    return () => { sequence.current += 1; window.removeEventListener("focus", refresh); document.removeEventListener("visibilitychange", visibility); };
+  }, [load]);
   const selectedItem = data?.items.find((item) => `${item.connectionPublicId}:${item.matterPublicId}` === selected);
   if (error) return <div className="drawer-alert" role="alert"><p>{error}</p>{needsSignIn ? <a className="secondary-button" href="/account?next=shared">Sign in to continue</a> : <button className="secondary-button" onClick={() => void load()}>Retry</button>}</div>;
   if (!data) return <div className="sharing-loading" role="status"><Users size={42} />Loading shared items…</div>;
-  if (selectedItem) return <div className="shared-item-detail"><button className="text-button" onClick={() => setSelected(null)}><ArrowLeft size={18} />All shared items</button><div className="task-symbol"><FileText size={54} /></div><h2>{selectedItem.fields.title}</h2><p className="sharing-expiry">{selectedItem.ownerName} · {selectedItem.fields.category.replaceAll("_", " ")} · Read only</p><dl>{Object.entries(sharedFieldLabels).filter(([key]) => selectedItem.fields[key] && !(key === "valueBand" && selectedItem.fields[key] === "unknown") && !(key === "desiredOutcome" && selectedItem.fields[key] === "undecided")).map(([key, label]) => <div key={key}><dt>{label}</dt><dd>{["desiredOutcome", "valueBand", "importance"].includes(key) ? selectedItem.fields[key].replaceAll("_", " ").replace(/^./, (letter) => letter.toUpperCase()) : selectedItem.fields[key]}</dd></div>)}</dl></div>;
-  return <div className="shared-with-me-panel"><a className="incoming-action" href="/invite"><LinkSimple size={22} /><span>Accept a received invitation</span><ArrowRight size={20} /></a><div className="people-toolbar"><span className="sharing-expiry">Read only</span><button className="icon-button" aria-label="Refresh shared items" onClick={() => void load()}><ArrowClockwise size={21} /></button></div>{data.connections.length === 0 ? <div className="task-empty"><ConnectionVisual status="pending" /><p>Nothing shared with you yet.</p></div> : data.connections.map((connection) => <section className="shared-owner" key={connection.publicId}><h3>{connection.ownerName}</h3>{data.items.filter((item) => item.connectionPublicId === connection.publicId).map((item) => <button className="shared-item-row" key={item.matterPublicId} onClick={async () => { const id = `${item.connectionPublicId}:${item.matterPublicId}`; const current = await load(); if (current?.items.some((entry) => `${entry.connectionPublicId}:${entry.matterPublicId}` === id)) setSelected(id); }}><FileText size={24} /><strong>{item.fields.title}</strong><ArrowRight size={19} /></button>)}{!data.items.some((item) => item.connectionPublicId === connection.publicId) && <p className="sharing-expiry">No matters shared with you yet.</p>}</section>)}</div>;
+  if (selected && !selectedItem) return <div className="shared-item-detail"><button className="text-button" onClick={() => setSelected(null)}><ArrowLeft size={18}/>All shared items</button><p role="status">Access changed. This item is no longer shared with you.</p></div>;
+  if (selectedItem) return <div className="shared-item-detail"><button className="text-button" onClick={() => setSelected(null)}><ArrowLeft size={18} />All shared items</button><div className="task-symbol"><FileText size={54} /></div><h2>{selectedItem.fields.title}</h2><p className="sharing-expiry">{selectedItem.ownerName} · {selectedItem.fields.category.replaceAll("_", " ")} · Read only</p><SharedFields fields={selectedItem.fields} level={selectedItem.detailLevel}/></div>;
+  return <div className="shared-with-me-panel"><a className="incoming-action" href="/invite"><LinkSimple size={22} /><span>Accept a received invitation</span><ArrowRight size={20} /></a><div className="people-toolbar"><span className="sharing-expiry">Read only</span><button className="icon-button" aria-label="Refresh shared items" onClick={() => void load()}><ArrowClockwise size={21} /></button></div>{data.connections.length === 0 ? <div className="task-empty"><ConnectionVisual status="pending" /><p>Nothing shared with you yet.</p></div> : data.connections.map((connection) => <section className="shared-owner" key={connection.publicId}><h3>{connection.ownerName}</h3>{data.items.filter((item) => item.connectionPublicId === connection.publicId).map((item) => <button className="shared-item-row" aria-label={`Open ${item.fields.title}, shared by ${item.ownerName}`} key={item.matterPublicId} onClick={async () => { const id = `${item.connectionPublicId}:${item.matterPublicId}`; const current = await load(); if (current?.items.some((entry) => `${entry.connectionPublicId}:${entry.matterPublicId}` === id)) setSelected(id); }}><FileText size={24} /><strong>{item.fields.title}</strong><ArrowRight size={19} /></button>)}{!data.items.some((item) => item.connectionPublicId === connection.publicId) && <p className="sharing-expiry">No matters shared with you yet.</p>}</section>)}</div>;
 }
+
+function CopySharedAddress({ value }) {
+  const [message, setMessage] = useState("");
+  useEffect(() => setMessage(""), [value]);
+  return <><button className="text-button" onClick={async () => { try { await navigator.clipboard.writeText(value); setMessage("Copied"); } catch { setMessage("Select the address to copy it."); } }}><Copy size={17}/>Copy address</button>{message && <span role="status">{message}</span>}</>;
+}
+
+function SharedFields({ fields, level }) { return <>{level === "name" && <p className="sharing-expiry">Only the name and category are shared with you.</p>}<dl>{Object.entries(sharedFieldLabels).filter(([key]) => fields[key] && !(key === "valueBand" && fields[key] === "unknown") && !(key === "desiredOutcome" && fields[key] === "undecided")).map(([key, label]) => <div key={key}><dt>{label}</dt><dd>{sharedFieldValue(key, fields[key])}{key === "walletAddress" && <CopySharedAddress value={fields[key]}/>}</dd></div>)}</dl></>; }

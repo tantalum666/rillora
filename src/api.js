@@ -1,5 +1,5 @@
 import { normalizeCommercialStatus, normalizePurchaseRoute } from "./commercialAccess.js";
-import { validateSharedResponse } from "./sharing.js";
+import { validateSharingPreview, validateSharedResponse } from "./sharing.js";
 import { validateFamilyMaintenance } from "./familyMaintenance.js";
 
 export class ApiClientError extends Error {
@@ -109,6 +109,7 @@ export function createApiClient({
     decideFamilyReview: (id,input) => request(`/maintenance/tasks/${encodeURIComponent(id)}/decide`, { method: "POST", body: input }),
     closeFamilyReview: (id,input) => request(`/maintenance/rounds/${encodeURIComponent(id)}/close`, { method: "POST", body: input }),
     getSharingConnections: () => request("/sharing/connections"),
+    previewSharing: grants => request("/sharing/preview", { method: "POST", body: { grants } }).then(value => validateSharingPreview(value, grants)),
     getAccountProfile: () => request("/account/profile"),
     requestAccountDeletion: (receipt, acknowledgesBilling = false) => request("/account/delete", {method:"POST",body:{confirmation:"DELETE",receipt,acknowledgesSavedCopies:true,acknowledgesBilling}}),
     getAccountDeletionStatus: receipt => request("/account-deletions/status", {headers:{authorization:`Deletion-Receipt ${receipt}`}}, {publicAuth:true}),

@@ -46,10 +46,23 @@ export function InvitationPage({ apiClient }) {
     if (busy || !invitation) return;
     setBusy(true); setError(null);
     try {
-      await apiClient.acceptSharingInvitation({ invitationPublicId: invitation.publicId, accepted: true });
-      window.location.assign("/?view=shared");
-    } catch (failure) { setError(failure); setBusy(false); }
+      if (invitation.status === "accepted") {
+        const shared = await apiClient.getSharedWithMe();
+        if (!shared.connections.some(connection => connection.publicId === invitation.publicId)) throw new Error("Use the invited account to open these shared items.");
+      } else await apiClient.acceptSharingInvitation({ invitationPublicId: invitation.publicId, accepted: true });
+      window.location.replace("/?view=shared");
+    } catch (failure) {
+      // An accepted write may outlive a lost response; verify the current account before retrying.
+      try {
+        const shared = await apiClient.getSharedWithMe();
+        if (shared.connections.some(connection => connection.publicId === invitation.publicId)) {
+          window.location.replace("/?view=shared"); return;
+        }
+      } catch { /* Keep the original failure when current access cannot be verified. */ }
+      setError(failure); setBusy(false);
+    }
   }
+
   async function switchAccount() {
     setBusy(true); setError(null);
     try { await apiClient.logout(); setSession({ authenticated: false }); setAcceptedLegal(false); setSelectAccount(true); }

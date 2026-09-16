@@ -5,7 +5,7 @@ import { hasValue, locationTitle, matterCategories, matterFields, matterValidati
 
 const outcomes = [["undecided", "Not decided"], ["notify", "Notify someone"], ["transfer_request", "Request transfer"], ["close", "Request closure"], ["delete_request", "Request deletion"], ["memorialize", "Request memorialization"], ["delay_disclosure", "Delay disclosure"], ["never_disclose", "Never disclose"]];
 
-export function MatterForm({ draft, onChange, busy, onSave, isNew, onReload, persistenceFailed, onArchive }) {
+export function MatterForm({ draft, onChange, busy, onSave, isNew, onReload, persistenceFailed, onArchive, onManageSharing }) {
   const errorRef = useRef(null);
   const saveRef = useRef(null);
   useEffect(() => {
@@ -35,7 +35,7 @@ export function MatterForm({ draft, onChange, busy, onSave, isNew, onReload, per
         <label className="field-label">Preferred outcome<small>Optional</small><select aria-label="Preferred outcome" value={draft.desiredOutcome} onChange={(event) => onChange("desiredOutcome", event.target.value)}>{outcomes.map(([value,label]) => <option key={value} value={value}>{label}</option>)}</select></label>
         <details className="task-details"><summary>More options</summary><label className="field-label">Importance<select value={draft.importance} onChange={(event) => onChange("importance", event.target.value)}>{["standard", "important", "critical"].map((value) => <option key={value} value={value}>{value[0].toUpperCase()+value.slice(1)}</option>)}</select></label><label className="field-label">Preparation status<select value={draft.status} onChange={(event) => onChange("status", event.target.value)}><option value="draft">Draft</option><option value="ready">Directions added</option><option value="needs_review">Needs review</option></select></label></details>
       </section>
-      <p className="matter-privacy"><LockKey size={18} aria-hidden="true" />{isNew ? "Private until you choose to share" : "Access is managed in Trusted contacts"}</p>
+      <p className="matter-privacy"><LockKey size={18} aria-hidden="true" />{isNew ? "Private until you choose to share" : "Shared only as you choose"}</p>{!isNew && <><button className="text-button" type="button" disabled={busy || matterDraftChanged(draft)} onClick={onManageSharing}>Manage who can see this</button>{matterDraftChanged(draft) && <p className="matter-form-hint">Save your changes to manage sharing.</p>}</>}
       <label className="field-label">Notes<small>Optional</small><textarea aria-label="Notes" rows={4} maxLength={2000} value={draft.notes} placeholder="Anything else someone should know" onChange={(event) => onChange("notes", event.target.value)} /></label>
       <p className="matter-form-hint">Keep passwords, private keys and recovery phrases out.</p>
       {persistenceFailed && <p className="matter-form-validation" role="status">This browser cannot keep a draft after refresh. Keep this page open until you save.</p>}

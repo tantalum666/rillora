@@ -18,7 +18,7 @@ export function SafetyPanel() {
     <PanelTabs items={[["keep", "Keep"], ["avoid", "Leave out"]]} selected={section} onSelect={setSection} label="Safe information" />
     <div className="task-symbol" aria-hidden="true">{section === "keep" ? <Shield size={52} /> : <Key size={52} />}</div>
     <ul className="task-fact-list">{entries.map((entry) => <li key={entry}><Icon size={21} aria-hidden="true" />{entry}</li>)}</ul>
-    <details className="task-details"><summary>Disclosure checks</summary><p>Death, incapacity and being unreachable are separate events.</p><ol><li>Event evidence</li><li>Claimant identity</li><li>Legal authority</li><li>Information scope</li></ol><p>Silence never triggers automatic disclosure.</p></details>
+    <details className="task-details"><summary>Disclosure safeguards</summary><p>Live claims and welfare checks are not available. Current sharing is chosen by you.</p><p>Death, incapacity and being unreachable are separate events.</p><ol><li>Event evidence</li><li>Claimant identity</li><li>Legal authority</li><li>Information scope</li></ol><p>Silence never triggers automatic disclosure.</p></details>
     <div className="task-policy-links"><a href={publicRoutes.privacy} target="_blank" rel="noreferrer">Privacy Policy</a><a href={publicRoutes.terms} target="_blank" rel="noreferrer">Terms</a></div>
   </>;
 }

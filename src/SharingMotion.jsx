@@ -27,7 +27,7 @@ export function InviteAction({ onInvite, detail = "Share by link or QR" }) {
   </button>;
 }
 
-export function AuthenticatedOverview({ matters, contacts, apiClient, refreshVersion, busy, onAdd, onOpenMatters, onInvite, onOpenConnection, onOpenShared, onGuide, showGuide, renderMatter }) {
+export function AuthenticatedOverview({ matters, contacts, apiClient, refreshVersion, busy, onAdd, onOpenMatters, onInvite, onOpenConnection, onOpenShared, onGuide, showGuide, guidePaused, renderMatter }) {
   const [connections, setConnections] = useState(null);
   const [failed, setFailed] = useState(false);
   useEffect(() => {
@@ -44,7 +44,7 @@ export function AuthenticatedOverview({ matters, contacts, apiClient, refreshVer
   const person = connection && contacts.find((item) => item.publicId === connection.personPublicId);
   return <div className="authenticated-overview" data-empty={matters.length === 0}>
     <div className="folio-brand">Rillora</div>
-    <header className="folio-title"><h1>Your map</h1><span>{matters.length} matters</span></header>
+    <header className="folio-title"><h1>Your map</h1><span>{matters.length} {matters.length === 1 ? "matter" : "matters"}</span></header>
     <div className="folio-workspace">
       <button className="folio-open" onClick={matters.length ? onOpenMatters : onAdd} aria-label={matters.length ? "Open your matters" : "Add a matter"}><FolioArtwork compact={matters.length > 0} /></button>
       <div className="folio-actions">
@@ -53,7 +53,7 @@ export function AuthenticatedOverview({ matters, contacts, apiClient, refreshVer
         <InviteAction onInvite={onInvite} />
         {failed && <span className="connection-refresh-note" role="status">Connection status could not refresh.</span>}
         <button className="incoming-action" onClick={onOpenShared}><TrayArrowDown size={25} aria-hidden="true" /><span>Shared with me</span><ArrowRight size={20} aria-hidden="true" /></button>
-        {showGuide && <button className="text-button optional-guide" onClick={onGuide}>Quick start guide</button>}
+        {showGuide && <button className="text-button optional-guide" onClick={onGuide}>{guidePaused ? "Resume quick start guide" : "Quick start guide"}</button>}
       </div>
     </div>
     {matters.length > 0 && <section className="folio-matters"><header><h2>Your matters</h2><button className="text-button" onClick={onOpenMatters}>View all<ArrowRight size={18} /></button></header><div className="matter-list">{matters.slice(0, 3).map(renderMatter)}</div></section>}

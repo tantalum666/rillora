@@ -1,3 +1,4 @@
+import { readWorkspaceRoute, drawerRoute, useWorkspaceHistory } from "./workspaceNavigation.js";
 import { AuthenticatedOverview, FolioArtwork, InviteAction } from "./SharingMotion.jsx";
 import { MatterForm } from "./MatterForm.jsx";
 import { toMatterDraft, matterPayload, matterValidation, matterDraftChanged } from "./matterForm.js";
@@ -86,7 +87,7 @@ const navigation = [
   { id: "contacts", label: "Trusted contacts", icon: UserCircle },
   { id: "shared", label: "Shared with me", icon: UserCircle },
   { id: "maintenance", label: "Shared reviews", icon: ClipboardText },
-  { id: "guides", label: "Guides", icon: BookOpen },
+  { id: "guides", label: "Official guides", icon: BookOpen },
   { id: "access", label: "Plan & access", icon: CreditCard },
   { id: "activity", label: "Activity", icon: Pulse },
 ];
@@ -265,14 +266,13 @@ export function App() {
     publicRoutes.legalNotice,
   ].includes(initialPublicPath);
   const startsOnInvitationRoute = /^\/invite(?:\/[a-f0-9-]{36})?\/?$/i.test(window.location.pathname);
-  const [activeNav, setActiveNav] = useState(() => {
-    const query = new URLSearchParams(window.location.search);
-    if (query.get("next") === "reviews" || query.get("view") === "maintenance") return "maintenance";
-    return query.get("view") === "shared" ? "shared" : window.location.pathname === "/account" ? "settings" : "overview";
-  });
+  const initialRoute = useRef(readWorkspaceRoute(window.location.href)).current;
+  const [activeNav, setActiveNav] = useState(initialRoute.view);
   const [matters, setMatters] = useState([]);
-  const [matterQuery, setMatterQuery] = useState("");
-  const [matterFilter, setMatterFilter] = useState("all");
+  const [sharingMatterId, setSharingMatterId] = useState(initialRoute.sharingMatterId);
+  const [matterQuery, setMatterQuery] = useState(initialRoute.q);
+  const [matterFilter, setMatterFilter] = useState(initialRoute.filter);
+  useEffect(() => { if (activeNav !== "contacts") setSharingMatterId(null); }, [activeNav]);
   const [plan, setPlan] = useState(null);
   const [contacts, setContacts] = useState([]);
   const [checks, setChecks] = useState([]);
@@ -329,7 +329,7 @@ export function App() {
       const requestedCategory = requestedMatterCategory(window.location.search);
       if (requestedCategory) {
         openNewMatter({ category: requestedCategory });
-        const url = new URL(window.location.href); url.searchParams.delete("compose");
+        const url = new URL(window.location.href); url.searchParams.delete("compose"); url.searchParams.set("task", "matter-create"); url.searchParams.set("category", requestedCategory);
         window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
       }
       // Secondary panels must not hold the first meaningful screen behind network calls.
@@ -426,23 +426,37 @@ export function App() {
     setDraftPersistenceFailed(false);
   }
 
-  async function closeDrawer() {
-    if (busy || panelBusy) return;
-    if (panelExitWarning && !await confirm({ title: "Keep your recovery key", message: panelExitWarning, confirmLabel: "Leave without key", cancelLabel: "Return to guide" })) return;
-    let dirty = panelHasChanges;
-    if (drawer?.type === "matter-create") {
-      dirty ||= matterDraftChanged(drawer);
-    } else if (drawer?.type === "matter" && currentMatter) {
-      dirty ||= matterDraftChanged(drawer);
-    } else if (drawer?.type === "settings") {
-      dirty ||= checks.some((check) => check.completed !== check.serverCompleted);
-    }
-    if (dirty && !await confirm({ title: "Discard unsaved changes?" })) return;
+  async function mayLeaveDrawer() {
+    if (busy || panelBusy) return false;
+    if (panelExitWarning && !await confirm({ title: "Keep your recovery key", message: panelExitWarning, confirmLabel: "Leave without key", cancelLabel: "Return to guide" })) return false;
+    const dirty = panelHasChanges || (editingMatter && matterDraftChanged(drawer))
+      || (drawer?.type === "settings" && checks.some((check) => check.completed !== check.serverCompleted));
+    if (dirty && !await confirm({ title: "Discard unsaved changes?" })) return false;
     if (editingMatter) discardRecoveredDraft();
     if (drawer?.type === "settings") setChecks((items) => items.map((item) => ({ ...item, completed: item.serverCompleted })));
-    setPanelHasChanges(false);
+    setPanelHasChanges(false); setPanelExitWarning("");
+    return true;
+  }
+
+  async function closeDrawer() {
+    if ((window.history.state?.rillora?.index ?? 0) > 0) { window.history.back(); return; }
+    if (!await mayLeaveDrawer()) return;
     setDrawer(null);
   }
+
+  function restoreRoute(route) {
+    setActiveNav(route.view); setMatterQuery(route.q); setMatterFilter(route.filter); setSharingMatterId(route.sharingMatterId);
+    if (route.task === "matter") {
+      const item = matters.find(matter => matter.id === route.id);
+      if (item) openMatter(item); else { setDrawer(null); notify("This matter is no longer in your active map."); }
+    } else if (route.task === "matter-create") openNewMatter(route.category ? { category: route.category } : {});
+    else if (route.task === "first-use-guide") setDrawer({ type: route.task, step: Math.max(1, plan?.firstUseStep ?? 1), motivation: plan?.motivation ?? "" });
+    else setDrawer(route.task ? { type: route.task, matterId: route.id, contactId: route.contactId, providerKey: route.providerKey } : null);
+  }
+
+  useWorkspaceHistory({ enabled: !!session && !!plan && !startsOnInvitationRoute && !startsOnPublicLegalRoute,
+    state: { view: activeNav, q: matterQuery, filter: matterFilter, sharingMatterId: activeNav === "contacts" ? sharingMatterId : null, ...drawerRoute(drawer) },
+    restore: restoreRoute, canLeave: mayLeaveDrawer });
 
   function contactSaved(saved) {
     const isNew = !contacts.some((person) => person.publicId === saved.publicId);
@@ -615,6 +629,7 @@ export function App() {
       return;
     }
     if (error instanceof ApiClientError && error.code === "version_conflict") {
+      if (!drawer) { notify("Your plan changed elsewhere. Refreshing the current version.", "error"); await loadWorkspace(); return; }
       setDrawer((current) => current ? { ...current, error: "This record changed elsewhere. Your draft is kept.", conflict: true } : current);
       return;
     }
@@ -689,10 +704,14 @@ export function App() {
       refreshVersion={sharingRefreshVersion} busy={busy} onAdd={() => openNewMatter()}
       onOpenMatters={() => setActiveNav("matters")} onInvite={() => setDrawer({ type: "contact" })}
       onOpenConnection={(person) => setDrawer({ type: "contact-sharing", contactId: person.publicId })}
-      onOpenShared={() => setActiveNav("shared")} showGuide={shouldShowFirstUsePanel(plan)}
+      onOpenShared={() => setActiveNav("shared")} showGuide={shouldShowFirstUsePanel(plan)} guidePaused={plan?.firstUseState === firstUseStates.guidePaused}
       onGuide={() => void openFirstUseGuide()}
       renderMatter={(matter) => <MatterRow key={matter.id} matter={matter} onOpen={openMatter} />} />;
   }
+
+  const filteredMatters = matters.filter(matter =>
+    (matterFilter === "all" || (matterFilter === "added" ? matter.status === "added" : matter.status !== "added"))
+    && `${matter.label} ${matter.institution}`.toLowerCase().includes(matterQuery.trim().toLowerCase()));
 
   function showSection() {
     const meta = {
@@ -721,20 +740,17 @@ export function App() {
           <div className="panel-tabs" role="group" aria-label="Filter matters">
             {[["all", "All"], ["review", "To review"], ["added", "Directions added"]].map(([value, label]) => <button type="button" key={value} aria-pressed={matterFilter === value} onClick={() => setMatterFilter(value)}>{label}</button>)}
           </div>
-          <div className="matter-list secondary-list">{matters.filter((matter) => (
-            (matterFilter === "all" || (matterFilter === "added" ? matter.status === "added" : matter.status !== "added"))
-            && `${matter.label} ${matter.institution}`.toLowerCase().includes(matterQuery.trim().toLowerCase())
-          )).map((matter) => <MatterRow key={matter.id} matter={matter} onOpen={openMatter} />)}</div>
+          <div className="matter-list secondary-list">{filteredMatters.map(matter => <MatterRow key={matter.id} matter={matter} onOpen={openMatter}/>)}{!filteredMatters.length && <p className="drawer-intro" role="status">{matters.length === 0 ? "No matters yet. Add an account, document or other important item." : matterQuery ? `No matters match “${matterQuery}”.` : "No matters match this filter."}</p>}</div>
           {(matterQuery || matterFilter !== "all") && <button type="button" className="text-button" onClick={() => { setMatterQuery(""); setMatterFilter("all"); }}>Clear filters</button>}
         </>}
 
         {activeNav === "plan" && <div className="plan-card"><ProgressSummary count={completed} total={Math.max(matters.length, 5)} /><button className="primary-button" onClick={matters.length ? openNextMatter : () => openNewMatter()}>{matters.length ? "Continue next step" : "Add your first matter"} <ArrowRight size={20} /></button><button className="secondary-button" onClick={() => setDrawer({ type: "start-here" })}>Review Start Here guide <FileText size={20} /></button></div>}
-        {activeNav === "contacts" && <PeoplePanel contacts={contacts} apiClient={api} refreshVersion={sharingRefreshVersion} onAdd={() => setDrawer({ type: "contact" })} onEdit={(person) => setDrawer({ type: "contact", contactId: person.publicId })} onShare={(person) => setDrawer({ type: "contact-sharing", contactId: person.publicId })} onIncoming={() => setActiveNav("shared")} />}
+        {activeNav === "contacts" && <PeoplePanel contacts={contacts} matterContext={matters.find(item => item.id === sharingMatterId)} onReturnToMatter={() => { if ((window.history.state?.rillora?.index ?? 0) > 0) window.history.back(); else { const item = matters.find(item => item.id === sharingMatterId); setActiveNav("matters"); if (item) openMatter(item); } }} apiClient={api} refreshVersion={sharingRefreshVersion} onAdd={() => setDrawer({ type: "contact" })} onEdit={(person) => setDrawer({ type: "contact", contactId: person.publicId })} onShare={(person) => setDrawer({ type: "contact-sharing", contactId: person.publicId })} onIncoming={() => setActiveNav("shared")} />}
         {activeNav === "shared" && <SharedWithMePanel apiClient={api} />}
         {activeNav === "maintenance" && <Suspense fallback={<p role="status">Loading reviews…</p>}><FamilyMaintenancePanel apiClient={api} onChanged={() => void loadWorkspace()} onManageSharing={() => setActiveNav("contacts")} /></Suspense>}
         {activeNav === "guides" && <div className="guide-list">{officialProviderGuides.map((item) => <button key={item.key} className="guide-row" onClick={() => setDrawer({ type: "provider-guide", providerKey: item.key })}><ProviderMark providerKey={item.key} label={item.label} /><span><strong>{item.label}</strong><small>{item.kind}</small></span><CaretRight size={17} /></button>)}</div>}
         {activeNav === "access" && <PlanAccessPreview commerce={commerce} />}
-        {activeNav === "activity" && <div className="activity-list">{auditEvents.length ? auditEvents.map((event) => <p key={event.publicId}><Check size={17} /> {formatAuditAction(event.action)} <span>{formatDate(event.occurredAt)}</span></p>) : <p>No recorded plan changes yet.</p>}</div>}
+        {activeNav === "activity" && <div className="activity-list">{auditEvents.length ? auditEvents.map((event) => <p key={event.publicId}><Check size={17} /> {formatAuditAction(event)}{event.resourceType === "matter" && matters.some(item => item.id === event.resourcePublicId) && <button className="text-button" onClick={() => openMatter(matters.find(item => item.id === event.resourcePublicId))}>{matters.find(item => item.id === event.resourcePublicId).label}</button>}{event.action.startsWith("sharing.") && <button className="text-button" onClick={() => setActiveNav("contacts")}>View people</button>}{event.action.startsWith("family_review.") && <button className="text-button" onClick={() => setActiveNav("maintenance")}>Open review</button>} <span>{formatDate(event.occurredAt)}</span></p>) : <p>No recorded plan changes yet.</p>}</div>}
         {activeNav === "settings" && <AccountDataPanel apiClient={api} onChanged={() => void loadWorkspace()} onDeletionRequested={accountDeletionRequested}/>}
         {activeNav === "settings" && <div className="plan-card settings-card"><button className="secondary-button" type="button" onClick={() => setActiveNav("access")}><CreditCard size={20} /> Review plan & access</button>{session?.authenticationMode === "session" && <><button className="secondary-button settings-sign-out" disabled={busy} onClick={() => void signOut()}><SignOut size={20} /> {busy ? "Signing out…" : "Sign out"}</button><button className="secondary-button settings-sign-out" disabled={busy} onClick={() => void signOutAllDevices()}><SignOut size={20} /> Sign out all Rillora devices</button><p className="drawer-intro">Revokes Rillora sessions only.</p></>}</div>}
         {activeNav === "more" && <InviteAction onInvite={() => setDrawer({ type: "contact" })} />}
@@ -836,6 +852,7 @@ export function App() {
       {(drawer?.type === "matter-create" || (currentMatter && drawer?.type === "matter")) && (
         <Drawer title={drawer.type === "matter-create" ? "New matter" : "Edit matter"} busy={busy || panelBusy} onClose={closeDrawer}>
           <MatterForm draft={drawer} onChange={drawer.type === "matter-create" ? updateNewMatterDraft : updateMatterDraft}
+            onManageSharing={drawer.type === "matter" ? () => { setSharingMatterId(drawer.id); setDrawer(null); setActiveNav("contacts"); } : undefined}
             onArchive={drawer.type === "matter" ? () => void archiveCurrentMatter() : undefined}
             busy={busy} isNew={drawer.type === "matter-create"} persistenceFailed={draftPersistenceFailed}
             onReload={drawer.conflict ? () => void reloadCurrentDraft() : undefined}
@@ -872,7 +889,7 @@ export function App() {
       )}
 
       {sharingContact && <Drawer title={`Share with ${sharingContact.displayName}`} busy={panelBusy} onClose={closeDrawer}>
-        <ContactSharingPanel key={sharingContact.publicId} contact={sharingContact} matters={matters} apiClient={api} onDirtyChange={setPanelHasChanges} onBusyChange={setPanelBusy} onChanged={() => setSharingRefreshVersion((value) => value + 1)} />
+        <ContactSharingPanel key={sharingContact.publicId} contact={sharingContact} matters={matters} focusMatterId={sharingMatterId} apiClient={api} onDirtyChange={setPanelHasChanges} onBusyChange={setPanelBusy} onChanged={() => setSharingRefreshVersion((value) => value + 1)} />
       </Drawer>}
 
       {drawer?.type === "start-here" && (
@@ -926,8 +943,24 @@ function getInitials(value) {
   return value.split(/\s+/).filter(Boolean).slice(0, 2).map((part) => part[0]?.toUpperCase()).join("") || "TC";
 }
 
-function formatAuditAction(action) {
+function formatAuditAction(event) {
+  const action = event.action;
+  if (action === "family_review.responded") return { confirmed: "Directions checked", needs_update: "An update was requested", suggested: "A correction was suggested" }[event.metadata?.response] ?? "A shared review was answered";
   const labels = {
+    "sharing.invitation_created": "Invitation link created",
+    "sharing.invitation_regenerated": "Invitation link replaced",
+    "sharing.invitation_accepted": "Invitation accepted",
+    "sharing.scope_updated": "Shared details changed",
+    "sharing.connection_revoked": "Sharing stopped",
+    "family_review.created": "Shared review requested",
+    "family_review.responded": "A shared review was answered",
+    "family_review.confirmed": "Directions checked",
+    "family_review.needs_update": "An update was requested",
+    "family_review.suggested": "A correction was suggested",
+    "family_review.approve": "Suggested correction approved",
+    "family_review.reject": "Suggested correction declined",
+    "family_review.cancel": "Shared review canceled",
+    "family_review.reissue": "Fresh review requested",
     "matter.created": "Matter added",
     "matter.updated": "Matter updated",
     "matter.archived": "Matter archived",
@@ -950,9 +983,9 @@ function formatAuditAction(action) {
     "export.encrypted": "Encrypted Start Here package created",
     "plan.updated": "Plan updated",
   };
-  return labels[action] ?? "Plan activity recorded";
+  return labels[action] ?? "Account activity recorded";
 }
 
 function formatDate(value) {
-  return new Intl.DateTimeFormat(undefined, { month: "short", day: "numeric" }).format(new Date(value));
+  return new Intl.DateTimeFormat("en", { year: "numeric", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }).format(new Date(value));
 }

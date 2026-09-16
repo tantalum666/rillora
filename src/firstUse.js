@@ -15,12 +15,12 @@ export function normalizeFirstUse(plan) {
 
 export function shouldShowFirstUsePanel(plan) {
   const { state } = normalizeFirstUse(plan);
-  return state === firstUseStates.available || state === firstUseStates.guideInProgress;
+  return state !== firstUseStates.completed;
 }
 
 export function guideActionLabel(plan) {
   const { state, step } = normalizeFirstUse(plan);
-  return state === firstUseStates.guideInProgress || step > 0
+  return state === firstUseStates.guideInProgress || state === firstUseStates.guidePaused || step > 0
     ? "Resume the guide"
     : "Optional guide";
 }
