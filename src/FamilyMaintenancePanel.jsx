@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowClockwise, ArrowLeft, ArrowRight, CalendarCheck, Check, CheckCircle, Clock, FileText, PencilSimple, Users, X, ShareNetwork } from "@phosphor-icons/react";
 import { isReviewResolved, reviewReasons, reviewTaskLabel, reviewShareUrl } from "./familyMaintenance.js";
 import "./family-maintenance.css";
-const dateLabel = value => value ? new Date(value).toLocaleDateString(undefined, {
+const dateLabel = value => value ? new Date(value).toLocaleDateString("en", {
   month: "short",
   day: "numeric",
   year: "numeric"

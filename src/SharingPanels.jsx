@@ -133,7 +133,7 @@ export function ContactSharingPanel({ contact, matters, apiClient, onDirtyChange
       <InvitationQr value={inviteUrl} /><p className="sharing-expiry">Send this link or let them scan the QR.</p>
       <div className="sharing-link-actions"><button className="secondary-button" onClick={async () => { try { await navigator.clipboard.writeText(inviteUrl); setCopied(true); } catch { setError("Copy was unavailable. Use Share or select the link below."); } }}>{copied ? <CheckCircle size={20} /> : <Copy size={20} />}{copied ? "Copied" : "Copy link"}</button>
         {typeof navigator.share === "function" && <button className="primary-button" onClick={async () => { try { await navigator.share({ title: "Rillora invitation", url: inviteUrl }); } catch (failure) { if (failure.name !== "AbortError") setError("Sharing could not be opened."); } }}><ShareNetwork size={20} />Share</button>}</div>
-      <p className="sharing-expiry">Waiting for them to accept · Expires {new Date(connection.expiresAt).toLocaleDateString()}</p>
+      <p className="sharing-expiry">Waiting for them to accept · Expires {new Date(connection.expiresAt).toLocaleDateString("en", { year: "numeric", month: "short", day: "numeric" })}</p>
       <details className="task-details"><summary>Invitation link</summary><input className="share-url-field" readOnly value={inviteUrl} aria-label="Invitation link" onFocus={(event) => event.target.select()} /></details>
     </div> : <>
       <div className="sharing-person-heading"><ConnectionVisual status={connection?.status} compact /><span><strong>{contact.displayName}</strong><small>{sharingStatus[connection?.status] ?? "Not invited"}</small></span></div>
