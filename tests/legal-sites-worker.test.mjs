@@ -103,7 +103,14 @@ test("keeps the legal artifact inside its performance and content budgets", asyn
 
   assert.equal(javascriptFiles.length, 1);
   assert.equal(stylesheetFiles.length, 1);
-  assert.ok(files.length <= 12, `Expected no more than 12 legal assets, received ${files.length}`);
+  // Original type/CSS/JS budget plus the selected logo variants, three icons and font notices.
+  assert.ok(files.length <= 18, `Expected no more than 18 legal assets, received ${files.length}`);
+  const fontLicenseFile = files.find((file) => /^font-licenses-.*\.txt$/.test(file));
+  assert.ok(fontLicenseFile, "Redistributed legal-site fonts must include their licence notices");
+  const fontLicenses = await readFile(new URL(fontLicenseFile, assetDirectory), "utf8");
+  assert.match(fontLicenses, /Adobe/);
+  assert.match(fontLicenses, /Inter Project Authors/);
+  assert.match(fontLicenses, /SIL OPEN FONT LICENSE Version 1\.1/);
 
   const javascript = await readFile(new URL(javascriptFiles[0], assetDirectory));
   const stylesheet = await readFile(new URL(stylesheetFiles[0], assetDirectory));

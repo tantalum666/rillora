@@ -1,5 +1,6 @@
 import { ArrowRight, LockKey } from "@phosphor-icons/react";
 import { useEffect, useRef } from "react";
+import { MatterAccountGuides } from "./MatterAccountGuides.jsx";
 import { matterDraftChanged } from "./matterForm.js";
 import { hasValue, locationTitle, matterCategories, matterFields, matterValidation, providerTitle, requiresLocation, requiresProvider, showsAccountHint, showsProvider } from "./matterForm.js";
 
@@ -17,7 +18,7 @@ export function MatterForm({ draft, onChange, busy, onSave, isNew, onReload, per
   const validation = matterValidation(draft);
   const details = draft.details ?? {};
   const setDetail = (key, value) => onChange("details", { ...details, [key]: value });
-  const text = (key, title, placeholder, required = false, max = 160) => <label className="field-label" key={key}>{title}<small>{required ? "Required" : "Optional"}</small><input aria-label={title} required={required} value={draft[key] ?? ""} placeholder={placeholder} maxLength={max} onChange={(event) => onChange(key, event.target.value)} /></label>;
+  const text = (key, title, placeholder, required = false, max = 160) => <label className="field-label" key={key}>{title}<small>{required ? "Required" : "Optional"}</small><input aria-label={title} autoCorrect={key === "title" || key === "institution" ? "off" : undefined} required={required} value={draft[key] ?? ""} placeholder={placeholder} maxLength={max} onChange={(event) => onChange(key, event.target.value)} /></label>;
   return <form className="matter-form" onSubmit={(event) => { event.preventDefault(); if (!validation && !busy) onSave(); }}>
     <fieldset disabled={busy}>
       <label className="field-label">Category<small>Required</small><select aria-label="Category" value={draft.category} onChange={(event) => onChange("category", event.target.value)}>{matterCategories.map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>
@@ -25,6 +26,7 @@ export function MatterForm({ draft, onChange, busy, onSave, isNew, onReload, per
       <section className="matter-form-section" aria-label="Details">
         {draft.category === "crypto_asset" && <label className="field-label">Held in<small>Required</small><select aria-label="Held in" required value={details.cryptoCustody ?? ""} onChange={(event) => setDetail("cryptoCustody", event.target.value)}><option value="">Choose…</option><option value="exchange">An exchange</option><option value="self_custody">An on-chain wallet</option></select></label>}
         {showsProvider(draft) && text("institution", providerTitle(draft.category), providerTitle(draft.category), requiresProvider(draft))}
+        <MatterAccountGuides preparing fields={{ title: draft.title, institutionName: showsProvider(draft) ? draft.institution : undefined, category: draft.category, cryptoCustody: details.cryptoCustody }}/>
         {matterFields(draft).map(({ key, label, placeholder, required, max }) => <label className="field-label" key={key}>{label}<small>{required ? "Required" : "Optional"}</small>{key === "walletAddress" ? <textarea aria-label={label} rows={2} value={details[key] ?? ""} placeholder={placeholder} required={required} maxLength={max} spellCheck={false} autoCapitalize="none" onChange={(event) => setDetail(key, event.target.value)} /> : <input aria-label={label} type={key === "renewalDate" ? "date" : "text"} value={details[key] ?? ""} placeholder={placeholder} required={required} maxLength={max} spellCheck={false} autoCapitalize="none" onChange={(event) => setDetail(key, event.target.value)} />}</label>)}
         {draft.category === "subscription" && <label className="field-label">Billing cycle<small>Optional</small><select aria-label="Billing cycle" value={details.billingCycle ?? ""} onChange={(event) => setDetail("billingCycle", event.target.value)}><option value="">Not added</option><option value="monthly">Monthly</option><option value="annual">Annual</option><option value="other">Other</option></select></label>}
         {text("location", locationTitle(draft.category), "A useful location, never a password", requiresLocation(draft.category), 500)}

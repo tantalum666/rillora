@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Archive, DownloadSimple, FolderOpen } from "@phosphor-icons/react";
+import { Archive, DownloadSimple, FolderOpen, CaretRight, CheckCircle, Files } from "@phosphor-icons/react";
+import { SurfaceIcon } from "./SurfaceMotion.jsx";
 import { SavedCopyReader } from "./SavedCopyReader.jsx";
 import { downloadMapBackup } from "./savedCopy.js";
 import { useConfirmation } from "./ConfirmationDialog.jsx";
@@ -23,13 +24,13 @@ export function AccountDataPanel({ apiClient, onChanged, onDeletionRequested }) 
     catch(e){if(e.status&&e.status<500){setError(e.message);setBusy(false);}else onDeletionRequested(reference);}
   }
   return <section className="account-data-panel">
-    {confirmation}{profile&&<p className="account-identity">{profile.displayName}</p>}
-    {error&&<div className="drawer-alert" role="alert">{error}{!profile&&<button onClick={()=>setReload(n=>n+1)}>Try again</button>}</div>}{message&&<p role="status">{message}</p>}
-    <button className="secondary-button" disabled={busy} onClick={()=>void backup()}><DownloadSimple size={22}/>Download my complete map</button>
-    <button className="secondary-button" disabled={busy} onClick={()=>setSection(section==="open"?"":"open")}><FolderOpen size={22}/>Open a saved copy</button>
-    {section==="open"&&<SavedCopyReader busy={busy} onImport={restore}/>}
-    <button className="secondary-button" disabled={busy} onClick={()=>setSection(section==="archive"?"":"archive")}><Archive size={22}/>Archived matters · {archives.length}</button>
-    {section==="archive"&&<div>{archives.length===0?<p>No archived matters.</p>:archives.map(m=><div className="archive-row" key={m.publicId}><span>{m.title}</span><button disabled={busy} onClick={()=>void run(async()=>{await apiClient.restoreArchivedMatter(m.publicId,m.version);setArchives(rows=>rows.filter(row=>row.publicId!==m.publicId));setMessage("Restored as a private draft. Sharing stays off.");await onChanged?.();})}>Restore privately</button></div>)}</div>}
+    {confirmation}{profile&&<div className="account-data-heading"><SurfaceIcon icon={Files} emblem/><p className="account-identity">{profile.displayName}</p></div>}
+    {error&&<div className="drawer-alert" role="alert">{error}{!profile&&<button onClick={()=>setReload(n=>n+1)}>Try again</button>}</div>}{message&&<p role="status"><CheckCircle size={22} aria-hidden="true"/>{message}</p>}
+    <button className="secondary-button" disabled={busy} onClick={()=>void backup()}><SurfaceIcon icon={DownloadSimple}/><span>Download my complete map</span><CaretRight className="disclosure-chevron" size={17} aria-hidden="true"/></button>
+    <button className="secondary-button" disabled={busy} aria-expanded={section==="open"} aria-controls="saved-copy-tools" onClick={()=>setSection(section==="open"?"":"open")}><SurfaceIcon icon={FolderOpen}/><span>Open a saved copy</span><CaretRight className="disclosure-chevron" size={17} aria-hidden="true"/></button>
+    {section==="open"&&<div id="saved-copy-tools" className="data-disclosure"><SavedCopyReader busy={busy} onImport={restore}/></div>}
+    <button className="secondary-button" disabled={busy} aria-expanded={section==="archive"} aria-controls="archived-matter-tools" onClick={()=>setSection(section==="archive"?"":"archive")}><SurfaceIcon icon={Archive}/><span>Archived matters · {archives.length}</span><CaretRight className="disclosure-chevron" size={17} aria-hidden="true"/></button>
+    {section==="archive"&&<div id="archived-matter-tools" className="data-disclosure">{archives.length===0?<p>No archived matters.</p>:archives.map(m=><div className="archive-row" key={m.publicId}><span>{m.title}</span><button disabled={busy} onClick={()=>void run(async()=>{await apiClient.restoreArchivedMatter(m.publicId,m.version);setArchives(rows=>rows.filter(row=>row.publicId!==m.publicId));setMessage("Restored as a private draft. Sharing stays off.");await onChanged?.();})}>Restore privately</button></div>)}</div>}
     <button className="text-button danger-text" disabled={busy||!profile} onClick={()=>{setSection(section==="delete"?"":"delete");if(!reference)setReference(createDeletionReference());}}>Delete my account</button>
     {section==="delete"&&<section className="account-delete-form" aria-label="Delete account">
       <h3>Delete your Rillora account</h3><p>Keep a map backup first if you need it. Required consent and payment records may be retained.</p>

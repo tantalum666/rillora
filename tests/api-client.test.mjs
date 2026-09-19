@@ -6,6 +6,12 @@ import {
 } from "../src/api.js";
 import { publicRoutes, resolvePublicView } from "../src/publicRoutes.js";
 
+test("sharing rollout compatibility only treats an absent endpoint as unavailable controls", async () => {
+  const client = status => createApiClient({ fetchImpl: async () => new Response(JSON.stringify({error:{code:status===404?"not_found":"authentication_required",message:"Unavailable"}}), {status,headers:{"content-type":"application/json"}}) });
+  assert.deepEqual(await client(404).getSharingAccess(), {access:null});
+  await assert.rejects(client(401).getSharingAccess(), error => error.status===401);
+});
+
 test("public browsing stays separate from explicit account and identity entry points", () => {
   assert.equal(publicRoutes.home, "/");
   assert.equal(publicRoutes.account, "/account");

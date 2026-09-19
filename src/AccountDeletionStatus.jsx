@@ -1,3 +1,4 @@
+import { RilloraBrand } from "./RilloraBrand.jsx";
 import { useEffect,useState,useRef } from "react";
 import { CheckCircle,Clock } from "@phosphor-icons/react";
 import { readDeletionReference,saveDeletionReference,validateDeletionReference } from "./accountDeletionClient.js";
@@ -7,7 +8,7 @@ export function AccountDeletionStatus({apiClient,reference:initialReference}){
   async function refresh(){if(!reference)return;const version=++requestVersion.current;setLoading(true);setError("");try{const result=await apiClient.getAccountDeletionStatus(reference.receipt);if(version!==requestVersion.current)return;if(!["pending","completed"].includes(result?.deletion?.status))throw Error("The status could not be verified.");setStatus(result.deletion);}catch(e){if(version===requestVersion.current)setError(e.message||"The status could not be checked. Try again.");}finally{if(version===requestVersion.current)setLoading(false);}}
   useEffect(()=>{setStatus(null);void refresh();return()=>{requestVersion.current+=1;};},[reference]);
   return <main className="workspace-gate deletion-status">
-    <a className="workspace-gate-brand" href="/">Rillora</a>
+    <a className="workspace-gate-brand" href="/" aria-label="Rillora home"><RilloraBrand decorative /></a>
     {status?.status==="completed"?<CheckCircle size={52}/>:<Clock size={52}/>}
     <h1>{status?.status==="completed"?"Account deleted":"Deletion status"}</h1>
     {status?.status==="pending"&&<p>Your request is saved and Rillora access has ended. Cleanup is in progress and retries automatically.</p>}

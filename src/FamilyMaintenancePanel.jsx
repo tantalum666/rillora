@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ArrowClockwise, ArrowLeft, ArrowRight, CalendarCheck, Check, CheckCircle, Clock, FileText, PencilSimple, Users, X, ShareNetwork } from "@phosphor-icons/react";
+import { ArrowClockwise, ArrowLeft, ArrowRight, CalendarCheck, Check, CheckCircle, Clock, FileText, PencilSimple, Users, X, ShareNetwork, Tray } from "@phosphor-icons/react";
+import { SurfaceIcon } from "./SurfaceMotion.jsx";
 import { isReviewResolved, reviewReasons, reviewTaskLabel, reviewShareUrl } from "./familyMaintenance.js";
 import "./family-maintenance.css";
 const dateLabel = value => value ? new Date(value).toLocaleDateString("en", {
@@ -132,7 +133,7 @@ export function FamilyMaintenancePanel({
           type: 'task',
           task,
           owner: false
-        })} /></> : <div className="review-empty"><CheckCircle size={58} /><h2>Nothing waiting on you</h2><p>Shared review requests will appear here.</p></div>}{data.incoming.some(t => t.roundState !== 'open') && <details className="task-details"><summary>Previous checks</summary><TaskList tasks={data.incoming.filter(t => t.roundState !== 'open')} receiver onOpen={task => open({
+        })} /></> : <div className="review-empty"><SurfaceIcon icon={Tray} emblem/><h2>Nothing waiting on you</h2><p>Shared review requests will appear here.</p></div>}{data.incoming.some(t => t.roundState !== 'open') && <details className="task-details"><summary>Previous checks</summary><TaskList tasks={data.incoming.filter(t => t.roundState !== 'open')} receiver onOpen={task => open({
           type: 'task',
           task,
           owner: false
@@ -146,7 +147,7 @@ function TaskList({
 }) {
   return <div className="review-task-list">{tasks.map(task => {
       const Icon = taskIcon(task);
-      return <button className="review-task-row" key={task.publicId} onClick={() => onOpen(task)}><Icon size={25} aria-hidden="true" /><span><strong>{task.title}</strong><small>{receiver ? task.ownerName : task.personName}</small></span><span className="review-state" data-ready={isReviewResolved(task)}>{reviewTaskLabel(task)}</span><ArrowRight size={18} aria-hidden="true" /></button>;
+      return <button className="review-task-row" data-ready={isReviewResolved(task)} key={task.publicId} onClick={() => onOpen(task)}><Icon size={25} aria-hidden="true" /><span><strong>{task.title}</strong><small>{receiver ? task.ownerName : task.personName}</small></span><span className="review-state" data-ready={isReviewResolved(task)}>{reviewTaskLabel(task)}</span><ArrowRight size={18} aria-hidden="true" /></button>;
     })}</div>;
 }
 function FieldChanges({

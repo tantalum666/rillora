@@ -4,6 +4,17 @@ export const sharingLevels = [
   { value: "details", label: "Details", description: "All saved details", fields: ["title", "category", "institutionName", "locationHint", "desiredOutcome", "accountHint", "valueBand", "currencyCode", "importance", "assetType", "debtType", "documentType", "deviceModel", "billingCycle", "renewalDate", "cryptoCustody", "network", "walletAddress", "walletLabel", "assetSymbol", "notes"] },
 ];
 export const sharingStatus = { pending: "Invitation pending", expired: "Link expired", accepted: "Connected", revoked: "Disconnected" };
+export function connectionStatus(connection) {
+  if (connection?.status === "revoked") return "Disconnected";
+  if (connection?.access?.mode === "saved") return "Updates paused";
+  if (connection?.access?.mode === "paused") return "Updates paused";
+  return sharingStatus[connection?.status] ?? "Not invited";
+}
+export function savedCopyLabel(item) {
+  if (item.accessMode !== "saved") return "";
+  const date = new Date(item.savedAt);
+  return `Updates paused · Saved ${Number.isNaN(date.getTime()) ? "during the paid period" : date.toLocaleDateString("en", { year: "numeric", month: "short", day: "numeric" })}`;
+}
 export const sharedFieldLabels = { institutionName: "Provider", locationHint: "Where to find it", desiredOutcome: "Wishes", accountHint: "Masked hint", valueBand: "Value range", currencyCode: "Currency", importance: "Importance", assetType: "Asset type", debtType: "Debt type", documentType: "Document type", deviceModel: "Model", billingCycle: "Billing cycle", renewalDate: "Next renewal", cryptoCustody: "Held in", network: "Blockchain network", walletAddress: "Public wallet address", walletLabel: "Wallet app or device", assetSymbol: "Asset or token", notes: "Notes" };
 export function sharedFieldValue(key, value) {
   const labels = {
@@ -39,12 +50,12 @@ export function validateSharedResponse(value) {
 }
 
 export function validateSharingPreview(value, grants) {
-  if (!value || value.preview !== true || value.readOnly !== true || value.purpose !== "planner_directed" || !Array.isArray(value.items) || value.items.length !== grants.length) throw new Error("The preview could not be verified.");
+  if (!value || value.preview !== true || value.readOnly !== true || value.purpose !== "planner_directed" || !Array.isArray(value.items) || (value.accessMode === "saved" || value.accessMode === "paused" ? value.items.length > grants.length : value.items.length !== grants.length)) throw new Error("The preview could not be verified.");
   const seen = new Set();
   for (const item of value.items) {
     const grant = grants.find(entry => entry.matterPublicId === item.matterPublicId);
     const level = sharingLevels.find(entry => entry.value === item.detailLevel);
-    if (!grant || !level || grant.detailLevel !== level.value || seen.has(item.matterPublicId) || !item.fields || typeof item.fields.title !== "string" || typeof item.fields.category !== "string" || Object.keys(item.fields).some(key => !level.fields.includes(key)) || Object.values(item.fields).some(field => typeof field !== "string")) throw new Error("The preview exceeded its selected scope.");
+    if (!grant || !level || (value.accessMode === "saved" || value.accessMode === "paused" ? sharingLevels.findIndex(x => x.value === level.value) > sharingLevels.findIndex(x => x.value === grant.detailLevel) : grant.detailLevel !== level.value) || seen.has(item.matterPublicId) || !item.fields || typeof item.fields.title !== "string" || typeof item.fields.category !== "string" || Object.keys(item.fields).some(key => !level.fields.includes(key)) || Object.values(item.fields).some(field => typeof field !== "string")) throw new Error("The preview exceeded its selected scope.");
     seen.add(item.matterPublicId);
   }
   return value;

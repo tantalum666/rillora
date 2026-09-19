@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ArrowLeft, ArrowRight, CheckCircle, Info, Key, Shield, XCircle } from "@phosphor-icons/react";
 import { publicRoutes } from "./publicRoutes.js";
+import { guideInitialPart, guideLinksForPart } from "./officialProviderGuides.js";
 
 export function PanelTabs({ items, selected, onSelect, label }) {
   return <div className="panel-tabs" role="group" aria-label={label}>{items.map(([value, title]) => (
@@ -23,26 +24,29 @@ export function SafetyPanel() {
   </>;
 }
 
-export function ProviderGuidePanel({ guide, mark, onReviewStatus }) {
-  const [part, setPart] = useState(guide.doNow.length ? "now" : "later");
+export function ProviderGuidePanel({ guide, mark, onReviewStatus, initialPart }) {
+  const [part, setPart] = useState(() => initialPart ?? guideInitialPart(guide));
   const [step, setStep] = useState(0);
   const steps = part === "now" ? guide.doNow : guide.later;
-  const tabs = [...(guide.doNow.length ? [["now", "Set up"]] : []), ...(guide.later.length ? [["later", "Later"]] : []), ["details", "Details"]];
+  const tabs = [...(guide.doNow.length ? [["now", "Prepare"]] : []), ...(guide.later.length ? [["later", "After a death"]] : []), ["details", "Documents"]];
   function selectPart(value) { setPart(value); setStep(0); }
   return <>
     <div className="provider-guide-intro">{mark}</div>
-    <section className="provider-guide-links" aria-label={`${guide.label} official links`}>
-      {guide.links.map(([label, href]) => <a className="secondary-button" href={href} key={href} rel="noreferrer" target="_blank">{label}<ArrowRight size={18} aria-hidden="true" /></a>)}
-    </section>
     <PanelTabs items={tabs} selected={part} onSelect={selectPart} label="Guide section" />
     {part === "details" ? <>
-      <details className="task-details"><summary>Usually requested</summary><ul>{guide.requirements.map((item) => <li key={item}>{item}</li>)}</ul></details>
-      <details className="task-details"><summary><Info size={18} aria-hidden="true" /> About this route</summary><p>{guide.detail}</p><p>{guide.boundary}</p><p>Sources reviewed {guide.reviewed}.</p></details>
+      <section className="guide-documents"><h3>Documents & information</h3><ul>{guide.requirements.map((item) => <li key={item}>{item}</li>)}</ul><p>{guide.boundary}</p></section>
+      <details className="task-details"><summary><Info size={18} aria-hidden="true" /> About this route</summary><p>{guide.detail}</p><p>Sources reviewed {guide.reviewed}. Requirements can change.</p></details>
+      {onReviewStatus && <button className="secondary-button" type="button" onClick={onReviewStatus}>My self-reported review</button>}
     </> : steps.length > 0 && <section className="guide-step-reader">
       <div className="guide-step-counter"><strong>{Math.min(step + 1, steps.length)}</strong><span>of {steps.length}</span></div>
       <p key={`${part}-${step}`} className="guide-current-step">{steps[Math.min(step, steps.length - 1)]}</p>
       <div className="guide-step-actions"><button type="button" disabled={step === 0} onClick={() => setStep((index) => index - 1)}><ArrowLeft size={18} aria-hidden="true" />Previous</button><button type="button" disabled={step >= steps.length - 1} onClick={() => setStep((index) => index + 1)}>Next<ArrowRight size={18} aria-hidden="true" /></button></div>
-      {onReviewStatus && <button className="secondary-button" type="button" onClick={onReviewStatus}>My self-reported review</button>}
     </section>}
+    <section className="provider-guide-links" aria-label={`${guide.label} official links`}>
+      {guideLinksForPart(guide, part).map(link => <a className="secondary-button" href={link.urlString} key={link.urlString} rel="noreferrer" target="_blank">{link.title}<ArrowRight size={18} aria-hidden="true" /></a>)}
+    </section>
+    <details className="task-details guide-source-links"><summary>Original source links</summary>
+      <ul>{guide.linkDetails.map(link => <li key={link.urlString}><strong>{link.title}</strong><a href={link.urlString} rel="noreferrer" target="_blank">{link.urlString}</a></li>)}</ul>
+    </details>
   </>;
 }

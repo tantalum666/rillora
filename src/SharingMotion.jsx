@@ -1,3 +1,4 @@
+import { RilloraBrand } from "./RilloraBrand.jsx";
 import { useEffect, useState } from "react";
 import { ArrowRight, Check, Clock, PlusCircle, UserCircle, TrayArrowDown } from "@phosphor-icons/react";
 import folio from "./assets/illustrations/rillora-folio.jpg";
@@ -43,7 +44,7 @@ export function AuthenticatedOverview({ matters, contacts, apiClient, refreshVer
   const connection = connections?.find((item) => item.status !== "revoked");
   const person = connection && contacts.find((item) => item.publicId === connection.personPublicId);
   return <div className="authenticated-overview" data-empty={matters.length === 0}>
-    <div className="folio-brand">Rillora</div>
+    <div className="folio-brand"><RilloraBrand compact /></div>
     <header className="folio-title"><h1>Your map</h1><span>{matters.length} {matters.length === 1 ? "matter" : "matters"}</span></header>
     <div className="folio-workspace">
       <button className="folio-open" onClick={matters.length ? onOpenMatters : onAdd} aria-label={matters.length ? "Open your matters" : "Add a matter"}><FolioArtwork compact={matters.length > 0} /></button>

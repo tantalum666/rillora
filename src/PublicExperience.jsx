@@ -1,3 +1,4 @@
+import { RilloraBrand } from "./RilloraBrand.jsx";
 import { useEffect, useRef, useState } from "react";
 import {
   ArrowLeft,
@@ -11,6 +12,7 @@ import {
 import { api } from "./api.js";
 import { LegalDocumentPage } from "./LegalDocumentPage.jsx";
 import { SavedCopyReader } from "./SavedCopyReader.jsx";
+import { PublicPlatformGuides } from "./PlatformGuides.jsx";
 import "./interaction-refinement.css";
 import { LEGAL_CONTRACT } from "./legalContract.js";
 import { publicRoutes, resolvePublicView } from "./publicRoutes.js";
@@ -53,6 +55,7 @@ export function PublicExperience({ sessionStatus, onRetry }) {
       home: "Rillora — A clear plan for what comes next",
       account: "Account — Rillora",
       savedCopy: "Open saved copy — Rillora",
+      guides: "Account inheritance — Rillora",
       privacy: "Privacy Policy — Rillora",
       terms: "Terms of Service — Rillora",
       subscriptions: "Subscription Terms — Rillora",
@@ -92,15 +95,17 @@ export function PublicExperience({ sessionStatus, onRetry }) {
   return (
     <div className={`public-shell public-shell-${view}${showCookieNotice ? " has-cookie-notice" : ""}`}>
       <header className="public-header">
-        <a className="public-wordmark" href={publicRoutes.home} onClick={(event) => handleNavigation(event, publicRoutes.home)} aria-label="Rillora home">Rillora</a>
+        <a className="public-wordmark" href={publicRoutes.home} onClick={(event) => handleNavigation(event, publicRoutes.home)} aria-label="Rillora home"><RilloraBrand decorative /></a>
         <nav aria-label="Public navigation">
-          <a className={view === "account" ? "is-current" : ""} href={publicRoutes.account} onClick={(event) => handleNavigation(event, publicRoutes.account)}>Account</a>
+          <a href={publicRoutes.guides} className={view === "guides" ? "is-current" : ""} onClick={(event) => handleNavigation(event, publicRoutes.guides)}>Guides</a>
+          <a className={view === "account" ? "is-current" : ""} href={publicRoutes.account} onClick={view === "guides" ? undefined : (event) => handleNavigation(event, publicRoutes.account)}>Account</a>
         </nav>
       </header>
 
       {hasVisitedHome && <div hidden={view !== "home"}>
         <PublicHome onStart={(category) => navigate(accountPathForMatter(category))} />
       </div>}
+      {view === "guides" && <PublicPlatformGuides />}
       {view === "savedCopy" ? <main className="public-copy-page"><button className="text-button" onClick={() => navigate(publicRoutes.home)}>Back to Rillora</button><h1>Open a saved copy</h1><SavedCopyReader /></main> : view === "account" ? (
         <AccountPage
           sessionStatus={sessionStatus}
@@ -119,13 +124,13 @@ export function PublicExperience({ sessionStatus, onRetry }) {
       )}
 
       <footer className="public-footer">
-        <span>Rillora</span>
+        <span><RilloraBrand /></span>
         <p>Digital legacy and estate continuity. Directions, not passwords.</p>
         <nav aria-label="Legal and account links">
           <a href={publicRoutes.privacy} onClick={(event) => handleNavigation(event, publicRoutes.privacy)}>Privacy</a>
           <a href={publicRoutes.terms} onClick={(event) => handleNavigation(event, publicRoutes.terms)}>Terms</a>
           <a href={publicRoutes.legalNotice} onClick={(event) => handleNavigation(event, publicRoutes.legalNotice)}>Legal</a>
-          <a href={publicRoutes.account} onClick={(event) => handleNavigation(event, publicRoutes.account)}>Account</a>
+          <a href={publicRoutes.account} onClick={view === "guides" ? undefined : (event) => handleNavigation(event, publicRoutes.account)}>Account</a>
           <a href={publicRoutes.savedCopy} onClick={(event) => handleNavigation(event, publicRoutes.savedCopy)}>Open saved copy</a>
         </nav>
       </footer>
@@ -225,6 +230,12 @@ function AccountPage({ sessionStatus, onRetry, onBack }) {
           {unavailable && <><p className="account-status is-error">The account service is temporarily unavailable. The public site is still available.</p><button className="secondary-button" type="button" onClick={onRetry}>Try account service again</button></>}
           {!checking && !unavailable && <>
             <div className="account-action-form">
+              <button className="primary-button" type="button" disabled={!hasAccepted || Boolean(workingIntent)} onClick={() => beginAuthentication("signup")}>
+                {workingIntent === "signup" ? "Opening secure signup…" : "Create account"} <ArrowRight size={20} aria-hidden="true" />
+              </button>
+              <button className="secondary-button" type="button" disabled={!hasAccepted || Boolean(workingIntent)} onClick={() => beginAuthentication("signin")}>
+                {workingIntent === "signin" ? "Opening secure sign in…" : "Sign in"}
+              </button>
               <div className="account-consent">
                 <label>
                   <input
@@ -235,12 +246,6 @@ function AccountPage({ sessionStatus, onRetry, onBack }) {
                   <span>I agree to the <a href={publicRoutes.terms} target="_blank" rel="noreferrer">Terms</a>, acknowledge the <a href={publicRoutes.privacy} target="_blank" rel="noreferrer">Privacy Policy</a>, and consent to electronic records.</span>
                 </label>
               </div>
-              <button className="primary-button" type="button" disabled={!hasAccepted || Boolean(workingIntent)} onClick={() => beginAuthentication("signup")}>
-                {workingIntent === "signup" ? "Opening secure signup…" : "Create account"} <ArrowRight size={20} aria-hidden="true" />
-              </button>
-              <button className="secondary-button" type="button" disabled={!hasAccepted || Boolean(workingIntent)} onClick={() => beginAuthentication("signin")}>
-                {workingIntent === "signin" ? "Opening secure sign in…" : "Sign in"}
-              </button>
             </div>
             {errorMessage && <p className="account-status is-error" role="alert">{errorMessage}</p>}
           </>}

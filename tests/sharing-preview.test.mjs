@@ -17,3 +17,10 @@ test("preview never implies a write or event-conditioned disclosure", () => {
   assert.throws(() => validateSharingPreview({...response({title:"Document",category:"document"}),readOnly:false},grants));
   assert.throws(() => validateSharingPreview({...response({title:"Document",category:"document"}),purpose:"death_release"},grants));
 });
+test("saved preview may omit newly selected matters but never expand their scope", () => {
+  const saved = { ...response({title:"Saved document",category:"document"}), accessMode:"saved" };
+  assert.equal(validateSharingPreview(saved,[{matterPublicId:id,detailLevel:"details"}]),saved);
+  assert.equal(validateSharingPreview({...saved,items:[]},grants).items.length,0);
+  assert.throws(() => validateSharingPreview({...saved,items:[{...saved.items[0],detailLevel:"details",fields:{title:"Saved document",category:"document",notes:"Extra"}}]},grants));
+  assert.throws(() => validateSharingPreview({...saved,accessMode:"live",items:[]},grants));
+});

@@ -109,7 +109,13 @@ export function createApiClient({
     decideFamilyReview: (id,input) => request(`/maintenance/tasks/${encodeURIComponent(id)}/decide`, { method: "POST", body: input }),
     closeFamilyReview: (id,input) => request(`/maintenance/rounds/${encodeURIComponent(id)}/close`, { method: "POST", body: input }),
     getSharingConnections: () => request("/sharing/connections"),
-    previewSharing: grants => request("/sharing/preview", { method: "POST", body: { grants } }).then(value => validateSharingPreview(value, grants)),
+    getSharingAccess: () => request("/sharing/access").catch(error => {
+      if (error.status === 404 && error.code === "not_found") return { access: null };
+      throw error;
+    }),
+    selectSharingLive: (id, input) => request(`/sharing/connections/${encodeURIComponent(id)}/live`, { method: "POST", body: input }),
+    pauseSharingLive: (id, input) => request(`/sharing/connections/${encodeURIComponent(id)}/pause`, { method: "POST", body: input }),
+    previewSharing: (grants, connectionPublicId) => request("/sharing/preview", { method: "POST", body: { grants, ...(connectionPublicId ? { connectionPublicId } : {}) } }).then(value => validateSharingPreview(value, grants)),
     getAccountProfile: () => request("/account/profile"),
     requestAccountDeletion: (receipt, acknowledgesBilling = false) => request("/account/delete", {method:"POST",body:{confirmation:"DELETE",receipt,acknowledgesSavedCopies:true,acknowledgesBilling}}),
     getAccountDeletionStatus: receipt => request("/account-deletions/status", {headers:{authorization:`Deletion-Receipt ${receipt}`}}, {publicAuth:true}),
@@ -125,6 +131,7 @@ export function createApiClient({
     getSharingInvitation: (id) => request(`/sharing/invitations/${encodeURIComponent(id)}`, {}, { publicAuth: true }),
     acceptSharingInvitation: (input) => request("/sharing/invitations/accept", { method: "POST", body: input }),
     getSharedWithMe: () => request("/sharing/shared-with-me").then(validateSharedResponse),
+    checkEmailVerification: () => request("/sharing/email-verification", { method: "POST", body: {} }),
     getSessionStatus: () => devPlannerId
       ? request("/session").then((session) => ({
         authenticated: session?.authenticationMode === "development"
@@ -153,6 +160,12 @@ export function createApiClient({
       method: "POST",
       body: input,
     }).then(normalizePurchaseRoute),
+    getTestBillingStatus: () => request("/commerce/test/status"),
+    startTestCheckout: (billingPeriod, idempotencyKey) => request("/commerce/test/checkout", {
+      method: "POST", headers: { "idempotency-key": idempotencyKey }, body: { billingPeriod },
+    }),
+    openTestBillingPortal: () => request("/commerce/test/portal", { method: "POST", body: {} }),
+    cancelTestCheckout: () => request("/commerce/test/checkout/cancel", { method: "POST", body: {} }),
     updatePlan: (input) => request("/plan", {
       method: "PATCH",
       body: input,

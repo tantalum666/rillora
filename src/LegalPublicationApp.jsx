@@ -1,3 +1,4 @@
+import { RilloraBrand } from "./RilloraBrand.jsx";
 import { useEffect } from "react";
 import { LegalDocumentPage } from "./LegalDocumentPage.jsx";
 import { publicRoutes, resolvePublicView } from "./publicRoutes.js";
@@ -51,7 +52,7 @@ export function LegalPublicationApp() {
   return (
     <div className="public-shell public-shell-legal-publication">
       <header className="public-header">
-        <a className="public-wordmark" href={publicHomeUrl}>Rillora</a>
+        <a className="public-wordmark" href={publicHomeUrl} aria-label="Rillora home"><RilloraBrand decorative /></a>
         <nav aria-label="Primary legal pages">
           <a aria-current={documentKey === "terms" ? "page" : undefined} href={publicRoutes.terms}>Terms</a>
           <a aria-current={documentKey === "privacy" ? "page" : undefined} href={publicRoutes.privacy}>Privacy</a>
@@ -65,7 +66,7 @@ export function LegalPublicationApp() {
       />
 
       <footer className="public-footer">
-        <span>Rillora</span>
+        <span><RilloraBrand /></span>
         <p>Official legal documents. English controls where applicable law permits.</p>
         <nav aria-label="All legal documents">
           {legalLinks.map(([label, href]) => (

@@ -84,7 +84,7 @@ test("public legal routes and registration clickwrap remain visible without fals
   assert.match(publicExperienceSource, />Got it</);
   assert.doesNotMatch(publicExperienceSource, /Accept all cookies|Reject all cookies/i);
   assert.doesNotMatch(publicExperienceSource, /href=\{signupHref\}|href=\{loginHref\}/);
-  assert.match(appSource, /startsOnPublicLegalRoute/);
+  assert.match(appSource, /startsOnPublicReadOnlyRoute/);
   assert.match(appSource, /sessionStatus="signed_out"/);
   assert.match(legalDocumentSource, /continuity_auth_tx/);
   assert.match(legalDocumentSource, /continuity_session/);

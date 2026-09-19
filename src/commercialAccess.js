@@ -46,8 +46,9 @@ export function normalizeCommercialStatus(payload) {
   return Object.freeze({
     available: true,
     billingOpen: payload.billingOpen,
+    validationOnly: payload.validationOnly === true,
     serviceMarketCode: payload.serviceMarketCode,
-    currentAccessLabel: planLabel(payload.currentAccess.planCode),
+    currentAccessLabel: planLabel(payload.currentAccess.planCode) + (payload.validationOnly === true ? " · Test access" : ""),
     currentAccess: payload.currentAccess,
     freeFeatures: Object.freeze(featuresFor(freePlan, "included")),
     familyFeatures: Object.freeze(featuresFor(familyPlan, "planned").filter((label) => [capabilityLabels.family_maintenance, capabilityLabels.trusted_people_multiple].includes(label))),
@@ -76,6 +77,7 @@ export function unavailableCommercialStatus() {
   return Object.freeze({
     available: false,
     billingOpen: false,
+    validationOnly: false,
     serviceMarketCode: null,
     currentAccessLabel: "Unavailable",
     currentAccess: null,
@@ -85,6 +87,15 @@ export function unavailableCommercialStatus() {
     offers: Object.freeze([]),
     boundaries: Object.freeze({ ...requiredBoundaries }),
   });
+}
+
+export function testBillingDestination(payload, kind) {
+  const value = payload?.[kind];
+  const host = kind === "checkout" ? "checkout.stripe.com" : kind === "portal" ? "billing.stripe.com" : null;
+  if (payload?.contractVersion !== "commerce-stripe-test-v1" || value?.testOnly !== true || !host) throw new Error("Test billing response could not be verified.");
+  const url = new URL(value.url);
+  if (url.protocol !== "https:" || url.hostname !== host || url.port || url.username || url.password) throw new Error("Test billing destination could not be verified.");
+  return url.href;
 }
 
 export function formatMoneyMinor(amountMinor, currencyCode, minorUnitExponent, locale = "en-US") {

@@ -96,14 +96,16 @@ export function useWorkspaceHistory({ state, enabled, restore, canLeave }) {
     if (!current.current.hydrated) { current.current.hydrated = true; return; }
     const before = current.current.route;
     const onlyFilter = before.view === state.view && JSON.stringify(drawerRoute({ type: before.task, ...before })) === JSON.stringify(drawerRoute({ type: state.task, ...state }));
+    // Category selection is part of this draft, not another page to Back through.
+    const sameCreateTask = before.view === state.view && before.task === "matter-create" && state.task === "matter-create";
     const finishedForm = before.view === state.view && before.task && !state.task;
     const savedContact = before.task === "contact" && !before.contactId && state.task === "contact-sharing";
-    const replace = onlyFilter || finishedForm || savedContact;
+    const replace = onlyFilter || sameCreateTask || finishedForm || savedContact;
     const index = current.current.index + (replace ? 0 : 1);
-    const scroll = onlyFilter ? current.current.scroll : 0;
+    const scroll = onlyFilter || sameCreateTask ? current.current.scroll : 0;
     window.history[replace ? "replaceState" : "pushState"]({ rillora: { index, scroll, panelScroll: 0 } }, "", url);
     current.current = { index, scroll, panelScroll: 0, route: state, hydrated: true };
-    if (!onlyFilter) window.scrollTo(0, 0);
+    if (!onlyFilter && !sameCreateTask) window.scrollTo(0, 0);
   }, [url, enabled]);
   // Mark the initial matching render without changing browser history.
   useEffect(() => { if (current.current && workspaceURL(current.current.route) === url) current.current.hydrated = true; });

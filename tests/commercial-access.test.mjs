@@ -6,6 +6,7 @@ import {
   normalizeCommercialStatus,
   normalizePurchaseRoute,
   unavailableCommercialStatus,
+  testBillingDestination,
 } from "../src/commercialAccess.js";
 
 const safeBoundaries = {
@@ -128,4 +129,16 @@ test("commercial details stay out of public discovery until explicit paid-capabi
   assert.equal(commercialEntryPolicy.publicHomepageVisible, false);
   assert.equal(commercialEntryPolicy.signedOutMoreVisible, false);
   assert.equal(commercialEntryPolicy.requiresExplicitPaidCapabilityIntent, true);
+});
+
+test("test billing enrollment is explicit and hosted destinations reject lookalikes and credentials", () => {
+  assert.equal(normalizeCommercialStatus(payload).validationOnly, false);
+  assert.equal(normalizeCommercialStatus({ ...payload, validationOnly: true }).validationOnly, true);
+  assert.equal(unavailableCommercialStatus().validationOnly, false);
+  const response = url => ({ contractVersion: "commerce-stripe-test-v1", checkout: { testOnly: true, url } });
+  assert.equal(testBillingDestination(response("https://checkout.stripe.com/c/pay/test"), "checkout"), "https://checkout.stripe.com/c/pay/test");
+  for (const url of ["http://checkout.stripe.com/", "https://checkout.stripe.com.attacker.invalid/", "https://secret@checkout.stripe.com/", "https://checkout.stripe.com:444/"]) {
+    assert.throws(() => testBillingDestination(response(url), "checkout"));
+  }
+  assert.throws(() => testBillingDestination({ checkout: { testOnly: true, url: "https://checkout.stripe.com/" } }, "checkout"));
 });
