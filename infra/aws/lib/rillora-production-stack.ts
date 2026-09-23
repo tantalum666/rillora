@@ -61,7 +61,7 @@ export class RilloraProductionStack extends Stack {
   const journal=new dynamodb.Table(this,'RecoveryJournal',{
    partitionKey:{name:'pk',type:dynamodb.AttributeType.STRING},sortKey:{name:'sk',type:dynamodb.AttributeType.STRING},
    billingMode:dynamodb.BillingMode.PAY_PER_REQUEST,encryption:dynamodb.TableEncryption.AWS_MANAGED,
-   pointInTimeRecoverySpecification:{pointInTimeRecoveryEnabled:true,recoveryPeriodInDays:35},
+   pointInTimeRecoverySpecification:{pointInTimeRecoveryEnabled:true,recoveryPeriodInDays:35},timeToLiveAttribute:'expiresAt',
    deletionProtection:true,removalPolicy:RemovalPolicy.RETAIN,
   });
   journal.node.addDependency(database);

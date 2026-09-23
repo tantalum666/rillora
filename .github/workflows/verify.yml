@@ -68,7 +68,7 @@ jobs:
           cache-dependency-path: apps/api/package-lock.json
       - name: Create isolated test databases
         run: |
-          for database in continuity_test continuity_content_test continuity_family_test continuity_matter_test continuity_email_verification_test continuity_commercial_sharing_test continuity_p1_repair_final_test continuity_sharing_test continuity_content_migration_test; do
+          for database in continuity_test continuity_content_test continuity_family_test continuity_matter_test continuity_email_verification_test continuity_commercial_sharing_test continuity_p1_repair_final_test continuity_sharing_test continuity_content_migration_test continuity_recovery_test continuity_recovery_restore_test; do
             createdb "$database"
           done
       - run: npm ci

@@ -19,6 +19,10 @@ export const notFoundHandler: RequestHandler = (_request, response) => {
 };
 
 export const errorHandler: ErrorRequestHandler = (error, request, response, _next) => {
+  if(error?.code==='55000'&&error.message==='recovery_journal_unavailable'){
+    response.status(503).json({error:{code:'recovery_journal_unavailable',message:'Changes could not be saved safely. Please try again shortly.'}});
+    return;
+  }
   const sharingErrors: Record<string, string> = {
     sharing_limit_reached: "All included sharing places are in use. Keep this draft, or choose which person receives updates in your existing connections.",
     sharing_duplicate_recipient: "This email already has an invitation or connection. Manage the existing connection instead.",

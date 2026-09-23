@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import pg, { type PoolClient, type QueryResult, type QueryResultRow } from "pg";
 import type { AppConfig, DatabaseConfig } from "./config.js";
 import { contentClient, KmsContentKeyProvider, type ContentKeyProvider, type ContentProtectionConfig } from "./private-content.js";
+import { configureRecoveryPool, publishRecoveryTransaction, recoveryPublisherFromEnvironment } from './recovery-journal.js';
 
 const { Pool } = pg;
 
@@ -51,6 +52,9 @@ export function createPool(config: AppConfig, testContentProvider?: ContentKeyPr
   });
   configureContentPool(pool,config.contentProtection ?? null,config.allowFamilyMaintenancePreview ?? false,
     testContentProvider ?? (config.contentProtection ? new KmsContentKeyProvider(config.contentProtection) : null));
+  if(config.nodeEnv==='production'){
+    const journal=recoveryPublisherFromEnvironment();if(journal)configureRecoveryPool(pool,journal);
+  }
   return pool;
 }
 
@@ -72,6 +76,7 @@ async function inRoleTransaction<T>(
     await client.query(repeatableSnapshot ? "begin isolation level repeatable read" : "begin");
     await client.query(`set local role ${role}`);
     const result = await operation(client);
+    await publishRecoveryTransaction(pool,client);
     await client.query("commit");
     return result;
   } catch (error) {

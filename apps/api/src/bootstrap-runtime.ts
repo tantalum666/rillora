@@ -92,8 +92,8 @@ export async function bootstrapRuntimeRole(
       await client.query(`grant ${quotedGrantedRole} to ${quotedRuntimeUser}`);
     }
     const contentRole=await client.query<{forbidden:boolean}>(
-      "select exists(select 1 from pg_roles where rolname='continuity_content_service' and pg_has_role($1,oid,'MEMBER')) as forbidden",[runtimeUser]);
-    if(contentRole.rows[0]?.forbidden)throw new Error("Runtime database login must not hold content migration authority");
+      "select exists(select 1 from pg_roles where rolname in('continuity_content_service','continuity_recovery_service') and pg_has_role($1,oid,'MEMBER')) as forbidden",[runtimeUser]);
+    if(contentRole.rows[0]?.forbidden)throw new Error("Runtime database login must not hold content migration authority or recovery authority");
     await client.query("commit");
   } catch (error) {
     await client.query("rollback");

@@ -4,6 +4,7 @@ import { Auth0EmailIdentityVerifier, SessionEmailVerification, type EmailIdentit
 import type { AppConfig } from "./config.js";
 import type { DatabasePool } from "./db.js";
 import { checkContentKeys } from "./db.js";
+import { checkRecoveryJournal } from './recovery-journal.js';
 import { findForbiddenSecretField } from "./domain.js";
 import { ApiError, errorHandler, notFoundHandler } from "./errors.js";
 import { createApiRouter } from "./routes.js";
@@ -75,6 +76,7 @@ export function createApp(
     try {
       await pool.query("select 1");
       await checkContentKeys(pool);
+      await checkRecoveryJournal(pool);
       response.json({ status: "ready" });
     } catch {
       response.status(503).json({ status: "not_ready" });
