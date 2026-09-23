@@ -18,6 +18,11 @@ const configSchema = z
     NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
     HOST: z.string().min(1).max(255).default("127.0.0.1"),
     PORT: z.coerce.number().int().min(1).max(65_535).default(4180),
+    PRODUCTION_RUNTIME_MODE: z.literal("closed").optional(),
+    API_TLS_CERTIFICATE_ARN: z.string().regex(/^arn:aws:acm:[a-z0-9-]+:\d{12}:certificate\/[a-f0-9-]{36}$/).optional(),
+    API_TLS_SERVER_NAME: z.string().regex(/^[a-z0-9.-]+$/).optional(),
+    RECOVERY_JOURNAL_TABLE: optionalNonEmpty,
+    RECOVERY_ENVIRONMENT: optionalNonEmpty,
     DATABASE_URL: optionalNonEmpty,
     DATABASE_HOST: optionalNonEmpty,
     DATABASE_PORT: z.coerce.number().int().min(1).max(65_535).optional(),
@@ -116,6 +121,8 @@ export type AppleSandboxConfig = {
 };
 
 export type AppConfig = {
+  productionRuntimeClosed?: boolean;
+  apiTls?: { certificateArn: string; serverName: string; region: string } | null;
   contentProtection?: ContentProtectionConfig | null;
   accountDeletion?: AccountDeletionConfig | null;
   emailVerification?: EmailVerificationConfig | null;
@@ -236,6 +243,19 @@ export function loadContentProtectionConfig(env: NodeJS.ProcessEnv = process.env
 
 export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
   const parsed = configSchema.parse(env);
+  const productionRuntimeClosed = parsed.PRODUCTION_RUNTIME_MODE === "closed";
+  if (Boolean(parsed.API_TLS_CERTIFICATE_ARN) !== Boolean(parsed.API_TLS_SERVER_NAME)
+    || (parsed.API_TLS_CERTIFICATE_ARN && parsed.API_TLS_CERTIFICATE_ARN.split(":")[3] !== parsed.DATA_REGION)) {
+    throw new Error("API TLS requires a certificate ARN in DATA_REGION and its exact server name");
+  }
+  if (productionRuntimeClosed && (parsed.NODE_ENV !== "production"
+    || parsed.CONTENT_PROTECTION_MODE !== "encrypted" || parsed.CONTENT_KEY_NAMESPACE !== "rillora-production"
+    || !parsed.RECOVERY_JOURNAL_TABLE || parsed.RECOVERY_ENVIRONMENT !== "production"
+    || !parsed.API_TLS_CERTIFICATE_ARN || parsed.API_TLS_SERVER_NAME !== "origin.production.rillora.xyz"
+    || parsed.DATA_REGION !== "eu-central-1" || parsed.ALLOW_STRIPE_TEST_INTEGRATION
+    || parsed.ALLOW_APPLE_SANDBOX_INTEGRATION || parsed.ALLOW_FAMILY_MAINTENANCE_PREVIEW)) {
+    throw new Error("Closed production requires encrypted content, its independent recovery journal and verified TLS; test features stay disabled");
+  }
   if (parsed.NODE_ENV === "production" && parsed.ALLOW_DEV_AUTH) {
     throw new Error("ALLOW_DEV_AUTH must never be enabled in production");
   }
@@ -343,7 +363,7 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
     };
   }
 
-  if (parsed.NODE_ENV === "production" && !oidc && !nativeOidc) {
+  if (parsed.NODE_ENV === "production" && !oidc && !nativeOidc && !productionRuntimeClosed) {
     throw new Error("Production identity issuance requires Web or native OIDC configuration");
   }
 
@@ -513,6 +533,10 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
     .map((origin) => new URL(origin).origin);
 
   return {
+    productionRuntimeClosed,
+    apiTls: parsed.API_TLS_CERTIFICATE_ARN ? {
+      certificateArn: parsed.API_TLS_CERTIFICATE_ARN, serverName: parsed.API_TLS_SERVER_NAME!, region: parsed.DATA_REGION,
+    } : null,
     contentProtection: loadContentProtectionConfig(env),
     nodeEnv: parsed.NODE_ENV,
     emailVerification: hasVerification ? {

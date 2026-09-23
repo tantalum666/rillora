@@ -47,6 +47,7 @@ import {
 } from "./storekit-sandbox-routes.js";
 
 export type AppDependencies = AuthDependencies & {
+  transportReady?: () => boolean;
   emailIdentityVerifier?: EmailIdentityVerifying;
   accountIdentityDeleter?: AccountIdentityDeleting;
   accountDeletionProcessor?: AccountDeletionProcessor;
@@ -74,6 +75,7 @@ export function createApp(
 
   app.get("/health/ready", async (_request, response) => {
     try {
+      if (dependencies.transportReady && !dependencies.transportReady()) throw new Error("Transport not ready");
       await pool.query("select 1");
       await checkContentKeys(pool);
       await checkRecoveryJournal(pool);
@@ -82,6 +84,17 @@ export function createApp(
       response.status(503).json({ status: "not_ready" });
     }
   });
+
+  // This preparation mode is intentionally not an authentication bypass.
+  // Only the two health routes above exist; no identity, private data, invitation,
+  // legal acceptance, webhook or account-deletion router is mounted.
+  if (config.productionRuntimeClosed) {
+    app.use(preventCaching, (_request, response) => {
+      response.status(503).json({ error: { code: "service_not_open", message: "Rillora is not open for account access yet." } });
+    });
+    app.use(errorHandler);
+    return app;
+  }
 
   const stripeExecutor = config.stripeTest
     ? new StripeCommerceExecutor(

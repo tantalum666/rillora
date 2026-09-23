@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-09-23 (selected envelope encryption implemented and verified in staging)
+Last updated: 2026-09-24 (closed production transport and on-demand cost choice)
 
 新条目使用以下模板：
 
@@ -2504,3 +2504,10 @@ unreachable release remains a different closed workflow. See [sharing contract](
 - Actual production migration0070, independent journal initialization, encrypted synthetic seed, RDS snapshot, later C revocation/D erasure, isolated restore, KMS read and replay passed. The restored copy first contained the old D key/session; after replay B retained access, C was denied, D/key/body and old sessions were gone, and repeat replay made no new changes.
 - Recovery-role probes actually confirmed original-network isolation, denied new key generation and denied journal writes. Exact source fixtures, clone and drill snapshot were cleaned/read back; original production remains private/encrypted/protected with7-day backups and365-day KMS rotation.
 - Retain quarantine for unsupported post-snapshot commerce changes and keep public runtime/identity/mail/billing/submission separate. This bounded four-account experiment is not automatic failover, zero-RPO, broad capacity proof, E2EE or independent certification. [Acceptance](../output/qa/rillora-production-recovery-20260923/README.md).
+
+## 2026-09-24 — Prepare closed production HTTPS and retain flexible billing
+
+- Owner requests the next production step plus usage/package comparison. Agent selects the later small-production cost contract: one regular ARM task, strict VPC Link-only ingress, private-address HTTPS with a single managed exportable certificate, private RDS and unchanged recovery floor. This supersedes the older mandatory private-subnet/NAT assumption; public task IPv4 is disclosed as outbound connectivity, not called a private subnet.
+- Source permits only closed production mode in this increment, exposing health checks and rejecting every account/private/provider route. Certificate material stays out of disk/build/env/logs; local renewal verifies the presented peer certificate actually changes. Callback/path/raw-error logging is removed. Existing staging is not redeployed.
+- Keep on-demand while baseline use settles. A one-year no-upfront RDS reservation is a later option (4.67USD/month compute saving), not a purchase; current t4g is outside the official provisioned Database Savings Plans generation scope. No new price, long-term commitment, bundle, market or sales activation.
+- Local API212/infra29 and live-template diff pass; cloud TLS/network acceptance is still pending GoDaddy owner login. The current Google management identity does not expose the old Auth0 tenant; request the original administrator method rather than create another tenant. [Runtime](production-runtime-20260924.md),[cost comparison](cloud-cost-options-20260924.md).

@@ -1,8 +1,21 @@
 # Rillora AWS infrastructure
 
-This directory is the Infrastructure-as-Code source for the live synthetic-only staging environment
-in AWS Frankfurt (`eu-central-1`). The deployed revision is evidence only for the exact resources and
-checks recorded in `docs/handoff.md`; it is not approved for real sensitive planner or recipient data.
+This directory defines synthetic staging, independent production and public operations
+in AWS Frankfurt (`eu-central-1`). The deployed revision is evidence only for the
+exact resources and checks recorded in `docs/handoff.md`; staging is not approved
+for external private plans and production customer traffic remains closed.
+
+## September24 closed runtime preparation
+
+`productionRuntimeEnabled=true` optionally adds the production HTTPS transport;
+`productionRuntimeDesiredCount` defaults0 and permits at most1 during this phase.
+It never opens account or private-data routes. The exact DNS validation, managed
+certificate reload, strict VPC Link ingress and deployment/readback procedure are
+in the[runtime contract](../../docs/production-runtime-20260924.md). Local API212,
+infra29 and live-template diff pass; no runtime deployment has started. Restore
+GoDaddy access before starting the DNS-dependent update. Auth0's original
+management identity is a separate pending prerequisite; do not create a tenant
+from the unrelated Google onboarding screen.
 
 
 ## September23 closed production and recovery
@@ -94,9 +107,12 @@ Provision/update with the feature disabled, populate the exact secret ARN from s
 - The container verifies PostgreSQL with the pinned AWS RDS CA bundle and refuses production
   startup if verified TLS or real OIDC is absent.
 
-This low-cost topology is intentionally bounded to synthetic staging. Before storing real sensitive
-data, move the API tasks to private subnets with reviewed egress, complete the DPIA/security review,
-and close the production gates in `docs/quality-gates.md`.
+This existing deployment remains synthetic staging. The separate production
+design now follows the later small-production cost contract: public IPv4 only for
+outbound HTTPS, no public application ingress, verified private-hopTLS and a
+private database. This replaces the earlier mandatory-NAT/private-task-subnet
+assumption without calling public-address tasks private. Actual network/TLS,
+identity and release gates still require their own evidence before customer use.
 
 The zero-revenue public／legal hosting and future migration contract is
 [`docs/infrastructure-roadmap.md`](../../docs/infrastructure-roadmap.md). Do not use this staging

@@ -38,9 +38,9 @@ COPY --chown=node:node --from=build /app/migrations ./migrations
 COPY --chown=node:node --from=build /app/certificates ./certificates
 
 USER node
-EXPOSE 8080
+EXPOSE 8080 8443
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
-  CMD ["node", "-e", "fetch('http://127.0.0.1:8080/health/live').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+  CMD ["node", "dist/healthcheck.js"]
 
 CMD ["node", "dist/server.js"]

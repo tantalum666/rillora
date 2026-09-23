@@ -1,6 +1,6 @@
 # Digital Legacy Ongoing Project Journey
 
-Last updated: 2026-09-23 (Paid Plan, production data and real recovery acceptance)
+Last updated: 2026-09-24 (production transport preparation, log privacy and cost comparison)
 
 ## 记录范围
 
@@ -2516,3 +2516,11 @@ launch prerequisites and historical authentication gates are not repeated approv
 - **判断变化**：账单页面打不开不等于升级API无权限。普通本地superuser测试不足以证明RDS权限，因此补non-superuser／forced-RLS恢复验证和明确的管理角色政策。有效旧会话必须在恢复前确实可用，随后验证401；未对账的快照后计费变化保持隔离。清理输出曾显示旧的available值，已修正为实时absent读回。
 - **结果**：代码11a9efb、205API／28infra／13Python守卫及GitHub CI运行3通过。生产任务revision2／镜像19b9287d部署并迁移70份SQL。真实RDS快照在4个合成账号／10值之后创建；原库随后撤销C并删除D。恢复与生产KMS解密成功，重放3项控制、删除1个旧会话，B获准内容保留、C拒绝、D的账户／密钥／内容不存在，明文0／无效引用0，重复重放零新增变化。观察到的恢复至验收1206秒，含操作观察间隔。
 - **未完成／边界**：恢复角色实际不能连接原库、不能GenerateDataKey、不能PutItem；原库合成账号／内容／密钥清为0，临时库与演练快照已确认不存在。最小控制记录／收据有独立保留目的，不声称抹掉所有备份字节。客户API／生产身份邮件／正式收款／App Store仍未完成，旧手动备份退役和持续运营另行验收；非E2EE、零RPO或独立认证。详见[本轮QA](../../output/qa/rillora-production-recovery-20260923/README.md)。
+
+## 2026-09-24 — 准备受控生产API并核对真实计费选择
+
+- **目标**：Owner要求继续下一步，比较按量与套餐；保留已完成的独立数据／恢复、原UI和FanPass。
+- **尝试**：沿用全量阅读基线，恢复聚焦权威；AWS原会话仍可用，读取账户账单与官方区域价目。增加默认关闭的生产API、Cloud Map私有HTTPS、单域ACM证书／热更新和最小网络权限；核对与现有云端模板的差异。
+- **判断变化**：一年免预付RDS仅省约4.67美元/月，现阶段不值得为了折扣先锁定架构；新的Database Savings Plans并不覆盖当前t4g代际。旧日志仅遮盖headers，回调URL／邀请路径／数据库错误仍可能泄漏，因此顺手收紧日志。TLS测试由同主题自签叶证书改为共同测试CA，保留严格验证。
+- **结果**：API212、infra29通过；本地实际HTTPS、错误名称／密钥／过期拒绝、续期后peer serial变化、关闭路由和日志捕获均通过。现有数据库／VPC／KMS／日志表／秘密资源未在diff中改动或移除；无SQL迁移。AWS周期账面使用26.55美元，当前抵扣覆盖，非完整生产月费；保存按量与RI比较。
+- **未完成／边界**：GoDaddy要求本人重登；Auth0 CLI两次拒绝当前Google身份，后台停在无原租户的入门页，已询问原管理登录方式且未提交创建。没有开始域名依赖部署、创建付费承诺或启用用户入口；云端TLS／网络、生产身份邮件及Release连接仍待验收。旧日志不宣称清除；原staging未部署。见[QA](../../output/qa/rillora-production-runtime-20260924/README.md)。

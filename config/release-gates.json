@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-23",
+  "updatedAt": "2026-09-24",
   "release": "Rillora Global 1.0",
   "scope": "Web and native iOS; existing Free and Family only",
   "gates": [
@@ -12,9 +12,10 @@
       "evidence": [
         "docs/production-recovery-20260923.md",
         "output/qa/rillora-production-recovery-20260923/production-database-readback.json",
-        "output/qa/rillora-production-recovery-20260923/paid-plan-readback.json"
+        "output/qa/rillora-production-recovery-20260923/paid-plan-readback.json",
+        "docs/production-runtime-20260924.md"
       ],
-      "next": "Closed data foundation and scoped recovery are verified. Implement the customer runtime, private-hop TLS, production identity/transaction email, domains and final Web/iOS Release connections. Current customer-facing deployment remains staging."
+      "next": "Closed HTTPS runtime and privacy-safe logging pass local API212/infra29 and live-template diff, but are not deployed. Restore GoDaddy DNS access, issue the exact certificate and complete the two-phase closed runtime/network/readiness acceptance before production identity and Release connections."
     },
     {
       "id": "production-identity",
@@ -22,7 +23,7 @@
       "required": true,
       "title": "Production identity and recovery",
       "evidence": [],
-      "next": "Configure production clients and separate Google project, reliable transaction email, real Apple/Google/email login and recovery including invitation continuation and session revocation; fill the five native Release fields."
+      "next": "Restore the original Auth0 administrator identity: the currently selected Google identity has no existing Rillora tenant. Then configure production clients, independent Google production project, reliable transaction email and real login/recovery; do not create a duplicate tenant or open customer access from a local pass."
     },
     {
       "id": "production-billing",

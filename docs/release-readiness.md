@@ -2,7 +2,18 @@
 
 Role: current launch scope, remaining work and release evidence contract  
 Status: RELEASE PREPARATION ACTIVE; PUBLIC PRODUCT AND LIVE SALES CLOSED  
-Last updated: 2026-09-23 (release-gap recheck after content encryption)
+Last updated: 2026-09-24 (verified data/recovery checkpoint; closed runtime preparation)
+
+## September24 current production checkpoint
+
+Private GitHub/CI and the independent7-day production data foundation, real
+synthetic encrypted restore/revocation/deletion/session replay and cleanup are now
+verified. The optional customer API transport is locally implemented with internal
+TLS and closed account routes, but not deployed pending certificate DNS access.
+Production Auth0 administrator identity/email and final Web/iOS connections remain
+open. [Current execution](production-runtime-20260924.md),[completed data result](production-recovery-20260923.md).
+The September23 review below describes its earlier observation point; statements
+that production data/recovery did not yet exist are superseded by this checkpoint.
 
 ## 当前判断与范围
 
@@ -14,7 +25,7 @@ Owner要求后续工作按正式上线推进。现状是已有可运行核心产
 
 Owner询问距离正式发布还缺什么。本次重新运行[发布预检](../output/qa/rillora-release-status-20260923/preflight.json)，核对当前源码和当天加密验收记录。仍有8项工程／发布门未完成，另有经营市场与实机2项Owner暂缓；这不是按门数量计算的总体完成百分比。
 
-当前源码事实：只有staging／Operations基础设施；原生Release五个正式连接字段为空；Stripe适配器拒绝live对象；Apple验证器仍限定Sandbox，服务端价格映射仍指向历史v1。正式购买还需要实现和验收，不能描述成只剩后台开关或等待审核。
+该次复核时只有staging／Operations基础设施；后来已完成独立生产数据基础和恢复。原生Release五个正式连接字段仍为空；Stripe适配器拒绝live对象；Apple验证器仍限定Sandbox，服务端价格映射仍指向历史v1。正式购买还需要实现和验收，不能描述成只剩后台开关或等待审核。
 
 工作合并为六组：隔离生产／Release连接；生产登录／恢复／邮件；Web真实年付；Apple生产交易处理与真实Sandbox/TestFlight验收；备份恢复／删除重放／最终安全回归；官网支持入口与签名构建／提审资料。核心事项／分层共享、18份指南、03品牌、年付停售处理、内容加密与已送达告警均保留已有证据，不重新当作待开发事项。
 
@@ -62,11 +73,11 @@ Owner对香港经营／商业登记回复“先忽略”：本项暂缓，不再
 
 | 主线 | September23当前缺口（后台沿用最近记录日期） | 完成判据 |
 | --- | --- | --- |
-| 生产环境 | IaC仍只有staging和Operations；原生Release的API、issuer、client、audience、session URL均为空 | 新隔离生产栈、精确域名／TLS／秘密／迁移／回滚；最终Release产物连接生产。不能原地给staging改名 |
+| 生产环境 | 独立数据基础与恢复已验证；关闭状态的API/TLS代码本地通过，待域名验证部署；原生Release五个连接字段仍为空 | 核验实际生产API/TLS及身份，再接最终Web/iOS产物；保留独立staging |
 | 生产身份与恢复 | Google仍是Testing的已记录基线；Apple本人callback及真实密码恢复缺完整证据 | 生产客户配置、Google生产项目与首页、Apple／邮箱／Google端到端、邮箱验证保留邀请、恢复后的旧会话处置 |
 | 正式购买 | Stripe适配器明确只接收rk_test与非live对象，普通购买UI及独立购买同意未闭环 | 生产适配器、账本／回调／后台补偿对账、价格／税处理、购买同意、取消／恢复与跨渠道防重订阅；不通过放宽测试分支来开门 |
 | Apple交易 | 新月付已停售；Apple可用年价尚需落定。当前验证器仍限定Sandbox、服务端价格映射仍为v1，正式交易路径与实际购买验收未完成 | 版本化目录映射与各地区实际价格对齐、真实Sandbox购买／恢复／通知、持久化后finish，再制作提交构建 |
-| 运维与数据 | 公开监控已修复并完成投递／缺心跳验收、启用日程；生产目标仍待接入。生产至少7日备份、隔离恢复、删除重放和事件90日清理未完成 | 告警实际进入指定收件箱，故障／恢复／失联演练；生产目标接入；恢复实测RPO/RTO和清理失败可观察 |
+| 运维与数据 | 公开监控已完成送达与缺心跳验收；生产7日备份和隔离恢复／删除重放已通过；生产目标、持续保留清理及恢复后计费对账仍待完成 | 接入实际生产监控；验证持续清理与旧快照退役；保留既有演练的观察RPO/RTO及边界 |
 | 上架与公开入口 | Owner已选03；主App图标已配置且普通Debug模拟器实际显示，Web品牌已发布；最终生产Release及提交构建／截图仍缺，年龄／隐私／加密、审核账号及最终市场范围待定 | 按最终产物完成申报和TestFlight／设备验收；资料齐全后送审；审核后手动发布。公共首页不能继续Coming Soon |
 | 安全与持续维护 | 依赖公告已检查并完成本地升级及回归；还需最终生产范围安全复核、源码／产物记录和发布回滚 | 可复现构建、秘密检查、必要权限与负向访问验收、恢复演练；不把依赖零公告称为独立全面安全审计 |
 

@@ -5,10 +5,13 @@ import {ArnFormat,Aws,CfnOutput,Duration,RemovalPolicy,Stack,Tags,type StackProp
  aws_kms as kms,aws_logs as logs,aws_rds as rds,aws_secretsmanager as secrets,
  aws_dynamodb as dynamodb} from 'aws-cdk-lib';
 import type {Construct} from 'constructs';
+import {RilloraProductionRuntime} from './rillora-production-runtime.js';
+
+export interface ProductionStackProps extends StackProps { runtimeEnabled?:boolean; runtimeDesiredCount?:0|1; }
 
 /** An isolated production data foundation. It exposes no customer HTTP service. */
 export class RilloraProductionStack extends Stack {
- constructor(scope:Construct,id:string,props:StackProps){
+ constructor(scope:Construct,id:string,props:ProductionStackProps){
   super(scope,id,props);
   if(props.env?.region!=='eu-central-1')throw new Error('Production data stays in the reviewed Frankfurt region');
   Tags.of(this).add('Project','Rillora');Tags.of(this).add('Environment','Production');
@@ -121,6 +124,10 @@ export class RilloraProductionStack extends Stack {
   operator.addToPolicy(new iam.PolicyStatement({actions:['rds:DeleteDBSnapshot'],resources:[snapshotArn],conditions:{StringEquals:{'aws:ResourceTag/Environment':'RecoveryDrill'}}}));
   operator.addToPolicy(new iam.PolicyStatement({actions:['cloudformation:DescribeStacks'],resources:[this.stackId]}));
   operator.addToPolicy(new iam.PolicyStatement({actions:['kms:DescribeKey','kms:GetKeyRotationStatus'],resources:[contentKey.keyArn]}));
+  if(props.runtimeEnabled)new RilloraProductionRuntime(this,'Runtime',{
+   vpc,cluster,database,databaseNetwork,credential:runtimeCredential,key:contentKey,journal,image,operator,environment,
+   desiredCount:props.runtimeDesiredCount??0,
+  });
   const outputs={ProductionVpcId:vpc.vpcId,DatabaseSecurityGroupId:databaseNetwork.securityGroupId,
    DatabaseIdentifier:database.instanceIdentifier,DatabaseHost:database.instanceEndpoint.hostname,
    DatabaseSubnetGroup:databaseSubnets.subnetGroupName,DatabaseParameterGroup:parameters.bindToInstance({}).parameterGroupName,ClusterName:cluster.clusterName,

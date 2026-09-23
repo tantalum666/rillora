@@ -2,7 +2,7 @@
 
 Role: current execution contract for the Owner's production/recovery request  
 Status: PRIVATE SOURCE/CI, PRODUCTION DATA AND SCOPED CLOUD RESTORE VERIFIED
-Last updated: 2026-09-23 (Asia/Hong_Kong)
+Last updated: 2026-09-24 (historical account wording clarified; verified data result preserved)
 
 ## Scope and current evidence
 
@@ -21,7 +21,7 @@ production gate; this foundation must not be marked as a public-ready service.
 
 The renewed operator session is verified. A separately deployedMFA-gated role
 can read the account plan/cost/database metadata and cannot upgrade the plan or
-read application secrets. Fresh readback showsFree Plan ACTIVE,112.50USD credits
+read application secrets. The pre-upgrade readback showedFree Plan ACTIVE,112.50USD credits
 and2027-02-11 plan expiry; this is not an indefinitely free service. Before the upgrade, only staging existed as a database and had1-day backups. A prior statement treating
 1day as a current maximum is not sufficient evidence; test the required7-day
 configuration and report any actual provider refusal. Never downgrade retention
@@ -41,8 +41,9 @@ control journal and maintenance roles/tasks exist. Task revision2 uses image
 `sha256:19b9287d289397801f607f2a6550c9a336d8771c04738116f388db775863fa46`,
 built from codecommit11a9efb. Migration through0070 completed, encrypted writes
 and journal enforcement are enabled. Four synthetic accounts/ten protected values
-were seeded with plaintext0/invalid references0; their actual RDS snapshot is
-available. Cloud replay and exact cleanup have now passed the controlled synthetic cases; customer traffic remains closed.
+were seeded with plaintext0/invalid references0; their actual RDS snapshot became
+available for the drill. Cloud replay and exact cleanup then passed, and that
+temporary snapshot is now absent; customer traffic remains closed.
 
 An earlier creation hit the operator's2KiB inline-policy quota. The exact-role
 managed-policy repair preserves scope/MFA, and two retained empty resources were
@@ -182,3 +183,6 @@ commerce, final App Store submission or unrestricted automatic disaster failover
 The [control contract](recovery-control-journal.md) names conservative replay and
 provider-reconciliation limits; source/image/schema references and raw task logs
 are in the [QA record](../output/qa/rillora-production-recovery-20260923/README.md).
+
+The next transport increment is tracked in the[September24 runtime contract](production-runtime-20260924.md).
+Its local code/test preparation does not change the deployed data result above.

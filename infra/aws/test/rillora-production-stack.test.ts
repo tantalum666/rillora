@@ -58,3 +58,28 @@ describe('Closed production data and recovery foundation',()=>{
   expect(cleanup.Condition.StringEquals['aws:ResourceTag/Environment']).toBe('RecoveryDrill');
  });
 });
+
+describe('Optional closed production HTTPS runtime',()=>{
+ it('keeps the existing data resources and uses a verified private TLS integration',()=>{
+  const t=Template.fromStack(new RilloraProductionStack(new App(),'Production',{env:{account:'111111111111',region:'eu-central-1'},runtimeEnabled:true,runtimeDesiredCount:1}));
+  t.resourceCountIs('AWS::RDS::DBInstance',1);t.resourceCountIs('AWS::EC2::NatGateway',0);
+  t.resourceCountIs('AWS::ElasticLoadBalancingV2::LoadBalancer',0);t.resourceCountIs('AWS::ECS::Service',1);
+  t.hasResourceProperties('AWS::CertificateManager::Certificate',{DomainName:'origin.production.rillora.xyz',ValidationMethod:'DNS',CertificateExport:'ENABLED'});
+  t.hasResourceProperties('AWS::ApiGatewayV2::Integration',{ConnectionType:'VPC_LINK',TlsConfig:{ServerNameToVerify:'origin.production.rillora.xyz'}});
+  t.hasResourceProperties('AWS::ECS::Service',{DesiredCount:1,CapacityProviderStrategy:[{CapacityProvider:'FARGATE',Weight:1}]});
+  const tasks=Object.values(t.findResources('AWS::ECS::TaskDefinition')) as any[];
+  const api=tasks.flatMap(t=>t.Properties.ContainerDefinitions).find(c=>c.Name==='Api');
+  const env=Object.fromEntries(api.Environment.map((e:any)=>[e.Name,e.Value]));
+  expect(env.PRODUCTION_RUNTIME_MODE).toBe('closed');expect(env.PORT).toBe('8443');
+  expect(env.ALLOW_DEV_AUTH).toBe('false');expect(env.ALLOW_STRIPE_TEST_INTEGRATION).toBe('false');
+  expect(api.ReadonlyRootFilesystem).toBe(true);expect(api.LinuxParameters.Capabilities.Drop).toContain('ALL');
+  expect(api.Secrets).toHaveLength(2);expect(JSON.stringify(api.Secrets)).not.toContain('DatabaseSecret');
+  const incoming=Object.values(t.findResources('AWS::EC2::SecurityGroupIngress')) as any[];
+  expect(incoming.every(x=>!x.Properties.CidrIp)).toBe(true);
+  const tlsRules=incoming.filter(x=>x.Properties.FromPort===8443);expect(tlsRules).toHaveLength(1);
+  expect(tlsRules[0].Properties.SourceSecurityGroupId).toBeDefined();
+  const exports=Object.values(t.findResources('AWS::IAM::Policy')).flatMap((p:any)=>p.Properties.PolicyDocument.Statement).filter(s=>JSON.stringify(s.Action).includes('acm:ExportCertificate'));
+  expect(exports).toHaveLength(1);expect(exports[0].Resource).not.toBe('*');
+  t.hasOutput('ProductionTrafficReady',{Value:'false'});
+ });
+});

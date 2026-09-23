@@ -3,13 +3,15 @@ import { createApp } from "./app.js";
 import { loadConfig } from "./config.js";
 import { createPool, sweepContentOrphans } from "./db.js";
 import { deletionProcessor } from "./account-deletion.js";
+import { createManagedTlsServer } from "./managed-tls.js";
 
 const config = loadConfig();
 const pool = createPool(config);
 const accountDeletionProcessor = deletionProcessor(pool, config);
-const app = createApp(pool, config, { accountDeletionProcessor });
+let transportReady = () => !config.apiTls;
+const app = createApp(pool, config, { accountDeletionProcessor, transportReady: () => transportReady() });
 const deletionTimer = setInterval(() => {
-  void accountDeletionProcessor.process().catch(() => { process.stderr.write("Account deletion worker will retry.\n"); });
+  if (!config.productionRuntimeClosed) void accountDeletionProcessor.process().catch(() => { process.stderr.write("Account deletion worker will retry.\n"); });
 }, 30_000);
 deletionTimer.unref();
 let contentSweepRunning=false;
@@ -20,7 +22,9 @@ const contentTimer=config.contentProtection?.mode==="encrypted"?setInterval(()=>
     .finally(()=>{contentSweepRunning=false;});
 },300_000):null;
 contentTimer?.unref();
-const server = createServer(app);
+const managedTls = config.apiTls ? await createManagedTlsServer(app, config.apiTls) : null;
+const server = managedTls?.server ?? createServer(app);
+if (managedTls) transportReady = managedTls.ready;
 
 server.requestTimeout = 15_000;
 server.headersTimeout = 20_000;
@@ -41,6 +45,7 @@ async function shutdown(signal: string): Promise<void> {
   if (shuttingDown) return;
   shuttingDown = true;
   clearInterval(deletionTimer);
+  managedTls?.close();
   if(contentTimer)clearInterval(contentTimer);
   process.stdout.write(`Received ${signal}; shutting down.\n`);
   server.close(async () => {

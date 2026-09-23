@@ -5,11 +5,17 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-09-23 (private source baseline; production data foundation and recovery validation)
+Last updated: 2026-09-24 (closed production transport preparation and cost comparison)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
 
-## 2026-09-23 生产基础、恢复与独立源码仓库 — 当前任务
+## 2026-09-24 继续生产接入与计费比较 — 当前任务
+
+Owner要求继续下一步并比较按量与套餐。[生产传输合同](production-runtime-20260924.md)准备独立API、经验证的内部HTTPS、证书自动加载和默认关闭客户接口；本地测试／部署差异已验证，域名认证与原Auth0管理身份待恢复，尚未部署运行。既有生产数据／恢复证据保留，不重建数据库或重做已完成演练。发现的回调／邀请／错误日志内容风险已在源码修复，云端旧日志不宣称已清除。
+
+[成本比较](cloud-cost-options-20260924.md)建议现阶段保留按量，稳定后评估一年免预付RDS折扣；不购买长期承诺。Paid Plan已开通且抵扣金仍有记录，不是包月或费用上限。价格仍是Free＋88.80年付，现有UI、FanPass、E2EE及Owner暂缓项不变。
+
+## 2026-09-23 生产基础、恢复与独立源码仓库 — 已完成的数据检查点
 
 Owner要求先开始生产环境与恢复，并询问GitHub用于版本与回滚；随后明确FanPass及既有仓库仍在使用，必须保留。Rillora采用独立私有源码仓库方案，不删除、移动或覆盖FanPass及本地Web Git历史。当前先建立关闭客户流量的独立生产数据基础和隔离恢复流程；不能将测试站原地改名，也不因建仓或建库开放真实销售。具体状态与操作边界见[执行合同](production-recovery-20260923.md)、[源码管理](source-control.md)及handoff。
 

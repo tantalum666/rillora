@@ -5,7 +5,24 @@ Authority scope: zero-revenue public hosting, future production resources, cost 
 Superseded by: later explicit Owner decision, stricter security／legal requirement or verified provider limit  
 Do not use for: claiming production readiness, creating paid resources, storing real sensitive data or opening a market  
 Status: PUBLIC LEGAL AND STAGING LIVE; PRODUCTION DATA FOUNDATION ACTIVE; SCOPED CLOUD RESTORE VERIFIED
-Last updated: 2026-09-23 (production attempt and source/recovery preparation)
+Last updated: 2026-09-24 (production transport and current cost options)
+
+## September24 runtime and pricing preparation
+
+The optional closed production API/TLS implementation and live-template diff are
+ready, with no database/key/journal replacement. It uses one regular ARM task,
+private-address VPC Link HTTPS and public IPv4 only for outboundHTTPS, with
+application ingress limited to the VPC Link security group. This implements the
+later small-production BOM; it is not a claim that the task lives in a private
+subnet. Certificate DNS validation and the original Auth0 administrator session
+must be restored before cloud/provider acceptance. No deployment was started.
+[Runtime contract](production-runtime-20260924.md).
+
+Keep on-demand at current scale. Current RDS1-year no-upfront reservation would
+save4.67USD/month on compute, with a whole-year commitment. The full live account
+period reads26.55USD usage before credits; it is not a production monthly total.
+No RI/Savings Plan or bundle was purchased. [Dated comparison](cloud-cost-options-20260924.md)
+preserves current regional rates, flat-rate feature limits and budget boundaries.
 
 ## September23 production execution
 
@@ -33,7 +50,7 @@ production isolation, email andbackup/restore remain separate required work.
 
 ## September19 release preparation and real alert delivery
 
-The public Operations schedule is enabled after the exact Owner-selected subscription, cloud probe, delivered ALARM/OK and actual missing-heartbeat/OK checks. A real missing SNS publisher permission was fixed with exact account/alarm constraints. The observed silent interval is75.4minutes, not a45-minute maximum guarantee. [Evidence](../output/qa/rillora-release-readiness-20260919/README.md). Production remains a separate uncreated runtime/data boundary. Preserve the small stage-based model; the old250–600/month HA baseline is not a universal early launch prerequisite. [Current release contract](release-readiness.md).
+The public Operations schedule is enabled after the exact Owner-selected subscription, cloud probe, delivered ALARM/OK and actual missing-heartbeat/OK checks. A real missing SNS publisher permission was fixed with exact account/alarm constraints. The observed silent interval is75.4minutes, not a45-minute maximum guarantee. [Evidence](../output/qa/rillora-release-readiness-20260919/README.md). Production was uncreated at that checkpoint; the later sections above supersede that status. Preserve the small stage-based model; the old250–600/month HA baseline is not a universal early launch prerequisite. [Current release contract](release-readiness.md).
 
 ## September17 staging reliability checkpoint
 
@@ -304,7 +321,7 @@ GoDaddy can remain registrar even if authoritative DNS later moves. Export and i
 
 - Keep GoDaddy DNS; do not create Route 53 solely for subdomains.
 - Use one legal host with seven paths, not seven hosts.
-- Use managed non-exportable ACM public certificates with CloudFront later; AWS currently lists them at no additional certificate cost for integrated services. Do not purchase exportable or wildcard certificates when they are not needed.
+- Use managed non-exportable ACM public certificates with CloudFront later; AWS lists them at no additional certificate cost for integrated services. The September24 containerTLS design has a specific need for one exportable hostname certificate, priced separately; no wildcard or privateCA is planned.
 - S3 and pay-as-you-go CloudFront are usage-priced and therefore not guaranteed zero. The CloudFront `$0/month` flat-rate plan exists, but current AWS documentation says Free Tier accounts cannot use flat-rate plans; verify account eligibility before relying on it.
 - Do not add NAT Gateway, Multi-AZ production database, WAF, extra secrets or log pipelines before their stage trigger. Conversely, once real sensitive data is accepted, do not omit them merely to hit a cost target.
 - Tag every future resource by environment, owner, data class and cost center; create a delivered budget notification, not only a threshold object.

@@ -1,8 +1,20 @@
 # Rillora 分阶段单位经济与毛利合同
 
 Role: current sector benchmark, stage economics and cost-allocation authority  
-Status: STAGED COST FOUNDATION; CURRENT OWNER US$88.80 / YEAR AND US$9.99 / MONTH IN FOCUSED CONTRACT; SALES CLOSED  
-Last updated: 2026-09-21 (fee-only channel comparison linked; full operating model unchanged)
+Status: STAGED COST FOUNDATION; CURRENT NEW OFFER US$88.80 / YEAR ONLY; SALES CLOSED
+Last updated: 2026-09-24 (AWS usage/commitment comparison; historical financial models retained)
+
+## September24 actual cloud costs and commitment comparison
+
+Owner cancelled new monthly sales onSeptember21; US$9.99 remains historical receipt
+evidence, not a current offer. The[AWS comparison](cloud-cost-options-20260924.md)
+uses fresh account usage and official regional rates. Keep on-demand during
+production preparation; one-year no-upfront db.t4g.micro RI could save4.67USD/month
+compute after its baseline stabilizes. No commitment was purchased. Planned
+production core is32.85USD/month with a40–50operating envelope, excluding existing
+staging and named variable/provider costs. It is not an actual margin or a new
+full financial model. Older88.80/9.99 price/model references below are dated
+comparisons; current new sales are annual-only.
 
 
 ## September19 new-price comparison
@@ -120,9 +132,9 @@ Owner追问1,000户是否不再适用15%。**Small Business Program按收入与�
 
 因此基准仍为Apple首个付费年30%。如果真实获批15%且资格持续，1,000户完整毛利率约**80.7%**；这是条件情形，不是自动切换。标准订阅即使未加入SBP，同一订阅累积完整付费年后也有通常85%开发者份额的规则，须与SBP资格分开。[Apple订阅规则](https://developer.apple.com/app-store/subscriptions/)。这些普通费率例子不自动适用于另有地区／替代条款的情形。
 
-## 价格、实现与下一步
+## 历史价格模型与当时的实现边界
 
-此较早阶段计算保留了当时的49／6.99参考；最新Owner88.80年／9.99月以[当前价格合同](pricing-88-80-20260919.md)为准，已建立本地禁用报价但未上线。Free／Family、逐项隐私、基本导出、正常月付取消与付费截止版本合同不变，旧99测试商品和收据不改写。上一版短月付结果基于旧支持成本，只作历史情景，不能当作新AI运营下的既定亏损事实。
+此较早阶段计算保留当时49／6.99参考，随后曾比较88.80年／9.99月；September21已取消新月付，现按[当前价格合同](pricing-88-80-20260919.md)只售年付，正式销售仍关闭。Free／Family、逐项隐私、基本导出、历史月付取消与付费截止版本合同不变，旧商品和收据不改写。上一版短月付结果基于旧支持成本，只作历史情景，不能当作新AI运营下的既定亏损事实。
 
 当前Owner要求快速小项目上线，已取代“先建AI客服平台”的下一步。前0–100户使用简单帮助／自助流程、既有邮箱和AI辅助回答，保留最低必要的咨询／异常／工时记录。下一项工程回到最小可售商业闭环；准确名额／付费截止／新价格版本、真实接收身份和生产／商户门仍须完成。实际任务以handoff为唯一入口。
 

@@ -58,9 +58,14 @@ if (operationsOnly !== undefined && ![true, false, "true", "false"].includes(ope
   throw new Error("operationsOnly must be true or false");
 }
 if(productionSelected){
+  const runtime=app.node.tryGetContext('productionRuntimeEnabled');
+  if(runtime!==undefined && ![true,false,'true','false'].includes(runtime))throw new Error('productionRuntimeEnabled must be true or false');
+  const runtimeDesiredCount=Number(app.node.tryGetContext('productionRuntimeDesiredCount')??0);
+  if(![0,1].includes(runtimeDesiredCount))throw new Error('productionRuntimeDesiredCount must be 0 or 1');
   new RilloraProductionStack(app,"RilloraProduction",{
     env:{account:process.env.CDK_DEFAULT_ACCOUNT||undefined,region:"eu-central-1"},
     description:"Closed Rillora production data foundation and isolated recovery; no public traffic or billing",
+    runtimeEnabled:runtime===true||runtime==='true',runtimeDesiredCount:runtimeDesiredCount as 0|1,
   });
 } else if(preflightSelected){
   new RilloraProductionPreflightStack(app,"RilloraProductionPreflight",{

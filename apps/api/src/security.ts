@@ -4,15 +4,13 @@ import cors from "cors";
 import type { Express, RequestHandler } from "express";
 import rateLimit from "express-rate-limit";
 import helmet from "helmet";
-import pino from "pino";
+import pino, { type DestinationStream } from "pino";
 import { pinoHttp } from "pino-http";
 import type { AppConfig } from "./config.js";
 import { ApiError } from "./errors.js";
 import { createRateLimitKeyGenerator } from "./rate-limit-key.js";
 
-const requestIdPattern = /^[A-Za-z0-9._:-]{8,100}$/;
-
-export function installSecurityMiddleware(app: Express, config: Pick<AppConfig, "nodeEnv" | "trustProxyHops" | "corsOrigins">): void {
+export function installSecurityMiddleware(app: Express, config: Pick<AppConfig, "nodeEnv" | "trustProxyHops" | "corsOrigins">, destination?: DestinationStream): void {
   app.disable("x-powered-by");
   if (config.trustProxyHops > 0) {
     app.set("trust proxy", config.trustProxyHops);
@@ -20,11 +18,16 @@ export function installSecurityMiddleware(app: Express, config: Pick<AppConfig, 
 
   app.use(
     pinoHttp({
-      logger: pino({ level: config.nodeEnv === "test" ? "silent" : "info" }),
-      genReqId(request: IncomingMessage, response: ServerResponse) {
-        const supplied = request.headers["x-request-id"];
-        const requestId =
-          typeof supplied === "string" && requestIdPattern.test(supplied) ? supplied : randomUUID();
+      logger: pino({ level: config.nodeEnv === "test" ? "silent" : "info" }, destination),
+      // OIDC query codes, invitation paths, addresses and SQL error text must
+      // never enter request logs. Header redaction alone does not cover them.
+      serializers: {
+        req: (request) => ({ id: request.id, method: request.method }),
+        res: (response) => ({ statusCode: response.statusCode }),
+        err: () => ({ type: "Error", details: "omitted" }),
+      },
+      genReqId(_request: IncomingMessage, response: ServerResponse) {
+        const requestId = randomUUID();
         response.setHeader("x-request-id", requestId);
         return requestId;
       },
