@@ -108,11 +108,21 @@ export class RilloraProductionStack extends Stack {
   const snapshotArn=this.formatArn({service:'rds',resource:'snapshot',resourceName:'rillora-production-recovery-*',arnFormat:ArnFormat.COLON_RESOURCE_NAME});
   const restoredArn=this.formatArn({service:'rds',resource:'db',resourceName:'rillora-recovery-*',arnFormat:ArnFormat.COLON_RESOURCE_NAME});
   operator.addToPolicy(new iam.PolicyStatement({actions:['rds:CreateDBSnapshot'],resources:[database.instanceArn,snapshotArn]}));
-  operator.addToPolicy(new iam.PolicyStatement({actions:['rds:RestoreDBInstanceFromDBSnapshot'],resources:[snapshotArn,restoredArn]}));
+  const rdsArn=(kind:string,name:string)=>this.formatArn({service:'rds',resource:kind,resourceName:name,arnFormat:ArnFormat.COLON_RESOURCE_NAME});
+  // RDS authorizes the parameter/option/subnet groups as well as the snapshot.
+  // Do not compensate for a missing dependency with a resource:* restore grant.
+  operator.addToPolicy(new iam.PolicyStatement({actions:['rds:RestoreDBInstanceFromDBSnapshot'],resources:[snapshotArn,
+   rdsArn('pg',parameters.bindToInstance({}).parameterGroupName),rdsArn('subgrp',databaseSubnets.subnetGroupName),rdsArn('og','default:postgres-16')]}));
+  operator.addToPolicy(new iam.PolicyStatement({actions:['rds:RestoreDBInstanceFromDBSnapshot'],resources:[restoredArn],
+   conditions:{StringEquals:{'aws:RequestTag/Project':'Rillora','aws:RequestTag/Environment':'RecoveryDrill','rds:DatabaseClass':'db.t4g.micro'},
+    Bool:{'rds:PubliclyAccessible':'false'}}}));
   operator.addToPolicy(new iam.PolicyStatement({actions:['rds:AddTagsToResource'],resources:[snapshotArn,restoredArn]}));
   operator.addToPolicy(new iam.PolicyStatement({actions:['rds:DeleteDBInstance'],resources:[restoredArn],conditions:{StringEquals:{'aws:ResourceTag/Environment':'RecoveryDrill'}}}));
+  operator.addToPolicy(new iam.PolicyStatement({actions:['rds:DeleteDBSnapshot'],resources:[snapshotArn],conditions:{StringEquals:{'aws:ResourceTag/Environment':'RecoveryDrill'}}}));
+  operator.addToPolicy(new iam.PolicyStatement({actions:['cloudformation:DescribeStacks'],resources:[this.stackId]}));
   operator.addToPolicy(new iam.PolicyStatement({actions:['kms:DescribeKey','kms:GetKeyRotationStatus'],resources:[contentKey.keyArn]}));
-  const outputs={DatabaseIdentifier:database.instanceIdentifier,DatabaseHost:database.instanceEndpoint.hostname,
+  const outputs={ProductionVpcId:vpc.vpcId,DatabaseSecurityGroupId:databaseNetwork.securityGroupId,
+   DatabaseIdentifier:database.instanceIdentifier,DatabaseHost:database.instanceEndpoint.hostname,
    DatabaseSubnetGroup:databaseSubnets.subnetGroupName,DatabaseParameterGroup:parameters.bindToInstance({}).parameterGroupName,ClusterName:cluster.clusterName,
    MaintenanceSubnetIds:vpc.publicSubnets.map(s=>s.subnetId).join(','),MigrationSecurityGroupId:sourceJobs.securityGroupId,
    RecoverySecurityGroupId:recoveryJobs.securityGroupId,RecoveryDatabaseSecurityGroupId:recoveryDatabaseNetwork.securityGroupId,

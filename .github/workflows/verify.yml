@@ -19,10 +19,10 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: '3.12'
       - name: Install verified secret scanner
@@ -58,10 +58,10 @@ jobs:
       PGPORT: '5432'
       PGUSER: postgres
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: '24'
           cache: npm
@@ -80,10 +80,10 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: '24'
           cache: npm
@@ -92,7 +92,22 @@ jobs:
             infra/aws/package-lock.json
       - name: Verify Web source and internal build
         working-directory: apps/web
-        run: npm ci && node --test tests/*.test.mjs && npm run build
+        run: |
+          npm ci
+          npm run build
+          web_tests=()
+          for test_file in tests/*.test.mjs; do
+            if [[ "$test_file" != tests/legal-sites-worker.test.mjs ]]; then web_tests+=("$test_file"); fi
+          done
+          node --test "${web_tests[@]}"
+      - name: Verify legal packaging fixture (not a publication artifact)
+        working-directory: apps/web
+        # Intentionally no real operator/address environment and no upload.
+        # Production publishing still requires the build:legal validation gate.
+        run: |
+          npx vite build --mode legal
+          node scripts/prepare-legal-sites-build.mjs
+          node --test tests/legal-sites-worker.test.mjs
       - name: Verify infrastructure without AWS credentials
         working-directory: infra/aws
         run: npm ci && npm run typecheck && npm test

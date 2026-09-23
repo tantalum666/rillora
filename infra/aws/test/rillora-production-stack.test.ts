@@ -42,4 +42,19 @@ describe('Closed production data and recovery foundation',()=>{
   expect(assume[0].Properties.PolicyDocument.Statement[0].Action).toBe('sts:AssumeRole');
   expect(assume[0].Properties.PolicyDocument.Statement[0].Condition.Bool['aws:MultiFactorAuthPresent']).toBe('true');
  });
+ it('authorizes the required restore groups without permitting a public or live target',()=>{
+  const statements=Object.values(template().findResources('AWS::IAM::Policy')).flatMap((p:any)=>p.Properties.PolicyDocument.Statement);
+  const restore=statements.filter(s=>s.Action==='rds:RestoreDBInstanceFromDBSnapshot');
+  expect(restore).toHaveLength(2);
+  const target=restore.find(s=>s.Condition);
+  expect(target.Condition.Bool['rds:PubliclyAccessible']).toBe('false');
+  expect(target.Condition.StringEquals['aws:RequestTag/Environment']).toBe('RecoveryDrill');
+  expect(target.Condition.StringEquals['rds:DatabaseClass']).toBe('db.t4g.micro');
+  const groups=JSON.stringify(restore.find(s=>!s.Condition).Resource);
+  for(const kind of [':pg:',':subgrp:',':og:default:postgres-16'])expect(groups).toContain(kind);
+  expect(restore.some(s=>s.Resource==='*')).toBe(false);
+  const cleanup=statements.find(s=>s.Action==='rds:DeleteDBSnapshot');
+  expect(JSON.stringify(cleanup.Resource)).toContain(':snapshot:rillora-production-recovery-*');
+  expect(cleanup.Condition.StringEquals['aws:ResourceTag/Environment']).toBe('RecoveryDrill');
+ });
 });
