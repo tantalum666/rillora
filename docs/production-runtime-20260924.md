@@ -1,7 +1,9 @@
 # Closed production runtime and TLS
 
-Role: production transport implementation and acceptance contract  
-Status: CODE, LOCAL TESTS AND DEPLOYMENT DIFF VERIFIED; NOT DEPLOYED  
+Role: production transport implementation and acceptance contract
+
+Status: CODE, LOCAL TESTS AND DEPLOYMENT DIFF VERIFIED; NOT DEPLOYED
+
 Last updated: 2026-09-24 (Asia/Hong_Kong)
 
 ## Current scope

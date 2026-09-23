@@ -1,7 +1,9 @@
 # AWS usage pricing and commitment options
 
-Role: dated service-cost comparison for Rillora's launch architecture  
-Status: RESEARCHED; KEEP ON-DEMAND; NO COMMITMENTS PURCHASED  
+Role: dated service-cost comparison for Rillora's launch architecture
+
+Status: RESEARCHED; KEEP ON-DEMAND; NO COMMITMENTS PURCHASED
+
 Last updated: 2026-09-24 (Asia/Hong_Kong)
 
 ## Recommendation
