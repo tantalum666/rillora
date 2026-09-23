@@ -154,6 +154,8 @@ def main():
         validate_state(state)
         snapshot = aws.snapshot(state['snapshot'])
         database = aws.database(state['target'])
+        state['snapshotStatus'] = snapshot['Status'] if snapshot else 'absent'
+        state['targetStatus'] = database['DBInstanceStatus'] if database else 'absent'
         if snapshot:
             validate_snapshot(snapshot, state)
         if database:
@@ -181,11 +183,14 @@ def main():
             if database:
                 if database['DBInstanceStatus'] != 'deleting':
                     require(database['DeletionProtection'] is False, 'Protected target requires manual review')
-                    aws.call('rds', 'delete-db-instance', {'DBInstanceIdentifier': state['target'],
-                             'SkipFinalSnapshot': True, 'DeleteAutomatedBackups': True})
+                    result = aws.call('rds', 'delete-db-instance', {'DBInstanceIdentifier': state['target'],
+                                     'SkipFinalSnapshot': True, 'DeleteAutomatedBackups': True})
+                    state['targetStatus'] = result.get('DBInstance', {}).get('DBInstanceStatus', 'deletion_requested')
                 state['stage'] = 'cleanup_waiting_for_target_removal'
             elif snapshot:
-                aws.call('rds', 'delete-db-snapshot', {'DBSnapshotIdentifier': state['snapshot']})
+                if snapshot['Status'] != 'deleting':
+                    result = aws.call('rds', 'delete-db-snapshot', {'DBSnapshotIdentifier': state['snapshot']})
+                    state['snapshotStatus'] = result.get('DBSnapshot', {}).get('Status', 'deletion_requested')
                 state['stage'] = 'cleanup_waiting_for_snapshot_removal'
             else:
                 state.update(stage='cleaned', cleanupVerifiedAt=now())

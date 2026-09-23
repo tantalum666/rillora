@@ -5,12 +5,22 @@ Authority scope: product truth, design, Web/iOS parity, trust and validation evi
 Superseded by: stricter platform, legal, security or Owner requirement  
 Do not use for: replacing a detailed test plan  
 Status: ACTIVE  
-Last updated: 2026-09-19 (formal release contract and current price)
+Last updated: 2026-09-23 (source CI and actual production-plan restriction)
 
+
+## September23 production and recovery evidence
+
+The private source repository and passing CI do not clear the production or
+backup gate. The initial Free Plan restriction was resolved byOwner-authorized direct upgrade;
+PAID/ACTIVE and private7-day production RDS are read back. The controlled synthetic RDS/KMS restore, deletion/revocation/session replay and
+cleanup now have actual cloud evidence. Keep provider reconciliation, recurring
+retention operations and customer runtime as separately incomplete work. Local
+restore safety guards and a quarantined clone must not set `acceptancePassed`
+without those application checks. [Current contract](production-recovery-20260923.md).
 
 ## September19 formal release gate
 
-Use [release-readiness](release-readiness.md) and [release-gates.json](../config/release-gates.json) for the current public-launch scope. The release preflight checks complete gate presence and final native artifact inputs; a missing or Owner-deferred fact stays a blocker, and a passing local preflight is not publication approval. Current Owner pricing is88.80 annual/9.99 monthly, with an explicit Apple price-point exception still pending. Current known runtime gaps include separate production, identity/recovery, ordinary billing, Apple transactions, backup/retention and final App Store artifact. Do not revive removed consumer Simulation or historic UI redesign as launch requirements.
+Use [release-readiness](release-readiness.md) and [release-gates.json](../config/release-gates.json) for the current public-launch scope. The release preflight checks complete gate presence and final native artifact inputs; a missing or Owner-deferred fact stays a blocker, and a passing local preflight is not publication approval. Current new purchases are annual88.80 only after Owner cancelled new monthly offers onSeptember21; historical receipts remain supported. The Apple annual price-point exception is still pending. Current known runtime gaps include separate production, identity/recovery, ordinary billing, Apple transactions, backup/retention and final App Store artifact. Do not revive removed consumer Simulation or historic UI redesign as launch requirements.
 
 ## September17 real B and continuation repair checkpoint
 

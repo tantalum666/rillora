@@ -6,11 +6,15 @@
   "gates": [
     {
       "id": "production-runtime",
-      "status": "open",
+      "status": "in_progress",
       "required": true,
       "title": "Separate production runtime and data",
-      "evidence": [],
-      "next": "Build isolated production infrastructure, exact domains, private-hop TLS, independent content-key namespace, least-privilege services and rollback; current verified deployment is staging."
+      "evidence": [
+        "docs/production-recovery-20260923.md",
+        "output/qa/rillora-production-recovery-20260923/production-database-readback.json",
+        "output/qa/rillora-production-recovery-20260923/paid-plan-readback.json"
+      ],
+      "next": "Closed data foundation and scoped recovery are verified. Implement the customer runtime, private-hop TLS, production identity/transaction email, domains and final Web/iOS Release connections. Current customer-facing deployment remains staging."
     },
     {
       "id": "production-identity",
@@ -57,13 +61,18 @@
     },
     {
       "id": "backup-retention",
-      "status": "open",
+      "status": "in_progress",
       "required": true,
       "title": "Restore and deletion/retention operations",
       "evidence": [
-        "output/qa/rillora-content-encryption-20260922/before-content-snapshot-status.json"
+        "output/qa/rillora-content-encryption-20260922/before-content-snapshot-status.json",
+        "output/qa/rillora-production-recovery-20260923/provider-backup-retention-refusal.json",
+        "output/qa/rillora-production-recovery-20260923/production-database-readback.json",
+        "docs/recovery-control-journal.md",
+        "output/qa/rillora-production-recovery-20260923/cloud-data-acceptance.json",
+        "output/qa/rillora-production-recovery-20260923/cleanup-verification.json"
       ],
-      "next": "An encrypted pre-migration staging snapshot exists; isolated restore is not verified. Complete at least seven-day production backup, isolated restore, deletion replay, retention cleanup and observable failures; retire old-representation snapshots only after recovery evidence."
+      "next": "Seven-day production RDS and real synthetic encrypted restore/deletion/revocation/session replay/cleanup are verified. Complete recurring retention/legacy-manual-snapshot retirement and provider reconciliation for post-snapshot commerce changes; no unrestricted automatic failover claim."
     },
     {
       "id": "release-security",

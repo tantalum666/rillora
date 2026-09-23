@@ -5,13 +5,15 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-09-23 (selected envelope encryption implemented in staging; no E2EE claim)
+Last updated: 2026-09-23 (private source baseline; production data foundation and recovery validation)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
 
 ## 2026-09-23 生产基础、恢复与独立源码仓库 — 当前任务
 
 Owner要求先开始生产环境与恢复，并询问GitHub用于版本与回滚；随后明确FanPass及既有仓库仍在使用，必须保留。Rillora采用独立私有源码仓库方案，不删除、移动或覆盖FanPass及本地Web Git历史。当前先建立关闭客户流量的独立生产数据基础和隔离恢复流程；不能将测试站原地改名，也不因建仓或建库开放真实销售。具体状态与操作边界见[执行合同](production-recovery-20260923.md)、[源码管理](source-control.md)及handoff。
+
+本轮实际结果：Rillora私有源码已推送并通过CI，Owner当场确认只给原有GitHub令牌新增Rillora范围；FanPass及Web历史保留。初次生产7日备份请求遭AWS Free Plan拒绝；Owner随后明确“你来升级”，现已直接升级并回读PAID／ACTIVE，生产7日私有数据库及日志已建立。真实RDS/KMS恢复、撤销／删除／旧会话重放及临时资源清理已通过本轮合成验收；生产客户入口与正式开放仍未完成。
 
 ## 2026-09-22 Owner采用信封加密 — 当前实施
 

@@ -1,6 +1,6 @@
 # Digital Legacy Ongoing Project Journey
 
-Last updated: 2026-09-23 (release gap assessment after verified encryption)
+Last updated: 2026-09-23 (Paid Plan, production data and real recovery acceptance)
 
 ## 记录范围
 
@@ -2500,3 +2500,19 @@ launch prerequisites and historical authentication gates are not repeated approv
 - **判断变化**：主要剩余工作集中在隔离生产、可靠登录邮件、真实购买和提交产物，不能说成只剩审核。发布清单仍有月付和Logo已完成事项的旧措辞，已修正；已完成加密不等于生产安全验收通过。
 - **结果**：保留8项未完工程／发布门及2项Owner暂缓门，归为六组具体工作；现有KMS、核心共享、品牌、年付和告警证据均保留。E2EE延后，SOC2不新增为项目自设首发门；旧5–10日估算标为历史预算，不重复承诺倒计时。
 - **未完成／边界**：没有部署、交易、后台重登、全业务回归或新Owner决策；经营登记／实机继续按Owner暂缓。下一步仍是隔离生产与真实恢复，记录在[发布复核QA](../../output/qa/rillora-release-status-20260923/README.md)。
+
+## 2026-09-23 — 建立独立源码基线，验证生产限制并准备隔离恢复
+
+- **目标**：Owner要求先做生产环境与恢复，并询问GitHub便于回滚；明确FanPass仍使用、不能删除整个旧仓库。
+- **尝试**：延续全量Markdown阅读基线，补读当前运维规范。续期AWS本人会话并建立MFA只读预检；读取实际计划／成本，编写独立VPC、私有加密RDS、7日备份、独立密钥与恢复任务。准备约43MiB源码，逐项核验22处扫描匹配，保留Web原Git原位。
+- **判断变化**：首次创建遇IAM内联策略2KiB上限，改为同范围托管策略；将回滚保留的两个空资源导入管理。再次创建实际被Free Plan的备份限制拒绝，因此不能靠改成1日来标记完成。GitHub CLI只能访问FanPass，改用现有网页登录创建独立私有库，Owner本人验证并当场确认仅新增Rillora令牌范围。
+- **结果**：私有仓库实际推送829文件基线，远端commit/tree回读一致、无gitlink，FanPass和Web原历史保留。CI首次发现未先构建便检查产物的顺序错误，修正后云端三作业通过：198API、28infra、Web与法律产物、源码扫描和13项本地发布／恢复守卫检查。固定Actions提交和扫描器摘要，不给CI云端凭据。恢复工具加入精确ID／标签／网络检查并始终保持验收false。
+- **未完成／边界**：AWS生产栈UPDATE_ROLLBACK_COMPLETE，生产库／密钥／恢复日志表未创建；真实恢复、加密读取和删除／授权重放未执行。账单升级需要有权限的Owner账户，rillora-operator无账单权限；未更改计划或收费。现有staging readiness返回ready。其余身份／支付／Apple发布门与Owner暂缓项保留。详见[QA](../../output/qa/rillora-production-recovery-20260923/README.md)。
+
+## 2026-09-23 — 升级账户并完成真实隔离恢复
+
+- **目标**：Owner进一步要求“你来升级”，继续建立可恢复的生产数据环境。
+- **尝试**：官方UpgradeAccountPlan接口使用已有权限直接成功，回读PAID／ACTIVE；无需新增IAM或再次本人MFA。部署独立7日数据库、KMS和控制日志；用约束要求撤销／删除等变更提交前写入独立日志，回滚／恢复保持保守。
+- **判断变化**：账单页面打不开不等于升级API无权限。普通本地superuser测试不足以证明RDS权限，因此补non-superuser／forced-RLS恢复验证和明确的管理角色政策。有效旧会话必须在恢复前确实可用，随后验证401；未对账的快照后计费变化保持隔离。清理输出曾显示旧的available值，已修正为实时absent读回。
+- **结果**：代码11a9efb、205API／28infra／13Python守卫及GitHub CI运行3通过。生产任务revision2／镜像19b9287d部署并迁移70份SQL。真实RDS快照在4个合成账号／10值之后创建；原库随后撤销C并删除D。恢复与生产KMS解密成功，重放3项控制、删除1个旧会话，B获准内容保留、C拒绝、D的账户／密钥／内容不存在，明文0／无效引用0，重复重放零新增变化。观察到的恢复至验收1206秒，含操作观察间隔。
+- **未完成／边界**：恢复角色实际不能连接原库、不能GenerateDataKey、不能PutItem；原库合成账号／内容／密钥清为0，临时库与演练快照已确认不存在。最小控制记录／收据有独立保留目的，不声称抹掉所有备份字节。客户API／生产身份邮件／正式收款／App Store仍未完成，旧手动备份退役和持续运营另行验收；非E2EE、零RPO或独立认证。详见[本轮QA](../../output/qa/rillora-production-recovery-20260923/README.md)。

@@ -1,12 +1,16 @@
 # Rillora — Digital Legacy & Estate Continuity / 数字遗产与事务连续性
 
-最后更新：2026-09-20（Asia/Shanghai）
+最后更新：2026-09-23（Asia/Hong_Kong）
+
+当前工程检查点：独立私有仓库 [tantalum666/rillora](https://github.com/tantalum666/rillora) 已推送审查后的源码基线，FanPass 和本地 Web Git 历史均保留。Owner授权后已直接升级 AWS Paid Plan；独立私有加密数据库、7天备份、独立密钥和恢复控制日志已建立并迁移。真实云端隔离恢复已通过本轮合成数据验收，临时资源已清理；客户流量仍关闭。见[生产与恢复](docs/production-recovery-20260923.md)、[源码和回滚](docs/source-control.md)、[当前交接](docs/handoff.md)。
+
+当前新购为永久 Free 与 **US$88.80 年付 Family**；September21 已取消新月付，历史已付账期及收据继续支持。以下按日期保留的旧检查点不是当前价格或部署状态。
 
 当前Logo：**Owner已选定传承印记03，主App图标和现有Web／原生品牌位置已采用。** [正式素材包](assets/brand/rillora/README.md)与[ZIP](assets/brand/rillora-approved-brand-20260920.zip)包含原始矢量、PNG、网站图标和完整字体许可。Source Serif4 SemiBold／Inter允许免费商用，详见[核验依据](docs/brand-font-license-20260919.md)。普通模拟器、Web测试站和法律站Sites6已验证；这不等于生产App或App Store发布。[本轮QA](output/qa/rillora-brand-adoption-20260919/README.md)与[handoff](docs/handoff.md)。
 
 前一版设计检查点：**Owner推翻所有此前Logo限制，Flowing R第一版已完成。** 已制作图形标、完整字标、配色、正反色／小尺寸版本、App图标设计与可编辑Figma；当前是设计交付，尚未替换产品或公开发布。[设计板](assets/brand/rillora-identity-20260919/identity-board.png)、[当前Logo简报](docs/logo-design-20260919.md)、[交接](docs/handoff.md)。
 
-当前发布检查点：**正式发布准备；新报价US$88.80/年、US$9.99/月。** 当前产品核心已有测试站和真实A/B验收，但独立生产、普通正式购买、Apple交易、恢复／保留和最终上架仍有缺口。告警发布权限已修复，故障／恢复／缺心跳邮件实际送达并启用15分钟调度；新价格使用独立v3并保留旧收据。Apple没有精确88.80价格点，年价例外等待Owner选择。见[发布清单](docs/release-readiness.md)、[当前价格](docs/pricing-88-80-20260919.md)、[handoff](docs/handoff.md)和[本轮QA](output/qa/rillora-release-readiness-20260919/README.md)。
+September19历史发布检查点（新月付已取消）：**正式发布准备；当时报价US$88.80/年、US$9.99/月。** 当前产品核心已有测试站和真实A/B验收，但独立生产、普通正式购买、Apple交易、恢复／保留和最终上架仍有缺口。告警发布权限已修复，故障／恢复／缺心跳邮件实际送达并启用15分钟调度；新价格使用独立v3并保留旧收据。Apple没有精确88.80价格点，年价例外等待Owner选择。见[发布清单](docs/release-readiness.md)、[当前价格](docs/pricing-88-80-20260919.md)、[handoff](docs/handoff.md)和[本轮QA](output/qa/rillora-release-readiness-20260919/README.md)。
 
 此前事项指导：**事项编辑与接收人读取已自动推荐相关账号身后指导，入口改为Account inheritance。** A读指导保留草稿，B只按已获准的字段匹配，隐藏平台不通过推荐泄露。新增官方Instagram图标、完整原始链接与实际表单／登录边界检查；修正Instagram地址、Facebook菜单及Google申请要求。原生154通过／1旧跳过、Web80通过，Web-only测试站发布及20项资源检查通过。[本轮QA](output/qa/rillora-contextual-guidance-20260918/README.md)、[原始来源与检查表](output/qa/rillora-contextual-guidance-20260918/official-source-links.md)、[当前交接](docs/handoff.md)。
 
@@ -38,7 +42,7 @@ September11历史检查点：**账户／邀请／事项录入修订已完成并�
 
 其他保留进度：AWS Frankfurt继续为非公开staging；普通用户仍Free，只有限时登记的验收账号可应用测试Family权益。StoreKit本地SK0完成，真实Sandbox商品可加载，购买仍被此前记录的Apple Simulator账号持久化故障阻断；实机工作由Owner明确延期。完整商业证据见[StoreKit合同](docs/storekit.md)与[商业化合同](docs/monetization.md)，不得把IAP server key和Apple登录key混为一项。
 
-历史阅读检查点：2026-09-10完整阅读55份／16,011行项目Markdown，范围、逐段记录与指纹保存在[本轮复核记录](output/qa/rillora-packaging-review-20260910/README.md)。本轮同步免费／付费合同与活动文档；交接收敛为当前状态，原长交接完整移入历史文件。父仓库仍没有正常tracked baseline；未创建初始commit或改写既有代码。
+历史阅读检查点：2026-09-10完整阅读55份／16,011行项目Markdown，范围、逐段记录与指纹保存在[本轮复核记录](output/qa/rillora-packaging-review-20260910/README.md)。本轮同步免费／付费合同与活动文档；交接收敛为当前状态，原长交接完整移入历史文件。当时父仓库没有tracked baseline；September23已建立独立源码基线，未改写旧历史。
 
 基础设施继续遵守[分阶段成本与迁移合同](docs/infrastructure-roadmap.md)：当前公共法律host零新增固定费用，真实敏感数据等待独立生产基线；现有域名、邮箱与AWS成本不因此归零。
 
@@ -83,6 +87,8 @@ Web与iOS在同一MVP验证周期内交付，但不复制同一套页面布局�
 | [研究与来源](docs/research.md) | 法律、平台、竞品和用户信号；仅作证据 |
 | [竞品UX深度审计](docs/competitor-ux-audit.md) | 当前公开站、注册墙、产品帮助、移动端、可借鉴模式与账户门 |
 | [决策记录](docs/decision-log.md) | 追加式批准、否决和取代记录 |
+| [生产与恢复](docs/production-recovery-20260923.md) | 当前部署限制、隔离恢复与验收 |
+| [源码和回滚](docs/source-control.md) | 独立私有仓库、CI、代码与数据恢复边界 |
 | [当前交接](docs/handoff.md) | 当前阶段、已完成、未完成和唯一下一步 |
 | [项目旅程](docs/journey/PROJECT_JOURNEY.md) | 持续记录项目为什么变成现在这样 |
 | [设计合同](DESIGN.md) | 已选视觉方向、跨平台层级、令牌与交互约束 |
@@ -101,6 +107,6 @@ Web与iOS在同一MVP验证周期内交付，但不复制同一套页面布局�
 
 ## 当前证据边界
 
-目前已有全球可行性研究、MVP范围、已选视觉方向、通过视觉QA的Web/iOS，以及运行在AWS Frankfurt的TypeScript/PostgreSQL测试环境。现有测试Web域为`https://app.staging.rillora.xyz`：静态资源通过私有S3和CloudFront提供，`/api/*`同源代理到API Gateway、VPC Link、常规Fargate和私有Single-AZ RDS。September17已经用同规格常规Fargate取代Spot；当前API32、迁移至0062、健康1/1及42项发布检查见最新交接。公开首页、会话探测、未登录401、Auth0跳转、CSP/HSTS、TLS/CORS和数据库readiness均有实际HTTPS验证。Owner也已在模拟器完成Google身份登录。iOS无会话启动仍先允许公开浏览，私有操作直接进入托管登录，不把登录墙作为第一屏。
+目前已有全球可行性研究、MVP范围、已选视觉方向、通过视觉QA的Web/iOS，以及运行在AWS Frankfurt的TypeScript/PostgreSQL测试环境。现有测试Web域为`https://app.staging.rillora.xyz`：静态资源通过私有S3和CloudFront提供，`/api/*`同源代理到API Gateway、VPC Link、常规Fargate和私有Single-AZ RDS。September17已经用同规格常规Fargate取代Spot；API37／0067的加密部署及健康1/1证据见当前交接；本轮只追加readiness检查，不把旧业务验收记成重跑。公开首页、会话探测、未登录401、Auth0跳转、CSP/HSTS、TLS/CORS和数据库readiness均有实际HTTPS验证。Owner也已在模拟器完成Google身份登录。iOS无会话启动仍先允许公开浏览，私有操作直接进入托管登录，不把登录墙作为第一屏。
 
 Web使用Cookie/CSRF，iOS只把Rillora本地Bearer会话存入Keychain，两类会话不能交叉使用；Auth0 provider token不持久化。Matter、联系人、角色、官方设置自报、非操作性演练和Start Here均不授予账号访问、所有权或法律权限。明文导出文件服务端不留副本；密文包采用客户端AES-256-GCM与RFC 9180 HPKE。当前云面只允许合成／Owner控制的早期试用。真实A/B邀请接受与撤销、旧价Stripe测试生命周期已有独立证据；独立生产环境、生产身份与恢复、普通用户正式付款、实际Apple购买／恢复及最终提交仍需完成。准确首发缺口见[发布合同](docs/release-readiness.md)，不能把附件或自动身后披露等未来功能重新列为首发前提。`apps/ios-prototype`继续只是移动交互与视觉证据。

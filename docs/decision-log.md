@@ -2485,3 +2485,22 @@ unreachable release remains a different closed workflow. See [sharing contract](
 - Agent implementation choice under existing project authorization: a closed production data foundation before customer ingress, exact7-day retention, independent keys/credentials/network and isolated recovery workers. Actual provider refusal cannot be bypassed by silently reducing backup guarantees.
 - Keep source history, deployment artifacts and database/control-state recovery separate. Source publication excludes credentials/private evidence/build caches; maintain the existingWeb Git metadata in place. Repository creation/push and restore need their own actual readback.
 - No new pricing, fullE2EE, live billing, public traffic or market activation. [Execution contract](production-recovery-20260923.md).
+
+## 2026-09-23 — Private source baseline and an actual production plan limit
+
+- Owner confirmed at action time that the existing repository-scoped GitHub token may add only Rillora. FanPass access/history and nested Web Git metadata remain unchanged. Private `tantalum666/rillora` was created, reviewed source pushed, and visibility/commit/tree read back.
+- Actual production creation now confirms the requested7-day backup exceeds this AWS Free Plan's allowance. Keep7days; do not infer an exact free maximum, downgrade the requirement or upgrade billing without the pending Owner account step. CloudFormation rolled back; production data/runtime does not exist.
+- Engineering choice: source CI uses pinned first-party actions, an exact-digest scanner and ephemeral PostgreSQL, with no cloud credentials/deployment. Recovery resource operations require exact source/account/IDs, ownership tags and separate security groups; a created clone remains quarantined pending application acceptance.
+- No UI, price, E2EE, live sale or public release change. [Execution](production-recovery-20260923.md), [source control](source-control.md).
+
+## 2026-09-23 — Owner authorizes direct AWS Paid Plan upgrade
+
+- Owner explicitly says “你来升级”. The Agent successfully used the existing operator's official UpgradeAccountPlan permission; readback isPAID/ACTIVE and111.95USD credits at that check. No new IAM grant or Organizations/ControlTower side path was needed. The prior billing-console restriction was not an upgrade-API denial.
+- The original7-day backup requirement is preserved. Production data foundation is deployed and migrated through0070, with independent control metadata outside RDS. Customer HTTP services, live billing and public release remain closed.
+- Source controls journal before commit and reject missing publication. Replay is conservative and quarantines unsupported post-snapshot entitlement changes for provider reconciliation; it does not promise an atomic cross-service transaction, zero data loss or unattended failover. Cloud restore is a separate in-progress acceptance. [Control contract](recovery-control-journal.md).
+
+## 2026-09-23 — Verify the closed production data/recovery checkpoint
+
+- Actual production migration0070, independent journal initialization, encrypted synthetic seed, RDS snapshot, later C revocation/D erasure, isolated restore, KMS read and replay passed. The restored copy first contained the old D key/session; after replay B retained access, C was denied, D/key/body and old sessions were gone, and repeat replay made no new changes.
+- Recovery-role probes actually confirmed original-network isolation, denied new key generation and denied journal writes. Exact source fixtures, clone and drill snapshot were cleaned/read back; original production remains private/encrypted/protected with7-day backups and365-day KMS rotation.
+- Retain quarantine for unsupported post-snapshot commerce changes and keep public runtime/identity/mail/billing/submission separate. This bounded four-account experiment is not automatic failover, zero-RPO, broad capacity proof, E2EE or independent certification. [Acceptance](../output/qa/rillora-production-recovery-20260923/README.md).

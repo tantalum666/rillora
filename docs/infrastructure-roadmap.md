@@ -4,8 +4,19 @@ Role: staged hosting, domain, runtime, data, cost-control and migration contract
 Authority scope: zero-revenue public hosting, future production resources, cost triggers and provider migration  
 Superseded by: later explicit Owner decision, stricter security／legal requirement or verified provider limit  
 Do not use for: claiming production readiness, creating paid resources, storing real sensitive data or opening a market  
-Status: ZERO-NEW-FIXED-COST PUBLIC-LEGAL PATH LIVE AT `LEGAL.RILLORA.XYZ`; SITES／DNS／TLS／ROUTE／SECURITY VERIFICATION PASS; FUTURE AWS PRODUCTION BLUEPRINT PROVISIONAL  
-Last updated: 2026-09-21 (actual100-user fixture and quota/capacity readings)
+Status: PUBLIC LEGAL AND STAGING LIVE; PRODUCTION DATA FOUNDATION ACTIVE; SCOPED CLOUD RESTORE VERIFIED
+Last updated: 2026-09-23 (production attempt and source/recovery preparation)
+
+## September23 production execution
+
+Owner requested production/recovery work and a separate private source repository.
+The first7-day RDS request was rejected by Free Plan. Owner explicitly requested
+the Agent upgrade; direct API readback is nowPAID/ACTIVE and the production data
+foundation is deployed with7-day retention. Schema0070/encryption/control journal
+are initialized. Private GitHub/CI is verified. The scoped real cloud restore/replay and cleanup passed; production identity
+and customer ingress remain separate unfinished gates. The data foundation is not a publicly available production application. Use the
+[execution contract](production-recovery-20260923.md), [source guide](source-control.md)
+and [handoff](handoff.md) for the current account-plan dependency and evidence.
 
 ## September21 actual capacity checkpoint
 

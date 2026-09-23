@@ -1,9 +1,25 @@
-# Rillora AWS staging
+# Rillora AWS infrastructure
 
 This directory is the Infrastructure-as-Code source for the live synthetic-only staging environment
 in AWS Frankfurt (`eu-central-1`). The deployed revision is evidence only for the exact resources and
 checks recorded in `docs/handoff.md`; it is not approved for real sensitive planner or recipient data.
 
+
+## September23 closed production and recovery
+
+`productionFoundationOnly=true` selects the separate production data stack;
+`productionPreflightOnly=true` selects its read-only account/cost reader. These
+modes cannot be combined with staging/operations selection. The preflight reader
+is deployed. The first7-day request was refused byFree Plan; Owner then asked the
+Agent to upgrade, and direct API/readback isPAID/ACTIVE. The separate production
+data stack is nowUPDATE_COMPLETE with private7-day RDS, KMS and control journal.
+Schema0070 and task revisions2 are initialized; real synthetic RDS/KMS restore,
+restriction replay and temporary-resource cleanup passed. No customer service exists.
+The imported bootstrap credential/log group remain managed; do not recreate them. See [execution and drill commands](../../docs/production-recovery-20260923.md).
+
+Current infrastructure source has28 passing tests. Source/CI is in a separate
+private Rillora repository; it has no AWS deployment credential. Code rollback,
+RDS restore and deletion/authorization replay require separate evidence.
 
 ## September23 content encryption
 
