@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+{% assign resolved_dir = dir | default: "auto" %}
+<html lang="{{ locale }}" dir="{{ resolved_dir }}">
+  <head>
+    {%- auth0:head -%}
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#171C1C">
+    <link rel="icon" href="https://legal.rillora.xyz/assets/favicon-C2efLEML.svg">
+    <title>{{ prompt.screen.texts.pageTitle }}</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --rillora-canvas: #171c1c;
+        --rillora-surface: #1d2322;
+        --rillora-surface-muted: #252c29;
+        --rillora-border: #39433f;
+        --rillora-ink: #f1ece2;
+        --rillora-body: #dad8cf;
+        --rillora-muted: #b8bab2;
+        --rillora-sage: #bfd79a;
+        --rillora-clay: #cb704c;
+        --prompt-width: 440px;
+        --font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        min-height: 100%;
+        margin: 0;
+        background: var(--rillora-canvas);
+      }
+
+      body {
+        min-height: 100vh;
+        min-height: 100dvh;
+        color: var(--rillora-body);
+        font-family: var(--font-family);
+      }
+
+      .rillora-auth {
+        display: grid;
+        grid-template-columns: minmax(320px, 0.82fr) minmax(520px, 1.18fr);
+        min-height: 100vh;
+        min-height: 100dvh;
+      }
+
+      .rillora-brand {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-width: 0;
+        padding: clamp(32px, 5vw, 72px);
+        border-right: 1px solid var(--rillora-border);
+        background: var(--rillora-surface);
+      }
+
+      .rillora-wordmark {
+        margin: 0;
+        color: var(--rillora-ink);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: -0.02em;
+      }
+
+      .rillora-wordmark img,
+      .rillora-mobile-wordmark img {
+        display: inline-block;
+        width: auto;
+        height: 32px;
+        max-width: 100%;
+        vertical-align: middle;
+      }
+
+      .rillora-brand-copy {
+        max-width: 520px;
+      }
+
+      .rillora-kicker {
+        margin: 0 0 18px;
+        color: var(--rillora-sage);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        line-height: 1.4;
+        text-transform: uppercase;
+      }
+
+      .rillora-title {
+        max-width: 10ch;
+        margin: 0;
+        color: var(--rillora-ink);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(40px, 5.2vw, 76px);
+        font-weight: 700;
+        letter-spacing: -0.04em;
+        line-height: 0.98;
+      }
+
+      .rillora-brand-note {
+        margin: 24px 0 0;
+        color: var(--rillora-muted);
+        font-size: 16px;
+        line-height: 1.55;
+      }
+
+      .rillora-auth-panel {
+        display: flex;
+        min-width: 0;
+        align-items: center;
+        justify-content: center;
+        padding: max(32px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right)) max(32px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));
+        background: var(--rillora-canvas);
+      }
+
+      .rillora-widget-frame {
+        width: min(100%, 520px);
+      }
+
+      .rillora-auth-panel a,
+      .rillora-auth-panel button {
+        display: inline-flex;
+        min-height: 44px;
+        align-items: center;
+      }
+
+      /* Auth0 owns the provider markup and behavior. The stable provider data
+         attribute lets the monochrome Apple glyph inherit the dark theme's
+         readable white treatment without recoloring Google's brand mark. */
+      .rillora-auth-panel button[data-provider="apple"]
+        span[data-provider="apple"] {
+        filter: brightness(0) invert(1);
+      }
+
+      .rillora-mobile-wordmark {
+        display: none;
+      }
+
+      @media (max-width: 840px) {
+        :root {
+          --prompt-width: min(100%, 440px);
+        }
+
+        .rillora-auth {
+          display: block;
+        }
+
+        .rillora-brand {
+          display: none;
+        }
+
+        .rillora-auth-panel {
+          min-height: 100vh;
+          min-height: 100dvh;
+          align-items: flex-start;
+          padding-top: max(28px, env(safe-area-inset-top));
+        }
+
+        .rillora-widget-frame {
+          width: min(100%, 480px);
+          margin: 0 auto;
+        }
+
+        .rillora-mobile-wordmark {
+          display: block;
+          margin: 0 0 28px;
+          color: var(--rillora-ink);
+          font-family: Georgia, "Times New Roman", serif;
+          font-size: 28px;
+          font-weight: 700;
+          line-height: 1;
+          text-align: center;
+          letter-spacing: -0.02em;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .rillora-auth-panel {
+          padding-right: max(12px, env(safe-area-inset-right));
+          padding-left: max(12px, env(safe-area-inset-left));
+        }
+
+        .rillora-mobile-wordmark {
+          margin-bottom: 18px;
+          font-size: 25px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+        }
+      }
+    </style>
+  </head>
+  <body class="_hide-prompt-logo">
+    <main class="rillora-auth">
+      <aside class="rillora-brand" aria-label="Rillora">
+        <p class="rillora-wordmark"><img src="https://legal.rillora.xyz/assets/lockup-reversed-Bw_tOiWn.svg" alt="Rillora" width="1700" height="406"></p>
+        <div class="rillora-brand-copy">
+          <p class="rillora-kicker">Private continuity</p>
+          <h1 class="rillora-title">A clear plan for what comes next.</h1>
+          <p class="rillora-brand-note">Your account opens the private map you chose to create or continue.</p>
+        </div>
+      </aside>
+      <section class="rillora-auth-panel" aria-label="Account access">
+        <div class="rillora-widget-frame">
+          <p class="rillora-mobile-wordmark"><img src="https://legal.rillora.xyz/assets/lockup-reversed-Bw_tOiWn.svg" alt="Rillora" width="1700" height="406"></p>
+          {%- auth0:widget -%}
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

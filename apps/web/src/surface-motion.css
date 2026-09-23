@@ -1,0 +1,112 @@
+/* Prepared Folio refinement: one card material, state in the edge and icon. */
+.app-shell, .drawer, .maintenance-dialog, .task-confirmation {
+  --surface: #252c29;
+  --surface-muted: #1d2322;
+  --card-border: #3d4842;
+  --icon-surface: #2e3731;
+  --motion-response: 220ms cubic-bezier(.2,.8,.2,1);
+  --motion-reveal: 360ms cubic-bezier(.16,1,.3,1);
+}
+
+.app-shell :is(.plan-card, .mobile-more-menu, .current-access-card, .access-plan-card,
+  .safe-downgrade-note, .first-use-starter, .review-setting-entry),
+.drawer :is(.sharing-matter, .copy-format-choices button, .role-preview, .role-assignment-row) {
+  background: var(--surface);
+  border-color: var(--card-border);
+  border-radius: 16px;
+}
+
+.app-shell .access-plan-card.is-family,
+.drawer :is(.sharing-matter[data-selected=true], .role-preview.is-eligible, .role-assignment-row.is-locked) {
+  background: var(--surface);
+  border-color: var(--sage);
+}
+
+.surface-icon {
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--card-border, #3d4842);
+  border-radius: 12px;
+  background: var(--icon-surface, #2e3731);
+  color: #cde1b0;
+}
+.task-emblem { width: 76px; height: 76px; border-radius: 21px; }
+.account-data-heading { display: flex; align-items: center; gap: 18px; margin: 4px 0 12px; }
+.account-data-heading .account-identity { margin: 0; overflow-wrap: anywhere; }
+.account-data-panel > .secondary-button {
+  min-height: 76px;
+  padding: 14px 16px;
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  background: var(--surface);
+  gap: 14px;
+  color: var(--ink);
+  text-align: left;
+}
+.account-data-panel > .secondary-button > span:nth-child(2) { flex: 1; min-width: 0; }
+.account-data-panel > .secondary-button[aria-expanded=true] { border-color: var(--sage); }
+.account-data-panel .disclosure-chevron { flex: 0 0 auto; color: var(--sage); transition: rotate var(--motion-response); }
+.account-data-panel [aria-expanded=true] .disclosure-chevron { rotate: 90deg; }
+.data-disclosure { border-left: 1px solid var(--card-border); padding: 6px 0 6px 18px; margin: 0 0 8px 20px; }
+.account-data-panel > [role=status] { display: flex; align-items: center; gap: 9px; color: #cde1b0; }
+.account-data-panel > [role=status] svg { flex-shrink: 0; }
+
+.plan-access-preview { display: grid; gap: 18px; }
+.plan-access-preview .commercial-feature-list li { font-size: 15px; line-height: 1.5; }
+.commercial-feature-list.is-planned li { grid-template-columns: minmax(0, 1fr); }
+.plan-access-preview > .plan-disclosure {
+  margin-top: 0;
+  padding: 12px 18px;
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  background: var(--surface);
+}
+.plan-disclosure > summary {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--ink);
+  font-size: 16px;
+  list-style: none;
+}
+.plan-disclosure > summary::-webkit-details-marker { display: none; }
+.plan-disclosure > summary > span:nth-child(2) { flex: 1; min-width: 0; }
+.plan-disclosure > summary svg { margin: 0; flex-shrink: 0; }
+.plan-disclosure > summary .disclosure-chevron { color: var(--sage); transition: rotate var(--motion-response); }
+.plan-disclosure[open] > summary .disclosure-chevron { rotate: 90deg; }
+.plan-disclosure[open] { border-color: var(--sage); }
+
+.task-symbol > svg { padding: 14px; width: 82px; height: 82px; border: 1px solid var(--card-border, #3d4842); border-radius: 23px; background: var(--icon-surface, #2e3731); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .task-emblem, .task-symbol > svg { animation: emblem-arrive 480ms cubic-bezier(.2,.85,.25,1) both; }
+  .data-disclosure, details[open] > :not(summary) { animation: disclosure-arrive var(--motion-reveal, 360ms ease-out) both; }
+  .account-data-panel > [role=status] svg, .toast > svg { animation: feedback-stamp 380ms cubic-bezier(.2,.9,.25,1.2); }
+  .app-shell :is(.matter-row, .guide-row, .review-task-row, .mobile-more-menu button),
+  :is(.drawer, .maintenance-dialog) button { transition: background-color var(--motion-response), border-color var(--motion-response), transform var(--motion-response); }
+  .app-shell :is(.matter-row, .guide-row, .review-task-row):active { transform: scale(.985); }
+  :is(.matter-category-choices, .copy-format-choices) button[aria-pressed=true] > svg { animation: feedback-stamp 320ms ease-out; }
+  .sharing-levels button { transition: background-color var(--motion-response), color var(--motion-response); }
+  .invitation-steps [aria-current=step] { animation: current-step 360ms ease-out; }
+  .review-task-row[data-ready=true] > svg:first-child { animation: feedback-stamp 380ms ease-out; }
+  .primary-button:not(:disabled):active, .secondary-button:not(:disabled):active { transform: scale(.97); }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .account-data-panel > .secondary-button:not(:disabled):hover,
+  .app-shell .review-setting-entry:hover { border-color: var(--sage); transform: translateY(-2px); }
+  .account-data-panel > .secondary-button:hover .surface-icon { transform: translateY(-1px); }
+  .surface-icon { transition: transform var(--motion-response); }
+}
+@keyframes emblem-arrive { from { transform: translateY(7px) scale(.91); } to { transform: none; } }
+@keyframes disclosure-arrive { from { opacity: .35; transform: translateY(-5px); } to { opacity: 1; transform: none; } }
+@keyframes feedback-stamp { 0% { transform: scale(.8); } 65% { transform: scale(1.12); } 100% { transform: scale(1); } }
+@keyframes current-step { from { background-color: rgba(155,177,128,.14); } to { background-color: transparent; } }
+@media (prefers-reduced-motion: reduce) {
+  .task-emblem, .task-symbol > svg, .data-disclosure, details[open] > :not(summary),
+  .account-data-panel > [role=status] svg, .toast > svg { animation: none; }
+  .account-data-panel .disclosure-chevron, .plan-disclosure > summary .disclosure-chevron { transition: none; }
+}
+@media print { .task-emblem, .data-disclosure, details[open] > :not(summary) { animation: none; transform: none; } }

@@ -1,0 +1,97 @@
+# Rillora 1.0 正式发布准备
+
+Role: current launch scope, remaining work and release evidence contract  
+Status: RELEASE PREPARATION ACTIVE; PUBLIC PRODUCT AND LIVE SALES CLOSED  
+Last updated: 2026-09-23 (release-gap recheck after content encryption)
+
+## 当前判断与范围
+
+Owner要求后续工作按正式上线推进。现状是已有可运行核心产品和较充分的测试站验收，尚不是可直接提交并收费的生产版本。September19曾完整读取92份项目Markdown、20,554行并核对代码、AWS与Apple后台；September23沿用该工作流阅读基线，补读变化文件、重跑发布预检并核对已有验收记录。各次证据保持自己的日期，不能用旧“下一步”重复已经完成的工作。
+
+首发冻结为现有Web与原生iOS：事项地图、按人按事项共享、邀请接受／撤销、官方指导、备份／导出／删除，以及有界共同复核。Free一位实时接收人，Family五位及一位建议贡献者；September21 Owner取消新月付，当前只售US$88.80/年。历史已购权利保留，Apple年价仍单独待定。保留既有UI，不继续为上线扩充Logo数量、装饰动效、附件/OCR、法律代办、死亡自动释放、中国大陆平面或完整AI客服平台。
+
+## September23 发布差距复核
+
+Owner询问距离正式发布还缺什么。本次重新运行[发布预检](../output/qa/rillora-release-status-20260923/preflight.json)，核对当前源码和当天加密验收记录。仍有8项工程／发布门未完成，另有经营市场与实机2项Owner暂缓；这不是按门数量计算的总体完成百分比。
+
+当前源码事实：只有staging／Operations基础设施；原生Release五个正式连接字段为空；Stripe适配器拒绝live对象；Apple验证器仍限定Sandbox，服务端价格映射仍指向历史v1。正式购买还需要实现和验收，不能描述成只剩后台开关或等待审核。
+
+工作合并为六组：隔离生产／Release连接；生产登录／恢复／邮件；Web真实年付；Apple生产交易处理与真实Sandbox/TestFlight验收；备份恢复／删除重放／最终安全回归；官网支持入口与签名构建／提审资料。核心事项／分层共享、18份指南、03品牌、年付停售处理、内容加密与已送达告警均保留已有证据，不重新当作待开发事项。
+
+完整E2EE按Owner延后；SOC2认证本身不新增为项目自设的首发门。最终生产安全检查仍必须做。额外动效、Logo、附件/OCR、企业功能及完整AI客服平台不挤入首发。Auth0自定义模板Logo402与生产认证邮件的可靠性是不同问题，不能因换Logo的付费限制而混淆后者。
+
+本次没有重登Apple／Stripe／Google管理后台，也没有新的部署、交易或全业务测试；后台状态沿用各自日期的记录。Apple提交仍需指定构建与完整元数据，Google生产OAuth仍需独立项目与真实公开首页，官方规则已在本次重新读取。详见[复核QA](../output/qa/rillora-release-status-20260923/README.md)。
+
+## September23 内容保护增量
+
+独立KMS、应用层AES-256-GCM、分层授权解析、既有数据迁移及DB写入拦截已落实到staging；这不等于隔离生产已经创建。当前应用加密、旧快照边界、真实KMS及恢复限制见[实施与操作合同](security-hardening-20260921/implementation/operations.md)和[QA](../output/qa/rillora-content-encryption-20260922/README.md)。前移的内容层工作没有关闭生产TLS、至少7日备份／隔离恢复／删除重放、身份邮件或独立检查门。
+
+## September21 当前增量
+
+年付-only已部署至原staging（API33／0063），Stripe三代TEST月付归档，
+Apple月付可售地区0；没有开启正式销售。主App与Preview图标、现有Web／法律站
+资源一致。Auth0基本品牌已应用，但真实custom-domain旧Liquid模板仍显示文字，
+模板管理被Free计划402阻止；Stripe和Google的Logo上传限制后来已解除并完成保存。
+AppStore尚无提交构建，不能把模拟器图标当作商店页图标。
+
+100个隔离账号／2,000事项的私有API检查已执行；现有CPU余量较大，但同源IP会受
+300请求／15分钟限制。Auth0真实Free额度2/25,000MAU，无自定义邮件provider；
+内建邮件仅开发用途、10封／分钟。正式生产邮箱、生产隔离和恢复仍是上线门，
+并非因100用户就需要更大型服务器。[完整证据与限制](annual-brand-capacity-20260921.md)。
+
+同日的[信息保护研究](security-positioning-20260921.md)进一步区分RDS透明加密、
+在线内容加密和客户端E2EE。Owner随后在September22采用信封加密，September23已在现有staging实现；
+受保护正文先加密再入库，应用仍可在授权后解密。生产前的认证、内部TLS、日志、
+恢复及独立检查必须有对应证据，不能用“银行级”替代验收。
+
+Owner对香港经营／商业登记回复“先忽略”：本项暂缓，不再追问或要求证件，也不能被记录为已核验。技术、运维、上架准备继续；实际收款与市场开放仍需真实商户和适用市场事实。实体设备沿用此前排除，仍如实保留发布验收缺口。当前不引入招聘或外包前提。
+
+## 已有证据，避免重做
+
+| 工作 | 已完成的范围 | 不能由此推出 |
+| --- | --- | --- |
+| 核心两端与共享 | Matter分类字段、草稿恢复、A/B/C字段隔离、Free1/Family5及截止副本；Owner实际A/B接受与撤销 | 生产部署、真实第三方家属交付、修复后的新一轮真人注册 |
+| Stripe | 独立Rillora测试账户68/7.99付款、限定测试权益、取消／恢复、退款与去重 | live收款资格、普通用户生产购买 |
+| 自助退出 | 范围化导出、完整备份／本地读取／导入、归档恢复、供应商账户删除测试 | 生产备份恢复、所有保留期限自动清理 |
+| Apple商务基础 | September19后台回读免费／付费协议有效、银行可用、两项税表使用中 | 新市场经营资格、App审核或实际交易 |
+| 指南与法律页 | 18份上下文指导；正式英文法律站Sites6已发布（品牌／字体声明更新；正文版本不变）；角色邮箱曾完成独立往返 | provider继承批准、法律审查通过或持续支持表现 |
+
+原始证据分别见[真实邀请](../output/qa/rillora-real-invitation-20260917/README.md)、[Stripe验收](../output/qa/rillora-stripe-acceptance-20260917/README.md)、[数据退出](p1-reliability-repair-20260915.md)和[当前QA](../output/qa/rillora-release-readiness-20260919/README.md)。本轮新测试与旧检查点必须分开记。
+
+## 正式发布必须完成的工作
+
+| 主线 | September23当前缺口（后台沿用最近记录日期） | 完成判据 |
+| --- | --- | --- |
+| 生产环境 | IaC仍只有staging和Operations；原生Release的API、issuer、client、audience、session URL均为空 | 新隔离生产栈、精确域名／TLS／秘密／迁移／回滚；最终Release产物连接生产。不能原地给staging改名 |
+| 生产身份与恢复 | Google仍是Testing的已记录基线；Apple本人callback及真实密码恢复缺完整证据 | 生产客户配置、Google生产项目与首页、Apple／邮箱／Google端到端、邮箱验证保留邀请、恢复后的旧会话处置 |
+| 正式购买 | Stripe适配器明确只接收rk_test与非live对象，普通购买UI及独立购买同意未闭环 | 生产适配器、账本／回调／后台补偿对账、价格／税处理、购买同意、取消／恢复与跨渠道防重订阅；不通过放宽测试分支来开门 |
+| Apple交易 | 新月付已停售；Apple可用年价尚需落定。当前验证器仍限定Sandbox、服务端价格映射仍为v1，正式交易路径与实际购买验收未完成 | 版本化目录映射与各地区实际价格对齐、真实Sandbox购买／恢复／通知、持久化后finish，再制作提交构建 |
+| 运维与数据 | 公开监控已修复并完成投递／缺心跳验收、启用日程；生产目标仍待接入。生产至少7日备份、隔离恢复、删除重放和事件90日清理未完成 | 告警实际进入指定收件箱，故障／恢复／失联演练；生产目标接入；恢复实测RPO/RTO和清理失败可观察 |
+| 上架与公开入口 | Owner已选03；主App图标已配置且普通Debug模拟器实际显示，Web品牌已发布；最终生产Release及提交构建／截图仍缺，年龄／隐私／加密、审核账号及最终市场范围待定 | 按最终产物完成申报和TestFlight／设备验收；资料齐全后送审；审核后手动发布。公共首页不能继续Coming Soon |
+| 安全与持续维护 | 依赖公告已检查并完成本地升级及回归；还需最终生产范围安全复核、源码／产物记录和发布回滚 | 可复现构建、秘密检查、必要权限与负向访问验收、恢复演练；不把依赖零公告称为独立全面安全审计 |
+
+Apple要求提交前具备必需元数据和指定构建；App Privacy要覆盖应用及集成第三方的实际处理行为。分别见[提交规则](https://developer.apple.com/help/app-store-connect/manage-submissions-to-app-review/submit-an-app/)与[隐私说明](https://developer.apple.com/help/app-store-connect/manage-app-information/manage-app-privacy/)。Google要求生产与测试项目分离，并提供真实公开产品首页；基本身份scope与敏感／受限scope审核不能混为一谈。[Google生产要求](https://developers.google.com/identity/protocols/oauth2/production-readiness/policy-compliance)。
+
+## 已开始落实
+
+- 独立Operations主题已订阅Owner选定邮箱。确认邮件最初落入SPAM，已移回Inbox并确认；确切地址只在受保护本地配置。实测发现SNS政策只有TLS拒绝条款而没有CloudWatch允许发布，历史记录明确报SNS:Publish拒绝。已添加仅本账户、四个精确告警的发布许可并部署，保留TLS要求；测试告警与自动恢复两封邮件已实际进入Inbox。真实缺心跳ALARM及恢复OK已送达Inbox，15分钟日程已启用；实测缺心跳首次告警约75.4分钟，不能宣称45分钟最大延迟。
+- 新建[发布门登记](../config/release-gates.json)与[只读预检](../tools/release/preflight.py)。它会列明未完成／Owner暂缓项，检查最终原生artifact的配置、开发身份、正式域名、App图标及测试StoreKit文件。报告不具有发布批准效力，不能通过删掉必需门或无证据填verified让它通过。
+- App Store副标题、效率分类、英文版本描述／关键词／推广短文、现有法律联系页的支持URL已保存为未提交草稿；发布方式从默认审核后自动改为手动。未提供虚构的审核账号、银行／税务字段或未上线的营销URL。原始内容在[英文上架文案](../config/app-store-listing.en-US.json)。
+- 本轮中途Owner将新购报价改为88.80/9.99。Stripe TEST新价格及服务端v3目录独立于旧68/7.99记录；Apple月价已改9.99，年价的平台例外待Owner选择。实际Apple交易及服务器版本化绑定尚未完成，不能把目录配置当作购买通过。
+
+## 工程排期与顺序
+
+September19曾记录5–10个工程日的初步预算；随后Owner先行安排了品牌、年付与内容加密工作，该数字不作为September23起重新承诺的倒计时。当前生产接入、真实购买和最终构建尚未验收，先按明确的完成判据推进；平台审核、商户事实与Owner暂缓项另计。完成生产／恢复和双端交易验证后，再基于实际剩余项确定可提交窗口。
+
+连续顺序：隔离生产配置／部署与恢复 → 生产身份／邮件（公开首页可并行）→ Web与Apple生产购买及实际验收 → 最终两端／设备／隐私申报与提交。现有监控与补丁验收不再作为重复起点。这里只定义顺序；唯一活动执行项以[handoff](handoff.md)为准。经营登记暂缓不阻断独立工程，但实际收费日期暂时不能确定。
+
+## 运行预检
+
+仓库根执行 `python3 tools/release/preflight.py --report-only --output output/qa/release-preflight.json` 可保存当前缺口。移除report-only时，存在任何缺口返回2；最终原生包用 `--ios-app /absolute/path/Rillora.app` 明确传入。没有提供artifact不会被当作检查通过。
+
+正式市场只打开实际ready的行，USA/HKG是候选而不是默认全部开放。永久Free与可用Family同批提供；不因正式购买未完成而擅自改成公开Free-only首发。测试站、测试交易、原生Simulator与App Store草稿各保留自己的证据身份。
+
+
+## Selected brand checkpoint — September19
+
+The Owner-selected Legacy Imprint03 closes the Logo-choice and missing-source-icon work. The main target now configuresAppIcon; the inspected Debug bundle declares it and the Simulator home screen renders the selected image. Existing app/Web brand slots, font licences and legal Sites6 are updated. [Brand QA](../output/qa/rillora-brand-adoption-20260919/README.md) distinguishes this from a production Release artifact: readonly preflight still reports missing production fields, test endpoints/StoreKit fixture and the existing release gates. Do not count a Debug icon or legally published Terms as product/App Store release approval. Resume isolated production configuration and backup/restore work; keep the existing Appleannual-price question and Owner-deferred registration/device work separate.

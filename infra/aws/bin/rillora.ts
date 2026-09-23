@@ -1,0 +1,94 @@
+#!/usr/bin/env node
+import { App } from "aws-cdk-lib";
+import { RilloraStagingStack } from "../lib/rillora-staging-stack.js";
+import { RilloraOperationsStack } from "../lib/rillora-operations-stack.js";
+import { RilloraProductionPreflightStack } from "../lib/rillora-production-preflight-stack.js";
+import { RilloraProductionStack } from "../lib/rillora-production-stack.js";
+
+const app = new App();
+const desiredCountContext = app.node.tryGetContext("serviceDesiredCount");
+const desiredCount = Number(desiredCountContext ?? 0);
+if (!Number.isInteger(desiredCount) || desiredCount < 0 || desiredCount > 2) {
+  throw new Error("serviceDesiredCount must be an integer between 0 and 2");
+}
+const stripeTestIntegrationContext = app.node.tryGetContext("stripeTestIntegrationEnabled");
+const stripeTestIntegrationEnabled = stripeTestIntegrationContext === true
+  || stripeTestIntegrationContext === "true";
+if (
+  stripeTestIntegrationContext !== undefined
+  && ![true, false, "true", "false"].includes(stripeTestIntegrationContext)
+) {
+  throw new Error("stripeTestIntegrationEnabled must be true or false");
+}
+const appleStoreKitSandboxContext = app.node.tryGetContext("appleStoreKitSandboxEnabled");
+const maintenancePreviewContext = app.node.tryGetContext("familyMaintenancePreviewEnabled");
+if (maintenancePreviewContext !== undefined && ![true,false,"true","false"].includes(maintenancePreviewContext)) {
+  throw new Error("familyMaintenancePreviewEnabled must be true or false");
+}
+const familyMaintenancePreviewEnabled = maintenancePreviewContext === true || maintenancePreviewContext === "true";
+const deletionContext = app.node.tryGetContext("accountDeletionEnabled");
+if (deletionContext !== undefined && ![true,false,"true","false"].includes(deletionContext)) throw new Error("accountDeletionEnabled must be true or false");
+const accountDeletionEnabled = deletionContext === true || deletionContext === "true";
+const verificationContext = app.node.tryGetContext("emailVerificationEnabled");
+if (verificationContext !== undefined && ![true,false,"true","false"].includes(verificationContext)) throw new Error("emailVerificationEnabled must be true or false");
+const emailVerificationEnabled = verificationContext === true || verificationContext === "true";
+const contentProtectionMode = app.node.tryGetContext("contentProtectionMode") ?? "encrypted";
+if (!["read-compatible", "encrypted"].includes(contentProtectionMode)) throw new Error("contentProtectionMode must retain a compatible reader");
+const contentMigrationContext = app.node.tryGetContext("contentMigrationEnabled");
+if (contentMigrationContext !== undefined && ![true,false,"true","false"].includes(contentMigrationContext)) throw new Error("contentMigrationEnabled must be true or false");
+const contentMigrationEnabled = contentMigrationContext === true || contentMigrationContext === "true";
+const appleStoreKitSandboxEnabled = appleStoreKitSandboxContext === true
+  || appleStoreKitSandboxContext === "true";
+if (
+  appleStoreKitSandboxContext !== undefined
+  && ![true, false, "true", "false"].includes(appleStoreKitSandboxContext)
+) {
+  throw new Error("appleStoreKitSandboxEnabled must be true or false");
+}
+
+const operationsOnly = app.node.tryGetContext("operationsOnly");
+const productionPreflightOnly=app.node.tryGetContext("productionPreflightOnly");
+if(productionPreflightOnly!==undefined && ![true,false,"true","false"].includes(productionPreflightOnly)) throw new Error("productionPreflightOnly must be true or false");
+const preflightSelected=productionPreflightOnly===true||productionPreflightOnly==="true";
+const productionFoundationOnly=app.node.tryGetContext("productionFoundationOnly");
+if(productionFoundationOnly!==undefined && ![true,false,"true","false"].includes(productionFoundationOnly)) throw new Error("productionFoundationOnly must be true or false");
+const productionSelected=productionFoundationOnly===true||productionFoundationOnly==="true";
+if([preflightSelected,productionSelected,operationsOnly===true||operationsOnly==="true"].filter(Boolean).length>1) throw new Error("Select exactly one infrastructure stack mode");
+if (operationsOnly !== undefined && ![true, false, "true", "false"].includes(operationsOnly)) {
+  throw new Error("operationsOnly must be true or false");
+}
+if(productionSelected){
+  new RilloraProductionStack(app,"RilloraProduction",{
+    env:{account:process.env.CDK_DEFAULT_ACCOUNT||undefined,region:"eu-central-1"},
+    description:"Closed Rillora production data foundation and isolated recovery; no public traffic or billing",
+  });
+} else if(preflightSelected){
+  new RilloraProductionPreflightStack(app,"RilloraProductionPreflight",{
+    env:{account:process.env.CDK_DEFAULT_ACCOUNT||undefined,region:"eu-central-1"},
+    description:"Read-only Rillora production readiness; no new runtime, database, plan upgrade or sales",
+  });
+} else if (operationsOnly === true || operationsOnly === "true") {
+  const operationsEnabled = app.node.tryGetContext("operationsEnabled");
+  if (operationsEnabled !== undefined && ![true, false, "true", "false"].includes(operationsEnabled)) {
+    throw new Error("operationsEnabled must be true or false");
+  }
+  new RilloraOperationsStack(app, "RilloraOperations", {
+    env: { account: process.env.CDK_DEFAULT_ACCOUNT || undefined, region: "eu-central-1" },
+    scheduleEnabled: operationsEnabled === true || operationsEnabled === "true",
+    description: "Rillora public health scheduling and alarms; no access to private application data",
+  });
+} else new RilloraStagingStack(app, "RilloraStaging", {
+  env: {
+    account: process.env.CDK_DEFAULT_ACCOUNT || undefined,
+    region: "eu-central-1",
+  },
+  desiredCount,
+  stripeTestIntegrationEnabled,
+  appleStoreKitSandboxEnabled,
+  familyMaintenancePreviewEnabled,
+  accountDeletionEnabled,
+  emailVerificationEnabled,
+  contentProtectionMode,
+  contentMigrationEnabled,
+  description: "Synthetic-only Rillora staging API and PostgreSQL in AWS Frankfurt",
+});

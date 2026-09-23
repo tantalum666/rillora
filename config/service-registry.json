@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-09-21",
+  "scope": "Planning registry, not proof of deployed adapters or transferable contracts",
+  "services": [
+    {
+      "id": "identity",
+      "current": "Auth0 OIDC; first-party login subdomain",
+      "status": "existing",
+      "observedQuota": {"checkedAt":"2026-09-21","plan":"Free","externalMAU":2,"externalMAULimit":25000,"m2mTokens":0,"m2mTokenLimit":1000,"tenantEnvironment":"DEVELOPMENT"},
+      "observedFeatureGaps": ["Universal Login Liquid template API returns402 paid subscription required", "No custom email provider configured; built-in delivery is development-only"],
+      "businessKey": "planner UUID plus explicit issuer/subject bindings",
+      "port": "IdentityProvider / NativeIdentityVerifier",
+      "exit": "Export permitted profiles; rehearse verified relinking; password/MFA export subject to Auth0 eligibility; passkey reenrollment may be needed",
+      "scaleTrigger": "60/80% of actual MAU or feature quota, or paid quote changes total cost materially",
+      "migrationGate": "Existing planner IDs, contact ACLs, legal proof, sessions and recovery pass with both issuers; never merge by email alone"
+    },
+    {
+      "id": "database",
+      "current": "Managed AWS RDS PostgreSQL16.13 db.t4g.micro,20GiB gp3,SingleAZ,1-day backup in synthetic staging; read back September21",
+      "status": "existing_staging",
+      "businessKey": "Application UUIDs and ordered SQL migrations",
+      "port": "PostgreSQL, SQL migrations and node-postgres",
+      "exit": "Encrypted logical backup/restore to compatible managed PostgreSQL; extension and role manifest",
+      "scaleTrigger": "Sustained CPU/memory/connection pressure, storage above70%, restore or latency target missed",
+      "migrationGate": "Row counts, foreign keys, sampled hashes, B/C isolation, deletion ledger and restore drill; one writer during cutover"
+    },
+    {
+      "id": "compute",
+      "current": "Express on one regular Fargate0.25vCPU/512MiB task; CloudFront Web; September21 scoped private-API check with100 synthetic users and2000 matters",
+      "status": "existing_staging",
+      "businessKey": "Versioned API contracts and immutable image digest",
+      "port": "OCI container, HTTPS, environment references",
+      "exit": "Deploy same image against restored Postgres on managed container service; preserve host/cookies/callbacks",
+      "scaleTrigger": "Measured p95 latency/errors and saturation, not payer count alone",
+      "migrationGate": "Ingress, identity callbacks, CSRF, requests, logs, rollback and mobile backward compatibility"
+    },
+    {
+      "id": "edge_dns",
+      "current": "GoDaddy DNS, AWS CloudFront app, managed Sites/Cloudflare legal surface",
+      "status": "mixed_existing",
+      "businessKey": "Rillora-owned hostnames and DNS record inventory",
+      "port": "DNS and HTTPS config; Cloudflare account access not established",
+      "exit": "Export DNS/security/cache rules; stage replacement CDN; lower TTL before cutover",
+      "scaleTrigger": "Actual attack/egress/support need or lower total cost",
+      "migrationGate": "SPF/DKIM/DMARC, DNSSEC plan, AASA, Auth0 TLS, CSP/HSTS, private no-store and /api denial"
+    },
+    {
+      "id": "object_storage",
+      "current": "No new user-attachment service selected",
+      "status": "planned",
+      "businessKey": "Opaque object key, owner, digest and retention class; never vendor URL as ID",
+      "port": "StorageAdapter put/get/delete/sign; signed URL only after fresh ACL",
+      "exit": "S3-compatible operations subset and inventory/checksum copy; R2-specific capability matrix required",
+      "scaleTrigger": "Measured storage/egress or an accepted attachment feature",
+      "migrationGate": "Encryption/KMS ownership, retention/deletion, signed URL expiry, range/CORS; R2 is not all S3 features"
+    },
+    {
+      "id": "commerce",
+      "current": "Own catalog/entitlement/event ledgers; isolated Stripe test and Apple sandbox paths",
+      "status": "test_only",
+      "businessKey": "Plan/price versions, subscription and provider event IDs",
+      "port": "Stripe / StoreKit adapters behind server entitlements",
+      "exit": "Preserve historical contracts; new subscribers may use new adapter; existing subscriptions migrate only through supported provider procedure",
+      "scaleTrigger": "Supported-market demand, actual fees or merchant change",
+      "migrationGate": "No duplicate renewal; signed replay idempotency; cancel/refund/grace/restore/cutoff match; stored card data never exported by Rillora"
+    },
+    {
+      "id": "email",
+      "current": "Zoho role mail; user-driven invite link/QR; Auth0 built-in authentication mail is development-only and limited to10/minute; production transactional provider not configured",
+      "status": "existing_mail_planned_transactions",
+      "businessKey": "Opaque notification ID and template version",
+      "port": "TransactionalEmailAdapter and outbox (planned)",
+      "exit": "Portable templates, suppression list, delivery state and verified sending DNS",
+      "scaleTrigger": "Service message needs, delivery failures or support volume",
+      "migrationGate": "User opt-in, minimal message content, retries and dedupe, bounce/suppression; no contact list or private title in email"
+    },
+    {
+      "id": "jobs",
+      "current": "Deployed public EventBridge/Lambda checks; 15-minute schedule enabled after delivered failure/recovery/silence proof",
+      "status": "public_monitor_active_other_jobs_planned",
+      "businessKey": "Job/version/idempotency key and attempt state",
+      "port": "Portable Node handler; future durable application outbox",
+      "exit": "Same job contract on another scheduler/queue; import pending/failed job IDs",
+      "scaleTrigger": "Jobs need retries, delay, delivery or cost limits",
+      "migrationGate": "One scheduler owner, leased job execution, duplicate delivery test, dead-letter and missing-heartbeat evidence"
+    },
+    {
+      "id": "ai",
+      "current": "Codex-assisted development; no deployed support AI selected",
+      "status": "planned_runtime",
+      "businessKey": "Task type, model configuration, redacted evidence IDs and token budget",
+      "port": "Grounded answer/generation adapter, not arbitrary agent shell",
+      "exit": "Versioned prompts, knowledge source export and fixed evaluation set",
+      "scaleTrigger": "Unresolved support workload or content production bottleneck with measured ROI",
+      "migrationGate": "No private map payload by default, unsupported-claim refusal, sensitive escalation, quality/cost evaluation, fallback"
+    },
+    {
+      "id": "marketing",
+      "current": "Draft program only; no connected publishing account",
+      "status": "planned",
+      "businessKey": "Content ID, claim/evidence version, remote post ID and first-party campaign ID",
+      "port": "ChannelPublisher adapter",
+      "exit": "Export owned content/assets and campaign metrics; reconnect owned channel OAuth",
+      "scaleTrigger": "First launchable public product and identified audience/channel",
+      "migrationGate": "Explicit channel authorization, allowed publishing scope, claim review, dedupe, rate limits, delete/rollback; no unsolicited DMs"
+    },
+    {
+      "id": "observability",
+      "current": "Cloud logs plus deployed public checker, verified Owner SNS mail delivery and silence detection",
+      "status": "public_metadata_active_production_private_monitoring_pending",
+      "businessKey": "Environment/job IDs; no individual-user labels",
+      "port": "JSON metrics and first-party diagnostic event contracts",
+      "exit": "Export alert definitions/dashboards, retentions and incident runbooks",
+      "scaleTrigger": "Unobserved incidents, retention costs, or support diagnostics gaps",
+      "migrationGate": "Real alert delivery and silence drill; secrets and private bodies absent; budget and retention enforced"
+    }
+  ]
+}

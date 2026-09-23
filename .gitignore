@@ -1,0 +1,56 @@
+# Local credentials must never be committed, packaged, or deployed.
+.local-secrets/
+# Local credentials and protected database backups
+.local/
+.secrets/
+.playwright-cli/
+.playwright-mcp/
+
+# Credentials and machine-specific sessions (templates are reviewed separately).
+.env
+.env.*
+!.env.example
+!.env.sample
+*.p8
+*.p12
+*.pfx
+*.key
+*.pem
+*.keychain*
+.auth0/
+.aws/
+.npmrc
+
+# Dependencies, generated builds and local IDE state.
+node_modules/
+.build/
+.swiftpm/
+dist/
+build/
+coverage/
+cdk.out*/
+.derived-data*/
+.xcodebuildmcp-deriveddata/
+DerivedData*/
+xcuserdata/
+*.xcresult/
+*.xcarchive/
+*.dSYM/
+*.ipa
+*.tsbuildinfo
+__pycache__/
+*.pyc
+.DS_Store
+.idea/
+.vscode/
+
+# Raw QA evidence can contain sessions, identities or database fixtures.
+# Reviewed release summaries live in docs; raw artifacts remain local/restricted.
+/output/
+/qa/
+/rillora-*.png
+*.log
+*.dump
+*.sql.gz
+*.sqlite*
+*.db

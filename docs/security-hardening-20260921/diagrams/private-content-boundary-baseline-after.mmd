@@ -1,0 +1,7 @@
+flowchart LR
+  C[Web / iOS] -->|HTTPS plus sensitive-action reauth| A[API authorization]
+  A -->|TLS SQL| D[PostgreSQL readable fields]
+  D --> S[AES-256 encrypted storage]
+  O[Time-limited operator role] -->|Approved audited SQL access| D
+  C -->|Selected recovery export only| X[Client-encrypted package]
+  S --> R[Tested isolated restore]

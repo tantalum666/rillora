@@ -1,0 +1,8 @@
+flowchart LR
+  C[Web / iOS] -->|HTTPS plus sensitive-action reauth| A[API authorization]
+  A --> E[Content encryption adapter]
+  E -->|Ciphertext and wrapped data keys| D[PostgreSQL]
+  E -->|Scoped decrypt with bound context| K[Managed KMS]
+  D --> S[AES-256 encrypted storage]
+  O[Database-only reader] -->|Ciphertext only| D
+  C -->|Selected recovery export only| X[Client-encrypted package]

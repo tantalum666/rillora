@@ -1,0 +1,7 @@
+flowchart LR
+  C[Web / iOS with content keys] -->|Encrypted per permitted scope| A[API authorization]
+  A -->|Ciphertext and recipient envelopes| D[PostgreSQL]
+  D --> S[AES-256 encrypted storage]
+  O[Database or API operator] -->|No retained content key| D
+  C --> R[Recipient device with verified key]
+  C --> X[Offline recovery key]

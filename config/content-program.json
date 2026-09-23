@@ -1,0 +1,20 @@
+{
+  "schemaVersion":1,
+  "status":"draft_program_not_publishing",
+  "publishEnabled":false,
+  "connectedChannels":[],
+  "weeklyPublicPostLimit":2,
+  "initialPaidAdBudgetUsd":0,
+  "audienceHypothesis":"People coordinating important accounts and documents with family or different trusted people",
+  "cadence":"One useful scenario and one short product demonstration per week after launchable product and channel authorization",
+  "pillars":[
+    {"id":"find-the-first-step","hook":"Could someone you trust find the right starting point?","format":"15–25second screen demonstration","asset":"Synthetic map, one location, one next action","claimGate":"Never display an actual person's plan or account number"},
+    {"id":"different-people","hook":"Different people need different information.","format":"Two-recipient permission animation","asset":"Synthetic A/B/C with separate visible items","claimGate":"Matches latest tested ACL and revocation behavior; no guarantee about downloaded copies"},
+    {"id":"no-password-list","hook":"Start with where it is, not your passwords.","format":"Three-frame carousel","asset":"Provider name, document location, official next step","claimGate":"No claim of zero knowledge, end-to-end encryption or legal authority"},
+    {"id":"check-together","hook":"Ask someone to check the information they can actually see.","format":"Review-request-to-correction demonstration","asset":"Synthetic approved review and history","claimGate":"Label staging demo while launch closed; no claim of delivered reminders"},
+    {"id":"keep-control","hook":"Sharing should stay a choice you can change.","format":"Revoke and privacy demonstration","asset":"Allowed live access followed by revoked state","claimGate":"Only current app access is revoked; previously obtained copies cannot be recalled"},
+    {"id":"small-start","hook":"Start with one important item and one trusted person.","format":"Short onboarding walkthrough","asset":"Public page to explicit private save intent","claimGate":"No false urgency, fabricated testimonial, readiness score or guaranteed outcome"}
+  ],
+  "primaryMetrics":["activated_planner","accepted_scoped_invite","first_paid_task","paid_conversion_by_cohort","paid_retention","cash_and_time_per_acquired_payer"],
+  "rules":["No unsolicited DMs or automated public replies","No fake engagement, testimonials or fear-based death countdowns","Source product claims from current specs and evidence","Store content assets and drafts outside private user data","No optional tracking until consent and opt-out controls are ready"]
+}
