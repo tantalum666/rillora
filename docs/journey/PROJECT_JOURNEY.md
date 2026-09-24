@@ -2524,3 +2524,23 @@ launch prerequisites and historical authentication gates are not repeated approv
 - **判断变化**：一年免预付RDS仅省约4.67美元/月，现阶段不值得为了折扣先锁定架构；新的Database Savings Plans并不覆盖当前t4g代际。旧日志仅遮盖headers，回调URL／邀请路径／数据库错误仍可能泄漏，因此顺手收紧日志。TLS测试由同主题自签叶证书改为共同测试CA，保留严格验证。
 - **结果**：API212、infra29通过；本地实际HTTPS、错误名称／密钥／过期拒绝、续期后peer serial变化、关闭路由和日志捕获均通过。现有数据库／VPC／KMS／日志表／秘密资源未在diff中改动或移除；无SQL迁移。AWS周期账面使用26.55美元，当前抵扣覆盖，非完整生产月费；保存按量与RI比较。
 - **未完成／边界**：GoDaddy要求本人重登；Auth0 CLI两次拒绝当前Google身份，后台停在无原租户的入门页，已询问原管理登录方式且未提交创建。没有开始域名依赖部署、创建付费承诺或启用用户入口；云端TLS／网络、生产身份邮件及Release连接仍待验收。旧日志不宣称清除；原staging未部署。见[QA](../../output/qa/rillora-production-runtime-20260924/README.md)。
+
+## 2026-09-24 — 管理登录入口排查
+
+- **目标／尝试**：Owner询问Auth0初始化页Advanced并要求重开GoDaddy；已说明当前应恢复既有管理身份，重新打开Rillora域名登录页。
+- **判断／结果**：Owner的新截图显示GoDaddy浏览器环境检查弹窗，不能据此判断密码错误。已核对[官方FAQ](https://www.godaddy.com/en-uk/help/your-browser-is-a-bit-unusual-faq-41807)；调试接管／扩展／VPN均是排查方向，具体原因未证实。
+- **未完成**：先由Owner结束浏览器调试并手动登录；不提交Auth0新租户初始化，不自动关闭安全软件或修改DNS。工程／CI沿用上一检查点，本次没有新部署、测试或产品决定。
+
+## 2026-09-24 — 确认域名访问，区分Auth0邮箱与管理身份
+
+- **目标／尝试**：Owner表示GoDaddy已登录，并询问此前同一邮箱为何看不到Auth0租户、是否由插件／CLI导致。已读取GoDaddy两页19条DNS记录、核对Auth0官方Dashboard身份规则、检查两个公开discovery端点并准备原邮箱密码登录。
+- **判断／结果**：GoDaddy访问已恢复；官方明确同邮箱不同provider为不同管理身份。上一步Agent未经确认选Google，当前不能当作原管理方式；CLI过期不等于租户被删除。rillora-dev及login域名公开端点均200，只证明公开入口响应。
+- **未完成**：Auth0已退出误选会话，邮箱密码路径有人机验证／本人密码与MFA待完成；未创建新租户。AWS STS实际expired，复用旧会话后仍要求IAM登录，续期页已打开。无DNS／云端配置变化，沿用212API／29infra／CI5，未重复测试或部署。
+
+## 2026-09-24 — 完成关闭生产API、恢复管理身份并接好GoDaddy CLI
+
+- **目标**：继续生产证书／API与监控；Owner追问Auth0邮箱并要求CLI优先，随后明确设置GoDaddy CLI。
+- **尝试**：确认GoDaddy两页19条记录；通过原邮箱密码／MFA恢复Auth0旧EU租户及CLI，AWS本人续期后STS通过。部署desired0，Owner当场确认单条ACM CNAME后保存并核对4个DNS解析器，再部署desired1。使用现有只读lookup角色核对实际SG及GatewayTLS，没有新增诊断管理员权限。
+- **判断变化**：Auth0同邮箱Google与密码是不同管理身份；旧CLI授权事务失效时重建事务即可复用刚登录的身份。裸TCP的本机连接结果与TLS结果矛盾，不能直接当作公网开放或隔离通过；保留原结果并结合云端SG／真正TLS应答界定范围。CloudWatch空分页也不是没有日志，继续分页及直接流读取后获得79／50样本。
+- **结果**：生产API1健康、镜像8426279e…与本地匹配，证书ISSUED／ELIGIBLE；实际live/ready200及关闭接口503/no-store，原0070／7日数据基础保留。监控配置10项并有云端ok/failed0，旧日程／投递证据保留。官方gddy校验安装，Owner确认四项scope／条款后keyring认证可续期；项目域名guard和临时TXT真实20→21→20验证通过，原zone digest一致。
+- **未完成／边界**：正式身份／事务邮件、最终Web/iOS连接、普通付款和上架仍未完成，账户／销售保持关闭，E2EE与经营／实机延期不变。临时服务索引尝试把Stripe CLI更新到Homebrew提供的1.50.10，但旧令牌拒绝Directory插件元数据；改查GoDaddy官方文档，没有重新登录或改变任何Stripe账户。详细证据见[QA](../../output/qa/rillora-production-runtime-20260924/README.md)。

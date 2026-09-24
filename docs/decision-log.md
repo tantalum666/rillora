@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-09-24 (closed production transport and on-demand cost choice)
+Last updated: 2026-09-24 (closed production acceptance and Owner-approved GoDaddy CLI)
 
 新条目使用以下模板：
 
@@ -2511,3 +2511,10 @@ unreachable release remains a different closed workflow. See [sharing contract](
 - Source permits only closed production mode in this increment, exposing health checks and rejecting every account/private/provider route. Certificate material stays out of disk/build/env/logs; local renewal verifies the presented peer certificate actually changes. Callback/path/raw-error logging is removed. Existing staging is not redeployed.
 - Keep on-demand while baseline use settles. A one-year no-upfront RDS reservation is a later option (4.67USD/month compute saving), not a purchase; current t4g is outside the official provisioned Database Savings Plans generation scope. No new price, long-term commitment, bundle, market or sales activation.
 - Local API212/infra29 and live-template diff pass; cloud TLS/network acceptance is still pending GoDaddy owner login. The current Google management identity does not expose the old Auth0 tenant; request the original administrator method rather than create another tenant. [Runtime](production-runtime-20260924.md),[cost comparison](cloud-cost-options-20260924.md).
+
+## 2026-09-24 — Apply the exact certificate and install the requested GoDaddy CLI
+
+- Owner explicitly confirms the one ACM verification CNAME, then requests GoDaddy CLI setup and confirms its exact OAuth capabilities/terms. Save only the reviewed record; preserve the other19records. Official gddy0.2.20 uses keyring OAuth with domain-read/DNS-update/offline/default-registry-read. Project commands pin rillora.xyz/prod; the underlying vendor grant remains account-wide.
+- Actual production desired0→1 deployment iscomplete: issued/exported/renewable certificate, healthy regular task, Gateway privateTLS and closed private routes. Original data/keys/schema0070 preserved. Three production checks join the existing active public monitor without changing its historical metric dimension, subscriber or alarm resources.
+- Preserve the inconsistent local bareTCP probe as inconclusive; actual provider ingress has only the VPC Link group and direct-IPTLS does not respond. Bounded transport/configuration evidence is not a broad penetration test or customer-release approval.
+- Actual gddy temporaryTXT preview/create/read/cleanup restores the whole original20-record zone. No FanPass, domain purchase, nameserver, new pricing or long-term commitment change. Auth0 original email/password/MFA administration is recovered; production identities/mail remain their next separate gate. [Runtime](production-runtime-20260924.md),[CLI](../tools/godaddy/README.md).

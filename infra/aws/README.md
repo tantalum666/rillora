@@ -5,17 +5,24 @@ in AWS Frankfurt (`eu-central-1`). The deployed revision is evidence only for th
 exact resources and checks recorded in `docs/handoff.md`; staging is not approved
 for external private plans and production customer traffic remains closed.
 
-## September24 closed runtime preparation
+## September24 closed runtime deployed
 
-`productionRuntimeEnabled=true` optionally adds the production HTTPS transport;
-`productionRuntimeDesiredCount` defaults0 and permits at most1 during this phase.
-It never opens account or private-data routes. The exact DNS validation, managed
-certificate reload, strict VPC Link ingress and deployment/readback procedure are
-in the[runtime contract](../../docs/production-runtime-20260924.md). Local API212,
-infra29 and live-template diff pass; no runtime deployment has started. Restore
-GoDaddy access before starting the DNS-dependent update. Auth0's original
-management identity is a separate pending prerequisite; do not create a tenant
-from the unrelated Google onboarding screen.
+`productionRuntimeEnabled=true` now exists in the production stack, with
+`productionRuntimeDesiredCount=1`. Keep both flags on continuation; omitting the
+runtime flag would propose removing these resources. The service remains closed
+to account/private-data routes. Actual task1 isHEALTHY/COMPLETED, certificate
+ISSUED/ELIGIBLE and Gateway live/ready return200; account routes return503/no-store.
+The[runtime contract](../../docs/production-runtime-20260924.md) preserves exact
+image/schema, TLS/group checks and the localTCP-probe limitation. No DB rebuild or
+migration rerun was needed. AWS and original Auth0 admin/CLI access are restored.
+
+The existing Operations stack now monitors10public targets, including production
+live/ready/closed-access. Only its target environment JSON changed; schedule remains
+ENABLED and the old metric dimension is retained. Cloud invocation returnsok/failed0;
+prior subscriber/delivery/silence evidence is preserved rather than called a new drill.
+The Owner-confirmed[GoDaddy CLI](../../tools/godaddy/README.md) is installed with
+keyring OAuth and actual temporaryTXT read/write/cleanup proof. Use its Rillora-only
+entry for future DNS work, with snapshots/previews and exact readback.
 
 
 ## September23 closed production and recovery
@@ -160,7 +167,7 @@ npm test
 npm run synth
 ```
 
-Run CDK with `--profile rillora-operator`, the MFA-backed human profile; CDK then assumes each
+Run CDK with `--profile rillora-cdk-session`, the credential-process bridge to the MFA-backed human login; CDK then assumes each
 existing image-publishing, file-publishing and deployment role. Do not run CDK itself with the
 already-assumed `rillora-cdk-deploy` profile: that deployment role cannot publish ECR/S3 assets or
 assume the sibling publishing roles. The latter profile remains suitable for CloudFormation

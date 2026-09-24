@@ -4,19 +4,24 @@ Role: staged hosting, domain, runtime, data, cost-control and migration contract
 Authority scope: zero-revenue public hosting, future production resources, cost triggers and provider migration  
 Superseded by: later explicit Owner decision, stricter security／legal requirement or verified provider limit  
 Do not use for: claiming production readiness, creating paid resources, storing real sensitive data or opening a market  
-Status: PUBLIC LEGAL AND STAGING LIVE; PRODUCTION DATA FOUNDATION ACTIVE; SCOPED CLOUD RESTORE VERIFIED
+Status: PUBLIC LEGAL AND STAGING LIVE; PRODUCTION DATA/CLOSED API VERIFIED; CUSTOMER RELEASE CLOSED
 Last updated: 2026-09-24 (production transport and current cost options)
 
 ## September24 runtime and pricing preparation
 
-The optional closed production API/TLS implementation and live-template diff are
-ready, with no database/key/journal replacement. It uses one regular ARM task,
-private-address VPC Link HTTPS and public IPv4 only for outboundHTTPS, with
-application ingress limited to the VPC Link security group. This implements the
-later small-production BOM; it is not a claim that the task lives in a private
-subnet. Certificate DNS validation and the original Auth0 administrator session
-must be restored before cloud/provider acceptance. No deployment was started.
-[Runtime contract](production-runtime-20260924.md).
+The optional closed production API/TLS is now deployed. One regular ARM task is
+healthy; actualGatewayHTTPS live/ready pass, account routes stay503/no-store, the
+certificate isISSUED/renewalELIGIBLE, and provider readback limits8443ingress to
+its VPC Link group. Direct-IPTLS does not respond; bare local TCP results remain
+inconclusive. Original data/key/journal/credentials remain in place. Three
+production checks join the existing active public monitor; actual cloud invocation
+passes. Original Auth0 admin/CLI access is restored; production clients/email are
+next, not completed by login. [Runtime contract](production-runtime-20260924.md).
+
+Owner requested[official GoDaddy CLI setup](../tools/godaddy/README.md). Scoped
+OAuth capabilities/keyring renewal and Rillora-only project commands are verified;
+a real temporaryTXT cycle restored the original20-record zone. Native credentials
+are still account-wide; no FanPass, purchase or nameserver operation was performed.
 
 Keep on-demand at current scale. Current RDS1-year no-upfront reservation would
 save4.67USD/month on compute, with a whole-year commitment. The full live account

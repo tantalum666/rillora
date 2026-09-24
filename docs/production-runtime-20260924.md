@@ -2,7 +2,7 @@
 
 Role: production transport implementation and acceptance contract
 
-Status: CODE, LOCAL TESTS AND DEPLOYMENT DIFF VERIFIED; NOT DEPLOYED
+Status: CLOSED PRODUCTION HTTPS DEPLOYED; RUNTIME AND MONITOR ACCEPTANCE VERIFIED
 
 Last updated: 2026-09-24 (Asia/Hong_Kong)
 
@@ -14,12 +14,45 @@ This increment adds an optional API runtime without opening customer accounts,
 ordinary purchases, invitations or private data. Auth0 production clients/email,
 Web/iOS Release connections and ordinary commerce remain separate acceptance.
 
-The AWS session currently works. Auth0 CLI renewal returned activation denied
-twice; the current Google management identity opens onboarding instead of the
-existing tenant. Do not create another tenant, submit onboarding, alter customer
-identities or guess a different account. The Owner has been asked which original
-administrator sign-in method to restore. GoDaddy also requires a new owner login;
-its Rillora DNS page is open. No DNS record or cloud stack was changed this turn.
+September24 result: the Owner restored the original Auth0 email/password/MFA
+administrator identity; dashboard and CLI both return the existing EU
+`rillora-dev` and its original applications. The previous Google sign-in selected
+a different Dashboard identity despite the same email. No new tenant was created.
+AWS CLI was renewed and STS verified; GoDaddy domain access was restored.
+
+Owner confirmed the exact ACM verification CNAME at action time. It is saved and
+matches both authoritative servers and two public resolvers. Certificate
+`8435fada-00ca-4c0e-880b-ff26e0fb6191` isISSUED, export-enabled andELIGIBLE for
+renewal after the running task exported it. Its current expiry isApril10,2027.
+The two-phase desired0→1 update iscomplete; one regular Fargate task isHEALTHY
+with rolloutCOMPLETED. API task revision1 uses immutable image
+`sha256:8426279e5de8cd394c9ebae8c35549d0a01703a84a3398dda5cb82c476cfad6b`,
+matching the prepared local artifact/code4215c25. Schema0070 and the private,
+encrypted, protected seven-day database are preserved; no SQL rerun was needed.
+
+The actual API Gateway live/ready routes return200 and six representative account,
+private-data/invitation/provider routes return503/no-store without session cookies.
+AWS readback confirms VPC_LINK with the exact TLS server name and only port8443
+from its own VPC Link group, no public IPv4/IPv6 CIDRs. Direct public-IP TLS to the
+correct hostname times out. A bare local TCP probe reported connections on three
+ports despite no TLS response; preserve that inconclusive result and do not claim
+raw TCP timeout or a diagnosed proxy cause. This is bounded transport/application
+acceptance, not an exhaustive network penetration test or customer release.
+
+Operations now contains10public checks, including production live/ready and the
+closed-account gate. Its update iscomplete; real cloud invocation returnsok/failed0.
+The existing15-minute schedule, subscriber, alarm resources and legacy metric
+Environment value stay unchanged, retaining the previous delivery/heartbeat proof.
+The legacy label `synthetic-staging` is a metric-continuity identifier; target IDs
+explicitly distinguish the new production checks. No private data enters monitoring.
+
+Owner also requested the official GoDaddy CLI. `gddy`0.2.20 is installed,
+keyring-authenticated andrefreshable after exact scope/terms confirmation.
+The Rillora-only project entry and real TXT create/read/cleanup check are described
+in[the CLI runbook](../tools/godaddy/README.md). No FanPass DNS or repository changed.
+Production Auth0 clients/email, ordinary commerce and final Web/iOS connections
+remain separate work; the external Auth0 email provider is currentlynot configured.
+[Auth0 identity explanation](https://support.auth0.com/center/s/article/Change-login-provider-login-method-for-Dashboard-users-tenant-members).
 
 ## Transport and cost choice
 
@@ -94,11 +127,13 @@ Infrastructure29 tests and type checks pass. The first TLS test fixture used two
 same-subject self-signed leaves, which produced an ambiguous trust selection;
 it was corrected to a common test CA rather than disabling verification.
 
-The live-template diff adds runtime resources and updates maintenance task
-definitions for the new image. It removes no resource and does not modify the
-database, VPC, KMS key, recovery table or secret resources. It has not been applied.
+The reviewed live-template diff was applied. It added runtime resources and new
+maintenance image definitions without deleting/replacing the database, VPC, KMS
+key, recovery table or secret resources. The independent monitor changed only
+its public target configuration.
 
-Once GoDaddy access is restored:
+The following two-phase procedure is now completed; retain it as the runbook,
+not a request to repeat setup:
 
 1. Deploy only `RilloraProduction` with `productionFoundationOnly=true`,
    `productionRuntimeEnabled=true`, `productionRuntimeDesiredCount=0`, profile
@@ -111,7 +146,7 @@ Once GoDaddy access is restored:
    live/ready endpoints. Verify closed auth/private/webhook routes and absence of
    issued sessions; probe rejection through the task's public address.
 5. Add the actual health target to the already delivered Operations monitor,
-   then prepare the distinct production identity/email configuration. Do not
+   then continue the distinct production identity/email configuration as the next gate. Do not
    claim customer login, email delivery or release connections before acceptance.
 
 The runtime adds no SQL migration; schema0070 is retained. Do not repeat the

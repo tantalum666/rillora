@@ -1,8 +1,10 @@
 # Rillora — Digital Legacy & Estate Continuity / 数字遗产与事务连续性
 
-最后更新：2026-09-23（Asia/Hong_Kong）
+最后更新：2026-09-24（Asia/Hong_Kong）
 
 当前工程检查点：独立私有仓库 [tantalum666/rillora](https://github.com/tantalum666/rillora) 已推送审查后的源码基线，FanPass 和本地 Web Git 历史均保留。Owner授权后已直接升级 AWS Paid Plan；独立私有加密数据库、7天备份、独立密钥和恢复控制日志已建立并迁移。真实云端隔离恢复已通过本轮合成数据验收，临时资源已清理；客户流量仍关闭。见[生产与恢复](docs/production-recovery-20260923.md)、[源码和回滚](docs/source-control.md)、[当前交接](docs/handoff.md)。
+
+September24增量：关闭客户访问的生产API已部署，内部HTTPS／实际健康检查／权限配置与新监控目标已验收；原Auth0管理身份已恢复。官方GoDaddy CLI及[仅Rillora的项目命令](tools/godaddy/README.md)已安装认证，临时DNS写入／清理恢复原20条记录。生产身份邮件、正式双端连接和销售仍有独立门。见[运行合同](docs/production-runtime-20260924.md)。
 
 当前新购为永久 Free 与 **US$88.80 年付 Family**；September21 已取消新月付，历史已付账期及收据继续支持。以下按日期保留的旧检查点不是当前价格或部署状态。
 

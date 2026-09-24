@@ -15,7 +15,7 @@
         "output/qa/rillora-production-recovery-20260923/paid-plan-readback.json",
         "docs/production-runtime-20260924.md"
       ],
-      "next": "Closed HTTPS runtime and privacy-safe logging pass local API212/infra29 and live-template diff, but are not deployed. Restore GoDaddy DNS access, issue the exact certificate and complete the two-phase closed runtime/network/readiness acceptance before production identity and Release connections."
+      "next": "Closed production API/TLS and actual health/private-route refusal, provider network config and public monitor acceptance are verified. Complete production identity/email, same-origin Web delivery and final native Release connections; customer accounts remain closed."
     },
     {
       "id": "production-identity",
@@ -23,7 +23,7 @@
       "required": true,
       "title": "Production identity and recovery",
       "evidence": [],
-      "next": "Restore the original Auth0 administrator identity: the currently selected Google identity has no existing Rillora tenant. Then configure production clients, independent Google production project, reliable transaction email and real login/recovery; do not create a duplicate tenant or open customer access from a local pass."
+      "next": "Original Auth0 administrator email/password/MFA identity and CLI are recovered; do not create a duplicate tenant because Google sign-in shows onboarding. Configure production clients/Google project and external transaction email, then verify real flows and final Release values."
     },
     {
       "id": "production-billing",
@@ -56,9 +56,11 @@
       "title": "Delivered alarms and missing-heartbeat detection",
       "evidence": [
         "output/qa/rillora-release-readiness-20260919/operations-final-readback.json",
-        "output/qa/rillora-release-readiness-20260919/all-alarm-delivery-evidence.json"
+        "output/qa/rillora-release-readiness-20260919/all-alarm-delivery-evidence.json",
+        "output/qa/rillora-production-runtime-20260924/operations-config-readback.json",
+        "output/qa/rillora-production-runtime-20260924/operations-cloud-result.json"
       ],
-      "next": "Current public/staging monitor has delivered fault/recovery/silence evidence. Add actual production targets during the production-runtime gate; no private-data monitoring or24/7SLA claim."
+      "next": "Production live/ready/closed-account probes are deployed in the existing active monitor and actual cloud invocation passes. Preserve existing subscription and prior delivery/silence evidence; no new delivery drill or24/7SLA is claimed."
     },
     {
       "id": "backup-retention",

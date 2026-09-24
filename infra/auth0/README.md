@@ -5,6 +5,22 @@ appearance. Auth0 continues to own credentials, password recovery, passkey,
 social-login and challenge handling. Rillora owns the surrounding visual shell,
 theme tokens and approved prompt copy.
 
+## September24 administrator access recovered
+
+The original EU `rillora-dev` administrator was recovered through the Owner's
+email/password/MFA route. The same email selected through Google opened a different
+Dashboard identity and onboarding. CLI expiry did not delete the tenant; both
+original applications and the purpose-limited services have been read back.
+Use the original administrator route on renewal, not the Rillora customer's Google
+sign-in method. A stale CLI consent transaction was retried fresh using the existing
+browser session; no repeated password/MFA or new tenant was required.
+
+The official[Dashboard identity rule](https://support.auth0.com/center/s/article/Change-login-provider-login-method-for-Dashboard-users-tenant-members)
+explains the distinction. Current CLI management access is restored, but this does
+not configure production clients or transaction email. The email-provider endpoint
+currently returns404 because none is configured. Hosted UI, user records, provider
+connections and their old branding limitation were not changed by this recovery.
+
 ## September21 selected-brand application and Free-plan boundary
 
 `tools/auth0/apply-selected-brand.py` has applied and read back the approved03

@@ -5,13 +5,13 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-09-24 (closed production transport preparation and cost comparison)
+Last updated: 2026-09-24 (closed production runtime deployed; GoDaddy CLI verified)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
 
 ## 2026-09-24 继续生产接入与计费比较 — 当前任务
 
-Owner要求继续下一步并比较按量与套餐。[生产传输合同](production-runtime-20260924.md)准备独立API、经验证的内部HTTPS、证书自动加载和默认关闭客户接口；本地测试／部署差异已验证，域名认证与原Auth0管理身份待恢复，尚未部署运行。既有生产数据／恢复证据保留，不重建数据库或重做已完成演练。发现的回调／邀请／错误日志内容风险已在源码修复，云端旧日志不宣称已清除。
+Owner要求继续下一步并比较按量与套餐。[生产传输合同](production-runtime-20260924.md)已部署独立API、内部HTTPS与证书加载，保持客户接口关闭；实际健康／就绪、权限配置、关闭响应及云端监控已核验。AWS、GoDaddy和原Auth0邮箱管理身份已恢复；GoDaddy官方CLI另已安装、钥匙串认证并通过Rillora临时记录创建／清理验收。既有生产数据／恢复证据保留，不重建数据库或重做已完成演练。发现的回调／邀请／错误日志内容风险已在源码修复，云端旧日志不宣称已清除。后续域名操作使用[项目CLI入口](../tools/godaddy/README.md)，原生GoDaddy授权仍为账户级，项目命令限制在Rillora。
 
 [成本比较](cloud-cost-options-20260924.md)建议现阶段保留按量，稳定后评估一年免预付RDS折扣；不购买长期承诺。Paid Plan已开通且抵扣金仍有记录，不是包月或费用上限。价格仍是Free＋88.80年付，现有UI、FanPass、E2EE及Owner暂缓项不变。
 

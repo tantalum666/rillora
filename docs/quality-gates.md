@@ -5,7 +5,23 @@ Authority scope: product truth, design, Web/iOS parity, trust and validation evi
 Superseded by: stricter platform, legal, security or Owner requirement  
 Do not use for: replacing a detailed test plan  
 Status: ACTIVE  
-Last updated: 2026-09-23 (source CI and actual production-plan restriction)
+Last updated: 2026-09-24 (closed production transport and GoDaddy CLI acceptance)
+
+## September24 closed transport and operational CLI evidence
+
+Actual production task/TLS/readiness/closed-route and provider security-group
+readbacks are verified; three production targets join the active public monitor
+and real cloud invocation passes. This closes the bounded transport component,
+not production identity/email, final Web/iOS connections or customer release.
+The inconsistent local bareTCP result remains documented; use the actual SG,
+privateTLS and full handshake evidence without calling it a penetration test.
+[Runtime contract](production-runtime-20260924.md).
+
+Owner confirmed the specific GoDaddy CLI grant/terms. Official binary/keyring
+authentication and a real temporaryTXT cycle restore the original20-record zone.
+The project command limits operations toRillora, but does not make the underlying
+account-wide OAuth credential domain-scoped. No FanPass or billing change follows.
+[CLI contract](../tools/godaddy/README.md).
 
 
 ## September23 production and recovery evidence

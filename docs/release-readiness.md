@@ -8,10 +8,11 @@ Last updated: 2026-09-24 (verified data/recovery checkpoint; closed runtime prep
 
 Private GitHub/CI and the independent7-day production data foundation, real
 synthetic encrypted restore/revocation/deletion/session replay and cleanup are now
-verified. The optional customer API transport is locally implemented with internal
-TLS and closed account routes, but not deployed pending certificate DNS access.
-Production Auth0 administrator identity/email and final Web/iOS connections remain
-open. [Current execution](production-runtime-20260924.md),[completed data result](production-recovery-20260923.md).
+verified. The optional API transport is now deployed with internalTLS, actual health/ready
+acceptance and closed account routes. Production health/closed checks are included
+in the existing active monitor.
+The original Auth0 administrator identity/CLI has been recovered; production
+clients/email and final Web/iOS connections remain open. [Current execution](production-runtime-20260924.md),[completed data result](production-recovery-20260923.md).
 The September23 review below describes its earlier observation point; statements
 that production data/recovery did not yet exist are superseded by this checkpoint.
 
@@ -73,11 +74,11 @@ Owner对香港经营／商业登记回复“先忽略”：本项暂缓，不再
 
 | 主线 | September23当前缺口（后台沿用最近记录日期） | 完成判据 |
 | --- | --- | --- |
-| 生产环境 | 独立数据基础与恢复已验证；关闭状态的API/TLS代码本地通过，待域名验证部署；原生Release五个连接字段仍为空 | 核验实际生产API/TLS及身份，再接最终Web/iOS产物；保留独立staging |
+| 生产环境 | 独立数据基础与恢复已验证；关闭状态的API/TLS已部署并有实际健康／就绪／关闭响应及权限配置验收；原生Release五个连接字段仍为空 | 核验实际生产API/TLS及身份，再接最终Web/iOS产物；保留独立staging |
 | 生产身份与恢复 | Google仍是Testing的已记录基线；Apple本人callback及真实密码恢复缺完整证据 | 生产客户配置、Google生产项目与首页、Apple／邮箱／Google端到端、邮箱验证保留邀请、恢复后的旧会话处置 |
 | 正式购买 | Stripe适配器明确只接收rk_test与非live对象，普通购买UI及独立购买同意未闭环 | 生产适配器、账本／回调／后台补偿对账、价格／税处理、购买同意、取消／恢复与跨渠道防重订阅；不通过放宽测试分支来开门 |
 | Apple交易 | 新月付已停售；Apple可用年价尚需落定。当前验证器仍限定Sandbox、服务端价格映射仍为v1，正式交易路径与实际购买验收未完成 | 版本化目录映射与各地区实际价格对齐、真实Sandbox购买／恢复／通知、持久化后finish，再制作提交构建 |
-| 运维与数据 | 公开监控已完成送达与缺心跳验收；生产7日备份和隔离恢复／删除重放已通过；生产目标、持续保留清理及恢复后计费对账仍待完成 | 接入实际生产监控；验证持续清理与旧快照退役；保留既有演练的观察RPO/RTO及边界 |
+| 运维与数据 | 公开监控已完成送达与缺心跳验收；生产7日备份和隔离恢复／删除重放已通过；生产目标已接入并通过云端调用；持续保留清理及恢复后计费对账仍待完成 | 接入实际生产监控；验证持续清理与旧快照退役；保留既有演练的观察RPO/RTO及边界 |
 | 上架与公开入口 | Owner已选03；主App图标已配置且普通Debug模拟器实际显示，Web品牌已发布；最终生产Release及提交构建／截图仍缺，年龄／隐私／加密、审核账号及最终市场范围待定 | 按最终产物完成申报和TestFlight／设备验收；资料齐全后送审；审核后手动发布。公共首页不能继续Coming Soon |
 | 安全与持续维护 | 依赖公告已检查并完成本地升级及回归；还需最终生产范围安全复核、源码／产物记录和发布回滚 | 可复现构建、秘密检查、必要权限与负向访问验收、恢复演练；不把依赖零公告称为独立全面安全审计 |
 
