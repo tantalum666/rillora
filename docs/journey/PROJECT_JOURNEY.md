@@ -2560,3 +2560,5 @@ launch prerequisites and historical authentication gates are not repeated approv
 - **判断变化**：SES接口DENIED不能直接等同工单最终拒绝。Support API被付费支持门限制，普通控制台却可读取；实际内容是要求频率、收件来源、退信／投诉／退订和样例。因此准备事实回复继续审核，不推断为商业登记／DNS／信誉问题，也不购买支持套餐或擅自切换邮件商。
 - **结果**：Google品牌／凭据／scope配置保存并保护，仍Testing；WWW与根域浏览器／当前监控客户端通过，账户和销售关闭。回复已填入工单，尚未发送，等待对该消息的明确发送授权。同步当前规范、发布门、精简交接和QA；公共信息入口有独立完成证据。
 - **未完成／边界**：SES正式放行、Auth0外部邮件、真实验证／恢复、受控身份退役与最终Web/iOSRelease连接仍待验收。现有测试账号保留，不重新执行恢复或原生构建。源码/Git/CI收尾结果单独记录在[本轮QA](../../output/qa/rillora-production-identity-20260924/README.md)。
+
+- **收尾补记**：873文件源码扫描22项既定非秘密／0未知；工程已推送Rillora私有库，远端与本地一致、Web原Git原位、FanPass未改。首次CI7两项CDK合成超过默认5秒，保持断言并设2worker／20秒预算后，CI8三作业通过，212API／36infra及完整Web／构建检查实际重跑。此前“API本轮未重跑”仅指本机验证，现由云端CI结果补充；恢复／iOS仍未重跑。当前唯一下一步为已准备SES回复的明确发送授权及后续审核，不把草稿当提交。

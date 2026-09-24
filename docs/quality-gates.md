@@ -17,6 +17,13 @@ steps/return, exact cloud artifact hash, four-resolver WWW DNS and strict HTTPS
 are verified. Two added public checks run successfully in the actual 12-target
 cloud monitor. The App/iOS was not redesigned or redeployed.
 
+The private source CI initially exceeded the5-second default in two CDK synthesis
+checks. A20-second per-test budget with two workers fixes the clean-runner timeout
+without changing assertions; [CI8](https://github.com/tantalum666/rillora/actions/runs/36031875706)
+passes all three jobs, including212API/36infra and Web/legal/public builds. The
+failedCI7 remains evidence, not a successful test. Final documentation-only
+closeout retains that tested engineering commit and uses local scan/link checks.
+
 Mail configuration and mailbox-simulator events/alert actions are actual cloud
 checks, not delivery into a person's inbox or an approved SES production account.
 WWW, root HTTP302, actual Chrome HTTPS redirection and the current Node monitor client pass; preserve the earlier client-specific TLS/403 failures without diagnosing their cause.

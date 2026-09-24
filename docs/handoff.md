@@ -19,12 +19,12 @@ Last updated: 2026-09-25 (Asia/Hong_Kong)
 
 SES接口为DENIED／生产发送未启用，但已读取的工单179022088800001实际要求补充发信频率、收件来源、退信／投诉／退订和邮件样例，并邀请继续审核，未说明最终拒绝原因。回复已准备并填入网页，等待Owner明确授权发送给AWS；不是再索取工程授权。Support API要求付费计划，但普通控制台可用，没有购买Premium Support。Auth0邮件provider和SES发送凭据尚未配置。
 
-[本轮QA](../output/qa/rillora-production-identity-20260924/work-state.json)：36infra、9Web公开／指南、8DNS、6monitor、13发布／恢复守卫通过，两个Web构建通过；首次infra并发超时与限制worker后通过分别保留。源扫描／文档收尾及Git／CI进行中。原API212、真实恢复、closed生产API1和staging沿用各自原检查点，本轮没有重建数据库或重复恢复。
+[本轮QA](../output/qa/rillora-production-identity-20260924/work-state.json)：36infra、9Web公开／指南、8DNS、6monitor、13发布／恢复守卫通过，两个Web构建通过；首次infra并发超时与限制worker后通过分别保留。873文件源扫描仅有22项已审非秘密、0未知，137份Markdown的本地链接检查无缺失。源码已推送独立私有库：工程提交af69a6e及CI预算修正f8d1344；[CI8](https://github.com/tantalum666/rillora/actions/runs/36031875706)三作业通过，实际重跑212API、36infra及Web／构建检查。CI7的两项5秒合成超时保留；改为20秒预算、2worker，没有减弱断言。真实恢复、closed生产API1、staging和iOS仍沿用原检查点，本轮没有重建数据库、重复恢复或原生构建。
 
 公开信息站上线不等于账户／销售开放。最终app.rillora.xyz、原生Release连接、普通交易与Apple提交仍由[发布合同](release-readiness.md)管理；UI、88.80年付、FanPass、E2EE延后及Owner暂缓项不变。
 
 ## 唯一下一步
 
-在获得这份对外回复的明确发送授权后补充SES工单，并完成本轮源码／CI收尾；随后按审核结果继续生产邮件及受控身份切换，不提前清理测试数据或开放客户账号。
+在获得这份对外回复的明确发送授权后补充SES工单；随后按审核结果继续生产邮件及受控身份切换，不提前清理测试数据或开放客户账号。当前源码／CI与文档收尾已完成。
 
 [前轮交接—HISTORICAL](handoff-history-20260924-before-identity.md)。
