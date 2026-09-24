@@ -29,6 +29,12 @@ provider or customer delivery claim follows. Current contracts:
 [identity/mail](../../docs/production-identity-mail-20260924.md),
 [public website](../../docs/public-product-website-20260924.md).
 
+Infrastructure tests synthesize CloudFormation and fingerprint deployment assets.
+They use two workers and a20-second per-test budget because the clean Linux CI
+runner exceeded Vitest's default5seconds in two synthesis checks. This does not
+change resource assertions, runtime latency requirements or the15-minute CI job
+limit. Keep the failed run and the later verified result as separate evidence.
+
 ## September24 closed runtime deployed
 
 `productionRuntimeEnabled=true` now exists in the production stack, with

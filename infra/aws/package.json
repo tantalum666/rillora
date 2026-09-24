@@ -10,7 +10,7 @@
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "synth": "cdk synth",
-    "test": "vitest run --exclude 'dist/**' --maxWorkers=2"
+    "test": "vitest run --exclude 'dist/**' --maxWorkers=2 --testTimeout=20000"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",
