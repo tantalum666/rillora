@@ -5,7 +5,25 @@ Authority scope: product truth, design, Web/iOS parity, trust and validation evi
 Superseded by: stricter platform, legal, security or Owner requirement  
 Do not use for: replacing a detailed test plan  
 Status: ACTIVE  
-Last updated: 2026-09-24 (closed production transport and GoDaddy CLI acceptance)
+Last updated: 2026-09-25 (Asia/Hong_Kong)
+
+## September24 mail and public entry evidence
+
+Thirty-six infrastructure checks pass with two workers after the initial parallel
+run hit four synthesis timeouts; no failed resource assertions are concealed.
+Nine public/guide checks, eight DNS guard checks and six monitor checks pass.
+Public build and internal Web build pass. Desktop/390px Chrome, guide filtering/
+steps/return, exact cloud artifact hash, four-resolver WWW DNS and strict HTTPS
+are verified. Two added public checks run successfully in the actual 12-target
+cloud monitor. The App/iOS was not redesigned or redeployed.
+
+Mail configuration and mailbox-simulator events/alert actions are actual cloud
+checks, not delivery into a person's inbox or an approved SES production account.
+WWW, root HTTP302, actual Chrome HTTPS redirection and the current Node monitor client pass; preserve the earlier client-specific TLS/403 failures without diagnosing their cause.
+Auth0 prepared clients remain disabled; Free retention requires a tested prelaunch
+retirement/cleanup, not an assertion of permanent independent identity tenants.
+Current detail:[identity/mail](production-identity-mail-20260924.md),
+[public website](public-product-website-20260924.md).
 
 ## September24 closed transport and operational CLI evidence
 

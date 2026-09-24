@@ -5,6 +5,26 @@ appearance. Auth0 continues to own credentials, password recovery, passkey,
 social-login and challenge handling. Rillora owns the surrounding visual shell,
 theme tokens and approved prompt copy.
 
+## September24 Free-plan production preparation
+
+Owner asks to keep testing and clean before launch. Retain Free: the actual
+account and official page both include 25,000 MAU; 35USD is only the paid 500-MAU
+starting tier. Do not purchase a plan or create a second tenant now. The explicit
+prelaunch transition must retire staging's tenant-wide deletion/read credentials,
+old client bindings and sessions, with reviewed test-data disposition. Separate
+application IDs alone do not isolate a shared identity store.
+
+`tools/auth0/prepare-production-clients.py` has prepared two new code-flow/RS256
+production clients and a distinct production API audience. All their connections
+remain disabled and the old bindings are unchanged. The Web secret is protected
+outside Git; no new management grant exists. SES domain/events are verified and
+the SES API marks production access DENIED. The actual case requests more information
+for review; a reply is prepared, and no external email provider has been installed.
+Google production branding, approved protected hosted credentials and minimal
+identity scopes are saved separately from the unchanged original test connection.
+These are configuration checkpoints, not end-user login or email
+delivery. See[the current contract](../../docs/production-identity-mail-20260924.md).
+
 ## September24 administrator access recovered
 
 The original EU `rillora-dev` administrator was recovered through the Owner's

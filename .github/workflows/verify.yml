@@ -101,6 +101,9 @@ jobs:
             if [[ "$test_file" != tests/legal-sites-worker.test.mjs ]]; then web_tests+=("$test_file"); fi
           done
           node --test "${web_tests[@]}"
+      - name: Build public information artifact without account or API entry
+        working-directory: apps/web
+        run: npm run build:public
       - name: Verify legal packaging fixture (not a publication artifact)
         working-directory: apps/web
         # Intentionally no real operator/address environment and no upload.

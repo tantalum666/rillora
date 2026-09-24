@@ -1,8 +1,27 @@
 # Rillora 1.0 正式发布准备
 
 Role: current launch scope, remaining work and release evidence contract  
-Status: RELEASE PREPARATION ACTIVE; PUBLIC PRODUCT AND LIVE SALES CLOSED  
-Last updated: 2026-09-24 (verified data/recovery checkpoint; closed runtime preparation)
+Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; CUSTOMER ACCOUNTS AND SALES CLOSED
+Last updated: 2026-09-25 (Asia/Hong_Kong)
+
+## September24 mail, public site and Free identity preparation
+
+Free25,000MAU is confirmed by both current Auth0 account and official pricing.
+Owner prefers testing now and a prelaunch cleanup/cutover; retain Free and prepare
+separate inactive production clients/audience. No existing test account or identity
+binding is deleted. Retiring staging's live identity credentials/access remains a
+required cutover step, not solved by deleting a few database rows.
+
+SES domain/TLS/DKIM/MAIL-FROM and simulator delivery/failure counters/alert actions
+are verified. The API marks production access DENIED, while the actual Support
+case requests more information for continued review. The follow-up is prepared;
+real verification/recovery mail and Auth0 provider configuration remain open. WWW public product,
+guides/support are deployed and tested; no public accounts or sales are enabled.
+Root HTTP302, browser HTTPS redirect and the modern monitor client pass; earlier client-specific failures remain documented. Google
+production project brand/policy/logo/links, the approved protected hosted client and
+minimal identity scopes are saved. Verification/publication, Auth0 replacement and
+ordinary user login remain separate. See[identity/mail](production-identity-mail-20260924.md)
+and[public website](public-product-website-20260924.md).
 
 ## September24 current production checkpoint
 

@@ -1,6 +1,6 @@
 # Rillora DNS command line
 
-Status: OFFICIAL CLI AUTHENTICATED; RILLORA READ/WRITE/CLEANUP VERIFIED
+Status: OFFICIAL CLI AND CNAME GUARD VERIFIED; LEGACY WWW EDIT USED CONSOLE
 
 Last updated: 2026-09-24 (Asia/Hong_Kong)
 
@@ -47,6 +47,23 @@ and inspect the current records instead of blindly repeating a write.
 API. Do not treat a preview, snapshot or exit code alone as a completed change.
 The wrapper does not expose automatic replacement of conflicting record types.
 Snapshots and credentials are excluded from Git.
+
+September24 exposed a CNAME-specific problem: gddy0.2.20's ordinary replacement
+tries to create the new value before deleting the old one, which the provider
+rejects as conflicting CNAME data. The guard now handles exactly one existing
+and one replacement CNAME: snapshot/recheck, remove only that name, add the new
+value, and attempt restoration of the prior value/TTL on failure. Concurrent
+changes stop the operation; a matching value/TTL is a no-op. The public command
+still exposes no general delete operation. This remains non-atomic and can have
+a short lookup gap; never describe it as a provider transaction.
+
+Eight local checks and an actual temporary CNAME create/replace/read/cleanup pass,
+returning the full zone to its prior digest. The old pre-existing `www` record
+still failed through that CLI path and kept its prior value; its underlying legacy
+record limitation is not fully diagnosed. The normal GoDaddy edit UI successfully
+changed only `www`, then CLI/four DNS resolvers/HTTPS confirmed the desired result.
+Do not confuse this record-specific limitation with expired OAuth credentials;
+actual keyring renewal worked. See[the new QA](../../output/qa/rillora-production-identity-20260924/cname-guard-live-acceptance.json).
 
 ## Actual acceptance
 

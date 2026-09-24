@@ -1,29 +1,30 @@
 # Rillora Current Handoff
 
-Status: CLOSED PRODUCTION HTTPS AND MONITOR VERIFIED; GODADDY CLI READY
-Last updated: 2026-09-24 (Asia/Hong_Kong)
+Status: IDENTITY/MAIL PREPARATION — PUBLIC INFORMATION VERIFIED; SES FOLLOW-UP AWAITS SEND AUTHORIZATION
+Last updated: 2026-09-25 (Asia/Hong_Kong)
 
-## 当前Owner任务与结果
+## 当前Owner任务
 
-Owner要求继续正式生产工作，随后确认GoDaddy/AWS登录、原Auth0邮箱身份恢复，以及精确证书CNAME保存；最新又要求设置GoDaddy CLI，并当场确认所示OAuth权限／条款。已完成关闭客户入口的生产API/TLS部署与公开监控，官方CLI及仅Rillora的项目入口已实际读写／清理验收。[运行合同](production-runtime-20260924.md)、[GoDaddy CLI](../tools/godaddy/README.md)。
+继续正式生产接入。Owner提出先测试、临上线清理；保留Auth0 Free，不购买US$35起步套餐，不现在清除测试账号。Free实际为25,000MAU；US$35只对应Essentials的500MAU起步档，不能混为同一套餐。[身份／邮件合同](production-identity-mail-20260924.md)。
 
-## 已验证
+## 已完成
 
-- RilloraProduction UPDATE_COMPLETE，API task revision1／1个常规Fargate任务HEALTHY、rolloutCOMPLETED。镜像8426279e5de8…匹配代码4215c25及本地artifact。Schema0070／原独立私有加密保护7日RDS保留，无SQL重跑。
-- ACM证书8435fada-00ca-4c0e-880b-ff26e0fb6191 ISSUED／export-enabled／renewalELIGIBLE。Owner确认的单条CNAME在GoDaddy、两个权威DNS和两个公共解析器均一致。实际Gateway内部TLS、精确VPC Link组8443入口回读通过；live/ready200，六类账户／私有／provider路径503/no-store且不发session。
-- 公网IP的完整TLS握手无响应；本机裸TCP却报告三个端口连接，结果不一致、根因未确认。保留原始不确定结果，不宣称裸TCP超时或全面渗透测试。云端安全组无任何公网CIDR，仅许可其VPC Link组。日志分页回读79项及独立50项样本，只含批准的request/response字段；不宣称旧日志已删除。
-- Operations UPDATE_COMPLETE／10个public targets，实际云端调用ok/failed0；原15分钟日程保持，原SNS订阅／投递及缺心跳证据保留。新prod目标分别是live、ready、账户仍关闭；旧Environment维度名为历史连续性保留。
-- 原Auth0邮箱密码／MFA路径已回到rillora-dev（EU），CLI成功回读原Web/iOS及服务clients。Google同邮箱是不同管理身份，今后不再误选。外部email provider仍404未配置。AWS CLI也已恢复；不要根据历史错误重复本人登录。
-- gddy0.2.20官方校验安装；显式keyring模式、refreshable OAuth、四项Owner确认的最小所需scope。rillora-dns别名固定rillora.xyz/prod，写入默认preview／--apply另执行。临时TXT真实20→21→20，原zone完整digest恢复一致；FanPass没改。原生gddy权限仍是账户级，不把项目guard称为provider隔离。
+- 沿用本工作流全量Markdown阅读基线并补读变化文件。AWS在本轮中途过期，Owner已完成本人登录，CLI续期和STS回读通过；无需重复登录。Auth0／GoDaddy原管理身份保留。
+- 原EU Auth0新增生产Web／iOS客户端与独立API audience，所有新connection关闭，旧绑定不变。上线前仍需退役测试M2M／会话／旧绑定，并等待已签Management JWT的实际86,400秒寿命加时钟容差后做负向验收；不能只轮换秘密或删除事项。
+- Google独立项目的政策、03Logo、官网／法律链接、Owner明确批准的托管OAuth凭据和openid／email／profile已保存。秘密仅保存在忽略目录0600文件；原Auth0 Google测试连接不变，新项目仍Testing。
+- RilloraMail已部署；notify／bounce域名、DKIM、TLS、抑制配置、四项邮件告警回读通过。三次SES模拟器产生Send3／Delivery2／Bounce1／Complaint1，SNS告警动作执行；不是普通用户收件／垃圾箱或真实抑制名单验收。
+- [公开官网](https://www.rillora.xyz/)及18份指南／支持入口已部署。私有S3、OAC、产物哈希、拒绝路径、DNS和WWW HTTPS验证通过；根域HTTP302、Chrome HTTPS和现代Node监控请求通过。保留早期TLS／403客户端差异。12目标实际云监控ok／failed0。[公开站合同](public-product-website-20260924.md)。
 
-## 证据边界
+## 当前阻塞与证据边界
 
-生产用户入口、生产身份／邮件、Web同源分发／原生Release五项连接、普通真实购买与上架仍未完成。原UI、88.80年付、Free／Family、E2EE延期及经营／实机Owner暂缓均保持。现有staging仍API37／0067，未重部署。当前使用按量，未买RI/Savings Plans或GoDaddy套餐。前轮恢复／撤销／删除结果保留，不重复演练。
+SES接口为DENIED／生产发送未启用，但已读取的工单179022088800001实际要求补充发信频率、收件来源、退信／投诉／退订和邮件样例，并邀请继续审核，未说明最终拒绝原因。回复已准备并填入网页，等待Owner明确授权发送给AWS；不是再索取工程授权。Support API要求付费计划，但普通控制台可用，没有购买Premium Support。Auth0邮件provider和SES发送凭据尚未配置。
+
+[本轮QA](../output/qa/rillora-production-identity-20260924/work-state.json)：36infra、9Web公开／指南、8DNS、6monitor、13发布／恢复守卫通过，两个Web构建通过；首次infra并发超时与限制worker后通过分别保留。源扫描／文档收尾及Git／CI进行中。原API212、真实恢复、closed生产API1和staging沿用各自原检查点，本轮没有重建数据库或重复恢复。
+
+公开信息站上线不等于账户／销售开放。最终app.rillora.xyz、原生Release连接、普通交易与Apple提交仍由[发布合同](release-readiness.md)管理；UI、88.80年付、FanPass、E2EE延后及Owner暂缓项不变。
 
 ## 唯一下一步
 
-接生产身份／事务邮件和最终Web/iOS连接：先核对原Auth0中的生产客户端、Google正式项目及可靠邮件配置，再接app.rillora.xyz同源入口；保持账户与销售关闭到对应验收。AWS/Auth0/GoDaddy均已有CLI能力，先检查实际会话并复用，只有真的过期才走平台要求的续期。不重新建库、重做证书、误建Auth0租户或索取已确认的CLI权限。
+在获得这份对外回复的明确发送授权后补充SES工单，并完成本轮源码／CI收尾；随后按审核结果继续生产邮件及受控身份切换，不提前清理测试数据或开放客户账号。
 
-## 恢复入口
-
-[QA](../output/qa/rillora-production-runtime-20260924/README.md)、work-state.json、transport-acceptance.json、runtime-final-stack.json、certificate-issued.json、operations-config-readback.json及godaddy-cli/cli-write-acceptance.json。源代码212API／29infra以CI5为检查点；本次另跑6health、7Operations及4DNS guard，实际云端/CLI结果分别记录。后续源码/CI最新回读在closeout.json。原92份／20,554行／206段全量阅读基线继续有效，压缩后聚焦恢复。[本次前段交接—HISTORICAL](handoff-history-20260924-access-recovery.md)。
+[前轮交接—HISTORICAL](handoff-history-20260924-before-identity.md)。

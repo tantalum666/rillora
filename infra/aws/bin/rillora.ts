@@ -4,6 +4,8 @@ import { RilloraStagingStack } from "../lib/rillora-staging-stack.js";
 import { RilloraOperationsStack } from "../lib/rillora-operations-stack.js";
 import { RilloraProductionPreflightStack } from "../lib/rillora-production-preflight-stack.js";
 import { RilloraProductionStack } from "../lib/rillora-production-stack.js";
+import { RilloraMailStack } from "../lib/rillora-mail-stack.js";
+import { RilloraPublicWebStack } from "../lib/rillora-public-web-stack.js";
 
 const app = new App();
 const desiredCountContext = app.node.tryGetContext("serviceDesiredCount");
@@ -53,11 +55,28 @@ const preflightSelected=productionPreflightOnly===true||productionPreflightOnly=
 const productionFoundationOnly=app.node.tryGetContext("productionFoundationOnly");
 if(productionFoundationOnly!==undefined && ![true,false,"true","false"].includes(productionFoundationOnly)) throw new Error("productionFoundationOnly must be true or false");
 const productionSelected=productionFoundationOnly===true||productionFoundationOnly==="true";
-if([preflightSelected,productionSelected,operationsOnly===true||operationsOnly==="true"].filter(Boolean).length>1) throw new Error("Select exactly one infrastructure stack mode");
+const mailOnly = app.node.tryGetContext("mailOnly");
+if (mailOnly !== undefined && ![true, false, "true", "false"].includes(mailOnly)) throw new Error("mailOnly must be true or false");
+const mailSelected = mailOnly === true || mailOnly === "true";
+const publicWebOnly = app.node.tryGetContext('publicWebOnly');
+if (publicWebOnly !== undefined && ![true, false, 'true', 'false'].includes(publicWebOnly)) throw new Error('publicWebOnly must be true or false');
+const publicWebSelected = publicWebOnly === true || publicWebOnly === 'true';
+if([preflightSelected,productionSelected,mailSelected,publicWebSelected,operationsOnly===true||operationsOnly==="true"].filter(Boolean).length>1) throw new Error("Select exactly one infrastructure stack mode");
 if (operationsOnly !== undefined && ![true, false, "true", "false"].includes(operationsOnly)) {
   throw new Error("operationsOnly must be true or false");
 }
-if(productionSelected){
+if (publicWebSelected) {
+  new RilloraPublicWebStack(app, 'RilloraPublicWeb', {
+    env: { account: process.env.CDK_DEFAULT_ACCOUNT || undefined, region: 'eu-central-1' },
+    description: 'Read-only public Rillora website; no account, private data or purchase routes',
+    certificateArn: app.node.tryGetContext('publicWebCertificateArn') ?? '',
+  });
+} else if (mailSelected) {
+  new RilloraMailStack(app, "RilloraMail", {
+    env: { account: process.env.CDK_DEFAULT_ACCOUNT || undefined, region: "eu-central-1" },
+    description: "Rillora transaction mail domain and aggregate delivery signals; no customer activation",
+  });
+} else if(productionSelected){
   const runtime=app.node.tryGetContext('productionRuntimeEnabled');
   if(runtime!==undefined && ![true,false,'true','false'].includes(runtime))throw new Error('productionRuntimeEnabled must be true or false');
   const runtimeDesiredCount=Number(app.node.tryGetContext('productionRuntimeDesiredCount')??0);

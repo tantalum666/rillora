@@ -5,6 +5,30 @@ in AWS Frankfurt (`eu-central-1`). The deployed revision is evidence only for th
 exact resources and checks recorded in `docs/handoff.md`; staging is not approved
 for external private plans and production customer traffic remains closed.
 
+## September24 transaction mail and public website
+
+The opt-in `RilloraMail` stack is deployed: verified notify/bounce domains,
+2048-bit DKIM, required TLS, suppression and aggregate outcomes. Its SES
+API reports production access DENIED, while the actual Support Console asks for
+more information to continue review. A reply is prepared; simulator counters and
+alert actions do not prove real verification/reset delivery. It contains no sender credential or
+customer activation. Deploy only with `-c mailOnly=true`.
+
+The independent `RilloraPublicWeb` stack serves the accepted `build:public` artifact
+at `www.rillora.xyz`, with private/versioned S3, CloudFront OAC and a public
+non-exportable us-east-1 certificate. Private application data stays in Frankfurt;
+the global CDN contains public material only. Deploy with `-c publicWebOnly=true`
+and the exact `publicWebCertificateArn` from the accepted certificate readback.
+Internal/private App artifacts are rejected. Root forwarding is managed separately
+at GoDaddy; HTTP302 and the actual browser/modern monitor HTTPS redirect pass; earlier client-specific failures are retained.
+
+Operations now monitors 12 public targets and four additional mail outcomes,
+using its existing subscriber. Actual 12-target Lambda execution passes. Preserve
+the legacy metric dimension and previous delivered/silence checkpoint; no new
+provider or customer delivery claim follows. Current contracts:
+[identity/mail](../../docs/production-identity-mail-20260924.md),
+[public website](../../docs/public-product-website-20260924.md).
+
 ## September24 closed runtime deployed
 
 `productionRuntimeEnabled=true` now exists in the production stack, with

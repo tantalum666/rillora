@@ -8,6 +8,7 @@ import {
   aws_iam as iam,
 } from "aws-cdk-lib";
 import type { Construct } from "constructs";
+import { TRANSACTIONAL_MAIL } from './rillora-mail-stack.js';
 
 /** A separate, opt-in stack; deploying it never updates the API or database. */
 export class RilloraOperationsStack extends Stack {
@@ -81,6 +82,21 @@ export class RilloraOperationsStack extends Stack {
         treatMissingData: cloudwatch.TreatMissingData.NOT_BREACHING,
       }),
     ];
+    // Configuration-set aggregate counts carry no recipient, subject or message body.
+    // Low-volume authentication mail warrants intervention after any hard bounce/complaint.
+    for (const [id, metricName] of [
+      ['MailBounce', 'Bounce'], ['MailComplaint', 'Complaint'],
+      ['MailRejected', 'Reject'], ['MailDelayed', 'DeliveryDelay'],
+    ]) {
+      alarmDefinitions.push(new cloudwatch.Alarm(this, id!, {
+        metric: new cloudwatch.Metric({ namespace: 'AWS/SES', metricName: metricName!,
+          dimensionsMap: { 'ses:configuration-set': TRANSACTIONAL_MAIL.configurationSet },
+          statistic: 'Sum', period: Duration.minutes(15) }),
+        threshold: 1, evaluationPeriods: 1,
+        comparisonOperator: cloudwatch.ComparisonOperator.GREATER_THAN_OR_EQUAL_TO_THRESHOLD,
+        treatMissingData: cloudwatch.TreatMissingData.NOT_BREACHING,
+      }));
+    }
     for (const alarm of alarmDefinitions) {
       alarm.addAlarmAction(new actions.SnsAction(alerts));
       alarm.addOkAction(new actions.SnsAction(alerts));

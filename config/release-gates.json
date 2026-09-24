@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-24",
+  "updatedAt": "2026-09-25",
   "release": "Rillora Global 1.0",
   "scope": "Web and native iOS; existing Free and Family only",
   "gates": [
@@ -19,11 +19,19 @@
     },
     {
       "id": "production-identity",
-      "status": "open",
+      "status": "in_progress",
       "required": true,
       "title": "Production identity and recovery",
-      "evidence": [],
-      "next": "Original Auth0 administrator email/password/MFA identity and CLI are recovered; do not create a duplicate tenant because Google sign-in shows onboarding. Configure production clients/Google project and external transaction email, then verify real flows and final Release values."
+      "evidence": [
+        "docs/production-identity-mail-20260924.md",
+        "output/qa/rillora-production-identity-20260924/auth0-production-prepared.json",
+        "output/qa/rillora-production-identity-20260924/mail-identity-readback.json",
+        "output/qa/rillora-production-identity-20260924/ses-account-after-request.json",
+        "output/qa/rillora-production-identity-20260924/google-credential-receipt.json",
+        "output/qa/rillora-production-identity-20260924/ses-account-final.json",
+        "output/qa/rillora-production-identity-20260924/ses-support-console-readback.json"
+      ],
+      "next": "Keep Auth0 Free; production clients are prepared but disabled. Google hosted credentials and minimal identity scopes are saved, original test connection unchanged. SES API status is DENIED, but the actual case requests additional process details and examples for further review; a reply is prepared. Resolve production-mail approval, real verification/recovery, controlled test-identity retirement/token drain and final app/iOS Release values before activation."
     },
     {
       "id": "production-billing",
@@ -58,9 +66,11 @@
         "output/qa/rillora-release-readiness-20260919/operations-final-readback.json",
         "output/qa/rillora-release-readiness-20260919/all-alarm-delivery-evidence.json",
         "output/qa/rillora-production-runtime-20260924/operations-config-readback.json",
-        "output/qa/rillora-production-runtime-20260924/operations-cloud-result.json"
+        "output/qa/rillora-production-runtime-20260924/operations-cloud-result.json",
+        "output/qa/rillora-production-identity-20260924/operations-public-cloud-result.json",
+        "output/qa/rillora-production-identity-20260924/mail-alarm-actions.json"
       ],
-      "next": "Production live/ready/closed-account probes are deployed in the existing active monitor and actual cloud invocation passes. Preserve existing subscription and prior delivery/silence evidence; no new delivery drill or24/7SLA is claimed."
+      "next": "Twelve public targets run successfully in the active cloud monitor; mail event alarms execute SNS actions. Preserve prior real subscriber delivery/silence proof; simulator events are not a new personal-inbox/SLA claim."
     },
     {
       "id": "backup-retention",
@@ -105,11 +115,17 @@
     },
     {
       "id": "public-surface",
-      "status": "open",
+      "status": "verified",
       "required": true,
       "title": "Public product and support entry",
-      "evidence": [],
-      "next": "Replace root Coming Soon with the real public product/help entry after its own acceptance, verify all release links and support escalation; no unconnected marketing automation claim."
+      "evidence": [
+        "docs/public-product-website-20260924.md",
+        "output/qa/rillora-production-identity-20260924/www-acceptance.json",
+        "output/qa/rillora-production-identity-20260924/root-forward-acceptance.json",
+        "output/qa/rillora-production-identity-20260924/root-browser-acceptance.json",
+        "output/qa/rillora-production-identity-20260924/root-monitor-compatibility.json"
+      ],
+      "next": "Public information/guides/support at WWW and root browser/current monitor HTTPS redirection are verified. Keep accounts and subscriptions closed until their separate runtime/identity/billing release gates pass; final private app links are part of that later activation."
     }
   ],
   "retainedEvidence": [

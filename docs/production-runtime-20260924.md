@@ -116,7 +116,8 @@ OAuth codes in query strings, invitation IDs in paths or raw database error text
 Runtime logs now retain generated request ID, method, status and timing only;
 request/response metadata and unexpected error contents are omitted. Gateway
 logs likewise omit paths, queries, addresses, headers and bodies. Historical logs
-are not claimed erased, and this change is not yet running in staging/production.
+are not claimed erased. This change runs in the verified closed production API;
+staging still retains its prior deployment.
 
 ## Validation and deployment order
 

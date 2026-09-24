@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[2]
 DEST = ROOT / ".local/github-preflight/source"
 REPORT = ROOT / "output/qa/rillora-production-recovery-20260923/repository-candidate.json"
 SKIP = {".git", "node_modules", ".build", ".swiftpm", "SourcePackages", "checkouts",
-        "vendor", "dist", "build", "output", ".local-secrets", ".local", ".secrets",
+        "vendor", "dist", "dist-public", "build", "output", ".local-secrets", ".local", ".secrets",
         ".playwright-cli", ".playwright-mcp", ".xcodebuildmcp-deriveddata", "__pycache__"}
 
 paths, nested, symlinks = [], [], []

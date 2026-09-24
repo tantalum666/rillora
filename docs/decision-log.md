@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-09-24 (closed production acceptance and Owner-approved GoDaddy CLI)
+Last updated: 2026-09-25 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -2518,3 +2518,19 @@ unreachable release remains a different closed workflow. See [sharing contract](
 - Actual production desired0→1 deployment iscomplete: issued/exported/renewable certificate, healthy regular task, Gateway privateTLS and closed private routes. Original data/keys/schema0070 preserved. Three production checks join the existing active public monitor without changing its historical metric dimension, subscriber or alarm resources.
 - Preserve the inconsistent local bareTCP probe as inconclusive; actual provider ingress has only the VPC Link group and direct-IPTLS does not respond. Bounded transport/configuration evidence is not a broad penetration test or customer-release approval.
 - Actual gddy temporaryTXT preview/create/read/cleanup restores the whole original20-record zone. No FanPass, domain purchase, nameserver, new pricing or long-term commitment change. Auth0 original email/password/MFA administration is recovered; production identities/mail remain their next separate gate. [Runtime](production-runtime-20260924.md),[CLI](../tools/godaddy/README.md).
+
+## 2026-09-24 — Retain Free Auth0 and prepare a controlled prelaunch transition
+
+- Owner proposes testing now and cleaning before launch, then asks why Free has25,000MAU while a paid quote has500. Fresh account/official pricing checks confirm both:35USD is only the paid starting tier. Agent adopts Free for this stage; no paid Auth0 plan or second tenant is created.
+- Prepare separate production Web/native clients and API audience, keep their connections disabled, and preserve current test accounts. Before customer activation, retire staging identity credentials/bindings/sessions and review exact test-data disposition. This supersedes the immediate paid simultaneous-tenant recommendation; separate application IDs are not claimed to isolate tenant-wide deletion.
+- Owner explicitly accepts the Google API User Data Policy for the prepared Rillora production project. Brand initialization, selected03Logo and real public/legal URLs are saved. OAuth credential creation and production publication remain separate actions.
+- SES has a separate verified sending domain, requiredTLS, suppression configuration and aggregate event alarms. Its production-access request is submitted/PENDING, not approved or installed in Auth0. Public WWW is deployed with the existing visual language and no account/API/checkout surface. Root302 forwarding is configured; incoming rootHTTPS still awaits provider activation.
+- The legacyWWW CLI edit failed without changing its prior value; use the normal console then require independent readback. A new bounded CNAME replacement/rollback guard passes synthetic local and actual temporary-record checks. Keep FanPass, mail/login/staging records and the original production data/runtime intact. [Identity/mail](production-identity-mail-20260924.md),[public website](public-product-website-20260924.md).
+
+## 2026-09-25 — Protected Google client and actual SES review meaning
+
+- Owner explicitly approves the exact Google hosted OAuth client and protected storage. The client is created, downloaded once, validated against the approved origin/callback and stored mode0600 outside Git; the downloaded copy is removed. Saved scopes are only openid/email/profile. The new project stays Testing, and actual Auth0 readback preserves the old Google connection.
+- Root HTTPS now passes actual Chrome redirection and the Node/OpenSSL3 monitor request; earlier LibreSSL failure and plain-Node403 remain dated client observations, not a diagnosis. WWW/private-origin/negative-route proof and the12-target monitor are complete for public information only.
+- Owner completes AWS password/MFA renewal; fresh CLI/STS is verified. SES API DENIED does not match a terminal refusal in the actual case text: Support asks for more information and message examples for continued review. Use the accessible ordinary console; do not buy Premium Support just because DescribeCases requires it.
+- A factual follow-up is drafted and filled, with no secret or real customer content. Sending it requires explicit message authorization; account setup, simulator success and a draft are not submission or real email delivery. Preserve Free, the working test identities, closed customer access, existing data/recovery and annual-only pricing.
+- Source and documentation closeout proceeds separately from external approval. [Identity/mail](production-identity-mail-20260924.md),[public site](public-product-website-20260924.md),[QA](../output/qa/rillora-production-identity-20260924/README.md).

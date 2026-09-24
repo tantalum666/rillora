@@ -34,12 +34,23 @@ describe("Standalone public operations", () => {
   });
   it("alerts on failure and silence, without inventing a subscribed recipient", () => {
     const t = template();
-    t.resourceCountIs("AWS::CloudWatch::Alarm", 4);
+    t.resourceCountIs("AWS::CloudWatch::Alarm", 8);
     t.hasResourceProperties("AWS::CloudWatch::Alarm", {
       MetricName: "Heartbeat", TreatMissingData: "breaching", EvaluationPeriods: 3,
       AlarmActions: Match.anyValue(), OKActions: Match.anyValue(),
     });
     t.resourceCountIs("AWS::SNS::Subscription", 0);
+  });
+  it('monitors only aggregate transactional email outcomes, without alarming on idle mail', () => {
+    const alarms = Object.values(template().findResources('AWS::CloudWatch::Alarm'))
+      .map(a => a.Properties).filter(a => a.Namespace === 'AWS/SES');
+    expect(alarms.map(a => a.MetricName).sort()).toEqual(['Bounce', 'Complaint', 'DeliveryDelay', 'Reject']);
+    for (const alarm of alarms) {
+      expect(alarm.Dimensions).toEqual([{ Name: 'ses:configuration-set', Value: 'rillora-transactional' }]);
+      expect(alarm.TreatMissingData).toBe('notBreaching');
+      expect(alarm.Threshold).toBe(1);
+      expect(alarm.AlarmActions).toBeDefined();
+    }
   });
   it("gives the checker only logging and failed-delivery permissions", () => {
     const t = template();

@@ -96,6 +96,44 @@ def check_unchanged(before, after, target):
         raise RuntimeError('Unrelated DNS records changed; inspect the saved snapshot before proceeding')
 
 
+def replace_single_cname(args, before):
+    """v3 cannot create a conflicting CNAME before deleting its old value."""
+    target = ('CNAME', args.name.lower())
+    existing = [row for row in before if identity(row) == target]
+    if len(existing) != 1 or len(args.data) != 1:
+        raise RuntimeError('CNAME replacement requires exactly one old and one new value')
+    old = existing[0]
+    desired = args.data[0].rstrip('.')
+    try:
+        invoke(['delete', DOMAIN, '--type=CNAME', '--name=' + args.name])
+        middle = read_records()
+        check_unchanged(before, middle, target)
+        if any(identity(row) == target for row in middle):
+            raise RuntimeError('CNAME changed concurrently; do not overwrite another writer')
+        invoke(['add', DOMAIN, '--type=CNAME', '--name=' + args.name,
+                '--data=' + args.data[0], '--ttl=' + str(args.ttl)])
+        return {'strategy': 'single-cname-replacement', 'replaced': 1}
+    except (RuntimeError, subprocess.TimeoutExpired) as cause:
+        current = read_records()
+        check_unchanged(before, current, target)
+        values = [row for row in current if identity(row) == target]
+        if len(values) == 1 and str(values[0].get('data', '')).rstrip('.') == desired and values[0].get('ttl') == args.ttl:
+            return {'strategy': 'single-cname-replacement', 'replaced': 1, 'ambiguousResponseResolvedByReadback': True}
+        if not values:
+            try:
+                invoke(['add', DOMAIN, '--type=CNAME', '--name=' + args.name,
+                        '--data=' + old['data'], '--ttl=' + str(old['ttl'])])
+            except (RuntimeError, subprocess.TimeoutExpired):
+                # A timeout can follow a successful provider write. Read actual DNS.
+                pass
+            restored = read_records()
+            check_unchanged(before, restored, target)
+            values = [row for row in restored if identity(row) == target]
+        if len(values) == 1 and str(values[0].get('data', '')).rstrip('.') == old['data'].rstrip('.') and values[0].get('ttl') == old['ttl']:
+            raise RuntimeError('CNAME replacement failed; the prior value and TTL are present/restored. Inspect the snapshot before retrying.') from cause
+        raise RuntimeError('CNAME replacement interrupted; do not overwrite the current target. Inspect the saved snapshot and actual DNS immediately.') from cause
+
+
 def main(argv=None):
     args = parser().parse_args(argv)
     validate(args)
@@ -105,7 +143,17 @@ def main(argv=None):
                     and (not args.name or identity(row)[1] == args.name.lower())]
         print(json.dumps({'domain': DOMAIN, 'records': selected}, indent=2))
         return
+    old_target = [row for row in before if identity(row) == (args.type, (args.name or '').lower())]
+    cname_replace = args.operation == 'set' and args.type == 'CNAME' and bool(old_target)
+    if cname_replace:
+        if len(old_target) != 1 or len(args.data) != 1:
+            raise RuntimeError('CNAME replacement requires exactly one old and one new value')
+        if old_target[0]['data'].rstrip('.') == args.data[0].rstrip('.') and old_target[0]['ttl'] == args.ttl:
+            print(json.dumps({'domain': DOMAIN, 'applied': False, 'unchanged': True}))
+            return
     preview = invoke(mutation_command(args, True))
+    if cname_replace:
+        preview = {'providerPreview': preview, 'strategy': 'delete one existing CNAME, add replacement, restore prior value on failure'}
     if not args.apply:
         print(json.dumps({'domain': DOMAIN, 'applied': False, 'preview': preview}, indent=2))
         return
@@ -121,7 +169,7 @@ def main(argv=None):
         raise RuntimeError('DNS changed during preview; no write performed. Re-read before trying again.')
     failure = None
     try:
-        result = invoke(mutation_command(args, False))
+        result = replace_single_cname(args, before) if cname_replace else invoke(mutation_command(args, False))
     except RuntimeError as error:
         result = {'error': str(error)}
         failure = error

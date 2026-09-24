@@ -5,7 +5,23 @@ Authority scope: zero-revenue public hosting, future production resources, cost 
 Superseded by: later explicit Owner decision, stricter security／legal requirement or verified provider limit  
 Do not use for: claiming production readiness, creating paid resources, storing real sensitive data or opening a market  
 Status: PUBLIC LEGAL AND STAGING LIVE; PRODUCTION DATA/CLOSED API VERIFIED; CUSTOMER RELEASE CLOSED
-Last updated: 2026-09-24 (production transport and current cost options)
+Last updated: 2026-09-25 (Asia/Hong_Kong)
+
+## September24 identity/mail/public increment
+
+Keep Auth0 Free after Owner's cost/cleanup question: current quota is 25,000 MAU;
+35USD is only the paid 500-MAU starting tier. Prepare production clients without
+active connections and retire the old test identity capabilities at prelaunch
+cutover. A paid simultaneous identity environment is deferred, not mandatory now.
+SES notify/bounce domains and aggregate event/alert paths are verified; its
+API marks production access DENIED, but the actual Support case asks for additional
+process details and examples to continue review. A reply is prepared; no external
+Auth0 email provider or SES sender credential has been installed.
+The independent public WWW host is live with no account/API/storage behavior.
+Root HTTP302, actual Chrome HTTPS redirect and the modern Node monitor client are verified; earlier client differences remain documented.
+See [identity/mail](production-identity-mail-20260924.md) and
+[public site](public-product-website-20260924.md). Production API/database and
+staging have not been redeployed by these separate resources.
 
 ## September24 runtime and pricing preparation
 
@@ -100,7 +116,8 @@ Before Rillora has real revenue, minimize new fixed infrastructure cost without 
 
 | Host／path | Current or future responsibility | Current decision |
 | --- | --- | --- |
-| `rillora.xyz` | Brand home and public product explanation | Keep current GoDaddy Coming Soon page during the zero-cost legal step; later migrate to a portable public-site host |
+| `rillora.xyz` | Root entry to the public brand site | HTTP302, browser HTTPS redirect and modern monitor client verified; keep the documented legacy-client limitation |
+| `www.rillora.xyz` | Public product, guides and support | Live AWS private S3/CloudFront information-only artifact; no account or API routes |
 | `legal.rillora.xyz` | Current independent legal publication host | Live on Sites with explicit GoDaddy CNAME, two validation TXT records and active managed TLS |
 | `legal.rillora.xyz/terms` and six sibling paths | Terms, Privacy, Subscription, Refund, Acceptable Use, Cookie and Legal Notice | One static artifact and one host; never one subdomain per document |
 | `app.rillora.xyz` | Future production Web app | Reserved; not created／published until production data and identity gates pass |

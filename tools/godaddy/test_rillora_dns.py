@@ -4,6 +4,42 @@ import rillora_dns as dns
 
 
 class Guards(unittest.TestCase):
+    def test_already_matching_cname_is_not_deleted_and_recreated(self):
+        old = {'type': 'CNAME', 'name': 'www', 'data': 'new.example.', 'ttl': 600}
+        with patch.object(dns, 'read_records', return_value=[old]), patch.object(dns, 'invoke') as invoke, patch('builtins.print'):
+            dns.main(['set', '--type', 'CNAME', '--name', 'www', '--data', 'new.example', '--ttl', '600', '--apply'])
+        invoke.assert_not_called()
+
+    def test_cname_replacement_removes_conflict_then_adds_only_the_requested_target(self):
+        before = [{'type': 'CNAME', 'name': 'www', 'data': 'old.example.', 'ttl': 3600},
+                  {'type': 'MX', 'name': '@', 'data': 'mail.example.', 'ttl': 3600}]
+        args = dns.parser().parse_args(['set', '--type', 'CNAME', '--name', 'www', '--data', 'new.example', '--ttl', '600'])
+        with patch.object(dns, 'invoke') as invoke, patch.object(dns, 'read_records', return_value=before[1:]):
+            result = dns.replace_single_cname(args, before)
+        self.assertEqual(result['replaced'], 1)
+        self.assertEqual([call.args[0][0] for call in invoke.call_args_list], ['delete', 'add'])
+        self.assertIn('--name=www', invoke.call_args_list[0].args[0])
+        self.assertIn('--data=new.example', invoke.call_args_list[1].args[0])
+
+    def test_cname_failed_add_restores_prior_value_and_ttl(self):
+        old = {'type': 'CNAME', 'name': 'www', 'data': 'old.example.', 'ttl': 3600}
+        args = dns.parser().parse_args(['set', '--type', 'CNAME', '--name', 'www', '--data', 'new.example'])
+        with patch.object(dns, 'invoke', side_effect=[{}, RuntimeError('provider failed'), {}]) as invoke, \
+                patch.object(dns, 'read_records', side_effect=[[], [], [old]]):
+            with self.assertRaisesRegex(RuntimeError, 'prior value and TTL'):
+                dns.replace_single_cname(args, [old])
+        self.assertIn('--data=old.example.', invoke.call_args_list[-1].args[0])
+        self.assertIn('--ttl=3600', invoke.call_args_list[-1].args[0])
+
+    def test_cname_concurrent_writer_is_never_overwritten(self):
+        old = {'type': 'CNAME', 'name': 'www', 'data': 'old.example.', 'ttl': 3600}
+        concurrent = {**old, 'data': 'another.example.'}
+        args = dns.parser().parse_args(['set', '--type', 'CNAME', '--name', 'www', '--data', 'new.example'])
+        with patch.object(dns, 'invoke') as invoke, patch.object(dns, 'read_records', return_value=[concurrent]):
+            with self.assertRaisesRegex(RuntimeError, 'do not overwrite'):
+                dns.replace_single_cname(args, [old])
+        self.assertEqual(invoke.call_count, 1)
+
     def test_other_domain_and_billing_commands_are_not_exposed(self):
         with patch('sys.stderr'):
             for arguments in [['list', 'fanpass.fun'], ['list', '--domain', 'fanpass.fun'], ['purchase']]:

@@ -5,11 +5,17 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-09-24 (closed production runtime deployed; GoDaddy CLI verified)
+Last updated: 2026-09-25 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
 
-## 2026-09-24 继续生产接入与计费比较 — 当前任务
+## 2026-09-24 免费身份、事务邮件与公开入口 — 当前任务
+
+Owner提出先继续测试、临上线再清理，并要求复核Free月活。实际Auth0后台及官网均为Free25,000MAU；35USD/月只是Essentials的500MAU起步档。现阶段保留Free，不购买新增固定套餐；正式Web/iOS客户端及独立audience已准备但全部connection关闭，旧测试绑定不变。上线前按清单退役测试身份权限、会话及明确的测试数据，再接生产；不得仅删事项后继续共用测试删除密钥。[身份与邮件合同](production-identity-mail-20260924.md)。
+
+独立事务邮件域名、DKIM/TLS/抑制及实际模拟器事件与告警动作已验证。SES接口标记DENIED，但已读取的AWS工单实际要求补充资料并邀请继续审核，没有陈述最终拒绝原因；补充回复已准备，Auth0邮件尚未切换。公开官网www已实际部署、DNS/HTTPS/渲染验证，复用原UI、03Logo和18指南，账户/收费仍关闭。根域HTTP302、Chrome HTTPS跳转和现代Node监控客户端均已验证；旧TLS客户端差异保留记录。[公开站合同](public-product-website-20260924.md)。Google正式项目的政策、品牌与最小三项身份scope已保存，Owner另行批准的OAuth凭据已受保护保存；旧测试连接不变，正式发布和真实登录仍分开验收。
+
+## 2026-09-24 继续生产接入与计费比较 — 已完成传输检查点
 
 Owner要求继续下一步并比较按量与套餐。[生产传输合同](production-runtime-20260924.md)已部署独立API、内部HTTPS与证书加载，保持客户接口关闭；实际健康／就绪、权限配置、关闭响应及云端监控已核验。AWS、GoDaddy和原Auth0邮箱管理身份已恢复；GoDaddy官方CLI另已安装、钥匙串认证并通过Rillora临时记录创建／清理验收。既有生产数据／恢复证据保留，不重建数据库或重做已完成演练。发现的回调／邀请／错误日志内容风险已在源码修复，云端旧日志不宣称已清除。后续域名操作使用[项目CLI入口](../tools/godaddy/README.md)，原生GoDaddy授权仍为账户级，项目命令限制在Rillora。
 

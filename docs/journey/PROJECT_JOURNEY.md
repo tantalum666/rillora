@@ -1,6 +1,6 @@
 # Digital Legacy Ongoing Project Journey
 
-Last updated: 2026-09-24 (production transport preparation, log privacy and cost comparison)
+Last updated: 2026-09-25 (Asia/Hong_Kong)
 
 ## 记录范围
 
@@ -2544,3 +2544,19 @@ launch prerequisites and historical authentication gates are not repeated approv
 - **判断变化**：Auth0同邮箱Google与密码是不同管理身份；旧CLI授权事务失效时重建事务即可复用刚登录的身份。裸TCP的本机连接结果与TLS结果矛盾，不能直接当作公网开放或隔离通过；保留原结果并结合云端SG／真正TLS应答界定范围。CloudWatch空分页也不是没有日志，继续分页及直接流读取后获得79／50样本。
 - **结果**：生产API1健康、镜像8426279e…与本地匹配，证书ISSUED／ELIGIBLE；实际live/ready200及关闭接口503/no-store，原0070／7日数据基础保留。监控配置10项并有云端ok/failed0，旧日程／投递证据保留。官方gddy校验安装，Owner确认四项scope／条款后keyring认证可续期；项目域名guard和临时TXT真实20→21→20验证通过，原zone digest一致。
 - **未完成／边界**：正式身份／事务邮件、最终Web/iOS连接、普通付款和上架仍未完成，账户／销售保持关闭，E2EE与经营／实机延期不变。临时服务索引尝试把Stripe CLI更新到Homebrew提供的1.50.10，但旧令牌拒绝Directory插件元数据；改查GoDaddy官方文档，没有重新登录或改变任何Stripe账户。详细证据见[QA](../../output/qa/rillora-production-runtime-20260924/README.md)。
+
+## 2026-09-24 — 免费身份转正路线、事务邮件与真实公开官网
+
+- **目标**：继续生产身份/邮件/最终客户端准备，保持原UI与低固定成本。Owner提出先测试、临上线清理，并追问Free与付费MAU的差异。
+- **尝试**：复用实际有效CLI，无重复本人认证。核对Auth0账户25,000MAU和单租户限制、35USD/500MAU付费起步档；准备两套专用生产client和audience，关闭其连接。建立SES notify/bounce子域名、DKIM/TLS/抑制/计数与既有告警。复用现有公共首页/18指南做独立静态构建，部署私有S3/CloudFront/证书。Google独立正式项目创建后，经Owner当场同意政策，保存品牌与官网法律链接。
+- **判断变化**：立即购买独立Auth0环境对当前规模不划算，改为Free加上线前退役测试权限/清理/负向验证；不能把500MAU起步价当成保留免费25,000MAU。GoDaddy原CLI先增后删CNAME触发冲突；增加有快照、回读、失败恢复及并发保护的窄替换逻辑。旧www仍在CLI路径失败且原值保持，改用控制台正常编辑，并独立核对；没有误当OAuth过期。Google原生键盘表单操作中断草稿后，使用明确Playwright定位恢复，没有重复创建项目。
+- **结果**：Mail域名/DKIM/MAIL-FROM SUCCESS；模拟器Send3/Delivery2/Bounce1/Complaint1与SNS动作通过。六条DNS新增保留原20条。www实际DNS/HTTPS/字节哈希/Chrome渲染通过，私有/未知路由拒绝，账户仍未开放；根域HTTP302通过，其余DNS保持。12项真实云监控ok/failed0。36infra、9Web公开/指南、8DNS guard、6health通过，独立公开与内部Web构建通过；首轮无并发限制infra有4项5秒超时，限定2worker后全过。
+- **未完成/边界**：SES生产申请仍PENDING、Auth0外部provider未安装；Google客户端/验证/正式发布、真实验证邮件/恢复及最终app/iOSRelease仍待完成。GoDaddy根域HTTPS待签发，不绕过TLS。当前测试数据/旧登录保留，没有Auth0升级、收费开放、数据库重建、恢复重跑或原生UI改版。源扫描与Git/CI最终收尾单独记录在[QA](../../output/qa/rillora-production-identity-20260924/work-state.json)。
+
+## 2026-09-25 — 收尾官网与Google配置，读取SES实际审核要求
+
+- **目标**：继续生产准备，解释Free与付费月活差异，保留低固定成本和原UI；不把后台创建当作真实登录／收件完成。
+- **尝试**：Owner当场确认Google托管凭据创建与保护保存后完成下载；下载事件超时，但实际下载文件已存在，因此检查并受保护移动该唯一文件，没有重复创建。保存最小三项scope，回读原Auth0 Google连接未变。验证根域真实浏览器HTTPS、现代Node监控302及私有S3拒绝。AWS会话在工作中途过期，Owner完成续期后重新验证STS。
+- **判断变化**：SES接口DENIED不能直接等同工单最终拒绝。Support API被付费支持门限制，普通控制台却可读取；实际内容是要求频率、收件来源、退信／投诉／退订和样例。因此准备事实回复继续审核，不推断为商业登记／DNS／信誉问题，也不购买支持套餐或擅自切换邮件商。
+- **结果**：Google品牌／凭据／scope配置保存并保护，仍Testing；WWW与根域浏览器／当前监控客户端通过，账户和销售关闭。回复已填入工单，尚未发送，等待对该消息的明确发送授权。同步当前规范、发布门、精简交接和QA；公共信息入口有独立完成证据。
+- **未完成／边界**：SES正式放行、Auth0外部邮件、真实验证／恢复、受控身份退役与最终Web/iOSRelease连接仍待验收。现有测试账号保留，不重新执行恢复或原生构建。源码/Git/CI收尾结果单独记录在[本轮QA](../../output/qa/rillora-production-identity-20260924/README.md)。

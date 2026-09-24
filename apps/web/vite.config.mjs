@@ -3,10 +3,11 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig(({ mode }) => ({
+  envDir: mode === 'public' ? false : undefined,
   build: {
-    outDir: "dist/client",
+    outDir: mode === 'public' ? 'dist-public' : 'dist/client',
     rollupOptions: {
-      input: resolve(mode === "legal" ? "legal.html" : "index.html"),
+      input: resolve(mode === "legal" ? "legal.html" : mode === 'public' ? 'public.html' : "index.html"),
     },
   },
   optimizeDeps: {
@@ -16,7 +17,7 @@ export default defineConfig(({ mode }) => ({
     host: "0.0.0.0",
     allowedHosts: ["terminal.local"],
     warmup: {
-      clientFiles: [mode === "legal" ? "./src/legal-main.jsx" : "./src/main.jsx"],
+      clientFiles: [mode === "legal" ? "./src/legal-main.jsx" : mode === 'public' ? './src/public-main.jsx' : "./src/main.jsx"],
     },
     proxy: {
       "/api": {
