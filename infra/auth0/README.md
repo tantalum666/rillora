@@ -19,7 +19,8 @@ production clients and a distinct production API audience. All their connections
 remain disabled and the old bindings are unchanged. The Web secret is protected
 outside Git; no new management grant exists. SES domain/events are verified and
 the SES API marks production access DENIED. The actual case requests more information
-for review; a reply is prepared, and no external email provider has been installed.
+for review; the approved reply has been submitted and read back, but production
+sending is still disabled and no external email provider has been installed.
 Google production branding, approved protected hosted credentials and minimal
 identity scopes are saved separately from the unchanged original test connection.
 These are configuration checkpoints, not end-user login or email

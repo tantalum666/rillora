@@ -15,7 +15,8 @@ active connections and retire the old test identity capabilities at prelaunch
 cutover. A paid simultaneous identity environment is deferred, not mandatory now.
 SES notify/bounce domains and aggregate event/alert paths are verified; its
 API marks production access DENIED, but the actual Support case asks for additional
-process details and examples to continue review. A reply is prepared; no external
+process details and examples to continue review. Owner approved the reply, which
+is now recorded in the case. The read-only SES check still fails production access; no external
 Auth0 email provider or SES sender credential has been installed.
 The independent public WWW host is live with no account/API/storage behavior.
 Root HTTP302, actual Chrome HTTPS redirect and the modern Node monitor client are verified; earlier client differences remain documented.

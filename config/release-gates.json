@@ -29,9 +29,11 @@
         "output/qa/rillora-production-identity-20260924/ses-account-after-request.json",
         "output/qa/rillora-production-identity-20260924/google-credential-receipt.json",
         "output/qa/rillora-production-identity-20260924/ses-account-final.json",
-        "output/qa/rillora-production-identity-20260924/ses-support-console-readback.json"
+        "output/qa/rillora-production-identity-20260924/ses-support-console-readback.json",
+        "output/qa/rillora-production-identity-20260924/ses-followup-submission.json",
+        "output/qa/rillora-production-identity-20260924/mail-readiness-after-reply.json"
       ],
-      "next": "Keep Auth0 Free; production clients are prepared but disabled. Google hosted credentials and minimal identity scopes are saved, original test connection unchanged. SES API status is DENIED, but the actual case requests additional process details and examples for further review; a reply is prepared. Resolve production-mail approval, real verification/recovery, controlled test-identity retirement/token drain and final app/iOS Release values before activation."
+      "next": "Keep Auth0 Free and current test identities. The exact approved SES follow-up is submitted and visible in the case; production access remains false. Rerun the read-only mail checker after review; then complete sender/Auth0 configuration, real verification/recovery, controlled identity retirement/token drain and final Web/iOS Release connections."
     },
     {
       "id": "production-billing",

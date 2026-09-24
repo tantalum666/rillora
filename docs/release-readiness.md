@@ -14,8 +14,9 @@ required cutover step, not solved by deleting a few database rows.
 
 SES domain/TLS/DKIM/MAIL-FROM and simulator delivery/failure counters/alert actions
 are verified. The API marks production access DENIED, while the actual Support
-case requests more information for continued review. The follow-up is prepared;
-real verification/recovery mail and Auth0 provider configuration remain open. WWW public product,
+case requests more information for continued review. The approved follow-up was
+submitted and read back at2026-09-25 01:12:39+08:00; sending is still disabled for production.
+Real verification/recovery mail and Auth0 provider configuration remain open. WWW public product,
 guides/support are deployed and tested; no public accounts or sales are enabled.
 Root HTTP302, browser HTTPS redirect and the modern monitor client pass; earlier client-specific failures remain documented. Google
 production project brand/policy/logo/links, the approved protected hosted client and

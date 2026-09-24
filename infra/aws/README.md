@@ -10,9 +10,15 @@ for external private plans and production customer traffic remains closed.
 The opt-in `RilloraMail` stack is deployed: verified notify/bounce domains,
 2048-bit DKIM, required TLS, suppression and aggregate outcomes. Its SES
 API reports production access DENIED, while the actual Support Console asks for
-more information to continue review. A reply is prepared; simulator counters and
+more information to continue review. The approved reply is now recorded in the
+case; the live read-only mail check still blocks production access. Simulator counters and
 alert actions do not prove real verification/reset delivery. It contains no sender credential or
 customer activation. Deploy only with `-c mailOnly=true`.
+
+Recheck with `python3 tools/release/check_mail_readiness.py --output output/qa/mail-readiness.json`
+from the repository root. It validates the AWS account and only reads the existing
+Frankfurt SES resources. No mail, credentials or provider settings are changed;
+a successful configuration report is not a real customer-mail acceptance.
 
 The independent `RilloraPublicWeb` stack serves the accepted `build:public` artifact
 at `www.rillora.xyz`, with private/versioned S3, CloudFront OAC and a public

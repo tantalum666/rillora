@@ -2562,3 +2562,9 @@ launch prerequisites and historical authentication gates are not repeated approv
 - **未完成／边界**：SES正式放行、Auth0外部邮件、真实验证／恢复、受控身份退役与最终Web/iOSRelease连接仍待验收。现有测试账号保留，不重新执行恢复或原生构建。源码/Git/CI收尾结果单独记录在[本轮QA](../../output/qa/rillora-production-identity-20260924/README.md)。
 
 - **收尾补记**：873文件源码扫描22项既定非秘密／0未知；工程已推送Rillora私有库，远端与本地一致、Web原Git原位、FanPass未改。首次CI7两项CDK合成超过默认5秒，保持断言并设2worker／20秒预算后，CI8三作业通过，212API／36infra及完整Web／构建检查实际重跑。此前“API本轮未重跑”仅指本机验证，现由云端CI结果补充；恢复／iOS仍未重跑。当前唯一下一步为已准备SES回复的明确发送授权及后续审核，不把草稿当提交。
+
+## 2026-09-25 — 提交SES补充说明并加入可重复核验
+
+- **目标／尝试**：Owner针对已准备的AWS回复明确“开始吧”。检查网页中的原稿一致后提交一次，回读工单记录、发件人、时间和“客户操作已完成”状态。
+- **判断／结果**：消息已实际提交，但SES生产访问仍false，不能据工单成功放开客户发信。补充只读脚本，先锁定AWS账户，再核对命名SES资源和15项条件；7项测试覆盖sandbox、已获准但未做真实收件、TLS／抑制变化、额外数据／追踪目的地、错误账户及不泄漏原始账户字段。实际14项配置通过，仅生产许可未过。
+- **未完成／边界**：等待AWS进一步审核，Auth0发送身份／provider、真实邮箱及恢复连续性仍待验收。没有发送客户邮件、切换旧登录、创建密钥／定时任务或清理测试账号；不重复要本次发送授权。详见[本轮QA](../../output/qa/rillora-production-identity-20260924/README.md)。

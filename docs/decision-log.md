@@ -2536,3 +2536,9 @@ unreachable release remains a different closed workflow. See [sharing contract](
 - Source and documentation closeout proceeds separately from external approval. [Identity/mail](production-identity-mail-20260924.md),[public site](public-product-website-20260924.md),[QA](../output/qa/rillora-production-identity-20260924/README.md).
 
 - Validation closeout: private source commitsaf69a6e/f8d1344 are pushed. CI8 passes source,212API and Web/infrastructure36 checks. CI7 exposed two5-second CDK synthesis timeouts; only that test runtime budget changed to20seconds, with assertions unchanged. Documentation-only evidence completion preserves the tested engineering commit; no new product decision or cloud deployment follows.
+
+## 2026-09-25 — Submit the reviewed SES follow-up
+
+- Owner says to proceed immediately after the concrete reply/submission request. Submit the exact prepared message once; the case recordsrillora-operator at01:12:39+08:00 and status“客户操作已完成”. This supersedes the pending-send-authorization gate only; no production-send approval follows.
+- A reusable read-only SES check validates the exact AWS account, named Frankfurt identity/configuration, TLS/suppression/events and actual ProductionAccessEnabled. It sends no mail or changes and cannot certify customer flow/inbox acceptance. Seven boundary tests pass; actual14configuration checks pass and production access still fails.
+- Keep Free and all current identity/customer activation boundaries. Provider review, Auth0 installation and real verification/recovery remain distinct. No new subscription, scheduled automation, customer email or test-account cleanup. [Submission evidence](../output/qa/rillora-production-identity-20260924/ses-followup-submission.json).

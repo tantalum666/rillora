@@ -168,7 +168,23 @@ test client. The new Google key has not been installed there or used for a login
 
 SES production approval remains an external gate; do not silently switch providers,
 weaken verification or claim real delivery. A concrete follow-up with the limited
-transactional use case and two proposed message examples is prepared and filled
-in the case reply form. Submission awaits Owner's explicit authorization to send
-that message to AWS, not another engineering permission or login. The old test
-flows remain available. Protected Google/Web secrets remain outside source and QA.
+transactional use case and two proposed message examples was submitted after Owner
+said to proceed. The Support Console now lists the operator's actual communication
+at2026-09-25 01:12:39+08:00. Submission is verified, not production approval. The
+old test flows remain available. Protected Google/Web secrets remain outside source and QA.
+
+## Repeatable read-only mail check
+
+Run `python3 tools/release/check_mail_readiness.py --output output/qa/mail-readiness.json`
+from the repository root. It verifies the existing AWS account before reading only
+the named Frankfurt SES identity/configuration. It sends no message, changes no
+permission, and never installs a provider or logs the raw account-use-case/contact
+fields. Exit2 means a configuration gate is still closed; exit3 means an incomplete
+read. `--report-only` preserves the blocked verdict while allowing a report-only
+workflow to exit0.
+
+The live check after the Support reply passes14configuration checks; the only
+failed SES check is `productionAccessEnabled`. The API still saysDENIED. This
+tool deliberately cannot mark real Auth0 verification/recovery/inbox acceptance
+as complete, even if AWS later enables sending. Current DNS, permissions, actual
+mail flows and alarm delivery retain their separate acceptance evidence.
