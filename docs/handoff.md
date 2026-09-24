@@ -19,7 +19,7 @@ Last updated: 2026-09-25 (Asia/Hong_Kong)
 
 SES接口为DENIED／生产发送未启用，但已读取的工单179022088800001实际要求补充发信频率、收件来源、退信／投诉／退订和邮件样例，并邀请继续审核，未说明最终拒绝原因。Owner回复“开始吧”后，已提交原稿并在工单回读01:12:39+08:00的记录，当前状态显示“客户操作已完成”；无需再次确认这份回复。Support API要求付费计划，但普通控制台可用，没有购买Premium Support。Auth0邮件provider和SES发送凭据尚未配置。新增只读核验脚本通过7项边界测试；真实云端15项检查中14项通过，唯一未过项为productionAccessEnabled，不能据工单已提交而开启客户发信。
 
-[本轮QA](../output/qa/rillora-production-identity-20260924/work-state.json)：36infra、9Web公开／指南、8DNS、6monitor、13发布／恢复守卫通过，两个Web构建通过；首次infra并发超时与限制worker后通过分别保留。873文件源扫描仅有22项已审非秘密、0未知，137份Markdown的本地链接检查无缺失。源码已推送独立私有库：工程提交af69a6e及CI预算修正f8d1344；[CI8](https://github.com/tantalum666/rillora/actions/runs/36031875706)三作业通过，实际重跑212API、36infra及Web／构建检查。CI7的两项5秒合成超时保留；改为20秒预算、2worker，没有减弱断言。真实恢复、closed生产API1、staging和iOS仍沿用原检查点，本轮没有重建数据库、重复恢复或原生构建。
+[本轮QA](../output/qa/rillora-production-identity-20260924/work-state.json)：新增邮件核验7项测试及发布／恢复守卫合计20项通过；875文件源扫描22项已审非秘密、0未知，137份Markdown共1322本地链接无缺失。工程提交37761e2已推送Rillora私有库，[CI9](https://github.com/tantalum666/rillora/actions/runs/36033511894)三作业通过，212API、36infra及Web／法律／公开构建检查实际重跑。前轮CI7的CDK默认5秒超时与CI8修正记录保留，没有减弱断言。公开站交互／云端监控、真实恢复、closed生产API1、staging和iOS沿用各自检查点，没有重建数据库、重复恢复或原生构建。
 
 公开信息站上线不等于账户／销售开放。最终app.rillora.xyz、原生Release连接、普通交易与Apple提交仍由[发布合同](release-readiness.md)管理；UI、88.80年付、FanPass、E2EE延后及Owner暂缓项不变。
 
@@ -29,4 +29,4 @@ SES接口为DENIED／生产发送未启用，但已读取的工单17902208880000
 
 [前轮交接—HISTORICAL](handoff-history-20260924-before-identity.md)。
 
-本次续接新增tools/release/check_mail_readiness.py及7项测试，只有AWS读取与报告输出，不发送邮件或创建定时任务；源码／CI收尾记录在本轮QA。前述CI8仍是原工程检查点，新增工具的CI结果单独记录。
+只读核验工具只有AWS读取与报告输出，不发送邮件或创建定时任务；本次工单提交、核验与源码／CI收尾均已记录。
