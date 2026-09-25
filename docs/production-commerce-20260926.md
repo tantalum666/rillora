@@ -87,7 +87,7 @@ release work. This worker is source/local tested, not currently running in AWS.
 
 ## Evidence, rollout and remaining gates
 
-Local:233API tests, typecheck/build;88Web source tests plus7legal fixture tests;
+Local:233API tests, typecheck/build;89Web source tests plus7legal fixture tests;
 39infra tests and21release guards. The initial all-Web invocation used the product
 artifact for legal-only packaging tests; rerunning the intended legal fixture
 passed without weakening assertions. Earlier failures exposed missing commerce
@@ -117,3 +117,14 @@ and Owner-deferred device/business checks remain governed by
 [release readiness](release-readiness.md).
 
 [Local QA and exact evidence boundary](../output/qa/rillora-production-commerce-20260925/work-state.json).
+
+Source checkpoint e38cd05e7278443bd05a223c09849d1f3411d4d9 is pushed to the private
+Rillora repository; [CI11 succeeds](https://github.com/tantalum666/rillora/actions/runs/36163894825).
+The final evidence-only documentation follow-up does not rerun or redeploy that
+engineering. Prepared source scan:906files,23reviewed non-secret spans,0unknown;
+141project Markdown files/1348local links have0missing targets.
+
+A final Web follow-up keeps current Family benefits visible after catalog activation
+and distinguishes closed new sales from existing paid access. Its focused10tests
+pass; the complete source-Web suite now has89checks. This follow-up does not alter
+pricing or provider behavior and has a separate commit/CI receipt in the QA record.

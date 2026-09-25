@@ -142,3 +142,14 @@ test("test billing enrollment is explicit and hosted destinations reject lookali
   }
   assert.throws(() => testBillingDestination({ checkout: { testOnly: true, url: "https://checkout.stripe.com/" } }, "checkout"));
 });
+
+test('Family benefits remain visible when their catalog enforcement becomes included', () => {
+  const commercial = normalizeCommercialStatus({ ...payload, billingOpen: true,
+    plans: [{planCode:'family', capabilities:[
+      {code:'family_maintenance',enforcementMode:'included',availability:'available'},
+      {code:'trusted_people_multiple',enforcementMode:'included',availability:'available'},
+      {code:'adaptive_reviews',enforcementMode:'planned',availability:'planned'},
+    ]}] });
+  assert.deepEqual(commercial.familyFeatures,['Shared reviews and approved corrections','Multiple trusted people']);
+  assert.deepEqual(commercial.futureFeatures,['Adaptive review reminders']);
+});

@@ -169,11 +169,11 @@ function PlanAccessPreview({ commerce, onAccessChanged, returnedFromCheckout }) 
     </section>
     {commerce.validationOnly && <TestBillingControls commerce={commerce} onAccessChanged={onAccessChanged} />}
     {!commerce.validationOnly && <ProductionBillingControls commerce={commerce} onAccessChanged={onAccessChanged} returnedFromCheckout={returnedFromCheckout} />}
-    <details className="task-details access-future plan-disclosure"><summary><SurfaceIcon icon={AddressBook}/><span>{commerce.billingOpen ? "Included with Family" : "Rillora Family · Not available yet"}</span><CaretRight size={17} className="disclosure-chevron" aria-hidden="true"/></summary>
-      {annualOffer && !commerce.billingOpen && <p className="access-plan-price"><strong>{formatOffer(annualOffer)}</strong></p>}
+    <details className="task-details access-future plan-disclosure"><summary><SurfaceIcon icon={AddressBook}/><span>{commerce.billingOpen || commerce.currentAccess?.planCode === "family" ? "Included with Family" : "Rillora Family · Not available yet"}</span><CaretRight size={17} className="disclosure-chevron" aria-hidden="true"/></summary>
+      {annualOffer && !commerce.billingOpen && commerce.currentAccess?.planCode !== "family" && <p className="access-plan-price"><strong>{formatOffer(annualOffer)}</strong></p>}
       <CommercialFeatureList features={commerce.familyFeatures} planned />
       {commerce.futureFeatures?.length > 0 && <details className="task-details"><summary>Later roadmap · not included yet</summary><CommercialFeatureList features={commerce.futureFeatures} planned /></details>}
-      {!commerce.billingOpen && <p>Billing is not open. No purchase or trial starts here.</p>}
+      {!commerce.billingOpen && <p>New subscriptions are not available.</p>}
     </details>
     <details className="task-details plan-disclosure"><summary><SurfaceIcon icon={Shield}/><span>Access when Family ends</span><CaretRight size={17} className="disclosure-chevron" aria-hidden="true"/></summary><p>You keep your own records and exports. Free includes one live recipient. Extra recipients retain only their permitted paid-period copy, without later updates.</p><p>You can always restrict or revoke sharing. Billing does not trigger disclosure.</p></details>
   </div>;

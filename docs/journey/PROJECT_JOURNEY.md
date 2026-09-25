@@ -2596,7 +2596,7 @@ launch prerequisites and historical authentication gates are not repeated approv
   invoice refunds. Legal-only packaging failures came from the wrong local artifact;
   correct the test setup. Visual QA catches tiny price/weak disabled state and stale
   pending copy, fixed within the original design.
-- **Result**:233API,88Web source+7legal fixture,39infra and21release guards pass;
+- **Result**:233API,89Web source+7legal fixture,39infra and21release guards pass;
   local desktop/390px interaction checked. Only closed production Web is updated;
   seven live route/asset/API checks and actual closed-return Chrome page pass.
 - **Unfinished/boundary**: API task1/schema0070 unchanged; new0071–0073 local-only.
@@ -2604,3 +2604,13 @@ launch prerequisites and historical authentication gates are not repeated approv
   production access false. Apple actually requires本人login; it remains open for
   Owner while source/CI closeout proceeds. Continue Apple handling, then actual
   provider and final release gates. [QA](../../output/qa/rillora-production-commerce-20260925/work-state.json).
+
+- **Source closeout**: e38cd05e7 is pushed; CI11 completes successfully.906prepared
+  files scan with23reviewed non-secret matches/0unknown;141Markdown/1348local links
+  have0missing. One existing PEM-marker exception only moved lines with unchanged
+  digest. The final documentation follow-up retains this tested engineering result;
+  Apple login and actual provider/customer gates are still pending.
+
+- **Final Web follow-up**: catalog activation must not hide implemented Family
+  benefits or label existing paid access unavailable when new sales close. Fix the
+  presentation and cover the activation transition; Web source checks now89.

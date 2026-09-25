@@ -20,12 +20,17 @@ Owner-deferred. No customer or live-sales activation.
   ledger/environment/ownership checks, signed webhook aliases and bounded retry
   worker are implemented. Ordinary Web review/checkout/management/return UI reuses
   the current design. [Commerce contract](production-commerce-20260926.md).
--233API tests/typecheck/build,88Web source tests plus7legal fixture tests,39infra
+-233API tests/typecheck/build,89Web source tests plus7legal fixture tests,39infra
   and21release guards pass. Local Chrome fixture verifies desktop/390px interactions.
   Payment/consent/provider effects in these tests are synthetic only.
 - Closed RilloraProductionWeb update completes; seven actual host/API/negative-path
   checks and Chrome billing-return closure pass. API task1/schema0070, IAM/vault,
   provider objects, sales flags and Auth0 bindings were not changed.
+
+- Current commerce engineering is committed/pushed as e38cd05e7278443bd05a223c09849d1f3411d4d9;
+  [CI11 passed](https://github.com/tantalum666/rillora/actions/runs/36163894825).
+  Prepared906source files have23reviewed non-secret matches and0unknown;
+  141Markdown files/1348local links have0missing targets.
 
 ## Evidence and blockers
 
@@ -47,8 +52,8 @@ or OTPs should be sent to chat. Apple annual price choice remains unapproved;
 
 ## Single next step
 
-Complete this source/CI checkpoint, then continue Apple production transaction
-handling and current price mapping; inspect the prepared portal after Owner login.
+Continue Apple production transaction handling and current price mapping; inspect
+the prepared portal after Owner login. This source/CI checkpoint is complete.
 Keep the verified Stripe engineering boundary, complete its live configuration
 when merchant/market/tax facts are available, and merge the SES/identity checks
 when approval arrives. Retention/security, signed submission and deferred gates
