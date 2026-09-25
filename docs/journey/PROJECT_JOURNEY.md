@@ -2614,3 +2614,12 @@ launch prerequisites and historical authentication gates are not repeated approv
 - **Final Web follow-up**: catalog activation must not hide implemented Family
   benefits or label existing paid access unavailable when new sales close. Fix the
   presentation and cover the activation transition; Web source checks now89.
+
+- **Final follow-up receipt**:7cf75bb4a/CI12 passes. Closed Web UPDATE_COMPLETE,
+  exact artifact hash, seven final HTTP checks and actual Chrome closure pass.
+  The final evidence-only documentation commit does not require another product
+  build or provider deployment; Apple本人login remains the active handoff.
+
+- **Owner continuation**: Apple本人login is completed and the actual Rillora
+  distribution page is verified. This supersedes the pending-login handoff;
+  continue product/price readback and StoreKit production implementation.

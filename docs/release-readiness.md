@@ -12,8 +12,8 @@ artifact/return paths are deployed. Live provider objects/credentials, API rollo
 ordinary real transactions, cross-channel and restore reconciliation remain open.
 The existing test adapter retains live rejection. [Commerce contract](production-commerce-20260926.md).
 Fresh SES check at00:43+08 onSeptember26 still has productionAccessEnabledfalse;
-14other configuration checks pass. Apple management returned an expired session
-and the Owner login request is pending. No deferred business/device gate is changed.
+14other configuration checks pass. Owner completed the subsequently expired Apple
+management login; actual Rillora distribution access is restored. No deferred business/device gate is changed.
 
 ## September25 later client-delivery checkpoint
 

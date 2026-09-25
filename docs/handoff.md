@@ -1,6 +1,6 @@
 # Rillora Current Handoff
 
-Status: PRODUCTION COMMERCE SOURCE VERIFIED; CLOSED WEB UPDATED; APPLE LOGIN PENDING
+Status: PRODUCTION COMMERCE SOURCE VERIFIED; CLOSED WEB UPDATED; APPLE ACCESS RESTORED; CONTINUE APPLE COMMERCE
 Last updated: 2026-09-26 (Asia/Hong_Kong)
 
 ## Current Owner task
@@ -31,6 +31,10 @@ Owner-deferred. No customer or live-sales activation.
   [CI11 passed](https://github.com/tantalum666/rillora/actions/runs/36163894825).
   Prepared906source files have23reviewed non-secret matches and0unknown;
   141Markdown files/1348local links have0missing targets.
+- Final Family catalog/display follow-up7cf75bb4ad4b3403a9932a2095edf2ad891ecdff
+  passes[CI12](https://github.com/tantalum666/rillora/actions/runs/36164574920).
+  Closed Web is UPDATE_COMPLETE with its matching artifact; seven final HTTP
+  checks and actual Chrome closed-return rendering pass.
 
 ## Evidence and blockers
 
@@ -45,15 +49,15 @@ AWS renewal worked and fresh reads continue to pass. Latest SES check00:43+08
 September26:14configuration checks pass, productionAccessEnabledfalse/DENIED.
 The approved support follow-up was already sent; do not resend or re-ask approval.
 Auth0 staysFree, production connections off, existing test identities preserved.
-App Store Connect actually returned an expired login; Chrome is at the official
-Rillora-targeted login page and Owner has been asked to complete it. No passwords
-or OTPs should be sent to chat. Apple annual price choice remains unapproved;
-88.80was absent at the September19 read, so recheck available points after login.
+Owner has completed Apple login; the actual Rillora distribution page is verified.
+Continue the current product/price readback and production StoreKit implementation.
+Apple annual price choice remains unapproved;88.80was absent at the September19
+read, so recheck available points before making the current choice.
 
 ## Single next step
 
-Continue Apple production transaction handling and current price mapping; inspect
-the prepared portal after Owner login. This source/CI checkpoint is complete.
+Continue Apple production transaction handling and current price mapping using
+the restored portal. This source/CI checkpoint is complete.
 Keep the verified Stripe engineering boundary, complete its live configuration
 when merchant/market/tax facts are available, and merge the SES/identity checks
 when approval arrives. Retention/security, signed submission and deferred gates

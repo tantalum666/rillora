@@ -128,3 +128,9 @@ A final Web follow-up keeps current Family benefits visible after catalog activa
 and distinguishes closed new sales from existing paid access. Its focused10tests
 pass; the complete source-Web suite now has89checks. This follow-up does not alter
 pricing or provider behavior and has a separate commit/CI receipt in the QA record.
+
+The final follow-up7cf75bb4ad4b3403a9932a2095edf2ad891ecdff passes
+[CI12](https://github.com/tantalum666/rillora/actions/runs/36164574920).
+Its closed Web artifact is deployed/UPDATE_COMPLETE, exact HTML and seven final
+HTTP checks pass, and actual Chrome still presents the intended closed-account
+page. The API deployment/merchant/identity boundaries above remain unchanged.
