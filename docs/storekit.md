@@ -10,8 +10,9 @@ Last updated: 2026-09-26 (production verification foundation and portal readback
 ## September26 production foundation and current portal readback
 
 Owner restored Apple administration. Actual annual pricing remainsUSD68; the
-fresh800-point USA table has no88.80. Owner choice between88.90(recommended),88.99
-or88.00 is pending; no new amount is saved. Monthly still has zero territories.
+fresh800-point USA table has no88.80. Owner has reaffirmed channel differentiation;
+the88.90/88.99/88.00question is withdrawn. Verify effective fees and the prior99.99/
+119.99candidates before applying the exact Apple price. Monthly still has zero territories.
 Both unsubmitted products now disallow the newly default-enabled multiseat option
 and keep only App Store as a purchase channel. Existing Family Sharing remains off.
 

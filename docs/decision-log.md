@@ -2587,3 +2587,17 @@ unreachable release remains a different closed workflow. See [sharing contract](
   foundations. Preserve Sandbox and historical records; no production endpoint,
   entitlement, real transaction, signed artifact or release follows from local tests.
   [Contract](production-apple-20260926.md).
+
+## 2026-09-26 - Restore cost-based Apple/Web channel differentiation
+
+- Owner points out the previous channel-price discussion. The agent's later
+  nearest88.80-point recommendation lost that purpose; withdraw88.90/88.99/88.00
+  and its pending question. Treat the correction as direction to resume differential
+  payment-channel pricing, with identical cross-client Family rights.
+- Web stays88.80.99.99at effective15%and119.99under standard30%remain the prior
+  conditional Apple candidates, not newly approved/saved amounts. Both exist in the
+  official CSV. Paid Apps Agreement is active; the SBP enrollment page is not proof
+  that15%was approved or effective. No enrollment, price or runtime mutation.
+- Correct the live handoff/specs/register before continuing, retain old passages
+  only as historical evidence, and do not ask Owner to answer the withdrawn question.
+  No new application tests or deployment; retain CI13's dated foundation result.

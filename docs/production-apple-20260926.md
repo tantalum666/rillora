@@ -17,13 +17,14 @@ separate twelve-month contract with monthly payments is not enabled. Monthly
 6803958645/com.rillora.family.monthly still selects zero territories. Apple Family
 Sharing remains off; it must not be confused with Rillora recipient permissions.
 
-The actual official Download all prices and currencies CSV contains800USA price
-points. US$88.80 is absent; nearby choices include88.00,88.90 and88.99. An Owner
-question recommends88.90 as the closest amount, with the other two alternatives.
-No answer has been received and no new price has been saved. Web staysUS$88.80.
-This is a specific unresolved commercial choice, not another general engineering
-authorization. Keep the old saved price as an unpublished historical fact, not a
-current customer offer. [Exact readback](../output/qa/rillora-production-apple-20260926/apple-price-points.json).
+The official CSV contains800USA points.88.80is absent, but this is not the pricing
+objective: Owner has reaffirmed channel differentiation. The agent's88.90/88.99/
+88.00near-parity recommendation and question are withdrawn. Web stays88.80; prior
+Apple candidates are99.99if15%is approved/effective, or119.99under the standard30%
+scenario. Both candidate points are confirmed in the downloaded official table.
+Exact amount and effective fee remain open; no new price has been saved.
+[Channel contract](channel-pricing-20260921.md),
+[original table readback](../output/qa/rillora-production-apple-20260926/apple-price-points.json).
 
 ## New platform default corrected
 

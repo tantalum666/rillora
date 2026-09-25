@@ -1,8 +1,26 @@
 # Web 与 Apple 内购的渠道定价
 
-Role: current rule/source check and advisory fee comparison  
-Status: CHANNEL-PRICE RECOMMENDATION ONLY; LATER ANNUAL-ONLY DECISION RECORDED SEPARATELY  
-Last reviewed: 2026-09-21 (Asia/Hong_Kong)
+Role: current rule/source check and advisory fee comparison
+Status: CHANNEL DIFFERENTIATION REAFFIRMED; EXACT APPLE PRICE AND EFFECTIVE FEE STILL OPEN
+Last reviewed: 2026-09-26 (Apple rules and direction correction; Stripe fee example retains September21 assumptions)
+
+## September26方向纠偏 — 当前
+
+Owner提醒“之前不是说apple跟web价格做差异化？”。恢复按实际付款渠道成本
+差异定价的方向：Web保持US$88.80/年，Apple IAP采用较高的渠道价，Family权益
+跨端一致。刚才按“最接近88.80”推荐88.90，并要求从88.90/88.99/88.00选择，
+偏离了这一目的；该推荐及问题现已撤回，不再作为活动决策门。
+
+原有条件化候选是：15%佣金获批并生效时AppleUS$99.99；首发仍适用标准30%
+时AppleUS$119.99。候选不等于Owner已批准最终金额或已保存后台。当前官方
+完整价格CSV已确认99.99与119.99均存在；是否存在88.80不再决定商业策略。
+
+本次只读看到付费App协议有效，以及Small Business Program的申请页面，未取得
+已批准/生效记录，也未填写或提交申请。不得由协议有效、项目规模小或通用价格表
+的proceeds列推定实际佣金。Apple官方仍区分普通订阅首年及满一年后的收入比例，
+SBP另需获批并到生效时间；下文官方来源仍适用。下文Stripe数值只保留当时的
+模型假设，不冒充本轮真实生产费率或银行到账。无provider价格/收据/权益变更。
+
 
 ## 判断
 

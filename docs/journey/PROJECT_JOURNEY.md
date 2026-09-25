@@ -2644,3 +2644,18 @@ launch prerequisites and historical authentication gates are not repeated approv
   The new exception is only a synthetic UUID test constant. Actual annual options
   persist on re-open; the specific annual-price choice remains pending, with no
   production intake, native purchase or submitted build claimed.
+
+## 2026-09-26 - Correct channel-price drift after Owner reminder
+
+- **Goal/attempt**: Owner asks why the new Apple price question ignored earlier
+  channel differentiation. Re-read the pricing contracts and current handoff,
+  recheck official fee rules, exact CSV candidates and available account status.
+- **Judgment change**: nearest-price-point matching was the wrong objective.
+  Withdraw the88.90/88.99/88.00question; restore cost-based channel pricing without
+  pretending99.99/119.99were already approved or saved.
+- **Result**: current specs/handoff/register now prioritize effective commission
+  and the prior conditional differential candidates; Web88.80and same Family
+  rights remain. Both candidate points exist. Active Paid Apps Agreement and an
+  enrollment page do not verify effective15%SBP membership.
+- **Remaining**: actual fee qualification, exact Apple offer and production commerce
+  continuation. No enrollment, price, code or runtime changed; no test suite rerun.

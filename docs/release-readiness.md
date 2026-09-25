@@ -8,8 +8,8 @@ Last updated: 2026-09-26 (Asia/Hong_Kong)
 
 Owner restored Apple administration. Strict production verification and versioned
 signed-price mapping are locally tested foundations, not a complete intake/runtime.
-Current official price table confirms88.80absent; the concrete annual choice is
-pending. Unsupported default multiseat purchase was disabled for both unsubmitted
+Owner reaffirmed channel differentiation; the later near-parity question is
+withdrawn. Verify effective fees and the conditional99.99/119.99Apple candidates. Unsupported default multiseat purchase was disabled for both unsubmitted
 products, while monthly remains zero territories. [Apple contract](production-apple-20260926.md).
 
 ## September26 commerce engineering checkpoint
