@@ -5,7 +5,21 @@ Authority scope: Rillora Family StoreKit product identifiers, purchase/restore l
 Superseded by: newer Apple platform rules, verified App Store Connect state, a later Owner decision, or stricter payment/security evidence  
 Do not use for: proof of App Store approval, accepted Paid Apps Agreement, banking/tax completion, live IAP products, production entitlement or a real charge  
 Status: COMPLETE LOCAL XCODE SK0; APP STORE CONNECT SANDBOX METADATA／PRICES／EIGHT STOREFRONTS／TWO PURPOSE-LIMITED TESTERS CREATED; LIVE USA SANDBOX CATALOG LOAD VERIFIED ON CLEAN IOS 26.4／26.5 SIMULATORS; DEBUG-ONLY SERVER-GATED PURCHASE HARNESS READY; OFFICIAL APPLE JWS／SERVER API SNAPSHOT／DURABLE NO-ENTITLEMENT RECONCILIATION IMPLEMENTED LOCALLY; ONE ACTIVE CHROME IAP KEY `.P8` SECURED LOCALLY, OFFICIAL CLIENT CONSTRUCTION AND AUTHENTICATED SERVER API PROBE VERIFIED; SIMULATOR SANDBOX ACCOUNT PERSISTENCE BLOCKED BY APPLE `AMSERRORDOMAIN 100 / PASSWORD REUSE NOT AVAILABLE`; STAGING DEPLOYMENT／PURCHASE COMPLETION／REVIEW REMAIN OPEN  
-Last updated: 2026-09-21 (new purchases annual-only; historical lifecycle evidence retained)
+Last updated: 2026-09-26 (production verification foundation and portal readback; historical evidence retained)
+
+## September26 production foundation and current portal readback
+
+Owner restored Apple administration. Actual annual pricing remainsUSD68; the
+fresh800-point USA table has no88.80. Owner choice between88.90(recommended),88.99
+or88.00 is pending; no new amount is saved. Monthly still has zero territories.
+Both unsubmitted products now disallow the newly default-enabled multiseat option
+and keep only App Store as a purchase channel. Existing Family Sharing remains off.
+
+A separate strict production signature/ownership wrapper and explicit versioned
+signed-price mapper are locally implemented.242API tests/typecheck/build pass,
+including18focused Apple tests. They are not yet wired to production snapshot/
+intake/notifications/native purchase, and have no actual live price bindings.
+No Apple transaction or review was submitted. [Current focused contract](production-apple-20260926.md).
 
 ## September21 annual-only checkpoint
 

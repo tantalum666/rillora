@@ -9,6 +9,15 @@ Last updated: 2026-09-26 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
 
+## 2026-09-26 Apple production preparation
+
+Apple administration is restored. The production verification/price-binding
+foundation is locally tested, while actual offer selection and transaction wiring
+remain open. Both unsubmitted products now disallow platform multiseat purchases,
+consistent with the existing single purchaser/household contract; this adds no new
+plan or recipient rights. The Owner's Apple annual-price choice is pending because
+its verified table lacks88.80. [Apple preparation](production-apple-20260926.md).
+
 ## 2026-09-26 Production annual purchase preparation
 
 The ordinary annual purchase/consent/provider path is implemented and locally

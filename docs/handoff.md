@@ -1,66 +1,62 @@
 # Rillora Current Handoff
 
-Status: PRODUCTION COMMERCE SOURCE VERIFIED; CLOSED WEB UPDATED; APPLE ACCESS RESTORED; CONTINUE APPLE COMMERCE
+Status: WEB COMMERCE CHECKPOINT COMPLETE; APPLE FOUNDATION VERIFIED; ANNUAL PRICE CHOICE PENDING
 Last updated: 2026-09-26 (Asia/Hong_Kong)
 
 ## Current Owner task
 
-Continue remaining release engineering. Preserve original UI/Legacy Imprint03,
-Free+US$88.80annual, historical receipts/test identities, FanPass and independent
-production data/recovery. Business/registration and physical-device work remain
-Owner-deferred. No customer or live-sales activation.
+Continue formal-release engineering, with original UI/Legacy Imprint03,
+Free+WebUS$88.80annual, historical receipts/test identities, FanPass and the
+independent production data/recovery. Owner completed AWS and Apple login;
+neither is a pending authorization. Business/registration and physical-device work
+remain Owner-deferred. Customer accounts/live sales remain closed.
 
-## Completed checkpoint
+## Completed checkpoints
 
-- Independent closed Web/native client preparation is committed as a83eab147b3810d23a7712cadf2f1eb179189c0d;
-  [CI10 passed](https://github.com/tantalum666/rillora/actions/runs/36147534791).
-  This supersedes the previous in-progress CI wording. Native and14-target monitor
-  evidence retains its original date; no native changes/tests in this increment.
-- Separate production Stripe SDK/adapter/configuration, annual purchase consent,
-  ledger/environment/ownership checks, signed webhook aliases and bounded retry
-  worker are implemented. Ordinary Web review/checkout/management/return UI reuses
-  the current design. [Commerce contract](production-commerce-20260926.md).
--233API tests/typecheck/build,89Web source tests plus7legal fixture tests,39infra
-  and21release guards pass. Local Chrome fixture verifies desktop/390px interactions.
-  Payment/consent/provider effects in these tests are synthetic only.
-- Closed RilloraProductionWeb update completes; seven actual host/API/negative-path
-  checks and Chrome billing-return closure pass. API task1/schema0070, IAM/vault,
-  provider objects, sales flags and Auth0 bindings were not changed.
+- Closed Web/native client preparation a83eab1 passes CI10. Production Web has
+  actual private origin/DNS/TLS/closed-route proof; native Release5/5 values and
+  isolated sessions were previously tested.14-target cloud monitoring and recovery
+  keep their original dates; do not rebuild or rerun them solely after compaction.
+- Production Stripe/annual consent/UI/ledger/verified-event retry source and tests
+  are complete for this engineering checkpoint. e38cd05e7/CI11 and final Family
+  display7cf75bb4a/[CI12](https://github.com/tantalum666/rillora/actions/runs/36164574920)
+  pass. Closed Web UPDATE_COMPLETE and seven exact-artifact/HTTP checks plus Chrome
+  closure pass. New0071–0073 are local-only; API task1/schema0070 and vault/IAM/provider
+  configuration remain unchanged. [Commerce](production-commerce-20260926.md).
+- Actual Apple portal is restored: Rillora6803957639, group22325627, annual and
+  monthly Prepare for Submission. Annual stillUSD68/eight test-matrix territories;
+  monthly zero territories. Both products now disallow multiseat and use App Store
+  only, matching one purchaser/household. No review, tax/agreements or price change.
+- Isolated production Apple verification and explicit signed-price version mapping
+  pass typecheck/build and242API tests, including18focused Apple checks. Synthetic
+  payload tests do not prove real Apple purchase/signature/restore. Production
+  snapshot/intake/notifications/native wiring is still incomplete.
+  [Apple contract](production-apple-20260926.md).
 
-- Current commerce engineering is committed/pushed as e38cd05e7278443bd05a223c09849d1f3411d4d9;
-  [CI11 passed](https://github.com/tantalum666/rillora/actions/runs/36163894825).
-  Prepared906source files have23reviewed non-secret matches and0unknown;
-  141Markdown files/1348local links have0missing targets.
-- Final Family catalog/display follow-up7cf75bb4ad4b3403a9932a2095edf2ad891ecdff
-  passes[CI12](https://github.com/tantalum666/rillora/actions/runs/36164574920).
-  Closed Web is UPDATE_COMPLETE with its matching artifact; seven final HTTP
-  checks and actual Chrome closed-return rendering pass.
+## Evidence and open decisions
 
-## Evidence and blockers
+[Commerce QA](../output/qa/rillora-production-commerce-20260925/work-state.json),
+[Apple QA](../output/qa/rillora-production-apple-20260926/work-state.json).
+Fresh Apple official CSV contains800USA points;88.80is absent, nearby88.00/88.90/88.99.
+Owner has been asked to choose, recommending88.90; no answer yet. Do not infer
+approval from time or silently change Web88.80. This is a concrete price decision,
+not another blanket engineering permission. Old v1 Sandbox mapping remains intact
+until reviewed replacement/legacy mapping is implemented.
 
-[QA](../output/qa/rillora-production-commerce-20260925/work-state.json).
-Migrations0071–0073 are local-only. Stripe Dashboard remains test context with
-business/payment activation incomplete in its setup guide; no live merchant API
-qualification, tax assessment, key/product/price or charge is claimed. Production
-commerce still needs scoped vault/IAM/provider configuration, API rollout, actual
-transactions/alerts and cross-channel/post-restore reconciliation.
-
-AWS renewal worked and fresh reads continue to pass. Latest SES check00:43+08
-September26:14configuration checks pass, productionAccessEnabledfalse/DENIED.
-The approved support follow-up was already sent; do not resend or re-ask approval.
-Auth0 staysFree, production connections off, existing test identities preserved.
-Owner has completed Apple login; the actual Rillora distribution page is verified.
-Continue the current product/price readback and production StoreKit implementation.
-Apple annual price choice remains unapproved;88.80was absent at the September19
-read, so recheck available points before making the current choice.
+Latest SES00:43+08 September26 still has14configuration passes and production access
+false/DENIED. The authorized support reply was already submitted; do not resend it.
+Auth0 Free/inactive production connections and current test identities are retained.
+Stripe merchant/market/tax/live configuration and actual transactions remain open.
+Apple Streamlined Purchasing was observed enabled; review out-of-app account
+binding before release. No setting change or successful Apple billing flow is claimed.
 
 ## Single next step
 
-Continue Apple production transaction handling and current price mapping using
-the restored portal. This source/CI checkpoint is complete.
-Keep the verified Stripe engineering boundary, complete its live configuration
-when merchant/market/tax facts are available, and merge the SES/identity checks
-when approval arrives. Retention/security, signed submission and deferred gates
-remain separate; no repeat of completed recovery/client setup.
+Use the pending Owner Apple annual-price choice to prepare and save the exact
+unsubmitted offer, then complete production Server API snapshot, versioned catalog/
+intake/notifications/retry and native purchase/restore/finish. Keep tests/production
+isolated and preserve historical receipts. Merge actual provider/identity/email,
+retention/security and final signed-submission acceptance as their prerequisites
+become available; no repeat of completed client/recovery work.
 
-[Previous handoff - HISTORICAL](handoff-history-20260926-before-commerce.md).
+[Previous handoff - HISTORICAL](handoff-history-20260926-before-apple.md).

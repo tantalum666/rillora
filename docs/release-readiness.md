@@ -4,6 +4,14 @@ Role: current launch scope, remaining work and release evidence contract
 Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; CUSTOMER ACCOUNTS AND SALES CLOSED
 Last updated: 2026-09-26 (Asia/Hong_Kong)
 
+## September26 Apple continuation
+
+Owner restored Apple administration. Strict production verification and versioned
+signed-price mapping are locally tested foundations, not a complete intake/runtime.
+Current official price table confirms88.80absent; the concrete annual choice is
+pending. Unsupported default multiseat purchase was disabled for both unsubmitted
+products, while monthly remains zero territories. [Apple contract](production-apple-20260926.md).
+
 ## September26 commerce engineering checkpoint
 
 Production Stripe source, independent purchase consent/UI, versioned vault loading,
@@ -37,7 +45,7 @@ retain their completed evidence; customer accounts and sales remain closed.
 | Identity and email | SES approval, restricted sender/Auth0 setup, Google production publication, controlled retirement of old test identity capabilities | Actual email/Google/Apple login, verification preserving invitations, password recovery and old-session behavior |
 | Final Web/iOS connections | Closed same-origin Web delivery and all five native Release values are verified; authenticated production workflows and final signed artifacts remain | Both production clients complete create/share/accept/revoke/delete against the independent production data |
 | Web annual purchase | Production source and local lifecycle pass; install live provider/vault/IAM/catalog configuration, deploy API/migrations and verify real purchase plus failure recovery | Current annual offer, payment/entitlement, cancellation/expiry/refund/restore and reconciliation |
-| Apple subscription | Verifier/Server API still use Sandbox; product mapping still uses v1; actual annual price alignment remains open | Versioned production handling plus real Sandbox/TestFlight purchase/restore/renewal/notifications, preserving historical receipts |
+| Apple subscription | Production verification/price-binding foundation passes locally; annual choice, production snapshots/intake/native wiring and actual purchase remain open. Existing Sandbox/v1 mapping is preserved | Versioned production handling plus real Sandbox/TestFlight purchase/restore/renewal/notifications, preserving historical receipts |
 | Final security and data operations | Retention cleanup/old manual snapshots, post-restore commerce reconciliation and final production security acceptance | Exact permissions, negative access, sensitive-action reauthentication, source/artifact/dependency checks and rollback evidence |
 | Submission and activation | Signed Release/TestFlight, final screenshots, privacy/age/encryption declarations and reviewer access | Complete submission package and actual review result, followed by the existing manual-release process |
 

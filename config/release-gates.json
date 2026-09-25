@@ -59,11 +59,14 @@
     },
     {
       "id": "apple-transactions",
-      "status": "open",
+      "status": "in_progress",
       "required": true,
       "title": "Apple actual purchase and restore",
-      "evidence": [],
-      "next": "Resolve the actual available annual price, bind current annual pricing while preserving old receipts, implement the production validation/notification path and verify actual Sandbox/TestFlight purchase/restore/renewal. Keep new monthly purchases retired."
+      "evidence": [
+        "docs/production-apple-20260926.md",
+        "output/qa/rillora-production-apple-20260926/work-state.json"
+      ],
+      "next": "Owner annual price choice is pending after fresh official table confirms88.80absent. Production verification/price-binding foundation is locally tested; complete actual offer/catalog, production Server API/intake/notifications/retry, native finish/restore and real lifecycle. Monthly remains retired; no customer activation."
     },
     {
       "id": "operations",

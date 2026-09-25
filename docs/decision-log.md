@@ -2573,3 +2573,17 @@ unreachable release remains a different closed workflow. See [sharing contract](
   request only the required本人login while independent closeout continues. SES still
   awaits production access; do not resubmit the already-authorized follow-up.
   [Contract](production-commerce-20260926.md).
+
+## 2026-09-26 - Apple production foundation and individual purchase boundary
+
+- Owner completes Apple management login. Fresh portal readback, not the old session,
+  restores actual Rillora access. Official800-point USA CSV confirms88.80absent;
+  ask the concrete annual choice without changing Web88.80 or saving an assumption.
+- Apple's new default multiseat setting does not match the locked household model.
+  Disable it on both unsubmitted products; actual readback shows App Store only,
+  multiseat not allowed, monthly still zero territories. Do not enable Family Sharing,
+  twelve-month monthly-payment contracts, new regions or submit for review.
+- Add separate strict production verification and reviewed signed-price binding
+  foundations. Preserve Sandbox and historical records; no production endpoint,
+  entitlement, real transaction, signed artifact or release follows from local tests.
+  [Contract](production-apple-20260926.md).

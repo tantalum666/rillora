@@ -7,12 +7,20 @@ Do not use for: claiming production identity, real recipient delivery, productio
 Status: CORE AND ACCOUNT-BOUND SHARING DEPLOYED TO SYNTHETIC STAGING; VERSIONED LEGAL GATE REQUIRED; STRIPE TEST LIFECYCLE VERIFIED; APPLE IAP DEPLOYMENT / REAL SANDBOX PURCHASE OPEN; ORDINARY ACCESS FREE; SALES / PRODUCTION ENTITLEMENTS / REAL SENSITIVE DATA CLOSED; EXPIRING VALIDATION ACCOUNTS ONLY  
 Last updated: 2026-09-26 (production commerce source/local tests; deployed histories remain dated)
 
+## September26 Apple verification foundation
+
+Strict production Apple signature/ownership and explicit signed-price binding
+modules now pass local typecheck/build and242API tests. They are isolated source
+foundations, not configured ordinary transaction endpoints. Existing Sandbox/v1
+mapping and production task1/schema0070 remain unchanged.
+[Apple contract](production-apple-20260926.md).
+
 ## September26 production commerce source checkpoint
 
 A separate production Stripe adapter, ordinary authenticated purchase/status/Portal
 routes, versioned purchase consent and bounded verified-inbox retry are implemented.
 Migrations0071–0073 are local-tested only; production task1/schema0070 and the test
-runtime keep their prior deployments. Latest API233 tests pass; source capability
+runtime keep their prior deployments. The commerce checkpoint passed233API tests; source capability
 is not configured live billing. [Focused contract](production-commerce-20260926.md).
 
 ## September17 current-session email proof — deployed checkpoint

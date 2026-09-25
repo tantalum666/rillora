@@ -170,6 +170,14 @@
       "endLine": 122,
       "sourceSpanSha256": "5ac97cca4bf92df008a80d90fabca84d976bccc691219fdbb0bbc591b963b6ae",
       "reason": "Prepared native public Auth0 production client identifier, verified against the approved public connection contract; not a client secret."
+    },
+    {
+      "path": "apps/api/tests/apple-production-verification.test.ts",
+      "rule": "generic-api-key",
+      "startLine": 7,
+      "endLine": 7,
+      "sourceSpanSha256": "cf31a4f46604f16e19283e4d12e3a3b7c3cd3d742409e8e09e17ddd236740af4",
+      "reason": "Synthetic appAccountToken UUID used for case-canonicalization unit tests; not an authentication credential or real customer identifier."
     }
   ]
 }

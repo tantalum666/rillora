@@ -2623,3 +2623,18 @@ launch prerequisites and historical authentication gates are not repeated approv
 - **Owner continuation**: Apple本人login is completed and the actual Rillora
   distribution page is verified. This supersedes the pending-login handoff;
   continue product/price readback and StoreKit production implementation.
+
+## 2026-09-26 - Restore Apple access and prepare production verification
+
+- **Goal/attempt**: Owner completes Apple login; read current subscription metadata
+  and download the official full price table while preparing production verification.
+- **Judgment changes**:88.80is actually absent from800USA points, so ask a concrete
+  nearest-price choice. Discover Apple newly defaults to multiseat purchase; narrow
+  both unsubmitted products to the supported single-purchaser App Store model.
+- **Result**: monthly remains zero territories; annual remains unpublishedUSD68/eight
+  test territories until price choice. Strict production binding and explicit signed
+  milliunit/date price mapping pass18focused checks and242full API tests/build.
+- **Unfinished**: tests use decoded fixtures, not real Apple signatures/purchases.
+  Price selection, production snapshots/intake/notifications/native finish/restore
+  and actual lifecycle remain open. Keep prior Web/Stripe/identity/merchant/recovery
+  gates separate. [QA](../../output/qa/rillora-production-apple-20260926/work-state.json).

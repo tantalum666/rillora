@@ -97,6 +97,8 @@ def source_inventory(root=ROOT):
         'stripeTestAdapterRejectsLiveObjects': 'rk_test_' in adapter and 'if (event.livemode)' in adapter,
         'stripeProductionAdapterSourcePresent': (root / 'apps/api/src/stripe-production-adapter.ts').is_file(),
         'productionPurchaseConsentSourcePresent': (root / 'config/purchase-consent.json').is_file(),
+        'appleProductionVerificationSourcePresent': (root / 'apps/api/src/apple-production-verification.ts').is_file(),
+        'appleProductionPriceBindingsSourcePresent': (root / 'apps/api/src/apple-price-bindings.ts').is_file(),
         'productionInfrastructureSourcePresent': (root / 'infra/aws/lib/rillora-production-stack.ts').is_file(),
         'note': 'Source inventory only. A present value/file does not prove deployment or release acceptance.',
     }
