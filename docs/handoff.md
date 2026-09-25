@@ -32,6 +32,10 @@ remain Owner-deferred. Customer accounts/live sales remain closed.
   payload tests do not prove real Apple purchase/signature/restore. Production
   snapshot/intake/notifications/native wiring is still incomplete.
   [Apple contract](production-apple-20260926.md).
+- Apple foundation15f6709f8f116dc6e3b5b381d07625b66b184362 is pushed and
+  [CI13 passes](https://github.com/tantalum666/rillora/actions/runs/36168352267).
+  912source files scan with24reviewed non-secret spans/0unknown;
+  143Markdown files/1363local links have0missing targets.
 
 ## Evidence and open decisions
 

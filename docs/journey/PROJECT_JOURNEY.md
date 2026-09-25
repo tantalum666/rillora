@@ -2638,3 +2638,9 @@ launch prerequisites and historical authentication gates are not repeated approv
   Price selection, production snapshots/intake/notifications/native finish/restore
   and actual lifecycle remain open. Keep prior Web/Stripe/identity/merchant/recovery
   gates separate. [QA](../../output/qa/rillora-production-apple-20260926/work-state.json).
+
+- **Closeout**: Apple foundation15f6709f8 is pushed and CI13 passes.912source files,
+  24reviewed non-secret spans/0unknown,143Markdown/1363local links/0missing.
+  The new exception is only a synthetic UUID test constant. Actual annual options
+  persist on re-open; the specific annual-price choice remains pending, with no
+  production intake, native purchase or submitted build claimed.

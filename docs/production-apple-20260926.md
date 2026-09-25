@@ -78,3 +78,11 @@ relabelled or deployed as production. Existing production API task1/schema0070,
 credentials, Auth0, sales flags and Owner-deferred business/device gates remain.
 [StoreKit contract](storekit.md), [release readiness](release-readiness.md),
 [current QA](../output/qa/rillora-production-apple-20260926/work-state.json).
+
+Source checkpoint15f6709f8f116dc6e3b5b381d07625b66b184362 is pushed to the private
+Rillora repository; [CI13 succeeds](https://github.com/tantalum666/rillora/actions/runs/36168352267).
+Prepared912source files have24reviewed non-secret spans/0unknown;143project Markdown
+files/1363local links have0missing. The additional reviewed span is a synthetic
+appAccountToken UUID in a unit test, never an authentication credential. Annual
+purchase options were re-opened and persisted as App Store only/no multiseat.
+The evidence-only closeout does not imply another deployment or real transaction.
