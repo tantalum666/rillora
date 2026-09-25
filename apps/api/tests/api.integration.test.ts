@@ -650,10 +650,10 @@ describe.sequential("Continuity API", () => {
         from app.commerce_prices p cross join (values
           ('qa_future_price', now() + interval '1 day', null::timestamptz),
           ('qa_expired_price', now() - interval '2 days', now() - interval '1 day')
-        ) x(code, starts, ends) where p.price_code = 'family_usd_annual_v3'`);
+        ) x(code, starts, ends) where p.price_code = 'family_usd_annual_v4'`);
       const future = await asDevelopmentPlanner(request(app).get("/v1/commerce/status?serviceMarketCode=GLOBAL_US")).expect(200);
       expect(future.body.offers.map((offer: { priceCode: string }) => offer.priceCode).sort())
-        .toEqual(["family_usd_annual_v3"]);
+        .toEqual(["family_usd_annual_v4"]);
       await pool.query("update app.commerce_prices set effective_from = now() - interval '1 hour' where price_code = 'qa_future_price'");
       const active = await asDevelopmentPlanner(request(app).get("/v1/commerce/status?serviceMarketCode=GLOBAL_US")).expect(200);
       expect(active.body.offers.find((offer: { billingInterval: string }) => offer.billingInterval === "annual"))
@@ -682,9 +682,9 @@ describe.sequential("Continuity API", () => {
     );
     expect(response.body.offers).toEqual(expect.arrayContaining([
       expect.objectContaining({
-        priceCode: "family_usd_annual_v3",
+        priceCode: "family_usd_annual_v4",
         planVersion: 2,
-        amountMinor: 8880,
+        amountMinor: 8899,
         currencyCode: "USD",
         billingInterval: "annual",
         status: "disabled_hypothesis",
@@ -701,6 +701,9 @@ describe.sequential("Continuity API", () => {
       `select price_code, amount_minor::text, status from app.commerce_prices
        where price_code in ('family_usd_monthly_v1','family_usd_annual_v1') order by price_code`,
     );
+    const replacedAnnual = await pool.query("select amount_minor::text,status from app.commerce_prices where price_code='family_usd_annual_v3'");
+    expect(replacedAnnual.rows).toEqual([{amount_minor:"8880",status:"retired"}]);
+    expect((await pool.query("select count(*)::int as count from app.commerce_prices where price_code='family_usd_monthly_v4'")).rows[0].count).toBe(0);
     expect(historicalPrices.rows).toEqual([
       { price_code: "family_usd_annual_v1", amount_minor: "9900", status: "test_only" },
       { price_code: "family_usd_monthly_v1", amount_minor: "999", status: "retired" },
@@ -760,6 +763,12 @@ describe.sequential("Continuity API", () => {
       },
       {
         external_product_reference: "price_1UHMlhCxTlowhyiGvBEPdb4x",
+        external_parent_product_reference: "prod_V6O8lAFbTCDmKd",
+        provider_account_reference: "acct_1U6B2RCxTlowhyiG",
+        status: "test_only",
+      },
+      {
+        external_product_reference: "price_1UJe38CxTlowhyiGdx5ypIKJ",
         external_parent_product_reference: "prod_V6O8lAFbTCDmKd",
         provider_account_reference: "acct_1U6B2RCxTlowhyiG",
         status: "test_only",

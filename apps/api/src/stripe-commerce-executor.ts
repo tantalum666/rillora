@@ -652,7 +652,7 @@ async function reserveCheckout(
        where o.commerce_account_id=$1 and p.provider_code='stripe' and p.provider_environment='${environment}'
          and p.status in ('created','submitted') and o.status in ('created','pending') order by p.id desc limit 1`,[accountRow.id]);
     if (pending.rows[0]) {
-      if (pending.rows[0].price_id !== catalogRow.price_id) throw new ApiError(409, "unfinished_checkout", "Cancel the unfinished checkout before choosing a different billing period.");
+      if (pending.rows[0].price_id !== catalogRow.price_id) throw new ApiError(409, "unfinished_checkout", "Close the unfinished checkout before reviewing the current subscription price.");
       existing = pending;
     }
   }

@@ -9,10 +9,17 @@ Last updated: 2026-09-26 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
 
+## 2026-09-26 Web price88.99 — Owner locked
+
+Owner changes the website annual price toUS$88.99. Use immutable price-v4 with
+8899cents and Family capability-v2; preserve old amounts/receipts and annual-only
+new sales. This is Web only, not approval of Apple parity. Apple channel-price
+resolution remains separate. [Current price contract](pricing-88-99-20260926.md).
+
 ## 2026-09-26 Channel pricing correction
 
 Owner reminds that Apple and Web pricing should differ by payment channel. Resume
-that cost-based direction with WebUS$88.80 and the prior conditional Apple99.99/
+that cost-based direction (Web nowUS$88.99 after the later same-day Owner change) and the prior conditional Apple99.99/
 119.99 candidates after actual fee validation. Withdraw the later88.90/88.99/88.00
 near-parity recommendation/question. Same Family entitlement works across clients;
 exact Apple price and provider activation remain unapproved/unapplied.
@@ -241,7 +248,7 @@ Owner于2026-09-09明确：“本项目全部默认授权与确认”。当前�
 - 用户可以逐项指定接收人和意愿；“全部给一个人”不是强制默认值。
 - 外部平台的删除、转移和访问结果只能按其官方规则描述，不能保证。
 - 产品本身必须支持可导出、迁移和退出计划，避免用户被一家公司的寿命永久绑定。
-- Owner于2026-09-21取消新月付；仅永久Free与US$88.80年付Family。历史9.99／7.99月付价格、已购账期与收据保留，不静默迁为年付。Apple年价按Owner September26重申的渠道差异方向推进；99.99／119.99为15%／30%佣金情景的候选，具体金额及生效费率仍待核实/落定，88.90等近同价建议已撤回。Owner明确不招人，功能优先自助、运营优先有界自动化；未来功能和服务迁移完整规划、按证据分期，不默认无限AI或人工代办。收费可用性、市场需求及持续自动化必须分别验证。
+- Owner于2026-09-21取消新月付；仅永久Free与年付Family；Owner于September26把Web新购年费改为US$88.99。历史9.99／7.99月付价格、已购账期与收据保留，不静默迁为年付。Apple年价按Owner September26重申的渠道差异方向推进；99.99／119.99为15%／30%佣金情景的候选，具体金额及生效费率仍待核实/落定，88.90等近同价建议已撤回。Owner明确不招人，功能优先自助、运营优先有界自动化；未来功能和服务迁移完整规划、按证据分期，不默认无限AI或人工代办。收费可用性、市场需求及持续自动化必须分别验证。
 - MVP核心数据和流程保持链下可更正、可撤销和可删除；区块链不承载个人数据、密文、可关联哈希、身份、申请或释放逻辑。
 
 - Owner于2026-09-11要求账户入口统一`Sign in / Sign up`；访客只可打开收到的邀请，创建／发送邀请需登录，新接收人注册后返回继续明确接受。去除登录后的`Opening Rillora`中转、Profile中的消费者模拟／重复角色演练与动机卡片。事项采用单页分类表单，必填定位信息由三端共同校验，每类保留末尾可选Notes；Crypto区分交易所和链上公开钱包定位。具体以[当前录入合同](account-matter-ux.md)为准。
@@ -281,10 +288,10 @@ Owner于2026-09-09明确：“本项目全部默认授权与确认”。当前�
 | 免费／付费边界、套餐、月年付、试用、退款或订阅生命周期 | `docs/monetization.md` | 商业化与权益合同；价格仍待市场验证 |
 | Family共同复核、接收人问题反馈、建议审批、修正历史或复核计划 | `docs/family-maintenance.md` | 已实现的共同维护预览与证据；不是收费或真实通知证明 |
 | 单位经济、毛利、LTV/CAC、成本分配、现金跑道、融资或收购尽调准备 | `docs/unit-economics.md` | 财务模型与证据合同；不是融资建议或市场结果 |
-| 88.80年付、新月付停售、历史收据或价格修订 | `docs/pricing-88-80-20260919.md` | 当前报价与历史金额；渠道价不可从建议推定 |
+| Web88.99年付、新月付停售、历史收据或价格修订 | `docs/pricing-88-99-20260926.md` | 当前Web报价；Apple渠道价分开决定；保留历史金额 |
 | September21年付实施、Logo全入口核查、100用户容量 | `docs/annual-brand-capacity-20260921.md` | 当前部署、provider回读、容量实测及未完成品牌位置 |
 | 自助、运营／安全／支持／营销自动化、全部功能分期或供应商迁移 | `docs/solo-operations-and-portability.md` | 当前单人经营与迁移合同；planned不等于持续运行 |
-| 历史49–88价格敏感性 | `docs/pricing-band-20260910.md` | HISTORICAL研究；当前新价由September19的88.80／9.99合同管理 |
+| 历史49–88价格敏感性 | `docs/pricing-band-20260910.md` | HISTORICAL研究；当前Web新价由September26的88.99合同管理 |
 | 个人身份首发、运营主体、首发地区、个人收款、公开法律身份或未来转公司 | `docs/individual-operator-launch-plan.md` | 个人运营与公司迁移合同；不是法律／税务意见或发布批准 |
 | Global／中国大陆分区、香港个人经营路径、Stripe／Paddle或支持邮箱 | `docs/global-mainland-commerce-plan.md` | 地区与商业运营聚焦合同；不授权注册主体、收款、报批或发布 |
 | iOS外部支付、美国Stripe路径、Storefront路由、Reader／服务例外或App Review风险 | `docs/ios-external-payment-research.md` | iOS支付聚焦合同；不等于Apple预先批准或收费授权 |

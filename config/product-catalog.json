@@ -1,17 +1,36 @@
 {
-  "schemaVersion":1,
-  "decisionVersion":"2026-09-21-owner-annual-only",
-  "product":"Rillora Family",
-  "planCode":"family",
-  "planVersion":2,
-  "serviceMarket":"GLOBAL_US",
-  "currency":"USD",
-  "annual":{"priceCode":"family_usd_annual_v3","amountMinor":8880,"decision":"owner_locked"},
-  "availableBillingIntervals":["annual"],
-  "monthly":{"priceCode":"family_usd_monthly_v3","amountMinor":999,"decision":"retired_for_new_purchase","historicalOnly":true},
-  "commercialStatus":"disabled_hypothesis",
-  "billingEnabled":false,
-  "evidence":"Owner explicitly retired new monthly purchases on September21. Annual remains US$88.80; historical monthly records retain their original terms. No channel-price change or live billing activation is implied.",
-  "historicalPriceCodes":["family_usd_annual_v1","family_usd_monthly_v1","family_usd_annual_v2","family_usd_monthly_v2"],
-  "capabilityPolicy":"Server-owned immutable plan versions; per-recipient privacy remains baseline; no price callback grants access"
+  "schemaVersion": 1,
+  "decisionVersion": "2026-09-26-owner-web-88-99",
+  "product": "Rillora Family",
+  "planCode": "family",
+  "planVersion": 2,
+  "serviceMarket": "GLOBAL_US",
+  "currency": "USD",
+  "annual": {
+    "priceCode": "family_usd_annual_v4",
+    "amountMinor": 8899,
+    "decision": "owner_locked",
+    "channel": "web"
+  },
+  "availableBillingIntervals": [
+    "annual"
+  ],
+  "monthly": {
+    "priceCode": "family_usd_monthly_v3",
+    "amountMinor": 999,
+    "decision": "retired_for_new_purchase",
+    "historicalOnly": true
+  },
+  "commercialStatus": "disabled_hypothesis",
+  "billingEnabled": false,
+  "evidence": "Owner selected Web US$88.99/year on September26. New monthly sales remain retired; historical prices/receipts retain their original terms. Apple channel differentiation remains separate; live billing stays closed.",
+  "historicalPriceCodes": [
+    "family_usd_annual_v1",
+    "family_usd_monthly_v1",
+    "family_usd_annual_v2",
+    "family_usd_monthly_v2",
+    "family_usd_annual_v3",
+    "family_usd_monthly_v3"
+  ],
+  "capabilityPolicy": "Server-owned immutable plan versions; per-recipient privacy remains baseline; no price callback grants access"
 }

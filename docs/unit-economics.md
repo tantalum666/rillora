@@ -1,8 +1,16 @@
 # Rillora 分阶段单位经济与毛利合同
 
 Role: current sector benchmark, stage economics and cost-allocation authority  
-Status: STAGED COST FOUNDATION; CURRENT NEW OFFER US$88.80 / YEAR ONLY; SALES CLOSED
-Last updated: 2026-09-24 (AWS usage/commitment comparison; historical financial models retained)
+Status: STAGED COST FOUNDATION; CURRENT WEB OFFER US$88.99 / YEAR ONLY; APPLE SEPARATE; SALES CLOSED
+Last updated: 2026-09-26 (Web quote update only; historical financial models retained)
+
+## September26 Web quote update, historical models retained
+
+Owner changes Web toUS$88.99/year. [Current price](pricing-88-99-20260926.md) supersedes
+88.80for new Web quotes; Apple remains a separate channel decision. The19cent
+sticker-price change is not a recalculation of the full model or actual margin.
+All dated88.80/9.99and earlier spreadsheets/scenarios below retain their inputs.
+New monthly purchases remain retired.
 
 ## September24 actual cloud costs and commitment comparison
 
@@ -33,9 +41,9 @@ Rillora按**面向家庭的垂直订阅软件（Consumer SaaS）**经营，应�
 
 Owner最新要求按阶段和人数重算，认为早期固定成本与人工客服／获客假设过重。本轮取代上一版统一固定费用和人工配额的经营假设；保留成本定义、免费底线、取消权利和真实证据边界。**2,350户是旧模型支持全职经营者收入的情景，不是项目启动或覆盖服务器的门槛。**
 
-历史阶段目标：新增用户的边际贡献率约80%；逐步形成**75–85%的完整软件毛利率**。Owner较晚希望80–90%，当前金额与条件以88.80／9.99合同为准。75%是本项目初期可重复经营的观察线，80%左右为目标，不是行业强制标准。极少用户时固定成本未摊薄，可低于50%；达到数百至上千付费户后仍长期低于50%，必须检查渠道、产品服务负担和运营设计，不能以此作为正常目标。
+历史阶段目标：新增用户的边际贡献率约80%；逐步形成**75–85%的完整软件毛利率**。Owner较晚希望80–90%，当前Web新购88.99、Apple分渠道及年付-only条件以当前价格合同为准。75%是本项目初期可重复经营的观察线，80%左右为目标，不是行业强制标准。极少用户时固定成本未摊薄，可低于50%；达到数百至上千付费户后仍长期低于50%，必须检查渠道、产品服务负担和运营设计，不能以此作为正常目标。
 
-本阶段检查点沿用US$49/年作为比较基准；旧6.99月价与其配对，仅属此前候选。最新88.80/9.99见上节当前价格合同，需求仍未验证。以下表只计算完整年付家庭，不将月付自动当成12个月收入，也未开放套餐或收费。
+本阶段检查点沿用US$49/年作为比较基准；旧6.99月价与其配对，仅属此前候选。当前Web88.99及渠道差异见上节当前价格合同，需求仍未验证。以下表只计算完整年付家庭，不将月付自动当成12个月收入，也未开放套餐或收费。
 
 阶段成本基础可编辑模型：[Rillora_Staged_Economics.xlsx](../output/finance/rillora-staged-economics-20260910/Rillora_Staged_Economics.xlsx)。一个情景选择器控制AI优先／低自动化两套输入，六个阶段独立设置现金和工时预算；结果、毛利和图表均由公式计算。
 

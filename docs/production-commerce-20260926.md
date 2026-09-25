@@ -4,10 +4,17 @@ Role: focused ordinary Web purchase, consent and provider-isolation contract
 Status: SOURCE AND LOCAL LIFECYCLE VERIFIED; CLOSED WEB DEPLOYED; LIVE BILLING NOT CONFIGURED
 Last updated: 2026-09-26 (Asia/Hong_Kong)
 
-Owner asks to complete release engineering. Keep Free plus US$88.80 annual Family,
+Owner asks to complete release engineering. Keep Free plus WebUS$88.99 annual Family,
 current UI/brand, historical receipts, test identities and FanPass. This increment
 prepares an ordinary production path; it does not open sales or complete the
 Owner-deferred merchant/business facts. Apple remains a separate workstream.
+
+## September26 Web price revision
+
+The later Owner decision changes the current Web offer to88.99, price-v4 with
+8899cents and a new purchase-consent version. Earlier implementation/CI evidence
+below retains its original price/checkpoint date. Current rollout and preserved
+v3 receipts are tracked in[the88.99contract](pricing-88-99-20260926.md).
 
 ## Provider and configuration boundary
 
@@ -30,7 +37,7 @@ Before a new checkout, check market/operator/storefront/route/plan/product statu
 effective dates, production entitlement enablement, exact account and merchant
 charges/payouts readiness. The Web route is web_direct; stripe_web_external is the
 separate iOS route. The provider must confirm an active live Product and its
-recorded tax code, exact annualUSD8880 licensed/per-unit Price, explicit tax
+recorded tax code, exact annualUSD8899 licensed/per-unit Price, explicit tax
 behavior, one item and quantity one. No new monthly purchase, trial, promotion
 code, adaptive pricing or client-supplied price/provider identity is accepted.
 

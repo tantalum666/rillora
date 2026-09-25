@@ -18,6 +18,7 @@ import type {
 
 const maximumWebhookBytes = 256 * 1024;
 const historicalFamilyPrices = Object.freeze({ monthly: "price_1U6BMoCxTlowhyiG7qsmBrdY", annual: "price_1U6BMnCxTlowhyiGJEC1w596" });
+const v3FamilyPrices = Object.freeze({ monthly: "price_1UHMlhCxTlowhyiGvBEPdb4x", annual: "price_1UHMkTCxTlowhyiGu3do5wps" });
 const previousFamilyPrices = Object.freeze({ monthly: "price_1UGKadCxTlowhyiGJ0bnY9Kn", annual: "price_1UGKXlCxTlowhyiGVLKAkfl1" });
 
 export type StripeBillingPeriod = "monthly" | "annual";
@@ -180,6 +181,7 @@ export class StripeTestAdapter {
   }
 
   async assertCheckoutReady(billingPeriod: StripeBillingPeriod): Promise<void> {
+    if (familyPriceVersion(this.config) === 4 && billingPeriod !== "annual") throw new ApiError(409, "billing_period_unavailable", "Rillora Family is available as an annual subscription.");
     let price: Stripe.Price;
     try { price = await this.stripe.retrievePrice(this.config.familyPriceIds[billingPeriod]); }
     catch { throw new ApiError(503, "checkout_setup_unavailable", "Checkout is temporarily unavailable. Please try again later."); }
@@ -304,6 +306,8 @@ export class StripeTestAdapter {
       familyPlanVersion: 1, familyPriceVersion: 1, familyPriceIds: historicalFamilyPrices });
     if (familyPriceVersion(this.config) > 2) candidates.push({ ...this.config,
       familyPlanVersion: 2, familyPriceVersion: 2, familyPriceIds: previousFamilyPrices });
+    if (familyPriceVersion(this.config) > 3) candidates.push({ ...this.config,
+      familyPlanVersion: 2, familyPriceVersion: 3, familyPriceIds: v3FamilyPrices });
     const subscriptionConfig = candidates.find(candidate =>
       Object.values(candidate.familyPriceIds).includes(item.price.id)
       && subscription.metadata.rillora_plan_version === `family-v${candidate.familyPlanVersion ?? 1}`);
@@ -375,24 +379,27 @@ export class StripeTestAdapter {
 
 function familyPriceVersion(config: Pick<StripeTestConfig, "familyPlanVersion" | "familyPriceVersion">): number {
   const version = config.familyPriceVersion ?? config.familyPlanVersion ?? 1;
-  if (![1, 2, 3].includes(version)) throw new Error("Unknown Rillora price version");
+  if (![1, 2, 3, 4].includes(version)) throw new Error("Unknown Rillora price version");
   return version;
 }
 export function stripeFamilyPriceCode(config: Pick<StripeTestConfig, "familyPlanVersion" | "familyPriceVersion">, period: StripeBillingPeriod): string {
-  return `family_usd_${period}_v${familyPriceVersion(config)}`;
+  const version = familyPriceVersion(config);
+  return `family_usd_${period}_v${version === 4 && period === "monthly" ? 3 : version}`;
 }
 export function stripeSnapshotPriceId(config: StripeTestConfig, priceCode: string): string | null {
   for (const period of ["monthly", "annual"] as const) {
     if (priceCode === stripeFamilyPriceCode(config, period)) return config.familyPriceIds[period];
     if (familyPriceVersion(config) > 1 && priceCode === `family_usd_${period}_v1`) return historicalFamilyPrices[period];
     if (familyPriceVersion(config) > 2 && priceCode === `family_usd_${period}_v2`) return previousFamilyPrices[period];
+    if (familyPriceVersion(config) > 3 && priceCode === `family_usd_${period}_v3`) return v3FamilyPrices[period];
   }
   return null;
 }
 
 function assertConfiguredPrice(price: Stripe.Price, config: StripeTestConfig, period: StripeBillingPeriod, newPurchase = true): void {
   const version = familyPriceVersion(config);
-  const expected = version === 3 ? (period === "annual" ? 8880 : 999)
+  const expected = version === 4 ? (period === "annual" ? 8899 : 999)
+    : version === 3 ? (period === "annual" ? 8880 : 999)
     : version === 2 ? (period === "annual" ? 6800 : 799) : (period === "annual" ? 9900 : 999);
   if (price.livemode || (newPurchase && !price.active) || price.id !== config.familyPriceIds[period]
     || stripeObjectReference(price.product) !== config.familyProductId || price.currency !== "usd"

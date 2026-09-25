@@ -94,32 +94,32 @@
     {
       "path": "apps/api/tests/stripe-test-adapter.test.ts",
       "rule": "generic-api-key",
-      "startLine": 41,
-      "endLine": 41,
+      "startLine": 61,
+      "endLine": 61,
       "sourceSpanSha256": "b92144ecd3bf8487f54e16d850c8d0dcf2174abc68eacfa992fa1626e087afbb",
       "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
     },
     {
       "path": "apps/api/tests/stripe-test-adapter.test.ts",
       "rule": "generic-api-key",
-      "startLine": 50,
-      "endLine": 50,
+      "startLine": 70,
+      "endLine": 70,
       "sourceSpanSha256": "83506ceedc161224946187efce800dccc3291b89496ea4924a3c52d2a7676d68",
       "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
     },
     {
       "path": "apps/api/tests/stripe-test-adapter.test.ts",
       "rule": "generic-api-key",
-      "startLine": 86,
-      "endLine": 86,
+      "startLine": 106,
+      "endLine": 106,
       "sourceSpanSha256": "0ad9f2078dfe4d8301e88be7b1c330340c3f0be7b37de119e1397c65d86dc7e8",
       "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
     },
     {
       "path": "apps/api/tests/stripe-test-adapter.test.ts",
       "rule": "generic-api-key",
-      "startLine": 235,
-      "endLine": 235,
+      "startLine": 255,
+      "endLine": 255,
       "sourceSpanSha256": "d02373759be8c4995727dae55f5eaa18b52bbb265db284f491ad47349c043cf1",
       "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
     },
@@ -178,6 +178,14 @@
       "endLine": 7,
       "sourceSpanSha256": "cf31a4f46604f16e19283e4d12e3a3b7c3cd3d742409e8e09e17ddd236740af4",
       "reason": "Synthetic appAccountToken UUID used for case-canonicalization unit tests; not an authentication credential or real customer identifier."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/api/tests/stripe-test-adapter.test.ts",
+      "startLine": 36,
+      "endLine": 36,
+      "sourceSpanSha256": "3bb1fdb73b658bf09aeca4d126a6e41d5dd64eeb782884e0d91571547915ee71",
+      "reason": "Fixed idempotency-key string in a synthetic price-v4 test; no authentication capability or real account secret."
     }
   ]
 }

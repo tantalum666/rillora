@@ -19,7 +19,7 @@ Sharing remains off; it must not be confused with Rillora recipient permissions.
 
 The official CSV contains800USA points.88.80is absent, but this is not the pricing
 objective: Owner has reaffirmed channel differentiation. The agent's88.90/88.99/
-88.00near-parity recommendation and question are withdrawn. Web stays88.80; prior
+88.00near-parity recommendation and question are withdrawn. Web is now88.99after the subsequent Owner website-only decision; prior
 Apple candidates are99.99if15%is approved/effective, or119.99under the standard30%
 scenario. Both candidate points are confirmed in the downloaded official table.
 Exact amount and effective fee remain open; no new price has been saved.

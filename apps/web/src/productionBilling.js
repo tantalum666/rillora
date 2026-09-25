@@ -1,4 +1,8 @@
+import { formatMoneyMinor } from './commercialAccess.js';
 import contract from '../../../config/purchase-consent.json' with { type: 'json' };
+
+export const webAnnualOffer = Object.freeze({priceCode:contract.priceCode,amountMinor:contract.amountMinor,currency:contract.currency,billingPeriod:contract.billingPeriod});
+export const webAnnualPriceLabel = 'US' + formatMoneyMinor(contract.amountMinor, contract.currency, 2) + '/year';
 
 const contractKeys = ['version', 'provider', 'priceCode', 'amountMinor', 'currency', 'billingPeriod', 'termsVersion', 'subscriptionTermsVersion', 'refundPolicyVersion', 'legalBundleSha256'];
 export function purchaseQuote(payload) {

@@ -2659,3 +2659,26 @@ launch prerequisites and historical authentication gates are not repeated approv
   enrollment page do not verify effective15%SBP membership.
 - **Remaining**: actual fee qualification, exact Apple offer and production commerce
   continuation. No enrollment, price, code or runtime changed; no test suite rerun.
+
+## 2026-09-26 — Implement the Owner's Web88.99 annual price
+
+- **Goal**: apply the exact website price without losing Apple channel differentiation,
+  annual-only sales or historical payment terms.
+- **Attempt**: introduce immutable price-v4 and new consent; derive UI amounts from
+  the contract, create/read back Stripe's isolated TEST Price, retire v3, then migrate
+  existing staging and deploy API/Web plus the separate closed production Web.
+- **Judgment changes**: an independent display assertion catches8889instead of8899
+  in the unpublished draft before cloud migration; correct it and recreate only
+  explicitly disposable localhost fixtures. ECS rejects an oversized override;
+  compress the module and reconcile the rejected token with existing read-only
+  access before one accepted migration. No extra IAM rights or test assertions are
+  weakened. An initial readiness probe used the wrong Web path; use the actual
+  staging API-origin endpoint and retain the failed probe as setup evidence.
+- **Result**:244API/89Web/39infra checks and builds pass. Actual newPrice88.99/year
+  and old88.80archive are read back;0068–0075 commit, API38 ishealthy1/1. Four
+  staging and seven closed-production HTTP/artifact checks pass; browser confirms
+  the new fixture price/consent gating and actual production account closure.
+- **Remaining**: source/CI closeout is recorded separately in the current QA. No real
+  purchase, production API migration, Apple price, identity/mail activation, new
+  native or physical-device result. Continue the prior Apple release work after
+  this bounded price revision. [QA](../../output/qa/rillora-web-price-88-99-20260926/work-state.json).

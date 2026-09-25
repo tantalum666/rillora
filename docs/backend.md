@@ -5,7 +5,21 @@ Authority scope: API, PostgreSQL model, runtime security controls and production
 Superseded by: later reviewed backend decision recorded in `docs/decision-log.md`  
 Do not use for: claiming production identity, real recipient delivery, production end-to-end encryption, legal validity or real release  
 Status: CORE AND ACCOUNT-BOUND SHARING DEPLOYED TO SYNTHETIC STAGING; VERSIONED LEGAL GATE REQUIRED; STRIPE TEST LIFECYCLE VERIFIED; APPLE IAP DEPLOYMENT / REAL SANDBOX PURCHASE OPEN; ORDINARY ACCESS FREE; SALES / PRODUCTION ENTITLEMENTS / REAL SENSITIVE DATA CLOSED; EXPIRING VALIDATION ACCOUNTS ONLY  
-Last updated: 2026-09-26 (production commerce source/local tests; deployed histories remain dated)
+Last updated: 2026-09-26 (Web price-v4 staged; production API unchanged)
+
+## September26 Web price-v4 staging checkpoint
+
+Owner selects WebUSD88.99/year: new immutable8899-cent price-v4, Family-v2,
+annual-only new sales and separate Apple pricing. Staging now applies0068–0075
+with exact checksums; API38/migration31 runs regularFargate1/1, HEALTHY/COMPLETED.
+Current TEST Price and encrypted runtime configuration are read back. Historical
+v3 remains8880/retired; no old receipt or customer data is rewritten. Recovery
+journal remains opt-in without new staging DynamoDB/IAM/backfill access.
+
+244API tests/typecheck/build pass. Production API task1/schema0070 remains at the
+prior closed checkpoint; only its separate Web artifact is updated. The earlier
+same-day source-only statements below describe their original checkpoint, not
+current staging. [Price contract](pricing-88-99-20260926.md).
 
 ## September26 Apple verification foundation
 

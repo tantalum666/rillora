@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import contract from '../../../config/purchase-consent.json' with { type: 'json' };
-import { purchaseQuote, purchaseProof, productionBillingDestination, productionBillingStatus } from '../src/productionBilling.js';
+import { purchaseQuote, purchaseProof, productionBillingDestination, productionBillingStatus, webAnnualPriceLabel } from '../src/productionBilling.js';
 import { createApiClient } from '../src/api.js';
 import { authenticationReturnPath } from '../src/publicIntent.js';
 import { readWorkspaceRoute, workspaceURL } from '../src/workspaceNavigation.js';
@@ -13,10 +13,11 @@ test('purchase consent is current, annual, separate and never inferred from an u
   assert.throws(() => purchaseProof(current, false));
   assert.throws(() => purchaseProof(current, undefined));
   assert.equal(purchaseProof(current, true).acceptedAnnualRenewal, true);
-  for (const mutation of [{amountMinor:6800},{billingPeriod:'monthly'},{legalBundleSha256:'changed'},{termsVersion:'old'}]) {
+  for (const mutation of [{amountMinor:6800},{amountMinor:8880},{version:"family-annual-web-20260925-1"},{billingPeriod:'monthly'},{legalBundleSha256:'changed'},{termsVersion:'old'}]) {
     assert.throws(() => purchaseQuote({...quote,purchaseConsent:{...contract,...mutation}}));
   }
-  assert.equal(purchaseProof(current,true).amountMinor,8880);
+  assert.equal(purchaseProof(current,true).amountMinor,8899);
+  assert.equal(webAnnualPriceLabel,"US$88.99/year");
   assert.equal('label' in purchaseProof(current,true),false);
 });
 test('billing redirects require production response, provider host and server entitlement boundary', () => {

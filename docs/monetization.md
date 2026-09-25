@@ -4,9 +4,16 @@ Role: canonical commercialization, packaging and subscription-lifecycle contract
 Authority scope: free/paid boundary, launch offer, future tier architecture, billing periods, trials, refunds and safe downgrade  
 Superseded by: later Owner decision recorded in `docs/decision-log.md`  
 Do not use for: proof of willingness to pay, legal/tax advice, current implementation, App Store approval or payment-provider selection  
-Status: FREE / SINGLE ANNUAL FAMILY88.80 LOCKED; NEW MONTHLY RETIRED; FREE1 / FAMILY5 AND HISTORICAL RECEIPTS PRESERVED; ORDINARY SALES CLOSED  
-Last updated: 2026-09-21 (annual-only implementation and provider retirement)
+Status: FREE / SINGLE ANNUAL FAMILY; WEB88.99 LOCKED; APPLE DIFFERENTIATED; NEW MONTHLY RETIRED; FREE1 / FAMILY5 AND HISTORICAL RECEIPTS PRESERVED; ORDINARY SALES CLOSED
+Last updated: 2026-09-26 (Owner Web88.99; annual-only and channel separation preserved)
 
+
+## September26 current Web quote
+
+Owner sets WebUS$88.99/year, price-v4 and capability-v2. Historical prices and
+monthly rights remain, while new monthly purchases stay retired. Apple remains
+cost-based channel differentiation; the withdrawn near-parity question is not
+revived by the Web price change. [Current price](pricing-88-99-20260926.md).
 
 ## September21 annual-only decision — supersedes the earlier recommendation state
 
@@ -64,7 +71,7 @@ fixed-cost dilution and owner cash draw are separate. Base1,000 annual household
 now model76.0% gross margin, or80.7% only under a genuinely approved15% Apple rate.
 The90% AI resolution assumption still needs validation. The earlier2,350-household
 full-time case is historical, not a launch threshold. These49-price results are
-the prior stage reference; the historical79/88 comparison was followed by68 and then the current Owner-selected88.80 annual price.
+the prior stage reference; the historical79/88 comparison was followed by68 and then88.80and the current Web88.99annual price.
 Use [current stage economics](unit-economics.md), not the earlier flat-cost outputs.
 
 The two reports answered different layers of the same decision:
@@ -226,7 +233,7 @@ The launch recommendation is **not** to imitate three-item paywalls. Text Matter
 | --- | --- | ---: | --- |
 | Rillora Free | Visible | US$0 | Complete lightweight map, one trusted-person path, sharing previews, official guides, basic export and all baseline trust controls |
 | Rillora Family monthly | Retired for new purchase | Historical9.99/7.99 amounts preserved | Existing paid terms, restoration and reconciliation remain supported |
-| Rillora Family annual | Visible when billing opens; full annual amount | Owner-selected US$88.80/year | Current Family capabilities; no hidden introductory renewal |
+| Rillora Family annual | Visible when billing opens; full annual amount | Owner-selected WebUS$88.99/year; Apple separate | Current Family capabilities; no hidden introductory renewal |
 | Personal | Hidden/dormant | No active price | No additional launch tier; US$49/59/69 are comparisons for the same Family scope |
 | Human setup/review | Hidden/dormant add-on | No active price; historical research only under no-hiring scope | No launch commitment, hiring or hidden human service inside Family |
 
@@ -322,14 +329,14 @@ No billing state can create a death, incapacity or unreachable claim, advance a 
 ### Launch recommendation
 
 - offer only annual for new purchase; remove monthly switches and alternate new-purchase entry points;
-- displayUS$88.80 charged each year, with any7.40 monthly equivalent secondary;
+- displayWebUS$88.99 charged each year, with any7.42 monthly equivalent secondary; Apple shows its actual channel price;
 - preserve historical receipts and management; never silently convert an existing monthly subscription;
 - do not preselect or visually disguise auto-renewal;
 - send Rillora's own annual reminders before renewal where the storefront permits it;
 - let users turn off renewal self-service without contacting support;
 - paid access continues through the paid term after cancellation.
 
-The annual-only offer keeps a single self-service scope. Historical monthly cancellation remains normal use; preserve the paid term and apply the safe cutoff contract at actual expiry. Removing monthly does not validate annual conversion or renewal. [Current price and assumptions](pricing-88-80-20260919.md).
+The annual-only offer keeps a single self-service scope. Historical monthly cancellation remains normal use; preserve the paid term and apply the safe cutoff contract at actual expiry. Removing monthly does not validate annual conversion or renewal. [Current price and assumptions](pricing-88-99-20260926.md).
 
 ## Paid-Ready Public Release — LOCKED Sequence
 

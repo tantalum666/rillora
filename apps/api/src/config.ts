@@ -69,7 +69,7 @@ const configSchema = z
     STRIPE_EXPECTED_ACCOUNT_ID: z.string().regex(/^acct_[A-Za-z0-9]+$/).optional(),
     STRIPE_FAMILY_PRODUCT_ID: z.string().regex(/^prod_[A-Za-z0-9]+$/).optional(),
     STRIPE_FAMILY_PLAN_VERSION: z.coerce.number().int().min(1).max(2).default(1),
-    STRIPE_FAMILY_PRICE_VERSION: z.coerce.number().int().min(1).max(3).optional(),
+    STRIPE_FAMILY_PRICE_VERSION: z.coerce.number().int().min(1).max(4).optional(),
     STRIPE_FAMILY_MONTHLY_PRICE_ID: z.string().regex(/^price_[A-Za-z0-9]+$/).optional(),
     STRIPE_FAMILY_ANNUAL_PRICE_ID: z.string().regex(/^price_[A-Za-z0-9]+$/).optional(),
     STRIPE_CHECKOUT_SUCCESS_URL: optionalUrl,

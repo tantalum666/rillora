@@ -2601,3 +2601,18 @@ unreachable release remains a different closed workflow. See [sharing contract](
 - Correct the live handoff/specs/register before continuing, retain old passages
   only as historical evidence, and do not ask Owner to answer the withdrawn question.
   No new application tests or deployment; retain CI13's dated foundation result.
+
+## 2026-09-26 — Owner selects Web US$88.99/year
+
+- Status: LOCKED. Owner explicitly says“官网定88.99吧”. This supersedes Web88.80
+  only; it does not adopt Apple parity or change Family capability-v2.
+- Use immutable price-v4/8899cents and a fresh purchase-consent version. Retire old
+  v3 for new quotes while preserving its8880amount, subscriptions and receipts.
+  New purchases remain annual-only; no monthly-v4 is created.
+- Create the exact new annual Price in the isolated Rillora TEST account and archive
+  its old88.80Price. Apply additive staging migrations and compatible API/Web;
+  update closed production Web only. No live payment, merchant/tax activation,
+  production API migration or Apple price change is implied.
+- Fix active quote/roadmap drift; preserve dated financial models and earlier
+  decisions as history. [Current contract](pricing-88-99-20260926.md),
+  [QA](../output/qa/rillora-web-price-88-99-20260926/work-state.json).

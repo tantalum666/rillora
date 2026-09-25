@@ -19,7 +19,7 @@ describe('production purchase configuration fails closed',()=>{
     const proof={...purchaseConsentContract,acceptedSubscriptionTerms:true,acceptedAnnualRenewal:true,acknowledgedCancellation:true} as const;
     expect(parsePurchaseConsent(proof)).toEqual(proof);
     expect(purchaseConsentDigest(proof)).toEqual(purchaseConsentDigest(Object.fromEntries(Object.entries(proof).reverse()) as typeof proof));
-    for(const patch of [{acceptedAnnualRenewal:false},{acknowledgedCancellation:false},{amountMinor:6800},{termsVersion:'old'},{extra:true}]) expect(()=>parsePurchaseConsent({...proof,...patch})).toThrow();
+    for(const patch of [{acceptedAnnualRenewal:false},{acknowledgedCancellation:false},{amountMinor:6800},{amountMinor:8880},{version:'family-annual-web-20260925-1'},{termsVersion:'old'},{extra:true}]) expect(()=>parsePurchaseConsent({...proof,...patch})).toThrow();
   });
   it('accepts only the named AWS account, region and production secret',()=>{
     expect(stripeProductionSecretArnPattern.test('arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/stripe-billing-ABC123')).toBe(true);

@@ -1,3 +1,4 @@
+import { purchaseConsentContract } from './purchase-consent.js';
 import { createHash } from 'node:crypto';
 import type Stripe from 'stripe';
 import { ApiError } from './errors.js';
@@ -40,7 +41,7 @@ export class StripeProductionAdapter {
   }
 
   private get currentPrice(): StripeProductionPriceBinding {
-    return { id: this.config.annualPriceId, priceCode: 'family_usd_annual_v3', amountMinor: 8880,
+    return { id: this.config.annualPriceId, priceCode: purchaseConsentContract.priceCode, amountMinor: purchaseConsentContract.amountMinor,
       currency: 'usd', interval: 'year', planVersion: 2 };
   }
 
@@ -87,7 +88,7 @@ export class StripeProductionAdapter {
     if (input.existingStripeCustomerReference) assertStripeObjectId(input.existingStripeCustomerReference, 'cus_');
     await this.assertCheckoutReady(input.billingPeriod);
     const metadata = { rillora_commerce_account_reference: input.commerceAccountReference, rillora_plan_code: 'family',
-      rillora_plan_version: 'family-v2', rillora_price_code: 'family_usd_annual_v3', rillora_environment: 'production',
+      rillora_plan_version: 'family-v2', rillora_price_code: purchaseConsentContract.priceCode, rillora_environment: 'production',
       rillora_order_reference: input.orderReference, rillora_payment_attempt_reference: input.paymentAttemptReference };
     const automatic = this.config.tax.mode === 'automatic';
     const session = await this.sdk.createCheckoutSession({ mode: 'subscription', ui_mode: 'hosted_page', origin_context: 'web',

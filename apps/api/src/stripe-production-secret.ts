@@ -1,3 +1,4 @@
+import { purchaseConsentContract } from './purchase-consent.js';
 import { GetSecretValueCommand, SecretsManagerClient } from '@aws-sdk/client-secrets-manager';
 import { z } from 'zod';
 import type { StripeProductionConfig } from './stripe-production-adapter.js';
@@ -28,7 +29,7 @@ export function parseStripeProductionSecret(text: string): StripeProductionConfi
     const { schemaVersion: _version, environment: _environment, ...config } = schema.parse(JSON.parse(text));
     if (config.tax.mode === 'automatic' && config.tax.activeRegistrationIds.length === 0) throw new Error();
     const ids = [config.annualPriceId, ...config.historicalPrices.map(price => price.id)];
-    const codes = ['family_usd_annual_v3', ...config.historicalPrices.map(price => price.priceCode)];
+    const codes = [purchaseConsentContract.priceCode, ...config.historicalPrices.map(price => price.priceCode)];
     if (new Set(ids).size !== ids.length || new Set(codes).size !== codes.length) throw new Error();
     return Object.freeze(config);
   } catch { throw new Error('Production billing secret does not match its reviewed schema'); }

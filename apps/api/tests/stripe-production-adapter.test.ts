@@ -13,10 +13,10 @@ const config: StripeProductionConfig = {
   tax: { mode: 'reviewed_no_collection', assessmentReference: 'synthetic-assessment-not-a-tax-decision', productTaxCode: 'txcd_fixture', activeRegistrationIds: [] },
 };
 const price = () => ({ id: config.annualPriceId, object: 'price', livemode: true, active: true,
-  product: config.familyProductId, currency: 'usd', unit_amount: 8880, billing_scheme: 'per_unit', transform_quantity: null, tax_behavior: 'exclusive', recurring: { interval: 'year', interval_count: 1, usage_type: 'licensed' } }) as Stripe.Price;
+  product: config.familyProductId, currency: 'usd', unit_amount: 8899, billing_scheme: 'per_unit', transform_quantity: null, tax_behavior: 'exclusive', recurring: { interval: 'year', interval_count: 1, usage_type: 'licensed' } }) as Stripe.Price;
 const subscription = () => ({ id: 'sub_fixture', object: 'subscription', livemode: true, status: 'active',
   customer: 'cus_fixture', latest_invoice: 'in_fixture', cancel_at_period_end: false, cancel_at: null, pause_collection: null,
-  metadata: { rillora_commerce_account_reference: 'account-fixture-001', rillora_plan_code: 'family', rillora_environment: 'production', rillora_plan_version: 'family-v2', rillora_price_code: 'family_usd_annual_v3' },
+  metadata: { rillora_commerce_account_reference: 'account-fixture-001', rillora_plan_code: 'family', rillora_environment: 'production', rillora_plan_version: 'family-v2', rillora_price_code: 'family_usd_annual_v4' },
   items: { data: [{ quantity: 1, price: price(), current_period_start: 1790294400, current_period_end: 1821830400 }] },
 }) as unknown as Stripe.Subscription;
 const snapshotInput = { providerSubscriptionReference: 'sub_fixture', expectedCommerceAccountReference: 'account-fixture-001', expectedStripeCustomerReference: 'cus_fixture' };
@@ -103,13 +103,22 @@ describe('production Stripe boundary without live network access', () => {
   });
   it('requires settled invoice plus exact customer/environment/price before an active snapshot', async () => {
     const adapter = new StripeProductionAdapter(config, sdk(), () => now);
-    await expect(adapter.retrieveAuthoritativeSubscription(snapshotInput)).resolves.toMatchObject({ providerEnvironment: 'production', state: 'active', priceCode: 'family_usd_annual_v3' });
+    await expect(adapter.retrieveAuthoritativeSubscription(snapshotInput)).resolves.toMatchObject({ providerEnvironment: 'production', state: 'active', priceCode: 'family_usd_annual_v4' });
     for (const overrides of [
       { retrieveInvoice: async () => ({ status: 'open', livemode: true }) as Stripe.Invoice },
       { retrieveSubscription: async () => ({ ...subscription(), livemode: false }) },
       { retrieveSubscription: async () => ({ ...subscription(), customer: 'cus_other' }) },
       { retrieveSubscription: async () => ({ ...subscription(), items: { data: [{ ...subscription().items.data[0], quantity: 2 }] } }) as Stripe.Subscription },
     ]) await expect(new StripeProductionAdapter(config, sdk(overrides)).retrieveAuthoritativeSubscription(snapshotInput)).rejects.toThrow();
+  });
+  it('retains an explicitly bound88.80 receipt after the new88.99 offer replaces it', async () => {
+    const historic = {...config,historicalPrices:[{id:'price_old_v3',priceCode:'family_usd_annual_v3',amountMinor:8880,currency:'usd' as const,interval:'year' as const,planVersion:2}]};
+    const old=subscription();old.metadata.rillora_price_code='family_usd_annual_v3';
+    old.items.data[0]!.price={...price(),id:'price_old_v3',unit_amount:8880,active:false};
+    await expect(new StripeProductionAdapter(historic,sdk({retrieveSubscription:async()=>old})).retrieveAuthoritativeSubscription(snapshotInput)).resolves.toMatchObject({priceCode:'family_usd_annual_v3'});
+    const create=vi.fn(sdk().createCheckoutSession);
+    await expect(new StripeProductionAdapter(config,sdk({createCheckoutSession:create,retrievePrice:async()=>({...price(),unit_amount:8880})})).createHostedSubscriptionCheckout(checkoutInput)).rejects.toThrow('price differs');
+    expect(create).not.toHaveBeenCalled();
   });
   it('gives first-class invoice lineage precedence over optional metadata fallback', () => {
     expect(stripeSubscriptionReference({ object: 'invoice', metadata: { rillora_subscription_reference: 'sub_wrong' }, parent: { subscription_details: { subscription: 'sub_right' } } })).toBe('sub_right');

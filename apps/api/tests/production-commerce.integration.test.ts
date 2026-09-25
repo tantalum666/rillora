@@ -56,7 +56,7 @@ const provider: StripeCommerceProvider = {
   resolveFinancialSignal: async () => ({providerInvoiceReference:refundInvoiceReference,providerSubscriptionReference:'sub_local_fixture',providerCustomerReference:'cus_local_fixture',providerTransactionReference:'ch_local_fixture',providerRefundReference:'re_local_fixture',authoritativeStateOverride:'refunded'}),
   retrieveAuthoritativeSubscription: async input => ({ provider: 'stripe', providerEnvironment: 'production', providerSubscriptionReference: input.providerSubscriptionReference,
     commerceAccountReference: input.expectedCommerceAccountReference, providerCustomerReference: input.expectedStripeCustomerReference,
-    planCode: 'family', priceCode: 'family_usd_annual_v3', state: currentState.value, observedAt: new Date().toISOString(),
+    planCode: 'family', priceCode: 'family_usd_annual_v4', state: currentState.value, observedAt: new Date().toISOString(),
     currentPeriodStartsAt: new Date(Date.now() - 86400000).toISOString(), currentPeriodEndsAt: new Date(Date.now() + (currentState.value === 'expired_read_only' ? -1000 : 365 * 86400000)).toISOString(),
     cancelAtPeriodEnd: currentState.value === 'cancel_at_period_end', renewalIsPossible: currentState.mayRenew ?? (currentState.value !== 'expired_read_only'),
     providerInvoiceReference: invoiceReference, source: 'stripe_api' }),
@@ -104,10 +104,10 @@ describe('production commerce ledger with a synthetic provider only', () => {
     await pool.query("update app.commerce_purchase_route_policies set enabled=true,status='active' where policy_code='global_us_web_stripe_v1'");
     await pool.query("update app.commerce_plan_versions set status='active' where plan_code='family' and version=2");
     await pool.query("update app.commerce_plan_capabilities set enforcement_mode='included' where plan_version_id in(select id from app.commerce_plan_versions where plan_code='family' and version=2)");
-    await pool.query("update app.commerce_prices set status='active',tax_behavior='exclusive' where price_code='family_usd_annual_v3'");
+    await pool.query("update app.commerce_prices set status='active',tax_behavior='exclusive' where price_code='family_usd_annual_v4'");
     await pool.query("update app.commerce_runtime_policy set production_entitlements_enabled=true,sharing_limits_enabled=true");
     await pool.query(`insert into app.commerce_storefront_products(price_id,provider_code,provider_environment,external_product_reference,status,provider_account_reference,external_parent_product_reference)
-      select id,'stripe','production',$1,'active',$2,$3 from app.commerce_prices where price_code='family_usd_annual_v3'
+      select id,'stripe','production',$1,'active',$2,$3 from app.commerce_prices where price_code='family_usd_annual_v4'
       on conflict(provider_code,provider_environment,external_product_reference) do update set status='active'`,[billing.annualPriceId,billing.expectedAccountId,billing.familyProductId]);
     checkoutCall.mockImplementationOnce(async input => { captured = input; throw new Error('synthetic ambiguous provider transport failure'); });
     await postCheckout().expect(500);

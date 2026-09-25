@@ -7,7 +7,7 @@ Last reviewed: 2026-09-26 (Apple rules and direction correction; Stripe fee exam
 ## September26方向纠偏 — 当前
 
 Owner提醒“之前不是说apple跟web价格做差异化？”。恢复按实际付款渠道成本
-差异定价的方向：Web保持US$88.80/年，Apple IAP采用较高的渠道价，Family权益
+差异定价的方向：Web现按同日稍后Owner决定改为US$88.99/年，Apple IAP采用较高的渠道价，Family权益
 跨端一致。刚才按“最接近88.80”推荐88.90，并要求从88.90/88.99/88.00选择，
 偏离了这一目的；该推荐及问题现已撤回，不再作为活动决策门。
 
@@ -21,6 +21,13 @@ Owner提醒“之前不是说apple跟web价格做差异化？”。恢复按实�
 SBP另需获批并到生效时间；下文官方来源仍适用。下文Stripe数值只保留当时的
 模型假设，不冒充本轮真实生产费率或银行到账。无provider价格/收据/权益变更。
 
+
+## Later September26 Web revision
+
+Owner then sets the website to88.99. This changes only the Web quote, not the Apple
+near-parity withdrawal or the conditional99.99/119.99candidates. The older fee-only
+88.80calculation below keeps its dated assumptions; it is not a new quote or actual
+settlement result. [Current Web price](pricing-88-99-20260926.md).
 
 ## 判断
 

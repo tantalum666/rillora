@@ -27,6 +27,26 @@ const config = Object.freeze({
 } satisfies StripeTestConfig);
 
 describe("official Stripe test adapter", () => {
+  it("uses Web88.99 v4 for new annual checkout and rejects a v4 monthly purchase", async () => {
+    const current = { ...config, familyPlanVersion: 2, familyPriceVersion: 4,
+      familyPriceIds: { annual: "price_new_annual_v4", monthly: "price_1UHMlhCxTlowhyiGvBEPdb4x" } };
+    const create = vi.fn(async (_params: Stripe.Checkout.SessionCreateParams) => checkoutSession());
+    const adapter = new StripeTestAdapter(current, fakeStripePort({ createCheckoutSession: create,
+      retrievePrice: async id => ({ ...priceFixture(id), unit_amount: 8899, recurring: {interval:"year",interval_count:1} }) as Stripe.Price }), () => now);
+    const input = {commerceAccountReference:"commerce-account-global-001",billingPeriod:"annual" as const,idempotencyKey:"owner-price-v4-annual-001"};
+    await adapter.createHostedSubscriptionCheckout(input);
+    expect(create.mock.calls[0]![0].metadata).toMatchObject({rillora_plan_version:"family-v2",rillora_price_code:"family_usd_annual_v4"});
+    await expect(adapter.createHostedSubscriptionCheckout({...input,billingPeriod:"monthly"})).rejects.toMatchObject({code:"billing_period_unavailable"});
+    expect(create).toHaveBeenCalledTimes(1);
+    const old = subscriptionFixture();
+    old.metadata.rillora_plan_version="family-v2";old.metadata.rillora_price_code="family_usd_annual_v3";
+    old.items.data[0]!.price = {...old.items.data[0]!.price,id:"price_1UHMkTCxTlowhyiGu3do5wps",unit_amount:8880,active:false,recurring:{interval:"year",interval_count:1}} as Stripe.Price;
+    const reader = new StripeTestAdapter(current,fakeStripePort({retrieveSubscription:async()=>old}),()=>now);
+    await expect(reader.retrieveAuthoritativeSubscription({providerSubscriptionReference:old.id,expectedCommerceAccountReference:"commerce-account-global-001",expectedStripeCustomerReference:"cus_rillora_test_001"})).resolves.toMatchObject({priceCode:"family_usd_annual_v3"});
+    expect(stripeSnapshotPriceId(current,"family_usd_annual_v3")).toBe("price_1UHMkTCxTlowhyiGu3do5wps");
+    expect(stripeSnapshotPriceId(current,"family_usd_monthly_v3")).toBe("price_1UHMlhCxTlowhyiGvBEPdb4x");
+  });
+
   it("changes price to88.80/9.99 without changing Family capability version2", async () => {
     const current = { ...config, familyPlanVersion: 2, familyPriceVersion: 3,
       familyPriceIds: { annual: "price_new_annual_v3", monthly: "price_new_monthly_v3" } };

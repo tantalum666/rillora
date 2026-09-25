@@ -4,6 +4,13 @@ Role: current launch scope, remaining work and release evidence contract
 Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; CUSTOMER ACCOUNTS AND SALES CLOSED
 Last updated: 2026-09-26 (Asia/Hong_Kong)
 
+## September26 Web88.99 revision
+
+Owner sets Web annual88.99. Price-v4, fresh purchase consent, retained historical
+receipts and the exact new Stripe TEST Price are implemented. Current validation
+and cloud rollout are separate in[the price contract](pricing-88-99-20260926.md).
+Apple differential pricing and actual live-sales gates remain separate.
+
 ## September26 Apple continuation
 
 Owner restored Apple administration. Strict production verification and versioned
@@ -102,7 +109,7 @@ that production data/recovery did not yet exist are superseded by this checkpoin
 
 Owner要求后续工作按正式上线推进。现状是已有可运行核心产品和较充分的测试站验收，尚不是可直接提交并收费的生产版本。September19曾完整读取92份项目Markdown、20,554行并核对代码、AWS与Apple后台；September23沿用该工作流阅读基线，补读变化文件、重跑发布预检并核对已有验收记录。各次证据保持自己的日期，不能用旧“下一步”重复已经完成的工作。
 
-首发冻结为现有Web与原生iOS：事项地图、按人按事项共享、邀请接受／撤销、官方指导、备份／导出／删除，以及有界共同复核。Free一位实时接收人，Family五位及一位建议贡献者；September21 Owner取消新月付，当前只售US$88.80/年。历史已购权利保留，Apple年价仍单独待定。保留既有UI，不继续为上线扩充Logo数量、装饰动效、附件/OCR、法律代办、死亡自动释放、中国大陆平面或完整AI客服平台。
+首发冻结为现有Web与原生iOS：事项地图、按人按事项共享、邀请接受／撤销、官方指导、备份／导出／删除，以及有界共同复核。Free一位实时接收人，Family五位及一位建议贡献者；September21 Owner取消新月付，当前Web新购价按September26决定为US$88.99/年，Apple分渠道另定。历史已购权利保留，Apple年价仍单独待定。保留既有UI，不继续为上线扩充Logo数量、装饰动效、附件/OCR、法律代办、死亡自动释放、中国大陆平面或完整AI客服平台。
 
 ## September23 发布差距复核
 

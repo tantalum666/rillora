@@ -2,8 +2,15 @@
 
 Role: current operating model, full feature roadmap and provider-exit contract  
 Status: OWNER NO-HIRING DIRECTION LOCKED; DISABLED PRICE CATALOG DEPLOYED TO SYNTHETIC STAGING; PUBLIC MONITOR SCHEDULE ENABLED / DELIVERED FAILURE-RECOVERY-SILENCE PROOF; ACCOUNT DELETION WORKER DEPLOYED; OTHER AUTOMATIONS PLANNED  
-Last updated: 2026-09-19 (delivered monitor activation and Owner price revision)
+Last updated: 2026-09-26 (current annual-only Web quote; earlier operations evidence retains its date)
 
+
+## September26 current offer and drift correction
+
+Web is nowUS$88.99/year, Apple remains differentiated, and new monthly sales remain
+retired. This supersedes the older88.80/9.99wording in the active roadmap. No new
+monitor, hiring, cost commitment or automation deployment follows from this price
+change. [Current price](pricing-88-99-20260926.md).
 
 ## September19 release priority, pricing and active public monitor
 
@@ -41,7 +48,7 @@ Before requesting another personal login, inspect the existing command completio
 
 ## 已定方向
 
-Owner明确不招人，希望由Codex协助开发、运维、安全和营销，并尽量由用户自助或系统自动执行。Owner现锁定 **US$88.80/年与US$9.99/月**。只有永久Free和一个Family；年付比十二次月付低25.9%，月年付功能相同。[价格与成本](pricing-88-80-20260919.md)。这些是经营决定，不是需求、利润或收费上线证据。
+Owner明确不招人，希望由Codex协助开发、运维、安全和营销，并尽量由用户自助或系统自动执行。Owner现锁定 **Web US$88.99/年**；新月付已停售，Apple按渠道差异另定。只有永久Free和一个Family；历史月付权利保留。[价格与成本](pricing-88-99-20260926.md)。这些是经营决定，不是需求、利润或收费上线证据。
 
 采用小而完整的自助软件，不以人工管家、代办遗产、人工法律审查或无限AI服务作为Family的承诺。完整自建客服平台、CRM、微服务集群和企业后台都不成为首发前置项。未来功能先确定数据、权限、版本、依赖和扩展门；实际建设按证据分期。Owner不招人的新决定取代把雇员／外包视作默认扩容手段；历史Logo“设计师主导”描述也不再构成招聘前置项，但不恢复任何已否决Logo。
 
@@ -82,7 +89,7 @@ Codex可以在任务被唤起且凭据可用时检查、修复和推进；它本
 
 | 阶段 | 功能和自动化 | 升级前的实测条件 |
 | --- | --- | --- |
-| 现在→首发 | 完成名额／准确截止版本／取消恢复；同步两端88.80/9.99报价与渠道差异；独立生产与真实身份／商户；部署最小监控、备份检查、自助帮助、取消、导出；短营销草稿 | 核心A/B/C闭环、负向权限、支付生命周期、恢复备份、告警到达；未满足保持销售关闭 |
+| 现在→首发 | 完成名额／准确截止版本／取消恢复；落实Web88.99年价、Apple渠道差异和历史收据；独立生产与真实身份／商户；部署最小监控、备份检查、自助帮助、取消、导出；短营销草稿 | 核心A/B/C闭环、负向权限、支付生命周期、恢复备份、告警到达；未满足保持销售关闭 |
 | 0–100付费家庭 | 事务通知outbox、发送去重／退信；到期复核提醒；每日支付对账／成本；短帮助与有限AI问答；每周两条有用内容上限 | 实际支持类型、解决／重开率、支出、邀请接受和首个付费任务；没有付费结果不盲目买广告 |
 | 100–300 | 批量录入／CSV导入、草稿去重、可见范围预览改进、计划级修订历史；只对已证明反复出现的问题加自动处理 | 真实录入瓶颈或每周重复工作超过2小时持续4周；升级的节省须超过持续成本 |
 | 300–1,000 | 可度量的共同编辑角色、冲突／审批、更多有用提醒策略；按请求量伸缩；更完整故障、对账和恢复看板 | 独立任务成果和愿付需求；队列积压、p95延迟、RTO或配额达到阈值 |

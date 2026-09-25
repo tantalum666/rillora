@@ -111,7 +111,7 @@ The Operations schedule is now ENABLED every15minutes after subscription confirm
 
 The heartbeat alarm uses three15-minute periods, but CloudWatch's missing-data lookback made the measured first silent alarm arrive after75.4minutes. Do not promise a45-minute maximum. This is the public/staging monitor, not whole production or private-account security coverage. [Current QA](../../output/qa/rillora-release-readiness-20260919/README.md). Preserve activation on subsequent deployments with `-c operationsOnly=true -c operationsEnabled=true`; the source default remains safely off for a new environment. Parallel CDK operations must use separate output directories or wait for the current CLI to finish.
 
-The release project now offers only88.80annual for new purchases, retaining historical monthly receipts. [Release plan](../../docs/release-readiness.md), [current price](../../docs/pricing-88-80-20260919.md). Existing synthetic staging is never silently promoted to production.
+Current Web new purchases use88.99annual; Apple remains a separate channel price, and historical monthly receipts are retained. [Release plan](../../docs/release-readiness.md), [current price](../../docs/pricing-88-99-20260926.md). Existing synthetic staging is never silently promoted to production.
 
 ## September17 email-continuation rollout — verified
 

@@ -386,9 +386,9 @@ export class RilloraStagingStack extends Stack {
               STRIPE_EXPECTED_ACCOUNT_ID: "acct_1U6B2RCxTlowhyiG",
               STRIPE_FAMILY_PRODUCT_ID: "prod_V6O8lAFbTCDmKd",
               STRIPE_FAMILY_PLAN_VERSION: "2",
-              STRIPE_FAMILY_PRICE_VERSION: "3",
+              STRIPE_FAMILY_PRICE_VERSION: "4",
               STRIPE_FAMILY_MONTHLY_PRICE_ID: "price_1UHMlhCxTlowhyiGvBEPdb4x",
-              STRIPE_FAMILY_ANNUAL_PRICE_ID: "price_1UHMkTCxTlowhyiGu3do5wps",
+              STRIPE_FAMILY_ANNUAL_PRICE_ID: "price_1UJe38CxTlowhyiGdx5ypIKJ",
               STRIPE_CHECKOUT_SUCCESS_URL:
                 `https://${webDomainName}/?view=access&billing=return`,
               STRIPE_CHECKOUT_CANCEL_URL: `https://${webDomainName}/?view=access&billing=cancelled`,
