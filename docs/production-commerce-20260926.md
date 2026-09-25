@@ -37,7 +37,7 @@ Before a new checkout, check market/operator/storefront/route/plan/product statu
 effective dates, production entitlement enablement, exact account and merchant
 charges/payouts readiness. The Web route is web_direct; stripe_web_external is the
 separate iOS route. The provider must confirm an active live Product and its
-recorded tax code, exact annualUSD8899 licensed/per-unit Price, explicit tax
+recorded tax code, exact annualUSD Price of8899cents, licensed/per-unit, explicit tax
 behavior, one item and quantity one. No new monthly purchase, trial, promotion
 code, adaptive pricing or client-supplied price/provider identity is accepted.
 

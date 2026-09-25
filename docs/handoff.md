@@ -28,7 +28,10 @@ and physical-device work remain Owner-deferred.
 - Current local checks:244API tests/typecheck/build,89Web source checks/build,
   39infra tests/typecheck and closed Web build pass. Browser fixture verifies88.99
   in offer/confirmation plus consent gating, with no real acceptance/payment.
-  Native source did not change. Source/CI closeout is recorded in the current QA.
+  Native source did not change. Engineering commit eed17307118d182beff4194964e564eca50520c8
+  is pushed; [CI14 passes](https://github.com/tantalum666/rillora/actions/runs/36180878589).
+  Source scan:917files/25reviewed non-secret matches/0unknown. Local Markdown targets
+  pass; the final documentation-only receipt does not rerun builds or deploy.
 - Earlier independent data/recovery, public site, native Release configuration and
   cloud monitoring evidence retain their original dates. Apple foundation15f6709f8
   passed[CI13](https://github.com/tantalum666/rillora/actions/runs/36168352267);
