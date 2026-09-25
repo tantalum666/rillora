@@ -1,6 +1,6 @@
 # Rillora Current Handoff
 
-Status: IDENTITY/MAIL PREPARATION — PUBLIC INFORMATION VERIFIED; SES FOLLOW-UP SUBMITTED; PRODUCTION SENDING AWAITS REVIEW
+Status: RELEASE REVIEW — 7 ENGINEERING GATES; 2 OWNER-DEFERRED; SES FOLLOW-UP SUBMITTED
 Last updated: 2026-09-25 (Asia/Hong_Kong)
 
 ## 当前Owner任务
@@ -9,7 +9,7 @@ Last updated: 2026-09-25 (Asia/Hong_Kong)
 
 ## 已完成
 
-- 沿用本工作流全量Markdown阅读基线并补读变化文件。AWS在本轮中途过期，Owner已完成本人登录，CLI续期和STS回读通过；无需重复登录。Auth0／GoDaddy原管理身份保留。
+- 沿用本工作流全量Markdown阅读基线并补读变化文件。AWS在当天01时的本人登录／CLI续期已通过；15:44状态复核时STS再次明确会话过期，本次问询未要求重登。Auth0／GoDaddy原管理身份保留。
 - 原EU Auth0新增生产Web／iOS客户端与独立API audience，所有新connection关闭，旧绑定不变。上线前仍需退役测试M2M／会话／旧绑定，并等待已签Management JWT的实际86,400秒寿命加时钟容差后做负向验收；不能只轮换秘密或删除事项。
 - Google独立项目的政策、03Logo、官网／法律链接、Owner明确批准的托管OAuth凭据和openid／email／profile已保存。秘密仅保存在忽略目录0600文件；原Auth0 Google测试连接不变，新项目仍Testing。
 - RilloraMail已部署；notify／bounce域名、DKIM、TLS、抑制配置、四项邮件告警回读通过。三次SES模拟器产生Send3／Delivery2／Bounce1／Complaint1，SNS告警动作执行；不是普通用户收件／垃圾箱或真实抑制名单验收。
@@ -25,8 +25,10 @@ SES接口为DENIED／生产发送未启用，但已读取的工单17902208880000
 
 ## 唯一下一步
 
-等待AWS本次审核结果后运行只读邮件核验，再完成受限发送身份／Auth0邮件及真实验证／恢复验收，随后进入受控身份切换。回复已发送，不重复提交或重新索取同一授权；不提前清理测试数据或开放客户账号。
+先完成封闭生产Web/iOS的正式连接与发布配置准备。SES审核是依赖支线，后续恢复AWS会话并核对结果，再完成正式邮件与受控身份验收；支付适配器和上架资料可在等待期间推进。保持客户入口关闭，不提前清理测试数据；回复已提交，不重复索取发送授权。
 
 [前轮交接—HISTORICAL](handoff-history-20260924-before-identity.md)。
 
 只读核验工具只有AWS读取与报告输出，不发送邮件或创建定时任务；本次工单提交、核验与源码／CI收尾均已记录。
+
+September25 15:44+08状态复核：7项工程／发布门和2项Owner暂缓仍未完成；iOS五项正式字段为空、Stripe拒绝live、Apple固定Sandbox／v1价格映射均已重读源码确认。AWS STS此时明确会话过期，SES最新结果未刷新，前述01时续期及01:15邮件检查是早先证据。本次没有要求重登、部署、交易或重跑测试。当前细分清单见[发布合同](release-readiness.md)及[QA](../output/qa/rillora-release-status-20260925/review.json)。

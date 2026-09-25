@@ -2570,3 +2570,10 @@ launch prerequisites and historical authentication gates are not repeated approv
 - **未完成／边界**：等待AWS进一步审核，Auth0发送身份／provider、真实邮箱及恢复连续性仍待验收。没有发送客户邮件、切换旧登录、创建密钥／定时任务或清理测试账号；不重复要本次发送授权。详见[本轮QA](../../output/qa/rillora-production-identity-20260924/README.md)。
 
 - **本次收尾**：工程37761e2推送成功；CI9三作业通过，212API／36infra及Web／构建检查实际重跑。20项本地发布守卫（含7项新邮件检查）通过，源码875文件扫描0未知，137份Markdown／1322本地链接无缺失。最终补写文档沿用已验收代码，不重复构建或把AWS审核标为通过。
+
+## 2026-09-25 - Review the remaining launch work
+
+- **Goal/attempt**: answer Owner's launch-gap question using the current release register, fresh read-only preflight and exact native/Stripe/Apple source; attempt a current SES read.
+- **Judgment change**: five empty native Release connection fields, Stripe live refusal and Apple Sandbox/v1 mapping are real implementation gaps. SES blocks its dependent flow, not all engineering. Preserve completed data/recovery, public site, monitoring, source and core-feature evidence.
+- **Result**: group remaining work into identity/mail, final clients, Web commerce, Apple commerce, final security/retention and submission. Seven engineering gates and two Owner-deferred gates remain. Prioritize closed-client preparation while the external mail review proceeds.
+- **Boundary**: currentSTS is expired, so the newest SES review outcome was not obtained; retain the01:15+08 check instead of claiming a fresh DENIED response. No new tests, login, deployment or transaction. [Review QA](../../output/qa/rillora-release-status-20260925/review.json).

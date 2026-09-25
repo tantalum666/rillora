@@ -4,6 +4,39 @@ Role: current launch scope, remaining work and release evidence contract
 Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; CUSTOMER ACCOUNTS AND SALES CLOSED
 Last updated: 2026-09-25 (Asia/Hong_Kong)
 
+## September25 current release gap review
+
+Fresh preflight/source review still reports seven engineering/release gates and
+two Owner-deferred gates. This is not an overall completion percentage. Core
+features, production data/recovery, public website, monitoring and source/CI
+retain their completed evidence; customer accounts and sales remain closed.
+
+| Workstream | Current remaining work | Completion evidence |
+| --- | --- | --- |
+| Identity and email | SES approval, restricted sender/Auth0 setup, Google production publication, controlled retirement of old test identity capabilities | Actual email/Google/Apple login, verification preserving invitations, password recovery and old-session behavior |
+| Final Web/iOS connections | Same-origin product at app.rillora.xyz and final native Release configuration; source still has five empty connection fields | Both production clients complete create/share/accept/revoke/delete against the independent production data |
+| Web annual purchase | Stripe adapter still rejects live events; ordinary production purchase/consent path is incomplete | Current annual offer, payment/entitlement, cancellation/expiry/refund/restore and reconciliation |
+| Apple subscription | Verifier/Server API still use Sandbox; product mapping still uses v1; actual annual price alignment remains open | Versioned production handling plus real Sandbox/TestFlight purchase/restore/renewal/notifications, preserving historical receipts |
+| Final security and data operations | Retention cleanup/old manual snapshots, post-restore commerce reconciliation and final production security acceptance | Exact permissions, negative access, sensitive-action reauthentication, source/artifact/dependency checks and rollback evidence |
+| Submission and activation | Signed Release/TestFlight, final screenshots, privacy/age/encryption declarations and reviewer access | Complete submission package and actual review result, followed by the existing manual-release process |
+
+Business/registration verification and physical-device acceptance remain
+Owner-deferred, not completed. Keep the existing joint Web/iOS and Free/Family
+launch scope; do not silently substitute a public Free-only launch.
+
+SES waiting does not block closed-client preparation, payment implementation or
+submission materials. Prioritize closed production Web/iOS connection preparation,
+then production commerce; merge the email/identity checks when external approval
+is available. The existing Management JWT lifetime is 86,400 seconds: the actual
+cutover must stop old issuance and allow expiry/clock tolerance before customers,
+while independent engineering can continue.
+
+At the September25 15:44+08 status check, AWS STS failed with an expired session.
+No new SES approval state was obtained. The last successful mail check remains
+01:15+08 that day; do not present its DENIED flag as a fresh response. No login,
+deployment, transaction or new test was performed in this status review. Existing
+CI9 evidence keeps its date. [Review QA](../output/qa/rillora-release-status-20260925/review.json).
+
 ## September24 mail, public site and Free identity preparation
 
 Free25,000MAU is confirmed by both current Auth0 account and official pricing.
@@ -90,7 +123,7 @@ Owner对香港经营／商业登记回复“先忽略”：本项暂缓，不再
 
 原始证据分别见[真实邀请](../output/qa/rillora-real-invitation-20260917/README.md)、[Stripe验收](../output/qa/rillora-stripe-acceptance-20260917/README.md)、[数据退出](p1-reliability-repair-20260915.md)和[当前QA](../output/qa/rillora-release-readiness-20260919/README.md)。本轮新测试与旧检查点必须分开记。
 
-## 正式发布必须完成的工作
+## HISTORICAL — September23 release gap baseline; current list above supersedes
 
 | 主线 | September23当前缺口（后台沿用最近记录日期） | 完成判据 |
 | --- | --- | --- |
@@ -124,6 +157,6 @@ September19曾记录5–10个工程日的初步预算；随后Owner先行安排�
 正式市场只打开实际ready的行，USA/HKG是候选而不是默认全部开放。永久Free与可用Family同批提供；不因正式购买未完成而擅自改成公开Free-only首发。测试站、测试交易、原生Simulator与App Store草稿各保留自己的证据身份。
 
 
-## Selected brand checkpoint — September19
+## HISTORICAL — Selected brand checkpoint — September19
 
 The Owner-selected Legacy Imprint03 closes the Logo-choice and missing-source-icon work. The main target now configuresAppIcon; the inspected Debug bundle declares it and the Simulator home screen renders the selected image. Existing app/Web brand slots, font licences and legal Sites6 are updated. [Brand QA](../output/qa/rillora-brand-adoption-20260919/README.md) distinguishes this from a production Release artifact: readonly preflight still reports missing production fields, test endpoints/StoreKit fixture and the existing release gates. Do not count a Debug icon or legally published Terms as product/App Store release approval. Resume isolated production configuration and backup/restore work; keep the existing Appleannual-price question and Owner-deferred registration/device work separate.
