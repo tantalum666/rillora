@@ -1,64 +1,57 @@
 # Rillora Current Handoff
 
-Status: CLOSED PRODUCTION CLIENTS VERIFIED; CONTINUE PRODUCTION COMMERCE
-Last updated: 2026-09-25 (Asia/Hong_Kong)
+Status: PRODUCTION COMMERCE SOURCE VERIFIED; CLOSED WEB UPDATED; APPLE LOGIN PENDING
+Last updated: 2026-09-26 (Asia/Hong_Kong)
 
 ## Current Owner task
 
-Owner explicitly asks to start the remaining release engineering. Continue the
-existing workflow; preserve current UI/brand, Free+88.80annual, test accounts/data,
-FanPass, the independent production data/recovery floor and Owner-deferred
-business/registration/physical-device work. Keep customer activation closed.
-[Client contract](production-clients-20260925.md).
+Continue remaining release engineering. Preserve original UI/Legacy Imprint03,
+Free+US$88.80annual, historical receipts/test identities, FanPass and independent
+production data/recovery. Business/registration and physical-device work remain
+Owner-deferred. No customer or live-sales activation.
 
 ## Completed checkpoint
 
-- app.rillora.xyz has an independent private-S3/CloudFront delivery stack with
-  issued non-exportable certificate and guarded DNS. Exact HTML, HTTPS, pages,
-  actual product assets, same-origin ready response and closed private routes pass.
-  API caching is disabled/no-store and errors have zero cache TTL. Existing API,
-  database and Auth0 bindings were not redeployed.
-- iOS Release compiles the five exact production connection values, rejects
-  staging/unsafe settings and ignores runtime endpoint overrides. Customer access
-  remainsNO. Session and deletion-proof keychain namespaces separate production
-  from the preserved staging service. Four targeted tests and actual Release
-  Simulator public-home/closed-account behavior pass; Debug was restored afterward.
-- Desktop/390px Chrome interaction and image rendering pass with no app console
-  errors; only existing MetaMask warnings. Public exploration and return state
-  remain. Account closure is stated without treating it as a network failure.
--14public monitor targets now execute successfully in the cloud; actual config
-  matches source. Prior delivered-alarm/silence proof retains its date.
--39infra,84Web,21release guards,7monitor and4native tests pass; three Web builds
-  and Simulator Release compile pass. Source scan has23reviewed public/fixture
-  matches and0unknown at its latest checkpoint. Git/CI closeout is in progress.
+- Independent closed Web/native client preparation is committed as a83eab147b3810d23a7712cadf2f1eb179189c0d;
+  [CI10 passed](https://github.com/tantalum666/rillora/actions/runs/36147534791).
+  This supersedes the previous in-progress CI wording. Native and14-target monitor
+  evidence retains its original date; no native changes/tests in this increment.
+- Separate production Stripe SDK/adapter/configuration, annual purchase consent,
+  ledger/environment/ownership checks, signed webhook aliases and bounded retry
+  worker are implemented. Ordinary Web review/checkout/management/return UI reuses
+  the current design. [Commerce contract](production-commerce-20260926.md).
+-233API tests/typecheck/build,88Web source tests plus7legal fixture tests,39infra
+  and21release guards pass. Local Chrome fixture verifies desktop/390px interactions.
+  Payment/consent/provider effects in these tests are synthetic only.
+- Closed RilloraProductionWeb update completes; seven actual host/API/negative-path
+  checks and Chrome billing-return closure pass. API task1/schema0070, IAM/vault,
+  provider objects, sales flags and Auth0 bindings were not changed.
 
-## Evidence and pending items
+## Evidence and blockers
 
-[Current QA](../output/qa/rillora-production-clients-20260925/work-state.json).
-This is a closed client delivery checkpoint, not a signed App Store archive,
-customer login, real purchase or public release.
+[QA](../output/qa/rillora-production-commerce-20260925/work-state.json).
+Migrations0071–0073 are local-only. Stripe Dashboard remains test context with
+business/payment activation incomplete in its setup guide; no live merchant API
+qualification, tax assessment, key/product/price or charge is claimed. Production
+commerce still needs scoped vault/IAM/provider configuration, API rollout, actual
+transactions/alerts and cross-channel/post-restore reconciliation.
 
-Owner renewed AWS; official same-device callback succeeded in the CLI despite
-Chrome's localhost blocked page. Fresh account, stack and SES reads passed.
-Latest SES remains productionAccessEnabledfalse/DENIED. The approved support
-reply was already submitted; do not repeat its authorization or transmission.
-Auth0 remainsFree, new client connections off and old test identities preserved.
-
-Production Stripe/Apple implementation, controlled identity cutover/mail acceptance,
-final security/retention and submission remain. Stripe CLI was updated to1.52.0;
-its existing unrelated/FanPass profile was not reauthenticated. CLI docs returned401
-and MCP transport failed; the bundled official references were read instead.
-No payment code, live key, provider price or charge changed in this checkpoint.
-
-The initial WWW-JPG diagnosis was corrected: that JPG exists only in the full
-product artifact, so its absent WWW URL does not prove a broken public image.
-Both image allowlists/build checks were hardened; actual product JPG returns200.
+AWS renewal worked and fresh reads continue to pass. Latest SES check00:43+08
+September26:14configuration checks pass, productionAccessEnabledfalse/DENIED.
+The approved support follow-up was already sent; do not resend or re-ask approval.
+Auth0 staysFree, production connections off, existing test identities preserved.
+App Store Connect actually returned an expired login; Chrome is at the official
+Rillora-targeted login page and Owner has been asked to complete it. No passwords
+or OTPs should be sent to chat. Apple annual price choice remains unapproved;
+88.80was absent at the September19 read, so recheck available points after login.
 
 ## Single next step
 
-Save this verified engineering checkpoint and check its CI, then implement the
-production commerce path behind the existing closed sales/market gates. Retain
-test-only behavior and versioned receipts. Resolve SES/identity and platform
-acceptance separately; do not clear accounts or open customers prematurely.
+Complete this source/CI checkpoint, then continue Apple production transaction
+handling and current price mapping; inspect the prepared portal after Owner login.
+Keep the verified Stripe engineering boundary, complete its live configuration
+when merchant/market/tax facts are available, and merge the SES/identity checks
+when approval arrives. Retention/security, signed submission and deferred gates
+remain separate; no repeat of completed recovery/client setup.
 
-[Previous handoff - HISTORICAL](handoff-history-20260925-before-clients.md).
+[Previous handoff - HISTORICAL](handoff-history-20260926-before-commerce.md).

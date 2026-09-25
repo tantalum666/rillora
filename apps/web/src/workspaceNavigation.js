@@ -9,7 +9,7 @@ const uuid = /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i;
 export function readWorkspaceRoute(value) {
   const url = new URL(value, "https://rillora.invalid");
   const p = url.searchParams;
-  const requested = p.get("view") ?? (p.get("next") === "reviews" ? "maintenance" : p.get("next") === "shared" ? "shared" : url.pathname === "/account" ? "settings" : "overview");
+  const requested = p.get("view") ?? (["/account/billing", "/account/billing/complete"].includes(url.pathname) || p.get("next") === "billing" ? "access" : p.get("next") === "reviews" ? "maintenance" : p.get("next") === "shared" ? "shared" : url.pathname === "/account" ? "settings" : "overview");
   const task = tasks.has(p.get("task")) ? p.get("task") : null;
   return { view: pages.has(requested) ? requested : "overview", q: (p.get("q") ?? "").slice(0, 200), filter: ["review", "added"].includes(p.get("filter")) ? p.get("filter") : "all",
     sharingMatterId: uuid.test(p.get("sharingMatter") ?? "") ? p.get("sharingMatter") : null,

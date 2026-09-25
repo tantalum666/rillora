@@ -5,9 +5,18 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-09-25 (Asia/Hong_Kong)
+Last updated: 2026-09-26 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-09-26 Production annual purchase preparation
+
+The ordinary annual purchase/consent/provider path is implemented and locally
+verified with explicit test/production separation. Closed Web delivery includes
+safe billing-return routes; cloud API credentials/migrations and live sales are
+still unconfigured. Existing price/UI and Owner-deferred merchant facts are unchanged.
+[Production commerce](production-commerce-20260926.md) separates these engineering
+results from actual payment, Apple and public release gates.
 
 ## 2026-09-25 Closed production client checkpoint
 

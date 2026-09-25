@@ -2,7 +2,18 @@
 
 Role: current launch scope, remaining work and release evidence contract  
 Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; CUSTOMER ACCOUNTS AND SALES CLOSED
-Last updated: 2026-09-25 (Asia/Hong_Kong)
+Last updated: 2026-09-26 (Asia/Hong_Kong)
+
+## September26 commerce engineering checkpoint
+
+Production Stripe source, independent purchase consent/UI, versioned vault loading,
+ledger and bounded verified-event retry pass local acceptance. Only the closed Web
+artifact/return paths are deployed. Live provider objects/credentials, API rollout,
+ordinary real transactions, cross-channel and restore reconciliation remain open.
+The existing test adapter retains live rejection. [Commerce contract](production-commerce-20260926.md).
+Fresh SES check at00:43+08 onSeptember26 still has productionAccessEnabledfalse;
+14other configuration checks pass. Apple management returned an expired session
+and the Owner login request is pending. No deferred business/device gate is changed.
 
 ## September25 later client-delivery checkpoint
 
@@ -25,7 +36,7 @@ retain their completed evidence; customer accounts and sales remain closed.
 | --- | --- | --- |
 | Identity and email | SES approval, restricted sender/Auth0 setup, Google production publication, controlled retirement of old test identity capabilities | Actual email/Google/Apple login, verification preserving invitations, password recovery and old-session behavior |
 | Final Web/iOS connections | Closed same-origin Web delivery and all five native Release values are verified; authenticated production workflows and final signed artifacts remain | Both production clients complete create/share/accept/revoke/delete against the independent production data |
-| Web annual purchase | Stripe adapter still rejects live events; ordinary production purchase/consent path is incomplete | Current annual offer, payment/entitlement, cancellation/expiry/refund/restore and reconciliation |
+| Web annual purchase | Production source and local lifecycle pass; install live provider/vault/IAM/catalog configuration, deploy API/migrations and verify real purchase plus failure recovery | Current annual offer, payment/entitlement, cancellation/expiry/refund/restore and reconciliation |
 | Apple subscription | Verifier/Server API still use Sandbox; product mapping still uses v1; actual annual price alignment remains open | Versioned production handling plus real Sandbox/TestFlight purchase/restore/renewal/notifications, preserving historical receipts |
 | Final security and data operations | Retention cleanup/old manual snapshots, post-restore commerce reconciliation and final production security acceptance | Exact permissions, negative access, sensitive-action reauthentication, source/artifact/dependency checks and rollback evidence |
 | Submission and activation | Signed Release/TestFlight, final screenshots, privacy/age/encryption declarations and reviewer access | Complete submission package and actual review result, followed by the existing manual-release process |

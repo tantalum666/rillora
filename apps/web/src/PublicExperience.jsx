@@ -169,7 +169,7 @@ function AccountPage({ sessionStatus, onRetry, onBack }) {
     try {
       const response = await api.startAuthentication({
         intent,
-        returnTo: authenticationReturnPath(window.location.search),
+        returnTo: authenticationReturnPath(window.location.search, window.location.pathname),
         legalAcceptance: {
           termsVersion: LEGAL_CONTRACT.termsVersion,
           privacyVersion: LEGAL_CONTRACT.privacyVersion,

@@ -161,6 +161,13 @@ export function createApiClient({
       body: input,
     }).then(normalizePurchaseRoute),
     getTestBillingStatus: () => request("/commerce/test/status"),
+    getProductionBillingStatus: () => request("/commerce/stripe/status"),
+    getProductionPurchaseQuote: () => request("/commerce/stripe/quote"),
+    startProductionCheckout: (purchaseConsent, idempotencyKey) => request("/commerce/stripe/checkout", {
+      method: "POST", headers: { "idempotency-key": idempotencyKey }, body: { billingPeriod: "annual", purchaseConsent },
+    }),
+    openProductionBillingPortal: () => request("/commerce/stripe/portal", { method: "POST", body: {} }),
+    cancelProductionCheckout: () => request("/commerce/stripe/checkout/cancel", { method: "POST", body: {} }),
     startTestCheckout: (billingPeriod, idempotencyKey) => request("/commerce/test/checkout", {
       method: "POST", headers: { "idempotency-key": idempotencyKey }, body: { billingPeriod },
     }),

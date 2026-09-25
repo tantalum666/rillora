@@ -26,7 +26,7 @@ export function createStripeWebhookHandler(
       );
     }
     const result = await executor.acceptWebhook(request.body, signature);
-    response.status(result.status === "needs_mapping" ? 202 : 200).json(result);
+    response.status(result.status === "needs_mapping" ? (result.testOnly ? 202 : 503) : 200).json(result);
   });
 }
 
@@ -34,6 +34,7 @@ export function createStripeTestCommerceRouter(
   pool: DatabasePool,
   executor: StripeCommerceExecutor,
 ): Router {
+  if (executor.providerEnvironment !== "test") throw new Error("The test router cannot expose production commerce");
   const router = createRouter();
 
   router.post(

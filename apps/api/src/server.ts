@@ -4,12 +4,28 @@ import { loadConfig } from "./config.js";
 import { createPool, sweepContentOrphans } from "./db.js";
 import { deletionProcessor } from "./account-deletion.js";
 import { createManagedTlsServer } from "./managed-tls.js";
+import { loadStripeProductionSecret } from './stripe-production-secret.js';
+import { StripeCommerceExecutor } from './stripe-commerce-executor.js';
+import { StripeProductionAdapter } from './stripe-production-adapter.js';
+import { productionExecutionConfig } from './stripe-execution-config.js';
 
 const config = loadConfig();
 const pool = createPool(config);
 const accountDeletionProcessor = deletionProcessor(pool, config);
 let transportReady = () => !config.apiTls;
-const app = createApp(pool, config, { accountDeletionProcessor, transportReady: () => transportReady() });
+const stripeProductionConfig = config.stripeProductionSecretArn ? await loadStripeProductionSecret(config.stripeProductionSecretArn) : undefined;
+const stripeExecutor = stripeProductionConfig ? new StripeCommerceExecutor(pool, productionExecutionConfig(stripeProductionConfig), new StripeProductionAdapter(stripeProductionConfig)) : undefined;
+const app = createApp(pool, config, { accountDeletionProcessor, transportReady: () => transportReady(),
+  ...(stripeProductionConfig && stripeExecutor ? { stripeProductionConfig, stripeExecutor } : {}) });
+let commerceRetryRunning = false;
+const commerceTimer = stripeExecutor ? setInterval(() => {
+  if (commerceRetryRunning) return;
+  commerceRetryRunning = true;
+  void stripeExecutor.retryPendingProviderEvents().then(result => {
+    if (result.attempted) process.stdout.write(JSON.stringify({event:'commerce_retry',...result}) + '\n');
+  }).catch(() => process.stderr.write('Commerce retry pass failed.\n')).finally(() => { commerceRetryRunning = false; });
+}, 300_000) : null;
+commerceTimer?.unref();
 const deletionTimer = setInterval(() => {
   if (!config.productionRuntimeClosed) void accountDeletionProcessor.process().catch(() => { process.stderr.write("Account deletion worker will retry.\n"); });
 }, 30_000);
@@ -45,6 +61,7 @@ async function shutdown(signal: string): Promise<void> {
   if (shuttingDown) return;
   shuttingDown = true;
   clearInterval(deletionTimer);
+  if (commerceTimer) clearInterval(commerceTimer);
   managedTls?.close();
   if(contentTimer)clearInterval(contentTimer);
   process.stdout.write(`Received ${signal}; shutting down.\n`);

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-25",
+  "updatedAt": "2026-09-26",
   "release": "Rillora Global 1.0",
   "scope": "Web and native iOS; existing Free and Family only",
   "gates": [
@@ -40,11 +40,14 @@
     },
     {
       "id": "production-billing",
-      "status": "open",
+      "status": "in_progress",
       "required": true,
       "title": "Ordinary customer purchase lifecycle",
-      "evidence": [],
-      "next": "Implement the production Stripe path and current annual-only offer, independent purchase consent, ordinary customer UI, cancellation/refund/restore, reconciliation and cross-channel entitlement consistency. Test routes still reject live objects."
+      "evidence": [
+        "docs/production-commerce-20260926.md",
+        "output/qa/rillora-production-commerce-20260925/work-state.json"
+      ],
+      "next": "Production source/consent/UI/ledger and bounded verified-event retry pass local tests; only the closed Web return paths/artifact are deployed. Complete live merchant/tax/provider/vault/IAM facts, API/migrations rollout, real transactions, retry alerts and cross-channel/post-restore reconciliation. No live sales or new monthly offer."
     },
     {
       "id": "merchant-market",

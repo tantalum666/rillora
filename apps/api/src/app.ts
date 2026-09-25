@@ -30,6 +30,9 @@ import {
   type StripeCommerceProvider,
 } from "./stripe-commerce-executor.js";
 import { StripeTestAdapter } from "./stripe-test-adapter.js";
+import { StripeProductionAdapter, type StripeProductionConfig } from './stripe-production-adapter.js';
+import { productionExecutionConfig } from './stripe-execution-config.js';
+import { createStripeProductionCommerceRouter } from './stripe-production-routes.js';
 import {
   createRilloraAppleSandboxVerifier,
   type AppleSignedDataVerifying,
@@ -52,6 +55,8 @@ export type AppDependencies = AuthDependencies & {
   accountIdentityDeleter?: AccountIdentityDeleting;
   accountDeletionProcessor?: AccountDeletionProcessor;
   stripeProvider?: StripeCommerceProvider;
+  stripeExecutor?: StripeCommerceExecutor;
+  stripeProductionConfig?: StripeProductionConfig;
   appleSignedDataVerifier?: AppleSignedDataVerifying;
   appleServerApi?: AppleAppStoreServerApi;
   appleSnapshotProvider?: StoreKitSandboxSnapshotProvider;
@@ -96,13 +101,18 @@ export function createApp(
     return app;
   }
 
-  const stripeExecutor = config.stripeTest
+  if (config.stripeProductionSecretArn && (!dependencies.stripeProductionConfig || config.stripeTest)) throw new Error('Production billing requires isolated loaded credentials');
+  const stripeExecutor = dependencies.stripeExecutor ?? (config.stripeProductionSecretArn && dependencies.stripeProductionConfig
+    ? new StripeCommerceExecutor(pool, productionExecutionConfig(dependencies.stripeProductionConfig),
+      dependencies.stripeProvider ?? new StripeProductionAdapter(dependencies.stripeProductionConfig))
+    : config.stripeTest
     ? new StripeCommerceExecutor(
         pool,
         config.stripeTest,
         dependencies.stripeProvider ?? new StripeTestAdapter(config.stripeTest),
       )
-    : null;
+    : null);
+  if (stripeExecutor && stripeExecutor.providerEnvironment !== (config.stripeProductionSecretArn ? 'production' : 'test')) throw new Error('Stripe executor environment mismatch');
   const appleVerifier = config.appleSandbox
     ? dependencies.appleSignedDataVerifier
       ?? createRilloraAppleSandboxVerifier({
@@ -126,7 +136,7 @@ export function createApp(
 
   if (stripeExecutor) {
     app.post(
-      "/api/commerce/stripe/webhook",
+      ["/api/commerce/stripe/webhook", "/commerce/stripe/webhook"],
       preventCaching,
       express.raw({ type: "application/json", limit: "256kb" }),
       createStripeWebhookHandler(stripeExecutor),
@@ -134,7 +144,7 @@ export function createApp(
   }
   if (storeKitSandboxIntake) {
     app.post(
-      "/api/commerce/storekit/sandbox/notifications",
+      ["/api/commerce/storekit/sandbox/notifications", "/commerce/storekit/sandbox/notifications"],
       preventCaching,
       express.json({ limit: "256kb", strict: true, type: "application/json" }),
       createStoreKitSandboxNotificationHandler(storeKitSandboxIntake),
@@ -183,7 +193,9 @@ export function createApp(
   plannerApi.use("/role-assignments", createRoleAssignmentRouter(pool));
   plannerApi.use("/sharing", createSharingRouter(pool, config, emailVerification));
   plannerApi.use("/maintenance", createFamilyMaintenanceRouter(pool, config));
-  if (stripeExecutor) {
+  if (stripeExecutor?.providerEnvironment === 'production') {
+    plannerApi.use('/commerce/stripe', createStripeProductionCommerceRouter(stripeExecutor));
+  } else if (stripeExecutor) {
     plannerApi.use(
       "/commerce/test",
       createStripeTestCommerceRouter(pool, stripeExecutor),

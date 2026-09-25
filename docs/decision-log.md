@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-09-25 (Asia/Hong_Kong)
+Last updated: 2026-09-26 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -2555,3 +2555,21 @@ unreachable release remains a different closed workflow. See [sharing contract](
 - A client flag is not authorization: backend private routes remain503 and Auth0 connections remain disabled. Source/compiled values alone cannot pass the final release gate. Native sessions/deletion receipts are origin-isolated while the exact old staging namespace is preserved.
 - Actual certificate/DNS/private-origin/HTTP/browser/Simulator/monitor checkpoints pass. Correct the investigation inference about a JPG: its absent WWW URL is not a broken referenced public asset; the full product artifact uses it and now serves it. Build-time route checks prevent future omissions.
 - Stripe CLI upgrade and reading official integration references do not constitute production commerce implementation, provider configuration or a charge. No additional product/market/pricing approval or customer activation follows. [Contract](production-clients-20260925.md).
+
+## 2026-09-26 - Prepare ordinary annual commerce without opening sales
+
+- Under the existing release instruction, add a distinct production Stripe boundary,
+  named-vault configuration, exact annual quote, separate current purchase consent,
+  durable order/idempotency and authoritative provider reconciliation. Test paths
+  retain their environment restrictions; no new pricing or commercial approval.
+- Correct the Web route to web_direct, add its commerce read-only policy permission,
+  retain resumable subscriptions in duplicate-purchase checks and preserve original
+  checkout parameters after ambiguous delivery. Verified events use bounded retry;
+  browser returns do not grant access and closing sales does not remove management.
+- Only the closed Web artifact and return routes are deployed. Local tests and a
+  synthetic browser fixture do not prove a live purchase, accepted merchant/tax facts,
+  cloud retry operation or final release. Production API/schema/identity stay closed.
+- Owner-deferred business/device items remain deferred. Apple session actually expired;
+  request only the required本人login while independent closeout continues. SES still
+  awaits production access; do not resubmit the already-authorized follow-up.
+  [Contract](production-commerce-20260926.md).

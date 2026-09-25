@@ -94,7 +94,9 @@ def source_inventory(root=ROOT):
     return {
         'nativeReleaseFieldsConfigured': fields,
         'mainAppIconConfigured': not bool(re.search(r'ASSETCATALOG_COMPILER_APPICON_NAME:\s*""', project.split('  RilloraComponentPreview:')[0])),
-        'stripeAdapterExplicitlyTestOnly': 'rk_test_' in adapter and 'if (event.livemode)' in adapter,
+        'stripeTestAdapterRejectsLiveObjects': 'rk_test_' in adapter and 'if (event.livemode)' in adapter,
+        'stripeProductionAdapterSourcePresent': (root / 'apps/api/src/stripe-production-adapter.ts').is_file(),
+        'productionPurchaseConsentSourcePresent': (root / 'config/purchase-consent.json').is_file(),
         'productionInfrastructureSourcePresent': (root / 'infra/aws/lib/rillora-production-stack.ts').is_file(),
         'note': 'Source inventory only. A present value/file does not prove deployment or release acceptance.',
     }

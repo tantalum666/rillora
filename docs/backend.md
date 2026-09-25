@@ -5,7 +5,15 @@ Authority scope: API, PostgreSQL model, runtime security controls and production
 Superseded by: later reviewed backend decision recorded in `docs/decision-log.md`  
 Do not use for: claiming production identity, real recipient delivery, production end-to-end encryption, legal validity or real release  
 Status: CORE AND ACCOUNT-BOUND SHARING DEPLOYED TO SYNTHETIC STAGING; VERSIONED LEGAL GATE REQUIRED; STRIPE TEST LIFECYCLE VERIFIED; APPLE IAP DEPLOYMENT / REAL SANDBOX PURCHASE OPEN; ORDINARY ACCESS FREE; SALES / PRODUCTION ENTITLEMENTS / REAL SENSITIVE DATA CLOSED; EXPIRING VALIDATION ACCOUNTS ONLY  
-Last updated: 2026-09-17 (recipient proof refresh deployed; earlier evidence remains dated)
+Last updated: 2026-09-26 (production commerce source/local tests; deployed histories remain dated)
+
+## September26 production commerce source checkpoint
+
+A separate production Stripe adapter, ordinary authenticated purchase/status/Portal
+routes, versioned purchase consent and bounded verified-inbox retry are implemented.
+Migrations0071–0073 are local-tested only; production task1/schema0070 and the test
+runtime keep their prior deployments. Latest API233 tests pass; source capability
+is not configured live billing. [Focused contract](production-commerce-20260926.md).
 
 ## September17 current-session email proof — deployed checkpoint
 

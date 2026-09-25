@@ -3,6 +3,7 @@ import { z } from "zod";
 import type { AccountDeletionConfig } from "./account-deletion.js";
 import type { EmailVerificationConfig } from "./email-verification.js";
 import type { ContentProtectionConfig } from "./private-content.js";
+import { stripeProductionSecretArnPattern } from './stripe-production-secret.js';
 
 const booleanFromString = z
   .enum(["true", "false"])
@@ -38,6 +39,8 @@ const configSchema = z
     ALLOW_DEV_AUTH: booleanFromString,
     ALLOW_SYNTHETIC_RECIPIENT_REHEARSAL: booleanFromString,
     ALLOW_STRIPE_TEST_INTEGRATION: booleanFromString,
+    ALLOW_STRIPE_PRODUCTION_INTEGRATION: booleanFromString,
+    STRIPE_PRODUCTION_SECRET_ARN: z.string().regex(stripeProductionSecretArnPattern).optional(),
     STRIPE_TEST_STAGING_MODE: booleanFromString,
     ALLOW_APPLE_SANDBOX_INTEGRATION: booleanFromString,
     ALLOW_FAMILY_MAINTENANCE_PREVIEW: booleanFromString,
@@ -121,6 +124,7 @@ export type AppleSandboxConfig = {
 };
 
 export type AppConfig = {
+  stripeProductionSecretArn?: string | null;
   productionRuntimeClosed?: boolean;
   apiTls?: { certificateArn: string; serverName: string; region: string } | null;
   contentProtection?: ContentProtectionConfig | null;
@@ -253,12 +257,22 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
     || !parsed.RECOVERY_JOURNAL_TABLE || parsed.RECOVERY_ENVIRONMENT !== "production"
     || !parsed.API_TLS_CERTIFICATE_ARN || parsed.API_TLS_SERVER_NAME !== "origin.production.rillora.xyz"
     || parsed.DATA_REGION !== "eu-central-1" || parsed.ALLOW_STRIPE_TEST_INTEGRATION
-    || parsed.ALLOW_APPLE_SANDBOX_INTEGRATION || parsed.ALLOW_FAMILY_MAINTENANCE_PREVIEW)) {
+    || parsed.ALLOW_APPLE_SANDBOX_INTEGRATION || parsed.ALLOW_FAMILY_MAINTENANCE_PREVIEW || parsed.ALLOW_STRIPE_PRODUCTION_INTEGRATION)) {
     throw new Error("Closed production requires encrypted content, its independent recovery journal and verified TLS; test features stay disabled");
   }
   if (parsed.NODE_ENV === "production" && parsed.ALLOW_DEV_AUTH) {
     throw new Error("ALLOW_DEV_AUTH must never be enabled in production");
   }
+  if (parsed.ALLOW_STRIPE_PRODUCTION_INTEGRATION && (
+    parsed.NODE_ENV !== 'production' || productionRuntimeClosed || parsed.ALLOW_DEV_AUTH
+    || parsed.ALLOW_STRIPE_TEST_INTEGRATION || parsed.ALLOW_APPLE_SANDBOX_INTEGRATION
+    || parsed.ALLOW_SYNTHETIC_RECIPIENT_REHEARSAL || parsed.ALLOW_FAMILY_MAINTENANCE_PREVIEW
+    || parsed.WEB_APP_ORIGIN !== 'https://app.rillora.xyz' || !parsed.STRIPE_PRODUCTION_SECRET_ARN
+    || parsed.CONTENT_PROTECTION_MODE !== 'encrypted' || parsed.CONTENT_KEY_NAMESPACE !== 'rillora-production'
+    || !parsed.RECOVERY_JOURNAL_TABLE || parsed.RECOVERY_ENVIRONMENT !== 'production'
+    || !parsed.API_TLS_CERTIFICATE_ARN || parsed.API_TLS_SERVER_NAME !== 'origin.production.rillora.xyz'
+    || parsed.DATA_REGION !== 'eu-central-1'
+  )) throw new Error('Production billing requires the exact encrypted production runtime, scoped vault secret and no test surfaces');
   if (parsed.NODE_ENV === "production" && parsed.ALLOW_SYNTHETIC_RECIPIENT_REHEARSAL) {
     throw new Error("ALLOW_SYNTHETIC_RECIPIENT_REHEARSAL must never be enabled in production");
   }
@@ -534,6 +548,7 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
 
   return {
     productionRuntimeClosed,
+    stripeProductionSecretArn: parsed.ALLOW_STRIPE_PRODUCTION_INTEGRATION ? parsed.STRIPE_PRODUCTION_SECRET_ARN! : null,
     apiTls: parsed.API_TLS_CERTIFICATE_ARN ? {
       certificateArn: parsed.API_TLS_CERTIFICATE_ARN, serverName: parsed.API_TLS_SERVER_NAME!, region: parsed.DATA_REGION,
     } : null,

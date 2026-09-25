@@ -1,3 +1,10 @@
+import { stripeSubscriptionState, stripeHasScheduledCancellation, stripeSignalType,
+  stripeSubscriptionReference, stripeTransactionReference, stripeRefundReference,
+  stripeCommerceAccountReference, stripeCustomerReference, stripeMetadataValue,
+  stripeObjectReference, stringWithPrefix, assertCommerceReference, assertIdempotencyKey,
+  stripeIntegrationIdentifier, assertStripeObjectId, assertStripeHostedUrl, epochSecondsToIso,
+} from "./stripe-provider-shared.js";
+export { stripeSubscriptionState } from "./stripe-provider-shared.js";
 import { createHash } from "node:crypto";
 import Stripe from "stripe";
 import { ApiError } from "./errors.js";
@@ -10,85 +17,17 @@ import type {
 } from "./commerce-provider-contract.js";
 
 const maximumWebhookBytes = 256 * 1024;
-const stripeApiVersion = "2026-07-29.dahlia";
-const commerceReferencePattern = /^[A-Za-z0-9][A-Za-z0-9._:-]{7,99}$/;
-const idempotencyKeyPattern = /^[A-Za-z0-9][A-Za-z0-9._:-]{15,254}$/;
 const historicalFamilyPrices = Object.freeze({ monthly: "price_1U6BMoCxTlowhyiG7qsmBrdY", annual: "price_1U6BMnCxTlowhyiGJEC1w596" });
 const previousFamilyPrices = Object.freeze({ monthly: "price_1UGKadCxTlowhyiGJ0bnY9Kn", annual: "price_1UGKXlCxTlowhyiGVLKAkfl1" });
 
 export type StripeBillingPeriod = "monthly" | "annual";
 
-export type StripeSdkPort = Readonly<{
-  retrievePrice(id: string): Promise<Stripe.Price>;
-  retrieveCheckoutSession(id: string): Promise<Stripe.Checkout.Session>;
-  expireCheckoutSession(id: string): Promise<Stripe.Checkout.Session>;
-  createCheckoutSession(
-    params: Stripe.Checkout.SessionCreateParams,
-    options: Stripe.RequestOptions,
-  ): Promise<Stripe.Checkout.Session>;
-  createPortalSession(
-    params: Stripe.BillingPortal.SessionCreateParams,
-  ): Promise<Stripe.BillingPortal.Session>;
-  retrieveRefund(id: string): Promise<Stripe.Refund>;
-  retrieveDispute(id: string): Promise<Stripe.Dispute>;
-  retrieveCharge(id: string): Promise<Stripe.Charge>;
-  listInvoicePaymentsByPaymentIntent(id: string): Promise<Stripe.ApiList<Stripe.InvoicePayment>>;
-  retrieveInvoice(id: string): Promise<Stripe.Invoice>;
-  retrieveSubscription(id: string): Promise<Stripe.Subscription>;
-  constructWebhookEvent(
-    rawBody: Buffer,
-    signatureHeader: string,
-    webhookSecret: string,
-  ): Stripe.Event;
-}>;
-
-export type StripeCheckoutResult = Readonly<{
-  sessionId: string;
-  url: string;
-  expiresAt: string | null;
-}>;
-
-export type StripePortalResult = Readonly<{
-  sessionId: string;
-  url: string;
-}>;
-
-export type StripeFinancialSignalResolution = Readonly<{
-  providerInvoiceReference: string;
-  providerSubscriptionReference: string;
-  providerCustomerReference: string;
-  providerTransactionReference: string;
-  providerRefundReference: string | null;
-  authoritativeStateOverride: "refunded" | "revoked" | null;
-}>;
+export type { StripeSdkPort, StripeCheckoutResult, StripePortalResult, StripeFinancialSignalResolution } from "./stripe-sdk.js";
+import { createStripeSdkPort, type StripeSdkPort, type StripeCheckoutResult, type StripePortalResult, type StripeFinancialSignalResolution } from "./stripe-sdk.js";
 
 export function createOfficialStripeSdkPort(apiKey: string): StripeSdkPort {
-  if (!apiKey.startsWith("rk_test_")) {
-    throw new Error("The official Stripe test adapter requires a restricted test-mode API key");
-  }
-  const stripe = new Stripe(apiKey, {
-    apiVersion: stripeApiVersion,
-    maxNetworkRetries: 2,
-    timeout: 10_000,
-  });
-  return Object.freeze({
-    retrievePrice: (id) => stripe.prices.retrieve(id),
-    retrieveCheckoutSession: id => stripe.checkout.sessions.retrieve(id),
-    expireCheckoutSession: id => stripe.checkout.sessions.expire(id),
-    createCheckoutSession: (params, options) => stripe.checkout.sessions.create(params, options),
-    createPortalSession: (params) => stripe.billingPortal.sessions.create(params),
-    retrieveRefund: (id) => stripe.refunds.retrieve(id),
-    retrieveDispute: (id) => stripe.disputes.retrieve(id),
-    retrieveCharge: (id) => stripe.charges.retrieve(id),
-    listInvoicePaymentsByPaymentIntent: (id) => stripe.invoicePayments.list({
-      payment: { type: "payment_intent", payment_intent: id },
-      limit: 2,
-    }),
-    retrieveInvoice: (id) => stripe.invoices.retrieve(id),
-    retrieveSubscription: (id) => stripe.subscriptions.retrieve(id),
-    constructWebhookEvent: (rawBody, signatureHeader, webhookSecret) =>
-      stripe.webhooks.constructEvent(rawBody, signatureHeader, webhookSecret),
-  });
+  if (!apiKey.startsWith("rk_test_")) throw new Error("The official Stripe test adapter requires a restricted test-mode API key");
+  return createStripeSdkPort(apiKey, "test");
 }
 
 /**
@@ -459,174 +398,4 @@ function assertConfiguredPrice(price: Stripe.Price, config: StripeTestConfig, pe
     || stripeObjectReference(price.product) !== config.familyProductId || price.currency !== "usd"
     || price.unit_amount !== expected || price.recurring?.interval !== (period === "annual" ? "year" : "month")
     || price.recurring.interval_count !== 1) throw new Error("Provider price differs from the exact Rillora offer");
-}
-
-export function stripeSubscriptionState(
-  subscription: Pick<
-    Stripe.Subscription,
-    "status" | "cancel_at" | "cancel_at_period_end" | "pause_collection"
-  >,
-): CommerceSubscriptionState {
-  if (subscription.pause_collection) return "expired_read_only";
-  if (subscription.status === "active") {
-    return stripeHasScheduledCancellation(subscription) ? "cancel_at_period_end" : "active";
-  }
-  if (["past_due", "unpaid"].includes(subscription.status)) return "past_due";
-  if (["canceled", "incomplete", "incomplete_expired", "paused"].includes(subscription.status)) {
-    return "expired_read_only";
-  }
-  if (subscription.status === "trialing") {
-    throw new Error("Stripe trialing status is outside Rillora's no-trial launch policy");
-  }
-  throw new Error("Stripe Subscription status is unsupported; access must fail closed");
-}
-
-function stripeHasScheduledCancellation(
-  subscription: Pick<Stripe.Subscription, "status" | "cancel_at" | "cancel_at_period_end">,
-): boolean {
-  return subscription.status === "active"
-    && (subscription.cancel_at_period_end || subscription.cancel_at != null);
-}
-
-function stripeSignalType(eventType: string): CommerceProviderSignalType {
-  if ([
-    "checkout.session.completed",
-    "customer.subscription.created",
-    "customer.subscription.updated",
-  ].includes(eventType)) return "subscription_changed";
-  if (eventType === "customer.subscription.deleted") return "subscription_ended";
-  if (["invoice.paid", "invoice.payment_succeeded"].includes(eventType)) return "renewal_paid";
-  if (eventType === "invoice.payment_failed") return "renewal_failed";
-  if (["refund.created", "refund.updated", "refund.failed", "charge.refunded"].includes(eventType)) {
-    return "refund_changed";
-  }
-  if (eventType.startsWith("charge.dispute.")) return "dispute_changed";
-  return "unsupported";
-}
-
-function stripeSubscriptionReference(object: Record<string, unknown>): string | null {
-  if (object.object === "subscription") return stringWithPrefix(object.id, "sub_");
-  const direct = stripeObjectReference(object.subscription);
-  if (direct?.startsWith("sub_")) return direct;
-
-  const metadata = record(object.metadata);
-  const metadataReference = stringWithPrefix(metadata?.rillora_subscription_reference, "sub_");
-  if (metadataReference) return metadataReference;
-
-  const parent = record(object.parent);
-  const subscriptionDetails = record(parent?.subscription_details);
-  const parentReference = stripeObjectReference(subscriptionDetails?.subscription);
-  if (parentReference?.startsWith("sub_")) return parentReference;
-
-  const lines = record(object.lines);
-  const lineItems = Array.isArray(lines?.data) ? lines.data : [];
-  for (const candidate of lineItems) {
-    const line = record(candidate);
-    const lineParent = record(line?.parent);
-    const itemDetails = record(lineParent?.subscription_item_details);
-    const lineReference = stripeObjectReference(itemDetails?.subscription);
-    if (lineReference?.startsWith("sub_")) return lineReference;
-  }
-  return null;
-}
-
-function stripeTransactionReference(
-  eventType: string,
-  object: Record<string, unknown>,
-): string | null {
-  if (eventType.startsWith("invoice.")) return stringWithPrefix(object.id, "in_");
-  if (eventType === "checkout.session.completed") return stringWithPrefix(object.id, "cs_");
-  if (eventType.startsWith("charge.dispute.")) return stringWithPrefix(object.id, "du_");
-  if (eventType.startsWith("charge.")) return stringWithPrefix(object.id, "ch_");
-  return null;
-}
-
-function stripeRefundReference(
-  eventType: string,
-  object: Record<string, unknown>,
-): string | null {
-  if (eventType.startsWith("refund.")) return stringWithPrefix(object.id, "re_");
-  return null;
-}
-
-function stripeCommerceAccountReference(object: Record<string, unknown>): string | null {
-  const direct = typeof object.client_reference_id === "string"
-    ? object.client_reference_id
-    : null;
-  return direct ?? stripeMetadataValue(object, "rillora_commerce_account_reference");
-}
-
-function stripeCustomerReference(object: Record<string, unknown>): string | null {
-  const customer = stripeObjectReference(object.customer);
-  return customer?.startsWith("cus_") ? customer : null;
-}
-
-function stripeMetadataValue(
-  object: Record<string, unknown>,
-  key: string,
-): string | null {
-  const direct = record(object.metadata)?.[key];
-  if (typeof direct === "string" && direct.length > 0) return direct;
-  const parent = record(object.parent);
-  const subscriptionDetails = record(parent?.subscription_details);
-  const nested = record(subscriptionDetails?.metadata)?.[key];
-  return typeof nested === "string" && nested.length > 0 ? nested : null;
-}
-
-function stripeObjectReference(value: unknown): string | null {
-  if (typeof value === "string") return value;
-  return typeof record(value)?.id === "string" ? record(value)!.id as string : null;
-}
-
-function stringWithPrefix(value: unknown, prefix: string): string | null {
-  return typeof value === "string" && value.startsWith(prefix) ? value : null;
-}
-
-function record(value: unknown): Record<string, unknown> | null {
-  return value !== null && typeof value === "object" && !Array.isArray(value)
-    ? value as Record<string, unknown>
-    : null;
-}
-
-function assertCommerceReference(value: string): void {
-  if (!commerceReferencePattern.test(value)) {
-    throw new Error("Rillora commerce account reference is invalid");
-  }
-}
-
-function assertIdempotencyKey(value: string): void {
-  if (!idempotencyKeyPattern.test(value)) {
-    throw new Error("Stripe Checkout requires a stable server-owned idempotency key");
-  }
-}
-
-function stripeIntegrationIdentifier(idempotencyKey: string): string {
-  const digest = createHash("sha256").update(idempotencyKey).digest();
-  let suffix = "";
-  for (let index = 0; index < 8; index += 1) {
-    suffix += String.fromCharCode(97 + digest[index]! % 26);
-  }
-  return `rillora_phase1c_${suffix}`;
-}
-
-function assertStripeObjectId(value: string, prefix: string): void {
-  if (!value.startsWith(prefix) || !/^[A-Za-z0-9_]+$/.test(value)) {
-    throw new Error(`Stripe object reference must start with ${prefix}`);
-  }
-}
-
-function assertStripeHostedUrl(value: string, expectedHost: string): void {
-  const url = new URL(value);
-  if (url.protocol !== "https:" || url.hostname !== expectedHost) {
-    throw new Error("Stripe returned an unexpected hosted URL");
-  }
-}
-
-function epochSecondsToIso(value: number): string {
-  if (!Number.isSafeInteger(value) || value <= 0) {
-    throw new Error("Stripe timestamp is invalid");
-  }
-  const date = new Date(value * 1_000);
-  if (Number.isNaN(date.getTime())) throw new Error("Stripe timestamp is invalid");
-  return date.toISOString();
 }

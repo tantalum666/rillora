@@ -1,6 +1,6 @@
 # Digital Legacy Ongoing Project Journey
 
-Last updated: 2026-09-25 (Asia/Hong_Kong)
+Last updated: 2026-09-26 (Asia/Hong_Kong)
 
 ## 记录范围
 
@@ -2584,3 +2584,23 @@ launch prerequisites and historical authentication gates are not repeated approv
 - **Judgment changes**: native test/production shared a keychain namespace, so separate session and deletion-proof storage while preserving staging. Actual asset verification catches omitted JPEG routing; later manifest comparison corrects the initial claim of a WWW image failure. A wrong managed-policy ID in a new test is corrected to the SDK identity; no cache guard is weakened. CDK deploy-role read denial is handled with the existing read-only lookup role, not more access.
 - **Result**: app.rillora.xyz DNS/TLS/HTML/assets/ready/closed-route checks pass; private bucket settings and anonymous403 confirmed. iOS Release5/5, strict validation,4targeted tests and real closed-account Simulator behavior pass; Debug restored. Desktop/390px Chrome state return and images pass;14cloud monitor checks succeed. Local39infra/84Web/21release/7monitor and three Web builds pass.
 - **Limits/next**: no production API/data redeploy, identity activation, real email/charge, signed archive or physical-device claim. SES remains unapproved after fresh read. Save source/CI checkpoint, then continue production commerce; current work is in[QA](../../output/qa/rillora-production-clients-20260925/work-state.json).
+
+## 2026-09-26 - Implement production annual commerce and preserve release gates
+
+- **Goal/attempt**: continue Owner's release engineering after closed clients. Build
+  the isolated production provider/consent/ledger/UI path and run a disposable local
+  production-mode provider fixture, never live money or real customer acceptance.
+- **Judgment changes**: integration finds missing commerce permission and a mistaken
+  Web route; fix them rather than weaken market checks. Handle paused-but-renewable
+  subscriptions, fast webhook/late POST, ambiguous-response idempotency and late old
+  invoice refunds. Legal-only packaging failures came from the wrong local artifact;
+  correct the test setup. Visual QA catches tiny price/weak disabled state and stale
+  pending copy, fixed within the original design.
+- **Result**:233API,88Web source+7legal fixture,39infra and21release guards pass;
+  local desktop/390px interaction checked. Only closed production Web is updated;
+  seven live route/asset/API checks and actual closed-return Chrome page pass.
+- **Unfinished/boundary**: API task1/schema0070 unchanged; new0071–0073 local-only.
+  No live credentials/prices, merchant/tax acceptance or charge. SES fresh14/15,
+  production access false. Apple actually requires本人login; it remains open for
+  Owner while source/CI closeout proceeds. Continue Apple handling, then actual
+  provider and final release gates. [QA](../../output/qa/rillora-production-commerce-20260925/work-state.json).
