@@ -10,6 +10,12 @@ test('rejects private, mapped, loopback and reserved DNS addresses',()=>{
 test('blocks off-registry origins, credentials, queries, fragments and IP targets',()=>{
   for(const url of['http://app.rillora.xyz/','https://other.example/','https://person:password@app.rillora.xyz/','https://app.rillora.xyz/?token=secret','https://app.rillora.xyz/#invite','https://127.0.0.1/'])assert.throws(()=>validateConfig({...config,targets:[{...config.targets[0],url}]}));
 });
+test('keeps expanded production monitoring bounded and rejects duplicate identifiers',()=>{
+  const targets=Array.from({length:16},(_,index)=>({...config.targets[0],id:`check-${index}`}));
+  assert.equal(validateConfig({...config,targets}).targets.length,16);
+  assert.throws(()=>validateConfig({...config,targets:[...targets,{...config.targets[0],id:'check-17'}]}));
+  assert.throws(()=>validateConfig({...config,targets:[targets[0],targets[0]]}));
+});
 test('successful denial and TLS check never retain response data',async()=>{
   const report=await runHealthChecks(config,{now,transport:async()=>({status:401,headers:{'cache-control':'no-store'},certificateExpiresAt:'2026-12-11T00:00:00Z',body:'private matter title'})});
   assert.equal(report.ok,true);assert.equal(report.failed,0);assert.equal(report.checks[0].certificateDaysRemaining,91);assert.equal(JSON.stringify(report).includes('private matter'),false);

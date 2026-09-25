@@ -4,7 +4,7 @@ import { runInNewContext } from 'node:vm';
 import { extname, resolve } from 'node:path';
 
 const route = runInNewContext(`${await readFile('worker/public-router.js', 'utf8')}; handler`);
-const types = { '.html': 'text/html; charset=utf-8', '.js': 'application/javascript', '.css': 'text/css', '.png': 'image/png', '.svg': 'image/svg+xml', '.woff': 'font/woff', '.woff2': 'font/woff2', '.txt': 'text/plain; charset=utf-8' };
+const types = { '.html': 'text/html; charset=utf-8', '.js': 'application/javascript', '.css': 'text/css', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.svg': 'image/svg+xml', '.woff': 'font/woff', '.woff2': 'font/woff2', '.txt': 'text/plain; charset=utf-8' };
 const csp = "default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'";
 createServer(async (req, res) => {
   const result = route({ request: { method: req.method, uri: new URL(req.url, 'http://localhost').pathname } });

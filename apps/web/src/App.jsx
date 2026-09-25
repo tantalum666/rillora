@@ -350,7 +350,8 @@ export function App() {
   }, []);
 
   useEffect(() => {
-    if (!startsOnPublicReadOnlyRoute && !startsOnInvitationRoute) void loadWorkspace();
+    if (import.meta.env.VITE_RILLORA_CUSTOMER_ACCESS === "closed") setLoading(false);
+    else if (!startsOnPublicReadOnlyRoute && !startsOnInvitationRoute) void loadWorkspace();
     else setLoading(false);
     return () => window.clearTimeout(toastTimer.current);
   }, [loadWorkspace, startsOnPublicReadOnlyRoute, startsOnInvitationRoute]);
@@ -749,6 +750,7 @@ export function App() {
     );
   }
 
+  if (import.meta.env.VITE_RILLORA_CUSTOMER_ACCESS === "closed") return <PublicExperience sessionStatus="not_open" />;
   if (startsOnInvitationRoute) return <InvitationPage apiClient={api} />;
   if (deletionReference || window.location.pathname === "/account-deletion") return <AccountDeletionStatus apiClient={api} reference={deletionReference}/>;
 
@@ -758,7 +760,8 @@ export function App() {
 
   if ((loading || loadError) && !session) {
     const signedOut = loadError instanceof ApiClientError && loadError.status === 401;
-    if (!signedOut && !browsePublic) return <main className="workspace-gate" aria-busy={loading}>
+    const serviceNotOpen = loadError instanceof ApiClientError && loadError.code === "service_not_open";
+    if (!signedOut && !serviceNotOpen && !browsePublic) return <main className="workspace-gate" aria-busy={loading}>
       <span className="workspace-gate-brand"><RilloraBrand /></span>
       <FileText size={44} aria-hidden="true" />
       <h1>{loading ? "Loading your map" : "Your map is temporarily unavailable"}</h1>
@@ -770,7 +773,7 @@ export function App() {
     </main>;
     return (
       <PublicExperience
-        sessionStatus={loading ? "checking" : signedOut ? "signed_out" : "unavailable"}
+        sessionStatus={loading ? "checking" : signedOut ? "signed_out" : serviceNotOpen ? "not_open" : "unavailable"}
         onRetry={() => void loadWorkspace()}
       />
     );

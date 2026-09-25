@@ -13,9 +13,12 @@
         "docs/production-recovery-20260923.md",
         "output/qa/rillora-production-recovery-20260923/production-database-readback.json",
         "output/qa/rillora-production-recovery-20260923/paid-plan-readback.json",
-        "docs/production-runtime-20260924.md"
+        "docs/production-runtime-20260924.md",
+        "docs/production-clients-20260925.md",
+        "output/qa/rillora-production-clients-20260925/app-domain-acceptance.json",
+        "output/qa/rillora-production-clients-20260925/native-release-readback.json"
       ],
-      "next": "Closed production API/TLS and actual health/private-route refusal, provider network config and public monitor acceptance are verified. Complete production identity/email, same-origin Web delivery and final native Release connections; customer accounts remain closed."
+      "next": "Closed production API/TLS/data and same-origin Web delivery are verified; native Release5/5 values and closed-account behavior pass. Complete real production identity/private workflows and final signed artifacts before customer activation."
     },
     {
       "id": "production-identity",
@@ -70,9 +73,11 @@
         "output/qa/rillora-production-runtime-20260924/operations-config-readback.json",
         "output/qa/rillora-production-runtime-20260924/operations-cloud-result.json",
         "output/qa/rillora-production-identity-20260924/operations-public-cloud-result.json",
-        "output/qa/rillora-production-identity-20260924/mail-alarm-actions.json"
+        "output/qa/rillora-production-identity-20260924/mail-alarm-actions.json",
+        "output/qa/rillora-production-clients-20260925/operations-config-readback.json",
+        "output/qa/rillora-production-clients-20260925/operations-cloud-result.json"
       ],
-      "next": "Twelve public targets run successfully in the active cloud monitor; mail event alarms execute SNS actions. Preserve prior real subscriber delivery/silence proof; simulator events are not a new personal-inbox/SLA claim."
+      "next": "Fourteen public targets run successfully in the active cloud monitor; actual configuration matches source. Preserve earlier real subscriber delivery/silence proof and mail event evidence; no new personal-inbox/SLA claim."
     },
     {
       "id": "backup-retention",
@@ -104,8 +109,10 @@
       "status": "in_progress",
       "required": true,
       "title": "App Store build and submission package",
-      "evidence": [],
-      "next": "Use selected Legacy Imprint03 in the final signed Release archive, prepare current screenshots/metadata/privacy/age/encryption declarations/review access and TestFlight. Source/Simulator icon work is complete; final release artifact and submission are not."
+      "evidence": [
+        "output/qa/rillora-production-clients-20260925/native-release-readback.json"
+      ],
+      "next": "Simulator Release now has exact production connections and correct icon, no StoreKit fixture, but account access remains closed. Complete final signed distribution archive, current metadata/screenshots/privacy/age/encryption/review access and TestFlight; no App Store submission is implied."
     },
     {
       "id": "physical-device",

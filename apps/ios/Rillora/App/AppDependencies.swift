@@ -28,9 +28,9 @@ struct AppDependencies {
             let forcesSignedOutTestState = ProcessInfo.processInfo.environment["RILLORA_UI_TEST_FORCE_SIGNED_OUT"] == "1"
             let tokenStore: any SessionTokenStore = forcesSignedOutTestState
                 ? VolatileSessionTokenStore()
-                : KeychainSessionTokenStore()
+                : KeychainSessionTokenStore(service: SessionStorageNamespace.service(for: configuration.baseURL, purpose: .session))
             #else
-            let tokenStore: any SessionTokenStore = KeychainSessionTokenStore()
+            let tokenStore: any SessionTokenStore = KeychainSessionTokenStore(service: SessionStorageNamespace.service(for: configuration.baseURL, purpose: .session))
             #endif
             let client = APIClient(
                 configuration: configuration,
@@ -45,13 +45,13 @@ struct AppDependencies {
             let overviewService: any OverviewServing = client
             #endif
             let authenticationService: any NativeAuthenticating =
-                if let nativeAuthentication = configuration.nativeAuthentication {
+                if configuration.customerAccessEnabled, let nativeAuthentication = configuration.nativeAuthentication {
                     Auth0NativeAuthenticationService(
                         configuration: nativeAuthentication,
                         tokenStore: tokenStore
                     )
                 } else {
-                    UnavailableNativeAuthenticationService()
+                    UnavailableNativeAuthenticationService(accountsNotOpen: !configuration.customerAccessEnabled)
                 }
             let storeKitTestEnvironment = Self.storeKitTestEnvironment
             let storeKitClient: any StoreKitPurchasing =

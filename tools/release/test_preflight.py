@@ -39,6 +39,9 @@ class PublicationBoundaryTests(unittest.TestCase):
         info.update(CFBundleIdentifier='com.rillora.ios', RilloraAuth0Domain='login.rillora.xyz',
                     RilloraAPIBaseURL='https://app.rillora.xyz/api/v1',
                     RilloraNativeSessionURL='https://app.rillora.xyz/api/auth/native/session',
+                    RilloraAuth0ClientID=preflight.CONNECTIONS['nativeClientID'],
+                    RilloraAuth0Audience=preflight.CONNECTIONS['audience'],
+                    RilloraCustomerAccessEnabled=True,
                     CFBundleIcons={'CFBundlePrimaryIcon': {'CFBundleIconName': 'AppIcon'}})
         self.assertEqual(preflight.native_findings(info), [])
         with tempfile.TemporaryDirectory() as temp:
@@ -50,6 +53,18 @@ class PublicationBoundaryTests(unittest.TestCase):
             self.assertEqual(preflight.gate_findings(data, root), [])
             data['gates'][0]['evidence'] = ['../outside.json']
             self.assertTrue(preflight.gate_findings(data, root))
+
+    def test_configured_closed_candidate_does_not_clear_native_publication(self):
+        info = {'CFBundleIdentifier': 'com.rillora.ios', 'RilloraAuth0Domain': 'login.rillora.xyz',
+                'RilloraAPIBaseURL': preflight.CONNECTIONS['apiBaseURL'],
+                'RilloraNativeSessionURL': preflight.CONNECTIONS['nativeSessionURL'],
+                'RilloraAuth0ClientID': preflight.CONNECTIONS['nativeClientID'],
+                'RilloraAuth0Audience': preflight.CONNECTIONS['audience'],
+                'RilloraCustomerAccessEnabled': 'NO',
+                'CFBundleIcons': {'CFBundlePrimaryIcon': {'CFBundleIconName': 'AppIcon'}}}
+        self.assertEqual(preflight.native_findings(info), ['Customer account access is closed in this artifact'])
+        info['RilloraAuth0Audience'] = 'urn:rillora:api'
+        self.assertIn('RilloraAuth0Audience: not the reviewed production connection', preflight.native_findings(info))
 
     def test_removing_a_required_gate_does_not_turn_the_check_green(self):
         data = {'schemaVersion': 1, 'gates': [

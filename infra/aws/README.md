@@ -5,6 +5,24 @@ in AWS Frankfurt (`eu-central-1`). The deployed revision is evidence only for th
 exact resources and checks recorded in `docs/handoff.md`; staging is not approved
 for external private plans and production customer traffic remains closed.
 
+## September25 independent production client delivery
+
+RilloraProductionWeb is deployed for app.rillora.xyz. Select only
+productionWebOnly=true with the exact same-account us-east-1
+productionWebCertificateArn; it does not instantiate/update the existing
+production data/API stack. Build through tools/release/build-web-production.sh
+from the root using the existing protected legal configuration. CI fixture
+artifacts are rejected; every emitted asset and connection-contract digest is
+checked. API proxy caching/errors stay disabled/no-store. Both server and client
+account access remain closed.
+
+Actual custom-domain DNS/TLS/HTML/assets/private-route checks and private/versioned
+origin settings pass. The public router also accepts required JPEG formats and
+both build pipelines validate actual emitted assets. WWW does not reference the
+full-product JPG; its absent URL was not a public-page failure. Operations now
+has14actual passing targets, with its existing schedule/alerts unchanged.
+[Contract](../../docs/production-clients-20260925.md).
+
 ## September24 transaction mail and public website
 
 The opt-in `RilloraMail` stack is deployed: verified notify/bounce domains,

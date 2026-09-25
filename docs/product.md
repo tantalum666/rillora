@@ -9,6 +9,16 @@ Last updated: 2026-09-25 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
 
+## 2026-09-25 Closed production client checkpoint
+
+Owner asks to start the remaining release engineering. The independent closed
+product host and native production connection configuration are now prepared and
+verified; customer access stays off. Session/deletion-proof storage is separated
+by origin and the original UI/test identities remain. Current implementation and
+evidence are in[the client contract](production-clients-20260925.md), while
+[release readiness](release-readiness.md) retains identity, commerce and submission
+gates. Correctly filled Release fields do not mean the app is ready for sale.
+
 ## 2026-09-24 免费身份、事务邮件与公开入口 — 当前任务
 
 Owner提出先继续测试、临上线再清理，并要求复核Free月活。实际Auth0后台及官网均为Free25,000MAU；35USD/月只是Essentials的500MAU起步档。现阶段保留Free，不购买新增固定套餐；正式Web/iOS客户端及独立audience已准备但全部connection关闭，旧测试绑定不变。上线前按清单退役测试身份权限、会话及明确的测试数据，再接生产；不得仅删事项后继续共用测试删除密钥。[身份与邮件合同](production-identity-mail-20260924.md)。

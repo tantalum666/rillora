@@ -2548,3 +2548,10 @@ unreachable release remains a different closed workflow. See [sharing contract](
 - Owner asks what remains before launch. Current source/preflight confirms seven engineering/release gates and two Owner-deferred gates; these are not a completion percentage.
 - Under the existing release goal, prepare closed production Web/iOS connections while SES awaits review. Payment implementation and submission materials can proceed independently. This supersedes treating the SES wait as a stop for all release work, without opening customers or clearing test data.
 - AWS STS now reports an expired session; the earlier mail result is retained with its actual time. No new login, deployment, transaction or test is claimed. No new product, price, market or Owner-deferred decision. [Current checklist](release-readiness.md).
+
+## 2026-09-25 - Start closed client delivery under the release plan
+
+- Owner explicitly says to start the remaining engineering. Prepare/deploy an independent closed Web client and exact native production connections while retaining the existing backend closure, identity bindings, UI, price and test data.
+- A client flag is not authorization: backend private routes remain503 and Auth0 connections remain disabled. Source/compiled values alone cannot pass the final release gate. Native sessions/deletion receipts are origin-isolated while the exact old staging namespace is preserved.
+- Actual certificate/DNS/private-origin/HTTP/browser/Simulator/monitor checkpoints pass. Correct the investigation inference about a JPG: its absent WWW URL is not a broken referenced public asset; the full product artifact uses it and now serves it. Build-time route checks prevent future omissions.
+- Stripe CLI upgrade and reading official integration references do not constitute production commerce implementation, provider configuration or a charge. No additional product/market/pricing approval or customer activation follows. [Contract](production-clients-20260925.md).

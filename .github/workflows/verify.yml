@@ -115,5 +115,15 @@ jobs:
       - name: Verify infrastructure without AWS credentials
         working-directory: infra/aws
         run: npm ci && npm run typecheck && npm test
+      - name: Build closed-client fixture (not publishable)
+        working-directory: apps/web
+        env:
+          VITE_LEGAL_OPERATOR_NAME: Unpublished CI fixture
+          VITE_LEGAL_OPERATOR_COUNTRY: Fixture
+          VITE_LEGAL_SERVICE_ADDRESS: Unpublished fixture address
+          VITE_LEGAL_SUPPORT_EMAIL: support@example.test
+          VITE_LEGAL_PRIVACY_EMAIL: privacy@example.test
+          VITE_LEGAL_SECURITY_EMAIL: security@example.test
+        run: npm run build:production-closed
       - name: Verify public health checker
         run: node --test tools/ops/health-check.test.mjs

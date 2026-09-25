@@ -4,6 +4,16 @@ Role: current launch scope, remaining work and release evidence contract
 Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; CUSTOMER ACCOUNTS AND SALES CLOSED
 Last updated: 2026-09-25 (Asia/Hong_Kong)
 
+## September25 later client-delivery checkpoint
+
+The earlier zero-of-five native-field observation below is superseded: all five
+values now compile correctly, strict production validation and isolated session
+storage are tested, and the build deliberately keeps customer accessNO. The
+independent app.rillora.xyz delivery/HTTPS/same-origin API is deployed and verified.
+This closes client delivery preparation, not authenticated production workflows.
+The account/email, ordinary purchase and final artifact gates remain open.
+[Current client evidence](production-clients-20260925.md).
+
 ## September25 current release gap review
 
 Fresh preflight/source review still reports seven engineering/release gates and
@@ -14,7 +24,7 @@ retain their completed evidence; customer accounts and sales remain closed.
 | Workstream | Current remaining work | Completion evidence |
 | --- | --- | --- |
 | Identity and email | SES approval, restricted sender/Auth0 setup, Google production publication, controlled retirement of old test identity capabilities | Actual email/Google/Apple login, verification preserving invitations, password recovery and old-session behavior |
-| Final Web/iOS connections | Same-origin product at app.rillora.xyz and final native Release configuration; source still has five empty connection fields | Both production clients complete create/share/accept/revoke/delete against the independent production data |
+| Final Web/iOS connections | Closed same-origin Web delivery and all five native Release values are verified; authenticated production workflows and final signed artifacts remain | Both production clients complete create/share/accept/revoke/delete against the independent production data |
 | Web annual purchase | Stripe adapter still rejects live events; ordinary production purchase/consent path is incomplete | Current annual offer, payment/entitlement, cancellation/expiry/refund/restore and reconciliation |
 | Apple subscription | Verifier/Server API still use Sandbox; product mapping still uses v1; actual annual price alignment remains open | Versioned production handling plus real Sandbox/TestFlight purchase/restore/renewal/notifications, preserving historical receipts |
 | Final security and data operations | Retention cleanup/old manual snapshots, post-restore commerce reconciliation and final production security acceptance | Exact permissions, negative access, sensitive-action reauthentication, source/artifact/dependency checks and rollback evidence |

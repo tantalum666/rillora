@@ -378,6 +378,8 @@ final class Auth0NativeAuthenticationService: NativeAuthenticating {
 
 @MainActor
 final class UnavailableNativeAuthenticationService: NativeAuthenticating {
+    private let accountsNotOpen: Bool
+    init(accountsNotOpen: Bool = false) { self.accountsNotOpen = accountsNotOpen }
     let isConfigured = false
     let canSignInWithApple = false
     let canSignInWithGoogle = false
@@ -387,7 +389,7 @@ final class UnavailableNativeAuthenticationService: NativeAuthenticating {
         intent: NativeAuthenticationIntent,
         loginHint: String?
     ) async throws {
-        throw NativeAuthenticationError.notConfigured
+        throw accountsNotOpen ? NativeAuthenticationError.accountsNotOpen : NativeAuthenticationError.notConfigured
     }
 
     func signInWithApple(
@@ -425,6 +427,7 @@ private struct NativeSessionExchangeRequest: Encodable {
 }
 
 enum NativeAuthenticationError: LocalizedError, Sendable {
+    case accountsNotOpen
     case notConfigured
     case appleSignInNotConfigured
     case googleSignInNotConfigured
@@ -439,6 +442,8 @@ enum NativeAuthenticationError: LocalizedError, Sendable {
 
     var errorDescription: String? {
         switch self {
+        case .accountsNotOpen:
+            "Accounts are not open yet. You can still explore Rillora and its guides."
         case .notConfigured:
             "Native sign in is not configured for this build."
         case .appleSignInNotConfigured:

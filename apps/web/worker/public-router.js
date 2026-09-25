@@ -7,6 +7,6 @@ function handler(event) {
     request.uri = '/index.html';
     return request;
   }
-  if (/^\/assets\/[A-Za-z0-9_-]+\.(js|css|png|svg|woff|woff2|txt)$/.test(request.uri)) return request;
+  if (/^\/assets\/[A-Za-z0-9_-]+\.(js|css|png|jpe?g|webp|svg|woff|woff2|txt)$/.test(request.uri)) return request;
   return { statusCode: 404, headers: { 'cache-control': { value: 'no-store' } } };
 }

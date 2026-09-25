@@ -1,34 +1,64 @@
 # Rillora Current Handoff
 
-Status: RELEASE REVIEW — 7 ENGINEERING GATES; 2 OWNER-DEFERRED; SES FOLLOW-UP SUBMITTED
+Status: CLOSED PRODUCTION CLIENTS VERIFIED; CONTINUE PRODUCTION COMMERCE
 Last updated: 2026-09-25 (Asia/Hong_Kong)
 
-## 当前Owner任务
+## Current Owner task
 
-继续正式生产接入。Owner提出先测试、临上线清理；保留Auth0 Free，不购买US$35起步套餐，不现在清除测试账号。Free实际为25,000MAU；US$35只对应Essentials的500MAU起步档，不能混为同一套餐。[身份／邮件合同](production-identity-mail-20260924.md)。
+Owner explicitly asks to start the remaining release engineering. Continue the
+existing workflow; preserve current UI/brand, Free+88.80annual, test accounts/data,
+FanPass, the independent production data/recovery floor and Owner-deferred
+business/registration/physical-device work. Keep customer activation closed.
+[Client contract](production-clients-20260925.md).
 
-## 已完成
+## Completed checkpoint
 
-- 沿用本工作流全量Markdown阅读基线并补读变化文件。AWS在当天01时的本人登录／CLI续期已通过；15:44状态复核时STS再次明确会话过期，本次问询未要求重登。Auth0／GoDaddy原管理身份保留。
-- 原EU Auth0新增生产Web／iOS客户端与独立API audience，所有新connection关闭，旧绑定不变。上线前仍需退役测试M2M／会话／旧绑定，并等待已签Management JWT的实际86,400秒寿命加时钟容差后做负向验收；不能只轮换秘密或删除事项。
-- Google独立项目的政策、03Logo、官网／法律链接、Owner明确批准的托管OAuth凭据和openid／email／profile已保存。秘密仅保存在忽略目录0600文件；原Auth0 Google测试连接不变，新项目仍Testing。
-- RilloraMail已部署；notify／bounce域名、DKIM、TLS、抑制配置、四项邮件告警回读通过。三次SES模拟器产生Send3／Delivery2／Bounce1／Complaint1，SNS告警动作执行；不是普通用户收件／垃圾箱或真实抑制名单验收。
-- [公开官网](https://www.rillora.xyz/)及18份指南／支持入口已部署。私有S3、OAC、产物哈希、拒绝路径、DNS和WWW HTTPS验证通过；根域HTTP302、Chrome HTTPS和现代Node监控请求通过。保留早期TLS／403客户端差异。12目标实际云监控ok／failed0。[公开站合同](public-product-website-20260924.md)。
+- app.rillora.xyz has an independent private-S3/CloudFront delivery stack with
+  issued non-exportable certificate and guarded DNS. Exact HTML, HTTPS, pages,
+  actual product assets, same-origin ready response and closed private routes pass.
+  API caching is disabled/no-store and errors have zero cache TTL. Existing API,
+  database and Auth0 bindings were not redeployed.
+- iOS Release compiles the five exact production connection values, rejects
+  staging/unsafe settings and ignores runtime endpoint overrides. Customer access
+  remainsNO. Session and deletion-proof keychain namespaces separate production
+  from the preserved staging service. Four targeted tests and actual Release
+  Simulator public-home/closed-account behavior pass; Debug was restored afterward.
+- Desktop/390px Chrome interaction and image rendering pass with no app console
+  errors; only existing MetaMask warnings. Public exploration and return state
+  remain. Account closure is stated without treating it as a network failure.
+-14public monitor targets now execute successfully in the cloud; actual config
+  matches source. Prior delivered-alarm/silence proof retains its date.
+-39infra,84Web,21release guards,7monitor and4native tests pass; three Web builds
+  and Simulator Release compile pass. Source scan has23reviewed public/fixture
+  matches and0unknown at its latest checkpoint. Git/CI closeout is in progress.
 
-## 当前阻塞与证据边界
+## Evidence and pending items
 
-SES接口为DENIED／生产发送未启用，但已读取的工单179022088800001实际要求补充发信频率、收件来源、退信／投诉／退订和邮件样例，并邀请继续审核，未说明最终拒绝原因。Owner回复“开始吧”后，已提交原稿并在工单回读01:12:39+08:00的记录，当前状态显示“客户操作已完成”；无需再次确认这份回复。Support API要求付费计划，但普通控制台可用，没有购买Premium Support。Auth0邮件provider和SES发送凭据尚未配置。新增只读核验脚本通过7项边界测试；真实云端15项检查中14项通过，唯一未过项为productionAccessEnabled，不能据工单已提交而开启客户发信。
+[Current QA](../output/qa/rillora-production-clients-20260925/work-state.json).
+This is a closed client delivery checkpoint, not a signed App Store archive,
+customer login, real purchase or public release.
 
-[本轮QA](../output/qa/rillora-production-identity-20260924/work-state.json)：新增邮件核验7项测试及发布／恢复守卫合计20项通过；875文件源扫描22项已审非秘密、0未知，137份Markdown共1322本地链接无缺失。工程提交37761e2已推送Rillora私有库，[CI9](https://github.com/tantalum666/rillora/actions/runs/36033511894)三作业通过，212API、36infra及Web／法律／公开构建检查实际重跑。前轮CI7的CDK默认5秒超时与CI8修正记录保留，没有减弱断言。公开站交互／云端监控、真实恢复、closed生产API1、staging和iOS沿用各自检查点，没有重建数据库、重复恢复或原生构建。
+Owner renewed AWS; official same-device callback succeeded in the CLI despite
+Chrome's localhost blocked page. Fresh account, stack and SES reads passed.
+Latest SES remains productionAccessEnabledfalse/DENIED. The approved support
+reply was already submitted; do not repeat its authorization or transmission.
+Auth0 remainsFree, new client connections off and old test identities preserved.
 
-公开信息站上线不等于账户／销售开放。最终app.rillora.xyz、原生Release连接、普通交易与Apple提交仍由[发布合同](release-readiness.md)管理；UI、88.80年付、FanPass、E2EE延后及Owner暂缓项不变。
+Production Stripe/Apple implementation, controlled identity cutover/mail acceptance,
+final security/retention and submission remain. Stripe CLI was updated to1.52.0;
+its existing unrelated/FanPass profile was not reauthenticated. CLI docs returned401
+and MCP transport failed; the bundled official references were read instead.
+No payment code, live key, provider price or charge changed in this checkpoint.
 
-## 唯一下一步
+The initial WWW-JPG diagnosis was corrected: that JPG exists only in the full
+product artifact, so its absent WWW URL does not prove a broken public image.
+Both image allowlists/build checks were hardened; actual product JPG returns200.
 
-先完成封闭生产Web/iOS的正式连接与发布配置准备。SES审核是依赖支线，后续恢复AWS会话并核对结果，再完成正式邮件与受控身份验收；支付适配器和上架资料可在等待期间推进。保持客户入口关闭，不提前清理测试数据；回复已提交，不重复索取发送授权。
+## Single next step
 
-[前轮交接—HISTORICAL](handoff-history-20260924-before-identity.md)。
+Save this verified engineering checkpoint and check its CI, then implement the
+production commerce path behind the existing closed sales/market gates. Retain
+test-only behavior and versioned receipts. Resolve SES/identity and platform
+acceptance separately; do not clear accounts or open customers prematurely.
 
-只读核验工具只有AWS读取与报告输出，不发送邮件或创建定时任务；本次工单提交、核验与源码／CI收尾均已记录。
-
-September25 15:44+08状态复核：7项工程／发布门和2项Owner暂缓仍未完成；iOS五项正式字段为空、Stripe拒绝live、Apple固定Sandbox／v1价格映射均已重读源码确认。AWS STS此时明确会话过期，SES最新结果未刷新，前述01时续期及01:15邮件检查是早先证据。本次没有要求重登、部署、交易或重跑测试。当前细分清单见[发布合同](release-readiness.md)及[QA](../output/qa/rillora-release-status-20260925/review.json)。
+[Previous handoff - HISTORICAL](handoff-history-20260925-before-clients.md).

@@ -14,6 +14,7 @@ REQUIRED_NATIVE = (
     'RilloraAPIBaseURL', 'RilloraAuth0Domain', 'RilloraAuth0ClientID',
     'RilloraAuth0Audience', 'RilloraNativeSessionURL',
 )
+CONNECTIONS = json.loads((ROOT / 'config/production-connections.json').read_text())
 STATES = {'open', 'in_progress', 'owner_deferred', 'verified'}
 GATE_IDS = {'production-runtime', 'production-identity', 'production-billing',
             'merchant-market', 'apple-transactions', 'operations', 'backup-retention',
@@ -39,6 +40,14 @@ def native_findings(info):
             issues.append(key + ': not the reviewed production origin')
     if info.get('RilloraAuth0Domain') != 'login.rillora.xyz':
         issues.append('Identity issuer does not match the reviewed login domain')
+    for key, expected in [('RilloraAPIBaseURL', CONNECTIONS['apiBaseURL']),
+                          ('RilloraNativeSessionURL', CONNECTIONS['nativeSessionURL']),
+                          ('RilloraAuth0ClientID', CONNECTIONS['nativeClientID']),
+                          ('RilloraAuth0Audience', CONNECTIONS['audience'])]:
+        if info.get(key) != expected:
+            issues.append(key + ': not the reviewed production connection')
+    if info.get('RilloraCustomerAccessEnabled') not in (True, 'YES', 'true', '1'):
+        issues.append('Customer account access is closed in this artifact')
     icons = info.get('CFBundleIcons', {}).get('CFBundlePrimaryIcon', {})
     if not icons.get('CFBundleIconName') and not icons.get('CFBundleIconFiles'):
         issues.append('No compiled primary App icon')

@@ -157,12 +157,13 @@ function CookieNoticeBanner({ onDismiss, onReview }) {
 function AccountPage({ sessionStatus, onRetry, onBack }) {
   const checking = sessionStatus === "checking";
   const unavailable = sessionStatus === "unavailable";
+  const notOpen = sessionStatus === "not_open";
   const [hasAccepted, setHasAccepted] = useState(false);
   const [workingIntent, setWorkingIntent] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
 
   async function beginAuthentication(intent) {
-    if (!hasAccepted || workingIntent) return;
+    if (checking || unavailable || notOpen || !hasAccepted || workingIntent) return;
     setWorkingIntent(intent);
     setErrorMessage(null);
     try {
@@ -195,8 +196,9 @@ function AccountPage({ sessionStatus, onRetry, onBack }) {
         </section>
         <section className="account-actions" aria-label="Account options">
           {checking && <p className="account-status">Checking whether you already have an active session…</p>}
+          {notOpen && <p className="account-status" role="status">Accounts are not open yet. You can still explore Rillora and its guides.</p>}
           {unavailable && <><p className="account-status is-error">The account service is temporarily unavailable. The public site is still available.</p><button className="secondary-button" type="button" onClick={onRetry}>Try account service again</button></>}
-          {!checking && !unavailable && <>
+          {!checking && !unavailable && !notOpen && <>
             <div className="account-action-form">
               <button className="primary-button" type="button" disabled={!hasAccepted || Boolean(workingIntent)} onClick={() => beginAuthentication("signup")}>
                 {workingIntent === "signup" ? "Opening secure signup…" : "Create account"} <ArrowRight size={20} aria-hidden="true" />

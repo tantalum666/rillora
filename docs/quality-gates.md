@@ -7,6 +7,18 @@ Do not use for: replacing a detailed test plan
 Status: ACTIVE  
 Last updated: 2026-09-25 (Asia/Hong_Kong)
 
+## September25 closed production client evidence
+
+Exact production Web/TLS/DNS/private origin and closed API proxy checks pass.
+Native Release compiles five reviewed connections, isolates sessions/deletion
+receipts by origin, ignores Release overrides and keeps customer accessNO.
+Four targeted native tests plus actual Simulator behavior pass; Debug is restored.
+Desktop/390px browser content, images and return-state behavior are observed.
+New14-target cloud monitoring succeeds. No customer login, ordinary purchase,
+signed distribution archive or physical-device proof follows. The strengthened
+preflight explicitly rejects a configured but closed artifact.
+[Client contract](production-clients-20260925.md).
+
 ## September24 mail and public entry evidence
 
 Thirty-six infrastructure checks pass with two workers after the initial parallel

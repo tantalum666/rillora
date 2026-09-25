@@ -6,6 +6,7 @@ import { RilloraProductionPreflightStack } from "../lib/rillora-production-prefl
 import { RilloraProductionStack } from "../lib/rillora-production-stack.js";
 import { RilloraMailStack } from "../lib/rillora-mail-stack.js";
 import { RilloraPublicWebStack } from "../lib/rillora-public-web-stack.js";
+import { RilloraProductionWebStack } from "../lib/rillora-production-web-stack.js";
 
 const app = new App();
 const desiredCountContext = app.node.tryGetContext("serviceDesiredCount");
@@ -61,11 +62,20 @@ const mailSelected = mailOnly === true || mailOnly === "true";
 const publicWebOnly = app.node.tryGetContext('publicWebOnly');
 if (publicWebOnly !== undefined && ![true, false, 'true', 'false'].includes(publicWebOnly)) throw new Error('publicWebOnly must be true or false');
 const publicWebSelected = publicWebOnly === true || publicWebOnly === 'true';
-if([preflightSelected,productionSelected,mailSelected,publicWebSelected,operationsOnly===true||operationsOnly==="true"].filter(Boolean).length>1) throw new Error("Select exactly one infrastructure stack mode");
+const productionWebOnly = app.node.tryGetContext('productionWebOnly');
+if (productionWebOnly !== undefined && ![true, false, 'true', 'false'].includes(productionWebOnly)) throw new Error('productionWebOnly must be true or false');
+const productionWebSelected = productionWebOnly === true || productionWebOnly === 'true';
+if([preflightSelected,productionSelected,mailSelected,publicWebSelected,productionWebSelected,operationsOnly===true||operationsOnly==="true"].filter(Boolean).length>1) throw new Error("Select exactly one infrastructure stack mode");
 if (operationsOnly !== undefined && ![true, false, "true", "false"].includes(operationsOnly)) {
   throw new Error("operationsOnly must be true or false");
 }
-if (publicWebSelected) {
+if (productionWebSelected) {
+  new RilloraProductionWebStack(app, 'RilloraProductionWeb', {
+    env: { account: process.env.CDK_DEFAULT_ACCOUNT || undefined, region: 'eu-central-1' },
+    description: 'Closed production Web client and same-origin API delivery; no account activation',
+    certificateArn: app.node.tryGetContext('productionWebCertificateArn') ?? '',
+  });
+} else if (publicWebSelected) {
   new RilloraPublicWebStack(app, 'RilloraPublicWeb', {
     env: { account: process.env.CDK_DEFAULT_ACCOUNT || undefined, region: 'eu-central-1' },
     description: 'Read-only public Rillora website; no account, private data or purchase routes',

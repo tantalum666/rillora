@@ -30,7 +30,10 @@ struct AccountDeletionReference: Codable, Sendable, Identifiable {
 
 @MainActor
 enum AccountDeletionReferenceStore {
-    private static let keychain = KeychainSessionTokenStore(service: "com.rillora.ios.deletion-reference", account: "latest")
+    private static let keychain = KeychainSessionTokenStore(
+        service: SessionStorageNamespace.service(for: try? APIConfiguration.current().baseURL, purpose: .deletionReference),
+        account: "latest"
+    )
     #if DEBUG
     private static let volatile = VolatileSessionTokenStore()
     #endif

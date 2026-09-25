@@ -7,7 +7,8 @@
     "https://login.rillora.xyz",
     "https://l1g8350qw0.execute-api.eu-central-1.amazonaws.com",
     "https://j749rhzub7.execute-api.eu-central-1.amazonaws.com",
-    "https://www.rillora.xyz"
+    "https://www.rillora.xyz",
+    "https://app.rillora.xyz"
   ],
   "timeoutMs": 8000,
   "certificateWarningDays": 21,
@@ -95,6 +96,23 @@
       "id": "public-product-private-route-blocked",
       "url": "https://www.rillora.xyz/api/v1/session",
       "expectedStatus": 404,
+      "headers": {
+        "cache-control": "no-store"
+      }
+    },
+    {
+      "id": "production-client-home",
+      "url": "https://app.rillora.xyz/",
+      "expectedStatus": 200,
+      "headers": {
+        "content-security-policy": "connect-src 'self'",
+        "strict-transport-security": ""
+      }
+    },
+    {
+      "id": "production-client-accounts-closed",
+      "url": "https://app.rillora.xyz/api/v1/session",
+      "expectedStatus": 503,
       "headers": {
         "cache-control": "no-store"
       }

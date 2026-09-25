@@ -5,23 +5,30 @@ struct APIConfiguration: Equatable, Sendable {
     let developmentPlannerID: String?
     let nativeAuthentication: NativeAuthenticationConfiguration?
     let serviceMarketCode: String
+    let customerAccessEnabled: Bool
 
     init(
         baseURL: URL,
         developmentPlannerID: String?,
         nativeAuthentication: NativeAuthenticationConfiguration? = nil,
-        serviceMarketCode: String = "GLOBAL_US"
+        serviceMarketCode: String = "GLOBAL_US",
+        customerAccessEnabled: Bool = true
     ) {
         self.baseURL = baseURL
         self.developmentPlannerID = developmentPlannerID
         self.nativeAuthentication = nativeAuthentication
         self.serviceMarketCode = serviceMarketCode
+        self.customerAccessEnabled = customerAccessEnabled
     }
 
     static func current(
         bundle: Bundle = .main,
         environment: [String: String] = ProcessInfo.processInfo.environment
     ) throws -> APIConfiguration {
+        #if !DEBUG
+        // Release credentials/endpoints must come from the reviewed bundle.
+        let environment: [String: String] = [:]
+        #endif
         let configuredURL = environment["RILLORA_API_BASE_URL"]
             ?? bundle.object(forInfoDictionaryKey: "RilloraAPIBaseURL") as? String
         guard let configuredURL,
@@ -56,12 +63,34 @@ struct APIConfiguration: Equatable, Sendable {
             throw APIConfigurationError.invalidServiceMarketCode
         }
 
-        return APIConfiguration(
+        let configuredAccess = environment["RILLORA_CUSTOMER_ACCESS_ENABLED"]
+            ?? bundle.object(forInfoDictionaryKey: "RilloraCustomerAccessEnabled") as? String
+        let configuration = APIConfiguration(
             baseURL: baseURL,
             developmentPlannerID: developmentPlannerID?.isEmpty == false ? developmentPlannerID : nil,
             nativeAuthentication: nativeAuthentication,
-            serviceMarketCode: serviceMarketCode
+            serviceMarketCode: serviceMarketCode,
+            customerAccessEnabled: ["1", "true", "yes"].contains(configuredAccess?.lowercased() ?? "")
         )
+        #if !DEBUG
+        try configuration.validateProduction()
+        #endif
+        return configuration
+    }
+
+    func validateProduction() throws {
+        guard baseURL.absoluteString == "https://app.rillora.xyz/api/v1",
+              developmentPlannerID == nil,
+              let identity = nativeAuthentication,
+              identity.domain == "login.rillora.xyz",
+              identity.clientID == "POpNKTqlr6dHbJZLWPWxhyjg5qPtdrm4",
+              identity.audience == "urn:rillora:production:api",
+              identity.sessionExchangeURL.absoluteString == "https://app.rillora.xyz/api/auth/native/session",
+              !identity.appleNativeSignInEnabled,
+              !identity.googleNativeSignInEnabled,
+              !identity.passkeyNativeSignInEnabled else {
+            throw APIConfigurationError.invalidProductionConfiguration
+        }
     }
 }
 
@@ -184,6 +213,7 @@ enum APIConfigurationError: LocalizedError, Equatable {
     case missingBaseURL
     case incompleteNativeAuthentication
     case invalidServiceMarketCode
+    case invalidProductionConfiguration
 
     var errorDescription: String? {
         switch self {
@@ -193,6 +223,8 @@ enum APIConfigurationError: LocalizedError, Equatable {
             "Native sign-in configuration is incomplete for this build."
         case .invalidServiceMarketCode:
             "No valid service market is configured for this build."
+        case .invalidProductionConfiguration:
+            "This app version cannot connect to the account service."
         }
     }
 }

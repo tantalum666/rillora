@@ -23,7 +23,7 @@ export function isPublicAddress(address){
 }
 
 export function validateConfig(config){
-  if(!config||config.schemaVersion!==1||!/^[a-z][a-z0-9-]{1,40}$/.test(config.environment)||!Array.isArray(config.allowedOrigins)||config.allowedOrigins.length>12||!Array.isArray(config.targets)||!config.targets.length||config.targets.length>12||!Number.isInteger(config.timeoutMs)||config.timeoutMs<100||config.timeoutMs>10000||!Number.isInteger(config.certificateWarningDays)||config.certificateWarningDays<1||config.certificateWarningDays>90)throw new Error('Invalid operations configuration');
+  if(!config||config.schemaVersion!==1||!/^[a-z][a-z0-9-]{1,40}$/.test(config.environment)||!Array.isArray(config.allowedOrigins)||config.allowedOrigins.length>12||!Array.isArray(config.targets)||!config.targets.length||config.targets.length>16||!Number.isInteger(config.timeoutMs)||config.timeoutMs<100||config.timeoutMs>10000||!Number.isInteger(config.certificateWarningDays)||config.certificateWarningDays<1||config.certificateWarningDays>90)throw new Error('Invalid operations configuration');
   const origins=new Set(config.allowedOrigins.map(origin=>{
     const u=new URL(origin);
     if(u.protocol!=='https:'||u.origin!==origin||u.username||u.password||u.search||u.hash||isIP(u.hostname)||u.port)throw new Error('Invalid allowed origin');
