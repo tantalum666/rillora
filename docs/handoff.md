@@ -30,7 +30,9 @@ After compaction use focused recovery; never repeat this full read or old ceremo
   New database tests cover grace, channel/Web88.99 separation, exact integer units,
   ambiguity, receipt immutability/RLS and erasure retention. Initial harness errors
   were corrected without broadening permissions. [Checks](../output/qa/rillora-launch-goal-20260926/ledger-checks.json).
-- Source/CI receipt for this new increment is recorded in
+- Engineering7c53bba56aea25c95f3c877641f01cde4b1a3100 is pushed;
+  [CI16 passes](https://github.com/tantalum666/rillora/actions/runs/36239456505).
+  Source927files/25reviewed non-secrets/0unknown. Exact receipt is in
   [work state](../output/qa/rillora-launch-goal-20260926/work-state.json).
   Production intake, notifications/retries and native purchase/restore are not wired.
 
@@ -47,10 +49,13 @@ checks pass, productionAccessEnabledfalse, account health normal. Simulator alar
 are not refusal-causality proof. No new reply/case reopening occurred.
 [Mail evidence](../output/qa/rillora-launch-goal-20260926/ses-gmail-readback.json).
 
-Mail research compares Auth0-native Resend with Zoho CPaaS SMTP. No provider selected,
-account created or key installed. EU sending does not prove EU storage; provider
-retention/region/suppression/price and real delivery need verification.
-[Comparison](../output/qa/rillora-launch-goal-20260926/mail-alternative-research.json).
+Resend Free is now the preferred proposal: actualUI showsUSD0/3000monthly/100daily/
+3domains. US email/log storage and30-day retention are disclosed; EU sending is not
+EU storage. Chrome tab1082157391 is handed off for Owner signup/login and current
+terms, with no submitted fields or account/key/DNS/Auth0 change. Do not repeat the
+pending question or accept agreement for Owner. Verify real quota/billing controls
+and delivery before activation; Free terms can change.
+[Concrete proposal](../output/qa/rillora-launch-goal-20260926/resend-free-proposal.json).
 Apple exact price/effective fee and real Sandbox/TestFlight lifecycle remain open.
 
 ## Preserved deployment boundary

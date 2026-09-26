@@ -38,6 +38,32 @@ authorization, change regions to evade review, or silently switch the working
 test identity. Real verification/reset delivery and invitation continuity remain
 independent acceptance conditions. [Current readback](../output/qa/rillora-launch-goal-20260926/ses-gmail-readback.json).
 
+## Resend Free proposal — account setup pending
+
+Agent recommends preparing Resend's directly supported Auth0 integration as the
+next low-volume alternative. Actual Chrome pricing confirmsUSD0/month,3000emails
+per month,100per day,3domains and30-day data retention. This is the current Free
+offer, not a permanent cost guarantee: the August27Terms reserve changes and
+conversion if limits are exceeded. Verify account caps/billing safeguards before
+activation; no paid plan, overage or add-on is selected.
+
+Resend stores email content/recipient/log data in the US; choosing an EU sending
+region does not change residency. Proposed messages contain only necessary account
+verification/reset/security information, no private map content or unsolicited
+invitation campaign. Prepare a dedicated sender, scoped send-only credential,
+enforcedTLS, tracking off, suppression and observable failure/quota behavior.
+Actual notices and processing records must reflect the new sender before use.
+
+The signup page is open in Chrome for Owner signup/login and current account terms.
+Email/Password remain blank; Create account is disabled. Browser rules require
+Owner entry of a new password and action-time agreement; this is not a renewed
+request for project engineering authority. No account, key, DNS or Auth0 provider
+has changed. Independent release engineering continues.
+[Proposal/evidence](../output/qa/rillora-launch-goal-20260926/resend-free-proposal.json),
+[Auth0 integration](https://auth0.com/docs/customize/email/smtp-email-providers/resend),
+[pricing](https://resend.com/pricing),[processing boundary](https://resend.com/security/gdpr),
+[terms](https://resend.com/legal/terms-of-service).
+
 ## Current scope and findings
 
 Continue the existing production release workflow. The verified database, recovery

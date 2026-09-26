@@ -2725,3 +2725,5 @@ launch prerequisites and historical authentication gates are not repeated approv
 - **判断变化**：现有统一7天宽限上限不适配Apple16／28天；通用报价按最新price行排序又可能让Apple价覆盖Web。分别建立共同截止函数和明确购买渠道。未验证的宽限结束不得凭NULL延长，时间使用绝对小时避免DST差异。
 - **结果**：0076–0079追加迁移、Apple版本价格loader及不可变收据、删除后的最小财务保留实现；Stripe／Sandbox重复的订阅写入抽为75行共享模块。API266项／31文件、类型检查和构建通过，包含RLS／不改收据／官网88.99／16与28天／DST测试。最初测试错误分别调用了不可由应用角色直接执行的私有函数、读取不存在的prices字段；改用真实公开facade和offers，未扩大权限。
 - **未完成**：上述迁移只在一次性本地测试库运行；没有正式Apple价格、账户变更、云部署或真实交易。生产intake／通知租约重试和原生购买恢复继续接入，邮件替代方案仍待实际配置核验。源码／CI收尾见[当次记录](../../output/qa/rillora-launch-goal-20260926/work-state.json)。
+
+- **本检查点收尾**：7c53bba56推送后CI16已实际success；源码927文件／25既定非秘密／0未知。另在Chrome核对Resend实际免费额度并准备注册页，推荐仅必要账户邮件；美国存储／30天保留及免费条款可变已记录，未配置发件域或密钥。本人新密码／当前条款步骤由工具规则要求交接，其他Apple工程继续。

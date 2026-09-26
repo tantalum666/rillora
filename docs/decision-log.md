@@ -2637,3 +2637,17 @@ unreachable release remains a different closed workflow. See [sharing contract](
   suppression and actual delivery requirements. No new message, case reopening,
   vendor purchase, provider switch or customer activation is implied.
   [Release execution](release-readiness.md),[mail facts](production-identity-mail-20260924.md).
+
+
+## 2026-09-26 — Propose bounded Resend Free account-mail integration
+
+- After the actual SES refusal, Agent prefers the directly supported Resend/Auth0
+  path for necessary account messages. Actual pricing isUSD0/3000monthly/100daily/
+  3domains; US email/log storage and30-day retention are explicit. No private map
+  content, cold invitations, marketing or paid upgrade is included.
+- This is a prepared proposal, not Owner account/terms acceptance or production
+  installation. Chrome signup is handed off because a new password and current
+  binding terms require the Owner. Preserve old identity/test flows and continue
+  independent engineering. Actual quota, suppression, TLS, notices, billing limits
+  and real delivery must be checked; current Free price is not guaranteed forever.
+  [Mail contract](production-identity-mail-20260924.md).
