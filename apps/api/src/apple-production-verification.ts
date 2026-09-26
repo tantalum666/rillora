@@ -3,7 +3,8 @@ import { BillingPlanType, Environment, InAppOwnershipType, RenewalBillingPlanTyp
   type JWSTransactionDecodedPayload, type JWSRenewalInfoDecodedPayload } from '@apple/app-store-server-library';
 import { z } from 'zod';
 import { loadPinnedAppleRootCertificates, type AppleSignedDataVerifying } from './apple-storekit-adapter.js';
-import type { CommerceProviderSignalType, NormalizedProviderSignal } from './commerce-provider-contract.js';
+import type { CommerceProviderSignalType } from './commerce-provider-contract.js';
+import { appleReceiptEvidence, type AppleProductionSignal, type AppleReceiptEvidence } from './apple-production-evidence.js';
 
 export const rilloraAppleIdentity = Object.freeze({ bundleId: 'com.rillora.ios', appAppleId: 6803957639,
   subscriptionGroupId: '22325627', annualProductId: 'com.rillora.family.annual', historicalMonthlyProductId: 'com.rillora.family.monthly' });
@@ -24,16 +25,17 @@ export class AppleProductionVerification {
     this.storefronts = new Set(allowedStorefronts);
   }
 
-  async verifyClientTransaction(input: { signedTransaction: string; expectedAppAccountToken: string;
-    expectedStorefrontCountryCode: string }): Promise<NormalizedProviderSignal> {
+  async verifyClientTransaction(input: { signedTransaction: string; expectedAppAccountToken: string }): Promise<AppleProductionSignal> {
     const transaction = await this.transaction(input.signedTransaction);
-    if (uuid(transaction.appAccountToken) !== uuid(input.expectedAppAccountToken)
-      || transaction.storefront !== input.expectedStorefrontCountryCode) throw new Error('Production Apple client transaction ownership mismatch');
-    return this.signal(input.signedTransaction, 'client-transaction:' + transaction.transactionId,
-      'CLIENT_SIGNED_TRANSACTION', 'subscription_changed', time(transaction.signedDate), transaction, null);
+    if (uuid(transaction.appAccountToken) !== uuid(input.expectedAppAccountToken)) throw new Error('Production Apple client transaction ownership mismatch');
+    // Historical receipts retain their signed storefront after the device moves country.
+    // A new purchase's current storefront is checked by its separate quote/preflight.
+    const receipt = appleReceiptEvidence(transaction, input.signedTransaction);
+    return this.signal(input.signedTransaction, `client-transaction:${transaction.transactionId}:${receipt.proofSha256}`,
+      'CLIENT_SIGNED_TRANSACTION', 'subscription_changed', time(transaction.signedDate), transaction, null, receipt);
   }
 
-  async verifyNotification(signedPayload: string): Promise<NormalizedProviderSignal> {
+  async verifyNotification(signedPayload: string): Promise<AppleProductionSignal> {
     bounded(signedPayload);
     const notification = await (await this.source).verifyAndDecodeNotification(signedPayload);
     const data = notification.data;
@@ -43,9 +45,10 @@ export class AppleProductionVerification {
     const renewal = data.signedRenewalInfo ? await this.renewal(data.signedRenewalInfo) : null;
     matchSubjects(transaction, renewal);
     const type = identifier(notification.notificationType);
-    return this.signal(signedPayload, identifier(notification.notificationUUID),
+    return this.signal(signedPayload, uuid(notification.notificationUUID),
       type + (notification.subtype ? ':' + identifier(notification.subtype) : ''), signalType(type),
-      time(notification.signedDate), transaction, renewal);
+      time(notification.signedDate), transaction, renewal,
+      transaction ? appleReceiptEvidence(transaction, data.signedTransactionInfo!) : null);
   }
 
   async verifySubscriptionStatus(input: { signedTransaction: string; signedRenewalInfo: string;
@@ -75,10 +78,11 @@ export class AppleProductionVerification {
       || (transaction.billingPlanType !== undefined && transaction.billingPlanType !== BillingPlanType.BILLED_UPFRONT)) {
       throw new Error('Production Apple transaction does not match the supported individual Family subscription');
     }
-    identifier(transaction.transactionId); identifier(transaction.originalTransactionId);
+    z.string().regex(/^[0-9]{1,40}$/).parse(transaction.transactionId);
+    z.string().regex(/^[0-9]{1,40}$/).parse(transaction.originalTransactionId);
     time(transaction.signedDate); time(transaction.purchaseDate); time(transaction.expiresDate);
     if (time(transaction.expiresDate) <= time(transaction.purchaseDate)) throw new Error('Production Apple subscription period is invalid');
-    if (!Number.isSafeInteger(transaction.price) || transaction.price! < 0 || !/^[A-Z]{3}$/.test(transaction.currency ?? '')) {
+    if (!Number.isSafeInteger(transaction.price) || transaction.price! <= 0 || !/^[A-Z]{3}$/.test(transaction.currency ?? '')) {
       throw new Error('Production Apple requires the signed amount and currency for versioned mapping');
     }
     return transaction;
@@ -96,7 +100,8 @@ export class AppleProductionVerification {
   }
 
   private signal(raw: string, reference: string, sourceEventType: string, type: CommerceProviderSignalType,
-    signedAt: number, transaction: JWSTransactionDecodedPayload | null, renewal: JWSRenewalInfoDecodedPayload | null): NormalizedProviderSignal {
+    signedAt: number, transaction: JWSTransactionDecodedPayload | null, renewal: JWSRenewalInfoDecodedPayload | null,
+    receipt: AppleReceiptEvidence | null): AppleProductionSignal {
     const token = transaction?.appAccountToken ?? renewal?.appAccountToken;
     return Object.freeze({ provider: 'storekit', providerEnvironment: 'production', providerEventReference: reference,
       sourceEventType, signalType: type, occurredAt: new Date(signedAt).toISOString(),
@@ -104,7 +109,7 @@ export class AppleProductionVerification {
       providerTransactionReference: transaction?.transactionId ?? null,
       providerRefundReference: sourceEventType === 'REFUND' ? transaction?.transactionId ?? null : null,
       accountBindingReference: token === undefined ? null : uuid(token), payloadSha256: createHash('sha256').update(raw).digest('base64url'),
-      signatureVerified: true, verificationMode: 'apple_server_library_x5c', requiresAuthoritativeSnapshot: true });
+      signatureVerified: true, verificationMode: 'apple_server_library_x5c', requiresAuthoritativeSnapshot: true, receipt });
   }
 }
 

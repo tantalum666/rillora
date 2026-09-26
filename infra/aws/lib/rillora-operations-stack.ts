@@ -12,7 +12,9 @@ import { TRANSACTIONAL_MAIL } from './rillora-mail-stack.js';
 
 /** A separate, opt-in stack; deploying it never updates the API or database. */
 export class RilloraOperationsStack extends Stack {
-  constructor(scope: Construct, id: string, props: StackProps & { scheduleEnabled?: boolean } = {}) {
+  constructor(scope: Construct, id: string, props: StackProps & {
+    scheduleEnabled?: boolean; appleProductionMonitoringEnabled?: boolean;
+  } = {}) {
     super(scope, id, props);
     const configuration = readFileSync(new URL("../../../config/operations-targets.json", import.meta.url), "utf8");
     const parsed = JSON.parse(configuration) as { environment: string };
@@ -96,6 +98,24 @@ export class RilloraOperationsStack extends Stack {
         comparisonOperator: cloudwatch.ComparisonOperator.GREATER_THAN_OR_EQUAL_TO_THRESHOLD,
         treatMissingData: cloudwatch.TreatMissingData.NOT_BREACHING,
       }));
+    }
+    // Opt in only with the actual production worker deployment; do not create a
+    // permanent missing-heartbeat alarm for the still-closed customer runtime.
+    if (props.appleProductionMonitoringEnabled) {
+      for (const [name, threshold, periods, silence] of [
+        ['Failed', 1, 1, false], ['WorkerErrors', 1, 2, false],
+        ['OldestPendingSeconds', 300, 2, false], ['Heartbeat', 1, 3, true],
+      ] as const) {
+        alarmDefinitions.push(new cloudwatch.Alarm(this, `AppleDelivery${name}`, {
+          metric: new cloudwatch.Metric({ namespace: 'Rillora/Commerce', metricName: name,
+            dimensionsMap: { Environment: 'production', Provider: 'storekit' },
+            statistic: silence ? 'Sum' : 'Maximum', period: Duration.minutes(5) }),
+          threshold, evaluationPeriods: periods,
+          comparisonOperator: silence ? cloudwatch.ComparisonOperator.LESS_THAN_THRESHOLD
+            : cloudwatch.ComparisonOperator.GREATER_THAN_OR_EQUAL_TO_THRESHOLD,
+          treatMissingData: silence ? cloudwatch.TreatMissingData.BREACHING : cloudwatch.TreatMissingData.NOT_BREACHING,
+        }));
+      }
     }
     for (const alarm of alarmDefinitions) {
       alarm.addAlarmAction(new actions.SnsAction(alerts));

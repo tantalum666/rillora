@@ -106,9 +106,14 @@ if (productionWebSelected) {
   if (operationsEnabled !== undefined && ![true, false, "true", "false"].includes(operationsEnabled)) {
     throw new Error("operationsEnabled must be true or false");
   }
+  const appleMonitoring = app.node.tryGetContext('appleProductionMonitoringEnabled');
+  if (appleMonitoring !== undefined && ![true, false, 'true', 'false'].includes(appleMonitoring)) {
+    throw new Error('appleProductionMonitoringEnabled must be true or false');
+  }
   new RilloraOperationsStack(app, "RilloraOperations", {
     env: { account: process.env.CDK_DEFAULT_ACCOUNT || undefined, region: "eu-central-1" },
     scheduleEnabled: operationsEnabled === true || operationsEnabled === "true",
+    appleProductionMonitoringEnabled: appleMonitoring === true || appleMonitoring === 'true',
     description: "Rillora public health scheduling and alarms; no access to private application data",
   });
 } else new RilloraStagingStack(app, "RilloraStaging", {

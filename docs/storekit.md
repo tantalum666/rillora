@@ -5,9 +5,20 @@ Authority scope: Rillora Family StoreKit product identifiers, purchase/restore l
 Superseded by: newer Apple platform rules, verified App Store Connect state, a later Owner decision, or stricter payment/security evidence  
 Do not use for: proof of App Store approval, accepted Paid Apps Agreement, banking/tax completion, live IAP products, production entitlement or a real charge  
 Status: COMPLETE LOCAL XCODE SK0; APP STORE CONNECT SANDBOX METADATA／PRICES／EIGHT STOREFRONTS／TWO PURPOSE-LIMITED TESTERS CREATED; LIVE USA SANDBOX CATALOG LOAD VERIFIED ON CLEAN IOS 26.4／26.5 SIMULATORS; DEBUG-ONLY SERVER-GATED PURCHASE HARNESS READY; OFFICIAL APPLE JWS／SERVER API SNAPSHOT／DURABLE NO-ENTITLEMENT RECONCILIATION IMPLEMENTED LOCALLY; ONE ACTIVE CHROME IAP KEY `.P8` SECURED LOCALLY, OFFICIAL CLIENT CONSTRUCTION AND AUTHENTICATED SERVER API PROBE VERIFIED; SIMULATOR SANDBOX ACCOUNT PERSISTENCE BLOCKED BY APPLE `AMSERRORDOMAIN 100 / PASSWORD REUSE NOT AVAILABLE`; STAGING DEPLOYMENT／PURCHASE COMPLETION／REVIEW REMAIN OPEN  
-Last updated: 2026-09-26 (production verification foundation and portal readback; historical evidence retained)
+Last updated: 2026-09-26 (durable production intake locally verified; historical provider evidence retained)
 
-## September26 production foundation and current portal readback
+## Current September26 launch engineering
+
+The production signed-status adapter, versioned price/receipt ledger, authenticated
+transaction intake, durable notification queue, leased bounded retry and guarded
+runtime now pass285API/40infrastructure tests. New-purchase quote/consent/account
+reservation and native production purchase/restore remain unfinished. Cloud Apple
+configuration, exact channel price, real Sandbox/TestFlight transactions and signed
+distribution remain separate gates. Details and evidence are maintained in the
+[current Apple contract](production-apple-20260926.md); the foundation-only and old
+Sandbox entries below describe their dated checkpoints.
+
+## September26 earlier foundation and portal readback
 
 Owner restored Apple administration. Actual annual pricing remainsUSD68; the
 fresh800-point USA table has no88.80. Owner has reaffirmed channel differentiation;

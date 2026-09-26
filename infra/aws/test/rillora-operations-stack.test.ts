@@ -7,6 +7,21 @@ const template = () => Template.fromStack(new RilloraOperationsStack(new App(), 
   env: { account: "111111111111", region: "eu-central-1" },
 }));
 describe("Standalone public operations", () => {
+  it('optionally monitors bounded Apple delivery failures, age and worker silence without private metric dimensions', () => {
+    const t = Template.fromStack(new RilloraOperationsStack(new App(), 'AppleOperationsTest', {
+      env: { account: '111111111111', region: 'eu-central-1' }, appleProductionMonitoringEnabled: true,
+    }));
+    const alarms = Object.values(t.findResources('AWS::CloudWatch::Alarm'))
+      .map(a => a.Properties).filter(a => a.Namespace === 'Rillora/Commerce');
+    expect(alarms.map(a => a.MetricName).sort()).toEqual(['Failed', 'Heartbeat', 'OldestPendingSeconds', 'WorkerErrors']);
+    for (const alarm of alarms) {
+      expect(alarm.Dimensions).toEqual([{ Name: 'Environment', Value: 'production' }, { Name: 'Provider', Value: 'storekit' }]);
+      expect(alarm.AlarmActions).toBeDefined();
+      expect(alarm.TreatMissingData).toBe(alarm.MetricName === 'Heartbeat' ? 'breaching' : 'notBreaching');
+    }
+    t.resourceCountIs('AWS::CloudWatch::Alarm', 12);
+    t.resourceCountIs('AWS::SNS::Subscription', 0);
+  });
   it("keeps the recurring schedule off until activation evidence is ready", () => {
     template().hasResourceProperties("AWS::Events::Rule", { State: "DISABLED" });
     Template.fromStack(new RilloraOperationsStack(new App(), "EnabledTest", {

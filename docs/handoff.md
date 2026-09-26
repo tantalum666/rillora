@@ -1,6 +1,6 @@
 # Rillora Current Handoff
 
-Status: FINAL LAUNCH GOAL ACTIVE; APPLE STATUS/CATALOG/SHARED LEDGER LOCALLY VERIFIED; PRODUCTION INTAKE NEXT
+Status: FINAL LAUNCH GOAL ACTIVE; APPLE DURABLE INTAKE LOCALLY VERIFIED; NATIVE PURCHASE PREFLIGHT NEXT
 Last updated: 2026-09-26 (Asia/Hong_Kong)
 
 ## Current task and authority
@@ -17,24 +17,25 @@ After compaction use focused recovery; never repeat this full read or old ceremo
 
 ## Current engineering
 
-- Production Apple verification/status adapter and prior source4ed6a8295 passed
-  [CI15](https://github.com/tantalum666/rillora/actions/runs/36237208779).
-- The next local increment adds0076–0079: one shared SQL access clock for actual
-  Apple grace, separate Apple price bindings/channel, immutable receipts and
-  existing financial-retention handling on deletion. No real Apple price is seeded.
-- Stripe and Apple Sandbox now reuse one75-line subscription ledger. Provider
-  verifiers/catalog binding remain separate; old orders/receipts retain their facts.
-  Snapshot paid-period ends and graceEndsAt are distinct. Missing/invalid grace
-  cannot invent access; absolute-hour limits avoid DST/session-timezone changes.
-- Current local verification passes266API tests/31files, typecheck and build.
-  New database tests cover grace, channel/Web88.99 separation, exact integer units,
-  ambiguity, receipt immutability/RLS and erasure retention. Initial harness errors
-  were corrected without broadening permissions. [Checks](../output/qa/rillora-launch-goal-20260926/ledger-checks.json).
-- Engineering7c53bba56aea25c95f3c877641f01cde4b1a3100 is pushed;
-  [CI16 passes](https://github.com/tantalum666/rillora/actions/runs/36239456505).
-  Source927files/25reviewed non-secrets/0unknown. Exact receipt is in
-  [work state](../output/qa/rillora-launch-goal-20260926/work-state.json).
-  Production intake, notifications/retries and native purchase/restore are not wired.
+Production Apple has authenticated receipt intake, verified durable notifications,
+per-original subscription leases, bounded retry/crash recovery and current-state
+reconciliation through the existing shared ledger. Client restores always fetch
+fresh provider state before finish; immutable receipts and fresh observation audits
+remain separate. Wrong owners, stale signed observations, conflicting active
+channels and disabled production gates fail closed. New sales are not advertised.
+
+Migrations0080–0082 add the delivery/observation support without changing historical
+0076–0079. A full regression caught and fixed an old-constraint/partial-index naming
+collision in local pg_restore. Current checks:285API tests/33files,40infrastructure
+tests, both typechecks and API build pass.
+[Checks](../output/qa/rillora-launch-goal-20260926/apple-intake-checks.json).
+Optional aggregateEMF/CloudWatch queue alarms and the exact Apple-IAP vault factory
+are prepared but not deployed or configured. New native quote/consent/account
+reservation, cross-provider renewal preflight and server-gated native flow remain.
+
+The previous engineering7c53bba56 has[CI16](https://github.com/tantalum666/rillora/actions/runs/36239456505).
+This increment's exact source/CI publication status is in
+[work state](../output/qa/rillora-launch-goal-20260926/work-state.json).
 
 ## External facts
 
@@ -61,18 +62,19 @@ Apple exact price/effective fee and real Sandbox/TestFlight lifecycle remain ope
 ## Preserved deployment boundary
 
 Staging remains API38/migration31/schema0075; production API remains task1/schema0070
-and customer-closed. No0076–0079cloud migration/deploy occurred. Independent closed
+and customer-closed. No0076–0082cloud migration/deploy occurred. Independent closed
 Web, public website, legalSites6, seven-day production RDS, scoped real restore,
 monitoring and native connection preparation retain their original evidence.
 No new customer login, real message/charge, native build or public release occurred.
 
 ## Single next step
 
-Finish production Apple durable intake/notification/retry and native server-gated
-purchase/restore using the shared ledger and price bindings. Require ownership,
-commit-before-finish, duplicate/late-event handling and cross-channel consistency.
-Continue independent identity/mail and final release work when concrete provider
-steps are available; do not let SES approval stop engineering.
+Complete the ordinary native annual purchase preflight/consent/account reservation
+and server-gated StoreKit purchase/restore against the new production intake. Block
+resumable cross-channel renewals before showing a payment sheet. Preserve retired
+receipts/monthly restores, existing UI and separate real provider/price/cloud gates.
+Continue identity/mail and final release work when concrete provider steps become
+available; the pending Resend本人step does not stop independent engineering.
 
 [Release](release-readiness.md),[Apple](production-apple-20260926.md),
 [Identity/mail](production-identity-mail-20260924.md),

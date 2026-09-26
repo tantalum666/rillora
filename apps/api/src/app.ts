@@ -1,4 +1,6 @@
 import express, { type Express, type RequestHandler } from "express";
+import type { AppleProductionIntake } from './apple-production-intake.js';
+import { createAppleProductionNotificationHandler, createAppleProductionRouter } from './apple-production-routes.js';
 import { authenticate } from "./auth.js";
 import { Auth0EmailIdentityVerifier, SessionEmailVerification, type EmailIdentityVerifying } from "./email-verification.js";
 import type { AppConfig } from "./config.js";
@@ -50,6 +52,7 @@ import {
 } from "./storekit-sandbox-routes.js";
 
 export type AppDependencies = AuthDependencies & {
+  appleProductionIntake?: AppleProductionIntake;
   transportReady?: () => boolean;
   emailIdentityVerifier?: EmailIdentityVerifying;
   accountIdentityDeleter?: AccountIdentityDeleting;
@@ -102,6 +105,9 @@ export function createApp(
   }
 
   if (config.stripeProductionSecretArn && (!dependencies.stripeProductionConfig || config.stripeTest)) throw new Error('Production billing requires isolated loaded credentials');
+  if (Boolean(config.appleProduction) !== Boolean(dependencies.appleProductionIntake)
+    || (config.appleProduction && config.appleSandbox)) throw new Error('Production Apple requires isolated loaded credentials');
+  const appleProductionIntake = dependencies.appleProductionIntake;
   const stripeExecutor = dependencies.stripeExecutor ?? (config.stripeProductionSecretArn && dependencies.stripeProductionConfig
     ? new StripeCommerceExecutor(pool, productionExecutionConfig(dependencies.stripeProductionConfig),
       dependencies.stripeProvider ?? new StripeProductionAdapter(dependencies.stripeProductionConfig))
@@ -149,6 +155,11 @@ export function createApp(
       express.json({ limit: "256kb", strict: true, type: "application/json" }),
       createStoreKitSandboxNotificationHandler(storeKitSandboxIntake),
     );
+  }
+  if (appleProductionIntake) {
+    app.post(['/api/commerce/storekit/production/notifications', '/commerce/storekit/production/notifications'],
+      preventCaching, express.json({ limit: '256kb', strict: true, type: 'application/json' }),
+      createAppleProductionNotificationHandler(appleProductionIntake));
   }
   // A bounded map import needs more room than ordinary mutations. Authenticate
   // before reading its larger body; the usual parser skips the already-read body.
@@ -207,7 +218,10 @@ export function createApp(
       createStoreKitSandboxRouter(storeKitSandboxIntake),
     );
   }
-  plannerApi.use("/commerce", createCommerceRouter(pool));
+  if (appleProductionIntake) plannerApi.use('/commerce/storekit/production', createAppleProductionRouter(appleProductionIntake));
+  // Receipt/restore intake alone is not a new-purchase preflight implementation.
+  plannerApi.use("/commerce", createCommerceRouter(pool,
+    new Set(stripeExecutor?.providerEnvironment === 'production' ? ['stripe'] : [])));
   plannerApi.use("/account", createAccountDataRouter(pool));
   plannerApi.use("/account", createAccountDeletionRouter(pool, accountDeletion));
   plannerApi.use(createApiRouter(pool, config));

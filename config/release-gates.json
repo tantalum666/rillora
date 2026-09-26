@@ -68,9 +68,10 @@
       "evidence": [
         "docs/production-apple-20260926.md",
         "output/qa/rillora-production-apple-20260926/work-state.json",
-        "output/qa/rillora-launch-goal-20260926/apple-snapshot-checks.json"
+        "output/qa/rillora-launch-goal-20260926/apple-snapshot-checks.json",
+        "output/qa/rillora-launch-goal-20260926/apple-intake-checks.json"
       ],
-      "next": "Production signed-status and reviewed-price adapter is locally tested with bounded read-only transport and explicit grace/expiry/revocation handling. Complete durable intake/notifications/retry/native purchase/restore, exact commission/price/catalog/provider facts and actual Sandbox/TestFlight lifecycle. No live activation follows from decoded fixture tests."
+      "next": "Production verified intake, immutable receipts/current ledger, leased bounded notifications/retry, scoped runtime and optional alarms pass local fixtures. Complete ordinary native purchase preflight/consent/account reservation and server-gated finish/restore, exact commission/price/catalog/provider facts, cloud deployment/real alarm delivery and actual Sandbox/TestFlight lifecycle. No customer activation or real Apple transaction is proven."
     },
     {
       "id": "operations",

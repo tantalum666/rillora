@@ -2,6 +2,7 @@ import { AppStoreServerAPIClient, AutoRenewStatus, Environment, Status,
   type JWSRenewalInfoDecodedPayload, type JWSTransactionDecodedPayload } from '@apple/app-store-server-library';
 import fetch, { type RequestInit, type Response } from 'node-fetch';
 import { z } from 'zod';
+import { appleReceiptEvidence, type AppleReceiptEvidence } from './apple-production-evidence.js';
 import { ApplePriceBindings } from './apple-price-bindings.js';
 import { AppleProductionVerification, rilloraAppleIdentity } from './apple-production-verification.js';
 import type { AppleAppStoreServerApi } from './apple-storekit-server-api.js';
@@ -27,6 +28,7 @@ export type AppleProductionSnapshot = AuthoritativeSubscriptionSnapshot & Readon
   graceEndsAt: string | null;
   transactionSignedAt: string;
   renewalSignedAt: string;
+  receipt: AppleReceiptEvidence;
 }>;
 
 type AppleHttpRequest = (url: string, options: RequestInit) => Promise<Response>;
@@ -108,6 +110,7 @@ export class AppleProductionSnapshotAdapter {
       renewalIsPossible: access.state !== 'revoked' && transaction.isUpgraded !== true
         && (renewal.autoRenewStatus === AutoRenewStatus.ON || renewal.isInBillingRetryPeriod === true),
       transactionSignedAt: iso(transactionSignedAt), renewalSignedAt: iso(renewalSignedAt),
+      receipt: appleReceiptEvidence(transaction, selected.signedTransactionInfo),
       source: 'app_store_server_api_signed_status',
     });
   }

@@ -16,7 +16,7 @@ const notification=():ResponseBodyV2DecodedPayload=>({notificationUUID:'11111111
   data:{environment:Environment.PRODUCTION,bundleId:identity.bundleId,appAppleId:identity.appAppleId,signedTransactionInfo:'signed.transaction.fixture',signedRenewalInfo:'signed.renewal.fixture'}});
 function verifier(patch:Partial<AppleSignedDataVerifying>={}):AppleSignedDataVerifying{return{
   verifyAndDecodeTransaction:async()=>transaction(),verifyAndDecodeRenewalInfo:async()=>renewal(),verifyAndDecodeNotification:async()=>notification(),...patch};}
-const client={signedTransaction:'signed.transaction.fixture',expectedAppAccountToken:token,expectedStorefrontCountryCode:'USA'};
+const client={signedTransaction:'signed.transaction.fixture',expectedAppAccountToken:token};
 const status={signedTransaction:'signed.transaction.fixture',signedRenewalInfo:'signed.renewal.fixture',expectedOriginalTransactionId:'10000000000001',expectedAppAccountToken:token};
 
 describe('production Apple binding after official signature verification (synthetic decoded fixtures)',()=>{
@@ -31,7 +31,8 @@ describe('production Apple binding after official signature verification (synthe
     expect(()=>new AppleProductionVerification(verifier(),new Set())).toThrow('explicit');
     const checker=new AppleProductionVerification(verifier(),new Set(['USA']));
     await expect(checker.verifyClientTransaction({...client,expectedAppAccountToken:'ffffffff-ffff-4fff-8fff-ffffffffffff'})).rejects.toThrow('ownership');
-    await expect(checker.verifyClientTransaction({...client,expectedStorefrontCountryCode:'HKG'})).rejects.toThrow('ownership');
+    // No client/device storefront is used to reject an otherwise owned historical receipt.
+    await expect(checker.verifyClientTransaction(client)).resolves.toHaveProperty('receipt.storefront','USA');
   });
   it('rejects Sandbox, foreign products/groups, shared or multiseat purchases and unversionable signed prices',async()=>{
     for(const patch of [{environment:Environment.SANDBOX},{bundleId:'com.other.app'},{subscriptionGroupIdentifier:'another'},

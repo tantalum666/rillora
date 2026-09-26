@@ -5,6 +5,18 @@ in AWS Frankfurt (`eu-central-1`). The deployed revision is evidence only for th
 exact resources and checks recorded in `docs/handoff.md`; staging is not approved
 for external private plans and production customer traffic remains closed.
 
+## September26 Apple worker monitoring preparation
+
+Operations mode supports the separate opt-in context
+`appleProductionMonitoringEnabled=true`. It adds only aggregate production/StoreKit
+queue-failure, worker-error, pending-age and heartbeat alarms to the existing scoped
+topic. Keep it off while the production worker is not running. The worker emits
+CloudWatchEMF through existing task logs and does not need `PutMetricData` or private
+identity dimensions. Forty infrastructure tests pass locally; no operations stack,
+subscriber, production worker or actual alert delivery changed in this increment.
+See[the Apple contract](../../docs/production-apple-20260926.md) for the distinct
+named-vault/configuration, migration and real delivery gates.
+
 ## September25 independent production client delivery
 
 RilloraProductionWeb is deployed for app.rillora.xyz. Select only

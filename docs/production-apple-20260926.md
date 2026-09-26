@@ -1,7 +1,7 @@
 # Apple production verification and price preparation
 
-Role: current Apple portal readback and isolated production verification foundation
-Status: VERIFICATION AND AUTHORITATIVE STATUS LOCALLY VERIFIED; PRICE AND DURABLE INTAKE OPEN
+Role: current Apple production engineering, portal readback and actual evidence boundary
+Status: DURABLE INTAKE AND BOUNDED WORKER LOCALLY VERIFIED; NATIVE PURCHASE AND REAL PROVIDER LIFECYCLE OPEN
 Last updated: 2026-09-26 (Asia/Hong_Kong)
 
 Owner completed the requested Apple login. The actual Rillora app6803957639,
@@ -9,7 +9,67 @@ bundle com.rillora.ios, group22325627 and two existing products are accessible.
 The app/version and products remain Prepare for Submission. No build, review
 submission, live purchase or release was created in this increment.
 
-## September26 launch-goal status adapter
+## Durable production intake and recovery — latest September26 increment
+
+The ordinary authenticated transaction endpoint and NotificationsV2 endpoint are
+implemented behind an explicit default-off production flag. Verification, minimal
+financial evidence, inbox ownership/leases, receipt persistence, current ledger,
+HTTP parsing and runtime credentials are separate small modules. Stripe/Sandbox
+continue using the common subscription ledger and existing permission functions.
+No second entitlement engine or external queue service was introduced.
+
+A verified transaction must match the current Rillora planner's appAccountToken and
+an already existing active commerce account. The intake does not invent a service
+market from the Apple storefront or provision an account from a callback. Unique
+original/transaction links reject conflicting owners. A historical signed storefront
+is retained when the device changes country; current new-purchase eligibility will
+be checked by its separate quote/preflight, which remains unfinished.
+
+Transaction revision identity includes its proof digest. Explicit client submission
+always refreshes authoritative Apple status, including when that receipt was already
+processed. Immutable financial receipts retain the first proof and purchased amount;
+current access handles later refund/renewal/expiry and signed renewal extensions.
+An older refund notification cannot choose an old subscription period over the
+current server status. Signed transaction/renewal observation frontiers reject
+regressions. Receipt, ledger, grants, reconciliation audit and delivery acknowledgement
+commit in one owner-scoped transaction before the API authorizes device finish.
+
+Notifications return200 only after verified minimal evidence is durably committed;
+that response does not assert a grant. A thirty-second worker claims short leases,
+serializes each original subscription across processes, reclaims crashed work, and
+backs off up to twelve attempts. Exhausted or unmapped work remains visible for
+operations instead of retrying forever. Only error codes and aggregate counts/age
+are logged. Apple confirms production notification retries and current-status/history
+recovery are separate from sandbox delivery; the internal durable queue does not
+depend on receiving a duplicate from Apple. [Official response and retry contract](https://developer.apple.com/documentation/appstoreservernotifications/responding-to-app-store-server-notifications).
+
+The runtime requires the exact named Rillora production Apple-IAP vault secret,
+validatedEC/P-256 key and explicit storefront list, pinned roots, production
+encryption/recovery/TLS and no development/Sandbox surfaces. It is separate from
+Sign in with Apple. Startup reads the reviewed price bindings; a catalog release
+must restart this worker. No secret was created or installed this round.
+The generic purchase route now also checks configured production runtime and
+production catalog environment; receipt intake alone does not advertise Apple
+new sales. Apple quote/consent/account reservation and native wiring are next.
+
+Migrations0080–0082 are applied only to fixed disposable local databases.285API
+tests across33files,40infrastructure tests, typechecks and API build pass. Coverage
+includes real cookieCSRF/authentication, wrong owner, concurrent duplicates, queue
+crash/retry/exhaustion, late refund, immutable receipts/extensions, provider regression,
+cross-channel active conflict and closed flags. An initial failure exposed the old
+one-event/one-audit constraint; separate immutable observation records fix restores.
+Full regression then found a partial-index/old-constraint naming collision in the
+existing real local pg_restore test; the additive rename now passes that test.
+[Exact checks](../output/qa/rillora-launch-goal-20260926/apple-intake-checks.json).
+
+AggregateEMF and four opt-in CloudWatch alarms cover worker errors, failed deliveries,
+pending age and missing heartbeat through the existing alert topic. They are only
+synthesized/tested: no cloud activation, actual alarm delivery, production schema
+rollout, real Apple signature/purchase, native build or App Store submission occurred.
+New-purchase preflight must still block every resumable cross-channel subscription,
+including expired billing-retry states, before the StoreKit payment sheet can open.
+
+## September26 launch-goal status adapter — preceding local checkpoint
 
 The production Server API adapter now reads the official all-subscription-statuses
 endpoint and re-verifies its nested transaction/renewal signatures with the existing
@@ -40,12 +100,12 @@ no real Apple signature, online OCSP, purchase, HTTP latency or notification del
 is claimed. The fixture99.99amount is not an adopted or saved Apple offer.
 [QA](../output/qa/rillora-launch-goal-20260926/apple-snapshot-checks.json).
 
-Next complete the production durable intake/notification/retry and native flow,
-then exact price/catalog/provider configuration and actual lifecycle acceptance.
+The latest increment above completes local durable intake/notification/retry.
+Native purchase preflight/flow and exact provider lifecycle acceptance remain open.
 [Apple status endpoint](https://developer.apple.com/documentation/appstoreserverapi/get-all-subscription-statuses),
 [renewal/grace fields](https://apple.github.io/app-store-server-library-node/interfaces/JWSRenewalInfoDecodedPayload.html).
 
-## Shared ledger and price integration — same launch goal
+## Shared ledger and price integration — preceding local checkpoint
 
 Append-only migrations0076–0079 are implemented and tested only in disposable
 local databases. No cloud schema, provider price or sale flag changed. The common
@@ -142,16 +202,16 @@ actual provider facts: for distinct grandfathered prices, retain renewal coverag
 do not close them just because new purchases use another amount. Real bindings
 and ledger/receipt integration remain to be implemented after the price decision.
 
-## Verification and remaining work
+## HISTORICAL — initial foundation verification and remaining work
 
 Typecheck/build and242API tests pass, including18focused Apple checks. New tests
 use synthetic decoded payloads and mapping rows; they do not prove Apple signed
 production data, real StoreKit purchase, online certificate status, restore or
 Notifications V2 delivery. Existing Sandbox tests retain their own scope.
 
-The later launch-goal checkpoint above closes local production status-adapter preparation. Still incomplete: ordinary authenticated
-intake/notification/retry and catalog/migrations, native server-gated purchase and
-finish/restore, actual provider lifecycle acceptance and cross-channel consistency.
+The later launch-goal checkpoints above supersede this initial foundation gap list.
+Native new-purchase preflight/consent and finish/restore wiring, actual provider
+lifecycle acceptance, cloud rollout and complete cross-channel prevention remain.
 The older Sandbox snapshot still maps product IDs to v1; it has not been silently
 relabelled or deployed as production. Existing production API task1/schema0070,
 credentials, Auth0, sales flags and Owner-deferred business/device gates remain.

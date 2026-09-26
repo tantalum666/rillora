@@ -7,7 +7,20 @@ Do not use for: claiming production identity, real recipient delivery, productio
 Status: CORE AND ACCOUNT-BOUND SHARING DEPLOYED TO SYNTHETIC STAGING; VERSIONED LEGAL GATE REQUIRED; STRIPE TEST LIFECYCLE VERIFIED; APPLE IAP DEPLOYMENT / REAL SANDBOX PURCHASE OPEN; ORDINARY ACCESS FREE; SALES / PRODUCTION ENTITLEMENTS / REAL SENSITIVE DATA CLOSED; EXPIRING VALIDATION ACCOUNTS ONLY  
 Last updated: 2026-09-26 (Web price-v4 staged; production API unchanged)
 
-## September26 Apple ledger preparation
+## September26 Apple durable intake — current local increment
+
+Production Apple now has isolated authenticated transaction and verified notification
+routes, an owner-bound durable inbox, a leased bounded worker, immutable receipts
+and current-state reconciliation through the shared ledger. Duplicate client restores
+fetch fresh Apple state; known original-transaction owners cannot be overwritten.
+Migration0080 adds lease/evidence/renewal metadata,0081 preserves separate observation
+audits, and0082 keeps restores compatible with the older constraint-owned index name.
+The production named-vault gate and optional aggregate queue alarms are prepared,
+not configured or deployed.285API/40infrastructure tests and builds/typechecks pass.
+Ordinary purchase quote/consent/native flow and actual Apple lifecycle remain open.
+[Focused contract](production-apple-20260926.md),[checks](../output/qa/rillora-launch-goal-20260926/apple-intake-checks.json).
+
+## September26 Apple ledger preparation — preceding local checkpoint
 
 Production Apple status, channel-specific price bindings and immutable receipt storage now have local implementation. Stripe and Apple Sandbox reuse one subscription ledger; shared access and grants use one provider-grace clock. Migrations0076–0079 remain local-only, with266API tests/typecheck/build passing. No production Apple route, cloud rollout, native purchase or actual transaction is implied. See[the focused contract](production-apple-20260926.md).
 

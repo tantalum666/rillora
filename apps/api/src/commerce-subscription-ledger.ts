@@ -31,24 +31,24 @@ export async function recordSubscriptionObservation(client: PoolClient, context:
     await client.query(`update app.commerce_subscriptions set state=$2,
         current_period_starts_at=$3,current_period_ends_at=$4,grace_ends_at=$5,
         cancel_at_period_end=$6,price_id=$7,plan_version_id=$8,
-        provider_observed_at=$9,provider_invoice_reference=$10,financial_state_override=$11,
+        provider_observed_at=$9,provider_invoice_reference=$10,financial_state_override=$11,renewal_is_possible=$12,
         version=version+1,updated_at=now()
       where id=$1 and planner_id=app.current_planner_id()`, [subscriptionId, snapshot.state,
       snapshot.currentPeriodStartsAt ?? null, snapshot.currentPeriodEndsAt, snapshot.graceEndsAt ?? null,
       snapshot.cancelAtPeriodEnd, price.id, price.plan_version_id, snapshot.observedAt,
-      snapshot.providerInvoiceReference ?? null, financialOverride]);
+      snapshot.providerInvoiceReference ?? null, financialOverride, snapshot.renewalIsPossible ?? null]);
   } else {
     subscriptionId = (await client.query<{ id: string }>(`insert into app.commerce_subscriptions(
         planner_id,commerce_account_id,plan_version_id,plan_code,price_id,acquisition_type,
         renewal_provider,provider_environment,provider_subscription_reference,state,
         current_period_starts_at,current_period_ends_at,grace_ends_at,cancel_at_period_end,
-        provider_observed_at,provider_invoice_reference,financial_state_override)
-      values(app.current_planner_id(),$1,$2,'family',$3,'purchased',$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14)
+        provider_observed_at,provider_invoice_reference,financial_state_override,renewal_is_possible)
+      values(app.current_planner_id(),$1,$2,'family',$3,'purchased',$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)
       returning id::text`, [context.commerceAccountId, price.plan_version_id, price.id,
       snapshot.provider, snapshot.providerEnvironment, snapshot.providerSubscriptionReference, snapshot.state,
       snapshot.currentPeriodStartsAt ?? null, snapshot.currentPeriodEndsAt, snapshot.graceEndsAt ?? null,
       snapshot.cancelAtPeriodEnd, snapshot.observedAt, snapshot.providerInvoiceReference ?? null,
-      financialOverride])).rows[0]!.id;
+      financialOverride, snapshot.renewalIsPossible ?? null])).rows[0]!.id;
   }
   if (existing?.state !== snapshot.state) {
     await client.query(`insert into app.commerce_subscription_state_history(
@@ -62,14 +62,16 @@ export async function recordSubscriptionObservation(client: PoolClient, context:
 
 /** Every provider uses the same SQL entitlement/permission clock and audit result. */
 export async function persistReconciliation(client: PoolClient, context: { commerceAccountId: string },
-  providerEventId: string, subscriptionId: string, decision: EntitlementReconciliationDecision): Promise<boolean> {
+  providerEventId: string, subscriptionId: string, decision: EntitlementReconciliationDecision,
+  providerObservedAt: string | null = null): Promise<boolean> {
   if (decision.directive === 'hold') throw new Error('Unresolved provider state cannot mutate entitlements');
   const applied = (await client.query<{ applied: boolean }>(
     'select app.apply_verified_subscription_entitlements($1) as applied', [subscriptionId])).rows[0]?.applied === true;
   await client.query(`insert into app.commerce_reconciliation_runs(
       planner_id,commerce_account_id,provider_event_id,subscription_id,directive,target_state,
-      reason_code,entitlement_mutation_applied)
-    values(app.current_planner_id(),$1,$2,$3,$4,$5,$6,$7)`, [context.commerceAccountId,
-    providerEventId, subscriptionId, decision.directive, decision.targetState, decision.reason, applied]);
+      reason_code,entitlement_mutation_applied,provider_observed_at)
+    values(app.current_planner_id(),$1,$2,$3,$4,$5,$6,$7,$8)
+    on conflict(provider_event_id,provider_observed_at) where provider_observed_at is not null do nothing`, [context.commerceAccountId,
+    providerEventId, subscriptionId, decision.directive, decision.targetState, decision.reason, applied, providerObservedAt]);
   return applied;
 }

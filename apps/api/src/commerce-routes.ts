@@ -83,7 +83,7 @@ const rankedCatalogPlanVersions = `with ranked_plan_versions as (
   where pv.plan_code in ('free', 'family') and pv.status in ('active', 'planned')
 )`;
 
-export function createCommerceRouter(pool: DatabasePool): Router {
+export function createCommerceRouter(pool: DatabasePool, configuredPurchaseProviders: ReadonlySet<string> = new Set()): Router {
   const router = createRouter();
 
   router.get(
@@ -142,7 +142,7 @@ export function createCommerceRouter(pool: DatabasePool): Router {
           });
         }
 
-        const providerReady = await hasActiveProviderProduct(
+        const providerReady = configuredPurchaseProviders.has(policy.provider_code) && await hasActiveProviderProduct(
           client,
           input.serviceMarketCode,
           policy.provider_code,
@@ -433,6 +433,7 @@ async function hasActiveProviderProduct(
        where price.service_market_code = $1
          and price.status = 'active'
          and product.provider_code = $2
+         and product.provider_environment = 'production'
          and product.status = 'active'
          and (
            product.storefront_country_code is null

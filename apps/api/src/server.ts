@@ -8,6 +8,8 @@ import { loadStripeProductionSecret } from './stripe-production-secret.js';
 import { StripeCommerceExecutor } from './stripe-commerce-executor.js';
 import { StripeProductionAdapter } from './stripe-production-adapter.js';
 import { productionExecutionConfig } from './stripe-execution-config.js';
+import { createAppleProductionIntake } from './apple-production-runtime.js';
+import { appleDeliveryMetrics } from './apple-production-metrics.js';
 
 const config = loadConfig();
 const pool = createPool(config);
@@ -15,7 +17,9 @@ const accountDeletionProcessor = deletionProcessor(pool, config);
 let transportReady = () => !config.apiTls;
 const stripeProductionConfig = config.stripeProductionSecretArn ? await loadStripeProductionSecret(config.stripeProductionSecretArn) : undefined;
 const stripeExecutor = stripeProductionConfig ? new StripeCommerceExecutor(pool, productionExecutionConfig(stripeProductionConfig), new StripeProductionAdapter(stripeProductionConfig)) : undefined;
+const appleProductionIntake = config.appleProduction ? await createAppleProductionIntake(pool, config.appleProduction) : undefined;
 const app = createApp(pool, config, { accountDeletionProcessor, transportReady: () => transportReady(),
+  ...(appleProductionIntake ? { appleProductionIntake } : {}),
   ...(stripeProductionConfig && stripeExecutor ? { stripeProductionConfig, stripeExecutor } : {}) });
 let commerceRetryRunning = false;
 const commerceTimer = stripeExecutor ? setInterval(() => {
@@ -26,6 +30,16 @@ const commerceTimer = stripeExecutor ? setInterval(() => {
   }).catch(() => process.stderr.write('Commerce retry pass failed.\n')).finally(() => { commerceRetryRunning = false; });
 }, 300_000) : null;
 commerceTimer?.unref();
+let appleRetryRunning = false;
+const appleTimer = appleProductionIntake ? setInterval(() => {
+  if (appleRetryRunning) return;
+  appleRetryRunning = true;
+  void appleProductionIntake.retryPending().then(result => {
+    process.stdout.write(JSON.stringify(appleDeliveryMetrics(result)) + '\n');
+  }).catch(() => process.stdout.write(JSON.stringify(appleDeliveryMetrics(null)) + '\n'))
+    .finally(() => { appleRetryRunning = false; });
+}, 30_000) : null;
+appleTimer?.unref();
 const deletionTimer = setInterval(() => {
   if (!config.productionRuntimeClosed) void accountDeletionProcessor.process().catch(() => { process.stderr.write("Account deletion worker will retry.\n"); });
 }, 30_000);
@@ -62,6 +76,7 @@ async function shutdown(signal: string): Promise<void> {
   shuttingDown = true;
   clearInterval(deletionTimer);
   if (commerceTimer) clearInterval(commerceTimer);
+  if (appleTimer) clearInterval(appleTimer);
   managedTls?.close();
   if(contentTimer)clearInterval(contentTimer);
   process.stdout.write(`Received ${signal}; shutting down.\n`);

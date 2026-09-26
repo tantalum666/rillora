@@ -35,6 +35,15 @@ Test actual ownership, time, failure and recovery boundaries. Review each patch 
 bind source/CI/image/schema/deployment evidence before claiming a release result.
 No new microservice estate, production test bypass or extra product scope is needed.
 
+Latest local increment: production Apple intake/durable notifications, immutable
+receipts and fresh-state restore reconciliation, per-subscription worker leases,
+bounded retries and opt-in aggregate alarms pass285API/40infrastructure tests.
+The older local pg_restore collision found by full regression is fixed. This closes
+an implementation slice, not the Apple release gate: native purchase preflight/
+consent/account reservation, actual provider configuration, cloud deployment,
+real transactions and signed distribution still require their own evidence.
+[Current Apple contract](production-apple-20260926.md).
+
 ## HISTORICAL — September26 17:08+08 launch-gap review
 
 The current read-only preflight still lists seven unfinished engineering/release
