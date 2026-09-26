@@ -38,6 +38,14 @@ facts and physical devices remain Owner-deferred; readiness cannot invent them.
   [CI14](https://github.com/tantalum666/rillora/actions/runs/36180878589):244API,
   89Web and39infra checks. Those are prior checks, not rerun by this recovery.
 
+Current engineering4ed6a8295d6674473e1a673a0ae7f8ddb2994221 is pushed and
+[CI15 succeeds](https://github.com/tantalum666/rillora/actions/runs/36237208779)
+in all three jobs. Source scan920files/25reviewed non-secrets/0unknown;148Markdown
+files/1416local targets/0missing. Mail alternative research compares Auth0-native
+Resend with Zoho CPaaS SMTP; no provider selected. EU sending alone does not prove
+EU data storage. Exact sources/remaining checks are in
+[the comparison record](../output/qa/rillora-launch-goal-20260926/mail-alternative-research.json).
+
 ## Preserved deployment and evidence boundaries
 
 Staging API38/migration31/schema0075 is the prior encrypted healthy regular-Fargate

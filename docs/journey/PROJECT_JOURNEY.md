@@ -2715,3 +2715,5 @@ launch prerequisites and historical authentication gates are not repeated approv
 
 
 - **同一长任务工程续记**：完成Apple生产权威状态适配器，以独立受限HTTP运输复用官方SDK／验签及共享对账模型。明确签名价格版本、当前已付期与宽限期、取消／到期／退款撤销／升级失效，拒绝歧义记录和不支持的分期承诺。26项聚焦检查、API258项／30文件、类型检查与构建通过；无真实Apple交易或部署。清理README／MVP／商业／Family当前报价和已完成配额措辞，历史模型／收据保持原值。后续继续durable intake、通知重试和原生购买恢复，不把此模块称为完整支付闭环。
+
+- **源码与研究收尾**：4ed6a8295已推送，GitHub连接器直接回读CI15三个作业success，无需扩权或浏览器登录。920源码文件扫描0未知，148份Markdown／1416本地目标0缺失。事务邮件初筛发现Resend可直接接Auth0，但EU发送域不代表资料只存EU；ZeptoMail价格入口已转Zoho CPaaS，旧名称／费率需以当前账户核对。尚未选商、采购、开通或切换发信；Directory因本机旧凭据过期不可用，未为研究重连其他项目账户。
