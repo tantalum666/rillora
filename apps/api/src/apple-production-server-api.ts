@@ -24,7 +24,7 @@ export type AppleProductionSnapshot = AuthoritativeSubscriptionSnapshot & Readon
   storefrontCountryCode: string;
   currency: string;
   priceMilliunits: number;
-  paidPeriodEndsAt: string;
+  graceEndsAt: string | null;
   transactionSignedAt: string;
   renewalSignedAt: string;
 }>;
@@ -103,7 +103,7 @@ export class AppleProductionSnapshotAdapter {
       planCode: 'family', planVersion: price.planVersion, priceCode: price.priceCode, priceBindingId: price.id,
       storefrontCountryCode: price.storefrontCountryCode, currency: price.currency, priceMilliunits: price.priceMilliunits,
       state: access.state, observedAt: iso(observedAt), currentPeriodStartsAt: iso(purchaseAt),
-      currentPeriodEndsAt: iso(access.endsAt), paidPeriodEndsAt: iso(paidThrough),
+      currentPeriodEndsAt: iso(paidThrough), graceEndsAt: access.graceEndsAt,
       cancelAtPeriodEnd: renewal.autoRenewStatus === AutoRenewStatus.OFF,
       renewalIsPossible: access.state !== 'revoked' && transaction.isUpgraded !== true
         && (renewal.autoRenewStatus === AutoRenewStatus.ON || renewal.isInBillingRetryPeriod === true),
@@ -115,25 +115,27 @@ export class AppleProductionSnapshotAdapter {
 
 function accessWindow(status: Status, transaction: JWSTransactionDecodedPayload,
   renewal: JWSRenewalInfoDecodedPayload, observedAt: number, paidThrough: number): {
-    state: AuthoritativeSubscriptionSnapshot['state']; endsAt: number;
+    state: AuthoritativeSubscriptionSnapshot['state']; graceEndsAt: string | null;
   } {
   if (transaction.revocationDate !== undefined) {
     const revokedAt = epoch(transaction.revocationDate);
     if (revokedAt > observedAt + 5 * 60 * 1000) throw new Error('Apple revocation date is in the future');
-    return { state: 'revoked', endsAt: Math.min(paidThrough, revokedAt) };
+    return { state: 'revoked', graceEndsAt: null };
   }
-  if (status === Status.REVOKED) return { state: 'revoked', endsAt: paidThrough };
-  if (transaction.isUpgraded === true) return { state: 'expired_read_only', endsAt: paidThrough };
-  if (status === Status.BILLING_RETRY) return { state: 'past_due', endsAt: paidThrough };
-  if (status === Status.EXPIRED) return { state: 'expired_read_only', endsAt: paidThrough };
+  if (status === Status.REVOKED) return { state: 'revoked', graceEndsAt: null };
+  if (transaction.isUpgraded === true) return { state: 'expired_read_only', graceEndsAt: null };
+  if (status === Status.BILLING_RETRY) return { state: 'past_due', graceEndsAt: null };
+  if (status === Status.EXPIRED) return { state: 'expired_read_only', graceEndsAt: null };
   if (status === Status.BILLING_GRACE_PERIOD) {
     const graceThrough = epoch(renewal.gracePeriodExpiresDate);
-    if (graceThrough <= paidThrough) throw new Error('Apple grace window does not extend the paid period');
-    return { state: graceThrough > observedAt ? 'grace' : endedState(renewal), endsAt: graceThrough };
+    if (graceThrough <= paidThrough || graceThrough > paidThrough + 28 * 86_400_000) {
+      throw new Error('Apple grace window is outside the supported provider period');
+    }
+    return { state: graceThrough > observedAt ? 'grace' : endedState(renewal), graceEndsAt: iso(graceThrough) };
   }
   // A delayed status response cannot keep access alive beyond its signed coverage window.
-  if (paidThrough <= observedAt) return { state: endedState(renewal), endsAt: paidThrough };
-  return { state: renewal.autoRenewStatus === AutoRenewStatus.OFF ? 'cancel_at_period_end' : 'active', endsAt: paidThrough };
+  if (paidThrough <= observedAt) return { state: endedState(renewal), graceEndsAt: null };
+  return { state: renewal.autoRenewStatus === AutoRenewStatus.OFF ? 'cancel_at_period_end' : 'active', graceEndsAt: null };
 }
 
 function endedState(renewal: JWSRenewalInfoDecodedPayload): 'past_due' | 'expired_read_only' {

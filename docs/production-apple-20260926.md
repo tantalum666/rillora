@@ -45,6 +45,48 @@ then exact price/catalog/provider configuration and actual lifecycle acceptance.
 [Apple status endpoint](https://developer.apple.com/documentation/appstoreserverapi/get-all-subscription-statuses),
 [renewal/grace fields](https://apple.github.io/app-store-server-library-node/interfaces/JWSRenewalInfoDecodedPayload.html).
 
+## Shared ledger and price integration — same launch goal
+
+Append-only migrations0076–0079 are implemented and tested only in disposable
+local databases. No cloud schema, provider price or sale flag changed. The common
+subscription access clock now honors a verified production Apple grace window
+through its actual end, with the supported28-day ceiling. Missing, backwards or
+excessive grace dates fail closed; other providers retain their existing seven-day
+cap. The limit uses elapsed hours so DST/session time zones cannot shorten it.
+The signed paid-period end and optional graceEndsAt are separate snapshot fields;
+shared reading, effective subscription and grant application use the same SQL clock.
+This does not turn on Billing Grace Period in App Store Connect.
+[Apple's supported durations](https://developer.apple.com/help/app-store-connect/manage-subscriptions/enable-billing-grace-period-for-auto-renewable-subscriptions).
+
+Production Apple price bindings are a separate one-to-many catalog mapping because
+Apple retains a product ID across local currencies and historical prices. They
+reference only apple_app_store prices; the generic Web offer query explicitly uses
+web prices. No real Apple price is seeded. The loader derives signed milliunits
+from the catalog's integer amount/exponent, rejects ambiguity and retains retired
+windows for historical receipts. The existing Sandbox/v1 mapping is unchanged.
+
+New immutable Apple receipt rows are tenant-isolated and bound to the same
+production StoreKit subscription/owner. They retain amount/currency/paid-period
+and proof digest, never raw JWS or private map content. Account erasure archives
+only these financial facts through the existing closed-account-record mechanism,
+then removes active receipt rows with the account. Recurring retention remains
+an open operational gate; this is not proof of seven-year automated cleanup.
+
+Stripe and the existing Apple Sandbox executor now call one75-line subscription
+ledger module for observed state/price/grace and entitlement reconciliation. Each
+provider keeps its own signature, ownership, catalog and financial-event checks.
+Existing orders/receipts are not rewritten when a later verified period uses a
+new reviewed price. This prepares the production intake; it does not mount it.
+
+Local typecheck/build and266API tests across31files pass. New database checks cover
+16/28-day grace beyond day7, invalid/missing expiry, DST, exact price units, Web88.99
+separation, binding-channel rejection, ambiguity, receipt immutability/RLS and
+financial retention on erasure. Two initial test errors used a private helper
+without permission and the wrong response field; corrected to the real public
+sharing facade/offers field without expanding permissions. Actual production
+intake/notifications/retries, native purchase/restore and provider ceremonies remain.
+[Current checks](../output/qa/rillora-launch-goal-20260926/ledger-checks.json).
+
 ## Current portal facts and concrete price choice
 
 Annual6803959021/com.rillora.family.annual is one-year prepaid, saved atUS$68

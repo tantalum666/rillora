@@ -206,6 +206,7 @@ async function loadCommerceStatus(client: PoolClient, serviceMarketCode?: string
            from app.commerce_prices price
            join ranked_plan_versions pv on pv.id = price.plan_version_id and pv.catalog_rank = 1
            where price.service_market_code = $1
+             and price.purchase_channel = 'web'
              and price.status <> 'retired'
              and (price.effective_from is null or price.effective_from <= now())
              and (price.effective_to is null or price.effective_to > now())

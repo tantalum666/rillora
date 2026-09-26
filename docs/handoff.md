@@ -1,76 +1,74 @@
 # Rillora Current Handoff
 
-Status: FINAL LAUNCH GOAL ACTIVE; FULL DOCUMENT READ COMPLETE; APPLE LIFECYCLE IN PROGRESS
+Status: FINAL LAUNCH GOAL ACTIVE; APPLE STATUS/CATALOG/SHARED LEDGER LOCALLY VERIFIED; PRODUCTION INTAKE NEXT
 Last updated: 2026-09-26 (Asia/Hong_Kong)
 
-## Current Owner task
+## Current task and authority
 
-Owner explicitly requests a long task to bring the existing Web and native iOS
-product to launch readiness, with autonomous decomposition, careful review and
-maintainable implementation. An active goal is recorded in this task. Keep the
-original UI/Legacy Imprint03, Free1/Family5, Web US$88.99 annual-only new purchases,
-Apple channel differentiation, historical receipts and FanPass isolation. Business
-facts and physical devices remain Owner-deferred; readiness cannot invent them.
+Owner requested a continuous launch-readiness goal with careful implementation and
+review. Keep original UI/Legacy Imprint03, Free1/Family5, WebUS$88.99annual-only new
+sales, Apple channel differentiation, historical receipts and FanPass isolation.
+Business facts and physical devices remain Owner-deferred, not verified.
+The active goal is incomplete and continues across turns/provider waits.
 
-## Current checkpoint
+The fresh full body read completed147project-owned Markdown files/25,917lines.
+[Ranges/exclusions/completion](../output/qa/rillora-launch-goal-20260926/full-read.json).
+After compaction use focused recovery; never repeat this full read or old ceremonies.
 
-- Fresh full body reading is complete:147project-owned Markdown files,25,917lines.
-  Exact ranges, exclusions, truncation recovery and completion time are retained in
-  [the reading ledger](../output/qa/rillora-launch-goal-20260926/full-read.json).
-  After compaction use focused recovery; do not restart this full read.
-- AWS CLI login succeeded. Fresh STS verifies account133857166372 and
-  arn:aws:iam::133857166372:user/rillora/rillora-operator. The stale Chrome tab's
-  Debugger unattached error did not prove an extension disconnect; a fresh tab in
-  the same browser restored control and reused the Owner's session. No plaintext
-  authorization code was logged; the protected one-time handoff file is removed.
-- SES has a new actual rejection. AWS's September26 01:28+08 reply declines the
-  request after the submitted supplement, without disclosing specific criteria.
-  The current14configuration checks pass, but production access remainsfalse.
-  Owner-requested Gmail reading confirms the same result. Simulator bounce/complaint
-  alerts do not establish denial causality. No new reply or case reopening occurred.
-- Apple production status adapter is now implemented with exact signed-price
-  mapping, bounded read-only transport, grace/cutoff/revocation handling and strict
-  owner/environment checks.26focused Apple checks and258API tests/typecheck/build
-  pass locally. Durable intake/notifications/retry, catalog and native wiring remain.
-  Actual fee eligibility, annual price and Sandbox/TestFlight acceptance remain open.
-- Existing code baseline is9b07a532dfeffd15fed8f18490ba9168beb39a5d. Web88.99
-  engineering eed17307118d182beff4194964e564eca50520c8 passed
-  [CI14](https://github.com/tantalum666/rillora/actions/runs/36180878589):244API,
-  89Web and39infra checks. Those are prior checks, not rerun by this recovery.
+## Current engineering
 
-Current engineering4ed6a8295d6674473e1a673a0ae7f8ddb2994221 is pushed and
-[CI15 succeeds](https://github.com/tantalum666/rillora/actions/runs/36237208779)
-in all three jobs. Source scan920files/25reviewed non-secrets/0unknown;148Markdown
-files/1416local targets/0missing. Mail alternative research compares Auth0-native
-Resend with Zoho CPaaS SMTP; no provider selected. EU sending alone does not prove
-EU data storage. Exact sources/remaining checks are in
-[the comparison record](../output/qa/rillora-launch-goal-20260926/mail-alternative-research.json).
+- Production Apple verification/status adapter and prior source4ed6a8295 passed
+  [CI15](https://github.com/tantalum666/rillora/actions/runs/36237208779).
+- The next local increment adds0076–0079: one shared SQL access clock for actual
+  Apple grace, separate Apple price bindings/channel, immutable receipts and
+  existing financial-retention handling on deletion. No real Apple price is seeded.
+- Stripe and Apple Sandbox now reuse one75-line subscription ledger. Provider
+  verifiers/catalog binding remain separate; old orders/receipts retain their facts.
+  Snapshot paid-period ends and graceEndsAt are distinct. Missing/invalid grace
+  cannot invent access; absolute-hour limits avoid DST/session-timezone changes.
+- Current local verification passes266API tests/31files, typecheck and build.
+  New database tests cover grace, channel/Web88.99 separation, exact integer units,
+  ambiguity, receipt immutability/RLS and erasure retention. Initial harness errors
+  were corrected without broadening permissions. [Checks](../output/qa/rillora-launch-goal-20260926/ledger-checks.json).
+- Source/CI receipt for this new increment is recorded in
+  [work state](../output/qa/rillora-launch-goal-20260926/work-state.json).
+  Production intake, notifications/retries and native purchase/restore are not wired.
 
-## Preserved deployment and evidence boundaries
+## External facts
 
-Staging API38/migration31/schema0075 is the prior encrypted healthy regular-Fargate
-checkpoint. Production API task1/schema0070 remains closed; independent production
-Web is deployed and closed. Public website, legal Sites6, seven-day database,
-scoped real restore/restriction replay, monitoring and native connection preparation
-retain their dated evidence. Do not rebuild or rerun those completed ceremonies
-just because the goal or conversation resumed.
+AWS login is verified at17:42+08 as account133857166372 /rillora/rillora-operator.
+The stale Chrome-tab debugger issue did not prove extension disconnection; a fresh
+tab reused the completed session. One-time handoff credentials are cleaned up.
+Do not repeat login without fresh expiry evidence.
 
-The final launch work comprises production identity/mail, ordinary Web/Apple
-billing, both-client authenticated production journeys, retention and post-restore
-commerce reconciliation, final security/maintainability review and signed
-TestFlight/submission. No live payment, new production activation, Apple purchase,
-new native build or public-release claim follows from the local implementation.
+SES's September26 01:28+08 reply explicitly declines the submitted request. Support
+and Owner-requested Gmail agree; specific criteria are undisclosed.14configuration
+checks pass, productionAccessEnabledfalse, account health normal. Simulator alarms
+are not refusal-causality proof. No new reply/case reopening occurred.
+[Mail evidence](../output/qa/rillora-launch-goal-20260926/ses-gmail-readback.json).
+
+Mail research compares Auth0-native Resend with Zoho CPaaS SMTP. No provider selected,
+account created or key installed. EU sending does not prove EU storage; provider
+retention/region/suppression/price and real delivery need verification.
+[Comparison](../output/qa/rillora-launch-goal-20260926/mail-alternative-research.json).
+Apple exact price/effective fee and real Sandbox/TestFlight lifecycle remain open.
+
+## Preserved deployment boundary
+
+Staging remains API38/migration31/schema0075; production API remains task1/schema0070
+and customer-closed. No0076–0079cloud migration/deploy occurred. Independent closed
+Web, public website, legalSites6, seven-day production RDS, scoped real restore,
+monitoring and native connection preparation retain their original evidence.
+No new customer login, real message/charge, native build or public release occurred.
 
 ## Single next step
 
-Wire the tested Apple production status adapter into durable authenticated intake,
-notification/retry and the shared entitlement ledger; preserve ownership, historical
-receipts, cross-channel conflict handling and commit-before-finish.
-In the same goal, research a lawful alternative transactional sender before any
-concrete provider configuration; keep vendor choices and true delivery evidence
-explicit. Do not let SES approval block independent engineering.
+Finish production Apple durable intake/notification/retry and native server-gated
+purchase/restore using the shared ledger and price bindings. Require ownership,
+commit-before-finish, duplicate/late-event handling and cross-channel consistency.
+Continue independent identity/mail and final release work when concrete provider
+steps are available; do not let SES approval stop engineering.
 
-[Release contract](release-readiness.md), [Apple contract](production-apple-20260926.md),
+[Release](release-readiness.md),[Apple](production-apple-20260926.md),
 [Identity/mail](production-identity-mail-20260924.md),
-[Current work state](../output/qa/rillora-launch-goal-20260926/work-state.json),
 [Previous handoff — HISTORICAL](handoff-history-20260926-before-launch-goal.md).

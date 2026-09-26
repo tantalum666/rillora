@@ -7,6 +7,10 @@ Do not use for: claiming production identity, real recipient delivery, productio
 Status: CORE AND ACCOUNT-BOUND SHARING DEPLOYED TO SYNTHETIC STAGING; VERSIONED LEGAL GATE REQUIRED; STRIPE TEST LIFECYCLE VERIFIED; APPLE IAP DEPLOYMENT / REAL SANDBOX PURCHASE OPEN; ORDINARY ACCESS FREE; SALES / PRODUCTION ENTITLEMENTS / REAL SENSITIVE DATA CLOSED; EXPIRING VALIDATION ACCOUNTS ONLY  
 Last updated: 2026-09-26 (Web price-v4 staged; production API unchanged)
 
+## September26 Apple ledger preparation
+
+Production Apple status, channel-specific price bindings and immutable receipt storage now have local implementation. Stripe and Apple Sandbox reuse one subscription ledger; shared access and grants use one provider-grace clock. Migrations0076–0079 remain local-only, with266API tests/typecheck/build passing. No production Apple route, cloud rollout, native purchase or actual transaction is implied. See[the focused contract](production-apple-20260926.md).
+
 ## September26 Web price-v4 staging checkpoint
 
 Owner selects WebUSD88.99/year: new immutable8899-cent price-v4, Family-v2,

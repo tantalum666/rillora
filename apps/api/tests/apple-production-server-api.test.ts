@@ -61,7 +61,7 @@ describe('Apple production authoritative status (decoded fixtures, not Apple tra
       planVersion: 2, priceBindingId: binding.id, priceMilliunits: 99990, renewalIsPossible: true,
       currentPeriodStartsAt: new Date(now - day).toISOString(),
       currentPeriodEndsAt: new Date(now + 364 * day).toISOString(),
-      paidPeriodEndsAt: new Date(now + 364 * day).toISOString() });
+      graceEndsAt: null });
     expect(f.api.getAllSubscriptionStatuses).toHaveBeenCalledWith(originalId);
     expect(JSON.stringify(snapshot)).not.toMatch(/signed\.transaction|signed\.renewal|entitlement|finishAuthorized/);
   });
@@ -83,12 +83,14 @@ describe('Apple production authoritative status (decoded fixtures, not Apple tra
     f.renewal.gracePeriodExpiresDate = now + 3 * day;
     f.renewal.isInBillingRetryPeriod = true;
     await expect(f.adapter().retrieveAuthoritativeSubscription(lookup)).resolves.toMatchObject({ state: 'grace',
-      currentPeriodEndsAt: new Date(now + 3 * day).toISOString(), paidPeriodEndsAt: new Date(now - 1000).toISOString() });
+      graceEndsAt: new Date(now + 3 * day).toISOString(), currentPeriodEndsAt: new Date(now - 1000).toISOString() });
     f.renewal.gracePeriodExpiresDate = now;
     await expect(f.adapter().retrieveAuthoritativeSubscription(lookup)).resolves.toMatchObject({ state: 'past_due' });
     delete f.renewal.gracePeriodExpiresDate;
     await expect(f.adapter().retrieveAuthoritativeSubscription(lookup)).rejects.toThrow('timestamp');
     f.renewal.gracePeriodExpiresDate = now - 2000;
+    await expect(f.adapter().retrieveAuthoritativeSubscription(lookup)).rejects.toThrow('grace window');
+    f.renewal.gracePeriodExpiresDate = now + 29 * day;
     await expect(f.adapter().retrieveAuthoritativeSubscription(lookup)).rejects.toThrow('grace window');
   });
 
@@ -106,7 +108,7 @@ describe('Apple production authoritative status (decoded fixtures, not Apple tra
     f.transaction.expiresDate = now + day;
     f.transaction.revocationDate = now - 500;
     await expect(f.adapter().retrieveAuthoritativeSubscription(lookup)).resolves.toMatchObject({ state: 'revoked', renewalIsPossible: false,
-      currentPeriodEndsAt: new Date(now - 500).toISOString() });
+      currentPeriodEndsAt: new Date(now + day).toISOString() });
     delete f.transaction.revocationDate;
     f.transaction.isUpgraded = true;
     await expect(f.adapter().retrieveAuthoritativeSubscription(lookup)).resolves.toMatchObject({ state: 'expired_read_only', renewalIsPossible: false });

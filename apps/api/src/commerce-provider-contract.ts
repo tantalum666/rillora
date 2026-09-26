@@ -63,6 +63,7 @@ export type AuthoritativeSubscriptionSnapshot = Readonly<{
   observedAt: string;
   currentPeriodEndsAt: string | null;
   currentPeriodStartsAt?: string | null;
+  graceEndsAt?: string | null;
   providerCustomerReference?: string | null;
   priceCode?: string | null;
   cancelAtPeriodEnd: boolean;

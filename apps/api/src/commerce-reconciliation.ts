@@ -219,6 +219,7 @@ function areEquivalentSnapshots(
     && left.observedAt === right.observedAt
     && left.currentPeriodEndsAt === right.currentPeriodEndsAt
     && left.currentPeriodStartsAt === right.currentPeriodStartsAt
+    && left.graceEndsAt === right.graceEndsAt
     && left.providerCustomerReference === right.providerCustomerReference
     && left.priceCode === right.priceCode
     && left.providerInvoiceReference === right.providerInvoiceReference
@@ -245,6 +246,9 @@ function assertSnapshot(snapshot: AuthoritativeSubscriptionSnapshot): void {
   }
   if (snapshot.currentPeriodStartsAt) {
     assertValidIsoDate(snapshot.currentPeriodStartsAt, "authoritative snapshot currentPeriodStartsAt");
+  }
+  if (snapshot.graceEndsAt) {
+    assertValidIsoDate(snapshot.graceEndsAt, "authoritative snapshot graceEndsAt");
   }
   if (
     !snapshot.providerSubscriptionReference

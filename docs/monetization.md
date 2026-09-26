@@ -15,6 +15,15 @@ monthly rights remain, while new monthly purchases stay retired. Apple remains
 cost-based channel differentiation; the withdrawn near-parity question is not
 revived by the Web price change. [Current price](pricing-88-99-20260926.md).
 
+## September26 channel-aware implementation
+
+Apple's signed price/history bindings now reference a separate purchase channel;
+a later Apple catalog row cannot replace the Web88.99quote. The shared ledger
+keeps paid-period and provider grace separate and preserves immutable receipt
+amounts. Local266API tests pass; migrations0076–0079 are not cloud-deployed and
+Apple production intake/native wiring remains open. No new Apple price or provider
+grace setting is approved/applied. [Implementation](production-apple-20260926.md).
+
 ## September21 annual-only decision — supersedes the earlier recommendation state
 
 Owner explicitly says to cancel monthly. New purchases are permanentFree plusUS$88.80 annualFamily. Migration0063 retires monthly offer rows without deleting provider bindings, historical amounts or valid paid rights; API/new StoreKit purchases accept only annual. Stripe TEST monthly prices are archived; the unsubmitted Apple monthly product has zero territories. These are separate from production sales and real new-price transactions. Existing1-live-plus-authorized-saved-copy downgrade and free retrieval remain unchanged. [Execution and evidence](annual-brand-capacity-20260921.md); [preceding value analysis](subscription-value-20260921.md).

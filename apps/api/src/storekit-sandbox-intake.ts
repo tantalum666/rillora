@@ -1,3 +1,4 @@
+import { recordSubscriptionObservation, persistReconciliation } from './commerce-subscription-ledger.js';
 import type { PoolClient } from "pg";
 import {
   type AppleSignedDataVerifying,
@@ -7,7 +8,6 @@ import {
 import type { StoreKitSandboxSnapshotProvider } from "./apple-storekit-server-api.js";
 import {
   reconcileCommerceProviderState,
-  type EntitlementReconciliationDecision,
 } from "./commerce-reconciliation.js";
 import type {
   AuthoritativeSubscriptionSnapshot,
@@ -406,84 +406,8 @@ async function applyAuthoritativeStoreKitSnapshot(
     ],
   );
 
-  const existing = await client.query<{
-    id: string;
-    state: string;
-    provider_observed_at: Date | null;
-  }>(
-    `select id::text, state, provider_observed_at
-     from app.commerce_subscriptions
-     where planner_id = app.current_planner_id()
-       and renewal_provider = 'storekit'
-       and provider_environment = 'sandbox'
-       and provider_subscription_reference = $1
-     limit 1`,
-    [snapshot.providerSubscriptionReference],
-  );
-  if (existing.rows[0]?.provider_observed_at && existing.rows[0].provider_observed_at > new Date(snapshot.observedAt)) {
-    throw new Error("Stale authoritative subscription observation; retry with current provider state");
-  }
-  let subscriptionId: string;
-  let previousState: string | null;
-  if (existing.rows[0]) {
-    subscriptionId = existing.rows[0].id;
-    previousState = existing.rows[0].state;
-    await client.query(
-      `update app.commerce_subscriptions
-       set state = $2, current_period_starts_at = $3, current_period_ends_at = $4,
-           cancel_at_period_end = $5, version = version + 1, updated_at = now()
-       where id = $1`,
-      [
-        subscriptionId,
-        snapshot.state,
-        snapshot.currentPeriodStartsAt ?? null,
-        snapshot.currentPeriodEndsAt,
-        snapshot.cancelAtPeriodEnd,
-      ],
-    );
-  } else {
-    previousState = null;
-    const inserted = await client.query<{ id: string }>(
-      `insert into app.commerce_subscriptions (
-         planner_id, commerce_account_id, plan_version_id, plan_code, price_id,
-         acquisition_type, renewal_provider, provider_environment,
-         provider_subscription_reference, state, current_period_starts_at,
-         current_period_ends_at, cancel_at_period_end
-       ) values (
-         app.current_planner_id(), $1, $2, 'family', $3, 'purchased',
-         'storekit', 'sandbox', $4, $5, $6, $7, $8
-       ) returning id::text`,
-      [
-        context.commerceAccountId,
-        price.rows[0].plan_version_id,
-        price.rows[0].id,
-        snapshot.providerSubscriptionReference,
-        snapshot.state,
-        snapshot.currentPeriodStartsAt ?? null,
-        snapshot.currentPeriodEndsAt,
-        snapshot.cancelAtPeriodEnd,
-      ],
-    );
-    subscriptionId = inserted.rows[0]!.id;
-  }
-
-  await client.query("update app.commerce_subscriptions set provider_observed_at=$2 where id=$1", [subscriptionId, snapshot.observedAt]);
-  if (previousState !== snapshot.state) {
-    await client.query(
-      `insert into app.commerce_subscription_state_history (
-         planner_id, subscription_id, from_state, to_state, reason_code,
-         provider_event_public_id, occurred_at
-       ) values (app.current_planner_id(), $1, $2, $3, $4, $5::uuid, $6)`,
-      [
-        subscriptionId,
-        previousState,
-        snapshot.state,
-        `storekit_authoritative_${snapshot.state}`,
-        providerEvent.rows[0]!.public_id,
-        snapshot.observedAt,
-      ],
-    );
-  }
+  const subscriptionId = await recordSubscriptionObservation(client, context, signal, snapshot,
+    price.rows[0], providerEvent.rows[0]!.public_id);
 
   const reconciliation = reconcileCommerceProviderState({
     signals: [signal],
@@ -491,9 +415,9 @@ async function applyAuthoritativeStoreKitSnapshot(
   });
   const decision = reconciliation.entitlementDecisions[0];
   if (!decision) throw new Error("StoreKit reconciliation produced no decision");
-  await persistStoreKitReconciliation(
+  await persistReconciliation(
     client,
-    context.commerceAccountId,
+    context,
     providerEvent.rows[0]!.id,
     subscriptionId,
     decision,
@@ -511,32 +435,6 @@ async function applyAuthoritativeStoreKitSnapshot(
     [inboxPublicId],
   );
   return "applied";
-}
-
-async function persistStoreKitReconciliation(
-  client: PoolClient,
-  commerceAccountId: string,
-  providerEventId: string,
-  subscriptionId: string,
-  decision: EntitlementReconciliationDecision,
-): Promise<void> {
-  const applied = (await client.query<{ applied: boolean }>(
-    "select app.apply_verified_subscription_entitlements($1) as applied", [subscriptionId])).rows[0]?.applied === true;
-  await client.query(
-    `insert into app.commerce_reconciliation_runs (
-       planner_id, commerce_account_id, provider_event_id, subscription_id,
-       directive, target_state, reason_code, entitlement_mutation_applied
-     ) values (app.current_planner_id(), $1, $2, $3, $4, $5, $6, $7)`,
-    [
-      commerceAccountId,
-      providerEventId,
-      subscriptionId,
-      decision.directive,
-      decision.targetState,
-      decision.reason,
-      applied,
-    ],
-  );
 }
 
 async function markSnapshotUnavailable(
