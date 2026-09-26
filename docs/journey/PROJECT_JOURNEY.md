@@ -2703,3 +2703,15 @@ launch prerequisites and historical authentication gates are not repeated approv
   is obtained. Keep the00:43+08 successful read and already-submitted reply dated.
   No provider mutation, new application test/build, deployment, payment or submission;
   no product decision requiring another decision-log entry. [QA](../../output/qa/rillora-release-status-20260926/review.json).
+
+
+## 2026-09-26 — 最终上线长任务、AWS恢复与邮件拒绝核对
+
+- **目标**：Owner要求设置持续长任务，将现有双端产品推进到可上线，自己拆解并实施、仔细审核可维护性；随后要求从Gmail检查AWS是否给出拒绝原因。
+- **尝试**：建立活动goal并刷新完整阅读147份／25,917行正文；逐段保存阅读及截断补读。旧Chrome标签返回Debugger unattached，Owner纠正后用同浏览器新标签恢复控制，复用已完成登录并把一次性授权安全交回官方CLI；STS核对准确operator。
+- **判断变化**：旧标签控制失败不足以证明扩展断开。SES新回复已从“要求补资料”变为实际拒绝，工单关闭。Gmail两封完整正文与控制台一致，具体标准未披露；独立退信／投诉告警与此前官方模拟器计数一致，不构成拒绝因果或真实投诉证据。
+- **结果**：AWS续期完成，无需重复本人认证；新邮件事实和实施顺序已写回当前发布／身份／交接，原交接归档。全读发现的旧价格、已停售月付和已完成配额措辞列入后续文档修正。临时授权文件清理，邮件仅只读，没有发信或重开工单。
+- **未完成**：Apple权威状态／交易接入、合法替代事务发送服务、生产身份与付款、运维保留／恢复对账、最终双端及签名提交继续执行；无本轮应用测试、部署或真实交易完成声明。[当前QA](../../output/qa/rillora-launch-goal-20260926/work-state.json)。
+
+
+- **同一长任务工程续记**：完成Apple生产权威状态适配器，以独立受限HTTP运输复用官方SDK／验签及共享对账模型。明确签名价格版本、当前已付期与宽限期、取消／到期／退款撤销／升级失效，拒绝歧义记录和不支持的分期承诺。26项聚焦检查、API258项／30文件、类型检查与构建通过；无真实Apple交易或部署。清理README／MVP／商业／Family当前报价和已完成配额措辞，历史模型／收据保持原值。后续继续durable intake、通知重试和原生购买恢复，不把此模块称为完整支付闭环。

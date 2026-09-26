@@ -1,12 +1,14 @@
 # Rillora — Digital Legacy & Estate Continuity / 数字遗产与事务连续性
 
-最后更新：2026-09-24（Asia/Hong_Kong）
+最后更新：2026-09-26（Asia/Hong_Kong）
+
+当前任务：Owner已要求持续推进到可上线，保留现有UI并审查长期可维护性。147份项目Markdown已完整阅读；AWS会话恢复，SES实际拒绝已由工单与Gmail交叉核对，具体原因未披露。Apple正式权威状态适配器已完成本地验证，真实交易、邮件替代及其他发布工作继续。见[当前交接](docs/handoff.md)和[发布合同](docs/release-readiness.md)。
 
 当前工程检查点：独立私有仓库 [tantalum666/rillora](https://github.com/tantalum666/rillora) 已推送审查后的源码基线，FanPass 和本地 Web Git 历史均保留。Owner授权后已直接升级 AWS Paid Plan；独立私有加密数据库、7天备份、独立密钥和恢复控制日志已建立并迁移。真实云端隔离恢复已通过本轮合成数据验收，临时资源已清理；客户流量仍关闭。见[生产与恢复](docs/production-recovery-20260923.md)、[源码和回滚](docs/source-control.md)、[当前交接](docs/handoff.md)。
 
-September24增量：关闭客户访问的生产API已部署，内部HTTPS／实际健康检查／权限配置与新监控目标已验收；原Auth0管理身份已恢复。官方GoDaddy CLI及[仅Rillora的项目命令](tools/godaddy/README.md)已安装认证，临时DNS写入／清理恢复原20条记录。生产身份邮件、正式双端连接和销售仍有独立门。见[运行合同](docs/production-runtime-20260924.md)。
+September24增量：关闭客户访问的生产API已部署，内部HTTPS／实际健康检查／权限配置与新监控目标已验收；原Auth0管理身份已恢复。官方GoDaddy CLI及[仅Rillora的项目命令](tools/godaddy/README.md)已安装认证，临时DNS写入／清理恢复原20条记录。后续已完成独立关闭Web入口和原生Release连接配置；生产身份邮件、真实双端流程和销售仍有独立门。见[运行合同](docs/production-runtime-20260924.md)。
 
-当前新购为永久 Free 与 **US$88.80 年付 Family**；September21 已取消新月付，历史已付账期及收据继续支持。以下按日期保留的旧检查点不是当前价格或部署状态。
+当前新购为永久 Free 与 **Web US$88.99 年付 Family**；Apple 采用独立渠道价格，最终金额待核实。September21 已取消新月付，历史已付账期及收据继续支持。以下按日期保留的旧检查点不是当前价格或部署状态。
 
 当前Logo：**Owner已选定传承印记03，主App图标和现有Web／原生品牌位置已采用。** [正式素材包](assets/brand/rillora/README.md)与[ZIP](assets/brand/rillora-approved-brand-20260920.zip)包含原始矢量、PNG、网站图标和完整字体许可。Source Serif4 SemiBold／Inter允许免费商用，详见[核验依据](docs/brand-font-license-20260919.md)。普通模拟器、Web测试站和法律站Sites6已验证；这不等于生产App或App Store发布。[本轮QA](output/qa/rillora-brand-adoption-20260919/README.md)与[handoff](docs/handoff.md)。
 
@@ -77,7 +79,7 @@ Web与iOS在同一MVP验证周期内交付，但不复制同一套页面布局�
 | --- | --- |
 | [产品宪章](docs/product.md) | 产品定义、权威顺序、已锁定与待验证决定 |
 | [MVP与市场验证](docs/mvp.md) | 首版范围、核心旅程、事件和继续投入门槛 |
-| [商业化与定价合同](docs/monetization.md) | 两轮商业研究合并、免费／付费边界、首发单一付费层级、月年付、试用与安全降级 |
+| [商业化与定价合同](docs/monetization.md) | 两轮商业研究合并、免费／付费边界、首发单一年付层级、历史月付、试用与安全降级 |
 | [单位经济与融资／收购准备](docs/unit-economics.md) | 价格主假设、毛利、LTV/CAC、渠道费、合规成本、现金跑道和尽调数据合同；含可编辑工作簿与自包含审阅报告 |
 | [Web/iOS平台合同](docs/platform-contract.md) | 两端共享能力、平台差异和同步门槛 |
 | [StoreKit实现合同](docs/storekit.md) | StoreKit 2、本地Xcode测试、App Store sandbox、Apple交易／通知验证与分阶段证据边界 |
@@ -109,6 +111,6 @@ Web与iOS在同一MVP验证周期内交付，但不复制同一套页面布局�
 
 ## 当前证据边界
 
-目前已有全球可行性研究、MVP范围、已选视觉方向、通过视觉QA的Web/iOS，以及运行在AWS Frankfurt的TypeScript/PostgreSQL测试环境。现有测试Web域为`https://app.staging.rillora.xyz`：静态资源通过私有S3和CloudFront提供，`/api/*`同源代理到API Gateway、VPC Link、常规Fargate和私有Single-AZ RDS。September17已经用同规格常规Fargate取代Spot；API37／0067的加密部署及健康1/1证据见当前交接；本轮只追加readiness检查，不把旧业务验收记成重跑。公开首页、会话探测、未登录401、Auth0跳转、CSP/HSTS、TLS/CORS和数据库readiness均有实际HTTPS验证。Owner也已在模拟器完成Google身份登录。iOS无会话启动仍先允许公开浏览，私有操作直接进入托管登录，不把登录墙作为第一屏。
+目前已有全球可行性研究、MVP范围、已选视觉方向、通过视觉QA的Web/iOS，以及运行在AWS Frankfurt的TypeScript/PostgreSQL测试环境。现有测试Web域为`https://app.staging.rillora.xyz`：静态资源通过私有S3和CloudFront提供，`/api/*`同源代理到API Gateway、VPC Link、常规Fargate和私有Single-AZ RDS。September17已经用同规格常规Fargate取代Spot；当前staging为API38／0075；生产API仍是独立task1／0070且客户入口关闭。各自部署及健康1/1证据见当前交接，不把旧业务验收记成重跑。公开首页、会话探测、未登录401、Auth0跳转、CSP/HSTS、TLS/CORS和数据库readiness均有实际HTTPS验证。Owner也已在模拟器完成Google身份登录。iOS无会话启动仍先允许公开浏览，私有操作直接进入托管登录，不把登录墙作为第一屏。
 
-Web使用Cookie/CSRF，iOS只把Rillora本地Bearer会话存入Keychain，两类会话不能交叉使用；Auth0 provider token不持久化。Matter、联系人、角色、官方设置自报、非操作性演练和Start Here均不授予账号访问、所有权或法律权限。明文导出文件服务端不留副本；密文包采用客户端AES-256-GCM与RFC 9180 HPKE。当前云面只允许合成／Owner控制的早期试用。真实A/B邀请接受与撤销、旧价Stripe测试生命周期已有独立证据；独立生产环境、生产身份与恢复、普通用户正式付款、实际Apple购买／恢复及最终提交仍需完成。准确首发缺口见[发布合同](docs/release-readiness.md)，不能把附件或自动身后披露等未来功能重新列为首发前提。`apps/ios-prototype`继续只是移动交互与视觉证据。
+Web使用Cookie/CSRF，iOS只把Rillora本地Bearer会话存入Keychain，两类会话不能交叉使用；Auth0 provider token不持久化。Matter、联系人、角色、官方设置自报、非操作性演练和Start Here均不授予账号访问、所有权或法律权限。明文导出文件服务端不留副本；密文包采用客户端AES-256-GCM与RFC 9180 HPKE。当前云面只允许合成／Owner控制的早期试用。真实A/B邀请接受与撤销、旧价Stripe测试生命周期已有独立证据；独立生产数据／TLS及有界隔离恢复已验收；生产身份与邮件、普通用户正式付款、实际Apple购买／恢复、持续保留／恢复后支付对账及最终提交仍需完成。准确首发缺口见[发布合同](docs/release-readiness.md)，不能把附件或自动身后披露等未来功能重新列为首发前提。`apps/ios-prototype`继续只是移动交互与视觉证据。

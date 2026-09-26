@@ -34,9 +34,10 @@
         "output/qa/rillora-production-identity-20260924/ses-account-final.json",
         "output/qa/rillora-production-identity-20260924/ses-support-console-readback.json",
         "output/qa/rillora-production-identity-20260924/ses-followup-submission.json",
-        "output/qa/rillora-production-identity-20260924/mail-readiness-after-reply.json"
+        "output/qa/rillora-production-identity-20260924/mail-readiness-after-reply.json",
+        "output/qa/rillora-launch-goal-20260926/ses-gmail-readback.json"
       ],
-      "next": "Keep Auth0 Free and current test identities. The exact approved SES follow-up is submitted and visible in the case; production access remains false. Rerun the read-only mail checker after review; then complete sender/Auth0 configuration, real verification/recovery, controlled identity retirement/token drain and final Web/iOS Release connections."
+      "next": "SES production access was explicitly declined after the submitted supplement; Support and Gmail match and disclose no specific cause. Keep Auth0 Free/test identities while evaluating a legitimate alternative transactional sender, then complete actual delivery/recovery, controlled old-identity retirement/token drain and production client journeys."
     },
     {
       "id": "production-billing",
@@ -66,9 +67,10 @@
       "title": "Apple actual purchase and restore",
       "evidence": [
         "docs/production-apple-20260926.md",
-        "output/qa/rillora-production-apple-20260926/work-state.json"
+        "output/qa/rillora-production-apple-20260926/work-state.json",
+        "output/qa/rillora-launch-goal-20260926/apple-snapshot-checks.json"
       ],
-      "next": "Owner reaffirmed channel differentiation; withdraw the88.90/88.99/88.00question. Verify effective Apple commission/SBP and resolve the prior conditional99.99/119.99offer, then complete versioned catalog, production snapshot/intake/notifications/retry, native finish/restore and real lifecycle. Web88.99 and retired monthly remain; no customer activation."
+      "next": "Production signed-status and reviewed-price adapter is locally tested with bounded read-only transport and explicit grace/expiry/revocation handling. Complete durable intake/notifications/retry/native purchase/restore, exact commission/price/catalog/provider facts and actual Sandbox/TestFlight lifecycle. No live activation follows from decoded fixture tests."
     },
     {
       "id": "operations",

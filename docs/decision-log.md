@@ -2616,3 +2616,24 @@ unreachable release remains a different closed workflow. See [sharing contract](
 - Fix active quote/roadmap drift; preserve dated financial models and earlier
   decisions as history. [Current contract](pricing-88-99-20260926.md),
   [QA](../output/qa/rillora-web-price-88-99-20260926/work-state.json).
+
+
+## 2026-09-26 — Final-launch long goal and actual SES refusal
+
+- Owner explicitly requests an active long task through launch readiness, autonomous
+  decomposition, careful review and maintainable code. Preserve the existing
+  product/UI/price/rights/FanPass boundaries and honestly record deferred facts.
+  Continue independent engineering across provider waits; evidence, not checklist
+  edits, closes release gates. The refreshed full147-file body read is complete.
+- Owner completed AWS login. The stale Chrome-tab debugger state was repaired using
+  a fresh controlled tab and the same login; fresh STS confirms the exact operator.
+  Do not repeat the password/MFA request or blame the extension without evidence.
+- AWS's new September26 01:28+08 reply is an actual refusal following the authorized
+  supplement, superseding the old information-request-only interpretation. Owner
+  asks to check Gmail; both substantive support messages confirm the sequence and
+  disclose no specific refusal criterion. Simulator alarm counts do not prove
+  reputation harm or denial causality; account-health readback remains normal.
+- Evaluate a legitimate alternative transactional sender with the same security,
+  suppression and actual delivery requirements. No new message, case reopening,
+  vendor purchase, provider switch or customer activation is implied.
+  [Release execution](release-readiness.md),[mail facts](production-identity-mail-20260924.md).

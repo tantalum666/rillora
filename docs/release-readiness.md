@@ -4,7 +4,38 @@ Role: current launch scope, remaining work and release evidence contract
 Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; CUSTOMER ACCOUNTS AND SALES CLOSED
 Last updated: 2026-09-26 (Asia/Hong_Kong)
 
-## September26 17:08+08 — Current launch-gap review
+## September26 final-launch goal — current execution contract
+
+Owner explicitly requests a long task through launch readiness, autonomous task
+breakdown and careful maintainability review. The active goal continues across
+compactions and provider waits. Preserve the existing scope/UI, Web88.99annual,
+Apple channel differentiation, history and FanPass. Do not mark the goal achieved
+from a build, portal setting or a checklist with unresolved required evidence.
+
+The refreshed full read covers147project-owned Markdown files/25,917lines.
+[Reading ledger and work state](../output/qa/rillora-launch-goal-20260926/).
+AWS login is now verified, superseding the expired-session observation below.
+SES's actual September26 refusal is confirmed in both Support and Gmail; specific
+criteria remain undisclosed. Evaluate a legitimate alternative sender rather than
+waiting indefinitely or asserting another provider is already approved.
+[Current mail facts](production-identity-mail-20260924.md).
+
+Execution packages are: Apple authoritative transaction/status/intake and native
+purchase/restore; bounded retention and post-restore commerce reconciliation;
+production identity/transaction mail; ordinary Web billing/provider configuration;
+complete authenticated Web/iOS journeys; final security/maintainability review and
+signed TestFlight/submission materials. Independent work continues while a provider
+or本人step is pending. Business/device deferrals remain recorded honestly.
+
+Maintain the modular API and shared PostgreSQL entitlement/finance model. Keep
+HTTP parsing/authentication, provider verification, domain reconciliation,
+persistence and workers separate; reuse mature SDKs and existing contracts.
+Append migrations, preserve historical receipts and use bounded idempotent retries.
+Test actual ownership, time, failure and recovery boundaries. Review each patch and
+bind source/CI/image/schema/deployment evidence before claiming a release result.
+No new microservice estate, production test bypass or extra product scope is needed.
+
+## HISTORICAL — September26 17:08+08 launch-gap review
 
 The current read-only preflight still lists seven unfinished engineering/release
 gates plus two Owner-deferred gates. They group into six workstreams: Apple

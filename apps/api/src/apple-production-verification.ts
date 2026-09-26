@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { Environment, InAppOwnershipType, SignedDataVerifier, Type,
+import { BillingPlanType, Environment, InAppOwnershipType, RenewalBillingPlanType, SignedDataVerifier, Type,
   type JWSTransactionDecodedPayload, type JWSRenewalInfoDecodedPayload } from '@apple/app-store-server-library';
 import { z } from 'zod';
 import { loadPinnedAppleRootCertificates, type AppleSignedDataVerifying } from './apple-storekit-adapter.js';
@@ -70,7 +70,9 @@ export class AppleProductionVerification {
       || transaction.subscriptionGroupIdentifier !== rilloraAppleIdentity.subscriptionGroupId
       || !productIds.has(transaction.productId ?? '') || !this.storefronts.has(transaction.storefront ?? '')
       || transaction.type !== Type.AUTO_RENEWABLE_SUBSCRIPTION || transaction.quantity !== 1
-      || transaction.inAppOwnershipType !== InAppOwnershipType.PURCHASED || transaction.advancedCommerceInfo) {
+      || transaction.inAppOwnershipType !== InAppOwnershipType.PURCHASED || transaction.advancedCommerceInfo
+      || transaction.commitmentInfo !== undefined
+      || (transaction.billingPlanType !== undefined && transaction.billingPlanType !== BillingPlanType.BILLED_UPFRONT)) {
       throw new Error('Production Apple transaction does not match the supported individual Family subscription');
     }
     identifier(transaction.transactionId); identifier(transaction.originalTransactionId);
@@ -86,6 +88,8 @@ export class AppleProductionVerification {
     bounded(signedRenewalInfo);
     const renewal = await (await this.source).verifyAndDecodeRenewalInfo(signedRenewalInfo);
     if (renewal.environment !== Environment.PRODUCTION || !productIds.has(renewal.productId ?? '')
+      || renewal.advancedCommerceInfo || renewal.commitmentInfo !== undefined
+      || (renewal.renewalBillingPlanType !== undefined && renewal.renewalBillingPlanType !== RenewalBillingPlanType.BILLED_UPFRONT)
       || (renewal.autoRenewProductId !== undefined && !productIds.has(renewal.autoRenewProductId))) throw new Error('Production Apple renewal binding mismatch');
     identifier(renewal.originalTransactionId); time(renewal.signedDate);
     return renewal;

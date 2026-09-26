@@ -1,13 +1,49 @@
 # Apple production verification and price preparation
 
 Role: current Apple portal readback and isolated production verification foundation
-Status: FOUNDATION LOCALLY VERIFIED; EXACT ANNUAL PRICE CHOICE PENDING; INTAKE NOT WIRED
+Status: VERIFICATION AND AUTHORITATIVE STATUS LOCALLY VERIFIED; PRICE AND DURABLE INTAKE OPEN
 Last updated: 2026-09-26 (Asia/Hong_Kong)
 
 Owner completed the requested Apple login. The actual Rillora app6803957639,
 bundle com.rillora.ios, group22325627 and two existing products are accessible.
 The app/version and products remain Prepare for Submission. No build, review
 submission, live purchase or release was created in this increment.
+
+## September26 launch-goal status adapter
+
+The production Server API adapter now reads the official all-subscription-statuses
+endpoint and re-verifies its nested transaction/renewal signatures with the existing
+production verifier. Exact app/bundle/environment, group, original transaction and
+server-known account must agree. Missing or duplicate target entries fail closed;
+array order or a newly signed old refund cannot arbitrarily select a subscription.
+
+The SDK still owns JWT generation and response schemas. A narrow transport permits
+only production status GETs, rejects redirects and other endpoints, caps responses
+at1MiB and bounds connection/body waits through the existing node-fetch2.7.0 SDK
+dependency, now declared directly. No provider mutation is introduced.
+
+Resolve current price from signed purchase time, storefront, currency and integer
+milliunits against an explicit reviewed binding. Next-renewal price cannot relabel
+an existing paid receipt; no historical v1 fallback exists. Grace uses its signed
+expiry for access while preserving the paid-period end separately. Cancelled
+renewal keeps paid coverage; delayed active/grace responses cannot extend their
+signed cutoff, and retry/expiry/revocation/upgraded transactions do not grant access.
+Unknown status/preferences and impossible dates fail. Unsupported monthly-payment
+commitments and Advanced Commerce are rejected at the verification boundary.
+
+This module produces evidence for the existing reconciliation/executor; it does
+not persist a subscription, authorize finish or grant an entitlement by itself.
+The existing Sandbox adapter and its historical tests are preserved. Current local
+validation:26focused Apple checks,258API tests across30files, typecheck and build
+pass. Tests use decoded synthetic payloads and a stubbed official-client transport;
+no real Apple signature, online OCSP, purchase, HTTP latency or notification delivery
+is claimed. The fixture99.99amount is not an adopted or saved Apple offer.
+[QA](../output/qa/rillora-launch-goal-20260926/apple-snapshot-checks.json).
+
+Next complete the production durable intake/notification/retry and native flow,
+then exact price/catalog/provider configuration and actual lifecycle acceptance.
+[Apple status endpoint](https://developer.apple.com/documentation/appstoreserverapi/get-all-subscription-statuses),
+[renewal/grace fields](https://apple.github.io/app-store-server-library-node/interfaces/JWSRenewalInfoDecodedPayload.html).
 
 ## Current portal facts and concrete price choice
 
@@ -71,7 +107,7 @@ use synthetic decoded payloads and mapping rows; they do not prove Apple signed
 production data, real StoreKit purchase, online certificate status, restore or
 Notifications V2 delivery. Existing Sandbox tests retain their own scope.
 
-Not yet complete: production Server API snapshot adapter, ordinary authenticated
+The later launch-goal checkpoint above closes local production status-adapter preparation. Still incomplete: ordinary authenticated
 intake/notification/retry and catalog/migrations, native server-gated purchase and
 finish/restore, actual provider lifecycle acceptance and cross-channel consistency.
 The older Sandbox snapshot still maps product IDs to v1; it has not been silently

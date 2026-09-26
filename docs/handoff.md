@@ -1,76 +1,68 @@
 # Rillora Current Handoff
 
-Status: WEB US$88.99 COMPLETE; LAUNCH GAPS REVIEWED; APPLE LIFECYCLE NEXT; LIVE SALES CLOSED
+Status: FINAL LAUNCH GOAL ACTIVE; FULL DOCUMENT READ COMPLETE; APPLE LIFECYCLE IN PROGRESS
 Last updated: 2026-09-26 (Asia/Hong_Kong)
 
 ## Current Owner task
 
-Owner sets the website annual price to **US$88.99** while formal-release engineering
-continues. Only the Web quote changes: Family capability version2, annual-only new
-sales, Free1/Family5, historical receipts and the original UI/Legacy Imprint03 remain.
-Apple stays a separate channel-price decision. AWS/Apple login has been completed;
-no repeat project authorization is pending. A later read-only AWS status check
-now confirms expiry; credentials will need renewal for the next cloud operation,
-not for this inventory. Business/registration
-and physical-device work remain Owner-deferred. Owner now asks what remains before
-launch; the status review keeps the existing release scope and next step.
+Owner explicitly requests a long task to bring the existing Web and native iOS
+product to launch readiness, with autonomous decomposition, careful review and
+maintainable implementation. An active goal is recorded in this task. Keep the
+original UI/Legacy Imprint03, Free1/Family5, Web US$88.99 annual-only new purchases,
+Apple channel differentiation, historical receipts and FanPass isolation. Business
+facts and physical devices remain Owner-deferred; readiness cannot invent them.
 
-## Completed checkpoints
+## Current checkpoint
 
-- Price-v4 uses8899integer cents. Catalog, API and Web purchase consent agree; old
-  v3 stays8880/retired. No monthly-v4 or receipt rewrite. UI text derives from the
-  consent contract. [Current price contract](pricing-88-99-20260926.md).
-- Isolated Rillora Stripe TEST Price price_1UJe38CxTlowhyiGdx5ypIKJ isUSD88.99/year;
-  old88.80test Price is archived and readable. No live Price or real charge.
-- Staging migrations0068–0075 committed with exact checksums. API38/migration31,
-  regular Fargate1/1, HEALTHY/COMPLETED; price-version4 and encrypted mode verified.
-  Recovery journal remains opt-in; no backfill KMS access or expanded IAM.
-- RilloraProductionWeb UPDATE_COMPLETE; seven exact-HTML/ready/closed/negative-route
-  checks and Chrome account closure pass. Production API task1/schema0070 remain
-  unchanged; customer access, identity connections and real billing remain closed.
-- Current local checks:244API tests/typecheck/build,89Web source checks/build,
-  39infra tests/typecheck and closed Web build pass. Browser fixture verifies88.99
-  in offer/confirmation plus consent gating, with no real acceptance/payment.
-  Native source did not change. Engineering commit eed17307118d182beff4194964e564eca50520c8
-  is pushed; [CI14 passes](https://github.com/tantalum666/rillora/actions/runs/36180878589).
-  Source scan:917files/25reviewed non-secret matches/0unknown. Local Markdown targets
-  pass; the final documentation-only receipt does not rerun builds or deploy.
-- Earlier independent data/recovery, public site, native Release configuration and
-  cloud monitoring evidence retain their original dates. Apple foundation15f6709f8
-  passed[CI13](https://github.com/tantalum666/rillora/actions/runs/36168352267);
-  this is not CI for the later Web price revision.
+- Fresh full body reading is complete:147project-owned Markdown files,25,917lines.
+  Exact ranges, exclusions, truncation recovery and completion time are retained in
+  [the reading ledger](../output/qa/rillora-launch-goal-20260926/full-read.json).
+  After compaction use focused recovery; do not restart this full read.
+- AWS CLI login succeeded. Fresh STS verifies account133857166372 and
+  arn:aws:iam::133857166372:user/rillora/rillora-operator. The stale Chrome tab's
+  Debugger unattached error did not prove an extension disconnect; a fresh tab in
+  the same browser restored control and reused the Owner's session. No plaintext
+  authorization code was logged; the protected one-time handoff file is removed.
+- SES has a new actual rejection. AWS's September26 01:28+08 reply declines the
+  request after the submitted supplement, without disclosing specific criteria.
+  The current14configuration checks pass, but production access remainsfalse.
+  Owner-requested Gmail reading confirms the same result. Simulator bounce/complaint
+  alerts do not establish denial causality. No new reply or case reopening occurred.
+- Apple production status adapter is now implemented with exact signed-price
+  mapping, bounded read-only transport, grace/cutoff/revocation handling and strict
+  owner/environment checks.26focused Apple checks and258API tests/typecheck/build
+  pass locally. Durable intake/notifications/retry, catalog and native wiring remain.
+  Actual fee eligibility, annual price and Sandbox/TestFlight acceptance remain open.
+- Existing code baseline is9b07a532dfeffd15fed8f18490ba9168beb39a5d. Web88.99
+  engineering eed17307118d182beff4194964e564eca50520c8 passed
+  [CI14](https://github.com/tantalum666/rillora/actions/runs/36180878589):244API,
+  89Web and39infra checks. Those are prior checks, not rerun by this recovery.
 
-## Evidence and open gates
+## Preserved deployment and evidence boundaries
 
-[Current QA](../output/qa/rillora-web-price-88-99-20260926/work-state.json).
-[Production commerce](production-commerce-20260926.md),
-[Apple foundation](production-apple-20260926.md).
-Apple annual remains unpublishedUSD68/eight test territories; monthly has zero
-territories and both are App Store only/no multiseat. Conditional99.99at effective
-15% or119.99under30% remain candidates, not approved/saved prices. Active Paid Apps
-Agreement and the SBP enrollment page do not establish actual15% qualification.
-The prior near-parity question is withdrawn and requires no Owner answer.
-[Channel contract](channel-pricing-20260921.md).
+Staging API38/migration31/schema0075 is the prior encrypted healthy regular-Fargate
+checkpoint. Production API task1/schema0070 remains closed; independent production
+Web is deployed and closed. Public website, legal Sites6, seven-day database,
+scoped real restore/restriction replay, monitoring and native connection preparation
+retain their dated evidence. Do not rebuild or rerun those completed ceremonies
+just because the goal or conversation resumed.
 
-Latest SES00:43+08 September26 check remains14/15 with production access false/DENIED;
-no new SES read was performed during the price change. The subsequent17:08+08
-read fails at expired AWS authentication, so it does not establish a new SES verdict.
-The authorized support reply was already sent. Free Auth0/inactive production connections and test identities
-remain. Stripe merchant/market/tax/live setup and real transactions, Apple production
-snapshot/intake/notifications/native lifecycle, final security/retention and signed
-submission are separate open gates. No live-sale or launch claim follows here.
-
-The latest[status inventory](../output/qa/rillora-release-status-20260926/review.json)
-retains seven engineering/release gates and two Owner-deferred gates. Existing
-client/recovery/price work is complete within its stated scope. This status review
-runs local preflight only, with no new application tests, deployment or transaction.
+The final launch work comprises production identity/mail, ordinary Web/Apple
+billing, both-client authenticated production journeys, retention and post-restore
+commerce reconciliation, final security/maintainability review and signed
+TestFlight/submission. No live payment, new production activation, Apple purchase,
+new native build or public-release claim follows from the local implementation.
 
 ## Single next step
 
-Resume Apple production commerce: verify effective commission/SBP status, resolve
-the cost-based annual offer, then prepare its versioned catalog and complete the
-production transaction/status/notification/native purchase/restore path. Preserve
-test/production separation and historical receipts while other release prerequisites
-become available; do not repeat completed Web/client/recovery work.
+Wire the tested Apple production status adapter into durable authenticated intake,
+notification/retry and the shared entitlement ledger; preserve ownership, historical
+receipts, cross-channel conflict handling and commit-before-finish.
+In the same goal, research a lawful alternative transactional sender before any
+concrete provider configuration; keep vendor choices and true delivery evidence
+explicit. Do not let SES approval block independent engineering.
 
-[Previous handoff — HISTORICAL](handoff-history-20260926-before-web-88-99.md).
+[Release contract](release-readiness.md), [Apple contract](production-apple-20260926.md),
+[Identity/mail](production-identity-mail-20260924.md),
+[Current work state](../output/qa/rillora-launch-goal-20260926/work-state.json),
+[Previous handoff — HISTORICAL](handoff-history-20260926-before-launch-goal.md).

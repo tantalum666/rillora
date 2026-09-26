@@ -2,9 +2,41 @@
 
 Role: focused release integration and evidence boundary
 
-Status: MAIL DOMAIN VERIFIED; FREE AUTH0 WITH CONTROLLED PRELAUNCH CUTOVER SELECTED
+Status: MAIL CONFIGURATION VERIFIED; SES PRODUCTION REQUEST REJECTED; ALTERNATIVE SENDER EVALUATION OPEN
 
-Last updated: 2026-09-25 (Asia/Hong_Kong)
+Last updated: 2026-09-26 (Asia/Hong_Kong)
+
+## September26 actual decision and Gmail cross-check
+
+The renewed AWS CLI is verified as the existing Rillora operator. The17:42+08
+read passes14configuration conditions but still returns productionAccessEnabled
+false and reviewStatusDENIED. The ordinary Support Console now contains a new
+reply at01:28:49+08 onSeptember26, after the already-submitted September25
+supplement: AWS declines the request and does not disclose its assessment criteria.
+The case offers Reopen. This supersedes the earlier request-for-information-only
+interpretation below; it is no longer merely waiting for the first review.
+
+At the Owner's request, Gmail was independently searched and both substantive AWS
+messages read. The September24 message requests sending frequency, recipient-list
+practices, bounce/complaint/unsubscribe handling and examples. The newer message,
+received at01:28:53+08 onSeptember26, contains the refusal and no more specific
+cause. General AUP/service-term/best-practice links do not establish a named
+violation, DNS defect, business-registration issue or reputation failure.
+
+The separate bounce and complaint alarm emails are consistent with the stored
+September24 mailbox-simulator run, which generated one of each. The current
+account health check passes. AWS states that simulator mail does not count toward
+reputation bounce/complaint rates; neither those alarm messages nor their later
+OK states establish why AWS rejected production access.
+[Official simulator boundary](https://docs.aws.amazon.com/ses/latest/dg/send-an-email-from-console.html).
+
+Continue the authorized launch goal by evaluating a legitimate alternative
+transactional sender with explicit cost, data-processing, domain, suppression,
+credential and Auth0 compatibility checks. No replacement is selected, purchased
+or installed yet. Do not reopen/send the old case without explicit message
+authorization, change regions to evade review, or silently switch the working
+test identity. Real verification/reset delivery and invitation continuity remain
+independent acceptance conditions. [Current readback](../output/qa/rillora-launch-goal-20260926/ses-gmail-readback.json).
 
 ## Current scope and findings
 
@@ -119,7 +151,7 @@ Owner questioned the apparently inverted quotas: Free includes25,000MAU;35USD is
 only the500MAU paid starting tier, not an upgrade retaining25,000MAU.
 [Official pricing](https://auth0.com/pricing).
 
-## Live mail and Google result
+## Historical September24–25 mail and Google result
 
 RilloraMail is CREATE_COMPLETE. SES reports identity/DKIM/MAIL-FROM SUCCESS;
 configuration readback requires TLS, suppresses BOUNCE/COMPLAINT and disables

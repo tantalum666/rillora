@@ -5,6 +5,16 @@ appearance. Auth0 continues to own credentials, password recovery, passkey,
 social-login and challenge handling. Rillora owns the surrounding visual shell,
 theme tokens and approved prompt copy.
 
+## September26 mail decision update
+
+AWS has now explicitly declined the SES production request after the submitted
+supplement. The Support Console and Owner-requested Gmail read agree; specific
+assessment criteria are undisclosed. The sender configuration passes its14other
+checks and the account-health check is normal. No alternative sender is installed.
+The earlier request-for-information wording below describes its dated checkpoint,
+not the current decision. Continue independent launch engineering and evaluate a
+legitimate replacement under[the current identity/mail contract](../../docs/production-identity-mail-20260924.md).
+
 ## September24 Free-plan production preparation
 
 Owner asks to keep testing and clean before launch. Retain Free: the actual

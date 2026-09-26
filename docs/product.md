@@ -9,6 +9,10 @@ Last updated: 2026-09-26 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
 
+## 2026-09-26 最终上线长任务 — Owner明确目标
+
+Owner要求设置长任务，自行拆解、实施并仔细检查，持续推进到可正式上线，代码须能长期维护。现有产品范围、UI、03品牌、Free／Family和历史权利保持；执行及证据由[发布合同](release-readiness.md)和当前handoff管理，不以准备完成冒充真实上线。正式邮件审核出现新的实际拒绝，已从AWS工单和Owner指定Gmail交叉核对；具体原因未知，合法替代发送服务进入评估，尚未切换或采购。[当前邮件记录](production-identity-mail-20260924.md)。
+
 ## 2026-09-26 Web price88.99 — Owner locked
 
 Owner changes the website annual price toUS$88.99. Use immutable price-v4 with
@@ -53,7 +57,7 @@ evidence are in[the client contract](production-clients-20260925.md), while
 [release readiness](release-readiness.md) retains identity, commerce and submission
 gates. Correctly filled Release fields do not mean the app is ready for sale.
 
-## 2026-09-24 免费身份、事务邮件与公开入口 — 当前任务
+## 2026-09-24 免费身份、事务邮件与公开入口 — 历史准备检查点
 
 Owner提出先继续测试、临上线再清理，并要求复核Free月活。实际Auth0后台及官网均为Free25,000MAU；35USD/月只是Essentials的500MAU起步档。现阶段保留Free，不购买新增固定套餐；正式Web/iOS客户端及独立audience已准备但全部connection关闭，旧测试绑定不变。上线前按清单退役测试身份权限、会话及明确的测试数据，再接生产；不得仅删事项后继续共用测试删除密钥。[身份与邮件合同](production-identity-mail-20260924.md)。
 

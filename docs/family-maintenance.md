@@ -3,9 +3,10 @@
 Status: IMPLEMENTED ON API / WEB / IOS; SYNTHETIC STAGING PREVIEW DEPLOYED — 2026-09-10  
 Authority: implemented under the earlier Owner request for Family value. The later
 same-day correction rejects this slice as sufficient US$99 value. It remains a
-supporting capability under the latest Owner-selectedUS$88.80/year andUS$9.99/month offer. Scope does not expand merely because pricing changes.
-No hired service is included. [Current price](pricing-88-80-20260919.md).
-Last updated: 2026-09-21 (price-reference drift corrected; no feature/runtime change).
+supporting capability under the Owner-selected WebUS$88.99/year offer and separate
+Apple channel price; new monthly sales are retired. Scope does not expand merely because pricing changes.
+No hired service is included. [Current price](pricing-88-99-20260926.md).
+Last updated: 2026-09-26 (price-reference drift corrected; no feature/runtime change).
 
 ## September17 entitlement and restrictive-access repair
 

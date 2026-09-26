@@ -23,6 +23,16 @@ full-product JPG; its absent URL was not a public-page failure. Operations now
 has14actual passing targets, with its existing schedule/alerts unchanged.
 [Contract](../../docs/production-clients-20260925.md).
 
+## September26 mail decision update
+
+AWS has now explicitly declined the SES production request after the submitted
+supplement. The Support Console and Owner-requested Gmail read agree; specific
+assessment criteria are undisclosed. The sender configuration passes its14other
+checks and the account-health check is normal. No alternative sender is installed.
+The earlier request-for-information wording below describes its dated checkpoint,
+not the current decision. Continue independent launch engineering and evaluate a
+legitimate replacement under[the current identity/mail contract](../../docs/production-identity-mail-20260924.md).
+
 ## September24 transaction mail and public website
 
 The opt-in `RilloraMail` stack is deployed: verified notify/bounce domains,

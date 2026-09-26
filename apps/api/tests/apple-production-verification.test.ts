@@ -36,14 +36,16 @@ describe('production Apple binding after official signature verification (synthe
   it('rejects Sandbox, foreign products/groups, shared or multiseat purchases and unversionable signed prices',async()=>{
     for(const patch of [{environment:Environment.SANDBOX},{bundleId:'com.other.app'},{subscriptionGroupIdentifier:'another'},
       {productId:'com.other.annual'},{storefront:'GBR'},{quantity:2},{inAppOwnershipType:InAppOwnershipType.FAMILY_SHARED},
-      {type:Type.CONSUMABLE},{price:undefined},{currency:'usd'},{expiresDate:now-2000}]){
+      {type:Type.CONSUMABLE},{price:undefined},{currency:'usd'},{expiresDate:now-2000},
+      {billingPlanType:'MONTHLY'},{commitmentInfo:{}},{advancedCommerceInfo:{}}]){
       const checker=new AppleProductionVerification(verifier({verifyAndDecodeTransaction:async()=>({...transaction(),...patch}) as JWSTransactionDecodedPayload}),new Set(['USA']));
       await expect(checker.verifyClientTransaction(client)).rejects.toThrow();
     }
   });
   it('rejects mixed nested renewal environments, subjects, products and account tokens',async()=>{
     for(const patch of [{environment:Environment.SANDBOX},{originalTransactionId:'20000000000000'},
-      {productId:identity.historicalMonthlyProductId},{appAccountToken:'ffffffff-ffff-4fff-8fff-ffffffffffff'}]){
+      {productId:identity.historicalMonthlyProductId},{appAccountToken:'ffffffff-ffff-4fff-8fff-ffffffffffff'},
+      {renewalBillingPlanType:'MONTHLY'},{commitmentInfo:{}},{advancedCommerceInfo:{}}]){
       const checker=new AppleProductionVerification(verifier({verifyAndDecodeRenewalInfo:async()=>({...renewal(),...patch})}),new Set(['USA']));
       await expect(checker.verifySubscriptionStatus(status)).rejects.toThrow();
     }
