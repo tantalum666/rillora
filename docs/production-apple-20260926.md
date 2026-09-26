@@ -239,3 +239,11 @@ pushed and[CI16 passes](https://github.com/tantalum666/rillora/actions/runs/3623
 Prepared source927files/25reviewed non-secrets/0unknown; no scanner exception was
 added.0076–0079 remain local-only. The evidence receipt does not imply new builds,
 cloud migration, configured Apple products or a completed production purchase.
+
+
+Durable-intake engineeringcd7f203fb8b1dd5441b7df8bd8a89616c6b57e5a is pushed;
+[CI17 passes](https://github.com/tantalum666/rillora/actions/runs/36242214340).
+941prepared source files have25reviewed non-secret spans/0unknown. The single
+scan-location update retains the exact old PEM-delimiter validator hash; it is not
+a new secret exemption.148Markdown files/1432local targets have0missing.
+No cloud/provider/native activation follows from this source checkpoint.

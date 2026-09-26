@@ -33,8 +33,9 @@ Optional aggregateEMF/CloudWatch queue alarms and the exact Apple-IAP vault fact
 are prepared but not deployed or configured. New native quote/consent/account
 reservation, cross-provider renewal preflight and server-gated native flow remain.
 
-The previous engineering7c53bba56 has[CI16](https://github.com/tantalum666/rillora/actions/runs/36239456505).
-This increment's exact source/CI publication status is in
+Engineeringcd7f203fb8b1dd5441b7df8bd8a89616c6b57e5a is pushed;
+[CI17 passes](https://github.com/tantalum666/rillora/actions/runs/36242214340).
+Prepared941source files have25reviewed non-secret spans/0unknown. Exact evidence is in
 [work state](../output/qa/rillora-launch-goal-20260926/work-state.json).
 
 ## External facts
