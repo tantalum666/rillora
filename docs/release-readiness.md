@@ -4,6 +4,32 @@ Role: current launch scope, remaining work and release evidence contract
 Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; CUSTOMER ACCOUNTS AND SALES CLOSED
 Last updated: 2026-09-26 (Asia/Hong_Kong)
 
+## September26 17:08+08 — Current launch-gap review
+
+The current read-only preflight still lists seven unfinished engineering/release
+gates plus two Owner-deferred gates. They group into six workstreams: Apple
+purchase/restore, production identity/mail, real Web annual billing, complete
+production Web/iOS workflows, final security/retention operations, and signed
+TestFlight/App Store submission. This is a work inventory, not a completion ratio.
+
+Web88.99 is implemented/staged, closed production Web updated andCI14 successful.
+Independent production data/TLS/recovery, core sharing, public information, monitoring
+and native connection preparation retain their completed evidence. Do not put
+client setup or price revision back into the active development backlog.
+
+The17:08+08 mail refresh failed at AWS authentication; the session is expired.
+No new SES review decision was retrieved. Keep the last successful00:43+08 check
+(production accessfalse,14other checks passing) and the already-submitted support
+reply as dated evidence. No repeated login or message is needed just to answer
+this status question. Auth0 production cutover/real mail and login acceptance are
+still separate from the sender's DNS/configuration proof.
+
+Resume the Apple production lifecycle and differential price work while independent
+security/retention/submission preparation proceeds. Merchant/business facts and
+physical-device acceptance remain Owner-deferred, not completed. No new pricing,
+features, release scope, provider mutation, deployment or full-suite rerun follows
+from this review. [Review evidence](../output/qa/rillora-release-status-20260926/review.json).
+
 ## September26 Web88.99 revision
 
 Owner sets Web annual88.99. Price-v4, fresh purchase consent, retained historical
@@ -40,7 +66,7 @@ This closes client delivery preparation, not authenticated production workflows.
 The account/email, ordinary purchase and final artifact gates remain open.
 [Current client evidence](production-clients-20260925.md).
 
-## September25 current release gap review
+## HISTORICAL — September25 release gap review
 
 Fresh preflight/source review still reports seven engineering/release gates and
 two Owner-deferred gates. This is not an overall completion percentage. Core
@@ -61,9 +87,9 @@ Owner-deferred, not completed. Keep the existing joint Web/iOS and Free/Family
 launch scope; do not silently substitute a public Free-only launch.
 
 SES waiting does not block closed-client preparation, payment implementation or
-submission materials. Prioritize closed production Web/iOS connection preparation,
-then production commerce; merge the email/identity checks when external approval
-is available. The existing Management JWT lifetime is 86,400 seconds: the actual
+submission materials. At that checkpoint the priority was closed client
+preparation, which is now complete; the September26 review above supersedes that
+old next step. Merge email/identity checks when external approval is available. The existing Management JWT lifetime is 86,400 seconds: the actual
 cutover must stop old issuance and allow expiry/clock tolerance before customers,
 while independent engineering can continue.
 

@@ -2687,3 +2687,19 @@ launch prerequisites and historical authentication gates are not repeated approv
   succeeds in all three jobs. Source scan917files/25reviewed non-secret matches/
   0unknown; local Markdown targets pass. Final documentation records this outcome
   without another application change, deployment, real charge or Apple price decision.
+
+## 2026-09-26 — Review remaining launch work after Web repricing
+
+- **Goal/attempt**: answer Owner's remaining-work question against the current
+  handoff, release register, Apple/Stripe/identity contracts and fresh read-only
+  preflight; try to refresh the SES configuration without sending mail.
+- **Judgment**: Web88.99/client preparation is complete within its tested scope,
+  while actual production login, payments and Apple lifecycle remain. The old
+  September25 instruction to start client preparation is now explicitly historical.
+- **Result**: seven unfinished engineering/release gates group into six workstreams;
+  business/registration and physical-device acceptance remain two separate deferred
+  gates. Retain the Apple lifecycle as the next implementation focus.
+- **Evidence limits**:17:08+08 AWS authentication is expired, so no new SES verdict
+  is obtained. Keep the00:43+08 successful read and already-submitted reply dated.
+  No provider mutation, new application test/build, deployment, payment or submission;
+  no product decision requiring another decision-log entry. [QA](../../output/qa/rillora-release-status-20260926/review.json).

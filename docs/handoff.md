@@ -1,6 +1,6 @@
 # Rillora Current Handoff
 
-Status: WEB US$88.99 IMPLEMENTED AND STAGED; PRODUCTION WEB UPDATED; LIVE SALES CLOSED
+Status: WEB US$88.99 COMPLETE; LAUNCH GAPS REVIEWED; APPLE LIFECYCLE NEXT; LIVE SALES CLOSED
 Last updated: 2026-09-26 (Asia/Hong_Kong)
 
 ## Current Owner task
@@ -9,8 +9,11 @@ Owner sets the website annual price to **US$88.99** while formal-release enginee
 continues. Only the Web quote changes: Family capability version2, annual-only new
 sales, Free1/Family5, historical receipts and the original UI/Legacy Imprint03 remain.
 Apple stays a separate channel-price decision. AWS/Apple login has been completed;
-no repeat authentication or project authorization is pending. Business/registration
-and physical-device work remain Owner-deferred.
+no repeat project authorization is pending. A later read-only AWS status check
+now confirms expiry; credentials will need renewal for the next cloud operation,
+not for this inventory. Business/registration
+and physical-device work remain Owner-deferred. Owner now asks what remains before
+launch; the status review keeps the existing release scope and next step.
 
 ## Completed checkpoints
 
@@ -50,11 +53,17 @@ The prior near-parity question is withdrawn and requires no Owner answer.
 [Channel contract](channel-pricing-20260921.md).
 
 Latest SES00:43+08 September26 check remains14/15 with production access false/DENIED;
-no new SES read was performed during the price change. The authorized support reply
-was already sent. Free Auth0/inactive production connections and test identities
+no new SES read was performed during the price change. The subsequent17:08+08
+read fails at expired AWS authentication, so it does not establish a new SES verdict.
+The authorized support reply was already sent. Free Auth0/inactive production connections and test identities
 remain. Stripe merchant/market/tax/live setup and real transactions, Apple production
 snapshot/intake/notifications/native lifecycle, final security/retention and signed
 submission are separate open gates. No live-sale or launch claim follows here.
+
+The latest[status inventory](../output/qa/rillora-release-status-20260926/review.json)
+retains seven engineering/release gates and two Owner-deferred gates. Existing
+client/recovery/price work is complete within its stated scope. This status review
+runs local preflight only, with no new application tests, deployment or transaction.
 
 ## Single next step
 

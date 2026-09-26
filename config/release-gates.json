@@ -45,9 +45,11 @@
       "title": "Ordinary customer purchase lifecycle",
       "evidence": [
         "docs/production-commerce-20260926.md",
-        "output/qa/rillora-production-commerce-20260925/work-state.json"
+        "output/qa/rillora-production-commerce-20260925/work-state.json",
+        "docs/pricing-88-99-20260926.md",
+        "output/qa/rillora-web-price-88-99-20260926/work-state.json"
       ],
-      "next": "Production source/consent/UI/ledger and bounded verified-event retry pass local tests; only the closed Web return paths/artifact are deployed. Complete live merchant/tax/provider/vault/IAM facts, API/migrations rollout, real transactions, retry alerts and cross-channel/post-restore reconciliation. No live sales or new monthly offer."
+      "next": "Web88.99 price-v4, fresh consent and immutable history are implemented; staging API38/schema0075 and closed production Web are verified, CI14 passes. Production API remains task1/schema0070. Complete live merchant/tax/provider/vault/IAM facts, production rollout, real transactions, retry alerts and cross-channel/post-restore reconciliation. No live sales or new monthly offer."
     },
     {
       "id": "merchant-market",
