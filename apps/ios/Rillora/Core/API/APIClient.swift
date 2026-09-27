@@ -5,7 +5,7 @@ protocol OverviewServing: Sendable {
     func fetchOverview() async throws -> OverviewSnapshot
 }
 
-protocol CommerceServing: Sendable {
+protocol CommerceServing: ApplePurchaseServing {
     func fetchCommerceStatus(serviceMarketCode: String) async throws -> CommerceStatus
     func resolvePurchaseRoute(
         request: CommercePurchaseRouteRequest
@@ -273,6 +273,34 @@ actor APIClient: OverviewServing, PlanEditing, MatterEditing, TrustedContactEdit
             )
         }
         return response
+    }
+
+    func fetchAppleQuote(serviceMarket: String, storefront: String) async throws -> AppleQuoteResponse {
+        var query = URLComponents()
+        query.queryItems = [URLQueryItem(name: "serviceMarketCode", value: serviceMarket), URLQueryItem(name: "storefrontCountryCode", value: storefront)]
+        let result: AppleQuoteResponse = try await get("commerce/storekit/production/quote?\(query.percentEncodedQuery ?? "")")
+        guard result.isValid else { throw RilloraAPIError.invalidResponse }
+        return result
+    }
+    func prepareApplePurchase(_ preparation: ApplePurchasePreparation, nonce: UUID) async throws -> ApplePurchaseIntent {
+        let result: ApplePurchaseIntent = try await send(path: "commerce/storekit/production/prepare", method: "POST",
+            body: encoder.encode(preparation), idempotencyKey: nonce)
+        guard result.isValid else { throw RilloraAPIError.invalidResponse }
+        return result
+    }
+    func changeApplePurchase(_ reference: UUID, action: String) async throws -> ApplePurchaseState {
+        guard ["start", "pending", "cancel"].contains(action) else { throw RilloraAPIError.invalidResponse }
+        return try await send(path: "commerce/storekit/production/purchases/\(reference.uuidString)", method: "POST",
+            body: encoder.encode(ApplePurchaseTransition(action: action)))
+    }
+    func pendingApplePurchase() async throws -> ApplePendingPurchaseResponse {
+        try await get("commerce/storekit/production/purchases/current")
+    }
+    func submitAppleTransaction(_ evidence: StoreKitTransactionEvidence) async throws -> AppleTransactionResponse {
+        let result: AppleTransactionResponse = try await send(path: "commerce/storekit/production/transactions", method: "POST",
+            body: encoder.encode(AppleTransactionRequest(signedTransaction: evidence.signedTransaction)))
+        guard result.isValid else { throw RilloraAPIError.invalidResponse }
+        return result
     }
 
     func fetchOverview() async throws -> OverviewSnapshot {
@@ -928,9 +956,11 @@ actor APIClient: OverviewServing, PlanEditing, MatterEditing, TrustedContactEdit
     private func send<Response: Decodable & Sendable>(
         path: String,
         method: String,
-        body: Data? = nil
+        body: Data? = nil,
+        idempotencyKey: UUID? = nil
     ) async throws -> Response {
-        let result = try await perform(path: path, method: method, body: body)
+        let result = try await perform(path: path, method: method, body: body,
+            additionalHeaders: idempotencyKey.map { ["Idempotency-Key": $0.uuidString] } ?? [:])
         guard (200..<300).contains(result.response.statusCode) else {
             throw decodeServerError(from: result)
         }

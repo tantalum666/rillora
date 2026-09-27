@@ -27,6 +27,9 @@ private struct ComponentPreviewHome: View {
                     .font(.system(.title, design: .serif).weight(.medium))
                     .foregroundStyle(RilloraTheme.ink)
 
+                NavigationLink("Purchase layout") { ApplePurchaseLayoutPreview() }
+                    .accessibilityIdentifier("preview.apple-purchase")
+
                 RilloraFilterPicker(title: "Preview section", options: [
                     .init(id: "feedback", title: "Feedback"),
                     .init(id: "loading", title: "Loading"),

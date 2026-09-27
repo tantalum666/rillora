@@ -7,7 +7,8 @@ import {
   commerceStatusQuerySchema,
   purchaseRouteRequestSchema,
 } from "./domain.js";
-import { asyncHandler } from "./errors.js";
+import { ApiError, asyncHandler } from "./errors.js";
+import { loadApplePurchaseQuote } from './apple-purchase-catalog.js';
 
 type SubscriptionRow = {
   public_id: string;
@@ -425,6 +426,11 @@ async function hasActiveProviderProduct(
   providerCode: string,
   appleStorefrontCountryCode: string | null,
 ): Promise<boolean> {
+  if(providerCode==='storekit') {
+    if(!appleStorefrontCountryCode)return false;
+    try { await loadApplePurchaseQuote(client,{serviceMarketCode,storefrontCountryCode:appleStorefrontCountryCode});return true; }
+    catch(error) { if(error instanceof ApiError&&['apple_purchase_unavailable','billing_closed'].includes(error.code))return false;throw error; }
+  }
   const result = await client.query<{ configured: boolean }>(
     `select exists(
        select 1

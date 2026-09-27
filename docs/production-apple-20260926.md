@@ -1,15 +1,77 @@
 # Apple production verification and price preparation
 
 Role: current Apple production engineering, portal readback and actual evidence boundary
-Status: DURABLE INTAKE AND BOUNDED WORKER LOCALLY VERIFIED; NATIVE PURCHASE AND REAL PROVIDER LIFECYCLE OPEN
-Last updated: 2026-09-26 (Asia/Hong_Kong)
+Status: ORDINARY NATIVE PURCHASE AND RESTORE LOCALLY VERIFIED; REVIEW VALIDATION AND REAL PROVIDER LIFECYCLE OPEN
+Last updated: 2026-09-27 (Asia/Hong_Kong)
 
 Owner completed the requested Apple login. The actual Rillora app6803957639,
 bundle com.rillora.ios, group22325627 and two existing products are accessible.
 The app/version and products remain Prepare for Submission. No build, review
 submission, live purchase or release was created in this increment.
 
-## Durable production intake and recovery — latest September26 increment
+## September27 ordinary native purchase and restore — current checkpoint
+
+The ordinary production app now has a separate Apple purchase coordinator and
+typed API contract. It compares StoreKit's localized price, currency, one-year
+period and product/group with the server's reviewed offer before presenting an
+action. Web88.99 is not relabelled as the Apple price. Annual-only new purchases
+and historical monthly receipts remain separate; signed historical storefronts
+do not have to match today's device country for restoration.
+
+The server quotes only active, unambiguous Apple bindings with current operating
+entity/market/storefront/route windows, exact production SKU identity, valid tax
+configuration and both included Family capabilities actually enabled. Quote reads
+do not infer residence or create a commerce account. Preparation requires an
+independent, versioned recurring-price/renewal/cancellation acceptance and reserves
+one owned order using a nonce. Its expected account UUID must match the current
+authenticated account before any order or consent is stored, including when native
+token storage changes during an in-flight request. The real sheet starts only after a fresh guarded
+transition. Creating an account or receiving a provider callback cannot grant access.
+
+Native and Web checkout share the same transaction lock and foreign-purchase
+checks. Known resumable terminal subscriptions, unfinished other-channel orders,
+and newly locked/deleting owners cannot start another purchase. An unused prepared
+quote expires after15minutes; a sheet that may have opened or an Apple-pending
+approval does not silently expire as if payment were canceled. These controls cover
+Rillora-initiated flows; provider events, externally changed subscriptions and final
+cross-channel lifecycle acceptance still need their actual evidence.
+
+Migrations0083–0085 add purchase sessions, retain paid purchase-consent facts with
+the existing financial-erasure archive, and recheck active ownership without
+granting the commerce role profile reads. A matching new receipt completes its
+order; restoring an older receipt does not invent another paid order. An old
+expired notification cannot close a later unfinished purchase. No price, market,
+cloud schema or sale flag is activated by these migrations.
+
+The client only finishes after a consistent committed server acknowledgement.
+Unfinished StoreKit transactions replay after restart; restore retains verified
+transaction handles and also checks subscription status for expired/monthly history.
+Owner-generation guards prevent late quote/preparation/receipt results from affecting
+a different signed-in account. A history outage is reported as an incomplete check,
+not as evidence that the customer has no purchases. The prior diagnostic Sandbox
+harness stays separate.
+
+The existing Plan & access form retains its materials and navigation. Its purchase
+section shows Apple-localized price,5live recipients/shared reviews, an unchecked
+compact consent, actual Terms/Privacy/Refund links and restore/management actions.
+The three corrected policy URLs were opened in normal Chrome and their effective
+headings/versions read back. Python urllib403 was a client difference, not proof of
+a broken customer page. [Policy checks](../output/qa/rillora-launch-goal-20260926/apple-purchase-policy-links.json).
+
+Local verification passes300API tests/34files, typecheck/build and170native tests
+with1existing skip. The isolated Preview app was built/installed and its normal and
+Accessibility3 layouts observed through CUA; consent-off disables Subscribe, the
+local-only toggle enables it and was reset. The preview has no API client, real
+identity or SDK purchase. Its99.99fixture is not an approved or saved Apple price.
+[Exact evidence](../output/qa/rillora-launch-goal-20260926/apple-purchase-checks.json).
+
+Still required: safe App Store review/TestFlight validation, real provider purchase/
+restore/notification and cross-channel acceptance, exact fee/price/catalog decisions,
+cloud deployment and alert delivery. The current ordinary production path deliberately
+rejects Sandbox; final review cannot be represented as working until a separate
+enrolled-account validation path exists. Customer access remains closed.
+
+## Durable production intake and recovery — preceding September26 increment
 
 The ordinary authenticated transaction endpoint and NotificationsV2 endpoint are
 implemented behind an explicit default-off production flag. Verification, minimal

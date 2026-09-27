@@ -23,4 +23,6 @@ struct LegalAcceptanceProof: Codable, Equatable, Sendable {
 enum RilloraLegalURLs {
     static let terms = URL(string: "https://legal.rillora.xyz/terms")!
     static let privacy = URL(string: "https://legal.rillora.xyz/privacy")!
+    static let subscriptions = URL(string: "https://legal.rillora.xyz/subscription-terms")!
+    static let refunds = URL(string: "https://legal.rillora.xyz/refund-policy")!
 }

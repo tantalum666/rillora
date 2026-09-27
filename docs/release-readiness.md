@@ -2,7 +2,20 @@
 
 Role: current launch scope, remaining work and release evidence contract  
 Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; CUSTOMER ACCOUNTS AND SALES CLOSED
-Last updated: 2026-09-26 (Asia/Hong_Kong)
+Last updated: 2026-09-27 (Asia/Hong_Kong)
+
+## September27 current engineering increment
+
+Ordinary native Apple quote/consent/preparation, server-gated purchase/restore and
+unfinished replay now have local implementation and300API/170native test passes
+(1existing native skip). Both checkout channels check unfinished and resumable
+foreign purchases; actual policy/capability readiness is required before payment.
+Normal/large-text form checks use a clearly isolated non-purchasing Preview app.
+This does not pass the Apple transaction gate: final App Store review/TestFlight
+needs a safe enrolled-account Sandbox validation path, then real provider lifecycle,
+exact pricing and cloud rollout. Retention/recovery operations, identity/mail,
+merchant facts and signed submission retain their distinct remaining requirements.
+[Current Apple evidence](production-apple-20260926.md).
 
 ## September26 final-launch goal — current execution contract
 

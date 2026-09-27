@@ -69,6 +69,25 @@ export async function commitAppleObservation(pool: DatabasePool, job: AppleDeliv
       snapshot.renewalSignedAt, snapshot.receipt.purchasedAt]);
     const entitlementChanged = await persistReconciliation(client, context, event.id, subscriptionId, decision, snapshot.observedAt);
     if (decision.directive === 'grant' && !entitlementChanged) throw new Error('Apple paid access could not be committed');
+    // An already-owned restoration is not another sale. Complete a matching new
+    // purchase only when its signed financial facts fit the prepared order; close
+    // other own drafts without inventing a second payment.
+    await client.query(`with finished as (
+        update app.commerce_apple_purchase_sessions session set state=case when
+          receipt.purchased_at>=session.created_at-interval '5 minutes'
+          and receipt.price_milliunits=orders.amount_minor*power(10::numeric,3-price.minor_unit_exponent)
+          and receipt.currency_code=orders.currency_code
+          and session.binding_code=receipt.binding_code then 'completed' else 'closed' end,updated_at=now()
+        from app.commerce_apple_transaction_receipts receipt,app.commerce_orders orders,app.commerce_prices price
+        where session.planner_id=app.current_planner_id() and session.state in ('prepared','started','pending')
+          and receipt.transaction_reference=$1 and receipt.planner_id=session.planner_id
+          and orders.id=session.order_id and price.id=orders.price_id
+          and (receipt.purchased_at>=session.created_at-interval '5 minutes' or $2)
+        returning session.order_id,session.state)
+      update app.commerce_orders set status=case when finished.state='completed' then 'paid_reconciled' else 'canceled' end,
+        updated_at=now() from finished where app.commerce_orders.id=finished.order_id
+        and app.commerce_orders.status in ('created','pending')`,
+    [snapshot.providerTransactionReference,decision.directive==='grant']);
     await client.query(`update app.commerce_provider_events set processing_status='applied',processed_at=now() where id=$1`, [event.id]);
     await client.query(`update app.commerce_provider_event_inbox set processing_status='applied',processed_at=now(),
       last_error_code=null,lease_token=null,lease_until=null where public_id=$1 and lease_token=$2`, [job.publicId, job.leaseToken]);

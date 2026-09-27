@@ -75,7 +75,7 @@ struct PlanAccessView: View {
                                 Text(capabilityLabel(capability.code)).foregroundStyle(RilloraTheme.muted).padding(.vertical, 4)
                             }
                         }
-                        if !status.offers.isEmpty {
+                        if store.applePurchase == nil && !status.offers.isEmpty {
                             if status.offers.count > 1 {
                                 RilloraFilterPicker(title: "Billing period", options: status.offers.map {
                                     .init(id: $0.billingInterval, title: intervalLabel($0.billingInterval))
@@ -85,10 +85,16 @@ struct PlanAccessView: View {
                                 LabeledContent(intervalLabel(offer.billingInterval), value: offer.formattedPrice)
                             }
                         }
-                        Label("Billing is not open", systemImage: "lock")
-                            .font(.subheadline).foregroundStyle(RilloraTheme.muted)
-                    } label: { Label("Family · Not available yet", systemImage: "person.2") }
+                        if !status.billingOpen {
+                            Label("Billing is not open", systemImage: "lock")
+                                .font(.subheadline).foregroundStyle(RilloraTheme.muted)
+                        }
+                    } label: { Label(status.billingOpen ? "Family" : "Family · Not available yet", systemImage: "person.2") }
                 }
+            }
+
+            if let purchase = store.applePurchase {
+                ApplePurchaseSection(purchase: purchase, subscription: status.currentAccess.subscription)
             }
 
             if store.storeKitTestEnvironment.isEnabled {
@@ -347,7 +353,7 @@ struct PlanAccessView: View {
             "trusted_people_multiple",
         ]
         return preferred.compactMap { code in
-            plan.capabilities.first { $0.code == code && $0.enforcementMode == "planned" }
+            plan.capabilities.first { $0.code == code && ["planned", "included", "metered_limit"].contains($0.enforcementMode) }
         }
     }
 

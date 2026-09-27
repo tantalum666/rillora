@@ -192,4 +192,14 @@ describe('production commerce ledger with a synthetic provider only', () => {
     expect((await pool.query('select count(*)::int as count from app.commerce_entitlement_grants where revoked_at is null')).rows[0].count).toBeGreaterThan(0);
   });
 
+  it('persists a freshly confirmed nonrenewing termination for later cross-channel checks',async()=>{
+    currentState.value='expired_read_only';currentState.mayRenew=false;
+    checkoutCall.mockImplementationOnce(async input=>{
+      captured=input;return {sessionId:'cs_live_ended_fixture',url:'https://checkout.stripe.com/c/pay/cs_live_ended_fixture',expiresAt:null};
+    });
+    await postCheckout(consent,'production-after-fully-ended-006').expect(201);
+    expect((await pool.query("select state,renewal_is_possible,grace_ends_at from app.commerce_subscriptions where provider_subscription_reference='sub_local_fixture'")).rows[0])
+      .toMatchObject({state:'expired_read_only',renewal_is_possible:false,grace_ends_at:null});
+  });
+
 });

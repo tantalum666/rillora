@@ -1,6 +1,7 @@
 import express, { type Express, type RequestHandler } from "express";
 import type { AppleProductionIntake } from './apple-production-intake.js';
 import { createAppleProductionNotificationHandler, createAppleProductionRouter } from './apple-production-routes.js';
+import { ApplePurchasePreflight } from './apple-purchase-preflight.js';
 import { authenticate } from "./auth.js";
 import { Auth0EmailIdentityVerifier, SessionEmailVerification, type EmailIdentityVerifying } from "./email-verification.js";
 import type { AppConfig } from "./config.js";
@@ -218,10 +219,9 @@ export function createApp(
       createStoreKitSandboxRouter(storeKitSandboxIntake),
     );
   }
-  if (appleProductionIntake) plannerApi.use('/commerce/storekit/production', createAppleProductionRouter(appleProductionIntake));
-  // Receipt/restore intake alone is not a new-purchase preflight implementation.
+  if (appleProductionIntake) plannerApi.use('/commerce/storekit/production', createAppleProductionRouter(appleProductionIntake,new ApplePurchasePreflight(pool)));
   plannerApi.use("/commerce", createCommerceRouter(pool,
-    new Set(stripeExecutor?.providerEnvironment === 'production' ? ['stripe'] : [])));
+    new Set([...(stripeExecutor?.providerEnvironment === 'production' ? ['stripe'] : []),...(appleProductionIntake ? ['storekit'] : [])])));
   plannerApi.use("/account", createAccountDataRouter(pool));
   plannerApi.use("/account", createAccountDeletionRouter(pool, accountDeletion));
   plannerApi.use(createApiRouter(pool, config));

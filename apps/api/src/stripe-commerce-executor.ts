@@ -1,4 +1,5 @@
 import { recordSubscriptionObservation, persistReconciliation } from './commerce-subscription-ledger.js';
+import { assertNoForeignPurchase, assertFamilyPriceReady } from './commerce-purchase-conflicts.js';
 import { createHash } from "node:crypto";
 import type { PoolClient } from "pg";
 import { executionSnapshotPriceId, stripeExecutionEnvironment, type StripeExecutionConfig } from "./stripe-execution-config.js";
@@ -527,7 +528,10 @@ async function reserveCheckout(
 ): Promise<CheckoutReservation> {
   const environment = stripeExecutionEnvironment(config);
   await client.query("select pg_advisory_xact_lock(hashtextextended('checkout:' || app.current_planner_id()::text,0))");
-  if (environment === "production") await assertProductionSalesReady(client);
+  if (environment === "production") {
+    await assertProductionSalesReady(client);
+    await assertNoForeignPurchase(client,'stripe');
+  }
   const account = await client.query<{
     id: string;
     public_id: string;
@@ -593,6 +597,7 @@ async function reserveCheckout(
   );
   const catalogRow = catalog.rows[0];
   if (!catalogRow) throw new Error("Rillora Stripe catalog binding is unavailable for this environment");
+  if(environment==='production')await assertFamilyPriceReady(client,catalogRow.price_id);
 
   let existing = await client.query<{
     order_public_id: string;
@@ -638,7 +643,8 @@ async function reserveCheckout(
       if (current.state !== "expired_read_only" || current.renewalIsPossible !== false) throw new ApiError(409, "existing_subscription", "Manage your existing subscription before starting another.");
       // This authoritative preflight can end stale access; it never grants it.
       const expired = await client.query(`update app.commerce_subscriptions set state='expired_read_only',provider_observed_at=$2,
-        current_period_starts_at=$3,current_period_ends_at=$4,version=version+1,updated_at=now()
+        current_period_starts_at=$3,current_period_ends_at=$4,renewal_is_possible=false,grace_ends_at=null,
+        version=version+1,updated_at=now()
         where id=$1 and (provider_observed_at is null or provider_observed_at <= $2) returning id`,
         [sub.id,current.observedAt,current.currentPeriodStartsAt,current.currentPeriodEndsAt]);
       if (!expired.rowCount) throw new ApiError(409, "billing_changed", "Billing changed. Refresh your access before continuing.");

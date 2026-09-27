@@ -5,7 +5,18 @@ Authority scope: API, PostgreSQL model, runtime security controls and production
 Superseded by: later reviewed backend decision recorded in `docs/decision-log.md`  
 Do not use for: claiming production identity, real recipient delivery, production end-to-end encryption, legal validity or real release  
 Status: CORE AND ACCOUNT-BOUND SHARING DEPLOYED TO SYNTHETIC STAGING; VERSIONED LEGAL GATE REQUIRED; STRIPE TEST LIFECYCLE VERIFIED; APPLE IAP DEPLOYMENT / REAL SANDBOX PURCHASE OPEN; ORDINARY ACCESS FREE; SALES / PRODUCTION ENTITLEMENTS / REAL SENSITIVE DATA CLOSED; EXPIRING VALIDATION ACCOUNTS ONLY  
-Last updated: 2026-09-26 (Web price-v4 staged; production API unchanged)
+Last updated: 2026-09-27 (native purchase preflight locally verified; production API unchanged)
+
+## September27 native purchase preparation
+
+The production Apple quote/prepare/start/pending/cancel flow is now implemented
+with an exact current catalog, separate consent and durable order. Both payment
+channels share pending/resumable conflict checks; started Apple payment is never
+expired merely because its quote aged. The server rechecks active ownership and
+included Family readiness before a new payment.0083–0085 preserve paid consent on
+erasure and do not open sales.300API tests/typecheck/build pass locally; no new cloud
+schema or image is deployed. Native and actual-provider evidence remain separate in
+[the current Apple contract](production-apple-20260926.md).
 
 ## September26 Apple durable intake — current local increment
 

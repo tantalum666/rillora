@@ -23,6 +23,7 @@ final class CommerceStore {
     private(set) var isLoading = false
     private(set) var errorMessage: String?
     let storeKitTestEnvironment: RilloraStoreKitTestEnvironment
+    let applePurchase: ApplePurchaseCoordinator?
 
     private let service: any CommerceServing
     private let storefrontProvider: any CommerceStorefrontProviding
@@ -31,6 +32,7 @@ final class CommerceStore {
     private let storeKitTestAppAccountToken: UUID?
     private var localAppAccountToken: UUID?
     private var pendingStoreKitSandboxTransaction: StoreKitTransactionEvidence?
+    private var refreshRevision = 0
 
     init(
         service: any CommerceServing,
@@ -38,7 +40,8 @@ final class CommerceStore {
         storeKitClient: any StoreKitPurchasing = UnavailableStoreKitClient(),
         storeKitTestEnvironment: RilloraStoreKitTestEnvironment = .disabled,
         storeKitTestAppAccountToken: UUID? = nil,
-        serviceMarketCode: String
+        serviceMarketCode: String,
+        storeKitProductionEnabled: Bool = false
     ) {
         self.service = service
         self.storefrontProvider = storefrontProvider
@@ -46,6 +49,10 @@ final class CommerceStore {
         self.storeKitTestEnvironment = storeKitTestEnvironment
         self.storeKitTestAppAccountToken = storeKitTestAppAccountToken
         self.serviceMarketCode = serviceMarketCode
+        self.applePurchase = storeKitProductionEnabled && !storeKitTestEnvironment.isEnabled
+            ? ApplePurchaseCoordinator(service: service, client: storeKitClient, storefront: storefrontProvider, serviceMarket: serviceMarketCode)
+            : nil
+        self.applePurchase?.onReconciled = { [weak self] in await self?.refresh() }
     }
 
     var storeKitLocalTestingEnabled: Bool {
@@ -89,7 +96,12 @@ final class CommerceStore {
         async let storefrontUpdates: Void = observeStorefrontUpdates()
         async let transactionUpdates: Void = observeStoreKitTransactionUpdates()
         async let subscriptionStatusUpdates: Void = observeStoreKitSubscriptionStatusUpdates()
-        _ = await (storefrontUpdates, transactionUpdates, subscriptionStatusUpdates)
+        async let productionUpdates: Void = startProductionPurchases(owner: appAccountToken)
+        _ = await (storefrontUpdates, transactionUpdates, subscriptionStatusUpdates, productionUpdates)
+    }
+
+    private func startProductionPurchases(owner: UUID?) async {
+        if let owner { await applePurchase?.start(owner: owner) }
     }
 
     func startSandboxCatalog() async {
@@ -173,6 +185,8 @@ final class CommerceStore {
     }
 
     func reset() {
+        refreshRevision += 1
+        applePurchase?.reset()
         status = nil
         purchaseRoute = nil
         storefrontCountryCode = nil
@@ -481,12 +495,15 @@ final class CommerceStore {
     }
 
     private func refresh(storefrontCountryCode override: String?) async {
+        refreshRevision += 1
+        let revision = refreshRevision
         isLoading = true
         errorMessage = nil
         do {
             let status = try await service.fetchCommerceStatus(
                 serviceMarketCode: serviceMarketCode
             )
+            guard revision == refreshRevision, !Task.isCancelled else { return }
             self.status = status
 
             let countryCode: String?
@@ -495,6 +512,7 @@ final class CommerceStore {
             } else {
                 countryCode = await storefrontProvider.currentCountryCode()
             }
+            guard revision == refreshRevision, !Task.isCancelled else { return }
             guard let countryCode,
                   countryCode.range(
                     of: "^[A-Z]{3}$",
@@ -507,16 +525,20 @@ final class CommerceStore {
             }
 
             storefrontCountryCode = countryCode
-            purchaseRoute = try await service.resolvePurchaseRoute(
+            let route = try await service.resolvePurchaseRoute(
                 request: .iOS(
                     serviceMarketCode: serviceMarketCode,
                     appleStorefrontCountryCode: countryCode
                 )
             )
+            guard revision == refreshRevision, !Task.isCancelled else { return }
+            purchaseRoute = route
             isLoading = false
+            await applePurchase?.refreshQuote()
         } catch is CancellationError {
-            isLoading = false
+            if revision == refreshRevision { isLoading = false }
         } catch {
+            guard revision == refreshRevision else { return }
             purchaseRoute = nil
             isLoading = false
             errorMessage = "Plan availability could not be checked. Purchases remain unavailable."

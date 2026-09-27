@@ -4,10 +4,22 @@ Role: StoreKit 2 client, local Xcode testing, Apple sandbox and server-verificat
 Authority scope: Rillora Family StoreKit product identifiers, purchase/restore lifecycle, transaction evidence, App Store server boundary and phased verification  
 Superseded by: newer Apple platform rules, verified App Store Connect state, a later Owner decision, or stricter payment/security evidence  
 Do not use for: proof of App Store approval, accepted Paid Apps Agreement, banking/tax completion, live IAP products, production entitlement or a real charge  
-Status: COMPLETE LOCAL XCODE SK0; APP STORE CONNECT SANDBOX METADATA／PRICES／EIGHT STOREFRONTS／TWO PURPOSE-LIMITED TESTERS CREATED; LIVE USA SANDBOX CATALOG LOAD VERIFIED ON CLEAN IOS 26.4／26.5 SIMULATORS; DEBUG-ONLY SERVER-GATED PURCHASE HARNESS READY; OFFICIAL APPLE JWS／SERVER API SNAPSHOT／DURABLE NO-ENTITLEMENT RECONCILIATION IMPLEMENTED LOCALLY; ONE ACTIVE CHROME IAP KEY `.P8` SECURED LOCALLY, OFFICIAL CLIENT CONSTRUCTION AND AUTHENTICATED SERVER API PROBE VERIFIED; SIMULATOR SANDBOX ACCOUNT PERSISTENCE BLOCKED BY APPLE `AMSERRORDOMAIN 100 / PASSWORD REUSE NOT AVAILABLE`; STAGING DEPLOYMENT／PURCHASE COMPLETION／REVIEW REMAIN OPEN  
-Last updated: 2026-09-26 (durable production intake locally verified; historical provider evidence retained)
+Status: ORDINARY PRODUCTION PURCHASE/RESTORE LOCALLY VERIFIED; REAL REVIEW VALIDATION, PROVIDER LIFECYCLE AND CLOUD ROLLOUT OPEN
+Last updated: 2026-09-27 (ordinary native flow locally verified; historical provider evidence retained)
 
-## Current September26 launch engineering
+## September27 ordinary native flow — current
+
+The app now implements a separate production purchase coordinator, exact StoreKit/
+server price comparison, independently accepted recurring terms, prepared-order
+handoff, committed-acknowledgement finish and historical restore/unfinished replay.
+Account-switch and incomplete-history cases are guarded.300API/170native tests pass,
+with1existing native skip; a separate non-purchasing Preview verifies the reused
+form in normal and Accessibility3 text. No provider price, cloud rollout, real
+purchase or signed distribution is implied. The final release still needs a safe
+enrolled-account Sandbox path for TestFlight/App Review, which is currently rejected
+by the production coordinator. [Current detailed contract](production-apple-20260926.md).
+
+## Previous September26 launch engineering
 
 The production signed-status adapter, versioned price/receipt ledger, authenticated
 transaction intake, durable notification queue, leased bounded retry and guarded

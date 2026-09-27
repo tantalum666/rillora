@@ -19,6 +19,7 @@ struct AppDependencies {
     let storeKitTestEnvironment: RilloraStoreKitTestEnvironment
     let storeKitTestAppAccountToken: UUID?
     let serviceMarketCode: String
+    var storeKitProductionEnabled: Bool = false
 
     @MainActor
     static func current() -> AppDependencies {
@@ -54,9 +55,14 @@ struct AppDependencies {
                     UnavailableNativeAuthenticationService(accountsNotOpen: !configuration.customerAccessEnabled)
                 }
             let storeKitTestEnvironment = Self.storeKitTestEnvironment
+            let storeKitProductionEnabled = configuration.customerAccessEnabled
+                && configuration.baseURL.absoluteString == "https://app.rillora.xyz/api/v1"
+                && configuration.developmentPlannerID == nil && !storeKitTestEnvironment.isEnabled
             let storeKitClient: any StoreKitPurchasing =
                 if let subscriptionGroupID = storeKitTestEnvironment.subscriptionGroupID {
                     AppleStoreKitClient(expectedSubscriptionGroupID: subscriptionGroupID)
+                } else if storeKitProductionEnabled {
+                    AppleStoreKitClient(expectedSubscriptionGroupID: RilloraStoreKitCatalog.appStoreFamilySubscriptionGroupID)
                 } else {
                     UnavailableStoreKitClient()
                 }
@@ -79,7 +85,8 @@ struct AppDependencies {
                 storeKitTestEnvironment: storeKitTestEnvironment,
                 storeKitTestAppAccountToken: configuration.developmentPlannerID
                     .flatMap(UUID.init(uuidString:)),
-                serviceMarketCode: configuration.serviceMarketCode
+                serviceMarketCode: configuration.serviceMarketCode,
+                storeKitProductionEnabled: storeKitProductionEnabled
             )
         } catch {
             let message = error.localizedDescription

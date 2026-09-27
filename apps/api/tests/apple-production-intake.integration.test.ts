@@ -4,7 +4,7 @@ import { beforeAll, beforeEach, afterAll, describe, expect, it, vi } from 'vites
 import { Environment, InAppOwnershipType, Status, Type, type JWSTransactionDecodedPayload,
   type JWSRenewalInfoDecodedPayload, type ResponseBodyV2DecodedPayload } from '@apple/app-store-server-library';
 import { runMigrations } from '../src/migrate.js';
-import { type DatabasePool, withCommercePlannerDatabase } from '../src/db.js';
+import { type DatabasePool, withCommercePlannerDatabase, withPlannerDatabase } from '../src/db.js';
 import { AppleProductionVerification, rilloraAppleIdentity as identity } from '../src/apple-production-verification.js';
 import { AppleProductionSnapshotAdapter } from '../src/apple-production-server-api.js';
 import { AppleProductionIntake } from '../src/apple-production-intake.js';
@@ -14,6 +14,8 @@ import { createApp } from '../src/app.js';
 import { loadConfig, type AppConfig } from '../src/config.js';
 import request from './http-fixture.js';
 import { currentLegalContract } from '../src/legal-contract.js';
+import { ApplePurchasePreflight } from '../src/apple-purchase-preflight.js';
+import { applePurchaseTerms } from '../src/apple-purchase-consent.js';
 
 // Fixed disposable local database; no Owner/provider data or configurable cloud target.
 const databaseUrl = 'postgresql://127.0.0.1:5432/continuity_apple_delivery_test';
@@ -88,6 +90,24 @@ async function state() {
     from app.commerce_subscriptions s limit 1`)).rows[0];
 }
 
+async function preparePurchase() {
+  await pool.query("update app.commerce_operating_planes set status='active' where code='global'");
+  await pool.query("update app.commerce_operators set status='active' where operating_plane_code='global'");
+  await pool.query("update app.commerce_market_policies set status='active',sales_enabled=true where service_market_code='GLOBAL_US'");
+  await pool.query("update app.commerce_storefront_policies set status='active',planned_route='apple_storekit' where client_surface='ios' and apple_storefront_country_code='USA'");
+  await pool.query("update app.commerce_purchase_route_policies set enabled=true,status='active',provider_code='storekit',purchase_route='apple_storekit' where policy_code='global_us_ios_stripe_v1'");
+  await pool.query(`insert into app.commerce_storefront_products(price_id,provider_code,provider_environment,external_product_reference,
+    provider_account_reference,external_parent_product_reference,status)
+    select id,'storekit','production','com.rillora.family.annual','com.rillora.ios','22325627','active'
+    from app.commerce_prices where price_code='family_apple_usd_annual_delivery_fixture'
+    on conflict(provider_code,provider_environment,external_product_reference) do update set price_id=excluded.price_id,status='active'`);
+  const service=new ApplePurchasePreflight(pool);
+  const quote=(await service.quote(owner.plannerId,{serviceMarketCode:'GLOBAL_US',storefrontCountryCode:'USA'})).quote;
+  const intent=await service.prepare({...owner,nonce:randomUUID(),quote,consent:{...applePurchaseTerms,
+    acceptedSubscriptionTerms:true,acceptedAnnualRenewal:true,acknowledgedCancellation:true}});
+  return {intent,service};
+}
+
 describe('production Apple durable intake (decoded Apple fixtures + real isolated PostgreSQL)', () => {
   beforeAll(async () => {
     const admin = new pg.Client({ connectionString: 'postgresql://127.0.0.1:5432/postgres' });
@@ -97,6 +117,9 @@ describe('production Apple durable intake (decoded Apple fixtures + real isolate
     await runMigrations(databaseUrl); pool = new pg.Pool({ connectionString: databaseUrl, max: 5 });
     await pool.query('truncate app.commerce_provider_event_inbox,app.planners restart identity cascade');
     await pool.query('delete from app.commerce_apple_price_bindings');
+    await pool.query(`delete from app.commerce_storefront_products where provider_code='storekit'
+      and provider_environment='production' and price_id in (
+        select id from app.commerce_prices where price_code='family_apple_usd_annual_delivery_fixture')`);
     await pool.query("delete from app.commerce_prices where price_code='family_apple_usd_annual_delivery_fixture'");
     await pool.query(`insert into app.commerce_prices(price_code,plan_version_id,operator_code,service_market_code,
       amount_minor,minor_unit_exponent,currency_code,billing_interval,tax_behavior,status,purchase_channel)
@@ -261,12 +284,55 @@ describe('production Apple durable intake (decoded Apple fixtures + real isolate
     expect((await pool.query('select paid_through from app.commerce_apple_transaction_receipts')).rows[0].paid_through.toISOString()).toBe(new Date(initial).toISOString());
   });
 
+  it('reconciles a prepared purchase and retains its exact consent with paid financial records on erasure',async()=>{
+    const {intent,service}=await preparePurchase();
+    await service.transition({plannerId:owner.plannerId,orderReference:intent.orderReference,action:'start'});
+    const f=await harness();
+    f.tx.purchaseDate=Date.now();f.tx.signedDate=f.tx.purchaseDate;f.tx.expiresDate=f.tx.purchaseDate+365*day;
+    f.renewal.signedDate=f.tx.purchaseDate;f.transactions.set('client.signed.fixture',structuredClone(f.tx));f.publish();
+    expect(await f.intake.acceptClientTransaction(f.input)).toMatchObject({finishAuthorized:true});
+    expect((await pool.query('select status from app.commerce_orders')).rows).toEqual([{status:'paid_reconciled'}]);
+    expect(await service.current(owner.plannerId)).toEqual({purchase:null});
+    const job=await withPlannerDatabase(pool,owner.plannerId,async c=>(await c.query('select app.request_account_deletion($1) as id',[Buffer.alloc(32,7)])).rows[0].id);
+    const lease=(await pool.query('select app.claim_account_deletion($1) as job',[job])).rows[0].job;
+    expect((await pool.query('select app.finish_account_deletion($1,$2,true) as done',[job,lease.leaseToken])).rows[0].done).toBe(true);
+    const records=(await pool.query('select records from app.closed_account_payment_records where deletion_public_id=$1',[job])).rows[0].records;
+    expect(records.purchaseConsents).toEqual([expect.objectContaining({order_public_id:intent.orderReference,amount_minor:9999,
+      consent_version:applePurchaseTerms.version})]);
+    expect(JSON.stringify(records.purchaseConsents)).not.toMatch(/planner_id|identity|signedTransaction/);
+  });
+
+  it('restores an older paid receipt without inventing a second paid order',async()=>{
+    const {intent}=await preparePurchase();const f=await harness();
+    expect(await f.intake.acceptClientTransaction(f.input)).toMatchObject({finishAuthorized:true});
+    expect((await pool.query('select status from app.commerce_orders where public_id=$1',[intent.orderReference])).rows[0].status).toBe('canceled');
+    expect(await state()).toMatchObject({state:'active',receipts:1});
+  });
+
+  it('does not let an old expired notification cancel a later unfinished purchase',async()=>{
+    const f=await harness();f.item.status=Status.EXPIRED;f.tx.expiresDate=f.now-500;f.renewal.autoRenewStatus=0;
+    f.transactions.set('client.signed.fixture',structuredClone(f.tx));f.publish();
+    expect(await f.intake.acceptClientTransaction(f.input)).toMatchObject({finishAuthorized:true});
+    const {intent}=await preparePurchase();
+    await f.intake.acceptNotification(f.notice('EXPIRED'));await f.intake.retryPending();
+    expect((await pool.query('select status from app.commerce_orders where public_id=$1',[intent.orderReference])).rows[0].status).toBe('created');
+  });
+
   it('mounts isolated authenticated/CSRF-protected production routes; delivery acknowledgement means durable receipt only', async () => {
     const f = await harness();
     const base = loadConfig({ NODE_ENV: 'test', DATABASE_URL: databaseUrl, ALLOW_DEV_AUTH: 'true' });
     const isolated: AppConfig = { ...base, appleProduction: { secretArn: 'fixture-not-a-real-secret', rootCertificateDirectory: 'fixture' } };
     const app = createApp(pool, isolated, { appleProductionIntake: f.intake });
     const endpoint = '/api/v1/commerce/storekit/production/transactions';
+    // Token storage can change while a native preparation request is in flight.
+    // Reject its previous UI owner's consent before reserving anything for this session.
+    await request(app).post('/api/v1/commerce/storekit/production/prepare').set('x-dev-planner-id',owner.plannerPublicId)
+      .set('idempotency-key',randomUUID()).send({expectedAppAccountToken:randomUUID(),quote:{bindingCode:'delivery_fixture',
+        priceCode:'family_apple_usd_annual_delivery_fixture',productId:'com.rillora.family.annual',serviceMarketCode:'GLOBAL_US',
+        storefrontCountryCode:'USA',currency:'USD',amountMinor:9999,minorUnitExponent:2,priceMilliunits:99990,billingPeriod:'annual'},
+        consent:{...applePurchaseTerms,acceptedSubscriptionTerms:true,acceptedAnnualRenewal:true,acknowledgedCancellation:true}})
+      .expect(409).then(response=>expect(response.body.error.code).toBe('purchase_account_changed'));
+    expect((await pool.query('select * from app.commerce_orders')).rows).toEqual([]);
     await request(app).post(endpoint).send({ signedTransaction: f.input.signedTransaction }).expect(401);
     await request(app).post(endpoint).set('x-dev-planner-id', owner.plannerPublicId)
       .send({ signedTransaction: f.input.signedTransaction, plannerPublicId: owner.plannerPublicId }).expect(400);

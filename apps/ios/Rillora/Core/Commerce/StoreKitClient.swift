@@ -7,6 +7,9 @@ struct StoreKitProductSnapshot: Equatable, Identifiable, Sendable {
     let description: String
     let displayPrice: String
     let subscriptionGroupID: String
+    var priceMilliunits: Int? = nil
+    var currencyCode: String? = nil
+    var oneYearSubscription: Bool = false
 
     var id: String { productID }
 }
@@ -156,7 +159,7 @@ actor AppleStoreKitClient: StoreKitPurchasing {
                 guard transaction.subscriptionGroupID == expectedSubscriptionGroupID else {
                     continue
                 }
-                transactions.append(Self.evidence(transaction, signedTransaction: result.jwsRepresentation))
+                transactions.append(retain(transaction, signedTransaction: result.jwsRepresentation))
             case .unverified:
                 containsUnverifiedTransaction = true
             }
@@ -174,6 +177,12 @@ actor AppleStoreKitClient: StoreKitPurchasing {
             let statuses = try await Product.SubscriptionInfo.status(
                 for: expectedSubscriptionGroupID
             )
+            for status in statuses {
+                if case .verified(let transaction) = status.transaction,
+                   transaction.subscriptionGroupID == expectedSubscriptionGroupID {
+                    transactionsAwaitingFinish[transaction.id] = transaction
+                }
+            }
             return Self.subscriptionSnapshot(
                 statuses,
                 identifiers: identifiers,
@@ -239,28 +248,28 @@ actor AppleStoreKitClient: StoreKitPurchasing {
     ) -> AsyncStream<StoreKitTransactionUpdate> {
         AsyncStream { continuation in
             let task = Task {
+                for await result in Transaction.unfinished {
+                    guard !Task.isCancelled else { break }
+                    if let update = await retainedUpdate(result, identifiers: identifiers) { continuation.yield(update) }
+                }
                 for await result in Transaction.updates {
                     guard !Task.isCancelled else { break }
-                    let productID = result.unsafePayloadValue.productID
-                    guard identifiers.contains(productID) else { continue }
-                    switch result {
-                    case .verified(let transaction):
-                        guard transaction.subscriptionGroupID
-                                == expectedSubscriptionGroupID else {
-                            continue
-                        }
-                        let evidence = await retain(
-                            transaction,
-                            signedTransaction: result.jwsRepresentation
-                        )
-                        continuation.yield(.verified(evidence))
-                    case .unverified:
-                        continuation.yield(.unverified(productID: productID))
-                    }
+                    if let update = await retainedUpdate(result, identifiers: identifiers) { continuation.yield(update) }
                 }
                 continuation.finish()
             }
             continuation.onTermination = { _ in task.cancel() }
+        }
+    }
+
+    private func retainedUpdate(_ result: VerificationResult<Transaction>, identifiers: Set<String>) -> StoreKitTransactionUpdate? {
+        let productID = result.unsafePayloadValue.productID
+        guard identifiers.contains(productID) else { return nil }
+        switch result {
+        case .verified(let transaction):
+            guard transaction.subscriptionGroupID == expectedSubscriptionGroupID else { return nil }
+            return .verified(retain(transaction, signedTransaction: result.jwsRepresentation))
+        case .unverified: return .unverified(productID: productID)
         }
     }
 
@@ -308,12 +317,19 @@ actor AppleStoreKitClient: StoreKitPurchasing {
     }
 
     private static func snapshot(_ product: Product) -> StoreKitProductSnapshot {
-        StoreKitProductSnapshot(
+        let milliunits = product.price * 1000
+        let integer = NSDecimalNumber(decimal: milliunits).int64Value
+        let exactPrice = Decimal(integer) == milliunits && integer > 0 && integer <= 9_007_199_254_740_991 ? Int(integer) : nil
+        return StoreKitProductSnapshot(
             productID: product.id,
             displayName: product.displayName,
             description: product.description,
             displayPrice: product.displayPrice,
-            subscriptionGroupID: product.subscription?.subscriptionGroupID ?? ""
+            subscriptionGroupID: product.subscription?.subscriptionGroupID ?? "",
+            priceMilliunits: exactPrice,
+            currencyCode: product.priceFormatStyle.currencyCode,
+            oneYearSubscription: product.subscription?.subscriptionPeriod.unit == .year
+                && product.subscription?.subscriptionPeriod.value == 1
         )
     }
 

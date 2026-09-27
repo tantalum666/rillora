@@ -29,7 +29,8 @@ struct RilloraApp: App {
             storeKitClient: dependencies.storeKitClient,
             storeKitTestEnvironment: dependencies.storeKitTestEnvironment,
             storeKitTestAppAccountToken: dependencies.storeKitTestAppAccountToken,
-            serviceMarketCode: dependencies.serviceMarketCode
+            serviceMarketCode: dependencies.serviceMarketCode,
+            storeKitProductionEnabled: dependencies.storeKitProductionEnabled
         )
         _overviewStore = State(initialValue: overviewStore)
         _commerceStore = State(initialValue: commerceStore)
