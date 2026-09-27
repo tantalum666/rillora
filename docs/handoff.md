@@ -35,8 +35,10 @@ and consent-enabled controls. Its99.99fixture is not an adopted Apple price.
 Correct policy pages render in ordinary Chrome; Python403 was not treated as proof
 of a broken customer page or a reason to weaken protections.
 
-The previous engineeringcd7f203fb has[CI17](https://github.com/tantalum666/rillora/actions/runs/36242214340).
-This increment's exact source/CI publication state is in
+Engineering0a51db9e880ee6d4b324170be72c075b0b1218e0 is pushed;
+[CI18 passes](https://github.com/tantalum666/rillora/actions/runs/36327186360).
+955prepared files have25reviewed non-secret spans/0unknown, with no new exception.
+Exact source/CI evidence is in
 [work state](../output/qa/rillora-launch-goal-20260926/work-state.json).
 
 ## External facts

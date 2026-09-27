@@ -309,3 +309,11 @@ Durable-intake engineeringcd7f203fb8b1dd5441b7df8bd8a89616c6b57e5a is pushed;
 scan-location update retains the exact old PEM-delimiter validator hash; it is not
 a new secret exemption.148Markdown files/1432local targets have0missing.
 No cloud/provider/native activation follows from this source checkpoint.
+
+
+Native-purchase engineering0a51db9e880ee6d4b324170be72c075b0b1218e0 is pushed;
+[CI18 passes](https://github.com/tantalum666/rillora/actions/runs/36327186360) in
+source, API and Web/infrastructure jobs.955prepared files have25reviewed non-secret
+spans/0unknown and no new scanner exception. The separately executed native suite
+passes170with1existing local-StoreKit-configuration test skipped. No deployment or
+actual Apple purchase follows from this checkpoint.

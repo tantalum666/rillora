@@ -2746,3 +2746,5 @@ launch prerequisites and historical authentication gates are not repeated approv
 - **判断变化**：补账号切换后的异步返回校验；历史读取失败不能声称没有购买。政策链接改为真实路径并打开核对。全量验收发现测试库SKU引用遗留，改正fixture清理顺序而未扩大权限。现有生产客户端拒绝Sandbox，因此最终审核与TestFlight仍需要单独的受限验证路径。
 - **结果**：300API／34文件、类型检查和构建通过；170原生测试通过／1既有跳过。独立Preview已安装，普通／Accessibility3显示与滚动正常；预览勾选后按钮启用，并已恢复未勾选。99.99只是布局数据，没有真实同意记录或付款。Chrome旧实例缺失后按工具文档连接当前Chrome3，Resend仍在注册页。
 - **未完成**：0083–0085未云部署，没有Apple真实购买／正式价格或签名提交。下一步最终App的安全审核验证；邮件本人步骤、持续清理／恢复对账和真实双端验收继续。[本轮证据](../../output/qa/rillora-launch-goal-20260926/apple-purchase-checks.json)不替代这些发布门。
+
+- Source closeout: engineering0a51db9e8 is pushed and CI18 succeeds in all three jobs;955files/25reviewed non-secrets/0unknown. Native170pass/1existing local-StoreKit test skip remains separate evidence. No cloud/provider activation.
