@@ -71,7 +71,6 @@ struct RilloraApp: App {
                 maintenanceService: maintenanceService
             )
             .background(RilloraTheme.canvas)
-            .preferredColorScheme(.dark)
             #if DEBUG
             .modifier(RilloraUITestAccessibilityOverrides())
             .onChange(of: scenePhase, initial: true) { _, phase in

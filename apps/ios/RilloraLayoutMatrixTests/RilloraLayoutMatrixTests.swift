@@ -186,22 +186,18 @@ final class RilloraLayoutMatrixTests: XCTestCase {
         attachScreenshot("signed-out-overview")
 
         let overviewScroll = element("public-overview.scroll")
-        let firstIndex = element("public-overview.focus.what")
-        let secondIndex = element("public-overview.focus.next")
-        XCTAssertTrue(firstIndex.exists)
-        XCTAssertTrue(secondIndex.exists)
-        XCTAssertTrue(element("public-overview.focus.who").exists)
-        XCTAssertFalse(element("public-overview.index-detail.1").exists)
-        XCTAssertFalse(element("public-overview.index-detail.2").exists)
-        XCTAssertFalse(app.staticTexts["Synthetic example"].exists)
-        XCTAssertFalse(app.staticTexts["Safe example"].exists)
+        XCTAssertTrue(element("public-home.sign-in").exists)
+        XCTAssertTrue(element("public-home.appearance").exists)
+        XCTAssertTrue(element("public-home.invitation").exists)
+        let example = element("public-home.person.mum")
+        scroll(example, intoViewWithin: overviewScroll)
+        XCTAssertTrue(example.exists)
+        XCTAssertTrue(element("public-home.person.alex").exists)
+        XCTAssertTrue(app.staticTexts["INTERACTIVE EXAMPLE"].exists)
 
         let startPlan = element("public-overview.start-final")
         scroll(startPlan, intoViewWithin: overviewScroll)
         assertMinimumTarget(startPlan, label: "Create my private map")
-        XCTAssertTrue(app.staticTexts["Death"].exists)
-        XCTAssertTrue(app.staticTexts["Incapacity"].exists)
-        XCTAssertTrue(app.staticTexts["Unreachable"].exists)
         XCTAssertFalse(app.staticTexts["Rillora never treats silence or payment status as proof—and never stores a password."].exists)
         XCTAssertFalse(element("account-entry.view").exists)
 
@@ -296,17 +292,18 @@ final class RilloraLayoutMatrixTests: XCTestCase {
     func testPublicExplorerAndCategoriesStayOutsideAuthentication() {
         launchSignedOutApp()
         let overview = element("public-overview.scroll")
-        let who = element("public-overview.focus.who")
-        scroll(who, intoViewWithin: overview)
-        who.tap()
-        XCTAssertTrue(app.staticTexts["Choose who can help."].waitForExistence(timeout: 5))
-        attachScreenshot("public-motion-who")
-        element("public-overview.focus.next").tap()
-        XCTAssertTrue(app.staticTexts["Your wishes: keep, transfer or close."].waitForExistence(timeout: 5))
-        attachScreenshot("public-motion-next")
-        element("public-overview.focus.what").tap()
-        XCTAssertTrue(app.staticTexts["Accounts · Documents · Devices"].waitForExistence(timeout: 5))
-        attachScreenshot("public-motion-what")
+        let alex = element("public-home.person.alex")
+        scroll(alex, intoViewWithin: overview)
+        alex.tap()
+        XCTAssertTrue(element("public-home.example.crypto").waitForExistence(timeout: 5))
+        XCTAssertFalse(element("public-home.example.insurance").exists)
+        element("public-home.example.crypto").tap()
+        XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH %@", "Example: the account is held")).firstMatch.exists)
+        element("public-home.person.mum").tap()
+        XCTAssertTrue(element("public-home.example.insurance").exists)
+        XCTAssertFalse(element("public-home.example.crypto").exists)
+        XCTAssertFalse(app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH %@", "Example: the account is held")).firstMatch.exists)
+        attachScreenshot("public-home-permitted-examples")
 
         let explore = element("public-overview.explore")
         scroll(explore, intoViewWithin: overview)
@@ -333,8 +330,10 @@ final class RilloraLayoutMatrixTests: XCTestCase {
         XCTAssertFalse(app.staticTexts["Welcome back"].exists)
         XCTAssertTrue(element("public-overview.explorer").exists)
         XCTAssertFalse(element("overview.scroll").exists)
-        element("public-overview.focus.who").tap()
-        XCTAssertTrue(app.staticTexts["Choose who can help."].waitForExistence(timeout: 5))
+        let alex = element("public-home.person.alex")
+        scroll(alex, intoViewWithin: element("public-overview.scroll"))
+        alex.tap()
+        XCTAssertTrue(element("public-home.example.crypto").waitForExistence(timeout: 5))
         attachScreenshot("expired-session-public-overview")
         tab("Matters").tap()
         XCTAssertTrue(element("public-matters.category.documents").waitForExistence(timeout: 5))
@@ -343,7 +342,7 @@ final class RilloraLayoutMatrixTests: XCTestCase {
         tab("Profile").tap()
         let account = element("public-profile.sign-in")
         XCTAssertTrue(account.waitForExistence(timeout: 5))
-        XCTAssertTrue(account.label.contains("Sign in again"))
+        XCTAssertTrue(account.label.contains("Sign in / Sign up"))
         attachScreenshot("expired-session-account-context")
     }
 
@@ -353,11 +352,11 @@ final class RilloraLayoutMatrixTests: XCTestCase {
             "RILLORA_UI_TEST_LARGE_TEXT": "1",
         ])
         let overview = element("public-overview.scroll")
-        let who = element("public-overview.focus.who")
+        let who = element("public-home.person.alex")
         scroll(who, intoViewWithin: overview)
-        assertMinimumTarget(who, label: "Who can help")
+        assertMinimumTarget(who, label: "Example recipient")
         who.tap()
-        XCTAssertTrue(app.staticTexts["Choose who can help."].waitForExistence(timeout: 5))
+        XCTAssertTrue(element("public-home.example.crypto").waitForExistence(timeout: 5))
         attachScreenshot("public-ax5-reduced-motion")
         tab("Matters").tap()
         let matters = element("public-matters.scroll")
@@ -395,6 +394,29 @@ final class RilloraLayoutMatrixTests: XCTestCase {
             XCTAssertFalse(notice.exists)
             XCTAssertFalse(element("account-access.scroll").exists)
         }
+    }
+
+    func testPublicHomeAppearanceAndInvitationReturn() {
+        launchSignedOutApp()
+        let appearance = element("public-home.appearance")
+        appearance.tap()
+        element("public-home.appearance.dark").tap()
+        XCTAssertEqual(appearance.value as? String, "Dark")
+        launchSignedOutApp()
+        XCTAssertEqual(element("public-home.appearance").value as? String, "Dark")
+        element("public-home.appearance").tap()
+        element("public-home.appearance.light").tap()
+        XCTAssertEqual(element("public-home.appearance").value as? String, "Light")
+        attachScreenshot("native-home-light")
+        element("public-home.appearance").tap()
+        element("public-home.appearance.system").tap()
+        XCTAssertEqual(element("public-home.appearance").value as? String, "System")
+        element("public-home.invitation").tap()
+        XCTAssertTrue(element("invitation.view").waitForExistence(timeout: 5))
+        app.buttons["Close"].firstMatch.tap()
+        XCTAssertTrue(element("public-home.sign-in").waitForExistence(timeout: 5))
+        XCTAssertFalse(element("public-profile.list").exists)
+        attachScreenshot("native-home-invitation-return")
     }
 
     func testSignedOutCommercialDetailsStayDeferred() {
@@ -1109,7 +1131,8 @@ final class RilloraLayoutMatrixTests: XCTestCase {
             if target.exists && target.isHittable && targetCenterClearsSystemChrome(target) {
                 return
             }
-            let safeTop = app.navigationBars.firstMatch.frame.maxY + 8
+            let navigationBar = app.navigationBars.firstMatch
+            let safeTop = navigationBar.exists ? navigationBar.frame.maxY + 8 : app.frame.minY
             let shouldScrollDown = target.exists && !target.frame.isEmpty && target.frame.maxY < safeTop
             let start = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: shouldScrollDown ? 0.42 : 0.72))
             let end = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: shouldScrollDown ? 0.70 : 0.48))

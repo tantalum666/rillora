@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct OverviewView: View {
+    @Environment(\.colorScheme) private var colorScheme
     let store: OverviewStore
     let onReviewMatters: () -> Void
     let onOpenMatter: (Matter) -> Void
@@ -9,6 +10,9 @@ struct OverviewView: View {
     let onOpenFirstUseGuide: () -> Void
     let onPauseFirstUse: (Plan) -> Void
     let onStartPrivatePlan: () -> Void
+    var onSignIn: () -> Void = {}
+    var onOpenInvitation: () -> Void = {}
+    var isAuthenticating = false
     var sharingService: (any SharingServing)? = nil
     var sharingRevision = 0
     var onInviteSomeone: () -> Void = {}
@@ -23,7 +27,10 @@ struct OverviewView: View {
             case .signedOut:
                 SignedOutOverviewView(
                     onStartPrivatePlan: onStartPrivatePlan,
-                    onExploreMatters: onReviewMatters
+                    onExploreMatters: onReviewMatters,
+                    onSignIn: onSignIn,
+                    onOpenInvitation: onOpenInvitation,
+                    isAuthenticating: isAuthenticating
                 )
             case .failed(let message):
                 OverviewFailureView(
@@ -54,13 +61,16 @@ struct OverviewView: View {
         .navigationTitle(isSignedOut ? "" : "Rillora")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .principal) {
-                RilloraBrand()
+            if !isSignedOut {
+                ToolbarItem(placement: .principal) {
+                    RilloraBrand()
+                }
             }
         }
+        .toolbar(isSignedOut ? .hidden : .visible, for: .navigationBar)
         .toolbarBackground(RilloraTheme.graphite, for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
-        .toolbarColorScheme(.dark, for: .navigationBar)
+        .toolbarColorScheme(isSignedOut ? colorScheme : .dark, for: .navigationBar)
     }
 
     private var isSignedOut: Bool {

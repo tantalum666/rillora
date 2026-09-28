@@ -2764,3 +2764,17 @@ unreachable release remains a different closed workflow. See [sharing contract](
   the existing basic export/backup/exit baseline; no paid gate, changed entitlement
   or new paid archive/report promise is adopted. Offline copying is not an extra
   live contact relationship. [Focused contract](website-appearance-controls-20260929.md).
+
+
+## 2026-09-29 — Owner selects website visual for native public Home
+
+- After clarifying why the Simulator still showed the old homepage, Owner explicitly
+  selects adopting the new website visual in the native App homepage. This replaces
+  the old keep-native-public-composition rule for the signed-out Overview only.
+- Implement with native SwiftUI, the selected paper/ink-green hero assets, full03
+  mark, concise real actions and labeled local sharing examples. Preserve the
+  authenticated workspace, existing tabs, guides/privacy rules and all data.
+- A homepage appearance preference follows System by default; explicit Light/Dark
+  is remembered locally and System removes it. Existing private screens remain
+  Graphite. This is neither a WebView shell nor an App Store/production release.
+  [Native Home contract](native-home-20260929.md).

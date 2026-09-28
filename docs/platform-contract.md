@@ -5,7 +5,17 @@ Authority scope: Web/iOS responsibilities, shared state and first validation rel
 Superseded by: later explicit platform decision  
 Do not use for: final framework choice or visual tokens  
 Status: CORE PARITY CONTRACT ACTIVE; CURRENT RUNTIME AND RELEASE GATES IN HANDOFF
-Last updated: 2026-09-28 (signed-in guide placement; earlier evidence remains dated)
+Last updated: 2026-09-29 (native public Home visual adoption; release gates unchanged)
+
+## September29 native public Home
+
+Owner explicitly extends the selected website visual to the native signed-out
+homepage. Shared art, colors, concise copy and permitted-only examples now use
+SwiftUI, while native tabs, hosted authentication and received-invitation sheets
+retain their real routes. This supersedes the prior public-native visual retention
+rule below. It does not redesign the signed-in workspace, change data permissions,
+move guides back to the public surface, or publish a store build.
+[Scope and evidence](native-home-20260929.md).
 
 ## September28 public website and guide access
 

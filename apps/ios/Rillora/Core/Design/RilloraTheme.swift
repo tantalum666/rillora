@@ -147,7 +147,7 @@ enum RilloraNavigationAppearance {
 
         let tabAppearance = UITabBarAppearance()
         tabAppearance.configureWithOpaqueBackground()
-        tabAppearance.backgroundColor = UIColor(RilloraTheme.graphiteSurface)
+        tabAppearance.backgroundColor = adaptiveTabColor(light: .init(red: 245/255, green: 241/255, blue: 232/255, alpha: 1), dark: UIColor(RilloraTheme.graphiteSurface))
         tabAppearance.shadowColor = UIColor(RilloraTheme.divider)
         configureTabItem(tabAppearance.stackedLayoutAppearance)
         configureTabItem(tabAppearance.inlineLayoutAppearance)
@@ -156,20 +156,24 @@ enum RilloraNavigationAppearance {
         let tabBar = UITabBar.appearance()
         tabBar.standardAppearance = tabAppearance
         tabBar.scrollEdgeAppearance = tabAppearance
-        tabBar.tintColor = UIColor(RilloraTheme.tabSelection)
-        tabBar.unselectedItemTintColor = UIColor(RilloraTheme.muted)
+        tabBar.tintColor = adaptiveTabColor(light: .init(red: 35/255, green: 71/255, blue: 61/255, alpha: 1), dark: UIColor(RilloraTheme.tabSelection))
+        tabBar.unselectedItemTintColor = adaptiveTabColor(light: .darkGray, dark: UIColor(RilloraTheme.muted))
         UITableView.appearance().backgroundColor = UIColor(RilloraTheme.canvas)
         UICollectionView.appearance().backgroundColor = UIColor(RilloraTheme.canvas)
     }
 
+    private static func adaptiveTabColor(light: UIColor, dark: UIColor) -> UIColor {
+        UIColor { traits in traits.userInterfaceStyle == .dark ? dark : light }
+    }
+
     private static func configureTabItem(_ item: UITabBarItemAppearance) {
-        item.normal.iconColor = UIColor(RilloraTheme.muted)
+        item.normal.iconColor = adaptiveTabColor(light: .darkGray, dark: UIColor(RilloraTheme.muted))
         item.normal.titleTextAttributes = [
-            .foregroundColor: UIColor(RilloraTheme.muted),
+            .foregroundColor: adaptiveTabColor(light: .darkGray, dark: UIColor(RilloraTheme.muted)),
         ]
-        item.selected.iconColor = UIColor(RilloraTheme.tabSelection)
+        item.selected.iconColor = adaptiveTabColor(light: .init(red: 35/255, green: 71/255, blue: 61/255, alpha: 1), dark: UIColor(RilloraTheme.tabSelection))
         item.selected.titleTextAttributes = [
-            .foregroundColor: UIColor(RilloraTheme.tabSelection),
+            .foregroundColor: adaptiveTabColor(light: .init(red: 35/255, green: 71/255, blue: 61/255, alpha: 1), dark: UIColor(RilloraTheme.tabSelection)),
             .font: UIFont.systemFont(ofSize: 10, weight: .semibold),
         ]
     }

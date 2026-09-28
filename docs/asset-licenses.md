@@ -3,7 +3,7 @@
 Role: prototype dependency and visual asset provenance  
 Authority scope: fonts, icon libraries and selected visual evidence used by the current build  
 Status: ACTIVE  
-Last updated: 2026-09-28 (public landing components; original approved03 retained)
+Last updated: 2026-09-29 (public landing components; original approved03 retained)
 
 | Asset | Version | License | Use |
 | --- | --- | --- | --- |
@@ -163,3 +163,14 @@ ImageGen adds matching dark hero/alpha folio in `assets/concepts/rillora-landing
 exact approved03SVG stays a proportionate centered cover overlay. No new external
 UI library, third-party brand asset or paid component is added. Stripe/Privy pages
 were inspected as structural references only; their graphics/claims are not copied.
+
+
+## September29 native public homepage reuse
+
+Owner explicitly requests the new website visual in the native App homepage.
+`PublicHomeHero.imageset` contains JPEG-format copies of the existing selected
+light/dark WebP hero artwork; no new image generation or external image source.
+The approved03outlined wordmark remains the original template asset, now tinted
+with the public-home palette. Native headlines use the system serif, with normal
+Dynamic Type scaling; no new font file or dependency is distributed. Original
+ImageGen provenance, existing software/font notices and authenticated UI remain.

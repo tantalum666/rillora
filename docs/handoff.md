@@ -1,6 +1,6 @@
 # Rillora Current Handoff
 
-Status: FINAL LAUNCH GOAL ACTIVE; HOME AND APPEARANCE CONTROLS PUBLISHED AND VERIFIED
+Status: FINAL LAUNCH GOAL ACTIVE; NATIVE PUBLIC HOME INSTALLED AND VERIFIED IN SIMULATOR
 Last updated: 2026-09-29 (Asia/Hong_Kong)
 
 ## Current authority
@@ -15,7 +15,28 @@ public-site publication does not activate the production App.
 [Manifest/ranges/exclusions](../output/qa/rillora-launch-goal-20260926/full-read.json).
 After compaction use focused recovery, not another full scan or old login ceremony.
 
-## Latest completed work
+## Latest native homepage delivery
+
+Owner explicitly wants the native App homepage to adopt the new website visual.
+Signed-out Overview now uses SwiftUI paper/ink-green colors, the same selected
+hero assets/full03brand, concise actions and a local labeled Mum/Alex example.
+Theme control sits right of Sign in; System follows device appearance, Light/Dark
+persist locally, and System removes the preference. Native tabs and private
+Graphite screens remain. Real Sign in, first-matter intent and received-invitation
+sheet are wired to the existing services; dismissing a Home invitation returns Home.
+[Focused contract](native-home-20260929.md).
+
+Rillora-Matrix-17-Pro/iOS26.5 has the final ordinary Debug app installed and opened.
+Executable/asset hashes match the build; API remains the existing staging endpoint.
+Four targeted UI cases pass; AX5/reduced-motion is additionally rerun after visual
+correction of decorative avatar scaling. The initial unsigned refresh prevented
+Keychain access; normal ad-hoc signing/project entitlements resolved it without
+clearing data or weakening auth. The scroll helper now tolerates a custom header;
+initial failures are preserved, not counted as passes. No full native/API rerun,
+real login/payment, production upload or new shared relationship is claimed.
+[Build/install/UI evidence](../output/qa/rillora-launch-goal-20260926/simulator-refresh-20260929/work-state.json).
+
+## Prior completed website work
 
 Owner requests Home and System/Light/Dark, then explicitly places the control to
 the right of Sign in at the far edge on desktop and mobile. Shared chrome now
@@ -51,16 +72,16 @@ Offline copies remain static; Free1limits live outgoing relationships, not copyi
 one's own data. [Commercial contract](monetization.md).
 
 Preview Sign in remains https://app.staging.rillora.xyz/account and invitations
-retain `/invite`. Provider guidance remains signed-in and Free eligible. No staging,
-private-production, API, database or native deployment occurs in this iteration.
+retain `/invite`. Provider guidance remains signed-in and Free eligible. No staging-Web, private-production, API or database deployment occurs in this
+follow-up. The native Simulator install is the new result described above.
 The prior V3 actual publication/CI23checkpoint is preserved in the
 [historical handoff](handoff-history-20260929-before-appearance-closeout.md).
 
 Engineering4d01005efabe813ecc55f2767a1c8472f309f231 is pushed and
 [CI25passes](https://github.com/tantalum666/rillora/actions/runs/36452030584).
 1022source files/25reviewed non-secret matches/0unreviewed,156Markdown files/
-1533local links without missing targets. Only this scoped static website/legal
-publication changed; the final launch goal is not complete.
+1533local links without missing targets. This is the prior static website/legal checkpoint; native follow-up source
+checks are recorded in its separate QA. The final launch goal is not complete.
 
 ## Preserved release boundary
 
@@ -98,3 +119,5 @@ email/identity, recovery reconciliation and signing/store gates remain separate;
 do not treat this website revision as completion of the launch goal.
 
 [Release](release-readiness.md),[Apple](production-apple-20260926.md).
+
+[Prior handoff — HISTORICAL](handoff-history-20260929-before-native-home.md).
