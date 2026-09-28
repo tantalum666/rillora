@@ -42,6 +42,15 @@ and normal licence typography. Dark target1435x1096and corrected cover screensho
 are inspected through view_image. Exact final online results/source/CI are recorded
 in[QA](../output/qa/rillora-launch-goal-20260926/landing-v3/work-state.json).
 
+Final engineeringb54d7342dae31e34b6d32044c0466de1e7e3ba5b is pushed and
+[CI23passes](https://github.com/tantalum666/rillora/actions/runs/36436946592); the
+main theme/navigation implementation also passedCI22. WWW HTML matches the final
+artifact;13public route/notice reads pass. Actual Terms-to-notices navigation and
+`/product#sharing` after lazy load are verified (24px from top, focussharing).
+Known old home anchors continue to the new pages.1016source files/25reviewed
+non-secret spans/0unknown;154Markdown files/1514local links have no missing targets.
+
+
 Preview Sign in remains https://app.staging.rillora.xyz/account and received
 invitations retain their selected route. Provider-operation guidance stays signed-in
 and Free eligible. No staging/private-production/native/API/data change is made
@@ -65,7 +74,8 @@ adopted Apple price. [Apple checks](../output/qa/rillora-launch-goal-20260926/ap
 
 Staging remains API38/migration31/schema0075. Production API remains task1/schema0070
 and customer-closed;0076–0085are not cloud deployed. Existing seven-day RDS backup,
-scoped restore, monitoring retain their own evidence; legalSites8is the latest navigation-only publication. No production
+scoped restore and monitoring retain their own evidence. LegalSites8is the latest
+navigation-only publication. No production
 identity opening, actual purchase, signed upload, TestFlight or public App release.
 
 ## External state

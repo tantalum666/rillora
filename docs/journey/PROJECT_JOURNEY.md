@@ -2794,3 +2794,5 @@ launch prerequisites and historical authentication gates are not repeated approv
 - **未完成**：最后线上链接／视觉和精确源码CI收尾见[本轮QA](../../output/qa/rillora-launch-goal-20260926/landing-v3/work-state.json)。没有新增真人登录／付款验收；最终发布长任务继续回到Apple审核路径及其余生产门。
 
 - **追加发现与修复**：线上跨页`/product#sharing`曾停在页顶，原因是浏览器找锚点时延迟组件尚未插入。已把有界定位处理放进同一Suspense内容边界，加载后再滚动并回焦；本地实测目标距顶24px，旧`#plans`也进入价格页。最后仅更新官网静态资源，法律Sites8不重复发布。
+
+- **最终收尾**：主题／导航主实现CI22和定位修复b54d7342d对应CI23均实际成功；官网最终HTML与本地包一致，13项公开路由／许可字节核验及Terms→许可页真实导航通过。线上`/product#sharing`距顶约24px并正确聚焦，测试显示设置已恢复。文档／交接同步，原正式发布长任务保持未完成。
