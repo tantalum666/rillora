@@ -3,13 +3,15 @@
 Role: prototype dependency and visual asset provenance  
 Authority scope: fonts, icon libraries and selected visual evidence used by the current build  
 Status: ACTIVE  
-Last updated: 2026-09-20 (approved03; official font notices bundled)
+Last updated: 2026-09-28 (public landing components; original approved03 retained)
 
 | Asset | Version | License | Use |
 | --- | --- | --- | --- |
 | Inter via `@fontsource/inter` | 5.3.0 | SIL Open Font License 1.1 | Web UI/body; native production body uses system type |
 | Source Serif 4 via `@fontsource/source-serif-4` | 5.3.0 package; inspected WOFF4.004 | SIL Open Font License 1.1 | Web display; selected outlined Logo in Web/iOS |
 | Phosphor Icons for React | 2.1.10 | MIT | Web interface icons |
+| Motion | 13.4.4, exact package lock | MIT | Public landing reveal, recipient transitions, path drawing and folio response; no paid Motion+ APIs |
+| Radix React Accordion | 1.2.20, exact package lock | MIT | Accessible public FAQ; bundled dependency notices preserved |
 | `@hpke/core` | 1.9.0 | MIT | Web RFC 9180 HPKE key wrapping and recovery verification |
 | Radix Icons | 1.3.2 | MIT | iOS prototype interface icons |
 | Product Design mobile runtime device assets | bundled template | template-owned runtime asset set | iPhone/Pixel preview chrome; unmodified |
@@ -19,6 +21,16 @@ Last updated: 2026-09-20 (approved03; official font notices bundled)
 | X white logo PNG | official `x-logo.zip`, retrieved 2026-08-20 from `about.x.com/en/who-we-are/brand-toolkit`; SHA-256 `432bdd47255b48366843ec21d209e774f93b807e1fd0894fc983aad0dc7bd03b` | X Brand and Trademark Guidelines; original mark must remain unmodified and must not imply affiliation | iOS and Web `Official checks` X guide only; original white PNG preserved on Rillora's neutral action-icon plate |
 
 Local license evidence is present in the installed packages’ `LICENSE` files. Before public distribution, preserve required license notices in the shipped product and re-audit any newly added asset.
+
+September28 public landing: the two new libraries and their19runtime dependency
+packages resolve to four distinct full license texts, appended to the shipped
+`apps/web/src/assets/design-credits.txt`. Their installed manifests/licenses were
+read directly; both selected libraries permit commercial use underMIT. Source
+Serif4's existingOFL also covers the added400weight. Three ImageGen concepts and
+two standalone assets are project-owned generation evidence in
+`assets/concepts/rillora-landing-20260928/`; production WebP derivatives preserve
+the referenced artwork. Existing provider-mark approvals are reused, not expanded
+by a generated mock. The old microfavicon is withdrawn from product usage.
 
 The provider catalog intentionally does **not** use approximate logos. The following August20 position is a conservative implementation checkpoint, not a ruling that unlicensed factual reference is always unlawful; current context-specific outcomes are in [Provider Mark Use](provider-mark-usage.md). Google Identity's downloaded `G` is limited to Google sign-in presentation, Microsoft's corporate logo commonly requires a license, LinkedIn's full logo requires a separate license, Bitwarden prohibits logo use without written permission, 1Password's developer mark license is limited to genuine integrations, and the combined Meta／password-manager rows do not have one truthful official mark. Those entries use neutral system／library icons until a current rule clearly permits this exact third-party directory use.
 

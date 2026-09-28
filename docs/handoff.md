@@ -1,6 +1,6 @@
 # Rillora Current Handoff
 
-Status: FINAL LAUNCH GOAL ACTIVE; NATIVE PURCHASE LOCALLY VERIFIED; REVIEW VALIDATION AND OPERATIONS REMAIN
+Status: FINAL LAUNCH GOAL ACTIVE; LANDING SECOND ITERATION AND SIGNED-IN GUIDANCE IN PROGRESS
 Last updated: 2026-09-28 (Asia/Hong_Kong)
 
 ## Current task and authority
@@ -14,6 +14,33 @@ The active goal is incomplete and continues across turns/provider waits.
 The fresh full body read completed147project-owned Markdown files/25,917lines.
 [Ranges/exclusions/completion](../output/qa/rillora-launch-goal-20260926/full-read.json).
 After compaction use focused recovery; never repeat this full read or old ceremonies.
+
+## Latest Owner-directed website work
+
+LATEST: Owner finds the first landing fragmented and too sparse, requests more
+content/motion and moves specific platform guidance behind sign-in. The current
+live landing is only the first checkpoint. Revise as one continuous product story,
+retain Preview->staging and the complete favicon, and preserve private App UI.
+Sora API is not configured; optional video must not stall work or trigger an
+unrequested paid service. A local product-animation recording is an available
+alternative and must be labeled accurately. Read the updated landing contract.
+
+Owner explicitly requests a new public landing and chooses Preview-labelled Sign
+in to the existing test app. WWW now has the generated-artwork landing, interactive
+recipient/stage/example-detail demo, keyboard FAQ and real account/guide links.
+Authenticated App UI is preserved. [Current scope](landing-page-20260928.md).
+
+The microfavicon exception is withdrawn. SVG and32px PNG use all10approved master
+paths on staging, closed production client, WWW and legal. LegalSites7succeeds;
+Auth0's favicon-only field is read back with other branding preserved. The staging
+change modifies only its existing Web deployment resource, not API/schema/data.
+
+98Web/7legal checks pass; Chrome desktop,390px,reduced-motion,keyboard and actual
+Preview account/invitation/Coinbase paths are checked. Three concept/render pairs
+were inspected through view_image. Mobile media order, small-laptop CTA visibility
+and inert example-row arrows were repaired. Exact final publication/source/CI
+receipts are in[work state](../output/qa/rillora-launch-goal-20260926/work-state.json)
+and the[fidelity ledger](../output/qa/rillora-launch-goal-20260926/landing-fidelity-ledger.json).
 
 ## Current engineering
 
@@ -46,6 +73,8 @@ Exact source/CI evidence is in
 AWS login was verified onSeptember26 at17:42+08 as account133857166372 /rillora/rillora-operator.
 The stale Chrome-tab debugger issue did not prove extension disconnection; a fresh
 tab reused the completed session. One-time handoff credentials are cleaned up.
+September28 UI publication subsequently refreshed the CLI through the official
+same-device flow and verified the same principal, reusing the current browser login.
 Do not repeat login without fresh expiry evidence.
 
 SES's September26 01:28+08 reply explicitly declines the submitted request. Support
@@ -57,7 +86,7 @@ are not refusal-causality proof. That dated checkpoint preceded the new submissi
 On September28 Owner questions service sprawl, then explicitly authorizes submission.
 SES reconsideration is submitted in the original case179022088800001: console
 readback shows Reopened and operator correspondence at12:40:19+08. Browser MFA
-is completed and correct-account access verified; CLI refresh is still separate.
+is completed and correct-account access verified; the later CLI renewal is above.
 Frankfurt remains sandbox200/day,1/sec. This is not approval or real delivery.
 [Receipt](../output/qa/rillora-launch-goal-20260926/ses-reconsideration-submitted-20260928.json).
 Prioritize the existing SES path
@@ -75,17 +104,17 @@ Apple exact price/effective fee and real Sandbox/TestFlight lifecycle remain ope
 Staging remains API38/migration31/schema0075; production API remains task1/schema0070
 and customer-closed. No0076–0085cloud migration/deploy occurred. Independent closed
 Web, public website, legalSites6, seven-day production RDS, scoped real restore,
-monitoring and native connection preparation retain their original evidence.
+monitoring and native connection preparation retain their original evidence;
+the latest static assets and legalSites7supersede their older UI/icon versions.
 New Debug/test/Preview artifacts are local only. No customer login, real message/
 charge, signed distribution, TestFlight upload or public release occurred.
 
 ## Single next step
 
-Implement the safe App Store review/TestFlight transaction path for the final app.
-Review uses Sandbox, which the current production coordinator deliberately refuses.
-Use distinct verified environments and explicitly enrolled validation accounts;
-never grant ordinary users test access or submit a staging-bound app as production.
-Then obtain actual provider lifecycle evidence.
+Finish the continuous expanded landing and move platform-operation guidance to
+signed-in Web/iOS entry points, preserving safe return context and Preview access;
+verify and publish that revision. Then resume the safe App Store review/TestFlight
+validation path for the final app with enrolled accounts and distinct environments.
 
 Exact Apple fee/price, streamlined/out-of-app binding, US external-Web/fallback
 acceptance, rollout, retention/recovery, identity/mail and signed submission remain.

@@ -2683,3 +2683,35 @@ unreachable release remains a different closed workflow. See [sharing contract](
   code-based migration boundary and current usage-based comparison.
   [Assessment](auth0-cognito-migration-20260928.md),
   [mail result](production-identity-mail-20260924.md).
+
+## 2026-09-28 — Public landing redesign and complete browser mark
+
+- Owner identifies the simplified favicon and explicitly requests a carefully
+  designed public landing with top-right account access and commercial-use motion
+  components. This authorizes the public redesign only; keep private App UI intact.
+- Owner selects the staging app as the account destination with a visible Preview
+  label. Use the real account/invitation routes and sample-data notice; do not
+  silently open production identity or commerce. Store routing in one config.
+- Withdraw the microfavicon exception. Use all10paths of the approved03SVG and
+  content-hashed resources on WWW, staging, production client, legal and Auth0.
+  Preserve historical concept boards; add a deterministic exporter.
+- Agent selects three coordinated ImageGen section references and standalone
+  artwork, then implements real controls using pinned MIT Motion/Radix. Correct
+  generated extra slogans, duplicate headers and unshared-title disclosure rather
+  than treating image output as product authority. Full notices are shipped.
+  [Contract](landing-page-20260928.md).
+
+## 2026-09-28 — Owner requests a continuous, richer landing and signed-in guides
+
+- The first deployed landing is judged too fragmented and sparse. Replace its
+  disconnected section treatment with a continuous product narrative, more useful
+  demonstrations/content and richer purposeful motion. Retain the approved brand
+  and Preview-labelled staging account entry.
+- Specific platform-operation guides move behind sign-in. This changes discovery
+  and access placement, not their factual content or a new paid entitlement; keep
+  contextual guidance for authenticated planners/recipients and preserve return
+  context from old guide links. Private App layout is not generally redesigned.
+- Owner suggests video as an option. Current Sora environment lacks API credentials;
+  do not require new vendor/payment setup to complete the task. Native interactive
+  animation or an honestly labeled recording may satisfy the motion direction.
+  [Revision scope](landing-page-20260928.md).

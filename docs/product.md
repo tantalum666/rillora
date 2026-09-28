@@ -5,9 +5,13 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-09-26 (Asia/Hong_Kong)
+Last updated: 2026-09-28 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-09-28 官网 landing 与完整图标 — Owner明确范围
+
+Owner明确要求重做公开介绍页为有品质的landing page，右上角加入账号入口并运用可商用组件与动效；随后选择入口连接现有测试版、明确标注Preview。这是公开官网的改版授权，应用内部UI沿用原样。正式身份／付款仍按发布合同验收，不能因首页改版就开放或宣称正式服务完成。Owner同时指出favicon与正式Logo不同，现取消micro小尺寸例外，所有产品位置均使用完整03母版。视觉、路由和验收见[官网改造合同](landing-page-20260928.md)。
 
 ## 2026-09-26 最终上线长任务 — Owner明确目标
 

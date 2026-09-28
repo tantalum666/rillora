@@ -2,9 +2,21 @@
 
 Role: public-entry implementation and publication boundary
 
-Status: WWW AND ROOT BROWSER REDIRECT VERIFIED; PUBLIC INFORMATION ONLY
+Status: DESIGNED PUBLIC LANDING WITH OWNER-SELECTED PREVIEW ACCOUNT GATEWAY
 
-Last updated: 2026-09-25 (Asia/Hong_Kong)
+Last updated: 2026-09-28 (Asia/Hong_Kong)
+
+## September28 explicit public redesign
+
+Owner requests a complete landing-page redesign and explicitly chooses the existing
+staging app for its top-right Sign in entry, marked Preview. The new paper/forest
+surface uses ImageGen artwork, Motion and Radix primitives, a permitted-only
+sharing demonstration, working example details, official-guide links and FAQs.
+All account/invitation links use `config/public-entry.json`; there is no account
+form or API on WWW. The public router and CSP remain unchanged. This supersedes
+the older no-account-entry/preview-banner composition below while preserving
+production activation gates. Existing private App and guide content are retained.
+[Current design and checks](landing-page-20260928.md).
 
 ## Purpose
 

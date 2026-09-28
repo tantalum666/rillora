@@ -4,6 +4,18 @@ Role: current launch scope, remaining work and release evidence contract
 Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; CUSTOMER ACCOUNTS AND SALES CLOSED
 Last updated: 2026-09-28 (Asia/Hong_Kong)
 
+## September28 public landing and Preview entry
+
+Owner explicitly authorizes the public-site redesign and a Preview-labelled link
+to the existing staging account. The generated-artwork landing, working example
+sharing/details, FAQ and guide entry are implemented and published on WWW. The
+full03favicon replaces the old micro variant across Web/legal/Auth0.98Web/7legal
+checks and Chrome interaction/responsive/reduced-motion evidence are recorded in
+[the landing contract](landing-page-20260928.md). This closes the requested public
+presentation/entry correction only; private App UI and production activation gates
+remain unchanged. No pending API migration or billing activation is bundled with
+these static releases.
+
 ## September28 mail-provider priority
 
 Owner asks to reduce service sprawl and reconsider AWS. Retain AWS plus Auth0;
