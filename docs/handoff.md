@@ -40,12 +40,16 @@ return/hydration tests pass; no new real Auth0 login/registration ceremony was r
 
 WWW and both Web clients publish static-only changes. Staging change set modifies
 exactly its existing Web bucket-deployment resource; API/schema/data are preserved.
-Closed production output still says customerAccessclosed. Final byte hashes,
-source commit/CI, micro-layout rollout and QA readbacks are in
+Closed production output still says customerAccessclosed. Final WWW HTML matches
+the exact local artifact;13final resource/route checks pass. Final byte hashes,
+source commit/CI and QA readbacks are in
 [work state](../output/qa/rillora-launch-goal-20260926/work-state.json) and
 [fidelity ledger](../output/qa/rillora-launch-goal-20260926/landing-v2/fidelity.json).
-Do not infer a GitHub CI pass from local checks: CLI Actions read currently returns
-403; inspect the actual browser result or explicitly leave that check unconfirmed.
+Implementationdbf07700b823469fd9716701e3535f213af3e750 is pushed;
+[CI20passes](https://github.com/tantalum666/rillora/actions/runs/36396298290), verified
+in authenticated Chrome against the exact commit. CLI Actions read returned403;
+no permission expansion was needed.1002prepared files/25reviewed non-secret spans/
+0unknown;151Markdown files/1491local links have no missing targets.
 
 ## Preserved engineering and deployment boundary
 
