@@ -4,7 +4,7 @@ Role: public legal-page drafting and release gate
 Authority scope: Web Privacy Policy, Terms of Service, required factual inputs and publication status  
 Superseded by: applicable law, platform requirements, approved operator details and reviewed final legal text  
 Do not use for: personal legal advice, proof of global compliance, or permission to publish  
-Status: OWNER-APPROVED FORMAL ENGLISH RELEASE TEXT PUBLIC AT `LEGAL.RILLORA.XYZ`; CURRENT PUBLICATION IN HANDOFF; PRIOR ACCESS／DOMAIN／TLS／SEVEN-ROUTE EVIDENCE REMAINS DATED; GOOGLE OAUTH BRANDING SAVED UNDER `EXTERNAL / TESTING`; PRODUCT PRODUCTION／MARKET／BILLING GATES REMAIN OPEN WORK  
+Status: OWNER-APPROVED FORMAL ENGLISH RELEASE TEXT PUBLIC AT `LEGAL.RILLORA.XYZ`; CURRENT PUBLICATION IN HANDOFF; PRIOR ACCESS／DOMAIN／TLS／SEVEN-ROUTE EVIDENCE REMAINS DATED; GOOGLE OAUTH BRANDING SAVED UNDER `EXTERNAL / TESTING`; PRODUCT PRODUCTION／MARKET／BILLING GATES REMAIN OPEN WORK
 Last updated: 2026-09-28 (Sites8 legal-information navigation; accepted text unchanged)
 
 ## Current publication — Sites version8

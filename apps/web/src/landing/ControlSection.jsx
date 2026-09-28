@@ -30,6 +30,7 @@ export function ControlSection() {
     <section
       className="lp-section lp-container"
       id="your-control"
+      tabIndex={-1}
       aria-label="Sharing, export and encryption controls"
     >
       <div className="lp-section-body">

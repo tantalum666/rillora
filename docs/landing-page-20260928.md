@@ -35,7 +35,9 @@ eligible. No production identity, billing, API or native layout change is implie
 
 Product/Security/Pricing/Support appear in the shared top navigation. Mobile has
 an accessible disclosure with Escape close/focus return. Standard links preserve
-browser Back and direct-entry behavior; each subpage has an H1 and current-page
+browser Back and direct-entry behavior. A bounded fragment handler mounts after
+lazy page content, so `/product#sharing` scrolls and focuses correctly; known old
+home sections lead to their new pages. Each subpage has an H1 and current-page
 navigation. Old `/guides` bookmarks keep their bounded authentication continuation.
 Unknown/private/write routes remain refused by the public edge router.
 

@@ -25,6 +25,7 @@ export function ProductPage() {
       <MatterDemo />
       <section
         id="sharing"
+        tabIndex={-1}
         className="lp-section lp-container"
         aria-labelledby="lp-inviting-title"
       >

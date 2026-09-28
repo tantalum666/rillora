@@ -4,6 +4,7 @@ import { LandingPage } from "./landing/LandingPage.jsx";
 import { LandingHeader, LandingFooter } from "./landing/LandingChrome.jsx";
 import { publicEntry } from "./publicEntry.js";
 import { requestedGuideKey } from "./guideAccess.js";
+import { PublicFragmentNavigation } from "./landing/PublicFragmentNavigation.jsx";
 import "./landing/landing.css";
 
 const ProductPage = lazy(() =>
@@ -83,6 +84,7 @@ export function PublicWebsite() {
               </a>
             </main>
           )}
+          <PublicFragmentNavigation />
         </Suspense>
         <LandingFooter />
       </div>

@@ -2792,3 +2792,5 @@ launch prerequisites and historical authentication gates are not repeated approv
 - **判断变化**：Logo要按实际封面的中心定位，而非图片左侧固定像素；现采用53%／45%中心和比例宽度。许可全文需要保留，但首页直接开原始txt没有必要；改为Legal索引和正常排版的136段声明，下载作为次要操作。正式条款页只增加入口，正文／同意版本不变。
 - **结果**：本地102Web／2infra／类型检查、公网和法律构建及7法律包检查通过；320／390px菜单和Escape回焦、自动主题切换保持人物选择、未共享事项即时移除均已检查。WWW已发布，LegalSites8实际succeeded；本轮不更新私有App、API、数据库或原生布局。
 - **未完成**：最后线上链接／视觉和精确源码CI收尾见[本轮QA](../../output/qa/rillora-launch-goal-20260926/landing-v3/work-state.json)。没有新增真人登录／付款验收；最终发布长任务继续回到Apple审核路径及其余生产门。
+
+- **追加发现与修复**：线上跨页`/product#sharing`曾停在页顶，原因是浏览器找锚点时延迟组件尚未插入。已把有界定位处理放进同一Suspense内容边界，加载后再滚动并回焦；本地实测目标距顶24px，旧`#plans`也进入价格页。最后仅更新官网静态资源，法律Sites8不重复发布。
