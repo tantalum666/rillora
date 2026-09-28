@@ -1,3 +1,4 @@
+import { WebsiteAppearanceDisclosure } from "./WebsiteAppearanceDisclosure.jsx";
 import { RilloraBrand } from "./RilloraBrand.jsx";
 import { useEffect } from "react";
 import { LegalDocumentPage } from "./LegalDocumentPage.jsx";
@@ -59,6 +60,8 @@ export function LegalPublicationApp() {
           <a aria-current={documentKey === "legalNotice" ? "page" : undefined} href={publicRoutes.legalNotice}>Legal</a>
         </nav>
       </header>
+
+      {["privacy", "cookies"].includes(documentKey) && <WebsiteAppearanceDisclosure compact />}
 
       <LegalDocumentPage
         documentKey={documentKey}
