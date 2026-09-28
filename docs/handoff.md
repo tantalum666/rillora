@@ -1,125 +1,93 @@
 # Rillora Current Handoff
 
-Status: FINAL LAUNCH GOAL ACTIVE; LANDING SECOND ITERATION AND SIGNED-IN GUIDANCE IN PROGRESS
+Status: FINAL LAUNCH GOAL ACTIVE; CONTINUOUS LANDING AND SIGNED-IN GUIDANCE PUBLISHED
 Last updated: 2026-09-28 (Asia/Hong_Kong)
 
-## Current task and authority
+## Current authority and task
 
-Owner requested a continuous launch-readiness goal with careful implementation and
-review. Keep original UI/Legacy Imprint03, Free1/Family5, WebUS$88.99annual-only new
-sales, Apple channel differentiation, historical receipts and FanPass isolation.
-Business facts and physical devices remain Owner-deferred, not verified.
-The active goal is incomplete and continues across turns/provider waits.
+Owner requests continuous progress to launch readiness, careful review and
+maintainable code. Preserve private App UI/Legacy Imprint03, Free1/Family5,
+WebUS$88.99annual-only new sales, Apple differentiation, prior receipts and FanPass.
+Owner-deferred business facts and physical devices remain unverified. The overall
+goal is incomplete; current public-site work does not open the production app.
 
-The fresh full body read completed147project-owned Markdown files/25,917lines.
-[Ranges/exclusions/completion](../output/qa/rillora-launch-goal-20260926/full-read.json).
-After compaction use focused recovery; never repeat this full read or old ceremonies.
+147project-owned Markdown files/25,917lines were fully read for this workflow.
+[Manifest/ranges/exclusions](../output/qa/rillora-launch-goal-20260926/full-read.json).
+After compaction use focused recovery, not another full scan or old login ceremony.
 
-## Latest Owner-directed website work
+## Latest completed Owner steering
 
-LATEST: Owner finds the first landing fragmented and too sparse, requests more
-content/motion and moves specific platform guidance behind sign-in. The current
-live landing is only the first checkpoint. Revise as one continuous product story,
-retain Preview->staging and the complete favicon, and preserve private App UI.
-Sora API is not configured; optional video must not stall work or trigger an
-unrequested paid service. A local product-animation recording is an available
-alternative and must be labeled accurately. Read the updated landing contract.
+Owner found the first landing fragmented/sparse and moved platform instructions
+after sign-in. WWW now uses one paper/forest visual system, shared Support chrome,
+four matter examples, a16-second controllable tour, permitted-only Mum/Alex sharing,
+three distinct life situations, control disclosures, explicit plan comparison and
+four FAQ. Animated folio/paths/state changes respect reduced motion. A real17-second
+browser recording is a review artifact, not Sora footage or a live customer record.
+[Design/behavior contract](landing-page-20260928.md).
 
-Owner explicitly requests a new public landing and chooses Preview-labelled Sign
-in to the existing test app. WWW now has the generated-artwork landing, interactive
-recipient/stage/example-detail demo, keyboard FAQ and real account/guide links.
-Authenticated App UI is preserved. [Current scope](landing-page-20260928.md).
+Preview / Sign in remains https://app.staging.rillora.xyz/account. WWW `/guides`
+bookmarks302through that account task, retaining only known guide IDs; public
+bundles no longer include guide bodies. Signed-in directory/contextual guidance
+and Free eligibility remain. Native guest Profile omits the guide entry. The
+full10-path favicon remains applied across the previously verified five surfaces.
 
-The microfavicon exception is withdrawn. SVG and32px PNG use all10approved master
-paths on staging, closed production client, WWW and legal. LegalSites7succeeds;
-Auth0's favicon-only field is read back with other branding preserved. The staging
-change modifies only its existing Web deployment resource, not API/schema/data.
+Current checks:102Web tests;2public-infra tests and infra typecheck; internal,
+public, legal and closed-production Web builds; native Debug build/install/launch.
+Chrome covers desktop/reference sizes,390px/320px, keyboard, recipient omission,
+life/control/plan disclosures and guide gateway. Actual native Profile AX confirms
+no guest guide link. The guide login form retains unchecked consent. Authentication
+return/hydration tests pass; no new real Auth0 login/registration ceremony was run.
 
-98Web/7legal checks pass; Chrome desktop,390px,reduced-motion,keyboard and actual
-Preview account/invitation/Coinbase paths are checked. Three concept/render pairs
-were inspected through view_image. Mobile media order, small-laptop CTA visibility
-and inert example-row arrows were repaired. Exact final publication/source/CI
-receipts are in[work state](../output/qa/rillora-launch-goal-20260926/work-state.json)
-and the[fidelity ledger](../output/qa/rillora-launch-goal-20260926/landing-fidelity-ledger.json).
+WWW and both Web clients publish static-only changes. Staging change set modifies
+exactly its existing Web bucket-deployment resource; API/schema/data are preserved.
+Closed production output still says customerAccessclosed. Final byte hashes,
+source commit/CI, micro-layout rollout and QA readbacks are in
+[work state](../output/qa/rillora-launch-goal-20260926/work-state.json) and
+[fidelity ledger](../output/qa/rillora-launch-goal-20260926/landing-v2/fidelity.json).
+Do not infer a GitHub CI pass from local checks: CLI Actions read currently returns
+403; inspect the actual browser result or explicitly leave that check unconfirmed.
 
-## Current engineering
+## Preserved engineering and deployment boundary
 
-Ordinary Apple quote/consent/order preparation and native purchase/restore now use
-the production intake. Exact StoreKit currency/price/yearly period must match the
-reviewed quote. Both checkout channels share pending/resumable conflict checks;
-owner status and included Family features are rechecked before payment. Only an
-unused prepared quote expires; started/pending payment remains durable.
+Apple quote/consent/order preparation, native purchase/restore, pending/replay and
+historical receipt handling are implemented locally. Exact quote/StoreKit amount,
+currency/year, committed server acknowledgement and account ownership are checked.
+Unused quotes may expire; started/pending payments remain durable.0083–0085retain
+paid consent on erasure and active ownership checks without opening sales.
 
-Unfinished transactions replay after restart; historical monthly/prior-storefront
-receipts can restore. Only a committed server acknowledgement allows finish, and
-late results cannot update a different signed-in account.0083–0085 preserve paid
-consent on erasure and active ownership checks without opening sales.
+The dated engineering checkpoint0a51db9e880ee6d4b324170be72c075b0b1218e0 has
+[CI18success](https://github.com/tantalum666/rillora/actions/runs/36327186360):
+300API tests/34files, typecheck/build,170native tests pass/1existing skip. These
+were not rerun during this website iteration. The99.99preview fixture is not an
+adopted Apple price. [Apple checks](../output/qa/rillora-launch-goal-20260926/apple-purchase-checks.json).
 
-Current local checks:300API tests/34files, typecheck/build;170native tests pass with
-1existing skip. The non-purchasing Preview verifies normal/Accessibility3 layout
-and consent-enabled controls. Its99.99fixture is not an adopted Apple price.
-[Checks](../output/qa/rillora-launch-goal-20260926/apple-purchase-checks.json).
-Correct policy pages render in ordinary Chrome; Python403 was not treated as proof
-of a broken customer page or a reason to weaken protections.
+Staging remains API38/migration31/schema0075. Production API remains task1/schema0070
+and customer-closed;0076–0085are not cloud deployed. Existing seven-day RDS backup,
+scoped restore, monitoring and legalSites7retain their own evidence. No production
+identity opening, actual purchase, signed upload, TestFlight or public App release.
 
-Engineering0a51db9e880ee6d4b324170be72c075b0b1218e0 is pushed;
-[CI18 passes](https://github.com/tantalum666/rillora/actions/runs/36327186360).
-955prepared files have25reviewed non-secret spans/0unknown, with no new exception.
-Exact source/CI evidence is in
-[work state](../output/qa/rillora-launch-goal-20260926/work-state.json).
+## External state
 
-## External facts
+AWS same-device CLI login was refreshed September28 and STS confirmed
+account133857166372 /rillora/rillora-operator; this iteration reused it successfully.
+Do not repeat MFA unless fresh expiry evidence requires it. Auth0 favicon branding
+was previously read back; Free custom templates remain unsupported.
 
-AWS login was verified onSeptember26 at17:42+08 as account133857166372 /rillora/rillora-operator.
-The stale Chrome-tab debugger issue did not prove extension disconnection; a fresh
-tab reused the completed session. One-time handoff credentials are cleaned up.
-September28 UI publication subsequently refreshed the CLI through the official
-same-device flow and verified the same principal, reusing the current browser login.
-Do not repeat login without fresh expiry evidence.
-
-SES's September26 01:28+08 reply explicitly declines the submitted request. Support
-and Owner-requested Gmail agree; specific criteria are undisclosed.14configuration
-checks pass, productionAccessEnabledfalse, account health normal. Simulator alarms
-are not refusal-causality proof. That dated checkpoint preceded the new submission below.
-[Mail evidence](../output/qa/rillora-launch-goal-20260926/ses-gmail-readback.json).
-
-On September28 Owner questions service sprawl, then explicitly authorizes submission.
-SES reconsideration is submitted in the original case179022088800001: console
-readback shows Reopened and operator correspondence at12:40:19+08. Browser MFA
-is completed and correct-account access verified; the later CLI renewal is above.
-Frankfurt remains sandbox200/day,1/sec. This is not approval or real delivery.
+SES reconsideration was explicitly authorized and submitted once in original
+case179022088800001, Reopened at12:40:19+08 September28. Last observed Frankfurt
+quota remains sandbox200/day,1/sec. This is submission, not approval or delivery.
 [Receipt](../output/qa/rillora-launch-goal-20260926/ses-reconsideration-submitted-20260928.json).
-Prioritize the existing SES path
-with existing Auth0; Resend is fallback only and its signup request is withdrawn
-for now. Auth0 owns verification/reset but its built-in sender is test-only.
-Cognito would require an identity migration and still uses SES for higher-volume
-email. Do not repeat the submitted message or ask for its authorization again.
-The later migration question has a code/price assessment, not a migration decision.
-[Current recommendation/evidence](production-identity-mail-20260924.md),
-[migration/cost assessment](auth0-cognito-migration-20260928.md).
-Apple exact price/effective fee and real Sandbox/TestFlight lifecycle remain open.
-
-## Preserved deployment boundary
-
-Staging remains API38/migration31/schema0075; production API remains task1/schema0070
-and customer-closed. No0076–0085cloud migration/deploy occurred. Independent closed
-Web, public website, legalSites6, seven-day production RDS, scoped real restore,
-monitoring and native connection preparation retain their original evidence;
-the latest static assets and legalSites7supersede their older UI/icon versions.
-New Debug/test/Preview artifacts are local only. No customer login, real message/
-charge, signed distribution, TestFlight upload or public release occurred.
+Prefer existing SES/Auth0; Resend signup request is withdrawn and Cognito remains
+research only. [Mail](production-identity-mail-20260924.md),
+[migration assessment](auth0-cognito-migration-20260928.md).
 
 ## Single next step
 
-Finish the continuous expanded landing and move platform-operation guidance to
-signed-in Web/iOS entry points, preserving safe return context and Preview access;
-verify and publish that revision. Then resume the safe App Store review/TestFlight
-validation path for the final app with enrolled accounts and distinct environments.
-
-Exact Apple fee/price, streamlined/out-of-app binding, US external-Web/fallback
-acceptance, rollout, retention/recovery, identity/mail and signed submission remain.
-Continue independent work; do not wait for Resend signup or add an identity migration.
+Resume the final App's safe Apple review/TestFlight validation path with enrolled
+accounts and distinct environments. Resolve actual Apple fee/channel price and
+review transaction binding before enabling a purchase. Continue production email/
+identity, retention/recovery reconciliation and signing/store checks independently;
+do not wait for a new video service or treat the landing as the launch gate.
 
 [Release](release-readiness.md),[Apple](production-apple-20260926.md),
-[Identity/mail](production-identity-mail-20260924.md),
-[Previous handoff — HISTORICAL](handoff-history-20260926-before-launch-goal.md).
+[previous handoff — HISTORICAL](handoff-history-20260928-before-landing-v2.md).

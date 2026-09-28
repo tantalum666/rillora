@@ -1,109 +1,91 @@
-import { RilloraBrand } from "./RilloraBrand.jsx";
-import { lazy, Suspense, useEffect } from "react";
-import { LandingPage, PreviewAccountLink } from "./landing/LandingPage.jsx";
-import "./public-experience.css";
-import "./interaction-refinement.css";
-import "./public-website.css";
+import { useEffect } from "react";
+import { MotionConfig } from "motion/react";
+import { ArrowLeft, ArrowRight } from "@phosphor-icons/react";
+import { LandingPage } from "./landing/LandingPage.jsx";
+import { LandingHeader, LandingFooter } from "./landing/LandingChrome.jsx";
+import { QuestionList, landingQuestions } from "./landing/LandingFAQ.jsx";
+import { publicEntry } from "./publicEntry.js";
+import { requestedGuideKey } from "./guideAccess.js";
+import "./landing/landing.css";
 
-const legal = "https://legal.rillora.xyz";
-const PublicPlatformGuides = lazy(() =>
-  import("./PlatformGuides.jsx").then((module) => ({
-    default: module.PublicPlatformGuides,
-  })),
-);
-
-/** Public information only: no API client, account form, cookies or user storage. */
+/** Public information only: no API client, consent form or account storage. */
 export function PublicWebsite() {
-  const path = window.location.pathname.replace(/\/$/, "") || "/";
+  const path = window.location.pathname.replace(/\/+$/, "") || "/";
   const guides = path === "/guides";
   const support = path === "/support";
+  const guide = requestedGuideKey(window.location.search);
+  const guideTarget = `${publicEntry.accountURL}?next=guides${guide ? `&service=${encodeURIComponent(guide)}` : ""}`;
   useEffect(() => {
-    document.title = guides
-      ? "Account inheritance — Rillora"
-      : support
-        ? "Help & support — Rillora"
-        : "Rillora — Make the important things clear";
-  }, [guides, support]);
+    document.title = support
+      ? "Help & support — Rillora"
+      : "Rillora — Make the important things clear";
+    // The CDN redirects old bookmarks too. This covers local previews/fallbacks.
+    if (guides) window.location.replace(guideTarget);
+  }, [guides, guideTarget, support]);
   if (!guides && !support) return <LandingPage />;
   return (
-    <div className="public-shell public-website">
-      <header className="public-header">
-        <a className="public-wordmark" href="/" aria-label="Rillora home">
-          <RilloraBrand decorative />
-        </a>
-        <nav aria-label="Public navigation">
-          <a href="/guides" aria-current={guides ? "page" : undefined}>
-            Guides
+    <MotionConfig reducedMotion="user">
+      <div className="lp-page">
+        <LandingHeader />
+        <main className="lp-support lp-container">
+          <a className="lp-text-link" href="/">
+            <ArrowLeft size={20} aria-hidden="true" />
+            Back to Rillora
           </a>
-          <a href="/support" aria-current={support ? "page" : undefined}>
-            Support
-          </a>
-          <PreviewAccountLink />
-        </nav>
-      </header>
-      {guides && (
-        <Suspense
-          fallback={
-            <main className="public-platform-guides">
-              <p role="status">Loading guides…</p>
-            </main>
-          }
-        >
-          <PublicPlatformGuides />
-        </Suspense>
-      )}
-      {support && (
-        <main className="public-platform-guides public-support">
-          <h1>Help & support</h1>
-          <a className="secondary-button" href="mailto:support@rillora.xyz">
-            Contact support <span aria-hidden="true">↗</span>
-          </a>
-          <details className="task-details">
-            <summary>What should I keep in Rillora?</summary>
-            <p>
-              Account names, document locations and clear directions. Keep
-              passwords, seed phrases, private keys and complete recovery codes
-              out of your map.
-            </p>
-          </details>
-          <details className="task-details">
-            <summary>Does a guide transfer an account?</summary>
-            <p>
-              No. Each provider decides access, closure or transfer through its
-              own process. Our guides link to those official routes and explain
-              what to prepare.
-            </p>
-          </details>
-          <details className="task-details">
-            <summary>Can I try Rillora now?</summary>
-            <p>
-              The Preview sign-in opens our test app. Please use sample
-              information. The production app and subscriptions are still being
-              prepared. You can read all account inheritance guides without
-              signing in.
-            </p>
-          </details>
-          <div className="task-policy-links">
-            <a href="mailto:privacy@rillora.xyz">Privacy request</a>
-            <a href="mailto:security@rillora.xyz">Report a security issue</a>
-          </div>
-          <p>
-            Do not include passwords or private account details in your first
-            message.
-          </p>
+          {guides ? (
+            <>
+              <h1>Account inheritance</h1>
+              <a className="lp-button" href={guideTarget}>
+                Continue to sign in <ArrowRight size={20} aria-hidden="true" />
+              </a>
+            </>
+          ) : (
+            <>
+              <h1>How can we help?</h1>
+              <div className="lp-support-grid">
+                <div>
+                  <a className="lp-button" href="mailto:support@rillora.xyz">
+                    Contact support <ArrowRight size={20} aria-hidden="true" />
+                  </a>
+                  <p>
+                    Start with what happened.
+                    <br />
+                    Leave passwords and private account details out of your
+                    message.
+                  </p>
+                  <nav aria-label="Specific support requests">
+                    <a
+                      className="lp-text-link"
+                      href="mailto:privacy@rillora.xyz"
+                    >
+                      Privacy request{" "}
+                      <ArrowRight size={18} aria-hidden="true" />
+                    </a>
+                    <a
+                      className="lp-text-link"
+                      href="mailto:security@rillora.xyz"
+                    >
+                      Report a security issue{" "}
+                      <ArrowRight size={18} aria-hidden="true" />
+                    </a>
+                  </nav>
+                </div>
+                <QuestionList
+                  questions={[
+                    ...landingQuestions,
+                    {
+                      title: "Can I try Rillora now?",
+                      answer:
+                        "Yes. Preview sign-in opens our test app. Please use sample information. The production app and paid subscriptions are still being prepared. Specific account inheritance guidance is available after sign-in.",
+                    },
+                  ]}
+                />
+              </div>
+            </>
+          )}
         </main>
-      )}
-      <footer className="public-footer">
-        <RilloraBrand />
-        <p>Digital legacy and estate continuity. Directions, not passwords.</p>
-        <nav aria-label="Information and legal links">
-          <a href="/support">Support</a>
-          <a href={`${legal}/privacy`}>Privacy</a>
-          <a href={`${legal}/terms`}>Terms</a>
-          <a href={`${legal}/legal`}>Legal</a>
-          <a href={`${legal}/cookies`}>Cookies</a>
-        </nav>
-      </footer>
-    </div>
+        <LandingFooter />
+      </div>
+    </MotionConfig>
   );
 }

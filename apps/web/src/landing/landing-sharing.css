@@ -1,28 +1,8 @@
-.lp-sharing {
-  background: var(--lp-forest);
-  color: var(--lp-paper);
-  padding: 80px 0 56px;
-  scroll-margin-top: 28px;
-}
-.lp-sharing:focus {
-  outline: none;
-}
-.lp-sharing-heading h2,
-.lp-guidance h2 {
-  font-size: clamp(44px, 4.9vw, 70px);
-  line-height: 1.08;
-}
-.lp-sharing-heading p {
-  margin-top: 22px;
-  font-size: 19px;
-  line-height: 1.6;
-  color: #e0e4d8;
-}
 .lp-sharing-scene {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) 170px minmax(0, 0.9fr);
+  grid-template-columns: minmax(0, 0.9fr) 110px minmax(0, 1.1fr);
   align-items: center;
-  gap: 42px;
+  gap: 28px;
   position: relative;
   min-height: 440px;
   margin-top: 35px;
@@ -38,12 +18,13 @@
   display: block;
   width: 100%;
   height: auto;
+  mix-blend-mode: multiply;
 }
 .lp-folio-imprint {
   position: absolute;
-  left: 18%;
-  top: 32%;
-  width: 42%;
+  left: 27%;
+  top: 40%;
+  width: 34%;
   display: grid;
   justify-items: center;
   gap: 22px;
@@ -64,12 +45,12 @@
   width: 100%;
   height: 100%;
   inset: 0;
-  stroke: #f5f1e833;
+  stroke: #23473d25;
   stroke-width: 1;
   pointer-events: none;
 }
 .lp-connection-lines .is-selected {
-  stroke: #d4b897;
+  stroke: #ad825d;
   stroke-width: 2;
 }
 .lp-demo-people {
@@ -81,8 +62,8 @@
 }
 .lp-person {
   border: 0;
-  background: var(--lp-forest);
-  color: #bdc9c0;
+  background: var(--lp-paper);
+  color: var(--lp-muted);
   display: grid;
   justify-items: center;
   gap: 12px;
@@ -100,7 +81,7 @@
   width: 88px;
   height: 88px;
   border-radius: 50%;
-  border: 2px solid #f5f1e847;
+  border: 2px solid #23473d30;
   font:
     500 45px/1 "Source Serif 4",
     Georgia,
@@ -112,7 +93,7 @@
     color 0.3s;
 }
 .lp-person[aria-pressed="true"] {
-  color: var(--lp-paper);
+  color: var(--lp-forest);
 }
 .lp-person[aria-pressed="true"] .lp-person-avatar {
   background: #f5f1e8;
@@ -141,8 +122,10 @@
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  white-space: nowrap;
-  color: #bdc9c0;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.6;
+  color: var(--lp-muted);
 }
 .lp-shared-sheet {
   z-index: 1;
@@ -151,7 +134,7 @@
   justify-self: end;
   width: 100%;
   max-width: 440px;
-  background: var(--lp-paper);
+  background: #faf7f0;
   color: var(--lp-forest);
   min-height: 382px;
   border-radius: 9px;
@@ -165,7 +148,7 @@
   right: 0;
   border-style: solid;
   border-width: 0 28px 28px 0;
-  border-color: transparent var(--lp-forest) #e5e1d7 transparent;
+  border-color: transparent var(--lp-paper) #e5e1d7 transparent;
 }
 .lp-sheet-stage {
   font:
@@ -256,7 +239,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
-  border-top: 1px solid #f5f1e82b;
+  border-top: 1px solid #23473d25;
   padding-top: 34px;
   margin-top: 22px;
 }
@@ -266,7 +249,7 @@
   text-align: left;
   background: none;
   border: 0;
-  color: #c1cdc3;
+  color: var(--lp-muted);
   padding: 8px 0;
   align-items: center;
 }
@@ -277,7 +260,7 @@
   width: 51px;
   height: 51px;
   border-radius: 50%;
-  border: 1px solid #f5f1e850;
+  border: 1px solid #23473d40;
   font-size: 17px;
   transition:
     border-color 0.3s,
@@ -287,7 +270,7 @@
 .lp-demo-steps button[aria-pressed="true"] .lp-step-number {
   color: var(--lp-forest);
   background: var(--lp-paper);
-  border-color: var(--lp-paper);
+  border-color: var(--lp-forest);
 }
 .lp-demo-steps strong {
   display: block;
@@ -295,7 +278,7 @@
     600 18px/1.2 "Source Serif 4",
     Georgia,
     serif;
-  color: var(--lp-paper);
+  color: var(--lp-forest);
 }
 .lp-demo-steps small {
   display: block;

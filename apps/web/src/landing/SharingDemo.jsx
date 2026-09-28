@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { Check } from "@phosphor-icons/react";
-import folio from "../assets/landing/sharing-folio.webp";
+import folio from "../assets/landing/folio-paper.webp";
 import symbol from "../assets/brand/symbol-paper.svg";
 import { demoPeople, demoSteps, sharedDemoMatters } from "./landingModel.js";
 import { FolioMotion, Reveal } from "./LandingMotion.jsx";
@@ -15,26 +15,29 @@ export function SharingDemo() {
   const matters = sharedDemoMatters(personId);
   return (
     <section
-      className="lp-sharing"
-      id="how-it-works"
+      className="lp-sharing lp-chapter lp-container"
+      id="people"
       aria-labelledby="lp-sharing-title"
       tabIndex={-1}
     >
-      <div className="lp-container">
+      <div className="lp-chapter-label">
+        <span>02</span>
+        <span>Your people</span>
+      </div>
+      <div className="lp-chapter-body">
         <Reveal className="lp-sharing-heading">
           <h2 id="lp-sharing-title">
-            Different people.
+            Let the right people
             <br />
-            Different pieces.
+            see the right details.
           </h2>
-          <p>Keep some things private. Share the rest, person by person.</p>
+          <p>Choose a person. Choose their view.</p>
         </Reveal>
         <div className="lp-sharing-scene">
           <FolioMotion className="lp-demo-folio">
             <img src={folio} width="800" height="800" alt="" loading="lazy" />
             <div className="lp-folio-imprint" aria-hidden="true">
               <img src={symbol} alt="" />
-              <span>Your map</span>
             </div>
           </FolioMotion>
           <svg

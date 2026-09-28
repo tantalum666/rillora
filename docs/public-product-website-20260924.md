@@ -6,17 +6,27 @@ Status: DESIGNED PUBLIC LANDING WITH OWNER-SELECTED PREVIEW ACCOUNT GATEWAY
 
 Last updated: 2026-09-28 (Asia/Hong_Kong)
 
-## September28 explicit public redesign
+## September28 continuous landing and signed-in guides
 
-Owner requests a complete landing-page redesign and explicitly chooses the existing
-staging app for its top-right Sign in entry, marked Preview. The new paper/forest
-surface uses ImageGen artwork, Motion and Radix primitives, a permitted-only
-sharing demonstration, working example details, official-guide links and FAQs.
-All account/invitation links use `config/public-entry.json`; there is no account
-form or API on WWW. The public router and CSP remain unchanged. This supersedes
-the older no-account-entry/preview-banner composition below while preserving
-production activation gates. Existing private App and guide content are retained.
-[Current design and checks](landing-page-20260928.md).
+Owner chooses the staging app for top-right Preview / Sign in, then requests a
+continuous richer landing and moves specific provider guidance after sign-in.
+The current paper/forest design adds interactive matter categories, a finite
+walkthrough, permitted-only sharing, life situations, control disclosures, explicit
+plan-review comparison and FAQ. Support shares its header/background/footer.
+
+Account and invitation destinations use `config/public-entry.json`. WWW has no
+account form or API. `/guides` and `/guides/` now302to the account gateway, retaining
+only a known catalog ID. Only `/` and `/support` serve the public HTML; existing
+asset allowlist, CSP and rejection of unknown/private/write routes remain. The
+public bundle includes guide IDs only; authenticated content is unchanged.
+[Current target and checks](landing-page-20260928.md). Current live readback is in
+[handoff](handoff.md), not inferred from the build.
+
+## Historical September24 establishment
+
+The following records the original public website, DNS and monitoring checkpoint.
+The old public-guide availability, no-account-entry composition and Graphite public
+layout are superseded above; infrastructure isolation/transport evidence remains.
 
 ## Purpose
 

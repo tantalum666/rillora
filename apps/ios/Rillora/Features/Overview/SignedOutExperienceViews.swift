@@ -200,10 +200,6 @@ struct SignedOutProfileView: View {
             .rilloraProfileActionRows()
 
             Section("Rillora") {
-                NavigationLink { OfficialSetupView() } label: {
-                    ProfileActionLabel(title: "Account inheritance", detail: "Preparation & after-death guidance", systemImage: "book")
-                }
-                .accessibilityIdentifier("public-profile.guides")
                 if let deletionService, let deletionReference {
                     NavigationLink { AccountDeletionStatusView(service: deletionService, initialReference: deletionReference) } label: {
                         ProfileActionLabel(title: "Deletion status", detail: "Check your saved request", systemImage: "person.crop.circle.badge.minus")

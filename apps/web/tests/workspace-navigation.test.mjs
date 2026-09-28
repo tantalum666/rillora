@@ -22,3 +22,12 @@ test("account and authentication-return destinations remain intact", () => {
   assert.equal(readWorkspaceRoute("/?next=reviews").view, "maintenance");
   assert.equal(readWorkspaceRoute("/?next=shared").view, "shared");
 });
+
+test('legacy guide and account continuations hydrate only the authenticated guide task', () => {
+  for (const path of ['/guides?service=coinbase', '/account?next=guides&service=coinbase&matter=11111111-1111-4111-8111-111111111111']) {
+    const route=readWorkspaceRoute(path);
+    assert.equal(workspaceURL(route),'/?view=guides&task=provider-guide&provider=coinbase');
+    assert.equal(route.id,null);
+  }
+  assert.equal(workspaceURL(readWorkspaceRoute('/guides?service=unknown&task=delete-account')), '/?view=guides');
+});

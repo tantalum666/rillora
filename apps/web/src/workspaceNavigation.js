@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { requestedGuideKey } from './guideAccess.js';
 
 const pages = new Set(["overview", "plan", "matters", "contacts", "shared", "maintenance", "guides", "access", "activity", "settings", "more"]);
 const categories = new Set(["account", "document", "device", "financial_asset", "debt", "subscription", "crypto_asset"]);
@@ -9,6 +10,11 @@ const uuid = /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i;
 export function readWorkspaceRoute(value) {
   const url = new URL(value, "https://rillora.invalid");
   const p = url.searchParams;
+  if (url.pathname.replace(/\/+$/, '') === '/guides' || (url.pathname === '/account' && p.get('next') === 'guides')) {
+    const providerKey = requestedGuideKey(url.search);
+    return { view: 'guides', q: '', filter: 'all', sharingMatterId: null,
+      task: providerKey ? 'provider-guide' : null, category: null, id: null, contactId: null, providerKey };
+  }
   const requested = p.get("view") ?? (["/account/billing", "/account/billing/complete"].includes(url.pathname) || p.get("next") === "billing" ? "access" : p.get("next") === "reviews" ? "maintenance" : p.get("next") === "shared" ? "shared" : url.pathname === "/account" ? "settings" : "overview");
   const task = tasks.has(p.get("task")) ? p.get("task") : null;
   return { view: pages.has(requested) ? requested : "overview", q: (p.get("q") ?? "").slice(0, 200), filter: ["review", "added"].includes(p.get("filter")) ? p.get("filter") : "all",

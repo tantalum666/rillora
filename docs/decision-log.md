@@ -2715,3 +2715,19 @@ unreachable release remains a different closed workflow. See [sharing contract](
   do not require new vendor/payment setup to complete the task. Native interactive
   animation or an honestly labeled recording may satisfy the motion direction.
   [Revision scope](landing-page-20260928.md).
+
+## 2026-09-28 — Continuous landing implementation and guide return
+
+- Implement the Owner's second-iteration direction with a continuous paper
+  surface, real category/recipient/life-state controls and progressive disclosure.
+  Agent-selected new references are implementation targets, not a separate Owner
+  approval or a redesign of the private App.
+- Keep planned pricing behind Explore plans; read the annual amount from the
+  canonical catalog, preserve annual-only new sales and label Preview honestly.
+- Old guide links retain known catalog IDs through authentication; public website
+  omits guide bodies, native guest Profile omits the directory link. Free guidance
+  and authenticated contextual matching remain. This is navigation placement,
+  not secrecy of provider instructions or a newly purchased capability.
+- Use a16-second opt-in interactive walkthrough with pause/stop and a separate
+  real browser recording for review. No Sora API purchase/key or artificial
+  account data is introduced. [Contract](landing-page-20260928.md).

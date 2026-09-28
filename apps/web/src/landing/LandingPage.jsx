@@ -1,39 +1,24 @@
 import { MotionConfig, motion, useReducedMotion } from "motion/react";
 import { ArrowRight } from "@phosphor-icons/react";
-import primaryLogo from "../assets/brand/lockup-primary.svg";
-import reversedLogo from "../assets/brand/lockup-reversed.svg";
 import hero from "../assets/landing/hero-still-life.webp";
-import credits from "../assets/design-credits.txt?url";
+import map from "../assets/landing/guidance-map.webp";
 import { publicEntry } from "../publicEntry.js";
 import { demoSteps } from "./landingModel.js";
+import { LandingHeader, LandingFooter } from "./LandingChrome.jsx";
+import { MatterDemo } from "./MatterDemo.jsx";
 import { SharingDemo } from "./SharingDemo.jsx";
-import { GuidanceSection } from "./GuidanceSection.jsx";
-import { Reveal } from "./LandingMotion.jsx";
+import { LifeSituations } from "./LifeSituations.jsx";
+import { ControlSection } from "./ControlSection.jsx";
+import { PlanSection } from "./PlanSection.jsx";
+import { LandingFAQ } from "./LandingFAQ.jsx";
+import { FolioMotion, Reveal } from "./LandingMotion.jsx";
 import "./landing.css";
-
-export function PreviewAccountLink({ className = "" }) {
-  return (
-    <a
-      className={`lp-sign-in ${className}`}
-      href={publicEntry.accountURL}
-      aria-label={
-        publicEntry.preview
-          ? "Sign in to the Rillora preview"
-          : "Sign in to Rillora"
-      }
-    >
-      {publicEntry.preview && <span className="lp-preview-label">Preview</span>}
-      <span>Sign in</span>
-      <ArrowRight size={20} aria-hidden="true" />
-    </a>
-  );
-}
 
 function Hero() {
   const reduce = useReducedMotion();
-  function explore(event) {
+  function explore(event, sectionId = "how-it-works") {
     event.preventDefault();
-    const section = document.getElementById("how-it-works");
+    const section = document.getElementById(sectionId);
     section?.scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
     section?.focus({ preventScroll: true });
   }
@@ -75,7 +60,13 @@ function Hero() {
         </Reveal>
         <nav className="lp-hero-steps" aria-label="How Rillora works">
           {demoSteps.map((item, index) => (
-            <a href="#how-it-works" onClick={explore} key={item.short}>
+            <a
+              href={index === 0 ? "#how-it-works" : "#people"}
+              onClick={(event) =>
+                explore(event, index === 0 ? "how-it-works" : "people")
+              }
+              key={item.short}
+            >
               <small>0{index + 1}</small>
               <span>{item.short}</span>
             </a>
@@ -93,67 +84,44 @@ export function LandingPage() {
         <a className="lp-skip" href="#lp-main">
           Skip to content
         </a>
-        <header className="lp-header lp-container">
-          <a className="lp-brand" href="/" aria-label="Rillora home">
-            <img src={primaryLogo} width="870" height="208" alt="Rillora" />
-          </a>
-          <nav className="lp-nav" aria-label="Public navigation">
-            <a href="#how-it-works">How it works</a>
-            <a href="#guidance">Guides</a>
-          </nav>
-          <PreviewAccountLink />
-        </header>
+        <LandingHeader home />
         <main id="lp-main">
           <Hero />
-          <SharingDemo />
-          <GuidanceSection />
-          <section className="lp-closing" aria-labelledby="lp-closing-title">
-            <div className="lp-container">
+          <div className="lp-story">
+            <MatterDemo />
+            <SharingDemo />
+            <LifeSituations />
+            <ControlSection />
+            <PlanSection />
+            <LandingFAQ />
+            <section
+              className="lp-closing lp-container"
+              aria-labelledby="lp-closing-title"
+            >
               <Reveal>
                 <h2 id="lp-closing-title">
                   Make the important
                   <br />
                   things clear.
                 </h2>
-                <a
-                  className="lp-button lp-button-paper"
-                  href={publicEntry.appURL}
-                >
+                <p>Organise. Choose. Share. All in one private map.</p>
+                <a className="lp-button" href={publicEntry.appURL}>
                   Explore Rillora <ArrowRight size={23} aria-hidden="true" />
                 </a>
               </Reveal>
-              <img
-                className="lp-closing-brand"
-                src={reversedLogo}
-                alt=""
-                aria-hidden="true"
-                width="870"
-                height="208"
-              />
-            </div>
-          </section>
+              <FolioMotion className="lp-closing-art">
+                <img
+                  src={map}
+                  alt=""
+                  width="1254"
+                  height="1254"
+                  loading="lazy"
+                />
+              </FolioMotion>
+            </section>
+          </div>
         </main>
-        <footer className="lp-footer lp-container">
-          <div className="lp-footer-row">
-            <a className="lp-brand" href="/" aria-label="Rillora home">
-              <img src={primaryLogo} width="870" height="208" alt="Rillora" />
-            </a>
-            <nav aria-label="Information and legal links">
-              <a href="/support">Support</a>
-              <a href="https://legal.rillora.xyz/privacy">Privacy</a>
-              <a href="https://legal.rillora.xyz/terms">Terms</a>
-              <a href={credits}>Credits</a>
-            </nav>
-          </div>
-          <div className="lp-footer-notes">
-            <p>Access and transfers follow each provider’s own process.</p>
-            {publicEntry.preview && (
-              <p>
-                Preview access uses the test app. Please use sample information.
-              </p>
-            )}
-          </div>
-        </footer>
+        <LandingFooter />
       </div>
     </MotionConfig>
   );

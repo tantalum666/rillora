@@ -12,13 +12,18 @@ import {
 import { api } from "./api.js";
 import { LegalDocumentPage } from "./LegalDocumentPage.jsx";
 import { SavedCopyReader } from "./SavedCopyReader.jsx";
-import { PublicPlatformGuides } from "./PlatformGuides.jsx";
 import "./interaction-refinement.css";
 import { LEGAL_CONTRACT } from "./legalContract.js";
 import { publicRoutes, resolvePublicView } from "./publicRoutes.js";
 import "./public-experience.css";
 import { PublicHome } from "./PublicHome.jsx";
 import { accountPathForMatter, authenticationReturnPath } from "./publicIntent.js";
+import { isGuideRequest } from './guideAccess.js';
+
+function requestedPublicView(value = window.location.href) {
+  const url = new URL(value, window.location.origin);
+  return isGuideRequest(url.search, url.pathname) ? 'account' : resolvePublicView(url.pathname);
+}
 
 const cookieNoticeVersion = "necessary-storage-2026-09-15-1";
 const cookieNoticeStorageKey = "rillora.cookie-notice";
@@ -32,7 +37,7 @@ function hasDismissedCookieNotice() {
 }
 
 export function PublicExperience({ sessionStatus, onRetry }) {
-  const [view, setView] = useState(() => resolvePublicView(window.location.pathname));
+  const [view, setView] = useState(() => requestedPublicView());
   const [hasVisitedHome, setHasVisitedHome] = useState(view === "home");
   const homeScroll = useRef(0);
   const [cookieNoticeVisible, setCookieNoticeVisible] = useState(
@@ -42,7 +47,7 @@ export function PublicExperience({ sessionStatus, onRetry }) {
 
   useEffect(() => {
     const handlePopState = () => {
-      const next = resolvePublicView(window.location.pathname);
+      const next = requestedPublicView();
       if (next === "home") setHasVisitedHome(true);
       setView(next);
     };
@@ -55,7 +60,6 @@ export function PublicExperience({ sessionStatus, onRetry }) {
       home: "Rillora — A clear plan for what comes next",
       account: "Account — Rillora",
       savedCopy: "Open saved copy — Rillora",
-      guides: "Account inheritance — Rillora",
       privacy: "Privacy Policy — Rillora",
       terms: "Terms of Service — Rillora",
       subscriptions: "Subscription Terms — Rillora",
@@ -68,7 +72,7 @@ export function PublicExperience({ sessionStatus, onRetry }) {
   }, [view]);
 
   function navigate(path) {
-    const next = resolvePublicView(new URL(path, window.location.origin).pathname);
+    const next = requestedPublicView(path);
     if (view === "home" && next !== "home") homeScroll.current = window.scrollY;
     if (next === "home") setHasVisitedHome(true);
     if (window.location.pathname !== path) window.history.pushState({}, "", path);
@@ -97,15 +101,13 @@ export function PublicExperience({ sessionStatus, onRetry }) {
       <header className="public-header">
         <a className="public-wordmark" href={publicRoutes.home} onClick={(event) => handleNavigation(event, publicRoutes.home)} aria-label="Rillora home"><RilloraBrand decorative /></a>
         <nav aria-label="Public navigation">
-          <a href={publicRoutes.guides} className={view === "guides" ? "is-current" : ""} onClick={(event) => handleNavigation(event, publicRoutes.guides)}>Guides</a>
-          <a className={view === "account" ? "is-current" : ""} href={publicRoutes.account} onClick={view === "guides" ? undefined : (event) => handleNavigation(event, publicRoutes.account)}>Account</a>
+          <a className={view === "account" ? "is-current" : ""} href={publicRoutes.account} onClick={(event) => handleNavigation(event, publicRoutes.account)}>Account</a>
         </nav>
       </header>
 
       {hasVisitedHome && <div hidden={view !== "home"}>
         <PublicHome onStart={(category) => navigate(accountPathForMatter(category))} />
       </div>}
-      {view === "guides" && <PublicPlatformGuides />}
       {view === "savedCopy" ? <main className="public-copy-page"><button className="text-button" onClick={() => navigate(publicRoutes.home)}>Back to Rillora</button><h1>Open a saved copy</h1><SavedCopyReader /></main> : view === "account" ? (
         <AccountPage
           sessionStatus={sessionStatus}
@@ -130,7 +132,7 @@ export function PublicExperience({ sessionStatus, onRetry }) {
           <a href={publicRoutes.privacy} onClick={(event) => handleNavigation(event, publicRoutes.privacy)}>Privacy</a>
           <a href={publicRoutes.terms} onClick={(event) => handleNavigation(event, publicRoutes.terms)}>Terms</a>
           <a href={publicRoutes.legalNotice} onClick={(event) => handleNavigation(event, publicRoutes.legalNotice)}>Legal</a>
-          <a href={publicRoutes.account} onClick={view === "guides" ? undefined : (event) => handleNavigation(event, publicRoutes.account)}>Account</a>
+          <a href={publicRoutes.account} onClick={(event) => handleNavigation(event, publicRoutes.account)}>Account</a>
           <a href={publicRoutes.savedCopy} onClick={(event) => handleNavigation(event, publicRoutes.savedCopy)}>Open saved copy</a>
         </nav>
       </footer>
@@ -192,11 +194,11 @@ function AccountPage({ sessionStatus, onRetry, onBack }) {
       <button className="account-back" type="button" onClick={onBack}><ArrowLeft size={18} aria-hidden="true" /> Back to Rillora</button>
       <div className="account-layout">
         <section>
-          <h1 id="account-title">{new URLSearchParams(window.location.search).get("next") === "reviews" ? "Open your review inbox" : "Your private map"}</h1>
+          <h1 id="account-title">{isGuideRequest(window.location.search, window.location.pathname) ? "Sign in to view account guidance" : new URLSearchParams(window.location.search).get("next") === "reviews" ? "Open your review inbox" : "Your private map"}</h1>
         </section>
         <section className="account-actions" aria-label="Account options">
           {checking && <p className="account-status">Checking whether you already have an active session…</p>}
-          {notOpen && <p className="account-status" role="status">Accounts are not open yet. You can still explore Rillora and its guides.</p>}
+          {notOpen && <p className="account-status" role="status">Accounts are not open yet. You can still explore Rillora.</p>}
           {unavailable && <><p className="account-status is-error">The account service is temporarily unavailable. The public site is still available.</p><button className="secondary-button" type="button" onClick={onRetry}>Try account service again</button></>}
           {!checking && !unavailable && !notOpen && <>
             <div className="account-action-form">

@@ -4,14 +4,25 @@ Role: cross-platform product and parity contract
 Authority scope: Web/iOS responsibilities, shared state and first validation release  
 Superseded by: later explicit platform decision  
 Do not use for: final framework choice or visual tokens  
-Status: CORE PARITY LOCKED; WEB／IOS VERSIONED LEGAL CLICKWRAP AND SERVER SESSION GATE VERIFIED LOCALLY; PUBLIC-TO-PRIVATE ENTRY, FIRST-USE, ROLE EDITOR, REHEARSALS, LOCAL EVENT CONTRACT AND STRIPE PHASE 1C VERIFIED; STOREKIT SK0 COMPLETE; SIMULATOR SANDBOX LOGIN BLOCKED BY APPLE `AMSERRORDOMAIN 100`; PURCHASE COMPLETION OPEN; PRODUCTION ENTITLEMENT MUTATION OFF; EXPLICIT TEST ENROLLMENT ONLY  
-Last updated: 2026-09-19 (contextual guidance parity; earlier evidence remains dated)
+Status: CORE PARITY CONTRACT ACTIVE; CURRENT RUNTIME AND RELEASE GATES IN HANDOFF
+Last updated: 2026-09-28 (signed-in guide placement; earlier evidence remains dated)
+
+## September28 public website and guide access
+
+The independently hosted WWW landing may show clearly labeled, non-persistent
+product demonstrations under the Owner's explicit redesign request. App-host and
+iOS public Overview keep their existing interaction contract. Specific provider
+instructions now require sign-in in product navigation, with Free eligibility
+unchanged; known guide bookmarks survive authentication. Preserve contextual
+recommendations based only on permitted fields. No provider content/freshness or
+real claim result is changed by this entry-placement update.
+
 
 ## September19 contextual guidance parity
 
 A’s editor and B’s shared-item detail now derive suggestions from the same matching rules and19-case fixture. Only explicit provider/title and visible category/custody participate. Hidden fields, notes and account identifiers never produce recipient suggestions. Native uses a local reading sheet that preserves the draft; Web expands in place. Original provider URLs are readable on demand and remain provider-controlled. No API model, sharing projection, permission, readiness or stored match is added. [Current content contract](provider-death-account-guides.md).
 
-## September18 guidance parity
+## September18 guidance parity — HISTORICAL public-entry placement
 
 Eighteen guides now use one `config/provider-guides.json` in both clients. Public Web `/guides` and native signed-out Profile permit reading without a private session; signed-in entries preserve optional self-reported status for the original five IDs. Prepare / After a death / Documents and phase-specific links align semantically. Native uses stacked large-text controls; Web preserves catalog search/back context. No private API, readiness rule or provider submission is added. [Content contract](provider-death-account-guides.md), [current QA](../output/qa/rillora-platform-guidance-20260918/README.md).
 
@@ -199,7 +210,7 @@ MVP后端基础锁定为TypeScript/Express 5 API与PostgreSQL，共享版本化H
 
 `apps/ios`现为iOS 17+原生SwiftUI客户端，使用可复现的XcodeGen项目、Swift 6严格并发、注入式actor API客户端和显式异步状态。未登录时先检查本地会话并进入原生公开状态，不请求五项私有Overview API；401也回到公开态而不是伪装成产品故障。用户主动创建账户或登录后，Debug使用Auth0.swift系统浏览器Code + PKCE，并把短期Auth0 access token一次性换成Keychain保存的Rillora本地Bearer会话；Cookie与Bearer不能交叉使用。共享API读取`session / plan / matters / trusted-contacts / readiness`，完成动机、Matter、可信联系人记录、全计划／逐事项角色记录、官方设置自报、非操作性计数演练、角色级策略演练，以及Start Here的15分钟预览、最小披露UTF-8明文指南和Owner恢复型客户端密文包。角色编辑严格区分`record_only`与邀请证据；接收人只能逐事项，邀请背书记录不能被改写，人员或事项生命周期会级联撤销相关角色，任何政策改变都会使旧演练快照过期。Web提供批量覆盖和编辑抽屉，iOS使用原生Matter内`Form`与注入式Store。角色策略演练按死亡／失能／失联使用三套事件前缀状态，Web发挥大屏时间线与三角色并列预览，iOS使用原生`Form`、`Picker`和显式异步状态；两端共同拒绝任何操作性、通知、证明核验或数据释放响应。Web和iOS都生成AES-256-GCM密文，并用同一RFC 9180 HPKE P-256合同为离线恢复及符合条件的收件人设备分别封装数据密钥；提交前本地恢复自检，服务端不接收明文、未封装数据密钥或恢复私钥。两端现在也通过同一合成流程完成一次性接受、内存P-256设备私钥、公钥登记、收件人信封读取／解密和撤销；Web使用React内存状态，iOS使用注入式`RecipientRehearsalStore`，公共调用均不携带规划者Cookie/Bearer。该流程受本地开关保护且生产启动时拒绝启用，不代表真实身份、同意、投递或释放。规划者请求以粗粒度`web|ios`来源头进入服务端生成的八项第一方本地事件；公共演练调用不发送该头，客户端也不能上传任意事件或属性。90天仅是删除截止标记，不是自动清理证据。归档、撤销、预览、打印和加密文案都明确只改变或读取Rillora内部记录，不代表外部账号、遗嘱、法院或法律权限改变。Debug的旧开发身份不再是默认路径；只有显式设置测试planner才会启用。Release缺少审查后的生产端点／身份参数时继续失败关闭。`apps/ios-prototype`仍只是移动交互与视觉证据。真实邀请投递／身份绑定接受、持久设备密钥生命周期、真实证明与人工处理、生产Release认证、生产事件清理／分析、真机和TestFlight仍为`PROVISIONAL`，因此完整P0平台对等尚未完成。
 
-官方provider目录在两端消费同一JSON中的18份指南，并测试官方host allowlist。Web同时提供公开Guides页面与工作区详情，iOS使用Profile中的原生List／NavigationStack和系统Link。生前准备、身后申请、材料分开，步骤先于官方链接；Binance提供真实Legacy Inheritance申请，不伪装为生前Legacy Contact设置。原5个self-report ID保持不变，其余13项只提供指导、不增加准备度。内容、各条复核日期和限制见`docs/provider-death-account-guides.md`。
+官方provider目录在两端消费同一JSON中的18份指南，并测试官方host allowlist。Web提供登录后的目录与工作区详情，旧公开Guides链接转到账号并保留安全的指南上下文；iOS使用登录后Profile中的原生List／NavigationStack和系统Link。生前准备、身后申请、材料分开，步骤先于官方链接；Binance提供真实Legacy Inheritance申请，不伪装为生前Legacy Contact设置。原5个self-report ID保持不变，其余13项只提供指导、不增加准备度。内容、各条复核日期和限制见`docs/provider-death-account-guides.md`。
 
 商业主线现已从Phase 0／1A推进到完整Stripe Phase 1C测试生命周期，同时保持普通access为Free且所有reconciliation的entitlement mutation为false。iOS继续通过`Storefront.current.countryCode`读取瞬时三位storefront、监听`Storefront.updates`并向服务端重新请求唯一购买路由；storefront不写入用户资料，读取失败时购买保持关闭。StoreKit SK0具有独立本地Xcode Scheme和完整本地生命周期；Release继续排除`.storekit`。App Store Sandbox使用真实组`22325627`和同一两条product：catalog-only scheme无purchase／restore／finish；新的Debug-only purchase scheme绑定合成planner和本地API 4182，只有服务端提交Apple authoritative snapshot后才finish。此前Pro Max商品unavailable已定位为残留Xcode-local StoreKit service；干净iOS 26.4／26.5 Simulator均读到USA并加载`US$99 / US$9.99`两项真实商品。服务端已用Apple官方library完成真实`x5c`验证、authenticated device intake、public Notifications V2、Server API signed-status规范化和durable provider-neutral reconciliation；client验证整个响应安全边界，pending snapshot不finish，所有reconciliation仍强制entitlement mutation false。当前iOS为`101 / 0 / 1`、API`98 / 98`；Chrome最终credential set、官方客户端构造和Apple `4040010`认证探针通过，前两把无私钥key已撤销，Apple只保留最终一把。Owner确认后已向Apple提交三套独立tester凭据，但26.4／26.5都在交易前被Apple `AMSErrorDomain 100 / Password reuse not available for account`阻断；本地StoreKit ledger仍为空，普通status为Free。一次自动化回显的replacement tester已删除并轮换，当前第三套仅存Keychain。AWS path未部署，完成purchase／notification／restore、App Review和ordinary entitlement继续开放，完整边界见`docs/storekit.md`。
 

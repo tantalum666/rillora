@@ -19,6 +19,14 @@ test("ordinary account entry does not create a deferred editor", () => {
   assert.equal(requestedMatterCategory("?state=cancelled"), null);
 });
 
+test('guide sign-in returns to the selected guide without private or external parameters', () => {
+  assert.equal(authenticationReturnPath('?next=guides&service=binance&token=private&return_to=https://example.invalid'), '/?view=guides&task=provider-guide&provider=binance');
+  assert.equal(authenticationReturnPath('?service=apple', '/guides'), '/?view=guides&task=provider-guide&provider=apple');
+  assert.equal(authenticationReturnPath('?next=guides&service=unknown'), '/?view=guides');
+  assert.equal(authenticationReturnPath('?view=guides&task=provider-guide&provider=google'), '/?view=guides&task=provider-guide&provider=google');
+  assert.equal(authenticationReturnPath('?next=guides', '/terms'), '/');
+});
+
 test("a review link returns to the receiving inbox without carrying private identifiers", () => {
   assert.equal(authenticationReturnPath("?next=reviews"), "/?view=maintenance&inbox=received");
   assert.equal(authenticationReturnPath("?next=reviews&owner=private&token=secret"), "/?view=maintenance&inbox=received");

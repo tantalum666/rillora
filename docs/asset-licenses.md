@@ -32,6 +32,12 @@ two standalone assets are project-owned generation evidence in
 the referenced artwork. Existing provider-mark approvals are reused, not expanded
 by a generated mock. The old microfavicon is withdrawn from product usage.
 
+The same-day second iteration adds three coordinated ImageGen references and a
+blank-cover folio in `assets/concepts/rillora-landing-20260928-v2/`; a compressed
+WebP and exact SVG overlay ship on the continuous paper surface. No additional
+third-party library or license is introduced. The walkthrough MP4 is a recording
+of this project’s synthetic browser demo, not generated video or real account data.
+
 The provider catalog intentionally does **not** use approximate logos. The following August20 position is a conservative implementation checkpoint, not a ruling that unlicensed factual reference is always unlawful; current context-specific outcomes are in [Provider Mark Use](provider-mark-usage.md). Google Identity's downloaded `G` is limited to Google sign-in presentation, Microsoft's corporate logo commonly requires a license, LinkedIn's full logo requires a separate license, Bitwarden prohibits logo use without written permission, 1Password's developer mark license is limited to genuine integrations, and the combined Meta／password-manager rows do not have one truthful official mark. Those entries use neutral system／library icons until a current rule clearly permits this exact third-party directory use.
 
 ## Generated interaction artwork — 2026-09-09

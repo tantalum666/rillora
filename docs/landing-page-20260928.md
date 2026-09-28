@@ -1,128 +1,120 @@
 # Public landing and complete browser identity
 
 Role: scoped public-website design and interaction contract
-Status: FIRST ITERATION DEPLOYED; OWNER REQUESTS A CONTINUOUS, RICHER SECOND ITERATION
+Status: CONTINUOUS SECOND ITERATION PUBLISHED; EXACT SOURCE AND ASSET READBACK IN HANDOFF
 Last updated: 2026-09-28 (Asia/Hong_Kong)
 
 ## Owner direction and scope
 
-Latest same-day feedback supersedes the first iteration's composition: the sections
-feel disconnected and the content is too sparse. Build a coherent continuous
-product story with more useful interactive content and motion. Specific provider
-operation guides belong after sign-in; remove public step-by-step access while
-preserving authenticated contextual guidance and Free access. Keep the explicitly
-chosen Preview account destination. Video is optional; current Sora API credentials
-are not configured, so do not create another paid account or block the revision.
-An actual product-animation recording may be produced with existing local tools;
-never call such a recording Sora-generated footage.
+Owner requests a carefully designed landing page, then finds the first published
+attempt fragmented and sparse. The second iteration adds useful interactive
+content and motion within a continuous visual system. Specific platform operation
+guides belong after sign-in, still available to Free. Preserve contextual matching,
+existing private App UI, the complete approved03Logo and production release gates.
 
-Owner reports a browser icon differing from the approved Logo, asks for the Web
-address, then explicitly requests a carefully designed public landing page with a
-top-right account entry, commercially usable components and purposeful animation.
-Owner chooses the existing test app as the current Sign in destination with a
-visible Preview label. Preserve authenticated App UI and production identity and
-billing gates; this is an explicit public-site redesign, not a whole-App redesign.
+Owner explicitly chooses Preview-labelled Sign in to the existing test app:
+https://app.staging.rillora.xyz/account. Received invitations use that app's
+`/invite`. Public website remains https://www.rillora.xyz; production product is
+https://app.rillora.xyz and remains customer-closed. One configuration,
+`config/public-entry.json`, controls the public account destination.
 
-The current testing destination is https://app.staging.rillora.xyz/account;
-received invitations use https://app.staging.rillora.xyz/invite. The public website
-remains https://www.rillora.xyz and the still-closed production app remains
-https://app.rillora.xyz. One shared public-entry configuration controls future
-switching; never silently label a test purchase or identity as production.
+## Current implementation target
 
-The complete ten-path identity03 geometry is now required in browser icons too.
-This supersedes the favicon-only micro exception. Export deterministically from
-the existing SVG mother artwork; retain historical concept boards unchanged.
+Agent-selected ImageGen references under the authorized redesign:
+[organise](../assets/concepts/rillora-landing-20260928-v2/organise.png),
+[people/control](../assets/concepts/rillora-landing-20260928-v2/people-control.png),
+[plans/FAQ](../assets/concepts/rillora-landing-20260928-v2/plans-faq.png).
+The [implementation inventory](../assets/concepts/rillora-landing-20260928-v2/implementation-target.md)
+records extracted tokens, controls, intentional corrections and asset treatment.
+The first iteration's references in `assets/concepts/rillora-landing-20260928/`
+remain HISTORICAL; its dark/light bands do not override later feedback.
 
-## Selected implementation target
+Paper#F5F1E8 continues from hero through footer and Support; forest#23473D type,
+bronze#BD9473 hairlines, Source Serif4 display and Inter controls remain coherent.
+Desktop gutters64–72px, content maximum1400px, section spacing56–88px. Open rails,
+ruled lists and two purposeful example sheets replace large section-color changes.
+All controls/text are real HTML; generated concepts are not shipped as UI.
 
-The references below are the HISTORICAL first iteration, already deployed. They
-remain evidence of the first attempt, not authority against the latest feedback.
+Allowed hero copy is unchanged except Guides becomes Your control in navigation:
+Rillora, How it works, Your control, Preview, Sign in, Leave less / for them to /
+figure out., A private map of your important things, shared with the people you
+choose., See how it works, Received an invitation?,01Organise,02Choose,03Share.
+No extra hero slogan, security badge, sales number or endorsement is introduced.
 
-Agent selects a coordinated three-section ImageGen target under the Owner's
-authorized redesign; this is not an invented separate Owner approval ceremony.
-[Hero](../assets/concepts/rillora-landing-20260928/hero-concept.png),
-[sharing](../assets/concepts/rillora-landing-20260928/sharing-concept.png),
-[guidance/footer](../assets/concepts/rillora-landing-20260928/guidance-concept.png).
-The generated standalone photographs are stored alongside the concepts; compressed
-production derivatives live in `apps/web/src/assets/landing/`.
+## Composition and working interactions
 
-Tokens: paper#F5F1E8, forest#23473D, bronze#BD9473; Source Serif4 display and Inter
-controls. Desktop gutters64–72px, maximum content1400px, section spacing80–120px.
-Only the demonstration's shared-information sheet uses a paper panel; guides are
-open ruled rows. Do not convert the page into repeated cards or paragraphs.
+1. Existing paper still-life hero and complete03Logo. The natural photograph has
+   a bottom edge mask, not a color overlay. Short laptop and mobile layouts keep
+   the primary action usable. Hero sections link to the actual demonstration.
+2. Start with one important thing: Accounts/Documents/Devices/Digital assets
+   update a read-only example sheet and map selection. A16-second walkthrough
+   cycles once, can pause/restart, stops on manual selection and pauses in a hidden
+   tab. No user input, persistence, provider request or fake save occurs.
+3. Let the right people see the right details: Mum/Alex switches permitted-only
+   illustrative matter rows and an animated connection. Details expand. Changing
+   recipient immediately unmounts the other person's content. Stage choices show
+   organising, choosing and inviting; they do not create an invitation.
+4. Ready for life's changes: Death/Incapacity/Unreachable have distinct concise
+   explanations. Being out of touch never triggers automatic release; contact
+   status does not create legal authority. Controls change the actual explanation.
+5. Your map. Your control: four disclosures cover sharing, revocation, exports and
+   application-layer encryption. Existing downloaded copies cannot be revoked;
+   this is not E2EE. Download an example returns an explicit synthetic text file.
+6. A plan that fits your circle: an explicit Explore plans action opens the
+   comparison. Current planned Web pricing is Free0/FamilyUS$88.99annual,1/5live
+   contacts, shared reviews in Family and baseline export/privacy in both. Paid
+   subscriptions are not open; the only account action is Try Preview.
+7. Four keyboard FAQ disclosures, paper closing action and coherent shared footer.
+   Support uses the same brand/header/background and actual contact addresses.
 
-Allowed first-viewport copy: Rillora, How it works, Guides, Preview, Sign in,
-Leave less / for them to / figure out., A private map of your important things,
-shared with the people you choose., See how it works, Received an invitation?,
-01 Organise,02 Choose,03 Share. Preview is the Owner's explicit addition to the
-generated concept. Actual headings and controls are HTML, not flattened screenshots.
+The public-site example allowance is scoped to this explicit WWW redesign; it
+must not generate fake private records or change the original App onboarding.
 
-## Composition and working interaction
+## Guide placement and safe continuation
 
-1. A warm-paper hero uses the generated forest-cloth folio still life with empty
-   left space for the large headline. Keep natural lighting without a color wash.
-   A small pointer/scroll shift belongs to artwork, never text or the brand shape.
-   Header Sign in and received-invitation entry use the selected Preview host.
-2. A forest section demonstrates owner-controlled sharing. Selecting Mum or Alex
-   updates only illustrative permitted rows; rows expand meaningful sample details
-   and unmount immediately when the recipient changes. Three stage controls explain adding,
-   choosing and sending. No live data, token, invitation or recipient is created.
-3. A warm-paper guidance section links directly into the existing Apple, Google
-   and Coinbase guides. Two keyboard-accessible FAQ disclosures remain short.
-   A forest closing band links to the Preview app; the footer provides legal and
-   support routes plus a concise test-environment/sample-information notice.
+WWW no longer imports guide bodies or provides a public step-by-step directory.
+Its edge function302redirects `/guides` bookmarks to the configured account entry,
+retaining only a known service ID; tokens and arbitrary return targets are dropped.
+The18public identifiers are parity-checked against the canonical private catalog.
 
-Implementation primitives: pinned MIT Motion13.4.4 for restrained reveal/state/
-parallax, pinned MIT Radix Accordion1.2.20 for keyboard-safe disclosure, existing
-MIT Phosphor icons and OFL fonts. Keep actual copyright and license notices in the
-shipped credit asset. No paid Motion+ components or unreviewed Figma assets.
+The app's old `/guides`, `/account?next=guides` and authenticated workspace guide
+intent return to the selected guide after sign-in. Unknown IDs open the directory.
+Unauthenticated users see the account task with consent unchecked; private plans
+must load before the workspace renders. Native signed-out Profile no longer has
+an Account inheritance link; signed-in Profile/editor/shared-item paths remain.
+This is product-entry placement, not a confidentiality claim about public provider
+instructions, a new paid gate or proof of successful provider estate applications.
 
-## Intentional concept corrections
+## Motion, assets and maintainability
 
-- Keep one header at the page top; the mid/closing concept's repeated header is a
-  section-presentation artifact.
-- The recipient projection must not reveal the title of an unshared matter. The
-  generated Crypto/Not shared row is replaced by permitted-only rows and a count.
-- Use functional initial avatars and the exact approved vector mark, avoiding a
-  fabricated real person's identity and the generated cover's extra slogan/logo.
-- Reuse the existing approved provider-mark component; generated Google/Apple
-  glyphs do not override the actual brand-use register.
-- Omit the generated handwritten slogan; it is not requested product copy.
-- No always-looping glow or progress simulation. Motion responds to scroll and
-  selection and becomes a stable, complete layout with reduced motion.
-- The closing band reuses the approved brand artwork instead of inventing new
-  contour art. Short laptop viewports use compact hero spacing so the primary
-  action stays visible; mobile uses flowing media and an edge mask, not fixed
-  image offsets that can collide with larger text.
+Pinned MIT Motion13.4.4 and Radix Accordion1.2.20, existing MIT Phosphor/OFL fonts;
+full notices remain shipped. No new library, paid Motion+ or unreviewed Figma asset.
+New blank-cover folio artwork is generated against the selected paper reference;
+its exact approved vector symbol is overlaid in code. Prompts/originals are kept.
+The animated demo was also recorded from the real local browser as a17-secondMP4
+for review; this is a recording, not Sora-generated footage. It is a QA artifact,
+not an automatically downloaded video on the public page.
 
-## Verification required before handoff
+Shared LandingChrome and focused MatterDemo/SharingDemo/LifeSituations/
+ControlSection/PlanSection/LandingFAQ keep state ownership small. CSS is scoped and
+split by feature. Reduced motion retains a complete readable layout; the tour is
+opt-in even in ordinary motion. No endless autoplay or artificial success meter.
 
-Inspect desktop and narrow mobile, keyboard navigation, recipient/stage updates,
-FAQ expansion, actual Preview sign-in/invitation/guide links, reduced motion,
-asset failures and CSP/console errors. Compare stored concepts with rendered
-screenshots through view_image, recording at least five concrete fidelity points.
-Check original authenticated surfaces are unaffected. Verify deployed HTML points
-at the full-geometry hashed favicon, including PNG fallback and hosted login.
-Local tests/builds are not deployment or successful real registration evidence.
+## Complete browser identity
 
-## Current verification
+The former microfavicon exception is withdrawn. All10paths come deterministically
+from `assets/brand/rillora/symbol-forest.svg` via
+`tools/logo/export-approved-favicons.cjs`. SVG/32pxPNG, staging, closed production,
+WWW, legalSites7and Auth0 were verified at the first publication checkpoint.
+Historical boards/optical studies remain unchanged; new pages retain these assets.
 
-98Web tests pass, including permitted-only example projection and the explicitly
-chosen Preview destinations. Legal build/7legal artifact checks pass. The initial
-all-tests run had3legal-artifact failures because the directory held an internal
-App build; rebuilding the correct legal target resolved them without weakening
-assertions. Rendering was checked in Chrome at the three concept native sizes,
-390px mobile and reduced motion; keyboard FAQ and sample detail expansion work.
-The first desktop guidance link lazy-loads the actual existing provider directory.
+## Evidence boundary
 
-WWW is published through its existing CloudFront stack. Actual Preview navigation
-reaches staging/account and staging/invite, and Coinbase opens the original guide.
-Current account/API/unknown metadata paths remain refused; no first-party console
-error was observed. Staging and closed production client favicon updates are
-verified, legalSites7succeeds, and Auth0's favicon-only patch is read back with all
-other branding fields preserved. The Free-plan custom template is not applied.
-
-The public site and favicon releases do not deploy the pending API migrations or
-change production customer access, prices, private data or native UI. Exact final
-asset/HTML/source/CI evidence is tracked in the current handoff and
-[fidelity ledger](../output/qa/rillora-launch-goal-20260926/landing-fidelity-ledger.json).
+Current local checks:102Web tests,2public infrastructure tests, infra typecheck,
+App/public/legal builds and the changed native Debug build pass. The recorded tour
+reaches its final category and stops; desktop and390px layouts, permitted rows,
+keyboard disclosures and life-state controls are checked. See the current
+[fidelity ledger](../output/qa/rillora-launch-goal-20260926/landing-v2/fidelity.json)
+and [work state](../output/qa/rillora-launch-goal-20260926/work-state.json) for exact
+screenshots, runtime and publication readbacks. A local build is not a deployment,
+real registration, paid transaction, TestFlight upload or production opening.

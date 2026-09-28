@@ -1,71 +1,9 @@
-.lp-guidance {
-  padding: 116px 0 95px;
-}
-.lp-guidance-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 90px;
-}
-.lp-guide-story > p {
-  font-size: 18px;
-  line-height: 1.6;
-  margin-top: 28px;
-  max-width: 440px;
-}
-.lp-guide-art {
-  width: min(360px, 80%);
-  margin-top: 10px;
-  margin-left: 25px;
-}
-.lp-guide-art img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-.lp-guide-list {
-  margin-top: 0;
-}
-.lp-guide-list > a {
-  display: grid;
-  grid-template-columns: 42px 105px 1fr 24px;
-  gap: 18px;
-  align-items: center;
-  min-height: 100px;
-  border-bottom: 1px solid #23473d27;
-  transition: transform 0.2s;
-}
-.lp-guide-list > a:hover {
-  transform: translateX(6px);
-}
-.lp-guide-list strong {
-  font-size: 17px;
-  font-weight: 600;
-}
-.lp-guide-list > a > span:not(.provider-mark) {
-  font-size: 13px;
-  line-height: 1.5;
-}
-.lp-guide-list .provider-mark {
-  width: 40px;
-  height: 40px;
-  background: var(--lp-forest);
-  color: var(--lp-paper);
-  border-radius: 50%;
-}
-.lp-guide-list .provider-mark img {
-  max-width: 24px;
-  max-height: 24px;
-}
 .lp-text-link {
   display: inline-flex;
   align-items: center;
   gap: 23px;
   font-size: 17px;
   font-weight: 500;
-}
-.lp-all-guides {
-  margin: 30px 0 44px;
-  min-height: 44px;
 }
 .lp-faq-item {
   border-top: 1px solid #23473d27;
@@ -98,7 +36,7 @@
   transition: transform 0.25s;
 }
 .lp-faq-item button[data-state="open"] svg {
-  transform: rotate(180deg);
+  transform: rotate(45deg);
 }
 .lp-faq-item [data-radix-collection-item] {
   border-radius: 0;
@@ -137,34 +75,27 @@
   }
 }
 .lp-closing {
-  background: var(--lp-forest);
-  color: var(--lp-paper);
-  padding: 78px 0;
-  position: relative;
-}
-.lp-closing > .lp-container {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
   align-items: center;
+  gap: 40px;
+  padding-block: 64px;
+  border-top: 1px solid #23473d25;
 }
 .lp-closing h2 {
-  font-size: clamp(44px, 4.4vw, 66px);
+  font-size: clamp(44px, 4.7vw, 70px);
   line-height: 1.12;
 }
-.lp-button-paper {
-  background: var(--lp-paper);
-  color: var(--lp-forest) !important;
-  margin-top: 29px;
-  min-width: 210px;
+.lp-closing p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 24px 0;
 }
-.lp-button-paper:hover {
-  background: #e8e7d8;
-}
-.lp-closing-brand {
-  width: 31%;
+.lp-closing-art img {
+  width: 100%;
   height: auto;
-  opacity: 0.18;
+  display: block;
+  mix-blend-mode: multiply;
 }
 .lp-footer {
   padding-block: 32px 28px;
@@ -193,6 +124,6 @@
   color: #506359;
 }
 .lp-footer-notes p {
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.7;
 }

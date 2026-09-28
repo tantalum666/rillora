@@ -246,7 +246,6 @@ export function App() {
     : window.location.pathname;
   const startsOnPublicReadOnlyRoute = [
     publicRoutes.savedCopy,
-    publicRoutes.guides,
     "/account-deletion",
     publicRoutes.privacy,
     publicRoutes.terms,
@@ -760,7 +759,7 @@ export function App() {
     return <PublicExperience sessionStatus="signed_out" onRetry={() => void loadWorkspace()} />;
   }
 
-  if ((loading || loadError) && !session) {
+  if (!session || !plan) {
     const signedOut = loadError instanceof ApiClientError && loadError.status === 401;
     const serviceNotOpen = loadError instanceof ApiClientError && loadError.code === "service_not_open";
     if (!signedOut && !serviceNotOpen && !browsePublic) return <main className="workspace-gate" aria-busy={loading}>

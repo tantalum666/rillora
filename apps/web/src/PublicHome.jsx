@@ -25,7 +25,7 @@ export function PublicHome({ onStart }) {
             <span><LockKey size={18} aria-hidden="true" /> Unreachable</span>
           </div>
           <a href="#explore-matters" onClick={explore}>Explore matters <ArrowRight size={20} aria-hidden="true" /></a>
-          {onStart ? <button className="architectural-primary" type="button" onClick={() => onStart("account")}>Add my first matter <ArrowRight size={21} aria-hidden="true" /></button> : <a className="architectural-primary" href="/guides">Account inheritance guides <ArrowRight size={21} aria-hidden="true" /></a>}
+          {onStart ? <button className="architectural-primary" type="button" onClick={() => onStart("account")}>Add my first matter <ArrowRight size={21} aria-hidden="true" /></button> : <a className="architectural-primary" href="https://www.rillora.xyz">Explore Rillora <ArrowRight size={21} aria-hidden="true" /></a>}
         </div>
       </section>
       <PublicMatterExplorer onStart={onStart} />
