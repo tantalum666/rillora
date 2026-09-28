@@ -2817,3 +2817,5 @@ launch prerequisites and historical authentication gates are not repeated approv
 - **判断变化**：重装旧源码不会带来新官网布局。第一次刷新关闭模拟器签名，导致钥匙串权限不可用；改回ad-hoc签名与原entitlements后恢复，未清数据或放宽身份规则。浅色状态栏受隐藏导航栏的dark设置影响，已跟随Home主题。父级AX标识曾覆盖子按钮，改为明确容器。自动化滚动辅助假设总有导航栏，已适配新自定义页头。
 - **结果**：当前Rillora-Matrix-17-Pro/iOS26.5成功构建／安装／启动普通Debug App，实际安装二进制与资源哈希匹配。四项不同UI用例通过，覆盖主题／重启记忆、收邀请关闭返回、允许范围示例、事项浏览、过期公共体验及AX5／减少动态。检查AX5截图发现装饰字母／勾选过大，仅固定装饰几何，真实文字仍随字号，修正后该用例重跑通过。
 - **未完成与范围**：没有重跑整个原生或API套件，没有重新完成真人登录／接受／撤销／付款，也没有上传商店或开放正式环境。源码／CI和文档最后收尾见[本轮QA](../../output/qa/rillora-launch-goal-20260926/simulator-refresh-20260929/work-state.json)；原最终上线长任务仍按独立门继续。
+
+- **本轮收尾**：f21666a3a已推送且CI27成功。模拟器自动化后前台曾暂时缺失App控件树，重开前台与App后恢复，普通版本Dark→System实际操作正常；保留首页/System供Owner查看。未重置任何设备或账号。最终二进制／Assets与构建匹配，158份Markdown／1552本地链接无缺失。

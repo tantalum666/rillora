@@ -36,6 +36,15 @@ initial failures are preserved, not counted as passes. No full native/API rerun,
 real login/payment, production upload or new shared relationship is claimed.
 [Build/install/UI evidence](../output/qa/rillora-launch-goal-20260926/simulator-refresh-20260929/work-state.json).
 
+Native engineering f21666a3ae6d5f3bbb6ea7a70c8b10037012e9d4 is pushed and
+[CI27passes](https://github.com/tantalum666/rillora/actions/runs/36458434095).
+After UI tests the Simulator front-end temporarily returned no App controls;
+reopening the frontend/App restored the tree and actual Dark→System selection.
+The ordinary app remains open at Home/System. No reset or data removal was used.
+The source-scan checkpoint has25reviewed non-secret matches/0unknown; two unchanged
+public OAuth client-ID spans moved by one line after removing forced-dark plist
+configuration.158Markdown files/1552local links have no missing targets.
+
 ## Prior completed website work
 
 Owner requests Home and System/Light/Dark, then explicitly places the control to
