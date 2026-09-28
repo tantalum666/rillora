@@ -7,7 +7,10 @@ import entry from "../../../config/public-entry.json" with { type: "json" };
 import { guideIdentifiers } from "../src/guideIdentifiers.js";
 
 test("public route identifiers match the private catalog without shipping guide bodies", () => {
-  assert.deepEqual([...guideIdentifiers].sort(), guideCatalog.guides.map(item => item.id).sort());
+  assert.deepEqual(
+    [...guideIdentifiers].sort(),
+    guideCatalog.guides.map((item) => item.id).sort(),
+  );
 });
 
 const source = await readFile(
@@ -18,7 +21,17 @@ const handler = runInNewContext(`${source}; handler`);
 const request = (uri, method = "GET") => handler({ request: { uri, method } });
 
 test("public routing serves only public pages and fixed asset paths", () => {
-  for (const path of ["/", "/support"])
+  for (const path of [
+    "/",
+    "/product",
+    "/product/",
+    "/security",
+    "/pricing",
+    "/support",
+    "/legal",
+    "/legal/licenses",
+    "/legal/licenses/",
+  ])
     assert.equal(request(path).uri, "/index.html");
   assert.equal(request("/assets/logo-123.svg").uri, "/assets/logo-123.svg");
   for (const extension of ["jpg", "jpeg", "webp"]) {

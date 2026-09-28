@@ -69,6 +69,7 @@ export function LegalPublicationApp() {
         <span><RilloraBrand /></span>
         <p>Official legal documents. English controls where applicable law permits.</p>
         <nav aria-label="All legal documents">
+          <a href="https://www.rillora.xyz/legal/licenses">Third-party notices</a>
           {legalLinks.map(([label, href]) => (
             <a aria-current={window.location.pathname === href ? "page" : undefined} href={href} key={href}>{label}</a>
           ))}

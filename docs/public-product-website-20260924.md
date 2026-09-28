@@ -6,6 +6,23 @@ Status: DESIGNED PUBLIC LANDING WITH OWNER-SELECTED PREVIEW ACCOUNT GATEWAY
 
 Last updated: 2026-09-28 (Asia/Hong_Kong)
 
+## September28 latest navigation, system-theme and legal placement
+
+Owner's later screenshot correction supersedes the long serial V2 composition.
+The public website now uses Product/Security/Pricing/Support subpages, automatic
+paper/ink-green system themes, a centered proportional cover symbol and useful
+manual interactions. The walkthrough/timers/chapter rails are removed. Legal
+information includes a normal third-party notices page; the terms-site footer
+links there while accepted documents/versions remain unchanged.
+
+The edge allowlist now includes `/product`, `/security`, `/pricing`, `/legal` and
+`/legal/licenses`, plus Home/Support. Old guides still redirect through the fixed
+Preview account gateway. CSP, private origin, refusal of private/unknown/write
+requests and customer activation boundaries are retained.
+[Current contract](landing-page-20260928.md).
+
+## HISTORICAL — September28 second iteration
+
 ## September28 continuous landing and signed-in guides
 
 Owner chooses the staging app for top-right Preview / Sign in, then requests a

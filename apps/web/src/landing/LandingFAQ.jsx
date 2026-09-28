@@ -1,6 +1,5 @@
 import * as Accordion from "@radix-ui/react-accordion";
 import { Plus } from "@phosphor-icons/react";
-import { Reveal } from "./LandingMotion.jsx";
 
 export const landingQuestions = [
   {
@@ -46,20 +45,5 @@ export function QuestionList({ questions = landingQuestions }) {
         </Accordion.Item>
       ))}
     </Accordion.Root>
-  );
-}
-
-export function LandingFAQ() {
-  return (
-    <section className="lp-chapter lp-container" aria-labelledby="lp-faq-title">
-      <div className="lp-chapter-label">
-        <span>06</span>
-        <span>Questions</span>
-      </div>
-      <Reveal className="lp-chapter-body">
-        <h2 id="lp-faq-title">A few things to know.</h2>
-        <QuestionList />
-      </Reveal>
-    </section>
   );
 }

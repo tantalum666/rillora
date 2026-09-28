@@ -1,6 +1,6 @@
 # Rillora Current Handoff
 
-Status: FINAL LAUNCH GOAL ACTIVE; CONTINUOUS LANDING AND SIGNED-IN GUIDANCE PUBLISHED
+Status: FINAL LAUNCH GOAL ACTIVE; SYSTEM-THEME WEBSITE AND LEGAL-NOTICE NAVIGATION PUBLISHED
 Last updated: 2026-09-28 (Asia/Hong_Kong)
 
 ## Current authority and task
@@ -17,39 +17,37 @@ After compaction use focused recovery, not another full scan or old login ceremo
 
 ## Latest completed Owner steering
 
-Owner found the first landing fragmented/sparse and moved platform instructions
-after sign-in. WWW now uses one paper/forest visual system, shared Support chrome,
-four matter examples, a16-second controllable tour, permitted-only Mum/Alex sharing,
-three distinct life situations, control disclosures, explicit plan comparison and
-four FAQ. Animated folio/paths/state changes respect reduced motion. A real17-second
-browser recording is a review artifact, not Sora footage or a live customer record.
-[Design/behavior contract](landing-page-20260928.md).
+Owner corrects cover Logo placement, requests automatic ink-green dark mode,
+removes the artificial walkthrough/serial chapters and asks for useful top-level
+subpages. Later clarification places licences under legal information. These
+instructions supersede the relevant V2 composition; private App UI is preserved.
 
-Preview / Sign in remains https://app.staging.rillora.xyz/account. WWW `/guides`
-bookmarks302through that account task, retaining only known guide IDs; public
-bundles no longer include guide bodies. Signed-in directory/contextual guidance
-and Free eligibility remain. Native guest Profile omits the guide entry. The
-full10-path favicon remains applied across the previously verified five surfaces.
+WWW now has Product/Security/Pricing/Support in desktop/mobile navigation, with a
+shorter homepage. CSS/picture sources follow the system without preference storage;
+full03symbol sits at the measured cover centre and scales with the alpha artwork.
+Walkthrough timers, progress/stage buttons, numbered rails and pointer wobble are
+removed. Meaningful category/recipient/disclosure feedback and reduced motion stay.
+[Current contract](landing-page-20260928.md).
 
-Current checks:102Web tests;2public-infra tests and infra typecheck; internal,
-public, legal and closed-production Web builds; native Debug build/install/launch.
-Chrome covers desktop/reference sizes,390px/320px, keyboard, recipient omission,
-life/control/plan disclosures and guide gateway. Actual native Profile AX confirms
-no guest guide link. The guide login form retains unchecked consent. Authentication
-return/hydration tests pass; no new real Auth0 login/registration ceremony was run.
+Footer Legal leads to a document index and readable third-party notices. All136
+notice paragraphs remain intact, with optional download. Official Terms navigation
+links to that page. LegalSites8succeeded from73f6ce7814858c4ed77c4b91985058dacbeec1f1;
+public audience, seven-route boundary, accepted text and legal versions are unchanged.
+[Receipt](../output/qa/rillora-launch-goal-20260926/landing-v3/legal-deployment.json).
 
-WWW and both Web clients publish static-only changes. Staging change set modifies
-exactly its existing Web bucket-deployment resource; API/schema/data are preserved.
-Closed production output still says customerAccessclosed. Final WWW HTML matches
-the exact local artifact;13final resource/route checks pass. Final byte hashes,
-source commit/CI and QA readbacks are in
-[work state](../output/qa/rillora-launch-goal-20260926/work-state.json) and
-[fidelity ledger](../output/qa/rillora-launch-goal-20260926/landing-v2/fidelity.json).
-Implementationdbf07700b823469fd9716701e3535f213af3e750 is pushed;
-[CI20passes](https://github.com/tantalum666/rillora/actions/runs/36396298290), verified
-in authenticated Chrome against the exact commit. CLI Actions read returned403;
-no permission expansion was needed.1002prepared files/25reviewed non-secret spans/
-0unknown;151Markdown files/1491local links have no missing targets.
+Local102Web checks,2public-infra checks, infra typecheck, public/legal builds and
+7legal-artifact checks pass. Browser verifies actual system preference switching,
+320/390px menu/focus/navigation, dark subpages, permitted-only recipient projection
+and normal licence typography. Dark target1435x1096and corrected cover screenshots
+are inspected through view_image. Exact final online results/source/CI are recorded
+in[QA](../output/qa/rillora-launch-goal-20260926/landing-v3/work-state.json).
+
+Preview Sign in remains https://app.staging.rillora.xyz/account and received
+invitations retain their selected route. Provider-operation guidance stays signed-in
+and Free eligible. No staging/private-production/native/API/data change is made
+in this iteration; the prior guide placement checkpoint remains effective.
+Source Actions CLI is known to return403; use authenticated browser evidence without
+expanding credentials. Do not infer new CI or production readiness from local tests.
 
 ## Preserved engineering and deployment boundary
 
@@ -67,7 +65,7 @@ adopted Apple price. [Apple checks](../output/qa/rillora-launch-goal-20260926/ap
 
 Staging remains API38/migration31/schema0075. Production API remains task1/schema0070
 and customer-closed;0076–0085are not cloud deployed. Existing seven-day RDS backup,
-scoped restore, monitoring and legalSites7retain their own evidence. No production
+scoped restore, monitoring retain their own evidence; legalSites8is the latest navigation-only publication. No production
 identity opening, actual purchase, signed upload, TestFlight or public App release.
 
 ## External state
@@ -94,4 +92,4 @@ identity, retention/recovery reconciliation and signing/store checks independent
 do not wait for a new video service or treat the landing as the launch gate.
 
 [Release](release-readiness.md),[Apple](production-apple-20260926.md),
-[previous handoff — HISTORICAL](handoff-history-20260928-before-landing-v2.md).
+[previous handoff — HISTORICAL](handoff-history-20260928-before-theme-closeout.md).

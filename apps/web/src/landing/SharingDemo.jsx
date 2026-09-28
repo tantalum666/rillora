@@ -1,30 +1,25 @@
 import { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
-import { Check } from "@phosphor-icons/react";
-import folio from "../assets/landing/folio-paper.webp";
+import { Check, ArrowRight } from "@phosphor-icons/react";
+import folio from "../assets/landing/folio-transparent.webp";
 import symbol from "../assets/brand/symbol-paper.svg";
-import { demoPeople, demoSteps, sharedDemoMatters } from "./landingModel.js";
-import { FolioMotion, Reveal } from "./LandingMotion.jsx";
+import { demoPeople, sharedDemoMatters } from "./landingModel.js";
+import { Reveal } from "./LandingMotion.jsx";
 import { ExampleMatter } from "./ExampleMatter.jsx";
 
 export function SharingDemo() {
   const [personId, setPersonId] = useState("mum");
-  const [step, setStep] = useState(0);
   const reduce = useReducedMotion();
   const person = demoPeople.find((item) => item.id === personId);
   const matters = sharedDemoMatters(personId);
   return (
     <section
-      className="lp-sharing lp-chapter lp-container"
+      className="lp-sharing lp-section lp-container"
       id="people"
       aria-labelledby="lp-sharing-title"
       tabIndex={-1}
     >
-      <div className="lp-chapter-label">
-        <span>02</span>
-        <span>Your people</span>
-      </div>
-      <div className="lp-chapter-body">
+      <div className="lp-section-body">
         <Reveal className="lp-sharing-heading">
           <h2 id="lp-sharing-title">
             Let the right people
@@ -34,12 +29,12 @@ export function SharingDemo() {
           <p>Choose a person. Choose their view.</p>
         </Reveal>
         <div className="lp-sharing-scene">
-          <FolioMotion className="lp-demo-folio">
+          <div className="lp-demo-folio">
             <img src={folio} width="800" height="800" alt="" loading="lazy" />
             <div className="lp-folio-imprint" aria-hidden="true">
               <img src={symbol} alt="" />
             </div>
-          </FolioMotion>
+          </div>
           <svg
             className="lp-connection-lines"
             viewBox="0 0 1100 460"
@@ -49,7 +44,7 @@ export function SharingDemo() {
             <path d="M330 245 C430 245 425 130 535 130 S610 225 690 225" />
             <path d="M330 245 C430 245 425 345 535 345 S610 225 690 225" />
             <motion.path
-              key={`${personId}-${step}`}
+              key={personId}
               className="is-selected"
               d={
                 personId === "mum"
@@ -91,18 +86,9 @@ export function SharingDemo() {
             aria-atomic="true"
           >
             <span className="lp-sheet-fold" aria-hidden="true" />
-            <p className="lp-sheet-stage">
-              {step === 2
-                ? "Invitation preview"
-                : step === 1
-                  ? "Their own view"
-                  : "A place to begin"}
-            </p>
             <h3>Shared with {person.name}</h3>
             <p className="lp-sheet-description">
-              {step === 2
-                ? "They accept with their own account."
-                : "These are the items they can see."}
+              These are the items they can see.
             </p>
             <motion.div
               key={personId}
@@ -121,26 +107,9 @@ export function SharingDemo() {
             </motion.div>
           </div>
         </div>
-        <div
-          className="lp-demo-steps"
-          role="group"
-          aria-label="Explore the three steps"
-        >
-          {demoSteps.map((item, index) => (
-            <button
-              key={item.short}
-              type="button"
-              aria-pressed={step === index}
-              onClick={() => setStep(index)}
-            >
-              <span className="lp-step-number">0{index + 1}</span>
-              <span>
-                <strong>{item.title}</strong>
-                <small>{item.detail}</small>
-              </span>
-            </button>
-          ))}
-        </div>
+        <a className="lp-section-next" href="/product#sharing">
+          How invitations work <ArrowRight size={20} aria-hidden="true" />
+        </a>
       </div>
     </section>
   );

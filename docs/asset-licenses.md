@@ -151,3 +151,15 @@ Owner retains03 and rejects the first leafy04 variation.05 is an unmodified buil
 Owner chooses the original03 board. [Canonical assets](../assets/brand/rillora/README.md) are now consumed by the main iOS App icon and existing native/Web brand slots; earlier unshipped statements above describe their dated exploration checkpoints. The old03 source folder remains byte-identical. No stock Logo was imported or new font dependency purchased.
 
 [Font verification](brand-font-license-20260919.md) confirms Source Serif4 SemiBold and Inter commercial use underOFL1.1 from primary sources. Actual SourceSerifWOFF metadata includes Adobe copyright and Reserved Font NameSource; complete original Adobe/GoogleFonts/Inter notices supplement the incomplete package-level copyright header. Canonical package, root THIRD_PARTY_NOTICES, identical Web/native credits and the legal/app same-origin font-licences resource now retain them. Outlined artwork and app code do not inheritOFL. Font permission does not establish trademark clearance.
+
+## September28 system-theme and attribution placement
+
+Owner moves acknowledgements under legal information. Full existing copyright and
+licence text is unchanged; `/legal/licenses` renders136paragraphs in normal text,
+with optional download. The homepage no longer links straight to raw Credits. The
+formal legal publication shell adds a notices link without changing accepted text.
+
+ImageGen adds matching dark hero/alpha folio in `assets/concepts/rillora-landing-20260928-v3/`;
+exact approved03SVG stays a proportionate centered cover overlay. No new external
+UI library, third-party brand asset or paid component is added. Stripe/Privy pages
+were inspected as structural references only; their graphics/claims are not copied.

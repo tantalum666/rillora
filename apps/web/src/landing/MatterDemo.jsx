@@ -1,12 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import {
   Bank,
   FileText,
   Laptop,
   CurrencyBtc,
-  Play,
-  Pause,
   ArrowRight,
 } from "@phosphor-icons/react";
 import { matterExamples } from "./matterExamples.js";
@@ -16,74 +14,27 @@ const icons = { bank: Bank, file: FileText, laptop: Laptop, coin: CurrencyBtc };
 
 export function MatterDemo() {
   const [selected, setSelected] = useState(0);
-  const [playing, setPlaying] = useState(false);
   const reduce = useReducedMotion();
   const item = matterExamples[selected];
   const Icon = icons[item.icon];
-  useEffect(() => {
-    if (!playing) return;
-    const timer = setTimeout(() => {
-      if (selected === matterExamples.length - 1) setPlaying(false);
-      else setSelected(selected + 1);
-    }, 4000);
-    return () => clearTimeout(timer);
-  }, [playing, selected]);
-  useEffect(() => {
-    const pause = () => {
-      if (document.hidden) setPlaying(false);
-    };
-    document.addEventListener("visibilitychange", pause);
-    return () => document.removeEventListener("visibilitychange", pause);
-  }, []);
   function select(index) {
-    setPlaying(false);
     setSelected(index);
   }
   return (
     <section
-      className="lp-chapter lp-organise lp-container"
+      className="lp-section lp-organise lp-container"
       id="how-it-works"
       aria-labelledby="lp-organise-title"
       tabIndex={-1}
     >
-      <div className="lp-chapter-label">
-        <span>01</span>
-        <span>Organise</span>
-      </div>
-      <div className="lp-chapter-body">
+      <div className="lp-section-body">
         <Reveal className="lp-section-heading">
           <div>
-            <h2 id="lp-organise-title">
-              Start with one
-              <br />
-              important thing.
-            </h2>
+            <h2 id="lp-organise-title">What goes in your map.</h2>
             <p>
               An account, a document, a device. Give it a place and a next step.
             </p>
           </div>
-          <button
-            className="lp-play"
-            type="button"
-            aria-pressed={playing}
-            onClick={() => {
-              if (playing) setPlaying(false);
-              else {
-                setSelected(0);
-                setPlaying(true);
-              }
-            }}
-          >
-            {playing ? (
-              <Pause aria-hidden="true" />
-            ) : (
-              <Play aria-hidden="true" />
-            )}
-            <span>
-              {playing ? "Pause walkthrough" : "Play walkthrough"}
-              <small>A 16-second interactive tour</small>
-            </span>
-          </button>
         </Reveal>
         <div
           className="lp-category-choices"
@@ -121,10 +72,7 @@ export function MatterDemo() {
             })}
             <small>Interactive example · nothing is saved</small>
           </div>
-          <div
-            className="lp-matter-sheet"
-            aria-live={playing ? "off" : "polite"}
-          >
+          <div className="lp-matter-sheet" aria-live="polite">
             <motion.div
               key={item.id}
               initial={reduce ? false : { opacity: 0, y: 10, rotate: 0.4 }}
@@ -153,17 +101,9 @@ export function MatterDemo() {
                 </div>
               </dl>
             </motion.div>
-            <div className="lp-tour-track" aria-hidden="true">
-              <motion.span
-                key={`${selected}-${playing}`}
-                initial={false}
-                animate={{ width: `${(selected + 1) * 25}%` }}
-                transition={{ duration: reduce ? 0 : 0.45 }}
-              />
-            </div>
           </div>
         </div>
-        <a className="lp-section-next" href="#people">
+        <a className="lp-section-next" href="/#people">
           From what matters, to who it matters to{" "}
           <ArrowRight aria-hidden="true" size={20} />
         </a>

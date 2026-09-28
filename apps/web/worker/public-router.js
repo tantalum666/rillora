@@ -44,7 +44,23 @@ function handler(event) {
       },
     };
   }
-  if (["/", "/support", "/support/"].indexOf(request.uri) !== -1) {
+  if (
+    [
+      "/",
+      "/product",
+      "/product/",
+      "/security",
+      "/security/",
+      "/pricing",
+      "/pricing/",
+      "/support",
+      "/support/",
+      "/legal",
+      "/legal/",
+      "/legal/licenses",
+      "/legal/licenses/",
+    ].indexOf(request.uri) !== -1
+  ) {
     request.uri = "/index.html";
     return request;
   }

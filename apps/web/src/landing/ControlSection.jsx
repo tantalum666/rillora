@@ -1,8 +1,6 @@
 import { ArrowDown, ArrowRight } from "@phosphor-icons/react";
-import map from "../assets/landing/guidance-map.webp";
 import example from "../assets/landing/rillora-sharing-example.txt?url&no-inline";
 import { QuestionList } from "./LandingFAQ.jsx";
-import { FolioMotion, Reveal } from "./LandingMotion.jsx";
 
 const controls = [
   {
@@ -30,27 +28,24 @@ const controls = [
 export function ControlSection() {
   return (
     <section
-      className="lp-chapter lp-container"
+      className="lp-section lp-container"
       id="your-control"
-      aria-labelledby="lp-control-title"
+      aria-label="Sharing, export and encryption controls"
     >
-      <div className="lp-chapter-label">
-        <span>04</span>
-        <span>Your control</span>
-      </div>
-      <div className="lp-chapter-body">
-        <Reveal>
-          <h2 id="lp-control-title">Your map. Your control.</h2>
-          <p className="lp-section-intro">
-            Clear choices, from the first matter to your own copy.
-          </p>
-        </Reveal>
+      <div className="lp-section-body">
         <div className="lp-control-grid">
           <QuestionList questions={controls} />
           <div className="lp-export-example">
-            <FolioMotion>
-              <img src={map} width="1254" height="1254" alt="" loading="lazy" />
-            </FolioMotion>
+            <div className="lp-export-paper" aria-label="Example export">
+              <span>Rillora</span>
+              <h3>Shared directions</h3>
+              <p>
+                Insurance
+                <br />
+                Home documents
+              </p>
+              <small>Shared with Mum</small>
+            </div>
             <div>
               <h3>A clear, portable view.</h3>
               <p>See how a simple set of directions can read.</p>

@@ -6,10 +6,10 @@
   font-weight: 500;
 }
 .lp-faq-item {
-  border-top: 1px solid #23473d27;
+  border-top: 1px solid var(--lp-rule);
 }
 .lp-faq-item:last-child {
-  border-bottom: 1px solid #23473d27;
+  border-bottom: 1px solid var(--lp-rule);
 }
 .lp-faq-item h3 {
   font-family: Inter, Arial, sans-serif;
@@ -22,7 +22,7 @@
   justify-content: space-between;
   gap: 25px;
   background: none;
-  color: var(--lp-forest);
+  color: var(--lp-ink);
   border: 0;
   padding: 18px 0;
   text-align: left;
@@ -54,7 +54,7 @@
   padding: 0 25px 23px 0;
   font-size: 14px;
   line-height: 1.8;
-  color: #506359;
+  color: var(--lp-muted);
 }
 @keyframes lp-accordion-open {
   from {
@@ -80,7 +80,7 @@
   align-items: center;
   gap: 40px;
   padding-block: 64px;
-  border-top: 1px solid #23473d25;
+  border-top: 1px solid var(--lp-rule);
 }
 .lp-closing h2 {
   font-size: clamp(44px, 4.7vw, 70px);
@@ -106,7 +106,7 @@
   gap: 30px;
   align-items: center;
   padding-bottom: 24px;
-  border-bottom: 1px solid #23473d30;
+  border-bottom: 1px solid var(--lp-rule);
 }
 .lp-footer .lp-brand img {
   width: 145px;
@@ -121,7 +121,7 @@
   justify-content: space-between;
   gap: 24px;
   margin-top: 18px;
-  color: #506359;
+  color: var(--lp-muted);
 }
 .lp-footer-notes p {
   font-size: 12px;

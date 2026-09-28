@@ -2731,3 +2731,18 @@ unreachable release remains a different closed workflow. See [sharing contract](
 - Use a16-second opt-in interactive walkthrough with pause/stop and a separate
   real browser recording for review. No Sora API purchase/key or artificial
   account data is introduced. [Contract](landing-page-20260928.md).
+
+## 2026-09-28 — Owner corrects website purpose, navigation and notices
+
+- Centre the full approved mark on the actual folio cover; use proportional
+  positioning rather than a fixed-size mark drifting with image layout.
+- Website follows system appearance, with the earlier ink-green dark palette.
+  Keep one shared token system and matching imagery; no preference storage needed.
+- Remove the timed walkthrough and serial chapter/stage numbering. Keep purposeful
+  recipient/category/disclosure feedback, with separate top-navigation pages.
+- Place full third-party notices under legal information, linked from the Terms
+  publication shell. They are acknowledgements, not extra user acceptance or
+  amendments to the accepted service terms. Raw Credits leaves the homepage footer.
+- Stripe/Privy are navigation/content references only. No new package, metric,
+  endorsement, provider permission or paid feature is inferred from those sites.
+  [Current contract](landing-page-20260928.md).

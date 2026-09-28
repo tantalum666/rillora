@@ -27,24 +27,6 @@ export const demoPeople = Object.freeze([
   { id: "alex", name: "Alex", initial: "A" },
 ]);
 
-export const demoSteps = Object.freeze([
-  {
-    title: "Add a matter",
-    short: "Organise",
-    detail: "Record what exists and where to find it.",
-  },
-  {
-    title: "Choose what to show",
-    short: "Choose",
-    detail: "Give each person their own view.",
-  },
-  {
-    title: "Send an invitation",
-    short: "Share",
-    detail: "They accept with their own account.",
-  },
-]);
-
 export function sharedDemoMatters(person) {
   return demoMatters
     .filter((matter) => matter.recipients.includes(person))

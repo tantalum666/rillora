@@ -4,10 +4,26 @@ Role: public legal-page drafting and release gate
 Authority scope: Web Privacy Policy, Terms of Service, required factual inputs and publication status  
 Superseded by: applicable law, platform requirements, approved operator details and reviewed final legal text  
 Do not use for: personal legal advice, proof of global compliance, or permission to publish  
-Status: OWNER-APPROVED FORMAL ENGLISH RELEASE TEXT PUBLIC AT `LEGAL.RILLORA.XYZ`; SITES VERSION 6／PUBLIC ACCESS／CUSTOM DOMAIN／TLS／SEVEN ROUTES／SECURITY HEADERS VERIFIED IN THE DATED CHECKPOINT; GOOGLE OAUTH BRANDING SAVED UNDER `EXTERNAL / TESTING`; PRODUCT PRODUCTION／MARKET／BILLING GATES REMAIN OPEN WORK  
-Last updated: 2026-09-20 (Sites6 brand and font notice publication verified)
+Status: OWNER-APPROVED FORMAL ENGLISH RELEASE TEXT PUBLIC AT `LEGAL.RILLORA.XYZ`; CURRENT PUBLICATION IN HANDOFF; PRIOR ACCESS／DOMAIN／TLS／SEVEN-ROUTE EVIDENCE REMAINS DATED; GOOGLE OAUTH BRANDING SAVED UNDER `EXTERNAL / TESTING`; PRODUCT PRODUCTION／MARKET／BILLING GATES REMAIN OPEN WORK  
+Last updated: 2026-09-28 (Sites8 legal-information navigation; accepted text unchanged)
 
-## Current published baseline — Sites version6
+## Current publication — Sites version8
+
+Owner requests that component/font/art licences belong under legal information,
+not a raw Credits link in the homepage footer. WWW now provides `/legal` and the
+readable `/legal/licenses` page, retaining all original acknowledgements. The
+legal publication shell adds a Third-party notices link in its legal navigation.
+LegalDocumentPage and legalContract files are byte-identical to the prior legal
+checkout, so accepted wording, versions and body digest remain unchanged.
+
+Sites8was saved from source73f6ce7814858c4ed77c4b91985058dacbeec1f1 and its exact
+validated archive, then published with the same public audience.7legal artifact
+checks pass. This is a navigation addition, not a new agreement, marketing claim
+or production account activation. [Publication receipt](../output/qa/rillora-launch-goal-20260926/landing-v3/legal-deployment.json).
+Sites7had already replaced the microfavicon with all10approved paths; Sites8keeps
+that artwork. Other transport/body/privacy claims retain their original evidence.
+
+## HISTORICAL — Sites version6
 
 Owner-selected identity03 replaces the existing header/footer wordmark and placeholder favicon. Original Adobe/GoogleFonts/InterOFL notices ship as a same-origin text asset. Version6 was saved from the exact pushed Web source and the validated legal-only artifact, then published to the same public Site and custom domain.31 anonymous route/header/exact-resource checks pass; the320px Terms header renders the selected Logo, retains navigation and has no horizontal overflow. Legal wording, consent versions and the legal-body digest are unchanged. The six additional brand/icon/licence resources fit the updated18-asset cap;1JS/1CSS and compressed-size/security guards remain. [Brand publication QA](../output/qa/rillora-brand-adoption-20260919/README.md).
 

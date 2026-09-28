@@ -1,9 +1,5 @@
 .lp-page {
-  --lp-paper: #f5f1e8;
-  --lp-forest: #23473d;
-  --lp-bronze: #bd9473;
-  --lp-muted: #607268;
-  color: var(--lp-forest);
+  color: var(--lp-ink);
   background: var(--lp-paper);
   min-height: 100vh;
   font-family: Inter, Arial, sans-serif;
@@ -48,8 +44,8 @@
   top: -80px;
   z-index: 20;
   padding: 16px 22px;
-  background: var(--lp-forest);
-  color: var(--lp-paper) !important;
+  background: var(--lp-action);
+  color: var(--lp-action-ink) !important;
 }
 .lp-skip:focus {
   top: 16px;
@@ -63,7 +59,7 @@
   gap: 32px;
   position: relative;
   z-index: 2;
-  border-bottom: 1px solid #23473d25;
+  border-bottom: 1px solid var(--lp-rule);
 }
 .lp-brand {
   display: inline-flex;
@@ -96,8 +92,8 @@
   min-height: 52px;
   padding: 12px 22px;
   border-radius: 40px;
-  background: #23473d;
-  color: #f5f1e8 !important;
+  background: var(--lp-action);
+  color: var(--lp-action-ink) !important;
   font:
     500 15px/1.2 Inter,
     Arial,
@@ -111,7 +107,7 @@
   font-size: 10px;
   letter-spacing: 0.04em;
   padding-right: 11px;
-  border-right: 1px solid #f5f1e850;
+  border-right: 1px solid var(--lp-border);
 }
 .lp-sign-in svg,
 .lp-button svg,
@@ -174,8 +170,8 @@
   gap: 24px;
   padding: 18px 28px;
   min-height: 60px;
-  background: var(--lp-forest);
-  color: var(--lp-paper) !important;
+  background: var(--lp-action);
+  color: var(--lp-action-ink) !important;
   border-radius: 40px;
   font-size: 16px;
   font-weight: 600;
@@ -184,46 +180,12 @@
     transform 0.2s;
 }
 .lp-button:hover {
-  background: #17382f;
+  background: var(--lp-action-hover);
   transform: translateY(-2px);
 }
 .lp-invitation-link {
   font-size: 14px;
   line-height: 1.5;
   padding: 10px 0 6px;
-  border-bottom: 1px solid #23473d60;
-}
-.lp-hero-steps {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 50px;
-  border-top: 1px solid #23473d28;
-  margin-top: 105px;
-  padding: 34px 0 44px;
-}
-.lp-hero-steps a {
-  display: grid;
-  gap: 7px;
-  position: relative;
-}
-.lp-hero-steps a:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  height: 1px;
-  background: #23473d38;
-  width: 37%;
-  right: 0;
-  top: 36px;
-}
-.lp-hero-steps small {
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  color: var(--lp-muted);
-}
-.lp-hero-steps span {
-  font:
-    500 30px/1.3 "Source Serif 4",
-    Georgia,
-    serif;
-  letter-spacing: -0.02em;
+  border-bottom: 1px solid var(--lp-border);
 }

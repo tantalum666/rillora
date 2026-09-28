@@ -42,14 +42,10 @@ export function LifeSituations() {
   const Icon = item.icon;
   return (
     <section
-      className="lp-chapter lp-container"
+      className="lp-section lp-container"
       aria-labelledby="lp-life-title"
     >
-      <div className="lp-chapter-label">
-        <span>03</span>
-        <span>Life changes</span>
-      </div>
-      <div className="lp-chapter-body">
+      <div className="lp-section-body">
         <Reveal>
           <h2 id="lp-life-title">Ready for life’s changes.</h2>
           <p className="lp-section-intro">

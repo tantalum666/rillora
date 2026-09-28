@@ -8,9 +8,6 @@
   .lp-hero-content {
     padding-top: 115px;
   }
-  .lp-hero-steps {
-    margin-top: 115px;
-  }
 }
 @media (max-width: 1150px) {
   .lp-container {
@@ -28,20 +25,12 @@
   .lp-hero-copy > p {
     font-size: 18px;
   }
-  .lp-chapter {
+  .lp-section {
     grid-template-columns: 65px minmax(0, 1fr);
     gap: 24px;
   }
   .lp-section-heading {
     align-items: flex-start;
-  }
-  .lp-play span {
-    max-width: 135px;
-  }
-  .lp-play > svg {
-    width: 44px;
-    height: 44px;
-    padding: 14px;
   }
   .lp-organise-scene {
     gap: 24px;
@@ -59,15 +48,6 @@
   .lp-person-avatar {
     width: 70px;
     height: 70px;
-  }
-  .lp-folio-imprint img {
-    width: 65px;
-  }
-  .lp-demo-steps {
-    gap: 18px;
-  }
-  .lp-demo-steps button {
-    gap: 12px;
   }
   .lp-control-grid {
     gap: 28px;
@@ -109,9 +89,6 @@
   .lp-hero-actions .lp-button {
     min-height: 54px;
     padding-block: 15px;
-  }
-  .lp-hero-steps {
-    margin-top: 76px;
   }
 }
 @media (max-width: 800px) {
@@ -187,40 +164,12 @@
   .lp-hero-actions {
     margin-top: 27px;
   }
-  .lp-hero-steps {
-    order: 3;
-    width: calc(100% - 48px);
-    margin: 0 auto;
-    padding-top: 25px;
-    gap: 25px;
-  }
-  .lp-hero-steps span {
-    font-size: 26px;
-  }
-  .lp-hero-steps a:not(:last-child)::after {
-    width: 22%;
-  }
-  .lp-chapter {
+  .lp-section {
     grid-template-columns: 1fr;
     gap: 18px;
     padding-block: 56px;
   }
-  .lp-chapter-label {
-    flex-direction: row;
-    align-items: center;
-    gap: 12px;
-    font-size: 11px;
-    padding: 0;
-  }
-  .lp-chapter-label::after {
-    min-height: 0;
-    height: 1px;
-    width: auto;
-    max-width: 90px;
-    margin: 0;
-    background: var(--lp-bronze);
-  }
-  .lp-chapter h2 {
+  .lp-section h2 {
     font-size: 46px;
   }
   .lp-section-heading {
@@ -232,13 +181,6 @@
   .lp-sharing-heading > p {
     font-size: 17px;
     margin-top: 18px;
-  }
-  .lp-play span {
-    max-width: none;
-  }
-  .lp-play small {
-    display: inline;
-    margin-left: 10px;
   }
   .lp-category-choices {
     margin-top: 24px;
@@ -303,23 +245,6 @@
     max-width: 600px;
     width: 100%;
     margin-inline: auto;
-  }
-  .lp-demo-steps {
-    grid-template-columns: 1fr;
-    gap: 6px;
-    padding-top: 22px;
-  }
-  .lp-demo-steps button {
-    align-items: center;
-    min-height: 76px;
-    gap: 18px;
-  }
-  .lp-demo-steps strong {
-    font-size: 18px;
-  }
-  .lp-demo-steps small {
-    font-size: 13px;
-    margin-top: 5px;
   }
   .lp-section-next {
     margin-top: 24px;
@@ -387,12 +312,6 @@
     gap: 16px;
     padding-block: 54px 20px;
   }
-  .lp-closing-art {
-    width: 60%;
-    max-width: 320px;
-    justify-self: end;
-    margin-top: -25px;
-  }
   .lp-footer-notes {
     flex-direction: column;
     gap: 8px;
@@ -453,23 +372,8 @@
     width: 128%;
     margin: -15px 0 0 -14%;
   }
-  .lp-hero-steps {
-    width: calc(100% - 40px);
-    gap: 17px;
-    padding-bottom: 30px;
-  }
-  .lp-hero-steps span {
-    font-size: 24px;
-  }
-  .lp-hero-steps a:not(:last-child)::after {
-    display: none;
-  }
-  .lp-chapter h2 {
+  .lp-section h2 {
     font-size: 40px;
-  }
-  .lp-play small {
-    display: block;
-    margin: 5px 0 0;
   }
   .lp-category-choices button {
     flex: 1 1 calc(50% - 4px);
@@ -493,9 +397,6 @@
   .lp-demo-folio {
     width: 125%;
     margin-left: -15%;
-  }
-  .lp-folio-imprint img {
-    width: 52px;
   }
   .lp-person-avatar {
     width: 58px;
