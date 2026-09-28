@@ -6,7 +6,7 @@ import test from "node:test";
 const publicExperienceSource = await readFile(
   new URL("../src/PublicExperience.jsx", import.meta.url),
   "utf8",
-);
+) + await readFile(new URL('../src/PublicHome.jsx', import.meta.url), 'utf8');
 const explorerSource = await readFile(new URL("../src/ContinuityExplorer.jsx", import.meta.url), "utf8");
 const legalDocumentSource = await readFile(
   new URL("../src/LegalDocumentPage.jsx", import.meta.url),

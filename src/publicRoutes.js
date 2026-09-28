@@ -15,6 +15,7 @@ export const publicRoutes = Object.freeze({
 export function resolvePublicView(pathname) {
   const normalizedPath = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
   if (normalizedPath === publicRoutes.account) return "account";
+  if (["/account/billing", "/account/billing/complete"].includes(normalizedPath)) return "account";
   if (normalizedPath === publicRoutes.savedCopy) return "savedCopy";
   if (normalizedPath === publicRoutes.guides) return "guides";
   if (normalizedPath === publicRoutes.privacy) return "privacy";

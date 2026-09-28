@@ -51,7 +51,10 @@ export function normalizeCommercialStatus(payload) {
     currentAccessLabel: planLabel(payload.currentAccess.planCode) + (payload.validationOnly === true ? " · Test access" : ""),
     currentAccess: payload.currentAccess,
     freeFeatures: Object.freeze(featuresFor(freePlan, "included")),
-    familyFeatures: Object.freeze(featuresFor(familyPlan, "planned").filter((label) => [capabilityLabels.family_maintenance, capabilityLabels.trusted_people_multiple].includes(label))),
+    familyFeatures: Object.freeze((familyPlan?.capabilities ?? [])
+      .filter(capability => ["family_maintenance", "trusted_people_multiple"].includes(capability.code)
+        && ["included", "planned"].includes(capability.enforcementMode) && capability.availability !== "retired")
+      .map(capability => capabilityLabels[capability.code])),
     futureFeatures: Object.freeze(featuresFor(familyPlan, "planned").filter((label) => ![capabilityLabels.family_maintenance, capabilityLabels.trusted_people_multiple].includes(label))),
     offers: Object.freeze(payload.offers.map((offer) => Object.freeze({ ...offer }))),
     boundaries: Object.freeze({ ...payload.boundaries }),

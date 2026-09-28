@@ -1,0 +1,20 @@
+.public-launch-status {
+  width: min(100% - 64px, 1440px);
+  margin: 20px auto 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.public-website .architectural-primary { text-decoration: none; }
+.public-website .public-matter-guidance a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  color: var(--sage);
+}
+.public-support { max-width: 800px; min-height: 65vh; }
+.public-support > .secondary-button { margin-bottom: 32px; }
+.public-website .public-footer > .rillora-brand { max-width: 180px; height: auto; }
+@media (max-width: 600px) {
+  .public-launch-status { width: calc(100% - 40px); }
+}

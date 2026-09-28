@@ -62,7 +62,8 @@ export function PublicMatterExplorer({ onStart }) {
             </button>
             <div className="public-matter-guidance" id={`matter-guidance-${id}`} hidden={expanded !== id}>
               <p>{detail}</p>
-              <button type="button" onClick={() => onStart(id)}>{action}<ArrowRight size={20} aria-hidden="true" /></button>
+              {onStart ? <button type="button" onClick={() => onStart(id)}>{action}<ArrowRight size={20} aria-hidden="true" /></button>
+                : <a href={`/guides?service=${id === 'financial_asset' ? 'binance' : id === 'document' ? 'google' : 'apple'}`}>Explore a related guide <ArrowRight size={20} aria-hidden="true" /></a>}
             </div>
           </article>
         ))}

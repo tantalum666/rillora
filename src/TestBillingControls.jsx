@@ -65,7 +65,7 @@ export function TestBillingControls({ commerce, onAccessChanged }) {
       })}>Manage test subscription</button>}
       {pending && <button className="secondary-button" disabled={busy} onClick={() => run(async () => {
         await api.cancelTestCheckout(); checkoutKey.current = crypto.randomUUID(); setAcknowledged(false);
-        await refresh(); setMessage("Unfinished checkout closed. You can choose either billing period.");
+        await refresh(); setMessage("Unfinished checkout closed. You can start a new annual checkout.");
       })}>Close unfinished checkout</button>}
       <button className="secondary-button" disabled={busy} onClick={() => run(refresh)}>Refresh access</button>
     </div>

@@ -3,10 +3,16 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig(({ mode }) => ({
+  envDir: ['public', 'production-closed'].includes(mode) ? false : undefined,
+  define: mode === 'production-closed' ? {
+    'import.meta.env.VITE_API_BASE_URL': JSON.stringify('/api/v1'),
+    'import.meta.env.VITE_RILLORA_CUSTOMER_ACCESS': JSON.stringify('closed'),
+    'import.meta.env.VITE_RILLORA_SERVICE_MARKET_CODE': JSON.stringify('GLOBAL_US'),
+  } : undefined,
   build: {
-    outDir: "dist/client",
+    outDir: mode === 'public' ? 'dist-public' : mode === 'production-closed' ? 'dist-production' : 'dist/client',
     rollupOptions: {
-      input: resolve(mode === "legal" ? "legal.html" : "index.html"),
+      input: resolve(mode === "legal" ? "legal.html" : mode === 'public' ? 'public.html' : "index.html"),
     },
   },
   optimizeDeps: {
@@ -16,7 +22,7 @@ export default defineConfig(({ mode }) => ({
     host: "0.0.0.0",
     allowedHosts: ["terminal.local"],
     warmup: {
-      clientFiles: [mode === "legal" ? "./src/legal-main.jsx" : "./src/main.jsx"],
+      clientFiles: [mode === "legal" ? "./src/legal-main.jsx" : mode === 'public' ? './src/public-main.jsx' : "./src/main.jsx"],
     },
     proxy: {
       "/api": {

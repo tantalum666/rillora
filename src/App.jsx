@@ -34,6 +34,7 @@ import {
 } from "@phosphor-icons/react";
 import { ApiClientError, api } from "./api.js";
 import { TestBillingControls } from "./TestBillingControls.jsx";
+import { ProductionBillingControls } from "./ProductionBillingControls.jsx";
 import { getTrustedContactEvidence } from "./contactEvidence.js";
 import { StartHerePanel } from "./StartHerePanel.jsx";
 import { AccountDataPanel } from "./AccountDataPanel.jsx";
@@ -158,21 +159,21 @@ function CommercialFeatureList({ features, planned = false }) {
   return <ul className={`commercial-feature-list${planned ? " is-planned" : ""}`}>{features.map((feature) => <li key={feature}>{!planned && <CheckCircle size={18} weight="fill" aria-hidden="true" />}<span>{feature}</span></li>)}</ul>;
 }
 
-function PlanAccessPreview({ commerce, onAccessChanged }) {
+function PlanAccessPreview({ commerce, onAccessChanged, returnedFromCheckout }) {
   if (!commerce.available) return <section className="current-access-card"><CreditCard size={36} aria-hidden="true" /><h2>Temporarily unavailable</h2><p>Core planning remains available.</p></section>;
   const annualOffer = commerce.offers.find(({ billingInterval }) => billingInterval === "annual");
-  const monthlyOffer = commerce.offers.find(({ billingInterval }) => billingInterval === "monthly");
   return <div className="plan-access-preview">
     <section className="current-access-card" aria-labelledby="current-access-title">
       <div><SurfaceIcon icon={CreditCard} emblem /></div><div><SectionLabel>Current access</SectionLabel><h2 id="current-access-title">{commerce.currentAccessLabel}</h2></div>
       <details className="task-details"><summary>Included with Free</summary><CommercialFeatureList features={commerce.freeFeatures} /></details>
     </section>
     {commerce.validationOnly && <TestBillingControls commerce={commerce} onAccessChanged={onAccessChanged} />}
-    <details className="task-details access-future plan-disclosure"><summary><SurfaceIcon icon={AddressBook}/><span>Rillora Family · Not available yet</span><CaretRight size={17} className="disclosure-chevron" aria-hidden="true"/></summary>
-      {(annualOffer || monthlyOffer) && <p className="access-plan-price">{annualOffer && <strong>{formatOffer(annualOffer)}</strong>}{annualOffer && monthlyOffer ? " or " : ""}{monthlyOffer && formatOffer(monthlyOffer)}</p>}
+    {!commerce.validationOnly && <ProductionBillingControls commerce={commerce} onAccessChanged={onAccessChanged} returnedFromCheckout={returnedFromCheckout} />}
+    <details className="task-details access-future plan-disclosure"><summary><SurfaceIcon icon={AddressBook}/><span>{commerce.billingOpen || commerce.currentAccess?.planCode === "family" ? "Included with Family" : "Rillora Family · Not available yet"}</span><CaretRight size={17} className="disclosure-chevron" aria-hidden="true"/></summary>
+      {annualOffer && !commerce.billingOpen && commerce.currentAccess?.planCode !== "family" && <p className="access-plan-price"><strong>{formatOffer(annualOffer)}</strong></p>}
       <CommercialFeatureList features={commerce.familyFeatures} planned />
       {commerce.futureFeatures?.length > 0 && <details className="task-details"><summary>Later roadmap · not included yet</summary><CommercialFeatureList features={commerce.futureFeatures} planned /></details>}
-      <p>Billing is not open. No purchase or trial starts here.</p>
+      {!commerce.billingOpen && <p>New subscriptions are not available.</p>}
     </details>
     <details className="task-details plan-disclosure"><summary><SurfaceIcon icon={Shield}/><span>Access when Family ends</span><CaretRight size={17} className="disclosure-chevron" aria-hidden="true"/></summary><p>You keep your own records and exports. Free includes one live recipient. Extra recipients retain only their permitted paid-period copy, without later updates.</p><p>You can always restrict or revoke sharing. Billing does not trigger disclosure.</p></details>
   </div>;
@@ -257,6 +258,7 @@ export function App() {
   ].includes(initialPublicPath);
   const startsOnInvitationRoute = /^\/invite(?:\/[a-f0-9-]{36})?\/?$/i.test(window.location.pathname);
   const initialRoute = useRef(readWorkspaceRoute(window.location.href)).current;
+  const returnedFromCheckout = useRef(window.location.pathname === "/account/billing/complete").current;
   const [activeNav, setActiveNav] = useState(initialRoute.view);
   const [matters, setMatters] = useState([]);
   const [sharingMatterId, setSharingMatterId] = useState(initialRoute.sharingMatterId);
@@ -350,7 +352,8 @@ export function App() {
   }, []);
 
   useEffect(() => {
-    if (!startsOnPublicReadOnlyRoute && !startsOnInvitationRoute) void loadWorkspace();
+    if (import.meta.env.VITE_RILLORA_CUSTOMER_ACCESS === "closed") setLoading(false);
+    else if (!startsOnPublicReadOnlyRoute && !startsOnInvitationRoute) void loadWorkspace();
     else setLoading(false);
     return () => window.clearTimeout(toastTimer.current);
   }, [loadWorkspace, startsOnPublicReadOnlyRoute, startsOnInvitationRoute]);
@@ -739,7 +742,7 @@ export function App() {
         {activeNav === "shared" && <SharedWithMePanel apiClient={api} />}
         {activeNav === "maintenance" && <Suspense fallback={<p role="status">Loading reviews…</p>}><FamilyMaintenancePanel apiClient={api} onChanged={() => void loadWorkspace()} onManageSharing={() => setActiveNav("contacts")} /></Suspense>}
         {activeNav === "guides" && <PlatformGuideDirectory renderMark={(guide) => <ProviderMark providerKey={guide.key} label={guide.label}/>} onOpen={(guide) => setDrawer({ type: "provider-guide", providerKey: guide.key })}/>}
-        {activeNav === "access" && <PlanAccessPreview commerce={commerce} onAccessChanged={setCommerce} />}
+        {activeNav === "access" && <PlanAccessPreview commerce={commerce} onAccessChanged={setCommerce} returnedFromCheckout={returnedFromCheckout} />}
         {activeNav === "activity" && <div className="activity-list">{auditEvents.length ? auditEvents.map((event) => <p key={event.publicId}><Check size={17} /> {formatAuditAction(event)}{event.resourceType === "matter" && matters.some(item => item.id === event.resourcePublicId) && <button className="text-button" onClick={() => openMatter(matters.find(item => item.id === event.resourcePublicId))}>{matters.find(item => item.id === event.resourcePublicId).label}</button>}{event.action.startsWith("sharing.") && <button className="text-button" onClick={() => setActiveNav("contacts")}>View people</button>}{event.action.startsWith("family_review.") && <button className="text-button" onClick={() => setActiveNav("maintenance")}>Open review</button>} <span>{formatDate(event.occurredAt)}</span></p>) : <p>No recorded plan changes yet.</p>}</div>}
         {activeNav === "settings" && <AccountDataPanel apiClient={api} onChanged={() => void loadWorkspace()} onDeletionRequested={accountDeletionRequested}/>}
         {activeNav === "settings" && <div className="plan-card settings-card"><button className="secondary-button" type="button" onClick={() => setActiveNav("access")}><CreditCard size={20} /> Review plan & access</button>{session?.authenticationMode === "session" && <><button className="secondary-button settings-sign-out" disabled={busy} onClick={() => void signOut()}><SignOut size={20} /> {busy ? "Signing out…" : "Sign out"}</button><button className="secondary-button settings-sign-out" disabled={busy} onClick={() => void signOutAllDevices()}><SignOut size={20} /> Sign out all Rillora devices</button><p className="drawer-intro">Revokes Rillora sessions only.</p></>}</div>}
@@ -749,6 +752,7 @@ export function App() {
     );
   }
 
+  if (import.meta.env.VITE_RILLORA_CUSTOMER_ACCESS === "closed") return <PublicExperience sessionStatus="not_open" />;
   if (startsOnInvitationRoute) return <InvitationPage apiClient={api} />;
   if (deletionReference || window.location.pathname === "/account-deletion") return <AccountDeletionStatus apiClient={api} reference={deletionReference}/>;
 
@@ -758,7 +762,8 @@ export function App() {
 
   if ((loading || loadError) && !session) {
     const signedOut = loadError instanceof ApiClientError && loadError.status === 401;
-    if (!signedOut && !browsePublic) return <main className="workspace-gate" aria-busy={loading}>
+    const serviceNotOpen = loadError instanceof ApiClientError && loadError.code === "service_not_open";
+    if (!signedOut && !serviceNotOpen && !browsePublic) return <main className="workspace-gate" aria-busy={loading}>
       <span className="workspace-gate-brand"><RilloraBrand /></span>
       <FileText size={44} aria-hidden="true" />
       <h1>{loading ? "Loading your map" : "Your map is temporarily unavailable"}</h1>
@@ -770,7 +775,7 @@ export function App() {
     </main>;
     return (
       <PublicExperience
-        sessionStatus={loading ? "checking" : signedOut ? "signed_out" : "unavailable"}
+        sessionStatus={loading ? "checking" : signedOut ? "signed_out" : serviceNotOpen ? "not_open" : "unavailable"}
         onRetry={() => void loadWorkspace()}
       />
     );
