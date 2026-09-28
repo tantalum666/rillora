@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-27",
+  "updatedAt": "2026-09-28",
   "release": "Rillora Global 1.0",
   "scope": "Web and native iOS; existing Free and Family only",
   "gates": [
@@ -35,9 +35,11 @@
         "output/qa/rillora-production-identity-20260924/ses-support-console-readback.json",
         "output/qa/rillora-production-identity-20260924/ses-followup-submission.json",
         "output/qa/rillora-production-identity-20260924/mail-readiness-after-reply.json",
-        "output/qa/rillora-launch-goal-20260926/ses-gmail-readback.json"
+        "output/qa/rillora-launch-goal-20260926/ses-gmail-readback.json",
+        "output/qa/rillora-launch-goal-20260926/ses-reconsideration-submitted-20260928.json",
+        "docs/auth0-cognito-migration-20260928.md"
       ],
-      "next": "SES production access was explicitly declined after the submitted supplement; Support and Gmail match and disclose no specific cause. Keep Auth0 Free/test identities while evaluating a legitimate alternative transactional sender, then complete actual delivery/recovery, controlled old-identity retirement/token drain and production client journeys."
+      "next": "SES reconsideration submitted to original case179022088800001 at2026-09-28T12:40:19+08 and read back Reopened; do not duplicate. SES remains sandbox200/day,1/sec. Retain Auth0; Resend fallback, no migration. Await approval then verify real delivery/recovery, identity retirement/token drain and production journeys; independent engineering continues."
     },
     {
       "id": "production-billing",

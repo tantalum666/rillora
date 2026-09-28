@@ -1,19 +1,37 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-21",
+  "updatedAt": "2026-09-28",
   "scope": "Planning registry, not proof of deployed adapters or transferable contracts",
   "services": [
     {
       "id": "identity",
       "current": "Auth0 OIDC; first-party login subdomain",
       "status": "existing",
-      "observedQuota": {"checkedAt":"2026-09-21","plan":"Free","externalMAU":2,"externalMAULimit":25000,"m2mTokens":0,"m2mTokenLimit":1000,"tenantEnvironment":"DEVELOPMENT"},
-      "observedFeatureGaps": ["Universal Login Liquid template API returns402 paid subscription required", "No custom email provider configured; built-in delivery is development-only"],
+      "observedQuota": {
+        "checkedAt": "2026-09-21",
+        "plan": "Free",
+        "externalMAU": 2,
+        "externalMAULimit": 25000,
+        "m2mTokens": 0,
+        "m2mTokenLimit": 1000,
+        "tenantEnvironment": "DEVELOPMENT"
+      },
+      "observedFeatureGaps": [
+        "Universal Login Liquid template API returns402 paid subscription required",
+        "No custom email provider configured; built-in delivery is development-only"
+      ],
       "businessKey": "planner UUID plus explicit issuer/subject bindings",
       "port": "IdentityProvider / NativeIdentityVerifier",
       "exit": "Export permitted profiles; rehearse verified relinking; password/MFA export subject to Auth0 eligibility; passkey reenrollment may be needed",
       "scaleTrigger": "60/80% of actual MAU or feature quota, or paid quote changes total cost materially",
-      "migrationGate": "Existing planner IDs, contact ACLs, legal proof, sessions and recovery pass with both issuers; never merge by email alone"
+      "migrationGate": "Existing planner IDs, contact ACLs, legal proof, sessions and recovery pass with both issuers; never merge by email alone",
+      "migrationAssessment": {
+        "checkedAt": "2026-09-28",
+        "candidate": "Amazon Cognito Essentials",
+        "status": "research_only_not_adopted",
+        "document": "docs/auth0-cognito-migration-20260928.md",
+        "criticalBoundary": "Stable business UUID; verified issuer/subject relinking; Free password-hash export unavailable; no email-only merge"
+      }
     },
     {
       "id": "database",
@@ -67,8 +85,8 @@
     },
     {
       "id": "email",
-      "current": "Zoho role mail; user-driven invite link/QR; Auth0 built-in authentication mail is development-only and limited to10/minute; production transactional provider not configured",
-      "status": "existing_mail_planned_transactions",
+      "current": "Zoho role mail; user-driven invite link/QR; Auth0 built-in test sender remains. AWS SES domain/control foundation exists; production sending remains sandbox. Original support case reopened after authorized2026-09-28reconsideration; Resend fallback only.",
+      "status": "ses_reconsideration_submitted_production_transactions_not_enabled",
       "businessKey": "Opaque notification ID and template version",
       "port": "TransactionalEmailAdapter and outbox (planned)",
       "exit": "Portable templates, suppression list, delivery state and verified sending DNS",

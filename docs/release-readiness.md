@@ -2,7 +2,19 @@
 
 Role: current launch scope, remaining work and release evidence contract  
 Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; CUSTOMER ACCOUNTS AND SALES CLOSED
-Last updated: 2026-09-27 (Asia/Hong_Kong)
+Last updated: 2026-09-28 (Asia/Hong_Kong)
+
+## September28 mail-provider priority
+
+Owner asks to reduce service sprawl and reconsider AWS. Retain AWS plus Auth0;
+prepare evidence-based SES reconsideration, with Resend only as a fallback and no
+pending signup requirement. Auth0's built-in sender is unsupported for production;
+replacing Auth0 with Cognito does not remove SES approval for higher-volume mail.
+Owner later explicitly authorizes submission: the original case is reopened with
+operator correspondence at September28 12:40:19+08. Browser MFA/access and the
+current SES sandbox200/day,1/sec are verified; CLI refresh remains separate.
+No approval, provider/identity switch or price change occurred. The Cognito
+assessment remains planning only. [Current mail contract](production-identity-mail-20260924.md).
 
 ## September27 current engineering increment
 
@@ -29,8 +41,8 @@ The refreshed full read covers147project-owned Markdown files/25,917lines.
 [Reading ledger and work state](../output/qa/rillora-launch-goal-20260926/).
 AWS login is now verified, superseding the expired-session observation below.
 SES's actual September26 refusal is confirmed in both Support and Gmail; specific
-criteria remain undisclosed. Evaluate a legitimate alternative sender rather than
-waiting indefinitely or asserting another provider is already approved.
+criteria remain undisclosed. September28 prioritizes reconsideration with existing
+SES; a legitimate alternative remains fallback. Continue independent engineering.
 [Current mail facts](production-identity-mail-20260924.md).
 
 Execution packages are: Apple authoritative transaction/status/intake and native

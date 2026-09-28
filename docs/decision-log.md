@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-09-26 (Asia/Hong_Kong)
+Last updated: 2026-09-28 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -2651,3 +2651,35 @@ unreachable release remains a different closed workflow. See [sharing contract](
   independent engineering. Actual quota, suppression, TLS, notices, billing limits
   and real delivery must be checked; current Free price is not guaranteed forever.
   [Mail contract](production-identity-mail-20260924.md).
+
+## 2026-09-28 — Prefer existing AWS mail before adding a sender
+
+- Status: PROVISIONAL implementation priority; not an adopted identity migration.
+- Owner questions service sprawl, asks about AWS reconsideration and why Auth0
+  does not cover verification/reset delivery. Fresh official documentation confirms
+  Auth0 owns the workflows but its built-in email provider is test-only; SES is an
+  already-supported alternative to Resend.
+- Agent supersedes the September26 Resend-first recommendation: retain AWS/Auth0,
+  prioritize a concrete SES reconsideration and keep Resend as fallback. Withdraw
+  the active Resend signup request for now; do not purchase or configure a provider.
+- AWS documents reopening within14days/related cases later, but reconsideration
+  does not promise approval. Prepare an accurate unsent draft; no new support
+  message or case reopening is authorized merely by this explanatory question.
+- Cognito consolidation would require new identity acceptance and still uses SES
+  beyond its50/day default. No identity rewrite or production shortcut is adopted.
+  [Current mail contract](production-identity-mail-20260924.md).
+
+## 2026-09-28 — Owner authorizes SES reconsideration submission
+
+- Owner explicitly says to apply for AWS reconsideration directly. Submit the
+  prepared limited transactional-use explanation on the original case; no repeat
+  send permission is needed and no new paid plan or scope is introduced.
+- After actual browser MFA, verify correct account and current Frankfurt sandbox,
+  submit once, then read back the new correspondence and Reopened status.
+  Approval and actual message delivery remain separate release gates.
+- Owner also asks about a later Auth0-to-AWS migration and relative price. This is
+  a planning question, not permission to change the identity provider. Preserve
+  current Auth0 and all account/consent/permission mappings while recording the
+  code-based migration boundary and current usage-based comparison.
+  [Assessment](auth0-cognito-migration-20260928.md),
+  [mail result](production-identity-mail-20260924.md).

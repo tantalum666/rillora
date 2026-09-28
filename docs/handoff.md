@@ -1,7 +1,7 @@
 # Rillora Current Handoff
 
 Status: FINAL LAUNCH GOAL ACTIVE; NATIVE PURCHASE LOCALLY VERIFIED; REVIEW VALIDATION AND OPERATIONS REMAIN
-Last updated: 2026-09-27 (Asia/Hong_Kong)
+Last updated: 2026-09-28 (Asia/Hong_Kong)
 
 ## Current task and authority
 
@@ -51,18 +51,23 @@ Do not repeat login without fresh expiry evidence.
 SES's September26 01:28+08 reply explicitly declines the submitted request. Support
 and Owner-requested Gmail agree; specific criteria are undisclosed.14configuration
 checks pass, productionAccessEnabledfalse, account health normal. Simulator alarms
-are not refusal-causality proof. No new reply/case reopening occurred.
+are not refusal-causality proof. That dated checkpoint preceded the new submission below.
 [Mail evidence](../output/qa/rillora-launch-goal-20260926/ses-gmail-readback.json).
 
-Resend Free is now the preferred proposal: actualUI showsUSD0/3000monthly/100daily/
-3domains. US email/log storage and30-day retention are disclosed; EU sending is not
-EU storage. Current Chrome3 still has signup tab1082157391, re-marked for Owner
-signup/login and current terms. No account/key/DNS/Auth0 change was observed.
-Former Chrome2 is absent from the inventory; documented recovery used the available
-Chrome3 without a repeated Owner login. Do not repeat the
-pending question or accept agreement for Owner. Verify real quota/billing controls
-and delivery before activation; Free terms can change.
-[Concrete proposal](../output/qa/rillora-launch-goal-20260926/resend-free-proposal.json).
+On September28 Owner questions service sprawl, then explicitly authorizes submission.
+SES reconsideration is submitted in the original case179022088800001: console
+readback shows Reopened and operator correspondence at12:40:19+08. Browser MFA
+is completed and correct-account access verified; CLI refresh is still separate.
+Frankfurt remains sandbox200/day,1/sec. This is not approval or real delivery.
+[Receipt](../output/qa/rillora-launch-goal-20260926/ses-reconsideration-submitted-20260928.json).
+Prioritize the existing SES path
+with existing Auth0; Resend is fallback only and its signup request is withdrawn
+for now. Auth0 owns verification/reset but its built-in sender is test-only.
+Cognito would require an identity migration and still uses SES for higher-volume
+email. Do not repeat the submitted message or ask for its authorization again.
+The later migration question has a code/price assessment, not a migration decision.
+[Current recommendation/evidence](production-identity-mail-20260924.md),
+[migration/cost assessment](auth0-cognito-migration-20260928.md).
 Apple exact price/effective fee and real Sandbox/TestFlight lifecycle remain open.
 
 ## Preserved deployment boundary
@@ -84,7 +89,7 @@ Then obtain actual provider lifecycle evidence.
 
 Exact Apple fee/price, streamlined/out-of-app binding, US external-Web/fallback
 acceptance, rollout, retention/recovery, identity/mail and signed submission remain.
-Continue independent work while the pending Resend signup step waits for Owner.
+Continue independent work; do not wait for Resend signup or add an identity migration.
 
 [Release](release-readiness.md),[Apple](production-apple-20260926.md),
 [Identity/mail](production-identity-mail-20260924.md),

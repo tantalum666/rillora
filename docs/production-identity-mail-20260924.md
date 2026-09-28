@@ -2,9 +2,76 @@
 
 Role: focused release integration and evidence boundary
 
-Status: MAIL CONFIGURATION VERIFIED; SES PRODUCTION REQUEST REJECTED; ALTERNATIVE SENDER EVALUATION OPEN
+Status: SES RECONSIDERATION SUBMITTED AND CASE REOPENED; STILL SANDBOX; RESEND FALLBACK ONLY
 
-Last updated: 2026-09-26 (Asia/Hong_Kong)
+Last updated: 2026-09-28 (Asia/Hong_Kong)
+
+## September28 authorized reconsideration submitted
+
+Owner explicitly instructs direct AWS reconsideration. That supplies the required
+message authorization; no further engineering/send confirmation is outstanding.
+The CLI actually reports session expiry. The normal browser reaches MFA and Owner
+completes it; the console verifies rillora-operator in the correct account.
+This restores browser administration, not the still-expired CLI session.
+
+The Frankfurt SES console is freshly read: still sandbox,200messages/day,1/second,
+0sent in the current daily window and0% displayed reputation bounce/complaint rates.
+These do not prove inbox delivery or explain the prior refusal. The dated domain,
+TLS, suppression and simulator checks remain clearly dated in the new request.
+
+The original case179022088800001 is reopened with one six-point reconsideration
+message. Readback lists rillora/rillora-operator at September28 12:40:19+08 and
+case status Reopened. Existing support@rillora.xyz contact remains; no attachment,
+credential, recipient list, new region/account or paid support plan is introduced.
+This is submitted and persisted, not approved production sending. Await the reply
+while independent engineering continues; do not duplicate this message.
+[Submission receipt](../output/qa/rillora-launch-goal-20260926/ses-reconsideration-submitted-20260928.json).
+
+The separate Owner question about later Auth0-to-Cognito migration is assessed
+against actual interfaces and current prices. No migration or paid tier is adopted.
+[Migration/cost assessment](auth0-cognito-migration-20260928.md).
+
+## September28 service consolidation and delivery responsibility
+
+Owner questions service sprawl and asks whether AWS can reconsider and Auth0 can
+handle verification/reset alone. Auth0 already owns those workflows: it generates
+and verifies links, updates verification/password state and applies identity rules.
+Its built-in sender is explicitly unsupported for production; an external sender
+is required. SES and Resend are alternative delivery providers, not two additional
+identity systems or two providers that must both be installed.
+[Current Auth0 rule](https://auth0.com/docs/customize/email/smtp-email-providers).
+
+Agent now prioritizes retaining AWS plus Auth0 and preparing one evidence-based
+SES reconsideration. This supersedes the September26 Resend-first recommendation;
+Resend remains a fallback and its pending signup request is withdrawn for now.
+No provider is switched and no Cognito migration is adopted. The account/mail gate
+remains open regardless of the recommendation.
+
+The September26 console had a Reopen action. AWS documents a14-day reopening
+window and related cases after that window. Requesting reconsideration is possible;
+approval, turnaround and the undisclosed reason are not established. Do not repeat
+the same application or change accounts/regions to avoid the review. The concise
+[unsent reconsideration draft](../output/qa/rillora-launch-goal-20260926/ses-reconsideration-draft-20260928.md)
+references the earlier facts, distinguishes proposed traffic from actual users,
+and asks for actionable requirements. Sending a new support communication needs
+explicit message authorization, which the later instruction above supplies. This
+paragraph records the earlier unsent preparation, not the current submission status.
+[AWS case rules](https://docs.aws.amazon.com/awssupport/latest/user/monitoring-your-case.html).
+
+AWS Cognito could replace Auth0, concentrating these infrastructure services at
+AWS, but would require identity/session/link/deletion and Web/iOS regression work.
+Its default email quota is50/day per AWS account; higher-volume delivery uses
+the customer's SES and its production approval. Vendor consolidation does not
+remove this delivery gate or justify a late identity rewrite on its own.
+[Cognito email](https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-email.html),
+[quota](https://docs.aws.amazon.com/cognito/latest/developerguide/quotas.html).
+
+The earlier September28 read-only checker did not complete get-caller-identity; it makes
+no new claim about SES status or the cause of the authentication/read failure.
+Keep September26 as the last actual refusal/configuration evidence. No new login,
+case, message, credential, billing change or customer email occurred in that earlier
+research review. The later authorized case submission is recorded above.
+[Research and checks](../output/qa/rillora-launch-goal-20260926/mail-consolidation-20260928.json).
 
 ## September26 actual decision and Gmail cross-check
 
@@ -30,7 +97,7 @@ reputation bounce/complaint rates; neither those alarm messages nor their later
 OK states establish why AWS rejected production access.
 [Official simulator boundary](https://docs.aws.amazon.com/ses/latest/dg/send-an-email-from-console.html).
 
-Continue the authorized launch goal by evaluating a legitimate alternative
+The September26 response was to continue the authorized launch goal by evaluating a legitimate alternative
 transactional sender with explicit cost, data-processing, domain, suppression,
 credential and Auth0 compatibility checks. No replacement is selected, purchased
 or installed yet. Do not reopen/send the old case without explicit message
@@ -38,9 +105,9 @@ authorization, change regions to evade review, or silently switch the working
 test identity. Real verification/reset delivery and invitation continuity remain
 independent acceptance conditions. [Current readback](../output/qa/rillora-launch-goal-20260926/ses-gmail-readback.json).
 
-## Resend Free proposal — account setup pending
+## Historical September26 Resend Free proposal — superseded as first choice
 
-Agent recommends preparing Resend's directly supported Auth0 integration as the
+Agent then recommended preparing Resend's directly supported Auth0 integration as the
 next low-volume alternative. Actual Chrome pricing confirmsUSD0/month,3000emails
 per month,100per day,3domains and30-day data retention. This is the current Free
 offer, not a permanent cost guarantee: the August27Terms reserve changes and
@@ -54,7 +121,7 @@ invitation campaign. Prepare a dedicated sender, scoped send-only credential,
 enforcedTLS, tracking off, suppression and observable failure/quota behavior.
 Actual notices and processing records must reflect the new sender before use.
 
-The signup page is open in Chrome for Owner signup/login and current account terms.
+At that checkpoint the signup page was open in Chrome for Owner signup/login and current account terms.
 Email/Password remain blank; Create account is disabled. Browser rules require
 Owner entry of a new password and action-time agreement; this is not a renewed
 request for project engineering authority. No account, key, DNS or Auth0 provider

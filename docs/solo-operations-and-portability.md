@@ -2,7 +2,20 @@
 
 Role: current operating model, full feature roadmap and provider-exit contract  
 Status: OWNER NO-HIRING DIRECTION LOCKED; DISABLED PRICE CATALOG DEPLOYED TO SYNTHETIC STAGING; PUBLIC MONITOR SCHEDULE ENABLED / DELIVERED FAILURE-RECOVERY-SILENCE PROOF; ACCOUNT DELETION WORKER DEPLOYED; OTHER AUTOMATIONS PLANNED  
-Last updated: 2026-09-26 (current annual-only Web quote; earlier operations evidence retains its date)
+Last updated: 2026-09-28 (identity portability assessment; earlier operations evidence retains its date)
+
+## September28 identity concentration and migration cost
+
+Owner requests SES reconsideration and asks about later moving Auth0 to AWS.
+The support message is submitted; production mail is not approved. Current code
+already separates Rillora planner IDs/sessions from identity-provider bindings,
+but native claims/SDK, deletion, verification, legal proof and old-account linking
+require a real migration. Keep Auth0 for this release; no Cognito pool is created.
+Auth0 Free and Cognito Essentials both cover the initial100–1,000eligible MAUs
+without identity fees. Beyond10,000, Cognito Essentials is metered; paid/security
+features must be compared separately. Password-hash export is unavailable on
+Auth0 Free, while current Cognito supports compatible-hash import. See the
+[dated migration and cost assessment](auth0-cognito-migration-20260928.md).
 
 
 ## September26 current offer and drift correction

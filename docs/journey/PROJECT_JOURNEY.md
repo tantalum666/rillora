@@ -1,6 +1,6 @@
 # Digital Legacy Ongoing Project Journey
 
-Last updated: 2026-09-27 (Asia/Hong_Kong)
+Last updated: 2026-09-28 (Asia/Hong_Kong)
 
 ## 记录范围
 
@@ -2748,3 +2748,19 @@ launch prerequisites and historical authentication gates are not repeated approv
 - **未完成**：0083–0085未云部署，没有Apple真实购买／正式价格或签名提交。下一步最终App的安全审核验证；邮件本人步骤、持续清理／恢复对账和真实双端验收继续。[本轮证据](../../output/qa/rillora-launch-goal-20260926/apple-purchase-checks.json)不替代这些发布门。
 
 - Source closeout: engineering0a51db9e8 is pushed and CI18 succeeds in all three jobs;955files/25reviewed non-secrets/0unknown. Native170pass/1existing local-StoreKit test skip remains separate evidence. No cloud/provider activation.
+
+## 2026-09-28 — 解释发信分工并优先减少服务数量
+
+- **目标**：Owner质疑Resend的必要性，要求先考虑AWS复审和减少外部服务。
+- **尝试**：读取当前邮件合同及原工单／已发送补充说明，复核Auth0正式邮件限制、AWS工单重开和Cognito默认发信规则；准备英文编号复审草稿。
+- **判断变化**：验证／重置逻辑由Auth0完成，但内置投递只供测试。SES与Resend是可互换发送渠道；不能把Resend视为上线必需。现优先保留AWS＋Auth0、准备SES复审，Resend降为备选，撤下待注册要求。Cognito并不能直接消除SES审核，暂不迁移身份。
+- **结果**：官方依据、取舍、未发送草稿及当前交接已同步；没有新账号、密钥、DNS、收费或发信变更。September28只读检查在身份读取阶段失败，不能更新SES拒绝结论或断言具体失败原因。
+- **未完成**：工单复审未提交、更未获批；生产发信与真实验证／重置继续作为独立发布门。原Apple审核路径和运维工程继续；没有重跑应用测试或部署。[当次证据](../../output/qa/rillora-launch-goal-20260926/mail-consolidation-20260928.json)。
+
+## 2026-09-28 — 提交SES复审并评估未来Cognito迁移
+
+- **目标**：Owner明确要求直接提交复审，并询问以后从Auth0迁往AWS的复杂度和费用。
+- **尝试**：CLI实际返回会话过期；复用现有Chrome打开原工单，Owner完成当前MFA后核对正确账户。读回Frankfurt仍为沙盒200/day、1/sec，将现有控制与实际未完成项写成六点说明后提交。同步检查身份接口、原生验证和业务UUID绑定，并复核两家当前公开价格。
+- **判断变化**：发送授权已取得，不再保留旧的待授权门。Cognito迁移主要难在旧账号／凭据和登录逻辑，业务数据可保持原UUID；Cognito最新文档支持兼容密码哈希导入，但Auth0 Free仍不能导出密码哈希，不可承诺无感迁移。100–1,000MAU下两家基础身份费均可为0，不能声称为了省钱现在必须迁移。
+- **结果**：工单179022088800001显示已重新打开，12:40:19+08出现operator新通信；既有联系人不变，没有重复申请／额外附件／付费方案。成本按公开MAU公式独立计算，迁移与价格边界写入聚焦研究及服务登记。
+- **未完成**：等待AWS审核，不把已提交视为生产批准；CLI仍需正常续期，浏览器登录不是CLI完成证明。没有创建Cognito／切换Auth0、运行应用测试、部署或真实发信。[提交回执](../../output/qa/rillora-launch-goal-20260926/ses-reconsideration-submitted-20260928.json)，[迁移成本](../auth0-cognito-migration-20260928.md)。
