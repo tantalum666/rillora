@@ -2,9 +2,14 @@
 
 Role: scoped public website design/interaction contract
 Status: THIRD ITERATION IMPLEMENTED; PUBLICATION AND EXACT SOURCE CHECKS IN HANDOFF
-Last updated: 2026-09-28 (Asia/Hong_Kong)
+Last updated: 2026-09-29 (Asia/Hong_Kong)
 
 ## Latest Owner direction
+
+September29 continuation adds Home and a manual System/Light/Dark selector at the
+far right after Sign in. The single explicit display preference and corresponding
+disclosure supersede the earlier system-only/no-storage constraint below.
+[Current control contract](website-appearance-controls-20260929.md).
 
 Centre the approved symbol on the photographed folio, follow system light/dark
 appearance using the earlier ink-green theme, remove the meaningless timed
@@ -33,7 +38,7 @@ eligible. No production identity, billing, API or native layout change is implie
 - `/legal/licenses`: readable overview, expandable complete unchanged statements,
   and optional plain-text download. Not a standalone homepage Credits promotion.
 
-Product/Security/Pricing/Support appear in the shared top navigation. Mobile has
+Home/Product/Security/Pricing/Support appear in the shared top navigation. Mobile has
 an accessible disclosure with Escape close/focus return. Standard links preserve
 browser Back and direct-entry behavior. A bounded fragment handler mounts after
 lazy page content, so `/product#sharing` scrolls and focuses correctly; known old
@@ -47,11 +52,11 @@ no new consent or release market/commerce approval is introduced.
 
 ## Appearance and motion
 
-Use the existing paper light theme and system-only `prefers-color-scheme` media
-rules. Dark uses canvas#171F1B, cream#F1ECE2, sage#CDE1B0 and bronze details. The
+Use the existing paper light theme and resolved System/Light/Dark preference. Dark uses canvas#171F1B, cream#F1ECE2, sage#CDE1B0 and bronze details. The
 header/footer marks, hero artwork, controls, sheets, text, rules and focus states
-adapt together. CSS/picture sources react without reload or preference storage;
-no manual toggle, cookie or analytics is added. This applies to the public website
+adapt together. The manual choice survives navigation/reload on the same device;
+System follows device appearance and clears that choice. No cookie or analytics
+is added. This applies to the public website
 and its new information pages, not a redesign of authenticated App screens.
 
 The [dark reference](../assets/concepts/rillora-landing-20260928-v3/dark-concept.png)

@@ -3,22 +3,22 @@ import hero from "../assets/landing/hero-still-life.webp";
 import heroDark from "../assets/landing/hero-dark.webp";
 import { publicEntry } from "../publicEntry.js";
 import { SharingDemo } from "./SharingDemo.jsx";
+import { ThemePicture } from "./AppearanceControl.jsx";
 import { Reveal } from "./LandingMotion.jsx";
 
 export function LandingPage() {
   return (
     <main id="lp-main">
       <section className="lp-hero" aria-labelledby="lp-title">
-        <picture className="lp-hero-photo">
-          <source media="(prefers-color-scheme: dark)" srcSet={heroDark} />
-          <img
-            src={hero}
-            width="1536"
-            height="1024"
-            alt=""
-            fetchPriority="high"
-          />
-        </picture>
+        <ThemePicture
+          className="lp-hero-photo"
+          light={hero}
+          dark={heroDark}
+          width="1536"
+          height="1024"
+          alt=""
+          fetchPriority="high"
+        />
         <div className="lp-container lp-hero-content">
           <div className="lp-hero-copy">
             <h1 id="lp-title">

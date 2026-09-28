@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
+import { mkdtempSync, writeFileSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { App } from 'aws-cdk-lib';
@@ -36,6 +36,23 @@ describe('Public information hosting', () => {
       expect(distribution.Origins).toHaveLength(1);
       expect(distribution.CacheBehaviors).toBeUndefined();
       for (const type of ['AWS::RDS::DBInstance', 'AWS::ECS::Service', 'AWS::SecretsManager::Secret', 'AWS::ApiGatewayV2::Api']) t.resourceCountIs(type, 0);
+    } finally { rmSync(assetDirectory, { recursive: true }); }
+  });
+  it('permits only the disclosed appearance storage and refuses additional keys or tracking', () => {
+    const assetDirectory = fixture();
+    try {
+      const file = join(assetDirectory, 'public-build.json');
+      const marker = JSON.parse(readFileSync(file, 'utf8'));
+      marker.version = 2; marker.cookiesOrStorage = true;
+      marker.browserStorage = { cookies: false, localStorageKeys: ['rillora.website.appearance.v1'], purpose: 'user-selected-appearance', tracking: false };
+      writeFileSync(file, JSON.stringify(marker));
+      expect(() => new RilloraPublicWebStack(new App(), 'AppearanceOnly', { certificateArn, assetDirectory })).not.toThrow();
+      marker.browserStorage.localStorageKeys.push('session');
+      writeFileSync(file, JSON.stringify(marker));
+      expect(() => new RilloraPublicWebStack(new App(), 'ExtraStorage', { certificateArn, assetDirectory })).toThrow('public-information');
+      marker.browserStorage.localStorageKeys.pop(); marker.browserStorage.tracking = true;
+      writeFileSync(file, JSON.stringify(marker));
+      expect(() => new RilloraPublicWebStack(new App(), 'Tracking', { certificateArn, assetDirectory })).toThrow('public-information');
     } finally { rmSync(assetDirectory, { recursive: true }); }
   });
   it('refuses a private application artifact or non-CloudFront certificate', () => {

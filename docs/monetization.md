@@ -5,7 +5,7 @@ Authority scope: free/paid boundary, launch offer, future tier architecture, bil
 Superseded by: later Owner decision recorded in `docs/decision-log.md`  
 Do not use for: proof of willingness to pay, legal/tax advice, current implementation, App Store approval or payment-provider selection  
 Status: FREE / SINGLE ANNUAL FAMILY; WEB88.99 LOCKED; APPLE DIFFERENTIATED; NEW MONTHLY RETIRED; FREE1 / FAMILY5 AND HISTORICAL RECEIPTS PRESERVED; ORDINARY SALES CLOSED
-Last updated: 2026-09-26 (Owner Web88.99; annual-only and channel separation preserved)
+Last updated: 2026-09-29 (Free export recommendation; no entitlement or price change)
 
 
 ## September26 current Web quote
@@ -214,7 +214,7 @@ Free must be useful enough to reduce real preparation risk and to let a person j
 
 ### Always free
 
-- public guidance for Apple Legacy Contact, Google Inactive Account Manager and other provider-owned setup;
+- signed-in guidance for Apple Legacy Contact, Google Inactive Account Manager and other provider-owned setup, still Free under the September28 access-placement direction;
 - a lightweight text-based Matter map and basic desired-outcome recording;
 - one outgoing trusted-person relationship, including the full invitation/acceptance path and all per-item privacy controls when available; contact records and incoming shares do not consume it;
 - exact sharing previews and honest preparation gaps; consumer Simulation is removed;
@@ -550,3 +550,13 @@ Pricing remains a hypothesis until users face a real, comprehensible offer.
 - actual market demand, conversion, retention and unit economics.
 
 The focused unit-economics, runway, accounting-boundary and diligence gates are maintained in [`unit-economics.md`](unit-economics.md) and the linked editable workbook.
+
+## September29 Free export recommendation — no entitlement change
+
+Owner asks whether Free should include export. Agent recommends retaining the
+existing locked basic export/backup/exit rights. A downloadable copy is a static
+snapshot, while live permissions, current updates and coordinated maintenance are
+ongoing services. Free1limits live outgoing relationships, not an owner's ability
+to copy their own information outside Rillora. New optional automated archives or
+advanced reports may be tested later, without taking away existing basic exports;
+none is newly built, priced or promised here. [Assessment](website-appearance-controls-20260929.md).

@@ -17,8 +17,16 @@ export class RilloraPublicWebStack extends Stack {
     const directory = props.assetDirectory ?? resolve(root, 'apps/web/dist-public');
     const marker = JSON.parse(readFileSync(resolve(directory, 'public-build.json'), 'utf8'));
     const digest = createHash('sha256').update(readFileSync(resolve(directory, 'index.html'))).digest('hex');
+    const storage = marker.browserStorage;
+    const noBrowserStorage = marker.cookiesOrStorage === false && storage === undefined;
+    const appearanceOnly = marker.version === 2 && marker.cookiesOrStorage === true
+      && storage?.cookies === false && storage?.tracking === false
+      && storage?.purpose === 'user-selected-appearance'
+      && Array.isArray(storage?.localStorageKeys) && storage.localStorageKeys.length === 1
+      && storage.localStorageKeys[0] === 'rillora.website.appearance.v1'
+      && Object.keys(storage).length === 4;
     if (marker.surface !== 'public-information' || marker.accountsEnabled !== false
-      || marker.apiEnabled !== false || marker.cookiesOrStorage !== false || marker.htmlSha256 !== digest) {
+      || marker.apiEnabled !== false || (!noBrowserStorage && !appearanceOnly) || marker.htmlSha256 !== digest) {
       throw new Error('Only the verified public-information artifact is accepted');
     }
     Tags.of(this).add('Project', 'Rillora');

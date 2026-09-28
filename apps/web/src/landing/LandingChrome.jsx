@@ -2,15 +2,19 @@ import { useState } from "react";
 import { ArrowRight, List, X } from "@phosphor-icons/react";
 import logo from "../assets/brand/lockup-primary.svg";
 import reversedLogo from "../assets/brand/lockup-reversed.svg";
+import { AppearanceControl, ThemePicture } from "./AppearanceControl.jsx";
 import { publicEntry } from "../publicEntry.js";
 
 export function LandingBrand() {
   return (
     <a className="lp-brand" href="/" aria-label="Rillora home">
-      <picture>
-        <source media="(prefers-color-scheme: dark)" srcSet={reversedLogo} />
-        <img src={logo} width="870" height="208" alt="Rillora" />
-      </picture>
+      <ThemePicture
+        light={logo}
+        dark={reversedLogo}
+        width="870"
+        height="208"
+        alt="Rillora"
+      />
     </a>
   );
 }
@@ -34,19 +38,21 @@ export function PreviewAccountLink() {
 }
 
 const destinations = [
+  ["/", "Home"],
   ["/product", "Product"],
   ["/security", "Security"],
   ["/pricing", "Pricing"],
   ["/support", "Support"],
 ];
 export function LandingHeader({ path = "/" }) {
-  const [open, setOpen] = useState(false);
+  const [panel, setPanel] = useState(null);
+  const open = panel === "navigation";
   return (
     <header
       className="lp-header lp-container"
       onKeyDown={(event) => {
-        if (event.key === "Escape") {
-          setOpen(false);
+        if (event.key === "Escape" && open) {
+          setPanel(null);
           event.currentTarget.querySelector(".lp-menu-toggle")?.focus();
         }
       }}
@@ -58,7 +64,7 @@ export function LandingHeader({ path = "/" }) {
         aria-expanded={open}
         aria-controls="lp-navigation"
         aria-label={open ? "Close navigation" : "Open navigation"}
-        onClick={() => setOpen(!open)}
+        onClick={() => setPanel(open ? null : "navigation")}
       >
         {open ? (
           <X size={23} aria-hidden="true" />
@@ -82,6 +88,10 @@ export function LandingHeader({ path = "/" }) {
         ))}
       </nav>
       <PreviewAccountLink />
+      <AppearanceControl
+        open={panel === "appearance"}
+        onOpenChange={(value) => setPanel(value ? "appearance" : null)}
+      />
     </header>
   );
 }

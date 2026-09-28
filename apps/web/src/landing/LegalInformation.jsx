@@ -1,15 +1,41 @@
+import { WebsiteAppearanceDisclosure } from "../WebsiteAppearanceDisclosure.jsx";
+import { publicRoutes } from "../publicRoutes.js";
 import { ArrowRight, DownloadSimple } from "@phosphor-icons/react";
 import notices from "../assets/design-credits.txt?raw";
 import noticesFile from "../assets/design-credits.txt?url";
 
 const documents = [
-  ["Terms of Service", "How you use Rillora", "terms"],
-  ["Privacy Policy", "How personal information is handled", "privacy"],
-  ["Subscription Terms", "Payment, renewal and cancellation", "subscriptions"],
-  ["Refund & Cancellation", "Cancellation and refund information", "refunds"],
-  ["Acceptable Use", "Responsible use of the service", "acceptable-use"],
-  ["Cookie Notice", "Necessary storage and tracking boundaries", "cookies"],
-  ["Legal Notice", "Operator and service information", "legal"],
+  ["Terms of Service", "How you use Rillora", publicRoutes.terms],
+  [
+    "Privacy Policy",
+    "How personal information is handled",
+    publicRoutes.privacy,
+  ],
+  [
+    "Subscription Terms",
+    "Payment, renewal and cancellation",
+    publicRoutes.subscriptions,
+  ],
+  [
+    "Refund & Cancellation",
+    "Cancellation and refund information",
+    publicRoutes.refunds,
+  ],
+  [
+    "Acceptable Use",
+    "Responsible use of the service",
+    publicRoutes.acceptableUse,
+  ],
+  [
+    "Cookie Notice",
+    "Necessary storage and tracking boundaries",
+    publicRoutes.cookies,
+  ],
+  [
+    "Legal Notice",
+    "Operator and service information",
+    publicRoutes.legalNotice,
+  ],
 ];
 export function LegalInformation() {
   return (
@@ -22,8 +48,8 @@ export function LegalInformation() {
         </p>
       </header>
       <nav className="lp-document-links" aria-label="Legal information">
-        {documents.map(([label, detail, slug]) => (
-          <a key={slug} href={`https://legal.rillora.xyz/${slug}`}>
+        {documents.map(([label, detail, path]) => (
+          <a key={path} href={`https://legal.rillora.xyz${path}`}>
             <span>
               <strong>{label}</strong>
               <small>{detail}</small>
@@ -39,6 +65,7 @@ export function LegalInformation() {
           <ArrowRight size={22} aria-hidden="true" />
         </a>
       </nav>
+      <WebsiteAppearanceDisclosure />
     </main>
   );
 }

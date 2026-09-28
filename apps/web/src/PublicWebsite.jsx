@@ -45,7 +45,7 @@ const pages = {
   "/legal/licenses": [ThirdPartyNotices, "Third-party notices — Rillora"],
 };
 
-/** Marketing and public information only. No account data, tracking or storage. */
+/** Marketing and public information only. No account data or tracking; only the explicit appearance preference is stored. */
 export function PublicWebsite() {
   const path = window.location.pathname.replace(/\/+$/, "") || "/";
   const guides = path === "/guides";

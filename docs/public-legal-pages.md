@@ -5,9 +5,27 @@ Authority scope: Web Privacy Policy, Terms of Service, required factual inputs a
 Superseded by: applicable law, platform requirements, approved operator details and reviewed final legal text  
 Do not use for: personal legal advice, proof of global compliance, or permission to publish  
 Status: OWNER-APPROVED FORMAL ENGLISH RELEASE TEXT PUBLIC AT `LEGAL.RILLORA.XYZ`; CURRENT PUBLICATION IN HANDOFF; PRIOR ACCESS／DOMAIN／TLS／SEVEN-ROUTE EVIDENCE REMAINS DATED; GOOGLE OAUTH BRANDING SAVED UNDER `EXTERNAL / TESTING`; PRODUCT PRODUCTION／MARKET／BILLING GATES REMAIN OPEN WORK
-Last updated: 2026-09-28 (Sites8 legal-information navigation; accepted text unchanged)
+Last updated: 2026-09-29 (Sites9 website-appearance supplement; accepted bodies unchanged)
 
-## Current publication — Sites version8
+## Current publication — Sites version9
+
+The Privacy and Cookie publication shells display a dated, website-only appearance
+update. It identifies the optional Light/Dark preference, its single local key,
+purpose, duration and System reset; no account/private-map data or tracking purpose.
+This supplements the prior exhaustive storage description without silently changing
+the accepted document bodies, versions, account clickwrap or legal-body digest.
+The legal site itself still sets no application storage.
+
+Sites9 succeeded from exact source6cb791e1b37e94b71ba16c150d2c07bc719aa97a and
+its locally built artifact; all7legal checks pass, and the public audience and
+seven-route boundary are preserved. Privacy/Cookie rendered readback confirms the
+notice. This scoped disclosure is not a claim of worldwide legal clearance.
+The optional Sites helper/skill disappeared from this host; a clean, fast-forwarded
+existing checkout and ephemeral stdin-only Git credential were used with native
+Sites save/deploy tools. No token was persisted or access expanded.
+[Receipt](../output/qa/rillora-launch-goal-20260926/landing-theme-controls/legal-deployment.json).
+
+## HISTORICAL — Sites version8
 
 Owner requests that component/font/art licences belong under legal information,
 not a raw Credits link in the homepage footer. WWW now provides `/legal` and the

@@ -12,6 +12,7 @@ const sectionIds = new Set([
   "how-it-works",
   "your-control",
   "lp-main",
+  "appearance",
 ]);
 
 // Mount inside the page's Suspense boundary, after its lazy content exists.

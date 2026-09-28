@@ -1,105 +1,94 @@
 # Rillora Current Handoff
 
-Status: FINAL LAUNCH GOAL ACTIVE; SYSTEM-THEME WEBSITE AND LEGAL-NOTICE NAVIGATION PUBLISHED
-Last updated: 2026-09-28 (Asia/Hong_Kong)
+Status: FINAL LAUNCH GOAL ACTIVE; HOME AND APPEARANCE CONTROLS PUBLISHED; SOURCE CLOSEOUT IN PROGRESS
+Last updated: 2026-09-29 (Asia/Hong_Kong)
 
-## Current authority and task
+## Current authority
 
-Owner requests continuous progress to launch readiness, careful review and
-maintainable code. Preserve private App UI/Legacy Imprint03, Free1/Family5,
-WebUS$88.99annual-only new sales, Apple differentiation, prior receipts and FanPass.
-Owner-deferred business facts and physical devices remain unverified. The overall
-goal is incomplete; current public-site work does not open the production app.
+Owner requests continuous progress to launch readiness with maintainable code.
+Preserve private App UI/Legacy Imprint03, Free1/Family5, WebUS$88.99annual-only new
+sales, Apple differentiation, prior receipts and FanPass. Owner-deferred business
+facts and physical devices remain unverified. The overall goal is incomplete;
+public-site publication does not activate the production App.
 
-147project-owned Markdown files/25,917lines were fully read for this workflow.
+147project-owned Markdown files/25,917lines were fully read in this workflow.
 [Manifest/ranges/exclusions](../output/qa/rillora-launch-goal-20260926/full-read.json).
 After compaction use focused recovery, not another full scan or old login ceremony.
 
-## Latest completed Owner steering
+## Latest completed work
 
-Owner corrects cover Logo placement, requests automatic ink-green dark mode,
-removes the artificial walkthrough/serial chapters and asks for useful top-level
-subpages. Later clarification places licences under legal information. These
-instructions supersede the relevant V2 composition; private App UI is preserved.
+Owner requests Home and System/Light/Dark, then explicitly places the control to
+the right of Sign in at the far edge on desktop and mobile. Shared chrome now
+implements that placement. Default System follows device changes; explicit choices
+persist across reload/subpages in one disclosed local value; System removes it.
+Images, complete03wordmark, colors and browser theme-color follow the same store.
+A hashed same-origin bootstrap avoids separate pre-paint logic or a CSP exception.
+[Focused contract](website-appearance-controls-20260929.md).
 
-WWW now has Product/Security/Pricing/Support in desktop/mobile navigation, with a
-shorter homepage. CSS/picture sources follow the system without preference storage;
-full03symbol sits at the measured cover centre and scales with the alpha artwork.
-Walkthrough timers, progress/stage buttons, numbered rails and pointer wobble are
-removed. Meaningful category/recipient/disclosure feedback and reduced motion stay.
-[Current contract](landing-page-20260928.md).
+107Web checks,3public-infra checks, infra typecheck, public/legal builds and7legal
+checkout checks pass; after formatting the5appearance behavior checks pass again.
+Browser verifies desktop1329px and320/390px, no horizontal overflow, keyboard
+Escape/blur, mutually exclusive mobile panels, Home navigation, mode persistence
+and actual image selection. Only observed warnings are from the MetaMask extension.
+Exact final online/source evidence is in[QA](../output/qa/rillora-launch-goal-20260926/landing-theme-controls/work-state.json).
 
-Footer Legal leads to a document index and readable third-party notices. All136
-notice paragraphs remain intact, with optional download. Official Terms navigation
-links to that page. LegalSites8succeeded from73f6ce7814858c4ed77c4b91985058dacbeec1f1;
-public audience, seven-route boundary, accepted text and legal versions are unchanged.
-[Receipt](../output/qa/rillora-launch-goal-20260926/landing-v3/legal-deployment.json).
+WWW public pages now disclose the optional setting at `/legal#appearance`.
+Privacy/Cookie shells carry a dated website-only supplement. LegalSites9succeeded
+from6cb791e1b37e94b71ba16c150d2c07bc719aa97a; audience stays public, accepted
+legal bodies/versions/digest and seven-route boundary stay unchanged. Actual
+Privacy/Cookie render and return link are verified. No account reacceptance is
+introduced. Existing licences remain under Legal/Third-party notices.
+[Receipt](../output/qa/rillora-launch-goal-20260926/landing-theme-controls/legal-deployment.json).
 
-Local102Web checks,2public-infra checks, infra typecheck, public/legal builds and
-7legal-artifact checks pass. Browser verifies actual system preference switching,
-320/390px menu/focus/navigation, dark subpages, permitted-only recipient projection
-and normal licence typography. Dark target1435x1096and corrected cover screenshots
-are inspected through view_image. Exact final online results/source/CI are recorded
-in[QA](../output/qa/rillora-launch-goal-20260926/landing-v3/work-state.json).
+A related live check found two incorrect legal-index slugs. Subscription/Refund
+links now use the shared route definitions. Final WWW deployment/readback is
+recorded in QA. The public artifact guard allows exactly the appearance preference;
+no cookies, analytics, account/API or broader storage exception is introduced.
 
-Final engineeringb54d7342dae31e34b6d32044c0466de1e7e3ba5b is pushed and
-[CI23passes](https://github.com/tantalum666/rillora/actions/runs/36436946592); the
-main theme/navigation implementation also passedCI22. WWW HTML matches the final
-artifact;13public route/notice reads pass. Actual Terms-to-notices navigation and
-`/product#sharing` after lazy load are verified (24px from top, focussharing).
-Known old home anchors continue to the new pages.1016source files/25reviewed
-non-secret spans/0unknown;154Markdown files/1514local links have no missing targets.
+Owner's Free export question is advisory. Preserve current free basic export,
+backup and exit rights; no new entitlement restriction or paid feature is adopted.
+Offline copies remain static; Free1limits live outgoing relationships, not copying
+one's own data. [Commercial contract](monetization.md).
 
+Preview Sign in remains https://app.staging.rillora.xyz/account and invitations
+retain `/invite`. Provider guidance remains signed-in and Free eligible. No staging,
+private-production, API, database or native deployment occurs in this iteration.
+The prior V3 actual publication/CI23checkpoint is preserved in the
+[historical handoff](handoff-history-20260929-before-appearance-closeout.md).
 
-Preview Sign in remains https://app.staging.rillora.xyz/account and received
-invitations retain their selected route. Provider-operation guidance stays signed-in
-and Free eligible. No staging/private-production/native/API/data change is made
-in this iteration; the prior guide placement checkpoint remains effective.
-Source Actions CLI is known to return403; use authenticated browser evidence without
-expanding credentials. Do not infer new CI or production readiness from local tests.
-
-## Preserved engineering and deployment boundary
+## Preserved release boundary
 
 Apple quote/consent/order preparation, native purchase/restore, pending/replay and
-historical receipt handling are implemented locally. Exact quote/StoreKit amount,
-currency/year, committed server acknowledgement and account ownership are checked.
-Unused quotes may expire; started/pending payments remain durable.0083–0085retain
-paid consent on erasure and active ownership checks without opening sales.
+historical receipts are locally implemented. Exact quote/StoreKit amount/currency,
+committed server acknowledgement and ownership are checked. Engineering0a51db9e8
+has[CI18success](https://github.com/tantalum666/rillora/actions/runs/36327186360):
+300API/34files, typecheck/build,170native pass/1existing skip. These were not rerun
+here.99.99preview fixture is not an adopted Apple price.
 
-The dated engineering checkpoint0a51db9e880ee6d4b324170be72c075b0b1218e0 has
-[CI18success](https://github.com/tantalum666/rillora/actions/runs/36327186360):
-300API tests/34files, typecheck/build,170native tests pass/1existing skip. These
-were not rerun during this website iteration. The99.99preview fixture is not an
-adopted Apple price. [Apple checks](../output/qa/rillora-launch-goal-20260926/apple-purchase-checks.json).
-
-Staging remains API38/migration31/schema0075. Production API remains task1/schema0070
-and customer-closed;0076–0085are not cloud deployed. Existing seven-day RDS backup,
-scoped restore and monitoring retain their own evidence. LegalSites8is the latest
-navigation-only publication. No production
-identity opening, actual purchase, signed upload, TestFlight or public App release.
+Staging is API38/migration31/schema0075; production API is task1/schema0070 and
+customer-closed.0076–0085are not cloud deployed. Seven-day RDS backup, scoped restore
+and monitoring retain their prior evidence. No actual purchase, signed upload,
+TestFlight, production identity opening or public App release is claimed.
 
 ## External state
 
-AWS same-device CLI login was refreshed September28 and STS confirmed
-account133857166372 /rillora/rillora-operator; this iteration reused it successfully.
-Do not repeat MFA unless fresh expiry evidence requires it. Auth0 favicon branding
-was previously read back; Free custom templates remain unsupported.
+AWS STS was freshly read September29: correct133857166372operator identity, session
+reused for the scoped public deployment. Do not repeat MFA without actual expiry.
+The optional local Sites helper/skill is absent; native connector plus clean existing
+checkout and ephemeral stdin/memory Git credential achieved the same source/build/
+push/save/deploy boundary, with no persisted token or access expansion.
 
-SES reconsideration was explicitly authorized and submitted once in original
-case179022088800001, Reopened at12:40:19+08 September28. Last observed Frankfurt
-quota remains sandbox200/day,1/sec. This is submission, not approval or delivery.
-[Receipt](../output/qa/rillora-launch-goal-20260926/ses-reconsideration-submitted-20260928.json).
-Prefer existing SES/Auth0; Resend signup request is withdrawn and Cognito remains
-research only. [Mail](production-identity-mail-20260924.md),
-[migration assessment](auth0-cognito-migration-20260928.md).
+SES reconsideration was submitted once on originalcase179022088800001,
+September28at12:40:19+08, statusReopened. Last observed Frankfurt quota remains
+sandbox200/day,1/sec; submission is not approval/delivery. Prefer SES/Auth0;
+Resend signup is withdrawn and Cognito remains research. [Mail](production-identity-mail-20260924.md).
 
 ## Single next step
 
-Resume the final App's safe Apple review/TestFlight validation path with enrolled
-accounts and distinct environments. Resolve actual Apple fee/channel price and
-review transaction binding before enabling a purchase. Continue production email/
-identity, retention/recovery reconciliation and signing/store checks independently;
-do not wait for a new video service or treat the landing as the launch gate.
+After current source/CI closeout, resume the final App's safe Apple review/TestFlight
+validation with enrolled accounts and distinct environments. Resolve actual Apple
+fee/channel price and transaction binding before enabling purchases. Production
+email/identity, recovery reconciliation and signing/store gates remain separate;
+do not treat this website revision as completion of the launch goal.
 
-[Release](release-readiness.md),[Apple](production-apple-20260926.md),
-[previous handoff — HISTORICAL](handoff-history-20260928-before-theme-closeout.md).
+[Release](release-readiness.md),[Apple](production-apple-20260926.md).

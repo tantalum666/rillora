@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-09-28 (Asia/Hong_Kong)
+Last updated: 2026-09-29 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -2746,3 +2746,21 @@ unreachable release remains a different closed workflow. See [sharing contract](
 - Stripe/Privy are navigation/content references only. No new package, metric,
   endorsement, provider permission or paid feature is inferred from those sites.
   [Current contract](landing-page-20260928.md).
+
+
+## 2026-09-29 — Home and far-right appearance control
+
+- Owner requests manual light/dark switching, retains the earlier system default,
+  and adds Home. Latest placement is explicitly to the right of Sign in, near the
+  far-right edge, including mobile. Do not hide it in the mobile menu.
+- Agent implements System/Light/Dark with one optional on-device value. System
+  clears it; unavailable storage still permits the current-page selection. This
+  supersedes the previous system-only/no-storage website rule, not the App theme.
+- A dated display-preference notice appears in WWW legal information and the
+  existing Privacy/Cookie publication shell. Accepted legal bodies and account
+  consent versions stay unchanged. The publication guard permits this one named
+  functional preference only; no analytics, cookies or private API are introduced.
+- Owner's Free export question remains a request for advice. Recommend preserving
+  the existing basic export/backup/exit baseline; no paid gate, changed entitlement
+  or new paid archive/report promise is adopted. Offline copying is not an extra
+  live contact relationship. [Focused contract](website-appearance-controls-20260929.md).

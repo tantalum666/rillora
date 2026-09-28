@@ -423,3 +423,175 @@
 .lp-security-page #your-control {
   padding-top: 0;
 }
+
+.lp-appearance {
+  position: relative;
+  align-self: center;
+}
+.lp-appearance-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 10px;
+  background: none;
+  color: var(--lp-ink);
+  border-radius: 50%;
+}
+.lp-appearance-trigger > span {
+  display: none;
+}
+.lp-appearance-trigger:hover {
+  background: var(--lp-soft);
+}
+.lp-appearance-options {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  width: 235px;
+  background: var(--lp-paper);
+  color: var(--lp-ink);
+  border: 1px solid var(--lp-border);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 12px 30px #00000025;
+  z-index: 15;
+}
+.lp-appearance fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+.lp-appearance legend {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.lp-appearance label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  padding: 12px 8px;
+  min-height: 44px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+.lp-appearance label:has(input:checked) {
+  background: var(--lp-soft);
+}
+.lp-appearance input {
+  accent-color: var(--lp-action);
+  width: 16px;
+  height: 16px;
+  margin: 0;
+}
+.lp-appearance p {
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--lp-muted);
+  margin-top: 12px;
+}
+.lp-appearance .lp-appearance-options > a {
+  display: block;
+  font-size: 12px;
+  padding: 12px 0 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.lp-appearance-note {
+  margin: 44px 0;
+  padding-top: 28px;
+  border-top: 1px solid var(--lp-rule);
+}
+.lp-appearance-note h2 {
+  font-size: 32px;
+}
+.lp-appearance-note p {
+  margin-top: 16px;
+  font-size: 15px;
+  line-height: 1.75;
+  max-width: 780px;
+  color: var(--lp-muted);
+}
+@media (min-width: 1001px) {
+  .lp-header {
+    gap: 24px;
+  }
+  .lp-nav {
+    gap: 24px;
+  }
+}
+.lp-header {
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+}
+.lp-nav {
+  justify-self: center;
+}
+.lp-header > .lp-appearance {
+  grid-column: 4;
+}
+@media (max-width: 1000px) {
+  .lp-header {
+    grid-template-columns: minmax(0, 1fr) auto auto auto;
+    gap: 8px;
+    height: 88px;
+  }
+  .lp-header > .lp-sign-in {
+    grid-column: 3;
+  }
+  .lp-menu-toggle {
+    display: inline-grid;
+    place-items: center;
+    grid-column: 2;
+  }
+  .lp-nav {
+    display: none;
+  }
+  .lp-nav.is-open {
+    display: flex;
+    position: absolute;
+    z-index: 10;
+    top: calc(100% - 1px);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: var(--lp-paper);
+    border: 1px solid var(--lp-rule);
+    border-radius: 0 0 12px 12px;
+    padding: 12px 20px;
+    box-shadow: 0 14px 22px #00000014;
+    max-height: calc(100dvh - 110px);
+    overflow-y: auto;
+  }
+  .lp-nav > a {
+    font-size: 16px;
+    padding: 16px 0;
+  }
+  .lp-hero {
+    margin-top: -88px;
+    padding-top: 88px;
+  }
+}
+@media (max-width: 360px) {
+  .lp-header {
+    width: calc(100% - 24px);
+    gap: 4px;
+  }
+  .lp-header .lp-brand img {
+    width: 88px;
+  }
+}
+
+.lp-header .lp-brand {
+  min-height: 44px;
+  align-items: center;
+}
+@media (max-width: 360px) {
+  .lp-header .lp-sign-in {
+    font-size: 12px;
+    padding-inline: 9px;
+  }
+}

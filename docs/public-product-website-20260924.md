@@ -4,9 +4,22 @@ Role: public-entry implementation and publication boundary
 
 Status: DESIGNED PUBLIC LANDING WITH OWNER-SELECTED PREVIEW ACCOUNT GATEWAY
 
-Last updated: 2026-09-28 (Asia/Hong_Kong)
+Last updated: 2026-09-29 (Asia/Hong_Kong)
 
-## September28 latest navigation, system-theme and legal placement
+## September29 Home and manual appearance
+
+Owner adds Home and requires the appearance control at the far right after Sign in
+on desktop and mobile. System remains the default; explicit Light/Dark choices
+use only the disclosed local key and System clears it. A single hashed bootstrap
+and store keep colors, images and controls aligned before paint and across pages.
+The public artifact guard now allows exactly this appearance-only preference with
+no cookies/tracking/API; private origin, CSP and customer-access boundaries remain.
+A dated website-only supplement appears in public Privacy/Cookie pages and WWW
+legal information. Two stale legal-index slugs now use the shared route definition.
+[Current contract](website-appearance-controls-20260929.md),
+[publication evidence](../output/qa/rillora-launch-goal-20260926/landing-theme-controls/work-state.json).
+
+## September28 navigation, system-theme and legal placement — prior checkpoint
 
 Owner's later screenshot correction supersedes the long serial V2 composition.
 The public website now uses Product/Security/Pricing/Support subpages, automatic

@@ -1854,3 +1854,9 @@
   .legal-document h2, .legal-document h3 { break-after:avoid; }
   .legal-document p, .legal-document li { orphans:3; widows:3; }
 }
+
+.legal-appearance-update { width:min(100% - 48px,1000px); margin:28px auto; padding:22px 26px; border:1px solid var(--divider); border-radius:12px; color:var(--body); }
+.legal-appearance-update strong { color:var(--ink); font-size:15px; }
+.legal-appearance-update p { margin:12px 0 0; font-size:14px; line-height:1.7; }
+.legal-appearance-update span { overflow-wrap:anywhere; }
+.legal-appearance-update a { color:var(--sage); }
