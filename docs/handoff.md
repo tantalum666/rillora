@@ -1,6 +1,6 @@
 # Rillora Current Handoff
 
-Status: FINAL LAUNCH GOAL ACTIVE; HOME AND APPEARANCE CONTROLS PUBLISHED; SOURCE CLOSEOUT IN PROGRESS
+Status: FINAL LAUNCH GOAL ACTIVE; HOME AND APPEARANCE CONTROLS PUBLISHED AND VERIFIED
 Last updated: 2026-09-29 (Asia/Hong_Kong)
 
 ## Current authority
@@ -41,8 +41,8 @@ introduced. Existing licences remain under Legal/Third-party notices.
 [Receipt](../output/qa/rillora-launch-goal-20260926/landing-theme-controls/legal-deployment.json).
 
 A related live check found two incorrect legal-index slugs. Subscription/Refund
-links now use the shared route definitions. Final WWW deployment/readback is
-recorded in QA. The public artifact guard allows exactly the appearance preference;
+links now use the shared route definitions. The final WWW HTML/bootstrap match
+the artifact,19online checks pass, and actual legal link targets render correctly. The public artifact guard allows exactly the appearance preference;
 no cookies, analytics, account/API or broader storage exception is introduced.
 
 Owner's Free export question is advisory. Preserve current free basic export,
@@ -55,6 +55,12 @@ retain `/invite`. Provider guidance remains signed-in and Free eligible. No stag
 private-production, API, database or native deployment occurs in this iteration.
 The prior V3 actual publication/CI23checkpoint is preserved in the
 [historical handoff](handoff-history-20260929-before-appearance-closeout.md).
+
+Engineering4d01005efabe813ecc55f2767a1c8472f309f231 is pushed and
+[CI25passes](https://github.com/tantalum666/rillora/actions/runs/36452030584).
+1022source files/25reviewed non-secret matches/0unreviewed,156Markdown files/
+1533local links without missing targets. Only this scoped static website/legal
+publication changed; the final launch goal is not complete.
 
 ## Preserved release boundary
 
@@ -85,7 +91,7 @@ Resend signup is withdrawn and Cognito remains research. [Mail](production-ident
 
 ## Single next step
 
-After current source/CI closeout, resume the final App's safe Apple review/TestFlight
+Resume the final App's safe Apple review/TestFlight
 validation with enrolled accounts and distinct environments. Resolve actual Apple
 fee/channel price and transaction binding before enabling purchases. Production
 email/identity, recovery reconciliation and signing/store gates remain separate;

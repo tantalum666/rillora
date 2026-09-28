@@ -2806,3 +2806,5 @@ launch prerequisites and historical authentication gates are not repeated approv
 - **结果**：107Web检查、3官网infra检查、类型检查与公网页／法律构建通过；独立法律包7项通过，Sites9已发布。实际Chrome证明按钮最右、刷新／子页保持、Home返回、系统实时变更、图片同步与键盘行为，320／390px无横向溢出。AWS更新限定在现有官网静态产物；最终资源、修复后链接及源码CI收尾见[本轮QA](../../output/qa/rillora-launch-goal-20260926/landing-theme-controls/work-state.json)。
 - **执行修正**：Sites本机helper已不在安装目录，复用原独立干净checkout，临时凭据只走关闭回显的stdin与子进程内存，确认远程SHA后保存／部署。同一个法律包第一次误在根目录执行，因缺package.json停止；在正确checkout完成构建测试。没有更换服务、扩大授权或泄露凭据。
 - **未完成**：这一轮不改私有App／API／原生／数据库或免费权益；正式生产身份、邮件、交易、Apple审核和Owner暂缓项仍属长任务独立门，不能由官网发布代替。临时主题与显示模拟已还原。
+
+- **最终收尾**：官网最终HTML及主题脚本与本地字节一致，19项线上路由／资源检查通过；订阅与退款入口已改回正式可达路径。4d01005ef已推送且CI25实际成功，156份Markdown／1533本地链接无缺失。线上外观选择测试已回到System，临时显示覆盖清除，当前任务记录与交接同步。
