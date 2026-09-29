@@ -83,12 +83,13 @@ waived or newly requested. The overall launch goal remains incomplete.
 
 ## Source checkpoint
 
-Engineering897ee5b0ee327d0b0d079c7100fe1cc8cf07b2b5 is pushed;
-[CI34](https://github.com/tantalum666/rillora/actions/runs/36595417009) succeeds for source,API313 and Web/infrastructure.
-A final review adds the symmetric real-checkout block for test accounts; local
-API314passes. Its follow-up push/CI status is recorded in the current QA.
-Source scan25reviewed nonsecret spans/0unknown;163Markdown files/1613local links
-were checked before the final evidence-only links.
+Final engineering79cea6429b8a6b0d0712a4af4aeea3096e7e35d5 is pushed.
+[CI35](https://github.com/tantalum666/rillora/actions/runs/36596303754) succeeds; the preceding
+[CI34](https://github.com/tantalum666/rillora/actions/runs/36595417009) also succeeds.
+API314local checks pass after the final real-checkout guard. No native source changed
+after the final signed export. Source scan25reviewed nonsecret spans/0unknown;
+163Markdown files/1613local links have0missing. The evidence-only documentation
+closeout is separate from these engineering commits and cloud deployment.
 
 ## Single next step
 

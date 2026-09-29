@@ -133,3 +133,10 @@ effective fee/final channel price, real purchase/restore and lifecycle notificat
 final screenshots/privacy/age/encryption/reviewer package, TestFlight/upload/review
 and manual release. Preserve physical-device and business-fact deferrals. Do not
 mark the overall Apple or submission release gates verified from these local results.
+
+Final engineering79cea6429b8a6b0d0712a4af4aeea3096e7e35d5 is pushed and
+[CI35](https://github.com/tantalum666/rillora/actions/runs/36596303754) succeeds. Source scan preserves
+25exact reviewed nonsecret spans/0unknown;163Markdown files/1613local links resolve.
+The final guard uses existing scoped database functions and needs no migration
+beyond0086. This source/CI closeout deploys no cloud API and changes no signed native
+artifact or provider configuration.
