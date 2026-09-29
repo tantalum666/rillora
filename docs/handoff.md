@@ -1,132 +1,95 @@
 # Rillora Current Handoff
 
-Status: FINAL LAUNCH GOAL ACTIVE; NATIVE PUBLIC HOME INSTALLED AND VERIFIED IN SIMULATOR
+Status: FINAL LAUNCH GOAL ACTIVE; UI/UX AUDIT CLOSED; REPAIRS PUBLISHED; CI29 SUCCEEDED
 Last updated: 2026-09-29 (Asia/Hong_Kong)
 
-## Current authority
+## Authority and recovery
 
-Owner requests continuous progress to launch readiness with maintainable code.
-Preserve private App UI/Legacy Imprint03, Free1/Family5, WebUS$88.99annual-only new
-sales, Apple differentiation, prior receipts and FanPass. Owner-deferred business
-facts and physical devices remain unverified. The overall goal is incomplete;
-public-site publication does not activate the production App.
+Owner requests continuous work to launch readiness, with maintainable code. The
+latest completed product scope is app-wide native appearance plus explicit Web
+System/Light/Dark and a careful full UI/UX audit. Preserve established layout,
+Legacy Imprint03, Free1/Family5, WebUS$88.99annual-only new sales, Apple channel
+differentiation, historical receipts, real user data and FanPass.
 
-147project-owned Markdown files/25,917lines were fully read in this workflow.
-[Manifest/ranges/exclusions](../output/qa/rillora-launch-goal-20260926/full-read.json).
-After compaction use focused recovery, not another full scan or old login ceremony.
+147project-owned Markdown files/25,917lines were fully read in this ongoing
+workflow. [Manifest/ranges](../output/qa/rillora-launch-goal-20260926/full-read.json).
+Use focused recovery after compaction; do not restart the full read, tests or MFA.
 
-## Latest native homepage delivery
+## Completed this round
 
-Owner explicitly wants the native App homepage to adopt the new website visual.
-Signed-out Overview now uses SwiftUI paper/ink-green colors, the same selected
-hero assets/full03brand, concise actions and a local labeled Mum/Alex example.
-Theme control sits right of Sign in; System follows device appearance, Light/Dark
-persist locally, and System removes the preference. Native tabs and private
-Graphite screens remain. Real Sign in, first-matter intent and received-invitation
-sheet are wired to the existing services; dismissing a Home invitation returns Home.
-[Focused contract](native-home-20260929.md).
+Native Home/Profile/Matters/details/sheets share one migrated appearance preference
+and adaptive colors. Web uses the existing shared store/chooser and a hashed
+pre-paint script. WWW entry links carry only a strict display enum to the owned
+App origin. Profile exposes the control; neither client needs a Home detour.
 
-Rillora-Matrix-17-Pro/iOS26.5 has the final ordinary Debug app installed and opened.
-Executable/asset hashes match the build; API remains the existing staging endpoint.
-Four targeted UI cases pass; AX5/reduced-motion is additionally rerun after visual
-correction of decorative avatar scaling. The initial unsigned refresh prevented
-Keychain access; normal ad-hoc signing/project entitlements resolved it without
-clearing data or weakening auth. The scroll helper now tolerates a custom header;
-initial failures are preserved, not counted as passes. No full native/API rerun,
-real login/payment, production upload or new shared relationship is claimed.
-[Build/install/UI evidence](../output/qa/rillora-launch-goal-20260926/simulator-refresh-20260929/work-state.json).
+Ten observed issues are repaired: forced-dark navigation, lost Web draft recovery,
+opaque folio art, unlabeled export audience, disabled guide feedback, white provider
+marks on light plates, scrolling-away dialog close, undersized refresh, technical
+review network errors and11px account agreement. No new commercial feature or
+permission policy is introduced. [Audit, coverage and current evidence](ui-ux-audit-20260929.md).
 
-Native engineering f21666a3ae6d5f3bbb6ea7a70c8b10037012e9d4 is pushed and
-[CI27passes](https://github.com/tantalum666/rillora/actions/runs/36458434095).
-After UI tests the Simulator front-end temporarily returned no App controls;
-reopening the frontend/App restored the tree and actual Dark→System selection.
-The ordinary app remains open at Home/System. No reset or data removal was used.
-The source-scan checkpoint has25reviewed non-secret matches/0unknown; two unchanged
-public OAuth client-ID spans moved by one line after removing forced-dark plist
-configuration.158Markdown files/1552local links have no missing targets.
+Web107checks plus7legal-artifact checks pass; native3appearance unit cases,
+1navigation/restart case,2normal route cases and1AX5/reduced-motion case pass.
+The old large-text matrix first failed due to its different QA identity setup;
+the explicit isolated audit case passes. Preserve both results. No new full native
+or local API suite is claimed; CI runs are recorded separately.
 
-## Prior completed website work
+Actual A/B synthetic UI verifies invite→accept→scoped visibility→name-only→revoke→
+old-link rejection. A separate synthetic Family capability verifies request→B
+check→A finish/history. Backup imports10private records into empty D; personal
+and encrypted directions open with9items, excluding Never disclose. Offline save
+retains the draft and retry succeeds. These do not prove real provider login,
+mail, billing or an estate request.
 
-Owner requests Home and System/Light/Dark, then explicitly places the control to
-the right of Sign in at the far edge on desktop and mobile. Shared chrome now
-implements that placement. Default System follows device changes; explicit choices
-persist across reload/subpages in one disclosed local value; System removes it.
-Images, complete03wordmark, colors and browser theme-color follow the same store.
-A hashed same-origin bootstrap avoids separate pre-paint logic or a CSP exception.
-[Focused contract](website-appearance-controls-20260929.md).
+## Installed and published
 
-107Web checks,3public-infra checks, infra typecheck, public/legal builds and7legal
-checkout checks pass; after formatting the5appearance behavior checks pass again.
-Browser verifies desktop1329px and320/390px, no horizontal overflow, keyboard
-Escape/blur, mutually exclusive mobile panels, Home navigation, mode persistence
-and actual image selection. Only observed warnings are from the MetaMask extension.
-Exact final online/source evidence is in[QA](../output/qa/rillora-launch-goal-20260926/landing-theme-controls/work-state.json).
+Ordinary signed Debug is installed on Rillora-Matrix-17-Pro/iOS26.5 and left at
+Profile with System appearance. Binary and asset hashes match; no test identity,
+local API, large-text or motion override remains in the process. The existing
+staging API endpoint and Keychain are retained.
+[Actual install/config](../output/qa/rillora-ui-ux-audit-20260929/simulator-final.json).
 
-WWW public pages now disclose the optional setting at `/legal#appearance`.
-Privacy/Cookie shells carry a dated website-only supplement. LegalSites9succeeded
-from6cb791e1b37e94b71ba16c150d2c07bc719aa97a; audience stays public, accepted
-legal bodies/versions/digest and seven-route boundary stay unchanged. Actual
-Privacy/Cookie render and return link are verified. No account reacceptance is
-introduced. Existing licences remain under Legal/Third-party notices.
-[Receipt](../output/qa/rillora-launch-goal-20260926/landing-theme-controls/legal-deployment.json).
+Preview https://app.staging.rillora.xyz has the new immutable Web assets/index.
+The update is front-end only; retained old assets allow existing tabs/rollback.
+WWW https://www.rillora.xyz has the matching chooser/entry-handoff update; reviewed
+CDK diff changes only static content. Online HTML/entry/bootstrap match artifacts.
+LegalSites10succeeded from8a884b58882c721f536afe0c82f013f786f7e656; public audience,
+accepted legal bodies/versions/digest remain unchanged. The dated appearance
+supplement now includes the web app, with actual live Privacy readback.
 
-A related live check found two incorrect legal-index slugs. Subscription/Refund
-links now use the shared route definitions. The final WWW HTML/bootstrap match
-the artifact,19online checks pass, and actual legal link targets render correctly. The public artifact guard allows exactly the appearance preference;
-no cookies, analytics, account/API or broader storage exception is introduced.
+Engineering eadefd435841bce6103cff6a0cd4c6c4b0d4e8b9 is pushed.
+[CI29](https://github.com/tantalum666/rillora/actions/runs/36566846971) succeeds for that exact commit
+(source, API, Web and infrastructure jobs).
+Source scan:25reviewed non-secret matches,0unreviewed. Final documentation and
+link validation (161Markdown files/1583local links,0missing) are recorded in[this QA](../output/qa/rillora-ui-ux-audit-20260929/work-state.json).
 
-Owner's Free export question is advisory. Preserve current free basic export,
-backup and exit rights; no new entitlement restriction or paid feature is adopted.
-Offline copies remain static; Free1limits live outgoing relationships, not copying
-one's own data. [Commercial contract](monetization.md).
+## Preserved release gates and external state
 
-Preview Sign in remains https://app.staging.rillora.xyz/account and invitations
-retain `/invite`. Provider guidance remains signed-in and Free eligible. No staging-Web, private-production, API or database deployment occurs in this
-follow-up. The native Simulator install is the new result described above.
-The prior V3 actual publication/CI23checkpoint is preserved in the
-[historical handoff](handoff-history-20260929-before-appearance-closeout.md).
+The overall release goal is incomplete. Production customer App remains closed;
+this UI work does not upload or submit TestFlight/App Store or open paid sales.
+Owner-deferred business facts and physical devices remain separate.
 
-Engineering4d01005efabe813ecc55f2767a1c8472f309f231 is pushed and
-[CI25passes](https://github.com/tantalum666/rillora/actions/runs/36452030584).
-1022source files/25reviewed non-secret matches/0unreviewed,156Markdown files/
-1533local links without missing targets. This is the prior static website/legal checkpoint; native follow-up source
-checks are recorded in its separate QA. The final launch goal is not complete.
+Staging API38/migration31/schema0075 and production API task1/schema0070 retain
+the earlier handoff checkpoint. This round deploys no API/database changes;
+0076–0085remain pending. The closed production client builds, but is not republished.
+Apple fee/channel price, quote/transaction binding, actual purchase/restore,
+production identity/mail, recovery reconciliation and signing/review are still
+separate gates. Prior170native/300API results belong to the earlier release work.
 
-## Preserved release boundary
+AWS expired during publication; Owner completed authentication and STS confirmed
+133857166372/rillora-operator. Reuse until actual expiry; do not request MFA again
+speculatively. The Sites local plugin files were still unavailable; its native
+connector plus the existing source checkout and ephemeral credential bridge
+provided exact-source build/push/version/deploy with no permission expansion.
 
-Apple quote/consent/order preparation, native purchase/restore, pending/replay and
-historical receipts are locally implemented. Exact quote/StoreKit amount/currency,
-committed server acknowledgement and ownership are checked. Engineering0a51db9e8
-has[CI18success](https://github.com/tantalum666/rillora/actions/runs/36327186360):
-300API/34files, typecheck/build,170native pass/1existing skip. These were not rerun
-here.99.99preview fixture is not an adopted Apple price.
-
-Staging is API38/migration31/schema0075; production API is task1/schema0070 and
-customer-closed.0076–0085are not cloud deployed. Seven-day RDS backup, scoped restore
-and monitoring retain their prior evidence. No actual purchase, signed upload,
-TestFlight, production identity opening or public App release is claimed.
-
-## External state
-
-AWS STS was freshly read September29: correct133857166372operator identity, session
-reused for the scoped public deployment. Do not repeat MFA without actual expiry.
-The optional local Sites helper/skill is absent; native connector plus clean existing
-checkout and ephemeral stdin/memory Git credential achieved the same source/build/
-push/save/deploy boundary, with no persisted token or access expansion.
-
-SES reconsideration was submitted once on originalcase179022088800001,
-September28at12:40:19+08, statusReopened. Last observed Frankfurt quota remains
-sandbox200/day,1/sec; submission is not approval/delivery. Prefer SES/Auth0;
-Resend signup is withdrawn and Cognito remains research. [Mail](production-identity-mail-20260924.md).
+SES reconsideration was submitted once on originalcase179022088800001 at
+September28 12:40:19+08. Last observed state Reopened/sandbox200perday,1persecond
+is not rechecked or declared approved here. Prefer SES/Auth0; Resend stays withdrawn.
 
 ## Single next step
 
-Resume the final App's safe Apple review/TestFlight
-validation with enrolled accounts and distinct environments. Resolve actual Apple
-fee/channel price and transaction binding before enabling purchases. Production
-email/identity, recovery reconciliation and signing/store gates remain separate;
-do not treat this website revision as completion of the launch goal.
+Resume safe Apple review/TestFlight preparation: resolve actual fee/channel price and transaction
+binding before purchases. Continue the remaining independent release gates under
+[release readiness](release-readiness.md) and[Apple preparation](production-apple-20260926.md).
 
-[Release](release-readiness.md),[Apple](production-apple-20260926.md).
-
-[Prior handoff — HISTORICAL](handoff-history-20260929-before-native-home.md).
+[Previous handoff — HISTORICAL](handoff-history-20260929-before-ui-ux-closeout.md).

@@ -15,11 +15,12 @@ The homepage offers real Sign in, matter exploration and incoming invitation
 entry, with a bottom start action preserving the first-matter intent. It keeps
 the three existing native tabs; it does not reproduce five desktop navbar links.
 
-Home may use System/Light/Dark. A device-local appearance value remembers the
-explicit choice; it contains no identity/content and System removes it. Existing
-private screens stay in their established dark theme. Separate Home palette and
-small components avoid recoloring every private view. Website assets remain
-first-party; no new dependency, provider, guide disclosure or paid gate.
+Home uses the same app-wide System/Light/Dark preference as the workspace. A
+device-local appearance value remembers the explicit choice; it contains no
+identity/content and System removes it. The later Owner correction extends semantic
+colors to private tabs/details while preserving their composition. The dedicated
+Home palette still coordinates its selected artwork. No new dependency, provider,
+guide disclosure or paid gate.
 
 The example is labeled, local and non-persistent. Switching recipient clears
 expanded detail and exposes only their example items. Motion describes selection
@@ -32,7 +33,7 @@ account, invitation, purchase, TestFlight or production release is implied.
 [website target](landing-page-20260928.md).
 
 
-## Actual result
+## Prior homepage delivery checkpoint
 
 `Rillora-Matrix-17-Pro` / iOS26.5 now runs the new native homepage in the ordinary
 Debug Rillora app, com.rillora.ios, connected to the existing staging API. Built
@@ -52,3 +53,11 @@ storage-clearing workaround. Two initial UI failures came from a scroll helper
 assuming a standard navigation bar; it now handles this custom homepage header.
 Original failure bundles are retained. This is not a full native/API retest or a
 new end-user authentication/real sharing/purchase ceremony.
+
+## Later September29 scope correction
+
+Owner reports Profile forcing dark and explicitly requests a whole-product audit.
+The original home-only delivery scope is superseded by[app-wide appearance](ui-ux-audit-20260929.md).
+One migrated preference and semantic palette now cover every native tab, detail and
+sheet, preserving composition and business behavior. The homepage still uses this
+selected visual; this is not another visual direction.

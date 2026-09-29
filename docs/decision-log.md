@@ -2778,3 +2778,20 @@ unreachable release remains a different closed workflow. See [sharing contract](
   is remembered locally and System removes it. Existing private screens remain
   Graphite. This is neither a WebView shell nor an App Store/production release.
   [Native Home contract](native-home-20260929.md).
+
+## 2026-09-29 — App-wide appearance and evidence-based UI/UX repair
+
+- Owner reports the Profile dark-mode jump and requests careful full Web/iOS audit;
+  explicitly chooses Web workspace System/Light/Dark too. This supersedes both the
+  native Home-only exception and fixed-dark private Web scope. Keep established
+  layout,03brand, permissions, annual prices and real data.
+- Use one native migrated preference and the existing Web store/shared chooser.
+  Carry only a strict display enum between fixed public/App origins; no account
+  identifier, tracker or remote preference service. Disclose both surfaces without
+  revising the accepted legal bodies or creating another consent step.
+- Repair current observed task recovery, contrast, disabled feedback, audience
+  wording, persistent return controls, target sizes and network messages. Use a
+  transparent derivative of existing artwork; no new visual direction or library.
+- Authenticated journey evidence is isolated synthetic data. Current tests,
+  Simulator install and Preview/WWW/legal publication are separate from live
+  identity, mail, paid transactions and App Store release. [Audit](ui-ux-audit-20260929.md).

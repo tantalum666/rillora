@@ -1,6 +1,6 @@
 # Website appearance controls and Home navigation
 
-Status: PUBLIC WEBSITE AND LEGAL SUPPLEMENT PUBLISHED; EXACT EVIDENCE IN HANDOFF
+Status: PUBLISHED; EXTENDED TO WEB WORKSPACE BY LATER OWNER INSTRUCTION
 Last updated: 2026-09-29 (Asia/Hong_Kong)
 
 ## Owner direction
@@ -17,7 +17,8 @@ desktop and narrow mobile; do not hide the control inside the mobile menu.
   focus to the trigger, and outside interaction closes the panel.
 - System is the default and follows device changes. Selecting Light/Dark records
   that explicit choice in a single local value, `rillora.website.appearance.v1`.
-  System deletes the value. No value is written just because someone visits.
+  System deletes the value. An ordinary visit without a display selection or
+  incoming display hint writes no preference.
 - The preference contains only `light` or `dark`; no account/content/identifier.
   It remains until cleared or reset to System. Storage failure still allows the
   current-page change and shows an accurate non-persistence explanation.
@@ -25,7 +26,9 @@ desktop and narrow mobile; do not hide the control inside the mobile menu.
   before the public module/styles and the React fallback. No inline CSP exception.
   Images, wordmarks, root colors and browser theme-color follow the resolved choice.
 - Other tabs synchronize the same key. Unknown values/keys are ignored. Actual
-  product/private App themes and account/identity state remain separate.
+  account/identity state remains separate. The later Owner instruction extends this
+  preference behavior to the Web workspace; fixed owned entry links carry only the
+  display enum. See[the current audit](ui-ux-audit-20260929.md).
 - Public build marker v2 declares this specific functional preference. The cloud
   artifact guard permits exactly that key/purpose with cookies and tracking off;
   it still rejects private-app flags, extra storage keys and tracking. Legacy
@@ -35,7 +38,7 @@ desktop and narrow mobile; do not hide the control inside the mobile menu.
 
 The chooser explains on-device persistence and System reset before a choice.
 `/legal#appearance` explains key, values, duration, purpose and clearing. The public
-Privacy/Cookie publication shell displays the same dated website-only update, so
+Privacy/Cookie publication shell displays the same dated appearance-only update, so
 its prior storage descriptions are not silently left as an exhaustive current
 list. Existing accepted document bodies, identity clickwrap versions and core
 consent digest are unchanged; there is no new account acceptance ceremony.
