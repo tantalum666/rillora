@@ -26,7 +26,7 @@ struct AppShellView: View {
     @State private var peopleIntent: ProfilePeopleIntent?
     @State private var sharingRevision = 0
     @State private var overviewShared = false
-    @AppStorage(PublicHomeAppearance.storageKey) private var homeAppearance = PublicHomeAppearance.system.rawValue
+    @AppStorage(AppAppearance.storageKey) private var appearanceValue = AppAppearance.system.rawValue
     @Environment(\.colorScheme) private var colorScheme
 
     var body: some View {
@@ -34,7 +34,7 @@ struct AppShellView: View {
             NavigationStack {
                 StoreKitSandboxCatalogView(store: commerceStore)
             }
-            .preferredColorScheme(.dark)
+            .preferredColorScheme(appearancePreference.colorScheme)
         } else {
             TabView(selection: $selectedTab) {
             NavigationStack {
@@ -116,14 +116,14 @@ struct AppShellView: View {
             .tabItem { AppTab.profile.label(isSelected: selectedTab == .profile) }
             .tag(AppTab.profile)
         }
-        .tint(isPublicHome ? publicHomePalette.accent : RilloraTheme.tabSelection)
+        .tint(RilloraTheme.tabSelection)
         .toolbarBackground(
-            isPublicHome ? publicHomePalette.paper : RilloraTheme.graphiteSurface,
+            RilloraTheme.graphiteSurface,
             for: .tabBar
         )
         .toolbarBackground(.visible, for: .tabBar)
-        .toolbarColorScheme(isPublicHome ? resolvedHomeScheme : .dark, for: .tabBar)
-        .preferredColorScheme(isPublicHome ? homePreference.colorScheme : .dark)
+        .toolbarColorScheme(resolvedAppearance, for: .tabBar)
+        .preferredColorScheme(appearancePreference.colorScheme)
         .sheet(item: $firstUseDestination, onDismiss: {
             defer { presentQueuedInvitation() }
             guard shouldPauseGuideOnDismiss else { return }
@@ -134,12 +134,12 @@ struct AppShellView: View {
                 firstUseSheet(destination)
             }
             .presentationBackground(RilloraTheme.graphite)
-            .preferredColorScheme(.dark)
+            .preferredColorScheme(appearancePreference.colorScheme)
         }
         .sheet(item: $invitationSheet, onDismiss: { presentQueuedInvitation() }) { received in
             NavigationStack { InvitationAcceptView(initialToken: received.token, service: sharingService, authenticationStore: authenticationStore, overviewStore: store) }
                 .presentationBackground(RilloraTheme.graphite)
-                .preferredColorScheme(.dark)
+                .preferredColorScheme(appearancePreference.colorScheme)
         }
         .sheet(item: Binding(get: { authenticationStore.deletionReference }, set: { authenticationStore.deletionReference = $0 })) { reference in
             if let dataService = startHereService as? any AccountDataServing {
@@ -208,14 +208,10 @@ struct AppShellView: View {
         guard case .loaded(let snapshot) = store.state else { return nil }
         return UUID(uuidString: snapshot.session.plannerPublicId)
     }
-    private var isPublicHome: Bool {
-        selectedTab == .overview && store.state == .signedOut
+    private var appearancePreference: AppAppearance {
+        AppAppearance(rawValue: appearanceValue) ?? .system
     }
-    private var homePreference: PublicHomeAppearance {
-        PublicHomeAppearance(rawValue: homeAppearance) ?? .system
-    }
-    private var resolvedHomeScheme: ColorScheme { homePreference.colorScheme ?? colorScheme }
-    private var publicHomePalette: PublicHomePalette { PublicHomePalette(scheme: resolvedHomeScheme) }
+    private var resolvedAppearance: ColorScheme { appearancePreference.colorScheme ?? colorScheme }
     private var activePlannerID: String? { if case .loaded(let snapshot) = store.state { snapshot.session.plannerPublicId } else { nil } }
     private func queueInvitation(_ token: String?) { queuedInvitation = ReceivedInvitation(token: token); presentQueuedInvitation() }
     private func presentQueuedInvitation() {

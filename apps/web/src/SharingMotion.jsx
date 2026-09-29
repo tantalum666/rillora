@@ -1,7 +1,7 @@
 import { RilloraBrand } from "./RilloraBrand.jsx";
 import { useEffect, useState } from "react";
 import { ArrowRight, Check, Clock, PlusCircle, UserCircle, TrayArrowDown } from "@phosphor-icons/react";
-import folio from "./assets/illustrations/rillora-folio.jpg";
+import folio from "./assets/illustrations/rillora-folio-cutout.png";
 import { sharingStatus } from "./sharing.js";
 import "./authenticated-motion.css";
 

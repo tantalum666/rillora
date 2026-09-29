@@ -1,3 +1,4 @@
+import { AppAppearanceControl } from "./AppearanceControl.jsx";
 import { RilloraBrand } from "./RilloraBrand.jsx";
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Envelope, LinkSimple } from "@phosphor-icons/react";
@@ -97,7 +98,7 @@ export function InvitationPage({ apiClient }) {
     finally { setBusy(false); }
   }
   const unavailable = invitation && ["expired", "revoked"].includes(invitation.status);
-  return <div className="invitation-page"><header><a href="/" aria-label="Rillora home"><RilloraBrand decorative /></a><a className="invitation-back" href={returnPath}><ArrowLeft size={18} aria-hidden="true" />{fromShared ? "Back to shared items" : "Back to Rillora"}</a></header><main>
+  return <div className="invitation-page"><header><a href="/" aria-label="Rillora home"><RilloraBrand decorative /></a><a className="invitation-back" href={returnPath}><ArrowLeft size={18} aria-hidden="true" />{fromShared ? "Back to shared items" : "Back to Rillora"}</a><AppAppearanceControl /></header><main>
     {import.meta.env.DEV && import.meta.env.VITE_DEV_PLANNER_ID && <p className="development-notice">Local QA · test data</p>}
     <div className="invitation-people"><ConnectionVisual status={invitation?.status ?? "pending"} /></div>
     <h1>{loading ? "Opening invitation…" : invitation ? `${invitation.ownerName} invited you` : "Accept a received invitation"}</h1>

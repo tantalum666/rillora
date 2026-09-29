@@ -14,6 +14,21 @@
   } catch {
     persistenceAvailable = false;
   }
+  // A display preference can travel between our public site and workspace.
+  // Consume only this narrow enum; preserve invitation fragments/auth query data.
+  try {
+    const url = new URL(window.location.href);
+    const hint = url.searchParams.get("appearance");
+    if (hint === "system" || allowed.has(hint)) {
+      preference = hint;
+      try {
+        if (hint === "system") window.localStorage.removeItem(key);
+        else window.localStorage.setItem(key, hint);
+      } catch { persistenceAvailable = false; }
+      url.searchParams.delete("appearance");
+      window.history.replaceState(window.history.state, "", url.pathname + url.search + url.hash);
+    }
+  } catch { /* No usable URL/history (embedded or privacy-restricted contexts). */ }
   let snapshot;
   function apply() {
     const resolved =

@@ -1,3 +1,4 @@
+import { AppAppearanceControl } from "./AppearanceControl.jsx";
 import { RilloraBrand } from "./RilloraBrand.jsx";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -103,6 +104,7 @@ export function PublicExperience({ sessionStatus, onRetry }) {
         <nav aria-label="Public navigation">
           <a className={view === "account" ? "is-current" : ""} href={publicRoutes.account} onClick={(event) => handleNavigation(event, publicRoutes.account)}>Account</a>
         </nav>
+        <AppAppearanceControl />
       </header>
 
       {hasVisitedHome && <div hidden={view !== "home"}>

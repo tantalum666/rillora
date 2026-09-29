@@ -1,3 +1,4 @@
+import { AppearanceLink } from "../AppearanceControl.jsx";
 import { ArrowRight } from "@phosphor-icons/react";
 import hero from "../assets/landing/hero-still-life.webp";
 import heroDark from "../assets/landing/hero-dark.webp";
@@ -37,12 +38,12 @@ export function LandingPage() {
               <a className="lp-button" href="/product">
                 Explore the product <ArrowRight size={22} aria-hidden="true" />
               </a>
-              <a
+              <AppearanceLink
                 className="lp-invitation-link"
                 href={publicEntry.invitationURL}
               >
                 Received an invitation?
-              </a>
+              </AppearanceLink>
             </div>
           </div>
         </div>
@@ -88,9 +89,9 @@ export function LandingPage() {
           </h2>
           <p>Start with one matter and someone you trust.</p>
         </div>
-        <a className="lp-button" href={publicEntry.accountURL}>
+        <AppearanceLink className="lp-button" href={publicEntry.accountURL}>
           Explore Preview <ArrowRight size={22} aria-hidden="true" />
-        </a>
+        </AppearanceLink>
       </section>
     </main>
   );

@@ -1,3 +1,4 @@
+import { AppearanceLink } from "../AppearanceControl.jsx";
 import {
   ArrowRight,
   Link as LinkIcon,
@@ -38,9 +39,9 @@ export function ProductPage() {
               Select the matters and details a person may see, then send your
               invitation link or QR code.
             </p>
-            <a className="lp-text-link" href={publicEntry.accountURL}>
+            <AppearanceLink className="lp-text-link" href={publicEntry.accountURL}>
               Open your private map <ArrowRight size={20} aria-hidden="true" />
-            </a>
+            </AppearanceLink>
           </div>
           <div>
             <UserCircle size={34} aria-hidden="true" />
@@ -49,10 +50,10 @@ export function ProductPage() {
               They can use the web or iOS app. Their own account gives them
               access to the information you chose.
             </p>
-            <a className="lp-text-link" href={publicEntry.invitationURL}>
+            <AppearanceLink className="lp-text-link" href={publicEntry.invitationURL}>
               Received an invitation?{" "}
               <ArrowRight size={20} aria-hidden="true" />
-            </a>
+            </AppearanceLink>
           </div>
         </div>
         <p className="lp-product-note">

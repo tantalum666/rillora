@@ -1,5 +1,6 @@
 import { readFile } from "node:fs/promises";
 import { runInNewContext } from "node:vm";
+import { withAppearance } from "../src/appearanceLink.js";
 import test from "node:test";
 import assert from "node:assert/strict";
 const source = await readFile(
@@ -7,7 +8,7 @@ const source = await readFile(
   "utf8",
 );
 const key = "rillora.website.appearance.v1";
-function browser({ saved = null, dark = false, blocked = false } = {}) {
+function browser({ saved = null, dark = false, blocked = false, url = "https://app.staging.rillora.xyz/" } = {}) {
   const values = new Map(saved ? [[key, saved]] : []),
     writes = [],
     events = {};
@@ -22,6 +23,8 @@ function browser({ saved = null, dark = false, blocked = false } = {}) {
     querySelectorAll: () => [],
   };
   const window = {
+    location: { href: url },
+    history: { state: { audit: true }, replaceState: (state, title, path) => { window.location.href = new URL(path, url).href; } },
     matchMedia: () => media,
     localStorage: {
       getItem: (k) => {
@@ -41,7 +44,7 @@ function browser({ saved = null, dark = false, blocked = false } = {}) {
     },
     addEventListener: (name, fn) => (events[name] = fn),
   };
-  runInNewContext(source, { window, document });
+  runInNewContext(source, { window, document, URL });
   return {
     window,
     document,
@@ -95,4 +98,26 @@ test("other tabs synchronize only the appearance key; bootstrap is idempotent", 
   assert.equal(store.getSnapshot().resolved, "dark");
   b.events.storage({ key, newValue: null });
   assert.equal(store.getSnapshot().preference, "system");
+});
+
+test("appearance handoff preserves invitation context and fragment", () => {
+  const url = "https://app.staging.rillora.xyz/invite/example?from=shared&appearance=light#key=sample";
+  const b = browser({ saved:"dark", url });
+  assert.equal(b.store.getSnapshot().preference, "light");
+  assert.equal(b.values.get(key), "light");
+  assert.equal(b.window.location.href, "https://app.staging.rillora.xyz/invite/example?from=shared#key=sample");
+});
+test("system handoff clears only the appearance value; malformed hints are ignored", () => {
+  const b = browser({ saved:"dark", dark:false, url:"https://app.staging.rillora.xyz/account?appearance=system&intent=matter" });
+  assert.equal(b.values.has(key), false);
+  assert.equal(b.store.getSnapshot().resolved, "light");
+  assert.equal(b.window.location.href, "https://app.staging.rillora.xyz/account?intent=matter");
+  const invalid = browser({ saved:"dark", url:"https://app.staging.rillora.xyz/?appearance=invalid" });
+  assert.equal(invalid.store.getSnapshot().preference, "dark");
+  assert.equal(invalid.writes.length, 0);
+});
+test("public links carry display choice only to known app origins", () => {
+  assert.equal(withAppearance("https://app.rillora.xyz/account?intent=matter#saved", "dark"), "https://app.rillora.xyz/account?intent=matter&appearance=dark#saved");
+  assert.equal(withAppearance("https://example.test/account", "light"), "https://example.test/account");
+  assert.equal(withAppearance("/security", "light"), "/security");
 });

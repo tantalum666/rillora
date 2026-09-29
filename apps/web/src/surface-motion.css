@@ -1,9 +1,5 @@
 /* Prepared Folio refinement: one card material, state in the edge and icon. */
 .app-shell, .drawer, .maintenance-dialog, .task-confirmation {
-  --surface: #252c29;
-  --surface-muted: #1d2322;
-  --card-border: #3d4842;
-  --icon-surface: #2e3731;
   --motion-response: 220ms cubic-bezier(.2,.8,.2,1);
   --motion-reveal: 360ms cubic-bezier(.16,1,.3,1);
 }
@@ -28,10 +24,10 @@
   flex: 0 0 auto;
   width: 42px;
   height: 42px;
-  border: 1px solid var(--card-border, #3d4842);
+  border: 1px solid var(--card-border, var(--card-border));
   border-radius: 12px;
-  background: var(--icon-surface, #2e3731);
-  color: #cde1b0;
+  background: var(--icon-surface, var(--icon-surface));
+  color: var(--accent);
 }
 .task-emblem { width: 76px; height: 76px; border-radius: 21px; }
 .account-data-heading { display: flex; align-items: center; gap: 18px; margin: 4px 0 12px; }
@@ -51,7 +47,7 @@
 .account-data-panel .disclosure-chevron { flex: 0 0 auto; color: var(--sage); transition: rotate var(--motion-response); }
 .account-data-panel [aria-expanded=true] .disclosure-chevron { rotate: 90deg; }
 .data-disclosure { border-left: 1px solid var(--card-border); padding: 6px 0 6px 18px; margin: 0 0 8px 20px; }
-.account-data-panel > [role=status] { display: flex; align-items: center; gap: 9px; color: #cde1b0; }
+.account-data-panel > [role=status] { display: flex; align-items: center; gap: 9px; color: var(--accent); }
 .account-data-panel > [role=status] svg { flex-shrink: 0; }
 
 .plan-access-preview { display: grid; gap: 18px; }
@@ -79,7 +75,7 @@
 .plan-disclosure[open] > summary .disclosure-chevron { rotate: 90deg; }
 .plan-disclosure[open] { border-color: var(--sage); }
 
-.task-symbol > svg { padding: 14px; width: 82px; height: 82px; border: 1px solid var(--card-border, #3d4842); border-radius: 23px; background: var(--icon-surface, #2e3731); }
+.task-symbol > svg { padding: 14px; width: 82px; height: 82px; border: 1px solid var(--card-border, var(--card-border)); border-radius: 23px; background: var(--icon-surface, var(--icon-surface)); }
 
 @media (prefers-reduced-motion: no-preference) {
   .task-emblem, .task-symbol > svg { animation: emblem-arrive 480ms cubic-bezier(.2,.85,.25,1) both; }

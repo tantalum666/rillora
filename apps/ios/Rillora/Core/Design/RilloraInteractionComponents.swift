@@ -5,7 +5,7 @@ struct RilloraQuietButtonStyle: ButtonStyle {
     @RilloraReduceMotion private var reduceMotion
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .opacity(configuration.isPressed && isEnabled ? 0.78 : 1)
+            .opacity(isEnabled ? (configuration.isPressed ? 0.78 : 1) : 0.45)
             .scaleEffect(configuration.isPressed && isEnabled && !reduceMotion ? 0.975 : 1)
             .animation(reduceMotion ? nil : RilloraMotion.response, value: configuration.isPressed)
     }

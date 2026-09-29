@@ -1,3 +1,4 @@
+import { writeAppearanceBootstrap } from "./appearance-bootstrap.mjs";
 import { readFile, readdir, writeFile, lstat } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { resolve, relative } from 'node:path';
@@ -6,6 +7,7 @@ import { runInNewContext } from 'node:vm';
 const root = resolve('dist-production');
 const connections = JSON.parse(await readFile('../../config/production-connections.json', 'utf8'));
 if (connections.customerAccess !== 'closed') throw new Error('Only a closed production candidate is supported');
+await writeAppearanceBootstrap(root);
 const files = {};
 async function visit(directory) {
   for (const name of await readdir(directory)) {

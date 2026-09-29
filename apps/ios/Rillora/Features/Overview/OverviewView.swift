@@ -70,7 +70,7 @@ struct OverviewView: View {
         .toolbar(isSignedOut ? .hidden : .visible, for: .navigationBar)
         .toolbarBackground(RilloraTheme.graphite, for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
-        .toolbarColorScheme(isSignedOut ? colorScheme : .dark, for: .navigationBar)
+        .toolbarColorScheme(colorScheme, for: .navigationBar)
     }
 
     private var isSignedOut: Bool {
@@ -221,7 +221,7 @@ private struct OverviewHero: View {
             .padding(.vertical, dynamicTypeSize.isAccessibilitySize ? 10 : 0)
         }
         .buttonStyle(RilloraQuietButtonStyle())
-        .foregroundStyle(RilloraTheme.canvas)
+        .foregroundStyle(RilloraTheme.onClay)
         .background(
             RilloraTheme.clay,
             in: RoundedRectangle(cornerRadius: 15, style: .continuous)

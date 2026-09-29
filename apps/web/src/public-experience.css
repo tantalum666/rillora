@@ -135,7 +135,7 @@
 .public-hero-intro {
   max-width: 650px;
   margin-bottom: 34px;
-  color: #3e494f;
+  color: var(--body);
   font-size: clamp(16px, 1.45vw, 19px);
   line-height: 1.62;
 }
@@ -244,7 +244,7 @@
   height: 54px;
   display: grid;
   place-items: center;
-  border: 1px solid #becbb9;
+  border: 1px solid var(--border);
   border-radius: 50%;
   background: var(--sage-soft);
   color: var(--sage);
@@ -423,7 +423,7 @@
   display: flex;
   align-items: center;
   gap: 9px;
-  color: #42504e;
+  color: var(--body);
   font-size: 13px;
 }
 
@@ -527,7 +527,7 @@
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  color: #42504e;
+  color: var(--body);
   font-size: 13px;
   line-height: 1.5;
 }
@@ -548,7 +548,7 @@
   margin: auto 0 0;
   padding-top: 18px;
   border-top: 1px solid rgba(85, 119, 90, 0.22);
-  color: #49634d;
+  color: var(--sage);
   font-weight: 550;
 }
 
@@ -628,18 +628,20 @@
 
 .account-consent label {
   display: grid;
-  grid-template-columns: 17px minmax(0, 1fr);
+  grid-template-columns: 24px minmax(0, 1fr);
   align-items: start;
-  gap: 8px;
+  gap: 10px;
+  min-height: 44px;
+  padding-block: 8px;
   color: var(--muted);
-  font-size: 11px;
-  line-height: 1.45;
+  font-size: 14px;
+  line-height: 1.55;
   cursor: pointer;
 }
 
 .account-consent input {
-  width: 16px;
-  height: 16px;
+  width: 22px;
+  height: 22px;
   margin: 1px 0 0;
   accent-color: var(--sage);
 }
@@ -650,9 +652,9 @@
 }
 
 .account-consent small {
-  padding-left: 25px;
+  padding-left: 34px;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.4;
   opacity: 0.84;
 }
@@ -692,7 +694,7 @@
 }
 
 .account-status.is-error {
-  color: #e2a48a;
+  color: var(--warning);
 }
 
 .public-footer {
@@ -742,7 +744,7 @@
   gap: 14px;
   border: 1px solid rgba(184, 186, 178, 0.28);
   border-radius: 16px;
-  background: #252c29;
+  background: var(--surface);
   box-shadow: 0 16px 42px rgba(0, 0, 0, 0.34);
   color: var(--body);
 }
@@ -1312,15 +1314,15 @@
 
 /* AI-01 Architectural Index — selected public long-page direction. */
 .public-shell-home {
-  --architectural-bg: #171c1c;
-  --architectural-panel: #1d2322;
-  --architectural-panel-soft: #252c29;
-  --architectural-line: rgba(212, 216, 201, 0.2);
-  --architectural-limestone: #f1ece2;
-  --architectural-muted: #b8bab2;
-  --architectural-green: #9bb180;
-  --architectural-green-deep: #4d5f4d;
-  --architectural-rust: #cc6842;
+  --architectural-bg: var(--canvas);
+  --architectural-panel: var(--surface-muted);
+  --architectural-panel-soft: var(--surface);
+  --architectural-line: var(--divider);
+  --architectural-limestone: var(--ink);
+  --architectural-muted: var(--muted);
+  --architectural-green: var(--sage);
+  --architectural-green-deep: var(--sage-soft);
+  --architectural-rust: var(--clay);
   overflow: clip;
   background: var(--architectural-bg);
   color: var(--architectural-limestone);
@@ -1483,7 +1485,7 @@
   display: grid;
   place-items: center;
   border-right: 1px solid var(--architectural-line);
-  color: #727a6d;
+  color: var(--muted);
   font-family: "Source Serif 4", Georgia, serif;
   font-size: 34px;
 }

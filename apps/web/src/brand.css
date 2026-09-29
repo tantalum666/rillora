@@ -10,6 +10,10 @@
 .rillora-brand--compact {
   height: 26px;
 }
+.rillora-brand-pair { display:inline-block; max-width:100%; }
+.rillora-brand-light { display:none; }
+:root[data-appearance="light"] .rillora-brand-dark { display:none; }
+:root[data-appearance="light"] .rillora-brand-light { display:inline-block; }
 
 @media print {
   .rillora-brand {

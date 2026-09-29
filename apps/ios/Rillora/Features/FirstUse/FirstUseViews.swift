@@ -43,7 +43,7 @@ struct FirstUseStarterCard: View {
             title: "Add a matter",
             icon: "plus",
             fill: RilloraTheme.clay,
-            foreground: RilloraTheme.canvas,
+            foreground: RilloraTheme.onClay,
             action: onAddMatter
         )
         .accessibilityIdentifier("first-use.add-matter")

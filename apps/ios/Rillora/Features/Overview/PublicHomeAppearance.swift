@@ -1,19 +1,5 @@
 import SwiftUI
 
-/// Public Home has its own appearance; private workspace screens retain Graphite.
-enum PublicHomeAppearance: String, CaseIterable, Identifiable {
-    case system, light, dark
-    static let storageKey = "rillora.public-home.appearance.v1"
-    var id: String { rawValue }
-    var title: String { rawValue.capitalized }
-    var colorScheme: ColorScheme? {
-        switch self { case .system: nil; case .light: .light; case .dark: .dark }
-    }
-    var symbol: String {
-        switch self { case .system: "iphone"; case .light: "sun.max"; case .dark: "moon" }
-    }
-}
-
 struct PublicHomePalette {
     let scheme: ColorScheme
     var isDark: Bool { scheme == .dark }

@@ -70,6 +70,7 @@ struct ProfileView: View {
             presentedContact = intent.contact.map { .share($0) } ?? .create
             peopleIntent = nil
         }
+        .toolbar { ToolbarItem(placement: .topBarTrailing) { AppAppearanceMenu() } }
         .navigationTitle("Profile")
         .navigationBarTitleDisplayMode(.inline)
         .sheet(item: $presentedContact) { destination in

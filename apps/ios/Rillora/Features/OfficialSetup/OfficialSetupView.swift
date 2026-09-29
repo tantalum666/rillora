@@ -437,7 +437,9 @@ struct OfficialProviderMark: View {
         mark
             .frame(width: size, height: size)
             .background(
-                RilloraTheme.actionIconSurface,
+                ["coinbase", "instagram", "github", "x"].contains(guide.id)
+                    ? Color(red: 46 / 255, green: 55 / 255, blue: 49 / 255)
+                    : RilloraTheme.actionIconSurface,
                 in: RoundedRectangle(cornerRadius: size * 0.29, style: .continuous)
             )
             .accessibilityHidden(true)

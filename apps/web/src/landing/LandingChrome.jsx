@@ -1,3 +1,4 @@
+import { AppearanceLink } from "../AppearanceControl.jsx";
 import { useState } from "react";
 import { ArrowRight, List, X } from "@phosphor-icons/react";
 import logo from "../assets/brand/lockup-primary.svg";
@@ -21,7 +22,7 @@ export function LandingBrand() {
 
 export function PreviewAccountLink() {
   return (
-    <a
+    <AppearanceLink
       className="lp-sign-in"
       href={publicEntry.accountURL}
       aria-label={
@@ -33,7 +34,7 @@ export function PreviewAccountLink() {
       {publicEntry.preview && <span className="lp-preview-label">Preview</span>}
       <span>Sign in</span>
       <ArrowRight size={20} aria-hidden="true" />
-    </a>
+    </AppearanceLink>
   );
 }
 

@@ -37,3 +37,24 @@ test("stored existence is independent of preparation status",()=>{
  assert.equal(matterStatusLabel({recordStatus:"ready",status:"added"}),"Directions added");
  assert.equal(matterStatusLabel({recordStatus:"needs_review"}),"Needs review");
 });
+
+test("closing a different editor cannot remove the pending draft", async () => {
+  const { clearMatchingMatterDraft } = await import("../src/matterDraftStorage.js");
+  const s = store();
+  const kept = { ...draft(), type: "matter", id: A, expectedVersion: 2 };
+  writeMatterDraft(A, kept, s);
+  assert.equal(clearMatchingMatterDraft(A, { type: "matter", id: B }, s), false);
+  assert.equal(readMatterDraft(A, s).notes, kept.notes);
+  assert.equal(clearMatchingMatterDraft(A, { type: "matter", id: A }, s), true);
+  assert.equal(readMatterDraft(A, s), null);
+});
+
+test("new draft cleanup matches request identity and stays account scoped", async () => {
+  const { clearMatchingMatterDraft } = await import("../src/matterDraftStorage.js");
+  const s = store(), kept = { ...draft(), requestId: A };
+  writeMatterDraft(A, kept, s);
+  assert.equal(clearMatchingMatterDraft(B, kept, s), false);
+  assert.equal(clearMatchingMatterDraft(A, { ...kept, requestId: B }, s), false);
+  assert.equal(readMatterDraft(A, s).requestId, A);
+  assert.equal(clearMatchingMatterDraft(A, kept, s), true);
+});

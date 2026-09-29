@@ -107,8 +107,14 @@ struct StartHerePreviewView: View {
     private var readyView: some View {
         ScrollView {
             VStack(spacing: 22) {
+                if !dynamicTypeSize.isAccessibilitySize {
+                    Text("Who is this copy for?")
+                        .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(RilloraTheme.ink)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
                 RilloraAdaptivePicker("Who is this copy for?", selection: $audienceChoice) {
-                    Text("Choose…").tag("")
+                    Text("Choose an audience…").tag("")
                     Text("For me").tag("owner")
                     Text("For a person").tag("recipient")
                 }.accessibilityIdentifier("start-here.audience")
@@ -136,7 +142,7 @@ struct StartHerePreviewView: View {
                 .buttonStyle(RilloraPrimaryActionButtonStyle())
                 .disabled(audienceChoice.isEmpty || (audienceChoice == "recipient" && recipientConnectionID.isEmpty))
                 .accessibilityIdentifier("start-here.preview")
-                RilloraInfoDisclosure("Preview only") {
+                RilloraInfoDisclosure("Before you export") {
                     Text("Only you see this preview. No file is created or shared.")
                         .font(.subheadline).foregroundStyle(RilloraTheme.body)
                     RilloraFactStrip([

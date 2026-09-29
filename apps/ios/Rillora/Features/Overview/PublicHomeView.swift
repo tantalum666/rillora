@@ -6,7 +6,6 @@ struct SignedOutOverviewView: View {
     var onSignIn: () -> Void = {}
     var onOpenInvitation: () -> Void = {}
     var isAuthenticating = false
-    @AppStorage(PublicHomeAppearance.storageKey) private var appearance = PublicHomeAppearance.system.rawValue
     @Environment(\.colorScheme) private var colorScheme
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @ScaledMetric(relativeTo: .largeTitle) private var titleSize = 47
@@ -59,24 +58,7 @@ struct SignedOutOverviewView: View {
             }
             .buttonStyle(.plain).disabled(isAuthenticating)
             .accessibilityIdentifier("public-home.sign-in")
-            Menu {
-                ForEach(PublicHomeAppearance.allCases) { choice in
-                    Button {
-                        appearance = choice.rawValue
-                        if choice == .system { UserDefaults.standard.removeObject(forKey: PublicHomeAppearance.storageKey) }
-                    } label: {
-                        Label(choice.title, systemImage: appearance == choice.rawValue ? "checkmark" : choice.symbol)
-                    }
-                    .accessibilityIdentifier("public-home.appearance.\(choice.rawValue)")
-                }
-            } label: {
-                Image(systemName: colorScheme == .dark ? "moon" : "sun.max")
-                    .font(.title3).foregroundStyle(palette.ink)
-                    .frame(width: 44, height: 44).contentShape(Rectangle())
-            }
-            .accessibilityLabel("Home appearance")
-            .accessibilityValue(appearance.capitalized)
-            .accessibilityIdentifier("public-home.appearance")
+            AppAppearanceMenu()
         }
     }
 
@@ -124,7 +106,6 @@ struct SignedOutOverviewView: View {
             NavigationLink {
                 RilloraSafetyPrivacyView()
                     .toolbar(.visible, for: .navigationBar)
-                    .preferredColorScheme(.dark)
             } label: {
                 destinationLabel("Stay in control.", detail: "Your information. Your choices.", symbol: "hand.raised")
             }.buttonStyle(.plain).accessibilityIdentifier("public-home.privacy")

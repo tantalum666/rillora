@@ -59,6 +59,21 @@ export function clearMatterDraft(owner, store = storage()) {
   try { const name = key(owner); if (name) store?.removeItem(name); } catch { /* unavailable storage */ }
 }
 
+export function isSameMatterDraft(first, second) {
+  if (!first || !second || first.type !== second.type) return false;
+  if (first.type === "matter") return Boolean(first.id && first.id === second.id);
+  return first.type === "matter-create"
+    && Boolean(first.requestId && first.requestId === second.requestId);
+}
+
+// Closing or saving a different editor must not erase a pending recovery.
+export function clearMatchingMatterDraft(owner, drawer, store = storage()) {
+  const saved = readMatterDraft(owner, store);
+  if (!isSameMatterDraft(drawer, saved)) return false;
+  clearMatterDraft(owner, store);
+  return true;
+}
+
 export function matterStatusLabel(matter) {
   switch (matter.recordStatus ?? matter.status) {
     case "ready": case "added": return "Directions added";

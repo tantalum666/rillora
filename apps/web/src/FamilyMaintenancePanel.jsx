@@ -45,7 +45,7 @@ export function FamilyMaintenancePanel({
       }
     } catch (failure) {
       if (run === generation.current) {
-        setError(failure.message || 'Reviews could not be loaded.');
+        setError(failure.name === 'TypeError' ? 'Reviews could not be loaded. Check your connection and try again.' : failure.message || 'Reviews could not be loaded.');
         if (failure.status === 401) setData(null);
       }
     } finally {
@@ -211,7 +211,7 @@ function ReviewDialog({
       setDirty(false);
       await onSaved(changesMap);
     } catch (failure) {
-      setError(failure.message || 'Your changes were not saved. The draft is still here.');
+      setError(failure.name === 'TypeError' ? 'Could not confirm your changes. Check your connection and try again. Your draft is still here.' : failure.message || 'Your changes were not saved. The draft is still here.');
     } finally {
       setBusy(false);
     }

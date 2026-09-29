@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { copyFileSync, existsSync, mkdirSync } from "node:fs";
+import { writeAppearanceBootstrap } from "./appearance-bootstrap.mjs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -12,6 +13,8 @@ const hosting = path.join(root, ".openai", "hosting.json");
 for (const file of [index, worker, hosting]) {
   if (!existsSync(file)) throw new Error("Missing Sites build input: " + file);
 }
+
+await writeAppearanceBootstrap(path.join(dist, "client"));
 
 mkdirSync(path.join(dist, "server"), { recursive: true });
 mkdirSync(path.join(dist, ".openai"), { recursive: true });

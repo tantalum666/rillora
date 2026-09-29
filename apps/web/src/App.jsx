@@ -1,10 +1,11 @@
+import { AppAppearanceControl } from "./AppearanceControl.jsx";
 import { RilloraBrand } from "./RilloraBrand.jsx";
 import { ProviderMark } from "./ProviderMark.jsx";
 import { readWorkspaceRoute, drawerRoute, useWorkspaceHistory } from "./workspaceNavigation.js";
 import { AuthenticatedOverview, FolioArtwork, InviteAction } from "./SharingMotion.jsx";
 import { MatterForm } from "./MatterForm.jsx";
 import { toMatterDraft, matterPayload, matterValidation, matterDraftChanged } from "./matterForm.js";
-import { clearMatterDraft, readMatterDraft, writeMatterDraft, matterStatusLabel } from "./matterDraftStorage.js";
+import { clearMatterDraft, clearMatchingMatterDraft, readMatterDraft, writeMatterDraft, matterStatusLabel } from "./matterDraftStorage.js";
 import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   AddressBook,
@@ -225,9 +226,10 @@ function Drawer({ title, eyebrow, onClose, closeLabel = "Close panel", busy = fa
         const box = event.currentTarget.getBoundingClientRect();
         if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) onClose();
       }}>
-      <button className="icon-button drawer-close" disabled={busy} onClick={onClose} aria-label={closeLabel}><X size={20} /></button>
-      {eyebrow && <SectionLabel>{eyebrow}</SectionLabel>}
-      <h2 id="drawer-title">{title}</h2>
+      <header className="drawer-header">
+        <div>{eyebrow && <SectionLabel>{eyebrow}</SectionLabel>}<h2 id="drawer-title">{title}</h2></div>
+        <button className="icon-button drawer-close" disabled={busy} onClick={onClose} aria-label={closeLabel}><X size={20} /></button>
+      </header>
       {error && <div className="drawer-alert" role="alert"><p>{error}</p>{onReload && <button className="secondary-button" type="button" disabled={busy} onClick={onReload}>Load latest · replaces draft</button>}</div>}
       {children}
     </dialog>
@@ -376,11 +378,13 @@ export function App() {
   }
 
   function openMatter(matter) {
+    if (offerPendingMatterDraft()) return;
     const values = toMatterDraft(matter);
     setDrawer({ type: "matter", id: matter.id, expectedVersion: matter.version, ...values, initialValues: values });
   }
 
   function openNewMatter(seed = {}) {
+    if (offerPendingMatterDraft()) return;
     const values = toMatterDraft(seed);
     setDrawer({ type: "matter-create", requestId: crypto.randomUUID(), ...values, initialValues: values });
   }
@@ -388,6 +392,21 @@ export function App() {
   function discardRecoveredDraft() {
     clearMatterDraft(draftOwner.current);
     setRecoverableDraft(null);
+  }
+
+  function offerPendingMatterDraft() {
+    if (drawer) return false;
+    const saved = readMatterDraft(draftOwner.current);
+    if (!saved) return false;
+    setRecoverableDraft(saved);
+    setDrawer(null);
+    notify("Resume or discard your unsaved matter first.", "info");
+    return true;
+  }
+
+  function discardCurrentMatterDraft() {
+    clearMatchingMatterDraft(draftOwner.current, drawer);
+    setRecoverableDraft(readMatterDraft(draftOwner.current));
   }
 
   function accountDeletionRequested(reference) {
@@ -424,7 +443,7 @@ export function App() {
     const dirty = panelHasChanges || (editingMatter && matterDraftChanged(drawer))
       || (drawer?.type === "settings" && checks.some((check) => check.completed !== check.serverCompleted));
     if (dirty && !await confirm({ title: "Discard unsaved changes?" })) return false;
-    if (editingMatter) discardRecoveredDraft();
+    if (editingMatter) discardCurrentMatterDraft();
     if (drawer?.type === "settings") setChecks((items) => items.map((item) => ({ ...item, completed: item.serverCompleted })));
     setPanelHasChanges(false); setPanelExitWarning("");
     return true;
@@ -468,7 +487,7 @@ export function App() {
     try {
       const response = await api.createMatter({ ...matterPayload(drawer), requestId: drawer.requestId });
       setMatters((items) => [...items.filter(item => item.id !== response.matter.publicId), mapMatter(response.matter)]);
-      discardRecoveredDraft();
+      discardCurrentMatterDraft();
       setDrawer(null);
       notify("Matter saved");
       const revision = workspaceRevision.current;
@@ -552,7 +571,7 @@ export function App() {
         ...matterPayload(drawer), expectedVersion: drawer.expectedVersion,
       });
       setMatters((items) => items.map((matter) => matter.id === currentMatter.id ? mapMatter(response.matter) : matter));
-      discardRecoveredDraft();
+      discardCurrentMatterDraft();
       setDrawer(null);
       notify("Matter changes saved");
     } catch (error) {
@@ -791,7 +810,7 @@ export function App() {
       </aside>
 
       <main className="main-content">
-        {session?.authenticationMode === "development" && <p className="development-notice">Local QA · test data</p>}
+        <div className="workspace-chrome">{session?.authenticationMode === "development" && <p className="development-notice">Local QA · test data</p>}<AppAppearanceControl /></div>
         {recoverableDraft && !drawer && <section className="draft-recovery" aria-label="Unsaved matter draft">
           <div><strong>Continue your unsaved matter</strong><p>{recoverableDraft.title || "New matter"}</p></div>
           <button className="secondary-button" onClick={() => void resumeDraft()}>Resume draft</button>

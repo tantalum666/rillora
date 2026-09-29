@@ -50,8 +50,8 @@ struct RilloraFolioArtwork: View {
     @RilloraReduceMotion private var reduceMotion
     @State private var appeared = false
     var body: some View {
-        Image("RilloraFolio")
-            .resizable().scaledToFill()
+        Image("RilloraFolioCutout")
+            .resizable().scaledToFit()
             .frame(maxWidth: compact ? 220 : 340)
             .frame(height: compact ? 164 : 280)
             .clipped()

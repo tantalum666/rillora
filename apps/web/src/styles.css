@@ -1,20 +1,10 @@
+@import "./appearance.css";
+
 :root {
   font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: #dad8cf;
-  background: #171c1c;
+  color: var(--body);
+  background: var(--canvas);
   font-synthesis: none;
-  color-scheme: dark;
-  --canvas: #171c1c;
-  --surface: #1d2322;
-  --surface-muted: #252c29;
-  --ink: #f1ece2;
-  --body: #dad8cf;
-  --muted: #b8bab2;
-  --sage: #9bb180;
-  --sage-soft: rgba(77, 95, 77, 0.52);
-  --clay: #cb704c;
-  --peach: rgba(203, 112, 76, 0.24);
-  --divider: rgba(255, 255, 255, 0.16);
 }
 
 * {
@@ -44,7 +34,7 @@ input:focus-visible,
 textarea:focus-visible,
 a:focus-visible,
 select:focus-visible {
-  outline: 3px solid #cde1b0;
+  outline: 3px solid var(--accent);
   outline-offset: 3px;
 }
 
@@ -64,7 +54,7 @@ select:focus-visible {
   padding: 68px 18px 34px;
   display: flex;
   flex-direction: column;
-  background: #1a201f;
+  background: var(--sidebar);
   border-right: 1px solid var(--divider);
 }
 
@@ -241,13 +231,25 @@ h1,
   gap: 26px;
   border-radius: 15px;
   background: var(--clay);
-  color: var(--canvas);
+  color: var(--on-clay);
   font-weight: 650;
   box-shadow: 0 5px 14px rgba(168, 79, 48, 0.12);
 }
 
+.icon-button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 10px;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid var(--divider);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--body);
+}
+
 .primary-button:hover {
-  background: #b95f40;
+  background: var(--clay-hover);
 }
 
 .text-button {
@@ -961,7 +963,7 @@ h1,
 }
 
 .start-here-error {
-  color: #e2a48a;
+  color: var(--warning);
 }
 
 .start-here-preview {
@@ -999,7 +1001,7 @@ h1,
   gap: 11px;
   border-radius: 7px;
   background: #fff1dc;
-  color: #e2a48a;
+  color: var(--warning);
 }
 
 .start-here-warning p {
@@ -1093,7 +1095,7 @@ h1,
   border: 1px solid #d7aa62;
   border-radius: 9px;
   background: #fff8ea;
-  color: #e2a48a;
+  color: var(--warning);
   font-size: 12px;
   line-height: 1.5;
 }
@@ -1152,7 +1154,7 @@ h1,
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #e2a48a;
+  color: var(--warning);
 }
 
 .role-preview-list {
@@ -1366,7 +1368,7 @@ h1,
 }
 
 .danger-text {
-  color: #e2a48a !important;
+  color: var(--warning) !important;
 }
 
 .start-here-encrypted {
@@ -1764,7 +1766,7 @@ h1,
 .rehearsal-stale {
   border-color: rgba(203, 112, 76, 0.55);
   background: rgba(203, 112, 76, 0.12);
-  color: #e2a48a;
+  color: var(--warning);
 }
 
 .role-preview,
@@ -1796,7 +1798,7 @@ h1,
 @media (max-width: 760px) {
   .mobile-navigation {
     border-top-color: var(--divider);
-    background: rgba(29, 35, 34, 0.98);
+    background: var(--surface-muted);
     box-shadow: 0 -8px 26px rgba(0, 0, 0, 0.25);
     backdrop-filter: none;
   }

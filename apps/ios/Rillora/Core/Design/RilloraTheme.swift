@@ -2,39 +2,43 @@ import SwiftUI
 import UIKit
 
 enum RilloraTheme {
-    // DG-01 through DG-04 make graphite the product default, not a public-only
-    // landing treatment. These semantic names remain so every existing screen
-    // moves together instead of maintaining a second light design system.
-    static let canvas = Color(red: 23 / 255, green: 28 / 255, blue: 28 / 255)
-    static let surface = Color(red: 37 / 255, green: 44 / 255, blue: 41 / 255)
-    static let mutedSurface = Color(red: 29 / 255, green: 35 / 255, blue: 34 / 255)
-    static let ink = Color(red: 241 / 255, green: 236 / 255, blue: 226 / 255)
-    static let body = Color(red: 218 / 255, green: 216 / 255, blue: 207 / 255)
-    static let muted = Color(red: 184 / 255, green: 186 / 255, blue: 178 / 255)
-    static let sage = Color(red: 155 / 255, green: 177 / 255, blue: 128 / 255)
-    static let sageSoft = Color(red: 77 / 255, green: 95 / 255, blue: 77 / 255).opacity(0.52)
-    static let clay = Color(red: 203 / 255, green: 112 / 255, blue: 76 / 255)
-    static let peach = Color(red: 203 / 255, green: 112 / 255, blue: 76 / 255).opacity(0.24)
-    static let divider = Color.white.opacity(0.16)
-    static let border = Color(red: 57 / 255, green: 67 / 255, blue: 63 / 255)
-    // Cards share one material. Accent is reserved for state and icon detail.
-    static let cardBorder = Color(red: 61 / 255, green: 72 / 255, blue: 66 / 255)
-    static let iconSurface = Color(red: 46 / 255, green: 55 / 255, blue: 49 / 255)
+    // All product surfaces use the same trait-aware semantic roles.
+    static let canvas = adaptive(light: 0xF5F1E8, dark: 0x171C1C)
+    static let surface = adaptive(light: 0xFFFCF6, dark: 0x252C29)
+    static let mutedSurface = adaptive(light: 0xEBE9DF, dark: 0x1D2322)
+    static let ink = adaptive(light: 0x23473D, dark: 0xF1ECE2)
+    static let body = adaptive(light: 0x344A40, dark: 0xDAD8CF)
+    static let muted = adaptive(light: 0x596A60, dark: 0xB8BAB2)
+    static let sage = adaptive(light: 0x506B38, dark: 0x9BB180)
+    static let sageSoft = adaptive(light: 0xE2E9D9, dark: 0x384637)
+    static let clay = adaptive(light: 0xA64C2D, dark: 0xCB704C)
+    static let onClay = adaptive(light: 0xFFF9ED, dark: 0x171C1C)
+    static let peach = clay.opacity(0.15)
+    static let divider = adaptive(light: 0xD6DCD2, dark: 0x3C4642)
+    static let border = adaptive(light: 0xC8D1C5, dark: 0x39433F)
+    static let cardBorder = adaptive(light: 0xD6DCD2, dark: 0x3D4842)
+    static let iconSurface = adaptive(light: 0xE5EADD, dark: 0x2E3731)
     static let actionSurface = surface
     static let actionIconSurface = iconSurface
     static let actionStroke = cardBorder
+    static let graphite = canvas
+    static let graphiteSurface = adaptive(light: 0xF5F1E8, dark: 0x1D2322)
+    static let graphiteRaised = surface
+    static let limestone = ink
+    static let architecturalMuted = muted
+    static let eucalyptus = sage
+    static let tabSelection = adaptive(light: 0x23473D, dark: 0xCDE1B0)
+    static let eucalyptusDeep = adaptive(light: 0xDDE5D5, dark: 0x4D5F4D)
+    static let architecturalDivider = divider
 
-    // Architectural aliases keep public source compatibility while the same
-    // visual language now applies to the complete product.
-    static let graphite = Color(red: 23 / 255, green: 28 / 255, blue: 28 / 255)
-    static let graphiteSurface = Color(red: 29 / 255, green: 35 / 255, blue: 34 / 255)
-    static let graphiteRaised = Color(red: 37 / 255, green: 44 / 255, blue: 41 / 255)
-    static let limestone = Color(red: 241 / 255, green: 236 / 255, blue: 226 / 255)
-    static let architecturalMuted = Color(red: 184 / 255, green: 186 / 255, blue: 178 / 255)
-    static let eucalyptus = Color(red: 155 / 255, green: 177 / 255, blue: 128 / 255)
-    static let tabSelection = Color(red: 205 / 255, green: 225 / 255, blue: 176 / 255)
-    static let eucalyptusDeep = Color(red: 77 / 255, green: 95 / 255, blue: 77 / 255)
-    static let architecturalDivider = Color.white.opacity(0.18)
+    private static func adaptive(light: UInt32, dark: UInt32) -> Color {
+        Color(uiColor: UIColor { traits in
+            let rgb = traits.userInterfaceStyle == .dark ? dark : light
+            return UIColor(red: CGFloat((rgb >> 16) & 255) / 255,
+                           green: CGFloat((rgb >> 8) & 255) / 255,
+                           blue: CGFloat(rgb & 255) / 255, alpha: 1)
+        })
+    }
 
     static let cardShape = RoundedRectangle(cornerRadius: 16, style: .continuous)
 }
@@ -186,9 +190,8 @@ struct RilloraPrimaryActionButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.body.weight(.semibold))
-            // Canvas on clay is 4.89:1. Limestone on clay was 2.99:1 and
-            // failed normal-text contrast even though it looked visually soft.
-            .foregroundStyle(isEnabled ? RilloraTheme.canvas : RilloraTheme.muted)
+            // The on-accent role retains readable contrast in both appearances.
+            .foregroundStyle(isEnabled ? RilloraTheme.onClay : RilloraTheme.muted)
             .padding(.vertical, 12)
             .frame(maxWidth: .infinity, minHeight: 52)
             .padding(.horizontal, 14)

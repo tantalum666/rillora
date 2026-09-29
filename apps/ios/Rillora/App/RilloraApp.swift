@@ -20,6 +20,7 @@ struct RilloraApp: App {
     private let maintenanceService: any FamilyMaintenanceServing
 
     init() {
+        AppAppearance.migratePreference()
         RilloraNavigationAppearance.install()
         let dependencies = AppDependencies.current()
         let overviewStore = OverviewStore(service: dependencies.overviewService)

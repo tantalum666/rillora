@@ -1,3 +1,4 @@
+import { AppearanceLink } from "../AppearanceControl.jsx";
 import { ArrowRight, Check } from "@phosphor-icons/react";
 import { publicEntry } from "../publicEntry.js";
 import catalog from "../../../../config/product-catalog.json" with { type: "json" };
@@ -66,9 +67,9 @@ export function PlanSection() {
         </table>
         <div className="lp-plan-actions">
           <p>Paid subscriptions are not open yet.</p>
-          <a className="lp-text-link" href={publicEntry.accountURL}>
+          <AppearanceLink className="lp-text-link" href={publicEntry.accountURL}>
             Try Preview <ArrowRight aria-hidden="true" size={20} />
-          </a>
+          </AppearanceLink>
         </div>
       </section>
       <p className="lp-pricing-note">
