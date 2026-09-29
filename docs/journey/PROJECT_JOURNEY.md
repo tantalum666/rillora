@@ -1,6 +1,6 @@
 # Digital Legacy Ongoing Project Journey
 
-Last updated: 2026-09-29 (Asia/Hong_Kong)
+Last updated: 2026-09-30 (Asia/Hong_Kong)
 
 ## 记录范围
 
@@ -2861,3 +2861,28 @@ launch prerequisites and historical authentication gates are not repeated approv
 - **未完成项**：下一可验收里程碑为具备真实Apple测试购买／恢复证据的签名TestFlight候选。后台部署／身份邮件／Web实付／持续清理与恢复对账／最终安全及商店提交继续独立过门。经营事实、实机和平台审核时长仍无法承诺；本轮没有改价、发信、部署、买单或新增功能。
 
 [当次预检与边界](../../output/qa/rillora-release-status-20260929/README.md)。
+
+## 2026-09-29–30 — Apple审核购买工程、签名分发与小型企业申请
+
+**目标**：Owner要求优先推进Apple相关发布工作；沿用147文件完整阅读基线，
+精简恢复当前产品／交接／StoreKit／渠道价格合同，不重复MFA和已完成审计。
+
+**尝试**：复用严格付款生命周期建立限期审核账号的Sandbox路径；两端保留
+环境、价格、所有权及当前状态约束。原生通过已验签AppTransaction选择入口，
+接入PurchaseIntent后仍先登录／确认条款。核对实际Apple后台、归档并导出分发包。
+
+**判断变化**：原生正式路径拒绝Sandbox确实不能用于最终TestFlight；不是把
+正式验签改宽，而是明确配置审核环境。首轮迁移遇到PostgreSQL长约束自动缩名，
+按实际约束修正；到期测试误用了无权调用的角色，改用真实读取角色而未扩大权限。
+旧签名profile缺少Associated Domains，通过Xcode自动刷新解决。Apple后台
+明确拒绝关闭简化购买，要求先有已审核的PurchaseIntent构建；保留该门。
+
+**结果**：API全量313／35文件通过，原生全量175通过、1既有StoreKitTest跳过，
+后续13购买回归和1新传输检查通过。Release归档与AppStore分发导出、签名／非调试／
+无StoreKit测试文件校验成功，原生Debug已安装。网站／支持链接已保存并重新载入。
+Owner先确认小型企业资格事实、再当场确认最终声明，申请已提交且Apple明确回执。
+
+**未完成**：小型企业批准和15%生效未确认，最终渠道价未定；分发包账号入口仍
+关闭，未上传TestFlight／提审。审核云端配置／价格／账号、真实Apple购买恢复与
+通知、最终截图及隐私／年龄／加密／审核资料仍需落实。schema0086仅本地验证，
+生产数据和FanPass不变；实体设备、经营事实的既有暂缓保留。[本轮合同](../apple-review-validation-20260929.md)。

@@ -275,31 +275,31 @@ actor APIClient: OverviewServing, PlanEditing, MatterEditing, TrustedContactEdit
         return response
     }
 
-    func fetchAppleQuote(serviceMarket: String, storefront: String) async throws -> AppleQuoteResponse {
+    func fetchAppleQuote(serviceMarket: String, storefront: String, environment: ApplePurchaseEnvironment) async throws -> AppleQuoteResponse {
         var query = URLComponents()
         query.queryItems = [URLQueryItem(name: "serviceMarketCode", value: serviceMarket), URLQueryItem(name: "storefrontCountryCode", value: storefront)]
-        let result: AppleQuoteResponse = try await get("commerce/storekit/production/quote?\(query.percentEncodedQuery ?? "")")
-        guard result.isValid else { throw RilloraAPIError.invalidResponse }
+        let result: AppleQuoteResponse = try await get("commerce/storekit/\(environment.route)/quote?\(query.percentEncodedQuery ?? "")")
+        guard result.isValid(for: environment) else { throw RilloraAPIError.invalidResponse }
         return result
     }
-    func prepareApplePurchase(_ preparation: ApplePurchasePreparation, nonce: UUID) async throws -> ApplePurchaseIntent {
-        let result: ApplePurchaseIntent = try await send(path: "commerce/storekit/production/prepare", method: "POST",
+    func prepareApplePurchase(_ preparation: ApplePurchasePreparation, nonce: UUID, environment: ApplePurchaseEnvironment) async throws -> ApplePurchaseIntent {
+        let result: ApplePurchaseIntent = try await send(path: "commerce/storekit/\(environment.route)/prepare", method: "POST",
             body: encoder.encode(preparation), idempotencyKey: nonce)
-        guard result.isValid else { throw RilloraAPIError.invalidResponse }
+        guard result.isValid(for: environment) else { throw RilloraAPIError.invalidResponse }
         return result
     }
-    func changeApplePurchase(_ reference: UUID, action: String) async throws -> ApplePurchaseState {
+    func changeApplePurchase(_ reference: UUID, action: String, environment: ApplePurchaseEnvironment) async throws -> ApplePurchaseState {
         guard ["start", "pending", "cancel"].contains(action) else { throw RilloraAPIError.invalidResponse }
-        return try await send(path: "commerce/storekit/production/purchases/\(reference.uuidString)", method: "POST",
+        return try await send(path: "commerce/storekit/\(environment.route)/purchases/\(reference.uuidString)", method: "POST",
             body: encoder.encode(ApplePurchaseTransition(action: action)))
     }
-    func pendingApplePurchase() async throws -> ApplePendingPurchaseResponse {
-        try await get("commerce/storekit/production/purchases/current")
+    func pendingApplePurchase(environment: ApplePurchaseEnvironment) async throws -> ApplePendingPurchaseResponse {
+        try await get("commerce/storekit/\(environment.route)/purchases/current")
     }
-    func submitAppleTransaction(_ evidence: StoreKitTransactionEvidence) async throws -> AppleTransactionResponse {
-        let result: AppleTransactionResponse = try await send(path: "commerce/storekit/production/transactions", method: "POST",
+    func submitAppleTransaction(_ evidence: StoreKitTransactionEvidence, environment: ApplePurchaseEnvironment) async throws -> AppleTransactionResponse {
+        let result: AppleTransactionResponse = try await send(path: "commerce/storekit/\(environment.route)/transactions", method: "POST",
             body: encoder.encode(AppleTransactionRequest(signedTransaction: evidence.signedTransaction)))
-        guard result.isValid else { throw RilloraAPIError.invalidResponse }
+        guard result.isValid(for: environment) else { throw RilloraAPIError.invalidResponse }
         return result
     }
 

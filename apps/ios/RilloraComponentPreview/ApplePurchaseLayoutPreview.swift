@@ -31,7 +31,7 @@ struct ApplePurchaseLayoutPreview: View {
     }
 }
 private struct PreviewAppleQuoteService: ApplePurchaseServing {
-    func fetchAppleQuote(serviceMarket: String, storefront: String) async throws -> AppleQuoteResponse {
+    func fetchAppleQuote(serviceMarket: String, storefront: String, environment: ApplePurchaseEnvironment) async throws -> AppleQuoteResponse {
         AppleQuoteResponse(contractVersion: "commerce-apple-purchase-v1", quote: ApplePurchaseQuote(bindingCode: "preview_fixture",
             priceCode: "family_preview_fixture", productId: RilloraStoreKitCatalog.familyAnnualProductID,
             serviceMarketCode: serviceMarket, storefrontCountryCode: storefront, currency: "USD",
@@ -41,10 +41,11 @@ private struct PreviewAppleQuoteService: ApplePurchaseServing {
                 refundPolicyVersion: "refunds-2026-08-27-1", legalBundleSha256: LegalAcceptanceProof.current.bundleSha256),
             requiresFreshEvaluation: true)
     }
-    func pendingApplePurchase() async throws -> ApplePendingPurchaseResponse { ApplePendingPurchaseResponse(purchase: nil) }
+    func pendingApplePurchase(environment: ApplePurchaseEnvironment) async throws -> ApplePendingPurchaseResponse { ApplePendingPurchaseResponse(purchase: nil) }
     // All mutating operations deliberately retain the unavailable default.
 }
 private struct PreviewAppleCatalog: StoreKitPurchasing {
+    func verifiedAppEnvironment() async -> ApplePurchaseEnvironment? { .production }
     func loadProducts(identifiers: Set<String>) async throws -> [StoreKitProductSnapshot] {
         [.init(productID: RilloraStoreKitCatalog.familyAnnualProductID, displayName: "Family", description: "Layout fixture",
             displayPrice: "$99.99", subscriptionGroupID: RilloraStoreKitCatalog.appStoreFamilySubscriptionGroupID,

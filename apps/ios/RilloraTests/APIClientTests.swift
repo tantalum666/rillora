@@ -3,6 +3,30 @@ import XCTest
 @testable import Rillora
 
 final class APIClientTests: XCTestCase {
+    func testAppleReviewTransportUsesItsOwnRouteAndRejectsProductionAcknowledgement() async throws {
+        let receipt = #"{"contractVersion":"commerce-apple-review-v1","environment":"sandbox","validationOnly":true,"result":{"accepted":true,"status":"applied","finishAuthorized":true,"authoritativeSnapshotLoaded":true,"entitlementChanged":true}}"#
+        let path = "/v1/commerce/storekit/review/transactions"
+        let transport = StubTransport(responses: [path: .init(body: receipt)])
+        let configuration = APIConfiguration(baseURL: try XCTUnwrap(URL(string: "https://api.example.test/v1/")), developmentPlannerID: nil)
+        let client = APIClient(configuration: configuration, transport: transport)
+        let evidence = StoreKitTransactionEvidence(transactionID: 100, originalTransactionID: 100,
+            productID: RilloraStoreKitCatalog.familyAnnualProductID,
+            subscriptionGroupID: RilloraStoreKitCatalog.appStoreFamilySubscriptionGroupID,
+            appAccountToken: UUID(), environment: "Sandbox", storefrontCountryCode: "USA",
+            purchaseDate: .now, expirationDate: .now.addingTimeInterval(3600), revocationDate: nil,
+            transactionReason: "PURCHASE", signedTransaction: "synthetic.review.fixture", isXcodeEnvironment: false)
+        let response = try await client.submitAppleTransaction(evidence, environment: .sandbox)
+        XCTAssertTrue(response.isValid(for: .sandbox))
+        let requests = await transport.recordedRequests()
+        XCTAssertEqual(requests.first?.url?.path, path)
+        XCTAssertEqual(requests.first?.httpMethod, "POST")
+        let production = receipt.replacingOccurrences(of: "commerce-apple-review-v1", with: "commerce-apple-production-v1")
+            .replacingOccurrences(of: "sandbox", with: "production").replacingOccurrences(of: "\"validationOnly\":true", with: "\"validationOnly\":false")
+        let wrong = APIClient(configuration: configuration, transport: StubTransport(responses: [path: .init(body: production)]))
+        do { _ = try await wrong.submitAppleTransaction(evidence, environment: .sandbox); XCTFail("Cross-environment acknowledgement must fail") }
+        catch let error as RilloraAPIError { XCTAssertEqual(error.localizedDescription, RilloraAPIError.invalidResponse.localizedDescription) }
+    }
+
     func testEmailVerificationKeepsTheNativeSessionAndSendsNoClientIdentityClaim() async throws {
         let token = String(repeating: "v", count: 43)
         let store = StubSessionTokenStore(token: token)

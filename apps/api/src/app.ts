@@ -1,6 +1,7 @@
 import express, { type Express, type RequestHandler } from "express";
 import type { AppleProductionIntake } from './apple-production-intake.js';
 import { createAppleProductionNotificationHandler, createAppleProductionRouter } from './apple-production-routes.js';
+import { appleReviewContext, appleProductionContext } from './apple-execution-context.js';
 import { ApplePurchasePreflight } from './apple-purchase-preflight.js';
 import { authenticate } from "./auth.js";
 import { Auth0EmailIdentityVerifier, SessionEmailVerification, type EmailIdentityVerifying } from "./email-verification.js";
@@ -53,6 +54,7 @@ import {
 } from "./storekit-sandbox-routes.js";
 
 export type AppDependencies = AuthDependencies & {
+  appleReviewIntake?: AppleProductionIntake;
   appleProductionIntake?: AppleProductionIntake;
   transportReady?: () => boolean;
   emailIdentityVerifier?: EmailIdentityVerifying;
@@ -109,6 +111,10 @@ export function createApp(
   if (Boolean(config.appleProduction) !== Boolean(dependencies.appleProductionIntake)
     || (config.appleProduction && config.appleSandbox)) throw new Error('Production Apple requires isolated loaded credentials');
   const appleProductionIntake = dependencies.appleProductionIntake;
+  const appleReviewIntake = dependencies.appleReviewIntake;
+  if(Boolean(config.appleReview)!==Boolean(appleReviewIntake) || (appleReviewIntake && config.appleSandbox)
+    || (appleReviewIntake && appleReviewIntake.context!==appleReviewContext)
+    || (appleProductionIntake && appleProductionIntake.context!==appleProductionContext)) throw new Error('Apple execution contexts do not match their configured routes');
   const stripeExecutor = dependencies.stripeExecutor ?? (config.stripeProductionSecretArn && dependencies.stripeProductionConfig
     ? new StripeCommerceExecutor(pool, productionExecutionConfig(dependencies.stripeProductionConfig),
       dependencies.stripeProvider ?? new StripeProductionAdapter(dependencies.stripeProductionConfig))
@@ -161,6 +167,11 @@ export function createApp(
     app.post(['/api/commerce/storekit/production/notifications', '/commerce/storekit/production/notifications'],
       preventCaching, express.json({ limit: '256kb', strict: true, type: 'application/json' }),
       createAppleProductionNotificationHandler(appleProductionIntake));
+  }
+  if(appleReviewIntake) {
+    app.post(['/api/commerce/storekit/review/notifications','/commerce/storekit/review/notifications'],
+      preventCaching,express.json({limit:'256kb',strict:true,type:'application/json'}),
+      createAppleProductionNotificationHandler(appleReviewIntake));
   }
   // A bounded map import needs more room than ordinary mutations. Authenticate
   // before reading its larger body; the usual parser skips the already-read body.
@@ -219,6 +230,7 @@ export function createApp(
       createStoreKitSandboxRouter(storeKitSandboxIntake),
     );
   }
+  if(appleReviewIntake) plannerApi.use('/commerce/storekit/review',createAppleProductionRouter(appleReviewIntake,new ApplePurchasePreflight(pool,appleReviewContext)));
   if (appleProductionIntake) plannerApi.use('/commerce/storekit/production', createAppleProductionRouter(appleProductionIntake,new ApplePurchasePreflight(pool)));
   plannerApi.use("/commerce", createCommerceRouter(pool,
     new Set([...(stripeExecutor?.providerEnvironment === 'production' ? ['stripe'] : []),...(appleProductionIntake ? ['storekit'] : [])])));

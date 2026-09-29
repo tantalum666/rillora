@@ -2,9 +2,31 @@
 
 Role: current launch scope, remaining work and release evidence contract  
 Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; CUSTOMER ACCOUNTS AND SALES CLOSED
-Last updated: 2026-09-29 (Asia/Hong_Kong)
+Last updated: 2026-09-30 (Asia/Hong_Kong)
 
-## September29 current launch-gap review
+## September29–30 Apple execution — current delta
+
+Owner prioritizes Apple release work. The enrolled TestFlight/review Sandbox path
+now has local implementation and313API test passes, native regression/transport
+checks, and a signed Release archive/App Store distribution export. The exported
+artifact remainsclosed to accounts and was not uploaded. This supersedes the
+implementation-only Sandbox rejection and missing-local-artifact gaps in the
+22:44inventory below; cloud review activation and actual transactions remainopen.
+
+Small Business Program enrollment is actually submitted after Owner's facts and
+attestation; Apple acknowledges receipt but has not yet confirmed approval/15%.
+Annual provider prices are unchanged; public website/support URLs are saved in
+the App Store draft. PurchaseIntent is implemented, but Apple still requires an
+approved binary before allowing Streamlined Purchasing to be disabled. TestFlight
+has no builds; final screenshots, reviewer credentials/contact and final privacy/
+age/encryption package remain. [Current Apple contract](apple-review-validation-20260929.md).
+
+No release-gate status is waived by these results. Next make the production review
+account/runtime/catalog operational, then verify actual Sandbox purchase/restore
+before producing and uploading a usable candidate. Price finalization follows
+actual fee evidence; Owner-deferred business/device facts remain separate.
+
+## HISTORICAL — September29 22:44 launch-gap review
 
 Owner asks what remains before formal publication. Fresh local preflight at22:44+08
 still reports seven unfinished engineering/release gates and two Owner-deferred

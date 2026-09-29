@@ -1,10 +1,18 @@
 # Web 与 Apple 内购的渠道定价
 
 Role: current rule/source check and advisory fee comparison
-Status: CHANNEL DIFFERENTIATION REAFFIRMED; EXACT APPLE PRICE AND EFFECTIVE FEE STILL OPEN
-Last reviewed: 2026-09-26 (Apple rules and direction correction; Stripe fee example retains September21 assumptions)
+Status: CHANNEL DIFFERENTIATION REAFFIRMED; SBP ENROLLMENT SUBMITTED; EXACT APPLE PRICE AND EFFECTIVE FEE OPEN
+Last reviewed: 2026-09-30 (September29 portal and SBP submission; fee examples retain their stated historical assumptions)
 
-## September26方向纠偏 — 当前
+## September29 小型企业计划申请 — 当前状态
+
+Owner明确确认没有其他关联开发者账户、上一年度总净收入不超过US$100万，
+随后当场确认最终真实性声明及提交。Apple已显示收到Small Business Program
+注册申请；这只是申请回执，尚未证明批准或15%生效。当前年付仍为美国US$68、
+加拿大CAD99，未保存最终渠道价。原有99.99／119.99候选继续按实际生效费率
+另行确定，Web88.99不变。[本轮证据](apple-review-validation-20260929.md)。
+
+## September26方向纠偏 — 定价方向保持，申请状态以上文为准
 
 Owner提醒“之前不是说apple跟web价格做差异化？”。恢复按实际付款渠道成本
 差异定价的方向：Web现按同日稍后Owner决定改为US$88.99/年，Apple IAP采用较高的渠道价，Family权益

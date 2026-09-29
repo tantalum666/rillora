@@ -5,6 +5,8 @@ import { z } from 'zod';
 import { loadPinnedAppleRootCertificates, type AppleSignedDataVerifying } from './apple-storekit-adapter.js';
 import type { CommerceProviderSignalType } from './commerce-provider-contract.js';
 import { appleReceiptEvidence, type AppleProductionSignal, type AppleReceiptEvidence } from './apple-production-evidence.js';
+import { appleProductionContext, appleReviewContext, assertAppleContext, matchesAppleAppId,
+  type AppleExecutionContext } from './apple-execution-context.js';
 
 export const rilloraAppleIdentity = Object.freeze({ bundleId: 'com.rillora.ios', appAppleId: 6803957639,
   subscriptionGroupId: '22325627', annualProductId: 'com.rillora.family.annual', historicalMonthlyProductId: 'com.rillora.family.monthly' });
@@ -15,11 +17,17 @@ export async function createRilloraAppleProductionVerifier(rootCertificateDirect
     Environment.PRODUCTION, rilloraAppleIdentity.bundleId, rilloraAppleIdentity.appAppleId);
 }
 
-/** Explicit production boundary; the Sandbox verifier and its matrix stay separate. */
+export async function createRilloraAppleReviewVerifier(rootCertificateDirectory: string): Promise<SignedDataVerifier> {
+  return new SignedDataVerifier(await loadPinnedAppleRootCertificates(rootCertificateDirectory), true,
+    appleReviewContext.signedEnvironment, rilloraAppleIdentity.bundleId, rilloraAppleIdentity.appAppleId);
+}
+
+/** One strict verifier per configured environment; no receipt-driven fallback. */
 export class AppleProductionVerification {
   private readonly storefronts: ReadonlySet<string>;
   constructor(private readonly source: AppleSignedDataVerifying | Promise<AppleSignedDataVerifying>,
-    allowedStorefronts: ReadonlySet<string>) {
+    allowedStorefronts: ReadonlySet<string>, readonly context: AppleExecutionContext = appleProductionContext) {
+    assertAppleContext(context);
     if (allowedStorefronts.size === 0 || allowedStorefronts.size > 175
       || [...allowedStorefronts].some(code => !/^[A-Z]{3}$/.test(code))) throw new Error('Production Apple requires explicit supported storefronts');
     this.storefronts = new Set(allowedStorefronts);
@@ -39,8 +47,8 @@ export class AppleProductionVerification {
     bounded(signedPayload);
     const notification = await (await this.source).verifyAndDecodeNotification(signedPayload);
     const data = notification.data;
-    if (!data || data.environment !== Environment.PRODUCTION || data.bundleId !== rilloraAppleIdentity.bundleId
-      || data.appAppleId !== rilloraAppleIdentity.appAppleId) throw new Error('Production Apple notification identity mismatch');
+    if (!data || data.environment !== this.context.signedEnvironment || data.bundleId !== rilloraAppleIdentity.bundleId
+      || !matchesAppleAppId(data.appAppleId, rilloraAppleIdentity.appAppleId, this.context)) throw new Error('Apple notification identity mismatch');
     const transaction = data.signedTransactionInfo ? await this.transaction(data.signedTransactionInfo) : null;
     const renewal = data.signedRenewalInfo ? await this.renewal(data.signedRenewalInfo) : null;
     matchSubjects(transaction, renewal);
@@ -69,7 +77,7 @@ export class AppleProductionVerification {
   private async transaction(signedTransaction: string): Promise<JWSTransactionDecodedPayload> {
     bounded(signedTransaction);
     const transaction = await (await this.source).verifyAndDecodeTransaction(signedTransaction);
-    if (transaction.environment !== Environment.PRODUCTION || transaction.bundleId !== rilloraAppleIdentity.bundleId
+    if (transaction.environment !== this.context.signedEnvironment || transaction.bundleId !== rilloraAppleIdentity.bundleId
       || transaction.subscriptionGroupIdentifier !== rilloraAppleIdentity.subscriptionGroupId
       || !productIds.has(transaction.productId ?? '') || !this.storefronts.has(transaction.storefront ?? '')
       || transaction.type !== Type.AUTO_RENEWABLE_SUBSCRIPTION || transaction.quantity !== 1
@@ -91,7 +99,7 @@ export class AppleProductionVerification {
   private async renewal(signedRenewalInfo: string): Promise<JWSRenewalInfoDecodedPayload> {
     bounded(signedRenewalInfo);
     const renewal = await (await this.source).verifyAndDecodeRenewalInfo(signedRenewalInfo);
-    if (renewal.environment !== Environment.PRODUCTION || !productIds.has(renewal.productId ?? '')
+    if (renewal.environment !== this.context.signedEnvironment || !productIds.has(renewal.productId ?? '')
       || renewal.advancedCommerceInfo || renewal.commitmentInfo !== undefined
       || (renewal.renewalBillingPlanType !== undefined && renewal.renewalBillingPlanType !== RenewalBillingPlanType.BILLED_UPFRONT)
       || (renewal.autoRenewProductId !== undefined && !productIds.has(renewal.autoRenewProductId))) throw new Error('Production Apple renewal binding mismatch');
@@ -103,7 +111,7 @@ export class AppleProductionVerification {
     signedAt: number, transaction: JWSTransactionDecodedPayload | null, renewal: JWSRenewalInfoDecodedPayload | null,
     receipt: AppleReceiptEvidence | null): AppleProductionSignal {
     const token = transaction?.appAccountToken ?? renewal?.appAccountToken;
-    return Object.freeze({ provider: 'storekit', providerEnvironment: 'production', providerEventReference: reference,
+    return Object.freeze({ provider: 'storekit', providerEnvironment: this.context.environment, providerEventReference: reference,
       sourceEventType, signalType: type, occurredAt: new Date(signedAt).toISOString(),
       providerSubscriptionReference: transaction?.originalTransactionId ?? renewal?.originalTransactionId ?? null,
       providerTransactionReference: transaction?.transactionId ?? null,

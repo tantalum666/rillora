@@ -83,7 +83,7 @@ final class ApplePurchaseCoordinatorTests: XCTestCase {
         let submissions = await f.service.submissions
         let finishes = await f.client.finishes
         XCTAssertEqual(submissions, 0); XCTAssertTrue(finishes.isEmpty)
-        XCTAssertTrue(f.coordinator.message?.contains("Test purchases") == true)
+        XCTAssertTrue(f.coordinator.message?.contains("different Apple environment") == true)
     }
 
     func testPendingAndCanceledOutcomesArePreservedWithoutFinishing() async {
@@ -142,10 +142,41 @@ final class ApplePurchaseCoordinatorTests: XCTestCase {
         XCTAssertNil(f.coordinator.message)
     }
 
-    private func fixture() async -> (coordinator: ApplePurchaseCoordinator, service: ApplePurchaseServiceSpy, client: ApplePurchaseClientSpy, owner: UUID) {
+    func testReviewPurchaseUsesSandboxContractAndNeverFinishesOnProductionAcknowledgement() async {
+        let f = await fixture(environment: .sandbox)
+        XCTAssertEqual(f.coordinator.environment, .sandbox)
+        XCTAssertNotNil(f.coordinator.quote)
+        await f.service.useWrongReceiptEnvironment()
+        await f.coordinator.purchase(acceptedTerms: true)
+        let premature = await f.client.finishes
+        XCTAssertTrue(premature.isEmpty)
+        await f.service.useCorrectReceiptEnvironment()
+        await f.coordinator.restore()
+        let restored = await f.client.finishes
+        let environments = await f.service.submittedEnvironments
+        XCTAssertEqual(restored, [100])
+        XCTAssertEqual(environments, [.sandbox, .sandbox])
+    }
+
+    func testReviewBuildRejectsAProductionTransactionAndUnknownAppReceiptCannotPurchase() async {
+        let review = await fixture(environment: .sandbox)
+        await review.client.setHistory(evidence(owner: review.owner, environment: "Production"))
+        await review.coordinator.restore()
+        let submissions = await review.service.submissions
+        XCTAssertEqual(submissions, 0)
+        let unknown = await fixture(environment: nil)
+        XCTAssertNil(unknown.coordinator.quote)
+        await unknown.coordinator.purchase(acceptedTerms: true)
+        await unknown.coordinator.restore()
+        let purchases = await unknown.client.purchases
+        XCTAssertEqual(purchases, 0)
+        XCTAssertTrue(unknown.coordinator.message?.contains("temporarily unavailable") == true)
+    }
+
+    private func fixture(environment: ApplePurchaseEnvironment? = .production) async -> (coordinator: ApplePurchaseCoordinator, service: ApplePurchaseServiceSpy, client: ApplePurchaseClientSpy, owner: UUID) {
         let owner = UUID()
-        let service = ApplePurchaseServiceSpy(owner: owner)
-        let client = ApplePurchaseClientSpy(owner: owner)
+        let service = ApplePurchaseServiceSpy(owner: owner, environment: environment ?? .production)
+        let client = ApplePurchaseClientSpy(owner: owner, environment: environment)
         let coordinator = ApplePurchaseCoordinator(service: service, client: client,
             storefront: ApplePurchaseStorefrontFixture(), serviceMarket: "GLOBAL_US")
         await coordinator.start(owner: owner)
@@ -156,6 +187,11 @@ final class ApplePurchaseCoordinatorTests: XCTestCase {
 private actor ApplePurchaseServiceSpy: ApplePurchaseServing {
     let owner: UUID
     var amount = 99_990
+    let environment: ApplePurchaseEnvironment
+    var submittedEnvironments: [ApplePurchaseEnvironment] = []
+    var wrongReceiptEnvironment = false
+    func useWrongReceiptEnvironment() { wrongReceiptEnvironment = true }
+    func useCorrectReceiptEnvironment() { wrongReceiptEnvironment = false }
     var preparations = 0, submissions = 0
     var actions: [String] = []
     var finished = true, inconsistent = false, pause = false
@@ -165,7 +201,7 @@ private actor ApplePurchaseServiceSpy: ApplePurchaseServing {
     var currentPurchase: ApplePendingPurchase?
     var waiting: Bool { continuation != nil }
     var receiptWaiting: Bool { receiptContinuation != nil }
-    init(owner: UUID) { self.owner = owner }
+    init(owner: UUID, environment: ApplePurchaseEnvironment) { self.owner = owner; self.environment = environment }
     func setAmount(_ value: Int) { amount = value }
     func setFinished(_ value: Bool) { finished = value }
     func setInconsistent() { inconsistent = true }
@@ -175,7 +211,7 @@ private actor ApplePurchaseServiceSpy: ApplePurchaseServing {
     func resumePreparation() {
         continuation?.resume(returning: intent()); continuation = nil
     }
-    func fetchAppleQuote(serviceMarket: String, storefront: String) async throws -> AppleQuoteResponse {
+    func fetchAppleQuote(serviceMarket: String, storefront: String, environment: ApplePurchaseEnvironment) async throws -> AppleQuoteResponse {
         AppleQuoteResponse(contractVersion: "commerce-apple-purchase-v1", quote: ApplePurchaseQuote(bindingCode: "fixture",
             priceCode: "family_fixture", productId: RilloraStoreKitCatalog.familyAnnualProductID,
             serviceMarketCode: serviceMarket, storefrontCountryCode: storefront, currency: "USD",
@@ -183,9 +219,9 @@ private actor ApplePurchaseServiceSpy: ApplePurchaseServing {
             purchaseTerms: ApplePurchaseTerms(version: "family-annual-apple-20260926-1",
                 termsVersion: LegalAcceptanceProof.current.termsVersion, subscriptionTermsVersion: "subscriptions-2026-08-27-1",
                 refundPolicyVersion: "refunds-2026-08-27-1", legalBundleSha256: LegalAcceptanceProof.current.bundleSha256),
-            requiresFreshEvaluation: true)
+            requiresFreshEvaluation: true, environment: environment, validationOnly: environment == .sandbox)
     }
-    func prepareApplePurchase(_ preparation: ApplePurchasePreparation, nonce: UUID) async throws -> ApplePurchaseIntent {
+    func prepareApplePurchase(_ preparation: ApplePurchasePreparation, nonce: UUID, environment: ApplePurchaseEnvironment) async throws -> ApplePurchaseIntent {
         guard preparation.expectedAppAccountToken == owner else { throw RilloraAPIError.invalidResponse }
         preparations += 1
         currentPurchase = ApplePendingPurchase(orderReference: UUID(), nonce: nonce, state: "prepared")
@@ -193,9 +229,9 @@ private actor ApplePurchaseServiceSpy: ApplePurchaseServing {
         return intent()
     }
     private func intent() -> ApplePurchaseIntent {
-        ApplePurchaseIntent(contractVersion: "commerce-apple-purchase-v1", orderReference: currentPurchase?.orderReference ?? UUID(), appAccountToken: owner, state: "prepared", grantsAccess: false)
+        ApplePurchaseIntent(contractVersion: "commerce-apple-purchase-v1", orderReference: currentPurchase?.orderReference ?? UUID(), appAccountToken: owner, state: "prepared", grantsAccess: false, environment: environment, validationOnly: environment == .sandbox)
     }
-    func changeApplePurchase(_ reference: UUID, action: String) async throws -> ApplePurchaseState {
+    func changeApplePurchase(_ reference: UUID, action: String, environment: ApplePurchaseEnvironment) async throws -> ApplePurchaseState {
         actions.append(action)
         let state = action == "start" ? "started" : action == "pending" ? "pending" : "closed"
         if let existing = currentPurchase {
@@ -203,21 +239,24 @@ private actor ApplePurchaseServiceSpy: ApplePurchaseServing {
         }
         return ApplePurchaseState(state: state)
     }
-    func pendingApplePurchase() async throws -> ApplePendingPurchaseResponse { ApplePendingPurchaseResponse(purchase: currentPurchase) }
-    func submitAppleTransaction(_ evidence: StoreKitTransactionEvidence) async throws -> AppleTransactionResponse {
-        submissions += 1
+    func pendingApplePurchase(environment: ApplePurchaseEnvironment) async throws -> ApplePendingPurchaseResponse { ApplePendingPurchaseResponse(purchase: currentPurchase) }
+    func submitAppleTransaction(_ evidence: StoreKitTransactionEvidence, environment: ApplePurchaseEnvironment) async throws -> AppleTransactionResponse {
+        submissions += 1; submittedEnvironments.append(environment)
         if pauseReceipt { return await withCheckedContinuation { receiptContinuation = $0 } }
         return receipt()
     }
     private func receipt() -> AppleTransactionResponse {
         if finished && !inconsistent { currentPurchase = nil }
-        return AppleTransactionResponse(contractVersion: "commerce-apple-production-v1", result: .init(accepted: true,
+        let mode = wrongReceiptEnvironment ? .production : environment
+        return AppleTransactionResponse(contractVersion: mode.receiptContract, result: .init(accepted: true,
             status: inconsistent ? "pending" : finished ? "applied" : "pending", finishAuthorized: finished,
-            authoritativeSnapshotLoaded: finished, entitlementChanged: finished))
+            authoritativeSnapshotLoaded: finished, entitlementChanged: finished), environment: mode, validationOnly: mode == .sandbox)
     }
 }
 
 private actor ApplePurchaseClientSpy: StoreKitPurchasing {
+    var appEnvironment: ApplePurchaseEnvironment?
+    func verifiedAppEnvironment() async -> ApplePurchaseEnvironment? { appEnvironment }
     let owner: UUID
     var amount = 99_990
     var purchases = 0
@@ -225,7 +264,7 @@ private actor ApplePurchaseClientSpy: StoreKitPurchasing {
     var history: StoreKitTransactionEvidence?
     var nextOutcome: StoreKitPurchaseOutcome?
     var historyFailed = false
-    init(owner: UUID) { self.owner = owner }
+    init(owner: UUID, environment: ApplePurchaseEnvironment?) { self.owner = owner; self.appEnvironment = environment }
     func setAmount(_ value: Int) { amount = value }
     func setHistory(_ value: StoreKitTransactionEvidence) { history = value }
     func setOutcome(_ value: StoreKitPurchaseOutcome) { nextOutcome = value }
@@ -244,7 +283,7 @@ private actor ApplePurchaseClientSpy: StoreKitPurchasing {
     func purchase(productID: String, appAccountToken: UUID, expectedStorefrontCountryCode: String?) async throws -> StoreKitPurchaseOutcome {
         purchases += 1
         if let nextOutcome { return nextOutcome }
-        let value = evidence(owner: owner); history = value; return .verified(value)
+        let value = evidence(owner: owner, environment: appEnvironment?.rawValue ?? "Unknown"); history = value; return .verified(value)
     }
     nonisolated func transactionUpdates(identifiers: Set<String>) -> AsyncStream<StoreKitTransactionUpdate> { AsyncStream { $0.finish() } }
     nonisolated func subscriptionStatusUpdates(identifiers: Set<String>) -> AsyncStream<StoreKitSubscriptionStatusSnapshot> { AsyncStream { $0.finish() } }

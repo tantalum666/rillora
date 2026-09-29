@@ -55,6 +55,11 @@ final class CommerceStore {
         self.applePurchase?.onReconciled = { [weak self] in await self?.refresh() }
     }
 
+    func purchaseIntents() -> AsyncStream<String> {
+        guard applePurchase != nil else { return AsyncStream { $0.finish() } }
+        return storeKitClient.purchaseIntents()
+    }
+
     var storeKitLocalTestingEnabled: Bool {
         storeKitTestEnvironment == .xcodeLocal
     }

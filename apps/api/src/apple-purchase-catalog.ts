@@ -2,13 +2,17 @@ import type { PoolClient } from 'pg';
 import { ApiError } from './errors.js';
 import { minorToAppleMilliunits } from './apple-price-catalog.js';
 import { appleQuoteSchema, type ApplePurchaseQuote } from './apple-purchase-consent.js';
+import { loadAppleReviewQuoteRows } from './apple-review-catalog.js';
+import { appleProductionContext, assertAppleContext, requireAppleReviewEnrollment, type AppleExecutionContext } from './apple-execution-context.js';
 import { assertFamilyPriceReady } from './commerce-purchase-conflicts.js';
 
 export type ApplePurchaseSelection = Readonly<{ serviceMarketCode: string; storefrontCountryCode: string }>;
-export async function loadApplePurchaseQuote(client: PoolClient, selection: ApplePurchaseSelection): Promise<{
+export async function loadApplePurchaseQuote(client: PoolClient, selection: ApplePurchaseSelection, context: AppleExecutionContext = appleProductionContext): Promise<{
   quote: ApplePurchaseQuote; priceId: string; operatorCode: string; routeCode: string; routeVersion: number;
 }> {
-  const rows = (await client.query<{ binding_code: string; price_id: string; price_code: string;
+  assertAppleContext(context);
+  await requireAppleReviewEnrollment(client, context);
+  const rows = context.validationOnly ? await loadAppleReviewQuoteRows(client,selection) : (await client.query<{ binding_code: string; price_id: string; price_code: string;
     amount_minor: string; minor_unit_exponent: number; currency_code: string; operator_code: string;
     route_code: string; route_version: number }>(`select b.binding_code,p.id::text as price_id,p.price_code,
       p.amount_minor::text,p.minor_unit_exponent,p.currency_code,p.operator_code,
@@ -21,7 +25,7 @@ export async function loadApplePurchaseQuote(client: PoolClient, selection: Appl
     join app.commerce_purchase_route_policies route on route.market_policy_id=market.id
     join app.commerce_storefront_policies storefront on storefront.id=route.storefront_policy_id
     where p.service_market_code=$1 and b.storefront_country_code=$2
-      and p.purchase_channel='apple_app_store' and p.billing_interval='annual'
+      and b.provider_environment='production' and p.purchase_channel='apple_app_store' and p.billing_interval='annual'
       and b.product_reference='com.rillora.family.annual' and b.status='active' and p.status='active'
       and pv.plan_code='family' and pv.status='active' and p.tax_behavior<>'not_configured'
       and plane.code='global' and plane.status='active' and operator.status='active'

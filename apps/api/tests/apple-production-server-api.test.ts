@@ -4,6 +4,7 @@ import { AutoRenewStatus, Environment, InAppOwnershipType, Status, Type,
   type StatusResponse } from '@apple/app-store-server-library';
 import { Response } from 'node-fetch';
 import { describe, expect, it, vi } from 'vitest';
+import { appleReviewContext } from '../src/apple-execution-context.js';
 import { ApplePriceBindings } from '../src/apple-price-bindings.js';
 import { AppleProductionVerification, rilloraAppleIdentity as identity } from '../src/apple-production-verification.js';
 import { AppleProductionServerApi, AppleProductionSnapshotAdapter } from '../src/apple-production-server-api.js';
@@ -180,6 +181,16 @@ describe('Apple production authoritative status (decoded fixtures, not Apple tra
 });
 
 describe('official Apple production HTTP transport', () => {
+  it('uses the Sandbox host only when explicitly configured and never falls back to production',async()=>{
+    const privateKey=generateKeyPairSync('ec',{namedCurve:'prime256v1'}).privateKey.export({format:'pem',type:'pkcs8'}).toString();
+    const request=vi.fn(async()=>new Response(JSON.stringify({...fixture().response,environment:Environment.SANDBOX}),{status:200}));
+    const api=new AppleProductionServerApi({privateKey,keyId:'FIXTUREKEY',issuerId:owner},request,appleReviewContext);
+    await api.getAllSubscriptionStatuses(originalId);
+    expect(request).toHaveBeenCalledWith(`https://api.storekit-sandbox.apple.com/inApps/v1/subscriptions/${originalId}`,
+      expect.objectContaining({method:'GET',redirect:'error',size:1048576,timeout:10000}));
+    await expect(api.requestTestNotification()).rejects.toThrow('unsupported');
+    expect(request).toHaveBeenCalledTimes(1);
+  });
   it('restricts requests to bounded, nonredirecting production status reads', async () => {
     const { privateKey } = generateKeyPairSync('ec', { namedCurve: 'prime256v1',
       privateKeyEncoding: { format: 'pem', type: 'pkcs8' }, publicKeyEncoding: { format: 'pem', type: 'spki' } });

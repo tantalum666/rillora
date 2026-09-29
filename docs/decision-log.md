@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-09-29 (Asia/Hong_Kong)
+Last updated: 2026-09-30 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -2806,3 +2806,23 @@ unreachable release remains a different closed workflow. See [sharing contract](
   change is approved by this communication.
 - Submission/readback at22:31:40+08 and Reopened are confirmed; SES approval remains
   absent. [Mail record](production-identity-mail-20260924.md).
+
+## 2026-09-29–30 — Apple review context and Small Business enrollment
+
+- Owner prioritizes Apple-related release work. Agent reuses the current strict
+  production lifecycle with an explicit, separately configured Sandbox review
+  context and expiring enrolled accounts. This adds no public paid plan, test
+  authentication bypass, real charge or change to the Free/Family contract.
+- Native environment comes from verified AppTransaction.shared. PurchaseIntent
+  routes through the existing sign-in/consent/account flow; receiving an intent
+  is not permission to buy. Keep new sales annual-only and historical restore.
+- Owner confirms no associated developer accounts and prior-year aggregate App
+  Store proceeds no more thanUS$1million; separately confirms the final accuracy
+  attestation and submission. Submit one Small Business Program application.
+  Apple's acknowledgement proves submission only;15%approval/effectiveness staysopen.
+- Signed archive/export and draft website/support metadata are allowed release
+  preparation. Customer accessNO and the actual TestFlight no-build state remain;
+  do not upload a closed/untestable artifact as a ready release. Apple rejects
+  Streamlined Purchasing disable until an approved PurchaseIntent binary exists.
+- No final Apple99.99/119.99price is adopted; annualUSA68/CAD99 readback stays an
+  existing test catalog fact. [Current Apple contract](apple-review-validation-20260929.md).

@@ -5,9 +5,13 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-09-29 (Asia/Hong_Kong)
+Last updated: 2026-09-30 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-09-29–30 Apple审核购买与小型企业计划
+
+Owner优先推进Apple发布工作，并确认无关联开发者账户、上一年度总净收入不超过US$100万，另当场批准小型企业计划的最终声明和提交。已收到Apple申请回执，不推定15%获批或生效。TestFlight／审核购买使用明确的Sandbox验证路径、限期审核账号和原有共享权限引擎；不能混成真实收入或放松正式验签。已生成的签名分发包仍关闭账号入口，不等于可用TestFlight或已提交审核。[当前Apple合同](apple-review-validation-20260929.md)。
 
 ## 2026-09-29 双端全盘审计与应用级外观
 

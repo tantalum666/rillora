@@ -1,5 +1,18 @@
 import Foundation
 
+enum ApplePurchaseEnvironment: String, Codable, Sendable {
+    case production, sandbox
+    var route: String { self == .production ? "production" : "review" }
+    var receiptContract: String { self == .production ? "commerce-apple-production-v1" : "commerce-apple-review-v1" }
+    func matches(environment: ApplePurchaseEnvironment?, validationOnly: Bool?) -> Bool {
+        self == .sandbox ? environment == .sandbox && validationOnly == true
+            : (environment == nil || environment == .production) && validationOnly != true
+    }
+    func matches(transaction: StoreKitTransactionEvidence) -> Bool {
+        !transaction.isXcodeEnvironment && transaction.environment.lowercased() == rawValue
+    }
+}
+
 struct ApplePurchaseQuote: Codable, Equatable, Sendable {
     let bindingCode: String
     let priceCode: String
@@ -42,6 +55,9 @@ struct AppleQuoteResponse: Decodable, Equatable, Sendable {
     let quote: ApplePurchaseQuote
     let purchaseTerms: ApplePurchaseTerms
     let requiresFreshEvaluation: Bool
+    var environment: ApplePurchaseEnvironment? = nil
+    var validationOnly: Bool? = nil
+    func isValid(for expected: ApplePurchaseEnvironment) -> Bool { isValid && expected.matches(environment: environment, validationOnly: validationOnly) }
     var isValid: Bool {
         contractVersion == "commerce-apple-purchase-v1" && requiresFreshEvaluation
             && quote.isValid && purchaseTerms.isCurrent
@@ -71,6 +87,9 @@ struct ApplePurchaseIntent: Decodable, Equatable, Sendable {
     let appAccountToken: UUID
     let state: String
     let grantsAccess: Bool
+    var environment: ApplePurchaseEnvironment? = nil
+    var validationOnly: Bool? = nil
+    func isValid(for expected: ApplePurchaseEnvironment) -> Bool { isValid && expected.matches(environment: environment, validationOnly: validationOnly) }
     var isValid: Bool { contractVersion == "commerce-apple-purchase-v1" && !grantsAccess && ["prepared", "started", "pending"].contains(state) }
 }
 struct ApplePendingPurchase: Decodable, Equatable, Sendable {
@@ -92,8 +111,13 @@ struct AppleTransactionResponse: Decodable, Sendable {
     }
     let contractVersion: String
     let result: Result
+    var environment: ApplePurchaseEnvironment? = nil
+    var validationOnly: Bool? = nil
+    func isValid(for expected: ApplePurchaseEnvironment) -> Bool {
+        isValid && contractVersion == expected.receiptContract && expected.matches(environment: environment, validationOnly: validationOnly)
+    }
     var isValid: Bool {
-        contractVersion == "commerce-apple-production-v1" && result.accepted
+        ["commerce-apple-production-v1", "commerce-apple-review-v1"].contains(contractVersion) && result.accepted
             && (result.finishAuthorized
                 ? result.status == "applied" && result.authoritativeSnapshotLoaded
                 : result.status == "pending" && !result.authoritativeSnapshotLoaded && !result.entitlementChanged)

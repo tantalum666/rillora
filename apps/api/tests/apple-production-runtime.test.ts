@@ -2,6 +2,7 @@ import { generateKeyPairSync, randomUUID } from 'node:crypto';
 import { describe, expect, it } from 'vitest';
 import { loadConfig } from '../src/config.js';
 import { parseAppleProductionSecret, appleProductionSecretArnPattern } from '../src/apple-production-secret.js';
+import { parseAppleReviewSecret, appleReviewSecretArnPattern } from '../src/apple-production-secret.js';
 import { appleDeliveryMetrics } from '../src/apple-production-metrics.js';
 
 const secretArn = 'arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/apple-iap-ABC123';
@@ -48,6 +49,25 @@ describe('Apple production runtime boundaries', () => {
       { unreviewedSecret: 'must-not-echo' }, { privateKey: generateKeyPairSync('ec', { namedCurve: 'secp384r1' }).privateKey.export({ type: 'pkcs8', format: 'pem' }).toString() }]) {
       expect(() => parseAppleProductionSecret(JSON.stringify({ ...valid, ...patch }))).toThrow('Production Apple IAP secret does not match its reviewed schema');
     }
+  });
+
+  it('pins review to its named Sandbox secret and the same real authentication/encryption boundary',()=>{
+    const reviewArn=secretArn.replace('apple-iap','apple-review');
+    const valid={...environment(),ALLOW_APPLE_PRODUCTION_INTEGRATION:'false',APPLE_PRODUCTION_SECRET_ARN:undefined,
+      ALLOW_APPLE_REVIEW_INTEGRATION:'true',APPLE_REVIEW_SECRET_ARN:reviewArn};
+    expect(loadConfig(valid)).toMatchObject({appleProduction:null,appleReview:{secretArn:reviewArn},appleSandbox:null});
+    for(const patch of [{ALLOW_DEV_AUTH:'true'},{NODE_ENV:'test'},{PRODUCTION_RUNTIME_MODE:'closed'},
+      {APPLE_REVIEW_SECRET_ARN:secretArn},{APPLE_REVIEW_SECRET_ARN:undefined},{ALLOW_APPLE_SANDBOX_INTEGRATION:'true'},
+      {WEB_APP_ORIGIN:'https://app.staging.rillora.xyz'},{CONTENT_PROTECTION_MODE:'off'},{APPLE_IAP_PRIVATE_KEY:'x'.repeat(100)}]) {
+      expect(()=>loadConfig({...valid,...patch})).toThrow();
+    }
+    const privateKey=generateKeyPairSync('ec',{namedCurve:'prime256v1'}).privateKey.export({type:'pkcs8',format:'pem'}).toString();
+    const secret={schemaVersion:1,environment:'sandbox',bundleId:'com.rillora.ios',keyId:'ABCDEFGHIJ',issuerId:randomUUID(),privateKey,allowedStorefronts:['USA']};
+    expect(parseAppleReviewSecret(JSON.stringify(secret)).environment).toBe('sandbox');
+    expect(()=>parseAppleProductionSecret(JSON.stringify(secret))).toThrow();
+    expect(()=>parseAppleReviewSecret(JSON.stringify({...secret,environment:'production'}))).toThrow();
+    expect(appleReviewSecretArnPattern.test(secretArn)).toBe(false);
+    expect(appleDeliveryMetrics({pending:1,failed:0,oldestPendingSeconds:0},123,'sandbox').Environment).toBe('sandbox');
   });
 
   it('emits aggregate queue age/failure and worker heartbeat with no dynamic identity dimensions', () => {

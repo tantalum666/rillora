@@ -7,6 +7,10 @@ struct ApplePurchaseSection: View {
 
     var body: some View {
         Section {
+            if purchase.environment == .sandbox {
+                Label("Apple test purchase · No charge", systemImage: "testtube.2")
+                    .font(.subheadline).foregroundStyle(RilloraTheme.muted)
+            }
             if subscription == nil, let product = purchase.product, purchase.quote != nil {
                 LabeledContent("Family · yearly", value: product.displayPrice)
                     .foregroundStyle(RilloraTheme.ink)

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-29",
+  "updatedAt": "2026-09-30",
   "release": "Rillora Global 1.0",
   "scope": "Web and native iOS; existing Free and Family only",
   "gates": [
@@ -75,9 +75,11 @@
         "output/qa/rillora-production-apple-20260926/work-state.json",
         "output/qa/rillora-launch-goal-20260926/apple-snapshot-checks.json",
         "output/qa/rillora-launch-goal-20260926/apple-intake-checks.json",
-        "output/qa/rillora-launch-goal-20260926/apple-purchase-checks.json"
+        "output/qa/rillora-launch-goal-20260926/apple-purchase-checks.json",
+        "docs/apple-review-validation-20260929.md",
+        "output/qa/rillora-apple-release-20260929/work-state.json"
       ],
-      "next": "Ordinary native purchase/consent/preflight and committed-ack restore are locally verified (300 API/170 native, 1 existing skip). Complete final-app TestFlight/App Review validation with distinct signed environment and enrolled accounts, actual fee/price/SKU configuration, real lifecycle and cross-channel acceptance, then cloud rollout. Production currently rejects Sandbox; no real Apple purchase is claimed."
+      "next": "Review/TestFlight lifecycle is locally implemented and isolated by signed environment/expiring enrollment; 313 API checks pass. SBP enrollment submitted, approval/effective fee and final price pending. Deploy actual review runtime/catalog and enroll an authenticated reviewer, then verify real purchase/restore/notifications and cross-channel behavior. No real Apple transaction yet."
     },
     {
       "id": "operations",
@@ -128,9 +130,11 @@
       "required": true,
       "title": "App Store build and submission package",
       "evidence": [
-        "output/qa/rillora-production-clients-20260925/native-release-readback.json"
+        "output/qa/rillora-production-clients-20260925/native-release-readback.json",
+        "docs/apple-review-validation-20260929.md",
+        "output/qa/rillora-apple-release-20260929/work-state.json"
       ],
-      "next": "Simulator Release now has exact production connections and correct icon, no StoreKit fixture, but account access remains closed. Complete final signed distribution archive, current metadata/screenshots/privacy/age/encryption/review access and TestFlight; no App Store submission is implied."
+      "next": "Signed Release and App Store IPA export succeed but customer access remainsclosed; no upload. Website/support links saved and TestFlight showsno builds. Prepare usable authenticated review candidate, actual screenshots/privacy/age/encryption/reviewer package, upload/TestFlight and App Review. Disable Streamlined Purchasing only after Apple accepts the required approved PurchaseIntent binary; manual release preserved."
     },
     {
       "id": "physical-device",

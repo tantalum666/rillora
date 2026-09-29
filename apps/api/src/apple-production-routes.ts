@@ -16,6 +16,7 @@ export function createAppleProductionNotificationHandler(intake: AppleProduction
 }
 
 export function createAppleProductionRouter(intake: AppleProductionIntake, purchases: ApplePurchasePreflight): Router {
+  if(intake.context!==purchases.context) throw new Error('Apple route context mismatch');
   const router = Router();
   router.get('/purchases/current',asyncHandler(async(request,response)=>{
     response.json(await purchases.current(request.auth.plannerId));
@@ -43,7 +44,8 @@ export function createAppleProductionRouter(intake: AppleProductionIntake, purch
     const input = schema.parse(request.body);
     const result = await intake.acceptClientTransaction({ ...input,
       plannerId: request.auth.plannerId, plannerPublicId: request.auth.plannerPublicId });
-    response.status(result.finishAuthorized ? 200 : 202).json({ contractVersion: 'commerce-apple-production-v1', result });
+    response.status(result.finishAuthorized ? 200 : 202).json({ contractVersion: intake.context.validationOnly ? 'commerce-apple-review-v1' : 'commerce-apple-production-v1',
+      environment:intake.context.environment,validationOnly:intake.context.validationOnly,result });
   }));
   return router;
 }

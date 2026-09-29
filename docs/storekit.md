@@ -4,10 +4,21 @@ Role: StoreKit 2 client, local Xcode testing, Apple sandbox and server-verificat
 Authority scope: Rillora Family StoreKit product identifiers, purchase/restore lifecycle, transaction evidence, App Store server boundary and phased verification  
 Superseded by: newer Apple platform rules, verified App Store Connect state, a later Owner decision, or stricter payment/security evidence  
 Do not use for: proof of App Store approval, accepted Paid Apps Agreement, banking/tax completion, live IAP products, production entitlement or a real charge  
-Status: ORDINARY PRODUCTION PURCHASE/RESTORE LOCALLY VERIFIED; REAL REVIEW VALIDATION, PROVIDER LIFECYCLE AND CLOUD ROLLOUT OPEN
-Last updated: 2026-09-27 (ordinary native flow locally verified; historical provider evidence retained)
+Status: SHARED PRODUCTION/REVIEW FLOW LOCALLY VERIFIED; REAL PROVIDER AND CLOUD ACCEPTANCE OPEN
+Last updated: 2026-09-30 (Apple review flow and signed preparation artifact; historical provider evidence retained)
 
-## September27 ordinary native flow — current
+## September29–30 review/TestFlight path — current
+
+The current native coordinator selects production/review from verified
+AppTransaction.shared and supports PurchaseIntent with sign-in, fresh terms and
+account binding. The shared API retains strict separate environments, expiring
+review enrollment, exact prices/receipts and atomic current-state reconciliation.
+The historical diagnostic Sandbox path remains separate. Local tests and signed
+Release/distribution export pass; cloud review activation, actual Apple transactions
+and TestFlight/App Store upload are not complete. The exported customer entrance
+is stillclosed. [Current contract and evidence](apple-review-validation-20260929.md).
+
+## HISTORICAL — September27 ordinary native flow
 
 The app now implements a separate production purchase coordinator, exact StoreKit/
 server price comparison, independently accepted recurring terms, prepared-order

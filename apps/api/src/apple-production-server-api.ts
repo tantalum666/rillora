@@ -7,6 +7,7 @@ import { ApplePriceBindings } from './apple-price-bindings.js';
 import { AppleProductionVerification, rilloraAppleIdentity } from './apple-production-verification.js';
 import type { AppleAppStoreServerApi } from './apple-storekit-server-api.js';
 import type { AuthoritativeSubscriptionSnapshot } from './commerce-provider-contract.js';
+import { appleProductionContext, assertAppleContext, matchesAppleAppId, type AppleExecutionContext } from './apple-execution-context.js';
 
 export type AppleSubscriptionLookup = Readonly<{
   anyTransactionId: string;
@@ -17,7 +18,7 @@ export type AppleSubscriptionLookup = Readonly<{
 
 export type AppleProductionSnapshot = AuthoritativeSubscriptionSnapshot & Readonly<{
   provider: 'storekit';
-  providerEnvironment: 'production';
+  providerEnvironment: 'production' | 'sandbox';
   priceCode: string;
   planVersion: number;
   priceBindingId: string;
@@ -36,9 +37,11 @@ type AppleServerCredentials = Readonly<{ privateKey: string; keyId: string; issu
 
 /** Official JWT/schema handling, with a bounded, read-only production transport. */
 export class AppleProductionServerApi extends AppStoreServerAPIClient implements AppleAppStoreServerApi {
-  constructor(credentials: AppleServerCredentials, private readonly request: AppleHttpRequest = fetch) {
+  constructor(credentials: AppleServerCredentials, private readonly request: AppleHttpRequest = fetch,
+    private readonly context: AppleExecutionContext = appleProductionContext) {
     super(credentials.privateKey, credentials.keyId, credentials.issuerId,
-      rilloraAppleIdentity.bundleId, Environment.PRODUCTION);
+      rilloraAppleIdentity.bundleId, context.signedEnvironment);
+    assertAppleContext(context);
   }
 
   protected override async makeFetchRequest(path: string, query: URLSearchParams,
@@ -47,7 +50,8 @@ export class AppleProductionServerApi extends AppStoreServerAPIClient implements
       || body !== undefined || query.size !== 0) {
       throw new Error('Apple production status transport rejected an unsupported request');
     }
-    return this.request(`https://api.storekit.apple.com${path}`, {
+    const origin = this.context.validationOnly ? 'https://api.storekit-sandbox.apple.com' : 'https://api.storekit.apple.com';
+    return this.request(`${origin}${path}`, {
       method, headers, redirect: 'error', timeout: 10_000, size: 1024 * 1024,
     });
   }
@@ -64,8 +68,9 @@ export class AppleProductionSnapshotAdapter {
     const lookup = parseLookup(input);
     const response = await this.serverApi.getAllSubscriptionStatuses(lookup.anyTransactionId);
     const observedAt = epoch(this.now().getTime());
-    if (response.environment !== Environment.PRODUCTION || response.bundleId !== rilloraAppleIdentity.bundleId
-      || response.appAppleId !== rilloraAppleIdentity.appAppleId) {
+    const context = this.verification.context;
+    if (response.environment !== context.signedEnvironment || response.bundleId !== rilloraAppleIdentity.bundleId
+      || !matchesAppleAppId(response.appAppleId, rilloraAppleIdentity.appAppleId, context)) {
       throw new Error('Apple production status response identity mismatch');
     }
     if (!response.data || response.data.length > 50) throw new Error('Apple production status groups are missing or excessive');
@@ -98,7 +103,7 @@ export class AppleProductionSnapshotAdapter {
     }
     const access = accessWindow(status, transaction, renewal, observedAt, paidThrough);
     return Object.freeze({
-      provider: 'storekit', providerEnvironment: 'production',
+      provider: 'storekit', providerEnvironment: context.environment,
       providerSubscriptionReference: lookup.providerSubscriptionReference,
       providerTransactionReference: transaction.transactionId!,
       commerceAccountReference: lookup.expectedCommerceAccountReference,

@@ -26,6 +26,8 @@ struct AppShellView: View {
     @State private var peopleIntent: ProfilePeopleIntent?
     @State private var sharingRevision = 0
     @State private var overviewShared = false
+    @State private var queuedApplePurchase = false
+    @State private var showsApplePurchase = false
     @AppStorage(AppAppearance.storageKey) private var appearanceValue = AppAppearance.system.rawValue
     @Environment(\.colorScheme) private var colorScheme
 
@@ -136,6 +138,10 @@ struct AppShellView: View {
             .presentationBackground(RilloraTheme.graphite)
             .preferredColorScheme(appearancePreference.colorScheme)
         }
+        .sheet(isPresented: $showsApplePurchase, onDismiss: { presentQueuedInvitation() }) {
+            ApplePurchaseEntryView(store: store, authentication: authenticationStore, commerce: commerceStore)
+                .preferredColorScheme(appearancePreference.colorScheme)
+        }
         .sheet(item: $invitationSheet, onDismiss: { presentQueuedInvitation() }) { received in
             NavigationStack { InvitationAcceptView(initialToken: received.token, service: sharingService, authenticationStore: authenticationStore, overviewStore: store) }
                 .presentationBackground(RilloraTheme.graphite)
@@ -150,7 +156,7 @@ struct AppShellView: View {
             }
         }
         .onChange(of: authenticationStore.deletionReference?.id) { _, value in
-            if value != nil { firstUseDestination = nil; shouldPauseGuideOnDismiss = false; overviewMatter = nil; overviewShared = false; invitationSheet = nil; queuedInvitation = nil; peopleIntent = nil; selectedTab = .profile }
+            if value != nil { showsApplePurchase = false; queuedApplePurchase = false; firstUseDestination = nil; shouldPauseGuideOnDismiss = false; overviewMatter = nil; overviewShared = false; invitationSheet = nil; queuedInvitation = nil; peopleIntent = nil; selectedTab = .profile }
         }
         .onOpenURL { url in
             if let token = ReceivedInvitation.token(from: url.absoluteString) { queueInvitation(token) }
@@ -172,6 +178,14 @@ struct AppShellView: View {
                 queueInvitation(token)
             }
             #endif
+        }
+        .task {
+            for await productID in commerceStore.purchaseIntents() {
+                guard !Task.isCancelled else { return }
+                guard productID == RilloraStoreKitCatalog.familyAnnualProductID else { continue }
+                queuedApplePurchase = true
+                presentQueuedInvitation()
+            }
         }
         .task(id: commerceAppAccountToken) {
             guard let commerceAppAccountToken else { return }
@@ -215,6 +229,12 @@ struct AppShellView: View {
     private var activePlannerID: String? { if case .loaded(let snapshot) = store.state { snapshot.session.plannerPublicId } else { nil } }
     private func queueInvitation(_ token: String?) { queuedInvitation = ReceivedInvitation(token: token); presentQueuedInvitation() }
     private func presentQueuedInvitation() {
+        if queuedInvitation == nil, queuedApplePurchase, invitationSheet == nil,
+           firstUseDestination == nil, !contactSheetOpen, !authenticationStore.isWorking,
+           authenticationStore.deletionReference == nil {
+            queuedApplePurchase = false; showsApplePurchase = true
+        }
+        guard !showsApplePurchase else { return }
         guard let queuedInvitation, invitationSheet == nil, firstUseDestination == nil, !contactSheetOpen, !authenticationStore.isWorking else { return }
         selectedTab = .profile; invitationSheet = queuedInvitation; self.queuedInvitation = nil
     }

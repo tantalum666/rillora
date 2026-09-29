@@ -1,15 +1,31 @@
 # Apple production verification and price preparation
 
 Role: current Apple production engineering, portal readback and actual evidence boundary
-Status: ORDINARY NATIVE PURCHASE AND RESTORE LOCALLY VERIFIED; REVIEW VALIDATION AND REAL PROVIDER LIFECYCLE OPEN
-Last updated: 2026-09-27 (Asia/Hong_Kong)
+Status: REVIEW FLOW LOCALLY VERIFIED; SIGNED EXPORT PREPARED; ACTUAL PROVIDER AND CLOUD ACCEPTANCE OPEN
+Last updated: 2026-09-30 (Asia/Hong_Kong)
 
 Owner completed the requested Apple login. The actual Rillora app6803957639,
 bundle com.rillora.ios, group22325627 and two existing products are accessible.
 The app/version and products remain Prepare for Submission. No build, review
 submission, live purchase or release was created in this increment.
 
-## September27 ordinary native purchase and restore — current checkpoint
+## September29–30 Apple release increment — current
+
+Owner proceeds with Apple work and completes the current login. The safe enrolled
+review/TestFlight path is implemented using the shared strict lifecycle, isolated
+Sandbox evidence and a verified native AppTransaction environment.313API tests,
+175native full-suite passes with1existing skip, and14later focused checks pass.
+Signed Release archive and non-debuggable App Store export succeed after refreshing
+Rillora's old provisioning profile. Customer access remainsclosed; no upload or real
+Apple transaction occurred. [Current implementation, rollout and evidence](apple-review-validation-20260929.md).
+
+Owner confirms Small Business eligibility facts and the final attestation. Apple
+confirms receipt of the enrollment; approval and15%effective date remainpending.
+AnnualUSA68/Canada99 are unchanged, not the final differentiated price. The draft
+now has saved public website/support links. Streamlined Purchasing remainson because
+Apple requires an approved PurchaseIntent binary; source support is now added.
+
+## HISTORICAL — September27 ordinary native purchase and restore
 
 The ordinary production app now has a separate Apple purchase coordinator and
 typed API contract. It compares StoreKit's localized price, currency, one-year

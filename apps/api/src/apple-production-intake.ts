@@ -1,4 +1,5 @@
-import type { DatabasePool } from './db.js';
+import { withCommercePlannerDatabase, type DatabasePool } from './db.js';
+import { appleProductionContext, assertAppleContext, requireAppleReviewEnrollment, type AppleExecutionContext } from './apple-execution-context.js';
 import { ApiError } from './errors.js';
 import type { AppleProductionVerification } from './apple-production-verification.js';
 import type { AppleProductionSignal } from './apple-production-evidence.js';
@@ -13,11 +14,14 @@ export class AppleProductionIntake {
   private readonly inbox: AppleProductionInbox;
   constructor(private readonly pool: DatabasePool,
     private readonly verifier: Pick<AppleProductionVerification, 'verifyClientTransaction' | 'verifyNotification'>,
-    private readonly snapshots: Pick<AppleProductionSnapshotAdapter, 'retrieveAuthoritativeSubscription'>) {
-    this.inbox = new AppleProductionInbox(pool);
+    private readonly snapshots: Pick<AppleProductionSnapshotAdapter, 'retrieveAuthoritativeSubscription'>,
+    readonly context: AppleExecutionContext = appleProductionContext) {
+    assertAppleContext(context);
+    this.inbox = new AppleProductionInbox(pool, context);
   }
 
   async acceptClientTransaction(input: { plannerId: string; plannerPublicId: string; signedTransaction: string }): Promise<IntakeResult> {
+    await withCommercePlannerDatabase(this.pool, input.plannerId, client => requireAppleReviewEnrollment(client, this.context));
     let signal: AppleProductionSignal;
     try { signal = await this.verifier.verifyClientTransaction({ signedTransaction: input.signedTransaction,
       expectedAppAccountToken: input.plannerPublicId }); }
@@ -71,7 +75,7 @@ export class AppleProductionIntake {
         expectedAppAccountToken: bound.signal.accountBindingReference,
         expectedCommerceAccountReference: bound.accountReference,
       });
-      return await commitAppleObservation(this.pool, bound, snapshot);
+      return await commitAppleObservation(this.pool, bound, snapshot, this.context);
     } catch {
       // Provider bodies/JWS/credentials never enter logs or the durable error field.
       // If the database itself is unavailable, let retry recording fail and leave

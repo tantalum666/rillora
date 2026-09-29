@@ -1,8 +1,11 @@
 import { ApplePriceBindings, type ApplePriceBinding } from './apple-price-bindings.js';
 import { withCommerceInboxDatabase, type DatabasePool } from './db.js';
+import { appleProductionContext, assertAppleContext, type AppleExecutionContext } from './apple-execution-context.js';
 
 /** Catalog reads use public price metadata, never a provider secret or client-selected amount. */
-export async function loadAppleProductionPriceBindings(pool: DatabasePool): Promise<ApplePriceBindings> {
+export async function loadAppleProductionPriceBindings(pool: DatabasePool,
+  context: AppleExecutionContext = appleProductionContext): Promise<ApplePriceBindings> {
+  assertAppleContext(context);
   const rows = await withCommerceInboxDatabase(pool, async client => (await client.query<{
     binding_code: string; product_reference: string; storefront_country_code: string;
     currency_code: string; amount_minor: string; minor_unit_exponent: number;
@@ -12,9 +15,10 @@ export async function loadAppleProductionPriceBindings(pool: DatabasePool): Prom
       b.effective_from,b.effective_to
     from app.commerce_apple_price_bindings b join app.commerce_prices p on p.id=b.price_id
     join app.commerce_plan_versions pv on pv.id=p.plan_version_id
-    where p.purchase_channel='apple_app_store' and p.status in ('active','retired')
+    where p.purchase_channel='apple_app_store' and p.status=any($2::text[]) and b.provider_environment=$1
       and pv.plan_code='family' and b.status in ('active','retired')
-    order by b.binding_code limit 501`)).rows);
+    order by b.binding_code limit 501`, [context.environment,
+      context.validationOnly ? ['test_only','retired'] : ['active','retired']])).rows);
   const bindings: ApplePriceBinding[] = rows.map(row => ({
     id: row.binding_code,
     productId: row.product_reference as ApplePriceBinding['productId'],

@@ -1,9 +1,10 @@
 import Foundation
 import Observation
 
-/// Ordinary production purchases stay separate from the existing diagnostic harness.
+/// Shared purchase flow with a verified distribution environment; diagnostics remain separate.
 @MainActor @Observable
 final class ApplePurchaseCoordinator {
+    private(set) var environment: ApplePurchaseEnvironment?
     private(set) var quote: AppleQuoteResponse?
     private(set) var product: StoreKitProductSnapshot?
     private(set) var pending: ApplePendingPurchase?
@@ -24,8 +25,12 @@ final class ApplePurchaseCoordinator {
     }
 
     func start(owner: UUID) async {
-        self.owner = owner; revision += 1
+        reset()
+        self.owner = owner
         let generation = revision
+        let verifiedEnvironment = await client.verifiedAppEnvironment()
+        guard generation == revision, !Task.isCancelled else { return }
+        environment = verifiedEnvironment
         async let listener: Void = observeTransactions(generation: generation)
         await refreshQuote()
         await restore(synchronize: false)
@@ -34,22 +39,28 @@ final class ApplePurchaseCoordinator {
 
     func reset() {
         revision += 1; owner = nil; quote = nil; product = nil; pending = nil
-        busy = false; message = nil; processing = [:]
+        busy = false; message = nil; processing = [:]; environment = nil
     }
 
     func refreshQuote() async {
         let generation = revision
         guard owner != nil else { return }
         quote = nil; product = nil
-        let existing = try? await service.pendingApplePurchase()
+        if environment == nil {
+            let verified = await client.verifiedAppEnvironment()
+            guard generation == revision else { return }
+            environment = verified
+        }
+        guard let environment else { return }
+        let existing = try? await service.pendingApplePurchase(environment: environment)
         guard generation == revision else { return }
         pending = existing?.purchase
         do {
             guard let country = await storefront.currentCountryCode() else { return }
-            async let current = service.fetchAppleQuote(serviceMarket: serviceMarket, storefront: country)
+            async let current = service.fetchAppleQuote(serviceMarket: serviceMarket, storefront: country, environment: environment)
             async let products = client.loadProducts(identifiers: RilloraStoreKitCatalog.purchasableFamilyProductIDs)
             let (response, available) = try await (current, products)
-            guard generation == revision, !Task.isCancelled, response.isValid,
+            guard generation == revision, !Task.isCancelled, response.isValid(for: environment),
                   response.quote.serviceMarketCode == serviceMarket,
                   response.quote.storefrontCountryCode == country,
                   available.count == 1, let match = available.first, matches(match, response.quote) else { return }
@@ -60,7 +71,7 @@ final class ApplePurchaseCoordinator {
     }
 
     func purchase(acceptedTerms: Bool) async {
-        guard !busy, acceptedTerms, let expected = quote, let owner else { return }
+        guard !busy, acceptedTerms, let expected = quote, let owner, let environment else { return }
         let generation = revision
         busy = true; message = nil
         defer { if generation == revision { busy = false } }
@@ -75,9 +86,9 @@ final class ApplePurchaseCoordinator {
             if pending?.state == "pending" { message = "Your purchase is waiting for Apple. Check it again shortly."; return }
             let preparation = ApplePurchasePreparation(quote: current.quote,
                 consent: ApplePurchaseConsent(terms: current.purchaseTerms, accepted: acceptedTerms), expectedAppAccountToken: owner)
-            let prepared = try await service.prepareApplePurchase(preparation, nonce: pending?.nonce ?? UUID())
-            guard generation == revision, prepared.isValid, prepared.appAccountToken == owner else { return }
-            let started = try await service.changeApplePurchase(prepared.orderReference, action: "start")
+            let prepared = try await service.prepareApplePurchase(preparation, nonce: pending?.nonce ?? UUID(), environment: environment)
+            guard generation == revision, prepared.isValid(for: environment), prepared.appAccountToken == owner else { return }
+            let started = try await service.changeApplePurchase(prepared.orderReference, action: "start", environment: environment)
             guard generation == revision, started.state == "started", !Task.isCancelled else { return }
             let outcome = try await client.purchase(productID: current.quote.productId, appAccountToken: owner,
                 expectedStorefrontCountryCode: current.quote.storefrontCountryCode)
@@ -85,17 +96,17 @@ final class ApplePurchaseCoordinator {
             switch outcome {
             case .verified(let evidence): await accept(evidence, generation: generation)
             case .pending:
-                _ = try await service.changeApplePurchase(prepared.orderReference, action: "pending")
+                _ = try await service.changeApplePurchase(prepared.orderReference, action: "pending", environment: environment)
                 guard generation == revision else { return }
                 message = "Waiting for Apple to approve your purchase."
             case .userCancelled:
-                _ = try await service.changeApplePurchase(prepared.orderReference, action: "cancel")
+                _ = try await service.changeApplePurchase(prepared.orderReference, action: "cancel", environment: environment)
                 guard generation == revision else { return }
                 message = nil
             case .unverified:
                 message = "Apple could not verify this purchase. Restore purchases before trying again."
             }
-            let existing = try await service.pendingApplePurchase().purchase
+            let existing = try await service.pendingApplePurchase(environment: environment).purchase
             guard generation == revision else { return }
             pending = existing
         } catch is CancellationError { return }
@@ -107,6 +118,12 @@ final class ApplePurchaseCoordinator {
     func restore(synchronize: Bool = true) async {
         guard let owner, !busy else { return }
         let generation = revision
+        if environment == nil { await refreshQuote() }
+        guard generation == revision, owner == self.owner else { return }
+        guard let environment else {
+            if synchronize { message = "Apple purchases are temporarily unavailable. Please try again." }
+            return
+        }
         busy = true
         defer { if generation == revision { busy = false } }
         do {
@@ -126,7 +143,7 @@ final class ApplePurchaseCoordinator {
             }
             if synchronize && complete && ids.isEmpty { message = "No Rillora purchases were found for this Apple account." }
             if synchronize && complete && !ids.isEmpty && owned == 0 { message = "Use the Rillora account originally used for this purchase." }
-            let existing = try await service.pendingApplePurchase().purchase
+            let existing = try await service.pendingApplePurchase(environment: environment).purchase
             guard generation == revision else { return }
             pending = existing
         } catch is CancellationError { return }
@@ -144,20 +161,20 @@ final class ApplePurchaseCoordinator {
     }
 
     private func accept(_ evidence: StoreKitTransactionEvidence, generation: Int) async {
-        if generation == revision, evidence.appAccountToken == owner,
-           evidence.environment.caseInsensitiveCompare("Sandbox") == .orderedSame {
-            message = "Test purchases are not enabled in this build."; return
+        guard let environment else { return }
+        if generation == revision, evidence.appAccountToken == owner, !environment.matches(transaction: evidence) {
+            message = "This purchase belongs to a different Apple environment."; return
         }
         guard generation == revision, processing[evidence.transactionID] != generation,
               let owner, evidence.appAccountToken == owner,
               evidence.subscriptionGroupID == RilloraStoreKitCatalog.appStoreFamilySubscriptionGroupID,
               RilloraStoreKitCatalog.familyProductIDs.contains(evidence.productID), !evidence.isXcodeEnvironment,
-              evidence.environment.caseInsensitiveCompare("Production") == .orderedSame else { return }
+              environment.matches(transaction: evidence) else { return }
         processing[evidence.transactionID] = generation
         defer { if processing[evidence.transactionID] == generation { processing.removeValue(forKey: evidence.transactionID) } }
         do {
-            let response = try await service.submitAppleTransaction(evidence)
-            guard generation == revision, owner == self.owner, response.isValid else { return }
+            let response = try await service.submitAppleTransaction(evidence, environment: environment)
+            guard generation == revision, owner == self.owner, response.isValid(for: environment) else { return }
             guard response.result.finishAuthorized else {
                 message = "Your purchase is being checked. Restore purchases to check again."; return
             }

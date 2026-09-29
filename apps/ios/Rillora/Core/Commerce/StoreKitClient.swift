@@ -104,6 +104,8 @@ enum StoreKitTransactionUpdate: Equatable, Sendable {
 }
 
 protocol StoreKitPurchasing: Sendable {
+    func verifiedAppEnvironment() async -> ApplePurchaseEnvironment?
+    func purchaseIntents() -> AsyncStream<String>
     func loadProducts(identifiers: Set<String>) async throws -> [StoreKitProductSnapshot]
     func currentEntitlements(identifiers: Set<String>) async -> StoreKitEntitlementSnapshot
     func subscriptionStatuses(
@@ -122,13 +124,52 @@ protocol StoreKitPurchasing: Sendable {
     func sync() async throws
 }
 
+extension StoreKitPurchasing {
+    func verifiedAppEnvironment() async -> ApplePurchaseEnvironment? { nil }
+    func purchaseIntents() -> AsyncStream<String> { AsyncStream { $0.finish() } }
+}
+
 actor AppleStoreKitClient: StoreKitPurchasing {
     nonisolated private let expectedSubscriptionGroupID: String
     private var productsByID: [String: Product] = [:]
+    private var intendedProductsByID: [String: Product] = [:]
     private var transactionsAwaitingFinish: [UInt64: Transaction] = [:]
 
     init(expectedSubscriptionGroupID: String) {
         self.expectedSubscriptionGroupID = expectedSubscriptionGroupID
+    }
+
+    func verifiedAppEnvironment() async -> ApplePurchaseEnvironment? {
+        // shared never calls refresh or opens a sign-in prompt. Missing/unverified
+        // app receipts leave purchases unavailable until a later explicit retry.
+        guard let result = try? await AppTransaction.shared, case .verified(let app) = result else { return nil }
+        switch app.environment {
+        case .production: return .production
+        case .sandbox: return .sandbox
+        default: return nil
+        }
+    }
+
+    nonisolated func purchaseIntents() -> AsyncStream<String> {
+        AsyncStream { continuation in
+            let task = Task {
+                for await intent in PurchaseIntent.intents {
+                    guard !Task.isCancelled else { break }
+                    if await retainPurchaseIntent(intent) { continuation.yield(intent.product.id) }
+                }
+                continuation.finish()
+            }
+            continuation.onTermination = { _ in task.cancel() }
+        }
+    }
+
+    private func retainPurchaseIntent(_ intent: PurchaseIntent) -> Bool {
+        guard intent.product.id == RilloraStoreKitCatalog.familyAnnualProductID,
+              intent.product.type == .autoRenewable,
+              intent.product.subscription?.subscriptionGroupID == expectedSubscriptionGroupID else { return false }
+        intendedProductsByID[intent.product.id] = intent.product
+        productsByID[intent.product.id] = intent.product
+        return true
     }
 
     func loadProducts(identifiers: Set<String>) async throws -> [StoreKitProductSnapshot] {
@@ -139,8 +180,11 @@ actor AppleStoreKitClient: StoreKitPurchasing {
                 && $0.subscription?.subscriptionGroupID
                     == expectedSubscriptionGroupID
         }
-        productsByID = Dictionary(uniqueKeysWithValues: validProducts.map { ($0.id, $0) })
-        return validProducts
+        // Preserve the actual Product supplied by PurchaseIntent. The existing
+        // server/StoreKit amount comparison still requires a current reviewed price.
+        let selectedProducts = validProducts.map { intendedProductsByID[$0.id] ?? $0 }
+        productsByID = Dictionary(uniqueKeysWithValues: selectedProducts.map { ($0.id, $0) })
+        return selectedProducts
             .map(Self.snapshot)
             .sorted { lhs, rhs in
                 (RilloraStoreKitCatalog.billingInterval(for: lhs.productID) ?? lhs.productID)
