@@ -12,14 +12,14 @@ export function WebsiteAppearanceDisclosure({ compact = false }) {
         <h2>Website appearance</h2>
       )}
       <p>
-        On www.rillora.xyz, choosing Light or Dark saves only that choice in
+        On the Rillora website and web app, choosing Light or Dark saves only that choice in
         this browser under <span>rillora.website.appearance.v1</span>. It is
         used only to display your chosen appearance, contains no account or
         private-map information, and is not used for advertising or analytics.
       </p>
       <p>
         The choice remains until you select System or clear browser storage.
-        System removes the saved choice and follows your device. If browser
+        Links from the website carry only this display choice to the web app. Each site keeps its own local preference; nothing is linked to your account. System removes the saved choice and follows your device. If browser
         storage is unavailable, the control still works for the current page.
       </p>
       {compact && (
