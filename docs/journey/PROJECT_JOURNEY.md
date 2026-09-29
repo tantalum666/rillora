@@ -2831,3 +2831,13 @@ launch prerequisites and historical authentication gates are not repeated approv
 [审计合同与证据](../ui-ux-audit-20260929.md)。
 
 本轮收尾回读：工程eadefd435的CI29成功（source/API/Web/infrastructure）；161份Markdown／1583个本地链接无缺失，源码扫描25个已审非秘密匹配／0未知。最终模拟器进程无本地身份、大字或动效覆盖，System已恢复；真实staging账号页390px协议字号／点击范围及主题实时跟随已验证。
+
+## 2026-09-29 — AWS复审回信与“账户信誉”澄清
+
+- **目标**：Owner看到AWS要求提升信誉，要求读取并解释实际原因。
+- **尝试**：通过Gmail连接器定位原工单的16:10回信并完整读取正文；复用刚恢复的AWS会话运行只读检查，核对官方信誉、sandbox和GetAccount定义。
+- **判断变化**：此前“提交后等待回复”已被新拒绝取代。但回信只陈述信誉／投递风险，没有指定指标、整改项目、充值、套餐或等待期；不能把它推断为确定的技术故障或已有信誉处罚。
+- **结果**：当晚SES实际HEALTHY、SendingEnabled=true、ProductionAccessEnabled=false、DENIED，200封/日、1封/秒、过去24小时发送0。14项配置检查通过，生产访问仍是邮件链路阻塞。将下一封澄清整理为3个具体问题并标记未发送；本轮没有额外发信、升级或迁移。
+- **未完成项**：AWS仍未给出可执行的审核条件；正式发信、Auth0邮件接入和真实收件验收尚未完成。独立Apple／提审工程继续按handoff，不把这封信当作全面上线失败或可通过付费立即解决的结论。
+
+[当次证据](../../output/qa/rillora-ses-reply-20260929/README.md)。

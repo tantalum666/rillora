@@ -2,9 +2,46 @@
 
 Role: focused release integration and evidence boundary
 
-Status: SES RECONSIDERATION SUBMITTED AND CASE REOPENED; STILL SANDBOX; RESEND FALLBACK ONLY
+Status: SEPTEMBER29 RECONSIDERATION DECLINED; SES HEALTHY BUT STILL SANDBOX; NO PROVIDER SWITCH
 
-Last updated: 2026-09-28 (Asia/Hong_Kong)
+Last updated: 2026-09-29 (Asia/Hong_Kong)
+
+## September29 reply: reputation wording does not identify a defect
+
+Owner asks to inspect the new AWS reply about account reputation. Gmail's actual
+message for case179022088800001 arrived September29 at16:10:32+08. Amazon's domain
+authentication passes in Gmail. The reply says that reconsideration remains
+unapproved, cites sender reputation/deliverability risk, and refers to AUP, Service
+Terms and SES best practices. It does not identify an offending metric, specific
+configuration defect, required spend/plan, waiting period, or a concrete remediation
+checklist. This is a renewed refusal, not an instruction to upgrade AWS billing or
+proof that our account has an existing reputation penalty. The Support case's
+workflow status itself was not independently reopened/read in this follow-up.
+
+The22:01+08read-only check confirms14of15conditions pass. The sole blocker is
+ProductionAccessEnabled=false; reviewStatus=DENIED. SES EnforcementStatus=HEALTHY,
+SendingEnabled=true; quota200/day,1/second and0sent in the preceding24hours. Domain,
+2048-bit DKIM, custom MAIL FROM, TLS and bounce/complaint suppression/configuration
+are ready. These status checks do not establish inbox placement or future approval.
+The [GetAccount definition](https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_GetAccount.html)
+separates current reputation enforcement from production recipient access.
+
+[Sender reputation](https://docs.aws.amazon.com/ses/latest/dg/tips-and-best-practices.html)
+concerns credibility to mailbox providers/spam filters; recipient permission,
+authentication and bounce/complaint handling matter. The email provides no evidence
+that spending more, buying support, arbitrary account ageing, or generating extra
+mail will obtain approval. Genuine controlled acceptance testing may provide useful
+evidence, but no amount of such traffic or passage of time is a promised remedy.
+
+Agent recommends requesting concrete clarification in the original case rather
+than repeating unchanged material: distinguish current reputation problems from
+onboarding evidence, retain200/day and1/second while asking for verified-user
+transactional recipient access, and ask what evidence/timeframe would justify a
+new review. A concise [clarification draft](../output/qa/rillora-ses-reply-20260929/clarification-draft.md)
+is prepared but UNSENT. This Owner turn authorizes inspection/explanation, not a
+new message; no message, test mail, provider switch, credential or infrastructure
+change occurs. Preserve the existing SES-first/Auth0 direction and separate launch
+gates. [Reply and current readback](../output/qa/rillora-ses-reply-20260929/README.md).
 
 ## September28 authorized reconsideration submitted
 

@@ -82,9 +82,13 @@ speculatively. The Sites local plugin files were still unavailable; its native
 connector plus the existing source checkout and ephemeral credential bridge
 provided exact-source build/push/version/deploy with no permission expansion.
 
-SES reconsideration was submitted once on originalcase179022088800001 at
-September28 12:40:19+08. Last observed state Reopened/sandbox200perday,1persecond
-is not rechecked or declared approved here. Prefer SES/Auth0; Resend stays withdrawn.
+SES reconsideration on originalcase179022088800001 received a further refusal on
+September29 at16:10+08. The actual Gmail reply cites sender reputation/deliverability
+but no specific defect or remediation. Fresh22:01+08API read shows HEALTHY/sending
+on, production=false/DENIED,200/day,1/second,0sent last24h;14configuration checks
+pass and only production access is blocked. A concrete clarification draft is
+UNSENT; this inspection sent no new communication and changed no service. Prefer
+SES/Auth0; no fallback switch is adopted. [Mail evidence](production-identity-mail-20260924.md).
 
 ## Single next step
 
