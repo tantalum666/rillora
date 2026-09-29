@@ -2909,3 +2909,28 @@ Owner先确认小型企业资格事实、再当场确认最终声明，申请已
   同步；核心产物存在、IPA哈希符合签名记录，源码与远端在保存前一致，最终文档另行推送。
 - **未完成项**：发布门保持原状态；SBP待批、真实Apple验收、云端审核配置、正式提交等
   未完成项完整保留。本次保存不标记正式上线。[保存记录](../../output/qa/rillora-chat-handoff-20260930/checkpoint.json)。
+
+## 2026-09-30 — Independent final-release engineering
+
+- **目标**：按完整阅读协议恢复上下文，完成无需Owner参与／确认或等待AWS的发布前工作；
+  保留UI、价格、真实数据、现有会话和FanPass。
+- **尝试**：读完165份自有Markdown／29,003行后，复用AWS/Auth0/Apple会话，部署限期
+  审核身份、正式服务凭据和schema0091；实现保留／hold／快照退役、恢复后当前支付
+  对账和敏感操作再次认证；制作签名分发包、六张商店截图及申报工作表。
+- **判断变化**：重复SKU冲突证实旧SKU价格不能覆盖新的版本化binding；直接读取
+  NOINHERIT运行登录的探针会被拒绝，应按真实会话角色检查，不能为探针放宽权限。
+  token签发时间不是本人近期认证时间；导出／扩大共享要验证签名auth_time，并保留
+  取消后的草稿。删除适配器需统一允许issuer的尾部斜杠。模拟器PNG带alpha，改为
+  直接采集JPEG而非改动UI。上述失败与修复证据均保留。
+- **结果**：API341、Web107、infra47和native41相关检查通过；生产API7为1/1，91项
+  迁移校验和匹配、TLS／权限验收通过。保留任务成功心跳，三个告警为OK；检查未删
+  任何业务记录或快照。新的删除服务只删除专门创建的临时Auth0身份并回读404。
+  Web／iPhone取消再次认证后仍保留Details草稿，实际权限仍为Directions。签名IPA
+  不可调试且账号入口关闭，六张JPEG尺寸／alpha通过；未上传或申报。日常模拟器
+  已恢复正常构建，临时服务停止，隔离测试数据与旧证据保留。
+- **未完成项**：Owner参与的登录／法律确认／真实provider与设备验证、review enrollment、
+  AppleSandbox购买／恢复／通知，SES回复与实际投递、商户／市场事实、SBP费率和
+  最终Apple差异价、最终申报与可用TestFlight／审核；当前源码提交和CI精确结果见
+  [本轮收尾记录](../../output/qa/rillora-launch-resume-20260930/closeout.json)。旧检查点不得
+  冒充本次重跑，新工程验收不等于正式上线。
+- [当前合同](../release-engineering-20260930.md) · [准备材料](../../output/release/rillora-20260930/README.md)

@@ -9,6 +9,7 @@ import { assertCommerceReference, assertIdempotencyKey, assertStripeHostedUrl, a
   stripeIntegrationIdentifier, stripeMetadataValue, stripeObjectReference, stripeRefundReference,
   stripeSignalType, stripeSubscriptionReference, stripeSubscriptionState, stripeTransactionReference } from './stripe-provider-shared.js';
 import { resolveStripeFinancialSignal } from './stripe-financial-resolution.js';
+import {readStripeRecoveryFinancialState} from './stripe-recovery-financial-state.js';
 
 export type StripeProductionPriceBinding = Readonly<{
   id: string; priceCode: string; amountMinor: number; currency: 'usd';
@@ -166,6 +167,23 @@ export class StripeProductionAdapter {
 
   resolveFinancialSignal(signal: Pick<NormalizedProviderSignal, 'signalType' | 'providerTransactionReference' | 'providerRefundReference'>) {
     return resolveStripeFinancialSignal(this.sdk, signal, 'production');
+  }
+
+  async retrieveRecoverySubscription(input:{providerSubscriptionReference:string;expectedCommerceAccountReference:string;expectedStripeCustomerReference:string}){
+    const snapshot=await this.retrieveAuthoritativeSubscription(input);
+    const price=[this.currentPrice,...this.config.historicalPrices].find(p=>p.priceCode===snapshot.priceCode);
+    if(!price)throw new Error('Recovery price binding is unavailable');
+    if(!['active','cancel_at_period_end','grace'].includes(snapshot.state))return {snapshot,
+      financial:{override:null,resolvedDispute:false,chargeReference:null},price,product:this.config.familyProductId};
+    if(!snapshot.providerInvoiceReference)throw new Error('Recovery requires current invoice evidence');
+    const financial=await readStripeRecoveryFinancialState(this.sdk,snapshot.providerInvoiceReference,input.expectedStripeCustomerReference,true);
+    const current=await this.retrieveAuthoritativeSubscription(input);
+    if(current.providerInvoiceReference!==snapshot.providerInvoiceReference||current.priceCode!==snapshot.priceCode
+      ||current.state!==snapshot.state||current.currentPeriodStartsAt!==snapshot.currentPeriodStartsAt
+      ||current.currentPeriodEndsAt!==snapshot.currentPeriodEndsAt||current.cancelAtPeriodEnd!==snapshot.cancelAtPeriodEnd)
+      throw new Error('Provider subscription changed during recovery observation');
+    return {snapshot:{...snapshot,state:financial.override??snapshot.state,observedAt:this.now().toISOString(),
+      ...(financial.override?{cancelAtPeriodEnd:false}:{})},financial,price,product:this.config.familyProductId};
   }
 
   private validatePrice(price: Stripe.Price, binding: StripeProductionPriceBinding, newPurchase: boolean): void {

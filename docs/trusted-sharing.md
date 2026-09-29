@@ -1,7 +1,19 @@
 # Account-bound invitations and directed sharing
 
-Status: QUOTA / SAVED-PROJECTION EXTENSION DEPLOYED; SHARING ENFORCEMENT ON; REAL B ACCEPTANCE/REVOCATION OBSERVED; EMAIL CONTINUATION REPAIR DEPLOYED — 2026-09-17  
+Status: SHARING CONTRACT RETAINED; RESTRICTED PRODUCTION RECENT-AUTH GUARDS VERIFIED; REAL PRODUCTION JOURNEY OPEN
+Last updated: 2026-09-30 (Asia/Hong_Kong)
 Authority: Owner explicitly requests A -> B/C invitations, authenticated acceptance and per-person/per-matter access.
+
+## September30 recent authentication for expanded access
+
+New/regenerated invitations,resuming live access,additional matters,higher field
+levels and a new/replaced collaborator require recent verified authentication in the
+restricted production runtime. Comparisons run against the owned current grants in
+the same transaction; blocked expansion rolls back its version change. Removing or
+reducing grants,pausing and revocation remain immediate with a valid ordinary session.
+Both clients retain an unsaved selection when the user cancels verification.
+[Current proof and real-provider gate](release-engineering-20260930.md).
+
 
 ## September17 allowance and saved-copy contract
 

@@ -114,25 +114,34 @@ final class APIClientTests: XCTestCase {
         XCTAssertEqual(acceptance["acceptedElectronicRecords"] as? Bool, true)
     }
 
+    func testSensitiveActionRequestsFreshAuthenticationAndCarriesSignedIdentityProof() throws {
+        let parameters = Auth0NativeAuthenticationService.authorizationParameters(for: .reauthenticate)
+        XCTAssertEqual(parameters["max_age"], "0")
+        XCTAssertEqual(parameters["prompt"], "login")
+        let data = try Auth0NativeAuthenticationService.sessionExchangeBody(legalAcceptance: .current, idToken: "synthetic-signed-proof")
+        let payload = try XCTUnwrap(JSONSerialization.jsonObject(with: data) as? [String: Any])
+        XCTAssertEqual(payload["idToken"] as? String, "synthetic-signed-proof")
+    }
+
     func testNativeAuthenticationIntentKeepsEmailAndGoogleRoutesDistinct() {
         XCTAssertEqual(
             Auth0NativeAuthenticationService.authorizationParameters(for: .signIn),
-            ["prompt": "login", "rillora_auth_ui": "single-hosted-v1"]
+            ["prompt": "login", "max_age": "86400", "rillora_auth_ui": "single-hosted-v1"]
         )
         XCTAssertEqual(
             Auth0NativeAuthenticationService.authorizationParameters(for: .createAccount),
-            ["prompt": "login", "screen_hint": "signup", "rillora_auth_ui": "single-hosted-v1"]
+            ["prompt": "login", "screen_hint": "signup", "max_age": "86400", "rillora_auth_ui": "single-hosted-v1"]
         )
         XCTAssertEqual(
             Auth0NativeAuthenticationService.authorizationParameters(for: .google),
-            ["prompt": "login", "connection": "google-oauth2", "rillora_auth_ui": "single-hosted-v1"]
+            ["prompt": "login", "connection": "google-oauth2", "max_age": "86400", "rillora_auth_ui": "single-hosted-v1"]
         )
         XCTAssertEqual(
             Auth0NativeAuthenticationService.authorizationParameters(
                 for: .signIn,
                 loginHint: "  Person@Example.com  "
             ),
-            ["prompt": "login", "login_hint": "Person@Example.com", "rillora_auth_ui": "single-hosted-v1"]
+            ["prompt": "login", "login_hint": "Person@Example.com", "max_age": "86400", "rillora_auth_ui": "single-hosted-v1"]
         )
     }
 

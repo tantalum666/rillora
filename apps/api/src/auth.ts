@@ -8,6 +8,7 @@ import { withAuthDatabase } from "./db.js";
 import { ApiError } from "./errors.js";
 import { currentLegalContract } from "./legal-contract.js";
 import { verifiedEmailDigest } from "./sharing-identity.js";
+import { reviewAccessOpen } from './production-review-access.js';
 
 const developmentPlannerHeader = "x-dev-planner-id";
 const csrfHeader = "x-csrf-token";
@@ -38,6 +39,7 @@ function isPlausibleOpaqueToken(token: string): boolean {
 export function authenticate(pool: DatabasePool, config: AppConfig): RequestHandler {
   return async (request, _response, next) => {
     try {
+      if (!reviewAccessOpen(config)) throw new ApiError(403, 'service_not_open', 'Account access is not open.');
       const developmentPlannerId = request.get(developmentPlannerHeader);
       if (developmentPlannerId !== undefined) {
         if (!config.allowDevAuth || config.nodeEnv === "production") {
@@ -111,7 +113,8 @@ export function authenticate(pool: DatabasePool, config: AppConfig): RequestHand
              and p.status = 'active'
              and acceptance.terms_version = $4
              and acceptance.privacy_version = $5
-             and acceptance.legal_bundle_sha256 = $6`,
+             and acceptance.legal_bundle_sha256 = $6
+             and ($7::text[] is null or encode(acceptance.identity_reference_sha256, 'hex') = any($7))`,
           [
             tokenHash,
             config.sessionIdleMinutes,
@@ -119,6 +122,7 @@ export function authenticate(pool: DatabasePool, config: AppConfig): RequestHand
             currentLegalContract.termsVersion,
             currentLegalContract.privacyVersion,
             Buffer.from(currentLegalContract.bundleSha256, "hex"),
+            config.productionReviewAccess?.identityDigests ?? null,
           ],
         );
         const row = result.rows[0] ?? null;

@@ -1,13 +1,28 @@
 # Apple review validation and distribution preparation
 
 Role: current TestFlight/App Review engineering and provider evidence
-Status: LOCAL REVIEW FLOW VERIFIED; DISTRIBUTION EXPORT PREPARED; CLOUD AND REAL TRANSACTIONS OPEN
-Last updated: 2026-09-30 (Asia/Hong_Kong; work began September29)
+Status: RESTRICTED REVIEW CLOUD VERIFIED; DISTRIBUTION PREPARED; REAL TRANSACTIONS AND SUBMISSION OPEN
+Last updated: 2026-09-30 (Asia/Hong_Kong)
 
 Owner requests Apple-related release work. Existing UI, annual-only new sales,
 WebUS$88.99, differential Apple pricing, historical receipts and FanPass stay intact.
 The launch workflow's147-file full reading baseline remains valid; this is a focused
 continuation, not a new project scan. [QA](../output/qa/rillora-apple-release-20260929/work-state.json).
+
+## September30 restricted review preparation
+
+The review API, exact Sandbox/Web vaults and immutable review-onlyUSA6800catalog
+are now deployed under an expiring Auth0/API identity allowlist. Schema0091and91cloud
+checksums match; no ordinary production planner or live sale existed at acceptance.
+Actual reviewer login/affirmative terms/enrollment and purchase/restore/notification
+steps remain parked for Owner participation. See[the current contract](release-engineering-20260930.md).
+
+A new strictly verified, non-debuggable distribution IPA includes the privacy/API
+reason and callback/recent-auth repairs. It retainsCustomerAccessNOand was not
+uploaded. Six direct JPEG screenshots and submission worksheets are[prepared](../output/release/rillora-20260930/README.md).
+The historical September29 build and its314API/175native evidence are not current
+reruns; current API341and targeted native41have their own reports.
+
 
 ## One purchase lifecycle, two explicit verification contexts
 
@@ -72,14 +87,12 @@ It requires the encrypted production namespace, recovery journal, TLS, official
 App origin and real authentication. It cannot coexist with developer authentication,
 the old Sandbox diagnostic runtime or closed health-only production mode.
 Production and review can coexist only as separately loaded configured contexts.
-Queue metrics carry their actual environment. No cloud secret, IAM grant, task,
-notification URL, enrollment, schema or price was activated in this increment.
+Queue metrics carry their actual environment. The September29implementation checkpoint activated no cloud resource. September30now activates the restricted configuration/catalog; notification URL and real enrollment remain pending.
 
-Before a usable TestFlight candidate: deploy reviewed migrations0076–0086 and the
-API, provision the named review configuration without opening real sales, create an
-expiring review account through the real production identity route, configure a
-review price from actual Apple storefront readback, and verify its notifications
-and purchase/restore. Final identity/email and live commerce gates remain separate;
+Before a usable TestFlight candidate: complete actual sign-in/affirmative terms and
+validation enrollment for the prepared restricted identity, then verify the configured
+review quote, actual notifications and purchase/restore. The schema/runtime/vault/catalog
+preparation is already completed; do not repeat it. Final identity/email and live commerce gates remain separate;
 changing the native customer-access switch alone cannot complete them.
 
 ## Actual Apple administration

@@ -1,3 +1,4 @@
+import { ReauthenticationPrompt } from "./ReauthenticationPrompt.jsx";
 import { AppAppearanceControl } from "./AppearanceControl.jsx";
 import { RilloraBrand } from "./RilloraBrand.jsx";
 import { ProviderMark } from "./ProviderMark.jsx";
@@ -801,6 +802,7 @@ export function App() {
 
   return (
     <div className="app-shell">
+      <ReauthenticationPrompt apiClient={api} />
       <aside className="sidebar" aria-label="Primary navigation">
         <nav>{navigation.map(({ id, label, icon: Icon }) => <button type="button" key={id} className={activeNav === id ? "active" : ""} aria-current={activeNav === id ? "page" : undefined} onClick={() => setActiveNav(id)}><Icon size={23} weight="regular" aria-hidden="true" /> <span>{label}</span></button>)}</nav>
         <div className="sidebar-spacer" />

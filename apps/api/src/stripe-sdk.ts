@@ -19,6 +19,10 @@ export type StripeSdkPort = Readonly<{
   retrieveRefund(id: string): Promise<Stripe.Refund>;
   retrieveDispute(id: string): Promise<Stripe.Dispute>;
   retrieveCharge(id: string): Promise<Stripe.Charge>;
+  listInvoicePaymentsByInvoice?(id:string):Promise<Stripe.ApiList<Stripe.InvoicePayment>>;
+  listChargesByPaymentIntent?(id:string):Promise<Stripe.ApiList<Stripe.Charge>>;
+  listDisputesByCharge?(id:string):Promise<Stripe.ApiList<Stripe.Dispute>>;
+  listRefundsByCharge?(id:string):Promise<Stripe.ApiList<Stripe.Refund>>;
   listInvoicePaymentsByPaymentIntent(id: string): Promise<Stripe.ApiList<Stripe.InvoicePayment>>;
   retrieveInvoice(id: string): Promise<Stripe.Invoice>;
   retrieveSubscription(id: string): Promise<Stripe.Subscription>;
@@ -87,6 +91,10 @@ export function createStripeSdkPort(apiKey: string, environment: "test" | "produ
     retrieveRefund: (id) => stripe.refunds.retrieve(id),
     retrieveDispute: (id) => stripe.disputes.retrieve(id),
     retrieveCharge: (id) => stripe.charges.retrieve(id),
+    listInvoicePaymentsByInvoice:id=>stripe.invoicePayments.list({invoice:id,status:'paid',limit:100}),
+    listChargesByPaymentIntent:id=>stripe.charges.list({payment_intent:id,limit:100}),
+    listDisputesByCharge:id=>stripe.disputes.list({charge:id,limit:100}),
+    listRefundsByCharge:id=>stripe.refunds.list({charge:id,limit:100}),
     listInvoicePaymentsByPaymentIntent: (id) => stripe.invoicePayments.list({
       payment: { type: "payment_intent", payment_intent: id },
       limit: 2,

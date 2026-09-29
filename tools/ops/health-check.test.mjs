@@ -3,6 +3,14 @@ import {test} from 'node:test';
 import {isPublicAddress,validateConfig,runHealthChecks} from './health-check.mjs';
 const config={schemaVersion:1,environment:'test',allowedOrigins:['https://app.rillora.xyz'],timeoutMs:1000,certificateWarningDays:21,targets:[{id:'private-denial',url:'https://app.rillora.xyz/v1/session',expectedStatus:401,headers:{'cache-control':'no-store'}}]};
 const now=()=>Date.parse('2026-09-11T00:00:00Z');
+test('closed and restricted-review denial are allowed but success and unplanned errors still alarm',async()=>{
+  const review={...config,targets:[{...config.targets[0],expectedStatus:[401,503]}]};
+  for(const status of [401,503,200,400,500]){
+    const report=await runHealthChecks(review,{now,transport:async()=>({status,headers:{'cache-control':'no-store'},certificateExpiresAt:'2026-12-11T00:00:00Z'})});
+    assert.equal(report.ok,[401,503].includes(status));
+  }
+  for(const expectedStatus of [[],[401,401],['401'],[0],Array(4).fill(401)])assert.throws(()=>validateConfig({...config,targets:[{...config.targets[0],expectedStatus}]}));
+});
 test('rejects private, mapped, loopback and reserved DNS addresses',()=>{
   for(const ip of['127.0.0.1','10.1.2.3','169.254.169.254','172.16.4.5','192.168.1.1','100.64.1.2','203.0.113.1','198.18.0.195','::1','0:0:0:0:0:0:0:1','fd00::1','fe80::1','::ffff:127.0.0.1','::ffff:7f00:1','2001::1','2002:7f00:1::','2001:db8::1','3fff::1'])assert.equal(isPublicAddress(ip),false,ip);
   for(const ip of['1.1.1.1','8.8.8.8','2606:4700::1111','::ffff:808:808'])assert.equal(isPublicAddress(ip),true,ip);

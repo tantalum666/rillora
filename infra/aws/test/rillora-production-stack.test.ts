@@ -60,6 +60,41 @@ describe('Closed production data and recovery foundation',()=>{
 });
 
 describe('Optional closed production HTTPS runtime',()=>{
+ it('prepares isolated vault resources while retaining closed runtime and the old immutable API image',()=>{
+  const t=Template.fromStack(new RilloraProductionStack(new App(),'Production',{env:{account:'133857166372',region:'eu-central-1'},
+   runtimeEnabled:true,runtimeDesiredCount:1,reviewPrepared:true,runtimeImageTag:'a'.repeat(64)}));
+  t.hasResourceProperties('AWS::SecretsManager::Secret',{Name:'rillora/production/apple-review'});
+  t.hasResourceProperties('AWS::SecretsManager::Secret',{Name:'rillora/production/web-oidc'});
+  const api=(Object.values(t.findResources('AWS::ECS::TaskDefinition')) as any[]).flatMap(t=>t.Properties.ContainerDefinitions).find(c=>c.Name==='Api');
+  expect(api.Secrets).toHaveLength(2);
+  expect(api.Environment).toContainEqual({Name:'PRODUCTION_RUNTIME_MODE',Value:'closed'});
+  expect(api.Environment.some((e:any)=>e.Name==='APPLE_REVIEW_SECRET_ARN')).toBe(false);
+ });
+ it('activates only restricted review, leaving ordinary sales and customer access closed',()=>{
+  const props={env:{account:'133857166372',region:'eu-central-1'},runtimeEnabled:true,runtimeDesiredCount:1 as const,reviewPrepared:true,reviewEnabled:true,retentionEnabled:true};
+  const t=Template.fromStack(new RilloraProductionStack(new App(),'Production',props));
+  const api=(Object.values(t.findResources('AWS::ECS::TaskDefinition')) as any[]).flatMap(t=>t.Properties.ContainerDefinitions).find(c=>c.Name==='Api');
+  const env=Object.fromEntries(api.Environment.map((e:any)=>[e.Name,e.Value]));
+  expect(env.PRODUCTION_RUNTIME_MODE).toBe('review');expect(env.ALLOW_APPLE_REVIEW_INTEGRATION).toBe('true');
+  expect(env.ALLOW_RETENTION_WORKER).toBe('true');
+  expect(env.PRODUCTION_REVIEW_IDENTITY_SHA256.Ref).toBeDefined();expect(env.PRODUCTION_REVIEW_EXPIRES_AT.Ref).toBeDefined();
+  for(const name of ['ALLOW_DEV_AUTH','ALLOW_APPLE_PRODUCTION_INTEGRATION','ALLOW_STRIPE_PRODUCTION_INTEGRATION','ALLOW_APPLE_SANDBOX_INTEGRATION'])expect(env[name]).toBe('false');
+  expect(api.Secrets).toHaveLength(3);t.hasOutput('ProductionTrafficReady',{Value:'false'});
+  expect(()=>new RilloraProductionStack(new App(),'Bad',{...props,reviewPrepared:false})).toThrow();
+  expect(()=>new RilloraProductionStack(new App(),'Bad',{...props,runtimeImageTag:'a'.repeat(64)})).toThrow();
+ });
+ it('keeps production identity service credentials separate and injects only after activation',()=>{
+  const t=Template.fromStack(new RilloraProductionStack(new App(),'Production',{env:{account:'133857166372',region:'eu-central-1'},
+    runtimeEnabled:true,runtimeDesiredCount:1,reviewPrepared:true,reviewEnabled:true,identityServicesEnabled:true}));
+  t.hasResourceProperties('AWS::SecretsManager::Secret',{Name:'rillora/production/account-deletion'});
+  t.hasResourceProperties('AWS::SecretsManager::Secret',{Name:'rillora/production/email-verification'});
+  const api=(Object.values(t.findResources('AWS::ECS::TaskDefinition')) as any[]).flatMap(t=>t.Properties.ContainerDefinitions).find(c=>c.Name==='Api');
+  expect(api.Secrets).toHaveLength(9);
+  for(const prefix of ['AUTH0_DELETION','AUTH0_EMAIL_VERIFICATION']){
+    for(const field of ['DOMAIN','CLIENT_ID','CLIENT_SECRET']) expect(api.Secrets.find((s:any)=>s.Name===`${prefix}_${field}`)).toBeDefined();
+  }
+  expect(JSON.stringify(api.Secrets)).not.toContain('staging');
+ });
  it('keeps the existing data resources and uses a verified private TLS integration',()=>{
   const t=Template.fromStack(new RilloraProductionStack(new App(),'Production',{env:{account:'111111111111',region:'eu-central-1'},runtimeEnabled:true,runtimeDesiredCount:1}));
   t.resourceCountIs('AWS::RDS::DBInstance',1);t.resourceCountIs('AWS::EC2::NatGateway',0);

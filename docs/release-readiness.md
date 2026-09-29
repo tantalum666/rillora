@@ -4,7 +4,28 @@ Role: current launch scope, remaining work and release evidence contract
 Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; CUSTOMER ACCOUNTS AND SALES CLOSED
 Last updated: 2026-09-30 (Asia/Hong_Kong)
 
-## September29–30 Apple execution — current delta
+## September30 independent engineering — current delta
+
+Owner now asks to finish all work outside their participation/confirmation and the
+existing AWS reply wait. Restricted production API7/schema0091, independent identity
+services, bounded retention/holds/manual-snapshot retirement and recent authentication
+are implemented and deployed. Current-provider restore reconciliation is implemented
+and locally tested. Current checks are API341,Web107,infra47 and native41targeted
+passes, with exact evidence boundaries in[the current contract](release-engineering-20260930.md).
+
+A final closed-entry signed IPA, closed Web candidate, six upload-format JPEGs and
+listing/privacy/age/encryption/reviewer worksheets are prepared. These are not an
+enabled TestFlight app, actual login/purchase, submitted declarations or release.
+[Prepared package](../output/release/rillora-20260930/README.md).
+
+The register's remaining gates now describe real Owner/provider/transaction acceptance,
+not a request to repeat completed engineering. Preserve old test capabilities until
+controlled customer cutover, then retire them and wait their real86400second tokenTTL
+plus skew. Actual review login/terms/enrollment, Apple transaction/device evidence,
+SES approval/delivery, merchant facts and final price/declarations remain separate.
+
+
+## HISTORICAL — September29–30 Apple execution checkpoint
 
 Owner prioritizes Apple release work. The enrolled TestFlight/review Sandbox path
 now has local implementation and314API test passes, native regression/transport
@@ -52,7 +73,7 @@ is needed to close the release gates.
 | Final security/artifact acceptance | Content encryption, source/secret checks and CI checkpoints | Review exact final production permissions, dependencies/artifacts, sensitive-action authentication, negative access, logs, rollback and unresolved high-impact defects |
 | Submission package | App record, initial listing drafts and approved03assets | Signed Release archive, TestFlight, final screenshots/privacy/age/encryption/store markets, reviewer access, actual submission/review and manual release |
 
-The concrete Apple integration gap is still current: production verification rejects
+At the historical22:44checkpoint the Apple integration gap was: production verification rejected
 Sandbox. Apple documents that TestFlight apps automatically use Sandbox, so the
 final candidate needs a correctly separated review/test path, not merely an upload
 or a relaxed production verifier. [Apple TestFlight testing](https://developer.apple.com/help/app-store-connect/test-a-beta-version/testing-subscriptions-and-in-app-purchases-in-testflight/).

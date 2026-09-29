@@ -5,6 +5,22 @@ appearance. Auth0 continues to own credentials, password recovery, passkey,
 social-login and challenge handling. Rillora owns the surrounding visual shell,
 theme tokens and approved prompt copy.
 
+## September30 independent production service identities
+
+The restricted production review Action precedes enabling the two production clients
+on the existing database connection. It does not alter Preview connection options.
+Production account deletion and current-session email verification now have separate
+M2M clients with only delete:users and read:users. The prepare-production-identity-services.py
+and install-production-identity-services.py tools preserve protected credentials,
+verify exact client/vault identity and read back scopes/version metadata. Do not rerun
+preparation because of a chat restart; use existing receipts.
+
+Actual review login/affirmative terms is still pending. The example.test reviewer
+is not falsely verified. Keep old Preview services during testing; retire their grants
+and let issued tokens expire before general customers. No new email is sent here.
+[Current contract](../../docs/release-engineering-20260930.md).
+
+
 ## September26 mail decision update
 
 AWS has now explicitly declined the SES production request after the submitted

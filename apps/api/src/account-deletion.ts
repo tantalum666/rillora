@@ -17,7 +17,7 @@ export class Auth0AccountIdentityDeleter implements AccountIdentityDeleting {
   private token: { value:string;expiresAt:number } | null=null;
   constructor(private config: AccountDeletionConfig, private transport: typeof fetch=fetch) {}
   async deleteIdentity(identity: DeletionIdentity): Promise<void> {
-    if(!this.config.allowedIssuers.includes(identity.issuer) || !identity.subject || identity.subject.length>255) throw new Error("identity_scope_mismatch");
+    if(!this.config.allowedIssuers.some(issuer=>issuer.replace(/\/$/, "")===identity.issuer.replace(/\/$/, "")) || !identity.subject || identity.subject.length>255) throw new Error("identity_scope_mismatch");
     if(!this.token || this.token.expiresAt<Date.now()) {
       const response=await this.transport(`https://${this.config.domain}/oauth/token`,{
         method:"POST",headers:{"content-type":"application/json"},signal:AbortSignal.timeout(8000),

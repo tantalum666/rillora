@@ -55,7 +55,7 @@ describe('enrolled Apple review purchases share the strict lifecycle without pro
     purchases=new ApplePurchasePreflight(pool,appleReviewContext);
     await pool.query('truncate app.commerce_provider_event_inbox,app.planners restart identity cascade');
     await pool.query("delete from app.commerce_apple_price_bindings where binding_code='review_fixture'");
-    await pool.query("delete from app.commerce_storefront_products where provider_code='storekit' and provider_environment='sandbox'");
+    await pool.query("delete from app.commerce_storefront_products where price_id in(select id from app.commerce_prices where price_code='family_apple_review_fixture')");
     await pool.query("delete from app.commerce_prices where price_code='family_apple_review_fixture'");
     await pool.query(`insert into app.commerce_prices(price_code,plan_version_id,operator_code,service_market_code,amount_minor,
       minor_unit_exponent,currency_code,billing_interval,tax_behavior,status,purchase_channel)
@@ -66,7 +66,8 @@ describe('enrolled Apple review purchases share the strict lifecycle without pro
     await pool.query(`insert into app.commerce_storefront_products(price_id,provider_code,provider_environment,external_product_reference,
       provider_account_reference,external_parent_product_reference,status)
       select id,'storekit','sandbox','com.rillora.family.annual','com.rillora.ios','22325627','test_only'
-      from app.commerce_prices where price_code='family_apple_review_fixture'`);
+      from app.commerce_prices where price_code='family_usd_annual_v1'
+      on conflict(provider_code,provider_environment,external_product_reference) do nothing`);
     await pool.query("update app.commerce_plan_versions set status='active' where plan_code='family' and version=2");
     await pool.query("update app.commerce_plan_capabilities set enforcement_mode='included' where plan_version_id in(select id from app.commerce_plan_versions where plan_code='family' and version=2)");
     await pool.query("update app.commerce_purchase_route_policies set status='test_only',enabled=true,provider_code='storekit',purchase_route='apple_storekit' where policy_code='global_us_ios_stripe_v1'");
@@ -85,6 +86,11 @@ describe('enrolled Apple review purchases share the strict lifecycle without pro
   it('prepares only an explicit Sandbox offer while production sales and Web88.99 remain unchanged',async()=>{
     const quote=await purchases.quote(plannerId,selection);
     expect(quote).toMatchObject({environment:'sandbox',validationOnly:true,quote:{amountMinor:9999}});
+    // A SKU survives repricing. Its old mapping and receipt history stay intact;
+    // the modern versioned Sandbox binding owns this exact reviewed amount.
+    expect((await pool.query(`select p.price_code from app.commerce_storefront_products product
+      join app.commerce_prices p on p.id=product.price_id where product.provider_code='storekit'
+      and product.provider_environment='sandbox' and product.external_product_reference='com.rillora.family.annual'`)).rows[0].price_code).toBe('family_usd_annual_v1');
     expect(await prepare()).toMatchObject({environment:'sandbox',validationOnly:true,grantsAccess:false});
     expect((await pool.query('select provider_environment from app.commerce_orders')).rows).toEqual([{provider_environment:'sandbox'}]);
     expect((await pool.query('select * from app.commerce_entitlement_grants')).rows).toEqual([]);

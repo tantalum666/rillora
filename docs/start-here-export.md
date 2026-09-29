@@ -5,7 +5,17 @@ Authority scope: included fields, disclosure boundary, cryptographic format, fil
 Superseded by: a later reviewed decision recorded in `docs/decision-log.md`  
 Do not use for: claiming legal authority, real recipient identity/acceptance/delivery, post-download revocation, production release or universal legal validity  
 Status: AUDIENCE-BOUND GUIDES AND BACKUP READERS DEPLOYED/VALIDATED IN SYNTHETIC STAGING; REAL DELIVERY CLOSED
-Last updated: 2026-09-16 (deployed P1 acceptance; earlier checkpoints retain their dates)
+Last updated: 2026-09-30 (Asia/Hong_Kong)
+
+## September30 recent authentication before producing a copy
+
+The restricted production runtime requires authentication within ten minutes before
+printable generation or encrypted-package preparation. Existing preview remains a
+read-only planning step. Missing/old proof prompts sign-in without losing the selected
+audience or editor; the user then explicitly retries. Map backup export/import follow
+the same common requirement. No new export entitlement or price is introduced.
+[Authentication boundary and evidence](release-engineering-20260930.md).
+
 
 ## September16 deployed scope/reader acceptance
 

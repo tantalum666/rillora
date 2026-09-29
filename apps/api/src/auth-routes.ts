@@ -1,3 +1,4 @@
+import { createReauthenticationRouter, completeReauthentication, failReauthentication, type ReauthenticationTransaction } from "./reauthentication.js";
 import { fetchInitialOverview } from "./overview.js";
 import { createHash, randomBytes } from "node:crypto";
 import { Router as createRouter, type CookieOptions, type Router } from "express";
@@ -18,6 +19,7 @@ import type {
 import { createNativeOidcIdentityVerifier, createOidcIdentityProvider } from "./identity.js";
 import { verifiedEmailDigest } from "./sharing-identity.js";
 import { sessionCookieName } from "./auth.js";
+import { reviewAccessOpen, reviewIdentityAllowed } from './production-review-access.js';
 import { createRateLimitKeyGenerator } from "./rate-limit-key.js";
 import {
   currentLegalContract,
@@ -29,7 +31,7 @@ import {
 export const csrfCookieName = "continuity_csrf";
 const transactionCookieName = "continuity_auth_tx";
 
-type StoredTransaction = {
+type StoredTransaction = ReauthenticationTransaction & {
   code_verifier: string;
   nonce: string;
   return_to: string;
@@ -81,6 +83,9 @@ export function createAuthRouter(
     keyGenerator: createRateLimitKeyGenerator(config.trustProxyHops),
   });
 
+  router.use(["/reauthenticate", "/native/reauthenticate"], authLimiter);
+  router.use(createReauthenticationRouter(pool, config, provider, nativeVerifier));
+
   router.get("/legal-contract", (_request, response) => {
     response.json({
       ...currentLegalContract,
@@ -95,7 +100,7 @@ export function createAuthRouter(
     "/session-status",
     asyncHandler(async (request, response) => {
       const sessionToken = parseCookie(request.get("cookie") ?? "")[sessionCookieName] ?? "";
-      if (!isPlausibleOpaqueToken(sessionToken)) {
+      if (!isPlausibleOpaqueToken(sessionToken) || !reviewAccessOpen(config)) {
         response.json({ authenticated: false });
         return;
       }
@@ -119,6 +124,7 @@ export function createAuthRouter(
              and acceptance.terms_version = $3
              and acceptance.privacy_version = $4
              and acceptance.legal_bundle_sha256 = $5
+             and ($6::text[] is null or encode(acceptance.identity_reference_sha256, 'hex') = any($6))
          ) as authenticated`,
         [
           digestToken(sessionToken),
@@ -126,6 +132,7 @@ export function createAuthRouter(
           currentLegalContract.termsVersion,
           currentLegalContract.privacyVersion,
           Buffer.from(currentLegalContract.bundleSha256, "hex"),
+          config.productionReviewAccess?.identityDigests ?? null,
         ],
       ));
       response.json({ authenticated: result.rows[0]?.authenticated === true });
@@ -151,6 +158,7 @@ export function createAuthRouter(
       if (!config.oidc || !provider) {
         throw new ApiError(503, "identity_not_configured", "Sign in is not configured.");
       }
+      if (!reviewAccessOpen(config)) throw new ApiError(503, 'service_not_open', 'Account access is not open.');
       const parsed = authStartSchema.parse(request.body);
       const acceptance = parseLegalAcceptance(parsed.legalAcceptance);
       const returnTo = normalizeReturnPath(parsed.returnTo);
@@ -209,6 +217,12 @@ export function createAuthRouter(
         throw new ApiError(503, "identity_not_configured", "Sign in is not configured.");
       }
       if (typeof request.query.error === "string") {
+        const token = parseCookie(request.get("cookie") ?? "")[transactionCookieName] ?? "";
+        const state = typeof request.query.state === "string" ? request.query.state : "";
+        if (isPlausibleOpaqueToken(token) && isPlausibleOpaqueToken(state)) {
+          const cancelled = await consumeTransaction(pool, token, state);
+          if (cancelled?.reauth_session_public_id) await failReauthentication(pool, cancelled);
+        }
         clearTransactionCookie(response, config);
         throw new ApiError(401, "identity_rejected", "Sign in was not completed.");
       }
@@ -228,11 +242,24 @@ export function createAuthRouter(
 
       const callbackUrl = new URL(config.oidc.redirectUri);
       callbackUrl.search = new URL(request.originalUrl, "http://local.invalid").search;
-      const identity = await provider.exchangeAuthorizationCode(callbackUrl, {
-        state,
-        nonce: stored.nonce,
-        codeVerifier: stored.code_verifier,
-      });
+      let identity: ExternalIdentity;
+      try {
+        identity = await provider.exchangeAuthorizationCode(callbackUrl, {
+          state, nonce: stored.nonce, codeVerifier: stored.code_verifier,
+        });
+        if (stored.reauth_session_public_id) {
+          await completeReauthentication(pool, config, stored, identity, request);
+          response.type('html').send('<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Sign-in complete · Rillora</title><main><h1>Sign-in complete</h1><p>Return to your Rillora window and try your action again. You can close this window.</p></main></html>');
+          return;
+        }
+      } catch (error) {
+        if (stored.reauth_session_public_id) {
+          await failReauthentication(pool, stored);
+          response.status(403).type('html').send('<!doctype html><html lang="en"><meta charset="utf-8"><title>Sign in again · Rillora</title><main><h1>Sign in could not be verified</h1><p>Return to Rillora and sign in with the same account. Your changes have not been submitted. You can close this window.</p></main></html>');
+          return;
+        }
+        throw error;
+      }
       const session = await issueSession(
         pool,
         config,
@@ -271,7 +298,9 @@ export function createAuthRouter(
 
       let identity: ExternalIdentity;
       try {
-        identity = await nativeVerifier.verifyAccessToken(match[1]);
+        const idToken = request.body?.idToken;
+        if (idToken !== undefined && (typeof idToken !== "string" || idToken.length > 16384)) throw new Error("Invalid identity proof");
+        identity = await nativeVerifier.verifyAccessToken(match[1], idToken);
       } catch {
         throw new ApiError(401, "identity_token_invalid", "Sign in could not be verified.");
       }
@@ -317,7 +346,7 @@ async function consumeTransaction(
        where token_hash = $1 and state_hash = $2
          and consumed_at is null and expires_at > now()
          and legal_acceptance_required is true
-       returning code_verifier, nonce, return_to,
+       returning code_verifier, nonce, return_to, token_hash, created_at, reauth_session_public_id,
          terms_version, privacy_version, consent_text_version,
          legal_bundle_sha256, accepted_terms, acknowledged_privacy,
          accepted_electronic_records, legal_client_surface`,
@@ -335,6 +364,9 @@ async function issueSession(
   acceptance: LegalAcceptance,
   clientSurface: "web" | "ios",
 ): Promise<{ sessionToken: string; csrfToken: string; plannerPublicId: string; plannerId: string }> {
+  if (!reviewIdentityAllowed(config, digestIdentityReference(identity).toString('hex'))) {
+    throw new ApiError(403, 'service_not_open', 'Account access is not open for this identity.');
+  }
   const sessionToken = randomOpaqueToken();
   const csrfToken = randomOpaqueToken();
   const accountIds = await withAuthDatabase(pool, async (client) => {

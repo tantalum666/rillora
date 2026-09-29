@@ -1,13 +1,28 @@
 # Recovery control journal and quarantine
 
 Role: engineering contract for restoring encrypted Rillora data safely
-Status: SCOPED SYNTHETIC CLOUD RESTORE AND ISOLATION VERIFIED
-Last updated: 2026-09-23 (Asia/Hong_Kong)
+Status: SCOPED CLOUD RESTORE BASELINE RETAINED; HOLDS/COMMERCE REPLAY IMPLEMENTED; REAL TRANSACTION ACCEPTANCE OPEN
+Last updated: 2026-09-30 (Asia/Hong_Kong)
 
 The production foundation is separate from staging. Customer traffic remains
 closed while the [production/recovery gate](production-recovery-20260923.md)
 is validated. Git source history, database snapshots and control-state recovery
 are distinct evidence.
+
+## September30 holds and commerce reconciliation
+
+The journal now includes minimal retention_hold facts. Active holds have no TTL;
+released facts retain90days. Independent reason codes cannot release each other and
+idempotent replay preserves identifiers. No private legal/security case narrative
+is added to the journal.
+
+Recovery markers carry bounded subscription references from0091's migration set
+(0089introduces the inventory). The isolated frozen-source reconciliation command
+replays privacy first and requires current trusted provider facts before clearing
+markers. Legacy/unknown/manual/stale cases remainblocked. Local refund/ownership/
+restoration regressions pass; actual paid-history recovery awaits real provider
+transactions.[Exact boundary](release-engineering-20260930.md).
+
 
 ## Why a data backup is insufficient
 

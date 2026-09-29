@@ -9,11 +9,12 @@ import {
 } from "aws-cdk-lib";
 import type { Construct } from "constructs";
 import { TRANSACTIONAL_MAIL } from './rillora-mail-stack.js';
+import {RilloraSnapshotRetirement} from './rillora-snapshot-retirement.js';
 
 /** A separate, opt-in stack; deploying it never updates the API or database. */
 export class RilloraOperationsStack extends Stack {
   constructor(scope: Construct, id: string, props: StackProps & {
-    scheduleEnabled?: boolean; appleProductionMonitoringEnabled?: boolean;
+    scheduleEnabled?: boolean; appleProductionMonitoringEnabled?: boolean; appleReviewMonitoringEnabled?: boolean; retentionMonitoringEnabled?:boolean; snapshotRetirementEnabled?:boolean;
   } = {}) {
     super(scope, id, props);
     const configuration = readFileSync(new URL("../../../config/operations-targets.json", import.meta.url), "utf8");
@@ -101,14 +102,17 @@ export class RilloraOperationsStack extends Stack {
     }
     // Opt in only with the actual production worker deployment; do not create a
     // permanent missing-heartbeat alarm for the still-closed customer runtime.
-    if (props.appleProductionMonitoringEnabled) {
+    for (const environment of [
+      ...(props.appleProductionMonitoringEnabled ? ['production'] : []),
+      ...(props.appleReviewMonitoringEnabled ? ['sandbox'] : []),
+    ]) {
       for (const [name, threshold, periods, silence] of [
         ['Failed', 1, 1, false], ['WorkerErrors', 1, 2, false],
         ['OldestPendingSeconds', 300, 2, false], ['Heartbeat', 1, 3, true],
       ] as const) {
-        alarmDefinitions.push(new cloudwatch.Alarm(this, `AppleDelivery${name}`, {
+        alarmDefinitions.push(new cloudwatch.Alarm(this, `${environment === 'production' ? 'AppleDelivery' : 'AppleReviewDelivery'}${name}`, {
           metric: new cloudwatch.Metric({ namespace: 'Rillora/Commerce', metricName: name,
-            dimensionsMap: { Environment: 'production', Provider: 'storekit' },
+            dimensionsMap: { Environment: environment, Provider: 'storekit' },
             statistic: silence ? 'Sum' : 'Maximum', period: Duration.minutes(5) }),
           threshold, evaluationPeriods: periods,
           comparisonOperator: silence ? cloudwatch.ComparisonOperator.LESS_THAN_THRESHOLD
@@ -117,6 +121,18 @@ export class RilloraOperationsStack extends Stack {
         }));
       }
     }
+    if(props.retentionMonitoringEnabled){
+      for(const [name,periods,silence] of [['Failures',1,false],['BatchFull',2,false],['Heartbeat',3,true]] as const){
+        alarmDefinitions.push(new cloudwatch.Alarm(this,`Retention${name}`,{
+          metric:new cloudwatch.Metric({namespace:'Rillora/Retention',metricName:name,dimensionsMap:{Environment:'production'},
+            statistic:silence?'Sum':'Maximum',period:Duration.minutes(15)}),
+          threshold:1,evaluationPeriods:periods,
+          comparisonOperator:silence?cloudwatch.ComparisonOperator.LESS_THAN_THRESHOLD:cloudwatch.ComparisonOperator.GREATER_THAN_OR_EQUAL_TO_THRESHOLD,
+          treatMissingData:silence?cloudwatch.TreatMissingData.BREACHING:cloudwatch.TreatMissingData.NOT_BREACHING,
+        }));
+      }
+    }
+    if(props.snapshotRetirementEnabled)alarmDefinitions.push(...new RilloraSnapshotRetirement(this,'SnapshotRetirement').alarms);
     for (const alarm of alarmDefinitions) {
       alarm.addAlarmAction(new actions.SnsAction(alerts));
       alarm.addOkAction(new actions.SnsAction(alerts));

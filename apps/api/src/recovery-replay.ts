@@ -61,7 +61,12 @@ export async function replayRecoveryControls(pool:Pool,events:RecoveryControl[],
   let applied=0;
   for(const event of pending){
    const facts=event.facts;
-   if(event.kind==='account'){
+   if(event.kind==='retention_hold'){
+    await client.query(`insert into app.retention_holds(public_id,category,record_id,reason_code,released_at)
+     values($1,$2,$3,$4,case when $5 then null else now() end)
+     on conflict(category,record_id,reason_code) do update set public_id=excluded.public_id,released_at=excluded.released_at`,
+     [event.id,facts.category,facts.recordId,facts.reason,facts.active]);
+   }else if(event.kind==='account'){
     const planner=(await client.query('select id::text,status from app.planners where public_id=$1',[event.id])).rows[0];
     if(planner){
      if(facts.deleted===true||facts.status==='deletion_pending'){

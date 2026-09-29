@@ -91,10 +91,17 @@ if (productionWebSelected) {
   if(runtime!==undefined && ![true,false,'true','false'].includes(runtime))throw new Error('productionRuntimeEnabled must be true or false');
   const runtimeDesiredCount=Number(app.node.tryGetContext('productionRuntimeDesiredCount')??0);
   if(![0,1].includes(runtimeDesiredCount))throw new Error('productionRuntimeDesiredCount must be 0 or 1');
+  const reviewFlag=(name:string)=>{const value=app.node.tryGetContext(name);
+    if(value!==undefined&&![true,false,'true','false'].includes(value))throw new Error(`${name} must be true or false`);
+    return value===true||value==='true';};
   new RilloraProductionStack(app,"RilloraProduction",{
     env:{account:process.env.CDK_DEFAULT_ACCOUNT||undefined,region:"eu-central-1"},
     description:"Closed Rillora production data foundation and isolated recovery; no public traffic or billing",
     runtimeEnabled:runtime===true||runtime==='true',runtimeDesiredCount:runtimeDesiredCount as 0|1,
+    reviewPrepared:reviewFlag('productionReviewPrepared'),reviewEnabled:reviewFlag('productionReviewEnabled'),
+    retentionEnabled:reviewFlag('productionRetentionEnabled'),
+    identityServicesEnabled:reviewFlag('productionIdentityServicesEnabled'),
+    runtimeImageTag:app.node.tryGetContext('productionRuntimeImageTag'),
   });
 } else if(preflightSelected){
   new RilloraProductionPreflightStack(app,"RilloraProductionPreflight",{
@@ -110,10 +117,21 @@ if (productionWebSelected) {
   if (appleMonitoring !== undefined && ![true, false, 'true', 'false'].includes(appleMonitoring)) {
     throw new Error('appleProductionMonitoringEnabled must be true or false');
   }
+  const appleReviewMonitoring = app.node.tryGetContext('appleReviewMonitoringEnabled');
+  if (appleReviewMonitoring !== undefined && ![true, false, 'true', 'false'].includes(appleReviewMonitoring)) {
+    throw new Error('appleReviewMonitoringEnabled must be true or false');
+  }
+  const retentionMonitoring=app.node.tryGetContext('retentionMonitoringEnabled');
+  if(retentionMonitoring!==undefined&&![true,false,'true','false'].includes(retentionMonitoring))throw new Error('retentionMonitoringEnabled must be true or false');
+  const snapshotRetirement=app.node.tryGetContext('snapshotRetirementEnabled');
+  if(snapshotRetirement!==undefined&&![true,false,'true','false'].includes(snapshotRetirement))throw new Error('snapshotRetirementEnabled must be true or false');
   new RilloraOperationsStack(app, "RilloraOperations", {
     env: { account: process.env.CDK_DEFAULT_ACCOUNT || undefined, region: "eu-central-1" },
     scheduleEnabled: operationsEnabled === true || operationsEnabled === "true",
     appleProductionMonitoringEnabled: appleMonitoring === true || appleMonitoring === 'true',
+    appleReviewMonitoringEnabled: appleReviewMonitoring === true || appleReviewMonitoring === 'true',
+    retentionMonitoringEnabled:retentionMonitoring===true||retentionMonitoring==='true',
+    snapshotRetirementEnabled:snapshotRetirement===true||snapshotRetirement==='true',
     description: "Rillora public health scheduling and alarms; no access to private application data",
   });
 } else new RilloraStagingStack(app, "RilloraStaging", {

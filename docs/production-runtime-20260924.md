@@ -2,9 +2,20 @@
 
 Role: production transport implementation and acceptance contract
 
-Status: CLOSED PRODUCTION HTTPS DEPLOYED; RUNTIME AND MONITOR ACCEPTANCE VERIFIED
+Status: PRODUCTION HTTPS AND RESTRICTED REVIEW VERIFIED; GENERAL CUSTOMERS CLOSED
 
-Last updated: 2026-09-24 (Asia/Hong_Kong)
+Last updated: 2026-09-30 (Asia/Hong_Kong)
+
+## September30 restricted review runtime
+
+The independent production transport now runs API7/imagefa2acc8e507192442b31e868d363bfe66970c33b5447a56077a1dcf00159a3f6,
+with schema0091and real OIDC restricted to one expiring synthetic review identity.
+General customers/live Apple/Stripe remainclosed. Actual same-origin health/negative
+access, runtime TLS/role, current migration checksums, identity service injection and
+retention heartbeat are verified. This supersedes the health-only task1state below;
+it does not prove a real reviewer login or customer journey.
+[Current operational contract](release-engineering-20260930.md).
+
 
 ## Current scope
 

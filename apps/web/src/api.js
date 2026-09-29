@@ -62,6 +62,9 @@ export function createApiClient({
       contentType.includes("application/json") || contentType.includes("+json")
     ) ? await response.json() : null;
     if (!response.ok) {
+      if (response.status === 403 && payload?.error?.code === 'reauthentication_required' && typeof window !== 'undefined') {
+        window.dispatchEvent(new Event('rillora:reauthentication-required'));
+      }
       throw new ApiClientError(
         response.status,
         payload?.error?.code ?? "request_failed",
@@ -138,6 +141,8 @@ export function createApiClient({
           && session?.plannerPublicId?.toLowerCase() === devPlannerId.toLowerCase(),
       }))
       : request("/auth/session-status", {}, { publicAuth: true }),
+    startReauthentication: () => request('/auth/reauthenticate', { method: 'POST', body: {} }, { publicAuth: true }),
+    getReauthenticationStatus: pollToken => request('/auth/reauthentication-status', { method: 'POST', body: { pollToken } }, { publicAuth: true }),
     startAuthentication: (input) => request("/auth/start", {
       method: "POST",
       body: input,

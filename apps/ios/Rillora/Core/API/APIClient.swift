@@ -1065,6 +1065,9 @@ actor APIClient: OverviewServing, PlanEditing, MatterEditing, TrustedContactEdit
                 requestID: requestID
             )
         }
+        if result.response.statusCode == 403 && payload.error.code == "reauthentication_required" {
+            Task { @MainActor in NotificationCenter.default.post(name: .rilloraReauthenticationRequired, object: nil) }
+        }
         return .server(
             status: result.response.statusCode,
             code: payload.error.code,

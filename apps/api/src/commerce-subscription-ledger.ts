@@ -7,7 +7,7 @@ type BoundPrice = Readonly<{ id: string; plan_version_id: string }>;
 
 /** Called inside the provider's owner-scoped transaction after verification/catalog binding. */
 export async function recordSubscriptionObservation(client: PoolClient, context: AccountContext,
-  signal: NormalizedProviderSignal, snapshot: AuthoritativeSubscriptionSnapshot,
+  signal: Pick<NormalizedProviderSignal,'provider'|'providerEnvironment'|'providerSubscriptionReference'>, snapshot: AuthoritativeSubscriptionSnapshot,
   price: BoundPrice, eventPublicId: string, financialOverride: 'refunded' | 'revoked' | null = null): Promise<string> {
   if (snapshot.commerceAccountReference !== context.publicId || snapshot.provider !== signal.provider
     || snapshot.providerEnvironment !== signal.providerEnvironment

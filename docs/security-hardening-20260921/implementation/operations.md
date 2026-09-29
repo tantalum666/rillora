@@ -1,7 +1,18 @@
 # Private content encryption operations
 
-Status: STAGING IMPLEMENTATION VERIFIED; production recovery gates remain open  
-Last updated: 2026-09-23 (Asia/Hong_Kong)
+Status: STAGING AND RESTRICTED PRODUCTION CONTROLS VERIFIED; CUSTOMER ACCEPTANCE GATES REMAIN OPEN
+Last updated: 2026-09-30 (Asia/Hong_Kong)
+
+## September30 production operating increment
+
+The separate restricted production runtime now uses the encrypted namespace,verified
+TLS,91matching migrations,independent identity services and bounded recurring retention.
+Active holds/released reasons and exact-snapshot retirement have scoped operator paths
+and monitoring. Sensitive exports/import/deletion and expanded sharing require recent
+verified authentication. Current source/artifact/dependency checks are distinguished
+from actual customer journeys and external certification.
+[Current evidence and rollback boundaries](../../release-engineering-20260930.md).
+
 
 ## Boundary
 

@@ -4,8 +4,19 @@ Role: focused product, visual and implementation contract for account authentica
 Authority scope: Auth0 identity boundary, direct hosted iOS entry, hosted appearance, prompt-state behavior and evidence requirements  
 Superseded by: later Owner direction recorded in `docs/decision-log.md`  
 Do not use for: credential storage, API authorization rules, production identity approval or legal claims  
-Status: EMAIL-FIRST HOSTED LAYOUT VERIFIED; APPLE KEY ROTATED; IOS BINDING RESTORED; APPLE AUTHORIZE PAGE VERIFIED  
-Last updated: 2026-09-17 (same-session verification deployed; Web return/consent ordering verified)  
+Status: HOSTED FLOW RETAINED; RECENT-AUTH CONTROLS VERIFIED; REAL PRODUCTION SIGN-IN OPEN
+Last updated: 2026-09-30 (Asia/Hong_Kong)
+
+## September30 sensitive-action verification
+
+The ordinary hosted sign-in composition remains. A sensitive action with missing or
+older-than-ten-minute verified authentication opens a compact Sign in again / Keep
+editing prompt. Web retains its editing window while authenticating in a separate
+window; native uses the hosted system session over the current editor. Cancellation
+keeps the draft and original account. A successful return never automatically repeats
+the sensitive action. Another identity cannot replace this bound session.
+[Current implementation and provider limitations](release-engineering-20260930.md).
+
 
 ## 2026-09-17 Email verification continuation — deployed and verified
 

@@ -10,6 +10,7 @@ import { StripeProductionAdapter } from './stripe-production-adapter.js';
 import { productionExecutionConfig } from './stripe-execution-config.js';
 import { createAppleProductionIntake, createAppleReviewIntake } from './apple-production-runtime.js';
 import { appleDeliveryMetrics } from './apple-production-metrics.js';
+import { startRetentionWorker } from './retention.js';
 
 const config = loadConfig();
 const pool = createPool(config);
@@ -49,6 +50,7 @@ const deletionTimer = setInterval(() => {
   if (!config.productionRuntimeClosed) void accountDeletionProcessor.process().catch(() => { process.stderr.write("Account deletion worker will retry.\n"); });
 }, 30_000);
 deletionTimer.unref();
+const stopRetention=config.allowRetentionWorker?startRetentionWorker(pool):null;
 let contentSweepRunning=false;
 const contentTimer=config.contentProtection?.mode==="encrypted"?setInterval(()=>{
   if(contentSweepRunning)return;
@@ -80,6 +82,7 @@ async function shutdown(signal: string): Promise<void> {
   if (shuttingDown) return;
   shuttingDown = true;
   clearInterval(deletionTimer);
+  stopRetention?.();
   if (commerceTimer) clearInterval(commerceTimer);
   appleTimers.forEach(clearInterval);
   managedTls?.close();

@@ -4,8 +4,18 @@ Role: canonical backend implementation and boundary contract
 Authority scope: API, PostgreSQL model, runtime security controls and production-open gates  
 Superseded by: later reviewed backend decision recorded in `docs/decision-log.md`  
 Do not use for: claiming production identity, real recipient delivery, production end-to-end encryption, legal validity or real release  
-Status: CORE AND ACCOUNT-BOUND SHARING DEPLOYED TO SYNTHETIC STAGING; VERSIONED LEGAL GATE REQUIRED; STRIPE TEST LIFECYCLE VERIFIED; APPLE IAP DEPLOYMENT / REAL SANDBOX PURCHASE OPEN; ORDINARY ACCESS FREE; SALES / PRODUCTION ENTITLEMENTS / REAL SENSITIVE DATA CLOSED; EXPIRING VALIDATION ACCOUNTS ONLY  
-Last updated: 2026-09-27 (native purchase preflight locally verified; production API unchanged)
+Status: RESTRICTED PRODUCTION API7/SCHEMA0091 VERIFIED; STAGING BASELINE RETAINED; REAL SIGN-IN/PAYMENT/JOURNEYS OPEN
+Last updated: 2026-09-30 (Asia/Hong_Kong)
+
+## September30 production security and lifecycle increment
+
+Production is now restricted-review API7/schema0091; staging API38/schema0075 and
+real records are unchanged. Added controls cover expiring exact-identity review
+access, verified auth_time, independent production read/delete identity services,
+bounded retention/holds and isolated current-provider recovery reconciliation.
+Current API341checks pass. Deployment, actual role/HTTP checks and still-pending
+real identity/payment journeys are separated in[the current contract](release-engineering-20260930.md).
+
 
 ## September27 native purchase preparation
 

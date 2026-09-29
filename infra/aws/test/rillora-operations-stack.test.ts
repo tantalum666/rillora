@@ -7,6 +7,32 @@ const template = () => Template.fromStack(new RilloraOperationsStack(new App(), 
   env: { account: "111111111111", region: "eu-central-1" },
 }));
 describe("Standalone public operations", () => {
+  it('limits legacy snapshot retirement to the reviewed ARN, date and hold tags without granting database or credential access',()=>{
+    const t=Template.fromStack(new RilloraOperationsStack(new App(),'SnapshotOperations',{env:{account:'133857166372',region:'eu-central-1'},snapshotRetirementEnabled:true}));
+    const statements=Object.values(t.findResources('AWS::IAM::Policy')).flatMap(p=>p.Properties.PolicyDocument.Statement);
+    const grants=statements.filter(s=>s.Action==='rds:DeleteDBSnapshot');expect(grants).toHaveLength(1);
+    expect(grants[0].Resource).toBe('arn:aws:rds:eu-central-1:133857166372:snapshot:rillora-content-encryption-before-20260923');
+    expect(grants[0].Condition.DateGreaterThan['aws:CurrentTime']).toBe('2026-12-21T16:13:05.877Z');
+    expect(grants[0].Condition.StringEquals['rds:snapshot-tag/RilloraRetirementManaged']).toBe('true');
+    expect(grants[0].Condition.StringEqualsIfExists['rds:snapshot-tag/RilloraLegalHold']).toBe('false');
+    expect(statements.flatMap(s=>s.Action).some((a:string)=>['secretsmanager:GetSecretValue','rds:DeleteDBInstance','rds:CreateDBSnapshot','rds:ModifyDBSnapshotAttribute'].includes(a))).toBe(false);
+    t.hasResourceProperties('AWS::Events::Rule',{ScheduleExpression:'rate(12 hours)'});
+    t.resourceCountIs('AWS::RDS::DBInstance',0);
+  });
+  it('observes retention progress and backlog with no private record dimension',()=>{
+    const t=Template.fromStack(new RilloraOperationsStack(new App(),'RetentionOperations',{env:{account:'111111111111',region:'eu-central-1'},retentionMonitoringEnabled:true}));
+    const alarms=Object.values(t.findResources('AWS::CloudWatch::Alarm')).map(a=>a.Properties).filter(a=>a.Namespace==='Rillora/Retention');
+    expect(alarms.map(a=>a.MetricName).sort()).toEqual(['BatchFull','Failures','Heartbeat']);
+    for(const a of alarms)expect(a.Dimensions).toEqual([{Name:'Environment',Value:'production'}]);
+  });
+  it('keeps review metrics separate and does not monitor a nonexistent production worker',()=>{
+    const t=Template.fromStack(new RilloraOperationsStack(new App(),'ReviewOperations',{env:{account:'111111111111',region:'eu-central-1'},appleReviewMonitoringEnabled:true}));
+    const alarms=Object.values(t.findResources('AWS::CloudWatch::Alarm')).map(a=>a.Properties).filter(a=>a.Namespace==='Rillora/Commerce');
+    expect(alarms).toHaveLength(4);
+    expect(alarms.every(a=>a.Dimensions.some((d:{Name:string;Value:string})=>d.Name==='Environment'&&d.Value==='sandbox'))).toBe(true);
+    expect(JSON.stringify(alarms)).not.toContain('production');
+    t.resourceCountIs('AWS::SNS::Subscription',0);
+  });
   it('optionally monitors bounded Apple delivery failures, age and worker silence without private metric dimensions', () => {
     const t = Template.fromStack(new RilloraOperationsStack(new App(), 'AppleOperationsTest', {
       env: { account: '111111111111', region: 'eu-central-1' }, appleProductionMonitoringEnabled: true,

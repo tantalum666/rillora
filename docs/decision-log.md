@@ -2837,3 +2837,29 @@ unreachable release remains a different closed workflow. See [sharing contract](
 - Do not repeat tests, provider applications, deployments or authentication simply
   because the conversation changes. A new workflow still follows the repository's
   complete Markdown reading protocol. [Resume entry](chat-resume-20260930.md).
+
+## 2026-09-30 — Independent prelaunch work, restricted review and bounded controls
+
+- Owner explicitly asks to finish work outside their participation/confirmation and
+  the existing AWS reply wait. Continue those preparations under standing authority;
+  park actual legal/login/provider ceremonies rather than asking for repeated blanket
+  approval. Preserve UI,pricing,real data,history andFanPass.
+- Agent chooses an expiring exact-identity Action/API allowlist on the existing tenant
+  and separate production service credentials. CLI create:connections is unavailable;
+  reuse the existing database connection without changing Preview options. This does
+  not adopt a new identity provider,paid plan or public customer activation.
+- Use genuine signed auth_time for the existing recent-authentication requirement.
+  Ten minutes is the bounded action window; token iat is insufficient. Keep editors
+  and sessions during verification,bind the same account and never auto-retry a
+  sensitive mutation. Reductions,pausing and revocation stay immediately available.
+- Implement published retention windows as a bounded worker with independent legal/
+  security hold reasons and privacy-journal replay. Pin manual-snapshot retirement
+  to the one known resource and its actual90day deadline; no inactivity-based private
+  map deletion or broad backup purge is introduced.
+- Restore commerce only from fresh current provider evidence with source freeze,
+  clone/journal/ownership gates. Legacy or unproven markers cannot reopen traffic;
+  authentic API observations are not described as verified webhooks.
+- Keep store artifacts/drafts separate from actual upload/declarations/TestFlight.
+  Direct JPEG screenshots preserve the app UI while meeting the no-alpha requirement.
+  No final Apple price,SBP approval,SES approval or merchant fact is inferred.
+  [Focused contract](release-engineering-20260930.md).

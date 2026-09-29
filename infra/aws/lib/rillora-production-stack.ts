@@ -3,17 +3,28 @@ import {fileURLToPath} from 'node:url';
 import {ArnFormat,Aws,CfnOutput,Duration,RemovalPolicy,Stack,Tags,type StackProps,
  aws_ec2 as ec2,aws_ecs as ecs,aws_ecr_assets as ecr,aws_iam as iam,
  aws_kms as kms,aws_logs as logs,aws_rds as rds,aws_secretsmanager as secrets,
- aws_dynamodb as dynamodb} from 'aws-cdk-lib';
+ aws_dynamodb as dynamodb, aws_ecr as ecrRepository} from 'aws-cdk-lib';
 import type {Construct} from 'constructs';
 import {RilloraProductionRuntime} from './rillora-production-runtime.js';
 
-export interface ProductionStackProps extends StackProps { runtimeEnabled?:boolean; runtimeDesiredCount?:0|1; }
+export interface ProductionStackProps extends StackProps {
+ runtimeEnabled?:boolean; runtimeDesiredCount?:0|1;
+ reviewPrepared?:boolean; reviewEnabled?:boolean; runtimeImageTag?:string;
+ retentionEnabled?:boolean;
+ identityServicesEnabled?:boolean;
+}
 
 /** An isolated production data foundation. It exposes no customer HTTP service. */
 export class RilloraProductionStack extends Stack {
  constructor(scope:Construct,id:string,props:ProductionStackProps){
   super(scope,id,props);
   if(props.env?.region!=='eu-central-1')throw new Error('Production data stays in the reviewed Frankfurt region');
+  if((props.reviewPrepared||props.reviewEnabled||props.runtimeImageTag)&&!props.runtimeEnabled)throw new Error('Review preparation requires the existing production runtime');
+  if(props.reviewEnabled&&!props.reviewPrepared)throw new Error('Prepare review secrets before enabling review');
+  if(props.identityServicesEnabled&&!props.reviewEnabled)throw new Error('Identity services require the prepared restricted production runtime');
+  if(props.retentionEnabled&&!props.reviewEnabled)throw new Error('Retention requires an operational restricted production runtime');
+  if(props.runtimeImageTag&&!/^[a-f0-9]{64}$/.test(props.runtimeImageTag))throw new Error('Only an immutable production asset image tag may be retained');
+  if(props.reviewEnabled&&props.runtimeImageTag)throw new Error('Review activation must use the newly verified API image');
   Tags.of(this).add('Project','Rillora');Tags.of(this).add('Environment','Production');
   Tags.of(this).add('CostCenter','Rillora');
   const vpc=new ec2.Vpc(this,'Vpc',{ipAddresses:ec2.IpAddresses.cidr('10.43.0.0/16'),maxAzs:2,natGateways:0,
@@ -125,7 +136,11 @@ export class RilloraProductionStack extends Stack {
   operator.addToPolicy(new iam.PolicyStatement({actions:['cloudformation:DescribeStacks'],resources:[this.stackId]}));
   operator.addToPolicy(new iam.PolicyStatement({actions:['kms:DescribeKey','kms:GetKeyRotationStatus'],resources:[contentKey.keyArn]}));
   if(props.runtimeEnabled)new RilloraProductionRuntime(this,'Runtime',{
-   vpc,cluster,database,databaseNetwork,credential:runtimeCredential,key:contentKey,journal,image,operator,environment,
+   vpc,cluster,database,databaseNetwork,credential:runtimeCredential,key:contentKey,journal,
+   image:props.runtimeImageTag?ecs.ContainerImage.fromEcrRepository(ecrRepository.Repository.fromRepositoryAttributes(this,'ExistingAssetRepository',{
+    repositoryArn:`arn:${Aws.PARTITION}:ecr:eu-central-1:${Aws.ACCOUNT_ID}:repository/cdk-hnb659fds-container-assets-${Aws.ACCOUNT_ID}-eu-central-1`,
+    repositoryName:`cdk-hnb659fds-container-assets-${Aws.ACCOUNT_ID}-eu-central-1`}),props.runtimeImageTag):image,
+   operator,environment,reviewPrepared:props.reviewPrepared,reviewEnabled:props.reviewEnabled,retentionEnabled:props.retentionEnabled,identityServicesEnabled:props.identityServicesEnabled,recoveryTask:recovery,
    desiredCount:props.runtimeDesiredCount??0,
   });
   const outputs={ProductionVpcId:vpc.vpcId,DatabaseSecurityGroupId:databaseNetwork.securityGroupId,

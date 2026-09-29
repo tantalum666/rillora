@@ -5,9 +5,20 @@ Authority scope: Web Privacy Policy, Terms of Service, required factual inputs a
 Superseded by: applicable law, platform requirements, approved operator details and reviewed final legal text  
 Do not use for: personal legal advice, proof of global compliance, or permission to publish  
 Status: OWNER-APPROVED FORMAL ENGLISH RELEASE TEXT PUBLIC AT `LEGAL.RILLORA.XYZ`; CURRENT PUBLICATION IN HANDOFF; PRIOR ACCESS／DOMAIN／TLS／SEVEN-ROUTE EVIDENCE REMAINS DATED; GOOGLE OAUTH BRANDING SAVED UNDER `EXTERNAL / TESTING`; PRODUCT PRODUCTION／MARKET／BILLING GATES REMAIN OPEN WORK
-Last updated: 2026-09-29 (Sites9 website-appearance supplement; accepted bodies unchanged)
+Last updated: 2026-09-30 (align September29 Sites10 receipt; no new publication or legal-body change)
 
-## Current publication — Sites version9
+## Current publication — Sites version10
+
+The September29 UI audit extended the appearance disclosure to both the public
+website and Web workspace. Sites10 succeeded from source
+`8a884b58882c721f536afe0c82f013f786f7e656`, deployment
+`appgdep_6abba72a31508191aec5bf90f46d8db4`, with the same public audience.
+Accepted legal bodies, versions, clickwrap and digest remain unchanged.
+This September30 correction reuses the stored publication receipt and does not
+republish or rerun the earlier checks. [Recorded deployment](../output/qa/rillora-ui-ux-audit-20260929/work-state.json),
+[scope and verification](ui-ux-audit-20260929.md).
+
+## HISTORICAL — Sites version9
 
 The Privacy and Cookie publication shells display a dated, website-only appearance
 update. It identifies the optional Light/Dark preference, its single local key,

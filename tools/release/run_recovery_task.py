@@ -10,7 +10,7 @@ from recovery_drill import Aws,ACCOUNT,validate_state,validate_target,require,sa
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('operation',choices=['migrate','initialize','seed','after-snapshot','restore','isolation','cleanup-fixtures','check'])
+    parser.add_argument('operation',choices=['migrate','initialize','seed','after-snapshot','restore','reconcile-commerce','isolation','cleanup-fixtures','check'])
     parser.add_argument('--state',type=Path,required=True)
     parser.add_argument('--profile',default='rillora-production-operator')
     parser.add_argument('--phase',help='Existing phase to inspect with check')
@@ -37,7 +37,7 @@ def main():
                 'exitCode':container.get('exitCode'),'imageDigest':container.get('imageDigest'),
                 'stoppedReason':task.get('stoppedReason'),'checkedAt':datetime.now(timezone.utc).isoformat()}
         if task['lastStatus']=='STOPPED':
-            prefix='recovery' if args.phase in ['restore','isolation'] else 'migration'
+            prefix='recovery' if args.phase in ['restore','reconcile-commerce','isolation'] else 'migration'
             stream=prefix+'/Maintenance/'+task['taskArn'].rsplit('/',1)[1]
             logs=aws.call('logs','get-log-events',{'logGroupName':out['MaintenanceLogGroup'],'logStreamName':stream,'startFromHead':True})
             report['messages']=[e['message'] for e in logs['events']]
@@ -62,17 +62,27 @@ def main():
         require(prior_task['lastStatus']=='STOPPED' and prior_task['containers'][0].get('exitCode')!=0,'Prior task is running or succeeded; duplicate refused')
         state.setdefault('previousMaintenanceAttempts',[]).append({'phase':args.operation,**prior})
     environment=[{'name':'RECOVERY_RUN','value':state['run']}]
-    recovery=args.operation in ['restore','isolation']
-    if args.operation=='restore':
+    recovery=args.operation in ['restore','reconcile-commerce','isolation']
+    if args.operation in ['restore','reconcile-commerce']:
         target=aws.database(state['target']);require(target is not None,'Recovery target is missing');validate_target(target,state)
         require(target['DBInstanceStatus']=='available','Recovery target is not available')
         snapshot=aws.snapshot(state['snapshot']);require(snapshot is not None and snapshot['Status']=='available','Snapshot is unavailable')
         environment += [{'name':'DATABASE_HOST','value':target['Endpoint']['Address']},
                         {'name':'RECOVERY_SNAPSHOT_TIME','value':snapshot['SnapshotCreateTime']}]
+    if args.operation=='reconcile-commerce':
+        services=[value for key,value in out.items() if key.startswith('RuntimeApiServiceName')]
+        require(len(services)==1,'Expected exact production source service')
+        source=aws.call('ecs','describe-services',{'cluster':out['ClusterName'],'services':services})
+        require(not source.get('failures') and len(source.get('services',[]))==1,'Source service state unavailable')
+        source=source['services'][0]
+        require(source['desiredCount']==0 and source['runningCount']==0 and source['pendingCount']==0,
+                'Stop and verify source writers before provider recovery; this tool never stops them automatically')
+        environment.append({'name':'RECOVERY_SOURCE_FROZEN_AT','value':datetime.now(timezone.utc).isoformat()})
     if args.operation=='after-snapshot':
         snapshot=aws.snapshot(state['snapshot'])
         require(snapshot is not None and snapshot['Status']=='available','Do not apply later changes before the baseline snapshot is available')
     command=['node','dist/recovery-admin.js',args.operation]
+    if args.operation=='reconcile-commerce':command=['node','dist/recovery-commerce-admin.js']
     if args.operation=='isolation':
         environment.append({'name':'RECOVERY_SOURCE_HOST','value':out['DatabaseHost']})
         command=['node','--input-type=module','-e',Path(__file__).with_name('probe_recovery_isolation.mjs').read_text()]

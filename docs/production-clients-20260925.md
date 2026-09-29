@@ -2,7 +2,7 @@
 
 Role: focused client-delivery and environment-isolation contract
 Status: CLOSED CLIENT DELIVERY VERIFIED; CUSTOMER ACTIVATION STILL CLOSED
-Last updated: 2026-09-25 (Asia/Hong_Kong)
+Last updated: 2026-09-30 (Asia/Hong_Kong)
 
 Owner explicitly asks to start the remaining release engineering. Continue the
 existing release workflow and reading baseline. Preserve the current UI/brand,
@@ -10,13 +10,27 @@ annual-only offer, test accounts/data, private data/recovery foundation and
 FanPass. Public customer access remains closed until the separate release gates
 are accepted.
 
+## September30 client security and distribution preparation
+
+Recent-auth handling preserves the current Web/native editor and original session;
+users explicitly retry sensitive actions after verification. Release callback routing
+now ignores unrelated/dormant-native-Google URLs, and the app's local preference API
+reason is declared. Local UI cancellation and current native transport tests pass.
+
+The final IPA has exact production connections,CustomerAccessNO,no debug entitlement
+or StoreKit fixture. A new closed Web candidate is built and retained locally.
+Neither is a usable uploaded TestFlight or a new Preview/WWW/legal deployment.
+The backend is now restricted-review mode; actual provider/client acceptance remains
+separate.[Current contract and package](release-engineering-20260930.md).
+
+
 ## Connection contract
 
 config/production-connections.json contains only public connection identifiers:
 app.rillora.xyz, same-origin API/session paths, the prepared production native/Web
 Auth0 client IDs and audience, and the exact existing Frankfurt API origin.
 CandidateGLOBAL_US keeps the existing build policy; it does not activate a market.
-The new Auth0 connections and backend account routes remain disabled.
+The September25checkpoint kept backend account routes disabled; the September30restricted review exception is described above.
 
 iOS Release now compiles the five exact connection values and an explicit closed
 account flag. Release ignores environment overrides and validates the reviewed

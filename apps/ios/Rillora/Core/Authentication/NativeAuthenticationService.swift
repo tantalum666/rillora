@@ -35,6 +35,7 @@ extension NativeAuthenticating {
 enum NativeAuthenticationIntent: Sendable, Equatable {
     case signIn
     case createAccount
+    case reauthenticate
     case google
 }
 
@@ -83,12 +84,17 @@ final class Auth0NativeAuthenticationService: NativeAuthenticating {
             .scope("openid profile email session:create")
             .parameters(Self.authorizationParameters(for: intent, loginHint: loginHint))
             .start()
+        if intent == .reauthenticate {
+            try await refreshRilloraSession(accessToken: credentials.accessToken, idToken: credentials.idToken)
+            return
+        }
         let legalAcceptance = try HostedLegalAcceptanceProof.validate(
             accessToken: credentials.accessToken
         )
         try await establishRilloraSession(
             accessToken: credentials.accessToken,
-            legalAcceptance: legalAcceptance
+            legalAcceptance: legalAcceptance,
+            idToken: credentials.idToken
         )
     }
 
@@ -204,12 +210,14 @@ final class Auth0NativeAuthenticationService: NativeAuthenticating {
 
     private func establishRilloraSession(
         accessToken: String,
-        legalAcceptance: LegalAcceptanceProof
+        legalAcceptance: LegalAcceptanceProof,
+        idToken: String? = nil
     ) async throws {
         initialOverview = nil
         let response = try await exchange(
             accessToken: accessToken,
-            legalAcceptance: legalAcceptance
+            legalAcceptance: legalAcceptance,
+            idToken: idToken
         )
         guard response.tokenType.caseInsensitiveCompare("Bearer") == .orderedSame,
               response.sessionToken.range(
@@ -237,9 +245,12 @@ final class Auth0NativeAuthenticationService: NativeAuthenticating {
             ["prompt": "login"]
         case .createAccount:
             ["prompt": "login", "screen_hint": "signup"]
+        case .reauthenticate:
+            ["prompt": "login", "max_age": "0"]
         case .google:
             ["prompt": "login", "connection": "google-oauth2"]
         }
+        if parameters["max_age"] == nil { parameters["max_age"] = "86400" }
         parameters["rillora_auth_ui"] = "single-hosted-v1"
         if let loginHint = loginHint?.trimmingCharacters(in: .whitespacesAndNewlines),
            !loginHint.isEmpty {
@@ -309,9 +320,26 @@ final class Auth0NativeAuthenticationService: NativeAuthenticating {
             .logout()
     }
 
+    private func refreshRilloraSession(accessToken: String, idToken: String) async throws {
+        guard let existing = try await tokenStore.read() else { throw NativeAuthenticationError.invalidSession }
+        let url = configuration.sessionExchangeURL.deletingLastPathComponent().appendingPathComponent("reauthenticate")
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("Bearer \(existing)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("no-store", forHTTPHeaderField: "Cache-Control")
+        request.httpBody = try JSONEncoder().encode(["accessToken": accessToken, "idToken": idToken])
+        let (_, response) = try await session.data(for: request)
+        guard let http = response as? HTTPURLResponse, http.statusCode == 200 else {
+            throw NativeAuthenticationError.exchangeRejected
+        }
+        // Keep the original opaque session and every in-progress screen/draft.
+    }
+
     private func exchange(
         accessToken: String,
-        legalAcceptance: LegalAcceptanceProof
+        legalAcceptance: LegalAcceptanceProof,
+        idToken: String? = nil
     ) async throws -> NativeSessionExchangeResponse {
         var request = URLRequest(url: configuration.sessionExchangeURL)
         request.httpMethod = "POST"
@@ -320,7 +348,7 @@ final class Auth0NativeAuthenticationService: NativeAuthenticating {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("no-store", forHTTPHeaderField: "Cache-Control")
         request.httpBody = try Self.sessionExchangeBody(
-            legalAcceptance: legalAcceptance
+            legalAcceptance: legalAcceptance, idToken: idToken
         )
         let (data, response) = try await session.data(for: request)
         guard let httpResponse = response as? HTTPURLResponse else {
@@ -368,10 +396,11 @@ final class Auth0NativeAuthenticationService: NativeAuthenticating {
     }
 
     nonisolated static func sessionExchangeBody(
-        legalAcceptance: LegalAcceptanceProof
+        legalAcceptance: LegalAcceptanceProof,
+        idToken: String? = nil
     ) throws -> Data {
         try JSONEncoder().encode(
-            NativeSessionExchangeRequest(legalAcceptance: legalAcceptance)
+            NativeSessionExchangeRequest(legalAcceptance: legalAcceptance, idToken: idToken)
         )
     }
 }
@@ -424,6 +453,7 @@ private struct NativeSessionExchangeResponse: Decodable {
 
 private struct NativeSessionExchangeRequest: Encodable {
     let legalAcceptance: LegalAcceptanceProof
+    let idToken: String?
 }
 
 enum NativeAuthenticationError: LocalizedError, Sendable {

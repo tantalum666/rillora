@@ -1,3 +1,4 @@
+import { expandsSharing, requireRecentAuthentication } from "./recent-authentication.js";
 import { createHash, randomBytes } from "node:crypto";
 import { parseCookie } from "cookie";
 import { Router, type Request } from "express";
@@ -263,6 +264,8 @@ export function createSharingRouter(pool: DatabasePool, config: AppConfig, email
       const result = await client.query<{ id: string }>(`update app.sharing_connections set version = version + 1, updated_at = now()
         where public_id = $1 and planner_id = app.current_planner_id() and version = $2 and status <> 'revoked' returning id::text`, [id, input.expectedVersion]);
       if (!result.rows[0]) throw new ApiError(409, "sharing_changed", "Sharing changed. Reload before saving.");
+      const current = await readConnection(client, id);
+      if (expandsSharing(current.grants, input.grants)) requireRecentAuthentication(config, request.auth);
       await replaceGrants(client, result.rows[0].id, input.grants);
       await audit(client, "sharing.scope_updated", id, { matterCount: input.grants.length });
       return presentMutation(client, id);

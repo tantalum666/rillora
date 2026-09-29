@@ -84,7 +84,10 @@ struct RilloraApp: App {
             }
             #endif
             .onOpenURL { url in
-                if url.scheme != "rillora" { _ = GIDSignIn.sharedInstance.handle(url) }
+                let configuration = try? APIConfiguration.current()
+                if NativeAuthenticationCallback.isEnabledGoogleCallback(url, configuration: configuration?.nativeAuthentication) {
+                    _ = GIDSignIn.sharedInstance.handle(url)
+                }
             }
         }
     }

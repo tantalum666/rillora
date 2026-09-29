@@ -32,7 +32,8 @@ export function validateConfig(config){
   const ids=new Set();
   for(const target of config.targets){
     const u=new URL(target.url);
-    if(!/^[a-z][a-z0-9-]{1,60}$/.test(target.id)||ids.has(target.id)||!origins.has(u.origin)||u.username||u.password||u.search||u.hash||isIP(u.hostname)||u.port||!Number.isInteger(target.expectedStatus)||target.expectedStatus<100||target.expectedStatus>599||!target.headers||Array.isArray(target.headers))throw new Error('Invalid health target');
+    const statuses=Array.isArray(target.expectedStatus)?target.expectedStatus:[target.expectedStatus];
+    if(!/^[a-z][a-z0-9-]{1,60}$/.test(target.id)||ids.has(target.id)||!origins.has(u.origin)||u.username||u.password||u.search||u.hash||isIP(u.hostname)||u.port||!statuses.length||statuses.length>3||new Set(statuses).size!==statuses.length||statuses.some(s=>!Number.isInteger(s)||s<100||s>599)||!target.headers||Array.isArray(target.headers))throw new Error('Invalid health target');
     for(const [key,value]of Object.entries(target.headers))if(!['strict-transport-security','content-security-policy','cache-control','x-content-type-options'].includes(key)||typeof value!=='string'||value.length>100)throw new Error('Invalid expected header');
     ids.add(target.id);
   }
@@ -72,7 +73,8 @@ export async function runHealthChecks(config,{transport=requestMetadata,now=()=>
     const issues=[];const begin=now();
     try{
       const metadata=await transport(target,config.timeoutMs);
-      if(metadata.status!==target.expectedStatus)issues.push('unexpected_http_status');
+      const statuses=Array.isArray(target.expectedStatus)?target.expectedStatus:[target.expectedStatus];
+      if(!statuses.includes(metadata.status))issues.push('unexpected_http_status');
       for(const[key,expected]of Object.entries(target.headers)){
         const raw=metadata.headers?.[key];const value=Array.isArray(raw)?raw.join(','):raw;
         if(typeof value!=='string'||!value.length||!value.toLowerCase().includes(expected.toLowerCase()))issues.push(`header_check_failed:${key}`);

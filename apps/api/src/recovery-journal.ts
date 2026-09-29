@@ -3,7 +3,7 @@ import type { Pool, PoolClient } from 'pg';
 import { z } from 'zod';
 import { ApiError } from './errors.js';
 
-const eventSchema=z.object({key:z.string().min(1).max(100),kind:z.enum(['account','connection','matter','person','free_slot','unreconciled_access']),
+const eventSchema=z.object({key:z.string().min(1).max(100),kind:z.enum(['account','connection','matter','person','free_slot','unreconciled_access','retention_hold']),
  id:z.uuid(),revision:z.string().regex(/^[1-9][0-9]{0,18}$/),recordedAt:z.string(),facts:z.record(z.string(),z.unknown())}).strict()
  .refine(e=>e.key===`${e.kind}:${e.id}`,'Invalid journal key');
 export type RecoveryControl=z.infer<typeof eventSchema>;
@@ -12,6 +12,12 @@ const publishers=new WeakMap<Pool,RecoveryJournalPublisher>();
 
 export function configureRecoveryPool(pool:Pool,publisher:RecoveryJournalPublisher):void{publishers.set(pool,publisher);}
 const deleted=z.object({deleted:z.literal(true)}).strict();
+export const recoveryCommerceInventorySchema=z.object({version:z.literal(1),manualAccess:z.boolean(),
+ subscriptions:z.array(z.object({provider:z.enum(['stripe','storekit','paddle','wechat','alipay','unionpay','local_web']),
+  environment:z.enum(['production','sandbox','test','internal']),reference:z.string().min(1).max(255).nullable(),
+  account:z.uuid(),customer:z.string().max(255).nullable(),market:z.string().max(40),plane:z.string().max(40),
+  acquisition:z.enum(['purchased','preview','migration','support_override'])}).strict()).max(100)}).strict();
+export type RecoverySubscriptionReference=z.infer<typeof recoveryCommerceInventorySchema>['subscriptions'][number];
 const factsByKind={
  account:z.union([deleted,z.object({status:z.enum(['active','locked','deletion_pending','closed'])}).strict()]),
  connection:z.union([deleted,z.object({status:z.enum(['pending','accepted','revoked']),recipient:z.uuid().nullable(),version:z.number().int().positive(),
@@ -19,7 +25,9 @@ const factsByKind={
  matter:z.union([deleted,z.object({version:z.number().int().positive(),archived:z.boolean(),private:z.boolean()}).strict()]),
  person:z.union([deleted,z.object({version:z.number().int().positive(),restricted:z.boolean()}).strict()]),
  free_slot:z.union([deleted,z.object({connection:z.uuid().nullable()}).strict()]),
- unreconciled_access:z.object({}).strict(),
+ unreconciled_access:z.union([z.object({}).strict(),recoveryCommerceInventorySchema]),
+ retention_hold:z.object({category:z.enum(['product_event','audit_event','legal_acceptance','closed_payment','deletion_receipt']),
+  recordId:z.uuid(),reason:z.enum(['legal_requirement','unresolved_dispute','security_incident']),active:z.boolean()}).strict(),
 };
 export function parseRecoveryControl(input:unknown):RecoveryControl{
  const event=eventSchema.parse(input);factsByKind[event.kind].parse(event.facts);return event;
@@ -40,7 +48,8 @@ export class DynamoRecoveryJournal implements RecoveryJournalPublisher {
   if(Buffer.byteLength(payload)>300_000)throw new Error('Recovery control exceeds the safe journal limit');
   try{
    await this.client.send(new PutItemCommand({TableName:this.table,Item:{pk:{S:this.namespace},sk:{S:event.key},
-    revision:{N:event.revision},payload:{S:payload},expiresAt:{N:String(Math.floor(Date.now()/1000)+90*86400)}},
+    revision:{N:event.revision},payload:{S:payload},
+    ...(event.kind==='retention_hold'&&event.facts.active===true?{}:{expiresAt:{N:String(Math.floor(Date.now()/1000)+90*86400)}})},
     ConditionExpression:'attribute_not_exists(revision) OR revision < :incoming',ExpressionAttributeValues:{':incoming':{N:event.revision}}}),
     {abortSignal:AbortSignal.timeout(10_000)});
   }catch(error){

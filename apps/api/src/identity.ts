@@ -1,3 +1,4 @@
+import { createHash, timingSafeEqual } from "node:crypto";
 import * as oidc from "openid-client";
 import { createRemoteJWKSet, jwtVerify } from "jose";
 import type { NativeOidcConfig, OidcConfig } from "./config.js";
@@ -11,6 +12,7 @@ export type IdentityTransaction = {
 export type AuthorizationIntent = {
   screenHint?: "signup";
   prompt?: "login";
+  maxAge?: number;
 };
 
 export type ExternalIdentity = {
@@ -18,7 +20,7 @@ export type ExternalIdentity = {
   subject: string;
   displayName: string;
   locale: string;
-  authenticatedAt: Date;
+  authenticatedAt: Date | null;
   authenticationMethods: string[];
   verifiedEmail?: string;
 };
@@ -35,7 +37,7 @@ export interface IdentityProvider {
 }
 
 export interface NativeIdentityVerifier {
-  verifyAccessToken(accessToken: string): Promise<ExternalIdentity>;
+  verifyAccessToken(accessToken: string, idToken?: string): Promise<ExternalIdentity>;
 }
 
 export function createNativeOidcIdentityVerifier(
@@ -45,7 +47,7 @@ export function createNativeOidcIdentityVerifier(
   const keySet = createRemoteJWKSet(new URL(`${issuer}.well-known/jwks.json`));
 
   return {
-    async verifyAccessToken(accessToken) {
+    async verifyAccessToken(accessToken, idToken) {
       const { payload } = await jwtVerify(accessToken, keySet, {
         issuer,
         audience: config.audience,
@@ -66,7 +68,19 @@ export function createNativeOidcIdentityVerifier(
       const authenticationMethods = Array.isArray(rawMethods)
         ? rawMethods.filter((value): value is string => typeof value === "string").slice(0, 10)
         : [];
-      const authTime = typeof payload.auth_time === "number" ? payload.auth_time : payload.iat;
+      let authenticatedAt = verifiedAuthenticationTime(payload.auth_time);
+      if (idToken !== undefined) {
+        const { payload: id } = await jwtVerify(idToken, keySet, {
+          issuer, audience: config.clientId, algorithms: ['RS256'], requiredClaims: ['sub', 'iat', 'exp'],
+        });
+        if (id.sub !== payload.sub || (id.azp !== undefined && id.azp !== config.clientId)) throw new Error('Identity proof mismatch');
+        if (id.at_hash !== undefined) {
+          const expected = createHash('sha256').update(accessToken).digest().subarray(0, 16).toString('base64url');
+          if (typeof id.at_hash !== 'string' || id.at_hash.length !== expected.length
+            || !timingSafeEqual(Buffer.from(expected), Buffer.from(id.at_hash))) throw new Error('Access token proof mismatch');
+        }
+        authenticatedAt = verifiedAuthenticationTime(id.auth_time);
+      }
       let verifiedEmail: string | undefined;
       if (scopes.includes("openid") && scopes.includes("email")) {
         try {
@@ -90,7 +104,7 @@ export function createNativeOidcIdentityVerifier(
         subject: payload.sub,
         displayName: "Planner",
         locale: "en",
-        authenticatedAt: new Date(authTime * 1_000),
+        authenticatedAt,
         authenticationMethods,
         ...(verifiedEmail ? { verifiedEmail } : {}),
       };
@@ -122,6 +136,7 @@ export function createOidcIdentityProvider(config: OidcConfig): IdentityProvider
         code_challenge_method: "S256",
         state: transaction.state,
         nonce: transaction.nonce,
+        max_age: String(intent?.maxAge ?? 86_400),
         ...(intent?.screenHint ? { screen_hint: intent.screenHint } : {}),
         ...(intent?.prompt ? { prompt: intent.prompt } : {}),
       });
@@ -148,17 +163,22 @@ export function createOidcIdentityProvider(config: OidcConfig): IdentityProvider
       const authenticationMethods = Array.isArray(rawMethods)
         ? rawMethods.filter((value): value is string => typeof value === "string").slice(0, 10)
         : [];
-      const authTime = typeof claims.auth_time === "number" ? claims.auth_time : claims.iat;
+      const authenticatedAt = verifiedAuthenticationTime(claims.auth_time);
 
       return {
         issuer: claims.iss.replace(/\/$/, ""),
         subject: claims.sub,
         displayName: displayName || "Planner",
         locale,
-        authenticatedAt: new Date(authTime * 1_000),
+        authenticatedAt,
         authenticationMethods,
         ...(claims.email_verified === true && typeof claims.email === "string" && claims.email.length <= 254 ? { verifiedEmail: claims.email } : {}),
       };
     },
   };
+}
+
+export function verifiedAuthenticationTime(value: unknown, now = Date.now()): Date | null {
+  return typeof value === 'number' && Number.isSafeInteger(value) && value > 0 && value * 1_000 <= now + 30_000
+    ? new Date(value * 1_000) : null;
 }

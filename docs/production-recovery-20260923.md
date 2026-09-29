@@ -2,7 +2,19 @@
 
 Role: current execution contract for the Owner's production/recovery request  
 Status: PRIVATE SOURCE/CI, PRODUCTION DATA AND SCOPED CLOUD RESTORE VERIFIED
-Last updated: 2026-09-24 (historical account wording clarified; verified data result preserved)
+Last updated: 2026-09-30 (Asia/Hong_Kong)
+
+## September30 current recovery operations
+
+Bounded retention, independent hold reasons and the exact90day manual-snapshot
+retirement worker are deployed; no manual snapshot has yet been deleted. Recovery
+adds a guarded reconcile-commerce command for an isolated TLS clone with a freshly
+frozen source and complete journal coverage. The source is never stopped implicitly.
+Current provider reads preserve ownership and revocation/refund truth; unproven
+markers cannot reopen traffic. Prior real RDS/KMS restore remains datedSeptember23;
+new commerce cases are local controlled tests pending actual transaction evidence.
+[Current operational contract](release-engineering-20260930.md).
+
 
 ## Scope and current evidence
 

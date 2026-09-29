@@ -1,3 +1,4 @@
+import { requireRecentAuthentication } from "./recent-authentication.js";
 import { createMatterSchema } from "./domain.js";
 import { mapMatterInput, type MatterRow } from "./planner-records.js";
 import { createHash } from "node:crypto";
@@ -115,8 +116,9 @@ export function createFamilyMaintenanceRouter(pool: DatabasePool, config: AppCon
           and status='accepted'`, [input.collaboratorConnectionPublicId])).rows[0]?.id;
         if (!collaborator) throw new ApiError(400,"collaborator_unavailable","Choose a connected person first.");
       }
-      const current = (await client.query("select version from app.family_review_settings where planner_id=app.current_planner_id() for update")).rows[0];
+      const current = (await client.query("select version,collaborator_connection_id from app.family_review_settings where planner_id=app.current_planner_id() for update")).rows[0];
       if ((current?.version ?? 0) !== input.expectedVersion) changed();
+      if (collaborator && String(collaborator) !== String(current?.collaborator_connection_id)) requireRecentAuthentication(config, request.auth);
       await client.query(`insert into app.family_review_settings(planner_id,collaborator_connection_id,cadence_days,next_review_at)
         values(app.current_planner_id(),$1,$2,$3) on conflict (planner_id) do update
         set collaborator_connection_id=$1,cadence_days=$2,next_review_at=$3,version=app.family_review_settings.version+1`,

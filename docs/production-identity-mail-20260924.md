@@ -2,9 +2,24 @@
 
 Role: focused release integration and evidence boundary
 
-Status: SEPTEMBER29 CLARIFICATION SENT; CASE REOPENED; SES PRODUCTION STILL DISABLED
+Status: PRODUCTION IDENTITY SERVICES VERIFIED; REAL SIGN-IN/DELIVERY OPEN; AWAITING EXISTING SES CASE
 
-Last updated: 2026-09-29 (Asia/Hong_Kong)
+Last updated: 2026-09-30 (Asia/Hong_Kong)
+
+## September30 independent production identity services
+
+The current workflow prepares a separate restricted review Action/identity and new
+production deletion/read-only verification clients with exact scopes and separate
+stack-owned credentials. Real token issuance, synthetic identity read and disposable
+provider deletion204/404 are verified; API7activates those services. No real account
+was deleted or verification email sent. The issuer trailing-slash defect is repaired.
+[Implementation/evidence](release-engineering-20260930.md).
+
+Actual login/legal acceptance and final delivery remain open. Old test grants are
+preserved during Preview; retire them and wait issued86400second tokens plus skew
+before customers. The last mail readback still lacked production approval; this
+work does not resend the September29 clarification or switch providers.
+
 
 ## September29 authorized clarification submitted
 

@@ -1,3 +1,4 @@
+import { sensitiveActionAuthentication } from "./recent-authentication.js";
 import express, { type Express, type RequestHandler } from "express";
 import type { AppleProductionIntake } from './apple-production-intake.js';
 import { createAppleProductionNotificationHandler, createAppleProductionRouter } from './apple-production-routes.js';
@@ -205,7 +206,7 @@ export function createApp(
 
   const plannerApi = express.Router();
   plannerApi.use(preventCaching, authenticate(pool, config));
-  plannerApi.use(rejectForbiddenSecretFields);
+  plannerApi.use(rejectForbiddenSecretFields, sensitiveActionAuthentication(config));
   if (config.allowSyntheticRecipientRehearsal) {
     plannerApi.use(
       "/recipient-rehearsals",

@@ -5,6 +5,24 @@ in AWS Frankfurt (`eu-central-1`). The deployed revision is evidence only for th
 exact resources and checks recorded in `docs/handoff.md`; staging is not approved
 for external private plans and production customer traffic remains closed.
 
+## September30 production contexts and immutable rollout
+
+Current RilloraProduction uses productionFoundationOnly=true,
+productionRuntimeEnabled=true,productionRuntimeDesiredCount=1,
+productionReviewPrepared=true,productionReviewEnabled=true,
+productionRetentionEnabled=true and productionIdentityServicesEnabled=true.
+Preserve the current ReviewIdentityDigests/ReviewExpiresAt parameters. A later synth
+must not silently omit these flags and dismantle the verified setup. General sales
+remain disabled; restricted identity expiry is enforced by both Auth0 and API.
+
+Current RilloraOperations preserves operationsOnly=true,operationsEnabled=true,
+appleReviewMonitoringEnabled=true,snapshotRetirementEnabled=true and
+retentionMonitoringEnabled=true. The production Apple worker is not enabled.
+Retention alarms were enabled after an actual successful heartbeat; snapshot deletion
+is pinned to one resource/deadline and has not occurred.
+[Current evidence](../../docs/release-engineering-20260930.md).
+
+
 ## September26 Apple worker monitoring preparation
 
 Operations mode supports the separate opt-in context

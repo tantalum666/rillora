@@ -155,6 +155,9 @@ struct AppShellView: View {
                 }.presentationBackground(RilloraTheme.graphite)
             }
         }
+        .onReceive(NotificationCenter.default.publisher(for: .rilloraReauthenticationRequired)) { _ in
+            Task { await NativeReauthenticationPrompt.present(using: authenticationStore) }
+        }
         .onChange(of: authenticationStore.deletionReference?.id) { _, value in
             if value != nil { showsApplePurchase = false; queuedApplePurchase = false; firstUseDestination = nil; shouldPauseGuideOnDismiss = false; overviewMatter = nil; overviewShared = false; invitationSheet = nil; queuedInvitation = nil; peopleIntent = nil; selectedTab = .profile }
         }

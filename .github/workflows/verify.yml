@@ -69,7 +69,7 @@ jobs:
           cache-dependency-path: apps/api/package-lock.json
       - name: Create isolated test databases
         run: |
-          for database in continuity_test continuity_content_test continuity_family_test continuity_matter_test continuity_email_verification_test continuity_commercial_sharing_test continuity_p1_repair_final_test continuity_sharing_test continuity_content_migration_test continuity_recovery_test continuity_recovery_restore_test; do
+          for database in continuity_test continuity_content_test continuity_family_test continuity_matter_test continuity_email_verification_test continuity_commercial_sharing_test continuity_p1_repair_final_test continuity_sharing_test continuity_content_migration_test continuity_recovery_test continuity_recovery_restore_test rillora_review_access_test rillora_retention_test rillora_commerce_recovery_test rillora_recent_auth_test; do
             createdb "$database"
           done
       - run: npm ci
@@ -91,6 +91,7 @@ jobs:
           cache-dependency-path: |
             apps/web/package-lock.json
             infra/aws/package-lock.json
+            tools/snapshot-retention/package-lock.json
       - name: Verify Web source and internal build
         working-directory: apps/web
         run: |
@@ -115,6 +116,9 @@ jobs:
       - name: Verify infrastructure without AWS credentials
         working-directory: infra/aws
         run: npm ci && npm run typecheck && npm test
+      - name: Verify bounded legacy snapshot retirement
+        working-directory: tools/snapshot-retention
+        run: npm ci --ignore-scripts && npm test
       - name: Build closed-client fixture (not publishable)
         working-directory: apps/web
         env:
@@ -127,3 +131,5 @@ jobs:
         run: npm run build:production-closed
       - name: Verify public health checker
         run: node --test tools/ops/health-check.test.mjs
+      - name: Verify restricted review identity action
+        run: node --test infra/auth0/hosted-consent/production-review-action.test.cjs

@@ -153,7 +153,7 @@ describe.sequential("P1 map reliability and export privacy",()=>{
    calls.push({url,method:init.method});return url.endsWith('/oauth/token')?new Response(JSON.stringify({access_token:"test-token",expires_in:3600}),{status:200,headers:{"content-type":"application/json"}}):new Response(null,{status:404});
   }) as typeof fetch);
   await expect(adapter.deleteIdentity({issuer:"https://foreign.example/",subject:"auth0|other"})).rejects.toThrow("identity_scope_mismatch");expect(calls).toHaveLength(0);
-  await adapter.deleteIdentity({issuer:"https://login.example/",subject:"auth0|one"});await adapter.deleteIdentity({issuer:"https://login.example/",subject:"auth0|one"});
+  await adapter.deleteIdentity({issuer:"https://login.example/",subject:"auth0|one"});await adapter.deleteIdentity({issuer:"https://login.example",subject:"auth0|one"});
   expect(calls.map(c=>c.method)).toEqual(["POST","DELETE","DELETE"]);expect(calls[1].url).toContain("auth0%7Cone");
  });
 });

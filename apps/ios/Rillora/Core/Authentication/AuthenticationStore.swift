@@ -40,6 +40,9 @@ final class AuthenticationStore {
     }
 
     @discardableResult
+    func reauthenticate() async -> Bool { await authenticate(intent: .reauthenticate, loginHint: nil) }
+
+    @discardableResult
     func createAccount(
         loginHint: String? = nil
     ) async -> Bool {
@@ -124,6 +127,7 @@ final class AuthenticationStore {
                 intent: intent,
                 loginHint: loginHint
             )
+            if intent == .reauthenticate { return true }
             return await finishAuthentication()
         } catch is CancellationError {
             return false

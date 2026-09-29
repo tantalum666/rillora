@@ -20,7 +20,11 @@ const configSchema = z
     NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
     HOST: z.string().min(1).max(255).default("127.0.0.1"),
     PORT: z.coerce.number().int().min(1).max(65_535).default(4180),
-    PRODUCTION_RUNTIME_MODE: z.literal("closed").optional(),
+    PRODUCTION_RUNTIME_MODE: z.enum(["closed", "review"]).optional(),
+    PRODUCTION_REVIEW_IDENTITY_SHA256: z.string().regex(/^[a-f0-9]{64}(,[a-f0-9]{64}){0,7}$/).optional(),
+    PRODUCTION_REVIEW_EXPIRES_AT: z.iso.datetime().optional(),
+    ALLOW_RETENTION_WORKER: booleanFromString,
+    REQUIRE_RECENT_AUTHENTICATION: booleanFromString,
     API_TLS_CERTIFICATE_ARN: z.string().regex(/^arn:aws:acm:[a-z0-9-]+:\d{12}:certificate\/[a-f0-9-]{36}$/).optional(),
     API_TLS_SERVER_NAME: z.string().regex(/^[a-z0-9.-]+$/).optional(),
     RECOVERY_JOURNAL_TABLE: optionalNonEmpty,
@@ -133,6 +137,9 @@ export type AppConfig = {
   appleProduction?: { secretArn: string; rootCertificateDirectory: string } | null;
   stripeProductionSecretArn?: string | null;
   productionRuntimeClosed?: boolean;
+  productionReviewAccess?: { identityDigests: readonly string[]; expiresAt: number } | null;
+  allowRetentionWorker?: boolean;
+  requireRecentAuthentication?: boolean;
   apiTls?: { certificateArn: string; serverName: string; region: string } | null;
   contentProtection?: ContentProtectionConfig | null;
   accountDeletion?: AccountDeletionConfig | null;
@@ -255,6 +262,28 @@ export function loadContentProtectionConfig(env: NodeJS.ProcessEnv = process.env
 export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
   const parsed = configSchema.parse(env);
   const productionRuntimeClosed = parsed.PRODUCTION_RUNTIME_MODE === "closed";
+  const productionReviewMode = parsed.PRODUCTION_RUNTIME_MODE === 'review';
+  const reviewExpiresAt = Date.parse(parsed.PRODUCTION_REVIEW_EXPIRES_AT ?? '');
+  if (productionReviewMode && (!parsed.ALLOW_APPLE_REVIEW_INTEGRATION
+    || parsed.ALLOW_APPLE_PRODUCTION_INTEGRATION || parsed.ALLOW_STRIPE_PRODUCTION_INTEGRATION
+    || !parsed.PRODUCTION_REVIEW_IDENTITY_SHA256 || !Number.isFinite(reviewExpiresAt)
+    || parsed.OIDC_ISSUER_URL !== 'https://login.rillora.xyz'
+    || parsed.OIDC_CLIENT_ID !== 'EcevpyKt1GELKwkLnVU3aCbh3Ix2SJhz'
+    || parsed.NATIVE_OIDC_CLIENT_ID !== 'POpNKTqlr6dHbJZLWPWxhyjg5qPtdrm4'
+    || parsed.OIDC_API_AUDIENCE !== 'urn:rillora:production:api'
+    || parsed.OIDC_REDIRECT_URI !== 'https://app.rillora.xyz/api/auth/callback')) {
+    throw new Error('Production review requires the exact production identity clients, an expiring identity allowlist and Sandbox-only billing');
+  }
+  if (!productionReviewMode && (parsed.PRODUCTION_REVIEW_IDENTITY_SHA256 || parsed.PRODUCTION_REVIEW_EXPIRES_AT)) {
+    throw new Error('Review identity restrictions require explicit production review mode');
+  }
+  if(parsed.ALLOW_RETENTION_WORKER&&(parsed.NODE_ENV!=='production'||productionRuntimeClosed
+    ||parsed.CONTENT_KEY_NAMESPACE!=='rillora-production'||parsed.CONTENT_PROTECTION_MODE!=='encrypted'
+    ||!parsed.RECOVERY_JOURNAL_TABLE||parsed.RECOVERY_ENVIRONMENT!=='production'
+    ||parsed.DATA_REGION!=='eu-central-1'||parsed.WEB_APP_ORIGIN!=='https://app.rillora.xyz'
+    ||!parsed.API_TLS_CERTIFICATE_ARN||parsed.API_TLS_SERVER_NAME!=='origin.production.rillora.xyz')) {
+    throw new Error('Retention worker requires the verified encrypted production runtime');
+  }
   if (Boolean(parsed.API_TLS_CERTIFICATE_ARN) !== Boolean(parsed.API_TLS_SERVER_NAME)
     || (parsed.API_TLS_CERTIFICATE_ARN && parsed.API_TLS_CERTIFICATE_ARN.split(":")[3] !== parsed.DATA_REGION)) {
     throw new Error("API TLS requires a certificate ARN in DATA_REGION and its exact server name");
@@ -563,6 +592,11 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
 
   return {
     productionRuntimeClosed,
+    allowRetentionWorker: parsed.ALLOW_RETENTION_WORKER,
+    requireRecentAuthentication: productionReviewMode || parsed.REQUIRE_RECENT_AUTHENTICATION,
+    productionReviewAccess: productionReviewMode ? {
+      identityDigests: parsed.PRODUCTION_REVIEW_IDENTITY_SHA256!.split(','), expiresAt: reviewExpiresAt,
+    } : null,
     appleReview: parsed.ALLOW_APPLE_REVIEW_INTEGRATION ? {secretArn:parsed.APPLE_REVIEW_SECRET_ARN!,
       rootCertificateDirectory:parsed.APPLE_ROOT_CERTIFICATE_DIRECTORY!} : null,
     appleProduction: parsed.ALLOW_APPLE_PRODUCTION_INTEGRATION ? {

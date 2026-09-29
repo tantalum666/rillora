@@ -22,6 +22,23 @@ const environment = () => ({
 });
 
 describe('Apple production runtime boundaries', () => {
+  it('fails closed unless restricted review uses exact production identity and no live commerce',()=>{
+    const valid={...environment(),ALLOW_APPLE_PRODUCTION_INTEGRATION:'false',APPLE_PRODUCTION_SECRET_ARN:undefined,
+      ALLOW_APPLE_REVIEW_INTEGRATION:'true',APPLE_REVIEW_SECRET_ARN:secretArn.replace('apple-iap','apple-review'),
+      PRODUCTION_RUNTIME_MODE:'review',PRODUCTION_REVIEW_IDENTITY_SHA256:'a'.repeat(64),PRODUCTION_REVIEW_EXPIRES_AT:'2026-10-07T00:00:00Z',
+      OIDC_ISSUER_URL:'https://login.rillora.xyz',OIDC_CLIENT_ID:'EcevpyKt1GELKwkLnVU3aCbh3Ix2SJhz',
+      NATIVE_OIDC_CLIENT_ID:'POpNKTqlr6dHbJZLWPWxhyjg5qPtdrm4',OIDC_API_AUDIENCE:'urn:rillora:production:api'};
+    expect(loadConfig(valid).productionReviewAccess?.identityDigests).toEqual(['a'.repeat(64)]);
+    expect(loadConfig({...valid,ALLOW_RETENTION_WORKER:'true'}).allowRetentionWorker).toBe(true);
+    for(const patch of [{CONTENT_KEY_NAMESPACE:'rillora-staging'},{RECOVERY_ENVIRONMENT:'staging'},
+      {API_TLS_SERVER_NAME:undefined},{DATA_REGION:'us-east-1'},{PRODUCTION_RUNTIME_MODE:'closed'}])
+      expect(()=>loadConfig({...valid,...patch,ALLOW_RETENTION_WORKER:'true'})).toThrow();
+    for(const patch of [{PRODUCTION_REVIEW_IDENTITY_SHA256:undefined},{PRODUCTION_REVIEW_EXPIRES_AT:undefined},
+      {PRODUCTION_REVIEW_EXPIRES_AT:'invalid'},{PRODUCTION_REVIEW_IDENTITY_SHA256:'*'},{PRODUCTION_RUNTIME_MODE:undefined},
+      {OIDC_API_AUDIENCE:'urn:rillora:api'},{OIDC_CLIENT_ID:'staging'},{NATIVE_OIDC_CLIENT_ID:'staging'},
+      {ALLOW_APPLE_REVIEW_INTEGRATION:'false'},{ALLOW_STRIPE_PRODUCTION_INTEGRATION:'true'},{ALLOW_APPLE_PRODUCTION_INTEGRATION:'true'}])
+      expect(()=>loadConfig({...valid,...patch})).toThrow();
+  });
   it('requires the named secret and real production safeguards, without enabling Stripe or new sales', () => {
     expect(loadConfig(environment())).toMatchObject({ appleProduction: { secretArn }, appleSandbox: null, stripeProductionSecretArn: null });
     for (const patch of [{ NODE_ENV: 'test' }, { PRODUCTION_RUNTIME_MODE: 'closed' },

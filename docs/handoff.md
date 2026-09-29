@@ -1,112 +1,89 @@
 # Rillora Current Handoff
 
-Status: HANDOFF READY FOR NEW CHAT; LAUNCH INCOMPLETE; APPLE REVIEW LOCAL; SBP SUBMITTED
+Status: INDEPENDENT RELEASE CHECKPOINT VERIFIED; OWNER/PROVIDER GATES OPEN; CUSTOMER SALES CLOSED
 Last updated: 2026-09-30 (Asia/Hong_Kong)
 
-## New-chat checkpoint
+## Current Owner task
 
-Owner requests saving all work before opening a new chat. Start with
-[the resume entry](chat-resume-20260930.md) and the repository AGENTS reading protocol.
-Source, provider boundaries and local artifact paths are preserved; no product
-implementation/test/deployment/authentication was repeated for this save.
-The documented launch objective is incomplete; `get_goal` returnsnull, so no managed
-background runner should be assumed. [Save verification](../output/qa/rillora-chat-handoff-20260930/checkpoint.json).
+Finish prelaunch work that does not need Owner participation/confirmation or the
+existing AWS reply. Preserve current UI/full03brand,Free1/Family5,WebUS$88.99annual-only,
+differential Apple price decision,real data,history andFanPass. Do not request the
+Owner-deferred merchant/physical-device facts again or repeat old work/login.
 
-## Authority and recovery
+## Reading and recovery
 
-Owner prioritizes Apple-related release work, completes the current Apple login,
-confirms no associated developer accounts/prior-year proceeds underUS$1million,
-and explicitly approves the final Small Business Program attestation/submission.
-Preserve established UI/03brand, Free1/Family5, WebUS$88.99annual-only new sales,
-differential Apple pricing, historical receipts, real data and FanPass. Final
-Apple99.99/119.99 remain conditional candidates, not approved or saved prices.
+The full reading ledger covers165owned Markdown files/29,003lines, finished00:54:18+08.
+[Body-range and unchanged-file proof](../output/qa/rillora-launch-resume-20260930/full-read-completion.json).
+After compaction reuse it and read only current authority/task changes. The current
+implementation and limitations are in[September30release engineering](release-engineering-20260930.md).
 
-147project Markdown files/25,917lines were fully read in this ongoing workflow.
-[Baseline/ranges](../output/qa/rillora-launch-goal-20260926/full-read.json).
-Use focused recovery after compaction; do not restart the full read, tests or MFA.
-Current contract:[Apple review validation](apple-review-validation-20260929.md).
+## Completed
 
-## Completed Apple work
+- AWS/Auth0/Apple existing sessions were usable; no human login was repeated. SES
+  correspondence and SBP application were not resubmitted. SES remains unapproved;
+  queried correspondence contained no newer substantive response after September29.
+- Production API7is1/1,rolloutCOMPLETED,with exact immutableimagefa2acc8…a3f6.
+  Schema0091and91checksums match. Actual runtime TLS/least-privilege acceptance passes;
+  ordinary production planners0,live salesfalse,review-only Apple quote6800.
+- Separate Auth0 Action/API gates restrict one synthetic identity until
+  2026-10-06T17:08:57Z. Actual review login,affirmative legal acceptance and enrollment
+  have not happened. Its fake mailbox is not marked verified. Credentials stay private.
+- Exact existing Apple/Web credentials and two new production M2M credentials are
+  installed in separate stack-owned vaults. Actual service tokens have only their
+  required read/delete scopes; verification reads and a disposable provider identity
+  deletion204/404 pass. No real account was deleted or email sent.
+- Recent auth_time is required for sensitive exports/import/deletion and expanding
+  sharing. No iat fallback,account switching or automatic sensitive-action retry.
+  Web/iPhone cancellation retains drafts and existing saved permissions. Revocation,
+  pausing and reductions remain immediate. Real provider reauthentication is pending.
+- Bounded15minute retention is active; successful heartbeat,Failures0,RowsDeleted0.
+  Its three enabled alarms readOK. Independent hold reasons/journal replay are added.
+  The exact legacy manual snapshot is retained until December21; no snapshot deletion.
+- Isolated restore/current-provider commerce reconciliation is implemented,with
+  stale/wrong-owner/refund/legacy-marker tests. Actual paid-history restore remains
+  dependent on the still-open real transaction gates; prior cloud restore is retained.
+- Current API341pass,Web107pass,infrastructure47pass,native41targeted transport/auth
+  checks pass. Two callback checks passed in the prior targeted run. Counts overlap
+  historical suites; do not sum them. ip-address is patched to10.7.2.
+- Strictly verified distribution IPA has no debug entitlement/StoreKit fixture,
+  exact production connections and CustomerAccessNO. It is not uploaded. Six direct
+  JPEG screenshots have accepted dimensions/no alpha; original PNG evidence retained.
+  Listing and final-declaration/reviewer worksheets are[prepared locally](../output/release/rillora-20260930/README.md).
+  New closed Web candidate is retained locally; Preview/WWW/legal publications stay unchanged.
 
-One strict purchase lifecycle now supports explicit production and enrolled-review
-contexts. Review validates only signed Sandbox data against the Sandbox API and
-uses separate price bindings, receipt/observation environments, inbox markers,
-leases, owner links and order transitions. Expired/non-enrolled accounts and real
-production customers cannot use review intake. Real Apple/Web checkout also rejects
-active validation enrollment or test billing history, including after expiry.
-Current signed state, duplicate
-restore/refund, exact recurring consent and atomic finish remain required.
+## Parked gates and evidence limits
 
-Native routing reads verified AppTransaction.shared; unknown/Xcode fails closed.
-The review form labels test/no charge and requires the review response contract.
-PurchaseIntent now leads to sign-in and existing Plan & access without auto-buying.
-The actual intended Apple Product is retained. Existing layout/appearance stays.
-Migration0086 is local only; no cloud price/enrollment/secret/IAM/task is activated.
+Owner participation is needed for actual review sign-in/legal acceptance,real
+provider/device journeys and final Apple notification/declaration actions. Merchant
+facts and physical devices remain explicitly deferred. AppleSandbox purchase/restore/
+notifications/TestFlight/AppReview are not complete. SBP approval/effective15% and
+final99.99/119.99channel price remain unknown/unselected; oldUSA68/CAD99is unchanged.
+SES remainsproduction=false/DENIED; wait for the original case,do not duplicate it.
 
-Local API314tests/35files, typecheck/build pass. Native full175pass/1pre-existing
-StoreKitTest skip; final13purchase regressions and1new transport test pass afterward.
-Synthetic Apple payloads/transport + isolated PostgreSQL are not real Apple purchase
-or signature evidence. [Checks](../output/qa/rillora-apple-release-20260929/work-state.json).
+Before customer cutover,old tenant-wide test M2M grants must retire and their issued
+86400second tokens plus skew must expire. Preserve current Preview until that
+cutover. New production clients do not invalidate those old powers. No public
+customer activation,live revenue,fullE2EE,external certification or delivery SLA
+is inferred from this increment.
 
-The old Rillora development profile lacked Associated Domains. Xcode automatic
-refresh resolves it; final Release archive and App Store IPA export succeed.
-Strict signature verification, bundle/team, non-debuggable store profile,
-production connection fields and no embedded StoreKit fixture are verified.
-The artifact still has customer accessNO: no upload/TestFlight/App Review is claimed.
-[Final export](../output/qa/rillora-apple-release-20260929/distribution-verification-final.json).
-Ordinary signed Debug is rebuilt/installed onRillora-Matrix-17-Pro/iOS26.5, using
-existing Preview API and no new test overrides; observed public Home, no UI redesign.
+## Source and final evidence
 
-## Actual Apple state
-
-Paid/free agreements active; banking available; tax forms in use; membership active
-throughJune2027. These do not prove SBP approval or clear deferred merchant facts.
-AnnualUSAUS$68/CAD99 and8test-matrix territories remain. Multiseat/FamilySharing off.
-Monthly stays retired for new sales; no final provider price is changed this round.
-
-Apple confirms receipt of the Small Business Program enrollment after the Owner's
-final confirmation. Approval/effective15% remainpending. Keep the receipt page;
-do not submit a duplicate. [Submission](../output/qa/rillora-apple-release-20260929/small-business-submitted.txt).
-
-Streamlined Purchasing disable was explicitly rejected because an approved
-PurchaseIntent binary is required. It remainson; source support is added, so revisit
-after approval before external merchandising. No promo/offer-code campaign exists.
-App Store draft website/support URLs are saved and verified after reload.
-Version1.0 is Prepare for Submission; TestFlight explicitly has no builds.
-Screenshots/reviewer account/contact and final declarations remainuncompleted.
-
-## Preserved release state
-
-Prior UI audit10repairs, Preview/WWW/LegalSites publication andCI29 retain their
-own September29 evidence; no new UI or API deployment is claimed here. Staging
-API38/schema0075 and production API task1/schema0070 remain the earlier cloud
-checkpoint.0076–0086are pending rollout. Final production identity connections,
-SES email, paid prices and customer activation remain separately gated.
-
-SES clarification submitted22:31:40+08September29 to originalcase179022088800001;
-caseReopened, last actual SES production=false/DENIED and accountHEALTHY. No further
-message/poll in this Apple increment. Preserve SES/Auth0 priority and no fallback
-purchase. Existing source/Git, actual data/KMS/TLS/restore and delivered monitoring
-proof remain counted. Owner-deferred merchant-market and physical devices are not
-waived or newly requested. The overall launch goal remains incomplete.
-
-## Source checkpoint
-
-Final engineering79cea6429b8a6b0d0712a4af4aeea3096e7e35d5 is pushed.
-[CI35](https://github.com/tantalum666/rillora/actions/runs/36596303754) succeeds; the preceding
-[CI34](https://github.com/tantalum666/rillora/actions/runs/36595417009) also succeeds.
-API314local checks pass after the final real-checkout guard. No native source changed
-after the final signed export. Source scan25reviewed nonsecret spans/0unknown;
-163Markdown files/1613local links have0missing. The evidence-only documentation
-closeout is separate from these engineering commits and cloud deployment.
+Main started clean at a98018f2d6caa45783d005747da637765d38afd6. The current source scan
+passes with27exact reviewed non-secret spans and0unreviewed findings. One unchanged
+validator span moved29lines;two new public service client IDs are pinned by exact
+line/hash. No whole-file scan exclusion was added. Source commit,push and exact CI
+result are recorded in[the closeout](../output/qa/rillora-launch-resume-20260930/closeout.json);
+only its completed results count,not old CI35. The QA index also lists modified
+contracts,decision/journey entries and artifact/cleanup evidence.
 
 ## Single next step
 
-Make the production review account/runtime/catalog operational under the new
-explicit review gate, then verify actual Apple Sandbox purchase/restore before
-creating and uploading a usable TestFlight candidate. Apply final channel pricing
-only after actual effective-fee evidence and the price decision. Carry remaining
-release gates from[release readiness](release-readiness.md); do not merely flip the
-closed native entrance or mistake the signed preparation IPA for a launch.
+At the Owner's next participation window,complete the prepared restricted reviewer
+login and affirmative legal confirmation,then validation enrollment and real Apple
+Sandbox purchase/restore/notification acceptance. Existing runtime,vaults,catalog,
+retention,artifacts and tests are already prepared; do not rebuild them unchanged.
+If the fixed review expiry has actually elapsed,refresh its bounded authorization
+rather than treating a new chat as proof of expired login. Keep AWS response,merchant/
+device deferrals,final pricing/declarations and actual submission separately gated.
 
-[Previous handoff — HISTORICAL](handoff-history-20260930-before-apple-closeout.md).
+[Previous handoff — HISTORICAL](handoff-history-20260930-before-review-runtime.md).
