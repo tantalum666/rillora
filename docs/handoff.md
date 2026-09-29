@@ -86,9 +86,11 @@ SES reconsideration on originalcase179022088800001 received a further refusal on
 September29 at16:10+08. The actual Gmail reply cites sender reputation/deliverability
 but no specific defect or remediation. Fresh22:01+08API read shows HEALTHY/sending
 on, production=false/DENIED,200/day,1/second,0sent last24h;14configuration checks
-pass and only production access is blocked. A concrete clarification draft is
-UNSENT; this inspection sent no new communication and changed no service. Prefer
-SES/Auth0; no fallback switch is adopted. [Mail evidence](production-identity-mail-20260924.md).
+pass and only production access is blocked. Owner then authorized sending the prepared clarification; it is submitted once
+at22:31:40+08 in the original Support case, now Reopened, with exact text readback.
+Post-send SES production remainsfalse/DENIED. Await the substantive reply without
+duplicating the message; no service/credential change occurred. Prefer SES/Auth0;
+no fallback switch is adopted. [Mail evidence](production-identity-mail-20260924.md).
 
 ## Single next step
 

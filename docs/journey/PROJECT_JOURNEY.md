@@ -2841,3 +2841,13 @@ launch prerequisites and historical authentication gates are not repeated approv
 - **未完成项**：AWS仍未给出可执行的审核条件；正式发信、Auth0邮件接入和真实收件验收尚未完成。独立Apple／提审工程继续按handoff，不把这封信当作全面上线失败或可通过付费立即解决的结论。
 
 [当次证据](../../output/qa/rillora-ses-reply-20260929/README.md)。
+
+## 2026-09-29 — 发送AWS澄清并回读提交
+
+- **目标**：Owner明确“可以，你直接发送邮件”，发送刚审阅的三点澄清。
+- **尝试**：复用现有AWS会话，确认原工单和当前HEALTHY／DENIED状态；使用Support Center原工单的重新打开／回复入口提交，通知邮箱本身不接收回复。
+- **判断变化**：上一轮未发送稿已获明确发送授权；不再把“未发送”当作当前状态。
+- **结果**：一条1556字符回复实际记录在2026-09-29 22:31:40+08，作者为rillora/rillora-operator，正文完整匹配；工单状态回读为已重新打开，保留support@rillora.xyz附加联系人。提交凭据、截图和原文均已保存。
+- **未完成项**：AWS尚未回答具体整改要求；提交后SES生产权限仍为false／DENIED。发送／工单重开不等于获批；独立上线工程继续，不重复发送同一内容。
+
+[提交凭据](../../output/qa/rillora-ses-reply-20260929/clarification-submission-receipt.json)。

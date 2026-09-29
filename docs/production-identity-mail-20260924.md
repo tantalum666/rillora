@@ -2,9 +2,29 @@
 
 Role: focused release integration and evidence boundary
 
-Status: SEPTEMBER29 RECONSIDERATION DECLINED; SES HEALTHY BUT STILL SANDBOX; NO PROVIDER SWITCH
+Status: SEPTEMBER29 CLARIFICATION SENT; CASE REOPENED; SES PRODUCTION STILL DISABLED
 
 Last updated: 2026-09-29 (Asia/Hong_Kong)
+
+## September29 authorized clarification submitted
+
+Owner explicitly says to send the prepared clarification. The existing CLI and
+browser sessions are reused; no new MFA or permission grant is needed. The original
+Support case offers Reopen; the reply is submitted through that supported channel,
+not the no-reply notification email address. The official correspondence thread
+now shows rillora/rillora-operator at September29 22:31:40+08, and the expanded case
+details show Reopened. The full rendered body matches the submitted text.
+
+One 1,556-character message asks whether the concern is observed reputation or
+onboarding evidence, whether production recipient access can retain200/day and
+1/second, and what specific evidence/change/observation period would justify a new
+review. Existing support@rillora.xyz remains the additional contact; no attachment,
+credential, private-map content, new support plan or duplicate case is introduced.
+
+Post-submission SES GetAccount still reports production=false, review=DENIED and
+HEALTHY/sending=true. Reopening the Support case is not SES approval. Wait for a
+substantive response while independent release work continues; do not duplicate
+the message. [Exact text and submission receipt](../output/qa/rillora-ses-reply-20260929/clarification-submission-receipt.json).
 
 ## September29 reply: reputation wording does not identify a defect
 
@@ -37,10 +57,10 @@ Agent recommends requesting concrete clarification in the original case rather
 than repeating unchanged material: distinguish current reputation problems from
 onboarding evidence, retain200/day and1/second while asking for verified-user
 transactional recipient access, and ask what evidence/timeframe would justify a
-new review. A concise [clarification draft](../output/qa/rillora-ses-reply-20260929/clarification-draft.md)
-is prepared but UNSENT. This Owner turn authorizes inspection/explanation, not a
-new message; no message, test mail, provider switch, credential or infrastructure
-change occurs. Preserve the existing SES-first/Auth0 direction and separate launch
+new review. A concise [historical clarification draft](../output/qa/rillora-ses-reply-20260929/clarification-draft.md)
+was prepared but not sent during that read-only investigation. Owner subsequently
+authorized sending it; the actual submission is recorded above. The investigation
+itself changed no provider, credential or infrastructure. Preserve the existing SES-first/Auth0 direction and separate launch
 gates. [Reply and current readback](../output/qa/rillora-ses-reply-20260929/README.md).
 
 ## September28 authorized reconsideration submitted

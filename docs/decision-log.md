@@ -2795,3 +2795,14 @@ unreachable release remains a different closed workflow. See [sharing contract](
 - Authenticated journey evidence is isolated synthetic data. Current tests,
   Simulator install and Preview/WWW/legal publication are separate from live
   identity, mail, paid transactions and App Store release. [Audit](ui-ux-audit-20260929.md).
+
+## 2026-09-29 — Owner authorizes SES clarification submission
+
+- After reviewing the refusal and the prepared three-question draft, Owner explicitly
+  instructs direct sending. This supersedes the earlier read-only/unsent scope.
+- Submit once to the original AWS Support case179022088800001 using the supported
+  console correspondence channel; preserve the existing contact and avoid a new
+  case or reply to the no-reply address. No provider, paid plan or customer access
+  change is approved by this communication.
+- Submission/readback at22:31:40+08 and Reopened are confirmed; SES approval remains
+  absent. [Mail record](production-identity-mail-20260924.md).
