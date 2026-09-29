@@ -2,9 +2,61 @@
 
 Role: current launch scope, remaining work and release evidence contract  
 Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; CUSTOMER ACCOUNTS AND SALES CLOSED
-Last updated: 2026-09-28 (Asia/Hong_Kong)
+Last updated: 2026-09-29 (Asia/Hong_Kong)
 
-## September28 public landing and Preview entry
+## September29 current launch-gap review
+
+Owner asks what remains before formal publication. Fresh local preflight at22:44+08
+still reports seven unfinished engineering/release gates and two Owner-deferred
+gates. The final native distribution artifact was not supplied to this check; its
+absence from acceptance is not filled by the installed Debug Simulator app. All
+five native production connection values and the primary App icon are configured.
+These counts are an inventory, not a completion percentage.
+
+The current UI/UX repair is complete for its recorded scope: ten findings repaired,
+app-wide Web/native appearance, Preview/WWW/LegalSites publication, current local
+and synthetic journey checks and engineeringCI29. Core matter/sharing/guidance,
+backup/export and the separate production data/TLS/restore/monitoring foundation
+retain their completed evidence. No new feature, logo or decorative-motion work
+is needed to close the release gates.
+
+| Required work | Already prepared | Still required to close |
+| --- | --- | --- |
+| Apple actual transactions | Ordinary native purchase/restore, ownership/signature/ledger and retry source tested | Safe final-app TestFlight/review Sandbox path; effective fees and differential annual price; exact provider SKU/keys/notifications; real purchase, restore, renewal/refund/expiry and cross-channel acceptance |
+| Production identity/mail | Production clients/audience, Google project/client and SES domain controls prepared | SES production approval or a separately adopted legitimate delivery alternative; Auth0 sender/templates and real verification/reset/invitation continuation; Google/Apple production login; retire test capabilities and let old tokens expire before customers |
+| Web annual billing | US$88.99annual catalog and ordinary production adapter/consent/lifecycle source tested | Actual merchant/tax facts, live product/price/key/webhook/portal, runtime rollout, real payment/cancel/refund/expiry and correct shared entitlements |
+| Final production runtime/journeys | Independent data/KMS/TLS and same-origin closed Web delivery; native5/5connection values | Deploy reviewed current API/migrations/configuration and final clients; verify actual production identity create/edit/invite/accept/restrict/revoke/export/delete across Web/iOS before activation |
+| Recurring data operations | Seven-day backup and actual scoped restore/deletion/revocation/session replay | Bounded recurring retention and old-snapshot retirement; reconcile provider transactions after restoration so later refunds/expiry/access changes do not revert |
+| Final security/artifact acceptance | Content encryption, source/secret checks and CI checkpoints | Review exact final production permissions, dependencies/artifacts, sensitive-action authentication, negative access, logs, rollback and unresolved high-impact defects |
+| Submission package | App record, initial listing drafts and approved03assets | Signed Release archive, TestFlight, final screenshots/privacy/age/encryption/store markets, reviewer access, actual submission/review and manual release |
+
+The concrete Apple integration gap is still current: production verification rejects
+Sandbox. Apple documents that TestFlight apps automatically use Sandbox, so the
+final candidate needs a correctly separated review/test path, not merely an upload
+or a relaxed production verifier. [Apple TestFlight testing](https://developer.apple.com/help/app-store-connect/test-a-beta-version/testing-subscriptions-and-in-app-purchases-in-testflight/).
+Submission separately requires metadata and a chosen build; a draft is not a submitted
+version. [Apple submission requirements](https://developer.apple.com/help/app-store-connect/manage-submissions-to-app-review/submit-an-app/).
+
+SES's September29 refusal and22:31:40+08clarification are verified in the immediately
+preceding work. The case is Reopened but SES production remainsfalse/DENIED. This
+status review sends no further message and does not wait idly for the provider.
+Apple/Stripe administration, credentials, fee status and merchant facts are not
+re-logged or newly reverified in this status-only pass; each retains its dated record.
+
+Business/merchant-market verification and physical-device acceptance remain
+Owner-deferred. They are not silently marked complete, nor newly demanded here.
+Existing joint Web/iOS and Free/Family release scope remains. No public Free-only
+launch, service migration, price change or new feature is adopted by this review.
+
+Execution priority remains Apple/TestFlight transaction validation, alongside
+retention/reconciliation and final artifact/store preparation; complete Web live
+configuration as merchant facts permit, then integrate identity/mail and run final
+production journeys. Provider approval/business facts and actual review timing
+prevent a reliable calendar release promise now. The next inspectable milestone
+is a signed TestFlight candidate with real Apple Sandbox purchase/restore evidence.
+[This review/preflight](../output/qa/rillora-release-status-20260929/README.md).
+
+## HISTORICAL — September28 public landing and Preview entry
 
 Owner explicitly authorizes the public-site redesign and a Preview-labelled link
 to the existing staging account. The generated-artwork landing, working example

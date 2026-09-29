@@ -92,10 +92,22 @@ Post-send SES production remainsfalse/DENIED. Await the substantive reply withou
 duplicating the message; no service/credential change occurred. Prefer SES/Auth0;
 no fallback switch is adopted. [Mail evidence](production-identity-mail-20260924.md).
 
+## Latest launch-gap review
+
+September29 22:44+08local preflight still has seven engineering/release gaps plus
+two Owner-deferred facts, with no final distribution artifact supplied. Existing
+native5/5connections/icon and all completed UI/runtime foundations remain counted.
+The register now links the actual September29 mail refusal/clarification and current
+public/UI evidence; no gate status or required flag was relaxed. Apple/TestFlight
+Sandbox verification, real payment, identity/mail, final rollout, ongoing retention/
+reconciliation, security acceptance and signed submission remain. [Current inventory](release-readiness.md).
+
 ## Single next step
 
-Resume safe Apple review/TestFlight preparation: resolve actual fee/channel price and transaction
-binding before purchases. Continue the remaining independent release gates under
-[release readiness](release-readiness.md) and[Apple preparation](production-apple-20260926.md).
+Complete the safe Apple review/TestFlight transaction path and actual fee/channel
+price binding, progressing toward a signed TestFlight candidate with real purchase/
+restore evidence. Independent retention/reconciliation and final submission preparation
+can proceed while SES answers the already-sent clarification. Follow[release readiness](release-readiness.md)
+and[Apple preparation](production-apple-20260926.md); Owner-deferred facts remain separate.
 
 [Previous handoff — HISTORICAL](handoff-history-20260929-before-ui-ux-closeout.md).

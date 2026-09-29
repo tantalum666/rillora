@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-28",
+  "updatedAt": "2026-09-29",
   "release": "Rillora Global 1.0",
   "scope": "Web and native iOS; existing Free and Family only",
   "gates": [
@@ -37,9 +37,12 @@
         "output/qa/rillora-production-identity-20260924/mail-readiness-after-reply.json",
         "output/qa/rillora-launch-goal-20260926/ses-gmail-readback.json",
         "output/qa/rillora-launch-goal-20260926/ses-reconsideration-submitted-20260928.json",
-        "docs/auth0-cognito-migration-20260928.md"
+        "docs/auth0-cognito-migration-20260928.md",
+        "output/qa/rillora-ses-reply-20260929/mail-readiness.json",
+        "output/qa/rillora-ses-reply-20260929/clarification-submission-receipt.json",
+        "output/qa/rillora-ses-reply-20260929/account-after-send.json"
       ],
-      "next": "SES reconsideration submitted to original case179022088800001 at2026-09-28T12:40:19+08 and read back Reopened; do not duplicate. SES remains sandbox200/day,1/sec. Retain Auth0; Resend fallback, no migration. Await approval then verify real delivery/recovery, identity retirement/token drain and production journeys; independent engineering continues."
+      "next": "September29 refusal is confirmed. Owner-authorized clarification was submitted once at22:31:40+08 to case179022088800001; case Reopened, SES production remainsfalse/DENIED with HEALTHY status. Await actionable response without duplicate sending. Retain SES/Auth0 priority; complete sender/real delivery/recovery, controlled identity retirement and production journeys before opening customers."
     },
     {
       "id": "production-billing",
@@ -114,7 +117,8 @@
       "required": true,
       "title": "Release artifact and security acceptance",
       "evidence": [
-        "output/qa/rillora-content-encryption-20260922/closeout.json"
+        "output/qa/rillora-content-encryption-20260922/closeout.json",
+        "output/qa/rillora-ui-ux-audit-20260929/source-scan.json"
       ],
       "next": "Staging envelope encryption is verified, not final production security acceptance. Review final production source/artifacts, dependency/secrets, sensitive-action reauthentication, exact permissions, negative-access cases and rollback. No external certification is claimed."
     },
@@ -146,9 +150,11 @@
         "output/qa/rillora-production-identity-20260924/www-acceptance.json",
         "output/qa/rillora-production-identity-20260924/root-forward-acceptance.json",
         "output/qa/rillora-production-identity-20260924/root-browser-acceptance.json",
-        "output/qa/rillora-production-identity-20260924/root-monitor-compatibility.json"
+        "output/qa/rillora-production-identity-20260924/root-monitor-compatibility.json",
+        "docs/ui-ux-audit-20260929.md",
+        "output/qa/rillora-ui-ux-audit-20260929/online-readback.json"
       ],
-      "next": "Public information/guides/support at WWW and root browser/current monitor HTTPS redirection are verified. Keep accounts and subscriptions closed until their separate runtime/identity/billing release gates pass; final private app links are part of that later activation."
+      "next": "WWW landing/support/legal and Preview-labelled account entry are published. Detailed provider guidance remains behind sign-in. App-wide appearance and ten scoped UX repairs are verified/installed/staged; these do not activate production accounts or subscriptions. Switch the public entry only after the separate customer release gates pass."
     }
   ],
   "retainedEvidence": [

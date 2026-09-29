@@ -2851,3 +2851,13 @@ launch prerequisites and historical authentication gates are not repeated approv
 - **未完成项**：AWS尚未回答具体整改要求；提交后SES生产权限仍为false／DENIED。发送／工单重开不等于获批；独立上线工程继续，不重复发送同一内容。
 
 [提交凭据](../../output/qa/rillora-ses-reply-20260929/clarification-submission-receipt.json)。
+
+## 2026-09-29 — 最新正式发布差距盘点
+
+- **目标**：Owner询问现在距离正式发布还剩什么工作。
+- **尝试**：复用全量阅读基线，补读当前handoff、发布门、Apple／Web正式支付合同、近期UI与邮件记录；运行只读发布预检，重新核对Apple官方TestFlight与提交要求。
+- **判断变化**：核心UI和产品路径已成型，但付款源码和模拟器结果不能替代生产部署、真实交易及签名提审。邮件不是唯一阻塞；生产验证器拒绝Sandbox与TestFlight默认Sandbox之间仍需安全衔接。不能把旧“正式客户端字段没填”或Logo问题重新列为待开发。
+- **结果**：7项工程／发布门及2项Owner暂缓门仍未完成，最终发行包未提供给预检；5个原生正式连接值和App图标已配置。发布合同新增当前7项工作表与完成标准，登记更新到真实September29邮件／UI证据，但所有required/status保持不变。
+- **未完成项**：下一可验收里程碑为具备真实Apple测试购买／恢复证据的签名TestFlight候选。后台部署／身份邮件／Web实付／持续清理与恢复对账／最终安全及商店提交继续独立过门。经营事实、实机和平台审核时长仍无法承诺；本轮没有改价、发信、部署、买单或新增功能。
+
+[当次预检与边界](../../output/qa/rillora-release-status-20260929/README.md)。
