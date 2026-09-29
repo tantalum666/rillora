@@ -1,7 +1,16 @@
 # Rillora Current Handoff
 
-Status: FINAL LAUNCH GOAL ACTIVE; APPLE REVIEW FLOW LOCAL; SBP SUBMITTED; SIGNED CLOSED IPA
+Status: HANDOFF READY FOR NEW CHAT; LAUNCH INCOMPLETE; APPLE REVIEW LOCAL; SBP SUBMITTED
 Last updated: 2026-09-30 (Asia/Hong_Kong)
+
+## New-chat checkpoint
+
+Owner requests saving all work before opening a new chat. Start with
+[the resume entry](chat-resume-20260930.md) and the repository AGENTS reading protocol.
+Source, provider boundaries and local artifact paths are preserved; no product
+implementation/test/deployment/authentication was repeated for this save.
+The documented launch objective is incomplete; `get_goal` returnsnull, so no managed
+background runner should be assumed. [Save verification](../output/qa/rillora-chat-handoff-20260930/checkpoint.json).
 
 ## Authority and recovery
 

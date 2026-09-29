@@ -2826,3 +2826,14 @@ unreachable release remains a different closed workflow. See [sharing contract](
   Streamlined Purchasing disable until an approved PurchaseIntent binary exists.
 - No final Apple99.99/119.99price is adopted; annualUSA68/CAD99 readback stays an
   existing test catalog fact. [Current Apple contract](apple-review-validation-20260929.md).
+
+## 2026-09-30 — Owner requests a saved cross-chat checkpoint
+
+- Save all current work and make the next chat able to continue without omissions.
+  This is a handoff request, not a new product decision, price approval or launch.
+- Preserve existing authorizations and the single next step in the current handoff.
+  Keep source/docs in the private repository and raw evidence/distribution artifacts
+  in their existing local locations; credentials stay protected and uncommitted.
+- Do not repeat tests, provider applications, deployments or authentication simply
+  because the conversation changes. A new workflow still follows the repository's
+  complete Markdown reading protocol. [Resume entry](chat-resume-20260930.md).
