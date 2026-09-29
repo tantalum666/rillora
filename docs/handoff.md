@@ -23,7 +23,9 @@ One strict purchase lifecycle now supports explicit production and enrolled-revi
 contexts. Review validates only signed Sandbox data against the Sandbox API and
 uses separate price bindings, receipt/observation environments, inbox markers,
 leases, owner links and order transitions. Expired/non-enrolled accounts and real
-production customers cannot use review intake. Current signed state, duplicate
+production customers cannot use review intake. Real Apple/Web checkout also rejects
+active validation enrollment or test billing history, including after expiry.
+Current signed state, duplicate
 restore/refund, exact recurring consent and atomic finish remain required.
 
 Native routing reads verified AppTransaction.shared; unknown/Xcode fails closed.
@@ -32,7 +34,7 @@ PurchaseIntent now leads to sign-in and existing Plan & access without auto-buyi
 The actual intended Apple Product is retained. Existing layout/appearance stays.
 Migration0086 is local only; no cloud price/enrollment/secret/IAM/task is activated.
 
-Local API313tests/35files, typecheck/build pass. Native full175pass/1pre-existing
+Local API314tests/35files, typecheck/build pass. Native full175pass/1pre-existing
 StoreKitTest skip; final13purchase regressions and1new transport test pass afterward.
 Synthetic Apple payloads/transport + isolated PostgreSQL are not real Apple purchase
 or signature evidence. [Checks](../output/qa/rillora-apple-release-20260929/work-state.json).
@@ -81,8 +83,12 @@ waived or newly requested. The overall launch goal remains incomplete.
 
 ## Source checkpoint
 
-Apple implementation/docs are undergoing final source scan, commit/push and exact
-CI readback. Do not infer a pushed commit or green CI until the QA record is updated.
+Engineering897ee5b0ee327d0b0d079c7100fe1cc8cf07b2b5 is pushed;
+[CI34](https://github.com/tantalum666/rillora/actions/runs/36595417009) succeeds for source,API313 and Web/infrastructure.
+A final review adds the symmetric real-checkout block for test accounts; local
+API314passes. Its follow-up push/CI status is recorded in the current QA.
+Source scan25reviewed nonsecret spans/0unknown;163Markdown files/1613local links
+were checked before the final evidence-only links.
 
 ## Single next step
 

@@ -2877,7 +2877,7 @@ launch prerequisites and historical authentication gates are not repeated approv
 旧签名profile缺少Associated Domains，通过Xcode自动刷新解决。Apple后台
 明确拒绝关闭简化购买，要求先有已审核的PurchaseIntent构建；保留该门。
 
-**结果**：API全量313／35文件通过，原生全量175通过、1既有StoreKitTest跳过，
+**结果**：API全量314／35文件通过，原生全量175通过、1既有StoreKitTest跳过，
 后续13购买回归和1新传输检查通过。Release归档与AppStore分发导出、签名／非调试／
 无StoreKit测试文件校验成功，原生Debug已安装。网站／支持链接已保存并重新载入。
 Owner先确认小型企业资格事实、再当场确认最终声明，申请已提交且Apple明确回执。
@@ -2886,3 +2886,8 @@ Owner先确认小型企业资格事实、再当场确认最终声明，申请已
 关闭，未上传TestFlight／提审。审核云端配置／价格／账号、真实Apple购买恢复与
 通知、最终截图及隐私／年龄／加密／审核资料仍需落实。schema0086仅本地验证，
 生产数据和FanPass不变；实体设备、经营事实的既有暂缓保留。[本轮合同](../apple-review-validation-20260929.md)。
+
+最终付款边界复核发现：审核账号到期后仍不应直接进入真实Apple／Web付款，
+否则可能混合测试账单与真实收款。现于共同付款准备步骤拒绝有效测试资格或
+测试账单历史，审核入口保持可用；新增验证后API全量314通过。清理测试账单
+或使用独立客户账号是明确的发布操作，不自动转换。

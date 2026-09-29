@@ -105,7 +105,7 @@ async function lockCheckout(client: PoolClient) {
   await client.query("select pg_advisory_xact_lock(hashtextextended('checkout:' || app.current_planner_id()::text,0))");
 }
 async function assertApplePurchaseClear(client: PoolClient, context: AppleExecutionContext, ownOrderId: string | null = null) {
-  await assertNoForeignPurchase(client,'storekit');
+  await assertNoForeignPurchase(client,'storekit',context.environment);
   if ((await client.query(`select 1 from app.commerce_subscriptions where planner_id=app.current_planner_id()
       and provider_environment=$2 and renewal_provider='storekit'
       and (state in ('previewing','active','cancel_at_period_end','grace','past_due') or renewal_is_possible is distinct from false)

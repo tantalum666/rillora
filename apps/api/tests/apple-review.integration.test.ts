@@ -3,7 +3,7 @@ import { randomUUID } from 'node:crypto';
 import { beforeAll, beforeEach, afterAll, describe, expect, it, vi } from 'vitest';
 import { Environment, Status, Type, InAppOwnershipType, type JWSTransactionDecodedPayload, type JWSRenewalInfoDecodedPayload } from '@apple/app-store-server-library';
 import { runMigrations } from '../src/migrate.js';
-import { type DatabasePool, withPlannerDatabase } from '../src/db.js';
+import { type DatabasePool, withPlannerDatabase, withCommercePlannerDatabase } from '../src/db.js';
 import { appleReviewContext, appleProductionContext } from '../src/apple-execution-context.js';
 import { AppleProductionVerification, rilloraAppleIdentity as identity } from '../src/apple-production-verification.js';
 import { AppleProductionSnapshotAdapter } from '../src/apple-production-server-api.js';
@@ -11,6 +11,7 @@ import { AppleProductionIntake } from '../src/apple-production-intake.js';
 import { AppleProductionInbox } from '../src/apple-production-inbox.js';
 import { loadAppleProductionPriceBindings } from '../src/apple-price-catalog.js';
 import { ApplePurchasePreflight } from '../src/apple-purchase-preflight.js';
+import { assertNoForeignPurchase } from '../src/commerce-purchase-conflicts.js';
 import { applePurchaseTerms } from '../src/apple-purchase-consent.js';
 import { loadConfig } from '../src/config.js';
 import { createApp } from '../src/app.js';
@@ -117,6 +118,15 @@ describe('enrolled Apple review purchases share the strict lifecycle without pro
       from app.commerce_accounts a cross join app.commerce_prices p where a.public_id=$2 and p.price_code='family_apple_review_fixture'`,[plannerId,account]);
     await expect(prepare()).rejects.toMatchObject({code:'apple_review_not_enrolled'});
   });
+  it('prevents enrolled or historical test identities from starting real Web or Apple payments',async()=>{
+    const attempt=(provider:'stripe'|'storekit')=>withCommercePlannerDatabase(pool,plannerId,
+      c=>assertNoForeignPurchase(c,provider));
+    for(const provider of ['stripe','storekit'] as const) await expect(attempt(provider)).rejects.toMatchObject({code:'test_account_real_purchase_blocked'});
+    await prepare();
+    await pool.query("update app.commerce_validation_accounts set expires_at=now()-interval '1 second'");
+    for(const provider of ['stripe','storekit'] as const) await expect(attempt(provider)).rejects.toMatchObject({code:'test_account_real_purchase_blocked'});
+  });
+
   it('never sends Sandbox to the production verifier, or Production/Xcode to the review verifier',async()=>{
     const f=await fixture();const production=new AppleProductionVerification(f.source,new Set(['USA']),appleProductionContext);
     await expect(production.verifyClientTransaction({signedTransaction:'fixture',expectedAppAccountToken:plannerPublicId})).rejects.toThrow();

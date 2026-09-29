@@ -7,7 +7,7 @@ Last updated: 2026-09-30 (Asia/Hong_Kong)
 ## September29–30 Apple execution — current delta
 
 Owner prioritizes Apple release work. The enrolled TestFlight/review Sandbox path
-now has local implementation and313API test passes, native regression/transport
+now has local implementation and314API test passes, native regression/transport
 checks, and a signed Release archive/App Store distribution export. The exported
 artifact remainsclosed to accounts and was not uploaded. This supersedes the
 implementation-only Sandbox rejection and missing-local-artifact gaps in the

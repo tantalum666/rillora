@@ -13,7 +13,7 @@ submission, live purchase or release was created in this increment.
 
 Owner proceeds with Apple work and completes the current login. The safe enrolled
 review/TestFlight path is implemented using the shared strict lifecycle, isolated
-Sandbox evidence and a verified native AppTransaction environment.313API tests,
+Sandbox evidence and a verified native AppTransaction environment.314API tests,
 175native full-suite passes with1existing skip, and14later focused checks pass.
 Signed Release archive and non-debuggable App Store export succeed after refreshing
 Rillora's old provisioning profile. Customer access remainsclosed; no upload or real

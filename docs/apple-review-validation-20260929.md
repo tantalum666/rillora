@@ -28,6 +28,9 @@ preserved as a diagnostic path, not relabeled as the new review lifecycle.
 
 Review accounts need an explicit, unexpired existing validation enrollment and
 active ownership. Accounts with any production order or subscription are excluded.
+Real Apple and Web checkout also reject active validation enrollment or any test
+billing history, even after enrollment expires. Retire synthetic billing explicitly
+or use a separate customer identity; a test account cannot drift into real payment.
 Eligibility is rechecked on quote/preparation/intake and within the commit; the
 existing access clock stops test access when enrollment expires without waiting
 for a notification. A separate test-only route, Sandbox merchandising SKU and
@@ -108,7 +111,7 @@ fields are incomplete, and TestFlight explicitly shows no builds.
 
 ## Verification and artifact boundaries
 
-The full local API suite passes313tests/35files; typecheck and build pass. Native
+The full local API suite passes314tests/35files; typecheck and build pass. Native
 full unit run passes175 with1existing StoreKitTest skip; subsequent13purchase tests
 and1new transport test pass after the final focused edits. These use synthetic
 Apple decoded payloads/transport and isolated PostgreSQL, not an actual Apple
