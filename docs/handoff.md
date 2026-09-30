@@ -23,7 +23,10 @@ Actual two-tab save rejection,51st-matter access and archived-draft recovery pas
 A real native hit-target collision found during validation is repaired by separate
 Form rows. Duplicate contact queries are consolidated,retired UI code/test fallbacks
 removed,and a named disposable local UI fixture is available through qa:native-ui.
-CI's Node version now matches the production22.22.3runtime.
+CI's Node version now matches the production22.22.3runtime. Its Docker test databases
+carry an explicit disposable-fixture marker before migration;55focused guard/API cases
+pass locally after the container-address correction. Final remoteCI remains separately
+recorded in the closeout receipt.
 
 The replacement [release candidates](../output/release/rillora-review-repair-20260930/README.md)
 include a strict-signed closed IPA and closed-product/publicWWWbundles. IPAhash

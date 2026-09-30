@@ -24,12 +24,17 @@ export async function assertDedicatedTestDatabase(input: string, expectedName: s
   const client = new pg.Client({ connectionString, application_name: 'dedicated-test-database-guard' });
   await client.connect();
   try {
-    const result = await client.query<{ name: string; user: string; local: boolean }>(
+    const result = await client.query<{ name: string; user: string; local: boolean; marked_test: boolean }>(
       `select current_database() as name, session_user as "user",
-       inet_server_addr() is null or inet_server_addr() in ('127.0.0.1'::inet, '::1'::inet) as local`,
+       inet_server_addr() is null or inet_server_addr() in ('127.0.0.1'::inet, '::1'::inet) as local,
+       (select shobj_description(oid, 'pg_database') = $1 from pg_database
+        where datname=current_database()) as marked_test`,
+      [`rillora-disposable-test:${expectedName}`],
     );
     const row = result.rows[0];
-    if (row?.name !== expectedName || !row.local
+    // A loopback-published Docker port has a bridge address inside PostgreSQL.
+    // Require its explicit per-database fixture marker, not a generic CI bypass.
+    if (row?.name !== expectedName || (!row.local && !row.marked_test)
       || row.user !== decodeURIComponent(new URL(connectionString).username)) {
       throw new Error(`Tests refuse to modify an unverified ${expectedName} database`);
     }

@@ -23,4 +23,18 @@ describe('test database safety before any migrations or teardown', () => {
     expect(query.mock.calls[0]?.[0]).toMatch(/^select current_database/);
     expect(end).toHaveBeenCalledOnce();
   });
+  it('accepts a loopback-published container only with the exact dedicated database marker', async () => {
+    vi.spyOn(pg.Client.prototype, 'connect').mockResolvedValue(undefined as never);
+    const query = vi.spyOn(pg.Client.prototype, 'query');
+    const end = vi.spyOn(pg.Client.prototype, 'end').mockResolvedValue(undefined as never);
+    const url = 'postgresql://postgres@127.0.0.1/continuity_test';
+    for (const marker of [false, true]) {
+      query.mockResolvedValueOnce({ rows: [{ name: 'continuity_test', user: 'postgres', local: false, marked_test: marker }] } as never);
+      if (marker) await expect(assertDedicatedTestDatabase(url, 'continuity_test')).resolves.toContain('127.0.0.1');
+      else await expect(assertDedicatedTestDatabase(url, 'continuity_test')).rejects.toThrow('unverified');
+    }
+    expect(query.mock.calls.every(call => /^select current_database/.test(String(call[0])))).toBe(true);
+    expect(query.mock.calls[0]?.[1]).toEqual(['rillora-disposable-test:continuity_test']);
+    expect(end).toHaveBeenCalledTimes(2);
+  });
 });

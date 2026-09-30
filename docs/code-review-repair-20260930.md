@@ -53,8 +53,8 @@ is implied. Existing production schema0091and prior release artifacts remain dat
 
 ## Verified evidence and remaining publication boundary
 
-The new equivalent-URL matrix failed before F01repair. API348/348pass; the final
-shared test-database guard also passes its54-case focused suite. Web product112,
+The new equivalent-URL matrix failed before F01repair. API348/348pass at the first
+local full checkpoint; the final shared test-database guard passes55focused cases. Web product112,
 infrastructure47and release guards23pass. Native unit181pass/0fail/1existing
 StoreKit skip. The28current UI cases have passing final outcomes across corrective
 runs on one iPhone17Pro/iOS26.5simulator, including specificAX5and landscape paths.
@@ -84,3 +84,14 @@ Existing SES/SBP,merchant/device and actual Apple identity/purchase gates stay s
 [per-case native UI evidence](../output/qa/rillora-review-repair-20260930/native-ui-coverage.json),
 [source/CI/cleanup receipt](../output/qa/rillora-review-repair-20260930/closeout.json),
 [prepared artifacts](../output/release/rillora-review-repair-20260930/README.md).
+
+## CI container follow-up
+
+Source checkpointbe6617c27was pushed. Run40passed source andWeb/infrastructure but
+itsAPIjob refused the Docker test database before52cases could run: PostgreSQL's
+server address inside the bridged container is not a loopback address. The guard
+now retains the loopback destination,name andcredential restrictions while requiring
+an exact per-database disposable-fixture marker for that container case. CI writes
+that marker only when creating its fresh test databases. No genericCI bypass or
+remote-host allowance was added. The new positive/negative guard case and55focused
+local cases pass; final remote result is recorded in the QA closeout.
