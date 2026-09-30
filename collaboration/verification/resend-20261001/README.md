@@ -42,7 +42,9 @@ proof. No email HTML/ticket, API token, private key or real recipient appears he
 
 The immutable September30 encrypted archives were not rebuilt or redownloaded.
 Current source/publication scans and link checks are recorded beside these receipts.
-Git upload is verified against the remote after commit. CI42 remains evidence for unchanged runtime
+[Git remote readback](remote-readback.json) confirms the provider/evidence commit
+and a clean tree after normal push. The receipt follow-up changes only this proof
+and its manifest; final main is checked again after that push. CI42 remains evidence for unchanged runtime
 implementation, not a new mail-delivery or product-acceptance run.
 
 [Source scan](source-scan.json) passed with29 previously reviewed non-secrets and
