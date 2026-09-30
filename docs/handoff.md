@@ -16,8 +16,8 @@ Apple prices, real data and FanPass.
 
 Reuse the165owned Markdown/29,003line [full reading ledger](../output/qa/rillora-launch-resume-20260930/full-read-completion.json);
 this continuation records focused changed-document reads in the collaboration package.
-The complete work snapshot contains46,463files, deduplicated to19,990raw objects;
-8,876readable copies and6sealed archives cover prior ignored work. Every raw object
+The complete work snapshot contains46,768files, stored as20,108raw objects(20,026distinct contents);
+8,876readable copies and7sealed archives cover prior ignored work. Every raw object
 and its catalog mapping passed local decrypt/hash verification. Readable evidence
 passed its own secret scan; exact current-source and remote checks are recorded in
 [the publication receipts](../collaboration/verification/), not inferred from preparation.

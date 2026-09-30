@@ -46,6 +46,11 @@ Rillora project are swept into the snapshot except the specific Owner-supplied
 review report. The known legal-site source mirror and local source checkpoints are
 included as Rillora work, not silently discarded as a whole `.local` folder.
 
+The exact historical client builds listed in snapshot.json protectedBuildExceptions
+are a reviewed exception to the protected-directory skip: those non-credential
+artifacts are preserved encrypted, with no readable copies of private legal identity
+text. The rest of the credential store remains excluded.
+
 Precise exclusions are retained in the local QA publication plan; the shared
 snapshot reports the reason counts. These exclusions are explicit and do not mean
 that an entire output/QA/release directory can be omitted. A Git snapshot is not a

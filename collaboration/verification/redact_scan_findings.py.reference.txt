@@ -1,0 +1,61 @@
+from pathlib import Path
+import json,gzip,collections,subprocess,os
+ROOT=Path.cwd()
+private=ROOT/'.local-secrets/collaboration-git'
+qa=ROOT/'output/qa/rillora-all-work-git-20260930'
+changed,withheld=set(),set()
+for iteration in range(1,4):
+ findings=json.loads((private/'evidence-findings.json').read_text())
+ if not findings:break
+ grouped=collections.defaultdict(list)
+ for f in findings:grouped[f['File']].append(f)
+ for name,items in grouped.items():
+  path=Path(name)
+  if not path.is_absolute():path=ROOT/path
+  if ROOT/'collaboration/evidence' not in path.parents:raise RuntimeError('Outside evidence')
+  compressed=path.suffix=='.gz'
+  try:text=gzip.decompress(path.read_bytes()).decode() if compressed else path.read_text()
+  except (UnicodeError,ValueError):raise RuntimeError('Nontext match needs review')
+  original=text
+  unresolved=False
+  for item in items:
+   secret=item['Secret']
+   if secret and secret in text:text=text.replace(secret,'[REDACTED_SCANNER_LITERAL]')
+   elif item['Match'] and item['Match'] in text:text=text.replace(item['Match'],'[REDACTED_SCANNER_MATCH]')
+   elif secret and secret in original:pass
+   else:unresolved=True
+  relative=path.relative_to(ROOT).as_posix()
+  if unresolved:
+   # Deeper decoded findings cannot be safely rewritten by guessing offsets.
+   # The complete original is already preserved in a verified sealed object.
+   withheld.add(relative)
+   path.unlink()
+   preview=Path(str(path)+'.preview.txt')
+   if preview.exists():preview.unlink()
+  else:
+   data=text.encode()
+   path.write_bytes(gzip.compress(data,mtime=0) if compressed else data)
+   changed.add(relative)
+   if compressed:
+    preview=Path(str(path)+'.preview.txt')
+    lines=text.splitlines()
+    preview.write_text('GENERATED PREVIEW; full redacted contents are in the adjacent gzip.\n\n'+'\n'.join(lines[:100]+['[... full content retained in gzip ...]']+lines[-100:]))
+ for catalog in (ROOT/'collaboration/catalog').glob('files-*.json'):
+  records=json.loads(catalog.read_text())
+  for record in records:
+   if record.get('readablePath') in changed:record['privacyRedactions']=True
+   if record.get('readablePath') in withheld:
+    record.pop('readablePath',None);record.pop('previewPath',None)
+    record['readableWithheldReason']='Decoded secret-shaped content retained only in the encrypted original'
+  catalog.write_text(json.dumps(records,ensure_ascii=False,indent=2)+'\n')
+ with (private/f'evidence-scan-{iteration}.log').open('w') as log:
+  result=subprocess.run(['gitleaks','dir','collaboration/evidence','--no-banner','--redact=0','--report-format','json','--report-path',str(private/'evidence-findings.json'),'--max-archive-depth','2'],stdout=log,stderr=log)
+ if result.returncode not in (0,1):raise RuntimeError('Scanner failed')
+ current=json.loads((private/'evidence-findings.json').read_text())
+ print(json.dumps({'iteration':iteration,'remainingFindings':len(current),'changedCopies':len(changed),'withheldCopies':len(withheld)}),flush=True)
+if json.loads((private/'evidence-findings.json').read_text()):raise RuntimeError('Unresolved findings remain')
+summary=json.loads((ROOT/'collaboration/snapshot.json').read_text())
+summary['readableFiles']=sum('readablePath' in r for c in (ROOT/'collaboration/catalog').glob('files-*.json') for r in json.loads(c.read_text()))
+summary['readableSecretScan']={'scanner':'gitleaks','findingsRemaining':0,'changedCopies':len(changed),'withheldCopies':len(withheld),'includesGzipAndZip':True,'rawCiphertextNotScanned':True}
+(ROOT/'collaboration/snapshot.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
+(qa/'evidence-redaction-result.json').write_text(json.dumps(summary['readableSecretScan'],indent=2)+'\n')

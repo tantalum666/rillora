@@ -1,12 +1,12 @@
 {
   "sourceBase": "38307b0d00a994fc5590b0625e8c71a28dcc7624",
   "repositorySources": 1117,
-  "workFiles": 46463,
-  "workBytes": 5445783811,
+  "workFiles": 46768,
+  "workBytes": 5460510455,
   "capturedFrom": "2026-09-30T14:57:48.048882+00:00",
   "capturedThrough": "2026-09-30T14:59:06.650021+00:00",
-  "uniqueRawObjects": 19990,
-  "uniqueRawBytes": 3928212859,
+  "uniqueRawObjects": 20026,
+  "uniqueRawBytes": 3932740770,
   "readableFiles": 8876,
   "archives": [
     {
@@ -50,9 +50,16 @@
       "bytes": 53347513,
       "plainBytes": 64282494,
       "uniqueObjects": 929
+    },
+    {
+      "path": "collaboration/archives/raw-work-007.tar.zst.age",
+      "sha256": "5b39731500e2b4283c6c44672f652b947231f236d80f2d50cf96c5e37d191306",
+      "bytes": 4930542,
+      "plainBytes": 7660105,
+      "uniqueObjects": 118
     }
   ],
-  "archiveBytes": 3358801448,
+  "archiveBytes": 3363731990,
   "recipientFingerprint": "5cbd67154b7c696bb6047f1bdb7268516b8957f7acfe14b9c058571c25d54edd",
   "catalogFiles": [
     "collaboration/catalog/files-001.json",
@@ -147,7 +154,8 @@
     "collaboration/catalog/files-090.json",
     "collaboration/catalog/files-091.json",
     "collaboration/catalog/files-092.json",
-    "collaboration/catalog/files-093.json"
+    "collaboration/catalog/files-093.json",
+    "collaboration/catalog/files-protected-builds.json"
   ],
   "excludedDirectoryAndFileCounts": {
     "reproducible_dependency_or_editor_cache": 48,
@@ -169,5 +177,19 @@
     "withheldCopies": 0,
     "includesGzipAndZip": true,
     "rawCiphertextNotScanned": true
+  },
+  "storedRawObjects": 20108,
+  "protectedBuildExceptions": [
+    ".local-secrets/compiled-p1-20260916",
+    ".local-secrets/compiled-p2-20260916",
+    ".local-secrets/brand-adoption",
+    ".local-secrets/legal/rillora-legal-p1-20260916.tar.gz",
+    ".local-secrets/legal/rillora-ux-behavior-20260916.tar.gz"
+  ],
+  "supplementalCapture": {
+    "capturedAt": "2026-09-30T15:16:41.021010+00:00",
+    "files": 305,
+    "reason": "Reviewed earlier client builds in protected folders; credential files remain excluded",
+    "deduplicationScope": "Per capture batch; distinct content digests and stored object counts are reported separately"
   }
 }

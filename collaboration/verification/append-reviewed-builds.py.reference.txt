@@ -1,0 +1,36 @@
+from pathlib import Path
+import sys,json,uuid,subprocess,datetime,tarfile
+sys.path.insert(0,'tools/collaboration')
+from build_snapshot import ROOT,QA,DEST,IDENTITY,PROTECTED_BUILD_PATHS,freeze_file,seal_chunk
+from snapshot_policy import file_exclusion
+summary=json.loads((DEST/'snapshot.json').read_text())
+assert len(summary['archives'])==6
+paths=[]
+for name in PROTECTED_BUILD_PATHS:
+ p=ROOT/name
+ for f in ([p] if p.is_file() else p.rglob('*')):
+  if f.is_file() and not f.is_symlink() and not file_exclusion(f.relative_to(ROOT).as_posix()): paths.append(f)
+for p in paths:
+ if p.name.endswith('.tar.gz'):
+  with tarfile.open(p) as tar:
+   assert not any(file_exclusion(m.name) for m in tar.getmembers() if m.isfile()), 'Nested credential-like filename'
+blobs={};records=[]
+for p in paths:
+ name=p.relative_to(ROOT).as_posix();f,d=freeze_file(p,QA/'frozen-objects')
+ blob=blobs.setdefault(d,{'id':uuid.uuid4().hex,'sha256':d,'bytes':f.stat().st_size,'source':str(f),'paths':[]})
+ blob['paths'].append(name)
+ records.append({'sourcePath':name,'bytes':f.stat().st_size,'rawObject':blob['id'],'rawOnlyReason':'Reviewed historical client build contains private legal identity text; no readable copy'})
+recipient=subprocess.check_output(['age-keygen','-y',str(IDENTITY)],text=True).strip()
+receipt=seal_chunk(7,list(blobs.values()),recipient)
+for r in records:r['rawArchive']=receipt['path']
+cat='collaboration/catalog/files-protected-builds.json'
+(ROOT/cat).write_text(json.dumps(records,ensure_ascii=False,indent=2)+'\n')
+summary['catalogFiles'].append(cat);summary['archives'].append(receipt)
+summary['workFiles']+=len(records);summary['workBytes']+=sum(r['bytes'] for r in records);summary['archiveBytes']+=receipt['bytes']
+raw=json.loads((QA/'raw-objects.json').read_text())+list(blobs.values())
+unique={b['sha256']:b['bytes'] for b in raw}
+summary.update(storedRawObjects=len(raw),uniqueRawObjects=len(unique),uniqueRawBytes=sum(unique.values()),protectedBuildExceptions=PROTECTED_BUILD_PATHS,
+ supplementalCapture={'capturedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'files':len(records),'reason':'Reviewed earlier client builds in protected folders; credential files remain excluded','deduplicationScope':'Per capture batch; distinct content digests and stored object counts are reported separately'})
+(DEST/'snapshot.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
+(QA/'raw-objects.json').write_text(json.dumps(raw,ensure_ascii=False,indent=2)+'\n')
+print(json.dumps({k:summary[k] for k in ['workFiles','workBytes','storedRawObjects','uniqueRawObjects','archiveBytes','supplementalCapture']}))

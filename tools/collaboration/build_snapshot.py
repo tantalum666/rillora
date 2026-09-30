@@ -31,6 +31,15 @@ SENSITIVE_KEYS = {'password', 'clientsecret', 'secretaccesskey', 'accesstoken', 
                   'sessiontoken', 'idtoken', 'csrftoken', 'apikey', 'privatekey', 'secret',
                   'authorization', 'cookie', 'setcookie', 'invitationtoken', 'recoveryprivatekey'}
 PUBLIC_EMAILS = {'support@rillora.xyz', 'privacy@rillora.xyz', 'security@rillora.xyz'}
+# Old client build artifacts were kept here because they contained legal identity
+# text. These exact reviewed paths are work products, not credential-store exports.
+PROTECTED_BUILD_PATHS = [
+    '.local-secrets/compiled-p1-20260916',
+    '.local-secrets/compiled-p2-20260916',
+    '.local-secrets/brand-adoption',
+    '.local-secrets/legal/rillora-legal-p1-20260916.tar.gz',
+    '.local-secrets/legal/rillora-ux-behavior-20260916.tar.gz',
+]
 
 def sha(path: Path) -> str:
     h = hashlib.sha256()
@@ -153,6 +162,13 @@ def inputs():
     report = Path('/Users/tantalum/Downloads/Rillora-code-review-2026-09-30-zh.md')
     if report.exists():
         files.append(('external-inputs/' + report.name, report))
+    for name in PROTECTED_BUILD_PATHS:
+        path = ROOT / name
+        candidates = [path] if path.is_file() else path.rglob('*')
+        for candidate in candidates:
+            relative = candidate.relative_to(ROOT).as_posix()
+            if candidate.is_file() and not candidate.is_symlink() and not file_exclusion(relative):
+                files.append((relative, candidate))
     # Filtered editor snapshots are prepared separately, without their ignored data/caches.
     history = QA / 'checkpoint-sources'
     if history.exists():
@@ -227,7 +243,7 @@ def main():
         blob['paths'].append(name)
         record = {'sourcePath': name, 'bytes': path.stat().st_size, 'rawObject': blob['id']}
         # Whole-browser capture folders may describe unrelated tabs or people.
-        browser_capture = any(part.startswith('.playwright') for part in Path(name).parts)
+        browser_capture = name.startswith('.local-secrets/') or any(part.startswith('.playwright') for part in Path(name).parts)
         if readable_text(name) and not browser_capture and path.stat().st_size <= 64 * 1024 * 1024:
             try:
                 text = path.read_text()
@@ -278,7 +294,8 @@ def main():
         (DEST / 'catalog' / f'files-{start//500+1:03d}.json').write_text(json.dumps(records[start:start+500], ensure_ascii=False, indent=2) + '\n')
     summary = {k: v for k, v in plan.items() if k != 'excluded'}
     summary.update(workBytes=sum(r['bytes'] for r in records), capturedFrom=captured_from,
-                   capturedThrough=datetime.datetime.now(datetime.timezone.utc).isoformat())
+                   capturedThrough=datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                   protectedBuildExceptions=PROTECTED_BUILD_PATHS)
     summary.update(uniqueRawObjects=len(unique), uniqueRawBytes=sum(b['bytes'] for b in unique.values()),
         readableFiles=sum('readablePath' in r for r in records), archives=archives,
         archiveBytes=sum(a['bytes'] for a in archives), recipientFingerprint=hashlib.sha256(recipient.encode()).hexdigest(),

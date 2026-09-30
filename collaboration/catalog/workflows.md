@@ -374,3 +374,8 @@ Dated reference material. Current decisions and the single next step remain in d
 | `qa/web-overview-v4-revised.png` | 1 | 0 | Encrypted originals; query the catalog |
 | `rillora-ios-after-rebuild.png` | 1 | 0 | Encrypted originals; query the catalog |
 | `rillora-mobile-more.png` | 1 | 0 | Encrypted originals; query the catalog |
+| `.local-secrets/compiled-p1-20260916` | See supplemental catalog | 0 | [Encrypted original mapping](files-protected-builds.json) |
+| `.local-secrets/compiled-p2-20260916` | See supplemental catalog | 0 | [Encrypted original mapping](files-protected-builds.json) |
+| `.local-secrets/brand-adoption` | See supplemental catalog | 0 | [Encrypted original mapping](files-protected-builds.json) |
+| `.local-secrets/legal/rillora-legal-p1-20260916.tar.gz` | See supplemental catalog | 0 | [Encrypted original mapping](files-protected-builds.json) |
+| `.local-secrets/legal/rillora-ux-behavior-20260916.tar.gz` | See supplemental catalog | 0 | [Encrypted original mapping](files-protected-builds.json) |

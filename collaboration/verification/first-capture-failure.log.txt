@@ -1,0 +1,58 @@
+Inventoried 0/46463 work files
+Inventoried 1000/46463 work files
+Inventoried 2000/46463 work files
+Inventoried 3000/46463 work files
+Inventoried 4000/46463 work files
+Inventoried 5000/46463 work files
+Inventoried 6000/46463 work files
+Inventoried 7000/46463 work files
+Inventoried 8000/46463 work files
+Inventoried 9000/46463 work files
+Inventoried 10000/46463 work files
+Inventoried 11000/46463 work files
+Inventoried 12000/46463 work files
+Inventoried 13000/46463 work files
+Inventoried 14000/46463 work files
+Inventoried 15000/46463 work files
+Inventoried 16000/46463 work files
+Inventoried 17000/46463 work files
+Inventoried 18000/46463 work files
+Inventoried 19000/46463 work files
+Inventoried 20000/46463 work files
+Inventoried 21000/46463 work files
+Inventoried 22000/46463 work files
+Inventoried 23000/46463 work files
+Inventoried 24000/46463 work files
+Inventoried 25000/46463 work files
+Inventoried 26000/46463 work files
+Inventoried 27000/46463 work files
+Inventoried 28000/46463 work files
+Inventoried 29000/46463 work files
+Inventoried 30000/46463 work files
+Inventoried 31000/46463 work files
+Inventoried 32000/46463 work files
+Inventoried 33000/46463 work files
+Inventoried 34000/46463 work files
+Inventoried 35000/46463 work files
+Inventoried 36000/46463 work files
+Inventoried 37000/46463 work files
+Inventoried 38000/46463 work files
+Inventoried 39000/46463 work files
+Inventoried 40000/46463 work files
+Inventoried 41000/46463 work files
+Inventoried 42000/46463 work files
+Inventoried 43000/46463 work files
+Inventoried 44000/46463 work files
+Inventoried 45000/46463 work files
+Inventoried 46000/46463 work files
+Sealed 1/6 archives: 669204071 bytes
+Sealed 2/6 archives: 750577522 bytes
+Sealed 3/6 archives: 461787992 bytes
+Traceback (most recent call last):
+  File "/Users/tantalum/Documents/电子遗嘱app/tools/collaboration/build_snapshot.py", line 263, in <module>
+    main()
+  File "/Users/tantalum/Documents/电子遗嘱app/tools/collaboration/build_snapshot.py", line 242, in main
+    receipt = seal_chunk(number, chunk, recipient)
+  File "/Users/tantalum/Documents/电子遗嘱app/tools/collaboration/build_snapshot.py", line 158, in seal_chunk
+    raise RuntimeError('Source changed while archiving: ' + item['paths'][0])
+RuntimeError: Source changed while archiving: output/qa/rillora-public-motion-20260909/local-api.log
