@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-09-25T19:26:42.221Z",
+  "passed": true,
+  "checks": [
+    {
+      "url": "https://app.staging.rillora.xyz/",
+      "status": 200,
+      "expected": 200,
+      "matchesArtifact": true
+    },
+    {
+      "url": "https://app.staging.rillora.xyz/account",
+      "status": 200,
+      "expected": 200,
+      "matchesArtifact": true
+    },
+    {
+      "url": "https://app.staging.rillora.xyz/api/v1/session",
+      "status": 401,
+      "expected": 401,
+      "noStore": true
+    },
+    {
+      "url": "https://l1g8350qw0.execute-api.eu-central-1.amazonaws.com/health/ready",
+      "status": 200,
+      "expected": 200,
+      "ready": true
+    }
+  ],
+  "note": "Staging readiness intentionally uses the actual API Gateway health route. The initial Web-prefix health probe was an incorrect test target, not a price-code failure."
+}

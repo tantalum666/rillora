@@ -1,0 +1,205 @@
+Stack RilloraProduction
+IAM Statement Changes
+┌───┬─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┬────────┬─────────────────────────────────┬──────────────────────────────────────┬─────────────────────────────────────────────────────────────────────┐
+│   │ Resource                                                                                                                │ Effect │ Action                          │ Principal                            │ Condition                                                           │
+├───┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────┼─────────────────────────────────┼──────────────────────────────────────┼─────────────────────────────────────────────────────────────────────┤
+│ + │ ${ContentKey.Arn}                                                                                                       │ Allow  │ kms:Decrypt                     │ AWS:${Runtime/ApiTask/TaskRole}      │ "StringEquals": {                                                   │
+│   │                                                                                                                         │        │ kms:GenerateDataKey             │                                      │   "kms:EncryptionContext:rillora_application": "content-v1",        │
+│   │                                                                                                                         │        │                                 │                                      │   "kms:EncryptionContext:rillora_environment": "rillora-production" │
+│   │                                                                                                                         │        │                                 │                                      │ },                                                                  │
+│   │                                                                                                                         │        │                                 │                                      │ "Null": {                                                           │
+│   │                                                                                                                         │        │                                 │                                      │   "kms:EncryptionContext:owner_id": "false",                        │
+│   │                                                                                                                         │        │                                 │                                      │   "kms:EncryptionContext:key_id": "false"                           │
+│   │                                                                                                                         │        │                                 │                                      │ }                                                                   │
+├───┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────┼─────────────────────────────────┼──────────────────────────────────────┼─────────────────────────────────────────────────────────────────────┤
+│ + │ ${RecoveryJournal.Arn}                                                                                                  │ Allow  │ dynamodb:GetItem                │ AWS:${Runtime/ApiTask/TaskRole}      │                                                                     │
+│   │                                                                                                                         │        │ dynamodb:PutItem                │                                      │                                                                     │
+├───┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────┼─────────────────────────────────┼──────────────────────────────────────┼─────────────────────────────────────────────────────────────────────┤
+│ + │ ${Runtime/ApiLogs.Arn}                                                                                                  │ Allow  │ logs:CreateLogStream            │ AWS:${Runtime/ApiTask/ExecutionRole} │                                                                     │
+│   │                                                                                                                         │        │ logs:PutLogEvents               │                                      │                                                                     │
+├───┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────┼─────────────────────────────────┼──────────────────────────────────────┼─────────────────────────────────────────────────────────────────────┤
+│ + │ ${Runtime/ApiLogs.Arn}                                                                                                  │ Allow  │ logs:DescribeLogStreams         │ AWS:${Operator}                      │                                                                     │
+│   │ ${Runtime/ApiLogs.Arn}:*                                                                                                │        │ logs:FilterLogEvents            │                                      │                                                                     │
+│   │ ${Runtime/GatewayLogs.Arn}                                                                                              │        │ logs:GetLogEvents               │                                      │                                                                     │
+│   │ ${Runtime/GatewayLogs.Arn}:*                                                                                            │        │                                 │                                      │                                                                     │
+├───┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────┼─────────────────────────────────┼──────────────────────────────────────┼─────────────────────────────────────────────────────────────────────┤
+│ + │ ${Runtime/ApiTask/ExecutionRole.Arn}                                                                                    │ Allow  │ sts:AssumeRole                  │ Service:ecs-tasks.amazonaws.com      │                                                                     │
+├───┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────┼─────────────────────────────────┼──────────────────────────────────────┼─────────────────────────────────────────────────────────────────────┤
+│ + │ ${Runtime/ApiTask/TaskRole.Arn}                                                                                         │ Allow  │ sts:AssumeRole                  │ Service:ecs-tasks.amazonaws.com      │                                                                     │
+├───┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────┼─────────────────────────────────┼──────────────────────────────────────┼─────────────────────────────────────────────────────────────────────┤
+│ + │ ${Runtime/Certificate}                                                                                                  │ Allow  │ acm:DescribeCertificate         │ AWS:${Operator}                      │                                                                     │
+│ + │ ${Runtime/Certificate}                                                                                                  │ Allow  │ acm:DescribeCertificate         │ AWS:${Runtime/ApiTask/TaskRole}      │                                                                     │
+│   │                                                                                                                         │        │ acm:ExportCertificate           │                                      │                                                                     │
+├───┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────┼─────────────────────────────────┼──────────────────────────────────────┼─────────────────────────────────────────────────────────────────────┤
+│ + │ ${RuntimeCredential}                                                                                                    │ Allow  │ secretsmanager:DescribeSecret   │ AWS:${Runtime/ApiTask/ExecutionRole} │                                                                     │
+│   │                                                                                                                         │        │ secretsmanager:GetSecretValue   │                                      │                                                                     │
+├───┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────┼─────────────────────────────────┼──────────────────────────────────────┼─────────────────────────────────────────────────────────────────────┤
+│ + │ ${Runtime/Service/Service}                                                                                              │ Allow  │ ecs:DescribeServices            │ AWS:${Operator}                      │                                                                     │
+├───┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────┼─────────────────────────────────┼──────────────────────────────────────┼─────────────────────────────────────────────────────────────────────┤
+│ + │ *                                                                                                                       │ Allow  │ ec2:DescribeNetworkInterfaces   │ AWS:${Operator}                      │ "StringEquals": {                                                   │
+│   │                                                                                                                         │        │                                 │                                      │   "aws:RequestedRegion": "eu-central-1"                             │
+│   │                                                                                                                         │        │                                 │                                      │ }                                                                   │
+│ + │ *                                                                                                                       │ Allow  │ ecr:GetAuthorizationToken       │ AWS:${Runtime/ApiTask/ExecutionRole} │                                                                     │
+├───┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────┼─────────────────────────────────┼──────────────────────────────────────┼─────────────────────────────────────────────────────────────────────┤
+│ + │ arn:${AWS::Partition}:ecr:eu-central-1:133857166372:repository/cdk-hnb659fds-container-assets-133857166372-eu-central-1 │ Allow  │ ecr:BatchCheckLayerAvailability │ AWS:${Runtime/ApiTask/ExecutionRole} │                                                                     │
+│   │                                                                                                                         │        │ ecr:BatchGetImage               │                                      │                                                                     │
+│   │                                                                                                                         │        │ ecr:GetDownloadUrlForLayer      │                                      │                                                                     │
+└───┴─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴────────┴─────────────────────────────────┴──────────────────────────────────────┴─────────────────────────────────────────────────────────────────────┘
+Security Group Changes
+┌───┬───────────────────────────────────┬─────┬──────────┬───────────────────────────────────┐
+│   │ Group                             │ Dir │ Protocol │ Peer                              │
+├───┼───────────────────────────────────┼─────┼──────────┼───────────────────────────────────┤
+│ + │ ${DatabaseNetwork.GroupId}        │ In  │ TCP 5432 │ ${Runtime/ApiNetwork.GroupId}     │
+├───┼───────────────────────────────────┼─────┼──────────┼───────────────────────────────────┤
+│ + │ ${Runtime/ApiNetwork.GroupId}     │ In  │ TCP 8443 │ ${Runtime/IngressNetwork.GroupId} │
+│ + │ ${Runtime/ApiNetwork.GroupId}     │ Out │ TCP 443  │ Everyone (IPv4)                   │
+│ + │ ${Runtime/ApiNetwork.GroupId}     │ Out │ TCP 5432 │ ${DatabaseNetwork.GroupId}        │
+├───┼───────────────────────────────────┼─────┼──────────┼───────────────────────────────────┤
+│ + │ ${Runtime/IngressNetwork.GroupId} │ Out │ TCP 8443 │ ${Runtime/ApiNetwork.GroupId}     │
+└───┴───────────────────────────────────┴─────┴──────────┴───────────────────────────────────┘
+(NOTE: There may be security-related changes not in this list. See https://github.com/aws/aws-cdk/issues/1299)
+
+Resources
+[+] AWS::EC2::SecurityGroupIngress DatabaseNetwork/from RilloraProductionRuntimeApiNetworkF0B36DFA:5432 DatabaseNetworkfromRilloraProductionRuntimeApiNetworkF0B36DFA5432FD98A2AA
+[+] AWS::CertificateManager::Certificate Runtime/Certificate RuntimeCertificateC2895169
+[+] AWS::EC2::SecurityGroup Runtime/ApiNetwork RuntimeApiNetwork3B2CC8BA
+[+] AWS::EC2::SecurityGroupIngress Runtime/ApiNetwork/from RilloraProductionRuntimeIngressNetwork69779FA9:8443 RuntimeApiNetworkfromRilloraProductionRuntimeIngressNetwork69779FA9844367B9035E
+[+] AWS::EC2::SecurityGroupEgress Runtime/ApiNetwork/to RilloraProductionDatabaseNetwork7259A938:5432 RuntimeApiNetworktoRilloraProductionDatabaseNetwork7259A93854329AAA2FBD
+[+] AWS::EC2::SecurityGroup Runtime/IngressNetwork RuntimeIngressNetwork074C0E57
+[+] AWS::EC2::SecurityGroupEgress Runtime/IngressNetwork/to RilloraProductionRuntimeApiNetworkF0B36DFA:8443 RuntimeIngressNetworktoRilloraProductionRuntimeApiNetworkF0B36DFA84435814AAF1
+[+] AWS::ServiceDiscovery::PrivateDnsNamespace Runtime/Namespace RuntimeNamespaceD7248538
+[+] AWS::ServiceDiscovery::Service Runtime/Namespace/ApiDiscovery RuntimeNamespaceApiDiscovery35D81D27
+[+] AWS::Logs::LogGroup Runtime/ApiLogs RuntimeApiLogs69C9F62B
+[+] AWS::IAM::Role Runtime/ApiTask/TaskRole RuntimeApiTaskTaskRole477A5663
+[+] AWS::IAM::Policy Runtime/ApiTask/TaskRole/DefaultPolicy RuntimeApiTaskTaskRoleDefaultPolicy59BF15A6
+[+] AWS::ECS::TaskDefinition Runtime/ApiTask RuntimeApiTaskCF645D67
+[+] AWS::IAM::Role Runtime/ApiTask/ExecutionRole RuntimeApiTaskExecutionRoleD48730C6
+[+] AWS::IAM::Policy Runtime/ApiTask/ExecutionRole/DefaultPolicy RuntimeApiTaskExecutionRoleDefaultPolicy98299827
+[+] AWS::ApiGatewayV2::VpcLink Runtime/VpcLink RuntimeVpcLinkCFD171E5
+[+] AWS::ApiGatewayV2::Api Runtime/HttpApi RuntimeHttpApi2552D3E3
+[+] AWS::ApiGatewayV2::Integration Runtime/HttpApi/DefaultRoute/ProductionHttps RuntimeHttpApiDefaultRouteProductionHttpsE2AD3A33
+[+] AWS::ApiGatewayV2::Route Runtime/HttpApi/DefaultRoute RuntimeHttpApiDefaultRoute86033BE3
+[+] AWS::ApiGatewayV2::Stage Runtime/HttpApi/DefaultStage RuntimeHttpApiDefaultStage68EDECFE
+[+] AWS::Logs::LogGroup Runtime/GatewayLogs RuntimeGatewayLogs879CA399
+[+] AWS::ECS::Service Runtime/Service/Service RuntimeService1702E585
+[~] AWS::ECS::TaskDefinition MigrationTask MigrationTask69EAEF9D replace
+ └─ [~] ContainerDefinitions (requires replacement)
+     └─ @@ -69,7 +69,7 @@
+        [ ] ],
+        [ ] "Essential": true,
+        [ ] "Image": {
+        [-]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:888c905beea51ad79c5d221eee131777cdf97cdceb3d09a985729ef2564077e2"
+        [+]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:480eefffe2b0d3bfb0a6f9e6b343593a7415d967da9a7a7beccab4363417bc34"
+        [ ] },
+        [ ] "LogConfiguration": {
+        [ ]   "LogDriver": "awslogs",
+[~] AWS::ECS::TaskDefinition RecoveryTask RecoveryTaskD940248B replace
+ └─ [~] ContainerDefinitions (requires replacement)
+     └─ @@ -60,7 +60,7 @@
+        [ ] ],
+        [ ] "Essential": true,
+        [ ] "Image": {
+        [-]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:888c905beea51ad79c5d221eee131777cdf97cdceb3d09a985729ef2564077e2"
+        [+]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:480eefffe2b0d3bfb0a6f9e6b343593a7415d967da9a7a7beccab4363417bc34"
+        [ ] },
+        [ ] "LogConfiguration": {
+        [ ]   "LogDriver": "awslogs",
+[~] AWS::IAM::Policy Operator/DefaultPolicy OperatorDefaultPolicyA84BD3A6
+ └─ [~] PolicyDocument
+     └─ [~] .Statement:
+         └─ @@ -327,5 +327,79 @@
+            [ ]         "Arn"
+            [ ]       ]
+            [ ]     }
+            [+]   },
+            [+]   {
+            [+]     "Action": "acm:DescribeCertificate",
+            [+]     "Effect": "Allow",
+            [+]     "Resource": {
+            [+]       "Ref": "RuntimeCertificateC2895169"
+            [+]     }
+            [+]   },
+            [+]   {
+            [+]     "Action": "ecs:DescribeServices",
+            [+]     "Effect": "Allow",
+            [+]     "Resource": {
+            [+]       "Ref": "RuntimeService1702E585"
+            [+]     }
+            [+]   },
+            [+]   {
+            [+]     "Action": "ec2:DescribeNetworkInterfaces",
+            [+]     "Condition": {
+            [+]       "StringEquals": {
+            [+]         "aws:RequestedRegion": "eu-central-1"
+            [+]       }
+            [+]     },
+            [+]     "Effect": "Allow",
+            [+]     "Resource": "*"
+            [+]   },
+            [+]   {
+            [+]     "Action": [
+            [+]       "logs:DescribeLogStreams",
+            [+]       "logs:GetLogEvents",
+            [+]       "logs:FilterLogEvents"
+            [+]     ],
+            [+]     "Effect": "Allow",
+            [+]     "Resource": [
+            [+]       {
+            [+]         "Fn::GetAtt": [
+            [+]           "RuntimeApiLogs69C9F62B",
+            [+]           "Arn"
+            [+]         ]
+            [+]       },
+            [+]       {
+            [+]         "Fn::Join": [
+            [+]           "",
+            [+]           [
+            [+]             {
+            [+]               "Fn::GetAtt": [
+            [+]                 "RuntimeApiLogs69C9F62B",
+            [+]                 "Arn"
+            [+]               ]
+            [+]             },
+            [+]             ":*"
+            [+]           ]
+            [+]         ]
+            [+]       },
+            [+]       {
+            [+]         "Fn::GetAtt": [
+            [+]           "RuntimeGatewayLogs879CA399",
+            [+]           "Arn"
+            [+]         ]
+            [+]       },
+            [+]       {
+            [+]         "Fn::Join": [
+            [+]           "",
+            [+]           [
+            [+]             {
+            [+]               "Fn::GetAtt": [
+            [+]                 "RuntimeGatewayLogs879CA399",
+            [+]                 "Arn"
+            [+]               ]
+            [+]             },
+            [+]             ":*"
+            [+]           ]
+            [+]         ]
+            [+]       }
+            [+]     ]
+            [ ]   }
+            [ ] ]
+
+Outputs
+[+] Output Runtime/ApiUrl RuntimeApiUrl28EC49BD: {"Value":{"Fn::GetAtt":["RuntimeHttpApi2552D3E3","ApiEndpoint"]}}
+[+] Output Runtime/CertificateArn RuntimeCertificateArnBB7EAC67: {"Value":{"Ref":"RuntimeCertificateC2895169"}}
+[+] Output Runtime/TlsServerName RuntimeTlsServerName02234589: {"Value":"origin.production.rillora.xyz"}
+[+] Output Runtime/ApiTaskDefinitionArn RuntimeApiTaskDefinitionArn02DA653E: {"Value":{"Ref":"RuntimeApiTaskCF645D67"}}
+[+] Output Runtime/ApiServiceName RuntimeApiServiceNameF8B88348: {"Value":{"Fn::GetAtt":["RuntimeService1702E585","Name"]}}
+[+] Output Runtime/ApiSecurityGroupId RuntimeApiSecurityGroupIdDEAE6BF4: {"Value":{"Fn::GetAtt":["RuntimeApiNetwork3B2CC8BA","GroupId"]}}
+[+] Output Runtime/ApiLogGroup RuntimeApiLogGroup3DA7AF21: {"Value":{"Ref":"RuntimeApiLogs69C9F62B"}}
+[+] Output Runtime/GatewayLogGroup RuntimeGatewayLogGroup40748EB6: {"Value":{"Ref":"RuntimeGatewayLogs879CA399"}}
+[+] Output Runtime/CustomerAccess RuntimeCustomerAccess0D914672: {"Value":"closed"}
+
+
+
+✨  Number of stacks with differences: 1
+

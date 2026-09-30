@@ -1,0 +1,14 @@
+{
+  "checkedAt": "2026-09-29T17:23:57.641130+00:00",
+  "lastStatus": "STOPPED",
+  "containers": [
+    {
+      "name": "Maintenance",
+      "exitCode": 0,
+      "reason": null
+    }
+  ],
+  "messages": [
+    "{\"migrationCount\":86,\"lastMigration\":\"0086_apple_review_environment.sql\",\"checksumsMatch\":true,\"before\":{\"planners\":0,\"real_orders\":0,\"real_subscriptions\":0},\"quote\":[{\"price_code\":\"family_apple_review_usd_6800_20260930\",\"amount_minor\":6800,\"status\":\"test_only\",\"provider_environment\":\"sandbox\",\"storefront_country_code\":\"USA\"}],\"policies\":[{\"policy_code\":\"global_us_ios_review_20260930\",\"enabled\":true,\"status\":\"test_only\",\"provider_code\":\"storekit\"},{\"policy_code\":\"global_us_ios_stripe_v1\",\"enabled\":false,\"status\":\"configured_disabled\",\"provider_code\":\"stripe\"}],\"webPriceUnchanged\":true,\"productionEntitlementsEnabled\":false,\"reviewEnrollmentCreated\":false}"
+  ]
+}

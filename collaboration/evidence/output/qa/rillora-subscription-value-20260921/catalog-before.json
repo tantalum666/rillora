@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "decisionVersion": "2026-09-19-owner-88-80",
+  "product": "Rillora Family",
+  "planCode": "family",
+  "planVersion": 2,
+  "serviceMarket": "GLOBAL_US",
+  "currency": "USD",
+  "annual": {
+    "priceCode": "family_usd_annual_v3",
+    "amountMinor": 8880,
+    "decision": "owner_locked"
+  },
+  "monthly": {
+    "priceCode": "family_usd_monthly_v3",
+    "amountMinor": 999,
+    "decision": "owner_locked"
+  },
+  "commercialStatus": "disabled_hypothesis",
+  "billingEnabled": false,
+  "evidence": "Owner explicitly selected both annual and monthly prices; not validated demand or live merchant/storefront activation",
+  "historicalPriceCodes": [
+    "family_usd_annual_v1",
+    "family_usd_monthly_v1",
+    "family_usd_annual_v2",
+    "family_usd_monthly_v2"
+  ],
+  "capabilityPolicy": "Server-owned immutable plan versions; per-recipient privacy remains baseline; no price callback grants access"
+}

@@ -1,0 +1,100 @@
+{
+    "tasks": [
+        {
+            "attachments": [
+                {
+                    "id": "a8d673e4-422f-4065-8829-8a24d5816335",
+                    "type": "ElasticNetworkInterface",
+                    "status": "ATTACHED",
+                    "details": [
+                        {
+                            "name": "subnetId",
+                            "value": "subnet-0d218a58218e10e36"
+                        },
+                        {
+                            "name": "networkInterfaceId",
+                            "value": "eni-0e327b912bce18c1f"
+                        },
+                        {
+                            "name": "macAddress",
+                            "value": "06:ff:e1:78:a7:67"
+                        },
+                        {
+                            "name": "privateDnsName",
+                            "value": "ip-10-43-1-143.eu-central-1.compute.internal"
+                        },
+                        {
+                            "name": "privateIPv4Address",
+                            "value": "10.43.1.143"
+                        }
+                    ]
+                }
+            ],
+            "attributes": [
+                {
+                    "name": "ecs.cpu-architecture",
+                    "value": "arm64"
+                }
+            ],
+            "availabilityZone": "eu-central-1b",
+            "capacityProviderName": "FARGATE",
+            "clusterArn": "arn:aws:ecs:eu-central-1:133857166372:cluster/RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm",
+            "connectivity": "CONNECTED",
+            "connectivityAt": "2026-09-24T09:12:56.502000+08:00",
+            "containers": [
+                {
+                    "containerArn": "arn:aws:ecs:eu-central-1:133857166372:container/RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm/45d8d065423243ec9db646cc0c584c39/028e0bdc-3a22-43e2-acef-deca91789062",
+                    "taskArn": "arn:aws:ecs:eu-central-1:133857166372:task/RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm/45d8d065423243ec9db646cc0c584c39",
+                    "name": "Api",
+                    "image": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1:4e75f2b26123145a0b6a7e8a04c4e1a33368d9d2e61d7582dfbb0df6b71933bb",
+                    "imageDigest": "sha256:8426279e5de8cd394c9ebae8c35549d0a01703a84a3398dda5cb82c476cfad6b",
+                    "runtimeId": "45d8d065423243ec9db646cc0c584c39-2599764519",
+                    "lastStatus": "RUNNING",
+                    "networkBindings": [],
+                    "networkInterfaces": [
+                        {
+                            "attachmentId": "a8d673e4-422f-4065-8829-8a24d5816335",
+                            "privateIpv4Address": "10.43.1.143"
+                        }
+                    ],
+                    "healthStatus": "HEALTHY",
+                    "cpu": "0"
+                }
+            ],
+            "cpu": "256",
+            "createdAt": "2026-09-24T09:12:53.088000+08:00",
+            "desiredStatus": "RUNNING",
+            "enableExecuteCommand": false,
+            "group": "service:RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL",
+            "healthStatus": "HEALTHY",
+            "lastStatus": "RUNNING",
+            "launchType": "FARGATE",
+            "memory": "512",
+            "overrides": {
+                "containerOverrides": [
+                    {
+                        "name": "Api"
+                    }
+                ],
+                "inferenceAcceleratorOverrides": []
+            },
+            "platformVersion": "1.4.0",
+            "platformFamily": "Linux",
+            "pullStartedAt": "2026-09-24T09:13:05.478000+08:00",
+            "pullStoppedAt": "2026-09-24T09:13:09.476000+08:00",
+            "startedAt": "2026-09-24T09:13:21.245000+08:00",
+            "startedBy": "ecs-svc/8785630440501495849",
+            "tags": [],
+            "taskArn": "arn:aws:ecs:eu-central-1:133857166372:task/RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm/45d8d065423243ec9db646cc0c584c39",
+            "taskDefinitionArn": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRuntimeApiTask93405B31:1",
+            "version": 5,
+            "ephemeralStorage": {
+                "sizeInGiB": 20
+            },
+            "fargateEphemeralStorage": {
+                "sizeInGiB": 20
+            }
+        }
+    ],
+    "failures": []
+}

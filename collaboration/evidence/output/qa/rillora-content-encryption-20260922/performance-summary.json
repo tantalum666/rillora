@@ -1,0 +1,44 @@
+{
+  "boundary": "20 sequential paired samples per size per mode from Frankfurt; not concurrent-user capacity or global latency guarantee",
+  "results": [
+    {
+      "plaintext-baseline": {
+        "n": 20,
+        "p50Ms": 57.5,
+        "p95Ms": 106,
+        "maxMs": 139
+      },
+      "encrypted": {
+        "n": 20,
+        "p50Ms": 43.0,
+        "p95Ms": 90,
+        "maxMs": 147
+      },
+      "matters": 20,
+      "pagesPerSample": 1,
+      "p95DifferenceMs": -16
+    },
+    {
+      "plaintext-baseline": {
+        "n": 20,
+        "p50Ms": 67.5,
+        "p95Ms": 121,
+        "maxMs": 171
+      },
+      "encrypted": {
+        "n": 20,
+        "p50Ms": 105.5,
+        "p95Ms": 223,
+        "maxMs": 281
+      },
+      "matters": 200,
+      "pagesPerSample": 2,
+      "p95DifferenceMs": 102
+    }
+  ],
+  "fixtureCleanup": {
+    "removedSyntheticUsers": 5,
+    "remaining": 0,
+    "remainingCiphertextValues": 0
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "startedAt": "2026-09-10T10:31:31.732892+08:00",
+  "mode": "same packaging review continuation after Owner challenged previous recommendation; not a new workflow",
+  "fullReadProof": "../full-read-completion.json",
+  "originalReadFiles": 55,
+  "originalReadLines": 16011,
+  "currentTask": "Revise subscription-expiry value and explain legitimate monthly use versus retained live paid access",
+  "recoveryRead": [
+    "AGENTS.md full",
+    "product current locked rules and authority map",
+    "monetization current packaging and cancellation",
+    "current handoff full",
+    "latest decision and journey entries",
+    "related sharing and UI contract sections"
+  ],
+  "beforeFiles": [
+    {
+      "file": "AGENTS.md",
+      "sha256": "321e1bf37563f466aea4eda8e5e2024f0b8f6f05e0e59fda06a174a24db695a3"
+    },
+    {
+      "file": "docs/product.md",
+      "sha256": "eb8d671853e28ea706b8d970ea29ad41925c3c6944e413d5650dad47193eb5f9"
+    },
+    {
+      "file": "docs/monetization.md",
+      "sha256": "4fbdfd4a8e4fabda0a8cbbbf8d276a9d209c8ff0865185cac28ea002ce684b94"
+    },
+    {
+      "file": "docs/handoff.md",
+      "sha256": "14198ca4063545fc71a5f7dad0c6baf05628a9740cceea03b4538e44b6c71b19"
+    },
+    {
+      "file": "docs/decision-log.md",
+      "sha256": "157b9d6f93fe66f69ae3e3e66803b141ab8e6e1295d1fa6e4afc32eb972e1ec9"
+    },
+    {
+      "file": "docs/journey/PROJECT_JOURNEY.md",
+      "sha256": "18c7abf23d5661c4a806eeabd408563b95d6190cab29a660a4e2b5839301b8f9"
+    },
+    {
+      "file": "docs/trusted-sharing.md",
+      "sha256": "9e49281f78bc48aecdd7074b25c540651bb866078e566b6a3899ed8578de8869"
+    },
+    {
+      "file": "docs/free-paid-ui-audit.md",
+      "sha256": "66a5177a76dc9f095e853d3d27e67d3a86829daa99d25b648b2f43e1485261f2"
+    },
+    {
+      "file": "docs/platform-contract.md",
+      "sha256": "62a313e59ec2f6f57b9a8631e4fb1bfbbd0900e7ebfc4d4d860ad2bec7d4b920"
+    },
+    {
+      "file": "docs/mvp.md",
+      "sha256": "872a691aead0a7b82bbc0fc558137519a49818ea205d7af8bc76769ef52b5c0d"
+    },
+    {
+      "file": "README.md",
+      "sha256": "b2b0000cca6b808ea1ad02415fe37b8015969772573fa37af69454ffbc2ff21a"
+    }
+  ],
+  "archivedHandoffOriginalSha256": "14198ca4063545fc71a5f7dad0c6baf05628a9740cceea03b4538e44b6c71b19",
+  "archiveLocation": "docs/handoff-history-20260910.md",
+  "completedAt": "2026-09-10T10:38:53.353111+08:00",
+  "result": "Prior live-read survival superseded: one Free live recipient plus authorized paid-cutoff versions for other accepted recipients; normal monthly use allowed; snapshot not implemented.",
+  "validation": "58 Markdown files / 271 local links pass; 12 referenced runtime paths match initial audit hashes."
+}

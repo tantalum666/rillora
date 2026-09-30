@@ -1,0 +1,120 @@
+{
+  "updatedAt": "2026-09-25T19:42:34.731784+00:00",
+  "ownerDecision": "Web annual US$88.99 only; Apple differentiated price remains separate",
+  "reading": {
+    "mode": "Continuation/compaction quick recovery; no new workflow restart",
+    "baseline": "output/qa/rillora-release-readiness-20260919/full-read-completion.json",
+    "focusedReading": "Current AGENTS/product/handoff/recent decisions and affected catalog/consent/provider/migration/infra contracts read; newly changed documents reviewed. Truncated backend range supplemented at lines60-82. Prior workflow full-read ranges retained."
+  },
+  "priceVersion": 4,
+  "amountMinor": 8899,
+  "capabilityVersion": 2,
+  "provider": {
+    "account": "acct_1U6B2RCxTlowhyiG",
+    "mode": "test",
+    "product": "prod_V6O8lAFbTCDmKd",
+    "newPrice": "price_1UJe38CxTlowhyiGdx5ypIKJ",
+    "newLookupKey": "[REDACTED_SCANNER_LITERAL]",
+    "confirmed": "UI saved USD88.99 every1year; old88.80price archived and visible",
+    "oldPrice": "price_1UHMkTCxTlowhyiGu3do5wps",
+    "realCharge": false
+  },
+  "localChecks": {
+    "API": 244,
+    "WebSource": 89,
+    "WebFocusedSubset": 10,
+    "Infrastructure": 39,
+    "APITypecheckAndBuild": true,
+    "WebBuilds": [
+      "internal",
+      "closed-production"
+    ],
+    "infraTypecheck": true
+  },
+  "draftIssue": "First unpublished cents value8889 was caught by the displayed-price test; corrected to8899 before any cloud migration. Exact local disposable fixtures recreated; published migration checksums/cloud data unchanged. Stripe price was created correctly at88.99.",
+  "migrations": [
+    "0074_owner_selected_web_88_99.sql",
+    "0075_web_v4_stripe_test_binding.sql"
+  ],
+  "cloud": {
+    "staging": {
+      "schema": "0075",
+      "apiTaskRevision": 38,
+      "migrationTaskRevision": 31,
+      "healthy": true,
+      "desiredRunning": "1/1",
+      "rollout": "COMPLETED",
+      "httpChecks": 4,
+      "runtimeEvidence": "staging-runtime-readback.json"
+    },
+    "productionWeb": {
+      "stack": "RilloraProductionWeb",
+      "state": "UPDATE_COMPLETE",
+      "acceptance": "production-web-acceptance.json",
+      "checks": 7,
+      "browser": "Account page visibly states accounts are not open yet"
+    },
+    "productionAPI": "Unchanged task1/schema0070, customer access closed"
+  },
+  "next": "Resume Apple production commerce: verify effective commission, resolve differentiated annual offer and complete production lifecycle while launch prerequisites remain closed.",
+  "cleanup": {
+    "temporaryHarnessRemoved": true,
+    "previewServerStopped": true,
+    "previewTabClosed": true
+  },
+  "documentation": {
+    "focusedSpecs": [
+      "docs/pricing-88-99-20260926.md",
+      "docs/product.md",
+      "docs/monetization.md",
+      "docs/unit-economics.md",
+      "docs/solo-operations-and-portability.md",
+      "docs/channel-pricing-20260921.md",
+      "docs/production-commerce-20260926.md",
+      "docs/production-apple-20260926.md",
+      "docs/backend.md",
+      "docs/release-readiness.md",
+      "infra/aws/README.md"
+    ],
+    "decision": "Appended Owner explicit Web88.99 replacement decision; Apple not decided",
+    "handoff": "docs/handoff.md",
+    "historicalHandoff": "docs/handoff-history-20260926-before-web-88-99.md",
+    "journey": "docs/journey/PROJECT_JOURNEY.md",
+    "boundary": "Dated earlier models/receipts/migrations are preserved, not globally replaced"
+  },
+  "source": {
+    "preparedFiles": 917,
+    "scanPassed": true,
+    "reviewedNonSecretMatches": 25,
+    "unreviewed": 0,
+    "markdownFiles": 146,
+    "localLinks": 1393,
+    "missingLinkTargets": 0,
+    "gitDiffCheck": true,
+    "commit": "eed17307118d182beff4194964e564eca50520c8",
+    "CI": {
+      "checkedAt": "2026-09-25T19:40:55.011467+00:00",
+      "run": 14,
+      "url": "https://github.com/tantalum666/rillora/actions/runs/36180878589",
+      "commit": "eed17307118d182beff4194964e564eca50520c8",
+      "conclusion": "success",
+      "jobs": {
+        "source": "success",
+        "api": "success",
+        "web-and-infrastructure": "success"
+      },
+      "visibleSummary": {
+        "API": 244,
+        "infrastructure": 39
+      },
+      "boundary": "Actual authenticated Actions UI; no deployment credentials or cloud mutation in CI."
+    },
+    "scanReview": "Four unchanged test spans moved20lines; one new fixed idempotency fixture constant reviewed by exact digest. No broad exclusions.",
+    "pushed": true,
+    "documentationCommit": "03904b25d81564bd90b5075f4c4c527e77be2aa9",
+    "finalEvidenceOnly": true,
+    "documentationPushed": true,
+    "remoteHead": "03904b25d81564bd90b5075f4c4c527e77be2aa9",
+    "workingTreeClean": true
+  }
+}

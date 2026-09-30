@@ -1,0 +1,18 @@
+{
+  "stackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraProduction/8add71a0-b749-11f1-b837-0ad8a9639b6b",
+  "status": "ROLLBACK_COMPLETE",
+  "retainedPhysicalResources": [
+    {
+      "id": "MaintenanceLogs61C6A99C",
+      "type": "AWS::Logs::LogGroup",
+      "physical": "RilloraProduction-MaintenanceLogs61C6A99C-2niRZtkO9Ivq",
+      "status": "DELETE_SKIPPED"
+    },
+    {
+      "id": "RuntimeCredential871C86BA",
+      "type": "AWS::SecretsManager::Secret",
+      "physical": "arn:aws:secretsmanager:eu-central-1:133857166372:secret:RuntimeCredential871C86BA-OO3vKO9TLttB-xFGX4w",
+      "status": "DELETE_SKIPPED"
+    }
+  ]
+}

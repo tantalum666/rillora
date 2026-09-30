@@ -1,0 +1,12 @@
+{
+  "checkedAt": "2026-09-24T01:42:41.691873+00:00",
+  "checks": {
+    "onlyVpcLinkIngress": true,
+    "gatewayPrivateTlsHostname": true,
+    "directPublicTlsNoResponse": true,
+    "httpsChecks": true
+  },
+  "passed": true,
+  "scope": "Provider security-group readback, actual private HTTPS integration and bounded direct-IP TLS/application probe; not a broad network penetration test.",
+  "rawTcpCaveat": "Local bare TCP connect reported success on8443/8080/443, but a verified TLS handshake to8443 timed out. Local proxy flags wereoff; no root cause asserted. Preserve the raw result as inconclusive rather than claiming TCP timeout. Actual SG has only the VPC Link group and zero public CIDRs."
+}

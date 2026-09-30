@@ -1,0 +1,31 @@
+{
+  "observedAt": "2026-09-24T02:20:51.333720+00:00",
+  "evidenceSurface": "authenticated Auth0 Teams tenant list and subscription UI",
+  "team": "team-5znznhs",
+  "current": {
+    "plan": "Free",
+    "monthlyUsd": 0,
+    "mau": 25000,
+    "m2mTokens": 1000,
+    "tenantQuotaReached": true,
+    "tenants": [
+      {
+        "name": "rillora-dev",
+        "region": "EU-2",
+        "environment": "Development"
+      }
+    ]
+  },
+  "displayedAlternative": {
+    "plan": "B2C Essentials",
+    "monthlyUsd": 35,
+    "taxIncluded": false,
+    "mau": 500,
+    "tenants": 3,
+    "m2mTokens": 1000
+  },
+  "purchasePerformed": false,
+  "tenantCreated": false,
+  "choicePending": false,
+  "ownerDecision": "Keep Free; test now and perform reviewed cleanup/cutover before launch. No plan upgrade."
+}

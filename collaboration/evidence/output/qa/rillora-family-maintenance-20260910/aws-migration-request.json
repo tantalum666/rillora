@@ -1,0 +1,18 @@
+{
+  "cluster": "RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5",
+  "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingMigrationTaskDefinitionD83F7D18:14",
+  "launchType": "FARGATE",
+  "count": 1,
+  "networkConfiguration": {
+    "awsvpcConfiguration": {
+      "subnets": [
+        "subnet-0344e3c6bae4e3731",
+        "subnet-0610e7921274f95bd"
+      ],
+      "securityGroups": [
+        "sg-062c63db94ecf2e16"
+      ],
+      "assignPublicIp": "ENABLED"
+    }
+  }
+}

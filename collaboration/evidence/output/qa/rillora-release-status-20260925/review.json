@@ -1,0 +1,34 @@
+{
+  "checkedAt": "2026-09-25T07:50:50.426938+00:00",
+  "task": "Remaining launch work review",
+  "engineeringGates": [
+    "production-runtime",
+    "production-identity",
+    "production-billing",
+    "apple-transactions",
+    "backup-retention",
+    "release-security",
+    "apple-submission"
+  ],
+  "ownerDeferred": [
+    "merchant-market",
+    "physical-device"
+  ],
+  "notAPercentage": true,
+  "freshSource": {
+    "nativeReleaseFields": "0/5 configured",
+    "stripe": "rejects live-mode events",
+    "apple": "Sandbox verifier/server API and v1 price mapping"
+  },
+  "freshSES": "Read failed atSTS; separate safe check confirmed expired credentials. No new review outcome obtained.",
+  "retainedSES": "September25 01:15+08, production access false; approved follow-up submitted at01:12:39+08",
+  "testsAndCloudChanges": "No new tests, builds, deployments or transactions in this review; CI9 and live evidence keep original dates",
+  "reading": "Focused continuation of existing release workflow; prior full-reading baseline retained. Product current section, complete handoff/release register/release-readiness, latest decisions/journey and relevant source fields read. No new full-repository reading claim.",
+  "updatedDocs": [
+    "docs/release-readiness.md",
+    "docs/handoff.md",
+    "docs/decision-log.md",
+    "docs/journey/PROJECT_JOURNEY.md"
+  ],
+  "decision": "Sequencing clarification under existing release goal; no new product/pricing/market approval"
+}

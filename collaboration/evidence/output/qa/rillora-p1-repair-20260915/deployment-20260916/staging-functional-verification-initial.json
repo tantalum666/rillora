@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-09-16T02:18:04.442Z",
+  "passed": false,
+  "setup": "Two disposable Auth0 database users; administrator-seeded bounded native bearer/consent fixtures in synthetic staging. Not a provider login, email-delivery or real consent ceremony.",
+  "checks": [],
+  "deletions": [
+    {
+      "role": "owner",
+      "completed": true,
+      "sessionRevoked": true,
+      "providerAbsent": true
+    },
+    {
+      "role": "recipient",
+      "completed": true,
+      "sessionRevoked": true,
+      "providerAbsent": true
+    }
+  ],
+  "failure": "Expected values to be strictly equal:\n+ actual - expected\n\n+ undefined\n- false\n"
+}

@@ -1,0 +1,130 @@
+{
+  "checkedAt": "2026-09-19T14:21:04.753Z",
+  "checks": [
+    {
+      "id": "app-icon-dark",
+      "pass": true,
+      "actual": [
+        1024,
+        1024
+      ],
+      "alpha": false
+    },
+    {
+      "id": "app-icon-light",
+      "pass": true,
+      "actual": [
+        1024,
+        1024
+      ],
+      "alpha": false
+    },
+    {
+      "id": "app-icon-bronze",
+      "pass": true,
+      "actual": [
+        1024,
+        1024
+      ],
+      "alpha": false
+    },
+    {
+      "id": "symbol-16",
+      "pass": true,
+      "actual": [
+        15,
+        16
+      ],
+      "inkPixels": 50
+    },
+    {
+      "id": "symbol-24",
+      "pass": true,
+      "actual": [
+        23,
+        24
+      ],
+      "inkPixels": 117
+    },
+    {
+      "id": "symbol-32",
+      "pass": true,
+      "actual": [
+        31,
+        32
+      ],
+      "inkPixels": 287
+    },
+    {
+      "id": "symbol-64",
+      "pass": true,
+      "actual": [
+        61,
+        64
+      ],
+      "inkPixels": 1141
+    },
+    {
+      "id": "symbol-128",
+      "pass": true,
+      "actual": [
+        122,
+        128
+      ],
+      "inkPixels": 4585
+    },
+    {
+      "id": "symbol-256",
+      "pass": true,
+      "actual": [
+        245,
+        256
+      ],
+      "inkPixels": 18483
+    },
+    {
+      "id": "symbol-512",
+      "pass": true,
+      "actual": [
+        490,
+        512
+      ],
+      "inkPixels": 73952
+    },
+    {
+      "id": "lockup-primary-bounds",
+      "pass": true,
+      "canvas": [
+        1700,
+        406
+      ],
+      "inkBounds": [
+        26,
+        27,
+        1664,
+        378
+      ]
+    },
+    {
+      "id": "lockup-white-bounds",
+      "pass": true,
+      "canvas": [
+        1700,
+        406
+      ],
+      "inkBounds": [
+        26,
+        27,
+        1664,
+        378
+      ]
+    }
+  ],
+  "passed": 12,
+  "visual": "Reviewed main board and native-pixel positive/reverse proof; simplified 16/24px symbol preserves the central tree and three outer arcs. Moved outer-arc endpoint to avoid an accidental join; corrected layout centre.",
+  "limitations": [
+    "Small-size rendering is not proof of user recognition",
+    "No trademark clearance",
+    "No product installation or biometric functionality"
+  ]
+}

@@ -1,0 +1,34 @@
+
+> continuity-api@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/apple-review.integration.test.ts (11 tests | 1 failed) 1390ms
+     × expires test access at read time without waiting for another Apple notification 109ms
+Managed TLS certificate renewed.
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/apple-review.integration.test.ts > enrolled Apple review purchases share the strict lifecycle without production sales > expires test access at read time without waiting for another Apple notification
+error: permission denied for function commerce_subscription_effective
+ ❯ node_modules/pg/lib/client.js:652:17
+ ❯ tests/apple-review.integration.test.ts:147:78
+    145|   it('expires test access at read time without waiting for another App…
+    146|     const f=await fixture();expect(await f.intake.acceptClientTransact…
+    147|     const effective=()=>withCommercePlannerDatabase(pool,plannerId,asy…
+       |                                                                              ^
+    148|       'select app.commerce_subscription_effective(id) as enabled from …
+    149|     expect(await effective()).toBe(true);
+ ❯ inRoleTransaction src/db.ts:78:20
+ ❯ tests/apple-review.integration.test.ts:149:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 34 passed (35)
+      Tests  1 failed | 312 passed (313)
+   Start at  23:46:09
+   Duration  36.41s (transform 611ms, setup 973ms, import 6.75s, tests 24.58s, environment 2ms)
+

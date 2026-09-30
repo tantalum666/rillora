@@ -1,0 +1,81 @@
+{
+  "status": "local_apple_increment_complete_provider_acceptance_open",
+  "ownerTask": "Proceed with Apple-related release work",
+  "readingBaseline": "../rillora-launch-goal-20260926/full-read.json",
+  "method": "Continuation of the launch workflow; focused current authority/storekit/channel/production-contract recovery",
+  "next": "Production review identity/runtime/catalog and real Apple Sandbox purchase/restore; canonical docs/handoff.md",
+  "scope": "Existing UI/brand, annual-only Web88.99 and differential Apple price, Free1/Family5, no FanPass changes",
+  "provider": "Apple SBP enrollment submitted after explicit final attestation; Apple acknowledged receipt. Fee approval not confirmed. Annual USA68/CAD99 unchanged. Public URLs saved/reloaded. TestFlight no builds.",
+  "claims": {
+    "purchase": false,
+    "archive": true,
+    "export": true,
+    "upload": false,
+    "submission": false,
+    "sbpApplicationSubmitted": true,
+    "sbpApproved": false
+  },
+  "updatedAt": "2026-09-30T00:25:58.693822+08:00",
+  "implementation": "Shared strict production/review lifecycle; migration0086 local; native AppTransaction environment and PurchaseIntent entry; no cloud activation.",
+  "checks": {
+    "api": "Final symmetric review/real-purchase guard:314tests/35files pass; typecheck/build pass",
+    "native": "175full unit passes +1existing skip;13subsequent purchase regression passes and1new transport pass",
+    "archive": "Final source Release and storeIPA export verified; distribution-verification-final.json; closed account entrance; no upload",
+    "markdown": "163files/1613local links,0missing",
+    "sourceScan": "25reviewed unchanged nonsecret spans,0unreviewed"
+  },
+  "documentation": {
+    "focused": [
+      "docs/apple-review-validation-20260929.md",
+      "docs/production-apple-20260926.md",
+      "docs/storekit.md",
+      "docs/channel-pricing-20260921.md",
+      "docs/release-readiness.md",
+      "docs/product.md"
+    ],
+    "handoff": "docs/handoff.md",
+    "archivedHandoff": "docs/handoff-history-20260930-before-apple-closeout.md",
+    "decision": "Appended2026-09-29–30: explicit SBP facts/submission and bounded review implementation; no new price approved",
+    "journey": "Appended2026-09-29–30: goal/attempt/judgment/result/open gates",
+    "metadata": [
+      "config/app-store-listing.en-US.json",
+      "config/release-gates.json"
+    ],
+    "linksChecked": true
+  },
+  "providerFacts": {
+    "smallBusinessEnrollment": "submitted_acknowledged",
+    "effective15Percent": false,
+    "annualUSA": 68,
+    "annualCAD": 99,
+    "streamlinedPurchasing": "still_on_Apple_rejected_disable_without_approved_binary",
+    "testFlight": "no_builds",
+    "draftLinks": "saved_reloaded",
+    "productionBillingActivated": false
+  },
+  "source": {
+    "baseEngineeringCommit": "897ee5b0ee327d0b0d079c7100fe1cc8cf07b2b5",
+    "baseCI": "https://github.com/tantalum666/rillora/actions/runs/36595417009",
+    "baseCIStatus": "success",
+    "finalGuard": "committed, pushed, local314 and CI35 pass",
+    "finalEngineeringCommit": "79cea6429b8a6b0d0712a4af4aeea3096e7e35d5",
+    "ci": "https://github.com/tantalum666/rillora/actions/runs/36596303754",
+    "ciStatus": "success",
+    "reviewedNonSecrets": 25,
+    "unreviewed": 0,
+    "documentationCommit": "9b9968674f9d95c13b763ea02a43052dcd8d4fc0",
+    "workingTree": "clean",
+    "pushed": true
+  },
+  "additionalFinding": "Prevent test account starting actual Apple/Web payment during active review enrollment or after expiry with test billing history; no migration or native artifact change",
+  "closedAt": "2026-09-30T00:18:35.739220+08:00",
+  "remaining": [
+    "Actual production review identity/runtime/catalog/secret/notification setup;0076–0086 cloud rollout",
+    "Small Business approval/effective fee and final Apple price",
+    "Real Apple Sandbox purchase/restore/lifecycle and cross-channel acceptance",
+    "Final store screenshots/privacy/age/encryption/reviewer information and usable TestFlight upload",
+    "Owner-deferred merchant facts and physical devices"
+  ],
+  "cleanup": "No QA server or cloud resource created; ordinary simulator installed, no override; Apple receipt and TestFlight kept; temporary support/CI tabs close normally",
+  "handoffCheckpoint": "../rillora-chat-handoff-20260930/checkpoint.json"
+}

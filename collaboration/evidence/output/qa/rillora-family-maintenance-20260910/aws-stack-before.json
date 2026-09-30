@@ -1,0 +1,118 @@
+{
+    "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+    "StackName": "RilloraStaging",
+    "ChangeSetId": "arn:aws:cloudformation:eu-central-1:133857166372:changeSet/cdk-deploy-change-set/d6cb5132-ee1f-44eb-a2fb-ebe1ef7e753e",
+    "Description": "Synthetic-only Rillora staging API and PostgreSQL in AWS Frankfurt",
+    "Parameters": [
+        {
+            "ParameterKey": "WebCorsOrigin",
+            "ParameterValue": "https://app.staging.rillora.xyz"
+        },
+        {
+            "ParameterKey": "OidcApiAudience",
+            "ParameterValue": "****"
+        },
+        {
+            "ParameterKey": "WebOidcClientId",
+            "ParameterValue": "Sbf9lj69O25Cf7JZSZJuI09bTcRi2i0x"
+        },
+        {
+            "ParameterKey": "BootstrapVersion",
+            "ParameterValue": "/cdk-bootstrap/hnb659fds/version",
+            "ResolvedValue": "32"
+        },
+        {
+            "ParameterKey": "OidcIssuer",
+            "ParameterValue": "https://login.rillora.xyz"
+        },
+        {
+            "ParameterKey": "WebCertificateArn",
+            "ParameterValue": "arn:aws:acm:us-east-1:133857166372:certificate/4f7875ec-3161-4e11-9ec6-16382783c410"
+        },
+        {
+            "ParameterKey": "WebOidcRedirectUri",
+            "ParameterValue": "https://app.staging.rillora.xyz/api/auth/callback"
+        },
+        {
+            "ParameterKey": "NativeOidcClientId",
+            "ParameterValue": "****"
+        }
+    ],
+    "CreationTime": "2026-08-12T08:19:57.790000+00:00",
+    "LastUpdatedTime": "2026-09-10T08:25:21.926000+00:00",
+    "RollbackConfiguration": {},
+    "StackStatus": "UPDATE_IN_PROGRESS",
+    "DisableRollback": false,
+    "DeploymentConfig": {
+        "Mode": "STANDARD",
+        "DisableRollback": false
+    },
+    "NotificationARNs": [],
+    "Capabilities": [
+        "CAPABILITY_IAM",
+        "CAPABILITY_NAMED_IAM",
+        "CAPABILITY_AUTO_EXPAND"
+    ],
+    "Outputs": [
+        {
+            "OutputKey": "StripeTestWebhookSecretArn",
+            "OutputValue": "arn:aws:secretsmanager:eu-central-1:133857166372:secret:StripeTestWebhookSecret27AD-DjIcVJgvFIix-BNvgFG"
+        },
+        {
+            "OutputKey": "PublicSubnetIds",
+            "OutputValue": "subnet-0344e3c6bae4e3731,subnet-0610e7921274f95bd"
+        },
+        {
+            "OutputKey": "WebOidcClientSecretArn",
+            "OutputValue": "arn:aws:secretsmanager:eu-central-1:133857166372:secret:WebOidcClientSecret8C81BEC4-R2rkmUprqisV-VWDgAO"
+        },
+        {
+            "OutputKey": "WebDistributionDomainName",
+            "OutputValue": "d1ee12jk5j6ple.cloudfront.net"
+        },
+        {
+            "OutputKey": "TaskSecurityGroupId",
+            "OutputValue": "sg-062c63db94ecf2e16"
+        },
+        {
+            "OutputKey": "WebUrl",
+            "OutputValue": "https://app.staging.rillora.xyz"
+        },
+        {
+            "OutputKey": "ClusterName",
+            "OutputValue": "RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5"
+        },
+        {
+            "OutputKey": "ApiEndpoint",
+            "OutputValue": "https://l1g8350qw0.execute-api.eu-central-1.amazonaws.com"
+        },
+        {
+            "OutputKey": "ServiceDesiredCount",
+            "OutputValue": "1"
+        },
+        {
+            "OutputKey": "StagingOperatorRoleArn",
+            "OutputValue": "arn:aws:iam::133857166372:role/rillora/rillora-staging-operator"
+        },
+        {
+            "OutputKey": "StripeTestApiKeySecretArn",
+            "OutputValue": "arn:aws:secretsmanager:eu-central-1:133857166372:secret:StripeTestSecret04351D5D-RYsCQzd9tQVc-pzQZlf"
+        },
+        {
+            "OutputKey": "MigrationTaskDefinitionArn",
+            "OutputValue": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingMigrationTaskDefinitionD83F7D18:13"
+        }
+    ],
+    "RoleARN": "arn:aws:iam::133857166372:role/cdk-hnb659fds-cfn-exec-role-133857166372-eu-central-1",
+    "Tags": [],
+    "EnableTerminationProtection": false,
+    "DriftInformation": {
+        "StackDriftStatus": "NOT_CHECKED"
+    },
+    "LastOperations": [
+        {
+            "OperationType": "UPDATE_STACK",
+            "OperationId": "cf9e3845-fbd3-41ad-861f-4ed704771aff"
+        }
+    ]
+}

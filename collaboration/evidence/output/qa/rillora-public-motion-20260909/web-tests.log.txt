@@ -1,0 +1,1414 @@
+TAP version 13
+# Subtest: public browsing stays separate from explicit account and identity entry points
+ok 1 - public browsing stays separate from explicit account and identity entry points
+  ---
+  duration_ms: 0.897458
+  type: 'test'
+  ...
+# Subtest: authentication starts only through an explicit legal-acceptance POST
+ok 2 - authentication starts only through an explicit legal-acceptance POST
+  ---
+  duration_ms: 32.928625
+  type: 'test'
+  ...
+# Subtest: API client uses credentials and the development identity only when configured
+ok 3 - API client uses credentials and the development identity only when configured
+  ---
+  duration_ms: 0.242459
+  type: 'test'
+  ...
+# Subtest: commercial reads and route evaluation use the authenticated shared API
+ok 4 - commercial reads and route evaluation use the authenticated shared API
+  ---
+  duration_ms: 0.588917
+  type: 'test'
+  ...
+# Subtest: public session detection uses a non-error status endpoint before private workspace loading
+ok 5 - public session detection uses a non-error status endpoint before private workspace loading
+  ---
+  duration_ms: 0.387459
+  type: 'test'
+  ...
+# Subtest: API client binds state changes to the CSRF cookie token
+ok 6 - API client binds state changes to the CSRF cookie token
+  ---
+  duration_ms: 0.248625
+  type: 'test'
+  ...
+# Subtest: first-use progress and the first matter use the shared authenticated API
+ok 7 - first-use progress and the first matter use the shared authenticated API
+  ---
+  duration_ms: 0.395458
+  type: 'test'
+  ...
+# Subtest: API client returns bounded server errors without exposing response internals
+ok 8 - API client returns bounded server errors without exposing response internals
+  ---
+  duration_ms: 0.975875
+  type: 'test'
+  ...
+# Subtest: API client sends a CSRF-bound all-session revocation request
+ok 9 - API client sends a CSRF-bound all-session revocation request
+  ---
+  duration_ms: 0.623667
+  type: 'test'
+  ...
+# Subtest: API client validates and returns the minimum-disclosure printable artifact
+ok 10 - API client validates and returns the minimum-disclosure printable artifact
+  ---
+  duration_ms: 1.188083
+  type: 'test'
+  ...
+# Subtest: API client rejects a printable response that claims a retained server copy
+ok 11 - API client rejects a printable response that claims a retained server copy
+  ---
+  duration_ms: 0.252958
+  type: 'test'
+  ...
+# Subtest: synthetic recipient capabilities stay in request bodies and the isolated authorization header
+ok 12 - synthetic recipient capabilities stay in request bodies and the isolated authorization header
+  ---
+  duration_ms: 0.86025
+  type: 'test'
+  ...
+# Subtest: disclosure rehearsal mutations are CSRF-bound, versioned, and explicitly simulation-only
+ok 13 - disclosure rehearsal mutations are CSRF-bound, versioned, and explicitly simulation-only
+  ---
+  duration_ms: 0.410917
+  type: 'test'
+  ...
+# Subtest: disclosure rehearsal responses fail closed if release or high-risk fields appear
+ok 14 - disclosure rehearsal responses fail closed if release or high-risk fields appear
+  ---
+  duration_ms: 0.231584
+  type: 'test'
+  ...
+# Subtest: role assignment mutations stay versioned, explicit, and record-only
+ok 15 - role assignment mutations stay versioned, explicit, and record-only
+  ---
+  duration_ms: 0.366041
+  type: 'test'
+  ...
+# Subtest: role assignment responses fail closed on unsafe authority or secret fields
+ok 16 - role assignment responses fail closed on unsafe authority or secret fields
+  ---
+  duration_ms: 0.199042
+  type: 'test'
+  ...
+# Subtest: commercial state is derived from the server catalog while billing remains closed
+ok 17 - commercial state is derived from the server catalog while billing remains closed
+  ---
+  duration_ms: 51.393625
+  type: 'test'
+  ...
+# Subtest: unsafe or malformed commercial responses fail closed
+ok 18 - unsafe or malformed commercial responses fail closed
+  ---
+  duration_ms: 0.388625
+  type: 'test'
+  ...
+# Subtest: purchase routing rejects a client-success or contradictory route
+ok 19 - purchase routing rejects a client-success or contradictory route
+  ---
+  duration_ms: 0.118291
+  type: 'test'
+  ...
+# Subtest: commercial details stay out of public discovery until explicit paid-capability intent
+ok 20 - commercial details stay out of public discovery until explicit paid-capability intent
+  ---
+  duration_ms: 0.053375
+  type: 'test'
+  ...
+# Subtest: simulation evidence is never promoted to accepted
+ok 21 - simulation evidence is never promoted to accepted
+  ---
+  duration_ms: 2.146334
+  type: 'test'
+  ...
+# Subtest: only a non-simulated accepted invitation receives accepted evidence
+ok 22 - only a non-simulated accepted invitation receives accepted evidence
+  ---
+  duration_ms: 0.082625
+  type: 'test'
+  ...
+# Subtest: record-only, pending and revoked states remain distinct
+ok 23 - record-only, pending and revoked states remain distinct
+  ---
+  duration_ms: 0.542375
+  type: 'test'
+  ...
+# Subtest: first-use state fails safely to an available non-blocking overview
+ok 24 - first-use state fails safely to an available non-blocking overview
+  ---
+  duration_ms: 2.784
+  type: 'test'
+  ...
+# Subtest: paused and completed guides do not keep nagging on the overview
+ok 25 - paused and completed guides do not keep nagging on the overview
+  ---
+  duration_ms: 0.080875
+  type: 'test'
+  ...
+# Subtest: resume copy follows saved progress without changing readiness
+not ok 26 - resume copy follows saved progress without changing readiness
+  ---
+  duration_ms: 0.760417
+  type: 'test'
+  location: '/Users/tantalum/Documents/电子遗嘱app/apps/web/tests/first-use.test.mjs:23:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'Optional guide'
+    - 'Use the 2-minute guide'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'Use the 2-minute guide'
+  actual: 'Optional guide'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tantalum/Documents/%E7%94%B5%E5%AD%90%E9%81%97%E5%98%B1app/apps/web/tests/first-use.test.mjs:24:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: redirects the publication root to Terms
+ok 27 - redirects the publication root to Terms
+  ---
+  duration_ms: 33.824042
+  type: 'test'
+  ...
+# Subtest: serves only allowlisted legal routes through the app shell
+ok 28 - serves only allowlisted legal routes through the app shell
+  ---
+  duration_ms: 1.185208
+  type: 'test'
+  ...
+# Subtest: rejects account, API, unknown and write routes
+ok 29 - rejects account, API, unknown and write routes
+  ---
+  duration_ms: 0.955
+  type: 'test'
+  ...
+# Subtest: caches fingerprinted assets immutably
+ok 30 - caches fingerprinted assets immutably
+  ---
+  duration_ms: 0.270167
+  type: 'test'
+  ...
+# Subtest: emits a legal entry and the Sites package files
+not ok 31 - emits a legal entry and the Sites package files
+  ---
+  duration_ms: 5.523
+  type: 'test'
+  location: '/Users/tantalum/Documents/电子遗嘱app/apps/web/tests/legal-sites-worker.test.mjs:75:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /Rillora Legal/. Input:
+    
+    'export default {\n' +
+      '  async fetch(request, env) {\n' +
+      '    const response = await env.ASSETS.fetch(request);\n' +
+      '    const acceptsHtml = request.headers.get("accept")?.includes("text/html");\n' +
+      '\n' +
+      '    if (response.status !== 404 || !acceptsHtml || !["GET", "HEAD"].includes(request.method)) {\n' +
+      '      return response;\n' +
+      '    }\n' +
+      '\n' +
+      '    const indexUrl = new URL(request.url);\n' +
+      '    indexUrl.pathname = "/index.html";\n' +
+      '    indexUrl.search = "";\n' +
+      '    return env.ASSETS.fetch(new Request(indexUrl, request));\n' +
+      '  },\n' +
+      '};\n'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: |-
+    export default {
+      async fetch(request, env) {
+        const response = await env.ASSETS.fetch(request);
+        const acceptsHtml = request.headers.get("accept")?.includes("text/html");
+    
+        if (response.status !== 404 || !acceptsHtml || !["GET", "HEAD"].includes(request.method)) {
+          return response;
+        }
+    
+        const indexUrl = new URL(request.url);
+        indexUrl.pathname = "/index.html";
+        indexUrl.search = "";
+        return env.ASSETS.fetch(new Request(indexUrl, request));
+      },
+    };
+    
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tantalum/Documents/%E7%94%B5%E5%AD%90%E9%81%97%E5%98%B1app/apps/web/tests/legal-sites-worker.test.mjs:77:10)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: embeds the built legal shell in the deployed Worker
+not ok 32 - embeds the built legal shell in the deployed Worker
+  ---
+  duration_ms: 1.303208
+  type: 'test'
+  location: '/Users/tantalum/Documents/电子遗嘱app/apps/web/tests/legal-sites-worker.test.mjs:88:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    404 !== 200
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 200
+  actual: 404
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tantalum/Documents/%E7%94%B5%E5%AD%90%E9%81%97%E5%98%B1app/apps/web/tests/legal-sites-worker.test.mjs:94:10)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: keeps the legal artifact inside its performance and content budgets
+not ok 33 - keeps the legal artifact inside its performance and content budgets
+  ---
+  duration_ms: 0.740084
+  type: 'test'
+  location: '/Users/tantalum/Documents/电子遗嘱app/apps/web/tests/legal-sites-worker.test.mjs:98:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    2 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 2
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tantalum/Documents/%E7%94%B5%E5%AD%90%E9%81%97%E5%98%B1app/apps/web/tests/legal-sites-worker.test.mjs:104:10)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: mobile keeps three primary destinations
+ok 34 - mobile keeps three primary destinations
+  ---
+  duration_ms: 1.712667
+  type: 'test'
+  ...
+# Subtest: desktop-only destinations remain reachable through More
+ok 35 - desktop-only destinations remain reachable through More
+  ---
+  duration_ms: 0.394917
+  type: 'test'
+  ...
+# Subtest: official provider catalog covers the curated common platforms
+ok 36 - official provider catalog covers the curated common platforms
+  ---
+  duration_ms: 2.031292
+  type: 'test'
+  ...
+# Subtest: every provider link is HTTPS and uses an official host
+ok 37 - every provider link is HTTPS and uses an official host
+  ---
+  duration_ms: 0.226458
+  type: 'test'
+  ...
+# Subtest: Binance is described as a regional estate request, not a legacy contact
+ok 38 - Binance is described as a regional estate request, not a legacy contact
+  ---
+  duration_ms: 0.106834
+  type: 'test'
+  ...
+# Subtest: public discovery explains the real product before plan creation
+not ok 39 - public discovery explains the real product before plan creation
+  ---
+  duration_ms: 2.317708
+  type: 'test'
+  location: '/Users/tantalum/Documents/电子遗嘱app/apps/web/tests/public-experience.test.mjs:31:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /architectural-index-row/. Input:
+    
+    'import { useEffect, useRef, useState } from "react";\n' +
+      'import {\n' +
+      '  ArrowLeft,\n' +
+      '  ArrowRight,\n' +
+      '  FileText,\n' +
+      '  LockKey,\n' +
+      '  MapTrifold,\n' +
+      '  ShieldCheck,\n' +
+      '  UserCircle,\n' +
+      '} from "@phosphor-icons/react";\n' +
+      'import { api } from "./api.js";\n' +
+      'import { LegalDocumentPage } from "./LegalDocumentPage.jsx";\n' +
+      'import { LEGAL_CONTRACT } from "./legalContract.js";\n' +
+      'import { publicRoutes, resolvePublicView } from "./publicRoutes.js";\n' +
+      'import "./public-experience.css";\n' +
+      'import { ContinuityExplorer, PublicMatterExplorer } from "./ContinuityExplorer.jsx";\n' +
+      'import { accountPathForMatter, authenticationReturnPath } from "./publicIntent.js";\n' +
+      '\n' +
+      'const cookieNoticeVersion = "necessary-storage-2026-08-27-1";\n' +
+      'const cookieNoticeStorageKey = "rillora.cookie-notice";\n' +
+      '\n' +
+      'function hasDismissedCookieNotice() {\n' +
+      '  try {\n' +
+      '    return window.localStorage.getItem(cookieNoticeStorageKey) === cookieNoticeVersion;\n' +
+      '  } catch {\n' +
+      '    return false;\n' +
+      '  }\n' +
+      '}\n' +
+      '\n' +
+      'export function PublicExperience({ sessionStatus, onRetry }) {\n' +
+      '  const [view, setView] = useState(() => resolvePublicView(window.location.pathname));\n' +
+      '  const [hasVisitedHome, setHasVisitedHome] = useState(view === "home");\n' +
+      '  const homeScroll = useRef(0);\n' +
+      '  const [cookieNoticeVisible, setCookieNoticeVisible] = useState(\n' +
+      '    () => !hasDismissedCookieNotice(),\n' +
+      '  );\n' +
+      '  const showCookieNotice = cookieNoticeVisible && view !== "cookies";\n' +
+      '\n' +
+      '  useEffect(() => {\n' +
+      '    const handlePopState = () => {\n' +
+      '      const next = resolvePublicView(window.location.pathname);\n' +
+      '      if (next === "home") setHasVisitedHome(true);\n' +
+      '      setView(next);\n' +
+      '    };\n' +
+      '    window.addEventListener("popstate", handlePopState);\n' +
+      '    return () => window.removeEventListener("popstate", handlePopState);\n' +
+      '  }, []);\n' +
+      '\n' +
+      '  useEffect(() => {\n' +
+      '    const titles = {\n' +
+      '      home: "Rillora — A clear plan for what comes next",\n' +
+      '      account: "Account — Rillora",\n' +
+      '      privacy: "Privacy Policy — Rillora",\n' +
+      '      terms: "Terms of Service — Rillora",\n' +
+      '      subscriptions: "Subscription Terms — Rillora",\n' +
+      '      refunds: "Refund & Cancellation — Rillora",\n' +
+      '      acceptableUse: "Acceptable Use — Rillora",\n' +
+      '      cookies: "Cookie Notice — Rillora",\n' +
+      '      legalNotice: "Legal Notice — Rillora",\n' +
+      '    };\n' +
+      '    document.title = titles[view] ?? titles.home;\n' +
+      '  }, [view]);\n' +
+      '\n' +
+      '  function navigate(path) {\n' +
+      '    const next = resolvePublicView(new URL(path, window.location.origin).pathname);\n' +
+      '    if (view === "home" && next !== "home") homeScroll.current = window.scrollY;\n' +
+      '    if (next === "home") setHasVisitedHome(true);\n' +
+      '    if (window.location.pathname !== path) window.history.pushState({}, "", path);\n' +
+      '    setView(next);\n' +
+      '    window.requestAnimationFrame(() => window.scrollTo({ top: next === "home" ? homeScroll.current : 0, behavior: "auto" }));\n' +
+      '  }\n' +
+      '\n' +
+      '  function handleNavigation(event, path) {\n' +
+      '    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;\n' +
+      '    event.preventDefault();\n' +
+      '    navigate(path);\n' +
+      '  }\n' +
+      '\n' +
+      '  function dismissCookieNotice() {\n' +
+      '    try {\n' +
+      '      window.localStorage.setItem(cookieNoticeStorageKey, cookieNoticeVersion);\n' +
+      '    } catch {\n' +
+      '      // The current page can still dismiss the notice when storage is unavailable.\n' +
+      '    }\n' +
+      '    setCookieNoticeVisible(false);\n' +
+      '  }\n' +
+      '\n' +
+      '  return (\n' +
+      '    <div className={`public-shell public-shell-${view}${showCookieNotice ? " has-cookie-notice" : ""}`}>\n' +
+      '      <header className="public-header">\n' +
+      '        <a className="public-wordmark" href={publicRoutes.home} onClick={(event) => handleNavigation(event, publicRoutes.home)} aria-label="Rillora home">Rillora</a>\n' +
+      '        <nav aria-label="Public navigation">\n' +
+      '          <a className={view === "account" ? "is-current" : ""} href={publicRoutes.account} onClick={(event) => handleNavigation(event, publicRoutes.account)}>Account</a>\n' +
+      '        </nav>\n' +
+      '      </header>\n' +
+      '\n' +
+      '      {hasVisitedHome && <div hidden={view !== "home"}>\n' +
+      '        <PublicHome onStart={(category) => navigate(accountPathForMatter(category))} />\n' +
+      '      </div>}\n' +
+      '      {view === "account" ? (\n' +
+      '        <AccountPage\n' +
+      '          sessionStatus={sessionStatus}\n' +
+      '          onRetry={onRetry}\n' +
+      '          onBack={() => navigate(publicRoutes.home)}\n' +
+      '        />\n' +
+      '      ) : ["privacy", "terms", "subscriptions", "refunds", "acceptableUse", "cookies", "legalNotice"].includes(view) ? (\n' +
+      '        <LegalDocumentPage documentKey={view} onBack={() => navigate(publicRoutes.home)} />\n' +
+      '      ) : null}\n' +
+      '\n' +
+      '      {showCookieNotice && (\n' +
+      '        <CookieNoticeBanner\n' +
+      '          onDismiss={dismissCookieNotice}\n' +
+      '          onReview={() => navigate(publicRoutes.cookies)}\n' +
+      '        />\n' +
+      '      )}\n' +
+      '\n' +
+      '      <footer className="public-footer">\n' +
+      '        <span>Rillora</span>\n' +
+      '        <p>Digital legacy and estate continuity. Directions, not passwords.</p>\n' +
+      '        <nav aria-label="Legal and account links">\n' +
+      '          <a href={publicRoutes.privacy} onClick={(event) => handleNavigation(event, publicRoutes.privacy)}>Privacy</a>\n' +
+      '          <a href={publicRoutes.terms} onClick={(event) => handleNavigation(event, publicRoutes.terms)}>Terms</a>\n' +
+      '          <a href={publicRoutes.legalNotice} onClick={(event) => handleNavigation(event, publicRoutes.legalNotice)}>Legal</a>\n' +
+      '          <a href={publicRoutes.account} onClick={(event) => handleNavigation(event, publicRoutes.account)}>Account</a>\n' +
+      '        </nav>\n' +
+      '      </footer>\n' +
+      '    </div>\n' +
+      '  );\n' +
+      '}\n' +
+      '\n' +
+      'function CookieNoticeBanner({ onDismiss, onReview }) {\n' +
+      '  return (\n' +
+      '    <aside className="cookie-notice-banner" role="region" aria-labelledby="cookie-notice-title">\n' +
+      '      <div>\n' +
+      '        <strong id="cookie-notice-title">Necessary cookies only</strong>\n' +
+      '        <p>For sign-in, security and this notice. No ads or behavioural analytics.</p>\n' +
+      '      </div>\n' +
+      '      <div className="cookie-notice-actions">\n' +
+      '        <button type="button" className="cookie-notice-review" onClick={onReview}>Review Cookie Notice</button>\n' +
+      '        <button type="button" className="cookie-notice-dismiss" onClick={onDismiss}>Got it</button>\n' +
+      '      </div>\n' +
+      '    </aside>\n' +
+      '  );\n' +
+      '}\n' +
+      '\n' +
+      'function PublicHome({ onStart }) {\n' +
+      '  function explore(event) {\n' +
+      '    event.preventDefault();\n' +
+      '    const target = document.getElementById("explore-matters");\n' +
+      '    target?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });\n' +
+      '    target?.focus({ preventScroll: true });\n' +
+      '  }\n' +
+      '\n' +
+      '  return (\n' +
+      '    <main className="architectural-home">\n' +
+      '      <section className="public-motion-hero" aria-labelledby="public-hero-title">\n' +
+      '        <div className="public-motion-copy">\n' +
+      '          <p className="architectural-kicker">Digital legacy</p>\n' +
+      '          <h1 id="public-hero-title">Make the important things clear.</h1>\n' +
+      '          <p className="architectural-lede">Your important things, connected.</p>\n' +
+      '        </div>\n' +
+      '        <ContinuityExplorer />\n' +
+      '        <div className="public-motion-actions">\n' +
+      '          <a href="#explore-matters" onClick={explore}>Explore matters <ArrowRight size={20} aria-hidden="true" /></a>\n' +
+      '          <button className="architectural-primary" type="button" onClick={() => onStart("account")}>Add my first matter <ArrowRight size={21} aria-hidden="true" /></button>\n' +
+      '        </div>\n' +
+      '      </section>\n' +
+      '      <PublicMatterExplorer onStart={onStart} />\n' +
+      '      <section className="architectural-safety public-motion-safety" aria-label="Separate processes">\n' +
+      '        <p className="architectural-kicker">Separate processes</p>\n' +
+      '        <div className="architectural-event-grid">\n' +
+      '          <span><ShieldCheck size={18} aria-hidden="true" /> Death</span>\n' +
+      '          <span><UserCircle size={18} aria-hidden="true" /> Incapacity</span>\n' +
+      '          <span><LockKey size={18} aria-hidden="true" /> Unreachable</span>\n' +
+      '        </div>\n' +
+      '      </section>\n' +
+      '    </main>\n' +
+      '  );\n' +
+      '}\n' +
+      '\n' +
+      'function AccountPage({ sessionStatus, onRetry, onBack }) {\n' +
+      '  const checking = sessionStatus === "checking";\n' +
+      '  const unavailable = sessionStatus === "unavailable";\n' +
+      '  const [hasAccepted, setHasAccepted] = useState(false);\n' +
+      '  const [workingIntent, setWorkingIntent] = useState(null);\n' +
+      '  const [errorMessage, setErrorMessage] = useState(null);\n' +
+      '\n' +
+      '  async function beginAuthentication(intent) {\n' +
+      '    if (!hasAccepted || workingIntent) return;\n' +
+      '    setWorkingIntent(intent);\n' +
+      '    setErrorMessage(null);\n' +
+      '    try {\n' +
+      '      const response = await api.startAuthentication({\n' +
+      '        intent,\n' +
+      '        returnTo: authenticationReturnPath(window.location.search),\n' +
+      '        legalAcceptance: {\n' +
+      '          termsVersion: LEGAL_CONTRACT.termsVersion,\n' +
+      '          privacyVersion: LEGAL_CONTRACT.privacyVersion,\n' +
+      '          consentTextVersion: LEGAL_CONTRACT.consentTextVersion,\n' +
+      '          bundleSha256: LEGAL_CONTRACT.bundleSha256,\n' +
+      '          acceptedTerms: true,\n' +
+      '          acknowledgedPrivacy: true,\n' +
+      '          acceptedElectronicRecords: true,\n' +
+      '        },\n' +
+      '      });\n' +
+      '      window.location.assign(response.authorizationUrl);\n' +
+      '    } catch (error) {\n' +
+      '      setErrorMessage(error?.message || "The secure sign-in flow could not be opened.");\n' +
+      '      setWorkingIntent(null);\n' +
+      '    }\n' +
+      '  }\n' +
+      '\n' +
+      '  return (\n' +
+      '    <main className="public-account" aria-labelledby="account-title">\n' +
+      '      <button className="account-back" type="button" onClick={onBack}><ArrowLeft size={18} aria-hidden="true" /> Back to Rillora</button>\n' +
+      '      <div className="account-layout">\n' +
+      '        <section>\n' +
+      '          <h1 id="account-title">Your private map</h1>\n' +
+      '        </section>\n' +
+      '        <section className="account-actions" aria-label="Account options">\n' +
+      '          {checking && <p className="account-status">Checking whether you already have an active session…</p>}\n' +
+      '          {unavailable && <><p className="account-status is-error">The account service is temporarily unavailable. The public site is still available.</p><button className="secondary-button" type="button" onClick={onRetry}>Try account service again</button></>}\n' +
+      '          {!checking && !unavailable && <>\n' +
+      '            <div className="account-action-form">\n' +
+      '              <div className="account-consent">\n' +
+      '                <label>\n' +
+      '                  <input\n' +
+      '                    type="checkbox"\n' +
+      '                    checked={hasAccepted}\n' +
+      '                    onChange={(event) => setHasAccepted(event.target.checked)}\n' +
+      '                  />\n' +
+      '                  <span>I agree to the <a href={publicRoutes.terms} target="_blank'... 994 more characters
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: |-
+    import { useEffect, useRef, useState } from "react";
+    import {
+      ArrowLeft,
+      ArrowRight,
+      FileText,
+      LockKey,
+      MapTrifold,
+      ShieldCheck,
+      UserCircle,
+    } from "@phosphor-icons/react";
+    import { api } from "./api.js";
+    import { LegalDocumentPage } from "./LegalDocumentPage.jsx";
+    import { LEGAL_CONTRACT } from "./legalContract.js";
+    import { publicRoutes, resolvePublicView } from "./publicRoutes.js";
+    import "./public-experience.css";
+    import { ContinuityExplorer, PublicMatterExplorer } from "./ContinuityExplorer.jsx";
+    import { accountPathForMatter, authenticationReturnPath } from "./publicIntent.js";
+    
+    const cookieNoticeVersion = "necessary-storage-2026-08-27-1";
+    const cookieNoticeStorageKey = "rillora.cookie-notice";
+    
+    function hasDismissedCookieNotice() {
+      try {
+        return window.localStorage.getItem(cookieNoticeStorageKey) === cookieNoticeVersion;
+      } catch {
+        return false;
+      }
+    }
+    
+    export function PublicExperience({ sessionStatus, onRetry }) {
+      const [view, setView] = useState(() => resolvePublicView(window.location.pathname));
+      const [hasVisitedHome, setHasVisitedHome] = useState(view === "home");
+      const homeScroll = useRef(0);
+      const [cookieNoticeVisible, setCookieNoticeVisible] = useState(
+        () => !hasDismissedCookieNotice(),
+      );
+      const showCookieNotice = cookieNoticeVisible && view !== "cookies";
+    
+      useEffect(() => {
+        const handlePopState = () => {
+          const next = resolvePublicView(window.location.pathname);
+          if (next === "home") setHasVisitedHome(true);
+          setView(next);
+        };
+        window.addEventListener("popstate", handlePopState);
+        return () => window.removeEventListener("popstate", handlePopState);
+      }, []);
+    
+      useEffect(() => {
+        const titles = {
+          home: "Rillora — A clear plan for what comes next",
+          account: "Account — Rillora",
+          privacy: "Privacy Policy — Rillora",
+          terms: "Terms of Service — Rillora",
+          subscriptions: "Subscription Terms — Rillora",
+          refunds: "Refund & Cancellation — Rillora",
+          acceptableUse: "Acceptable Use — Rillora",
+          cookies: "Cookie Notice — Rillora",
+          legalNotice: "Legal Notice — Rillora",
+        };
+        document.title = titles[view] ?? titles.home;
+      }, [view]);
+    
+      function navigate(path) {
+        const next = resolvePublicView(new URL(path, window.location.origin).pathname);
+        if (view === "home" && next !== "home") homeScroll.current = window.scrollY;
+        if (next === "home") setHasVisitedHome(true);
+        if (window.location.pathname !== path) window.history.pushState({}, "", path);
+        setView(next);
+        window.requestAnimationFrame(() => window.scrollTo({ top: next === "home" ? homeScroll.current : 0, behavior: "auto" }));
+      }
+    
+      function handleNavigation(event, path) {
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        navigate(path);
+      }
+    
+      function dismissCookieNotice() {
+        try {
+          window.localStorage.setItem(cookieNoticeStorageKey, cookieNoticeVersion);
+        } catch {
+          // The current page can still dismiss the notice when storage is unavailable.
+        }
+        setCookieNoticeVisible(false);
+      }
+    
+      return (
+        <div className={`public-shell public-shell-${view}${showCookieNotice ? " has-cookie-notice" : ""}`}>
+          <header className="public-header">
+            <a className="public-wordmark" href={publicRoutes.home} onClick={(event) => handleNavigation(event, publicRoutes.home)} aria-label="Rillora home">Rillora</a>
+            <nav aria-label="Public navigation">
+              <a className={view === "account" ? "is-current" : ""} href={publicRoutes.account} onClick={(event) => handleNavigation(event, publicRoutes.account)}>Account</a>
+            </nav>
+          </header>
+    
+          {hasVisitedHome && <div hidden={view !== "home"}>
+            <PublicHome onStart={(category) => navigate(accountPathForMatter(category))} />
+          </div>}
+          {view === "account" ? (
+            <AccountPage
+              sessionStatus={sessionStatus}
+              onRetry={onRetry}
+              onBack={() => navigate(publicRoutes.home)}
+            />
+          ) : ["privacy", "terms", "subscriptions", "refunds", "acceptableUse", "cookies", "legalNotice"].includes(view) ? (
+            <LegalDocumentPage documentKey={view} onBack={() => navigate(publicRoutes.home)} />
+          ) : null}
+    
+          {showCookieNotice && (
+            <CookieNoticeBanner
+              onDismiss={dismissCookieNotice}
+              onReview={() => navigate(publicRoutes.cookies)}
+            />
+          )}
+    
+          <footer className="public-footer">
+            <span>Rillora</span>
+            <p>Digital legacy and estate continuity. Directions, not passwords.</p>
+            <nav aria-label="Legal and account links">
+              <a href={publicRoutes.privacy} onClick={(event) => handleNavigation(event, publicRoutes.privacy)}>Privacy</a>
+              <a href={publicRoutes.terms} onClick={(event) => handleNavigation(event, publicRoutes.terms)}>Terms</a>
+              <a href={publicRoutes.legalNotice} onClick={(event) => handleNavigation(event, publicRoutes.legalNotice)}>Legal</a>
+              <a href={publicRoutes.account} onClick={(event) => handleNavigation(event, publicRoutes.account)}>Account</a>
+            </nav>
+          </footer>
+        </div>
+      );
+    }
+    
+    function CookieNoticeBanner({ onDismiss, onReview }) {
+      return (
+        <aside className="cookie-notice-banner" role="region" aria-labelledby="cookie-notice-title">
+          <div>
+            <strong id="cookie-notice-title">Necessary cookies only</strong>
+            <p>For sign-in, security and this notice. No ads or behavioural analytics.</p>
+          </div>
+          <div className="cookie-notice-actions">
+            <button type="button" className="cookie-notice-review" onClick={onReview}>Review Cookie Notice</button>
+            <button type="button" className="cookie-notice-dismiss" onClick={onDismiss}>Got it</button>
+          </div>
+        </aside>
+      );
+    }
+    
+    function PublicHome({ onStart }) {
+      function explore(event) {
+        event.preventDefault();
+        const target = document.getElementById("explore-matters");
+        target?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+        target?.focus({ preventScroll: true });
+      }
+    
+      return (
+        <main className="architectural-home">
+          <section className="public-motion-hero" aria-labelledby="public-hero-title">
+            <div className="public-motion-copy">
+              <p className="architectural-kicker">Digital legacy</p>
+              <h1 id="public-hero-title">Make the important things clear.</h1>
+              <p className="architectural-lede">Your important things, connected.</p>
+            </div>
+            <ContinuityExplorer />
+            <div className="public-motion-actions">
+              <a href="#explore-matters" onClick={explore}>Explore matters <ArrowRight size={20} aria-hidden="true" /></a>
+              <button className="architectural-primary" type="button" onClick={() => onStart("account")}>Add my first matter <ArrowRight size={21} aria-hidden="true" /></button>
+            </div>
+          </section>
+          <PublicMatterExplorer onStart={onStart} />
+          <section className="architectural-safety public-motion-safety" aria-label="Separate processes">
+            <p className="architectural-kicker">Separate processes</p>
+            <div className="architectural-event-grid">
+              <span><ShieldCheck size={18} aria-hidden="true" /> Death</span>
+              <span><UserCircle size={18} aria-hidden="true" /> Incapacity</span>
+              <span><LockKey size={18} aria-hidden="true" /> Unreachable</span>
+            </div>
+          </section>
+        </main>
+      );
+    }
+    
+    function AccountPage({ sessionStatus, onRetry, onBack }) {
+      const checking = sessionStatus === "checking";
+      const unavailable = sessionStatus === "unavailable";
+      const [hasAccepted, setHasAccepted] = useState(false);
+      const [workingIntent, setWorkingIntent] = useState(null);
+      const [errorMessage, setErrorMessage] = useState(null);
+    
+      async function beginAuthentication(intent) {
+        if (!hasAccepted || workingIntent) return;
+        setWorkingIntent(intent);
+        setErrorMessage(null);
+        try {
+          const response = await api.startAuthentication({
+            intent,
+            returnTo: authenticationReturnPath(window.location.search),
+            legalAcceptance: {
+              termsVersion: LEGAL_CONTRACT.termsVersion,
+              privacyVersion: LEGAL_CONTRACT.privacyVersion,
+              consentTextVersion: LEGAL_CONTRACT.consentTextVersion,
+              bundleSha256: LEGAL_CONTRACT.bundleSha256,
+              acceptedTerms: true,
+              acknowledgedPrivacy: true,
+              acceptedElectronicRecords: true,
+            },
+          });
+          window.location.assign(response.authorizationUrl);
+        } catch (error) {
+          setErrorMessage(error?.message || "The secure sign-in flow could not be opened.");
+          setWorkingIntent(null);
+        }
+      }
+    
+      return (
+        <main className="public-account" aria-labelledby="account-title">
+          <button className="account-back" type="button" onClick={onBack}><ArrowLeft size={18} aria-hidden="true" /> Back to Rillora</button>
+          <div className="account-layout">
+            <section>
+              <h1 id="account-title">Your private map</h1>
+            </section>
+            <section className="account-actions" aria-label="Account options">
+              {checking && <p className="account-status">Checking whether you already have an active session…</p>}
+              {unavailable && <><p className="account-status is-error">The account service is temporarily unavailable. The public site is still available.</p><button className="secondary-button" type="button" onClick={onRetry}>Try account service again</button></>}
+              {!checking && !unavailable && <>
+                <div className="account-action-form">
+                  <div className="account-consent">
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={hasAccepted}
+                        onChange={(event) => setHasAccepted(event.target.checked)}
+                      />
+                      <span>I agree to the <a href={publicRoutes.terms} target="_blank" rel="noreferrer">Terms</a>, acknowledge the <a href={publicRoutes.privacy} target="_blank" rel="noreferrer">Privacy Policy</a>, and consent to electronic records.</span>
+                    </label>
+                  </div>
+                  <button className="primary-button" type="button" disabled={!hasAccepted || Boolean(workingIntent)} onClick={() => beginAuthentication("signup")}>
+                    {workingIntent === "signup" ? "Opening secure signup…" : "Create account"} <ArrowRight size={20} aria-hidden="true" />
+                  </button>
+                  <button className="secondary-button" type="button" disabled={!hasAccepted || Boolean(workingIntent)} onClick={() => beginAuthentication("signin")}>
+                    {workingIntent === "signin" ? "Opening secure sign in…" : "Sign in"}
+                  </button>
+                </div>
+                {errorMessage && <p className="account-status is-error" role="alert">{errorMessage}</p>}
+              </>}
+            </section>
+          </div>
+        </main>
+      );
+    }
+    
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tantalum/Documents/%E7%94%B5%E5%AD%90%E9%81%97%E5%98%B1app/apps/web/tests/public-experience.test.mjs:37:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: public legal routes and registration clickwrap remain visible without false claims
+not ok 40 - public legal routes and registration clickwrap remain visible without false claims
+  ---
+  duration_ms: 0.836666
+  type: 'test'
+  location: '/Users/tantalum/Documents/电子遗嘱app/apps/web/tests/public-experience.test.mjs:57:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /aria-describedby="account-consent-note"/. Input:
+    
+    'import { useEffect, useRef, useState } from "react";\n' +
+      'import {\n' +
+      '  ArrowLeft,\n' +
+      '  ArrowRight,\n' +
+      '  FileText,\n' +
+      '  LockKey,\n' +
+      '  MapTrifold,\n' +
+      '  ShieldCheck,\n' +
+      '  UserCircle,\n' +
+      '} from "@phosphor-icons/react";\n' +
+      'import { api } from "./api.js";\n' +
+      'import { LegalDocumentPage } from "./LegalDocumentPage.jsx";\n' +
+      'import { LEGAL_CONTRACT } from "./legalContract.js";\n' +
+      'import { publicRoutes, resolvePublicView } from "./publicRoutes.js";\n' +
+      'import "./public-experience.css";\n' +
+      'import { ContinuityExplorer, PublicMatterExplorer } from "./ContinuityExplorer.jsx";\n' +
+      'import { accountPathForMatter, authenticationReturnPath } from "./publicIntent.js";\n' +
+      '\n' +
+      'const cookieNoticeVersion = "necessary-storage-2026-08-27-1";\n' +
+      'const cookieNoticeStorageKey = "rillora.cookie-notice";\n' +
+      '\n' +
+      'function hasDismissedCookieNotice() {\n' +
+      '  try {\n' +
+      '    return window.localStorage.getItem(cookieNoticeStorageKey) === cookieNoticeVersion;\n' +
+      '  } catch {\n' +
+      '    return false;\n' +
+      '  }\n' +
+      '}\n' +
+      '\n' +
+      'export function PublicExperience({ sessionStatus, onRetry }) {\n' +
+      '  const [view, setView] = useState(() => resolvePublicView(window.location.pathname));\n' +
+      '  const [hasVisitedHome, setHasVisitedHome] = useState(view === "home");\n' +
+      '  const homeScroll = useRef(0);\n' +
+      '  const [cookieNoticeVisible, setCookieNoticeVisible] = useState(\n' +
+      '    () => !hasDismissedCookieNotice(),\n' +
+      '  );\n' +
+      '  const showCookieNotice = cookieNoticeVisible && view !== "cookies";\n' +
+      '\n' +
+      '  useEffect(() => {\n' +
+      '    const handlePopState = () => {\n' +
+      '      const next = resolvePublicView(window.location.pathname);\n' +
+      '      if (next === "home") setHasVisitedHome(true);\n' +
+      '      setView(next);\n' +
+      '    };\n' +
+      '    window.addEventListener("popstate", handlePopState);\n' +
+      '    return () => window.removeEventListener("popstate", handlePopState);\n' +
+      '  }, []);\n' +
+      '\n' +
+      '  useEffect(() => {\n' +
+      '    const titles = {\n' +
+      '      home: "Rillora — A clear plan for what comes next",\n' +
+      '      account: "Account — Rillora",\n' +
+      '      privacy: "Privacy Policy — Rillora",\n' +
+      '      terms: "Terms of Service — Rillora",\n' +
+      '      subscriptions: "Subscription Terms — Rillora",\n' +
+      '      refunds: "Refund & Cancellation — Rillora",\n' +
+      '      acceptableUse: "Acceptable Use — Rillora",\n' +
+      '      cookies: "Cookie Notice — Rillora",\n' +
+      '      legalNotice: "Legal Notice — Rillora",\n' +
+      '    };\n' +
+      '    document.title = titles[view] ?? titles.home;\n' +
+      '  }, [view]);\n' +
+      '\n' +
+      '  function navigate(path) {\n' +
+      '    const next = resolvePublicView(new URL(path, window.location.origin).pathname);\n' +
+      '    if (view === "home" && next !== "home") homeScroll.current = window.scrollY;\n' +
+      '    if (next === "home") setHasVisitedHome(true);\n' +
+      '    if (window.location.pathname !== path) window.history.pushState({}, "", path);\n' +
+      '    setView(next);\n' +
+      '    window.requestAnimationFrame(() => window.scrollTo({ top: next === "home" ? homeScroll.current : 0, behavior: "auto" }));\n' +
+      '  }\n' +
+      '\n' +
+      '  function handleNavigation(event, path) {\n' +
+      '    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;\n' +
+      '    event.preventDefault();\n' +
+      '    navigate(path);\n' +
+      '  }\n' +
+      '\n' +
+      '  function dismissCookieNotice() {\n' +
+      '    try {\n' +
+      '      window.localStorage.setItem(cookieNoticeStorageKey, cookieNoticeVersion);\n' +
+      '    } catch {\n' +
+      '      // The current page can still dismiss the notice when storage is unavailable.\n' +
+      '    }\n' +
+      '    setCookieNoticeVisible(false);\n' +
+      '  }\n' +
+      '\n' +
+      '  return (\n' +
+      '    <div className={`public-shell public-shell-${view}${showCookieNotice ? " has-cookie-notice" : ""}`}>\n' +
+      '      <header className="public-header">\n' +
+      '        <a className="public-wordmark" href={publicRoutes.home} onClick={(event) => handleNavigation(event, publicRoutes.home)} aria-label="Rillora home">Rillora</a>\n' +
+      '        <nav aria-label="Public navigation">\n' +
+      '          <a className={view === "account" ? "is-current" : ""} href={publicRoutes.account} onClick={(event) => handleNavigation(event, publicRoutes.account)}>Account</a>\n' +
+      '        </nav>\n' +
+      '      </header>\n' +
+      '\n' +
+      '      {hasVisitedHome && <div hidden={view !== "home"}>\n' +
+      '        <PublicHome onStart={(category) => navigate(accountPathForMatter(category))} />\n' +
+      '      </div>}\n' +
+      '      {view === "account" ? (\n' +
+      '        <AccountPage\n' +
+      '          sessionStatus={sessionStatus}\n' +
+      '          onRetry={onRetry}\n' +
+      '          onBack={() => navigate(publicRoutes.home)}\n' +
+      '        />\n' +
+      '      ) : ["privacy", "terms", "subscriptions", "refunds", "acceptableUse", "cookies", "legalNotice"].includes(view) ? (\n' +
+      '        <LegalDocumentPage documentKey={view} onBack={() => navigate(publicRoutes.home)} />\n' +
+      '      ) : null}\n' +
+      '\n' +
+      '      {showCookieNotice && (\n' +
+      '        <CookieNoticeBanner\n' +
+      '          onDismiss={dismissCookieNotice}\n' +
+      '          onReview={() => navigate(publicRoutes.cookies)}\n' +
+      '        />\n' +
+      '      )}\n' +
+      '\n' +
+      '      <footer className="public-footer">\n' +
+      '        <span>Rillora</span>\n' +
+      '        <p>Digital legacy and estate continuity. Directions, not passwords.</p>\n' +
+      '        <nav aria-label="Legal and account links">\n' +
+      '          <a href={publicRoutes.privacy} onClick={(event) => handleNavigation(event, publicRoutes.privacy)}>Privacy</a>\n' +
+      '          <a href={publicRoutes.terms} onClick={(event) => handleNavigation(event, publicRoutes.terms)}>Terms</a>\n' +
+      '          <a href={publicRoutes.legalNotice} onClick={(event) => handleNavigation(event, publicRoutes.legalNotice)}>Legal</a>\n' +
+      '          <a href={publicRoutes.account} onClick={(event) => handleNavigation(event, publicRoutes.account)}>Account</a>\n' +
+      '        </nav>\n' +
+      '      </footer>\n' +
+      '    </div>\n' +
+      '  );\n' +
+      '}\n' +
+      '\n' +
+      'function CookieNoticeBanner({ onDismiss, onReview }) {\n' +
+      '  return (\n' +
+      '    <aside className="cookie-notice-banner" role="region" aria-labelledby="cookie-notice-title">\n' +
+      '      <div>\n' +
+      '        <strong id="cookie-notice-title">Necessary cookies only</strong>\n' +
+      '        <p>For sign-in, security and this notice. No ads or behavioural analytics.</p>\n' +
+      '      </div>\n' +
+      '      <div className="cookie-notice-actions">\n' +
+      '        <button type="button" className="cookie-notice-review" onClick={onReview}>Review Cookie Notice</button>\n' +
+      '        <button type="button" className="cookie-notice-dismiss" onClick={onDismiss}>Got it</button>\n' +
+      '      </div>\n' +
+      '    </aside>\n' +
+      '  );\n' +
+      '}\n' +
+      '\n' +
+      'function PublicHome({ onStart }) {\n' +
+      '  function explore(event) {\n' +
+      '    event.preventDefault();\n' +
+      '    const target = document.getElementById("explore-matters");\n' +
+      '    target?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });\n' +
+      '    target?.focus({ preventScroll: true });\n' +
+      '  }\n' +
+      '\n' +
+      '  return (\n' +
+      '    <main className="architectural-home">\n' +
+      '      <section className="public-motion-hero" aria-labelledby="public-hero-title">\n' +
+      '        <div className="public-motion-copy">\n' +
+      '          <p className="architectural-kicker">Digital legacy</p>\n' +
+      '          <h1 id="public-hero-title">Make the important things clear.</h1>\n' +
+      '          <p className="architectural-lede">Your important things, connected.</p>\n' +
+      '        </div>\n' +
+      '        <ContinuityExplorer />\n' +
+      '        <div className="public-motion-actions">\n' +
+      '          <a href="#explore-matters" onClick={explore}>Explore matters <ArrowRight size={20} aria-hidden="true" /></a>\n' +
+      '          <button className="architectural-primary" type="button" onClick={() => onStart("account")}>Add my first matter <ArrowRight size={21} aria-hidden="true" /></button>\n' +
+      '        </div>\n' +
+      '      </section>\n' +
+      '      <PublicMatterExplorer onStart={onStart} />\n' +
+      '      <section className="architectural-safety public-motion-safety" aria-label="Separate processes">\n' +
+      '        <p className="architectural-kicker">Separate processes</p>\n' +
+      '        <div className="architectural-event-grid">\n' +
+      '          <span><ShieldCheck size={18} aria-hidden="true" /> Death</span>\n' +
+      '          <span><UserCircle size={18} aria-hidden="true" /> Incapacity</span>\n' +
+      '          <span><LockKey size={18} aria-hidden="true" /> Unreachable</span>\n' +
+      '        </div>\n' +
+      '      </section>\n' +
+      '    </main>\n' +
+      '  );\n' +
+      '}\n' +
+      '\n' +
+      'function AccountPage({ sessionStatus, onRetry, onBack }) {\n' +
+      '  const checking = sessionStatus === "checking";\n' +
+      '  const unavailable = sessionStatus === "unavailable";\n' +
+      '  const [hasAccepted, setHasAccepted] = useState(false);\n' +
+      '  const [workingIntent, setWorkingIntent] = useState(null);\n' +
+      '  const [errorMessage, setErrorMessage] = useState(null);\n' +
+      '\n' +
+      '  async function beginAuthentication(intent) {\n' +
+      '    if (!hasAccepted || workingIntent) return;\n' +
+      '    setWorkingIntent(intent);\n' +
+      '    setErrorMessage(null);\n' +
+      '    try {\n' +
+      '      const response = await api.startAuthentication({\n' +
+      '        intent,\n' +
+      '        returnTo: authenticationReturnPath(window.location.search),\n' +
+      '        legalAcceptance: {\n' +
+      '          termsVersion: LEGAL_CONTRACT.termsVersion,\n' +
+      '          privacyVersion: LEGAL_CONTRACT.privacyVersion,\n' +
+      '          consentTextVersion: LEGAL_CONTRACT.consentTextVersion,\n' +
+      '          bundleSha256: LEGAL_CONTRACT.bundleSha256,\n' +
+      '          acceptedTerms: true,\n' +
+      '          acknowledgedPrivacy: true,\n' +
+      '          acceptedElectronicRecords: true,\n' +
+      '        },\n' +
+      '      });\n' +
+      '      window.location.assign(response.authorizationUrl);\n' +
+      '    } catch (error) {\n' +
+      '      setErrorMessage(error?.message || "The secure sign-in flow could not be opened.");\n' +
+      '      setWorkingIntent(null);\n' +
+      '    }\n' +
+      '  }\n' +
+      '\n' +
+      '  return (\n' +
+      '    <main className="public-account" aria-labelledby="account-title">\n' +
+      '      <button className="account-back" type="button" onClick={onBack}><ArrowLeft size={18} aria-hidden="true" /> Back to Rillora</button>\n' +
+      '      <div className="account-layout">\n' +
+      '        <section>\n' +
+      '          <h1 id="account-title">Your private map</h1>\n' +
+      '        </section>\n' +
+      '        <section className="account-actions" aria-label="Account options">\n' +
+      '          {checking && <p className="account-status">Checking whether you already have an active session…</p>}\n' +
+      '          {unavailable && <><p className="account-status is-error">The account service is temporarily unavailable. The public site is still available.</p><button className="secondary-button" type="button" onClick={onRetry}>Try account service again</button></>}\n' +
+      '          {!checking && !unavailable && <>\n' +
+      '            <div className="account-action-form">\n' +
+      '              <div className="account-consent">\n' +
+      '                <label>\n' +
+      '                  <input\n' +
+      '                    type="checkbox"\n' +
+      '                    checked={hasAccepted}\n' +
+      '                    onChange={(event) => setHasAccepted(event.target.checked)}\n' +
+      '                  />\n' +
+      '                  <span>I agree to the <a href={publicRoutes.terms} target="_blank'... 994 more characters
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: |-
+    import { useEffect, useRef, useState } from "react";
+    import {
+      ArrowLeft,
+      ArrowRight,
+      FileText,
+      LockKey,
+      MapTrifold,
+      ShieldCheck,
+      UserCircle,
+    } from "@phosphor-icons/react";
+    import { api } from "./api.js";
+    import { LegalDocumentPage } from "./LegalDocumentPage.jsx";
+    import { LEGAL_CONTRACT } from "./legalContract.js";
+    import { publicRoutes, resolvePublicView } from "./publicRoutes.js";
+    import "./public-experience.css";
+    import { ContinuityExplorer, PublicMatterExplorer } from "./ContinuityExplorer.jsx";
+    import { accountPathForMatter, authenticationReturnPath } from "./publicIntent.js";
+    
+    const cookieNoticeVersion = "necessary-storage-2026-08-27-1";
+    const cookieNoticeStorageKey = "rillora.cookie-notice";
+    
+    function hasDismissedCookieNotice() {
+      try {
+        return window.localStorage.getItem(cookieNoticeStorageKey) === cookieNoticeVersion;
+      } catch {
+        return false;
+      }
+    }
+    
+    export function PublicExperience({ sessionStatus, onRetry }) {
+      const [view, setView] = useState(() => resolvePublicView(window.location.pathname));
+      const [hasVisitedHome, setHasVisitedHome] = useState(view === "home");
+      const homeScroll = useRef(0);
+      const [cookieNoticeVisible, setCookieNoticeVisible] = useState(
+        () => !hasDismissedCookieNotice(),
+      );
+      const showCookieNotice = cookieNoticeVisible && view !== "cookies";
+    
+      useEffect(() => {
+        const handlePopState = () => {
+          const next = resolvePublicView(window.location.pathname);
+          if (next === "home") setHasVisitedHome(true);
+          setView(next);
+        };
+        window.addEventListener("popstate", handlePopState);
+        return () => window.removeEventListener("popstate", handlePopState);
+      }, []);
+    
+      useEffect(() => {
+        const titles = {
+          home: "Rillora — A clear plan for what comes next",
+          account: "Account — Rillora",
+          privacy: "Privacy Policy — Rillora",
+          terms: "Terms of Service — Rillora",
+          subscriptions: "Subscription Terms — Rillora",
+          refunds: "Refund & Cancellation — Rillora",
+          acceptableUse: "Acceptable Use — Rillora",
+          cookies: "Cookie Notice — Rillora",
+          legalNotice: "Legal Notice — Rillora",
+        };
+        document.title = titles[view] ?? titles.home;
+      }, [view]);
+    
+      function navigate(path) {
+        const next = resolvePublicView(new URL(path, window.location.origin).pathname);
+        if (view === "home" && next !== "home") homeScroll.current = window.scrollY;
+        if (next === "home") setHasVisitedHome(true);
+        if (window.location.pathname !== path) window.history.pushState({}, "", path);
+        setView(next);
+        window.requestAnimationFrame(() => window.scrollTo({ top: next === "home" ? homeScroll.current : 0, behavior: "auto" }));
+      }
+    
+      function handleNavigation(event, path) {
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        navigate(path);
+      }
+    
+      function dismissCookieNotice() {
+        try {
+          window.localStorage.setItem(cookieNoticeStorageKey, cookieNoticeVersion);
+        } catch {
+          // The current page can still dismiss the notice when storage is unavailable.
+        }
+        setCookieNoticeVisible(false);
+      }
+    
+      return (
+        <div className={`public-shell public-shell-${view}${showCookieNotice ? " has-cookie-notice" : ""}`}>
+          <header className="public-header">
+            <a className="public-wordmark" href={publicRoutes.home} onClick={(event) => handleNavigation(event, publicRoutes.home)} aria-label="Rillora home">Rillora</a>
+            <nav aria-label="Public navigation">
+              <a className={view === "account" ? "is-current" : ""} href={publicRoutes.account} onClick={(event) => handleNavigation(event, publicRoutes.account)}>Account</a>
+            </nav>
+          </header>
+    
+          {hasVisitedHome && <div hidden={view !== "home"}>
+            <PublicHome onStart={(category) => navigate(accountPathForMatter(category))} />
+          </div>}
+          {view === "account" ? (
+            <AccountPage
+              sessionStatus={sessionStatus}
+              onRetry={onRetry}
+              onBack={() => navigate(publicRoutes.home)}
+            />
+          ) : ["privacy", "terms", "subscriptions", "refunds", "acceptableUse", "cookies", "legalNotice"].includes(view) ? (
+            <LegalDocumentPage documentKey={view} onBack={() => navigate(publicRoutes.home)} />
+          ) : null}
+    
+          {showCookieNotice && (
+            <CookieNoticeBanner
+              onDismiss={dismissCookieNotice}
+              onReview={() => navigate(publicRoutes.cookies)}
+            />
+          )}
+    
+          <footer className="public-footer">
+            <span>Rillora</span>
+            <p>Digital legacy and estate continuity. Directions, not passwords.</p>
+            <nav aria-label="Legal and account links">
+              <a href={publicRoutes.privacy} onClick={(event) => handleNavigation(event, publicRoutes.privacy)}>Privacy</a>
+              <a href={publicRoutes.terms} onClick={(event) => handleNavigation(event, publicRoutes.terms)}>Terms</a>
+              <a href={publicRoutes.legalNotice} onClick={(event) => handleNavigation(event, publicRoutes.legalNotice)}>Legal</a>
+              <a href={publicRoutes.account} onClick={(event) => handleNavigation(event, publicRoutes.account)}>Account</a>
+            </nav>
+          </footer>
+        </div>
+      );
+    }
+    
+    function CookieNoticeBanner({ onDismiss, onReview }) {
+      return (
+        <aside className="cookie-notice-banner" role="region" aria-labelledby="cookie-notice-title">
+          <div>
+            <strong id="cookie-notice-title">Necessary cookies only</strong>
+            <p>For sign-in, security and this notice. No ads or behavioural analytics.</p>
+          </div>
+          <div className="cookie-notice-actions">
+            <button type="button" className="cookie-notice-review" onClick={onReview}>Review Cookie Notice</button>
+            <button type="button" className="cookie-notice-dismiss" onClick={onDismiss}>Got it</button>
+          </div>
+        </aside>
+      );
+    }
+    
+    function PublicHome({ onStart }) {
+      function explore(event) {
+        event.preventDefault();
+        const target = document.getElementById("explore-matters");
+        target?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+        target?.focus({ preventScroll: true });
+      }
+    
+      return (
+        <main className="architectural-home">
+          <section className="public-motion-hero" aria-labelledby="public-hero-title">
+            <div className="public-motion-copy">
+              <p className="architectural-kicker">Digital legacy</p>
+              <h1 id="public-hero-title">Make the important things clear.</h1>
+              <p className="architectural-lede">Your important things, connected.</p>
+            </div>
+            <ContinuityExplorer />
+            <div className="public-motion-actions">
+              <a href="#explore-matters" onClick={explore}>Explore matters <ArrowRight size={20} aria-hidden="true" /></a>
+              <button className="architectural-primary" type="button" onClick={() => onStart("account")}>Add my first matter <ArrowRight size={21} aria-hidden="true" /></button>
+            </div>
+          </section>
+          <PublicMatterExplorer onStart={onStart} />
+          <section className="architectural-safety public-motion-safety" aria-label="Separate processes">
+            <p className="architectural-kicker">Separate processes</p>
+            <div className="architectural-event-grid">
+              <span><ShieldCheck size={18} aria-hidden="true" /> Death</span>
+              <span><UserCircle size={18} aria-hidden="true" /> Incapacity</span>
+              <span><LockKey size={18} aria-hidden="true" /> Unreachable</span>
+            </div>
+          </section>
+        </main>
+      );
+    }
+    
+    function AccountPage({ sessionStatus, onRetry, onBack }) {
+      const checking = sessionStatus === "checking";
+      const unavailable = sessionStatus === "unavailable";
+      const [hasAccepted, setHasAccepted] = useState(false);
+      const [workingIntent, setWorkingIntent] = useState(null);
+      const [errorMessage, setErrorMessage] = useState(null);
+    
+      async function beginAuthentication(intent) {
+        if (!hasAccepted || workingIntent) return;
+        setWorkingIntent(intent);
+        setErrorMessage(null);
+        try {
+          const response = await api.startAuthentication({
+            intent,
+            returnTo: authenticationReturnPath(window.location.search),
+            legalAcceptance: {
+              termsVersion: LEGAL_CONTRACT.termsVersion,
+              privacyVersion: LEGAL_CONTRACT.privacyVersion,
+              consentTextVersion: LEGAL_CONTRACT.consentTextVersion,
+              bundleSha256: LEGAL_CONTRACT.bundleSha256,
+              acceptedTerms: true,
+              acknowledgedPrivacy: true,
+              acceptedElectronicRecords: true,
+            },
+          });
+          window.location.assign(response.authorizationUrl);
+        } catch (error) {
+          setErrorMessage(error?.message || "The secure sign-in flow could not be opened.");
+          setWorkingIntent(null);
+        }
+      }
+    
+      return (
+        <main className="public-account" aria-labelledby="account-title">
+          <button className="account-back" type="button" onClick={onBack}><ArrowLeft size={18} aria-hidden="true" /> Back to Rillora</button>
+          <div className="account-layout">
+            <section>
+              <h1 id="account-title">Your private map</h1>
+            </section>
+            <section className="account-actions" aria-label="Account options">
+              {checking && <p className="account-status">Checking whether you already have an active session…</p>}
+              {unavailable && <><p className="account-status is-error">The account service is temporarily unavailable. The public site is still available.</p><button className="secondary-button" type="button" onClick={onRetry}>Try account service again</button></>}
+              {!checking && !unavailable && <>
+                <div className="account-action-form">
+                  <div className="account-consent">
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={hasAccepted}
+                        onChange={(event) => setHasAccepted(event.target.checked)}
+                      />
+                      <span>I agree to the <a href={publicRoutes.terms} target="_blank" rel="noreferrer">Terms</a>, acknowledge the <a href={publicRoutes.privacy} target="_blank" rel="noreferrer">Privacy Policy</a>, and consent to electronic records.</span>
+                    </label>
+                  </div>
+                  <button className="primary-button" type="button" disabled={!hasAccepted || Boolean(workingIntent)} onClick={() => beginAuthentication("signup")}>
+                    {workingIntent === "signup" ? "Opening secure signup…" : "Create account"} <ArrowRight size={20} aria-hidden="true" />
+                  </button>
+                  <button className="secondary-button" type="button" disabled={!hasAccepted || Boolean(workingIntent)} onClick={() => beginAuthentication("signin")}>
+                    {workingIntent === "signin" ? "Opening secure sign in…" : "Sign in"}
+                  </button>
+                </div>
+                {errorMessage && <p className="account-status is-error" role="alert">{errorMessage}</p>}
+              </>}
+            </section>
+          </div>
+        </main>
+      );
+    }
+    
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tantalum/Documents/%E7%94%B5%E5%AD%90%E9%81%97%E5%98%B1app/apps/web/tests/public-experience.test.mjs:75:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: a chosen matter category survives the account and callback routes
+ok 41 - a chosen matter category survives the account and callback routes
+  ---
+  duration_ms: 1.065584
+  type: 'test'
+  ...
+# Subtest: ordinary account entry does not create a deferred editor
+ok 42 - ordinary account entry does not create a deferred editor
+  ---
+  duration_ms: 0.13625
+  type: 'test'
+  ...
+# Subtest: unknown categories and external targets cannot become a continuation
+ok 43 - unknown categories and external targets cannot become a continuation
+  ---
+  duration_ms: 0.371291
+  type: 'test'
+  ...
+# Subtest: serves existing static assets without a fallback
+ok 44 - serves existing static assets without a fallback
+  ---
+  duration_ms: 30.298083
+  type: 'test'
+  ...
+# Subtest: falls back to index.html for an unknown app route
+ok 45 - falls back to index.html for an unknown app route
+  ---
+  duration_ms: 0.766584
+  type: 'test'
+  ...
+# Subtest: does not turn missing API or write requests into the app shell
+ok 46 - does not turn missing API or write requests into the app shell
+  ---
+  duration_ms: 0.605416
+  type: 'test'
+  ...
+# Subtest: emits the files required by Sites packaging
+ok 47 - emits the files required by Sites packaging
+  ---
+  duration_ms: 4.083
+  type: 'test'
+  ...
+# Subtest: creates a recovery-only package without leaking its private or content key
+ok 48 - creates a recovery-only package without leaking its private or content key
+  ---
+  duration_ms: 16.909667
+  type: 'test'
+  ...
+# Subtest: wraps the same content key independently for an accepted recipient device
+ok 49 - wraps the same content key independently for an accepted recipient device
+  ---
+  duration_ms: 4.929583
+  type: 'test'
+  ...
+# Subtest: decrypts a synthetic recipient artifact with only the memory-held device key
+ok 50 - decrypts a synthetic recipient artifact with only the memory-held device key
+  ---
+  duration_ms: 8.125167
+  type: 'test'
+  ...
+# Subtest: rejects tampered ciphertext and a recovery key from another package
+ok 51 - rejects tampered ciphertext and a recovery key from another package
+  ---
+  duration_ms: 6.114875
+  type: 'test'
+  ...
+1..51
+# tests 51
+# suites 0
+# pass 45
+# fail 6
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 209.572208

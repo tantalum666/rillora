@@ -1,0 +1,230 @@
+.lp-sharing-scene {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) 110px minmax(0, 1.1fr);
+  align-items: center;
+  gap: 28px;
+  position: relative;
+  min-height: 440px;
+  margin-top: 35px;
+}
+.lp-demo-folio {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 520px;
+  margin-left: 0;
+}
+.lp-demo-folio > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 18px 16px #07150f22);
+}
+.lp-folio-imprint {
+  position: absolute;
+  left: 53%;
+  top: 45%;
+  width: 22%;
+  transform: translate(-50%, -50%) rotate(-13deg);
+  pointer-events: none;
+}
+.lp-folio-imprint img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.lp-connection-lines {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  stroke: var(--lp-rule);
+  stroke-width: 1;
+  pointer-events: none;
+}
+.lp-connection-lines .is-selected {
+  stroke: var(--lp-bronze);
+  stroke-width: 2;
+}
+.lp-demo-people {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+.lp-person {
+  border: 0;
+  background: var(--lp-paper);
+  color: var(--lp-muted);
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  padding: 0 14px;
+  border-radius: 8px;
+  font:
+    500 21px/1.3 "Source Serif 4",
+    Georgia,
+    serif !important;
+}
+.lp-person-avatar {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  border: 2px solid var(--lp-rule);
+  font:
+    500 45px/1 "Source Serif 4",
+    Georgia,
+    serif;
+  transition:
+    background 0.3s,
+    border-color 0.3s,
+    box-shadow 0.3s,
+    color 0.3s;
+}
+.lp-person[aria-pressed="true"] {
+  color: var(--lp-ink);
+}
+.lp-person[aria-pressed="true"] .lp-person-avatar {
+  background: var(--lp-paper);
+  color: var(--lp-ink);
+  border-color: var(--lp-bronze);
+  box-shadow: 0 0 0 5px var(--lp-focus-soft);
+}
+.lp-person-check {
+  position: absolute;
+  bottom: 0;
+  right: -2px;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--lp-bronze);
+  color: var(--lp-ink);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.lp-person[aria-pressed="true"] .lp-person-check {
+  opacity: 1;
+}
+.lp-demo-people > small {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.6;
+  color: var(--lp-muted);
+}
+.lp-shared-sheet {
+  z-index: 1;
+  position: relative;
+  align-self: center;
+  justify-self: end;
+  width: 100%;
+  max-width: 440px;
+  background: var(--lp-sheet);
+  color: var(--lp-ink);
+  min-height: 382px;
+  border-radius: 9px;
+  padding: 35px 33px 26px;
+  box-shadow: 0 22px 48px #061a1225;
+  overflow: hidden;
+}
+.lp-sheet-fold {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-style: solid;
+  border-width: 0 28px 28px 0;
+  border-color: transparent var(--lp-paper) var(--lp-fold) transparent;
+}
+.lp-sheet-stage {
+  font:
+    500 10px/1.2 Inter,
+    Arial,
+    sans-serif;
+  color: var(--lp-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 11px !important;
+}
+.lp-shared-sheet h3 {
+  font-size: 30px;
+  line-height: 1.2;
+}
+.lp-sheet-description {
+  font-size: 13px;
+  line-height: 1.6;
+  margin-top: 12px !important;
+}
+.lp-shared-rows {
+  margin-top: 28px;
+  min-height: 200px;
+}
+.lp-shared-row {
+  display: grid;
+  grid-template-columns: 46px 1fr 20px;
+  gap: 16px;
+  align-items: center;
+  min-height: 88px;
+  border-top: 1px solid var(--lp-rule);
+  width: 100%;
+  padding: 0;
+  text-align: left;
+  color: var(--lp-ink);
+  background: transparent;
+  border-bottom: 0;
+  border-left: 0;
+  border-right: 0;
+}
+.lp-shared-row > svg {
+  transition: transform 0.2s;
+}
+.lp-shared-row[aria-expanded="true"] > svg {
+  transform: rotate(90deg);
+}
+.lp-example-note {
+  overflow: hidden;
+}
+.lp-example-note p {
+  padding: 0 0 20px 62px;
+  color: var(--lp-muted);
+  font:
+    12px/1.75 Inter,
+    Arial,
+    sans-serif;
+}
+.lp-matter-symbol {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--lp-icon-bg);
+}
+.lp-shared-row strong {
+  display: block;
+  font:
+    600 18px/1.2 "Source Serif 4",
+    Georgia,
+    serif;
+}
+.lp-shared-row small {
+  display: block;
+  color: var(--lp-muted);
+  font-size: 12px;
+  line-height: 1.5;
+  margin-top: 5px;
+}
+.lp-shared-count {
+  border-top: 1px solid var(--lp-rule);
+  padding-top: 17px;
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--lp-muted);
+}

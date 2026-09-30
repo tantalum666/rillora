@@ -1,0 +1,203 @@
+GENERATED PREVIEW; full redacted contents are in the adjacent gzip.
+
+Standard output and standard error from com.rillora.ios with process ID 69871 beginning at 2026-08-13 14:47:04 +0000
+
+2026-08-13 22:47:05.915753+0800 Rillora[69871:15452308] [Default] Received request to exchange capabilities, remote interface capabilities are: <XCTCapabilities: 0x103320da0>: {
+    "query runtime issue reporting" = 1;
+    "query runtime issue reporting/automation type mismatch" = 1;
+}
+2026-08-13 22:47:05.923264+0800 Rillora[69871:15452310] [Default] Received request to notify when the main run loop is idle
+2026-08-13 22:47:05.923522+0800 Rillora[69871:15452310] [Default] Idle notifier finished setting up run loop observer
+2026-08-13 22:47:05.923619+0800 Rillora[69871:15452310] [Default] Received request to notify when animations are idle
+2026-08-13 22:47:05.923682+0800 Rillora[69871:15452310] [Default] Sending animations idle reply with error: (null)
+2026-08-13 22:47:06.547480+0800 Rillora[69871:15451962] [Default] Idle notifier run loop observer fired
+2026-08-13 22:47:06.547551+0800 Rillora[69871:15451962] [Default] Sending main run loop idle reply
+objc[69871]: Class UIAccessibilityLoaderWebShared is implemented in both /Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x111d2c310) and /Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x10727c398). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+2026-08-13 22:47:08.646839+0800 Rillora[69871:15452372] [Default] Received request to fetch matches for query: ↪︎ Descendants matching type Any
+    ↪︎ Elements matching predicate '"overview.scroll" IN identifiers' (First Match)
+2026-08-13 22:47:08.647085+0800 Rillora[69871:15452370] [Default] Evaluating query:
+ ↪︎ Descendants matching type Any
+    ↪︎ Elements matching predicate '"overview.scroll" IN identifiers' (First Match)
+2026-08-13 22:47:08.647156+0800 Rillora[69871:15452370] [Default] Getting root element snapshot
+2026-08-13 22:47:08.647268+0800 Rillora[69871:15452370] [Default] Returning faulting root node. Data source will be attached when needed on MT.
+2026-08-13 22:47:08.647392+0800 Rillora[69871:15452370] [Default] Decomposed transformers into first match sequences:
+↪︎ Descendants matching type Any
+    ↪︎ Elements matching predicate '"overview.scroll" IN identifiers' (First Match)
+2026-08-13 22:47:08.650425+0800 Rillora[69871:15452370] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-08-13 22:47:08.650505+0800 Rillora[69871:15452370] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-08-13 22:47:08.650519+0800 Rillora[69871:15451962] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-08-13 22:47:08.650583+0800 Rillora[69871:15451962] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-08-13 22:47:08.650594+0800 Rillora[69871:15452370] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-08-13 22:47:08.650764+0800 Rillora[69871:15451962] [Default] XCTElementQuery: set data source for rootElementSnapshot to <XCTAutomationSession: 0x10331e580>
+2026-08-13 22:47:08.650880+0800 Rillora[69871:15451962] [Default] Beginning first match sequence for input App element pid: 69871 with transformers 
+↪︎ Descendants matching type Any
+    ↪︎ Elements matching predicate '"overview.scroll" IN identifiers' (First Match)
+2026-08-13 22:47:08.650962+0800 Rillora[69871:15451962] [Default] Current tree:
+0x106bf83c0 <App element pid: 69871>
+2026-08-13 22:47:08.651064+0800 Rillora[69871:15451962] [Default] Fetching AX attributes XC_kAXXCAttributeChildren for App element pid: 69871
+2026-08-13 22:47:08.654830+0800 Rillora[69871:15451962] [Default] Got attributes, transferring to dictionary for return.
+2026-08-13 22:47:08.655009+0800 Rillora[69871:15451962] [Default] App element pid: 69871 (App element pid: 69871) faulted in {
+    "XC_kAXXCAttributeChildren" =     (
+        "AX element pid: 69871, elementOrHash.elementID: 4348364800.4"
+    );
+}: (no error) for children using XC_kAXXCAttributeChildren
+2026-08-13 22:47:08.655083+0800 Rillora[69871:15451962] [Default] [First Match] iteration with input App element pid: 69871 and transformer `Descendants matching type Any`
+2026-08-13 22:47:08.655156+0800 Rillora[69871:15451962] [Default] [First Match] iteration with input AX element pid: 69871, elementOrHash.elementID: 4348364800.4 and transformer `Elements matching predicate '"overview.scroll" IN identifiers'`
+2026-08-13 22:47:08.655355+0800 Rillora[69871:15451962] [Default] Fetching AX attributes XC_kAXXCAttributeLabel for AX element pid: 69871, elementOrHash.elementID: 4348364800.4
+2026-08-13 22:47:08.655622+0800 Rillora[69871:15451962] [Default] Got attributes, transferring to dictionary for return.
+2026-08-13 22:47:08.655731+0800 Rillora[69871:15451962] [Default] AX element pid: 69871, elementOrHash.elementID: 4348364800.4 (AX element pid: 69871, elementOrHash.elementID: 4348364800.4) faulted in {
+}: (no error) for label using XC_kAXXCAttributeLabel
+2026-08-13 22:47:08.655851+0800 Rillora[69871:15451962] [Default] Fetching AX attributes XC_kAXXCAttributeValue for AX element pid: 69871, elementOrHash.elementID: 4348364800.4
+2026-08-13 22:47:08.655990+0800 Rillora[69871:15451962] [Default] Got attributes, transferring to dictionary for return.
+2026-08-13 22:47:08.656097+0800 Rillora[69871:15451962] [Default] AX element pid: 69871, elementOrHash.elementID: 4348364800.4 (AX element pid: 69871, elementOrHash.elementID: 4348364800.4) faulted in {
+}: (no error) for value using XC_kAXXCAttributeValue
+2026-08-13 22:47:08.656183+0800 Rillora[69871:15451962] [Default] Fetching AX attributes XC_kAXXCAttributePlaceholderValue for AX element pid: 69871, elementOrHash.elementID: 4348364800.4
+2026-08-13 22:47:08.656295+0800 Rillora[69871:15451962] [Default] Got attributes, transferring to dictionary for return.
+2026-08-13 22:47:08.656398+0800 Rillora[69871:15451962] [Default] AX element pid: 69871, elementOrHash.elementID: 4348364800.4 (AX element pid: 69871, elementOrHash.elementID: 4348364800.4) faulted in {
+}: (no error) for placeholderValue using XC_kAXXCAttributePlaceholderValue
+2026-08-13 22:47:08.656448+0800 Rillora[69871:15451962] [Default] Fetching AX attributes XC_kAXXCAttributeIdentifier for AX element pid: 69871, elementOrHash.elementID: 4348364800.4
+2026-08-13 22:47:08.656534+0800 Rillora[69871:15451962] [Default] Got attributes, transferring to dictionary for return.
+2026-08-13 22:47:08.656605+0800 Rillora[69871:15451962] [Default] AX element pid: 69871, elementOrHash.elementID: 4348364800.4 (AX element pid: 69871, elementOrHash.elementID: 4348364800.4) faulted in {
+}: (no error) for identifier using XC_kAXXCAttributeIdentifier
+2026-08-13 22:47:08.656668+0800 Rillora[69871:15451962] [Default] [First Match] no match found for transformer `Elements matching predicate '"overview.scroll" IN identifiers'`
+2026-08-13 22:47:08.656717+0800 Rillora[69871:15451962] [Default] Fetching AX attributes XC_kAXXCAttributeChildren for AX element pid: 69871, elementOrHash.elementID: 4348364800.4
+2026-08-13 22:47:08.657024+0800 Rillora[69871:15451962] [Default] Got attributes, transferring to dictionary for return.
+2026-08-13 22:47:08.657247+0800 Rillora[69871:15451962] [Default] AX element pid: 69871, elementOrHash.elementID: 4348364800.4 (AX element pid: 69871, elementOrHash.elementID: 4348364800.4) faulted in {
+    "XC_kAXXCAttributeChildren" =     (
+        "AX element pid: 69871, elementOrHash.elementID: 4405282304.5"
+    );
+}: (no error) for children using XC_kAXXCAttributeChildren
+2026-08-13 22:47:08.657352+0800 Rillora[69871:15451962] [Default] [First Match] iteration with input AX element pid: 69871, elementOrHash.elementID: 4405282304.5 and transformer `Elements matching predicate '"overview.scroll" IN identifiers'`
+2026-08-13 22:47:08.657439+0800 Rillora[69871:15451962] [Default] Fetching AX attributes XC_kAXXCAttributeLabel for AX element pid: 69871, elementOrHash.elementID: 4405282304.5
+2026-08-13 22:47:08.657572+0800 Rillora[69871:15451962] [Default] Got attributes, transferring to dictionary for return.
+2026-08-13 22:47:08.657694+0800 Rillora[69871:15451962] [Default] AX element pid: 69871, elementOrHash.elementID: 4405282304.5 (AX element pid: 69871, elementOrHash.elementID: 4405282304.5) faulted in {
+}: (no error) for label using XC_kAXXCAttributeLabel
+2026-08-13 22:47:08.657797+0800 Rillora[69871:15451962] [Default] Fetching AX attributes XC_kAXXCAttributeValue for AX element pid: 69871, elementOrHash.elementID: 4405282304.5
+2026-08-13 22:47:08.657908+0800 Rillora[69871:15451962] [Default] Got attributes, transferring to dictionary for return.
+2026-08-13 22:47:08.658020+0800 Rillora[69871:15451962] [Default] AX element pid: 69871, elementOrHash.elementID: 4405282304.5 (AX element pid: 69871, elementOrHash.elementID: 4405282304.5) faulted in {
+}: (no error) for value using XC_kAXXCAttributeValue
+2026-08-13 22:47:08.658109+0800 Rillora[69871:15451962] [Default] Fetching AX attributes XC_kAXXCAttributePlaceholderValue for AX element pid: 69871, elementOrHash.elementID: 4405282304.5
+2026-08-13 22:47:08.658173+0800 Rillora[69871:15451962] [Default] Got attributes, transferring to dictionary for return.
+2026-08-13 22:47:08.658238+0800 Rillora[69871:15451962] [Default] AX element pid: 69871, elementOrHash.elementID: 4405282304.5 (AX element pid: 69871, elementOrHash.elementID: 4405282304.5) faulted in {
+}: (no error) for placeholderValue using XC_kAXXCAttributePlaceholderValue
+2026-08-13 22:47:08.658293+0800 Rillora[69871:15451962] [Default] Fetching AX attributes XC_kAXXCAttributeIdentifier for AX element pid: 69871, elementOrHash.elementID: 4405282304.5
+2026-08-13 22:47:08.658401+0800 Rillora[69871:15451962] [Default] Got attributes, transferring to dictionary for return.
+2026-08-13 22:47:08.658517+0800 Rillora[69871:15451962] [Default] AX element pid: 69871, elementOrHash.elementID: 4405282304.5 (AX element pid: 69871, elementOrHash.elementID: 4405282304.5) faulted in {
+}: (no error) for identifier using XC_kAXXCAttributeIdentifier
+2026-08-13 22:47:08.658634+0800 Rillora[69871:15451962] [Default] [First Match] no match found for transformer `Elements matching predicate '"overview.scroll" IN identifiers'`
+2026-08-13 22:47:08.658876+0800 Rillora[69871:15451962] [Default] Fetching AX attributes XC_kAXXCAttributeChildren for AX element pid: 69871, elementOrHash.elementID: 4405282304.5
+2026-08-13 22:47:08.659145+0800 Rillora[69871:15451962] [Default] Got attributes, transferring to dictionary for return.
+2026-08-13 22:47:08.659332+0800 Rillora[69871:15451962] [Default] AX element pid: 69871, elementOrHash.elementID: 4405282304.5 (AX element pid: 69871, elementOrHash.elementID: 4405282304.5) faulted in {
+    "XC_kAXXCAttributeChildren" =     (
+        "AX element pid: 69871, elementOrHash.elementID: 4404360960.6"
+    );
+}: (no error) for children using XC_kAXXCAttributeChildren
+2026-08-13 22:47:08.659485+0800 Rillora[69871:15451962] [Default] [First Match] iteration with input AX element pid: 69871, elementOrHash.elementID: 4404360960.6 and transformer `Elements matching predicate '"overview.scroll" IN identifiers'`
+2026-08-13 22:47:08.659568+0800 Rillora[69871:15451962] [Default] Fetching AX attributes XC_kAXXCAttributeLabel for AX element pid: 69871, elementOrHash.elementID: 4404360960.6
+2026-08-13 22:47:08.659867+0800 Rillora[69871:15451962] [Default] Got attributes, transferring to dictionary for return.
+2026-08-13 22:47:08.659981+0800 Rillora[69871:15451962] [Default] AX element pid: 69871, elementOrHash.elementID: 4404360960.6 (AX element pid: 69871, elementOrHash.elementID: 4404360960.6) faulted in {
+}: (no error) for label using XC_kAXXCAttributeLabel
+2026-08-13 22:47:08.660122+0800 Rillora[69871:15451962] [Default] Fetching AX attributes XC_kAXXCAttributeValue for AX element pid: 69871, elementOrHash.elementID: 4404360960.6
+2026-08-13 22:47:08.660213+0800 Rillora[69871:15451962] [Default] Got attributes, transferring to dictionary for return.
+2026-08-13 22:47:08.660311+0800 Rillora[69871:15451962] [Default] AX element pid: 69871, elementOrHash.elementID: 4404360960.6 (AX element pid: 69871, elementOrHash.elementID: 4404360960.6) faulted in {
+[... full content retained in gzip ...]
+                                    0x115dda300 <AX element pid: 70147, elementOrHash.elementID: 4661444608.302>
+                                      0x115e2cb40 <AX element pid: 70147, elementOrHash.elementID: 4660139008.325>
+                                      0x115e2c8c0 <AX element pid: 70147, elementOrHash.elementID: 4395678144.326>
+                                        0x10644ed00 <AX element pid: 70147, elementOrHash.elementID: 4661116928.345>
+                                          0x10644f200 <AX element pid: 70147, elementOrHash.elementID: 4395765248.359>
+                                            StaticText, 0x10644ea80, label: 'An account is requested only when you choose to save or access private information. No card is required.' <AX element pid: 70147, elementOrHash.elementID: 4395761664.370>
+                                    0x115dd9b80 <AX element pid: 70147, elementOrHash.elementID: 4660142080.303>
+                                    0x115dd8000 <AX element pid: 70147, elementOrHash.elementID: 4661445888.304>
+                                      0x115e2fc00 <AX element pid: 70147, elementOrHash.elementID: 4660140032.327>
+                                      0x115e2c640 <AX element pid: 70147, elementOrHash.elementID: 4395676352.328>
+                                        0x10644d7c0 <AX element pid: 70147, elementOrHash.elementID: 4661118464.346>
+                                          0x10644c500 <AX element pid: 70147, elementOrHash.elementID: 4395770176.360>
+                                            StaticText, 0x10644e940, label: 'Security boundary' <AX element pid: 70147, elementOrHash.elementID: 4395771072.371>
+                                    0x115dda1c0 <AX element pid: 70147, elementOrHash.elementID: 4401192448.305>
+                                      0x115e2f340 <AX element pid: 70147, elementOrHash.elementID: 4579014656.329>
+                                        0x10644fc00 <AX element pid: 70147, elementOrHash.elementID: 4395669632.347>
+                                      0x115e2dcc0 <AX element pid: 70147, elementOrHash.elementID: 4395666496.330>
+                                        0x10644de00 <AX element pid: 70147, elementOrHash.elementID: 4339860992.348>
+                                          0x10644c140 <AX element pid: 70147, elementOrHash.elementID: 4395770624.361>
+                                            Image, 0x10644d680, identifier: 'map', label: 'Show Map' <AX element pid: 70147, elementOrHash.elementID: 4395766144.372>
+                                            StaticText, 0x10644fd40, label: 'Rillora maps directions; it does not store direct-transfer secrets.' <AX element pid: 70147, elementOrHash.elementID: 4395767488.373>
+                                    0x115ddaa80 <AX element pid: 70147, elementOrHash.elementID: 4401193728.306>
+                                      0x115e2fd40 <AX element pid: 70147, elementOrHash.elementID: 4579015680.331>
+                                        0x10644ef80 <AX element pid: 70147, elementOrHash.elementID: 4395668288.349>
+                                      0x115e2e080 <AX element pid: 70147, elementOrHash.elementID: 4395669184.332>
+                                        0x10644d040 <AX element pid: 70147, elementOrHash.elementID: 4339868672.350>
+                                          0x10644f980 <AX element pid: 70147, elementOrHash.elementID: 4395774656.362>
+                                            Image, 0x1063c4c80, identifier: 'person.badge.shield.checkmark', label: 'person.badge.shield.checkmark' <AX element pid: 70147, elementOrHash.elementID: 4395768832.374>
+                                            StaticText, 0x1063c4f00, label: 'A contact record does not create legal authority or account access.' <AX element pid: 70147, elementOrHash.elementID: 4395769728.375>
+                                    0x115ddb480 <AX element pid: 70147, elementOrHash.elementID: 4660142592.307>
+                                    0x115dd8640 <AX element pid: 70147, elementOrHash.elementID: 4401195008.308>
+                                      0x115e2f700 <AX element pid: 70147, elementOrHash.elementID: 4660133888.333>
+                                        0x10644c000 <AX element pid: 70147, elementOrHash.elementID: 4395670528.351>
+                                      0x115e2cf00 <AX element pid: 70147, elementOrHash.elementID: 4395663360.334>
+                                        0x10644d900 <AX element pid: 70147, elementOrHash.elementID: 4339871744.352>
+                                          0x10644e1c0 <AX element pid: 70147, elementOrHash.elementID: 4395738304.363>
+                                            Image, 0x1063c5400, identifier: 'arrow.triangle.branch', label: 'Divide' <AX element pid: 70147, elementOrHash.elementID: 4395656384.376>
+                                            StaticText, 0x1063c52c0, label: 'Death, incapacity and missing are separate future workflows.' <AX element pid: 70147, elementOrHash.elementID: 4395736064.377>
+                                    0x115dd8f00 <AX element pid: 70147, elementOrHash.elementID: 4660143104.309>
+                                    Other, 0x115dd9900, label: 'Vertical scroll bar, 1 page', value: 0% <AX element pid: 70147, elementOrHash.elementID: 4579007488.310>
+                                      0x115e2c780 <AX element pid: 70147, elementOrHash.elementID: 4395675904.335>
+                                    Other, 0x115dd97c0, label: 'Vertical scroll bar, 1 page', value: 0% <AX element pid: 70147, elementOrHash.elementID: 4579007488.310>
+                                      0x115e2c500 <AX element pid: 70147, elementOrHash.elementID: 4395675904.335>
+                          0x106411f40 <AX element pid: 70147, elementOrHash.elementID: 4661724672.284>
+                            0x106413200 <AX element pid: 70147, elementOrHash.elementID: 4579000320.287>
+              0x1064a0b40 <AX element pid: 70147, elementOrHash.elementID: 4396243072.11>
+                0x1064a2580 <AX element pid: 70147, elementOrHash.elementID: 4396251136.13>
+                  TabBar, 0x102a826c0, label: 'Tab Bar' <AX element pid: 70147, elementOrHash.elementID: 4398841856.16>
+                    0x10642f840 <AX element pid: 70147, elementOrHash.elementID: 4396243520.19>
+                      0x10642cf00 <AX element pid: 70147, elementOrHash.elementID: 4340975808.22>
+                      0x10642ee40 <AX element pid: 70147, elementOrHash.elementID: 4396243968.23>
+                        Button, 0x10642f480, label: 'Overview' <AX element pid: 70147, elementOrHash.elementID: 4339962880.28>
+                          Image, 0x106410280, identifier: 'house.fill', label: 'home' <AX element pid: 70147, elementOrHash.elementID: 4396667392.37>
+                        Button, 0x10642f0c0, label: 'Matters' <AX element pid: 70147, elementOrHash.elementID: 4339965440.29>
+                          Image, 0x106412440, identifier: 'list.bullet.rectangle.fill', label: 'list.bullet.rectangle.fill' <AX element pid: 70147, elementOrHash.elementID: 4396668928.38>
+                        Button, 0x10642c3c0, label: 'More' <AX element pid: 70147, elementOrHash.elementID: 4339968000.30>
+                          Image, 0x106412080, identifier: 'ellipsis.circle.fill', label: 'More' <AX element pid: 70147, elementOrHash.elementID: 4396669952.39>
+                      0x10642de00 <AX element pid: 70147, elementOrHash.elementID: 4398842496.24>
+                        0x10642ef80 <AX element pid: 70147, elementOrHash.elementID: 4396246656.31>
+                          0x106413340 <AX element pid: 70147, elementOrHash.elementID: 4396244864.40>
+                          0x106410dc0 <AX element pid: 70147, elementOrHash.elementID: 4396247104.41>
+                            0x106410140 <AX element pid: 70147, elementOrHash.elementID: 4396248896.46>
+                              0x106413700 <AX element pid: 70147, elementOrHash.elementID: 4396249344.49>
+                                0x106413980 <AX element pid: 70147, elementOrHash.elementID: 4396249792.52>
+                              0x106411a40 <AX element pid: 70147, elementOrHash.elementID: 4396248000.50>
+                            0x1064121c0 <AX element pid: 70147, elementOrHash.elementID: 4396248448.47>
+                0x1065ffc00 <AX element pid: 70147, elementOrHash.elementID: 4396665344.14>
+                  0x1065ff700 <AX element pid: 70147, elementOrHash.elementID: 4340192512.17>
+                    0x10642c500 <AX element pid: 70147, elementOrHash.elementID: 4340976704.20>
+                      0x10642c8c0 <AX element pid: 70147, elementOrHash.elementID: 4340977600.25>
+                        0x10642d040 <AX element pid: 70147, elementOrHash.elementID: 4396672000.32>
+                          0x106413d40 <AX element pid: 70147, elementOrHash.elementID: 4340978048.42>
+                      0x10642c780 <AX element pid: 70147, elementOrHash.elementID: 4396672512.26>
+                        0x10642d2c0 <AX element pid: 70147, elementOrHash.elementID: 4340979392.33>
+2026-08-13 22:48:07.087018+0800 Rillora[70147:15455140] [Default] Query ↪︎ Descendants matching type Any
+    ↪︎ Elements matching predicate '"more.list" IN identifiers' (First Match) found matching snapshots: {(
+)} (error: (null))
+2026-08-13 22:48:07.087368+0800 Rillora[70147:15455140] [Default] Replying to query ↪︎ Descendants matching type Any
+    ↪︎ Elements matching predicate '"more.list" IN identifiers' (First Match) with results: <XCTElementQueryResults: 0x115c44030> (error: (null))
+2026-08-13 22:48:07.400381+0800 Rillora[70147:15455140] [Default] Received request to notify when the main run loop is idle
+2026-08-13 22:48:07.400471+0800 Rillora[70147:15455140] [Default] Idle notifier finished setting up run loop observer
+2026-08-13 22:48:07.400483+0800 Rillora[70147:15455111] [Default] Idle notifier run loop observer fired
+2026-08-13 22:48:07.400534+0800 Rillora[70147:15455111] [Default] Sending main run loop idle reply
+2026-08-13 22:48:07.400676+0800 Rillora[70147:15455140] [Default] Received request to notify when animations are idle
+2026-08-13 22:48:07.400740+0800 Rillora[70147:15455140] [Default] Sending animations idle reply with error: (null)
+Standard output and standard error from com.rillora.ios with process ID 70318 beginning at 2026-08-13 14:48:08 +0000
+
+2026-08-13 22:48:09.875201+0800 Rillora[70318:15456610] [Default] Received request to exchange capabilities, remote interface capabilities are: <XCTCapabilities: 0x105b34d50>: {
+    "query runtime issue reporting" = 1;
+    "query runtime issue reporting/automation type mismatch" = 1;
+}
+2026-08-13 22:48:09.876524+0800 Rillora[70318:15456610] [Default] Received request to notify when the main run loop is idle
+2026-08-13 22:48:09.876588+0800 Rillora[70318:15456610] [Default] Idle notifier finished setting up run loop observer
+2026-08-13 22:48:09.876654+0800 Rillora[70318:15456610] [Default] Received request to notify when animations are idle
+2026-08-13 22:48:09.876699+0800 Rillora[70318:15456610] [Default] Sending animations idle reply with error: (null)
+2026-08-13 22:48:10.613588+0800 Rillora[70318:15456557] [Default] Idle notifier run loop observer fired
+2026-08-13 22:48:10.613688+0800 Rillora[70318:15456557] [Default] Sending main run loop idle reply
+objc[70318]: Class UIAccessibilityLoaderWebShared is implemented in both /Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x114b00310) and /Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x114bb8398). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+2026-08-13 22:48:11.678362+0800 Rillora[70318:15456617] [Default] Connection from client with pid 69797 was invalidated.
+2026-08-13 22:48:11.686526+0800 Rillora[70318:15456614] [Default] Automation Mode has been disabled, existing connections will be invalidated.

@@ -1,0 +1,51 @@
+{
+  "version": "54.0.0",
+  "files": {
+    "ea37d0a5616198a1f404f02568f8b1a0cd37ca95a859619959733fa8e9bac465": {
+      "displayName": "HealthCheck/Code",
+      "source": {
+        "path": "asset.ea37d0a5616198a1f404f02568f8b1a0cd37ca95a859619959733fa8e9bac465",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "133857166372-eu-central-1-214ab6c2": {
+          "bucketName": "cdk-hnb659fds-assets-133857166372-eu-central-1",
+          "objectKey": "[REDACTED_SCANNER_LITERAL]",
+          "region": "eu-central-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::133857166372:role/cdk-hnb659fds-file-publishing-role-133857166372-eu-central-1"
+        }
+      }
+    },
+    "6b33e200dd07f8c8cbb82f5c11c36a5731d3ad5219e67543db3b50e35f52c51e": {
+      "displayName": "SnapshotRetirement/Worker/Code",
+      "source": {
+        "path": "asset.6b33e200dd07f8c8cbb82f5c11c36a5731d3ad5219e67543db3b50e35f52c51e",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "133857166372-eu-central-1-f57c729d": {
+          "bucketName": "cdk-hnb659fds-assets-133857166372-eu-central-1",
+          "objectKey": "[REDACTED_SCANNER_LITERAL]",
+          "region": "eu-central-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::133857166372:role/cdk-hnb659fds-file-publishing-role-133857166372-eu-central-1"
+        }
+      }
+    },
+    "a11446ec47874cf011507aee1312bb4ef634b718b4ae42edd3b1981ef63bf593": {
+      "displayName": "RilloraOperations Template",
+      "source": {
+        "path": "RilloraOperations.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "133857166372-eu-central-1-a0b9f14b": {
+          "bucketName": "cdk-hnb659fds-assets-133857166372-eu-central-1",
+          "objectKey": "a11446ec47874cf011507aee1312bb4ef634b718b4ae42edd3b1981ef63bf593.json",
+          "region": "eu-central-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::133857166372:role/cdk-hnb659fds-file-publishing-role-133857166372-eu-central-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

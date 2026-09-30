@@ -1,0 +1,46 @@
+{
+  "Debug": {
+    "uses_https_api": true,
+    "development_planner_empty": true,
+    "appearance": "Dark",
+    "launch_color": "LaunchBackground",
+    "orientations": [
+      "UIInterfaceOrientationPortrait",
+      "UIInterfaceOrientationLandscapeLeft",
+      "UIInterfaceOrientationLandscapeRight"
+    ],
+    "ipad_orientations": [
+      "UIInterfaceOrientationPortrait",
+      "UIInterfaceOrientationPortraitUpsideDown",
+      "UIInterfaceOrientationLandscapeLeft",
+      "UIInterfaceOrientationLandscapeRight"
+    ],
+    "provider_flags": {
+      "AppleSignInEnabled": "YES",
+      "GoogleNativeSignInEnabled": "NO",
+      "PasskeyNativeSignInEnabled": "YES"
+    }
+  },
+  "Release": {
+    "uses_https_api": false,
+    "development_planner_empty": true,
+    "appearance": "Dark",
+    "launch_color": "LaunchBackground",
+    "orientations": [
+      "UIInterfaceOrientationPortrait",
+      "UIInterfaceOrientationLandscapeLeft",
+      "UIInterfaceOrientationLandscapeRight"
+    ],
+    "ipad_orientations": [
+      "UIInterfaceOrientationPortrait",
+      "UIInterfaceOrientationPortraitUpsideDown",
+      "UIInterfaceOrientationLandscapeLeft",
+      "UIInterfaceOrientationLandscapeRight"
+    ],
+    "provider_flags": {
+      "AppleSignInEnabled": "NO",
+      "GoogleNativeSignInEnabled": "NO",
+      "PasskeyNativeSignInEnabled": "NO"
+    }
+  }
+}

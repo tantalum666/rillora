@@ -1,0 +1,40 @@
+# Rillora — Component design credits
+
+Last updated: 2026-09-18
+
+This file records the component adapted during the filter-layout correction. Existing font, SDK and icon provenance remains in [the asset register](docs/asset-licenses.md); this is not an exhaustive replacement for those records. A text copy of this attribution is bundled with iOS and is visible under About Rillora → Design credits.
+
+Rillora design credits
+
+Simple Design System — Tag Toggle Group / Tag Toggle
+Created by Figma.
+Design source: https://www.figma.com/community/file/1380235722331273046/simple-design-system
+Design license: Creative Commons Attribution 4.0 International (CC BY 4.0)
+https://creativecommons.org/licenses/by/4.0/
+
+Adapted for Rillora: native SwiftUI single-selection controls, Rillora colors, 44pt minimum targets, content-sized wrapping and uncapped Dynamic Type. Figma does not endorse Rillora.
+
+Code reference: https://github.com/figma/sds
+Revision: 6afa4b44c37f11bba98d7d8b549dedba514f6cdb
+
+MIT License
+
+Copyright (c) 2024 Figma
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

@@ -1,0 +1,24 @@
+async(page)=>{
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.setViewportSize({width:390,height:844});
+ let pending=true;
+ await page.route('**/commerce/status?*',async route=>{const r=await route.fetch();const data=await r.json();data.validationOnly=true;await route.fulfill({json:data});});
+ await page.route('**/commerce/test/status',route=>route.fulfill({json:{contractVersion:'commerce-stripe-test-v1',testOnly:true,validationOnly:true,orders:pending?[{status:'pending'}]:[],subscriptions:[]}}));
+ await page.route('**/commerce/test/checkout/cancel',route=>{pending=false;return route.fulfill({json:{canceled:true,testOnly:true}});});
+ await page.route('**/commerce/test/checkout',route=>route.fulfill({status:409,json:{error:{code:'unfinished_checkout',message:'Cancel the unfinished checkout before choosing a different billing period.'}}}));
+ await page.goto('http://127.0.0.1:4270/?view=access');
+ await page.getByText('Test billing · No real charge',{exact:true}).waitFor();
+ const checkout=page.getByRole('button',{name:'Continue test checkout',exact:true});
+ if(await checkout.isEnabled())throw Error('Checkout enabled before acknowledgment');
+ await page.getByRole('checkbox').check();
+ await checkout.click();
+ await page.getByRole('alert').getByText('Cancel the unfinished checkout before choosing a different billing period.').waitFor();
+ await page.getByRole('button',{name:'Close unfinished checkout',exact:true}).click();
+ await page.getByRole('status').getByText('Unfinished checkout closed. You can choose either billing period.').waitFor();
+ if(await page.getByRole('button',{name:'Open test checkout',exact:true}).isEnabled())throw Error('Acknowledgment reused after closing');
+ const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth);
+ if(overflow||errors.length)throw Error(JSON.stringify({overflow,errors}));
+ await page.screenshot({path:'/Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-launch-completion-20260916/test-billing-mobile.png'});
+ await page.unrouteAll();
+ return {mockedBillingUI:true,acknowledgmentRequired:true,blockedCheckoutRecoverable:true,closeResetsChoice:true,horizontalOverflow:overflow,pageErrors:errors};
+}

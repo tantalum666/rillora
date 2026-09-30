@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: system appearance follows changes without writing a preference
+ok 1 - system appearance follows changes without writing a preference
+  ---
+  duration_ms: 1.17275
+  type: 'test'
+  ...
+# Subtest: saved manual mode wins over system and System clears it
+ok 2 - saved manual mode wins over system and System clears it
+  ---
+  duration_ms: 0.315833
+  type: 'test'
+  ...
+# Subtest: invalid saved/input values cannot introduce arbitrary state
+ok 3 - invalid saved/input values cannot introduce arbitrary state
+  ---
+  duration_ms: 0.311792
+  type: 'test'
+  ...
+# Subtest: blocked browser storage still permits current-page switching
+ok 4 - blocked browser storage still permits current-page switching
+  ---
+  duration_ms: 0.269291
+  type: 'test'
+  ...
+# Subtest: other tabs synchronize only the appearance key; bootstrap is idempotent
+ok 5 - other tabs synchronize only the appearance key; bootstrap is idempotent
+  ---
+  duration_ms: 0.509667
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 79.797917

@@ -1,0 +1,64 @@
+{
+  "checkedAt": "2026-09-25T19:32:55.667Z",
+  "base": "https://app.rillora.xyz",
+  "expectedHtmlSha256": "4f4a164cdd2cd5b202c38ff55a2c29f4729cd72daf98db73810ba933db108fbe",
+  "passed": true,
+  "checks": [
+    {
+      "path": "/",
+      "status": 200,
+      "expectedStatus": 200,
+      "noSetCookie": true,
+      "exactArtifact": true,
+      "passed": true
+    },
+    {
+      "path": "/account/billing",
+      "status": 200,
+      "expectedStatus": 200,
+      "noSetCookie": true,
+      "exactArtifact": true,
+      "passed": true
+    },
+    {
+      "path": "/account/billing/complete",
+      "status": 200,
+      "expectedStatus": 200,
+      "noSetCookie": true,
+      "exactArtifact": true,
+      "passed": true
+    },
+    {
+      "path": "/api/health/ready",
+      "status": 200,
+      "expectedStatus": 200,
+      "noSetCookie": true,
+      "noStore": true,
+      "ready": true,
+      "passed": true
+    },
+    {
+      "path": "/api/v1/commerce/stripe/quote",
+      "status": 503,
+      "expectedStatus": 503,
+      "noSetCookie": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "path": "/.env",
+      "status": 404,
+      "expectedStatus": 404,
+      "noSetCookie": true,
+      "passed": true
+    },
+    {
+      "path": "/account/billing/unsafe",
+      "status": 404,
+      "expectedStatus": 404,
+      "noSetCookie": true,
+      "passed": true
+    }
+  ],
+  "boundary": "Public closed-client routes only; no authenticated customer, live payment, provider activation or production API update."
+}

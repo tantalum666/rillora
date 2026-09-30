@@ -1,0 +1,112 @@
+{
+  "completedAt": "2026-09-25T19:42:34.732780+00:00",
+  "mode": "Ongoing workflow quick recovery and changed-document final review",
+  "baseline": "output/qa/rillora-release-readiness-20260919/full-read-completion.json",
+  "retainedPriorReading": "output/qa/rillora-production-clients-20260925/reading-record.json",
+  "files": [
+    {
+      "path": "docs/backend.md",
+      "lines": 307,
+      "sha256": "064043a2f65aa451531ba9ac9a19466d784d91b179152ac048e667e8230a2849",
+      "coverage": "Changed body/authority reviewed; historical body retained from full workflow read"
+    },
+    {
+      "path": "docs/channel-pricing-20260921.md",
+      "lines": 94,
+      "sha256": "7000823a74698e0c81fa5ebf5861f0972ad75c2d59ec38b31f19aae33b2198ed",
+      "coverage": "Changed body/authority reviewed; historical body retained from full workflow read"
+    },
+    {
+      "path": "docs/decision-log.md",
+      "lines": 2618,
+      "sha256": "f72803fa81fe0b06ea475d3a6f9e161eba6088496ffda819ed69e9fc90fe3f57",
+      "coverage": "Changed body/authority reviewed; historical body retained from full workflow read"
+    },
+    {
+      "path": "docs/handoff-history-20260926-before-web-88-99.md",
+      "lines": 75,
+      "sha256": "9dd1221854747bf052b6b5f78089887ba683494cd2cb6536c66ca5be36408204",
+      "coverage": "Changed body/authority reviewed; historical body retained from full workflow read"
+    },
+    {
+      "path": "docs/handoff.md",
+      "lines": 67,
+      "sha256": "8908d4ca4d96d06fc348007bfc8ef775139d44cc0138d6e5209f5b766fbd7ab4",
+      "coverage": "Changed body/authority reviewed; historical body retained from full workflow read"
+    },
+    {
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "lines": 2689,
+      "sha256": "86d9659ec1ece4f79b33be539b26a21b7cd5926817e9ad75c747c1bdb27ee494",
+      "coverage": "Changed body/authority reviewed; historical body retained from full workflow read"
+    },
+    {
+      "path": "docs/monetization.md",
+      "lines": 543,
+      "sha256": "464e38d4b51af6239d676629fb093807a874840adf65a090d816712cbda0facc",
+      "coverage": "Changed body/authority reviewed; historical body retained from full workflow read"
+    },
+    {
+      "path": "docs/pricing-88-80-20260919.md",
+      "lines": 53,
+      "sha256": "93b994f58239f0726d0583ffab31cfbde402094294e3e2d4a9e7a5571dcc0e74",
+      "coverage": "Changed body/authority reviewed; historical body retained from full workflow read"
+    },
+    {
+      "path": "docs/pricing-88-99-20260926.md",
+      "lines": 86,
+      "sha256": "c319fc530ec1865292b41edcf9a8722921b646b1b21d96aabcdefeaab166f427",
+      "coverage": "Changed body/authority reviewed; historical body retained from full workflow read"
+    },
+    {
+      "path": "docs/product.md",
+      "lines": 372,
+      "sha256": "cbefd7f71f90cda3c1dad2d7e21b4763215a78d796b25028ddd805ece400787b",
+      "coverage": "Changed body/authority reviewed; historical body retained from full workflow read"
+    },
+    {
+      "path": "docs/production-apple-20260926.md",
+      "lines": 89,
+      "sha256": "5eea71b5d8506bb9f82849e2d659966aa865a7cc51abbf9c1766bf2c249fc78c",
+      "coverage": "Changed body/authority reviewed; historical body retained from full workflow read"
+    },
+    {
+      "path": "docs/production-commerce-20260926.md",
+      "lines": 143,
+      "sha256": "6d1411ba71e8b9507a3995a669378c3e3b798fe5a5c791b394523c7040efe7f4",
+      "coverage": "Changed body/authority reviewed; historical body retained from full workflow read"
+    },
+    {
+      "path": "docs/release-readiness.md",
+      "lines": 198,
+      "sha256": "db967ab72d14bd14977a0231448a1a2c9bd2459ebb4b690f54c72bd061734e4b",
+      "coverage": "Changed body/authority reviewed; historical body retained from full workflow read"
+    },
+    {
+      "path": "docs/solo-operations-and-portability.md",
+      "lines": 178,
+      "sha256": "0bf39d0c0bdf37417ff3e55c21793679605619db2e31eec3194504cda64804e3",
+      "coverage": "Changed body/authority reviewed; historical body retained from full workflow read"
+    },
+    {
+      "path": "docs/unit-economics.md",
+      "lines": 149,
+      "sha256": "475249b41fe11f87127f9cd01cb89d3b6f3de3bce877f1ce2f7dabddd0e96b82",
+      "coverage": "Changed body/authority reviewed; historical body retained from full workflow read"
+    },
+    {
+      "path": "infra/aws/README.md",
+      "lines": 335,
+      "sha256": "63459cb97fc0b16f2a6aa739aa4d6b809d507a1b2edea36956f8b57ddfe16b72",
+      "coverage": "Changed body/authority reviewed; historical body retained from full workflow read"
+    }
+  ],
+  "exclusions": [
+    "third-party dependencies",
+    "cache",
+    "build products",
+    "generated output evidence"
+  ],
+  "note": "Not a new full-reading claim. Product/handoff/recent decisions and affected files were resumed; truncated backend range60-82 was supplemented. Fingerprints confirm the reviewed files, not replacement evidence for reading.",
+  "finalReview": "Final four documentation diffs were read; CI receipt added with no runtime change. Final local target check146Markdown/1393links/0missing."
+}

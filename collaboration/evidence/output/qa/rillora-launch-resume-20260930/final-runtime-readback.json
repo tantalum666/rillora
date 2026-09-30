@@ -1,0 +1,42 @@
+{
+  "at": "2026-09-29T20:40:39.696273+00:00",
+  "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRuntimeApiTask93405B31:7",
+  "rollout": "COMPLETED",
+  "running": 1,
+  "pending": 0,
+  "apiImage": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1:fa2acc8e507192442b31e868d363bfe66970c33b5447a56077a1dcf00159a3f6",
+  "mode": "review",
+  "retentionEnabled": true,
+  "identityServiceSecretNames": [
+    "AUTH0_DELETION_DOMAIN",
+    "AUTH0_DELETION_CLIENT_ID",
+    "AUTH0_DELETION_CLIENT_SECRET",
+    "AUTH0_EMAIL_VERIFICATION_DOMAIN",
+    "AUTH0_EMAIL_VERIFICATION_CLIENT_ID",
+    "AUTH0_EMAIL_VERIFICATION_CLIENT_SECRET"
+  ],
+  "liveProvidersEnabled": false,
+  "retentionAlarms": [
+    {
+      "name": "RilloraOperations-RetentionBatchFull7FFD1AF3-FF1LU6v7VrrS",
+      "state": "OK",
+      "enabled": true,
+      "namespace": "Rillora/Retention",
+      "metric": "BatchFull"
+    },
+    {
+      "name": "RilloraOperations-RetentionFailures829F9DD7-ZfFCqf5Fsv2G",
+      "state": "OK",
+      "enabled": true,
+      "namespace": "Rillora/Retention",
+      "metric": "Failures"
+    },
+    {
+      "name": "RilloraOperations-RetentionHeartbeat7BDE61AD-JHi1uueSMaXz",
+      "state": "OK",
+      "enabled": true,
+      "namespace": "Rillora/Retention",
+      "metric": "Heartbeat"
+    }
+  ]
+}

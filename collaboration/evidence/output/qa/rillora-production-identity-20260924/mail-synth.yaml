@@ -1,0 +1,141 @@
+Description: Rillora transaction mail domain and aggregate delivery signals; no customer activation
+Resources:
+  Transactional735D50ED:
+    Type: AWS::SES::ConfigurationSet
+    Properties:
+      DeliveryOptions:
+        TlsPolicy: REQUIRE
+      Name: rillora-transactional
+      ReputationOptions:
+        ReputationMetricsEnabled: true
+      SendingOptions:
+        SendingEnabled: true
+      SuppressionOptions:
+        SuppressedReasons:
+          - BOUNCE
+          - COMPLAINT
+        ValidationOptions:
+          ConditionThreshold:
+            ConditionThresholdEnabled: DISABLED
+      Tags:
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+      VdmOptions:
+        DashboardOptions:
+          EngagementMetrics: DISABLED
+        GuardianOptions:
+          OptimizedSharedDelivery: DISABLED
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: RilloraMail/Transactional/Resource
+  TransactionalAggregateDelivery2CBC4E84:
+    Type: AWS::SES::ConfigurationSetEventDestination
+    Properties:
+      ConfigurationSetName:
+        Ref: Transactional735D50ED
+      EventDestination:
+        CloudWatchDestination:
+          DimensionConfigurations:
+            - DefaultDimensionValue: rillora-transactional
+              DimensionName: ses:configuration-set
+              DimensionValueSource: messageTag
+        Enabled: true
+        MatchingEventTypes:
+          - send
+          - delivery
+          - bounce
+          - complaint
+          - reject
+          - renderingFailure
+          - deliveryDelay
+        Name: aggregate-delivery
+    Metadata:
+      aws:cdk:path: RilloraMail/Transactional/AggregateDelivery/Resource
+  Identity2D60E2CC:
+    Type: AWS::SES::EmailIdentity
+    Properties:
+      ConfigurationSetAttributes:
+        ConfigurationSetName:
+          Ref: Transactional735D50ED
+      DkimAttributes:
+        SigningEnabled: true
+      DkimSigningAttributes:
+        NextSigningKeyLength: RSA_2048_BIT
+      EmailIdentity: notify.rillora.xyz
+      FeedbackAttributes:
+        EmailForwardingEnabled: false
+      MailFromAttributes:
+        BehaviorOnMxFailure: REJECT_MESSAGE
+        MailFromDomain: bounce.notify.rillora.xyz
+      Tags:
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: RilloraMail/Identity/Resource
+  CDKMetadata:
+    Type: AWS::CDK::Metadata
+    Properties:
+      Analytics: v2:deflate64:H4sIAAAAAAAA/23LTQrCMBAF4LN0n4wSoReoXbgS7AEkNqlMf6alM6lI6d1NdaUVHjz4eM+ASVPYJ/bBunSNbvEGcyG2bFSkK3uGOeupwnsYrWBPhReVVbS1H8gnT3L0LEhv+nfabPLOYntyUVGe6+MLllXOQYYgi6Leeah5NxkDMYekZkQ9hrjsPFw+/QJ2O6uc3gAAAA==
+    Metadata:
+      aws:cdk:path: RilloraMail/CDKMetadata/Default
+Outputs:
+  IdentityArn:
+    Value:
+      Fn::Join:
+        - ""
+        - - "arn:"
+          - Ref: AWS::Partition
+          - :ses:eu-central-1:133857166372:identity/
+          - Ref: Identity2D60E2CC
+  ConfigurationSet:
+    Value:
+      Ref: Transactional735D50ED
+  Dkim1Name:
+    Value:
+      Fn::GetAtt:
+        - Identity2D60E2CC
+        - DkimDNSTokenName1
+  Dkim1Value:
+    Value:
+      Fn::GetAtt:
+        - Identity2D60E2CC
+        - DkimDNSTokenValue1
+  Dkim2Name:
+    Value:
+      Fn::GetAtt:
+        - Identity2D60E2CC
+        - DkimDNSTokenName2
+  Dkim2Value:
+    Value:
+      Fn::GetAtt:
+        - Identity2D60E2CC
+        - DkimDNSTokenValue2
+  Dkim3Name:
+    Value:
+      Fn::GetAtt:
+        - Identity2D60E2CC
+        - DkimDNSTokenName3
+  Dkim3Value:
+    Value:
+      Fn::GetAtt:
+        - Identity2D60E2CC
+        - DkimDNSTokenValue3
+  MailFromMx:
+    Value: 10 feedback-smtp.eu-central-1.amazonses.com
+  MailFromSpf:
+    Value: v=spf1 include:amazonses.com -all
+  ActivationBoundary:
+    Value: Domain verification is not production access, Auth0 configuration or end-user delivery
+Parameters:
+  BootstrapVersion:
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /cdk-bootstrap/hnb659fds/version
+    Description: Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]
+

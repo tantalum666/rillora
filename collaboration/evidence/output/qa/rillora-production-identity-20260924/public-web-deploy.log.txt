@@ -1,0 +1,69 @@
+
+✨  Synthesis time: 3.05s
+
+RilloraPublicWeb: start: Building PublicDeployment/Asset1
+RilloraPublicWeb: success: Built PublicDeployment/Asset1
+RilloraPublicWeb: start: Building RilloraPublicWeb Template
+RilloraPublicWeb: success: Built RilloraPublicWeb Template
+RilloraPublicWeb: start: Publishing RilloraPublicWeb Template (133857166372-eu-central-1-2db5b2d7)
+RilloraPublicWeb: start: Publishing PublicDeployment/Asset1 (133857166372-eu-central-1-1725bde1)
+RilloraPublicWeb: success: Published RilloraPublicWeb Template (133857166372-eu-central-1-2db5b2d7)
+RilloraPublicWeb: success: Published PublicDeployment/Asset1 (133857166372-eu-central-1-1725bde1)
+RilloraPublicWeb: creating CloudFormation changeset...
+RilloraPublicWeb: deploying... [1/1]
+RilloraPublicWeb |  0/13 | 10:49:21 AM | REVIEW_IN_PROGRESS      | AWS::CloudFormation::Stack             | RilloraPublicWeb User Initiated
+RilloraPublicWeb |  0/13 | 10:49:30 AM | CREATE_IN_PROGRESS      | AWS::CloudFormation::Stack             | RilloraPublicWeb User Initiated
+RilloraPublicWeb |  0/13 | 10:49:32 AM | CREATE_IN_PROGRESS      | AWS::CloudFront::ResponseHeadersPolicy | Headers (HeadersECA0794E) 
+RilloraPublicWeb |  0/13 | 10:49:32 AM | CREATE_IN_PROGRESS      | AWS::S3::Bucket                        | PublicAssets (PublicAssetsACF28B1B) 
+RilloraPublicWeb |  0/13 | 10:49:32 AM | CREATE_IN_PROGRESS      | AWS::CloudFront::Function              | PublicRoutes (PublicRoutesC0C4D2B4) 
+RilloraPublicWeb |  0/13 | 10:49:32 AM | CREATE_IN_PROGRESS      | AWS::IAM::Role                         | Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole (CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265) 
+RilloraPublicWeb |  0/13 | 10:49:32 AM | CREATE_IN_PROGRESS      | AWS::CloudFront::OriginAccessControl   | Website/Origin1/S3OriginAccessControl (WebsiteOrigin1S3OriginAccessControl3D1EB763) 
+RilloraPublicWeb |  0/13 | 10:49:32 AM | CREATE_IN_PROGRESS      | AWS::CDK::Metadata                     | CDKMetadata/Default (CDKMetadata) 
+RilloraPublicWeb |  0/13 | 10:49:32 AM | CREATE_IN_PROGRESS      | AWS::Lambda::LayerVersion              | PublicDeployment/AwsCliLayer (PublicDeploymentAwsCliLayerE3071F4B) 
+RilloraPublicWeb |  0/13 | 10:49:33 AM | CREATE_IN_PROGRESS      | AWS::CDK::Metadata                     | CDKMetadata/Default (CDKMetadata) Resource creation Initiated
+RilloraPublicWeb |  1/13 | 10:49:33 AM | CREATE_COMPLETE         | AWS::CDK::Metadata                     | CDKMetadata/Default (CDKMetadata) 
+RilloraPublicWeb |  1/13 | 10:49:33 AM | CREATE_IN_PROGRESS      | AWS::IAM::Role                         | Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole (CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265) Resource creation Initiated
+RilloraPublicWeb |  1/13 | 10:49:33 AM | CREATE_IN_PROGRESS      | AWS::S3::Bucket                        | PublicAssets (PublicAssetsACF28B1B) Resource creation Initiated
+RilloraPublicWeb |  1/13 | 10:49:33 AM | CREATE_IN_PROGRESS      | AWS::CloudFront::OriginAccessControl   | Website/Origin1/S3OriginAccessControl (WebsiteOrigin1S3OriginAccessControl3D1EB763) Resource creation Initiated
+RilloraPublicWeb |  1/13 | 10:49:33 AM | CREATE_IN_PROGRESS      | AWS::CloudFront::ResponseHeadersPolicy | Headers (HeadersECA0794E) Resource creation Initiated
+RilloraPublicWeb |  2/13 | 10:49:34 AM | CREATE_COMPLETE         | AWS::CloudFront::OriginAccessControl   | Website/Origin1/S3OriginAccessControl (WebsiteOrigin1S3OriginAccessControl3D1EB763) 
+RilloraPublicWeb |  3/13 | 10:49:34 AM | CREATE_COMPLETE         | AWS::CloudFront::ResponseHeadersPolicy | Headers (HeadersECA0794E) 
+RilloraPublicWeb |  3/13 | 10:49:35 AM | CREATE_IN_PROGRESS      | AWS::CloudFront::Function              | PublicRoutes (PublicRoutesC0C4D2B4) Resource creation Initiated
+RilloraPublicWeb |  4/13 | 10:49:36 AM | CREATE_COMPLETE         | AWS::CloudFront::Function              | PublicRoutes (PublicRoutesC0C4D2B4) 
+RilloraPublicWeb |  4/13 | 10:49:37 AM | CREATE_IN_PROGRESS      | AWS::Lambda::LayerVersion              | PublicDeployment/AwsCliLayer (PublicDeploymentAwsCliLayerE3071F4B) Resource creation Initiated
+RilloraPublicWeb |  5/13 | 10:49:37 AM | CREATE_COMPLETE         | AWS::Lambda::LayerVersion              | PublicDeployment/AwsCliLayer (PublicDeploymentAwsCliLayerE3071F4B) 
+RilloraPublicWeb |  6/13 | 10:49:47 AM | CREATE_COMPLETE         | AWS::S3::Bucket                        | PublicAssets (PublicAssetsACF28B1B) 
+RilloraPublicWeb |  7/13 | 10:49:50 AM | CREATE_COMPLETE         | AWS::IAM::Role                         | Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole (CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265) 
+RilloraPublicWeb |  7/13 | 10:49:50 AM | CREATE_IN_PROGRESS      | AWS::CloudFront::Distribution          | Website (Website32962D0B) 
+RilloraPublicWeb |  7/13 | 10:49:50 AM | CREATE_IN_PROGRESS      | AWS::IAM::Policy                       | Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/DefaultPolicy (CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF) 
+RilloraPublicWeb |  7/13 | 10:49:51 AM | CREATE_IN_PROGRESS      | AWS::IAM::Policy                       | Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/DefaultPolicy (CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF) Resource creation Initiated
+RilloraPublicWeb |  7/13 | 10:49:52 AM | CREATE_IN_PROGRESS      | AWS::CloudFront::Distribution          | Website (Website32962D0B) Resource creation Initiated
+RilloraPublicWeb |  7/13 | 10:49:53 AM | CREATE_IN_PROGRESS      | AWS::CloudFront::Distribution          | Website (Website32962D0B) Eventual consistency check initiated
+RilloraPublicWeb |  8/13 | 10:50:07 AM | CREATE_COMPLETE         | AWS::IAM::Policy                       | Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/DefaultPolicy (CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF) 
+RilloraPublicWeb |  8/13 | 10:50:08 AM | CREATE_IN_PROGRESS      | AWS::Lambda::Function                  | Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C (CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536) 
+RilloraPublicWeb |  8/13 | 10:50:09 AM | CREATE_IN_PROGRESS      | AWS::Lambda::Function                  | Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C (CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536) Resource creation Initiated
+RilloraPublicWeb |  8/13 | 10:50:10 AM | CREATE_IN_PROGRESS      | AWS::Lambda::Function                  | Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C (CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536) Eventual consistency check initiated
+RilloraPublicWeb |  9/13 | 10:50:16 AM | CREATE_COMPLETE         | AWS::Lambda::Function                  | Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C (CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536) 
+RilloraPublicWeb | 10/13 | 10:52:56 AM | CREATE_COMPLETE         | AWS::CloudFront::Distribution          | Website (Website32962D0B) 
+RilloraPublicWeb | 10/13 | 10:52:56 AM | CREATE_IN_PROGRESS      | AWS::S3::BucketPolicy                  | PublicAssets/Policy (PublicAssetsPolicy4B7CAE1B) 
+RilloraPublicWeb | 10/13 | 10:52:56 AM | CREATE_IN_PROGRESS      | Custom::CDKBucketDeployment            | PublicDeployment/CustomResource/Default (PublicDeploymentCustomResource947B276F) 
+RilloraPublicWeb | 10/13 | 10:52:57 AM | CREATE_IN_PROGRESS      | AWS::S3::BucketPolicy                  | PublicAssets/Policy (PublicAssetsPolicy4B7CAE1B) Resource creation Initiated
+RilloraPublicWeb | 11/13 | 10:52:58 AM | CREATE_COMPLETE         | AWS::S3::BucketPolicy                  | PublicAssets/Policy (PublicAssetsPolicy4B7CAE1B) 
+RilloraPublicWeb | 11/13 | 10:54:16 AM | CREATE_IN_PROGRESS      | Custom::CDKBucketDeployment            | PublicDeployment/CustomResource/Default (PublicDeploymentCustomResource947B276F) Resource creation Initiated
+RilloraPublicWeb | 12/13 | 10:54:16 AM | CREATE_COMPLETE         | Custom::CDKBucketDeployment            | PublicDeployment/CustomResource/Default (PublicDeploymentCustomResource947B276F) 
+RilloraPublicWeb | 13/13 | 10:54:18 AM | CREATE_COMPLETE         | AWS::CloudFormation::Stack             | RilloraPublicWeb 
+
+✅  RilloraPublicWeb
+
+✨  Deployment time: 291.83s
+
+Outputs:
+RilloraPublicWeb.BucketName = rillorapublicweb-publicassetsacf28b1b-2lrttva1bc8p
+RilloraPublicWeb.DistributionDomain = d1zq6qpnicab3e.cloudfront.net
+RilloraPublicWeb.DistributionId = E1H3EWWIZNTZDO
+RilloraPublicWeb.PublicUrl = https://www.rillora.xyz
+Stack ARN:
+arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraPublicWeb/8b064b60-b7c2-11f1-8199-0ac9000d7ba3
+
+✨  Total time: 317.08s
+

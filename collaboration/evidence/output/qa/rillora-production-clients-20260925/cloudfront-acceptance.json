@@ -1,0 +1,132 @@
+{
+  "origin": "https://d3mtr349015b96.cloudfront.net",
+  "results": [
+    {
+      "path": "/",
+      "method": "GET",
+      "status": 200,
+      "expected": 200,
+      "passed": true,
+      "contentType": "text/html",
+      "cacheControl": "public,max-age=300,must-revalidate",
+      "setsCookie": false,
+      "sha256": "63e8f245a25f81f3d7dc194b457ae7c8ab76968bff87ad7dbce2b95d05f548ef",
+      "matchesLocalHTML": true,
+      "csp": "default-src 'self'; base-uri 'self'; connect-src 'self'; font-src 'self'; form-action 'self' https://login.rillora.xyz; frame-ancestors 'none'; img-src 'self' data:; object-src 'none'; script-src 'self'; style-src 'self'"
+    },
+    {
+      "path": "/account",
+      "method": "GET",
+      "status": 200,
+      "expected": 200,
+      "passed": true,
+      "contentType": "text/html",
+      "cacheControl": "public,max-age=300,must-revalidate",
+      "setsCookie": false,
+      "sha256": "63e8f245a25f81f3d7dc194b457ae7c8ab76968bff87ad7dbce2b95d05f548ef"
+    },
+    {
+      "path": "/guides",
+      "method": "GET",
+      "status": 200,
+      "expected": 200,
+      "passed": true,
+      "contentType": "text/html",
+      "cacheControl": "public,max-age=300,must-revalidate",
+      "setsCookie": false,
+      "sha256": "63e8f245a25f81f3d7dc194b457ae7c8ab76968bff87ad7dbce2b95d05f548ef"
+    },
+    {
+      "path": "/assets/rillora-folio-CuJbCsyr.jpg",
+      "method": "GET",
+      "status": 200,
+      "expected": 200,
+      "passed": true,
+      "contentType": "image/jpeg",
+      "cacheControl": "public,max-age=300,must-revalidate",
+      "setsCookie": false,
+      "sha256": "536cf7e6658ce0be63fd74964f51c66870c6d39b0b9f7223343c3a8cd21f9901"
+    },
+    {
+      "path": "/production-build.json",
+      "method": "GET",
+      "status": 404,
+      "expected": 404,
+      "passed": true,
+      "contentType": null,
+      "cacheControl": "no-store",
+      "setsCookie": false,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/.env",
+      "method": "GET",
+      "status": 404,
+      "expected": 404,
+      "passed": true,
+      "contentType": null,
+      "cacheControl": "no-store",
+      "setsCookie": false,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/api/v1/session",
+      "method": "GET",
+      "status": 503,
+      "expected": 503,
+      "passed": true,
+      "contentType": "application/json; charset=utf-8",
+      "cacheControl": "no-store",
+      "setsCookie": false,
+      "sha256": "93bd73011d4326bf3da5e977bdd400ae4657281f49621fcfc8444bdc116a195d",
+      "body": {
+        "error": {
+          "code": "service_not_open",
+          "message": "Rillora is not open for account access yet."
+        }
+      }
+    },
+    {
+      "path": "/api/health/ready",
+      "method": "GET",
+      "status": 200,
+      "expected": 200,
+      "passed": true,
+      "contentType": "application/json; charset=utf-8",
+      "cacheControl": "no-store",
+      "setsCookie": false,
+      "sha256": "31bf75f4c0a97cc1f7b60df824fa390b3be9ba014f29b63c87c698ba63d9a9fd",
+      "body": {
+        "status": "ready"
+      }
+    },
+    {
+      "path": "/api/auth/start",
+      "method": "POST",
+      "status": 503,
+      "expected": 503,
+      "passed": true,
+      "contentType": "application/json; charset=utf-8",
+      "cacheControl": "no-store",
+      "setsCookie": false,
+      "sha256": "93bd73011d4326bf3da5e977bdd400ae4657281f49621fcfc8444bdc116a195d",
+      "body": {
+        "error": {
+          "code": "service_not_open",
+          "message": "Rillora is not open for account access yet."
+        }
+      }
+    },
+    {
+      "path": "/account",
+      "method": "POST",
+      "status": 403,
+      "expected": 403,
+      "passed": true,
+      "contentType": "text/html",
+      "cacheControl": null,
+      "setsCookie": false,
+      "sha256": "d13dbadc8472c63c671023d19f0e22f4e510f13b8139ddb8459a35c5f6cd54fe"
+    }
+  ]
+}

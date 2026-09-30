@@ -1,0 +1,104 @@
+{
+  "attachments": [
+    {
+      "id": "f6227337-cc6d-4432-bfa4-75a8b5c13c86",
+      "type": "ElasticNetworkInterface",
+      "status": "DETACHING",
+      "details": [
+        {
+          "name": "subnetId",
+          "value": "subnet-0344e3c6bae4e3731"
+        },
+        {
+          "name": "networkInterfaceId",
+          "value": "eni-0b1ac47f43a46fd19"
+        },
+        {
+          "name": "macAddress",
+          "value": "02:ff:ca:aa:53:17"
+        },
+        {
+          "name": "privateDnsName",
+          "value": "ip-10-42-0-180.eu-central-1.compute.internal"
+        },
+        {
+          "name": "privateIPv4Address",
+          "value": "10.42.0.180"
+        }
+      ]
+    }
+  ],
+  "attributes": [
+    {
+      "name": "ecs.cpu-architecture",
+      "value": "arm64"
+    }
+  ],
+  "availabilityZone": "eu-central-1a",
+  "clusterArn": "arn:aws:ecs:eu-central-1:133857166372:cluster/RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5",
+  "connectivity": "CONNECTED",
+  "connectivityAt": "2026-09-17T00:22:27.429000+08:00",
+  "containers": [
+    {
+      "containerArn": "arn:aws:ecs:eu-central-1:133857166372:container/RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5/1837670fc61c41f2b379012a27184688/e0dbb1e2-91ee-459a-9668-ce05b644f6e3",
+      "taskArn": "arn:aws:ecs:eu-central-1:133857166372:task/RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5/1837670fc61c41f2b379012a27184688",
+      "name": "Migration",
+      "image": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1:55dd0fe1eb3cabbf66f5ac21e47877752009acb648da5b4409e809a5f439559e",
+      "imageDigest": "sha256:d25d91c8185b7d3f1cd6bf237217dcca8de0c31d697fd7f65f5ffab9c702ca8c",
+      "runtimeId": "1837670fc61c41f2b379012a27184688-1480680139",
+      "lastStatus": "STOPPED",
+      "exitCode": 0,
+      "networkBindings": [],
+      "networkInterfaces": [
+        {
+          "attachmentId": "f6227337-cc6d-4432-bfa4-75a8b5c13c86",
+          "privateIpv4Address": "10.42.0.180"
+        }
+      ],
+      "healthStatus": "UNKNOWN",
+      "cpu": "0"
+    }
+  ],
+  "cpu": "256",
+  "createdAt": "2026-09-17T00:22:23.413000+08:00",
+  "desiredStatus": "STOPPED",
+  "enableExecuteCommand": false,
+  "executionStoppedAt": "2026-09-17T00:22:39.239000+08:00",
+  "group": "family:RilloraStagingMigrationTaskDefinitionD83F7D18",
+  "healthStatus": "UNKNOWN",
+  "lastStatus": "DEPROVISIONING",
+  "launchType": "FARGATE",
+  "memory": "512",
+  "overrides": {
+    "containerOverrides": [
+      {
+        "name": "Migration",
+        "command": [
+          "node",
+          "--input-type=module",
+          "-e",
+          "import pg from 'pg';import {verifiedEmailDigest} from './dist/sharing-identity.js';import {loadDatabaseConfig} from './dist/config.js';import {databaseConnectionOptions} from './dist/db.js';import {currentLegalContract as l} from './dist/legal-contract.js';const c=new pg.Client(databaseConnectionOptions(loadDatabaseConfig()));await c.connect();await c.query('begin');const out=[];for(const f of [{\"role\": \"annual\", \"subject\": \"commercial-20260917-cef3a9fa-1e5e-4a2a-8de4-d942d16f7f9e\", \"tokenHash\": \"c7df26b4b06607a9dc3e420b93a4e1cba45a0d3526ae584f9f4e52bdddd5823d\", \"csrfHash\": \"c7bbf3f087faa7ed2a46a9169bee8f501a87b31555db31bf46a3a0a59ba80ba4\", \"identityHash\": \"15f40ec5174ef6ab57a83c304d423a3d3d6fe3f212c40b9a5c1560f28c79c465\"}, {\"role\": \"monthly\", \"subject\": \"commercial-20260917-932af306-7b6e-4e6b-bbcf-d1161a6c7698\", \"tokenHash\": \"9da74d48ad9294ec0d0731ff15664902299dd387aee5009bfaf2dde45243d690\", \"csrfHash\": \"a3ec5e6b7c5a86c9826df9166eef32d9d1842d3d8447c097306edd61d2fa6901\", \"identityHash\": \"fcc38c7dfdfebaf30d1809ff4814bdc5840eae01146348088bbb40a305d7abd9\"}, {\"role\": \"reader\", \"subject\": \"commercial-20260917-7678919e-5a90-453d-a2cb-4d8ab7e7839c\", \"tokenHash\": \"da3bd2f7fc7d18ef5d177d4f48997eba9d6ed2fd4d095ad2c71ee3619dcb8159\", \"csrfHash\": \"e787eb93570361b0074e0d33c00ba3307f262fde83679dbf6127f0c4636807fa\", \"identityHash\": \"86f1562fe4991a8703e461d64a40da299ace3bc2cbe937097d5efa152118627b\"}]){const i=(await c.query('select * from app.provision_oidc_planner($1,$2,$3,$4,$5)',[\"https://synthetic-qa.rillora.invalid/\",f.subject,'Synthetic billing '+f.role,'en','UTC'])).rows[0];const a=(await c.query(\"insert into app.legal_acceptances(planner_id,identity_account_id,terms_version,privacy_version,consent_text_version,legal_bundle_sha256,accepted_terms,acknowledged_privacy,accepted_electronic_records,client_surface,identity_reference_sha256) values($1,$2,$3,$4,$5,$6,true,true,true,'ios',$7) returning id\",[i.planner_id,i.identity_account_id,l.termsVersion,l.privacyVersion,l.consentTextVersion,Buffer.from(l.bundleSha256,'hex'),Buffer.from(f.identityHash,'hex')])).rows[0];await c.query(\"insert into app.auth_sessions(planner_id,identity_account_id,legal_acceptance_id,token_hash,csrf_token_hash,credential_kind,authentication_methods,authenticated_at,expires_at,last_seen_at) values($1,$2,$3,$4,$5,'native_bearer',array['synthetic_qa'],now(),now()+interval '2 hours',now())\",[i.planner_id,i.identity_account_id,a.id,Buffer.from(f.tokenHash,'hex'),Buffer.from(f.csrfHash,'hex')]);await c.query('update app.auth_sessions set verified_email_hash=$1 where token_hash=$2',[verifiedEmailDigest(f.role+'-commercial-20260917@example.test'),Buffer.from(f.tokenHash,'hex')]);if(f.role!=='reader')await c.query(\"insert into app.commerce_validation_accounts(planner_id,expires_at,reason) values($1,now()+interval '3 hours','Disposable current-price Stripe acceptance')\",[i.planner_id]);out.push({role:f.role,plannerPublicId:i.planner_public_id});}await c.query('commit');console.log(JSON.stringify({purpose:'Admin-seeded synthetic sessions; no provider login or consent ceremony',actors:out}));await c.end();"
+        ]
+      }
+    ],
+    "inferenceAcceleratorOverrides": []
+  },
+  "platformVersion": "1.4.0",
+  "platformFamily": "Linux",
+  "pullStartedAt": "2026-09-17T00:22:35.342000+08:00",
+  "pullStoppedAt": "2026-09-17T00:22:38.989000+08:00",
+  "startedAt": "2026-09-17T00:22:38.800000+08:00",
+  "stopCode": "EssentialContainerExited",
+  "stoppedReason": "Essential container in task exited",
+  "stoppingAt": "2026-09-17T00:22:49.282000+08:00",
+  "tags": [],
+  "taskArn": "arn:aws:ecs:eu-central-1:133857166372:task/RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5/1837670fc61c41f2b379012a27184688",
+  "taskDefinitionArn": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingMigrationTaskDefinitionD83F7D18:20",
+  "version": 4,
+  "ephemeralStorage": {
+    "sizeInGiB": 20
+  },
+  "fargateEphemeralStorage": {
+    "sizeInGiB": 20
+  }
+}

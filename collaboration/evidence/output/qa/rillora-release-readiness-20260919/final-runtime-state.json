@@ -1,0 +1,18 @@
+{
+  "observedAt": "2026-09-19T12:03:10.921483+00:00",
+  "stackStatus": "UPDATE_COMPLETE",
+  "desiredCount": 1,
+  "runningCount": 1,
+  "pendingCount": 0,
+  "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingApiTaskDefinitionF6347BA4:32",
+  "deployments": [
+    {
+      "status": "PRIMARY",
+      "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingApiTaskDefinitionF6347BA4:32",
+      "rolloutState": "COMPLETED",
+      "desiredCount": 1,
+      "runningCount": 1,
+      "failedTasks": 0
+    }
+  ]
+}

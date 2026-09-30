@@ -1,0 +1,30 @@
+[
+  {
+    "key": "concept",
+    "args": {
+      "referenced_image_paths": [
+        "/Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-launch-goal-20260926/landing-v2/hero-live.png",
+        "/Users/tantalum/Documents/电子遗嘱app/assets/brand/rillora-identity-03-legacy-imprint-20260919/identity-board.png"
+      ],
+      "prompt": "Refine this exact Rillora website into its SYSTEM DARK MODE and clearer multi-page navigation. Produce a 1440x1100 professional website concept. Preserve the approved complete Legacy Imprint03 symbol and Source Serif 4 Rillora wordmark from the second reference. Deep ink-forest background #171F1B, warm cream text #F1ECE2, sage accent #CDE1B0, subdued bronze rules. Header: Rillora at left; Product, Security, Pricing, Support across centre; small Preview and Sign in at right. No theme toggle because it follows system. Retain original hero headline verbatim 'Leave less / for them to / figure out.' and subtitle 'A private map of your important things, shared with the people you choose.' Main action 'Explore the product', secondary 'Received an invitation?'. Same original large opened green-cloth folio photo on right, now lit in a dark green studio matching background, pale documents visible. Do NOT add metrics, badges, autoplay/video buttons, chapter numbers, numbered stages, cards, reviews, company logos or gradients. Below hero begin one meaningful interactive sharing example heading 'Let the right people see the right details.' with a small closed green folio and approved cream mark centred precisely on the cover, Mum/Alex choices and permitted-only matter sheet. Keep the dark theme coherent; use a dark desaturated green sheet rather than a white rectangle. This is a refinement of the current design, not a new brand or imitation of Stripe's gradients."
+    }
+  },
+  {
+    "key": "hero-dark",
+    "args": {
+      "referenced_image_paths": [
+        "/Users/tantalum/Documents/电子遗嘱app/apps/web/src/assets/landing/hero-still-life.webp"
+      ],
+      "prompt": "Create the matching DARK MODE production image of this exact still life, 1536x1024 landscape. Preserve composition, open green fabric folio and pale map/documents on the RIGHT HALF with some olive leaves in upper-right and a small brass pen; LEFT HALF is EMPTY NEGATIVE SPACE. Replace the cream tabletop with a seamless deep ink forest green studio surface precisely #171F1B, reaching all edges, lit softly so the green folio remains visible and real. Subtle realistic contact shadows; no graphics, no letters, no logo, no text, no UI, no light gradient overlay. The object should match the original physically and spatially for use under unchanged HTML hero text. This is quiet evening product photography, rich fabric, small brass highlights, warm papers."
+    }
+  },
+  {
+    "key": "folio-transparent",
+    "args": {
+      "referenced_image_paths": [
+        "/Users/tantalum/Documents/电子遗嘱app/assets/concepts/rillora-landing-20260928-v2/folio-paper.png"
+      ],
+      "prompt": "Edit this asset to remove ONLY the surrounding cream tabletop/background. Return a PNG with a genuinely transparent alpha background, not a checkerboard or white fill. Preserve this exact forest-green blank-cover cloth folio with its brass button and the same counterclockwise orientation, shape, texture, position, size and camera angle. Keep all details of the original book unchanged and all four corners inside the same square canvas. Preserve a subtle translucent contact shadow if possible. NO LOGO, NO LETTERING, NO TEXT. A precise approved vector logo will be centred on the cover in the website code. This single transparent image must work naturally on both cream and dark green backgrounds."
+    }
+  }
+]

@@ -1,0 +1,68 @@
+{
+  "date":"2026-09-10",
+  "price":49,
+  "cases":["AI-first planning","Lower automation"],
+  "case":1,
+  "stages":[
+    {"paid":0,"label":"Build and synthetic QA","productionBudget":0,"stagingBudget":40,"adminExternal":0,"growthAITools":0,"ads":0,"directOpsHours":0,"productHours":40,"growthHours":2,"generalAdminHours":1,"payoutsYear":0},
+    {"paid":10,"label":"First paid cohort","productionBudget":45,"stagingBudget":40,"adminExternal":0,"growthAITools":1,"ads":0,"directOpsHours":0.25,"productHours":12,"growthHours":2,"generalAdminHours":1,"payoutsYear":4},
+    {"paid":30,"label":"Small paid cohort","productionBudget":45,"stagingBudget":40,"adminExternal":0,"growthAITools":2,"ads":0,"directOpsHours":0.25,"productHours":12,"growthHours":3,"generalAdminHours":1,"payoutsYear":4},
+    {"paid":100,"label":"Early product validation","productionBudget":45,"stagingBudget":40,"adminExternal":15,"growthAITools":3,"ads":0,"directOpsHours":0.5,"productHours":16,"growthHours":4,"generalAdminHours":2,"payoutsYear":4},
+    {"paid":300,"label":"Repeatable service","productionBudget":75,"stagingBudget":40,"adminExternal":35,"growthAITools":5,"ads":0,"directOpsHours":1,"productHours":24,"growthHours":6,"generalAdminHours":3,"payoutsYear":12},
+    {"paid":1000,"label":"Measured scale","productionBudget":120,"stagingBudget":40,"adminExternal":75,"growthAITools":10,"ads":0,"directOpsHours":2,"productHours":40,"growthHours":10,"generalAdminHours":5,"payoutsYear":12}
+  ],
+  "drivers":[
+    {"id":"webShare","label":"Web share of annual paid households","values":[0.7,0.7],"type":"percent","note":"Assumption held from previous model; no automatic channel shift"},
+    {"id":"appleCommission","label":"Apple first paid year commission","values":[0.3,0.3],"type":"percent","source":"https://developer.apple.com/app-store/subscriptions/","note":"Conservative current baseline; separate 15% approved-program sensitivity"},
+    {"id":"refundRate","label":"Refund / revenue reversal reserve","values":[0.03,0.03],"type":"percent","note":"Assumption, no measured refund cohort"},
+    {"id":"freeMAUperPaid","label":"Independent Free MAU per paid household","values":[10,10],"type":"number","note":"Explicit monthly active population, including no fee-paying account; held at10"},
+    {"id":"paidMAUperPaid","label":"Owner / receiver MAU per paid household","values":[3,3],"type":"number","note":"Receivers included in identity load; do not count them as paid seats"},
+    {"id":"paidSupportMonthly","label":"Support conversations per paid HH monthly","values":[0.2,0.3],"type":"number","note":"Assumption covers owner and receivers; not observed"},
+    {"id":"freeSupportMonthly","label":"Support conversations per Free MAU monthly","values":[0.03,0.05],"type":"number","note":"Assumption across all active Free accounts"},
+    {"id":"aiResolution","label":"AI-only support resolution rate","values":[0.9,0.6],"type":"percent","note":"Unproven operating target; close only when issue resolved, not chatbot replied"},
+    {"id":"humanMinutes","label":"Minutes per escalated issue","values":[10,15],"type":"number","note":"Residual exception handling, including recovery/billing/privacy issues"},
+    {"id":"humanRate","label":"Imputed human support / ops hourly cost","values":[24,24],"type":"usd","note":"Founder time retained even when salary cash is zero"},
+    {"id":"inputTokens","label":"Input tokens per support attempt","values":[4000,6000],"type":"number","note":"Grounded FAQ and state explanation, no general estate advice"},
+    {"id":"outputTokens","label":"Total billed output tokens per attempt","values":[1000,2000],"type":"number","note":"Includes billed reasoning budget, not only visible answer"},
+    {"id":"aiAttempts","label":"Attempts including routing / retry","values":[2,3],"type":"number","note":"Planning allowance; model price is a costing example, no integration selected"},
+    {"id":"aiCostBuffer","label":"Inference and retrieval cost multiplier","values":[4,4],"type":"number","note":"Reserve for longer context, embeddings and task variance; no per-resolution vendor fee"},
+    {"id":"requestsPerMAU","label":"API requests per MAU monthly","values":[100,200],"type":"number","note":"All product actors, not just subscribers; compute capacity is in hosting budget"},
+    {"id":"egressGBperMAU","label":"Metered egress GB per MAU monthly","values":[0.005,0.01],"type":"number","note":"Text-first model; attachments and AI-heavy product features excluded"},
+    {"id":"emailsPerMAU","label":"Transactional emails per MAU monthly","values":[1,2],"type":"number","note":"Future operational budget, not existing automated delivery proof"}
+  ],
+  "constants": {
+    "cardRate":0.034,"internationalIncrement":0.005,"internationalShare":1,"billingRate":0.007,"taxToolRate":0.005,"stripeFixed":0.3,
+    "usdPayoutRate":0.01,"usdPayoutMin":5,"disputeRate":0.002,"disputeCost":22,
+    "taxIncluded":0,"incomeTaxRate":null,
+    "llmInputPerMillion":0.25,"llmOutputPerMillion":2,
+    "apiPerMillion":1.2,"egressPerGB":0.12,"emailPerThousand":0.1,
+    "brandAdminYear":159,"auth0FreeMAU":25000,"auth0QuoteMonthly":null,
+    "founderDevelopmentRate":30,"fullTimeIncomeMonthly":3000,
+    "launchOneTimeLow":1000,"launchOneTimeHigh":3000,
+    "targetCM":0.8,"targetGM":0.75,
+    "supportedAppBillingMonths":12
+  },
+  "bom":{
+    "hours":730,"fargateVcpuHour":0.03725,"fargateGBHour":0.00409,"vcpus":0.25,"memoryGB":0.5,
+    "rdsMicroHour":0.019,"rdsStorageGB":20,"rdsStoragePrice":0.137,"publicIPv4Hour":0.005,
+    "secretsKMSLogsBackupBudget":7,"edgeProtectionBudget":8,
+    "note":"Public EU Frankfurt rates verified. One on-demand ARM API task, private Single-AZ encrypted RDS plus7-day backup/restore acceptance, protected ingress, no NAT/ALB.45 monthly is a budget, not a production approval. Existing synthetic stack remains separate and not promoted. Optional scale/availability upgrades are in staged budgets."
+  },
+  "benchmarks":[
+    {"name":"SaaS subscription revenue","margin":0.81,"type":"Survey median, n=76","period":"2025 report","source":"https://www.benchmarkit.ai/_files/ugd/2a084b_1b2e8054260b44cba36242807d1c3eea.pdf","note":"Page42; private SaaS sample, not a100-customer startup cohort"},
+    {"name":"SaaS total revenue","margin":0.77,"type":"Survey median, n=196","period":"2025 report","source":"https://www.benchmarkit.ai/_files/ugd/2a084b_1b2e8054260b44cba36242807d1c3eea.pdf","note":"Page44; includes service/variable revenue mix"},
+    {"name":"Professional services in SaaS","margin":0.30,"type":"Survey median, n=38","period":"2025 report","source":"https://www.benchmarkit.ai/_files/ugd/2a084b_1b2e8054260b44cba36242807d1c3eea.pdf","note":"Page44; different business model from self-service software"},
+    {"name":"US System/Application Software","margin":0.7172,"type":"Sector aggregate,309 firms","period":"Jan2026","source":"https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/margin.html","note":"Listed-sector aggregate, not SaaS median"},
+    {"name":"US Internet Software","margin":0.6258,"type":"Sector aggregate,29 firms","period":"Jan2026","source":"https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/margin.html","note":"Broad category, not an appropriate product target by itself"},
+    {"name":"Dropbox","margin":0.801,"type":"Company GAAP full year","period":"2025","source":"https://investors.dropbox.com/news-releases/news-release-details/dropbox-announces-fourth-quarter-and-fiscal-2025-results","note":"Mature document/storage collaboration example, not a startup median"},
+    {"name":"Duolingo","margin":0.726,"type":"Company GAAP quarter","period":"Q2 2026","source":"https://www.sec.gov/Archives/edgar/data/1562088/000162828026053299/q2fy26duolingo6-30x26share.htm","note":"Consumer app with AI/store exposure, not a sector average"}
+  ],
+  "evidenceNotes":[
+    "No sales, actual customer-support data, AI containment evaluation or vendor invoice. This is a stage-based operating design.",
+    "Public rates are current; usage, service productivity and budgets are assumptions. No billing session was reopened.",
+    "Founder cash wages are zero in the bootstrapped cash view; all direct support/ops and R&D/growth/admin time remain visible in economic views.",
+    "Gross margin includes production hosting, variable delivery and imputed direct support/ops, never marketing or feature development.",
+    "Ads default to zero as a spending policy, not zero CAC or guaranteed AI acquisition. CAC remains unavailable without real acquired-payer counts.",
+    "Legal/tax/merchant/security obligations precede real launch regardless of customer count. The one-time1000–3000 review reserve is unquoted and does not guarantee completion; widen or remain synthetic if actual requirements exceed it."
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "origin": "https://d1zq6qpnicab3e.cloudfront.net",
+  "results": [
+    {
+      "path": "/",
+      "method": "GET",
+      "status": 200,
+      "expectedStatus": true,
+      "setsCookie": false,
+      "csp": "default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+      "cacheControl": "public,max-age=300,must-revalidate",
+      "artifactMatches": true
+    },
+    {
+      "path": "/guides?service=binance",
+      "method": "GET",
+      "status": 200,
+      "expectedStatus": true,
+      "setsCookie": false,
+      "csp": "default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+      "cacheControl": "public,max-age=300,must-revalidate",
+      "artifactMatches": true
+    },
+    {
+      "path": "/support",
+      "method": "GET",
+      "status": 200,
+      "expectedStatus": true,
+      "setsCookie": false,
+      "csp": "default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+      "cacheControl": "public,max-age=300,must-revalidate",
+      "artifactMatches": true
+    },
+    {
+      "path": "/account",
+      "method": "GET",
+      "status": 404,
+      "expectedStatus": true,
+      "setsCookie": false,
+      "csp": "default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+      "cacheControl": "no-store"
+    },
+    {
+      "path": "/api/auth/start",
+      "method": "POST",
+      "status": 403,
+      "expectedStatus": true,
+      "setsCookie": false,
+      "csp": "default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+      "cacheControl": null
+    },
+    {
+      "path": "/api/v1/session",
+      "method": "GET",
+      "status": 404,
+      "expectedStatus": true,
+      "setsCookie": false,
+      "csp": "default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+      "cacheControl": "no-store"
+    },
+    {
+      "path": "/unknown",
+      "method": "GET",
+      "status": 404,
+      "expectedStatus": true,
+      "setsCookie": false,
+      "csp": "default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+      "cacheControl": "no-store"
+    }
+  ],
+  "passed": true
+}

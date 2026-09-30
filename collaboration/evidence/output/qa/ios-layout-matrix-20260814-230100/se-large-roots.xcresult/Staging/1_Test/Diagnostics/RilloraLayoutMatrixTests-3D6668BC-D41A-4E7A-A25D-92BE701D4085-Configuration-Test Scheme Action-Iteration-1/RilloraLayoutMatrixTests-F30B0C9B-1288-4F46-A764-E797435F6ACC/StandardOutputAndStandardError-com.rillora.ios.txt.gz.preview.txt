@@ -1,0 +1,203 @@
+GENERATED PREVIEW; full redacted contents are in the adjacent gzip.
+
+Standard output and standard error from com.rillora.ios with process ID 61638 beginning at 2026-08-14 15:02:09 +0000
+
+2026-08-14 23:02:10.334257+0800 Rillora[61638:17098930] [Default] Received request to exchange capabilities, remote interface capabilities are: <XCTCapabilities: 0x106efcfc0>: {
+    "query runtime issue reporting" = 1;
+    "query runtime issue reporting/automation type mismatch" = 1;
+}
+2026-08-14 23:02:10.336583+0800 Rillora[61638:17098930] [Default] Received request to notify when the main run loop is idle
+2026-08-14 23:02:10.336673+0800 Rillora[61638:17098930] [Default] Idle notifier finished setting up run loop observer
+2026-08-14 23:02:10.337006+0800 Rillora[61638:17098909] [Default] Received request to notify when animations are idle
+2026-08-14 23:02:10.337077+0800 Rillora[61638:17098909] [Default] Sending animations idle reply with error: (null)
+2026-08-14 23:02:11.032092+0800 Rillora[61638:17098817] [Default] Idle notifier run loop observer fired
+2026-08-14 23:02:11.032199+0800 Rillora[61638:17098817] [Default] Sending main run loop idle reply
+objc[61638]: Class UIAccessibilityLoaderWebShared is implemented in both /Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x10adf0310) and /Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x10aeb8398). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+2026-08-14 23:02:13.144510+0800 Rillora[61638:17098930] [Default] Received request to fetch matches for query: ↪︎ Descendants matching type Any
+    ↪︎ Elements matching predicate '"overview.scroll" IN identifiers' (First Match)
+2026-08-14 23:02:13.144636+0800 Rillora[61638:17098909] [Default] Evaluating query:
+ ↪︎ Descendants matching type Any
+    ↪︎ Elements matching predicate '"overview.scroll" IN identifiers' (First Match)
+2026-08-14 23:02:13.144680+0800 Rillora[61638:17098909] [Default] Getting root element snapshot
+2026-08-14 23:02:13.144730+0800 Rillora[61638:17098909] [Default] Returning faulting root node. Data source will be attached when needed on MT.
+2026-08-14 23:02:13.144800+0800 Rillora[61638:17098909] [Default] Decomposed transformers into first match sequences:
+↪︎ Descendants matching type Any
+    ↪︎ Elements matching predicate '"overview.scroll" IN identifiers' (First Match)
+2026-08-14 23:02:13.147718+0800 Rillora[61638:17098909] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-08-14 23:02:13.147777+0800 Rillora[61638:17098909] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-08-14 23:02:13.147785+0800 Rillora[61638:17098817] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-08-14 23:02:13.147827+0800 Rillora[61638:17098817] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-08-14 23:02:13.147829+0800 Rillora[61638:17098909] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-08-14 23:02:13.147937+0800 Rillora[61638:17098817] [Default] XCTElementQuery: set data source for rootElementSnapshot to <XCTAutomationSession: 0x106c84e40>
+2026-08-14 23:02:13.148016+0800 Rillora[61638:17098817] [Default] Beginning first match sequence for input App element pid: 61638 with transformers 
+↪︎ Descendants matching type Any
+    ↪︎ Elements matching predicate '"overview.scroll" IN identifiers' (First Match)
+2026-08-14 23:02:13.148088+0800 Rillora[61638:17098817] [Default] Current tree:
+0x10a7d48c0 <App element pid: 61638>
+2026-08-14 23:02:13.148152+0800 Rillora[61638:17098817] [Default] Fetching AX attributes XC_kAXXCAttributeChildren for App element pid: 61638
+2026-08-14 23:02:13.151539+0800 Rillora[61638:17098817] [Default] Got attributes, transferring to dictionary for return.
+2026-08-14 23:02:13.151674+0800 Rillora[61638:17098817] [Default] App element pid: 61638 (App element pid: 61638) faulted in {
+    "XC_kAXXCAttributeChildren" =     (
+        "AX element pid: 61638, elementOrHash.elementID: 4411049984.4"
+    );
+}: (no error) for children using XC_kAXXCAttributeChildren
+2026-08-14 23:02:13.151728+0800 Rillora[61638:17098817] [Default] [First Match] iteration with input App element pid: 61638 and transformer `Descendants matching type Any`
+2026-08-14 23:02:13.151778+0800 Rillora[61638:17098817] [Default] [First Match] iteration with input AX element pid: 61638, elementOrHash.elementID: 4411049984.4 and transformer `Elements matching predicate '"overview.scroll" IN identifiers'`
+2026-08-14 23:02:13.151865+0800 Rillora[61638:17098817] [Default] Fetching AX attributes XC_kAXXCAttributeLabel for AX element pid: 61638, elementOrHash.elementID: 4411049984.4
+2026-08-14 23:02:13.151995+0800 Rillora[61638:17098817] [Default] Got attributes, transferring to dictionary for return.
+2026-08-14 23:02:13.152052+0800 Rillora[61638:17098817] [Default] AX element pid: 61638, elementOrHash.elementID: 4411049984.4 (AX element pid: 61638, elementOrHash.elementID: 4411049984.4) faulted in {
+}: (no error) for label using XC_kAXXCAttributeLabel
+2026-08-14 23:02:13.152091+0800 Rillora[61638:17098817] [Default] Fetching AX attributes XC_kAXXCAttributeValue for AX element pid: 61638, elementOrHash.elementID: 4411049984.4
+2026-08-14 23:02:13.152163+0800 Rillora[61638:17098817] [Default] Got attributes, transferring to dictionary for return.
+2026-08-14 23:02:13.152212+0800 Rillora[61638:17098817] [Default] AX element pid: 61638, elementOrHash.elementID: 4411049984.4 (AX element pid: 61638, elementOrHash.elementID: 4411049984.4) faulted in {
+}: (no error) for value using XC_kAXXCAttributeValue
+2026-08-14 23:02:13.152266+0800 Rillora[61638:17098817] [Default] Fetching AX attributes XC_kAXXCAttributePlaceholderValue for AX element pid: 61638, elementOrHash.elementID: 4411049984.4
+2026-08-14 23:02:13.152322+0800 Rillora[61638:17098817] [Default] Got attributes, transferring to dictionary for return.
+2026-08-14 23:02:13.152382+0800 Rillora[61638:17098817] [Default] AX element pid: 61638, elementOrHash.elementID: 4411049984.4 (AX element pid: 61638, elementOrHash.elementID: 4411049984.4) faulted in {
+}: (no error) for placeholderValue using XC_kAXXCAttributePlaceholderValue
+2026-08-14 23:02:13.152425+0800 Rillora[61638:17098817] [Default] Fetching AX attributes XC_kAXXCAttributeIdentifier for AX element pid: 61638, elementOrHash.elementID: 4411049984.4
+2026-08-14 23:02:13.152472+0800 Rillora[61638:17098817] [Default] Got attributes, transferring to dictionary for return.
+2026-08-14 23:02:13.152522+0800 Rillora[61638:17098817] [Default] AX element pid: 61638, elementOrHash.elementID: 4411049984.4 (AX element pid: 61638, elementOrHash.elementID: 4411049984.4) faulted in {
+}: (no error) for identifier using XC_kAXXCAttributeIdentifier
+2026-08-14 23:02:13.152559+0800 Rillora[61638:17098817] [Default] [First Match] no match found for transformer `Elements matching predicate '"overview.scroll" IN identifiers'`
+2026-08-14 23:02:13.152596+0800 Rillora[61638:17098817] [Default] Fetching AX attributes XC_kAXXCAttributeChildren for AX element pid: 61638, elementOrHash.elementID: 4411049984.4
+2026-08-14 23:02:13.152757+0800 Rillora[61638:17098817] [Default] Got attributes, transferring to dictionary for return.
+2026-08-14 23:02:13.152813+0800 Rillora[61638:17098817] [Default] AX element pid: 61638, elementOrHash.elementID: 4411049984.4 (AX element pid: 61638, elementOrHash.elementID: 4411049984.4) faulted in {
+    "XC_kAXXCAttributeChildren" =     (
+        "AX element pid: 61638, elementOrHash.elementID: 4467656192.5"
+    );
+}: (no error) for children using XC_kAXXCAttributeChildren
+2026-08-14 23:02:13.152859+0800 Rillora[61638:17098817] [Default] [First Match] iteration with input AX element pid: 61638, elementOrHash.elementID: 4467656192.5 and transformer `Elements matching predicate '"overview.scroll" IN identifiers'`
+2026-08-14 23:02:13.152905+0800 Rillora[61638:17098817] [Default] Fetching AX attributes XC_kAXXCAttributeLabel for AX element pid: 61638, elementOrHash.elementID: 4467656192.5
+2026-08-14 23:02:13.153040+0800 Rillora[61638:17098817] [Default] Got attributes, transferring to dictionary for return.
+2026-08-14 23:02:13.153091+0800 Rillora[61638:17098817] [Default] AX element pid: 61638, elementOrHash.elementID: 4467656192.5 (AX element pid: 61638, elementOrHash.elementID: 4467656192.5) faulted in {
+}: (no error) for label using XC_kAXXCAttributeLabel
+2026-08-14 23:02:13.153142+0800 Rillora[61638:17098817] [Default] Fetching AX attributes XC_kAXXCAttributeValue for AX element pid: 61638, elementOrHash.elementID: 4467656192.5
+2026-08-14 23:02:13.153201+0800 Rillora[61638:17098817] [Default] Got attributes, transferring to dictionary for return.
+2026-08-14 23:02:13.153248+0800 Rillora[61638:17098817] [Default] AX element pid: 61638, elementOrHash.elementID: 4467656192.5 (AX element pid: 61638, elementOrHash.elementID: 4467656192.5) faulted in {
+}: (no error) for value using XC_kAXXCAttributeValue
+2026-08-14 23:02:13.153291+0800 Rillora[61638:17098817] [Default] Fetching AX attributes XC_kAXXCAttributePlaceholderValue for AX element pid: 61638, elementOrHash.elementID: 4467656192.5
+2026-08-14 23:02:13.153338+0800 Rillora[61638:17098817] [Default] Got attributes, transferring to dictionary for return.
+2026-08-14 23:02:13.153387+0800 Rillora[61638:17098817] [Default] AX element pid: 61638, elementOrHash.elementID: 4467656192.5 (AX element pid: 61638, elementOrHash.elementID: 4467656192.5) faulted in {
+}: (no error) for placeholderValue using XC_kAXXCAttributePlaceholderValue
+2026-08-14 23:02:13.153428+0800 Rillora[61638:17098817] [Default] Fetching AX attributes XC_kAXXCAttributeIdentifier for AX element pid: 61638, elementOrHash.elementID: 4467656192.5
+2026-08-14 23:02:13.153475+0800 Rillora[61638:17098817] [Default] Got attributes, transferring to dictionary for return.
+2026-08-14 23:02:13.153527+0800 Rillora[61638:17098817] [Default] AX element pid: 61638, elementOrHash.elementID: 4467656192.5 (AX element pid: 61638, elementOrHash.elementID: 4467656192.5) faulted in {
+}: (no error) for identifier using XC_kAXXCAttributeIdentifier
+2026-08-14 23:02:13.153563+0800 Rillora[61638:17098817] [Default] [First Match] no match found for transformer `Elements matching predicate '"overview.scroll" IN identifiers'`
+2026-08-14 23:02:13.153598+0800 Rillora[61638:17098817] [Default] Fetching AX attributes XC_kAXXCAttributeChildren for AX element pid: 61638, elementOrHash.elementID: 4467656192.5
+2026-08-14 23:02:13.153680+0800 Rillora[61638:17098817] [Default] Got attributes, transferring to dictionary for return.
+2026-08-14 23:02:13.153737+0800 Rillora[61638:17098817] [Default] AX element pid: 61638, elementOrHash.elementID: 4467656192.5 (AX element pid: 61638, elementOrHash.elementID: 4467656192.5) faulted in {
+    "XC_kAXXCAttributeChildren" =     (
+        "AX element pid: 61638, elementOrHash.elementID: 4467159552.6"
+    );
+}: (no error) for children using XC_kAXXCAttributeChildren
+2026-08-14 23:02:13.153779+0800 Rillora[61638:17098817] [Default] [First Match] iteration with input AX element pid: 61638, elementOrHash.elementID: 4467159552.6 and transformer `Elements matching predicate '"overview.scroll" IN identifiers'`
+2026-08-14 23:02:13.153830+0800 Rillora[61638:17098817] [Default] Fetching AX attributes XC_kAXXCAttributeLabel for AX element pid: 61638, elementOrHash.elementID: 4467159552.6
+2026-08-14 23:02:13.153904+0800 Rillora[61638:17098817] [Default] Got attributes, transferring to dictionary for return.
+2026-08-14 23:02:13.153947+0800 Rillora[61638:17098817] [Default] AX element pid: 61638, elementOrHash.elementID: 4467159552.6 (AX element pid: 61638, elementOrHash.elementID: 4467159552.6) faulted in {
+}: (no error) for label using XC_kAXXCAttributeLabel
+2026-08-14 23:02:13.153984+0800 Rillora[61638:17098817] [Default] Fetching AX attributes XC_kAXXCAttributeValue for AX element pid: 61638, elementOrHash.elementID: 4467159552.6
+2026-08-14 23:02:13.154030+0800 Rillora[61638:17098817] [Default] Got attributes, transferring to dictionary for return.
+2026-08-14 23:02:13.154086+0800 Rillora[61638:17098817] [Default] AX element pid: 61638, elementOrHash.elementID: 4467159552.6 (AX element pid: 61638, elementOrHash.elementID: 4467159552.6) faulted in {
+[... full content retained in gzip ...]
+2026-08-14 23:02:53.718908+0800 Rillora[61908:17101039] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-08-14 23:02:53.718911+0800 Rillora[61908:17101112] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-08-14 23:02:53.718945+0800 Rillora[61908:17101039] [Default] Fetching AX attributes XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeTraits, XC_kAXXCAttributeAutomationType for AX element pid: 61908, elementOrHash.elementID: 4442539520.5
+2026-08-14 23:02:53.719023+0800 Rillora[61908:17101039] [Default] Got attributes, transferring to dictionary for return.
+2026-08-14 23:02:53.719086+0800 Rillora[61908:17101112] [Default] Replying with attribute values: {
+    "XC_kAXXCAttributeAutomationType" = 0;
+    "XC_kAXXCAttributeElementBaseType" = UITransitionView;
+    "XC_kAXXCAttributeElementType" = UITransitionView;
+    "XC_kAXXCAttributeTraits" = 0;
+}
+2026-08-14 23:02:53.720060+0800 Rillora[61908:17101112] [Default] Received attributes request for element: AX element pid: 61908, elementOrHash.elementID: 4385900544.4. Attributes: (
+    "XC_kAXXCAttributeElementType",
+    "XC_kAXXCAttributeElementBaseType",
+    "XC_kAXXCAttributeTraits",
+    "XC_kAXXCAttributeAutomationType"
+)
+2026-08-14 23:02:53.720406+0800 Rillora[61908:17101163] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-08-14 23:02:53.720576+0800 Rillora[61908:17101039] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-08-14 23:02:53.720569+0800 Rillora[61908:17101163] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-08-14 23:02:53.720636+0800 Rillora[61908:17101039] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-08-14 23:02:53.720715+0800 Rillora[61908:17101163] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-08-14 23:02:53.720738+0800 Rillora[61908:17101039] [Default] Fetching AX attributes XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeTraits, XC_kAXXCAttributeAutomationType for AX element pid: 61908, elementOrHash.elementID: 4385900544.4
+2026-08-14 23:02:53.720872+0800 Rillora[61908:17101039] [Default] Got attributes, transferring to dictionary for return.
+2026-08-14 23:02:53.720956+0800 Rillora[61908:17101163] [Default] Replying with attribute values: {
+    "XC_kAXXCAttributeAutomationType" = 2;
+    "XC_kAXXCAttributeElementBaseType" = UIWindow;
+    "XC_kAXXCAttributeElementType" = UIWindow;
+    "XC_kAXXCAttributeTraits" = 0;
+}
+2026-08-14 23:02:53.723495+0800 Rillora[61908:17101163] [Default] Received attributes request for element: App element pid: 61908. Attributes: (
+    "XC_kAXXCAttributeWindowDisplayId"
+)
+2026-08-14 23:02:53.723564+0800 Rillora[61908:17101163] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-08-14 23:02:53.723608+0800 Rillora[61908:17101163] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-08-14 23:02:53.723613+0800 Rillora[61908:17101039] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-08-14 23:02:53.723659+0800 Rillora[61908:17101039] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-08-14 23:02:53.723664+0800 Rillora[61908:17101163] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-08-14 23:02:53.723698+0800 Rillora[61908:17101039] [Default] Fetching AX attributes XC_kAXXCAttributeWindowDisplayId for App element pid: 61908
+2026-08-14 23:02:53.723766+0800 Rillora[61908:17101039] [Default] Got attributes, transferring to dictionary for return.
+2026-08-14 23:02:53.723820+0800 Rillora[61908:17101163] [Default] Replying with attribute values: {
+    "XC_kAXXCAttributeWindowDisplayId" = 0;
+}
+2026-08-14 23:02:53.725324+0800 Rillora[61908:17101163] [Default] Received attributes request for element: AX element pid: 61908, elementOrHash.elementID: 4387223552.75. Attributes: (
+    "XC_kAXXCAttributeVisiblePoint"
+)
+2026-08-14 23:02:53.725387+0800 Rillora[61908:17101163] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-08-14 23:02:53.725431+0800 Rillora[61908:17101163] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-08-14 23:02:53.725437+0800 Rillora[61908:17101039] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-08-14 23:02:53.725487+0800 Rillora[61908:17101039] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-08-14 23:02:53.725497+0800 Rillora[61908:17101163] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-08-14 23:02:53.725528+0800 Rillora[61908:17101039] [Default] Fetching AX attributes XC_kAXXCAttributeVisiblePoint for AX element pid: 61908, elementOrHash.elementID: 4387223552.75
+2026-08-14 23:02:53.729063+0800 Rillora[61908:17101039] [Default] Got attributes, transferring to dictionary for return.
+2026-08-14 23:02:53.729143+0800 Rillora[61908:17101163] [Default] Replying with attribute values: {
+    "XC_kAXXCAttributeVisiblePoint" =     {
+        X = 102;
+        Y = 433;
+    };
+}
+2026-08-14 23:02:53.731278+0800 Rillora[61908:17101163] [Default] Received attributes request for element: AX element pid: 61908, elementOrHash.elementID: 4387223552.75. Attributes: (
+    "XC_kAXXCAttributeSystemAutomationProperties"
+)
+2026-08-14 23:02:53.731341+0800 Rillora[61908:17101112] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-08-14 23:02:53.731382+0800 Rillora[61908:17101112] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-08-14 23:02:53.731384+0800 Rillora[61908:17101039] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-08-14 23:02:53.731436+0800 Rillora[61908:17101039] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-08-14 23:02:53.731439+0800 Rillora[61908:17101112] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-08-14 23:02:53.731474+0800 Rillora[61908:17101039] [Default] Fetching AX attributes XC_kAXXCAttributeSystemAutomationProperties for AX element pid: 61908, elementOrHash.elementID: 4387223552.75
+2026-08-14 23:02:53.731543+0800 Rillora[61908:17101039] [Default] Got attributes, transferring to dictionary for return.
+2026-08-14 23:02:53.731592+0800 Rillora[61908:17101112] [Default] Replying with attribute values: {
+}
+2026-08-14 23:02:53.732332+0800 Rillora[61908:17101112] [Default] Received attributes request for element: AX element pid: 61908, elementOrHash.elementID: 4385900544.4. Attributes: (
+    "XC_kAXXCAttributeFrame",
+    "XC_kAXXCAttributeWindowDisplayId",
+    "XC_kAXXCAttributeWindowContextId"
+)
+2026-08-14 23:02:53.732381+0800 Rillora[61908:17101112] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-08-14 23:02:53.732424+0800 Rillora[61908:17101112] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-08-14 23:02:53.732428+0800 Rillora[61908:17101039] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-08-14 23:02:53.732468+0800 Rillora[61908:17101039] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-08-14 23:02:53.732470+0800 Rillora[61908:17101112] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-08-14 23:02:53.732508+0800 Rillora[61908:17101039] [Default] Fetching AX attributes XC_kAXXCAttributeFrame, XC_kAXXCAttributeWindowDisplayId, XC_kAXXCAttributeWindowContextId for AX element pid: 61908, elementOrHash.elementID: 4385900544.4
+2026-08-14 23:02:53.732599+0800 Rillora[61908:17101039] [Default] Got attributes, transferring to dictionary for return.
+2026-08-14 23:02:53.732665+0800 Rillora[61908:17101112] [Default] Replying with attribute values: {
+    "XC_kAXXCAttributeFrame" =     {
+        Height = 667;
+        Width = 375;
+        X = 0;
+        Y = 0;
+    };
+    "XC_kAXXCAttributeWindowContextId" = 2820439184;
+    "XC_kAXXCAttributeWindowDisplayId" = 1;
+}
+2026-08-14 23:02:54.025290+0800 Rillora[61908:17101106] [Default] Received request to notify when the main run loop is idle
+2026-08-14 23:02:54.025373+0800 Rillora[61908:17101106] [Default] Idle notifier finished setting up run loop observer
+2026-08-14 23:02:54.025787+0800 Rillora[61908:17101106] [Default] Received request to notify when animations are idle
+2026-08-14 23:02:54.025858+0800 Rillora[61908:17101106] [Default] Sending animations idle reply with error: (null)
+2026-08-14 23:02:54.093993+0800 Rillora[61908:17101039] [Default] Idle notifier run loop observer fired
+2026-08-14 23:02:54.094111+0800 Rillora[61908:17101039] [Default] Sending main run loop idle reply
+2026-08-14 23:02:54.332272+0800 Rillora[61908:17101104] [Default] Connection from client with pid 61599 was invalidated.
+2026-08-14 23:02:54.336609+0800 Rillora[61908:17101168] [Default] Automation Mode has been disabled, existing connections will be invalidated.

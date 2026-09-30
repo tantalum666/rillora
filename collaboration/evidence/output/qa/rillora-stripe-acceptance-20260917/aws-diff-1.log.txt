@@ -1,0 +1,19 @@
+Stack RilloraStaging
+Resources
+[~] AWS::ECS::Service ApiService/Service ApiServiceC9037CF0
+ ├─ [~] CapacityProviderStrategy
+ │   └─ @@ -1,6 +1,6 @@
+ │      [ ] [
+ │      [ ]   {
+ │      [-]     "CapacityProvider": "FARGATE_SPOT",
+ │      [+]     "CapacityProvider": "FARGATE",
+ │      [ ]     "Weight": 1
+ │      [ ]   }
+ │      [ ] ]
+ └─ [+] ForceNewDeployment
+     └─ {"EnableForceNewDeployment":true,"ForceNewDeploymentNonce":"api-on-demand-20260917"}
+
+
+
+✨  Number of stacks with differences: 1
+

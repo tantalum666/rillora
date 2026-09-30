@@ -1,0 +1,172 @@
+{
+  "changes": [
+    {
+      "path": "DESIGN.md",
+      "kind": "modified",
+      "sha256": "dcc801030a407e80f1fb92e86faee48a885d3a36f7da94c0b13121cfd803db1f"
+    },
+    {
+      "path": "README.md",
+      "kind": "modified",
+      "sha256": "893edf80b3e908c544bf2236703d812b30c7288816a46e8f4f3447a67426c41b"
+    },
+    {
+      "path": "apps/ios/Rillora/App/AppShellView.swift",
+      "kind": "modified",
+      "sha256": "5602bcaa697ae03c8f0111ce923f4790124d847e2caa4da4e07ceab8b423407b"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Authentication/AuthenticationStore.swift",
+      "kind": "modified",
+      "sha256": "b61dfbce1a33b1a76f0b99c68a6cbad7bf1bfdf3f1ef3d1d756880b54113cd7f"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Authentication/HostedLegalAcceptanceProof.swift",
+      "kind": "new",
+      "sha256": "bb389c03684786bd1125e489128c397dd779a8e0b8eed66d509a21192d103ba6"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Authentication/NativeAuthenticationService.swift",
+      "kind": "modified",
+      "sha256": "8dcb52a5e08550ddca5a70882c436aa571cfae4253f5d10b2eedd550951b0079"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/AccountAccessView.swift",
+      "kind": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Overview/OverviewStore.swift",
+      "kind": "modified",
+      "sha256": "6e64924f6acb75303e94dce35edb87940c864156ee627fd1cce33a8b6c5e085a"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Overview/OverviewView.swift",
+      "kind": "modified",
+      "sha256": "6dcff5956216725b70c05e9a74fd2817840a5ee4e5b575eaad2e6006b32e22a5"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Overview/SignedOutExperienceViews.swift",
+      "kind": "modified",
+      "sha256": "28d1f401ffa9988db935a73fc06af3963169d92b8c5799edee7988c6ad3909f0"
+    },
+    {
+      "path": "apps/ios/RilloraLayoutMatrixTests/RilloraLayoutMatrixTests.swift",
+      "kind": "modified",
+      "sha256": "9ba9a0ce790444ca0c079a5b7be90c69b085b2de92668eb8bd6cd3bf0d168d81"
+    },
+    {
+      "path": "apps/ios/RilloraTests/APIClientTests.swift",
+      "kind": "modified",
+      "sha256": "20fd4e96f54c035c021e2f6150be7b42ff987edd3ff93b897eab40a1964e72cb"
+    },
+    {
+      "path": "apps/ios/RilloraTests/HostedLegalAcceptanceProofTests.swift",
+      "kind": "new",
+      "sha256": "94e9b1cc7dd7e88e330773309310b9ac0b90bb9a0d4f0f4110544af5cf96f808"
+    },
+    {
+      "path": "apps/ios/RilloraTests/OverviewStoreTests.swift",
+      "kind": "modified",
+      "sha256": "dc06480dd2a41b00fec07bf0a82db1b3a8fb7296717238d4ac74d136ed9778bf"
+    },
+    {
+      "path": "design-qa.md",
+      "kind": "modified",
+      "sha256": "2cafac573d8c1da5318be0c7872931655cab9fcfdd9c933eeac249765c060881"
+    },
+    {
+      "path": "docs/authentication-experience.md",
+      "kind": "modified",
+      "sha256": "1cabdcab28ad33ac7179a8a08fd0d25e3d4d4a7aae6e111542a7838f6b19b6f6"
+    },
+    {
+      "path": "docs/decision-log.md",
+      "kind": "modified",
+      "sha256": "4ff470e5388fc656016a352f4f95e5514c5ab7e2db2405d514957fc8f8196245"
+    },
+    {
+      "path": "docs/handoff.md",
+      "kind": "modified",
+      "sha256": "ea160de7eecc871305f65810d4467e1dbdc2a765c7772fa51c0e41c4225792bf"
+    },
+    {
+      "path": "docs/ios-layout-matrix.md",
+      "kind": "modified",
+      "sha256": "1df4e7ee0c68806a29b369e889a193e052813a6e9a1f6f3d55f95d35dfb54382"
+    },
+    {
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "kind": "modified",
+      "sha256": "a66d53e3f7a5a1de4a3651a280fc67cca9207990508ca5ac311e664ceead89bd"
+    },
+    {
+      "path": "docs/platform-contract.md",
+      "kind": "modified",
+      "sha256": "f96b87854cc6961fe5d619cf497e9078761ba081b6026a1360332f7c23036ea7"
+    },
+    {
+      "path": "docs/product.md",
+      "kind": "modified",
+      "sha256": "7170c8e8cc078a599ad88e40c776cd0ebebdabe1979996d112fe113639a8f8cc"
+    },
+    {
+      "path": "docs/quality-gates.md",
+      "kind": "modified",
+      "sha256": "1a356adfd7b05374f79955ca2f4da4fd24a3049700b3bb5e3a12b6dcfd02a7ae"
+    },
+    {
+      "path": "infra/auth0/README.md",
+      "kind": "modified",
+      "sha256": "6ed8180b5f218510f365f4001428371e7ba8d6d3f57033adfae31eb0e90703fc"
+    },
+    {
+      "path": "infra/auth0/hosted-consent/README.md",
+      "kind": "new",
+      "sha256": "64228506d0bbae29d86f6dcdc0f81e2536e5f52bcda243dafeea70ebca52316e"
+    },
+    {
+      "path": "infra/auth0/hosted-consent/form.json",
+      "kind": "new",
+      "sha256": "b896ea142d7ac7c01b44e6af25da04214363a9f173f133ee25d7628f7d9879ed"
+    },
+    {
+      "path": "infra/auth0/hosted-consent/post-login-action.cjs",
+      "kind": "new",
+      "sha256": "d2bb962bb5cf27a14193f0721cf9f0eb86483232cd043bc1897248a9897953d2"
+    },
+    {
+      "path": "infra/auth0/hosted-consent/post-login-action.test.cjs",
+      "kind": "new",
+      "sha256": "e9a326c49cc8191710018d77c9cbb12df03ee8aed129f196dcf645f3eaabc702"
+    },
+    {
+      "path": "infra/auth0/universal-login/custom-text/login-id.en.json",
+      "kind": "modified",
+      "sha256": "2278e80a121da6585fa3678b7d2d06d6a54ff93429a7b9a12e95343b1a39194a"
+    },
+    {
+      "path": "infra/auth0/universal-login/custom-text/login-password.en.json",
+      "kind": "modified",
+      "sha256": "88efb35e97e7324f439c3818931282c7f0f48adfd0d4813b31f3936221382bd8"
+    },
+    {
+      "path": "infra/auth0/universal-login/theme.json",
+      "kind": "modified",
+      "sha256": "bb38d9ca7573308222b290f2068794dee8b7ac4a46ae7d5df1fa4a5dc17dcea3"
+    },
+    {
+      "path": "tools/auth0/apply-hosted-consent.py",
+      "kind": "new",
+      "sha256": "e6e7433fd312ae376e87a6752365c821c4702b2cf05abc2cfea33fe412e7e4a1"
+    },
+    {
+      "path": "tools/run-ios-layout-matrix.sh",
+      "kind": "modified",
+      "sha256": "f43dae76714303777b7e8c4a9f43fe9607f96546bf71d2fff819ac285ae2ddf4"
+    }
+  ],
+  "changed_count": 33,
+  "before_scope": "saved pre-change source snapshot; generated project is not a Git baseline",
+  "closed_date_hkt": "2026-09-07"
+}

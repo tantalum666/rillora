@@ -1,0 +1,114 @@
+[
+  {
+    "screen": "30-native-coinbase-guidance.png",
+    "test": "RilloraJourneyAuditTests/testLocalAuditMatterAndGuideRoutes()",
+    "timestamp": 1790678215.625,
+    "accepted": true,
+    "note": "Accepted. Step controls and original official link disclosure available; same white-mark contrast issue. No actual estate claim/official policy refresh in this UI audit."
+  },
+  {
+    "screen": "29-native-guide-marks.png",
+    "test": "RilloraJourneyAuditTests/testLocalAuditMatterAndGuideRoutes()",
+    "timestamp": 1790678213.522,
+    "accepted": true,
+    "note": "Accepted finding A06. White X/Coinbase/GitHub artwork loses contrast on light plate. Preserving original white assets and using a dark plate."
+  },
+  {
+    "screen": "28-native-apple-guidance.png",
+    "test": "RilloraJourneyAuditTests/testLocalAuditMatterAndGuideRoutes()",
+    "timestamp": 1790678205.31,
+    "accepted": true,
+    "note": "Accepted finding A05. First-step Previous disabled semantically but looks enabled because shared quiet style ignores isEnabled opacity; fix applied."
+  },
+  {
+    "screen": "27-native-guides.png",
+    "test": "RilloraJourneyAuditTests/testLocalAuditMatterAndGuideRoutes()",
+    "timestamp": 1790678202.544,
+    "accepted": true,
+    "note": "Accepted. Search/category hierarchy and descriptions clear; colored Dropbox/Facebook marks remain readable."
+  },
+  {
+    "screen": "26-native-crypto-details.png",
+    "test": "RilloraJourneyAuditTests/testLocalAuditMatterAndGuideRoutes()",
+    "timestamp": 1790678193.661,
+    "accepted": true,
+    "note": "Accepted. Chain/public wallet required, address wraps, optional wallet/app/asset clear; dirty/save validation not exercised in this screenshot."
+  },
+  {
+    "screen": "25-native-matters.png",
+    "test": "RilloraJourneyAuditTests/testLocalAuditMatterAndGuideRoutes()",
+    "timestamp": 1790678188.106,
+    "accepted": true,
+    "note": "Accepted. Full filter labels, long titles wrap and saved statuses separate from readiness. Small-screen/AX checks still needed."
+  },
+  {
+    "screen": "24-native-about.png",
+    "test": "RilloraJourneyAuditTests/testLocalAuditProfileAndToolRoutes()",
+    "timestamp": 1790678271.655,
+    "accepted": true,
+    "note": "Accepted. About shows version1.0/build1, copy info and credits; build numbers do not distinguish debug installs, potential support improvement."
+  },
+  {
+    "screen": "23-native-safe-information.png",
+    "test": "RilloraJourneyAuditTests/testLocalAuditProfileAndToolRoutes()",
+    "timestamp": 1790678260.91,
+    "accepted": true,
+    "note": "Accepted. Keep/Leave out controls and concise field examples; no secret storage endorsement."
+  },
+  {
+    "screen": "22-native-safety.png",
+    "test": "RilloraJourneyAuditTests/testLocalAuditProfileAndToolRoutes()",
+    "timestamp": 1790678258.357,
+    "accepted": true,
+    "note": "Accepted. Internal safety subpages and external policies separated; Back remains available in light appearance."
+  },
+  {
+    "screen": "21-native-export-scope.png",
+    "test": "RilloraJourneyAuditTests/testLocalAuditProfileAndToolRoutes()",
+    "timestamp": 1790678252.582,
+    "accepted": true,
+    "note": "Accepted finding A04. Normal-size picker hides its question and only displays Choose. Added visible audience label and clarified placeholder, retaining no default private export."
+  },
+  {
+    "screen": "20-native-saved-copy-reader.png",
+    "test": "RilloraJourneyAuditTests/testLocalAuditProfileAndToolRoutes()",
+    "timestamp": 1790678245.216,
+    "accepted": true,
+    "note": "Accepted. Explicit file choice and device-only handling; actual file import not tested in this capture."
+  },
+  {
+    "screen": "19-native-my-data.png",
+    "test": "RilloraJourneyAuditTests/testLocalAuditProfileAndToolRoutes()",
+    "timestamp": 1790678242.746,
+    "accepted": true,
+    "note": "Accepted. Full backup, saved-copy reading, archive and destructive delete are distinguishable. Destructive completion not executed."
+  },
+  {
+    "screen": "18-native-shared-reviews.png",
+    "test": "RilloraJourneyAuditTests/testLocalAuditProfileAndToolRoutes()",
+    "timestamp": 1790678233.632,
+    "accepted": true,
+    "note": "Accepted. Free creation unavailable with preserved read-only/history/settings navigation; no paid round claimed."
+  },
+  {
+    "screen": "17-native-plan-access.png",
+    "test": "RilloraJourneyAuditTests/testLocalAuditProfileAndToolRoutes()",
+    "timestamp": 1790678228.108,
+    "accepted": true,
+    "note": "Accepted. Free shown, Family unavailable clearly marked. No actual billing ceremony; inspect disclosure contents later."
+  },
+  {
+    "screen": "16-native-profile-people.png",
+    "test": "RilloraJourneyAuditTests/testLocalAuditProfileAndToolRoutes()",
+    "timestamp": 1790678224.727,
+    "accepted": true,
+    "note": "Accepted. Profile stays light with accessible theme control, native rows, distinct incoming/outgoing entries and plan badge. Local QA notice is fixture-only."
+  },
+  {
+    "screen": "15-native-authenticated-map.png",
+    "test": "RilloraJourneyAuditTests/testLocalAuditProfileAndToolRoutes()",
+    "timestamp": 1790678221.036,
+    "accepted": true,
+    "note": "Accepted. Shared light palette and label/status work; cutout fixes black rectangle, but scaledToFill crops the object. Changed to scaledToFit; final capture pending."
+  }
+]

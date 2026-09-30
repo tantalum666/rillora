@@ -1,0 +1,93 @@
+{
+  "tenant": "rillora-dev.eu.auth0.com",
+  "applied": true,
+  "clients": {
+    "web": {
+      "tenant": "rillora-dev",
+      "allowed_logout_urls": [
+        "https://app.rillora.xyz"
+      ],
+      "callbacks": [
+        "https://app.rillora.xyz/api/auth/callback"
+      ],
+      "client_metadata": {
+        "environment": "production",
+        "release_state": "prepared"
+      },
+      "is_first_party": true,
+      "name": "Rillora Production Web",
+      "oidc_conformant": true,
+      "client_id": "EcevpyKt1GELKwkLnVU3aCbh3Ix2SJhz",
+      "jwt_configuration": {
+        "alg": "RS256",
+        "lifetime_in_seconds": 900,
+        "secret_encoded": false
+      },
+      "token_endpoint_auth_method": "client_secret_post",
+      "app_type": "regular_web",
+      "grant_types": [
+        "authorization_code"
+      ],
+      "web_origins": [
+        "https://app.rillora.xyz"
+      ]
+    },
+    "ios": {
+      "tenant": "rillora-dev",
+      "allowed_logout_urls": [
+        "com.rillora.ios://login.rillora.xyz/ios/com.rillora.ios/callback"
+      ],
+      "callbacks": [
+        "com.rillora.ios://login.rillora.xyz/ios/com.rillora.ios/callback"
+      ],
+      "client_metadata": {
+        "environment": "production",
+        "release_state": "prepared"
+      },
+      "is_first_party": true,
+      "name": "Rillora Production iOS",
+      "oidc_conformant": true,
+      "client_id": "POpNKTqlr6dHbJZLWPWxhyjg5qPtdrm4",
+      "jwt_configuration": {
+        "alg": "RS256",
+        "lifetime_in_seconds": 900,
+        "secret_encoded": false
+      },
+      "token_endpoint_auth_method": "none",
+      "app_type": "native",
+      "grant_types": [
+        "authorization_code"
+      ]
+    }
+  },
+  "api": {
+    "name": "Rillora Production API",
+    "identifier": "urn:rillora:production:api",
+    "signing_alg": "RS256",
+    "token_lifetime": 900,
+    "allow_offline_access": false,
+    "scopes": [
+      {
+        "value": "session:create",
+        "description": "Create a secure Rillora app session"
+      }
+    ],
+    "id": "6ab48aff55353bf8067563c1"
+  },
+  "connectionsWillRemainDisabled": true,
+  "activationRequires": [
+    "staging identity retirement",
+    "reviewed cleanup",
+    "production email and provider acceptance",
+    "hosted consent",
+    "production Web/iOS deployment"
+  ],
+  "newPaidPlan": false,
+  "preparedClientIds": [
+    "EcevpyKt1GELKwkLnVU3aCbh3Ix2SJhz",
+    "POpNKTqlr6dHbJZLWPWxhyjg5qPtdrm4"
+  ],
+  "existingConnectionBindingsUnchanged": true,
+  "productionConnectionsDisabled": true,
+  "secretPrinted": false
+}

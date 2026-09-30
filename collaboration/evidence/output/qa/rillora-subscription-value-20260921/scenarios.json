@@ -1,0 +1,37 @@
+{
+  "checkedAt": "2026-09-21T11:47:16.840463+08:00",
+  "input": "config/product-catalog.json",
+  "inputSHA256": "88f7e06375b751db5a78e3ab6b2edeaec090fe00ec5f019e87c3cb87937959e2",
+  "currency": "USD",
+  "annual": "88.8",
+  "monthly": "9.99",
+  "scenarios": [
+    {
+      "scenario": "one paid month in one year",
+      "paidMonths": 1,
+      "grossReceiptsUSD": "9.99"
+    },
+    {
+      "scenario": "one paid month each quarter",
+      "paidMonths": 4,
+      "grossReceiptsUSD": "39.96"
+    },
+    {
+      "scenario": "annual subscription",
+      "paidMonths": 12,
+      "grossReceiptsUSD": "88.8"
+    },
+    {
+      "scenario": "continuous monthly subscription",
+      "paidMonths": 12,
+      "grossReceiptsUSD": "119.88"
+    }
+  ],
+  "oneMonthAsAnnualPercent": "11.2500",
+  "annualSavingVs12MonthsPercent": "25.92592592592592592592592593",
+  "caveats": [
+    "Illustrative household payment patterns, not observed retention",
+    "Gross receipts before fees/tax/refunds/costs; not ARR or profit",
+    "No assumption of equal conversion or renewal under annual-only pricing"
+  ]
+}

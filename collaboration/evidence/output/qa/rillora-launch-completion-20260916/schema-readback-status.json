@@ -1,0 +1,105 @@
+{
+  "attachments": [
+    {
+      "id": "70e0af5f-0435-4e50-ab63-324a5439f856",
+      "type": "ElasticNetworkInterface",
+      "status": "DELETED",
+      "details": [
+        {
+          "name": "subnetId",
+          "value": "subnet-0610e7921274f95bd"
+        },
+        {
+          "name": "networkInterfaceId",
+          "value": "eni-05b3a8e208762bb5a"
+        },
+        {
+          "name": "macAddress",
+          "value": "06:ff:d2:fc:d6:0b"
+        },
+        {
+          "name": "privateDnsName",
+          "value": "ip-10-42-1-29.eu-central-1.compute.internal"
+        },
+        {
+          "name": "privateIPv4Address",
+          "value": "10.42.1.29"
+        }
+      ]
+    }
+  ],
+  "attributes": [
+    {
+      "name": "ecs.cpu-architecture",
+      "value": "arm64"
+    }
+  ],
+  "availabilityZone": "eu-central-1b",
+  "clusterArn": "arn:aws:ecs:eu-central-1:133857166372:cluster/RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5",
+  "connectivity": "CONNECTED",
+  "connectivityAt": "2026-09-16T23:46:23.852000+08:00",
+  "containers": [
+    {
+      "containerArn": "arn:aws:ecs:eu-central-1:133857166372:container/RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5/feeb1f73b5da4391b787209a28255148/21577978-9bd1-4859-90e7-7f7403ebb1fb",
+      "taskArn": "arn:aws:ecs:eu-central-1:133857166372:task/RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5/feeb1f73b5da4391b787209a28255148",
+      "name": "Migration",
+      "image": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1:969f02b6ee371ce9415bfab27326877f71b6174f22f72702240cac9fe1527c1c",
+      "imageDigest": "sha256:3e09bd4a7c1cb94b744621d3bf425fd1c2c88f402877c22c2d42f4b40059a346",
+      "runtimeId": "feeb1f73b5da4391b787209a28255148-1480680139",
+      "lastStatus": "STOPPED",
+      "exitCode": 0,
+      "networkBindings": [],
+      "networkInterfaces": [
+        {
+          "attachmentId": "70e0af5f-0435-4e50-ab63-324a5439f856",
+          "privateIpv4Address": "10.42.1.29"
+        }
+      ],
+      "healthStatus": "UNKNOWN",
+      "cpu": "0"
+    }
+  ],
+  "cpu": "256",
+  "createdAt": "2026-09-16T23:46:20.449000+08:00",
+  "desiredStatus": "STOPPED",
+  "enableExecuteCommand": false,
+  "executionStoppedAt": "2026-09-16T23:46:38.056000+08:00",
+  "group": "family:RilloraStagingMigrationTaskDefinitionD83F7D18",
+  "healthStatus": "UNKNOWN",
+  "lastStatus": "STOPPED",
+  "launchType": "FARGATE",
+  "memory": "512",
+  "overrides": {
+    "containerOverrides": [
+      {
+        "name": "Migration",
+        "command": [
+          "node",
+          "--input-type=module",
+          "-e",
+          "import pg from 'pg';import {readFileSync,readdirSync} from 'node:fs';import {createHash} from 'node:crypto';\nimport {loadDatabaseConfig} from './dist/config.js';import {databaseConnectionOptions} from './dist/db.js';\nconst c=new pg.Client(databaseConnectionOptions(loadDatabaseConfig()));await c.connect();\nconst files=readdirSync('./migrations').filter(x=>/^00(4[8-9]|5[0-9])_/.test(x)).sort();\nconst rows=(await c.query('select name,checksum from app.schema_migrations where name=any($1::text[])',[files])).rows;\nconst checks=files.map(name=>({name,matched:rows.find(r=>r.name===name)?.checksum===createHash('sha256').update(readFileSync('./migrations/'+name)).digest('hex')}));\nif(checks.some(x=>!x.matched))throw Error('Migration checksum mismatch');\nconst policy=(await c.query('select * from app.commerce_runtime_policy')).rows;\nconst sharing=(await c.query(`with counts as (select c.planner_id,count(*) n from app.sharing_connections c\n join app.people p on p.id=c.person_id and p.status not in ('revoked','archived')\n where c.status='accepted' or (c.status='pending' and c.invitation_expires_at>now()) group by c.planner_id)\n select count(*) filter(where n=1)::int as one_person_plans,count(*) filter(where n>1)::int as multi_person_plans from counts`)).rows[0];\nconst prices=(await c.query(`select p.price_code,p.amount_minor::int,p.currency_code,p.status,b.external_product_reference,b.provider_environment\n from app.commerce_prices p join app.commerce_storefront_products b on b.price_id=p.id\n where p.price_code in ('family_usd_annual_v2','family_usd_monthly_v2') and b.provider_code='stripe'`)).rows;\nconsole.log(JSON.stringify({checks,policy,sharing,prices}));await c.end();\n"
+        ]
+      }
+    ],
+    "inferenceAcceleratorOverrides": []
+  },
+  "platformVersion": "1.4.0",
+  "platformFamily": "Linux",
+  "pullStartedAt": "2026-09-16T23:46:33.987000+08:00",
+  "pullStoppedAt": "2026-09-16T23:46:37.722000+08:00",
+  "startedAt": "2026-09-16T23:46:37.663000+08:00",
+  "stopCode": "EssentialContainerExited",
+  "stoppedAt": "2026-09-16T23:47:01.434000+08:00",
+  "stoppedReason": "Essential container in task exited",
+  "stoppingAt": "2026-09-16T23:46:48.092000+08:00",
+  "tags": [],
+  "taskArn": "arn:aws:ecs:eu-central-1:133857166372:task/RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5/feeb1f73b5da4391b787209a28255148",
+  "taskDefinitionArn": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingMigrationTaskDefinitionD83F7D18:19",
+  "version": 5,
+  "ephemeralStorage": {
+    "sizeInGiB": 20
+  },
+  "fargateEphemeralStorage": {
+    "sizeInGiB": 20
+  }
+}

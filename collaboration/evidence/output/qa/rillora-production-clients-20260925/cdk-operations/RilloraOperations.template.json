@@ -1,0 +1,839 @@
+{
+ "Description": "Rillora public health scheduling and alarms; no access to private application data",
+ "Resources": {
+  "FailedDeliveriesE3540845": {
+   "Type": "AWS::SQS::Queue",
+   "Properties": {
+    "MessageRetentionPeriod": 1209600,
+    "SqsManagedSseEnabled": true
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "RilloraOperations/FailedDeliveries/Resource"
+   }
+  },
+  "FailedDeliveriesPolicyBAFAE301": {
+   "Type": "AWS::SQS::QueuePolicy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sqs:*",
+       "Condition": {
+        "Bool": {
+         "aws:SecureTransport": "false"
+        }
+       },
+       "Effect": "Deny",
+       "Principal": {
+        "AWS": "*"
+       },
+       "Resource": {
+        "Fn::GetAtt": [
+         "FailedDeliveriesE3540845",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": "sqs:SendMessage",
+       "Condition": {
+        "ArnEquals": {
+         "aws:SourceArn": {
+          "Fn::GetAtt": [
+           "QuarterHourly4AE380E3",
+           "Arn"
+          ]
+         }
+        }
+       },
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "events.amazonaws.com"
+       },
+       "Resource": {
+        "Fn::GetAtt": [
+         "FailedDeliveriesE3540845",
+         "Arn"
+        ]
+       },
+       "Sid": "AllowEventRuleRilloraOperationsQuarterHourly54EE0FB4"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Queues": [
+     {
+      "Ref": "FailedDeliveriesE3540845"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraOperations/FailedDeliveries/Policy/Resource"
+   }
+  },
+  "HealthLogs34B37038": {
+   "Type": "AWS::Logs::LogGroup",
+   "Properties": {
+    "RetentionInDays": 30
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "RilloraOperations/HealthLogs/Resource"
+   }
+  },
+  "HealthCheckServiceRoleC964F23C": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraOperations/HealthCheck/ServiceRole/Resource"
+   }
+  },
+  "HealthCheckServiceRoleDefaultPolicyAE8FE253": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sqs:SendMessage",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "FailedDeliveriesE3540845",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "HealthCheckServiceRoleDefaultPolicyAE8FE253",
+    "Roles": [
+     {
+      "Ref": "HealthCheckServiceRoleC964F23C"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraOperations/HealthCheck/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "HealthCheckA1C381C7": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Architectures": [
+     "arm64"
+    ],
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-133857166372-eu-central-1",
+     "S3Key": "[REDACTED_SCANNER_LITERAL]"
+    },
+    "DeadLetterConfig": {
+     "TargetArn": {
+      "Fn::GetAtt": [
+       "FailedDeliveriesE3540845",
+       "Arn"
+      ]
+     }
+    },
+    "Description": "Checks only approved public metadata; no private data or repair credentials",
+    "Environment": {
+     "Variables": {
+      "OPERATIONS_TARGETS_JSON": "{\n  \"schemaVersion\": 1,\n  \"environment\": \"synthetic-staging\",\n  \"allowedOrigins\": [\n    \"https://app.staging.rillora.xyz\",\n    \"https://legal.rillora.xyz\",\n    \"https://login.rillora.xyz\",\n    \"https://l1g8350qw0.execute-api.eu-central-1.amazonaws.com\",\n    \"https://j749rhzub7.execute-api.eu-central-1.amazonaws.com\",\n    \"https://www.rillora.xyz\",\n    \"https://app.rillora.xyz\"\n  ],\n  \"timeoutMs\": 8000,\n  \"certificateWarningDays\": 21,\n  \"targets\": [\n    {\n      \"id\": \"public-app\",\n      \"url\": \"https://app.staging.rillora.xyz/\",\n      \"expectedStatus\": 200,\n      \"headers\": {\n        \"strict-transport-security\": \"\",\n        \"content-security-policy\": \"\"\n      }\n    },\n    {\n      \"id\": \"legal-terms\",\n      \"url\": \"https://legal.rillora.xyz/terms\",\n      \"expectedStatus\": 200,\n      \"headers\": {\n        \"strict-transport-security\": \"\",\n        \"content-security-policy\": \"\"\n      }\n    },\n    {\n      \"id\": \"legal-private-route-blocked\",\n      \"url\": \"https://legal.rillora.xyz/api\",\n      \"expectedStatus\": 404,\n      \"headers\": {}\n    },\n    {\n      \"id\": \"api-live\",\n      \"url\": \"https://l1g8350qw0.execute-api.eu-central-1.amazonaws.com/health/live\",\n      \"expectedStatus\": 200,\n      \"headers\": {}\n    },\n    {\n      \"id\": \"api-ready\",\n      \"url\": \"https://l1g8350qw0.execute-api.eu-central-1.amazonaws.com/health/ready\",\n      \"expectedStatus\": 200,\n      \"headers\": {}\n    },\n    {\n      \"id\": \"private-session-blocked\",\n      \"url\": \"https://l1g8350qw0.execute-api.eu-central-1.amazonaws.com/v1/session\",\n      \"expectedStatus\": 401,\n      \"headers\": {\n        \"cache-control\": \"no-store\"\n      }\n    },\n    {\n      \"id\": \"identity-discovery\",\n      \"url\": \"https://login.rillora.xyz/.well-known/openid-configuration\",\n      \"expectedStatus\": 200,\n      \"headers\": {}\n    },\n    {\n      \"id\": \"production-api-live\",\n      \"url\": \"https://j749rhzub7.execute-api.eu-central-1.amazonaws.com/health/live\",\n      \"expectedStatus\": 200,\n      \"headers\": {}\n    },\n    {\n      \"id\": \"production-api-ready\",\n      \"url\": \"https://j749rhzub7.execute-api.eu-central-1.amazonaws.com/health/ready\",\n      \"expectedStatus\": 200,\n      \"headers\": {}\n    },\n    {\n      \"id\": \"production-accounts-closed\",\n      \"url\": \"https://j749rhzub7.execute-api.eu-central-1.amazonaws.com/api/v1/session\",\n      \"expectedStatus\": 503,\n      \"headers\": {\n        \"cache-control\": \"no-store\"\n      }\n    },\n    {\n      \"id\": \"public-product-home\",\n      \"url\": \"https://www.rillora.xyz/\",\n      \"expectedStatus\": 200,\n      \"headers\": {\n        \"strict-transport-security\": \"\",\n        \"content-security-policy\": \"connect-src 'none'\"\n      }\n    },\n    {\n      \"id\": \"public-product-private-route-blocked\",\n      \"url\": \"https://www.rillora.xyz/api/v1/session\",\n      \"expectedStatus\": 404,\n      \"headers\": {\n        \"cache-control\": \"no-store\"\n      }\n    },\n    {\n      \"id\": \"production-client-home\",\n      \"url\": \"https://app.rillora.xyz/\",\n      \"expectedStatus\": 200,\n      \"headers\": {\n        \"content-security-policy\": \"connect-src 'self'\",\n        \"strict-transport-security\": \"\"\n      }\n    },\n    {\n      \"id\": \"production-client-accounts-closed\",\n      \"url\": \"https://app.rillora.xyz/api/v1/session\",\n      \"expectedStatus\": 503,\n      \"headers\": {\n        \"cache-control\": \"no-store\"\n      }\n    }\n  ]\n}\n"
+     }
+    },
+    "Handler": "handler.handler",
+    "LoggingConfig": {
+     "LogGroup": {
+      "Ref": "HealthLogs34B37038"
+     }
+    },
+    "MemorySize": 128,
+    "Role": {
+     "Fn::GetAtt": [
+      "HealthCheckServiceRoleC964F23C",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs22.x",
+    "Timeout": 15
+   },
+   "DependsOn": [
+    "HealthCheckServiceRoleDefaultPolicyAE8FE253",
+    "HealthCheckServiceRoleC964F23C"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "RilloraOperations/HealthCheck/Resource",
+    "aws:asset:path": "asset.4a8013bb0308de7c23f00d237367aee317ac8b3644633a462e1ce2791bdbda3a",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "HealthCheckEventInvokeConfigABB13FBA": {
+   "Type": "AWS::Lambda::EventInvokeConfig",
+   "Properties": {
+    "FunctionName": {
+     "Ref": "HealthCheckA1C381C7"
+    },
+    "MaximumEventAgeInSeconds": 900,
+    "MaximumRetryAttempts": 1,
+    "Qualifier": "$LATEST"
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraOperations/HealthCheck/EventInvokeConfig/Resource"
+   }
+  },
+  "QuarterHourly4AE380E3": {
+   "Type": "AWS::Events::Rule",
+   "Properties": {
+    "ScheduleExpression": "rate(15 minutes)",
+    "State": "ENABLED",
+    "Targets": [
+     {
+      "Arn": {
+       "Fn::GetAtt": [
+        "HealthCheckA1C381C7",
+        "Arn"
+       ]
+      },
+      "DeadLetterConfig": {
+       "Arn": {
+        "Fn::GetAtt": [
+         "FailedDeliveriesE3540845",
+         "Arn"
+        ]
+       }
+      },
+      "Id": "Target0",
+      "Input": "{\"job\":\"public-health-v1\"}",
+      "RetryPolicy": {
+       "MaximumEventAgeInSeconds": 900,
+       "MaximumRetryAttempts": 2
+      }
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraOperations/QuarterHourly/Resource"
+   }
+  },
+  "QuarterHourlyAllowEventRuleRilloraOperationsHealthCheckD0D9D8C5337B971B": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "HealthCheckA1C381C7",
+      "Arn"
+     ]
+    },
+    "Principal": "events.amazonaws.com",
+    "SourceArn": {
+     "Fn::GetAtt": [
+      "QuarterHourly4AE380E3",
+      "Arn"
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraOperations/QuarterHourly/AllowEventRuleRilloraOperationsHealthCheckD0D9D8C5"
+   }
+  },
+  "Alerts91F83244": {
+   "Type": "AWS::SNS::Topic",
+   "Metadata": {
+    "aws:cdk:path": "RilloraOperations/Alerts/Resource"
+   }
+  },
+  "AlertsPolicy425C338D": {
+   "Type": "AWS::SNS::TopicPolicy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sns:Publish",
+       "Condition": {
+        "Bool": {
+         "aws:SecureTransport": "false"
+        }
+       },
+       "Effect": "Deny",
+       "Principal": "*",
+       "Resource": {
+        "Ref": "Alerts91F83244"
+       },
+       "Sid": "AllowPublishThroughSSLOnly"
+      },
+      {
+       "Action": "sns:Publish",
+       "Condition": {
+        "StringEquals": {
+         "aws:SourceAccount": "133857166372"
+        },
+        "ArnEquals": {
+         "aws:SourceArn": [
+          {
+           "Fn::GetAtt": [
+            "Unhealthy9594204A",
+            "Arn"
+           ]
+          },
+          {
+           "Fn::GetAtt": [
+            "MissingHeartbeatF959D2A8",
+            "Arn"
+           ]
+          },
+          {
+           "Fn::GetAtt": [
+            "InvocationErrors5F3DC47A",
+            "Arn"
+           ]
+          },
+          {
+           "Fn::GetAtt": [
+            "DeadLettersBBF8BAAB",
+            "Arn"
+           ]
+          },
+          {
+           "Fn::GetAtt": [
+            "MailBounceDFC06FB0",
+            "Arn"
+           ]
+          },
+          {
+           "Fn::GetAtt": [
+            "MailComplaintAAEC7183",
+            "Arn"
+           ]
+          },
+          {
+           "Fn::GetAtt": [
+            "MailRejected21E3A73A",
+            "Arn"
+           ]
+          },
+          {
+           "Fn::GetAtt": [
+            "MailDelayedFF5B84EF",
+            "Arn"
+           ]
+          }
+         ]
+        }
+       },
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "cloudwatch.amazonaws.com"
+       },
+       "Resource": {
+        "Ref": "Alerts91F83244"
+       },
+       "Sid": "AllowOnlyRilloraAlarmDelivery"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Topics": [
+     {
+      "Ref": "Alerts91F83244"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraOperations/Alerts/Policy/Resource"
+   }
+  },
+  "Unhealthy9594204A": {
+   "Type": "AWS::CloudWatch::Alarm",
+   "Properties": {
+    "AlarmActions": [
+     {
+      "Ref": "Alerts91F83244"
+     }
+    ],
+    "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+    "Dimensions": [
+     {
+      "Name": "Environment",
+      "Value": "synthetic-staging"
+     }
+    ],
+    "EvaluationPeriods": 1,
+    "MetricName": "FailedChecks",
+    "Namespace": "Rillora/Operations",
+    "OKActions": [
+     {
+      "Ref": "Alerts91F83244"
+     }
+    ],
+    "Period": 900,
+    "Statistic": "Maximum",
+    "Threshold": 1,
+    "TreatMissingData": "notBreaching"
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraOperations/Unhealthy/Resource"
+   }
+  },
+  "MissingHeartbeatF959D2A8": {
+   "Type": "AWS::CloudWatch::Alarm",
+   "Properties": {
+    "AlarmActions": [
+     {
+      "Ref": "Alerts91F83244"
+     }
+    ],
+    "ComparisonOperator": "LessThanThreshold",
+    "Dimensions": [
+     {
+      "Name": "Environment",
+      "Value": "synthetic-staging"
+     }
+    ],
+    "EvaluationPeriods": 3,
+    "MetricName": "Heartbeat",
+    "Namespace": "Rillora/Operations",
+    "OKActions": [
+     {
+      "Ref": "Alerts91F83244"
+     }
+    ],
+    "Period": 900,
+    "Statistic": "Sum",
+    "Threshold": 1,
+    "TreatMissingData": "breaching"
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraOperations/MissingHeartbeat/Resource"
+   }
+  },
+  "InvocationErrors5F3DC47A": {
+   "Type": "AWS::CloudWatch::Alarm",
+   "Properties": {
+    "AlarmActions": [
+     {
+      "Ref": "Alerts91F83244"
+     }
+    ],
+    "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+    "Dimensions": [
+     {
+      "Name": "FunctionName",
+      "Value": {
+       "Ref": "HealthCheckA1C381C7"
+      }
+     }
+    ],
+    "EvaluationPeriods": 1,
+    "MetricName": "Errors",
+    "Namespace": "AWS/Lambda",
+    "OKActions": [
+     {
+      "Ref": "Alerts91F83244"
+     }
+    ],
+    "Period": 900,
+    "Statistic": "Sum",
+    "Threshold": 1,
+    "TreatMissingData": "notBreaching"
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraOperations/InvocationErrors/Resource"
+   }
+  },
+  "DeadLettersBBF8BAAB": {
+   "Type": "AWS::CloudWatch::Alarm",
+   "Properties": {
+    "AlarmActions": [
+     {
+      "Ref": "Alerts91F83244"
+     }
+    ],
+    "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+    "Dimensions": [
+     {
+      "Name": "QueueName",
+      "Value": {
+       "Fn::GetAtt": [
+        "FailedDeliveriesE3540845",
+        "QueueName"
+       ]
+      }
+     }
+    ],
+    "EvaluationPeriods": 1,
+    "MetricName": "ApproximateNumberOfMessagesVisible",
+    "Namespace": "AWS/SQS",
+    "OKActions": [
+     {
+      "Ref": "Alerts91F83244"
+     }
+    ],
+    "Period": 900,
+    "Statistic": "Maximum",
+    "Threshold": 1,
+    "TreatMissingData": "notBreaching"
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraOperations/DeadLetters/Resource"
+   }
+  },
+  "MailBounceDFC06FB0": {
+   "Type": "AWS::CloudWatch::Alarm",
+   "Properties": {
+    "AlarmActions": [
+     {
+      "Ref": "Alerts91F83244"
+     }
+    ],
+    "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+    "Dimensions": [
+     {
+      "Name": "ses:configuration-set",
+      "Value": "rillora-transactional"
+     }
+    ],
+    "EvaluationPeriods": 1,
+    "MetricName": "Bounce",
+    "Namespace": "AWS/SES",
+    "OKActions": [
+     {
+      "Ref": "Alerts91F83244"
+     }
+    ],
+    "Period": 900,
+    "Statistic": "Sum",
+    "Threshold": 1,
+    "TreatMissingData": "notBreaching"
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraOperations/MailBounce/Resource"
+   }
+  },
+  "MailComplaintAAEC7183": {
+   "Type": "AWS::CloudWatch::Alarm",
+   "Properties": {
+    "AlarmActions": [
+     {
+      "Ref": "Alerts91F83244"
+     }
+    ],
+    "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+    "Dimensions": [
+     {
+      "Name": "ses:configuration-set",
+      "Value": "rillora-transactional"
+     }
+    ],
+    "EvaluationPeriods": 1,
+    "MetricName": "Complaint",
+    "Namespace": "AWS/SES",
+    "OKActions": [
+     {
+      "Ref": "Alerts91F83244"
+     }
+    ],
+    "Period": 900,
+    "Statistic": "Sum",
+    "Threshold": 1,
+    "TreatMissingData": "notBreaching"
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraOperations/MailComplaint/Resource"
+   }
+  },
+  "MailRejected21E3A73A": {
+   "Type": "AWS::CloudWatch::Alarm",
+   "Properties": {
+    "AlarmActions": [
+     {
+      "Ref": "Alerts91F83244"
+     }
+    ],
+    "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+    "Dimensions": [
+     {
+      "Name": "ses:configuration-set",
+      "Value": "rillora-transactional"
+     }
+    ],
+    "EvaluationPeriods": 1,
+    "MetricName": "Reject",
+    "Namespace": "AWS/SES",
+    "OKActions": [
+     {
+      "Ref": "Alerts91F83244"
+     }
+    ],
+    "Period": 900,
+    "Statistic": "Sum",
+    "Threshold": 1,
+    "TreatMissingData": "notBreaching"
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraOperations/MailRejected/Resource"
+   }
+  },
+  "MailDelayedFF5B84EF": {
+   "Type": "AWS::CloudWatch::Alarm",
+   "Properties": {
+    "AlarmActions": [
+     {
+      "Ref": "Alerts91F83244"
+     }
+    ],
+    "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+    "Dimensions": [
+     {
+      "Name": "ses:configuration-set",
+      "Value": "rillora-transactional"
+     }
+    ],
+    "EvaluationPeriods": 1,
+    "MetricName": "DeliveryDelay",
+    "Namespace": "AWS/SES",
+    "OKActions": [
+     {
+      "Ref": "Alerts91F83244"
+     }
+    ],
+    "Period": 900,
+    "Statistic": "Sum",
+    "Threshold": 1,
+    "TreatMissingData": "notBreaching"
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraOperations/MailDelayed/Resource"
+   }
+  },
+  "OperationsRunbook277D4959": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "lambda:InvokeFunction",
+        "lambda:GetFunctionConfiguration"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "HealthCheckA1C381C7",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "logs:DescribeLogStreams",
+        "logs:GetLogEvents",
+        "logs:FilterLogEvents"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "HealthLogs34B37038",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "HealthLogs34B37038",
+             "Arn"
+            ]
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "sqs:GetQueueAttributes",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "FailedDeliveriesE3540845",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "cloudwatch:DescribeAlarms",
+        "cloudwatch:DescribeAlarmHistory",
+        "cloudwatch:SetAlarmState"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "Unhealthy9594204A",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::GetAtt": [
+          "MissingHeartbeatF959D2A8",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::GetAtt": [
+          "InvocationErrors5F3DC47A",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::GetAtt": [
+          "DeadLettersBBF8BAAB",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::GetAtt": [
+          "MailBounceDFC06FB0",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::GetAtt": [
+          "MailComplaintAAEC7183",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::GetAtt": [
+          "MailRejected21E3A73A",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::GetAtt": [
+          "MailDelayedFF5B84EF",
+          "Arn"
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "sns:Subscribe",
+        "sns:ListSubscriptionsByTopic",
+        "sns:GetTopicAttributes",
+        "sns:Publish"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Ref": "Alerts91F83244"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "OperationsRunbook277D4959",
+    "Roles": [
+     "rillora-staging-operator"
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraOperations/OperationsRunbook/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/21Q0U7DMAz8lr2nBnXS3rcJEBISo/A+ZalXsqZxqZNOqMq/k6Rs4wEp8p3v4viUEsrVCu4X8syFqtvC6ANM706qVkRpP/EXw/Tm0aPYHu1Mct2R0er7Ks5tEIaaOPBCzdNAvk/2hUdPdodawvTorXKabHKv/GFE657tSC1uyR51k9x/xR0OnWaOQ0Fo2cFUkcnpMt5yXSLxci+Z0TGsE8QeNl616DaSUWBaESNX/veRiHHGRumDeq2SNpNcb8//aYNQhnx9lk59wrQ2cujSjUxCEHlt/NNG20ZUyOQHlXe9etd7F4SlGuHEd2NZQjzLxYm1LgZvne4Qqhl/AESjkdyqAQAA"
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraOperations/CDKMetadata/Default"
+   }
+  }
+ },
+ "Outputs": {
+  "AlertTopicArn": {
+   "Value": {
+    "Ref": "Alerts91F83244"
+   }
+  },
+  "CheckerFunctionName": {
+   "Value": {
+    "Ref": "HealthCheckA1C381C7"
+   }
+  },
+  "ActivationBoundary": {
+   "Value": "Requires deploy, real cloud invocation, verified subscriber delivery and missing-heartbeat drill"
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,41 @@
+{
+  "records": [
+    {
+      "data": "d1zq6qpnicab3e.cloudfront.net.",
+      "name": "www",
+      "recordId": "<1126245128>-[1148]-57a8399a-33f1-463d-862c-cf41",
+      "ttl": 600,
+      "type": "CNAME"
+    }
+  ],
+  "count": 27,
+  "unrelatedRecordsUnchanged": true,
+  "dnsChecks": [
+    {
+      "server": "ns73.domaincontrol.com",
+      "answer": "d1zq6qpnicab3e.cloudfront.net.",
+      "matches": true
+    },
+    {
+      "server": "ns74.domaincontrol.com",
+      "answer": "d1zq6qpnicab3e.cloudfront.net.",
+      "matches": true
+    },
+    {
+      "server": "1.1.1.1",
+      "answer": "d1zq6qpnicab3e.cloudfront.net.",
+      "matches": true
+    },
+    {
+      "server": "8.8.8.8",
+      "answer": "d1zq6qpnicab3e.cloudfront.net.",
+      "matches": true
+    }
+  ],
+  "https": {
+    "status": 200,
+    "artifactMatches": true,
+    "csp": "default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+    "setsCookie": false
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "Certificate": {
+    "CertificateArn": "arn:aws:acm:us-east-1:133857166372:certificate/399c5574-c36b-484e-a360-57dca11c6757",
+    "DomainName": "app.rillora.xyz",
+    "SubjectAlternativeNames": [
+      "app.rillora.xyz"
+    ],
+    "DomainValidationOptions": [
+      {
+        "DomainName": "app.rillora.xyz",
+        "ValidationDomain": "app.rillora.xyz",
+        "ValidationStatus": "PENDING_VALIDATION",
+        "ResourceRecord": {
+          "Name": "_7a24dacf00bcf14f1311cd404dc9a032.app.rillora.xyz.",
+          "Type": "CNAME",
+          "Value": "_d24b8deccf0f6720ba24f970dd0f966c.wzccmgtwzk.acm-validations.aws."
+        },
+        "ValidationMethod": "DNS"
+      }
+    ],
+    "Subject": "CN=app.rillora.xyz",
+    "Issuer": "Amazon",
+    "CreatedAt": "2026-09-25T16:21:43.576000+08:00",
+    "Status": "PENDING_VALIDATION",
+    "KeyAlgorithm": "RSA-2048",
+    "SignatureAlgorithm": "SHA256WITHRSA",
+    "InUseBy": [],
+    "Type": "AMAZON_ISSUED",
+    "KeyUsages": [],
+    "ExtendedKeyUsages": [],
+    "RenewalEligibility": "INELIGIBLE",
+    "Options": {
+      "CertificateTransparencyLoggingPreference": "ENABLED",
+      "Export": "DISABLED"
+    },
+    "CertificateKeyPairOrigin": "AWS_MANAGED"
+  }
+}

@@ -1,0 +1,88 @@
+"""Read-only deployment checks; no identities, consent, or invitations are created."""
+import hashlib
+import json
+import re
+from concurrent.futures import ThreadPoolExecutor
+from pathlib import Path
+from urllib.error import HTTPError
+from urllib.request import Request, urlopen
+
+QA = Path(__file__).resolve().parent
+ROOT = QA.parents[2]
+WEB = "https://app.staging.rillora.xyz"
+API = "https://l1g8350qw0.execute-api.eu-central-1.amazonaws.com"
+
+
+def request(origin, path, method="GET", payload=None, headers=None):
+    data = None if payload is None else json.dumps(payload).encode()
+    req = Request(origin + path, data=data, method=method, headers={
+        "User-Agent": "Rillora-Staging-Verification",
+        **({"Content-Type": "application/json"} if data else {}),
+        **(headers or {}),
+    })
+    try:
+        response = urlopen(req, timeout=30)
+    except HTTPError as error:
+        response = error
+    with response:
+        body = response.read()
+        return response.status, dict(response.headers.items()), body
+
+
+def verify(case):
+    name, origin, path, method, payload, extra, expected = case
+    status, raw_headers, body = request(origin, path, method, payload, extra)
+    headers = {key.lower(): value for key, value in raw_headers.items()}
+    checks = {"status": status == expected, "hsts": bool(headers.get("strict-transport-security"))}
+    result = {"name": name, "path": path, "status": status, "checks": checks}
+    if path.startswith(("/api/", "/sharing/", "/v1/")):
+        checks["no_store"] = "no-store" in headers.get("cache-control", "")
+        checks["no_framework_header"] = "x-powered-by" not in headers
+        parsed = json.loads(body)
+        result["response"] = parsed
+        if name == "unknown_invitation":
+            checks["new_database_function_responded"] = parsed.get("error", {}).get("code") == "invitation_unavailable"
+        if name == "signed_out":
+            checks["signed_out"] = parsed == {"authenticated": False}
+    elif path in ("/", "/account", "/invite", "/?view=shared"):
+        checks["csp"] = bool(headers.get("content-security-policy"))
+        local = (ROOT / "apps/web/dist/client/index.html").read_bytes()
+        checks["matches_built_spa"] = hashlib.sha256(body).digest() == hashlib.sha256(local).digest()
+    result["passed"] = all(checks.values())
+    return result
+
+
+cases = [
+    ("liveness", API, "/health/live", "GET", None, None, 200),
+    ("database_ready", API, "/health/ready", "GET", None, None, 200),
+    *[(name, WEB, path, "GET", None, None, 200) for name, path in [
+        ("public_home", "/"), ("account_entry", "/account"),
+        ("invitation_entry", "/invite"), ("shared_entry", "/?view=shared"),
+    ]],
+    ("signed_out", WEB, "/api/auth/session-status", "GET", None, None, 200),
+    ("legal_contract", WEB, "/api/auth/legal-contract", "GET", None, None, 200),
+    ("private_session_denied", WEB, "/api/v1/session", "GET", None, None, 401),
+    ("owner_sharing_denied", WEB, "/api/v1/sharing/connections", "GET", None, None, 401),
+    ("receiver_sharing_denied", WEB, "/api/v1/sharing/shared-with-me", "GET", None, None, 401),
+    ("anonymous_accept_denied", WEB, "/api/v1/sharing/invitations/accept", "POST", {"accepted": True, "invitationToken": "[REDACTED_CREDENTIAL]" * 43}, None, 401),
+    ("dev_identity_denied", WEB, "/api/v1/sharing/connections", "GET", None, {"x-dev-planner-id": "11111111-1111-4111-8111-111111111111"}, 401),
+    ("unknown_invitation", WEB, "/api/sharing/invitations/resolve", "POST", {"invitationToken": "[REDACTED_CREDENTIAL]" * 43}, None, 404),
+    ("missing_handoff", WEB, "/api/sharing/invitations/11111111-1111-4111-8111-111111111111", "GET", None, None, 404),
+    ("native_unknown_invitation", API, "/sharing/invitations/resolve", "POST", {"invitationToken": "[REDACTED_CREDENTIAL]" * 43}, None, 404),
+]
+with ThreadPoolExecutor(max_workers=4) as pool:
+    results = list(pool.map(verify, cases))
+
+html = (ROOT / "apps/web/dist/client/index.html").read_text()
+assets = sorted(set(re.findall(r'(?:src|href)="(/assets/[^\"]+\.(?:js|css))"', html)))
+for asset in assets:
+    status, _, body = request(WEB, asset)
+    local = ROOT / "apps/web/dist/client" / asset.lstrip("/")
+    results.append({"name": "published_asset", "path": asset, "status": status,
+                    "passed": status == 200 and hashlib.sha256(body).digest() == hashlib.sha256(local.read_bytes()).digest()})
+
+summary = {"passed": sum(r["passed"] for r in results), "total": len(results), "checks": results}
+(QA / "aws-http-verification.json").write_text(json.dumps(summary, indent=2) + "\n")
+print(json.dumps({"passed": summary["passed"], "total": summary["total"],
+                  "failures": [r for r in results if not r["passed"]]}, indent=2))
+raise SystemExit(0 if all(r["passed"] for r in results) else 1)

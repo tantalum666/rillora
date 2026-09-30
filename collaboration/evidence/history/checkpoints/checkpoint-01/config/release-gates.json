@@ -1,0 +1,248 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-09-30",
+  "release": "Rillora Global 1.0",
+  "scope": "Web and native iOS; existing Free and Family only",
+  "gates": [
+    {
+      "id": "production-runtime",
+      "status": "in_progress",
+      "required": true,
+      "title": "Separate production runtime and data",
+      "evidence": [
+        "docs/production-recovery-20260923.md",
+        "output/qa/rillora-production-recovery-20260923/production-database-readback.json",
+        "output/qa/rillora-production-recovery-20260923/paid-plan-readback.json",
+        "docs/production-runtime-20260924.md",
+        "docs/production-clients-20260925.md",
+        "output/qa/rillora-production-clients-20260925/app-domain-acceptance.json",
+        "output/qa/rillora-production-clients-20260925/native-release-readback.json",
+        "docs/release-engineering-20260930.md",
+        "output/qa/rillora-launch-resume-20260930/final-runtime-readback.json",
+        "output/qa/rillora-launch-resume-20260930/release-acceptance-retry-result.json",
+        "output/qa/rillora-launch-resume-20260930/final-http-readback.json",
+        "docs/code-review-repair-20260930.md"
+      ],
+      "next": "Existing AWS sessions actually expired. Roll out the prepared review fixes to API7successor and closed Web/router only after restoration;schema0091is unchanged. Actual reviewer login/legal acceptance and core real-user journeys remain separate."
+    },
+    {
+      "id": "production-identity",
+      "status": "in_progress",
+      "required": true,
+      "title": "Production identity and recovery",
+      "evidence": [
+        "docs/production-identity-mail-20260924.md",
+        "output/qa/rillora-production-identity-20260924/auth0-production-prepared.json",
+        "output/qa/rillora-production-identity-20260924/mail-identity-readback.json",
+        "output/qa/rillora-production-identity-20260924/ses-account-after-request.json",
+        "output/qa/rillora-production-identity-20260924/google-credential-receipt.json",
+        "output/qa/rillora-production-identity-20260924/ses-account-final.json",
+        "output/qa/rillora-production-identity-20260924/ses-support-console-readback.json",
+        "output/qa/rillora-production-identity-20260924/ses-followup-submission.json",
+        "output/qa/rillora-production-identity-20260924/mail-readiness-after-reply.json",
+        "output/qa/rillora-launch-goal-20260926/ses-gmail-readback.json",
+        "output/qa/rillora-launch-goal-20260926/ses-reconsideration-submitted-20260928.json",
+        "docs/auth0-cognito-migration-20260928.md",
+        "output/qa/rillora-ses-reply-20260929/mail-readiness.json",
+        "output/qa/rillora-ses-reply-20260929/clarification-submission-receipt.json",
+        "output/qa/rillora-ses-reply-20260929/account-after-send.json",
+        "docs/release-engineering-20260930.md",
+        "output/qa/rillora-launch-resume-20260930/production-identity-services-installed.json",
+        "output/qa/rillora-launch-resume-20260930/identity-service-token-probes.json",
+        "output/qa/rillora-launch-resume-20260930/production-deletion-probe-result.json"
+      ],
+      "next": "Separate production M2M clients/vaults are active;exactscope tokens,synthetic verification read and disposable provider deletion204/404 are confirmed. Real login/legal acceptance and delivery remain pending. Await the existing SES reply; do not resend. Before customer cutover retire old test grants and wait the measured86400second tokenTTL plus skew; preserve current Preview meanwhile."
+    },
+    {
+      "id": "production-billing",
+      "status": "in_progress",
+      "required": true,
+      "title": "Ordinary customer purchase lifecycle",
+      "evidence": [
+        "docs/production-commerce-20260926.md",
+        "output/qa/rillora-production-commerce-20260925/work-state.json",
+        "docs/pricing-88-99-20260926.md",
+        "output/qa/rillora-web-price-88-99-20260926/work-state.json",
+        "docs/release-engineering-20260930.md",
+        "output/qa/rillora-launch-resume-20260930/api-final-regression.json",
+        "output/qa/rillora-launch-resume-20260930/release-acceptance-retry-result.json"
+      ],
+      "next": "Production schema0091 retains Web8899 annual-only and historical prices. Recovery current-provider reconciliation is implemented and locally verified; live Stripe remains disabled pending Owner-deferred merchant/tax facts and actual provider configuration/transactions. No repeated schema0070 rollout or new monthly offer is needed."
+    },
+    {
+      "id": "merchant-market",
+      "status": "owner_deferred",
+      "required": true,
+      "title": "Merchant and ready-market facts",
+      "evidence": [],
+      "next": "Owner says to defer Hong Kong business/registration; do not request documents again or mark this verified. Keep live charging and public market activation closed."
+    },
+    {
+      "id": "apple-transactions",
+      "status": "in_progress",
+      "required": true,
+      "title": "Apple actual purchase and restore",
+      "evidence": [
+        "docs/production-apple-20260926.md",
+        "output/qa/rillora-production-apple-20260926/work-state.json",
+        "output/qa/rillora-launch-goal-20260926/apple-snapshot-checks.json",
+        "output/qa/rillora-launch-goal-20260926/apple-intake-checks.json",
+        "output/qa/rillora-launch-goal-20260926/apple-purchase-checks.json",
+        "docs/apple-review-validation-20260929.md",
+        "output/qa/rillora-apple-release-20260929/work-state.json",
+        "docs/release-engineering-20260930.md",
+        "output/qa/rillora-launch-resume-20260930/catalog-result.json",
+        "output/qa/rillora-launch-resume-20260930/apple-price-readback.json",
+        "output/qa/rillora-launch-resume-20260930/final-runtime-readback.json"
+      ],
+      "next": "Restricted review API/vault/catalog are deployed and actual USA6800Sandbox binding is verified. Actual review login/affirmative terms/enrollment, notification configuration confirmation, Sandbox purchase/restore/lifecycle and physical-device evidence remain pending. SBP receipt is retained; approval/effective rate and final differential price stay separate."
+    },
+    {
+      "id": "operations",
+      "status": "verified",
+      "required": true,
+      "title": "Delivered alarms and missing-heartbeat detection",
+      "evidence": [
+        "output/qa/rillora-release-readiness-20260919/operations-final-readback.json",
+        "output/qa/rillora-release-readiness-20260919/all-alarm-delivery-evidence.json",
+        "output/qa/rillora-production-runtime-20260924/operations-config-readback.json",
+        "output/qa/rillora-production-runtime-20260924/operations-cloud-result.json",
+        "output/qa/rillora-production-identity-20260924/operations-public-cloud-result.json",
+        "output/qa/rillora-production-identity-20260924/mail-alarm-actions.json",
+        "output/qa/rillora-production-clients-20260925/operations-config-readback.json",
+        "output/qa/rillora-production-clients-20260925/operations-cloud-result.json",
+        "docs/release-engineering-20260930.md",
+        "output/qa/rillora-launch-resume-20260930/retention-worker-heartbeats.json",
+        "output/qa/rillora-launch-resume-20260930/final-runtime-readback.json",
+        "output/qa/rillora-launch-resume-20260930/snapshot-cloud-result.json"
+      ],
+      "next": "Fourteen public targets and separate Sandbox worker alarms are retained. The bounded retention worker emits a successful production heartbeat and its three enabled alarms readOK. Manual-snapshot worker retains the exact snapshot until its deadline. Prior delivered-alarm/silence proof keeps its original date; no new delivery or SLA claim."
+    },
+    {
+      "id": "backup-retention",
+      "status": "in_progress",
+      "required": true,
+      "title": "Restore and deletion/retention operations",
+      "evidence": [
+        "output/qa/rillora-content-encryption-20260922/before-content-snapshot-status.json",
+        "output/qa/rillora-production-recovery-20260923/provider-backup-retention-refusal.json",
+        "output/qa/rillora-production-recovery-20260923/production-database-readback.json",
+        "docs/recovery-control-journal.md",
+        "output/qa/rillora-production-recovery-20260923/cloud-data-acceptance.json",
+        "output/qa/rillora-production-recovery-20260923/cleanup-verification.json",
+        "docs/release-engineering-20260930.md",
+        "output/qa/rillora-launch-resume-20260930/release-acceptance-retry-result.json",
+        "output/qa/rillora-launch-resume-20260930/snapshot-cloud-result.json",
+        "output/qa/rillora-launch-resume-20260930/api-final-regression.json"
+      ],
+      "next": "Bounded retention, independent retention holds and exact90day manual-snapshot retirement are deployed. Current-provider post-restore reconciliation and freeze/isolation guards are implemented and locally tested. Preserve the prior real RDS/KMS/privacy replay proof; actual reconciliation against later real Apple/Stripe transactions depends on the still-open purchase/provider gates."
+    },
+    {
+      "id": "release-security",
+      "status": "in_progress",
+      "required": true,
+      "title": "Release artifact and security acceptance",
+      "evidence": [
+        "output/qa/rillora-content-encryption-20260922/closeout.json",
+        "output/qa/rillora-ui-ux-audit-20260929/source-scan.json",
+        "docs/release-engineering-20260930.md",
+        "output/qa/rillora-launch-resume-20260930/reauthentication-ui-check.json",
+        "output/qa/rillora-launch-resume-20260930/native-final-distribution-check.json",
+        "output/qa/rillora-launch-resume-20260930/api-final-regression.json",
+        "docs/code-review-repair-20260930.md"
+      ],
+      "next": "Locally verified route-bound reauthentication,account-bound browser requests and serialized Stripe observations await AWS rollout. Preserve old source/deployment evidence separately; actual provider reauthentication and general customer cutover remain distinct gates."
+    },
+    {
+      "id": "apple-submission",
+      "status": "in_progress",
+      "required": true,
+      "title": "App Store build and submission package",
+      "evidence": [
+        "output/qa/rillora-production-clients-20260925/native-release-readback.json",
+        "docs/apple-review-validation-20260929.md",
+        "output/qa/rillora-apple-release-20260929/work-state.json",
+        "docs/release-engineering-20260930.md",
+        "output/qa/rillora-launch-resume-20260930/native-final-distribution-check.json",
+        "docs/app-store-presentation-20260930.md"
+      ],
+      "next": "Final closed-entry distribution IPA passes strict signing and release isolation checks; six designed store JPEGs with preserved authentic UI and checked dimensions/alpha and listing/privacy/age/encryption/reviewer worksheets are prepared. No upload or declaration. Owner/provider ceremony, real transactions, final pricing/market/declarations/contact and an enabled usable TestFlight candidate remain required before submission/manual release."
+    },
+    {
+      "id": "physical-device",
+      "status": "owner_deferred",
+      "required": true,
+      "title": "Physical-device acceptance",
+      "evidence": [],
+      "next": "Retain Owner's prior device exclusion during current engineering; actual device authentication/accessibility remains a release evidence gap, not a Simulator pass."
+    },
+    {
+      "id": "public-surface",
+      "status": "in_progress",
+      "required": true,
+      "title": "Public product and support entry",
+      "evidence": [
+        "docs/public-product-website-20260924.md",
+        "output/qa/rillora-production-identity-20260924/www-acceptance.json",
+        "output/qa/rillora-production-identity-20260924/root-forward-acceptance.json",
+        "output/qa/rillora-production-identity-20260924/root-browser-acceptance.json",
+        "output/qa/rillora-production-identity-20260924/root-monitor-compatibility.json",
+        "docs/ui-ux-audit-20260929.md",
+        "output/qa/rillora-ui-ux-audit-20260929/online-readback.json",
+        "docs/code-review-repair-20260930.md"
+      ],
+      "next": "Restore the actually expired AWS session and publish the prepared WWW subscription-terms link correction; retained domain/TLS/hosting evidence stays dated."
+    },
+    {
+      "id": "review-remediation",
+      "status": "in_progress",
+      "required": true,
+      "title": "Owner-supplied Dot review remediation",
+      "evidence": [
+        "docs/code-review-repair-20260930.md",
+        "output/qa/rillora-review-repair-20260930/work-state.json"
+      ],
+      "next": "All13source fixes and local regressions are complete. Restore existing AWS login and deploy changed closed API/Web/router/WWW artifacts with exact readback. No schema0091change or new provider application."
+    }
+  ],
+  "retainedEvidence": [
+    {
+      "scope": "Core Web/iOS, sharing and real A/B ceremony",
+      "path": "output/qa/rillora-real-invitation-20260917/README.md",
+      "limit": "Real ceremony predates same-session email fix; repaired continuation has separate cloud-fixture evidence."
+    },
+    {
+      "scope": "US$68 / US$7.99 Stripe test lifecycle",
+      "path": "output/qa/rillora-stripe-acceptance-20260917/README.md",
+      "limit": "Test payments and enrolled test entitlements, not live revenue or merchant eligibility."
+    },
+    {
+      "scope": "Current installed UI and staging Web artifact",
+      "path": "output/qa/rillora-provider-icons-rollout-20260919/README.md",
+      "limit": "Latest change was assets/credits only; earlier full test suites were not rerun."
+    },
+    {
+      "scope": "Annual-only new sales and approved brand/capacity checkpoint",
+      "path": "output/qa/rillora-annual-brand-capacity-20260921/README.md",
+      "limit": "Test offer retirement and bounded capacity evidence; not live revenue or Apple production transactions."
+    },
+    {
+      "scope": "Application content encryption and real KMS validation",
+      "path": "output/qa/rillora-content-encryption-20260922/closeout.json",
+      "limit": "Staging API37, not production isolation, cloud restore, E2EE or independent certification."
+    }
+  ],
+  "notLaunchPrerequisites": [
+    "Additional provider logos",
+    "Additional decorative motion",
+    "Full custom AI support platform",
+    "Attachments/OCR",
+    "Mainland deployment",
+    "Automated death determination/release",
+    "Human estate services",
+    "Bank integrations",
+    "Enterprise multi-tenancy",
+    "Full online E2EE (Owner deferred)",
+    "SOC2 certification as a self-imposed first-release requirement"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "services_id": "com.rillora.auth",
+  "description": "Rillora Account",
+  "primary_app": "com.rillora.ios",
+  "domains": [
+    "login.rillora.xyz"
+  ],
+  "return_urls": [
+    "https://login.rillora.xyz/login/callback"
+  ],
+  "saved_and_reopened": true,
+  "only_sign_in_with_apple_enabled": true,
+  "replacement_key_draft": "Rillora Auth0 20260907",
+  "key_created": false,
+  "old_key_revoked": false,
+  "apple_binding_restored": false
+}

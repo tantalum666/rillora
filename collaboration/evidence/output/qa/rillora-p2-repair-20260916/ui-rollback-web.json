@@ -1,0 +1,13 @@
+{
+  "reason": "Owner clarified repair only, not UI redesign. New populated reference is withdrawn and not a design target.",
+  "restored_files_equal_pre_turn_HEAD": {
+    "src/ContinuityExplorer.jsx": true,
+    "src/SharingMotion.jsx": true,
+    "src/authenticated-motion.css": true,
+    "src/mobileNavigation.js": true,
+    "src/public-experience.css": true,
+    "tests/mobile-navigation.test.mjs": true
+  },
+  "baseline_commit": "dbe56567e00a728b8cc7dce60e4f71a07e05822f",
+  "other": "App visual/nav sections restored to baseline; functional routing and targeted sharing fixes retained locally; not deployed."
+}

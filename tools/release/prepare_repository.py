@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Prepare a local, reviewable source snapshot; never commits or uploads it."""
 from pathlib import Path
+import argparse
 import datetime
 import hashlib
 import json
@@ -10,7 +11,9 @@ import subprocess
 
 ROOT = Path(__file__).resolve().parents[2]
 DEST = ROOT / ".local/github-preflight/source"
-REPORT = ROOT / "output/qa/rillora-production-recovery-20260923/repository-candidate.json"
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--report', type=Path, default=ROOT / 'output/qa/repository-candidate.json')
+REPORT = parser.parse_args().report
 SKIP = {".git", "node_modules", ".build", ".swiftpm", "SourcePackages", "checkouts",
         "vendor", "dist", "dist-public", "dist-production", "build", "output", ".local-secrets", ".local", ".secrets",
         ".playwright-cli", ".playwright-mcp", ".xcodebuildmcp-deriveddata", "__pycache__"}
@@ -18,6 +21,10 @@ SKIP = {".git", "node_modules", ".build", ".swiftpm", "SourcePackages", "checkou
 paths, nested, symlinks = [], [], []
 for base, dirs, files in os.walk(ROOT):
     parent = Path(base)
+    # Evidence/ciphertext has its own exhaustive publication manifest and scan.
+    # It is not application source and must not inflate builds or CI source copies.
+    if parent == ROOT:
+        dirs[:] = [name for name in dirs if name != 'collaboration']
     if ".git" in dirs and parent != ROOT:
         nested.append(str(parent.relative_to(ROOT)))
     dirs[:] = [name for name in dirs if name not in SKIP

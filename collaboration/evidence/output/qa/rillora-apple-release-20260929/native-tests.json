@@ -1,0 +1,28 @@
+{
+  "status": "SUCCEEDED",
+  "durationMs": 17923,
+  "counts": {
+    "passed": 175,
+    "failed": 0,
+    "skipped": 1
+  },
+  "target": "simulator",
+  "artifacts": {
+    "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-09-29T15-46-24-223Z_pid2366_61688760.log",
+    "xcresultPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/result-bundles/test_sim_2026-09-29T15-46-24-223Z_pid2366_cb8daef5.xcresult",
+    "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-09-29T15-46-24-223Z_pid2366_1adf1e95.xctestproducts"
+  },
+  "skips": [
+    {
+      "suite": "AppleStoreKitClientTests",
+      "test": "testLoadsExactLocalFamilyCatalogAndReturnsVerifiedBoundPurchase",
+      "status": "skipped",
+      "durationMs": 11
+    }
+  ],
+  "diagnostics": {
+    "warnings": [],
+    "errors": [],
+    "testFailures": []
+  }
+}

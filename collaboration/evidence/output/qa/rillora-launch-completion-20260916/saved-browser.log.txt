@@ -1,0 +1,38 @@
+### Result
+{"savedReaderSeesOnlyPaidVersion":true,"ownerPreviewMatches":true,"explicitFreeSelectionResumesUpdates":true,"consoleErrors":[]}
+### Ran Playwright code
+```js
+await (async page => {
+ const fixture={"A": "11111111-1111-4111-8111-111111111111", "B": "ab7cce51-ece0-4edb-a6c3-027b91fb8ff4", "matter": "97268c6e-dc89-4dad-ba61-ac6a93fe6509", "person": "06101cdb-a89a-4080-9157-5816bbdf0f01", "connection": "215c8b1c-697f-4136-9994-0ad6d9a1d69f"};
+ const errors=[]; page.on('pageerror',e=>errors.push(e.message));
+ const reader=await page.context().newPage();
+ await reader.setViewportSize({width:390,height:844});
+ await reader.route('http://127.0.0.1:4271/**',route=>route.continue({headers:{...route.request().headers(),'x-dev-planner-id':fixture.B}}));
+ await reader.goto('http://127.0.0.1:4270/?view=shared');
+ await reader.getByRole('heading',{name:'Shared with me',exact:true}).waitFor();
+ await reader.getByRole('button',{name:'Open Saved-period document, shared by Alex Chen',exact:true}).click();
+ await reader.getByText('This is the original authorized note.',{exact:true}).waitFor();
+ if((await reader.locator('body').innerText()).includes('NEW PRIVATE NOTE AFTER EXPIRY'))throw Error('Post-expiry data leaked');
+ await reader.screenshot({path:"/Users/tantalum/Documents/\u7535\u5b50\u9057\u5631app/output/qa/rillora-launch-completion-20260916"+'/saved-reader-mobile.png'});
+ await page.goto('http://127.0.0.1:4270/?task=contact-sharing&person='+fixture.person);
+ await page.getByText('Visible details',{exact:true}).click();
+ const preview=page.locator('details[open]');
+ await preview.getByText('This is the original authorized note.',{exact:true}).waitFor();
+ if((await preview.innerText()).includes('NEW PRIVATE NOTE AFTER EXPIRY'))throw Error('Owner preview does not match saved access');
+ await page.screenshot({path:"/Users/tantalum/Documents/\u7535\u5b50\u9057\u5631app/output/qa/rillora-launch-completion-20260916"+'/saved-owner-preview.png'});
+ await page.getByRole('button',{name:'Use included place',exact:true}).click();
+ await page.locator('dialog.task-confirmation').getByRole('button',{name:'Use included place',exact:true}).click();
+ await page.getByText('Your included place',{exact:true}).waitFor();
+ await reader.reload();
+ await reader.getByRole('button',{name:'Open Updated after expiry, shared by Alex Chen',exact:true}).click();
+ await reader.getByText('NEW PRIVATE NOTE AFTER EXPIRY',{exact:true}).waitFor();
+ if(errors.length)throw Error(JSON.stringify(errors));
+ await reader.close();
+ return {savedReaderSeesOnlyPaidVersion:true,ownerPreviewMatches:true,explicitFreeSelectionResumesUpdates:true,consoleErrors:errors};
+})(page);
+```
+### Page
+- Page URL: http://127.0.0.1:4270/?task=contact-sharing&person=06101cdb-a89a-4080-9157-5816bbdf0f01
+- Page Title: Rillora — Your private map for what comes next
+### Events
+- New console entries: .playwright-cli/console-2026-09-16T14-22-01-000Z.log#L2

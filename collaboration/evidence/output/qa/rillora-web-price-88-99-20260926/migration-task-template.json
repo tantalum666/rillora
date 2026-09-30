@@ -1,0 +1,23 @@
+{
+    "Task": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingMigrationTaskDefinitionD83F7D18:30",
+    "Containers": [
+        {
+            "Name": "Migration",
+            "Image": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1:7c1ad63ff0db8478888ad0dc67f99ff52fec7347b1f5cbb9fd9317fb98e00b77",
+            "Command": [
+                "/bin/sh",
+                "-c",
+                "node dist/migrate.js && node dist/bootstrap-runtime.js"
+            ],
+            "Log": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "RilloraStaging-MigrationLogGroupFD140541-valmThccXsst",
+                    "awslogs-region": "eu-central-1",
+                    "awslogs-stream-prefix": "migration"
+                },
+                "secretOptions": []
+            }
+        }
+    ]
+}

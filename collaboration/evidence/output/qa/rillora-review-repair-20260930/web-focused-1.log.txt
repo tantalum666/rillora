@@ -1,0 +1,124 @@
+TAP version 13
+# Subtest: sharing rollout compatibility only treats an absent endpoint as unavailable controls
+ok 1 - sharing rollout compatibility only treats an absent endpoint as unavailable controls
+  ---
+  duration_ms: 25.397916
+  type: 'test'
+  ...
+# Subtest: public browsing stays separate from explicit account and identity entry points
+ok 2 - public browsing stays separate from explicit account and identity entry points
+  ---
+  duration_ms: 0.158583
+  type: 'test'
+  ...
+# Subtest: authentication starts only through an explicit legal-acceptance POST
+ok 3 - authentication starts only through an explicit legal-acceptance POST
+  ---
+  duration_ms: 0.39025
+  type: 'test'
+  ...
+# Subtest: API client uses credentials and the development identity only when configured
+ok 4 - API client uses credentials and the development identity only when configured
+  ---
+  duration_ms: 0.285
+  type: 'test'
+  ...
+# Subtest: commercial reads and route evaluation use the authenticated shared API
+ok 5 - commercial reads and route evaluation use the authenticated shared API
+  ---
+  duration_ms: 0.625167
+  type: 'test'
+  ...
+# Subtest: public session detection uses a non-error status endpoint before private workspace loading
+ok 6 - public session detection uses a non-error status endpoint before private workspace loading
+  ---
+  duration_ms: 0.271833
+  type: 'test'
+  ...
+# Subtest: API client binds state changes to the CSRF cookie token
+ok 7 - API client binds state changes to the CSRF cookie token
+  ---
+  duration_ms: 0.204375
+  type: 'test'
+  ...
+# Subtest: first-use progress and the first matter use the shared authenticated API
+ok 8 - first-use progress and the first matter use the shared authenticated API
+  ---
+  duration_ms: 1.053416
+  type: 'test'
+  ...
+# Subtest: API client returns bounded server errors without exposing response internals
+ok 9 - API client returns bounded server errors without exposing response internals
+  ---
+  duration_ms: 0.921167
+  type: 'test'
+  ...
+# Subtest: API client sends a CSRF-bound all-session revocation request
+ok 10 - API client sends a CSRF-bound all-session revocation request
+  ---
+  duration_ms: 0.406041
+  type: 'test'
+  ...
+# Subtest: API client validates and returns the minimum-disclosure printable artifact
+ok 11 - API client validates and returns the minimum-disclosure printable artifact
+  ---
+  duration_ms: 0.709709
+  type: 'test'
+  ...
+# Subtest: API client rejects a printable response that claims a retained server copy
+ok 12 - API client rejects a printable response that claims a retained server copy
+  ---
+  duration_ms: 0.1975
+  type: 'test'
+  ...
+# Subtest: synthetic recipient capabilities stay in request bodies and the isolated authorization header
+ok 13 - synthetic recipient capabilities stay in request bodies and the isolated authorization header
+  ---
+  duration_ms: 0.2065
+  type: 'test'
+  ...
+# Subtest: disclosure rehearsal mutations are CSRF-bound, versioned, and explicitly simulation-only
+ok 14 - disclosure rehearsal mutations are CSRF-bound, versioned, and explicitly simulation-only
+  ---
+  duration_ms: 0.327459
+  type: 'test'
+  ...
+# Subtest: disclosure rehearsal responses fail closed if release or high-risk fields appear
+ok 15 - disclosure rehearsal responses fail closed if release or high-risk fields appear
+  ---
+  duration_ms: 0.210792
+  type: 'test'
+  ...
+# Subtest: role assignment mutations stay versioned, explicit, and record-only
+ok 16 - role assignment mutations stay versioned, explicit, and record-only
+  ---
+  duration_ms: 0.377
+  type: 'test'
+  ...
+# Subtest: role assignment responses fail closed on unsafe authority or secret fields
+ok 17 - role assignment responses fail closed on unsafe authority or secret fields
+  ---
+  duration_ms: 0.211125
+  type: 'test'
+  ...
+# Subtest: API routes retain methods, cookies, auth and query while only the public prefix is removed
+ok 18 - API routes retain methods, cookies, auth and query while only the public prefix is removed
+  ---
+  duration_ms: 0.726625
+  type: 'test'
+  ...
+# Subtest: no API or unknown request falls back to a cached HTML response
+ok 19 - no API or unknown request falls back to a cached HTML response
+  ---
+  duration_ms: 0.267666
+  type: 'test'
+  ...
+1..19
+# tests 19
+# suites 0
+# pass 19
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 126.471708

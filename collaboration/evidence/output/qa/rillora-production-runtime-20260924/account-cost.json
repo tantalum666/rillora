@@ -1,0 +1,385 @@
+{
+    "GroupDefinitions": [
+        {
+            "Type": "DIMENSION",
+            "Key": "SERVICE"
+        },
+        {
+            "Type": "DIMENSION",
+            "Key": "RECORD_TYPE"
+        }
+    ],
+    "ResultsByTime": [
+        {
+            "TimePeriod": {
+                "Start": "2026-09-01",
+                "End": "2026-09-24"
+            },
+            "Total": {},
+            "Groups": [
+                {
+                    "Keys": [
+                        "AWS Cloud Map",
+                        "Credit"
+                    ],
+                    "Metrics": {
+                        "UnblendedCost": {
+                            "Amount": "-0.002615",
+                            "Unit": "USD"
+                        }
+                    }
+                },
+                {
+                    "Keys": [
+                        "AWS Cloud Map",
+                        "Usage"
+                    ],
+                    "Metrics": {
+                        "UnblendedCost": {
+                            "Amount": "0.002615",
+                            "Unit": "USD"
+                        }
+                    }
+                },
+                {
+                    "Keys": [
+                        "AWS CloudFormation",
+                        "Usage"
+                    ],
+                    "Metrics": {
+                        "UnblendedCost": {
+                            "Amount": "0",
+                            "Unit": "USD"
+                        }
+                    }
+                },
+                {
+                    "Keys": [
+                        "AWS Data Transfer",
+                        "Credit"
+                    ],
+                    "Metrics": {
+                        "UnblendedCost": {
+                            "Amount": "-0.0000056054",
+                            "Unit": "USD"
+                        }
+                    }
+                },
+                {
+                    "Keys": [
+                        "AWS Key Management Service",
+                        "Credit"
+                    ],
+                    "Metrics": {
+                        "UnblendedCost": {
+                            "Amount": "-0.01944446",
+                            "Unit": "USD"
+                        }
+                    }
+                },
+                {
+                    "Keys": [
+                        "AWS Key Management Service",
+                        "Usage"
+                    ],
+                    "Metrics": {
+                        "UnblendedCost": {
+                            "Amount": "0.0194444446",
+                            "Unit": "USD"
+                        }
+                    }
+                },
+                {
+                    "Keys": [
+                        "AWS Lambda",
+                        "Usage"
+                    ],
+                    "Metrics": {
+                        "UnblendedCost": {
+                            "Amount": "0.0000046362",
+                            "Unit": "USD"
+                        }
+                    }
+                },
+                {
+                    "Keys": [
+                        "AWS Secrets Manager",
+                        "Credit"
+                    ],
+                    "Metrics": {
+                        "UnblendedCost": {
+                            "Amount": "-1.661958244",
+                            "Unit": "USD"
+                        }
+                    }
+                },
+                {
+                    "Keys": [
+                        "AWS Secrets Manager",
+                        "Usage"
+                    ],
+                    "Metrics": {
+                        "UnblendedCost": {
+                            "Amount": "1.6619591843",
+                            "Unit": "USD"
+                        }
+                    }
+                },
+                {
+                    "Keys": [
+                        "Amazon API Gateway",
+                        "Credit"
+                    ],
+                    "Metrics": {
+                        "UnblendedCost": {
+                            "Amount": "-0.0035652",
+                            "Unit": "USD"
+                        }
+                    }
+                },
+                {
+                    "Keys": [
+                        "Amazon API Gateway",
+                        "Usage"
+                    ],
+                    "Metrics": {
+                        "UnblendedCost": {
+                            "Amount": "0.0035652",
+                            "Unit": "USD"
+                        }
+                    }
+                },
+                {
+                    "Keys": [
+                        "Amazon CloudFront",
+                        "Credit"
+                    ],
+                    "Metrics": {
+                        "UnblendedCost": {
+                            "Amount": "-0.0000130062",
+                            "Unit": "USD"
+                        }
+                    }
+                },
+                {
+                    "Keys": [
+                        "Amazon CloudFront",
+                        "Usage"
+                    ],
+                    "Metrics": {
+                        "UnblendedCost": {
+                            "Amount": "0.0000130062",
+                            "Unit": "USD"
+                        }
+                    }
+                },
+                {
+                    "Keys": [
+                        "Amazon EC2 Container Registry (ECR)",
+                        "Credit"
+                    ],
+                    "Metrics": {
+                        "UnblendedCost": {
+                            "Amount": "-0.006823285",
+                            "Unit": "USD"
+                        }
+                    }
+                },
+                {
+                    "Keys": [
+                        "Amazon EC2 Container Registry (ECR)",
+                        "Usage"
+                    ],
+                    "Metrics": {
+                        "UnblendedCost": {
+                            "Amount": "0.0068233868",
+                            "Unit": "USD"
+                        }
+                    }
+                },
+                {
+                    "Keys": [
+                        "Amazon Elastic Container Service",
+                        "Credit"
+                    ],
+                    "Metrics": {
+                        "UnblendedCost": {
+                            "Amount": "-3.0308679098",
+                            "Unit": "USD"
+                        }
+                    }
+                },
+                {
+                    "Keys": [
+                        "Amazon Elastic Container Service",
+                        "Usage"
+                    ],
+                    "Metrics": {
+                        "UnblendedCost": {
+                            "Amount": "3.0308679072",
+                            "Unit": "USD"
+                        }
+                    }
+                },
+                {
+                    "Keys": [
+                        "Amazon Relational Database Service",
+                        "Credit"
+                    ],
+                    "Metrics": {
+                        "UnblendedCost": {
+                            "Amount": "-12.1553612725",
+                            "Unit": "USD"
+                        }
+                    }
+                },
+                {
+                    "Keys": [
+                        "Amazon Relational Database Service",
+                        "Usage"
+                    ],
+                    "Metrics": {
+                        "UnblendedCost": {
+                            "Amount": "12.1553611348",
+                            "Unit": "USD"
+                        }
+                    }
+                },
+                {
+                    "Keys": [
+                        "Amazon Route 53",
+                        "Credit"
+                    ],
+                    "Metrics": {
+                        "UnblendedCost": {
+                            "Amount": "-1.5",
+                            "Unit": "USD"
+                        }
+                    }
+                },
+                {
+                    "Keys": [
+                        "Amazon Route 53",
+                        "Usage"
+                    ],
+                    "Metrics": {
+                        "UnblendedCost": {
+                            "Amount": "1.5",
+                            "Unit": "USD"
+                        }
+                    }
+                },
+                {
+                    "Keys": [
+                        "Amazon Simple Notification Service",
+                        "Usage"
+                    ],
+                    "Metrics": {
+                        "UnblendedCost": {
+                            "Amount": "0",
+                            "Unit": "USD"
+                        }
+                    }
+                },
+                {
+                    "Keys": [
+                        "Amazon Simple Queue Service",
+                        "Usage"
+                    ],
+                    "Metrics": {
+                        "UnblendedCost": {
+                            "Amount": "0",
+                            "Unit": "USD"
+                        }
+                    }
+                },
+                {
+                    "Keys": [
+                        "Amazon Simple Storage Service",
+                        "Credit"
+                    ],
+                    "Metrics": {
+                        "UnblendedCost": {
+                            "Amount": "-0.0141535936",
+                            "Unit": "USD"
+                        }
+                    }
+                },
+                {
+                    "Keys": [
+                        "Amazon Simple Storage Service",
+                        "Usage"
+                    ],
+                    "Metrics": {
+                        "UnblendedCost": {
+                            "Amount": "0.0141545631",
+                            "Unit": "USD"
+                        }
+                    }
+                },
+                {
+                    "Keys": [
+                        "Amazon Virtual Private Cloud",
+                        "Credit"
+                    ],
+                    "Metrics": {
+                        "UnblendedCost": {
+                            "Amount": "-2.6729709",
+                            "Unit": "USD"
+                        }
+                    }
+                },
+                {
+                    "Keys": [
+                        "Amazon Virtual Private Cloud",
+                        "Usage"
+                    ],
+                    "Metrics": {
+                        "UnblendedCost": {
+                            "Amount": "2.6729709",
+                            "Unit": "USD"
+                        }
+                    }
+                },
+                {
+                    "Keys": [
+                        "AmazonCloudWatch",
+                        "Credit"
+                    ],
+                    "Metrics": {
+                        "UnblendedCost": {
+                            "Amount": "-5.482500357",
+                            "Unit": "USD"
+                        }
+                    }
+                },
+                {
+                    "Keys": [
+                        "AmazonCloudWatch",
+                        "Usage"
+                    ],
+                    "Metrics": {
+                        "UnblendedCost": {
+                            "Amount": "5.48250011",
+                            "Unit": "USD"
+                        }
+                    }
+                },
+                {
+                    "Keys": [
+                        "Tax",
+                        "Tax"
+                    ],
+                    "Metrics": {
+                        "UnblendedCost": {
+                            "Amount": "0",
+                            "Unit": "USD"
+                        }
+                    }
+                }
+            ],
+            "Estimated": true
+        }
+    ],
+    "DimensionValueAttributes": []
+}

@@ -1,0 +1,23 @@
+
+✨  Synthesis time: 2.54s
+
+current credentials could not be used to assume 'arn:aws:iam::133857166372:role/cdk-hnb659fds-image-publishing-role-133857166372-eu-central-1', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::133857166372:role/cdk-hnb659fds-file-publishing-role-133857166372-eu-central-1', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::133857166372:role/cdk-hnb659fds-file-publishing-role-133857166372-eu-central-1', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::133857166372:role/cdk-hnb659fds-file-publishing-role-133857166372-eu-central-1', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::133857166372:role/cdk-hnb659fds-file-publishing-role-133857166372-eu-central-1', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::133857166372:role/cdk-hnb659fds-file-publishing-role-133857166372-eu-central-1', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::133857166372:role/cdk-hnb659fds-file-publishing-role-133857166372-eu-central-1', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::133857166372:role/cdk-hnb659fds-deploy-role-133857166372-eu-central-1', but are for the right account. Proceeding anyway.
+RilloraStaging: start: Building WebDeployment/Asset1
+RilloraStaging: success: Built WebDeployment/Asset1
+RilloraStaging: start: Building RilloraStaging Template
+RilloraStaging: success: Built RilloraStaging Template
+RilloraStaging: start: Building ApiTaskDefinition/Api/AssetImage
+RilloraStaging: fail: User: arn:aws:sts::133857166372:assumed-role/cdk-hnb659fds-deploy-role-133857166372-eu-central-1/rillora-cdk-deploy is not authorized to perform: ecr:DescribeRepositories on resource: arn:aws:ecr:eu-central-1:133857166372:repository/cdk-hnb659fds-container-assets-133857166372-eu-central-1 because no identity-based policy allows the ecr:DescribeRepositories action
+RilloraStaging: start: Publishing WebDeployment/Asset1 (133857166372-eu-central-1-4dcd0785)
+RilloraStaging: start: Publishing RilloraStaging Template (133857166372-eu-central-1-df42f494)
+RilloraStaging: fail: User: arn:aws:sts::133857166372:assumed-role/cdk-hnb659fds-deploy-role-133857166372-eu-central-1/rillora-cdk-deploy is not authorized to perform: s3:PutObject on resource: "arn:aws:s3:::cdk-hnb659fds-assets-133857166372-eu-central-1/e75fb0c49e4f9da6e5071590627fe1c23c86639d8fd34e8c76d805bb915753ea.zip" because no identity-based policy allows the s3:PutObject action
+RilloraStaging: fail: User: arn:aws:sts::133857166372:assumed-role/cdk-hnb659fds-deploy-role-133857166372-eu-central-1/rillora-cdk-deploy is not authorized to perform: s3:PutObject on resource: "arn:aws:s3:::cdk-hnb659fds-assets-133857166372-eu-central-1/7a5692ddd86a9c251a45536c3ade45b7d8382776af25a206558f6928d6f5b919.json" because no identity-based policy allows the s3:PutObject action
+Failed to publish asset RilloraStaging Template (133857166372-eu-central-1-df42f494)
+

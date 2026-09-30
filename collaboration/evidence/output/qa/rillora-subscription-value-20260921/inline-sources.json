@@ -1,0 +1,163 @@
+{
+  "schemaVersion": 1,
+  "items": [
+    {
+      "id": "current-paid-expiry",
+      "title": "当前权益与到期规则",
+      "queries": [
+        {
+          "id": "product-rules",
+          "source": {
+            "label": "Rillora现行商业合同与实现",
+            "files": [
+              {
+                "label": "monetization.md"
+              },
+              {
+                "label": "commercial-completion-20260916.md"
+              },
+              {
+                "label": "0048_sharing_commercial_lifecycle.sql"
+              },
+              {
+                "label": "0052_paid_snapshot_capture_boundaries.sql"
+              }
+            ],
+            "metricDefinitions": [
+              {
+                "label": "当前降级行为",
+                "definition": "付费结束后保留一位指定实时接收人，其余已接受者只能查看各自已授权的付费期副本。"
+              }
+            ],
+            "caveats": [
+              "本轮核对源码及先前验收记录，没有重新执行云端生命周期测试。",
+              "已下载副本无法由服务器召回；普通月付取消是合同允许的使用。"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "intermittent-payments",
+      "title": "低频月付与年付的金额差异",
+      "queries": [
+        {
+          "id": "billing-arithmetic",
+          "source": {
+            "label": "Rillora当前USD目录",
+            "files": [
+              {
+                "label": "product-catalog.json"
+              },
+              {
+                "label": "billing-frequency.ipynb"
+              }
+            ],
+            "metricDefinitions": [
+              {
+                "label": "12个月累计支付",
+                "definition": "按每户不同假设支付模式，计算同一12个月窗口的累计支付金额。"
+              }
+            ],
+            "caveats": [
+              "这是情景算术，不是实际留存或收入预测。",
+              "未扣税、手续费、退款和成本；不假设切成年付后转化率不变。"
+            ]
+          },
+          "columns": [
+            {
+              "field": "scenario",
+              "label": "假设支付模式"
+            },
+            {
+              "field": "grossReceiptsUSD",
+              "label": "12个月累计支付（USD）"
+            }
+          ],
+          "rows": [
+            {
+              "scenario": "one paid month in one year",
+              "paidMonths": 1,
+              "grossReceiptsUSD": "9.99"
+            },
+            {
+              "scenario": "one paid month each quarter",
+              "paidMonths": 4,
+              "grossReceiptsUSD": "39.96"
+            },
+            {
+              "scenario": "annual subscription",
+              "paidMonths": 12,
+              "grossReceiptsUSD": "88.8"
+            },
+            {
+              "scenario": "continuous monthly subscription",
+              "paidMonths": 12,
+              "grossReceiptsUSD": "119.88"
+            }
+          ],
+          "methods": [
+            {
+              "language": "calculation",
+              "code": "9.99 × 1 = 9.99\n9.99 × 4 = 39.96\nAnnual = 88.80\n9.99 × 12 = 119.88\n9.99 / 88.80 × 100 = 11.25%"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "annual-market-example",
+      "title": "同类产品采用年度计费",
+      "queries": [
+        {
+          "id": "trustworthy-annual",
+          "source": {
+            "label": "Trustworthy官方套餐说明",
+            "links": [
+              {
+                "label": "Understanding Trustworthy Subscription Plans",
+                "href": "https://help.trustworthy.com/en/articles/11104129"
+              }
+            ],
+            "metricDefinitions": [
+              {
+                "label": "年度计费先例",
+                "definition": "Trustworthy官方帮助页说明其付费方案按家庭、按年计费。"
+              }
+            ],
+            "caveats": [
+              "同类销售方式不证明Rillora用户愿意支付或会续费。"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "ongoing-subscription-value",
+      "title": "订阅需要持续交付价值",
+      "queries": [
+        {
+          "id": "apple-subscriptions",
+          "source": {
+            "label": "Apple App Review Guidelines",
+            "links": [
+              {
+                "label": "App Review Guidelines",
+                "href": "https://developer.apple.com/app-store/review/guidelines/"
+              }
+            ],
+            "metricDefinitions": [
+              {
+                "label": "持续价值要求",
+                "definition": "Apple第3.1.2(a)要求自动续订向用户提供持续价值；第3.1.2(c)要求在购买前明确服务与价格。"
+              }
+            ],
+            "caveats": [
+              "年度账期不自动证明符合审核要求，也不保证真实续费。"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

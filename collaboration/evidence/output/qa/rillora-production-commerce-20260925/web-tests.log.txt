@@ -1,0 +1,226 @@
+TAP version 13
+# Subtest: sharing rollout compatibility only treats an absent endpoint as unavailable controls
+ok 1 - sharing rollout compatibility only treats an absent endpoint as unavailable controls
+  ---
+  duration_ms: 34.042834
+  type: 'test'
+  ...
+# Subtest: public browsing stays separate from explicit account and identity entry points
+ok 2 - public browsing stays separate from explicit account and identity entry points
+  ---
+  duration_ms: 0.151083
+  type: 'test'
+  ...
+# Subtest: authentication starts only through an explicit legal-acceptance POST
+ok 3 - authentication starts only through an explicit legal-acceptance POST
+  ---
+  duration_ms: 0.385458
+  type: 'test'
+  ...
+# Subtest: API client uses credentials and the development identity only when configured
+ok 4 - API client uses credentials and the development identity only when configured
+  ---
+  duration_ms: 0.285667
+  type: 'test'
+  ...
+# Subtest: commercial reads and route evaluation use the authenticated shared API
+ok 5 - commercial reads and route evaluation use the authenticated shared API
+  ---
+  duration_ms: 0.640042
+  type: 'test'
+  ...
+# Subtest: public session detection uses a non-error status endpoint before private workspace loading
+ok 6 - public session detection uses a non-error status endpoint before private workspace loading
+  ---
+  duration_ms: 0.278834
+  type: 'test'
+  ...
+# Subtest: API client binds state changes to the CSRF cookie token
+ok 7 - API client binds state changes to the CSRF cookie token
+  ---
+  duration_ms: 0.208333
+  type: 'test'
+  ...
+# Subtest: first-use progress and the first matter use the shared authenticated API
+ok 8 - first-use progress and the first matter use the shared authenticated API
+  ---
+  duration_ms: 1.104125
+  type: 'test'
+  ...
+# Subtest: API client returns bounded server errors without exposing response internals
+ok 9 - API client returns bounded server errors without exposing response internals
+  ---
+  duration_ms: 1.412583
+  type: 'test'
+  ...
+# Subtest: API client sends a CSRF-bound all-session revocation request
+ok 10 - API client sends a CSRF-bound all-session revocation request
+  ---
+  duration_ms: 0.469708
+  type: 'test'
+  ...
+# Subtest: API client validates and returns the minimum-disclosure printable artifact
+ok 11 - API client validates and returns the minimum-disclosure printable artifact
+  ---
+  duration_ms: 0.801959
+  type: 'test'
+  ...
+# Subtest: API client rejects a printable response that claims a retained server copy
+ok 12 - API client rejects a printable response that claims a retained server copy
+  ---
+  duration_ms: 0.220875
+  type: 'test'
+  ...
+# Subtest: synthetic recipient capabilities stay in request bodies and the isolated authorization header
+ok 13 - synthetic recipient capabilities stay in request bodies and the isolated authorization header
+  ---
+  duration_ms: 0.557834
+  type: 'test'
+  ...
+# Subtest: disclosure rehearsal mutations are CSRF-bound, versioned, and explicitly simulation-only
+ok 14 - disclosure rehearsal mutations are CSRF-bound, versioned, and explicitly simulation-only
+  ---
+  duration_ms: 0.44675
+  type: 'test'
+  ...
+# Subtest: disclosure rehearsal responses fail closed if release or high-risk fields appear
+ok 15 - disclosure rehearsal responses fail closed if release or high-risk fields appear
+  ---
+  duration_ms: 0.253875
+  type: 'test'
+  ...
+# Subtest: role assignment mutations stay versioned, explicit, and record-only
+ok 16 - role assignment mutations stay versioned, explicit, and record-only
+  ---
+  duration_ms: 0.4155
+  type: 'test'
+  ...
+# Subtest: role assignment responses fail closed on unsafe authority or secret fields
+ok 17 - role assignment responses fail closed on unsafe authority or secret fields
+  ---
+  duration_ms: 0.207542
+  type: 'test'
+  ...
+# Subtest: commercial state is derived from the server catalog while billing remains closed
+ok 18 - commercial state is derived from the server catalog while billing remains closed
+  ---
+  duration_ms: 34.787375
+  type: 'test'
+  ...
+# Subtest: unsafe or malformed commercial responses fail closed
+ok 19 - unsafe or malformed commercial responses fail closed
+  ---
+  duration_ms: 0.317292
+  type: 'test'
+  ...
+# Subtest: purchase routing rejects a client-success or contradictory route
+ok 20 - purchase routing rejects a client-success or contradictory route
+  ---
+  duration_ms: 0.116167
+  type: 'test'
+  ...
+# Subtest: commercial details stay out of public discovery until explicit paid-capability intent
+ok 21 - commercial details stay out of public discovery until explicit paid-capability intent
+  ---
+  duration_ms: 0.049208
+  type: 'test'
+  ...
+# Subtest: test billing enrollment is explicit and hosted destinations reject lookalikes and credentials
+ok 22 - test billing enrollment is explicit and hosted destinations reject lookalikes and credentials
+  ---
+  duration_ms: 0.301875
+  type: 'test'
+  ...
+# Subtest: purchase consent is current, annual, separate and never inferred from an unchecked box
+ok 23 - purchase consent is current, annual, separate and never inferred from an unchecked box
+  ---
+  duration_ms: 2.619792
+  type: 'test'
+  ...
+# Subtest: billing redirects require production response, provider host and server entitlement boundary
+ok 24 - billing redirects require production response, provider host and server entitlement boundary
+  ---
+  duration_ms: 1.004
+  type: 'test'
+  ...
+# Subtest: provider returns enter account access and discard untrusted session/payment parameters
+ok 25 - provider returns enter account access and discard untrusted session/payment parameters
+  ---
+  duration_ms: 1.505958
+  type: 'test'
+  ...
+# Subtest: production checkout uses authenticated CSRF POST, independent proof and the same retry key
+ok 26 - production checkout uses authenticated CSRF POST, independent proof and the same retry key
+  ---
+  duration_ms: 28.363125
+  type: 'test'
+  ...
+# Subtest: API routes retain methods, cookies, auth and query while only the public prefix is removed
+ok 27 - API routes retain methods, cookies, auth and query while only the public prefix is removed
+  ---
+  duration_ms: 1.251917
+  type: 'test'
+  ...
+# Subtest: no API or unknown request falls back to a cached HTML response
+ok 28 - no API or unknown request falls back to a cached HTML response
+  ---
+  duration_ms: 0.520334
+  type: 'test'
+  ...
+# Subtest: a chosen matter category survives the account and callback routes
+ok 29 - a chosen matter category survives the account and callback routes
+  ---
+  duration_ms: 1.105708
+  type: 'test'
+  ...
+# Subtest: ordinary account entry does not create a deferred editor
+ok 30 - ordinary account entry does not create a deferred editor
+  ---
+  duration_ms: 0.110833
+  type: 'test'
+  ...
+# Subtest: a review link returns to the receiving inbox without carrying private identifiers
+ok 31 - a review link returns to the receiving inbox without carrying private identifiers
+  ---
+  duration_ms: 0.0585
+  type: 'test'
+  ...
+# Subtest: unknown categories and external targets cannot become a continuation
+ok 32 - unknown categories and external targets cannot become a continuation
+  ---
+  duration_ms: 0.093375
+  type: 'test'
+  ...
+# Subtest: restores existing root destinations, filters and selected matter
+ok 33 - restores existing root destinations, filters and selected matter
+  ---
+  duration_ms: 2.269334
+  type: 'test'
+  ...
+# Subtest: unknown tasks and invalid identifiers cannot become arbitrary navigation
+ok 34 - unknown tasks and invalid identifiers cannot become arbitrary navigation
+  ---
+  duration_ms: 0.076708
+  type: 'test'
+  ...
+# Subtest: draft fields and invitation credentials stay out of history
+ok 35 - draft fields and invitation credentials stay out of history
+  ---
+  duration_ms: 0.134208
+  type: 'test'
+  ...
+# Subtest: account and authentication-return destinations remain intact
+ok 36 - account and authentication-return destinations remain intact
+  ---
+  duration_ms: 0.065709
+  type: 'test'
+  ...
+1..36
+# tests 36
+# suites 0
+# pass 36
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 165.141333

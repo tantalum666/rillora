@@ -1,0 +1,14 @@
+[
+  "Content migration operation --check",
+  "{\"owners\":2,\"protectedValues\":5,\"plaintextValues\":5,\"invalidReferences\":0}",
+  "Content migration operation --apply",
+  "{\"owners\":2,\"verifiedOwners\":2,\"changedRows\":2}",
+  "{\"owners\":2,\"protectedValues\":5,\"plaintextValues\":0,\"invalidReferences\":0}",
+  "Content migration operation --apply",
+  "{\"owners\":2,\"verifiedOwners\":2,\"changedRows\":0}",
+  "{\"owners\":2,\"protectedValues\":5,\"plaintextValues\":0,\"invalidReferences\":0}",
+  "Content migration operation --enforce",
+  "{\"owners\":2,\"protectedValues\":5,\"plaintextValues\":0,\"invalidReferences\":0,\"enforced\":true}",
+  "Content migration operation --check",
+  "{\"owners\":2,\"protectedValues\":5,\"plaintextValues\":0,\"invalidReferences\":0}"
+]

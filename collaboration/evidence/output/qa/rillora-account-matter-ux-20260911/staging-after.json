@@ -1,0 +1,41 @@
+{
+  "stackStatus": "UPDATE_COMPLETE",
+  "service": {
+    "status": "ACTIVE",
+    "desired": 1,
+    "running": 1,
+    "pending": 0,
+    "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingApiTaskDefinitionF6347BA4:20",
+    "deployments": [
+      {
+        "status": "PRIMARY",
+        "rolloutState": "COMPLETED"
+      }
+    ]
+  },
+  "image": {
+    "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:7600b766a80c8cf20e4f9d1d0c44c5d66b839355892114d3e6310d7463cedaaf"
+  },
+  "flags": [
+    {
+      "Name": "NODE_ENV",
+      "Value": "production"
+    },
+    {
+      "Name": "ALLOW_DEV_AUTH",
+      "Value": "false"
+    },
+    {
+      "Name": "ALLOW_STRIPE_TEST_INTEGRATION",
+      "Value": "true"
+    },
+    {
+      "Name": "ALLOW_FAMILY_MAINTENANCE_PREVIEW",
+      "Value": "true"
+    },
+    {
+      "Name": "ALLOW_APPLE_SANDBOX_INTEGRATION",
+      "Value": "false"
+    }
+  ]
+}

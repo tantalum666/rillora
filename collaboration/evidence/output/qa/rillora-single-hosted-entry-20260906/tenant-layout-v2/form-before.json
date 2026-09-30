@@ -1,0 +1,45 @@
+{
+  "name": "Rillora account acknowledgement",
+  "languages": {
+    "primary": "en",
+    "default": "en"
+  },
+  "start": {
+    "next_node": "account_acknowledgement"
+  },
+  "nodes": [
+    {
+      "id": "account_acknowledgement",
+      "type": "STEP",
+      "config": {
+        "components": [
+          {
+            "id": "rillora_legal_accepted",
+            "category": "FIELD",
+            "type": "LEGAL",
+            "required": true,
+            "sensitive": false,
+            "config": {
+              "text": "<p>I agree to the <a href=\"https://legal.rillora.xyz/terms\" target=\"_blank\" rel=\"noopener noreferrer\">Terms</a>, acknowledge the <a href=\"https://legal.rillora.xyz/privacy\" target=\"_blank\" rel=\"noopener noreferrer\">Privacy Policy</a>, and consent to electronic records.</p>"
+            }
+          },
+          {
+            "id": "continue_button",
+            "category": "BLOCK",
+            "type": "NEXT_BUTTON",
+            "config": {
+              "text": "Continue"
+            }
+          }
+        ],
+        "next_node": "$ending"
+      }
+    }
+  ],
+  "ending": {
+    "resume_flow": true
+  },
+  "style": {
+    "css": "body { background: #171c1c; color: #dad8cf; font-family: -apple-system, BlinkMacSystemFont, sans-serif; } p, label { font-size: 12px; line-height: 1.5; color: #b8bab2; } a { color: #dad8cf; text-decoration: underline; } input[type=checkbox] { width: 16px; height: 16px; accent-color: #9bb180; } button { min-height: 48px; border-radius: 12px; background: #cb704c; color: #171c1c; font-size: 16px; font-weight: 600; } button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid #9bb180; outline-offset: 3px; }"
+  }
+}

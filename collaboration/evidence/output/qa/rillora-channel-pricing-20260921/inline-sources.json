@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "items": [
+    {
+      "id": "channel-pricing-rules",
+      "title": "不同渠道可以不同价，App内外链另按地区判断",
+      "queries": [
+        {
+          "id": "apple-rules",
+          "source": {
+            "label": "Apple现行审核指南",
+            "links": [
+              {
+                "label": "App Review Guidelines",
+                "href": "https://developer.apple.com/app-store/review/guidelines/"
+              }
+            ],
+            "metricDefinitions": [
+              {
+                "label": "价格与入口",
+                "definition": "外部购买可以有更低价格；App内的购买链接必须按storefront适用规则处理。"
+              }
+            ],
+            "caveats": [
+              "渠道差价不自动授权全球App内外链，具体实现仍需核验。"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "official-examples",
+      "title": "Telegram与Patreon官方差价先例",
+      "queries": [
+        {
+          "id": "telegram",
+          "source": {
+            "label": "Telegram Premium FAQ",
+            "links": [
+              {
+                "label": "Telegram Premium FAQ",
+                "href": "https://telegram.org/faq_premium"
+              }
+            ]
+          },
+          "summary": "Telegram说明直接版PremiumBot订阅较便宜，原因包括不承担Apple或Google平台费。"
+        },
+        {
+          "id": "patreon",
+          "source": {
+            "label": "Patreon官方帮助",
+            "links": [
+              {
+                "label": "How iOS in-app purchases work for fans",
+                "href": "https://support.patreon.com/hc/en-us/articles/27992185537037-How-iOS-in-app-purchases-work-for-fans"
+              }
+            ]
+          },
+          "summary": "创作者可提高iOS内购价以抵消Apple费用，也可以保持同价自行承担。"
+        }
+      ]
+    },
+    {
+      "id": "fee-only-comparison",
+      "title": "Rillora年付渠道费用情景",
+      "queries": [
+        {
+          "id": "annual-fees",
+          "source": {
+            "label": "官方费率与Rillora目录",
+            "files": [
+              {
+                "label": "product-catalog.json"
+              },
+              {
+                "label": "fee-comparison.json"
+              }
+            ],
+            "links": [
+              {
+                "label": "Stripe HK Payments",
+                "href": "https://stripe.com/en-hk/pricing"
+              },
+              {
+                "label": "Stripe HK Billing",
+                "href": "https://stripe.com/en-hk/billing/pricing"
+              },
+              {
+                "label": "Apple Subscriptions",
+                "href": "https://developer.apple.com/app-store/subscriptions/"
+              },
+              {
+                "label": "Small Business Program",
+                "href": "https://developer.apple.com/app-store/small-business-program/"
+              }
+            ],
+            "metricDefinitions": [
+              {
+                "label": "费后余额",
+                "definition": "无消费税USD情景中，售价扣本例支付与订阅管理费用后的余额。"
+              }
+            ],
+            "caveats": [
+              "Web假设香港标准费、国际卡、USD结算且无转换，合计4.6%加USD0.30。",
+              "未扣出款、换汇、税、退款及运营成本，不是银行实际到账或毛利。",
+              "15%资格和候选价位本轮没有后台核实，候选价格未保存。"
+            ]
+          },
+          "columns": [
+            {
+              "field": "channel",
+              "label": "情景"
+            },
+            {
+              "field": "price",
+              "label": "标价USD"
+            },
+            {
+              "field": "balance",
+              "label": "费后余额USD"
+            }
+          ],
+          "rows": [
+            {
+              "channel": "Web示例",
+              "price": "88.80",
+              "balance": "84.42"
+            },
+            {
+              "channel": "Apple同价15%",
+              "price": "88.80",
+              "balance": "75.48"
+            },
+            {
+              "channel": "Apple候选15%",
+              "price": "99.99",
+              "balance": "84.99"
+            },
+            {
+              "channel": "Apple同价30%",
+              "price": "88.80",
+              "balance": "62.16"
+            },
+            {
+              "channel": "Apple候选30%",
+              "price": "119.99",
+              "balance": "83.99"
+            }
+          ],
+          "methods": [
+            {
+              "language": "calculation",
+              "code": "Web: 88.80 * (1 - 0.034 - 0.005 - 0.007) - 0.30 = 84.4152\nApple15%: 99.99 * 0.85 = 84.9915\nApple30%: 119.99 * 0.70 = 83.993"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

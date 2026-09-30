@@ -1,0 +1,343 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "Rillora 全球版与中国大陆版收费发布总计划",
+    "description": "Rillora 在个人运营阶段实现全球与中国大陆独立收费发布的中文执行报告，覆盖 Apple IAP、Web 支付、定价、云、法律、税务和发布门。",
+    "generatedAt": "2026-08-19T00:00:00+08:00",
+    "blocks": [
+      {
+        "id": "title",
+        "type": "markdown",
+        "layout": "full",
+        "body": "# Rillora 全球版与中国大陆版收费发布总计划\n\n每个地区首次公开发布都应具备真实订阅能力，但全球版与中国大陆版不必同日发布。全球先以美国单市场 allowlist 完成收费闭环；大陆在主体、许可分类、本地数据、支付和备案全部通过后单独发布。"
+      },
+      {
+        "id": "executive-summary",
+        "type": "markdown",
+        "layout": "full",
+        "sourceId": "commerce-plan",
+        "body": "## 执行结论\n\nGlobal iOS 使用 StoreKit，Web 以 Stripe HK direct 为主、Paddle MoR 为第 8 周后备；中国大陆 iOS 仍使用 StoreKit，Web 首发微信支付与支付宝，银联后置。永久 Free 保留，首发只卖一个 Family 权益层级。推荐建模价为 US$9.99/月或 US$99/年；¥68/月或 ¥698/年只作为大陆验证假设。"
+      },
+      {
+        "id": "apple-fees",
+        "type": "markdown",
+        "layout": "full",
+        "body": "## Apple 佣金不等于全部税款\n\n中国大陆以外，标准自动续费订阅首年按 30% 佣金压力测试，满一年后为 15%；获批 Small Business Program 可从第一天按 15%。中国大陆自 2026-03-15 起标准费率为 25%，Small Business／符合条件的首年后续订阅为 12%。开发者 proceeds 仍是用户价扣除适用税款和 Apple 佣金后的金额。"
+      },
+      {
+        "id": "apple-chart-block",
+        "type": "chart",
+        "layout": "full",
+        "chartId": "apple-commission-chart"
+      },
+      {
+        "id": "apple-table-block",
+        "type": "table",
+        "layout": "full",
+        "tableId": "apple-commission-table"
+      },
+      {
+        "id": "payment-fees",
+        "type": "markdown",
+        "layout": "full",
+        "body": "## 渠道费必须进入贡献毛利\n\n变量支付成本、交易税和年度固定合规成本必须分开。以 US$99 年付为例，Stripe HK 国际卡＋Billing 的公开组件约 US$4.85，若发生 2% FX 约 US$6.83；Paddle 约 US$5.45。费用相近不代表责任相同：Stripe direct 下 Rillora 仍是 merchant；Paddle 在覆盖交易中是 Merchant of Record。"
+      },
+      {
+        "id": "payment-chart-block",
+        "type": "chart",
+        "layout": "full",
+        "chartId": "payment-fee-chart"
+      },
+      {
+        "id": "payment-table-block",
+        "type": "table",
+        "layout": "full",
+        "tableId": "payment-fee-table"
+      },
+      {
+        "id": "cloud-choice",
+        "type": "markdown",
+        "layout": "full",
+        "body": "## 中国大陆云选阿里云深圳\n\n阿里云在备案、RDS PostgreSQL 高可用、KMS、WAF、日志和对象存储之间形成最适合单人团队的综合路径。腾讯云是强备选，但微信支付资格与云厂商无绑定优势，且 PostgreSQL Serverless 新建能力已经下线。大陆数据不从 Global 自动迁移或同步。"
+      },
+      {
+        "id": "cloud-table-block",
+        "type": "table",
+        "layout": "full",
+        "tableId": "cloud-stage-table"
+      },
+      {
+        "id": "regional-plan",
+        "type": "markdown",
+        "layout": "full",
+        "body": "## 两条并行但独立的发布轨道\n\nGlobal 目标为 10–14 周：先完成香港经营／税务、美国法律页、生产安全、StoreKit 与 Stripe/Paddle，再做 10–25 笔受控真实交易。大陆目标为 16–24 周且从主体／许可分类通过后计算：先取得书面分类，再购买云、备案、完成 PIPL／MLPS、支付审核和本地 beta。"
+      },
+      {
+        "id": "launch-table-block",
+        "type": "table",
+        "layout": "full",
+        "tableId": "launch-gates-table"
+      },
+      {
+        "id": "evidence-boundary",
+        "type": "markdown",
+        "layout": "full",
+        "body": "## 证据边界\n\n本报告依据 2026-08-19 复核的官方公开材料和明确标注的内部预算假设。它不是个人法律／税务意见、云报价、服务商审批、备案／许可审批或付款授权。当前没有创建真实收费商品、购买大陆云、提交备案／许可、开放新市场或收取真实款项。"
+      }
+    ],
+    "charts": [
+      {
+        "id": "apple-commission-chart",
+        "title": "US$99 年付在 Apple 各佣金情形下的佣金",
+        "subtitle": "仅比较平台佣金；不包含消费税、退款、预提税和汇兑。",
+        "type": "bar",
+        "dataset": "apple_commissions",
+        "source": {
+          "id": "apple-commission-query",
+          "label": "Apple 官方佣金率演算",
+          "path": "docs/global-mainland-commerce-plan.md",
+          "query": {
+            "engine": "SQLite",
+            "language": "sql",
+            "executed_at": "2026-08-19T00:00:00+08:00",
+            "description": "把 Apple 官方公布的 12%、15%、25%、30%佣金率应用到 US$99 年付标价。",
+            "sql": "WITH apple_commissions(scenario,rate,commission,after_commission) AS (VALUES ('全球 SBP／满一年',0.15,14.85,84.15),('全球标准首年',0.30,29.70,69.30),('中国大陆 SBP／满一年',0.12,11.88,87.12),('中国大陆标准',0.25,24.75,74.25)) SELECT scenario,rate,commission,after_commission FROM apple_commissions ORDER BY commission;",
+            "filters": ["US$99 年付", "不含适用税款和调整"],
+            "metric_definitions": ["commission = 99 × headline commission rate；纯演算，不代表最终 proceeds。"]
+          }
+        },
+        "intent": "comparison",
+        "question": "Apple 不同资格和 storefront 的平台佣金差多少？",
+        "rationale": "用同一标价展示 Small Business Program 和标准费率对首年现金流的影响。",
+        "encodings": {
+          "x": { "field": "scenario", "type": "nominal", "label": "情形" },
+          "y": { "field": "commission", "type": "quantitative", "label": "佣金（USD）", "format": "currency" },
+          "tooltip": [
+            { "field": "scenario", "type": "text", "label": "情形" },
+            { "field": "rate", "type": "quantitative", "label": "费率", "format": "percent" },
+            { "field": "commission", "type": "quantitative", "label": "佣金", "format": "currency" },
+            { "field": "after_commission", "type": "quantitative", "label": "佣金后余额", "format": "currency" }
+          ]
+        },
+        "valueFormat": "currency",
+        "layout": "full",
+        "maxRows": 10,
+        "compatibleTypes": ["bar"]
+      },
+      {
+        "id": "payment-fee-chart",
+        "title": "US$99 年付的公开渠道费组件",
+        "subtitle": "Stripe 与 Paddle 的费用接近，但 merchant、税务和支持责任不同。",
+        "type": "bar",
+        "dataset": "payment_fees",
+        "source": {
+          "id": "payment-fee-query",
+          "label": "公开费率组件演算",
+          "path": "docs/global-mainland-commerce-plan.md",
+          "query": {
+            "engine": "SQLite",
+            "language": "sql",
+            "executed_at": "2026-08-19T00:00:00+08:00",
+            "description": "把 Stripe HK 和 Paddle 公布的选定费率组件应用到 US$99 年付。",
+            "sql": "WITH payment_fees(route,rate,fixed_fee,fee,after_fee,note) AS (VALUES ('Stripe HK 国际卡 + Billing',0.046,0.30,4.85,94.15,'不含 Tax、税务申报、退款与拒付'),('Stripe 同上 + 2% FX',0.066,0.30,6.83,92.17,'需要换汇时'),('Paddle MoR',0.05,0.50,5.45,93.55,'不含合同特定 FX／准备金')) SELECT route,rate,fixed_fee,fee,after_fee,note FROM payment_fees ORDER BY fee;",
+            "filters": ["US$99 年付", "公开费率组件", "非全包报价"],
+            "metric_definitions": ["fee = 99 × included percentage components + listed fixed fee。"]
+          }
+        },
+        "intent": "comparison",
+        "question": "Web 首发候选渠道的公开费用组件如何比较？",
+        "rationale": "费用差异不应掩盖 Stripe direct 和 Paddle MoR 的责任差异。",
+        "encodings": {
+          "x": { "field": "route", "type": "nominal", "label": "渠道" },
+          "y": { "field": "fee", "type": "quantitative", "label": "估算渠道费（USD）", "format": "currency" },
+          "tooltip": [
+            { "field": "route", "type": "text", "label": "渠道" },
+            { "field": "fee", "type": "quantitative", "label": "渠道费", "format": "currency" },
+            { "field": "after_fee", "type": "quantitative", "label": "渠道费后余额", "format": "currency" },
+            { "field": "note", "type": "text", "label": "边界" }
+          ]
+        },
+        "valueFormat": "currency",
+        "layout": "full",
+        "maxRows": 10,
+        "compatibleTypes": ["bar"]
+      }
+    ],
+    "tables": [
+      {
+        "id": "apple-commission-table",
+        "title": "Apple 订阅佣金情形",
+        "subtitle": "Small Business Program 必须申请并获批，不能自动假设。",
+        "dataset": "apple_commissions",
+        "source": {
+          "id": "apple-commission-table-query",
+          "label": "Apple 官方佣金率演算",
+          "path": "docs/global-mainland-commerce-plan.md",
+          "query": {
+            "engine": "SQLite",
+            "language": "sql",
+            "executed_at": "2026-08-19T00:00:00+08:00",
+            "description": "同图表数据，保留佣金率与佣金后余额。",
+            "sql": "WITH apple_commissions(scenario,rate,commission,after_commission) AS (VALUES ('全球 SBP／满一年',0.15,14.85,84.15),('全球标准首年',0.30,29.70,69.30),('中国大陆 SBP／满一年',0.12,11.88,87.12),('中国大陆标准',0.25,24.75,74.25)) SELECT scenario,rate,commission,after_commission FROM apple_commissions ORDER BY rate;",
+            "filters": ["US$99 年付"],
+            "metric_definitions": ["after_commission 不含税款及其他调整。"]
+          }
+        },
+        "defaultSort": { "field": "rate", "direction": "asc" },
+        "density": "spacious",
+        "layout": "full",
+        "columns": [
+          { "field": "scenario", "label": "情形", "type": "text" },
+          { "field": "rate", "label": "佣金率", "type": "percent" },
+          { "field": "commission", "label": "佣金", "type": "currency", "currency": "USD" },
+          { "field": "after_commission", "label": "佣金后余额", "type": "currency", "currency": "USD" }
+        ]
+      },
+      {
+        "id": "payment-fee-table",
+        "title": "Global Web 渠道费用演示",
+        "subtitle": "只包含列明组件，不是最终服务商报价。",
+        "dataset": "payment_fees",
+        "source": {
+          "id": "payment-fee-table-query",
+          "label": "公开费率组件演算",
+          "path": "docs/global-mainland-commerce-plan.md",
+          "query": {
+            "engine": "SQLite",
+            "language": "sql",
+            "executed_at": "2026-08-19T00:00:00+08:00",
+            "description": "同图表数据，保留费后余额和排除项。",
+            "sql": "WITH payment_fees(route,rate,fixed_fee,fee,after_fee,note) AS (VALUES ('Stripe HK 国际卡 + Billing',0.046,0.30,4.85,94.15,'不含 Tax、税务申报、退款与拒付'),('Stripe 同上 + 2% FX',0.066,0.30,6.83,92.17,'需要换汇时'),('Paddle MoR',0.05,0.50,5.45,93.55,'不含合同特定 FX／准备金')) SELECT route,rate,fixed_fee,fee,after_fee,note FROM payment_fees ORDER BY fee;",
+            "filters": ["US$99 年付"],
+            "metric_definitions": ["rate 是本行包含的百分比组件合计，不是总经营成本率。"]
+          }
+        },
+        "defaultSort": { "field": "fee", "direction": "asc" },
+        "density": "spacious",
+        "layout": "full",
+        "columns": [
+          { "field": "route", "label": "渠道", "type": "text" },
+          { "field": "fee", "label": "估算渠道费", "type": "currency", "currency": "USD" },
+          { "field": "after_fee", "label": "渠道费后余额", "type": "currency", "currency": "USD" },
+          { "field": "note", "label": "排除项／边界", "type": "text" }
+        ]
+      },
+      {
+        "id": "cloud-stage-table",
+        "title": "中国大陆云成本规划带",
+        "subtitle": "推荐阿里云华南 1（深圳）；购买前必须生成同日 BOM 并增加 25%余量。",
+        "dataset": "cloud_stages",
+        "source": {
+          "id": "cloud-stage-query",
+          "label": "大陆云架构内部预算模型",
+          "path": "docs/global-mainland-commerce-plan.md",
+          "query": {
+            "engine": "SQLite",
+            "language": "sql",
+            "executed_at": "2026-08-19T00:00:00+08:00",
+            "description": "记录不同发布阶段的月度云预算区间；不是云厂商报价。",
+            "sql": "WITH cloud_stages(ord,stage,min_cny,max_cny,architecture) AS (VALUES (1,'内部／合成 staging',500,1500,'单实例＋基础 RDS；不放真实敏感数据'),(2,'受限付费 beta',2500,6000,'双应用＋RDS HA＋基础 WAF/KMS/日志'),(3,'公开收费发布',5000,12000,'跨可用区应用＋4c8g级 RDS HA＋完整告警备份')) SELECT ord,stage,min_cny,max_cny,architecture FROM cloud_stages ORDER BY ord;",
+            "filters": ["人民币／月", "内部预算带", "不含法律、等保和人工"],
+            "metric_definitions": ["min_cny/max_cny 是规划范围，不是报价。"]
+          }
+        },
+        "defaultSort": { "field": "ord", "direction": "asc" },
+        "density": "spacious",
+        "layout": "full",
+        "columns": [
+          { "field": "ord", "label": "顺序", "type": "number" },
+          { "field": "stage", "label": "阶段", "type": "text" },
+          { "field": "min_cny", "label": "月度下限", "type": "currency", "currency": "CNY" },
+          { "field": "max_cny", "label": "月度上限", "type": "currency", "currency": "CNY" },
+          { "field": "architecture", "label": "架构边界", "type": "text" }
+        ]
+      },
+      {
+        "id": "launch-gates-table",
+        "title": "Global 与中国大陆收费发布顺序",
+        "subtitle": "并行准备、独立开放；大陆不拖住 Global。",
+        "dataset": "launch_gates",
+        "source": {
+          "id": "launch-gate-query",
+          "label": "地区收费发布执行计划",
+          "path": "docs/global-mainland-commerce-plan.md",
+          "query": {
+            "engine": "SQLite",
+            "language": "sql",
+            "executed_at": "2026-08-19T00:00:00+08:00",
+            "description": "把两区的计划时长、首发市场、支付、云和关键阻塞门落成一张执行表。",
+            "sql": "WITH launch_gates(ord,plane,target_weeks,first_market,ios_payment,web_payment,hard_gate) AS (VALUES (1,'Global','10–14','美国 allowlist','StoreKit','Stripe HK；第8周可切Paddle','HK/PRC经营税务＋美国法律＋生产安全'),(2,'中国大陆','16–24','中国大陆','StoreKit中国大陆','微信＋支付宝；银联后置','主体／经营许可分类＋备案＋本地数据＋支付审核')) SELECT ord,plane,target_weeks,first_market,ios_payment,web_payment,hard_gate FROM launch_gates ORDER BY ord;",
+            "filters": ["首次公开发布即具备收费能力"],
+            "metric_definitions": ["target_weeks 是计划时长，不是审批承诺。"]
+          }
+        },
+        "defaultSort": { "field": "ord", "direction": "asc" },
+        "density": "spacious",
+        "layout": "full",
+        "columns": [
+          { "field": "ord", "label": "顺序", "type": "number" },
+          { "field": "plane", "label": "运行平面", "type": "text" },
+          { "field": "target_weeks", "label": "目标周期", "type": "text" },
+          { "field": "first_market", "label": "首发市场", "type": "text" },
+          { "field": "ios_payment", "label": "iOS支付", "type": "text" },
+          { "field": "web_payment", "label": "Web支付", "type": "text" },
+          { "field": "hard_gate", "label": "硬门", "type": "text" }
+        ]
+      }
+    ],
+    "sources": [
+      { "id": "commerce-plan", "label": "Rillora 全球版与中国大陆版收费发布总计划", "path": "docs/global-mainland-commerce-plan.md" },
+      { "id": "apple-sbp", "label": "Apple Small Business Program", "href": "https://developer.apple.com/app-store/small-business-program/" },
+      { "id": "apple-subscriptions", "label": "Apple 自动续费订阅收入比例", "href": "https://developer.apple.com/help/app-store-connect/manage-subscriptions/offer-auto-renewable-subscriptions/" },
+      { "id": "apple-mainland", "label": "中国大陆 App Store 25%／12%佣金", "href": "https://developer.apple.com/cn/news/?id=dadukodv" },
+      { "id": "stripe-hk", "label": "Stripe Hong Kong pricing", "href": "https://stripe.com/en-hk/pricing" },
+      { "id": "paddle-pricing", "label": "Paddle pricing", "href": "https://www.paddle.com/pricing" },
+      { "id": "ali-filing", "label": "阿里云备案服务器要求", "href": "https://help.aliyun.com/zh/icp-filing/basic-icp-service/user-guide/icp-filing-server-access-information-check" },
+      { "id": "miit-filing", "label": "工信部 App 备案说明", "href": "https://hunca.miit.gov.cn/zwgk/zcwj/zcjd/art/2023/art_888eed9c8e29444b8adf4787e2b26151.html" }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "generatedAt": "2026-08-19T00:00:00+08:00",
+    "status": "ready",
+    "datasets": {
+      "apple_commissions": [
+        { "scenario": "全球 SBP／满一年", "rate": 0.15, "commission": 14.85, "after_commission": 84.15 },
+        { "scenario": "全球标准首年", "rate": 0.30, "commission": 29.70, "after_commission": 69.30 },
+        { "scenario": "中国大陆 SBP／满一年", "rate": 0.12, "commission": 11.88, "after_commission": 87.12 },
+        { "scenario": "中国大陆标准", "rate": 0.25, "commission": 24.75, "after_commission": 74.25 }
+      ],
+      "payment_fees": [
+        { "route": "Stripe HK 国际卡 + Billing", "rate": 0.046, "fixed_fee": 0.30, "fee": 4.85, "after_fee": 94.15, "note": "不含 Tax、税务申报、退款与拒付" },
+        { "route": "Stripe 同上 + 2% FX", "rate": 0.066, "fixed_fee": 0.30, "fee": 6.83, "after_fee": 92.17, "note": "需要换汇时" },
+        { "route": "Paddle MoR", "rate": 0.05, "fixed_fee": 0.50, "fee": 5.45, "after_fee": 93.55, "note": "不含合同特定 FX／准备金" }
+      ],
+      "cloud_stages": [
+        { "ord": 1, "stage": "内部／合成 staging", "min_cny": 500, "max_cny": 1500, "architecture": "单实例＋基础 RDS；不放真实敏感数据" },
+        { "ord": 2, "stage": "受限付费 beta", "min_cny": 2500, "max_cny": 6000, "architecture": "双应用＋RDS HA＋基础 WAF/KMS/日志" },
+        { "ord": 3, "stage": "公开收费发布", "min_cny": 5000, "max_cny": 12000, "architecture": "跨可用区应用＋4c8g级 RDS HA＋完整告警备份" }
+      ],
+      "launch_gates": [
+        { "ord": 1, "plane": "Global", "target_weeks": "10–14", "first_market": "美国 allowlist", "ios_payment": "StoreKit", "web_payment": "Stripe HK；第8周可切Paddle", "hard_gate": "HK/PRC经营税务＋美国法律＋生产安全" },
+        { "ord": 2, "plane": "中国大陆", "target_weeks": "16–24", "first_market": "中国大陆", "ios_payment": "StoreKit中国大陆", "web_payment": "微信＋支付宝；银联后置", "hard_gate": "主体／经营许可分类＋备案＋本地数据＋支付审核" }
+      ]
+    }
+  },
+  "sources": [
+    { "id": "commerce-plan", "label": "Rillora 全球版与中国大陆版收费发布总计划", "path": "docs/global-mainland-commerce-plan.md" },
+    { "id": "apple-sbp", "label": "Apple Small Business Program", "href": "https://developer.apple.com/app-store/small-business-program/" },
+    { "id": "apple-subscriptions", "label": "Apple 自动续费订阅收入比例", "href": "https://developer.apple.com/help/app-store-connect/manage-subscriptions/offer-auto-renewable-subscriptions/" },
+    { "id": "apple-mainland", "label": "中国大陆 App Store 25%／12%佣金", "href": "https://developer.apple.com/cn/news/?id=dadukodv" },
+    { "id": "stripe-hk", "label": "Stripe Hong Kong pricing", "href": "https://stripe.com/en-hk/pricing" },
+    { "id": "paddle-pricing", "label": "Paddle pricing", "href": "https://www.paddle.com/pricing" },
+    { "id": "ali-filing", "label": "阿里云备案服务器要求", "href": "https://help.aliyun.com/zh/icp-filing/basic-icp-service/user-guide/icp-filing-server-access-information-check" },
+    { "id": "miit-filing", "label": "工信部 App 备案说明", "href": "https://hunca.miit.gov.cn/zwgk/zcwj/zcjd/art/2023/art_888eed9c8e29444b8adf4787e2b26151.html" }
+  ],
+  "package_info": {
+    "reportId": "rillora-global-mainland-commerce-20260819",
+    "language": "zh-CN",
+    "evidenceBoundary": "基于官方公开资料的规划快照；不是法律税务意见、报价、审批、公开发布或付款激活证明。"
+  }
+}

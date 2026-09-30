@@ -1,0 +1,262 @@
+{
+  "/RilloraMail": [
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:65:3)",
+        "...node internals..."
+      ]
+    },
+    {
+      "type": "aws:cdk:stack-tags",
+      "data": [
+        {
+          "key": "Environment",
+          "value": "Production"
+        },
+        {
+          "key": "Project",
+          "value": "Rillora"
+        }
+      ]
+    }
+  ],
+  "/RilloraMail/IdentityArn": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "IdentityArn"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new RilloraMailStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-mail-stack.ts:52:5)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:65:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraMail/ConfigurationSet": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ConfigurationSet"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new RilloraMailStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-mail-stack.ts:53:5)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:65:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraMail/Dkim1Name": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "Dkim1Name"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new RilloraMailStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-mail-stack.ts:55:7)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:65:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraMail/Dkim1Value": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "Dkim1Value"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new RilloraMailStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-mail-stack.ts:56:7)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:65:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraMail/Dkim2Name": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "Dkim2Name"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new RilloraMailStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-mail-stack.ts:55:7)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:65:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraMail/Dkim2Value": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "Dkim2Value"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new RilloraMailStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-mail-stack.ts:56:7)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:65:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraMail/Dkim3Name": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "Dkim3Name"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new RilloraMailStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-mail-stack.ts:55:7)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:65:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraMail/Dkim3Value": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "Dkim3Value"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new RilloraMailStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-mail-stack.ts:56:7)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:65:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraMail/MailFromMx": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "MailFromMx"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new RilloraMailStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-mail-stack.ts:58:5)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:65:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraMail/MailFromSpf": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "MailFromSpf"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new RilloraMailStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-mail-stack.ts:59:5)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:65:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraMail/ActivationBoundary": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ActivationBoundary"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new RilloraMailStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-mail-stack.ts:60:5)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:65:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraMail/BootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "BootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/RilloraMail/CheckBootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CheckBootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/RilloraMail/Transactional/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "Transactional735D50ED"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new ConfigurationSet2 in aws-cdk-lib...",
+        "new RilloraMailStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-mail-stack.ts:19:27)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:65:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraMail/Identity/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "Identity2D60E2CC"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new EmailIdentity2 in aws-cdk-lib...",
+        "new RilloraMailStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-mail-stack.ts:41:22)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:65:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraMail/CDKMetadata/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CDKMetadata"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/RilloraMail/Transactional/AggregateDelivery/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "TransactionalAggregateDelivery2CBC4E84"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.<anonymous> in aws-cdk-lib...",
+        "new RilloraMailStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-mail-stack.ts:30:19)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:65:3)",
+        "...node internals..."
+      ]
+    }
+  ]
+}

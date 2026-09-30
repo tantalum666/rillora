@@ -1,0 +1,26 @@
+{
+  "status": "PROVIDER_ACCEPTANCE_AND_AVAILABILITY_REPAIR_COMPLETE",
+  "at": "2026-09-17T10:20:30.715937+08:00",
+  "account": "acct_1U6B2RCxTlowhyiG",
+  "permission": "Owner enabled full test key permissions; browser readback and actual API Checkout succeeded",
+  "passed": [
+    "USD68 annual hosted test payment -> verified Family5",
+    "USD7.99 monthly hosted test payment -> verified Family5",
+    "Annual portal cancel at period end retains Family5",
+    "Annual portal resume returns active",
+    "Annual admin immediate termination -> Free1",
+    "After provider end, later private edits absent from saved recipient copy",
+    "Verified active monthly subscription rejected another annual checkout",
+    "Actual Stripe invoice displays full refund799; one official failed-event resend produces refunded ledger",
+    "Post-provider-ended saved copy redaction/resume/revoke pass"
+  ],
+  "current": "API28 actual FARGATE1 healthy; all provider test assertions passed; both new subscriptions ended, two unpaid quotes expired; three disposable planners/session credentials cleaned. Two old empty Ops artifacts and temporary permission stack removed.",
+  "fixtures": "All3 disposable planners removed; old sessions401; protected token file removed. Both new Stripe subscriptions ended and two later quotes expired.",
+  "unchanged": "Application image API28, Web/native UI and legal contract unchanged. Infrastructure diagnostics scope and regular Fargate capacity deployed. No live charge or sales opening.",
+  "pending": [
+    "B real invitation acceptance/revoke",
+    "Owner alert destination and delivered alarm/recovery/silence drill",
+    "Apple actual transaction/restore; production purchase, merchant and market readiness"
+  ],
+  "evidence": "README.md, provider-acceptance.json, cloud-behavior-checks.json, on-demand-verified.json, cleanup-verification.json"
+}

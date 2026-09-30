@@ -1,0 +1,61 @@
+{
+  "mode": "Combined full-product UI/UX audit",
+  "scope": [
+    "Public exploration",
+    "Account and hosted entry/cancel",
+    "Private Overview and Matters",
+    "Every category New/Edit matter and validation",
+    "Profile/More navigation",
+    "Outgoing person/access/link and QR",
+    "Incoming signup return/acceptance/errors",
+    "Shared items and per-person privacy",
+    "Shared reviews and history",
+    "Guides and official links",
+    "Export/plaintext/encrypted recovery",
+    "Safety/About/session/exit",
+    "Responsive/large text/keyboard/motion/loading/conflict"
+  ],
+  "environment": {
+    "webStaging": "https://app.staging.rillora.xyz",
+    "localAPI": 4250,
+    "ownerWeb": 4251,
+    "receiverWeb": 4252,
+    "guestWeb": 4253,
+    "emptyWeb": 4254,
+    "database": "continuity_ux_audit_20260915",
+    "nativeSimulator": "EA356940-5220-4AA8-89CF-499C6D5D14E4",
+    "personalData": "not used",
+    "sourceMutations": "none"
+  },
+  "observations": [
+    {
+      "id": "O01",
+      "screens": [
+        "01-web-public-desktop.png",
+        "02-web-public-mobile.png",
+        "04-web-public-who.png",
+        "03-ios-public.jpg",
+        "05-ios-public-who.jpg"
+      ],
+      "finding": "Public illustration selectors duplicated; Who feedback repeats choice without sharing mechanism; native icon AX exposes symbol names.",
+      "status": "needs prioritization"
+    },
+    {
+      "id": "O02",
+      "screens": [
+        "08-web-account.png"
+      ],
+      "finding": "Large unused vertical gap from heading to tiny consent and disabled actions. Device intent not visible on Account. Back preserves selected device and public Who.",
+      "status": "observed"
+    },
+    {
+      "id": "O03",
+      "screens": [
+        "06-ios-public-matters.jpg",
+        "07-ios-public-profile.jpg"
+      ],
+      "finding": "Guest Profile distinguishes sign in and incoming, no outgoing; categories remain browseable. Generic Add duplicates selected category Add.",
+      "status": "observed"
+    }
+  ]
+}

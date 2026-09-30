@@ -1,0 +1,695 @@
+{
+  "/RilloraOperations": [
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/AlertTopicArn": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AlertTopicArn"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:164:5)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/CheckerFunctionName": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CheckerFunctionName"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:165:5)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/ActivationBoundary": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ActivationBoundary"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:166:5)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/BootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "BootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/RilloraOperations/CheckBootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CheckBootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/RilloraOperations/FailedDeliveries/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "FailedDeliveriesE3540845"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Queue2 in aws-cdk-lib...",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:22:19)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/HealthLogs/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "HealthLogs34B37038"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new LogGroup2 in aws-cdk-lib...",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:28:22)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/HealthCheck/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "HealthCheckA1C381C7"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:32:21)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/QuarterHourly/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "QuarterHourly4AE380E3"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Rule2 in aws-cdk-lib...",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:51:5)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/QuarterHourly/AllowEventRuleRilloraOperationsHealthCheckD0D9D8C5": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "QuarterHourlyAllowEventRuleRilloraOperationsHealthCheckD0D9D8C5337B971B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Rule2 in aws-cdk-lib...",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:51:5)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)"
+      ]
+    }
+  ],
+  "/RilloraOperations/Alerts/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "Alerts91F83244"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Topic2 in aws-cdk-lib...",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:60:20)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/Unhealthy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "Unhealthy9594204A"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Alarm2 in aws-cdk-lib...",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:67:7)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/MissingHeartbeat/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "MissingHeartbeatF959D2A8"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Alarm2 in aws-cdk-lib...",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:72:7)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/InvocationErrors/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "InvocationErrors5F3DC47A"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Alarm2 in aws-cdk-lib...",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:77:7)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/DeadLetters/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DeadLettersBBF8BAAB"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Alarm2 in aws-cdk-lib...",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:82:7)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/MailBounce/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "MailBounceDFC06FB0"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Alarm2 in aws-cdk-lib...",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:94:29)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/MailComplaint/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "MailComplaintAAEC7183"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Alarm2 in aws-cdk-lib...",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:94:29)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/MailRejected/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "MailRejected21E3A73A"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Alarm2 in aws-cdk-lib...",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:94:29)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/MailDelayed/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "MailDelayedFF5B84EF"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Alarm2 in aws-cdk-lib...",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:94:29)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/AppleReviewDeliveryFailed/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AppleReviewDeliveryFailedD36C6BF7"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Alarm2 in aws-cdk-lib...",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:113:31)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/AppleReviewDeliveryWorkerErrors/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AppleReviewDeliveryWorkerErrors6302C0ED"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Alarm2 in aws-cdk-lib...",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:113:31)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/AppleReviewDeliveryOldestPendingSeconds/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AppleReviewDeliveryOldestPendingSeconds172CEFD0"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Alarm2 in aws-cdk-lib...",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:113:31)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/AppleReviewDeliveryHeartbeat/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AppleReviewDeliveryHeartbeatD28FFF4B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Alarm2 in aws-cdk-lib...",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:113:31)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/RetentionFailures/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "RetentionFailures829F9DD7"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Alarm2 in aws-cdk-lib...",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:126:31)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/RetentionBatchFull/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "RetentionBatchFull7FFD1AF3"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Alarm2 in aws-cdk-lib...",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:126:31)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/RetentionHeartbeat/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "RetentionHeartbeat7BDE61AD"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Alarm2 in aws-cdk-lib...",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:126:31)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/SnapshotRetirement/FunctionName": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "SnapshotRetirementFunctionNameEA07C724"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new RilloraSnapshotRetirement (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-snapshot-retirement.ts:47:3)",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:135:65)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/SnapshotRetirement/LogGroupName": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "SnapshotRetirementLogGroupNameD0C870D7"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new RilloraSnapshotRetirement (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-snapshot-retirement.ts:48:3)",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:135:65)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/OperationsRunbook/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "OperationsRunbook277D4959"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Policy2 in aws-cdk-lib...",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:157:5)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/CDKMetadata/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CDKMetadata"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/RilloraOperations/FailedDeliveries/Policy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "FailedDeliveriesPolicyBAFAE301"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Queue2 in aws-cdk-lib...",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:22:19)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/HealthCheck/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "HealthCheckServiceRoleC964F23C"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:32:21)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/HealthCheck/EventInvokeConfig/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "HealthCheckEventInvokeConfigABB13FBA"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:32:21)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/Alerts/Policy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AlertsPolicy425C338D"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Topic2 in aws-cdk-lib...",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:60:20)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/SnapshotRetirement/Logs/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "SnapshotRetirementLogs5CFC046D"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new LogGroup2 in aws-cdk-lib...",
+        "new RilloraSnapshotRetirement (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-snapshot-retirement.ts:15:18)",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:135:65)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/SnapshotRetirement/Role/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "SnapshotRetirementRole92CF242C"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Role2 in aws-cdk-lib...",
+        "new RilloraSnapshotRetirement (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-snapshot-retirement.ts:16:14)",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:135:65)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/SnapshotRetirement/Worker/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "SnapshotRetirementWorker036281CC"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new RilloraSnapshotRetirement (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-snapshot-retirement.ts:18:16)",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:135:65)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/SnapshotRetirement/Schedule/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "SnapshotRetirementScheduleFB86796D"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Rule2 in aws-cdk-lib...",
+        "new RilloraSnapshotRetirement (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-snapshot-retirement.ts:29:3)",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:135:65)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/SnapshotRetirement/Schedule/AllowEventRuleRilloraOperationsSnapshotRetirementWorker57A82C08": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "SnapshotRetirementScheduleAllowEventRuleRilloraOperationsSnapshotRetirementWorker57A82C08BAB494FE"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Rule2 in aws-cdk-lib...",
+        "new RilloraSnapshotRetirement (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-snapshot-retirement.ts:29:3)",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:135:65)"
+      ]
+    }
+  ],
+  "/RilloraOperations/SnapshotRetirement/SnapshotFailures/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "SnapshotRetirementSnapshotFailures75D039D7"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Alarm2 in aws-cdk-lib...",
+        "new RilloraSnapshotRetirement (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-snapshot-retirement.ts:32:21)",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:135:65)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/SnapshotRetirement/SnapshotOverdue/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "SnapshotRetirementSnapshotOverdueCC18CA19"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Alarm2 in aws-cdk-lib...",
+        "new RilloraSnapshotRetirement (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-snapshot-retirement.ts:32:21)",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:135:65)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/SnapshotRetirement/SnapshotHeartbeat/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "SnapshotRetirementSnapshotHeartbeat6F6AEB6B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Alarm2 in aws-cdk-lib...",
+        "new RilloraSnapshotRetirement (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-snapshot-retirement.ts:32:21)",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:135:65)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/SnapshotRetirement/Runbook/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "SnapshotRetirementRunbook91A9EB67"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Policy2 in aws-cdk-lib...",
+        "new RilloraSnapshotRetirement (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-snapshot-retirement.ts:38:3)",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:135:65)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraOperations/HealthCheck/ServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "HealthCheckServiceRoleDefaultPolicyAE8FE253"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:32:21)"
+      ]
+    }
+  ],
+  "/RilloraOperations/SnapshotRetirement/Role/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "SnapshotRetirementRoleDefaultPolicy9DF363A6"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/RilloraOperations/SnapshotRetirement/Worker/EventInvokeConfig/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "SnapshotRetirementWorkerEventInvokeConfigD1C43C5C"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new RilloraSnapshotRetirement (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-snapshot-retirement.ts:18:16)",
+        "new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:135:65)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:128:3)",
+        "...node internals..."
+      ]
+    }
+  ]
+}

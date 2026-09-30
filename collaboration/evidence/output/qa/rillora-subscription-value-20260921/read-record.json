@@ -1,0 +1,29 @@
+{
+  "recordedAt": "2026-09-21T11:54:21.184615+08:00",
+  "mode": "continuation of the existing release/pricing workstream; advisory only",
+  "fullReadReused": "output/qa/rillora-release-readiness-20260919/full-read-completion.json",
+  "projectSources": [
+    "AGENTS.md",
+    "docs/product.md current authority",
+    "docs/handoff.md full",
+    "docs/monetization.md all current scope, expiry, legitimate monthly, offer, billing and validation sections; historical gaps supplemented",
+    "docs/family-maintenance.md full",
+    "docs/pricing-88-80-20260919.md full",
+    "docs/commercial-completion-20260916.md full",
+    "config/product-catalog.json full",
+    "apps/api/migrations/0048_sharing_commercial_lifecycle.sql50-129",
+    "apps/api/migrations/0052_paid_snapshot_capture_boundaries.sql1-44",
+    "apps/api/migrations/0049_verified_entitlement_application.sql70-84"
+  ],
+  "externalSources": [
+    "https://help.trustworthy.com/en/articles/11104129",
+    "https://www.trustworthy.com/pricing",
+    "https://developer.apple.com/app-store/review/guidelines/",
+    "https://help.everplans.com/hc/en-us/articles/215665478-How-does-Everplans-make-money"
+  ],
+  "scopeLimits": [
+    "No new full repository read claim",
+    "No live subscription/retention data",
+    "No current provider control-plane or end-user test"
+  ]
+}

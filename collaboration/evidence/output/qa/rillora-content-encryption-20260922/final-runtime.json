@@ -1,0 +1,28 @@
+{
+  "checkedAt": "2026-09-23T02:51:26.618281+00:00",
+  "stackStatus": "UPDATE_COMPLETE",
+  "apiTaskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingApiTaskDefinitionF6347BA4:37",
+  "migrationTaskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingMigrationTaskDefinitionD83F7D18:30",
+  "apiImage": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1:7c1ad63ff0db8478888ad0dc67f99ff52fec7347b1f5cbb9fd9317fb98e00b77",
+  "running": 1,
+  "desired": 1,
+  "rolloutState": "COMPLETED",
+  "cpu": "256",
+  "memoryMiB": "512",
+  "databasePoolMax": "5",
+  "contentMode": "encrypted",
+  "migrationKeyConfigurationRemoved": true,
+  "keyState": "Enabled",
+  "rotationEnabled": true,
+  "metricsLast35Minutes": {
+    "CPUUtilization": {
+      "samples": 34,
+      "maximumPercent": 12.860543966293337
+    },
+    "MemoryUtilization": {
+      "samples": 34,
+      "maximumPercent": 13.671875
+    }
+  },
+  "productionRelease": false
+}

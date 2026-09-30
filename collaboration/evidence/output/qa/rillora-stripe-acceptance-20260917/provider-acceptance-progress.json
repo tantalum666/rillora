@@ -1,0 +1,44 @@
+{
+  "checks": [
+    {
+      "case": "annual_paid",
+      "state": "active",
+      "paidUntil": "2027-09-17T00:54:18.000Z",
+      "limit": 5,
+      "verifiedEntitlementApplied": true
+    },
+    {
+      "case": "annual_cancel_scheduled",
+      "state": "cancel_at_period_end",
+      "paidUntil": "2027-09-17T00:54:18.000Z",
+      "limit": 5,
+      "verifiedEntitlementApplied": true
+    },
+    {
+      "case": "annual_resumed",
+      "state": "active",
+      "paidUntil": "2027-09-17T00:54:18.000Z",
+      "limit": 5,
+      "verifiedEntitlementApplied": true
+    },
+    {
+      "case": "monthly_paid",
+      "state": "active",
+      "paidUntil": "2026-10-17T01:00:36.000Z",
+      "limit": 5,
+      "verifiedEntitlementApplied": true
+    },
+    {
+      "case": "provider_immediate_termination",
+      "plan": "free",
+      "limit": 1,
+      "source": "Actual Stripe dashboard test subscription cancellation; not a year of elapsed time"
+    },
+    {
+      "case": "saved_copy_after_provider_end",
+      "passed": true
+    }
+  ],
+  "realCharge": false,
+  "ordinarySalesOpen": false
+}

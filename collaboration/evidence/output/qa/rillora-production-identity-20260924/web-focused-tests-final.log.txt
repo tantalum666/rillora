@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: suggestions honor visible fields, regional specificity and false-positive limits
+ok 1 - suggestions honor visible fields, regional specificity and false-positive limits
+  ---
+  duration_ms: 5.907166
+  type: 'test'
+  ...
+# Subtest: official provider catalog covers the curated common platforms
+ok 2 - official provider catalog covers the curated common platforms
+  ---
+  duration_ms: 0.327959
+  type: 'test'
+  ...
+# Subtest: every provider link is HTTPS and uses an official host
+ok 3 - every provider link is HTTPS and uses an official host
+  ---
+  duration_ms: 0.197875
+  type: 'test'
+  ...
+# Subtest: Binance is described as a regional estate request, not a legacy contact
+ok 4 - Binance is described as a regional estate request, not a legacy contact
+  ---
+  duration_ms: 0.110792
+  type: 'test'
+  ...
+# Subtest: aliases, regional requirements and task-specific links stay accurate
+ok 5 - aliases, regional requirements and task-specific links stay accurate
+  ---
+  duration_ms: 0.25725
+  type: 'test'
+  ...
+# Subtest: public discovery explains the real product before plan creation
+ok 6 - public discovery explains the real product before plan creation
+  ---
+  duration_ms: 0.938917
+  type: 'test'
+  ...
+# Subtest: public legal routes and registration clickwrap remain visible without false claims
+ok 7 - public legal routes and registration clickwrap remain visible without false claims
+  ---
+  duration_ms: 1.0825
+  type: 'test'
+  ...
+# Subtest: public routing serves only public pages and fixed asset paths
+ok 8 - public routing serves only public pages and fixed asset paths
+  ---
+  duration_ms: 0.84225
+  type: 'test'
+  ...
+# Subtest: public routing rejects writes without an API or account fallback
+ok 9 - public routing rejects writes without an API or account fallback
+  ---
+  duration_ms: 0.075709
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 123.922833

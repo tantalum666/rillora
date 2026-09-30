@@ -1,0 +1,12 @@
+[
+    {
+        "logical": "FailedDeliveriesE3540845",
+        "physical": "https://sqs.eu-central-1.amazonaws.com/133857166372/RilloraOperations-FailedDeliveriesE3540845-ibNzKv6HXWqs",
+        "type": "AWS::SQS::Queue"
+    },
+    {
+        "logical": "HealthLogs34B37038",
+        "physical": "RilloraOperations-HealthLogs34B37038-bFIAPRBX2XhQ",
+        "type": "AWS::Logs::LogGroup"
+    }
+]

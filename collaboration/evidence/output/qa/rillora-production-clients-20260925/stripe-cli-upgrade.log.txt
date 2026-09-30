@@ -1,0 +1,204 @@
+==> Auto-updating Homebrew...
+Adjust how often this is run with `$HOMEBREW_AUTO_UPDATE_SECS` or disable with
+`$HOMEBREW_NO_AUTO_UPDATE=1`. Hide these hints with `$HOMEBREW_NO_ENV_HINTS=1` (see `man brew`).
+==> Downloading https://ghcr.io/v2/homebrew/core/portable-ruby/blobs/sha256:e0088dff5614b39387300136ec7a5f95bf1e07589547245c919524fc9e8b4197
+#=#=#                                                                          
+##O#-#                                                                         
+##O=#  #                                                                       
+#=#=-#  #                                                                      
+-#O#- #   #                                                                    
+-=#=#   #   #                                                                  
+-=O#-#   #   #                                                                 
+-=O=#  #   #   #                                                               
+-=O=-#  #    #   #                                                             
+
+                                                                           0.0%
+                                                                           0.2%
+                                                                           0.6%
+#                                                                          1.4%
+##                                                                         3.4%
+#####                                                                      7.0%
+#########                                                                 13.4%
+#################                                                         24.3%
+####################                                                      28.8%
+###########################                                               38.0%
+###############################                                           43.1%
+##################################                                        48.1%
+######################################                                    53.0%
+#######################################                                   54.8%
+##############################################                            64.1%
+#################################################                         68.9%
+#####################################################                     74.1%
+########################################################                  79.1%
+##########################################################                80.6%
+################################################################          90.2%
+####################################################################      95.2%
+######################################################################## 100.0%
+==> Pouring portable-ruby-4.0.7.arm64_big_sur.bottle.tar.gz
+==> Auto-updated Homebrew!
+==> Updated Homebrew from 6.0.22 (6b0073f056) to 7.0.6 (149b3cdfa8).
+Updated 5 taps (mongodb/brew, auth0/auth0-cli, stripe/stripe-cli, homebrew/core and homebrew/cask).
+==> New Formulae
+agent-manager: Terminal UI to manage AI coding-agent tmux sessions
+bashka: Static verification of installation bash scripts
+bend: Language that blocks AI mistakes via proof
+cargo-mutants: Inject bugs and see if your tests catch them
+ccmux: Run all your AI coding agents in tmux
+confluence-markdown-exporter: Export Atlassian Confluence pages as Markdown files
+fastplong: Ultra-fast preprocessing and quality control for long-read sequencing data
+fdk-aac: Standalone library of the Fraunhofer FDK AAC code from Android
+fdk-aac-encoder: Command-line encoder frontend for libfdk-aac
+go-arch-lint: Architecture linter for Go projects
+hister: Self-hosted search engine for your browsing history
+ketch: Web search and scraping for agents
+kpt: Toolchain for composing, customizing, and deploying Kubernetes packages
+kubectl-radar: Missing open-source Kubernetes UI with a built-in MCP server for AI agents
+libklvanc: VANC Processing Framework
+openfasttrace: Requirement tracing suite
+osctrl-mcp: Fast and efficient osquery management
+percona-server@8.4: Drop-in MySQL replacement
+plink1: Whole-genome association analysis toolset
+ratex: Fast TeX engine written in Rust
+smbclient-ng: Fast and user friendly way to interact with SMB shares
+sofka: Kubernetes TUI, reimagined in Rust
+somalier: Relatedness, QC and ancestry checks from BAM/CRAM/VCF
+taoup: Tao of Unix Programming with Ruby-powered ANSI-colored fortunes
+termaid: Render Mermaid diagrams in the terminal
+tunnelite: Secure tunneling to local applications
+workmux: Git worktrees + tmux windows for zero-friction parallel dev
+xgrammar: Structured generation and reasoning engine for LLMs
+xwpe: Borland-style IDE clone with LSP/DAP support (terminal UI)
+==> New Casks
+activitywatch@experimental: Time tracker
+agentiloop-agent: Autonomous agent
+amp-app: Coding agent and development environment
+bettermacwidgets: Live-animated widgets that sit on the desktop
+bitmuse: Bit-perfect music player for local hi-res libraries
+buholaunchpad: Launchpad alternative
+caldera-amp: Headless player for Plex music servers
+calyx: Terminal for running and supervising coding agents
+capsomnia: Utility that keeps your computer awake with the lid closed
+cline-app: AI coding agent
+colamd: Markdown editor
+deviceshelf: Scanner for devices, open ports and security risks on the local network
+distill-web-monitor: Monitor webpages for changes
+doubaoime: Chinese input method with voice input and intelligent suggestions
+easymac-cleaner: Cleaning, privacy, and system optimisation utility
+flick: Radial command wheel triggered by holding a key and flicking the mouse
+font-google-sans
+font-google-sans-flex
+font-nebula-sans
+font-pennstander
+font-tiny5-duo
+ghostex: Workspace for running and reviewing multiple CLI coding agents
+gitdifferent: Git client built around a three-way merge tool
+gloomberb: Finance terminal
+highball: Tool to run Windows games
+hol-guard: Local-first runtime firewall for AI coding agents
+homebrew-app: Homebrew's official GUI
+hoptodesk: Remote desktop and remote support tool with end-to-end encryption
+incy: Proxy client
+jlcone: Desktop client for JLCPCB quoting, ordering and order tracking
+kaku: Terminal optimised for AI coding
+kkterm: Local-first administration workspace for terminals, SSH, and SFTP
+langdock: Platform for AI Adoption
+look: Keyboard-first local launcher
+mindroom: Self-hostable AI stack for multi-user, multi-agent workflows on Matrix
+muse: AI assistant for managing tasks, projects, and long-term goals
+network-weather: Network diagnostics tool
+nuphyio: Keyboard configurator for NuPhy devices
+nvidia-pair: Local inference router for a group of compatible computers
+ollama-binary: Get up and running with large language models locally
+openclip: Instant actions for selected text
+opendisk: Disk space analyser
+openplc-editor: IDE for creating programs for the OpenPLC Runtime
+picmal: Converts and compresses images, video, audio and PDFs locally
+psysonic: Desktop client for Navidrome and other Subsonic-compatible servers
+recordly: Creator-focused screen recorder with auto-zoom, cursor effects, and more
+relay: Menu bar app for building LLM prompts from files, clipboard and voice notes
+reolink: Client for viewing and managing security cameras and NVRs
+robbietilton-compositor: Photoshop alternative
+ruswitcher: Keyboard layout switcher
+saega: Dictation app for Swedish and Norwegian
+sidex: Code editor based on VS Code and Tauri
+snapline: Screenshot, screen recording and GIF tool
+ssl-360: Plugin mixer and control software for SSL 360-enabled hardware
+tabularis@nightly: Lightweight database management tool
+tapmap: Visualise network connections on an interactive world map
+telari: Markdown reader built for typography
+telegram@beta: Messaging app with a focus on speed and security
+tencent-yingyongbao: Tencent application store
+tungsten-edge: Window-oriented taskbar that replaces the Dock
+workbuddy-ai: AI agent for everyday office work
+workbuddy-cn: AI agent for everyday office work
+wsl-manager: Manage native Linux VMs and remote WSL distros
+yap-app: On-device voice dictation
+
+You have 62 outdated formulae and 1 outdated cask installed.
+
+
+The 7.0.0 release notes are available on the Homebrew Blog:
+  https://brew.sh/blog/7.0.0
+The 7.0.6 changelog can be found at:
+  https://github.com/Homebrew/brew/releases/tag/7.0.6
+Warning: The following taps are not trusted:
+  auth0/auth0-cli
+  mongodb/brew
+
+Homebrew is currently ignoring formulae, casks and commands
+from these taps because tap trust is required.
+Prefer trusting only the specific formulae, casks or commands you need.
+Trust installed formulae from these taps with:
+  brew trust --formula mongodb/brew/mongodb-community mongodb/brew/mongodb-database-tools
+Trust other specific casks and commands with:
+  brew trust --cask <user>/<tap>/<cask>
+  brew trust --command <user>/<tap>/<command>
+Whole-tap trust is broader and includes all current and future formulae,
+casks and commands from the listed taps. Trust whole taps with:
+  brew trust auth0/auth0-cli mongodb/brew
+Untap them with:
+  brew untap auth0/auth0-cli mongodb/brew
+For more information, see:
+  https://docs.brew.sh/Tap-Trust
+==> Fetching downloads for: stripe/stripe-cli/stripe
+==> Would upgrade 1 requested outdated package
+stripe/stripe-cli/stripe 1.50.10 -> 1.52.0
+✔︎ Formula stripe (1.52.0)
+==> Upgrading stripe/stripe-cli/stripe
+  1.50.10 -> 1.52.0 
+Warning: A newer Command Line Tools release is available.
+Update them from Software Update in System Settings.
+
+If that doesn't show you any updates, run:
+  sudo rm -rf /Library/Developer/CommandLineTools
+  sudo xcode-select --install
+
+Alternatively, manually download them from:
+  https://developer.apple.com/download/all/.
+You should download the Command Line Tools for Xcode 26.6.
+==> /opt/homebrew/Cellar/stripe/1.52.0/bin/stripe completion --shell bash
+==> /opt/homebrew/Cellar/stripe/1.52.0/bin/stripe completion --shell zsh
+==> /opt/homebrew/Cellar/stripe/1.52.0/bin/stripe completion --shell fish
+
+This is a Tier 2 configuration:
+  https://docs.brew.sh/Support-Tiers#tier-2
+You can report issues with Tier 2 configurations to Homebrew/* repositories!
+  https://docs.brew.sh/Troubleshooting
+Read the above document before opening any issues or PRs.
+🍺  /opt/homebrew/Cellar/stripe/1.52.0: 8 files, 35.4MB, built in 8 seconds
+==> Cleanup
+Removing: /opt/homebrew/Cellar/stripe/1.50.10... (8 files, 40.3MB)
+Removing: /Users/tantalum/Library/Caches/Homebrew/stripe--1.50.10.tar.gz... (12.2MB)
+Disable this behaviour by setting `HOMEBREW_NO_INSTALL_CLEANUP=1`.
+Hide these hints with `HOMEBREW_NO_ENV_HINTS=1` (see `man brew`).
+==> Caveats
+zsh completions and functions have been installed to:
+  /opt/homebrew/share/zsh/site-functions
+==> stripe
+❤ Thanks for installing the Stripe CLI! If this is your first time using the CLI, be sure to run `stripe login` first.
+
+Uninstalling: Homebrew preserves your Stripe CLI plugins and configuration when it
+removes the stripe binary. To remove plugins too, run `stripe plugin uninstall --all`
+before `brew uninstall stripe`, while the stripe binary is still available.
+==> Upgraded 1 requested outdated package
+stripe/stripe-cli/stripe 1.50.10 -> 1.52.0

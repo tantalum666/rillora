@@ -1,0 +1,34 @@
+TAP version 13
+# Subtest: public discovery explains the real product before plan creation
+ok 1 - public discovery explains the real product before plan creation
+  ---
+  duration_ms: 0.949208
+  type: 'test'
+  ...
+# Subtest: public legal routes and registration clickwrap remain visible without false claims
+ok 2 - public legal routes and registration clickwrap remain visible without false claims
+  ---
+  duration_ms: 1.05775
+  type: 'test'
+  ...
+# Subtest: public routing serves only public pages and fixed asset paths
+ok 3 - public routing serves only public pages and fixed asset paths
+  ---
+  duration_ms: 0.834667
+  type: 'test'
+  ...
+# Subtest: public routing rejects writes without an API or account fallback
+ok 4 - public routing rejects writes without an API or account fallback
+  ---
+  duration_ms: 0.072291
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 91.819292

@@ -1,0 +1,22 @@
+{
+  "stackStatus": "UPDATE_COMPLETE",
+  "desired": 1,
+  "running": 1,
+  "pending": 0,
+  "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingApiTaskDefinitionF6347BA4:30",
+  "rollouts": [
+    "COMPLETED"
+  ],
+  "taskReadSource": "Task ID from latest service started event; no extra ListTasks permission",
+  "tasks": [
+    {
+      "taskArn": "arn:aws:ecs:eu-central-1:133857166372:task/RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5/ae7f45a649744d0c9c46d6b069383080",
+      "lastStatus": "RUNNING",
+      "healthStatus": "HEALTHY",
+      "capacityProviderName": "FARGATE",
+      "taskDefinitionArn": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingApiTaskDefinitionF6347BA4:30"
+    }
+  ],
+  "migrationDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingMigrationTaskDefinitionD83F7D18:23",
+  "emailVerificationSecretProvisioned": true
+}

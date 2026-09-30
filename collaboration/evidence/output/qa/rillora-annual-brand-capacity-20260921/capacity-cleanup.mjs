@@ -1,0 +1,4 @@
+import pg from 'pg';import {loadDatabaseConfig} from './dist/config.js';import {databaseConnectionOptions} from './dist/db.js';
+const c=new pg.Client(databaseConnectionOptions(loadDatabaseConfig()));await c.connect();await c.query('begin');
+try{const users=(await c.query('select planner_id from app.identity_accounts where issuer=$1 and subject like $2',['https://synthetic-qa.rillora.invalid/',"capacity-20260921-b8954943"+'-%'])).rows;if(users.length!==100)throw Error('Expected exactly100 disposable users');
+for(const p of users)await c.query('delete from app.planners where id=$1',[p.planner_id]);await c.query('commit');console.log(JSON.stringify({removedSyntheticUsers:100,remaining:0}));}catch(e){await c.query('rollback');console.error('Exact fixture cleanup failed: '+e.message);process.exitCode=1;}finally{await c.end();}

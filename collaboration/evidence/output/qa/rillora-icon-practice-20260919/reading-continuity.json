@@ -1,0 +1,46 @@
+{
+  "scope": "Continuation of the existing Rillora provider-logo workflow; focused recovery after compaction, not a new workflow",
+  "completedAt": "2026-09-18T17:46:32.650185+00:00",
+  "fullReadBaseline": "../rillora-surface-motion-20260917/full-read-completion.json",
+  "baseline": {
+    "files": 78,
+    "lines": 19271,
+    "chunks": 269
+  },
+  "exclusions": [
+    "dependencies",
+    "caches",
+    "build artifacts",
+    "third-party packages",
+    "generated output evidence bundles"
+  ],
+  "readRanges": {
+    "AGENTS.md": [
+      "full body"
+    ],
+    "docs/product.md": [
+      "1-150 recovery; 1-58 and 178-218 supplemented after output truncation; full-read baseline for unchanged remainder"
+    ],
+    "docs/handoff.md": [
+      "1-30 full body"
+    ],
+    "docs/provider-mark-usage.md": [
+      "1-57 full body"
+    ],
+    "docs/decision-log.md": [
+      "header and latest provider-logo decisions; last14 supplemented after output truncation"
+    ],
+    "docs/journey/PROJECT_JOURNEY.md": [
+      "header and latest provider-logo journey entry"
+    ]
+  },
+  "fingerprintsOnlyConfirmChanges": {
+    "AGENTS.md": "321e1bf37563f466aea4eda8e5e2024f0b8f6f05e0e59fda06a174a24db695a3",
+    "docs/product.md": "e38c041f2f4fddd0ef7153c375d8efa63745b65f4b719a2e9a52270eaa3fbf0c",
+    "docs/handoff.md": "35fe04b5e189350c72aaf0ac02f85aeccccb3cd7f05fd299d21c950c2cf6add8",
+    "docs/provider-mark-usage.md": "e651468ff99c8fb3ed1bee19ba1551f9f9fec5eb1ef2144401046fa6816d2eb7",
+    "docs/decision-log.md": "aba5c6750024a885f55de6a22e25aa52e94bd7683d5eb80e790cadd6d8e08eca",
+    "docs/journey/PROJECT_JOURNEY.md": "7f4d568087ced4d0c19fc0559d0ffc58d2bc7009a935e2a5fa8fd7f4a10fa565"
+  },
+  "scopeDecision": "Owner latest request is deeper real-world logo/icon research; prior ordinary-app walkthrough next step superseded for this checkpoint."
+}

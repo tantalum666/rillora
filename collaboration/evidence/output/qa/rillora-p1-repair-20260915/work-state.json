@@ -1,0 +1,37 @@
+{
+  "task": "Repair audit UX01\u201306",
+  "phase": "p1-deployed-and-accepted",
+  "updatedAt": "2026-09-16T11:19:57.797252+08:00",
+  "reading": "Same audit-to-repair workflow; preserve reading-continuity.json, do not full-scan again",
+  "qa": "/Users/tantalum/Documents/\u7535\u5b50\u9057\u5631app/output/qa/rillora-p1-repair-20260915",
+  "tests": {
+    "api": 148,
+    "nativePassed": 138,
+    "nativeFailed": 0,
+    "nativeExistingSkipped": 1,
+    "webApp": 68,
+    "legalArtifact": 7,
+    "auth0Action": 7,
+    "infra": 16
+  },
+  "auth0": {
+    "status": "CLI reauthorized using existing browser session; current hosted resources read and matched; deployment plan prepared",
+    "clientId": "8PNcymHitFBsqlqfsHqvkp3fzQF8KXK7",
+    "secretFile": ".local-secrets/account-deletion/auth0-management.json"
+  },
+  "aws": {
+    "status": "STS verified project operator; existing browser session reused without another personal password/MFA",
+    "profile": "rillora-operator",
+    "account": "133857166372"
+  },
+  "deployment": "Sites4 and hosted proof live; API23 healthy1/1; migration17/checksums0043\u20130047 verified;36 HTTPS/25 legal/eight functional checks and cleanup pass",
+  "nativeRestore": {
+    "status": "Current repaired native Debug build installed and launched with env{} against updated cloud",
+    "appPath": "/tmp/rillora-account-matter-ux-20260911-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app"
+  },
+  "remaining": [
+    "UX07\u201322 task architecture/hierarchy/accessibility",
+    "Fresh real user provider-return, Apple upstream revocation and physical VoiceOver",
+    "Numerical allowances, paid cutoff/cancel/restore and market gates"
+  ]
+}

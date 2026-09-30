@@ -1,0 +1,41 @@
+{
+  "total500": 4,
+  "webhook500": [
+    {
+      "timestamp": 1789607472025,
+      "requestId": "D0anlgukFiAEJag=",
+      "httpMethod": "POST",
+      "path": "/api/commerce/stripe/webhook",
+      "status": "500",
+      "responseLength": "35",
+      "integrationError": "No target endpoints found for integration arn:aws:servicediscovery:eu-central-1:133857166372:service/srv-dgii23l433x7tk2b"
+    },
+    {
+      "timestamp": 1789607473450,
+      "requestId": "D0anzjkHFiAENgw=",
+      "httpMethod": "POST",
+      "path": "/api/commerce/stripe/webhook",
+      "status": "500",
+      "responseLength": "35",
+      "integrationError": "No target endpoints found for integration arn:aws:servicediscovery:eu-central-1:133857166372:service/srv-dgii23l433x7tk2b"
+    },
+    {
+      "timestamp": 1789607473452,
+      "requestId": "D0anzidKliAEPMg=",
+      "httpMethod": "POST",
+      "path": "/api/commerce/stripe/webhook",
+      "status": "500",
+      "responseLength": "35",
+      "integrationError": "No target endpoints found for integration arn:aws:servicediscovery:eu-central-1:133857166372:service/srv-dgii23l433x7tk2b"
+    },
+    {
+      "timestamp": 1789607473658,
+      "requestId": "D0an1g2mFiAEMxg=",
+      "httpMethod": "POST",
+      "path": "/api/commerce/stripe/webhook",
+      "status": "500",
+      "responseLength": "35",
+      "integrationError": "No target endpoints found for integration arn:aws:servicediscovery:eu-central-1:133857166372:service/srv-dgii23l433x7tk2b"
+    }
+  ]
+}

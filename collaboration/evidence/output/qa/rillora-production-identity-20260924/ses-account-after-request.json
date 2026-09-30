@@ -1,0 +1,32 @@
+{
+  "DedicatedIpAutoWarmupEnabled": true,
+  "EnforcementStatus": "HEALTHY",
+  "ProductionAccessEnabled": false,
+  "SendQuota": {
+    "Max24HourSend": 200.0,
+    "MaxSendRate": 1.0,
+    "SentLast24Hours": 0.0
+  },
+  "SendingEnabled": true,
+  "SuppressionAttributes": {
+    "SuppressedReasons": [
+      "BOUNCE",
+      "COMPLAINT"
+    ]
+  },
+  "Details": {
+    "MailType": "TRANSACTIONAL",
+    "WebsiteURL": "https://www.rillora.xyz/",
+    "ContactLanguage": "EN",
+    "UseCaseDescription": "Rillora is a pre-launch digital legacy organiser. Customer accounts and subscriptions remain closed while we complete release checks. We request SES production access in eu-central-1 for user-initiated account verification, password reset and essential account-security messages, sent through our existing Auth0 identity provider after production configuration. We do not send marketing, purchased-list mail, cold outreach, private map contents or attachments. Recipients will be people who explicitly start signup, verification or recovery. The initial planning assumption is fewer than 100 active users and fewer than 20 transactional messages per day, not an existing customer count. notify.rillora.xyz has successful 2048-bit Easy DKIM and verified custom MAIL FROM bounce.notify.rillora.xyz, with DMARC and required delivery TLS. SES automatic BOUNCE/COMPLAINT suppression is configured. Aggregate send/delivery/bounce/complaint events publish to CloudWatch with active alerts. Three Amazon mailbox-simulator checks returned the expected Send3/Delivery2/Bounce1/Complaint1 counters and alarm actions. No external-user delivery is claimed yet. The public homepage links to product guidance, privacy/terms and the monitored support mailbox; https://www.rillora.xyz/support .",
+    "AdditionalContactEmailAddresses": [
+      "support@rillora.xyz"
+    ],
+    "ReviewDetails": {
+      "Status": "PENDING"
+    }
+  },
+  "PricingAttributes": {
+    "CurrentPlan": "ESSENTIALS"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "fixture": "_rillora-cname-check-9cfb5b43fc",
+  "operations": [
+    {
+      "operation": "add",
+      "result": {
+        "domain": "rillora.xyz",
+        "applied": true,
+        "result": {
+          "created": 1,
+          "domain": "rillora.xyz",
+          "failed": 0,
+          "name": "_rillora-cname-check-9cfb5b43fc",
+          "type": "CNAME"
+        },
+        "unrelatedRecordsUnchanged": true,
+        "snapshot": "/Users/tantalum/Documents/\u7535\u5b50\u9057\u5631app/.local/dns-backups/20260924T032905Z-edca3d24.json"
+      }
+    },
+    {
+      "operation": "set",
+      "result": {
+        "domain": "rillora.xyz",
+        "applied": true,
+        "result": {
+          "strategy": "single-cname-replacement",
+          "replaced": 1
+        },
+        "unrelatedRecordsUnchanged": true,
+        "snapshot": "/Users/tantalum/Documents/\u7535\u5b50\u9057\u5631app/.local/dns-backups/20260924T032912Z-a52e4fd8.json"
+      }
+    },
+    {
+      "finalReadback": {
+        "domain": "rillora.xyz",
+        "records": [
+          {
+            "data": "legal.rillora.xyz.",
+            "name": "_rillora-cname-check-9cfb5b43fc",
+            "recordId": "7a867a80-3c97-42e2-9e39-dd9eac6e53f1",
+            "ttl": 600,
+            "type": "CNAME"
+          }
+        ]
+      }
+    },
+    {
+      "cleanupExit": 0
+    }
+  ],
+  "restoredOriginalZone": true,
+  "passed": true
+}

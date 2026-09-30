@@ -1,0 +1,682 @@
+--- before/docs/decision-log.md
++++ after/docs/decision-log.md
+@@ -5,7 +5,7 @@
+ Superseded by: later entries in this file  
+ Do not use for: treating casual feedback as global approval  
+ Status: ACTIVE  
+-Last updated: 2026-09-10 (staged AI-first economics and SBP clarification; runtime checkpoints keep their dates)  
++Last updated: 2026-09-11 (49–88 price band and low-maintenance launch goal; runtime checkpoints keep their dates)  
+ 
+ 新条目使用以下模板：
+ 
+@@ -2074,3 +2074,39 @@
+   Next bounded cost-validation item is measurable AI self-service and exception
+   handling, with real resolution/token/labor instrumentation. Full commerce and
+   production/merchant/identity evidence remain prerequisites for sale.
++
++## 2026-09-10 — Price49–88 for a small, low-maintenance business
++
++- Owner asks to test49–88 annual pricing, targets80–90% gross margin and clarifies
++  quick launch, personal low-maintenance income or future acquisition as the goal.
++  This is an operating-priority change, not permission to present forecasts as facts.
++- Hold existing stage delivery costs, Free population and support workload constant
++  for the price comparison. No optimistic channel mix or unpaid-labor deletion is
++  smuggled into a higher-price row. Gross margin retains direct support/operations.
++- Agent recommends79/year as the main test candidate and88 as the upper comparison,
++  paired with proposed8.99/month.49/59/69 are lower cells, not extra public plans.
++  These supersede49/6.99 as the main prospective proposal, but no price is verified,
++  approved by market demand or written into a live catalog. Old99 test amounts stay.
++- Base70% Web/30% Apple at standard first-year30%:1,000-household GM79.95% at79 and
++  80.61% at88. Approved15% sensitivity gives84.59%/85.25%. At100 households even88
++  only gives74.96%/79.59%, so the stated price band cannot guarantee80% from day1.
++- The base mixed-channel theoretical ceiling is86.38% before any cloud/support;
++  price alone cannot reach90%. Approved15% lifts the channel ceiling to91.02%, but
++  88/year still has finite service costs.80–85% is the practical initial target;
++  90% remains a conditional efficiency/distribution goal, not a base forecast.
++- After scope freeze, explicitly budget maintenance/growth/admin hours separately
++  from active development. At79 and100 payers, modeled cash before owner pay431.09
++  minus128 recurring replacement labor leaves303.09/month before tax and one-offs,
++  at4.83 hours/month.1,000 payers still need17.83 hours. These are not actual profit,
++  paid contractor quotes, SDE, passive-income proof or acquisition valuation.
++- A roughly10.6% relative payer loss could offset79→88 contribution gains under
++  otherwise fixed workload. Do not assume identical paid counts after a price rise.
++- Quick-launch scope now excludes building a full custom AI support platform first.
++  Use short help, self-service recovery, existing support mail and AI-assisted
++  responses initially. Measure real work. Return engineering to the minimum sellable
++  sharing/expiry/price lifecycle, with existing production/merchant/identity gates.
++- Three-sheet price model passed202 numeric/inverse/fee/scope/zero-labor/save checks
++  against independent Python calculations; no formula errors. Rendered all sheets.
++  No native Excel/WPS validation, runtime change, provider price change or outreach.
++- [Current price/scope contract](pricing-band-20260910.md),
++  [QA and workbook](../output/qa/rillora-price-band-20260910/README.md).
+--- before/docs/family-maintenance.md
++++ after/docs/family-maintenance.md
+@@ -3,8 +3,9 @@
+ Status: IMPLEMENTED ON API / WEB / IOS; SYNTHETIC STAGING PREVIEW DEPLOYED — 2026-09-10  
+ Authority: implemented under the earlier Owner request for Family value. The later
+ same-day correction rejects this slice as sufficient US$99 value. It remains a
+-supporting capability in the prospective US$49/year self-service offer, not
+-premium-price validation. [Current economics](unit-economics.md).
++supporting capability in the proposed79/88 self-service price band, not
++premium-price validation. Scope does not expand merely because the candidate
++price rises. [Current band](pricing-band-20260910.md).
+ 
+ ## Paid job
+ 
+--- before/docs/free-paid-ui-audit.md
++++ after/docs/free-paid-ui-audit.md
+@@ -5,11 +5,12 @@
+ Superseded by: a later approved commercial UI audit  
+ Do not use for: entitlement authorization, payment implementation, legal pricing disclosure or market validation  
+ Status: SHARED-REVIEW PREVIEW IMPLEMENTED AND VISUALLY CHECKED; HISTORICAL AUDITS RETAINED; PUBLIC BILLING AND QUOTA ENFORCEMENT CLOSED  
+-Last updated: 2026-09-10
++Last updated: 2026-09-11
+ 
+ ## Current commercial surface and implementation gap — 2026-09-10
+ 
+-Latest economics reset selects prospective US$49/year or US$6.99/month. Review is
++Latest price-band work recommends79/year with8.99/month as main-test candidates
++and88/year as an upper comparison. These are not live or validated. Review is
+ a supporting capability. Existing 99/9.99 test previews are historical, not the
+ current proposal; no catalog migration or UI deployment occurred in this reset.
+ Both clients need distinct prospective price versions and truthful contributor
+--- before/docs/global-mainland-commerce-plan.md
++++ after/docs/global-mainland-commerce-plan.md
+@@ -5,11 +5,11 @@
+ Superseded by: 适用法律、平台／支付／云服务商正式审核结果、签署合同、真实税务居民事实，或 `docs/decision-log.md` 中更新的 Owner 决定  
+ Do not use for: 个案法律／税务意见、服务商报价、许可证必然获批证明、真实付款授权或公开发布授权  
+ Status: 中文执行版完成；架构与顺序已定；Global角色邮箱组织／个人两步验证、内部闭环、三条Gmail外部往返及监控目标已完成有限证据门；长期SLA表现、价格、主体、合同、采购、备案和首次真实收费仍是 Owner 资金／法律门  
+-Last reviewed: 2026-09-10 (current-decision alignment only; dated legal, fee and financial research is not a fresh revalidation)
++Last reviewed: 2026-09-11 (current-decision alignment only; dated legal, fee and financial research is not a fresh revalidation)
+ 
+ ## 当前价格覆盖 — 2026-09-10
+ 
+-主路线改为US$49/年、US$6.99/月的自助Family验证价。下文99与¥698渠道算例均为历史研究，非当前报价。[新版经济合同](unit-economics.md)加入美元出款、Free／留存人群和劳动成本。旧逐项确认字样服从AGENTS最新默认授权；真实本人交互、实际商户与生产证据仍独立。
++当前主测报价建议为US$79/年配US$8.99/月，88/年作上限比较；49/59/69仍为较低敏感性，未实际改价。[区间与低维护合同](pricing-band-20260910.md)为最新方向。下文99与¥698渠道算例均为历史研究，非当前报价。[新版经济合同](unit-economics.md)加入美元出款、Free／留存人群和劳动成本。旧逐项确认字样服从AGENTS最新默认授权；真实本人交互、实际商户与生产证据仍独立。
+ 
+ ## 一句话决定
+ 
+@@ -116,12 +116,12 @@
+ 
+ 当前收费发布的**推荐建模基准**改为：
+ 
+-- Global：当前前瞻验证价`US$6.99/月`或`US$49/年`；年付比12个月月付低41.6%。
++- Global：当前主测建议`US$8.99/月`或`US$79/年`；79年付比12个月月付低26.8%。88为年价上限比较，不增加付费层。
+ - 中国大陆：旧`¥68/月`／`¥698/年`只保留为历史假设；当地成本、需求和价格点单独重算，不自动沿用USD。
+ - 永久 Free 保留；首发没有自动转付费试用。
+ - 现行直接Web退款候选遵循强制法律或书面例外；早期首购30天保证已被2026-08-27决定取代，只保留为关闭的未来实验。App Store退款按Apple流程。
+ 
+-最新选择是先以较小自助产品验证49／6.99，依据实际可交付范围、较近竞品与成本预算。更高毛利不能证明用户愿付99；较低价格也不自动证明可规模经营。现有支付商品和地区开关未改。
++最新选择是先在79主测／88上限下验证较小自助产品，目标80–90%毛利，当前可实现窗口约80–85%，不默认90%。Owner优先尽快上线和低维护；价格、使用量、渠道与AI结果均需实证。没有改动现有支付商品或地区开关。
+ 
+ 历史扩张目标（非当前结果）：
+ 
+@@ -165,7 +165,7 @@
+ 
+ | 周期 | 操作 | 交付物 | 硬门 |
+ | --- | --- | --- | --- |
+-| 第 0–1 周 | 冻结首发地区、运营者、Free／Family权益与当前49／6.99验证价 | 市场登记行、数据流、功能／不功能清单 | Owner 仅确认涉及钱和法律的最终选择 |
++| 第 0–1 周 | 冻结首发地区、运营者、Free／Family权益与当前79／8.99主测及88年价比较 | 市场登记行、数据流、功能／不功能清单 | Owner 仅确认涉及钱和法律的最终选择 |
+ | 第 1–3 周 | 香港入境／经营资格、商业登记时点、PRC税务居民和境外收入审阅 | 一份 HK/PRC operator-tax memo | 不得用身份证替代税务结论 |
+ | 第 1–4 周 | 完成生产数据图、subprocessor清单、保留／删除／备份／legal hold | Data map、ROPA/PIPIA 类记录、DPA清单 | 与真实代码／云配置一致 |
+ | 第 2–5 周 | 美国市场的 Privacy、Terms、自动续费、取消、退款、免责声明和未成年人规则审阅 | 可发布法律页＋版本号＋同意记录 | 不宣称全球遗嘱效力或自动判定死亡 |
+@@ -350,7 +350,7 @@
+ ### 轨道 A：未来 14 周完成 Global 收费发布
+ 
+ 1. 完成 provider-neutral catalog／price／subscription／finance ledger；
+-2. 为US$49年付／6.99月付准备新的disabled price version；保留旧测试映射与历史账单，再完成两端实际报价验证；
++2. 为79年付／8.99月付主测及明确需要的88年价队列准备新disabled price version；保留旧测试映射与历史账单，完成两端实际报价验证；
+ 3. Owner已确认个人运营意图；当前Agent只完成条款、隐私、订阅、退款、责任和最小披露合同，签证／经营许可／商业登记资格由Owner、主管机关或合资格顾问在外部单独处理；
+ 4. 已建立`support@rillora.xyz`单一Zoho邮箱及`privacy@`／`security@`别名；组织／个人两步验证、内部闭环、三条Gmail独立往返和内部监控目标均已完成其有限证据门；长期SLA表现仍未证明；
+ 5. 完成 Global 生产数据平面、安全审计和法律页；
+--- before/docs/handoff-history-20260910.md
++++ after/docs/handoff-history-20260910.md
+@@ -1732,3 +1732,83 @@
+ physical-device, production-data, operational readiness and live billing remain
+ separate; blanket authorization is not evidence that those steps succeeded.
+ 
++
++
++## HISTORICAL — staged-economics handoff before49–88 price-band and small-business goal
++
++Superseded by the Owner target for fast launch, low maintenance and potential acquisition.
++
++# Rillora Current Handoff
++
++Role: compact current-task and execution handoff  
++Status: STAGED AI-FIRST ECONOMICS COMPLETE; SOFTWARE GM TARGET75–85%; SALES CLOSED  
++Last updated: 2026-09-10 (Asia/Hong_Kong)
++
++## Current Owner task and result
++
++Owner rejects mature fixed costs, flat human-support allocation and the2,350-
++household framing; asks sector margins and stage/user counts with AI-first work.
++Later asks whether1,000 households lose Apple's15% rate. Both are addressed in
++[current economics](unit-economics.md) and the
++[editable stage workbook](../output/finance/rillora-staged-economics-20260910/Rillora_Staged_Economics.xlsx).
++
++Rillora is consumer SaaS for family continuity, not a staffed legal/estate service.
++Target75–85% gross margin at repeatable scale and near80% marginal contribution.
++49/year and6.99/month remain prospective/unvalidated; this turn does not reprice.
++The stage table uses annual households, not monthly buyers inflated to12 payments.
++
++## What completed
++
++- Verified original SaaS benchmark medians, listed-sector margins and company
++  examples with distinct populations/periods. No generic internet average adopted.
++- Rebuilt0/10/30/100/300/1,000-stage costs, AI conversation/token/escalation labor,
++  cash spending, complete direct gross margin, owner labor and optional cash draw.
++  Missing real acquired-user count yields no CAC, rather than fabricated zero.
++- Public Frankfurt rates plus budgets yield43.55/month small-production reference;
++ 45/75/120 stage budgets, plus existing40/month synthetic staging. No actual bill
++  or resource change. A real-data alpha still adds production even before revenue.
++- Base100: monthly cash221.63 before owner pay/one-offs/tax, direct loaded GM65.9%.
++  Base1,000: cash3,120.51, GM76.0%; true approved15% Apple sensitivity80.7%. Around30
++  annual payers cover only recurring small-cohort cash spending. These depend on
++  unproven90% AI independent resolution; low-automation case is explicitly worse.
++- Apple SBP is based on approval and combined annual App Store proceeds across all
++  apps/associated accounts, not users.1,000×49=49,000 gross sales. Actual approval
++  and other-app proceeds unknown; base remains first-year30%,15% conditional.
++- Four-sheet workbook recalculation, independent Python comparisons and save/read
++  checks:177 conditions passed, zero formula errors. Every sheet visually reviewed.
++  Native Excel/WPS recalculation not performed. Documents/history synchronized.
++  [QA](../output/qa/rillora-staged-economics-20260910/README.md).
++
++## Evidence and runtime boundary
++
++No deployed AI support, cloud resize, provider catalog, price UI, new payment,
++message, recruitment or private customer data. Old99/9.99 test records stay exact
++and do not establish current commercial prices.90% AI resolution is not measured;
++AI reply/closure is not proof of solving a request. No real revenue or profit.
++
++Earlier shared review remains synthetic-staging preview, API task19, migrations
++through0039, Web https://app.staging.rillora.xyz. Dev auth off, Stripe test on,
++Apple Sandbox off, ordinary sales closed. Prior tests/deployment in
++[family-maintenance.md](family-maintenance.md) were not rerun for financial work.
++Normal Simulator remains cloud Debug without QA actor/AX5; prior local QAAPI4210,
++Web4211/4212/4213 are not real-user accounts.
++
++## Next step — one bounded work item
++
++Implement a measurable minimal self-service/AI-support and exception workflow for
++0–100 households: approved product knowledge, explicit unresolved/reopened states,
++restricted task routing, token/use counters and human-handling time. Validate
++cost assumptions without treating simulated resolution as real customer success.
++Do not hire, buy advertising or build the entire99 extension first. Accurate
++commercial sharing quotas/cutoff, new prospective prices and real production/
++merchant/receiving-identity evidence remain required before sale.
++
++## Recovery
++
++Continues the original55-file/16,011-line full Markdown read. After compaction:
++AGENTS -> product -> this handoff -> latest decision -> unit-economics,
++infrastructure-roadmap, monetization and files to change. Preserve this workflow's
++[focused recovery](../output/qa/rillora-staged-economics-20260910/recovery.json),
++not a fresh full scan or repeated Auth0/AWS login. Old handoffs and flat-cost
++outputs are [HISTORICAL](handoff-history-20260910.md), not competing next steps.
++
+--- before/docs/handoff.md
++++ after/docs/handoff.md
+@@ -1,74 +1,76 @@
+ # Rillora Current Handoff
+ 
+-Role: compact current-task and execution handoff  
+-Status: STAGED AI-FIRST ECONOMICS COMPLETE; SOFTWARE GM TARGET75–85%; SALES CLOSED  
+-Last updated: 2026-09-10 (Asia/Hong_Kong)
++Role: compact current execution handoff  
++Status:49–88 PRICE BAND AND LOW-MAINTENANCE LAUNCH DIRECTION COMPLETE; SALES CLOSED  
++Last updated:2026-09-11 (Asia/Hong_Kong)
+ 
+-## Current Owner task and result
++## Latest Owner objective and current recommendation
+ 
+-Owner rejects mature fixed costs, flat human-support allocation and the2,350-
+-household framing; asks sector margins and stage/user counts with AI-first work.
+-Later asks whether1,000 households lose Apple's15% rate. Both are addressed in
+-[current economics](unit-economics.md) and the
+-[editable stage workbook](../output/finance/rillora-staged-economics-20260910/Rillora_Staged_Economics.xlsx).
++Owner wants a small project launched quickly for low-maintenance personal income
++or a future acquisition, and asks for49–88 annual pricing with80–90% gross margin.
++Agent recommends79/year as the main test candidate,88/year as upper comparison,
++paired with proposed8.99/month.49/59/69 are lower comparison cells, not new tiers.
++No price is validated or live. This supersedes49/6.99 as the main prospective
++proposal while retaining all historical test prices and receipts.
+ 
+-Rillora is consumer SaaS for family continuity, not a staffed legal/estate service.
+-Target75–85% gross margin at repeatable scale and near80% marginal contribution.
+-49/year and6.99/month remain prospective/unvalidated; this turn does not reprice.
+-The stage table uses annual households, not monthly buyers inflated to12 payments.
++[Current price and scope contract](pricing-band-20260910.md).
++[Editable band workbook](../output/finance/rillora-price-band-20260910/Rillora_Price_Band_49_88.xlsx).
++[Underlying stage costs](unit-economics.md).
+ 
+-## What completed
++## Completed in this follow-up
+ 
+-- Verified original SaaS benchmark medians, listed-sector margins and company
+-  examples with distinct populations/periods. No generic internet average adopted.
+-- Rebuilt0/10/30/100/300/1,000-stage costs, AI conversation/token/escalation labor,
+-  cash spending, complete direct gross margin, owner labor and optional cash draw.
+-  Missing real acquired-user count yields no CAC, rather than fabricated zero.
+-- Public Frankfurt rates plus budgets yield43.55/month small-production reference;
+- 45/75/120 stage budgets, plus existing40/month synthetic staging. No actual bill
+-  or resource change. A real-data alpha still adds production even before revenue.
+-- Base100: monthly cash221.63 before owner pay/one-offs/tax, direct loaded GM65.9%.
+-  Base1,000: cash3,120.51, GM76.0%; true approved15% Apple sensitivity80.7%. Around30
+-  annual payers cover only recurring small-cohort cash spending. These depend on
+-  unproven90% AI independent resolution; low-automation case is explicitly worse.
+-- Apple SBP is based on approval and combined annual App Store proceeds across all
+-  apps/associated accounts, not users.1,000×49=49,000 gross sales. Actual approval
+-  and other-app proceeds unknown; base remains first-year30%,15% conditional.
+-- Four-sheet workbook recalculation, independent Python comparisons and save/read
+-  checks:177 conditions passed, zero formula errors. Every sheet visually reviewed.
+-  Native Excel/WPS recalculation not performed. Documents/history synchronized.
+-  [QA](../output/qa/rillora-staged-economics-20260910/README.md).
++- Held Free/receiver use, support assumptions and production costs constant across
++  five prices and100/300/1,000 annual households. Baseline70% Web/30% Apple remains;
++  standard first-year30% is base, genuinely approved15% is only conditional.
++- At1,000:79 gives79.95% GM;88 gives80.61%. Approved15% gives84.59%/85.25%. At100,
++  even88 gives74.96%/79.59%. Target80% cannot be guaranteed throughout the band.
++- Current mixed fees cap theoretical GM at86.38% before cloud/support;90% cannot
++  come from price alone. Approved15% lifts the ceiling to91.02%, with actual finite
++  service cost still reducing88/1,000 to85.25%. Do not interpret inverse prices of
++  hundreds of dollars as recommendations to charge them.
++- Stabilized79/100-household scenario:431.09/month cash before owner pay;128 of
++  recurring replacement labor leaves303.09 before tax/one-offs,4.83 hours/month.
++  At1,000 the work remains17.83 hours. This is a post-freeze budget, not actual
++  profit, SDE, subcontractor quotes, passive-income proof or acquisition value.
++- Price rise79→88 can lose its contribution advantage with about10.6% fewer payers
++  under fixed other conditions. Demand, renewal and actual cost remain unmeasured.
++-3-sheet model passed202 numerical/inverse/fee/scope/zero-work/save comparisons
++  against independent Python, zero formula-error matches; all sheets rendered and
++  reviewed. Native Excel/WPS recalculation not performed. [QA](../output/qa/rillora-price-band-20260910/README.md).
+ 
+-## Evidence and runtime boundary
++## Scope correction for a small launch
+ 
+-No deployed AI support, cloud resize, provider catalog, price UI, new payment,
+-message, recruitment or private customer data. Old99/9.99 test records stay exact
+-and do not establish current commercial prices.90% AI resolution is not measured;
+-AI reply/closure is not proof of solving a request. No real revenue or profit.
++Freeze feature expansion. Existing map, invitations, scoped sharing, revocation,
++exports and bounded reviews remain. Do not add legal documents, concierge, bank
++integrations, more complex triggers or a new AI platform to justify79/88.
+ 
+-Earlier shared review remains synthetic-staging preview, API task19, migrations
+-through0039, Web https://app.staging.rillora.xyz. Dev auth off, Stripe test on,
+-Apple Sandbox off, ordinary sales closed. Prior tests/deployment in
+-[family-maintenance.md](family-maintenance.md) were not rerun for financial work.
+-Normal Simulator remains cloud Debug without QA actor/AX5; prior local QAAPI4210,
+-Web4211/4212/4213 are not real-user accounts.
++A full custom AI-support system is no longer a launch prerequisite. Start with
++short help, self-service error recovery, existing support mail and AI-assisted
++responses; keep minimal real time/issue records. Add automation only when actual
++volume and labor justify it.90% automatic resolution is still not demonstrated.
+ 
+ ## Next step — one bounded work item
+ 
+-Implement a measurable minimal self-service/AI-support and exception workflow for
+-0–100 households: approved product knowledge, explicit unresolved/reopened states,
+-restricted task routing, token/use counters and human-handling time. Validate
+-cost assumptions without treating simulated resolution as real customer success.
+-Do not hire, buy advertising or build the entire99 extension first. Accurate
+-commercial sharing quotas/cutoff, new prospective prices and real production/
+-merchant/receiving-identity evidence remain required before sale.
++Complete the minimum sellable Free/Family commercial lifecycle: accurate
++per-recipient paid-cutoff snapshots, one Free live recipient, atomic allowances/
++replacement, cancellation/restore state and distinct prospective79/8.99 price
++records. Preserve privacy narrowing/revoke, own-data edit/export and old test
++receipt bindings. Verify Web/iOS together and keep ordinary billing closed until
++real production, merchant and receiving-identity evidence is ready. Do not resume
++AI-support-platform construction as a separate prerequisite.
+ 
+-## Recovery
++## Evidence boundary and recovery
+ 
+-Continues the original55-file/16,011-line full Markdown read. After compaction:
+-AGENTS -> product -> this handoff -> latest decision -> unit-economics,
+-infrastructure-roadmap, monetization and files to change. Preserve this workflow's
+-[focused recovery](../output/qa/rillora-staged-economics-20260910/recovery.json),
+-not a fresh full scan or repeated Auth0/AWS login. Old handoffs and flat-cost
+-outputs are [HISTORICAL](handoff-history-20260910.md), not competing next steps.
++No runtime, cloud resource, AI integration, provider price, real charge, message,
++recruitment or private user data changed in this turn. Earlier shared-review
++preview remains synthetic staging with API task19/migrations0039, dev auth off,
++Stripe test on, Apple Sandbox off and ordinary sales closed. Normal Simulator is
++cloud Debug with no synthetic actor/AX5 override. Prior test/deployment evidence
++in[family-maintenance.md](family-maintenance.md) was not rerun for financial work.
+ 
++Continues the original55-file/16,011-line full read. After compaction use AGENTS,
++product, this handoff, latest decision, pricing-band/monetization and changed
++source; preserve[focused recovery](../output/qa/rillora-price-band-20260910/recovery.json).
++Do not repeat the full scan, old tests/deployments or completed identity ceremonies.
++Prior handoffs are[HISTORICAL](handoff-history-20260910.md), not other next steps.
++
+--- before/docs/journey/PROJECT_JOURNEY.md
++++ after/docs/journey/PROJECT_JOURNEY.md
+@@ -1,6 +1,6 @@
+ # Digital Legacy Ongoing Project Journey
+ 
+-Last updated: 2026-09-10 (staged AI-first economics and SBP clarification; runtime checkpoints keep their dates)  
++Last updated: 2026-09-11 (49–88 price band and low-maintenance launch goal; runtime checkpoints keep their dates)  
+ 
+ ## 记录范围
+ 
+@@ -2096,3 +2096,37 @@
+ resource, AI integration, runtime code or payment changed. Next measure a bounded
+ self-service/exception workflow; actual production/identity/commerce gates still
+ need their own evidence before real data and sales.
++
++## 2026-09-10 — Test49–88 without turning the side project into a larger service
++
++**Goal.** Owner wants80–90% gross margin within49–88, quick launch, low-maintenance
++personal income or an eventual acquisition. Financial quality should match that
++business goal rather than a venture-scale or staffed-service budget.
++
++**Attempt.** Continued the same fully read commercial workflow with current/focused
++authority recovery. Held stage costs and support assumptions fixed across five
++annual prices and two Apple fee conditions. Calculated exact target-margin prices,
++piecewise payout minimums, fee ceilings and recurring replacement work after a
++stabilized release. Reviewed a primary acquisition-marketplace discussion for
++profit/transferability context without building a valuation or contacting buyers.
++
++**Judgment change.**80–90 is an ambition with conditions, not a number that a price
++label can guarantee. At the original mix, fees cap theoretical GM below90 even at
++infinite price. Increasing79 to88 adds only about0.7 percentage point at1,000 users,
++and demand loss can offset it. Removing active feature-development work changes
++steady-state operating surplus, not gross margin; that timing distinction must
++stay visible. A full custom AI-support platform would add work before demand.
++
++**Result.** Recommended79/8.99 main-test pairing and88 annual upper comparison,
++without creating tiers or modifying actual prices. Fixed-cost model at1,000 gives
++79.95%/80.61% GM under Apple30%, or84.59%/85.25% if approved15%. Stabilized79/100
++household scenario has303.09/month after recurring replacement labor at4.83 owner
++hours, while1,000 still needs17.83 hours. The3-sheet workbook and202 checks are in
++[price-band QA](../../output/qa/rillora-price-band-20260910/README.md). Updated product,
++MVP, commerce and handoff, preserving earlier stage and pricing snapshots.
++
++**Unfinished.** Willingness to pay, real support/AI resolution, actual invoices,
++renewal and acquisition demand remain unknown. No price publication, runtime
++feature, resource change or real communication occurred. Next close the minimum
++sellable commercial lifecycle; begin support with existing tools and simple records
++rather than treating a new AI platform as a launch prerequisite.
+--- before/docs/monetization.md
++++ after/docs/monetization.md
+@@ -5,13 +5,13 @@
+ Superseded by: later Owner decision recorded in `docs/decision-log.md`  
+ Do not use for: proof of willingness to pay, legal/tax advice, current implementation, App Store approval or payment-provider selection  
+ Status: FREE / SINGLE FAMILY STRUCTURE LOCKED; 1 / 5 OUTGOING ALLOWANCE CLARIFIED AS LAUNCH DESIGN; QUOTA ENFORCEMENT AND ORDINARY PAID ACCESS NOT ACTIVE; PRICES PROVISIONAL; STRIPE TEST STAGING DEPLOYED, APPLE IAP DEPLOYMENT / PURCHASE / LIVE COMMERCE OPEN  
+-Last reviewed: 2026-09-10 (packaging, implementation audit and continuity; provider/legal checkpoints retain their own dates)
++Last reviewed: 2026-09-11 (packaging, implementation audit and continuity; provider/legal checkpoints retain their own dates)
+ 
+ ## Executive Summary
+ 
+ Rillora should charge for ongoing coordination work that it performs, not for information that users can already configure for free through Apple, Google or another provider, and not for baseline security, export or recipient access.
+ 
+-The launch catalog remains permanent `Free` plus one `Rillora Family` entitlement with two billing periods. The current prospective validation price is **US$6.99/month or US$49/year**, after the Owner rejected shared reviews as sufficient US$99 value. Annual is US$4.08/month equivalent and 41.6% below twelve monthly payments. This is a reversible Agent-selected hypothesis under the current repricing instruction, not validated willingness to pay. US$39/59 are comparisons, US$89 is historical, and US$99 is a conditional expanded-product scenario. No second paid tier, founder promotion or introductory-price expiry is active. See [rebuilt economics](unit-economics.md).
++The launch catalog remains permanent `Free` plus one `Rillora Family` entitlement with two periods. The Owner now targets a fast-launch, low-maintenance personal business or potential acquisition and asks for US$49–88 annual pricing with80–90% gross margin. The Agent recommends **US$79/year as the main price-test candidate and US$88/year as the upper comparison**, paired with a proposed **US$8.99/month**. US$49/59/69 are lower comparison cells, not additional public tiers. The former49/6.99 is a historical candidate; none is validated or live.79 saves26.8% versus twelve8.99 payments;88 saves18.4%. [Current band and scope contract](pricing-band-20260910.md).
+ 
+ The product and data model must nevertheless support future `Personal`, `Family`, human-service add-ons and a separate professional catalog. Entitlements must be capability-based and versioned; no client or API may reduce the model to `isPremium`.
+ 
+@@ -29,11 +29,13 @@
+ 
+ Later September10 correction: operate as a bootstrapped consumer SaaS with staged
+ cash spending and AI-first self-service, not a mature staffing budget from day1.
+-The current sector target is75–85% gross margin at repeatable scale; initial
++The earlier stage target was75–85%; the Owner now requests80–90%, with80–85%
++as the current practical target and90% a conditional optimization goal. Initial
+ fixed-cost dilution and owner cash draw are separate. Base1,000 annual households
+ now model76.0% gross margin, or80.7% only under a genuinely approved15% Apple rate.
+ The90% AI resolution assumption still needs validation. The earlier2,350-household
+-full-time case is historical, not a launch threshold. Price itself is unchanged.
++full-time case is historical, not a launch threshold. These49-price results are
++the prior stage reference; the later79/88 comparison now guides the next test.
+ Use [current stage economics](unit-economics.md), not the earlier flat-cost outputs.
+ 
+ The two reports answered different layers of the same decision:
+@@ -50,7 +52,7 @@
+ 
+ The current prices below were checked on official public pages or an official product API on 2026-08-13. They are snapshots and can change. Competitor packaging proves that price points exist, not that Rillora users will pay them or that the competitors have healthy retention.
+ 
+-Rillora has no external payment, subscription, retention, refund, trial-conversion or support-cost data. Owner has paused external testing. Therefore:
++Rillora has no external payment, subscription, retention, refund, trial-conversion or support-cost data. The current task is price/scope analysis, with no external testing in this turn; execution follows the latest quick-launch objective and AGENTS authorization. Therefore:
+ 
+ - the free/paid trust principles and forward-compatible catalog shape are product decisions;
+ - exact prices, limits, trial timing and price-localization rules remain `PROVISIONAL`;
+@@ -72,7 +74,7 @@
+ 
+ ## 2026-09-10 Packaging Resolution — Current
+ 
+-**Latest correction:** shared review is a supporting capability, not sufficient US$99 core value. The main route is a smaller self-service offer at US$49/year or US$6.99/month for controlled validation. Do not expand review dashboards or contacts merely to defend99. The assisted-capture, substantive-change and action-workspace extension is unbuilt, conditional and separately costed in [unit-economics.md](unit-economics.md).
++**Latest correction:** shared review is a supporting capability, not sufficient US$99 core value. The latest smaller self-service offer uses79/year with8.99/month as a main test candidate and88/year as an upper comparison;49 remains a lower reference. The price-band contract is authoritative for this later same-day decision. Do not expand review dashboards or contacts merely to defend99. The assisted-capture, substantive-change and action-workspace extension is unbuilt, conditional and separately costed in [unit-economics.md](unit-economics.md).
+ 
+ **Implementation checkpoint after Owner's “直接规划并落实”:** the
+ [shared-maintenance slice](family-maintenance.md) is now implemented and deployed
+@@ -149,7 +151,7 @@
+ 
+ On 2026-09-10, [Everplans' own FAQ](https://www.everplans.com/faq) lists a three-item Free allowance and US$99.99/year Premium. [Trustworthy's pricing](https://www.trustworthy.com/pricing) lists Free with one family member and Silver at US$10/month billed annually with five; its all-plan baseline includes security/privacy and download. These are external packaging examples, not equivalent entitlement units, independent security validation or evidence that Rillora customers will pay. Rillora deliberately preserves the complete lightweight text map. [Apple 3.1.2](https://developer.apple.com/app-store/review/guidelines/#subscriptions) also requires ongoing subscription value and a clear description of what the price buys; it does not pre-approve Rillora.
+ 
+-Use the prospective US$6.99/month or US$49/year hypothesis and show the complete annual charge, with an optional US$4.08 monthly equivalent. Old US$99 test objects are historical; they do not define the current offer. Do not add an extra tier, lifetime promise, automatic trial, fabricated discount or new refund guarantee. Free supplies the initial experience; the disabled no-card preview is not activated by this review.
++Use the prospective US$8.99/month or US$79/year main-test hypothesis, with88/year reserved as an explicit comparison cohort. Show the complete annual charge, with an optional79/12 monthly equivalent. Old US$99 test objects are historical; they do not define the current offer. Do not add an extra tier, lifetime promise, automatic trial, fabricated discount or new refund guarantee. Free supplies the initial experience; the disabled no-card preview is not activated by this review.
+ 
+ Validate in order, when real-user/payment gates are ready:
+ 
+@@ -194,9 +196,9 @@
+ | Offer | Launch visibility | Price hypothesis | Intended value |
+ | --- | --- | ---: | --- |
+ | Rillora Free | Visible | US$0 | Complete lightweight map, one trusted-person path, basic rehearsal, official guides, basic export and all baseline trust controls |
+-| Rillora Family monthly | Visible when billing opens | Prospective US$6.99/month | Same verified entitlements; no minimum term |
+-| Rillora Family annual | Visible when billing opens; full annual amount | Prospective US$49/year | Same verified entitlements; US$4.08 monthly equivalent, 41.6% below twelve monthly payments |
+-| Personal | Hidden/dormant | No active price | No additional launch tier; US$39/59 are comparisons for the same Family scope |
++| Rillora Family monthly | Visible when billing opens | Proposed US$8.99/month | Same verified entitlements; no minimum term |
++| Rillora Family annual | Visible when billing opens; full annual amount | Proposed main test US$79/year;88 upper comparison | Same verified entitlements;79 is26.8% below twelve8.99 payments; no hidden introductory renewal |
++| Personal | Hidden/dormant | No active price | No additional launch tier; US$49/59/69 are comparisons for the same Family scope |
+ | Human setup/review | Hidden/dormant add-on | Preliminary US$199–299 research range only after time-and-motion evidence | Bounded setup or review with a separate services P&L, excluding legal advice and real claim handling |
+ 
+ Monthly and annual products share the same entitlement set. Billing interval must never change security, data ownership, recipient rights or feature quality.
+@@ -298,7 +300,7 @@
+ - let users turn off renewal self-service without contacting support;
+ - paid access continues through the paid term after cancellation.
+ 
+-The US$49 annual / US$6.99 monthly hypothesis reflects a smaller self-service scope and nearby lower-price alternatives. The earlier US$0.48 one-month result used the now-superseded flat human-support assumption; it must not be quoted as current AI-first monthly economics. The current staged workbook deliberately isolates annual households; monthly cohorts must use their actual paid months and support workload. One-month use remains legitimate. Do not buy such customers through expensive acquisition, restrict basic export or add an undisclosed minimum term. If US$49 does not convert, revisit the job and audience before further cuts or feature expansion. Full assumptions are in [unit-economics.md](unit-economics.md).
++The latest US$79 annual / US$8.99 monthly main-test proposal keeps a single self-service scope.88/year is an upper comparison; it must not be paired with the older6.99 monthly amount, because twelve such monthly payments are less than88. The annual sensitivity does not establish monthly lifetime value, retention or willingness to pay. Full ongoing costs, free-data/export rights and safe cancellation remain; use [the focused band contract](pricing-band-20260910.md) before actual merchandising.
+ 
+ ## Paid-Ready Public Release — LOCKED Sequence
+ 
+@@ -491,7 +493,7 @@
+ 
+ ## Open Gates
+ 
+-- distinct prospective US$49/US$6.99 price versions and truthful screens, followed by real purchase and cost evidence;
++- distinct proposed79/8.99 price versions and any explicit88 comparison cohort, truthful capability screens, then real purchase/cost evidence;
+ - no active founder offer; any future promotion needs its own cohort, term and renewal promise;
+ - actual operator／merchant onboarding and provider selection for the first market;
+ - Stripe test-card／signed Webhook／authoritative lifecycle／no-entitlement-mutation evidence is complete. StoreKit has the full Xcode-local lifecycle plus non-live App Store Connect group／products, eight representative storefronts and two retained purpose-limited testers. Official Apple PKI verification, device／notification intake, Server API signed-status normalization and durable no-entitlement reconciliation are implemented locally. The earlier Pro Max unavailable result was caused by stale Xcode-local StoreKit routing; clean iOS 26.4／26.5 Simulators now load the real USA annual／monthly catalog. Chrome final IAP credentials are secured locally, construct the official Sandbox client and receive Apple's bounded `4040010` authenticated response; two earlier no-private-file keys were revoked and Apple retains one active key. A Debug-only purchase scheme keeps transactions unfinished until durable server acknowledgement. Tester credentials were submitted after Owner confirmation, but three independent account attempts across both runtimes all failed in Apple's post-AuthKit persistence layer with `AMSErrorDomain 100 / Password reuse not available for account`; therefore no transaction exists. One automation-exposed replacement tester was deleted and rotated. Apple-enabled AWS has not been deployed, StoreKit Sandbox ledger rows／mutations remain zero, and no completed real Sandbox purchase／restore／notification, App Review or ordinary access mutation exists;
+--- before/docs/mvp.md
++++ after/docs/mvp.md
+@@ -5,7 +5,7 @@
+ Superseded by: later locked MVP decision  
+ Do not use for: production security certification or global legal claims  
+ Status: PROVISIONAL MVP SCOPE  
+-Last updated: 2026-09-10 (documentation alignment; runtime evidence retains its dated checkpoint)  
++Last updated: 2026-09-11 (documentation alignment; runtime evidence retains its dated checkpoint)  
+ 
+ ## Core Hypothesis
+ 
+@@ -153,7 +153,7 @@
+ 
+ - 免费：可形成有意义的轻量事务地图、一名可信人的基础路径、官方设置检查、基础演练、基础导出，以及认证、安全、导出、删除和接收人基础访问。不得把Apple／Google等本来免费的官方设置指导、最低安全或离开产品的能力锁进付费墙。
+ - 首发目录：永久`Free`之外只开放一个付费权益层级`Rillora Family`；月付与年付是同一权益的两个账期，不是两个套餐。
+-- 最新价格：US$6.99/月或US$49/年的前瞻验证价，复核为辅助能力；39/59仅作敏感性，99为另需开发／成果证据的扩展方案，不增加第二付费层或Founder促销。大陆旧¥68/698是历史假设，不能由USD价自动换算上线。全部未获真实付款验证；旧Stripe／StoreKit测试商品未改。见[重算模型](unit-economics.md)。
++- 最新价格和商业目标：Owner希望尽快上线的小项目、少维护个人收入或未来收购，在49–88年价内争取80–90%毛利。当前Agent推荐79年付／8.99月付主测、88年付上限对照；49/59/69为较低比较，均未验证或上线。冻结新增功能，不为毛利堆功能，完整AI客服平台退出上线前置项。具体成本和范围见[价格区间合同](pricing-band-20260910.md)。
+ - 首发不启用自动转付费试用；永久Free承担体验作用。2026-08-27现行法律候选取代早期30天首购退款保证：直接Web按强制法律或书面例外处理，Apple按其渠道处理。30天保证及14天Family预览都保持关闭，不是当前承诺。
+ - 取消后使用到已付周期末，再安全降级到Free；账户、核心文本、基础导出和接收人基础访问不因取消或付款失败删除／锁死，订阅状态也永不触发死亡、失能、失联或披露。
+ - 每个地区首次公开发布都必须同时具备永久Free和可用的Family订阅；Global与Mainland独立过门、无需同日发布。支付未就绪的地区停留在受控beta，不先做公开Free-only发布。
+--- before/docs/product.md
++++ after/docs/product.md
+@@ -5,7 +5,7 @@
+ Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
+ Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
+ Status: PRODUCT FOUNDATION ACTIVE  
+-Last updated: 2026-09-10  
++Last updated: 2026-09-11  
+ 
+ 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+ 
+@@ -125,6 +125,7 @@
+ | 免费／付费边界、套餐、月年付、试用、退款或订阅生命周期 | `docs/monetization.md` | 商业化与权益合同；价格仍待市场验证 |
+ | Family共同复核、接收人问题反馈、建议审批、修正历史或复核计划 | `docs/family-maintenance.md` | 已实现的共同维护预览与证据；不是收费或真实通知证明 |
+ | 单位经济、毛利、LTV/CAC、成本分配、现金跑道、融资或收购尽调准备 | `docs/unit-economics.md` | 财务模型与证据合同；不是融资建议或市场结果 |
++| 49–88年费、80–90%毛利、快速小项目／少维护收入或潜在收购取舍 | `docs/pricing-band-20260910.md` | 当前价格区间与低维护上线合同；不是实际利润／估值或报价上线证明 |
+ | 个人身份首发、运营主体、首发地区、个人收款、公开法律身份或未来转公司 | `docs/individual-operator-launch-plan.md` | 个人运营与公司迁移合同；不是法律／税务意见或发布批准 |
+ | Global／中国大陆分区、香港个人经营路径、Stripe／Paddle或支持邮箱 | `docs/global-mainland-commerce-plan.md` | 地区与商业运营聚焦合同；不授权注册主体、收款、报批或发布 |
+ | iOS外部支付、美国Stripe路径、Storefront路由、Reader／服务例外或App Review风险 | `docs/ios-external-payment-research.md` | iOS支付聚焦合同；不等于Apple预先批准或收费授权 |
+@@ -160,6 +161,8 @@
+ 
+ ## Current Evidence Boundary
+ 
++2026-09-10最新小项目目标：Owner要求49–88年价，尽快上线、少维护个人收入或未来收购，期望80–90%毛利。本轮固定原阶段成本进行比较：79为主报价候选、88为上限，月付配对建议8.99；均无WTP证明。70%Web／30%Apple首年30%时，79千户毛利79.9%、88为80.6%；真实获批Apple15%后分别84.6%／85.2%。单靠加价达90在原渠道下不可行。稳定后100户约4.8小时/月工作、替代持续劳动后约303美元/月，是未实测预算；不因“睡后收入”忽略维护。自建完整AI客服平台退出上线前置项，先补最小可售商业闭环，保留隐私／恢复／商户证据门。[区间与范围合同](pricing-band-20260910.md)。没有运行或支付商品变化。
++
+ 2026-09-10最新阶段经济修订：Owner要求纠正早期固定成本／人工客服假设，并询问赛道毛利与Apple15%门槛。Rillora按面向家庭的垂直订阅软件经营，规模后毛利目标75–85%；已用当前行业原始资料、AWS公开Frankfurt价目和按咨询量计算的AI／人工升级重建0／10／30／100／300／1,000户模型。49参考年价下，100户含直接劳动毛利65.9%，1,000户76.0%；若真实获批Apple15%则约80.7%。约30户仅覆盖月均持续现金支出，不包含本人取薪／一次性上线投入／所得税。90%AI独立解决率尚未验证；1,000户不会因户数自动丧失SBP，门槛按关联账户合并App Store proceeds且需申请获批。没有实际账单、AI支持上线或资源调整。此阶段模型取代下段平铺成本结论，见[当前经济合同](unit-economics.md)。
+ 
+ 2026-09-10较早重定价检查点（经营假设已由上述阶段模型取代）：Owner否定共同复核足以支撑US$99，选择 **US$49/年、US$6.99/月**前瞻验证价；永久Free与单一Family保留，39/59作敏感性，99退为条件扩展。该轮平铺成本的26.72美元贡献／48.2%千户毛利仅保留为[历史情景](unit-economics-pricing-reset-history-20260910.md)，不是当前阶段模型。旧测试商品金额仍未改变。
+--- before/docs/storekit.md
++++ after/docs/storekit.md
+@@ -5,11 +5,12 @@
+ Superseded by: newer Apple platform rules, verified App Store Connect state, a later Owner decision, or stricter payment/security evidence  
+ Do not use for: proof of App Store approval, accepted Paid Apps Agreement, banking/tax completion, live IAP products, production entitlement or a real charge  
+ Status: COMPLETE LOCAL XCODE SK0; APP STORE CONNECT SANDBOX METADATA／PRICES／EIGHT STOREFRONTS／TWO PURPOSE-LIMITED TESTERS CREATED; LIVE USA SANDBOX CATALOG LOAD VERIFIED ON CLEAN IOS 26.4／26.5 SIMULATORS; DEBUG-ONLY SERVER-GATED PURCHASE HARNESS READY; OFFICIAL APPLE JWS／SERVER API SNAPSHOT／DURABLE NO-ENTITLEMENT RECONCILIATION IMPLEMENTED LOCALLY; ONE ACTIVE CHROME IAP KEY `.P8` SECURED LOCALLY, OFFICIAL CLIENT CONSTRUCTION AND AUTHENTICATED SERVER API PROBE VERIFIED; SIMULATOR SANDBOX ACCOUNT PERSISTENCE BLOCKED BY APPLE `AMSERRORDOMAIN 100 / PASSWORD REUSE NOT AVAILABLE`; STAGING DEPLOYMENT／PURCHASE COMPLETION／REVIEW REMAIN OPEN  
+-Last updated: 2026-09-10 (prospective-price note; Sandbox evidence remains dated August 24)
++Last updated: 2026-09-11 (prospective-price note; Sandbox evidence remains dated August 24)
+ 
+ ## Prospective price and retained test objects
+ 
+-The latest prospective validation price is US$49/year or US$6.99/month. Existing
++The current main-test proposal is US$79/year or US$8.99/month, with88/year as an
++upper comparison. This is unvalidated and not a provider price change. Existing
+ 99/9.99 Xcode and App Store Sandbox products below retain their original amounts
+ and recorded evidence. They are not current commercial recommendations. No new
+ provider price, test purchase or deployment occurred in the economics reset.
+--- before/docs/unit-economics.md
++++ after/docs/unit-economics.md
+@@ -1,10 +1,12 @@
+ # Rillora 分阶段单位经济与毛利合同
+ 
+ Role: current sector benchmark, stage economics and cost-allocation authority  
+-Status: AI-FIRST STAGED MODEL; PRICES REMAIN PROVISIONAL; SALES CLOSED  
+-Last updated: 2026-09-10 (Asia/Hong_Kong)
++Status: STAGED COST FOUNDATION; CURRENT49–88 BAND /79 MAIN TEST IN FOCUSED CONTRACT; SALES CLOSED  
++Last updated: 2026-09-11 (Asia/Hong_Kong)
+ 
+ ## 当前判断
++
++**更晚的Owner目标已更新为尽快上线的小项目、少维护个人收入或未来收购，并要求49–88年价与80–90%毛利。** 最新报价主张为79年付／8.99月付作主测候选、88年付作上限，49保留为低价参考。价格敏感性、80/85/90反推、稳定维护预算和上线范围取舍以[当前价格区间合同](pricing-band-20260910.md)为准。下文49阶段表保留为成本基础及已完成检查点，不能再当作唯一当前报价或新收入事实。
+ 
+ Rillora按**面向家庭的垂直订阅软件（Consumer SaaS）**经营，应用领域是数字遗产与家庭事务连续性。当前交付是软件整理、授权共享和协作，不是受托管理资产、保险承保、律所或人工遗产管家。因此应追求软件的可扩展成本结构，不以泛泛的“互联网公司”分类或人工服务毛利来设目标。
+ 
+@@ -12,7 +14,7 @@
+ 
+ 阶段目标：新增用户的边际贡献率约80%；逐步形成**75–85%的完整软件毛利率**。75%是本项目初期可重复经营的观察线，80%左右为目标，不是行业强制标准。极少用户时固定成本未摊薄，可低于50%；达到数百至上千付费户后仍长期低于50%，必须检查渠道、产品服务负担和运营设计，不能以此作为正常目标。
+ 
+-本轮暂不再次改价：沿用US$49/年作为比较基准，US$6.99/月仍为前瞻候选，两者均未验证。此次阶段表只计算完整年付家庭，不把月付用户自动当成12个月年付收入，也不开放新套餐或收费。
++本阶段检查点沿用US$49/年作为比较基准；旧6.99月价与其配对，仅属此前候选。最新79/8.99和88上限见上述区间合同，均未验证。以下表只计算完整年付家庭，不将月付自动当成12个月收入，也未开放套餐或收费。
+ 
+ 当前可编辑模型：[Rillora_Staged_Economics.xlsx](../output/finance/rillora-staged-economics-20260910/Rillora_Staged_Economics.xlsx)。一个情景选择器控制AI优先／低自动化两套输入，六个阶段独立设置现金和工时预算；结果、毛利和图表均由公式计算。
+ 
+@@ -111,9 +113,8 @@
+ 
+ ## 价格、实现与下一步
+ 
+-本轮没有再次调价；Free／Family、逐项隐私、基本导出、正常月付取消与付费截止版本合同不变。旧99测试商品和收据不改写，49／6.99仍是待验证报价。上一版短月付结果基于旧支持成本，只作历史情景，不能当作新AI运营下的既定亏损事实。
++此较早阶段计算保留了当时的49／6.99参考；最新主測79／8.99与88年价上限以价格区间合同为准，均未验证或上线。Free／Family、逐项隐私、基本导出、正常月付取消与付费截止版本合同不变，旧99测试商品和收据不改写。上一版短月付结果基于旧支持成本，只作历史情景，不能当作新AI运营下的既定亏损事实。
+ 
+-唯一下一项成本验证工作：搭建最小的、可计量的AI自助支持／异常升级闭环，记录咨询量、真实解决、重开、token、升级工时和知识维护工时，先验证0–100户成本条件。不是先招聘、买流量或投入完整99扩展。商业共享名额／准确付费截止／新价格版本、真实接收身份和生产／商户门仍须在销售前完成。
++当前Owner要求快速小项目上线，已取代“先建AI客服平台”的下一步。前0–100户使用简单帮助／自助流程、既有邮箱和AI辅助回答，保留最低必要的咨询／异常／工时记录。下一项工程回到最小可售商业闭环；准确名额／付费截止／新价格版本、真实接收身份和生产／商户门仍须完成。实际任务以handoff为唯一入口。
+ 
+ 本轮交付为行业研究、阶段模型和文档决定。未启用AI服务、改变云资源、读取真实私人计划、发送消息或开放收费。实际账单和工作量未知。工作簿两套情景与独立Python核对、保存后读回和视觉检查见[当次QA](../output/qa/rillora-staged-economics-20260910/README.md)。
+-
+--- /dev/null
++++ after/docs/pricing-band-20260910.md
+@@ -0,0 +1,82 @@
++# Rillora 49–88年价、毛利与低维护经营决定
++
++Role: current price-band decision and low-maintenance launch contract  
++Status: RESEARCH / PROVISIONAL79 MAIN OFFER,88 UPPER COMPARISON; NO LIVE REPRICING  
++Last updated: 2026-09-11 (Asia/Hong_Kong)
++
++## Owner目标和当前主张
++
++Owner明确目标为小项目尽快上线、形成少维护的个人收入，或将来被收购；希望在49–88美元年价内尽量达到80–90%毛利。本轮据此优先限制持续服务负担与上线范围，而不是继续扩展一套复杂的家庭管理／AI客服平台。
++
++Agent当前推荐：**US$79/年作为主报价测试候选，US$88/年作上限对照**；49／59／69是价格敏感性或后续独立队列，不能同时变成五个公开套餐。仍只有Free和一个Family层级。为避免高年费反而高于连续月付，配对月价建议US$8.99；79年付比12个月月付低26.8%，88低18.4%。旧6.99月付不能直接配88年付。全部仍是可逆候选，非已验证最优价格或市场结果。
++
++Owner的80–90%是商业目标。**当前可作为可执行主目标的是80–85%；86–90%是更依赖渠道和真实服务效率的优化目标。** 小规模100户不能靠区间内提价保证达到80%；也不能把现金结余率、毛利率或加回本人劳动后的数字换着使用。
++
++[可编辑价格区间模型](../output/finance/rillora-price-band-20260910/Rillora_Price_Band_49_88.xlsx)与[阶段成本基础](unit-economics.md)分工：本表固定既有服务假设比较价格，不重新降低客服、Free用户或生产成本来让高价更好看。
++
++## 相同成本下的毛利比较
++
++共同假设：Web70%／Apple30%、退款准备3%、每户10个独立Free MAU，90%AI独立解决目标、人工升级和生产运维完整计入。使用量与解决率未实测；Apple优惠批准未确认。所有列都是**完整直接毛利**，研发／营销／一般管理在毛利之后扣除。
++
++| 年价USD | 100户：Apple首年30% | 300户：30% | 1,000户：30% | 100户：获批15% | 300户：获批15% | 1,000户：获批15% |
++| ---: | ---: | ---: | ---: | ---: | ---: | ---: |
++| 49 | 65.9% | 71.9% | 76.0% | 70.5% | 76.6% | 80.7% |
++| 59 | 69.3% | 74.4% | 77.8% | 74.0% | 79.0% | 82.4% |
++| 69 | 71.8% | 76.1% | 79.0% | 76.4% | 80.7% | 83.7% |
++| **79** | **73.7%** | **77.4%** | **79.9%** | **78.3%** | **82.1%** | **84.6%** |
++| **88** | **75.0%** | **78.3%** | **80.6%** | **79.6%** | **83.0%** | **85.2%** |
++
++表格精度只用于比较，成本并无小数点级确定性。79在首年保守千户情形约79.95%，不能把四舍五入变成保证达80%。88的额外余量也很薄，解决率下降或支持需求增加就会改变它。
++
++主测79而非机械选88的理由：千户毛利只差约0.7个百分点，真实付费需求尚未知。按相同单户服务负担计算，如果79→88让付费人数下降约10.6%，总贡献优势就可能消失。这个比率只是固定其他条件的敏感性，不是价格弹性预测；真实Free/付费比、退款和支持也可能变化。应记录固定队列看到的价格、购买、首个付费任务和未购买原因，不能默认为更高价仍有相同人数。
++
++## 80、85和90的条件
++
++| 目标80%的最低年价，机械反推 | 100户 | 300户 | 1,000户 |
++| --- | ---: | ---: | ---: |
++| 当前70/30渠道，Apple首年30% | 157.60 | 111.05 | 79.63 |
++| 当前70/30渠道，真实获批Apple15% | 91.24 | 64.29 | 46.10 |
++
++这些反推值是诊断，不是建议卖到157美元。49–88范围内的100户阶段，现有完整成本仍很难达到80%。应该控制现金投入并验证需求，不能为几户固定成本摊薄而漫无边际提价。
++
++当前Stripe HK卡／Billing／Tax工具与USD出款费用加上Apple30%的70/30混合，**只计渠道的长期理论毛利上限约86.4%**，尚未计云和支持。因此不论价格多少，这组条件都无法达到90%。真正获批Apple15%时，渠道上限约91.0%，但有限价格仍要扣服务成本：88千户约85.2%；同条件反推90%要约499美元，明显不应作为产品定价建议。
++
++在1,000户、88年价下，若实际购买渠道变为90%Web／10%Apple且已获批15%，约87.0%；即使全Web，保持目前服务成本也只有约87.9%。90%还要求真实降低单位服务成本。渠道占比必须来自真实用户及允许的购买路径，不能在模型里改成全Web就宣称实现，也不能违反适用storefront规则。
++
++Apple优惠仍按账户批准和所有App／关联账户合并proceeds门槛，非人数。此模型没有认定已经获批；普通首年30%仍为基准。[Apple SBP](https://developer.apple.com/app-store/small-business-program/)、[Stripe HK费用](https://stripe.com/en-hk/pricing)。
++
++## 个人收入应看稳定运营负担
++
++下表采用79美元年价和Apple首年30%的保守基准。除生产、直接支持、Free使用及既有测试环境外，另为**版本稳定后的**更新、内容／渠道与管理设置替代劳动预算。它不替代仍在开发期间的工时，也不消除一次性开发投入。
++
++| 年付户数 | 取薪前月均现金结余 | 替代全部持续工作预算/月 | 替代后税前余额/月 | 稳定持续工作小时/月 |
++| ---: | ---: | ---: | ---: | ---: |
++| 100 | 431.09 | 128.00 | 303.09 | 4.8 |
++| 300 | 1,473.78 | 234.00 | 1,239.78 | 9.0 |
++| 1,000 | 5,215.18 | 452.00 | 4,763.18 | 17.8 |
++
++替代成本包含本人现在承担的直接支持／运维和持续更新／内容／管理，不重复扣两次工资。更新工时预算分别2／3／4小时，内容／渠道1／1.5／2小时，管理0.5／1／1.5小时；直接支持／运维沿用原阶段模型。用24美元支持／运营时薪与30美元开发时薪估算，尚无供应商报价。少记研发工时只会改变经营结余，**不会提高上面毛利率**。
++
++这给出的是低维护设计目标，非实际睡后收入、已支付薪酬或可直接用于交易的SDE。100户约5小时/月较接近个人小项目；1,000户仍约18小时/月，不能称零维护。若希望本人更少参与，需要实际自助效果、标准流程或可替代运营人员，并在真实现金账上计费。
++
++价格高低不改变一年服务义务、退款处理或资料保留。年费一次到账不等于可以立刻全部取走；所得税、一次性上线支出及开发投入另计。没有真实付款、续费、获客和支持数据，不能将本表写成历史盈利。
++
++## 为快速上线减少什么
++
++- 冻结新增功能范围，保持目前可用地图、按人按事项共享、邀请接受与撤销、导出和已有有界复核。不要为了79/88增添人工管家、法律文书、实时银行集成、AI智能规划或新的复杂触发器。
++- 先补齐最小可售闭环中的真实缺口：商业名额、准确付费截止版本、取消／恢复与新版本报价；认证／生产／商户必要门仍适用。
++- 前0–100户优先简短帮助、自助错误恢复和既有支持邮箱，AI辅助准备回答。**自建完整AI客服平台退出上线前置项**；按量客服集成只在真实咨询量／人工时间足以证明需要时启动。90%AI解决仍只是财务目标，不宣称现在已有自动化平台。
++- 不为“将来收购”搭多租户企业后台、复杂数据仓库、专业服务市场或完整执行中心。用已有账本、简单费用与工时记录保存事实即可。
++- 真实咨询、重开、异常处理、退款和维护时间随运营记录。实测差于预算时调整范围、效率或报价，保留统一成本口径。
++
++## 潜在收购看什么
++
++更有用的准备是可核验的持续利润、付款／续费与退款队列、客户与渠道集中度、低本人依赖，以及代码、域名、供应商和数据处理合同能否交接。Acquire的交易复盘也强调真实净利润与运营可接手性，不能将大量本人持续工作随意加回盈利。[Acquire交易复盘](https://blog.acquire.com/inside-2025s-winning-exits-on-acquire-what-founders-can-learn-going-into-2026-webinar-recap/)。该材料是平台观察，不保证Rillora可售、估值或成交速度。
++
++从第一笔真实付款起分别保留：收款／退款／渠道结算、按期收入与尚未履行服务、现金费用、本人时间与替代成本。付款收入、净利润、毛利、SDE与预测不能混用。当前没有交易估值、买家名单或外联。持续安全维护和用户支持的负担仍需计入经营记录。
++
++## 完成与证据边界
++
++本轮完成价格敏感性、毛利反推、理论上限和稳定维护方案，更新当前文档与唯一下一步。没有修改支付商品、运行代码、个人账户或生产资源，没有发消息或开通收费。报价需以新的不可变价格版本及实际storefront展示实现，不能改写旧99测试记录。
++
++表格的数字检查、独立Python计算、保存后读回及视查见[当次QA](../output/qa/rillora-price-band-20260910/README.md)。费用和需求条件不变时计算成立，不等于经济假设已被用户验证。

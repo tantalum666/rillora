@@ -1,0 +1,26 @@
+23:07:58.261 xcodebuild[65673:17136136] Sim Rillora-Matrix-13-mini: Unregistering for sim device notification with token 3
+23:07:58.262 xcodebuild[65673:17136136] Calling -[SimDevice getenv:error:] for TESTMANAGERD_SIM_SOCK
+23:07:58.265 xcodebuild[65673:17136136] Sim Rillora-Matrix-13-mini has testmanagerd socket at /private/var/tmp/com.apple.launchd.DIlDPEscWW/com.apple.testmanagerd.unix-domain.socket
+23:07:58.265 xcodebuild[65673:17136136] Validating test connection socket path (/private/var/tmp/com.apple.launchd.DIlDPEscWW/com.apple.testmanagerd.unix-domain.socket)
+23:07:58.265 xcodebuild[65673:17136136] Constructing transport for test connection socket
+23:07:58.265 xcodebuild[65673:17136136] Connected socket 30 to testmanagerd for Sim Rillora-Matrix-13-mini
+23:07:58.267 xcodebuild[65673:17136136] Initiating control session with IDE capabilities: <XCTCapabilities: 0xaa62024e0>: {
+}
+23:07:58.276 xcodebuild[65673:17136139] Got reply to control session initiation request (result:error): <XCTCapabilities: 0xaa66925c0>: {
+    "authorize test session capability" = 1;
+    "automation mode" = 1;
+    "daemon container sandbox extension" = 1;
+    "initiate daemon control session capability" = 4;
+    "initiate test runner session capability" = 2;
+    "record UI interaction capability" = 2;
+    "recording events as source code" = 1;
+    "report crashes capability" = 1;
+    "request log archive capability" = 1;
+    "supports delayed attachment transfers" = 1;
+}: (null)
+23:07:58.362 xcodebuild[65673:17136136] Requesting crash report collection for process names: RilloraLayoutMatrixTests-Runner, assertiond, testmanagerd, RilloraLayoutMatrixTests, runningboardd, FrontBoard, xctest, backboardd, debugserver, DTServiceHub, Rillora, SpringBoard
+23:07:58.404 xcodebuild[65673:17136139] Got reply to crash report collection request (error: (null))
+23:08:04.352 xcodebuild[65673:17136141] Requesting authorization for pid 65748
+23:08:04.355 xcodebuild[65673:17136135] Got reply to authorization request for pid 65748 (result:error): 1: (null)
+23:08:09.472 xcodebuild[65673:17136144] Closing socket 30 to testmanagerd for Sim Rillora-Matrix-13-mini
+23:08:09.472 xcodebuild[65673:17136141] <XCTDaemonControlSession: 0xaa356ec10> lost connection to daemon

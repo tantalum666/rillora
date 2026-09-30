@@ -1,0 +1,63 @@
+
+> continuity-api@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.10 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/p1-repair.integration.test.ts (10 tests | 1 failed) 494ms
+     × account removal revokes access and exposes only an opaque status receipt 30ms
+ ❯ tests/api.integration.test.ts (49 tests | 1 failed) 1121ms
+     × fails closed when ciphertext or accepted recipient-key membership changes 24ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/api.integration.test.ts > Continuity API > fails closed when ciphertext or accepted recipient-key membership changes
+AssertionError: expected [] to deeply equal [ ObjectContaining{…} ]
+
+- Expected
++ Received
+
+- [
+-   ObjectContaining {
+-     "displayName": "Encrypted Recipient",
+-     "publicId": "abababab-abab-4bab-8bab-abababababab",
+-   },
+- ]
++ []
+
+ ❯ tests/api.integration.test.ts:2375:52
+    2373|       }),
+    2374|     ).expect(201);
+    2375|     expect(preparation.body.eligibleRecipientKeys).toEqual([
+       |                                                    ^
+    2376|       expect.objectContaining({ publicId: recipientKeyPublicId, displa…
+    2377|     ]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/p1-repair.integration.test.ts > P1 map reliability and export privacy > account removal revokes access and exposes only an opaque status receipt
+AssertionError: expected [ { …(18) }, { …(18) }, …(2) ] to have a length of 3 but got 4
+
+- Expected
++ Received
+
+- 3
++ 4
+
+ ❯ tests/p1-repair.integration.test.ts:106:75
+    104|   await request(app).get("/account-deletions/status").expect(401);
+    105|   await request(app).get("/account-deletions/status").set("authorizati…
+    106|   expect((await request(app).get("/v1/matters").set(owner)).body.matte…
+       |                                                                           ^
+    107|  });
+    108|  it("failed provider cleanup remains pending, retries, and retains min…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed | 12 passed (14)
+      Tests  2 failed | 145 passed (147)
+   Start at  23:19:28
+   Duration  7.78s (transform 322ms, setup 0ms, import 2.56s, tests 3.57s, environment 1ms)
+

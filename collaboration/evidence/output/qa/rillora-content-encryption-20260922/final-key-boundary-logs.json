@@ -1,0 +1,5 @@
+[
+  "{\"migrationChecks\":[{\"name\":\"0064_private_content_envelopes.sql\",\"checksum\":\"f5d4da9a83c9e4b71d6745a1a5901c6f22adb3b0ba87683423833f111645a8ee\"},{\"name\":\"0065_content_maintenance.sql\",\"checksum\":\"05972573d9d9c6d0b1c92a2b612499447cd06456a5f4c7d3a5e825529d8cb928\"},{\"name\":\"0066_content_migration_representation.sql\",\"checksum\":\"f8321ca44578ef4d71d33950130b09efad4a62addc66a7733d597f878906cd1f\"},{\"name\":\"0067_content_migration_grant_lookup.sql\",\"checksum\":\"36dc0f93c26090e81347f320a9b2e8ef0cf609701c21aed7d4cfb8b4b0d8e16b\"}]}",
+  "{\"checks\":[\"API creates and reads encrypted content after final rollout\",\"Migration role denied GenerateDataKey and Decrypt\",\"DB rejects plaintext writes\",\"Current data has zero plaintext and invalid refs\"],\"report\":{\"owners\":3,\"protectedValues\":9,\"plaintextValues\":0,\"invalidReferences\":0},\"externalProviderLoginTested\":false}",
+  "{\"removedSyntheticUsers\":1,\"remainingFixtureCiphertext\":0,\"finalReport\":{\"owners\":2,\"protectedValues\":5,\"plaintextValues\":0,\"invalidReferences\":0}}"
+]

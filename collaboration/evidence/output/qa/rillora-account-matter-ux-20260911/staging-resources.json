@@ -1,0 +1,928 @@
+{
+  "StackResources": [
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "ApiLogGroup1DEDFC07",
+      "PhysicalResourceId": "RilloraStaging-ApiLogGroup1DEDFC07-1zeMIfjVy7Je",
+      "ResourceType": "AWS::Logs::LogGroup",
+      "Timestamp": "2026-08-12T08:20:22.095000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "ApiServiceC9037CF0",
+      "PhysicalResourceId": "arn:aws:ecs:eu-central-1:133857166372:service/RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5/RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n",
+      "ResourceType": "AWS::ECS::Service",
+      "Timestamp": "2026-09-11T06:35:48.986000+00:00",
+      "ResourceStatus": "UPDATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "ApiTaskDefinition51EA709E",
+      "PhysicalResourceId": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingApiTaskDefinitionF6347BA4:20",
+      "ResourceType": "AWS::ECS::TaskDefinition",
+      "Timestamp": "2026-09-11T06:34:13.551000+00:00",
+      "ResourceStatus": "UPDATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "ApiTaskDefinitionExecutionRoleA3303016",
+      "PhysicalResourceId": "RilloraStaging-ApiTaskDefinitionExecutionRoleA33030-IXk8VijKCfb8",
+      "ResourceType": "AWS::IAM::Role",
+      "Timestamp": "2026-08-12T08:20:29.633000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "ApiTaskDefinitionExecutionRoleDefaultPolicy5B03B3DE",
+      "PhysicalResourceId": "Rillo-ApiTa-7tACCy3lPqww",
+      "ResourceType": "AWS::IAM::Policy",
+      "Timestamp": "2026-08-19T18:38:37.788000+00:00",
+      "ResourceStatus": "UPDATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "ApiTaskDefinitionTaskRole7EE87BD7",
+      "PhysicalResourceId": "RilloraStaging-ApiTaskDefinitionTaskRole7EE87BD7-f2xctAAgNyxD",
+      "ResourceType": "AWS::IAM::Role",
+      "Timestamp": "2026-08-12T08:20:29.634000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "ApiTaskSecurityGroup1B197C18",
+      "PhysicalResourceId": "sg-062c63db94ecf2e16",
+      "ResourceType": "AWS::EC2::SecurityGroup",
+      "Timestamp": "2026-08-12T08:20:34.489000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "ApiTaskSecurityGroupfromRilloraStagingVpcLinkSecurityGroup8CCDCE30808057008E8D",
+      "PhysicalResourceId": "sgr-0d40679f6c214111e",
+      "ResourceType": "AWS::EC2::SecurityGroupIngress",
+      "Timestamp": "2026-08-12T08:20:36.769000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "ApiTaskSecurityGrouptoRilloraStagingDatabaseSecurityGroup61BF01DD543213A7183E",
+      "PhysicalResourceId": "sgr-07fea648dc65eac94",
+      "ResourceType": "AWS::EC2::SecurityGroupEgress",
+      "Timestamp": "2026-08-12T08:20:36.830000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "CDKMetadata",
+      "PhysicalResourceId": "9ac743f0-9626-11f1-ab93-061da92ba319",
+      "ResourceType": "AWS::CDK::Metadata",
+      "Timestamp": "2026-08-19T19:08:22.080000+00:00",
+      "ResourceStatus": "UPDATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "ClusterEB0386A7",
+      "PhysicalResourceId": "RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5",
+      "ResourceType": "AWS::ECS::Cluster",
+      "Timestamp": "2026-08-12T08:20:16.856000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536",
+      "PhysicalResourceId": "RilloraStaging-CustomCDKBucketDeployment8693BB6496-gjDLHTeknxXc",
+      "ResourceType": "AWS::Lambda::Function",
+      "Timestamp": "2026-08-19T19:08:38.455000+00:00",
+      "ResourceStatus": "UPDATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265",
+      "PhysicalResourceId": "RilloraStaging-CustomCDKBucketDeployment8693BB64968-ELHuyHbkzXKG",
+      "ResourceType": "AWS::IAM::Role",
+      "Timestamp": "2026-08-12T13:38:17.451000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF",
+      "PhysicalResourceId": "Rillo-Custo-hMCFzIKylvZI",
+      "ResourceType": "AWS::IAM::Policy",
+      "Timestamp": "2026-08-12T13:38:35.629000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
+      "PhysicalResourceId": "RilloraStaging-CustomS3AutoDeleteObjectsCustomReso-95tH26EKEqyc",
+      "ResourceType": "AWS::Lambda::Function",
+      "Timestamp": "2026-08-12T13:38:25.400000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+      "PhysicalResourceId": "RilloraStaging-CustomS3AutoDeleteObjectsCustomResou-kxoKPiVfdCsy",
+      "ResourceType": "AWS::IAM::Role",
+      "Timestamp": "2026-08-12T13:38:16.809000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "DatabaseB269D8BB",
+      "PhysicalResourceId": "rillorastaging-databaseb269d8bb-imhpxxsvdniq",
+      "ResourceType": "AWS::RDS::DBInstance",
+      "Timestamp": "2026-08-12T08:28:16.490000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "DatabaseLogRetentionpostgresqlFBE8A947",
+      "PhysicalResourceId": "/aws/rds/instance/rillorastaging-databaseb269d8bb-imhpxxsvdniq/postgresql",
+      "ResourceType": "Custom::LogRetention",
+      "Timestamp": "2026-08-12T08:28:20.945000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "DatabaseSecretAttachmentE5D1B020",
+      "PhysicalResourceId": "arn:aws:secretsmanager:eu-central-1:133857166372:secret:RilloraStagingDatabaseSecre-0tKCjYxr0yTC-Egp7uv",
+      "ResourceType": "AWS::SecretsManager::SecretTargetAttachment",
+      "Timestamp": "2026-08-12T08:28:18.442000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "DatabaseSecurityGroup7319C0F6",
+      "PhysicalResourceId": "sg-0f65e998018eb1de8",
+      "ResourceType": "AWS::EC2::SecurityGroup",
+      "Timestamp": "2026-08-12T08:20:34.503000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "DatabaseSecurityGroupfromRilloraStagingApiTaskSecurityGroupEF0BFE155432A1560DAF",
+      "PhysicalResourceId": "sgr-0f301052067dc538c",
+      "ResourceType": "AWS::EC2::SecurityGroupIngress",
+      "Timestamp": "2026-08-12T08:20:36.834000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "DatabaseSubnetGroup7D60F180",
+      "PhysicalResourceId": "rillorastaging-databasesubnetgroup7d60f180-oi8bqqxszj4y",
+      "ResourceType": "AWS::RDS::DBSubnetGroup",
+      "Timestamp": "2026-08-12T08:20:35.112000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "HttpApiAccessLogs4B419BF6",
+      "PhysicalResourceId": "RilloraStaging-HttpApiAccessLogs4B419BF6-bjy64dc1JZ5c",
+      "ResourceType": "AWS::Logs::LogGroup",
+      "Timestamp": "2026-08-12T08:20:21.991000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "HttpApiDefaultRoute146696CE",
+      "PhysicalResourceId": "n7ayyyt",
+      "ResourceType": "AWS::ApiGatewayV2::Route",
+      "Timestamp": "2026-08-12T08:22:34.597000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "HttpApiDefaultRouteServiceDiscoveryIntegration826226B9",
+      "PhysicalResourceId": "v8thwcp",
+      "ResourceType": "AWS::ApiGatewayV2::Integration",
+      "Timestamp": "2026-08-12T08:22:32.648000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "HttpApiDefaultStage3EEB07D6",
+      "PhysicalResourceId": "$default",
+      "ResourceType": "AWS::ApiGatewayV2::Stage",
+      "Timestamp": "2026-08-12T08:20:23.913000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "HttpApiF5A9A8A7",
+      "PhysicalResourceId": "l1g8350qw0",
+      "ResourceType": "AWS::ApiGatewayV2::Api",
+      "Timestamp": "2026-08-12T14:32:24.098000+00:00",
+      "ResourceStatus": "UPDATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A",
+      "PhysicalResourceId": "RilloraStaging-LogRetentionaae0aa3c5b4d4f87b02d85b-tVTB2EruIoFC",
+      "ResourceType": "AWS::Lambda::Function",
+      "Timestamp": "2026-08-12T08:20:55.306000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB",
+      "PhysicalResourceId": "RilloraStaging-LogRetentionaae0aa3c5b4d4f87b02d85b2-O3TFjF8MlWiP",
+      "ResourceType": "AWS::IAM::Role",
+      "Timestamp": "2026-08-12T08:20:29.800000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB",
+      "PhysicalResourceId": "Rillo-LogRe-kS9WC20p7ZYX",
+      "ResourceType": "AWS::IAM::Policy",
+      "Timestamp": "2026-08-12T08:20:46.730000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "MigrationLogGroupFD140541",
+      "PhysicalResourceId": "RilloraStaging-MigrationLogGroupFD140541-valmThccXsst",
+      "ResourceType": "AWS::Logs::LogGroup",
+      "Timestamp": "2026-08-12T08:20:21.766000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "MigrationTaskDefinitionE89B136E",
+      "PhysicalResourceId": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingMigrationTaskDefinitionD83F7D18:15",
+      "ResourceType": "AWS::ECS::TaskDefinition",
+      "Timestamp": "2026-09-11T06:34:13.637000+00:00",
+      "ResourceStatus": "UPDATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "MigrationTaskDefinitionExecutionRoleB0331BA1",
+      "PhysicalResourceId": "RilloraStaging-MigrationTaskDefinitionExecutionRole-a6fHaRe99CdP",
+      "ResourceType": "AWS::IAM::Role",
+      "Timestamp": "2026-08-12T08:20:30.577000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "MigrationTaskDefinitionExecutionRoleDefaultPolicyCEE787AE",
+      "PhysicalResourceId": "Rillo-Migra-fGGLpiAPMtK9",
+      "ResourceType": "AWS::IAM::Policy",
+      "Timestamp": "2026-08-12T08:28:35.541000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "MigrationTaskDefinitionTaskRole01342380",
+      "PhysicalResourceId": "RilloraStaging-MigrationTaskDefinitionTaskRole01342-0kPIZki8VdM4",
+      "ResourceType": "AWS::IAM::Role",
+      "Timestamp": "2026-08-12T08:20:29.668000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "Namespace9B63B8C8",
+      "PhysicalResourceId": "ns-jl6jazlz5fhizsqy",
+      "ResourceType": "AWS::ServiceDiscovery::PrivateDnsNamespace",
+      "Timestamp": "2026-08-12T08:21:05.860000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "NamespaceApiDiscovery5C8FC91A",
+      "PhysicalResourceId": "srv-dgii23l433x7tk2b",
+      "ResourceType": "AWS::ServiceDiscovery::Service",
+      "Timestamp": "2026-08-12T08:21:08.217000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "RilloraStagingDatabaseSecretBD8DADAB145d7587a81d8eb10deb319f17c60255",
+      "PhysicalResourceId": "arn:aws:secretsmanager:eu-central-1:133857166372:secret:RilloraStagingDatabaseSecre-0tKCjYxr0yTC-Egp7uv",
+      "ResourceType": "AWS::SecretsManager::Secret",
+      "Timestamp": "2026-08-12T08:20:13.657000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "RuntimeDatabaseSecretE7205402",
+      "PhysicalResourceId": "arn:aws:secretsmanager:eu-central-1:133857166372:secret:RuntimeDatabaseSecretE72054-LpiEcmguMfL6-O8stVR",
+      "ResourceType": "AWS::SecretsManager::Secret",
+      "Timestamp": "2026-08-12T08:20:14.864000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "SpaRewrite1C145184",
+      "PhysicalResourceId": "arn:aws:cloudfront::133857166372:function/eu-central-1RilloraStagingSpaRewriteEAA2D698",
+      "ResourceType": "AWS::CloudFront::Function",
+      "Timestamp": "2026-08-12T13:38:02.575000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "StagingOperatorRoleB540A698",
+      "PhysicalResourceId": "rillora-staging-operator",
+      "ResourceType": "AWS::IAM::Role",
+      "Timestamp": "2026-08-12T08:31:12.511000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "StagingOperatorRoleDefaultPolicyCF77C65B",
+      "PhysicalResourceId": "Rillo-Stagi-S8mlzqTxUjAr",
+      "ResourceType": "AWS::IAM::Policy",
+      "Timestamp": "2026-09-11T06:36:06.321000+00:00",
+      "ResourceStatus": "UPDATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "StripeTestSecret04351D5D",
+      "PhysicalResourceId": "arn:aws:secretsmanager:eu-central-1:133857166372:secret:StripeTestSecret04351D5D-RYsCQzd9tQVc-pzQZlf",
+      "ResourceType": "AWS::SecretsManager::Secret",
+      "Timestamp": "2026-08-19T18:12:51.180000+00:00",
+      "ResourceStatus": "UPDATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "StripeTestWebhookSecret27AD2583",
+      "PhysicalResourceId": "arn:aws:secretsmanager:eu-central-1:133857166372:secret:StripeTestWebhookSecret27AD-DjIcVJgvFIix-BNvgFG",
+      "ResourceType": "AWS::SecretsManager::Secret",
+      "Timestamp": "2026-08-19T18:12:51.037000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "Vpc8378EB38",
+      "PhysicalResourceId": "vpc-084ca93af374d8aca",
+      "ResourceType": "AWS::EC2::VPC",
+      "Timestamp": "2026-08-12T08:20:25.204000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "VpcIGWD7BA715C",
+      "PhysicalResourceId": "igw-046ff156938d1e15a",
+      "ResourceType": "AWS::EC2::InternetGateway",
+      "Timestamp": "2026-08-12T08:20:28.729000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "VpcLink42ED6FF0",
+      "PhysicalResourceId": "mou7e2",
+      "ResourceType": "AWS::ApiGatewayV2::VpcLink",
+      "Timestamp": "2026-08-12T08:22:30.281000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "VpcLinkSecurityGroupB3941EDC",
+      "PhysicalResourceId": "sg-004b7e6b330cadd42",
+      "ResourceType": "AWS::EC2::SecurityGroup",
+      "Timestamp": "2026-08-12T08:20:33.961000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "VpcLinkSecurityGrouptoRilloraStagingApiTaskSecurityGroupEF0BFE158080FFA9BF80",
+      "PhysicalResourceId": "sgr-046b272001753f573",
+      "ResourceType": "AWS::EC2::SecurityGroupEgress",
+      "Timestamp": "2026-08-12T08:20:36.934000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "VpcRejectedTrafficE32A6480",
+      "PhysicalResourceId": "RilloraStaging-VpcRejectedTrafficE32A6480-LLpa45he7AXx",
+      "ResourceType": "AWS::Logs::LogGroup",
+      "Timestamp": "2026-08-12T08:20:22.100000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "VpcRejectedTrafficFlowLogEB2F935E",
+      "PhysicalResourceId": "fl-090e0a7eb40e55cc4",
+      "ResourceType": "AWS::EC2::FlowLog",
+      "Timestamp": "2026-08-12T08:20:33.400000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "VpcRejectedTrafficFlowLogIAMRole01CDCB13",
+      "PhysicalResourceId": "RilloraStaging-VpcRejectedTrafficFlowLogIAMRole01CD-sBuQx0Bp6SNG",
+      "ResourceType": "AWS::IAM::Role",
+      "Timestamp": "2026-08-12T08:20:30.626000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "VpcRejectedTrafficFlowLogIAMRoleDefaultPolicy1667E75B",
+      "PhysicalResourceId": "Rillo-VpcRe-mYlVjqU9toWV",
+      "ResourceType": "AWS::IAM::Policy",
+      "Timestamp": "2026-08-12T08:20:48.029000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "VpcVPCGWBF912B6E",
+      "PhysicalResourceId": "IGW|vpc-084ca93af374d8aca",
+      "ResourceType": "AWS::EC2::VPCGatewayAttachment",
+      "Timestamp": "2026-08-12T08:20:28.686000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "VpcdataSubnet1RouteTableAF5F53E0",
+      "PhysicalResourceId": "rtb-08833c2b49ab6e381",
+      "ResourceType": "AWS::EC2::RouteTable",
+      "Timestamp": "2026-08-12T08:20:37.217000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "VpcdataSubnet1RouteTableAssociation9E9FDBBB",
+      "PhysicalResourceId": "rtbassoc-01020ce7d6a081bd3",
+      "ResourceType": "AWS::EC2::SubnetRouteTableAssociation",
+      "Timestamp": "2026-08-12T08:20:33.075000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "VpcdataSubnet1SubnetE2B009FB",
+      "PhysicalResourceId": "subnet-02733d2a33326da1b",
+      "ResourceType": "AWS::EC2::Subnet",
+      "Timestamp": "2026-08-12T08:20:31.015000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "VpcdataSubnet2RouteTable94FA483A",
+      "PhysicalResourceId": "rtb-0175228d50b143ad2",
+      "ResourceType": "AWS::EC2::RouteTable",
+      "Timestamp": "2026-08-12T08:20:37.251000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "VpcdataSubnet2RouteTableAssociation6C8F2058",
+      "PhysicalResourceId": "rtbassoc-01655f9fe93db1b03",
+      "ResourceType": "AWS::EC2::SubnetRouteTableAssociation",
+      "Timestamp": "2026-08-12T08:20:31.789000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "VpcdataSubnet2SubnetAD08DFFF",
+      "PhysicalResourceId": "subnet-0b94958aec4783063",
+      "ResourceType": "AWS::EC2::Subnet",
+      "Timestamp": "2026-08-12T08:20:29.795000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "VpcedgeSubnet1DefaultRouteFF24B875",
+      "PhysicalResourceId": "rtb-07e5829a5ce548b63|0.0.0.0/0",
+      "ResourceType": "AWS::EC2::Route",
+      "Timestamp": "2026-08-12T08:20:39.372000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "VpcedgeSubnet1RouteTable967A3DC6",
+      "PhysicalResourceId": "rtb-07e5829a5ce548b63",
+      "ResourceType": "AWS::EC2::RouteTable",
+      "Timestamp": "2026-08-12T08:20:37.361000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "VpcedgeSubnet1RouteTableAssociationB37B6BBE",
+      "PhysicalResourceId": "rtbassoc-002c79fb6ff81c8ab",
+      "ResourceType": "AWS::EC2::SubnetRouteTableAssociation",
+      "Timestamp": "2026-08-12T08:20:31.888000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "VpcedgeSubnet1Subnet578D518D",
+      "PhysicalResourceId": "subnet-0344e3c6bae4e3731",
+      "ResourceType": "AWS::EC2::Subnet",
+      "Timestamp": "2026-08-12T08:20:29.865000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "VpcedgeSubnet2DefaultRouteDF8DB82B",
+      "PhysicalResourceId": "rtb-0baf21535a2f31f59|0.0.0.0/0",
+      "ResourceType": "AWS::EC2::Route",
+      "Timestamp": "2026-08-12T08:20:39.351000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "VpcedgeSubnet2RouteTable04EC36AC",
+      "PhysicalResourceId": "rtb-0baf21535a2f31f59",
+      "ResourceType": "AWS::EC2::RouteTable",
+      "Timestamp": "2026-08-12T08:20:37.325000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "VpcedgeSubnet2RouteTableAssociation47DE4A32",
+      "PhysicalResourceId": "rtbassoc-0869ecbfc1d58bd60",
+      "ResourceType": "AWS::EC2::SubnetRouteTableAssociation",
+      "Timestamp": "2026-08-12T08:20:31.683000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "VpcedgeSubnet2Subnet67EE456C",
+      "PhysicalResourceId": "subnet-0610e7921274f95bd",
+      "ResourceType": "AWS::EC2::Subnet",
+      "Timestamp": "2026-08-12T08:20:29.709000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "WebBucket12880F5B",
+      "PhysicalResourceId": "rillorastaging-webbucket12880f5b-luzrsuy7c7c1",
+      "ResourceType": "AWS::S3::Bucket",
+      "Timestamp": "2026-08-12T13:38:12.909000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "WebBucketAutoDeleteObjectsCustomResource9C1A079F",
+      "PhysicalResourceId": "e200f782-c5a2-4d6f-bc9d-2192608e6834",
+      "ResourceType": "Custom::S3AutoDeleteObjects",
+      "Timestamp": "2026-08-12T13:40:58.732000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "WebBucketPolicy95D08FAA",
+      "PhysicalResourceId": "rillorastaging-webbucket12880f5b-luzrsuy7c7c1",
+      "ResourceType": "AWS::S3::BucketPolicy",
+      "Timestamp": "2026-08-12T13:40:55.253000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "WebDeploymentAwsCliLayer79C1EFEA",
+      "PhysicalResourceId": "arn:aws:lambda:eu-central-1:133857166372:layer:WebDeploymentAwsCliLayer79C1EFEA:2",
+      "ResourceType": "AWS::Lambda::LayerVersion",
+      "Timestamp": "2026-08-19T19:08:29.287000+00:00",
+      "ResourceStatus": "UPDATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "WebDeploymentCustomResource08EEC474",
+      "PhysicalResourceId": "aws.cdk.s3deployment.06dbb29e-f2ab-497e-9c97-571f8e9d9cea",
+      "ResourceType": "Custom::CDKBucketDeployment",
+      "Timestamp": "2026-09-11T06:35:38.810000+00:00",
+      "ResourceStatus": "UPDATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "WebDistribution59C46482",
+      "PhysicalResourceId": "E3JEUEZ78Z8TMR",
+      "ResourceType": "AWS::CloudFront::Distribution",
+      "Timestamp": "2026-08-12T14:35:36.868000+00:00",
+      "ResourceStatus": "UPDATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "WebDistributionOrigin1S3OriginAccessControl83AD2F73",
+      "PhysicalResourceId": "E3BUG2QHF5EVMK",
+      "ResourceType": "AWS::CloudFront::OriginAccessControl",
+      "Timestamp": "2026-08-12T13:38:00.043000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "WebOidcClientSecret8C81BEC4",
+      "PhysicalResourceId": "arn:aws:secretsmanager:eu-central-1:133857166372:secret:WebOidcClientSecret8C81BEC4-R2rkmUprqisV-VWDgAO",
+      "ResourceType": "AWS::SecretsManager::Secret",
+      "Timestamp": "2026-08-12T08:20:14.697000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "RilloraStaging",
+      "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+      "LogicalResourceId": "WebResponseHeadersPolicyA822EA32",
+      "PhysicalResourceId": "7f5942b5-0ed3-4947-bdae-ce20e74f3348",
+      "ResourceType": "AWS::CloudFront::ResponseHeadersPolicy",
+      "Timestamp": "2026-08-12T13:38:00.625000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    }
+  ]
+}

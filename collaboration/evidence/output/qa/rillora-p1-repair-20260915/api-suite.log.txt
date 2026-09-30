@@ -1,0 +1,79 @@
+
+> continuity-api@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.10 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/api.integration.test.ts (49 tests | 49 skipped) 30ms
+ ❯ tests/p1-repair.integration.test.ts (10 tests | 1 failed) 869ms
+     × account removal revokes access and exposes only an opaque status receipt 41ms
+ ❯ tests/bootstrap-runtime.test.ts (2 tests | 2 skipped) 18ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/api.integration.test.ts > Continuity API
+Error: Integration tests refuse to modify any database except continuity_test
+ ❯ assertDedicatedTestDatabase tests/api.integration.test.ts:2606:13
+    2604|     const result = await client.query<{ name: string }>("select curren…
+    2605|     if (result.rows[0]?.name !== "continuity_test") {
+    2606|       throw new Error("Integration tests refuse to modify any database…
+       |             ^
+    2607|     }
+    2608|   } finally {
+ ❯ tests/api.integration.test.ts:261:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/api.integration.test.ts > Continuity API
+TypeError: Cannot read properties of undefined (reading 'end')
+ ❯ tests/api.integration.test.ts:279:16
+    277|
+    278|   afterAll(async () => {
+    279|     await pool.end();
+       |                ^
+    280|   });
+    281|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/bootstrap-runtime.test.ts > runtime database role bootstrap
+Error: Runtime-role tests refuse to modify roles outside continuity_test
+ ❯ tests/bootstrap-runtime.test.ts:18:13
+     16|     const database = await client.query<{ database: string }>("select …
+     17|     if (database.rows[0]?.database !== "continuity_test") {
+     18|       throw new Error("Runtime-role tests refuse to modify roles outsi…
+       |             ^
+     19|     }
+     20|     await client.query(`drop role if exists ${runtimeRole}`);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/p1-repair.integration.test.ts > P1 map reliability and export privacy > account removal revokes access and exposes only an opaque status receipt
+AssertionError: expected [ { …(18) }, { …(18) }, …(2) ] to have a length of 3 but got 4
+
+- Expected
++ Received
+
+- 3
++ 4
+
+ ❯ tests/p1-repair.integration.test.ts:106:75
+    104|   await request(app).get("/account-deletions/status").expect(401);
+    105|   await request(app).get("/account-deletions/status").set("authorizati…
+    106|   expect((await request(app).get("/v1/matters").set(owner)).body.matte…
+       |                                                                           ^
+    107|  });
+    108|  it("failed provider cleanup remains pending, retries, and retains min…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  3 failed | 11 passed (14)
+      Tests  1 failed | 95 passed | 51 skipped (147)
+   Start at  23:18:49
+   Duration  7.23s (transform 323ms, setup 0ms, import 2.21s, tests 3.41s, environment 1ms)
+

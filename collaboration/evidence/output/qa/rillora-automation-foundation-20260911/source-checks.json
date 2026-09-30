@@ -1,0 +1,19 @@
+{
+  "apiTypecheck": "pass",
+  "apiBuild": "pass",
+  "apiTests": 130,
+  "database": "continuity_test",
+  "latestLocalMigration": "0040_owner_selected_family_prices.sql",
+  "opsTests": 6,
+  "infraTypecheck": "pass",
+  "infraTests": 15,
+  "standaloneSynth": "pass",
+  "scheduleDefault": "disabled",
+  "financialChecks": 87,
+  "clientVisualRun": false,
+  "providerCatalogChange": false,
+  "sourceConsumptionReview": [
+    "Web PlanAccessPreview reads annual/monthly by interval",
+    "iOS PlanAccessView reads server offers by billing interval; StoreKit test catalog remains separate"
+  ]
+}

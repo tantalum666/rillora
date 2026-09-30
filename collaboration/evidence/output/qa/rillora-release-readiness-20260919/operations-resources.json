@@ -1,0 +1,87 @@
+[
+  {
+    "LogicalResourceId": "Alerts91F83244",
+    "PhysicalResourceId": "arn:aws:sns:eu-central-1:133857166372:RilloraOperations-Alerts91F83244-3hyvJ2Vrg4zo",
+    "ResourceType": "AWS::SNS::Topic"
+  },
+  {
+    "LogicalResourceId": "AlertsPolicy425C338D",
+    "PhysicalResourceId": "arn:aws:sns:eu-central-1:133857166372:RilloraOperations-Alerts91F83244-3hyvJ2Vrg4zo",
+    "ResourceType": "AWS::SNS::TopicPolicy"
+  },
+  {
+    "LogicalResourceId": "CDKMetadata",
+    "PhysicalResourceId": "61327be0-b1ed-11f1-96b7-02118794ecd3",
+    "ResourceType": "AWS::CDK::Metadata"
+  },
+  {
+    "LogicalResourceId": "DeadLettersBBF8BAAB",
+    "PhysicalResourceId": "RilloraOperations-DeadLettersBBF8BAAB-VAFBbsMzk5nf",
+    "ResourceType": "AWS::CloudWatch::Alarm"
+  },
+  {
+    "LogicalResourceId": "FailedDeliveriesE3540845",
+    "PhysicalResourceId": "https://sqs.eu-central-1.amazonaws.com/133857166372/RilloraOperations-FailedDeliveriesE3540845-593faUJ9Mplv",
+    "ResourceType": "AWS::SQS::Queue"
+  },
+  {
+    "LogicalResourceId": "FailedDeliveriesPolicyBAFAE301",
+    "PhysicalResourceId": "RilloraOperations-FailedDeliveriesPolicyBAFAE301-WjHZakKYc1Ht",
+    "ResourceType": "AWS::SQS::QueuePolicy"
+  },
+  {
+    "LogicalResourceId": "HealthCheckA1C381C7",
+    "PhysicalResourceId": "RilloraOperations-HealthCheckA1C381C7-1C2bQQnv9BUn",
+    "ResourceType": "AWS::Lambda::Function"
+  },
+  {
+    "LogicalResourceId": "HealthCheckEventInvokeConfigABB13FBA",
+    "PhysicalResourceId": "RilloraOperations-HealthCheckA1C381C7-1C2bQQnv9BUn|$LATEST",
+    "ResourceType": "AWS::Lambda::EventInvokeConfig"
+  },
+  {
+    "LogicalResourceId": "HealthCheckServiceRoleC964F23C",
+    "PhysicalResourceId": "RilloraOperations-HealthCheckServiceRoleC964F23C-hcykV2nckiiM",
+    "ResourceType": "AWS::IAM::Role"
+  },
+  {
+    "LogicalResourceId": "HealthCheckServiceRoleDefaultPolicyAE8FE253",
+    "PhysicalResourceId": "Rillo-Healt-EenOyJ50Y9pi",
+    "ResourceType": "AWS::IAM::Policy"
+  },
+  {
+    "LogicalResourceId": "HealthLogs34B37038",
+    "PhysicalResourceId": "RilloraOperations-HealthLogs34B37038-UIzoeC36EpNt",
+    "ResourceType": "AWS::Logs::LogGroup"
+  },
+  {
+    "LogicalResourceId": "InvocationErrors5F3DC47A",
+    "PhysicalResourceId": "RilloraOperations-InvocationErrors5F3DC47A-NOJQQXBwrDnb",
+    "ResourceType": "AWS::CloudWatch::Alarm"
+  },
+  {
+    "LogicalResourceId": "MissingHeartbeatF959D2A8",
+    "PhysicalResourceId": "RilloraOperations-MissingHeartbeatF959D2A8-0rDLmZO2UqtG",
+    "ResourceType": "AWS::CloudWatch::Alarm"
+  },
+  {
+    "LogicalResourceId": "OperationsRunbook277D4959",
+    "PhysicalResourceId": "Rillo-Opera-1exWnZ3SObhg",
+    "ResourceType": "AWS::IAM::Policy"
+  },
+  {
+    "LogicalResourceId": "QuarterHourly4AE380E3",
+    "PhysicalResourceId": "RilloraOperations-QuarterHourly4AE380E3-jWt5AQzlUjlV",
+    "ResourceType": "AWS::Events::Rule"
+  },
+  {
+    "LogicalResourceId": "QuarterHourlyAllowEventRuleRilloraOperationsHealthCheckD0D9D8C5337B971B",
+    "PhysicalResourceId": "RilloraOperations-QuarterHourlyAllowEventRuleRilloraOperationsHealthCheckD0D9D8C5337B97-OfhFVXzcZ4oq",
+    "ResourceType": "AWS::Lambda::Permission"
+  },
+  {
+    "LogicalResourceId": "Unhealthy9594204A",
+    "PhysicalResourceId": "RilloraOperations-Unhealthy9594204A-p3hU67LKgX91",
+    "ResourceType": "AWS::CloudWatch::Alarm"
+  }
+]

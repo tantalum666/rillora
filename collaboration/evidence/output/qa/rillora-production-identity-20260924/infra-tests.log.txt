@@ -1,0 +1,99 @@
+
+> rillora-aws-infrastructure@0.1.0 test
+> vitest run --exclude 'dist/**'
+
+
+ RUN  v4.1.11 /Users/tantalum/Documents/电子遗嘱app/infra/aws
+
+ ❯ test/rillora-public-web-stack.test.ts (2 tests | 1 failed) 5096ms
+     × keeps storage private and has no API/database/customer secret origin 5090ms
+ ❯ test/rillora-operations-stack.test.ts (8 tests | 1 failed) 6585ms
+     × keeps the recurring schedule off until activation evidence is ready 5373ms
+stderr | test/rillora-staging-stack.test.ts > Rillora staging infrastructure > retains and rotates content keys with only purpose-scoped runtime usage
+test/rillora-staging-stack.test.ts:17:17
+WARNING Parameters/Auth0DeletionClientId: Parameter 'Auth0DeletionClientId' is not referenced anywhere in the template (CloudFormation Validate)
+   TestStack aws-cdk-lib.Stack
+   Acknowledge with 'CloudFormation-Validate::W2001'
+
+test/rillora-staging-stack.test.ts:17:17
+WARNING Parameters/Auth0DeletionClientId: Parameter 'Auth0DeletionClientId' is not referenced anywhere in the template (CloudFormation Validate)
+   TestStack aws-cdk-lib.Stack
+   Acknowledge with 'CloudFormation-Validate::W2001'
+
+test/rillora-staging-stack.test.ts:17:17
+WARNING Parameters/Auth0DeletionClientId: Parameter 'Auth0DeletionClientId' is not referenced anywhere in the template (CloudFormation Validate)
+   TestStack aws-cdk-lib.Stack
+   Acknowledge with 'CloudFormation-Validate::W2001'
+
+test/rillora-staging-stack.test.ts:17:17
+WARNING Parameters/Auth0DeletionClientId: Parameter 'Auth0DeletionClientId' is not referenced anywhere in the template (CloudFormation Validate)
+   TestStack aws-cdk-lib.Stack
+   Acknowledge with 'CloudFormation-Validate::W2001'
+
+A copy of this report can be found in: /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/cdk.outopWZJt/validation-report.json
+
+ ❯ test/rillora-production-stack.test.ts (5 tests | 1 failed) 7597ms
+     × requires seven-day encrypted private storage and keeps customer traffic closed 6323ms
+ ❯ test/rillora-staging-stack.test.ts (16 tests | 1 failed) 11684ms
+     × retains and rotates content keys with only purpose-scoped runtime usage 6185ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/rillora-operations-stack.test.ts > Standalone public operations > keeps the recurring schedule off until activation evidence is ready
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ test/rillora-operations-stack.test.ts:10:3
+      8| }));
+      9| describe("Standalone public operations", () => {
+     10|   it("keeps the recurring schedule off until activation evidence is re…
+       |   ^
+     11|     template().hasResourceProperties("AWS::Events::Rule", { State: "DI…
+     12|     Template.fromStack(new RilloraOperationsStack(new App(), "EnabledT…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  test/rillora-production-stack.test.ts > Closed production data and recovery foundation > requires seven-day encrypted private storage and keeps customer traffic closed
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ test/rillora-production-stack.test.ts:7:2
+      5| function template(){return Template.fromStack(new RilloraProductionSta…
+      6| describe('Closed production data and recovery foundation',()=>{
+      7|  it('requires seven-day encrypted private storage and keeps customer t…
+       |  ^
+      8|   const t=template();
+      9|   t.hasResourceProperties('AWS::RDS::DBInstance',{DBInstanceIdentifier…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  test/rillora-public-web-stack.test.ts > Public information hosting > keeps storage private and has no API/database/customer secret origin
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ test/rillora-public-web-stack.test.ts:20:3
+     18| }
+     19| describe('Public information hosting', () => {
+     20|   it('keeps storage private and has no API/database/customer secret or…
+       |   ^
+     21|     const assetDirectory = fixture();
+     22|     try {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  test/rillora-staging-stack.test.ts > Rillora staging infrastructure > retains and rotates content keys with only purpose-scoped runtime usage
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ test/rillora-staging-stack.test.ts:32:3
+     30|
+     31| describe("Rillora staging infrastructure", () => {
+     32|   it("retains and rotates content keys with only purpose-scoped runtim…
+       |   ^
+     33|     const template = templateFor();
+     34|     template.hasResource("AWS::KMS::Key", { DeletionPolicy: "Retain", …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  4 failed | 2 passed (6)
+      Tests  4 failed | 32 passed (36)
+   Start at  10:42:07
+   Duration  12.91s (transform 578ms, setup 0ms, import 3.55s, tests 40.94s, environment 0ms)
+

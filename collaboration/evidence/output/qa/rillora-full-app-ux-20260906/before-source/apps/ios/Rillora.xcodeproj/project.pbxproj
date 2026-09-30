@@ -1,0 +1,1052 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0032CA63ECE3B4C6DC199590 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCF2906D4802007DDC9143D /* AccountView.swift */; };
+		019F2EDA8DC011AAF2CCA2DD /* OfficialSetupStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCD0040DD6A5EE01ED12E6E /* OfficialSetupStore.swift */; };
+		07849267AE2014F1D2D356B8 /* AuthenticationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A91BCE3CEBB441054163B /* AuthenticationStore.swift */; };
+		095EC6BA5D336A6A1415F66C /* PreviewFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45333109B2F1B756EDB65E31 /* PreviewFixtures.swift */; };
+		0E23BEF0444F3D9782B00BD3 /* SimulationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E92832872CBAAEFA90D320B /* SimulationView.swift */; };
+		130AE394587B2FB1E46D01BB /* StartHerePreviewStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CAA25954252AC4C84BE326 /* StartHerePreviewStoreTests.swift */; };
+		154EFE894D7D9428E6EA0D86 /* TrustedContactEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677360CA77843E5F54E42515 /* TrustedContactEditorView.swift */; };
+		1612F51EBE373D64E0EF6150 /* GoogleSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 14D0A4D5BFC88EF914C34EC7 /* GoogleSans-SemiBold.ttf */; };
+		19F3B13C578C35A0BA0409F4 /* FirstUseGuideStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C37F16E00FF9B796289E21 /* FirstUseGuideStore.swift */; };
+		1B43E2794DF33ACE3026B025 /* SessionTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531069682128A6633EFA6320 /* SessionTokenStore.swift */; };
+		1F7FD18D29D9C834E16B17B3 /* MatterEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6895734C5E569904F22AFFD0 /* MatterEditorView.swift */; };
+		2253BDE6865E29BAB31D6ADD /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 197520CEB55CAFA2F8B57C5E /* GoogleSignIn */; };
+		22F9B795F3FF6D75900EA060 /* Rillora.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 9CA7E560A4B008C6CDA0F367 /* Rillora.storekit */; };
+		28C4771ED1411D922CAB2EE3 /* DisclosureRehearsalStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91981D8AEA09EA8E2D90733C /* DisclosureRehearsalStoreTests.swift */; };
+		2FB460C9F1FC198CA35F816C /* MatterEditorStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557BE11AADC48CAF619503BD /* MatterEditorStoreTests.swift */; };
+		31E55EC3FCFDC396D9EBF1F8 /* SimulationStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70289059341B2D6AAE0A0BD8 /* SimulationStoreTests.swift */; };
+		32CD1FEDE97966545D0AE3FC /* RecipientRehearsalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046B95BEC7B11FC78B219AE8 /* RecipientRehearsalStore.swift */; };
+		32DC8E969B25DE50680180FE /* DisclosureRehearsalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3738F407BE93EEEDF9F04855 /* DisclosureRehearsalStore.swift */; };
+		346C85201F123CE1439AAB8A /* StartHereEncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1075818315653514F02B6BF5 /* StartHereEncryptionService.swift */; };
+		3743E903DB7F8C8475BCA690 /* SimulationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E604A97A6536D1C74987AF5 /* SimulationStore.swift */; };
+		3A7C01269A05E9E858C05A31 /* AppShellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9808B4A445A00C784FB51BF7 /* AppShellView.swift */; };
+		44F60DABBADFFB3E6E1FC4BC /* OfficialSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F729771BBE65B7274DE66EDB /* OfficialSetupView.swift */; };
+		4884143695CDFF1C3B2B1196 /* PlanMotivationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8923EE56673F8A5ABFF83BE8 /* PlanMotivationView.swift */; };
+		496DC6D65A9781008123ED8E /* RilloraTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001DB5432605200CA4F3F4B4 /* RilloraTheme.swift */; };
+		49DEE4C8E65B7BA9B06E392A /* RilloraStoreKitCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08BF752E4D2C8FCDFC2D420 /* RilloraStoreKitCatalog.swift */; };
+		4D0433FB85B260BFF97C2869 /* PlanAccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC28C0F2E6F2477BA01FBC /* PlanAccessView.swift */; };
+		4D89F0D7705260A4CFCA6578 /* RoleAssignmentPolicyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABAA4E729B58D49DE9CA8A1 /* RoleAssignmentPolicyStore.swift */; };
+		4D8A992FFC9E350A30002519 /* PlanMotivationStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7426F4693F603C9582FC74DA /* PlanMotivationStoreTests.swift */; };
+		509D9E42F32D24996C4D81AD /* ProfileDashboardComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C73FAC4DF465F3648EB259 /* ProfileDashboardComponents.swift */; };
+		50CF17D349E89552506E1631 /* StartHerePreviewStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3B0967DE57945903F181B0 /* StartHerePreviewStore.swift */; };
+		52A5FD543EC5CB65BC60DD3D /* LegalConsentContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11795DE85556E52D6215ACBA /* LegalConsentContract.swift */; };
+		5C3DEFB2ABF973FB7FC116E0 /* Auth0 in Frameworks */ = {isa = PBXBuildFile; productRef = 254F2020FBD1001C28888FE4 /* Auth0 */; };
+		5D116DFE4E6AB4347963C9DD /* RoleAssignmentPolicyStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D7B757109E8BE2900F8ADB /* RoleAssignmentPolicyStoreTests.swift */; };
+		5DA83641DAD435046E60EB75 /* APIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421CFD34578C568D1C30ACAD /* APIClientTests.swift */; };
+		606041671B21F834A60BE0F6 /* TrustedContactEditorStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB1AD0392E5FCE8B9F4AD44 /* TrustedContactEditorStore.swift */; };
+		648C6C61C82649D0F31E3C92 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED739C1A3CD598E04A04CD8 /* Models.swift */; };
+		66D46E0605EB0AE419DE0C23 /* FirstUseGuideStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E166A22DE8F7F599BF9374CB /* FirstUseGuideStoreTests.swift */; };
+		66D7664D7E372D97CB13126C /* OverviewDashboardComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2BE6B25873BC7D5D95C2EE /* OverviewDashboardComponents.swift */; };
+		67164A38661DB2250FF35FA0 /* TrustedContactEditorStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3199DF2F982DDC7DC65693CC /* TrustedContactEditorStoreTests.swift */; };
+		68C0989F26CEF57983F3A217 /* MattersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FC1C0FD1A9868BB1FED093 /* MattersView.swift */; };
+		6DAF9DF12228E947A466A58A /* SignedOutExperienceViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B08DC1A5905E3E4D47C1D8E /* SignedOutExperienceViews.swift */; };
+		702B1F96727DF4EE368635F1 /* OfficialProviderGuideCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B30283B4FEEB204C1D979B1 /* OfficialProviderGuideCatalog.swift */; };
+		7DA84BD6B95FFD7EC42EBBC8 /* RilloraLayoutMatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3688828A823975F148CEBCC3 /* RilloraLayoutMatrixTests.swift */; };
+		7E3A952C733F0AE68781A992 /* AuthenticatedProfileContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8522B2C1828C008AD42B3F1F /* AuthenticatedProfileContent.swift */; };
+		8066A0C6F50FF1AC687FD3B3 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038EC06F39B59A1AEAD4AC62 /* APIClient.swift */; };
+		822017E76051085B2F4E8DCB /* AppTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A94E1749FCC4833A075609 /* AppTab.swift */; };
+		850486D903BB40963BA76930 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C1C3516704D03D29CAAFAA3 /* Assets.xcassets */; };
+		8719617E561AB628551624F3 /* PlanMotivationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF0C1A4B9E0E7DFE86CE10B /* PlanMotivationStore.swift */; };
+		8955E2E0D3095F419640773B /* StoreKitSandboxCatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4F037709EEC6E265781A0F /* StoreKitSandboxCatalogView.swift */; };
+		8D50D48354A841F2631E608A /* OverviewStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7091BA2A79A635CF48D2E1CF /* OverviewStoreTests.swift */; };
+		9350E601D4B05EB3AFC0B076 /* StartHereEncryptionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC825B917AA19F1CC6156592 /* StartHereEncryptionServiceTests.swift */; };
+		93A2F15BE9B2EF4D283EE90A /* OverviewStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47DC6EA57D7ACDE0E3C57B7 /* OverviewStore.swift */; };
+		99785E21CB50F56A60D63F83 /* ProfileSupportViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E9410F5A5AA4DFB9CA7469 /* ProfileSupportViews.swift */; };
+		9A5D9536D20F46F3A2EDADF9 /* StoreKitClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271A6F91738650D41E14CCBD /* StoreKitClient.swift */; };
+		A035EFC21BD6587FD9045F9D /* MatterEditorStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F96B398170EDA2620DE1C0 /* MatterEditorStore.swift */; };
+		A5DEB97D68104F9EB781DDA1 /* DisclosureRehearsalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB67261072383CE46784DC34 /* DisclosureRehearsalView.swift */; };
+		A79B5FC45F663930D05AC6A1 /* CommerceStorefrontProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7584EC18C7BF6356A82B3CC0 /* CommerceStorefrontProvider.swift */; };
+		A90E9A4EABADC5E8338725CC /* StartHerePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0441979FEDFEBDA9646509BF /* StartHerePreviewView.swift */; };
+		AD4F5B02DF798F50F0D3E2E0 /* RoleAssignmentPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9E1D5D9630CAC748E598D8 /* RoleAssignmentPolicyView.swift */; };
+		B6AFE77CC249DF099FA0301D /* NativeAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260C338E4B5656B1676A884F /* NativeAuthenticationService.swift */; };
+		B6FD85AB22FF67E9044EE4F8 /* OverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346BC7B6566D68847A185EFC /* OverviewView.swift */; };
+		B74D28681A6BCDF83D9FABA1 /* OfficialSetupStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7E2C0055A2DF5E414D4712 /* OfficialSetupStoreTests.swift */; };
+		B7A5975C53B767C28E20DFB1 /* AppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723E016EA49EF4B6E05481DA /* AppDependencies.swift */; };
+		BE835BC098A94D58EBD73D7A /* FirstUseViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8488182AED5639E85F928BA9 /* FirstUseViews.swift */; };
+		C3A7BFA050E5A6B17FD8CF41 /* RilloraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67A8BE54C30591FAF1B7F8C /* RilloraApp.swift */; };
+		C57E1A55718DED40BB7EE107 /* OfficialProviderGuideCatalogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C26038DFEBA1ABE12D0F68 /* OfficialProviderGuideCatalogTests.swift */; };
+		C747AD9D89510B2765FBC49D /* HTTPTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DDD881F7EFDB5675763362 /* HTTPTransport.swift */; };
+		CE2DC7B1E999F42EC5B71421 /* CommerceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F192A160A6D0E53F83D5D87 /* CommerceStore.swift */; };
+		D45831FCF4B400E2AD31BFF8 /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58498A2E9E0F116547D3C2D9 /* APIConfiguration.swift */; };
+		D4EA3159D6DA29DA70FBF6B2 /* CommerceStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C662A2FBA26664A9CA7B1F5 /* CommerceStoreTests.swift */; };
+		EECF4666732C52F43AB8CA45 /* AccountAccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E63FC26B473FFC4C2D84900 /* AccountAccessView.swift */; };
+		F6ECC65E20B51EA2E87A830C /* RilloraAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C181F59408D1BDD6D894B661 /* RilloraAPIError.swift */; };
+		F8A7193D69F033A5458CC2BD /* CommerceModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E310267119825E27CCEBBC6A /* CommerceModels.swift */; };
+		FA08AA3A0B1A870C1CE0F6B3 /* OverviewStateViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0630FBCBB466928905E837 /* OverviewStateViews.swift */; };
+		FC4ACCE1DBFB0819060D02BF /* Rillora.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 9CA7E560A4B008C6CDA0F367 /* Rillora.storekit */; };
+		FD4A7A9DB4A55A31F62A5021 /* AppleStoreKitClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22B9A0851B957091F11E291 /* AppleStoreKitClientTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9729EEAF9AF69B2810902FE2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 952879010A41429DB61C0F82 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CFE6CDA61BF7862FBD0B4808;
+			remoteInfo = Rillora;
+		};
+		C25AB7645A15EA5B4B98283C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 952879010A41429DB61C0F82 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CFE6CDA61BF7862FBD0B4808;
+			remoteInfo = Rillora;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		001DB5432605200CA4F3F4B4 /* RilloraTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RilloraTheme.swift; sourceTree = "<group>"; };
+		038EC06F39B59A1AEAD4AC62 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		0441979FEDFEBDA9646509BF /* StartHerePreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartHerePreviewView.swift; sourceTree = "<group>"; };
+		046B95BEC7B11FC78B219AE8 /* RecipientRehearsalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipientRehearsalStore.swift; sourceTree = "<group>"; };
+		0B30283B4FEEB204C1D979B1 /* OfficialProviderGuideCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficialProviderGuideCatalog.swift; sourceTree = "<group>"; };
+		0F192A160A6D0E53F83D5D87 /* CommerceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommerceStore.swift; sourceTree = "<group>"; };
+		1075818315653514F02B6BF5 /* StartHereEncryptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartHereEncryptionService.swift; sourceTree = "<group>"; };
+		11795DE85556E52D6215ACBA /* LegalConsentContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalConsentContract.swift; sourceTree = "<group>"; };
+		14D0A4D5BFC88EF914C34EC7 /* GoogleSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GoogleSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		1A3B0967DE57945903F181B0 /* StartHerePreviewStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartHerePreviewStore.swift; sourceTree = "<group>"; };
+		1C662A2FBA26664A9CA7B1F5 /* CommerceStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommerceStoreTests.swift; sourceTree = "<group>"; };
+		1DF0C1A4B9E0E7DFE86CE10B /* PlanMotivationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanMotivationStore.swift; sourceTree = "<group>"; };
+		260C338E4B5656B1676A884F /* NativeAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeAuthenticationService.swift; sourceTree = "<group>"; };
+		271A6F91738650D41E14CCBD /* StoreKitClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitClient.swift; sourceTree = "<group>"; };
+		30C37F16E00FF9B796289E21 /* FirstUseGuideStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstUseGuideStore.swift; sourceTree = "<group>"; };
+		3199DF2F982DDC7DC65693CC /* TrustedContactEditorStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrustedContactEditorStoreTests.swift; sourceTree = "<group>"; };
+		33AA463F3FC11D4D069259B2 /* RilloraLayoutMatrixTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = RilloraLayoutMatrixTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		346BC7B6566D68847A185EFC /* OverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewView.swift; sourceTree = "<group>"; };
+		363BC72332D601AFC58B18DF /* Rillora.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Rillora.entitlements; sourceTree = "<group>"; };
+		3688828A823975F148CEBCC3 /* RilloraLayoutMatrixTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RilloraLayoutMatrixTests.swift; sourceTree = "<group>"; };
+		3738F407BE93EEEDF9F04855 /* DisclosureRehearsalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureRehearsalStore.swift; sourceTree = "<group>"; };
+		3BCEA92C30C83D43E451167D /* Rillora.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Rillora.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D4F037709EEC6E265781A0F /* StoreKitSandboxCatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitSandboxCatalogView.swift; sourceTree = "<group>"; };
+		3F2BE6B25873BC7D5D95C2EE /* OverviewDashboardComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewDashboardComponents.swift; sourceTree = "<group>"; };
+		421CFD34578C568D1C30ACAD /* APIClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientTests.swift; sourceTree = "<group>"; };
+		45333109B2F1B756EDB65E31 /* PreviewFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewFixtures.swift; sourceTree = "<group>"; };
+		47E9410F5A5AA4DFB9CA7469 /* ProfileSupportViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSupportViews.swift; sourceTree = "<group>"; };
+		4B08DC1A5905E3E4D47C1D8E /* SignedOutExperienceViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignedOutExperienceViews.swift; sourceTree = "<group>"; };
+		4C1C3516704D03D29CAAFAA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4CFC28C0F2E6F2477BA01FBC /* PlanAccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanAccessView.swift; sourceTree = "<group>"; };
+		4E63FC26B473FFC4C2D84900 /* AccountAccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAccessView.swift; sourceTree = "<group>"; };
+		4E92832872CBAAEFA90D320B /* SimulationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulationView.swift; sourceTree = "<group>"; };
+		50FC1C0FD1A9868BB1FED093 /* MattersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MattersView.swift; sourceTree = "<group>"; };
+		531069682128A6633EFA6320 /* SessionTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTokenStore.swift; sourceTree = "<group>"; };
+		557BE11AADC48CAF619503BD /* MatterEditorStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatterEditorStoreTests.swift; sourceTree = "<group>"; };
+		58498A2E9E0F116547D3C2D9 /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
+		5ABAA4E729B58D49DE9CA8A1 /* RoleAssignmentPolicyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleAssignmentPolicyStore.swift; sourceTree = "<group>"; };
+		5DB1AD0392E5FCE8B9F4AD44 /* TrustedContactEditorStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrustedContactEditorStore.swift; sourceTree = "<group>"; };
+		653A91BCE3CEBB441054163B /* AuthenticationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationStore.swift; sourceTree = "<group>"; };
+		677360CA77843E5F54E42515 /* TrustedContactEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrustedContactEditorView.swift; sourceTree = "<group>"; };
+		6895734C5E569904F22AFFD0 /* MatterEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatterEditorView.swift; sourceTree = "<group>"; };
+		68C73FAC4DF465F3648EB259 /* ProfileDashboardComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDashboardComponents.swift; sourceTree = "<group>"; };
+		68D7B757109E8BE2900F8ADB /* RoleAssignmentPolicyStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleAssignmentPolicyStoreTests.swift; sourceTree = "<group>"; };
+		70289059341B2D6AAE0A0BD8 /* SimulationStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulationStoreTests.swift; sourceTree = "<group>"; };
+		7091BA2A79A635CF48D2E1CF /* OverviewStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewStoreTests.swift; sourceTree = "<group>"; };
+		723E016EA49EF4B6E05481DA /* AppDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependencies.swift; sourceTree = "<group>"; };
+		7426F4693F603C9582FC74DA /* PlanMotivationStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanMotivationStoreTests.swift; sourceTree = "<group>"; };
+		7584EC18C7BF6356A82B3CC0 /* CommerceStorefrontProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommerceStorefrontProvider.swift; sourceTree = "<group>"; };
+		7E1F5E235C0AF4142C367559 /* RilloraTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = RilloraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E55D36AF14646260A5900D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		7E604A97A6536D1C74987AF5 /* SimulationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulationStore.swift; sourceTree = "<group>"; };
+		8488182AED5639E85F928BA9 /* FirstUseViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstUseViews.swift; sourceTree = "<group>"; };
+		8522B2C1828C008AD42B3F1F /* AuthenticatedProfileContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedProfileContent.swift; sourceTree = "<group>"; };
+		8923EE56673F8A5ABFF83BE8 /* PlanMotivationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanMotivationView.swift; sourceTree = "<group>"; };
+		8D9E1D5D9630CAC748E598D8 /* RoleAssignmentPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleAssignmentPolicyView.swift; sourceTree = "<group>"; };
+		91981D8AEA09EA8E2D90733C /* DisclosureRehearsalStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureRehearsalStoreTests.swift; sourceTree = "<group>"; };
+		96CAA25954252AC4C84BE326 /* StartHerePreviewStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartHerePreviewStoreTests.swift; sourceTree = "<group>"; };
+		9808B4A445A00C784FB51BF7 /* AppShellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShellView.swift; sourceTree = "<group>"; };
+		9A0630FBCBB466928905E837 /* OverviewStateViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewStateViews.swift; sourceTree = "<group>"; };
+		9C7E2C0055A2DF5E414D4712 /* OfficialSetupStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficialSetupStoreTests.swift; sourceTree = "<group>"; };
+		9CA7E560A4B008C6CDA0F367 /* Rillora.storekit */ = {isa = PBXFileReference; path = Rillora.storekit; sourceTree = "<group>"; };
+		A08BF752E4D2C8FCDFC2D420 /* RilloraStoreKitCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RilloraStoreKitCatalog.swift; sourceTree = "<group>"; };
+		A1A94E1749FCC4833A075609 /* AppTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTab.swift; sourceTree = "<group>"; };
+		A22B9A0851B957091F11E291 /* AppleStoreKitClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleStoreKitClientTests.swift; sourceTree = "<group>"; };
+		A7C26038DFEBA1ABE12D0F68 /* OfficialProviderGuideCatalogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficialProviderGuideCatalogTests.swift; sourceTree = "<group>"; };
+		A7F96B398170EDA2620DE1C0 /* MatterEditorStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatterEditorStore.swift; sourceTree = "<group>"; };
+		AB67261072383CE46784DC34 /* DisclosureRehearsalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureRehearsalView.swift; sourceTree = "<group>"; };
+		AC825B917AA19F1CC6156592 /* StartHereEncryptionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartHereEncryptionServiceTests.swift; sourceTree = "<group>"; };
+		ACCF2906D4802007DDC9143D /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		AFCD0040DD6A5EE01ED12E6E /* OfficialSetupStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficialSetupStore.swift; sourceTree = "<group>"; };
+		B1DDD881F7EFDB5675763362 /* HTTPTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTransport.swift; sourceTree = "<group>"; };
+		BED739C1A3CD598E04A04CD8 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		C181F59408D1BDD6D894B661 /* RilloraAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RilloraAPIError.swift; sourceTree = "<group>"; };
+		D67A8BE54C30591FAF1B7F8C /* RilloraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RilloraApp.swift; sourceTree = "<group>"; };
+		E166A22DE8F7F599BF9374CB /* FirstUseGuideStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstUseGuideStoreTests.swift; sourceTree = "<group>"; };
+		E310267119825E27CCEBBC6A /* CommerceModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommerceModels.swift; sourceTree = "<group>"; };
+		E47DC6EA57D7ACDE0E3C57B7 /* OverviewStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewStore.swift; sourceTree = "<group>"; };
+		F729771BBE65B7274DE66EDB /* OfficialSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficialSetupView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BFE107872460B1DA8669D2BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C3DEFB2ABF973FB7FC116E0 /* Auth0 in Frameworks */,
+				2253BDE6865E29BAB31D6ADD /* GoogleSignIn in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0FF735112A99FA37D2DA3D7E /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				C52215CB5A41199F69F7249F /* API */,
+				2D5CE26B5793350EBD62B23B /* Authentication */,
+				DC0632ECBF47A3C978886EA3 /* Commerce */,
+				8DBBDD7E49AEC3D4E5F112C1 /* Design */,
+				E0C4E4BE27D9EDACC338D0F0 /* Domain */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		2D5CE26B5793350EBD62B23B /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				653A91BCE3CEBB441054163B /* AuthenticationStore.swift */,
+				11795DE85556E52D6215ACBA /* LegalConsentContract.swift */,
+				260C338E4B5656B1676A884F /* NativeAuthenticationService.swift */,
+				531069682128A6633EFA6320 /* SessionTokenStore.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		2ECBFF55EA69FF6335658736 /* Overview */ = {
+			isa = PBXGroup;
+			children = (
+				3F2BE6B25873BC7D5D95C2EE /* OverviewDashboardComponents.swift */,
+				9A0630FBCBB466928905E837 /* OverviewStateViews.swift */,
+				E47DC6EA57D7ACDE0E3C57B7 /* OverviewStore.swift */,
+				346BC7B6566D68847A185EFC /* OverviewView.swift */,
+				45333109B2F1B756EDB65E31 /* PreviewFixtures.swift */,
+				4B08DC1A5905E3E4D47C1D8E /* SignedOutExperienceViews.swift */,
+			);
+			path = Overview;
+			sourceTree = "<group>";
+		};
+		4C6F99E925A8AAA248FE9D5B /* Roles */ = {
+			isa = PBXGroup;
+			children = (
+				5ABAA4E729B58D49DE9CA8A1 /* RoleAssignmentPolicyStore.swift */,
+				8D9E1D5D9630CAC748E598D8 /* RoleAssignmentPolicyView.swift */,
+			);
+			path = Roles;
+			sourceTree = "<group>";
+		};
+		4F9CBB93DCB2B08D3246C4F1 /* Plan */ = {
+			isa = PBXGroup;
+			children = (
+				1DF0C1A4B9E0E7DFE86CE10B /* PlanMotivationStore.swift */,
+				8923EE56673F8A5ABFF83BE8 /* PlanMotivationView.swift */,
+			);
+			path = Plan;
+			sourceTree = "<group>";
+		};
+		55521CC31E0243F6477A20DE /* Matters */ = {
+			isa = PBXGroup;
+			children = (
+				A7F96B398170EDA2620DE1C0 /* MatterEditorStore.swift */,
+				6895734C5E569904F22AFFD0 /* MatterEditorView.swift */,
+				50FC1C0FD1A9868BB1FED093 /* MattersView.swift */,
+			);
+			path = Matters;
+			sourceTree = "<group>";
+		};
+		58C79E06B24D11B0AF01FD61 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3BCEA92C30C83D43E451167D /* Rillora.app */,
+				33AA463F3FC11D4D069259B2 /* RilloraLayoutMatrixTests.xctest */,
+				7E1F5E235C0AF4142C367559 /* RilloraTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7EC2A22DE182E951BC93DF0E /* OfficialSetup */ = {
+			isa = PBXGroup;
+			children = (
+				0B30283B4FEEB204C1D979B1 /* OfficialProviderGuideCatalog.swift */,
+				AFCD0040DD6A5EE01ED12E6E /* OfficialSetupStore.swift */,
+				F729771BBE65B7274DE66EDB /* OfficialSetupView.swift */,
+			);
+			path = OfficialSetup;
+			sourceTree = "<group>";
+		};
+		8DBBDD7E49AEC3D4E5F112C1 /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				001DB5432605200CA4F3F4B4 /* RilloraTheme.swift */,
+			);
+			path = Design;
+			sourceTree = "<group>";
+		};
+		95F1018378058DCEE3E01F2A /* FirstUse */ = {
+			isa = PBXGroup;
+			children = (
+				30C37F16E00FF9B796289E21 /* FirstUseGuideStore.swift */,
+				8488182AED5639E85F928BA9 /* FirstUseViews.swift */,
+			);
+			path = FirstUse;
+			sourceTree = "<group>";
+		};
+		96C84AB2BF4EF5EF3242F642 /* Rillora */ = {
+			isa = PBXGroup;
+			children = (
+				363BC72332D601AFC58B18DF /* Rillora.entitlements */,
+				B1C4CB213210D5A73B843F93 /* App */,
+				0FF735112A99FA37D2DA3D7E /* Core */,
+				E36F4958B61047DF1AAEC75D /* Features */,
+				AB6DAB15075C8FEAF3947E48 /* Resources */,
+			);
+			path = Rillora;
+			sourceTree = "<group>";
+		};
+		9A6F370D1708ABC99A42E42F /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				14D0A4D5BFC88EF914C34EC7 /* GoogleSans-SemiBold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		9BB160354FB361135874CA18 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				4E63FC26B473FFC4C2D84900 /* AccountAccessView.swift */,
+				ACCF2906D4802007DDC9143D /* AccountView.swift */,
+				8522B2C1828C008AD42B3F1F /* AuthenticatedProfileContent.swift */,
+				4CFC28C0F2E6F2477BA01FBC /* PlanAccessView.swift */,
+				68C73FAC4DF465F3648EB259 /* ProfileDashboardComponents.swift */,
+				47E9410F5A5AA4DFB9CA7469 /* ProfileSupportViews.swift */,
+				3D4F037709EEC6E265781A0F /* StoreKitSandboxCatalogView.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		9CFA19DCB0F0C1BE836FE915 /* StartHere */ = {
+			isa = PBXGroup;
+			children = (
+				046B95BEC7B11FC78B219AE8 /* RecipientRehearsalStore.swift */,
+				1075818315653514F02B6BF5 /* StartHereEncryptionService.swift */,
+				1A3B0967DE57945903F181B0 /* StartHerePreviewStore.swift */,
+				0441979FEDFEBDA9646509BF /* StartHerePreviewView.swift */,
+			);
+			path = StartHere;
+			sourceTree = "<group>";
+		};
+		A40E651AE1E8AB4EEA5A4F7C /* RilloraLayoutMatrixTests */ = {
+			isa = PBXGroup;
+			children = (
+				3688828A823975F148CEBCC3 /* RilloraLayoutMatrixTests.swift */,
+			);
+			path = RilloraLayoutMatrixTests;
+			sourceTree = "<group>";
+		};
+		AB6DAB15075C8FEAF3947E48 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4C1C3516704D03D29CAAFAA3 /* Assets.xcassets */,
+				7E55D36AF14646260A5900D0 /* Info.plist */,
+				9A6F370D1708ABC99A42E42F /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		B1C4CB213210D5A73B843F93 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				723E016EA49EF4B6E05481DA /* AppDependencies.swift */,
+				9808B4A445A00C784FB51BF7 /* AppShellView.swift */,
+				A1A94E1749FCC4833A075609 /* AppTab.swift */,
+				D67A8BE54C30591FAF1B7F8C /* RilloraApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		C3534E5969EE148FB9508306 /* RilloraTests */ = {
+			isa = PBXGroup;
+			children = (
+				421CFD34578C568D1C30ACAD /* APIClientTests.swift */,
+				A22B9A0851B957091F11E291 /* AppleStoreKitClientTests.swift */,
+				1C662A2FBA26664A9CA7B1F5 /* CommerceStoreTests.swift */,
+				91981D8AEA09EA8E2D90733C /* DisclosureRehearsalStoreTests.swift */,
+				E166A22DE8F7F599BF9374CB /* FirstUseGuideStoreTests.swift */,
+				557BE11AADC48CAF619503BD /* MatterEditorStoreTests.swift */,
+				A7C26038DFEBA1ABE12D0F68 /* OfficialProviderGuideCatalogTests.swift */,
+				9C7E2C0055A2DF5E414D4712 /* OfficialSetupStoreTests.swift */,
+				7091BA2A79A635CF48D2E1CF /* OverviewStoreTests.swift */,
+				7426F4693F603C9582FC74DA /* PlanMotivationStoreTests.swift */,
+				68D7B757109E8BE2900F8ADB /* RoleAssignmentPolicyStoreTests.swift */,
+				70289059341B2D6AAE0A0BD8 /* SimulationStoreTests.swift */,
+				AC825B917AA19F1CC6156592 /* StartHereEncryptionServiceTests.swift */,
+				96CAA25954252AC4C84BE326 /* StartHerePreviewStoreTests.swift */,
+				3199DF2F982DDC7DC65693CC /* TrustedContactEditorStoreTests.swift */,
+			);
+			path = RilloraTests;
+			sourceTree = "<group>";
+		};
+		C52215CB5A41199F69F7249F /* API */ = {
+			isa = PBXGroup;
+			children = (
+				038EC06F39B59A1AEAD4AC62 /* APIClient.swift */,
+				58498A2E9E0F116547D3C2D9 /* APIConfiguration.swift */,
+				B1DDD881F7EFDB5675763362 /* HTTPTransport.swift */,
+				C181F59408D1BDD6D894B661 /* RilloraAPIError.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		C7967CDCB2682DF83654C3E8 /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				5DB1AD0392E5FCE8B9F4AD44 /* TrustedContactEditorStore.swift */,
+				677360CA77843E5F54E42515 /* TrustedContactEditorView.swift */,
+			);
+			path = Contacts;
+			sourceTree = "<group>";
+		};
+		DC0632ECBF47A3C978886EA3 /* Commerce */ = {
+			isa = PBXGroup;
+			children = (
+				0F192A160A6D0E53F83D5D87 /* CommerceStore.swift */,
+				7584EC18C7BF6356A82B3CC0 /* CommerceStorefrontProvider.swift */,
+				A08BF752E4D2C8FCDFC2D420 /* RilloraStoreKitCatalog.swift */,
+				271A6F91738650D41E14CCBD /* StoreKitClient.swift */,
+			);
+			path = Commerce;
+			sourceTree = "<group>";
+		};
+		DE535ED526D808ECE20670F0 /* Simulation */ = {
+			isa = PBXGroup;
+			children = (
+				3738F407BE93EEEDF9F04855 /* DisclosureRehearsalStore.swift */,
+				AB67261072383CE46784DC34 /* DisclosureRehearsalView.swift */,
+				7E604A97A6536D1C74987AF5 /* SimulationStore.swift */,
+				4E92832872CBAAEFA90D320B /* SimulationView.swift */,
+			);
+			path = Simulation;
+			sourceTree = "<group>";
+		};
+		E0C4E4BE27D9EDACC338D0F0 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				E310267119825E27CCEBBC6A /* CommerceModels.swift */,
+				BED739C1A3CD598E04A04CD8 /* Models.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		E36F4958B61047DF1AAEC75D /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				9BB160354FB361135874CA18 /* Account */,
+				C7967CDCB2682DF83654C3E8 /* Contacts */,
+				95F1018378058DCEE3E01F2A /* FirstUse */,
+				55521CC31E0243F6477A20DE /* Matters */,
+				7EC2A22DE182E951BC93DF0E /* OfficialSetup */,
+				2ECBFF55EA69FF6335658736 /* Overview */,
+				4F9CBB93DCB2B08D3246C4F1 /* Plan */,
+				4C6F99E925A8AAA248FE9D5B /* Roles */,
+				DE535ED526D808ECE20670F0 /* Simulation */,
+				9CFA19DCB0F0C1BE836FE915 /* StartHere */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		EE5A34CA37316093E0C7303D = {
+			isa = PBXGroup;
+			children = (
+				96C84AB2BF4EF5EF3242F642 /* Rillora */,
+				A40E651AE1E8AB4EEA5A4F7C /* RilloraLayoutMatrixTests */,
+				C3534E5969EE148FB9508306 /* RilloraTests */,
+				FFCF810B3D217B50DC53B25B /* StoreKit */,
+				58C79E06B24D11B0AF01FD61 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FFCF810B3D217B50DC53B25B /* StoreKit */ = {
+			isa = PBXGroup;
+			children = (
+				9CA7E560A4B008C6CDA0F367 /* Rillora.storekit */,
+			);
+			path = StoreKit;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		61BAEB7C675D35A8A11AEF3B /* RilloraTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9D69501A921D67117EF57703 /* Build configuration list for PBXNativeTarget "RilloraTests" */;
+			buildPhases = (
+				17D774C38941D49F29094DBA /* Sources */,
+				3F4C5A432FA79B69F5C2EABC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				137B483DF42CE789CB5FF8BB /* PBXTargetDependency */,
+			);
+			name = RilloraTests;
+			packageProductDependencies = (
+			);
+			productName = RilloraTests;
+			productReference = 7E1F5E235C0AF4142C367559 /* RilloraTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C21E8361882F7F083659C8EC /* RilloraLayoutMatrixTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C659CB9D29A86A22F09B1E3B /* Build configuration list for PBXNativeTarget "RilloraLayoutMatrixTests" */;
+			buildPhases = (
+				A9877E02BCAAFF871E7C41BB /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FFB40C8B92E0B4AF7FCDEBAB /* PBXTargetDependency */,
+			);
+			name = RilloraLayoutMatrixTests;
+			packageProductDependencies = (
+			);
+			productName = RilloraLayoutMatrixTests;
+			productReference = 33AA463F3FC11D4D069259B2 /* RilloraLayoutMatrixTests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		CFE6CDA61BF7862FBD0B4808 /* Rillora */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 60D84E71984AAB07A164F31E /* Build configuration list for PBXNativeTarget "Rillora" */;
+			buildPhases = (
+				55776018252F13489998B302 /* Sources */,
+				EDD27869EF70E4DC9B4F02C6 /* Resources */,
+				BFE107872460B1DA8669D2BC /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Rillora;
+			packageProductDependencies = (
+				254F2020FBD1001C28888FE4 /* Auth0 */,
+				197520CEB55CAFA2F8B57C5E /* GoogleSignIn */,
+			);
+			productName = Rillora;
+			productReference = 3BCEA92C30C83D43E451167D /* Rillora.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		952879010A41429DB61C0F82 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					C21E8361882F7F083659C8EC = {
+						TestTargetID = CFE6CDA61BF7862FBD0B4808;
+					};
+					CFE6CDA61BF7862FBD0B4808 = {
+						DevelopmentTeam = 8L99CFNK24;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = ED1388A507206F460160358D /* Build configuration list for PBXProject "Rillora" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = EE5A34CA37316093E0C7303D;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				D0C23B8E258E8DBEEE8878B0 /* XCRemoteSwiftPackageReference "Auth0.swift" */,
+				0E145ABAC5CFD4F09F36EAD5 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 58C79E06B24D11B0AF01FD61 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CFE6CDA61BF7862FBD0B4808 /* Rillora */,
+				C21E8361882F7F083659C8EC /* RilloraLayoutMatrixTests */,
+				61BAEB7C675D35A8A11AEF3B /* RilloraTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3F4C5A432FA79B69F5C2EABC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC4ACCE1DBFB0819060D02BF /* Rillora.storekit in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EDD27869EF70E4DC9B4F02C6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				850486D903BB40963BA76930 /* Assets.xcassets in Resources */,
+				1612F51EBE373D64E0EF6150 /* GoogleSans-SemiBold.ttf in Resources */,
+				22F9B795F3FF6D75900EA060 /* Rillora.storekit in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		17D774C38941D49F29094DBA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DA83641DAD435046E60EB75 /* APIClientTests.swift in Sources */,
+				FD4A7A9DB4A55A31F62A5021 /* AppleStoreKitClientTests.swift in Sources */,
+				D4EA3159D6DA29DA70FBF6B2 /* CommerceStoreTests.swift in Sources */,
+				28C4771ED1411D922CAB2EE3 /* DisclosureRehearsalStoreTests.swift in Sources */,
+				66D46E0605EB0AE419DE0C23 /* FirstUseGuideStoreTests.swift in Sources */,
+				2FB460C9F1FC198CA35F816C /* MatterEditorStoreTests.swift in Sources */,
+				C57E1A55718DED40BB7EE107 /* OfficialProviderGuideCatalogTests.swift in Sources */,
+				B74D28681A6BCDF83D9FABA1 /* OfficialSetupStoreTests.swift in Sources */,
+				8D50D48354A841F2631E608A /* OverviewStoreTests.swift in Sources */,
+				4D8A992FFC9E350A30002519 /* PlanMotivationStoreTests.swift in Sources */,
+				5D116DFE4E6AB4347963C9DD /* RoleAssignmentPolicyStoreTests.swift in Sources */,
+				31E55EC3FCFDC396D9EBF1F8 /* SimulationStoreTests.swift in Sources */,
+				9350E601D4B05EB3AFC0B076 /* StartHereEncryptionServiceTests.swift in Sources */,
+				130AE394587B2FB1E46D01BB /* StartHerePreviewStoreTests.swift in Sources */,
+				67164A38661DB2250FF35FA0 /* TrustedContactEditorStoreTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55776018252F13489998B302 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8066A0C6F50FF1AC687FD3B3 /* APIClient.swift in Sources */,
+				D45831FCF4B400E2AD31BFF8 /* APIConfiguration.swift in Sources */,
+				EECF4666732C52F43AB8CA45 /* AccountAccessView.swift in Sources */,
+				0032CA63ECE3B4C6DC199590 /* AccountView.swift in Sources */,
+				B7A5975C53B767C28E20DFB1 /* AppDependencies.swift in Sources */,
+				3A7C01269A05E9E858C05A31 /* AppShellView.swift in Sources */,
+				822017E76051085B2F4E8DCB /* AppTab.swift in Sources */,
+				7E3A952C733F0AE68781A992 /* AuthenticatedProfileContent.swift in Sources */,
+				07849267AE2014F1D2D356B8 /* AuthenticationStore.swift in Sources */,
+				F8A7193D69F033A5458CC2BD /* CommerceModels.swift in Sources */,
+				CE2DC7B1E999F42EC5B71421 /* CommerceStore.swift in Sources */,
+				A79B5FC45F663930D05AC6A1 /* CommerceStorefrontProvider.swift in Sources */,
+				32DC8E969B25DE50680180FE /* DisclosureRehearsalStore.swift in Sources */,
+				A5DEB97D68104F9EB781DDA1 /* DisclosureRehearsalView.swift in Sources */,
+				19F3B13C578C35A0BA0409F4 /* FirstUseGuideStore.swift in Sources */,
+				BE835BC098A94D58EBD73D7A /* FirstUseViews.swift in Sources */,
+				C747AD9D89510B2765FBC49D /* HTTPTransport.swift in Sources */,
+				52A5FD543EC5CB65BC60DD3D /* LegalConsentContract.swift in Sources */,
+				A035EFC21BD6587FD9045F9D /* MatterEditorStore.swift in Sources */,
+				1F7FD18D29D9C834E16B17B3 /* MatterEditorView.swift in Sources */,
+				68C0989F26CEF57983F3A217 /* MattersView.swift in Sources */,
+				648C6C61C82649D0F31E3C92 /* Models.swift in Sources */,
+				B6AFE77CC249DF099FA0301D /* NativeAuthenticationService.swift in Sources */,
+				702B1F96727DF4EE368635F1 /* OfficialProviderGuideCatalog.swift in Sources */,
+				019F2EDA8DC011AAF2CCA2DD /* OfficialSetupStore.swift in Sources */,
+				44F60DABBADFFB3E6E1FC4BC /* OfficialSetupView.swift in Sources */,
+				66D7664D7E372D97CB13126C /* OverviewDashboardComponents.swift in Sources */,
+				FA08AA3A0B1A870C1CE0F6B3 /* OverviewStateViews.swift in Sources */,
+				93A2F15BE9B2EF4D283EE90A /* OverviewStore.swift in Sources */,
+				B6FD85AB22FF67E9044EE4F8 /* OverviewView.swift in Sources */,
+				4D0433FB85B260BFF97C2869 /* PlanAccessView.swift in Sources */,
+				8719617E561AB628551624F3 /* PlanMotivationStore.swift in Sources */,
+				4884143695CDFF1C3B2B1196 /* PlanMotivationView.swift in Sources */,
+				095EC6BA5D336A6A1415F66C /* PreviewFixtures.swift in Sources */,
+				509D9E42F32D24996C4D81AD /* ProfileDashboardComponents.swift in Sources */,
+				99785E21CB50F56A60D63F83 /* ProfileSupportViews.swift in Sources */,
+				32CD1FEDE97966545D0AE3FC /* RecipientRehearsalStore.swift in Sources */,
+				F6ECC65E20B51EA2E87A830C /* RilloraAPIError.swift in Sources */,
+				C3A7BFA050E5A6B17FD8CF41 /* RilloraApp.swift in Sources */,
+				49DEE4C8E65B7BA9B06E392A /* RilloraStoreKitCatalog.swift in Sources */,
+				496DC6D65A9781008123ED8E /* RilloraTheme.swift in Sources */,
+				4D89F0D7705260A4CFCA6578 /* RoleAssignmentPolicyStore.swift in Sources */,
+				AD4F5B02DF798F50F0D3E2E0 /* RoleAssignmentPolicyView.swift in Sources */,
+				1B43E2794DF33ACE3026B025 /* SessionTokenStore.swift in Sources */,
+				6DAF9DF12228E947A466A58A /* SignedOutExperienceViews.swift in Sources */,
+				3743E903DB7F8C8475BCA690 /* SimulationStore.swift in Sources */,
+				0E23BEF0444F3D9782B00BD3 /* SimulationView.swift in Sources */,
+				346C85201F123CE1439AAB8A /* StartHereEncryptionService.swift in Sources */,
+				50CF17D349E89552506E1631 /* StartHerePreviewStore.swift in Sources */,
+				A90E9A4EABADC5E8338725CC /* StartHerePreviewView.swift in Sources */,
+				9A5D9536D20F46F3A2EDADF9 /* StoreKitClient.swift in Sources */,
+				8955E2E0D3095F419640773B /* StoreKitSandboxCatalogView.swift in Sources */,
+				606041671B21F834A60BE0F6 /* TrustedContactEditorStore.swift in Sources */,
+				154EFE894D7D9428E6EA0D86 /* TrustedContactEditorView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9877E02BCAAFF871E7C41BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7DA84BD6B95FFD7EC42EBBC8 /* RilloraLayoutMatrixTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		137B483DF42CE789CB5FF8BB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CFE6CDA61BF7862FBD0B4808 /* Rillora */;
+			targetProxy = 9729EEAF9AF69B2810902FE2 /* PBXContainerItemProxy */;
+		};
+		FFB40C8B92E0B4AF7FCDEBAB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CFE6CDA61BF7862FBD0B4808 /* Rillora */;
+			targetProxy = C25AB7645A15EA5B4B98283C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2B290D275D9F03A6FECFEE64 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				CODE_SIGN_ENTITLEMENTS = Rillora/Rillora.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8L99CFNK24;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Rillora/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.rillora.ios;
+				PRODUCT_NAME = Rillora;
+				RILLORA_API_BASE_URL = "https://l1g8350qw0.execute-api.eu-central-1.amazonaws.com/v1";
+				RILLORA_APPLE_SIGN_IN_ENABLED = YES;
+				RILLORA_AUTH0_AUDIENCE = "urn:rillora:api";
+				RILLORA_AUTH0_CLIENT_ID = [REDACTED_SCANNER_LITERAL];
+				RILLORA_AUTH0_DOMAIN = login.rillora.xyz;
+				RILLORA_DEV_PLANNER_ID = "";
+				RILLORA_GOOGLE_IOS_CLIENT_ID = "351059418039-s7o5q4i1reiqmbpuk6gl85blkuetngbj.apps.googleusercontent.com";
+				RILLORA_GOOGLE_NATIVE_SIGN_IN_ENABLED = NO;
+				RILLORA_GOOGLE_REVERSED_CLIENT_ID = "com.googleusercontent.apps.351059418039-s7o5q4i1reiqmbpuk6gl85blkuetngbj";
+				RILLORA_GOOGLE_SERVER_CLIENT_ID = "351059418039-rn1stb80ljkp46osvamrhfbiuolpccn7.apps.googleusercontent.com";
+				RILLORA_NATIVE_SESSION_URL = "https://l1g8350qw0.execute-api.eu-central-1.amazonaws.com/auth/native/session";
+				RILLORA_PASSKEY_NATIVE_SIGN_IN_ENABLED = YES;
+				RILLORA_SERVICE_MARKET_CODE = GLOBAL_US;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3B6602230A5E23D66F30D14F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.rillora.ios.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Rillora.app/Rillora";
+			};
+			name = Debug;
+		};
+		91E3BBB7AD4717EAA50562A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		943D6C8FE195945AFCD58DAA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		A72C9B94D6C616AC080E9799 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rillora.ios.layout-matrix-tests";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Rillora;
+			};
+			name = Release;
+		};
+		CB2B5CE273700DD9B640FA9E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.rillora.ios.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Rillora.app/Rillora";
+			};
+			name = Release;
+		};
+		DADD3722F60E7D3537CAB90A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				CODE_SIGN_ENTITLEMENTS = Rillora/Rillora.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8L99CFNK24;
+				ENABLE_PREVIEWS = YES;
+				EXCLUDED_SOURCE_FILE_NAMES = Rillora.storekit;
+				INFOPLIST_FILE = Rillora/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.rillora.ios;
+				PRODUCT_NAME = Rillora;
+				RILLORA_API_BASE_URL = "";
+				RILLORA_APPLE_SIGN_IN_ENABLED = NO;
+				RILLORA_AUTH0_AUDIENCE = "";
+				RILLORA_AUTH0_CLIENT_ID = "";
+				RILLORA_AUTH0_DOMAIN = "";
+				RILLORA_DEV_PLANNER_ID = "";
+				RILLORA_GOOGLE_IOS_CLIENT_ID = "";
+				RILLORA_GOOGLE_NATIVE_SIGN_IN_ENABLED = NO;
+				RILLORA_GOOGLE_REVERSED_CLIENT_ID = "com.googleusercontent.apps.351059418039-s7o5q4i1reiqmbpuk6gl85blkuetngbj";
+				RILLORA_GOOGLE_SERVER_CLIENT_ID = "";
+				RILLORA_NATIVE_SESSION_URL = "";
+				RILLORA_PASSKEY_NATIVE_SIGN_IN_ENABLED = NO;
+				RILLORA_SERVICE_MARKET_CODE = "";
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E22253F329239A94FA26A40E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rillora.ios.layout-matrix-tests";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Rillora;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		60D84E71984AAB07A164F31E /* Build configuration list for PBXNativeTarget "Rillora" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B290D275D9F03A6FECFEE64 /* Debug */,
+				DADD3722F60E7D3537CAB90A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		9D69501A921D67117EF57703 /* Build configuration list for PBXNativeTarget "RilloraTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B6602230A5E23D66F30D14F /* Debug */,
+				CB2B5CE273700DD9B640FA9E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C659CB9D29A86A22F09B1E3B /* Build configuration list for PBXNativeTarget "RilloraLayoutMatrixTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E22253F329239A94FA26A40E /* Debug */,
+				A72C9B94D6C616AC080E9799 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		ED1388A507206F460160358D /* Build configuration list for PBXProject "Rillora" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91E3BBB7AD4717EAA50562A2 /* Debug */,
+				943D6C8FE195945AFCD58DAA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0E145ABAC5CFD4F09F36EAD5 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+		D0C23B8E258E8DBEEE8878B0 /* XCRemoteSwiftPackageReference "Auth0.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/auth0/Auth0.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		197520CEB55CAFA2F8B57C5E /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0E145ABAC5CFD4F09F36EAD5 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		254F2020FBD1001C28888FE4 /* Auth0 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0C23B8E258E8DBEEE8878B0 /* XCRemoteSwiftPackageReference "Auth0.swift" */;
+			productName = Auth0;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 952879010A41429DB61C0F82 /* Project object */;
+}

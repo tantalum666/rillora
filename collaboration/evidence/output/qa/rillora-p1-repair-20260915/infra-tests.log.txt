@@ -1,0 +1,71 @@
+
+> rillora-aws-infrastructure@0.1.0 test
+> vitest run --exclude 'dist/**'
+
+
+ RUN  v4.1.10 /Users/tantalum/Documents/电子遗嘱app/infra/aws
+
+stderr | test/rillora-staging-stack.test.ts > Rillora staging infrastructure > creates three write-only Apple IAP secrets only when Sandbox Server API is enabled
+test/rillora-staging-stack.test.ts:13:17
+WARNING Parameters/Auth0DeletionClientId: Parameter 'Auth0DeletionClientId' is not referenced anywhere in the template (CloudFormation Validate)
+   TestStack aws-cdk-lib.Stack
+   Acknowledge with 'CloudFormation-Validate::W2001'
+
+test/rillora-staging-stack.test.ts:13:17
+WARNING Parameters/Auth0DeletionClientId: Parameter 'Auth0DeletionClientId' is not referenced anywhere in the template (CloudFormation Validate)
+   TestStack aws-cdk-lib.Stack
+   Acknowledge with 'CloudFormation-Validate::W2001'
+
+A copy of this report can be found in: /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/cdk.outkCaK6s/validation-report.json
+
+stderr | test/rillora-staging-stack.test.ts > Rillora staging infrastructure > creates write-only operator paths for separate Stripe test secrets and injects them only when enabled
+test/rillora-staging-stack.test.ts:13:17
+WARNING Parameters/Auth0DeletionClientId: Parameter 'Auth0DeletionClientId' is not referenced anywhere in the template (CloudFormation Validate)
+   TestStack aws-cdk-lib.Stack
+   Acknowledge with 'CloudFormation-Validate::W2001'
+
+test/rillora-staging-stack.test.ts:13:17
+WARNING Parameters/Auth0DeletionClientId: Parameter 'Auth0DeletionClientId' is not referenced anywhere in the template (CloudFormation Validate)
+   TestStack aws-cdk-lib.Stack
+   Acknowledge with 'CloudFormation-Validate::W2001'
+
+A copy of this report can be found in: /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/cdk.outAS3V3x/validation-report.json
+
+ ❯ test/rillora-staging-stack.test.ts (10 tests | 2 failed) 4096ms
+     × creates three write-only Apple IAP secrets only when Sandbox Server API is enabled 228ms
+     × creates write-only operator paths for separate Stripe test secrets and injects them only when enabled 230ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/rillora-staging-stack.test.ts > Rillora staging infrastructure > creates three write-only Apple IAP secrets only when Sandbox Server API is enabled
+AssertionError: Expected 5 resources of type AWS::SecretsManager::Secret but found 6
+ ❯ Template.resourceCountIs node_modules/aws-cdk-lib/assertions/lib/template.js:1:3758
+ ❯ test/rillora-staging-stack.test.ts:122:14
+    120|   it("creates three write-only Apple IAP secrets only when Sandbox Ser…
+    121|     const disabled = templateFor(1);
+    122|     disabled.resourceCountIs("AWS::SecretsManager::Secret", 5);
+       |              ^
+    123|
+    124|     const enabled = templateFor(1, false, true);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  test/rillora-staging-stack.test.ts > Rillora staging infrastructure > creates write-only operator paths for separate Stripe test secrets and injects them only when enabled
+AssertionError: Expected 5 resources of type AWS::SecretsManager::Secret but found 6
+ ❯ Template.resourceCountIs node_modules/aws-cdk-lib/assertions/lib/template.js:1:3758
+ ❯ test/rillora-staging-stack.test.ts:165:14
+    163|   it("creates write-only operator paths for separate Stripe test secre…
+    164|     const disabled = templateFor(1);
+    165|     disabled.resourceCountIs("AWS::SecretsManager::Secret", 5);
+       |              ^
+    166|     const disabledTasks = disabled.findResources("AWS::ECS::TaskDefini…
+    167|     const disabledApi = (Object.values(disabledTasks) as Array<{
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  2 failed | 13 passed (15)
+   Start at  23:29:15
+   Duration  4.72s (transform 89ms, setup 0ms, import 750ms, tests 5.64s, environment 0ms)
+

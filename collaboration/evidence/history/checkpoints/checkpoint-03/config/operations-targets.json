@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "environment": "synthetic-staging",
+  "allowedOrigins": [
+    "https://app.staging.rillora.xyz",
+    "https://legal.rillora.xyz",
+    "https://login.rillora.xyz",
+    "https://l1g8350qw0.execute-api.eu-central-1.amazonaws.com",
+    "https://j749rhzub7.execute-api.eu-central-1.amazonaws.com",
+    "https://www.rillora.xyz",
+    "https://app.rillora.xyz"
+  ],
+  "timeoutMs": 8000,
+  "certificateWarningDays": 21,
+  "targets": [
+    {
+      "id": "public-app",
+      "url": "https://app.staging.rillora.xyz/",
+      "expectedStatus": 200,
+      "headers": {
+        "strict-transport-security": "",
+        "content-security-policy": ""
+      }
+    },
+    {
+      "id": "legal-terms",
+      "url": "https://legal.rillora.xyz/terms",
+      "expectedStatus": 200,
+      "headers": {
+        "strict-transport-security": "",
+        "content-security-policy": ""
+      }
+    },
+    {
+      "id": "legal-private-route-blocked",
+      "url": "https://legal.rillora.xyz/api",
+      "expectedStatus": 404,
+      "headers": {}
+    },
+    {
+      "id": "api-live",
+      "url": "https://l1g8350qw0.execute-api.eu-central-1.amazonaws.com/health/live",
+      "expectedStatus": 200,
+      "headers": {}
+    },
+    {
+      "id": "api-ready",
+      "url": "https://l1g8350qw0.execute-api.eu-central-1.amazonaws.com/health/ready",
+      "expectedStatus": 200,
+      "headers": {}
+    },
+    {
+      "id": "private-session-blocked",
+      "url": "https://l1g8350qw0.execute-api.eu-central-1.amazonaws.com/v1/session",
+      "expectedStatus": 401,
+      "headers": {
+        "cache-control": "no-store"
+      }
+    },
+    {
+      "id": "identity-discovery",
+      "url": "https://login.rillora.xyz/.well-known/openid-configuration",
+      "expectedStatus": 200,
+      "headers": {}
+    },
+    {
+      "id": "production-api-live",
+      "url": "https://j749rhzub7.execute-api.eu-central-1.amazonaws.com/health/live",
+      "expectedStatus": 200,
+      "headers": {}
+    },
+    {
+      "id": "production-api-ready",
+      "url": "https://j749rhzub7.execute-api.eu-central-1.amazonaws.com/health/ready",
+      "expectedStatus": 200,
+      "headers": {}
+    },
+    {
+      "id": "production-accounts-closed",
+      "url": "https://j749rhzub7.execute-api.eu-central-1.amazonaws.com/api/v1/session",
+      "expectedStatus": 503,
+      "headers": {
+        "cache-control": "no-store"
+      }
+    },
+    {
+      "id": "public-product-home",
+      "url": "https://www.rillora.xyz/",
+      "expectedStatus": 200,
+      "headers": {
+        "strict-transport-security": "",
+        "content-security-policy": "connect-src 'none'"
+      }
+    },
+    {
+      "id": "public-product-private-route-blocked",
+      "url": "https://www.rillora.xyz/api/v1/session",
+      "expectedStatus": 404,
+      "headers": {
+        "cache-control": "no-store"
+      }
+    },
+    {
+      "id": "production-client-home",
+      "url": "https://app.rillora.xyz/",
+      "expectedStatus": 200,
+      "headers": {
+        "content-security-policy": "connect-src 'self'",
+        "strict-transport-security": ""
+      }
+    },
+    {
+      "id": "production-client-accounts-closed",
+      "url": "https://app.rillora.xyz/api/v1/session",
+      "expectedStatus": 503,
+      "headers": {
+        "cache-control": "no-store"
+      }
+    }
+  ]
+}

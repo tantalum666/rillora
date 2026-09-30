@@ -1,0 +1,17 @@
+[1;34m==>[0m Detected platform: aarch64-apple-darwin
+[1;34m==>[0m Installing gddy (latest)
+[1;34m==>[0m Downloading gddy-aarch64-apple-darwin.tar.gz and checksums...
+[1;34m==>[0m Verifying checksum...
+[1;34m==>[0m Checksum verified.
+[1;34m==>[0m Binary installed to /Users/tantalum/.local/bin/gddy
+
+[1;34m==>[0m gddy (latest) installed successfully!
+
+  Binary:    /Users/tantalum/.local/bin/gddy
+  Verify:    gddy --version
+  Tip:       run 'gddy completion --install' for shell tab-completion
+
+Share this one-liner with your team:
+
+  curl -fsSL https://github.com/godaddy/cli/releases/latest/download/install.sh | bash
+

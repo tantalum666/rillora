@@ -1,0 +1,61 @@
+{
+  "checkedAt": "2026-09-23T13:04:03.466122+00:00",
+  "events": [
+    {
+      "Timestamp": "2026-09-23T12:48:47.608000+00:00",
+      "LogicalResourceId": "VpcmaintenanceSubnet2DefaultRoute77601CB0",
+      "ResourceType": "AWS::EC2::Route",
+      "ResourceStatus": "CREATE_FAILED",
+      "ResourceStatusReason": "Resource creation cancelled"
+    },
+    {
+      "Timestamp": "2026-09-23T12:48:47.070000+00:00",
+      "LogicalResourceId": "VpcmaintenanceSubnet2RouteTableAssociation8F27BC7B",
+      "ResourceType": "AWS::EC2::SubnetRouteTableAssociation",
+      "ResourceStatus": "CREATE_FAILED",
+      "ResourceStatusReason": "Resource creation cancelled"
+    },
+    {
+      "Timestamp": "2026-09-23T12:48:47.035000+00:00",
+      "LogicalResourceId": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB",
+      "ResourceType": "AWS::IAM::Policy",
+      "ResourceStatus": "CREATE_FAILED",
+      "ResourceStatusReason": "Resource creation cancelled"
+    },
+    {
+      "Timestamp": "2026-09-23T12:48:47.030000+00:00",
+      "LogicalResourceId": "VpcdataSubnet2RouteTable94FA483A",
+      "ResourceType": "AWS::EC2::RouteTable",
+      "ResourceStatus": "CREATE_FAILED",
+      "ResourceStatusReason": "Resource creation cancelled"
+    },
+    {
+      "Timestamp": "2026-09-23T12:48:47.030000+00:00",
+      "LogicalResourceId": "AssumeProductionOperatorB069B9BD",
+      "ResourceType": "AWS::IAM::ManagedPolicy",
+      "ResourceStatus": "CREATE_FAILED",
+      "ResourceStatusReason": "Resource creation cancelled"
+    },
+    {
+      "Timestamp": "2026-09-23T12:48:47.026000+00:00",
+      "LogicalResourceId": "VpcmaintenanceSubnet1RouteTable27EE9B07",
+      "ResourceType": "AWS::EC2::RouteTable",
+      "ResourceStatus": "CREATE_FAILED",
+      "ResourceStatusReason": "Resource creation cancelled"
+    },
+    {
+      "Timestamp": "2026-09-23T12:48:46.971000+00:00",
+      "LogicalResourceId": "VpcdataSubnet1RouteTableAssociation9E9FDBBB",
+      "ResourceType": "AWS::EC2::SubnetRouteTableAssociation",
+      "ResourceStatus": "CREATE_FAILED",
+      "ResourceStatusReason": "Resource creation cancelled"
+    },
+    {
+      "Timestamp": "2026-09-23T12:48:46.775000+00:00",
+      "LogicalResourceId": "DatabaseB269D8BB",
+      "ResourceType": "AWS::RDS::DBInstance",
+      "ResourceStatus": "CREATE_FAILED",
+      "ResourceStatusReason": "Resource handler returned message: \"The specified backup retention period exceeds the maximum available to free tier customers. To remove all limitations, upgrade your account plan. (Service: Rds, Status Code: 400, Request ID: 3e483870-ad32-4f24-bf2b-fab2ce6e147b) (SDK Attempt Count: 1)\" (RequestToken: 50c9199d-6765-e484-142e-90c0bcdd0c32, HandlerErrorCode: InternalFailure)"
+    }
+  ]
+}

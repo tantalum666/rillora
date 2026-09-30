@@ -1,0 +1,87 @@
+{
+  "at": "2026-09-29T21:12:51.623533+00:00",
+  "status": "independent prelaunch work complete; Owner/provider release gates parked",
+  "engineeringVerified": true,
+  "sourceCommit": "73dd50d36988e6def406908beae1c984e70c4fa8",
+  "ci": {
+    "observedAt": "2026-09-29T21:09:11.612507+00:00",
+    "source": "existing authenticated GitHub Actions browser UI",
+    "runId": 36630649822,
+    "runNumber": 38,
+    "url": "https://github.com/tantalum666/rillora/actions/runs/36630649822",
+    "headSha": "73dd50d36988e6def406908beae1c984e70c4fa8",
+    "event": "push",
+    "branch": "main",
+    "status": "completed",
+    "conclusion": "success",
+    "durationSeconds": 109,
+    "jobs": [
+      {
+        "name": "source",
+        "status": "success",
+        "durationSeconds": 11
+      },
+      {
+        "name": "api",
+        "status": "success",
+        "durationSeconds": 104,
+        "testFilesPassed": 41,
+        "testsPassed": 341
+      },
+      {
+        "name": "web-and-infrastructure",
+        "status": "success",
+        "durationSeconds": 76,
+        "infrastructureTestFilesPassed": 7,
+        "infrastructureTestsPassed": 47
+      }
+    ],
+    "cliReadLimitation": "HTTP403 Actions permission unavailable; not session expiry; no scope expansion or new login"
+  },
+  "fullReading": "full-read-completion.json",
+  "focalContract": "docs/release-engineering-20260930.md",
+  "decisionAppended": true,
+  "journeyAppended": true,
+  "runtime": "final-runtime-readback.json",
+  "artifact": "native-final-distribution-check.json",
+  "screenshots": "../../release/rillora-20260930/screenshots.json",
+  "remainingOwnerProviderGates": true,
+  "publicLaunchReady": false,
+  "sourceScan": {
+    "passed": true,
+    "reviewedNonSecrets": 27,
+    "unreviewedFindings": 0
+  },
+  "markdownLinks": {
+    "ownedFiles": 167,
+    "localLinks": 1667,
+    "missing": 0
+  },
+  "changedSourceFiles": 101,
+  "deployedSourceMatch": "deployed-source-match.json",
+  "documents": "documentation-closeout.json",
+  "pushed": true,
+  "remoteHead": "73dd50d36988e6def406908beae1c984e70c4fa8",
+  "workingTreeClean": true,
+  "independentScopeCompleted": true,
+  "finalPreflight": "final-preflight.json",
+  "preserved": [
+    "existing UI and brand",
+    "Web88.99annual-only and Apple conditional decision",
+    "real data and history",
+    "Preview/WWW/legal deployment checkpoints",
+    "FanPass"
+  ],
+  "qaCleanup": "local-qa-cleanup.json",
+  "normalSimulatorRestored": "normal-simulator-restored.png",
+  "repositoryPrivateVerified": true,
+  "recurringRetention": {
+    "report": "retention-recurring-readback.json",
+    "heartbeats": 3,
+    "intervalsMilliseconds": [
+      899988,
+      900014
+    ],
+    "failures": 0
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "at": "2026-09-29T17:34:51.830785+00:00",
+  "stackStatus": "UPDATE_COMPLETE",
+  "service": {
+    "desired": 1,
+    "running": 1,
+    "deployments": [
+      {
+        "status": "PRIMARY",
+        "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRuntimeApiTask93405B31:3",
+        "rolloutState": "COMPLETED"
+      }
+    ]
+  },
+  "reviewHeartbeatSamples": 15,
+  "lastReviewMetrics": {
+    "Environment": "sandbox",
+    "Provider": "storekit",
+    "Heartbeat": 1,
+    "WorkerErrors": 0,
+    "Pending": 0,
+    "Failed": 0,
+    "OldestPendingSeconds": 0
+  },
+  "productionCustomersOpen": false
+}

@@ -1,0 +1,52 @@
+{
+  "scope": "Retain original UI; repair concrete UX behavior",
+  "reading": "Continuing same audit workflow; prior full read and P2 focused recovery reused",
+  "focalRead": [
+    "AGENTS.md",
+    "docs/product.md current",
+    "docs/handoff.md",
+    "docs/decision-log.md latest",
+    "docs/trusted-sharing.md",
+    "current affected source files"
+  ],
+  "next": "Finish Web invitation/paused-guide checks; continue remaining interaction defects within original UI",
+  "startedAt": "2026-09-16T05:39:44.300395+00:00",
+  "updatedAt": "2026-09-16T13:15:56.030344+00:00",
+  "nativePassed": [
+    "invitation accept/back/reopen",
+    "same-PID scope downgrade and revoke",
+    "Web-paused guide resumed at native step2",
+    "inline people to existing sharing/preview and back"
+  ],
+  "focusedNativeTests": 9,
+  "notes": [
+    "Value-based NavigationLink experiment failed runtime and was reverted to existing destination navigation.",
+    "Explicit launch_app_sim env after stop is required for QA identity; build_run default env was not a QA identity proof."
+  ],
+  "webPassed": [
+    "guide pause/resume/reload",
+    "normal and lost-response invitation acceptance",
+    "matter to existing sharing and return with814px scroll/search",
+    "selected-only preview and level changes",
+    "keyboard cancel/discard/focus ring",
+    "first-empty and filtered-empty",
+    "copy and late-response-safe recipient scope refresh"
+  ],
+  "nativeGuide": "Paused Web step2 resumed in native after scrolling existing Overview guide action into view.",
+  "current": "Continue inline matter sharing and preview inside existing controls; no new page/step or styling",
+  "apiSharingTests": 12,
+  "pending": [
+    "real provider/consent ceremony and physical VoiceOver evidence",
+    "Owner-retained structural design choices"
+  ],
+  "status": "deployed and verified",
+  "apiTests": 149,
+  "nativeTests": {
+    "passed": 145,
+    "failed": 0,
+    "skipped": 1
+  },
+  "webTests": 75,
+  "cloudPreviewChecks": 12,
+  "cloudCleanup": "two identities removed; former sessions401"
+}

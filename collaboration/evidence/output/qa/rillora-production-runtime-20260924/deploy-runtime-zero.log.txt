@@ -1,0 +1,350 @@
+
+✨  Synthesis time: 4.51s
+
+RilloraProduction: start: Building RilloraProduction Template
+RilloraProduction: success: Built RilloraProduction Template
+RilloraProduction: start: Building MigrationTask/Maintenance/AssetImage
+RilloraProduction: start: Publishing RilloraProduction Template (133857166372-eu-central-1-1178add8)
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  1.112MB
+
+Step 1/23 : FROM node:22.22.3-bookworm-slim AS build
+ ---> e21fc383b50d
+Step 2/23 : WORKDIR /app
+ ---> Using cache
+ ---> 8d90de72c6c4
+Step 3/23 : COPY package.json package-lock.json ./
+ ---> Using cache
+ ---> ba18b5c3f774
+Step 4/23 : RUN npm ci
+ ---> Using cache
+ ---> 5c4c28127e86
+Step 5/23 : COPY tsconfig.json tsconfig.build.json ./
+ ---> Using cache
+ ---> fc4683dc649b
+Step 6/23 : COPY src ./src
+ ---> Using cache
+ ---> 407eda28bdc2
+Step 7/23 : COPY migrations ./migrations
+ ---> Using cache
+ ---> eb121460b7a5
+Step 8/23 : COPY certificates ./certificates
+ ---> Using cache
+ ---> 00c546b43d39
+Step 9/23 : RUN npm run build && npm prune --omit=dev
+ ---> Using cache
+ ---> 89bc8c483e8c
+Step 10/23 : FROM node:22.22.3-bookworm-slim AS runtime
+ ---> e21fc383b50d
+Step 11/23 : ARG RDS_CA_BUNDLE_SHA256=e5bb2084ccf45087bda1c9bffdea0eb15ee67f0b91646106e466714f9de3c7e3
+ ---> Using cache
+ ---> e0a1b518f917
+Step 12/23 : ENV NODE_ENV=production     HOST=0.0.0.0     PORT=8080     DATABASE_SSL_MODE=verify-full     DATABASE_SSL_CA_PATH=/app/certs/rds-global-bundle.pem
+ ---> Using cache
+ ---> d1267cea24fb
+Step 13/23 : RUN apt-get update     && apt-get install --yes --no-install-recommends ca-certificates curl     && mkdir -p /app/certs     && curl --fail --show-error --silent       https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem       --output /app/certs/rds-global-bundle.pem     && echo "${RDS_CA_BUNDLE_SHA256}  /app/certs/rds-global-bundle.pem" | sha256sum --check --strict     && apt-get purge --yes --auto-remove curl     && rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 5dd00ea76429
+Step 14/23 : WORKDIR /app
+ ---> Using cache
+ ---> 6808c039257c
+Step 15/23 : COPY --chown=node:node --from=build /app/package.json ./package.json
+ ---> Using cache
+ ---> 1028e825c292
+Step 16/23 : COPY --chown=node:node --from=build /app/node_modules ./node_modules
+ ---> Using cache
+ ---> 4b6c57b5dd74
+Step 17/23 : COPY --chown=node:node --from=build /app/dist ./dist
+ ---> Using cache
+ ---> 51878c87d51d
+Step 18/23 : COPY --chown=node:node --from=build /app/migrations ./migrations
+ ---> Using cache
+ ---> 0607aa2a228b
+Step 19/23 : COPY --chown=node:node --from=build /app/certificates ./certificates
+ ---> Using cache
+ ---> 4e548c4c279c
+Step 20/23 : USER node
+ ---> Using cache
+ ---> da141f66d18d
+Step 21/23 : EXPOSE 8080 8443
+ ---> Using cache
+ ---> 50e4e5e9280f
+Step 22/23 : HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3   CMD ["node", "dist/healthcheck.js"]
+ ---> Using cache
+ ---> c708c141fff9
+Step 23/23 : CMD ["node", "dist/server.js"]
+ ---> Using cache
+ ---> 8426279e5de8
+Successfully built 8426279e5de8
+Successfully tagged cdkasset-4e75f2b26123145a0b6a7e8a04c4e1a33368d9d2e61d7582dfbb0df6b71933bb:latest
+RilloraProduction: success: Built MigrationTask/Maintenance/AssetImage
+RilloraProduction: start: Publishing MigrationTask/Maintenance/AssetImage (133857166372-eu-central-1-01ea7502)
+The push refers to repository [133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1]
+f65b12bde977: Waiting
+e380f485a275: Waiting
+d4782f7e3a40: Waiting
+4ac37721e333: Waiting
+d68f4975e40c: Waiting
+aff88cd70f0e: Waiting
+3a1c1643c381: Waiting
+8cf8b1e19b8b: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+620d41e441a2: Waiting
+7a269be6e4b9: Waiting
+620d41e441a2: Waiting
+f65b12bde977: Waiting
+e380f485a275: Waiting
+d4782f7e3a40: Waiting
+4ac37721e333: Waiting
+d68f4975e40c: Waiting
+aff88cd70f0e: Waiting
+3a1c1643c381: Waiting
+8cf8b1e19b8b: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+620d41e441a2: Waiting
+f65b12bde977: Waiting
+e380f485a275: Waiting
+d4782f7e3a40: Waiting
+4ac37721e333: Waiting
+d68f4975e40c: Waiting
+aff88cd70f0e: Waiting
+3a1c1643c381: Waiting
+8cf8b1e19b8b: Waiting
+402614bd39aa: Waiting
+f65b12bde977: Waiting
+e380f485a275: Waiting
+d4782f7e3a40: Waiting
+4ac37721e333: Waiting
+d68f4975e40c: Waiting
+aff88cd70f0e: Waiting
+3a1c1643c381: Waiting
+8cf8b1e19b8b: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+620d41e441a2: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+620d41e441a2: Waiting
+f65b12bde977: Waiting
+e380f485a275: Waiting
+d4782f7e3a40: Waiting
+4ac37721e333: Waiting
+d68f4975e40c: Waiting
+aff88cd70f0e: Waiting
+3a1c1643c381: Waiting
+8cf8b1e19b8b: Waiting
+f65b12bde977: Waiting
+e380f485a275: Waiting
+d4782f7e3a40: Waiting
+4ac37721e333: Waiting
+d68f4975e40c: Waiting
+aff88cd70f0e: Waiting
+3a1c1643c381: Waiting
+8cf8b1e19b8b: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+620d41e441a2: Waiting
+RilloraProduction: success: Published RilloraProduction Template (133857166372-eu-central-1-1178add8)
+d4782f7e3a40: Waiting
+4ac37721e333: Waiting
+d68f4975e40c: Waiting
+aff88cd70f0e: Waiting
+3a1c1643c381: Waiting
+8cf8b1e19b8b: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+620d41e441a2: Waiting
+f65b12bde977: Waiting
+e380f485a275: Waiting
+4ac37721e333: Waiting
+d68f4975e40c: Waiting
+aff88cd70f0e: Waiting
+3a1c1643c381: Waiting
+8cf8b1e19b8b: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+620d41e441a2: Waiting
+f65b12bde977: Waiting
+e380f485a275: Waiting
+d4782f7e3a40: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+620d41e441a2: Waiting
+f65b12bde977: Waiting
+e380f485a275: Waiting
+d4782f7e3a40: Waiting
+4ac37721e333: Waiting
+d68f4975e40c: Waiting
+aff88cd70f0e: Waiting
+3a1c1643c381: Waiting
+8cf8b1e19b8b: Waiting
+d4782f7e3a40: Waiting
+4ac37721e333: Waiting
+d68f4975e40c: Waiting
+aff88cd70f0e: Layer already exists
+3a1c1643c381: Waiting
+8cf8b1e19b8b: Waiting
+402614bd39aa: Layer already exists
+7a269be6e4b9: Layer already exists
+620d41e441a2: Layer already exists
+f65b12bde977: Waiting
+e380f485a275: Waiting
+f65b12bde977: Waiting
+e380f485a275: Waiting
+d4782f7e3a40: Waiting
+4ac37721e333: Waiting
+d68f4975e40c: Waiting
+3a1c1643c381: Waiting
+8cf8b1e19b8b: Waiting
+f65b12bde977: Waiting
+e380f485a275: Waiting
+d4782f7e3a40: Waiting
+4ac37721e333: Waiting
+d68f4975e40c: Waiting
+3a1c1643c381: Waiting
+8cf8b1e19b8b: Waiting
+4ac37721e333: Waiting
+3a1c1643c381: Waiting
+f65b12bde977: Layer already exists
+e380f485a275: Layer already exists
+3a1c1643c381: Waiting
+4ac37721e333: Waiting
+4ac37721e333: Waiting
+3a1c1643c381: Waiting
+d68f4975e40c: Pushed
+3a1c1643c381: Pushed
+4ac37721e333: Pushed
+8cf8b1e19b8b: Pushed
+d4782f7e3a40: Pushed
+4e75f2b26123145a0b6a7e8a04c4e1a33368d9d2e61d7582dfbb0df6b71933bb: digest: sha256:8426279e5de8cd394c9ebae8c35549d0a01703a84a3398dda5cb82c476cfad6b size: 2727
+RilloraProduction: success: Published MigrationTask/Maintenance/AssetImage (133857166372-eu-central-1-01ea7502)
+RilloraProduction: creating CloudFormation changeset...
+RilloraProduction: deploying... [1/1]
+RilloraProduction |  0/28 | 8:57:54 AM | UPDATE_IN_PROGRESS      | AWS::CloudFormation::Stack                  | RilloraProduction User Initiated
+RilloraProduction |  0/28 | 8:57:57 AM | CREATE_IN_PROGRESS      | AWS::Logs::LogGroup                         | Runtime/ApiLogs (RuntimeApiLogs69C9F62B) 
+RilloraProduction |  0/28 | 8:57:57 AM | CREATE_IN_PROGRESS      | AWS::CertificateManager::Certificate        | Runtime/Certificate (RuntimeCertificateC2895169) 
+RilloraProduction |  0/28 | 8:57:57 AM | CREATE_IN_PROGRESS      | AWS::Logs::LogGroup                         | Runtime/GatewayLogs (RuntimeGatewayLogs879CA399) 
+RilloraProduction |  0/28 | 8:57:57 AM | CREATE_IN_PROGRESS      | AWS::ServiceDiscovery::PrivateDnsNamespace  | Runtime/Namespace (RuntimeNamespaceD7248538) 
+RilloraProduction |  0/28 | 8:57:57 AM | CREATE_IN_PROGRESS      | AWS::EC2::SecurityGroup                     | Runtime/ApiNetwork (RuntimeApiNetwork3B2CC8BA) 
+RilloraProduction |  0/28 | 8:57:57 AM | CREATE_IN_PROGRESS      | AWS::IAM::Role                              | Runtime/ApiTask/TaskRole (RuntimeApiTaskTaskRole477A5663) 
+RilloraProduction |  0/28 | 8:57:57 AM | CREATE_IN_PROGRESS      | AWS::IAM::Role                              | Runtime/ApiTask/ExecutionRole (RuntimeApiTaskExecutionRoleD48730C6) 
+RilloraProduction |  0/28 | 8:57:57 AM | CREATE_IN_PROGRESS      | AWS::ApiGatewayV2::Api                      | Runtime/HttpApi (RuntimeHttpApi2552D3E3) 
+RilloraProduction |  0/28 | 8:57:57 AM | CREATE_IN_PROGRESS      | AWS::EC2::SecurityGroup                     | Runtime/IngressNetwork (RuntimeIngressNetwork074C0E57) 
+RilloraProduction |  0/28 | 8:57:57 AM | UPDATE_IN_PROGRESS      | AWS::CDK::Metadata                          | CDKMetadata/Default (CDKMetadata) 
+RilloraProduction |  0/28 | 8:57:58 AM | CREATE_IN_PROGRESS      | AWS::Logs::LogGroup                         | Runtime/ApiLogs (RuntimeApiLogs69C9F62B) Resource creation Initiated
+RilloraProduction |  0/28 | 8:57:58 AM | CREATE_IN_PROGRESS      | AWS::Logs::LogGroup                         | Runtime/GatewayLogs (RuntimeGatewayLogs879CA399) Resource creation Initiated
+RilloraProduction |  0/28 | 8:57:58 AM | CREATE_IN_PROGRESS      | AWS::IAM::Role                              | Runtime/ApiTask/TaskRole (RuntimeApiTaskTaskRole477A5663) Resource creation Initiated
+RilloraProduction |  0/28 | 8:57:58 AM | CREATE_IN_PROGRESS      | AWS::IAM::Role                              | Runtime/ApiTask/ExecutionRole (RuntimeApiTaskExecutionRoleD48730C6) Resource creation Initiated
+RilloraProduction |  0/28 | 8:57:58 AM | CREATE_IN_PROGRESS      | AWS::ServiceDiscovery::PrivateDnsNamespace  | Runtime/Namespace (RuntimeNamespaceD7248538) Resource creation Initiated
+RilloraProduction |  1/28 | 8:57:58 AM | UPDATE_COMPLETE         | AWS::CDK::Metadata                          | CDKMetadata/Default (CDKMetadata) 
+RilloraProduction |  1/28 | 8:57:58 AM | CREATE_IN_PROGRESS      | AWS::CertificateManager::Certificate        | Runtime/Certificate (RuntimeCertificateC2895169) Resource creation Initiated
+RilloraProduction |  1/28 | 8:57:58 AM | CREATE_IN_PROGRESS      | AWS::ApiGatewayV2::Api                      | Runtime/HttpApi (RuntimeHttpApi2552D3E3) Resource creation Initiated
+RilloraProduction |  2/28 | 8:57:59 AM | CREATE_COMPLETE         | AWS::ApiGatewayV2::Api                      | Runtime/HttpApi (RuntimeHttpApi2552D3E3) 
+RilloraProduction |  2/28 | 8:57:59 AM | CREATE_IN_PROGRESS      | AWS::EC2::SecurityGroup                     | Runtime/ApiNetwork (RuntimeApiNetwork3B2CC8BA) Resource creation Initiated
+RilloraProduction |  2/28 | 8:57:59 AM | UPDATE_IN_PROGRESS      | AWS::ECS::TaskDefinition                    | RecoveryTask (RecoveryTaskD940248B) Requested update requires the creation of a new physical resource; hence creating one.
+RilloraProduction |  2/28 | 8:57:59 AM | CREATE_IN_PROGRESS      | AWS::EC2::SecurityGroup                     | Runtime/IngressNetwork (RuntimeIngressNetwork074C0E57) Resource creation Initiated
+RilloraProduction |  2/28 | 8:58:00 AM | UPDATE_IN_PROGRESS      | AWS::ECS::TaskDefinition                    | MigrationTask (MigrationTask69EAEF9D) Requested update requires the creation of a new physical resource; hence creating one.
+RilloraProduction |  2/28 | 8:58:00 AM | UPDATE_IN_PROGRESS      | AWS::ECS::TaskDefinition                    | RecoveryTask (RecoveryTaskD940248B) Resource creation Initiated
+RilloraProduction |  3/28 | 8:58:01 AM | UPDATE_COMPLETE         | AWS::ECS::TaskDefinition                    | RecoveryTask (RecoveryTaskD940248B) 
+RilloraProduction |  3/28 | 8:58:01 AM | UPDATE_IN_PROGRESS      | AWS::ECS::TaskDefinition                    | MigrationTask (MigrationTask69EAEF9D) Resource creation Initiated
+RilloraProduction |  4/28 | 8:58:01 AM | UPDATE_COMPLETE         | AWS::ECS::TaskDefinition                    | MigrationTask (MigrationTask69EAEF9D) 
+RilloraProduction |  5/28 | 8:58:05 AM | CREATE_COMPLETE         | AWS::EC2::SecurityGroup                     | Runtime/IngressNetwork (RuntimeIngressNetwork074C0E57) 
+RilloraProduction |  6/28 | 8:58:05 AM | CREATE_COMPLETE         | AWS::EC2::SecurityGroup                     | Runtime/ApiNetwork (RuntimeApiNetwork3B2CC8BA) 
+RilloraProduction |  6/28 | 8:58:05 AM | CREATE_IN_PROGRESS      | AWS::ApiGatewayV2::VpcLink                  | Runtime/VpcLink (RuntimeVpcLinkCFD171E5) 
+RilloraProduction |  6/28 | 8:58:06 AM | CREATE_IN_PROGRESS      | AWS::EC2::SecurityGroupEgress               | Runtime/IngressNetwork/to RilloraProductionRuntimeApiNetworkF0B36DFA:8443 (RuntimeIngressNetworktoRilloraProductionRuntimeApiNetworkF0B36DFA84435814AAF1) 
+RilloraProduction |  6/28 | 8:58:06 AM | CREATE_IN_PROGRESS      | AWS::EC2::SecurityGroupEgress               | Runtime/ApiNetwork/to RilloraProductionDatabaseNetwork7259A938:5432 (RuntimeApiNetworktoRilloraProductionDatabaseNetwork7259A93854329AAA2FBD) 
+RilloraProduction |  6/28 | 8:58:06 AM | CREATE_IN_PROGRESS      | AWS::EC2::SecurityGroupIngress              | DatabaseNetwork/from RilloraProductionRuntimeApiNetworkF0B36DFA:5432 (DatabaseNetworkfromRilloraProductionRuntimeApiNetworkF0B36DFA5432FD98A2AA) 
+RilloraProduction |  6/28 | 8:58:06 AM | CREATE_IN_PROGRESS      | AWS::EC2::SecurityGroupIngress              | Runtime/ApiNetwork/from RilloraProductionRuntimeIngressNetwork69779FA9:8443 (RuntimeApiNetworkfromRilloraProductionRuntimeIngressNetwork69779FA9844367B9035E) 
+RilloraProduction |  7/28 | 8:58:06 AM | CREATE_COMPLETE         | AWS::Logs::LogGroup                         | Runtime/ApiLogs (RuntimeApiLogs69C9F62B) 
+RilloraProduction |  8/28 | 8:58:06 AM | CREATE_COMPLETE         | AWS::Logs::LogGroup                         | Runtime/GatewayLogs (RuntimeGatewayLogs879CA399) 
+RilloraProduction |  8/28 | 8:58:07 AM | CREATE_IN_PROGRESS      | AWS::ApiGatewayV2::VpcLink                  | Runtime/VpcLink (RuntimeVpcLinkCFD171E5) Resource creation Initiated
+RilloraProduction |  8/28 | 8:58:07 AM | CREATE_IN_PROGRESS      | AWS::EC2::SecurityGroupIngress              | Runtime/ApiNetwork/from RilloraProductionRuntimeIngressNetwork69779FA9:8443 (RuntimeApiNetworkfromRilloraProductionRuntimeIngressNetwork69779FA9844367B9035E) Resource creation Initiated
+RilloraProduction |  8/28 | 8:58:07 AM | CREATE_IN_PROGRESS      | AWS::EC2::SecurityGroupIngress              | DatabaseNetwork/from RilloraProductionRuntimeApiNetworkF0B36DFA:5432 (DatabaseNetworkfromRilloraProductionRuntimeApiNetworkF0B36DFA5432FD98A2AA) Resource creation Initiated
+RilloraProduction |  8/28 | 8:58:07 AM | CREATE_IN_PROGRESS      | AWS::ApiGatewayV2::Stage                    | Runtime/HttpApi/DefaultStage (RuntimeHttpApiDefaultStage68EDECFE) 
+RilloraProduction |  9/28 | 8:58:07 AM | CREATE_COMPLETE         | AWS::EC2::SecurityGroupIngress              | Runtime/ApiNetwork/from RilloraProductionRuntimeIngressNetwork69779FA9:8443 (RuntimeApiNetworkfromRilloraProductionRuntimeIngressNetwork69779FA9844367B9035E) 
+RilloraProduction |  9/28 | 8:58:07 AM | CREATE_IN_PROGRESS      | AWS::EC2::SecurityGroupEgress               | Runtime/ApiNetwork/to RilloraProductionDatabaseNetwork7259A938:5432 (RuntimeApiNetworktoRilloraProductionDatabaseNetwork7259A93854329AAA2FBD) Resource creation Initiated
+RilloraProduction | 10/28 | 8:58:07 AM | CREATE_COMPLETE         | AWS::EC2::SecurityGroupIngress              | DatabaseNetwork/from RilloraProductionRuntimeApiNetworkF0B36DFA:5432 (DatabaseNetworkfromRilloraProductionRuntimeApiNetworkF0B36DFA5432FD98A2AA) 
+RilloraProduction | 10/28 | 8:58:07 AM | CREATE_IN_PROGRESS      | AWS::EC2::SecurityGroupEgress               | Runtime/IngressNetwork/to RilloraProductionRuntimeApiNetworkF0B36DFA:8443 (RuntimeIngressNetworktoRilloraProductionRuntimeApiNetworkF0B36DFA84435814AAF1) Resource creation Initiated
+RilloraProduction | 11/28 | 8:58:07 AM | CREATE_COMPLETE         | AWS::EC2::SecurityGroupEgress               | Runtime/ApiNetwork/to RilloraProductionDatabaseNetwork7259A938:5432 (RuntimeApiNetworktoRilloraProductionDatabaseNetwork7259A93854329AAA2FBD) 
+RilloraProduction | 12/28 | 8:58:08 AM | CREATE_COMPLETE         | AWS::EC2::SecurityGroupEgress               | Runtime/IngressNetwork/to RilloraProductionRuntimeApiNetworkF0B36DFA:8443 (RuntimeIngressNetworktoRilloraProductionRuntimeApiNetworkF0B36DFA84435814AAF1) 
+RilloraProduction | 12/28 | 8:58:09 AM | CREATE_IN_PROGRESS      | AWS::ApiGatewayV2::Stage                    | Runtime/HttpApi/DefaultStage (RuntimeHttpApiDefaultStage68EDECFE) Resource creation Initiated
+RilloraProduction | 13/28 | 8:58:09 AM | CREATE_COMPLETE         | AWS::ApiGatewayV2::Stage                    | Runtime/HttpApi/DefaultStage (RuntimeHttpApiDefaultStage68EDECFE) 
+RilloraProduction | 14/28 | 8:58:14 AM | CREATE_COMPLETE         | AWS::IAM::Role                              | Runtime/ApiTask/TaskRole (RuntimeApiTaskTaskRole477A5663) 
+RilloraProduction | 15/28 | 8:58:14 AM | CREATE_COMPLETE         | AWS::IAM::Role                              | Runtime/ApiTask/ExecutionRole (RuntimeApiTaskExecutionRoleD48730C6) 
+RilloraProduction | 15/28 | 8:58:14 AM | CREATE_IN_PROGRESS      | AWS::IAM::Policy                            | Runtime/ApiTask/ExecutionRole/DefaultPolicy (RuntimeApiTaskExecutionRoleDefaultPolicy98299827) 
+RilloraProduction | 15/28 | 8:58:16 AM | CREATE_IN_PROGRESS      | AWS::IAM::Policy                            | Runtime/ApiTask/ExecutionRole/DefaultPolicy (RuntimeApiTaskExecutionRoleDefaultPolicy98299827) Resource creation Initiated
+RilloraProduction | 15/28 | 8:58:29 AM | CREATE_IN_PROGRESS      | AWS::CertificateManager::Certificate        | Runtime/Certificate (RuntimeCertificateC2895169) Content of DNS Record is: {Name: _ed7b011baddfc10c0d446ab7b6b4a467.origin.production.rillora.xyz., Type: CNAME, Value: _931e411b5e14896083d1cd759da6adce.wzccmgtwzk.acm-validations.aws.}
+RilloraProduction | 16/28 | 8:58:31 AM | CREATE_COMPLETE         | AWS::IAM::Policy                            | Runtime/ApiTask/ExecutionRole/DefaultPolicy (RuntimeApiTaskExecutionRoleDefaultPolicy98299827) 
+RilloraProduction | 17/28 | 8:58:37 AM | CREATE_COMPLETE         | AWS::ServiceDiscovery::PrivateDnsNamespace  | Runtime/Namespace (RuntimeNamespaceD7248538) 
+RilloraProduction | 17/28 | 8:58:38 AM | CREATE_IN_PROGRESS      | AWS::ServiceDiscovery::Service              | Runtime/Namespace/ApiDiscovery (RuntimeNamespaceApiDiscovery35D81D27) 
+RilloraProduction | 17/28 | 8:58:39 AM | CREATE_IN_PROGRESS      | AWS::ServiceDiscovery::Service              | Runtime/Namespace/ApiDiscovery (RuntimeNamespaceApiDiscovery35D81D27) Resource creation Initiated
+RilloraProduction | 18/28 | 8:58:39 AM | CREATE_COMPLETE         | AWS::ServiceDiscovery::Service              | Runtime/Namespace/ApiDiscovery (RuntimeNamespaceApiDiscovery35D81D27) 
+RilloraProduction | 19/28 | 9:00:04 AM | CREATE_COMPLETE         | AWS::ApiGatewayV2::VpcLink                  | Runtime/VpcLink (RuntimeVpcLinkCFD171E5) 
+RilloraProduction | 19/28 | 9:00:05 AM | CREATE_IN_PROGRESS      | AWS::ApiGatewayV2::Integration              | Runtime/HttpApi/DefaultRoute/ProductionHttps (RuntimeHttpApiDefaultRouteProductionHttpsE2AD3A33) 
+RilloraProduction | 19/28 | 9:00:06 AM | CREATE_IN_PROGRESS      | AWS::ApiGatewayV2::Integration              | Runtime/HttpApi/DefaultRoute/ProductionHttps (RuntimeHttpApiDefaultRouteProductionHttpsE2AD3A33) Resource creation Initiated
+RilloraProduction | 20/28 | 9:00:06 AM | CREATE_COMPLETE         | AWS::ApiGatewayV2::Integration              | Runtime/HttpApi/DefaultRoute/ProductionHttps (RuntimeHttpApiDefaultRouteProductionHttpsE2AD3A33) 
+RilloraProduction | 20/28 | 9:00:07 AM | CREATE_IN_PROGRESS      | AWS::ApiGatewayV2::Route                    | Runtime/HttpApi/DefaultRoute (RuntimeHttpApiDefaultRoute86033BE3) 
+RilloraProduction | 20/28 | 9:00:07 AM | CREATE_IN_PROGRESS      | AWS::ApiGatewayV2::Route                    | Runtime/HttpApi/DefaultRoute (RuntimeHttpApiDefaultRoute86033BE3) Resource creation Initiated
+RilloraProduction | 21/28 | 9:00:08 AM | CREATE_COMPLETE         | AWS::ApiGatewayV2::Route                    | Runtime/HttpApi/DefaultRoute (RuntimeHttpApiDefaultRoute86033BE3) 
+RilloraProduction | 22/28 | 9:08:31 AM | CREATE_COMPLETE         | AWS::CertificateManager::Certificate        | Runtime/Certificate (RuntimeCertificateC2895169) 
+RilloraProduction | 22/28 | 9:08:32 AM | CREATE_IN_PROGRESS      | AWS::IAM::Policy                            | Runtime/ApiTask/TaskRole/DefaultPolicy (RuntimeApiTaskTaskRoleDefaultPolicy59BF15A6) 
+RilloraProduction | 22/28 | 9:08:32 AM | CREATE_IN_PROGRESS      | AWS::ECS::TaskDefinition                    | Runtime/ApiTask (RuntimeApiTaskCF645D67) 
+RilloraProduction | 22/28 | 9:08:33 AM | CREATE_IN_PROGRESS      | AWS::IAM::Policy                            | Runtime/ApiTask/TaskRole/DefaultPolicy (RuntimeApiTaskTaskRoleDefaultPolicy59BF15A6) Resource creation Initiated
+RilloraProduction | 22/28 | 9:08:34 AM | CREATE_IN_PROGRESS      | AWS::ECS::TaskDefinition                    | Runtime/ApiTask (RuntimeApiTaskCF645D67) Resource creation Initiated
+RilloraProduction | 23/28 | 9:08:34 AM | CREATE_COMPLETE         | AWS::ECS::TaskDefinition                    | Runtime/ApiTask (RuntimeApiTaskCF645D67) 
+RilloraProduction | 24/28 | 9:08:48 AM | CREATE_COMPLETE         | AWS::IAM::Policy                            | Runtime/ApiTask/TaskRole/DefaultPolicy (RuntimeApiTaskTaskRoleDefaultPolicy59BF15A6) 
+RilloraProduction | 24/28 | 9:08:49 AM | CREATE_IN_PROGRESS      | AWS::ECS::Service                           | Runtime/Service/Service (RuntimeService1702E585) 
+RilloraProduction | 24/28 | 9:08:50 AM | CREATE_IN_PROGRESS      | AWS::ECS::Service                           | Runtime/Service/Service (RuntimeService1702E585) Resource creation Initiated
+RilloraProduction | 25/28 | 9:09:26 AM | CREATE_COMPLETE         | AWS::ECS::Service                           | Runtime/Service/Service (RuntimeService1702E585) 
+RilloraProduction | 25/28 | 9:09:27 AM | UPDATE_IN_PROGRESS      | AWS::IAM::Policy                            | Operator/DefaultPolicy (OperatorDefaultPolicyA84BD3A6) 
+RilloraProduction | 26/28 | 9:09:43 AM | UPDATE_COMPLETE         | AWS::IAM::Policy                            | Operator/DefaultPolicy (OperatorDefaultPolicyA84BD3A6) 
+RilloraProduction | 27/28 | 9:09:47 AM | UPDATE_COMPLETE_CLEANUP | AWS::CloudFormation::Stack                  | RilloraProduction 
+RilloraProduction | 27/28 | 9:09:48 AM | DELETE_IN_PROGRESS      | AWS::ECS::TaskDefinition                    | MigrationTask (MigrationTask69EAEF9D) 
+RilloraProduction | 27/28 | 9:09:48 AM | DELETE_IN_PROGRESS      | AWS::ECS::TaskDefinition                    | RecoveryTask (RecoveryTaskD940248B) 
+RilloraProduction | 26/28 | 9:09:49 AM | DELETE_COMPLETE         | AWS::ECS::TaskDefinition                    | MigrationTask (MigrationTask69EAEF9D) 
+RilloraProduction | 25/28 | 9:09:49 AM | DELETE_COMPLETE         | AWS::ECS::TaskDefinition                    | RecoveryTask (RecoveryTaskD940248B) 
+RilloraProduction | 26/28 | 9:09:49 AM | UPDATE_COMPLETE         | AWS::CloudFormation::Stack                  | RilloraProduction 
+
+✅  RilloraProduction
+
+✨  Deployment time: 722.26s
+
+Outputs:
+RilloraProduction.BackupRetentionDays = 7
+RilloraProduction.ClusterName = RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm
+RilloraProduction.ContentKeyArn = arn:aws:kms:eu-central-1:133857166372:key/0f60cf8f-25b6-4e8e-94c5-03fc127a5b72
+RilloraProduction.DatabaseHost = rillora-production.cxcqa2usex01.eu-central-1.rds.amazonaws.com
+RilloraProduction.DatabaseIdentifier = rillora-production
+RilloraProduction.DatabaseParameterGroup = rilloraproduction-postgresparameters8ea48b37-aidag1ktlvb3
+RilloraProduction.DatabaseSecurityGroupId = sg-0176b4c45717eb1b7
+RilloraProduction.DatabaseSubnetGroup = rilloraproduction-databasesubnets-grsk2po0xunc
+RilloraProduction.MaintenanceLogGroup = RilloraProduction-MaintenanceLogs61C6A99C-2niRZtkO9Ivq
+RilloraProduction.MaintenanceSubnetIds = subnet-070c4a18e68f26f1d,subnet-0d218a58218e10e36
+RilloraProduction.MigrationSecurityGroupId = sg-0bdbb583c7d22b27a
+RilloraProduction.MigrationTaskDefinitionArn = arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionMigrationTask3A96A2B6:3
+RilloraProduction.OperatorRoleArn = arn:aws:iam::133857166372:role/rillora/rillora-production-operator
+RilloraProduction.ProductionTrafficReady = false
+RilloraProduction.ProductionVpcId = vpc-07e1ea12ac1185897
+RilloraProduction.RecoveryDatabaseSecurityGroupId = sg-0a2749f1ef2b22600
+RilloraProduction.RecoveryJournalTable = RilloraProduction-RecoveryJournal06BB91CD-1EBHY2PWCGS9F
+RilloraProduction.RecoverySecurityGroupId = sg-09cdb1445e4e84d7e
+RilloraProduction.RecoveryTaskDefinitionArn = arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRecoveryTask4FA4E62D:3
+RilloraProduction.RuntimeApiLogGroup3DA7AF21 = RilloraProduction-RuntimeApiLogs69C9F62B-I6Cv6Kkh8WhY
+RilloraProduction.RuntimeApiSecurityGroupIdDEAE6BF4 = sg-014722f6f6b5b18ff
+RilloraProduction.RuntimeApiServiceNameF8B88348 = RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL
+RilloraProduction.RuntimeApiTaskDefinitionArn02DA653E = arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRuntimeApiTask93405B31:1
+RilloraProduction.RuntimeApiUrl28EC49BD = https://j749rhzub7.execute-api.eu-central-1.amazonaws.com
+RilloraProduction.RuntimeCertificateArnBB7EAC67 = arn:aws:acm:eu-central-1:133857166372:certificate/8435fada-00ca-4c0e-880b-ff26e0fb6191
+RilloraProduction.RuntimeCustomerAccess0D914672 = closed
+RilloraProduction.RuntimeGatewayLogGroup40748EB6 = RilloraProduction-RuntimeGatewayLogs879CA399-e6fvu3hZcaiq
+RilloraProduction.RuntimeTlsServerName02234589 = origin.production.rillora.xyz
+Stack ARN:
+arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraProduction/60c3f040-b74b-11f1-9fc1-027c8dcc491b
+
+✨  Total time: 758.2s
+

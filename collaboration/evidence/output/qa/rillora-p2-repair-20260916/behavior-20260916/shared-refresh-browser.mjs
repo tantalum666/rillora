@@ -1,0 +1,34 @@
+async (page) => {
+  const owner = { 'x-dev-planner-id':'11111111-1111-4111-8111-111111111111', 'content-type':'application/json' };
+  const recipient = { 'x-dev-planner-id':'22222222-2222-4222-8222-222222222222' };
+  const connection = '44f6c84f-511d-4dd0-8656-f3500e1f2eac';
+  await page.goto('http://127.0.0.1:4262/?view=shared');
+  const data = await (await page.request.get('http://127.0.0.1:4260/v1/sharing/shared-with-me',{headers:recipient})).json();
+  const index=data.connections.findIndex(item=>item.publicId===connection);
+  if(index<0) throw Error('Missing fixture connection');
+  await page.locator('.shared-owner').nth(index).getByRole('button').click();
+  await page.getByRole('button',{name:'Copy address',exact:true}).click();
+  await page.getByRole('status').filter({hasText:'Copied'}).waitFor();
+  let release, started;
+  const gate=new Promise(resolve=>{release=resolve});
+  const seen=new Promise(resolve=>{started=resolve});
+  await page.route('**/v1/sharing/shared-with-me', async route=>{const response=await route.fetch();started();await gate;await route.fulfill({response});},{times:1});
+  await page.evaluate(()=>window.dispatchEvent(new Event('focus')));
+  await seen;
+  if(await page.getByText('Visible only before scope changes',{exact:true}).count()) throw Error('Old content stayed visible during refresh');
+  const connections=(await (await page.request.get('http://127.0.0.1:4260/v1/sharing/connections',{headers:owner})).json()).connections;
+  const current=connections.find(item=>item.publicId===connection);
+  const changed=await page.request.patch('http://127.0.0.1:4260/v1/sharing/connections/'+connection,{headers:owner,data:{expectedVersion:current.version,grants:[{matterPublicId:'71209a1a-0fbb-4ff0-85b0-767822892f5f',detailLevel:'name'}]}});
+  if(!changed.ok()) throw Error('Scope mutation failed');
+  await page.evaluate(()=>window.dispatchEvent(new Event('focus')));
+  await page.getByText('Only the name and category are shared with you.',{exact:true}).waitFor();
+  const lateResponse=page.waitForResponse(response=>response.url().includes('/sharing/shared-with-me'));
+  release();await lateResponse;
+  await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+  if(await page.getByText('Visible only before scope changes',{exact:true}).count()) throw Error('Late response restored private details');
+  const updated=await changed.json();
+  await page.request.delete('http://127.0.0.1:4260/v1/sharing/connections/'+connection,{headers:{...owner,'if-match':String(updated.connection.version)}});
+  await page.evaluate(()=>window.dispatchEvent(new Event('focus')));
+  await page.getByText('Access changed. This item is no longer shared with you.',{exact:true}).waitFor();
+  return {copyFeedback:true,hiddenWhileChecking:true,downgrade:true,lateResponseIgnored:true,revocation:true};
+}

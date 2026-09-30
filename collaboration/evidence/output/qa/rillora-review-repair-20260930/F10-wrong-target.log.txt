@@ -1,0 +1,27 @@
+
+ RUN  v4.1.11 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/bootstrap-runtime.test.ts (2 tests | 2 skipped) 4ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/bootstrap-runtime.test.ts > runtime database role bootstrap
+Error: Tests require the dedicated local continuity_test database and test credentials
+ ❯ dedicatedTestDatabaseUrl tests/dedicated-test-database.ts:13:11
+     11|     || url.pathname !== `/${expectedName}` || url.search || url.hash
+     12|     || !['postgres', userInfo().username].includes(user)) {
+     13|     throw new Error(`Tests require the dedicated local ${expectedName}…
+       |           ^
+     14|   }
+     15|   url.hostname = host;
+ ❯ assertDedicatedTestDatabase tests/dedicated-test-database.ts:23:28
+ ❯ tests/bootstrap-runtime.test.ts:17:25
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 skipped (2)
+   Start at  13:52:47
+   Duration  501ms (transform 127ms, setup 75ms, import 235ms, tests 4ms, environment 0ms)
+

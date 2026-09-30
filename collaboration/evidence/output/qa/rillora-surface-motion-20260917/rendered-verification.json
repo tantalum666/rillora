@@ -1,0 +1,23 @@
+{
+  "environment": "Isolated local DB continuity_surface_motion_20260917; API4290; Web4291; Matrix13 simulator. Synthetic records only.",
+  "native": [
+    "Profile grouped card fills inspected",
+    "Plan access disclosure collapsed/expanded controls and contents inspected",
+    "AX5 + Reduce Motion labels reflow; Included features state exposed as Expanded/Collapsed",
+    "My data and Open saved copy use shared material; back controls visible",
+    "Safety Keep/Leave out changes the correct rows",
+    "Shared reviews My plan/For me swaps to tray empty state"
+  ],
+  "web": [
+    "Settings disclosure aria-expanded and controls IDs; matching card computed fill rgb(37,44,41)",
+    "Plan Family feature labels no longer occupy the absent 20px icon column",
+    "Plan cards computed fill matches Settings; 390px and320px have no horizontal overflow",
+    "Settings320px: 76px main actions;54px delete action; reduce motion animation none and transition0s",
+    "New matter390px: dialog390px, body390px; gray input rgb(218,216,207); required fields prevent save",
+    "Review settings native dialog opens and Escape closes; zero errors/warnings in captured local console",
+    "New matter category change repro before fix: Discard returns to Account editor; after fix Keep editing retains Crypto and Discard exits to /?view=matters with no editor"
+  ],
+  "browserViewportRestored": true,
+  "browserMediaOverrideRestored": true,
+  "evidenceBoundary": "Scoped manual rendered checks; no fresh real login, identity, payment, revocation ceremony, physical-device or whole-product certification."
+}

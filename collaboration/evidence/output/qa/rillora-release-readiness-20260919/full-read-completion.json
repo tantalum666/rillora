@@ -1,0 +1,15 @@
+{
+  "completedAt": "2026-09-19T08:55:16.235587+00:00",
+  "ownedFiles": 92,
+  "lines": 20554,
+  "bodyChunksRead": 206,
+  "missingChunks": [],
+  "changedDuringRead": [],
+  "coverage": "md-full-read-bodies.json plus md-read-ledger.json; entire bodies, not filename/search/hash substitutes",
+  "exclusions": [
+    "Dependency/third-party trees: node_modules, SwiftPM checkouts and vendor directories",
+    "Caches/builds: .git, .build, .derived-data*, dist, cdk.out",
+    "Generated evidence under output/",
+    "Private runtime credentials/configuration under .local-secrets"
+  ]
+}

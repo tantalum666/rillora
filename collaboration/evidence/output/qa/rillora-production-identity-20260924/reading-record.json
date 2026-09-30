@@ -1,0 +1,57 @@
+{
+  "mode": "Focused continuation of existing release workflow after context recovery",
+  "fullReadBaseline": "output/qa/rillora-release-readiness-20260919/full-read-completion.json",
+  "previousContinuation": "output/qa/rillora-production-runtime-20260924/reading-record.json",
+  "readAt": "2026-09-24T02:14:55.509311+00:00",
+  "ranges": {
+    "AGENTS.md": "complete",
+    "docs/product.md": "1-95",
+    "docs/handoff.md": "complete",
+    "docs/decision-log.md": "latest 14 lines",
+    "docs/journey/PROJECT_JOURNEY.md": "latest 25 lines",
+    "docs/authentication-experience.md": "1-190 (current contract and supersession)",
+    "docs/release-readiness.md": "current sections and release gates (prior full read retained)",
+    "docs/infrastructure-roadmap.md": "75-160",
+    "docs/production-runtime-20260924.md": "1-80,80-end (existing baseline retained)",
+    "infra/auth0/hosted-consent/README.md": "complete",
+    "tools/godaddy/README.md": "complete",
+    "infra/auth0/README.md": "current sections 1-150,130-200; prior full read retained"
+  },
+  "note": "Search results and truncated broad excerpts are not credited as a new full project read. Dependencies/generated output remain excluded from project baseline.",
+  "additionalFocusedReads": [
+    "apps/web/AGENTS.md complete",
+    "infra/aws README current scope and edited sections",
+    "Auth0 hosted consent README complete",
+    "public entry/guide sources being reused",
+    "tools/godaddy README and complete helper/test sources",
+    "release and source-publication guards"
+  ],
+  "authoredDocs": [
+    "docs/production-identity-mail-20260924.md",
+    "docs/public-product-website-20260924.md",
+    "docs/handoff-history-20260924-before-identity.md"
+  ],
+  "updatedAt": "2026-09-24T16:58:47.866247+00:00",
+  "contextRecovery20260925": {
+    "AGENTS.md": "complete",
+    "docs/product.md": "1-145",
+    "docs/handoff.md": "complete",
+    "docs/decision-log.md": "header and latest focused entries",
+    "docs/journey/PROJECT_JOURNEY.md": "header and latest 55 lines",
+    "docs/production-identity-mail-20260924.md": "complete",
+    "docs/public-product-website-20260924.md": "complete",
+    "other": "Current task sections in release/quality/infrastructure docs and infra READMEs; all edited source files recovered by focused reads. Truncated combined reads were supplemented, not credited as new full reading."
+  },
+  "replyContinuation20260925": {
+    "mode": "Same release workflow; prior complete-reading record retained",
+    "read": [
+      "current handoff complete",
+      "exact SES draft complete",
+      "current mail/SES live-readback shapes",
+      "existing release-guard tests",
+      "all edited current doc sections",
+      "new mail checker/test complete as authored"
+    ],
+    "newFullScanClaim": false
+  }
+}

@@ -1,0 +1,82 @@
+Stack RilloraProduction
+IAM Statement Changes
+┌───┬──────────────────────────────┬────────┬───────────────────────────────┬──────────────────────────────┬───────────┐
+│   │ Resource                     │ Effect │ Action                        │ Principal                    │ Condition │
+├───┼──────────────────────────────┼────────┼───────────────────────────────┼──────────────────────────────┼───────────┤
+│ + │ ${Runtime/AppleReviewSecret} │ Allow  │ secretsmanager:DescribeSecret │ AWS:${RecoveryTask/TaskRole} │           │
+│   │                              │        │ secretsmanager:GetSecretValue │                              │           │
+└───┴──────────────────────────────┴────────┴───────────────────────────────┴──────────────────────────────┴───────────┘
+(NOTE: There may be security-related changes not in this list. See https://github.com/aws/aws-cdk/issues/1299)
+
+Resources
+[~] AWS::ECS::TaskDefinition MigrationTask MigrationTask69EAEF9D replace
+ └─ [~] ContainerDefinitions (requires replacement)
+     └─ @@ -69,7 +69,7 @@
+        [ ] ],
+        [ ] "Essential": true,
+        [ ] "Image": {
+        [-]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:9996bef8e9f3888c9c8c2a320cfaaf13802f2c81092b998ba321ebee4460079c"
+        [+]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:5714b1ad520da83835ceca41032301649de2c7ad1bba34260281670f02daf67e"
+        [ ] },
+        [ ] "LogConfiguration": {
+        [ ]   "LogDriver": "awslogs",
+[~] AWS::IAM::Policy RecoveryTask/TaskRole/DefaultPolicy RecoveryTaskTaskRoleDefaultPolicy6EC2C93F
+ └─ [~] PolicyDocument
+     └─ [~] .Statement:
+         └─ @@ -32,5 +32,15 @@
+            [ ]         "Arn"
+            [ ]       ]
+            [ ]     }
+            [+]   },
+            [+]   {
+            [+]     "Action": [
+            [+]       "secretsmanager:GetSecretValue",
+            [+]       "secretsmanager:DescribeSecret"
+            [+]     ],
+            [+]     "Effect": "Allow",
+            [+]     "Resource": {
+            [+]       "Ref": "RuntimeAppleReviewSecret3201CF49"
+            [+]     }
+            [ ]   }
+            [ ] ]
+[~] AWS::ECS::TaskDefinition RecoveryTask RecoveryTaskD940248B replace
+ └─ [~] ContainerDefinitions (requires replacement)
+     └─ @@ -56,11 +56,21 @@
+        [ ]   {
+        [ ]     "Name": "RECOVERY_ENVIRONMENT",
+        [ ]     "Value": "production"
+        [+]   },
+        [+]   {
+        [+]     "Name": "APPLE_REVIEW_SECRET_ARN",
+        [+]     "Value": {
+        [+]       "Ref": "RuntimeAppleReviewSecret3201CF49"
+        [+]     }
+        [+]   },
+        [+]   {
+        [+]     "Name": "APPLE_ROOT_CERTIFICATE_DIRECTORY",
+        [+]     "Value": "/app/certificates/apple"
+        [ ]   }
+        [ ] ],
+        [ ] "Essential": true,
+        [ ] "Image": {
+        [-]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:9996bef8e9f3888c9c8c2a320cfaaf13802f2c81092b998ba321ebee4460079c"
+        [+]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:5714b1ad520da83835ceca41032301649de2c7ad1bba34260281670f02daf67e"
+        [ ] },
+        [ ] "LogConfiguration": {
+        [ ]   "LogDriver": "awslogs",
+[~] AWS::ECS::TaskDefinition Runtime/ApiTask RuntimeApiTaskCF645D67 replace
+ └─ [~] ContainerDefinitions (requires replacement)
+     └─ @@ -195,7 +195,7 @@
+        [ ]   "Timeout": 5
+        [ ] },
+        [ ] "Image": {
+        [-]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:9996bef8e9f3888c9c8c2a320cfaaf13802f2c81092b998ba321ebee4460079c"
+        [+]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:5714b1ad520da83835ceca41032301649de2c7ad1bba34260281670f02daf67e"
+        [ ] },
+        [ ] "LinuxParameters": {
+        [ ]   "Capabilities": {
+
+
+
+✨  Number of stacks with differences: 1
+

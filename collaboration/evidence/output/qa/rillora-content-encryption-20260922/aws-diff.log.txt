@@ -1,0 +1,115 @@
+Stack RilloraStaging
+IAM Statement Changes
+┌───┬──────────────────────────┬────────┬─────────────────────┬──────────────────────────────────────────────────┬──────────────────────────────────────────────────────────────────┐
+│   │ Resource                 │ Effect │ Action              │ Principal                                        │ Condition                                                        │
+├───┼──────────────────────────┼────────┼─────────────────────┼──────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────┤
+│ + │ ${PrivateContentKey.Arn} │ Allow  │ kms:*               │ AWS:arn:${AWS::Partition}:iam::133857166372:root │                                                                  │
+│ + │ ${PrivateContentKey.Arn} │ Allow  │ kms:Decrypt         │ AWS:${ApiTaskDefinition/TaskRole}                │ "StringEquals": {                                                │
+│   │                          │        │ kms:GenerateDataKey │                                                  │   "kms:EncryptionContext:rillora_application": "content-v1",     │
+│   │                          │        │                     │                                                  │   "kms:EncryptionContext:rillora_environment": "rillora-staging" │
+│   │                          │        │                     │                                                  │ },                                                               │
+│   │                          │        │                     │                                                  │ "Null": {                                                        │
+│   │                          │        │                     │                                                  │   "kms:EncryptionContext:owner_id": "false",                     │
+│   │                          │        │                     │                                                  │   "kms:EncryptionContext:key_id": "false"                        │
+│   │                          │        │                     │                                                  │ }                                                                │
+│ + │ ${PrivateContentKey.Arn} │ Allow  │ kms:Decrypt         │ AWS:${MigrationTaskDefinition/TaskRole}          │ "StringEquals": {                                                │
+│   │                          │        │ kms:GenerateDataKey │                                                  │   "kms:EncryptionContext:rillora_application": "content-v1",     │
+│   │                          │        │                     │                                                  │   "kms:EncryptionContext:rillora_environment": "rillora-staging" │
+│   │                          │        │                     │                                                  │ },                                                               │
+│   │                          │        │                     │                                                  │ "Null": {                                                        │
+│   │                          │        │                     │                                                  │   "kms:EncryptionContext:owner_id": "false",                     │
+│   │                          │        │                     │                                                  │   "kms:EncryptionContext:key_id": "false"                        │
+│   │                          │        │                     │                                                  │ }                                                                │
+└───┴──────────────────────────┴────────┴─────────────────────┴──────────────────────────────────────────────────┴──────────────────────────────────────────────────────────────────┘
+(NOTE: There may be security-related changes not in this list. See https://github.com/aws/aws-cdk/issues/1299)
+
+Resources
+[+] AWS::IAM::Policy ApiTaskDefinition/TaskRole/DefaultPolicy ApiTaskDefinitionTaskRoleDefaultPolicyA678CF9F
+[+] AWS::KMS::Key PrivateContentKey PrivateContentKey82076AB6
+[+] AWS::IAM::Policy MigrationTaskDefinition/TaskRole/DefaultPolicy MigrationTaskDefinitionTaskRoleDefaultPolicyA6B4A60E
+[~] AWS::ECS::TaskDefinition ApiTaskDefinition ApiTaskDefinition51EA709E replace
+ └─ [~] ContainerDefinitions (requires replacement)
+     └─ @@ -52,6 +52,23 @@
+        [ ]   "Value": "eu-central-1"
+        [ ] },
+        [ ] {
+        [+]   "Name": "CONTENT_PROTECTION_MODE",
+        [+]   "Value": "read-compatible"
+        [+] },
+        [+] {
+        [+]   "Name": "CONTENT_KMS_KEY_ARN",
+        [+]   "Value": {
+        [+]     "Fn::GetAtt": [
+        [+]       "PrivateContentKey82076AB6",
+        [+]       "Arn"
+        [+]     ]
+        [+]   }
+        [+] },
+        [+] {
+        [+]   "Name": "CONTENT_KEY_NAMESPACE",
+        [+]   "Value": "rillora-staging"
+        [+] },
+        [+] {
+        [ ]   "Name": "CORS_ORIGINS",
+        [ ]   "Value": {
+        [ ]     "Ref": "WebCorsOrigin"
+        @@ -198,7 +215,7 @@
+        [ ]   "Timeout": 5
+        [ ] },
+        [ ] "Image": {
+        [-]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:b058baca2c845218f29feaea5a15fac2c07f0608ee588db5a914ea058d1cf0b8"
+        [+]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:f37b0ec398edffcf88232960dcb620c428c4d39659f2e1462df14f5180043a33"
+        [ ] },
+        [ ] "LogConfiguration": {
+        [ ]   "LogDriver": "awslogs",
+[~] AWS::ECS::Service ApiService/Service ApiServiceC9037CF0
+ └─ [~] DependsOn
+     └─ @@ -1,5 +1,6 @@
+        [ ] [
+        [ ]   "ApiTaskDefinitionTaskRole7EE87BD7",
+        [+]   "ApiTaskDefinitionTaskRoleDefaultPolicyA678CF9F",
+        [ ]   "DatabaseB269D8BB",
+        [ ]   "DatabaseLogRetentionpostgresqlFBE8A947",
+        [ ]   "DatabaseSecretAttachmentE5D1B020",
+[~] AWS::ECS::TaskDefinition MigrationTaskDefinition MigrationTaskDefinitionE89B136E replace
+ └─ [~] ContainerDefinitions (requires replacement)
+     └─ @@ -55,11 +55,28 @@
+        [ ]   {
+        [ ]     "Name": "DATA_REGION",
+        [ ]     "Value": "eu-central-1"
+        [+]   },
+        [+]   {
+        [+]     "Name": "CONTENT_PROTECTION_MODE",
+        [+]     "Value": "encrypted"
+        [+]   },
+        [+]   {
+        [+]     "Name": "CONTENT_KMS_KEY_ARN",
+        [+]     "Value": {
+        [+]       "Fn::GetAtt": [
+        [+]         "PrivateContentKey82076AB6",
+        [+]         "Arn"
+        [+]       ]
+        [+]     }
+        [+]   },
+        [+]   {
+        [+]     "Name": "CONTENT_KEY_NAMESPACE",
+        [+]     "Value": "rillora-staging"
+        [ ]   }
+        [ ] ],
+        [ ] "Essential": true,
+        [ ] "Image": {
+        [-]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:b058baca2c845218f29feaea5a15fac2c07f0608ee588db5a914ea058d1cf0b8"
+        [+]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:f37b0ec398edffcf88232960dcb620c428c4d39659f2e1462df14f5180043a33"
+        [ ] },
+        [ ] "LogConfiguration": {
+        [ ]   "LogDriver": "awslogs",
+
+Outputs
+[+] Output PrivateContentKeyArn PrivateContentKeyArn: {"Value":{"Fn::GetAtt":["PrivateContentKey82076AB6","Arn"]}}
+[+] Output ContentProtectionMode ContentProtectionMode: {"Value":"read-compatible"}
+[+] Output ContentMigrationEnabled ContentMigrationEnabled: {"Value":"true"}
+
+
+
+✨  Number of stacks with differences: 1
+

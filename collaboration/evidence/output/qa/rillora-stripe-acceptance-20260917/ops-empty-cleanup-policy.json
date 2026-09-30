@@ -1,0 +1,39 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Temporary cleanup of two retained empty resources from the failed RilloraOperations initial deployment. Remove this stack after cleanup.",
+  "Resources": {
+    "EmptyFailedDeploymentCleanup": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "rillora-empty-failed-deploy-cleanup-20260917",
+        "Roles": [
+          "rillora-staging-operator"
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "sqs:GetQueueAttributes",
+                "sqs:DeleteQueue"
+              ],
+              "Resource": "arn:aws:sqs:eu-central-1:133857166372:RilloraOperations-FailedDeliveriesE3540845-ibNzKv6HXWqs"
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "logs:DescribeLogStreams",
+                "logs:DeleteLogGroup"
+              ],
+              "Resource": [
+                "arn:aws:logs:eu-central-1:133857166372:log-group:RilloraOperations-HealthLogs34B37038-bFIAPRBX2XhQ",
+                "arn:aws:logs:eu-central-1:133857166372:log-group:RilloraOperations-HealthLogs34B37038-bFIAPRBX2XhQ:*"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+}

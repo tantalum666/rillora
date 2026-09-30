@@ -1,0 +1,335 @@
+{
+  "contractVersion": "commerce-v1",
+  "billingOpen": false,
+  "serviceMarketCode": "GLOBAL_US",
+  "marketPolicyVersion": 1,
+  "currentAccess": {
+    "planCode": "free",
+    "planVersion": 1,
+    "subscription": null,
+    "managementDestination": "none"
+  },
+  "entitlements": [
+    {
+      "code": "account_deletion",
+      "allowance": null,
+      "source": "free_baseline"
+    },
+    {
+      "code": "data_export",
+      "allowance": null,
+      "source": "free_baseline"
+    },
+    {
+      "code": "desired_outcomes_basic",
+      "allowance": null,
+      "source": "free_baseline"
+    },
+    {
+      "code": "matter_map_core",
+      "allowance": null,
+      "source": "free_baseline"
+    },
+    {
+      "code": "official_setup_guides",
+      "allowance": null,
+      "source": "free_baseline"
+    },
+    {
+      "code": "recipient_basic_access",
+      "allowance": null,
+      "source": "free_baseline"
+    },
+    {
+      "code": "rehearsal_basic",
+      "allowance": null,
+      "source": "free_baseline"
+    },
+    {
+      "code": "security_controls",
+      "allowance": null,
+      "source": "free_baseline"
+    },
+    {
+      "code": "start_here_export",
+      "allowance": null,
+      "source": "free_baseline"
+    },
+    {
+      "code": "trusted_person_basic",
+      "allowance": 1,
+      "source": "free_baseline"
+    }
+  ],
+  "plans": [
+    {
+      "planCode": "free",
+      "planVersion": 1,
+      "status": "active",
+      "capabilities": [
+        {
+          "code": "account_deletion",
+          "status": "active",
+          "allowance": null,
+          "enforcementMode": "included",
+          "baselineTrustControl": true,
+          "availability": "planned"
+        },
+        {
+          "code": "data_export",
+          "status": "active",
+          "allowance": null,
+          "enforcementMode": "included",
+          "baselineTrustControl": true,
+          "availability": "available"
+        },
+        {
+          "code": "desired_outcomes_basic",
+          "status": "active",
+          "allowance": null,
+          "enforcementMode": "included",
+          "baselineTrustControl": true,
+          "availability": "planned"
+        },
+        {
+          "code": "matter_map_core",
+          "status": "active",
+          "allowance": null,
+          "enforcementMode": "included",
+          "baselineTrustControl": true,
+          "availability": "available"
+        },
+        {
+          "code": "official_setup_guides",
+          "status": "active",
+          "allowance": null,
+          "enforcementMode": "included",
+          "baselineTrustControl": true,
+          "availability": "available"
+        },
+        {
+          "code": "recipient_basic_access",
+          "status": "active",
+          "allowance": null,
+          "enforcementMode": "included",
+          "baselineTrustControl": true,
+          "availability": "planned"
+        },
+        {
+          "code": "rehearsal_basic",
+          "status": "active",
+          "allowance": null,
+          "enforcementMode": "included",
+          "baselineTrustControl": true,
+          "availability": "retired"
+        },
+        {
+          "code": "security_controls",
+          "status": "active",
+          "allowance": null,
+          "enforcementMode": "included",
+          "baselineTrustControl": true,
+          "availability": "planned"
+        },
+        {
+          "code": "start_here_export",
+          "status": "active",
+          "allowance": null,
+          "enforcementMode": "included",
+          "baselineTrustControl": true,
+          "availability": "planned"
+        },
+        {
+          "code": "trusted_person_basic",
+          "status": "active",
+          "allowance": 1,
+          "enforcementMode": "included",
+          "baselineTrustControl": true,
+          "availability": "available"
+        }
+      ]
+    },
+    {
+      "planCode": "family",
+      "planVersion": 2,
+      "status": "planned",
+      "capabilities": [
+        {
+          "code": "account_deletion",
+          "status": "active",
+          "allowance": null,
+          "enforcementMode": "included",
+          "baselineTrustControl": true,
+          "availability": "planned"
+        },
+        {
+          "code": "adaptive_reviews",
+          "status": "planned",
+          "allowance": null,
+          "enforcementMode": "planned",
+          "baselineTrustControl": false,
+          "availability": "planned"
+        },
+        {
+          "code": "data_export",
+          "status": "active",
+          "allowance": null,
+          "enforcementMode": "included",
+          "baselineTrustControl": true,
+          "availability": "available"
+        },
+        {
+          "code": "desired_outcomes_basic",
+          "status": "active",
+          "allowance": null,
+          "enforcementMode": "included",
+          "baselineTrustControl": true,
+          "availability": "planned"
+        },
+        {
+          "code": "encrypted_attachments",
+          "status": "planned",
+          "allowance": null,
+          "enforcementMode": "planned",
+          "baselineTrustControl": false,
+          "availability": "planned"
+        },
+        {
+          "code": "family_maintenance",
+          "status": "active",
+          "allowance": null,
+          "enforcementMode": "planned",
+          "baselineTrustControl": false,
+          "availability": "planned"
+        },
+        {
+          "code": "household_coplanner",
+          "status": "planned",
+          "allowance": 1,
+          "enforcementMode": "planned",
+          "baselineTrustControl": false,
+          "availability": "planned"
+        },
+        {
+          "code": "matter_map_core",
+          "status": "active",
+          "allowance": null,
+          "enforcementMode": "included",
+          "baselineTrustControl": true,
+          "availability": "available"
+        },
+        {
+          "code": "official_setup_guides",
+          "status": "active",
+          "allowance": null,
+          "enforcementMode": "included",
+          "baselineTrustControl": true,
+          "availability": "available"
+        },
+        {
+          "code": "priority_product_support",
+          "status": "planned",
+          "allowance": null,
+          "enforcementMode": "planned",
+          "baselineTrustControl": false,
+          "availability": "planned"
+        },
+        {
+          "code": "recipient_basic_access",
+          "status": "active",
+          "allowance": null,
+          "enforcementMode": "included",
+          "baselineTrustControl": true,
+          "availability": "planned"
+        },
+        {
+          "code": "rehearsal_advanced",
+          "status": "planned",
+          "allowance": null,
+          "enforcementMode": "planned",
+          "baselineTrustControl": false,
+          "availability": "planned"
+        },
+        {
+          "code": "rehearsal_basic",
+          "status": "active",
+          "allowance": null,
+          "enforcementMode": "included",
+          "baselineTrustControl": true,
+          "availability": "retired"
+        },
+        {
+          "code": "role_packages_advanced",
+          "status": "planned",
+          "allowance": null,
+          "enforcementMode": "planned",
+          "baselineTrustControl": false,
+          "availability": "planned"
+        },
+        {
+          "code": "security_controls",
+          "status": "active",
+          "allowance": null,
+          "enforcementMode": "included",
+          "baselineTrustControl": true,
+          "availability": "planned"
+        },
+        {
+          "code": "start_here_export",
+          "status": "active",
+          "allowance": null,
+          "enforcementMode": "included",
+          "baselineTrustControl": true,
+          "availability": "planned"
+        },
+        {
+          "code": "trusted_people_multiple",
+          "status": "planned",
+          "allowance": 5,
+          "enforcementMode": "planned",
+          "baselineTrustControl": false,
+          "availability": "planned"
+        },
+        {
+          "code": "trusted_person_basic",
+          "status": "active",
+          "allowance": null,
+          "enforcementMode": "included",
+          "baselineTrustControl": true,
+          "availability": "available"
+        },
+        {
+          "code": "version_history",
+          "status": "planned",
+          "allowance": null,
+          "enforcementMode": "planned",
+          "baselineTrustControl": false,
+          "availability": "planned"
+        }
+      ]
+    }
+  ],
+  "offers": [
+    {
+      "priceCode": "family_usd_annual_v3",
+      "planCode": "family",
+      "planVersion": 2,
+      "amountMinor": 8880,
+      "minorUnitExponent": 2,
+      "currencyCode": "USD",
+      "billingInterval": "annual",
+      "taxBehavior": "not_configured",
+      "status": "disabled_hypothesis",
+      "purchasable": false
+    }
+  ],
+  "boundaries": {
+    "serverAuthoritative": true,
+    "providerCallbackGrantsAccess": false,
+    "clientPurchaseResultGrantsAccess": false,
+    "billingStateCanTriggerClaim": false,
+    "billingStateCanTriggerDisclosure": false,
+    "storefrontPersistedToCustomerProfile": false,
+    "oneActiveRenewalProviderPerHouseholdPlan": true
+  }
+}

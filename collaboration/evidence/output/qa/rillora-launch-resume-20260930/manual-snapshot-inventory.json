@@ -1,0 +1,20 @@
+{
+  "at": "2026-09-29T17:49:09.918142+00:00",
+  "readOnly": true,
+  "instances": [
+    "rillora-production",
+    "rillorastaging-databaseb269d8bb-imhpxxsvdniq"
+  ],
+  "snapshots": [
+    {
+      "DBSnapshotIdentifier": "rillora-content-encryption-before-20260923",
+      "DBSnapshotArn": "arn:aws:rds:eu-central-1:133857166372:snapshot:rillora-content-encryption-before-20260923",
+      "DBInstanceIdentifier": "rillorastaging-databaseb269d8bb-imhpxxsvdniq",
+      "SnapshotCreateTime": "2026-09-22T16:13:05.877000+00:00",
+      "Encrypted": true,
+      "Status": "available",
+      "SnapshotType": "manual",
+      "rilloraTags": []
+    }
+  ]
+}

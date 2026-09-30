@@ -1,0 +1,61 @@
+{
+  "reviewedAt": "2026-09-10T10:13:04.101359+08:00",
+  "kind": "source audit, not live readback or fresh tests",
+  "runtimeCodeChangedThisTurn": false,
+  "files": [
+    {
+      "file": "apps/api/migrations/0022_provider_neutral_commerce.sql",
+      "sha256": "11e7a5499e4991ab880041223a10d8a26bf004f9f7adce7e3d84676f3ca100e3"
+    },
+    {
+      "file": "apps/api/src/commerce-routes.ts",
+      "sha256": "5923f46814aa6bd56c8a90e3d155cae8ef818b50ce61c38bd8857485599bc32e"
+    },
+    {
+      "file": "apps/api/src/app.ts",
+      "sha256": "85cb50c2b26f61ae7b12110cc2dffbccd0f56afb23e7420115dfaaf23cda2cf7"
+    },
+    {
+      "file": "apps/api/src/routes.ts",
+      "sha256": "2c9a2a4507d4e2e2d921a4d0e74da4dd227522a03c6bf441f7b6d25f9440cbc5"
+    },
+    {
+      "file": "apps/api/src/sharing-routes.ts",
+      "sha256": "abec9289492e629ae5803cf84519699a24e38d081cf72658ab6a77a05810ba1f"
+    },
+    {
+      "file": "apps/api/migrations/0035_account_bound_sharing.sql",
+      "sha256": "ebfe2feb7879e4f1021d8203d4f68bdaa86595726b1da8dce26a4ac988af0e20"
+    },
+    {
+      "file": "apps/api/migrations/0036_private_matter_clears_sharing.sql",
+      "sha256": "80a9013ad717e2b8e329b7b65d7a1e74815bf128039497feb89debccf8d6c861"
+    },
+    {
+      "file": "apps/web/src/commercialAccess.js",
+      "sha256": "6d1e325fd4831c364cce3c5b1f1da7d8a739677c7c2452bb8539f7c03b7eabca"
+    },
+    {
+      "file": "apps/web/src/App.jsx",
+      "sha256": "43ed458156a0325dbad33bb55cb79c7e254a772a4b31c2a2186adec4f4948345"
+    },
+    {
+      "file": "apps/ios/Rillora/Features/Account/PlanAccessView.swift",
+      "sha256": "e27b7e4a8bbb6c7e1ab59c7c01574c49abeb8efc10983d181e491b260a0d6fab"
+    },
+    {
+      "file": "apps/api/src/identity.ts",
+      "sha256": "5d31472ba7a84e5982778be2aeeedaede29bc8a82fd0535818709200a0397f23"
+    },
+    {
+      "file": "apps/ios/Rillora/Core/Authentication/NativeAuthenticationService.swift",
+      "sha256": "4b39c4544da613f8d8a819e4d1083c966c6932e10a007d2f91f8ae7e42360968"
+    }
+  ],
+  "findings": [
+    "Free catalog allowance is 1; Family multiple people is planned with null allowance.",
+    "Sharing and contact writes are authenticated but do not enforce commerce allowance.",
+    "Both Plan and access surfaces retain planned Family and closed billing.",
+    "Verified email is requested for recipient matching; no email-based account merge."
+  ]
+}

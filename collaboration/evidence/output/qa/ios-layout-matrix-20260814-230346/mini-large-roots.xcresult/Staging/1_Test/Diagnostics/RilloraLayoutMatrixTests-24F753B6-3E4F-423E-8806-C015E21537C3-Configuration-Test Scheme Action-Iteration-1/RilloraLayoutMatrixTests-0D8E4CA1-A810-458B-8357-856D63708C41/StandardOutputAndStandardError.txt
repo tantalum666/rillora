@@ -1,0 +1,17 @@
+2026-08-14 23:08:04.300356+0800 RilloraLayoutMatrixTests-Runner[65748:17141667] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-08-14 23:08:05.208.
+Test Suite 'RilloraLayoutMatrixTests.xctest' started at 2026-08-14 23:08:05.209.
+Test Suite 'RilloraLayoutMatrixTests' started at 2026-08-14 23:08:05.209.
+Test Case '-[RilloraLayoutMatrixTests.RilloraLayoutMatrixTests testOrientationChangeKeepsRootsReachable]' started.
+    t =     0.00s Start Test at 2026-08-14 23:08:05.210
+    t =     0.09s Set Up
+    t =     0.10s Setting device orientation to Portrait
+    t =     0.14s     Wait for com.apple.springboard to idle
+    t =     0.15s Open com.rillora.ios
+    t =     0.15s     Launch com.rillora.ios
+objc[65748]: Class UIAccessibilityLoaderWebShared is implemented in both /Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x108e94310) and /Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x108290398). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+
+
+*** If you believe this error represents a bug, please attach the result bundle at /Users/tantalum/Documents/电子遗嘱app/output/qa/ios-layout-matrix-20260814-230346/mini-large-roots.xcresult
+

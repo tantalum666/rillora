@@ -1,0 +1,21 @@
+{
+  "version": "54.0.0",
+  "files": {
+    "ac79b8fcfb49f6653ae6b03698c953ef8a48e74cc6fd17c1678fb7a90ff31ef2": {
+      "displayName": "RilloraProductionPreflight Template",
+      "source": {
+        "path": "RilloraProductionPreflight.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "133857166372-eu-central-1-8c460e7f": {
+          "bucketName": "cdk-hnb659fds-assets-133857166372-eu-central-1",
+          "objectKey": "ac79b8fcfb49f6653ae6b03698c953ef8a48e74cc6fd17c1678fb7a90ff31ef2.json",
+          "region": "eu-central-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::133857166372:role/cdk-hnb659fds-file-publishing-role-133857166372-eu-central-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

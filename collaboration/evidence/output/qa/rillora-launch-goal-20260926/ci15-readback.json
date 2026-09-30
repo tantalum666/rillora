@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-09-26T11:01:13.432352+00:00",
+  "sourceCommit": "4ed6a8295d6674473e1a673a0ae7f8ddb2994221",
+  "runId": 36237208779,
+  "runNumber": 15,
+  "status": "completed",
+  "conclusion": "success",
+  "url": "https://github.com/tantalum666/rillora/actions/runs/36237208779",
+  "source": "GitHub connector API; existing scoped repository access; no permission change",
+  "jobs": [
+    {
+      "name": "source",
+      "conclusion": "success"
+    },
+    {
+      "name": "api",
+      "conclusion": "success"
+    },
+    {
+      "name": "web-and-infrastructure",
+      "conclusion": "success"
+    }
+  ],
+  "boundary": "CI verifies exact source; no AWS/provider/deployment/native/customer result."
+}

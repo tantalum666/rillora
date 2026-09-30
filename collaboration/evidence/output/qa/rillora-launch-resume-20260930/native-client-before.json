@@ -1,0 +1,16 @@
+{
+  "tenant": "rillora-dev",
+  "allowed_logout_urls": [
+    "com.rillora.ios://login.rillora.xyz/ios/com.rillora.ios/callback"
+  ],
+  "callbacks": [
+    "com.rillora.ios://login.rillora.xyz/ios/com.rillora.ios/callback"
+  ],
+  "name": "Rillora Production iOS",
+  "oidc_conformant": true,
+  "client_id": "POpNKTqlr6dHbJZLWPWxhyjg5qPtdrm4",
+  "app_type": "native",
+  "grant_types": [
+    "authorization_code"
+  ]
+}

@@ -1,0 +1,132 @@
+start: Building RilloraOperations Template
+success: Built RilloraOperations Template
+start: Publishing RilloraOperations Template (133857166372-eu-central-1-6a134c89)
+success: Published RilloraOperations Template (133857166372-eu-central-1-6a134c89)
+Hold on while we create a read-only change set to get a diff with accurate replacement information (use --method=template to use a less accurate but faster template-only diff)
+
+Stack RilloraOperations
+IAM Statement Changes
+┌───┬─────────────────────────┬────────┬─────────────────────────────────┬──────────────────────────────────┬───────────────────────────────────────┐
+│   │ Resource                │ Effect │ Action                          │ Principal                        │ Condition                             │
+├───┼─────────────────────────┼────────┼─────────────────────────────────┼──────────────────────────────────┼───────────────────────────────────────┤
+│ + │ ${Alerts}               │ Allow  │ sns:Publish                     │ Service:cloudwatch.amazonaws.com │ "StringEquals": {                     │
+│   │                         │        │                                 │                                  │   "aws:SourceAccount": "133857166372" │
+│   │                         │        │                                 │                                  │ },                                    │
+│   │                         │        │                                 │                                  │ "ArnEquals": {                        │
+│   │                         │        │                                 │                                  │   "aws:SourceArn": [                  │
+│   │                         │        │                                 │                                  │     "${Unhealthy.Arn}",               │
+│   │                         │        │                                 │                                  │     "${MissingHeartbeat.Arn}",        │
+│   │                         │        │                                 │                                  │     "${InvocationErrors.Arn}",        │
+│   │                         │        │                                 │                                  │     "${DeadLetters.Arn}",             │
+│   │                         │        │                                 │                                  │     "${MailBounce.Arn}",              │
+│   │                         │        │                                 │                                  │     "${MailComplaint.Arn}",           │
+│   │                         │        │                                 │                                  │     "${MailRejected.Arn}",            │
+│   │                         │        │                                 │                                  │     "${MailDelayed.Arn}"              │
+│   │                         │        │                                 │                                  │   ]                                   │
+│   │                         │        │                                 │                                  │ }                                     │
+│ - │ ${Alerts}               │ Allow  │ sns:Publish                     │ Service:cloudwatch.amazonaws.com │ "StringEquals": {                     │
+│   │                         │        │                                 │                                  │   "aws:SourceAccount": "133857166372" │
+│   │                         │        │                                 │                                  │ },                                    │
+│   │                         │        │                                 │                                  │ "ArnEquals": {                        │
+│   │                         │        │                                 │                                  │   "aws:SourceArn": [                  │
+│   │                         │        │                                 │                                  │     "${Unhealthy.Arn}",               │
+│   │                         │        │                                 │                                  │     "${MissingHeartbeat.Arn}",        │
+│   │                         │        │                                 │                                  │     "${InvocationErrors.Arn}",        │
+│   │                         │        │                                 │                                  │     "${DeadLetters.Arn}"              │
+│   │                         │        │                                 │                                  │   ]                                   │
+│   │                         │        │                                 │                                  │ }                                     │
+├───┼─────────────────────────┼────────┼─────────────────────────────────┼──────────────────────────────────┼───────────────────────────────────────┤
+│ + │ ${DeadLetters.Arn}      │ Allow  │ cloudwatch:DescribeAlarmHistory │ AWS:rillora-staging-operator     │                                       │
+│   │ ${InvocationErrors.Arn} │        │ cloudwatch:DescribeAlarms       │                                  │                                       │
+│   │ ${MailBounce.Arn}       │        │ cloudwatch:SetAlarmState        │                                  │                                       │
+│   │ ${MailComplaint.Arn}    │        │                                 │                                  │                                       │
+│   │ ${MailDelayed.Arn}      │        │                                 │                                  │                                       │
+│   │ ${MailRejected.Arn}     │        │                                 │                                  │                                       │
+│   │ ${MissingHeartbeat.Arn} │        │                                 │                                  │                                       │
+│   │ ${Unhealthy.Arn}        │        │                                 │                                  │                                       │
+├───┼─────────────────────────┼────────┼─────────────────────────────────┼──────────────────────────────────┼───────────────────────────────────────┤
+│ - │ ${DeadLetters.Arn}      │ Allow  │ cloudwatch:DescribeAlarmHistory │ AWS:rillora-staging-operator     │                                       │
+│   │ ${InvocationErrors.Arn} │        │ cloudwatch:DescribeAlarms       │                                  │                                       │
+│   │ ${MissingHeartbeat.Arn} │        │ cloudwatch:SetAlarmState        │                                  │                                       │
+│   │ ${Unhealthy.Arn}        │        │                                 │                                  │                                       │
+└───┴─────────────────────────┴────────┴─────────────────────────────────┴──────────────────────────────────┴───────────────────────────────────────┘
+(NOTE: There may be security-related changes not in this list. See https://github.com/aws/aws-cdk/issues/1299)
+
+Resources
+[+] AWS::CloudWatch::Alarm MailBounce MailBounceDFC06FB0
+[+] AWS::CloudWatch::Alarm MailComplaint MailComplaintAAEC7183
+[+] AWS::CloudWatch::Alarm MailRejected MailRejected21E3A73A
+[+] AWS::CloudWatch::Alarm MailDelayed MailDelayedFF5B84EF
+[~] AWS::SNS::TopicPolicy Alerts/Policy AlertsPolicy425C338D
+ └─ [~] PolicyDocument
+     └─ [~] .Statement:
+         └─ @@ -44,6 +44,30 @@
+            [ ]         "DeadLettersBBF8BAAB",
+            [ ]         "Arn"
+            [ ]       ]
+            [+]     },
+            [+]     {
+            [+]       "Fn::GetAtt": [
+            [+]         "MailBounceDFC06FB0",
+            [+]         "Arn"
+            [+]       ]
+            [+]     },
+            [+]     {
+            [+]       "Fn::GetAtt": [
+            [+]         "MailComplaintAAEC7183",
+            [+]         "Arn"
+            [+]       ]
+            [+]     },
+            [+]     {
+            [+]       "Fn::GetAtt": [
+            [+]         "MailRejected21E3A73A",
+            [+]         "Arn"
+            [+]       ]
+            [+]     },
+            [+]     {
+            [+]       "Fn::GetAtt": [
+            [+]         "MailDelayedFF5B84EF",
+            [+]         "Arn"
+            [+]       ]
+            [ ]     }
+            [ ]   ]
+            [ ] }
+[~] AWS::IAM::Policy OperationsRunbook OperationsRunbook277D4959
+ └─ [~] PolicyDocument
+     └─ [~] .Statement:
+         └─ @@ -83,6 +83,30 @@
+            [ ]         "DeadLettersBBF8BAAB",
+            [ ]         "Arn"
+            [ ]       ]
+            [+]     },
+            [+]     {
+            [+]       "Fn::GetAtt": [
+            [+]         "MailBounceDFC06FB0",
+            [+]         "Arn"
+            [+]       ]
+            [+]     },
+            [+]     {
+            [+]       "Fn::GetAtt": [
+            [+]         "MailComplaintAAEC7183",
+            [+]         "Arn"
+            [+]       ]
+            [+]     },
+            [+]     {
+            [+]       "Fn::GetAtt": [
+            [+]         "MailRejected21E3A73A",
+            [+]         "Arn"
+            [+]       ]
+            [+]     },
+            [+]     {
+            [+]       "Fn::GetAtt": [
+            [+]         "MailDelayedFF5B84EF",
+            [+]         "Arn"
+            [+]       ]
+            [ ]     }
+            [ ]   ]
+            [ ] },
+
+
+
+✨  Number of stacks with differences: 1
+

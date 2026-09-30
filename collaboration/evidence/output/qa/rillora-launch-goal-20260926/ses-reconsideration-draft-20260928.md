@@ -1,0 +1,75 @@
+# SES reconsideration — HISTORICAL PRE-SUBMISSION DRAFT
+
+Prepared: 2026-09-28 (Asia/Hong_Kong)
+Existing case: 179022088800001; Region: eu-central-1
+State: historical draft. Owner subsequently authorized submission; the sent version
+adds the freshly checked sandbox/quota sentence and removes Markdown formatting.
+The original case was reopened at2026-09-28T12:40:19+08. See
+[submission receipt](ses-reconsideration-submitted-20260928.json) and
+[exact submitted text](ses-reconsideration-sent-20260928.txt).
+
+This draft summarizes previously supplied controls, not newly implemented fixes
+or a known cause of refusal. Re-read the current case and refresh configuration
+before sending; the earlier September28 CLI check did not reach SES. The later
+Owner authorization and normal browser readback are recorded in the receipt. No live token,
+credential, customer address list or private Matter content is an attachment.
+
+---
+
+Hello AWS Trust and Safety team,
+
+Please reconsider our limited transactional-email production-access request in
+eu-central-1 under case 179022088800001. We acknowledge the September25 UTC
+refusal following our earlier supplementary reply. We would like to retain SES
+alongside our existing AWS infrastructure and understand whether there are
+actionable requirements that we can address. We are not requesting higher bulk
+sending volume or submitting a different use case.
+
+1. **Product and scope.** Rillora is a pre-launch personal digital-legacy organiser.
+   It records where important information can be found and who may view it; it is
+   not a financial custodian or a funds-transfer service. Customer account access
+   and sales are still closed during release preparation. Public product and
+   support information is available at https://www.rillora.xyz/ and
+   https://www.rillora.xyz/support; policies are at https://legal.rillora.xyz/.
+
+2. **Only user-triggered account messages.** The initial SES integration would send
+   Auth0 email-verification and password-reset messages. Addresses come from the
+   user's own signup or recovery request, without imported or purchased lists.
+   Social-login recovery remains with the relevant identity provider. We do not
+   automatically email a user's contacts: invitation links are shared by the
+   account owner. No marketing, recurring reminders or cold outreach is included.
+
+3. **Small initial volume.** Our planning assumption remains fewer than 100 active
+   accounts and roughly 0–20 messages/day. These figures are estimates, not an
+   existing customer count or a measured peak. We are willing to retain the
+   current 200/day and 1/second limits initially; we seek permission to reach
+   user-requested, non-preverified recipients, not a large quota.
+
+4. **Existing sender controls.** Our September24–26 checks recorded verified
+   notify.rillora.xyz, 2048-bit Easy DKIM, custom MAIL FROM
+   bounce.notify.rillora.xyz, a sending-subdomain DMARC record, required TLS and
+   rejection rather than fallback if MAIL FROM validation fails. The proposed
+   sender is Rillora <[REDACTED_EMAIL]>. These are dated checks, not
+   assertions that the final Auth0 provider is already enabled.
+
+5. **Failure handling and privacy.** SES BOUNCE/COMPLAINT suppression is configured;
+   suppressed addresses will not be removed to force delivery. Aggregate delivery,
+   bounce, complaint and failure events feed CloudWatch alarms to the operator.
+   The earlier mailbox-simulator run exercised those alerts; it was not real-user
+   traffic or inbox-delivery proof. We do not put private planning content in
+   account mail, publish message bodies to these logs, or enable open/click tracking.
+
+6. **Mail examples and remaining checks.** Verification mail says the user started
+   a Rillora account and offers an Auth0-generated expiring verification link.
+   Reset mail offers an expiring reset link and explains that an unrequested
+   message can be ignored without changing the password. Both refer to
+   support@rillora.xyz. The earlier case reply includes the proposed full examples.
+   We will complete controlled verification/reset and invitation-continuation
+   acceptance before opening customer access; we do not claim those final tests
+   or message templates are already live.
+
+Could the team reconsider this narrow use case, or identify any specific evidence
+or configuration requirement we can address? We understand that internal review
+criteria may not be disclosed and that this request does not guarantee approval.
+
+Thank you.

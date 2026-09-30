@@ -1,0 +1,210 @@
+
+✨  Synthesis time: 3.63s
+
+RilloraProduction: start: Building RilloraProduction Template
+RilloraProduction: success: Built RilloraProduction Template
+RilloraProduction: start: Publishing RilloraProduction Template (133857166372-eu-central-1-92f949a1)
+RilloraProduction: success: Published RilloraProduction Template (133857166372-eu-central-1-92f949a1)
+RilloraProduction: creating CloudFormation changeset...
+RilloraProduction: deploying... [1/1]
+RilloraProduction |  0/55 | 8:48:18 PM | UPDATE_IN_PROGRESS      | AWS::CloudFormation::Stack                  | RilloraProduction User Initiated
+RilloraProduction |  0/55 | 8:48:21 PM | CREATE_IN_PROGRESS      | AWS::EC2::VPC                               | Vpc (Vpc8378EB38) 
+RilloraProduction |  0/55 | 8:48:21 PM | CREATE_IN_PROGRESS      | AWS::EC2::InternetGateway                   | Vpc/IGW (VpcIGWD7BA715C) 
+RilloraProduction |  0/55 | 8:48:21 PM | CREATE_IN_PROGRESS      | AWS::CDK::Metadata                          | CDKMetadata/Default (CDKMetadata) 
+RilloraProduction |  0/55 | 8:48:21 PM | CREATE_IN_PROGRESS      | AWS::IAM::Role                              | RecoveryTask/TaskRole (RecoveryTaskTaskRole7CAA29D4) 
+RilloraProduction |  0/55 | 8:48:21 PM | CREATE_IN_PROGRESS      | AWS::IAM::Role                              | Operator (Operator41AE602D) 
+RilloraProduction |  0/55 | 8:48:21 PM | CREATE_IN_PROGRESS      | AWS::ECS::Cluster                           | Cluster (ClusterEB0386A7) 
+RilloraProduction |  0/55 | 8:48:21 PM | CREATE_IN_PROGRESS      | AWS::IAM::Role                              | MigrationTask/ExecutionRole (MigrationTaskExecutionRole54576998) 
+RilloraProduction |  0/55 | 8:48:21 PM | CREATE_IN_PROGRESS      | AWS::IAM::Role                              | MigrationTask/TaskRole (MigrationTaskTaskRole9CC4695E) 
+RilloraProduction |  0/55 | 8:48:21 PM | CREATE_IN_PROGRESS      | AWS::IAM::Role                              | LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole (LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB) 
+RilloraProduction |  0/55 | 8:48:21 PM | CREATE_IN_PROGRESS      | AWS::RDS::DBParameterGroup                  | PostgresParameters (PostgresParameters8EA48B37) 
+RilloraProduction |  0/55 | 8:48:21 PM | CREATE_IN_PROGRESS      | AWS::IAM::Role                              | RecoveryTask/ExecutionRole (RecoveryTaskExecutionRoleE7A0DE57) 
+RilloraProduction |  0/55 | 8:48:21 PM | CREATE_IN_PROGRESS      | AWS::SecretsManager::Secret                 | Database/Secret (RilloraProductionDatabaseSecret2EDA0381145d7587a81d8eb10deb319f17c60255) 
+RilloraProduction |  0/55 | 8:48:21 PM | UPDATE_IN_PROGRESS      | AWS::SecretsManager::Secret                 | RuntimeCredential (RuntimeCredential871C86BA) 
+RilloraProduction |  0/55 | 8:48:21 PM | UPDATE_IN_PROGRESS      | AWS::Logs::LogGroup                         | MaintenanceLogs (MaintenanceLogs61C6A99C) 
+RilloraProduction |  0/55 | 8:48:22 PM | CREATE_IN_PROGRESS      | AWS::RDS::DBParameterGroup                  | PostgresParameters (PostgresParameters8EA48B37) Resource creation Initiated
+RilloraProduction |  0/55 | 8:48:22 PM | CREATE_IN_PROGRESS      | AWS::CDK::Metadata                          | CDKMetadata/Default (CDKMetadata) Resource creation Initiated
+RilloraProduction |  0/55 | 8:48:22 PM | CREATE_IN_PROGRESS      | AWS::IAM::Role                              | Operator (Operator41AE602D) Resource creation Initiated
+RilloraProduction |  0/55 | 8:48:22 PM | CREATE_IN_PROGRESS      | AWS::ECS::Cluster                           | Cluster (ClusterEB0386A7) Resource creation Initiated
+RilloraProduction |  1/55 | 8:48:22 PM | CREATE_COMPLETE         | AWS::CDK::Metadata                          | CDKMetadata/Default (CDKMetadata) 
+RilloraProduction |  1/55 | 8:48:22 PM | CREATE_IN_PROGRESS      | AWS::IAM::Role                              | RecoveryTask/ExecutionRole (RecoveryTaskExecutionRoleE7A0DE57) Resource creation Initiated
+RilloraProduction |  1/55 | 8:48:22 PM | CREATE_IN_PROGRESS      | AWS::IAM::Role                              | MigrationTask/TaskRole (MigrationTaskTaskRole9CC4695E) Resource creation Initiated
+RilloraProduction |  2/55 | 8:48:22 PM | UPDATE_COMPLETE         | AWS::SecretsManager::Secret                 | RuntimeCredential (RuntimeCredential871C86BA) 
+RilloraProduction |  2/55 | 8:48:22 PM | CREATE_IN_PROGRESS      | AWS::IAM::Role                              | MigrationTask/ExecutionRole (MigrationTaskExecutionRole54576998) Resource creation Initiated
+RilloraProduction |  2/55 | 8:48:22 PM | CREATE_IN_PROGRESS      | AWS::EC2::InternetGateway                   | Vpc/IGW (VpcIGWD7BA715C) Resource creation Initiated
+RilloraProduction |  2/55 | 8:48:22 PM | CREATE_IN_PROGRESS      | AWS::SecretsManager::Secret                 | Database/Secret (RilloraProductionDatabaseSecret2EDA0381145d7587a81d8eb10deb319f17c60255) Resource creation Initiated
+RilloraProduction |  3/55 | 8:48:22 PM | UPDATE_COMPLETE         | AWS::Logs::LogGroup                         | MaintenanceLogs (MaintenanceLogs61C6A99C) 
+RilloraProduction |  4/55 | 8:48:22 PM | CREATE_COMPLETE         | AWS::SecretsManager::Secret                 | Database/Secret (RilloraProductionDatabaseSecret2EDA0381145d7587a81d8eb10deb319f17c60255) 
+RilloraProduction |  4/55 | 8:48:23 PM | CREATE_IN_PROGRESS      | AWS::EC2::VPC                               | Vpc (Vpc8378EB38) Resource creation Initiated
+RilloraProduction |  4/55 | 8:48:23 PM | CREATE_IN_PROGRESS      | AWS::IAM::Role                              | RecoveryTask/TaskRole (RecoveryTaskTaskRole7CAA29D4) Resource creation Initiated
+RilloraProduction |  4/55 | 8:48:24 PM | CREATE_IN_PROGRESS      | AWS::IAM::Role                              | LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole (LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB) Resource creation Initiated
+RilloraProduction |  5/55 | 8:48:24 PM | CREATE_COMPLETE         | AWS::RDS::DBParameterGroup                  | PostgresParameters (PostgresParameters8EA48B37) 
+RilloraProduction |  6/55 | 8:48:25 PM | CREATE_COMPLETE         | AWS::ECS::Cluster                           | Cluster (ClusterEB0386A7) 
+RilloraProduction |  7/55 | 8:48:34 PM | CREATE_COMPLETE         | AWS::EC2::VPC                               | Vpc (Vpc8378EB38) 
+RilloraProduction |  7/55 | 8:48:34 PM | CREATE_IN_PROGRESS      | AWS::EC2::SecurityGroup                     | RecoveryNetwork (RecoveryNetworkB16F29A5) 
+RilloraProduction |  7/55 | 8:48:34 PM | CREATE_IN_PROGRESS      | AWS::EC2::RouteTable                        | Vpc/dataSubnet2/RouteTable (VpcdataSubnet2RouteTable94FA483A) 
+RilloraProduction |  7/55 | 8:48:34 PM | CREATE_IN_PROGRESS      | AWS::EC2::Subnet                            | Vpc/dataSubnet1/Subnet (VpcdataSubnet1SubnetE2B009FB) 
+RilloraProduction |  7/55 | 8:48:34 PM | CREATE_IN_PROGRESS      | AWS::EC2::Subnet                            | Vpc/dataSubnet2/Subnet (VpcdataSubnet2SubnetAD08DFFF) 
+RilloraProduction |  7/55 | 8:48:34 PM | CREATE_IN_PROGRESS      | AWS::EC2::SecurityGroup                     | RecoveryDatabaseNetwork (RecoveryDatabaseNetworkBA72B18C) 
+RilloraProduction |  7/55 | 8:48:34 PM | CREATE_IN_PROGRESS      | AWS::EC2::RouteTable                        | Vpc/dataSubnet1/RouteTable (VpcdataSubnet1RouteTableAF5F53E0) 
+RilloraProduction |  7/55 | 8:48:34 PM | CREATE_IN_PROGRESS      | AWS::EC2::SecurityGroup                     | MigrationNetwork (MigrationNetworkC6D0992C) 
+RilloraProduction |  7/55 | 8:48:34 PM | CREATE_IN_PROGRESS      | AWS::EC2::Subnet                            | Vpc/maintenanceSubnet1/Subnet (VpcmaintenanceSubnet1SubnetB36026C0) 
+RilloraProduction |  7/55 | 8:48:34 PM | CREATE_IN_PROGRESS      | AWS::EC2::SecurityGroup                     | DatabaseNetwork (DatabaseNetwork56A0AE36) 
+RilloraProduction |  7/55 | 8:48:34 PM | CREATE_IN_PROGRESS      | AWS::EC2::RouteTable                        | Vpc/maintenanceSubnet1/RouteTable (VpcmaintenanceSubnet1RouteTable27EE9B07) 
+RilloraProduction |  7/55 | 8:48:34 PM | CREATE_IN_PROGRESS      | AWS::EC2::RouteTable                        | Vpc/maintenanceSubnet2/RouteTable (VpcmaintenanceSubnet2RouteTableB7ABA37E) 
+RilloraProduction |  7/55 | 8:48:34 PM | CREATE_IN_PROGRESS      | AWS::EC2::Subnet                            | Vpc/maintenanceSubnet2/Subnet (VpcmaintenanceSubnet2Subnet5D5D514C) 
+RilloraProduction |  7/55 | 8:48:35 PM | CREATE_IN_PROGRESS      | AWS::EC2::RouteTable                        | Vpc/maintenanceSubnet2/RouteTable (VpcmaintenanceSubnet2RouteTableB7ABA37E) Resource creation Initiated
+RilloraProduction |  7/55 | 8:48:35 PM | CREATE_IN_PROGRESS      | AWS::EC2::Subnet                            | Vpc/dataSubnet1/Subnet (VpcdataSubnet1SubnetE2B009FB) Resource creation Initiated
+RilloraProduction |  7/55 | 8:48:35 PM | CREATE_IN_PROGRESS      | AWS::EC2::Subnet                            | Vpc/maintenanceSubnet1/Subnet (VpcmaintenanceSubnet1SubnetB36026C0) Resource creation Initiated
+RilloraProduction |  7/55 | 8:48:35 PM | CREATE_IN_PROGRESS      | AWS::EC2::Subnet                            | Vpc/dataSubnet2/Subnet (VpcdataSubnet2SubnetAD08DFFF) Resource creation Initiated
+RilloraProduction |  7/55 | 8:48:35 PM | CREATE_IN_PROGRESS      | AWS::EC2::RouteTable                        | Vpc/dataSubnet1/RouteTable (VpcdataSubnet1RouteTableAF5F53E0) Resource creation Initiated
+RilloraProduction |  7/55 | 8:48:35 PM | CREATE_IN_PROGRESS      | AWS::EC2::Subnet                            | Vpc/maintenanceSubnet2/Subnet (VpcmaintenanceSubnet2Subnet5D5D514C) Resource creation Initiated
+RilloraProduction |  7/55 | 8:48:36 PM | CREATE_IN_PROGRESS      | AWS::EC2::RouteTable                        | Vpc/dataSubnet2/RouteTable (VpcdataSubnet2RouteTable94FA483A) Resource creation Initiated
+RilloraProduction |  7/55 | 8:48:36 PM | CREATE_IN_PROGRESS      | AWS::EC2::SecurityGroup                     | RecoveryNetwork (RecoveryNetworkB16F29A5) Resource creation Initiated
+RilloraProduction |  7/55 | 8:48:36 PM | CREATE_IN_PROGRESS      | AWS::EC2::SecurityGroup                     | MigrationNetwork (MigrationNetworkC6D0992C) Resource creation Initiated
+RilloraProduction |  7/55 | 8:48:36 PM | CREATE_IN_PROGRESS      | AWS::EC2::RouteTable                        | Vpc/maintenanceSubnet1/RouteTable (VpcmaintenanceSubnet1RouteTable27EE9B07) Resource creation Initiated
+RilloraProduction |  7/55 | 8:48:36 PM | CREATE_IN_PROGRESS      | AWS::EC2::SecurityGroup                     | RecoveryDatabaseNetwork (RecoveryDatabaseNetworkBA72B18C) Resource creation Initiated
+RilloraProduction |  7/55 | 8:48:37 PM | CREATE_IN_PROGRESS      | AWS::EC2::SecurityGroup                     | DatabaseNetwork (DatabaseNetwork56A0AE36) Resource creation Initiated
+RilloraProduction |  8/55 | 8:48:38 PM | CREATE_COMPLETE         | AWS::EC2::InternetGateway                   | Vpc/IGW (VpcIGWD7BA715C) 
+RilloraProduction |  9/55 | 8:48:38 PM | CREATE_COMPLETE         | AWS::EC2::Subnet                            | Vpc/dataSubnet2/Subnet (VpcdataSubnet2SubnetAD08DFFF) 
+RilloraProduction | 10/55 | 8:48:38 PM | CREATE_COMPLETE         | AWS::EC2::Subnet                            | Vpc/dataSubnet1/Subnet (VpcdataSubnet1SubnetE2B009FB) 
+RilloraProduction | 11/55 | 8:48:38 PM | CREATE_COMPLETE         | AWS::IAM::Role                              | RecoveryTask/ExecutionRole (RecoveryTaskExecutionRoleE7A0DE57) 
+RilloraProduction | 11/55 | 8:48:38 PM | CREATE_IN_PROGRESS      | AWS::EC2::VPCGatewayAttachment              | Vpc/VPCGW (VpcVPCGWBF912B6E) 
+RilloraProduction | 12/55 | 8:48:38 PM | CREATE_COMPLETE         | AWS::IAM::Role                              | MigrationTask/TaskRole (MigrationTaskTaskRole9CC4695E) 
+RilloraProduction | 13/55 | 8:48:38 PM | CREATE_COMPLETE         | AWS::IAM::Role                              | MigrationTask/ExecutionRole (MigrationTaskExecutionRole54576998) 
+RilloraProduction | 14/55 | 8:48:38 PM | CREATE_COMPLETE         | AWS::EC2::Subnet                            | Vpc/maintenanceSubnet2/Subnet (VpcmaintenanceSubnet2Subnet5D5D514C) 
+RilloraProduction | 15/55 | 8:48:38 PM | CREATE_COMPLETE         | AWS::EC2::Subnet                            | Vpc/maintenanceSubnet1/Subnet (VpcmaintenanceSubnet1SubnetB36026C0) 
+RilloraProduction | 15/55 | 8:48:38 PM | CREATE_IN_PROGRESS      | AWS::RDS::DBSubnetGroup                     | DatabaseSubnets/Default (DatabaseSubnets) 
+RilloraProduction | 15/55 | 8:48:39 PM | CREATE_IN_PROGRESS      | AWS::EC2::VPCGatewayAttachment              | Vpc/VPCGW (VpcVPCGWBF912B6E) Resource creation Initiated
+RilloraProduction | 15/55 | 8:48:39 PM | CREATE_IN_PROGRESS      | AWS::RDS::DBSubnetGroup                     | DatabaseSubnets/Default (DatabaseSubnets) Resource creation Initiated
+RilloraProduction | 16/55 | 8:48:39 PM | CREATE_COMPLETE         | AWS::IAM::Role                              | RecoveryTask/TaskRole (RecoveryTaskTaskRole7CAA29D4) 
+RilloraProduction | 17/55 | 8:48:39 PM | CREATE_COMPLETE         | AWS::IAM::Role                              | Operator (Operator41AE602D) 
+RilloraProduction | 18/55 | 8:48:39 PM | CREATE_COMPLETE         | AWS::IAM::Role                              | LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole (LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB) 
+RilloraProduction | 18/55 | 8:48:40 PM | CREATE_IN_PROGRESS      | AWS::IAM::Policy                            | LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy (LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB) 
+RilloraProduction | 19/55 | 8:48:40 PM | CREATE_COMPLETE         | AWS::EC2::VPCGatewayAttachment              | Vpc/VPCGW (VpcVPCGWBF912B6E) 
+RilloraProduction | 19/55 | 8:48:40 PM | CREATE_IN_PROGRESS      | AWS::IAM::ManagedPolicy                     | AssumeProductionOperator (AssumeProductionOperatorB069B9BD) 
+RilloraProduction | 19/55 | 8:48:41 PM | CREATE_IN_PROGRESS      | AWS::IAM::Policy                            | LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy (LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB) Resource creation Initiated
+RilloraProduction | 19/55 | 8:48:41 PM | CREATE_IN_PROGRESS      | AWS::IAM::ManagedPolicy                     | AssumeProductionOperator (AssumeProductionOperatorB069B9BD) Resource creation Initiated
+RilloraProduction | 20/55 | 8:48:41 PM | CREATE_COMPLETE         | AWS::RDS::DBSubnetGroup                     | DatabaseSubnets/Default (DatabaseSubnets) 
+RilloraProduction | 21/55 | 8:48:43 PM | CREATE_COMPLETE         | AWS::EC2::SecurityGroup                     | RecoveryDatabaseNetwork (RecoveryDatabaseNetworkBA72B18C) 
+RilloraProduction | 22/55 | 8:48:43 PM | CREATE_COMPLETE         | AWS::EC2::SecurityGroup                     | MigrationNetwork (MigrationNetworkC6D0992C) 
+RilloraProduction | 23/55 | 8:48:43 PM | CREATE_COMPLETE         | AWS::EC2::SecurityGroup                     | DatabaseNetwork (DatabaseNetwork56A0AE36) 
+RilloraProduction | 24/55 | 8:48:43 PM | CREATE_COMPLETE         | AWS::EC2::SecurityGroup                     | RecoveryNetwork (RecoveryNetworkB16F29A5) 
+RilloraProduction | 24/55 | 8:48:43 PM | CREATE_IN_PROGRESS      | AWS::EC2::SecurityGroupEgress               | RecoveryNetwork/to RilloraProductionRecoveryDatabaseNetworkF58708D4:5432 (RecoveryNetworktoRilloraProductionRecoveryDatabaseNetworkF58708D45432F33AFB80) 
+RilloraProduction | 24/55 | 8:48:43 PM | CREATE_IN_PROGRESS      | AWS::EC2::SecurityGroupIngress              | DatabaseNetwork/from RilloraProductionMigrationNetwork7A688B2D:5432 (DatabaseNetworkfromRilloraProductionMigrationNetwork7A688B2D54325AC54DEE) 
+RilloraProduction | 24/55 | 8:48:44 PM | CREATE_IN_PROGRESS      | AWS::EC2::SecurityGroupEgress               | MigrationNetwork/to RilloraProductionDatabaseNetwork7259A938:5432 (MigrationNetworktoRilloraProductionDatabaseNetwork7259A9385432FC3F4B4A) 
+RilloraProduction | 24/55 | 8:48:44 PM | CREATE_IN_PROGRESS      | AWS::RDS::DBInstance                        | Database (DatabaseB269D8BB) 
+RilloraProduction | 24/55 | 8:48:44 PM | CREATE_IN_PROGRESS      | AWS::EC2::SecurityGroupIngress              | RecoveryDatabaseNetwork/from RilloraProductionRecoveryNetwork6C044D57:5432 (RecoveryDatabaseNetworkfromRilloraProductionRecoveryNetwork6C044D5754321B52D8EF) 
+RilloraProduction | 24/55 | 8:48:44 PM | CREATE_IN_PROGRESS      | AWS::EC2::SecurityGroupIngress              | DatabaseNetwork/from RilloraProductionMigrationNetwork7A688B2D:5432 (DatabaseNetworkfromRilloraProductionMigrationNetwork7A688B2D54325AC54DEE) Resource creation Initiated
+RilloraProduction | 24/55 | 8:48:45 PM | CREATE_IN_PROGRESS      | AWS::EC2::SecurityGroupEgress               | MigrationNetwork/to RilloraProductionDatabaseNetwork7259A938:5432 (MigrationNetworktoRilloraProductionDatabaseNetwork7259A9385432FC3F4B4A) Resource creation Initiated
+RilloraProduction | 25/55 | 8:48:45 PM | CREATE_COMPLETE         | AWS::EC2::SecurityGroupIngress              | DatabaseNetwork/from RilloraProductionMigrationNetwork7A688B2D:5432 (DatabaseNetworkfromRilloraProductionMigrationNetwork7A688B2D54325AC54DEE) 
+RilloraProduction | 25/55 | 8:48:45 PM | CREATE_IN_PROGRESS      | AWS::RDS::DBInstance                        | Database (DatabaseB269D8BB) Resource creation Initiated
+RilloraProduction | 26/55 | 8:48:45 PM | CREATE_COMPLETE         | AWS::EC2::SecurityGroupEgress               | MigrationNetwork/to RilloraProductionDatabaseNetwork7259A938:5432 (MigrationNetworktoRilloraProductionDatabaseNetwork7259A9385432FC3F4B4A) 
+RilloraProduction | 26/55 | 8:48:45 PM | CREATE_IN_PROGRESS      | AWS::EC2::SecurityGroupIngress              | RecoveryDatabaseNetwork/from RilloraProductionRecoveryNetwork6C044D57:5432 (RecoveryDatabaseNetworkfromRilloraProductionRecoveryNetwork6C044D5754321B52D8EF) Resource creation Initiated
+RilloraProduction | 27/55 | 8:48:46 PM | CREATE_COMPLETE         | AWS::EC2::RouteTable                        | Vpc/maintenanceSubnet2/RouteTable (VpcmaintenanceSubnet2RouteTableB7ABA37E) 
+RilloraProduction | 28/55 | 8:48:46 PM | CREATE_COMPLETE         | AWS::EC2::RouteTable                        | Vpc/dataSubnet1/RouteTable (VpcdataSubnet1RouteTableAF5F53E0) 
+RilloraProduction | 29/55 | 8:48:46 PM | CREATE_COMPLETE         | AWS::EC2::SecurityGroupIngress              | RecoveryDatabaseNetwork/from RilloraProductionRecoveryNetwork6C044D57:5432 (RecoveryDatabaseNetworkfromRilloraProductionRecoveryNetwork6C044D5754321B52D8EF) 
+RilloraProduction | 29/55 | 8:48:46 PM | CREATE_IN_PROGRESS      | AWS::EC2::SecurityGroupEgress               | RecoveryNetwork/to RilloraProductionRecoveryDatabaseNetworkF58708D4:5432 (RecoveryNetworktoRilloraProductionRecoveryDatabaseNetworkF58708D45432F33AFB80) Resource creation Initiated
+RilloraProduction | 29/55 | 8:48:46 PM | CREATE_IN_PROGRESS      | AWS::EC2::Route                             | Vpc/maintenanceSubnet2/DefaultRoute (VpcmaintenanceSubnet2DefaultRoute77601CB0) 
+RilloraProduction | 29/55 | 8:48:46 PM | CREATE_IN_PROGRESS      | AWS::EC2::SubnetRouteTableAssociation       | Vpc/maintenanceSubnet2/RouteTableAssociation (VpcmaintenanceSubnet2RouteTableAssociation8F27BC7B) 
+RilloraProduction | 30/55 | 8:48:46 PM | CREATE_COMPLETE         | AWS::EC2::SecurityGroupEgress               | RecoveryNetwork/to RilloraProductionRecoveryDatabaseNetworkF58708D4:5432 (RecoveryNetworktoRilloraProductionRecoveryDatabaseNetworkF58708D45432F33AFB80) 
+RilloraProduction | 30/55 | 8:48:46 PM | CREATE_IN_PROGRESS      | AWS::EC2::SubnetRouteTableAssociation       | Vpc/dataSubnet1/RouteTableAssociation (VpcdataSubnet1RouteTableAssociation9E9FDBBB) 
+RilloraProduction | 30/55 | 8:48:46 PM | CREATE_FAILED           | AWS::RDS::DBInstance                        | Database (DatabaseB269D8BB) Resource handler returned message: "The specified backup retention period exceeds the maximum available to free tier customers. To remove all limitations, upgrade your account plan. (Service: Rds, Status Code: 400, Request ID: 3e483870-ad32-4f24-bf2b-fab2ce6e147b) (SDK Attempt Count: 1)" (RequestToken: 50c9199d-6765-e484-142e-90c0bcdd0c32, HandlerErrorCode: InternalFailure)
+RilloraProduction | 30/55 | 8:48:46 PM | CREATE_FAILED           | AWS::EC2::SubnetRouteTableAssociation       | Vpc/dataSubnet1/RouteTableAssociation (VpcdataSubnet1RouteTableAssociation9E9FDBBB) Resource creation cancelled
+RilloraProduction | 30/55 | 8:48:47 PM | CREATE_FAILED           | AWS::EC2::RouteTable                        | Vpc/maintenanceSubnet1/RouteTable (VpcmaintenanceSubnet1RouteTable27EE9B07) Resource creation cancelled
+RilloraProduction | 30/55 | 8:48:47 PM | CREATE_FAILED           | AWS::EC2::RouteTable                        | Vpc/dataSubnet2/RouteTable (VpcdataSubnet2RouteTable94FA483A) Resource creation cancelled
+RilloraProduction | 30/55 | 8:48:47 PM | CREATE_FAILED           | AWS::IAM::ManagedPolicy                     | AssumeProductionOperator (AssumeProductionOperatorB069B9BD) Resource creation cancelled
+RilloraProduction | 30/55 | 8:48:47 PM | CREATE_FAILED           | AWS::IAM::Policy                            | LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy (LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB) Resource creation cancelled
+RilloraProduction | 30/55 | 8:48:47 PM | CREATE_FAILED           | AWS::EC2::SubnetRouteTableAssociation       | Vpc/maintenanceSubnet2/RouteTableAssociation (VpcmaintenanceSubnet2RouteTableAssociation8F27BC7B) Resource creation cancelled
+RilloraProduction | 30/55 | 8:48:47 PM | CREATE_FAILED           | AWS::EC2::Route                             | Vpc/maintenanceSubnet2/DefaultRoute (VpcmaintenanceSubnet2DefaultRoute77601CB0) Resource creation cancelled
+RilloraProduction | 30/55 | 8:48:47 PM | UPDATE_ROLLBACK_IN_PROG | AWS::CloudFormation::Stack                  | RilloraProduction The following resource(s) failed to create: [VpcmaintenanceSubnet1RouteTable27EE9B07, LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB, VpcdataSubnet2RouteTable94FA483A, DatabaseB269D8BB, VpcmaintenanceSubnet2RouteTableAssociation8F27BC7B, VpcmaintenanceSubnet2DefaultRoute77601CB0, AssumeProductionOperatorB069B9BD, VpcdataSubnet1RouteTableAssociation9E9FDBBB]. 
+RilloraProduction | 30/55 | 8:48:49 PM | UPDATE_IN_PROGRESS      | AWS::Logs::LogGroup                         | MaintenanceLogs (MaintenanceLogs61C6A99C) 
+RilloraProduction | 30/55 | 8:48:49 PM | UPDATE_IN_PROGRESS      | AWS::SecretsManager::Secret                 | RuntimeCredential (RuntimeCredential871C86BA) 
+RilloraProduction | 29/55 | 8:48:50 PM | UPDATE_COMPLETE         | AWS::Logs::LogGroup                         | MaintenanceLogs (MaintenanceLogs61C6A99C) 
+RilloraProduction | 28/55 | 8:48:50 PM | UPDATE_COMPLETE         | AWS::SecretsManager::Secret                 | RuntimeCredential (RuntimeCredential871C86BA) 
+RilloraProduction | 29/55 | 8:48:50 PM | UPDATE_ROLLBACK_COMPLET | AWS::CloudFormation::Stack                  | RilloraProduction 
+RilloraProduction | 29/55 | 8:48:51 PM | DELETE_IN_PROGRESS      | AWS::EC2::SecurityGroupIngress              | DatabaseNetwork/from RilloraProductionMigrationNetwork7A688B2D:5432 (DatabaseNetworkfromRilloraProductionMigrationNetwork7A688B2D54325AC54DEE) 
+RilloraProduction | 29/55 | 8:48:51 PM | DELETE_IN_PROGRESS      | AWS::ECS::Cluster                           | Cluster (ClusterEB0386A7) 
+RilloraProduction | 29/55 | 8:48:51 PM | DELETE_IN_PROGRESS      | AWS::IAM::Role                              | MigrationTask/ExecutionRole (MigrationTaskExecutionRole54576998) 
+RilloraProduction | 29/55 | 8:48:51 PM | DELETE_IN_PROGRESS      | AWS::IAM::Role                              | RecoveryTask/ExecutionRole (RecoveryTaskExecutionRoleE7A0DE57) 
+RilloraProduction | 29/55 | 8:48:51 PM | DELETE_IN_PROGRESS      | AWS::CDK::Metadata                          | CDKMetadata/Default (CDKMetadata) 
+RilloraProduction | 29/55 | 8:48:51 PM | DELETE_IN_PROGRESS      | AWS::EC2::RouteTable                        | Vpc/maintenanceSubnet1/RouteTable (VpcmaintenanceSubnet1RouteTable27EE9B07) 
+RilloraProduction | 29/55 | 8:48:51 PM | DELETE_IN_PROGRESS      | AWS::EC2::SecurityGroupEgress               | MigrationNetwork/to RilloraProductionDatabaseNetwork7259A938:5432 (MigrationNetworktoRilloraProductionDatabaseNetwork7259A9385432FC3F4B4A) 
+RilloraProduction | 29/55 | 8:48:51 PM | DELETE_IN_PROGRESS      | AWS::EC2::SecurityGroupEgress               | RecoveryNetwork/to RilloraProductionRecoveryDatabaseNetworkF58708D4:5432 (RecoveryNetworktoRilloraProductionRecoveryDatabaseNetworkF58708D45432F33AFB80) 
+RilloraProduction | 29/55 | 8:48:51 PM | DELETE_IN_PROGRESS      | AWS::EC2::RouteTable                        | Vpc/dataSubnet2/RouteTable (VpcdataSubnet2RouteTable94FA483A) 
+RilloraProduction | 29/55 | 8:48:51 PM | DELETE_IN_PROGRESS      | AWS::IAM::Role                              | MigrationTask/TaskRole (MigrationTaskTaskRole9CC4695E) 
+RilloraProduction | 29/55 | 8:48:51 PM | DELETE_IN_PROGRESS      | AWS::EC2::Subnet                            | Vpc/maintenanceSubnet1/Subnet (VpcmaintenanceSubnet1SubnetB36026C0) 
+RilloraProduction | 29/55 | 8:48:51 PM | DELETE_IN_PROGRESS      | AWS::IAM::ManagedPolicy                     | AssumeProductionOperator (AssumeProductionOperatorB069B9BD) 
+RilloraProduction | 29/55 | 8:48:51 PM | DELETE_IN_PROGRESS      | AWS::IAM::Role                              | RecoveryTask/TaskRole (RecoveryTaskTaskRole7CAA29D4) 
+RilloraProduction | 29/55 | 8:48:51 PM | DELETE_IN_PROGRESS      | AWS::EC2::Route                             | Vpc/maintenanceSubnet2/DefaultRoute (VpcmaintenanceSubnet2DefaultRoute77601CB0) 
+RilloraProduction | 29/55 | 8:48:51 PM | DELETE_IN_PROGRESS      | AWS::IAM::Policy                            | LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy (LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB) 
+RilloraProduction | 29/55 | 8:48:51 PM | DELETE_IN_PROGRESS      | AWS::EC2::SecurityGroupIngress              | RecoveryDatabaseNetwork/from RilloraProductionRecoveryNetwork6C044D57:5432 (RecoveryDatabaseNetworkfromRilloraProductionRecoveryNetwork6C044D5754321B52D8EF) 
+RilloraProduction | 29/55 | 8:48:51 PM | DELETE_SKIPPED          | AWS::RDS::DBInstance                        | Database (DatabaseB269D8BB) 
+RilloraProduction | 29/55 | 8:48:52 PM | DELETE_IN_PROGRESS      | AWS::RDS::DBSubnetGroup                     | DatabaseSubnets/Default (DatabaseSubnets) 
+RilloraProduction | 29/55 | 8:48:52 PM | DELETE_IN_PROGRESS      | AWS::SecretsManager::Secret                 | Database/Secret (RilloraProductionDatabaseSecret2EDA0381145d7587a81d8eb10deb319f17c60255) 
+RilloraProduction | 29/55 | 8:48:52 PM | DELETE_IN_PROGRESS      | AWS::RDS::DBParameterGroup                  | PostgresParameters (PostgresParameters8EA48B37) 
+RilloraProduction | 28/55 | 8:48:52 PM | DELETE_COMPLETE         | AWS::CDK::Metadata                          | CDKMetadata/Default (CDKMetadata) 
+RilloraProduction | 29/55 | 8:48:52 PM | DELETE_COMPLETE         | AWS::IAM::Policy                            | LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy (LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB) 
+RilloraProduction | 30/55 | 8:48:52 PM | DELETE_COMPLETE         | AWS::EC2::RouteTable                        | Vpc/maintenanceSubnet1/RouteTable (VpcmaintenanceSubnet1RouteTable27EE9B07) 
+RilloraProduction | 29/55 | 8:48:52 PM | DELETE_COMPLETE         | AWS::EC2::SecurityGroupIngress              | DatabaseNetwork/from RilloraProductionMigrationNetwork7A688B2D:5432 (DatabaseNetworkfromRilloraProductionMigrationNetwork7A688B2D54325AC54DEE) 
+RilloraProduction | 28/55 | 8:48:52 PM | DELETE_COMPLETE         | AWS::EC2::SecurityGroupEgress               | MigrationNetwork/to RilloraProductionDatabaseNetwork7259A938:5432 (MigrationNetworktoRilloraProductionDatabaseNetwork7259A9385432FC3F4B4A) 
+RilloraProduction | 29/55 | 8:48:52 PM | DELETE_COMPLETE         | AWS::EC2::Route                             | Vpc/maintenanceSubnet2/DefaultRoute (VpcmaintenanceSubnet2DefaultRoute77601CB0) 
+RilloraProduction | 28/55 | 8:48:52 PM | DELETE_COMPLETE         | AWS::EC2::SecurityGroupIngress              | RecoveryDatabaseNetwork/from RilloraProductionRecoveryNetwork6C044D57:5432 (RecoveryDatabaseNetworkfromRilloraProductionRecoveryNetwork6C044D5754321B52D8EF) 
+RilloraProduction | 28/55 | 8:48:53 PM | DELETE_IN_PROGRESS      | AWS::IAM::Role                              | LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole (LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB) 
+RilloraProduction | 27/55 | 8:48:53 PM | DELETE_COMPLETE         | AWS::RDS::DBSubnetGroup                     | DatabaseSubnets/Default (DatabaseSubnets) 
+RilloraProduction | 26/55 | 8:48:53 PM | DELETE_COMPLETE         | AWS::EC2::Subnet                            | Vpc/maintenanceSubnet1/Subnet (VpcmaintenanceSubnet1SubnetB36026C0) 
+RilloraProduction | 26/55 | 8:48:53 PM | DELETE_IN_PROGRESS      | AWS::EC2::SecurityGroup                     | DatabaseNetwork (DatabaseNetwork56A0AE36) 
+RilloraProduction | 26/55 | 8:48:53 PM | DELETE_IN_PROGRESS      | AWS::EC2::SecurityGroup                     | MigrationNetwork (MigrationNetworkC6D0992C) 
+RilloraProduction | 25/55 | 8:48:53 PM | DELETE_COMPLETE         | AWS::RDS::DBParameterGroup                  | PostgresParameters (PostgresParameters8EA48B37) 
+RilloraProduction | 26/55 | 8:48:53 PM | DELETE_COMPLETE         | AWS::IAM::ManagedPolicy                     | AssumeProductionOperator (AssumeProductionOperatorB069B9BD) 
+RilloraProduction | 26/55 | 8:48:53 PM | DELETE_IN_PROGRESS      | AWS::EC2::VPCGatewayAttachment              | Vpc/VPCGW (VpcVPCGWBF912B6E) 
+RilloraProduction | 26/55 | 8:48:53 PM | DELETE_IN_PROGRESS      | AWS::EC2::Subnet                            | Vpc/dataSubnet2/Subnet (VpcdataSubnet2SubnetAD08DFFF) 
+RilloraProduction | 26/55 | 8:48:53 PM | DELETE_IN_PROGRESS      | AWS::IAM::Role                              | Operator (Operator41AE602D) 
+RilloraProduction | 27/55 | 8:48:53 PM | DELETE_COMPLETE         | AWS::EC2::RouteTable                        | Vpc/dataSubnet2/RouteTable (VpcdataSubnet2RouteTable94FA483A) 
+RilloraProduction | 26/55 | 8:48:54 PM | DELETE_COMPLETE         | AWS::EC2::SecurityGroupEgress               | RecoveryNetwork/to RilloraProductionRecoveryDatabaseNetworkF58708D4:5432 (RecoveryNetworktoRilloraProductionRecoveryDatabaseNetworkF58708D45432F33AFB80) 
+RilloraProduction | 25/55 | 8:48:54 PM | DELETE_COMPLETE         | AWS::EC2::VPCGatewayAttachment              | Vpc/VPCGW (VpcVPCGWBF912B6E) 
+RilloraProduction | 24/55 | 8:48:54 PM | DELETE_COMPLETE         | AWS::EC2::SecurityGroup                     | MigrationNetwork (MigrationNetworkC6D0992C) 
+RilloraProduction | 24/55 | 8:48:54 PM | DELETE_IN_PROGRESS      | AWS::EC2::SecurityGroup                     | RecoveryNetwork (RecoveryNetworkB16F29A5) 
+RilloraProduction | 24/55 | 8:48:54 PM | DELETE_IN_PROGRESS      | AWS::EC2::SecurityGroup                     | RecoveryDatabaseNetwork (RecoveryDatabaseNetworkBA72B18C) 
+RilloraProduction | 24/55 | 8:48:54 PM | DELETE_IN_PROGRESS      | AWS::EC2::InternetGateway                   | Vpc/IGW (VpcIGWD7BA715C) 
+RilloraProduction | 23/55 | 8:48:54 PM | DELETE_COMPLETE         | AWS::EC2::Subnet                            | Vpc/dataSubnet2/Subnet (VpcdataSubnet2SubnetAD08DFFF) 
+RilloraProduction | 22/55 | 8:48:55 PM | DELETE_COMPLETE         | AWS::EC2::SecurityGroup                     | DatabaseNetwork (DatabaseNetwork56A0AE36) 
+RilloraProduction | 21/55 | 8:48:55 PM | DELETE_COMPLETE         | AWS::EC2::SecurityGroup                     | RecoveryDatabaseNetwork (RecoveryDatabaseNetworkBA72B18C) 
+RilloraProduction | 20/55 | 8:48:55 PM | DELETE_COMPLETE         | AWS::EC2::SecurityGroup                     | RecoveryNetwork (RecoveryNetworkB16F29A5) 
+RilloraProduction | 19/55 | 8:48:55 PM | DELETE_COMPLETE         | AWS::EC2::InternetGateway                   | Vpc/IGW (VpcIGWD7BA715C) 
+RilloraProduction | 18/55 | 8:48:58 PM | DELETE_COMPLETE         | AWS::SecretsManager::Secret                 | Database/Secret (RilloraProductionDatabaseSecret2EDA0381145d7587a81d8eb10deb319f17c60255) 
+RilloraProduction | 17/55 | 8:49:02 PM | DELETE_COMPLETE         | AWS::IAM::Role                              | MigrationTask/ExecutionRole (MigrationTaskExecutionRole54576998) 
+RilloraProduction | 16/55 | 8:49:02 PM | DELETE_COMPLETE         | AWS::IAM::Role                              | MigrationTask/TaskRole (MigrationTaskTaskRole9CC4695E) 
+RilloraProduction | 15/55 | 8:49:02 PM | DELETE_COMPLETE         | AWS::IAM::Role                              | RecoveryTask/TaskRole (RecoveryTaskTaskRole7CAA29D4) 
+RilloraProduction | 14/55 | 8:49:02 PM | DELETE_COMPLETE         | AWS::ECS::Cluster                           | Cluster (ClusterEB0386A7) 
+RilloraProduction | 13/55 | 8:49:03 PM | DELETE_COMPLETE         | AWS::IAM::Role                              | RecoveryTask/ExecutionRole (RecoveryTaskExecutionRoleE7A0DE57) 
+RilloraProduction | 12/55 | 8:49:04 PM | DELETE_COMPLETE         | AWS::IAM::Role                              | LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole (LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB) 
+RilloraProduction | 11/55 | 8:49:05 PM | DELETE_COMPLETE         | AWS::IAM::Role                              | Operator (Operator41AE602D) 
+RilloraProduction | 12/55 | 8:50:57 PM | DELETE_COMPLETE         | AWS::EC2::SubnetRouteTableAssociation       | Vpc/maintenanceSubnet2/RouteTableAssociation (VpcmaintenanceSubnet2RouteTableAssociation8F27BC7B) 
+RilloraProduction | 12/55 | 8:50:57 PM | DELETE_IN_PROGRESS      | AWS::EC2::RouteTable                        | Vpc/maintenanceSubnet2/RouteTable (VpcmaintenanceSubnet2RouteTableB7ABA37E) 
+RilloraProduction | 12/55 | 8:50:57 PM | DELETE_IN_PROGRESS      | AWS::EC2::Subnet                            | Vpc/maintenanceSubnet2/Subnet (VpcmaintenanceSubnet2Subnet5D5D514C) 
+RilloraProduction | 11/55 | 8:50:58 PM | DELETE_COMPLETE         | AWS::EC2::RouteTable                        | Vpc/maintenanceSubnet2/RouteTable (VpcmaintenanceSubnet2RouteTableB7ABA37E) 
+RilloraProduction | 10/55 | 8:50:59 PM | DELETE_COMPLETE         | AWS::EC2::Subnet                            | Vpc/maintenanceSubnet2/Subnet (VpcmaintenanceSubnet2Subnet5D5D514C) 
+RilloraProduction | 11/55 | 8:51:04 PM | DELETE_COMPLETE         | AWS::EC2::SubnetRouteTableAssociation       | Vpc/dataSubnet1/RouteTableAssociation (VpcdataSubnet1RouteTableAssociation9E9FDBBB) 
+RilloraProduction | 11/55 | 8:51:04 PM | DELETE_IN_PROGRESS      | AWS::EC2::RouteTable                        | Vpc/dataSubnet1/RouteTable (VpcdataSubnet1RouteTableAF5F53E0) 
+RilloraProduction | 11/55 | 8:51:04 PM | DELETE_IN_PROGRESS      | AWS::EC2::Subnet                            | Vpc/dataSubnet1/Subnet (VpcdataSubnet1SubnetE2B009FB) 
+RilloraProduction | 10/55 | 8:51:05 PM | DELETE_COMPLETE         | AWS::EC2::RouteTable                        | Vpc/dataSubnet1/RouteTable (VpcdataSubnet1RouteTableAF5F53E0) 
+RilloraProduction |  9/55 | 8:51:06 PM | DELETE_COMPLETE         | AWS::EC2::Subnet                            | Vpc/dataSubnet1/Subnet (VpcdataSubnet1SubnetE2B009FB) 
+RilloraProduction |  9/55 | 8:51:06 PM | DELETE_IN_PROGRESS      | AWS::EC2::VPC                               | Vpc (Vpc8378EB38) 
+RilloraProduction |  8/55 | 8:51:07 PM | DELETE_COMPLETE         | AWS::EC2::VPC                               | Vpc (Vpc8378EB38) 
+RilloraProduction |  9/55 | 8:51:08 PM | UPDATE_ROLLBACK_COMPLET | AWS::CloudFormation::Stack                  | RilloraProduction 
+
+Failed resources:
+RilloraProduction | 8:48:46 PM | CREATE_FAILED           | AWS::RDS::DBInstance                        | Database (DatabaseB269D8BB) Resource handler returned message: "The specified backup retention period exceeds the maximum available to free tier customers. To remove all limitations, upgrade your account plan. (Service: Rds, Status Code: 400, Request ID: 3e483870-ad32-4f24-bf2b-fab2ce6e147b) (SDK Attempt Count: 1)" (RequestToken: 50c9199d-6765-e484-142e-90c0bcdd0c32, HandlerErrorCode: InternalFailure)
+❌  RilloraProduction failed: DeploymentError: Resource updates failed:
+RilloraProduction/Database/Resource  (AWS::RDS::DBInstance DatabaseB269D8BB)
+  Resource handler returned message: "The specified backup retention period exceeds the maximum available to free tier
+  customers. To remove all limitations, upgrade your account plan. (Service: Rds, Status Code: 400, Request ID:
+  3e483870-ad32-4f24-bf2b-fab2ce6e147b) (SDK Attempt Count: 1)" (RequestToken: 50c9199d-6765-e484-142e-90c0bcdd0c32,
+  HandlerErrorCode: InternalFailure)
+Source Location: ...new DatabaseInstance2 in aws-cdk-lib...
+                 new RilloraProductionStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-production-stack.ts:39:18)
+                 <anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:61:3)
+                 ...node internals...
+
+   CloudTrail delivery can lag up to 15 minutes behind the failure; re-run `cdk diagnose` in a few minutes to check for additional control-plane errors (e.g. AccessDenied).

@@ -1,0 +1,55 @@
+{
+  "url": "https://www.rillora.xyz",
+  "checks": [
+    {
+      "path": "/assets/favicon-n-8qLNzh.svg",
+      "passed": true
+    },
+    {
+      "path": "/assets/favicon-32-BmTNsIid.png",
+      "passed": true
+    },
+    {
+      "path": "/",
+      "status": 200,
+      "expected": 200,
+      "passed": true,
+      "htmlMatches": true,
+      "csp": "default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'"
+    },
+    {
+      "path": "/guides",
+      "status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "path": "/support",
+      "status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "path": "/account",
+      "status": 404,
+      "expected": 404,
+      "passed": true
+    },
+    {
+      "path": "/api/v1/session",
+      "status": 404,
+      "expected": 404,
+      "passed": true
+    },
+    {
+      "path": "/public-build.json",
+      "status": 404,
+      "expected": 404,
+      "passed": true
+    }
+  ],
+  "icons": [
+    "/assets/favicon-n-8qLNzh.svg",
+    "/assets/favicon-32-BmTNsIid.png"
+  ]
+}

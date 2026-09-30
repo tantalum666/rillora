@@ -1,0 +1,135 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Rillora standalone-account operator and temporary CDK bootstrap role
+
+Parameters:
+  BootstrapAdministratorEnabled:
+    Type: String
+    Default: "true"
+    AllowedValues:
+      - "true"
+      - "false"
+    Description: Keep true only until the account has been bootstrapped for CDK.
+
+Conditions:
+  BootstrapAdministratorIsEnabled: !Equals [!Ref BootstrapAdministratorEnabled, "true"]
+
+Resources:
+  OperatorUser:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: rillora-operator
+      Path: /rillora/
+      ManagedPolicyArns:
+        - !Sub arn:${AWS::Partition}:iam::aws:policy/SignInLocalDevelopmentAccess
+      Tags:
+        - Key: Project
+          Value: Rillora
+        - Key: Purpose
+          Value: HumanOperator
+
+  BootstrapRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: rillora-bootstrap-admin
+      Path: /rillora/
+      Description: Temporary MFA-gated administrator role used only for CDK bootstrap.
+      MaxSessionDuration: 3600
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: AllowOperatorWithMfa
+            Effect: Allow
+            Principal:
+              AWS: !GetAtt OperatorUser.Arn
+            Action: sts:AssumeRole
+            Condition:
+              Bool:
+                aws:MultiFactorAuthPresent: "true"
+      ManagedPolicyArns:
+        - !If
+          - BootstrapAdministratorIsEnabled
+          - !Sub arn:${AWS::Partition}:iam::aws:policy/AdministratorAccess
+          - !Ref AWS::NoValue
+      Tags:
+        - Key: Project
+          Value: Rillora
+        - Key: Purpose
+          Value: TemporaryBootstrap
+
+  OperatorAssumeRolePolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: rillora-assume-deployment-roles-with-mfa
+      Users:
+        - !Ref OperatorUser
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: AssumeTemporaryBootstrapRole
+            Effect: Allow
+            Action: sts:AssumeRole
+            Resource: !GetAtt BootstrapRole.Arn
+            Condition:
+              Bool:
+                aws:MultiFactorAuthPresent: "true"
+          - Sid: AssumeCdkBootstrapRoles
+            Effect: Allow
+            Action: sts:AssumeRole
+            Resource: !Sub arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-*
+            Condition:
+              Bool:
+                aws:MultiFactorAuthPresent: "true"
+          - Sid: AssumeStagingOperatorRole
+            Effect: Allow
+            Action: sts:AssumeRole
+            Resource: !Sub arn:${AWS::Partition}:iam::${AWS::AccountId}:role/rillora/rillora-staging-operator
+            Condition:
+              Bool:
+                aws:MultiFactorAuthPresent: "true"
+          - Sid: RequestOnlyTheStagingWebCertificate
+            Effect: Allow
+            Action: acm:RequestCertificate
+            Resource: "*"
+            Condition:
+              StringEquals:
+                aws:RequestedRegion: us-east-1
+                acm:ValidationMethod: DNS
+                acm:KeyAlgorithm: [REDACTED_SCANNER_LITERAL]
+                aws:RequestTag/Project: Rillora
+                aws:RequestTag/Environment: Staging
+              ForAllValues:StringEquals:
+                acm:DomainNames:
+                  - app.staging.rillora.xyz
+          - Sid: InspectOrRemoveOnlyTaggedStagingCertificates
+            Effect: Allow
+            Action:
+              - acm:DescribeCertificate
+              - acm:GetCertificate
+              - acm:ListTagsForCertificate
+              - acm:DeleteCertificate
+            Resource: !Sub arn:${AWS::Partition}:acm:us-east-1:${AWS::AccountId}:certificate/*
+            Condition:
+              StringEquals:
+                aws:ResourceTag/Project: Rillora
+                aws:ResourceTag/Environment: Staging
+          - Sid: AddOnlyRequiredStagingCertificateTags
+            Effect: Allow
+            Action: acm:AddTagsToCertificate
+            Resource: !Sub arn:${AWS::Partition}:acm:us-east-1:${AWS::AccountId}:certificate/*
+            Condition:
+              StringEquals:
+                aws:RequestedRegion: us-east-1
+                aws:RequestTag/Project: Rillora
+                aws:RequestTag/Environment: Staging
+              ForAllValues:StringEquals:
+                aws:TagKeys:
+                  - Project
+                  - Environment
+
+Outputs:
+  OperatorUserArn:
+    Value: !GetAtt OperatorUser.Arn
+  BootstrapRoleArn:
+    Value: !GetAtt BootstrapRole.Arn
+  IamUserSignInUrl:
+    Value: !Sub https://${AWS::AccountId}.signin.aws.amazon.com/console

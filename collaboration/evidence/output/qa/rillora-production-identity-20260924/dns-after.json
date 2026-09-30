@@ -1,0 +1,191 @@
+{
+  "domain": "rillora.xyz",
+  "records": [
+    {
+      "data": "WebsiteBuilder Site",
+      "name": "@",
+      "recordId": "<1126245128>-[1147]-b23d1fae-b697-484f-be60-f30f",
+      "ttl": 3600,
+      "type": "A"
+    },
+    {
+      "data": "ns73.domaincontrol.com.",
+      "name": "@",
+      "recordId": "3908582d-311f-41ef-be15-47eac47851bb",
+      "ttl": 3600,
+      "type": "NS"
+    },
+    {
+      "data": "ns74.domaincontrol.com.",
+      "name": "@",
+      "recordId": "3843b904-4233-4677-b0b8-53a3d2d0f263",
+      "ttl": 3600,
+      "type": "NS"
+    },
+    {
+      "data": "4ki2lv3epotn2fmb7zj5wm6ky35lkwfl.dkim.amazonses.com.",
+      "name": "4ki2lv3epotn2fmb7zj5wm6ky35lkwfl._domainkey.notify",
+      "recordId": "987da6de-25ed-450d-9ed2-dcd24906234e",
+      "ttl": 600,
+      "type": "CNAME"
+    },
+    {
+      "data": "d1ee12jk5j6ple.cloudfront.net.",
+      "name": "app.staging",
+      "recordId": "bf30ac4f-5b08-4f7e-bb71-eaa85f2a8b8b",
+      "ttl": 600,
+      "type": "CNAME"
+    },
+    {
+      "data": "e72bxaidtogictet4f5ittbyyxfywrfl.dkim.amazonses.com.",
+      "name": "e72bxaidtogictet4f5ittbyyxfywrfl._domainkey.notify",
+      "recordId": "7cb48493-ff1e-4633-ae50-95ab916a4dcf",
+      "ttl": 600,
+      "type": "CNAME"
+    },
+    {
+      "data": "custom-domains.chatgpt.site.",
+      "name": "legal",
+      "recordId": "bba978e5-09a2-42ef-a7d2-eb953cdf3430",
+      "ttl": 600,
+      "type": "CNAME"
+    },
+    {
+      "data": "rillora-dev-cd-k3ahlphxomlhvypl.edge.tenants.eu.auth0.com.",
+      "name": "login",
+      "recordId": "ada4c6b9-65c6-4164-bb13-58f2726e9e0c",
+      "ttl": 600,
+      "type": "CNAME"
+    },
+    {
+      "data": "uindmbdho6fsywhs2zc2qqpsxqlivufr.dkim.amazonses.com.",
+      "name": "uindmbdho6fsywhs2zc2qqpsxqlivufr._domainkey.notify",
+      "recordId": "8c0e1038-f0a2-41c4-ac6d-cadc4ccc247e",
+      "ttl": 600,
+      "type": "CNAME"
+    },
+    {
+      "data": "rillora.xyz.",
+      "name": "www",
+      "recordId": "<1126245128>-[1148]-57a8399a-33f1-463d-862c-cf41",
+      "ttl": 3600,
+      "type": "CNAME"
+    },
+    {
+      "data": "_eeed03b32f65dd73d25dffb24415cc48.jkddzztszm.acm-validations.aws.",
+      "name": "_52bc27f7bea6d72c06a0f3a535925ed6.app.staging",
+      "recordId": "004fe960-3029-49c3-ba26-2f48f7893f4b",
+      "ttl": 600,
+      "type": "CNAME"
+    },
+    {
+      "data": "_domainconnect.gd.domaincontrol.com.",
+      "name": "_domainconnect",
+      "recordId": "3a3ce22d-436b-4f3e-a23d-c9f4e8f075be",
+      "ttl": 3600,
+      "type": "CNAME"
+    },
+    {
+      "data": "_931e411b5e14896083d1cd759da6adce.wzccmgtwzk.acm-validations.aws.",
+      "name": "_ed7b011baddfc10c0d446ab7b6b4a467.origin.production",
+      "recordId": "ff0ea7cc-881a-4a71-b7e0-d8afd0973b54",
+      "ttl": 600,
+      "type": "CNAME"
+    },
+    {
+      "data": "",
+      "name": "@",
+      "recordId": "6ccb085e-df01-462e-9678-73fce4a64855",
+      "ttl": 3600,
+      "type": "SOA"
+    },
+    {
+      "data": "mx.zoho.com.",
+      "name": "@",
+      "priority": 10,
+      "recordId": "2c41306c-a8f3-48b6-b2fe-1fa2c5be39c8",
+      "ttl": 3600,
+      "type": "MX"
+    },
+    {
+      "data": "mx2.zoho.com.",
+      "name": "@",
+      "priority": 20,
+      "recordId": "37b78617-5f2e-4412-8672-966303b68469",
+      "ttl": 3600,
+      "type": "MX"
+    },
+    {
+      "data": "mx3.zoho.com.",
+      "name": "@",
+      "priority": 50,
+      "recordId": "32d76469-25fa-4b88-b401-d7e74614b7cc",
+      "ttl": 3600,
+      "type": "MX"
+    },
+    {
+      "data": "feedback-smtp.eu-central-1.amazonses.com.",
+      "name": "bounce.notify",
+      "priority": 10,
+      "recordId": "6ed90c49-8b9b-4eeb-aacd-8c65c521de1d",
+      "ttl": 600,
+      "type": "MX"
+    },
+    {
+      "data": "v=spf1 include:zohomail.com ~all",
+      "name": "@",
+      "recordId": "cb711948-0f5f-400d-942e-d8809a0d2005",
+      "ttl": 3600,
+      "type": "TXT"
+    },
+    {
+      "data": "zoho-verification=zb53084257.zmverify.zoho.com",
+      "name": "@",
+      "recordId": "45b7b327-0539-4d1a-a5fa-2ddc94a8739e",
+      "ttl": 3600,
+      "type": "TXT"
+    },
+    {
+      "data": "v=spf1 include:amazonses.com -all",
+      "name": "bounce.notify",
+      "recordId": "bd304d36-6eac-47b8-8765-134589703113",
+      "ttl": 600,
+      "type": "TXT"
+    },
+    {
+      "data": "v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCVmzvHTtVwZ1ZXc7IhnabwYbpkr7IUWLK2/oex/i/evIn7GpyRxU1+6K/PBcBb3frn/m1XrDHk8PXv7XRUYDSzpI86DA/KDLUzYID/V2FXTIehUqh8SWGFiDgDvwkR7LXATFSAs7yT28xfvz43LUEWaLT7bj3rptlLp+xlv3/VxwIDAQAB",
+      "name": "zmail._domainkey",
+      "recordId": "11447a7e-5d8c-4a37-9ac2-59e133add75c",
+      "ttl": 3600,
+      "type": "TXT"
+    },
+    {
+      "data": "1001aa25-8b58-4d25-90e6-72ed60981c83",
+      "name": "_cf-custom-hostname.legal",
+      "recordId": "76087664-d880-457d-bb88-88dcc553486f",
+      "ttl": 600,
+      "type": "TXT"
+    },
+    {
+      "data": "v=DMARC1; p=quarantine; adkim=r; aspf=r; rua=mailto:[REDACTED_EMAIL];",
+      "name": "_dmarc",
+      "recordId": "107d99f1-841d-4371-a49f-1c09e8cf6fb0",
+      "ttl": 3600,
+      "type": "TXT"
+    },
+    {
+      "data": "v=DMARC1; p=reject; adkim=s; aspf=r;",
+      "name": "_dmarc.notify",
+      "recordId": "fa7a86fe-3809-480e-af14-4e210c4c9920",
+      "ttl": 600,
+      "type": "TXT"
+    },
+    {
+      "data": "openai-site-verification=sxPAXcD0ieZv5A8UQS6aA6z7wSwHxvhqhJr-Y6QhhVc",
+      "name": "_openai-site-verification.legal",
+      "recordId": "3fbc849b-6559-4fd0-a036-d63b77738767",
+      "ttl": 600,
+      "type": "TXT"
+    }
+  ]
+}

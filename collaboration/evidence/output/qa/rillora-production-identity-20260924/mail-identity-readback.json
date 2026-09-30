@@ -1,0 +1,53 @@
+{
+  "IdentityType": "DOMAIN",
+  "FeedbackForwardingStatus": false,
+  "VerifiedForSendingStatus": true,
+  "DkimAttributes": {
+    "SigningEnabled": true,
+    "Status": "SUCCESS",
+    "Tokens": [
+      "uindmbdho6fsywhs2zc2qqpsxqlivufr",
+      "e72bxaidtogictet4f5ittbyyxfywrfl",
+      "4ki2lv3epotn2fmb7zj5wm6ky35lkwfl"
+    ],
+    "SigningHostedZone": "dkim.amazonses.com",
+    "SigningAttributesOrigin": "AWS_SES",
+    "NextSigningKeyLength": "RSA_2048_BIT",
+    "CurrentSigningKeyLength": "RSA_2048_BIT",
+    "LastKeyGenerationTimestamp": "2026-09-24T10:18:33.765000+08:00"
+  },
+  "MailFromAttributes": {
+    "MailFromDomain": "bounce.notify.rillora.xyz",
+    "MailFromDomainStatus": "SUCCESS",
+    "BehaviorOnMxFailure": "REJECT_MESSAGE"
+  },
+  "Policies": {},
+  "Tags": [
+    {
+      "Key": "Project",
+      "Value": "Rillora"
+    },
+    {
+      "Key": "aws:cloudformation:stack-name",
+      "Value": "RilloraMail"
+    },
+    {
+      "Key": "Environment",
+      "Value": "Production"
+    },
+    {
+      "Key": "aws:cloudformation:logical-id",
+      "Value": "Identity2D60E2CC"
+    },
+    {
+      "Key": "aws:cloudformation:stack-id",
+      "Value": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraMail/3602d2e0-b7be-11f1-9101-0a19edc724ed"
+    }
+  ],
+  "ConfigurationSetName": "rillora-transactional",
+  "VerificationStatus": "SUCCESS",
+  "VerificationInfo": {
+    "LastCheckedTimestamp": "2026-09-24T10:21:34.794000+08:00",
+    "LastSuccessTimestamp": "2026-09-24T10:21:34.906000+08:00"
+  }
+}

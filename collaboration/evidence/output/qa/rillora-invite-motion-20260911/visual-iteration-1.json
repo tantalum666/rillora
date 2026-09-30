@@ -1,0 +1,18 @@
+{
+  "result": "blocked",
+  "findings": [
+    {
+      "severity": "P1",
+      "surface": "Web folio",
+      "problem": "Inherited main surface is lighter than generated graphite background; visible rectangular image boundary.",
+      "fix": "Match authenticated main canvas to existing native #171c1c."
+    },
+    {
+      "severity": "P2",
+      "surface": "Folio scale",
+      "problem": "Asset internal padding makes native and Web focal object smaller than selected reference.",
+      "fix": "Use bounded image fill/crop of empty background, preserving entire actual folio, enlarged within fixed height."
+    }
+  ],
+  "captureLimitation": "IAB fullPage output scaled content by half; viewport screenshot and DOM390x844,dpr1 used instead."
+}

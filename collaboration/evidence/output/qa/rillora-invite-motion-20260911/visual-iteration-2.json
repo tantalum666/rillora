@@ -1,0 +1,24 @@
+{
+  "result": "blocked",
+  "findings": [
+    {
+      "severity": "P2",
+      "surface": "AX5 invitation steps",
+      "problem": "Person and Access break mid-word in three columns",
+      "fix": "Current-step heading, full step count and progress bar at accessibility sizes."
+    },
+    {
+      "severity": "P2",
+      "surface": "Empty overview fidelity",
+      "problem": "Small left title and underscaled/incorrectly clipped illustration differ from selected centered folio reference.",
+      "fix": "Center empty heading, increase serif scale, retain real count separately and center full folio in bounded crop."
+    },
+    {
+      "severity": "P2",
+      "surface": "Web QR actions",
+      "problem": "Legacy button min-width pushes Share beyond narrow drawer.",
+      "fix": "Explicit min-width0 and flex-basis0 for both actions."
+    }
+  ],
+  "source": "assets/concepts/rillora-authenticated-motion-20260911/prepared-folio.png"
+}

@@ -1,0 +1,529 @@
+{
+  "passed": 36,
+  "total": 36,
+  "checks": [
+    {
+      "name": "complete_backup_denied",
+      "path": "/api/v1/account/map/export",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "hsts": true,
+        "no_store": true,
+        "no_framework_header": true
+      },
+      "response": {
+        "error": {
+          "code": "authentication_required",
+          "message": "Authentication is required."
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "account_deletion_denied",
+      "path": "/api/v1/account/delete",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "hsts": true,
+        "no_store": true,
+        "no_framework_header": true
+      },
+      "response": {
+        "error": {
+          "code": "authentication_required",
+          "message": "Authentication is required."
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "deletion_status_proof_required",
+      "path": "/api/account-deletions/status",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "hsts": true,
+        "no_store": true,
+        "no_framework_header": true
+      },
+      "response": {
+        "error": {
+          "code": "receipt_required",
+          "message": "Use your deletion reference to check this request."
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "unknown_deletion_receipt",
+      "path": "/api/account-deletions/status",
+      "status": 404,
+      "checks": {
+        "status": true,
+        "hsts": true,
+        "no_store": true,
+        "no_framework_header": true
+      },
+      "response": {
+        "error": {
+          "code": "receipt_unavailable",
+          "message": "This deletion reference is unavailable or its completed receipt has expired."
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "liveness",
+      "path": "/health/live",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "hsts": true
+      },
+      "passed": true
+    },
+    {
+      "name": "database_ready",
+      "path": "/health/ready",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "hsts": true
+      },
+      "passed": true
+    },
+    {
+      "name": "public_home",
+      "path": "/",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "hsts": true,
+        "csp": true,
+        "matches_built_spa": true
+      },
+      "passed": true
+    },
+    {
+      "name": "saved_copy_reader",
+      "path": "/open-copy",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "hsts": true,
+        "csp": true,
+        "matches_built_spa": true
+      },
+      "passed": true
+    },
+    {
+      "name": "deletion_status_page",
+      "path": "/account-deletion",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "hsts": true,
+        "csp": true,
+        "matches_built_spa": true
+      },
+      "passed": true
+    },
+    {
+      "name": "account_entry",
+      "path": "/account",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "hsts": true,
+        "csp": true,
+        "matches_built_spa": true
+      },
+      "passed": true
+    },
+    {
+      "name": "invitation_entry",
+      "path": "/invite",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "hsts": true,
+        "csp": true,
+        "matches_built_spa": true
+      },
+      "passed": true
+    },
+    {
+      "name": "shared_entry",
+      "path": "/?view=shared",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "hsts": true,
+        "csp": true,
+        "matches_built_spa": true
+      },
+      "passed": true
+    },
+    {
+      "name": "review_entry",
+      "path": "/account?next=reviews",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "hsts": true,
+        "csp": true,
+        "matches_built_spa": true
+      },
+      "passed": true
+    },
+    {
+      "name": "signed_out",
+      "path": "/api/auth/session-status",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "hsts": true,
+        "no_store": true,
+        "no_framework_header": true,
+        "signed_out": true
+      },
+      "response": {
+        "authenticated": false
+      },
+      "passed": true
+    },
+    {
+      "name": "legal_contract",
+      "path": "/api/auth/legal-contract",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "hsts": true,
+        "no_store": true,
+        "no_framework_header": true,
+        "current_privacy": true,
+        "current_digest": true
+      },
+      "response": {
+        "termsVersion": "terms-2026-08-27-1",
+        "privacyVersion": "privacy-2026-09-15-1",
+        "consentTextVersion": "registration-clickwrap-2026-08-24-1",
+        "bundleSha256": "3eb7d7bf4d3c420c49946dbfcd322293136cce556407339dc0cafa0aa5f30602",
+        "termsUrl": "https://legal.rillora.xyz/terms",
+        "privacyUrl": "https://legal.rillora.xyz/privacy",
+        "registrationRequiresAcceptance": true,
+        "recurringChargeRequiresSeparateConsent": true
+      },
+      "passed": true
+    },
+    {
+      "name": "review_private_denied",
+      "path": "/api/v1/maintenance/overview",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "hsts": true,
+        "no_store": true,
+        "no_framework_header": true
+      },
+      "response": {
+        "error": {
+          "code": "authentication_required",
+          "message": "Authentication is required."
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "review_write_denied",
+      "path": "/api/v1/maintenance/rounds",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "hsts": true,
+        "no_store": true,
+        "no_framework_header": true
+      },
+      "response": {
+        "error": {
+          "code": "authentication_required",
+          "message": "Authentication is required."
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "review_settings_denied",
+      "path": "/api/v1/maintenance/settings",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "hsts": true,
+        "no_store": true,
+        "no_framework_header": true
+      },
+      "response": {
+        "error": {
+          "code": "authentication_required",
+          "message": "Authentication is required."
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "review_dev_denied",
+      "path": "/api/v1/maintenance/overview",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "hsts": true,
+        "no_store": true,
+        "no_framework_header": true
+      },
+      "response": {
+        "error": {
+          "code": "authentication_required",
+          "message": "Authentication is required."
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "overview_private_denied",
+      "path": "/api/v1/overview",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "hsts": true,
+        "no_store": true,
+        "no_framework_header": true
+      },
+      "response": {
+        "error": {
+          "code": "authentication_required",
+          "message": "Authentication is required."
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "matter_create_private_denied",
+      "path": "/api/v1/matters",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "hsts": true,
+        "no_store": true,
+        "no_framework_header": true
+      },
+      "response": {
+        "error": {
+          "code": "authentication_required",
+          "message": "Authentication is required."
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "invitation_create_private_denied",
+      "path": "/api/v1/sharing/connections",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "hsts": true,
+        "no_store": true,
+        "no_framework_header": true
+      },
+      "response": {
+        "error": {
+          "code": "authentication_required",
+          "message": "Authentication is required."
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "private_session_denied",
+      "path": "/api/v1/session",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "hsts": true,
+        "no_store": true,
+        "no_framework_header": true
+      },
+      "response": {
+        "error": {
+          "code": "authentication_required",
+          "message": "Authentication is required."
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "owner_sharing_denied",
+      "path": "/api/v1/sharing/connections",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "hsts": true,
+        "no_store": true,
+        "no_framework_header": true
+      },
+      "response": {
+        "error": {
+          "code": "authentication_required",
+          "message": "Authentication is required."
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "receiver_sharing_denied",
+      "path": "/api/v1/sharing/shared-with-me",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "hsts": true,
+        "no_store": true,
+        "no_framework_header": true
+      },
+      "response": {
+        "error": {
+          "code": "authentication_required",
+          "message": "Authentication is required."
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "anonymous_accept_denied",
+      "path": "/api/v1/sharing/invitations/accept",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "hsts": true,
+        "no_store": true,
+        "no_framework_header": true
+      },
+      "response": {
+        "error": {
+          "code": "authentication_required",
+          "message": "Authentication is required."
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "dev_identity_denied",
+      "path": "/api/v1/sharing/connections",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "hsts": true,
+        "no_store": true,
+        "no_framework_header": true
+      },
+      "response": {
+        "error": {
+          "code": "authentication_required",
+          "message": "Authentication is required."
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "unknown_invitation",
+      "path": "/api/sharing/invitations/resolve",
+      "status": 404,
+      "checks": {
+        "status": true,
+        "hsts": true,
+        "no_store": true,
+        "no_framework_header": true,
+        "new_database_function_responded": true
+      },
+      "response": {
+        "error": {
+          "code": "invitation_unavailable",
+          "message": "This invitation is not available. Ask for a new link."
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "missing_handoff",
+      "path": "/api/sharing/invitations/11111111-1111-4111-8111-111111111111",
+      "status": 404,
+      "checks": {
+        "status": true,
+        "hsts": true,
+        "no_store": true,
+        "no_framework_header": true
+      },
+      "response": {
+        "error": {
+          "code": "invitation_unavailable",
+          "message": "Open the original invitation link again."
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "native_unknown_invitation",
+      "path": "/sharing/invitations/resolve",
+      "status": 404,
+      "checks": {
+        "status": true,
+        "hsts": true,
+        "no_store": true,
+        "no_framework_header": true
+      },
+      "response": {
+        "error": {
+          "code": "invitation_unavailable",
+          "message": "This invitation is not available. Ask for a new link."
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "published_asset",
+      "path": "/assets/FamilyMaintenancePanel-CZmigqI9.js",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "name": "published_asset",
+      "path": "/assets/FamilyMaintenancePanel-vMpwAgWW.css",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "name": "published_asset",
+      "path": "/assets/__vite-browser-external-BIHI7g3E.js",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "name": "published_asset",
+      "path": "/assets/browser-hzEO2I8W.js",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "name": "published_asset",
+      "path": "/assets/index-BiNSAWCf.css",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "name": "published_asset",
+      "path": "/assets/index-CqkrLGS8.js",
+      "status": 200,
+      "passed": true
+    }
+  ]
+}

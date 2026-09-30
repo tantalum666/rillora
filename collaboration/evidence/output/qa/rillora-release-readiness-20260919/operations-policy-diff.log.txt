@@ -1,0 +1,113 @@
+Stack RilloraOperations
+IAM Statement Changes
+┌───┬─────────────────────────┬────────┬─────────────────────────────────┬──────────────────────────────────┬───────────────────────────────────────┐
+│   │ Resource                │ Effect │ Action                          │ Principal                        │ Condition                             │
+├───┼─────────────────────────┼────────┼─────────────────────────────────┼──────────────────────────────────┼───────────────────────────────────────┤
+│ + │ ${Alerts}               │ Allow  │ sns:Publish                     │ Service:cloudwatch.amazonaws.com │ "StringEquals": {                     │
+│   │                         │        │                                 │                                  │   "aws:SourceAccount": "133857166372" │
+│   │                         │        │                                 │                                  │ },                                    │
+│   │                         │        │                                 │                                  │ "ArnEquals": {                        │
+│   │                         │        │                                 │                                  │   "aws:SourceArn": [                  │
+│   │                         │        │                                 │                                  │     "${Unhealthy.Arn}",               │
+│   │                         │        │                                 │                                  │     "${MissingHeartbeat.Arn}",        │
+│   │                         │        │                                 │                                  │     "${InvocationErrors.Arn}",        │
+│   │                         │        │                                 │                                  │     "${DeadLetters.Arn}"              │
+│   │                         │        │                                 │                                  │   ]                                   │
+│   │                         │        │                                 │                                  │ }                                     │
+│ + │ ${Alerts}               │ Allow  │ sns:GetTopicAttributes          │ AWS:rillora-staging-operator     │                                       │
+│   │                         │        │ sns:ListSubscriptionsByTopic    │                                  │                                       │
+│   │                         │        │ sns:Publish                     │                                  │                                       │
+│   │                         │        │ sns:Subscribe                   │                                  │                                       │
+│ - │ ${Alerts}               │ Allow  │ sns:ListSubscriptionsByTopic    │ AWS:rillora-staging-operator     │                                       │
+│   │                         │        │ sns:Publish                     │                                  │                                       │
+│   │                         │        │ sns:Subscribe                   │                                  │                                       │
+├───┼─────────────────────────┼────────┼─────────────────────────────────┼──────────────────────────────────┼───────────────────────────────────────┤
+│ + │ ${DeadLetters.Arn}      │ Allow  │ cloudwatch:DescribeAlarmHistory │ AWS:rillora-staging-operator     │                                       │
+│   │ ${InvocationErrors.Arn} │        │ cloudwatch:DescribeAlarms       │                                  │                                       │
+│   │ ${MissingHeartbeat.Arn} │        │ cloudwatch:SetAlarmState        │                                  │                                       │
+│   │ ${Unhealthy.Arn}        │        │                                 │                                  │                                       │
+│ - │ ${DeadLetters.Arn}      │ Allow  │ cloudwatch:DescribeAlarms       │ AWS:rillora-staging-operator     │                                       │
+│   │ ${InvocationErrors.Arn} │        │ cloudwatch:SetAlarmState        │                                  │                                       │
+│   │ ${MissingHeartbeat.Arn} │        │                                 │                                  │                                       │
+│   │ ${Unhealthy.Arn}        │        │                                 │                                  │                                       │
+└───┴─────────────────────────┴────────┴─────────────────────────────────┴──────────────────────────────────┴───────────────────────────────────────┘
+(NOTE: There may be security-related changes not in this list. See https://github.com/aws/aws-cdk/issues/1299)
+
+Resources
+[~] AWS::SNS::TopicPolicy Alerts/Policy AlertsPolicy425C338D
+ └─ [~] PolicyDocument
+     └─ [~] .Statement:
+         └─ @@ -12,5 +12,49 @@
+            [ ]       "Ref": "Alerts91F83244"
+            [ ]     },
+            [ ]     "Sid": "AllowPublishThroughSSLOnly"
+            [+]   },
+            [+]   {
+            [+]     "Action": "sns:Publish",
+            [+]     "Condition": {
+            [+]       "StringEquals": {
+            [+]         "aws:SourceAccount": "133857166372"
+            [+]       },
+            [+]       "ArnEquals": {
+            [+]         "aws:SourceArn": [
+            [+]           {
+            [+]             "Fn::GetAtt": [
+            [+]               "Unhealthy9594204A",
+            [+]               "Arn"
+            [+]             ]
+            [+]           },
+            [+]           {
+            [+]             "Fn::GetAtt": [
+            [+]               "MissingHeartbeatF959D2A8",
+            [+]               "Arn"
+            [+]             ]
+            [+]           },
+            [+]           {
+            [+]             "Fn::GetAtt": [
+            [+]               "InvocationErrors5F3DC47A",
+            [+]               "Arn"
+            [+]             ]
+            [+]           },
+            [+]           {
+            [+]             "Fn::GetAtt": [
+            [+]               "DeadLettersBBF8BAAB",
+            [+]               "Arn"
+            [+]             ]
+            [+]           }
+            [+]         ]
+            [+]       }
+            [+]     },
+            [+]     "Effect": "Allow",
+            [+]     "Principal": {
+            [+]       "Service": "cloudwatch.amazonaws.com"
+            [+]     },
+            [+]     "Resource": {
+            [+]       "Ref": "Alerts91F83244"
+            [+]     },
+            [+]     "Sid": "AllowOnlyRilloraAlarmDelivery"
+            [ ]   }
+            [ ] ]
+[~] AWS::IAM::Policy OperationsRunbook OperationsRunbook277D4959
+ └─ [~] PolicyDocument
+     └─ [~] .Statement:
+         └─ @@ -55,6 +55,7 @@
+            [ ] {
+            [ ]   "Action": [
+            [ ]     "cloudwatch:DescribeAlarms",
+            [+]     "cloudwatch:DescribeAlarmHistory",
+            [ ]     "cloudwatch:SetAlarmState"
+            [ ]   ],
+            [ ]   "Effect": "Allow",
+            @@ -89,6 +90,7 @@
+            [ ] "Action": [
+            [ ]   "sns:Subscribe",
+            [ ]   "sns:ListSubscriptionsByTopic",
+            [+]   "sns:GetTopicAttributes",
+            [ ]   "sns:Publish"
+            [ ] ],
+            [ ] "Effect": "Allow",
+
+
+
+✨  Number of stacks with differences: 1
+

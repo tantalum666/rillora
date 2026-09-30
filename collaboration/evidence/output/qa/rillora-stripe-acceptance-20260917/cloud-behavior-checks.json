@@ -1,0 +1,24 @@
+{
+  "checks": [
+    "Free one slot reserved",
+    "annual duplicate checkout reused",
+    "Paid family five slots",
+    "Paid reader sees original",
+    "monthly duplicate checkout reused",
+    "Ended-period reader only receives saved copy",
+    "Post-end values absent from reader",
+    "Verified provider subscription blocks duplicate checkout",
+    "Explicit Free choice resumes current fields",
+    "Saved copy stays redacted after name",
+    "Saved copy stays redacted after details",
+    "Revocation removes recipient items",
+    "Unfinished provider checkout blocks changing period",
+    "Provider-confirmed close allows another period",
+    "Closed unpaid checkout grants no Family"
+  ],
+  "closedUnpaidSessions": [
+    "cs_test_a1z9GgfZgDPmnDKp88FM7XRcogmZH8RKyyYSPU0bVUjheg9Ptz1bzuIwZr",
+    "cs_test_a1ND8RQKG9eHWknYq1185m7540lLumWSXe0gFPfwc0qSewWdnzzAEQ3Zlh"
+  ],
+  "scope": "Admin-seeded test-only accounts, actual Stripe sandbox payments, no real-user signup or income"
+}

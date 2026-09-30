@@ -1,0 +1,431 @@
+Xcode version: 26.5 (17F42)
+23:08:25.821 xcodebuild[66074:17144950] Beginning test session RilloraLayoutMatrixTests-AC1D59E0-CAF4-4C2F-AEC9-A28BB876D36E at 2026-08-14 23:08:25.821 on target <DVTiPhoneSimulator: 0x9727d4a00> {
+		SimDevice: Rillora-Matrix-13 (CA230359-5DEF-47E5-853F-93A5A146ED4C, iOS 26.5, Booted)
+} (26.5 (23F77))
+23:08:25.822 xcodebuild[66074:17144950] 	/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild
+-project
+Rillora.xcodeproj
+-scheme
+RilloraLayoutMatrix
+-configuration
+Debug
+-destination
+platform=iOS Simulator,id=CA230359-5DEF-47E5-853F-93A5A146ED4C
+-derivedDataPath
+/Users/tantalum/Documents/电子遗嘱app/output/qa/ios-layout-matrix-20260814-230100/DerivedData
+-parallel-testing-enabled
+NO
+-resultBundlePath
+/Users/tantalum/Documents/电子遗嘱app/output/qa/ios-layout-matrix-20260814-230100/standard-large-roots.xcresult
+RILLORA_API_BASE_URL=http://127.0.0.1:4181/v1
+RILLORA_DEV_PLANNER_ID=11111111-1111-4111-8111-111111111111
+-only-testing:RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testRootDestinationsPortrait
+-only-testing:RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testOrientationChangeKeepsRootsReachable
+-only-testing:RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testSignedOutExperienceDefersAccountEntry
+-only-testing:RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testSignedOutPlanAccessPresentation
+test-without-building
+23:08:25.823 xcodebuild[66074:17144950] Test standard output and standard error is at /Users/tantalum/Documents/电子遗嘱app/output/qa/ios-layout-matrix-20260814-230100/standard-large-roots.xcresult/Staging/1_Test/Diagnostics/RilloraLayoutMatrixTests-48716CE7-70DF-43D7-B8B9-038EF311A7E0-Configuration-Test Scheme Action-Iteration-1/RilloraLayoutMatrixTests-B450F0AA-8654-4132-8823-7A99988AB4FC/StandardOutputAndStandardError.txt
+23:08:25.824 xcodebuild[66074:17145169] 📱<DVTiPhoneSimulator (0x9727d4a00), Rillora-Matrix-13, unknown class, 26.5 (23F77), CA230359-5DEF-47E5-853F-93A5A146ED4C> claim LaunchSessionClaim_0x974313780 on simulator was issued, 2 claims exist.
+23:08:25.825 xcodebuild[66074:17144950] Setting up test runner session
+23:08:25.825 xcodebuild[66074:17145166] Sim Rillora-Matrix-13: Unregistering for sim device notification with token 5
+23:08:25.825 xcodebuild[66074:17145166] Calling -[SimDevice getenv:error:] for TESTMANAGERD_SIM_SOCK
+23:08:25.825 xcodebuild[66074:17144950] Registering/updating daemon-based crash report observer for process names (
+    xctest,
+    debugserver,
+    FrontBoard,
+    assertiond,
+    runningboardd,
+    SpringBoard,
+    testmanagerd,
+    backboardd,
+    DTServiceHub,
+    Rillora,
+    "RilloraLayoutMatrixTests-Runner",
+    RilloraLayoutMatrixTests
+)
+23:08:25.826 xcodebuild[66074:17145166] Sim Rillora-Matrix-13 has testmanagerd socket at /private/var/tmp/com.apple.launchd.sVs1Zy3Zkx/com.apple.testmanagerd.unix-domain.socket
+23:08:25.826 xcodebuild[66074:17145166] Validating test connection socket path (/private/var/tmp/com.apple.launchd.sVs1Zy3Zkx/com.apple.testmanagerd.unix-domain.socket)
+23:08:25.826 xcodebuild[66074:17145166] Constructing transport for test connection socket
+23:08:25.826 xcodebuild[66074:17145166] Connected socket 33 to testmanagerd for Sim Rillora-Matrix-13
+23:08:25.826 xcodebuild[66074:17145169] Received connection for test runner session
+23:08:25.826 xcodebuild[66074:17145169] Listening for proxy connection request from the test bundle
+23:08:25.826 xcodebuild[66074:17144950] Test runner session acquired connection.
+23:08:25.827 xcodebuild[66074:17145169] Initiating session with identifier: AC1D59E0-CAF4-4C2F-AEC9-A28BB876D36E
+23:08:26.287 xcodebuild[66074:17145141] Got reply to session initiation request with identifier AC1D59E0-CAF4-4C2F-AEC9-A28BB876D36E (error: (null))
+23:08:26.307 xcodebuild[66074:17144950] Finished requesting crash reports. Continuing with testing.
+23:08:26.337 xcodebuild[66074:17144950] Launch session started.
+23:08:26.346 xcodebuild[66074:17145169] 📱<DVTiPhoneSimulator (0x9727d4a00), Rillora-Matrix-13, unknown class, 26.5 (23F77), CA230359-5DEF-47E5-853F-93A5A146ED4C> claim LaunchSessionClaim_0x974313780 on simulator was issued, 2 claims exist.
+23:08:26.349 xcodebuild[66074:17145166] 📱<DVTiPhoneSimulator (0x9727d4a00), Rillora-Matrix-13, unknown class, 26.5 (23F77), CA230359-5DEF-47E5-853F-93A5A146ED4C> claim LaunchSessionClaim_0x974313780 on simulator was issued, 2 claims exist.
+23:08:26.349 xcodebuild[66074:17145166] CA230359-5DEF-47E5-853F-93A5A146ED4C: Registered for sim device notification, got token 8
+23:08:26.349 xcodebuild[66074:17145172] CA230359-5DEF-47E5-853F-93A5A146ED4C: Unregistering for sim device notification with token 8
+23:08:26.356 xcodebuild[66074:17145166] CA230359-5DEF-47E5-853F-93A5A146ED4C: Installing app at path: /Users/tantalum/Documents/电子遗嘱app/output/qa/ios-layout-matrix-20260814-230100/DerivedData/Build/Products/Debug-iphonesimulator/RilloraLayoutMatrixTests-Runner.app and options: {
+    SkipWatchAppInstall = 1;
+}
+23:08:27.742 xcodebuild[66074:17145169] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booting)";
+    "last_booted_at" = "2026-08-14 15:08:27 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+23:08:27.742 xcodebuild[66074:17144950] 69455E14-E941-4EC5-9502-FC1A5D96E75B: Received sim device notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booting)";
+    "last_booted_at" = "2026-08-14 15:08:27 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+23:08:27.759 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booting)";
+    "last_booted_at" = "2026-08-14 15:08:27 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+23:08:27.760 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booting)";
+    "last_booted_at" = "2026-08-14 15:08:27 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+23:08:27.760 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booting)";
+    "last_booted_at" = "2026-08-14 15:08:27 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+23:08:27.760 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booting)";
+    "last_booted_at" = "2026-08-14 15:08:27 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+23:08:27.760 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booting)";
+    "last_booted_at" = "2026-08-14 15:08:27 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+23:08:27.760 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booting)";
+    "last_booted_at" = "2026-08-14 15:08:27 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+23:08:27.760 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booting)";
+    "last_booted_at" = "2026-08-14 15:08:27 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+23:08:27.760 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booting)";
+    "last_booted_at" = "2026-08-14 15:08:27 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+23:08:27.760 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booting)";
+    "last_booted_at" = "2026-08-14 15:08:27 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+23:08:27.760 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booting)";
+    "last_booted_at" = "2026-08-14 15:08:27 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+23:08:27.760 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booting)";
+    "last_booted_at" = "2026-08-14 15:08:27 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+23:08:27.760 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booting)";
+    "last_booted_at" = "2026-08-14 15:08:27 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+23:08:27.760 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booting)";
+    "last_booted_at" = "2026-08-14 15:08:27 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+23:08:27.760 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booting)";
+    "last_booted_at" = "2026-08-14 15:08:27 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+23:08:27.760 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booting)";
+    "last_booted_at" = "2026-08-14 15:08:27 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+23:08:27.760 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booting)";
+    "last_booted_at" = "2026-08-14 15:08:27 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+23:08:27.760 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booting)";
+    "last_booted_at" = "2026-08-14 15:08:27 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+23:08:27.760 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booting)";
+    "last_booted_at" = "2026-08-14 15:08:27 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+23:08:27.760 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booting)";
+    "last_booted_at" = "2026-08-14 15:08:27 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+23:08:27.760 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booting)";
+    "last_booted_at" = "2026-08-14 15:08:27 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+23:08:27.760 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booting)";
+    "last_booted_at" = "2026-08-14 15:08:27 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+23:08:27.760 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booting)";
+    "last_booted_at" = "2026-08-14 15:08:27 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+23:08:27.760 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booting)";
+    "last_booted_at" = "2026-08-14 15:08:27 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+23:08:27.760 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booting)";
+    "last_booted_at" = "2026-08-14 15:08:27 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+23:08:27.760 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booting)";
+    "last_booted_at" = "2026-08-14 15:08:27 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+23:08:27.760 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booting)";
+    "last_booted_at" = "2026-08-14 15:08:27 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+23:08:27.945 xcodebuild[66074:17145174] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+23:08:27.966 xcodebuild[66074:17144950] 69455E14-E941-4EC5-9502-FC1A5D96E75B: Received sim device notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+23:08:27.966 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+23:08:27.966 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+23:08:27.966 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+23:08:27.966 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+23:08:27.966 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+23:08:27.966 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+23:08:27.966 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+23:08:27.966 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+23:08:27.966 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+23:08:27.966 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+23:08:27.966 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+23:08:27.966 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+23:08:27.966 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+23:08:27.967 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+23:08:27.967 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+23:08:27.967 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+23:08:27.967 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+23:08:27.967 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+23:08:27.967 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+23:08:27.967 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+23:08:27.967 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+23:08:27.967 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+23:08:27.967 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+23:08:27.967 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+23:08:27.967 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+23:08:27.967 xcodebuild[66074:17144950] /Users/tantalum/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "Rillora-Matrix-13-mini (69455E14-E941-4EC5-9502-FC1A5D96E75B, iOS 26.5, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+23:08:34.114 xcodebuild[66074:17144950] Test operation failure: Error Domain=XCTHTestOperationCoordinatorErrorDomain Code=9 "Testing was canceled" UserInfo={NSLocalizedDescription=Testing was canceled}
+23:08:34.116 xcodebuild[66074:17144950] _finishWithError:Error Domain=XCTHTestOperationCoordinatorErrorDomain Code=9 "Testing was canceled" UserInfo={NSLocalizedDescription=Testing was canceled}
+23:08:34.117 xcodebuild[66074:17144950] Current state: testRunnerLaunchSessionHasFinishedReceivingData: NO, delegateBlockQueue.count: 0
+23:08:34.117 xcodebuild[66074:17144950] <XCTHTestOperationCoordinator: 0x974312280>: _considerFlushingDelegateBlockQueue - nothing to flush

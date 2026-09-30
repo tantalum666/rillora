@@ -1,0 +1,288 @@
+{
+  "/RilloraPublicWeb": [
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:69:3)",
+        "...node internals..."
+      ]
+    },
+    {
+      "type": "aws:cdk:stack-tags",
+      "data": [
+        {
+          "key": "Project",
+          "value": "Rillora"
+        },
+        {
+          "key": "Purpose",
+          "value": "PublicInformation"
+        }
+      ]
+    }
+  ],
+  "/RilloraPublicWeb/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C": [
+    {
+      "type": "aws:cdk:is-custom-resource-handler-singleton",
+      "data": true
+    },
+    {
+      "type": "aws:cdk:is-custom-resource-handler-runtime-family",
+      "data": 2
+    }
+  ],
+  "/RilloraPublicWeb/DistributionId": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DistributionId"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new RilloraPublicWebStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-public-web-stack.ts:66:5)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:69:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraPublicWeb/DistributionDomain": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DistributionDomain"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new RilloraPublicWebStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-public-web-stack.ts:67:5)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:69:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraPublicWeb/PublicUrl": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "PublicUrl"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new RilloraPublicWebStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-public-web-stack.ts:68:5)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:69:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraPublicWeb/BucketName": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "BucketName"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new RilloraPublicWebStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-public-web-stack.ts:69:5)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:69:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraPublicWeb/BootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "BootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/RilloraPublicWeb/CheckBootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CheckBootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/RilloraPublicWeb/PublicAssets/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "PublicAssetsACF28B1B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Bucket2 in aws-cdk-lib...",
+        "new RilloraPublicWebStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-public-web-stack.ts:26:20)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:69:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraPublicWeb/Headers/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "HeadersECA0794E"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new ResponseHeadersPolicy2 in aws-cdk-lib...",
+        "new RilloraPublicWebStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-public-web-stack.ts:32:21)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:69:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraPublicWeb/PublicRoutes/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "PublicRoutesC0C4D2B4"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new RilloraPublicWebStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-public-web-stack.ts:42:20)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:69:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraPublicWeb/Website/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "Website32962D0B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Distribution2 in aws-cdk-lib...",
+        "new RilloraPublicWebStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-public-web-stack.ts:46:26)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:69:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraPublicWeb/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new BucketDeployment2 in aws-cdk-lib...",
+        "new RilloraPublicWebStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-public-web-stack.ts:61:5)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:69:3)"
+      ]
+    }
+  ],
+  "/RilloraPublicWeb/CDKMetadata/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CDKMetadata"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/RilloraPublicWeb/PublicAssets/Policy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "PublicAssetsPolicy4B7CAE1B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Bucket2 in aws-cdk-lib...",
+        "new RilloraPublicWebStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-public-web-stack.ts:26:20)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:69:3)"
+      ]
+    }
+  ],
+  "/RilloraPublicWeb/PublicDeployment/AwsCliLayer/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "PublicDeploymentAwsCliLayerE3071F4B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new BucketDeployment2 in aws-cdk-lib...",
+        "new RilloraPublicWebStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-public-web-stack.ts:61:5)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:69:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraPublicWeb/PublicDeployment/CustomResource/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "PublicDeploymentCustomResource947B276F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new BucketDeployment2 in aws-cdk-lib...",
+        "new RilloraPublicWebStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-public-web-stack.ts:61:5)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:69:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraPublicWeb/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/RilloraPublicWeb/Website/Origin1/S3OriginAccessControl/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "WebsiteOrigin1S3OriginAccessControl3D1EB763"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Distribution2 in aws-cdk-lib...",
+        "new RilloraPublicWebStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-public-web-stack.ts:46:26)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:69:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraPublicWeb/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ]
+}

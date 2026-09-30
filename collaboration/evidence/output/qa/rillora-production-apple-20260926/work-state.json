@@ -1,0 +1,99 @@
+{
+  "updatedAt": "2026-09-25T17:42:52.208588+00:00",
+  "phase": "Readback and production StoreKit preparation",
+  "sameWorkflow": true,
+  "fullReadingBaseline": "output/qa/rillora-release-readiness-20260919/full-read-completion.json",
+  "focusedRecovery": [
+    "docs/storekit.md:1-261",
+    "apps/api/src/apple-storekit-adapter.ts:1-432",
+    "apps/api/src/apple-storekit-server-api.ts:1-204",
+    "apps/api/src/storekit-sandbox-intake.ts:1-643"
+  ],
+  "AppleLogin": "Owner completed and actual Rillora app6803957639 distribution page verified",
+  "appState": "1.0 Prepare for Submission, no uploaded build selected, manual release retained",
+  "subscriptions": "group22325627 with two products; annual price and monthly availability readback in progress",
+  "customerActivation": false,
+  "price": "Web88.80; conditional Apple99.99at effective15%or119.99under standard30%; both points available, exact amount/fee not approved or saved.",
+  "annualPurchaseOptions": {
+    "status": "Saved and visible in App Store Connect",
+    "multiseat": false,
+    "channels": [
+      "App Store"
+    ],
+    "productState": "Prepare for Submission",
+    "familySharing": false,
+    "annualAvailabilityCount": 8,
+    "newMonthlyContractEnabled": false
+  },
+  "code": "Production signature/ownership verification and explicit versioned signed-price mapping implemented as isolated modules. Typecheck and18focused tests pass. Not yet wired to API intake, real App Store Server API snapshots or native purchase.",
+  "sources": [
+    "https://github.com/apple/app-store-server-library-node",
+    "https://developer.apple.com/help/app-store-connect/manage-subscriptions/manage-purchase-options-for-auto-renewable-subscriptions"
+  ],
+  "library": "Official GitHub and npm registry both3.1.0; current installed version retained.",
+  "tests": {
+    "focused": 18,
+    "API": 242,
+    "typecheck": true,
+    "build": true,
+    "scope": "Synthetic decoded Apple payloads and explicit price-binding fixtures; not a real purchase or provider signature acceptance"
+  },
+  "priceQuestion": "WITHDRAWN by Owner channel-differentiation correction; do not wait for88.90/88.99/88.00",
+  "monthlyPurchaseOptions": {
+    "status": "Saved and visible in App Store Connect",
+    "multiseat": false,
+    "channels": [
+      "App Store"
+    ],
+    "productState": "Prepare for Submission",
+    "availabilityCount": 0
+  },
+  "streamlinedPurchasing": {
+    "observed": "enabled",
+    "changed": false,
+    "remaining": "Review out-of-app appAccountToken/binding before release"
+  },
+  "remaining": [
+    "Owner annual price choice",
+    "production Server API snapshot and versioned catalog/intake/notifications/retry",
+    "native purchase/restore/finish wiring",
+    "actual Apple lifecycle acceptance",
+    "cross-channel and final release gates"
+  ],
+  "governance": {
+    "focused": "docs/production-apple-20260926.md",
+    "storekit": "docs/storekit.md",
+    "handoff": "docs/handoff.md",
+    "decision": "docs/decision-log.md",
+    "journey": "docs/journey/PROJECT_JOURNEY.md",
+    "readBaseline": "Reused release workflow full-reading record; current StoreKit contract261lines and adapter/intake sources fully read."
+  },
+  "sourceControl": {
+    "checkedAt": "2026-09-25T17:41:08.873514+00:00",
+    "commit": "15f6709f8f116dc6e3b5b381d07625b66b184362",
+    "ci": "https://github.com/tantalum666/rillora/actions/runs/36168352267",
+    "run": 13,
+    "result": "completed successfully",
+    "source": "Authenticated GitHub Actions list shows this exact commit/run; pushed private Rillora repository",
+    "providerSaved": "Both unsubmitted products disallow multiseat/App Store only; annual re-opened confirms persisted state; monthly zero territories",
+    "priceChoice": "Pending; no new price saved"
+  },
+  "validation": {
+    "sourceFiles": 912,
+    "reviewedNonSecrets": 24,
+    "unknownSecretFindings": 0,
+    "markdownFiles": 143,
+    "localLinks": 1363,
+    "missingLinks": 0,
+    "releaseGuards": 21
+  },
+  "boundary": "Verification and price-binding source foundation only. No ordinary production Apple endpoint, Server API snapshot, native purchase/restore, live charge or submission was completed.",
+  "documentationCloseout": {
+    "commit": "92e4f43ab",
+    "pushed": true,
+    "mode": "evidence-only skip-ci; engineering CI13 retained",
+    "worktree": "clean after push",
+    "priceChoice": "still pending"
+  },
+  "correctionRecord": "output/qa/rillora-channel-pricing-correction-20260926/record.json"
+}

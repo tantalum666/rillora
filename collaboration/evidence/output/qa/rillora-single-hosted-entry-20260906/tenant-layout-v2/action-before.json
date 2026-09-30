@@ -1,0 +1,11 @@
+{
+  "name": "Rillora hosted legal acceptance",
+  "runtime": "node22",
+  "supported_triggers": [
+    {
+      "id": "post-login",
+      "version": "v3"
+    }
+  ],
+  "code": "// Deployment substitutes only these public resource identifiers after readback.\nconst IOS_CLIENT_ID = \"HDfmJrHaM08lDAgsygPm7b5OB1aaUhrZ\";\nconst FORM_ID = \"ap_q6BHHzwCtVrjA7nZMvrgAa\";\nconst CLAIM = \"https://rillora.xyz/legal-acceptance\";\nconst CURRENT = Object.freeze({\n  termsVersion: \"terms-2026-08-27-1\",\n  privacyVersion: \"privacy-2026-08-27-1\",\n  consentTextVersion: \"registration-clickwrap-2026-08-24-1\",\n  bundleSha256: \"73d9cb6039b97f72d802e543d03944355e68b2bc59a7f859326ce3236b704d2b\",\n  acceptedTerms: true,\n  acknowledgedPrivacy: true,\n  acceptedElectronicRecords: true,\n});\n\nexports.onExecutePostLogin = async (event, api) => {\n  if (event.client.client_id !== IOS_CLIENT_ID) return;\n  // Existing app versions retain their native affirmative-consent contract.\n  // Only the new direct-hosted entry opts into this migration.\n  if (event.request?.query?.rillora_auth_ui !== \"single-hosted-v1\") return;\n  if (!/^ap_[A-Za-z0-9]+$/.test(FORM_ID)) {\n    api.access.deny(\"Account acknowledgement is not configured.\");\n    return;\n  }\n  // Each interactive login receives an unchecked form. No consent metadata,\n  // password, new M2M credential or vault connection is created here.\n  api.prompt.render(FORM_ID, {\n    fields: { rillora_legal_accepted: false },\n    vars: { rillora_legal_bundle: CURRENT.bundleSha256 },\n  });\n};\n\nexports.onContinuePostLogin = async (event, api) => {\n  if (event.client.client_id !== IOS_CLIENT_ID) return;\n  if (\n    event.prompt?.id !== FORM_ID ||\n    event.prompt?.fields?.rillora_legal_accepted !== true ||\n    event.prompt?.vars?.rillora_legal_bundle !== CURRENT.bundleSha256\n  ) {\n    api.access.deny(\"Accept the current account terms before continuing.\");\n    return;\n  }\n  // Only this transaction's validated legal field can produce the receipt.\n  // The Rillora API remains the acceptance and session system of record.\n  api.accessToken.setCustomClaim(CLAIM, CURRENT);\n};\n"
+}

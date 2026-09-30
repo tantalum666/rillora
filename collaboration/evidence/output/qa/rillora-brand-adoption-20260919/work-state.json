@@ -1,0 +1,74 @@
+{
+  "startedAt": "2026-09-19T15:03:38.266861+00:00",
+  "task": "Adopt selected03 and verify font licensing",
+  "phase": "Complete: selected03 adopted; font licences verified; Web staging and legal Sites6 published; documentation closed",
+  "readEvidenceReuse": "../rillora-release-readiness-20260919/full-read-completion.json",
+  "source03Preserved": true,
+  "ownerApproval": "Exact supplied identity03 board",
+  "deployments": [
+    {
+      "target": "AWS staging Web only",
+      "exit": 0,
+      "httpChecks": "31/31"
+    },
+    {
+      "target": "existing public legal Sites",
+      "version": 6,
+      "status": "succeeded",
+      "httpChecks": "31/31"
+    }
+  ],
+  "applicationTests": [
+    {
+      "Web": 80
+    },
+    {
+      "legalArtifact": 7
+    }
+  ],
+  "docsCloseoutPending": false,
+  "native": {
+    "build": "SUCCEEDED",
+    "seconds": 39.4,
+    "warnings": 0,
+    "errors": 0,
+    "simulator": "EA356940-5220-4AA8-89CF-499C6D5D14E4",
+    "bundle": "com.rillora.ios",
+    "processId": 83765,
+    "AppIconCompiled": true,
+    "homeScreenIconObserved": true,
+    "brandHeadingObserved": true
+  },
+  "web": {
+    "releaseBuild": true,
+    "applicationTests": 80,
+    "legalTests": 7,
+    "legalInitialFailure": "12-asset budget outdated after six bounded logo/icon/licence assets; updated to18 retaining JS/CSS/gzip guards and added full-font-notice assertions",
+    "mixedInitialRun": "87 tests included wrong-mode legal artifact checks;80 application tests passed,3 legal build-shape tests failed before separate legal build",
+    "browser": "CUA browser1/tab20; viewport restored1280; published Site retained; panel display queued",
+    "runtimeConsole": "No error/warn entries observed",
+    "testedViewports": [
+      [
+        1280,
+        720
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        320,
+        740
+      ]
+    ],
+    "flow": "Home -> Guides -> Logo link -> Home; no overflow/header collision at320"
+  },
+  "fontFinding": "Source Serif4 SemiBold/OFL1.1 and Inter/OFL1.1 verified from official authors and local WOFF metadata; full copyright/licence texts bundled. Logo outlines do not require the artwork/app to be OFL.",
+  "legalBuild": "Published as existing legal Sites6; operator-containing compiled artifact remains protected",
+  "appBuild": "Restored from protected .local-secrets/brand-adoption/app-build",
+  "AWS": "STS matched133857166372; existing login works",
+  "updatedAt": "2026-09-20T00:06:30.087584+08:00",
+  "completedAt": "2026-09-20T00:06:30.087584+08:00",
+  "independentEcsListReadback": "Scoped profile list-services returned254; no permission change/retry; current HTTPhealth and Web-onlydiff verified",
+  "nativeIconHashMatches": true
+}

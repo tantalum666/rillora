@@ -1,0 +1,72 @@
+{
+  "checkedAt": "2026-09-10T17:32:55.172249+00:00",
+  "method": "Independent curl HTTPS verification through current system network; no redirect following",
+  "certificateExpiryInspected": false,
+  "guardedCloudRuntimeVerified": false,
+  "checks": [
+    {
+      "id": "public-app",
+      "httpStatus": 200,
+      "expectedStatus": 200,
+      "headerChecks": {
+        "strict-transport-security": true,
+        "content-security-policy": true
+      },
+      "ok": true,
+      "exitCode": 0
+    },
+    {
+      "id": "legal-terms",
+      "httpStatus": 200,
+      "expectedStatus": 200,
+      "headerChecks": {
+        "strict-transport-security": true,
+        "content-security-policy": true
+      },
+      "ok": true,
+      "exitCode": 0
+    },
+    {
+      "id": "legal-private-route-blocked",
+      "httpStatus": 404,
+      "expectedStatus": 404,
+      "headerChecks": {},
+      "ok": true,
+      "exitCode": 0
+    },
+    {
+      "id": "api-live",
+      "httpStatus": 200,
+      "expectedStatus": 200,
+      "headerChecks": {},
+      "ok": true,
+      "exitCode": 0
+    },
+    {
+      "id": "api-ready",
+      "httpStatus": 200,
+      "expectedStatus": 200,
+      "headerChecks": {},
+      "ok": true,
+      "exitCode": 0
+    },
+    {
+      "id": "private-session-blocked",
+      "httpStatus": 401,
+      "expectedStatus": 401,
+      "headerChecks": {
+        "cache-control": true
+      },
+      "ok": true,
+      "exitCode": 0
+    },
+    {
+      "id": "identity-discovery",
+      "httpStatus": 200,
+      "expectedStatus": 200,
+      "headerChecks": {},
+      "ok": true,
+      "exitCode": 0
+    }
+  ]
+}

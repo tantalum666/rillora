@@ -1,0 +1,226 @@
+Stack RilloraProduction
+IAM Statement Changes
+┌───┬───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┬────────┬─────────────────────────────────┬──────────────────────────────────────┬───────────┐
+│   │ Resource                                                                                                                          │ Effect │ Action                          │ Principal                            │ Condition │
+├───┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────┼─────────────────────────────────┼──────────────────────────────────────┼───────────┤
+│ + │ ${Runtime/AppleReviewSecret}                                                                                                      │ Allow  │ secretsmanager:DescribeSecret   │ AWS:${Runtime/ApiTask/TaskRole}      │           │
+│   │                                                                                                                                   │        │ secretsmanager:GetSecretValue   │                                      │           │
+├───┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────┼─────────────────────────────────┼──────────────────────────────────────┼───────────┤
+│ + │ ${Runtime/WebOidcSecret}                                                                                                          │ Allow  │ secretsmanager:DescribeSecret   │ AWS:${Runtime/ApiTask/ExecutionRole} │           │
+│   │                                                                                                                                   │        │ secretsmanager:GetSecretValue   │                                      │           │
+├───┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────┼─────────────────────────────────┼──────────────────────────────────────┼───────────┤
+│ - │ arn:${AWS::Partition}:ecr:eu-central-1:${AWS::AccountId}:repository/cdk-hnb659fds-container-assets-${AWS::AccountId}-eu-central-1 │ Allow  │ ecr:BatchCheckLayerAvailability │ AWS:${Runtime/ApiTask/ExecutionRole} │           │
+│   │                                                                                                                                   │        │ ecr:BatchGetImage               │                                      │           │
+│   │                                                                                                                                   │        │ ecr:GetDownloadUrlForLayer      │                                      │           │
+├───┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────┼─────────────────────────────────┼──────────────────────────────────────┼───────────┤
+│ + │ arn:${AWS::Partition}:ecr:eu-central-1:133857166372:repository/cdk-hnb659fds-container-assets-133857166372-eu-central-1           │ Allow  │ ecr:BatchCheckLayerAvailability │ AWS:${Runtime/ApiTask/ExecutionRole} │           │
+│   │                                                                                                                                   │        │ ecr:BatchGetImage               │                                      │           │
+│   │                                                                                                                                   │        │ ecr:GetDownloadUrlForLayer      │                                      │           │
+└───┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴────────┴─────────────────────────────────┴──────────────────────────────────────┴───────────┘
+(NOTE: There may be security-related changes not in this list. See https://github.com/aws/aws-cdk/issues/1299)
+
+Parameters
+[+] Parameter Runtime/ReviewIdentityDigests RuntimeReviewIdentityDigests0273C88C: {"Type":"String","AllowedPattern":"[a-f0-9]{64}(,[a-f0-9]{64}){0,7}","Description":"Exact issuer/subject SHA256 values of prepared synthetic review identities","NoEcho":true}
+[+] Parameter Runtime/ReviewExpiresAt RuntimeReviewExpiresAtF4A0DBEC: {"Type":"String","AllowedPattern":"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z","Description":"Explicit UTC review access expiry; enforced on every authenticated request"}
+
+Resources
+[~] AWS::ECS::TaskDefinition MigrationTask MigrationTask69EAEF9D replace
+ └─ [~] ContainerDefinitions (requires replacement)
+     └─ @@ -69,7 +69,7 @@
+        [ ] ],
+        [ ] "Essential": true,
+        [ ] "Image": {
+        [-]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:19e9b015d3dd8528e08364e9c6b6b6e72e551d9f827d87c45584549b18b4b35c"
+        [+]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:4fff99dbcd0f568e91cae8390c2e42e7addb4b9ed4f4dcfbf67a76667397be87"
+        [ ] },
+        [ ] "LogConfiguration": {
+        [ ]   "LogDriver": "awslogs",
+[~] AWS::ECS::TaskDefinition RecoveryTask RecoveryTaskD940248B replace
+ └─ [~] ContainerDefinitions (requires replacement)
+     └─ @@ -60,7 +60,7 @@
+        [ ] ],
+        [ ] "Essential": true,
+        [ ] "Image": {
+        [-]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:19e9b015d3dd8528e08364e9c6b6b6e72e551d9f827d87c45584549b18b4b35c"
+        [+]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:4fff99dbcd0f568e91cae8390c2e42e7addb4b9ed4f4dcfbf67a76667397be87"
+        [ ] },
+        [ ] "LogConfiguration": {
+        [ ]   "LogDriver": "awslogs",
+[~] AWS::IAM::Policy Runtime/ApiTask/TaskRole/DefaultPolicy RuntimeApiTaskTaskRoleDefaultPolicy59BF15A6
+ └─ [~] PolicyDocument
+     └─ [~] .Statement:
+         └─ @@ -1,6 +1,16 @@
+            [ ] [
+            [ ]   {
+            [ ]     "Action": [
+            [+]       "secretsmanager:GetSecretValue",
+            [+]       "secretsmanager:DescribeSecret"
+            [+]     ],
+            [+]     "Effect": "Allow",
+            [+]     "Resource": {
+            [+]       "Ref": "RuntimeAppleReviewSecret3201CF49"
+            [+]     }
+            [+]   },
+            [+]   {
+            [+]     "Action": [
+            [ ]       "acm:DescribeCertificate",
+            [ ]       "acm:ExportCertificate"
+            [ ]     ],
+[~] AWS::ECS::TaskDefinition Runtime/ApiTask RuntimeApiTaskCF645D67 replace
+ └─ [~] ContainerDefinitions (requires replacement)
+     └─ @@ -54,7 +54,7 @@
+        [ ] },
+        [ ] {
+        [ ]   "Name": "PRODUCTION_RUNTIME_MODE",
+        [-]   "Value": "closed"
+        [+]   "Value": "review"
+        [ ] },
+        [ ] {
+        [ ]   "Name": "HOST",
+        @@ -126,6 +126,56 @@
+        [ ]   {
+        [ ]     "Name": "ALLOW_STRIPE_PRODUCTION_INTEGRATION",
+        [ ]     "Value": "false"
+        [+]   },
+        [+]   {
+        [+]     "Name": "ALLOW_APPLE_REVIEW_INTEGRATION",
+        [+]     "Value": "true"
+        [+]   },
+        [+]   {
+        [+]     "Name": "APPLE_REVIEW_SECRET_ARN",
+        [+]     "Value": {
+        [+]       "Ref": "RuntimeAppleReviewSecret3201CF49"
+        [+]     }
+        [+]   },
+        [+]   {
+        [+]     "Name": "APPLE_ROOT_CERTIFICATE_DIRECTORY",
+        [+]     "Value": "/app/certificates/apple"
+        [+]   },
+        [+]   {
+        [+]     "Name": "PRODUCTION_REVIEW_IDENTITY_SHA256",
+        [+]     "Value": {
+        [+]       "Ref": "RuntimeReviewIdentityDigests0273C88C"
+        [+]     }
+        [+]   },
+        [+]   {
+        [+]     "Name": "PRODUCTION_REVIEW_EXPIRES_AT",
+        [+]     "Value": {
+        [+]       "Ref": "RuntimeReviewExpiresAtF4A0DBEC"
+        [+]     }
+        [+]   },
+        [+]   {
+        [+]     "Name": "WEB_APP_ORIGIN",
+        [+]     "Value": "https://app.rillora.xyz"
+        [+]   },
+        [+]   {
+        [+]     "Name": "OIDC_ISSUER_URL",
+        [+]     "Value": "https://login.rillora.xyz"
+        [+]   },
+        [+]   {
+        [+]     "Name": "OIDC_CLIENT_ID",
+        [+]     "Value": "EcevpyKt1GELKwkLnVU3aCbh3Ix2SJhz"
+        [+]   },
+        [+]   {
+        [+]     "Name": "OIDC_REDIRECT_URI",
+        [+]     "Value": "https://app.rillora.xyz/api/auth/callback"
+        [+]   },
+        [+]   {
+        [+]     "Name": "NATIVE_OIDC_CLIENT_ID",
+        [+]     "Value": "POpNKTqlr6dHbJZLWPWxhyjg5qPtdrm4"
+        [+]   },
+        [+]   {
+        [+]     "Name": "OIDC_API_AUDIENCE",
+        [+]     "Value": "urn:rillora:production:api"
+        [ ]   }
+        [ ] ],
+        [ ] "Essential": true,
+        @@ -141,23 +191,7 @@
+        [ ]   "Timeout": 5
+        [ ] },
+        [ ] "Image": {
+        [-]   "Fn::Join": [
+        [-]     "",
+        [-]     [
+        [-]       {
+        [-]         "Ref": "AWS::AccountId"
+        [-]       },
+        [-]       ".dkr.ecr.eu-central-1.",
+        [-]       {
+        [-]         "Ref": "AWS::URLSuffix"
+        [-]       },
+        [-]       "/cdk-hnb659fds-container-assets-",
+        [-]       {
+        [-]         "Ref": "AWS::AccountId"
+        [-]       },
+        [-]       "-eu-central-1:4e75f2b26123145a0b6a7e8a04c4e1a33368d9d2e61d7582dfbb0df6b71933bb"
+        [-]     ]
+        [-]   ]
+        [+]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:4fff99dbcd0f568e91cae8390c2e42e7addb4b9ed4f4dcfbf67a76667397be87"
+        [ ] },
+        [ ] "LinuxParameters": {
+        [ ]   "Capabilities": {
+        @@ -213,6 +247,20 @@
+        [ ]           ]
+        [ ]         ]
+        [ ]       }
+        [+]     },
+        [+]     {
+        [+]       "Name": "OIDC_CLIENT_SECRET",
+        [+]       "ValueFrom": {
+        [+]         "Fn::Join": [
+        [+]           "",
+        [+]           [
+        [+]             {
+        [+]               "Ref": "RuntimeWebOidcSecretACD537A8"
+        [+]             },
+        [+]             ":client_secret::"
+        [+]           ]
+        [+]         ]
+        [+]       }
+        [ ]     }
+        [ ]   ]
+        [ ] }
+[~] AWS::IAM::Policy Runtime/ApiTask/ExecutionRole/DefaultPolicy RuntimeApiTaskExecutionRoleDefaultPolicy98299827
+ └─ [~] PolicyDocument
+     └─ [~] .Statement:
+         └─ @@ -14,15 +14,7 @@
+            [ ]       {
+            [ ]         "Ref": "AWS::Partition"
+            [ ]       },
+            [-]       ":ecr:eu-central-1:",
+            [-]       {
+            [-]         "Ref": "AWS::AccountId"
+            [-]       },
+            [-]       ":repository/cdk-hnb659fds-container-assets-",
+            [-]       {
+            [-]         "Ref": "AWS::AccountId"
+            [-]       },
+            [-]       "-eu-central-1"
+            [+]       ":ecr:eu-central-1:133857166372:repository/cdk-hnb659fds-container-assets-133857166372-eu-central-1"
+            [ ]     ]
+            [ ]   ]
+            [ ] }
+            @@ -54,5 +46,15 @@
+            [ ]     "Resource": {
+            [ ]       "Ref": "RuntimeCredential871C86BA"
+            [ ]     }
+            [+]   },
+            [+]   {
+            [+]     "Action": [
+            [+]       "secretsmanager:GetSecretValue",
+            [+]       "secretsmanager:DescribeSecret"
+            [+]     ],
+            [+]     "Effect": "Allow",
+            [+]     "Resource": {
+            [+]       "Ref": "RuntimeWebOidcSecretACD537A8"
+            [+]     }
+            [ ]   }
+            [ ] ]
+
+Outputs
+[~] Output Runtime/ReviewAccess RuntimeReviewAccess8016FD90: {"Value":"disabled"} to {"Value":"identity-allowlist"}
+
+
+
+✨  Number of stacks with differences: 1
+

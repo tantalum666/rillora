@@ -1,0 +1,25 @@
+{
+  "readAt": "2026-09-25T08:25:27.011681+00:00",
+  "artifact": "output/qa/rillora-production-clients-20260925/derived-release/Build/Products/Release-iphonesimulator/Rillora.app",
+  "platform": "Simulator Release, not a signed distribution archive",
+  "publicConfiguration": {
+    "CFBundleIdentifier": "com.rillora.ios",
+    "RilloraAPIBaseURL": "https://app.rillora.xyz/api/v1",
+    "RilloraAuth0Domain": "login.rillora.xyz",
+    "RilloraAuth0ClientID": "[REDACTED_SCANNER_LITERAL]",
+    "RilloraAuth0Audience": "urn:rillora:production:api",
+    "RilloraNativeSessionURL": "https://app.rillora.xyz/api/auth/native/session",
+    "RilloraCustomerAccessEnabled": "NO",
+    "RilloraDevPlannerID": "",
+    "RilloraServiceMarketCode": "GLOBAL_US",
+    "CFBundleIcons": {
+      "CFBundlePrimaryIcon": {
+        "CFBundleIconFiles": [
+          "AppIcon60x60"
+        ],
+        "CFBundleIconName": "AppIcon"
+      }
+    }
+  },
+  "storeKitFixtures": []
+}

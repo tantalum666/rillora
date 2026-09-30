@@ -1,0 +1,540 @@
+
+ RUN  v4.1.11 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/sharing-lifecycle.integration.test.ts (15 tests | 8 failed) 2433ms
+     × serializes concurrent Free reservations and keeps contact creation/incoming access free 384ms
+     × keeps the paid-term version when a later edit occurs before any expiry job/read 125ms
+     × redacts narrowed/removed grants permanently and never backfills new saved content 154ms
+     × requires an explicit included-person choice and does not resume everyone after repurchase 149ms
+     × does not let a pending over-limit invite activate after expiry; choosing it preserves explicit acceptance 121ms
+     × clears saved retrieval immediately on matter privacy, archive and connection revocation 183ms
+     × replaces the Free recipient atomically and rolls back a failed replacement 121ms
+     × captures an existing Free recipient at paid activation before any new edit 141ms
+ ❯ tests/apple-production-intake.integration.test.ts (19 tests | 1 failed) 2482ms
+     × mounts isolated authenticated/CSRF-protected production routes; delivery acknowledgement means durable receipt only 132ms
+ ❯ tests/api.integration.test.ts (50 tests | 3 failed) 1473ms
+     × exchanges an OIDC Code + PKCE transaction for an opaque local session 18ms
+     × requires CSRF proof for cookie-authenticated state changes 5ms
+     × returns a newly registered recipient to the original invitation before explicit acceptance 46ms
+ ❯ tests/family-maintenance.integration.test.ts (14 tests | 14 skipped) 408ms
+ ❯ tests/sharing.integration.test.ts (12 tests | 9 failed) 572ms
+     × previews each exact recipient projection without granting access or exposing other matters 9ms
+     × requires cookie CSRF, a verified invited email and explicit acceptance 15ms
+     × keeps B and C scopes separate and applies field-level detail on the server 16ms
+     × updates/downgrades only the selected connection and rejects stale saves 14ms
+     × exposes typed wallet fields and notes only to the chosen Details recipient 27ms
+     × supports the HttpOnly invitation handoff through a login boundary 22ms
+     × invalidates old links, rejects expired links and atomically consumes concurrent acceptance 22ms
+     × rejects never-disclose/foreign scope and stops access when a person is revoked 32ms
+     × clears grants when an item becomes never-disclose and does not silently reshare it later 13ms
+ ❯ tests/p1-repair.integration.test.ts (11 tests | 1 failed) 511ms
+     × failed provider cleanup remains pending, retries, and retains minimal consent evidence 13ms
+ ❯ tests/email-verification.integration.test.ts (4 tests | 3 failed) 310ms
+     × accepts the saved invitation with the same cookie and receipt after the provider verifies the email 54ms
+     × requires CSRF and refuses caller-selected identity or email fields 6ms
+     × does not revive a session revoked while provider verification is running 5ms
+Managed TLS certificate renewed.
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/family-maintenance.integration.test.ts > Family maintenance — scoped ongoing work
+Error: expected 200 "OK", got 409 "Conflict"
+ ❯ connect tests/family-maintenance.integration.test.ts:41:207
+
+ ❯ tests/family-maintenance.integration.test.ts:59:8
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/26]⎯
+
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 25 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/api.integration.test.ts > Continuity API > exchanges an OIDC Code + PKCE transaction for an opaque local session
+Error: expected 403 "Forbidden", got 409 "Conflict"
+ ❯ tests/api.integration.test.ts:351:88
+    349|     // A real cookie session needs CSRF and separately expiring test e…
+    350|     for (const route of ["checkout", "portal", "checkout/cancel"]) {
+    351|       await agent.post(`/v1/commerce/test/${route}`).send({ billingPer…
+       |                                                                                        ^
+    352|     }
+    353|     const unregisteredTestBilling = await agent.post("/v1/commerce/tes…
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/26]⎯
+
+ FAIL  tests/api.integration.test.ts > Continuity API > requires CSRF proof for cookie-authenticated state changes
+Error: expected 403 "Forbidden", got 409 "Conflict"
+ ❯ tests/api.integration.test.ts:1744:8
+    1742|       .set("Cookie", `continuity_session=[REDACTED_COOKIE]
+    1743|       .send({ lifeEvent: "death" })
+    1744|       .expect(403);
+       |        ^
+    1745|
+    1746|     const simulation = await request(app)
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/26]⎯
+
+ FAIL  tests/api.integration.test.ts > Continuity API > returns a newly registered recipient to the original invitation before explicit acceptance
+Error: expected 200 "OK", got 409 "Conflict"
+ ❯ tests/api.integration.test.ts:2695:163
+    2693|     const cookie = (callback.headers["set-cookie"] as unknown as strin…
+    2694|     const csrf = decodeURIComponent(cookie.split(";")[0]!.split("=")[1…
+    2695|     await recipient.post("/v1/sharing/invitations/accept").set("x-csrf…
+       |                                                                                                                                                                   ^
+    2696|     expect((await recipient.get("/v1/sharing/shared-with-me").expect(2…
+    2697|   });
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/26]⎯
+
+ FAIL  tests/apple-production-intake.integration.test.ts > production Apple durable intake (decoded Apple fixtures + real isolated PostgreSQL) > mounts isolated authenticated/CSRF-protected production routes; delivery acknowledgement means durable receipt only
+Error: expected 403 "Forbidden", got 409 "Conflict"
+ ❯ tests/apple-production-intake.integration.test.ts:354:63
+    352|       hash('synthetic identity reference'), hash(cookie), hash(csrf)]);
+    353|     await request(app).post(endpoint).set('Cookie', `continuity_sessio…
+    354|       .send({ signedTransaction: f.input.signedTransaction }).expect(4…
+       |                                                               ^
+    355|     await request(app).post(endpoint).set('Cookie', `continuity_sessio…
+    356|       .send({ signedTransaction: f.input.signedTransaction }).expect(2…
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/26]⎯
+
+ FAIL  tests/email-verification.integration.test.ts > Email verification without another sign-in > accepts the saved invitation with the same cookie and receipt after the provider verifies the email
+Error: expected 403 "Forbidden", got 409 "Conflict"
+ ❯ tests/email-verification.integration.test.ts:48:29
+     46|     const invitationToken=new URLSearchParams(new URL(invite.invitatio…
+     47|     const attempt=()=>request(app).post("/v1/sharing/invitations/accep…
+     48|     expect((await attempt().expect(403)).body.error.code).toBe("verifi…
+       |                             ^
+     49|     expect((await request(app).post("/v1/sharing/email-verification").…
+     50|     verified=true;
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/26]⎯
+
+ FAIL  tests/email-verification.integration.test.ts > Email verification without another sign-in > requires CSRF and refuses caller-selected identity or email fields
+Error: expected 403 "Forbidden", got 409 "Conflict"
+ ❯ tests/email-verification.integration.test.ts:58:126
+     56|   it("requires CSRF and refuses caller-selected identity or email fiel…
+     57|     const recipient=await actor();proof=async()=>{throw Error("must no…
+     58|     await request(app).post("/v1/sharing/email-verification").set("coo…
+       |                                                                                                                              ^
+     59|     await request(app).post("/v1/sharing/email-verification").set(reci…
+     60|     await request(app).post("/v1/sharing/email-verification").send({})…
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/26]⎯
+
+ FAIL  tests/email-verification.integration.test.ts > Email verification without another sign-in > does not revive a session revoked while provider verification is running
+Error: expected 401 "Unauthorized", got 409 "Conflict"
+ ❯ tests/email-verification.integration.test.ts:71:95
+     69|   it("does not revive a session revoked while provider verification is…
+     70|     const recipient=await actor();proof=async()=>{await pool.query("up…
+     71|     await request(app).post("/v1/sharing/email-verification").set(reci…
+       |                                                                                               ^
+     72|     expect((await pool.query("select verified_email_hash from app.auth…
+     73|   });
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/26]⎯
+
+ FAIL  tests/p1-repair.integration.test.ts > P1 map reliability and export privacy > failed provider cleanup remains pending, retries, and retains minimal consent evidence
+AssertionError: expected 'workspace_identity_required' to be 'account_deletion_unavailable' // Object.is equality
+
+Expected: "account_deletion_unavailable"
+Received: "workspace_identity_required"
+
+ ❯ tests/p1-repair.integration.test.ts:136:39
+    134|   const body={confirmation:"DELETE",receipt,acknowledgesSavedCopies:tr…
+    135|   const unavailable=await request(app).post("/v1/account/delete").set(…
+    136|   expect(unavailable.body.error.code).toBe("account_deletion_unavailab…
+       |                                       ^
+    137|   expect((await pool.query("select status from app.planners where id=$…
+    138|   await request(instance).post("/v1/account/delete").set("cookie",`con…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/26]⎯
+
+ FAIL  tests/sharing-lifecycle.integration.test.ts > Commercial sharing: quotas, paid cutoff and restrictive permissions > serializes concurrent Free reservations and keeps contact creation/incoming access free
+AssertionError: expected 409 to be 200 // Object.is equality
+
+- Expected
++ Received
+
+- 200
++ 409
+
+ ❯ tests/sharing-lifecycle.integration.test.ts:88:47
+     86|     const one = results.find(r => r.status === 201)!;
+     87|     const actor = await recipient(one === results[0] ? "[REDACTED_EMAIL]…
+     88|     expect((await accept(one, actor)).status).toBe(200);
+       |                                               ^
+     89|     expect((await shared(actor)).items).toHaveLength(1);
+     90|     expect((await request(app).get("/v1/sharing/access").set(actor)).b…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/26]⎯
+
+ FAIL  tests/sharing-lifecycle.integration.test.ts > Commercial sharing: quotas, paid cutoff and restrictive permissions > keeps the paid-term version when a later edit occurs before any expiry job/read
+AssertionError: expected 409 to be 200 // Object.is equality
+
+- Expected
++ Received
+
+- 200
++ 409
+
+ ❯ tests/sharing-lifecycle.integration.test.ts:116:54
+    114|   it("keeps the paid-term version when a later edit occurs before any …
+    115|     const entitlement = await family(), actor = await recipient("one@e…
+    116|     expect((await accept(invitation, actor)).status).toBe(200);
+       |                                                      ^
+    117|     await expire(entitlement);
+    118|     const m = (await request(app).get("/v1/matters").set(owner)).body.…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/26]⎯
+
+ FAIL  tests/sharing-lifecycle.integration.test.ts > Commercial sharing: quotas, paid cutoff and restrictive permissions > redacts narrowed/removed grants permanently and never backfills new saved content
+TypeError: Cannot read properties of undefined (reading 'fields')
+ ❯ tests/sharing-lifecycle.integration.test.ts:136:43
+    134|     const id = invitation.body.connection.publicId;
+    135|     await scope(id, "name"); await scope(id, "details");
+    136|     expect((await shared(actor)).items[0].fields).toEqual({ title: doc…
+       |                                           ^
+    137|     await scope(id, null); await scope(id, "details");
+    138|     expect((await shared(actor)).items).toEqual([]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/26]⎯
+
+ FAIL  tests/sharing-lifecycle.integration.test.ts > Commercial sharing: quotas, paid cutoff and restrictive permissions > requires an explicit included-person choice and does not resume everyone after repurchase
+TypeError: Cannot read properties of undefined (reading 'accessMode')
+ ❯ tests/sharing-lifecycle.integration.test.ts:146:39
+    144|     await expire(entitlement);
+    145|     expect((await choose(bi.body.connection.publicId, true)).status).t…
+    146|     expect((await shared(b)).items[0].accessMode).toBe("live");
+       |                                       ^
+    147|     expect((await shared(c)).items[0].accessMode).toBe("saved");
+    148|     await family();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/26]⎯
+
+ FAIL  tests/sharing-lifecycle.integration.test.ts > Commercial sharing: quotas, paid cutoff and restrictive permissions > does not let a pending over-limit invite activate after expiry; choosing it preserves explicit acceptance
+AssertionError: expected 'workspace_identity_required' to be 'sharing_updates_paused' // Object.is equality
+
+Expected: "sharing_updates_paused"
+Received: "workspace_identity_required"
+
+ ❯ tests/sharing-lifecycle.integration.test.ts:157:63
+    155|     const entitlement = await family(), actor = await recipient("one@e…
+    156|     await expire(entitlement);
+    157|     expect((await accept(invitation, actor)).body.error.code).toBe("sh…
+       |                                                               ^
+    158|     expect((await choose(invitation.body.connection.publicId, true)).s…
+    159|     expect((await shared(actor)).items).toHaveLength(0);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/26]⎯
+
+ FAIL  tests/sharing-lifecycle.integration.test.ts > Commercial sharing: quotas, paid cutoff and restrictive permissions > clears saved retrieval immediately on matter privacy, archive and connection revocation
+AssertionError: expected [] to have a length of 1 but got +0
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/sharing-lifecycle.integration.test.ts:205:41
+    203|     const entitlement = await family(), actor = await recipient("one@e…
+    204|     await accept(invitation, actor); await expire(entitlement);
+    205|     expect((await shared(actor)).items).toHaveLength(1);
+       |                                         ^
+    206|     await pool.query("update app.matter_items set desired_outcome='nev…
+    207|     await pool.query("update app.matter_items set desired_outcome='not…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/26]⎯
+
+ FAIL  tests/sharing-lifecycle.integration.test.ts > Commercial sharing: quotas, paid cutoff and restrictive permissions > replaces the Free recipient atomically and rolls back a failed replacement
+TypeError: Cannot read properties of undefined (reading 'accessMode')
+ ❯ tests/sharing-lifecycle.integration.test.ts:221:43
+    219|     const input = { personPublicId: p, email: "two@example.test", repl…
+    220|     await request(app).post("/v1/sharing/connections").set(owner).send…
+    221|     expect((await shared(actor)).items[0].accessMode).toBe("live");
+       |                                           ^
+    222|     expect((await access()).version).toBe(a.version);
+    223|     await request(app).post("/v1/sharing/connections").set(owner).send…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/26]⎯
+
+ FAIL  tests/sharing-lifecycle.integration.test.ts > Commercial sharing: quotas, paid cutoff and restrictive permissions > captures an existing Free recipient at paid activation before any new edit
+AssertionError: expected undefined to match object { accessMode: 'saved', …(1) }
+
+- Expected:
+{
+  "accessMode": "saved",
+  "fields": {
+    "notes": "Private paid-term note",
+  },
+}
+
++ Received:
+undefined
+
+ ❯ tests/sharing-lifecycle.integration.test.ts:245:40
+    243|     await expire(entitlement);
+    244|     expect((await choose(ci.body.connection.publicId, true)).status).t…
+    245|     expect((await shared(b)).items[0]).toMatchObject({ accessMode: "sa…
+       |                                        ^
+    246|     expect((await shared(c)).items[0].accessMode).toBe("live");
+    247|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/26]⎯
+
+ FAIL  tests/sharing.integration.test.ts > Account-bound directed sharing > previews each exact recipient projection without granting access or exposing other matters
+Error: expected 403 "Forbidden", got 409 "Conflict"
+ ❯ tests/sharing.integration.test.ts:81:120
+     79|   it("previews each exact recipient projection without granting access…
+     80|     await request(app).post("/v1/sharing/preview").send({ grants: [] }…
+     81|     await request(app).post("/v1/sharing/preview").set("cookie", `cont…
+       |                                                                                                                        ^
+     82|     for (const detailLevel of ["name", "directions", "details"] as con…
+     83|       const grants = [{ matterPublicId: friend, detailLevel }];
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/26]⎯
+
+ FAIL  tests/sharing.integration.test.ts > Account-bound directed sharing > requires cookie CSRF, a verified invited email and explicit acceptance
+Error: expected 403 "Forbidden", got 409 "Conflict"
+ ❯ tests/sharing.integration.test.ts:116:166
+    114|   it("requires cookie CSRF, a verified invited email and explicit acce…
+    115|     const invite = await invitation();
+    116|     await request(app).post("/v1/sharing/invitations/accept").set("coo…
+       |                                                                                                                                                                      ^
+    117|     expect((await accept(invite, C)).body.error.code).toBe("invitation…
+    118|     expect((await accept(invite, U)).body.error.code).toBe("verified_e…
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/26]⎯
+
+ FAIL  tests/sharing.integration.test.ts > Account-bound directed sharing > keeps B and C scopes separate and applies field-level detail on the server
+AssertionError: expected 409 to be 200 // Object.is equality
+
+- Expected
++ Received
+
+- 200
++ 409
+
+ ❯ tests/sharing.integration.test.ts:130:46
+    128|   it("keeps B and C scopes separate and applies field-level detail on …
+    129|     const invite = await invitation("c@example.test", [{ matterPublicI…
+    130|     expect((await accept(invite, C)).status).toBe(200);
+       |                                              ^
+    131|     const bData = await shared(B); const cData = await shared(C);
+    132|     expect(bData.items.some((item: { matterPublicId: string }) => item…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/26]⎯
+
+ FAIL  tests/sharing.integration.test.ts > Account-bound directed sharing > updates/downgrades only the selected connection and rejects stale saves
+AssertionError: expected 409 to be 200 // Object.is equality
+
+- Expected
++ Received
+
+- 200
++ 409
+
+ ❯ tests/sharing.integration.test.ts:141:69
+    139|   it("updates/downgrades only the selected connection and rejects stal…
+    140|     const invite = await invitation("b@example.test", [{ matterPublicI…
+    141|     await accept(invite).then((response) => expect(response.status).to…
+       |                                                                     ^
+    142|     let items = (await shared()).items.filter((item: { connectionPubli…
+    143|     expect(items[0].fields.accountHint).toBe("ending 42");
+ ❯ tests/sharing.integration.test.ts:141:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/26]⎯
+
+ FAIL  tests/sharing.integration.test.ts > Account-bound directed sharing > exposes typed wallet fields and notes only to the chosen Details recipient
+AssertionError: expected 409 to be 200 // Object.is equality
+
+- Expected
++ Received
+
+- 200
++ 409
+
+ ❯ tests/sharing.integration.test.ts:159:47
+    157|     const bInvite = await invitation("b@example.test", [{ matterPublic…
+    158|     const cInvite = await invitation("c@example.test", [{ matterPublic…
+    159|     expect((await accept(bInvite, B)).status).toBe(200); expect((await…
+       |                                               ^
+    160|     const bItem = (await shared(B)).items.find((item: { matterPublicId…
+    161|     const cItem = (await shared(C)).items.find((item: { matterPublicId…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/26]⎯
+
+ FAIL  tests/sharing.integration.test.ts > Account-bound directed sharing > supports the HttpOnly invitation handoff through a login boundary
+Error: expected 200 "OK", got 409 "Conflict"
+ ❯ tests/sharing.integration.test.ts:181:96
+    179|     await request(app).get(`/sharing/invitations/${invite.publicId}`).…
+    180|     await request(app).post("/v1/sharing/invitations/accept").set("coo…
+    181|       .set("x-csrf-token", csrf).send({ invitationPublicId: invite.pub…
+       |                                                                                                ^
+    182|   });
+    183|
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[23/26]⎯
+
+ FAIL  tests/sharing.integration.test.ts > Account-bound directed sharing > invalidates old links, rejects expired links and atomically consumes concurrent acceptance
+AssertionError: expected 409 to be 403 // Object.is equality
+
+- Expected
++ Received
+
+- 403
++ 409
+
+ ❯ tests/sharing.integration.test.ts:187:43
+    185|     const invite = await invitation();
+    186|     const changed = await request(app).post(`/v1/sharing/connections/$…
+    187|     expect((await accept(invite)).status).toBe(403);
+       |                                           ^
+    188|     const fresh = { token: new URLSearchParams(new URL(changed.body.in…
+    189|     const results = await Promise.all([accept(fresh), accept(fresh), a…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[24/26]⎯
+
+ FAIL  tests/sharing.integration.test.ts > Account-bound directed sharing > rejects never-disclose/foreign scope and stops access when a person is revoked
+AssertionError: expected 409 to be 403 // Object.is equality
+
+- Expected
++ Received
+
+- 403
++ 409
+
+ ❯ tests/sharing.integration.test.ts:204:43
+    202|     await request(app).patch(`/v1/trusted-contacts/${invite.personPubl…
+    203|     expect((await shared()).connections.some((item: { publicId: string…
+    204|     expect((await accept(invite)).status).toBe(403);
+       |                                           ^
+    205|   });
+    206|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[25/26]⎯
+
+ FAIL  tests/sharing.integration.test.ts > Account-bound directed sharing > clears grants when an item becomes never-disclose and does not silently reshare it later
+AssertionError: expected 409 to be 200 // Object.is equality
+
+- Expected
++ Received
+
+- 200
++ 409
+
+ ❯ tests/sharing.integration.test.ts:216:69
+    214|   it("clears grants when an item becomes never-disclose and does not s…
+    215|     const invite = await invitation("b@example.test", [{ matterPublicI…
+    216|     await accept(invite).then((response) => expect(response.status).to…
+       |                                                                     ^
+    217|     await request(app).patch(`/v1/matters/${secret}`).set(owner).send(…
+    218|     expect((await shared()).items.some((item: { matterPublicId: string…
+ ❯ tests/sharing.integration.test.ts:216:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[26/26]⎯
+
+
+ Test Files  7 failed | 35 passed (42)
+      Tests  25 failed | 309 passed | 14 skipped (348)
+   Start at  13:30:43
+   Duration  32.36s (transform 617ms, setup 1.12s, import 6.97s, tests 19.40s, environment 2ms)
+

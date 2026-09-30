@@ -1,0 +1,35 @@
+
+ RUN  v4.1.11 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/private-content.integration.test.ts (10 tests | 1 failed) 824ms
+     × revocation denies future recipient reads and key resolution 28ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/private-content.integration.test.ts > Application-encrypted content and authorization > revocation denies future recipient reads and key resolution
+Error: expected 403 "Forbidden", got 503 "Service Unavailable"
+ ❯ tests/private-content.integration.test.ts:153:98
+    151|   expect(result.values).toEqual([]);
+    152|   const unavailable=await request(app).post(`/v1/maintenance/tasks/${r…
+    153|    .send({expectedVersion:1,response:'suggested',proposal:{locationHin…
+       |                                                                                                  ^
+    154|   expect(unavailable.body.error.code).toBe('review_unavailable');
+    155|  });
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 9 passed (10)
+   Start at  10:40:29
+   Duration  1.74s (transform 274ms, setup 41ms, import 738ms, tests 824ms, environment 0ms)
+

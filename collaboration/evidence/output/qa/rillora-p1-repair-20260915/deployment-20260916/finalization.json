@@ -1,0 +1,34 @@
+{
+  "closedAt": "2026-09-16T11:24:15.376746+08:00",
+  "implementation": "P1 repaired, deployed and accepted in synthetic staging",
+  "codeHotfix": [
+    "apps/api/src/account-data-routes.ts",
+    "apps/api/migrations/0047_map_import_setup_permissions.sql",
+    "apps/api/tests/p1-repair.integration.test.ts"
+  ],
+  "focalDocs": [
+    "docs/p1-reliability-repair-20260915.md",
+    "docs/account-matter-ux.md",
+    "docs/start-here-export.md",
+    "docs/platform-contract.md",
+    "docs/public-legal-pages.md",
+    "docs/legal-candidate-zh.md",
+    "docs/monetization.md",
+    "docs/solo-operations-and-portability.md",
+    "docs/quality-gates.md",
+    "SECURITY.md",
+    "infra/aws/README.md"
+  ],
+  "decision": "Appended September16 deployed acceptance and import correction",
+  "journey": "Appended goal/attempt/changed judgment/results/remaining scope",
+  "handoff": "Current state has one next step: UX07\u201322 task architecture; prior deployment handoff archived HISTORICAL",
+  "checks": "148 API;36 HTTPS;25 legal;8 authenticated functional chains+2 cleanup;5 migration checksums;normal native current build/run",
+  "readContinuity": "Reuse existing complete-read record; no repeated whole-repository body-read claim",
+  "markdownLinks": {
+    "checkedAt": "2026-09-16T11:22:54.889739+08:00",
+    "markdownFiles": 73,
+    "relativeLinks": 625,
+    "missing": []
+  },
+  "remaining": "Real user provider/consent ceremony, Apple upstream revocation, physical VoiceOver, UX07\u201322 and paid-market lifecycle remain open."
+}

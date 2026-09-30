@@ -1,0 +1,412 @@
+[
+  {
+    "key": "rillora_deep_motion_test",
+    "result": {
+      "summary": {
+        "status": "SUCCEEDED",
+        "durationMs": 96080,
+        "counts": {
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0
+        },
+        "target": "simulator"
+      },
+      "artifacts": {
+        "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-09-09T12-45-27-412Z_pid71729_22ae795e.log",
+        "xcresultPath": "output/qa/rillora-public-motion-20260909/deep-motion-transitions.xcresult",
+        "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-09-09T12-45-27-413Z_pid71729_93fa35d7.xctestproducts"
+      },
+      "tests": {
+        "selected": [
+          "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testEditorSectionsKeepTheSameUnsavedDraft",
+          "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testRehearsalSwitchClearsOldResultAndPolicyActionsAdvance"
+        ],
+        "discovered": {
+          "total": 2,
+          "items": [
+            "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testEditorSectionsKeepTheSameUnsavedDraft",
+            "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testRehearsalSwitchClearsOldResultAndPolicyActionsAdvance"
+          ]
+        }
+      },
+      "diagnostics": {
+        "warnings": [],
+        "errors": [],
+        "testFailures": []
+      },
+      "testCases": [
+        {
+          "suite": "RilloraLayoutMatrixTests",
+          "test": "testEditorSectionsKeepTheSameUnsavedDraft",
+          "status": "passed",
+          "durationMs": 28532
+        },
+        {
+          "suite": "RilloraLayoutMatrixTests",
+          "test": "testRehearsalSwitchClearsOldResultAndPolicyActionsAdvance",
+          "status": "passed",
+          "durationMs": 42352
+        }
+      ]
+    }
+  },
+  {
+    "key": "rillora_depth_accessibility_tests",
+    "result": {
+      "summary": {
+        "status": "FAILED",
+        "durationMs": 217056,
+        "counts": {
+          "passed": 4,
+          "failed": 2,
+          "skipped": 0
+        },
+        "target": "simulator"
+      },
+      "artifacts": {
+        "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-09-09T13-01-22-883Z_pid71729_573af50c.log",
+        "xcresultPath": "output/qa/rillora-public-motion-20260909/depth-accessibility-guides.xcresult",
+        "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-09-09T13-01-22-883Z_pid71729_ed2bd72b.xctestproducts"
+      },
+      "tests": {
+        "selected": [
+          "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testDeepTasksSupportLargeTextAndReducedMotion",
+          "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testEmptyMapAndOptionalGuideRemainUseful",
+          "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testEveryOfficialGuideAndItsDetailsRemainReachable",
+          "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testLargeTextEditorsAndRoleScope",
+          "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testOrientationChangeKeepsRootsReachable",
+          "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testPrivateIntentsOpenHostedAuthenticationAndCancelBackToSource"
+        ],
+        "discovered": {
+          "total": 6,
+          "items": [
+            "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testDeepTasksSupportLargeTextAndReducedMotion",
+            "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testEmptyMapAndOptionalGuideRemainUseful",
+            "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testEveryOfficialGuideAndItsDetailsRemainReachable",
+            "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testLargeTextEditorsAndRoleScope",
+            "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testOrientationChangeKeepsRootsReachable",
+            "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testPrivateIntentsOpenHostedAuthenticationAndCancelBackToSource"
+          ]
+        }
+      },
+      "diagnostics": {
+        "warnings": [],
+        "errors": [],
+        "testFailures": [
+          {
+            "suite": "RilloraLayoutMatrixTests",
+            "test": "testDeepTasksSupportLargeTextAndReducedMotion",
+            "message": "XCTAssertGreaterThanOrEqual failed: (\"22.0\") is less than (\"44.0\") - Matter name is shorter than the expected native control height",
+            "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraLayoutMatrixTests/RilloraLayoutMatrixTests.swift:924"
+          },
+          {
+            "suite": "RilloraLayoutMatrixTests",
+            "test": "testLargeTextEditorsAndRoleScope",
+            "message": "XCTAssertGreaterThanOrEqual failed: (\"22.0\") is less than (\"44.0\") - Matter name is shorter than the expected native control height",
+            "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraLayoutMatrixTests/RilloraLayoutMatrixTests.swift:924"
+          }
+        ]
+      },
+      "testCases": [
+        {
+          "suite": "RilloraLayoutMatrixTests",
+          "test": "testDeepTasksSupportLargeTextAndReducedMotion",
+          "status": "failed",
+          "durationMs": 10801
+        },
+        {
+          "suite": "RilloraLayoutMatrixTests",
+          "test": "testEmptyMapAndOptionalGuideRemainUseful",
+          "status": "passed",
+          "durationMs": 26190
+        },
+        {
+          "suite": "RilloraLayoutMatrixTests",
+          "test": "testEveryOfficialGuideAndItsDetailsRemainReachable",
+          "status": "passed",
+          "durationMs": 102467
+        },
+        {
+          "suite": "RilloraLayoutMatrixTests",
+          "test": "testLargeTextEditorsAndRoleScope",
+          "status": "failed",
+          "durationMs": 14524
+        },
+        {
+          "suite": "RilloraLayoutMatrixTests",
+          "test": "testOrientationChangeKeepsRootsReachable",
+          "status": "passed",
+          "durationMs": 19236
+        },
+        {
+          "suite": "RilloraLayoutMatrixTests",
+          "test": "testPrivateIntentsOpenHostedAuthenticationAndCancelBackToSource",
+          "status": "passed",
+          "durationMs": 26320
+        }
+      ]
+    }
+  },
+  {
+    "key": "rillora_final_touch_depth",
+    "result": {
+      "summary": {
+        "status": "SUCCEEDED",
+        "durationMs": 176476,
+        "counts": {
+          "passed": 3,
+          "failed": 0,
+          "skipped": 0
+        },
+        "target": "simulator"
+      },
+      "artifacts": {
+        "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-09-09T13-10-06-439Z_pid71729_2124ede3.log",
+        "xcresultPath": "output/qa/rillora-public-motion-20260909/final-touch-and-depth.xcresult",
+        "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-09-09T13-10-06-439Z_pid71729_25825136.xctestproducts"
+      },
+      "tests": {
+        "selected": [
+          "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testDeepTasksSupportLargeTextAndReducedMotion",
+          "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testLargeTextEditorsAndRoleScope",
+          "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testRehearsalSwitchClearsOldResultAndPolicyActionsAdvance"
+        ],
+        "discovered": {
+          "total": 3,
+          "items": [
+            "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testDeepTasksSupportLargeTextAndReducedMotion",
+            "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testLargeTextEditorsAndRoleScope",
+            "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testRehearsalSwitchClearsOldResultAndPolicyActionsAdvance"
+          ]
+        }
+      },
+      "diagnostics": {
+        "warnings": [],
+        "errors": [],
+        "testFailures": []
+      },
+      "testCases": [
+        {
+          "suite": "RilloraLayoutMatrixTests",
+          "test": "testDeepTasksSupportLargeTextAndReducedMotion",
+          "status": "passed",
+          "durationMs": 58711
+        },
+        {
+          "suite": "RilloraLayoutMatrixTests",
+          "test": "testLargeTextEditorsAndRoleScope",
+          "status": "passed",
+          "durationMs": 65512
+        },
+        {
+          "suite": "RilloraLayoutMatrixTests",
+          "test": "testRehearsalSwitchClearsOldResultAndPolicyActionsAdvance",
+          "status": "passed",
+          "durationMs": 39162
+        }
+      ]
+    }
+  },
+  {
+    "key": "rillora_sheet_accessibility_key",
+    "result": {
+      "summary": {
+        "status": "FAILED",
+        "durationMs": 182103,
+        "counts": {
+          "passed": 2,
+          "failed": 1,
+          "skipped": 0
+        },
+        "target": "simulator"
+      },
+      "artifacts": {
+        "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-09-09T13-15-29-752Z_pid71729_ca5c7828.log",
+        "xcresultPath": "output/qa/rillora-public-motion-20260909/sheet-accessibility-and-key.xcresult",
+        "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-09-09T13-15-29-752Z_pid71729_4437d71f.xctestproducts"
+      },
+      "tests": {
+        "selected": [
+          "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testDeepTasksSupportLargeTextAndReducedMotion",
+          "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testEncryptedGuideKeepsRecoveryKeyUntilExplicitExit",
+          "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testLargeTextEditorsAndRoleScope"
+        ],
+        "discovered": {
+          "total": 3,
+          "items": [
+            "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testDeepTasksSupportLargeTextAndReducedMotion",
+            "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testEncryptedGuideKeepsRecoveryKeyUntilExplicitExit",
+            "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testLargeTextEditorsAndRoleScope"
+          ]
+        }
+      },
+      "diagnostics": {
+        "warnings": [],
+        "errors": [],
+        "testFailures": [
+          {
+            "suite": "RilloraLayoutMatrixTests",
+            "test": "testEncryptedGuideKeepsRecoveryKeyUntilExplicitExit",
+            "message": "XCTAssertTrue failed",
+            "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraLayoutMatrixTests/RilloraLayoutMatrixTests.swift:714"
+          }
+        ]
+      },
+      "testCases": [
+        {
+          "suite": "RilloraLayoutMatrixTests",
+          "test": "testDeepTasksSupportLargeTextAndReducedMotion",
+          "status": "passed",
+          "durationMs": 57719
+        },
+        {
+          "suite": "RilloraLayoutMatrixTests",
+          "test": "testEncryptedGuideKeepsRecoveryKeyUntilExplicitExit",
+          "status": "failed",
+          "durationMs": 44780
+        },
+        {
+          "suite": "RilloraLayoutMatrixTests",
+          "test": "testLargeTextEditorsAndRoleScope",
+          "status": "passed",
+          "durationMs": 65878
+        }
+      ]
+    }
+  },
+  {
+    "key": "rillora_final_interactions",
+    "result": {
+      "summary": {
+        "status": "FAILED",
+        "durationMs": 96114,
+        "counts": {
+          "passed": 2,
+          "failed": 1,
+          "skipped": 0
+        },
+        "target": "simulator"
+      },
+      "artifacts": {
+        "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-09-09T13-22-06-183Z_pid71729_21c86566.log",
+        "xcresultPath": "output/qa/rillora-public-motion-20260909/final-interactions.xcresult",
+        "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-09-09T13-22-06-183Z_pid71729_ffb4b8b4.xctestproducts"
+      },
+      "tests": {
+        "selected": [
+          "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testEncryptedGuideKeepsRecoveryKeyUntilExplicitExit",
+          "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testPublicExplorerAndCategoriesStayOutsideAuthentication",
+          "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testRehearsalSwitchClearsOldResultAndPolicyActionsAdvance"
+        ],
+        "discovered": {
+          "total": 3,
+          "items": [
+            "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testEncryptedGuideKeepsRecoveryKeyUntilExplicitExit",
+            "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testPublicExplorerAndCategoriesStayOutsideAuthentication",
+            "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testRehearsalSwitchClearsOldResultAndPolicyActionsAdvance"
+          ]
+        }
+      },
+      "diagnostics": {
+        "warnings": [],
+        "errors": [],
+        "testFailures": [
+          {
+            "suite": "RilloraLayoutMatrixTests",
+            "test": "testEncryptedGuideKeepsRecoveryKeyUntilExplicitExit",
+            "message": "XCTAssertEqual failed: (\"Optional(\"1\")\") is not equal to (\"Optional(\"Agreed\")\")",
+            "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraLayoutMatrixTests/RilloraLayoutMatrixTests.swift:709"
+          }
+        ]
+      },
+      "testCases": [
+        {
+          "suite": "RilloraLayoutMatrixTests",
+          "test": "testEncryptedGuideKeepsRecoveryKeyUntilExplicitExit",
+          "status": "failed",
+          "durationMs": 22235
+        },
+        {
+          "suite": "RilloraLayoutMatrixTests",
+          "test": "testPublicExplorerAndCategoriesStayOutsideAuthentication",
+          "status": "passed",
+          "durationMs": 19276
+        },
+        {
+          "suite": "RilloraLayoutMatrixTests",
+          "test": "testRehearsalSwitchClearsOldResultAndPolicyActionsAdvance",
+          "status": "passed",
+          "durationMs": 39497
+        }
+      ]
+    }
+  },
+  {
+    "key": "rillora_recovery_key_verified",
+    "result": {
+      "summary": {
+        "status": "SUCCEEDED",
+        "durationMs": 66261,
+        "counts": {
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0
+        },
+        "target": "simulator"
+      },
+      "artifacts": {
+        "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-09-09T13-30-52-726Z_pid71729_c085c7e1.log",
+        "xcresultPath": "output/qa/rillora-public-motion-20260909/recovery-key-verified.xcresult",
+        "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-09-09T13-30-52-727Z_pid71729_65fef4d5.xctestproducts"
+      },
+      "tests": {
+        "selected": [
+          "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testEncryptedGuideKeepsRecoveryKeyUntilExplicitExit"
+        ],
+        "discovered": {
+          "total": 1,
+          "items": [
+            "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testEncryptedGuideKeepsRecoveryKeyUntilExplicitExit"
+          ]
+        }
+      },
+      "diagnostics": {
+        "warnings": [],
+        "errors": [],
+        "testFailures": []
+      },
+      "testCases": [
+        {
+          "suite": "RilloraLayoutMatrixTests",
+          "test": "testEncryptedGuideKeepsRecoveryKeyUntilExplicitExit",
+          "status": "passed",
+          "durationMs": 45266
+        }
+      ]
+    }
+  },
+  {
+    "key": "rillora_normal_build_restored",
+    "result": {
+      "summary": {
+        "status": "SUCCEEDED",
+        "durationMs": 17369,
+        "target": "simulator"
+      },
+      "artifacts": {
+        "appPath": "/tmp/rillora-public-motion-20260909-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app",
+        "bundleId": "com.rillora.ios",
+        "processId": 25099,
+        "simulatorId": "EA356940-5220-4AA8-89CF-499C6D5D14E4",
+        "buildLogPath": "/Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/build_run_sim_2026-09-09T13-34-10-246Z_pid71729_bb334696.log",
+        "runtimeLogPath": "/Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/com.rillora.ios_2026-09-09T13-34-25-590Z_helperpid25076_ownerpid71729_6a3d6c5b.log",
+        "osLogPath": "/Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/com.rillora.ios_oslog_2026-09-09T13-34-27-569Z_helperpid25185_ownerpid71729_b89de55e.log"
+      },
+      "diagnostics": {
+        "warnings": [],
+        "errors": []
+      }
+    }
+  }
+]

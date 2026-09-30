@@ -1,0 +1,18 @@
+{
+  "scope": "actual local Chromium, isolated synthetic map",
+  "passed": [
+    "Settings survives refresh",
+    "Matter search and filter survive refresh",
+    "Back then Keep editing retains Notes",
+    "Back then Discard closes form",
+    "Forward opens original saved content",
+    "Close returns to list"
+  ],
+  "not_covered": [
+    "native full invitation acceptance",
+    "foreground remote revocation",
+    "scrolled nested sharing return",
+    "staging deployment"
+  ],
+  "transient_tool_failure": "Stale Playwright ref after reload was discarded; successful scripted run used current role-based locators."
+}

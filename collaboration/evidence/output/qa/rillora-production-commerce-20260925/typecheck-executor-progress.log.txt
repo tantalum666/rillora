@@ -1,0 +1,6 @@
+
+> continuity-api@0.1.0 typecheck
+> tsc -p tsconfig.json --noEmit
+
+src/stripe-commerce-executor.ts(426,43): error TS2304: Cannot find name 'assertProductionSalesReady'.
+src/stripe-commerce-executor.ts(577,11): error TS2552: Cannot find name 'savePurchaseConsent'. Did you mean 'purchaseConsent'?

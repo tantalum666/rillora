@@ -1,0 +1,63 @@
+{
+  "at": "2026-09-28T14:40:57.985197+00:00",
+  "stage": "Completed: WWW and LegalSites8 published and navigation verified",
+  "sourceChanges": "Marketing only plus one legal-publication footer link. App/API/native unchanged.",
+  "tests": {
+    "web": 102,
+    "infra": 2,
+    "legalSite": 7,
+    "infraTypecheck": true
+  },
+  "referenceDimensions": [
+    1435,
+    1096
+  ],
+  "readingManifest": "../full-read.json",
+  "initialFullReadReused": true,
+  "currentBrief": "Owner screenshot refinements and latest instruction placing notices under legal information",
+  "legalSiteVersion": {
+    "id": "appgprj_6a98e258d72c81919ee18e46d37cfdbf~appgver_713f05a254ac819180382eb31cb0762a",
+    "number": 8,
+    "sourceCommit": "73f6ce7814858c4ed77c4b91985058dacbeec1f1",
+    "archive": "legal-sites.tar.gz"
+  },
+  "pending": [],
+  "sourceCI": {
+    "checkedAt": "2026-09-28T14:40:57.985197+00:00",
+    "implementationCommit": "6177d6e50",
+    "implementationRun": 22,
+    "implementationStatus": "success",
+    "finalEngineeringCommit": "b54d7342dae31e34b6d32044c0466de1e7e3ba5b",
+    "run": 23,
+    "status": "success",
+    "url": "https://github.com/tantalum666/rillora/actions/runs/36436946592",
+    "evidence": "Authenticated Chrome Actions label for exact matching commit title; CLI Actions scope unchanged"
+  },
+  "sourceScan": {
+    "fileCount": 1016,
+    "reviewedNonSecrets": 25,
+    "unreviewed": 0
+  },
+  "documentation": {
+    "files": 154,
+    "localLinks": 1514,
+    "missing": 0
+  },
+  "online": {
+    "public": "https://www.rillora.xyz",
+    "notices": "https://www.rillora.xyz/legal/licenses",
+    "termsNoticeLink": "verified actual click from legal.rillora.xyz/terms to public notices",
+    "anchor": {
+      "url": "https://www.rillora.xyz/product#sharing",
+      "top": 23.953125,
+      "focus": "sharing"
+    },
+    "themes": "public light/dark media changes retain selected recipient; temporary overrides reset"
+  },
+  "documentationCommit": "2ae2ebc48",
+  "documentationPushed": true,
+  "temporaryBrowserOverridesReset": true,
+  "localPreviewStopped": true,
+  "workingTreeClean": true,
+  "liveBrowserErrors": []
+}

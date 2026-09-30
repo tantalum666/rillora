@@ -1,0 +1,51 @@
+Stack RilloraProduction
+Resources
+[~] AWS::ECS::TaskDefinition MigrationTask MigrationTask69EAEF9D replace
+ └─ [~] ContainerDefinitions (requires replacement)
+     └─ @@ -69,7 +69,7 @@
+        [ ] ],
+        [ ] "Essential": true,
+        [ ] "Image": {
+        [-]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:4fff99dbcd0f568e91cae8390c2e42e7addb4b9ed4f4dcfbf67a76667397be87"
+        [+]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:9996bef8e9f3888c9c8c2a320cfaaf13802f2c81092b998ba321ebee4460079c"
+        [ ] },
+        [ ] "LogConfiguration": {
+        [ ]   "LogDriver": "awslogs",
+[~] AWS::ECS::TaskDefinition RecoveryTask RecoveryTaskD940248B replace
+ └─ [~] ContainerDefinitions (requires replacement)
+     └─ @@ -60,7 +60,7 @@
+        [ ] ],
+        [ ] "Essential": true,
+        [ ] "Image": {
+        [-]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:4fff99dbcd0f568e91cae8390c2e42e7addb4b9ed4f4dcfbf67a76667397be87"
+        [+]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:9996bef8e9f3888c9c8c2a320cfaaf13802f2c81092b998ba321ebee4460079c"
+        [ ] },
+        [ ] "LogConfiguration": {
+        [ ]   "LogDriver": "awslogs",
+[~] AWS::ECS::TaskDefinition Runtime/ApiTask RuntimeApiTaskCF645D67 replace
+ └─ [~] ContainerDefinitions (requires replacement)
+     └─ @@ -128,6 +128,10 @@
+        [ ]   "Value": "false"
+        [ ] },
+        [ ] {
+        [+]   "Name": "ALLOW_RETENTION_WORKER",
+        [+]   "Value": "false"
+        [+] },
+        [+] {
+        [ ]   "Name": "ALLOW_APPLE_REVIEW_INTEGRATION",
+        [ ]   "Value": "true"
+        [ ] },
+        @@ -191,7 +195,7 @@
+        [ ]   "Timeout": 5
+        [ ] },
+        [ ] "Image": {
+        [-]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:4fff99dbcd0f568e91cae8390c2e42e7addb4b9ed4f4dcfbf67a76667397be87"
+        [+]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:9996bef8e9f3888c9c8c2a320cfaaf13802f2c81092b998ba321ebee4460079c"
+        [ ] },
+        [ ] "LinuxParameters": {
+        [ ]   "Capabilities": {
+
+
+
+✨  Number of stacks with differences: 1
+

@@ -1,0 +1,26 @@
+{
+  "updatedAt": "2026-09-16T05:26:46.890093+00:00",
+  "ownerInstruction": "Fix within existing UI; do not redesign",
+  "restoration": "complete",
+  "deployedThisContinuation": false,
+  "retainedChanges": [
+    "Web URL/history and dirty-return guard",
+    "Activity event labels/date",
+    "native invitation completion state",
+    "native shared-detail foreground recheck",
+    "existing safety factual text"
+  ],
+  "withdrawn": [
+    "homepage/nav/profile/public/legal visual rearrangements",
+    "new matter-to-sharing panels",
+    "new sharing preview API and flow",
+    "both generated images as visual targets"
+  ],
+  "tests": {
+    "webFocused": 9,
+    "browserNavigation": "6 checks passed",
+    "nativeBuild": "success env{}",
+    "nativeRuntimeAcceptance": "pending"
+  },
+  "next": "Verify retained invitation/foreground behavior with isolated fixtures within the original UI."
+}

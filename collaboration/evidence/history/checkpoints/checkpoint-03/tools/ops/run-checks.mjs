@@ -1,0 +1,10 @@
+import fs from 'node:fs/promises';
+import {fileURLToPath} from 'node:url';
+import {runHealthChecks} from './health-check.mjs';
+const root=fileURLToPath(new URL('../../',import.meta.url));
+const config=JSON.parse(await fs.readFile(`${root}config/operations-targets.json`,'utf8'));
+const report=await runHealthChecks(config);
+await fs.mkdir(`${root}output/ops`,{recursive:true,mode:0o700});
+await fs.writeFile(`${root}output/ops/last-health.json`,JSON.stringify(report,null,2),{mode:0o600});
+console.log(JSON.stringify(report,null,2));
+if(!report.ok)process.exitCode=1;

@@ -1,0 +1,29 @@
+{
+  "status": "CREATE_COMPLETE",
+  "changes": [
+    {
+      "Type": "Resource",
+      "ResourceChange": {
+        "Action": "Modify",
+        "LogicalResourceId": "WebDeploymentCustomResource08EEC474",
+        "PhysicalResourceId": "aws.cdk.s3deployment.06dbb29e-f2ab-497e-9c97-571f8e9d9cea",
+        "ResourceType": "Custom::CDKBucketDeployment",
+        "Replacement": "Conditional",
+        "Scope": [
+          "Properties"
+        ],
+        "Details": [
+          {
+            "Target": {
+              "Attribute": "Properties",
+              "Name": "SourceObjectKeys",
+              "RequiresRecreation": "Conditionally"
+            },
+            "Evaluation": "Static",
+            "ChangeSource": "DirectModification"
+          }
+        ]
+      }
+    }
+  ]
+}

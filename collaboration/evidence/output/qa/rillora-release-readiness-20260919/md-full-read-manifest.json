@@ -1,0 +1,3026 @@
+{
+  "createdAt": "2026-09-19T08:19:46.717031+00:00",
+  "scope": "New formal-release readiness workstream; full body reread before product/engineering changes",
+  "files": [
+    {
+      "path": "docs/product.md",
+      "lines": 275,
+      "sha256": "2e7854bcd3d6f3b4a0c320bcb55c1909d0c96c461e7eba8a1a028b67914c9fed"
+    },
+    {
+      "path": "AGENTS.md",
+      "lines": 82,
+      "sha256": "321e1bf37563f466aea4eda8e5e2024f0b8f6f05e0e59fda06a174a24db695a3"
+    },
+    {
+      "path": "docs/handoff.md",
+      "lines": 32,
+      "sha256": "76df4e534340d08894ff16e305ad82a36192be1973b4ffab5c942f7609e804a5"
+    },
+    {
+      "path": "docs/quality-gates.md",
+      "lines": 287,
+      "sha256": "82f8da56bdba692da23a57a64d56402020a8a3d7fa4c9807a0eb710535eecdc5"
+    },
+    {
+      "path": "docs/commercial-completion-20260916.md",
+      "lines": 40,
+      "sha256": "0f2dcfe9fa7fa0501cca316ed3c764ad630034baa0c3e65138f5087fc3bd3ace"
+    },
+    {
+      "path": "docs/mvp.md",
+      "lines": 165,
+      "sha256": "ebddf3f62d87cceae858dbd0c12a94dee6e21cbe9201eca9d8bfffab3c24c1a7"
+    },
+    {
+      "path": "docs/platform-contract.md",
+      "lines": 285,
+      "sha256": "a990862959e2dfddf5d6f38bf2ff5a25e517a9b8fd3d783fca1d1db5030a7865"
+    },
+    {
+      "path": "docs/individual-operator-launch-plan.md",
+      "lines": 261,
+      "sha256": "0d6bb793785c16007c04bdfe3de22eb66db1ef1fd69c842208b643590a4d20a2"
+    },
+    {
+      "path": "docs/global-mainland-commerce-plan.md",
+      "lines": 433,
+      "sha256": "6d9ba0d1e2bf74b3318fa4b7472f4b739ef35401291d8700968ed861e907c0f9"
+    },
+    {
+      "path": "docs/solo-operations-and-portability.md",
+      "lines": 164,
+      "sha256": "953a324e70e9b6dc5c384c595f5e8a4387ff74c7433eccebe004eb1831357e9e"
+    },
+    {
+      "path": "docs/infrastructure-roadmap.md",
+      "lines": 311,
+      "sha256": "b7e1157e080f47f4493631e057b88a35b4d8de73ccd3fbfcf4c91c6d623f7c76"
+    },
+    {
+      "path": "docs/storekit.md",
+      "lines": 244,
+      "sha256": "6b2f6e6bc96dd62835a5ae5a336af9b364505626713daabece2427bbdd529e0e"
+    },
+    {
+      "path": "docs/ios-external-payment-research.md",
+      "lines": 378,
+      "sha256": "d6836ed47a203dcee24bc2f0842b5bcf25a7b241ea51cfa26e15e6c89e6d4fb5"
+    },
+    {
+      "path": "docs/authentication-experience.md",
+      "lines": 631,
+      "sha256": "d4d2c20c5c8ba7ef83972e958cd10e0d7e9e9db4626d29bf7841d1e933ebb86f"
+    },
+    {
+      "path": "SECURITY.md",
+      "lines": 244,
+      "sha256": "2915920e61ed887271b309e9873b725a70b141632c2116c0b91d3b520360c774"
+    },
+    {
+      "path": "infra/aws/README.md",
+      "lines": 223,
+      "sha256": "db2eb9d41a2a4fa1b975223b5b16a8cf007c163cced53c180d633c92743d044c"
+    },
+    {
+      "path": "DESIGN.md",
+      "lines": 285,
+      "sha256": "0b83ac5ec6ef72d51159b872c5b5da3deeef5de691ac605f3084ee25dabff078"
+    },
+    {
+      "path": "README.md",
+      "lines": 102,
+      "sha256": "284eb87dc47d4fc538d4e3a6285d09fc35842f108220087abe1e896c734d52cb"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "lines": 332,
+      "sha256": "218ff0a938edac7976975703442da88582a9882d18bb546005d795ef22063ad0"
+    },
+    {
+      "path": "apps/ios-prototype/AGENTS.md",
+      "lines": 73,
+      "sha256": "1f12a8b98431ef4c543ba11b15d10bf4241291a20213b97dcc1556e3bbfd00cb"
+    },
+    {
+      "path": "apps/ios-prototype/src/mobile/COMPONENTS.md",
+      "lines": 31,
+      "sha256": "678379569b09d9ab789d96e8030a0eebb6606b880d8ad5b74de513f8a7b2787b"
+    },
+    {
+      "path": "apps/web/AGENTS.md",
+      "lines": 32,
+      "sha256": "b7354fa93487fd6d9849865ffdedde8c7a6a4ae79529664c7f289d704591818e"
+    },
+    {
+      "path": "assets/concepts/rillora-authenticated-motion-20260911/README.md",
+      "lines": 13,
+      "sha256": "db1b3f3f6a3f3a5e62304072188f8a4c77c5df171d646495492f17ea9fecd083"
+    },
+    {
+      "path": "assets/concepts/rillora-logo-gate2-dual-embrace-20260808/README.md",
+      "lines": 30,
+      "sha256": "58c3dadad49bb25e1402a3fb18a63feba17b04d0ed02a629c0e0bb7293ecdb82"
+    },
+    {
+      "path": "assets/concepts/rillora-public-motion-20260909/README.md",
+      "lines": 20,
+      "sha256": "fdc1b91a8465b7ba4e51bc821bb3a77ad2505441871b63bfec8e35c03e062572"
+    },
+    {
+      "path": "assets/concepts/rillora-trusted-sharing-20260909/README.md",
+      "lines": 16,
+      "sha256": "062fca3494a1bdabc50b074dbbb6fcfd9eab36c50f5c0fd510b70b0292ac1a1d"
+    },
+    {
+      "path": "assets/concepts/rillora-ui-directions-20260814/README.md",
+      "lines": 28,
+      "sha256": "5ae1c64fe43b17adec8f9d1cae93f35f8ca6fb42ddad50c97695ab171a4b8579"
+    },
+    {
+      "path": "design-qa.md",
+      "lines": 58,
+      "sha256": "eb9643a77321fcc3c4675bfea9cac95a042f2723616601302fd29aeb78b7f882"
+    },
+    {
+      "path": "docs/account-matter-ux.md",
+      "lines": 61,
+      "sha256": "a8100c41246453323f6c9c82198bc2fb2beb7fd6e59ff97546f2329311ada1e7"
+    },
+    {
+      "path": "docs/apple-watch-death-signal-research.md",
+      "lines": 311,
+      "sha256": "936c5aa189048a4d2440917cd0363c737bbefe1603219a53f1f2ca1d7c71fe5e"
+    },
+    {
+      "path": "docs/asset-licenses.md",
+      "lines": 106,
+      "sha256": "c3a9e9b1625927836f3721bff2fc4239afac88f1522e2ef85bd1bbc81f53c4c5"
+    },
+    {
+      "path": "docs/backend.md",
+      "lines": 277,
+      "sha256": "ddbdd20aa8564c4b81e96b44705d98aae74094eb58d2352632cc5141f4b64ee4"
+    },
+    {
+      "path": "docs/blockchain.md",
+      "lines": 63,
+      "sha256": "ba6f772208c9bef37cb58f6e50907a7283965a722e095e42432b5e350ec2cbb8"
+    },
+    {
+      "path": "docs/competitor-ux-audit.md",
+      "lines": 694,
+      "sha256": "24033a080ee2cbc81eba452af9fee41cb441e9106dff018fbab9b6afeec1c7df"
+    },
+    {
+      "path": "docs/component-preview-20260918.md",
+      "lines": 34,
+      "sha256": "ec3d469e0bb9e18c21f53e08a3fe44c67c96bc4118415b2e2dd781398182413f"
+    },
+    {
+      "path": "docs/dark-ui-redesign-brief.md",
+      "lines": 121,
+      "sha256": "7791582fb831bad1c4180546384c3700f097e78442f59887f1cb1699a2d2d40d"
+    },
+    {
+      "path": "docs/death-verification-evidence-research.md",
+      "lines": 163,
+      "sha256": "9ac9138518e74ce31eaada237781c4eaeb918d9da724f93fdc099d8893e6dcb9"
+    },
+    {
+      "path": "docs/decision-log.md",
+      "lines": 2343,
+      "sha256": "e52b8c760eb47e6011b9fd4558f67e8ba48dfe942a3c8cc157544cd05cc0ee25"
+    },
+    {
+      "path": "docs/disclosure-rehearsal.md",
+      "lines": 109,
+      "sha256": "ca72a6811f188545a7d07476e1ed5011a26b9c28ea947dfc29e5a6f9f5c3add7"
+    },
+    {
+      "path": "docs/family-maintenance.md",
+      "lines": 118,
+      "sha256": "fcde234707d4036d66fd148a73d05331bfd6a5ec93385ac8e04307a69fbd1af5"
+    },
+    {
+      "path": "docs/free-paid-ui-audit.md",
+      "lines": 153,
+      "sha256": "7af40f62256e9255c6788827be5f40c6a7897c1d15019b22dbe7376582953722"
+    },
+    {
+      "path": "docs/handoff-history-20260910.md",
+      "lines": 1894,
+      "sha256": "a4cba6ee4728b8d32ba224a4ab381db5faa4a8435c7190de8b2eb23b253ae8e5"
+    },
+    {
+      "path": "docs/handoff-history-20260911.md",
+      "lines": 116,
+      "sha256": "81a7f3775d80beb7c06c7caecdc985e437bdcd20fcb141be2662568c6529faf1"
+    },
+    {
+      "path": "docs/handoff-history-20260915-p1-start.md",
+      "lines": 32,
+      "sha256": "f251e3c6de4436a55ae2866725c126237e29e10210e9b8ff4b762591248ae515"
+    },
+    {
+      "path": "docs/handoff-history-20260915.md",
+      "lines": 33,
+      "sha256": "bca450f35578eb59b953453a43cd235fa0be93fbb956719bb9d63584226f3603"
+    },
+    {
+      "path": "docs/handoff-history-20260916-before-behavior-release.md",
+      "lines": 37,
+      "sha256": "6623f97d8d6254b7585d3fbf36e26b20429c8ab96eebb2201ef89fb2297f8114"
+    },
+    {
+      "path": "docs/handoff-history-20260916-before-commercial-completion.md",
+      "lines": 38,
+      "sha256": "ec95d303f8d10448e877c85ff449f8b1916d7031f51489f3630a6b0a8cd603e8"
+    },
+    {
+      "path": "docs/handoff-history-20260916-before-ui-scope-correction.md",
+      "lines": 33,
+      "sha256": "d7d98aab1a00f31471b589ef008e3ef4b4ba6f75da085b04942733b4ef192dc7"
+    },
+    {
+      "path": "docs/handoff-history-20260916-p1-deployment.md",
+      "lines": 37,
+      "sha256": "304bce703f50dc6d8020c0049ed8eb30d664aaa50141541fe9bb15087be8cafc"
+    },
+    {
+      "path": "docs/handoff-history-20260917-invitation-complete.md",
+      "lines": 38,
+      "sha256": "439574f9ab891ae623f0bab557f3fdb7f28131e4297013fc957fe73b1d4b7d83"
+    },
+    {
+      "path": "docs/handoff-history-20260917-provider-acceptance-in-progress.md",
+      "lines": 38,
+      "sha256": "08f85861b7c652f0db5dc9eded32c13a338b33d1dcb696dd369589434f4086f7"
+    },
+    {
+      "path": "docs/handoff-history-20260917-stripe-complete.md",
+      "lines": 38,
+      "sha256": "15103ae19d09f53aaf1aadf969c56fdf3366dbfd5c285805569b2c819b43ff7f"
+    },
+    {
+      "path": "docs/handoff-history-20260918-component-preview.md",
+      "lines": 30,
+      "sha256": "8dce5295fe8ab52201a21d43b4b83bac6c3a9d8fc8a48925e16b1a7f59d26e99"
+    },
+    {
+      "path": "docs/handoff-history-20260918-filter-components.md",
+      "lines": 32,
+      "sha256": "254afe7f32497dfaa3b54a6a4571a42f4ec8a0637075954aa3588d8e7f150c12"
+    },
+    {
+      "path": "docs/handoff-history-20260918-platform-library.md",
+      "lines": 32,
+      "sha256": "473ae54944718dc41882be1c9f6b3e8e77ef4598b429ce977901e371b667e671"
+    },
+    {
+      "path": "docs/handoff-history-20260918-surface-motion.md",
+      "lines": 36,
+      "sha256": "28144634a81caead7166d8645f6a14149fc188b32b88f7042a83dfc1cfbf61f5"
+    },
+    {
+      "path": "docs/handoff-history-20260919-contextual-guidance.md",
+      "lines": 32,
+      "sha256": "02b7822d70b45fa048a49cf12575fd88076073c994681df0f70d906d8395da44"
+    },
+    {
+      "path": "docs/handoff-history-20260919-icon-practice.md",
+      "lines": 36,
+      "sha256": "9462b9382e3e2326d14cab362bb1a842cbd2281e0a184d24c4e2b79c0f7b21a4"
+    },
+    {
+      "path": "docs/handoff-history-20260919-provider-marks.md",
+      "lines": 34,
+      "sha256": "f0a0db44e800ab728f8745cab9a6a3fab1f3e2a85622d1bd12502d30765d30df"
+    },
+    {
+      "path": "docs/identity-data-region.md",
+      "lines": 208,
+      "sha256": "9f12e576281884a7947c5bc112ce2bf0bc64086c8c0f0cf6e38fba24ca1d7b19"
+    },
+    {
+      "path": "docs/interaction-experience.md",
+      "lines": 90,
+      "sha256": "1c2f9e305b8dc2af0bb44ae1256fa289462f26fcbebc93d42dbac1d569158256"
+    },
+    {
+      "path": "docs/invitation-motion-ux.md",
+      "lines": 73,
+      "sha256": "5a3a9c14df317e14153616006ace7f57529ff0a3e5115157315d7209ded143f8"
+    },
+    {
+      "path": "docs/ios-layout-matrix.md",
+      "lines": 308,
+      "sha256": "1dccc4c096b0f6c94282329df3e51bc1bd71653358c006d2d704e4d752bf8904"
+    },
+    {
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "lines": 2379,
+      "sha256": "b7d20f8783ecdf6868daaf89b9d0a446a94c15f0633e578aa6d9dbf5723c17c0"
+    },
+    {
+      "path": "docs/legal-candidate-zh.md",
+      "lines": 436,
+      "sha256": "7e88a81084fd8e893875280dd6bbffee0c00b41e1aa335f89928a2f905cf1642"
+    },
+    {
+      "path": "docs/logo-ai-workflow.md",
+      "lines": 167,
+      "sha256": "ad1da17994aa8744b90cd9ade5538a88b9d5f16774618f8cd480498ea39454c7"
+    },
+    {
+      "path": "docs/logo-discovery.md",
+      "lines": 343,
+      "sha256": "1432a792d3e0d60e6272684d39063d3be343154363222eb7513b06b6eeb5d724"
+    },
+    {
+      "path": "docs/logo-form-brief.md",
+      "lines": 163,
+      "sha256": "d4fdc9fd64200626ce9749eb5f897189441ec3f775679a7cc76a805639e43f91"
+    },
+    {
+      "path": "docs/monetization.md",
+      "lines": 523,
+      "sha256": "896e58ed730043c58daf0636fcb9f7124e0c454cfefbc8e8f37d1706af67e420"
+    },
+    {
+      "path": "docs/p1-reliability-repair-20260915.md",
+      "lines": 54,
+      "sha256": "35aa25a71bb89f6991b73082011bc3d7dbec08349c493eaa02ec9522ace7268e"
+    },
+    {
+      "path": "docs/pricing-68-20260911.md",
+      "lines": 70,
+      "sha256": "8ac819c0d01ba6116e447f16bcaaef05aa4a23348bf28570c98535480a978cf7"
+    },
+    {
+      "path": "docs/pricing-band-20260910.md",
+      "lines": 84,
+      "sha256": "e67768cdb7fefe0ec8f9ba400e3fd96ee3fed5f78359c14f660234fc05509d8b"
+    },
+    {
+      "path": "docs/product-events.md",
+      "lines": 62,
+      "sha256": "e4549d2bd1e2ea9887e02d6277f3d0a0bcd6e9e5e93e924f6d46d82ec4410417"
+    },
+    {
+      "path": "docs/provider-death-account-guides-history-20260820.md",
+      "lines": 254,
+      "sha256": "f39eeb48637e6191818bb908df7d4e790b3791420a4e96afd816fb5218dcaa51"
+    },
+    {
+      "path": "docs/provider-death-account-guides.md",
+      "lines": 102,
+      "sha256": "6019a02c9e2d324ca4e58865d30971312c2f25e43560af642e2c2a908cbbe1dd"
+    },
+    {
+      "path": "docs/provider-icon-practice-research.md",
+      "lines": 99,
+      "sha256": "eff6a0d4eb37d3544628e039133a94f5f111b29205b6be2ab1219783c6dec339"
+    },
+    {
+      "path": "docs/provider-mark-usage.md",
+      "lines": 73,
+      "sha256": "532ef2d7261926327e85f0e56ff320a45420a25a2f00298b66ebaba56f522dff"
+    },
+    {
+      "path": "docs/public-legal-pages.md",
+      "lines": 232,
+      "sha256": "23dd9aa9379c4d429e4aa9f48284141404e4e66d438952cc93d5dae517104e81"
+    },
+    {
+      "path": "docs/research.md",
+      "lines": 612,
+      "sha256": "05a15d4de79734efcf9257d42d22927b8c370b32b723bb2bad9aa9b7740bfc1e"
+    },
+    {
+      "path": "docs/role-assignment-policy.md",
+      "lines": 72,
+      "sha256": "f7668be436b8e316b6c00651a0bcaf7cf4a4d219c1b2e72accfffaabe5d579bd"
+    },
+    {
+      "path": "docs/start-here-export.md",
+      "lines": 158,
+      "sha256": "bbf3aa0a7117e5f4816229c8f65909ad69c91cf36784096c5c0f8e231979b8b2"
+    },
+    {
+      "path": "docs/surface-motion-20260917.md",
+      "lines": 40,
+      "sha256": "e15b5219032557a201f2a475461fe0709dd4310f91cbd5805f315cb7cbc317a7"
+    },
+    {
+      "path": "docs/trust-safety-legal.md",
+      "lines": 218,
+      "sha256": "d622b1ecabdeb97d7ab90d6074647e6e8b30b6447705fb5866bd0a0e300c4692"
+    },
+    {
+      "path": "docs/trusted-sharing.md",
+      "lines": 142,
+      "sha256": "89750e0c7298b0f6314aed772b9a2fed28bed6b647a38164f3abbdef4fc75a11"
+    },
+    {
+      "path": "docs/ui-ux-audit-20260915.md",
+      "lines": 256,
+      "sha256": "2d46fce6e4e9362c73653e31ba65b3619462b0b2c3b2b7d762c44d730908de19"
+    },
+    {
+      "path": "docs/unit-economics-history-20260910.md",
+      "lines": 403,
+      "sha256": "b79f5a5b30a28100e2d78ed8458cd3e22ac63affd2ede6759c901fed928c07cc"
+    },
+    {
+      "path": "docs/unit-economics-pricing-reset-history-20260910.md",
+      "lines": 146,
+      "sha256": "9c9fe313b4b0f5246afb5da64bc80ee4b8d37f65271df2803e3e6205e62418ac"
+    },
+    {
+      "path": "docs/unit-economics.md",
+      "lines": 120,
+      "sha256": "e21fb601b1f9f60237aa4ebae2b26df9e488fe565326e9ae33c7153f52565b5c"
+    },
+    {
+      "path": "docs/ux-behavior-repair-20260916.md",
+      "lines": 50,
+      "sha256": "3874358e7690fe65cb1f637964cb672a55b1caca7a7aa5e0d67d06fe276853d0"
+    },
+    {
+      "path": "infra/auth0/README.md",
+      "lines": 245,
+      "sha256": "bce63dd8d3c140de6d273300f242018687cf1b01ac39e21e80e990e940dab9ae"
+    },
+    {
+      "path": "infra/auth0/hosted-consent/README.md",
+      "lines": 102,
+      "sha256": "a2cca56f63f5b50f4217c8b8f00a7da42a29bb635c2f4e1a135b29d0e62e07e9"
+    },
+    {
+      "path": "qa/storekit-local-2026-08-20/09-lifecycle-observation.md",
+      "lines": 76,
+      "sha256": "450bacc903963177066f9aca193e058a78fcc1c8f8a00d07aad1ce697f1626e4"
+    }
+  ],
+  "excluded": [
+    "output/qa/rillora-provider-icons-rollout-20260919/sources/coinbase-README.md",
+    "output/qa/rillora-provider-icons-rollout-20260919/README.md",
+    "output/qa/rillora-account-label-alignment-20260817/README.md",
+    "output/qa/rillora-account-entry-order-20260817/README.md",
+    "output/qa/rillora-stripe-acceptance-20260917/README.md",
+    "output/qa/rillora-pricing-reset-20260910/before/docs/global-mainland-commerce-plan.md",
+    "output/qa/rillora-pricing-reset-20260910/before/docs/handoff.md",
+    "output/qa/rillora-pricing-reset-20260910/before/docs/monetization.md",
+    "output/qa/rillora-pricing-reset-20260910/before/docs/unit-economics.md",
+    "output/qa/rillora-pricing-reset-20260910/before/docs/family-maintenance.md",
+    "output/qa/rillora-pricing-reset-20260910/before/docs/handoff-history-20260910.md",
+    "output/qa/rillora-pricing-reset-20260910/before/docs/free-paid-ui-audit.md",
+    "output/qa/rillora-staged-economics-20260910/before/docs/global-mainland-commerce-plan.md",
+    "output/qa/rillora-staged-economics-20260910/before/docs/handoff.md",
+    "output/qa/rillora-staged-economics-20260910/before/docs/monetization.md",
+    "output/qa/rillora-staged-economics-20260910/before/docs/unit-economics.md",
+    "output/qa/rillora-staged-economics-20260910/before/docs/handoff-history-20260910.md",
+    "output/qa/rillora-pricing-reset-20260910/before/docs/journey/PROJECT_JOURNEY.md",
+    "output/qa/rillora-pricing-reset-20260910/before/docs/storekit.md",
+    "output/qa/rillora-pricing-reset-20260910/before/docs/ios-external-payment-research.md",
+    "output/qa/rillora-pricing-reset-20260910/before/docs/decision-log.md",
+    "output/qa/rillora-pricing-reset-20260910/before/docs/mvp.md",
+    "output/qa/rillora-pricing-reset-20260910/before/docs/product.md",
+    "output/qa/rillora-pricing-reset-20260910/README.md",
+    "output/qa/rillora-provider-marks-20260919/README.md",
+    "output/qa/rillora-native-hybrid-20260906/before-source/design-qa.md",
+    "output/qa/rillora-staged-economics-20260910/before/docs/journey/PROJECT_JOURNEY.md",
+    "output/qa/rillora-staged-economics-20260910/before/docs/infrastructure-roadmap.md",
+    "output/qa/rillora-staged-economics-20260910/before/docs/storekit.md",
+    "output/qa/rillora-staged-economics-20260910/before/docs/decision-log.md",
+    "output/qa/rillora-staged-economics-20260910/before/docs/product.md",
+    "output/qa/rillora-staged-economics-20260910/README.md",
+    "output/qa/rillora-account-provider-type-match-20260817/README.md",
+    "output/qa/rillora-google-oauth-20260818/README.md",
+    "output/qa/rillora-native-hybrid-20260906/before-source/DESIGN.md",
+    "output/qa/rillora-native-hybrid-20260906/before-source/README.md",
+    "output/qa/rillora-native-hybrid-20260906/before-source/docs/handoff.md",
+    "output/qa/rillora-native-hybrid-20260906/before-source/docs/identity-data-region.md",
+    "output/qa/rillora-native-hybrid-20260906/before-source/docs/public-legal-pages.md",
+    "output/qa/rillora-native-hybrid-20260906/before-source/docs/platform-contract.md",
+    "output/qa/rillora-native-hybrid-20260906/before-source/docs/journey/PROJECT_JOURNEY.md",
+    "output/qa/rillora-native-hybrid-20260906/before-source/docs/infrastructure-roadmap.md",
+    "output/qa/rillora-native-hybrid-20260906/before-source/docs/authentication-experience.md",
+    "output/qa/rillora-native-hybrid-20260906/before-source/docs/ios-layout-matrix.md",
+    "output/qa/rillora-native-hybrid-20260906/before-source/docs/decision-log.md",
+    "output/qa/rillora-native-hybrid-20260906/before-source/docs/quality-gates.md",
+    "output/qa/rillora-native-hybrid-20260906/before-source/docs/product.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/design-qa.md",
+    "output/qa/rillora-native-hybrid-20260906/before-source/infra/auth0/README.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/DESIGN.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/README.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/legal-candidate-zh.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/global-mainland-commerce-plan.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/handoff.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/dark-ui-redesign-brief.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/monetization.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/logo-ai-workflow.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/trust-safety-legal.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/apple-watch-death-signal-research.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/identity-data-region.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/unit-economics.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/public-legal-pages.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/provider-death-account-guides.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/research.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/backend.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/platform-contract.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/competitor-ux-audit.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/free-paid-ui-audit.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/journey/PROJECT_JOURNEY.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/infrastructure-roadmap.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/authentication-experience.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/storekit.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/logo-discovery.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/product-events.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/logo-form-brief.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/asset-licenses.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/ios-layout-matrix.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/disclosure-rehearsal.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/ios-external-payment-research.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/decision-log.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/mvp.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/quality-gates.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/death-verification-evidence-research.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/individual-operator-launch-plan.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/blockchain.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/product.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/start-here-export.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/docs/role-assignment-policy.md",
+    "output/qa/rillora-single-hosted-entry-20260906/before-source/infra/auth0/README.md",
+    "output/qa/rillora-profile-navigation-20260816/README.md",
+    "output/qa/rillora-apple-key-exposure-20260817/README.md",
+    "output/qa/rillora-native-hybrid-20260906/README.md",
+    "output/qa/rillora-p2-repair-20260916/README.md",
+    "output/qa/rillora-p2-repair-20260916/behavior-20260916/README.md",
+    "output/qa/rillora-email-first-20260907/before-source/DESIGN.md",
+    "output/qa/rillora-email-first-20260907/before-source/README.md",
+    "output/qa/rillora-email-first-20260907/before-source/docs/handoff.md",
+    "output/qa/rillora-email-first-20260907/before-source/docs/journey/PROJECT_JOURNEY.md",
+    "output/qa/rillora-email-first-20260907/before-source/docs/authentication-experience.md",
+    "output/qa/rillora-email-first-20260907/before-source/docs/decision-log.md",
+    "output/qa/rillora-email-first-20260907/before-source/docs/product.md",
+    "output/qa/rillora-email-first-20260907/before-source/infra/auth0/README.md",
+    "output/qa/rillora-email-first-20260907/README.md",
+    "output/qa/rillora-icon-practice-20260919/README.md",
+    "output/qa/rillora-single-hosted-entry-20260906/README.md",
+    "output/qa/rillora-account-provider-proportion-20260817/README.md",
+    "output/qa/rillora-public-motion-20260909/before-source/apps/web/AGENTS.md",
+    "output/qa/rillora-public-motion-20260909/before-source/AGENTS.md",
+    "output/qa/rillora-public-motion-20260909/before-source/DESIGN.md",
+    "output/qa/rillora-public-motion-20260909/before-source/README.md",
+    "output/qa/rillora-public-motion-20260909/before-source/docs/handoff.md",
+    "output/qa/rillora-public-motion-20260909/before-source/docs/journey/PROJECT_JOURNEY.md",
+    "output/qa/rillora-public-motion-20260909/before-source/docs/authentication-experience.md",
+    "output/qa/rillora-public-motion-20260909/before-source/docs/decision-log.md",
+    "output/qa/rillora-public-motion-20260909/before-source/docs/product.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/Auth0.swift/CLAUDE.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/Auth0.swift/AGENTS.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/Auth0.swift/V2_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/Auth0.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/rillora-public-motion-20260909/README.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/Auth0.swift/fastlane/README.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/Auth0.swift/CLAUDE.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/Auth0.swift/scripts/DocsVersions/README.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/Auth0.swift/CLAUDE.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/Auth0.swift/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/RefreshTokens.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/Documentation.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/WebAuth/UserAgents.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/IDTokenValidation.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/Auth0.swift/README.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/Auth0.swift/CLAUDE.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/Auth0.swift/AGENTS.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/Auth0.swift/AGENTS.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/Auth0.swift/AGENTS.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/Auth0.swift/V2_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/Auth0.swift/V2_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/Auth0.swift/V2_MIGRATION_GUIDE.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/Auth0.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/Auth0.swift/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/Auth0.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/Auth0.swift/fastlane/README.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/Auth0.swift/scripts/DocsVersions/README.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/Auth0.swift/CONTRIBUTING.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/Auth0.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/Auth0.swift/scripts/DocsVersions/README.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/Auth0.swift/CONTRIBUTING.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/Auth0.swift/Documentation.docc/RefreshTokens.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/Auth0.swift/Documentation.docc/Documentation.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/Auth0.swift/CLAUDE.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/Auth0.swift/Documentation.docc/WebAuth/UserAgents.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/Auth0.swift/fastlane/README.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/Auth0.swift/Documentation.docc/IDTokenValidation.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/Auth0.swift/README.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/RefreshTokens.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/Documentation.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/WebAuth/UserAgents.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/Auth0.swift/scripts/DocsVersions/README.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/IDTokenValidation.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/Auth0.swift/README.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/Auth0.swift/CONTRIBUTING.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/Auth0.swift/Documentation.docc/RefreshTokens.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/Auth0.swift/Documentation.docc/Documentation.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/Auth0.swift/Documentation.docc/WebAuth/UserAgents.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/Auth0.swift/Documentation.docc/IDTokenValidation.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/Auth0.swift/README.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/Auth0.swift/AGENTS.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/Auth0.swift/V2_MIGRATION_GUIDE.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/CLAUDE.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/Auth0.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/Auth0.swift/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/Auth0.swift/scripts/DocsVersions/README.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/Auth0.swift/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/RefreshTokens.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/Documentation.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/WebAuth/UserAgents.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/AGENTS.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/IDTokenValidation.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/Auth0.swift/README.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/Auth0.swift/CLAUDE.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/Auth0.swift/CLAUDE.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/V2_MIGRATION_GUIDE.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/Auth0.swift/CLAUDE.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/fastlane/README.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/Auth0.swift/AGENTS.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/scripts/DocsVersions/README.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/CONTRIBUTING.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/Auth0.swift/AGENTS.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/Auth0.swift/V2_MIGRATION_GUIDE.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/RefreshTokens.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/Documentation.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/WebAuth/UserAgents.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/IDTokenValidation.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/README.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/Auth0.swift/AGENTS.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/Auth0.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/Auth0.swift/V2_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/Auth0.swift/fastlane/README.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/Auth0.swift/scripts/DocsVersions/README.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/Auth0.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/Auth0.swift/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/Auth0.swift/V2_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/Auth0.swift/Documentation.docc/RefreshTokens.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/Auth0.swift/Documentation.docc/Documentation.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/Auth0.swift/fastlane/README.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/Auth0.swift/Documentation.docc/WebAuth/UserAgents.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/Auth0.swift/Documentation.docc/IDTokenValidation.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/Auth0.swift/README.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/Auth0.swift/scripts/DocsVersions/README.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/Auth0.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/Auth0.swift/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/Auth0.swift/fastlane/README.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/Auth0.swift/Documentation.docc/RefreshTokens.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/Auth0.swift/Documentation.docc/Documentation.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/Auth0.swift/Documentation.docc/WebAuth/UserAgents.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/Auth0.swift/Documentation.docc/IDTokenValidation.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/Auth0.swift/README.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/Auth0.swift/scripts/DocsVersions/README.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/Auth0.swift/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/RefreshTokens.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/Documentation.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/WebAuth/UserAgents.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/IDTokenValidation.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/Auth0.swift/README.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/Auth0.swift/CLAUDE.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/Auth0.swift/AGENTS.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/Auth0.swift/FAQ.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/Auth0.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/Auth0.swift/FAQ.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/Auth0.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/Auth0.swift/references/testing.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/Auth0.swift/references/docs-update.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/Auth0.swift/references/git-workflow.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/Auth0.swift/references/commands.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/Auth0.swift/references/code-style.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/Auth0.swift/references/pitfalls.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/Auth0.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/Auth0.swift/references/testing.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/Auth0.swift/references/docs-update.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/Auth0.swift/references/git-workflow.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/Auth0.swift/references/commands.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/Auth0.swift/references/code-style.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/Auth0.swift/references/pitfalls.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/Auth0.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/Auth0.swift/EXAMPLES.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/Auth0.swift/V2_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/Auth0.swift/EXAMPLES.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/Auth0.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/SimpleKeychain/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/SimpleKeychain/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/SimpleKeychain/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/SimpleKeychain/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/SimpleKeychain/V1_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/SimpleKeychain/README.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/SimpleKeychain/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/SimpleKeychain/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/SimpleKeychain/V1_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/SimpleKeychain/README.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/Auth0.swift/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/Auth0.swift/scripts/DocsVersions/README.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/Auth0.swift/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/RefreshTokens.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/Documentation.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/WebAuth/UserAgents.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/IDTokenValidation.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/Auth0.swift/README.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/Auth0.swift/FAQ.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/Auth0.swift/V3_MIGRATION_GUIDE.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/Auth0.swift/references/testing.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/Auth0.swift/references/docs-update.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/Auth0.swift/references/git-workflow.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/Auth0.swift/references/commands.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/Auth0.swift/references/code-style.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/Auth0.swift/references/pitfalls.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/Auth0.swift/CHANGELOG.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/Auth0.swift/EXAMPLES.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/Auth0.swift/FAQ.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/Auth0.swift/V3_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/Auth0.swift/references/testing.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/Auth0.swift/references/docs-update.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/Auth0.swift/references/git-workflow.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/Auth0.swift/references/commands.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/Auth0.swift/references/code-style.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/Auth0.swift/references/pitfalls.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/Auth0.swift/CHANGELOG.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/Auth0.swift/EXAMPLES.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/SimpleKeychain/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/SimpleKeychain/fastlane/README.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/SimpleKeychain/CONTRIBUTING.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/SimpleKeychain/V1_MIGRATION_GUIDE.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/SimpleKeychain/README.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/Auth0.swift/CLAUDE.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/SimpleKeychain/.github/PULL_REQUEST_TEMPLATE.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/SimpleKeychain/fastlane/README.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/SimpleKeychain/CONTRIBUTING.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/SimpleKeychain/V1_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/SimpleKeychain/README.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/Auth0.swift/AGENTS.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/Auth0.swift/V2_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/Auth0.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/Auth0.swift/FAQ.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/Auth0.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/Auth0.swift/references/testing.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/Auth0.swift/references/docs-update.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/Auth0.swift/references/git-workflow.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/Auth0.swift/references/commands.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/Auth0.swift/references/code-style.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/Auth0.swift/references/pitfalls.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/Auth0.swift/CHANGELOG.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/Auth0.swift/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/Auth0.swift/EXAMPLES.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/Auth0.swift/scripts/DocsVersions/README.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/Auth0.swift/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/SimpleKeychain/CHANGELOG.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/Auth0.swift/Documentation.docc/RefreshTokens.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/Auth0.swift/Documentation.docc/Documentation.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/Auth0.swift/Documentation.docc/WebAuth/UserAgents.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/Auth0.swift/Documentation.docc/IDTokenValidation.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/Auth0.swift/README.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/SimpleKeychain/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/SimpleKeychain/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/SimpleKeychain/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/SimpleKeychain/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/SimpleKeychain/V1_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/SimpleKeychain/README.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/Auth0.swift/FAQ.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/Auth0.swift/V3_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/Auth0.swift/references/testing.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/Auth0.swift/references/docs-update.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/Auth0.swift/references/git-workflow.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/Auth0.swift/references/commands.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/Auth0.swift/references/code-style.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/Auth0.swift/references/pitfalls.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/Auth0.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/SimpleKeychain/EXAMPLES.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/Auth0.swift/EXAMPLES.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V4_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/SimpleKeychain/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/SimpleKeychain/EXAMPLES.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/FAQ.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/references/testing.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/references/docs-update.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/references/git-workflow.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/references/commands.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/references/code-style.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/references/pitfalls.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/JWTDecode.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V4_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/JWTDecode.swift/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CONTRIBUTING.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/EXAMPLES.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/SimpleKeychain/.github/PULL_REQUEST_TEMPLATE.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/SimpleKeychain/fastlane/README.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/SimpleKeychain/CONTRIBUTING.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/SimpleKeychain/V1_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/SimpleKeychain/README.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/SimpleKeychain/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/JWTDecode.swift/README.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/JWTDecode.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/JWTDecode.swift/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CONTRIBUTING.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/SimpleKeychain/EXAMPLES.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/SimpleKeychain/.github/PULL_REQUEST_TEMPLATE.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/JWTDecode.swift/V4_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/JWTDecode.swift/README.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/SimpleKeychain/fastlane/README.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/SimpleKeychain/CONTRIBUTING.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/SimpleKeychain/V1_MIGRATION_GUIDE.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/SimpleKeychain/README.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/Auth0.swift/FAQ.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/Auth0.swift/V3_MIGRATION_GUIDE.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/Auth0.swift/references/testing.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/Auth0.swift/references/docs-update.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/Auth0.swift/references/git-workflow.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/Auth0.swift/references/commands.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/Auth0.swift/references/code-style.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/Auth0.swift/references/pitfalls.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/Auth0.swift/CHANGELOG.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/JWTDecode.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/SimpleKeychain/EXAMPLES.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/JWTDecode.swift/fastlane/README.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/JWTDecode.swift/CONTRIBUTING.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/Auth0.swift/EXAMPLES.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/Auth0.swift/FAQ.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/Auth0.swift/V3_MIGRATION_GUIDE.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/JWTDecode.swift/V4_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/JWTDecode.swift/README.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/Auth0.swift/references/testing.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/Auth0.swift/references/docs-update.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/Auth0.swift/references/git-workflow.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/Auth0.swift/references/commands.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/Auth0.swift/references/code-style.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/Auth0.swift/references/pitfalls.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/Auth0.swift/CHANGELOG.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/JWTDecode.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/Auth0.swift/EXAMPLES.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/JWTDecode.swift/fastlane/README.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/JWTDecode.swift/CONTRIBUTING.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/SimpleKeychain/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/SimpleKeychain/fastlane/README.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/SimpleKeychain/CONTRIBUTING.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/SimpleKeychain/V1_MIGRATION_GUIDE.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/SimpleKeychain/README.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/JWTDecode.swift/README.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/SimpleKeychain/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/SimpleKeychain/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/SimpleKeychain/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/SimpleKeychain/V1_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/SimpleKeychain/README.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/SimpleKeychain/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260814-230100/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260811-210803/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CHANGELOG.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/JWTDecode.swift/V3_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-ui/SourcePackages/checkouts/JWTDecode.swift/CHANGELOG.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/SimpleKeychain/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/SimpleKeychain/EXAMPLES.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V4_MIGRATION_GUIDE.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/JWTDecode.swift/V3_MIGRATION_GUIDE.md",
+    "output/DerivedData-rillora-apple-release/SourcePackages/checkouts/JWTDecode.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/JWTDecode.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/JWTDecode.swift/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CONTRIBUTING.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/SimpleKeychain/EXAMPLES.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/SimpleKeychain/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/JWTDecode.swift/README.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/JWTDecode.swift/V4_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/JWTDecode.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/JWTDecode.swift/fastlane/README.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/JWTDecode.swift/CONTRIBUTING.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/SimpleKeychain/CHANGELOG.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/JWTDecode.swift/README.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/SimpleKeychain/EXAMPLES.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V4_MIGRATION_GUIDE.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/SimpleKeychain/EXAMPLES.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/JWTDecode.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/SimpleKeychain/CHANGELOG.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/JWTDecode.swift/fastlane/README.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CONTRIBUTING.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/JWTDecode.swift/V4_MIGRATION_GUIDE.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/JWTDecode.swift/README.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260814-230346/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CHANGELOG.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/JWTDecode.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/JWTDecode.swift/fastlane/README.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/JWTDecode.swift/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/Auth0.swift/FAQ.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/Auth0.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/Auth0.swift/references/testing.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/Auth0.swift/references/docs-update.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/Auth0.swift/references/git-workflow.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/Auth0.swift/references/commands.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/Auth0.swift/references/code-style.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/Auth0.swift/references/pitfalls.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/Auth0.swift/CHANGELOG.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/JWTDecode.swift/README.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/Auth0.swift/EXAMPLES.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/SimpleKeychain/EXAMPLES.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/JWTDecode.swift/V3_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-ui-final/SourcePackages/checkouts/JWTDecode.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V4_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/SimpleKeychain/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/SimpleKeychain/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/SimpleKeychain/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/SimpleKeychain/V1_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/SimpleKeychain/README.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/JWTDecode.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/JWTDecode.swift/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/JWTDecode.swift/README.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/rillora-dark-ui-20260815/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CHANGELOG.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/Auth0.swift/FAQ.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/Auth0.swift/V3_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/Auth0.swift/references/testing.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/Auth0.swift/references/docs-update.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/Auth0.swift/references/git-workflow.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/Auth0.swift/references/commands.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/Auth0.swift/references/code-style.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/Auth0.swift/references/pitfalls.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/Auth0.swift/CHANGELOG.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/Auth0.swift/EXAMPLES.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/JWTDecode.swift/V3_MIGRATION_GUIDE.md",
+    "output/DerivedData-rillora-profile-cleanup/SourcePackages/checkouts/JWTDecode.swift/CHANGELOG.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/SimpleKeychain/.github/PULL_REQUEST_TEMPLATE.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/SimpleKeychain/fastlane/README.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/SimpleKeychain/CONTRIBUTING.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/SimpleKeychain/V1_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/SimpleKeychain/README.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260813-224908/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/SimpleKeychain/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/SimpleKeychain/EXAMPLES.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V4_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/JWTDecode.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/JWTDecode.swift/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CONTRIBUTING.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/SimpleKeychain/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/JWTDecode.swift/README.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/SimpleKeychain/EXAMPLES.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/JWTDecode.swift/V4_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/JWTDecode.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/JWTDecode.swift/fastlane/README.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/JWTDecode.swift/CONTRIBUTING.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/JWTDecode.swift/README.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260815-133417/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CHANGELOG.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/JWTDecode.swift/V3_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-release/SourcePackages/checkouts/JWTDecode.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/Auth0.swift/CLAUDE.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/Auth0.swift/AGENTS.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/Auth0.swift/CLAUDE.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/Auth0.swift/V2_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/Auth0.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/Auth0.swift/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/Auth0.swift/scripts/DocsVersions/README.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/Auth0.swift/AGENTS.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/Auth0.swift/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/RefreshTokens.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/Documentation.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/WebAuth/UserAgents.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/IDTokenValidation.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/Auth0.swift/README.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/Auth0.swift/V2_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/Auth0.swift/CLAUDE.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/Auth0.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/Auth0.swift/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/Auth0.swift/AGENTS.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/Auth0.swift/scripts/DocsVersions/README.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/Auth0.swift/CONTRIBUTING.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/Auth0.swift/Documentation.docc/RefreshTokens.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/Auth0.swift/Documentation.docc/Documentation.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/Auth0.swift/Documentation.docc/WebAuth/UserAgents.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/Auth0.swift/Documentation.docc/IDTokenValidation.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/Auth0.swift/README.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/Auth0.swift/V2_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/Auth0.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/Auth0.swift/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/Auth0.swift/scripts/DocsVersions/README.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/Auth0.swift/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/RefreshTokens.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/Documentation.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/WebAuth/UserAgents.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/IDTokenValidation.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/Auth0.swift/README.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/Auth0.swift/EXAMPLES.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/Auth0.swift/V3_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/Auth0.swift/references/testing.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/Auth0.swift/references/docs-update.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/Auth0.swift/references/git-workflow.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/Auth0.swift/references/commands.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/Auth0.swift/references/code-style.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/Auth0.swift/references/pitfalls.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/Auth0.swift/CHANGELOG.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/Auth0.swift/FAQ.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/SimpleKeychain/.github/PULL_REQUEST_TEMPLATE.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/SimpleKeychain/fastlane/README.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/SimpleKeychain/CONTRIBUTING.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/SimpleKeychain/V1_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/SimpleKeychain/README.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/SimpleKeychain/CHANGELOG.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/SimpleKeychain/EXAMPLES.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/JWTDecode.swift/V4_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/JWTDecode.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/JWTDecode.swift/fastlane/README.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/JWTDecode.swift/CONTRIBUTING.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/JWTDecode.swift/README.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/Auth0.swift/FAQ.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/Auth0.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/Auth0.swift/references/testing.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/Auth0.swift/references/docs-update.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/Auth0.swift/references/git-workflow.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/Auth0.swift/references/commands.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/Auth0.swift/references/code-style.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/Auth0.swift/references/pitfalls.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/Auth0.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/Auth0.swift/EXAMPLES.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/SimpleKeychain/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/SimpleKeychain/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/SimpleKeychain/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/SimpleKeychain/V1_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/SimpleKeychain/README.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/JWTDecode.swift/V3_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-architectural/SourcePackages/checkouts/JWTDecode.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/Auth0.swift/FAQ.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/Auth0.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/Auth0.swift/references/testing.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/Auth0.swift/references/docs-update.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/Auth0.swift/references/git-workflow.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/Auth0.swift/references/commands.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/Auth0.swift/references/code-style.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/Auth0.swift/references/pitfalls.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/Auth0.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/Auth0.swift/EXAMPLES.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/SimpleKeychain/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/SimpleKeychain/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/SimpleKeychain/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/SimpleKeychain/V1_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/SimpleKeychain/README.md",
+    "output/qa/rillora-apple-restore-20260909/README.md",
+    "output/qa/rillora-apple-restore-20260909/source-snapshot/AGENTS.md",
+    "output/qa/rillora-apple-restore-20260909/source-snapshot/README.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/SimpleKeychain/CHANGELOG.md",
+    "output/qa/rillora-apple-restore-20260909/source-snapshot/docs/handoff.md",
+    "output/qa/rillora-apple-restore-20260909/source-snapshot/docs/journey/PROJECT_JOURNEY.md",
+    "output/qa/rillora-apple-restore-20260909/source-snapshot/docs/authentication-experience.md",
+    "output/qa/rillora-apple-restore-20260909/source-snapshot/docs/decision-log.md",
+    "output/qa/rillora-apple-restore-20260909/source-snapshot/docs/product.md",
+    "output/qa/rillora-apple-restore-20260909/source-snapshot/infra/auth0/hosted-consent/README.md",
+    "output/qa/rillora-apple-restore-20260909/source-snapshot/infra/auth0/README.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/SimpleKeychain/EXAMPLES.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V4_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/JWTDecode.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/rillora-surface-motion-20260917/README.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/JWTDecode.swift/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CONTRIBUTING.md",
+    "output/qa/rillora-auth0-live-20260817/README.md",
+    "output/qa/rillora-account-matter-ux-20260911/README.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/JWTDecode.swift/README.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/SimpleKeychain/CHANGELOG.md",
+    "output/qa/rillora-launch-completion-20260916/README.md",
+    "output/qa/rillora-real-invitation-20260917/README.md",
+    "output/qa/rillora-contextual-guidance-20260918/official-source-links.md",
+    "output/qa/rillora-filter-fit-20260918/README.md",
+    "output/qa/rillora-contextual-guidance-20260918/README.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/SimpleKeychain/EXAMPLES.md",
+    "output/qa/rillora-packaging-review-20260910/expiry-followup/README.md",
+    "output/qa/rillora-packaging-review-20260910/expiry-followup/handoff-before.md",
+    "output/qa/rillora-packaging-review-20260910/competitor-followup/README.md",
+    "output/qa/rillora-packaging-review-20260910/competitor-followup/handoff-before.md",
+    "output/qa/rillora-packaging-review-20260910/README.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V4_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/JWTDecode.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260812-232931/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/JWTDecode.swift/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CONTRIBUTING.md",
+    "output/qa/rillora-platform-guidance-20260918/README.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/JWTDecode.swift/README.md",
+    "output/qa/rillora-complete-ui-ux-audit-20260915/README.md",
+    "output/qa/rillora-complete-ui-ux-audit-20260915/screens-index.md",
+    "output/qa/rillora-complete-ui-ux-audit-20260915/pending-findings.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/Auth0.swift/CLAUDE.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260814-212802/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/Auth0.swift/AGENTS.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/Auth0.swift/V2_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/Auth0.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/Auth0.swift/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/Auth0.swift/scripts/DocsVersions/README.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/Auth0.swift/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/RefreshTokens.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/Documentation.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/WebAuth/UserAgents.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/IDTokenValidation.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/Auth0.swift/README.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/Auth0.swift/CLAUDE.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/Auth0.swift/AGENTS.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/Auth0.swift/V2_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/Auth0.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/Auth0.swift/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/Auth0.swift/scripts/DocsVersions/README.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/Auth0.swift/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/RefreshTokens.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/Documentation.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/WebAuth/UserAgents.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/IDTokenValidation.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/Auth0.swift/README.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/CLAUDE.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/AGENTS.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/Auth0.swift/CLAUDE.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/V2_MIGRATION_GUIDE.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/CLAUDE.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/fastlane/README.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/Auth0.swift/AGENTS.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/CLAUDE.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/scripts/DocsVersions/README.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/CONTRIBUTING.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/AGENTS.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/RefreshTokens.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/Documentation.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/WebAuth/UserAgents.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/IDTokenValidation.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/README.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/Auth0.swift/V2_MIGRATION_GUIDE.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/V2_MIGRATION_GUIDE.md",
+    "output/qa/rillora-account-action-type-system-20260817/README.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/Auth0.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/rillora-direct-hosted-auth-20260817/README.md",
+    "output/qa/rillora-components-preview-20260918/vendor-reference/Pow/README.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/Auth0.swift/fastlane/README.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/AGENTS.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/Auth0.swift/scripts/DocsVersions/README.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/fastlane/README.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/Auth0.swift/CONTRIBUTING.md",
+    "output/qa/rillora-family-maintenance-20260910/README.md",
+    "output/qa/rillora-family-maintenance-20260910/handoff-before.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/scripts/DocsVersions/README.md",
+    "output/qa/rillora-components-preview-20260918/before/THIRD_PARTY_NOTICES.md",
+    "output/qa/rillora-components-preview-20260918/README.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/V2_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/Auth0.swift/Documentation.docc/RefreshTokens.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/Auth0.swift/Documentation.docc/Documentation.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/CONTRIBUTING.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/Auth0.swift/Documentation.docc/WebAuth/UserAgents.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/Auth0.swift/Documentation.docc/IDTokenValidation.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/Auth0.swift/README.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/RefreshTokens.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/Documentation.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/WebAuth/UserAgents.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/IDTokenValidation.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/README.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/fastlane/README.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/scripts/DocsVersions/README.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/CONTRIBUTING.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/design-qa.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/RefreshTokens.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/Documentation.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/WebAuth/UserAgents.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/IDTokenValidation.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/README.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/DESIGN.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/README.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/legal-candidate-zh.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/global-mainland-commerce-plan.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/handoff.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/dark-ui-redesign-brief.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/monetization.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/logo-ai-workflow.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/trust-safety-legal.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/apple-watch-death-signal-research.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/identity-data-region.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/unit-economics.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/public-legal-pages.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/provider-death-account-guides.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/research.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/backend.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/platform-contract.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/competitor-ux-audit.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/free-paid-ui-audit.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/journey/PROJECT_JOURNEY.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/infrastructure-roadmap.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/authentication-experience.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/storekit.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/logo-discovery.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/product-events.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/logo-form-brief.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/asset-licenses.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/ios-layout-matrix.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/disclosure-rehearsal.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/ios-external-payment-research.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/decision-log.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/mvp.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/quality-gates.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/death-verification-evidence-research.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/individual-operator-launch-plan.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/blockchain.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/product.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/start-here-export.md",
+    "output/qa/rillora-full-app-ux-20260906/before-source/docs/role-assignment-policy.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/Auth0.swift/FAQ.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/Auth0.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/Auth0.swift/references/testing.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/Auth0.swift/references/docs-update.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/Auth0.swift/references/git-workflow.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/Auth0.swift/references/commands.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/Auth0.swift/references/code-style.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/Auth0.swift/references/pitfalls.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/Auth0.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/Auth0.swift/EXAMPLES.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/SimpleKeychain/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/SimpleKeychain/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/SimpleKeychain/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/SimpleKeychain/V1_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/SimpleKeychain/README.md",
+    "output/qa/rillora-native-apple-preflight-20260817/README.md",
+    "output/qa/rillora-full-app-ux-20260906/README.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/SimpleKeychain/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/Auth0.swift/FAQ.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/SimpleKeychain/EXAMPLES.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/Auth0.swift/CLAUDE.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/Auth0.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/Auth0.swift/references/testing.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/Auth0.swift/references/docs-update.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/Auth0.swift/references/git-workflow.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/Auth0.swift/references/commands.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/Auth0.swift/references/code-style.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/Auth0.swift/references/pitfalls.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/Auth0.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/Auth0.swift/CLAUDE.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/JWTDecode.swift/V4_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/Auth0.swift/EXAMPLES.md",
+    "output/qa/rillora-account-social-group-20260817/README.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/JWTDecode.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/JWTDecode.swift/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/JWTDecode.swift/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/SimpleKeychain/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/Auth0.swift/AGENTS.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/JWTDecode.swift/README.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/SimpleKeychain/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/SimpleKeychain/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/SimpleKeychain/V1_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/SimpleKeychain/README.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/Auth0.swift/V2_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/Auth0.swift/AGENTS.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/Auth0.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/Auth0.swift/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/Auth0.swift/V2_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/Auth0.swift/scripts/DocsVersions/README.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/Auth0.swift/FAQ.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/Auth0.swift/V3_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/Auth0.swift/references/testing.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/Auth0.swift/references/docs-update.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/Auth0.swift/references/git-workflow.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/Auth0.swift/references/commands.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/Auth0.swift/references/code-style.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/Auth0.swift/references/pitfalls.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/Auth0.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/Auth0.swift/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/Auth0.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/Auth0.swift/EXAMPLES.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/RefreshTokens.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/Documentation.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/Auth0.swift/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/WebAuth/UserAgents.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/IDTokenValidation.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/Auth0.swift/README.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/Auth0.swift/scripts/DocsVersions/README.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/Auth0.swift/CONTRIBUTING.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/FAQ.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/references/testing.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/references/docs-update.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/references/git-workflow.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/references/commands.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/references/code-style.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/references/pitfalls.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/CHANGELOG.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/SimpleKeychain/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/RefreshTokens.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/Documentation.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/WebAuth/UserAgents.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/IDTokenValidation.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/Auth0.swift/README.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/SimpleKeychain/fastlane/README.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/SimpleKeychain/CONTRIBUTING.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/SimpleKeychain/V1_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/SimpleKeychain/README.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/EXAMPLES.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/JWTDecode.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/SourcePackages/checkouts/JWTDecode.swift/CHANGELOG.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/SimpleKeychain/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/SimpleKeychain/fastlane/README.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/SimpleKeychain/CONTRIBUTING.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/SimpleKeychain/V1_MIGRATION_GUIDE.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/SimpleKeychain/README.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/Auth0.swift/CLAUDE.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/FAQ.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/references/testing.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/references/docs-update.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/references/git-workflow.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/references/commands.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/references/code-style.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/references/pitfalls.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/CHANGELOG.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/FAQ.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/references/testing.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/references/docs-update.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/references/git-workflow.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/references/commands.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/references/code-style.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/references/pitfalls.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/CHANGELOG.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/Auth0.swift/EXAMPLES.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/SimpleKeychain/CHANGELOG.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/EXAMPLES.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/Auth0.swift/AGENTS.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/SimpleKeychain/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/SimpleKeychain/fastlane/README.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/SimpleKeychain/CONTRIBUTING.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/SimpleKeychain/V1_MIGRATION_GUIDE.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/SimpleKeychain/README.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/SimpleKeychain/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/Auth0.swift/V2_MIGRATION_GUIDE.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/SimpleKeychain/fastlane/README.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/SimpleKeychain/CONTRIBUTING.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/SimpleKeychain/V1_MIGRATION_GUIDE.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/SimpleKeychain/README.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/SimpleKeychain/EXAMPLES.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/Auth0.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/Auth0.swift/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V4_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/Auth0.swift/scripts/DocsVersions/README.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/Auth0.swift/CONTRIBUTING.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/SimpleKeychain/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/JWTDecode.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/RefreshTokens.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/Documentation.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/WebAuth/UserAgents.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/IDTokenValidation.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/Auth0.swift/README.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/JWTDecode.swift/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/JWTDecode.swift/README.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/SimpleKeychain/EXAMPLES.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/JWTDecode.swift/V4_MIGRATION_GUIDE.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/SimpleKeychain/CHANGELOG.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/JWTDecode.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/JWTDecode.swift/fastlane/README.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/JWTDecode.swift/CONTRIBUTING.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/JWTDecode.swift/README.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/SimpleKeychain/EXAMPLES.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V4_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/Auth0.swift/CLAUDE.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260813-001645/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CHANGELOG.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/JWTDecode.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/SimpleKeychain/CHANGELOG.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/JWTDecode.swift/fastlane/README.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CONTRIBUTING.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/SimpleKeychain/CHANGELOG.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/JWTDecode.swift/README.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/Auth0.swift/AGENTS.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/Auth0.swift/V2_MIGRATION_GUIDE.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/SimpleKeychain/EXAMPLES.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/Auth0.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/SimpleKeychain/EXAMPLES.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/JWTDecode.swift/V3_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-ui-run/SourcePackages/checkouts/JWTDecode.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/Auth0.swift/fastlane/README.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V4_MIGRATION_GUIDE.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V4_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/Auth0.swift/scripts/DocsVersions/README.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/JWTDecode.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/Auth0.swift/CONTRIBUTING.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/JWTDecode.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/JWTDecode.swift/fastlane/README.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/RefreshTokens.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/Documentation.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/JWTDecode.swift/fastlane/README.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/WebAuth/UserAgents.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/IDTokenValidation.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/Auth0.swift/README.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/JWTDecode.swift/README.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/JWTDecode.swift/README.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/rillora-owner-review-20260816/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CHANGELOG.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/rillora-signed-out-commercial-copy-20260815/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/Auth0.swift/FAQ.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/Auth0.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/rillora-profile-actions-20260816/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/Auth0.swift/references/testing.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/Auth0.swift/references/docs-update.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/Auth0.swift/references/git-workflow.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/Auth0.swift/references/commands.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/Auth0.swift/references/code-style.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/Auth0.swift/references/pitfalls.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/Auth0.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/Auth0.swift/EXAMPLES.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/SimpleKeychain/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/SimpleKeychain/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/SimpleKeychain/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/SimpleKeychain/V1_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/SimpleKeychain/README.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/Auth0.swift/FAQ.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/Auth0.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/Auth0.swift/references/testing.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/Auth0.swift/references/docs-update.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/Auth0.swift/references/git-workflow.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/Auth0.swift/references/commands.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/Auth0.swift/references/code-style.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/Auth0.swift/references/pitfalls.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/Auth0.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/Auth0.swift/EXAMPLES.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/SimpleKeychain/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/SimpleKeychain/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/SimpleKeychain/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/SimpleKeychain/V1_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/SimpleKeychain/README.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/SimpleKeychain/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/Auth0.swift/FAQ.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/Auth0.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/Auth0.swift/references/testing.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/Auth0.swift/references/docs-update.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/Auth0.swift/references/git-workflow.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/Auth0.swift/references/commands.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/Auth0.swift/references/code-style.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/Auth0.swift/references/pitfalls.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/Auth0.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/Auth0.swift/EXAMPLES.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/SimpleKeychain/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/SimpleKeychain/EXAMPLES.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/SimpleKeychain/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/SimpleKeychain/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/SimpleKeychain/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/SimpleKeychain/V1_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/SimpleKeychain/README.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V4_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/JWTDecode.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/JWTDecode.swift/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/JWTDecode.swift/README.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/SimpleKeychain/EXAMPLES.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V4_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/JWTDecode.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/JWTDecode.swift/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/JWTDecode.swift/README.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260813-224002/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/Auth0.swift/FAQ.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/Auth0.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/Auth0.swift/references/testing.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/Auth0.swift/references/docs-update.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/Auth0.swift/references/git-workflow.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/Auth0.swift/references/commands.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/Auth0.swift/references/code-style.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/Auth0.swift/references/pitfalls.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/Auth0.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/Auth0.swift/EXAMPLES.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/SimpleKeychain/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260815-185519/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/SimpleKeychain/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/SimpleKeychain/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/SimpleKeychain/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/SimpleKeychain/V1_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/SimpleKeychain/README.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/SimpleKeychain/EXAMPLES.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V4_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/JWTDecode.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/JWTDecode.swift/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/JWTDecode.swift/README.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260813-223219/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/SimpleKeychain/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/SimpleKeychain/EXAMPLES.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V4_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/JWTDecode.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/JWTDecode.swift/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/JWTDecode.swift/README.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/Auth0.swift/CLAUDE.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/Auth0.swift/AGENTS.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260811-210327/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CHANGELOG.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/Auth0.swift/V2_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/Auth0.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/Auth0.swift/fastlane/README.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/Auth0.swift/scripts/DocsVersions/README.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/Auth0.swift/CONTRIBUTING.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/Auth0.swift/Documentation.docc/RefreshTokens.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/Auth0.swift/Documentation.docc/Documentation.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/Auth0.swift/Documentation.docc/WebAuth/UserAgents.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/Auth0.swift/Documentation.docc/IDTokenValidation.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/Auth0.swift/README.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/Auth0.swift/FAQ.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/Auth0.swift/V3_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/Auth0.swift/references/testing.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/Auth0.swift/references/docs-update.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/Auth0.swift/references/git-workflow.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/Auth0.swift/references/commands.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/Auth0.swift/references/code-style.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/Auth0.swift/references/pitfalls.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/Auth0.swift/CHANGELOG.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/Auth0.swift/EXAMPLES.md",
+    "output/qa/rillora-p1-repair-20260915/README.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/SimpleKeychain/.github/PULL_REQUEST_TEMPLATE.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/SimpleKeychain/fastlane/README.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/SimpleKeychain/CONTRIBUTING.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/SimpleKeychain/V1_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/SimpleKeychain/README.md",
+    "output/qa/rillora-p1-repair-20260915/deployment-20260916/README.md",
+    "output/qa/rillora-invite-motion-20260911/README.md",
+    "output/qa/rillora-invite-motion-20260911/design-qa-before.md",
+    "output/qa/rillora-native-apple-debug-20260817/README.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/SimpleKeychain/CHANGELOG.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/SimpleKeychain/EXAMPLES.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/JWTDecode.swift/V4_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/JWTDecode.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/JWTDecode.swift/fastlane/README.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/JWTDecode.swift/CONTRIBUTING.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/JWTDecode.swift/README.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/JWTDecode.swift/V3_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-first-use-ui/SourcePackages/checkouts/JWTDecode.swift/CHANGELOG.md",
+    "output/qa/rillora-profile-actions-20260816/README.md",
+    "output/qa/rillora-automation-foundation-20260911/before/SECURITY.md",
+    "output/qa/rillora-automation-foundation-20260911/before/docs/global-mainland-commerce-plan.md",
+    "output/qa/rillora-automation-foundation-20260911/before/docs/handoff.md",
+    "output/qa/rillora-automation-foundation-20260911/before/docs/monetization.md",
+    "output/qa/rillora-automation-foundation-20260911/before/docs/identity-data-region.md",
+    "output/qa/rillora-automation-foundation-20260911/before/docs/unit-economics.md",
+    "output/qa/rillora-automation-foundation-20260911/before/docs/pricing-band-20260910.md",
+    "output/qa/rillora-automation-foundation-20260911/before/docs/family-maintenance.md",
+    "output/qa/rillora-automation-foundation-20260911/before/docs/handoff-history-20260910.md",
+    "output/qa/rillora-automation-foundation-20260911/before/docs/backend.md",
+    "output/qa/rillora-automation-foundation-20260911/before/docs/platform-contract.md",
+    "output/qa/rillora-automation-foundation-20260911/before/docs/free-paid-ui-audit.md",
+    "output/qa/rillora-automation-foundation-20260911/before/docs/journey/PROJECT_JOURNEY.md",
+    "output/qa/rillora-automation-foundation-20260911/before/docs/infrastructure-roadmap.md",
+    "output/qa/rillora-automation-foundation-20260911/before/docs/storekit.md",
+    "output/qa/rillora-automation-foundation-20260911/before/docs/decision-log.md",
+    "output/qa/rillora-automation-foundation-20260911/before/docs/mvp.md",
+    "output/qa/rillora-automation-foundation-20260911/before/docs/product.md",
+    "output/qa/rillora-automation-foundation-20260911/before/infra/aws/README.md",
+    "output/qa/rillora-automation-foundation-20260911/README.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/Auth0.swift/CLAUDE.md",
+    "output/qa/rillora-price-band-20260910/before/docs/global-mainland-commerce-plan.md",
+    "output/qa/rillora-price-band-20260910/before/docs/handoff.md",
+    "output/qa/rillora-price-band-20260910/before/docs/monetization.md",
+    "output/qa/rillora-price-band-20260910/before/docs/unit-economics.md",
+    "output/qa/rillora-price-band-20260910/before/docs/family-maintenance.md",
+    "output/qa/rillora-price-band-20260910/before/docs/handoff-history-20260910.md",
+    "output/qa/rillora-price-band-20260910/before/docs/free-paid-ui-audit.md",
+    "output/qa/rillora-price-band-20260910/before/docs/journey/PROJECT_JOURNEY.md",
+    "output/qa/rillora-price-band-20260910/before/docs/storekit.md",
+    "output/qa/rillora-price-band-20260910/before/docs/decision-log.md",
+    "output/qa/rillora-price-band-20260910/before/docs/mvp.md",
+    "output/qa/rillora-price-band-20260910/before/docs/product.md",
+    "output/qa/rillora-price-band-20260910/README.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/Auth0.swift/AGENTS.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/Auth0.swift/V2_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/Auth0.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/Auth0.swift/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/Auth0.swift/scripts/DocsVersions/README.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/Auth0.swift/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/RefreshTokens.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/Documentation.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/WebAuth/UserAgents.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/IDTokenValidation.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/Auth0.swift/README.md",
+    "output/qa/rillora-trusted-sharing-20260909/before-source/SECURITY.md",
+    "output/qa/rillora-trusted-sharing-20260909/before-source/docs/handoff.md",
+    "output/qa/rillora-trusted-sharing-20260909/before-source/docs/platform-contract.md",
+    "output/qa/rillora-trusted-sharing-20260909/before-source/docs/decision-log.md",
+    "output/qa/rillora-trusted-sharing-20260909/before-source/docs/product.md",
+    "output/qa/rillora-trusted-sharing-20260909/before-source/docs/role-assignment-policy.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/Auth0.swift/CLAUDE.md",
+    "output/qa/rillora-trusted-sharing-20260909/README.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/Auth0.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/Auth0.swift/references/testing.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/Auth0.swift/references/docs-update.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/Auth0.swift/references/git-workflow.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/Auth0.swift/references/commands.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/Auth0.swift/references/code-style.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/Auth0.swift/references/pitfalls.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/Auth0.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/Auth0.swift/EXAMPLES.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/CLAUDE.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/Auth0.swift/AGENTS.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V4_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/Auth0.swift/CLAUDE.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/SimpleKeychain/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/SimpleKeychain/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/SimpleKeychain/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/SimpleKeychain/V1_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/SimpleKeychain/README.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/JWTDecode.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/Auth0.swift/V2_MIGRATION_GUIDE.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/JWTDecode.swift/fastlane/README.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/SimpleKeychain/CHANGELOG.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/Auth0.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/JWTDecode.swift/README.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/Auth0.swift/fastlane/README.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/AGENTS.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/Auth0.swift/scripts/DocsVersions/README.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/Auth0.swift/AGENTS.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/Auth0.swift/CONTRIBUTING.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/V2_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/Auth0.swift/Documentation.docc/RefreshTokens.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/Auth0.swift/Documentation.docc/Documentation.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/Auth0.swift/Documentation.docc/WebAuth/UserAgents.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/Auth0.swift/Documentation.docc/IDTokenValidation.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/Auth0.swift/README.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/SimpleKeychain/EXAMPLES.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/Auth0.swift/V2_MIGRATION_GUIDE.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V4_MIGRATION_GUIDE.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/scripts/DocsVersions/README.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/Auth0.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/JWTDecode.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/RefreshTokens.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/Documentation.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/JWTDecode.swift/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/Auth0.swift/fastlane/README.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/WebAuth/UserAgents.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/IDTokenValidation.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/README.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/Auth0.swift/scripts/DocsVersions/README.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/Auth0.swift/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/JWTDecode.swift/README.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/RefreshTokens.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/Documentation.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/WebAuth/UserAgents.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/IDTokenValidation.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/Auth0.swift/README.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/Auth0.swift/FAQ.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260811-212104/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CHANGELOG.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/Auth0.swift/FAQ.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/Auth0.swift/V3_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/Auth0.swift/references/testing.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/Auth0.swift/references/docs-update.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/Auth0.swift/references/git-workflow.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/Auth0.swift/references/commands.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/Auth0.swift/references/code-style.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/Auth0.swift/references/pitfalls.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/Auth0.swift/CHANGELOG.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/Auth0.swift/EXAMPLES.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/SimpleKeychain/.github/PULL_REQUEST_TEMPLATE.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/SimpleKeychain/fastlane/README.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/SimpleKeychain/CONTRIBUTING.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/SimpleKeychain/V1_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/SimpleKeychain/README.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/FAQ.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/references/testing.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/references/docs-update.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/references/git-workflow.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/references/commands.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/references/code-style.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/references/pitfalls.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/CHANGELOG.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift/EXAMPLES.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/SimpleKeychain/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/SimpleKeychain/fastlane/README.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/SimpleKeychain/CONTRIBUTING.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/SimpleKeychain/V1_MIGRATION_GUIDE.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/SimpleKeychain/README.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/Auth0.swift/FAQ.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/Auth0.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/Auth0.swift/references/testing.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/Auth0.swift/references/docs-update.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/Auth0.swift/references/git-workflow.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/Auth0.swift/references/commands.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/Auth0.swift/references/code-style.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/Auth0.swift/references/pitfalls.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/Auth0.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/Auth0.swift/CLAUDE.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/Auth0.swift/EXAMPLES.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/SimpleKeychain/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/SimpleKeychain/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/SimpleKeychain/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/SimpleKeychain/V1_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/SimpleKeychain/README.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/Auth0.swift/AGENTS.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/Auth0.swift/EXAMPLES.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/Auth0.swift/README.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/SimpleKeychain/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/Auth0.swift/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/SimpleKeychain/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/Auth0.swift/V2_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/SimpleKeychain/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/SimpleKeychain/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/SimpleKeychain/V1_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/SimpleKeychain/README.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/Auth0.swift/scripts/DocsVersions/README.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/Auth0.swift/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/RefreshTokens.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/Documentation.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/SimpleKeychain/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/WebAuth/UserAgents.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/Auth0.swift/Documentation.docc/IDTokenValidation.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/Auth0.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/SimpleKeychain/EXAMPLES.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/SimpleKeychain/EXAMPLES.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/JWTDecode.swift/V4_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/JWTDecode.swift/README.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/JWTDecode.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/JWTDecode.swift/fastlane/README.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/JWTDecode.swift/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V4_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/SimpleKeychain/EXAMPLES.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/SimpleKeychain/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/JWTDecode.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/JWTDecode.swift/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/JWTDecode.swift/README.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/JWTDecode.swift/V3_MIGRATION_GUIDE.md",
+    "apps/ios/.derived-data-first-use/SourcePackages/checkouts/JWTDecode.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/SimpleKeychain/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/SimpleKeychain/EXAMPLES.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V4_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260812-232354/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/JWTDecode.swift/.github/PULL_REQUEST_TEMPLATE.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/JWTDecode.swift/fastlane/README.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CONTRIBUTING.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/JWTDecode.swift/README.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/JWTDecode.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/JWTDecode.swift/CHANGELOG.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/Auth0.swift/FAQ.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/Auth0.swift/V3_MIGRATION_GUIDE.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/Auth0.swift/references/testing.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/Auth0.swift/references/docs-update.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/Auth0.swift/references/git-workflow.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/Auth0.swift/references/commands.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/Auth0.swift/references/code-style.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/Auth0.swift/references/pitfalls.md",
+    "output/qa/ios-layout-matrix-20260814-230952/DerivedData/SourcePackages/checkouts/Auth0.swift/CHANGELOG.md"
+  ],
+  "exclusionReasons": "Dependencies, caches, build artifacts, third-party checkouts, generated output evidence and private local configuration",
+  "chunks": [
+    {
+      "index": 0,
+      "path": "docs/product.md",
+      "startLine": 1,
+      "endLine": 207
+    },
+    {
+      "index": 1,
+      "path": "docs/product.md",
+      "startLine": 208,
+      "endLine": 275
+    },
+    {
+      "index": 2,
+      "path": "AGENTS.md",
+      "startLine": 1,
+      "endLine": 82
+    },
+    {
+      "index": 3,
+      "path": "docs/handoff.md",
+      "startLine": 1,
+      "endLine": 32
+    },
+    {
+      "index": 4,
+      "path": "docs/quality-gates.md",
+      "startLine": 1,
+      "endLine": 128
+    },
+    {
+      "index": 5,
+      "path": "docs/quality-gates.md",
+      "startLine": 129,
+      "endLine": 287
+    },
+    {
+      "index": 6,
+      "path": "docs/commercial-completion-20260916.md",
+      "startLine": 1,
+      "endLine": 40
+    },
+    {
+      "index": 7,
+      "path": "docs/mvp.md",
+      "startLine": 1,
+      "endLine": 165
+    },
+    {
+      "index": 8,
+      "path": "docs/platform-contract.md",
+      "startLine": 1,
+      "endLine": 199
+    },
+    {
+      "index": 9,
+      "path": "docs/platform-contract.md",
+      "startLine": 200,
+      "endLine": 285
+    },
+    {
+      "index": 10,
+      "path": "docs/individual-operator-launch-plan.md",
+      "startLine": 1,
+      "endLine": 107
+    },
+    {
+      "index": 11,
+      "path": "docs/individual-operator-launch-plan.md",
+      "startLine": 108,
+      "endLine": 230
+    },
+    {
+      "index": 12,
+      "path": "docs/individual-operator-launch-plan.md",
+      "startLine": 231,
+      "endLine": 261
+    },
+    {
+      "index": 13,
+      "path": "docs/global-mainland-commerce-plan.md",
+      "startLine": 1,
+      "endLine": 326
+    },
+    {
+      "index": 14,
+      "path": "docs/global-mainland-commerce-plan.md",
+      "startLine": 327,
+      "endLine": 433
+    },
+    {
+      "index": 15,
+      "path": "docs/solo-operations-and-portability.md",
+      "startLine": 1,
+      "endLine": 142
+    },
+    {
+      "index": 16,
+      "path": "docs/solo-operations-and-portability.md",
+      "startLine": 143,
+      "endLine": 164
+    },
+    {
+      "index": 17,
+      "path": "docs/infrastructure-roadmap.md",
+      "startLine": 1,
+      "endLine": 149
+    },
+    {
+      "index": 18,
+      "path": "docs/infrastructure-roadmap.md",
+      "startLine": 150,
+      "endLine": 311
+    },
+    {
+      "index": 19,
+      "path": "docs/storekit.md",
+      "startLine": 1,
+      "endLine": 87
+    },
+    {
+      "index": 20,
+      "path": "docs/storekit.md",
+      "startLine": 88,
+      "endLine": 183
+    },
+    {
+      "index": 21,
+      "path": "docs/storekit.md",
+      "startLine": 184,
+      "endLine": 244
+    },
+    {
+      "index": 22,
+      "path": "docs/ios-external-payment-research.md",
+      "startLine": 1,
+      "endLine": 279
+    },
+    {
+      "index": 23,
+      "path": "docs/ios-external-payment-research.md",
+      "startLine": 280,
+      "endLine": 378
+    },
+    {
+      "index": 24,
+      "path": "docs/authentication-experience.md",
+      "startLine": 1,
+      "endLine": 165
+    },
+    {
+      "index": 25,
+      "path": "docs/authentication-experience.md",
+      "startLine": 166,
+      "endLine": 244
+    },
+    {
+      "index": 26,
+      "path": "docs/authentication-experience.md",
+      "startLine": 245,
+      "endLine": 463
+    },
+    {
+      "index": 27,
+      "path": "docs/authentication-experience.md",
+      "startLine": 464,
+      "endLine": 631
+    },
+    {
+      "index": 28,
+      "path": "SECURITY.md",
+      "startLine": 1,
+      "endLine": 101
+    },
+    {
+      "index": 29,
+      "path": "SECURITY.md",
+      "startLine": 102,
+      "endLine": 160
+    },
+    {
+      "index": 30,
+      "path": "SECURITY.md",
+      "startLine": 161,
+      "endLine": 244
+    },
+    {
+      "index": 31,
+      "path": "infra/aws/README.md",
+      "startLine": 1,
+      "endLine": 158
+    },
+    {
+      "index": 32,
+      "path": "infra/aws/README.md",
+      "startLine": 159,
+      "endLine": 223
+    },
+    {
+      "index": 33,
+      "path": "DESIGN.md",
+      "startLine": 1,
+      "endLine": 105
+    },
+    {
+      "index": 34,
+      "path": "DESIGN.md",
+      "startLine": 106,
+      "endLine": 196
+    },
+    {
+      "index": 35,
+      "path": "DESIGN.md",
+      "startLine": 197,
+      "endLine": 285
+    },
+    {
+      "index": 36,
+      "path": "README.md",
+      "startLine": 1,
+      "endLine": 102
+    },
+    {
+      "index": 37,
+      "path": "THIRD_PARTY_NOTICES.md",
+      "startLine": 1,
+      "endLine": 249
+    },
+    {
+      "index": 38,
+      "path": "THIRD_PARTY_NOTICES.md",
+      "startLine": 250,
+      "endLine": 332
+    },
+    {
+      "index": 39,
+      "path": "apps/ios-prototype/AGENTS.md",
+      "startLine": 1,
+      "endLine": 73
+    },
+    {
+      "index": 40,
+      "path": "apps/ios-prototype/src/mobile/COMPONENTS.md",
+      "startLine": 1,
+      "endLine": 31
+    },
+    {
+      "index": 41,
+      "path": "apps/web/AGENTS.md",
+      "startLine": 1,
+      "endLine": 32
+    },
+    {
+      "index": 42,
+      "path": "assets/concepts/rillora-authenticated-motion-20260911/README.md",
+      "startLine": 1,
+      "endLine": 13
+    },
+    {
+      "index": 43,
+      "path": "assets/concepts/rillora-logo-gate2-dual-embrace-20260808/README.md",
+      "startLine": 1,
+      "endLine": 30
+    },
+    {
+      "index": 44,
+      "path": "assets/concepts/rillora-public-motion-20260909/README.md",
+      "startLine": 1,
+      "endLine": 20
+    },
+    {
+      "index": 45,
+      "path": "assets/concepts/rillora-trusted-sharing-20260909/README.md",
+      "startLine": 1,
+      "endLine": 16
+    },
+    {
+      "index": 46,
+      "path": "assets/concepts/rillora-ui-directions-20260814/README.md",
+      "startLine": 1,
+      "endLine": 28
+    },
+    {
+      "index": 47,
+      "path": "design-qa.md",
+      "startLine": 1,
+      "endLine": 58
+    },
+    {
+      "index": 48,
+      "path": "docs/account-matter-ux.md",
+      "startLine": 1,
+      "endLine": 61
+    },
+    {
+      "index": 49,
+      "path": "docs/apple-watch-death-signal-research.md",
+      "startLine": 1,
+      "endLine": 311
+    },
+    {
+      "index": 50,
+      "path": "docs/asset-licenses.md",
+      "startLine": 1,
+      "endLine": 97
+    },
+    {
+      "index": 51,
+      "path": "docs/asset-licenses.md",
+      "startLine": 98,
+      "endLine": 106
+    },
+    {
+      "index": 52,
+      "path": "docs/backend.md",
+      "startLine": 1,
+      "endLine": 70
+    },
+    {
+      "index": 53,
+      "path": "docs/backend.md",
+      "startLine": 71,
+      "endLine": 150
+    },
+    {
+      "index": 54,
+      "path": "docs/backend.md",
+      "startLine": 151,
+      "endLine": 223
+    },
+    {
+      "index": 55,
+      "path": "docs/backend.md",
+      "startLine": 224,
+      "endLine": 277
+    },
+    {
+      "index": 56,
+      "path": "docs/blockchain.md",
+      "startLine": 1,
+      "endLine": 63
+    },
+    {
+      "index": 57,
+      "path": "docs/competitor-ux-audit.md",
+      "startLine": 1,
+      "endLine": 194
+    },
+    {
+      "index": 58,
+      "path": "docs/competitor-ux-audit.md",
+      "startLine": 195,
+      "endLine": 583
+    },
+    {
+      "index": 59,
+      "path": "docs/competitor-ux-audit.md",
+      "startLine": 584,
+      "endLine": 694
+    },
+    {
+      "index": 60,
+      "path": "docs/component-preview-20260918.md",
+      "startLine": 1,
+      "endLine": 34
+    },
+    {
+      "index": 61,
+      "path": "docs/dark-ui-redesign-brief.md",
+      "startLine": 1,
+      "endLine": 121
+    },
+    {
+      "index": 62,
+      "path": "docs/death-verification-evidence-research.md",
+      "startLine": 1,
+      "endLine": 163
+    },
+    {
+      "index": 63,
+      "path": "docs/decision-log.md",
+      "startLine": 1,
+      "endLine": 180
+    },
+    {
+      "index": 64,
+      "path": "docs/decision-log.md",
+      "startLine": 181,
+      "endLine": 319
+    },
+    {
+      "index": 65,
+      "path": "docs/decision-log.md",
+      "startLine": 320,
+      "endLine": 413
+    },
+    {
+      "index": 66,
+      "path": "docs/decision-log.md",
+      "startLine": 414,
+      "endLine": 482
+    },
+    {
+      "index": 67,
+      "path": "docs/decision-log.md",
+      "startLine": 483,
+      "endLine": 540
+    },
+    {
+      "index": 68,
+      "path": "docs/decision-log.md",
+      "startLine": 541,
+      "endLine": 606
+    },
+    {
+      "index": 69,
+      "path": "docs/decision-log.md",
+      "startLine": 607,
+      "endLine": 667
+    },
+    {
+      "index": 70,
+      "path": "docs/decision-log.md",
+      "startLine": 668,
+      "endLine": 728
+    },
+    {
+      "index": 71,
+      "path": "docs/decision-log.md",
+      "startLine": 729,
+      "endLine": 789
+    },
+    {
+      "index": 72,
+      "path": "docs/decision-log.md",
+      "startLine": 790,
+      "endLine": 846
+    },
+    {
+      "index": 73,
+      "path": "docs/decision-log.md",
+      "startLine": 847,
+      "endLine": 909
+    },
+    {
+      "index": 74,
+      "path": "docs/decision-log.md",
+      "startLine": 910,
+      "endLine": 984
+    },
+    {
+      "index": 75,
+      "path": "docs/decision-log.md",
+      "startLine": 985,
+      "endLine": 1056
+    },
+    {
+      "index": 76,
+      "path": "docs/decision-log.md",
+      "startLine": 1057,
+      "endLine": 1117
+    },
+    {
+      "index": 77,
+      "path": "docs/decision-log.md",
+      "startLine": 1118,
+      "endLine": 1179
+    },
+    {
+      "index": 78,
+      "path": "docs/decision-log.md",
+      "startLine": 1180,
+      "endLine": 1233
+    },
+    {
+      "index": 79,
+      "path": "docs/decision-log.md",
+      "startLine": 1234,
+      "endLine": 1286
+    },
+    {
+      "index": 80,
+      "path": "docs/decision-log.md",
+      "startLine": 1287,
+      "endLine": 1344
+    },
+    {
+      "index": 81,
+      "path": "docs/decision-log.md",
+      "startLine": 1345,
+      "endLine": 1405
+    },
+    {
+      "index": 82,
+      "path": "docs/decision-log.md",
+      "startLine": 1406,
+      "endLine": 1477
+    },
+    {
+      "index": 83,
+      "path": "docs/decision-log.md",
+      "startLine": 1478,
+      "endLine": 1521
+    },
+    {
+      "index": 84,
+      "path": "docs/decision-log.md",
+      "startLine": 1522,
+      "endLine": 1577
+    },
+    {
+      "index": 85,
+      "path": "docs/decision-log.md",
+      "startLine": 1578,
+      "endLine": 1654
+    },
+    {
+      "index": 86,
+      "path": "docs/decision-log.md",
+      "startLine": 1655,
+      "endLine": 1711
+    },
+    {
+      "index": 87,
+      "path": "docs/decision-log.md",
+      "startLine": 1712,
+      "endLine": 1765
+    },
+    {
+      "index": 88,
+      "path": "docs/decision-log.md",
+      "startLine": 1766,
+      "endLine": 1858
+    },
+    {
+      "index": 89,
+      "path": "docs/decision-log.md",
+      "startLine": 1859,
+      "endLine": 2029
+    },
+    {
+      "index": 90,
+      "path": "docs/decision-log.md",
+      "startLine": 2030,
+      "endLine": 2173
+    },
+    {
+      "index": 91,
+      "path": "docs/decision-log.md",
+      "startLine": 2174,
+      "endLine": 2239
+    },
+    {
+      "index": 92,
+      "path": "docs/decision-log.md",
+      "startLine": 2240,
+      "endLine": 2308
+    },
+    {
+      "index": 93,
+      "path": "docs/decision-log.md",
+      "startLine": 2309,
+      "endLine": 2343
+    },
+    {
+      "index": 94,
+      "path": "docs/disclosure-rehearsal.md",
+      "startLine": 1,
+      "endLine": 109
+    },
+    {
+      "index": 95,
+      "path": "docs/family-maintenance.md",
+      "startLine": 1,
+      "endLine": 118
+    },
+    {
+      "index": 96,
+      "path": "docs/free-paid-ui-audit.md",
+      "startLine": 1,
+      "endLine": 133
+    },
+    {
+      "index": 97,
+      "path": "docs/free-paid-ui-audit.md",
+      "startLine": 134,
+      "endLine": 153
+    },
+    {
+      "index": 98,
+      "path": "docs/handoff-history-20260910.md",
+      "startLine": 1,
+      "endLine": 213
+    },
+    {
+      "index": 99,
+      "path": "docs/handoff-history-20260910.md",
+      "startLine": 214,
+      "endLine": 365
+    },
+    {
+      "index": 100,
+      "path": "docs/handoff-history-20260910.md",
+      "startLine": 366,
+      "endLine": 427
+    },
+    {
+      "index": 101,
+      "path": "docs/handoff-history-20260910.md",
+      "startLine": 428,
+      "endLine": 481
+    },
+    {
+      "index": 102,
+      "path": "docs/handoff-history-20260910.md",
+      "startLine": 482,
+      "endLine": 539
+    },
+    {
+      "index": 103,
+      "path": "docs/handoff-history-20260910.md",
+      "startLine": 540,
+      "endLine": 595
+    },
+    {
+      "index": 104,
+      "path": "docs/handoff-history-20260910.md",
+      "startLine": 596,
+      "endLine": 651
+    },
+    {
+      "index": 105,
+      "path": "docs/handoff-history-20260910.md",
+      "startLine": 652,
+      "endLine": 707
+    },
+    {
+      "index": 106,
+      "path": "docs/handoff-history-20260910.md",
+      "startLine": 708,
+      "endLine": 753
+    },
+    {
+      "index": 107,
+      "path": "docs/handoff-history-20260910.md",
+      "startLine": 754,
+      "endLine": 797
+    },
+    {
+      "index": 108,
+      "path": "docs/handoff-history-20260910.md",
+      "startLine": 798,
+      "endLine": 843
+    },
+    {
+      "index": 109,
+      "path": "docs/handoff-history-20260910.md",
+      "startLine": 844,
+      "endLine": 880
+    },
+    {
+      "index": 110,
+      "path": "docs/handoff-history-20260910.md",
+      "startLine": 881,
+      "endLine": 928
+    },
+    {
+      "index": 111,
+      "path": "docs/handoff-history-20260910.md",
+      "startLine": 929,
+      "endLine": 996
+    },
+    {
+      "index": 112,
+      "path": "docs/handoff-history-20260910.md",
+      "startLine": 997,
+      "endLine": 1113
+    },
+    {
+      "index": 113,
+      "path": "docs/handoff-history-20260910.md",
+      "startLine": 1114,
+      "endLine": 1332
+    },
+    {
+      "index": 114,
+      "path": "docs/handoff-history-20260910.md",
+      "startLine": 1333,
+      "endLine": 1572
+    },
+    {
+      "index": 115,
+      "path": "docs/handoff-history-20260910.md",
+      "startLine": 1573,
+      "endLine": 1801
+    },
+    {
+      "index": 116,
+      "path": "docs/handoff-history-20260910.md",
+      "startLine": 1802,
+      "endLine": 1894
+    },
+    {
+      "index": 117,
+      "path": "docs/handoff-history-20260911.md",
+      "startLine": 1,
+      "endLine": 116
+    },
+    {
+      "index": 118,
+      "path": "docs/handoff-history-20260915-p1-start.md",
+      "startLine": 1,
+      "endLine": 32
+    },
+    {
+      "index": 119,
+      "path": "docs/handoff-history-20260915.md",
+      "startLine": 1,
+      "endLine": 33
+    },
+    {
+      "index": 120,
+      "path": "docs/handoff-history-20260916-before-behavior-release.md",
+      "startLine": 1,
+      "endLine": 37
+    },
+    {
+      "index": 121,
+      "path": "docs/handoff-history-20260916-before-commercial-completion.md",
+      "startLine": 1,
+      "endLine": 38
+    },
+    {
+      "index": 122,
+      "path": "docs/handoff-history-20260916-before-ui-scope-correction.md",
+      "startLine": 1,
+      "endLine": 33
+    },
+    {
+      "index": 123,
+      "path": "docs/handoff-history-20260916-p1-deployment.md",
+      "startLine": 1,
+      "endLine": 37
+    },
+    {
+      "index": 124,
+      "path": "docs/handoff-history-20260917-invitation-complete.md",
+      "startLine": 1,
+      "endLine": 38
+    },
+    {
+      "index": 125,
+      "path": "docs/handoff-history-20260917-provider-acceptance-in-progress.md",
+      "startLine": 1,
+      "endLine": 38
+    },
+    {
+      "index": 126,
+      "path": "docs/handoff-history-20260917-stripe-complete.md",
+      "startLine": 1,
+      "endLine": 38
+    },
+    {
+      "index": 127,
+      "path": "docs/handoff-history-20260918-component-preview.md",
+      "startLine": 1,
+      "endLine": 30
+    },
+    {
+      "index": 128,
+      "path": "docs/handoff-history-20260918-filter-components.md",
+      "startLine": 1,
+      "endLine": 32
+    },
+    {
+      "index": 129,
+      "path": "docs/handoff-history-20260918-platform-library.md",
+      "startLine": 1,
+      "endLine": 32
+    },
+    {
+      "index": 130,
+      "path": "docs/handoff-history-20260918-surface-motion.md",
+      "startLine": 1,
+      "endLine": 36
+    },
+    {
+      "index": 131,
+      "path": "docs/handoff-history-20260919-contextual-guidance.md",
+      "startLine": 1,
+      "endLine": 32
+    },
+    {
+      "index": 132,
+      "path": "docs/handoff-history-20260919-icon-practice.md",
+      "startLine": 1,
+      "endLine": 36
+    },
+    {
+      "index": 133,
+      "path": "docs/handoff-history-20260919-provider-marks.md",
+      "startLine": 1,
+      "endLine": 34
+    },
+    {
+      "index": 134,
+      "path": "docs/identity-data-region.md",
+      "startLine": 1,
+      "endLine": 148
+    },
+    {
+      "index": 135,
+      "path": "docs/identity-data-region.md",
+      "startLine": 149,
+      "endLine": 208
+    },
+    {
+      "index": 136,
+      "path": "docs/interaction-experience.md",
+      "startLine": 1,
+      "endLine": 90
+    },
+    {
+      "index": 137,
+      "path": "docs/invitation-motion-ux.md",
+      "startLine": 1,
+      "endLine": 73
+    },
+    {
+      "index": 138,
+      "path": "docs/ios-layout-matrix.md",
+      "startLine": 1,
+      "endLine": 130
+    },
+    {
+      "index": 139,
+      "path": "docs/ios-layout-matrix.md",
+      "startLine": 131,
+      "endLine": 214
+    },
+    {
+      "index": 140,
+      "path": "docs/ios-layout-matrix.md",
+      "startLine": 215,
+      "endLine": 308
+    },
+    {
+      "index": 141,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "startLine": 1,
+      "endLine": 252
+    },
+    {
+      "index": 142,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "startLine": 253,
+      "endLine": 424
+    },
+    {
+      "index": 143,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "startLine": 425,
+      "endLine": 556
+    },
+    {
+      "index": 144,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "startLine": 557,
+      "endLine": 692
+    },
+    {
+      "index": 145,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "startLine": 693,
+      "endLine": 828
+    },
+    {
+      "index": 146,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "startLine": 829,
+      "endLine": 958
+    },
+    {
+      "index": 147,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "startLine": 959,
+      "endLine": 1078
+    },
+    {
+      "index": 148,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "startLine": 1079,
+      "endLine": 1184
+    },
+    {
+      "index": 149,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "startLine": 1185,
+      "endLine": 1290
+    },
+    {
+      "index": 150,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "startLine": 1291,
+      "endLine": 1414
+    },
+    {
+      "index": 151,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "startLine": 1415,
+      "endLine": 1542
+    },
+    {
+      "index": 152,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "startLine": 1543,
+      "endLine": 1676
+    },
+    {
+      "index": 153,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "startLine": 1677,
+      "endLine": 1773
+    },
+    {
+      "index": 154,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "startLine": 1774,
+      "endLine": 1960
+    },
+    {
+      "index": 155,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "startLine": 1961,
+      "endLine": 2168
+    },
+    {
+      "index": 156,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "startLine": 2169,
+      "endLine": 2324
+    },
+    {
+      "index": 157,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "startLine": 2325,
+      "endLine": 2379
+    },
+    {
+      "index": 158,
+      "path": "docs/legal-candidate-zh.md",
+      "startLine": 1,
+      "endLine": 425
+    },
+    {
+      "index": 159,
+      "path": "docs/legal-candidate-zh.md",
+      "startLine": 426,
+      "endLine": 436
+    },
+    {
+      "index": 160,
+      "path": "docs/logo-ai-workflow.md",
+      "startLine": 1,
+      "endLine": 167
+    },
+    {
+      "index": 161,
+      "path": "docs/logo-discovery.md",
+      "startLine": 1,
+      "endLine": 149
+    },
+    {
+      "index": 162,
+      "path": "docs/logo-discovery.md",
+      "startLine": 150,
+      "endLine": 298
+    },
+    {
+      "index": 163,
+      "path": "docs/logo-discovery.md",
+      "startLine": 299,
+      "endLine": 343
+    },
+    {
+      "index": 164,
+      "path": "docs/logo-form-brief.md",
+      "startLine": 1,
+      "endLine": 163
+    },
+    {
+      "index": 165,
+      "path": "docs/monetization.md",
+      "startLine": 1,
+      "endLine": 94
+    },
+    {
+      "index": 166,
+      "path": "docs/monetization.md",
+      "startLine": 95,
+      "endLine": 161
+    },
+    {
+      "index": 167,
+      "path": "docs/monetization.md",
+      "startLine": 162,
+      "endLine": 287
+    },
+    {
+      "index": 168,
+      "path": "docs/monetization.md",
+      "startLine": 288,
+      "endLine": 451
+    },
+    {
+      "index": 169,
+      "path": "docs/monetization.md",
+      "startLine": 452,
+      "endLine": 523
+    },
+    {
+      "index": 170,
+      "path": "docs/p1-reliability-repair-20260915.md",
+      "startLine": 1,
+      "endLine": 54
+    },
+    {
+      "index": 171,
+      "path": "docs/pricing-68-20260911.md",
+      "startLine": 1,
+      "endLine": 70
+    },
+    {
+      "index": 172,
+      "path": "docs/pricing-band-20260910.md",
+      "startLine": 1,
+      "endLine": 84
+    },
+    {
+      "index": 173,
+      "path": "docs/product-events.md",
+      "startLine": 1,
+      "endLine": 62
+    },
+    {
+      "index": 174,
+      "path": "docs/provider-death-account-guides-history-20260820.md",
+      "startLine": 1,
+      "endLine": 196
+    },
+    {
+      "index": 175,
+      "path": "docs/provider-death-account-guides-history-20260820.md",
+      "startLine": 197,
+      "endLine": 254
+    },
+    {
+      "index": 176,
+      "path": "docs/provider-death-account-guides.md",
+      "startLine": 1,
+      "endLine": 102
+    },
+    {
+      "index": 177,
+      "path": "docs/provider-icon-practice-research.md",
+      "startLine": 1,
+      "endLine": 99
+    },
+    {
+      "index": 178,
+      "path": "docs/provider-mark-usage.md",
+      "startLine": 1,
+      "endLine": 58
+    },
+    {
+      "index": 179,
+      "path": "docs/provider-mark-usage.md",
+      "startLine": 59,
+      "endLine": 73
+    },
+    {
+      "index": 180,
+      "path": "docs/public-legal-pages.md",
+      "startLine": 1,
+      "endLine": 73
+    },
+    {
+      "index": 181,
+      "path": "docs/public-legal-pages.md",
+      "startLine": 74,
+      "endLine": 125
+    },
+    {
+      "index": 182,
+      "path": "docs/public-legal-pages.md",
+      "startLine": 126,
+      "endLine": 227
+    },
+    {
+      "index": 183,
+      "path": "docs/public-legal-pages.md",
+      "startLine": 228,
+      "endLine": 232
+    },
+    {
+      "index": 184,
+      "path": "docs/research.md",
+      "startLine": 1,
+      "endLine": 152
+    },
+    {
+      "index": 185,
+      "path": "docs/research.md",
+      "startLine": 153,
+      "endLine": 343
+    },
+    {
+      "index": 186,
+      "path": "docs/research.md",
+      "startLine": 344,
+      "endLine": 520
+    },
+    {
+      "index": 187,
+      "path": "docs/research.md",
+      "startLine": 521,
+      "endLine": 612
+    },
+    {
+      "index": 188,
+      "path": "docs/role-assignment-policy.md",
+      "startLine": 1,
+      "endLine": 72
+    },
+    {
+      "index": 189,
+      "path": "docs/start-here-export.md",
+      "startLine": 1,
+      "endLine": 127
+    },
+    {
+      "index": 190,
+      "path": "docs/start-here-export.md",
+      "startLine": 128,
+      "endLine": 158
+    },
+    {
+      "index": 191,
+      "path": "docs/surface-motion-20260917.md",
+      "startLine": 1,
+      "endLine": 40
+    },
+    {
+      "index": 192,
+      "path": "docs/trust-safety-legal.md",
+      "startLine": 1,
+      "endLine": 218
+    },
+    {
+      "index": 193,
+      "path": "docs/trusted-sharing.md",
+      "startLine": 1,
+      "endLine": 142
+    },
+    {
+      "index": 194,
+      "path": "docs/ui-ux-audit-20260915.md",
+      "startLine": 1,
+      "endLine": 178
+    },
+    {
+      "index": 195,
+      "path": "docs/ui-ux-audit-20260915.md",
+      "startLine": 179,
+      "endLine": 256
+    },
+    {
+      "index": 196,
+      "path": "docs/unit-economics-history-20260910.md",
+      "startLine": 1,
+      "endLine": 194
+    },
+    {
+      "index": 197,
+      "path": "docs/unit-economics-history-20260910.md",
+      "startLine": 195,
+      "endLine": 362
+    },
+    {
+      "index": 198,
+      "path": "docs/unit-economics-history-20260910.md",
+      "startLine": 363,
+      "endLine": 403
+    },
+    {
+      "index": 199,
+      "path": "docs/unit-economics-pricing-reset-history-20260910.md",
+      "startLine": 1,
+      "endLine": 146
+    },
+    {
+      "index": 200,
+      "path": "docs/unit-economics.md",
+      "startLine": 1,
+      "endLine": 120
+    },
+    {
+      "index": 201,
+      "path": "docs/ux-behavior-repair-20260916.md",
+      "startLine": 1,
+      "endLine": 50
+    },
+    {
+      "index": 202,
+      "path": "infra/auth0/README.md",
+      "startLine": 1,
+      "endLine": 217
+    },
+    {
+      "index": 203,
+      "path": "infra/auth0/README.md",
+      "startLine": 218,
+      "endLine": 245
+    },
+    {
+      "index": 204,
+      "path": "infra/auth0/hosted-consent/README.md",
+      "startLine": 1,
+      "endLine": 102
+    },
+    {
+      "index": 205,
+      "path": "qa/storekit-local-2026-08-20/09-lifecycle-observation.md",
+      "startLine": 1,
+      "endLine": 76
+    }
+  ]
+}

@@ -1,0 +1,502 @@
+{
+  "startedAt": "2026-09-15T21:36:26.598959+08:00",
+  "workflow": "continuous audit-to-repair UX01-06",
+  "previousFullBodyRecord": "/Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-complete-ui-ux-audit-20260915/full-read-completion.json",
+  "files": [
+    {
+      "file": "AGENTS.md",
+      "lines": 82,
+      "bytes": 6385,
+      "sha256": "321e1bf37563f466aea4eda8e5e2024f0b8f6f05e0e59fda06a174a24db695a3",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "DESIGN.md",
+      "lines": 267,
+      "bytes": 32687,
+      "sha256": "df1be99e1f4f926f84331cd8478940ffa6eeaf9be0ad6fd1925f00957742f224",
+      "reading": "audit-authored-change-or-addition;read-current-scope"
+    },
+    {
+      "file": "README.md",
+      "lines": 86,
+      "bytes": 11598,
+      "sha256": "0c200c463ffb9224326d8c27c78aea8e421cef74096dbbfb5df4ae283cfeda30",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "SECURITY.md",
+      "lines": 230,
+      "bytes": 30033,
+      "sha256": "eff57a5d5c55e7fd82ae1465d0fdea784d3f04848437036e67788d549e109ca6",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "apps/ios-prototype/AGENTS.md",
+      "lines": 73,
+      "bytes": 11230,
+      "sha256": "1f12a8b98431ef4c543ba11b15d10bf4241291a20213b97dcc1556e3bbfd00cb",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "apps/ios-prototype/src/mobile/COMPONENTS.md",
+      "lines": 31,
+      "bytes": 1982,
+      "sha256": "678379569b09d9ab789d96e8030a0eebb6606b880d8ad5b74de513f8a7b2787b",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "apps/web/AGENTS.md",
+      "lines": 21,
+      "bytes": 4222,
+      "sha256": "e90e2b499aff87807ee88a8c1de92b0e0b7cddeed15444fcf6cc5bb5c14cfec0",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "assets/concepts/rillora-authenticated-motion-20260911/README.md",
+      "lines": 13,
+      "bytes": 1373,
+      "sha256": "db1b3f3f6a3f3a5e62304072188f8a4c77c5df171d646495492f17ea9fecd083",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "assets/concepts/rillora-logo-gate2-dual-embrace-20260808/README.md",
+      "lines": 30,
+      "bytes": 1174,
+      "sha256": "58c3dadad49bb25e1402a3fb18a63feba17b04d0ed02a629c0e0bb7293ecdb82",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "assets/concepts/rillora-public-motion-20260909/README.md",
+      "lines": 20,
+      "bytes": 1457,
+      "sha256": "fdc1b91a8465b7ba4e51bc821bb3a77ad2505441871b63bfec8e35c03e062572",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "assets/concepts/rillora-trusted-sharing-20260909/README.md",
+      "lines": 16,
+      "bytes": 963,
+      "sha256": "062fca3494a1bdabc50b074dbbb6fcfd9eab36c50f5c0fd510b70b0292ac1a1d",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "assets/concepts/rillora-ui-directions-20260814/README.md",
+      "lines": 28,
+      "bytes": 2581,
+      "sha256": "5ae1c64fe43b17adec8f9d1cae93f35f8ca6fb42ddad50c97695ab171a4b8579",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "design-qa.md",
+      "lines": 34,
+      "bytes": 4554,
+      "sha256": "18db96cd321b6805a4b3dd99dc57ec9bd93d495fd09bbb6a8f1a52f7434dcd51",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/account-matter-ux.md",
+      "lines": 49,
+      "bytes": 5771,
+      "sha256": "76616446bda3aaae289c05b10baf9ed1146d9d50313421fe361ecc412a295068",
+      "reading": "audit-authored-change-or-addition;read-current-scope"
+    },
+    {
+      "file": "docs/apple-watch-death-signal-research.md",
+      "lines": 311,
+      "bytes": 20630,
+      "sha256": "936c5aa189048a4d2440917cd0363c737bbefe1603219a53f1f2ca1d7c71fe5e",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/asset-licenses.md",
+      "lines": 47,
+      "bytes": 5199,
+      "sha256": "469a1c494e5314b464499de60054fb7ce5bdb9990969ebe39f2ea1fdba605fa7",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/authentication-experience.md",
+      "lines": 619,
+      "bytes": 48669,
+      "sha256": "66907f087bb403d02aa575c2214a91d6bce3d4e99eb989f1917973995220fce2",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/backend.md",
+      "lines": 263,
+      "bytes": 48498,
+      "sha256": "4dc90197753a84f21a30e8a9e4061b5e284d95c18c1ead8be44f0b143949eaa3",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/blockchain.md",
+      "lines": 63,
+      "bytes": 5294,
+      "sha256": "ba6f772208c9bef37cb58f6e50907a7283965a722e095e42432b5e350ec2cbb8",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/competitor-ux-audit.md",
+      "lines": 694,
+      "bytes": 46369,
+      "sha256": "24033a080ee2cbc81eba452af9fee41cb441e9106dff018fbab9b6afeec1c7df",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/dark-ui-redesign-brief.md",
+      "lines": 121,
+      "bytes": 9220,
+      "sha256": "7791582fb831bad1c4180546384c3700f097e78442f59887f1cb1699a2d2d40d",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/death-verification-evidence-research.md",
+      "lines": 163,
+      "bytes": 12979,
+      "sha256": "9ac9138518e74ce31eaada237781c4eaeb918d9da724f93fdc099d8893e6dcb9",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/decision-log.md",
+      "lines": 2187,
+      "bytes": 379108,
+      "sha256": "2947346980cc2e414966c1bf22530e2ed4db90294d5155e6582d05c63043ff8f",
+      "reading": "audit-authored-change-or-addition;read-current-scope"
+    },
+    {
+      "file": "docs/disclosure-rehearsal.md",
+      "lines": 109,
+      "bytes": 7553,
+      "sha256": "ca72a6811f188545a7d07476e1ed5011a26b9c28ea947dfc29e5a6f9f5c3add7",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/family-maintenance.md",
+      "lines": 114,
+      "bytes": 7267,
+      "sha256": "e400f90f1129b5cadae73444ebd7dc004e18311e2e964aa9ac6127f09a4eca09",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/free-paid-ui-audit.md",
+      "lines": 153,
+      "bytes": 15216,
+      "sha256": "7af40f62256e9255c6788827be5f40c6a7897c1d15019b22dbe7376582953722",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/global-mainland-commerce-plan.md",
+      "lines": 433,
+      "bytes": 36920,
+      "sha256": "6d9ba0d1e2bf74b3318fa4b7472f4b739ef35401291d8700968ed861e907c0f9",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/handoff-history-20260910.md",
+      "lines": 1894,
+      "bytes": 286854,
+      "sha256": "a4cba6ee4728b8d32ba224a4ab381db5faa4a8435c7190de8b2eb23b253ae8e5",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/handoff-history-20260911.md",
+      "lines": 116,
+      "bytes": 9197,
+      "sha256": "81a7f3775d80beb7c06c7caecdc985e437bdcd20fcb141be2662568c6529faf1",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/handoff-history-20260915.md",
+      "lines": 33,
+      "bytes": 3963,
+      "sha256": "bca450f35578eb59b953453a43cd235fa0be93fbb956719bb9d63584226f3603",
+      "reading": "audit-authored-change-or-addition;read-current-scope"
+    },
+    {
+      "file": "docs/handoff.md",
+      "lines": 30,
+      "bytes": 3514,
+      "sha256": "6363777fbdd0f572aed9b025f4ed971f8172cc557355db3fc86cc378883b8ac9",
+      "reading": "audit-authored-change-or-addition;read-current-scope"
+    },
+    {
+      "file": "docs/identity-data-region.md",
+      "lines": 204,
+      "bytes": 28902,
+      "sha256": "3572de789bd641ebf347d1b9a9b2ef593afe906400726fb84050f17a46a3c9ef",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/individual-operator-launch-plan.md",
+      "lines": 261,
+      "bytes": 30556,
+      "sha256": "0d6bb793785c16007c04bdfe3de22eb66db1ef1fd69c842208b643590a4d20a2",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/infrastructure-roadmap.md",
+      "lines": 305,
+      "bytes": 24951,
+      "sha256": "08aabbcf0b6b9bb254775d7292434dfdf9d607b3f32d2f22bddfab80017dab9f",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/interaction-experience.md",
+      "lines": 77,
+      "bytes": 8797,
+      "sha256": "c3238413bc076b563677601a44b6a3801393ce99ccd710a909d0506d667ad125",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/invitation-motion-ux.md",
+      "lines": 61,
+      "bytes": 4181,
+      "sha256": "2dbec748f5a32b77383ba17a99b717a482adad77dfc11a5ed7f497092fb9542a",
+      "reading": "audit-authored-change-or-addition;read-current-scope"
+    },
+    {
+      "file": "docs/ios-external-payment-research.md",
+      "lines": 378,
+      "bytes": 36248,
+      "sha256": "d6836ed47a203dcee24bc2f0842b5bcf25a7b241ea51cfa26e15e6c89e6d4fb5",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/ios-layout-matrix.md",
+      "lines": 308,
+      "bytes": 33268,
+      "sha256": "1dccc4c096b0f6c94282329df3e51bc1bd71653358c006d2d704e4d752bf8904",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/journey/PROJECT_JOURNEY.md",
+      "lines": 2200,
+      "bytes": 381613,
+      "sha256": "0884c1b5e534a2bd9bdbc37f3148a53806700b21730b729e236a920902eb7631",
+      "reading": "audit-authored-change-or-addition;read-current-scope"
+    },
+    {
+      "file": "docs/legal-candidate-zh.md",
+      "lines": 426,
+      "bytes": 32073,
+      "sha256": "66e1f11dd2f4a5554e9b0b85f35cc28f5e55512e748bc345040899365747d4ae",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/logo-ai-workflow.md",
+      "lines": 167,
+      "bytes": 10247,
+      "sha256": "ad1da17994aa8744b90cd9ade5538a88b9d5f16774618f8cd480498ea39454c7",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/logo-discovery.md",
+      "lines": 343,
+      "bytes": 38474,
+      "sha256": "1432a792d3e0d60e6272684d39063d3be343154363222eb7513b06b6eeb5d724",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/logo-form-brief.md",
+      "lines": 163,
+      "bytes": 11538,
+      "sha256": "d4fdc9fd64200626ce9749eb5f897189441ec3f775679a7cc76a805639e43f91",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/monetization.md",
+      "lines": 507,
+      "bytes": 58319,
+      "sha256": "f540b056da8318e2bfe383e6ca40c163045105a0be2a91713a8dae765876a306",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/mvp.md",
+      "lines": 165,
+      "bytes": 15317,
+      "sha256": "dd144ad90197d220c92246a03692d346960e57b7db4dc9aaedfb0fc6da88132a",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/platform-contract.md",
+      "lines": 265,
+      "bytes": 26432,
+      "sha256": "0bbca28e0d3bcdcfce4492c138bbdb84c4ba92447b671b2b4dfff92dab60f615",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/pricing-68-20260911.md",
+      "lines": 64,
+      "bytes": 7316,
+      "sha256": "7953a4ca815788f875bd0ac4b24c18b049f7b3afcf5fd10f37370865266a273f",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/pricing-band-20260910.md",
+      "lines": 84,
+      "bytes": 9329,
+      "sha256": "e67768cdb7fefe0ec8f9ba400e3fd96ee3fed5f78359c14f660234fc05509d8b",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/product-events.md",
+      "lines": 62,
+      "bytes": 5135,
+      "sha256": "e4549d2bd1e2ea9887e02d6277f3d0a0bcd6e9e5e93e924f6d46d82ec4410417",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/product.md",
+      "lines": 221,
+      "bytes": 45039,
+      "sha256": "fb73f557575d79d06f3eca009a5c4c95b917bba506315792b9c9057ff941db14",
+      "reading": "audit-authored-change-or-addition;read-current-scope"
+    },
+    {
+      "file": "docs/provider-death-account-guides.md",
+      "lines": 252,
+      "bytes": 19548,
+      "sha256": "0247681d11506b2737f69de5998a05d89052c27147913e35aa3fcf49cf8b0aa5",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/public-legal-pages.md",
+      "lines": 220,
+      "bytes": 39517,
+      "sha256": "86a950e58171907300ab0d6970d3bb9df07091c33dba8a01daf55b1899e1d596",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/quality-gates.md",
+      "lines": 267,
+      "bytes": 29338,
+      "sha256": "3ed003ed2ceb34674e6c98aa8900f1c492a69c7c748943f84cfc1e1d8bdebbfe",
+      "reading": "audit-authored-change-or-addition;read-current-scope"
+    },
+    {
+      "file": "docs/research.md",
+      "lines": 612,
+      "bytes": 72520,
+      "sha256": "05a15d4de79734efcf9257d42d22927b8c370b32b723bb2bad9aa9b7740bfc1e",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/role-assignment-policy.md",
+      "lines": 72,
+      "bytes": 5405,
+      "sha256": "f7668be436b8e316b6c00651a0bcaf7cf4a4d219c1b2e72accfffaabe5d579bd",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/solo-operations-and-portability.md",
+      "lines": 142,
+      "bytes": 21557,
+      "sha256": "a3c6244e6ee201ec0db257ed88b99484b6c89e1f8510199f581f4563ce84c675",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/start-here-export.md",
+      "lines": 153,
+      "bytes": 15621,
+      "sha256": "5b1c70592225da6ba26fcbdd4028f83c250a45ce542c34d5f766acfda98f7273",
+      "reading": "audit-authored-change-or-addition;read-current-scope"
+    },
+    {
+      "file": "docs/storekit.md",
+      "lines": 240,
+      "bytes": 37487,
+      "sha256": "5740f8f3e127225ae1a7788e957336fad39dfdb14a5186a0bc1f304e31d5a9f0",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/trust-safety-legal.md",
+      "lines": 218,
+      "bytes": 20292,
+      "sha256": "d622b1ecabdeb97d7ab90d6074647e6e8b30b6447705fb5866bd0a0e300c4692",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/trusted-sharing.md",
+      "lines": 127,
+      "bytes": 8816,
+      "sha256": "a87a580042e4dab32fc2b8cb8d732a389ffdf36dd46ad38fd7160beab22618ca",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/ui-ux-audit-20260915.md",
+      "lines": 230,
+      "bytes": 31217,
+      "sha256": "e66b6faaa34da96d8e28cde613f13183671e00ff7e785ff833faa3ed3d61a779",
+      "reading": "audit-authored-change-or-addition;read-current-scope"
+    },
+    {
+      "file": "docs/unit-economics-history-20260910.md",
+      "lines": 403,
+      "bytes": 29600,
+      "sha256": "b79f5a5b30a28100e2d78ed8458cd3e22ac63affd2ede6759c901fed928c07cc",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/unit-economics-pricing-reset-history-20260910.md",
+      "lines": 146,
+      "bytes": 14868,
+      "sha256": "9c9fe313b4b0f5246afb5da64bc80ee4b8d37f65271df2803e3e6205e62418ac",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "docs/unit-economics.md",
+      "lines": 120,
+      "bytes": 14558,
+      "sha256": "e21fb601b1f9f60237aa4ebae2b26df9e488fe565326e9ae33c7153f52565b5c",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "infra/auth0/README.md",
+      "lines": 241,
+      "bytes": 14304,
+      "sha256": "6eb341524523c336592eb4944b81b1ee04724de242cb2fc7fa6c66fc4150a59d",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "infra/auth0/hosted-consent/README.md",
+      "lines": 102,
+      "bytes": 6023,
+      "sha256": "a2cca56f63f5b50f4217c8b8f00a7da42a29bb635c2f4e1a135b29d0e62e07e9",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "infra/aws/README.md",
+      "lines": 199,
+      "bytes": 13709,
+      "sha256": "e7bcc2052a34afb3c5d2e69733de4a2b89a66e9279b4dfc24761f221349a1259",
+      "reading": "unchanged-full-body-read-in-audit"
+    },
+    {
+      "file": "qa/storekit-local-2026-08-20/09-lifecycle-observation.md",
+      "lines": 76,
+      "bytes": 12128,
+      "sha256": "450bacc903963177066f9aca193e058a78fcc1c8f8a00d07aad1ce697f1626e4",
+      "reading": "unchanged-full-body-read-in-audit"
+    }
+  ],
+  "exclusions": [
+    ".build",
+    ".cache",
+    ".git",
+    ".next",
+    ".venv",
+    "DerivedData",
+    "SourcePackages",
+    "build",
+    "dist",
+    "node_modules",
+    "output",
+    "vendor",
+    "venv",
+    "cdk.out*",
+    ".derived-data*",
+    ".playwright*"
+  ],
+  "basis": "Owner direct continuation + current handoff recovery;unchanged historical bodies retain prior full reading;new/changed authority and implementation read before edits"
+}

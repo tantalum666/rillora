@@ -1,0 +1,243 @@
+{
+  "stage": "Completed: Home and far-right appearance published, legal supplement published, rendered flows and source CI verified",
+  "readingManifest": "../full-read.json",
+  "initialFullReadReused": true,
+  "focusedRecovery": [
+    "AGENTS.md",
+    "docs/product.md current section",
+    "docs/handoff.md",
+    "docs/decision-log.md latest entries",
+    "docs/website-appearance-controls-20260929.md",
+    "apps/web/AGENTS.md",
+    "changed UI and public/legal publication sources"
+  ],
+  "tests": {
+    "web": 107,
+    "publicInfra": 3,
+    "infraTypecheck": true,
+    "legalCheckout": 7
+  },
+  "browserQA": {
+    "desktop": [
+      1329,
+      737
+    ],
+    "mobile": [
+      320,
+      390
+    ],
+    "farRightAfterSignIn": true,
+    "Home": true,
+    "manualReloadAndSubpagePersistence": true,
+    "systemLightDark": true,
+    "keyboardEscapeAndBlur": true,
+    "mobilePanelsMutuallyExclusive": true,
+    "manualPictureSources": true,
+    "temporaryOverridesReset": true,
+    "console": "No observed first-party error; MetaMask extension emits its own orphaned-stream/listener warnings"
+  },
+  "publication": {
+    "www": "https://www.rillora.xyz",
+    "CDK": "UPDATE_COMPLETE; only existing static asset deployment changed"
+  },
+  "limits": [
+    "No private App/API/data/native change",
+    "No entitlement or export paywall change",
+    "Legal accepted bodies/versions unchanged; dated appearance-only supplement",
+    "No new actual signup/payment/platform ceremony"
+  ],
+  "at": "2026-09-28T16:35:47.128895+00:00",
+  "sourceCI": {
+    "commit": "4d01005efabe813ecc55f2767a1c8472f309f231",
+    "run": 25,
+    "status": "success",
+    "url": "https://github.com/tantalum666/rillora/actions/runs/36452030584",
+    "observedAt": "2026-09-28T16:37:51.015503+00:00"
+  },
+  "documentation": {
+    "files": 156,
+    "localLinks": 1533,
+    "missing": 0,
+    "updated": [
+      "website-appearance-controls-20260929.md",
+      "landing-page-20260928.md",
+      "public-product-website-20260924.md",
+      "public-legal-pages.md",
+      "monetization.md",
+      "product.md",
+      "decision-log.md",
+      "handoff.md",
+      "journey/PROJECT_JOURNEY.md"
+    ]
+  },
+  "sourceScan": {
+    "files": 1022,
+    "reviewedNonSecrets": 25,
+    "unreviewed": 0
+  },
+  "legalPublication": {
+    "id": "appgdep_6aba956227888191846b4bfba62c03f8",
+    "project_id": "appgprj_6a98e258d72c81919ee18e46d37cfdbf",
+    "title": "Rillora Legal",
+    "version_id": "appgprj_6a98e258d72c81919ee18e46d37cfdbf~appgver_0ad6a5c1765c81919a82a1666e36ccb2",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://rillora-legal-pages.y-uanfangda666.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "site---6a98e258d72c81919ee18e46d37cfdbf",
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-09-28T16:27:23.942270+00:00"
+  },
+  "online": {
+    "manualDarkSurvivesReload": true,
+    "correctFarRightPosition": true,
+    "darkLogoAndHero": true,
+    "SystemRestored": true,
+    "PrivacyCookieSupplement": true,
+    "settingFragmentFocused": true,
+    "http": {
+      "at": "2026-09-28T16:36:12.934Z",
+      "passed": true,
+      "htmlSha256": "9d6e3bf64d9b82ab7219f541ee9be8d338c4747d2bdd1c60a8d4e10046618bdd",
+      "results": [
+        {
+          "path": "/",
+          "status": 200,
+          "statusPass": true,
+          "shellPass": true,
+          "csp": "default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+          "cookies": false
+        },
+        {
+          "path": "/product",
+          "status": 200,
+          "statusPass": true,
+          "shellPass": true,
+          "csp": "default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+          "cookies": false
+        },
+        {
+          "path": "/security",
+          "status": 200,
+          "statusPass": true,
+          "shellPass": true,
+          "csp": "default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+          "cookies": false
+        },
+        {
+          "path": "/pricing",
+          "status": 200,
+          "statusPass": true,
+          "shellPass": true,
+          "csp": "default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+          "cookies": false
+        },
+        {
+          "path": "/support",
+          "status": 200,
+          "statusPass": true,
+          "shellPass": true,
+          "csp": "default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+          "cookies": false
+        },
+        {
+          "path": "/legal",
+          "status": 200,
+          "statusPass": true,
+          "shellPass": true,
+          "csp": "default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+          "cookies": false
+        },
+        {
+          "path": "/legal/licenses",
+          "status": 200,
+          "statusPass": true,
+          "shellPass": true,
+          "csp": "default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+          "cookies": false
+        },
+        {
+          "path": "/account",
+          "status": 404,
+          "statusPass": true,
+          "shellPass": true,
+          "csp": "default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+          "cookies": false
+        },
+        {
+          "path": "/api",
+          "status": 404,
+          "statusPass": true,
+          "shellPass": true,
+          "csp": "default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+          "cookies": false
+        },
+        {
+          "path": "/not-a-route",
+          "status": 404,
+          "statusPass": true,
+          "shellPass": true,
+          "csp": "default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+          "cookies": false
+        },
+        {
+          "path": "/assets/website-appearance-af85b6f9631212fa.js",
+          "status": 200,
+          "exactBytes": true,
+          "cookies": false
+        },
+        {
+          "path": "/",
+          "method": "POST",
+          "status": 403,
+          "statusPass": true
+        },
+        {
+          "legalPath": "/terms",
+          "status": 200,
+          "statusPass": true
+        },
+        {
+          "legalPath": "/privacy",
+          "status": 200,
+          "statusPass": true
+        },
+        {
+          "legalPath": "/subscription-terms",
+          "status": 200,
+          "statusPass": true
+        },
+        {
+          "legalPath": "/refund-policy",
+          "status": 200,
+          "statusPass": true
+        },
+        {
+          "legalPath": "/acceptable-use",
+          "status": 200,
+          "statusPass": true
+        },
+        {
+          "legalPath": "/cookies",
+          "status": 200,
+          "statusPass": true
+        },
+        {
+          "legalPath": "/legal",
+          "status": 200,
+          "statusPass": true
+        }
+      ]
+    },
+    "correctedLegalLinks": true
+  },
+  "pending": [],
+  "temporaryBrowserOverridesReset": true,
+  "livePreferenceRestored": "system",
+  "localPreviewStopped": true,
+  "workingTreeClean": true,
+  "documentationCommit": "1818edc77",
+  "documentationPushed": true
+}

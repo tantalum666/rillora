@@ -1,0 +1,22 @@
+{
+  "source": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonECS/current/eu-central-1/index.json",
+  "publicationDate": "2026-09-11T12:44:25Z",
+  "region": "eu-central-1",
+  "architecture": "ARM64",
+  "cpuHourlyPerVCPU": 0.03725,
+  "memoryHourlyPerGB": 0.00409,
+  "vCPU": 0.25,
+  "memoryGB": 0.5,
+  "hoursAssumed": 730,
+  "monthlyComputeUSD": 8.291,
+  "excluded": [
+    "database",
+    "public IPv4",
+    "egress",
+    "logs",
+    "API Gateway",
+    "other services",
+    "taxes"
+  ],
+  "meaning": "Published-price compute-only estimate, not an invoice or total infrastructure cost; Spot rates vary"
+}

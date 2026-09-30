@@ -1,0 +1,86 @@
+{
+    "SecurityGroups": [
+        {
+            "GroupId": "sg-014722f6f6b5b18ff",
+            "IpPermissionsEgress": [
+                {
+                    "IpProtocol": "tcp",
+                    "FromPort": 5432,
+                    "ToPort": 5432,
+                    "UserIdGroupPairs": [
+                        {
+                            "Description": "Verified TLS to private production PostgreSQL",
+                            "UserId": "133857166372",
+                            "GroupId": "sg-0176b4c45717eb1b7"
+                        }
+                    ],
+                    "IpRanges": [],
+                    "Ipv6Ranges": [],
+                    "PrefixListIds": []
+                },
+                {
+                    "IpProtocol": "tcp",
+                    "FromPort": 443,
+                    "ToPort": 443,
+                    "UserIdGroupPairs": [],
+                    "IpRanges": [
+                        {
+                            "Description": "Outbound AWS and identity HTTPS",
+                            "CidrIp": "0.0.0.0/0"
+                        }
+                    ],
+                    "Ipv6Ranges": [],
+                    "PrefixListIds": []
+                }
+            ],
+            "Tags": [
+                {
+                    "Key": "aws:cloudformation:stack-id",
+                    "Value": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraProduction/60c3f040-b74b-11f1-9fc1-027c8dcc491b"
+                },
+                {
+                    "Key": "Environment",
+                    "Value": "Production"
+                },
+                {
+                    "Key": "aws:cloudformation:stack-name",
+                    "Value": "RilloraProduction"
+                },
+                {
+                    "Key": "Project",
+                    "Value": "Rillora"
+                },
+                {
+                    "Key": "CostCenter",
+                    "Value": "Rillora"
+                },
+                {
+                    "Key": "aws:cloudformation:logical-id",
+                    "Value": "RuntimeApiNetwork3B2CC8BA"
+                }
+            ],
+            "VpcId": "vpc-07e1ea12ac1185897",
+            "SecurityGroupArn": "arn:aws:ec2:eu-central-1:133857166372:security-group/sg-014722f6f6b5b18ff",
+            "OwnerId": "133857166372",
+            "GroupName": "RilloraProduction-RuntimeApiNetwork3B2CC8BA-9qn82xolz4sg",
+            "Description": "Production HTTPS container; ingress only from its VPC Link",
+            "IpPermissions": [
+                {
+                    "IpProtocol": "tcp",
+                    "FromPort": 8443,
+                    "ToPort": 8443,
+                    "UserIdGroupPairs": [
+                        {
+                            "Description": "Verified TLS from the exact private VPC Link",
+                            "UserId": "133857166372",
+                            "GroupId": "sg-0b9c47034f3489a92"
+                        }
+                    ],
+                    "IpRanges": [],
+                    "Ipv6Ranges": [],
+                    "PrefixListIds": []
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,51 @@
+{
+  "checkedAt": "2026-09-26T11:48:43.636635+00:00",
+  "vendor": "Resend",
+  "status": "Agent-recommended Free proposal; pending Owner account/signup terms",
+  "cost": "CurrentFreeUSD0/month; no card required per terms; no paid plan/add-on chosen",
+  "actualPricingUI": {
+    "monthlyEmails": 3000,
+    "dailyEmails": 100,
+    "domains": 3,
+    "retentionDays": 30
+  },
+  "purpose": [
+    "user-initiated verification",
+    "password reset",
+    "essential account security"
+  ],
+  "notProposed": [
+    "marketing",
+    "cold invitations",
+    "private matter content",
+    "paid overage",
+    "auto-upgrade"
+  ],
+  "dataBoundary": "US storage for recipient/message/log data; EU sending region is not EU residency. Reflect actual processing in the production notice before sending.",
+  "configurationToPrepare": [
+    "Dedicated notify.rillora.xyz sender",
+    "Sending-only domain-scoped key",
+    "Enforced TLS",
+    "Tracking off",
+    "Suppression/retry/alerts",
+    "Quota and billing readback",
+    "Real verification/reset/invitation continuation"
+  ],
+  "termsCaveat": "August27Terms reserve free-tier changes/discontinuation and conversion on excess use. CurrentUSD0 is not an indefinite no-fee guarantee. Verify real caps/billing safeguards before activation.",
+  "sources": [
+    "https://resend.com/pricing",
+    "https://resend.com/legal/terms-of-service",
+    "https://resend.com/legal/acceptable-use",
+    "https://resend.com/security/gdpr",
+    "https://auth0.com/docs/customize/email/smtp-email-providers/resend"
+  ],
+  "browser": {
+    "id": "2",
+    "tabId": "1082157391",
+    "url": "https://resend.com/signup",
+    "markedHandoff": true
+  },
+  "noAccountOrCredentialCreated": true,
+  "noDNSOrAuth0Changed": true,
+  "noEmailSent": true
+}

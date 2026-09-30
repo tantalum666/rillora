@@ -1,0 +1,142 @@
+{
+  "checkedAt": "2026-09-19T13:41:10.196Z",
+  "checksPassed": 16,
+  "checks": [
+    {
+      "id": "app-icon-dark.png",
+      "passed": true,
+      "width": 1024,
+      "height": 1024,
+      "alpha": false
+    },
+    {
+      "id": "app-icon-light.png",
+      "passed": true,
+      "width": 1024,
+      "height": 1024,
+      "alpha": false
+    },
+    {
+      "id": "app-icon-tinted.png",
+      "passed": true,
+      "width": 1024,
+      "height": 1024,
+      "alpha": false
+    },
+    {
+      "id": "symbol-16",
+      "passed": true,
+      "actualWidth": 15,
+      "actualHeight": 16,
+      "foregroundPixels": 109
+    },
+    {
+      "id": "symbol-24",
+      "passed": true,
+      "actualWidth": 23,
+      "actualHeight": 24,
+      "foregroundPixels": 256
+    },
+    {
+      "id": "symbol-32",
+      "passed": true,
+      "actualWidth": 30,
+      "actualHeight": 32,
+      "foregroundPixels": 461
+    },
+    {
+      "id": "symbol-64",
+      "passed": true,
+      "actualWidth": 61,
+      "actualHeight": 64,
+      "foregroundPixels": 1893
+    },
+    {
+      "id": "symbol-128",
+      "passed": true,
+      "actualWidth": 121,
+      "actualHeight": 128,
+      "foregroundPixels": 7688
+    },
+    {
+      "id": "symbol-256",
+      "passed": true,
+      "actualWidth": 243,
+      "actualHeight": 256,
+      "foregroundPixels": 30849
+    },
+    {
+      "id": "symbol-512",
+      "passed": true,
+      "actualWidth": 486,
+      "actualHeight": 512,
+      "foregroundPixels": 123919
+    },
+    {
+      "id": "lockup-canvas-not-clipped",
+      "passed": true
+    },
+    {
+      "id": "explicit-cross-tool-colours",
+      "passed": true
+    },
+    {
+      "id": "exact-pine-background",
+      "passed": true
+    },
+    {
+      "id": "lockup-pine-actual-rendered-bounds",
+      "passed": true,
+      "canvas": [
+        1700,
+        400
+      ],
+      "inkBounds": [
+        21,
+        20,
+        1664,
+        366
+      ]
+    },
+    {
+      "id": "lockup-white-actual-rendered-bounds",
+      "passed": true,
+      "canvas": [
+        1700,
+        400
+      ],
+      "inkBounds": [
+        21,
+        20,
+        1664,
+        366
+      ]
+    },
+    {
+      "id": "wordmark-pine-actual-rendered-bounds",
+      "passed": true,
+      "canvas": [
+        1700,
+        474
+      ],
+      "inkBounds": [
+        0,
+        0,
+        1695,
+        469
+      ]
+    }
+  ],
+  "visualChecks": {
+    "positiveReverse": "Inspected native-pixel 16/24/32/64/128 proof",
+    "micro": "Open-neck contour for 16/24px",
+    "Figma": "Final imported board inspected; inherited currentColor mismatch corrected to explicit fills",
+    "alignment": "Primary icon/name centres aligned; transparent lockup height expanded to prevent clipping"
+  },
+  "limitations": [
+    "No human recall/usability test",
+    "No trademark similarity database search",
+    "No App installation or public deployment",
+    "No claim of unique/registered/legally cleared mark"
+  ]
+}

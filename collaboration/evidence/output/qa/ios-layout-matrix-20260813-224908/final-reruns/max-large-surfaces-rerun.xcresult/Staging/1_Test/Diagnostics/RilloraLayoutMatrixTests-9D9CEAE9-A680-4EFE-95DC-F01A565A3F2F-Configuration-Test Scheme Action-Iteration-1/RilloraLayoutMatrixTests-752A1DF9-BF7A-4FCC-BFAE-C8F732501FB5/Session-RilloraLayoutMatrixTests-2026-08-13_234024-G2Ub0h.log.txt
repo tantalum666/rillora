@@ -1,0 +1,283 @@
+Xcode version: 26.5 (17F42)
+23:40:24.527 xcodebuild[1577:15750316] Beginning test session RilloraLayoutMatrixTests-98E0EEAC-7F40-4469-9EB5-042D1E0D06AD at 2026-08-13 23:40:24.526 on target <DVTiPhoneSimulator: 0x94b4d8f00> {
+		SimDevice: Rillora-Matrix-17-Pro-Max (0EC00819-D34F-4310-B807-7C6F057988A7, iOS 26.5, Booted)
+} (26.5 (23F77))
+23:40:24.528 xcodebuild[1577:15750316] 	/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild
+-project
+Rillora.xcodeproj
+-scheme
+RilloraLayoutMatrix
+-configuration
+Debug
+-destination
+platform=iOS Simulator,id=0EC00819-D34F-4310-B807-7C6F057988A7
+-derivedDataPath
+/Users/tantalum/Documents/电子遗嘱app/output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData
+-parallel-testing-enabled
+NO
+-resultBundlePath
+/Users/tantalum/Documents/电子遗嘱app/output/qa/ios-layout-matrix-20260813-224908/final-reruns/max-large-surfaces-rerun.xcresult
+RILLORA_API_BASE_URL=http://127.0.0.1:4181/v1
+RILLORA_DEV_PLANNER_ID=11111111-1111-4111-8111-111111111111
+-only-testing:RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testPrimaryEditorsAndPreparationRoutes
+test-without-building
+23:40:24.531 xcodebuild[1577:15750316] Test standard output and standard error is at /Users/tantalum/Documents/电子遗嘱app/output/qa/ios-layout-matrix-20260813-224908/final-reruns/max-large-surfaces-rerun.xcresult/Staging/1_Test/Diagnostics/RilloraLayoutMatrixTests-9D9CEAE9-A680-4EFE-95DC-F01A565A3F2F-Configuration-Test Scheme Action-Iteration-1/RilloraLayoutMatrixTests-752A1DF9-BF7A-4FCC-BFAE-C8F732501FB5/StandardOutputAndStandardError.txt
+23:40:24.552 xcodebuild[1577:15750806] 📱<DVTiPhoneSimulator (0x94b4d8f00), Rillora-Matrix-17-Pro-Max, unknown class, 26.5 (23F77), 0EC00819-D34F-4310-B807-7C6F057988A7> claim LaunchSessionClaim_0x94dcff900 on simulator was issued, 2 claims exist.
+23:40:24.553 xcodebuild[1577:15750316] Setting up test runner session
+23:40:24.553 xcodebuild[1577:15750334] Sim Rillora-Matrix-17-Pro-Max: Unregistering for sim device notification with token 5
+23:40:24.553 xcodebuild[1577:15750334] Calling -[SimDevice getenv:error:] for TESTMANAGERD_SIM_SOCK
+23:40:24.553 xcodebuild[1577:15750316] Registering/updating daemon-based crash report observer for process names (
+    xctest,
+    debugserver,
+    FrontBoard,
+    assertiond,
+    runningboardd,
+    SpringBoard,
+    testmanagerd,
+    backboardd,
+    DTServiceHub,
+    Rillora,
+    "RilloraLayoutMatrixTests-Runner",
+    RilloraLayoutMatrixTests
+)
+23:40:24.554 xcodebuild[1577:15750334] Sim Rillora-Matrix-17-Pro-Max has testmanagerd socket at /private/var/tmp/com.apple.launchd.60XdP4zt7Z/com.apple.testmanagerd.unix-domain.socket
+23:40:24.554 xcodebuild[1577:15750334] Validating test connection socket path (/private/var/tmp/com.apple.launchd.60XdP4zt7Z/com.apple.testmanagerd.unix-domain.socket)
+23:40:24.554 xcodebuild[1577:15750334] Constructing transport for test connection socket
+23:40:24.554 xcodebuild[1577:15750334] Connected socket 33 to testmanagerd for Sim Rillora-Matrix-17-Pro-Max
+23:40:24.554 xcodebuild[1577:15750804] Received connection for test runner session
+23:40:24.554 xcodebuild[1577:15750804] Listening for proxy connection request from the test bundle
+23:40:24.555 xcodebuild[1577:15750316] Test runner session acquired connection.
+23:40:24.556 xcodebuild[1577:15750804] Initiating session with identifier: 98E0EEAC-7F40-4469-9EB5-042D1E0D06AD
+23:40:28.332 xcodebuild[1577:15750818] Got reply to session initiation request with identifier 98E0EEAC-7F40-4469-9EB5-042D1E0D06AD (error: (null))
+23:40:28.358 xcodebuild[1577:15750316] Finished requesting crash reports. Continuing with testing.
+23:40:28.795 xcodebuild[1577:15750316] Launch session started.
+23:40:28.838 xcodebuild[1577:15750845] 📱<DVTiPhoneSimulator (0x94b4d8f00), Rillora-Matrix-17-Pro-Max, unknown class, 26.5 (23F77), 0EC00819-D34F-4310-B807-7C6F057988A7> claim LaunchSessionClaim_0x94dcff900 on simulator was issued, 2 claims exist.
+23:40:28.852 xcodebuild[1577:15750804] 📱<DVTiPhoneSimulator (0x94b4d8f00), Rillora-Matrix-17-Pro-Max, unknown class, 26.5 (23F77), 0EC00819-D34F-4310-B807-7C6F057988A7> claim LaunchSessionClaim_0x94dcff900 on simulator was issued, 2 claims exist.
+23:40:28.852 xcodebuild[1577:15750804] 0EC00819-D34F-4310-B807-7C6F057988A7: Registered for sim device notification, got token 8
+23:40:28.852 xcodebuild[1577:15750334] 0EC00819-D34F-4310-B807-7C6F057988A7: Unregistering for sim device notification with token 8
+23:40:28.858 xcodebuild[1577:15750804] 0EC00819-D34F-4310-B807-7C6F057988A7: Installing app at path: /Users/tantalum/Documents/电子遗嘱app/output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/Build/Products/Debug-iphonesimulator/RilloraLayoutMatrixTests-Runner.app and options: {
+    SkipWatchAppInstall = 1;
+}
+23:40:46.327 xcodebuild[1577:15750804] 0EC00819-D34F-4310-B807-7C6F057988A7: Installed app at path: /Users/tantalum/Documents/电子遗嘱app/output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/Build/Products/Debug-iphonesimulator/RilloraLayoutMatrixTests-Runner.app and options: {
+    SkipWatchAppInstall = 1;
+}
+23:40:46.344 xcodebuild[1577:15750804] 0EC00819-D34F-4310-B807-7C6F057988A7: Launching app with identifier: com.rillora.ios.layout-matrix-tests.xctrunner and options: {
+    "activate_suspended" = 1;
+    arguments =     (
+    );
+    environment =     {
+        "APP_DISTRIBUTOR_ID_OVERRIDE" = "com.apple.AppStore";
+        "CA_ASSERT_MAIN_THREAD_TRANSACTIONS" = 0;
+        "CA_DEBUG_TRANSACTIONS" = 0;
+        "DYLD_FRAMEWORK_PATH" = "/Users/tantalum/Documents/\U7535\U5b50\U9057\U5631app/output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/Build/Products/Debug-iphonesimulator:/Users/tantalum/Documents/\U7535\U5b50\U9057\U5631app/output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Users/tantalum/Documents/\U7535\U5b50\U9057\U5631app/output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/Build/Products/Debug-iphonesimulator:/Users/tantalum/Documents/\U7535\U5b50\U9057\U5631app/output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks";
+        "DYLD_INSERT_LIBRARIES" = "/usr/lib/libRPAC.dylib:/Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot/usr/lib/libMainThreadChecker.dylib:/usr/lib/libRPAC.dylib:/Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot/usr/lib/libMainThreadChecker.dylib:/usr/lib/libRPAC.dylib";
+        "DYLD_LIBRARY_PATH" = "/Users/tantalum/Documents/\U7535\U5b50\U9057\U5631app/output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/Build/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib:/Users/tantalum/Documents/\U7535\U5b50\U9057\U5631app/output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/Build/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib";
+        "LLVM_PROFILE_FILE" = "/dev/null";
+        NSUnbufferedIO = YES;
+        "OS_ACTIVITY_DT_MODE" = YES;
+        "PERFC_ENABLE_EXTENDED_DIAGNOSTIC_FORMAT" = 1;
+        "PERFC_ENABLE_PROFILE_MODE" = 1;
+        "PERFC_RESET_INSERT_LIBRARIES" = 1;
+        "PERFC_SUPPRESS_SYSTEM_REPORTS" = 1;
+        "RUN_DESTINATION_DEVICE_NAME" = "Rillora-Matrix-17-Pro-Max";
+        "RUN_DESTINATION_DEVICE_PLATFORM_IDENTIFIER" = "com.apple.platform.iphonesimulator";
+        "RUN_DESTINATION_DEVICE_UDID" = "0EC00819-D34F-4310-B807-7C6F057988A7";
+        "SQLITE_ENABLE_THREAD_ASSERTIONS" = 1;
+        "SWIFT_BACKTRACE" = "enable=no";
+        TERM = dumb;
+        "XCODE_SCHEME_NAME" = RilloraLayoutMatrix;
+        XCTestBundleInjectPath = "/usr/lib/libRPAC.dylib:/Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot/usr/lib/libMainThreadChecker.dylib:/usr/lib/libRPAC.dylib:/Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot/usr/lib/libMainThreadChecker.dylib:/usr/lib/libRPAC.dylib";
+        XCTestBundlePath = "PlugIns/RilloraLayoutMatrixTests.xctest";
+        XCTestConfigurationFilePath = "";
+        XCTestSessionIdentifier = "98E0EEAC-7F40-4469-9EB5-042D1E0D06AD";
+        "__XCODE_BUILT_PRODUCTS_DIR_PATHS" = "/Users/tantalum/Documents/\U7535\U5b50\U9057\U5631app/output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/Build/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_FRAMEWORK_PATH" = "/Users/tantalum/Documents/\U7535\U5b50\U9057\U5631app/output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/Build/Products/Debug-iphonesimulator:/Users/tantalum/Documents/\U7535\U5b50\U9057\U5631app/output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/Build/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_LIBRARY_PATH" = "/Users/tantalum/Documents/\U7535\U5b50\U9057\U5631app/output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/Build/Products/Debug-iphonesimulator:/Users/tantalum/Documents/\U7535\U5b50\U9057\U5631app/output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/Build/Products/Debug-iphonesimulator";
+        "__XPC_LLVM_PROFILE_FILE" = "/dev/null";
+    };
+    stderr = "/dev/ttys018";
+    stdout = "/dev/ttys018";
+    "terminate_running_process" = 1;
+    "wait_for_debugger" = 1;
+}
+23:41:29.735 xcodebuild[1577:15753844] 0EC00819-D34F-4310-B807-7C6F057988A7: Launched app with identifier: com.rillora.ios.layout-matrix-tests.xctrunner (pid = 2698)
+23:41:29.748 xcodebuild[1577:15753844] 📱<DVTiPhoneSimulator (0x94b4d8f00), Rillora-Matrix-17-Pro-Max, unknown class, 26.5 (23F77), 0EC00819-D34F-4310-B807-7C6F057988A7> tracking pid 2698
+23:41:29.749 xcodebuild[1577:15753844] 📱<DVTiPhoneSimulator (0x94b4d8f00), Rillora-Matrix-17-Pro-Max, unknown class, 26.5 (23F77), 0EC00819-D34F-4310-B807-7C6F057988A7> checking to see if pid 2698 is valid: kill(pid, 0) = 0 (YES, it's still running)
+23:41:29.754 xcodebuild[1577:15756903] 0EC00819-D34F-4310-B807-7C6F057988A7: Registered for sim device notification, got token 10
+23:41:29.755 xcodebuild[1577:15750334] 0EC00819-D34F-4310-B807-7C6F057988A7: Unregistering for sim device notification with token 10
+23:41:30.861 xcodebuild[1577:15750316] Test process runnable PID is 2698.
+23:41:30.861 xcodebuild[1577:15757572] XCTHTestOperationStateMachine: Transitioning from state Initial to AcquiredPID
+2026-08-13 23:41:31.362602+0800 RilloraLayoutMatrixTests-Runner[2698:15757567] [Default] Running tests...
+2026-08-13 23:41:31.435574+0800 RilloraLayoutMatrixTests-Runner[2698:15757816] [General] Failed to send CA Event for app launch measurements for ca_event_type: 0 event_name: com.apple.app_launch_measurement.FirstFramePresentationMetric
+2026-08-13 23:41:31.479245+0800 RilloraLayoutMatrixTests-Runner[2698:15757816] [General] Failed to send CA Event for app launch measurements for ca_event_type: 1 event_name: com.apple.app_launch_measurement.ExtendedLaunchMetrics
+23:41:31.775 xcodebuild[1577:15757572] Handling proxy channel request from test runner
+23:41:31.775 RilloraLayoutMatrixTests-Runner[2698:15757567] Creating future for 'requesting test configuration' with timeout 600.00
+23:41:31.775 RilloraLayoutMatrixTests-Runner[2698:15757567] Notifying test runner ready
+23:41:31.776 xcodebuild[1577:15757572] Test runner is ready with capabilities: <XCTCapabilities: 0x94e8eb560>: {
+    "delayed attachment transfer" = 1;
+    "fetch all test identifiers" = 2;
+    "ubiquitous test identifiers" = 1;
+}
+23:41:31.780 xcodebuild[1577:15750316] Test runner session successfully initiated.
+23:41:31.780 xcodebuild[1577:15750316] Authorizing test process ID 2698
+23:41:31.780 xcodebuild[1577:15757572] XCTHTestOperationStateMachine: Transitioning from state AcquiredPID to ReportedReady
+23:41:31.775 RilloraLayoutMatrixTests-Runner[2698:15757567] <XCTWaiter: 0x10705a430> entering wait loop for 600.00s with expectations: `requesting test configuration`
+23:41:31.781 xcodebuild[1577:15750316] Got authorization response from test daemon: Success
+23:41:31.782 xcodebuild[1577:15750316] Registering/updating daemon-based crash report observer for process names (
+    xctest,
+    debugserver,
+    FrontBoard,
+    assertiond,
+    runningboardd,
+    SpringBoard,
+    testmanagerd,
+    backboardd,
+    DTServiceHub,
+    Rillora,
+    "RilloraLayoutMatrixTests-Runner",
+    RilloraLayoutMatrixTests
+)
+23:41:31.782 xcodebuild[1577:15750316] Telling test runner to start executing tests.
+23:41:31.783 RilloraLayoutMatrixTests-Runner[2698:15757816] Received test runner ready reply. Waiting for request to start running tests.
+23:41:31.783 RilloraLayoutMatrixTests-Runner[2698:15757567] Returning result XCTWaiterResultCompleted for synchronous waiter <XCTWaiter: 0x10705a430>
+23:41:31.784 RilloraLayoutMatrixTests-Runner[2698:15757567] Wait <XCTWaiterWait: 0x10a0245c0> completed after 0.009s
+23:41:31.784 RilloraLayoutMatrixTests-Runner[2698:15757567] cleaning up requesting test configuration
+23:41:31.784 RilloraLayoutMatrixTests-Runner[2698:15757567] Loading test bundle at: file:///Users/tantalum/Library/Developer/CoreSimulator/Devices/0EC00819-D34F-4310-B807-7C6F057988A7/data/Containers/Bundle/Application/47850A88-8DFB-499A-AB91-3FDCFA896FAF/RilloraLayoutMatrixTests-Runner.app/PlugIns/RilloraLayoutMatrixTests.xctest/
+23:41:31.784 RilloraLayoutMatrixTests-Runner[2698:15757816] _IDE_startExecutingTestPlanWithProtocolVersion:36
+23:41:31.801 RilloraLayoutMatrixTests-Runner[2698:15757567] Finished loading test bundle
+23:41:31.801 RilloraLayoutMatrixTests-Runner[2698:15757567] Interop: not enabled, so skipping install
+23:41:31.802 RilloraLayoutMatrixTests-Runner[2698:15757567] Registering in-process symbolication service with image names: RilloraLayoutMatrixTests, Rillora, RilloraLayoutMatrixTests-Runner
+23:41:31.802 RilloraLayoutMatrixTests-Runner[2698:15757567] Running tests with active test configuration: <XCTestConfiguration: 0x1072e0780>
+	                  testBundleURL:file:///Users/tantalum/Library/Developer/CoreSimulator/Devices/0EC00819-D34F-4310-B807-7C6F057988A7/data/Containers/Bundle/Application/47850A88-8DFB-499A-AB91-3FDCFA896FAF/RilloraLayoutMatrixTests-Runner.app/PlugIns/RilloraLayoutMatrixTests.xctest/
+	         testBundleRelativePath:PlugIns/RilloraLayoutMatrixTests.xctest
+	              productModuleName:RilloraLayoutMatrixTests
+	                  testSelection:<XCTTestSelection: 0x10705b7e0>
+	            identifiersToRun:<XCTTestIdentifier container ["RilloraLayoutMatrixTests", "testPrimaryEditorsAndPreparationRoutes"]>, <XCTTestIdentifier leaf, method ["RilloraLayoutMatrixTests", "testPrimaryEditorsAndPreparationRoutes"]>
+	            identifiersToSkip:
+	            tagsToRun:(null)
+	            tagsToSkip:<XCTTagSelection: 0x1073e17c0>
+	            mode:and
+	            tags:{(
+)}
+	  includeXCTests:NO
+
+
+	             reportResultsToIDE:YES
+	               testsDrivenByIDE:NO
+	inProcessParallelizationEnabled:NO
+	              sessionIdentifier:98E0EEAC-7F40-4469-9EB5-042D1E0D06AD
+	      disablePerformanceMetrics:NO
+	treatMissingBaselinesAsFailures:NO
+	                baselineFileURL:(null)
+	       baselineFileRelativePath:(null)
+	          targetApplicationPath:/Users/tantalum/Documents/电子遗嘱app/output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/Build/Products/Debug-iphonesimulator/Rillora.app
+	      targetApplicationBundleID:com.rillora.ios
+	 testApplicationDependencies:
+{
+    "com.rillora.ios" = "/Users/tantalum/Documents/\U7535\U5b50\U9057\U5631app/output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/Build/Products/Debug-iphonesimulator/Rillora.app";
+    "com.rillora.ios.layout-matrix-tests.xctrunner" = "/Users/tantalum/Documents/\U7535\U5b50\U9057\U5631app/output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/Build/Products/Debug-iphonesimulator/RilloraLayoutMatrixTests-Runner.app";
+}
+	 bundleIDsForCrashReportEmphasis:
+{(
+    "com.rillora.ios",
+    "com.rillora.ios.layout-matrix-tests"
+)}
+	 testApplicationUserOverrides:(null)
+	     targetApplicationArguments:
+	   targetApplicationEnvironment:
+{
+    "APP_DISTRIBUTOR_ID_OVERRIDE" = "com.apple.AppStore";
+    "DYLD_FRAMEWORK_PATH" = "/Users/tantalum/Documents/\U7535\U5b50\U9057\U5631app/output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/Build/Products/Debug-iphonesimulator:/Users/tantalum/Documents/\U7535\U5b50\U9057\U5631app/output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks";
+    "DYLD_LIBRARY_PATH" = "/Users/tantalum/Documents/\U7535\U5b50\U9057\U5631app/output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/Build/Products/Debug-iphonesimulator";
+    "XCODE_SCHEME_NAME" = RilloraLayoutMatrix;
+    "__XCODE_BUILT_PRODUCTS_DIR_PATHS" = "/Users/tantalum/Documents/\U7535\U5b50\U9057\U5631app/output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/Build/Products/Debug-iphonesimulator";
+    "__XPC_DYLD_FRAMEWORK_PATH" = "/Users/tantalum/Documents/\U7535\U5b50\U9057\U5631app/output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/Build/Products/Debug-iphonesimulator";
+    "__XPC_DYLD_LIBRARY_PATH" = "/Users/tantalum/Documents/\U7535\U5b50\U9057\U5631app/output/qa/ios-layout-matrix-20260813-224908/FinalDerivedData/Build/Products/Debug-iphonesimulator";
+}
+	                  reportActivities:YES
+	          testsMustRunOnMainThread:YES
+	            initializeForUITesting:YES
+	            traceCollectionEnabled:(null)
+	 enablePerformanceTestsDiagnostics:(null)
+	 aggregateStatisticsBeforeCrash:
+{
+    XCSuiteRecordsKey =     {
+    };
+}
+	        automationFrameworkPath:/Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot/Developer/Library/PrivateFrameworks/XCTAutomationSupport.framework
+	                     emitOSLogs:NO
+	       systemAttachmentLifetime:deleteOnSuccess
+	         userAttachmentLifetime:deleteOnSuccess
+	   preferredScreenCaptureFormat:screenRecording
+	   gatherLocalizableStringsData:NO
+	          testExecutionOrdering:alphabetical
+	    randomExecutionOrderingSeed:(null)
+	               repetitionPolicy:<XCTRepetitionPolicy: 0x1073e16c0>
+	            mode:None
+	            maximumIterations:1
+	            repeatInNewRunnerProcess:NO
+
+	       runtimeDiagnosticsPolicy:<XCTRuntimeDiagnosticsPolicy: 0x10705a550>
+	            otherRuntimeIssuesDetectionPolicy:<XCTRuntimeIssueDetectionPolicy: 0x1073e16e0>
+	            detectionEnabled:YES
+	            severity:warning
+
+	            threadPerformanceCheckerRuntimeIssueDetectionPolicy:<XCTRuntimeIssueDetectionPolicy: 0x1073e16e0>
+	            detectionEnabled:YES
+	            severity:warning
+
+	            mainThreadCheckerDetectionPolicy:<XCTRuntimeIssueDetectionPolicy: 0x1073e16e0>
+	            detectionEnabled:YES
+	            severity:warning
+
+	            checkedAllocations:disabled
+
+	            testTimeoutsEnabled:NO
+	              leaksCheckingMode:off
+	 defaultTestExecutionTimeAllowance:600
+	 maximumTestExecutionTimeAllowance:0
+	                IDECapabilities:<XCTCapabilities: 0x1072ad2b0>: {
+    "XCTIssue capability" = 1;
+    "daemon container sandbox extension" = 1;
+    "delayed attachment transfer" = 1;
+    "expected failure test capability" = 1;
+    "in-process test parallelization capability" = 1;
+    "request diagnostics for specific devices" = 1;
+    "runner plan" = 1;
+    "skipped suite capability" = 1;
+    "skipped test capability" = 1;
+    "test case run configurations" = 1;
+    "test iterations" = 2;
+    "test timeout capability" = 1;
+    traits = 1;
+    "ubiquitous test identifiers" = 1;
+    "unified issue recorded" = 1;
+}
+	        symbolicationImageNames:RilloraLayoutMatrixTests, Rillora, RilloraLayoutMatrixTests-Runner
+	         applicationBundleInfos:
+{
+    "com.rillora.ios" = "<XCTApplicationBundleInfo localizations:[en] infoDictionary:[]>";
+    "com.rillora.ios.layout-matrix-tests.xctrunner" = "<XCTApplicationBundleInfo localizations:[en] infoDictionary:[UISupportedInterfaceOrientations~ipad: (\n    UIInterfaceOrientationPortrait,\n    UIInterfaceOrientationPortraitUpsideDown,\n    UIInterfaceOrientationLandscapeLeft,\n    UIInterfaceOrientationLandscapeRight\n), UISupportedInterfaceOrientations: (\n    UIInterfaceOrientationPortrait,\n    UIInterfaceOrientationLandscapeLeft,\n    UIInterfaceOrientationLandscapeRight\n)]>";
+}
+
+23:41:31.802 RilloraLayoutMatrixTests-Runner[2698:15757567] <XCTWaiter: 0x10705ae50> entering wait loop for 600.00s with expectations: `requesting ready for testing`
+23:41:31.803 RilloraLayoutMatrixTests-Runner[2698:15757567] Returning result XCTWaiterResultCompleted for synchronous waiter <XCTWaiter: 0x10705ae50>
+23:41:31.803 RilloraLayoutMatrixTests-Runner[2698:15757567] Wait <XCTWaiterWait: 0x10a024940> completed after 0.000s
+23:41:31.803 RilloraLayoutMatrixTests-Runner[2698:15757567] cleaning up requesting ready for testing
+23:41:31.803 RilloraLayoutMatrixTests-Runner[2698:15757567] <XCTWaiter: 0x10705a5e0> entering wait loop for 600.00s with expectations: `IDE proxy`
+23:41:31.803 RilloraLayoutMatrixTests-Runner[2698:15757567] Returning result XCTWaiterResultCompleted for synchronous waiter <XCTWaiter: 0x10705a5e0>
+23:41:31.803 RilloraLayoutMatrixTests-Runner[2698:15757567] Wait <XCTWaiterWait: 0x10a024a80> completed after 0.000s
+23:41:31.803 RilloraLayoutMatrixTests-Runner[2698:15757567] cleaning up IDE proxy
+23:41:31.803 RilloraLayoutMatrixTests-Runner[2698:15757567] Initializing for UI testing.
+23:41:31.804 RilloraLayoutMatrixTests-Runner[2698:15757567] Linked XCTAutomationSupport.framework from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCTAutomationSupport.framework/XCTAutomationSupport, built with Xcode 2650(17F41), modified on 2026年4月30日 星期四 中国标准时间 21:08:52, bundle version: 24904
+23:41:31.805 RilloraLayoutMatrixTests-Runner[2698:15757567] <XCTWaiter: 0x107307c30> entering wait loop for 60.00s with expectations: `initiating daemon session`
+23:41:31.805 RilloraLayoutMatrixTests-Runner[2698:15757567] Returning result XCTWaiterResultCompleted for synchronous waiter <XCTWaiter: 0x107307c30>
+23:41:31.805 RilloraLayoutMatrixTests-Runner[2698:15757567] Wait <XCTWaiterWait: 0x10a024c80> completed after 0.000s
+23:41:31.805 RilloraLayoutMatrixTests-Runner[2698:15757567] cleaning up initiating daemon session
+23:41:31.805 RilloraLayoutMatrixTests-Runner[2698:15757567] Creating future for 'enabling automation mode' with timeout 60.00
+23:41:31.805 RilloraLayoutMatrixTests-Runner[2698:15757567] <XCTWaiter: 0x1073077b0> entering wait loop for 60.00s with expectations: `enabling automation mode`
+23:41:31.808 RilloraLayoutMatrixTests-Runner[2698:15757567] Returning result XCTWaiterResultCompleted for synchronous waiter <XCTWaiter: 0x1073077b0>
+23:41:31.808 RilloraLayoutMatrixTests-Runner[2698:15757567] Wait <XCTWaiterWait: 0x10a024e40> completed after 0.002s
+23:41:31.808 RilloraLayoutMatrixTests-Runner[2698:15757567] cleaning up enabling automation mode
+23:41:31.808 RilloraLayoutMatrixTests-Runner[2698:15757567] Creating future for 'loading Accessibility' with timeout 70.00
+23:41:31.808 RilloraLayoutMatrixTests-Runner[2698:15757567] <XCTWaiter: 0x10a05c240> entering wait loop for 70.00s with expectations: `loading Accessibility`

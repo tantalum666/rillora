@@ -1,0 +1,14 @@
+{
+  "at": "2026-09-29T18:15:35.116849+00:00",
+  "status": "STOPPED",
+  "containers": [
+    {
+      "name": "Maintenance",
+      "exitCode": 0,
+      "reason": null
+    }
+  ],
+  "messages": [
+    "{\"schema\":\"0087\",\"checksumsMatched\":87,\"runtimeRole\":\"continuity_runtime_production\",\"runtimeCanAssumeRetentionService\":false,\"verifiedTls\":true,\"beforeCounts\":{\"planners\":0,\"holds\":0,\"live\":false},\"removed\":{\"sessions\":0,\"auditEvents\":0,\"productEvents\":0,\"releasedHolds\":0,\"closedPayments\":0,\"sharingHandoffs\":0,\"authTransactions\":0,\"deletionReceipts\":0,\"legalAcceptances\":0},\"actualRuntimeRoleSweepPassed\":true,\"reviewQuoteCount\":1,\"reviewAmountMinor\":6800,\"ipAddressVersion\":\"10.7.2\",\"customerAccessOpened\":false,\"realAppleTransaction\":false}"
+  ]
+}

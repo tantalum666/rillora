@@ -1,0 +1,52 @@
+{
+  "checkedAt": "2026-09-26T09:10:15.019451+00:00",
+  "ownerRequest": "What remains before launch after Web annual US$88.99?",
+  "scope": "Read-only status review and documentation correction; ongoing release workflow",
+  "reading": "Retained full-release read baseline; current AGENTS/product/handoff/recent decisions/release register and focused identity/Apple/commerce contracts reviewed. Supplemental reads completed truncated portions. No new full-reading claim.",
+  "localPreflight": "preflight.json",
+  "engineeringReleaseGatesRemaining": 7,
+  "ownerDeferredGates": [
+    "merchant-market",
+    "physical-device"
+  ],
+  "groupedWorkstreams": [
+    "Apple production purchase and restore",
+    "Production identity and mail",
+    "Ordinary Web annual live billing",
+    "Complete production Web and iOS workflows",
+    "Final security and retention operations",
+    "Signed TestFlight and App Store submission"
+  ],
+  "SES": {
+    "freshReadSucceeded": false,
+    "currentRead": "mail-readiness.json",
+    "failure": "expired AWS session, independently classified without logging credentials",
+    "lastSuccessfulEvidence": "2026-09-26 00:43+08:00; production access false,14other checks passed",
+    "supportReplyAlreadySent": true
+  },
+  "newApplicationTests": false,
+  "newDeployment": false,
+  "providerMutation": false,
+  "documentation": {
+    "focusedSpec": "docs/release-readiness.md",
+    "gateRegister": "config/release-gates.json",
+    "handoff": "docs/handoff.md",
+    "journey": "docs/journey/PROJECT_JOURNEY.md",
+    "decisionLog": "No append: status/priority clarification under existing scope, no new approval/rejection/product decision",
+    "handoffArchive": "No new archive needed: same active next step preserved; current status amended, prior price handoff history remains linked"
+  },
+  "next": "Continue Apple production lifecycle/differentiated offer; preserve launch gates and completed checkpoints.",
+  "closeout": {
+    "sourceCommit": "9b07a532dfeffd15fed8f18490ba9168beb39a5d",
+    "sourceFiles": 917,
+    "scanPassed": true,
+    "reviewedNonSecretMatches": 25,
+    "unknown": 0,
+    "markdownFiles": 146,
+    "localLinks": 1396,
+    "missingLinks": 0,
+    "newCIRun": false,
+    "retainedEngineeringCI": "CI14 on eed17307118d182beff4194964e564eca50520c8",
+    "pushed": true
+  }
+}

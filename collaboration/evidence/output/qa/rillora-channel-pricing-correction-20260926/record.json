@@ -1,0 +1,51 @@
+{
+  "checkedAt": "2026-09-25T17:57:10.749591+00:00",
+  "scope": "Ongoing release workflow correction, not a new implementation workflow",
+  "readingBaseline": "output/qa/rillora-release-readiness-20260919/full-read-completion.json",
+  "focusedReading": [
+    "AGENTS.md",
+    "docs/product.md current/locked price sections",
+    "docs/channel-pricing-20260921.md full",
+    "docs/pricing-88-80-20260919.md full",
+    "docs/handoff.md full",
+    "docs/production-apple-20260926.md full",
+    "docs/storekit.md current section",
+    "docs/release-readiness.md current section",
+    "latest decisions/journey"
+  ],
+  "withdrawnQuestion": "Apple88.90/88.99/88.00 near-parity options; no reply required",
+  "direction": "Cost-based channel differentiation; Web88.80; same Family rights across clients",
+  "conditionalCandidates": {
+    "15PercentEffective": 99.99,
+    "standard30PercentScenario": 119.99
+  },
+  "bothCandidatePointsVerifiedInOfficialCSV": true,
+  "providerReadback": "Paid Apps Agreement active; SBP enrollment page visible, no approval/effective fee proof; no fields submitted",
+  "providerChanged": false,
+  "codeChanged": false,
+  "tests": "No new application test; retain CI13/242API checkpoint with prior date",
+  "governance": [
+    "docs/channel-pricing-20260921.md",
+    "docs/pricing-88-80-20260919.md",
+    "docs/product.md",
+    "docs/production-apple-20260926.md",
+    "docs/storekit.md",
+    "docs/release-readiness.md",
+    "docs/handoff.md",
+    "docs/decision-log.md",
+    "docs/journey/PROJECT_JOURNEY.md",
+    "config/release-gates.json"
+  ],
+  "next": "Verify actual commission/SBP status, settle differential Apple offer and continue transaction integration",
+  "checks": {
+    "sourceScan": "24reviewed non-secret spans;0unreviewed",
+    "markdown": {
+      "checkedAt": "2026-09-25T17:58:45.755417+00:00",
+      "markdownFiles": 144,
+      "localLinks": 1371,
+      "missing": []
+    },
+    "applicationTests": "Not rerun; no application code changed"
+  },
+  "sourceCommit": "78984f81d"
+}

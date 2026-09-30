@@ -1,0 +1,41 @@
+{
+  "sourceCommit": "4215c25e0a139406d91d0fd78d5af923b8115058",
+  "head": "e731656795f2f7b46d2554853cc773196a9fc8a7",
+  "localImage": {
+    "id": "sha256:8426279e5de8cd394c9ebae8c35549d0a01703a84a3398dda5cb82c476cfad6b",
+    "architecture": "arm64",
+    "os": "linux",
+    "created": "2026-09-24T00:30:02.760717335+08:00",
+    "healthcheck": {
+      "Interval": 30000000000,
+      "Retries": 3,
+      "StartPeriod": 20000000000,
+      "Test": [
+        "CMD",
+        "node",
+        "dist/healthcheck.js"
+      ],
+      "Timeout": 5000000000
+    },
+    "boundary": "Local build only, not ECR publication or deployment."
+  },
+  "deployed": true,
+  "schemaRemains": "0070",
+  "sourceHashes": {
+    "apps/api/src/managed-tls.ts": "25c49b02a532985e16f3fba7b68e97a101b718c66b9be6400ec59ae17575be90",
+    "apps/api/src/healthcheck.ts": "59bde10dcd68d440716b0e1ec41831d136a938587e5993d436aacee31db7252a",
+    "apps/api/src/security.ts": "0e5495408801dee2bf61fdd9f4204007bf7364b602e2415314d040050efd83ee",
+    "apps/api/src/server.ts": "57f3078845c21aecb4b967626319e471609e941a179e3dc70eaeb4adad82a9a5",
+    "apps/api/src/config.ts": "4b2a1fa999e628987280ef294249d82dd6a755bab9302a5e788843de8fe0fc01",
+    "apps/api/src/app.ts": "3aa8a2d4ff2130782088aa38bb7aa31e222b1ba547d511a0d508bc20a275b6f9",
+    "apps/api/package-lock.json": "03a9b34dbd8c6283b3623063f0e017a04a2a37fc85377a0200ee373196e0e110",
+    "apps/api/Dockerfile": "a78f6994a677e6f774bbd51d64ca8fff0b158b442c3c52f6fd20e7e4ba59cc72",
+    "infra/aws/lib/rillora-production-runtime.ts": "7efeedd50ce894a69c1c3555cfc23033946174830fc3302cd49bc829e984574a",
+    "infra/aws/lib/rillora-production-stack.ts": "aa252f616b70e6b4b7e56269b4637654652c88d25c78b82676cda8673ecea09d"
+  },
+  "deploymentCodeCommit": "4215c25e0a139406d91d0fd78d5af923b8115058",
+  "runtimeTaskRevision": 1,
+  "productionStack": "UPDATE_COMPLETE",
+  "operationsTargets": 10,
+  "customerAccess": "closed"
+}

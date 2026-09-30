@@ -1,0 +1,26 @@
+{
+  "EventDestinations": [
+    {
+      "Name": "aggregate-delivery",
+      "Enabled": true,
+      "MatchingEventTypes": [
+        "BOUNCE",
+        "COMPLAINT",
+        "DELIVERY",
+        "DELIVERY_DELAY",
+        "REJECT",
+        "RENDERING_FAILURE",
+        "SEND"
+      ],
+      "CloudWatchDestination": {
+        "DimensionConfigurations": [
+          {
+            "DimensionName": "ses:configuration-set",
+            "DimensionValueSource": "MESSAGE_TAG",
+            "DefaultDimensionValue": "rillora-transactional"
+          }
+        ]
+      }
+    }
+  ]
+}

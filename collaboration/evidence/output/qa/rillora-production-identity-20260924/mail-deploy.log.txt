@@ -1,0 +1,47 @@
+
+✨  Synthesis time: 2.94s
+
+RilloraMail: start: Building RilloraMail Template
+RilloraMail: success: Built RilloraMail Template
+RilloraMail: start: Publishing RilloraMail Template (133857166372-eu-central-1-6b2e32e8)
+RilloraMail: success: Published RilloraMail Template (133857166372-eu-central-1-6b2e32e8)
+RilloraMail: creating CloudFormation changeset...
+RilloraMail: deploying... [1/1]
+RilloraMail | 0/5 | 10:18:20 AM | REVIEW_IN_PROGRESS      | AWS::CloudFormation::Stack                 | RilloraMail User Initiated
+RilloraMail | 0/5 | 10:18:29 AM | CREATE_IN_PROGRESS      | AWS::CloudFormation::Stack                 | RilloraMail User Initiated
+RilloraMail | 0/5 | 10:18:31 AM | CREATE_IN_PROGRESS      | AWS::SES::ConfigurationSet                 | Transactional (Transactional735D50ED) 
+RilloraMail | 0/5 | 10:18:31 AM | CREATE_IN_PROGRESS      | AWS::CDK::Metadata                         | CDKMetadata/Default (CDKMetadata) 
+RilloraMail | 0/5 | 10:18:32 AM | CREATE_IN_PROGRESS      | AWS::CDK::Metadata                         | CDKMetadata/Default (CDKMetadata) Resource creation Initiated
+RilloraMail | 1/5 | 10:18:32 AM | CREATE_COMPLETE         | AWS::CDK::Metadata                         | CDKMetadata/Default (CDKMetadata) 
+RilloraMail | 1/5 | 10:18:32 AM | CREATE_IN_PROGRESS      | AWS::SES::ConfigurationSet                 | Transactional (Transactional735D50ED) Resource creation Initiated
+RilloraMail | 2/5 | 10:18:32 AM | CREATE_COMPLETE         | AWS::SES::ConfigurationSet                 | Transactional (Transactional735D50ED) 
+RilloraMail | 2/5 | 10:18:33 AM | CREATE_IN_PROGRESS      | AWS::SES::ConfigurationSetEventDestination | Transactional/AggregateDelivery (TransactionalAggregateDelivery2CBC4E84) 
+RilloraMail | 2/5 | 10:18:33 AM | CREATE_IN_PROGRESS      | AWS::SES::EmailIdentity                    | Identity (Identity2D60E2CC) 
+RilloraMail | 2/5 | 10:18:33 AM | CREATE_IN_PROGRESS      | AWS::SES::ConfigurationSetEventDestination | Transactional/AggregateDelivery (TransactionalAggregateDelivery2CBC4E84) Resource creation Initiated
+RilloraMail | 2/5 | 10:18:34 AM | CREATE_IN_PROGRESS      | AWS::SES::ConfigurationSetEventDestination | Transactional/AggregateDelivery (TransactionalAggregateDelivery2CBC4E84) Eventual consistency check initiated
+RilloraMail | 2/5 | 10:18:34 AM | CREATE_IN_PROGRESS      | AWS::SES::EmailIdentity                    | Identity (Identity2D60E2CC) Resource creation Initiated
+RilloraMail | 3/5 | 10:18:44 AM | CREATE_COMPLETE         | AWS::SES::ConfigurationSetEventDestination | Transactional/AggregateDelivery (TransactionalAggregateDelivery2CBC4E84) 
+RilloraMail | 4/5 | 10:20:40 AM | CREATE_COMPLETE         | AWS::SES::EmailIdentity                    | Identity (Identity2D60E2CC) 
+RilloraMail | 5/5 | 10:20:42 AM | CREATE_COMPLETE         | AWS::CloudFormation::Stack                 | RilloraMail 
+
+✅  RilloraMail
+
+✨  Deployment time: 136.84s
+
+Outputs:
+RilloraMail.ActivationBoundary = Domain verification is not production access, Auth0 configuration or end-user delivery
+RilloraMail.ConfigurationSet = rillora-transactional
+RilloraMail.Dkim1Name = uindmbdho6fsywhs2zc2qqpsxqlivufr._domainkey.notify.rillora.xyz
+RilloraMail.Dkim1Value = uindmbdho6fsywhs2zc2qqpsxqlivufr.dkim.amazonses.com
+RilloraMail.Dkim2Name = e72bxaidtogictet4f5ittbyyxfywrfl._domainkey.notify.rillora.xyz
+RilloraMail.Dkim2Value = e72bxaidtogictet4f5ittbyyxfywrfl.dkim.amazonses.com
+RilloraMail.Dkim3Name = 4ki2lv3epotn2fmb7zj5wm6ky35lkwfl._domainkey.notify.rillora.xyz
+RilloraMail.Dkim3Value = 4ki2lv3epotn2fmb7zj5wm6ky35lkwfl.dkim.amazonses.com
+RilloraMail.IdentityArn = arn:aws:ses:eu-central-1:133857166372:identity/notify.rillora.xyz
+RilloraMail.MailFromMx = 10 feedback-smtp.eu-central-1.amazonses.com
+RilloraMail.MailFromSpf = v=spf1 include:amazonses.com -all
+Stack ARN:
+arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraMail/3602d2e0-b7be-11f1-9101-0a19edc724ed
+
+✨  Total time: 157.67s
+

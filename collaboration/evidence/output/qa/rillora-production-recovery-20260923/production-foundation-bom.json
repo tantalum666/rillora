@@ -1,0 +1,18 @@
+{
+  "scope": "Closed production data foundation; no continuously running API service yet",
+  "region": "eu-central-1",
+  "monthlyIllustrationUSD": {
+    "rdsMicroAt730Hours": 13.87,
+    "gp3At20GiB": 2.74,
+    "contentKmsKeyBeforeRotationEstimate": 1.0,
+    "twoSecretsEstimate": 0.8
+  },
+  "excluded": [
+    "existing staging costs",
+    "future public API/edge and egress controls",
+    "metered backup excess, recovery instance hours, task runs, logs, DynamoDB/PITR, requests and taxes"
+  ],
+  "credits": "Account Free Plan ACTIVE,112.50USD remaining at07:20UTC; credit offset is not a zero-price guarantee",
+  "budgetBoundary": "Within the existing approximate45USD/month small-production planning envelope for this foundation portion; final full runtime BOM remains separate",
+  "fixedIllustrationSubtotalUSD": 18.41
+}

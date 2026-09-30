@@ -1,0 +1,80 @@
+{
+  "closedAt": "2026-09-24T02:00:53.535644+00:00",
+  "source": {
+    "head": "e731656795f2f7b46d2554853cc773196a9fc8a7",
+    "remoteMatches": true,
+    "worktreeClean": true,
+    "runtimeCode": "4215c25e0",
+    "ci": {
+      "checkedAt": "2026-09-24T02:00:53.535644+00:00",
+      "head": "e731656795f2f7b46d2554853cc773196a9fc8a7",
+      "conclusion": "success",
+      "run": 6,
+      "url": "https://github.com/tantalum666/rillora/actions/runs/35945138557",
+      "verifiedVia": "authenticated Chrome Actions list",
+      "cloudDeploymentByCI": false
+    }
+  },
+  "production": {
+    "stack": "UPDATE_COMPLETE",
+    "apiTaskRevision": 1,
+    "desired": 1,
+    "running": 1,
+    "health": "HEALTHY",
+    "rollout": "COMPLETED",
+    "image": "sha256:8426279e5de8cd394c9ebae8c35549d0a01703a84a3398dda5cb82c476cfad6b",
+    "schema": "0070",
+    "database": "original private/encrypted/protected7days preserved",
+    "certificate": "ISSUED and renewal ELIGIBLE",
+    "customerAccess": "closed",
+    "boundedAcceptance": "transport-acceptance.json",
+    "rawTcpCaveatRetained": true
+  },
+  "operations": {
+    "stack": "UPDATE_COMPLETE",
+    "targets": 10,
+    "cloudInvocation": "ok / failed0",
+    "schedule": "ENABLED rate(15 minutes)",
+    "existingAlertDeliveryProofPreserved": true
+  },
+  "godaddy": {
+    "version": "0.2.20",
+    "credentialStore": "explicit macOS keyring",
+    "refreshable": true,
+    "scopes": [
+      "domains.domain:read",
+      "domains.dns:update",
+      "offline_access",
+      "apps.app-registry:read"
+    ],
+    "projectCommand": "rillora-dns",
+    "providerCredentialAccountWide": true,
+    "readWriteCleanup": "20 ->21 ->20, original zone digest restored",
+    "fanpassChanged": false
+  },
+  "validation": {
+    "retainedApiCheckpoint": 212,
+    "retainedInfraCheckpoint": 29,
+    "currentHealthTests": 6,
+    "currentOperationsInfraTests": 7,
+    "currentDnsGuardTests": 4,
+    "publicationRecoveryGuards": 13,
+    "sourceScanReviewed": 22,
+    "sourceScanUnreviewed": 0,
+    "markdown": {
+      "markdownFiles": 134,
+      "localLinks": 1292,
+      "missing": []
+    },
+    "logSamples": [
+      79,
+      50
+    ]
+  },
+  "scopeLimits": [
+    "No production customer login/email or final Web/iOS connection acceptance",
+    "No live billing, public launch or App Store submission",
+    "No repeated data restore, historic log erasure, broad network penetration certification or E2EE claim"
+  ],
+  "next": "Production identity/transaction email and final same-origin Web/iOS Release connections; preserve closed account and sales gates."
+}

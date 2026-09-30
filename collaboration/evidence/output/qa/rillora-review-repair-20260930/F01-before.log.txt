@@ -1,0 +1,37 @@
+
+ RUN  v4.1.11 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/recent-authentication.integration.test.ts (8 tests | 1 failed | 7 skipped) 293ms
+     × guards the actual handlers under both prefixes, case variants and trailing slashes 166ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/recent-authentication.integration.test.ts > Recent identity authentication without replaying the sensitive action > guards the actual handlers under both prefixes, case variants and trailing slashes
+AssertionError: /v1/account/map/export/: expected [ 400, 'invalid_request' ] to deeply equal [ 403, 'reauthentication_required' ]
+
+- Expected
++ Received
+
+  [
+-   403,
+-   "reauthentication_required",
++   400,
++   "invalid_request",
+  ]
+
+ ❯ tests/recent-authentication.integration.test.ts:71:16
+     69|           if (!time || Date.now() - time.getTime() > 10 * 60_000) {
+     70|             expect([response.status, response.body.error?.code], `${pr…
+     71|               .toEqual([403, 'reauthentication_required']);
+       |                ^
+     72|           } else {
+     73|             expect(response.status).not.toBe(500);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 7 skipped (8)
+   Start at  13:17:13
+   Duration  1.19s (transform 289ms, setup 41ms, import 728ms, tests 293ms, environment 0ms)
+

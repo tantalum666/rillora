@@ -1,0 +1,45 @@
+
+✨  Synthesis time: 3.39s
+
+RilloraStaging: start: Building RilloraStaging Template
+RilloraStaging: success: Built RilloraStaging Template
+RilloraStaging: start: Publishing RilloraStaging Template (133857166372-eu-central-1-47f26b1b)
+RilloraStaging: success: Published RilloraStaging Template (133857166372-eu-central-1-47f26b1b)
+RilloraStaging: creating CloudFormation changeset...
+RilloraStaging: deploying... [1/1]
+RilloraStaging | 0/5 | 10:10:53 AM | UPDATE_IN_PROGRESS      | AWS::CloudFormation::Stack                  | RilloraStaging User Initiated
+RilloraStaging | 0/5 | 10:10:57 AM | UPDATE_IN_PROGRESS      | AWS::IAM::Policy                            | ApiTaskDefinition/ExecutionRole/DefaultPolicy (ApiTaskDefinitionExecutionRoleDefaultPolicy5B03B3DE) 
+RilloraStaging | 0/5 | 10:11:00 AM | UPDATE_IN_PROGRESS      | AWS::ECS::TaskDefinition                    | ApiTaskDefinition (ApiTaskDefinition51EA709E) Requested update requires the creation of a new physical resource; hence creating one.
+RilloraStaging | 0/5 | 10:11:01 AM | UPDATE_IN_PROGRESS      | AWS::ECS::TaskDefinition                    | ApiTaskDefinition (ApiTaskDefinition51EA709E) Resource creation Initiated
+RilloraStaging | 1/5 | 10:11:02 AM | UPDATE_COMPLETE         | AWS::ECS::TaskDefinition                    | ApiTaskDefinition (ApiTaskDefinition51EA709E) 
+RilloraStaging | 1/5 | 10:11:03 AM | UPDATE_IN_PROGRESS      | AWS::ECS::Service                           | ApiService/Service (ApiServiceC9037CF0) 
+RilloraStaging | 2/5 | 10:11:13 AM | UPDATE_COMPLETE         | AWS::IAM::Policy                            | ApiTaskDefinition/ExecutionRole/DefaultPolicy (ApiTaskDefinitionExecutionRoleDefaultPolicy5B03B3DE) 
+RilloraStaging | 3/5 | 10:14:27 AM | UPDATE_COMPLETE         | AWS::ECS::Service                           | ApiService/Service (ApiServiceC9037CF0) 
+RilloraStaging | 4/5 | 10:14:32 AM | UPDATE_COMPLETE_CLEANUP | AWS::CloudFormation::Stack                  | RilloraStaging 
+RilloraStaging | 4/5 | 10:14:33 AM | DELETE_IN_PROGRESS      | AWS::ECS::TaskDefinition                    | ApiTaskDefinition (ApiTaskDefinition51EA709E) 
+RilloraStaging | 3/5 | 10:14:34 AM | DELETE_COMPLETE         | AWS::ECS::TaskDefinition                    | ApiTaskDefinition (ApiTaskDefinition51EA709E) 
+RilloraStaging | 4/5 | 10:14:34 AM | UPDATE_COMPLETE         | AWS::CloudFormation::Stack                  | RilloraStaging 
+
+✅  RilloraStaging
+
+✨  Deployment time: 227.91s
+
+Outputs:
+RilloraStaging.AccountDeletionClientSecretArn = arn:aws:secretsmanager:eu-central-1:133857166372:secret:AccountDeletionClientSecret-TwZNALLyb7Rn-p2D5qD
+RilloraStaging.ApiEndpoint = https://l1g8350qw0.execute-api.eu-central-1.amazonaws.com
+RilloraStaging.ClusterName = RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5
+RilloraStaging.MigrationTaskDefinitionArn = arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingMigrationTaskDefinitionD83F7D18:16
+RilloraStaging.PublicSubnetIds = subnet-0344e3c6bae4e3731,subnet-0610e7921274f95bd
+RilloraStaging.ServiceDesiredCount = 1
+RilloraStaging.StagingOperatorRoleArn = arn:aws:iam::133857166372:role/rillora/rillora-staging-operator
+RilloraStaging.StripeTestApiKeySecretArn = arn:aws:secretsmanager:eu-central-1:133857166372:secret:StripeTestSecret04351D5D-RYsCQzd9tQVc-pzQZlf
+RilloraStaging.StripeTestWebhookSecretArn = arn:aws:secretsmanager:eu-central-1:133857166372:secret:StripeTestWebhookSecret27AD-DjIcVJgvFIix-BNvgFG
+RilloraStaging.TaskSecurityGroupId = sg-062c63db94ecf2e16
+RilloraStaging.WebDistributionDomainName = d1ee12jk5j6ple.cloudfront.net
+RilloraStaging.WebOidcClientSecretArn = arn:aws:secretsmanager:eu-central-1:133857166372:secret:WebOidcClientSecret8C81BEC4-R2rkmUprqisV-VWDgAO
+RilloraStaging.WebUrl = https://app.staging.rillora.xyz
+Stack ARN:
+arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319
+
+✨  Total time: 270.39s
+

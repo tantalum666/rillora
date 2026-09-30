@@ -1,0 +1,21 @@
+{
+  "workflow": "Whole-app audit repair continuation; not a fresh workflow",
+  "baseline": "../rillora-p1-repair-20260915/reading-continuity.json",
+  "full_read_baseline": "../rillora-complete-ui-ux-audit-20260915/",
+  "focused_recovery": [
+    "AGENTS.md",
+    "docs/product.md current locked decisions",
+    "docs/handoff.md",
+    "docs/decision-log.md latest decisions",
+    "docs/ui-ux-audit-20260915.md UX07-22",
+    "modified source files read before edits"
+  ],
+  "excluded": [
+    "dependencies",
+    "caches",
+    "build artifacts",
+    "generated output evidence bundles"
+  ],
+  "resumed_at": "2026-09-16T04:59:19.248870+00:00",
+  "browser": "Browser plugin not available; regular Playwright fallback under frontend-testing-debugging skill"
+}

@@ -1,0 +1,95 @@
+# Submission worksheet — evidence ready, declarations pending
+
+Prepared2026-09-30. This worksheet is not an App Store response or legal conclusion.
+The final account-holder declarations and actual review access are parked under
+the Owner's instruction. Do not fill missing personal facts with invented values.
+
+## Listing and availability
+
+The six JPEGs use the current UI and synthetic private records. They have the
+accepted6.9inch iPhone and13inch iPad dimensions and no alpha channels. Raw captures
+are retained. Apple permits1–10JPEG/JPG/PNG screenshots per applicable class and
+rejects alpha channels.[Official specifications](https://developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications/).
+
+Name/subtitle/promotional text/keywords/description are prepared separately and
+length-checked. Preserve saved website/support URLs. Review contact name, phone,
+email and the operative market list need the existing real operator facts; do not
+infer eligibility from Apple having eight test territories selected.
+
+The existing annual USA68/CAD99 are test-catalog facts, not the final differential
+Apple price. SBP submission is acknowledged but15%approval/effectiveness remains
+unknown. Web staysUS$88.99annual-only. All final store pricing and market switches
+remain unapplied until their real facts/decision gates are satisfied.
+
+## Privacy data inventory
+
+Apple requires the app's and integrated partners' actual collection practices,
+including collection for functionality. The definitions include persistent off-device
+processing and distinguish collection from tracking; an empty SDK list is not a
+valid answer for an account-based private map.[Apple privacy details](https://developer.apple.com/app-store/app-privacy-details/).
+
+| Actual surface | Data and purpose to carry into the questionnaire | Evidence/boundary |
+| --- | --- | --- |
+| Identity and account | Name/display name, email/verified-email digest, provider subject and Rillora user ID; app functionality/security | Auth0 identity exchange, session and legal receipts; linked to the account |
+| Matters | User-written titles, locations, account hints, wishes and notes; assets/debts/value bands may be financial information | Private map content is encrypted by the application but can be decrypted for authorized requests; not E2EE or uncollected data |
+| Chosen people and reviews | Entered names/relationship labels, invitation email hash/masked label, shared content and review replies | Private chosen-person communication; no public social feed or phone-address-book import |
+| Billing | Purchase and subscription history, provider/account references, consent and reconciliation records | Apple/Stripe payment processing does not make purchase history uncollected; no Rillora card-entry form. Assess account hints separately from checkout credentials |
+| Product/operations | First-party event names and bounded properties, audit/security events, aggregate operational diagnostics | Product events can remain account-linked; no advertising or cross-company tracking. Do not label all usage anonymous |
+| Support | Information a person supplies in a support request | Follow actual support handling/retention and public privacy notice; no invented support dataset |
+
+The app-owned manifest declares UserDefaultsCA92.1, trackingfalse and an empty
+tracking-domain list. Its collected-data array is omitted; this does not mean no
+first-party data is collected. The final exported binary includes eleven privacy
+manifests; see the [exact inventory](../../qa/rillora-launch-resume-20260930/native-sdk-privacy-inventory.json).
+Auth0 declares UserID. GoogleSignIn declares additional name/email/phone/location/
+identifier/usage categories, although native Google is disabled in Release and the
+unrelated-callback initialization has been removed. Reconcile the built SDKs' actual
+active behavior with the final privacy labels. Do not delete their manifests, copy
+all possible categories as established collection, or submit DataNotCollected.
+
+There is no AppTrackingTransparency permission prompt or advertising feature in
+the selected scope. The marketing claim remains specific access/encryption controls;
+no bank-grade certification, zero-knowledge or100%security claim is prepared.
+
+## Age and encryption evidence for the final questionnaire
+
+The app is an adult planning tool under its existing Terms. It has private user
+content and chosen-person review replies, but no public feed, ads, gambling,
+loot boxes, simulated violence or medical-treatment feature. It does not implement
+age assurance or parental controls. Answer the actual Apple questionnaire using
+these facts and its displayed definitions; do not assume the resulting rating is4+
+or confuse an intended adult audience with a completed age-verification system.
+
+The native app uses HTTPS and Keychain via platform APIs. Its supported encrypted
+Start Here package uses CryptoKit primitives including AES-GCM, HKDF and P-256
+within the existing export protocol. The server separately uses application envelope
+encryption/KMS; that does not make the entire product end-to-end encrypted. The
+inspected distribution Info.plist has no completed non-exempt-encryption declaration.
+The account holder must complete the actual export-compliance determination and
+any required documentation before submission; this worksheet does not assert an
+exemption or manufacture an export filing.
+
+## Reviewer access and test steps
+
+The prepared synthetic identity's credential is only in protected storage. Its
+example.test address is not verified and is not an email inbox. Actual affirmative
+legal acceptance, login and validation enrollment have not happened. No usable
+TestFlight review login or purchased entitlement is claimed.
+
+After those gates, use an enabled candidate and verify these real reviewer tasks:
+
+1. Sign in through the hosted flow; add and reopen an ordinary matter.
+2. Select an actual eligible recipient, review shared scope and verify that person's
+   authenticated web view. Reductions/revocation work without a new login; scope
+   expansion may request recent authentication while preserving the draft.
+3. Open Start Here, select an audience, review the included data and produce an
+   allowed export after any required reauthentication.
+4. Use the explicit Apple Sandbox review path, confirm its displayed recurring terms,
+   purchase, restore and inspect server-authoritative access. Check actual signed
+   notifications and later lifecycle outcomes separately; no real charge is inferred.
+5. Exercise account data/delete with a deliberately disposable, authenticated test
+   account. Reopen the final status and verify local/provider results separately.
+
+Record actual results, dates and build numbers before replacing this draft with
+review instructions. The current closed-entry IPA must not be uploaded as if these
+steps were already available and validated.

@@ -1,0 +1,30 @@
+{
+  "checkedAt": "2026-09-26T10:54:15.417510+00:00",
+  "markdownFiles": 148,
+  "localTargets": 1417,
+  "missing": [],
+  "updatedSpecifications": [
+    "docs/product.md",
+    "docs/handoff.md",
+    "docs/handoff-history-20260926-before-launch-goal.md",
+    "docs/release-readiness.md",
+    "docs/production-identity-mail-20260924.md",
+    "docs/decision-log.md",
+    "docs/journey/PROJECT_JOURNEY.md",
+    "infra/auth0/README.md",
+    "infra/aws/README.md",
+    "README.md",
+    "docs/family-maintenance.md",
+    "docs/monetization.md",
+    "docs/mvp.md",
+    "docs/production-apple-20260926.md",
+    "config/release-gates.json"
+  ],
+  "decisionReason": "Owner explicitly creates final-launch goal; append decision; implementation itself does not change price/scope.",
+  "handoff": "docs/handoff.md",
+  "journey": "docs/journey/PROJECT_JOURNEY.md",
+  "readBaseline": "full-read.json",
+  "applicationTests": "258 API;26 focused Apple;typecheck/build pass",
+  "evidenceBoundary": "No cloud deploy, provider price, real purchase or end-user mail in this slice.",
+  "lastCheckedAt": "2026-09-26T11:01:53.874248+00:00"
+}

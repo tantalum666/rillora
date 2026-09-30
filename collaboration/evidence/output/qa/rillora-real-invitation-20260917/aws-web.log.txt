@@ -1,0 +1,43 @@
+
+✨  Synthesis time: 6.11s
+
+RilloraStaging: start: Building WebDeployment/Asset1
+RilloraStaging: success: Built WebDeployment/Asset1
+RilloraStaging: start: Building RilloraStaging Template
+RilloraStaging: success: Built RilloraStaging Template
+RilloraStaging: start: Publishing WebDeployment/Asset1 (133857166372-eu-central-1-63f5b747)
+RilloraStaging: start: Publishing RilloraStaging Template (133857166372-eu-central-1-c5446b73)
+RilloraStaging: success: Published RilloraStaging Template (133857166372-eu-central-1-c5446b73)
+RilloraStaging: success: Published WebDeployment/Asset1 (133857166372-eu-central-1-63f5b747)
+RilloraStaging: creating CloudFormation changeset...
+RilloraStaging: deploying... [1/1]
+RilloraStaging | 0/3 | 1:44:57 PM | UPDATE_IN_PROGRESS      | AWS::CloudFormation::Stack                  | RilloraStaging User Initiated
+RilloraStaging | 0/3 | 1:45:00 PM | UPDATE_IN_PROGRESS      | Custom::CDKBucketDeployment                 | WebDeployment/CustomResource/Default (WebDeploymentCustomResource08EEC474) 
+RilloraStaging | 1/3 | 1:46:30 PM | UPDATE_COMPLETE         | Custom::CDKBucketDeployment                 | WebDeployment/CustomResource/Default (WebDeploymentCustomResource08EEC474) 
+RilloraStaging | 2/3 | 1:46:33 PM | UPDATE_COMPLETE_CLEANUP | AWS::CloudFormation::Stack                  | RilloraStaging 
+RilloraStaging | 3/3 | 1:46:34 PM | UPDATE_COMPLETE         | AWS::CloudFormation::Stack                  | RilloraStaging 
+
+✅  RilloraStaging
+
+✨  Deployment time: 108.6s
+
+Outputs:
+RilloraStaging.AccountDeletionClientSecretArn = arn:aws:secretsmanager:eu-central-1:133857166372:secret:AccountDeletionClientSecret-TwZNALLyb7Rn-p2D5qD
+RilloraStaging.ApiEndpoint = https://l1g8350qw0.execute-api.eu-central-1.amazonaws.com
+RilloraStaging.ClusterName = RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5
+RilloraStaging.EmailVerificationClientSecretArn = arn:aws:secretsmanager:eu-central-1:133857166372:secret:EmailVerificationClientSecr-rUwJxh95pBti-KF2wjA
+RilloraStaging.MigrationTaskDefinitionArn = arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingMigrationTaskDefinitionD83F7D18:23
+RilloraStaging.PublicSubnetIds = subnet-0344e3c6bae4e3731,subnet-0610e7921274f95bd
+RilloraStaging.ServiceDesiredCount = 1
+RilloraStaging.StagingOperatorRoleArn = arn:aws:iam::133857166372:role/rillora/rillora-staging-operator
+RilloraStaging.StripeTestApiKeySecretArn = arn:aws:secretsmanager:eu-central-1:133857166372:secret:StripeTestSecret04351D5D-RYsCQzd9tQVc-pzQZlf
+RilloraStaging.StripeTestWebhookSecretArn = arn:aws:secretsmanager:eu-central-1:133857166372:secret:StripeTestWebhookSecret27AD-DjIcVJgvFIix-BNvgFG
+RilloraStaging.TaskSecurityGroupId = sg-062c63db94ecf2e16
+RilloraStaging.WebDistributionDomainName = d1ee12jk5j6ple.cloudfront.net
+RilloraStaging.WebOidcClientSecretArn = arn:aws:secretsmanager:eu-central-1:133857166372:secret:WebOidcClientSecret8C81BEC4-R2rkmUprqisV-VWDgAO
+RilloraStaging.WebUrl = https://app.staging.rillora.xyz
+Stack ARN:
+arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319
+
+✨  Total time: 156.46s
+

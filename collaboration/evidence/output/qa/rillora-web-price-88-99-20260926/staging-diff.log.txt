@@ -1,0 +1,54 @@
+Stack RilloraStaging
+Resources
+[~] AWS::ECS::TaskDefinition ApiTaskDefinition ApiTaskDefinition51EA709E replace
+ └─ [~] ContainerDefinitions (requires replacement)
+     └─ @@ -180,7 +180,7 @@
+        [ ] },
+        [ ] {
+        [ ]   "Name": "STRIPE_FAMILY_PRICE_VERSION",
+        [-]   "Value": "3"
+        [+]   "Value": "4"
+        [ ] },
+        [ ] {
+        [ ]   "Name": "STRIPE_FAMILY_MONTHLY_PRICE_ID",
+        @@ -188,7 +188,7 @@
+        [ ] },
+        [ ] {
+        [ ]   "Name": "STRIPE_FAMILY_ANNUAL_PRICE_ID",
+        [-]   "Value": "price_1UHMkTCxTlowhyiGu3do5wps"
+        [+]   "Value": "price_1UJe38CxTlowhyiGdx5ypIKJ"
+        [ ] },
+        [ ] {
+        [ ]   "Name": "STRIPE_CHECKOUT_SUCCESS_URL",
+        @@ -215,7 +215,7 @@
+        [ ]   "Timeout": 5
+        [ ] },
+        [ ] "Image": {
+        [-]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:7c1ad63ff0db8478888ad0dc67f99ff52fec7347b1f5cbb9fd9317fb98e00b77"
+        [+]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:0032fca08797551749bc99a92b0d711da0e2a94f36d435e43a4b5e920c687751"
+        [ ] },
+        [ ] "LogConfiguration": {
+        [ ]   "LogDriver": "awslogs",
+[~] AWS::ECS::TaskDefinition MigrationTaskDefinition MigrationTaskDefinitionE89B136E replace
+ └─ [~] ContainerDefinitions (requires replacement)
+     └─ @@ -59,7 +59,7 @@
+        [ ] ],
+        [ ] "Essential": true,
+        [ ] "Image": {
+        [-]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:7c1ad63ff0db8478888ad0dc67f99ff52fec7347b1f5cbb9fd9317fb98e00b77"
+        [+]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:0032fca08797551749bc99a92b0d711da0e2a94f36d435e43a4b5e920c687751"
+        [ ] },
+        [ ] "LogConfiguration": {
+        [ ]   "LogDriver": "awslogs",
+[~] Custom::CDKBucketDeployment WebDeployment/CustomResource WebDeploymentCustomResource08EEC474
+ └─ [~] SourceObjectKeys
+     └─ @@ -1,3 +1,3 @@
+        [ ] [
+        [-]   "d3ecb6957bd4c5cf7f1035e0be6243f09dfe4c766c6503580f8e05534bf8eeb3.zip"
+        [+]   "b7ae3bf8bbf425c1d83afa55d5c30b3a698b2c8ffcc7a535f03fe89b433edd44.zip"
+        [ ] ]
+
+
+
+✨  Number of stacks with differences: 1
+

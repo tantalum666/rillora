@@ -1,0 +1,39 @@
+{
+  "updatedAt": "2026-09-23T03:01:06.436794+00:00",
+  "stage": "verified-staging-complete",
+  "ownerSelected": "envelope; E2EE deferred",
+  "compatibilityApi": 34,
+  "schema": "0064-0067 deployed; migration task27 exited0",
+  "backup": "encrypted RDS snapshot available",
+  "beforeMigration": {
+    "owners": 2,
+    "protectedValues": 5,
+    "plaintextValues": 5,
+    "invalidReferences": 0
+  },
+  "localApiTests": 198,
+  "kmsUnitTests": 2,
+  "infraTests": 23,
+  "remaining": [],
+  "privateValuesLogged": false,
+  "encryptedApi": 37,
+  "migration": {
+    "ownersVerified": 2,
+    "changedRows": 2,
+    "secondPassChangedRows": 0,
+    "plaintextValues": 0,
+    "invalidReferences": 0,
+    "databaseGuardEnforced": true
+  },
+  "realKmsAcceptance": "8 checks passed; five synthetic accounts removed; 80 timed samples",
+  "migrationTask": 30,
+  "migrationKmsAccess": "removed; actual GenerateDataKey/Decrypt denied",
+  "revokedReviewRegression": "API37 cloud verification passed; fixture removed",
+  "separateProductionGates": [
+    "isolated environment",
+    "internal TLS",
+    "identity/email",
+    "7-day backup, isolated restore and deletion replay",
+    "final release/security and store gates"
+  ]
+}

@@ -1,0 +1,40 @@
+Hello AWS Trust and Safety team,
+
+Thank you. Please continue reviewing our eu-central-1 production-access request. Rillora is a pre-launch digital legacy organiser, not a financial custodian or a service that transfers funds. Accounts and subscriptions remain closed while release checks are completed.
+
+Initial email use
+We will initially use SES through Auth0 only for user-requested email verification and password resets. Password-reset mail applies to password-based accounts; social accounts use their provider's recovery. We will not send campaigns, purchased-list mail, cold outreach, account balances, private planning content or attachments. Contact invitation links are shared by the account owner; we do not automatically email their contacts.
+
+Recipients and volume
+The recipient address is entered in the user-initiated signup or recovery flow. There is no uploaded/imported mailing list. Our initial planning assumption is fewer than 100 active accounts and 0–20 transactional messages per day, not an existing customer count. We can retain the current 200/day and 1/second limits initially; the request is for external-recipient access, not bulk volume. The application will not schedule repeated verification or recovery reminders. We will complete tests with mailboxes we control before enabling the provider for customers.
+
+Sending identity and failure handling
+The sender will be Rillora <[REDACTED_EMAIL]>. SES currently reports SUCCESS for the domain, 2048-bit Easy DKIM and custom MAIL FROM bounce.notify.rillora.xyz. The sending subdomain has DMARC; the configuration set requires TLS and rejects a missing MAIL FROM MX instead of silently falling back.
+
+The configuration set enables SES account-level suppression for BOUNCE and COMPLAINT. We will not remove a suppressed address to force delivery. CloudWatch receives aggregate delivery/failure events, with alarms for any bounce, complaint, reject or delivery delay routed to our existing owner alert subscription. A real mailbox-simulator check returned Send=3, Delivery=2, Bounce=1 and Complaint=1, and the alert actions executed. These are simulator results, not claimed real-user inbox delivery. We do not publish open/click tracking events or customer email bodies to logs.
+
+Unsubscribe requests
+There is no marketing subscription list or recurring campaign. These two message types occur only in response to an account action. People can ignore an unexpected verification/reset message, contact support@rillora.xyz, or request account deletion. Any future optional notification would require its own preference/opt-out implementation before activation. We do not claim that stopping optional mail disables necessary account-security handling.
+
+Proposed verification example
+Subject: Verify your email for Rillora
+You started creating a Rillora account. Confirm your email address using the button below.
+[Verify email — Auth0-generated, time-limited link]
+If you did not request this, you can ignore this message.
+For help: support@rillora.xyz. Never send us a password or recovery phrase.
+
+Proposed password-reset example
+Subject: Reset your Rillora password
+We received a request to reset the password for your Rillora account.
+[Reset password — Auth0-generated, time-limited link]
+If you did not request this, ignore this message. Your password does not change unless the reset is completed.
+For help: support@rillora.xyz.
+
+The bracketed text above is a sample placeholder, not a live token or a claim that the final templates have already been deployed.
+
+Product and guides: https://www.rillora.xyz/
+Support: https://www.rillora.xyz/support
+Privacy: https://legal.rillora.xyz/privacy
+Terms: https://legal.rillora.xyz/terms
+
+Please let us know what additional evidence you need for this limited transactional use case. No production customer sending is enabled yet.

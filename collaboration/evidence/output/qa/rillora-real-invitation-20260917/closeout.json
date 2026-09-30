@@ -1,0 +1,42 @@
+{
+  "status": "DEPLOYED_AND_VERIFIED",
+  "at": "2026-09-17T14:03:42.685325+08:00",
+  "specifications": [
+    "docs/authentication-experience.md",
+    "docs/trusted-sharing.md",
+    "docs/identity-data-region.md",
+    "docs/backend.md",
+    "infra/auth0/README.md",
+    "infra/aws/README.md",
+    "docs/quality-gates.md",
+    "docs/commercial-completion-20260916.md",
+    "docs/product.md",
+    "docs/ux-behavior-repair-20260916.md",
+    "apps/web/AGENTS.md"
+  ],
+  "decisionLog": "Appended September17 same-session verification and published Web return/consent choices",
+  "handoff": "docs/handoff.md",
+  "journey": "docs/journey/PROJECT_JOURNEY.md",
+  "validation": {
+    "files": 78,
+    "links": 689,
+    "errors": [],
+    "checkedAt": "2026-09-17T14:03:42.685325+08:00",
+    "scope": "Owned Markdown; dependencies/cache/build/output excluded"
+  },
+  "realOriginalTokenReopen": "Not performed: original link not retained; separate cloud old-capability rejection verified",
+  "freshRealSignupAfterRepair": "Not repeated",
+  "runtime": "API30/migration23/0060/FARGATE HEALTHY1/1,42 HTTP checks",
+  "cleanup": {
+    "oldFixtureTokensDenied": true,
+    "temporaryAuth0IdentityAbsent": true,
+    "protectedFixtureTokensRemoved": true,
+    "realAAndBAccountsUntouched": true
+  },
+  "localCleanup": {
+    "localPort4280Closed": true,
+    "ownedPlaywrightBrowserClosed": true,
+    "testSimulatorShutdown": true,
+    "normalSimulatorRetained": true
+  }
+}

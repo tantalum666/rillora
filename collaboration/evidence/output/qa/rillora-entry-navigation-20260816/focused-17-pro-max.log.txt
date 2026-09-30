@@ -1,0 +1,446 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora.xcodeproj -scheme RilloraLayoutMatrix -configuration Debug -skipMacroValidation -destination "platform=iOS Simulator,id=32EE0859-2C1A-4912-A120-FF4A542E3A6D" -collect-test-diagnostics never COMPILER_INDEX_STORE_ENABLE=NO ONLY_ACTIVE_ARCH=YES -packageCachePath /Users/tantalum/Library/Caches/org.swift.swiftpm -derivedDataPath /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-entry-navigation-20260816/DerivedData "-only-testing:RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testSignedOutExperienceDefersAccountEntry" "-only-testing:RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testSignedOutCommercialDetailsStayDeferred" -testProductsPath /Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-08-16T07-38-34-095Z_pid61866_cd0fd86c.xctestproducts build-for-testing
+
+Build settings from command line:
+    COMPILER_INDEX_STORE_ENABLE = NO
+    ONLY_ACTIVE_ARCH = YES
+
+2026-08-16 15:38:35.433 xcodebuild[76517:18997182] Writing test products to /Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-08-16T07-38-34-095Z_pid61866_cd0fd86c.xctestproducts
+Resolve Package Graph
+
+
+Resolved source packages:
+  SimpleKeychain: https://github.com/auth0/SimpleKeychain.git @ 1.3.0
+  Auth0: https://github.com/auth0/Auth0.swift @ 3.0.2
+  JWTDecode: https://github.com/auth0/JWTDecode.swift.git @ 4.0.0
+
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (9 targets)
+    Target 'RilloraLayoutMatrixTests' in project 'Rillora'
+        ➜ Explicit dependency on target 'Rillora' in project 'Rillora'
+    Target 'Rillora' in project 'Rillora'
+        ➜ Explicit dependency on target 'Auth0' in project 'Auth0'
+    Target 'Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'Auth0_Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'SimpleKeychain' in project 'SimpleKeychain'
+        ➜ Explicit dependency on target 'JWTDecode' in project 'JWTDecode'
+    Target 'Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'Auth0_Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'SimpleKeychain' in project 'SimpleKeychain'
+        ➜ Explicit dependency on target 'JWTDecode' in project 'JWTDecode'
+    Target 'JWTDecode' in project 'JWTDecode'
+        ➜ Explicit dependency on target 'JWTDecode' in project 'JWTDecode'
+    Target 'JWTDecode' in project 'JWTDecode' (no dependencies)
+    Target 'SimpleKeychain' in project 'SimpleKeychain'
+        ➜ Explicit dependency on target 'SimpleKeychain' in project 'SimpleKeychain'
+    Target 'SimpleKeychain' in project 'SimpleKeychain' (no dependencies)
+    Target 'Auth0_Auth0' in project 'Auth0' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+Build description signature: 071ceb2ceb061758290aa6b5fa89af0e
+Build description path: /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-entry-navigation-20260816/DerivedData/Build/Intermediates.noindex/XCBuildData/071ceb2ceb061758290aa6b5fa89af0e.xcbuilddata
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-entry-navigation-20260816/DerivedData/SDKStatCaches.noindex/iphonesimulator26.5-23F73-6cfe768891a92b912361537c460fe42b.sdkstatcache
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -o /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-entry-navigation-20260816/DerivedData/SDKStatCaches.noindex/iphonesimulator26.5-23F73-6cfe768891a92b912361537c460fe42b.sdkstatcache
+
+ProcessInfoPlistFile /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-entry-navigation-20260816/DerivedData/Build/Products/Debug-iphonesimulator/Auth0_Auth0.bundle/Info.plist /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-entry-navigation-20260816/DerivedData/Build/Intermediates.noindex/Auth0.build/Debug-iphonesimulator/Auth0_Auth0.build/empty-Auth0_Auth0.plist (in target 'Auth0_Auth0' from project 'Auth0')
+    cd /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-entry-navigation-20260816/DerivedData/SourcePackages/checkouts/Auth0.swift
+    builtin-infoPlistUtility /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-entry-navigation-20260816/DerivedData/Build/Intermediates.noindex/Auth0.build/Debug-iphonesimulator/Auth0_Auth0.build/empty-Auth0_Auth0.plist -producttype com.apple.product-type.bundle -expandbuildsettings -format binary -platform iphonesimulator -o /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-entry-navigation-20260816/DerivedData/Build/Products/Debug-iphonesimulator/Auth0_Auth0.bundle/Info.plist
+
+ProcessInfoPlistFile /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-entry-navigation-20260816/DerivedData/Build/Products/Debug-iphonesimulator/Rillora.app/Info.plist /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Resources/Info.plist (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-infoPlistUtility /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Resources/Info.plist -producttype com.apple.product-type.application -genpkginfo /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-entry-navigation-20260816/DerivedData/Build/Products/Debug-iphonesimulator/Rillora.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -scanforprivacyfile /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-entry-navigation-20260816/DerivedData/Build/Products/Debug-iphonesimulator/Rillora.app/Auth0_Auth0.bundle -o /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-entry-navigation-20260816/DerivedData/Build/Products/Debug-iphonesimulator/Rillora.app/Info.plist
+
+ProcessInfoPlistFile /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-entry-navigation-20260816/DerivedData/Build/Products/Debug-iphonesimulator/RilloraLayoutMatrixTests-Runner.app/PlugIns/RilloraLayoutMatrixTests.xctest/Info.plist /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-entry-navigation-20260816/DerivedData/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/empty-RilloraLayoutMatrixTests.plist (in target 'RilloraLayoutMatrixTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-infoPlistUtility /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-entry-navigation-20260816/DerivedData/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/empty-RilloraLayoutMatrixTests.plist -producttype com.apple.product-type.bundle.ui-testing -expandbuildsettings -format binary -platform iphonesimulator -additionalcontentfile /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-entry-navigation-20260816/DerivedData/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/ProductTypeInfoPlistAdditions.plist -o /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-entry-navigation-20260816/DerivedData/Build/Products/Debug-iphonesimulator/RilloraLayoutMatrixTests-Runner.app/PlugIns/RilloraLayoutMatrixTests.xctest/Info.plist
+
+CopySwiftLibs /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-entry-navigation-20260816/DerivedData/Build/Products/Debug-iphonesimulator/RilloraLayoutMatrixTests-Runner.app/PlugIns/RilloraLayoutMatrixTests.xctest (in target 'RilloraLayoutMatrixTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-swiftStdLibTool --copy --verbose --sign - --scan-executable /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-entry-navigation-20260816/DerivedData/Build/Products/Debug-iphonesimulator/RilloraLayoutMatrixTests-Runner.app/PlugIns/RilloraLayoutMatrixTests.xctest/RilloraLayoutMatrixTests --scan-folder /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-entry-navigation-20260816/DerivedData/Build/Products/Debug-iphonesimulator/RilloraLayoutMatrixTests-Runner.app/PlugIns/RilloraLayoutMatrixTests.xctest/Frameworks --scan-folder /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-entry-navigation-20260816/DerivedData/Build/Products/Debug-iphonesimulator/RilloraLayoutMatrixTests-Runner.app/PlugIns/RilloraLayoutMatrixTests.xctest/PlugIns --scan-folder /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-entry-navigation-20260816/DerivedData/Build/Products/Debug-iphonesimulator/RilloraLayoutMatrixTests-Runner.app/PlugIns/RilloraLayoutMatrixTests.xctest/SystemExtensions --scan-folder /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-entry-navigation-20260816/DerivedData/Build/Products/Debug-iphonesimulator/RilloraLayoutMatrixTests-Runner.app/PlugIns/RilloraLayoutMatrixTests.xctest/Extensions --platform iphonesimulator --toolchain /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-entry-navigation-20260816/DerivedData/Build/Products/Debug-iphonesimulator/RilloraLayoutMatrixTests-Runner.app/PlugIns/RilloraLayoutMatrixTests.xctest/Frameworks --strip-bitcode --scan-executable /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libXCTestSwiftSupport.dylib --strip-bitcode-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-entry-navigation-20260816/DerivedData/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+
+** TEST BUILD SUCCEEDED **
+
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -testProductsPath /Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-08-16T07-38-34-095Z_pid61866_cd0fd86c.xctestproducts -destination "platform=iOS Simulator,id=32EE0859-2C1A-4912-A120-FF4A542E3A6D" -collect-test-diagnostics never "-only-testing:RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testSignedOutExperienceDefersAccountEntry" "-only-testing:RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testSignedOutCommercialDetailsStayDeferred" -resultBundlePath /Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/result-bundles/test_sim_2026-08-16T07-38-34-095Z_pid61866_8d19ed96.xcresult test-without-building
+
+2026-08-16 15:38:38.280 xcodebuild[76572:18997542] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+Writing result bundle at path:
+	/Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/result-bundles/test_sim_2026-08-16T07-38-34-095Z_pid61866_8d19ed96.xcresult
+
+2026-08-16 15:38:38.287 xcodebuild[76572:18997542] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-08-16 15:38:39.540 xcodebuild[76572:18997542] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-08-16 15:38:39.942 xcodebuild[76572:18997542] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-08-16 15:38:44.913030+0800 RilloraLayoutMatrixTests-Runner[76637:18998289] [Default] Running tests...
+2026-08-16 15:38:45.114473+0800 RilloraLayoutMatrixTests-Runner[76637:18998368] [General] Failed to send CA Event for app launch measurements for ca_event_type: 0 event_name: com.apple.app_launch_measurement.FirstFramePresentationMetric
+2026-08-16 15:38:45.154810+0800 RilloraLayoutMatrixTests-Runner[76637:18998368] [General] Failed to send CA Event for app launch measurements for ca_event_type: 1 event_name: com.apple.app_launch_measurement.ExtendedLaunchMetrics
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-08-16 15:38:45.301.
+Test Suite 'RilloraLayoutMatrixTests.xctest' started at 2026-08-16 15:38:45.302.
+Test Suite 'RilloraLayoutMatrixTests' started at 2026-08-16 15:38:45.302.
+Test Case '-[RilloraLayoutMatrixTests.RilloraLayoutMatrixTests testSignedOutCommercialDetailsStayDeferred]' started.
+    t =     0.00s Start Test at 2026-08-16 15:38:45.304
+    t =     0.16s Set Up
+    t =     0.16s Setting device orientation to Portrait
+    t =     0.16s     Device orientation changed to Portrait
+    t =     0.20s     Wait for com.rillora.ios to idle
+    t =     0.25s Open com.rillora.ios
+    t =     0.25s     Launch com.rillora.ios
+    t =     0.25s         Terminate com.rillora.ios:72975
+objc[76637]: Class UIAccessibilityLoaderWebShared is implemented in both /Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x10b248310) and /Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x10a1a8398). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+2026-08-16 15:38:46.884 xcodebuild[76572:18997542] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-08-16 15:38:46.884 xcodebuild[76572:18997542] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     2.20s         Setting up automation session
+    t =     3.16s         Wait for com.rillora.ios to idle
+    t =     5.32s Waiting 20.0s for "public-overview.scroll" Any to exist
+    t =     6.35s     Checking `Expect predicate `existsNoRetry == 1` for object "public-overview.scroll" Any`
+    t =     6.36s         Checking existence of `"public-overview.scroll" Any`
+    t =     6.50s Checking existence of `"Rillora Family" StaticText`
+    t =     6.55s Checking existence of `"US$8.99 monthly  ·  US$89 yearly" StaticText`
+    t =     6.58s Tap "More" Button
+    t =     6.58s     Wait for com.rillora.ios to idle
+    t =     6.58s     Find the "More" Button
+    t =     6.60s     Check for interrupting elements affecting "More" Button
+    t =     6.63s     Synthesize event
+    t =     7.05s     Wait for com.rillora.ios to idle
+    t =     8.61s Waiting 10.0s for "public-more.list" Any to exist
+    t =     9.66s     Checking `Expect predicate `existsNoRetry == 1` for object "public-more.list" Any`
+    t =     9.66s         Checking existence of `"public-more.list" Any`
+    t =     9.80s Checking existence of `"public-more.plan-access" Any`
+    t =    10.02s Checking existence of `"Rillora Family" StaticText`
+    t =    10.05s Checking existence of `"Planned Rillora Family" StaticText`
+    t =    10.07s Checking existence of `"public-more.account" Any`
+    t =    10.15s Get number of matches for: Elements matching predicate 'label CONTAINS[c] "free plan"'
+    t =    10.17s Get number of matches for: Elements matching predicate 'label CONTAINS[c] "no card"'
+    t =    10.18s Find the Target Application 'com.rillora.ios'
+    t =    10.36s Added attachment named 'iPhone 17 Pro Max-signed-out-commercial-details-deferred'
+    t =    10.36s Tear Down
+Test Case '-[RilloraLayoutMatrixTests.RilloraLayoutMatrixTests testSignedOutCommercialDetailsStayDeferred]' passed (10.597 seconds).
+Test Case '-[RilloraLayoutMatrixTests.RilloraLayoutMatrixTests testSignedOutExperienceDefersAccountEntry]' started.
+    t =     0.00s Start Test at 2026-08-16 15:38:55.902
+    t =     0.04s Set Up
+    t =     0.04s Setting device orientation to Portrait
+    t =     0.05s     Wait for com.rillora.ios to idle
+    t =     0.06s Open com.rillora.ios
+    t =     0.06s     Launch com.rillora.ios
+    t =     0.06s         Terminate com.rillora.ios:76678
+2026-08-16 15:38:57.134 xcodebuild[76572:18997542] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-08-16 15:38:57.134 xcodebuild[76572:18997542] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     1.44s         Setting up automation session
+    t =     2.37s         Wait for com.rillora.ios to idle
+    t =     3.88s Waiting 20.0s for "public-overview.scroll" Any to exist
+    t =     4.93s     Checking `Expect predicate `existsNoRetry == 1` for object "public-overview.scroll" Any`
+    t =     4.94s         Checking existence of `"public-overview.scroll" Any`
+    t =     5.23s Waiting 10.0s for TabBar (First Match) to exist
+    t =     6.27s     Checking `Expect predicate `existsNoRetry == 1` for object TabBar (First Match)`
+    t =     6.27s         Checking existence of `TabBar (First Match)`
+    t =     6.30s Get number of matches for: Descendants matching type Button
+    t =     6.32s Checking existence of `"Overview" Button`
+    t =     6.33s Find the "Overview" Button
+    t =     6.37s Find the "Overview" Button
+    t =     6.39s Find the "Overview" Button
+    t =     6.40s Find the "Overview" Button
+    t =     6.42s Find the Target Application 'com.rillora.ios'
+    t =     6.45s Checking existence of `"Matters" Button`
+    t =     6.46s Find the "Matters" Button
+    t =     6.48s Find the "Matters" Button
+    t =     6.50s Find the "Matters" Button
+    t =     6.52s Find the "Matters" Button
+    t =     6.53s Find the Target Application 'com.rillora.ios'
+    t =     6.56s Checking existence of `"More" Button`
+    t =     6.57s Find the "More" Button
+    t =     6.59s Find the "More" Button
+    t =     6.61s Find the "More" Button
+    t =     6.63s Find the "More" Button
+    t =     6.64s Find the Target Application 'com.rillora.ios'
+    t =     6.67s Find the "Overview" Button
+    t =     6.68s Checking existence of `"overview.retry" Any`
+    t =     6.79s Checking existence of `"Sign-in required" StaticText`
+    t =     6.83s Checking existence of `"account-entry.view" Any`
+    t =     6.93s Checking existence of `"Map what matters" StaticText`
+    t =     6.97s Checking existence of `"Your plan is not public content" StaticText`
+    t =     7.00s Checking existence of `"public-overview.hero" Any`
+    t =     7.07s Checking existence of `"public-overview.purpose" Any`
+    t =     7.14s Checking existence of `"public-overview.example" Any`
+    t =     7.21s Find the "public-overview.example" Any
+    t =     7.30s Checking existence of `NavigationBar (First Match)`
+    t =     7.31s Find the NavigationBar (First Match)
+    t =     7.35s Find the "_TtGC7SwiftUI32NavigationStackHosting" NavigationBar
+    t =     7.36s Checking existence of `TabBar (First Match)`
+    t =     7.37s Find the TabBar (First Match)
+    t =     7.39s Find the "Tab Bar" TabBar
+    t =     7.40s Find the "public-overview.example" Button
+    t =     7.48s Find the "public-overview.example" Button
+    t =     7.56s Find the "public-overview.example" Button
+    t =     7.65s Tap "public-overview.example" Button
+    t =     7.65s     Wait for com.rillora.ios to idle
+    t =     7.65s     Find the "public-overview.example" Button
+    t =     7.73s     Check for interrupting elements affecting "public-overview.example" Button
+    t =     7.83s     Synthesize event
+    t =     8.15s     Wait for com.rillora.ios to idle
+    t =     8.33s Waiting 10.0s for "public-example.view" Any to exist
+    t =     9.36s     Checking `Expect predicate `existsNoRetry == 1` for object "public-example.view" Any`
+    t =     9.36s         Checking existence of `"public-example.view" Any`
+    t =     9.46s Checking existence of `"account-entry.view" Any`
+    t =     9.73s Checking existence of `"public-example.use" Any`
+    t =     9.91s Find the "public-example.use" Any
+    t =    10.10s Checking existence of `NavigationBar (First Match)`
+    t =    10.12s Find the NavigationBar (First Match)
+    t =    10.14s Find the "Safe example" NavigationBar
+    t =    10.16s Checking existence of `TabBar (First Match)`
+    t =    10.17s Find the TabBar (First Match)
+    t =    10.21s Find the Target Application 'com.rillora.ios'
+    t =    10.26s Find the "public-example.use" Button
+    t =    10.45s Find the "public-example.use" Button
+    t =    10.65s Checking existence of `"public-example.use" Button`
+    t =    10.83s Find the "public-example.use" Button
+    t =    11.02s Tap "public-example.use" Button
+    t =    11.02s     Wait for com.rillora.ios to idle
+    t =    11.03s     Find the "public-example.use" Button
+    t =    11.23s     Check for interrupting elements affecting "public-example.use" Button
+    t =    11.31s     Synthesize event
+    t =    11.60s     Wait for com.rillora.ios to idle
+    t =    11.98s Waiting 10.0s for "account-entry.view" Any to exist
+    t =    13.02s     Checking `Expect predicate `existsNoRetry == 1` for object "account-entry.view" Any`
+    t =    13.02s         Checking existence of `"account-entry.view" Any`
+    t =    13.11s Checking existence of `"account-entry.create" Any`
+    t =    13.20s Find the "account-entry.create" Any
+    t =    13.30s Checking existence of `NavigationBar (First Match)`
+    t =    13.31s Find the NavigationBar (First Match)
+    t =    13.34s Find the "Account" NavigationBar
+    t =    13.36s Checking existence of `TabBar (First Match)`
+    t =    13.37s Find the TabBar (First Match)
+    t =    13.39s Find the Target Application 'com.rillora.ios'
+    t =    13.43s Find the "account-entry.create" Button
+    t =    13.52s Find the "account-entry.create" Button
+    t =    13.61s Find the "account-entry.create" Button
+    t =    13.71s Find the "account-entry.create" Button
+    t =    13.80s Find the "account-entry.create" Button
+    t =    13.89s Find the "account-entry.create" Button
+    t =    13.98s Find the Target Application 'com.rillora.ios'
+    t =    14.02s Get number of matches for: Elements matching predicate 'label CONTAINS[c] "free plan"'
+    t =    14.06s Get number of matches for: Elements matching predicate 'label CONTAINS[c] "no card"'
+    t =    14.11s Checking existence of `"account-entry.sign-in" Any`
+    t =    14.20s Find the "account-entry.sign-in" Any
+    t =    14.29s Checking existence of `NavigationBar (First Match)`
+    t =    14.31s Find the NavigationBar (First Match)
+    t =    14.34s Find the "Account" NavigationBar
+    t =    14.35s Checking existence of `TabBar (First Match)`
+    t =    14.37s Find the TabBar (First Match)
+    t =    14.39s Find the Target Application 'com.rillora.ios'
+    t =    14.43s Find the "account-entry.sign-in" Button
+    t =    14.52s Find the "account-entry.sign-in" Button
+    t =    14.61s Find the "account-entry.sign-in" Button
+    t =    14.71s Find the "account-entry.sign-in" Button
+    t =    14.80s Find the "account-entry.sign-in" Button
+    t =    14.89s Find the "account-entry.sign-in" Button
+    t =    14.98s Find the Target Application 'com.rillora.ios'
+    t =    15.02s Checking existence of `"account-entry.not-now" Any`
+    t =    15.11s Find the "account-entry.not-now" Any
+    t =    15.21s Checking existence of `NavigationBar (First Match)`
+    t =    15.22s Find the NavigationBar (First Match)
+    t =    15.25s Find the "Account" NavigationBar
+    t =    15.27s Checking existence of `TabBar (First Match)`
+    t =    15.28s Find the TabBar (First Match)
+    t =    15.31s Find the Target Application 'com.rillora.ios'
+    t =    15.35s Find the "account-entry.not-now" Button
+    t =    15.44s Find the "account-entry.not-now" Button
+    t =    15.54s Find the "account-entry.not-now" Button
+    t =    15.64s Find the "account-entry.not-now" Button
+    t =    15.73s Find the "account-entry.not-now" Button
+    t =    15.82s Find the "account-entry.not-now" Button
+    t =    15.91s Find the Target Application 'com.rillora.ios'
+    t =    15.95s Tap "account-entry.not-now" Button
+    t =    15.95s     Wait for com.rillora.ios to idle
+    t =    15.95s     Find the "account-entry.not-now" Button
+    t =    16.04s     Check for interrupting elements affecting "account-entry.not-now" Button
+    t =    16.10s     Synthesize event
+    t =    16.39s     Wait for com.rillora.ios to idle
+    t =    16.76s Waiting 10.0s for "public-overview.scroll" Any to exist
+    t =    17.81s     Checking `Expect predicate `existsNoRetry == 1` for object "public-overview.scroll" Any`
+    t =    17.81s         Checking existence of `"public-overview.scroll" Any`
+    t =    17.89s Checking existence of `"public-overview.start-final" Any`
+    t =    17.97s Find the "public-overview.start-final" Any
+    t =    18.07s Press Target Application 'com.rillora.ios'[0.50, 0.72] for 0.1 seconds, then drag to Target Application 'com.rillora.ios'[0.50, 0.48] with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    18.07s     Wait for com.rillora.ios to idle
+    t =    18.07s     Find the Target Application 'com.rillora.ios'
+    t =    18.10s     Check for interrupting elements affecting "Rillora" Application
+    t =    18.13s     Synthesize event
+    t =    18.13s         Find the Target Application 'com.rillora.ios'
+    t =    18.16s         Find the Target Application 'com.rillora.ios'
+    t =    18.18s         Find the Target Application 'com.rillora.ios'
+    t =    18.20s         Find the Target Application 'com.rillora.ios'
+    t =    18.23s         Find the Target Application 'com.rillora.ios'
+    t =    19.01s     Wait for com.rillora.ios to idle
+    t =    20.74s Checking existence of `"public-overview.start-final" Button`
+    t =    20.84s Find the "public-overview.start-final" Button
+    t =    20.94s Checking existence of `NavigationBar (First Match)`
+    t =    20.96s Find the NavigationBar (First Match)
+    t =    20.99s Find the "_TtGC7SwiftUI32NavigationStackHosting" NavigationBar
+    t =    21.01s Checking existence of `TabBar (First Match)`
+    t =    21.02s Find the TabBar (First Match)
+    t =    21.04s Find the "Tab Bar" TabBar
+    t =    21.05s Find the "public-overview.start-final" Button
+    t =    21.16s Find the "public-overview.start-final" Button
+    t =    21.25s Find the "public-overview.start-final" Button
+    t =    21.36s Find the "public-overview.start-final" Button
+    t =    21.45s Find the "public-overview.start-final" Button
+    t =    21.55s Find the "public-overview.start-final" Button
+    t =    21.65s Find the Target Application 'com.rillora.ios'
+    t =    21.68s Tap "Matters" Button
+    t =    21.68s     Wait for com.rillora.ios to idle
+    t =    21.68s     Find the "Matters" Button
+    t =    21.70s     Check for interrupting elements affecting "Matters" Button
+    t =    21.73s     Synthesize event
+    t =    22.03s     Wait for com.rillora.ios to idle
+    t =    23.31s Waiting 10.0s for "public-matters.scroll" Any to exist
+    t =    24.35s     Checking `Expect predicate `existsNoRetry == 1` for object "public-matters.scroll" Any`
+    t =    24.35s         Checking existence of `"public-matters.scroll" Any`
+    t =    24.42s Checking existence of `"matter.add" Any`
+    t =    24.50s Checking existence of `"public-matters.start" Any`
+    t =    24.57s Find the "public-matters.start" Any
+    t =    24.65s Checking existence of `NavigationBar (First Match)`
+    t =    24.66s Find the NavigationBar (First Match)
+    t =    24.69s Find the "Matters" NavigationBar
+    t =    24.71s Checking existence of `TabBar (First Match)`
+    t =    24.72s Find the TabBar (First Match)
+    t =    24.74s Find the "Tab Bar" TabBar
+    t =    24.75s Find the "public-matters.start" Button
+    t =    24.82s Find the "public-matters.start" Button
+    t =    24.94s Find the "public-matters.start" Button
+    t =    25.02s Find the "public-matters.start" Button
+    t =    25.09s Find the "public-matters.start" Button
+    t =    25.17s Find the "public-matters.start" Button
+    t =    25.24s Find the Target Application 'com.rillora.ios'
+    t =    25.26s Get number of matches for: Elements matching predicate 'label CONTAINS[c] "free plan"'
+    t =    25.28s Get number of matches for: Elements matching predicate 'label CONTAINS[c] "no card"'
+    t =    25.30s Find the Target Application 'com.rillora.ios'
+    t =    25.45s Added attachment named 'iPhone 17 Pro Max-signed-out-matters'
+    t =    25.45s Tap "public-matters.start" Button
+    t =    25.45s     Wait for com.rillora.ios to idle
+    t =    25.45s     Find the "public-matters.start" Button
+    t =    25.52s     Check for interrupting elements affecting "public-matters.start" Button
+    t =    25.56s     Synthesize event
+    t =    25.85s     Wait for com.rillora.ios to idle
+    t =    26.67s Waiting 10.0s for "account-entry.view" Any to exist
+    t =    27.71s     Checking `Expect predicate `existsNoRetry == 1` for object "account-entry.view" Any`
+    t =    27.71s         Checking existence of `"account-entry.view" Any`
+    t =    27.74s Checking existence of `"account-entry.not-now" Any`
+    t =    27.80s Checking existence of `"Close" Button`
+    t =    27.82s Checking existence of `"Matters" Button`
+    t =    27.83s Checking existence of `"account-entry.create" Any`
+    t =    27.88s Find the "account-entry.create" Any
+    t =    27.93s Checking existence of `NavigationBar (First Match)`
+    t =    27.94s Find the NavigationBar (First Match)
+    t =    27.96s Find the "Account" NavigationBar
+    t =    27.98s Checking existence of `TabBar (First Match)`
+    t =    28.01s Find the Target Application 'com.rillora.ios'
+    t =    28.02s Find the "account-entry.create" Button
+    t =    28.07s Find the "account-entry.create" Button
+    t =    28.11s Find the "account-entry.create" Button
+    t =    28.21s Find the "account-entry.create" Button
+    t =    28.37s Find the "account-entry.create" Button
+    t =    28.44s Find the "account-entry.create" Button
+    t =    28.48s Find the Target Application 'com.rillora.ios'
+    t =    28.50s Find the Target Application 'com.rillora.ios'
+    t =    28.63s Added attachment named 'iPhone 17 Pro Max-signed-out-add-matter-account-page'
+    t =    28.63s Tap "Matters" Button
+    t =    28.63s     Wait for com.rillora.ios to idle
+    t =    28.63s     Find the "Matters" Button
+    t =    28.65s     Check for interrupting elements affecting "BackButton" Button
+    t =    28.67s     Synthesize event
+    t =    28.97s     Wait for com.rillora.ios to idle
+    t =    29.30s Waiting 10.0s for "public-matters.scroll" Any to exist
+    t =    30.31s     Checking `Expect predicate `existsNoRetry == 1` for object "public-matters.scroll" Any`
+    t =    30.31s         Checking existence of `"public-matters.scroll" Any`
+    t =    30.38s Tap "More" Button
+    t =    30.38s     Wait for com.rillora.ios to idle
+    t =    30.38s     Find the "More" Button
+    t =    30.40s     Check for interrupting elements affecting "More" Button
+    t =    30.42s     Synthesize event
+    t =    30.71s     Wait for com.rillora.ios to idle
+    t =    32.22s Waiting 10.0s for "public-more.list" Any to exist
+    t =    33.27s     Checking `Expect predicate `existsNoRetry == 1` for object "public-more.list" Any`
+    t =    33.27s         Checking existence of `"public-more.list" Any`
+    t =    33.34s Waiting 10.0s for TabBar (First Match) to exist
+    t =    34.38s     Checking `Expect predicate `existsNoRetry == 1` for object TabBar (First Match)`
+    t =    34.38s         Checking existence of `TabBar (First Match)`
+    t =    34.40s Get number of matches for: Descendants matching type Button
+    t =    34.42s Checking existence of `"Overview" Button`
+    t =    34.43s Find the "Overview" Button
+    t =    34.45s Find the "Overview" Button
+    t =    34.47s Find the "Overview" Button
+    t =    34.48s Find the "Overview" Button
+    t =    34.50s Find the Target Application 'com.rillora.ios'
+    t =    34.51s Checking existence of `"Matters" Button`
+    t =    34.53s Find the "Matters" Button
+    t =    34.55s Find the "Matters" Button
+    t =    34.56s Find the "Matters" Button
+    t =    34.58s Find the "Matters" Button
+    t =    34.60s Find the Target Application 'com.rillora.ios'
+    t =    34.61s Checking existence of `"More" Button`
+    t =    34.62s Find the "More" Button
+    t =    34.64s Find the "More" Button
+    t =    34.66s Find the "More" Button
+    t =    34.68s Find the "More" Button
+    t =    34.69s Find the Target Application 'com.rillora.ios'
+    t =    34.71s Find the "More" Button
+    t =    34.72s Checking existence of `"public-more.example" Any`
+    t =    34.80s Checking existence of `"public-more.plan-access" Any`
+    t =    34.88s Checking existence of `"Rillora Family" StaticText`
+    t =    34.90s Checking existence of `"public-more.account" Any`
+    t =    34.98s Find the "public-more.account" Any
+    t =    35.07s Checking existence of `NavigationBar (First Match)`
+    t =    35.08s Find the NavigationBar (First Match)
+    t =    35.11s Find the "More" NavigationBar
+    t =    35.13s Checking existence of `TabBar (First Match)`
+    t =    35.14s Find the TabBar (First Match)
+    t =    35.16s Find the "Tab Bar" TabBar
+    t =    35.17s Find the "public-more.account" Button
+    t =    35.25s Find the "public-more.account" Button
+    t =    35.33s Checking existence of `"public-more.account" Button`
+    t =    35.41s Checking existence of `"Security boundary" StaticText`
+    t =    35.44s Get number of matches for: Elements matching predicate 'label CONTAINS[c] "free plan"'
+    t =    35.46s Get number of matches for: Elements matching predicate 'label CONTAINS[c] "no card"'
+    t =    35.48s Checking existence of `"more.list" Any`
+    t =    35.57s Find the Target Application 'com.rillora.ios'
+    t =    35.69s Added attachment named 'iPhone 17 Pro Max-signed-out-more'
+    t =    35.70s Tear Down
+Test Case '-[RilloraLayoutMatrixTests.RilloraLayoutMatrixTests testSignedOutExperienceDefersAccountEntry]' passed (35.972 seconds).
+Test Suite 'RilloraLayoutMatrixTests' passed at 2026-08-16 15:39:31.874.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 46.569 (46.572) seconds
+Test Suite 'RilloraLayoutMatrixTests.xctest' passed at 2026-08-16 15:39:31.875.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 46.569 (46.573) seconds
+Test Suite 'Selected tests' passed at 2026-08-16 15:39:31.877.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 46.569 (46.576) seconds
+2026-08-16 15:39:32.370 xcodebuild[76572:18997542] [MT] IDETestOperationsObserverDebug: 52.803 elapsed -- Testing started completed.
+2026-08-16 15:39:32.370 xcodebuild[76572:18997542] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-08-16 15:39:32.370 xcodebuild[76572:18997542] [MT] IDETestOperationsObserverDebug: 52.803 sec, +52.803 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/result-bundles/test_sim_2026-08-16T07-38-34-095Z_pid61866_8d19ed96.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

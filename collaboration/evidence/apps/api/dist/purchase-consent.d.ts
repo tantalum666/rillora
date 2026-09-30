@@ -1,0 +1,31 @@
+import { z } from 'zod';
+export declare const purchaseConsentContract: Readonly<{
+    readonly version: 'family-annual-web-20260926-1';
+    readonly provider: 'stripe';
+    readonly priceCode: 'family_usd_annual_v4';
+    readonly amountMinor: 8899;
+    readonly currency: 'USD';
+    readonly billingPeriod: 'annual';
+    readonly termsVersion: "terms-2026-08-27-1";
+    readonly subscriptionTermsVersion: 'subscriptions-2026-08-27-1';
+    readonly refundPolicyVersion: 'refunds-2026-08-27-1';
+    readonly legalBundleSha256: "3eb7d7bf4d3c420c49946dbfcd322293136cce556407339dc0cafa0aa5f30602";
+}>;
+export declare const purchaseConsentSchema: z.ZodObject<{
+    version: z.ZodLiteral<"family-annual-web-20260926-1">;
+    provider: z.ZodLiteral<"stripe">;
+    priceCode: z.ZodLiteral<"family_usd_annual_v4">;
+    amountMinor: z.ZodLiteral<8899>;
+    currency: z.ZodLiteral<"USD">;
+    billingPeriod: z.ZodLiteral<"annual">;
+    termsVersion: z.ZodLiteral<"terms-2026-08-27-1">;
+    subscriptionTermsVersion: z.ZodLiteral<"subscriptions-2026-08-27-1">;
+    refundPolicyVersion: z.ZodLiteral<"refunds-2026-08-27-1">;
+    legalBundleSha256: z.ZodLiteral<"3eb7d7bf4d3c420c49946dbfcd322293136cce556407339dc0cafa0aa5f30602">;
+    acceptedSubscriptionTerms: z.ZodLiteral<true>;
+    acceptedAnnualRenewal: z.ZodLiteral<true>;
+    acknowledgedCancellation: z.ZodLiteral<true>;
+}, z.core.$strict>;
+export type PurchaseConsent = z.infer<typeof purchaseConsentSchema>;
+export declare function parsePurchaseConsent(value: unknown): PurchaseConsent;
+export declare function purchaseConsentDigest(proof: PurchaseConsent): Buffer;

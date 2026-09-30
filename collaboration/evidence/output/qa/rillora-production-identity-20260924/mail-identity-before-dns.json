@@ -1,0 +1,36 @@
+{
+  "IdentityType": "DOMAIN",
+  "FeedbackForwardingStatus": true,
+  "VerifiedForSendingStatus": false,
+  "DkimAttributes": {
+    "SigningEnabled": true,
+    "Status": "PENDING",
+    "Tokens": [
+      "uindmbdho6fsywhs2zc2qqpsxqlivufr",
+      "e72bxaidtogictet4f5ittbyyxfywrfl",
+      "4ki2lv3epotn2fmb7zj5wm6ky35lkwfl"
+    ],
+    "SigningHostedZone": "dkim.amazonses.com",
+    "SigningAttributesOrigin": "AWS_SES",
+    "NextSigningKeyLength": "RSA_2048_BIT",
+    "CurrentSigningKeyLength": "RSA_2048_BIT",
+    "LastKeyGenerationTimestamp": "2026-09-24T10:18:33.765000+08:00"
+  },
+  "MailFromAttributes": {
+    "BehaviorOnMxFailure": "USE_DEFAULT_VALUE"
+  },
+  "Policies": {},
+  "Tags": [
+    {
+      "Key": "Project",
+      "Value": "Rillora"
+    },
+    {
+      "Key": "Environment",
+      "Value": "Production"
+    }
+  ],
+  "ConfigurationSetName": "rillora-transactional",
+  "VerificationStatus": "PENDING",
+  "VerificationInfo": {}
+}

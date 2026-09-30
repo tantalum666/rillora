@@ -1,0 +1,13 @@
+Failed to get matching snapshot: No matches found for Elements matching predicate '"matter.edit.title" IN identifiers' from input {(
+    TextField, identifier: 'matter.edit.location', label: 'Recovery information location, optional', placeholderValue: 'A useful location, never a password',
+    TextField, identifier: 'matter.edit.account-hint', label: 'Username or masked reference, optional', placeholderValue: 'For example, ending 42',
+    TextField, identifier: 'matter.edit.notes', label: 'Notes, optional', placeholderValue: 'Anything else someone should know'
+)}
+Possibly caused by runtime issues:
+Automation type mismatch: computed TextField from legacy attributes vs TextView from modern attribute. Input attributes and values: {
+    "XC_kAXXCAttributeAutomationType" = 52;
+    "XC_kAXXCAttributeElementBaseType" = UITextView;
+    "XC_kAXXCAttributeElementType" = "SwiftUI.VerticalTextView";
+    "XC_kAXXCAttributeTraits" = 146029150208;
+}
+See test report attachments for more detail.

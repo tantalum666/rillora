@@ -1,0 +1,40 @@
+{
+  "checkedAt": "2026-09-26T12:27:55.469815+00:00",
+  "apiTests": 285,
+  "apiFiles": 33,
+  "infrastructureTests": 40,
+  "infrastructureFiles": 7,
+  "typecheck": "pass API and infrastructure",
+  "apiBuild": "pass",
+  "diffCheck": "pass",
+  "logs": [
+    "apple-intake-api-tests.log",
+    "apple-intake-api-build.log",
+    "apple-intake-infra-tests.log"
+  ],
+  "newMigrations": [
+    "0080_apple_production_delivery.sql",
+    "0081_provider_observation_reconciliation.sql",
+    "0082_reconciliation_restore_index_name.sql"
+  ],
+  "scope": "Decoded synthetic Apple payloads and isolated PostgreSQL; no provider account, real signature, cloud deployment or native purchase",
+  "covered": [
+    "owner isolation and original transaction conflicts",
+    "commit-before-finish and ambiguous failure retry",
+    "duplicate receipt refresh after refund",
+    "immutable receipt plus current signed renewal extension",
+    "concurrent client and cross-worker leases",
+    "bounded retries and exhausted crash recovery",
+    "late old refund with newer paid renewal",
+    "stale signed status refusal",
+    "cross-provider active subscription conflict",
+    "HTTP authentication and real cookie CSRF",
+    "closed runtime and default-off configuration",
+    "scoped key schema and aggregate optional alarms"
+  ],
+  "foundAndFixed": [
+    "Old reconciliation unique event prevented refresh; append separate provider observation while retaining legacy uniqueness",
+    "Partial index reused old constraint name; append rename migration so pg_restore --clean against older isolated target works",
+    "Old Apple roots guard rejected production mode; retain explicit environment gate"
+  ]
+}

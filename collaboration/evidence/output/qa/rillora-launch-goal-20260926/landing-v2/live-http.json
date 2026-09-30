@@ -1,0 +1,83 @@
+{
+  "checkedAt": "2026-09-28T07:58:50.846Z",
+  "checks": [
+    {
+      "path": "/",
+      "status": 200,
+      "location": null,
+      "sha256": "fd3bfff0ab5c7784eddadad7fe50cc9c193bdabe4c681412827a7dc3b372e811",
+      "cookie": false,
+      "cache": "public,max-age=300,must-revalidate"
+    },
+    {
+      "path": "/support",
+      "status": 200,
+      "location": null,
+      "sha256": "fd3bfff0ab5c7784eddadad7fe50cc9c193bdabe4c681412827a7dc3b372e811",
+      "cookie": false,
+      "cache": "public,max-age=300,must-revalidate"
+    },
+    {
+      "path": "/guides?service=binance",
+      "status": 302,
+      "location": "https://app.staging.rillora.xyz/account?next=guides&service=binance",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "cookie": false,
+      "cache": "no-store"
+    },
+    {
+      "path": "/guides/",
+      "status": 302,
+      "location": "https://app.staging.rillora.xyz/account?next=guides",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "cookie": false,
+      "cache": "no-store"
+    },
+    {
+      "path": "/guides?service=unknown&return_to=https%3A%2F%2Fexample.invalid",
+      "status": 302,
+      "location": "https://app.staging.rillora.xyz/account?next=guides",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "cookie": false,
+      "cache": "no-store"
+    },
+    {
+      "path": "/account",
+      "status": 404,
+      "location": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "cookie": false,
+      "cache": "no-store"
+    },
+    {
+      "path": "/api/auth/start",
+      "status": 404,
+      "location": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "cookie": false,
+      "cache": "no-store"
+    },
+    {
+      "path": "/.env",
+      "status": 404,
+      "location": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "cookie": false,
+      "cache": "no-store"
+    },
+    {
+      "path": "/unknown",
+      "status": 404,
+      "location": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "cookie": false,
+      "cache": "no-store"
+    },
+    {
+      "host": "https://app.staging.rillora.xyz",
+      "status": 200,
+      "sha256": "ae57109604692cc3c1a16da9de898bd55ed38c414a699edac1e25dac13057bc4",
+      "exactHTML": true
+    }
+  ]
+}

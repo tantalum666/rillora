@@ -1,0 +1,2160 @@
+--- before/DESIGN.md
++++ after/DESIGN.md
+@@ -5,7 +5,7 @@
+ Superseded by: a later Owner-approved visual decision recorded in `docs/decision-log.md`  
+ Do not use for: trademark clearance, legal claims, production security proof, final Logo or Chinese naming  
+ Status: GLOBAL GRAPHITE CONTINUITY DIRECTION OWNER-DIRECTED AND IMPLEMENTED LOCALLY; SIGNED-OUT／AUTHENTICATED ROOTS, PROFILE ACTIONS AND FOCUSED-TASK DENSITY VERIFIED; EXTERNAL AND RELEASE GATES OPEN  
+-Last updated: 2026-09-06
++Last updated: 2026-09-07
+ 
+ ## Brand Name — LOCKED
+ 
+@@ -125,9 +125,17 @@
+ 
+ ## iOS Composition
+ 
++Current authentication override (2026-09-06): the Owner selected direct hosted
++login and removed the native Account intermediary. All iOS private/sign-in
++intents go directly to the hosted authentication transaction. It owns the
++required compact unchecked legal field; a signed receipt gates session exchange.
++The iOS domain notice remains system-owned. This overrides the earlier native
++Account/chooser rules below; other graphite and whole-app rules remain active.
++
++
+ - The app defaults to dark appearance across all three roots, pushed routes, sheets, editors and loading/failure states. A tab change must never switch canvas or system chrome from graphite to cream.
+ - Native safe areas, navigation, scrolling and bottom-tab behavior are preserved. The iOS launch screen uses the graphite asset from the first frame, and the app declares portrait and both landscape orientations. QA must verify actual interface dimensions rather than a rotation command alone.
+-- A signed-out launch opens a useful public `Overview`. Visitors can understand the real structure without an account. Starting a private map, adding a Matter or selecting `Sign in / Sign up` in Profile presents one full-screen native Account task with a navigation bar and Cancel action. The email field is immediately followed by the understated unchecked Terms／Privacy／electronic-record row. Methods require acceptance; email also requires a valid address. Debug displays system Apple and native Passkey, Google remains hidden, and email／recovery／other methods use the labeled hosted fallback. The literal email prompt is muted gray and entered text uses the body color; neither inherits a blue link tint. The rejected domain helper below the methods stays removed. Cancel returns to the source tab and reopening resets input and consent. This 2026-09-04 direction supersedes the old pushed chooser and direct-hosted entry. Optional guidance may still use a dismissible Sheet; the primary Account task has no detent or drag handle. Authentication and credential gates remain in `docs/authentication-experience.md`.
++- A signed-out launch opens a useful public `Overview`. Every private/create/sign-in intent starts the hosted authentication transaction directly. There is no native Account intermediary, email preflight or method chooser. The hosted transaction owns the compact unchecked legal confirmation and its receipt; the ordinary iOS domain notice remains system-owned. Cancel returns to the originating product route. See `docs/authentication-experience.md` for the exact contract and current runtime evidence.
+ - The signed-out Overview must make the product legible without becoming a wall of prose or an empty brand poster. It uses the same title scale and card anatomy as authenticated Overview: one practical sentence, three icon-led product-map rows, one clay action, three distinct event facts and the compact map-not-password reminder. It has no expandable paragraphs, numbered editorial blocks, `Free`, price or plan comparison. On a tall phone the action may be visible in the first screenshot, after the product map; the separate-event facts remain immediately below it. It is never a login wall above product meaning.
+ - Signed-out `Matters` and `Profile` expose only public-safe actions. Matters shows a compact two-column group of passive icon labels for `What / Where / Next step / Who`, one sentence and one `Add a matter` intent; it does not manufacture an insurance record or explain every field in a text table. Profile has three non-duplicated tasks: Account, one Safety & privacy entry and About Rillora. All three use the same action surface, icon tile, divider and label scale as authenticated Profile. There is no intermediate App settings shell and no iPhone Settings shortcut when Rillora has no real app-specific permission or device-control task to complete. Safety & privacy is a task hub for a safe-information checklist and separate-event disclosure safeguards, not a second settings entry or a disclaimer wall. Neither root shows an authenticated empty state, private editor, `Free plan`／`no card` promotion or price before a real commercial intent.
+ - The shipping iOS shell uses one native `TabView` with exactly `Overview / Matters / Profile`. It does not ship a second custom bottom bar. The selected tab uses a brighter eucalyptus foreground and filled symbol in addition to the system selection capsule, so state is not communicated by a low-contrast background alone. Authenticated `Profile` owns trusted contacts, plan context, preparation tools, one centralized safety/privacy task hub, About Rillora and account/session controls; it does not repeat a passive Security boundary block beside the same safety destination or expose a generic jump to system Settings without a named permission task.
+@@ -137,13 +145,13 @@
+ - At accessibility text sizes, fixed horizontal identity/status rows reflow vertically and form pickers present the field name separately from a complete, wrapping current value. Rillora does not cap the user’s Dynamic Type setting to preserve a desktop-like composition.
+ - iOS may use SF Symbols or the prototype runtime's closest system-like icon family; it must not embed hand-drawn SVG icons.
+ - Every pushed editor, safety page, plan page, preparation tool and official-guide root hides the Tab Bar while focused. Root tabs keep the system Tab Bar; deep tasks must not let it cover controls or create a second navigation target.
+-- Safety truth uses progressive disclosure and compact `RilloraFactStrip` facts where the same boundary would otherwise become a caption paragraph plus a second disclosure list. Primary task context uses at least footnote／subheadline semantic sizes; `caption2` is otherwise reserved for nonessential micro-status; the Owner-approved compact Account consent is the explicit exception and still scales with Dynamic Type with a 44pt unchecked control.
++- Safety truth uses progressive disclosure and compact `RilloraFactStrip` facts where the same boundary would otherwise become a caption paragraph plus a second disclosure list. Primary task context uses at least footnote／subheadline semantic sizes; `caption2` is otherwise reserved for nonessential micro-status; the hosted legal confirmation follows its focused authentication contract and supported renderer.
+ - Overview’s named next-matter action opens that exact editor. Its summary rows are tappable and prioritize matters needing review; the Matters list uses the same order, omits empty sections and supports native search with a recoverable no-results state.
+ - Profile preparation and support actions are full-width rows with a task name, a one-line purpose and an internal chevron. External destinations retain the outward arrow. These rows replace the unexplained two-column tool tiles from the earlier condensed hierarchy.
+ - Static safety facts use wrapping icon-and-text rows without nested card borders or button-like fills. Rehearsal and guide pages explain the useful task before its concise limits. Provider-owned links appear directly below the provider header, followed by preparation detail.
+ - Editable fields keep persistent labels and explicit required/optional meaning. Literal prompts use muted gray, entered text uses body gray and focus uses the existing sage tint. Value/review details are optional disclosure content. Matter and contact cancellation protects dirty drafts; unchanged forms cancel immediately.
+ - Start Here shows an in-app preview first, then a single printable/encrypted format choice with the relevant unchecked acknowledgements. Encryption implementation details are secondary disclosure content. Synthetic recipient diagnostics are Debug-only; no export, recovery key or share is created just by entering the page or choosing a format.
+-- Background refresh preserves the loaded map on a connection failure and exposes retry. An expired session still clears private content. The UI must not claim a fresh fetch when it is showing the last loaded map.
++- Background refresh preserves the loaded map on a connection failure and exposes retry. A rejected stored session still clears private content, but Overview explicitly offers Welcome back / Sign in again instead of showing the first-time create-map pitch. This recovery state retains the public tabs and opens hosted authentication directly. New visitors keep the normal public product overview. The UI must not claim a fresh fetch when it is showing the last loaded map.
+ - The mobile implementation is not a narrow copy of the Web layout.
+ 
+ ## Hosted Authentication Composition
+@@ -192,7 +200,7 @@
+ 
+ The first build must make visible core controls real:
+ 
+-0. Public visitors can understand the product without an account. Profile's `Sign in / Sign up` and every add/create/private intent open the same native Account task with a compact, initially unchecked form-tail legal row. The configured native methods and clearly identified hosted fallback share the exact server-owned legal/session contract; no plan or price language enters this task.
++0. Public visitors can understand the product without an account. Every iOS private/sign-in intent enters hosted authentication directly. Its required legal receipt and the server-owned session contract remain mandatory; no native intermediary or plan/price promotion is inserted.
+ 1. After account creation or sign-in, the private overview is usable immediately. A questionnaire, Quick Win or setup modal cannot block navigation or manual matter creation.
+ 2. First use offers two explicit paths: `Add your first matter` as the primary action and `Use the 2-minute guide` as an optional secondary action. Guided setup always exposes skip, save-and-exit, progress and resume. Web implements this as an Overview panel; iOS implements the guide as a native sheet. Both persist the shared state-step pair and preserve a minimum 44px/44pt action target. No preview path, fake Matter or prefilled demonstration draft is shipped.
+ 3. `Continue your plan` opens or advances the next incomplete matter.
+--- before/README.md
++++ after/README.md
+@@ -1,14 +1,14 @@
+ # Rillora — Digital Legacy & Estate Continuity / 数字遗产与事务连续性
+ 
+-最后更新：2026-09-06（Asia/Hong_Kong）
++最后更新：2026-09-07（Asia/Hong_Kong）
+ 
+-当前工作：已完成整个原生 iOS App 的一轮 UI/UX 审阅与改进，覆盖公开入口、Account、三主页面、编辑、引导、角色、演练、导出选择和恢复。111 项单元测试通过、1 项既有 StoreKit 环境跳过；常规字号 14 项 UI 路径与额外 AX5 路径通过，真实横屏布局单独验证，Debug 运行及 Release 编译通过。正常云端 Debug 与默认字号已恢复。查看[整 App 对照报告](output/qa/rillora-full-app-ux-20260906/README.md)与[当前交接](docs/handoff.md)。
++当前工作：原生Account中转页已删除，三个私有入口直接使用托管登录。Form、已部署Action及绑定已应用并回读，Owner的Google登录、协议确认和返回私有总览已经走通；确认页的排版、未勾选错误及取消也已实测。Google入口前置并增加原登录方式提示；Apple托管入口因配置未完整而暂时关闭，未创建或合并身份。其余整App UI/UX改进保留。当前状态与独立身份门见[交接记录](docs/handoff.md)，实际截图和证据见[托管登录复核](output/qa/rillora-single-hosted-entry-20260906/README.md)。
+ 
+ 公开法律站的七份正式英文文本已在2026-09-03部署到[legal.rillora.xyz](https://legal.rillora.xyz/terms)，版本为2026-08-27-1。Google Branding链接已保存，Audience仍为External／Testing。应用没有可选跟踪；Sites／Cloudflare的聚合流量与必要安全Cookie按既有合同单独记录。这不开放产品账号、私人数据、市场或收费。
+ 
+ 其他保留进度：AWS Frankfurt只用于合成staging；Stripe Phase 1C测试生命周期完成且普通权益始终Free。StoreKit本地SK0完成，真实Sandbox商品可加载，购买仍被此前记录的Apple Simulator账号持久化故障阻断；实机工作由Owner明确延期。完整商业证据见[StoreKit合同](docs/storekit.md)与[商业化合同](docs/monetization.md)，不得把IAP server key和Apple登录key混为一项。
+ 
+-本轮已完整阅读50份／14,408行项目Markdown，修正冲突的活动入口与验收规则，保留历史记录。源码、截图、结果包和覆盖清单已保存。父仓库仍没有正常tracked baseline；未创建初始commit或改写既有改动。
++本工作流开工时已完整阅读50份／14,408行项目Markdown，随后新增一份托管确认配置说明；活动入口与验收规则已同步，历史记录保留。源码、截图、结果包和覆盖清单已保存。父仓库仍没有正常tracked baseline；未创建初始commit或改写既有改动。
+ 
+ 基础设施继续遵守[分阶段成本与迁移合同](docs/infrastructure-roadmap.md)：当前公共法律host零新增固定费用，真实敏感数据等待独立生产基线；现有域名、邮箱与AWS成本不因此归零。
+ 
+--- before/apps/ios/Rillora/App/AppShellView.swift
++++ after/apps/ios/Rillora/App/AppShellView.swift
+@@ -14,7 +14,6 @@
+     let startHereService: any StartHerePreviewing
+     @State private var selectedTab: AppTab = .overview
+     @State private var firstUseDestination: FirstUseSheetDestination?
+-    @State private var accountAccessDestination: AccountAccessDestination?
+     @State private var shouldPauseGuideOnDismiss = false
+     @State private var firstUseError: String?
+     @State private var overviewMatter: Matter?
+@@ -105,12 +104,6 @@
+             }
+             .presentationBackground(RilloraTheme.graphite)
+         }
+-        .fullScreenCover(item: $accountAccessDestination) { _ in
+-            AccountAccessView(authenticationStore: authenticationStore) {
+-                selectedTab = .overview
+-            }
+-            .presentationBackground(RilloraTheme.graphite)
+-        }
+         .task {
+             await store.loadIfNeeded()
+         }
+@@ -121,7 +114,7 @@
+         .alert(
+             "Account action couldn’t be completed",
+             isPresented: Binding(
+-                get: { accountAccessDestination == nil && authenticationStore.errorMessage != nil },
++                get: { authenticationStore.errorMessage != nil },
+                 set: { if !$0 { authenticationStore.errorMessage = nil } }
+             )
+         ) {
+@@ -187,8 +180,13 @@
+     }
+ 
+     private func beginAuthentication() {
++        guard !authenticationStore.isWorking else { return }
+         authenticationStore.errorMessage = nil
+-        accountAccessDestination = .account
++        Task {
++            if await authenticationStore.signIn() {
++                selectedTab = .overview
++            }
++        }
+     }
+ 
+     private func pauseFirstUse(plan: Plan) async {
+@@ -219,9 +217,3 @@
+ 
+     var id: String { rawValue }
+ }
+-
+-private enum AccountAccessDestination: String, Identifiable {
+-    case account
+-
+-    var id: String { rawValue }
+-}
+--- before/apps/ios/Rillora/Core/Authentication/AuthenticationStore.swift
++++ after/apps/ios/Rillora/Core/Authentication/AuthenticationStore.swift
+@@ -30,25 +30,21 @@
+ 
+     @discardableResult
+     func signIn(
+-        loginHint: String? = nil,
+-        legalAcceptance: LegalAcceptanceProof
++        loginHint: String? = nil
+     ) async -> Bool {
+         await authenticate(
+             intent: .signIn,
+-            loginHint: loginHint,
+-            legalAcceptance: legalAcceptance
++            loginHint: loginHint
+         )
+     }
+ 
+     @discardableResult
+     func createAccount(
+-        loginHint: String? = nil,
+-        legalAcceptance: LegalAcceptanceProof
++        loginHint: String? = nil
+     ) async -> Bool {
+         await authenticate(
+             intent: .createAccount,
+-            loginHint: loginHint,
+-            legalAcceptance: legalAcceptance
++            loginHint: loginHint
+         )
+     }
+ 
+@@ -116,8 +112,7 @@
+ 
+     private func authenticate(
+         intent: NativeAuthenticationIntent,
+-        loginHint: String?,
+-        legalAcceptance: LegalAcceptanceProof
++        loginHint: String?
+     ) async -> Bool {
+         guard !isWorking else { return false }
+         isWorking = true
+@@ -126,8 +121,7 @@
+         do {
+             try await service.signIn(
+                 intent: intent,
+-                loginHint: loginHint,
+-                legalAcceptance: legalAcceptance
++                loginHint: loginHint
+             )
+             return await finishAuthentication()
+         } catch is CancellationError {
+--- before/apps/ios/Rillora/Core/Authentication/HostedLegalAcceptanceProof.swift
++++ after/apps/ios/Rillora/Core/Authentication/HostedLegalAcceptanceProof.swift
+@@ -0,0 +1,44 @@
++import Foundation
++
++/// Reads the current hosted-form receipt before attempting session exchange.
++/// The API must still verify the signature, issuer, audience, expiry and scope
++/// of this same unchanged access token. Decoding here is not JWT verification.
++enum HostedLegalAcceptanceProof {
++    static let claimName = "https://rillora.xyz/legal-acceptance"
++    private static let keys: Set<String> = [
++        "termsVersion", "privacyVersion", "consentTextVersion", "bundleSha256",
++        "acceptedTerms", "acknowledgedPrivacy", "acceptedElectronicRecords",
++    ]
++
++    static func validate(accessToken: String) throws -> LegalAcceptanceProof {
++        guard accessToken.utf8.count <= 32_768 else { throw Failure.missingCurrentAcceptance }
++        let segments = accessToken.split(separator: ".", omittingEmptySubsequences: false)
++        guard segments.count == 3, segments.allSatisfy({ !$0.isEmpty }),
++              let header = object(from: segments[0]), header["alg"] as? String == "RS256",
++              let payload = object(from: segments[1]),
++              let claim = payload[claimName] as? [String: Any],
++              Set(claim.keys) == keys,
++              let data = try? JSONSerialization.data(withJSONObject: claim),
++              let acceptance = try? JSONDecoder().decode(LegalAcceptanceProof.self, from: data),
++              acceptance == .current else {
++            throw Failure.missingCurrentAcceptance
++        }
++        return acceptance
++    }
++
++    private static func object(from segment: Substring) -> [String: Any]? {
++        var encoded = segment.replacingOccurrences(of: "-", with: "+")
++            .replacingOccurrences(of: "_", with: "/")
++        encoded += String(repeating: "=", count: (4 - encoded.count % 4) % 4)
++        guard let data = Data(base64Encoded: encoded) else { return nil }
++        return (try? JSONSerialization.jsonObject(with: data)) as? [String: Any]
++    }
++
++    enum Failure: LocalizedError {
++        case missingCurrentAcceptance
++
++        var errorDescription: String? {
++            "The sign-in service did not confirm the current Terms and Privacy acknowledgement. Please try again."
++        }
++    }
++}
+--- before/apps/ios/Rillora/Core/Authentication/NativeAuthenticationService.swift
++++ after/apps/ios/Rillora/Core/Authentication/NativeAuthenticationService.swift
+@@ -12,8 +12,7 @@
+     var canSignInWithPasskey: Bool { get }
+     func signIn(
+         intent: NativeAuthenticationIntent,
+-        loginHint: String?,
+-        legalAcceptance: LegalAcceptanceProof
++        loginHint: String?
+     ) async throws
+     func signInWithApple(
+         authorizationCode: String,
+@@ -63,8 +62,7 @@
+ 
+     func signIn(
+         intent: NativeAuthenticationIntent,
+-        loginHint: String?,
+-        legalAcceptance: LegalAcceptanceProof
++        loginHint: String?
+     ) async throws {
+         let credentials = try await Auth0
+             .webAuth(clientId: configuration.clientID, domain: configuration.domain)
+@@ -72,6 +70,9 @@
+             .scope("openid profile session:create")
+             .parameters(Self.authorizationParameters(for: intent, loginHint: loginHint))
+             .start()
++        let legalAcceptance = try HostedLegalAcceptanceProof.validate(
++            accessToken: credentials.accessToken
++        )
+         try await establishRilloraSession(
+             accessToken: credentials.accessToken,
+             legalAcceptance: legalAcceptance
+@@ -218,6 +219,7 @@
+         case .google:
+             ["prompt": "login", "connection": "google-oauth2"]
+         }
++        parameters["rillora_auth_ui"] = "single-hosted-v1"
+         if let loginHint = loginHint?.trimmingCharacters(in: .whitespacesAndNewlines),
+            !loginHint.isEmpty {
+             parameters["login_hint"] = loginHint
+@@ -356,8 +358,7 @@
+ 
+     func signIn(
+         intent: NativeAuthenticationIntent,
+-        loginHint: String?,
+-        legalAcceptance: LegalAcceptanceProof
++        loginHint: String?
+     ) async throws {
+         throw NativeAuthenticationError.notConfigured
+     }
+--- before/apps/ios/Rillora/Features/Account/AccountAccessView.swift
++++ after/apps/ios/Rillora/Features/Account/AccountAccessView.swift
+@@ -1,348 +0,0 @@
+-import AuthenticationServices
+-import SwiftUI
+-
+-struct AccountAccessView: View {
+-    @Environment(\.dismiss) private var dismiss
+-    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+-
+-    let authenticationStore: AuthenticationStore
+-    let onAuthenticated: () -> Void
+-
+-    @State private var email = ""
+-    @State private var hasAccepted = false
+-    @FocusState private var isEmailFocused: Bool
+-
+-    private var normalizedEmail: String {
+-        AccountAccessValidation.normalizedEmail(email)
+-    }
+-
+-    private var canUseEmail: Bool {
+-        hasAccepted
+-            && AccountAccessValidation.isValidEmail(normalizedEmail)
+-            && !authenticationStore.isWorking
+-    }
+-
+-    private var canUseAnotherMethod: Bool {
+-        hasAccepted && !authenticationStore.isWorking
+-    }
+-
+-    var body: some View {
+-        NavigationStack {
+-            ScrollView {
+-                VStack(alignment: .leading, spacing: 18) {
+-                    AccountAccessHeader()
+-
+-                    VStack(alignment: .leading, spacing: 8) {
+-                        Text("Email address")
+-                            .font(.caption.weight(.semibold))
+-                            .foregroundStyle(RilloraTheme.body)
+-                        TextField(
+-                            "Email address",
+-                            text: $email,
+-                            prompt: Text(verbatim: "you@example.com").foregroundColor(RilloraTheme.muted)
+-                        )
+-                            .font(.body)
+-                            .foregroundColor(RilloraTheme.body)
+-                            .tint(RilloraTheme.tabSelection)
+-                            .keyboardType(.emailAddress)
+-                            .textInputAutocapitalization(.never)
+-                            .autocorrectionDisabled()
+-                            .textContentType(.emailAddress)
+-                            .focused($isEmailFocused)
+-                            .submitLabel(.done)
+-                            .onSubmit { isEmailFocused = false }
+-                            .disabled(authenticationStore.isWorking)
+-                            .padding(.horizontal, 14)
+-                            .frame(minHeight: 52)
+-                            .background(
+-                                RilloraTheme.surface,
+-                                in: RoundedRectangle(cornerRadius: 12, style: .continuous)
+-                            )
+-                            .overlay {
+-                                RoundedRectangle(cornerRadius: 12, style: .continuous)
+-                                    .stroke(isEmailFocused ? RilloraTheme.sage : RilloraTheme.divider, lineWidth: 1)
+-                            }
+-                            .accessibilityLabel("Email address")
+-                            .accessibilityIdentifier("account-access.email")
+-                    }
+-
+-                    AccountLegalConsentControl(isAccepted: $hasAccepted)
+-                        .disabled(authenticationStore.isWorking)
+-
+-                    if let errorMessage = authenticationStore.errorMessage {
+-                        Label(errorMessage, systemImage: "exclamationmark.circle")
+-                            .font(.subheadline)
+-                            .foregroundStyle(RilloraTheme.body)
+-                            .fixedSize(horizontal: false, vertical: true)
+-                            .accessibilityIdentifier("account-access.error")
+-                    }
+-
+-                    Button(action: continueWithEmail) {
+-                        HStack(spacing: 10) {
+-                            Text(authenticationStore.isWorking ? "Opening…" : "Continue with email")
+-                            Spacer()
+-                            if !dynamicTypeSize.isAccessibilitySize {
+-                                Image(systemName: "arrow.right")
+-                                    .accessibilityHidden(true)
+-                            }
+-                        }
+-                    }
+-                    .buttonStyle(RilloraPrimaryActionButtonStyle())
+-                    .disabled(!canUseEmail)
+-                    .accessibilityIdentifier("account-access.email-continue")
+-
+-                    AccountMethodDivider()
+-
+-                    if authenticationStore.canSignInWithApple {
+-                        SignInWithAppleButton(.continue) { request in
+-                            request.requestedScopes = [.fullName, .email]
+-                        } onCompletion: { result in
+-                            continueWithApple(result)
+-                        }
+-                        .signInWithAppleButtonStyle(.whiteOutline)
+-                        .frame(height: 52)
+-                        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+-                        .disabled(!canUseAnotherMethod)
+-                        .opacity(canUseAnotherMethod ? 1 : 0.46)
+-                        .accessibilityIdentifier("account-access.apple")
+-                    }
+-
+-                    if authenticationStore.canSignInWithGoogle {
+-                        Button(action: continueWithGoogle) {
+-                            HStack(spacing: 12) {
+-                                Image("GoogleGLogo")
+-                                    .resizable()
+-                                    .scaledToFit()
+-                                    .frame(width: 20, height: 20)
+-                                    .accessibilityHidden(true)
+-                                Text("Continue with Google")
+-                                Spacer()
+-                            }
+-                        }
+-                        .buttonStyle(AccountSecondaryButtonStyle())
+-                        .disabled(!canUseAnotherMethod)
+-                        .accessibilityIdentifier("account-access.google")
+-                    }
+-
+-                    if authenticationStore.canSignInWithPasskey {
+-                        Button(action: continueWithPasskey) {
+-                            HStack(spacing: 12) {
+-                                if !dynamicTypeSize.isAccessibilitySize {
+-                                    Image(systemName: "person.badge.key.fill")
+-                                        .foregroundStyle(RilloraTheme.clay)
+-                                        .accessibilityHidden(true)
+-                                }
+-                                Text("Continue with a passkey")
+-                                Spacer()
+-                            }
+-                        }
+-                        .buttonStyle(AccountSecondaryButtonStyle())
+-                        .disabled(!canUseAnotherMethod)
+-                        .accessibilityIdentifier("account-access.passkey")
+-                    }
+-
+-                    Button(action: continueWithHostedFallback) {
+-                        HStack(spacing: 10) {
+-                            if !dynamicTypeSize.isAccessibilitySize {
+-                                Image(systemName: "ellipsis.circle")
+-                                    .accessibilityHidden(true)
+-                            }
+-                            Text("Other sign-in methods")
+-                            Spacer()
+-                            if !dynamicTypeSize.isAccessibilitySize {
+-                                Image(systemName: "arrow.up.right")
+-                                    .accessibilityHidden(true)
+-                            }
+-                        }
+-                    }
+-                    .buttonStyle(.plain)
+-                    .font(.subheadline.weight(.semibold))
+-                    .foregroundStyle(RilloraTheme.muted)
+-                    .frame(maxWidth: .infinity, minHeight: 44)
+-                    .disabled(!canUseAnotherMethod)
+-                    .opacity(canUseAnotherMethod ? 1 : 0.55)
+-                    .accessibilityIdentifier("account-access.hosted-fallback")
+-                }
+-                .frame(maxWidth: 520, alignment: .leading)
+-                .padding(.horizontal, 20)
+-                .padding(.top, 22)
+-                .padding(.bottom, 36)
+-            }
+-            .scrollIndicators(.hidden)
+-            .accessibilityIdentifier("account-access.scroll")
+-            .scrollDismissesKeyboard(.interactively)
+-            .background(RilloraTheme.canvas.ignoresSafeArea())
+-            .navigationTitle("Account")
+-            .navigationBarTitleDisplayMode(.inline)
+-            .toolbar {
+-                ToolbarItem(placement: .cancellationAction) {
+-                    Button("Cancel") {
+-                        authenticationStore.errorMessage = nil
+-                        dismiss()
+-                    }
+-                        .disabled(authenticationStore.isWorking)
+-                        .accessibilityIdentifier("account-access.cancel")
+-                }
+-            }
+-        }
+-        .tint(RilloraTheme.tabSelection)
+-        .preferredColorScheme(.dark)
+-    }
+-
+-    private func continueWithEmail() {
+-        guard canUseEmail else { return }
+-        authenticate {
+-            await authenticationStore.signIn(
+-                loginHint: normalizedEmail,
+-                legalAcceptance: .current
+-            )
+-        }
+-    }
+-
+-    private func continueWithHostedFallback() {
+-        guard canUseAnotherMethod else { return }
+-        authenticate {
+-            await authenticationStore.signIn(legalAcceptance: .current)
+-        }
+-    }
+-
+-    private func continueWithGoogle() {
+-        guard canUseAnotherMethod else { return }
+-        authenticate {
+-            await authenticationStore.signInWithGoogle(legalAcceptance: .current)
+-        }
+-    }
+-
+-    private func continueWithPasskey() {
+-        guard canUseAnotherMethod else { return }
+-        authenticate {
+-            await authenticationStore.signInWithPasskey(legalAcceptance: .current)
+-        }
+-    }
+-
+-    private func continueWithApple(_ result: Result<ASAuthorization, Error>) {
+-        guard canUseAnotherMethod else { return }
+-        authenticate {
+-            await authenticationStore.signInWithApple(
+-                result: result,
+-                legalAcceptance: .current
+-            )
+-        }
+-    }
+-
+-    private func authenticate(_ action: @escaping @MainActor () async -> Bool) {
+-        isEmailFocused = false
+-        Task {
+-            guard await action() else { return }
+-            dismiss()
+-            onAuthenticated()
+-        }
+-    }
+-}
+-
+-enum AccountAccessValidation {
+-    static func normalizedEmail(_ email: String) -> String {
+-        email.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+-    }
+-
+-    static func isValidEmail(_ email: String) -> Bool {
+-        email.count <= 254
+-            && email.range(
+-                of: #"^[^\s@]+@[^\s@]+\.[^\s@]+$"#,
+-                options: .regularExpression
+-            ) != nil
+-    }
+-}
+-
+-private struct AccountAccessHeader: View {
+-    var body: some View {
+-        VStack(alignment: .leading, spacing: 8) {
+-            Text("Your private map")
+-                .font(.system(.title, design: .serif).weight(.medium))
+-                .foregroundStyle(RilloraTheme.ink)
+-            Text("Sign in or create an account.")
+-                .font(.subheadline)
+-                .foregroundStyle(RilloraTheme.muted)
+-        }
+-        .accessibilityElement(children: .combine)
+-    }
+-}
+-
+-private struct AccountLegalConsentControl: View {
+-    @Binding var isAccepted: Bool
+-
+-    private var agreement: AttributedString {
+-        (try? AttributedString(
+-            markdown: "I agree to the [Terms](https://legal.rillora.xyz/terms), acknowledge the [Privacy Policy](https://legal.rillora.xyz/privacy), and consent to electronic records.",
+-            options: .init(interpretedSyntax: .inlineOnlyPreservingWhitespace)
+-        )) ?? AttributedString("I agree to the Terms, acknowledge the Privacy Policy, and consent to electronic records.")
+-    }
+-
+-    var body: some View {
+-        HStack(alignment: .top, spacing: 6) {
+-            Button {
+-                isAccepted.toggle()
+-            } label: {
+-                Image(systemName: isAccepted ? "checkmark.square.fill" : "square")
+-                    .font(.system(size: 17, weight: .medium))
+-                    .foregroundStyle(isAccepted ? RilloraTheme.tabSelection : RilloraTheme.muted)
+-                    .frame(width: 44, height: 44, alignment: .top)
+-                    .contentShape(Rectangle())
+-            }
+-            .buttonStyle(.plain)
+-            .accessibilityLabel("Agree to the Terms, acknowledge the Privacy Policy, and consent to electronic records")
+-            .accessibilityValue(isAccepted ? "Checked" : "Unchecked")
+-            .accessibilityIdentifier("account-access.legal-consent")
+-
+-            VStack(alignment: .leading, spacing: 3) {
+-                Text(agreement)
+-                    .font(.caption2)
+-                    .foregroundStyle(RilloraTheme.muted)
+-                    .tint(RilloraTheme.body)
+-                    .fixedSize(horizontal: false, vertical: true)
+-                Text("Required for every sign-in method.")
+-                    .font(.caption2)
+-                    .foregroundStyle(RilloraTheme.muted.opacity(0.84))
+-                    .fixedSize(horizontal: false, vertical: true)
+-            }
+-            .padding(.top, 2)
+-        }
+-    }
+-}
+-
+-private struct AccountMethodDivider: View {
+-    var body: some View {
+-        HStack(spacing: 12) {
+-            RilloraTheme.divider.frame(height: 1)
+-            Text("OR")
+-                .font(.caption2.weight(.semibold))
+-                .foregroundStyle(RilloraTheme.muted)
+-            RilloraTheme.divider.frame(height: 1)
+-        }
+-        .frame(minHeight: 16)
+-        .accessibilityHidden(true)
+-    }
+-}
+-
+-private struct AccountSecondaryButtonStyle: ButtonStyle {
+-    @Environment(\.isEnabled) private var isEnabled
+-
+-    func makeBody(configuration: Configuration) -> some View {
+-        configuration.label
+-            .font(.body.weight(.semibold))
+-            .foregroundStyle(RilloraTheme.ink.opacity(isEnabled ? 1 : 0.46))
+-            .padding(.vertical, 12)
+-            .frame(maxWidth: .infinity, minHeight: 52)
+-            .padding(.horizontal, 14)
+-            .background(
+-                RilloraTheme.surface,
+-                in: RoundedRectangle(cornerRadius: 12, style: .continuous)
+-            )
+-            .overlay {
+-                RoundedRectangle(cornerRadius: 12, style: .continuous)
+-                    .stroke(RilloraTheme.divider, lineWidth: 1)
+-            }
+-            .contentShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+-            .opacity(configuration.isPressed ? 0.72 : 1)
+-    }
+-}
+--- before/apps/ios/Rillora/Features/Overview/OverviewStore.swift
++++ after/apps/ios/Rillora/Features/Overview/OverviewStore.swift
+@@ -15,6 +15,7 @@
+     private(set) var state: OverviewLoadState = .idle
+     private(set) var refreshError: String?
+     private(set) var isRefreshing = false
++    private(set) var requiresSignInAgain = false
+     private let service: any OverviewServing
+     private var activeReloadID: UUID?
+     private var mutationRevision = 0
+@@ -44,17 +45,20 @@
+             let hasSession = try await service.hasLocalSession()
+             guard activeReloadID == reloadID else { return }
+             guard hasSession else {
++                requiresSignInAgain = false
+                 state = .signedOut
+                 return
+             }
+             let snapshot = try await service.fetchOverview()
+             guard activeReloadID == reloadID, mutationRevision == revision else { return }
++            requiresSignInAgain = false
+             state = .loaded(snapshot)
+         } catch is CancellationError {
+             if activeReloadID == reloadID, mutationRevision == revision { state = previousState }
+         } catch let error as RilloraAPIError {
+             guard activeReloadID == reloadID else { return }
+             if error.isAuthenticationRequired {
++                requiresSignInAgain = true
+                 state = .signedOut
+                 return
+             }
+@@ -71,6 +75,7 @@
+         mutationRevision += 1
+         state = .idle
+         refreshError = nil
++        requiresSignInAgain = false
+     }
+ 
+     private func restoreAfterRefreshFailure(message: String) {
+@@ -187,6 +192,7 @@
+             refreshError = nil
+         } catch let error as RilloraAPIError where error.isAuthenticationRequired {
+             guard mutationRevision == revision else { return }
++            requiresSignInAgain = true
+             state = .signedOut
+             refreshError = nil
+         } catch {
+--- before/apps/ios/Rillora/Features/Overview/OverviewView.swift
++++ after/apps/ios/Rillora/Features/Overview/OverviewView.swift
+@@ -17,6 +17,7 @@
+                 OverviewLoadingView()
+             case .signedOut:
+                 SignedOutOverviewView(
++                    requiresSignInAgain: store.requiresSignInAgain,
+                     onStartPrivatePlan: onStartPrivatePlan
+                 )
+             case .failed(let message):
+--- before/apps/ios/Rillora/Features/Overview/SignedOutExperienceViews.swift
++++ after/apps/ios/Rillora/Features/Overview/SignedOutExperienceViews.swift
+@@ -1,6 +1,7 @@
+ import SwiftUI
+ 
+ struct SignedOutOverviewView: View {
++    var requiresSignInAgain = false
+     let onStartPrivatePlan: () -> Void
+     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+ 
+@@ -29,10 +30,14 @@
+         ScrollView {
+             LazyVStack(alignment: .leading, spacing: 20) {
+                 hero
+-                architecturalIndex
+-                primaryAction
+-                eventBoundary
+-                CompactSafetyNote()
++                if requiresSignInAgain {
++                    primaryAction
++                } else {
++                    architecturalIndex
++                    primaryAction
++                    eventBoundary
++                    CompactSafetyNote()
++                }
+             }
+             .padding(.horizontal, 20)
+             .padding(.top, 16)
+@@ -46,14 +51,16 @@
+     private var hero: some View {
+         VStack(alignment: .leading, spacing: 12) {
+             SectionEyebrow("Overview")
+-            Text("A clear plan for what comes next.")
++            Text(requiresSignInAgain ? "Welcome back" : "A clear plan for what comes next.")
+                 .font(.system(.title, design: .serif).weight(.medium))
+                 .foregroundStyle(RilloraTheme.ink)
+                 .fixedSize(horizontal: false, vertical: true)
+                 .accessibilityAddTraits(.isHeader)
+                 .accessibilityIdentifier("public-overview.hero")
+ 
+-            Text("Map what matters and leave the next step for someone you trust.")
++            Text(requiresSignInAgain
++                 ? "Sign in again to continue to your private map."
++                 : "Map what matters and leave the next step for someone you trust.")
+                 .font(.body)
+                 .foregroundStyle(RilloraTheme.body)
+                 .fixedSize(horizontal: false, vertical: true)
+@@ -133,7 +140,7 @@
+     private var primaryAction: some View {
+         Button(action: onStartPrivatePlan) {
+             HStack(spacing: 10) {
+-                Text("Create my private map")
++                Text(requiresSignInAgain ? "Sign in again" : "Create my private map")
+                 Spacer()
+                 Image(systemName: "arrow.right")
+                     .accessibilityHidden(true)
+--- before/apps/ios/RilloraLayoutMatrixTests/RilloraLayoutMatrixTests.swift
++++ after/apps/ios/RilloraLayoutMatrixTests/RilloraLayoutMatrixTests.swift
+@@ -42,7 +42,7 @@
+         )
+     }
+ 
+-    func testSignedOutExperienceUsesNativeAccountAccess() {
++    func testSignedOutExperienceUsesHostedAuthentication() {
+         launchSignedOutApp()
+         assertNativeTabs()
+ 
+@@ -166,15 +166,13 @@
+         attachScreenshot("signed-out-profile")
+     }
+ 
+-    func testNativeAccountConsentGatesMethodsAndResetsOnCancel() {
++    func testPrivateIntentsOpenHostedAuthenticationAndCancelBackToSource() {
+         launchSignedOutApp()
+-
+         let entries = [
+             ("Overview", "public-overview.scroll", "public-overview.start-final"),
+             ("Matters", "public-matters.scroll", "public-matters.start"),
+             ("Profile", "public-profile.list", "public-profile.sign-in"),
+         ]
+-
+         for (tabName, rootID, entryID) in entries {
+             tab(tabName).tap()
+             let root = element(rootID)
+@@ -182,62 +180,16 @@
+             let entry = element(entryID)
+             scroll(entry, intoViewWithin: root)
+             entry.tap()
+-
+-            let account = element("account-access.scroll")
+-            XCTAssertTrue(account.waitForExistence(timeout: 10))
+-            let email = app.textFields["account-access.email"]
+-            let consent = element("account-access.legal-consent")
+-            let emailContinue = element("account-access.email-continue")
+-            let apple = element("account-access.apple")
+-            let passkey = element("account-access.passkey")
+-            let fallback = element("account-access.hosted-fallback")
+-            XCTAssertTrue(email.exists)
+-            XCTAssertEqual(email.label, "Email address")
+-            XCTAssertEqual(consent.value as? String, "Unchecked")
+-            XCTAssertGreaterThan(consent.frame.minY, email.frame.maxY)
+-            XCTAssertFalse(emailContinue.isEnabled)
+-            XCTAssertTrue(apple.exists)
+-            XCTAssertTrue(passkey.exists)
+-            XCTAssertFalse(apple.isEnabled)
+-            XCTAssertFalse(passkey.isEnabled)
+-            XCTAssertFalse(fallback.isEnabled)
+-            XCTAssertFalse(element("account-access.google").exists)
+-            XCTAssertFalse(app.staticTexts["Email, recovery, and other methods continue on login.rillora.xyz."].exists)
+-            if tabName == "Profile" { attachScreenshot("account-empty") }
+-            XCTAssertFalse(app.staticTexts["Agree and continue"].exists)
+-            assertNoCommercialCopyBeforeIntent()
+-
+-            scroll(consent, intoViewWithin: account)
+-            assertMinimumTarget(consent, label: "Legal acceptance")
+-            consent.tap()
+-            XCTAssertEqual(consent.value as? String, "Checked")
+-            XCTAssertFalse(emailContinue.isEnabled, "Email must also be valid.")
+-            XCTAssertTrue(apple.isEnabled)
+-            XCTAssertTrue(passkey.isEnabled)
+-            XCTAssertTrue(fallback.isEnabled)
+-
+-            if tabName == "Profile" {
+-                scroll(email, intoViewWithin: account)
+-                email.tap()
+-                email.typeText("invalid")
+-                XCTAssertFalse(emailContinue.isEnabled)
+-                email.typeText("@example.invalid")
+-                XCTAssertTrue(emailContinue.isEnabled)
+-                attachScreenshot("account-typing")
+-                scroll(consent, intoViewWithin: account)
+-                consent.tap()
+-                XCTAssertFalse(emailContinue.isEnabled)
+-                XCTAssertFalse(apple.isEnabled)
+-                XCTAssertFalse(passkey.isEnabled)
+-                XCTAssertFalse(fallback.isEnabled)
+-            }
+-
+-            let cancel = element("account-access.cancel")
+-            XCTAssertTrue(cancel.isHittable)
+-            cancel.tap()
++            XCTAssertFalse(element("account-access.scroll").exists)
++            XCTAssertFalse(element("account-access.email").exists)
++            let notice = XCUIApplication(bundleIdentifier: "com.apple.springboard").alerts.firstMatch
++            XCTAssertTrue(notice.waitForExistence(timeout: 10))
++            XCTAssertTrue(notice.label.contains("login.rillora.xyz"))
++            attachScreenshot("hosted-system-notice-\(tabName.lowercased())")
++            notice.buttons.matching(NSPredicate(format: "label IN %@", ["Cancel", "取消"])).firstMatch.tap()
+             XCTAssertTrue(root.waitForExistence(timeout: 10))
+-            XCTAssertFalse(account.exists)
+-            XCTAssertFalse(element("account-access.error").exists)
++            XCTAssertFalse(notice.exists)
++            XCTAssertFalse(element("account-access.scroll").exists)
+         }
+     }
+ 
+@@ -595,24 +547,7 @@
+         XCTAssertFalse(element("overview.scroll").exists)
+     }
+ 
+-    func testLargeTextAccountEditorsAndRoleScope() {
+-        launchSignedOutApp()
+-        tab("Profile").tap()
+-        element("public-profile.sign-in").tap()
+-        let account = element("account-access.scroll")
+-        XCTAssertTrue(account.waitForExistence(timeout: 10))
+-        attachScreenshot("large-account-top")
+-        let consent = element("account-access.legal-consent")
+-        scroll(consent, intoViewWithin: account)
+-        assertMinimumTarget(consent, label: "Legal acceptance")
+-        consent.tap()
+-        let fallback = element("account-access.hosted-fallback")
+-        scroll(fallback, intoViewWithin: account)
+-        XCTAssertTrue(fallback.isEnabled)
+-        assertVisibleTextFitsWidth()
+-        attachScreenshot("large-account-methods")
+-        element("account-access.cancel").tap()
+-
++    func testLargeTextEditorsAndRoleScope() {
+         launchApp()
+         attachScreenshot("large-overview")
+         let progress = element("overview.progress")
+--- before/apps/ios/RilloraTests/APIClientTests.swift
++++ after/apps/ios/RilloraTests/APIClientTests.swift
+@@ -46,35 +46,23 @@
+     func testNativeAuthenticationIntentKeepsEmailAndGoogleRoutesDistinct() {
+         XCTAssertEqual(
+             Auth0NativeAuthenticationService.authorizationParameters(for: .signIn),
+-            ["prompt": "login"]
++            ["prompt": "login", "rillora_auth_ui": "single-hosted-v1"]
+         )
+         XCTAssertEqual(
+             Auth0NativeAuthenticationService.authorizationParameters(for: .createAccount),
+-            ["prompt": "login", "screen_hint": "signup"]
++            ["prompt": "login", "screen_hint": "signup", "rillora_auth_ui": "single-hosted-v1"]
+         )
+         XCTAssertEqual(
+             Auth0NativeAuthenticationService.authorizationParameters(for: .google),
+-            ["prompt": "login", "connection": "google-oauth2"]
++            ["prompt": "login", "connection": "google-oauth2", "rillora_auth_ui": "single-hosted-v1"]
+         )
+         XCTAssertEqual(
+             Auth0NativeAuthenticationService.authorizationParameters(
+                 for: .signIn,
+                 loginHint: "  Person@Example.com  "
+             ),
+-            ["prompt": "login", "login_hint": "Person@Example.com"]
+-        )
+-    }
+-
+-    func testNativeAccountEmailValidationIsBoundedAndNormalized() {
+-        XCTAssertEqual(
+-            AccountAccessValidation.normalizedEmail("  Person@Example.COM  "),
+-            "person@example.com"
+-        )
+-        XCTAssertTrue(AccountAccessValidation.isValidEmail("person@example.com"))
+-        XCTAssertFalse(AccountAccessValidation.isValidEmail("person"))
+-        XCTAssertFalse(AccountAccessValidation.isValidEmail("person@example"))
+-        XCTAssertFalse(AccountAccessValidation.isValidEmail("person @example.com"))
+-        XCTAssertFalse(AccountAccessValidation.isValidEmail(String(repeating: "a", count: 255)))
++            ["prompt": "login", "login_hint": "Person@Example.com", "rillora_auth_ui": "single-hosted-v1"]
++        )
+     }
+ 
+     func testAppleSignInFeatureGateDefaultsClosed() throws {
+--- before/apps/ios/RilloraTests/HostedLegalAcceptanceProofTests.swift
++++ after/apps/ios/RilloraTests/HostedLegalAcceptanceProofTests.swift
+@@ -0,0 +1,64 @@
++import XCTest
++@testable import Rillora
++
++final class HostedLegalAcceptanceProofTests: XCTestCase {
++    func testCurrentHostedReceiptProducesTheExistingAPIProof() throws {
++        XCTAssertEqual(try HostedLegalAcceptanceProof.validate(accessToken: token(claim: current)), .current)
++    }
++
++    func testMissingClaimAndMalformedTokensFailClosed() {
++        for value in ["", "opaque-token", "a.b.c", token(claim: nil), String(repeating: "a", count: 32_769)] {
++            XCTAssertThrowsError(try HostedLegalAcceptanceProof.validate(accessToken: value))
++        }
++    }
++
++    func testEveryConsentBooleanMustBeExplicitlyTrue() {
++        for key in ["acceptedTerms", "acknowledgedPrivacy", "acceptedElectronicRecords"] {
++            for value in [false, "true", 1] as [Any] {
++                var claim = current
++                claim[key] = value
++                XCTAssertThrowsError(try HostedLegalAcceptanceProof.validate(accessToken: token(claim: claim)))
++            }
++        }
++    }
++
++    func testStaleVersionsAndWrongDigestAreRejected() {
++        for key in ["termsVersion", "privacyVersion", "consentTextVersion", "bundleSha256"] {
++            var claim = current
++            claim[key] = "stale"
++            XCTAssertThrowsError(try HostedLegalAcceptanceProof.validate(accessToken: token(claim: claim)))
++        }
++    }
++
++    func testMissingAndUnexpectedFieldsAreRejected() {
++        var claim = current
++        claim.removeValue(forKey: "acceptedTerms")
++        XCTAssertThrowsError(try HostedLegalAcceptanceProof.validate(accessToken: token(claim: claim)))
++        claim = current
++        claim["billingAccepted"] = true
++        XCTAssertThrowsError(try HostedLegalAcceptanceProof.validate(accessToken: token(claim: claim)))
++    }
++
++    func testUnsignedReceiptIsRejectedBeforeExchange() {
++        XCTAssertThrowsError(try HostedLegalAcceptanceProof.validate(accessToken: token(claim: current, algorithm: "none")))
++    }
++
++    private var current: [String: Any] {
++        let data = try! JSONEncoder().encode(LegalAcceptanceProof.current)
++        return try! JSONSerialization.jsonObject(with: data) as! [String: Any]
++    }
++
++    private func token(claim: [String: Any]?, algorithm: String = "RS256") -> String {
++        let header = encode(["alg": algorithm, "typ": "JWT"])
++        let payload = encode(claim.map { [HostedLegalAcceptanceProof.claimName: $0] } ?? [:])
++        // This fixture exercises claim parsing only. API JWT verification is separate.
++        return "\(header).\(payload).test-signature"
++    }
++
++    private func encode(_ object: [String: Any]) -> String {
++        try! JSONSerialization.data(withJSONObject: object).base64EncodedString()
++            .replacingOccurrences(of: "+", with: "-")
++            .replacingOccurrences(of: "/", with: "_")
++            .replacingOccurrences(of: "=", with: "")
++    }
++}
+--- before/apps/ios/RilloraTests/OverviewStoreTests.swift
++++ after/apps/ios/RilloraTests/OverviewStoreTests.swift
+@@ -9,6 +9,7 @@
+         await store.reload()
+ 
+         XCTAssertEqual(store.state, .loaded(.testFixture))
++        XCTAssertFalse(store.requiresSignInAgain)
+     }
+ 
+     func testReloadPublishesSafeFailureState() async {
+@@ -26,6 +27,7 @@
+         await store.reload()
+ 
+         XCTAssertEqual(store.state, .signedOut)
++        XCTAssertFalse(store.requiresSignInAgain)
+         let fetchCount = await service.fetchCount()
+         XCTAssertEqual(fetchCount, 0)
+     }
+@@ -41,6 +43,9 @@
+         await store.reload()
+ 
+         XCTAssertEqual(store.state, .signedOut)
++        XCTAssertTrue(store.requiresSignInAgain)
++        store.reset()
++        XCTAssertFalse(store.requiresSignInAgain)
+     }
+ 
+     func testCancelledLoadRestoresItsPreviousState() async {
+@@ -79,6 +84,12 @@
+ 
+         XCTAssertEqual(store.state, .signedOut)
+         XCTAssertNil(store.refreshError)
++        XCTAssertTrue(store.requiresSignInAgain)
++
++        await service.setFailure(nil)
++        await store.reload()
++        XCTAssertEqual(store.state, .loaded(.testFixture))
++        XCTAssertFalse(store.requiresSignInAgain)
+     }
+ 
+     func testMutationReconciliationDoesNotKeepAnExpiredSession() async {
+@@ -91,6 +102,7 @@
+ 
+         XCTAssertEqual(store.state, .signedOut)
+         XCTAssertNil(store.refreshError)
++        XCTAssertTrue(store.requiresSignInAgain)
+     }
+ 
+     func testOlderRefreshCannotOverwriteAConfirmedSave() async {
+--- before/design-qa.md
++++ after/design-qa.md
+@@ -975,3 +975,28 @@
+ notification, file sharing, release or payment. Physical devices, VoiceOver
+ speech, localization, automatic rotation and external comprehension remain
+ separate checks; this pass is not the complete five-device matrix.
++
++
++## 2026-09-06 Direct hosted login follow-up — Current
++
++The Owner removed the native Account intermediary. All three private intents
++now directly open hosted authentication; the system domain notice is retained.
++The new unit suite passes **116 / 0 / 1**. Public/safety and commercial-deferral
++cases pass, and the corrected three-entry system-notice/cancel case passes.
++The runner uses the new hosted-entry test names; the former native chooser
++assertions are retired. Earlier whole-app and AX5 evidence remains bounded to
++its original checkpoint.
++
++The Owner completed Google authentication and required hosted acceptance, after
++which the ordinary cloud Debug app returned to the private map. Form/Action
++deployment, current receipt validation and the API exchange preserve the
++existing acceptance contract. The first actual Form screenshot was rejected;
++subsequent visual checks cover the repaired initial and unchecked error states.
++Supported theme/custom-text changes put social methods before email and explain
++Google return login. The incomplete Apple hosted binding is paused for the
++iOS client; no credential or user was changed.
++
++Exact raw iterations, final screenshots, source snapshots, tenant readbacks and
++limits are in [the hosted-login report](output/qa/rillora-single-hosted-entry-20260906/README.md).
++The remaining Apple identity-key/Services ID, physical-device, localization,
++VoiceOver, full device matrix and release gates are separate.
+--- before/docs/authentication-experience.md
++++ after/docs/authentication-experience.md
+@@ -1,13 +1,71 @@
+ # Rillora Authentication Experience Contract
+ 
+ Role: focused product, visual and implementation contract for account authentication  
+-Authority scope: Auth0 identity boundary, native／hybrid iOS Account presentation, hosted fallback appearance, prompt-state behavior and evidence requirements  
++Authority scope: Auth0 identity boundary, direct hosted iOS entry, hosted appearance, prompt-state behavior and evidence requirements  
+ Superseded by: later Owner direction recorded in `docs/decision-log.md`  
+ Do not use for: credential storage, API authorization rules, production identity approval or legal claims  
+-Status: NATIVE／HYBRID ACCOUNT RUNTIME VERIFIED; DEBUG APPLE BUTTON AND PASSKEY VISIBLE, GOOGLE HIDDEN; REAL APPLE AUTHORIZATION WAITS FOR IDENTITY-KEY ROTATION; PASSKEY SYSTEM REQUEST／CANCEL VERIFIED, LOGIN SUCCESS OPEN; RELEASE PROVIDER GATES OFF  
+-Last updated: 2026-09-06
+-
+-## 2026-09-06 Whole-app follow-up verification
++Status: DIRECT HOSTED ENTRY INSTALLED; GOOGLE/REQUIRED CONFIRMATION/CALLBACK OBSERVED; FINAL FORM INITIAL AND UNCHECKED-ERROR UI VERIFIED; APPLE HOSTED BINDING PAUSED  
++Last updated: 2026-09-07
++
++## 2026-09-06 Direct Hosted Entry — Current
++
++The Owner explicitly chose “删除图一，直接使用托管登录”. The native Account
++intermediary is removed. Overview, Matters and Profile enter Auth0 Web Auth
++immediately; the iOS domain-sharing notice is system-owned. Email, password,
++provider choice and recovery stay in the existing hosted experience. This
++supersedes the native/hybrid primary-entry requirement below.
++
++The consent source moves with the entry. A required hosted `LEGAL` field and
++client-scoped Post Login Action produce the exact current receipt. The iOS
++service validates its fields and versions before session exchange; JWT decoding
++is not signature verification, so the same access token must still be verified
++by the API. The configuration stores no consent in Auth0 user metadata and creates
++no M2M application, vault or secret. A new-flow marker avoids adding an extra
++step to older native builds. The hosted legal confirmation can be a separate
++step inside Auth0 after identity authentication; it does not collect email again
++or reintroduce a native legal page.
++
++Configuration source and apply instructions are in
++[the hosted-consent configuration](../infra/auth0/hosted-consent/README.md). The
++Owner completed CLI reauthentication. The required Form and Action were created,
++the deployed code was checked, and the Post Login binding was read back. The
++new Debug app is installed and directly reaches the hosted email screen.
++The Owner completed Google identity, required hosted confirmation and the
++Rillora callback; the ordinary cloud Debug app displayed the private map.
++The final Form initial, unchecked-error and cancel states are independently
++checked in the real hosted container without agent-submitted acceptance.
++The source, test and remaining-gate report is
++`output/qa/rillora-single-hosted-entry-20260906/README.md`.
++
++### Returning-user method clarity and hosted confirmation layout
++
++An Owner attempt exposed a real recovery problem: an existing social identity
++was being mistaken for a separate email/password account. The hosted theme now
++places social methods above email, and the login/password descriptions explain
++how a person who registered with Google can return through Google. This is
++generic guidance shown to everyone; the public form does not disclose which
++provider is attached to an arbitrary email address.
++
++Same-email account linking is not enabled. Auth0 recommends authenticating both
++identities before any linking operation. A future linking task must also
++preserve the existing Rillora planner and acceptance/session relationships; an
++email match alone is not authority to combine private maps. See
++[Auth0 account-linking precautions](https://auth0.com/docs/manage-users/user-accounts/user-account-linking).
++
++The first actual hosted confirmation exposed a template interaction that local
++schema tests could not detect: the generic 44px action rule also made legal
++links tall inline-flex boxes, and it left the Form action text left-aligned.
++Legal links now remain inline; actual action buttons remain at least 44px and
++center their content. The Form uses a concise Account terms title, transparent
++inner surface, readable 14px legal text and a 48px primary action through the
++supported Form CSS, fixed classes and semantic HTML selectors. Real visual
++verification, not the definition alone, decides acceptance. The final initial
++and error images are accepted. The template API returned 402, so Form-local CSS
++supplies the repair while the existing global template remains unchanged.
++Its rules preserve hidden controls and error-color inheritance; an earlier
++broad display override and light error notice were explicitly rejected.
++
++## 2026-09-06 Whole-app follow-up verification — Earlier Checkpoint
+ 
+ The Owner’s gray-input and footer-removal refinement is implemented and
+ visually verified in both empty and typed Account states. Every method remains
+@@ -18,7 +76,7 @@
+ provider login or close the separate Apple identity-key gate. The runtime
+ verification below is retained as the earlier authentication-specific checkpoint.
+ 
+-## 2026-09-06 Runtime verification
++## 2026-09-06 Native Account runtime verification — Historical
+ 
+ The already-booted `Rillora-Matrix-17-Pro` on iOS 26.5 now runs the current
+ native Account. Full unit coverage is `106 passed / 0 failed / 1 skipped`;
+@@ -145,55 +203,28 @@
+ when the standard prompt cannot meet an observed product requirement, not just
+ to eliminate the visual resemblance to a secure hosted login.
+ 
+-### Current iOS native Account and hosted fallback
+-
+-The Owner’s 2026-09-06 whole-app UI/UX request additionally requires a gray
+-email prompt/input and removal of the bottom domain helper. The current form
+-uses a literal, explicitly colored prompt, body-colored entered text, a sage
+-focus border, one concise header and a quieter `Other sign-in methods` action.
+-The helper “Email, recovery, and other methods continue on login.rillora.xyz.”
+-is removed. The system-owned web-auth domain notice and external-arrow label
+-retain the hosted handoff. This supersedes the earlier footer treatment only;
+-acceptance content, versions, digest and every provider/session gate stay intact.
+-Authentication failures appear once inside Account; dismissing it clears that
+-presentation’s error. The App shell presents errors only outside the Account task.
+-
+-Every signed-out private intent presents `AccountAccessView` as one native
+-full-screen Account task with its own navigation bar and Cancel action. The
+-email field is followed by the compact unchecked legal row, then account
+-methods. Cancel returns to the originating tab; reopening starts with an empty
+-email and an unchecked control. This follows the 2026-09-04 Owner decision and
+-supersedes the earlier direct-hosted chooser and pushed Account implementations.
+-
+-The current Debug surface displays the system Apple button and native Passkey.
+-Google remains hidden on the verified Auth0 iOS configuration boundary. Email,
+-recovery and other methods use an explicitly described
+-`ASWebAuthenticationSession` fallback. The App collects no Auth0 password and
+-stores only the resulting Rillora opaque session in Keychain.
+-
+-Apple button visibility is layout/configuration evidence only. The 2026-08-17
+-credential-exposure decision remains an independent open security gate: no
+-later record proves that the Sign in with Apple key was rotated. Do not perform
+-a real Apple authorization or token exchange before that remediation. The
+-separate StoreKit IAP key replacement does not close this identity-key gate.
++### Current iOS entry
++
++All current iOS sign-in/private intents open hosted authentication directly.
++There is no AccountAccessView, native email preflight or native chooser. The
++deployed hosted receipt configuration, exact acceptance contract and current
++evidence boundaries are described at the top of this document. Earlier native
++provider and Account screenshots remain historical/configuration evidence.
+ 
+ ## Entry Contract
+ 
+-- A public visitor is never redirected to login on app launch.
+-- Signed-out Profile begins with `Sign in / Sign up` and the short purpose
+-  `Access your private map`; Overview does not duplicate the utility.
+-- `Sign in / Sign up`, `Add a matter` and other explicit private-plan actions
+-  present the same native Account task. App launch and public browsing do not
+-  call it, and no legal-only page appears before it.
+-- The legal control is unchecked on every new Account presentation. All
+-  authentication methods remain disabled before acceptance; the email action
+-  additionally requires a valid bounded address. Input and consent are disabled
+-  while authentication is working, and provider handoff dismisses the keyboard.
+-- Cancelling hosted authentication or a native Passkey request returns to
+-  Account without an authentication error. Cancelling Account returns to the
+-  originating product page and discards that presentation's input and checkbox.
+-- Registration and login do not mention Free, a paid plan, a trial, a card or a
+-  preparation score.
++- Public browsing stays available without authentication.
++- Private/create/sign-in intents enter the existing hosted domain directly;
++  no native email/checkbox/method page appears first.
++- Registration, password entry, provider choice and recovery belong to the
++  hosted experience. The exact required legal checkbox belongs to that hosted
++  transaction. Cancellation returns to the source without an error.
++- The new iOS route accepts no local affirmative-proof parameter. Missing,
++  false, malformed or stale hosted receipts stop before API session exchange.
++- Existing Rillora acceptance/planner/session atomicity, token verification and
++  Keychain-only opaque session storage remain required.
++- Hosted UI, Action/binding readback, real identity and session outcome are
++  separate checks; compiled code is not deployed authentication.
+ 
+ ## Visual Contract
+ 
+@@ -510,3 +541,22 @@
+ - [Apple App Review Guidelines, Login Services](https://developer.apple.com/app-store/review/guidelines/#login-services)
+ - [Google OAuth 2.0 Web server flow and redirect URI requirements](https://developers.google.com/identity/protocols/oauth2/web-server)
+ - [Google Sign in branding guidelines](https://developers.google.com/identity/branding-guidelines)
++
++
++### Reauthentication recovery after a stored session is rejected
++
++The final restart check found a stored session that the API no longer accepted.
++Read-only in-process Keychain metadata returned success and the unchanged
++14:19:49 UTC creation/modification timestamps. The stored credential was not
++erased or replaced during the isolated UI checks. The API returned the generic
++`authentication_required` code. The versioned server default is 30 idle minutes;
++the elapsed interval is consistent with that limit, but the exact deployed
++override could not be read because the scoped AWS CLI session had expired.
++No timeout, backend session or security setting was changed.
++
++Overview now distinguishes no local session from a rejected stored session.
++A returning person sees Welcome back, a short explanation and Sign in again,
++with public tabs available. It does not silently imply that they must create a
++new map. New visitors retain the product-first public overview. Recovery/reset
++and authentication-error state transitions pass the current 116 / 0 / 1 unit
++suite; final Debug runtime and Release compilation pass.
+--- before/docs/decision-log.md
++++ after/docs/decision-log.md
+@@ -5,7 +5,7 @@
+ Superseded by: later entries in this file  
+ Do not use for: treating casual feedback as global approval  
+ Status: ACTIVE  
+-Last updated: 2026-09-06  
++Last updated: 2026-09-07  
+ 
+ 新条目使用以下模板：
+ 
+@@ -1771,3 +1771,29 @@
+ - Judgment correction: a small contact-sheet image initially suggested horizontal overflow in Role scope. The full-size before/after pair disproved that default-size interpretation; the accepted finding is excessive nested-card emphasis. Largest-text boundaries are separately checked.
+ - Landscape follow-up: declared supported orientations, then verified actual width greater than height using an opt-in Debug UIKit scene-geometry request because this Simulator did not react to device rotation alone. Full-screen capture fixes the runtime’s rotated app-crop problem. Automatic motion-driven rotation remains separate.
+ - Evidence and remaining boundaries: use the current-run report at `output/qa/rillora-full-app-ux-20260906/README.md`. Local development fixtures and Simulator checks do not establish a real native identity login, physical accessibility, external comprehension, release, billing or recipient delivery. No new brand or legal/security promise was approved.
++
++
++## 2026-09-06 — Remove the native account intermediary and use direct hosted login
++
++- Owner supplied the native email page and hosted password page, pointed out that the first adds no value if authentication still happens on the hosted domain, and explicitly selected “删除图一，直接使用托管登录”.
++- This supersedes the 2026-09-04 native/hybrid primary-entry decision and the Account portion of the earlier whole-app polish. The other whole-app changes remain active.
++- Every iOS private/sign-in intent opens Auth0 Web Auth directly. `AccountAccessView`, its native email collection, method chooser, route state and local checkbox UI are removed. Native provider adapters/configuration remain dormant code; they are not another user-facing chooser.
++- The existing exact consent contract is preserved through a required hosted legal field. A client-scoped Post Login Action candidate validates the submitted Form, boolean and server-side bundle marker, then issues the receipt used before Rillora session exchange. No Auth0 consent metadata, M2M application or new secret is introduced; the API ledger remains authoritative.
++- New requests carry `rillora_auth_ui=single-hosted-v1`, so the candidate Action does not add a hosted consent step to older native builds. Other Auth0 applications remain outside its scope.
++- Initial checkpoint: local code and configuration tests were not live tenant evidence; the CLI and management browser needed Owner reauthentication. That gate is closed by the follow-up below.
++
++### 2026-09-06 — Hosted apply, returning-user guidance and actual Form repair
++
++- The Owner completed official CLI authorization. Fresh preflight found no named Form/Action or Post Login bindings; the scoped resources were created, deployed and read back. The native intermediary stays removed.
++- The Owner's actual attempt exposed confusion between an existing Google identity and a database password. The account lookup was read-only. The product response places social methods before email and adds generic Google guidance on login and password pages. It does not disclose provider membership for arbitrary email addresses or automatically merge same-email identities.
++- Any later account-linking feature must authenticate both identities and preserve the existing Rillora planner, acceptance and session relationships. The current pass creates no duplicate identity or new linking permission.
++- Apple had native configuration but no web Services ID. The Rillora iOS client's Apple connection binding is paused until the separate identity-key rotation and hosted configuration gates are complete; other clients and credentials are unchanged. This connection pause applies across versions of that iOS client, independently of the new Action's migration marker.
++- The Owner completed Google, the required hosted confirmation and the code exchange, and the ordinary cloud Debug app displayed the private map. This closes that exact Owner-controlled hosted callback. It does not verify Apple, a real passkey, physical-device behavior or release.
++- The first actual Form screenshot failed visual review. Supported Form CSS repairs the inline legal sentence, checkbox, inner backgrounds and primary action; unchecked error/cancel states are checked in the real hosted container. The template API currently returns 402, so the existing global template is left unchanged and no paid upgrade is made.
++
++
++### 2026-09-06 — Explain a rejected stored session
++
++- The post-QA restart retained the original Keychain item but the API required reauthentication. The default 30 idle minutes is consistent with the elapsed interval; a live override was not verified because the scoped AWS management session was expired. No timeout or remote session was changed.
++- Overview now distinguishes a new visitor from a rejected stored session. Welcome back / Sign in again replaces the create-map pitch in that recovery state, with public tabs still available and no automatic credential page.
++- Reset, recovery and authentication rejection are covered by the final 116 / 0 / 1 native suite. Debug runtime and Release compile pass. This change clarifies the existing state; it does not extend authorization or manufacture acceptance.
+--- before/docs/handoff.md
++++ after/docs/handoff.md
+@@ -4,10 +4,71 @@
+ Authority scope: current phase, evidence boundary, open gates and exact next action  
+ Superseded by: a later update to this file  
+ Do not use for: overriding `docs/product.md`, legal truth or security evidence  
+-Status: WHOLE-APP NATIVE UI/UX REFINEMENT VERIFIED LOCALLY; OWNER REVIEW READY; PHYSICAL, REAL IDENTITY, RELEASE AND BILLING GATES REMAIN SEPARATE
+-Last updated: 2026-09-06
+-
+-## 2026-09-06 Whole-App Native UI/UX Review — Current
++Status: DIRECT HOSTED GOOGLE LOGIN AND CALLBACK VERIFIED; NATIVE ACCOUNT REMOVED; FINAL HOSTED CONFIRMATION INITIAL/ERROR/CANCEL UI VERIFIED; APPLE HOSTED BINDING PAUSED
++Last updated: 2026-09-07
++
++## 2026-09-06–07 Direct Hosted Login — Current
++
++The Owner explicitly selected removal of the native Account intermediary after
++comparing it with the hosted password page. This is the latest entry decision.
++The whole-app UI improvements remain, but AccountAccessView and its route state,
++email field, native method chooser and local checkbox are removed. All three
++private intents now call Auth0 Web Auth directly; iOS's domain notice is system UI.
++
++The new source never manufactures the former `.current` proof on entry. It
++requires the current hosted receipt before attempting the unchanged API session
++exchange. The API still verifies the unchanged access token and records the
++existing exact legal/planner/session transaction. A stateless Form/Post Login
++Action configuration is in [hosted-consent](../infra/auth0/hosted-consent/README.md).
++It uses one required legal checkbox and Continue inside the hosted transaction,
++with no repeated email input, user-metadata write, M2M credential or new secret.
++The new entry marker scopes it to the new iOS flow and leaves older native builds
++and other applications alone.
++
++The Owner completed official Auth0 CLI reauthentication. Fresh readback found
++no named Form/Action and no Post Login bindings. The scoped script created the
++Form and Action, deployed and checked its exact code, then bound it and verified
++the final order. No credentials or Auth0 user metadata were created. The new
++locally signed Debug app is installed on Rillora-Matrix-17-Pro and directly
++opens the real hosted email screen; the native intermediary is absent. The
++previous working app bundle is retained for rollback.
++
++Current native unit evidence is **116 passed / 0 failed / 1 existing StoreKit
++skip**. The corrected three-entry system-notice/cancel case passes; the signed-out
++public and commercial-deferral cases also pass. Local Action tests pass **7 / 7**.
++Debug build/run and Release Simulator compilation succeed. Exact artifacts and
++limits are recorded in `output/qa/rillora-single-hosted-entry-20260906/README.md`.
++
++The Owner completed Google identity and required hosted confirmation. Auth0
++recorded Form success, login success and code exchange at 14:19 UTC, and the
++ordinary Debug app displayed the private map. The first actual Form image was
++rejected: tall inline links, nested background, misalignment and button styling
++were repaired through Form-local CSS. Final initial/error/cancel checks use an
++isolated volatile session store and preserve the real Keychain session. The
++agent never checks or submits the real legal acceptance in QA.
++
++Social methods now precede email, with generic guidance for returning Google
++users. The incomplete Apple web connection binding is paused only for the
++Rillora iOS client; other clients and credentials are unchanged. Same-email
++automatic linking is not enabled. A template-API 402 was handled through Form
++styles without a paid upgrade or template write.
++
++The final restart check confirms the original Keychain item still exists with
++unchanged login-time metadata, while the API requires reauthentication. The
++30-minute idle default is consistent with the elapsed check; its exact deployed
++override remains unverified because the scoped AWS CLI session is expired.
++No backend timeout/session setting was changed. Overview now shows Welcome back
++and Sign in again for this state instead of implying a new map must be created.
++The final 116 / 0 / 1 suite, Debug runtime and Release compilation pass.
++
++**Unique next step:** the Owner uses the installed Sign in again route, chooses
++Google and personally accepts the unchanged required hosted confirmation to
++establish a current session. The earlier complete Owner-controlled callback and
++final Form visual checks remain valid evidence. Apple identity-key rotation and
++web Services ID, physical devices, VoiceOver/localization, the full device matrix
++and release retain their separate gates.
++
++## 2026-09-06 Whole-App Native UI/UX Review — Earlier Checkpoint
+ 
+ The Owner expanded the Account screenshot request to the entire app. The full
+ 50-file Markdown recovery had already completed in this conversation. This
+@@ -16,7 +77,7 @@
+ and orientation configuration. Exact before/after source, images and test
+ bundles live in [the whole-app review](../output/qa/rillora-full-app-ux-20260906/README.md).
+ 
+-Current behavior: gray Account prompt/input and no bottom domain helper; a
++Earlier Account behavior (superseded above): gray Account prompt/input and no bottom domain helper; a
+ single concise header and quieter fallback; exact-matter navigation from
+ Overview; review-first searchable Matters; persistent required/optional field
+ labels and protected dirty drafts; descriptive Profile actions; compact static
+--- before/docs/ios-layout-matrix.md
++++ after/docs/ios-layout-matrix.md
+@@ -5,7 +5,7 @@
+ Superseded by: a later approved revision of this file  
+ Do not use for: physical-device, TestFlight, market, legal or production identity claims  
+ Status: WHOLE-APP STANDARD-SIZE AND AX5 SIMULATOR CHECKS PASS; LANDSCAPE GEOMETRY VERIFIED; FULL FIVE-DEVICE AND PHYSICAL ACCESSIBILITY REMAIN OPEN  
+-Last updated: 2026-09-06  
++Last updated: 2026-09-07  
+ 
+ ## Purpose
+ 
+@@ -36,7 +36,7 @@
+ - compact-height landscape uses Apple’s native TabBar geometry: each tab must remain visible and hittable, at least `44pt` wide, and at least the system-reported `36pt` high;
+ - Overview primary action reachable and at least `44pt` high;
+ - signed-out launch opens a public Overview rather than an authentication error or Account sheet;
+-- the three-row static product map is readable without an account; Overview creation, Matters addition and Profile sign-in open the same native Account task, whose Cancel returns to the source and reopening resets consent;
++- the three-row static product map is readable without an account; Overview creation, Matters addition and Profile sign-in directly open the hosted authentication transaction, with no native Account/email/method page; system-notice and hosted-browser cancellation return to the source;
+ - signed-out Matters and Profile remain useful public destinations with no private-data editor or false private state;
+ - signed-out Overview and Profile do not promote `Plan & access`, Family or price amounts before explicit paid-capability intent;
+ - no missing accessibility label on visible buttons.
+@@ -266,3 +266,28 @@
+ notification, file sharing, release or payment. Physical devices, VoiceOver
+ speech, localization, automatic rotation and external comprehension remain
+ separate checks; this pass is not the complete five-device matrix.
++
++
++## 2026-09-06 Direct hosted login follow-up — Current
++
++The Owner removed the native Account intermediary. All three private intents
++now directly open hosted authentication; the system domain notice is retained.
++The new unit suite passes **116 / 0 / 1**. Public/safety and commercial-deferral
++cases pass, and the corrected three-entry system-notice/cancel case passes.
++The runner uses the new hosted-entry test names; the former native chooser
++assertions are retired. Earlier whole-app and AX5 evidence remains bounded to
++its original checkpoint.
++
++The Owner completed Google authentication and required hosted acceptance, after
++which the ordinary cloud Debug app returned to the private map. Form/Action
++deployment, current receipt validation and the API exchange preserve the
++existing acceptance contract. The first actual Form screenshot was rejected;
++subsequent visual checks cover the repaired initial and unchecked error states.
++Supported theme/custom-text changes put social methods before email and explain
++Google return login. The incomplete Apple hosted binding is paused for the
++iOS client; no credential or user was changed.
++
++Exact raw iterations, final screenshots, source snapshots, tenant readbacks and
++limits are in [the hosted-login report](../output/qa/rillora-single-hosted-entry-20260906/README.md).
++The remaining Apple identity-key/Services ID, physical-device, localization,
++VoiceOver, full device matrix and release gates are separate.
+--- before/docs/journey/PROJECT_JOURNEY.md
++++ after/docs/journey/PROJECT_JOURNEY.md
+@@ -1,6 +1,6 @@
+ # Digital Legacy Ongoing Project Journey
+ 
+-Last updated: 2026-09-06 (Asia/Hong_Kong)  
++Last updated: 2026-09-07 (Asia/Hong_Kong)  
+ 
+ ## 记录范围
+ 
+@@ -1735,3 +1735,31 @@
+ 
+ 
+ **Final follow-up for this entry →** Native units: 111 / 0 / 1. Standard-size UI ledger: 14 distinct cases passed; an additional AX5 journey passed. Rechecking raw landscape images caught a former command-only test and an app-crop capture defect. The accepted run requests public UIKit scene geometry in explicit Debug QA, asserts actual width > height and captures the entire screen; automatic physical rotation remains open. Debug cloud/default text/portrait are restored, the local API is stopped and the review artifacts are saved.
++
++
++## 2026-09-06 — Remove the duplicated native authentication intermediary
++
++**Goal →** Owner compared native email collection with the hosted password page and explicitly chose direct hosted login.
++
++**Attempt →** Rechecked the current route and consent contract, removed AccountAccessView and its routing/input, and changed the existing authentication service to require a current hosted receipt before API session exchange. Prepared a single-field hosted Form, stateless scoped Post Login Action, schema checks and a preservation-first apply script. Native provider adapters remain dormant code.
++
++**Judgment change →** The earlier polish addressed appearance but left the cross-surface authentication split. The latest direction treats hosted authentication as the complete account task. Consent moves into that hosted transaction without adding Auth0 profile retention or new credentials. The new-flow marker preserves older builds during staging.
++
++**Result →** Local code and contract/entry tests are saved in `output/qa/rillora-single-hosted-entry-20260906/`. The iOS system notice is separate from the removed native page. The initial UI test searched the app for a system-owned, localized alert; its observation was corrected to SpringBoard without changing the behavior under test.
++
++**Initial unfinished checkpoint →** The CLI and browser required Owner login; no tenant resource had changed at that point. The following continuation closes those specific gates.
++
++### Continuation — applied hosted flow and real UI correction
++
++**Goal →** Finish direct hosted login, resolve returning-user method confusion and repair the actual confirmation page highlighted by the Owner.
++
++**Attempt →** Applied the client-scoped Form/Action after the Owner restored CLI access. Read current authentication evidence without retaining personal identifiers. Moved social methods above email and added Google return guidance. Paused the incomplete Apple hosted binding for the iOS client only. Inspected the real Form after the Owner's Google ceremony, then iterated Form CSS against actual rendering and unchecked validation.
++
++**Judgment change →** A valid Form schema and successful deploy did not establish a good UI. Tall generic link/action styling fragmented the legal sentence. A later broad display override exposed a hidden control, and an inherited paragraph color made the default light error notice hard to read. Each visual failure was retained and corrected rather than counted as acceptance. The global template API returned a paid-feature gate, so the repair stays in the supported Form/style surface.
++
++**Result →** At 14:19 UTC the live sequence recorded successful Form submission, Google login and authorization-code exchange, followed by the ordinary Debug private map. The existing account is Google-based; no account merger, password reset or duplicate was created. Local native tests are 116 / 0 / 1; Action tests are 7 / 7. Exact source, tenant readbacks, raw iterations and accepted images live in `output/qa/rillora-single-hosted-entry-20260906/`.
++
++**Unfinished →** Restore Apple only after the distinct identity-key rotation and web Services ID requirements are satisfied. Complete physical-device/accessibility/release checks in their existing lanes. Same-email automatic linking is not part of this implementation; any later linking workflow requires both identities to be authenticated and existing private-map ownership preserved.
++
++
++**Restart follow-up →** Read-only runtime checks confirmed unchanged Keychain metadata after the UI isolation, while the API required a fresh session. The idle-time default fits the elapsed check, but the live override is not claimed. The UI had a real clarity defect: it silently presented the new-user create-map page. Overview now offers Welcome back / Sign in again, with the default visitor journey retained. Current native units remain 116 / 0 / 1; final Debug and Release builds pass. The agent leaves personal reauthentication and the legal checkbox to the Owner and changes no backend session limit.
+--- before/docs/platform-contract.md
++++ after/docs/platform-contract.md
+@@ -5,7 +5,7 @@
+ Superseded by: later explicit platform decision  
+ Do not use for: final framework choice or visual tokens  
+ Status: CORE PARITY LOCKED; WEB／IOS VERSIONED LEGAL CLICKWRAP AND SERVER SESSION GATE VERIFIED LOCALLY; PUBLIC-TO-PRIVATE ENTRY, FIRST-USE, ROLE EDITOR, REHEARSALS, LOCAL EVENT CONTRACT AND STRIPE PHASE 1C VERIFIED; STOREKIT SK0 COMPLETE; SIMULATOR SANDBOX LOGIN BLOCKED BY APPLE `AMSERRORDOMAIN 100`; PURCHASE COMPLETION OPEN; ENTITLEMENT MUTATION OFF  
+-Last updated: 2026-09-06  
++Last updated: 2026-09-07  
+ 
+ ## Meaning Of “同时做” — LOCKED
+ 
+@@ -28,7 +28,7 @@
+ 
+ 适合：
+ 
+-- 无需账户理解真实产品结构，并在产生私有计划意图后进入原生Account任务；
++- 无需账户理解真实产品结构，并在产生私有计划意图后直接进入托管认证事务；
+ - 随时快速记录和复核；
+ - 设备级认证、通知和联系人邀请；
+ - 年度复核和人生事件提醒；
+@@ -159,6 +159,14 @@
+ 
+ ## Versioned Legal Consent Parity
+ 
++2026-09-06 latest entry decision: iOS removes the native Account intermediary and
++enters hosted login directly. The hosted transaction owns the required checkbox
++and receipt; the existing API acceptance/planner/session contract remains. The
++configuration candidate awaits Owner Auth0 reauthentication and live apply.
++This supersedes the native Account presentation paragraph below, not the shared
++legal evidence or session rules. See `docs/authentication-experience.md`.
++
++
+ Registration legal consent remains a shared Web／iOS evidence contract, but the Owner has corrected its presentation. Web keeps the approved compact unchecked Account control. iOS now presents a concise native Account surface rather than a legal-only sheet: email input is followed immediately by the small unchecked Terms／Privacy／electronic-record row, and every native or hosted-fallback method remains disabled until acceptance. Debug displays system Apple and native Passkey after configuration readback; Google remains hidden on the verified Auth0 iOS boundary. Apple button visibility does not close the separate identity-key rotation gate; email, recovery, complex MFA and exceptional challenges may use `login.rillora.xyz` without exposing Auth0 passwords to the App. Both surfaces retain the exact Terms, Privacy, consent-copy versions and normalized bundle SHA-256; registration acceptance contains no price, trial or auto-renewal authorization.
+ 
+ The API rejects legacy GET login, missing／false／stale／wrong-digest proof and unknown evidence fields. Planner provisioning, append-only acceptance and Cookie／Bearer session commit in one transaction; any failure rolls back all three. Existing sessions without the current acceptance no longer authenticate. Web and iOS acceptances are de-duplicated separately. Account deletion removes the private map and direct identity links while retaining only a one-way identity digest, versions, bundle digest, surface and server time. Auth0 remains credential authority, but an Auth0 identity alone cannot bypass the Rillora session gate.
+--- before/docs/product.md
++++ after/docs/product.md
+@@ -5,7 +5,7 @@
+ Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
+ Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
+ Status: PRODUCT FOUNDATION ACTIVE  
+-Last updated: 2026-09-06  
++Last updated: 2026-09-07  
+ 
+ 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+ 
+@@ -73,11 +73,11 @@
+ 
+ - 产品面向全球，但法律效力与执行规则必须按司法辖区和平台处理。
+ - Web与iOS在首轮MVP市场验证前都必须具备核心闭环。
+-- 未认证的Web与iOS入口都先允许访客了解产品、工作方式与安全边界，不把登录墙设为第一屏；只有明确的`Sign in / Sign up`以及保存、添加、编辑或读取私有计划的动作才进入认证。Web保留Header中的安静Account工具入口；原生iOS把唯一的公开身份入口集中到`Profile`顶部并从Overview移除重复入口。该顶部入口以及`Add a matter`等真实私有动作统一进入原生全屏Account任务页，而不是法律专页或整套网页登录：邮箱输入下紧跟小字、未预勾选的法律行；Apple使用系统原生组件，Google／Passkey只在完整外部配置回读后显示，邮箱、恢复和复杂challenge才透明转入`login.rillora.xyz`托管兜底。未登录Profile除此之外只保留唯一的Safety & privacy任务入口和About Rillora；没有实际Rillora权限或设备任务时不得添加跳转系统Settings的入口。可选引导可使用可关闭Sheet，但不得用半高Sheet承载主要身份动作。开发身份直达只允许在有界自动化／本地QA中显式启用，不得成为Owner看到的默认产品入口或任何生产入口。
++- 未认证的Web与iOS入口都先允许访客了解产品、工作方式与安全边界，不把登录墙设为第一屏；只有明确的`Sign in / Sign up`以及保存、添加、编辑或读取私有计划的动作才进入认证。Web保留Header中的安静Account工具入口；原生iOS把唯一的公开身份入口集中到`Profile`顶部并从Overview移除重复入口。Owner于2026-09-06明确选择直接托管登录：该顶部入口以及`Add a matter`等真实私有动作立即进入`login.rillora.xyz`的Auth0托管认证，不再显示原生Account中转页、邮箱预填页、provider选择器或原生法律页。标准iOS域名提示由系统负责；取消返回触发登录的产品页面。未登录Profile除此之外只保留唯一的Safety & privacy任务入口和About Rillora；没有实际Rillora权限或设备任务时不得添加跳转系统Settings的入口。开发身份直达只允许在有界自动化／本地QA中显式启用，不得成为Owner看到的默认产品入口或任何生产入口。
+ - “允许理解产品”不等于把全部教育内容堆在首屏，也不等于只留一句抽象品牌话和一张看不出用途的卡。Web公开首屏和原生iOS公开Overview必须低文字负担但用途清晰：用`What exists / What happens / Who can help`三行静态图标结构让用户理解真实产品，不创建假账户、假联系人、假Matter或名为`Example / Sample / Synthetic example`的公开路径；旧的编号展开文章结构由这套可扫读地图取代。`Account`作为工具性入口保留，但原生iOS只在`Profile`聚合页出现；Profile的每个入口必须完成明确任务或提供可核验状态，不得用重复产品说明、不可更改的假设置或同一Safety入口填满页面。创建动作必须排在产品地图与分开的事件事实之后；在较高视口中可以同屏出现，但不得回到解释产品之前的登录墙。所有未认证一级页面以及Account选择使用产品、任务和账号语言，不把`Free plan`、`no card`或套餐名称做成标题、主按钮或重复安抚；永久Free的真实权益只在用户主动查看`Plan & access`或触发具名付费能力时解释。工作流程、隐私、法律与安全解释按上下文渐进披露，不以缩小字号掩盖信息过载，也不以“极简”为名删掉产品意义。
+ - 核心安全事实不能依赖难读的caption脚注来“形式上出现”。公开Overview用三个短事实明确区分`Death / Incapacity / Unreachable`，不再追加解释段落或第二套免责声明；Account选择只承担创建／登录任务，不在操作按钮后堆地图、密码或密钥脚注。深层任务用图标事实条和必要的一句任务上下文表达`No contact / No release / No authority`等边界，完整政策仍由Safety & privacy和对应任务页面渐进披露。
+ - 创建账户或首次登录后必须立即进入可用的私有计划总览；强制问卷、不可关闭的“Quick win”或完整资料采集不得阻塞浏览、手动添加第一项事务或离开引导。引导只能是可跳过、可退出、可恢复的辅助路径；注册本身、回答动机问题或阅读建议不得被计为准备完成、保护增强或法律效力。
+-- 创建或使用Rillora私有账户必须先完成简短、未预勾选、版本化的法律clickwrap：明确同意Terms、确认已阅读Privacy并同意电子记录。它不是问卷、准备度或provider选择器；不得加入营销、套餐或自动续费授权。Owner于2026-09-04否决了iOS在托管登录前弹出的原生长文Sheet，随后确认Auth0保留为身份后台但iOS主登录改为原生／混合：iOS使用紧凑原生Account页，条款紧跟邮箱输入以小字／未勾选方框显示，不得再铺一页产品说明、版本卡和免责段落。Apple／Google／Passkey在各自官方原生协议与外部配置完整时才显示；邮箱、恢复、复杂MFA和异常挑战可进入`login.rillora.xyz`托管兜底，App不收集Auth0密码。Web与iOS共享精确版本／bundle digest，服务端在同一事务中提交planner、append-only acceptance与session。旧session、stale version、错误digest或missing／false checkbox均不可使用私有API。注册同意不等于订阅同意；每笔 recurring purchase仍需独立、清晰、当下的价格／续费／取消确认。
++- 创建或使用Rillora私有账户必须先完成简短、未预勾选、版本化的法律clickwrap：明确同意Terms、确认已阅读Privacy并同意电子记录。它不是问卷、准备度或provider选择器；不得加入营销、套餐或自动续费授权。当前iOS直接托管路径把必要确认放在同一个Auth0事务中，使用受支持的LEGAL字段和Post Login Action；不再在App内重复收集邮箱或同意。新客户端必须获得精确当前版本／bundle digest及三个true字段的托管记录后才交换Rillora会话，不能自行把默认值当作本人同意。App不收集Auth0密码；API仍验证原始token，并在同一事务中提交planner、append-only acceptance与session。Web的现有紧凑确认路径保持其独立合同。旧session、stale version、错误digest或missing／false checkbox均不可使用私有API。注册同意不等于订阅同意；每笔recurring purchase仍需独立、清晰、当下的价格／续费／取消确认。
+ - 公开Web当前只使用认证事务、已认证session、CSRF和记住必要存储提示的本地值；没有广告、跨站跟踪或第三方行为分析Cookie。当前banner是信息提示，不把`Got it`伪装成对未来可选技术的同意。任何可选分析／营销存储必须先保持关闭，直到适用法律要求的事前同意、同等易用拒绝、管理、撤回和opt-out preference signal处理真实可用。
+ - 公开收费availability不再锁定为USA-only。最新Owner方向是：所有通过版本化市场登记门的国家／地区都应开放，而不是为了流程简单只上美国。Apple storefront可选择不等于法律、运营或Web支付已经通过；App下载、服务资格和购买渠道继续分层判断。`USA`与`HKG`是第一波核心候选：美国保留Web Stripe主路由／StoreKit fallback，香港iOS可使用StoreKit，香港Web Stripe必须等待真实香港经营／Business Registration、live KYC、银行／税务和支持门。其他英语或StoreKit市场在其privacy／consumer／tax／support行通过时同批或随后开放；EU／EEA、UK、中国大陆及有特别备案／税表／支付规则的地区仍逐项过门，不自动继承“All Countries”。
+ - 共享核心是统一领域模型、权限、状态、审计和实验事件，而不是共享一套像素级界面。
+@@ -153,6 +153,8 @@
+ 
+ ## Current Evidence Boundary
+ 
++2026-09-06最新认证入口决定：Owner明确选择“删除图一，直接使用托管登录”，取代原生Account中转页。iOS的私有意图直接进入Auth0托管流程，必要协议确认也在托管事务内完成。新客户端必须收到当前同意记录后才交换Rillora会话。Form、已部署Action及绑定已应用并回读，Owner的Google登录、必要确认、code exchange与返回私有总览已观察到；最终确认页的初始、未勾选错误及取消状态另经实际UI检查。登录方式前置并增加Google提示；同邮箱自动合并未启用，Apple托管连接的独立配置门仍保留。其余整App UI/UX改进继续有效。以 `docs/handoff.md` 与 `docs/authentication-experience.md` 的最新状态为准。
++
+ 2026-09-06整 App UI/UX 检查点：Owner明确将审阅范围扩大到整个原生App。当前候选采用灰色输入、移除Account底部域名说明、事务直达与待复核优先、可搜索列表、持续可见的字段标签、未保存修改保护、描述清楚的工具入口和分开的预览／导出选择。原生单元测试 `111 / 0 / 1`、常规字号 UI 的 14 项路径及额外 AX5 路径通过。横屏通过显式窗口几何请求与实际宽高断言验证，自动旋转的设备行为仍单独开放。当前实现、证据和唯一下一步见 `docs/handoff.md`，具体视觉规则见 `DESIGN.md`。这不改变共享领域、身份、法律或发布边界。
+ 
+ 2026-09-06较早原生身份检查点：Account布局、三入口、默认未勾选／勾选／撤回、邮箱校验、Cancel重置、Apple＋Passkey可见与Google隐藏已经由Simulator运行验证；原生测试`106 / 0 / 1`、默认字号聚焦UI `3 / 3`、AX5同意路径`1 / 1`。Terms／Privacy实际打开Safari，托管系统提示和Passkey系统请求均可取消。Passkey仍停在系统跨设备／蓝牙需求，没有真实credential assertion、Auth0 token或Rillora session；Apple identity key的既有轮换门仍开放。具体证据与下一步以`docs/authentication-experience.md`和`docs/handoff.md`为准。以下较早测试总数保留其各自检查点，不代表本轮重新执行。
+--- before/docs/quality-gates.md
++++ after/docs/quality-gates.md
+@@ -5,7 +5,7 @@
+ Superseded by: stricter platform, legal, security or Owner requirement  
+ Do not use for: replacing a detailed test plan  
+ Status: ACTIVE  
+-Last updated: 2026-09-06  
++Last updated: 2026-09-07  
+ 
+ ## Product Definition Gate
+ 
+@@ -93,7 +93,7 @@
+ 
+ The dedicated legal build and worker contract now pass `48 / 48` Web／publication tests. On 2026-09-03 the accessible Owner Sites project, version 3, public access, `legal.rillora.xyz`, managed TLS, all seven anonymous 200 routes, root 308, rejection routes, security headers and rendered title／version／placeholder checks passed. Cloudflare sets the host-only necessary `__cf_bm` bot-protection cookie and Sites exposes aggregate traffic analytics; neither is application-authored or evidence of product analytics. Google OAuth Branding subsequently saved and reloaded the exact homepage／Privacy／Terms URLs while Audience remained External／Testing and its incomplete-configuration warning disappeared. After separate confirmation, the older unused OAuth secret was deactivated and deleted; exact secret-section readback shows one later Enabled Auth0 secret, no older／Disabled entry and no multiple-secret warning, while origin and callback are unchanged. These results close the static legal-publication, Testing-state Google metadata and obsolete-secret cleanup gates, not legal enforceability, Google verification／production publication, production identity, private data, market or billing gates.
+ 
+-2026-09-04 Owner Simulator review rejects the previous iOS legal-consent presentation, and the follow-up decision selects Auth0-backend／native-hybrid iOS instead of the undeployed hosted Form plan. Current iOS source must contain no `LegalConsentSheet` or legal-only intermediate page. The native Account page must keep the email field, understated unchecked Terms／Privacy／electronic-record row immediately below it, no document-version cards or long disclaimer, and every account method disabled before acceptance. Apple may render only through the system component; Google and Passkey must stay hidden until their complete native configurations are present; hosted fallback must be clearly labeled and must not expose Auth0 passwords to Rillora. Current evidence is app build and generic-Simulator `build-for-testing`; all Simulators are shut down, so runtime layout, checkbox interaction, provider visibility and complete unit execution remain open.
++Historical 2026-09-04 checkpoint (superseded by the current direct-hosted decision): Owner Simulator review rejects the previous iOS legal-consent presentation, and the follow-up decision selects Auth0-backend／native-hybrid iOS instead of the undeployed hosted Form plan. Current iOS source must contain no `LegalConsentSheet` or legal-only intermediate page. The native Account page must keep the email field, understated unchecked Terms／Privacy／electronic-record row immediately below it, no document-version cards or long disclaimer, and every account method disabled before acceptance. Apple may render only through the system component; Google and Passkey must stay hidden until their complete native configurations are present; hosted fallback must be clearly labeled and must not expose Auth0 passwords to Rillora. Current evidence is app build and generic-Simulator `build-for-testing`; all Simulators are shut down, so runtime layout, checkbox interaction, provider visibility and complete unit execution remain open.
+ 
+ 2026-09-05 Google client preparation closes only the Google Cloud half of the native-Google gate. One Owner-confirmed iOS client was created and read back with exact name／Bundle ID, blank optional Apple identifiers, matching provider URL scheme and Firebase App Check off; it generated no client secret. Public IDs and the URL scheme are wired locally, and the SwiftUI root forwards callback URLs to GoogleSignIn, while Debug／Release native-Google enablement remains off. Final Debug `build-for-testing`, Release compile and built-app Info.plist assertions pass. Auth0 application／connection／token-exchange readback, a native Google ceremony, post-exchange Rillora session, Simulator UI and executed test count remain open.
+ 
+@@ -224,3 +224,28 @@
+ notification, file sharing, release or payment. Physical devices, VoiceOver
+ speech, localization, automatic rotation and external comprehension remain
+ separate checks; this pass is not the complete five-device matrix.
++
++
++## 2026-09-06 Direct hosted login follow-up — Current
++
++The Owner removed the native Account intermediary. All three private intents
++now directly open hosted authentication; the system domain notice is retained.
++The new unit suite passes **116 / 0 / 1**. Public/safety and commercial-deferral
++cases pass, and the corrected three-entry system-notice/cancel case passes.
++The runner uses the new hosted-entry test names; the former native chooser
++assertions are retired. Earlier whole-app and AX5 evidence remains bounded to
++its original checkpoint.
++
++The Owner completed Google authentication and required hosted acceptance, after
++which the ordinary cloud Debug app returned to the private map. Form/Action
++deployment, current receipt validation and the API exchange preserve the
++existing acceptance contract. The first actual Form screenshot was rejected;
++subsequent visual checks cover the repaired initial and unchecked error states.
++Supported theme/custom-text changes put social methods before email and explain
++Google return login. The incomplete Apple hosted binding is paused for the
++iOS client; no credential or user was changed.
++
++Exact raw iterations, final screenshots, source snapshots, tenant readbacks and
++limits are in [the hosted-login report](../output/qa/rillora-single-hosted-entry-20260906/README.md).
++The remaining Apple identity-key/Services ID, physical-device, localization,
++VoiceOver, full device matrix and release gates are separate.
+--- before/infra/auth0/README.md
++++ after/infra/auth0/README.md
+@@ -27,7 +27,22 @@
+ The static [`universal-login/preview.html`](universal-login/preview.html) is a
+ local visual-QA fixture only; it is never uploaded and cannot authenticate.
+ 
+-## 2026-09-04 native／hybrid iOS direction
++## 2026-09-06 direct hosted iOS entry — current
++
++The Owner explicitly selected removal of the native intermediary and direct
++hosted login. [The hosted-consent configuration](hosted-consent/README.md)
++contains the required legal field, stateless client-scoped Action and the apply
++sequence. It preserves the API ledger and excludes old native builds using a
++new-entry marker. No new credential or user metadata is used. This supersedes
++the native/hybrid primary-entry decision below. The Owner completed CLI
++reauthentication; Form, deployed Action and Post Login binding now match the
++source on tenant readback. The new iOS build reaches the hosted email screen;
++the Owner completed Google, hosted confirmation and the session callback.
++The final Form initial/error/cancel states are also checked. The incomplete
++Apple web binding is paused for the iOS client, with key rotation and Services
++ID prerequisites retained. No secret or existing user was changed.
++
++## 2026-09-04 native／hybrid iOS direction — historical
+ 
+ The Owner approved keeping Auth0 as identity authority while moving the primary
+ iOS account experience into native UI. The undeployed hosted Form／Action plan
+--- before/infra/auth0/hosted-consent/README.md
++++ after/infra/auth0/hosted-consent/README.md
+@@ -0,0 +1,101 @@
++# iOS direct hosted login — consent configuration
++
++The Owner explicitly chose direct hosted login on 2026-09-06 after rejecting
++the native email/method page that still led to the hosted password page. The
++native Account view is removed. Authentication begins with Auth0 Web Auth from
++Overview, Matters or Profile; the ordinary iOS domain notice remains system UI.
++
++The Owner completed official CLI reauthentication on 2026-09-06. The Form,
++deployed Post Login Action and binding have been applied and read back against
++this source. Before application, no matching Form/Action or Post Login binding
++existed. The deployment record is in
++`output/qa/rillora-single-hosted-entry-20260906/tenant-readback/`.
++This proves configuration, not a completed identity or accepted legal transaction.
++
++## Hosted flow
++
++1. The person enters the existing hosted login/signup experience.
++2. After identity authentication, Auth0 renders the Account terms title, required
++   `LEGAL` checkbox and Continue button from `form.json` in the same transaction.
++   No email is collected again and no native legal page appears.
++3. `post-login-action.cjs` accepts only that Form ID, an explicit boolean true,
++   and the current server-side bundle marker. It adds the exact legal receipt
++   to the access token; missing/false/stale submissions cannot produce it.
++4. iOS checks the receipt before exchanging that unchanged token. The Rillora
++   API still verifies the JWT signature/issuer/audience/expiry/scope and commits
++   the existing acceptance/planner/session transaction.
++
++The client-side JWT parser is not a signature verifier. An Auth0 identity alone
++is not a Rillora session. The required hosted confirmation may be a separate
++step inside Auth0; it is not a repeated email/login form. The Owner completed the original hosted confirmation and returned to the
++private map. The final Form style is separately checked in actual initial and
++unchecked-error states; the agent does not submit real legal acceptance.
++
++No M2M application, vault credential, new secret or user metadata write is used.
++Every fresh login receives an unchecked field, preserving the existing explicit
++acceptance rule. The existing Rillora API ledger remains the record of acceptance.
++This avoids introducing identified consent metadata into the Auth0 profile.
++Other applications are excluded by the exact configured iOS client ID. The new
++entry adds `rillora_auth_ui=single-hosted-v1`; existing iOS builds without that
++marker keep their native acceptance path. Separately, the incomplete Apple hosted
++connection is paused for the iOS client across versions until its identity-key
++rotation and web Services ID gates are complete.
++
++## Validation and apply
++
++Run the local transaction/contract tests:
++
++```sh
++node --test infra/auth0/hosted-consent/post-login-action.test.cjs
++```
++
++The Form was structurally checked against the current official Management API
++`CreateFormRequestContent` schema and accepted by the live tenant. Readback matches
++the local definition; the Action's deployed code and final binding also match.
++`output/qa/rillora-single-hosted-entry-20260906/` retains the schema snapshot,
++validation result, before-source snapshot and native test artifacts.
++
++With a current Owner-authorized CLI session, inspect without writing:
++
++```sh
++python3 tools/auth0/apply-hosted-consent.py \
++  --ios-info-plist /tmp/rillora-single-hosted-entry-20260906-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app/Info.plist \
++  --output output/qa/rillora-single-hosted-entry-20260906/tenant-readback
++```
++
++The same command with `--apply` creates/updates only the named Form/Action,
++substitutes their public identifiers without logging credentials, verifies the
++deployed code, preserves existing Post Login binding IDs/order and appends the
++new binding if missing. An unexpected existing Action, incomplete list or
++concurrent binding change stops the apply. No secret or client grant is created.
++Do not treat successful apply/readback as completed login or user acceptance.
++
++The Owner completed their Google and legal-confirmation ceremony, and the App
++returned to the private map. Later UI checks reuse that Google session with an
++explicit volatile-store signed-out launch, leaving the real Keychain session
++untouched. The agent checks initial/error/cancel behavior without accepting
++the legal checkbox. Source/readbacks and actual images are in the QA report.
++The new Debug app is installed and directly reaches the hosted email screen.
++It fails closed on a missing receipt. The earlier working bundle is retained
++for rollback. Native provider adapters remain dormant code, not another chooser.
++
++## Sources
++
++- [Auth0 Forms: nodes and components](https://auth0.com/docs/customize/forms/nodes-and-components) defines the built-in legal field and boolean result.
++- [Render Forms using Actions](https://auth0.com/docs/customize/forms/render) defines server-side vars, the continuation and returned prompt fields.
++- [Management API specification](https://auth0.com/docs/oas/management/v2/management-api-oas.json) defines the Form, Action and binding payloads.
++
++## Rollback
++
++Use the saved pre-apply form/action/binding readbacks. Restore the prior binding
++order first if the new Action prevents login, then restore previous definitions.
++If resources were new, leaving them unbound is a reversible rollback; deletion
++is not part of this script. Restore a known working iOS build when reverting the
++hosted receipt contract. Never remove the receipt check while leaving no real
++affirmative consent source.
++
++The final style deliberately preserves Auth0 hidden controls, keeps legal links
++inline despite the existing template action rule, and retains readable error
++text on the graphite surface. The template Management API returned 402; no paid
++upgrade or template write was used. The final runtime checks supersede the
++initial failed visual versions retained under the dated QA directory.
+--- before/infra/auth0/hosted-consent/form.json
++++ after/infra/auth0/hosted-consent/form.json
+@@ -0,0 +1,52 @@
++{
++  "name": "Rillora account acknowledgement",
++  "languages": {
++    "primary": "en",
++    "default": "en"
++  },
++  "start": {
++    "next_node": "account_acknowledgement"
++  },
++  "nodes": [
++    {
++      "id": "account_acknowledgement",
++      "type": "STEP",
++      "config": {
++        "components": [
++          {
++            "id": "account_terms_title",
++            "category": "BLOCK",
++            "type": "RICH_TEXT",
++            "config": {
++              "content": "<h1>Account terms</h1>"
++            }
++          },
++          {
++            "id": "rillora_legal_accepted",
++            "category": "FIELD",
++            "type": "LEGAL",
++            "required": true,
++            "config": {
++              "text": "I agree to the <a href=\"https://legal.rillora.xyz/terms\" target=\"_blank\" rel=\"noopener noreferrer\">Terms</a>, acknowledge the <a href=\"https://legal.rillora.xyz/privacy\" target=\"_blank\" rel=\"noopener noreferrer\">Privacy Policy</a>, and consent to electronic records."
++            }
++          },
++          {
++            "id": "continue_button",
++            "category": "BLOCK",
++            "type": "NEXT_BUTTON",
++            "config": {
++              "text": "Continue"
++            }
++          }
++        ],
++        "next_node": "$ending"
++      }
++    }
++  ],
++  "ending": {
++    "resume_flow": true
++  },
++  "style": {
++    "css": "/* Form-local overrides; keep legal links in the sentence despite template action sizing. */\n.af-form { background: transparent !important; color: #dad8cf; }\nh1 { margin: 0 0 24px !important; color: #f1ece2; font: 600 24px/1.25 -apple-system, BlinkMacSystemFont, sans-serif !important; }\nlabel, p { margin: 0 !important; padding: 0 !important; font-size: 14px !important; line-height: 1.5 !important; background: transparent !important; }\ninput[type=checkbox] { width: 18px !important; height: 18px !important; margin-top: 2px !important; align-self: flex-start; accent-color: #bfd79a; }\na[href=\"https://legal.rillora.xyz/terms\"], a[href=\"https://legal.rillora.xyz/privacy\"] { display: inline !important; min-height: 0 !important; padding: 0 !important; color: #dad8cf !important; font-size: inherit !important; line-height: inherit !important; text-decoration: underline !important; text-underline-offset: 2px; }\nbutton, .af-button { align-items: center !important; justify-content: center !important; width: 100%; min-height: 48px !important; border: 0; border-radius: 10px; background: #cb704c; color: #171c1c; font: 600 16px/1.4 -apple-system, BlinkMacSystemFont, sans-serif !important; text-align: center !important; }\nbutton:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid #bfd79a; outline-offset: 3px; }\nlabel { color: #b8bab2; }\n[role=alert] { background: #352722 !important; border-color: #804535 !important; color: #ffb5a5 !important; }\n[role=alert] p, [role=alert] span { color: inherit !important; }\n/* Inner layout containers do not introduce a light notification surface. */\nform div, .af-form div, div:has(> p) { background-color: transparent !important; }\n"
++  }
++}
+--- before/infra/auth0/hosted-consent/post-login-action.cjs
++++ after/infra/auth0/hosted-consent/post-login-action.cjs
+@@ -0,0 +1,45 @@
++// Deployment substitutes only these public resource identifiers after readback.
++const IOS_CLIENT_ID = "__RILLORA_IOS_CLIENT_ID__";
++const FORM_ID = "__RILLORA_FORM_ID__";
++const CLAIM = "https://rillora.xyz/legal-acceptance";
++const CURRENT = Object.freeze({
++  termsVersion: "terms-2026-08-27-1",
++  privacyVersion: "privacy-2026-08-27-1",
++  consentTextVersion: "registration-clickwrap-2026-08-24-1",
++  bundleSha256: "73d9cb6039b97f72d802e543d03944355e68b2bc59a7f859326ce3236b704d2b",
++  acceptedTerms: true,
++  acknowledgedPrivacy: true,
++  acceptedElectronicRecords: true,
++});
++
++exports.onExecutePostLogin = async (event, api) => {
++  if (event.client.client_id !== IOS_CLIENT_ID) return;
++  // Existing app versions retain their native affirmative-consent contract.
++  // Only the new direct-hosted entry opts into this migration.
++  if (event.request?.query?.rillora_auth_ui !== "single-hosted-v1") return;
++  if (!/^ap_[A-Za-z0-9]+$/.test(FORM_ID)) {
++    api.access.deny("Account acknowledgement is not configured.");
++    return;
++  }
++  // Each interactive login receives an unchecked form. No consent metadata,
++  // password, new M2M credential or vault connection is created here.
++  api.prompt.render(FORM_ID, {
++    fields: { rillora_legal_accepted: false },
++    vars: { rillora_legal_bundle: CURRENT.bundleSha256 },
++  });
++};
++
++exports.onContinuePostLogin = async (event, api) => {
++  if (event.client.client_id !== IOS_CLIENT_ID) return;
++  if (
++    event.prompt?.id !== FORM_ID ||
++    event.prompt?.fields?.rillora_legal_accepted !== true ||
++    event.prompt?.vars?.rillora_legal_bundle !== CURRENT.bundleSha256
++  ) {
++    api.access.deny("Accept the current account terms before continuing.");
++    return;
++  }
++  // Only this transaction's validated legal field can produce the receipt.
++  // The Rillora API remains the acceptance and session system of record.
++  api.accessToken.setCustomClaim(CLAIM, CURRENT);
++};
+--- before/infra/auth0/hosted-consent/post-login-action.test.cjs
++++ after/infra/auth0/hosted-consent/post-login-action.test.cjs
+@@ -0,0 +1,112 @@
++const test = require("node:test");
++const assert = require("node:assert/strict");
++const fs = require("node:fs");
++const vm = require("node:vm");
++const path = require("node:path");
++
++const form = JSON.parse(fs.readFileSync(path.join(__dirname, "form.json"), "utf8"));
++const source = fs.readFileSync(path.join(__dirname, "post-login-action.cjs"), "utf8")
++  .replaceAll("__RILLORA_IOS_CLIENT_ID__", "test-native-client")
++  .replaceAll("__RILLORA_FORM_ID__", "ap_testconsentform");
++const context = { exports: {} };
++vm.runInNewContext(source, context);
++const action = context.exports;
++const bundle = "73d9cb6039b97f72d802e543d03944355e68b2bc59a7f859326ce3236b704d2b";
++
++function fixture() {
++  const calls = { render: [], denied: [], claims: [] };
++  return {
++    calls,
++    event: {
++      client: { client_id: "test-native-client" },
++      request: { query: { rillora_auth_ui: "single-hosted-v1" } },
++      prompt: {
++        id: "ap_testconsentform",
++        fields: { rillora_legal_accepted: true },
++        vars: { rillora_legal_bundle: bundle },
++      },
++    },
++    api: {
++      prompt: { render: (...args) => calls.render.push(args) },
++      access: { deny: (reason) => calls.denied.push(reason) },
++      accessToken: { setCustomClaim: (...args) => calls.claims.push(args) },
++    },
++  };
++}
++
++test("hosted entry starts unchecked and creates no receipt before submission", async () => {
++  const f = fixture();
++  await action.onExecutePostLogin(f.event, f.api);
++  assert.equal(f.calls.render.length, 1);
++  assert.equal(f.calls.render[0][1].fields.rillora_legal_accepted, false);
++  assert.equal(f.calls.render[0][1].vars.rillora_legal_bundle, bundle);
++  assert.equal(f.calls.claims.length, 0);
++});
++
++test("a checked, current form produces the exact API contract", async () => {
++  const f = fixture();
++  await action.onContinuePostLogin(f.event, f.api);
++  assert.equal(f.calls.denied.length, 0);
++  assert.equal(f.calls.claims[0][0], "https://rillora.xyz/legal-acceptance");
++  const proof = f.calls.claims[0][1];
++  const swift = fs.readFileSync(path.join(__dirname, "../../../apps/ios/Rillora/Core/Authentication/LegalConsentContract.swift"), "utf8");
++  const apiContract = fs.readFileSync(path.join(__dirname, "../../../apps/api/src/legal-contract.ts"), "utf8");
++  for (const value of Object.values(proof).filter((v) => typeof v === "string")) {
++    assert.ok(swift.includes(value));
++    assert.ok(apiContract.includes(value));
++  }
++  assert.equal(Object.keys(proof).length, 7);
++  assert.equal(proof.acceptedTerms, true);
++  assert.equal(proof.acknowledgedPrivacy, true);
++  assert.equal(proof.acceptedElectronicRecords, true);
++});
++
++test("unchecked, missing and coerced values cannot produce a receipt", async () => {
++  for (const value of [false, undefined, null, "true", 1, [true]]) {
++    const f = fixture();
++    f.event.prompt.fields.rillora_legal_accepted = value;
++    await action.onContinuePostLogin(f.event, f.api);
++    assert.equal(f.calls.denied.length, 1);
++    assert.equal(f.calls.claims.length, 0);
++  }
++});
++
++test("a different form or stale server-side contract is rejected", async () => {
++  for (const mutate of [
++    (e) => { e.prompt.id = "ap_otherform"; },
++    (e) => { e.prompt.vars.rillora_legal_bundle = "stale"; },
++    (e) => { delete e.prompt; },
++  ]) {
++    const f = fixture(); mutate(f.event);
++    await action.onContinuePostLogin(f.event, f.api);
++    assert.equal(f.calls.denied.length, 1);
++    assert.equal(f.calls.claims.length, 0);
++  }
++});
++
++test("other applications are not changed by this iOS migration", async () => {
++  const f = fixture(); f.event.client.client_id = "other-client";
++  await action.onExecutePostLogin(f.event, f.api);
++  await action.onContinuePostLogin(f.event, f.api);
++  assert.equal(f.calls.render.length + f.calls.denied.length + f.calls.claims.length, 0);
++});
++
++test("existing iOS versions are not given an extra hosted consent step", async () => {
++  const f = fixture(); delete f.event.request;
++  await action.onExecutePostLogin(f.event, f.api);
++  assert.equal(f.calls.render.length + f.calls.denied.length + f.calls.claims.length, 0);
++});
++
++test("form contains only one required legal field and the ordinary continue action", () => {
++  const step = form.nodes[0];
++  assert.equal(form.nodes.length, 1);
++  assert.equal(step.config.components.filter((c) => c.category === "FIELD").length, 1);
++  assert.equal(step.config.components.filter((c) => c.type === "NEXT_BUTTON").length, 1);
++  const field = step.config.components.find((c) => c.category === "FIELD");
++  assert.equal(field.type, "LEGAL");
++  assert.equal(field.required, true);
++  assert.equal(field.id, "rillora_legal_accepted");
++  assert.ok(field.config.text.includes("https://legal.rillora.xyz/terms"));
++  assert.ok(field.config.text.includes("https://legal.rillora.xyz/privacy"));
++  assert.equal(form.ending.resume_flow, true);
++});
+--- before/infra/auth0/universal-login/custom-text/login-id.en.json
++++ after/infra/auth0/universal-login/custom-text/login-id.en.json
+@@ -2,7 +2,7 @@
+   "login-id": {
+     "pageTitle": "Sign in | Rillora",
+     "title": "Welcome back",
+-    "description": "Sign in to continue your private map.",
++    "description": "Signed up with Google? Use Continue with Google below.",
+     "buttonText": "Continue",
+     "signupActionText": "New to Rillora?",
+     "signupActionLinkText": "Create account"
+--- before/infra/auth0/universal-login/custom-text/login-password.en.json
++++ after/infra/auth0/universal-login/custom-text/login-password.en.json
+@@ -2,7 +2,7 @@
+   "login-password": {
+     "pageTitle": "Enter your password | Rillora",
+     "title": "Enter your password",
+-    "description": "Continue to your private map.",
++    "description": "For an account created with Google, go back and choose Continue with Google.",
+     "buttonText": "Continue",
+     "forgotPasswordText": "Forgot password?",
+     "signupActionText": "New to Rillora?",
+--- before/infra/auth0/universal-login/theme.json
++++ after/infra/auth0/universal-login/theme.json
+@@ -72,6 +72,6 @@
+     "logo_height": 32,
+     "logo_position": "none",
+     "logo_url": "",
+-    "social_buttons_layout": "bottom"
++    "social_buttons_layout": "top"
+   }
+ }
+--- before/tools/auth0/apply-hosted-consent.py
++++ after/tools/auth0/apply-hosted-consent.py
+@@ -0,0 +1,168 @@
++#!/usr/bin/env python3
++"""Apply only the iOS hosted-consent form/action after an Owner CLI login.
++
++Default mode reads current resources and saves a plan. --apply performs the
++reviewed change, preserving existing Post Login binding IDs and their order.
++No token, client secret, vault or M2M application is created or printed.
++"""
++import argparse
++import json
++import plistlib
++from pathlib import Path
++import re
++import subprocess
++import time
++
++ROOT = Path(__file__).resolve().parents[2]
++SOURCE = ROOT / "infra/auth0/hosted-consent"
++FORM_NAME = "Rillora account acknowledgement"
++ACTION_NAME = "Rillora hosted legal acceptance"
++
++
++def api(method, resource, body=None):
++    result = subprocess.run(
++        ["auth0", "api", method, resource, "--no-input"],
++        input=json.dumps(body) if body is not None else None,
++        text=True, capture_output=True, timeout=60,
++    )
++    if result.returncode:
++        if "expired" in result.stderr.lower() or "log in" in result.stderr.lower():
++            raise RuntimeError("Auth0 CLI requires the Owner to sign in again.")
++        raise RuntimeError(f"Auth0 rejected {method.upper()} for {resource.split('/')[0]}; no credentials were logged.")
++    return json.loads(result.stdout) if result.stdout.strip() else {}
++
++
++def one_named(items, name):
++    matches = [item for item in items if item.get("name") == name]
++    if len(matches) > 1:
++        raise RuntimeError(f"Multiple resources named {name}; resolve the target before updating.")
++    return matches[0] if matches else None
++
++
++def subset(expected, actual):
++    if isinstance(expected, dict):
++        return isinstance(actual, dict) and all(k in actual and subset(v, actual[k]) for k, v in expected.items())
++    if isinstance(expected, list):
++        return isinstance(actual, list) and len(expected) == len(actual) and all(subset(x, y) for x, y in zip(expected, actual))
++    return type(expected) is type(actual) and expected == actual
++
++
++def bindings():
++    result = api("get", "actions/triggers/post-login/bindings?per_page=100")
++    items = result.get("bindings", [])
++    if result.get("total", len(items)) != len(items):
++        raise RuntimeError("Binding list was incomplete; refusing to replace it.")
++    if any(not item.get("id") or not item.get("action", {}).get("id") for item in items):
++        raise RuntimeError("A binding cannot be preserved safely.")
++    return items
++
++
++def binding_summary(items):
++    return [{"id": x["id"], "action_id": x["action"]["id"], "display_name": x.get("display_name")} for x in items]
++
++
++def save(path, value):
++    path.write_text(json.dumps(value, indent=2) + "\n")
++
++
++def main():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--ios-info-plist", type=Path, required=True)
++    parser.add_argument("--output", type=Path, required=True)
++    parser.add_argument("--apply", action="store_true")
++    args = parser.parse_args()
++    args.output.mkdir(parents=True, exist_ok=True)
++    if any((args.output / name).exists() for name in ("deployment.json", "form-after.json", "action-before.json")):
++        raise RuntimeError("Use a fresh output directory to preserve the earlier deployment and rollback evidence.")
++    info = plistlib.loads(args.ios_info_plist.read_bytes())
++    client_id = info.get("RilloraAuth0ClientID", "")
++    if not re.fullmatch(r"[A-Za-z0-9_-]{16,80}", client_id):
++        raise RuntimeError("Use a built iOS Info.plist with resolved configuration.")
++    desired_form = json.loads((SOURCE / "form.json").read_text())
++    template = (SOURCE / "post-login-action.cjs").read_text()
++    test = subprocess.run(["node", "--test", str(SOURCE / "post-login-action.test.cjs")], capture_output=True, text=True)
++    if test.returncode:
++        raise RuntimeError("Local hosted-consent contract tests must pass first.")
++
++    # A client lookup also prevents writes to a different active tenant.
++    client = api("get", f"clients/{client_id}?fields=client_id,name,app_type&include_fields=true")
++    if client.get("client_id") != client_id or client.get("app_type") != "native" or client.get("name") != "Rillora iOS":
++        raise RuntimeError("The configured client is not the expected Rillora iOS application.")
++    forms_response = api("get", "forms?per_page=100&include_totals=true")
++    forms = forms_response if isinstance(forms_response, list) else forms_response.get("forms", [])
++    if isinstance(forms_response, dict) and forms_response.get("total", len(forms)) != len(forms):
++        raise RuntimeError("Form list was incomplete.")
++    actions = api("get", "actions/actions?per_page=100")
++    action_items = actions.get("actions", [])
++    if actions.get("total", len(action_items)) != len(action_items):
++        raise RuntimeError("Action list was incomplete.")
++    form = one_named(forms, FORM_NAME)
++    action = one_named(action_items, ACTION_NAME)
++    original_bindings = bindings()
++    form_before = api("get", f"forms/{form['id']}") if form else None
++    action_before = api("get", f"actions/actions/{action['id']}") if action else None
++    if action_before and (action_before.get("secrets") or not action_before.get("code", "").startswith("// Deployment substitutes only these public resource identifiers")):
++        raise RuntimeError("Existing target Action needs review before any mutation.")
++    if form_before:
++        save(args.output / "form-before.json", {k: form_before[k] for k in desired_form if k in form_before})
++    save(args.output / "bindings-before.json", binding_summary(original_bindings))
++    save(args.output / "plan.json", {
++        "form": "update" if form else "create", "action": "update" if action else "create",
++        "scope": "existing Rillora iOS client only", "preserve_binding_order": True,
++        "creates_credentials": False, "persists_user_metadata": False,
++    })
++    if not args.apply:
++        print("Current resources checked; plan saved. No tenant changes applied.")
++        return
++
++    if form:
++        form = api("patch", f"forms/{form['id']}", desired_form)
++    else:
++        form = api("post", "forms", desired_form)
++    form_id = form["id"]
++    if not re.fullmatch(r"ap_[A-Za-z0-9]+", form_id):
++        raise RuntimeError("Unexpected form identifier; nothing was bound.")
++    actual_form = api("get", f"forms/{form_id}")
++    if not subset(desired_form, actual_form):
++        raise RuntimeError("Form readback did not match; nothing was bound.")
++    save(args.output / "form-after.json", {k: actual_form[k] for k in desired_form})
++
++    code = template.replace("__RILLORA_IOS_CLIENT_ID__", client_id).replace("__RILLORA_FORM_ID__", form_id)
++    desired_action = {"name": ACTION_NAME, "runtime": "node22", "supported_triggers": [{"id": "post-login", "version": "v3"}], "code": code}
++    if action:
++        save(args.output / "action-before.json", {k: action_before[k] for k in desired_action if k in action_before})
++        action = api("patch", f"actions/actions/{action['id']}", desired_action)
++    else:
++        action = api("post", "actions/actions", desired_action)
++    action_id = action["id"]
++    api("post", f"actions/actions/{action_id}/deploy")
++    for _ in range(12):
++        deployed = api("get", f"actions/actions/{action_id}")
++        if deployed.get("status") == "built" and deployed.get("deployed_version"):
++            break
++        time.sleep(0.5)
++    else:
++        raise RuntimeError("Action deployment did not become ready; nothing was bound.")
++    if deployed.get("code") != code or deployed.get("deployed_version", {}).get("code") != code:
++        raise RuntimeError("Deployed Action code did not match; nothing was bound.")
++    if binding_summary(bindings()) != binding_summary(original_bindings):
++        raise RuntimeError("Bindings changed during preparation; no binding replacement was attempted.")
++    wanted = [{"ref": {"type": "binding_id", "value": x["id"]}} for x in original_bindings]
++    expected_ids = [x["action"]["id"] for x in original_bindings]
++    if action_id not in expected_ids:
++        wanted.append({"ref": {"type": "action_id", "value": action_id}, "display_name": ACTION_NAME})
++        expected_ids.append(action_id)
++    api("patch", "actions/triggers/post-login/bindings", {"bindings": wanted})
++    final = bindings()
++    if [x["action"]["id"] for x in final] != expected_ids:
++        raise RuntimeError("Final binding order requires review.")
++    save(args.output / "bindings-after.json", binding_summary(final))
++    save(args.output / "deployment.json", {"form_id": form_id, "action_id": action_id, "applied": True, "readback_matches": True, "live_user_flow_verified": False})
++    print("Hosted-consent resources applied and read back. Live user-flow verification is still required.")
++
++
++if __name__ == "__main__":
++    try:
++        main()
++    except (RuntimeError, subprocess.TimeoutExpired) as error:
++        raise SystemExit(str(error))
+--- before/tools/run-ios-layout-matrix.sh
++++ after/tools/run-ios-layout-matrix.sh
+@@ -145,8 +145,8 @@
+ root_tests=(
+   testRootDestinationsPortrait
+   testOrientationChangeKeepsRootsReachable
+-  testSignedOutExperienceUsesNativeAccountAccess
+-  testNativeAccountConsentGatesMethodsAndResetsOnCancel
++  testSignedOutExperienceUsesHostedAuthentication
++  testPrivateIntentsOpenHostedAuthenticationAndCancelBackToSource
+   testSignedOutCommercialDetailsStayDeferred
+ )
+ 
+@@ -165,8 +165,8 @@
+   run_matrix_slice \
+     se "$content_size" "se-$content_size-root" \
+     testRootDestinationsPortrait \
+-    testSignedOutExperienceUsesNativeAccountAccess \
+-    testNativeAccountConsentGatesMethodsAndResetsOnCancel \
++    testSignedOutExperienceUsesHostedAuthentication \
++    testPrivateIntentsOpenHostedAuthenticationAndCancelBackToSource \
+     testSignedOutCommercialDetailsStayDeferred
+ done
+ 

@@ -1,0 +1,63 @@
+/* Shared semantic roles. Dark stays the fallback for the independent legal site. */
+:root {
+  color-scheme: dark;
+  --canvas: #171c1c;
+  --surface: #252c29;
+  --surface-muted: #1d2322;
+  --sidebar: #1a201f;
+  --ink: #f1ece2;
+  --body: #dad8cf;
+  --muted: #b8bab2;
+  --sage: #9bb180;
+  --accent: #cde1b0;
+  --on-accent: #171c1c;
+  --sage-soft: #384637;
+  --clay: #cb704c;
+  --clay-hover: #da815d;
+  --on-clay: #171c1c;
+  --peach: rgba(203,112,76,.24);
+  --warning: #f0b297;
+  --warning-surface: #302620;
+  --divider: #39433f;
+  --border: #59645d;
+  --card-border: #3d4842;
+  --icon-surface: #2e3731;
+}
+:root[data-appearance="light"] {
+  color-scheme: light;
+  --canvas: #f5f1e8;
+  --surface: #fffcf6;
+  --surface-muted: #ebe9df;
+  --sidebar: #eeece2;
+  --ink: #23473d;
+  --body: #344a40;
+  --muted: #596a60;
+  --sage: #506b38;
+  --accent: #426329;
+  --on-accent: #fff9ed;
+  --sage-soft: #e2e9d9;
+  --clay: #a64c2d;
+  --clay-hover: #934025;
+  --on-clay: #fff9ed;
+  --peach: #efdbcf;
+  --warning: #9b462b;
+  --warning-surface: #f3e5d9;
+  --divider: #d6dcd2;
+  --border: #849384;
+  --card-border: #d6dcd2;
+  --icon-surface: #e5eadd;
+}
+
+.workspace-chrome { display:flex; justify-content:flex-end; align-items:center; gap:14px; margin:-44px 0 20px; }
+.workspace-chrome .development-notice { flex:1; margin:0; }
+.app-appearance {
+  --lp-ink: var(--ink); --lp-soft: var(--surface-muted);
+  --lp-paper: var(--surface); --lp-border: var(--border);
+  --lp-muted: var(--muted); --lp-action: var(--accent);
+}
+.public-header > nav { margin-left:auto; }
+.public-header > .app-appearance { margin-left:20px; }
+.invitation-page > header { flex-wrap:wrap; gap:18px; }
+.invitation-page > header .invitation-back { margin-left:auto; }
+@media(max-width:760px) { .workspace-chrome { margin:-22px 0 12px; } }
+@media print { .workspace-chrome, .app-appearance { display:none; } }

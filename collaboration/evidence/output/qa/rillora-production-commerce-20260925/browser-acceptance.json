@@ -1,0 +1,23 @@
+{
+  "recordedAt": "2026-09-25T16:38:39.207602+00:00",
+  "surface": "local component fixture with actual production UI code and injected synthetic API",
+  "checks": [
+    "unchecked consent disables submit",
+    "checkbox enables submit",
+    "exact annual proof reaches local fixture",
+    "error recovery retains form",
+    "canceled renewal displays paid period end and management",
+    "closed sales retain management",
+    "close unfinished checkout updates state",
+    "390px viewport has no horizontal overflow",
+    "price emphasis, matching link color and disabled affordance corrected"
+  ],
+  "notProven": [
+    "live purchase",
+    "provider redirect",
+    "real account or stored legal consent",
+    "cloud API deployment"
+  ],
+  "console": "No app errors observed; existing browser extension injected script error observed.",
+  "cleanup": "Temporary source harness moved into ignored QA; viewport reset."
+}

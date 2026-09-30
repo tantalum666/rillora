@@ -1,0 +1,86 @@
+{
+  "source": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonECS/current/eu-central-1/index.json",
+  "publicationDate": "2026-09-11T12:44:25Z",
+  "products": {
+    "N789HAYSJQFYU9GM": {
+      "sku": "N789HAYSJQFYU9GM",
+      "productFamily": "Compute",
+      "attributes": {
+        "servicecode": "AmazonECS",
+        "location": "EU (Frankfurt)",
+        "locationType": "AWS Region",
+        "tenancy": "Shared",
+        "usagetype": "EUC1-Fargate-ARM-GB-Hours",
+        "operation": "",
+        "cpuArchitecture": "ARM",
+        "memorytype": "perGB",
+        "regionCode": "eu-central-1",
+        "resource": "per GB per hour",
+        "servicename": "Amazon Elastic Container Service"
+      }
+    },
+    "9DKFRNBC4PAQNE7S": {
+      "sku": "9DKFRNBC4PAQNE7S",
+      "productFamily": "Compute",
+      "attributes": {
+        "servicecode": "AmazonECS",
+        "location": "EU (Frankfurt)",
+        "locationType": "AWS Region",
+        "tenancy": "Shared",
+        "usagetype": "EUC1-Fargate-ARM-vCPU-Hours:perCPU",
+        "operation": "",
+        "cpuArchitecture": "ARM",
+        "cputype": "perCPU",
+        "regionCode": "eu-central-1",
+        "resource": "per vCPU per hour",
+        "servicename": "Amazon Elastic Container Service"
+      }
+    }
+  },
+  "terms": {
+    "OnDemand": {
+      "9DKFRNBC4PAQNE7S": {
+        "9DKFRNBC4PAQNE7S.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "9DKFRNBC4PAQNE7S",
+          "effectiveDate": "2026-07-01T00:00:00Z",
+          "priceDimensions": {
+            "9DKFRNBC4PAQNE7S.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "9DKFRNBC4PAQNE7S.JRTCKXETXF.6YS6EN2CT7",
+              "description": "AWS Fargate - ARM - vCPU - EU (Frankfurt)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "hours",
+              "pricePerUnit": {
+                "USD": "0.0372500000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "N789HAYSJQFYU9GM": {
+        "N789HAYSJQFYU9GM.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "N789HAYSJQFYU9GM",
+          "effectiveDate": "2026-07-01T00:00:00Z",
+          "priceDimensions": {
+            "N789HAYSJQFYU9GM.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "N789HAYSJQFYU9GM.JRTCKXETXF.6YS6EN2CT7",
+              "description": "AWS Fargate - ARM - Memory - EU (Frankfurt)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "hours",
+              "pricePerUnit": {
+                "USD": "0.0040900000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      }
+    }
+  }
+}

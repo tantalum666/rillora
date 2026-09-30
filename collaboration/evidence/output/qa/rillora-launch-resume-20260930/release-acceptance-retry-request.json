@@ -1,0 +1,32 @@
+{
+  "cluster": "RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm",
+  "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionMigrationTask3A96A2B6:8",
+  "launchType": "FARGATE",
+  "count": 1,
+  "clientToken": "[REDACTED_SCANNER_LITERAL]",
+  "networkConfiguration": {
+    "awsvpcConfiguration": {
+      "subnets": [
+        "subnet-070c4a18e68f26f1d",
+        "subnet-0d218a58218e10e36"
+      ],
+      "securityGroups": [
+        "sg-0bdbb583c7d22b27a"
+      ],
+      "assignPublicIp": "ENABLED"
+    }
+  },
+  "overrides": {
+    "containerOverrides": [
+      {
+        "name": "Maintenance",
+        "command": [
+          "node",
+          "--input-type=module",
+          "-e",
+          "import pg from 'pg';import{readFileSync,readdirSync}from'node:fs';import{createHash}from'node:crypto';\nimport{loadDatabaseConfig}from'/app/dist/config.js';import{databaseConnectionOptions,withCommerceInboxDatabase,withAuthDatabase}from'/app/dist/db.js';\nimport{runRetentionBatch}from'/app/dist/retention.js';import{loadAppleReviewQuoteRows}from'/app/dist/apple-review-catalog.js';\nconst database=loadDatabaseConfig();\nif(!database.host?.startsWith('rillora-production.')||database.sslMode!=='verify-full'||process.env.CONTENT_KEY_NAMESPACE!=='rillora-production')throw Error('Wrong production boundary');\nconst admin=new pg.Pool({...databaseConnectionOptions(database),max:1});\nconst runtime=new pg.Pool({...databaseConnectionOptions({...database,user:process.env.RUNTIME_DATABASE_USER,password:process.env.RUNTIME_DATABASE_PASSWORD}),max:1});\ntry{\n const files=readdirSync('/app/migrations').filter(n=>/^\\d+_[a-z0-9_]+\\.sql$/.test(n)).sort();\n const rows=(await admin.query('select name,checksum from app.schema_migrations order by name')).rows;\n if(files.length!==91||rows.length!==91||files.some(n=>rows.find(r=>r.name===n)?.checksum!==createHash('sha256').update(readFileSync('/app/migrations/'+n)).digest('hex')))throw Error('Schema mismatch');\n const role=(await runtime.query(\"select current_user as role,pg_has_role(current_user,'continuity_retention_service','member') as can_assume_service,(select ssl from pg_stat_ssl where pid=pg_backend_pid()) as tls\")).rows[0];\n if(role.can_assume_service||!role.tls)throw Error('Runtime privilege or TLS mismatch');\n const counts=(await admin.query(\"select (select count(*)::int from app.planners) as planners,(select count(*)::int from app.retention_holds) as holds,(select production_entitlements_enabled from app.commerce_runtime_policy) as live\")).rows[0];\n if(counts.live!==false)throw Error('Live sales unexpectedly active');\n const privilege=await withAuthDatabase(runtime,async client=>(await client.query(\"select has_column_privilege('continuity_auth','app.auth_transactions','reauth_failed_at','UPDATE') as reauth_status,has_column_privilege('continuity_auth','app.auth_sessions','authenticated_at','UPDATE') as auth_time\")).rows[0]);if(!privilege.reauth_status||!privilege.auth_time)throw Error('Missing bounded authentication privileges');\n const cleanup=await runRetentionBatch(runtime);\n const quote=await withCommerceInboxDatabase(runtime,c=>loadAppleReviewQuoteRows(c,{serviceMarketCode:'GLOBAL_US',storefrontCountryCode:'USA'}));\n if(quote.length!==1||Number(quote[0].amount_minor)!==6800||quote[0].route_code!=='global_us_ios_review_20260930')throw Error('Review quote mismatch');\n const version=JSON.parse(readFileSync('/app/node_modules/ip-address/package.json','utf8')).version;\n console.log(JSON.stringify({schema:'0091',checksumsMatched:91,runtimeRole:role.role,runtimeCanAssumeRetentionService:false,verifiedTls:true,\n  beforeCounts:counts,removed:cleanup,actualRuntimeRoleSweepPassed:true,reviewQuoteCount:quote.length,reviewAmountMinor:Number(quote[0].amount_minor),\n  ipAddressVersion:version,customerAccessOpened:false,realAppleTransaction:false}));\n}finally{await runtime.end();await admin.end();}\n"
+        ]
+      }
+    ]
+  }
+}

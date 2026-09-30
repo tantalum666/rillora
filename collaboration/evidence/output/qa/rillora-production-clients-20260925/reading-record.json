@@ -1,0 +1,22 @@
+{
+  "startedAt": "2026-09-25T08:05:38.531603+00:00",
+  "mode": "Continue authorized release engineering with existing complete reading baseline",
+  "baseline": "output/qa/rillora-release-readiness-20260919/full-read-completion.json",
+  "priorFocusedRecord": "output/qa/rillora-production-identity-20260924/reading-record.json",
+  "read": [
+    "AGENTS.md complete",
+    "current product/handoff/release-readiness and newest decisions/journey",
+    "apps/web/AGENTS.md complete",
+    "production stack/runtime source complete",
+    "current infrastructure README portions and existing full-reading baseline",
+    "native APIConfiguration/AppDependencies/SessionTokenStore/AccountDataModels and project Release settings",
+    "Web API/public experience/current unavailable flow and staging distribution source"
+  ],
+  "exclusions": "Dependencies/caches/generated QA; no new whole-project reread claimed",
+  "constraints": [
+    "No customer activation",
+    "No existing test account/data clearing",
+    "Keep original UI and annual-only offer",
+    "Keep FanPass and nested Web Git unchanged"
+  ]
+}

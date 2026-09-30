@@ -1,0 +1,34 @@
+TAP version 13
+# Subtest: official provider catalog covers the curated common platforms
+ok 1 - official provider catalog covers the curated common platforms
+  ---
+  duration_ms: 1.516625
+  type: 'test'
+  ...
+# Subtest: every provider link is HTTPS and uses an official host
+ok 2 - every provider link is HTTPS and uses an official host
+  ---
+  duration_ms: 0.2105
+  type: 'test'
+  ...
+# Subtest: Binance is described as a regional estate request, not a legacy contact
+ok 3 - Binance is described as a regional estate request, not a legacy contact
+  ---
+  duration_ms: 0.107166
+  type: 'test'
+  ...
+# Subtest: aliases, regional requirements and task-specific links stay accurate
+ok 4 - aliases, regional requirements and task-specific links stay accurate
+  ---
+  duration_ms: 0.204875
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 86.990292

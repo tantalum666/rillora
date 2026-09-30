@@ -1,0 +1,100 @@
+Unknown option(s): --parameters. These will be ignored. Run 'cdk --help' to see available options.
+bin/rillora.ts:53:8
+WARNING Parameters/Auth0DeletionClientId: Parameter 'Auth0DeletionClientId' is not referenced anywhere in the template (CloudFormation Validate)
+   RilloraStaging aws-cdk-lib.Stack
+   Acknowledge with 'CloudFormation-Validate::W2001'
+
+bin/rillora.ts:53:8
+WARNING Parameters/Auth0DeletionClientId: Parameter 'Auth0DeletionClientId' is not referenced anywhere in the template (CloudFormation Validate)
+   RilloraStaging aws-cdk-lib.Stack
+   Acknowledge with 'CloudFormation-Validate::W2001'
+start: Building RilloraStaging Template
+success: Built RilloraStaging Template
+start: Publishing RilloraStaging Template (133857166372-eu-central-1-7e466237)
+success: Published RilloraStaging Template (133857166372-eu-central-1-7e466237)
+Hold on while we create a read-only change set to get a diff with accurate replacement information (use --method=template to use a less accurate but faster template-only diff)
+
+Could not create a change set, will base the diff on template differences (run again with -v to see the reason)
+
+Stack RilloraStaging
+IAM Statement Changes
+┌───┬────────────────────────────────┬────────┬───────────────────────────────┬────────────────────────────┬───────────┐
+│   │ Resource                       │ Effect │ Action                        │ Principal                  │ Condition │
+├───┼────────────────────────────────┼────────┼───────────────────────────────┼────────────────────────────┼───────────┤
+│ + │ ${AccountDeletionClientSecret} │ Allow  │ secretsmanager:DescribeSecret │ AWS:${StagingOperatorRole} │           │
+│   │ ${WebOidcClientSecret8C81BEC4} │        │ secretsmanager:PutSecretValue │                            │           │
+├───┼────────────────────────────────┼────────┼───────────────────────────────┼────────────────────────────┼───────────┤
+│ - │ ${WebOidcClientSecret}         │ Allow  │ secretsmanager:DescribeSecret │ AWS:${StagingOperatorRole} │           │
+│   │                                │        │ secretsmanager:PutSecretValue │                            │           │
+└───┴────────────────────────────────┴────────┴───────────────────────────────┴────────────────────────────┴───────────┘
+(NOTE: There may be security-related changes not in this list. See https://github.com/aws/aws-cdk/issues/1299)
+
+Parameters
+[+] Parameter Auth0DeletionClientId Auth0DeletionClientId: {"Type":"String","Default":"","Description":"Dedicated M2M client with only delete:users"}
+[+] Parameter Auth0DeletionDomain Auth0DeletionDomain: {"Type":"String","Default":"rillora-dev.eu.auth0.com","AllowedPattern":"^[a-zA-Z0-9.-]+$"}
+
+Resources
+[+] AWS::SecretsManager::Secret AccountDeletionClientSecret AccountDeletionClientSecretE308ADC4
+[~] AWS::IAM::Policy StagingOperatorRole/DefaultPolicy StagingOperatorRoleDefaultPolicyCF77C65B
+ └─ [~] PolicyDocument
+     └─ [~] .Statement:
+         └─ @@ -152,9 +152,14 @@
+            [ ]     "secretsmanager:PutSecretValue"
+            [ ]   ],
+            [ ]   "Effect": "Allow",
+            [-]   "Resource": {
+            [-]     "Ref": "WebOidcClientSecret8C81BEC4"
+            [-]   },
+            [+]   "Resource": [
+            [+]     {
+            [+]       "Ref": "WebOidcClientSecret8C81BEC4"
+            [+]     },
+            [+]     {
+            [+]       "Ref": "AccountDeletionClientSecretE308ADC4"
+            [+]     }
+            [+]   ],
+            [ ]   "Sid": "ReplaceOnlyTheStagingWebOidcSecret"
+            [ ] },
+            [ ] {
+[~] AWS::ECS::TaskDefinition ApiTaskDefinition ApiTaskDefinition51EA709E replace
+ └─ [~] ContainerDefinitions (requires replacement)
+     └─ @@ -166,7 +166,7 @@
+        [ ]   "Timeout": 5
+        [ ] },
+        [ ] "Image": {
+        [-]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:7600b766a80c8cf20e4f9d1d0c44c5d66b839355892114d3e6310d7463cedaaf"
+        [+]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:5869cda993d01e022b07eeb4a2dd42c5913d0cab6d13ed310648ab5c8fccc341"
+        [ ] },
+        [ ] "LogConfiguration": {
+        [ ]   "LogDriver": "awslogs",
+[~] AWS::ECS::Service ApiService/Service ApiServiceC9037CF0
+ └─ [~] DesiredCount
+     ├─ [-] 1
+     └─ [+] 0
+[~] AWS::ECS::TaskDefinition MigrationTaskDefinition MigrationTaskDefinitionE89B136E replace
+ └─ [~] ContainerDefinitions (requires replacement)
+     └─ @@ -59,7 +59,7 @@
+        [ ] ],
+        [ ] "Essential": true,
+        [ ] "Image": {
+        [-]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:7600b766a80c8cf20e4f9d1d0c44c5d66b839355892114d3e6310d7463cedaaf"
+        [+]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:5869cda993d01e022b07eeb4a2dd42c5913d0cab6d13ed310648ab5c8fccc341"
+        [ ] },
+        [ ] "LogConfiguration": {
+        [ ]   "LogDriver": "awslogs",
+[~] Custom::CDKBucketDeployment WebDeployment/CustomResource WebDeploymentCustomResource08EEC474
+ └─ [~] SourceObjectKeys
+     └─ @@ -1,3 +1,3 @@
+        [ ] [
+        [-]   "3bbeb467b1925b25062029f9f994269fcc179bd5f81cb72413942026eb2be790.zip"
+        [+]   "f2dd47692d62fb8c5b3dea1e5859204bec0625dfcdcdf9a82f4bea713d99c209.zip"
+        [ ] ]
+
+Outputs
+[+] Output AccountDeletionClientSecretArn AccountDeletionClientSecretArn: {"Value":{"Ref":"AccountDeletionClientSecretE308ADC4"}}
+[~] Output ServiceDesiredCount ServiceDesiredCount: {"Value":"1"} to {"Value":"0"}
+
+
+
+✨  Number of stacks with differences: 1
+

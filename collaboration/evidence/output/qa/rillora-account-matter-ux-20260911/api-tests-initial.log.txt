@@ -1,0 +1,74 @@
+
+> continuity-api@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.10 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/api.integration.test.ts (48 tests | 3 failed) 2560ms
+     × exchanges an OIDC Code + PKCE transaction for an opaque local session 88ms
+     × revokes matter-scoped roles and invitations when their matter is archived 6ms
+     × generates a reviewed minimum-disclosure printable guide without retaining a server copy 20ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/api.integration.test.ts > Continuity API > exchanges an OIDC Code + PKCE transaction for an opaque local session
+Error: expected 201 "Created", got 400 "Bad Request"
+ ❯ tests/api.integration.test.ts:403:8
+    401|         status: "draft",
+    402|       })
+    403|       .expect(201);
+       |        ^
+    404|     const completedFirstUse = await agent.get("/v1/plan").expect(200);
+    405|     expect(completedFirstUse.body.plan.firstUseState).toBe("completed"…
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ Server.<anonymous> node_modules/supertest/lib/test.js:152:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/api.integration.test.ts > Continuity API > revokes matter-scoped roles and invitations when their matter is archived
+Error: expected 201 "Created", got 400 "Bad Request"
+ ❯ tests/api.integration.test.ts:1978:7
+    1976|         desiredOutcome: "close",
+    1977|       }),
+    1978|     ).expect(201);
+       |       ^
+    1979|     const assignment = await asDevelopmentPlanner(
+    1980|       request(app).post("/v1/role-assignments").send({
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ Server.<anonymous> node_modules/supertest/lib/test.js:152:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/api.integration.test.ts > Continuity API > generates a reviewed minimum-disclosure printable guide without retaining a server copy
+Error: expected 201 "Created", got 400 "Bad Request"
+ ❯ tests/api.integration.test.ts:2227:7
+    2225|         status: "draft",
+    2226|       }),
+    2227|     ).expect(201);
+       |       ^
+    2228|     const changedPreview = await asDevelopmentPlanner(
+    2229|       request(app).post("/v1/exports/start-here/printable").send({
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ Server.<anonymous> node_modules/supertest/lib/test.js:152:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed | 11 passed (12)
+      Tests  3 failed | 127 passed (130)
+   Start at  14:09:37
+   Duration  7.50s (transform 261ms, setup 0ms, import 1.70s, tests 4.47s, environment 1ms)
+

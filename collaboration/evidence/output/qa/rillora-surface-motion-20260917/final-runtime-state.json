@@ -1,0 +1,36 @@
+{
+  "completedAt": "2026-09-17T15:22:46.477880+00:00",
+  "status": "COMPLETE",
+  "webAsset": "f02cb4edb734a81fd0cea5f2f19e55158bdf1078a65ee8686ac25042923c75ed.zip",
+  "http": {
+    "passed": 17,
+    "total": 17
+  },
+  "ecs": {
+    "desired": 1,
+    "running": 1,
+    "pending": 0,
+    "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingApiTaskDefinitionF6347BA4:30",
+    "rollouts": [
+      "COMPLETED"
+    ],
+    "capacity": [
+      {
+        "capacityProvider": "FARGATE",
+        "weight": 1,
+        "base": 0
+      }
+    ]
+  },
+  "nativeEnvironment": {},
+  "nativeSimulator": "Rillora-Matrix-17-Pro",
+  "qaSimulator": "Shutdown",
+  "localPorts": [
+    4290,
+    4291
+  ],
+  "localServers": "Stopped",
+  "syntheticLocalDatabase": "Retained for repeatable QA",
+  "newDependencies": [],
+  "newRealAccountCeremonies": false
+}

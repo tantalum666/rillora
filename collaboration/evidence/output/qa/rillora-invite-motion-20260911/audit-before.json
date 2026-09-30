@@ -1,0 +1,25 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "screen": "Authenticated Overview",
+      "finding": "One progress card with nested metric cards, large unused area, record-only contact status routes only to Profile. No direct invite action."
+    },
+    {
+      "step": 2,
+      "screen": "Profile",
+      "finding": "Add trusted contact and Open invitation sit together under Trusted contacts. Incoming verb ambiguous; first action is subscription, not connecting a person."
+    },
+    {
+      "step": 3,
+      "screen": "New contact",
+      "finding": "Name/optional relationship form correctly continues to sharing, but New contact and Record only copy do not explain the link/QR outcome."
+    },
+    {
+      "step": 4,
+      "screen": "Received invitation (Owner attachment)",
+      "finding": "Two huge avatars and low-density pasted-link form. This is receiving only, but title Invitation lacks direction."
+    }
+  ],
+  "limitations": "Current cloud account read-only; no contact created or invitation sent. Synthetic runtime will validate mutation and permissions."
+}

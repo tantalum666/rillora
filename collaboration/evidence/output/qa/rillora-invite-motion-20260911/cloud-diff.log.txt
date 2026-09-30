@@ -1,0 +1,23 @@
+Unknown option(s): --parameters. These will be ignored. Run 'cdk --help' to see available options.
+start: Building RilloraStaging Template
+success: Built RilloraStaging Template
+start: Publishing RilloraStaging Template (133857166372-eu-central-1-a3b08820)
+success: Published RilloraStaging Template (133857166372-eu-central-1-a3b08820)
+Hold on while we create a read-only change set to get a diff with accurate replacement information (use --method=template to use a less accurate but faster template-only diff)
+
+Could not create a change set, will base the diff on template differences (run again with -v to see the reason)
+
+Stack RilloraStaging
+Resources
+[~] Custom::CDKBucketDeployment WebDeployment/CustomResource WebDeploymentCustomResource08EEC474
+ └─ [~] SourceObjectKeys
+     └─ @@ -1,3 +1,3 @@
+        [ ] [
+        [-]   "c8139ce5c964caacd3f98a7b363a6d931b321d9f5608f9d33beb500604f017ba.zip"
+        [+]   "3d798786ad0c494dca2c7c2db859af0e7af951cded7a70fb37695a775aa82767.zip"
+        [ ] ]
+
+
+
+✨  Number of stacks with differences: 1
+

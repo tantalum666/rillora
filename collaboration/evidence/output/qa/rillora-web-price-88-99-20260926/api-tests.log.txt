@@ -1,0 +1,207 @@
+
+> continuity-api@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/api.integration.test.ts (50 tests | 1 failed) 1469ms
+     × exposes the provider-neutral catalog as disabled commercial state 10ms
+ ❯ tests/production-commerce.integration.test.ts (10 tests | 8 failed) 302ms
+     × reserves one production order and immutable consent before checkout; return does not grant access 13ms
+     × reconciles a fast verified webhook through the owned consent, then deduplicates and rejects cross-environment events 2ms
+     × keeps already purchased management available while new sales are closed 6ms
+     × retains paid-period access on cancellation and revokes future entitlement after expiry 2ms
+     × does not sell a second subscription when an expired read-only provider subscription can resume renewal 7ms
+     × retries a verified transient failure from minimal inbox metadata without a raw webhook or a second grant 2ms
+     × removes access after a confirmed full refund for the current invoice without canceling the provider by inference 2ms
+     × does not remove a newly paid period when an older invoice refund arrives late 1ms
+Managed TLS certificate renewed.
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/api.integration.test.ts > Continuity API > exposes the provider-neutral catalog as disabled commercial state
+AssertionError: expected [ { …(4) }, { …(4) }, { …(4) }, …(4) ] to deeply equal [ { …(4) }, { …(4) }, { …(4) }, …(3) ]
+
+- Expected
++ Received
+
+@@ -33,6 +33,12 @@
+      "external_parent_product_reference": "prod_V6O8lAFbTCDmKd",
+      "external_product_reference": "price_1UHMlhCxTlowhyiGvBEPdb4x",
+      "provider_account_reference": "acct_1U6B2RCxTlowhyiG",
+      "status": "test_only",
+    },
++   {
++     "external_parent_product_reference": "prod_V6O8lAFbTCDmKd",
++     "external_product_reference": "price_1UJe38CxTlowhyiGdx5ypIKJ",
++     "provider_account_reference": "acct_1U6B2RCxTlowhyiG",
++     "status": "test_only",
++   },
+  ]
+
+ ❯ tests/api.integration.test.ts:733:33
+    731|        order by external_product_reference`,
+    732|     );
+    733|     expect(stripeBindings.rows).toEqual([
+       |                                 ^
+    734|       {
+    735|         external_product_reference: "price_1U6BMnCxTlowhyiGJEC1w596",
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+ FAIL  tests/production-commerce.integration.test.ts > production commerce ledger with a synthetic provider only > reserves one production order and immutable consent before checkout; return does not grant access
+TypeError: Cannot read properties of undefined (reading 'commerceAccountReference')
+ ❯ tests/production-commerce.integration.test.ts:116:298
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯
+
+ FAIL  tests/production-commerce.integration.test.ts > production commerce ledger with a synthetic provider only > reconciles a fast verified webhook through the owned consent, then deduplicates and rejects cross-environment events
+Error: expected 200 "OK", got 400 "Bad Request"
+ ❯ tests/production-commerce.integration.test.ts:129:137
+    127|   it('reconciles a fast verified webhook through the owned consent, th…
+    128|     await pool.query("delete from app.commerce_provider_object_links w…
+    129|     await request(app).post('/commerce/stripe/webhook').set('stripe-si…
+       |                                                                                                                                         ^
+    130|     await request(app).post('/api/commerce/stripe/webhook').set('strip…
+    131|     expect((await pool.query("select count(*)::int as count from app.c…
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯
+
+ FAIL  tests/production-commerce.integration.test.ts > production commerce ledger with a synthetic provider only > keeps already purchased management available while new sales are closed
+Error: expected 201 "Created", got 409 "Conflict"
+ ❯ tests/production-commerce.integration.test.ts:141:112
+    139|   it('keeps already purchased management available while new sales are…
+    140|     await pool.query("update app.commerce_market_policies set sales_en…
+    141|     await request(app).post('/api/v1/commerce/stripe/portal').set('x-d…
+       |                                                                                                                ^
+    142|     await postCheckout(consent,'production-after-close-003').expect(40…
+    143|   });
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/9]⎯
+
+ FAIL  tests/production-commerce.integration.test.ts > production commerce ledger with a synthetic provider only > retains paid-period access on cancellation and revokes future entitlement after expiry
+Error: expected 200 "OK", got 400 "Bad Request"
+ ❯ tests/production-commerce.integration.test.ts:146:132
+    144|   it('retains paid-period access on cancellation and revokes future en…
+    145|     currentState.value = 'cancel_at_period_end';
+    146|     await request(app).post('/commerce/stripe/webhook').set('stripe-si…
+       |                                                                                                                                    ^
+    147|     const canceled = (await pool.query("select state,cancel_at_period_…
+    148|     expect(canceled).toMatchObject({state:'cancel_at_period_end',cance…
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/9]⎯
+
+ FAIL  tests/production-commerce.integration.test.ts > production commerce ledger with a synthetic provider only > does not sell a second subscription when an expired read-only provider subscription can resume renewal
+Error: expected 409 "Conflict", got 500 "Internal Server Error"
+ ❯ tests/production-commerce.integration.test.ts:157:82
+    155|     await pool.query("update app.commerce_market_policies set sales_en…
+    156|     currentState.mayRenew = true;
+    157|     const response = await postCheckout(consent,'production-paused-ren…
+       |                                                                                  ^
+    158|     expect(response.body.error.code).toBe('existing_subscription');
+    159|     expect(checkoutCall).toHaveBeenCalledTimes(2);
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/9]⎯
+
+ FAIL  tests/production-commerce.integration.test.ts > production commerce ledger with a synthetic provider only > retries a verified transient failure from minimal inbox metadata without a raw webhook or a second grant
+Error: expected 500 "Internal Server Error", got 400 "Bad Request"
+ ❯ tests/production-commerce.integration.test.ts:167:136
+    165|     const fetch = vi.spyOn(provider, 'retrieveAuthoritativeSubscriptio…
+    166|     fetch.mockRejectedValueOnce(new Error('synthetic provider timeout'…
+    167|     await request(app).post('/commerce/stripe/webhook').set('stripe-si…
+       |                                                                                                                                        ^
+    168|     const failure = (await pool.query("select processing_status from a…
+    169|     expect(failure.processing_status).toBe('failed');
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/9]⎯
+
+ FAIL  tests/production-commerce.integration.test.ts > production commerce ledger with a synthetic provider only > removes access after a confirmed full refund for the current invoice without canceling the provider by inference
+Error: expected 200 "OK", got 400 "Bad Request"
+ ❯ tests/production-commerce.integration.test.ts:179:134
+    177|   it('removes access after a confirmed full refund for the current inv…
+    178|     currentState.value = 'active'; currentState.mayRenew = true;
+    179|     await request(app).post('/commerce/stripe/webhook').set('stripe-si…
+       |                                                                                                                                      ^
+    180|     expect((await pool.query('select count(*)::int as count from app.c…
+    181|     await request(app).post('/commerce/stripe/webhook').set('stripe-si…
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/9]⎯
+
+ FAIL  tests/production-commerce.integration.test.ts > production commerce ledger with a synthetic provider only > does not remove a newly paid period when an older invoice refund arrives late
+Error: expected 200 "OK", got 400 "Bad Request"
+ ❯ tests/production-commerce.integration.test.ts:189:135
+
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/9]⎯
+
+
+ Test Files  2 failed | 27 passed (29)
+      Tests  9 failed | 235 passed (244)
+   Start at  02:46:46
+   Duration  21.86s (transform 609ms, setup 806ms, import 5.54s, tests 12.08s, environment 1ms)
+

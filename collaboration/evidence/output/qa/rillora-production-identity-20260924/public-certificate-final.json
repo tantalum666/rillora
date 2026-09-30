@@ -1,0 +1,52 @@
+{
+  "CertificateArn": "arn:aws:acm:us-east-1:133857166372:certificate/2cb5bc68-e923-440f-a4ca-4480a64a4ee0",
+  "DomainName": "www.rillora.xyz",
+  "SubjectAlternativeNames": [
+    "www.rillora.xyz"
+  ],
+  "DomainValidationOptions": [
+    {
+      "DomainName": "www.rillora.xyz",
+      "ValidationDomain": "www.rillora.xyz",
+      "ValidationStatus": "SUCCESS",
+      "ResourceRecord": {
+        "Name": "_f86c40220127103e13cf49437e95744c.www.rillora.xyz.",
+        "Type": "CNAME",
+        "Value": "_99f8a18da060037698d7f610d62f796c.wzccmgtwzk.acm-validations.aws."
+      },
+      "ValidationMethod": "DNS"
+    }
+  ],
+  "Serial": "08:03:75:64:ce:8c:27:33:3f:96:30:0f:42:e2:10:4b",
+  "Subject": "CN=www.rillora.xyz",
+  "Issuer": "Amazon",
+  "CreatedAt": "2026-09-24T10:37:41.982000+08:00",
+  "IssuedAt": "2026-09-24T10:46:31.097000+08:00",
+  "Status": "ISSUED",
+  "NotBefore": "2026-09-24T08:00:00+08:00",
+  "NotAfter": "2027-04-10T07:59:59+08:00",
+  "KeyAlgorithm": "[REDACTED_SCANNER_LITERAL]",
+  "SignatureAlgorithm": "SHA256WITHECDSA",
+  "InUseBy": [],
+  "Type": "AMAZON_ISSUED",
+  "KeyUsages": [
+    {
+      "Name": "DIGITAL_SIGNATURE"
+    },
+    {
+      "Name": "KEY_AGREEMENT"
+    }
+  ],
+  "ExtendedKeyUsages": [
+    {
+      "Name": "TLS_WEB_SERVER_AUTHENTICATION",
+      "OID": "1.3.6.1.5.5.7.3.1"
+    }
+  ],
+  "RenewalEligibility": "INELIGIBLE",
+  "Options": {
+    "CertificateTransparencyLoggingPreference": "ENABLED",
+    "Export": "DISABLED"
+  },
+  "CertificateKeyPairOrigin": "AWS_MANAGED"
+}

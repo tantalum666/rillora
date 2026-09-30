@@ -1,0 +1,20 @@
+[
+  {
+    "ResourceType": "AWS::SecretsManager::Secret",
+    "LogicalResourceIds": [
+      "RuntimeCredential871C86BA"
+    ],
+    "ResourceIdentifiers": [
+      "Id"
+    ]
+  },
+  {
+    "ResourceType": "AWS::Logs::LogGroup",
+    "LogicalResourceIds": [
+      "MaintenanceLogs61C6A99C"
+    ],
+    "ResourceIdentifiers": [
+      "LogGroupName"
+    ]
+  }
+]

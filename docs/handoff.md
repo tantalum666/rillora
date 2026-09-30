@@ -1,55 +1,51 @@
 # Rillora Current Handoff
 
-Status:13REVIEW FINDINGS LOCALLY REPAIRED; CLOUD ROLLOUT BLOCKED BY EXPIRED AWS SESSION
-Last updated: 2026-09-30 (Asia/Hong_Kong)
+Status: FULL WORK SNAPSHOT PREPARED; REMOTE PUBLICATION VERIFICATION IN PROGRESS
+Last updated: 2026-09-30 (Asia/Shanghai)
 
-## Current Owner task and scope
+## Current Owner task
 
-Owner supplied the September30Dot review and challenged code quality. The13findings
-are confirmed and repaired locally; previous independent-engineering-complete wording
-is withdrawn. Preserve current visual direction/full03brand,Free1/Family5,WebUS$88.99
-annual-only,conditional Apple prices,real data andFanPass.
+Owner explicitly requested all Rillora work in Git for possible Dot collaboration.
+Source alone is insufficient. The [collaboration entry point](../collaboration/README.md)
+and [source-control contract](source-control.md) cover source, documents, designed
+store images, release candidates, original QA, old histories and local checkpoints.
+Preserve existing UI/full03brand, Free1/Family5, Web88.99annual-only, conditional
+Apple prices, real data and FanPass.
 
-## Reading and completed work
+## Completed and evidence boundaries
 
-Reuse the165owned Markdown/29,003line [full reading ledger](../output/qa/rillora-launch-resume-20260930/full-read-completion.json).
-Current changes and proof are in[the repair contract](code-review-repair-20260930.md).
-Baseline main was296c7b53ad22ee7239aa037d7544b708c5b73703. NewAPI348,Web112,infra47,
-release guards23and native unit181pass;1prior StoreKit skip remains. All28current native
-UI cases have final passing outcomes across targeted corrections on one simulator.
-The initial failing runs remain in QA; no all-device/font sweep is claimed.
+Reuse the165owned Markdown/29,003line [full reading ledger](../output/qa/rillora-launch-resume-20260930/full-read-completion.json);
+this continuation records focused changed-document reads in the collaboration package.
+The complete work snapshot contains46,463files, deduplicated to19,990raw objects;
+8,876readable copies and6sealed archives cover prior ignored work. Every raw object
+and its catalog mapping passed local decrypt/hash verification. Readable evidence
+passed its own secret scan; exact current-source and remote checks are recorded in
+[the publication receipts](../collaboration/verification/), not inferred from preparation.
 
-Actual two-tab save rejection,51st-matter access and archived-draft recovery pass.
-A real native hit-target collision found during validation is repaired by separate
-Form rows. Duplicate contact queries are consolidated,retired UI code/test fallbacks
-removed,and a named disposable local UI fixture is available through qa:native-ui.
-CI's Node version now matches the production22.22.3runtime. Its Docker test databases
-carry an explicit disposable-fixture marker before migration;55focused guard/API cases
-pass locally after the container-address correction. Final remoteCI remains separately
-recorded in the closeout receipt.
+The [Dot review repair](code-review-repair-20260930.md) fixed all13reported issues.
+Source38307b0d0CI41passed: API349, Web112, infra47; prior native181pass/1existing
+StoreKit skip and28current UI cases passed across targeted simulator runs. This Git
+preservation task does not claim those native/browser tests were rerun. New closed
+IPA/Web/WWWcandidates and designed4iPhone/2iPadstore images are retained, not uploaded.
+Old Web14commit andlegal-site18commit histories have archival references; local old
+repositories remain intact. Archive encryption identity stays protected on the Owner's
+machine and is required for original-artifact recovery; credentials/real DB backups,
+whole-machine diagnostics and reproducible caches are explicitly excluded.
 
-The replacement [release candidates](../output/release/rillora-review-repair-20260930/README.md)
-include a strict-signed closed IPA and closed-product/publicWWWbundles. IPAhash
-5f98590d0034f4c8abffe7e154f699fa90cef037bbaa853ec34df1bc16d30ec7; no upload.
-Exact source push/CI and final cleanup states belong to[the closeout receipt](../output/qa/rillora-review-repair-20260930/closeout.json).
+## Remaining release blocker
 
-## Blocker and retained evidence
-
-AWSoperator,CDKsession andproduction-operator actually return session expired.
-One ordinary recovery attempt expired without completed login. Cloud changes have
-not been applied;API7/schema0091and currentWeb/WWWremain their prior observed
-checkpoint. All91applied migration files are unchanged. No new SES/SBP request,
-real user deletion,transaction or provider identity acceptance occurred.
-
-Prior runtime/vault/retention/restore evidence is retained in[the historical handoff](handoff-history-20260930-before-dot-review.md).
-The designed four-iPhone/two-iPad [store set](app-store-presentation-20260930.md) remains.
-Actual reviewer login/legal acceptance,enrollment,AppleSandbox purchase/restore/notifications,
-TestFlight/AppReview,final declarations,SBP fee/price and the existing SES reply remain
-separate gates. Owner-deferred merchant and physical-device facts remain parked.
+AWSoperator,CDKsession andproduction-operator actually expired in the prior repair
+workflow; an ordinary recovery attempt timed out. This task performs no new login,
+cloud deployment, migration or provider application. Production remains the last
+observed API7/schema0091with customer access closed. Local repairs are not deployed.
+Owner login/legal acceptance,review enrollment,real AppleSandbox purchase/restore/
+notifications,TestFlight/AppReview,SESreply/delivery,SBPfee andfinalAppleprice remain
+separate gates. Merchant/physical-device facts remain Owner-deferred.
 
 ## Single next step
 
-Restore the existing AWS session,then deploy only this repair's API,productionWeb/
-invitation router andWWWartifacts under the current closed-access policy and read back
-those exact versions. Do not rerun schema0091migrations or the completed unchanged
-acceptance work. Continue the prepared Owner/provider gates after this rollout.
+Finish the Git push and verify remote main, both history tags, actual LFS objects and
+the corresponding CI. Then resume the release path only after restoring the existing
+AWS session; deploy the repaired closed-access artifacts without rerunning schema0091
+or completed unchanged acceptance. [Previous handoff](handoff-history-20260930-before-full-git.md)
+is historical and does not create another active next step.

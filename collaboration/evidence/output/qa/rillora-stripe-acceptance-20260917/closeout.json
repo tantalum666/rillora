@@ -1,0 +1,36 @@
+{
+  "status": "Provider test and identified availability repair complete; remaining identity/alert/live gates explicit",
+  "modifiedImplementation": [
+    "infra/aws/lib/rillora-staging-stack.ts",
+    "infra/aws/test/rillora-staging-stack.test.ts"
+  ],
+  "updatedSpecs": [
+    "docs/commercial-completion-20260916.md",
+    "docs/monetization.md",
+    "docs/backend.md",
+    "docs/pricing-68-20260911.md",
+    "docs/infrastructure-roadmap.md",
+    "infra/aws/README.md",
+    "docs/solo-operations-and-portability.md",
+    "docs/quality-gates.md",
+    "docs/product.md"
+  ],
+  "decision": "docs/decision-log.md September17 entry: test acceptance and evidenced regular-capacity baseline within repair authorization",
+  "handoff": "docs/handoff.md",
+  "journey": "docs/journey/PROJECT_JOURNEY.md September17 entry",
+  "checks": {
+    "infra": 18,
+    "httpAndAssets": 41,
+    "postSwitchInvalidSignature": 400,
+    "provider": "provider-acceptance.json",
+    "cleanup": "cleanup-verification.json"
+  },
+  "links": {
+    "files": 77,
+    "links": 662,
+    "errors": [],
+    "checkedAt": "2026-09-17T10:20:30.998154+08:00"
+  },
+  "completedAt": "2026-09-17T10:20:30.998424+08:00",
+  "browser": "Original Rillora test invoice tab retained for review; temporary checkout/portal/diagnostic tabs closed"
+}

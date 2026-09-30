@@ -1,0 +1,8 @@
+{
+  "name": "rillora-snapshot-retention",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": { "test": "node --test retention.test.mjs" },
+  "dependencies": { "@aws-sdk/client-rds": "3.1137.0" }
+}

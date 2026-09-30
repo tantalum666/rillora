@@ -1,0 +1,160 @@
+{
+  "at": "2026-09-29T21:15:57.344159+00:00",
+  "status": "INDEPENDENT PRELAUNCH WORK COMPLETE; OWNER/PROVIDER GATES OPEN",
+  "ownerScope": "Complete prelaunch work outside Owner participation/confirmation and the existing AWS response wait.",
+  "reading": "full-read-completion.json",
+  "originalHead": "a98018f2d6caa45783d005747da637765d38afd6",
+  "sourceCommit": "73dd50d36988e6def406908beae1c984e70c4fa8",
+  "pushed": true,
+  "repositoryPrivateVerified": true,
+  "workingTreeClean": true,
+  "ci": {
+    "observedAt": "2026-09-29T21:09:11.612507+00:00",
+    "source": "existing authenticated GitHub Actions browser UI",
+    "runId": 36630649822,
+    "runNumber": 38,
+    "url": "https://github.com/tantalum666/rillora/actions/runs/36630649822",
+    "headSha": "73dd50d36988e6def406908beae1c984e70c4fa8",
+    "event": "push",
+    "branch": "main",
+    "status": "completed",
+    "conclusion": "success",
+    "durationSeconds": 109,
+    "jobs": [
+      {
+        "name": "source",
+        "status": "success",
+        "durationSeconds": 11
+      },
+      {
+        "name": "api",
+        "status": "success",
+        "durationSeconds": 104,
+        "testFilesPassed": 41,
+        "testsPassed": 341
+      },
+      {
+        "name": "web-and-infrastructure",
+        "status": "success",
+        "durationSeconds": 76,
+        "infrastructureTestFilesPassed": 7,
+        "infrastructureTestsPassed": 47
+      }
+    ],
+    "cliReadLimitation": "HTTP403 Actions permission unavailable; not session expiry; no scope expansion or new login"
+  },
+  "production": {
+    "mode": "restricted review",
+    "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRuntimeApiTask93405B31:7",
+    "running": 1,
+    "pending": 0,
+    "schema": "0091",
+    "checksumsMatched": 91,
+    "imageAsset": "fa2acc8e507192442b31e868d363bfe66970c33b5447a56077a1dcf00159a3f6",
+    "imageDigest": "sha256:9c2edc5106f37b2d15a1e9102311125de375dfbd06d6326412261914ffd90542",
+    "customerSalesOpen": false,
+    "ordinaryPlannersAtAcceptance": 0,
+    "reviewExpiry": "2026-10-06T17:08:57Z",
+    "realReviewLogin": false,
+    "enrolledReviewer": false,
+    "realAppleTransaction": false,
+    "retentionEnabled": true,
+    "successfulRecurringHeartbeats": 3,
+    "retentionAlarms": "3enabled/OK",
+    "identityServices": "active;exactscopedcredentials;disposableproviderdeletion204/404",
+    "receipts": [
+      "final-runtime-readback.json",
+      "release-acceptance-retry-result.json",
+      "final-http-readback.json",
+      "production-identity-services-installed.json",
+      "identity-service-token-probes.json",
+      "production-deletion-probe-result.json",
+      "retention-recurring-readback.json"
+    ]
+  },
+  "snapshotRetirement": {
+    "status": "active,exactresource/deadline/holdguards",
+    "deadline": "2026-12-21T16:13:05.877Z",
+    "deletionRequested": false,
+    "snapshotDeleted": false,
+    "receipt": "snapshot-cloud-result.json"
+  },
+  "currentValidation": {
+    "api": {
+      "passed": 341,
+      "failed": 0,
+      "skipped": 0,
+      "report": "api-final-regression.json"
+    },
+    "web": {
+      "passed": 107,
+      "report": "web-final-tests.log"
+    },
+    "infrastructure": {
+      "passed": 47,
+      "report": "infra-full-final-tests.log"
+    },
+    "nativeTargeted": {
+      "passed": 41,
+      "failed": 0,
+      "skipped": 0,
+      "report": "NativeRecentAuthenticationFinal.xcresult"
+    },
+    "releaseGuards": {
+      "passed": 21,
+      "report": "release-guard-tests.log"
+    },
+    "sourceScan": {
+      "reviewedNonSecrets": 27,
+      "unreviewed": 0,
+      "report": "source-scan-final.json"
+    },
+    "markdownLinks": {
+      "ownedFiles": 167,
+      "localLinks": 1667,
+      "missing": 0,
+      "report": "markdown-links.json"
+    },
+    "deployedSource": "182runtime/migration/packagefilesmatch;deployed-source-match.json"
+  },
+  "artifacts": {
+    "package": "../../release/rillora-20260930/README.md",
+    "screenshots": "6directJPEGs;accepted dimensions/noalpha;notuploaded",
+    "ipa": "distribution-final/Rillora.ipa",
+    "ipaSha256": "5aa2ad2e5b60bba4ff6c52ecb64f93520fcaf558c732ebb023a21e5f851b52e8",
+    "ipaSignedStrict": true,
+    "ipaDebuggable": false,
+    "ipaCustomerAccess": "NO",
+    "ipaUploaded": false,
+    "nativeInspection": "native-final-distribution-check.json",
+    "closedWebCandidate": "../../release/rillora-20260930/web-production-closed",
+    "webRepublished": false
+  },
+  "cleanup": {
+    "normalSimulatorRestored": true,
+    "temporaryServersStopped": true,
+    "temporarySimulatorDevicesShutDown": true,
+    "isolatedFixtureDatabaseRetained": true,
+    "report": "local-qa-cleanup.json"
+  },
+  "preserved": [
+    "existing layout and brand",
+    "Web88.99annual-only;Apple conditional channel decision",
+    "actual data/history",
+    "existing Preview/WWW/legal published checkpoints",
+    "FanPass"
+  ],
+  "parkedGates": [
+    "Owner review login/affirmative terms/enrollment and actualprovider/devicejourneys",
+    "Apple Sandbox purchase/restore/notifications and real lifecycleacceptance",
+    "SES approval/actualmaildelivery via the originalcase;no duplicatecorrespondence",
+    "Owner-deferredmerchant/marketfacts and liveStripe",
+    "SBP effectivefee/finalAppleprice/declarations/reviewercontact/TestFlight/AppReview",
+    "Beforecustomercutoverretireoldtestgrantsandwait86400secondissuedtokensplusskew"
+  ],
+  "uniqueNextStep": "At the Owner participation window, complete restricted reviewer login and affirmative legal confirmation, then enrollment and actual Apple acceptance using the existing prepared runtime/catalog/artifacts.",
+  "documents": "documentation-closeout.json",
+  "handoff": "docs/handoff.md",
+  "closeout": "closeout.json",
+  "historicalProgress": "work-state-history.json"
+}

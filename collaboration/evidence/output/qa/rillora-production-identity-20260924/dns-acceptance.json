@@ -1,0 +1,176 @@
+{
+  "beforeCount": 20,
+  "afterCount": 26,
+  "unrelatedRecordsUnchanged": true,
+  "checks": [
+    {
+      "server": "ns73.domaincontrol.com",
+      "name": "uindmbdho6fsywhs2zc2qqpsxqlivufr._domainkey.notify",
+      "type": "CNAME",
+      "answer": "uindmbdho6fsywhs2zc2qqpsxqlivufr.dkim.amazonses.com.",
+      "matches": true
+    },
+    {
+      "server": "ns73.domaincontrol.com",
+      "name": "e72bxaidtogictet4f5ittbyyxfywrfl._domainkey.notify",
+      "type": "CNAME",
+      "answer": "e72bxaidtogictet4f5ittbyyxfywrfl.dkim.amazonses.com.",
+      "matches": true
+    },
+    {
+      "server": "ns73.domaincontrol.com",
+      "name": "4ki2lv3epotn2fmb7zj5wm6ky35lkwfl._domainkey.notify",
+      "type": "CNAME",
+      "answer": "4ki2lv3epotn2fmb7zj5wm6ky35lkwfl.dkim.amazonses.com.",
+      "matches": true
+    },
+    {
+      "server": "ns73.domaincontrol.com",
+      "name": "bounce.notify",
+      "type": "MX",
+      "answer": "10 feedback-smtp.eu-central-1.amazonses.com.",
+      "matches": true
+    },
+    {
+      "server": "ns73.domaincontrol.com",
+      "name": "bounce.notify",
+      "type": "TXT",
+      "answer": "\"v=spf1 include:amazonses.com -all\"",
+      "matches": true
+    },
+    {
+      "server": "ns73.domaincontrol.com",
+      "name": "_dmarc.notify",
+      "type": "TXT",
+      "answer": "\"v=DMARC1; p=reject; adkim=s; aspf=r;\"",
+      "matches": true
+    },
+    {
+      "server": "ns74.domaincontrol.com",
+      "name": "uindmbdho6fsywhs2zc2qqpsxqlivufr._domainkey.notify",
+      "type": "CNAME",
+      "answer": "uindmbdho6fsywhs2zc2qqpsxqlivufr.dkim.amazonses.com.",
+      "matches": true
+    },
+    {
+      "server": "ns74.domaincontrol.com",
+      "name": "e72bxaidtogictet4f5ittbyyxfywrfl._domainkey.notify",
+      "type": "CNAME",
+      "answer": "e72bxaidtogictet4f5ittbyyxfywrfl.dkim.amazonses.com.",
+      "matches": true
+    },
+    {
+      "server": "ns74.domaincontrol.com",
+      "name": "4ki2lv3epotn2fmb7zj5wm6ky35lkwfl._domainkey.notify",
+      "type": "CNAME",
+      "answer": "4ki2lv3epotn2fmb7zj5wm6ky35lkwfl.dkim.amazonses.com.",
+      "matches": true
+    },
+    {
+      "server": "ns74.domaincontrol.com",
+      "name": "bounce.notify",
+      "type": "MX",
+      "answer": "10 feedback-smtp.eu-central-1.amazonses.com.",
+      "matches": true
+    },
+    {
+      "server": "ns74.domaincontrol.com",
+      "name": "bounce.notify",
+      "type": "TXT",
+      "answer": "\"v=spf1 include:amazonses.com -all\"",
+      "matches": true
+    },
+    {
+      "server": "ns74.domaincontrol.com",
+      "name": "_dmarc.notify",
+      "type": "TXT",
+      "answer": "\"v=DMARC1; p=reject; adkim=s; aspf=r;\"",
+      "matches": true
+    },
+    {
+      "server": "1.1.1.1",
+      "name": "uindmbdho6fsywhs2zc2qqpsxqlivufr._domainkey.notify",
+      "type": "CNAME",
+      "answer": "uindmbdho6fsywhs2zc2qqpsxqlivufr.dkim.amazonses.com.",
+      "matches": true
+    },
+    {
+      "server": "1.1.1.1",
+      "name": "e72bxaidtogictet4f5ittbyyxfywrfl._domainkey.notify",
+      "type": "CNAME",
+      "answer": "e72bxaidtogictet4f5ittbyyxfywrfl.dkim.amazonses.com.",
+      "matches": true
+    },
+    {
+      "server": "1.1.1.1",
+      "name": "4ki2lv3epotn2fmb7zj5wm6ky35lkwfl._domainkey.notify",
+      "type": "CNAME",
+      "answer": "4ki2lv3epotn2fmb7zj5wm6ky35lkwfl.dkim.amazonses.com.",
+      "matches": true
+    },
+    {
+      "server": "1.1.1.1",
+      "name": "bounce.notify",
+      "type": "MX",
+      "answer": "10 feedback-smtp.eu-central-1.amazonses.com.",
+      "matches": true
+    },
+    {
+      "server": "1.1.1.1",
+      "name": "bounce.notify",
+      "type": "TXT",
+      "answer": "\"v=spf1 include:amazonses.com -all\"",
+      "matches": true
+    },
+    {
+      "server": "1.1.1.1",
+      "name": "_dmarc.notify",
+      "type": "TXT",
+      "answer": "\"v=DMARC1; p=reject; adkim=s; aspf=r;\"",
+      "matches": true
+    },
+    {
+      "server": "8.8.8.8",
+      "name": "uindmbdho6fsywhs2zc2qqpsxqlivufr._domainkey.notify",
+      "type": "CNAME",
+      "answer": "uindmbdho6fsywhs2zc2qqpsxqlivufr.dkim.amazonses.com.",
+      "matches": true
+    },
+    {
+      "server": "8.8.8.8",
+      "name": "e72bxaidtogictet4f5ittbyyxfywrfl._domainkey.notify",
+      "type": "CNAME",
+      "answer": "e72bxaidtogictet4f5ittbyyxfywrfl.dkim.amazonses.com.",
+      "matches": true
+    },
+    {
+      "server": "8.8.8.8",
+      "name": "4ki2lv3epotn2fmb7zj5wm6ky35lkwfl._domainkey.notify",
+      "type": "CNAME",
+      "answer": "4ki2lv3epotn2fmb7zj5wm6ky35lkwfl.dkim.amazonses.com.",
+      "matches": true
+    },
+    {
+      "server": "8.8.8.8",
+      "name": "bounce.notify",
+      "type": "MX",
+      "answer": "10 feedback-smtp.eu-central-1.amazonses.com.",
+      "matches": true
+    },
+    {
+      "server": "8.8.8.8",
+      "name": "bounce.notify",
+      "type": "TXT",
+      "answer": "\"v=spf1 include:amazonses.com -all\"",
+      "matches": true
+    },
+    {
+      "server": "8.8.8.8",
+      "name": "_dmarc.notify",
+      "type": "TXT",
+      "answer": "\"v=DMARC1; p=reject; adkim=s; aspf=r;\"",
+      "matches": true
+    }
+  ],
+  "allDnsMatch": true
+}

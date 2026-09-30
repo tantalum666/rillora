@@ -1,0 +1,56 @@
+{
+  "ConfigurationSetName": "rillora-transactional",
+  "DeliveryOptions": {
+    "TlsPolicy": "REQUIRE"
+  },
+  "ReputationOptions": {
+    "ReputationMetricsEnabled": true
+  },
+  "SendingOptions": {
+    "SendingEnabled": true
+  },
+  "Tags": [
+    {
+      "Key": "Project",
+      "Value": "Rillora"
+    },
+    {
+      "Key": "aws:cloudformation:stack-name",
+      "Value": "RilloraMail"
+    },
+    {
+      "Key": "Environment",
+      "Value": "Production"
+    },
+    {
+      "Key": "aws:cloudformation:logical-id",
+      "Value": "Transactional735D50ED"
+    },
+    {
+      "Key": "aws:cloudformation:stack-id",
+      "Value": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraMail/3602d2e0-b7be-11f1-9101-0a19edc724ed"
+    }
+  ],
+  "SuppressionOptions": {
+    "SuppressedReasons": [
+      "BOUNCE",
+      "COMPLAINT"
+    ],
+    "ValidationOptions": {
+      "ConditionThreshold": {
+        "ConditionThresholdEnabled": "DISABLED",
+        "OverallConfidenceThreshold": {
+          "ConfidenceVerdictThreshold": "MANAGED"
+        }
+      }
+    }
+  },
+  "VdmOptions": {
+    "DashboardOptions": {
+      "EngagementMetrics": "DISABLED"
+    },
+    "GuardianOptions": {
+      "OptimizedSharedDelivery": "DISABLED"
+    }
+  }
+}

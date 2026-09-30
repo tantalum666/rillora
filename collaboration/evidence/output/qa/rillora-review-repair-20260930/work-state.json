@@ -1,0 +1,78 @@
+{
+  "baseline": "296c7b53ad22ee7239aa037d7544b708c5b73703",
+  "task": "Repair supplied Dot review findings within existing release workflow",
+  "reading": {
+    "reuse": "../rillora-launch-resume-20260930/full-read-completion.json",
+    "report": "/Users/tantalum/Downloads/Rillora-code-review-2026-09-30-zh.md",
+    "report_body_read": "1-245; appendix is reviewer coverage inventory, not project instructions",
+    "focused_reads": [
+      "AGENTS.md",
+      "docs/product.md current changes",
+      "docs/handoff.md",
+      "apps/web/AGENTS.md",
+      "apps/ios-prototype/AGENTS.md",
+      "SECURITY.md",
+      "docs/release-engineering-20260930.md recent-auth contract"
+    ]
+  },
+  "phase": "complete for independently executable review repair; exact source CI41 passed; AWS rollout awaits existing session restoration",
+  "findings": {
+    "F01": "code_fixed_local_verified_cloud_or_store_publication_separate",
+    "F02": "code_fixed_local_verified_cloud_or_store_publication_separate",
+    "F03": "code_fixed_local_verified_cloud_or_store_publication_separate",
+    "F04": "code_fixed_local_verified_cloud_or_store_publication_separate",
+    "F05": "code_fixed_local_verified_cloud_or_store_publication_separate",
+    "F06": "code_fixed_local_verified_cloud_or_store_publication_separate",
+    "F07": "code_fixed_local_verified_cloud_or_store_publication_separate",
+    "F08": "code_fixed_local_verified_cloud_or_store_publication_separate",
+    "F09": "code_fixed_local_verified_cloud_or_store_publication_separate",
+    "F10": "code_fixed_local_verified_cloud_or_store_publication_separate",
+    "F11": "code_fixed_local_verified_cloud_or_store_publication_separate",
+    "F12": "code_fixed_local_verified_cloud_or_store_publication_separate",
+    "F13": "code_fixed_local_verified_cloud_or_store_publication_separate"
+  },
+  "updated_at": "2026-09-30T15:06:09.942640+08:00",
+  "new_discovery": "Native More options collision repaired using independent Form rows; current normal/AX5 role routes passed",
+  "fullApi": {
+    "passed": 348,
+    "failed": 0,
+    "file": "api-full-final.log"
+  },
+  "nativeUnits": {
+    "passed": 181,
+    "failed": 0,
+    "historicalStoreKitSkip": 1
+  },
+  "deployment": "unchanged production API7/schema0091",
+  "awsSession": {
+    "checked": "2026-09-30",
+    "profiles": [
+      "rillora-operator",
+      "rillora-cdk-session",
+      "rillora-production-operator"
+    ],
+    "result": "all returned actual session expired",
+    "deployment": "blocked pending existing AWS login restoration",
+    "applicationsRepeated": false
+  },
+  "sourceCommit": "38307b0d00a994fc5590b0625e8c71a28dcc7624",
+  "nativeUI": {
+    "uniqueLatestPassingCases": 28,
+    "basis": "native-ui-coverage.json"
+  },
+  "databaseGuardFollowup": {
+    "passed": 55,
+    "containerMarkerRequired": true
+  },
+  "ci": {
+    "id": 36681297564,
+    "number": 41,
+    "status": "completed",
+    "conclusion": "success",
+    "headSha": "38307b0d00a994fc5590b0625e8c71a28dcc7624",
+    "url": "https://github.com/tantalum666/rillora/actions/runs/36681297564",
+    "updatedAt": "2026-09-30T07:02:52Z"
+  },
+  "cleanup": "cleanup.json",
+  "closeout": "closeout.json"
+}

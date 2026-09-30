@@ -1,0 +1,67 @@
+{
+  "at": "2026-09-22T12:15:16.538289+00:00",
+  "basis": "Source-derived planning estimate, not measured velocity or committed delivery",
+  "units": "engineering workdays",
+  "fullE2EE": {
+    "packages": [
+      {
+        "id": "protocol",
+        "low": 2,
+        "high": 4
+      },
+      {
+        "id": "online_clients",
+        "low": 6,
+        "high": 10
+      },
+      {
+        "id": "scoped_sharing",
+        "low": 5,
+        "high": 8
+      },
+      {
+        "id": "recovery_migration",
+        "low": 5,
+        "high": 8
+      },
+      {
+        "id": "security_interop",
+        "low": 6,
+        "high": 10
+      }
+    ],
+    "low": 24,
+    "high": 40
+  },
+  "envelope": {
+    "low": 8,
+    "high": 15,
+    "packages": [
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        5
+      ],
+      [
+        3,
+        7
+      ]
+    ]
+  },
+  "confidence": "medium-low",
+  "sourceFilesCompared": 12,
+  "sourceChanges": [],
+  "runtimeChanged": false,
+  "testsRerun": false,
+  "architectureApproved": false,
+  "excluded": [
+    "other release work",
+    "external audit scheduling",
+    "platform review",
+    "physical device validation"
+  ],
+  "sourceHashesUsedAsDriftCheckNotReading": true
+}

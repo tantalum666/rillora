@@ -1,0 +1,452 @@
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/source-serif-4/500.css";
+@import "@fontsource/source-serif-4/600.css";
+
+:root {
+  --legacy-surface: #fffcf7;
+  --legacy-ink: #0b2742;
+  --legacy-body: #27303b;
+  --legacy-sage: #55775a;
+  --legacy-sage-soft: #e8efe2;
+  --legacy-clay: #cb704c;
+  --legacy-peach: #ffc79d;
+  --legacy-divider: #ddd5c8;
+}
+
+.legacy-mobile-app {
+  min-height: 100%;
+  position: relative;
+  overflow: hidden;
+  background: var(--legacy-surface);
+  color: var(--legacy-body);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.legacy-scroll {
+  min-height: 100%;
+  background: var(--legacy-surface);
+}
+
+.mobile-content {
+  min-height: 100%;
+  padding: 50px 22px calc(92px + var(--mobile-safe-area-height));
+}
+
+.mobile-eyebrow,
+.mobile-section-label {
+  margin: 0;
+  color: #4c704f;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.mobile-hero h1,
+.mobile-secondary h1,
+.mobile-progress h2 {
+  font-family: "Source Serif 4", Georgia, serif;
+  color: var(--legacy-ink);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+.mobile-hero h1,
+.mobile-secondary h1 {
+  margin: 10px 0 8px;
+  font-size: 32px;
+  line-height: 1.05;
+}
+
+.mobile-hero > p:last-of-type,
+.secondary-copy {
+  margin: 0;
+  color: #303a48;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.mobile-primary,
+.mobile-secondary,
+.mobile-text-action,
+.mobile-matter-row,
+.mobile-contact-row,
+.mobile-tab-bar button,
+.mobile-guide-card button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.mobile-primary {
+  width: 100%;
+  min-height: 52px;
+  margin-top: 16px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--legacy-clay);
+  color: #fffdf9;
+  font-weight: 500;
+}
+
+.mobile-primary:active {
+  background: #b95f40;
+}
+
+.mobile-text-action {
+  min-height: 42px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  background: transparent;
+  color: #456c4b;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.mobile-progress {
+  margin-top: 12px;
+  padding: 17px 0 18px;
+  border-top: 1px solid var(--legacy-divider);
+  border-bottom: 1px solid var(--legacy-divider);
+}
+
+.mobile-progress h2 {
+  margin: 10px 0 8px;
+  font-size: 24px;
+  line-height: 1.05;
+}
+
+.mobile-progress-track {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+}
+
+.mobile-progress-track span {
+  height: 8px;
+  border-radius: 99px;
+  background: #e4ded2;
+}
+
+.mobile-progress-track span.complete {
+  background: #6f9071;
+}
+
+.progress-note {
+  margin: 9px 0 0;
+  color: #545d60;
+  font-size: 13px;
+}
+
+.mobile-matters {
+  padding: 16px 0 0;
+}
+
+.mobile-matters .mobile-section-label,
+.mobile-contact .mobile-section-label {
+  margin-bottom: 7px;
+}
+
+.mobile-matter-row {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 0;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) 18px 14px;
+  align-items: center;
+  gap: 9px;
+  border: 0;
+  border-bottom: 1px solid var(--legacy-divider);
+  background: transparent;
+  color: var(--legacy-ink);
+  text-align: left;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.mobile-matter-icon {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--legacy-sage-soft);
+  color: #34563d;
+}
+
+.mobile-matter-icon svg {
+  width: 17px;
+  height: 17px;
+}
+
+.mobile-complete-icon {
+  color: var(--legacy-sage);
+}
+
+.mobile-missing-dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--legacy-peach);
+}
+
+.mobile-chevron {
+  color: #70736f;
+}
+
+.mobile-contact {
+  padding: 16px 0 18px;
+}
+
+.mobile-contact-row {
+  width: 100%;
+  min-height: 58px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr) 16px;
+  align-items: center;
+  gap: 11px;
+  border: 0;
+  background: transparent;
+  color: var(--legacy-ink);
+  text-align: left;
+}
+
+.mobile-avatar {
+  width: 49px;
+  height: 49px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #708f72;
+  color: #fff;
+  font-size: 17px;
+}
+
+.mobile-contact-copy,
+.sheet-contact-card > span:last-child {
+  display: grid;
+  gap: 5px;
+}
+
+.mobile-contact-copy strong {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.mobile-contact-copy small,
+.sheet-contact-card small {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #686b68;
+  font-size: 11px;
+}
+
+.mobile-contact-copy small svg,
+.sheet-contact-card small svg {
+  color: var(--legacy-sage);
+}
+
+.mobile-tab-bar {
+  height: calc(68px + var(--mobile-safe-area-height));
+  padding: 7px 12px var(--mobile-safe-area-height);
+  position: absolute;
+  z-index: 8;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: start;
+  border-top: 1px solid var(--legacy-divider);
+  background: rgba(255, 252, 247, 0.97);
+}
+
+.mobile-tab-bar button {
+  min-width: 44px;
+  min-height: 51px;
+  padding: 3px 0;
+  display: grid;
+  place-items: center;
+  align-content: start;
+  gap: 5px;
+  border: 0;
+  background: transparent;
+  color: #696c69;
+  font-size: 9px;
+}
+
+.mobile-tab-bar button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.mobile-tab-bar button.active {
+  color: #496f4d;
+}
+
+.mobile-secondary {
+  padding-top: 50px;
+}
+
+.mobile-secondary .secondary-copy {
+  margin-bottom: 26px;
+}
+
+.mobile-secondary .mobile-progress {
+  margin-top: 30px;
+}
+
+.secondary-primary {
+  margin-top: 24px;
+}
+
+.secondary-matters {
+  padding-top: 12px;
+  border-top: 1px solid var(--legacy-divider);
+}
+
+.mobile-guide-card {
+  overflow: hidden;
+  border: 1px solid var(--legacy-divider);
+  border-radius: 10px;
+}
+
+.mobile-guide-card button {
+  width: 100%;
+  min-height: 72px;
+  padding: 0 15px;
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr) 16px;
+  align-items: center;
+  gap: 12px;
+  border: 0;
+  border-bottom: 1px solid var(--legacy-divider);
+  background: transparent;
+  color: var(--legacy-ink);
+  text-align: left;
+}
+
+.mobile-guide-card button:last-child {
+  border-bottom: 0;
+}
+
+.mobile-guide-card button > span {
+  display: grid;
+  gap: 4px;
+}
+
+.mobile-guide-card small {
+  color: #6b706e;
+}
+
+.legacy-sheet-form,
+.mobile-check-list {
+  display: grid;
+  gap: 16px;
+}
+
+.legacy-sheet-form label {
+  display: grid;
+  gap: 7px;
+  color: var(--legacy-ink);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.legacy-sheet-form input {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 13px;
+  border: 1px solid #cfc7ba;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--legacy-body);
+  font: inherit;
+  font-weight: 400;
+}
+
+.sheet-safety {
+  padding: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  border-radius: 8px;
+  background: var(--legacy-sage-soft);
+  color: #31533a;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.sheet-primary {
+  margin-top: 4px;
+}
+
+.mobile-check-list label {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  border-bottom: 1px solid var(--legacy-divider);
+  color: var(--legacy-ink);
+  font-size: 12px;
+}
+
+.mobile-check-list input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--legacy-sage);
+}
+
+.sheet-contact-card {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.sheet-contact-note {
+  margin: 20px 0;
+  color: #525b65;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.mobile-outline {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid #b9c6b6;
+  border-radius: 8px;
+  background: transparent;
+  color: #456c4b;
+  font: inherit;
+}
+
+.mobile-toast {
+  min-height: 42px;
+  padding: 0 14px;
+  position: absolute;
+  z-index: 20;
+  right: 18px;
+  bottom: calc(78px + var(--mobile-safe-area-height));
+  left: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 8px;
+  background: var(--legacy-ink);
+  color: white;
+  font-size: 11px;
+  box-shadow: 0 8px 24px rgba(11, 39, 66, 0.2);
+}

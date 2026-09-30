@@ -1,0 +1,11 @@
+{
+  "resources": {
+    "Transactional735D50ED": "AWS::SES::ConfigurationSet",
+    "TransactionalAggregateDelivery2CBC4E84": "AWS::SES::ConfigurationSetEventDestination",
+    "Identity2D60E2CC": "AWS::SES::EmailIdentity",
+    "CDKMetadata": "AWS::CDK::Metadata"
+  },
+  "noCredentials": true,
+  "noRuntimeOrDatabaseChanges": true,
+  "productionSendingAccessUnchanged": true
+}

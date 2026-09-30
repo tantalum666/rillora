@@ -1,0 +1,68 @@
+{
+  "tasks": [
+    {
+      "attachments": [
+        {
+          "id": "655bf69a-d07a-409f-b789-943caf91fb68",
+          "type": "ElasticNetworkInterface",
+          "status": "PRECREATED",
+          "details": [
+            {
+              "name": "subnetId",
+              "value": "subnet-0610e7921274f95bd"
+            }
+          ]
+        }
+      ],
+      "attributes": [
+        {
+          "name": "ecs.cpu-architecture",
+          "value": "arm64"
+        }
+      ],
+      "availabilityZone": "eu-central-1b",
+      "clusterArn": "arn:aws:ecs:eu-central-1:133857166372:cluster/RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5",
+      "containers": [
+        {
+          "containerArn": "arn:aws:ecs:eu-central-1:133857166372:container/RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5/4d4438d75ffa4d72b782827a6c37f5cd/1da1cbda-dbd4-40b8-ad93-67cb8efbea60",
+          "taskArn": "arn:aws:ecs:eu-central-1:133857166372:task/RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5/4d4438d75ffa4d72b782827a6c37f5cd",
+          "name": "Migration",
+          "image": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1:337bee801e1931113de0ba45cb7a0cb3808d1afc8ebc28008ec28722f763e912",
+          "lastStatus": "PENDING",
+          "networkInterfaces": [],
+          "cpu": "0"
+        }
+      ],
+      "cpu": "256",
+      "createdAt": "2026-09-10T08:47:28.875000+08:00",
+      "desiredStatus": "RUNNING",
+      "enableExecuteCommand": false,
+      "group": "family:RilloraStagingMigrationTaskDefinitionD83F7D18",
+      "lastStatus": "PROVISIONING",
+      "launchType": "FARGATE",
+      "memory": "512",
+      "overrides": {
+        "containerOverrides": [
+          {
+            "name": "Migration"
+          }
+        ],
+        "inferenceAcceleratorOverrides": []
+      },
+      "platformVersion": "1.4.0",
+      "platformFamily": "Linux",
+      "startedBy": "rillora-sharing-20260910",
+      "tags": [],
+      "taskArn": "arn:aws:ecs:eu-central-1:133857166372:task/RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5/4d4438d75ffa4d72b782827a6c37f5cd",
+      "taskDefinitionArn": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingMigrationTaskDefinitionD83F7D18:13",
+      "version": 1,
+      "ephemeralStorage": {
+        "sizeInGiB": 20
+      },
+      "fargateEphemeralStorage": {
+        "sizeInGiB": 20
+      }
+    }
+  ],
+  "failures": []
+}

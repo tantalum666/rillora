@@ -1,0 +1,24 @@
+22:37:02.905 xcodebuild[62636:15383026] Sim Rillora-Matrix-13: Unregistering for sim device notification with token 3
+22:37:02.906 xcodebuild[62636:15383026] Calling -[SimDevice getenv:error:] for TESTMANAGERD_SIM_SOCK
+22:37:02.914 xcodebuild[62636:15383026] Sim Rillora-Matrix-13 has testmanagerd socket at /private/var/tmp/com.apple.launchd.bTesBGta8h/com.apple.testmanagerd.unix-domain.socket
+22:37:02.914 xcodebuild[62636:15383026] Validating test connection socket path (/private/var/tmp/com.apple.launchd.bTesBGta8h/com.apple.testmanagerd.unix-domain.socket)
+22:37:02.914 xcodebuild[62636:15383026] Constructing transport for test connection socket
+22:37:02.915 xcodebuild[62636:15383026] Connected socket 29 to testmanagerd for Sim Rillora-Matrix-13
+22:37:02.918 xcodebuild[62636:15383026] Initiating control session with IDE capabilities: <XCTCapabilities: 0x87e2ead30>: {
+}
+22:37:03.363 xcodebuild[62636:15382606] Got reply to control session initiation request (result:error): <XCTCapabilities: 0x87d95d260>: {
+    "authorize test session capability" = 1;
+    "automation mode" = 1;
+    "daemon container sandbox extension" = 1;
+    "initiate daemon control session capability" = 4;
+    "initiate test runner session capability" = 2;
+    "record UI interaction capability" = 2;
+    "recording events as source code" = 1;
+    "report crashes capability" = 1;
+    "request log archive capability" = 1;
+    "supports delayed attachment transfers" = 1;
+}: (null)
+22:37:03.363 xcodebuild[62636:15383026] Requesting crash report collection for process names: backboardd, xctest, DTServiceHub, RilloraLayoutMatrixTests, assertiond, Rillora, RilloraLayoutMatrixTests-Runner, testmanagerd, FrontBoard, runningboardd, debugserver, SpringBoard
+22:37:03.385 xcodebuild[62636:15382606] Got reply to crash report collection request (error: (null))
+22:37:13.491 xcodebuild[62636:15382606] Requesting authorization for pid 62862
+22:37:13.491 xcodebuild[62636:15383026] Got reply to authorization request for pid 62862 (result:error): 1: (null)

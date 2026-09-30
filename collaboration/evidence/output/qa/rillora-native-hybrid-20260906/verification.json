@@ -1,0 +1,89 @@
+{
+  "markdownRead": {
+    "files": 50,
+    "lines": 14408
+  },
+  "scope": "Rillora-Matrix-17-Pro / iOS 26.5 / Xcode 26.6",
+  "results": {
+    "unitFinalResult": {
+      "summary": {
+        "status": "SUCCEEDED",
+        "durationMs": 21517,
+        "counts": {
+          "passed": 106,
+          "failed": 0,
+          "skipped": 1
+        },
+        "target": "simulator"
+      },
+      "artifacts": {
+        "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-09-05T17-36-49-795Z_pid14424_c282f4ed.log",
+        "xcresultPath": "output/qa/rillora-native-hybrid-20260906/unit-tests-final.xcresult",
+        "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-09-05T17-36-49-795Z_pid14424_342fb5e0.xctestproducts"
+      },
+      "diagnostics": {
+        "warnings": [],
+        "errors": [],
+        "testFailures": []
+      }
+    },
+    "uiDefaultFinalResult": {
+      "summary": {
+        "status": "SUCCEEDED",
+        "durationMs": 110242,
+        "counts": {
+          "passed": 3,
+          "failed": 0,
+          "skipped": 0
+        },
+        "target": "simulator"
+      },
+      "artifacts": {
+        "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-09-05T17-39-35-311Z_pid14424_e9dc3477.log",
+        "xcresultPath": "output/qa/rillora-native-hybrid-20260906/ui-default-final.xcresult",
+        "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-09-05T17-39-35-311Z_pid14424_3248c1d1.xctestproducts"
+      },
+      "diagnostics": {
+        "warnings": [],
+        "errors": [],
+        "testFailures": []
+      }
+    },
+    "uiAX5FinalResult": {
+      "summary": {
+        "status": "SUCCEEDED",
+        "durationMs": 84455,
+        "counts": {
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0
+        },
+        "target": "simulator"
+      },
+      "artifacts": {
+        "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-09-05T17-29-51-890Z_pid14424_fb312bd9.log",
+        "xcresultPath": "output/qa/rillora-native-hybrid-20260906/ui-ax5-final.xcresult",
+        "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-09-05T17-29-51-891Z_pid14424_4b5f2b06.xctestproducts"
+      },
+      "diagnostics": {
+        "warnings": [],
+        "errors": [],
+        "testFailures": []
+      }
+    },
+    "releaseFinalResult": {
+      "summary": {
+        "status": "SUCCEEDED",
+        "durationMs": 47860,
+        "target": "simulator"
+      },
+      "artifacts": {
+        "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/build_sim_2026-09-05T17-37-11-401Z_pid14424_8c8a5112.log"
+      },
+      "diagnostics": {
+        "warnings": [],
+        "errors": []
+      }
+    }
+  }
+}

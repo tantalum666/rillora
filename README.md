@@ -1,8 +1,12 @@
 # Rillora — Digital Legacy & Estate Continuity / 数字遗产与事务连续性
 
-最后更新：2026-09-26（Asia/Hong_Kong）
+最后更新：2026-09-30（Asia/Shanghai）
 
-当前任务：Owner已要求持续推进到可上线，保留现有UI并审查长期可维护性。147份项目Markdown已完整阅读；AWS会话恢复，SES实际拒绝已由工单与Gmail交叉核对，具体原因未披露。Apple正式权威状态适配器已完成本地验证，真实交易、邮件替代及其他发布工作继续。见[当前交接](docs/handoff.md)和[发布合同](docs/release-readiness.md)。
+当前任务：按Owner要求保存所有Rillora工作，支持Git／Dot协作。请先看[完整协作入口](collaboration/README.md)、[保存范围与恢复方法](docs/source-control.md)和[当前交接](docs/handoff.md)。源码、设计与文档、发布候选、QA和历史都有目录；原件加密归档由Git LFS管理。
+
+最新发布边界：Dot报告的13项问题已本地修复；38307b0d0的CI41通过。修复尚未云端部署，AWS既有会话实际过期；生产最后观察为API7／schema0091、客户访问关闭。新商店设计已有四张iPhone和两张iPad图，尚未上传或获得最终视觉确认。本人验证、真实Apple交易、SES／SBP回复和最终发布仍分开验收。
+
+以下按日期保留项目沿革；涉及“当前”的旧检查点按原日期理解，最新状态只取[handoff](docs/handoff.md)。
 
 当前工程检查点：独立私有仓库 [tantalum666/rillora](https://github.com/tantalum666/rillora) 已推送审查后的源码基线，FanPass 和本地 Web Git 历史均保留。Owner授权后已直接升级 AWS Paid Plan；独立私有加密数据库、7天备份、独立密钥和恢复控制日志已建立并迁移。真实云端隔离恢复已通过本轮合成数据验收，临时资源已清理；客户流量仍关闭。见[生产与恢复](docs/production-recovery-20260923.md)、[源码和回滚](docs/source-control.md)、[当前交接](docs/handoff.md)。
 

@@ -1,0 +1,326 @@
+[
+  {
+    "key": "apple",
+    "label": "Apple",
+    "kind": "Set up + request",
+    "detail": "Name a Legacy Contact and share the access key.",
+    "doNow": [
+      "Open Settings › your name › Sign-In & Security › Legacy Contact.",
+      "Add the contact, share or print the access key, and confirm they received it."
+    ],
+    "later": [
+      "Open Apple Digital Legacy and submit the access key plus death certificate.",
+      "Follow any additional regional legal-document request from Apple."
+    ],
+    "requirements": [
+      "Legacy Contact access key",
+      "Death certificate",
+      "Possible regional legal documents"
+    ],
+    "boundary": "Apple does not release iCloud Keychain passwords, passkeys or payment information, and purchased media does not transfer through Legacy Contact.",
+    "links": [
+      [
+        "Set up Legacy Contact",
+        "https://support.apple.com/en-us/102631"
+      ],
+      [
+        "Request access",
+        "https://digital-legacy.apple.com/"
+      ]
+    ],
+    "reviewed": "20 Aug 2026"
+  },
+  {
+    "key": "google",
+    "label": "Google",
+    "kind": "Set up + request",
+    "detail": "Choose inactivity timing, contacts, data and deletion.",
+    "doNow": [
+      "Open Inactive Account Manager and choose the inactivity period.",
+      "Select up to ten contacts, the data each may receive, and whether to delete the account."
+    ],
+    "later": [
+      "Use Google’s deceased-user form for closure, funds or selected content.",
+      "Request content before closure; closing the account can prevent a later content request."
+    ],
+    "requirements": [
+      "Google Account identifier",
+      "Requestor identity",
+      "Death and relationship or authority evidence"
+    ],
+    "boundary": "Inactivity is not proof of death. Google never gives out passwords, and every deceased-user request is reviewed.",
+    "links": [
+      [
+        "Open Inactive Account Manager",
+        "https://myaccount.google.com/inactive"
+      ],
+      [
+        "Request help for a deceased user",
+        "https://support.google.com/accounts/troubleshooter/6357590?hl=en"
+      ]
+    ],
+    "reviewed": "20 Aug 2026"
+  },
+  {
+    "key": "meta",
+    "label": "Facebook & Instagram",
+    "kind": "Set up + request",
+    "detail": "Set Facebook memorialization; keep Instagram’s request route.",
+    "doNow": [
+      "In Facebook Accounts Centre, open Account ownership and control › Memorialisation.",
+      "Choose a Legacy Contact or Delete after death; record the Instagram profile separately."
+    ],
+    "later": [
+      "Use Facebook’s memorialization or removal process.",
+      "Use Instagram’s separate deceased-account form; never sign in as the deceased person."
+    ],
+    "requirements": [
+      "Profile URL",
+      "Proof of death",
+      "Relationship or estate authority for removal"
+    ],
+    "boundary": "A Facebook Legacy Contact cannot log in or read messages. Instagram does not publish the same Legacy Contact setting.",
+    "links": [
+      [
+        "Set Facebook Legacy Contact",
+        "https://www.facebook.com/help/1070665206293088"
+      ],
+      [
+        "Manage a deceased Facebook account",
+        "https://www.facebook.com/help/275013292838654"
+      ],
+      [
+        "Report a deceased Instagram account",
+        "https://www.facebook.com/help/264154560391256/"
+      ]
+    ],
+    "reviewed": "20 Aug 2026"
+  },
+  {
+    "key": "github",
+    "label": "GitHub",
+    "kind": "Set up + request",
+    "detail": "Invite a repository successor before access is needed.",
+    "doNow": [
+      "Open Settings › Account › Successor settings.",
+      "Invite another GitHub user and confirm they accepted."
+    ],
+    "later": [
+      "The successor or authorized person contacts GitHub Support and states the requested action.",
+      "Provide the username, relationship and requested identity, death or authority documents."
+    ],
+    "requirements": [
+      "GitHub username",
+      "Death certificate or obituary",
+      "Identity and authority evidence"
+    ],
+    "boundary": "A successor cannot sign in as the user and can manage only the public user-owned repository scope described by GitHub.",
+    "links": [
+      [
+        "Invite an account successor",
+        "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/repository-access-and-collaboration/maintaining-ownership-continuity-of-your-personal-accounts-repositories"
+      ],
+      [
+        "Read the deceased-user policy",
+        "https://docs.github.com/en/site-policy/other-site-policies/github-deceased-user-policy"
+      ]
+    ],
+    "reviewed": "20 Aug 2026"
+  },
+  {
+    "key": "password_manager",
+    "label": "Password managers",
+    "kind": "Set up now",
+    "detail": "Use the provider’s recovery or emergency-access design.",
+    "doNow": [
+      "For Bitwarden, invite and confirm an Emergency Access contact and wait period.",
+      "For 1Password Families, add another organizer, save the Emergency Kit and generate a recovery code."
+    ],
+    "later": [
+      "Bitwarden uses an approved or delayed emergency-access request.",
+      "1Password organizer recovery is account recovery, not a legal estate decision."
+    ],
+    "requirements": [
+      "Accepted contact or organizer",
+      "Provider recovery artifacts",
+      "Helper’s provider account"
+    ],
+    "boundary": "Emergency access can expose highly sensitive vault data and does not create legal authority. Never store a vault master password, Secret Key or recovery code in Rillora.",
+    "links": [
+      [
+        "Bitwarden Emergency Access",
+        "https://bitwarden.com/help/emergency-access/"
+      ],
+      [
+        "1Password family recovery plan",
+        "https://support.1password.com/family-recovery-plan/"
+      ]
+    ],
+    "reviewed": "20 Aug 2026"
+  },
+  {
+    "key": "microsoft",
+    "label": "Microsoft",
+    "kind": "Estate request",
+    "detail": "Outlook and OneDrive access depends on region and law.",
+    "doNow": [
+      "Record the account identifier and billing locator; Microsoft does not publish a consumer Legacy Contact setting."
+    ],
+    "later": [
+      "Use Microsoft’s deceased-account instructions for the account region.",
+      "Expect a court-order route for content in many regions; China and Germany have documented alternatives."
+    ],
+    "requirements": [
+      "Account identifier",
+      "Death certificate",
+      "Court order or region-specific authority documents"
+    ],
+    "boundary": "A request does not guarantee account content. Requirements vary materially by region.",
+    "links": [
+      [
+        "Read Microsoft’s deceased-account process",
+        "https://support.microsoft.com/en-us/account-billing/accessing-outlook-com-onedrive-and-other-microsoft-services-when-someone-has-died-ebbd2860-917e-4b39-9913-212362da6b2f"
+      ]
+    ],
+    "reviewed": "20 Aug 2026"
+  },
+  {
+    "key": "linkedin",
+    "label": "LinkedIn",
+    "kind": "Estate request",
+    "detail": "Memorialize the profile or request closure with authority.",
+    "doNow": [
+      "Record the profile URL, account email and preferred memorialize-or-close outcome."
+    ],
+    "later": [
+      "Report the death for memorialization, or request closure if legally authorized.",
+      "Submit the profile, death information and LinkedIn-accepted court authority documents."
+    ],
+    "requirements": [
+      "Profile URL and email",
+      "Obituary or death information",
+      "Court-issued estate authority for closure"
+    ],
+    "boundary": "LinkedIn never provides usernames or passwords. Memorialization locks access.",
+    "links": [
+      [
+        "Memorialize or close an account",
+        "https://www.linkedin.com/help/linkedin/answer/a1336663/memorialize-or-close-the-account-of-a-deceased-member?lang=en"
+      ]
+    ],
+    "reviewed": "20 Aug 2026"
+  },
+  {
+    "key": "x",
+    "label": "X",
+    "kind": "Estate request",
+    "detail": "An estate representative or close family member can request deactivation.",
+    "doNow": [
+      "Record the handle, profile URL and preferred outcome; do not plan around another person receiving access."
+    ],
+    "later": [
+      "Submit X’s removal request, then follow the emailed identity and death-certificate instructions."
+    ],
+    "requirements": [
+      "Account handle",
+      "Requestor ID",
+      "Death certificate",
+      "Estate authority or verified family relationship"
+    ],
+    "boundary": "X’s published route deactivates the account. It does not give another person account access.",
+    "links": [
+      [
+        "Contact X about a deceased user",
+        "https://help.x.com/en/rules-and-policies/contact-x-about-a-deceased-family-members-account"
+      ]
+    ],
+    "reviewed": "20 Aug 2026"
+  },
+  {
+    "key": "paypal",
+    "label": "PayPal",
+    "kind": "Estate request",
+    "detail": "An executor can request closure and balance handling.",
+    "doNow": [
+      "Record the primary email and exact PayPal country/entity without storing a payment credential."
+    ],
+    "later": [
+      "The executor follows PayPal’s regional deceased-account process.",
+      "Submit death, identity and estate-authority documents plus lawful balance instructions."
+    ],
+    "requirements": [
+      "Primary email",
+      "Death certificate",
+      "Executor ID",
+      "Will or estate appointment",
+      "Balance instructions"
+    ],
+    "boundary": "Requirements and balance options vary by PayPal entity and country. Do not impersonate the account holder.",
+    "links": [
+      [
+        "Read PayPal’s deceased-account steps",
+        "https://www.paypal.com/us/cshelp/article/how-do-i-close-the-paypal-account-of-a-deceased-relative-help220"
+      ]
+    ],
+    "reviewed": "20 Aug 2026"
+  },
+  {
+    "key": "coinbase",
+    "label": "Coinbase",
+    "kind": "Estate request",
+    "detail": "Use Executor Services; individual accounts do not name a beneficiary.",
+    "doNow": [
+      "Record the account email and cover the custodial assets in estate documents; never store password, 2FA or wallet seed."
+    ],
+    "later": [
+      "The claimant uses their own Coinbase account and opens Executor Services.",
+      "Upload the death, probate, ID and signed transfer instructions requested by Coinbase."
+    ],
+    "requirements": [
+      "Death certificate",
+      "Probate or estate appointment",
+      "Claimant ID",
+      "Signed transfer instructions"
+    ],
+    "boundary": "Estate documents or applicable succession law determine ownership; Coinbase reviews and transfers custodial assets.",
+    "links": [
+      [
+        "Claim a deceased Coinbase account",
+        "https://help.coinbase.com/en/coinbase/managing-my-account/other/how-do-i-gain-access-to-a-deceased-family-members-coinbase-account"
+      ]
+    ],
+    "reviewed": "20 Aug 2026"
+  },
+  {
+    "key": "binance",
+    "label": "Binance",
+    "kind": "Estate request",
+    "detail": "Start an inheritance case with the exact regional Binance entity.",
+    "doNow": [
+      "Record whether the account is Binance.com, Binance.US or another regional entity.",
+      "Include custodial exchange assets in estate documents; keep self-custody wallets and seeds separate."
+    ],
+    "later": [
+      "An executor or beneficiary starts a case with official support for the correct entity.",
+      "Provide the identity, death and estate-authority documents that entity requests."
+    ],
+    "requirements": [
+      "Exact Binance entity and account locator",
+      "Death certificate",
+      "Claimant ID",
+      "Will, probate or court authority"
+    ],
+    "boundary": "No public global Binance Legacy Contact switch was verified. This is an inheritance/support application, not permission to sign in as the deceased user.",
+    "links": [
+      [
+        "Open Binance support",
+        "https://www.binance.com/en/chat"
+      ],
+      [
+        "Read Binance.US deceased-user steps",
+        "https://support.binance.us/en/articles/10395308-collecting-funds-from-a-deceased-user-s-account"
+      ]
+    ],
+    "reviewed": "20 Aug 2026"
+  }
+]

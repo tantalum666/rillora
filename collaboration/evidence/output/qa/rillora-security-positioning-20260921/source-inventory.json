@@ -1,0 +1,78 @@
+{
+  "recordedAt": "2026-09-21T07:00:51.354180+00:00",
+  "collectionSha256": "4d0b8e9300ad3cac439bf1f1f19c277132eb9a2c26c0799b0a91158162ae20a3",
+  "sources": [
+    {
+      "id": "E01",
+      "title": "Staging encryption/network/roles",
+      "path": "infra/aws/lib/rillora-staging-stack.ts",
+      "sha256": "e2c188d79934dd7ddb086675f0c7f1eba6803c7a6b401eddb5c785aca0892061"
+    },
+    {
+      "id": "E02",
+      "title": "Matter read/write plaintext representation",
+      "path": "apps/api/src/routes.ts",
+      "sha256": "b8a117b5be1db8e759d32465f5a39509652a8dadb6b8ef27f94438660dc32622"
+    },
+    {
+      "id": "E03",
+      "title": "Database TLS and role transactions",
+      "path": "apps/api/src/db.ts",
+      "sha256": "e33f9843d65741f983b249900f152c35cc57b29d9c1c2af3d99ca7910468f1be"
+    },
+    {
+      "id": "E04",
+      "title": "Typed sessions and identity authentication",
+      "path": "apps/api/src/auth.ts",
+      "sha256": "bcfa4ce55f2af68b35851e856a43ae40dbed07e8c6d4f875a252c90f876cd0f5"
+    },
+    {
+      "id": "E05",
+      "title": "HTTP protection and log redaction",
+      "path": "apps/api/src/security.ts",
+      "sha256": "f2e1a859aa8854025dfc511c515e4805a952322176c77bae8fe921fea9765ffe"
+    },
+    {
+      "id": "E06",
+      "title": "Tenant RLS and Matter schema",
+      "path": "apps/api/migrations/0001_initial.sql",
+      "sha256": "306bc5404b2748f832287e2c2ba7d0f4f63b222a7951d4f0adb8260bc53bf473"
+    },
+    {
+      "id": "E07",
+      "title": "Saved authorized copies",
+      "path": "apps/api/migrations/0052_paid_snapshot_capture_boundaries.sql",
+      "sha256": "2d90d76771f5e85ca684ed0bfa6584c765362b03ee62703d7be315577bea53ae"
+    },
+    {
+      "id": "E08",
+      "title": "Browser draft persistence",
+      "path": "apps/web/src/matterDraftStorage.js",
+      "sha256": "719cd0b50edcc39f54fc59e2d68696fa418b0653b44aaf90dc98e8b9571fd55a"
+    },
+    {
+      "id": "E09",
+      "title": "Client-encrypted recovery package",
+      "path": "apps/web/src/startHereCrypto.js",
+      "sha256": "25d862807e149d7ac80fd3e6d86a0cd2ffadf35582d25a3df80a841db9fdf85e"
+    },
+    {
+      "id": "E10",
+      "title": "Native Keychain session",
+      "path": "apps/ios/Rillora/Core/Authentication/SessionTokenStore.swift",
+      "sha256": "d2e03858c22081fbbb7cb09d1b09a0f0d1a6e646f8e180b8b5172b6134f04c99"
+    },
+    {
+      "id": "E11",
+      "title": "Earlier same-day AWS configuration readback",
+      "path": "output/qa/rillora-annual-brand-capacity-20260921/capacity-live.json",
+      "sha256": "fd883b7823e15bb85d03d8c4f1f0886e2f7354319b276024acd220c558f363b7"
+    },
+    {
+      "id": "E12",
+      "title": "Earlier same-day cleanup/migration readback",
+      "path": "output/qa/rillora-annual-brand-capacity-20260921/capacity-final-check-logs.json",
+      "sha256": "eaa180bd27d6a4dfb95d6427ec9af17f4da43691b09ac2cdb9c5d27ba6477b61"
+    }
+  ]
+}

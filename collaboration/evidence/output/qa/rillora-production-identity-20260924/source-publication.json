@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-09-24T17:09:45.518321+00:00",
+  "commit": "f8d1344ce75bd92f7312dead5bfad058aceed5b5",
+  "remoteHead": "f8d1344ce75bd92f7312dead5bfad058aceed5b5",
+  "private": true,
+  "repository": "https://github.com/tantalum666/rillora",
+  "reviewedFiles": 44,
+  "ciRunUrl": "https://github.com/tantalum666/rillora/actions/runs/36031875706",
+  "ciStatus": "success",
+  "nestedWebGitPreserved": true,
+  "fanPassModified": false,
+  "initialCi": {
+    "url": "https://github.com/tantalum666/rillora/actions/runs/36031517629",
+    "commit": "af69a6e6a2c975fc4c52dd28302479d7a1fa3b6a",
+    "result": "failed",
+    "source": "passed",
+    "api": "212 passed",
+    "infra": "34 passed, 2 default-5000ms synthesis timeouts"
+  },
+  "ciFix": "Two workers retained; CDK synthesis tests have a20-second timeout. Resource assertions and15-minute job cap unchanged; local36pass.",
+  "ciDuration": "1m28s",
+  "ciJobs": {
+    "source": "success",
+    "api": "success,212tests",
+    "web-and-infrastructure": "success,Web/legal/public builds and36infra tests"
+  },
+  "documentationCommit": "30c125a0dcec7b8448eb90933651dc3af56f25c3",
+  "finalRemoteHead": "30c125a0dcec7b8448eb90933651dc3af56f25c3",
+  "documentationOnlyVerified": true,
+  "cleanWorkingTree": true
+}

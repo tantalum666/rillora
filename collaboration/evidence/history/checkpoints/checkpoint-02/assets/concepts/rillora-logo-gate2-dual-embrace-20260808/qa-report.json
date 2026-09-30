@@ -1,0 +1,517 @@
+{
+  "generatedAt": "2026-08-08",
+  "evidenceBoundary": "mechanical topology and raster-survival checks only; not semantic, cultural, optical, trademark, or Owner approval evidence",
+  "thresholds": {
+    "blackPixel": "< 128 grayscale",
+    "componentConnectivity": "4-neighbour",
+    "allowedFullSizeBalanceRatio": "[0.55, 0.90)",
+    "required32pxBlackComponents": 2
+  },
+  "variants": [
+    {
+      "id": "A1",
+      "label": "Quiet",
+      "series": "lobe-asymmetry",
+      "variable": {
+        "name": "lobeDepth",
+        "value": 0.62
+      },
+      "sizes": {
+        "32": {
+          "count": 2,
+          "twoLargestAreas": [
+            201,
+            198
+          ],
+          "balanceRatio": 0.9851
+        },
+        "64": {
+          "count": 2,
+          "twoLargestAreas": [
+            804,
+            800
+          ],
+          "balanceRatio": 0.995
+        },
+        "320": {
+          "count": 2,
+          "twoLargestAreas": [
+            20203,
+            20165
+          ],
+          "balanceRatio": 0.9981
+        }
+      },
+      "pass": false,
+      "warnings": [
+        "mass balance is too close to an equal taijitu split"
+      ]
+    },
+    {
+      "id": "A2",
+      "label": "Measured",
+      "series": "lobe-asymmetry",
+      "variable": {
+        "name": "lobeDepth",
+        "value": 0.82
+      },
+      "sizes": {
+        "32": {
+          "count": 2,
+          "twoLargestAreas": [
+            204,
+            193
+          ],
+          "balanceRatio": 0.9461
+        },
+        "64": {
+          "count": 2,
+          "twoLargestAreas": [
+            823,
+            779
+          ],
+          "balanceRatio": 0.9465
+        },
+        "320": {
+          "count": 2,
+          "twoLargestAreas": [
+            20655,
+            19600
+          ],
+          "balanceRatio": 0.9489
+        }
+      },
+      "pass": false,
+      "warnings": [
+        "mass balance is too close to an equal taijitu split"
+      ]
+    },
+    {
+      "id": "A3",
+      "label": "Embrace",
+      "series": "lobe-asymmetry",
+      "variable": {
+        "name": "lobeDepth",
+        "value": 1.02
+      },
+      "sizes": {
+        "32": {
+          "count": 2,
+          "twoLargestAreas": [
+            208,
+            189
+          ],
+          "balanceRatio": 0.9087
+        },
+        "64": {
+          "count": 2,
+          "twoLargestAreas": [
+            839,
+            755
+          ],
+          "balanceRatio": 0.8999
+        },
+        "320": {
+          "count": 2,
+          "twoLargestAreas": [
+            21098,
+            19014
+          ],
+          "balanceRatio": 0.9012
+        }
+      },
+      "pass": false,
+      "warnings": [
+        "mass balance is too close to an equal taijitu split"
+      ]
+    },
+    {
+      "id": "A4",
+      "label": "Deep",
+      "series": "lobe-asymmetry",
+      "variable": {
+        "name": "lobeDepth",
+        "value": 1.22
+      },
+      "sizes": {
+        "32": {
+          "count": 2,
+          "twoLargestAreas": [
+            213,
+            183
+          ],
+          "balanceRatio": 0.8592
+        },
+        "64": {
+          "count": 2,
+          "twoLargestAreas": [
+            858,
+            735
+          ],
+          "balanceRatio": 0.8566
+        },
+        "320": {
+          "count": 2,
+          "twoLargestAreas": [
+            21547,
+            18429
+          ],
+          "balanceRatio": 0.8553
+        }
+      },
+      "pass": true,
+      "warnings": []
+    },
+    {
+      "id": "B1",
+      "label": "Early",
+      "series": "pivot-rhythm",
+      "variable": {
+        "name": "pivotY",
+        "value": 142
+      },
+      "sizes": {
+        "32": {
+          "count": 2,
+          "twoLargestAreas": [
+            208,
+            190
+          ],
+          "balanceRatio": 0.9135
+        },
+        "64": {
+          "count": 2,
+          "twoLargestAreas": [
+            838,
+            762
+          ],
+          "balanceRatio": 0.9093
+        },
+        "320": {
+          "count": 2,
+          "twoLargestAreas": [
+            21050,
+            19105
+          ],
+          "balanceRatio": 0.9076
+        }
+      },
+      "pass": false,
+      "warnings": [
+        "mass balance is too close to an equal taijitu split"
+      ]
+    },
+    {
+      "id": "B2",
+      "label": "Lifted",
+      "series": "pivot-rhythm",
+      "variable": {
+        "name": "pivotY",
+        "value": 154
+      },
+      "sizes": {
+        "32": {
+          "count": 2,
+          "twoLargestAreas": [
+            206,
+            189
+          ],
+          "balanceRatio": 0.9175
+        },
+        "64": {
+          "count": 2,
+          "twoLargestAreas": [
+            834,
+            766
+          ],
+          "balanceRatio": 0.9185
+        },
+        "320": {
+          "count": 2,
+          "twoLargestAreas": [
+            20940,
+            19241
+          ],
+          "balanceRatio": 0.9189
+        }
+      },
+      "pass": false,
+      "warnings": [
+        "mass balance is too close to an equal taijitu split"
+      ]
+    },
+    {
+      "id": "B3",
+      "label": "Settled",
+      "series": "pivot-rhythm",
+      "variable": {
+        "name": "pivotY",
+        "value": 166
+      },
+      "sizes": {
+        "32": {
+          "count": 2,
+          "twoLargestAreas": [
+            206,
+            190
+          ],
+          "balanceRatio": 0.9223
+        },
+        "64": {
+          "count": 2,
+          "twoLargestAreas": [
+            829,
+            771
+          ],
+          "balanceRatio": 0.93
+        },
+        "320": {
+          "count": 2,
+          "twoLargestAreas": [
+            20816,
+            19361
+          ],
+          "balanceRatio": 0.9301
+        }
+      },
+      "pass": false,
+      "warnings": [
+        "mass balance is too close to an equal taijitu split"
+      ]
+    },
+    {
+      "id": "B4",
+      "label": "Late",
+      "series": "pivot-rhythm",
+      "variable": {
+        "name": "pivotY",
+        "value": 178
+      },
+      "sizes": {
+        "32": {
+          "count": 2,
+          "twoLargestAreas": [
+            203,
+            195
+          ],
+          "balanceRatio": 0.9606
+        },
+        "64": {
+          "count": 2,
+          "twoLargestAreas": [
+            823,
+            778
+          ],
+          "balanceRatio": 0.9453
+        },
+        "320": {
+          "count": 2,
+          "twoLargestAreas": [
+            20687,
+            19485
+          ],
+          "balanceRatio": 0.9419
+        }
+      },
+      "pass": false,
+      "warnings": [
+        "mass balance is too close to an equal taijitu split"
+      ]
+    },
+    {
+      "id": "C1",
+      "label": "Pronounced",
+      "series": "extended-lobe-asymmetry",
+      "variable": {
+        "name": "lobeDepth",
+        "value": 1.38
+      },
+      "sizes": {
+        "32": {
+          "count": 2,
+          "twoLargestAreas": [
+            218,
+            175
+          ],
+          "balanceRatio": 0.8028
+        },
+        "64": {
+          "count": 2,
+          "twoLargestAreas": [
+            872,
+            715
+          ],
+          "balanceRatio": 0.82
+        },
+        "320": {
+          "count": 2,
+          "twoLargestAreas": [
+            21896,
+            17956
+          ],
+          "balanceRatio": 0.8201
+        }
+      },
+      "pass": true,
+      "warnings": []
+    },
+    {
+      "id": "C2",
+      "label": "Weighted",
+      "series": "extended-lobe-asymmetry",
+      "variable": {
+        "name": "lobeDepth",
+        "value": 1.54
+      },
+      "sizes": {
+        "32": {
+          "count": 2,
+          "twoLargestAreas": [
+            220,
+            170
+          ],
+          "balanceRatio": 0.7727
+        },
+        "64": {
+          "count": 2,
+          "twoLargestAreas": [
+            884,
+            694
+          ],
+          "balanceRatio": 0.7851
+        },
+        "320": {
+          "count": 2,
+          "twoLargestAreas": [
+            22251,
+            17472
+          ],
+          "balanceRatio": 0.7852
+        }
+      },
+      "pass": true,
+      "warnings": []
+    },
+    {
+      "id": "C3",
+      "label": "Unequal",
+      "series": "extended-lobe-asymmetry",
+      "variable": {
+        "name": "lobeDepth",
+        "value": 1.7
+      },
+      "sizes": {
+        "32": {
+          "count": 2,
+          "twoLargestAreas": [
+            224,
+            166
+          ],
+          "balanceRatio": 0.7411
+        },
+        "64": {
+          "count": 2,
+          "twoLargestAreas": [
+            900,
+            680
+          ],
+          "balanceRatio": 0.7556
+        },
+        "320": {
+          "count": 2,
+          "twoLargestAreas": [
+            22601,
+            16997
+          ],
+          "balanceRatio": 0.752
+        }
+      },
+      "pass": true,
+      "warnings": []
+    },
+    {
+      "id": "C4",
+      "label": "Maximum",
+      "series": "extended-lobe-asymmetry",
+      "variable": {
+        "name": "lobeDepth",
+        "value": 1.86
+      },
+      "sizes": {
+        "32": {
+          "count": 2,
+          "twoLargestAreas": [
+            226,
+            161
+          ],
+          "balanceRatio": 0.7124
+        },
+        "64": {
+          "count": 2,
+          "twoLargestAreas": [
+            913,
+            658
+          ],
+          "balanceRatio": 0.7207
+        },
+        "320": {
+          "count": 2,
+          "twoLargestAreas": [
+            22957,
+            16510
+          ],
+          "balanceRatio": 0.7192
+        }
+      },
+      "pass": true,
+      "warnings": []
+    }
+  ],
+  "adjacentDifferences": [
+    {
+      "pair": "A1-A2",
+      "series": "lobe-asymmetry",
+      "changedPixelRatio320": 0.01684
+    },
+    {
+      "pair": "A2-A3",
+      "series": "lobe-asymmetry",
+      "changedPixelRatio320": 0.0171
+    },
+    {
+      "pair": "A3-A4",
+      "series": "lobe-asymmetry",
+      "changedPixelRatio320": 0.01705
+    },
+    {
+      "pair": "B1-B2",
+      "series": "pivot-rhythm",
+      "changedPixelRatio320": 0.02311
+    },
+    {
+      "pair": "B2-B3",
+      "series": "pivot-rhythm",
+      "changedPixelRatio320": 0.02311
+    },
+    {
+      "pair": "B3-B4",
+      "series": "pivot-rhythm",
+      "changedPixelRatio320": 0.02314
+    },
+    {
+      "pair": "C1-C2",
+      "series": "extended-lobe-asymmetry",
+      "changedPixelRatio320": 0.01502
+    },
+    {
+      "pair": "C2-C3",
+      "series": "extended-lobe-asymmetry",
+      "changedPixelRatio320": 0.01515
+    },
+    {
+      "pair": "C3-C4",
+      "series": "extended-lobe-asymmetry",
+      "changedPixelRatio320": 0.01523
+    }
+  ]
+}

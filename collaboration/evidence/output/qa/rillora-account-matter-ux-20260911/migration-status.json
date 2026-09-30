@@ -1,0 +1,12 @@
+{
+  "status": "STOPPED",
+  "reason": "Essential container in task exited",
+  "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingMigrationTaskDefinitionD83F7D18:15",
+  "containers": [
+    {
+      "name": "Migration",
+      "exit": 0,
+      "status": "STOPPED"
+    }
+  ]
+}

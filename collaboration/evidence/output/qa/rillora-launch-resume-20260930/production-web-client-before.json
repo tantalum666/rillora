@@ -1,0 +1,19 @@
+{
+  "checked_at": "2026-09-29T16:56:05.060712+00:00",
+  "data": {
+    "tenant": "rillora-dev",
+    "allowed_logout_urls": [
+      "https://app.rillora.xyz"
+    ],
+    "callbacks": [
+      "https://app.rillora.xyz/api/auth/callback"
+    ],
+    "name": "Rillora Production Web",
+    "oidc_conformant": true,
+    "client_id": "EcevpyKt1GELKwkLnVU3aCbh3Ix2SJhz",
+    "app_type": "regular_web",
+    "grant_types": [
+      "authorization_code"
+    ]
+  }
+}

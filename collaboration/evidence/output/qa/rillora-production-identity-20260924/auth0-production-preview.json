@@ -1,0 +1,79 @@
+{
+  "tenant": "rillora-dev.eu.auth0.com",
+  "applied": false,
+  "clients": {
+    "web": {
+      "name": "Rillora Production Web",
+      "app_type": "regular_web",
+      "callbacks": [
+        "https://app.rillora.xyz/api/auth/callback"
+      ],
+      "allowed_logout_urls": [
+        "https://app.rillora.xyz"
+      ],
+      "web_origins": [
+        "https://app.rillora.xyz"
+      ],
+      "token_endpoint_auth_method": "client_secret_post",
+      "grant_types": [
+        "authorization_code"
+      ],
+      "oidc_conformant": true,
+      "is_first_party": true,
+      "jwt_configuration": {
+        "alg": "RS256",
+        "lifetime_in_seconds": 900
+      },
+      "client_metadata": {
+        "environment": "production",
+        "release_state": "prepared"
+      }
+    },
+    "ios": {
+      "name": "Rillora Production iOS",
+      "app_type": "native",
+      "callbacks": [
+        "com.rillora.ios://login.rillora.xyz/ios/com.rillora.ios/callback"
+      ],
+      "allowed_logout_urls": [
+        "com.rillora.ios://login.rillora.xyz/ios/com.rillora.ios/callback"
+      ],
+      "token_endpoint_auth_method": "none",
+      "grant_types": [
+        "authorization_code"
+      ],
+      "oidc_conformant": true,
+      "is_first_party": true,
+      "jwt_configuration": {
+        "alg": "RS256",
+        "lifetime_in_seconds": 900
+      },
+      "client_metadata": {
+        "environment": "production",
+        "release_state": "prepared"
+      }
+    }
+  },
+  "api": {
+    "name": "Rillora Production API",
+    "identifier": "urn:rillora:production:api",
+    "signing_alg": "RS256",
+    "token_lifetime": 900,
+    "allow_offline_access": false,
+    "scopes": [
+      {
+        "value": "session:create",
+        "description": "Create a secure Rillora app session"
+      }
+    ]
+  },
+  "connectionsWillRemainDisabled": true,
+  "activationRequires": [
+    "staging identity retirement",
+    "reviewed cleanup",
+    "production email and provider acceptance",
+    "hosted consent",
+    "production Web/iOS deployment"
+  ],
+  "newPaidPlan": false
+}

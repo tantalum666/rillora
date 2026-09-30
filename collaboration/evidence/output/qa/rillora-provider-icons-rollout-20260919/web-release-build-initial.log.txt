@@ -1,0 +1,15 @@
+
+> web@0.0.0 build:release
+> node scripts/validate-legal-release.mjs && vite build --mode production && node scripts/prepare-sites-build.mjs
+
+file:///Users/tantalum/Documents/%E7%94%B5%E5%AD%90%E9%81%97%E5%98%B1app/apps/web/scripts/validate-legal-release.mjs:23
+  throw new Error(`Release legal configuration is incomplete: ${invalidFields.join(", ")}`);
+        ^
+
+Error: Release legal configuration is incomplete: VITE_LEGAL_OPERATOR_NAME, VITE_LEGAL_OPERATOR_COUNTRY, VITE_LEGAL_SERVICE_ADDRESS, VITE_LEGAL_SUPPORT_EMAIL, VITE_LEGAL_PRIVACY_EMAIL, VITE_LEGAL_SECURITY_EMAIL
+    at file:///Users/tantalum/Documents/%E7%94%B5%E5%AD%90%E9%81%97%E5%98%B1app/apps/web/scripts/validate-legal-release.mjs:23:9
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.3

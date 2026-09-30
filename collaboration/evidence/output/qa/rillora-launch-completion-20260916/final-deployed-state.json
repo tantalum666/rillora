@@ -1,0 +1,14 @@
+{
+  "stackStatus": "UPDATE_COMPLETE",
+  "desired": 1,
+  "running": 1,
+  "pending": 0,
+  "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingApiTaskDefinitionF6347BA4:28",
+  "migrationTaskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingMigrationTaskDefinitionD83F7D18:22",
+  "deployments": [
+    {
+      "rollout": "COMPLETED",
+      "status": "PRIMARY"
+    }
+  ]
+}

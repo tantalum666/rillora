@@ -1,0 +1,451 @@
+{
+  "startedAt": "2026-09-16T13:28:59.963017+00:00",
+  "excluded": [
+    "dependencies:node_modules/Pods/vendor",
+    "cache/build:.git/.build/DerivedData/.cache/dist/build/cdk.out",
+    "generated:output/playwright-report/test-results",
+    "protected generated artifacts:.local-secrets",
+    "apps/ios/.derived-data-architectural",
+    "apps/ios/.derived-data-first-use",
+    "apps/ios/.derived-data-first-use-ui",
+    "apps/ios/.derived-data-release",
+    "apps/ios/.derived-data-ui",
+    "apps/ios/.derived-data-ui-final",
+    "apps/ios/.derived-data-ui-run"
+  ],
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "lines": 82,
+      "sha256": "321e1bf37563f466aea4eda8e5e2024f0b8f6f05e0e59fda06a174a24db695a3"
+    },
+    {
+      "path": "docs/product.md",
+      "lines": 230,
+      "sha256": "26b26ae50b223bea39b5232a712008541c9f947f54b2975de1a29eb24cbe4225"
+    },
+    {
+      "path": "docs/handoff.md",
+      "lines": 34,
+      "sha256": "b3dd71fc2575c91a68a401b3ed86b2d9467d52d483ffc15c99dd4677a04aa9d2"
+    },
+    {
+      "path": "docs/monetization.md",
+      "lines": 515,
+      "sha256": "0e3e6a5b5a833b1ebc626d58fba9540891e8c23640dbb902e4898881a166b372"
+    },
+    {
+      "path": "docs/storekit.md",
+      "lines": 240,
+      "sha256": "5740f8f3e127225ae1a7788e957336fad39dfdb14a5186a0bc1f304e31d5a9f0"
+    },
+    {
+      "path": "docs/global-mainland-commerce-plan.md",
+      "lines": 433,
+      "sha256": "6d9ba0d1e2bf74b3318fa4b7472f4b739ef35401291d8700968ed861e907c0f9"
+    },
+    {
+      "path": "docs/individual-operator-launch-plan.md",
+      "lines": 261,
+      "sha256": "0d6bb793785c16007c04bdfe3de22eb66db1ef1fd69c842208b643590a4d20a2"
+    },
+    {
+      "path": "docs/trusted-sharing.md",
+      "lines": 131,
+      "sha256": "dcd0e8b8571958cd8ec3e98965458206b48ca3048eeeb4abb13265b117414f09"
+    },
+    {
+      "path": "docs/backend.md",
+      "lines": 263,
+      "sha256": "4dc90197753a84f21a30e8a9e4061b5e284d95c18c1ead8be44f0b143949eaa3"
+    },
+    {
+      "path": "DESIGN.md",
+      "lines": 271,
+      "sha256": "01435c7d0c910aaa4db2939d91c96dfcdf6ca118a9a1942de7be914e95cc0854"
+    },
+    {
+      "path": "README.md",
+      "lines": 88,
+      "sha256": "ff62f1479030071e0281e1983bf2bbf0282b293566c5b7bdec2511b43243f699"
+    },
+    {
+      "path": "SECURITY.md",
+      "lines": 244,
+      "sha256": "2915920e61ed887271b309e9873b725a70b141632c2116c0b91d3b520360c774"
+    },
+    {
+      "path": "apps/ios-prototype/AGENTS.md",
+      "lines": 73,
+      "sha256": "1f12a8b98431ef4c543ba11b15d10bf4241291a20213b97dcc1556e3bbfd00cb"
+    },
+    {
+      "path": "apps/ios-prototype/src/mobile/COMPONENTS.md",
+      "lines": 31,
+      "sha256": "678379569b09d9ab789d96e8030a0eebb6606b880d8ad5b74de513f8a7b2787b"
+    },
+    {
+      "path": "apps/web/AGENTS.md",
+      "lines": 21,
+      "sha256": "e90e2b499aff87807ee88a8c1de92b0e0b7cddeed15444fcf6cc5bb5c14cfec0"
+    },
+    {
+      "path": "assets/concepts/rillora-authenticated-motion-20260911/README.md",
+      "lines": 13,
+      "sha256": "db1b3f3f6a3f3a5e62304072188f8a4c77c5df171d646495492f17ea9fecd083"
+    },
+    {
+      "path": "assets/concepts/rillora-logo-gate2-dual-embrace-20260808/README.md",
+      "lines": 30,
+      "sha256": "58c3dadad49bb25e1402a3fb18a63feba17b04d0ed02a629c0e0bb7293ecdb82"
+    },
+    {
+      "path": "assets/concepts/rillora-public-motion-20260909/README.md",
+      "lines": 20,
+      "sha256": "fdc1b91a8465b7ba4e51bc821bb3a77ad2505441871b63bfec8e35c03e062572"
+    },
+    {
+      "path": "assets/concepts/rillora-trusted-sharing-20260909/README.md",
+      "lines": 16,
+      "sha256": "062fca3494a1bdabc50b074dbbb6fcfd9eab36c50f5c0fd510b70b0292ac1a1d"
+    },
+    {
+      "path": "assets/concepts/rillora-ui-directions-20260814/README.md",
+      "lines": 28,
+      "sha256": "5ae1c64fe43b17adec8f9d1cae93f35f8ca6fb42ddad50c97695ab171a4b8579"
+    },
+    {
+      "path": "design-qa.md",
+      "lines": 34,
+      "sha256": "18db96cd321b6805a4b3dd99dc57ec9bd93d495fd09bbb6a8f1a52f7434dcd51"
+    },
+    {
+      "path": "docs/account-matter-ux.md",
+      "lines": 57,
+      "sha256": "c0cb53bbcb02cd0c3bdae5a9ab3d7fd9cb6af178b56dabfcfe7ec75acfacfb24"
+    },
+    {
+      "path": "docs/apple-watch-death-signal-research.md",
+      "lines": 311,
+      "sha256": "936c5aa189048a4d2440917cd0363c737bbefe1603219a53f1f2ca1d7c71fe5e"
+    },
+    {
+      "path": "docs/asset-licenses.md",
+      "lines": 47,
+      "sha256": "469a1c494e5314b464499de60054fb7ce5bdb9990969ebe39f2ea1fdba605fa7"
+    },
+    {
+      "path": "docs/authentication-experience.md",
+      "lines": 619,
+      "sha256": "66907f087bb403d02aa575c2214a91d6bce3d4e99eb989f1917973995220fce2"
+    },
+    {
+      "path": "docs/blockchain.md",
+      "lines": 63,
+      "sha256": "ba6f772208c9bef37cb58f6e50907a7283965a722e095e42432b5e350ec2cbb8"
+    },
+    {
+      "path": "docs/competitor-ux-audit.md",
+      "lines": 694,
+      "sha256": "24033a080ee2cbc81eba452af9fee41cb441e9106dff018fbab9b6afeec1c7df"
+    },
+    {
+      "path": "docs/dark-ui-redesign-brief.md",
+      "lines": 121,
+      "sha256": "7791582fb831bad1c4180546384c3700f097e78442f59887f1cb1699a2d2d40d"
+    },
+    {
+      "path": "docs/death-verification-evidence-research.md",
+      "lines": 163,
+      "sha256": "9ac9138518e74ce31eaada237781c4eaeb918d9da724f93fdc099d8893e6dcb9"
+    },
+    {
+      "path": "docs/decision-log.md",
+      "lines": 2225,
+      "sha256": "c7dab663f123f5a9aada9dfc51bf43337b0608c2a8cc11cdca5ccd4f23abf813"
+    },
+    {
+      "path": "docs/disclosure-rehearsal.md",
+      "lines": 109,
+      "sha256": "ca72a6811f188545a7d07476e1ed5011a26b9c28ea947dfc29e5a6f9f5c3add7"
+    },
+    {
+      "path": "docs/family-maintenance.md",
+      "lines": 114,
+      "sha256": "e400f90f1129b5cadae73444ebd7dc004e18311e2e964aa9ac6127f09a4eca09"
+    },
+    {
+      "path": "docs/free-paid-ui-audit.md",
+      "lines": 153,
+      "sha256": "7af40f62256e9255c6788827be5f40c6a7897c1d15019b22dbe7376582953722"
+    },
+    {
+      "path": "docs/handoff-history-20260910.md",
+      "lines": 1894,
+      "sha256": "a4cba6ee4728b8d32ba224a4ab381db5faa4a8435c7190de8b2eb23b253ae8e5"
+    },
+    {
+      "path": "docs/handoff-history-20260911.md",
+      "lines": 116,
+      "sha256": "81a7f3775d80beb7c06c7caecdc985e437bdcd20fcb141be2662568c6529faf1"
+    },
+    {
+      "path": "docs/handoff-history-20260915-p1-start.md",
+      "lines": 32,
+      "sha256": "f251e3c6de4436a55ae2866725c126237e29e10210e9b8ff4b762591248ae515"
+    },
+    {
+      "path": "docs/handoff-history-20260915.md",
+      "lines": 33,
+      "sha256": "bca450f35578eb59b953453a43cd235fa0be93fbb956719bb9d63584226f3603"
+    },
+    {
+      "path": "docs/handoff-history-20260916-before-behavior-release.md",
+      "lines": 37,
+      "sha256": "6623f97d8d6254b7585d3fbf36e26b20429c8ab96eebb2201ef89fb2297f8114"
+    },
+    {
+      "path": "docs/handoff-history-20260916-before-ui-scope-correction.md",
+      "lines": 33,
+      "sha256": "d7d98aab1a00f31471b589ef008e3ef4b4ba6f75da085b04942733b4ef192dc7"
+    },
+    {
+      "path": "docs/handoff-history-20260916-p1-deployment.md",
+      "lines": 37,
+      "sha256": "304bce703f50dc6d8020c0049ed8eb30d664aaa50141541fe9bb15087be8cafc"
+    },
+    {
+      "path": "docs/identity-data-region.md",
+      "lines": 204,
+      "sha256": "3572de789bd641ebf347d1b9a9b2ef593afe906400726fb84050f17a46a3c9ef"
+    },
+    {
+      "path": "docs/infrastructure-roadmap.md",
+      "lines": 305,
+      "sha256": "08aabbcf0b6b9bb254775d7292434dfdf9d607b3f32d2f22bddfab80017dab9f"
+    },
+    {
+      "path": "docs/interaction-experience.md",
+      "lines": 77,
+      "sha256": "c3238413bc076b563677601a44b6a3801393ce99ccd710a909d0506d667ad125"
+    },
+    {
+      "path": "docs/invitation-motion-ux.md",
+      "lines": 69,
+      "sha256": "74b78e91015b298a19777eeb0bc64f5a1302a50a8ff2a868e797024bc258ce33"
+    },
+    {
+      "path": "docs/ios-external-payment-research.md",
+      "lines": 378,
+      "sha256": "d6836ed47a203dcee24bc2f0842b5bcf25a7b241ea51cfa26e15e6c89e6d4fb5"
+    },
+    {
+      "path": "docs/ios-layout-matrix.md",
+      "lines": 308,
+      "sha256": "1dccc4c096b0f6c94282329df3e51bc1bd71653358c006d2d704e4d752bf8904"
+    },
+    {
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "lines": 2247,
+      "sha256": "5f98fb43f051b3badc7dbabdebd7b5ad639649a970137ef32126837d93af5eba"
+    },
+    {
+      "path": "docs/legal-candidate-zh.md",
+      "lines": 436,
+      "sha256": "7e88a81084fd8e893875280dd6bbffee0c00b41e1aa335f89928a2f905cf1642"
+    },
+    {
+      "path": "docs/logo-ai-workflow.md",
+      "lines": 167,
+      "sha256": "ad1da17994aa8744b90cd9ade5538a88b9d5f16774618f8cd480498ea39454c7"
+    },
+    {
+      "path": "docs/logo-discovery.md",
+      "lines": 343,
+      "sha256": "1432a792d3e0d60e6272684d39063d3be343154363222eb7513b06b6eeb5d724"
+    },
+    {
+      "path": "docs/logo-form-brief.md",
+      "lines": 163,
+      "sha256": "d4fdc9fd64200626ce9749eb5f897189441ec3f775679a7cc76a805639e43f91"
+    },
+    {
+      "path": "docs/mvp.md",
+      "lines": 165,
+      "sha256": "ebddf3f62d87cceae858dbd0c12a94dee6e21cbe9201eca9d8bfffab3c24c1a7"
+    },
+    {
+      "path": "docs/p1-reliability-repair-20260915.md",
+      "lines": 54,
+      "sha256": "35aa25a71bb89f6991b73082011bc3d7dbec08349c493eaa02ec9522ace7268e"
+    },
+    {
+      "path": "docs/platform-contract.md",
+      "lines": 273,
+      "sha256": "391fe4305ce435e3d754046291f1e4d22968c81b90aea8eb454b61286a54b4f0"
+    },
+    {
+      "path": "docs/pricing-68-20260911.md",
+      "lines": 64,
+      "sha256": "7953a4ca815788f875bd0ac4b24c18b049f7b3afcf5fd10f37370865266a273f"
+    },
+    {
+      "path": "docs/pricing-band-20260910.md",
+      "lines": 84,
+      "sha256": "e67768cdb7fefe0ec8f9ba400e3fd96ee3fed5f78359c14f660234fc05509d8b"
+    },
+    {
+      "path": "docs/product-events.md",
+      "lines": 62,
+      "sha256": "e4549d2bd1e2ea9887e02d6277f3d0a0bcd6e9e5e93e924f6d46d82ec4410417"
+    },
+    {
+      "path": "docs/provider-death-account-guides.md",
+      "lines": 252,
+      "sha256": "0247681d11506b2737f69de5998a05d89052c27147913e35aa3fcf49cf8b0aa5"
+    },
+    {
+      "path": "docs/public-legal-pages.md",
+      "lines": 232,
+      "sha256": "23dd9aa9379c4d429e4aa9f48284141404e4e66d438952cc93d5dae517104e81"
+    },
+    {
+      "path": "docs/quality-gates.md",
+      "lines": 277,
+      "sha256": "409e44be0df940a0384d31cbe8b28473fbbf683df211a87d1bb3b0e543915a99"
+    },
+    {
+      "path": "docs/research.md",
+      "lines": 612,
+      "sha256": "05a15d4de79734efcf9257d42d22927b8c370b32b723bb2bad9aa9b7740bfc1e"
+    },
+    {
+      "path": "docs/role-assignment-policy.md",
+      "lines": 72,
+      "sha256": "f7668be436b8e316b6c00651a0bcaf7cf4a4d219c1b2e72accfffaabe5d579bd"
+    },
+    {
+      "path": "docs/solo-operations-and-portability.md",
+      "lines": 154,
+      "sha256": "dab0244d1e1c21ce6684a0b559ca7470b71d7260de00c9b0aec3b1d33b78fd40"
+    },
+    {
+      "path": "docs/start-here-export.md",
+      "lines": 158,
+      "sha256": "bbf3aa0a7117e5f4816229c8f65909ad69c91cf36784096c5c0f8e231979b8b2"
+    },
+    {
+      "path": "docs/trust-safety-legal.md",
+      "lines": 218,
+      "sha256": "d622b1ecabdeb97d7ab90d6074647e6e8b30b6447705fb5866bd0a0e300c4692"
+    },
+    {
+      "path": "docs/ui-ux-audit-20260915.md",
+      "lines": 256,
+      "sha256": "a7c5cdb620f42e8e9e9e9571fe81072978408b8f9386c5fabe976d8576058d32"
+    },
+    {
+      "path": "docs/unit-economics-history-20260910.md",
+      "lines": 403,
+      "sha256": "b79f5a5b30a28100e2d78ed8458cd3e22ac63affd2ede6759c901fed928c07cc"
+    },
+    {
+      "path": "docs/unit-economics-pricing-reset-history-20260910.md",
+      "lines": 146,
+      "sha256": "9c9fe313b4b0f5246afb5da64bc80ee4b8d37f65271df2803e3e6205e62418ac"
+    },
+    {
+      "path": "docs/unit-economics.md",
+      "lines": 120,
+      "sha256": "e21fb601b1f9f60237aa4ebae2b26df9e488fe565326e9ae33c7153f52565b5c"
+    },
+    {
+      "path": "docs/ux-behavior-repair-20260916.md",
+      "lines": 46,
+      "sha256": "cb3d4698d3fce28a1311dc6d8e0606062bf06fd3b6e2fe818be5bbe7ae7d0b6c"
+    },
+    {
+      "path": "infra/auth0/README.md",
+      "lines": 241,
+      "sha256": "6eb341524523c336592eb4944b81b1ee04724de242cb2fc7fa6c66fc4150a59d"
+    },
+    {
+      "path": "infra/auth0/hosted-consent/README.md",
+      "lines": 102,
+      "sha256": "a2cca56f63f5b50f4217c8b8f00a7da42a29bb635c2f4e1a135b29d0e62e07e9"
+    },
+    {
+      "path": "infra/aws/README.md",
+      "lines": 209,
+      "sha256": "f93274b588ad48d803dbf26a618d3bfe65b82f1b1a1f0149135eff8c1e308cb5"
+    },
+    {
+      "path": "qa/storekit-local-2026-08-20/09-lifecycle-observation.md",
+      "lines": 76,
+      "sha256": "450bacc903963177066f9aca193e058a78fcc1c8f8a00d07aad1ce697f1626e4"
+    }
+  ],
+  "read": [
+    {
+      "path": "AGENTS.md",
+      "start": 1,
+      "end": 82
+    },
+    {
+      "path": "docs/product.md",
+      "start": 1,
+      "end": 230
+    },
+    {
+      "path": "docs/handoff.md",
+      "start": 1,
+      "end": 34
+    },
+    {
+      "path": "docs/ux-behavior-repair-20260916.md",
+      "start": 1,
+      "end": 52
+    },
+    {
+      "path": "apps/web/AGENTS.md",
+      "start": 1,
+      "end": 21
+    }
+  ],
+  "workflow": "Continuation of whole-app audit-to-repair, including Owner-requested outstanding commercial work; no new design workflow",
+  "baseline": "../rillora-p2-repair-20260916/reading-continuity.json",
+  "fullBodyBaseline": "../rillora-complete-ui-ux-audit-20260915/full-read-completion.json",
+  "readingMode": "Reuse completed full-body baseline and prior continuation; focused recovery plus current changed files. Hashes do not substitute for reading.",
+  "recoveries": [
+    {
+      "at": "2026-09-17T00:17:49.871048+08:00",
+      "mode": "Compaction recovery; full-read baseline reused",
+      "read": [
+        {
+          "path": "AGENTS.md",
+          "range": "1-82"
+        },
+        {
+          "path": "docs/product.md",
+          "range": "1-234; 104-234 supplemental after truncated output"
+        },
+        {
+          "path": "docs/handoff.md",
+          "range": "1-28"
+        },
+        {
+          "path": "docs/decision-log.md",
+          "range": "2196-2233"
+        },
+        {
+          "path": "docs/commercial-completion-20260916.md",
+          "range": "1-28"
+        },
+        {
+          "path": "apps/web/AGENTS.md",
+          "range": "1-21"
+        }
+      ]
+    }
+  ]
+}

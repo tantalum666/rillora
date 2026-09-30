@@ -1,0 +1,105 @@
+{
+  "tasks": [
+    {
+      "attachments": [
+        {
+          "id": "655bf69a-d07a-409f-b789-943caf91fb68",
+          "type": "ElasticNetworkInterface",
+          "status": "DELETED",
+          "details": [
+            {
+              "name": "subnetId",
+              "value": "subnet-0610e7921274f95bd"
+            },
+            {
+              "name": "networkInterfaceId",
+              "value": "eni-09c69e6304268bb90"
+            },
+            {
+              "name": "macAddress",
+              "value": "06:55:cc:90:ca:87"
+            },
+            {
+              "name": "privateDnsName",
+              "value": "ip-10-42-1-162.eu-central-1.compute.internal"
+            },
+            {
+              "name": "privateIPv4Address",
+              "value": "10.42.1.162"
+            }
+          ]
+        }
+      ],
+      "attributes": [
+        {
+          "name": "ecs.cpu-architecture",
+          "value": "arm64"
+        }
+      ],
+      "availabilityZone": "eu-central-1b",
+      "clusterArn": "arn:aws:ecs:eu-central-1:133857166372:cluster/RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5",
+      "connectivity": "CONNECTED",
+      "connectivityAt": "2026-09-10T08:47:32.666000+08:00",
+      "containers": [
+        {
+          "containerArn": "arn:aws:ecs:eu-central-1:133857166372:container/RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5/4d4438d75ffa4d72b782827a6c37f5cd/1da1cbda-dbd4-40b8-ad93-67cb8efbea60",
+          "taskArn": "arn:aws:ecs:eu-central-1:133857166372:task/RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5/4d4438d75ffa4d72b782827a6c37f5cd",
+          "name": "Migration",
+          "image": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1:337bee801e1931113de0ba45cb7a0cb3808d1afc8ebc28008ec28722f763e912",
+          "imageDigest": "sha256:707d9a18eac270626d684e7639cdf87598f2728ce04690b6b360bcd71701f75e",
+          "runtimeId": "4d4438d75ffa4d72b782827a6c37f5cd-1480680139",
+          "lastStatus": "STOPPED",
+          "exitCode": 0,
+          "networkBindings": [],
+          "networkInterfaces": [
+            {
+              "attachmentId": "655bf69a-d07a-409f-b789-943caf91fb68",
+              "privateIpv4Address": "10.42.1.162"
+            }
+          ],
+          "healthStatus": "UNKNOWN",
+          "cpu": "0"
+        }
+      ],
+      "cpu": "256",
+      "createdAt": "2026-09-10T08:47:28.875000+08:00",
+      "desiredStatus": "STOPPED",
+      "enableExecuteCommand": false,
+      "executionStoppedAt": "2026-09-10T08:47:45.864000+08:00",
+      "group": "family:RilloraStagingMigrationTaskDefinitionD83F7D18",
+      "healthStatus": "UNKNOWN",
+      "lastStatus": "STOPPED",
+      "launchType": "FARGATE",
+      "memory": "512",
+      "overrides": {
+        "containerOverrides": [
+          {
+            "name": "Migration"
+          }
+        ],
+        "inferenceAcceleratorOverrides": []
+      },
+      "platformVersion": "1.4.0",
+      "platformFamily": "Linux",
+      "pullStartedAt": "2026-09-10T08:47:40.504000+08:00",
+      "pullStoppedAt": "2026-09-10T08:47:44.160000+08:00",
+      "startedAt": "2026-09-10T08:47:44.382000+08:00",
+      "startedBy": "rillora-sharing-20260910",
+      "stopCode": "EssentialContainerExited",
+      "stoppedAt": "2026-09-10T08:48:10.467000+08:00",
+      "stoppedReason": "Essential container in task exited",
+      "stoppingAt": "2026-09-10T08:47:55.900000+08:00",
+      "tags": [],
+      "taskArn": "arn:aws:ecs:eu-central-1:133857166372:task/RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5/4d4438d75ffa4d72b782827a6c37f5cd",
+      "taskDefinitionArn": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingMigrationTaskDefinitionD83F7D18:13",
+      "version": 5,
+      "ephemeralStorage": {
+        "sizeInGiB": 20
+      },
+      "fargateEphemeralStorage": {
+        "sizeInGiB": 20
+      }
+    }
+  ],
+  "failures": []
+}

@@ -1,0 +1,81 @@
+{
+    "Status": "UPDATE_IN_PROGRESS",
+    "Outputs": [
+        {
+            "OutputKey": "RecoverySecurityGroupId",
+            "OutputValue": "sg-09cdb1445e4e84d7e"
+        },
+        {
+            "OutputKey": "DatabaseIdentifier",
+            "OutputValue": "rillora-production"
+        },
+        {
+            "OutputKey": "ContentKeyArn",
+            "OutputValue": "arn:aws:kms:eu-central-1:133857166372:key/0f60cf8f-25b6-4e8e-94c5-03fc127a5b72"
+        },
+        {
+            "OutputKey": "MigrationSecurityGroupId",
+            "OutputValue": "sg-0bdbb583c7d22b27a"
+        },
+        {
+            "OutputKey": "ProductionVpcId",
+            "OutputValue": "vpc-07e1ea12ac1185897"
+        },
+        {
+            "OutputKey": "DatabaseHost",
+            "OutputValue": "rillora-production.cxcqa2usex01.eu-central-1.rds.amazonaws.com"
+        },
+        {
+            "OutputKey": "MaintenanceSubnetIds",
+            "OutputValue": "subnet-070c4a18e68f26f1d,subnet-0d218a58218e10e36"
+        },
+        {
+            "OutputKey": "MaintenanceLogGroup",
+            "OutputValue": "RilloraProduction-MaintenanceLogs61C6A99C-2niRZtkO9Ivq"
+        },
+        {
+            "OutputKey": "DatabaseSecurityGroupId",
+            "OutputValue": "sg-0176b4c45717eb1b7"
+        },
+        {
+            "OutputKey": "RecoveryDatabaseSecurityGroupId",
+            "OutputValue": "sg-0a2749f1ef2b22600"
+        },
+        {
+            "OutputKey": "RecoveryJournalTable",
+            "OutputValue": "RilloraProduction-RecoveryJournal06BB91CD-1EBHY2PWCGS9F"
+        },
+        {
+            "OutputKey": "ProductionTrafficReady",
+            "OutputValue": "false"
+        },
+        {
+            "OutputKey": "OperatorRoleArn",
+            "OutputValue": "arn:aws:iam::133857166372:role/rillora/rillora-production-operator"
+        },
+        {
+            "OutputKey": "DatabaseSubnetGroup",
+            "OutputValue": "rilloraproduction-databasesubnets-grsk2po0xunc"
+        },
+        {
+            "OutputKey": "RecoveryTaskDefinitionArn",
+            "OutputValue": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRecoveryTask4FA4E62D:2"
+        },
+        {
+            "OutputKey": "BackupRetentionDays",
+            "OutputValue": "7"
+        },
+        {
+            "OutputKey": "ClusterName",
+            "OutputValue": "RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm"
+        },
+        {
+            "OutputKey": "DatabaseParameterGroup",
+            "OutputValue": "rilloraproduction-postgresparameters8ea48b37-aidag1ktlvb3"
+        },
+        {
+            "OutputKey": "MigrationTaskDefinitionArn",
+            "OutputValue": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionMigrationTask3A96A2B6:2"
+        }
+    ]
+}

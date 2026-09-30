@@ -1,0 +1,223 @@
+{
+  "status": "HISTORICAL incremental work states; use work-state.json for current facts",
+  "capturedAt": "2026-09-29T21:15:57.342515+00:00",
+  "state": {
+    "at": "2026-09-29T21:09:11.614333+00:00",
+    "stage": "Independent prelaunch work complete; Owner/provider release gates parked",
+    "reading": "full-read-completion.json",
+    "originalHead": "a98018f2d6caa45783d005747da637765d38afd6",
+    "newChecks": {
+      "apiFocused": 11,
+      "infrastructureFocused": 7,
+      "hostedAction": 3,
+      "apiTypecheck": "passed after SKU preservation repair",
+      "apiBuild": "passed after SKU preservation repair",
+      "infrastructureTypecheck": "passed",
+      "apiReviewCatalogRegression": 12,
+      "operationsInfrastructure": 10,
+      "publicHealthChecker": 8
+    },
+    "deployment": {
+      "phase": "prepare",
+      "session": 91621,
+      "log": "prepare-deploy.log",
+      "closedRuntimePinnedTag": "4e75f2b26123145a0b6a7e8a04c4e1a33368d9d2e61d7582dfbb0df6b71933bb",
+      "newApiAssetTag": "[REDACTED_SCANNER_LITERAL]",
+      "migrationNotRun": true,
+      "prepare": "UPDATE_COMPLETE; API2 healthy1/1 retains old closed image",
+      "migration": "task4 exit0;86/86 checksums match confirmed by catalog job",
+      "catalog": "catalog-result.json, attempt1 rolled back; attempt2 exit0 preserves prior Web/Sandbox mappings",
+      "secrets": "review-secrets-installed.json,2AWSCURRENT version receipts, no key rotation",
+      "review": {
+        "session": 43123,
+        "log": "review-deploy.log",
+        "imageTag": "4fff99dbcd0f568e91cae8390c2e42e7addb4b9ed4f4dcfbf67a76667397be87",
+        "status": "UPDATE_COMPLETE; task3 COMPLETED 1/1",
+        "readback": "review-runtime-readback.json",
+        "http": "review-http-readback.json"
+      },
+      "monitor": {
+        "session": 82558,
+        "log": "monitor-deploy.log",
+        "reviewWorkerAlarms": "four sandbox alarms deployed; separate from inactive production worker",
+        "status": "UPDATE_COMPLETE; cloud invocation ok failed0"
+      }
+    },
+    "auth0": {
+      "actualCliReads": "valid",
+      "createConnection": "scope create:connections unavailable; no connection created",
+      "alternative": "existing database connection, unchanged options and existing bindings, restricted new production clients through Action/API",
+      "preparationSession": 63485,
+      "prepared": "auth0-review/identity-prepared.json",
+      "actualLoginVerified": false,
+      "expiresAt": "2026-10-06T17:08:57Z",
+      "noMailSent": true,
+      "newConnectionCreated": false
+    },
+    "mail": {
+      "report": "mail-readiness.json",
+      "latestMatchedCorrespondence": "2026-09-29T14:31:43Z own clarification receipt; no newer substantive message found in queried Gmail",
+      "noMailSent": true
+    },
+    "preserved": [
+      "UI",
+      "Web88.99 annual-only",
+      "Apple actual old test prices",
+      "real users and maps",
+      "FanPass",
+      "existing Preview deployment"
+    ],
+    "pending": [
+      "Owner-assisted restricted review login and affirmative legal confirmation, then enrollment and actualAppleSandboxacceptance",
+      "Existing AWS response/delivery and final price/declaration/merchant/device gates"
+    ],
+    "latestOwnerDirection": "Continue every independent prelaunch item; park steps needing Owner participation/confirmation and await AWS correspondence.",
+    "retention": {
+      "migration": "0087_bounded_retention.sql",
+      "cloudApplied": true,
+      "tests": 4,
+      "worker": "default off",
+      "latestFocusedConfigAndRetention": 9,
+      "migrationCloud": "retention-migration-result.json task6exit0",
+      "workerEnabled": true,
+      "localTests": "6retention+7recovery=13pass; heldmetadata is independently journaled, activehold lacksTTL; releasedholdTTL90days",
+      "cloudAcceptanceSession": 29355,
+      "image": "9996bef8e9f3888c9c8c2a320cfaaf13802f2c81092b998ba321ebee4460079c",
+      "cloudSchema": "0091",
+      "cloudAcceptance": "release-acceptance-retry-result.json",
+      "pendingMigrations": []
+    },
+    "docs": {
+      "handoff": "docs/handoff.md",
+      "archive": "docs/handoff-history-20260930-before-review-runtime.md",
+      "closeoutComplete": true
+    },
+    "snapshotRetirement": {
+      "source": "tools/snapshot-retention/",
+      "policy": "config/manual-snapshot-retention.json",
+      "inventory": "manual-snapshot-inventory.json",
+      "snapshots": 1,
+      "existingSnapshotDeleted": false,
+      "deadline": "2026-12-21T16:13:05.877Z",
+      "tests": 7,
+      "cloud": "deployed,managedtagsreadback,actualLambda reportretained_until_due failed0 overdue0 deleted0",
+      "guard": "exactARN,90daynotbeforeIAM,managedtag,holdtag,currentencryptedbackup<=24h",
+      "cloudResult": "snapshot-cloud-result.json",
+      "failedAttempt": "snapshot-cloud-result-attempt1.json",
+      "repair": "AWS SDK Date milliseconds retained; unknownhold values failclosed in code+IAM"
+    },
+    "native": {
+      "changed": [
+        "requiredAPIPrivacyInfo.xcprivacy UserDefaults CA92.1",
+        "Google callback routing nowrequiresnativeflagandexactscheme"
+      ],
+      "UIChanged": false,
+      "tests": "4passed0failed0skipped; NativePrivacyCallbacks.xcresult",
+      "archive": "Rillora-Privacy.xcarchive; ARCHIVE SUCCEEDED, export/strictverificationpending",
+      "sourceCollectedDataDisclosure": "separate inventory pending; addedmanifest doesnotclaimno data collection",
+      "oldArchivePreserved": true,
+      "ordinarySimulatorRestorePending": true
+    },
+    "dependencyAudit": {
+      "API": "ip-address10.4.0->10.7.2 viaexpress-rate-limit; one compatiblelock update",
+      "APIKnownVulnerabilities": 0,
+      "WebKnownVulnerabilities": 0,
+      "snapshotPackageKnownVulnerabilities": 0
+    },
+    "recoveryCommerce": {
+      "status": "implemented locally, tests passed; deployment/CLI checks pending",
+      "tests": "3recovery-ledger +4Stripefinancial; combined currentretention/recovery suite21pass",
+      "scope": "quarantined clone only; current provider refs in independentjournal; honest API-vs-signature evidence; fullrefund/dispute/invoice/charge checks; no livecharge/refundcalls",
+      "remaining": "seal CLI/source-freeze guard, missing/genuine provider evidence staysmanual; no newcloudrestoredrill planned"
+    },
+    "providerSessions": {
+      "aws": "working",
+      "auth0": "working at preparation",
+      "apple": "existingChrome session working",
+      "stripeDocsCLI": "401",
+      "stripeConnector": "reauthrequired;usedinstalledofficialSDKtypesforread-only implementation; no accountrelogin requested"
+    },
+    "nextImmediate": [
+      "run finalAPI/infra/source checks afterremainingfixes",
+      "deploy newAPI withworker off; apply0088/0089;verify thenenableboundedretentionworker+alarms preservingallreview/snapshotflags",
+      "finishnativeexport/privacyprocessinginventory/storemedia withsyntheticlocaldata",
+      "prepareproductionidentitydeletion/emailverificationservices ifexistingprivilegespermit;noSESsenduntilgate",
+      "closefocused docs/decisions/journey/releasegates/QA;scan/linkcheck;commitpushCI",
+      "parkactualreviewlogin/consent/realAppletransaction/notificationsapproval/finaldeclarations/business/device/SBP/SES"
+    ],
+    "finalPreparation": {
+      "deployed": "UPDATE_COMPLETE;API5;Migration7;Recovery7",
+      "schemaCloud": "0091",
+      "pendingMigrations": [],
+      "retentionEnabled": true,
+      "reauthentication": "API and client code implemented; new focused checks9pass; finalUI/fullsourceverification pending",
+      "identityServices": "active inruntime;exactscopedcredentials;realdisposableAuth0deletion204/404",
+      "currentRuntimeImage": "5714b1ad520da83835ceca41032301649de2c7ad1bba34260281670f02daf67e",
+      "apiFinalTests": {
+        "passed": 341,
+        "failed": 0,
+        "skipped": 0,
+        "report": "api-final-regression.json"
+      },
+      "nativeFocusedFinal": {
+        "passed": 41,
+        "failed": 0,
+        "skipped": 0,
+        "report": "NativeRecentAuthenticationFinal.xcresult"
+      },
+      "identityServiceTokenProbes": "identity-service-token-probes.json;2tokens scope exact;syntheticread;no delete/mail",
+      "apiImageAsset": "[REDACTED_SCANNER_LITERAL]",
+      "apiImageDigest": "sha256:9c2edc5106f37b2d15a1e9102311125de375dfbd06d6326412261914ffd90542",
+      "actualRuntimeAcceptance": "release-acceptance-retry-result.json:91checksums,TLS,limitedrole,rowsremoved0",
+      "webTests": 107,
+      "reauthUI": "reauthentication-ui-check.json;bothretainediting,DBgrantsunchanged",
+      "nativeFinalArchive": "Rillora-ReleasePrepared.xcarchive",
+      "nativeFinalIPA": "distribution-final/Rillora.ipa",
+      "nativeArtifactInspectionPending": false,
+      "runtimeReadback": "final-runtime-readback.json;API7COMPLETED1/1;threealarmsOK",
+      "nativeIPASha256": "5aa2ad2e5b60bba4ff6c52ecb64f93520fcaf558c732ebb023a21e5f851b52e8",
+      "screenshots": "6directJPEGcaptures;dimensionsandnoalpha verified;rawPNGpreserved",
+      "sourceScan": "source-scan-final.json;27reviewednonsecrets;0unreviewed",
+      "normalSimulatorRestored": true,
+      "recurringRetention": "retention-recurring-readback.json:observed repeating15minsuccessfulpasses",
+      "ci": "CI38success;exact73dd50d36988e6def406908beae1c984e70c4fa8"
+    },
+    "sourceCommit": "73dd50d36988e6def406908beae1c984e70c4fa8",
+    "ci": {
+      "observedAt": "2026-09-29T21:09:11.612507+00:00",
+      "source": "existing authenticated GitHub Actions browser UI",
+      "runId": 36630649822,
+      "runNumber": 38,
+      "url": "https://github.com/tantalum666/rillora/actions/runs/36630649822",
+      "headSha": "73dd50d36988e6def406908beae1c984e70c4fa8",
+      "event": "push",
+      "branch": "main",
+      "status": "completed",
+      "conclusion": "success",
+      "durationSeconds": 109,
+      "jobs": [
+        {
+          "name": "source",
+          "status": "success",
+          "durationSeconds": 11
+        },
+        {
+          "name": "api",
+          "status": "success",
+          "durationSeconds": 104,
+          "testFilesPassed": 41,
+          "testsPassed": 341
+        },
+        {
+          "name": "web-and-infrastructure",
+          "status": "success",
+          "durationSeconds": 76,
+          "infrastructureTestFilesPassed": 7,
+          "infrastructureTestsPassed": 47
+        }
+      ],
+      "cliReadLimitation": "HTTP403 Actions permission unavailable; not session expiry; no scope expansion or new login"
+    },
+    "closeout": "closeout.json"
+  }
+}

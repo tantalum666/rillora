@@ -1,0 +1,321 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "Rillora Individual Operator Launch Plan",
+    "description": "A staged personal-operator release, payment, market and later-company migration plan.",
+    "generatedAt": "2026-08-19T00:00:00+08:00",
+    "blocks": [
+      {
+        "id": "title",
+        "type": "markdown",
+        "layout": "full",
+        "body": "# Rillora Individual Operator Launch Plan\n\nPersonal operation through first public release, with truthful legal identity, staged market access and a migration path that does not recreate users or subscriptions."
+      },
+      {
+        "id": "executive-summary",
+        "type": "markdown",
+        "layout": "full",
+        "sourceId": "launch-plan",
+        "body": "## Executive Summary\n\nRillora can launch under an individual. The consequence is transparency, not a technical blocker: the individual is the real seller, contracting party and data controller where those roles apply, while Rillora remains the product and brand. Public Free may launch before billing. For paid access, iOS plans against StoreKit and Web plans against Paddle only after actual individual KYC, domain and payout acceptance. One English market opens first; EU/EEA, UK and mainland China remain closed until their additional gates pass. Company formation is triggered by real funding, team, contract, liability or stable paid-demand signals—not by an arbitrary pre-launch deadline."
+      },
+      {
+        "id": "operator-model",
+        "type": "markdown",
+        "layout": "full",
+        "body": "## One truthful operator model\n\nDo not create a fictional Rillora company. App Store, legal pages, payment KYC and tax records use the real individual identity where required. Public role aliases can protect the private mailbox, but an accepted service address and the operator's residence/tax country remain publication inputs."
+      },
+      {
+        "id": "operator-table-block",
+        "type": "table",
+        "layout": "full",
+        "tableId": "operator-role-table"
+      },
+      {
+        "id": "staged-release",
+        "type": "markdown",
+        "layout": "full",
+        "body": "## Release in stages, not all countries at once\n\nThe global vision stays intact, but every public market is opened through an explicit register. Frankfurt is a data-plane choice, not permission to market to the EU. The United States is only the current research candidate for the first English market; it is not a completed legal review."
+      },
+      {
+        "id": "region-table-block",
+        "type": "table",
+        "layout": "full",
+        "tableId": "region-register-table"
+      },
+      {
+        "id": "workstream-gates",
+        "type": "markdown",
+        "layout": "full",
+        "body": "## Readiness work is concentrated in migration and commerce\n\nThe chart counts explicit checklist items in the plan; it measures documented work breadth, not legal risk or implementation progress. It prevents the company-conversion path from becoming an untracked future rewrite."
+      },
+      {
+        "id": "gate-chart-block",
+        "type": "chart",
+        "layout": "full",
+        "chartId": "gate-count-chart"
+      },
+      {
+        "id": "payment-model",
+        "type": "markdown",
+        "layout": "full",
+        "body": "## Payments remain adapters to one entitlement ledger\n\nStoreKit owns iOS purchase mechanics; Paddle is the preferred Web candidate only after real onboarding succeeds. Lemon Squeezy is a verified-payout fallback and direct Stripe remains dormant while the actual operator country is unsupported. None of these providers owns Rillora capability truth."
+      },
+      {
+        "id": "payment-table-block",
+        "type": "table",
+        "layout": "full",
+        "tableId": "payment-route-table"
+      },
+      {
+        "id": "company-migration",
+        "type": "markdown",
+        "layout": "full",
+        "sourceId": "launch-plan",
+        "body": "## Form a company when facts justify it\n\nFunding, equity/team formation, B2B or platform requirements, higher-liability services, material personal exposure or stable full-price demand open the formation decision. A planning review at roughly 50–100 full-price households is a business signal, not a legal threshold. Migration covers IP/domain assignment, Apple team and Sign in with Apple continuity, Google/Auth0/AWS/payment ownership, controller notice and accounting cutover."
+      },
+      {
+        "id": "caveats",
+        "type": "markdown",
+        "layout": "full",
+        "body": "## Evidence boundary\n\nThis is a release architecture based on official documentation reviewed on 19 August 2026. It is not legal or tax advice and does not prove provider acceptance or market compliance. The operator's legal name, residence/tax country, publishable address, first public market and first paid market remain private, major release inputs. No company, payment account, storefront, public legal page or external agreement was created by this report."
+      }
+    ],
+    "charts": [
+      {
+        "id": "gate-count-chart",
+        "title": "Documented checklist items by launch workstream",
+        "subtitle": "Counts show planning breadth only; they are not risk weights or completion percentages.",
+        "type": "bar",
+        "dataset": "gate_counts",
+        "source": {
+          "id": "gate-count-query",
+          "label": "Checklist count transformation from the Rillora individual launch plan",
+          "path": "docs/individual-operator-launch-plan.md",
+          "query": {
+            "engine": "SQLite",
+            "language": "sql",
+            "executed_at": "2026-08-19T00:00:00+08:00",
+            "description": "Count the explicit checklist items in five documented workstreams; values were reviewed against the launch-plan source document.",
+            "sql": "WITH gate_counts(workstream,item_count,release_stage,interpretation) AS (VALUES ('Public identity',6,'Before public release','Brand, legal actor and public contact rules'),('Closed beta',5,'Stage 1','Free invite-only operating controls'),('Public Free',5,'Stage 2','Single-market public availability'),('Paid release',6,'Stage 3','StoreKit, Web MoR and shared entitlement gates'),('Company migration',10,'After a real trigger','IP, identity, platform, controller and finance cutover')) SELECT workstream,item_count,release_stage,interpretation FROM gate_counts;",
+            "filters": ["Only workstreams with an explicit enumerated or bulleted contract in docs/individual-operator-launch-plan.md"],
+            "metric_definitions": ["item_count is the number of explicit checklist/rule items in the named workstream; it is a breadth count, not risk, progress or legal sufficiency."]
+          }
+        },
+        "intent": "comparison",
+        "question": "Where does the individual-launch plan contain the most explicit transition work?",
+        "rationale": "A checklist-count comparison makes future migration and commerce work visible without inventing a compliance score.",
+        "encodings": {
+          "x": {
+            "field": "workstream",
+            "type": "nominal",
+            "label": "Workstream"
+          },
+          "y": {
+            "field": "item_count",
+            "type": "quantitative",
+            "label": "Documented checklist items",
+            "format": "number"
+          },
+          "tooltip": [
+            { "field": "workstream", "type": "text", "label": "Workstream" },
+            { "field": "item_count", "type": "quantitative", "label": "Items" },
+            { "field": "release_stage", "type": "text", "label": "Stage" },
+            { "field": "interpretation", "type": "text", "label": "Interpretation" }
+          ]
+        },
+        "valueFormat": "number",
+        "layout": "full",
+        "maxRows": 10,
+        "compatibleTypes": ["bar"]
+      }
+    ],
+    "tables": [
+      {
+        "id": "operator-role-table",
+        "title": "Individual operator role mapping",
+        "subtitle": "Rillora is the brand; the individual remains the real legal actor until conversion.",
+        "dataset": "operator_roles",
+        "source": {
+          "id": "operator-role-query",
+          "label": "Operator role mapping transformation",
+          "path": "docs/individual-operator-launch-plan.md",
+          "query": {
+            "engine": "SQLite",
+            "language": "sql",
+            "executed_at": "2026-08-19T00:00:00+08:00",
+            "description": "Materialize the reviewed individual-operator role mapping from the launch-plan contract.",
+            "sql": "WITH operator_roles(ord,surface,legal_actor,rule) AS (VALUES (1,'App Store','Individual Owner','Personal legal name is the seller name until an approved organisation conversion.'),(2,'Privacy','Individual controller','Name the real controller and actual contacts, regions and subprocessors.'),(3,'Terms','Individual service provider','Use Rillora as the brand, not as a fictional corporation.'),(4,'Web payment','Individual merchant/supplier','Activate only after real KYC, domain review and payout acceptance.'),(5,'Tax/accounting','Individual taxpayer','A Merchant of Record does not remove personal income-tax or accounting duties.')) SELECT ord AS 'order',surface,legal_actor,rule FROM operator_roles;",
+            "filters": ["Individual-through-first-public-release operating model"],
+            "metric_definitions": ["One row represents one public or commercial surface and the truthful legal actor for that surface."]
+          }
+        },
+        "defaultSort": { "field": "surface", "direction": "asc" },
+        "density": "spacious",
+        "layout": "full",
+        "columns": [
+          { "field": "surface", "label": "Surface", "type": "text" },
+          { "field": "legal_actor", "label": "Legal actor", "type": "text" },
+          { "field": "rule", "label": "Launch rule", "type": "text" }
+        ]
+      },
+      {
+        "id": "region-register-table",
+        "title": "Default market states",
+        "subtitle": "Opening one market never automatically opens the next.",
+        "dataset": "regions",
+        "source": {
+          "id": "region-register-query",
+          "label": "Market register transformation",
+          "path": "docs/individual-operator-launch-plan.md",
+          "query": {
+            "engine": "SQLite",
+            "language": "sql",
+            "executed_at": "2026-08-19T00:00:00+08:00",
+            "description": "Materialize the default market states and their principal opening gate.",
+            "sql": "WITH regions(ord,region,state,key_gate) AS (VALUES (1,'First English market','Provisional candidate','Operator residence, legal review, storefront, support and payment facts'),(2,'CA / AU / NZ / SG','Closed — next candidates','Separate consumer, privacy, tax and operations review'),(3,'EU / EEA','Closed','GDPR, Article 27 analysis, DSA trader disclosure and consumer rules'),(4,'United Kingdom','Closed','UK privacy, transfers, consumer and public-contact review'),(5,'Mainland China','Closed','App/ICP filing, PIPL cross-border, localized operations and payment/tax path'),(6,'Other markets','Closed','Explicit addition to the reviewed market register')) SELECT ord AS 'order',region,state,key_gate FROM regions;",
+            "filters": ["No market is treated as approved; the first English market is a provisional candidate only"],
+            "metric_definitions": ["One row represents one region band and its default product-release state, not a legal conclusion."]
+          }
+        },
+        "defaultSort": { "field": "region", "direction": "asc" },
+        "density": "spacious",
+        "layout": "full",
+        "columns": [
+          { "field": "region", "label": "Region band", "type": "text" },
+          { "field": "state", "label": "Default state", "type": "text" },
+          { "field": "key_gate", "label": "Key gate", "type": "text" }
+        ]
+      },
+      {
+        "id": "payment-route-table",
+        "title": "Payment-channel routing",
+        "subtitle": "Provider selection is conditional and payment remains closed.",
+        "dataset": "payment_routes",
+        "source": {
+          "id": "payment-route-query",
+          "label": "Payment routing transformation",
+          "path": "docs/individual-operator-launch-plan.md",
+          "query": {
+            "engine": "SQLite",
+            "language": "sql",
+            "executed_at": "2026-08-19T00:00:00+08:00",
+            "description": "Materialize the planned individual-operator payment adapters and activation gates.",
+            "sql": "WITH payment_routes(ord,surface,route,activation_gate) AS (VALUES (1,'iOS','StoreKit / In-App Purchase','Paid Apps Agreement, matching bank/tax identity, products and lifecycle reconciliation'),(2,'Web','Paddle MoR candidate','Individual KYC, live-domain review, supported payout and contract review'),(3,'Web fallback','Lemon Squeezy only if verified','Actual identity and payout acceptance'),(4,'Direct processing','Stripe dormant','Real supported operator country or later genuine company'),(5,'Rillora backend','Provider-neutral ledger','Deduplicated entitlements, immutable transactions and reconciliation tests')) SELECT ord AS 'order',surface,route,activation_gate FROM payment_routes;",
+            "filters": ["Payment activation remains closed"],
+            "metric_definitions": ["One row represents one commerce surface or backend responsibility and its current routing status."]
+          }
+        },
+        "defaultSort": { "field": "surface", "direction": "asc" },
+        "density": "spacious",
+        "layout": "full",
+        "columns": [
+          { "field": "surface", "label": "Surface", "type": "text" },
+          { "field": "route", "label": "Planned route", "type": "text" },
+          { "field": "activation_gate", "label": "Activation gate", "type": "text" }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "launch-plan",
+        "label": "Rillora Individual Operator Launch Plan",
+        "path": "docs/individual-operator-launch-plan.md"
+      },
+      {
+        "id": "apple-enrollment",
+        "label": "Apple Developer Program enrolment",
+        "href": "https://developer.apple.com/help/account/membership/program-enrollment"
+      },
+      {
+        "id": "apple-review",
+        "label": "Apple App Review Guidelines",
+        "href": "https://developer.apple.com/app-store/review/guidelines/"
+      },
+      {
+        "id": "google-oauth",
+        "label": "Google OAuth 2.0 policies",
+        "href": "https://developers.google.com/identity/protocols/oauth2/policies"
+      },
+      {
+        "id": "paddle-verification",
+        "label": "Paddle account verification",
+        "href": "https://www.paddle.com/help/start/account-verification/what-is-account-verification"
+      },
+      {
+        "id": "gdpr",
+        "label": "EU GDPR consolidated text",
+        "href": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02016R0679-20160504"
+      }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "generatedAt": "2026-08-19T00:00:00+08:00",
+    "status": "ready",
+    "datasets": {
+      "gate_counts": [
+        { "workstream": "Public identity", "item_count": 6, "release_stage": "Before public release", "interpretation": "Brand, legal actor and public contact rules" },
+        { "workstream": "Closed beta", "item_count": 5, "release_stage": "Stage 1", "interpretation": "Free invite-only operating controls" },
+        { "workstream": "Public Free", "item_count": 5, "release_stage": "Stage 2", "interpretation": "Single-market public availability" },
+        { "workstream": "Paid release", "item_count": 6, "release_stage": "Stage 3", "interpretation": "StoreKit, Web MoR and shared entitlement gates" },
+        { "workstream": "Company migration", "item_count": 10, "release_stage": "After a real trigger", "interpretation": "IP, identity, platform, controller and finance cutover" }
+      ],
+      "operator_roles": [
+        { "order": 1, "surface": "App Store", "legal_actor": "Individual Owner", "rule": "Personal legal name is the seller name until an approved organisation conversion." },
+        { "order": 2, "surface": "Privacy", "legal_actor": "Individual controller", "rule": "Name the real controller and actual contacts, regions and subprocessors." },
+        { "order": 3, "surface": "Terms", "legal_actor": "Individual service provider", "rule": "Use Rillora as the brand, not as a fictional corporation." },
+        { "order": 4, "surface": "Web payment", "legal_actor": "Individual merchant/supplier", "rule": "Activate only after real KYC, domain review and payout acceptance." },
+        { "order": 5, "surface": "Tax/accounting", "legal_actor": "Individual taxpayer", "rule": "A Merchant of Record does not remove personal income-tax or accounting duties." }
+      ],
+      "regions": [
+        { "order": 1, "region": "First English market", "state": "Provisional candidate", "key_gate": "Operator residence, legal review, storefront, support and payment facts" },
+        { "order": 2, "region": "CA / AU / NZ / SG", "state": "Closed — next candidates", "key_gate": "Separate consumer, privacy, tax and operations review" },
+        { "order": 3, "region": "EU / EEA", "state": "Closed", "key_gate": "GDPR, Article 27 analysis, DSA trader disclosure and consumer rules" },
+        { "order": 4, "region": "United Kingdom", "state": "Closed", "key_gate": "UK privacy, transfers, consumer and public-contact review" },
+        { "order": 5, "region": "Mainland China", "state": "Closed", "key_gate": "App/ICP filing, PIPL cross-border, localized operations and payment/tax path" },
+        { "order": 6, "region": "Other markets", "state": "Closed", "key_gate": "Explicit addition to the reviewed market register" }
+      ],
+      "payment_routes": [
+        { "order": 1, "surface": "iOS", "route": "StoreKit / In-App Purchase", "activation_gate": "Paid Apps Agreement, matching bank/tax identity, products and lifecycle reconciliation" },
+        { "order": 2, "surface": "Web", "route": "Paddle MoR candidate", "activation_gate": "Individual KYC, live-domain review, supported payout and contract review" },
+        { "order": 3, "surface": "Web fallback", "route": "Lemon Squeezy only if verified", "activation_gate": "Actual identity and payout acceptance" },
+        { "order": 4, "surface": "Direct processing", "route": "Stripe dormant", "activation_gate": "Real supported operator country or later genuine company" },
+        { "order": 5, "surface": "Rillora backend", "route": "Provider-neutral ledger", "activation_gate": "Deduplicated entitlements, immutable transactions and reconciliation tests" }
+      ]
+    }
+  },
+  "sources": [
+    {
+      "id": "launch-plan",
+      "label": "Rillora Individual Operator Launch Plan",
+      "path": "docs/individual-operator-launch-plan.md"
+    },
+    {
+      "id": "apple-enrollment",
+      "label": "Apple Developer Program enrolment",
+      "href": "https://developer.apple.com/help/account/membership/program-enrollment"
+    },
+    {
+      "id": "apple-review",
+      "label": "Apple App Review Guidelines",
+      "href": "https://developer.apple.com/app-store/review/guidelines/"
+    },
+    {
+      "id": "google-oauth",
+      "label": "Google OAuth 2.0 policies",
+      "href": "https://developers.google.com/identity/protocols/oauth2/policies"
+    },
+    {
+      "id": "paddle-verification",
+      "label": "Paddle account verification",
+      "href": "https://www.paddle.com/help/start/account-verification/what-is-account-verification"
+    }
+  ],
+  "package_info": {
+    "reportId": "rillora-individual-operator-launch-20260819",
+    "language": "en",
+    "evidenceBoundary": "Planning snapshot; no public release or payment activation."
+  }
+}

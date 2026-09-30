@@ -1,0 +1,38 @@
+{
+  "assets": [
+    {
+      "provider": "facebook",
+      "webMatchesOriginal": true,
+      "nativeMatchesOriginal": true
+    },
+    {
+      "provider": "dropbox",
+      "webMatchesOriginal": true,
+      "nativeMatchesOriginal": true
+    }
+  ],
+  "nativeBundledCreditsMatch": true,
+  "nativeBuild": "build_run_sim_2026-09-18T17-02-54-841Z_pid39212_62568506.log",
+  "webRelease": "passed",
+  "sitesTests": 4,
+  "cloudHTTP": 20,
+  "extraFacebookHash": "passed",
+  "webImages": {
+    "facebook": {
+      "loaded": true,
+      "size": 24
+    },
+    "dropbox": {
+      "loaded": true,
+      "canvasSize": 38,
+      "embeddedClearSpace": true
+    }
+  },
+  "native": "ordinary Matrix17Pro installed env{}; Account inheritance open",
+  "priorSuitesNotRerun": {
+    "nativePassed": 154,
+    "nativeSkipped": 1,
+    "webPassed": 80
+  },
+  "scope": "asset-only follow-up; research is not worldwide legal clearance"
+}

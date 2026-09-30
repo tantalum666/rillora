@@ -1,0 +1,16 @@
+/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-production-web-stack.ts:34
+        if (key !== 'index.html' && !/^assets\/[A-Za-z0-9_-]+\.(js|css|png|svg|woff|woff2|txt)$/.test(key)) throw new Error('Unexpected production artifact path');
+                                                                                                                  ^
+
+Error: Unexpected production artifact path
+    at visit (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-production-web-stack.ts:34:115)
+    at visit (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-production-web-stack.ts:30:31)
+    at verifyProductionClientArtifact (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-production-web-stack.ts:40:3)
+    at new RilloraProductionWebStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-production-web-stack.ts:52:5)
+    at <anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:73:3)
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.3
+npx tsx bin/rillora.ts: Subprocess exited with error 1

@@ -1,0 +1,275 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "Rillora Storefront 判定与 Stripe／StoreKit 双渠道决策",
+    "description": "区分 App Store storefront、服务市场、账单国家和既有订阅，决定 Rillora 在哪些地区与表面使用 Stripe 或 StoreKit。",
+    "generatedAt": "2026-08-19T00:00:00+08:00",
+    "blocks": [
+      {
+        "id": "title",
+        "type": "markdown",
+        "layout": "full",
+        "body": "# Rillora Storefront 判定与 Stripe／StoreKit 双渠道决策\n\n美区购买界面使用 StoreKit `Storefront.current.countryCode == USA` 判断；它不等于美国居住或税务身份。Stripe 与 StoreKit 共用一套权益账本，但同一家庭只能有一个活动续费渠道。"
+      },
+      {
+        "id": "executive-summary",
+        "type": "markdown",
+        "layout": "full",
+        "sourceId": "ios-payment-research",
+        "body": "## Executive Summary（执行摘要）\n\n美国 App Store storefront 是 Rillora iOS 首发唯一推荐的 Stripe 外部购买区。普通非美 storefront 使用 StoreKit；日本、巴西、EU 和韩国虽存在特殊外部支付规则，但会引入 entitlement、披露、报告、Apple 费用或专用 binary，个人首发阶段不划算。Global Web 在逐市场通过法律、税务、支持和 provider 风控后仍可使用 Stripe。"
+      },
+      {
+        "id": "signals-intro",
+        "type": "markdown",
+        "layout": "full",
+        "body": "## 四个不能混用的地区信号\n\nStorefront 决定 iOS 展示什么；service market 决定 Rillora 在哪里提供服务；billing country服务税务和支付风控；active provider决定续费和取消。购买路线必须取四者交集。"
+      },
+      {
+        "id": "signals-table-block",
+        "type": "table",
+        "layout": "full",
+        "tableId": "signals-table"
+      },
+      {
+        "id": "routing-contract",
+        "type": "markdown",
+        "layout": "full",
+        "body": "## 单路线购买合同\n\n已有 Stripe 订阅时只显示 Rillora billing portal；已有 Apple 订阅时只显示 App Store subscriptions。没有活动订阅时，`USA + service market allowed` 才返回 `stripe_web_external`，否则在有可售 Product 时返回 `apple_storekit`，其余返回 `none`。Storefront 变化只重算未来购买入口，不迁移当前订阅。"
+      },
+      {
+        "id": "regional-routes-table-block",
+        "type": "table",
+        "layout": "full",
+        "tableId": "regional-routes-table"
+      },
+      {
+        "id": "external-obligations-chart-block",
+        "type": "chart",
+        "layout": "full",
+        "chartId": "external-obligations-chart"
+      },
+      {
+        "id": "stripe-surfaces",
+        "type": "markdown",
+        "layout": "full",
+        "body": "## Stripe 能出现在哪里\n\nStripe 不只服务美国 iOS。它是 Global Web／PWA 的主候选，也可用于未来直接分发软件和真正独立的1:1真人服务。它不能借跨境支付能力绕过大陆主体、备案、数据和本地支付要求，也不能把某种付款方式支持误写成自动续费支持。"
+      },
+      {
+        "id": "stripe-surfaces-table-block",
+        "type": "table",
+        "layout": "full",
+        "tableId": "stripe-surfaces-table"
+      },
+      {
+        "id": "implementation",
+        "type": "markdown",
+        "layout": "full",
+        "body": "## 实施顺序\n\n1. 先建 provider-neutral catalog、market policy、subscription、entitlement 和 finance ledger。\n2. iOS 接入 `Storefront.current`／`Storefront.updates`，未知状态失败关闭。\n3. 服务端建立同一 household／plan 仅一条活动续费的唯一约束与 purchase lock。\n4. 分别接入 Stripe webhook 和 App Store Server Notifications V2。\n5. 美国做 Stripe test checkout；普通非美市场用 StoreKit sandbox。\n6. 市场逐个通过法律、隐私、税务、支持和 App Review 门后再开放。"
+      },
+      {
+        "id": "caveats",
+        "type": "markdown",
+        "layout": "full",
+        "body": "## Caveats And Assumptions（边界与假设）\n\n这是 2026-08-19 的 Apple／Stripe 规则快照和 Rillora 产品决定，不是 Apple 审核批准、法律税务意见、Stripe KYC、市场开放或付款授权。特殊地区规则和费率可能继续变化，启用前必须重新核对。"
+      }
+    ],
+    "charts": [
+      {
+        "id": "external-obligations-chart",
+        "title": "iOS 外部支付路线的已识别额外义务项",
+        "subtitle": "美国当前无Apple entitlement／并列IAP／Apple交易报告要求；其他特殊地区的外部支付并不是零成本替代。",
+        "type": "bar",
+        "dataset": "external_route_obligations",
+        "source": {
+          "id": "obligations-query",
+          "label": "Apple地区外部支付要求清单",
+          "path": "docs/ios-external-payment-research.md",
+          "query": {
+            "engine": "SQLite",
+            "language": "sql",
+            "executed_at": "2026-08-19T00:00:00+08:00",
+            "description": "统计官方页面中明确出现的额外实施或结算义务；不是风险分数。",
+            "sql": "WITH external_route_obligations(region,obligation_count,obligations) AS (VALUES ('美国',0,'无额外entitlement、并列IAP或Apple交易报告要求'),('日本',5,'entitlement、IAP并列、披露、交易报告、Apple费用'),('巴西',5,'entitlement、IAP并列、披露、交易报告、Apple费用'),('EU／EEA',5,'entitlement／条款、StoreKit流程、交易报告、Apple费用、EU VAT ID'),('韩国',6,'entitlement、披露、交易报告、专用binary、PSP审查、Apple费用')) SELECT region,obligation_count,obligations FROM external_route_obligations ORDER BY obligation_count ASC, region ASC;",
+            "filters": ["只统计Apple官方明确要求", "不是风险或难度评分"],
+            "metric_definitions": ["obligation_count 为透明清单项数；不同地区单项工作量并不相等。"]
+          }
+        },
+        "intent": "comparison",
+        "question": "各特殊storefront采用外部支付时，需要额外承担多少类明确义务？",
+        "rationale": "解释为什么技术可用不等于首发商业上值得采用。",
+        "encodings": {
+          "x": { "field": "region", "type": "nominal", "label": "Storefront" },
+          "y": { "field": "obligation_count", "type": "quantitative", "label": "额外义务项数" },
+          "tooltip": [
+            { "field": "region", "type": "text", "label": "地区" },
+            { "field": "obligation_count", "type": "quantitative", "label": "清单项数" },
+            { "field": "obligations", "type": "text", "label": "清单" }
+          ]
+        },
+        "valueFormat": "number",
+        "layout": "full",
+        "maxRows": 10,
+        "compatibleTypes": ["bar"]
+      }
+    ],
+    "tables": [
+      {
+        "id": "signals-table",
+        "title": "地区与订阅信号的职责",
+        "subtitle": "美区 storefront 只解决 Apple 购买呈现，不解决法律居住和税务身份。",
+        "dataset": "region_signals",
+        "source": {
+          "id": "signals-query",
+          "label": "Apple Storefront 与 Rillora 市场合同",
+          "path": "docs/ios-external-payment-research.md",
+          "query": {
+            "engine": "SQLite",
+            "language": "sql",
+            "executed_at": "2026-08-19T00:00:00+08:00",
+            "description": "将四类地区／订阅信号分配到各自职责。",
+            "sql": "WITH region_signals(ord,signal,purpose,not_proof_of) AS (VALUES (1,'apple_storefront','iOS购买呈现和IAP Product','居住、税务身份、适用法'),(2,'service_market','Rillora服务与条款allowlist','App Store购买规则'),(3,'billing_country','间接税与支付风控','国籍或永久居住'),(4,'active_subscription.provider','续费、取消、退款与迁移','当前地理位置')) SELECT ord,signal,purpose,not_proof_of FROM region_signals ORDER BY ord;",
+            "filters": ["2026-08-19规则快照"],
+            "metric_definitions": ["route 是四类信号与provider可用性的交集。"]
+          }
+        },
+        "defaultSort": { "field": "ord", "direction": "asc" },
+        "density": "spacious",
+        "layout": "full",
+        "columns": [
+          { "field": "ord", "label": "顺序", "type": "number" },
+          { "field": "signal", "label": "信号", "type": "text" },
+          { "field": "purpose", "label": "负责什么", "type": "text" },
+          { "field": "not_proof_of", "label": "不能证明什么", "type": "text" }
+        ]
+      },
+      {
+        "id": "regional-routes-table",
+        "title": "iOS storefront 购买路线",
+        "subtitle": "“特殊外部支付可用”不等于适合个人开发者首发。",
+        "dataset": "regional_routes",
+        "source": {
+          "id": "regional-routes-query",
+          "label": "Apple 地区规则与 Rillora 路由决定",
+          "path": "docs/ios-external-payment-research.md",
+          "query": {
+            "engine": "SQLite",
+            "language": "sql",
+            "executed_at": "2026-08-19T00:00:00+08:00",
+            "description": "按当前Apple规则映射首发支付路线。",
+            "sql": "WITH regional_routes(ord,storefront,technical_option,rillora_route,reason) AS (VALUES (1,'美国','外部CTA无需entitlement','Stripe Web external','首发最简单的外部支付区'),(2,'普通非美','一般规则要求IAP','StoreKit','不显示Stripe购买CTA'),(3,'日本／巴西','外部支付+IAP并列','StoreKit first','仍有披露、报告和Apple费用'),(4,'EU／EEA','entitlement与替代条款','StoreKit first / closed','税务、报告与Apple费用复杂'),(5,'韩国','专版+单一PSP','StoreKit','Stripe非预批准且Apple收26%'),(6,'中国大陆','不继承美国例外','StoreKit','独立主体、备案、数据与支付平面')) SELECT ord,storefront,technical_option,rillora_route,reason FROM regional_routes ORDER BY ord;",
+            "filters": ["Rillora Family消费者数字SaaS"],
+            "metric_definitions": ["rillora_route 是产品决定，不是Apple预先批准。"]
+          }
+        },
+        "defaultSort": { "field": "ord", "direction": "asc" },
+        "density": "spacious",
+        "layout": "full",
+        "columns": [
+          { "field": "ord", "label": "顺序", "type": "number" },
+          { "field": "storefront", "label": "Storefront", "type": "text" },
+          { "field": "technical_option", "label": "技术／规则选项", "type": "text" },
+          { "field": "rillora_route", "label": "Rillora路线", "type": "text" },
+          { "field": "reason", "label": "原因", "type": "text" }
+        ]
+      },
+      {
+        "id": "stripe-surfaces-table",
+        "title": "Stripe 可用表面与边界",
+        "subtitle": "同一Stripe商户可以面向全球客户，不代表每个服务市场都已合法开放。",
+        "dataset": "stripe_surfaces",
+        "source": {
+          "id": "stripe-surfaces-query",
+          "label": "Stripe能力与Apple购买规则",
+          "path": "docs/ios-external-payment-research.md",
+          "query": {
+            "engine": "SQLite",
+            "language": "sql",
+            "executed_at": "2026-08-19T00:00:00+08:00",
+            "description": "区分Stripe技术可用性和Rillora当前激活决定。",
+            "sql": "WITH stripe_surfaces(ord,surface,can_use,current_decision) AS (VALUES (1,'Global Web／PWA','逐市场allowlist后可用','主候选'),(2,'美国iOS','系统浏览器外部结账','首发主路径'),(3,'日本／巴西iOS','entitlement下原理可用','暂不用'),(4,'EU／EEA iOS','替代条款下原理可用','首发关闭'),(5,'韩国iOS','非预批准PSP需另审','不采用'),(6,'普通非美iOS','App内不得引导外购','StoreKit'),(7,'1:1真人服务','独立真实服务SKU可用','未来单独过门'),(8,'中国大陆Global Web','不能替代大陆合规平面','不作绕行方案')) SELECT ord,surface,can_use,current_decision FROM stripe_surfaces ORDER BY ord;",
+            "filters": ["Stripe技术能力不等于市场开放"],
+            "metric_definitions": ["current_decision 不授权开户或收费。"]
+          }
+        },
+        "defaultSort": { "field": "ord", "direction": "asc" },
+        "density": "spacious",
+        "layout": "full",
+        "columns": [
+          { "field": "ord", "label": "顺序", "type": "number" },
+          { "field": "surface", "label": "表面／商品", "type": "text" },
+          { "field": "can_use", "label": "Stripe可用性", "type": "text" },
+          { "field": "current_decision", "label": "当前决定", "type": "text" }
+        ]
+      }
+    ],
+    "sources": [
+      { "id": "ios-payment-research", "label": "Rillora iOS 外部支付与 Stripe 可行性研究", "path": "docs/ios-external-payment-research.md" },
+      { "id": "apple-guidelines", "label": "Apple App Review Guidelines", "href": "https://developer.apple.com/app-store/review/guidelines/" },
+      { "id": "apple-storefront", "label": "Apple StoreKit Storefront", "href": "https://developer.apple.com/documentation/storekit/storefront" },
+      { "id": "apple-iap-availability", "label": "Apple IAP country availability", "href": "https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/set-availability-for-in-app-purchases/" },
+      { "id": "apple-japan", "label": "Apple Japan payment options", "href": "https://developer.apple.com/support/payment-options-on-the-app-store-in-japan" },
+      { "id": "apple-brazil", "label": "Apple Brazil payment options", "href": "https://developer.apple.com/br/support/payment-options-on-the-app-store-in-brazil/" },
+      { "id": "apple-korea", "label": "Apple South Korea third-party payments", "href": "https://developer.apple.com/support/storekit-external-entitlement-kr" },
+      { "id": "stripe-checkout", "label": "Stripe Checkout", "href": "https://docs.stripe.com/payments/checkout" },
+      { "id": "stripe-methods", "label": "Stripe payment method support", "href": "https://docs.stripe.com/payments/payment-methods/payment-method-support" },
+      { "id": "stripe-global", "label": "Stripe global availability", "href": "https://stripe.com/global" }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "generatedAt": "2026-08-19T00:00:00+08:00",
+    "status": "ready",
+    "datasets": {
+      "region_signals": [
+        { "ord": 1, "signal": "apple_storefront", "purpose": "iOS购买呈现和IAP Product", "not_proof_of": "居住、税务身份、适用法" },
+        { "ord": 2, "signal": "service_market", "purpose": "Rillora服务与条款allowlist", "not_proof_of": "App Store购买规则" },
+        { "ord": 3, "signal": "billing_country", "purpose": "间接税与支付风控", "not_proof_of": "国籍或永久居住" },
+        { "ord": 4, "signal": "active_subscription.provider", "purpose": "续费、取消、退款与迁移", "not_proof_of": "当前地理位置" }
+      ],
+      "regional_routes": [
+        { "ord": 1, "storefront": "美国", "technical_option": "外部CTA无需entitlement", "rillora_route": "Stripe Web external", "reason": "首发最简单的外部支付区" },
+        { "ord": 2, "storefront": "普通非美", "technical_option": "一般规则要求IAP", "rillora_route": "StoreKit", "reason": "不显示Stripe购买CTA" },
+        { "ord": 3, "storefront": "日本／巴西", "technical_option": "外部支付+IAP并列", "rillora_route": "StoreKit first", "reason": "仍有披露、报告和Apple费用" },
+        { "ord": 4, "storefront": "EU／EEA", "technical_option": "entitlement与替代条款", "rillora_route": "StoreKit first / closed", "reason": "税务、报告与Apple费用复杂" },
+        { "ord": 5, "storefront": "韩国", "technical_option": "专版+单一PSP", "rillora_route": "StoreKit", "reason": "Stripe非预批准且Apple收26%" },
+        { "ord": 6, "storefront": "中国大陆", "technical_option": "不继承美国例外", "rillora_route": "StoreKit", "reason": "独立主体、备案、数据与支付平面" }
+      ],
+      "stripe_surfaces": [
+        { "ord": 1, "surface": "Global Web／PWA", "can_use": "逐市场allowlist后可用", "current_decision": "主候选" },
+        { "ord": 2, "surface": "美国iOS", "can_use": "系统浏览器外部结账", "current_decision": "首发主路径" },
+        { "ord": 3, "surface": "日本／巴西iOS", "can_use": "entitlement下原理可用", "current_decision": "暂不用" },
+        { "ord": 4, "surface": "EU／EEA iOS", "can_use": "替代条款下原理可用", "current_decision": "首发关闭" },
+        { "ord": 5, "surface": "韩国iOS", "can_use": "非预批准PSP需另审", "current_decision": "不采用" },
+        { "ord": 6, "surface": "普通非美iOS", "can_use": "App内不得引导外购", "current_decision": "StoreKit" },
+        { "ord": 7, "surface": "1:1真人服务", "can_use": "独立真实服务SKU可用", "current_decision": "未来单独过门" },
+        { "ord": 8, "surface": "中国大陆Global Web", "can_use": "不能替代大陆合规平面", "current_decision": "不作绕行方案" }
+      ],
+      "external_route_obligations": [
+        { "region": "美国", "obligation_count": 0, "obligations": "无额外entitlement、并列IAP或Apple交易报告要求" },
+        { "region": "日本", "obligation_count": 5, "obligations": "entitlement、IAP并列、披露、交易报告、Apple费用" },
+        { "region": "巴西", "obligation_count": 5, "obligations": "entitlement、IAP并列、披露、交易报告、Apple费用" },
+        { "region": "EU／EEA", "obligation_count": 5, "obligations": "entitlement／条款、StoreKit流程、交易报告、Apple费用、EU VAT ID" },
+        { "region": "韩国", "obligation_count": 6, "obligations": "entitlement、披露、交易报告、专用binary、PSP审查、Apple费用" }
+      ]
+    }
+  },
+  "sources": [
+    { "id": "ios-payment-research", "label": "Rillora iOS 外部支付与 Stripe 可行性研究", "path": "docs/ios-external-payment-research.md" },
+    { "id": "apple-guidelines", "label": "Apple App Review Guidelines", "href": "https://developer.apple.com/app-store/review/guidelines/" },
+    { "id": "apple-storefront", "label": "Apple StoreKit Storefront", "href": "https://developer.apple.com/documentation/storekit/storefront" },
+    { "id": "apple-iap-availability", "label": "Apple IAP country availability", "href": "https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/set-availability-for-in-app-purchases/" },
+    { "id": "apple-japan", "label": "Apple Japan payment options", "href": "https://developer.apple.com/support/payment-options-on-the-app-store-in-japan" },
+    { "id": "apple-brazil", "label": "Apple Brazil payment options", "href": "https://developer.apple.com/br/support/payment-options-on-the-app-store-in-brazil/" },
+    { "id": "apple-korea", "label": "Apple South Korea third-party payments", "href": "https://developer.apple.com/support/storekit-external-entitlement-kr" },
+    { "id": "stripe-checkout", "label": "Stripe Checkout", "href": "https://docs.stripe.com/payments/checkout" },
+    { "id": "stripe-methods", "label": "Stripe payment method support", "href": "https://docs.stripe.com/payments/payment-methods/payment-method-support" },
+    { "id": "stripe-global", "label": "Stripe global availability", "href": "https://stripe.com/global" }
+  ],
+  "package_info": {
+    "reportId": "rillora-storefront-commerce-routing-20260819",
+    "language": "zh-CN",
+    "evidenceBoundary": "基于2026-08-19 Apple与Stripe官方资料；不是法律税务意见、Apple批准、Stripe KYC、市场开放或付款激活证明。"
+  }
+}

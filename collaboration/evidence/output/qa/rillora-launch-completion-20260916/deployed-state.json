@@ -1,0 +1,18 @@
+{
+  "stackStatus": "UPDATE_COMPLETE",
+  "serviceArn": "arn:aws:ecs:eu-central-1:133857166372:service/RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5/RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n",
+  "services": [
+    {
+      "desired": 1,
+      "running": 1,
+      "pending": 0,
+      "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingApiTaskDefinitionF6347BA4:25",
+      "deployments": [
+        {
+          "status": "PRIMARY",
+          "rolloutState": "COMPLETED"
+        }
+      ]
+    }
+  ]
+}

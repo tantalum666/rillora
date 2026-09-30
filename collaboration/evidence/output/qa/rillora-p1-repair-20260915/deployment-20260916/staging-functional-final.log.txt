@@ -1,0 +1,9 @@
+real runtime bearer authentication; development access stays off: passed
+authenticated category-aware create and private Notes: passed
+account-bound invitation and directions-only projection: passed
+recipient-scoped plaintext guide: passed
+cloud encrypted artifact finalize/download/local decrypt: passed
+complete private backup preserves typed fields and Notes: passed
+intentional backup restore into empty synthetic account grants no access: passed
+archive/restore remains private: passed
+{"checkedAt":"2026-09-16T02:57:30.409Z","passed":true,"setup":"Two disposable Auth0 database users; administrator-seeded bounded native bearer/consent fixtures in synthetic staging. Not a provider login, email-delivery or real consent ceremony.","checks":[{"name":"real runtime bearer authentication; development access stays off","passed":true},{"name":"authenticated category-aware create and private Notes","passed":true},{"name":"account-bound invitation and directions-only projection","passed":true},{"name":"recipient-scoped plaintext guide","passed":true},{"name":"cloud encrypted artifact finalize/download/local decrypt","passed":true},{"name":"complete private backup preserves typed fields and Notes","passed":true},{"name":"intentional backup restore into empty synthetic account grants no access","passed":true},{"name":"archive/restore remains private","passed":true}],"deletions":[{"role":"owner","completed":true,"sessionRevoked":true,"providerAbsent":true},{"role":"recipient","completed":true,"sessionRevoked":true,"providerAbsent":true}],"failure":null}

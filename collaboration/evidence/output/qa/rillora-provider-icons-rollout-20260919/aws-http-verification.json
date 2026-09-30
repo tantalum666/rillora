@@ -1,0 +1,243 @@
+{
+  "passed": 21,
+  "total": 21,
+  "checks": [
+    {
+      "name": "/",
+      "url": "https://app.staging.rillora.xyz/",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "https": true,
+        "csp": true,
+        "matchesBuild": true
+      },
+      "passed": true
+    },
+    {
+      "name": "/guides",
+      "url": "https://app.staging.rillora.xyz/guides",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "https": true,
+        "csp": true,
+        "matchesBuild": true
+      },
+      "passed": true
+    },
+    {
+      "name": "/guides?service=binance",
+      "url": "https://app.staging.rillora.xyz/guides?service=binance",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "https": true,
+        "csp": true,
+        "matchesBuild": true
+      },
+      "passed": true
+    },
+    {
+      "name": "/guides?service=adobe",
+      "url": "https://app.staging.rillora.xyz/guides?service=adobe",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "https": true,
+        "csp": true,
+        "matchesBuild": true
+      },
+      "passed": true
+    },
+    {
+      "name": "/?view=access",
+      "url": "https://app.staging.rillora.xyz/?view=access",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "https": true,
+        "csp": true,
+        "matchesBuild": true
+      },
+      "passed": true
+    },
+    {
+      "name": "/?view=settings",
+      "url": "https://app.staging.rillora.xyz/?view=settings",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "https": true,
+        "csp": true,
+        "matchesBuild": true
+      },
+      "passed": true
+    },
+    {
+      "name": "/invite",
+      "url": "https://app.staging.rillora.xyz/invite",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "https": true,
+        "csp": true,
+        "matchesBuild": true
+      },
+      "passed": true
+    },
+    {
+      "name": "/open-copy",
+      "url": "https://app.staging.rillora.xyz/open-copy",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "https": true,
+        "csp": true,
+        "matchesBuild": true
+      },
+      "passed": true
+    },
+    {
+      "name": "live",
+      "url": "https://l1g8350qw0.execute-api.eu-central-1.amazonaws.com/health/live",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "https": true
+      },
+      "passed": true
+    },
+    {
+      "name": "ready",
+      "url": "https://l1g8350qw0.execute-api.eu-central-1.amazonaws.com/health/ready",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "https": true
+      },
+      "passed": true
+    },
+    {
+      "name": "session",
+      "url": "https://app.staging.rillora.xyz/api/auth/session-status",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "https": true,
+        "signedOut": true
+      },
+      "passed": true
+    },
+    {
+      "name": "/api/v1/overview",
+      "url": "https://app.staging.rillora.xyz/api/v1/overview",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "https": true,
+        "noStore": true
+      },
+      "passed": true
+    },
+    {
+      "name": "/api/v1/sharing/shared-with-me",
+      "url": "https://app.staging.rillora.xyz/api/v1/sharing/shared-with-me",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "https": true,
+        "noStore": true
+      },
+      "passed": true
+    },
+    {
+      "name": "/api/v1/maintenance/overview",
+      "url": "https://app.staging.rillora.xyz/api/v1/maintenance/overview",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "https": true,
+        "noStore": true
+      },
+      "passed": true
+    },
+    {
+      "name": "FamilyMaintenancePanel-BPYaXbXP.css",
+      "url": "https://app.staging.rillora.xyz/assets/FamilyMaintenancePanel-BPYaXbXP.css",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "https": true,
+        "matchesBuild": true
+      },
+      "passed": true
+    },
+    {
+      "name": "FamilyMaintenancePanel-CMO4eiZ2.js",
+      "url": "https://app.staging.rillora.xyz/assets/FamilyMaintenancePanel-CMO4eiZ2.js",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "https": true,
+        "matchesBuild": true
+      },
+      "passed": true
+    },
+    {
+      "name": "__vite-browser-external-BIHI7g3E.js",
+      "url": "https://app.staging.rillora.xyz/assets/__vite-browser-external-BIHI7g3E.js",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "https": true,
+        "matchesBuild": true
+      },
+      "passed": true
+    },
+    {
+      "name": "browser-rimNc_td.js",
+      "url": "https://app.staging.rillora.xyz/assets/browser-rimNc_td.js",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "https": true,
+        "matchesBuild": true
+      },
+      "passed": true
+    },
+    {
+      "name": "design-credits-DxmRA8zR.txt",
+      "url": "https://app.staging.rillora.xyz/assets/design-credits-DxmRA8zR.txt",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "https": true,
+        "matchesBuild": true
+      },
+      "passed": true
+    },
+    {
+      "name": "index-B0M22ioP.css",
+      "url": "https://app.staging.rillora.xyz/assets/index-B0M22ioP.css",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "https": true,
+        "matchesBuild": true
+      },
+      "passed": true
+    },
+    {
+      "name": "index-CwPw4sLc.js",
+      "url": "https://app.staging.rillora.xyz/assets/index-CwPw4sLc.js",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "https": true,
+        "matchesBuild": true
+      },
+      "passed": true
+    }
+  ]
+}

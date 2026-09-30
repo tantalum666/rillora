@@ -1,0 +1,625 @@
+{
+  "services": [
+    {
+      "serviceArn": "arn:aws:ecs:eu-central-1:133857166372:service/RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5/RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n",
+      "serviceName": "RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n",
+      "clusterArn": "arn:aws:ecs:eu-central-1:133857166372:cluster/RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5",
+      "loadBalancers": [],
+      "serviceRegistries": [
+        {
+          "registryArn": "arn:aws:servicediscovery:eu-central-1:133857166372:service/srv-dgii23l433x7tk2b",
+          "containerName": "Api",
+          "containerPort": 8080
+        }
+      ],
+      "status": "ACTIVE",
+      "desiredCount": 0,
+      "runningCount": 0,
+      "pendingCount": 0,
+      "capacityProviderStrategy": [
+        {
+          "capacityProvider": "FARGATE_SPOT",
+          "weight": 1,
+          "base": 0
+        }
+      ],
+      "platformVersion": "1.4.0",
+      "platformFamily": "Linux",
+      "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingApiTaskDefinitionF6347BA4:18",
+      "deploymentConfiguration": {
+        "deploymentCircuitBreaker": {
+          "enable": true,
+          "rollback": true,
+          "resetOnHealthyTask": true,
+          "thresholdConfiguration": {
+            "type": "BOUNDED_PERCENT",
+            "value": 50
+          }
+        },
+        "maximumPercent": 200,
+        "minimumHealthyPercent": 100,
+        "alarms": {
+          "alarmNames": [],
+          "rollback": false,
+          "enable": false
+        },
+        "strategy": "ROLLING",
+        "bakeTimeInMinutes": 0
+      },
+      "deployments": [
+        {
+          "id": "ecs-svc/4912356247596231512",
+          "status": "PRIMARY",
+          "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingApiTaskDefinitionF6347BA4:18",
+          "desiredCount": 0,
+          "pendingCount": 0,
+          "runningCount": 0,
+          "failedTasks": 0,
+          "createdAt": "2026-09-10T08:44:38.546000+08:00",
+          "updatedAt": "2026-09-10T08:46:06.244000+08:00",
+          "capacityProviderStrategy": [
+            {
+              "capacityProvider": "FARGATE_SPOT",
+              "weight": 1,
+              "base": 0
+            }
+          ],
+          "platformVersion": "1.4.0",
+          "platformFamily": "Linux",
+          "networkConfiguration": {
+            "awsvpcConfiguration": {
+              "subnets": [
+                "subnet-0344e3c6bae4e3731",
+                "subnet-0610e7921274f95bd"
+              ],
+              "securityGroups": [
+                "sg-062c63db94ecf2e16"
+              ],
+              "assignPublicIp": "ENABLED"
+            }
+          },
+          "rolloutState": "COMPLETED",
+          "rolloutStateReason": "ECS deployment ecs-svc/4912356247596231512 completed."
+        }
+      ],
+      "roleArn": "arn:aws:iam::133857166372:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+      "events": [
+        {
+          "id": "06e902fd-8a60-44b8-973b-8e9090093c09",
+          "createdAt": "2026-09-10T08:46:06.252000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "2665d54b-1a63-469b-8277-fb7db8404b9a",
+          "createdAt": "2026-09-10T08:46:06.251000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) (deployment ecs-svc/4912356247596231512) deployment completed."
+        },
+        {
+          "id": "6e883221-860f-418a-a6eb-7f976a8136ab",
+          "createdAt": "2026-09-10T08:44:42.730000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has stopped 1 running tasks: (task ed6fab84c0ac4998876be8e3205340b8)."
+        },
+        {
+          "id": "17baf6b4-aa51-49fb-8a8f-30131bf09567",
+          "createdAt": "2026-09-10T08:38:39.785000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "765e94d4-3915-4125-818d-4dae4b51876e",
+          "createdAt": "2026-09-10T02:38:34.461000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "814a62c8-a151-453f-8acc-b6a1b091fd20",
+          "createdAt": "2026-09-09T20:38:19.715000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "4e30e8d6-1c34-4f95-9cf2-7cfdeb21077d",
+          "createdAt": "2026-09-09T14:38:05.146000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "e01954dd-291a-49c6-bc24-8045d8d06180",
+          "createdAt": "2026-09-09T08:37:55.088000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "fa461990-6b01-4502-9593-c16075812646",
+          "createdAt": "2026-09-09T02:37:52.200000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "475ce879-5688-4f33-a2a7-a7e8b81b0925",
+          "createdAt": "2026-09-08T20:55:23.179000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "882df550-c928-4c16-85ab-6d23b2f0f499",
+          "createdAt": "2026-09-08T14:54:59.283000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "6e0a3148-1f63-411d-b90e-d2902f717410",
+          "createdAt": "2026-09-08T14:53:30.578000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has started 1 tasks: (task ed6fab84c0ac4998876be8e3205340b8)."
+        },
+        {
+          "id": "74344829-0666-4876-8627-1da83fedb489",
+          "createdAt": "2026-09-08T12:19:57.807000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "569eb0ed-2f5e-4f57-885b-34b53ed14edf",
+          "createdAt": "2026-09-08T06:19:31.429000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "6ccb5160-ff0d-4b85-871c-ef3b5a427da9",
+          "createdAt": "2026-09-08T00:19:08.148000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "c0863330-8277-4a47-a7dc-666305521294",
+          "createdAt": "2026-09-07T18:19:06.438000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "44b233eb-b16e-4230-8a48-c1fb91fdc1df",
+          "createdAt": "2026-09-07T12:18:49.470000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "0697d624-f35f-4c0d-98e2-ee62667ef988",
+          "createdAt": "2026-09-07T06:18:37.980000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "0621fbc3-70a3-417d-81f4-de72b0acf035",
+          "createdAt": "2026-09-07T00:18:28.058000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "78c0d7ae-007d-4f23-843f-79fa582f9cab",
+          "createdAt": "2026-09-06T18:18:16.559000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "bf76c2da-d3ad-45eb-8bdd-3459aaa1afff",
+          "createdAt": "2026-09-06T12:18:04.018000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "759bb6d7-71d0-463d-a317-6765d28e62f1",
+          "createdAt": "2026-09-06T08:13:20.951000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "3451be29-e9dd-460b-99b7-38f8003da3d1",
+          "createdAt": "2026-09-06T02:13:16.857000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "19af67d5-adbf-4a1a-9888-f85167bff61e",
+          "createdAt": "2026-09-05T20:13:09.126000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "8c8e298d-cabd-4cf9-80c1-3ef685d75a3a",
+          "createdAt": "2026-09-05T18:16:21.071000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "5e8ce693-9606-4de0-a5b5-81fa259f8974",
+          "createdAt": "2026-09-05T18:15:51.907000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) failed to describe health on (service-registry arn:aws:servicediscovery:eu-central-1:133857166372:service/srv-dgii23l433x7tk2b) with (error Service Discovery API Unavailable)"
+        },
+        {
+          "id": "2fdbd6eb-7146-4d4c-8f2a-1a935a23d5e4",
+          "createdAt": "2026-09-05T14:13:05.072000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "24f79699-507b-4fe7-8d90-84933ee0e65c",
+          "createdAt": "2026-09-05T08:12:49.704000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "d5031266-ad3b-4231-830f-a1d060ad7bb8",
+          "createdAt": "2026-09-05T02:15:26.506000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "48c273d3-7b07-4c09-8b1f-5dcb8d8d9bba",
+          "createdAt": "2026-09-04T20:15:23.910000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "5c7b1170-63d0-4f8c-9c8c-dc188dab11ed",
+          "createdAt": "2026-09-04T20:13:54.023000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has started 1 tasks: (task 023a20192cf0431ebfee4374be42965b)."
+        },
+        {
+          "id": "ddabc70e-2f89-439a-bb68-ad753630eb32",
+          "createdAt": "2026-09-04T16:08:56.128000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "1ff77e7d-3ba9-4005-bb6d-a504853e59d0",
+          "createdAt": "2026-09-04T16:07:46.280000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has started 1 tasks: (task 62dd5cb41904408cb9f85eeeb0eae569)."
+        },
+        {
+          "id": "011b7d91-7853-4c55-a8f5-01ad639ef8bf",
+          "createdAt": "2026-09-04T11:11:17.088000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "cf89d760-e8e8-4056-8296-f411ce262d03",
+          "createdAt": "2026-09-04T05:11:14.345000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "e34b4894-1215-458e-baf2-a17647450d96",
+          "createdAt": "2026-09-03T23:11:12.206000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "9cf5339c-3e8f-413e-afd6-435d12726e5c",
+          "createdAt": "2026-09-03T23:09:41.497000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has started 1 tasks: (task 0e3d20b357e2463180f1b0c584264ba9)."
+        },
+        {
+          "id": "56af96c9-e1c1-4a6b-bc7c-777ccabcd69f",
+          "createdAt": "2026-09-03T17:27:59.316000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "0b59f4f3-4882-4c1f-a218-696f3b070e06",
+          "createdAt": "2026-09-03T17:26:50.187000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has started 1 tasks: (task 1fb87cbba03f4147a9c84345f822b447)."
+        },
+        {
+          "id": "7396f399-442c-44e7-9b31-e634635191ef",
+          "createdAt": "2026-09-03T15:42:58.814000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "ffaa62ab-97a8-496a-8e3a-4563861a5064",
+          "createdAt": "2026-09-03T09:42:35.580000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "6523b688-73f2-4015-b081-128611ba7861",
+          "createdAt": "2026-09-03T09:41:03.577000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has started 1 tasks: (task 0fdccf0286ee423b9513e1364f398c10)."
+        },
+        {
+          "id": "3f1c88a6-2ac1-4641-bf76-d4ef7444d5fa",
+          "createdAt": "2026-09-03T05:03:33.190000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "f4aad28d-90b9-4288-927b-5dc16ddf8502",
+          "createdAt": "2026-09-02T23:03:29.808000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "9c528e7c-ab66-4b99-95ca-5352c901ef57",
+          "createdAt": "2026-09-02T17:03:00.796000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "b3ea835b-fc13-46a3-8783-4d7315aa890e",
+          "createdAt": "2026-09-02T17:01:30.661000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has started 1 tasks: (task d146edb6e6204feeb39e2d8ded5fb5fb)."
+        },
+        {
+          "id": "9b0af4dc-2a35-44aa-9494-eb3958802aa7",
+          "createdAt": "2026-09-02T15:16:31.560000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "6de0f496-d6c8-472e-830c-469c4dbd5946",
+          "createdAt": "2026-09-02T09:16:27.726000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "1f40922f-3fbc-4832-a8f3-75bb500d8b9c",
+          "createdAt": "2026-09-02T03:16:08.059000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "a5793620-89bf-44c4-b7c7-03f86c410ea7",
+          "createdAt": "2026-09-01T21:43:56.939000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "7460adaa-064c-4d49-b7fb-fce345e0f4f3",
+          "createdAt": "2026-09-01T17:41:26.303000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "305a956b-88b7-4b50-9022-f194231a9d91",
+          "createdAt": "2026-09-01T17:40:19.377000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has started 1 tasks: (task ce070ba0a679462d8c8a8a321bb09649)."
+        },
+        {
+          "id": "41b804f7-5d40-480e-8a6f-b0dd18564524",
+          "createdAt": "2026-09-01T11:45:26.752000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "6839dd14-4d28-49d8-9f53-6cf6e9758387",
+          "createdAt": "2026-09-01T05:45:26.047000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "6bd96f93-315e-4538-9af5-dda5d904c970",
+          "createdAt": "2026-09-01T00:51:37.433000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "bf1dd23a-526e-4487-94b1-75285e74629e",
+          "createdAt": "2026-09-01T00:41:00.583000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "ff13c250-775d-4f9c-bdff-18390cbe87b8",
+          "createdAt": "2026-08-31T18:40:49.339000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "c9ced926-1c47-4c00-8ef7-4ab18b604350",
+          "createdAt": "2026-08-31T12:40:20.175000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "f6fd2634-edf7-47d1-9609-bb3ce2340b86",
+          "createdAt": "2026-08-31T06:40:14.164000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "4a04f580-39cd-44a8-a09a-9808820f6022",
+          "createdAt": "2026-08-31T00:39:47.271000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "653ea025-af71-44d0-90a3-292e68fca13c",
+          "createdAt": "2026-08-30T18:39:28.579000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "805be5f8-6679-408b-aed1-0fb20a432d14",
+          "createdAt": "2026-08-30T12:39:21.861000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "6bfa7dcb-ef7a-4916-ae07-5f5e576eba9c",
+          "createdAt": "2026-08-30T06:38:51.982000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "7877643b-5d4a-4ae0-9cad-a2cb5284993b",
+          "createdAt": "2026-08-30T00:38:40.171000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "7f768c9d-4d3c-4fa3-aeba-61e80523ba21",
+          "createdAt": "2026-08-29T18:38:37.481000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "e2e62662-3a2b-4967-9150-fa82f0abcbd4",
+          "createdAt": "2026-08-29T12:38:20.991000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "5497f377-dffa-4919-bb41-16a6a4af9aa1",
+          "createdAt": "2026-08-29T06:38:19.841000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "d4d1957a-cbef-4110-af06-ccd223f9dd81",
+          "createdAt": "2026-08-29T02:24:47.171000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "342cd5fb-876e-4c6c-b19b-aa87705dc844",
+          "createdAt": "2026-08-28T20:24:36.452000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "f85c2d15-3374-4e44-aef4-1b565b917ee8",
+          "createdAt": "2026-08-28T14:24:31.877000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "875c6f15-a214-41fa-90bd-609c6eccdd6b",
+          "createdAt": "2026-08-28T08:24:28.048000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "92192b5c-fcf5-43fd-ac8a-b2651c422595",
+          "createdAt": "2026-08-28T02:24:07.127000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "18dd8362-ef4f-4790-833d-6899fd6a9ca3",
+          "createdAt": "2026-08-27T20:45:51.001000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "d1095a16-5fe8-41af-a466-526d9effedd8",
+          "createdAt": "2026-08-27T14:45:30.445000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "53acc430-db8f-4af9-8dea-66261028c7de",
+          "createdAt": "2026-08-27T08:45:17.678000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "94c8fbc5-67a4-4aa8-834b-a411bf53c632",
+          "createdAt": "2026-08-27T03:55:07.335000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "4cf6b24a-85b0-464c-b35d-f5074336a7ea",
+          "createdAt": "2026-08-27T01:04:00.067000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "a08d6231-d8dc-4c79-a574-5974a25c0d17",
+          "createdAt": "2026-08-26T19:53:49.051000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "a087da6a-bb88-4c52-a74b-93b6d7fc6c70",
+          "createdAt": "2026-08-26T18:34:48.905000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "0b62dfa7-4432-4e73-965e-ab2b2137f55a",
+          "createdAt": "2026-08-26T12:34:18.152000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "4f30e478-ec8d-4382-869b-b141a58e57a0",
+          "createdAt": "2026-08-26T06:34:02.366000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "9bab870d-808f-41fd-8b49-6d6c5646e0d9",
+          "createdAt": "2026-08-26T00:33:51.838000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "11857875-fbb6-4f62-803b-72da667d5484",
+          "createdAt": "2026-08-25T18:33:44.587000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "f3886d66-6b8f-433f-bb75-459880482838",
+          "createdAt": "2026-08-25T12:41:40.965000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "23f77b6a-f5bf-4cee-bcb9-beb5c7d7120b",
+          "createdAt": "2026-08-25T08:38:03.536000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "9d3930ce-46b2-442c-bf50-3fc95f495ccb",
+          "createdAt": "2026-08-25T02:37:44.839000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "41dad3b8-b32e-4505-b826-941b3cf09eec",
+          "createdAt": "2026-08-24T20:37:16.891000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "58d69d68-bab2-42f7-b53a-f99cbf6274a3",
+          "createdAt": "2026-08-24T18:16:37.731000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "62582f9b-3748-477d-a3ab-4cfede932a67",
+          "createdAt": "2026-08-24T12:16:28.877000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "207102ab-8604-4442-a65b-6b37254f9761",
+          "createdAt": "2026-08-24T06:16:07.599000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "6edfe400-19b6-4c6a-a95b-b3cab250608f",
+          "createdAt": "2026-08-24T00:16:01.556000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "7cc7636e-b452-4743-aea5-ce316936d7e8",
+          "createdAt": "2026-08-23T18:15:42.682000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "7e69ee9a-43db-4b5d-8f80-809403ccdb58",
+          "createdAt": "2026-08-23T12:15:15.463000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "c01feaf2-6d3f-4e71-be3d-0eee12957c20",
+          "createdAt": "2026-08-23T06:14:51.532000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "64c290d4-d25c-4340-994f-7cade99ce2cd",
+          "createdAt": "2026-08-23T00:14:27.760000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "0c0cc917-235b-4e08-bfa6-eb68da36023c",
+          "createdAt": "2026-08-22T18:14:11.476000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "f41b87e3-2597-498b-971c-2b18ea2dd48d",
+          "createdAt": "2026-08-22T12:13:44.502000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "8358eed0-d5f8-4302-8d9d-e0db46fa20f5",
+          "createdAt": "2026-08-22T06:13:30.466000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "73a23929-f747-4cc1-b31d-a774bf1a8def",
+          "createdAt": "2026-08-22T00:34:43.644000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+          "id": "37365ae8-f6c4-4a1f-b590-7e660ff18181",
+          "createdAt": "2026-08-21T19:00:13.370000+08:00",
+          "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        }
+      ],
+      "createdAt": "2026-08-12T16:28:23.254000+08:00",
+      "currentServiceRevisions": [
+        {
+          "arn": "arn:aws:ecs:eu-central-1:133857166372:service-revision/RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5/RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n/4912356247596231512",
+          "requestedTaskCount": 0,
+          "runningTaskCount": 0,
+          "pendingTaskCount": 0
+        }
+      ],
+      "placementConstraints": [],
+      "placementStrategy": [],
+      "networkConfiguration": {
+        "awsvpcConfiguration": {
+          "subnets": [
+            "subnet-0344e3c6bae4e3731",
+            "subnet-0610e7921274f95bd"
+          ],
+          "securityGroups": [
+            "sg-062c63db94ecf2e16"
+          ],
+          "assignPublicIp": "ENABLED"
+        }
+      },
+      "healthCheckGracePeriodSeconds": 0,
+      "schedulingStrategy": "REPLICA",
+      "deploymentController": {
+        "type": "ECS"
+      },
+      "createdBy": "arn:aws:iam::133857166372:role/cdk-hnb659fds-cfn-exec-role-133857166372-eu-central-1",
+      "enableECSManagedTags": true,
+      "propagateTags": "SERVICE",
+      "enableExecuteCommand": false,
+      "availabilityZoneRebalancing": "ENABLED",
+      "resourceManagementType": "CUSTOMER"
+    }
+  ],
+  "failures": []
+}

@@ -1,0 +1,32 @@
+{
+  "checkedAt": "2026-09-23T07:20:38.479656+00:00",
+  "plan": {
+    "success": true,
+    "result": {
+      "accountId": "133857166372",
+      "accountPlanType": "FREE",
+      "accountPlanStatus": "ACTIVE",
+      "accountPlanRemainingCredits": {
+        "amount": 112.5,
+        "unit": "USD"
+      },
+      "accountPlanExpirationDate": "2027-02-11T14:49:15.049000+00:00"
+    }
+  },
+  "databases": {
+    "success": true,
+    "result": [
+      {
+        "id": "rillorastaging-databaseb269d8bb-imhpxxsvdniq",
+        "status": "available",
+        "engine": "postgres",
+        "instanceClass": "db.t4g.micro",
+        "storageGiB": 20,
+        "encrypted": true,
+        "public": false,
+        "backupDays": 1,
+        "latestRestorable": "2026-09-23T07:15:22+00:00"
+      }
+    ]
+  }
+}

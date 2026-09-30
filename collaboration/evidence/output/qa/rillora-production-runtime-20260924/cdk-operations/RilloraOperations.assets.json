@@ -1,0 +1,36 @@
+{
+  "version": "54.0.0",
+  "files": {
+    "3c550bcf7fa8ed0d952602714d71dee03fcb4a4081077de10eca06a7db015f9b": {
+      "displayName": "HealthCheck/Code",
+      "source": {
+        "path": "asset.3c550bcf7fa8ed0d952602714d71dee03fcb4a4081077de10eca06a7db015f9b",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "133857166372-eu-central-1-f7bc6dd5": {
+          "bucketName": "cdk-hnb659fds-assets-133857166372-eu-central-1",
+          "objectKey": "[REDACTED_SCANNER_LITERAL]",
+          "region": "eu-central-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::133857166372:role/cdk-hnb659fds-file-publishing-role-133857166372-eu-central-1"
+        }
+      }
+    },
+    "64317dbe5e1771cd071717f6a876f3a7179c1e52b4390eb4b5146727b6c7e128": {
+      "displayName": "RilloraOperations Template",
+      "source": {
+        "path": "RilloraOperations.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "133857166372-eu-central-1-c117a10f": {
+          "bucketName": "cdk-hnb659fds-assets-133857166372-eu-central-1",
+          "objectKey": "64317dbe5e1771cd071717f6a876f3a7179c1e52b4390eb4b5146727b6c7e128.json",
+          "region": "eu-central-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::133857166372:role/cdk-hnb659fds-file-publishing-role-133857166372-eu-central-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

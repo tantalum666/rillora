@@ -1,0 +1,35 @@
+{
+  "task": "Free invitation clarity and image-first authenticated UI/motion",
+  "phase": "complete",
+  "completedAt": "2026-09-11T20:17:49.000746+08:00",
+  "fullRead": "64 owned Markdown files / 18,907 lines; full-read-completion.json",
+  "visualTarget": "assets/concepts/rillora-authenticated-motion-20260911/prepared-folio.png",
+  "validation": {
+    "nativePassed": 135,
+    "nativeSkipped": 1,
+    "webPassed": 58,
+    "apiSharingPassed": 11,
+    "apiSignupReturnPassed": 1,
+    "cloudHttpAndAssetChecks": 31,
+    "visualComparison": "passed",
+    "uiMatrix": "build-for-testing passed; full legacy matrix not executed"
+  },
+  "cloud": {
+    "web": "https://app.staging.rillora.xyz",
+    "stack": "UPDATE_COMPLETE",
+    "apiTaskRevision": 20,
+    "running": 1,
+    "desired": 1,
+    "migrationUnchanged": "0040-0042",
+    "billingOpen": false
+  },
+  "cleanup": {
+    "syntheticConnections": "all revoked",
+    "ownedLocalListeners": "all stopped",
+    "simulator": "normal cloud Debug; no QA overrides",
+    "realMessagesSent": 0
+  },
+  "next": "Minimum sellable quota/paid-cutoff/cancellation/restore lifecycle, with production/merchant/identity gates still required",
+  "handoff": "docs/handoff.md",
+  "qa": "output/qa/rillora-invite-motion-20260911/README.md"
+}

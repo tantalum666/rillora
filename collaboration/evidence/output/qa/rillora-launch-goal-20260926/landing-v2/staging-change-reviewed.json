@@ -1,0 +1,105 @@
+{
+  "Changes": [
+    {
+      "Type": "Resource",
+      "ResourceChange": {
+        "Action": "Modify",
+        "LogicalResourceId": "WebDeploymentCustomResource08EEC474",
+        "PhysicalResourceId": "aws.cdk.s3deployment.06dbb29e-f2ab-497e-9c97-571f8e9d9cea",
+        "ResourceType": "Custom::CDKBucketDeployment",
+        "Replacement": "Conditional",
+        "Scope": [
+          "Properties"
+        ],
+        "Details": [
+          {
+            "Target": {
+              "Attribute": "Properties",
+              "Name": "SourceObjectKeys",
+              "RequiresRecreation": "Conditionally"
+            },
+            "Evaluation": "Static",
+            "ChangeSource": "DirectModification"
+          }
+        ]
+      }
+    }
+  ],
+  "ChangeSetName": "rillora-guides-20260928-e91dafef59",
+  "ChangeSetId": "arn:aws:cloudformation:eu-central-1:133857166372:changeSet/rillora-guides-20260928-e91dafef59/58d9ba5f-bb99-44d7-a9e5-36c5ab95117c",
+  "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319",
+  "StackName": "RilloraStaging",
+  "Description": "Only update Web assets for signed-in guide routing; preserve API and database",
+  "Parameters": [
+    {
+      "ParameterKey": "WebCorsOrigin",
+      "ParameterValue": "https://app.staging.rillora.xyz"
+    },
+    {
+      "ParameterKey": "Auth0DeletionClientId",
+      "ParameterValue": "8PNcymHitFBsqlqfsHqvkp3fzQF8KXK7"
+    },
+    {
+      "ParameterKey": "OidcApiAudience",
+      "ParameterValue": "****"
+    },
+    {
+      "ParameterKey": "Auth0EmailVerificationClientId",
+      "ParameterValue": "85FI2tG6AtD7pvzxrxVOIeVqhDPhrANc"
+    },
+    {
+      "ParameterKey": "BootstrapVersion",
+      "ParameterValue": "/cdk-bootstrap/hnb659fds/version",
+      "ResolvedValue": "32"
+    },
+    {
+      "ParameterKey": "WebOidcClientId",
+      "ParameterValue": "Sbf9lj69O25Cf7JZSZJuI09bTcRi2i0x"
+    },
+    {
+      "ParameterKey": "OidcIssuer",
+      "ParameterValue": "https://login.rillora.xyz"
+    },
+    {
+      "ParameterKey": "WebCertificateArn",
+      "ParameterValue": "arn:aws:acm:us-east-1:133857166372:certificate/4f7875ec-3161-4e11-9ec6-16382783c410"
+    },
+    {
+      "ParameterKey": "Auth0EmailVerificationDomain",
+      "ParameterValue": "rillora-dev.eu.auth0.com"
+    },
+    {
+      "ParameterKey": "WebOidcRedirectUri",
+      "ParameterValue": "https://app.staging.rillora.xyz/api/auth/callback"
+    },
+    {
+      "ParameterKey": "Auth0DeletionDomain",
+      "ParameterValue": "rillora-dev.eu.auth0.com"
+    },
+    {
+      "ParameterKey": "NativeOidcClientId",
+      "ParameterValue": "****"
+    }
+  ],
+  "CreationTime": "2026-09-28T07:51:07.788000+00:00",
+  "ExecutionStatus": "AVAILABLE",
+  "Status": "CREATE_COMPLETE",
+  "StatusReason": null,
+  "NotificationARNs": [],
+  "RollbackConfiguration": {},
+  "Capabilities": [
+    "CAPABILITY_NAMED_IAM"
+  ],
+  "Tags": null,
+  "ParentChangeSetId": null,
+  "IncludeNestedStacks": false,
+  "RootChangeSetId": null,
+  "OnStackFailure": null,
+  "ImportExistingResources": null,
+  "StackDriftStatus": null,
+  "DeploymentMode": null,
+  "DeploymentConfig": {
+    "Mode": "STANDARD",
+    "DisableRollback": false
+  }
+}

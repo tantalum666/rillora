@@ -1,0 +1,29 @@
+Stack RilloraStaging
+Resources
+[~] AWS::ECS::TaskDefinition ApiTaskDefinition ApiTaskDefinition51EA709E replace
+ └─ [~] ContainerDefinitions (requires replacement)
+     └─ @@ -182,7 +182,7 @@
+        [ ]   "Timeout": 5
+        [ ] },
+        [ ] "Image": {
+        [-]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:a151c2523ca1ae27323cb682a09b6bf0f37e0bcd3f2b031853cea6fcbdfcab4f"
+        [+]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:e5df7278ed70bb7fdbe1763e1938e8a7a747cab69a41582e6aad10bee78788a6"
+        [ ] },
+        [ ] "LogConfiguration": {
+        [ ]   "LogDriver": "awslogs",
+[~] AWS::ECS::TaskDefinition MigrationTaskDefinition MigrationTaskDefinitionE89B136E replace
+ └─ [~] ContainerDefinitions (requires replacement)
+     └─ @@ -59,7 +59,7 @@
+        [ ] ],
+        [ ] "Essential": true,
+        [ ] "Image": {
+        [-]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:a151c2523ca1ae27323cb682a09b6bf0f37e0bcd3f2b031853cea6fcbdfcab4f"
+        [+]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:e5df7278ed70bb7fdbe1763e1938e8a7a747cab69a41582e6aad10bee78788a6"
+        [ ] },
+        [ ] "LogConfiguration": {
+        [ ]   "LogDriver": "awslogs",
+
+
+
+✨  Number of stacks with differences: 1
+

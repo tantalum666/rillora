@@ -1,0 +1,24 @@
+23:40:24.490 xcodebuild[1577:15750334] Sim Rillora-Matrix-17-Pro-Max: Unregistering for sim device notification with token 3
+23:40:24.490 xcodebuild[1577:15750334] Calling -[SimDevice getenv:error:] for TESTMANAGERD_SIM_SOCK
+23:40:24.494 xcodebuild[1577:15750334] Sim Rillora-Matrix-17-Pro-Max has testmanagerd socket at /private/var/tmp/com.apple.launchd.60XdP4zt7Z/com.apple.testmanagerd.unix-domain.socket
+23:40:24.494 xcodebuild[1577:15750334] Validating test connection socket path (/private/var/tmp/com.apple.launchd.60XdP4zt7Z/com.apple.testmanagerd.unix-domain.socket)
+23:40:24.494 xcodebuild[1577:15750334] Constructing transport for test connection socket
+23:40:24.494 xcodebuild[1577:15750334] Connected socket 30 to testmanagerd for Sim Rillora-Matrix-17-Pro-Max
+23:40:24.498 xcodebuild[1577:15750334] Initiating control session with IDE capabilities: <XCTCapabilities: 0x94e262500>: {
+}
+23:40:28.331 xcodebuild[1577:15750804] Got reply to control session initiation request (result:error): <XCTCapabilities: 0x94e262870>: {
+    "authorize test session capability" = 1;
+    "automation mode" = 1;
+    "daemon container sandbox extension" = 1;
+    "initiate daemon control session capability" = 4;
+    "initiate test runner session capability" = 2;
+    "record UI interaction capability" = 2;
+    "recording events as source code" = 1;
+    "report crashes capability" = 1;
+    "request log archive capability" = 1;
+    "supports delayed attachment transfers" = 1;
+}: (null)
+23:40:28.334 xcodebuild[1577:15750334] Requesting crash report collection for process names: FrontBoard, runningboardd, backboardd, RilloraLayoutMatrixTests-Runner, RilloraLayoutMatrixTests, DTServiceHub, SpringBoard, debugserver, assertiond, testmanagerd, xctest, Rillora
+23:40:28.357 xcodebuild[1577:15750818] Got reply to crash report collection request (error: (null))
+23:41:31.780 xcodebuild[1577:15757572] Requesting authorization for pid 2698
+23:41:31.781 xcodebuild[1577:15757572] Got reply to authorization request for pid 2698 (result:error): 1: (null)

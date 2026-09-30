@@ -1,0 +1,34 @@
+[
+    {
+        "taskArn": "arn:aws:ecs:eu-central-1:133857166372:task/RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5/ed5bc73edb844b5e9751383ae3c8d66e",
+        "status": "STOPPED",
+        "provider": "FARGATE_SPOT",
+        "started": "2026-09-17T00:54:45.749000+08:00",
+        "stopped": "2026-09-17T09:11:10.583000+08:00",
+        "stopCode": "SpotInterruption",
+        "reason": "Your Spot Task was interrupted.",
+        "containers": [
+            {
+                "name": "Api",
+                "exit": 0,
+                "reason": null
+            }
+        ]
+    },
+    {
+        "taskArn": "arn:aws:ecs:eu-central-1:133857166372:task/RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5/18423f37c9864e6a9e3f83d74bb3b32a",
+        "status": "RUNNING",
+        "provider": "FARGATE_SPOT",
+        "started": "2026-09-17T09:11:26.590000+08:00",
+        "stopped": null,
+        "stopCode": null,
+        "reason": null,
+        "containers": [
+            {
+                "name": "Api",
+                "exit": null,
+                "reason": null
+            }
+        ]
+    }
+]

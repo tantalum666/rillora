@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: rejects private, mapped, loopback and reserved DNS addresses
+ok 1 - rejects private, mapped, loopback and reserved DNS addresses
+  ---
+  duration_ms: 3.884542
+  type: 'test'
+  ...
+# Subtest: blocks off-registry origins, credentials, queries, fragments and IP targets
+ok 2 - blocks off-registry origins, credentials, queries, fragments and IP targets
+  ---
+  duration_ms: 0.377292
+  type: 'test'
+  ...
+# Subtest: successful denial and TLS check never retain response data
+ok 3 - successful denial and TLS check never retain response data
+  ---
+  duration_ms: 0.85275
+  type: 'test'
+  ...
+# Subtest: unexpected success on a private endpoint is a failure, without logging contents
+ok 4 - unexpected success on a private endpoint is a failure, without logging contents
+  ---
+  duration_ms: 1.242167
+  type: 'test'
+  ...
+# Subtest: network failure does not leak arbitrary error messages or codes
+ok 5 - network failure does not leak arbitrary error messages or codes
+  ---
+  duration_ms: 0.243542
+  type: 'test'
+  ...
+# Subtest: missing certificate evidence is unknown, not a healthy default
+ok 6 - missing certificate evidence is unknown, not a healthy default
+  ---
+  duration_ms: 0.106458
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 99.269541

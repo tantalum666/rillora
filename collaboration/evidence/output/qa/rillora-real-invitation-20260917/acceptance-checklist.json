@@ -1,0 +1,57 @@
+{
+  "recordedAt": "2026-09-17T14:01:29.313941+08:00",
+  "environment": "Existing synthetic staging, real Owner-supplied A/B provider identities, disposable shared content only",
+  "sender": "A on ordinary iOS Simulator, no development identity override",
+  "recipient": "B in Chrome; invitation transfer remains manual due prior browser-policy block",
+  "checks": [
+    {
+      "id": "A_OWNER_SESSION",
+      "expect": "A recovers existing plan through Google and actual current legal confirmation",
+      "result": "PASS_REAL_UI",
+      "evidence": "Owner confirmed terms; ordinary native Overview shows preserved matter and pending contact."
+    },
+    {
+      "id": "SCOPE",
+      "expect": "Existing invitation targets B and only the disposable acceptance-check matter at Details level",
+      "result": "PASS_REAL_UI",
+      "evidence": "Sharing editor: Invitation pending, 1 of 1 sharing place used, B masked mailbox, only test matter selected and All saved details."
+    },
+    {
+      "id": "B_ACCOUNT",
+      "expect": "B signs in or registers using the invited verified mailbox and returns to this invitation",
+      "result": "PASS_REAL_UI_AND_OWNER_REPORTED_EMAIL_VERIFICATION"
+    },
+    {
+      "id": "EXPLICIT_ACCEPT",
+      "expect": "Account creation alone grants nothing; explicit Accept invitation binds B and shows one allowed read-only matter",
+      "result": "PASS_REAL_UI_OWNER_ACTION"
+    },
+    {
+      "id": "READ_ONLY_FIELDS",
+      "expect": "Approved location and test note visible; no editing or unselected private matter metadata",
+      "result": "PASS_REAL_UI_APPROVED_TEST_FIELDS"
+    },
+    {
+      "id": "A_REVOKE",
+      "expect": "A stops sharing this connection through normal owner UI",
+      "result": "PASS_REAL_UI_DISCONNECTED_FREE_PLACE_RELEASED"
+    },
+    {
+      "id": "B_FOREGROUND",
+      "expect": "An already-open shared detail clears and denies after foreground access refresh",
+      "result": "CONTINUOUS_VIEW_REVALIDATION_REPAIRED_AND_DEPLOYED; LOCAL_RENDERED_DENIAL_15_SECONDS"
+    },
+    {
+      "id": "B_REFRESH",
+      "expect": "Reload and inbox no longer allow retrieving revoked shared matter",
+      "result": "PASS_REAL_UI_EMPTY_INBOX"
+    },
+    {
+      "id": "OLD_INVITE",
+      "expect": "Manually reopened old link cannot reaccept or restore revoked access",
+      "result": "ORIGINAL_REAL_LINK_NOT_RETAINED; DEPLOYED_ISOLATED_SAME_CAPABILITY_REJECTION_PASS"
+    }
+  ],
+  "boundary": "No regenerated URL or alternate route may bypass the prior browser policy block. No real credentials, invite tokens or mailboxes in artifacts.",
+  "scopeCaveat": "This real A plan contained one disposable test matter; broader B/C and unselected-matter isolation remain earlier synthetic test evidence."
+}

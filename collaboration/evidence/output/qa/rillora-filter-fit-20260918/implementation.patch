@@ -1,0 +1,164 @@
+--- before/apps/ios/Rillora/Core/Design/RilloraInteractionComponents.swift
++++ after/apps/ios/Rillora/Core/Design/RilloraInteractionComponents.swift
+@@ -33,6 +33,59 @@
+     let id: String
+     let title: String
+     let symbol: String
++}
++
++struct RilloraFilterOption: Identifiable {
++    let id: String
++    let title: String
++}
++
++/// Adapted from Figma SDS Tag Toggle Group. Credits are bundled in DesignCredits.txt.
++/// Content-sized options wrap as a group; an individual long label can wrap too.
++struct RilloraFilterPicker: View {
++    let title: String
++    let options: [RilloraFilterOption]
++    @Binding var selection: String
++    let identifier: String
++    @RilloraReduceMotion private var reduceMotion
++
++    var body: some View {
++        RilloraFlowLayout(spacing: 8, rowSpacing: 8) {
++            ForEach(options) { option in
++                Button { selection = option.id } label: {
++                    HStack(spacing: 6) {
++                        if selection == option.id {
++                            Image(systemName: "checkmark")
++                                .font(.system(size: 13, weight: .semibold))
++                                .accessibilityHidden(true)
++                        }
++                        Text(option.title)
++                            .font(.subheadline.weight(.medium))
++                            .fixedSize(horizontal: false, vertical: true)
++                    }
++                    .multilineTextAlignment(.leading)
++                    .padding(.horizontal, 12)
++                    .padding(.vertical, 8)
++                    .frame(minWidth: 44, minHeight: 44)
++                    .foregroundStyle(selection == option.id ? RilloraTheme.tabSelection : RilloraTheme.body)
++                    .background(selection == option.id ? RilloraTheme.iconSurface : .clear, in: RoundedRectangle(cornerRadius: 12))
++                    .overlay {
++                        RoundedRectangle(cornerRadius: 12)
++                            .stroke(selection == option.id ? RilloraTheme.sage : RilloraTheme.cardBorder, lineWidth: 1)
++                    }
++                    .contentShape(RoundedRectangle(cornerRadius: 12))
++                }
++                .buttonStyle(RilloraQuietButtonStyle())
++                .accessibilityLabel(option.title)
++                .accessibilityAddTraits(selection == option.id ? .isSelected : [])
++                .accessibilityIdentifier("\(identifier).\(option.id)")
++            }
++        }
++        .accessibilityElement(children: .contain)
++        .accessibilityLabel(title)
++        .accessibilityIdentifier(identifier)
++        .animation(reduceMotion ? nil : RilloraMotion.response, value: selection)
++    }
+ }
+ 
+ struct MotivationChoices: View {
+--- before/apps/ios/Rillora/Features/Account/PlanAccessView.swift
++++ after/apps/ios/Rillora/Features/Account/PlanAccessView.swift
+@@ -76,12 +76,9 @@
+                             }
+                         }
+                         if !status.offers.isEmpty {
+-                            Picker("Billing period", selection: $billingInterval) {
+-                                ForEach(status.offers, id: \.billingInterval) { offer in
+-                                    Text(intervalLabel(offer.billingInterval)).tag(offer.billingInterval)
+-                                }
+-                            }
+-                            .pickerStyle(.segmented)
++                            RilloraFilterPicker(title: "Billing period", options: status.offers.map {
++                                .init(id: $0.billingInterval, title: intervalLabel($0.billingInterval))
++                            }, selection: $billingInterval, identifier: "plan-access.billing-period")
+                             if let offer = selectedOffer(in: status) {
+                                 LabeledContent(intervalLabel(offer.billingInterval), value: offer.formattedPrice)
+                             }
+--- before/apps/ios/Rillora/Features/Account/ProfileSupportViews.swift
++++ after/apps/ios/Rillora/Features/Account/ProfileSupportViews.swift
+@@ -273,6 +273,12 @@
+                     Text("A planning map, not a password vault or legal authority.")
+                         .font(.subheadline).foregroundStyle(RilloraTheme.body)
+                 }
++                NavigationLink {
++                    RilloraDesignCreditsView()
++                } label: {
++                    Label("Design credits", systemImage: "text.book.closed")
++                }
++                .accessibilityIdentifier("profile.about.design-credits")
+             }
+             .rilloraAlignedLabelRows()
+         }
+@@ -302,3 +308,29 @@
+         didCopyAppInformation = true
+     }
+ }
++
++private struct RilloraDesignCreditsView: View {
++    private var credits: String {
++        guard let url = Bundle.main.url(forResource: "DesignCredits", withExtension: "txt"),
++              let text = try? String(contentsOf: url, encoding: .utf8) else {
++            return "Design credits are unavailable in this build."
++        }
++        return text
++    }
++
++    var body: some View {
++        ScrollView {
++            Text(credits)
++                .font(.footnote)
++                .foregroundStyle(RilloraTheme.body)
++                .frame(maxWidth: .infinity, alignment: .leading)
++                .textSelection(.enabled)
++                .padding(20)
++        }
++        .background(RilloraTheme.canvas)
++        .navigationTitle("Design credits")
++        .navigationBarTitleDisplayMode(.inline)
++        .rilloraFocusedTask()
++        .accessibilityIdentifier("profile.design-credits")
++    }
++}
+--- before/apps/ios/Rillora/Features/Maintenance/FamilyMaintenanceView.swift
++++ after/apps/ios/Rillora/Features/Maintenance/FamilyMaintenanceView.swift
+@@ -19,10 +19,10 @@
+             }
+             if let data = store.data {
+                 Section {
+-                    Picker("Review inbox", selection: $inbox) {
+-                        Text("My plan").tag("mine")
+-                        Text(data.incoming.contains { $0.roundState == "open" } ? "For me \(data.incoming.filter { $0.roundState == "open" }.count)" : "For me").tag("incoming")
+-                    }.pickerStyle(.segmented).accessibilityIdentifier("maintenance.inbox-picker")
++                    RilloraFilterPicker(title: "Review inbox", options: [
++                        .init(id: "mine", title: "My plan"),
++                        .init(id: "incoming", title: data.incoming.contains { $0.roundState == "open" } ? "For me \(data.incoming.filter { $0.roundState == "open" }.count)" : "For me"),
++                    ], selection: $inbox, identifier: "maintenance.inbox-picker")
+                 }.listRowBackground(Color.clear)
+                 if inbox == "mine" { ownerContent(data) } else { incomingContent(data) }
+             } else if store.isLoading { ProgressView("Loading reviews…") }
+--- before/apps/ios/Rillora/Features/Matters/MattersView.swift
++++ after/apps/ios/Rillora/Features/Matters/MattersView.swift
+@@ -94,14 +94,11 @@
+             } else {
+                 RilloraList {
+                     Section {
+-                        RilloraAdaptivePicker("Show", selection: $filter) {
+-                            Text("All").tag("all")
+-                            Text("To review").tag("review")
+-                            Text("Directions added").tag("added")
+-                        }
+-                        .pickerStyle(.segmented)
+-                        .frame(minHeight: 44)
+-                        .accessibilityIdentifier("matters.filter")
++                        RilloraFilterPicker(title: "Show matters", options: [
++                            .init(id: "all", title: "All"),
++                            .init(id: "review", title: "To review"),
++                            .init(id: "added", title: "Directions added"),
++                        ], selection: $filter, identifier: "matters.filter")
+                     }
+                     if filteredMatters.contains(where: { !$0.isReady }) {
+                         Section("To review") {

@@ -1,0 +1,39 @@
+[
+  {
+    "type": "CNAME",
+    "name": "uindmbdho6fsywhs2zc2qqpsxqlivufr._domainkey.notify",
+    "data": "uindmbdho6fsywhs2zc2qqpsxqlivufr.dkim.amazonses.com",
+    "ttl": 600
+  },
+  {
+    "type": "CNAME",
+    "name": "e72bxaidtogictet4f5ittbyyxfywrfl._domainkey.notify",
+    "data": "e72bxaidtogictet4f5ittbyyxfywrfl.dkim.amazonses.com",
+    "ttl": 600
+  },
+  {
+    "type": "CNAME",
+    "name": "4ki2lv3epotn2fmb7zj5wm6ky35lkwfl._domainkey.notify",
+    "data": "4ki2lv3epotn2fmb7zj5wm6ky35lkwfl.dkim.amazonses.com",
+    "ttl": 600
+  },
+  {
+    "type": "MX",
+    "name": "bounce.notify",
+    "data": "feedback-smtp.eu-central-1.amazonses.com",
+    "priority": 10,
+    "ttl": 600
+  },
+  {
+    "type": "TXT",
+    "name": "bounce.notify",
+    "data": "v=spf1 include:amazonses.com -all",
+    "ttl": 600
+  },
+  {
+    "type": "TXT",
+    "name": "_dmarc.notify",
+    "data": "v=DMARC1; p=reject; adkim=s; aspf=r;",
+    "ttl": 600
+  }
+]

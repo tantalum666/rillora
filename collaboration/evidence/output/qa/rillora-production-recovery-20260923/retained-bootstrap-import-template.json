@@ -1,0 +1,62 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Adopt only retained empty bootstrap resources from the failed first production creation",
+  "Resources": {
+    "MaintenanceLogs61C6A99C": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "RetentionInDays": 30,
+        "Tags": [
+          {
+            "Key": "CostCenter",
+            "Value": "Rillora"
+          },
+          {
+            "Key": "Environment",
+            "Value": "Production"
+          },
+          {
+            "Key": "Project",
+            "Value": "Rillora"
+          }
+        ]
+      },
+      "UpdateReplacePolicy": "Retain",
+      "DeletionPolicy": "Retain",
+      "Metadata": {
+        "aws:cdk:path": "RilloraProduction/MaintenanceLogs/Resource"
+      }
+    },
+    "RuntimeCredential871C86BA": {
+      "Type": "AWS::SecretsManager::Secret",
+      "Properties": {
+        "Description": "Production runtime credential; independent of staging and migration identity",
+        "GenerateSecretString": {
+          "ExcludeCharacters": " @/\\\"'`",
+          "GenerateStringKey": "password",
+          "PasswordLength": 48,
+          "SecretStringTemplate": "{\"username\":\"continuity_runtime_production\"}"
+        },
+        "Tags": [
+          {
+            "Key": "CostCenter",
+            "Value": "Rillora"
+          },
+          {
+            "Key": "Environment",
+            "Value": "Production"
+          },
+          {
+            "Key": "Project",
+            "Value": "Rillora"
+          }
+        ]
+      },
+      "UpdateReplacePolicy": "Retain",
+      "DeletionPolicy": "Retain",
+      "Metadata": {
+        "aws:cdk:path": "RilloraProduction/RuntimeCredential/Resource"
+      }
+    }
+  }
+}

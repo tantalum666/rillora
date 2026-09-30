@@ -1,0 +1,5 @@
+{
+  "exitCode": 1,
+  "stdout": "",
+  "stderr": "{\n  \"error\": {\n    \"code\": \"UNEXPECTED_ERROR\",\n    \"message\": \"set for www (CNAME) partially failed \u2014 1 of 1 action(s):\\n  \u2717 replaced d1zq6qpnicab3e.cloudfront.net \u2014 `www` already has conflicting CNAME data \u2014 run `gddy dns list rillora.xyz --type CNAME --name www` to see the current records before retrying.\\n\\nRe-run the original `gddy dns set` command, or `gddy dns list rillora.xyz --type CNAME --name www` to review the current state.\",\n    \"system\": \"domain\"\n  },\n  \"fix\": \"Re-run with only the failed value(s), or use gddy dns list to inspect the current records.\"\n}\n"
+}

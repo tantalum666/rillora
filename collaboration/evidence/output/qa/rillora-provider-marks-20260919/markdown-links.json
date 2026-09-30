@@ -1,0 +1,19 @@
+{
+  "files": 90,
+  "localLinks": 849,
+  "missing": [],
+  "exclusions": [
+    ".git",
+    "node_modules",
+    ".build",
+    "build",
+    "dist",
+    "cdk.out",
+    ".swiftpm",
+    "DerivedData",
+    ".derived-data*",
+    ".local-secrets",
+    "output except this QA README"
+  ],
+  "scope": "link check; not full-body reading"
+}

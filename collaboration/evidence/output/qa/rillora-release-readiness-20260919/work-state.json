@@ -1,0 +1,154 @@
+{
+  "startedAt": "2026-09-19T08:25:22.545519+00:00",
+  "updatedAt": "2026-09-19T12:24:01.348325+00:00",
+  "task": "Formal Web+iOS release preparation; Owner-selected US$88.80 annual and US$9.99 monthly pricing",
+  "phase": "Current checkpoint complete. Apple annual price choice pending; formal release work continues with isolated production/identity/restore.",
+  "inventory": {
+    "files": 92,
+    "lines": 20554,
+    "chunks": 206
+  },
+  "readLedger": "md-read-ledger.json",
+  "readScript": "read-batch.py",
+  "fullReadComplete": true,
+  "verifiedChunkCount": 206,
+  "lastEmittedAwaitingAck": [],
+  "readCompletion": "full-read-completion.json",
+  "recovery": "Reuse the full read; after compaction read current authority/release/price/touched files only. Do not restart completed authentication, tests or deployments.",
+  "ownerAnswers": {
+    "alertDestination": "Owner daily Gmail, exact value from current explicit reply; do not place email in product code",
+    "businessRegistrationStatus": "Owner explicitly says to ignore/defer for now; do not ask again or assess immigration/business eligibility. Retain as unverified before actual paid activation, continue all independent release work.",
+    "alertDestinationConfig": ".local-secrets/release-readiness/alert-recipient.txt"
+  },
+  "latestOwnerPricing": {
+    "annualUSD": 88.8,
+    "monthlyUSD": 9.99,
+    "capabilityVersion": 2,
+    "priceVersion": 3,
+    "status": "Additive 0061/0062 applied; shared server catalog and separate Stripe TEST prices deployed; no new v3 payment or live sale",
+    "history": "Preserve immutable v1/v2 prices, bindings and receipts; no silent subscription migration"
+  },
+  "stripe": {
+    "account": "acct_1U6B2RCxTlowhyiG",
+    "product": "prod_V6O8lAFbTCDmKd",
+    "livemode": false,
+    "annualV3": "price_1UHMkTCxTlowhyiGu3do5wps",
+    "monthlyV3": "price_1UHMlhCxTlowhyiGvBEPdb4x",
+    "readback": "stripe-v3-price-readback.json",
+    "newV3Payment": false,
+    "session": "Existing Chrome browser worked; connector expired. Do not use unrelated default Stripe CLI."
+  },
+  "apple": {
+    "signedIn": true,
+    "tab": "1082156570",
+    "browser": "Chrome2",
+    "metadataStatus": "Saved and reloaded in unsubmitted draft; subtitle/category/English copy/support/copyright; manual release",
+    "agreementStatus": "Free and paid valid; bank available; tax forms in use; private values not recorded",
+    "annualCurrentUSD": 68,
+    "annualRequestedUSD": 88.8,
+    "exactAnnualRequestedUnavailable": true,
+    "annualNearbyAvailableUSD": [
+      88,
+      88.9,
+      88.99
+    ],
+    "ownerChoicePending": true,
+    "monthlyUSD": 9.99,
+    "monthlyHKD": 88,
+    "monthlySavedAndReadBack": true,
+    "status": "Prepare for Submission; existing availability unchanged; no review submission or actual transaction",
+    "backendVersionedAlignmentPending": true,
+    "readback": "apple-price-readback.json"
+  },
+  "operations": {
+    "snsSubscriptionConfirmed": true,
+    "realPublishPermissionDefectFixed": true,
+    "deliveredInboxMessages": 4,
+    "silenceDrillWasActualMissingHeartbeat": true,
+    "observedMissingHeartbeatMinutes": 75.4,
+    "scheduleEnabled": true,
+    "cadence": "15 minutes",
+    "scheduledInvocationChecksPassed": 7,
+    "proof": "operations-final-readback.json",
+    "deliveryProof": "all-alarm-delivery-evidence.json",
+    "scope": "Public/staging metadata only; production targets and private security monitoring unverified"
+  },
+  "deployment": {
+    "stack": "RilloraStaging",
+    "status": "UPDATE_COMPLETE",
+    "apiTaskRevision": 32,
+    "migrationDefinitionRevision": 25,
+    "migrationsThrough": "0062",
+    "desired": 1,
+    "running": 1,
+    "pending": 0,
+    "rollout": "COMPLETED",
+    "httpChecksPassed": 42,
+    "runtimeEvidence": "final-runtime-state.json",
+    "log": "aws-activate.log",
+    "webArtifact": "430a74040cebd84049e01c0c0f1e5e1880176952b307f41b7e496930c5a3cdc0.zip",
+    "legalSitesVersion": 5,
+    "appleCloudIntegrationEnabled": false,
+    "publicSalesEnabled": false
+  },
+  "verification": {
+    "apiFinal": 179,
+    "web": 80,
+    "infra": 20,
+    "releasePreflightUnit": 5,
+    "financialArithmetic": 33,
+    "dependencyAudits": {
+      "api": 0,
+      "web": 0,
+      "infra": 0
+    },
+    "nativeBuildOrSuiteRerun": false,
+    "freshPersonalProductLogin": false,
+    "releasePreflightPassed": false,
+    "publicationApproval": false,
+    "documentation": {
+      "files": 95,
+      "localLinks": 922,
+      "qaLinks": 17,
+      "brokenLinks": 0,
+      "consistencyChecksPassed": 13
+    }
+  },
+  "docsCloseoutPending": false,
+  "modifiedOwnedMarkdown": [
+    "README.md",
+    "docs/commercial-completion-20260916.md",
+    "docs/decision-log.md",
+    "docs/handoff-history-20260919-before-release-preparation.md",
+    "docs/handoff.md",
+    "docs/infrastructure-roadmap.md",
+    "docs/journey/PROJECT_JOURNEY.md",
+    "docs/monetization.md",
+    "docs/mvp.md",
+    "docs/pricing-68-20260911.md",
+    "docs/pricing-88-80-20260919.md",
+    "docs/product.md",
+    "docs/public-legal-pages.md",
+    "docs/quality-gates.md",
+    "docs/release-readiness.md",
+    "docs/solo-operations-and-portability.md",
+    "docs/unit-economics.md",
+    "infra/aws/README.md"
+  ],
+  "decisionEntries": "docs/decision-log.md: 2026-09-19 formal release priority and Owner 88.80/9.99 price decisions",
+  "journeyEntry": "docs/journey/PROJECT_JOURNEY.md: 2026-09-19 formal release and price revision",
+  "noNewProductionResourcesYet": true,
+  "noGitInitialCommitBranchOrStash": true,
+  "memoryReferences": [
+    "MEMORY.md:647-650",
+    "MEMORY.md:670-673"
+  ],
+  "next": "Proceed with isolated production runtime, identity and restore. On the pending Apple reply, first save and verify that exact annual amount, update channel records, then resume the same release path.",
+  "runningProcesses": [],
+  "doNotRedo": [
+    "Full 92-file body read",
+    "Completed application tests and pricing deployment without a new change",
+    "Personal authentication without actual fresh expiry",
+    "Historical A/B or old-price test ceremony merely to satisfy stale documentation"
+  ]
+}

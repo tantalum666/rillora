@@ -1,0 +1,89 @@
+{
+  "checkedAt": "2026-09-28T14:32:39.554592+00:00",
+  "method": "CUA Chrome, native DOM/interaction checks and view_image reference/render inspection",
+  "reference": "assets/concepts/rillora-landing-20260928-v3/dark-concept.png",
+  "viewports": [
+    [
+      1435,
+      1096
+    ],
+    [
+      1329,
+      681
+    ],
+    [
+      390,
+      844
+    ],
+    [
+      320,
+      740
+    ]
+  ],
+  "comparisons": [
+    {
+      "area": "Brand placement",
+      "result": "Full approved03SVG retained. Actual rendered centre53%/45%of alpha artwork canvas,22%width,-13degree; visually aligned to cover rather than image bounding box."
+    },
+    {
+      "area": "Theme",
+      "result": "System dark/light switches root between rgb(23,31,27) and rgb(245,241,232), swaps wordmark/hero picture sources, retains selected Alex state; no stored setting."
+    },
+    {
+      "area": "Navigation",
+      "result": "Product/Security/Pricing/Support independent destinations; mobile disclosure+Escape verified,320px no overflow."
+    },
+    {
+      "area": "Purposeful interaction",
+      "result": "No walkthrough, timeouts, stage buttons or serial chapter labels; recipient projection and category/disclosure interactions retained."
+    },
+    {
+      "area": "Typography and density",
+      "result": "Source Serif4/Inter retained; child-page headings made smaller and redundant security heading removed; public homepage shorter than V2."
+    },
+    {
+      "area": "Attribution placement",
+      "result": "Footer Legal index and official Terms footer lead to notices.136paragraphs, Inter text, no pre/code elements; full raw notice bytes retained for optional download."
+    },
+    {
+      "area": "Geometry and palette",
+      "result": "Consistent light/dark sheet, rules, controls and focus tokens; matching dark hero and true alpha folio inspected in both themes."
+    },
+    {
+      "area": "Navigation repair",
+      "result": "Live check exposed lazy page anchor above fold failure. Mounted fragment handler after Suspense content resolves; local /product#sharing scrolls to24px and focuses sharing. Known old home anchors route to new pages."
+    }
+  ],
+  "aboveFoldCopy": {
+    "headline": "retained",
+    "nav": "Product, Security, Pricing, Support",
+    "cta": "Explore the product",
+    "other": "Preview Sign in and Received an invitation retained; numbers/walkthrough removed"
+  },
+  "intentionalDeviations": [
+    "Approved existing sharing composition retained instead of generated fake health records/email/add-person control",
+    "Preview remains attached to sign-in action, not an independent pill",
+    "Generated concept is palette/navigation grounding, not pixel-identical replacement of supplied screenshot",
+    "Legal boilerplate moved behind explicit legal reading; full statements preserved"
+  ],
+  "screenshots": [
+    "home-dark-desktop.png",
+    "sharing-dark-desktop.png",
+    "sharing-light-desktop.png",
+    "security-dark-mobile.png",
+    "licenses-mobile.png"
+  ],
+  "remaining": null,
+  "sourceCI": {
+    "checkedAt": "2026-09-28T14:40:57.985197+00:00",
+    "implementationCommit": "6177d6e50",
+    "implementationRun": 22,
+    "implementationStatus": "success",
+    "finalEngineeringCommit": "b54d7342dae31e34b6d32044c0466de1e7e3ba5b",
+    "run": 23,
+    "status": "success",
+    "url": "https://github.com/tantalum666/rillora/actions/runs/36436946592",
+    "evidence": "Authenticated Chrome Actions label for exact matching commit title; CLI Actions scope unchanged"
+  },
+  "finalPublication": "WWW exact HTML readback; thirteen public route/notice reads; successful Terms-to-notices navigation; post-lazy-load sharing anchor24px with focus"
+}

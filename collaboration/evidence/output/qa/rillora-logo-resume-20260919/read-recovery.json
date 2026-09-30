@@ -1,0 +1,48 @@
+{
+  "recordedAt": "2026-09-19T13:27:16.985701+00:00",
+  "workflow": "Logo work resumed inside the ongoing formal-release preparation",
+  "baseFullRead": "../rillora-release-readiness-20260919/full-read-completion.json",
+  "baseManifest": "../rillora-release-readiness-20260919/md-full-read-manifest.json",
+  "coverage": "Reuse the completed 92-file full read and three newly authored documents read/written in the same workstream; focused logo records read again before design. This is not a new full-library read.",
+  "ownerOverride": "推翻之前我所有的logo限制，你直接自己重新设计",
+  "overrideScope": "All prior logo-only restrictions, exclusions, rejected-topology rules, staged approval gates and prescribed tool/design methods. Rillora name and product/security/UI scope remain separate.",
+  "recoveryFiles": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "321e1bf37563f466aea4eda8e5e2024f0b8f6f05e0e59fda06a174a24db695a3"
+    },
+    {
+      "path": "docs/product.md",
+      "sha256": "efc9591caa3b5a19ee997471eff6d73e8804c41f068c002b2e224b83770b438a"
+    },
+    {
+      "path": "docs/handoff.md",
+      "sha256": "d482c4c4f80dd93c47d5363e2d638ae6ac197fca0505987e8e14b91c618e8279"
+    },
+    {
+      "path": "docs/logo-ai-workflow.md",
+      "sha256": "ad1da17994aa8744b90cd9ade5538a88b9d5f16774618f8cd480498ea39454c7"
+    },
+    {
+      "path": "docs/logo-form-brief.md",
+      "sha256": "d4fdc9fd64200626ce9749eb5f897189441ec3f775679a7cc76a805639e43f91"
+    },
+    {
+      "path": "docs/logo-discovery.md",
+      "sha256": "1432a792d3e0d60e6272684d39063d3be343154363222eb7513b06b6eeb5d724"
+    },
+    {
+      "path": "docs/decision-log.md",
+      "sha256": "3d6d96566abb8c767f962b637cd1c52cfce16b04d64f96b63bb328389a075fd7"
+    },
+    {
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "sha256": "9648f7bedf0ad63644cbef1d1d69bd1c4e0a4ff214b27ebb7b353352976fadcd"
+    },
+    {
+      "path": "docs/asset-licenses.md",
+      "sha256": "c3a9e9b1625927836f3721bff2fc4239afac88f1522e2ef85bd1bbc81f53c4c5"
+    }
+  ],
+  "explorationBeforeOverride": "Own vector field and one sketch-conditioned ImageGen study; not selected or shipped. Old contour/paired-plane experiments retained as internal evidence only."
+}

@@ -1,0 +1,98 @@
+{
+  "at": "2026-09-30T15:06:09.942640+08:00",
+  "status": "reported_repairs_verified_and_pushed_ci_passed_cloud_rollout_blocked",
+  "baseline": "296c7b53ad22ee7239aa037d7544b708c5b73703",
+  "report": "resolution.json",
+  "sourcePublication": {
+    "commit": "38307b0d00a994fc5590b0625e8c71a28dcc7624",
+    "branch": "main",
+    "pushed": true,
+    "ci": {
+      "id": 36681297564,
+      "number": 41,
+      "status": "completed",
+      "conclusion": "success",
+      "headSha": "38307b0d00a994fc5590b0625e8c71a28dcc7624",
+      "url": "https://github.com/tantalum666/rillora/actions/runs/36681297564",
+      "updatedAt": "2026-09-30T07:02:52Z"
+    },
+    "ciJobs": {
+      "source": "success",
+      "api": "success",
+      "web-and-infrastructure": "success"
+    },
+    "verificationTransport": "Existing GitHub connector; no permission expansion or renewed GitHub login"
+  },
+  "deployment": {
+    "status": "blocked",
+    "reason": "Actual AWS session expired on all three existing operational profiles"
+  },
+  "appleUpload": false,
+  "cleanup": {
+    "servers": [
+      {
+        "pid": 80393,
+        "terminatedOwnedTaskServer": true
+      },
+      {
+        "pid": 80455,
+        "terminatedOwnedTaskServer": true
+      },
+      {
+        "pid": 82701,
+        "terminatedOwnedTaskServer": true
+      },
+      {
+        "pid": 85755,
+        "terminatedOwnedTaskServer": true
+      },
+      {
+        "pid": 88836,
+        "terminatedOwnedTaskServer": true
+      }
+    ],
+    "ordinaryDebugRelaunched": true,
+    "simulator": "EA356940-5220-4AA8-89CF-499C6D5D14E4",
+    "qaEnvironmentOnOrdinaryApp": false,
+    "unrelatedServersTouched": false,
+    "ordinaryDebugConfigurationVerified": true,
+    "ownedPorts4395Through4399Closed": true
+  },
+  "documents": [
+    "docs/code-review-repair-20260930.md",
+    "docs/handoff.md",
+    "docs/decision-log.md",
+    "docs/journey/PROJECT_JOURNEY.md",
+    "docs/product.md",
+    "docs/platform-contract.md",
+    "docs/quality-gates.md",
+    "docs/release-engineering-20260930.md",
+    "SECURITY.md"
+  ],
+  "sourceScan": {
+    "passed": true,
+    "reviewedNonSecrets": 27,
+    "unreviewed": 0,
+    "movedSameHashSpans": 2
+  },
+  "markdown": {
+    "ownedFiles": 170,
+    "localLinks": 1701,
+    "missing": []
+  },
+  "migrationFilesChanged": false,
+  "tests": {
+    "apiCI": 349,
+    "localApiInitialFull": 348,
+    "localDatabaseGuardFinalFocused": 55,
+    "web": 112,
+    "infra": 47,
+    "releaseGuards": 23,
+    "nativeUnitPassed": 181,
+    "nativeUnitPriorStoreKitSkip": 1,
+    "nativeUIUniqueLatestPassing": 28
+  },
+  "workingTreeClean": true,
+  "decisionLog": "Existing quality-remediation decision; container marker is an implementation correction with no new product approval",
+  "journey": "docs/journey/PROJECT_JOURNEY.md September30 review and CI follow-up entries"
+}

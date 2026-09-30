@@ -1,0 +1,48 @@
+{
+  "workflow": "Continue real A/B invitation acceptance after completed Stripe checkpoint",
+  "baseline": "../rillora-launch-completion-20260916/reading.json",
+  "previousRecovery": "../rillora-stripe-acceptance-20260917/reading-continuity.json",
+  "read": [
+    "docs/handoff.md full",
+    "docs/trusted-sharing.md current/lifecycle/permissions sections",
+    "docs/commercial-completion-20260916.md current boundary",
+    "apps/web/src/InvitationPage.jsx full",
+    "relevant sharing UI link-state implementation"
+  ],
+  "existingFullReadReused": true,
+  "startedAt": "2026-09-17T10:38:56.819252+08:00",
+  "boundary": "No retry or alternate automated navigation of the previously blocked recipient invitation URL",
+  "compactionRecovery": {
+    "at": "2026-09-17T10:47:04.130307+08:00",
+    "read": [
+      "AGENTS.md full",
+      "docs/product.md current LOCKED items and evidence map",
+      "docs/handoff.md full",
+      "docs/decision-log.md latest September15–17 entries",
+      "docs/trusted-sharing.md full",
+      "docs/commercial-completion-20260916.md full",
+      "docs/journey/PROJECT_JOURNEY.md latest entries",
+      "apps/web/src/InvitationPage.jsx full",
+      "apps/web/src/SharingPanels.jsx shared recipient component",
+      "apps/ios/Rillora/Features/Contacts/SharedAccessStore.swift full",
+      "apps/ios/Rillora/Features/Contacts/SharedWithMeView.swift recipient views",
+      "apps/ios/Rillora/Features/Contacts/ContactSharingView.swift lines1–210"
+    ],
+    "truncatedReadsSupplemented": true,
+    "newFullScan": false
+  },
+  "completion": {
+    "at": "2026-09-17T14:01:29.313941+08:00",
+    "mode": "Same continuous workflow; baseline full read retained, changed focal sections and files read before editing",
+    "additionalFocalReads": [
+      "authentication-experience current entry/verification contract",
+      "identity-data-region current roles",
+      "backend current checkpoint and session/sharing boundary",
+      "infra/aws and infra/auth0 current sections",
+      "quality-gates current checkpoint",
+      "ux-behavior-repair full current contract",
+      "apps/web/AGENTS full and latest added rule"
+    ],
+    "noFreshWholeRepoScan": true
+  }
+}

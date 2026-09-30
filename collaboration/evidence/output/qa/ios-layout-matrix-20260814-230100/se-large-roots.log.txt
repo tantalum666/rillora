@@ -1,0 +1,831 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project Rillora.xcodeproj -scheme RilloraLayoutMatrix -configuration Debug -destination "platform=iOS Simulator,id=89C3327E-CDDC-46C3-9E99-B05545BB3165" -derivedDataPath /Users/tantalum/Documents/电子遗嘱app/output/qa/ios-layout-matrix-20260814-230100/DerivedData -parallel-testing-enabled NO -resultBundlePath /Users/tantalum/Documents/电子遗嘱app/output/qa/ios-layout-matrix-20260814-230100/se-large-roots.xcresult "RILLORA_API_BASE_URL=http://127.0.0.1:4181/v1" RILLORA_DEV_PLANNER_ID=11111111-1111-4111-8111-111111111111 "-only-testing:RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testRootDestinationsPortrait" "-only-testing:RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testOrientationChangeKeepsRootsReachable" "-only-testing:RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testSignedOutExperienceDefersAccountEntry" "-only-testing:RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testSignedOutPlanAccessPresentation" test-without-building
+
+Build settings from command line:
+    RILLORA_API_BASE_URL = http://127.0.0.1:4181/v1
+    RILLORA_DEV_PLANNER_ID = 11111111-1111-4111-8111-111111111111
+
+Resolve Package Graph
+
+
+Resolved source packages:
+  JWTDecode: https://github.com/auth0/JWTDecode.swift.git @ 4.0.0
+  SimpleKeychain: https://github.com/auth0/SimpleKeychain.git @ 1.3.0
+  Auth0: https://github.com/auth0/Auth0.swift @ 3.0.2
+
+Writing result bundle at path:
+	/Users/tantalum/Documents/电子遗嘱app/output/qa/ios-layout-matrix-20260814-230100/se-large-roots.xcresult
+
+2026-08-14 23:02:07.161527+0800 RilloraLayoutMatrixTests-Runner[61599:17098392] [Default] Running tests...
+2026-08-14 23:02:07.324930+0800 RilloraLayoutMatrixTests-Runner[61599:17098580] [General] Failed to send CA Event for app launch measurements for ca_event_type: 0 event_name: com.apple.app_launch_measurement.FirstFramePresentationMetric
+2026-08-14 23:02:07.365572+0800 RilloraLayoutMatrixTests-Runner[61599:17098581] [General] Failed to send CA Event for app launch measurements for ca_event_type: 1 event_name: com.apple.app_launch_measurement.ExtendedLaunchMetrics
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-08-14 23:02:07.683.
+Test Suite 'RilloraLayoutMatrixTests.xctest' started at 2026-08-14 23:02:07.684.
+Test Suite 'RilloraLayoutMatrixTests' started at 2026-08-14 23:02:07.684.
+Test Case '-[RilloraLayoutMatrixTests.RilloraLayoutMatrixTests testOrientationChangeKeepsRootsReachable]' started.
+    t =     0.00s Start Test at 2026-08-14 23:02:07.686
+    t =     0.22s Set Up
+    t =     0.23s Setting device orientation to Portrait
+    t =     0.23s     Device orientation changed to Portrait
+objc[61599]: Class UIAccessibilityLoaderWebShared is implemented in both /Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x1071c4310) and /Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x1060c8398). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =     0.35s     Wait for com.apple.springboard to idle
+    t =     0.42s Open com.rillora.ios
+    t =     0.42s     Launch com.rillora.ios
+2026-08-14 23:02:08.476 xcodebuild[61357:17096696] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-08-14 23:02:08.476 xcodebuild[61357:17096696] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     1.63s         Setting up automation session
+    t =     2.65s         Wait for com.rillora.ios to idle
+    t =     4.37s Waiting 20.0s for "overview.scroll" Any to exist
+    t =     5.46s     Checking `Expect predicate `existsNoRetry == 1` for object "overview.scroll" Any`
+    t =     5.46s         Checking existence of `"overview.scroll" Any`
+    t =     5.63s Waiting 20.0s for "overview.scroll" Any to exist
+    t =     6.70s     Checking `Expect predicate `existsNoRetry == 1` for object "overview.scroll" Any`
+    t =     6.71s         Checking existence of `"overview.scroll" Any`
+    t =     6.76s Setting device orientation to Landscape Left
+    t =     6.76s     Device orientation changed to Landscape Left
+    t =     6.82s     Interface orientation changed to Landscape Right
+    t =     6.82s     Wait for com.rillora.ios to idle
+    t =     8.17s Waiting 10.0s for "overview.scroll" Any to exist
+    t =     9.25s     Checking `Expect predicate `existsNoRetry == 1` for object "overview.scroll" Any`
+    t =     9.25s         Checking existence of `"overview.scroll" Any`
+    t =     9.31s Waiting 10.0s for TabBar (First Match) to exist
+    t =    10.38s     Checking `Expect predicate `existsNoRetry == 1` for object TabBar (First Match)`
+    t =    10.39s         Checking existence of `TabBar (First Match)`
+    t =    10.40s Get number of matches for: Descendants matching type Button
+    t =    10.42s Checking existence of `"Overview" Button`
+    t =    10.43s Find the "Overview" Button
+    t =    10.46s Find the "Overview" Button
+    t =    10.48s Find the "Overview" Button
+    t =    10.49s Find the "Overview" Button
+    t =    10.50s Find the Target Application 'com.rillora.ios'
+    t =    10.53s Checking existence of `"Matters" Button`
+    t =    10.54s Find the "Matters" Button
+    t =    10.56s Find the "Matters" Button
+    t =    10.58s Find the "Matters" Button
+    t =    10.60s Find the "Matters" Button
+    t =    10.61s Find the Target Application 'com.rillora.ios'
+    t =    10.63s Checking existence of `"More" Button`
+    t =    10.65s Find the "More" Button
+    t =    10.67s Find the "More" Button
+    t =    10.68s Find the "More" Button
+    t =    10.70s Find the "More" Button
+    t =    10.72s Find the Target Application 'com.rillora.ios'
+    t =    10.74s Find the "Overview" Button
+    t =    10.75s Find the Target Application 'com.rillora.ios'
+    t =    10.83s Added attachment named 'Rillora-Matrix-SE-3-overview-landscape'
+    t =    10.83s Tap "Matters" Button
+    t =    10.83s     Wait for com.rillora.ios to idle
+    t =    10.83s     Find the "Matters" Button
+    t =    10.85s     Check for interrupting elements affecting "Matters" Button
+    t =    10.87s     Synthesize event
+    t =    11.28s     Wait for com.rillora.ios to idle
+    t =    13.20s Waiting 10.0s for "matters.list" Any to exist
+    t =    14.29s     Checking `Expect predicate `existsNoRetry == 1` for object "matters.list" Any`
+    t =    14.29s         Checking existence of `"matters.list" Any`
+    t =    14.36s Waiting 10.0s for TabBar (First Match) to exist
+    t =    15.43s     Checking `Expect predicate `existsNoRetry == 1` for object TabBar (First Match)`
+    t =    15.44s         Checking existence of `TabBar (First Match)`
+    t =    15.45s Get number of matches for: Descendants matching type Button
+    t =    15.46s Checking existence of `"Overview" Button`
+    t =    15.48s Find the "Overview" Button
+    t =    15.50s Find the "Overview" Button
+    t =    15.51s Find the "Overview" Button
+    t =    15.53s Find the "Overview" Button
+    t =    15.54s Find the Target Application 'com.rillora.ios'
+    t =    15.58s Checking existence of `"Matters" Button`
+    t =    15.59s Find the "Matters" Button
+    t =    15.61s Find the "Matters" Button
+    t =    15.63s Find the "Matters" Button
+    t =    15.64s Find the "Matters" Button
+    t =    15.66s Find the Target Application 'com.rillora.ios'
+    t =    15.68s Checking existence of `"More" Button`
+    t =    15.70s Find the "More" Button
+    t =    15.72s Find the "More" Button
+    t =    15.74s Find the "More" Button
+    t =    15.75s Find the "More" Button
+    t =    15.77s Find the Target Application 'com.rillora.ios'
+    t =    15.80s Find the "Matters" Button
+    t =    15.81s Find the Target Application 'com.rillora.ios'
+    t =    15.88s Added attachment named 'Rillora-Matrix-SE-3-matters-landscape'
+    t =    15.88s Tap "More" Button
+    t =    15.88s     Wait for com.rillora.ios to idle
+    t =    15.89s     Find the "More" Button
+    t =    15.90s     Check for interrupting elements affecting "More" Button
+    t =    15.94s     Synthesize event
+    t =    16.23s     Wait for com.rillora.ios to idle
+    t =    17.81s Waiting 10.0s for "more.list" Any to exist
+    t =    18.89s     Checking `Expect predicate `existsNoRetry == 1` for object "more.list" Any`
+    t =    18.89s         Checking existence of `"more.list" Any`
+    t =    18.95s Waiting 10.0s for TabBar (First Match) to exist
+    t =    20.02s     Checking `Expect predicate `existsNoRetry == 1` for object TabBar (First Match)`
+    t =    20.02s         Checking existence of `TabBar (First Match)`
+    t =    20.03s Get number of matches for: Descendants matching type Button
+    t =    20.04s Checking existence of `"Overview" Button`
+    t =    20.05s Find the "Overview" Button
+    t =    20.07s Find the "Overview" Button
+    t =    20.08s Find the "Overview" Button
+    t =    20.10s Find the "Overview" Button
+    t =    20.11s Find the Target Application 'com.rillora.ios'
+    t =    20.14s Checking existence of `"Matters" Button`
+    t =    20.15s Find the "Matters" Button
+    t =    20.17s Find the "Matters" Button
+    t =    20.19s Find the "Matters" Button
+    t =    20.20s Find the "Matters" Button
+    t =    20.22s Find the Target Application 'com.rillora.ios'
+    t =    20.24s Checking existence of `"More" Button`
+    t =    20.25s Find the "More" Button
+    t =    20.27s Find the "More" Button
+    t =    20.29s Find the "More" Button
+    t =    20.31s Find the "More" Button
+    t =    20.32s Find the Target Application 'com.rillora.ios'
+    t =    20.34s Find the "More" Button
+    t =    20.36s Find the Target Application 'com.rillora.ios'
+    t =    20.42s Added attachment named 'Rillora-Matrix-SE-3-more-landscape'
+    t =    20.42s Setting device orientation to Portrait
+    t =    20.42s     Device orientation changed to Portrait
+    t =    20.45s     Interface orientation changed to Portrait
+    t =    20.45s     Wait for com.rillora.ios to idle
+    t =    20.51s Tear Down
+Test Case '-[RilloraLayoutMatrixTests.RilloraLayoutMatrixTests testOrientationChangeKeepsRootsReachable]' passed (20.771 seconds).
+Test Case '-[RilloraLayoutMatrixTests.RilloraLayoutMatrixTests testRootDestinationsPortrait]' started.
+    t =     0.00s Start Test at 2026-08-14 23:02:28.458
+    t =     0.02s Set Up
+    t =     0.02s Setting device orientation to Portrait
+    t =     0.02s     Wait for com.rillora.ios to idle
+    t =     0.50s Open com.rillora.ios
+    t =     0.50s     Launch com.rillora.ios
+    t =     0.50s         Terminate com.rillora.ios:61638
+2026-08-14 23:02:29.974 xcodebuild[61357:17096696] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-08-14 23:02:29.974 xcodebuild[61357:17096696] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     1.73s         Setting up automation session
+    t =     2.64s         Wait for com.rillora.ios to idle
+    t =     4.02s Waiting 20.0s for "overview.scroll" Any to exist
+    t =     5.11s     Checking `Expect predicate `existsNoRetry == 1` for object "overview.scroll" Any`
+    t =     5.11s         Checking existence of `"overview.scroll" Any`
+    t =     5.23s Waiting 20.0s for "overview.scroll" Any to exist
+    t =     6.31s     Checking `Expect predicate `existsNoRetry == 1` for object "overview.scroll" Any`
+    t =     6.31s         Checking existence of `"overview.scroll" Any`
+    t =     6.37s Waiting 10.0s for TabBar (First Match) to exist
+    t =     7.44s     Checking `Expect predicate `existsNoRetry == 1` for object TabBar (First Match)`
+    t =     7.44s         Checking existence of `TabBar (First Match)`
+    t =     7.46s Get number of matches for: Descendants matching type Button
+    t =     7.47s Checking existence of `"Overview" Button`
+    t =     7.49s Find the "Overview" Button
+    t =     7.51s Find the "Overview" Button
+    t =     7.53s Find the "Overview" Button
+    t =     7.54s Find the "Overview" Button
+    t =     7.56s Find the Target Application 'com.rillora.ios'
+    t =     7.59s Checking existence of `"Matters" Button`
+    t =     7.60s Find the "Matters" Button
+    t =     7.62s Find the "Matters" Button
+    t =     7.64s Find the "Matters" Button
+    t =     7.65s Find the "Matters" Button
+    t =     7.67s Find the Target Application 'com.rillora.ios'
+    t =     7.69s Checking existence of `"More" Button`
+    t =     7.70s Find the "More" Button
+    t =     7.72s Find the "More" Button
+    t =     7.74s Find the "More" Button
+    t =     7.76s Find the "More" Button
+    t =     7.77s Find the Target Application 'com.rillora.ios'
+    t =     7.79s Find the "Overview" Button
+    t =     7.80s Checking existence of `"overview.scroll" Any`
+    t =     7.86s Checking existence of `"overview.review-next" Any`
+    t =     7.92s Find the "overview.review-next" Any
+    t =     8.00s Find the "overview.review-next" Button
+    t =     8.07s Find the "overview.review-next" Button
+    t =     8.14s Find the "overview.review-next" Button
+    t =     8.21s Find the "overview.review-next" Button
+    t =     8.28s Find the Target Application 'com.rillora.ios'
+    t =     8.30s Find the Target Application 'com.rillora.ios'
+    t =     8.36s Added attachment named 'Rillora-Matrix-SE-3-overview-portrait'
+    t =     8.37s Tap "Matters" Button
+    t =     8.37s     Wait for com.rillora.ios to idle
+    t =     8.37s     Find the "Matters" Button
+    t =     8.38s     Check for interrupting elements affecting "Matters" Button
+    t =     8.41s     Synthesize event
+    t =     8.70s     Wait for com.rillora.ios to idle
+    t =     9.99s Waiting 10.0s for "matters.list" Any to exist
+    t =    11.07s     Checking `Expect predicate `existsNoRetry == 1` for object "matters.list" Any`
+    t =    11.07s         Checking existence of `"matters.list" Any`
+    t =    11.15s Waiting 10.0s for TabBar (First Match) to exist
+    t =    12.22s     Checking `Expect predicate `existsNoRetry == 1` for object TabBar (First Match)`
+    t =    12.22s         Checking existence of `TabBar (First Match)`
+    t =    12.23s Get number of matches for: Descendants matching type Button
+    t =    12.25s Checking existence of `"Overview" Button`
+    t =    12.26s Find the "Overview" Button
+    t =    12.29s Find the "Overview" Button
+    t =    12.31s Find the "Overview" Button
+    t =    12.33s Find the "Overview" Button
+    t =    12.35s Find the Target Application 'com.rillora.ios'
+    t =    12.40s Checking existence of `"Matters" Button`
+    t =    12.41s Find the "Matters" Button
+    t =    12.44s Find the "Matters" Button
+    t =    12.45s Find the "Matters" Button
+    t =    12.47s Find the "Matters" Button
+    t =    12.49s Find the Target Application 'com.rillora.ios'
+    t =    12.52s Checking existence of `"More" Button`
+    t =    12.53s Find the "More" Button
+    t =    12.56s Find the "More" Button
+    t =    12.57s Find the "More" Button
+    t =    12.59s Find the "More" Button
+    t =    12.61s Find the Target Application 'com.rillora.ios'
+    t =    12.64s Find the "Matters" Button
+    t =    12.65s Find the Target Application 'com.rillora.ios'
+    t =    12.72s Added attachment named 'Rillora-Matrix-SE-3-matters-portrait'
+    t =    12.73s Tap "More" Button
+    t =    12.73s     Wait for com.rillora.ios to idle
+    t =    12.73s     Find the "More" Button
+    t =    12.75s     Check for interrupting elements affecting "More" Button
+    t =    12.79s     Synthesize event
+    t =    13.09s     Wait for com.rillora.ios to idle
+    t =    14.51s Waiting 10.0s for "more.list" Any to exist
+    t =    15.59s     Checking `Expect predicate `existsNoRetry == 1` for object "more.list" Any`
+    t =    15.59s         Checking existence of `"more.list" Any`
+    t =    15.65s Waiting 10.0s for TabBar (First Match) to exist
+    t =    16.71s     Checking `Expect predicate `existsNoRetry == 1` for object TabBar (First Match)`
+    t =    16.71s         Checking existence of `TabBar (First Match)`
+    t =    16.73s Get number of matches for: Descendants matching type Button
+    t =    16.75s Checking existence of `"Overview" Button`
+    t =    16.76s Find the "Overview" Button
+    t =    16.78s Find the "Overview" Button
+    t =    16.80s Find the "Overview" Button
+    t =    16.81s Find the "Overview" Button
+    t =    16.83s Find the Target Application 'com.rillora.ios'
+    t =    16.87s Checking existence of `"Matters" Button`
+    t =    16.89s Find the "Matters" Button
+    t =    16.91s Find the "Matters" Button
+    t =    16.92s Find the "Matters" Button
+    t =    16.94s Find the "Matters" Button
+    t =    16.95s Find the Target Application 'com.rillora.ios'
+    t =    16.98s Checking existence of `"More" Button`
+    t =    16.99s Find the "More" Button
+    t =    17.02s Find the "More" Button
+    t =    17.03s Find the "More" Button
+    t =    17.05s Find the "More" Button
+    t =    17.07s Find the Target Application 'com.rillora.ios'
+    t =    17.09s Find the "More" Button
+    t =    17.11s Find the Target Application 'com.rillora.ios'
+    t =    17.18s Added attachment named 'Rillora-Matrix-SE-3-more-portrait'
+    t =    17.18s Tear Down
+Test Case '-[RilloraLayoutMatrixTests.RilloraLayoutMatrixTests testRootDestinationsPortrait]' passed (17.412 seconds).
+Test Case '-[RilloraLayoutMatrixTests.RilloraLayoutMatrixTests testSignedOutExperienceDefersAccountEntry]' started.
+    t =     0.00s Start Test at 2026-08-14 23:02:45.873
+    t =     0.02s Set Up
+    t =     0.03s Setting device orientation to Portrait
+    t =     0.03s     Wait for com.rillora.ios to idle
+    t =     0.04s Open com.rillora.ios
+    t =     0.04s     Launch com.rillora.ios
+    t =     0.04s         Terminate com.rillora.ios:61778
+2026-08-14 23:02:46.979 xcodebuild[61357:17096696] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-08-14 23:02:46.979 xcodebuild[61357:17096696] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     1.32s         Setting up automation session
+    t =     2.46s         Wait for com.rillora.ios to idle
+    t =     4.19s Waiting 20.0s for "public-overview.scroll" Any to exist
+    t =     5.27s     Checking `Expect predicate `existsNoRetry == 1` for object "public-overview.scroll" Any`
+    t =     5.27s         Checking existence of `"public-overview.scroll" Any`
+    t =     5.39s Waiting 10.0s for TabBar (First Match) to exist
+    t =     6.47s     Checking `Expect predicate `existsNoRetry == 1` for object TabBar (First Match)`
+    t =     6.47s         Checking existence of `TabBar (First Match)`
+    t =     6.48s Get number of matches for: Descendants matching type Button
+    t =     6.50s Checking existence of `"Overview" Button`
+    t =     6.51s Find the "Overview" Button
+    t =     6.53s Find the "Overview" Button
+    t =     6.55s Find the "Overview" Button
+    t =     6.56s Find the "Overview" Button
+    t =     6.58s Find the Target Application 'com.rillora.ios'
+    t =     6.61s Checking existence of `"Matters" Button`
+    t =     6.63s Find the "Matters" Button
+    t =     6.65s Find the "Matters" Button
+    t =     6.66s Find the "Matters" Button
+    t =     6.68s Find the "Matters" Button
+    t =     6.69s Find the Target Application 'com.rillora.ios'
+    t =     6.72s Checking existence of `"More" Button`
+    t =     6.73s Find the "More" Button
+    t =     6.76s Find the "More" Button
+    t =     6.77s Find the "More" Button
+    t =     6.80s Find the "More" Button
+    t =     6.81s Find the Target Application 'com.rillora.ios'
+    t =     6.84s Find the "Overview" Button
+    t =     6.86s Checking existence of `"overview.retry" Any`
+    t =     7.04s Checking existence of `"Sign-in required" StaticText`
+    t =     7.07s Checking existence of `"account-entry.view" Any`
+    t =     7.22s Checking existence of `"Map what matters" StaticText`
+    t =     7.26s Checking existence of `"Your plan is not public content" StaticText`
+    t =     7.30s Checking existence of `"public-overview.hero" Any`
+    t =     7.37s Checking existence of `"public-overview.purpose" Any`
+    t =     7.44s Checking existence of `"public-overview.example" Any`
+    t =     7.51s Find the "public-overview.example" Any
+    t =     7.62s Find the "public-overview.example" Button
+    t =     7.71s Tap "public-overview.example" Button
+    t =     7.71s     Wait for com.rillora.ios to idle
+    t =     7.72s     Find the "public-overview.example" Button
+    t =     7.79s     Check for interrupting elements affecting "public-overview.example" Button
+    t =     7.85s     Synthesize event
+    t =     8.15s     Wait for com.rillora.ios to idle
+    t =     8.23s Waiting 10.0s for "public-example.view" Any to exist
+Testing started
+In flight operation:   <DVTOperationGroup: 0x888387d80; state = AREfc>
+     <DVTOperationGroup: 0x888387c00; state = AREfc>
+         <DVTOperation: 0x887dc1cc0; name = 'Remove Log If Needed', state = aReFc>
+         <DVTOperationGroup: 0x888387900; state = AREfc>
+             <DVTOperationGroup: 0x888387480; state = AREfc>
+                 <DVTOperation: 0x887dc1900; state = aReFc>
+                 <DVTOperation: 0x887dc1b80; state = arefc>
+                 <IDESchemeActionResultOperation: 0x888386a00; state = Arefc>
+                 <DVTOperation: 0x887dc17c0; state = aReFc>
+                 <__DVTSwiftAsyncOperation: 0x888387000; state = AReFc>
+                 <__DVTSwiftAsyncOperation: 0x888387300; state = AReFc>
+                 <__DVTSwiftAsyncOperation: 0x888387600; state = AReFc>
+                 <DVTOperationGroup: 0x888385200; state = AREf!c, blocking { Blocking finish to clean up test session. }>
+                     <DVTOperation: 0x887dc12c0; state = aReFc>
+                     <XCTHOperationGroup: 0x888386580>
+                         <XCTHOperationGroup: 0x888386880>
+                             <XCTHOperationGroup: 0x888386700>
+                                 <XCTHOperationGroup: 0x888386d00>{name = 'com.apple.dt.xctest.target-runner'}(Finishing blocked for reasons:
+  waiting for workers to materialize
+  )
+                                     <XCTHOperationGroup: 0x888387a80>
+                                         <XCTHOperationGroup: 0x887efc780>
+                                             <IDERunOperation: 0x887efc480; state = aReF!c, blocking { XCTHTestOperationCoordinator processing delay, Blocking finish to allow restarting of crashed test operations., Waiting for -runningDidFinish call. }>
+                                             worker: <IDERunOperationWorkerGroup: 0x8888ab3c0, unfinished subworkers : 
+					<_IDEInstalliPhoneSimulatorWorker: 0x8868a1900 -- ExtensionIdentifier: Xcode.IDEiPhoneSimulatorSupport.DeviceService.Install>
+					<IDELaunchiPhoneSimulatorLauncher: 0x8886b5180 -- ExtensionIdentifier: Xcode.IDEiPhoneSimulatorSupport.Launch>
+				 >
+
+                                             tracker: <IDEExecutionOperationTracker: 0x8857251f0: Testing project Rillora with scheme RilloraLayoutMatrix
+	subtrackers=(
+    "<IDEExecutionRunnableTracker: 0x888ac0f60: subtrackers=none>"
+)>
+
+                             <XCTHOperation: 0x887dc1540>
+                 <DVTOperation: 0x887dc1a40; state = arefc>
+                 <__DVTSwiftAsyncOperation: 0x888386e80; state = AReFc>
+         <_IDETestingFinalizeLogsOperation: 0x887dc1e00; name = 'Finalize test log', state = aref!c, blocking { waiting for test log to finish recording }>
+In flight operation:   <IDERunOperation: 0x887efd800; state = aReF!c, blocking { Waiting for -runningDidFinish call. }>
+  worker: <IDERunOperationWorkerGroup: 0x88a989200, unfinished subworkers : 
+					<_IDEInstalliPhoneSimulatorWorker: 0x8868a28a0 -- ExtensionIdentifier: Xcode.IDEiPhoneSimulatorSupport.DeviceService.Install>
+					<IDELaunchiPhoneSimulatorLauncher: 0x8886b5a40 -- ExtensionIdentifier: Xcode.IDEiPhoneSimulatorSupport.Launch>
+				 >
+
+  tracker: <IDEExecutionOperationTracker: 0x8841836b0: Launch application com.rillora.ios for UI testing.
+	subtrackers=(
+    "<IDEExecutionRunnableTracker: 0x88a5a6e20: subtrackers=none>"
+)>
+
+<DVTOperationGroup: 0x888387d80; state = AREfc> created at:
+  0   -[DVTOperation init] (in DVTFoundation)
+  1   -[DVTOperationGroup init] (in DVTFoundation)
+  2   +[DVTOperationGroup operationGroupWithSuboperations:] (in DVTFoundation)
+  3   -[IDEScheme _groupAndImposeDependenciesForOrderedOperations:] (in IDEFoundation)
+  4   -[IDEScheme _executionOperationForSchemeOperationParameters:build:onlyBuild:buildParameters:title:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:actionCallbackBlock:] (in IDEFoundation)
+  5   -[IDEScheme(TestSchemeAction) schemeTestActionOperationForSchemeOperationParameters:onlyBuild:buildLog:deviceAvailableChecker:buildParameters:shouldBuild:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+  6   -[IDEScheme buildAndActionTaskForSchemeOperationParameters:shouldBuild:onlyBuild:buildParameters:buildLog:deviceAvailableChecker:restorePersistedBuildResults:dontActuallyRunCommands:error:completionBlock:] (in IDEFoundation)
+  7   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  8   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+  9   -[Xcode3CommandLineBuildTool(TestSchemeAction) buildForTestSchemeCommandWantsSkip:buildAction:isProjectBuild:title:buildLog:isMoreDestinationsPending:runDestinations:runDestination:schemeCommand:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 10   -[Xcode3CommandLineBuildTool doSchemeBuildWithRunDestinations:runDestinationIdx:wantsSkip:buildActionTimingSection:timingSection:buildAction:isMoreDesinationsPending:actionResultBlock:title:buildLog:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 11   -[Xcode3CommandLineBuildTool doBuildForBuildAction:timingSection:colorize:colorizeFailure:error:] (in Xcode3Core)
+ 12   -[Xcode3CommandLineBuildTool _buildWithTimingSection:] (in Xcode3Core)
+ 13   -[Xcode3CommandLineBuildTool run] (in Xcode3Core)
+ 14   XcodeBuildMain (in libxcodebuildLoader.dylib)
+ 15   -[XcodebuildPreIDEHandler loadXcode3ProjectSupportAndRunXcode3CommandLineBuildToolWithArguments:] (in xcodebuild)
+ 16   -[XcodebuildPreIDEHandler runWithArguments:] (in xcodebuild)
+ 17   main (in xcodebuild)
+ 18   start (in dyld)
+
+<DVTOperationGroup: 0x888387c00; state = AREfc> created at:
+  0   -[DVTOperation init] (in DVTFoundation)
+  1   -[DVTOperationGroup init] (in DVTFoundation)
+  2   +[DVTOperationGroup operationGroupWithSuboperations:] (in DVTFoundation)
+  3   -[IDETestSchemeAction testOperationWithSchemeOperationParameters:testManager:buildOperation:buildParameters:schemeCommand:actionRecord:testPlanRunSpecifications:deviceAvailableChecker:outError:actionCallbackBlock:] (in IDEFoundation)
+  4   -[IDEScheme(TestSchemeAction) executionOperationForTestSchemeActionWithOperationParameters:command:buildOperationVariantSpecifiers:buildOperationGroup:schemeActionResult:buildParameters:shouldOnlyBuild:runDestination:orderedOperations:schemeActionRecord:deviceAvailableChecker:actionCallbackBlock:error:] (in IDEFoundation)
+  5   -[IDEScheme _executionOperationForSchemeOperationParameters:build:onlyBuild:buildParameters:title:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:actionCallbackBlock:] (in IDEFoundation)
+  6   -[IDEScheme(TestSchemeAction) schemeTestActionOperationForSchemeOperationParameters:onlyBuild:buildLog:deviceAvailableChecker:buildParameters:shouldBuild:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+  7   -[IDEScheme buildAndActionTaskForSchemeOperationParameters:shouldBuild:onlyBuild:buildParameters:buildLog:deviceAvailableChecker:restorePersistedBuildResults:dontActuallyRunCommands:error:completionBlock:] (in IDEFoundation)
+  8   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  9   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+ 10   -[Xcode3CommandLineBuildTool(TestSchemeAction) buildForTestSchemeCommandWantsSkip:buildAction:isProjectBuild:title:buildLog:isMoreDestinationsPending:runDestinations:runDestination:schemeCommand:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 11   -[Xcode3CommandLineBuildTool doSchemeBuildWithRunDestinations:runDestinationIdx:wantsSkip:buildActionTimingSection:timingSection:buildAction:isMoreDesinationsPending:actionResultBlock:title:buildLog:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 12   -[Xcode3CommandLineBuildTool doBuildForBuildAction:timingSection:colorize:colorizeFailure:error:] (in Xcode3Core)
+ 13   -[Xcode3CommandLineBuildTool _buildWithTimingSection:] (in Xcode3Core)
+ 14   -[Xcode3CommandLineBuildTool run] (in Xcode3Core)
+ 15   XcodeBuildMain (in libxcodebuildLoader.dylib)
+ 16   -[XcodebuildPreIDEHandler loadXcode3ProjectSupportAndRunXcode3CommandLineBuildToolWithArguments:] (in xcodebuild)
+ 17   -[XcodebuildPreIDEHandler runWithArguments:] (in xcodebuild)
+ 18   main (in xcodebuild)
+ 19   start (in dyld)
+
+<DVTOperation: 0x887dc1cc0; name = 'Remove Log If Needed', state = aReFc> created at:
+  0   -[DVTOperation init] (in DVTFoundation)
+  1   +[DVTOperation(DVTConveniences) operationWithBlock:] (in DVTFoundation)
+  2   -[IDETestSchemeAction _removeLogIfNeededOperationWithLogStore:logRecord:buildOperation:] (in IDEFoundation)
+  3   -[IDETestSchemeAction testOperationWithSchemeOperationParameters:testManager:buildOperation:buildParameters:schemeCommand:actionRecord:testPlanRunSpecifications:deviceAvailableChecker:outError:actionCallbackBlock:] (in IDEFoundation)
+  4   -[IDEScheme(TestSchemeAction) executionOperationForTestSchemeActionWithOperationParameters:command:buildOperationVariantSpecifiers:buildOperationGroup:schemeActionResult:buildParameters:shouldOnlyBuild:runDestination:orderedOperations:schemeActionRecord:deviceAvailableChecker:actionCallbackBlock:error:] (in IDEFoundation)
+  5   -[IDEScheme _executionOperationForSchemeOperationParameters:build:onlyBuild:buildParameters:title:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:actionCallbackBlock:] (in IDEFoundation)
+  6   -[IDEScheme(TestSchemeAction) schemeTestActionOperationForSchemeOperationParameters:onlyBuild:buildLog:deviceAvailableChecker:buildParameters:shouldBuild:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+  7   -[IDEScheme buildAndActionTaskForSchemeOperationParameters:shouldBuild:onlyBuild:buildParameters:buildLog:deviceAvailableChecker:restorePersistedBuildResults:dontActuallyRunCommands:error:completionBlock:] (in IDEFoundation)
+  8   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  9   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+ 10   -[Xcode3CommandLineBuildTool(TestSchemeAction) buildForTestSchemeCommandWantsSkip:buildAction:isProjectBuild:title:buildLog:isMoreDestinationsPending:runDestinations:runDestination:schemeCommand:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 11   -[Xcode3CommandLineBuildTool doSchemeBuildWithRunDestinations:runDestinationIdx:wantsSkip:buildActionTimingSection:timingSection:buildAction:isMoreDesinationsPending:actionResultBlock:title:buildLog:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 12   -[Xcode3CommandLineBuildTool doBuildForBuildAction:timingSection:colorize:colorizeFailure:error:] (in Xcode3Core)
+ 13   -[Xcode3CommandLineBuildTool _buildWithTimingSection:] (in Xcode3Core)
+ 14   -[Xcode3CommandLineBuildTool run] (in Xcode3Core)
+ 15   XcodeBuildMain (in libxcodebuildLoader.dylib)
+ 16   -[XcodebuildPreIDEHandler loadXcode3ProjectSupportAndRunXcode3CommandLineBuildToolWithArguments:] (in xcodebuild)
+ 17   -[XcodebuildPreIDEHandler runWithArguments:] (in xcodebuild)
+ 18   main (in xcodebuild)
+ 19   start (in dyld)
+
+<DVTOperationGroup: 0x888387900; state = AREfc> created at:
+  0   -[DVTOperation init] (in DVTFoundation)
+  1   -[DVTOperationGroup init] (in DVTFoundation)
+  2   +[DVTOperationGroup operationGroupWithSuboperations:] (in DVTFoundation)
+  3   -[IDETestSchemeAction testOperationWithSchemeOperationParameters:testManager:buildOperation:buildParameters:schemeCommand:actionRecord:testPlanRunSpecifications:deviceAvailableChecker:outError:actionCallbackBlock:] (in IDEFoundation)
+  4   -[IDEScheme(TestSchemeAction) executionOperationForTestSchemeActionWithOperationParameters:command:buildOperationVariantSpecifiers:buildOperationGroup:schemeActionResult:buildParameters:shouldOnlyBuild:runDestination:orderedOperations:schemeActionRecord:deviceAvailableChecker:actionCallbackBlock:error:] (in IDEFoundation)
+  5   -[IDEScheme _executionOperationForSchemeOperationParameters:build:onlyBuild:buildParameters:title:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:actionCallbackBlock:] (in IDEFoundation)
+  6   -[IDEScheme(TestSchemeAction) schemeTestActionOperationForSchemeOperationParameters:onlyBuild:buildLog:deviceAvailableChecker:buildParameters:shouldBuild:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+  7   -[IDEScheme buildAndActionTaskForSchemeOperationParameters:shouldBuild:onlyBuild:buildParameters:buildLog:deviceAvailableChecker:restorePersistedBuildResults:dontActuallyRunCommands:error:completionBlock:] (in IDEFoundation)
+  8   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  9   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+ 10   -[Xcode3CommandLineBuildTool(TestSchemeAction) buildForTestSchemeCommandWantsSkip:buildAction:isProjectBuild:title:buildLog:isMoreDestinationsPending:runDestinations:runDestination:schemeCommand:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 11   -[Xcode3CommandLineBuildTool doSchemeBuildWithRunDestinations:runDestinationIdx:wantsSkip:buildActionTimingSection:timingSection:buildAction:isMoreDesinationsPending:actionResultBlock:title:buildLog:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 12   -[Xcode3CommandLineBuildTool doBuildForBuildAction:timingSection:colorize:colorizeFailure:error:] (in Xcode3Core)
+ 13   -[Xcode3CommandLineBuildTool _buildWithTimingSection:] (in Xcode3Core)
+ 14   -[Xcode3CommandLineBuildTool run] (in Xcode3Core)
+ 15   XcodeBuildMain (in libxcodebuildLoader.dylib)
+ 16   -[XcodebuildPreIDEHandler loadXcode3ProjectSupportAndRunXcode3CommandLineBuildToolWithArguments:] (in xcodebuild)
+ 17   -[XcodebuildPreIDEHandler runWithArguments:] (in xcodebuild)
+ 18   main (in xcodebuild)
+ 19   start (in dyld)
+
+<DVTOperationGroup: 0x888387480; state = AREfc> created at:
+  0   -[DVTOperation init] (in DVTFoundation)
+  1   -[DVTOperationGroup init] (in DVTFoundation)
+  2   +[DVTOperationGroup operationGroupWithSuboperations:] (in DVTFoundation)
+  3   -[IDETestSchemeAction testOperationWithSchemeOperationParameters:testManager:buildOperation:buildParameters:schemeCommand:actionRecord:testPlanRunSpecifications:deviceAvailableChecker:outError:actionCallbackBlock:] (in IDEFoundation)
+  4   -[IDEScheme(TestSchemeAction) executionOperationForTestSchemeActionWithOperationParameters:command:buildOperationVariantSpecifiers:buildOperationGroup:schemeActionResult:buildParameters:shouldOnlyBuild:runDestination:orderedOperations:schemeActionRecord:deviceAvailableChecker:actionCallbackBlock:error:] (in IDEFoundation)
+  5   -[IDEScheme _executionOperationForSchemeOperationParameters:build:onlyBuild:buildParameters:title:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:actionCallbackBlock:] (in IDEFoundation)
+  6   -[IDEScheme(TestSchemeAction) schemeTestActionOperationForSchemeOperationParameters:onlyBuild:buildLog:deviceAvailableChecker:buildParameters:shouldBuild:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+  7   -[IDEScheme buildAndActionTaskForSchemeOperationParameters:shouldBuild:onlyBuild:buildParameters:buildLog:deviceAvailableChecker:restorePersistedBuildResults:dontActuallyRunCommands:error:completionBlock:] (in IDEFoundation)
+  8   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  9   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+ 10   -[Xcode3CommandLineBuildTool(TestSchemeAction) buildForTestSchemeCommandWantsSkip:buildAction:isProjectBuild:title:buildLog:isMoreDestinationsPending:runDestinations:runDestination:schemeCommand:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 11   -[Xcode3CommandLineBuildTool doSchemeBuildWithRunDestinations:runDestinationIdx:wantsSkip:buildActionTimingSection:timingSection:buildAction:isMoreDesinationsPending:actionResultBlock:title:buildLog:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 12   -[Xcode3CommandLineBuildTool doBuildForBuildAction:timingSection:colorize:colorizeFailure:error:] (in Xcode3Core)
+ 13   -[Xcode3CommandLineBuildTool _buildWithTimingSection:] (in Xcode3Core)
+ 14   -[Xcode3CommandLineBuildTool run] (in Xcode3Core)
+ 15   XcodeBuildMain (in libxcodebuildLoader.dylib)
+ 16   -[XcodebuildPreIDEHandler loadXcode3ProjectSupportAndRunXcode3CommandLineBuildToolWithArguments:] (in xcodebuild)
+ 17   -[XcodebuildPreIDEHandler runWithArguments:] (in xcodebuild)
+ 18   main (in xcodebuild)
+ 19   start (in dyld)
+
+<DVTOperation: 0x887dc1900; state = aReFc> created at:
+  0   -[DVTOperation init] (in DVTFoundation)
+  1   +[DVTOperation(DVTConveniences) operationWithBlock:] (in DVTFoundation)
+  2   -[IDESchemeAction setUpActionDependenciesForCorePhaseOperation:shouldRunPostActionsBlock:prePhaseEnvironmentPopulationBlock:postPhaseEnvironmentPopulationBlock:handlePreActionsActivityLogSection:handlePostActionsActivityLogSection:buildParameters:schemeActionResultOperation:error:] (in IDEFoundation)
+  3   -[IDETestSchemeAction testOperationWithSchemeOperationParameters:testManager:buildOperation:buildParameters:schemeCommand:actionRecord:testPlanRunSpecifications:deviceAvailableChecker:outError:actionCallbackBlock:] (in IDEFoundation)
+  4   -[IDEScheme(TestSchemeAction) executionOperationForTestSchemeActionWithOperationParameters:command:buildOperationVariantSpecifiers:buildOperationGroup:schemeActionResult:buildParameters:shouldOnlyBuild:runDestination:orderedOperations:schemeActionRecord:deviceAvailableChecker:actionCallbackBlock:error:] (in IDEFoundation)
+  5   -[IDEScheme _executionOperationForSchemeOperationParameters:build:onlyBuild:buildParameters:title:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:actionCallbackBlock:] (in IDEFoundation)
+  6   -[IDEScheme(TestSchemeAction) schemeTestActionOperationForSchemeOperationParameters:onlyBuild:buildLog:deviceAvailableChecker:buildParameters:shouldBuild:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+  7   -[IDEScheme buildAndActionTaskForSchemeOperationParameters:shouldBuild:onlyBuild:buildParameters:buildLog:deviceAvailableChecker:restorePersistedBuildResults:dontActuallyRunCommands:error:completionBlock:] (in IDEFoundation)
+  8   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  9   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+ 10   -[Xcode3CommandLineBuildTool(TestSchemeAction) buildForTestSchemeCommandWantsSkip:buildAction:isProjectBuild:title:buildLog:isMoreDestinationsPending:runDestinations:runDestination:schemeCommand:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 11   -[Xcode3CommandLineBuildTool doSchemeBuildWithRunDestinations:runDestinationIdx:wantsSkip:buildActionTimingSection:timingSection:buildAction:isMoreDesinationsPending:actionResultBlock:title:buildLog:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 12   -[Xcode3CommandLineBuildTool doBuildForBuildAction:timingSection:colorize:colorizeFailure:error:] (in Xcode3Core)
+ 13   -[Xcode3CommandLineBuildTool _buildWithTimingSection:] (in Xcode3Core)
+ 14   -[Xcode3CommandLineBuildTool run] (in Xcode3Core)
+ 15   XcodeBuildMain (in libxcodebuildLoader.dylib)
+ 16   -[XcodebuildPreIDEHandler loadXcode3ProjectSupportAndRunXcode3CommandLineBuildToolWithArguments:] (in xcodebuild)
+ 17   -[XcodebuildPreIDEHandler runWithArguments:] (in xcodebuild)
+ 18   main (in xcodebuild)
+ 19   start (in dyld)
+
+<DVTOperation: 0x887dc1b80; state = arefc> created at:
+  0   -[DVTOperation init] (in DVTFoundation)
+  1   +[DVTOperation(DVTConveniences) operationWithBlock:] (in DVTFoundation)
+  2   -[IDESchemeAction setUpActionDependenciesForCorePhaseOperation:shouldRunPostActionsBlock:prePhaseEnvironmentPopulationBlock:postPhaseEnvironmentPopulationBlock:handlePreActionsActivityLogSection:handlePostActionsActivityLogSection:buildParameters:schemeActionResultOperation:error:] (in IDEFoundation)
+  3   -[IDETestSchemeAction testOperationWithSchemeOperationParameters:testManager:buildOperation:buildParameters:schemeCommand:actionRecord:testPlanRunSpecifications:deviceAvailableChecker:outError:actionCallbackBlock:] (in IDEFoundation)
+  4   -[IDEScheme(TestSchemeAction) executionOperationForTestSchemeActionWithOperationParameters:command:buildOperationVariantSpecifiers:buildOperationGroup:schemeActionResult:buildParameters:shouldOnlyBuild:runDestination:orderedOperations:schemeActionRecord:deviceAvailableChecker:actionCallbackBlock:error:] (in IDEFoundation)
+  5   -[IDEScheme _executionOperationForSchemeOperationParameters:build:onlyBuild:buildParameters:title:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:actionCallbackBlock:] (in IDEFoundation)
+  6   -[IDEScheme(TestSchemeAction) schemeTestActionOperationForSchemeOperationParameters:onlyBuild:buildLog:deviceAvailableChecker:buildParameters:shouldBuild:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+  7   -[IDEScheme buildAndActionTaskForSchemeOperationParameters:shouldBuild:onlyBuild:buildParameters:buildLog:deviceAvailableChecker:restorePersistedBuildResults:dontActuallyRunCommands:error:completionBlock:] (in IDEFoundation)
+  8   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  9   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+ 10   -[Xcode3CommandLineBuildTool(TestSchemeAction) buildForTestSchemeCommandWantsSkip:buildAction:isProjectBuild:title:buildLog:isMoreDestinationsPending:runDestinations:runDestination:schemeCommand:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 11   -[Xcode3CommandLineBuildTool doSchemeBuildWithRunDestinations:runDestinationIdx:wantsSkip:buildActionTimingSection:timingSection:buildAction:isMoreDesinationsPending:actionResultBlock:title:buildLog:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 12   -[Xcode3CommandLineBuildTool doBuildForBuildAction:timingSection:colorize:colorizeFailure:error:] (in Xcode3Core)
+ 13   -[Xcode3CommandLineBuildTool _buildWithTimingSection:] (in Xcode3Core)
+ 14   -[Xcode3CommandLineBuildTool run] (in Xcode3Core)
+ 15   XcodeBuildMain (in libxcodebuildLoader.dylib)
+ 16   -[XcodebuildPreIDEHandler loadXcode3ProjectSupportAndRunXcode3CommandLineBuildToolWithArguments:] (in xcodebuild)
+ 17   -[XcodebuildPreIDEHandler runWithArguments:] (in xcodebuild)
+ 18   main (in xcodebuild)
+ 19   start (in dyld)
+
+<IDESchemeActionResultOperation: 0x888386a00; state = Arefc> created at:
+  0   -[DVTOperation init] (in DVTFoundation)
+  1   +[IDESchemeActionResultOperation schemeActionResultOperationWithSchemeActionRecord:trackingExecutionOfOperation:actionCallbackBlock:schemeActionResultComputationBlock:] (in IDEFoundation)
+  2   -[IDETestRunSession testOperationForTestRunSpecificationGroups:executionEnvironment:invocationRecord:actionRecord:schemeIdentifier:outSchemeActionResultOperation:launchParametersBlock:actionCallbackBlock:error:] (in IDEFoundation)
+  3   -[IDETestManager testOperationForTestRunSpecificationGroups:executionEnvironment:runDestinationPool:invocationRecord:actionRecord:schemeIdentifier:outSchemeActionResultOperation:launchParametersBlock:actionCallbackBlock:error:] (in IDEFoundation)
+  4   -[IDETestSchemeAction testOperationWithSchemeOperationParameters:testManager:buildOperation:buildParameters:schemeCommand:actionRecord:testPlanRunSpecifications:deviceAvailableChecker:outError:actionCallbackBlock:] (in IDEFoundation)
+  5   -[IDEScheme(TestSchemeAction) executionOperationForTestSchemeActionWithOperationParameters:command:buildOperationVariantSpecifiers:buildOperationGroup:schemeActionResult:buildParameters:shouldOnlyBuild:runDestination:orderedOperations:schemeActionRecord:deviceAvailableChecker:actionCallbackBlock:error:] (in IDEFoundation)
+  6   -[IDEScheme _executionOperationForSchemeOperationParameters:build:onlyBuild:buildParameters:title:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:actionCallbackBlock:] (in IDEFoundation)
+  7   -[IDEScheme(TestSchemeAction) schemeTestActionOperationForSchemeOperationParameters:onlyBuild:buildLog:deviceAvailableChecker:buildParameters:shouldBuild:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+  8   -[IDEScheme buildAndActionTaskForSchemeOperationParameters:shouldBuild:onlyBuild:buildParameters:buildLog:deviceAvailableChecker:restorePersistedBuildResults:dontActuallyRunCommands:error:completionBlock:] (in IDEFoundation)
+  9   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+ 10   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+ 11   -[Xcode3CommandLineBuildTool(TestSchemeAction) buildForTestSchemeCommandWantsSkip:buildAction:isProjectBuild:title:buildLog:isMoreDestinationsPending:runDestinations:runDestination:schemeCommand:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 12   -[Xcode3CommandLineBuildTool doSchemeBuildWithRunDestinations:runDestinationIdx:wantsSkip:buildActionTimingSection:timingSection:buildAction:isMoreDesinationsPending:actionResultBlock:title:buildLog:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 13   -[Xcode3CommandLineBuildTool doBuildForBuildAction:timingSection:colorize:colorizeFailure:error:] (in Xcode3Core)
+ 14   -[Xcode3CommandLineBuildTool _buildWithTimingSection:] (in Xcode3Core)
+ 15   -[Xcode3CommandLineBuildTool run] (in Xcode3Core)
+ 16   XcodeBuildMain (in libxcodebuildLoader.dylib)
+ 17   -[XcodebuildPreIDEHandler loadXcode3ProjectSupportAndRunXcode3CommandLineBuildToolWithArguments:] (in xcodebuild)
+ 18   -[XcodebuildPreIDEHandler runWithArguments:] (in xcodebuild)
+ 19   main (in xcodebuild)
+ 20   start (in dyld)
+
+<DVTOperation: 0x887dc17c0; state = aReFc> created at:
+  0   -[DVTOperation init] (in DVTFoundation)
+  1   +[DVTOperation(DVTConveniences) operationWithBlock:] (in DVTFoundation)
+  2   -[IDESchemeAction setUpActionDependenciesForCorePhaseOperation:shouldRunPostActionsBlock:prePhaseEnvironmentPopulationBlock:postPhaseEnvironmentPopulationBlock:handlePreActionsActivityLogSection:handlePostActionsActivityLogSection:buildParameters:schemeActionResultOperation:error:] (in IDEFoundation)
+  3   -[IDETestSchemeAction testOperationWithSchemeOperationParameters:testManager:buildOperation:buildParameters:schemeCommand:actionRecord:testPlanRunSpecifications:deviceAvailableChecker:outError:actionCallbackBlock:] (in IDEFoundation)
+  4   -[IDEScheme(TestSchemeAction) executionOperationForTestSchemeActionWithOperationParameters:command:buildOperationVariantSpecifiers:buildOperationGroup:schemeActionResult:buildParameters:shouldOnlyBuild:runDestination:orderedOperations:schemeActionRecord:deviceAvailableChecker:actionCallbackBlock:error:] (in IDEFoundation)
+  5   -[IDEScheme _executionOperationForSchemeOperationParameters:build:onlyBuild:buildParameters:title:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:actionCallbackBlock:] (in IDEFoundation)
+  6   -[IDEScheme(TestSchemeAction) schemeTestActionOperationForSchemeOperationParameters:onlyBuild:buildLog:deviceAvailableChecker:buildParameters:shouldBuild:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+  7   -[IDEScheme buildAndActionTaskForSchemeOperationParameters:shouldBuild:onlyBuild:buildParameters:buildLog:deviceAvailableChecker:restorePersistedBuildResults:dontActuallyRunCommands:error:completionBlock:] (in IDEFoundation)
+  8   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  9   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+ 10   -[Xcode3CommandLineBuildTool(TestSchemeAction) buildForTestSchemeCommandWantsSkip:buildAction:isProjectBuild:title:buildLog:isMoreDestinationsPending:runDestinations:runDestination:schemeCommand:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 11   -[Xcode3CommandLineBuildTool doSchemeBuildWithRunDestinations:runDestinationIdx:wantsSkip:buildActionTimingSection:timingSection:buildAction:isMoreDesinationsPending:actionResultBlock:title:buildLog:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 12   -[Xcode3CommandLineBuildTool doBuildForBuildAction:timingSection:colorize:colorizeFailure:error:] (in Xcode3Core)
+ 13   -[Xcode3CommandLineBuildTool _buildWithTimingSection:] (in Xcode3Core)
+ 14   -[Xcode3CommandLineBuildTool run] (in Xcode3Core)
+ 15   XcodeBuildMain (in libxcodebuildLoader.dylib)
+ 16   -[XcodebuildPreIDEHandler loadXcode3ProjectSupportAndRunXcode3CommandLineBuildToolWithArguments:] (in xcodebuild)
+ 17   -[XcodebuildPreIDEHandler runWithArguments:] (in xcodebuild)
+ 18   main (in xcodebuild)
+ 19   start (in dyld)
+
+<__DVTSwiftAsyncOperation: 0x888387000; state = AReFc> created at:
+  0   -[DVTOperation init] (in DVTFoundation)
+  1   @objc DVTAsyncOperation.init() (in DVTFoundation)
+  2   static DVTOperation.awaiting(_:) (in DVTFoundation)
+  3   @objc static IDESchemeAction.operationToWaitForFinishedLoadingOperation(of:) (in IDEFoundation)
+  4   -[IDESchemeAction setUpActionDependenciesForCorePhaseOperation:shouldRunPostActionsBlock:prePhaseEnvironmentPopulationBlock:postPhaseEnvironmentPopulationBlock:handlePreActionsActivityLogSection:handlePostActionsActivityLogSection:buildParameters:schemeActionResultOperation:error:] (in IDEFoundation)
+  5   -[IDETestSchemeAction testOperationWithSchemeOperationParameters:testManager:buildOperation:buildParameters:schemeCommand:actionRecord:testPlanRunSpecifications:deviceAvailableChecker:outError:actionCallbackBlock:] (in IDEFoundation)
+  6   -[IDEScheme(TestSchemeAction) executionOperationForTestSchemeActionWithOperationParameters:command:buildOperationVariantSpecifiers:buildOperationGroup:schemeActionResult:buildParameters:shouldOnlyBuild:runDestination:orderedOperations:schemeActionRecord:deviceAvailableChecker:actionCallbackBlock:error:] (in IDEFoundation)
+  7   -[IDEScheme _executionOperationForSchemeOperationParameters:build:onlyBuild:buildParameters:title:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:actionCallbackBlock:] (in IDEFoundation)
+  8   -[IDEScheme(TestSchemeAction) schemeTestActionOperationForSchemeOperationParameters:onlyBuild:buildLog:deviceAvailableChecker:buildParameters:shouldBuild:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+  9   -[IDEScheme buildAndActionTaskForSchemeOperationParameters:shouldBuild:onlyBuild:buildParameters:buildLog:deviceAvailableChecker:restorePersistedBuildResults:dontActuallyRunCommands:error:completionBlock:] (in IDEFoundation)
+ 10   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+ 11   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+ 12   -[Xcode3CommandLineBuildTool(TestSchemeAction) buildForTestSchemeCommandWantsSkip:buildAction:isProjectBuild:title:buildLog:isMoreDestinationsPending:runDestinations:runDestination:schemeCommand:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 13   -[Xcode3CommandLineBuildTool doSchemeBuildWithRunDestinations:runDestinationIdx:wantsSkip:buildActionTimingSection:timingSection:buildAction:isMoreDesinationsPending:actionResultBlock:title:buildLog:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 14   -[Xcode3CommandLineBuildTool doBuildForBuildAction:timingSection:colorize:colorizeFailure:error:] (in Xcode3Core)
+ 15   -[Xcode3CommandLineBuildTool _buildWithTimingSection:] (in Xcode3Core)
+ 16   -[Xcode3CommandLineBuildTool run] (in Xcode3Core)
+ 17   XcodeBuildMain (in libxcodebuildLoader.dylib)
+ 18   -[XcodebuildPreIDEHandler loadXcode3ProjectSupportAndRunXcode3CommandLineBuildToolWithArguments:] (in xcodebuild)
+ 19   -[XcodebuildPreIDEHandler runWithArguments:] (in xcodebuild)
+ 20   main (in xcodebuild)
+ 21   start (in dyld)
+
+<__DVTSwiftAsyncOperation: 0x888387300; state = AReFc> created at:
+  0   -[DVTOperation init] (in DVTFoundation)
+  1   @objc DVTAsyncOperation.init() (in DVTFoundation)
+  2   static DVTOperation.awaiting(_:) (in DVTFoundation)
+  3   @objc static IDESchemeAction.operationToWaitForFinishedLoadingOperation(of:) (in IDEFoundation)
+  4   -[IDESchemeAction _setUpOperationsForPackageLoadingInWorkspace:handlePreActionsActivityLogSection:isCleanOperation:] (in IDEFoundation)
+  5   -[IDESchemeAction setUpActionDependenciesForCorePhaseOperation:shouldRunPostActionsBlock:prePhaseEnvironmentPopulationBlock:postPhaseEnvironmentPopulationBlock:handlePreActionsActivityLogSection:handlePostActionsActivityLogSection:buildParameters:schemeActionResultOperation:error:] (in IDEFoundation)
+  6   -[IDETestSchemeAction testOperationWithSchemeOperationParameters:testManager:buildOperation:buildParameters:schemeCommand:actionRecord:testPlanRunSpecifications:deviceAvailableChecker:outError:actionCallbackBlock:] (in IDEFoundation)
+  7   -[IDEScheme(TestSchemeAction) executionOperationForTestSchemeActionWithOperationParameters:command:buildOperationVariantSpecifiers:buildOperationGroup:schemeActionResult:buildParameters:shouldOnlyBuild:runDestination:orderedOperations:schemeActionRecord:deviceAvailableChecker:actionCallbackBlock:error:] (in IDEFoundation)
+  8   -[IDEScheme _executionOperationForSchemeOperationParameters:build:onlyBuild:buildParameters:title:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:actionCallbackBlock:] (in IDEFoundation)
+  9   -[IDEScheme(TestSchemeAction) schemeTestActionOperationForSchemeOperationParameters:onlyBuild:buildLog:deviceAvailableChecker:buildParameters:shouldBuild:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+ 10   -[IDEScheme buildAndActionTaskForSchemeOperationParameters:shouldBuild:onlyBuild:buildParameters:buildLog:deviceAvailableChecker:restorePersistedBuildResults:dontActuallyRunCommands:error:completionBlock:] (in IDEFoundation)
+ 11   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+ 12   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+ 13   -[Xcode3CommandLineBuildTool(TestSchemeAction) buildForTestSchemeCommandWantsSkip:buildAction:isProjectBuild:title:buildLog:isMoreDestinationsPending:runDestinations:runDestination:schemeCommand:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 14   -[Xcode3CommandLineBuildTool doSchemeBuildWithRunDestinations:runDestinationIdx:wantsSkip:buildActionTimingSection:timingSection:buildAction:isMoreDesinationsPending:actionResultBlock:title:buildLog:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 15   -[Xcode3CommandLineBuildTool doBuildForBuildAction:timingSection:colorize:colorizeFailure:error:] (in Xcode3Core)
+ 16   -[Xcode3CommandLineBuildTool _buildWithTimingSection:] (in Xcode3Core)
+ 17   -[Xcode3CommandLineBuildTool run] (in Xcode3Core)
+ 18   XcodeBuildMain (in libxcodebuildLoader.dylib)
+ 19   -[XcodebuildPreIDEHandler loadXcode3ProjectSupportAndRunXcode3CommandLineBuildToolWithArguments:] (in xcodebuild)
+ 20   -[XcodebuildPreIDEHandler runWithArguments:] (in xcodebuild)
+ 21   main (in xcodebuild)
+ 22   start (in dyld)
+
+<__DVTSwiftAsyncOperation: 0x888387600; state = AReFc> created at:
+  0   -[DVTOperation init] (in DVTFoundation)
+  1   @objc DVTAsyncOperation.init() (in DVTFoundation)
+  2   @objc static DVTOperation.operationWithMainThreadBlock(_:) (in DVTFoundation)
+  3   -[IDESchemeAction _setUpOperationsForPackageLoadingInWorkspace:handlePreActionsActivityLogSection:isCleanOperation:] (in IDEFoundation)
+  4   -[IDESchemeAction setUpActionDependenciesForCorePhaseOperation:shouldRunPostActionsBlock:prePhaseEnvironmentPopulationBlock:postPhaseEnvironmentPopulationBlock:handlePreActionsActivityLogSection:handlePostActionsActivityLogSection:buildParameters:schemeActionResultOperation:error:] (in IDEFoundation)
+  5   -[IDETestSchemeAction testOperationWithSchemeOperationParameters:testManager:buildOperation:buildParameters:schemeCommand:actionRecord:testPlanRunSpecifications:deviceAvailableChecker:outError:actionCallbackBlock:] (in IDEFoundation)
+  6   -[IDEScheme(TestSchemeAction) executionOperationForTestSchemeActionWithOperationParameters:command:buildOperationVariantSpecifiers:buildOperationGroup:schemeActionResult:buildParameters:shouldOnlyBuild:runDestination:orderedOperations:schemeActionRecord:deviceAvailableChecker:actionCallbackBlock:error:] (in IDEFoundation)
+  7   -[IDEScheme _executionOperationForSchemeOperationParameters:build:onlyBuild:buildParameters:title:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:actionCallbackBlock:] (in IDEFoundation)
+  8   -[IDEScheme(TestSchemeAction) schemeTestActionOperationForSchemeOperationParameters:onlyBuild:buildLog:deviceAvailableChecker:buildParameters:shouldBuild:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+  9   -[IDEScheme buildAndActionTaskForSchemeOperationParameters:shouldBuild:onlyBuild:buildParameters:buildLog:deviceAvailableChecker:restorePersistedBuildResults:dontActuallyRunCommands:error:completionBlock:] (in IDEFoundation)
+ 10   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+ 11   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+ 12   -[Xcode3CommandLineBuildTool(TestSchemeAction) buildForTestSchemeCommandWantsSkip:buildAction:isProjectBuild:title:buildLog:isMoreDestinationsPending:runDestinations:runDestination:schemeCommand:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 13   -[Xcode3CommandLineBuildTool doSchemeBuildWithRunDestinations:runDestinationIdx:wantsSkip:buildActionTimingSection:timingSection:buildAction:isMoreDesinationsPending:actionResultBlock:title:buildLog:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 14   -[Xcode3CommandLineBuildTool doBuildForBuildAction:timingSection:colorize:colorizeFailure:error:] (in Xcode3Core)
+ 15   -[Xcode3CommandLineBuildTool _buildWithTimingSection:] (in Xcode3Core)
+ 16   -[Xcode3CommandLineBuildTool run] (in Xcode3Core)
+ 17   XcodeBuildMain (in libxcodebuildLoader.dylib)
+ 18   -[XcodebuildPreIDEHandler loadXcode3ProjectSupportAndRunXcode3CommandLineBuildToolWithArguments:] (in xcodebuild)
+ 19   -[XcodebuildPreIDEHandler runWithArguments:] (in xcodebuild)
+ 20   main (in xcodebuild)
+ 21   start (in dyld)
+
+<DVTOperationGroup: 0x888385200; state = AREf!c> created at:
+  0   -[DVTOperation init] (in DVTFoundation)
+  1   -[DVTOperationGroup init] (in DVTFoundation)
+  2   -[IDETestRunSession testOperationForTestRunSpecificationGroups:executionEnvironment:invocationRecord:actionRecord:schemeIdentifier:outSchemeActionResultOperation:launchParametersBlock:actionCallbackBlock:error:] (in IDEFoundation)
+  3   -[IDETestManager testOperationForTestRunSpecificationGroups:executionEnvironment:runDestinationPool:invocationRecord:actionRecord:schemeIdentifier:outSchemeActionResultOperation:launchParametersBlock:actionCallbackBlock:error:] (in IDEFoundation)
+  4   -[IDETestSchemeAction testOperationWithSchemeOperationParameters:testManager:buildOperation:buildParameters:schemeCommand:actionRecord:testPlanRunSpecifications:deviceAvailableChecker:outError:actionCallbackBlock:] (in IDEFoundation)
+  5   -[IDEScheme(TestSchemeAction) executionOperationForTestSchemeActionWithOperationParameters:command:buildOperationVariantSpecifiers:buildOperationGroup:schemeActionResult:buildParameters:shouldOnlyBuild:runDestination:orderedOperations:schemeActionRecord:deviceAvailableChecker:actionCallbackBlock:error:] (in IDEFoundation)
+  6   -[IDEScheme _executionOperationForSchemeOperationParameters:build:onlyBuild:buildParameters:title:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:actionCallbackBlock:] (in IDEFoundation)
+  7   -[IDEScheme(TestSchemeAction) schemeTestActionOperationForSchemeOperationParameters:onlyBuild:buildLog:deviceAvailableChecker:buildParameters:shouldBuild:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+  8   -[IDEScheme buildAndActionTaskForSchemeOperationParameters:shouldBuild:onlyBuild:buildParameters:buildLog:deviceAvailableChecker:restorePersistedBuildResults:dontActuallyRunCommands:error:completionBlock:] (in IDEFoundation)
+  9   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+ 10   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+ 11   -[Xcode3CommandLineBuildTool(TestSchemeAction) buildForTestSchemeCommandWantsSkip:buildAction:isProjectBuild:title:buildLog:isMoreDestinationsPending:runDestinations:runDestination:schemeCommand:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 12   -[Xcode3CommandLineBuildTool doSchemeBuildWithRunDestinations:runDestinationIdx:wantsSkip:buildActionTimingSection:timingSection:buildAction:isMoreDesinationsPending:actionResultBlock:title:buildLog:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 13   -[Xcode3CommandLineBuildTool doBuildForBuildAction:timingSection:colorize:colorizeFailure:error:] (in Xcode3Core)
+ 14   -[Xcode3CommandLineBuildTool _buildWithTimingSection:] (in Xcode3Core)
+ 15   -[Xcode3CommandLineBuildTool run] (in Xcode3Core)
+ 16   XcodeBuildMain (in libxcodebuildLoader.dylib)
+ 17   -[XcodebuildPreIDEHandler loadXcode3ProjectSupportAndRunXcode3CommandLineBuildToolWithArguments:] (in xcodebuild)
+ 18   -[XcodebuildPreIDEHandler runWithArguments:] (in xcodebuild)
+ 19   main (in xcodebuild)
+ 20   start (in dyld)
+
+<DVTOperation: 0x887dc12c0; state = aReFc> created at:
+  0   -[DVTOperation init] (in DVTFoundation)
+  1   +[DVTOperation(DVTConveniences) operationWithBlock:] (in DVTFoundation)
+  2   -[IDETestRunSession testOperationForTestRunSpecificationGroups:executionEnvironment:invocationRecord:actionRecord:schemeIdentifier:outSchemeActionResultOperation:launchParametersBlock:actionCallbackBlock:error:] (in IDEFoundation)
+  3   -[IDETestManager testOperationForTestRunSpecificationGroups:executionEnvironment:runDestinationPool:invocationRecord:actionRecord:schemeIdentifier:outSchemeActionResultOperation:launchParametersBlock:actionCallbackBlock:error:] (in IDEFoundation)
+  4   -[IDETestSchemeAction testOperationWithSchemeOperationParameters:testManager:buildOperation:buildParameters:schemeCommand:actionRecord:testPlanRunSpecifications:deviceAvailableChecker:outError:actionCallbackBlock:] (in IDEFoundation)
+  5   -[IDEScheme(TestSchemeAction) executionOperationForTestSchemeActionWithOperationParameters:command:buildOperationVariantSpecifiers:buildOperationGroup:schemeActionResult:buildParameters:shouldOnlyBuild:runDestination:orderedOperations:schemeActionRecord:deviceAvailableChecker:actionCallbackBlock:error:] (in IDEFoundation)
+  6   -[IDEScheme _executionOperationForSchemeOperationParameters:build:onlyBuild:buildParameters:title:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:actionCallbackBlock:] (in IDEFoundation)
+  7   -[IDEScheme(TestSchemeAction) schemeTestActionOperationForSchemeOperationParameters:onlyBuild:buildLog:deviceAvailableChecker:buildParameters:shouldBuild:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+  8   -[IDEScheme buildAndActionTaskForSchemeOperationParameters:shouldBuild:onlyBuild:buildParameters:buildLog:deviceAvailableChecker:restorePersistedBuildResults:dontActuallyRunCommands:error:completionBlock:] (in IDEFoundation)
+  9   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+ 10   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+ 11   -[Xcode3CommandLineBuildTool(TestSchemeAction) buildForTestSchemeCommandWantsSkip:buildAction:isProjectBuild:title:buildLog:isMoreDestinationsPending:runDestinations:runDestination:schemeCommand:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 12   -[Xcode3CommandLineBuildTool doSchemeBuildWithRunDestinations:runDestinationIdx:wantsSkip:buildActionTimingSection:timingSection:buildAction:isMoreDesinationsPending:actionResultBlock:title:buildLog:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 13   -[Xcode3CommandLineBuildTool doBuildForBuildAction:timingSection:colorize:colorizeFailure:error:] (in Xcode3Core)
+ 14   -[Xcode3CommandLineBuildTool _buildWithTimingSection:] (in Xcode3Core)
+ 15   -[Xcode3CommandLineBuildTool run] (in Xcode3Core)
+ 16   XcodeBuildMain (in libxcodebuildLoader.dylib)
+ 17   -[XcodebuildPreIDEHandler loadXcode3ProjectSupportAndRunXcode3CommandLineBuildToolWithArguments:] (in xcodebuild)
+ 18   -[XcodebuildPreIDEHandler runWithArguments:] (in xcodebuild)
+ 19   main (in xcodebuild)
+ 20   start (in dyld)
+
+<IDERunOperation: 0x887efc480; state = aReF!c> created at:
+  0   -[DVTOperation init] (in DVTFoundation)
+  1   -[IDERunOperation initWithWorker:] (in IDEFoundation)
+  2   +[IDETestRunnerLaunchOperationFactory testRunOperationWithLaunchParameters:testRunSpecification:testConfiguration:executionEnvironment:schemeActionRecord:runDestination:localDeviceRunDestination:error:] (in IDEFoundation)
+  3   __110+[IDETestRunnerLaunchOperationFactory makeLaunchOperationProviderWithExecutionEnvironment:schemeActionRecord:]_block_invoke (in IDEFoundation)
+  4   thunk for @escaping @callee_unowned @convention(block) (@unowned XCTHRunDestination, @unowned XCTHTestRunSpecification, @unowned XCTestConfiguration, @unowned XCTHLaunchParameters, @unowned AutoreleasingUnsafeMutablePointer<NSError?>?) -> (@autoreleased (NSOperation & XCTHRunOperation)?) (in XCTHarness)
+  5   thunk for @escaping @callee_guaranteed (@guaranteed XCTHRunDestination, @guaranteed XCTHTestRunSpecification, @guaranteed XCTestConfiguration, @guaranteed XCTHLaunchParameters, @unowned AutoreleasingUnsafeMutablePointer<NSError?>?) -> (@owned (NSOperation & XCTHRunOperation)?) (in XCTHarness)
+  6   -[XCTHTestRunner _testRunOperationWithError:] (in XCTHarness)
+  7   -[XCTHTestRunner _addTestRunOperation:] (in XCTHarness)
+  8   -[XCTHTestRunner testOperationWithError:] (in XCTHarness)
+  9   -[XCTHTestTargetRunner workerWasProvided:] (in XCTHarness)
+ 10   __40-[XCTHTestTargetRunner requestNewWorker]_block_invoke (in XCTHarness)
+ 11   __45-[XCTHFuture observeFinishOnQueue:withBlock:]_block_invoke_2 (in XCTHarness)
+ 12   __XCTHAsyncPerformBlockOnMainRunLoop_block_invoke (in XCTHarness)
+ 13   __CFRUNLOOP_IS_CALLING_OUT_TO_A_BLOCK__ (in CoreFoundation)
+ 14   __CFRunLoopDoBlocks (in CoreFoundation)
+ 15   __CFRunLoopRun (in CoreFoundation)
+ 16   _CFRunLoopRunSpecificWithOptions (in CoreFoundation)
+ 17   CFRunLoopRun (in CoreFoundation)
+ 18   -[Xcode3CommandLineBuildTool waitForBuildWithBuildLog:buildActionTimingSection:executionEnvironment:title:operationToEnqueue:error:] (in Xcode3Core)
+ 19   -[Xcode3CommandLineBuildTool doBuildForBuildAction:timingSection:colorize:colorizeFailure:error:] (in Xcode3Core)
+ 20   -[Xcode3CommandLineBuildTool _buildWithTimingSection:] (in Xcode3Core)
+ 21   -[Xcode3CommandLineBuildTool run] (in Xcode3Core)
+ 22   XcodeBuildMain (in libxcodebuildLoader.dylib)
+ 23   -[XcodebuildPreIDEHandler loadXcode3ProjectSupportAndRunXcode3CommandLineBuildToolWithArguments:] (in xcodebuild)
+ 24   -[XcodebuildPreIDEHandler runWithArguments:] (in xcodebuild)
+ 25   main (in xcodebuild)
+ 26   start (in dyld)
+
+<DVTOperation: 0x887dc1a40; state = arefc> created at:
+  0   -[DVTOperation init] (in DVTFoundation)
+  1   +[DVTOperation(DVTConveniences) operationWithBlock:] (in DVTFoundation)
+  2   -[IDESchemeAction setUpActionDependenciesForCorePhaseOperation:shouldRunPostActionsBlock:prePhaseEnvironmentPopulationBlock:postPhaseEnvironmentPopulationBlock:handlePreActionsActivityLogSection:handlePostActionsActivityLogSection:buildParameters:schemeActionResultOperation:error:] (in IDEFoundation)
+  3   -[IDETestSchemeAction testOperationWithSchemeOperationParameters:testManager:buildOperation:buildParameters:schemeCommand:actionRecord:testPlanRunSpecifications:deviceAvailableChecker:outError:actionCallbackBlock:] (in IDEFoundation)
+  4   -[IDEScheme(TestSchemeAction) executionOperationForTestSchemeActionWithOperationParameters:command:buildOperationVariantSpecifiers:buildOperationGroup:schemeActionResult:buildParameters:shouldOnlyBuild:runDestination:orderedOperations:schemeActionRecord:deviceAvailableChecker:actionCallbackBlock:error:] (in IDEFoundation)
+  5   -[IDEScheme _executionOperationForSchemeOperationParameters:build:onlyBuild:buildParameters:title:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:actionCallbackBlock:] (in IDEFoundation)
+  6   -[IDEScheme(TestSchemeAction) schemeTestActionOperationForSchemeOperationParameters:onlyBuild:buildLog:deviceAvailableChecker:buildParameters:shouldBuild:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+  7   -[IDEScheme buildAndActionTaskForSchemeOperationParameters:shouldBuild:onlyBuild:buildParameters:buildLog:deviceAvailableChecker:restorePersistedBuildResults:dontActuallyRunCommands:error:completionBlock:] (in IDEFoundation)
+  8   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  9   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+ 10   -[Xcode3CommandLineBuildTool(TestSchemeAction) buildForTestSchemeCommandWantsSkip:buildAction:isProjectBuild:title:buildLog:isMoreDestinationsPending:runDestinations:runDestination:schemeCommand:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 11   -[Xcode3CommandLineBuildTool doSchemeBuildWithRunDestinations:runDestinationIdx:wantsSkip:buildActionTimingSection:timingSection:buildAction:isMoreDesinationsPending:actionResultBlock:title:buildLog:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 12   -[Xcode3CommandLineBuildTool doBuildForBuildAction:timingSection:colorize:colorizeFailure:error:] (in Xcode3Core)
+ 13   -[Xcode3CommandLineBuildTool _buildWithTimingSection:] (in Xcode3Core)
+ 14   -[Xcode3CommandLineBuildTool run] (in Xcode3Core)
+ 15   XcodeBuildMain (in libxcodebuildLoader.dylib)
+ 16   -[XcodebuildPreIDEHandler loadXcode3ProjectSupportAndRunXcode3CommandLineBuildToolWithArguments:] (in xcodebuild)
+ 17   -[XcodebuildPreIDEHandler runWithArguments:] (in xcodebuild)
+ 18   main (in xcodebuild)
+ 19   start (in dyld)
+
+<__DVTSwiftAsyncOperation: 0x888386e80; state = AReFc> created at:
+  0   -[DVTOperation init] (in DVTFoundation)
+  1   @objc DVTAsyncOperation.init() (in DVTFoundation)
+  2   @objc static DVTOperation.operationWithMainThreadBlock(_:) (in DVTFoundation)
+  3   -[IDESchemeAction _setUpOperationsForPackageLoadingInWorkspace:handlePreActionsActivityLogSection:isCleanOperation:] (in IDEFoundation)
+  4   -[IDESchemeAction setUpActionDependenciesForCorePhaseOperation:shouldRunPostActionsBlock:prePhaseEnvironmentPopulationBlock:postPhaseEnvironmentPopulationBlock:handlePreActionsActivityLogSection:handlePostActionsActivityLogSection:buildParameters:schemeActionResultOperation:error:] (in IDEFoundation)
+  5   -[IDETestSchemeAction testOperationWithSchemeOperationParameters:testManager:buildOperation:buildParameters:schemeCommand:actionRecord:testPlanRunSpecifications:deviceAvailableChecker:outError:actionCallbackBlock:] (in IDEFoundation)
+  6   -[IDEScheme(TestSchemeAction) executionOperationForTestSchemeActionWithOperationParameters:command:buildOperationVariantSpecifiers:buildOperationGroup:schemeActionResult:buildParameters:shouldOnlyBuild:runDestination:orderedOperations:schemeActionRecord:deviceAvailableChecker:actionCallbackBlock:error:] (in IDEFoundation)
+  7   -[IDEScheme _executionOperationForSchemeOperationParameters:build:onlyBuild:buildParameters:title:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:actionCallbackBlock:] (in IDEFoundation)
+  8   -[IDEScheme(TestSchemeAction) schemeTestActionOperationForSchemeOperationParameters:onlyBuild:buildLog:deviceAvailableChecker:buildParameters:shouldBuild:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+  9   -[IDEScheme buildAndActionTaskForSchemeOperationParameters:shouldBuild:onlyBuild:buildParameters:buildLog:deviceAvailableChecker:restorePersistedBuildResults:dontActuallyRunCommands:error:completionBlock:] (in IDEFoundation)
+ 10   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+ 11   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+ 12   -[Xcode3CommandLineBuildTool(TestSchemeAction) buildForTestSchemeCommandWantsSkip:buildAction:isProjectBuild:title:buildLog:isMoreDestinationsPending:runDestinations:runDestination:schemeCommand:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 13   -[Xcode3CommandLineBuildTool doSchemeBuildWithRunDestinations:runDestinationIdx:wantsSkip:buildActionTimingSection:timingSection:buildAction:isMoreDesinationsPending:actionResultBlock:title:buildLog:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 14   -[Xcode3CommandLineBuildTool doBuildForBuildAction:timingSection:colorize:colorizeFailure:error:] (in Xcode3Core)
+ 15   -[Xcode3CommandLineBuildTool _buildWithTimingSection:] (in Xcode3Core)
+ 16   -[Xcode3CommandLineBuildTool run] (in Xcode3Core)
+ 17   XcodeBuildMain (in libxcodebuildLoader.dylib)
+ 18   -[XcodebuildPreIDEHandler loadXcode3ProjectSupportAndRunXcode3CommandLineBuildToolWithArguments:] (in xcodebuild)
+ 19   -[XcodebuildPreIDEHandler runWithArguments:] (in xcodebuild)
+ 20   main (in xcodebuild)
+ 21   start (in dyld)
+
+<_IDETestingFinalizeLogsOperation: 0x887dc1e00; name = 'Finalize test log', state = aref!c> created at:
+  0   -[DVTOperation init] (in DVTFoundation)
+  1   +[DVTOperation(DVTConveniences) operationWithBlock:] (in DVTFoundation)
+  2   -[IDETestSchemeAction _finalizeLogOperationWithRecorder:launchLogsSectionRecorder:] (in IDEFoundation)
+  3   -[IDETestSchemeAction testOperationWithSchemeOperationParameters:testManager:buildOperation:buildParameters:schemeCommand:actionRecord:testPlanRunSpecifications:deviceAvailableChecker:outError:actionCallbackBlock:] (in IDEFoundation)
+  4   -[IDEScheme(TestSchemeAction) executionOperationForTestSchemeActionWithOperationParameters:command:buildOperationVariantSpecifiers:buildOperationGroup:schemeActionResult:buildParameters:shouldOnlyBuild:runDestination:orderedOperations:schemeActionRecord:deviceAvailableChecker:actionCallbackBlock:error:] (in IDEFoundation)
+  5   -[IDEScheme _executionOperationForSchemeOperationParameters:build:onlyBuild:buildParameters:title:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:actionCallbackBlock:] (in IDEFoundation)
+  6   -[IDEScheme(TestSchemeAction) schemeTestActionOperationForSchemeOperationParameters:onlyBuild:buildLog:deviceAvailableChecker:buildParameters:shouldBuild:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+  7   -[IDEScheme buildAndActionTaskForSchemeOperationParameters:shouldBuild:onlyBuild:buildParameters:buildLog:deviceAvailableChecker:restorePersistedBuildResults:dontActuallyRunCommands:error:completionBlock:] (in IDEFoundation)
+  8   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  9   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:error:completio
+
+*** If you believe this error represents a bug, please attach the result bundle at /Users/tantalum/Documents/电子遗嘱app/output/qa/ios-layout-matrix-20260814-230100/se-large-roots.xcresult
+
+2026-08-14 23:03:13.666 xcodebuild[61357:17096696] [MT] IDETestOperationsObserverDebug: 79.772 elapsed -- Testing started completed.
+2026-08-14 23:03:13.667 xcodebuild[61357:17096696] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-08-14 23:03:13.667 xcodebuild[61357:17096696] [MT] IDETestOperationsObserverDebug: 79.772 sec, +79.772 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/tantalum/Documents/电子遗嘱app/output/qa/ios-layout-matrix-20260814-230100/se-large-roots.xcresult
+
+** TEST EXECUTE INTERRUPTED **
+
+2026-08-14 23:03:44.709 xcodebuild[61357:17096696] [MT] IDEResultKit: Warning: While writing a result bundle to /Users/tantalum/Documents/电子遗嘱app/output/qa/ios-layout-matrix-20260814-230100/se-large-roots.xcresult, not all contents have been imported, as the Staging directory still contains the following files/directories: ["1_Test"]
+Error saving invocation record to resultBundlePath:Error Domain=IDEFoundationErrorDomain Code=12 "The result bundle could not be saved due to an error: Could not write the 1_Test action log because the log hasn't finished recording after waiting 30 seconds." UserInfo={NSUnderlyingError=0x88b2d0d80 {Error Domain=IDEFoundationErrorDomain Code=10 "Could not write the 1_Test action log because the log hasn't finished recording after waiting 30 seconds." UserInfo={NSLocalizedDescription=Could not write the 1_Test action log because the log hasn't finished recording after waiting 30 seconds.}}, NSLocalizedDescription=The result bundle could not be saved due to an error: Could not write the 1_Test action log because the log hasn't finished recording after waiting 30 seconds.}
+nBlock:] (in IDEFoundation)
+ 10   -[Xcode3CommandLineBuildTool(TestSchemeAction) buildForTestSchemeCommandWantsSkip:buildAction:isProjectBuild:title:buildLog:isMoreDestinationsPending:runDestinations:runDestination:schemeCommand:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 11   -[Xcode3CommandLineBuildTool doSchemeBuildWithRunDestinations:runDestinationIdx:wantsSkip:buildActionTimingSection:timingSection:buildAction:isMoreDesinationsPending:actionResultBlock:title:buildLog:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 12   -[Xcode3CommandLineBuildTool doBuildForBuildAction:timingSection:colorize:colorizeFailure:error:] (in Xcode3Core)
+ 13   -[Xcode3CommandLineBuildTool _buildWithTimingSection:] (in Xcode3Core)
+ 14   -[Xcode3CommandLineBuildTool run] (in Xcode3Core)
+ 15   XcodeBuildMain (in libxcodebuildLoader.dylib)
+ 16   -[XcodebuildPreIDEHandler loadXcode3ProjectSupportAndRunXcode3CommandLineBuildToolWithArguments:] (in xcodebuild)
+ 17   -[XcodebuildPreIDEHandler runWithArguments:] (in xcodebuild)
+ 18   main (in xcodebuild)
+ 19   start (in dyld)
+
+<IDERunOperation: 0x887efd800; state = aReF!c> created at:
+  0   -[DVTOperation init] (in DVTFoundation)
+  1   -[IDERunOperation initWithWorker:] (in IDEFoundation)
+  2   -[IDERunDestination runOperationForLaunchSession:error:] (in IDEFoundation)
+  3   -[IDETargetAppLaunchCoordinator launchProcessWithParameters:token:completion:] (in IDEFoundation)
+  4   -[IDETargetAppLaunchCoordinator launchProcessWithParameters:completion:] (in IDEFoundation)
+  5   -[XCTHTestOperationCoordinator testRunnerSession:launchProcessWithParameters:completion:] (in XCTHarness)
+  6   __91-[XCTTestRunnerSession _XCT_launchProcessWithPath:bundleID:arguments:environmentVariables:]_block_invoke (in XCTDaemonControl)
+  7   _dispatch_call_block_and_release (in libdispatch.dylib)
+  8   _dispatch_client_callout (in libdispatch.dylib)
+  9   _dispatch_main_queue_drain.cold.6 (in libdispatch.dylib)
+ 10   _dispatch_main_queue_drain (in libdispatch.dylib)
+ 11   _dispatch_main_queue_callback_4CF (in libdispatch.dylib)
+ 12   __CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__ (in CoreFoundation)
+ 13   __CFRunLoopRun (in CoreFoundation)
+ 14   _CFRunLoopRunSpecificWithOptions (in CoreFoundation)
+ 15   CFRunLoopRun (in CoreFoundation)
+ 16   -[Xcode3CommandLineBuildTool waitForBuildWithBuildLog:buildActionTimingSection:executionEnvironment:title:operationToEnqueue:error:] (in Xcode3Core)
+ 17   -[Xcode3CommandLineBuildTool doBuildForBuildAction:timingSection:colorize:colorizeFailure:error:] (in Xcode3Core)
+ 18   -[Xcode3CommandLineBuildTool _buildWithTimingSection:] (in Xcode3Core)
+ 19   -[Xcode3CommandLineBuildTool run] (in Xcode3Core)
+ 20   XcodeBuildMain (in libxcodebuildLoader.dylib)
+ 21   -[XcodebuildPreIDEHandler loadXcode3ProjectSupportAndRunXcode3CommandLineBuildToolWithArguments:] (in xcodebuild)
+ 22   -[XcodebuildPreIDEHandler runWithArguments:] (in xcodebuild)
+ 23   main (in xcodebuild)
+ 24   start (in dyld)
+

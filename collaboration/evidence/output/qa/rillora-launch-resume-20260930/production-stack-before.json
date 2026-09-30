@@ -1,0 +1,174 @@
+{
+  "checked_at": "2026-09-29T16:55:42.024052+00:00",
+  "data": {
+    "Stacks": [
+      {
+        "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraProduction/60c3f040-b74b-11f1-9fc1-027c8dcc491b",
+        "StackName": "RilloraProduction",
+        "ChangeSetId": "arn:aws:cloudformation:eu-central-1:133857166372:changeSet/cdk-deploy-change-set/161cbb87-3a05-4036-8812-e1d93df75f3d",
+        "Description": "Closed Rillora production data foundation and isolated recovery; no public traffic or billing",
+        "Parameters": [
+          {
+            "ParameterKey": "BootstrapVersion",
+            "ParameterValue": "/cdk-bootstrap/hnb659fds/version",
+            "ResolvedValue": "32"
+          }
+        ],
+        "CreationTime": "2026-09-23T12:36:20.035000+00:00",
+        "LastUpdatedTime": "2026-09-24T01:12:34.709000+00:00",
+        "RollbackConfiguration": {},
+        "StackStatus": "UPDATE_COMPLETE",
+        "DisableRollback": false,
+        "DeploymentConfig": {
+          "Mode": "STANDARD",
+          "DisableRollback": false
+        },
+        "NotificationARNs": [],
+        "Capabilities": [
+          "CAPABILITY_IAM",
+          "CAPABILITY_NAMED_IAM",
+          "CAPABILITY_AUTO_EXPAND"
+        ],
+        "Outputs": [
+          {
+            "OutputKey": "RuntimeApiServiceNameF8B88348",
+            "OutputValue": "RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL"
+          },
+          {
+            "OutputKey": "ContentKeyArn",
+            "OutputValue": "arn:aws:kms:eu-central-1:133857166372:key/0f60cf8f-25b6-4e8e-94c5-03fc127a5b72"
+          },
+          {
+            "OutputKey": "MigrationSecurityGroupId",
+            "OutputValue": "sg-0bdbb583c7d22b27a"
+          },
+          {
+            "OutputKey": "RuntimeApiUrl28EC49BD",
+            "OutputValue": "https://j749rhzub7.execute-api.eu-central-1.amazonaws.com"
+          },
+          {
+            "OutputKey": "ProductionVpcId",
+            "OutputValue": "vpc-07e1ea12ac1185897"
+          },
+          {
+            "OutputKey": "DatabaseHost",
+            "OutputValue": "rillora-production.cxcqa2usex01.eu-central-1.rds.amazonaws.com"
+          },
+          {
+            "OutputKey": "MaintenanceSubnetIds",
+            "OutputValue": "subnet-070c4a18e68f26f1d,subnet-0d218a58218e10e36"
+          },
+          {
+            "OutputKey": "RuntimeCertificateArnBB7EAC67",
+            "OutputValue": "arn:aws:acm:eu-central-1:133857166372:certificate/8435fada-00ca-4c0e-880b-ff26e0fb6191"
+          },
+          {
+            "OutputKey": "MaintenanceLogGroup",
+            "OutputValue": "RilloraProduction-MaintenanceLogs61C6A99C-2niRZtkO9Ivq"
+          },
+          {
+            "OutputKey": "DatabaseSecurityGroupId",
+            "OutputValue": "sg-0176b4c45717eb1b7"
+          },
+          {
+            "OutputKey": "RuntimeGatewayLogGroup40748EB6",
+            "OutputValue": "RilloraProduction-RuntimeGatewayLogs879CA399-e6fvu3hZcaiq"
+          },
+          {
+            "OutputKey": "ProductionTrafficReady",
+            "OutputValue": "false"
+          },
+          {
+            "OutputKey": "OperatorRoleArn",
+            "OutputValue": "arn:aws:iam::133857166372:role/rillora/rillora-production-operator"
+          },
+          {
+            "OutputKey": "DatabaseSubnetGroup",
+            "OutputValue": "rilloraproduction-databasesubnets-grsk2po0xunc"
+          },
+          {
+            "OutputKey": "BackupRetentionDays",
+            "OutputValue": "7"
+          },
+          {
+            "OutputKey": "ClusterName",
+            "OutputValue": "RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm"
+          },
+          {
+            "OutputKey": "RuntimeApiLogGroup3DA7AF21",
+            "OutputValue": "RilloraProduction-RuntimeApiLogs69C9F62B-I6Cv6Kkh8WhY"
+          },
+          {
+            "OutputKey": "RuntimeApiTaskDefinitionArn02DA653E",
+            "OutputValue": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRuntimeApiTask93405B31:1"
+          },
+          {
+            "OutputKey": "RecoverySecurityGroupId",
+            "OutputValue": "sg-09cdb1445e4e84d7e"
+          },
+          {
+            "OutputKey": "DatabaseIdentifier",
+            "OutputValue": "rillora-production"
+          },
+          {
+            "OutputKey": "RuntimeApiSecurityGroupIdDEAE6BF4",
+            "OutputValue": "sg-014722f6f6b5b18ff"
+          },
+          {
+            "OutputKey": "RecoveryDatabaseSecurityGroupId",
+            "OutputValue": "sg-0a2749f1ef2b22600"
+          },
+          {
+            "OutputKey": "RecoveryJournalTable",
+            "OutputValue": "RilloraProduction-RecoveryJournal06BB91CD-1EBHY2PWCGS9F"
+          },
+          {
+            "OutputKey": "RuntimeCustomerAccess0D914672",
+            "OutputValue": "closed"
+          },
+          {
+            "OutputKey": "RuntimeTlsServerName02234589",
+            "OutputValue": "origin.production.rillora.xyz"
+          },
+          {
+            "OutputKey": "RecoveryTaskDefinitionArn",
+            "OutputValue": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRecoveryTask4FA4E62D:3"
+          },
+          {
+            "OutputKey": "DatabaseParameterGroup",
+            "OutputValue": "rilloraproduction-postgresparameters8ea48b37-aidag1ktlvb3"
+          },
+          {
+            "OutputKey": "MigrationTaskDefinitionArn",
+            "OutputValue": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionMigrationTask3A96A2B6:3"
+          }
+        ],
+        "RoleARN": "arn:aws:iam::133857166372:role/cdk-hnb659fds-cfn-exec-role-133857166372-eu-central-1",
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "Rillora"
+          },
+          {
+            "Key": "CostCenter",
+            "Value": "Rillora"
+          },
+          {
+            "Key": "Environment",
+            "Value": "Production"
+          }
+        ],
+        "EnableTerminationProtection": false,
+        "DriftInformation": {
+          "StackDriftStatus": "NOT_CHECKED"
+        },
+        "LastOperations": [
+          {
+            "OperationType": "UPDATE_STACK",
+            "OperationId": "dc14d009-c3e6-473c-8cce-3e874883f5d9"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,2040 @@
+{
+  "startedAt": "2026-09-17T22:12:10.314457+08:00",
+  "reason": "Owner requested a new focused surface/motion refinement; full current owned-Markdown body read before implementation",
+  "excluded": [
+    ".build",
+    ".cache",
+    ".git",
+    ".local-secrets",
+    ".playwright-cli",
+    ".swiftpm",
+    ".venv",
+    "DerivedData",
+    "Pods",
+    "SourcePackages",
+    "__pycache__",
+    "build",
+    "dist",
+    "node_modules",
+    "output",
+    "playwright-report",
+    "test-results",
+    "vendor",
+    "venv",
+    ".derived-data*",
+    "cdk.out*"
+  ],
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "lines": 82,
+      "sha256": "321e1bf37563f466aea4eda8e5e2024f0b8f6f05e0e59fda06a174a24db695a3"
+    },
+    {
+      "path": "docs/product.md",
+      "lines": 242,
+      "sha256": "3ded9fef4f02e60598a48dade3a37aa83eb7a47678e22fe228a10542e5d9bd4b"
+    },
+    {
+      "path": "docs/handoff.md",
+      "lines": 34,
+      "sha256": "37c400999e662ac6a9cd5940c54ba182f72f7c84fb9c5ee8fbe2589f32dacdb4"
+    },
+    {
+      "path": "docs/decision-log.md",
+      "lines": 2264,
+      "sha256": "5fd34204dab7dd5bf198cfe36cdeead9e9a62a3bcc420be802e7c38284b5fbbc"
+    },
+    {
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "lines": 2307,
+      "sha256": "f858b29b5f95f57a1b34b84e9ba59616e375fbfb3e1687e38578c1053abff229"
+    },
+    {
+      "path": "DESIGN.md",
+      "lines": 271,
+      "sha256": "01435c7d0c910aaa4db2939d91c96dfcdf6ca118a9a1942de7be914e95cc0854"
+    },
+    {
+      "path": "docs/interaction-experience.md",
+      "lines": 77,
+      "sha256": "c3238413bc076b563677601a44b6a3801393ce99ccd710a909d0506d667ad125"
+    },
+    {
+      "path": "docs/invitation-motion-ux.md",
+      "lines": 69,
+      "sha256": "74b78e91015b298a19777eeb0bc64f5a1302a50a8ff2a868e797024bc258ce33"
+    },
+    {
+      "path": "docs/asset-licenses.md",
+      "lines": 47,
+      "sha256": "469a1c494e5314b464499de60054fb7ce5bdb9990969ebe39f2ea1fdba605fa7"
+    },
+    {
+      "path": "apps/web/AGENTS.md",
+      "lines": 23,
+      "sha256": "49d9fec389a1ad927c2b9745dd6a46300037dfd5f8ce7e028d57b47ecd20af38"
+    },
+    {
+      "path": "README.md",
+      "lines": 88,
+      "sha256": "ff62f1479030071e0281e1983bf2bbf0282b293566c5b7bdec2511b43243f699"
+    },
+    {
+      "path": "SECURITY.md",
+      "lines": 244,
+      "sha256": "2915920e61ed887271b309e9873b725a70b141632c2116c0b91d3b520360c774"
+    },
+    {
+      "path": "apps/ios-prototype/AGENTS.md",
+      "lines": 73,
+      "sha256": "1f12a8b98431ef4c543ba11b15d10bf4241291a20213b97dcc1556e3bbfd00cb"
+    },
+    {
+      "path": "apps/ios-prototype/src/mobile/COMPONENTS.md",
+      "lines": 31,
+      "sha256": "678379569b09d9ab789d96e8030a0eebb6606b880d8ad5b74de513f8a7b2787b"
+    },
+    {
+      "path": "assets/concepts/rillora-authenticated-motion-20260911/README.md",
+      "lines": 13,
+      "sha256": "db1b3f3f6a3f3a5e62304072188f8a4c77c5df171d646495492f17ea9fecd083"
+    },
+    {
+      "path": "assets/concepts/rillora-logo-gate2-dual-embrace-20260808/README.md",
+      "lines": 30,
+      "sha256": "58c3dadad49bb25e1402a3fb18a63feba17b04d0ed02a629c0e0bb7293ecdb82"
+    },
+    {
+      "path": "assets/concepts/rillora-public-motion-20260909/README.md",
+      "lines": 20,
+      "sha256": "fdc1b91a8465b7ba4e51bc821bb3a77ad2505441871b63bfec8e35c03e062572"
+    },
+    {
+      "path": "assets/concepts/rillora-trusted-sharing-20260909/README.md",
+      "lines": 16,
+      "sha256": "062fca3494a1bdabc50b074dbbb6fcfd9eab36c50f5c0fd510b70b0292ac1a1d"
+    },
+    {
+      "path": "assets/concepts/rillora-ui-directions-20260814/README.md",
+      "lines": 28,
+      "sha256": "5ae1c64fe43b17adec8f9d1cae93f35f8ca6fb42ddad50c97695ab171a4b8579"
+    },
+    {
+      "path": "design-qa.md",
+      "lines": 34,
+      "sha256": "18db96cd321b6805a4b3dd99dc57ec9bd93d495fd09bbb6a8f1a52f7434dcd51"
+    },
+    {
+      "path": "docs/account-matter-ux.md",
+      "lines": 57,
+      "sha256": "c0cb53bbcb02cd0c3bdae5a9ab3d7fd9cb6af178b56dabfcfe7ec75acfacfb24"
+    },
+    {
+      "path": "docs/apple-watch-death-signal-research.md",
+      "lines": 311,
+      "sha256": "936c5aa189048a4d2440917cd0363c737bbefe1603219a53f1f2ca1d7c71fe5e"
+    },
+    {
+      "path": "docs/authentication-experience.md",
+      "lines": 631,
+      "sha256": "d4d2c20c5c8ba7ef83972e958cd10e0d7e9e9db4626d29bf7841d1e933ebb86f"
+    },
+    {
+      "path": "docs/backend.md",
+      "lines": 277,
+      "sha256": "ddbdd20aa8564c4b81e96b44705d98aae74094eb58d2352632cc5141f4b64ee4"
+    },
+    {
+      "path": "docs/blockchain.md",
+      "lines": 63,
+      "sha256": "ba6f772208c9bef37cb58f6e50907a7283965a722e095e42432b5e350ec2cbb8"
+    },
+    {
+      "path": "docs/commercial-completion-20260916.md",
+      "lines": 40,
+      "sha256": "0f2dcfe9fa7fa0501cca316ed3c764ad630034baa0c3e65138f5087fc3bd3ace"
+    },
+    {
+      "path": "docs/competitor-ux-audit.md",
+      "lines": 694,
+      "sha256": "24033a080ee2cbc81eba452af9fee41cb441e9106dff018fbab9b6afeec1c7df"
+    },
+    {
+      "path": "docs/dark-ui-redesign-brief.md",
+      "lines": 121,
+      "sha256": "7791582fb831bad1c4180546384c3700f097e78442f59887f1cb1699a2d2d40d"
+    },
+    {
+      "path": "docs/death-verification-evidence-research.md",
+      "lines": 163,
+      "sha256": "9ac9138518e74ce31eaada237781c4eaeb918d9da724f93fdc099d8893e6dcb9"
+    },
+    {
+      "path": "docs/disclosure-rehearsal.md",
+      "lines": 109,
+      "sha256": "ca72a6811f188545a7d07476e1ed5011a26b9c28ea947dfc29e5a6f9f5c3add7"
+    },
+    {
+      "path": "docs/family-maintenance.md",
+      "lines": 118,
+      "sha256": "fcde234707d4036d66fd148a73d05331bfd6a5ec93385ac8e04307a69fbd1af5"
+    },
+    {
+      "path": "docs/free-paid-ui-audit.md",
+      "lines": 153,
+      "sha256": "7af40f62256e9255c6788827be5f40c6a7897c1d15019b22dbe7376582953722"
+    },
+    {
+      "path": "docs/global-mainland-commerce-plan.md",
+      "lines": 433,
+      "sha256": "6d9ba0d1e2bf74b3318fa4b7472f4b739ef35401291d8700968ed861e907c0f9"
+    },
+    {
+      "path": "docs/handoff-history-20260910.md",
+      "lines": 1894,
+      "sha256": "a4cba6ee4728b8d32ba224a4ab381db5faa4a8435c7190de8b2eb23b253ae8e5"
+    },
+    {
+      "path": "docs/handoff-history-20260911.md",
+      "lines": 116,
+      "sha256": "81a7f3775d80beb7c06c7caecdc985e437bdcd20fcb141be2662568c6529faf1"
+    },
+    {
+      "path": "docs/handoff-history-20260915-p1-start.md",
+      "lines": 32,
+      "sha256": "f251e3c6de4436a55ae2866725c126237e29e10210e9b8ff4b762591248ae515"
+    },
+    {
+      "path": "docs/handoff-history-20260915.md",
+      "lines": 33,
+      "sha256": "bca450f35578eb59b953453a43cd235fa0be93fbb956719bb9d63584226f3603"
+    },
+    {
+      "path": "docs/handoff-history-20260916-before-behavior-release.md",
+      "lines": 37,
+      "sha256": "6623f97d8d6254b7585d3fbf36e26b20429c8ab96eebb2201ef89fb2297f8114"
+    },
+    {
+      "path": "docs/handoff-history-20260916-before-commercial-completion.md",
+      "lines": 38,
+      "sha256": "ec95d303f8d10448e877c85ff449f8b1916d7031f51489f3630a6b0a8cd603e8"
+    },
+    {
+      "path": "docs/handoff-history-20260916-before-ui-scope-correction.md",
+      "lines": 33,
+      "sha256": "d7d98aab1a00f31471b589ef008e3ef4b4ba6f75da085b04942733b4ef192dc7"
+    },
+    {
+      "path": "docs/handoff-history-20260916-p1-deployment.md",
+      "lines": 37,
+      "sha256": "304bce703f50dc6d8020c0049ed8eb30d664aaa50141541fe9bb15087be8cafc"
+    },
+    {
+      "path": "docs/handoff-history-20260917-provider-acceptance-in-progress.md",
+      "lines": 38,
+      "sha256": "08f85861b7c652f0db5dc9eded32c13a338b33d1dcb696dd369589434f4086f7"
+    },
+    {
+      "path": "docs/handoff-history-20260917-stripe-complete.md",
+      "lines": 38,
+      "sha256": "15103ae19d09f53aaf1aadf969c56fdf3366dbfd5c285805569b2c819b43ff7f"
+    },
+    {
+      "path": "docs/identity-data-region.md",
+      "lines": 208,
+      "sha256": "9f12e576281884a7947c5bc112ce2bf0bc64086c8c0f0cf6e38fba24ca1d7b19"
+    },
+    {
+      "path": "docs/individual-operator-launch-plan.md",
+      "lines": 261,
+      "sha256": "0d6bb793785c16007c04bdfe3de22eb66db1ef1fd69c842208b643590a4d20a2"
+    },
+    {
+      "path": "docs/infrastructure-roadmap.md",
+      "lines": 311,
+      "sha256": "b7e1157e080f47f4493631e057b88a35b4d8de73ccd3fbfcf4c91c6d623f7c76"
+    },
+    {
+      "path": "docs/ios-external-payment-research.md",
+      "lines": 378,
+      "sha256": "d6836ed47a203dcee24bc2f0842b5bcf25a7b241ea51cfa26e15e6c89e6d4fb5"
+    },
+    {
+      "path": "docs/ios-layout-matrix.md",
+      "lines": 308,
+      "sha256": "1dccc4c096b0f6c94282329df3e51bc1bd71653358c006d2d704e4d752bf8904"
+    },
+    {
+      "path": "docs/legal-candidate-zh.md",
+      "lines": 436,
+      "sha256": "7e88a81084fd8e893875280dd6bbffee0c00b41e1aa335f89928a2f905cf1642"
+    },
+    {
+      "path": "docs/logo-ai-workflow.md",
+      "lines": 167,
+      "sha256": "ad1da17994aa8744b90cd9ade5538a88b9d5f16774618f8cd480498ea39454c7"
+    },
+    {
+      "path": "docs/logo-discovery.md",
+      "lines": 343,
+      "sha256": "1432a792d3e0d60e6272684d39063d3be343154363222eb7513b06b6eeb5d724"
+    },
+    {
+      "path": "docs/logo-form-brief.md",
+      "lines": 163,
+      "sha256": "d4fdc9fd64200626ce9749eb5f897189441ec3f775679a7cc76a805639e43f91"
+    },
+    {
+      "path": "docs/monetization.md",
+      "lines": 523,
+      "sha256": "896e58ed730043c58daf0636fcb9f7124e0c454cfefbc8e8f37d1706af67e420"
+    },
+    {
+      "path": "docs/mvp.md",
+      "lines": 165,
+      "sha256": "ebddf3f62d87cceae858dbd0c12a94dee6e21cbe9201eca9d8bfffab3c24c1a7"
+    },
+    {
+      "path": "docs/p1-reliability-repair-20260915.md",
+      "lines": 54,
+      "sha256": "35aa25a71bb89f6991b73082011bc3d7dbec08349c493eaa02ec9522ace7268e"
+    },
+    {
+      "path": "docs/platform-contract.md",
+      "lines": 277,
+      "sha256": "c5ff0f2d0858c65850fafe1025e45fe02b455309cc13bd2f79e7bf44e17a8628"
+    },
+    {
+      "path": "docs/pricing-68-20260911.md",
+      "lines": 70,
+      "sha256": "8ac819c0d01ba6116e447f16bcaaef05aa4a23348bf28570c98535480a978cf7"
+    },
+    {
+      "path": "docs/pricing-band-20260910.md",
+      "lines": 84,
+      "sha256": "e67768cdb7fefe0ec8f9ba400e3fd96ee3fed5f78359c14f660234fc05509d8b"
+    },
+    {
+      "path": "docs/product-events.md",
+      "lines": 62,
+      "sha256": "e4549d2bd1e2ea9887e02d6277f3d0a0bcd6e9e5e93e924f6d46d82ec4410417"
+    },
+    {
+      "path": "docs/provider-death-account-guides.md",
+      "lines": 252,
+      "sha256": "0247681d11506b2737f69de5998a05d89052c27147913e35aa3fcf49cf8b0aa5"
+    },
+    {
+      "path": "docs/public-legal-pages.md",
+      "lines": 232,
+      "sha256": "23dd9aa9379c4d429e4aa9f48284141404e4e66d438952cc93d5dae517104e81"
+    },
+    {
+      "path": "docs/quality-gates.md",
+      "lines": 287,
+      "sha256": "82f8da56bdba692da23a57a64d56402020a8a3d7fa4c9807a0eb710535eecdc5"
+    },
+    {
+      "path": "docs/research.md",
+      "lines": 612,
+      "sha256": "05a15d4de79734efcf9257d42d22927b8c370b32b723bb2bad9aa9b7740bfc1e"
+    },
+    {
+      "path": "docs/role-assignment-policy.md",
+      "lines": 72,
+      "sha256": "f7668be436b8e316b6c00651a0bcaf7cf4a4d219c1b2e72accfffaabe5d579bd"
+    },
+    {
+      "path": "docs/solo-operations-and-portability.md",
+      "lines": 164,
+      "sha256": "953a324e70e9b6dc5c384c595f5e8a4387ff74c7433eccebe004eb1831357e9e"
+    },
+    {
+      "path": "docs/start-here-export.md",
+      "lines": 158,
+      "sha256": "bbf3aa0a7117e5f4816229c8f65909ad69c91cf36784096c5c0f8e231979b8b2"
+    },
+    {
+      "path": "docs/storekit.md",
+      "lines": 244,
+      "sha256": "6b2f6e6bc96dd62835a5ae5a336af9b364505626713daabece2427bbdd529e0e"
+    },
+    {
+      "path": "docs/trust-safety-legal.md",
+      "lines": 218,
+      "sha256": "d622b1ecabdeb97d7ab90d6074647e6e8b30b6447705fb5866bd0a0e300c4692"
+    },
+    {
+      "path": "docs/trusted-sharing.md",
+      "lines": 142,
+      "sha256": "89750e0c7298b0f6314aed772b9a2fed28bed6b647a38164f3abbdef4fc75a11"
+    },
+    {
+      "path": "docs/ui-ux-audit-20260915.md",
+      "lines": 256,
+      "sha256": "2d46fce6e4e9362c73653e31ba65b3619462b0b2c3b2b7d762c44d730908de19"
+    },
+    {
+      "path": "docs/unit-economics-history-20260910.md",
+      "lines": 403,
+      "sha256": "b79f5a5b30a28100e2d78ed8458cd3e22ac63affd2ede6759c901fed928c07cc"
+    },
+    {
+      "path": "docs/unit-economics-pricing-reset-history-20260910.md",
+      "lines": 146,
+      "sha256": "9c9fe313b4b0f5246afb5da64bc80ee4b8d37f65271df2803e3e6205e62418ac"
+    },
+    {
+      "path": "docs/unit-economics.md",
+      "lines": 120,
+      "sha256": "e21fb601b1f9f60237aa4ebae2b26df9e488fe565326e9ae33c7153f52565b5c"
+    },
+    {
+      "path": "docs/ux-behavior-repair-20260916.md",
+      "lines": 50,
+      "sha256": "3874358e7690fe65cb1f637964cb672a55b1caca7a7aa5e0d67d06fe276853d0"
+    },
+    {
+      "path": "infra/auth0/README.md",
+      "lines": 245,
+      "sha256": "bce63dd8d3c140de6d273300f242018687cf1b01ac39e21e80e990e940dab9ae"
+    },
+    {
+      "path": "infra/auth0/hosted-consent/README.md",
+      "lines": 102,
+      "sha256": "a2cca56f63f5b50f4217c8b8f00a7da42a29bb635c2f4e1a135b29d0e62e07e9"
+    },
+    {
+      "path": "infra/aws/README.md",
+      "lines": 223,
+      "sha256": "db2eb9d41a2a4fa1b975223b5b16a8cf007c163cced53c180d633c92743d044c"
+    },
+    {
+      "path": "qa/storekit-local-2026-08-20/09-lifecycle-observation.md",
+      "lines": 76,
+      "sha256": "450bacc903963177066f9aca193e058a78fcc1c8f8a00d07aad1ce697f1626e4"
+    }
+  ],
+  "read": [
+    {
+      "chunk": 0,
+      "path": "AGENTS.md",
+      "start": 1,
+      "end": 82
+    },
+    {
+      "chunk": 3,
+      "path": "docs/product.md",
+      "start": 227,
+      "end": 242
+    },
+    {
+      "chunk": 4,
+      "path": "docs/handoff.md",
+      "start": 1,
+      "end": 34
+    },
+    {
+      "chunk": 1,
+      "path": "docs/product.md",
+      "start": 1,
+      "end": 127
+    },
+    {
+      "chunk": 2,
+      "path": "docs/product.md",
+      "start": 128,
+      "end": 226
+    },
+    {
+      "chunk": 78,
+      "path": "DESIGN.md",
+      "start": 1,
+      "end": 63
+    },
+    {
+      "chunk": 79,
+      "path": "DESIGN.md",
+      "start": 64,
+      "end": 142
+    },
+    {
+      "chunk": 80,
+      "path": "DESIGN.md",
+      "start": 143,
+      "end": 184
+    },
+    {
+      "chunk": 81,
+      "path": "DESIGN.md",
+      "start": 185,
+      "end": 271
+    },
+    {
+      "chunk": 82,
+      "path": "docs/interaction-experience.md",
+      "start": 1,
+      "end": 74
+    },
+    {
+      "chunk": 83,
+      "path": "docs/interaction-experience.md",
+      "start": 75,
+      "end": 77
+    },
+    {
+      "chunk": 84,
+      "path": "docs/invitation-motion-ux.md",
+      "start": 1,
+      "end": 69
+    },
+    {
+      "chunk": 85,
+      "path": "docs/asset-licenses.md",
+      "start": 1,
+      "end": 47
+    },
+    {
+      "chunk": 86,
+      "path": "apps/web/AGENTS.md",
+      "start": 1,
+      "end": 23
+    },
+    {
+      "chunk": 5,
+      "path": "docs/decision-log.md",
+      "start": 1,
+      "end": 131
+    },
+    {
+      "chunk": 6,
+      "path": "docs/decision-log.md",
+      "start": 132,
+      "end": 218
+    },
+    {
+      "chunk": 7,
+      "path": "docs/decision-log.md",
+      "start": 219,
+      "end": 306
+    },
+    {
+      "chunk": 8,
+      "path": "docs/decision-log.md",
+      "start": 307,
+      "end": 370
+    },
+    {
+      "chunk": 9,
+      "path": "docs/decision-log.md",
+      "start": 371,
+      "end": 428
+    },
+    {
+      "chunk": 10,
+      "path": "docs/decision-log.md",
+      "start": 429,
+      "end": 469
+    },
+    {
+      "chunk": 15,
+      "path": "docs/decision-log.md",
+      "start": 626,
+      "end": 660
+    },
+    {
+      "chunk": 16,
+      "path": "docs/decision-log.md",
+      "start": 661,
+      "end": 699
+    },
+    {
+      "chunk": 11,
+      "path": "docs/decision-log.md",
+      "start": 470,
+      "end": 505
+    },
+    {
+      "chunk": 12,
+      "path": "docs/decision-log.md",
+      "start": 506,
+      "end": 540
+    },
+    {
+      "chunk": 13,
+      "path": "docs/decision-log.md",
+      "start": 541,
+      "end": 584
+    },
+    {
+      "chunk": 14,
+      "path": "docs/decision-log.md",
+      "start": 585,
+      "end": 625
+    },
+    {
+      "chunk": 17,
+      "path": "docs/decision-log.md",
+      "start": 700,
+      "end": 736
+    },
+    {
+      "chunk": 18,
+      "path": "docs/decision-log.md",
+      "start": 737,
+      "end": 776
+    },
+    {
+      "chunk": 23,
+      "path": "docs/decision-log.md",
+      "start": 928,
+      "end": 976
+    },
+    {
+      "chunk": 24,
+      "path": "docs/decision-log.md",
+      "start": 977,
+      "end": 1020
+    },
+    {
+      "chunk": 19,
+      "path": "docs/decision-log.md",
+      "start": 777,
+      "end": 811
+    },
+    {
+      "chunk": 20,
+      "path": "docs/decision-log.md",
+      "start": 812,
+      "end": 846
+    },
+    {
+      "chunk": 21,
+      "path": "docs/decision-log.md",
+      "start": 847,
+      "end": 881
+    },
+    {
+      "chunk": 22,
+      "path": "docs/decision-log.md",
+      "start": 882,
+      "end": 927
+    },
+    {
+      "chunk": 25,
+      "path": "docs/decision-log.md",
+      "start": 1021,
+      "end": 1069
+    },
+    {
+      "chunk": 26,
+      "path": "docs/decision-log.md",
+      "start": 1070,
+      "end": 1105
+    },
+    {
+      "chunk": 27,
+      "path": "docs/decision-log.md",
+      "start": 1106,
+      "end": 1140
+    },
+    {
+      "chunk": 28,
+      "path": "docs/decision-log.md",
+      "start": 1141,
+      "end": 1181
+    },
+    {
+      "chunk": 29,
+      "path": "docs/decision-log.md",
+      "start": 1182,
+      "end": 1213
+    },
+    {
+      "chunk": 30,
+      "path": "docs/decision-log.md",
+      "start": 1214,
+      "end": 1246
+    },
+    {
+      "chunk": 31,
+      "path": "docs/decision-log.md",
+      "start": 1247,
+      "end": 1281
+    },
+    {
+      "chunk": 32,
+      "path": "docs/decision-log.md",
+      "start": 1282,
+      "end": 1312
+    },
+    {
+      "chunk": 33,
+      "path": "docs/decision-log.md",
+      "start": 1313,
+      "end": 1354
+    },
+    {
+      "chunk": 34,
+      "path": "docs/decision-log.md",
+      "start": 1355,
+      "end": 1397
+    },
+    {
+      "chunk": 35,
+      "path": "docs/decision-log.md",
+      "start": 1398,
+      "end": 1429
+    },
+    {
+      "chunk": 36,
+      "path": "docs/decision-log.md",
+      "start": 1430,
+      "end": 1479
+    },
+    {
+      "chunk": 37,
+      "path": "docs/decision-log.md",
+      "start": 1480,
+      "end": 1507
+    },
+    {
+      "chunk": 38,
+      "path": "docs/decision-log.md",
+      "start": 1508,
+      "end": 1540
+    },
+    {
+      "chunk": 39,
+      "path": "docs/decision-log.md",
+      "start": 1541,
+      "end": 1576
+    },
+    {
+      "chunk": 40,
+      "path": "docs/decision-log.md",
+      "start": 1577,
+      "end": 1622
+    },
+    {
+      "chunk": 41,
+      "path": "docs/decision-log.md",
+      "start": 1623,
+      "end": 1666
+    },
+    {
+      "chunk": 42,
+      "path": "docs/decision-log.md",
+      "start": 1667,
+      "end": 1701
+    },
+    {
+      "chunk": 43,
+      "path": "docs/decision-log.md",
+      "start": 1702,
+      "end": 1732
+    },
+    {
+      "chunk": 44,
+      "path": "docs/decision-log.md",
+      "start": 1733,
+      "end": 1770
+    },
+    {
+      "chunk": 45,
+      "path": "docs/decision-log.md",
+      "start": 1771,
+      "end": 1825
+    },
+    {
+      "chunk": 46,
+      "path": "docs/decision-log.md",
+      "start": 1826,
+      "end": 1912
+    },
+    {
+      "chunk": 47,
+      "path": "docs/decision-log.md",
+      "start": 1913,
+      "end": 2026
+    },
+    {
+      "chunk": 48,
+      "path": "docs/decision-log.md",
+      "start": 2027,
+      "end": 2137
+    },
+    {
+      "chunk": 49,
+      "path": "docs/decision-log.md",
+      "start": 2138,
+      "end": 2191
+    },
+    {
+      "chunk": 50,
+      "path": "docs/decision-log.md",
+      "start": 2192,
+      "end": 2230
+    },
+    {
+      "chunk": 51,
+      "path": "docs/decision-log.md",
+      "start": 2231,
+      "end": 2264
+    },
+    {
+      "chunk": 52,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "start": 1,
+      "end": 174
+    },
+    {
+      "chunk": 53,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "start": 175,
+      "end": 302
+    },
+    {
+      "chunk": 54,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "start": 303,
+      "end": 406
+    },
+    {
+      "chunk": 55,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "start": 407,
+      "end": 488
+    },
+    {
+      "chunk": 56,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "start": 489,
+      "end": 574
+    },
+    {
+      "chunk": 57,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "start": 575,
+      "end": 654
+    },
+    {
+      "chunk": 58,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "start": 655,
+      "end": 744
+    },
+    {
+      "chunk": 59,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "start": 745,
+      "end": 828
+    },
+    {
+      "chunk": 60,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "start": 829,
+      "end": 908
+    },
+    {
+      "chunk": 61,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "start": 909,
+      "end": 986
+    },
+    {
+      "chunk": 62,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "start": 987,
+      "end": 1064
+    },
+    {
+      "chunk": 63,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "start": 1065,
+      "end": 1134
+    },
+    {
+      "chunk": 64,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "start": 1135,
+      "end": 1194
+    },
+    {
+      "chunk": 65,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "start": 1195,
+      "end": 1262
+    },
+    {
+      "chunk": 66,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "start": 1263,
+      "end": 1338
+    },
+    {
+      "chunk": 67,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "start": 1339,
+      "end": 1414
+    },
+    {
+      "chunk": 68,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "start": 1415,
+      "end": 1482
+    },
+    {
+      "chunk": 69,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "start": 1483,
+      "end": 1580
+    },
+    {
+      "chunk": 70,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "start": 1581,
+      "end": 1660
+    },
+    {
+      "chunk": 71,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "start": 1661,
+      "end": 1729
+    },
+    {
+      "chunk": 72,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "start": 1730,
+      "end": 1796
+    },
+    {
+      "chunk": 73,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "start": 1797,
+      "end": 1911
+    },
+    {
+      "chunk": 74,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "start": 1912,
+      "end": 2046
+    },
+    {
+      "chunk": 75,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "start": 2047,
+      "end": 2173
+    },
+    {
+      "chunk": 76,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "start": 2174,
+      "end": 2265
+    },
+    {
+      "chunk": 77,
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "start": 2266,
+      "end": 2307
+    },
+    {
+      "chunk": 87,
+      "path": "README.md",
+      "start": 1,
+      "end": 88
+    },
+    {
+      "chunk": 88,
+      "path": "SECURITY.md",
+      "start": 1,
+      "end": 74
+    },
+    {
+      "chunk": 89,
+      "path": "SECURITY.md",
+      "start": 75,
+      "end": 109
+    },
+    {
+      "chunk": 90,
+      "path": "SECURITY.md",
+      "start": 110,
+      "end": 144
+    },
+    {
+      "chunk": 91,
+      "path": "SECURITY.md",
+      "start": 145,
+      "end": 244
+    },
+    {
+      "chunk": 92,
+      "path": "apps/ios-prototype/AGENTS.md",
+      "start": 1,
+      "end": 41
+    },
+    {
+      "chunk": 93,
+      "path": "apps/ios-prototype/AGENTS.md",
+      "start": 42,
+      "end": 73
+    },
+    {
+      "chunk": 94,
+      "path": "apps/ios-prototype/src/mobile/COMPONENTS.md",
+      "start": 1,
+      "end": 31
+    },
+    {
+      "chunk": 95,
+      "path": "assets/concepts/rillora-authenticated-motion-20260911/README.md",
+      "start": 1,
+      "end": 13
+    },
+    {
+      "chunk": 96,
+      "path": "assets/concepts/rillora-logo-gate2-dual-embrace-20260808/README.md",
+      "start": 1,
+      "end": 30
+    },
+    {
+      "chunk": 97,
+      "path": "assets/concepts/rillora-public-motion-20260909/README.md",
+      "start": 1,
+      "end": 20
+    },
+    {
+      "chunk": 98,
+      "path": "assets/concepts/rillora-trusted-sharing-20260909/README.md",
+      "start": 1,
+      "end": 16
+    },
+    {
+      "chunk": 99,
+      "path": "assets/concepts/rillora-ui-directions-20260814/README.md",
+      "start": 1,
+      "end": 28
+    },
+    {
+      "chunk": 100,
+      "path": "design-qa.md",
+      "start": 1,
+      "end": 34
+    },
+    {
+      "chunk": 101,
+      "path": "docs/account-matter-ux.md",
+      "start": 1,
+      "end": 57
+    },
+    {
+      "chunk": 102,
+      "path": "docs/apple-watch-death-signal-research.md",
+      "start": 1,
+      "end": 235
+    },
+    {
+      "chunk": 103,
+      "path": "docs/apple-watch-death-signal-research.md",
+      "start": 236,
+      "end": 311
+    },
+    {
+      "chunk": 104,
+      "path": "docs/authentication-experience.md",
+      "start": 1,
+      "end": 87
+    },
+    {
+      "chunk": 105,
+      "path": "docs/authentication-experience.md",
+      "start": 88,
+      "end": 198
+    },
+    {
+      "chunk": 106,
+      "path": "docs/authentication-experience.md",
+      "start": 199,
+      "end": 234
+    },
+    {
+      "chunk": 107,
+      "path": "docs/authentication-experience.md",
+      "start": 235,
+      "end": 349
+    },
+    {
+      "chunk": 108,
+      "path": "docs/authentication-experience.md",
+      "start": 350,
+      "end": 487
+    },
+    {
+      "chunk": 109,
+      "path": "docs/authentication-experience.md",
+      "start": 488,
+      "end": 611
+    },
+    {
+      "chunk": 110,
+      "path": "docs/authentication-experience.md",
+      "start": 612,
+      "end": 631
+    },
+    {
+      "chunk": 111,
+      "path": "docs/backend.md",
+      "start": 1,
+      "end": 62
+    },
+    {
+      "chunk": 112,
+      "path": "docs/backend.md",
+      "start": 63,
+      "end": 76
+    },
+    {
+      "chunk": 113,
+      "path": "docs/backend.md",
+      "start": 77,
+      "end": 137
+    },
+    {
+      "chunk": 114,
+      "path": "docs/backend.md",
+      "start": 138,
+      "end": 171
+    },
+    {
+      "chunk": 115,
+      "path": "docs/backend.md",
+      "start": 172,
+      "end": 223
+    },
+    {
+      "chunk": 116,
+      "path": "docs/backend.md",
+      "start": 224,
+      "end": 239
+    },
+    {
+      "chunk": 117,
+      "path": "docs/backend.md",
+      "start": 240,
+      "end": 277
+    },
+    {
+      "chunk": 118,
+      "path": "docs/blockchain.md",
+      "start": 1,
+      "end": 63
+    },
+    {
+      "chunk": 119,
+      "path": "docs/commercial-completion-20260916.md",
+      "start": 1,
+      "end": 40
+    },
+    {
+      "chunk": 120,
+      "path": "docs/competitor-ux-audit.md",
+      "start": 1,
+      "end": 125
+    },
+    {
+      "chunk": 121,
+      "path": "docs/competitor-ux-audit.md",
+      "start": 126,
+      "end": 272
+    },
+    {
+      "chunk": 122,
+      "path": "docs/competitor-ux-audit.md",
+      "start": 273,
+      "end": 554
+    },
+    {
+      "chunk": 123,
+      "path": "docs/competitor-ux-audit.md",
+      "start": 555,
+      "end": 694
+    },
+    {
+      "chunk": 124,
+      "path": "docs/dark-ui-redesign-brief.md",
+      "start": 1,
+      "end": 116
+    },
+    {
+      "chunk": 125,
+      "path": "docs/dark-ui-redesign-brief.md",
+      "start": 117,
+      "end": 121
+    },
+    {
+      "chunk": 126,
+      "path": "docs/death-verification-evidence-research.md",
+      "start": 1,
+      "end": 163
+    },
+    {
+      "chunk": 127,
+      "path": "docs/disclosure-rehearsal.md",
+      "start": 1,
+      "end": 109
+    },
+    {
+      "chunk": 128,
+      "path": "docs/family-maintenance.md",
+      "start": 1,
+      "end": 118
+    },
+    {
+      "chunk": 129,
+      "path": "docs/free-paid-ui-audit.md",
+      "start": 1,
+      "end": 103
+    },
+    {
+      "chunk": 130,
+      "path": "docs/free-paid-ui-audit.md",
+      "start": 104,
+      "end": 153
+    },
+    {
+      "chunk": 131,
+      "path": "docs/global-mainland-commerce-plan.md",
+      "start": 1,
+      "end": 182
+    },
+    {
+      "chunk": 132,
+      "path": "docs/global-mainland-commerce-plan.md",
+      "start": 183,
+      "end": 408
+    },
+    {
+      "chunk": 133,
+      "path": "docs/global-mainland-commerce-plan.md",
+      "start": 409,
+      "end": 433
+    },
+    {
+      "chunk": 134,
+      "path": "docs/handoff-history-20260910.md",
+      "start": 1,
+      "end": 133
+    },
+    {
+      "chunk": 135,
+      "path": "docs/handoff-history-20260910.md",
+      "start": 134,
+      "end": 267
+    },
+    {
+      "chunk": 136,
+      "path": "docs/handoff-history-20260910.md",
+      "start": 268,
+      "end": 361
+    },
+    {
+      "chunk": 137,
+      "path": "docs/handoff-history-20260910.md",
+      "start": 362,
+      "end": 393
+    },
+    {
+      "chunk": 138,
+      "path": "docs/handoff-history-20260910.md",
+      "start": 394,
+      "end": 431
+    },
+    {
+      "chunk": 139,
+      "path": "docs/handoff-history-20260910.md",
+      "start": 432,
+      "end": 463
+    },
+    {
+      "chunk": 140,
+      "path": "docs/handoff-history-20260910.md",
+      "start": 464,
+      "end": 503
+    },
+    {
+      "chunk": 141,
+      "path": "docs/handoff-history-20260910.md",
+      "start": 504,
+      "end": 539
+    },
+    {
+      "chunk": 142,
+      "path": "docs/handoff-history-20260910.md",
+      "start": 540,
+      "end": 571
+    },
+    {
+      "chunk": 143,
+      "path": "docs/handoff-history-20260910.md",
+      "start": 572,
+      "end": 611
+    },
+    {
+      "chunk": 144,
+      "path": "docs/handoff-history-20260910.md",
+      "start": 612,
+      "end": 645
+    },
+    {
+      "chunk": 145,
+      "path": "docs/handoff-history-20260910.md",
+      "start": 646,
+      "end": 679
+    },
+    {
+      "chunk": 146,
+      "path": "docs/handoff-history-20260910.md",
+      "start": 680,
+      "end": 711
+    },
+    {
+      "chunk": 147,
+      "path": "docs/handoff-history-20260910.md",
+      "start": 712,
+      "end": 743
+    },
+    {
+      "chunk": 148,
+      "path": "docs/handoff-history-20260910.md",
+      "start": 744,
+      "end": 771
+    },
+    {
+      "chunk": 149,
+      "path": "docs/handoff-history-20260910.md",
+      "start": 772,
+      "end": 797
+    },
+    {
+      "chunk": 150,
+      "path": "docs/handoff-history-20260910.md",
+      "start": 798,
+      "end": 829
+    },
+    {
+      "chunk": 151,
+      "path": "docs/handoff-history-20260910.md",
+      "start": 830,
+      "end": 865
+    },
+    {
+      "chunk": 152,
+      "path": "docs/handoff-history-20260910.md",
+      "start": 866,
+      "end": 877
+    },
+    {
+      "chunk": 153,
+      "path": "docs/handoff-history-20260910.md",
+      "start": 878,
+      "end": 891
+    },
+    {
+      "chunk": 154,
+      "path": "docs/handoff-history-20260910.md",
+      "start": 892,
+      "end": 937
+    },
+    {
+      "chunk": 156,
+      "path": "docs/handoff-history-20260910.md",
+      "start": 984,
+      "end": 1053
+    },
+    {
+      "chunk": 155,
+      "path": "docs/handoff-history-20260910.md",
+      "start": 938,
+      "end": 983
+    },
+    {
+      "chunk": 157,
+      "path": "docs/handoff-history-20260910.md",
+      "start": 1054,
+      "end": 1113
+    },
+    {
+      "chunk": 158,
+      "path": "docs/handoff-history-20260910.md",
+      "start": 1114,
+      "end": 1252
+    },
+    {
+      "chunk": 159,
+      "path": "docs/handoff-history-20260910.md",
+      "start": 1253,
+      "end": 1395
+    },
+    {
+      "chunk": 160,
+      "path": "docs/handoff-history-20260910.md",
+      "start": 1396,
+      "end": 1539
+    },
+    {
+      "chunk": 161,
+      "path": "docs/handoff-history-20260910.md",
+      "start": 1540,
+      "end": 1689
+    },
+    {
+      "chunk": 162,
+      "path": "docs/handoff-history-20260910.md",
+      "start": 1690,
+      "end": 1841
+    },
+    {
+      "chunk": 163,
+      "path": "docs/handoff-history-20260910.md",
+      "start": 1842,
+      "end": 1894
+    },
+    {
+      "chunk": 164,
+      "path": "docs/handoff-history-20260911.md",
+      "start": 1,
+      "end": 111
+    },
+    {
+      "chunk": 165,
+      "path": "docs/handoff-history-20260911.md",
+      "start": 112,
+      "end": 116
+    },
+    {
+      "chunk": 166,
+      "path": "docs/handoff-history-20260915-p1-start.md",
+      "start": 1,
+      "end": 32
+    },
+    {
+      "chunk": 167,
+      "path": "docs/handoff-history-20260915.md",
+      "start": 1,
+      "end": 33
+    },
+    {
+      "chunk": 168,
+      "path": "docs/handoff-history-20260916-before-behavior-release.md",
+      "start": 1,
+      "end": 37
+    },
+    {
+      "chunk": 169,
+      "path": "docs/handoff-history-20260916-before-commercial-completion.md",
+      "start": 1,
+      "end": 38
+    },
+    {
+      "chunk": 170,
+      "path": "docs/handoff-history-20260916-before-ui-scope-correction.md",
+      "start": 1,
+      "end": 33
+    },
+    {
+      "chunk": 171,
+      "path": "docs/handoff-history-20260916-p1-deployment.md",
+      "start": 1,
+      "end": 37
+    },
+    {
+      "chunk": 172,
+      "path": "docs/handoff-history-20260917-provider-acceptance-in-progress.md",
+      "start": 1,
+      "end": 38
+    },
+    {
+      "chunk": 173,
+      "path": "docs/handoff-history-20260917-stripe-complete.md",
+      "start": 1,
+      "end": 38
+    },
+    {
+      "chunk": 174,
+      "path": "docs/identity-data-region.md",
+      "start": 1,
+      "end": 71
+    },
+    {
+      "chunk": 175,
+      "path": "docs/identity-data-region.md",
+      "start": 72,
+      "end": 191
+    },
+    {
+      "chunk": 176,
+      "path": "docs/identity-data-region.md",
+      "start": 192,
+      "end": 208
+    },
+    {
+      "chunk": 177,
+      "path": "docs/individual-operator-launch-plan.md",
+      "start": 1,
+      "end": 55
+    },
+    {
+      "chunk": 178,
+      "path": "docs/individual-operator-launch-plan.md",
+      "start": 56,
+      "end": 132
+    },
+    {
+      "chunk": 179,
+      "path": "docs/individual-operator-launch-plan.md",
+      "start": 133,
+      "end": 215
+    },
+    {
+      "chunk": 180,
+      "path": "docs/individual-operator-launch-plan.md",
+      "start": 216,
+      "end": 261
+    },
+    {
+      "chunk": 181,
+      "path": "docs/infrastructure-roadmap.md",
+      "start": 1,
+      "end": 76
+    },
+    {
+      "chunk": 182,
+      "path": "docs/infrastructure-roadmap.md",
+      "start": 77,
+      "end": 205
+    },
+    {
+      "chunk": 183,
+      "path": "docs/infrastructure-roadmap.md",
+      "start": 206,
+      "end": 310
+    },
+    {
+      "chunk": 184,
+      "path": "docs/infrastructure-roadmap.md",
+      "start": 311,
+      "end": 311
+    },
+    {
+      "chunk": 185,
+      "path": "docs/ios-external-payment-research.md",
+      "start": 1,
+      "end": 155
+    },
+    {
+      "chunk": 186,
+      "path": "docs/ios-external-payment-research.md",
+      "start": 156,
+      "end": 309
+    },
+    {
+      "chunk": 187,
+      "path": "docs/ios-external-payment-research.md",
+      "start": 310,
+      "end": 378
+    },
+    {
+      "chunk": 188,
+      "path": "docs/ios-layout-matrix.md",
+      "start": 1,
+      "end": 104
+    },
+    {
+      "chunk": 189,
+      "path": "docs/ios-layout-matrix.md",
+      "start": 105,
+      "end": 146
+    },
+    {
+      "chunk": 190,
+      "path": "docs/ios-layout-matrix.md",
+      "start": 147,
+      "end": 192
+    },
+    {
+      "chunk": 191,
+      "path": "docs/ios-layout-matrix.md",
+      "start": 193,
+      "end": 308
+    },
+    {
+      "chunk": 193,
+      "path": "docs/legal-candidate-zh.md",
+      "start": 252,
+      "end": 436
+    },
+    {
+      "chunk": 192,
+      "path": "docs/legal-candidate-zh.md",
+      "start": 1,
+      "end": 251
+    },
+    {
+      "chunk": 194,
+      "path": "docs/logo-ai-workflow.md",
+      "start": 1,
+      "end": 167
+    },
+    {
+      "chunk": 195,
+      "path": "docs/logo-discovery.md",
+      "start": 1,
+      "end": 92
+    },
+    {
+      "chunk": 196,
+      "path": "docs/logo-discovery.md",
+      "start": 93,
+      "end": 180
+    },
+    {
+      "chunk": 197,
+      "path": "docs/logo-discovery.md",
+      "start": 181,
+      "end": 275
+    },
+    {
+      "chunk": 198,
+      "path": "docs/logo-discovery.md",
+      "start": 276,
+      "end": 343
+    },
+    {
+      "chunk": 199,
+      "path": "docs/logo-form-brief.md",
+      "start": 1,
+      "end": 138
+    },
+    {
+      "chunk": 200,
+      "path": "docs/logo-form-brief.md",
+      "start": 139,
+      "end": 163
+    },
+    {
+      "chunk": 201,
+      "path": "docs/monetization.md",
+      "start": 1,
+      "end": 41
+    },
+    {
+      "chunk": 202,
+      "path": "docs/monetization.md",
+      "start": 42,
+      "end": 113
+    },
+    {
+      "chunk": 203,
+      "path": "docs/monetization.md",
+      "start": 114,
+      "end": 153
+    },
+    {
+      "chunk": 204,
+      "path": "docs/monetization.md",
+      "start": 154,
+      "end": 214
+    },
+    {
+      "chunk": 205,
+      "path": "docs/monetization.md",
+      "start": 215,
+      "end": 318
+    },
+    {
+      "chunk": 206,
+      "path": "docs/monetization.md",
+      "start": 319,
+      "end": 411
+    },
+    {
+      "chunk": 207,
+      "path": "docs/monetization.md",
+      "start": 412,
+      "end": 499
+    },
+    {
+      "chunk": 208,
+      "path": "docs/monetization.md",
+      "start": 500,
+      "end": 523
+    },
+    {
+      "chunk": 209,
+      "path": "docs/mvp.md",
+      "start": 1,
+      "end": 165
+    },
+    {
+      "chunk": 210,
+      "path": "docs/p1-reliability-repair-20260915.md",
+      "start": 1,
+      "end": 51
+    },
+    {
+      "chunk": 211,
+      "path": "docs/p1-reliability-repair-20260915.md",
+      "start": 52,
+      "end": 54
+    },
+    {
+      "chunk": 212,
+      "path": "docs/platform-contract.md",
+      "start": 1,
+      "end": 149
+    },
+    {
+      "chunk": 213,
+      "path": "docs/platform-contract.md",
+      "start": 150,
+      "end": 221
+    },
+    {
+      "chunk": 214,
+      "path": "docs/platform-contract.md",
+      "start": 222,
+      "end": 277
+    },
+    {
+      "chunk": 215,
+      "path": "docs/pricing-68-20260911.md",
+      "start": 1,
+      "end": 70
+    },
+    {
+      "chunk": 216,
+      "path": "docs/pricing-band-20260910.md",
+      "start": 1,
+      "end": 84
+    },
+    {
+      "chunk": 217,
+      "path": "docs/product-events.md",
+      "start": 1,
+      "end": 62
+    },
+    {
+      "chunk": 218,
+      "path": "docs/provider-death-account-guides.md",
+      "start": 1,
+      "end": 132
+    },
+    {
+      "chunk": 219,
+      "path": "docs/provider-death-account-guides.md",
+      "start": 133,
+      "end": 232
+    },
+    {
+      "chunk": 220,
+      "path": "docs/provider-death-account-guides.md",
+      "start": 233,
+      "end": 252
+    },
+    {
+      "chunk": 221,
+      "path": "docs/public-legal-pages.md",
+      "start": 1,
+      "end": 53
+    },
+    {
+      "chunk": 222,
+      "path": "docs/public-legal-pages.md",
+      "start": 54,
+      "end": 85
+    },
+    {
+      "chunk": 223,
+      "path": "docs/public-legal-pages.md",
+      "start": 86,
+      "end": 115
+    },
+    {
+      "chunk": 224,
+      "path": "docs/public-legal-pages.md",
+      "start": 116,
+      "end": 163
+    },
+    {
+      "chunk": 225,
+      "path": "docs/public-legal-pages.md",
+      "start": 164,
+      "end": 229
+    },
+    {
+      "chunk": 226,
+      "path": "docs/public-legal-pages.md",
+      "start": 230,
+      "end": 232
+    },
+    {
+      "chunk": 227,
+      "path": "docs/quality-gates.md",
+      "start": 1,
+      "end": 105
+    },
+    {
+      "chunk": 228,
+      "path": "docs/quality-gates.md",
+      "start": 106,
+      "end": 158
+    },
+    {
+      "chunk": 229,
+      "path": "docs/quality-gates.md",
+      "start": 159,
+      "end": 277
+    },
+    {
+      "chunk": 230,
+      "path": "docs/quality-gates.md",
+      "start": 278,
+      "end": 287
+    },
+    {
+      "chunk": 231,
+      "path": "docs/research.md",
+      "start": 1,
+      "end": 100
+    },
+    {
+      "chunk": 232,
+      "path": "docs/research.md",
+      "start": 101,
+      "end": 221
+    },
+    {
+      "chunk": 233,
+      "path": "docs/research.md",
+      "start": 222,
+      "end": 332
+    },
+    {
+      "chunk": 235,
+      "path": "docs/research.md",
+      "start": 447,
+      "end": 542
+    },
+    {
+      "chunk": 234,
+      "path": "docs/research.md",
+      "start": 333,
+      "end": 446
+    },
+    {
+      "chunk": 236,
+      "path": "docs/research.md",
+      "start": 543,
+      "end": 612
+    },
+    {
+      "chunk": 237,
+      "path": "docs/role-assignment-policy.md",
+      "start": 1,
+      "end": 72
+    },
+    {
+      "chunk": 238,
+      "path": "docs/solo-operations-and-portability.md",
+      "start": 1,
+      "end": 66
+    },
+    {
+      "chunk": 240,
+      "path": "docs/start-here-export.md",
+      "start": 1,
+      "end": 85
+    },
+    {
+      "chunk": 239,
+      "path": "docs/solo-operations-and-portability.md",
+      "start": 67,
+      "end": 164
+    },
+    {
+      "chunk": 241,
+      "path": "docs/start-here-export.md",
+      "start": 86,
+      "end": 158
+    },
+    {
+      "chunk": 242,
+      "path": "docs/storekit.md",
+      "start": 1,
+      "end": 59
+    },
+    {
+      "chunk": 243,
+      "path": "docs/storekit.md",
+      "start": 60,
+      "end": 93
+    },
+    {
+      "chunk": 244,
+      "path": "docs/storekit.md",
+      "start": 94,
+      "end": 153
+    },
+    {
+      "chunk": 245,
+      "path": "docs/storekit.md",
+      "start": 154,
+      "end": 211
+    },
+    {
+      "chunk": 246,
+      "path": "docs/storekit.md",
+      "start": 212,
+      "end": 244
+    },
+    {
+      "chunk": 247,
+      "path": "docs/trust-safety-legal.md",
+      "start": 1,
+      "end": 179
+    },
+    {
+      "chunk": 248,
+      "path": "docs/trust-safety-legal.md",
+      "start": 180,
+      "end": 218
+    },
+    {
+      "chunk": 249,
+      "path": "docs/trusted-sharing.md",
+      "start": 1,
+      "end": 85
+    },
+    {
+      "chunk": 250,
+      "path": "docs/trusted-sharing.md",
+      "start": 86,
+      "end": 142
+    },
+    {
+      "chunk": 251,
+      "path": "docs/ui-ux-audit-20260915.md",
+      "start": 1,
+      "end": 120
+    },
+    {
+      "chunk": 252,
+      "path": "docs/ui-ux-audit-20260915.md",
+      "start": 121,
+      "end": 214
+    },
+    {
+      "chunk": 253,
+      "path": "docs/ui-ux-audit-20260915.md",
+      "start": 215,
+      "end": 256
+    },
+    {
+      "chunk": 254,
+      "path": "docs/unit-economics-history-20260910.md",
+      "start": 1,
+      "end": 125
+    },
+    {
+      "chunk": 255,
+      "path": "docs/unit-economics-history-20260910.md",
+      "start": 126,
+      "end": 220
+    },
+    {
+      "chunk": 256,
+      "path": "docs/unit-economics-history-20260910.md",
+      "start": 221,
+      "end": 340
+    },
+    {
+      "chunk": 257,
+      "path": "docs/unit-economics-history-20260910.md",
+      "start": 341,
+      "end": 403
+    },
+    {
+      "chunk": 258,
+      "path": "docs/unit-economics-pricing-reset-history-20260910.md",
+      "start": 1,
+      "end": 146
+    },
+    {
+      "chunk": 259,
+      "path": "docs/unit-economics.md",
+      "start": 1,
+      "end": 120
+    },
+    {
+      "chunk": 260,
+      "path": "docs/ux-behavior-repair-20260916.md",
+      "start": 1,
+      "end": 50
+    },
+    {
+      "chunk": 261,
+      "path": "infra/auth0/README.md",
+      "start": 1,
+      "end": 129
+    },
+    {
+      "chunk": 262,
+      "path": "infra/auth0/README.md",
+      "start": 130,
+      "end": 245
+    },
+    {
+      "chunk": 263,
+      "path": "infra/auth0/hosted-consent/README.md",
+      "start": 1,
+      "end": 102
+    },
+    {
+      "chunk": 264,
+      "path": "infra/aws/README.md",
+      "start": 1,
+      "end": 87
+    },
+    {
+      "chunk": 265,
+      "path": "infra/aws/README.md",
+      "start": 88,
+      "end": 218
+    },
+    {
+      "chunk": 266,
+      "path": "infra/aws/README.md",
+      "start": 219,
+      "end": 223
+    },
+    {
+      "chunk": 267,
+      "path": "qa/storekit-local-2026-08-20/09-lifecycle-observation.md",
+      "start": 1,
+      "end": 47
+    },
+    {
+      "chunk": 268,
+      "path": "qa/storekit-local-2026-08-20/09-lifecycle-observation.md",
+      "start": 48,
+      "end": 76
+    }
+  ],
+  "truncationRecovery": "Initial grouped core read omitted parts of product chunks1–2; those are being re-read individually.",
+  "completedAt": "2026-09-17T14:38:08.202718+00:00",
+  "status": "FULL_BODY_READ_COMPLETE",
+  "filesRead": 78,
+  "unchangedAtCompletion": true
+}

@@ -1,0 +1,16 @@
+{
+  "RilloraStaging": {
+    "StripeTestWebhookSecretArn": "arn:aws:secretsmanager:eu-central-1:133857166372:secret:StripeTestWebhookSecret27AD-DjIcVJgvFIix-BNvgFG",
+    "PublicSubnetIds": "subnet-0344e3c6bae4e3731,subnet-0610e7921274f95bd",
+    "WebOidcClientSecretArn": "arn:aws:secretsmanager:eu-central-1:133857166372:secret:WebOidcClientSecret8C81BEC4-R2rkmUprqisV-VWDgAO",
+    "WebDistributionDomainName": "d1ee12jk5j6ple.cloudfront.net",
+    "TaskSecurityGroupId": "sg-062c63db94ecf2e16",
+    "WebUrl": "https://app.staging.rillora.xyz",
+    "ClusterName": "RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5",
+    "ApiEndpoint": "https://l1g8350qw0.execute-api.eu-central-1.amazonaws.com",
+    "ServiceDesiredCount": "0",
+    "StagingOperatorRoleArn": "arn:aws:iam::133857166372:role/rillora/rillora-staging-operator",
+    "StripeTestApiKeySecretArn": "arn:aws:secretsmanager:eu-central-1:133857166372:secret:StripeTestSecret04351D5D-RYsCQzd9tQVc-pzQZlf",
+    "MigrationTaskDefinitionArn": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingMigrationTaskDefinitionD83F7D18:13"
+  }
+}

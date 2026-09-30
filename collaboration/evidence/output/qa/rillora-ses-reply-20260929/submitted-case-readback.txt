@@ -1,0 +1,253 @@
+Browser tab: 1082157635, Title: "支持 | Global", URL: "https://support.console.aws.amazon.com/support/home#/case/?displayId=179022088800001&language=en".
+0 AXWebArea 支持 | Global, URL: support.console.aws.amazon.com/support/home#/case/?displayId=179022088800001&language=en
+	1 container b
+		2 container
+			3 container awsc-nav-header
+				4 image 账户颜色: 取消设置
+				5 container 全球
+					6 container awsc-top-level-nav
+						7 link Description: AWS 控制台主页, Value: us-east-1.console.aws.amazon.com/console/home?region=us-east-1, ID: nav-home-link
+						8 link Description: 跳转至主要内容, Value: support.console.aws.amazon.com/support/home#c
+						9 button (collapsed) Description: Amazon Q, ID: toolbar_@amzn/conversational-experience-module_amazon-q-tool, Secondary Actions: Expand
+						10 button (collapsed) Description: 服务, Secondary Actions: Expand
+							11 image
+						12 container aws-unified-search-container
+							13 container
+								14 image 搜索
+								15 combo box (collapsed, settable) Description: 搜索, ID: awsc-concierge-input, Secondary Actions: Expand
+								16 button 询问 Amazon Q
+								17 text [选项+S]
+						18 link Description: CloudShell, Value: us-east-1.console.aws.amazon.com/cloudshell/home?region=us-east-1, ID: awsc-nav-scallop-icon
+						19 container
+							20 pop up button Description: 通知（无可用通知）, Help: 通知
+								21 image 通知
+							22 image 通知
+						23 content list awsc-navigation__more-menu--list
+							24 button (collapsed) Description: 帮助和支持, Secondary Actions: Expand
+								25 image 支持
+							26 button (collapsed) Description: 设置, Secondary Actions: Expand
+							27 combo box (collapsed) Description: Regions (全球), Value: 全球, Secondary Actions: Expand
+								28 text 全球
+							29 button (collapsed) Description: rillora-operator @ 1338-5716-6372, ID: nav-usernameMenu, Secondary Actions: Expand
+								30 text tantalum (133857166372)
+								31 text rillora-operator
+		32 container app
+			33 container
+				34 pop up button (expanded) Description: Open navigation, Secondary Actions: Collapse
+				35 container Breadcrumbs
+					36 content list
+						37 link Description: AWS Support, Value: support.console.aws.amazon.com/support/home#/
+						38 link Description: 您的支持工单, Value: support.console.aws.amazon.com/support/home#/case/history
+						39 link (disabled) 详细信息
+							40 text 详细信息
+				41 container 工具抽屉
+					42 toolbar 工具抽屉
+						43 pop up button (collapsed) Description: 打开帮助面板, Secondary Actions: Expand
+			44 container Side navigation
+				45 button Close navigation
+				46 heading 支持中心, Value: 2
+					47 link Description: 支持中心, Value: support.console.aws.amazon.com/support/home#/
+				48 text 计划
+				49 text 基础
+				50 content list
+					51 container
+						52 button (expanded) 您的资源, Secondary Actions: Collapse
+							53 text 您的资源
+						54 container Description: 您的资源, ID: :rr:
+							55 content list
+								56 link Description: 支持仪表板, Value: support.console.aws.amazon.com/support/home#/
+								57 link Description: 您的支持工单, Value: support.console.aws.amazon.com/support/home#/case/history
+								58 link Description: 支持授权, Value: console.aws.amazon.com/support-authorization/home
+					59 container
+						60 button (expanded) AWS 支持计划, Secondary Actions: Collapse
+							61 text AWS 支持计划
+						62 container Description: AWS 支持计划, ID: :rs:
+							63 content list
+								64 link Description: 管理支持计划, Value: console.aws.amazon.com/support/plans/home#/compare
+								65 link Description: Business Support+, Value: console.aws.amazon.com/support/plans/home#/business
+								66 link Description: Enterprise Support, Value: console.aws.amazon.com/support/plans/home#/enterprise
+								67 link Description: 统一运营, Value: console.aws.amazon.com/support/plans/home#/unified-operations
+					68 container
+						69 button (expanded) Slack 中的 AWS Support 应用程序, Secondary Actions: Collapse
+							70 text Slack 中的 AWS Support 应用程序
+						71 container Description: Slack 中的 AWS Support 应用程序, ID: :rt:
+							72 content list
+								73 link Description: 入门, Value: support.console.aws.amazon.com/support/app
+					74 container
+						75 button (expanded) 支持工具, Secondary Actions: Collapse
+							76 text 支持工具
+						77 container Description: 支持工具, ID: :ru:
+							78 content list
+								79 link Description: Compute Optimizer 在新标签页中打开, Value: console.aws.amazon.com/compute-optimizer/home
+								80 link Description: AWS Health Dashboard 在新标签页中打开, Value: health.console.aws.amazon.com/health/home
+								81 link Description: Trusted Advisor 在新标签页中打开, Value: console.aws.amazon.com/trustedadvisor/home
+				82 content list
+					83 container
+						84 button (expanded) AWS 知识资源, Secondary Actions: Collapse
+							85 text AWS 知识资源
+						86 container Description: AWS 知识资源, ID: :rv:
+							87 content list
+								88 link Description: 开始使用 AWS Support, Value: aws.amazon.com/cn/support/
+								89 link Description: 知识中心 在新标签页中打开, Value: repost.aws/knowledge-center
+								90 link Description: 知识中心视频 在新标签页中打开, Value: youtube.com/playlist?list=PLhr1KZpdzukfdjsOHZ-BazZt1iK1J8UUw
+								91 link Description: AWS 文档 在新标签页中打开, Value: aws.amazon.com/cn/documentation/
+								92 link Description: re:Post 在新标签页中打开, Value: repost.aws/
+								93 link Description: 培训与认证 在新标签页中打开, Value: aws.amazon.com/cn/training/
+			94 container
+				95 container 通知
+					96 content list Description: 通知, ID: flashbar:rp:
+				97 container
+					98 image 信息
+					99 container alert-:r2:
+						100 text AWS Support is now available on the AWS Console Mobile App
+						101 text Manage your support cases on the go using the AWS Console Mobile App on iOS or Android.
+						102 container
+							103 checkbox (settable, integer) Description: Don't show this again, Value: 0, ID: :r4:
+							104 text Don't show this again
+					105 button Get the app
+					106 button 关闭提示
+				251 container
+					252 heading SES: Production Access, Value: 1
+						253 text SES: Production Access
+					254 button 信息 : SES: Production Access, ID: link-self:r5d:
+					255 button 解决工单
+					373 container :r5j:
+						374 container
+							375 heading 工单详细信息, Value: 2
+								376 button (expanded) 工单详细信息, Secondary Actions: Collapse
+									377 text 工单详细信息
+							378 text 有关此支持案例的基本信息
+						379 container Description: 工单详细信息, ID: :r5h:
+							380 container
+								381 text 主题 SES: Production Access 案例 ID 179022088800001 已创建 2026-09-24T03:34:48.731Z 工单类型 账户 打开方式 [REDACTED_EMAIL]
+							382 container
+								383 text 状态 已重新打开 严重性 一般问题 类别 - 语言 英语 其他联系人 support@rillora.xyz
+				261 container :r5m:
+					262 container correspondence-bar
+						263 heading 通信信息, Value: 2
+							264 text 通信信息
+						265 button 回复
+					266 container correspondence-thread-container
+						267 container correspondence-thread
+							268 container correspondanceGrid
+								269 container
+									270 pop up button Description: 显示包含作者电子邮件的“提交者”对话框, ID: :r6g:
+										271 text rillora/rillora-operator (IAM)
+									272 text Tue Sep 29 2026
+									273 text 22:31:40 GMT+0800 (香港标准时间)
+								274 container
+									275 text Hello AWS Digital Messaging team, Thank you for the September 29 response. We understand that production access has not been approved. Could you clarify the actionable next steps for this account? 1. Our current SES GetAccount response reports EnforcementStatus HEALTHY and    SendingEnabled true, while ProductionAccessEnabled is false. Is your concern    an observed sender-reputation problem, or evidence required for production    onboarding? If possible, please identify the category of evidence or control    we should improve; we are not requesting disclosure of proprietary risk rules. 2. Our request is limited to user-triggered Auth0 verification and password-reset    messages. We can retain 200 messages/day and 1 message/second; we need production    recipient access rather than higher volume. Can this limited access be reviewed    while retaining the existing quota? 3. Which specific evidence, improvement or observation period would make a future    review useful? If controlled delivery tests to owned/consenting verified    recipients would help, please confirm what results you need. We do not want to    generate unnecessary traffic or repeatedly resubmit unchanged material. Our earlier correspondence already describes the recipient source, proposed volume, domain authentication, suppression, monitoring and sample content. The current read-only check still passes these configuration conditions. Final Auth0 sender integration and customer email acceptance remain pending; we do not claim they are already enabled. Thank you.
+							276 container correspondanceGrid
+								277 container
+									278 text Amazon Web Services
+									279 text Tue Sep 29 2026
+									280 text 16:10:29 GMT+0800 (香港标准时间)
+								281 container correspondence-message-body
+									282 container
+										283 text 此响应是否有用？单击此处进行评价。
+										284 此响应是否有用？单击此处进行评价。
+											285 radio button Description: 差, Value: 0
+											286 radio button Description: 低于平均水平, Value: 0
+											287 radio button Description: 平均值, Value: 0
+											288 radio button Description: 良好, Value: 0
+											289 radio button Description: 极佳, Value: 0
+									290 container translate-element
+										291 container
+											292 pop up button (collapsed) 中文, ID: awsui-button-dropdown__trigger:r6j:, Secondary Actions: Expand
+												293 text 中文
+										294 button 翻译
+									295 container
+										296 text Hello, Thank you for the additional information you shared regarding your Amazon SES account in the EU (Frankfurt) region. We understand how important reliable email delivery is for your business, and we want to be transparent with you. After a thorough review of the information you provided, we are still unable to approve a sending limit increase at this time. Our concern centers on protecting two things that matter most to your success: your sender reputation and the deliverability of your emails. Approving this request under current conditions could place your account at risk and impact the quality of delivery your recipients experience — outcomes we want to help you avoid. For additional guidance, please review our AWS Acceptable Use Policy (
+										297 link Description: https://aws.amazon.com/aup/  在新标签页中打开, Value: aws.amazon.com/aup/, ID: link-self:r6r:
+										298 text ), AWS Service Terms (
+										299 link Description: https://aws.amazon.com/serviceterms/  在新标签页中打开, Value: aws.amazon.com/serviceterms/, ID: link-self:r6u:
+										300 text ) and Amazon SES Best Practices (
+										301 link Description: https://docs.aws.amazon.com/ses/latest/dg/best-practices.html  在新标签页中打开, Value: docs.aws.amazon.com/ses/latest/dg/best-practices.html, ID: link-self:r71:
+										302 text ). Taking proactive steps to align with these guidelines will directly strengthen your account's standing and support a successful re-evaluation. We appreciate your understanding in this matter. We value your feedback. Please share your experience by rating this and other correspondences in the AWS Support Center. You can rate a correspondence by selecting the stars in the top right corner of the correspondence. Best regards, CS Digital Messaging
+							303 container correspondanceGrid
+								304 container
+									305 pop up button Description: 显示包含作者电子邮件的“提交者”对话框, ID: :r73:
+										306 text rillora/rillora-operator (IAM)
+									307 text Mon Sep 28 2026
+									308 text 12:40:19 GMT+0800 (香港标准时间)
+								309 container
+									310 text Hello AWS Trust and Safety team, Please reconsider our limited transactional-email production-access request in eu-central-1 under case 179022088800001. We acknowledge the September25 UTC refusal following our earlier supplementary reply. We would like to retain SES alongside our existing AWS infrastructure and understand whether there are actionable requirements that we can address. We are not requesting higher bulk sending volume or submitting a different use case. 1. Product and scope. Rillora is a pre-launch personal digital-legacy organiser. It records where important information can be found and who may view it; it is not a financial custodian or a funds-transfer service. Customer account access and sales are still closed during release preparation. Public product and support information is available at 
+									311 link Description: https://www.rillora.xyz/  在新标签页中打开, Value: rillora.xyz/, ID: link-self:r75:
+									312 text  and 
+									313 link Description: https://www.rillora.xyz/support  在新标签页中打开, Value: rillora.xyz/support, ID: link-self:r78:
+									314 text ; policies are at 
+									315 link Description: https://legal.rillora.xyz/  在新标签页中打开, Value: legal.rillora.xyz/, ID: link-self:r7b:
+									316 text . 2. Only user-triggered account messages. The initial SES integration would send Auth0 email-verification and password-reset messages. Addresses come from the user's own signup or recovery request, without imported or purchased lists. Social-login recovery remains with the relevant identity provider. We do not automatically email a user's contacts: invitation links are shared by the account owner. No marketing, recurring reminders or cold outreach is included. 3. Small initial volume. Our planning assumption remains fewer than 100 active accounts and roughly 0–20 messages/day. These figures are estimates, not an existing customer count or a measured peak. We are willing to retain the current 200/day and 1/second limits initially; we seek permission to reach user-requested, non-preverified recipients, not a large quota. The SES console today still shows sandbox status and these limits in Frankfurt. 4. Existing sender controls. Our September24–26 checks recorded verified  notify.rillora.xyz , 2048-bit Easy DKIM, custom MAIL FROM  bounce.notify.rillora.xyz , a sending-subdomain DMARC record, required TLS and rejection rather than fallback if MAIL FROM validation fails. The proposed sender is Rillora <
+									317 link Description: [REDACTED_EMAIL], Value: mailto:[REDACTED_EMAIL]
+									318 text >. These are dated checks, not assertions that the final Auth0 provider is already enabled. 5. Failure handling and privacy. SES BOUNCE/COMPLAINT suppression is configured; suppressed addresses will not be removed to force delivery. Aggregate delivery, bounce, complaint and failure events feed CloudWatch alarms to the operator. The earlier mailbox-simulator run exercised those alerts; it was not real-user traffic or inbox-delivery proof. We do not put private planning content in account mail, publish message bodies to these logs, or enable open/click tracking. 6. Mail examples and remaining checks. Verification mail says the user started a Rillora account and offers an Auth0-generated expiring verification link. Reset mail offers an expiring reset link and explains that an unrequested message can be ignored without changing the password. Both refer to 
+									319 link Description: support@rillora.xyz, Value: mailto:support@rillora.xyz
+									320 text . The earlier case reply includes the proposed full examples. We will complete controlled verification/reset and invitation-continuation acceptance before opening customer access; we do not claim those final tests or message templates are already live. Could the team reconsider this narrow use case, or identify any specific evidence or configuration requirement we can address? We understand that internal review criteria may not be disclosed and that this request does not guarantee approval. Thank you.
+							321 container correspondanceGrid
+								322 container
+									323 text Amazon Web Services
+									324 text Sat Sep 26 2026
+									325 text 01:28:49 GMT+0800 (香港标准时间)
+								326 container correspondence-message-body
+									327 container
+										328 text 此响应是否有用？单击此处进行评价。
+										329 此响应是否有用？单击此处进行评价。
+											330 radio button Description: 差, Value: 0
+											331 radio button Description: 低于平均水平, Value: 0
+											332 radio button Description: 平均值, Value: 0
+											333 radio button Description: 良好, Value: 0
+											334 radio button Description: 极佳, Value: 0
+									335 container translate-element
+										336 container
+											337 pop up button (collapsed) 中文, ID: awsui-button-dropdown__trigger:r7f:, Secondary Actions: Expand
+												338 text 中文
+										339 button 翻译
+									340 container
+										341 text Hello, We appreciate your patience while we have reviewed your case. Your success with Amazon SES  matters to us, and we want to ensure your email program operates at the highest level of deliverability and reliability.  After a thorough review of your request, we are unable to approve a sending limit increase at this time. Our evaluation process exists to protect your sending reputation and the quality of your email delivery — not just as a policy, but as a direct investment in your long-term success on the platform. While we are not able to share the specific criteria used in our assessment, please know this decision is made with your account's health and performance in mind. For additional guidance, please review our AWS Acceptable Use Policy (
+										342 link Description: http://aws.amazon.com/aup/  在新标签页中打开, Value: aws.amazon.com/aup/, ID: link-self:r7n:
+										343 text ), AWS Service Terms (
+										344 link Description: http://aws.amazon.com/serviceterms/  在新标签页中打开, Value: aws.amazon.com/serviceterms/, ID: link-self:r7q:
+										345 text ) and (
+										346 link Description: https://docs.aws.amazon.com/ses/latest/dg/best-practices.html  在新标签页中打开, Value: docs.aws.amazon.com/ses/latest/dg/best-practices.html, ID: link-self:r7t:
+										347 text ). Taking proactive steps to align with these guidelines will directly strengthen your account's standing and support a successful re-evaluation. We appreciate your understanding in this matter. Thank you for contacting Amazon Web Services. We value your feedback. Please share your experience by rating this and other correspondences in the AWS Support Center. You can rate a correspondence by selecting the stars in the top right corner of the correspondence. Best regards, CS Digital Messaging
+							348 container correspondanceGrid
+								349 container
+									350 pop up button Description: 显示包含作者电子邮件的“提交者”对话框, ID: :r7v:
+										351 text rillora/rillora-operator (IAM)
+									352 text Fri Sep 25 2026
+									353 text 01:12:39 GMT+0800 (香港标准时间)
+								354 container
+									355 text Hello AWS Trust and Safety team, Thank you. Please continue reviewing our eu-central-1 production-access request. Rillora is a pre-launch digital legacy organiser, not a financial custodian or a service that transfers funds. Accounts and subscriptions remain closed while release checks are completed. Initial email use We will initially use SES through Auth0 only for user-requested email verification and password resets. Password-reset mail applies to password-based accounts; social accounts use their provider's recovery. We will not send campaigns, purchased-list mail, cold outreach, account balances, private planning content or attachments. Contact invitation links are shared by the account owner; we do not automatically email their contacts. Recipients and volume The recipient address is entered in the user-initiated signup or recovery flow. There is no uploaded/imported mailing list. Our initial planning assumption is fewer than 100 active accounts and 0–20 transactional messages per day, not an existing customer count. We can retain the current 200/day and 1/second limits initially; the request is for external-recipient access, not bulk volume. The application will not schedule repeated verification or recovery reminders. We will complete tests with mailboxes we control before enabling the provider for customers. Sending identity and failure handling The sender will be Rillora <
+									356 link Description: [REDACTED_EMAIL], Value: mailto:[REDACTED_EMAIL]
+									357 text >. SES currently reports SUCCESS for the domain, 2048-bit Easy DKIM and custom MAIL FROM  bounce.notify.rillora.xyz . The sending subdomain has DMARC; the configuration set requires TLS and rejects a missing MAIL FROM MX instead of silently falling back. The configuration set enables SES account-level suppression for BOUNCE and COMPLAINT. We will not remove a suppressed address to force delivery. CloudWatch receives aggregate delivery/failure events, with alarms for any bounce, complaint, reject or delivery delay routed to our existing owner alert subscription. A real mailbox-simulator check returned Send=3, Delivery=2, Bounce=1 and Complaint=1, and the alert actions executed. These are simulator results, not claimed real-user inbox delivery. We do not publish open/click tracking events or customer email bodies to logs. Unsubscribe requests There is no marketing subscription list or recurring campaign. These two message types occur only in response to an account action. People can ignore an unexpected verification/reset message, contact 
+									358 link Description: support@rillora.xyz, Value: mailto:support@rillora.xyz
+									359 text , or request account deletion. Any future optional notification would require its own preference/opt-out implementation before activation. We do not claim that stopping optional mail disables necessary account-security handling. Proposed verification example Subject: Verify your email for Rillora You started creating a Rillora account. Confirm your email address using the button below. [Verify email — Auth0-generated, time-limited link] If you did not request this, you can ignore this message. For help: 
+									360 link Description: support@rillora.xyz, Value: mailto:support@rillora.xyz
+									361 text . Never send us a password or recovery phrase. Proposed password-reset example Subject: Reset your Rillora password We received a request to reset the password for your Rillora account. [Reset password — Auth0-generated, time-limited link] If you did not request this, ignore this message. Your password does not change unless the reset is completed. For help: 
+									362 link Description: support@rillora.xyz, Value: mailto:support@rillora.xyz
+									363 text . The bracketed text above is a sample placeholder, not a live token or a claim that the final templates have already been deployed. Product and guides: 
+									364 link Description: https://www.rillora.xyz/  在新标签页中打开, Value: rillora.xyz/, ID: link-self:r81:
+									365 text Support: 
+									366 link Description: https://www.rillora.xyz/support  在新标签页中打开, Value: rillora.xyz/support, ID: link-self:r84:
+									367 text Privacy: 
+									368 link Description: https://legal.rillora.xyz/privacy  在新标签页中打开, Value: legal.rillora.xyz/privacy, ID: link-self:r87:
+									369 text Terms: 
+									370 link Description: https://legal.rillora.xyz/terms  在新标签页中打开, Value: legal.rillora.xyz/terms, ID: link-self:r8a:
+									371 text Please let us know what additional evidence you need for this limited transactional use case. No production customer sending is enabled yet.
+						372 button 加载更多
+		236 container f
+			237 container console-nav-footer
+				238 container awsc-nav-footer-content
+					239 button CloudShell, Help: 打开 CloudShell, ID: tools-experience-ingress
+					240 button Agent Toolkit for AWS
+					241 button 反馈, ID: feedback
+						242 text 反馈
+					243 button 控制台移动应用程序, ID: mobile_app_button
+						244 image
+						245 text 控制台移动应用程序
+					246 text ©  2026 ,  Amazon Web Services, Inc. 或其关联公司。
+					247 content list
+						248 link Description: 隐私, Value: aws.amazon.com/privacy/
+						249 link Description: 条款, Value: aws.amazon.com/terms/
+						250 button Cookie 首选项
+
+The focused UI element is 376 button (expanded) 工单详细信息, Secondary Actions: Collapse

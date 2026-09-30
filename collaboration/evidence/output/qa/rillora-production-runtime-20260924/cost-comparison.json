@@ -1,0 +1,70 @@
+{
+  "checkedAt": "2026-09-23T16:22:49.283242+00:00",
+  "region": "eu-central-1",
+  "monthlyHours": 730,
+  "accountPeriod": "2026-09-01 inclusive to 2026-09-24 exclusive",
+  "accountCostsUSD": {
+    "Credit": "-26.5502788335",
+    "Usage": "26.5502794732",
+    "Tax": "0"
+  },
+  "billingEstimated": true,
+  "databaseComputeOnly": [
+    {
+      "option": "On demand",
+      "termYears": 0,
+      "upfrontUSD": 0,
+      "computeMonthlyUSD": 13.87,
+      "monthlySavingsUSD": 0.0
+    },
+    {
+      "option": "Reserved 1 year no upfront",
+      "termYears": 1,
+      "upfrontUSD": 0,
+      "computeMonthlyUSD": 9.198,
+      "monthlySavingsUSD": 4.672
+    },
+    {
+      "option": "Reserved 1 year all upfront",
+      "termYears": 1,
+      "upfrontUSD": 104,
+      "computeMonthlyUSD": 8.667,
+      "monthlySavingsUSD": 5.203
+    },
+    {
+      "option": "Reserved 3 years all upfront",
+      "termYears": 3,
+      "upfrontUSD": 215,
+      "computeMonthlyUSD": 5.972,
+      "monthlySavingsUSD": 7.898
+    }
+  ],
+  "dbStorage20GiBMonthlyUSD": 2.74,
+  "fargateQuarterCPUHalfGBMonthlyUSD": 8.291,
+  "coreProductionPlanningBOM": {
+    "databaseCompute": 13.87,
+    "databaseStorage": 2.74,
+    "fargate": 8.291,
+    "onePublicIPv4": 3.65,
+    "kmsKey": 1,
+    "twoExistingSecrets": 0.8,
+    "privateCloudMapZone": 0.5,
+    "certificateReserveNotMonthlyFee": 2
+  },
+  "plannedCoreSubtotalUSD": 32.851,
+  "productionOperatingBudgetUSD": [
+    40,
+    50
+  ],
+  "exclusions": [
+    "existing staging",
+    "future identity plan changes",
+    "actual requests/logs/traffic/backup excess",
+    "tax",
+    "support labor",
+    "payment fees"
+  ],
+  "decision": "Keep on-demand; no commitments purchased. Reconsider 1-year no-upfront RDS reservation after stable production use and known 12-month need.",
+  "databaseSavingsPlans": "Official FAQ says provisioned Generation 7+; do not assume db.t4g.micro is eligible.",
+  "boundary": "Provider rates and a planning BOM, not invoice, margin or capacity certification."
+}

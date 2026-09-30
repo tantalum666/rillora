@@ -1,0 +1,175 @@
+# Web And iOS Platform Contract
+
+Role: cross-platform product and parity contract  
+Authority scope: Web/iOS responsibilities, shared state and first validation release  
+Superseded by: later explicit platform decision  
+Do not use for: final framework choice or visual tokens  
+Status: CORE PARITY LOCKED; WEB／IOS VERSIONED LEGAL CLICKWRAP AND SERVER SESSION GATE VERIFIED LOCALLY; PUBLIC-TO-PRIVATE ENTRY, FIRST-USE, ROLE EDITOR, REHEARSALS, LOCAL EVENT CONTRACT AND STRIPE PHASE 1C VERIFIED; STOREKIT SK0 COMPLETE; SIMULATOR SANDBOX LOGIN BLOCKED BY APPLE `AMSERRORDOMAIN 100`; PURCHASE COMPLETION OPEN; ENTITLEMENT MUTATION OFF  
+Last updated: 2026-08-24
+
+## Meaning Of “同时做” — LOCKED
+
+首轮市场验证正式开始前，Web和iOS都必须能够完成规划者的核心闭环。两端在同一产品阶段推进、共享同一领域合同和测试数据，但不要求同一天提交商店，也不要求像素相同。
+
+## Product Surfaces
+
+### Web
+
+适合：
+
+- 无需登录的产品理解、信任边界与开始路径；
+- 完整事务编辑和批量整理；
+- 长内容、文档位置和复杂权限检查；
+- 执行人或接收人的免安装入口；
+- Start Here包预览与导出；
+- 人工审核与运营控制台的后续扩展。
+
+### iOS
+
+适合：
+
+- 无需账户理解核心价值、查看安全合成示例，并在产生私有计划意图后进入原生Account选择；
+- 随时快速记录和复核；
+- 设备级认证、通知和联系人邀请；
+- 年度复核和人生事件提醒；
+- 移动端模拟演练；
+- 后续在获得明确授权后使用系统能力辅助发现，而不是静默扫描。
+
+### Optional watchOS boundary — research only
+
+watchOS不是当前P0平台，也不因Apple Watch研究自动进入MVP：
+
+- iPhone App经用户授权可读取已同步的部分HealthKit历史数据，这本身不要求Watch App，但同步和后台投递不能作为实时或完整保证；
+- 实时第三方Fall Detection需要独立watchOS App、Apple专用entitlement、用户授权和兼容设备；
+- 高采样心率依赖用户可见的真实Workout，不能以隐藏的全天Workout实现死亡监控；
+- SafetyKit严重车祸事件可由获批iOS App接收，不以Watch App为必要条件；
+- 所有设备事件都只允许进入无披露的`SafetySignal / WelfareCheck`边界，不能进入死亡事实核验或claim/release状态机；
+- 在Owner另行批准、需求证据成立、平台权限获批、隐私／法律／安全审查和实体设备测试计划完成前，不创建Watch target、不增加HealthKit／Fall Detection／SafetyKit entitlement。
+
+证据、误报分析和分阶段建议见[`docs/apple-watch-death-signal-research.md`](apple-watch-death-signal-research.md)。
+
+## P0 Parity Matrix
+
+| Capability | Web | iOS | Shared truth |
+| --- | --- | --- | --- |
+| 账户前产品理解 | Public root + real capability index | Native public Overview + real capability index | 默认展开01；不读取／伪装私有计划或展示假记录；只有私有意图进入Account选择 |
+| 注册与登录 | Required | Required | 同一用户和会话策略 |
+| 非阻塞首次使用 | Overview panel | Native overview + guide sheet | 同一`firstUseState / firstUseStep`、两路径、退出／恢复和准备度边界 |
+| 动机选择 | Required | Required | 同一枚举与实验属性 |
+| 添加/编辑事务 | Required | Required | 同一领域模型和版本 |
+| 逐项处理意愿 | Required | Required | 同一权限语义 |
+| 全计划／逐事项角色记录 | Batch review/edit | Native item edit | 接收人仅逐事项；记录、邀请证据、身份与授权严格分离；政策变化使旧快照失效 |
+| 可信联系人邀请 | Required | Required | 同一邀请状态机 |
+| 接受邀请 | Required, no install | Supported | Web链接是最低可达路径 |
+| 官方设置与身后申请指导 | Required | Required | 同一provider分类、步骤、官方HTTPS入口、材料／限制和复核日期；既有五项状态仍只为self-report |
+| 准备度与缺口 | Required | Required | 服务端规则版本化 |
+| 模拟演练 | Required | Required | 同一披露策略快照 |
+| 角色级披露策略演练 | Required locally | Required locally | 三类独立非操作性状态机与精确字段白名单；零通知、零证明核验、零释放 |
+| Start Here导出 | Review/download | Review/share/print | 同一预览与完整快照承诺；明文确认和加密恢复确认分离；相同AES-GCM/HPKE格式、字段边界和审计；不冒充收件人投递或真实释放 |
+| 合成收件人解密演练 | Required locally | Required locally | 同一一次性接受、内存设备私钥、公钥登记／撤销与收件人信封合同；不发送、不验证真实身份、不释放 |
+| 商业权益 | Same Rillora catalog | Same Rillora catalog through platform-native purchase UX | 同一plan/version/capability结果；月／年是账期而非层级；收件人基础访问、安全、导出和删除不得因Storefront不同而改变 |
+
+## Shared Domain — LOCKED
+
+两端共享至少以下核心对象：
+
+- Planner
+- Plan
+- MatterItem
+- Institution
+- OutcomeRule
+- Person
+- RoleAssignment
+- Invitation
+- OfficialSetupCheck
+- ClaimSimulation
+- DisclosureRehearsal
+- ExportPackage
+- RecipientRehearsal
+- RecipientDeviceKey
+- ExportKeyEnvelope
+- AuditEvent
+- ProductEvent
+- CommerceCatalogProduct
+- CommercePlanVersion
+- CommerceCapability
+- CommercePrice
+- CommerceMarketPolicy
+- CommerceStorefrontPolicy
+- CommercePurchaseRoutePolicy
+- CommerceSubscription
+- CommerceEntitlementGrant
+- CommerceOrder
+- CommercePaymentAttempt
+- CommerceProviderEvent
+- CommerceSettlement
+- CommerceRefund
+
+任何状态、权限或术语变化先修改共享合同和文档，再分别修改Web与iOS。
+
+## First-Use State Contract — LOCKED
+
+`Plan` 持久化首次使用状态，不用本地弹窗标记猜测用户是否“做完了”：
+
+| State | Step | Meaning |
+| --- | ---: | --- |
+| `available` | `0` | 总览可用，添加真实Matter与可选引导两个开始选择可见 |
+| `guide_in_progress` | `1..2` | 用户主动进入可选引导，当前步骤已保存 |
+| `guide_paused` | `0..2` | 用户选择`Not now`、`Save & exit`或原生下滑退出；iOS Profile中的账户内入口提供恢复 |
+| `completed` | `2` | 用户明确保存了第一项真实Matter，首次使用提示关闭 |
+
+- 路径是`Add your first matter / Use the 2-minute guide`。不提供公开或首次使用的示例分支，不生成假Matter，也不使用预填演示草稿。
+- `firstUseState`与`firstUseStep`必须成对校验；客户端不得提交不一致的部分状态。
+- 注册、进入引导、回答或跳过问题和暂停都不改变准备度；只有经现有服务端规则确认的明确规划写入才能改变准备度。
+- Web使用可跳过的总览面板；iOS使用原生Sheet和`Profile`中的恢复入口。交互不同，状态含义相同。
+
+## Platform-Native Differences — LOCKED
+
+- Web根路径允许公开浏览，`/account`承接登录／注册选择。Web第一视口和iOS原生公开Overview都先用可展开的真实能力索引解释“有什么／怎么处理／谁来帮忙”，每次进入默认展开`01 · What exists`，不展示假数据、`Example / Sample`标签或演示弹层，也不在首屏展示`Free`、价格或创建私人计划CTA；Web Header中的Account与iOS Profile内的Account row保留为工具性入口，iOS Overview不再重复Account。未认证Overview、Matters、移动Web More、原生iOS Profile和Account选择都不把`Free plan`、`no card`或套餐名称作为标题、主按钮或重复说明；登录／注册选择只写任务与账号动作。只有页底创建、添加Matter或显式进入Account时，才出现登录／注册选择。两端所有私有计划读取和写入继续要求认证；iOS不复制公开官网的信息架构。
+- Web使用适合键盘、大屏、表格和长内容的布局；iOS使用安全区域、原生导航、Dynamic Type、VoiceOver和44pt触控目标。
+- Web在宽屏、紧凑侧栏和`<=760px`移动端之间切换导航结构。桌面保留完整工作区侧栏；移动Web保留`Overview / Matters / More`，原生iOS使用`Overview / Matters / Profile`，两端都只有三个一级目的地。Web的`My plan / Trusted contacts / Official guides / Activity / Settings`继续聚合在`More`；iOS把账户、可信联系人、准备工具、一个集中式Safety & privacy任务入口、About Rillora和账户／会话控制聚合在`Profile`。没有真实可变偏好时不得建立空壳App settings页；没有具名Rillora权限或设备控制任务时不得添加泛化的iPhone Settings跳转；Overview已承担的产品说明与安全示例也不得在Profile重复。标签可以遵循平台语义，不得分裂共享领域状态。目标至少`44 × 48px`，页面不得横向溢出。
+- 正式iOS只使用系统`TabView`和每Tab独立`NavigationStack`，三个根页面统一原生inline标题模式；`apps/ios-prototype`的浏览器绘制栏只证明信息架构，不得冒充原生组件证据。
+- iOS的身份入口统一进入原生全屏Account任务页：Profile顶部`Sign in / Sign up`、Overview页底创建和`Add a matter`不得先弹出法律专页，也不得直接把整套登录UI交给网页。Account页包含邮箱输入、紧随其后的小字未勾选法律行和可用的账户方法；Apple使用系统原生组件，Google／Passkey仅在各自完整配置回读后显示，邮箱、恢复和复杂challenge透明转入`login.rillora.xyz`托管兜底。所有方法在勾选前均不可用，且App不得收集Auth0密码。可选引导仍可使用可关闭Sheet，但任何主要身份动作不得使用Detent、拖拽条、`Close`或`Not now`承载。
+- iOS重复标签行共享`28pt`图标光学校准列，导航栏在标准、滚动边缘和紧凑状态使用同一不透明画布外观；这些是平台组件合同，不得以页面级偏移替代。
+- 不用响应式网页外壳冒充iOS原生产品。
+- 不为了“代码共享”牺牲安全边界、可访问性或平台体验。
+- 执行人和接收人必须能从安全Web链接进入，不得把安装iOS App设为处理亲友事务的前提。
+- Web与iOS不得各自硬编码`isPremium`或价格。共享后端按`plan_code + plan_version + capability`解析权益；Web支付提供商和App Store只是不同购买适配器。用户不得因跨端使用而被静默重复订阅，Apple退款／账单状态与Web退款／账单状态必须映射到同一可审计Rillora订阅状态。
+- 公开首页、未登录顶层导航、未登录Matters／移动Web More／原生iOS Profile和Account选择不主动展示`Plan & access`、Free／Family、`no card`或价格。用户主动查看账户内方案，或在具体Family能力上表达使用意图后，Web和iOS才进入同一`Plan & access`语义；该承接页可以在认证前说明方案，但任何保存、购买或权益使用仍走对应身份与服务端授权。价格、币种和店面交易文案允许按平台区域不同；billing关闭时两端均明示为价格预览，不显示可购买或已订阅假状态。
+
+## Globalization Baseline
+
+- 所有时间以UTC存储并保留用户时区；触发、冷静期和审计显示明确时区。
+- 金额保存币种，不跨币种伪合计。
+- 姓名、地址、电话号码和法律角色不假设美国格式。
+- 文案、日期、列表排序和导出结构必须可本地化。
+- 司法辖区、资产所在地和平台账户地区分别记录，不压缩成一个“国家”字段。
+
+## Implementation Stack
+
+MVP后端基础锁定为TypeScript/Express 5 API与PostgreSQL，共享版本化HTTP合同、领域语义和强制租户RLS。React Web根路径现提供不依赖私有API内容的公开介绍页，`/account`才显示登录／注册选择；认证后的工作区继续通过同源`/api`边界连接计划、事务、联系人、官方设置、准备度和审计API，不再用本地夹具伪装成功状态。
+
+`apps/ios`现为iOS 17+原生SwiftUI客户端，使用可复现的XcodeGen项目、Swift 6严格并发、注入式actor API客户端和显式异步状态。未登录时先检查本地会话并进入原生公开状态，不请求五项私有Overview API；401也回到公开态而不是伪装成产品故障。用户主动创建账户或登录后，Debug使用Auth0.swift系统浏览器Code + PKCE，并把短期Auth0 access token一次性换成Keychain保存的Rillora本地Bearer会话；Cookie与Bearer不能交叉使用。共享API读取`session / plan / matters / trusted-contacts / readiness`，完成动机、Matter、可信联系人记录、全计划／逐事项角色记录、官方设置自报、非操作性计数演练、角色级策略演练，以及Start Here的15分钟预览、最小披露UTF-8明文指南和Owner恢复型客户端密文包。角色编辑严格区分`record_only`与邀请证据；接收人只能逐事项，邀请背书记录不能被改写，人员或事项生命周期会级联撤销相关角色，任何政策改变都会使旧演练快照过期。Web提供批量覆盖和编辑抽屉，iOS使用原生Matter内`Form`与注入式Store。角色策略演练按死亡／失能／失联使用三套事件前缀状态，Web发挥大屏时间线与三角色并列预览，iOS使用原生`Form`、`Picker`和显式异步状态；两端共同拒绝任何操作性、通知、证明核验或数据释放响应。Web和iOS都生成AES-256-GCM密文，并用同一RFC 9180 HPKE P-256合同为离线恢复及符合条件的收件人设备分别封装数据密钥；提交前本地恢复自检，服务端不接收明文、未封装数据密钥或恢复私钥。两端现在也通过同一合成流程完成一次性接受、内存P-256设备私钥、公钥登记、收件人信封读取／解密和撤销；Web使用React内存状态，iOS使用注入式`RecipientRehearsalStore`，公共调用均不携带规划者Cookie/Bearer。该流程受本地开关保护且生产启动时拒绝启用，不代表真实身份、同意、投递或释放。规划者请求以粗粒度`web|ios`来源头进入服务端生成的八项第一方本地事件；公共演练调用不发送该头，客户端也不能上传任意事件或属性。90天仅是删除截止标记，不是自动清理证据。归档、撤销、预览、打印和加密文案都明确只改变或读取Rillora内部记录，不代表外部账号、遗嘱、法院或法律权限改变。Debug的旧开发身份不再是默认路径；只有显式设置测试planner才会启用。Release缺少审查后的生产端点／身份参数时继续失败关闭。`apps/ios-prototype`仍只是移动交互与视觉证据。真实邀请投递／身份绑定接受、持久设备密钥生命周期、真实证明与人工处理、生产Release认证、生产事件清理／分析、真机和TestFlight仍为`PROVISIONAL`，因此完整P0平台对等尚未完成。
+
+官方provider目录在两端共享十一类语义和同一官方host allowlist。Web使用可打开详情的Guide抽屉；iOS使用原生List／NavigationStack详情和系统浏览器Link。两端都将生前可配置机制与身后申请区分，不把Binance、Microsoft、PayPal或Coinbase写成Legacy Contact；额外六类provider当前只提供指导，不增加后端self-report行或准备度。内容合同见`docs/provider-death-account-guides.md`。
+
+商业主线现已从Phase 0／1A推进到完整Stripe Phase 1C测试生命周期，同时保持普通access为Free且所有reconciliation的entitlement mutation为false。iOS继续通过`Storefront.current.countryCode`读取瞬时三位storefront、监听`Storefront.updates`并向服务端重新请求唯一购买路由；storefront不写入用户资料，读取失败时购买保持关闭。StoreKit SK0具有独立本地Xcode Scheme和完整本地生命周期；Release继续排除`.storekit`。App Store Sandbox使用真实组`22325627`和同一两条product：catalog-only scheme无purchase／restore／finish；新的Debug-only purchase scheme绑定合成planner和本地API 4182，只有服务端提交Apple authoritative snapshot后才finish。此前Pro Max商品unavailable已定位为残留Xcode-local StoreKit service；干净iOS 26.4／26.5 Simulator均读到USA并加载`US$99 / US$9.99`两项真实商品。服务端已用Apple官方library完成真实`x5c`验证、authenticated device intake、public Notifications V2、Server API signed-status规范化和durable provider-neutral reconciliation；client验证整个响应安全边界，pending snapshot不finish，所有reconciliation仍强制entitlement mutation false。当前iOS为`101 / 0 / 1`、API`98 / 98`；Chrome最终credential set、官方客户端构造和Apple `4040010`认证探针通过，前两把无私钥key已撤销，Apple只保留最终一把。Owner确认后已向Apple提交三套独立tester凭据，但26.4／26.5都在交易前被Apple `AMSErrorDomain 100 / Password reuse not available for account`阻断；本地StoreKit ledger仍为空，普通status为Free。一次自动化回显的replacement tester已删除并轮换，当前第三套仅存Keychain。AWS path未部署，完成purchase／notification／restore、App Review和ordinary entitlement继续开放，完整边界见`docs/storekit.md`。
+
+平台角色已经选定：Auth0 EU负责身份，AWS Frankfurt `eu-central-1`承载认证后Web/API/数据，Vercel只用于公开内容或合成数据预览。Auth0 EU Free开发租户、两端本地回调和虚拟Web Passkey已经完成真实联调；Owner已购买`rillora.xyz`，`login.rillora.xyz`的公共DNS、托管TLS、Auth0默认域以及Web与iOS Debug新issuer运行时回归也已完成。Frankfurt已有明确标记的合成数据staging；它不是生产环境，也没有部署本轮商业迁移／API。Release配置仍为`PROVISIONAL`，Vercel没有被授权承载认证产品面。开发身份头只能在非生产显式开启，生产进程检测到它或缺少完整OIDC配置时必须拒绝启动。真实恢复、原生Passkey、生产KMS／附件、邮件和真实商业部署仍未完成。
+
+## Versioned Legal Consent Parity
+
+Registration legal consent remains a shared Web／iOS evidence contract, but the Owner has corrected its presentation. Web keeps the approved compact unchecked Account control. iOS now presents a concise native Account surface rather than a legal-only sheet: email input is followed immediately by the small unchecked Terms／Privacy／electronic-record row, and every native or hosted-fallback method remains disabled until acceptance. Apple is native now; Google and Passkey code remain hidden behind complete external-configuration gates; email, recovery, complex MFA and exceptional challenges may use `login.rillora.xyz` without exposing Auth0 passwords to the App. Both surfaces retain the exact Terms, Privacy, consent-copy versions and normalized bundle SHA-256; registration acceptance contains no price, trial or auto-renewal authorization.
+
+The API rejects legacy GET login, missing／false／stale／wrong-digest proof and unknown evidence fields. Planner provisioning, append-only acceptance and Cookie／Bearer session commit in one transaction; any failure rolls back all three. Existing sessions without the current acceptance no longer authenticate. Web and iOS acceptances are de-duplicated separately. Account deletion removes the private map and direct identity links while retaining only a one-way identity digest, versions, bundle digest, surface and server time. Auth0 remains credential authority, but an Auth0 identity alone cannot bypass the Rillora session gate.
+
+Local evidence is Web `41 / 41` plus production build, iOS `102 passed / 0 failed / 1 skipped` plus Release build, API `103 / 103` and IaC `9 / 9`. No legal page, Auth0 Action, API revision or user acceptance has been publicly deployed.
+
+## Visual And Build Gate
+
+在创建正式Web/iOS代码前：
+
+1. 用同一用户任务和数据夹具提出三个清晰不同的产品/视觉方向；
+2. Owner明确选择或要求定向修改；
+3. 记录选择和“不意味着什么”；
+4. 再创建正式设计规范、共享语义和平台实现。

@@ -1,0 +1,2551 @@
+{
+ "Description": "Closed Rillora production data foundation and isolated recovery; no public traffic or billing",
+ "Resources": {
+  "Vpc8378EB38": {
+   "Type": "AWS::EC2::VPC",
+   "Properties": {
+    "CidrBlock": "10.43.0.0/16",
+    "EnableDnsHostnames": true,
+    "EnableDnsSupport": true,
+    "InstanceTenancy": "default",
+    "Tags": [
+     {
+      "Key": "CostCenter",
+      "Value": "Rillora"
+     },
+     {
+      "Key": "Environment",
+      "Value": "Production"
+     },
+     {
+      "Key": "Name",
+      "Value": "RilloraProduction/Vpc"
+     },
+     {
+      "Key": "Project",
+      "Value": "Rillora"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/Vpc/Resource"
+   }
+  },
+  "VpcmaintenanceSubnet1SubnetB36026C0": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "eu-central-1a",
+    "CidrBlock": "10.43.0.0/24",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "maintenance"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "CostCenter",
+      "Value": "Rillora"
+     },
+     {
+      "Key": "Environment",
+      "Value": "Production"
+     },
+     {
+      "Key": "Name",
+      "Value": "RilloraProduction/Vpc/maintenanceSubnet1"
+     },
+     {
+      "Key": "Project",
+      "Value": "Rillora"
+     }
+    ],
+    "VpcId": {
+     "Ref": "Vpc8378EB38"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/Vpc/maintenanceSubnet1/Subnet"
+   }
+  },
+  "VpcmaintenanceSubnet1RouteTable27EE9B07": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "CostCenter",
+      "Value": "Rillora"
+     },
+     {
+      "Key": "Environment",
+      "Value": "Production"
+     },
+     {
+      "Key": "Name",
+      "Value": "RilloraProduction/Vpc/maintenanceSubnet1"
+     },
+     {
+      "Key": "Project",
+      "Value": "Rillora"
+     }
+    ],
+    "VpcId": {
+     "Ref": "Vpc8378EB38"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/Vpc/maintenanceSubnet1/RouteTable"
+   }
+  },
+  "VpcmaintenanceSubnet1RouteTableAssociationCB237A6C": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "VpcmaintenanceSubnet1RouteTable27EE9B07"
+    },
+    "SubnetId": {
+     "Ref": "VpcmaintenanceSubnet1SubnetB36026C0"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/Vpc/maintenanceSubnet1/RouteTableAssociation"
+   }
+  },
+  "VpcmaintenanceSubnet1DefaultRouteE63C1BA8": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "VpcIGWD7BA715C"
+    },
+    "RouteTableId": {
+     "Ref": "VpcmaintenanceSubnet1RouteTable27EE9B07"
+    }
+   },
+   "DependsOn": [
+    "VpcVPCGWBF912B6E"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/Vpc/maintenanceSubnet1/DefaultRoute"
+   }
+  },
+  "VpcmaintenanceSubnet2Subnet5D5D514C": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "eu-central-1b",
+    "CidrBlock": "10.43.1.0/24",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "maintenance"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "CostCenter",
+      "Value": "Rillora"
+     },
+     {
+      "Key": "Environment",
+      "Value": "Production"
+     },
+     {
+      "Key": "Name",
+      "Value": "RilloraProduction/Vpc/maintenanceSubnet2"
+     },
+     {
+      "Key": "Project",
+      "Value": "Rillora"
+     }
+    ],
+    "VpcId": {
+     "Ref": "Vpc8378EB38"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/Vpc/maintenanceSubnet2/Subnet"
+   }
+  },
+  "VpcmaintenanceSubnet2RouteTableB7ABA37E": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "CostCenter",
+      "Value": "Rillora"
+     },
+     {
+      "Key": "Environment",
+      "Value": "Production"
+     },
+     {
+      "Key": "Name",
+      "Value": "RilloraProduction/Vpc/maintenanceSubnet2"
+     },
+     {
+      "Key": "Project",
+      "Value": "Rillora"
+     }
+    ],
+    "VpcId": {
+     "Ref": "Vpc8378EB38"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/Vpc/maintenanceSubnet2/RouteTable"
+   }
+  },
+  "VpcmaintenanceSubnet2RouteTableAssociation8F27BC7B": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "VpcmaintenanceSubnet2RouteTableB7ABA37E"
+    },
+    "SubnetId": {
+     "Ref": "VpcmaintenanceSubnet2Subnet5D5D514C"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/Vpc/maintenanceSubnet2/RouteTableAssociation"
+   }
+  },
+  "VpcmaintenanceSubnet2DefaultRoute77601CB0": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "VpcIGWD7BA715C"
+    },
+    "RouteTableId": {
+     "Ref": "VpcmaintenanceSubnet2RouteTableB7ABA37E"
+    }
+   },
+   "DependsOn": [
+    "VpcVPCGWBF912B6E"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/Vpc/maintenanceSubnet2/DefaultRoute"
+   }
+  },
+  "VpcdataSubnet1SubnetE2B009FB": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "eu-central-1a",
+    "CidrBlock": "10.43.2.0/24",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "data"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Isolated"
+     },
+     {
+      "Key": "CostCenter",
+      "Value": "Rillora"
+     },
+     {
+      "Key": "Environment",
+      "Value": "Production"
+     },
+     {
+      "Key": "Name",
+      "Value": "RilloraProduction/Vpc/dataSubnet1"
+     },
+     {
+      "Key": "Project",
+      "Value": "Rillora"
+     }
+    ],
+    "VpcId": {
+     "Ref": "Vpc8378EB38"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/Vpc/dataSubnet1/Subnet"
+   }
+  },
+  "VpcdataSubnet1RouteTableAF5F53E0": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "CostCenter",
+      "Value": "Rillora"
+     },
+     {
+      "Key": "Environment",
+      "Value": "Production"
+     },
+     {
+      "Key": "Name",
+      "Value": "RilloraProduction/Vpc/dataSubnet1"
+     },
+     {
+      "Key": "Project",
+      "Value": "Rillora"
+     }
+    ],
+    "VpcId": {
+     "Ref": "Vpc8378EB38"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/Vpc/dataSubnet1/RouteTable"
+   }
+  },
+  "VpcdataSubnet1RouteTableAssociation9E9FDBBB": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "VpcdataSubnet1RouteTableAF5F53E0"
+    },
+    "SubnetId": {
+     "Ref": "VpcdataSubnet1SubnetE2B009FB"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/Vpc/dataSubnet1/RouteTableAssociation"
+   }
+  },
+  "VpcdataSubnet2SubnetAD08DFFF": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "eu-central-1b",
+    "CidrBlock": "10.43.3.0/24",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "data"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Isolated"
+     },
+     {
+      "Key": "CostCenter",
+      "Value": "Rillora"
+     },
+     {
+      "Key": "Environment",
+      "Value": "Production"
+     },
+     {
+      "Key": "Name",
+      "Value": "RilloraProduction/Vpc/dataSubnet2"
+     },
+     {
+      "Key": "Project",
+      "Value": "Rillora"
+     }
+    ],
+    "VpcId": {
+     "Ref": "Vpc8378EB38"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/Vpc/dataSubnet2/Subnet"
+   }
+  },
+  "VpcdataSubnet2RouteTable94FA483A": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "CostCenter",
+      "Value": "Rillora"
+     },
+     {
+      "Key": "Environment",
+      "Value": "Production"
+     },
+     {
+      "Key": "Name",
+      "Value": "RilloraProduction/Vpc/dataSubnet2"
+     },
+     {
+      "Key": "Project",
+      "Value": "Rillora"
+     }
+    ],
+    "VpcId": {
+     "Ref": "Vpc8378EB38"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/Vpc/dataSubnet2/RouteTable"
+   }
+  },
+  "VpcdataSubnet2RouteTableAssociation6C8F2058": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "VpcdataSubnet2RouteTable94FA483A"
+    },
+    "SubnetId": {
+     "Ref": "VpcdataSubnet2SubnetAD08DFFF"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/Vpc/dataSubnet2/RouteTableAssociation"
+   }
+  },
+  "VpcIGWD7BA715C": {
+   "Type": "AWS::EC2::InternetGateway",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "CostCenter",
+      "Value": "Rillora"
+     },
+     {
+      "Key": "Environment",
+      "Value": "Production"
+     },
+     {
+      "Key": "Name",
+      "Value": "RilloraProduction/Vpc"
+     },
+     {
+      "Key": "Project",
+      "Value": "Rillora"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/Vpc/IGW"
+   }
+  },
+  "VpcVPCGWBF912B6E": {
+   "Type": "AWS::EC2::VPCGatewayAttachment",
+   "Properties": {
+    "InternetGatewayId": {
+     "Ref": "VpcIGWD7BA715C"
+    },
+    "VpcId": {
+     "Ref": "Vpc8378EB38"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/Vpc/VPCGW"
+   }
+  },
+  "MigrationNetworkC6D0992C": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "No inbound listener; bounded production migration jobs only",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "AWS HTTPS APIs and image/log delivery",
+      "FromPort": 443,
+      "IpProtocol": "tcp",
+      "ToPort": 443
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "CostCenter",
+      "Value": "Rillora"
+     },
+     {
+      "Key": "Environment",
+      "Value": "Production"
+     },
+     {
+      "Key": "Project",
+      "Value": "Rillora"
+     }
+    ],
+    "VpcId": {
+     "Ref": "Vpc8378EB38"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/MigrationNetwork/Resource"
+   }
+  },
+  "MigrationNetworktoRilloraProductionDatabaseNetwork7259A9385432FC3F4B4A": {
+   "Type": "AWS::EC2::SecurityGroupEgress",
+   "Properties": {
+    "Description": "Verified TLS to the production database",
+    "DestinationSecurityGroupId": {
+     "Fn::GetAtt": [
+      "DatabaseNetwork56A0AE36",
+      "GroupId"
+     ]
+    },
+    "FromPort": 5432,
+    "GroupId": {
+     "Fn::GetAtt": [
+      "MigrationNetworkC6D0992C",
+      "GroupId"
+     ]
+    },
+    "IpProtocol": "tcp",
+    "ToPort": 5432
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/MigrationNetwork/to RilloraProductionDatabaseNetwork7259A938:5432"
+   }
+  },
+  "RecoveryNetworkB16F29A5": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "No inbound listener; isolated restore probes cannot connect to live data",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "AWS HTTPS APIs and image/log delivery",
+      "FromPort": 443,
+      "IpProtocol": "tcp",
+      "ToPort": 443
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "CostCenter",
+      "Value": "Rillora"
+     },
+     {
+      "Key": "Environment",
+      "Value": "Production"
+     },
+     {
+      "Key": "Project",
+      "Value": "Rillora"
+     }
+    ],
+    "VpcId": {
+     "Ref": "Vpc8378EB38"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/RecoveryNetwork/Resource"
+   }
+  },
+  "RecoveryNetworktoRilloraProductionRecoveryDatabaseNetworkF58708D45432F33AFB80": {
+   "Type": "AWS::EC2::SecurityGroupEgress",
+   "Properties": {
+    "Description": "Verified TLS only to the recovery database",
+    "DestinationSecurityGroupId": {
+     "Fn::GetAtt": [
+      "RecoveryDatabaseNetworkBA72B18C",
+      "GroupId"
+     ]
+    },
+    "FromPort": 5432,
+    "GroupId": {
+     "Fn::GetAtt": [
+      "RecoveryNetworkB16F29A5",
+      "GroupId"
+     ]
+    },
+    "IpProtocol": "tcp",
+    "ToPort": 5432
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/RecoveryNetwork/to RilloraProductionRecoveryDatabaseNetworkF58708D4:5432"
+   }
+  },
+  "DatabaseNetwork56A0AE36": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "RilloraProduction/DatabaseNetwork",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "255.255.255.255/32",
+      "Description": "Disallow all traffic",
+      "FromPort": 252,
+      "IpProtocol": "icmp",
+      "ToPort": 86
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "CostCenter",
+      "Value": "Rillora"
+     },
+     {
+      "Key": "Environment",
+      "Value": "Production"
+     },
+     {
+      "Key": "Project",
+      "Value": "Rillora"
+     }
+    ],
+    "VpcId": {
+     "Ref": "Vpc8378EB38"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/DatabaseNetwork/Resource"
+   }
+  },
+  "DatabaseNetworkfromRilloraProductionMigrationNetwork7A688B2D54325AC54DEE": {
+   "Type": "AWS::EC2::SecurityGroupIngress",
+   "Properties": {
+    "Description": "Only production migration jobs at this closed foundation stage",
+    "FromPort": 5432,
+    "GroupId": {
+     "Fn::GetAtt": [
+      "DatabaseNetwork56A0AE36",
+      "GroupId"
+     ]
+    },
+    "IpProtocol": "tcp",
+    "SourceSecurityGroupId": {
+     "Fn::GetAtt": [
+      "MigrationNetworkC6D0992C",
+      "GroupId"
+     ]
+    },
+    "ToPort": 5432
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/DatabaseNetwork/from RilloraProductionMigrationNetwork7A688B2D:5432"
+   }
+  },
+  "RecoveryDatabaseNetworkBA72B18C": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "RilloraProduction/RecoveryDatabaseNetwork",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "255.255.255.255/32",
+      "Description": "Disallow all traffic",
+      "FromPort": 252,
+      "IpProtocol": "icmp",
+      "ToPort": 86
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "CostCenter",
+      "Value": "Rillora"
+     },
+     {
+      "Key": "Environment",
+      "Value": "Production"
+     },
+     {
+      "Key": "Project",
+      "Value": "Rillora"
+     }
+    ],
+    "VpcId": {
+     "Ref": "Vpc8378EB38"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/RecoveryDatabaseNetwork/Resource"
+   }
+  },
+  "RecoveryDatabaseNetworkfromRilloraProductionRecoveryNetwork6C044D5754321B52D8EF": {
+   "Type": "AWS::EC2::SecurityGroupIngress",
+   "Properties": {
+    "Description": "Only isolated restore probes",
+    "FromPort": 5432,
+    "GroupId": {
+     "Fn::GetAtt": [
+      "RecoveryDatabaseNetworkBA72B18C",
+      "GroupId"
+     ]
+    },
+    "IpProtocol": "tcp",
+    "SourceSecurityGroupId": {
+     "Fn::GetAtt": [
+      "RecoveryNetworkB16F29A5",
+      "GroupId"
+     ]
+    },
+    "ToPort": 5432
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/RecoveryDatabaseNetwork/from RilloraProductionRecoveryNetwork6C044D57:5432"
+   }
+  },
+  "PostgresParameters8EA48B37": {
+   "Type": "AWS::RDS::DBParameterGroup",
+   "Properties": {
+    "Description": "Parameter group for postgres16",
+    "Family": "postgres16",
+    "Parameters": {
+     "rds.force_ssl": "1",
+     "password_encryption": "scram-sha-256",
+     "log_statement": "none"
+    },
+    "Tags": [
+     {
+      "Key": "CostCenter",
+      "Value": "Rillora"
+     },
+     {
+      "Key": "Environment",
+      "Value": "Production"
+     },
+     {
+      "Key": "Project",
+      "Value": "Rillora"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/PostgresParameters/Resource"
+   }
+  },
+  "DatabaseSubnets": {
+   "Type": "AWS::RDS::DBSubnetGroup",
+   "Properties": {
+    "DBSubnetGroupDescription": "Only isolated subnets for production and quarantined restores",
+    "SubnetIds": [
+     {
+      "Ref": "VpcdataSubnet1SubnetE2B009FB"
+     },
+     {
+      "Ref": "VpcdataSubnet2SubnetAD08DFFF"
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "CostCenter",
+      "Value": "Rillora"
+     },
+     {
+      "Key": "Environment",
+      "Value": "Production"
+     },
+     {
+      "Key": "Project",
+      "Value": "Rillora"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/DatabaseSubnets/Default"
+   }
+  },
+  "RilloraProductionDatabaseSecret2EDA0381145d7587a81d8eb10deb319f17c60255": {
+   "Type": "AWS::SecretsManager::Secret",
+   "Properties": {
+    "Description": {
+     "Fn::Join": [
+      "",
+      [
+       "Generated by the CDK for stack: ",
+       {
+        "Ref": "AWS::StackName"
+       }
+      ]
+     ]
+    },
+    "GenerateSecretString": {
+     "ExcludeCharacters": " @/\\\"'`",
+     "GenerateStringKey": "password",
+     "PasswordLength": 30,
+     "SecretStringTemplate": "{\"username\":\"continuity_admin\"}"
+    },
+    "Tags": [
+     {
+      "Key": "CostCenter",
+      "Value": "Rillora"
+     },
+     {
+      "Key": "Environment",
+      "Value": "Production"
+     },
+     {
+      "Key": "Project",
+      "Value": "Rillora"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/Database/Secret/Resource"
+   }
+  },
+  "DatabaseSecretAttachmentE5D1B020": {
+   "Type": "AWS::SecretsManager::SecretTargetAttachment",
+   "Properties": {
+    "SecretId": {
+     "Ref": "RilloraProductionDatabaseSecret2EDA0381145d7587a81d8eb10deb319f17c60255"
+    },
+    "TargetId": {
+     "Ref": "DatabaseB269D8BB"
+    },
+    "TargetType": "AWS::RDS::DBInstance"
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/Database/Secret/Attachment/Resource"
+   }
+  },
+  "DatabaseB269D8BB": {
+   "Type": "AWS::RDS::DBInstance",
+   "Properties": {
+    "AllocatedStorage": "20",
+    "BackupRetentionPeriod": 7,
+    "CopyTagsToSnapshot": true,
+    "DBInstanceClass": "db.t4g.micro",
+    "DBInstanceIdentifier": "rillora-production",
+    "DBName": "rillora",
+    "DBParameterGroupName": {
+     "Ref": "PostgresParameters8EA48B37"
+    },
+    "DBSubnetGroupName": {
+     "Ref": "DatabaseSubnets"
+    },
+    "DeleteAutomatedBackups": false,
+    "DeletionProtection": true,
+    "EnableCloudwatchLogsExports": [
+     "postgresql"
+    ],
+    "Engine": "postgres",
+    "EngineLifecycleSupport": "open-source-rds-extended-support-disabled",
+    "EngineVersion": "16.13",
+    "MasterUserPassword": {
+     "Fn::Join": [
+      "",
+      [
+       "{{resolve:secretsmanager:",
+       {
+        "Ref": "RilloraProductionDatabaseSecret2EDA0381145d7587a81d8eb10deb319f17c60255"
+       },
+       ":SecretString:password::}}"
+      ]
+     ]
+    },
+    "MasterUsername": "continuity_admin",
+    "MultiAZ": false,
+    "PubliclyAccessible": false,
+    "StorageEncrypted": true,
+    "StorageType": "gp3",
+    "Tags": [
+     {
+      "Key": "CostCenter",
+      "Value": "Rillora"
+     },
+     {
+      "Key": "Environment",
+      "Value": "Production"
+     },
+     {
+      "Key": "Project",
+      "Value": "Rillora"
+     }
+    ],
+    "VPCSecurityGroups": [
+     {
+      "Fn::GetAtt": [
+       "DatabaseNetwork56A0AE36",
+       "GroupId"
+      ]
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/Database/Resource"
+   }
+  },
+  "DatabaseLogRetentionpostgresqlFBE8A947": {
+   "Type": "Custom::LogRetention",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A",
+      "Arn"
+     ]
+    },
+    "LogGroupName": {
+     "Fn::Join": [
+      "",
+      [
+       "/aws/rds/instance/",
+       {
+        "Ref": "DatabaseB269D8BB"
+       },
+       "/postgresql"
+      ]
+     ]
+    },
+    "RetentionInDays": 30
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/Database/LogRetentionpostgresql/Resource"
+   }
+  },
+  "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "CostCenter",
+      "Value": "Rillora"
+     },
+     {
+      "Key": "Environment",
+      "Value": "Production"
+     },
+     {
+      "Key": "Project",
+      "Value": "Rillora"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/Resource"
+   }
+  },
+  "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "logs:PutRetentionPolicy",
+        "logs:DeleteRetentionPolicy"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB",
+    "Roles": [
+     {
+      "Ref": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Handler": "index.handler",
+    "Runtime": "nodejs24.x",
+    "Timeout": 900,
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-133857166372-eu-central-1",
+     "S3Key": "[REDACTED_SCANNER_LITERAL]"
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB",
+      "Arn"
+     ]
+    },
+    "Tags": [
+     {
+      "Key": "CostCenter",
+      "Value": "Rillora"
+     },
+     {
+      "Key": "Environment",
+      "Value": "Production"
+     },
+     {
+      "Key": "Project",
+      "Value": "Rillora"
+     }
+    ]
+   },
+   "DependsOn": [
+    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB",
+    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Resource",
+    "aws:asset:path": "asset.2819175352ad1ce0dae768e83fc328fb70fb5f10b4a8ff0ccbcb791f02b0716d",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "RuntimeCredential871C86BA": {
+   "Type": "AWS::SecretsManager::Secret",
+   "Properties": {
+    "Description": "Production runtime credential; independent of staging and migration identity",
+    "GenerateSecretString": {
+     "ExcludeCharacters": " @/\\\"'`",
+     "GenerateStringKey": "password",
+     "PasswordLength": 48,
+     "SecretStringTemplate": "{\"username\":\"continuity_runtime_production\"}"
+    },
+    "Tags": [
+     {
+      "Key": "CostCenter",
+      "Value": "Rillora"
+     },
+     {
+      "Key": "Environment",
+      "Value": "Production"
+     },
+     {
+      "Key": "Project",
+      "Value": "Rillora"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/RuntimeCredential/Resource"
+   }
+  },
+  "ContentKey78A057A4": {
+   "Type": "AWS::KMS::Key",
+   "Properties": {
+    "Description": "Rillora production private-content wrapping key",
+    "EnableKeyRotation": true,
+    "KeyPolicy": {
+     "Statement": [
+      {
+       "Action": "kms:*",
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":iam::133857166372:root"
+          ]
+         ]
+        }
+       },
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PendingWindowInDays": 30,
+    "Tags": [
+     {
+      "Key": "CostCenter",
+      "Value": "Rillora"
+     },
+     {
+      "Key": "Environment",
+      "Value": "Production"
+     },
+     {
+      "Key": "Project",
+      "Value": "Rillora"
+     }
+    ]
+   },
+   "DependsOn": [
+    "DatabaseLogRetentionpostgresqlFBE8A947",
+    "DatabaseB269D8BB",
+    "DatabaseSecretAttachmentE5D1B020",
+    "RilloraProductionDatabaseSecret2EDA0381145d7587a81d8eb10deb319f17c60255"
+   ],
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/ContentKey/Resource"
+   }
+  },
+  "RecoveryJournal06BB91CD": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "pk",
+      "AttributeType": "S"
+     },
+     {
+      "AttributeName": "sk",
+      "AttributeType": "S"
+     }
+    ],
+    "BillingMode": "PAY_PER_REQUEST",
+    "DeletionProtectionEnabled": true,
+    "KeySchema": [
+     {
+      "AttributeName": "pk",
+      "KeyType": "HASH"
+     },
+     {
+      "AttributeName": "sk",
+      "KeyType": "RANGE"
+     }
+    ],
+    "PointInTimeRecoverySpecification": {
+     "PointInTimeRecoveryEnabled": true,
+     "RecoveryPeriodInDays": 35
+    },
+    "SSESpecification": {
+     "SSEEnabled": true
+    },
+    "Tags": [
+     {
+      "Key": "CostCenter",
+      "Value": "Rillora"
+     },
+     {
+      "Key": "Environment",
+      "Value": "Production"
+     },
+     {
+      "Key": "Project",
+      "Value": "Rillora"
+     }
+    ],
+    "TimeToLiveSpecification": {
+     "AttributeName": "expiresAt",
+     "Enabled": true
+    }
+   },
+   "DependsOn": [
+    "DatabaseLogRetentionpostgresqlFBE8A947",
+    "DatabaseB269D8BB",
+    "DatabaseSecretAttachmentE5D1B020",
+    "RilloraProductionDatabaseSecret2EDA0381145d7587a81d8eb10deb319f17c60255"
+   ],
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/RecoveryJournal/Resource"
+   }
+  },
+  "ClusterEB0386A7": {
+   "Type": "AWS::ECS::Cluster",
+   "Properties": {
+    "ClusterSettings": [
+     {
+      "Name": "containerInsights",
+      "Value": "enabled"
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "CostCenter",
+      "Value": "Rillora"
+     },
+     {
+      "Key": "Environment",
+      "Value": "Production"
+     },
+     {
+      "Key": "Project",
+      "Value": "Rillora"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/Cluster/Resource"
+   }
+  },
+  "MaintenanceLogs61C6A99C": {
+   "Type": "AWS::Logs::LogGroup",
+   "Properties": {
+    "RetentionInDays": 30,
+    "Tags": [
+     {
+      "Key": "CostCenter",
+      "Value": "Rillora"
+     },
+     {
+      "Key": "Environment",
+      "Value": "Production"
+     },
+     {
+      "Key": "Project",
+      "Value": "Rillora"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/MaintenanceLogs/Resource"
+   }
+  },
+  "MigrationTaskTaskRole9CC4695E": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "ecs-tasks.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Tags": [
+     {
+      "Key": "CostCenter",
+      "Value": "Rillora"
+     },
+     {
+      "Key": "Environment",
+      "Value": "Production"
+     },
+     {
+      "Key": "Project",
+      "Value": "Rillora"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/MigrationTask/TaskRole/Resource"
+   }
+  },
+  "MigrationTaskTaskRoleDefaultPolicy0155D82C": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "kms:GenerateDataKey",
+        "kms:Decrypt"
+       ],
+       "Condition": {
+        "StringEquals": {
+         "kms:EncryptionContext:rillora_application": "content-v1",
+         "kms:EncryptionContext:rillora_environment": "rillora-production"
+        },
+        "Null": {
+         "kms:EncryptionContext:owner_id": "false",
+         "kms:EncryptionContext:key_id": "false"
+        }
+       },
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "ContentKey78A057A4",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "dynamodb:GetItem",
+        "dynamodb:PutItem",
+        "dynamodb:Query",
+        "dynamodb:Scan"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "RecoveryJournal06BB91CD",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "MigrationTaskTaskRoleDefaultPolicy0155D82C",
+    "Roles": [
+     {
+      "Ref": "MigrationTaskTaskRole9CC4695E"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/MigrationTask/TaskRole/DefaultPolicy/Resource"
+   }
+  },
+  "MigrationTask69EAEF9D": {
+   "Type": "AWS::ECS::TaskDefinition",
+   "Properties": {
+    "ContainerDefinitions": [
+     {
+      "Command": [
+       "/bin/sh",
+       "-c",
+       "node dist/migrate.js && node dist/bootstrap-runtime.js && node dist/migrate-private-content.js --enforce"
+      ],
+      "Environment": [
+       {
+        "Name": "NODE_ENV",
+        "Value": "production"
+       },
+       {
+        "Name": "DATA_REGION",
+        "Value": "eu-central-1"
+       },
+       {
+        "Name": "DATABASE_PORT",
+        "Value": "5432"
+       },
+       {
+        "Name": "DATABASE_NAME",
+        "Value": "rillora"
+       },
+       {
+        "Name": "DATABASE_SSL_MODE",
+        "Value": "verify-full"
+       },
+       {
+        "Name": "DATABASE_SSL_CA_PATH",
+        "Value": "/app/certs/rds-global-bundle.pem"
+       },
+       {
+        "Name": "CONTENT_PROTECTION_MODE",
+        "Value": "encrypted"
+       },
+       {
+        "Name": "CONTENT_KMS_KEY_ARN",
+        "Value": {
+         "Fn::GetAtt": [
+          "ContentKey78A057A4",
+          "Arn"
+         ]
+        }
+       },
+       {
+        "Name": "CONTENT_KEY_NAMESPACE",
+        "Value": "rillora-production"
+       },
+       {
+        "Name": "RECOVERY_JOURNAL_TABLE",
+        "Value": {
+         "Ref": "RecoveryJournal06BB91CD"
+        }
+       },
+       {
+        "Name": "RECOVERY_ENVIRONMENT",
+        "Value": "production"
+       },
+       {
+        "Name": "DATABASE_HOST",
+        "Value": {
+         "Fn::GetAtt": [
+          "DatabaseB269D8BB",
+          "Endpoint.Address"
+         ]
+        }
+       }
+      ],
+      "Essential": true,
+      "Image": {
+       "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:888c905beea51ad79c5d221eee131777cdf97cdceb3d09a985729ef2564077e2"
+      },
+      "LogConfiguration": {
+       "LogDriver": "awslogs",
+       "Options": {
+        "awslogs-group": {
+         "Ref": "MaintenanceLogs61C6A99C"
+        },
+        "awslogs-stream-prefix": "migration",
+        "awslogs-region": "eu-central-1"
+       }
+      },
+      "Name": "Maintenance",
+      "Secrets": [
+       {
+        "Name": "DATABASE_USER",
+        "ValueFrom": {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "DatabaseSecretAttachmentE5D1B020"
+           },
+           ":username::"
+          ]
+         ]
+        }
+       },
+       {
+        "Name": "DATABASE_PASSWORD",
+        "ValueFrom": {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "DatabaseSecretAttachmentE5D1B020"
+           },
+           ":password::"
+          ]
+         ]
+        }
+       },
+       {
+        "Name": "RUNTIME_DATABASE_USER",
+        "ValueFrom": {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "RuntimeCredential871C86BA"
+           },
+           ":username::"
+          ]
+         ]
+        }
+       },
+       {
+        "Name": "RUNTIME_DATABASE_PASSWORD",
+        "ValueFrom": {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "RuntimeCredential871C86BA"
+           },
+           ":password::"
+          ]
+         ]
+        }
+       }
+      ]
+     }
+    ],
+    "Cpu": "256",
+    "ExecutionRoleArn": {
+     "Fn::GetAtt": [
+      "MigrationTaskExecutionRole54576998",
+      "Arn"
+     ]
+    },
+    "Family": "RilloraProductionMigrationTask3A96A2B6",
+    "Memory": "512",
+    "NetworkMode": "awsvpc",
+    "RequiresCompatibilities": [
+     "FARGATE"
+    ],
+    "RuntimePlatform": {
+     "CpuArchitecture": "ARM64",
+     "OperatingSystemFamily": "LINUX"
+    },
+    "Tags": [
+     {
+      "Key": "CostCenter",
+      "Value": "Rillora"
+     },
+     {
+      "Key": "Environment",
+      "Value": "Production"
+     },
+     {
+      "Key": "Project",
+      "Value": "Rillora"
+     }
+    ],
+    "TaskRoleArn": {
+     "Fn::GetAtt": [
+      "MigrationTaskTaskRole9CC4695E",
+      "Arn"
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/MigrationTask/Resource"
+   }
+  },
+  "MigrationTaskExecutionRole54576998": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "ecs-tasks.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Tags": [
+     {
+      "Key": "CostCenter",
+      "Value": "Rillora"
+     },
+     {
+      "Key": "Environment",
+      "Value": "Production"
+     },
+     {
+      "Key": "Project",
+      "Value": "Rillora"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/MigrationTask/ExecutionRole/Resource"
+   }
+  },
+  "MigrationTaskExecutionRoleDefaultPolicy91A4C2FE": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:GetDownloadUrlForLayer",
+        "ecr:BatchGetImage"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":ecr:eu-central-1:133857166372:repository/cdk-hnb659fds-container-assets-133857166372-eu-central-1"
+         ]
+        ]
+       }
+      },
+      {
+       "Action": "ecr:GetAuthorizationToken",
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "MaintenanceLogs61C6A99C",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "secretsmanager:GetSecretValue",
+        "secretsmanager:DescribeSecret"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Ref": "DatabaseSecretAttachmentE5D1B020"
+       }
+      },
+      {
+       "Action": [
+        "secretsmanager:GetSecretValue",
+        "secretsmanager:DescribeSecret"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Ref": "RuntimeCredential871C86BA"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "MigrationTaskExecutionRoleDefaultPolicy91A4C2FE",
+    "Roles": [
+     {
+      "Ref": "MigrationTaskExecutionRole54576998"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/MigrationTask/ExecutionRole/DefaultPolicy/Resource"
+   }
+  },
+  "RecoveryTaskTaskRole7CAA29D4": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "ecs-tasks.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Tags": [
+     {
+      "Key": "CostCenter",
+      "Value": "Rillora"
+     },
+     {
+      "Key": "Environment",
+      "Value": "Production"
+     },
+     {
+      "Key": "Project",
+      "Value": "Rillora"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/RecoveryTask/TaskRole/Resource"
+   }
+  },
+  "RecoveryTaskTaskRoleDefaultPolicy6EC2C93F": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "kms:Decrypt",
+       "Condition": {
+        "StringEquals": {
+         "kms:EncryptionContext:rillora_application": "content-v1",
+         "kms:EncryptionContext:rillora_environment": "rillora-production"
+        },
+        "Null": {
+         "kms:EncryptionContext:owner_id": "false",
+         "kms:EncryptionContext:key_id": "false"
+        }
+       },
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "ContentKey78A057A4",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "dynamodb:GetItem",
+        "dynamodb:Query",
+        "dynamodb:Scan"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "RecoveryJournal06BB91CD",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "RecoveryTaskTaskRoleDefaultPolicy6EC2C93F",
+    "Roles": [
+     {
+      "Ref": "RecoveryTaskTaskRole7CAA29D4"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/RecoveryTask/TaskRole/DefaultPolicy/Resource"
+   }
+  },
+  "RecoveryTaskD940248B": {
+   "Type": "AWS::ECS::TaskDefinition",
+   "Properties": {
+    "ContainerDefinitions": [
+     {
+      "Command": [
+       "node",
+       "-e",
+       "process.stderr.write('Explicit isolated recovery operation is required\\n');process.exit(1)"
+      ],
+      "Environment": [
+       {
+        "Name": "NODE_ENV",
+        "Value": "production"
+       },
+       {
+        "Name": "DATA_REGION",
+        "Value": "eu-central-1"
+       },
+       {
+        "Name": "DATABASE_PORT",
+        "Value": "5432"
+       },
+       {
+        "Name": "DATABASE_NAME",
+        "Value": "rillora"
+       },
+       {
+        "Name": "DATABASE_SSL_MODE",
+        "Value": "verify-full"
+       },
+       {
+        "Name": "DATABASE_SSL_CA_PATH",
+        "Value": "/app/certs/rds-global-bundle.pem"
+       },
+       {
+        "Name": "CONTENT_PROTECTION_MODE",
+        "Value": "encrypted"
+       },
+       {
+        "Name": "CONTENT_KMS_KEY_ARN",
+        "Value": {
+         "Fn::GetAtt": [
+          "ContentKey78A057A4",
+          "Arn"
+         ]
+        }
+       },
+       {
+        "Name": "CONTENT_KEY_NAMESPACE",
+        "Value": "rillora-production"
+       },
+       {
+        "Name": "RECOVERY_JOURNAL_TABLE",
+        "Value": {
+         "Ref": "RecoveryJournal06BB91CD"
+        }
+       },
+       {
+        "Name": "RECOVERY_ENVIRONMENT",
+        "Value": "production"
+       }
+      ],
+      "Essential": true,
+      "Image": {
+       "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:888c905beea51ad79c5d221eee131777cdf97cdceb3d09a985729ef2564077e2"
+      },
+      "LogConfiguration": {
+       "LogDriver": "awslogs",
+       "Options": {
+        "awslogs-group": {
+         "Ref": "MaintenanceLogs61C6A99C"
+        },
+        "awslogs-stream-prefix": "recovery",
+        "awslogs-region": "eu-central-1"
+       }
+      },
+      "Name": "Maintenance",
+      "Secrets": [
+       {
+        "Name": "DATABASE_USER",
+        "ValueFrom": {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "DatabaseSecretAttachmentE5D1B020"
+           },
+           ":username::"
+          ]
+         ]
+        }
+       },
+       {
+        "Name": "DATABASE_PASSWORD",
+        "ValueFrom": {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "DatabaseSecretAttachmentE5D1B020"
+           },
+           ":password::"
+          ]
+         ]
+        }
+       }
+      ]
+     }
+    ],
+    "Cpu": "256",
+    "ExecutionRoleArn": {
+     "Fn::GetAtt": [
+      "RecoveryTaskExecutionRoleE7A0DE57",
+      "Arn"
+     ]
+    },
+    "Family": "RilloraProductionRecoveryTask4FA4E62D",
+    "Memory": "512",
+    "NetworkMode": "awsvpc",
+    "RequiresCompatibilities": [
+     "FARGATE"
+    ],
+    "RuntimePlatform": {
+     "CpuArchitecture": "ARM64",
+     "OperatingSystemFamily": "LINUX"
+    },
+    "Tags": [
+     {
+      "Key": "CostCenter",
+      "Value": "Rillora"
+     },
+     {
+      "Key": "Environment",
+      "Value": "Production"
+     },
+     {
+      "Key": "Project",
+      "Value": "Rillora"
+     }
+    ],
+    "TaskRoleArn": {
+     "Fn::GetAtt": [
+      "RecoveryTaskTaskRole7CAA29D4",
+      "Arn"
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/RecoveryTask/Resource"
+   }
+  },
+  "RecoveryTaskExecutionRoleE7A0DE57": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "ecs-tasks.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Tags": [
+     {
+      "Key": "CostCenter",
+      "Value": "Rillora"
+     },
+     {
+      "Key": "Environment",
+      "Value": "Production"
+     },
+     {
+      "Key": "Project",
+      "Value": "Rillora"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/RecoveryTask/ExecutionRole/Resource"
+   }
+  },
+  "RecoveryTaskExecutionRoleDefaultPolicyAB82B7C9": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:GetDownloadUrlForLayer",
+        "ecr:BatchGetImage"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":ecr:eu-central-1:133857166372:repository/cdk-hnb659fds-container-assets-133857166372-eu-central-1"
+         ]
+        ]
+       }
+      },
+      {
+       "Action": "ecr:GetAuthorizationToken",
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "MaintenanceLogs61C6A99C",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "secretsmanager:GetSecretValue",
+        "secretsmanager:DescribeSecret"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Ref": "DatabaseSecretAttachmentE5D1B020"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "RecoveryTaskExecutionRoleDefaultPolicyAB82B7C9",
+    "Roles": [
+     {
+      "Ref": "RecoveryTaskExecutionRoleE7A0DE57"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/RecoveryTask/ExecutionRole/DefaultPolicy/Resource"
+   }
+  },
+  "Operator41AE602D": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Condition": {
+        "Bool": {
+         "aws:MultiFactorAuthPresent": "true"
+        }
+       },
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":iam::",
+           {
+            "Ref": "AWS::AccountId"
+           },
+           ":user/rillora/rillora-operator"
+          ]
+         ]
+        }
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "MaxSessionDuration": 3600,
+    "Path": "/rillora/",
+    "RoleName": "rillora-production-operator",
+    "Tags": [
+     {
+      "Key": "CostCenter",
+      "Value": "Rillora"
+     },
+     {
+      "Key": "Environment",
+      "Value": "Production"
+     },
+     {
+      "Key": "Project",
+      "Value": "Rillora"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/Operator/Resource"
+   }
+  },
+  "OperatorDefaultPolicyA84BD3A6": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "ecs:RunTask",
+       "Condition": {
+        "ArnEquals": {
+         "ecs:cluster": {
+          "Fn::GetAtt": [
+           "ClusterEB0386A7",
+           "Arn"
+          ]
+         }
+        }
+       },
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "MigrationTask69EAEF9D"
+        },
+        {
+         "Ref": "RecoveryTaskD940248B"
+        }
+       ]
+      },
+      {
+       "Action": "iam:PassRole",
+       "Condition": {
+        "StringEquals": {
+         "iam:PassedToService": "ecs-tasks.amazonaws.com"
+        }
+       },
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "MigrationTaskTaskRole9CC4695E",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::GetAtt": [
+          "MigrationTaskExecutionRole54576998",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::GetAtt": [
+          "RecoveryTaskTaskRole7CAA29D4",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::GetAtt": [
+          "RecoveryTaskExecutionRoleE7A0DE57",
+          "Arn"
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "ecs:DescribeTasks",
+        "ecs:StopTask"
+       ],
+       "Condition": {
+        "ArnEquals": {
+         "ecs:cluster": {
+          "Fn::GetAtt": [
+           "ClusterEB0386A7",
+           "Arn"
+          ]
+         }
+        }
+       },
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "ecs:DescribeTaskDefinition",
+        "rds:DescribeDBInstances",
+        "rds:DescribeDBSnapshots"
+       ],
+       "Condition": {
+        "StringEquals": {
+         "aws:RequestedRegion": "eu-central-1"
+        }
+       },
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "logs:GetLogEvents",
+        "logs:DescribeLogStreams"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "MaintenanceLogs61C6A99C",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "MaintenanceLogs61C6A99C",
+             "Arn"
+            ]
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "rds:CreateDBSnapshot",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":rds:eu-central-1:133857166372:db:",
+           {
+            "Ref": "DatabaseB269D8BB"
+           }
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":rds:eu-central-1:133857166372:snapshot:rillora-production-recovery-*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "rds:RestoreDBInstanceFromDBSnapshot",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":rds:eu-central-1:133857166372:snapshot:rillora-production-recovery-*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":rds:eu-central-1:133857166372:pg:",
+           {
+            "Ref": "PostgresParameters8EA48B37"
+           }
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":rds:eu-central-1:133857166372:subgrp:",
+           {
+            "Ref": "DatabaseSubnets"
+           }
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":rds:eu-central-1:133857166372:og:default:postgres-16"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "rds:RestoreDBInstanceFromDBSnapshot",
+       "Condition": {
+        "StringEquals": {
+         "aws:RequestTag/Project": "Rillora",
+         "aws:RequestTag/Environment": "RecoveryDrill",
+         "rds:DatabaseClass": "db.t4g.micro"
+        },
+        "Bool": {
+         "rds:PubliclyAccessible": "false"
+        }
+       },
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":rds:eu-central-1:133857166372:db:rillora-recovery-*"
+         ]
+        ]
+       }
+      },
+      {
+       "Action": "rds:AddTagsToResource",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":rds:eu-central-1:133857166372:snapshot:rillora-production-recovery-*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":rds:eu-central-1:133857166372:db:rillora-recovery-*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "rds:DeleteDBInstance",
+       "Condition": {
+        "StringEquals": {
+         "aws:ResourceTag/Environment": "RecoveryDrill"
+        }
+       },
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":rds:eu-central-1:133857166372:db:rillora-recovery-*"
+         ]
+        ]
+       }
+      },
+      {
+       "Action": "rds:DeleteDBSnapshot",
+       "Condition": {
+        "StringEquals": {
+         "aws:ResourceTag/Environment": "RecoveryDrill"
+        }
+       },
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":rds:eu-central-1:133857166372:snapshot:rillora-production-recovery-*"
+         ]
+        ]
+       }
+      },
+      {
+       "Action": "cloudformation:DescribeStacks",
+       "Effect": "Allow",
+       "Resource": {
+        "Ref": "AWS::StackId"
+       }
+      },
+      {
+       "Action": [
+        "kms:DescribeKey",
+        "kms:GetKeyRotationStatus"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "ContentKey78A057A4",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "OperatorDefaultPolicyA84BD3A6",
+    "Roles": [
+     {
+      "Ref": "Operator41AE602D"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/Operator/DefaultPolicy/Resource"
+   }
+  },
+  "AssumeProductionOperatorB069B9BD": {
+   "Type": "AWS::IAM::ManagedPolicy",
+   "Properties": {
+    "Description": "",
+    "Path": "/",
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Condition": {
+        "Bool": {
+         "aws:MultiFactorAuthPresent": "true"
+        }
+       },
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "Operator41AE602D",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Users": [
+     "rillora-operator"
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/AssumeProductionOperator/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/32TYWvbMBCGf0u/K9pwod+TeCthKzVO6ddylq+ealsKOqklGP/3naXYzloYGO703KF7X0nOZHZ3J7/fwAdtVN1uOl3J4ehBtYLRy4Aqk8PzSYn9q3ku9qIIVafVMVQG/cTWrLTB4xNUHa58ZVsiqzR4bc3SLAqn38HjusfBeHSc3zP9gPNl6GW19SzrT4/GiyOq4LQ/3zsbTnHcf8GPxiHRF3wwkY/C1SSHAhz0yPOXPfLdJ5aEXtWvQQ4eKiA8GPJgFC6AZ7pkL9/NxVFQpNSDgQadHJK4qTGFJ3AN+ivPS8OXSsKj6GzDPn7bpmTJJh41Lxa5c86zb1+AiKfL7RR4LXdBteh3LFdo6OVQ2nSPMRaW7zzexiV7iKrrlf8DRtH2LOQXxhKHUdRnA72t+W0tLyQmo0DFrfsuEJ/yhOf0J7uE6fFQm+OrNnp+Op+JNR60QbeyaVM3O8wtG3OHnuUls1yTJZ4saW/deXI8ihLJBqeS4zmP7fwrNNo0U+Ex+FPgYza2RvlG396zTPJ3e/NGWm9c4BPvUZYp/gV5YCSnWAMAAA=="
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProduction/CDKMetadata/Default"
+   }
+  }
+ },
+ "Outputs": {
+  "ProductionVpcId": {
+   "Value": {
+    "Ref": "Vpc8378EB38"
+   }
+  },
+  "DatabaseSecurityGroupId": {
+   "Value": {
+    "Fn::GetAtt": [
+     "DatabaseNetwork56A0AE36",
+     "GroupId"
+    ]
+   }
+  },
+  "DatabaseIdentifier": {
+   "Value": {
+    "Ref": "DatabaseB269D8BB"
+   }
+  },
+  "DatabaseHost": {
+   "Value": {
+    "Fn::GetAtt": [
+     "DatabaseB269D8BB",
+     "Endpoint.Address"
+    ]
+   }
+  },
+  "DatabaseSubnetGroup": {
+   "Value": {
+    "Ref": "DatabaseSubnets"
+   }
+  },
+  "DatabaseParameterGroup": {
+   "Value": {
+    "Ref": "PostgresParameters8EA48B37"
+   }
+  },
+  "ClusterName": {
+   "Value": {
+    "Ref": "ClusterEB0386A7"
+   }
+  },
+  "MaintenanceSubnetIds": {
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      {
+       "Ref": "VpcmaintenanceSubnet1SubnetB36026C0"
+      },
+      ",",
+      {
+       "Ref": "VpcmaintenanceSubnet2Subnet5D5D514C"
+      }
+     ]
+    ]
+   }
+  },
+  "MigrationSecurityGroupId": {
+   "Value": {
+    "Fn::GetAtt": [
+     "MigrationNetworkC6D0992C",
+     "GroupId"
+    ]
+   }
+  },
+  "RecoverySecurityGroupId": {
+   "Value": {
+    "Fn::GetAtt": [
+     "RecoveryNetworkB16F29A5",
+     "GroupId"
+    ]
+   }
+  },
+  "RecoveryDatabaseSecurityGroupId": {
+   "Value": {
+    "Fn::GetAtt": [
+     "RecoveryDatabaseNetworkBA72B18C",
+     "GroupId"
+    ]
+   }
+  },
+  "MigrationTaskDefinitionArn": {
+   "Value": {
+    "Ref": "MigrationTask69EAEF9D"
+   }
+  },
+  "RecoveryTaskDefinitionArn": {
+   "Value": {
+    "Ref": "RecoveryTaskD940248B"
+   }
+  },
+  "MaintenanceLogGroup": {
+   "Value": {
+    "Ref": "MaintenanceLogs61C6A99C"
+   }
+  },
+  "ContentKeyArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "ContentKey78A057A4",
+     "Arn"
+    ]
+   }
+  },
+  "RecoveryJournalTable": {
+   "Value": {
+    "Ref": "RecoveryJournal06BB91CD"
+   }
+  },
+  "OperatorRoleArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "Operator41AE602D",
+     "Arn"
+    ]
+   }
+  },
+  "ProductionTrafficReady": {
+   "Value": "false"
+  },
+  "BackupRetentionDays": {
+   "Value": "7"
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

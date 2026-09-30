@@ -1,0 +1,38 @@
+
+✨  Synthesis time: 3.35s
+
+RilloraOperations: start: Building SnapshotRetirement/Worker/Code
+RilloraOperations: success: Built SnapshotRetirement/Worker/Code
+RilloraOperations: start: Building RilloraOperations Template
+RilloraOperations: success: Built RilloraOperations Template
+RilloraOperations: start: Publishing SnapshotRetirement/Worker/Code (133857166372-eu-central-1-b7177d50)
+RilloraOperations: start: Publishing RilloraOperations Template (133857166372-eu-central-1-a88f25c4)
+RilloraOperations: success: Published RilloraOperations Template (133857166372-eu-central-1-a88f25c4)
+RilloraOperations: success: Published SnapshotRetirement/Worker/Code (133857166372-eu-central-1-b7177d50)
+RilloraOperations: creating CloudFormation changeset...
+RilloraOperations: deploying... [1/1]
+RilloraOperations | 0/5 | 2:48:55 AM | UPDATE_IN_PROGRESS      | AWS::CloudFormation::Stack     | RilloraOperations User Initiated
+RilloraOperations | 0/5 | 2:48:58 AM | UPDATE_IN_PROGRESS      | AWS::IAM::Policy               | SnapshotRetirement/Role/DefaultPolicy (SnapshotRetirementRoleDefaultPolicy9DF363A6) 
+RilloraOperations | 1/5 | 2:49:14 AM | UPDATE_COMPLETE         | AWS::IAM::Policy               | SnapshotRetirement/Role/DefaultPolicy (SnapshotRetirementRoleDefaultPolicy9DF363A6) 
+RilloraOperations | 1/5 | 2:49:16 AM | UPDATE_IN_PROGRESS      | AWS::Lambda::Function          | SnapshotRetirement/Worker (SnapshotRetirementWorker036281CC) 
+RilloraOperations | 2/5 | 2:49:23 AM | UPDATE_COMPLETE         | AWS::Lambda::Function          | SnapshotRetirement/Worker (SnapshotRetirementWorker036281CC) 
+RilloraOperations | 2/5 | 2:49:23 AM | UPDATE_IN_PROGRESS      | AWS::IAM::Policy               | SnapshotRetirement/Runbook (SnapshotRetirementRunbook91A9EB67) 
+RilloraOperations | 3/5 | 2:49:39 AM | UPDATE_COMPLETE         | AWS::IAM::Policy               | SnapshotRetirement/Runbook (SnapshotRetirementRunbook91A9EB67) 
+RilloraOperations | 4/5 | 2:49:40 AM | UPDATE_COMPLETE_CLEANUP | AWS::CloudFormation::Stack     | RilloraOperations 
+RilloraOperations | 5/5 | 2:49:41 AM | UPDATE_COMPLETE         | AWS::CloudFormation::Stack     | RilloraOperations 
+
+✅  RilloraOperations
+
+✨  Deployment time: 58.73s
+
+Outputs:
+RilloraOperations.ActivationBoundary = Requires deploy, real cloud invocation, verified subscriber delivery and missing-heartbeat drill
+RilloraOperations.AlertTopicArn = arn:aws:sns:eu-central-1:133857166372:RilloraOperations-Alerts91F83244-3hyvJ2Vrg4zo
+RilloraOperations.CheckerFunctionName = RilloraOperations-HealthCheckA1C381C7-1C2bQQnv9BUn
+RilloraOperations.SnapshotRetirementFunctionNameEA07C724 = RilloraOperations-SnapshotRetirementWorker036281CC-aCdjTQVMw7CS
+RilloraOperations.SnapshotRetirementLogGroupNameD0C870D7 = RilloraOperations-SnapshotRetirementLogs5CFC046D-jmnjBCRzFwqO
+Stack ARN:
+arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraOperations/61327be0-b1ed-11f1-96b7-02118794ecd3
+
+✨  Total time: 98.44s
+

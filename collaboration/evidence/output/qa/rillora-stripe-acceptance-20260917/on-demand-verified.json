@@ -1,0 +1,26 @@
+{
+  "desired": 1,
+  "running": 1,
+  "pending": 0,
+  "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingApiTaskDefinitionF6347BA4:28",
+  "strategy": [
+    {
+      "capacityProvider": "FARGATE",
+      "weight": 1,
+      "base": 0
+    }
+  ],
+  "deployment": [
+    {
+      "status": "PRIMARY",
+      "rolloutState": "COMPLETED"
+    }
+  ],
+  "actualTask": {
+    "id": "e8f208348a714ff5aa20d5bcdd9dc3dc",
+    "provider": "FARGATE",
+    "status": "RUNNING",
+    "health": "HEALTHY",
+    "startedAt": "2026-09-17T09:42:28.870000+08:00"
+  }
+}

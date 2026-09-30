@@ -1,0 +1,77 @@
+
+> web@0.0.0 build:legal
+> node scripts/validate-legal-release.mjs && vite build --mode legal && node scripts/prepare-legal-sites-build.mjs
+
+Release legal configuration validated.
+vite v6.4.3 building for legal...
+transforming...
+✓ 4579 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/client/legal.html                                               1.22 kB │ gzip:  0.67 kB
+dist/client/assets/source-serif-4-latin-500-normal-CUHe9xxf.woff2   21.53 kB
+dist/client/assets/source-serif-4-latin-600-normal-DouSKlru.woff2   21.53 kB
+dist/client/assets/inter-latin-400-normal-C38fXH4l.woff2            23.66 kB
+dist/client/assets/inter-latin-500-normal-Cerq10X2.woff2            24.27 kB
+dist/client/assets/inter-latin-600-normal-LgqL8muc.woff2            24.45 kB
+dist/client/assets/source-serif-4-latin-500-normal-DVVamBqs.woff    25.53 kB
+dist/client/assets/source-serif-4-latin-600-normal-DMD1h6_f.woff    25.62 kB
+dist/client/assets/inter-latin-400-normal-CyCys3Eg.woff             30.70 kB
+dist/client/assets/inter-latin-600-normal-CiBQ2DWP.woff             31.26 kB
+dist/client/assets/inter-latin-500-normal-BL9OpVg8.woff             31.28 kB
+dist/client/assets/legal-Dj0I_PWE.css                               53.63 kB │ gzip: 10.26 kB
+dist/client/assets/legal-BegKHkY1.js                               246.63 kB │ gzip: 77.26 kB
+✓ built in 1.83s
+Prepared legal-only Sites build.
+TAP version 13
+# Subtest: redirects the publication root to Terms
+ok 1 - redirects the publication root to Terms
+  ---
+  duration_ms: 24.081083
+  type: 'test'
+  ...
+# Subtest: serves only allowlisted legal routes through the app shell
+ok 2 - serves only allowlisted legal routes through the app shell
+  ---
+  duration_ms: 0.861041
+  type: 'test'
+  ...
+# Subtest: rejects account, API, unknown and write routes
+ok 3 - rejects account, API, unknown and write routes
+  ---
+  duration_ms: 0.922417
+  type: 'test'
+  ...
+# Subtest: caches fingerprinted assets immutably
+ok 4 - caches fingerprinted assets immutably
+  ---
+  duration_ms: 0.265583
+  type: 'test'
+  ...
+# Subtest: emits a legal entry and the Sites package files
+ok 5 - emits a legal entry and the Sites package files
+  ---
+  duration_ms: 4.811667
+  type: 'test'
+  ...
+# Subtest: embeds the built legal shell in the deployed Worker
+ok 6 - embeds the built legal shell in the deployed Worker
+  ---
+  duration_ms: 1.3215
+  type: 'test'
+  ...
+# Subtest: keeps the legal artifact inside its performance and content budgets
+ok 7 - keeps the legal artifact inside its performance and content budgets
+  ---
+  duration_ms: 8.461625
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 126.780333

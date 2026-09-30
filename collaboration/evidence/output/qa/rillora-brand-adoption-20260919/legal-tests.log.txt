@@ -1,0 +1,68 @@
+
+> web@0.0.0 test:legal-sites
+> node --test tests/legal-sites-worker.test.mjs
+
+TAP version 13
+# Subtest: redirects the publication root to Terms
+ok 1 - redirects the publication root to Terms
+  ---
+  duration_ms: 32.973125
+  type: 'test'
+  ...
+# Subtest: serves only allowlisted legal routes through the app shell
+ok 2 - serves only allowlisted legal routes through the app shell
+  ---
+  duration_ms: 1.089709
+  type: 'test'
+  ...
+# Subtest: rejects account, API, unknown and write routes
+ok 3 - rejects account, API, unknown and write routes
+  ---
+  duration_ms: 0.967542
+  type: 'test'
+  ...
+# Subtest: caches fingerprinted assets immutably
+ok 4 - caches fingerprinted assets immutably
+  ---
+  duration_ms: 0.308666
+  type: 'test'
+  ...
+# Subtest: emits a legal entry and the Sites package files
+ok 5 - emits a legal entry and the Sites package files
+  ---
+  duration_ms: 6.3545
+  type: 'test'
+  ...
+# Subtest: embeds the built legal shell in the deployed Worker
+ok 6 - embeds the built legal shell in the deployed Worker
+  ---
+  duration_ms: 1.482875
+  type: 'test'
+  ...
+# Subtest: keeps the legal artifact inside its performance and content budgets
+not ok 7 - keeps the legal artifact inside its performance and content budgets
+  ---
+  duration_ms: 1.098709
+  type: 'test'
+  location: '/Users/tantalum/Documents/电子遗嘱app/apps/web/tests/legal-sites-worker.test.mjs:98:1'
+  failureType: 'testCodeFailure'
+  error: 'Expected no more than 12 legal assets, received 18'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tantalum/Documents/%E7%94%B5%E5%AD%90%E9%81%97%E5%98%B1app/apps/web/tests/legal-sites-worker.test.mjs:106:10)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 6
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 133.41225

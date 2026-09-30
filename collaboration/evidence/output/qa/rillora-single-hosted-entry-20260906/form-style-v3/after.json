@@ -1,0 +1,53 @@
+{
+  "name": "Rillora account acknowledgement",
+  "languages": {
+    "primary": "en",
+    "default": "en"
+  },
+  "start": {
+    "next_node": "account_acknowledgement"
+  },
+  "nodes": [
+    {
+      "id": "account_acknowledgement",
+      "type": "STEP",
+      "config": {
+        "components": [
+          {
+            "id": "account_terms_title",
+            "category": "BLOCK",
+            "type": "RICH_TEXT",
+            "config": {
+              "content": "<h1>Account terms</h1>"
+            }
+          },
+          {
+            "id": "rillora_legal_accepted",
+            "category": "FIELD",
+            "type": "LEGAL",
+            "required": true,
+            "sensitive": false,
+            "config": {
+              "text": "I agree to the <a href=\"https://legal.rillora.xyz/terms\" target=\"_blank\" rel=\"noopener noreferrer\">Terms</a>, acknowledge the <a href=\"https://legal.rillora.xyz/privacy\" target=\"_blank\" rel=\"noopener noreferrer\">Privacy Policy</a>, and consent to electronic records."
+            }
+          },
+          {
+            "id": "continue_button",
+            "category": "BLOCK",
+            "type": "NEXT_BUTTON",
+            "config": {
+              "text": "Continue"
+            }
+          }
+        ],
+        "next_node": "$ending"
+      }
+    }
+  ],
+  "ending": {
+    "resume_flow": true
+  },
+  "style": {
+    "css": "/* Fixed Auth0 Forms classes and our own component IDs. */\n.rillora-auth-panel .af-form { background: transparent; color: #dad8cf; }\n.rillora-auth-panel .af-componentId-account_terms_title h1 { margin: 0 0 20px; color: #f1ece2; font: 600 24px/1.25 -apple-system, BlinkMacSystemFont, sans-serif; }\n.rillora-auth-panel .af-componentId-rillora_legal_accepted { background: transparent; color: #b8bab2; }\n.rillora-auth-panel .af-componentId-rillora_legal_accepted p { margin: 0; padding: 0; }\n.rillora-auth-panel .af-componentId-rillora_legal_accepted label { background: transparent; color: #b8bab2; font-size: 14px; line-height: 1.55; }\n.rillora-auth-panel .af-componentId-rillora_legal_accepted input[type=checkbox] { width: 18px; height: 18px; margin-top: 2px; accent-color: #bfd79a; }\n.rillora-auth-panel .af-componentId-rillora_legal_accepted a { display: inline; min-height: 0; padding: 0; color: #dad8cf; font-size: inherit; line-height: inherit; text-decoration: underline; text-underline-offset: 2px; }\n.rillora-auth-panel .af-button { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 48px; margin-top: 24px; border: 0; border-radius: 10px; background: #cb704c; color: #171c1c; font: 600 16px/1.4 -apple-system, BlinkMacSystemFont, sans-serif; text-align: center; }\n.rillora-auth-panel .af-button:focus-visible, .rillora-auth-panel input:focus-visible, .rillora-auth-panel a:focus-visible { outline: 2px solid #bfd79a; outline-offset: 3px; }\n"
+  }
+}

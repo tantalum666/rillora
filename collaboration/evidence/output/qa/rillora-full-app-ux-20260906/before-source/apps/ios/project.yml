@@ -1,0 +1,232 @@
+name: Rillora
+
+options:
+  bundleIdPrefix: com.rillora
+  createIntermediateGroups: true
+  deploymentTarget:
+    iOS: "17.0"
+  xcodeVersion: "26.0"
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+    ENABLE_USER_SCRIPT_SANDBOXING: true
+
+packages:
+  Auth0:
+    url: https://github.com/auth0/Auth0.swift
+    from: 3.0.2
+  GoogleSignIn:
+    url: https://github.com/google/GoogleSignIn-iOS
+    from: 9.0.0
+
+targets:
+  Rillora:
+    type: application
+    platform: iOS
+    sources:
+      - path: Rillora
+      - path: StoreKit/Rillora.storekit
+        buildPhase: resources
+    dependencies:
+      - package: Auth0
+      - package: GoogleSignIn
+    info:
+      path: Rillora/Resources/Info.plist
+      properties:
+        CFBundleDisplayName: Rillora
+        UILaunchScreen: {}
+        NSAppTransportSecurity:
+          NSAllowsLocalNetworking: true
+        RilloraAPIBaseURL: $(RILLORA_API_BASE_URL)
+        RilloraDevPlannerID: $(RILLORA_DEV_PLANNER_ID)
+        RilloraAuth0Domain: $(RILLORA_AUTH0_DOMAIN)
+        RilloraAuth0ClientID: $(RILLORA_AUTH0_CLIENT_ID)
+        RilloraAuth0Audience: $(RILLORA_AUTH0_AUDIENCE)
+        RilloraNativeSessionURL: $(RILLORA_NATIVE_SESSION_URL)
+        RilloraAppleSignInEnabled: $(RILLORA_APPLE_SIGN_IN_ENABLED)
+        RilloraGoogleNativeSignInEnabled: $(RILLORA_GOOGLE_NATIVE_SIGN_IN_ENABLED)
+        RilloraGoogleIOSClientID: $(RILLORA_GOOGLE_IOS_CLIENT_ID)
+        RilloraGoogleServerClientID: $(RILLORA_GOOGLE_SERVER_CLIENT_ID)
+        RilloraPasskeyNativeSignInEnabled: $(RILLORA_PASSKEY_NATIVE_SIGN_IN_ENABLED)
+        RilloraServiceMarketCode: $(RILLORA_SERVICE_MARKET_CODE)
+        CFBundleURLTypes:
+          - CFBundleTypeRole: Editor
+            CFBundleURLName: auth0
+            CFBundleURLSchemes:
+              - $(PRODUCT_BUNDLE_IDENTIFIER)
+          - CFBundleTypeRole: Editor
+            CFBundleURLName: google
+            CFBundleURLSchemes:
+              - $(RILLORA_GOOGLE_REVERSED_CLIENT_ID)
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.rillora.ios
+        PRODUCT_NAME: Rillora
+        DEVELOPMENT_TEAM: 8L99CFNK24
+        CODE_SIGN_STYLE: Automatic
+        TARGETED_DEVICE_FAMILY: "1,2"
+        SUPPORTS_MACCATALYST: false
+        ENABLE_PREVIEWS: true
+        ASSETCATALOG_COMPILER_APPICON_NAME: ""
+        CODE_SIGN_ENTITLEMENTS: Rillora/Rillora.entitlements
+      configs:
+        Debug:
+          RILLORA_API_BASE_URL: "https://l1g8350qw0.execute-api.eu-central-1.amazonaws.com/v1"
+          RILLORA_DEV_PLANNER_ID: ""
+          RILLORA_AUTH0_DOMAIN: "login.rillora.xyz"
+          RILLORA_AUTH0_CLIENT_ID: "[REDACTED_SCANNER_LITERAL]"
+          RILLORA_AUTH0_AUDIENCE: "urn:rillora:api"
+          RILLORA_NATIVE_SESSION_URL: "https://l1g8350qw0.execute-api.eu-central-1.amazonaws.com/auth/native/session"
+          RILLORA_APPLE_SIGN_IN_ENABLED: "YES"
+          RILLORA_GOOGLE_NATIVE_SIGN_IN_ENABLED: "NO"
+          RILLORA_GOOGLE_IOS_CLIENT_ID: "351059418039-s7o5q4i1reiqmbpuk6gl85blkuetngbj.apps.googleusercontent.com"
+          RILLORA_GOOGLE_SERVER_CLIENT_ID: "351059418039-rn1stb80ljkp46osvamrhfbiuolpccn7.apps.googleusercontent.com"
+          RILLORA_GOOGLE_REVERSED_CLIENT_ID: "com.googleusercontent.apps.351059418039-s7o5q4i1reiqmbpuk6gl85blkuetngbj"
+          RILLORA_PASSKEY_NATIVE_SIGN_IN_ENABLED: "YES"
+          RILLORA_SERVICE_MARKET_CODE: "GLOBAL_US"
+        Release:
+          RILLORA_API_BASE_URL: ""
+          RILLORA_DEV_PLANNER_ID: ""
+          RILLORA_AUTH0_DOMAIN: ""
+          RILLORA_AUTH0_CLIENT_ID: ""
+          RILLORA_AUTH0_AUDIENCE: ""
+          RILLORA_NATIVE_SESSION_URL: ""
+          RILLORA_APPLE_SIGN_IN_ENABLED: "NO"
+          RILLORA_GOOGLE_NATIVE_SIGN_IN_ENABLED: "NO"
+          RILLORA_GOOGLE_IOS_CLIENT_ID: ""
+          RILLORA_GOOGLE_SERVER_CLIENT_ID: ""
+          RILLORA_GOOGLE_REVERSED_CLIENT_ID: "com.googleusercontent.apps.351059418039-s7o5q4i1reiqmbpuk6gl85blkuetngbj"
+          RILLORA_PASSKEY_NATIVE_SIGN_IN_ENABLED: "NO"
+          RILLORA_SERVICE_MARKET_CODE: ""
+          EXCLUDED_SOURCE_FILE_NAMES: "Rillora.storekit"
+
+  RilloraTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: RilloraTests
+      - path: StoreKit/Rillora.storekit
+        buildPhase: resources
+    dependencies:
+      - target: Rillora
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.rillora.ios.tests
+        GENERATE_INFOPLIST_FILE: true
+
+  RilloraLayoutMatrixTests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: RilloraLayoutMatrixTests
+    dependencies:
+      - target: Rillora
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.rillora.ios.layout-matrix-tests
+        GENERATE_INFOPLIST_FILE: true
+        TEST_TARGET_NAME: Rillora
+
+schemes:
+  Rillora:
+    build:
+      targets:
+        Rillora: all
+        RilloraTests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      gatherCoverageData: true
+      targets:
+        - RilloraTests
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
+
+  RilloraStoreKitLocal:
+    build:
+      targets:
+        Rillora: all
+        RilloraTests: [test]
+    run:
+      config: Debug
+      storeKitConfiguration: "StoreKit/Rillora.storekit"
+      environmentVariables:
+        RILLORA_STOREKIT_LOCAL_TESTING: "1"
+        RILLORA_API_BASE_URL: "http://127.0.0.1:4181/v1"
+        RILLORA_DEV_PLANNER_ID: "11111111-1111-4111-8111-111111111111"
+        RILLORA_SERVICE_MARKET_CODE: "GLOBAL_US"
+    test:
+      config: Debug
+      gatherCoverageData: true
+      targets:
+        - RilloraTests
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
+
+  RilloraStoreKitSandboxCatalog:
+    build:
+      targets:
+        Rillora: all
+        RilloraTests: [test]
+    run:
+      config: Debug
+      environmentVariables:
+        RILLORA_STOREKIT_SANDBOX_CATALOG_TESTING: "1"
+        RILLORA_SERVICE_MARKET_CODE: "GLOBAL_US"
+    test:
+      config: Debug
+      gatherCoverageData: true
+      targets:
+        - RilloraTests
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
+
+  RilloraStoreKitSandboxPurchase:
+    build:
+      targets:
+        Rillora: all
+        RilloraTests: [test]
+    run:
+      config: Debug
+      environmentVariables:
+        RILLORA_STOREKIT_SANDBOX_PURCHASE_TESTING: "1"
+        RILLORA_API_BASE_URL: "http://127.0.0.1:4182/v1"
+        RILLORA_DEV_PLANNER_ID: "11111111-1111-4111-8111-111111111111"
+        RILLORA_SERVICE_MARKET_CODE: "GLOBAL_US"
+    test:
+      config: Debug
+      gatherCoverageData: true
+      targets:
+        - RilloraTests
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
+
+  RilloraLayoutMatrix:
+    build:
+      targets:
+        Rillora: all
+        RilloraLayoutMatrixTests: [test]
+    test:
+      config: Debug
+      gatherCoverageData: false
+      targets:
+        - RilloraLayoutMatrixTests

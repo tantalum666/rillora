@@ -1,0 +1,80 @@
+start: Building RilloraProductionWeb Template
+success: Built RilloraProductionWeb Template
+start: Publishing RilloraProductionWeb Template (133857166372-eu-central-1-b7217c25)
+success: Published RilloraProductionWeb Template (133857166372-eu-central-1-b7217c25)
+Hold on while we create a read-only change set to get a diff with accurate replacement information (use --method=template to use a less accurate but faster template-only diff)
+
+Stack RilloraProductionWeb
+Template
+[+] Description Description: Closed production Web client and same-origin API delivery; no account activation
+
+IAM Statement Changes
+┌───┬───────────────────────────────────────────────────────────────────────────────────┬────────┬───────────────────────────────┬────────────────────────────────────────────────────────────────────────────────┬─────────────────────────────────────────────────────────────────────────────────────────────────┐
+│   │ Resource                                                                          │ Effect │ Action                        │ Principal                                                                      │ Condition                                                                                       │
+├───┼───────────────────────────────────────────────────────────────────────────────────┼────────┼───────────────────────────────┼────────────────────────────────────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ + │ ${Assets.Arn}                                                                     │ Deny   │ s3:*                          │ AWS:*                                                                          │ "Bool": {                                                                                       │
+│   │ ${Assets.Arn}/*                                                                   │        │                               │                                                                                │   "aws:SecureTransport": "false"                                                                │
+│   │                                                                                   │        │                               │                                                                                │ }                                                                                               │
+│ + │ ${Assets.Arn}                                                                     │ Allow  │ s3:Abort*                     │ AWS:${Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole} │                                                                                                 │
+│   │ ${Assets.Arn}/*                                                                   │        │ s3:DeleteObject*              │                                                                                │                                                                                                 │
+│   │                                                                                   │        │ s3:GetBucket*                 │                                                                                │                                                                                                 │
+│   │                                                                                   │        │ s3:GetObject*                 │                                                                                │                                                                                                 │
+│   │                                                                                   │        │ s3:List*                      │                                                                                │                                                                                                 │
+│   │                                                                                   │        │ s3:PutObject                  │                                                                                │                                                                                                 │
+│   │                                                                                   │        │ s3:PutObjectLegalHold         │                                                                                │                                                                                                 │
+│   │                                                                                   │        │ s3:PutObjectRetention         │                                                                                │                                                                                                 │
+│   │                                                                                   │        │ s3:PutObjectTagging           │                                                                                │                                                                                                 │
+│   │                                                                                   │        │ s3:PutObjectVersionTagging    │                                                                                │                                                                                                 │
+├───┼───────────────────────────────────────────────────────────────────────────────────┼────────┼───────────────────────────────┼────────────────────────────────────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ + │ ${Assets.Arn}/*                                                                   │ Allow  │ s3:GetObject                  │ Service:cloudfront.amazonaws.com                                               │ "StringEquals": {                                                                               │
+│   │                                                                                   │        │                               │                                                                                │   "AWS:SourceArn": "arn:${AWS::Partition}:cloudfront::${AWS::AccountId}:distribution/${Client}" │
+│   │                                                                                   │        │                               │                                                                                │ }                                                                                               │
+├───┼───────────────────────────────────────────────────────────────────────────────────┼────────┼───────────────────────────────┼────────────────────────────────────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ + │ ${Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole.Arn}    │ Allow  │ sts:AssumeRole                │ Service:lambda.amazonaws.com                                                   │                                                                                                 │
+├───┼───────────────────────────────────────────────────────────────────────────────────┼────────┼───────────────────────────────┼────────────────────────────────────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ + │ *                                                                                 │ Allow  │ cloudfront:CreateInvalidation │ AWS:${Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole} │                                                                                                 │
+│   │                                                                                   │        │ cloudfront:GetInvalidation    │                                                                                │                                                                                                 │
+├───┼───────────────────────────────────────────────────────────────────────────────────┼────────┼───────────────────────────────┼────────────────────────────────────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ + │ NOT arn:${AWS::Partition}:cloudfront::133857166372:distribution/${Client4A7F64DF} │ Deny   │ cloudfront:CreateInvalidation │ AWS:${Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole} │                                                                                                 │
+│   │                                                                                   │        │ cloudfront:GetInvalidation    │                                                                                │                                                                                                 │
+├───┼───────────────────────────────────────────────────────────────────────────────────┼────────┼───────────────────────────────┼────────────────────────────────────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ + │ arn:${AWS::Partition}:s3:::cdk-hnb659fds-assets-133857166372-eu-central-1         │ Allow  │ s3:GetBucket*                 │ AWS:${Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole} │                                                                                                 │
+│   │ arn:${AWS::Partition}:s3:::cdk-hnb659fds-assets-133857166372-eu-central-1/*       │        │ s3:GetObject*                 │                                                                                │                                                                                                 │
+│   │                                                                                   │        │ s3:List*                      │                                                                                │                                                                                                 │
+└───┴───────────────────────────────────────────────────────────────────────────────────┴────────┴───────────────────────────────┴────────────────────────────────────────────────────────────────────────────────┴─────────────────────────────────────────────────────────────────────────────────────────────────┘
+IAM Policy Changes
+┌───┬────────────────────────────────────────────────────────────────────────────┬────────────────────────────────────────────────────────────────────────────────┐
+│   │ Resource                                                                   │ Managed Policy ARN                                                             │
+├───┼────────────────────────────────────────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────┤
+│ + │ ${Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole} │ arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole │
+└───┴────────────────────────────────────────────────────────────────────────────┴────────────────────────────────────────────────────────────────────────────────┘
+(NOTE: There may be security-related changes not in this list. See https://github.com/aws/aws-cdk/issues/1299)
+
+Parameters
+[+] Parameter BootstrapVersion BootstrapVersion: {"Type":"AWS::SSM::Parameter::Value<String>","Default":"/cdk-bootstrap/hnb659fds/version","Description":"Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"}
+
+Resources
+[+] AWS::S3::Bucket Assets Assets9A31D427
+[+] AWS::S3::BucketPolicy Assets/Policy AssetsPolicy206C37E3
+[+] AWS::CloudFront::ResponseHeadersPolicy WebHeaders WebHeaders0A3D4ED8
+[+] AWS::CloudFront::ResponseHeadersPolicy ApiHeaders ApiHeaders86A8FCD8
+[+] AWS::CloudFront::Function Routes Routes4F6D566C
+[+] AWS::CloudFront::OriginAccessControl Client/Origin1/S3OriginAccessControl ClientOrigin1S3OriginAccessControl28718989
+[+] AWS::CloudFront::Distribution Client Client4A7F64DF
+[+] AWS::Lambda::LayerVersion Deployment/AwsCliLayer DeploymentAwsCliLayerB82B26A3
+[+] Custom::CDKBucketDeployment Deployment/CustomResource DeploymentCustomResource47E8B2E6
+[+] AWS::IAM::Role Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265
+[+] AWS::IAM::Policy Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/DefaultPolicy CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF
+[+] AWS::Lambda::Function Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536
+
+Outputs
+[+] Output ClientUrl ClientUrl: {"Value":"https://app.rillora.xyz"}
+[+] Output DistributionId DistributionId: {"Value":{"Ref":"Client4A7F64DF"}}
+[+] Output DistributionDomain DistributionDomain: {"Value":{"Fn::GetAtt":["Client4A7F64DF","DomainName"]}}
+[+] Output BucketName BucketName: {"Value":{"Ref":"Assets9A31D427"}}
+[+] Output CustomerAccess CustomerAccess: {"Value":"closed"}
+
+
+
+✨  Number of stacks with differences: 1
+

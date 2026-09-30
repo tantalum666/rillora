@@ -1,0 +1,183 @@
+{
+ "Description": "Read-only Rillora production readiness; no new runtime, database, plan upgrade or sales",
+ "Resources": {
+  "ReadinessReader42B6BA8F": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Condition": {
+        "Bool": {
+         "aws:MultiFactorAuthPresent": "true"
+        }
+       },
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":iam::133857166372:user/rillora/rillora-operator"
+          ]
+         ]
+        }
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Description": "Read-only account plan, costs and regional database inventory for production preparation",
+    "MaxSessionDuration": 3600,
+    "Path": "/rillora/",
+    "RoleName": "rillora-production-preflight"
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProductionPreflight/ReadinessReader/Resource"
+   }
+  },
+  "ReadinessReaderDefaultPolicyB319D0A0": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "freetier:GetAccountPlanState",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":freetier:us-east-1:133857166372:/GetAccountPlanState"
+         ]
+        ]
+       }
+      },
+      {
+       "Action": "ce:GetCostAndUsage",
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "rds:DescribeDBInstances",
+        "rds:DescribeDBSnapshots"
+       ],
+       "Condition": {
+        "StringEquals": {
+         "aws:RequestedRegion": "eu-central-1"
+        }
+       },
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "ReadinessReaderDefaultPolicyB319D0A0",
+    "Roles": [
+     {
+      "Ref": "ReadinessReader42B6BA8F"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProductionPreflight/ReadinessReader/DefaultPolicy/Resource"
+   }
+  },
+  "AssumeOnlyReadinessReader130DE871": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Condition": {
+        "Bool": {
+         "aws:MultiFactorAuthPresent": "true"
+        }
+       },
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "ReadinessReader42B6BA8F",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "AssumeOnlyReadinessReader130DE871",
+    "Users": [
+     "rillora-operator"
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProductionPreflight/AssumeOnlyReadinessReader/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/yWJbQqAIBAFz9J/3cKgC3SAwg4QZhtsmUZqEdHd+4IHM8MTIIoCskTtnut+4oY6OJug9MQkehdXjez5WlIznNIZZOVgP9bOkD7e/O16tYphieFi1vUIo083IeBZnoyeiK/RBpoR5M8bAwcq93wAAAA="
+   },
+   "Metadata": {
+    "aws:cdk:path": "RilloraProductionPreflight/CDKMetadata/Default"
+   }
+  }
+ },
+ "Outputs": {
+  "ReadinessRoleArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "ReadinessReader42B6BA8F",
+     "Arn"
+    ]
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

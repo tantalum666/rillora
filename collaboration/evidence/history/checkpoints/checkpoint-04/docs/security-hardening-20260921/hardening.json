@@ -1,0 +1,471 @@
+{
+  "documentType": "codex-security.hardening-analysis",
+  "schemaVersion": "1.0",
+  "analysisId": "rillora_20260921_content_protection",
+  "sourceEvidence": {
+    "kind": "document_collection",
+    "label": "Rillora current source and dated staging evidence",
+    "collectionSha256": "4d0b8e9300ad3cac439bf1f1f19c277132eb9a2c26c0799b0a91158162ae20a3",
+    "artifactCount": 12,
+    "sourceDrift": "unknown"
+  },
+  "assessment": {
+    "outcome": "opportunities_identified",
+    "summary": "Propose a separate content-key boundary; do not conflate storage encryption with E2EE or certification."
+  },
+  "constraints": {
+    "profile": "balanced",
+    "changeHorizons": [
+      "incremental",
+      "medium_term",
+      "foundational"
+    ],
+    "nonNegotiables": [
+      "Preserve existing UI and Web/iOS",
+      "Same baseline security for Free/Family",
+      "No passwords or transfer secrets",
+      "No silent permission expansion",
+      "Annual88.80 unchanged"
+    ],
+    "assumptions": [
+      "Solo operator; low fixed costs;100-user initial scale",
+      "No new crypto benchmark or independent audit in this review"
+    ]
+  },
+  "opportunities": [
+    {
+      "opportunityId": "private-content-boundary",
+      "title": "Private content and key boundary",
+      "summary": "Separate protected business contents from raw database read authority.",
+      "diagnosis": "Online fields and saved projections are readable business values behind application/RLS controls; encryption at rest is transparent.",
+      "evidence": [
+        {
+          "claimType": "observed",
+          "sourceKind": "source",
+          "evidenceId": "E01",
+          "path": "infra/aws/lib/rillora-staging-stack.ts",
+          "claim": "Staging encryption/network/roles"
+        },
+        {
+          "claimType": "observed",
+          "sourceKind": "source",
+          "evidenceId": "E02",
+          "path": "apps/api/src/routes.ts",
+          "claim": "Matter read/write plaintext representation"
+        },
+        {
+          "claimType": "observed",
+          "sourceKind": "source",
+          "evidenceId": "E03",
+          "path": "apps/api/src/db.ts",
+          "claim": "Database TLS and role transactions"
+        },
+        {
+          "claimType": "observed",
+          "sourceKind": "source",
+          "evidenceId": "E04",
+          "path": "apps/api/src/auth.ts",
+          "claim": "Typed sessions and identity authentication"
+        },
+        {
+          "claimType": "observed",
+          "sourceKind": "source",
+          "evidenceId": "E05",
+          "path": "apps/api/src/security.ts",
+          "claim": "HTTP protection and log redaction"
+        },
+        {
+          "claimType": "observed",
+          "sourceKind": "source",
+          "evidenceId": "E06",
+          "path": "apps/api/migrations/0001_initial.sql",
+          "claim": "Tenant RLS and Matter schema"
+        },
+        {
+          "claimType": "observed",
+          "sourceKind": "source",
+          "evidenceId": "E07",
+          "path": "apps/api/migrations/0052_paid_snapshot_capture_boundaries.sql",
+          "claim": "Saved authorized copies"
+        },
+        {
+          "claimType": "observed",
+          "sourceKind": "source",
+          "evidenceId": "E08",
+          "path": "apps/web/src/matterDraftStorage.js",
+          "claim": "Browser draft persistence"
+        },
+        {
+          "claimType": "observed",
+          "sourceKind": "source",
+          "evidenceId": "E09",
+          "path": "apps/web/src/startHereCrypto.js",
+          "claim": "Client-encrypted recovery package"
+        },
+        {
+          "claimType": "observed",
+          "sourceKind": "source",
+          "evidenceId": "E10",
+          "path": "apps/ios/Rillora/Core/Authentication/SessionTokenStore.swift",
+          "claim": "Native Keychain session"
+        },
+        {
+          "claimType": "observed",
+          "sourceKind": "experiment",
+          "evidenceId": "E11",
+          "path": "output/qa/rillora-annual-brand-capacity-20260921/capacity-live.json",
+          "claim": "Earlier same-day AWS configuration readback"
+        },
+        {
+          "claimType": "observed",
+          "sourceKind": "experiment",
+          "evidenceId": "E12",
+          "path": "output/qa/rillora-annual-brand-capacity-20260921/capacity-final-check-logs.json",
+          "claim": "Earlier same-day cleanup/migration readback"
+        }
+      ],
+      "desiredInvariants": [
+        "Only current authorized scopes may decrypt",
+        "All retained protected copies follow the same encryption policy",
+        "No plaintext fallback",
+        "Recovery includes keys and revocation state"
+      ],
+      "proposalPath": "proposals/private-content-boundary.md",
+      "options": [
+        {
+          "optionId": "baseline",
+          "title": "Option1: production controls with existing storage encryption",
+          "kind": "baseline",
+          "diagramPaths": {
+            "before": "diagrams/private-content-boundary-before.mmd",
+            "after": "diagrams/private-content-boundary-baseline-after.mmd"
+          },
+          "evidenceCoverage": [
+            {
+              "evidenceId": "E02",
+              "effect": "unaffected",
+              "tacticalFixRequired": true,
+              "rationale": "Retain authorization, scoped sharing and recovery controls; encryption does not replace them."
+            },
+            {
+              "evidenceId": "E06",
+              "effect": "unaffected",
+              "tacticalFixRequired": true,
+              "rationale": "Retain authorization, scoped sharing and recovery controls; encryption does not replace them."
+            },
+            {
+              "evidenceId": "E07",
+              "effect": "unaffected",
+              "tacticalFixRequired": true,
+              "rationale": "Retain authorization, scoped sharing and recovery controls; encryption does not replace them."
+            }
+          ],
+          "tradeoffs": [
+            {
+              "dimension": "security",
+              "direction": "improves",
+              "confidence": "medium",
+              "basis": "source-derived",
+              "assessment": "Production authorization and operational controls improve; privileged SQL remains readable.",
+              "validationPlan": "Use the same synthetic20/200-matter workload; verify boundaries and failure behavior, compare server/client P95 and memory; proposed incrementalP95 budget100ms requires baseline confirmation."
+            },
+            {
+              "dimension": "performance",
+              "direction": "neutral",
+              "confidence": "medium",
+              "basis": "hypothetical",
+              "assessment": "No content-crypto hop is added.",
+              "validationPlan": "Use the same synthetic20/200-matter workload; verify boundaries and failure behavior, compare server/client P95 and memory; proposed incrementalP95 budget100ms requires baseline confirmation."
+            },
+            {
+              "dimension": "memory",
+              "direction": "neutral",
+              "confidence": "medium",
+              "basis": "hypothetical",
+              "assessment": "Existing data representation stays.",
+              "validationPlan": "Use the same synthetic20/200-matter workload; verify boundaries and failure behavior, compare server/client P95 and memory; proposed incrementalP95 budget100ms requires baseline confirmation."
+            },
+            {
+              "dimension": "reliability",
+              "direction": "improves",
+              "confidence": "medium",
+              "basis": "hypothetical",
+              "assessment": "Restore and incident controls must be completed.",
+              "validationPlan": "Use the same synthetic20/200-matter workload; verify boundaries and failure behavior, compare server/client P95 and memory; proposed incrementalP95 budget100ms requires baseline confirmation."
+            },
+            {
+              "dimension": "operability",
+              "direction": "regresses",
+              "confidence": "medium",
+              "basis": "hypothetical",
+              "assessment": "Requires real operational evidence and drills.",
+              "validationPlan": "Use the same synthetic20/200-matter workload; verify boundaries and failure behavior, compare server/client P95 and memory; proposed incrementalP95 budget100ms requires baseline confirmation."
+            },
+            {
+              "dimension": "migration",
+              "direction": "neutral",
+              "confidence": "medium",
+              "basis": "hypothetical",
+              "assessment": "API/content schema can stay.",
+              "validationPlan": "Use the same synthetic20/200-matter workload; verify boundaries and failure behavior, compare server/client P95 and memory; proposed incrementalP95 budget100ms requires baseline confirmation."
+            }
+          ],
+          "residualRisks": [
+            "Authorized recipients may retain external copies.",
+            "Compromised endpoints and malicious code delivery remain relevant.",
+            "Runtime or sufficiently privileged deployment control may expose content."
+          ],
+          "implementationReadiness": {
+            "affectedComponents": [
+              "apps/api/src/routes.ts",
+              "apps/api/src/account-data-routes.ts",
+              "apps/api/migrations/0052_paid_snapshot_capture_boundaries.sql",
+              "apps/web/src/matterDraftStorage.js",
+              "apps/ios/Rillora"
+            ],
+            "workPackages": [
+              "Content/copy inventory",
+              "Key and content adapter",
+              "Scoped projection and data migration",
+              "Recovery/failure/access validation"
+            ],
+            "acceptanceCriteria": [
+              "No new plaintext fallback",
+              "A/B/C access boundaries preserved",
+              "Recovery and rollback read supported versions"
+            ],
+            "migrationNotes": [
+              "Do not rewrite historical migration files; add a new versioned migration."
+            ],
+            "rollback": "Retain backward-compatible readers and keys; pause migration without silently reverting encrypted content to plaintext."
+          }
+        },
+        {
+          "optionId": "envelope",
+          "title": "Option2: content envelope encryption with managed KMS",
+          "kind": "structural",
+          "diagramPaths": {
+            "before": "diagrams/private-content-boundary-before.mmd",
+            "after": "diagrams/private-content-boundary-envelope-after.mmd"
+          },
+          "evidenceCoverage": [
+            {
+              "evidenceId": "E02",
+              "effect": "mitigates",
+              "tacticalFixRequired": true,
+              "rationale": "Retain authorization, scoped sharing and recovery controls; encryption does not replace them."
+            },
+            {
+              "evidenceId": "E06",
+              "effect": "mitigates",
+              "tacticalFixRequired": true,
+              "rationale": "Retain authorization, scoped sharing and recovery controls; encryption does not replace them."
+            },
+            {
+              "evidenceId": "E07",
+              "effect": "mitigates",
+              "tacticalFixRequired": true,
+              "rationale": "Retain authorization, scoped sharing and recovery controls; encryption does not replace them."
+            }
+          ],
+          "tradeoffs": [
+            {
+              "dimension": "security",
+              "direction": "improves",
+              "confidence": "medium",
+              "basis": "source-derived",
+              "assessment": "DB-only extraction no longer directly reveals protected plaintext; runtime remains trusted.",
+              "validationPlan": "Use the same synthetic20/200-matter workload; verify boundaries and failure behavior, compare server/client P95 and memory; proposed incrementalP95 budget100ms requires baseline confirmation."
+            },
+            {
+              "dimension": "performance",
+              "direction": "regresses",
+              "confidence": "medium",
+              "basis": "hypothetical",
+              "assessment": "Key-service requests and crypto introduce unmeasured overhead.",
+              "validationPlan": "Use the same synthetic20/200-matter workload; verify boundaries and failure behavior, compare server/client P95 and memory; proposed incrementalP95 budget100ms requires baseline confirmation."
+            },
+            {
+              "dimension": "memory",
+              "direction": "regresses",
+              "confidence": "medium",
+              "basis": "hypothetical",
+              "assessment": "Bounded plaintext buffers and optional cache need a budget.",
+              "validationPlan": "Use the same synthetic20/200-matter workload; verify boundaries and failure behavior, compare server/client P95 and memory; proposed incrementalP95 budget100ms requires baseline confirmation."
+            },
+            {
+              "dimension": "reliability",
+              "direction": "unknown",
+              "confidence": "medium",
+              "basis": "hypothetical",
+              "assessment": "KMS failure becomes a content dependency; fail closed.",
+              "validationPlan": "Use the same synthetic20/200-matter workload; verify boundaries and failure behavior, compare server/client P95 and memory; proposed incrementalP95 budget100ms requires baseline confirmation."
+            },
+            {
+              "dimension": "operability",
+              "direction": "regresses",
+              "confidence": "medium",
+              "basis": "hypothetical",
+              "assessment": "Key lifecycle, audits and restore need ongoing operation.",
+              "validationPlan": "Use the same synthetic20/200-matter workload; verify boundaries and failure behavior, compare server/client P95 and memory; proposed incrementalP95 budget100ms requires baseline confirmation."
+            },
+            {
+              "dimension": "migration",
+              "direction": "regresses",
+              "confidence": "medium",
+              "basis": "hypothetical",
+              "assessment": "Every retained plaintext copy and projection path must migrate.",
+              "validationPlan": "Use the same synthetic20/200-matter workload; verify boundaries and failure behavior, compare server/client P95 and memory; proposed incrementalP95 budget100ms requires baseline confirmation."
+            }
+          ],
+          "residualRisks": [
+            "Authorized recipients may retain external copies.",
+            "Compromised endpoints and malicious code delivery remain relevant.",
+            "Runtime or sufficiently privileged deployment control may expose content."
+          ],
+          "implementationReadiness": {
+            "affectedComponents": [
+              "apps/api/src/routes.ts",
+              "apps/api/src/account-data-routes.ts",
+              "apps/api/migrations/0052_paid_snapshot_capture_boundaries.sql",
+              "apps/web/src/matterDraftStorage.js",
+              "apps/ios/Rillora"
+            ],
+            "workPackages": [
+              "Content/copy inventory",
+              "Key and content adapter",
+              "Scoped projection and data migration",
+              "Recovery/failure/access validation"
+            ],
+            "acceptanceCriteria": [
+              "No new plaintext fallback",
+              "A/B/C access boundaries preserved",
+              "Recovery and rollback read supported versions"
+            ],
+            "migrationNotes": [
+              "Do not rewrite historical migration files; add a new versioned migration."
+            ],
+            "rollback": "Retain backward-compatible readers and keys; pause migration without silently reverting encrypted content to plaintext."
+          }
+        },
+        {
+          "optionId": "e2ee",
+          "title": "Option3: client-held online content keys",
+          "kind": "foundational",
+          "diagramPaths": {
+            "before": "diagrams/private-content-boundary-before.mmd",
+            "after": "diagrams/private-content-boundary-e2ee-after.mmd"
+          },
+          "evidenceCoverage": [
+            {
+              "evidenceId": "E02",
+              "effect": "mitigates",
+              "tacticalFixRequired": true,
+              "rationale": "Retain authorization, scoped sharing and recovery controls; encryption does not replace them."
+            },
+            {
+              "evidenceId": "E06",
+              "effect": "mitigates",
+              "tacticalFixRequired": true,
+              "rationale": "Retain authorization, scoped sharing and recovery controls; encryption does not replace them."
+            },
+            {
+              "evidenceId": "E07",
+              "effect": "mitigates",
+              "tacticalFixRequired": true,
+              "rationale": "Retain authorization, scoped sharing and recovery controls; encryption does not replace them."
+            }
+          ],
+          "tradeoffs": [
+            {
+              "dimension": "security",
+              "direction": "improves",
+              "confidence": "medium",
+              "basis": "source-derived",
+              "assessment": "Normal server operation does not retain content keys; devices and delivery still matter.",
+              "validationPlan": "Use the same synthetic20/200-matter workload; verify boundaries and failure behavior, compare server/client P95 and memory; proposed incrementalP95 budget100ms requires baseline confirmation."
+            },
+            {
+              "dimension": "performance",
+              "direction": "unknown",
+              "confidence": "medium",
+              "basis": "hypothetical",
+              "assessment": "Client crypto/rekey and local search replace some server work.",
+              "validationPlan": "Use the same synthetic20/200-matter workload; verify boundaries and failure behavior, compare server/client P95 and memory; proposed incrementalP95 budget100ms requires baseline confirmation."
+            },
+            {
+              "dimension": "memory",
+              "direction": "regresses",
+              "confidence": "medium",
+              "basis": "hypothetical",
+              "assessment": "Devices buffer keys/content during migration.",
+              "validationPlan": "Use the same synthetic20/200-matter workload; verify boundaries and failure behavior, compare server/client P95 and memory; proposed incrementalP95 budget100ms requires baseline confirmation."
+            },
+            {
+              "dimension": "reliability",
+              "direction": "unknown",
+              "confidence": "medium",
+              "basis": "hypothetical",
+              "assessment": "Lost keys can make data unavailable; recovery is a product requirement.",
+              "validationPlan": "Use the same synthetic20/200-matter workload; verify boundaries and failure behavior, compare server/client P95 and memory; proposed incrementalP95 budget100ms requires baseline confirmation."
+            },
+            {
+              "dimension": "operability",
+              "direction": "regresses",
+              "confidence": "medium",
+              "basis": "hypothetical",
+              "assessment": "Multi-device, recipient verification and recovery become core support paths.",
+              "validationPlan": "Use the same synthetic20/200-matter workload; verify boundaries and failure behavior, compare server/client P95 and memory; proposed incrementalP95 budget100ms requires baseline confirmation."
+            },
+            {
+              "dimension": "migration",
+              "direction": "regresses",
+              "confidence": "medium",
+              "basis": "hypothetical",
+              "assessment": "Web/iOS and sharing/history protocols change substantially.",
+              "validationPlan": "Use the same synthetic20/200-matter workload; verify boundaries and failure behavior, compare server/client P95 and memory; proposed incrementalP95 budget100ms requires baseline confirmation."
+            }
+          ],
+          "residualRisks": [
+            "Authorized recipients may retain external copies.",
+            "Compromised endpoints and malicious code delivery remain relevant.",
+            "Lost recovery material can permanently prevent decryption."
+          ],
+          "implementationReadiness": {
+            "affectedComponents": [
+              "apps/api/src/routes.ts",
+              "apps/api/src/account-data-routes.ts",
+              "apps/api/migrations/0052_paid_snapshot_capture_boundaries.sql",
+              "apps/web/src/matterDraftStorage.js",
+              "apps/ios/Rillora"
+            ],
+            "workPackages": [
+              "Content/copy inventory",
+              "Key and content adapter",
+              "Scoped projection and data migration",
+              "Recovery/failure/access validation"
+            ],
+            "acceptanceCriteria": [
+              "No new plaintext fallback",
+              "A/B/C access boundaries preserved",
+              "Recovery and rollback read supported versions"
+            ],
+            "migrationNotes": [
+              "Do not rewrite historical migration files; add a new versioned migration."
+            ],
+            "rollback": "Retain backward-compatible readers and keys; pause migration without silently reverting encrypted content to plaintext."
+          }
+        }
+      ],
+      "recommendedOptionId": "envelope",
+      "recommendation": "Option2 fits the current self-service and launch constraints; chooseOption3 if provider-unreadability becomes mandatory."
+    }
+  ],
+  "openQuestions": [
+    "Does Owner require normal provider operation to be unable to decrypt?",
+    "Auth0 unifiedMFA policy not read back: CLI lacks read:mfa_policies.",
+    "Production internalTLS, email, restore, audit scope and budget remain to be verified."
+  ],
+  "runtimeChanged": false,
+  "certificationClaimed": false
+}

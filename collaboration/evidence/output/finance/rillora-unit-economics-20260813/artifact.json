@@ -1,0 +1,365 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "Rillora 定价、单位经济与可融资性报告",
+    "description": "把价格、渠道成本、毛利、现金规划、合规和融资／收购尽调放进同一套可审计假设。",
+    "generatedAt": "2026-08-13T16:00:00+08:00",
+    "cards": [
+      {
+        "id": "recommended_price",
+        "description": "产品、毛利与融资规划采用的标准年付价格假设；尚未得到真实付费验证。",
+        "dataset": "summary",
+        "sourceId": "rillora_model",
+        "metrics": [
+          { "label": "标准年付假设", "field": "annual_price", "format": "currency" }
+        ]
+      },
+      {
+        "id": "contribution_margin",
+        "description": "US$89/Base 的单户贡献毛利率，不等同于公司报告毛利率。",
+        "dataset": "summary",
+        "sourceId": "rillora_model",
+        "metrics": [
+          { "label": "单户贡献毛利率", "field": "contribution_margin", "format": "percent" }
+        ]
+      },
+      {
+        "id": "cac_ceiling",
+        "description": "在简化贡献LTV与3.0x目标LTV:CAC下的获客成本上限。",
+        "dataset": "summary",
+        "sourceId": "rillora_model",
+        "metrics": [
+          { "label": "Base CAC上限", "field": "cac_ceiling", "format": "currency" }
+        ]
+      },
+      {
+        "id": "reported_margin_100",
+        "description": "100个付费家庭、分摊当前固定直接生产COGS后的报告毛利率敏感性。",
+        "dataset": "summary",
+        "sourceId": "rillora_model",
+        "metrics": [
+          { "label": "100户报告毛利率", "field": "reported_margin_100", "format": "percent", "signed": true }
+        ]
+      }
+    ],
+    "charts": [
+      {
+        "id": "contribution_by_offer",
+        "title": "不同价格单元的单户年贡献",
+        "subtitle": "统一采用Base运营假设；Founder是验证单元，US$89是规划中心，US$99只是上行敏感性。",
+        "headerMarkdown": "US$89相较US$59，每户每年增加约 **US$25** 贡献，并增加约 **US$15** 的3x LTV:CAC获客空间。",
+        "type": "bar",
+        "dataset": "price_economics",
+        "sourceId": "rillora_model",
+        "encodings": {
+          "x": { "field": "offer", "type": "nominal", "label": "价格单元" },
+          "y": { "field": "contribution_profit", "type": "quantitative", "label": "单户年贡献", "format": "currency" },
+          "tooltip": [
+            { "field": "contribution_margin", "type": "quantitative", "label": "贡献毛利率", "format": "percent" },
+            { "field": "cac_ceiling", "type": "quantitative", "label": "CAC上限", "format": "currency" }
+          ]
+        },
+        "yAxisTitle": "单户年贡献（US$）",
+        "valueFormat": "currency",
+        "layout": "full"
+      },
+      {
+        "id": "margin_by_scale",
+        "title": "US$89/Base 的报告毛利率随规模变化",
+        "subtitle": "模型将单户贡献与固定直接生产COGS分开，因此小规模时报告毛利率显著低于边际贡献率。",
+        "headerMarkdown": "这张图用于防止把 **77.7% 单户贡献毛利率** 错报为早期公司毛利率。",
+        "type": "line",
+        "dataset": "scale_margin",
+        "sourceId": "rillora_model",
+        "encodings": {
+          "x": { "field": "paid_households", "type": "quantitative", "label": "付费家庭" },
+          "y": { "field": "reported_margin", "type": "quantitative", "label": "报告毛利率", "format": "percent" },
+          "tooltip": [
+            { "field": "net_revenue", "type": "quantitative", "label": "年化净收入", "format": "currency" },
+            { "field": "reported_gross_profit", "type": "quantitative", "label": "报告毛利润", "format": "currency" }
+          ]
+        },
+        "xAxisTitle": "付费家庭",
+        "yAxisTitle": "报告毛利率",
+        "valueFormat": "percent",
+        "layout": "full"
+      }
+    ],
+    "tables": [
+      {
+        "id": "scenario_detail",
+        "title": "价格与经营情景",
+        "subtitle": "全部为规划敏感性，不是历史收入、ARR、留存或利润。",
+        "dataset": "scenario_economics",
+        "sourceId": "rillora_model",
+        "defaultSort": { "field": "gross_billings", "direction": "asc" },
+        "density": "dense",
+        "layout": "full",
+        "columns": [
+          { "field": "scenario", "label": "价格／情景", "type": "text" },
+          { "field": "gross_billings", "label": "年化总账单", "format": "currency" },
+          { "field": "net_revenue", "label": "净收入", "format": "currency" },
+          { "field": "contribution_profit", "label": "单户贡献", "format": "currency" },
+          { "field": "contribution_margin", "label": "贡献毛利率", "format": "percent" },
+          { "field": "simple_ltv", "label": "简化贡献LTV", "format": "currency" },
+          { "field": "cac_ceiling", "label": "3x CAC上限", "format": "currency" },
+          { "field": "payback_months", "label": "CAC回收月数", "format": "number" }
+        ]
+      },
+      {
+        "id": "channel_costs",
+        "title": "US$89 标准价的公开渠道费用快照",
+        "subtitle": "公开标价只用于规划；实际费率、合同、税务和App Store资格需在选定实体与市场后重算。",
+        "dataset": "channel_economics",
+        "sourceId": "commerce_sources",
+        "defaultSort": { "field": "annual_purchase_cost", "direction": "asc" },
+        "density": "dense",
+        "layout": "full",
+        "columns": [
+          { "field": "channel", "label": "渠道", "type": "text" },
+          { "field": "annual_purchase_cost", "label": "一次年付费用", "format": "currency" },
+          { "field": "twelve_monthly_cost", "label": "12次月付费用", "format": "currency" },
+          { "field": "planning_boundary", "label": "规划边界", "type": "text" }
+        ]
+      },
+      {
+        "id": "cash_plan",
+        "title": "18个月现金规划敏感性",
+        "subtitle": "包含15%预备金；是预算包络，不是融资额建议，也不代表已获得供应商报价。",
+        "dataset": "runway_plan",
+        "sourceId": "rillora_model",
+        "defaultSort": { "field": "cash_need_18m", "direction": "asc" },
+        "density": "dense",
+        "layout": "full",
+        "columns": [
+          { "field": "plan", "label": "运营情景", "type": "text" },
+          { "field": "subtotal", "label": "18个月小计", "format": "currency" },
+          { "field": "contingency", "label": "15%预备金", "format": "currency" },
+          { "field": "cash_need_18m", "label": "18个月现金需求", "format": "currency" },
+          { "field": "monthly_burn", "label": "月均消耗", "format": "currency" },
+          { "field": "equivalent_24m", "label": "24个月等效", "format": "currency" }
+        ]
+      },
+      {
+        "id": "readiness_gates",
+        "title": "融资／收购尽调前的证据门",
+        "subtitle": "这些是Rillora当前的内部学习门，不是通用投资标准。",
+        "dataset": "funding_gates",
+        "sourceId": "rillora_contract",
+        "density": "spacious",
+        "layout": "full",
+        "columns": [
+          { "field": "area", "label": "领域", "type": "text" },
+          { "field": "gate", "label": "门槛／要求", "type": "text" },
+          { "field": "current_evidence", "label": "当前证据", "type": "text" }
+        ]
+      }
+    ],
+    "sources": [
+      { "id": "rillora_model", "label": "Rillora单位经济模型（2026-08-13）", "path": "docs/unit-economics.md" },
+      { "id": "rillora_contract", "label": "Rillora商业与证据合同（2026-08-13）", "path": "docs/monetization.md" },
+      { "id": "commerce_sources", "label": "Stripe、Paddle与Apple官方公开费率", "href": "https://stripe.com/pricing" },
+      { "id": "consumer_sources", "label": "欧盟VAT、隐私与消费者订阅官方规则", "href": "https://europa.eu/youreurope/business/taxation/vat/vat-one-stop-shop/index_en.htm" }
+    ],
+    "blocks": [
+      {
+        "id": "title",
+        "type": "markdown",
+        "body": "# Rillora 定价、单位经济与可融资性报告\n\n**结论先行：US$59适合有边界的Founder／愿付验证，不适合现在就写成永久标准价；当前标准价规划中心应为US$8.99/月或US$89/年，US$9.99/月或US$99/年只保留为上行敏感性。**"
+      },
+      {
+        "id": "evidence_boundary",
+        "type": "markdown",
+        "sourceId": "rillora_model",
+        "body": "> **证据边界**：截至2026-08-13，Rillora没有真实付费家庭、续费、退款、归因CAC或生产支持成本。以下数字是用来决定测试和埋点的规划敏感性，不是历史业绩、预测、估值或融资金额。"
+      },
+      {
+        "id": "summary_metrics",
+        "type": "metric-strip",
+        "cardIds": ["recommended_price", "contribution_margin", "cac_ceiling", "reported_margin_100"]
+      },
+      {
+        "id": "executive_summary",
+        "type": "markdown",
+        "sourceId": "rillora_model",
+        "body": "## 执行摘要\n\n- **价格架构**：永久Free + 首发一个可见Family权益层。月付负责降低信任门槛，年付负责现金和交易效率；不做lifetime。\n- **经济核心**：US$89/Base产生约US$70.25单户年贡献、77.7%贡献毛利率、US$42.58的3x LTV:CAC上限；但100个付费家庭的完整分摊报告毛利率仍为-55.0%。\n- **渠道选择**：低量全球Web验证先把Paddle MoR作为规划基线，因为约US$1的年付费差小于自行承担多国税务和支付运营的不确定性；这还不是供应商决定。\n- **增长纪律**：Founder价格不投放显著付费获客。先取得50–100个可追溯付费家庭、退款原因、支持分钟和90天维护行为，再决定渠道规模。\n- **尽调纪律**：从第一笔交易起分离账单、税、现金、退款、收入确认、递延收入、渠道费、直接COGS和服务收入。软件与人工服务必须是两套P&L。"
+      },
+      { "id": "offer_chart", "type": "chart", "chartId": "contribution_by_offer", "layout": "full" },
+      { "id": "scenario_table", "type": "table", "tableId": "scenario_detail", "layout": "full" },
+      {
+        "id": "margin_interpretation",
+        "type": "markdown",
+        "sourceId": "rillora_model",
+        "body": "## 毛利必须保留两种口径\n\n1. **单户贡献毛利**用于判断一位客户是否能承受支付、云、身份和直接支持成本。\n2. **报告毛利**再扣除固定直接生产COGS，才是未来财务和尽调可辩护的公司口径。\n\n早期只报告边际AWS费会系统性高估毛利；把直接客服和生产运维塞进R&D也会制造不可持续的SaaS叙事。"
+      },
+      { "id": "scale_chart", "type": "chart", "chartId": "margin_by_scale", "layout": "full" },
+      {
+        "id": "channel_section",
+        "type": "markdown",
+        "sourceId": "commerce_sources",
+        "body": "## 渠道与交易成本\n\n公开费率快照为：Stripe美国线上国内卡2.9% + US$0.30，Billing按量0.7%，Tax Basic 0.5%；Paddle MoR公开价5% + US$0.50；Apple Small Business Program在符合并获批时为15%。月付会重复固定交易费，App Store分成则远高于Web支付。\n\nMoR只能外包部分收款、间接税和争议运营，不能外包Rillora的隐私、安全、消费者保护、会计、企业所得税或产品承诺。"
+      },
+      { "id": "channel_table", "type": "table", "tableId": "channel_costs", "layout": "full" },
+      {
+        "id": "cash_interpretation",
+        "type": "markdown",
+        "sourceId": "rillora_model",
+        "body": "## 现金、利润与融资不能混在一起\n\n年付会先带来现金，但服务收入应按履约期确认，并形成递延收入。现金规划还必须覆盖退款窗口、支付储备、税款、法律／隐私、保险、安全审查和支持。下面三档只回答‘按不同团队速度，18个月可能需要多少现金’，不回答‘应该融多少钱’。"
+      },
+      { "id": "cash_table", "type": "table", "tableId": "cash_plan", "layout": "full" },
+      {
+        "id": "fundability",
+        "type": "markdown",
+        "sourceId": "rillora_contract",
+        "body": "## 融资与被收购的真正准备\n\n收购方或投资人最终不会只看定价页。他们会检查收入质量、续费成熟度、获客可重复性、毛利政策、退款和投诉、数据与知识产权所有权、隐私／安全负债、供应商可转让性，以及Founder个人操作是否被系统化。Rillora现在最有价值的工作不是编造估值，而是让这些证据从第一批交易开始可重建。"
+      },
+      { "id": "gates_table", "type": "table", "tableId": "readiness_gates", "layout": "full" },
+      {
+        "id": "recommendation",
+        "type": "markdown",
+        "sourceId": "rillora_contract",
+        "body": "## 建议的下一步\n\n1. 在代码中先建立provider-neutral的plan、price、entitlement、invoice、tax、refund、recognized-revenue和COGS事件合同；**不激活支付**。\n2. 选定法律实体、首批开放国家和Web收款模型后，用真实合同和会计意见替换渠道与税务假设。\n3. 第一批交易只测试US$59 Founder与US$89标准价的有限样本，完整记录价格代码、渠道、退款、支持分钟和90天维护行为。\n4. 50–100个付费家庭前不做显著付费获客；年续费只能等真实队列成熟后报告。\n5. 人工setup/review保持关闭，先做合成工时研究、QA／保险核查和独立services P&L。"
+      },
+      {
+        "id": "questions",
+        "type": "markdown",
+        "sourceId": "rillora_model",
+        "body": "## 下一轮必须回答的问题\n\n- 用户愿意为‘持续维护 + 家庭协作 + 安全交接准备’支付US$89，还是只愿意为一次性整理付费？\n- 90天内是否有足够多人返回检查、更新或完成计划，证明这不是一次性工具？\n- 每个付费家庭需要多少人工支持分钟，哪些问题可以通过产品消除？\n- Web、App Store和伙伴渠道的退款、留存、支持和信任是否显著不同？\n- 选择的实体和首发国家会把税务、隐私代表、保险和取消合规成本推到什么水平？"
+      },
+      {
+        "id": "caveats",
+        "type": "markdown",
+        "sourceId": "consumer_sources",
+        "body": "## 假设与限制\n\n本报告不是会计、税务、法律、证券或并购意见。全球愿景不等于一套付款、隐私、订阅或数字遗产流程能在所有国家通用。Apple资格、支付费率、消费者取消规则、VAT/GST、GDPR代表／DPIA、保险和收入确认都必须在真实实体、市场、合同和产品承诺确定后由专业人士复核。"
+      }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "generatedAt": "2026-08-13T16:00:00+08:00",
+    "status": "ready",
+    "datasets": {
+      "summary": [
+        {
+          "annual_price": 89,
+          "contribution_margin": 0.777,
+          "cac_ceiling": 42.58,
+          "reported_margin_100": -0.55
+        }
+      ],
+      "price_economics": [
+        { "offer": "Founder US$59", "contribution_profit": 45.17, "contribution_margin": 0.718, "cac_ceiling": 27.38 },
+        { "offer": "Standard US$89", "contribution_profit": 70.25, "contribution_margin": 0.777, "cac_ceiling": 42.58 },
+        { "offer": "Upper US$99", "contribution_profit": 79.49, "contribution_margin": 0.79, "cac_ceiling": 48.18 }
+      ],
+      "scenario_economics": [
+        { "annual_price": 59, "scenario": "Founder US$59 — Base", "gross_billings": 65.22, "net_revenue": 62.94, "contribution_profit": 45.17, "contribution_margin": 0.718, "simple_ltv": 82.14, "cac_ceiling": 27.38, "payback_months": 10.6 },
+        { "annual_price": 89, "scenario": "Standard US$89 — Downside", "gross_billings": 96.55, "net_revenue": 89.79, "contribution_profit": 52.79, "contribution_margin": 0.588, "simple_ltv": 75.41, "cac_ceiling": 25.14, "payback_months": 13.6 },
+        { "annual_price": 89.01, "scenario": "Standard US$89 — Base", "gross_billings": 93.72, "net_revenue": 90.44, "contribution_profit": 70.25, "contribution_margin": 0.777, "simple_ltv": 127.74, "cac_ceiling": 42.58, "payback_months": 6.8 },
+        { "annual_price": 89.02, "scenario": "Standard US$89 — Upside", "gross_billings": 91.83, "net_revenue": 90, "contribution_profit": 76.51, "contribution_margin": 0.85, "simple_ltv": 191.27, "cac_ceiling": 63.76, "payback_months": 3.9 },
+        { "annual_price": 99, "scenario": "Upper US$99 — Base", "gross_billings": 104.22, "net_revenue": 100.57, "contribution_profit": 79.49, "contribution_margin": 0.79, "simple_ltv": 144.54, "cac_ceiling": 48.18, "payback_months": 6.0 }
+      ],
+      "scale_margin": [
+        { "paid_households": 100, "net_revenue": 9044, "reported_gross_profit": -4975, "reported_margin": -0.55 },
+        { "paid_households": 1000, "net_revenue": 90440, "reported_gross_profit": 46255, "reported_margin": 0.511 },
+        { "paid_households": 10000, "net_revenue": 904398, "reported_gross_profit": 630549, "reported_margin": 0.697 },
+        { "paid_households": 50000, "net_revenue": 4521990, "reported_gross_profit": 3332743, "reported_margin": 0.737 }
+      ],
+      "channel_economics": [
+        { "channel": "Paddle MoR", "annual_purchase_cost": 4.95, "twelve_monthly_cost": 11.39, "planning_boundary": "含支付、账单、间接税运营与部分争议支持；合同仍需复核" },
+        { "channel": "Stripe direct", "annual_purchase_cost": 3.95, "twelve_monthly_cost": 8.02, "planning_boundary": "美国国内卡 + Billing + Tax Basic；不含国际、FX、注册／申报与额外工具" },
+        { "channel": "Apple modeled at 15%", "annual_purchase_cost": 13.35, "twelve_monthly_cost": 16.18, "planning_boundary": "仅在符合并获批Small Business Program等适用条件时成立" }
+      ],
+      "runway_plan": [
+        { "plan": "Validation / founder-led", "subtotal": 234000, "contingency": 35100, "cash_need_18m": 269100, "monthly_burn": 14950, "equivalent_24m": 358800 },
+        { "plan": "Core small team", "subtotal": 784000, "contingency": 117600, "cash_need_18m": 901600, "monthly_burn": 50089, "equivalent_24m": 1202133 },
+        { "plan": "Accelerated", "subtotal": 1640000, "contingency": 246000, "cash_need_18m": 1886000, "monthly_burn": 104778, "equivalent_24m": 2514667 }
+      ],
+      "funding_gates": [
+        { "area": "愿付与渠道", "gate": "50–100个可追溯付费家庭后才考虑显著付费获客", "current_evidence": "无真实付费；未通过" },
+        { "area": "持续价值", "gate": "观察90天计划维护；年续费只在队列成熟后报告", "current_evidence": "无成熟队列；未通过" },
+        { "area": "单位经济", "gate": "软件毛利路径 >75%；CAC回收 <18个月；LTV:CAC ≥3.0x", "current_evidence": "只有模型敏感性" },
+        { "area": "风险与体验", "gate": "退款规划目标 <5%，并按原因调查；持续测量直接支持分钟", "current_evidence": "无付款或支持分布" },
+        { "area": "财务与合规", "gate": "实体、市场、税、收入确认、取消／退款、隐私与安全资料可重建", "current_evidence": "设计完成，专业复核未完成" },
+        { "area": "收购可转让性", "gate": "IP、代码、数据、供应商、合同与Founder依赖边界清晰", "current_evidence": "需随运营持续积累" }
+      ]
+    }
+  },
+  "sources": [
+    {
+      "id": "rillora_model",
+      "label": "Rillora单位经济模型（2026-08-13）",
+      "path": "docs/unit-economics.md",
+      "query": {
+        "engine": "formula-model",
+        "id": "RILLORA-UE-20260813",
+        "sql": "WITH reviewed_outputs(dataset_name, item, value_1, value_2, value_3, value_4) AS (VALUES ('summary', 'Standard US$89 Base', 89.00, 0.777, 42.58, -0.550), ('price_economics', 'Founder US$59 Base', 45.17, 0.718, 27.38, NULL), ('price_economics', 'Standard US$89 Base', 70.25, 0.777, 42.58, NULL), ('price_economics', 'Upper US$99 Base', 79.49, 0.790, 48.18, NULL), ('scale_margin', '100', 9044.00, -4975.00, -0.550, NULL), ('scale_margin', '1000', 90440.00, 46255.00, 0.511, NULL), ('scale_margin', '10000', 904398.00, 630549.00, 0.697, NULL), ('scale_margin', '50000', 4521990.00, 3332743.00, 0.737, NULL)) SELECT dataset_name, item, value_1, value_2, value_3, value_4 FROM reviewed_outputs ORDER BY dataset_name, item",
+        "description": "将价格、账单周期、退款、渠道费、可变基础设施、直接支持、续费与固定直接COGS组合成可编辑规划敏感性。",
+        "executed_at": "2026-08-13T16:00:00+08:00",
+        "language": "spreadsheet-formulas",
+        "metric_definitions": [
+          "Contribution margin = (net revenue - commerce fees - variable infrastructure - direct support) / net revenue",
+          "Reported gross margin = (total contribution profit - fixed direct production COGS) / total net revenue",
+          "Simple contribution LTV = annual contribution profit / (1 - annual renewal rate)",
+          "CAC ceiling = simple contribution LTV / target LTV:CAC"
+        ]
+      }
+    },
+    {
+      "id": "rillora_contract",
+      "label": "Rillora商业与证据合同（2026-08-13）",
+      "path": "docs/monetization.md",
+      "query": {
+        "engine": "project-authority",
+        "sql": "SELECT * FROM (VALUES ('WTP and distribution', '50-100 traceable paid households before material paid acquisition', 'No real payments'), ('Ongoing value', 'Observe 90-day maintenance; report annual renewal only after cohort maturity', 'No mature cohort'), ('Unit economics', 'Software GM path above 75%; CAC payback below 18 months; LTV:CAC at least 3.0x', 'Model sensitivity only'), ('Risk and experience', 'Refund planning target below 5%; measure direct support minutes', 'No payment or support distribution'), ('Finance and compliance', 'Entity, markets, tax, revenue recognition, cancellation, privacy and security evidence reconstructable', 'Design only; professional review pending'), ('Acquisition readiness', 'IP, code, data, vendor, contract and founder-dependency boundaries clear', 'Must accumulate with operations')) AS funding_gates(area, gate, current_evidence)",
+        "description": "当前Free／Family、价格版本、证据边界、订阅状态和安全降级合同。",
+        "executed_at": "2026-08-13T16:00:00+08:00",
+        "language": "markdown"
+      }
+    },
+    {
+      "id": "commerce_sources",
+      "label": "Stripe、Paddle与Apple官方公开费率",
+      "href": "https://stripe.com/pricing",
+      "query": {
+        "engine": "official-web",
+        "sql": "SELECT * FROM (VALUES ('Paddle MoR', 4.95, 11.39, '5% plus USD 0.50 public pricing'), ('Stripe direct', 3.95, 8.02, 'US domestic card plus Billing and Tax Basic public pricing'), ('Apple modeled at 15%', 13.35, 16.18, 'Only if eligible and accepted under applicable program terms')) AS channel_economics(channel, annual_purchase_cost, twelve_monthly_cost, planning_boundary)",
+        "description": "2026-08-13复核的官方公开支付、账单、税务、MoR、App Store与开发者费用页面。",
+        "executed_at": "2026-08-13T15:00:00+08:00",
+        "url": "https://stripe.com/pricing",
+        "filters": [
+          "https://stripe.com/billing/pricing",
+          "https://www.paddle.com/pricing",
+          "https://www.paddle.com/legal/terms",
+          "https://developer.apple.com/support/compare-memberships/",
+          "https://developer.apple.com/app-store/small-business-program/",
+          "https://developer.apple.com/app-store/subscriptions/"
+        ]
+      }
+    },
+    {
+      "id": "consumer_sources",
+      "label": "欧盟VAT、隐私与消费者订阅官方规则",
+      "href": "https://europa.eu/youreurope/business/taxation/vat/vat-one-stop-shop/index_en.htm",
+      "query": {
+        "engine": "official-web",
+        "description": "定价与收款开放前需要逐市场复核的官方间接税、消费者和隐私要求。",
+        "executed_at": "2026-08-13T15:00:00+08:00",
+        "url": "https://europa.eu/youreurope/business/taxation/vat/vat-one-stop-shop/index_en.htm",
+        "filters": [
+          "https://commission.europa.eu/law/law-topic/consumer-protection-law/consumer-contract-law/consumer-rights-directive_en",
+          "https://www.ftc.gov/legal-library/browse/rules/negative-option-rule",
+          "https://www.edpb.europa.eu/sme-data-protection-guide/data-protection-guide/dpia-do-i-need-conduct-one_en"
+        ]
+      }
+    }
+  ],
+  "package_info": {
+    "root": "Rillora finance research",
+    "manifestPath": "artifact.json",
+    "snapshotPath": "artifact.json",
+    "originUrl": "artifact://rillora-pricing-and-fundability-20260813"
+  }
+}

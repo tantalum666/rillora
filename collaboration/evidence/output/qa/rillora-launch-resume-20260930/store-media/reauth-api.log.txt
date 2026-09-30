@@ -1,0 +1,12 @@
+Rillora API listening on 127.0.0.1:4391
+{"level":30,"time":1790712726420,"pid":7943,"hostname":"tantalumdeMacBook-Pro.local","req":{"id":"cc80524d-c2a3-4d7e-8e11-8249aafb5a76","method":"OPTIONS"},"res":{"statusCode":204},"responseTime":4,"msg":"request completed"}
+{"level":30,"time":1790712726423,"pid":7943,"hostname":"tantalumdeMacBook-Pro.local","req":{"id":"2c7bdccf-706c-4f6e-a69b-10838ac1b260","method":"OPTIONS"},"res":{"statusCode":204},"responseTime":1,"msg":"request completed"}
+{"level":50,"time":1790712726448,"pid":7943,"hostname":"tantalumdeMacBook-Pro.local","req":{"id":"31b99e97-c71a-42ec-a97d-b54709b5afaa","method":"GET"},"err":{"type":"Error","details":"omitted"},"msg":"request failed"}
+{"level":30,"time":1790712726451,"pid":7943,"hostname":"tantalumdeMacBook-Pro.local","req":{"id":"31b99e97-c71a-42ec-a97d-b54709b5afaa","method":"GET"},"res":{"statusCode":500},"err":{"type":"Error","details":"omitted"},"responseTime":28,"msg":"request errored"}
+{"level":50,"time":1790712726457,"pid":7943,"hostname":"tantalumdeMacBook-Pro.local","req":{"id":"fce2eb17-78ac-42c1-9aef-da014b284c82","method":"GET"},"err":{"type":"Error","details":"omitted"},"msg":"request failed"}
+{"level":30,"time":1790712726458,"pid":7943,"hostname":"tantalumdeMacBook-Pro.local","req":{"id":"fce2eb17-78ac-42c1-9aef-da014b284c82","method":"GET"},"res":{"statusCode":500},"err":{"type":"Error","details":"omitted"},"responseTime":5,"msg":"request errored"}
+Account deletion worker will retry.
+{"level":50,"time":1790712742924,"pid":7943,"hostname":"tantalumdeMacBook-Pro.local","req":{"id":"94584d35-9c81-4f40-a7d0-bbd4048612b0","method":"GET"},"err":{"type":"Error","details":"omitted"},"msg":"request failed"}
+{"level":30,"time":1790712742924,"pid":7943,"hostname":"tantalumdeMacBook-Pro.local","req":{"id":"94584d35-9c81-4f40-a7d0-bbd4048612b0","method":"GET"},"res":{"statusCode":500},"err":{"type":"Error","details":"omitted"},"responseTime":5,"msg":"request errored"}
+Account deletion worker will retry.
+Received SIGTERM; shutting down.

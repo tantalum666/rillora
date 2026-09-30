@@ -1,0 +1,26 @@
+
+ RUN  v4.1.11 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/recovery-journal.integration.test.ts (7 tests | 7 skipped) 193ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/recovery-journal.integration.test.ts > Durable restrictions and quarantined restore
+error: null value in column "identity_reference_sha256" of relation "legal_acceptances" violates not-null constraint
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ tests/recovery-journal.integration.test.ts:47:21
+     45|   await pool.query('update app.recovery_policy set enforced=true,cover…
+     46|   const identity=(await pool.query("insert into app.identity_accounts(…
+     47|   const acceptance=(await pool.query(`insert into app.legal_acceptance…
+       |                     ^
+     48|    accepted_terms,acknowledged_privacy,accepted_electronic_records,cli…
+     49|    [ownerId,identity,legal.termsVersion,legal.privacyVersion,legal.con…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  7 skipped (7)
+   Start at  21:41:09
+   Duration  884ms (transform 213ms, setup 40ms, import 505ms, tests 193ms, environment 0ms)
+

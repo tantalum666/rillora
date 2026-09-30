@@ -1,0 +1,60 @@
+{
+  "checkedAt": "2026-09-28T04:47:35.170191+00:00",
+  "scope": "Static code and current official documentation; no actual migration",
+  "rows": [
+    {
+      "MAU": 100,
+      "auth0FreeUSD": 0,
+      "cognitoEssentialsUSD": 0.0,
+      "cognitoPlusUSD": 2.0
+    },
+    {
+      "MAU": 1000,
+      "auth0FreeUSD": 0,
+      "cognitoEssentialsUSD": 0.0,
+      "cognitoPlusUSD": 20.0
+    },
+    {
+      "MAU": 10000,
+      "auth0FreeUSD": 0,
+      "cognitoEssentialsUSD": 0.0,
+      "cognitoPlusUSD": 200.0
+    },
+    {
+      "MAU": 25000,
+      "auth0FreeUSD": 0,
+      "cognitoEssentialsUSD": 225.0,
+      "cognitoPlusUSD": 500.0
+    }
+  ],
+  "assumptions": [
+    "Direct password/social login; no SAML/customOIDC federation",
+    "No other user pools consuming free allocation",
+    "Identity fees only before tax; SES,SMS,WAF,Lambda,logs,M2M,replication excluded",
+    "Plan feature sets differ; not equivalent security/support quotes"
+  ],
+  "auth0PaidEntry": "B2C Essentials35USD/month for500MAU, not25000MAU",
+  "codeFindings": [
+    "Business UUID is separate from issuer/subject mappings",
+    "Web uses OIDC/PKCE; native verifier expects Auth0 azp and scopes",
+    "iOS SDK, management email refresh, deletion, hosted legal proof require changes",
+    "Existing account linking must preserve ownership without email-only merging"
+  ],
+  "passwordFindings": [
+    "Auth0 Free password-hash export unavailable",
+    "Current Cognito supports compatible password-hash CSV import",
+    "Without transferable hashes select reviewed reset or lazy-migration route; do not silently enable password credential collection"
+  ],
+  "sources": [
+    "https://aws.amazon.com/cognito/pricing/",
+    "https://auth0.com/pricing",
+    "https://auth0.com/docs/troubleshoot/customer-support/manage-subscriptions/export-data",
+    "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-using-import-tool.html",
+    "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-import-using-lambda.html",
+    "https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-tokens-verifying-a-jwt.html"
+  ],
+  "decision": "Retain Auth0 this release; Cognito future option only",
+  "directoryBoundary": "Directory CLI reported plugin unavailable; used official vendor sources without reauthorizing unrelated Stripe account",
+  "spec": "docs/auth0-cognito-migration-20260928.md",
+  "newApplicationTests": false
+}

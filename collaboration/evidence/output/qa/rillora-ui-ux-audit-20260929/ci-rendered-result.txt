@@ -1,0 +1,178 @@
+- link "Skip to content":
+  - /url: "#start-of-content"
+- banner "Global navigation menu":
+  - button "Open menu":
+  - link "Homepage (g then d)":
+    - /url: /
+  - navigation "Breadcrumbs":
+    - list:
+      - link "tantalum666":
+        - /url: /tantalum666
+        - generic: tantalum666
+      - link "rillora":
+        - /url: /tantalum666/rillora
+        - text: rillora
+      - button "Switch repository (option shift r)":
+  - button "Open quick search dialog, type / to search":
+    - text: Type
+    - generic: /
+    - text: to search
+  - link "Chat with Copilot":
+    - /url: /copilot
+  - button "Open Copilot…":
+  - button "Create new...":
+  - link "All issues":
+    - /url: /issues
+  - link "All pull requests":
+    - /url: /pulls
+  - link "All repositories":
+    - /url: /repos
+  - link "You have no unread notifications (g then n)":
+    - /url: /notifications
+  - button "Open user navigation menu":
+    - img "User avatar"
+  - heading "Repository navigation" [level=2]
+  - navigation "Repository":
+    - list:
+      - link "Code":
+        - /url: /tantalum666/rillora
+        - generic: Code
+      - link "Issues":
+        - /url: /tantalum666/rillora/issues
+        - generic: Issues
+      - link "Pull requests":
+        - /url: /tantalum666/rillora/pulls
+        - generic: Pull requests
+      - link "Actions":
+        - /url: /tantalum666/rillora/actions
+        - generic: Actions
+      - link "Projects":
+        - /url: /tantalum666/rillora/projects
+        - generic: Projects
+      - link "Security and quality":
+        - /url: /tantalum666/rillora/security
+        - generic: Security and quality
+      - link "Insights":
+        - /url: /tantalum666/rillora/network/dependencies
+        - generic: Insights
+      - link "Settings":
+        - /url: /tantalum666/rillora/settings
+        - generic: Settings
+- main:
+  - link "Verify source":
+    - /url: /tantalum666/rillora/actions/workflows/verify.yml
+    - generic: Verify source
+  - img "completed successfully:"
+  - 'heading "Keep appearance consistent across clients and repair task recovery #29" [level=1]':
+    - generic: "Keep appearance consistent across clients and repair task recovery #29"
+  - button "Re-run all jobs":
+    - generic: Re-run all jobs
+  - button "Workflow run options":
+  - navigation "Workflow run":
+    - list:
+      - link "Summary":
+        - /url: /tantalum666/rillora/actions/runs/36566846971
+        - generic: Summary
+      - heading "All jobs" [level=4]
+      - button "Filter by job status":
+      - list:
+        - link "source":
+          - /url: /tantalum666/rillora/actions/runs/36566846971/job/109400758719
+          - generic: source
+        - link "api":
+          - /url: /tantalum666/rillora/actions/runs/36566846971/job/109400758592
+          - generic: api
+        - link "web-and-infrastructure":
+          - /url: /tantalum666/rillora/actions/runs/36566846971/job/109400758974
+          - generic: web-and-infrastructure
+      - heading "Run details" [level=3]
+      - list "Run details":
+        - link "Usage":
+          - /url: /tantalum666/rillora/actions/runs/36566846971/usage
+          - generic: Usage
+        - link "Workflow file":
+          - /url: /tantalum666/rillora/actions/runs/36566846971/workflow
+          - generic: Workflow file
+  - region "Workflow run summary":
+    - generic: Triggered via push September 29, 2026 20:144 minutes ago
+    - link "@tantalum666 tantalum666":
+      - /url: /tantalum666
+      - img "@tantalum666"
+      - text: tantalum666
+    - generic: pushed
+    - link "eadefd4":
+      - /url: /tantalum666/rillora/commit/eadefd435841bce6103cff6a0cd4c6c4b0d4e8b9
+      - text: eadefd4
+    - link "main":
+      - /url: /tantalum666/rillora/tree/refs/heads/main
+    - generic: Status
+    - text: Success
+    - generic: Total duration
+    - link "1m 34s":
+      - /url: /tantalum666/rillora/actions/runs/36566846971/usage
+    - generic: Artifacts
+    - text: –
+  - region "Workflow run graph":
+    - heading "verify.yml" [level=2]:
+      - link "verify.yml":
+        - /url: /tantalum666/rillora/actions/runs/36566846971/workflow
+    - generic: "on: push"
+    - 'link "completed successfully: source 12s"':
+      - /url: /tantalum666/rillora/actions/runs/36566846971/job/109400758719
+      - img "completed successfully:"
+      - generic: source
+      - generic: 12s
+    - 'link "completed successfully: api 1m 30s"':
+      - /url: /tantalum666/rillora/actions/runs/36566846971/job/109400758592
+      - img "completed successfully:"
+      - generic: api
+      - generic: 1m 30s
+    - 'link "completed successfully: web-and-infrastructure 1m 7s"':
+      - /url: /tantalum666/rillora/actions/runs/36566846971/job/109400758974
+      - img "completed successfully:"
+      - generic: web-and-infrastructure
+      - generic: 1m 7s
+    - paragraph: Oh hello! Nice to see you.
+    - paragraph:
+      - text: Made with ❤️ by
+      - link:
+        - /url: https://actions.github.io/humans.txt
+        - text: humans.txt
+    - button "Fit to window" [disabled]:
+    - button "Zoom out" [disabled]:
+    - button "Zoom in" [disabled]:
+  - heading "api summary" [level=2]:
+    - link "api summary":
+      - /url: "#summary-109400758592"
+  - button "job summary options":
+  - heading "Vitest Test Report" [level=2]
+  - heading "Summary" [level=3]
+  - list:
+    - strong: Test Files
+    - text: ": ✅"
+    - strong: 34 passes
+    - text: · 34 total
+    - strong: Test Results
+    - text: ": ✅"
+    - strong: 300 passes
+    - text: · 300 total
+  - link "Job summary generated at run-time":
+    - /url: https://docs.github.com/actions/using-workflows/workflow-commands-for-github-actions#adding-a-job-summary
+  - heading "web-and-infrastructure summary" [level=2]:
+    - link "web-and-infrastructure summary":
+      - /url: "#summary-109400758974"
+  - button "job summary options":
+  - heading "Vitest Test Report" [level=2]
+  - heading "Summary" [level=3]
+  - list:
+    - strong: Test Files
+    - text: ": ✅"
+    - strong: 7 passes
+    - text: · 7 total
+    - strong: Test Results
+    - text: ": ✅"
+    - strong: 41 passes
+    - text: · 41 total
+  - link "Job summary generated at run-time":
+    - /url: https://docs.github.com/actions/using-workflows/workflow-commands-for-github-actions#adding-a-job-summary
+  - region "Annotations"

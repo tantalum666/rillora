@@ -1,0 +1,30 @@
+{
+  "task": "Retire new monthly purchases, audit/adopt selected branding, assess 100-user capacity",
+  "status": "implementation_verified_external_brand_dependencies_remain",
+  "ownerApprovedAnnualOnly": true,
+  "channelPriceChangeApproved": false,
+  "annualUSDRemains": "88.80",
+  "reading": {
+    "continuationOf": "Existing release, brand and pricing workflow",
+    "fullBodyReadReused": "output/qa/rillora-release-readiness-20260919/full-read-completion.json",
+    "supplement": "Current AGENTS, product/handoff/decisions, pricing, release/infra/commerce/Auth0 and changed source files; no new full-read claim"
+  },
+  "observed": {
+    "mainIOSIcon": "Correct selected03; actual home screenshot and Owner confirmation",
+    "previewIcon": "fixed, rebuilt, installed, actual home screenshot",
+    "auth0Branding": "basic branding applied; custom-domain Liquid remains blocked402",
+    "auth0CustomEmailProvider": "GET emails/provider returns404 inexistent_email_provider",
+    "auth0Session": "Reauthenticated to rillora-dev.eu.auth0.com",
+    "awsSession": "restored; API33/0063 deployed",
+    "stripeConnector": "Expired OAuth; use existing Rillora-specific API route after AWS restore, never the default other-project CLI account",
+    "apple": "restored; monthly0territories, annual-only description saved",
+    "stripe": "TEST monthlyv1-v3archived via authenticated dashboard",
+    "syntheticCleanup": "Independent database readback0; oldtoken401"
+  },
+  "remaining": [
+    "Auth0 paid-template or free-page decision and actualcustom-domainLogo",
+    "Chrome extensionfilepermission forStripe/GoogleLogo",
+    "FinalAppStoreproductionbuild,annualpricepointandexistingreleasegates"
+  ],
+  "closedAt": "2026-09-21T05:59:05.857247+00:00"
+}

@@ -1,0 +1,17 @@
+{
+    "Items": [
+        {
+            "ConnectionId": "zn26xk",
+            "ConnectionType": "VPC_LINK",
+            "IntegrationId": "c89c6w1",
+            "IntegrationMethod": "ANY",
+            "IntegrationType": "HTTP_PROXY",
+            "IntegrationUri": "arn:aws:servicediscovery:eu-central-1:133857166372:service/srv-d73zcg4vlo6htopu",
+            "PayloadFormatVersion": "1.0",
+            "TimeoutInMillis": 30000,
+            "TlsConfig": {
+                "ServerNameToVerify": "origin.production.rillora.xyz"
+            }
+        }
+    ]
+}

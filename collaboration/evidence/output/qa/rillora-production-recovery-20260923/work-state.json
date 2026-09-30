@@ -1,0 +1,85 @@
+{
+  "updatedAt": "2026-09-23T15:37:01.875999+00:00",
+  "task": "Owner requests start production environment and recovery; asks whether whole project should use GitHub",
+  "stage": "Closed production data foundation, scoped cloud restore/isolation and exact cleanup verified",
+  "readBaseline": "output/qa/rillora-release-readiness-20260919/full-read-completion.json",
+  "continuation": true,
+  "focusedBodyReadComplete": [
+    "AGENTS.md",
+    "docs/infrastructure-roadmap.md",
+    "docs/solo-operations-and-portability.md",
+    "docs/identity-data-region.md",
+    "docs/backend.md",
+    "docs/quality-gates.md"
+  ],
+  "focusedReadRemaining": [],
+  "github": {
+    "repository": "https://github.com/tantalum666/rillora",
+    "visibility": "PRIVATE",
+    "rootCommit": "f7b797d89f5e1f1d63e37f7708fb2487c0265bb5",
+    "pushed": true,
+    "files": 829,
+    "rootRemote": "origin",
+    "fanpassPreserved": true,
+    "webGitMetadataPreserved": true,
+    "access": "Owner confirmed adding only Rillora to existing repository-scoped token; saved",
+    "currentValidatedCodeCommit": "11a9efb1bf9bad31f723f8b129a672d3c30b9db8",
+    "ci": "https://github.com/tantalum666/rillora/actions/runs/35871922739",
+    "finalCommit": "ac6f8de88d0c254394cdd8e1fbf755eeb39983c4",
+    "finalCI": "https://github.com/tantalum666/rillora/actions/runs/35882595537"
+  },
+  "aws": {
+    "sts": "renewed through existing browser session and verified; no new MFA",
+    "preflightStack": "RilloraProductionPreflight CREATE_COMPLETE; MFA-gated read-only role deployed",
+    "plan": "FREE ACTIVE; remaining credit112.50USD, plan expiry2027-02-11; fresh read07:20UTC",
+    "databases": "Only staging, encrypted/private, backup1day",
+    "newCloudWrites": [
+      "MFA read-only preflight stack",
+      "Imported empty RuntimeCredential and MaintenanceLogs into RilloraProduction; no DB/KMS/journal/runtime"
+    ],
+    "productionAttempt": "UPDATE_ROLLBACK_COMPLETE; actual Free Plan rejected7-day backup",
+    "repair": "Production assume-role grant changed to a narrowly scoped customer managed policy; original/staging untouched"
+  },
+  "proposedWork": [
+    "separate production foundation and seven-day backup under fresh account/cost facts",
+    "actual isolated restore with encrypted-content and deletion/authorization replay checks",
+    "immutable source/release manifests and safe private GitHub readiness"
+  ],
+  "constraints": [
+    "No UI redesign, E2EE, live sales or production opening",
+    "No staging promotion or private-data copy to synthetic staging",
+    "Do not confuse Git revert with database restore",
+    "No new subagents"
+  ],
+  "ownerSteering": "Preserve FanPass and all existing repositories/history; use a separate Rillora repository.",
+  "production": {
+    "status": "UPDATE_COMPLETE",
+    "databaseCreated": true,
+    "backupRetentionRequested": 7,
+    "providerBlock": "The specified backup retention period exceeds the maximum available to free tier customers. To remove all limitations, upgrade your account plan.",
+    "accountPlanChanged": true,
+    "restorePerformed": true,
+    "next": "Customer API/internal TLS and production identity/email; no repeated upgrade or restore",
+    "localRestoreGuardTests": 6,
+    "infraTests": 28,
+    "ownerUpgradeAuthorization": "你来升级",
+    "backupRetentionDays": 7,
+    "journalRuntime": "New image deployed; initial migration succeeded with zero owners and encryption enforced; journal initialization launching",
+    "localApiTests": 205,
+    "migrationTaskRevision": 2,
+    "recoveryTaskRevision": 2,
+    "schemaThrough": "0070",
+    "migrationTaskExit": 0,
+    "imageDigest": "sha256:19b9287d289397801f607f2a6550c9a336d8771c04738116f388db775863fa46",
+    "journalInitialized": true,
+    "syntheticSeed": "4 owners,10 protected values,plaintext0,invalidrefs0",
+    "snapshotAvailable": true,
+    "postSnapshotRestrictionsVerified": true,
+    "dataAcceptance": "verified for scoped synthetic cases",
+    "target": "rillora-recovery-aa89ba3759634b72",
+    "snapshot": "rillora-production-recovery-aa89ba3759634b72",
+    "cleanup": "verified: fixture accounts/content/keys0, clone/snapshot absent",
+    "isolation": "network original blocked; KMSGenerate/DynamoPut denied"
+  },
+  "next": "Customer API/internal TLS and production identity/email; no repeated upgrade or restore"
+}

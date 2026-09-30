@@ -1,0 +1,373 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project Rillora.xcodeproj -scheme RilloraLayoutMatrix -configuration Debug -destination "platform=iOS Simulator,id=0EC00819-D34F-4310-B807-7C6F057988A7" -derivedDataPath /Users/tantalum/Documents/电子遗嘱app/output/qa/ios-layout-matrix-20260815-133417/DerivedData -parallel-testing-enabled NO -resultBundlePath /Users/tantalum/Documents/电子遗嘱app/output/qa/ios-layout-matrix-20260815-133417/max-large-surfaces.xcresult "RILLORA_API_BASE_URL=http://127.0.0.1:4181/v1" RILLORA_DEV_PLANNER_ID=11111111-1111-4111-8111-111111111111 "-only-testing:RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testPrimaryEditorsAndPreparationRoutes" test-without-building
+
+Build settings from command line:
+    RILLORA_API_BASE_URL = http://127.0.0.1:4181/v1
+    RILLORA_DEV_PLANNER_ID = 11111111-1111-4111-8111-111111111111
+
+Resolve Package Graph
+
+
+Resolved source packages:
+  JWTDecode: https://github.com/auth0/JWTDecode.swift.git @ 4.0.0
+  Auth0: https://github.com/auth0/Auth0.swift @ 3.0.2
+  SimpleKeychain: https://github.com/auth0/SimpleKeychain.git @ 1.3.0
+
+Writing result bundle at path:
+	/Users/tantalum/Documents/电子遗嘱app/output/qa/ios-layout-matrix-20260815-133417/max-large-surfaces.xcresult
+
+2026-08-15 14:12:53.093283+0800 RilloraLayoutMatrixTests-Runner[54575:17972795] [Default] Running tests...
+objc[54575]: Class UIAccessibilityLoaderWebShared is implemented in both /Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x10a698310) and /Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x10a6f0398). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-08-15 14:12:59.450.
+Test Suite 'RilloraLayoutMatrixTests.xctest' started at 2026-08-15 14:12:59.451.
+Test Suite 'RilloraLayoutMatrixTests' started at 2026-08-15 14:12:59.451.
+Test Case '-[RilloraLayoutMatrixTests.RilloraLayoutMatrixTests testPrimaryEditorsAndPreparationRoutes]' started.
+    t =     0.00s Start Test at 2026-08-15 14:12:59.453
+    t =     0.48s Set Up
+    t =     0.48s Setting device orientation to Portrait
+    t =     0.49s     Device orientation changed to Portrait
+    t =     0.58s     Wait for com.apple.springboard to idle
+    t =     1.98s Open com.rillora.ios
+    t =     1.98s     Launch com.rillora.ios
+2026-08-15 14:13:02.129 xcodebuild[54280:17969405] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-08-15 14:13:02.129 xcodebuild[54280:17969405] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     3.92s         Setting up automation session
+    t =     6.13s         Wait for com.rillora.ios to idle
+    t =     8.11s Waiting 20.0s for "overview.scroll" Any to exist
+    t =     9.15s     Checking `Expect predicate `existsNoRetry == 1` for object "overview.scroll" Any`
+    t =     9.15s         Checking existence of `"overview.scroll" Any`
+    t =     9.33s Waiting 20.0s for "overview.scroll" Any to exist
+    t =    10.37s     Checking `Expect predicate `existsNoRetry == 1` for object "overview.scroll" Any`
+    t =    10.37s         Checking existence of `"overview.scroll" Any`
+    t =    10.42s Tap "Matters" Button
+    t =    10.43s     Wait for com.rillora.ios to idle
+    t =    10.43s     Find the "Matters" Button
+    t =    10.45s     Check for interrupting elements affecting "Matters" Button
+    t =    10.65s     Synthesize event
+    t =    11.37s     Wait for com.rillora.ios to idle
+    t =    13.42s Waiting 10.0s for "matters.list" Any to exist
+    t =    14.46s     Checking `Expect predicate `existsNoRetry == 1` for object "matters.list" Any`
+    t =    14.48s         Checking existence of `"matters.list" Any`
+    t =    14.56s Waiting 5.0s for "matter.add" Any to exist
+    t =    15.61s     Checking `Expect predicate `existsNoRetry == 1` for object "matter.add" Any`
+    t =    15.61s         Checking existence of `"matter.add" Any`
+    t =    15.68s Tap "matter.add" Any
+    t =    15.68s     Wait for com.rillora.ios to idle
+    t =    15.68s     Find the "matter.add" Any
+    t =    15.73s     Check for interrupting elements affecting "matter.add" Button
+    t =    15.85s     Synthesize event
+    t =    16.19s     Wait for com.rillora.ios to idle
+    t =    17.78s Waiting 10.0s for "matter.editor" Any to exist
+    t =    18.83s     Checking `Expect predicate `existsNoRetry == 1` for object "matter.editor" Any`
+    t =    18.90s         Checking existence of `"matter.editor" Any`
+    t =    19.18s Checking existence of `"matter.edit.title" Any`
+    t =    19.51s Find the Target Application 'com.rillora.ios'
+    t =    19.95s Added attachment named 'Rillora-Matrix-17-Pro-Max-new-matter-editor'
+    t =    19.95s Waiting 5.0s for "Cancel" Button to exist
+    t =    20.99s     Checking `Expect predicate `existsNoRetry == 1` for object "Cancel" Button`
+    t =    21.00s         Checking existence of `"Cancel" Button`
+    t =    21.04s Tap "Cancel" Button
+    t =    21.04s     Wait for com.rillora.ios to idle
+    t =    21.04s     Find the "Cancel" Button
+    t =    21.07s     Check for interrupting elements affecting "Cancel" Button
+    t =    21.22s     Synthesize event
+    t =    21.57s     Wait for com.rillora.ios to idle
+    t =    22.79s Waiting 10.0s for Any (First Match) to exist
+    t =    23.83s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    23.83s         Checking existence of `Any (First Match)`
+    t =    23.92s Tap Any (First Match)
+    t =    23.92s     Wait for com.rillora.ios to idle
+    t =    23.92s     Find the Any (First Match)
+    t =    24.00s     Check for interrupting elements affecting "matter.open.035df814-ebeb-4b75-8549-5f8d745323c5" Button
+    t =    24.16s     Synthesize event
+    t =    24.49s     Wait for com.rillora.ios to idle
+    t =    25.25s Waiting 10.0s for "matter.editor" Any to exist
+    t =    26.29s     Checking `Expect predicate `existsNoRetry == 1` for object "matter.editor" Any`
+    t =    26.30s         Checking existence of `"matter.editor" Any`
+    t =    26.42s Checking existence of `"matter.edit.role-policy" Any`
+    t =    26.78s Press Target Application 'com.rillora.ios'[0.50, 0.72] for 0.1 seconds, then drag to Target Application 'com.rillora.ios'[0.50, 0.48] with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    26.78s     Wait for com.rillora.ios to idle
+    t =    26.78s     Find the Target Application 'com.rillora.ios'
+    t =    26.83s     Check for interrupting elements affecting "Rillora" Application
+    t =    26.89s     Synthesize event
+    t =    26.90s         Find the Target Application 'com.rillora.ios'
+    t =    26.94s         Find the Target Application 'com.rillora.ios'
+    t =    26.98s         Find the Target Application 'com.rillora.ios'
+    t =    27.03s         Find the Target Application 'com.rillora.ios'
+    t =    27.07s         Find the Target Application 'com.rillora.ios'
+    t =    27.87s     Wait for com.rillora.ios to idle
+    t =    29.45s Checking existence of `"matter.edit.role-policy" Any`
+    t =    29.77s Find the "matter.edit.role-policy" Any
+    t =    30.00s Find the "matter.edit.role-policy" Button
+    t =    30.21s Tap "matter.edit.role-policy" Button
+    t =    30.21s     Wait for com.rillora.ios to idle
+    t =    30.70s     Find the "matter.edit.role-policy" Button
+    t =    30.93s     Check for interrupting elements affecting "matter.edit.role-policy" Button
+    t =    31.06s     Synthesize event
+    t =    31.37s     Wait for com.rillora.ios to idle
+    t =    31.59s Waiting 10.0s for "role-policy.editor" Any to exist
+    t =    32.65s     Checking `Expect predicate `existsNoRetry == 1` for object "role-policy.editor" Any`
+    t =    32.67s         Checking existence of `"role-policy.editor" Any`
+    t =    32.86s Find the Target Application 'com.rillora.ios'
+    t =    33.12s Added attachment named 'Rillora-Matrix-17-Pro-Max-role-policy-editor'
+    t =    33.12s Waiting 5.0s for NavigationBar (First Match) to exist
+    t =    34.16s     Checking `Expect predicate `existsNoRetry == 1` for object NavigationBar (First Match)`
+    t =    34.16s         Checking existence of `NavigationBar (First Match)`
+    t =    34.18s Checking existence of `Button (Element at index 0)`
+    t =    34.21s Tap Button (Element at index 0)
+    t =    34.21s     Wait for com.rillora.ios to idle
+    t =    34.21s     Find the Button (Element at index 0)
+    t =    34.26s     Check for interrupting elements affecting "BackButton" Button
+    t =    34.33s     Synthesize event
+    t =    34.63s     Wait for com.rillora.ios to idle
+    t =    35.50s Waiting 5.0s for "matter.editor" Any to exist
+    t =    36.53s     Checking `Expect predicate `existsNoRetry == 1` for object "matter.editor" Any`
+    t =    36.53s         Checking existence of `"matter.editor" Any`
+    t =    36.62s Waiting 5.0s for NavigationBar (First Match) to exist
+    t =    37.66s     Checking `Expect predicate `existsNoRetry == 1` for object NavigationBar (First Match)`
+    t =    37.66s         Checking existence of `NavigationBar (First Match)`
+    t =    37.69s Checking existence of `Button (Element at index 0)`
+    t =    37.72s Tap Button (Element at index 0)
+    t =    37.72s     Wait for com.rillora.ios to idle
+    t =    37.72s     Find the Button (Element at index 0)
+    t =    37.76s     Check for interrupting elements affecting "BackButton" Button
+    t =    37.85s     Synthesize event
+    t =    38.16s     Wait for com.rillora.ios to idle
+    t =    38.81s Waiting 5.0s for "matters.list" Any to exist
+    t =    39.85s     Checking `Expect predicate `existsNoRetry == 1` for object "matters.list" Any`
+    t =    39.86s         Checking existence of `"matters.list" Any`
+    t =    39.98s Tap "More" Button
+    t =    39.98s     Wait for com.rillora.ios to idle
+    t =    39.98s     Find the "More" Button
+    t =    39.99s     Check for interrupting elements affecting "More" Button
+    t =    40.07s     Synthesize event
+    t =    40.37s     Wait for com.rillora.ios to idle
+    t =    42.15s Waiting 10.0s for "more.list" Any to exist
+    t =    43.19s     Checking `Expect predicate `existsNoRetry == 1` for object "more.list" Any`
+    t =    43.19s         Checking existence of `"more.list" Any`
+    t =    43.28s Checking existence of `"plan-access.open" Any`
+    t =    43.48s Checking existence of `"plan-access.open" Any`
+    t =    43.65s Find the "plan-access.open" Any
+    t =    43.87s Find the "plan-access.open" Button
+    t =    44.06s Tap "plan-access.open" Button
+    t =    44.06s     Wait for com.rillora.ios to idle
+    t =    44.06s     Find the "plan-access.open" Button
+    t =    44.31s     Check for interrupting elements affecting "plan-access.open" Button
+    t =    44.40s     Synthesize event
+    t =    44.71s     Wait for com.rillora.ios to idle
+    t =    44.78s Waiting 10.0s for "plan-access.view" Any to exist
+    t =    45.87s     Checking `Expect predicate `existsNoRetry == 1` for object "plan-access.view" Any`
+    t =    45.88s         Checking existence of `"plan-access.view" Any`
+    t =    46.02s Find the Target Application 'com.rillora.ios'
+    t =    46.36s Added attachment named 'Rillora-Matrix-17-Pro-Max-plan-access'
+    t =    46.36s Waiting 5.0s for NavigationBar (First Match) to exist
+    t =    47.41s     Checking `Expect predicate `existsNoRetry == 1` for object NavigationBar (First Match)`
+    t =    47.42s         Checking existence of `NavigationBar (First Match)`
+    t =    47.48s Checking existence of `Button (Element at index 0)`
+    t =    47.52s Tap Button (Element at index 0)
+    t =    47.52s     Wait for com.rillora.ios to idle
+    t =    47.53s     Find the Button (Element at index 0)
+    t =    47.56s     Check for interrupting elements affecting "BackButton" Button
+    t =    47.64s     Synthesize event
+    t =    47.96s     Wait for com.rillora.ios to idle
+    t =    49.72s Waiting 5.0s for "more.list" Any to exist
+    t =    50.74s     Checking `Expect predicate `existsNoRetry == 1` for object "more.list" Any`
+    t =    50.75s         Checking existence of `"more.list" Any`
+    t =    51.16s Checking existence of `"contact.add" Any`
+    t =    51.39s Find the "contact.add" Any
+    t =    51.95s Find the "contact.add" Button
+    t =    52.41s Tap "contact.add" Button
+    t =    52.41s     Wait for com.rillora.ios to idle
+    t =    52.42s     Find the "contact.add" Button
+    t =    52.76s     Check for interrupting elements affecting "contact.add" Button
+    t =    52.85s     Synthesize event
+    t =    53.17s     Wait for com.rillora.ios to idle
+    t =    53.51s Waiting 10.0s for "contact.editor" Any to exist
+    t =    54.53s     Checking `Expect predicate `existsNoRetry == 1` for object "contact.editor" Any`
+    t =    54.53s         Checking existence of `"contact.editor" Any`
+    t =    54.63s Find the Target Application 'com.rillora.ios'
+    t =    54.84s Added attachment named 'Rillora-Matrix-17-Pro-Max-contact-editor'
+    t =    54.84s Waiting 5.0s for "Cancel" Button to exist
+    t =    55.92s     Checking `Expect predicate `existsNoRetry == 1` for object "Cancel" Button`
+    t =    55.93s         Checking existence of `"Cancel" Button`
+    t =    55.96s Tap "Cancel" Button
+    t =    55.96s     Wait for com.rillora.ios to idle
+    t =    55.97s     Find the "Cancel" Button
+    t =    56.00s     Check for interrupting elements affecting "Cancel" Button
+    t =    56.08s     Synthesize event
+    t =    56.48s     Wait for com.rillora.ios to idle
+    t =    57.24s Waiting 5.0s for "more.list" Any to exist
+    t =    58.26s     Checking `Expect predicate `existsNoRetry == 1` for object "more.list" Any`
+    t =    58.26s         Checking existence of `"more.list" Any`
+    t =    58.35s Checking existence of `"plan-motivation.open" Any`
+    t =    58.57s Checking existence of `"plan-motivation.open" Any`
+    t =    58.79s Find the "plan-motivation.open" Any
+    t =    59.02s Find the "plan-motivation.open" Button
+    t =    59.23s Tap "plan-motivation.open" Button
+    t =    59.23s     Wait for com.rillora.ios to idle
+    t =    59.24s     Find the "plan-motivation.open" Button
+    t =    59.46s     Check for interrupting elements affecting "plan-motivation.open" Button
+    t =    59.55s     Synthesize event
+    t =    59.86s     Wait for com.rillora.ios to idle
+    t =    59.97s Waiting 10.0s for "plan-motivation.view" Any to exist
+    t =    60.99s     Checking `Expect predicate `existsNoRetry == 1` for object "plan-motivation.view" Any`
+    t =    62.21s         Checking existence of `"plan-motivation.view" Any`
+    t =    62.72s Find the Target Application 'com.rillora.ios'
+    t =    62.95s Added attachment named 'Rillora-Matrix-17-Pro-Max-plan-motivation'
+    t =    62.95s Waiting 5.0s for NavigationBar (First Match) to exist
+    t =    63.98s     Checking `Expect predicate `existsNoRetry == 1` for object NavigationBar (First Match)`
+    t =    63.98s         Checking existence of `NavigationBar (First Match)`
+    t =    64.10s Checking existence of `Button (Element at index 0)`
+    t =    64.14s Tap Button (Element at index 0)
+    t =    64.14s     Wait for com.rillora.ios to idle
+    t =    64.14s     Find the Button (Element at index 0)
+    t =    64.18s     Check for interrupting elements affecting "BackButton" Button
+    t =    64.28s     Synthesize event
+    t =    64.61s     Wait for com.rillora.ios to idle
+    t =    65.05s Waiting 5.0s for "more.list" Any to exist
+    t =    66.08s     Checking `Expect predicate `existsNoRetry == 1` for object "more.list" Any`
+    t =    66.08s         Checking existence of `"more.list" Any`
+    t =    66.14s Checking existence of `"official-setup.open" Any`
+    t =    66.32s Checking existence of `"official-setup.open" Any`
+    t =    66.50s Find the "official-setup.open" Any
+    t =    66.73s Press Target Application 'com.rillora.ios'[0.50, 0.72] for 0.1 seconds, then drag to Target Application 'com.rillora.ios'[0.50, 0.48] with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    66.73s     Wait for com.rillora.ios to idle
+    t =    66.73s     Find the Target Application 'com.rillora.ios'
+    t =    66.77s     Check for interrupting elements affecting "Rillora" Application
+    t =    66.81s     Synthesize event
+    t =    66.81s         Find the Target Application 'com.rillora.ios'
+    t =    66.84s         Find the Target Application 'com.rillora.ios'
+    t =    66.87s         Find the Target Application 'com.rillora.ios'
+    t =    66.90s         Find the Target Application 'com.rillora.ios'
+    t =    66.94s         Find the Target Application 'com.rillora.ios'
+    t =    67.72s     Wait for com.rillora.ios to idle
+    t =    69.32s Checking existence of `"official-setup.open" Button`
+    t =    69.55s Find the "official-setup.open" Button
+    t =    69.84s Find the "official-setup.open" Button
+    t =    70.07s Tap "official-setup.open" Button
+    t =    70.07s     Wait for com.rillora.ios to idle
+    t =    70.07s     Find the "official-setup.open" Button
+    t =    70.29s     Check for interrupting elements affecting "official-setup.open" Button
+    t =    70.37s     Synthesize event
+    t =    70.66s     Wait for com.rillora.ios to idle
+    t =    71.60s Waiting 10.0s for "official-setup.view" Any to exist
+    t =    72.64s     Checking `Expect predicate `existsNoRetry == 1` for object "official-setup.view" Any`
+    t =    72.64s         Checking existence of `"official-setup.view" Any`
+    t =    72.71s Find the Target Application 'com.rillora.ios'
+    t =    72.89s Added attachment named 'Rillora-Matrix-17-Pro-Max-official-checks'
+    t =    72.89s Waiting 5.0s for NavigationBar (First Match) to exist
+    t =    73.92s     Checking `Expect predicate `existsNoRetry == 1` for object NavigationBar (First Match)`
+    t =    73.92s         Checking existence of `NavigationBar (First Match)`
+    t =    73.95s Checking existence of `Button (Element at index 0)`
+    t =    73.97s Tap Button (Element at index 0)
+    t =    73.97s     Wait for com.rillora.ios to idle
+    t =    73.98s     Find the Button (Element at index 0)
+    t =    74.00s     Check for interrupting elements affecting "BackButton" Button
+    t =    74.05s     Synthesize event
+    t =    74.35s     Wait for com.rillora.ios to idle
+    t =    74.69s Waiting 5.0s for "more.list" Any to exist
+    t =    75.72s     Checking `Expect predicate `existsNoRetry == 1` for object "more.list" Any`
+    t =    75.72s         Checking existence of `"more.list" Any`
+    t =    75.79s Checking existence of `"simulation.open" Any`
+    t =    75.99s Checking existence of `"simulation.open" Any`
+    t =    76.19s Find the "simulation.open" Any
+    t =    76.45s Find the "simulation.open" Button
+    t =    76.70s Tap "simulation.open" Button
+    t =    76.70s     Wait for com.rillora.ios to idle
+    t =    76.70s     Find the "simulation.open" Button
+    t =    76.93s     Check for interrupting elements affecting "simulation.open" Button
+    t =    77.03s     Synthesize event
+    t =    77.32s     Wait for com.rillora.ios to idle
+    t =    78.32s Waiting 10.0s for "simulation.view" Any to exist
+    t =    79.35s     Checking `Expect predicate `existsNoRetry == 1` for object "simulation.view" Any`
+    t =    79.35s         Checking existence of `"simulation.view" Any`
+    t =    79.42s Find the Target Application 'com.rillora.ios'
+    t =    79.58s Added attachment named 'Rillora-Matrix-17-Pro-Max-simulation'
+    t =    79.58s Waiting 5.0s for NavigationBar (First Match) to exist
+    t =    80.62s     Checking `Expect predicate `existsNoRetry == 1` for object NavigationBar (First Match)`
+    t =    80.62s         Checking existence of `NavigationBar (First Match)`
+    t =    80.64s Checking existence of `Button (Element at index 0)`
+    t =    80.67s Tap Button (Element at index 0)
+    t =    80.67s     Wait for com.rillora.ios to idle
+    t =    80.67s     Find the Button (Element at index 0)
+    t =    80.70s     Check for interrupting elements affecting "BackButton" Button
+    t =    80.74s     Synthesize event
+    t =    81.03s     Wait for com.rillora.ios to idle
+    t =    81.37s Waiting 5.0s for "more.list" Any to exist
+    t =    82.39s     Checking `Expect predicate `existsNoRetry == 1` for object "more.list" Any`
+    t =    82.39s         Checking existence of `"more.list" Any`
+    t =    82.45s Checking existence of `"disclosure-rehearsal.open" Any`
+    t =    82.67s Checking existence of `"disclosure-rehearsal.open" Any`
+    t =    82.88s Find the "disclosure-rehearsal.open" Any
+    t =    83.10s Find the "disclosure-rehearsal.open" Button
+    t =    83.34s Tap "disclosure-rehearsal.open" Button
+    t =    83.34s     Wait for com.rillora.ios to idle
+    t =    83.35s     Find the "disclosure-rehearsal.open" Button
+    t =    83.61s     Check for interrupting elements affecting "disclosure-rehearsal.open" Button
+    t =    83.70s     Synthesize event
+    t =    83.99s     Wait for com.rillora.ios to idle
+    t =    84.95s Waiting 10.0s for "disclosure-rehearsal.view" Any to exist
+    t =    86.00s     Checking `Expect predicate `existsNoRetry == 1` for object "disclosure-rehearsal.view" Any`
+    t =    86.00s         Checking existence of `"disclosure-rehearsal.view" Any`
+    t =    86.09s Find the Target Application 'com.rillora.ios'
+    t =    86.28s Added attachment named 'Rillora-Matrix-17-Pro-Max-role-disclosure'
+    t =    86.28s Waiting 5.0s for NavigationBar (First Match) to exist
+    t =    87.30s     Checking `Expect predicate `existsNoRetry == 1` for object NavigationBar (First Match)`
+    t =    87.30s         Checking existence of `NavigationBar (First Match)`
+    t =    87.32s Checking existence of `Button (Element at index 0)`
+    t =    87.35s Tap Button (Element at index 0)
+    t =    87.35s     Wait for com.rillora.ios to idle
+    t =    87.35s     Find the Button (Element at index 0)
+    t =    87.38s     Check for interrupting elements affecting "BackButton" Button
+    t =    87.42s     Synthesize event
+    t =    87.73s     Wait for com.rillora.ios to idle
+    t =    88.10s Waiting 5.0s for "more.list" Any to exist
+    t =    89.13s     Checking `Expect predicate `existsNoRetry == 1` for object "more.list" Any`
+    t =    89.13s         Checking existence of `"more.list" Any`
+    t =    89.19s Checking existence of `"start-here.open" Any`
+    t =    89.48s Checking existence of `"start-here.open" Any`
+    t =    89.73s Find the "start-here.open" Any
+    t =    89.96s Find the "start-here.open" Button
+    t =    90.19s Tap "start-here.open" Button
+    t =    90.19s     Wait for com.rillora.ios to idle
+    t =    90.19s     Find the "start-here.open" Button
+    t =    90.41s     Check for interrupting elements affecting "start-here.open" Button
+    t =    90.49s     Synthesize event
+    t =    90.78s     Wait for com.rillora.ios to idle
+    t =    91.72s Waiting 10.0s for "start-here.view" Any to exist
+    t =    92.75s     Checking `Expect predicate `existsNoRetry == 1` for object "start-here.view" Any`
+    t =    92.75s         Checking existence of `"start-here.view" Any`
+    t =    92.81s Find the Target Application 'com.rillora.ios'
+    t =    92.97s Added attachment named 'Rillora-Matrix-17-Pro-Max-start-here'
+    t =    92.97s Waiting 5.0s for NavigationBar (First Match) to exist
+    t =    94.00s     Checking `Expect predicate `existsNoRetry == 1` for object NavigationBar (First Match)`
+    t =    94.00s         Checking existence of `NavigationBar (First Match)`
+    t =    94.02s Checking existence of `Button (Element at index 0)`
+    t =    94.05s Tap Button (Element at index 0)
+    t =    94.05s     Wait for com.rillora.ios to idle
+    t =    94.05s     Find the Button (Element at index 0)
+    t =    94.08s     Check for interrupting elements affecting "BackButton" Button
+    t =    94.12s     Synthesize event
+    t =    94.42s     Wait for com.rillora.ios to idle
+    t =    94.77s Waiting 5.0s for "more.list" Any to exist
+    t =    95.79s     Checking `Expect predicate `existsNoRetry == 1` for object "more.list" Any`
+    t =    95.80s         Checking existence of `"more.list" Any`
+    t =    95.96s Tear Down
+Test Case '-[RilloraLayoutMatrixTests.RilloraLayoutMatrixTests testPrimaryEditorsAndPreparationRoutes]' passed (96.504 seconds).
+Test Suite 'RilloraLayoutMatrixTests' passed at 2026-08-15 14:14:35.959.
+	 Executed 1 test, with 0 failures (0 unexpected) in 96.504 (96.507) seconds
+Test Suite 'RilloraLayoutMatrixTests.xctest' passed at 2026-08-15 14:14:35.960.
+	 Executed 1 test, with 0 failures (0 unexpected) in 96.504 (96.509) seconds
+Test Suite 'Selected tests' passed at 2026-08-15 14:14:35.960.
+	 Executed 1 test, with 0 failures (0 unexpected) in 96.504 (96.510) seconds
+2026-08-15 14:14:36.570 xcodebuild[54280:17969405] [MT] IDETestOperationsObserverDebug: 136.017 elapsed -- Testing started completed.
+2026-08-15 14:14:36.570 xcodebuild[54280:17969405] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-08-15 14:14:36.570 xcodebuild[54280:17969405] [MT] IDETestOperationsObserverDebug: 136.017 sec, +136.017 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/tantalum/Documents/电子遗嘱app/output/qa/ios-layout-matrix-20260815-133417/max-large-surfaces.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

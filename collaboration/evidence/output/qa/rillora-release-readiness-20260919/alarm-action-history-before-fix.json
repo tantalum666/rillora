@@ -1,0 +1,28 @@
+{
+  "AlarmHistoryItems": [
+    {
+      "AlarmName": "RilloraOperations-Unhealthy9594204A-p3hU67LKgX91",
+      "AlarmType": "MetricAlarm",
+      "Timestamp": "2026-09-19T17:03:48.251000+08:00",
+      "HistoryItemType": "Action",
+      "HistorySummary": "Failed to execute action arn:aws:sns:eu-central-1:133857166372:RilloraOperations-Alerts91F83244-3hyvJ2Vrg4zo",
+      "HistoryData": "{\"actionState\":\"Failed\",\"stateUpdateTimestamp\":1789808628227,\"notificationResource\":\"arn:aws:sns:eu-central-1:133857166372:RilloraOperations-Alerts91F83244-3hyvJ2Vrg4zo\",\"publishedMessage\":null,\"error\":\"CloudWatch Alarms is not authorized to perform: SNS:Publish on resource:arn:aws:sns:eu-central-1:133857166372:RilloraOperations-Alerts91F83244-3hyvJ2Vrg4zo\",\"muteWindowEndTimestamp\":null}"
+    },
+    {
+      "AlarmName": "RilloraOperations-Unhealthy9594204A-p3hU67LKgX91",
+      "AlarmType": "MetricAlarm",
+      "Timestamp": "2026-09-19T17:03:19.881000+08:00",
+      "HistoryItemType": "Action",
+      "HistorySummary": "Failed to execute action arn:aws:sns:eu-central-1:133857166372:RilloraOperations-Alerts91F83244-3hyvJ2Vrg4zo",
+      "HistoryData": "{\"actionState\":\"Failed\",\"stateUpdateTimestamp\":1789808599847,\"notificationResource\":\"arn:aws:sns:eu-central-1:133857166372:RilloraOperations-Alerts91F83244-3hyvJ2Vrg4zo\",\"publishedMessage\":null,\"error\":\"CloudWatch Alarms is not authorized to perform: SNS:Publish on resource:arn:aws:sns:eu-central-1:133857166372:RilloraOperations-Alerts91F83244-3hyvJ2Vrg4zo\",\"muteWindowEndTimestamp\":null}"
+    },
+    {
+      "AlarmName": "RilloraOperations-Unhealthy9594204A-p3hU67LKgX91",
+      "AlarmType": "MetricAlarm",
+      "Timestamp": "2026-09-17T00:42:03.956000+08:00",
+      "HistoryItemType": "Action",
+      "HistorySummary": "Failed to execute action arn:aws:sns:eu-central-1:133857166372:RilloraOperations-Alerts91F83244-3hyvJ2Vrg4zo",
+      "HistoryData": "{\"actionState\":\"Failed\",\"stateUpdateTimestamp\":1789576923925,\"notificationResource\":\"arn:aws:sns:eu-central-1:133857166372:RilloraOperations-Alerts91F83244-3hyvJ2Vrg4zo\",\"publishedMessage\":null,\"error\":\"CloudWatch Alarms is not authorized to perform: SNS:Publish on resource:arn:aws:sns:eu-central-1:133857166372:RilloraOperations-Alerts91F83244-3hyvJ2Vrg4zo\",\"muteWindowEndTimestamp\":null}"
+    }
+  ]
+}

@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rillora UI Alignment Audit</title>
+    <style>
+      :root {
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: #0b2742;
+        background: #e9e4da;
+        font-synthesis: none;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        background: #e9e4da;
+      }
+
+      main {
+        width: 1600px;
+        margin: 0 auto;
+        padding: 88px 80px 120px;
+      }
+
+      h1, h2, h3, p { margin-top: 0; }
+
+      .eyebrow {
+        margin-bottom: 18px;
+        color: #55775a;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .hero {
+        padding: 56px 60px;
+        border: 1px solid #d2cabd;
+        border-radius: 24px;
+        background: #fffcf7;
+      }
+
+      .hero h1 {
+        max-width: 980px;
+        margin-bottom: 18px;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 68px;
+        line-height: 0.98;
+        letter-spacing: -0.035em;
+      }
+
+      .hero-copy {
+        max-width: 980px;
+        margin-bottom: 34px;
+        color: #3c4650;
+        font-size: 22px;
+        line-height: 1.5;
+      }
+
+      .summary-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+      }
+
+      .summary-card {
+        min-height: 116px;
+        padding: 20px;
+        border-radius: 14px;
+        background: #f1f0e8;
+      }
+
+      .summary-card strong {
+        display: block;
+        margin-bottom: 7px;
+        color: #31533a;
+        font-size: 15px;
+      }
+
+      .summary-card span {
+        color: #545d65;
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      .audit-section {
+        margin-top: 34px;
+        padding: 44px;
+        border: 1px solid #d2cabd;
+        border-radius: 24px;
+        background: #fffcf7;
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 520px;
+        gap: 40px;
+        align-items: end;
+        margin-bottom: 28px;
+      }
+
+      .section-head h2 {
+        margin-bottom: 8px;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 38px;
+        line-height: 1.05;
+        letter-spacing: -0.025em;
+      }
+
+      .section-head p {
+        margin-bottom: 0;
+        color: #5a6269;
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      .finding {
+        padding: 18px 20px;
+        border-radius: 12px;
+        background: #e8efe2;
+        color: #31533a;
+        font-size: 15px;
+        line-height: 1.5;
+      }
+
+      .pair {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        align-items: start;
+      }
+
+      figure {
+        margin: 0;
+        padding: 18px;
+        border: 1px solid #ded6c9;
+        border-radius: 16px;
+        background: #f5f1e9;
+      }
+
+      figcaption {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 14px;
+        color: #50585f;
+        font-size: 14px;
+        font-weight: 650;
+      }
+
+      .tag {
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: #e3ddd1;
+        color: #625b51;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .tag.after {
+        background: #dfe9d9;
+        color: #31533a;
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 10px;
+        background: #fff;
+      }
+
+      .device-pair figure {
+        display: grid;
+        justify-items: center;
+      }
+
+      .device-pair figcaption { width: 100%; }
+
+      .device-pair img {
+        width: 390px;
+        max-height: 844px;
+        object-fit: contain;
+      }
+
+      .contract {
+        margin-top: 34px;
+        padding: 52px 56px;
+        border-radius: 24px;
+        background: #0b2742;
+        color: #fffdf9;
+      }
+
+      .contract h2 {
+        margin-bottom: 24px;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 40px;
+      }
+
+      .contract-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+
+      .contract-card {
+        padding-top: 18px;
+        border-top: 1px solid rgba(255, 253, 249, 0.28);
+      }
+
+      .contract-card strong {
+        display: block;
+        margin-bottom: 8px;
+        color: #ffd0b5;
+        font-size: 15px;
+      }
+
+      .contract-card p {
+        margin-bottom: 0;
+        color: rgba(255, 253, 249, 0.78);
+        font-size: 15px;
+        line-height: 1.55;
+      }
+
+      footer {
+        padding: 30px 8px 0;
+        color: #716b62;
+        font-size: 13px;
+        line-height: 1.5;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <p class="eyebrow">Rillora · UI alignment audit · 11 Aug 2026</p>
+        <h1>Source-level alignment repair</h1>
+        <p class="hero-copy">Before-and-after evidence for the Web and iOS surfaces. The repair stays inside shared controls, responsive navigation, label layout and navigation appearance—no page-specific icon nudges.</p>
+        <div class="summary-grid">
+          <div class="summary-card"><strong>Web controls</strong><span>20 px icons now center at 0 px delta inside secondary actions.</span></div>
+          <div class="summary-card"><strong>Responsive rail</strong><span>Compact icons keep their authored size; mobile gains every destination.</span></div>
+          <div class="summary-card"><strong>iOS rows</strong><span>Repeated SF Symbols share one 28 pt optical column.</span></div>
+          <div class="summary-card"><strong>iOS navigation</strong><span>Opaque bar appearances stop scrolled labels crossing the title.</span></div>
+        </div>
+      </section>
+
+      <section class="audit-section">
+        <div class="section-head">
+          <div><p class="eyebrow">01 · Web · Desktop</p><h2>Secondary action alignment</h2><p>Same My plan state at 1440 × 1000.</p></div>
+          <div class="finding"><strong>Root cause:</strong> full-width secondary buttons were not a flex alignment context. <strong>Repair:</strong> shared inline-flex, centered content, 8 px gap and non-shrinking SVGs. Measured icon center delta is now 0 px.</div>
+        </div>
+        <div class="pair">
+          <figure><figcaption><span>Before</span><span class="tag">Baseline</span></figcaption><img src="assets/web-my-plan-before.png" alt="Web My plan before alignment repair" /></figure>
+          <figure><figcaption><span>After</span><span class="tag after">Verified</span></figcaption><img src="assets/web-my-plan-after.png" alt="Web My plan after alignment repair" /></figure>
+        </div>
+      </section>
+
+      <section class="audit-section">
+        <div class="section-head">
+          <div><p class="eyebrow">02 · Web · Drawer</p><h2>Safety icon keeps its geometry</h2><p>Same role-policy drawer at 1440 × 1000.</p></div>
+          <div class="finding"><strong>Root cause:</strong> the flex row allowed a 19 px SVG to shrink beside long copy. <strong>Repair:</strong> icon-bearing controls use <code>flex: 0 0 auto</code>. The safety icon remains 19 × 19 px.</div>
+        </div>
+        <div class="pair">
+          <figure><figcaption><span>Before</span><span class="tag">Baseline</span></figcaption><img src="assets/web-drawer-before.png" alt="Web role policy drawer before repair" /></figure>
+          <figure><figcaption><span>After</span><span class="tag after">Verified</span></figcaption><img src="assets/web-drawer-after.png" alt="Web role policy drawer after repair" /></figure>
+        </div>
+      </section>
+
+      <section class="audit-section">
+        <div class="section-head">
+          <div><p class="eyebrow">03 · Web · Responsive</p><h2>Compact rail and mobile reachability</h2><p>Same Settings state at 900 px and 390 px.</p></div>
+          <div class="finding"><strong>Root cause:</strong> the compact CSS rule collapsed the active Settings icon, then removed the entire sidebar below 760 px without a replacement. <strong>Repair:</strong> text-only collapse at 900 px; a fixed seven-destination mobile bar at 390 px with 44 × 48 px targets.</div>
+        </div>
+        <div class="pair">
+          <figure><figcaption><span>900 px · Before</span><span class="tag">Icon collapsed</span></figcaption><img src="assets/web-compact-before.png" alt="Web compact settings before repair" /></figure>
+          <figure><figcaption><span>900 px · After</span><span class="tag after">23 px centered</span></figcaption><img src="assets/web-compact-after.png" alt="Web compact settings after repair" /></figure>
+          <figure><figcaption><span>390 px · Before</span><span class="tag">No navigation</span></figcaption><img src="assets/web-mobile-before.png" alt="Web mobile settings before navigation repair" /></figure>
+          <figure><figcaption><span>390 px · After</span><span class="tag after">All destinations</span></figcaption><img src="assets/web-mobile-after.png" alt="Web mobile settings after navigation repair" /></figure>
+        </div>
+      </section>
+
+      <section class="audit-section">
+        <div class="section-head">
+          <div><p class="eyebrow">04 · iOS · Rows</p><h2>One optical icon column</h2><p>Same Account preparation and security sections on iPhone 17e.</p></div>
+          <div class="finding"><strong>Root cause:</strong> each SF Symbol used its natural advance width, moving text starts from row to row. <strong>Repair:</strong> one reusable LabelStyle gives repeated rows a centered 28 pt icon column while preserving Dynamic Type.</div>
+        </div>
+        <div class="pair device-pair">
+          <figure><figcaption><span>Before</span><span class="tag">Natural widths</span></figcaption><img src="assets/ios-account-before.jpg" alt="iOS Account preparation before aligned label style" /></figure>
+          <figure><figcaption><span>After</span><span class="tag after">Shared 28 pt column</span></figcaption><img src="assets/ios-account-after.png" alt="iOS Account preparation after aligned label style" /></figure>
+        </div>
+      </section>
+
+      <section class="audit-section">
+        <div class="section-head">
+          <div><p class="eyebrow">05 · iOS · Navigation</p><h2>Scrolled content stays below the title</h2><p>Same Role disclosure screen, scrolled, on iPhone 17e.</p></div>
+          <div class="finding"><strong>Root cause:</strong> iOS 26’s translucent navigation layer let the first label remain legible beneath the title. <strong>Repair:</strong> one global opaque UINavigationBarAppearance for standard, scroll-edge, compact and compact-scroll-edge states.</div>
+        </div>
+        <div class="pair device-pair">
+          <figure><figcaption><span>Before</span><span class="tag">Text under title</span></figcaption><img src="assets/ios-disclosure-before.jpg" alt="iOS disclosure screen before opaque navigation appearance" /></figure>
+          <figure><figcaption><span>After</span><span class="tag after">Opaque title surface</span></figcaption><img src="assets/ios-disclosure-after.png" alt="iOS disclosure screen after opaque navigation appearance" /></figure>
+        </div>
+      </section>
+
+      <section class="contract">
+        <p class="eyebrow">Repair contract</p>
+        <h2>Keep future alignment fixes structural</h2>
+        <div class="contract-grid">
+          <div class="contract-card"><strong>Shared source first</strong><p>Repair icon slots, flex behavior, label styles and bar appearance at the component or theme layer.</p></div>
+          <div class="contract-card"><strong>No page nudges</strong><p>Do not introduce per-screen offsets, transform hacks or one-icon padding exceptions.</p></div>
+          <div class="contract-card"><strong>Evidence boundaries</strong><p>Browser geometry and Simulator screenshots prove these rendered states only; they do not prove physical-device or VoiceOver completion.</p></div>
+        </div>
+      </section>
+
+      <footer>Local audit artifact captured from Rillora source and the iPhone 17e Simulator running iOS 26.5. The Figma page is an editable review record, not a replacement product design system.</footer>
+    </main>
+    <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+  </body>
+</html>

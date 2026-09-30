@@ -1,0 +1,20 @@
+{
+  "completedAt": "2026-09-23T15:37:01.875999+00:00",
+  "scopedTaskResult": "private source/CI, independent production data, synthetic real restore and cleanup verified",
+  "sourceCommit": "ac6f8de88d0c254394cdd8e1fbf755eeb39983c4",
+  "runtimeCodeCommit": "11a9efb1bf9bad31f723f8b129a672d3c30b9db8",
+  "customerTraffic": false,
+  "actualCloudAcceptance": "cloud-data-acceptance.json",
+  "actualCleanup": "cleanup-verification.json",
+  "ci": "ci-success.json",
+  "documentsSynchronized": true,
+  "remaining": [
+    "production customer API/internalTLS/identity/email",
+    "live commerce and final native/AppStore artifact",
+    "recurring cleanup/legacy snapshot retirement/provider reconciliation"
+  ],
+  "ownerDeferrals": [
+    "business registration",
+    "physical device acceptance"
+  ]
+}

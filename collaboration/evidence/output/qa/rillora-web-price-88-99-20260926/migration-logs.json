@@ -1,0 +1,11 @@
+{
+    "events": [
+        {
+            "timestamp": 1790363564156,
+            "message": "{\"committed\":true,\"prices\":[{\"price_code\":\"family_usd_annual_v3\",\"amount_minor\":\"8880\",\"status\":\"retired\"},{\"price_code\":\"family_usd_annual_v4\",\"amount_minor\":\"8899\",\"status\":\"disabled_hypothesis\"}],\"migrations\":[{\"name\":\"0068_recovery_control_journal.sql\",\"checksum\":\"3ce96cd9646715ee03cf2b75fe10e8a3ff6048122265dc2d40d8eb637c3e2cfd\"},{\"name\":\"0069_recovery_status_reader.sql\",\"checksum\":\"d76958cc68eba16b74348025bffcf54127b929cdb029d4e240e3630b2c9af6f7\"},{\"name\":\"0070_recovery_replay_privileges.sql\",\"checksum\":\"64ced0d351c09b246ef2d1ec686b3368f8eff7d6291d4d080cc3ff4395bc22b4\"},{\"name\":\"0071_purchase_consent_receipts.sql\",\"checksum\":\"5701d95709ebe99ef225b639bee86facc046f46e80bfc1d8aba35e06d4cd57a0\"},{\"name\":\"0072_production_commerce_policy_read.sql\",\"checksum\":\"3478ed79fb320f0fecae341598872fa555e9fd2fe770e45628386ab085d1ae47\"},{\"name\":\"0073_stripe_inbox_retry_context.sql\",\"checksum\":\"591a2644b0f160c4c5efe1a6a4e426432c4b03237abf2dafd6a00c80b9949b72\"},{\"name\":\"0074_owner_selected_web_88_99.sql\",\"checksum\":\"e971bf53df2801b5bb7d0e4105a59d46fb0cadac8666a9271613e641b93229e5\"},{\"name\":\"0075_web_v4_stripe_test_binding.sql\",\"checksum\":\"9785db4aa6070f0de324a248ca8c7702747d3d24d25a04781dd891b82341f5cd\"}],\"salesEnabled\":false}",
+            "ingestionTime": 1790363568198
+        }
+    ],
+    "nextForwardToken": "f/39926441656976090263955958954090282271207756892147023872/s",
+    "nextBackwardToken": "b/39926441656976090263955958954090282271207756892147023872/s"
+}

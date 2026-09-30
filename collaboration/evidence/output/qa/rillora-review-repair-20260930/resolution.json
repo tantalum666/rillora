@@ -1,0 +1,167 @@
+{
+  "baseline": "296c7b53ad22ee7239aa037d7544b708c5b73703",
+  "at": "2026-09-30T14:43:44.643017+08:00",
+  "findings": [
+    {
+      "id": "F01",
+      "claim": "近期认证的等价 URL 绕过",
+      "verdict": "confirmed",
+      "repair": "敏感路由直接绑定认证中间件；删除独立 URL 白名单",
+      "verification": "修复前失败；双前缀、大小写、尾斜线及3种认证时间回归通过",
+      "codeStatus": "fixed",
+      "cloudStatus": "not_deployed_aws_session_expired"
+    },
+    {
+      "id": "F02",
+      "claim": "跨标签切换账户后旧草稿写入新账户",
+      "verdict": "confirmed",
+      "repair": "客户端固定已核验 planner；服务器逐请求比较，Cookie写入同时要求CSRF；账户改变后清空旧视图",
+      "verification": "真实两标签A→B保存被409拒绝；数据库匹配草稿0；事项/联系人/导入负例通过",
+      "codeStatus": "fixed",
+      "cloudStatus": "not_deployed_aws_session_expired"
+    },
+    {
+      "id": "F03",
+      "claim": "Stripe并发快照覆盖取消状态",
+      "verdict": "confirmed",
+      "repair": "订阅读取到提交使用同一数据库事务锁；冲突保留重试；财务状态在锁内复读；checkout preflight复用该锁",
+      "verification": "可控制Promise完成顺序的竞争与时间戳测试、完整计费回归通过",
+      "codeStatus": "fixed",
+      "cloudStatus": "not_deployed_aws_session_expired"
+    },
+    {
+      "id": "F04",
+      "claim": "iOS退出 URL 丢失/api",
+      "verdict": "confirmed",
+      "repair": "统一原生API前缀推导和会话撤销请求",
+      "verification": "生产URL的logout/logout-all请求捕获及HTTP成功检查通过",
+      "codeStatus": "fixed",
+      "cloudStatus": "local_artifact_or_source_verified"
+    },
+    {
+      "id": "F05",
+      "claim": "生产邀请入口404",
+      "verdict": "confirmed",
+      "repair": "CloudFront允许/invite和严格UUID子路径，保留其他拒绝",
+      "verification": "GET/HEAD、回调查询参数、尾斜线及非法路径测试通过",
+      "codeStatus": "fixed",
+      "cloudStatus": "not_deployed_aws_session_expired"
+    },
+    {
+      "id": "F06",
+      "claim": "第51条事项不可访问",
+      "verdict": "confirmed",
+      "repair": "双端完整读取cursor并拒绝循环分页；初次原生登录不能发布半份overview",
+      "verification": "Web实际显示51条并搜索打开51st；原生真实列表搜索打开通过；双端分页协议测试通过",
+      "codeStatus": "fixed",
+      "cloudStatus": "not_deployed_aws_session_expired"
+    },
+    {
+      "id": "F07",
+      "claim": "草稿恢复调用缺失方法",
+      "verdict": "confirmed",
+      "repair": "补getMatter；冲突刷新按ID读取；消费端API契约检查覆盖所有JSX调用",
+      "verification": "active/archived/404/network契约通过；真实归档后恢复Notes并另存正确账户通过",
+      "codeStatus": "fixed",
+      "cloudStatus": "not_deployed_aws_session_expired"
+    },
+    {
+      "id": "F08",
+      "claim": "联系人因多角色而重复",
+      "verdict": "confirmed",
+      "repair": "共用按人查询，确定plan-wide角色摘要；个人导出使用EXISTS",
+      "verification": "多scope、撤销重建、overview/list和个人导出每人一条通过",
+      "codeStatus": "fixed",
+      "cloudStatus": "not_deployed_aws_session_expired"
+    },
+    {
+      "id": "F09",
+      "claim": "联系人系统返回丢草稿",
+      "verdict": "confirmed",
+      "repair": "脏/忙编辑隐藏系统Back，保留受控取消确认",
+      "verification": "push边缘返回、Cancel、Keep editing、Discard且服务端原名不变通过；sheet草稿路径通过",
+      "codeStatus": "fixed",
+      "cloudStatus": "local_artifact_or_source_verified"
+    },
+    {
+      "id": "F10",
+      "claim": "保护数据库前先迁移",
+      "verdict": "confirmed",
+      "repair": "连接前固定本机/库名/身份，连接后只读核验；成功初始化才清理；主集成套件复用同一帮助函数",
+      "verification": "错误目标在连接/迁移前拒绝；只读身份失败负例及初始化/清理回归通过",
+      "codeStatus": "fixed",
+      "cloudStatus": "local_artifact_or_source_verified"
+    },
+    {
+      "id": "F11",
+      "claim": "Pricing订阅条款链接错误",
+      "verdict": "confirmed",
+      "repair": "使用公共路由常量/subscription-terms",
+      "verification": "构建后浏览器href正确；实际法律目标HEAD200；WWW部署待AWS",
+      "codeStatus": "fixed",
+      "cloudStatus": "not_deployed_aws_session_expired"
+    },
+    {
+      "id": "F12",
+      "claim": "原型关闭sheet后键盘残留",
+      "verdict": "confirmed",
+      "repair": "应用层统一sheet关闭和blur处理；保存按钮保留点击期间的输入焦点，避免键盘收起移动目标",
+      "verification": "输入间切换保持键盘；一次保存/ESC后dialog0、keyboardfalse；28保护文件hash完整",
+      "codeStatus": "fixed",
+      "cloudStatus": "local_artifact_or_source_verified"
+    },
+    {
+      "id": "F13",
+      "claim": "原生UI矩阵的旧控件、旧流程",
+      "verdict": "confirmed",
+      "repair": "当前连续表单/导出对象/实际入口；删除旧文案回退；独立可复现本机测试服务；导航等待和大字号滚动",
+      "verification": "当前28条UI用例最终结果均通过，分批复验；原始失败日志保留；不是全部设备/字号组合",
+      "codeStatus": "fixed",
+      "cloudStatus": "local_artifact_or_source_verified"
+    }
+  ],
+  "extraFinding": {
+    "claim": "Recorded roles taps opened the Importance picker",
+    "repair": "Expanded options now use independent Form rows; existing labels and hierarchy remain",
+    "evidence": "normal and AX5 role navigation passes after the change"
+  },
+  "testEvidence": {
+    "api": {
+      "passed": 348,
+      "failed": 0,
+      "followupDatabaseGuardPassed": 55,
+      "ciFinalPassed": 349
+    },
+    "webProduct": 112,
+    "infra": 47,
+    "releaseGuards": 23,
+    "nativeUnit": {
+      "passed": 181,
+      "failed": 0,
+      "existingStoreKitSkip": 1
+    },
+    "nativeUI": {
+      "uniqueLatestPassingCases": 28,
+      "basis": "native-ui-coverage.json",
+      "device": "one iPhone17Pro/iOS26.5 simulator; includes targeted AX5 and landscape"
+    }
+  },
+  "ciFollowup": {
+    "initialRun": 40,
+    "sourceAndWebInfra": "passed",
+    "api": "rejected unmarked Docker address before migrations",
+    "guardFix": "exact disposable database marker, loopback host and identity still required",
+    "newRun": 41,
+    "finalResult": "success"
+  },
+  "sourceCommit": "38307b0d00a994fc5590b0625e8c71a28dcc7624",
+  "ciRun": {
+    "id": 36681297564,
+    "number": 41,
+    "status": "completed",
+    "conclusion": "success",
+    "headSha": "38307b0d00a994fc5590b0625e8c71a28dcc7624",
+    "url": "https://github.com/tantalum666/rillora/actions/runs/36681297564",
+    "updatedAt": "2026-09-30T07:02:52Z"
+  }
+}

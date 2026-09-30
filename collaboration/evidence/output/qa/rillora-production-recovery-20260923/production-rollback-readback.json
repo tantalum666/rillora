@@ -1,0 +1,26 @@
+{
+  "checkedAt": "2026-09-23T13:04:05.679951+00:00",
+  "status": "UPDATE_ROLLBACK_COMPLETE",
+  "resources": [
+    {
+      "LogicalResourceId": "MaintenanceLogs61C6A99C",
+      "PhysicalResourceId": "RilloraProduction-MaintenanceLogs61C6A99C-2niRZtkO9Ivq",
+      "ResourceType": "AWS::Logs::LogGroup",
+      "LastUpdatedTimestamp": "2026-09-23T12:48:50.481000+00:00",
+      "ResourceStatus": "UPDATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "LogicalResourceId": "RuntimeCredential871C86BA",
+      "PhysicalResourceId": "arn:aws:secretsmanager:eu-central-1:133857166372:secret:RuntimeCredential871C86BA-OO3vKO9TLttB-xFGX4w",
+      "ResourceType": "AWS::SecretsManager::Secret",
+      "LastUpdatedTimestamp": "2026-09-23T12:48:50.624000+00:00",
+      "ResourceStatus": "UPDATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    }
+  ]
+}

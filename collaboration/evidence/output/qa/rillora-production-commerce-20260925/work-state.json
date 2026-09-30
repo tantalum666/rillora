@@ -1,0 +1,129 @@
+{
+  "updatedAt": "2026-09-25T17:06:34.081751+00:00",
+  "phase": "Production commerce source and closed Web update; cloud billing unconfigured",
+  "reading": {
+    "mode": "same release workflow; compact recovery",
+    "fullBaseline": "output/qa/rillora-release-readiness-20260919/full-read-completion.json",
+    "priorFocused": "output/qa/rillora-production-clients-20260925/reading-record.json",
+    "recovery": [
+      "AGENTS.md",
+      "docs/product.md:1-295",
+      "docs/handoff.md",
+      "docs/decision-log.md recent entries",
+      "docs/production-clients-20260925.md",
+      "docs/release-readiness.md current sections",
+      "docs/pricing-88-80-20260919.md",
+      "docs/source-control.md",
+      "modified implementation and current tests"
+    ],
+    "scope": "No full-reading restart, recovery rerun or native rebuild"
+  },
+  "code": {
+    "stripeSDK": "22.6.2",
+    "apiVersion": "2026-08-26.dahlia",
+    "migrationsLocal": [
+      "0071",
+      "0072",
+      "0073"
+    ],
+    "newSales": "annual USD8880 only",
+    "customerActivation": false,
+    "providerConfigured": false
+  },
+  "validation": {
+    "api": {
+      "tests": 233,
+      "files": 27,
+      "typecheck": true,
+      "build": true,
+      "log": "api-tests-final.log"
+    },
+    "webSource": 89,
+    "legalFixture": 7,
+    "infra": 39,
+    "releaseGuards": 21,
+    "browser": "browser-acceptance.json",
+    "cloudHTTP": "web-cloud-acceptance-final.json",
+    "sourceScan": {
+      "files": 906,
+      "reviewedNonSecrets": 23,
+      "unknown": 0,
+      "report": "source-scan-final.json"
+    },
+    "markdown": {
+      "files": 141,
+      "localLinks": 1348,
+      "missing": 0
+    },
+    "webFocusedFollowup": 10
+  },
+  "failuresResolved": [
+    "Commerce runtime gate SELECT privilege missing",
+    "Web policy is web_direct, not iOS stripe_web_external",
+    "Legal tests require legal packaging artifact, not the preceding internal App build",
+    "reviewed PEM marker source lines moved; exact digest unchanged",
+    "narrow UI price/disabled/link and stale pending-copy fixes"
+  ],
+  "deployed": {
+    "stack": "RilloraProductionWeb",
+    "status": "UPDATE_COMPLETE",
+    "origin": "https://app.rillora.xyz",
+    "scope": "closed assets and exact billing return routes only",
+    "apiChanged": false,
+    "productionSchema": "0070",
+    "productionTaskRevision": 1,
+    "readback": "web-cloud-status-final.json",
+    "artifactSourceCommit": "7cf75bb4ad4b3403a9932a2095edf2ad891ecdff"
+  },
+  "providerReadbacks": {
+    "AWSAccount": "133857166372",
+    "SES": "mail-readiness.json",
+    "stripeDashboard": "Correct Rillora account, test context; activation setup incomplete; not live charges_enabled proof",
+    "Apple": "Owner completed login; actual Rillora distribution page verified. Continued work in output/qa/rillora-production-apple-20260926."
+  },
+  "governance": {
+    "focused": [
+      "docs/production-commerce-20260926.md",
+      "docs/backend.md",
+      "docs/release-readiness.md",
+      "config/release-gates.json"
+    ],
+    "product": "docs/product.md",
+    "decision": "docs/decision-log.md entry 2026-09-26; engineering decisions, no new price/market approval",
+    "handoff": "docs/handoff.md",
+    "history": "docs/handoff-history-20260926-before-commerce.md",
+    "journey": "docs/journey/PROJECT_JOURNEY.md entry 2026-09-26",
+    "preflight": "tools/release/preflight.py now inventories production source separately from the retained test-only adapter",
+    "finalCloseout": "Evidence-only documentation follow-up retains CI12 engineering checks; no tests/deploy repeated for documentation."
+  },
+  "boundaries": [
+    "No live money/charge, real purchase consent or merchant/tax acceptance",
+    "Production API and migrations/vault/IAM not deployed",
+    "No Apple production transaction support or signed artifact completed",
+    "No repeat of prior native/monitor/recovery proof",
+    "Business and physical-device gates remain Owner-deferred"
+  ],
+  "next": "Continue Apple product/price readback and production StoreKit implementation, with restored portal.",
+  "sourceControl": {
+    "checkedAt": "2026-09-25T17:06:34.081751+00:00",
+    "repository": "tantalum666/rillora",
+    "private": true,
+    "commit": "7cf75bb4ad4b3403a9932a2095edf2ad891ecdff",
+    "ci": "https://github.com/tantalum666/rillora/actions/runs/36164574920",
+    "run": 12,
+    "result": "completed successfully",
+    "source": "Fresh authenticated GitHub Actions list and exact remote HEAD readback",
+    "deployment": "RilloraProductionWeb UPDATE_COMPLETE; seven final HTTP checks and actual Chrome closed-account rendering pass"
+  },
+  "sourceControlBaseline": {
+    "checkedAt": "2026-09-25T16:58:09.058625+00:00",
+    "repository": "tantalum666/rillora",
+    "private": true,
+    "commit": "e38cd05e7278443bd05a223c09849d1f3411d4d9",
+    "ci": "https://github.com/tantalum666/rillora/actions/runs/36163894825",
+    "run": 11,
+    "result": "completed successfully",
+    "evidence": "Fresh authenticated GitHub Actions list names this exact commit and successful run; remote HEAD readback matches.",
+    "cloudScope": "Closed Web only; CI has no deploy/provider credentials."
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "checkedAt": "2026-09-25T07:44:08.573374+00:00",
+  "account": "133857166372",
+  "region": "eu-central-1",
+  "identity": "notify.rillora.xyz",
+  "configurationSet": "rillora-transactional",
+  "readOnly": true,
+  "mailSent": false,
+  "sesConfigurationReady": false,
+  "customerEmailFlowVerified": false,
+  "blockers": [
+    "AWS read incomplete"
+  ],
+  "error": "AWS read failed for get-caller-identity; inspect authentication/permissions separately. Provider output suppressed."
+}

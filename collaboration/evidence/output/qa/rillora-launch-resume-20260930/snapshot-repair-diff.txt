@@ -1,0 +1,99 @@
+Stack RilloraOperations
+IAM Statement Changes
+┌───┬───────────────────────────────────────────────────────────────────────────────────────────┬────────┬───────────────────────┬─────────────────────────────────┬─────────────────────────────────────────────────────────────────────┐
+│   │ Resource                                                                                  │ Effect │ Action                │ Principal                       │ Condition                                                           │
+├───┼───────────────────────────────────────────────────────────────────────────────────────────┼────────┼───────────────────────┼─────────────────────────────────┼─────────────────────────────────────────────────────────────────────┤
+│ + │ arn:aws:rds:eu-central-1:133857166372:snapshot:rillora-content-encryption-before-20260923 │ Allow  │ rds:DeleteDBSnapshot  │ AWS:${SnapshotRetirement/Role}  │ "StringEquals": {                                                   │
+│   │                                                                                           │        │                       │                                 │   "rds:snapshot-tag/RilloraRetirementManaged": "true",              │
+│   │                                                                                           │        │                       │                                 │   "rds:snapshot-tag/RilloraRetireAfter": "2026-12-21T16:13:05.877Z" │
+│   │                                                                                           │        │                       │                                 │ },                                                                  │
+│   │                                                                                           │        │                       │                                 │ "StringEqualsIfExists": {                                           │
+│   │                                                                                           │        │                       │                                 │   "rds:snapshot-tag/RilloraLegalHold": "false"                      │
+│   │                                                                                           │        │                       │                                 │ },                                                                  │
+│   │                                                                                           │        │                       │                                 │ "DateGreaterThan": {                                                │
+│   │                                                                                           │        │                       │                                 │   "aws:CurrentTime": "2026-12-21T16:13:05.877Z"                     │
+│   │                                                                                           │        │                       │                                 │ }                                                                   │
+│ + │ arn:aws:rds:eu-central-1:133857166372:snapshot:rillora-content-encryption-before-20260923 │ Allow  │ rds:AddTagsToResource │ AWS:rillora-production-operator │ "ForAllValues:StringEquals": {                                      │
+│   │                                                                                           │        │                       │                                 │   "aws:TagKeys": [                                                  │
+│   │                                                                                           │        │                       │                                 │     "RilloraRetirementManaged",                                     │
+│   │                                                                                           │        │                       │                                 │     "RilloraRetireAfter",                                           │
+│   │                                                                                           │        │                       │                                 │     "RilloraLegalHold"                                              │
+│   │                                                                                           │        │                       │                                 │   ]                                                                 │
+│   │                                                                                           │        │                       │                                 │ },                                                                  │
+│   │                                                                                           │        │                       │                                 │ "StringEqualsIfExists": {                                           │
+│   │                                                                                           │        │                       │                                 │   "aws:RequestTag/RilloraRetirementManaged": "true",                │
+│   │                                                                                           │        │                       │                                 │   "aws:RequestTag/RilloraRetireAfter": "2026-12-21T16:13:05.877Z",  │
+│   │                                                                                           │        │                       │                                 │   "aws:RequestTag/RilloraLegalHold": [                              │
+│   │                                                                                           │        │                       │                                 │     "true",                                                         │
+│   │                                                                                           │        │                       │                                 │     "false"                                                         │
+│   │                                                                                           │        │                       │                                 │   ]                                                                 │
+│   │                                                                                           │        │                       │                                 │ }                                                                   │
+│ - │ arn:aws:rds:eu-central-1:133857166372:snapshot:rillora-content-encryption-before-20260923 │ Allow  │ rds:DeleteDBSnapshot  │ AWS:${SnapshotRetirement/Role}  │ "StringEquals": {                                                   │
+│   │                                                                                           │        │                       │                                 │   "rds:snapshot-tag/RilloraRetirementManaged": "true",              │
+│   │                                                                                           │        │                       │                                 │   "rds:snapshot-tag/RilloraRetireAfter": "2026-12-21T16:13:05.877Z" │
+│   │                                                                                           │        │                       │                                 │ },                                                                  │
+│   │                                                                                           │        │                       │                                 │ "StringNotEquals": {                                                │
+│   │                                                                                           │        │                       │                                 │   "rds:snapshot-tag/RilloraLegalHold": "true"                       │
+│   │                                                                                           │        │                       │                                 │ },                                                                  │
+│   │                                                                                           │        │                       │                                 │ "DateGreaterThan": {                                                │
+│   │                                                                                           │        │                       │                                 │   "aws:CurrentTime": "2026-12-21T16:13:05.877Z"                     │
+│   │                                                                                           │        │                       │                                 │ }                                                                   │
+│ - │ arn:aws:rds:eu-central-1:133857166372:snapshot:rillora-content-encryption-before-20260923 │ Allow  │ rds:AddTagsToResource │ AWS:rillora-production-operator │ "ForAllValues:StringEquals": {                                      │
+│   │                                                                                           │        │                       │                                 │   "aws:TagKeys": [                                                  │
+│   │                                                                                           │        │                       │                                 │     "RilloraRetirementManaged",                                     │
+│   │                                                                                           │        │                       │                                 │     "RilloraRetireAfter",                                           │
+│   │                                                                                           │        │                       │                                 │     "RilloraLegalHold"                                              │
+│   │                                                                                           │        │                       │                                 │   ]                                                                 │
+│   │                                                                                           │        │                       │                                 │ },                                                                  │
+│   │                                                                                           │        │                       │                                 │ "StringEqualsIfExists": {                                           │
+│   │                                                                                           │        │                       │                                 │   "aws:RequestTag/RilloraRetirementManaged": "true",                │
+│   │                                                                                           │        │                       │                                 │   "aws:RequestTag/RilloraRetireAfter": "2026-12-21T16:13:05.877Z"   │
+│   │                                                                                           │        │                       │                                 │ }                                                                   │
+└───┴───────────────────────────────────────────────────────────────────────────────────────────┴────────┴───────────────────────┴─────────────────────────────────┴─────────────────────────────────────────────────────────────────────┘
+(NOTE: There may be security-related changes not in this list. See https://github.com/aws/aws-cdk/issues/1299)
+
+Resources
+[~] AWS::IAM::Policy SnapshotRetirement/Role/DefaultPolicy SnapshotRetirementRoleDefaultPolicy9DF363A6
+ └─ [~] PolicyDocument
+     └─ [~] .Statement:
+         └─ @@ -37,8 +37,8 @@
+            [ ]   "rds:snapshot-tag/RilloraRetirementManaged": "true",
+            [ ]   "rds:snapshot-tag/RilloraRetireAfter": "2026-12-21T16:13:05.877Z"
+            [ ] },
+            [-] "StringNotEquals": {
+            [-]   "rds:snapshot-tag/RilloraLegalHold": "true"
+            [+] "StringEqualsIfExists": {
+            [+]   "rds:snapshot-tag/RilloraLegalHold": "false"
+            [ ] },
+            [ ] "DateGreaterThan": {
+            [ ]   "aws:CurrentTime": "2026-12-21T16:13:05.877Z"
+[~] AWS::Lambda::Function SnapshotRetirement/Worker SnapshotRetirementWorker036281CC
+ ├─ [~] Code
+ │   └─ [~] .S3Key:
+ │       ├─ [-] 6b33e200dd07f8c8cbb82f5c11c36a5731d3ad5219e67543db3b50e35f52c51e.zip
+ │       └─ [+] eef6507ec5a8f76552864dd26dbefa1239e0d8b701dd7aaddbd1d395d9c2b27a.zip
+ └─ [~] Metadata
+     └─ [~] .aws:asset:path:
+         ├─ [-] asset.6b33e200dd07f8c8cbb82f5c11c36a5731d3ad5219e67543db3b50e35f52c51e
+         └─ [+] asset.eef6507ec5a8f76552864dd26dbefa1239e0d8b701dd7aaddbd1d395d9c2b27a
+[~] AWS::IAM::Policy SnapshotRetirement/Runbook SnapshotRetirementRunbook91A9EB67
+ └─ [~] PolicyDocument
+     └─ [~] .Statement:
+         └─ @@ -59,7 +59,11 @@
+            [ ]   },
+            [ ]   "StringEqualsIfExists": {
+            [ ]     "aws:RequestTag/RilloraRetirementManaged": "true",
+            [-]     "aws:RequestTag/RilloraRetireAfter": "2026-12-21T16:13:05.877Z"
+            [+]     "aws:RequestTag/RilloraRetireAfter": "2026-12-21T16:13:05.877Z",
+            [+]     "aws:RequestTag/RilloraLegalHold": [
+            [+]       "true",
+            [+]       "false"
+            [+]     ]
+            [ ]   }
+            [ ] },
+            [ ] "Effect": "Allow",
+
+
+
+✨  Number of stacks with differences: 1
+

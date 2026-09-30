@@ -1,0 +1,15 @@
+{
+  "taskArn": "arn:aws:ecs:eu-central-1:133857166372:task/RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5/3bbd181b1467434bab3c267c7ce8c91a",
+  "taskDefinitionArn": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingMigrationTaskDefinitionD83F7D18:27",
+  "lastStatus": "STOPPED",
+  "stopCode": "EssentialContainerExited",
+  "stoppedReason": "Essential container in task exited",
+  "containers": [
+    {
+      "name": "Migration",
+      "lastStatus": "STOPPED",
+      "exitCode": 0,
+      "reason": null
+    }
+  ]
+}

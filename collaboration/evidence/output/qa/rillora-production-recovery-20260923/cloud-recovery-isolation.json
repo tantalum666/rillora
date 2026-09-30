@@ -1,0 +1,13 @@
+{
+  "taskArn": "arn:aws:ecs:eu-central-1:133857166372:task/RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm/1a1364d721084ffc9c5095825b7efac8",
+  "phase": "isolation",
+  "status": "STOPPED",
+  "exitCode": 0,
+  "imageDigest": "sha256:19b9287d289397801f607f2a6550c9a336d8771c04738116f388db775863fa46",
+  "stoppedReason": "Essential container in task exited",
+  "checkedAt": "2026-09-23T15:19:12.202553+00:00",
+  "messages": [
+    "{\"originalDatabaseResolvedPrivately\":true,\"originalDatabaseConnectionBlocked\":true,\"kmsGenerateDataKeyDenied\":true,\"journalPutDenied\":true}"
+  ],
+  "taskSucceeded": true
+}

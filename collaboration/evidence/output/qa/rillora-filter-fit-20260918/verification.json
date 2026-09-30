@@ -1,0 +1,28 @@
+{
+  "date": "2026-09-18",
+  "nativeBuild": "passed; no warnings/errors",
+  "normal390": "all three labels readable; Directions added selected readable",
+  "narrow375": "SE3 wraps complete option onto next row",
+  "AX5ReducedMotion": "complete labels; Directions added wraps within its option; no font shrinking",
+  "filterResults": {
+    "all": 5,
+    "review": 2,
+    "added": 3
+  },
+  "reviewInbox": "My plan/For me switches correctly",
+  "billingPeriod": "Yearly US$68 / Monthly US$7.99 selection changes display only",
+  "credits": "bundled text equals source; About Rillora -> Design credits exposes source, modification statement and MIT notice",
+  "changedSources": [
+    "apps/ios/Rillora/Core/Design/RilloraInteractionComponents.swift",
+    "apps/ios/Rillora/Features/Account/PlanAccessView.swift",
+    "apps/ios/Rillora/Features/Account/ProfileSupportViews.swift",
+    "apps/ios/Rillora/Features/Maintenance/FamilyMaintenanceView.swift",
+    "apps/ios/Rillora/Features/Matters/MattersView.swift",
+    "apps/ios/Rillora/Resources/DesignCredits.txt",
+    "apps/ios/Rillora.xcodeproj/project.pbxproj"
+  ],
+  "webAndAPI": "no code changes or redeployment",
+  "unitSuites": "not rerun; September17 suites are prior evidence only",
+  "normalSimulator": "updated; launched with env {}; fresh launch shows ordinary signed-out entry",
+  "qaCleanup": "Matrix13 and MatrixSE3 shutdown; API4290 stopped; no real records changed"
+}

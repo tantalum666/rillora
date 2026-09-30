@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: recipient demonstration omits unshared matters instead of exposing locked titles
+ok 1 - recipient demonstration omits unshared matters instead of exposing locked titles
+  ---
+  duration_ms: 1.232875
+  type: 'test'
+  ...
+# Subtest: public preview account and invitation routes stay on the explicitly selected app
+ok 2 - public preview account and invitation routes stay on the explicitly selected app
+  ---
+  duration_ms: 0.067625
+  type: 'test'
+  ...
+# Subtest: public route identifiers match the private catalog without shipping guide bodies
+ok 3 - public route identifiers match the private catalog without shipping guide bodies
+  ---
+  duration_ms: 1.309917
+  type: 'test'
+  ...
+# Subtest: public routing serves only public pages and fixed asset paths
+ok 4 - public routing serves only public pages and fixed asset paths
+  ---
+  duration_ms: 0.344209
+  type: 'test'
+  ...
+# Subtest: public guide bookmarks continue through sign-in on the chosen app only
+ok 5 - public guide bookmarks continue through sign-in on the chosen app only
+  ---
+  duration_ms: 0.167583
+  type: 'test'
+  ...
+# Subtest: public routing rejects writes without an API or account fallback
+ok 6 - public routing rejects writes without an API or account fallback
+  ---
+  duration_ms: 0.105875
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 88.166708

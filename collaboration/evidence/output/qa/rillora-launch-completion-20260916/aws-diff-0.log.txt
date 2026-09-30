@@ -1,0 +1,62 @@
+Stack RilloraStaging
+Resources
+[~] AWS::ECS::TaskDefinition ApiTaskDefinition ApiTaskDefinition51EA709E replace
+ └─ [~] ContainerDefinitions (requires replacement)
+     └─ @@ -146,12 +146,16 @@
+        [ ]   "Value": "prod_V6O8lAFbTCDmKd"
+        [ ] },
+        [ ] {
+        [+]   "Name": "STRIPE_FAMILY_PLAN_VERSION",
+        [+]   "Value": "2"
+        [+] },
+        [+] {
+        [ ]   "Name": "STRIPE_FAMILY_MONTHLY_PRICE_ID",
+        [-]   "Value": "price_1U6BMoCxTlowhyiG7qsmBrdY"
+        [+]   "Value": "price_1UGKadCxTlowhyiGJ0bnY9Kn"
+        [ ] },
+        [ ] {
+        [ ]   "Name": "STRIPE_FAMILY_ANNUAL_PRICE_ID",
+        [-]   "Value": "price_1U6BMnCxTlowhyiGJEC1w596"
+        [+]   "Value": "price_1UGKXlCxTlowhyiGVLKAkfl1"
+        [ ] },
+        [ ] {
+        [ ]   "Name": "STRIPE_CHECKOUT_SUCCESS_URL",
+        @@ -178,7 +182,7 @@
+        [ ]   "Timeout": 5
+        [ ] },
+        [ ] "Image": {
+        [-]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:04f060f829d43d4ca34367fcdd98dfd347d1a6f0947e9d8bd2819bc4fd9a9ae0"
+        [+]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:969f02b6ee371ce9415bfab27326877f71b6174f22f72702240cac9fe1527c1c"
+        [ ] },
+        [ ] "LogConfiguration": {
+        [ ]   "LogDriver": "awslogs",
+[~] AWS::ECS::Service ApiService/Service ApiServiceC9037CF0
+ └─ [~] DesiredCount
+     ├─ [-] 1
+     └─ [+] 0
+[~] AWS::ECS::TaskDefinition MigrationTaskDefinition MigrationTaskDefinitionE89B136E replace
+ └─ [~] ContainerDefinitions (requires replacement)
+     └─ @@ -59,7 +59,7 @@
+        [ ] ],
+        [ ] "Essential": true,
+        [ ] "Image": {
+        [-]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:04f060f829d43d4ca34367fcdd98dfd347d1a6f0947e9d8bd2819bc4fd9a9ae0"
+        [+]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:969f02b6ee371ce9415bfab27326877f71b6174f22f72702240cac9fe1527c1c"
+        [ ] },
+        [ ] "LogConfiguration": {
+        [ ]   "LogDriver": "awslogs",
+[~] Custom::CDKBucketDeployment WebDeployment/CustomResource WebDeploymentCustomResource08EEC474
+ └─ [~] SourceObjectKeys
+     └─ @@ -1,3 +1,3 @@
+        [ ] [
+        [-]   "5c06b0269067dc0b0ac21f15657faa77ad903f18a027bb2224b2210b1a3140f8.zip"
+        [+]   "5161ed3195c1f828c37c077b4cb14c4d0691afb381ddce9ec87e138188652274.zip"
+        [ ] ]
+
+Outputs
+[~] Output ServiceDesiredCount ServiceDesiredCount: {"Value":"1"} to {"Value":"0"}
+
+
+
+✨  Number of stacks with differences: 1
+

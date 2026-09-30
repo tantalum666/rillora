@@ -1,0 +1,880 @@
+--- before/AGENTS.md
++++ after/AGENTS.md
+@@ -12,6 +12,10 @@
+    `docs/journey/PROJECT_JOURNEY.md`。
+ 4. 不把聊天摘要、研究报告、概念图、代码、模拟器截图和真实市场结果混成同一种证据。
+ 
++完整阅读必须覆盖正文，不以文件名清单、搜索命中、摘要或文件指纹代替。分批读取时记录文件与行段；工具输出被截断必须补读缺失段。将当次文件清单、排除项、阅读范围与完成时间保存到 `output/qa/<本次工作>/`；指纹只用于确认阅读期间文件是否变化。排除生成的 `output` 证据包，不排除项目自有规范、嵌套 `AGENTS.md` 或历史 Markdown。结束阅读后才能修改产品或工程实现。
++
++先核对交接中的唯一下一步是否仍符合 Owner 最新任务，再开始执行。发现正文已更新而日期、状态或旧“下一步”未更新，也属于需要修复的文档漂移，不得把旧门重新当作当前任务。
++
+ 上下文压缩后的快速恢复路径：
+ 
+ 1. 本文件；
+@@ -19,6 +23,8 @@
+ 3. `docs/handoff.md`；
+ 4. `docs/decision-log.md`；
+ 5. 本次任务路由文件和所有将被修改的文件。
++
++这是精简恢复，不是重启工作流：读取产品当前锁定项、精简交接、与当前任务有关的最新决策和聚焦规范即可。沿用本次完整阅读记录及已完成工作，不重做全库扫描、测试、部署或本人认证；仅补读压缩后新增／变化的相关文件和缺失段。
+ 
+ ## 权威顺序
+ 
+@@ -70,3 +76,7 @@
+ 3. 更新 `docs/handoff.md` 的当前状态、证据边界和唯一下一步；
+ 4. 向 `docs/journey/PROJECT_JOURNEY.md` 追加“目标 -> 尝试 -> 判断变化 -> 结果 -> 未完成项”；
+ 5. 检查所有Markdown链接、日期、状态和术语是否一致。
++
++收尾必须在最终回复之前完成。`handoff.md` 只保存当前任务、已完成、证据边界、阻塞和一个下一步；被取代的交接移入标注 `HISTORICAL` 的历史文件并保留链接，不能并列多个活动“唯一下一步”。决策日志和项目旅程保持追加式记录，并同步顶部日期。明确区分设计合同、代码实现、测试、部署和真实用户结果；没有新测试时只引用原检查点，不能写成当次重跑。
++
++当次 QA 记录列明修改的规范、更新或无需追加决策的理由、交接／旅程位置和验证结果。若工作被打断，先保存当前状态及未完成项；最终回复不得宣称文档已同步而文件尚未写入。
+--- before/docs/product.md
++++ after/docs/product.md
+@@ -159,6 +159,8 @@
+ 
+ ## Current Evidence Boundary
+ 
++2026-09-10商业与文档复核：完整阅读55份／16,011行项目Markdown后，对照权益目录、邀请API和两端Plan & access。永久Free＋单一Family及Free一人路径是既有决定；本轮明确“一人”按向外共享关系计算，Family五人是可调整的首发假设，接收别人分享与逐项隐私控制两版免费。现有邀请接口尚未执行套餐人数限制，Family共同维护／自动复核／历史也未交付，普通收费和权益变更继续关闭。具体合同、验证分母和安全降级见[monetization.md](monetization.md)，当次证据见[复核记录](../output/qa/rillora-packaging-review-20260910/README.md)。开工／压缩恢复／收尾协议已强化，交接只保留当前状态；以下各段是注明日期的既有检查点，不代表本轮重跑测试或当前任务仍需重做所有旧门。
++
+ 2026-09-10邀请与共享检查点：Owner明确要求A邀请B、B注册／登录接受，并对B／C分别设置事项与细节范围。Web与iOS已完成联系人创建、链接／二维码、按接收账号绑定、只读共享与撤销。默认不共享；Name／Directions／Details逐人逐项设置；未选内容不返回标题或数量。API 115、Web 48、原生124单测和两项UI流程通过（保留一个既有StoreKit跳过）。AWS登录恢复后已完成现有合成staging的数据库／API／Web两阶段更新；迁移退出0、CloudFormation完成、服务1/1，18项HTTPS／文件一致性检查通过。本地合成接受和云端部署不是实际亲友身份或送达证明；接收人的真实provider闭环仍需独立验证。以 [共享合同](trusted-sharing.md) 与 [交接记录](handoff.md) 为准。
+ 
+ 2026-09-09 Apple恢复检查点：Owner完成管理员MFA后，既有Rillora Apple连接已采用替换密钥及网页登录Services ID；旧登录密钥已撤销，iOS绑定已恢复且其他绑定保留。实际邮箱优先页面显示Apple，浏览器点击到达Apple官方Rillora Account授权页；390px／320px无横向溢出，输入文字统一灰色，iOS新事务进入及取消已观察到。这关闭配置与入口验证，不等于本人Apple身份、协议确认和私有地图回调完成。
+--- before/docs/monetization.md
++++ after/docs/monetization.md
+@@ -4,8 +4,8 @@
+ Authority scope: free/paid boundary, launch offer, future tier architecture, billing periods, trials, refunds and safe downgrade  
+ Superseded by: later Owner decision recorded in `docs/decision-log.md`  
+ Do not use for: proof of willingness to pay, legal/tax advice, current implementation, App Store approval or payment-provider selection  
+-Status: LAUNCH PACKAGING LOCKED; STRIPE PHASE 1C TEST LIFECYCLE COMPLETE; STOREKIT SK0 COMPLETE, LIVE USA SANDBOX CATALOG LOADED AND SANDBOX SERVER／PURCHASE BRIDGE VERIFIED LOCALLY; APPLE CREDENTIAL LOCAL COMPLETE; TESTER LOGIN／PURCHASE COMPLETION／SALES／ENTITLEMENT MUTATION／DEPLOYMENT／REVIEW／LIVE COMMERCE CLOSED; EXACT PRICE AND OFFER POLICIES PROVISIONAL  
+-Last reviewed: 2026-08-25
++Status: FREE / SINGLE FAMILY STRUCTURE LOCKED; 1 / 5 OUTGOING ALLOWANCE CLARIFIED AS LAUNCH DESIGN; QUOTA ENFORCEMENT AND ORDINARY PAID ACCESS NOT ACTIVE; PRICES PROVISIONAL; STRIPE TEST STAGING DEPLOYED, APPLE IAP DEPLOYMENT / PURCHASE / LIVE COMMERCE OPEN  
++Last reviewed: 2026-09-10 (packaging, implementation audit and continuity; provider/legal checkpoints retain their own dates)
+ 
+ ## Executive Summary
+ 
+@@ -59,6 +59,57 @@
+ 
+ The recurring price is justified only while those recurring responsibilities are real and evidenced. Storage volume alone is not the value proposition.
+ 
++## 2026-09-10 Packaging Resolution — Current
++
++The permanent Free / single Family structure and Free's one-person complete path were already discussed and recorded. This review clarifies what a “person” counts as after account-bound invitations were added. **The numbers below are launch-design hypotheses, not active purchase entitlements or a claim that quota enforcement is deployed.**
++
++| User job | Permanent Free | Family launch target | Current implementation evidence |
++| --- | --- | --- | --- |
++| Organize a useful plan | Text Matter map, outcomes, official guides and manual review; no commercial item-count cap | Same baseline | Web/iOS core paths implemented; ordinary access remains Free |
++| Share the plan you own | 1 outgoing trusted-person relationship, including link/QR, acceptance and read-only retrieval | Up to 5 outgoing recipients per plan; parents, partner and friends may have different scopes | Direct sharing is implemented and deployed to synthetic staging; **plan-based count enforcement is absent** |
++| Choose what each person sees | Every included recipient supports per-item Name / Directions / Details, default-private and revoke | Same privacy controls for all included recipients | API field projections and local B/C isolation verified; real-provider recipient acceptance remains open |
++| Receive someone else's plan | Free Web/iOS acceptance and authorized reading, independent of your own subscription | Identical; recipients do not buy seats | Receiver flow implemented; received relationships do not consume an outgoing allowance |
++| Maintain together | Planner edits their own plan | 1 additional, separately scoped co-planner for the household plan | Planned; current recipients are read-only, not co-planners |
++| Keep the plan current | Manual checks and basic non-operative rehearsal | Configurable review schedule, actionable changes/overdue items, change history and joint review | Adaptive review/history/co-planning not implemented as a paid service |
++| Rehearse and prepare | Existing basic/field-level safety previews and Start Here export remain Free | Saved comparisons and coordinated multi-person review when implemented | Existing role simulation must not be removed or relabeled paid; no real-event release is open |
++| Trust and exit | Authentication, privacy, safe export, deletion and basic recipient retrieval | Identical baseline | Each claim keeps its existing security/operational evidence boundary |
++
++**Why 5:** it covers a concrete small network such as two parents, a partner, a sibling and a friend without adding a second paid tier or promising unlimited service. It is an Agent-selected, reversible `PROVISIONAL` allowance, not customer research. Validate actual household needs and cost before publishing; change it through a new catalog/plan version, never by editing a purchased version. The additional co-planner seat is separate from the five read-only recipient slots. If the same account already collaborates, do not charge a second seat merely to show the same authorized plan. Neither role grants access to another household member's otherwise private matters.
++
++### Exact counting and upgrade boundary
++
++- Count outgoing relationships on the owned plan, not address-book records, typed names, event-role assignments, invitation URLs, selected matters or received shares. Saving another contact's name stays available.
++- An accepted relationship or an unexpired pending invitation reserves one slot, even if its grants are currently empty. Expired/revoked invitations free the slot. Regenerating the same pending invitation does not consume another slot; reviving an expired one must recheck the allowance.
++- Prevent duplicate active invitations to the same verified target on the same plan. Reissuing and accepting are idempotent for that relationship; a different account still requires explicit matching and acceptance. Email remains an address check, not an account-merge key.
++- Check quota server-side in the same transaction as reserving/creating/reactivating a connection, serialized per owned plan. Client counts and payment callback results cannot authorize access. A failed or cancelled upgrade preserves the contact and scope draft and changes no existing permissions.
++- At the second outgoing invitation, preserve the selection and offer the specific Family benefit only when an eligible purchase route actually works. Offer return/keep-draft and deliberate replacement of the included connection; never silently revoke the existing person. A replacement's release/reservation is atomic.
++- While ordinary billing and paid entitlements are closed, do not switch synthetic staging to a dead-end “pay to invite” wall. Its existing multi-recipient QA access is development evidence, not a Free commercial promise or purchased Family. Before public billing, migrate/version the catalog, enforce limits and verify both platforms together.
++- Per-item privacy levels, previewing exactly what someone sees, making a matter private and revocation are always included. Advanced Family packages mean additional coordination/history, never an upsell to avoid oversharing.
++
++### Recurring value and expiry
++
++The Family promise is a maintained shared plan: the right people can find the right directions, changes are reviewed, and unresolved preparation is visible. A contact-count unlock alone is too weak a basis for assuming US$99 annual retention. Co-planning plus a real review/change workflow must work on Web and iOS before advertising that bundle as sellable.
++
++The provisional launch downgrade rule favors continuity: existing accepted relationships keep read-only access to their current authorized scope, and the planner can keep text current, change permissions or revoke. Do not create a stale frozen copy with no implemented snapshot/retention contract, and do not silently disconnect a parent at expiry. Existing relationships still count; no new/replacement/reactivated relationship above the Free allowance is added until the count fits or Family is active. Pending over-limit invitations cannot activate new access after the paid term/grace ends. The user can choose which pending invitation remains eligible; an unresolved over-limit choice blocks new acceptance without revealing data or deleting records.
++
++Paid co-editing and automated maintenance stop at term/grace end; already-produced history remains readable/exportable. These are **required future lifecycle behaviors**, not implemented downgrade evidence. This permits a user to pay briefly to establish several lasting read-only connections. Record that tradeoff openly: continued subscription must earn its value through ongoing collaboration/review, not by holding existing access hostage. Measure short subscription bursts separately before changing packaging.
++
++### Evidence, price and willingness-to-pay test
++
++On 2026-09-10, [Everplans' own FAQ](https://www.everplans.com/faq) lists a three-item Free allowance and US$99.99/year Premium. [Trustworthy's pricing](https://www.trustworthy.com/pricing) lists Free with one family member and Silver at US$10/month billed annually with five; its all-plan baseline includes security/privacy and download. These are external packaging examples, not equivalent entitlement units, independent security validation or evidence that Rillora customers will pay. Rillora deliberately preserves the complete lightweight text map. [Apple 3.1.2](https://developer.apple.com/app-store/review/guidelines/#subscriptions) also requires ongoing subscription value and a clear description of what the price buys; it does not pre-approve Rillora.
++
++Keep US$9.99/month or US$99/year as the existing price hypothesis; show the full annual charge, not just US$8.25/month equivalent. Do not add an extra tier, lifetime promise, automatic trial, fabricated discount or new refund guarantee. Free supplies the initial experience; the disabled no-card preview is not activated by this review.
++
++Validate in order, when real-user/payment gates are ready:
++
++1. **Value before price:** a new planner records useful matters, one designated recipient accepts and can locate the selected directions. Invite generation, page views and simulated identities are not this outcome.
++2. **Paid intent:** observe eligible activated households attempting a second recipient, inviting a co-planner or scheduling a substantive review. Show a short scope diagram and three concrete benefits in the existing Plan & access destination; no public-home sales wall or long feature article.
++3. **A fixed cohort:** retain the MVP's first 30–50 testers and at least three real payments as operational signals only. Record the chosen interval, exact price/plan version and any bounded founder cell before exposure. Treat non-payment, checkout failure and lack of Family need as different outcomes; no per-person improvised price negotiation.
++4. **Conversion denominator:** paid households / eligible activated households shown the actual offer during a fixed 30-day window. Report the count as well as the rate, and separately report payment completion and first use of a paid feature. Choose a go/no-go target before that cohort opens; competitor prices provide no conversion benchmark.
++5. **Retention evidence:** at 30/90 days, count meaningful changes, joint reviews and recipient comprehension checks, not daily opens or reminder clicks. Report cancellations, refunds, support minutes and one-month setup-only use by price cohort. Annual renewal remains unknown until an actual eligible year passes.
++
++No external recruitment, messages, live charge, tracking deployment or market experiment occurred in this review. The source audit and drift corrections are saved in [the packaging QA record](../output/qa/rillora-packaging-review-20260910/README.md). Invitation audit events currently exist, but the pricing/acceptance/retention measurement pipeline is not implemented; use the event contract rather than treating audit logs as validated product analytics.
++
+ ## Free Baseline — LOCKED Principles, PROVISIONAL Limits
+ 
+ Free must be useful enough to reduce real preparation risk and to let a person judge Rillora without a payment card.
+@@ -67,7 +118,7 @@
+ 
+ - public guidance for Apple Legacy Contact, Google Inactive Account Manager and other provider-owned setup;
+ - a lightweight text-based Matter map and basic desired-outcome recording;
+-- one trusted-person path, including basic acceptance when real invitation capability exists;
++- one outgoing trusted-person relationship, including the full invitation/acceptance path and all per-item privacy controls when available; contact records and incoming shares do not consume it;
+ - a basic non-operative rehearsal and readiness gaps;
+ - Start Here basic export and account/data export;
+ - authentication, account recovery, security controls, privacy controls and account deletion;
+@@ -102,14 +153,14 @@
+ ### Intended `Rillora Family` entitlements
+ 
+ - one co-planner/household collaborator;
+-- multiple trusted people and role assignments without charging recipients;
+-- granular role-specific packages and advanced rehearsal;
++- up to five outgoing trusted people as the provisional launch allowance, with independent scopes and no charge to recipients;
++- coordinated role packages and saved review comparisons; baseline per-item privacy and existing safety rehearsal remain Free;
+ - adaptive review reminders and plan-health maintenance;
+ - version history and change review;
+-- encrypted attachments when their production security gate is complete;
+-- priority product support, excluding legal advice and real-event case handling.
+-
+-These entitlements describe the sellable target, not current implementation. A capability cannot appear in the paid comparison table until the corresponding product, security and operational evidence exists.
++- encrypted attachments only in a later evidenced capability version after their production security gate is complete;
++- priority product support only after response expectations and operating capacity are defined, excluding legal advice and real-event case handling.
++
++These entitlements describe the target, not current implementation. Attachments and priority support are not part of the minimum launch promise merely to lengthen the comparison. A capability cannot appear as available in a sellable paid comparison until the corresponding product, security and operational evidence exists. A deliberately opened planned-feature preview must identify its unavailable state.
+ 
+ ## Commercial UI Contract — LOCKED Principles, PROVISIONAL Copy
+ 
+@@ -373,7 +424,7 @@
+ - actual operator／merchant onboarding and provider selection for the first market;
+ - Stripe test-card／signed Webhook／authoritative lifecycle／no-entitlement-mutation evidence is complete. StoreKit has the full Xcode-local lifecycle plus non-live App Store Connect group／products, eight representative storefronts and two retained purpose-limited testers. Official Apple PKI verification, device／notification intake, Server API signed-status normalization and durable no-entitlement reconciliation are implemented locally. The earlier Pro Max unavailable result was caused by stale Xcode-local StoreKit routing; clean iOS 26.4／26.5 Simulators now load the real USA annual／monthly catalog. Chrome final IAP credentials are secured locally, construct the official Sandbox client and receive Apple's bounded `4040010` authenticated response; two earlier no-private-file keys were revoked and Apple retains one active key. A Debug-only purchase scheme keeps transactions unfinished until durable server acknowledgement. Tester credentials were submitted after Owner confirmation, but three independent account attempts across both runtimes all failed in Apple's post-AuthKit persistence layer with `AMSErrorDomain 100 / Password reuse not available for account`; therefore no transaction exists. One automation-exposed replacement tester was deleted and rotated. Apple-enabled AWS has not been deployed, StoreKit Sandbox ledger rows／mutations remain zero, and no completed real Sandbox purchase／restore／notification, App Review or ordinary access mutation exists;
+ - first launch countries, tax/Merchant-of-Record responsibilities and local consumer terms;
+-- exact Free and Family allowances based on real infrastructure and support cost;
++- validate the provisional Free 1 / Family 5 outgoing allowance against household need and cost; implement transactional counting, pending expiry, upgrade cancellation and the explicit safe-downgrade contract before public enforcement;
+ - attachment retention after downgrade;
+ - real-event human support scope, insurance and jurisdiction coverage;
+ - activation of any trial, discount, promotional code or regional price;
+--- before/docs/free-paid-ui-audit.md
++++ after/docs/free-paid-ui-audit.md
+@@ -4,8 +4,41 @@
+ Authority scope: how Free, Family, billing state and safe downgrade are explained in current Web/iOS UI  
+ Superseded by: a later approved commercial UI audit  
+ Do not use for: entitlement authorization, payment implementation, legal pricing disclosure or market validation  
+-Status: IMPLEMENTED LOCALLY; BILLING AND SERVER ENTITLEMENTS CLOSED  
+-Last updated: 2026-08-15
++Status: CURRENT SOURCE AUDIT COMPLETE; HISTORICAL VISUAL QA RETAINED; PUBLIC BILLING AND QUOTA ENFORCEMENT CLOSED  
++Last updated: 2026-09-10
++
++## Current commercial surface and implementation gap — 2026-09-10
++
++This update is a source audit, not a new visual/browser run. The current Web
++`commercialAccess.js` and `App.jsx`, and native `PlanAccessView.swift`, keep the
++comparison inside authenticated Plan & access. Family is marked planned/not yet
++available and billing is closed. September 9's full-depth visual/interaction
++evidence is in [interaction-experience.md](interaction-experience.md).
++
++The catalog already declares Free's `trusted_person_basic` allowance as 1 and
++Family's co-planner allowance as 1; multiple trusted people remains `planned`
++with a null allowance. Null in that dormant row is not a published unlimited
++promise. New sharing routes do not read those commercial allowances and do not
++enforce a plan-based person limit. The September 10 packaging contract now defines
++Free 1 / provisional Family 5 **outgoing relationships**, free incoming access and
++equal per-item privacy controls. Its quota/downgrade release behavior remains to
++be implemented; neither existing UI copy nor test payments can grant Family.
++
++Before enforcing or selling that offer, both clients must show the server's
++available allowance only on the relevant sharing task, preserve the draft at the
++second invitation, and provide a working eligible upgrade or deliberate slot
++replacement. While sales are closed, do not introduce a dead-end purchase wall.
++Keep the comparison short: recipients, co-planning and ongoing review; unavailable
++attachments/support cannot be presented as included purchased benefits.
++
++The old audit below records earlier compositions and tests. Its native Account,
++example page, static index and “next engineering gate” passages are **HISTORICAL**;
++current entry is public interactive exploration, followed by direct hosted iOS
++authentication on a private intent. Current billing/packaging authority is
++[monetization.md](monetization.md); source evidence is in
++[the September 10 QA record](../output/qa/rillora-packaging-review-20260910/README.md).
++
++## Historical audit — 2026-08-15 to 2026-08-17
+ 
+ ## Audit Question
+ 
+--- before/docs/mvp.md
++++ after/docs/mvp.md
+@@ -5,7 +5,7 @@
+ Superseded by: later locked MVP decision  
+ Do not use for: production security certification or global legal claims  
+ Status: PROVISIONAL MVP SCOPE  
+-Last updated: 2026-08-13
++Last updated: 2026-09-10 (documentation alignment; runtime evidence retains its dated checkpoint)  
+ 
+ ## Core Hypothesis
+ 
+@@ -62,7 +62,13 @@
+ 
+ MVP不执行真实死亡后的敏感资料自动披露。真实申请在安全、法律和人工运营门通过前保持关闭。
+ 
+-## Current Implementation Coverage — 2026-08-11
++## Implementation Coverage — Historical checkpoints from 2026-08-11
++
++These dated paragraphs retain their original test evidence. Current public UI is
++the September 9 interactive map, not a three-choice/example flow; iOS private
++intent uses direct hosted login. Account-bound direct sharing was deployed
++September 10. Current runtime boundaries live in [handoff.md](handoff.md) and
++[trusted-sharing.md](trusted-sharing.md); this history is not a new test run.
+ 
+ 后端已经持久化计划、事务、角色、联系人记录、官方设置自报、计数模拟、非操作性角色策略演练、Start Here预览／打印元数据、客户端密文与HPKE密钥信封、合成收件人演练、审计和隐私过滤第一方事件，并通过PostgreSQL跨租户／跨角色测试。Web根路径新增无需账户的公开产品页，开始计划和Account进入独立`/account`选择后才转到Auth0；私有状态仍由同源API和Cookie会话保护。认证后Web与iOS现在共享持久化的`available / guide_in_progress / guide_paused / completed`首次使用合同，但分别使用总览面板与原生Sheet；三条路径、跳过、退出、从Web聚合入口／原生iOS Profile恢复、合成示例不持久化和明确保存第一项Matter已通过本地浏览器／模拟器验证；引导答案不增加准备度。移动Web一级信息架构为`Overview / Matters / More`，原生iOS为`Overview / Matters / Profile`，而桌面Web保留完整工作区侧栏；低频计划、联系人、指南、活动与设置仍在各平台第三个聚合入口下继续可达。真实Auth0 EU Universal Login、Cookie会话／CSRF和退出已用合成身份验证；隔离虚拟WebAuthn认证器已完成Web Passkey渐进注册与后续登录。原生SwiftUI客户端已通过Auth0.swift系统浏览器Code + PKCE，把短期provider token一次性换成Keychain保存的Rillora本地Bearer会话，并在重启后继续读取共享API；Cookie与Bearer不能交叉使用。动机、Matter、可信联系人记录、全计划／逐事项角色记录、官方设置可逆自报、三类无副作用计数演练、死亡／失能／失联三套角色级策略状态机、最小披露明文指南、AES-256-GCM＋RFC 9180 HPKE的Owner恢复包，以及一次性合成接受／内存设备私钥／公钥登记／撤销／收件人侧解密合同已在Web与iOS保持同一证据边界；服务端不能解密，角色记录不建立授权，策略演练不能验证证明、发送通知或释放资料。政策变化会使旧演练快照过期。当前75项iOS单元测试、40项共享API测试、13项Web API-client、3项Web首次使用状态、2项Web移动导航合同和4项Web加密测试通过；Web还手工验证了公开首页、Account路由、首次使用全路径、移动More层级、角色创建／编辑／撤销、过期警告和新快照。原生Profile当前另有签出17 Pro Max `2 / 2`与SE `1 / 1`聚焦证据；已登录完整新矩阵仍待合成QA API可用后重跑。
+ 
+@@ -146,8 +152,10 @@
+ - 免费：可形成有意义的轻量事务地图、一名可信人的基础路径、官方设置检查、基础演练、基础导出，以及认证、安全、导出、删除和接收人基础访问。不得把Apple／Google等本来免费的官方设置指导、最低安全或离开产品的能力锁进付费墙。
+ - 首发目录：永久`Free`之外只开放一个付费权益层级`Rillora Family`；月付与年付是同一权益的两个账期，不是两个套餐。
+ - 价格梯度：收费发布主假设为US$9.99/月或US$99/年，年付相当于US$8.25/月，比连续月付低17.4%；US$8.99/月或US$89/年作为下行情形，US$6.99/月或US$59/年仅作为必须预先写明人数／截止时间、期限和续费规则的Founder/WTP测试单元。大陆¥68/月或¥698/年是独立验证假设。全部未获真实付款验证，也未授权创建真实商品。
+-- 首发不启用自动转付费试用；永久Free承担体验作用，直接Web首次软件购买以30天退款保障降低风险。14天Family付费能力预览只作为默认关闭的未来实验，必须先验证到期、安全降级和明确转化文案。
++- 首发不启用自动转付费试用；永久Free承担体验作用。2026-08-27现行法律候选取代早期30天首购退款保证：直接Web按强制法律或书面例外处理，Apple按其渠道处理。30天保证及14天Family预览都保持关闭，不是当前承诺。
+ - 取消后使用到已付周期末，再安全降级到Free；账户、核心文本、基础导出和接收人基础访问不因取消或付款失败删除／锁死，订阅状态也永不触发死亡、失能、失联或披露。
+ - 每个地区首次公开发布都必须同时具备永久Free和可用的Family订阅；Global与Mainland独立过门、无需同日发布。支付未就绪的地区停留在受控beta，不先做公开Free-only发布。
+ 
+ 完整长期套餐、权益、退款、全球Storefront和订阅生命周期设计见[`docs/monetization.md`](monetization.md)；单位经济、成本分配、毛利、LTV/CAC、跑道和尽调指标见[`docs/unit-economics.md`](unit-economics.md)。价格尚未验证且支付未激活；首轮目标仍是区分赞同、完成、邀请和付款四种强度不同的信号，并把付款后的30／90天维护、退款、取消和直接支持时间作为独立队列证据。
++
++2026-09-10区分补全：Free的“一人”指向外共享关系，不限制保存联系人记录或接收别人分享；Family暂定五位接收人及一位共同维护者。逐项权限、安全、基本演练和退出能力两版相同。多人邀请已在合成staging实现，但人数收费限制、共同编辑、自动复核与历史尚未完成，不可写成已交付的付费套餐。先验证免费的一人完整结果，再以第二位接收人／共同维护等真实意图验证付费，具体计数、降级和验证分母以商业合同为准。
+--- before/docs/unit-economics.md
++++ after/docs/unit-economics.md
+@@ -5,7 +5,7 @@
+ Superseded by: later Owner decision recorded in `docs/decision-log.md`  
+ Do not use for: market validation, valuation, financing amount, accounting/tax/legal advice, payment activation or a claim of profitability  
+ Status: PROVISIONAL PAID-LAUNCH MODEL; PAYMENT CLOSED  
+-Last reviewed: 2026-08-19
++Last reviewed: 2026-09-10 (current-decision alignment only; dated legal, fee and financial research is not a fresh revalidation)
+ 
+ ## Decision Summary
+ 
+@@ -127,6 +127,11 @@
+ CAC includes paid media, partner fees, agency/creative spend, attributable sales labor and other acquisition costs. Organic acquisition is not “zero CAC” if founder or team time is the channel.
+ 
+ ## Scenario Results
++
++Historical workbook snapshot: the row labels below preserve its former US$89
++center and assumptions. They were not recalculated on September 10 and must not
++be quoted as the economics of the current US$99 / provisional five-recipient
++Family bundle. Rebuild from observed use/support before a real price decision.
+ 
+ ### Per paid household per year
+ 
+@@ -323,7 +328,7 @@
+ 
+ 1. Finish provider-neutral entitlement, price-version and finance-event contracts while payment remains closed.
+ 2. Select entity and a narrow set of launch countries; obtain tax/privacy/consumer-law and insurance quotes.
+-3. Build a truthful pricing screen with US$89 standard list and a separately labeled founder cell; do not add multiple visible paid tiers.
++3. Use the current US$9.99/month or US$99/year provisional list in a truthful pricing screen, with any founder cell separately bounded and labeled; US$89 remains only the historical model/downside sensitivity. Do not add multiple visible paid tiers.
+ 4. Instrument billings, tax, fees, refunds, deferred revenue, support minutes, price cohort and attribution before the first transaction.
+ 5. Validate a small founder cohort operationally, then expose a full-list cohort before meaningful paid acquisition.
+ 6. Review after 30 and 90 days; preserve annual renewal as an open question until twelve-month evidence exists.
+--- before/docs/decision-log.md
++++ after/docs/decision-log.md
+@@ -5,7 +5,7 @@
+ Superseded by: later entries in this file  
+ Do not use for: treating casual feedback as global approval  
+ Status: ACTIVE  
+-Last updated: 2026-09-07  
++Last updated: 2026-09-10 (documentation alignment; runtime evidence retains its dated checkpoint)  
+ 
+ 新条目使用以下模板：
+ 
+@@ -1866,3 +1866,41 @@
+ - Eighteen HTTPS/asset checks pass. Fresh 390px browser checks cover the public interactive home, Account and invitation entry; the Who choice changes state without authentication. No real legal acceptance, recipient identity or external message was created during this verification.
+ - Corrected stale active platform-contract wording that still described the removed native Account page and static public map, using the already-recorded September 6/9 decisions. This is documentation alignment, not a new product direction.
+ - The next review is the designated recipient's actual hosted sign-in/acceptance in the normal cloud build. [Deployment evidence](../output/qa/rillora-trusted-sharing-20260909/README.md).
++
++## 2026-09-10 — Full-read continuity and Free / Family packaging clarification
++
++- **Owner instruction:** read all project-owned Markdown before a new workflow,
++  recover concisely after compaction, and update focused docs, handoff and journey
++  before finishing. The full read covered 55 files / 16,011 lines; coverage and
++  unchanged-at-read fingerprints are retained in the QA record.
++- **Existing decisions retained:** permanent Free, one launch Family tier,
++  monthly/annual entitlement parity, provisional US$9.99/month or US$99/year,
++  free baseline security/export/recipient access, no automatic trial and closed
++  public billing. The Free one-person path was already documented.
++- **Agent-selected reversible design, PROVISIONAL:** Free 1 / Family 5 outgoing
++  relationships per plan; one additional Family co-planner. Contact records and
++  incoming shares are not charged seats. Per-item privacy levels, default-private
++  behavior and revoke remain included in both plans. The five-person number is
++  not an Owner-validated market result or an active catalog value.
++- **Lifecycle clarification:** pending invites reserve a slot; expiry/revoke
++  frees it; reactivation and replacement require transactional quota checks.
++  Preserve accepted read-only relationships and text updates after paid expiry;
++  stop above-limit new connections and paid collaboration/automation. The
++  setup-only monthly-use tradeoff is explicit: recurring maintenance must justify
++  renewal. These future commercial behaviors require implementation and tests.
++- **Current implementation truth:** Free allowance 1 exists in the catalog,
++  but sharing routes do not enforce it. Family multi-person is planned/null;
++  co-planning, adaptive review and history are not delivered as paid features.
++  No quota wall, paid entitlement, migration, source UI change or checkout was
++  activated by this review. Preserve synthetic B/C access while billing is closed.
++- **Supersession and housekeeping:** AGENTS now requires range coverage and
++  closeout-before-final. The old 1,121-line handoff is archived unchanged; current
++  handoff is 99 lines with one next work item. Corrected stale active references
++  to 30-day refunds, US$89 as current list, USA-only launch, native Account-first
++  authentication, static map, unused email scope and pending cloud deployment.
++  These align existing decisions; legal texts, provider settings and old dated
++  test evidence were not rewritten or revalidated.
++- [Current packaging contract](monetization.md), [QA and source audit](../output/qa/rillora-packaging-review-20260910/README.md),
++  [historical handoff](handoff-history-20260910.md). The Owner's newer packaging
++  request supersedes the prior receiving-flow review as the active work item;
++  actual recipient-provider acceptance remains an open evidence gate.
+--- before/docs/journey/PROJECT_JOURNEY.md
++++ after/docs/journey/PROJECT_JOURNEY.md
+@@ -1,6 +1,6 @@
+ # Digital Legacy Ongoing Project Journey
+ 
+-Last updated: 2026-09-07 (Asia/Hong_Kong)  
++Last updated: 2026-09-10 (documentation alignment; runtime evidence retains its dated checkpoint)  
+ 
+ ## 记录范围
+ 
+@@ -1889,3 +1889,41 @@
+ **Unfinished evidence.** A designated recipient must still complete their own
+ provider sign-in and acceptance for the first cloud receiving-flow review. No
+ real relative, legal acceptance, message delivery or production release is claimed.
++
++## 2026-09-10 — Recover document continuity and make packaging executable
++
++**Goal.** Owner questioned stale handoff/project records, restated full Markdown
++reading before new work and concise compaction recovery, and asked whether Free
++vs paid boundaries had been discussed and what could make people willing to pay.
++
++**Attempt.** Read all 55 project-owned Markdown files / 16,011 lines in full,
++including historical and nested instructions, rereading truncated ranges. Compared
++the commercial contract with the migration catalog, API routing/sharing writes and
++both Plan & access implementations. Checked current primary Everplans/Trustworthy
++pricing and Apple's ongoing-subscription-value rule; a LifeHub fetch was forbidden
++and no price from that failed fetch was adopted.
++
++**Judgment change.** Free plus one Family tier and a one-person baseline already
++existed. The drift was the distance between those plans and implementation: new
++sharing did not enforce catalog allowance. A raw contact-record cap would obstruct
++planning and confuse B receiving A's plan with B paying for their own recipients.
++Define outgoing relationships instead, keep privacy controls free, and treat five
++Family recipients as a provisional small-network allowance. Several extra people
++alone cannot establish annual value; joint maintenance and actual review/history
++must earn repeat payment. Preserve accepted retrieval after expiry and explicitly
++measure the possibility of setup-only monthly subscriptions.
++
++**Result.** Added the current capability/status matrix, counting/expiry/draft
++rules and evidence-based conversion/retention sequence to the commercial contract.
++Strengthened AGENTS. Archived the entire previous handoff unchanged and reduced
++the active file to 99 lines with a single next item. Updated affected authority,
++dates and records; labeled old visual/auth checks historical and repaired active
++refund, price, region, auth, data-scope and deployment contradictions. The document
++validation results are saved in [the QA record](../../output/qa/rillora-packaging-review-20260910/README.md).
++
++**Unfinished.** No live payment, user recruitment, message, catalog/runtime
++mutation or new app test occurred. Commercial count enforcement, co-planning and
++ongoing review remain engineering work; US$99 demand and renewal are unvalidated.
++The next bounded engineering slice is local/default-disabled transactional quota
++and cross-platform state, before any public enforcement. Actual receiving-provider
++acceptance, physical-device and production gates remain independently open.
+--- before/DESIGN.md
++++ after/DESIGN.md
+@@ -5,7 +5,7 @@
+ Superseded by: a later Owner-approved visual decision recorded in `docs/decision-log.md`  
+ Do not use for: trademark clearance, legal claims, production security proof, final Logo or Chinese naming  
+ Status: GLOBAL GRAPHITE CONTINUITY DIRECTION OWNER-DIRECTED AND IMPLEMENTED LOCALLY; SIGNED-OUT／AUTHENTICATED ROOTS, PROFILE ACTIONS AND FOCUSED-TASK DENSITY VERIFIED; EXTERNAL AND RELEASE GATES OPEN  
+-Last updated: 2026-09-07
++Last updated: 2026-09-10 (documentation alignment; runtime evidence retains its dated checkpoint)  
+ 
+ ## Brand Name — LOCKED
+ 
+@@ -52,7 +52,7 @@
+ 
+ ## Core Screen Truth — LOCKED
+ 
+-After authentication, both platforms open on the same plan state. Each platform also has a public, signed-out discovery state that does not expose or imitate private plan state:
++After authentication, both platforms open on that user's actual persisted plan state. Public discovery does not expose or imitate private state. The following list is the **historical shared visual-QA fixture**, not default content to seed for real users; current progress, matters and acceptance come from the API:
+ 
+ - heading: `Continue your plan`;
+ - progress: `3 of 5 essentials`;
+@@ -73,7 +73,7 @@
+ - When first use is still available, Overview shows two visual choices—`Add a matter` and the optional guide—without repeating the same Add action in the hero. `Not now` remains reachable, and one short line explains that progress starts only after saving a Matter.
+ - Empty Matters does not show empty `Added` and `Needs review` sections. It uses one SF Symbol, `No matters yet`, one short category line and one primary Add action. Populated Matters retains native sections and item rows.
+ - Authenticated Profile uses one dedicated action surface and icon treatment for every task. Read-only technical values and actions must not be mixed in one card; internal `policyVersion` is not a root-profile user task.
+-- `Plan & access` compresses continuity state, authentication state and current plan label into one action row. Trusted-contact creation uses the short boundary `Record only · sends nothing`; the longer authority explanation belongs after entering the contact task.
++- `Plan & access` remains one compact task entry. Trusted contacts lead to real contact creation, per-item scope and link/QR invitation. Saving a contact alone sends nothing; a generated link is not delivered or accepted. Express each status beside its action rather than leaving the whole feature labeled `Record only`.
+ - `Why I’m preparing` and optional setup are compact plan-detail actions. Preparation and Rillora support destinations use two-column SF Symbol tiles at ordinary text sizes and one column at accessibility sizes. Tiles use the same action surface, stroke, icon block and arrow grammar.
+ - Session actions keep the same card surface but use clay destructive labels. No root section uses a one-off green／black background that makes an action look like a different component family.
+ - Dynamic Type must reflow action rows vertically before any word fragments. Badges move beside the icon, titles receive full row width, and tool grids become one column; text remains uncapped and the page remains scrollable.
+@@ -136,7 +136,7 @@
+ - The app defaults to dark appearance across all three roots, pushed routes, sheets, editors and loading/failure states. A tab change must never switch canvas or system chrome from graphite to cream.
+ - Native safe areas, navigation, scrolling and bottom-tab behavior are preserved. The iOS launch screen uses the graphite asset from the first frame, and the app declares portrait and both landscape orientations. QA must verify actual interface dimensions rather than a rotation command alone.
+ - A signed-out launch opens a useful public `Overview`. Every private/create/sign-in intent starts the hosted authentication transaction directly. There is no native Account intermediary, email preflight or method chooser. The hosted transaction owns the compact unchecked legal confirmation and its receipt; the ordinary iOS domain notice remains system-owned. Cancel returns to the originating product route. See `docs/authentication-experience.md` for the exact contract and current runtime evidence.
+-- The signed-out Overview must make the product legible without becoming a wall of prose or an empty brand poster. It uses the same title scale and card anatomy as authenticated Overview: one practical sentence, three icon-led product-map rows, one clay action, three distinct event facts and the compact map-not-password reminder. It has no expandable paragraphs, numbered editorial blocks, `Free`, price or plan comparison. On a tall phone the action may be visible in the first screenshot, after the product map; the separate-event facts remain immediately below it. It is never a login wall above product meaning.
++- Signed-out Overview uses a generated map with selectable What / Next step / Who relationships and short changing feedback. The three separate-event facts precede the Add action. It contains no fake records, numbered article, Free/price promotion or repeated disclaimer. Reduce Motion preserves clear selection feedback without continuous motion. The full-depth contract is `docs/interaction-experience.md`.
+ - Signed-out Matters provides expandable Accounts / Documents / Devices / Other categories. Profile has Account, Safety & privacy and About; an expired session changes only the account-row recovery language. Support is a task hub with icon-led checklists and deliberate detail disclosure. No root shows private data, fabricated records, commercial promotion or a login wall.
+ - The shipping iOS shell uses one native `TabView` with exactly `Overview / Matters / Profile`. It does not ship a second custom bottom bar. The selected tab uses a brighter eucalyptus foreground and filled symbol in addition to the system selection capsule, so state is not communicated by a low-contrast background alone. Authenticated `Profile` owns trusted contacts, plan context, preparation tools, one centralized safety/privacy task hub, About Rillora and account/session controls; it does not repeat a passive Security boundary block beside the same safety destination or expose a generic jump to system Settings without a named permission task.
+ - Root `Overview`, `Matters` and `Profile` stacks use the same native inline navigation-title mode so tab changes do not jump between custom, large-title and compact-title treatments.
+--- before/README.md
++++ after/README.md
+@@ -2,7 +2,9 @@
+ 
+ 最后更新：2026-09-10（Asia/Hong_Kong）
+ 
+-当前状态：联系人已扩展为账号绑定邀请和逐人／逐项共享，API、Web、iOS 已完成。A 可创建链接／二维码，B 登录接受后只见获准内容；朋友 C 可有独立事项与细节级别。默认不共享，支持撤销。API 115 项、Web 48 项、原生 124 项单测及两项完整／辅助字号 UI 验证通过。**2026-09-10 已更新现有 AWS 合成测试环境：数据库迁移成功、服务 1/1、CloudFormation 完成，18 项 HTTPS／发布文件检查全部通过。** 实际接收人的托管登录／接受仍需独立验证，未发送真实亲友消息。[实现、录像、权限验证及部署结果](output/qa/rillora-trusted-sharing-20260909/README.md)。
++当前工作：已复核Free／Family既有决定与代码差距，并补全向外共享人数、接收人免费、逐项权限和安全降级合同。Free一人是既有设计，Family五人为暂定首发值；计数限制尚未执行、收费仍关闭。见[商业化合同](docs/monetization.md)与[当次QA](output/qa/rillora-packaging-review-20260910/README.md)。
++
++最近工程状态：联系人已扩展为账号绑定邀请和逐人／逐项共享，API、Web、iOS 已完成。A 可创建链接／二维码，B 登录接受后只见获准内容；朋友 C 可有独立事项与细节级别。默认不共享，支持撤销。API 115 项、Web 48 项、原生 124 项单测及两项完整／辅助字号 UI 验证通过。**2026-09-10 已更新现有 AWS 合成测试环境：数据库迁移成功、服务 1/1、CloudFormation 完成，18 项 HTTPS／发布文件检查全部通过。** 实际接收人的托管登录／接受仍需独立验证，未发送真实亲友消息。[实现、录像、权限验证及部署结果](output/qa/rillora-trusted-sharing-20260909/README.md)。
+ 
+ 此前全层级 UI/UX 调整继续保留：[完整页面覆盖与运行证据](output/qa/rillora-public-motion-20260909/README.md)。
+ 
+@@ -14,7 +16,7 @@
+ 
+ 其他保留进度：AWS Frankfurt只用于合成staging；Stripe Phase 1C测试生命周期完成且普通权益始终Free。StoreKit本地SK0完成，真实Sandbox商品可加载，购买仍被此前记录的Apple Simulator账号持久化故障阻断；实机工作由Owner明确延期。完整商业证据见[StoreKit合同](docs/storekit.md)与[商业化合同](docs/monetization.md)，不得把IAP server key和Apple登录key混为一项。
+ 
+-本工作流开工时已完整阅读50份／14,408行项目Markdown，随后新增一份托管确认配置说明；活动入口与验收规则已同步，历史记录保留。源码、截图、结果包和覆盖清单已保存。父仓库仍没有正常tracked baseline；未创建初始commit或改写既有改动。
++2026-09-10本轮已完整阅读55份／16,011行项目Markdown，范围、逐段记录与指纹保存在[本轮复核记录](output/qa/rillora-packaging-review-20260910/README.md)。本轮同步免费／付费合同与活动文档；交接收敛为当前状态，原长交接完整移入历史文件。父仓库仍没有正常tracked baseline；未创建初始commit或改写既有代码。
+ 
+ 基础设施继续遵守[分阶段成本与迁移合同](docs/infrastructure-roadmap.md)：当前公共法律host零新增固定费用，真实敏感数据等待独立生产基线；现有域名、邮箱与AWS成本不因此归零。
+ 
+--- before/SECURITY.md
++++ after/SECURITY.md
+@@ -1,4 +1,6 @@
+ # Digital Legacy Repository Threat Model
++
++Last updated: 2026-09-10 (staging evidence alignment only; not a new security audit)
+ 
+ ## Overview
+ 
+@@ -182,4 +184,7 @@
+ Local negative tests cover wrong/unverified accounts, CSRF, replay/concurrency,
+ expiry, link replacement, B/C isolation, field over-disclosure, stale writes,
+ revocation and RLS. This is not an independent security audit or real recipient/
+-production release proof. Cloud rollout is still pending IAM sign-in.
++production release proof. Cloud rollout completed on 2026-09-10: migration exit 0,
++CloudFormation UPDATE_COMPLETE, API 1/1 and 18 HTTPS/asset checks. This closes the
++staging deployment checkpoint, not real-provider recipient acceptance or an
++independent audit. See [sharing evidence](output/qa/rillora-trusted-sharing-20260909/README.md).
+--- before/design-qa.md
++++ after/design-qa.md
+@@ -2,7 +2,8 @@
+ 
+ Original foundation QA date: 2026-08-11  
+ Reviewer role: source-to-implementation product design QA  
+-State: Overview, initial fixture, `3 of 5 essentials`, Maya Chen confirmed
++Original fixture state (historical): Overview, `3 of 5 essentials`, Maya Chen; not seeded user data or real acceptance  
++Last updated: 2026-09-10 (checkpoint routing only; no new visual run)
+ 
+ ## Evidence
+ 
+@@ -977,7 +978,13 @@
+ separate checks; this pass is not the complete five-device matrix.
+ 
+ 
+-## 2026-09-06 Direct hosted login follow-up — Current
++## 2026-09-06 Direct hosted login follow-up — Historical checkpoint
++
++Its paused-Apple/social-first statements are superseded by the September 9
++email-first Apple restoration. Current full-depth UI and sharing evidence is in
++[interaction-experience.md](docs/interaction-experience.md) and
++[trusted-sharing.md](docs/trusted-sharing.md). September 10's documentation audit
++does not constitute a fresh visual test.
+ 
+ The Owner removed the native Account intermediary. All three private intents
+ now directly open hosted authentication; the system domain notice is retained.
+--- before/docs/authentication-experience.md
++++ after/docs/authentication-experience.md
+@@ -5,7 +5,7 @@
+ Superseded by: later Owner direction recorded in `docs/decision-log.md`  
+ Do not use for: credential storage, API authorization rules, production identity approval or legal claims  
+ Status: EMAIL-FIRST HOSTED LAYOUT VERIFIED; APPLE KEY ROTATED; IOS BINDING RESTORED; APPLE AUTHORIZE PAGE VERIFIED  
+-Last updated: 2026-09-09
++Last updated: 2026-09-10 (documentation alignment; runtime evidence retains its dated checkpoint)  
+ 
+ ## 2026-09-09 Apple restoration — Current
+ 
+@@ -377,24 +377,25 @@
+ 1. capture the existing tenant theme/template readback;
+ 2. apply through the official CLI/Management API without exposing a token;
+ 3. read the live theme and template back from the development tenant;
+-4. reach hosted signup and login from Web Account and the iOS Account fallback;
+-   separately verify that every iOS private intent opens native Account first;
++4. reach hosted signup and login from Web Account; verify iOS Profile sign-in
++   and private Overview/Matters intents enter the hosted transaction directly;
+ 5. visually inspect desktop and compact widths;
+ 6. check Google, password, passkey/challenge visibility, recovery entry, cancel,
+    callback and error behavior without creating or emailing a person unless the
+    Owner performs that step;
+-7. before claiming Apple login complete, close the identity-key rotation gate,
+-   then verify native authorization, Auth0 exchange, Rillora session,
+-   private-plan load and sign-out; hosted or StoreKit evidence cannot substitute;
++7. before claiming Apple login complete, verify the current hosted Apple
++   authorization, Auth0 callback, exact legal receipt, Rillora session,
++   private-plan load and sign-out. September 9 closed configuration/key rotation;
++   an Apple entry page or StoreKit evidence cannot prove the identity callback;
+ 8. record exact checked states and every untested state.
+ 
+-For current iOS, `public-profile.sign-in` must open `account-access.scroll`.
+-The current Debug contract requires `account-access.email`,
+-`account-access.legal-consent`, `account-access.apple`, `account-access.passkey`,
+-`account-access.hosted-fallback` and `account-access.cancel`, while
+-`account-access.google` stays absent. Verify default-unchecked, checked,
+-invalid/valid email, re-unchecked and Cancel/reopen states from Overview,
+-Matters and Profile. The old `account-entry.*` identifiers are historical.
++For current iOS, `public-profile.sign-in` must begin hosted authentication.
++No `account-access.*` chooser/email/consent surface should appear. Those and
++`account-entry.*` identifiers are historical. Verify source/category/draft
++preservation on system-notice and hosted-browser cancellation, then a fresh
++transaction from Overview, Matters and Profile. In the hosted flow verify
++email-first layout, available Google/Apple/passkey controls, compact spacing,
++unchecked/checked/error legal states and the exact receipt before session exchange.
+ Provider visibility and challenge generation do not prove successful login.
+ 
+ This gate does not establish a production tenant, real email delivery,
+@@ -404,9 +405,10 @@
+ ## Native Apple Preflight History — 2026-08-17
+ 
+ The following records the earlier implementation and configuration checkpoint.
+-Its no-entry and test-count statements describe that historical surface; the
+-new native Account now displays Apple in Debug. The unresolved credential
+-rotation requirement at the end of this section remains active:
++Its no-entry, native Account and test-count statements describe the historical
++surface. The native intermediary was removed September 6; September 9's hosted
++Apple configuration supersedes the old rotation requirement below. Do not repeat
++key creation/revocation based on this history:
+ 
+ - `AuthenticationServices` collects an Apple authorization code and the
+   first-response name/email scopes without adding a nonce to the Auth0 native
+@@ -608,4 +610,4 @@
+ and shows the same useful public exploration as a fresh visitor. Recovery wording
+ belongs in the Profile account row or the explicit private action. The Add intent
+ preserves its category through hosted authentication; cancel returns to its public
+-source. A Welcome back-only Overview is no longer permitted.
+\ No newline at end of file
++source. A Welcome back-only Overview is no longer permitted.
+--- before/docs/backend.md
++++ after/docs/backend.md
+@@ -4,8 +4,8 @@
+ Authority scope: API, PostgreSQL model, runtime security controls and production-open gates  
+ Superseded by: later reviewed backend decision recorded in `docs/decision-log.md`  
+ Do not use for: claiming production identity, real recipient delivery, production end-to-end encryption, legal validity or real release  
+-Status: CORE VERIFIED; VERSIONED LEGAL CLICKWRAP REQUIRED FOR REAL ACCOUNT／SESSION ISSUANCE; STRIPE PHASE 1C TEST LIFECYCLE VERIFIED IN SYNTHETIC AWS FRANKFURT STAGING; STOREKIT SANDBOX JWS／SERVER API／DURABLE NO-ENTITLEMENT RECONCILIATION VERIFIED LOCALLY; ORDINARY ACCESS FREE; PUBLIC LEGAL RELEASE, SALES, ENTITLEMENT MUTATION, REAL SENSITIVE DATA AND LIVE COMMERCE CLOSED  
+-Last updated: 2026-08-25
++Status: CORE AND ACCOUNT-BOUND SHARING DEPLOYED TO SYNTHETIC STAGING; VERSIONED LEGAL GATE REQUIRED; STRIPE TEST LIFECYCLE VERIFIED; APPLE IAP DEPLOYMENT / REAL SANDBOX PURCHASE OPEN; ORDINARY ACCESS FREE; SALES / ENTITLEMENT MUTATION / REAL SENSITIVE DATA CLOSED  
++Last updated: 2026-09-10 (documentation alignment; runtime evidence retains its dated checkpoint)  
+ 
+ ## Current Outcome
+ 
+@@ -32,8 +32,8 @@
+ ```mermaid
+ flowchart LR
+   V["Vercel public site / synthetic previews"]
+-  W["Authenticated React Web — client encryption"] -->|"HTTPS + secure session; ciphertext only"| A["Continuity API"]
+-  I["Native iOS — CryptoKit client encryption"] -->|"Auth0 EU PKCE -> typed local Bearer; ciphertext only"| A
++  W["Authenticated React Web"] -->|"HTTPS + secure session; client-encrypted export packages"| A["Continuity API"]
++  I["Native iOS"] -->|"Auth0 EU PKCE -> typed local Bearer; client-encrypted export packages"| A
+   A -->|"auth lookup role"| P[("PostgreSQL")]
+   A -->|"tenant role + RLS"| P
+   A -->|"Web code exchange + native JWT/JWKS verification"| ID["Auth0 EU development tenant"]
+@@ -77,7 +77,7 @@
+ | --- | --- | --- |
+ | Health | `GET /health/live`, `GET /health/ready` | process/database readiness only |
+ | Session view | `GET /v1/session` | validates an existing opaque session or explicit dev adapter |
+-| OIDC login | `GET /auth/login`, `GET /auth/callback` | real Auth0 EU development code exchange and opaque browser Cookie session issuance verified |
++| OIDC callback | `GET /auth/callback` | Auth0 EU code exchange and opaque browser Cookie issuance after the versioned `POST /auth/start` transaction; legacy `GET /auth/login` fails with 428 |
+ | Legal contract／auth start | `GET /auth/legal-contract`, `POST /auth/start` | publishes current versions／digest and creates an OIDC transaction only after affirmative version-matched clickwrap; legacy `GET /auth/login` now fails with 428 |
+ | Native session exchange | `POST /auth/native/session` | verifies Auth0 EU RS256 API access token and issues a typed opaque local Bearer session |
+ | Legal acceptance evidence | `GET /v1/legal/acceptance` | returns only current versions, bundle digest, client surface and server timestamp for the authenticated planner; no document text or network fingerprint |
+@@ -120,7 +120,7 @@
+ 
+ ### Contact delivery and attachments
+ 
+-The schema reserves encrypted locator/object columns as ciphertext plus key version pairs. The current API does not write them. Plain email addresses, documents and object-storage URLs are not accepted until a KMS, envelope-encryption, region and deletion design is reviewed. Start Here ciphertext is a separate bounded local-MVP record: it is client-encrypted and stored inline in PostgreSQL, not an attachment or evidence that production object storage/KMS is complete.
++The older schema reserves encrypted delivery-locator/object columns as ciphertext plus key version pairs; the current API does not write those columns or accept document uploads. The new direct-sharing API accepts a target email transiently, stores only its exact-match digest and masked label, and uses verified identity proof for acceptance. That digest is still personal data. Ordinary text Matter records and their permission projections are processed by the API and are not end-to-end encrypted. Start Here is a separate client-encrypted export record stored inline in PostgreSQL; it does not prove production attachment storage/KMS. See [trusted-sharing.md](trusted-sharing.md).
+ 
+ ## Implemented Security Controls
+ 
+--- before/docs/global-mainland-commerce-plan.md
++++ after/docs/global-mainland-commerce-plan.md
+@@ -5,7 +5,7 @@
+ Superseded by: 适用法律、平台／支付／云服务商正式审核结果、签署合同、真实税务居民事实，或 `docs/decision-log.md` 中更新的 Owner 决定  
+ Do not use for: 个案法律／税务意见、服务商报价、许可证必然获批证明、真实付款授权或公开发布授权  
+ Status: 中文执行版完成；架构与顺序已定；Global角色邮箱组织／个人两步验证、内部闭环、三条Gmail外部往返及监控目标已完成有限证据门；长期SLA表现、价格、主体、合同、采购、备案和首次真实收费仍是 Owner 资金／法律门  
+-Last reviewed: 2026-08-29
++Last reviewed: 2026-09-10 (current-decision alignment only; dated legal, fee and financial research is not a fresh revalidation)
+ 
+ ## 一句话决定
+ 
+@@ -68,7 +68,7 @@
+ 
+ Global 首发因此改为：
+ 
+-1. App Store availability 只开放已经通过法律和运营门的美国 storefront；
++1. App Store availability 只开放当前市场登记表中已通过法律和运营门的 storefront；不再仅限美国，`USA / HKG`也不得自动视为已通过；
+ 2. 公开首页、Account 和普通 Free 路径仍不显示价格；只有用户主动进入 `Plan & access` 或触发一个命名 Family 能力时才出现购买选择；
+ 3. 美国 storefront 使用系统默认浏览器打开 Rillora 自有订阅页，再由 Stripe Checkout 结账；不在 WebView 或原生 Stripe PaymentSheet 中售卖数字订阅；
+ 4. Stripe webhook 只写入共享的服务端 subscription／entitlement／finance ledger；客户端回跳不能直接赋权；
+@@ -113,7 +113,7 @@
+ - Global：`US$9.99/月` 或 `US$99/年`；年付比 12 个月月付低约 17.4%。
+ - 中国大陆：`¥68/月` 或 `¥698/年` 作为验证假设；最终必须映射到 Apple 可用价格点，并在本地用户研究、服务商费率和合规成本报价后确认。
+ - 永久 Free 保留；首发没有自动转付费试用。
+-- Web 可在法律审阅后提供一次性的首购 30 天退款承诺；App Store 退款按 Apple 流程。
++- 现行直接Web退款候选遵循强制法律或书面例外；早期首购30天保证已被2026-08-27决定取代，只保留为关闭的未来实验。App Store退款按Apple流程。
+ 
+ 为什么不继续以 US$8.99／US$89 作为基准：在 Apple 30% 首年情形、5%退款／拒付准备、真实安全与合规固定成本下，原价格的缓冲较薄。US$9.99／US$99 仍属于待验证价格，不是市场接受度证明，也不是创建真实商品的授权。
+ 
+@@ -151,7 +151,7 @@
+ 
+ ## 全球版法律问题怎样在发布前解决
+ 
+-“全球版”是架构愿景，不是第一天开放所有国家。最可执行的首发是：英语产品、美国付费市场 allowlist、香港真实个人经营路径；EU/EEA、UK、中国大陆和制裁／服务商限制地区保持关闭。
++“全球版”是架构愿景，不是第一天开放所有国家。当前首发方向是英语产品与版本化ready-market allowlist；`USA / HKG`为核心候选，其他通过全部门的地区可同批开放。香港经营路径、EU/EEA、UK、中国大陆及其他特别规则仍各自过门，不能把旧美国单区研究当成当前发布锁定。
+ 
+ ### 全球收费发布的 10–14 周路径
+ 
+@@ -166,7 +166,7 @@
+ | 第 5–9 周 | 美国外部Web结账、Stripe/Paddle、webhook、幂等账本、退款／撤销／downgrade；StoreKit fallback合同 | 沙盒端到端证据＋非美CTA隐藏证据 | 支付状态不能触发披露或死亡流程 |
+ | 第 8 周 | Stripe direct readiness checkpoint | 继续 Stripe 或切换 Paddle 的记录 | 不在第 12 周才发现税务／审核阻塞 |
+ | 第 9–11 周 | 有限付费 beta、人工观察账单与支持 | 10–25 笔可退款真实交易、对账、取消、退款证据 | 需单独批准首笔真实收费 |
+-| 第 12–14 周 | 美国公开收费 allowlist | App Store／Web 生产、支持、状态页、日对账 | Go/No-go 检查全部通过 |
++| 第 12–14 周 | 首波ready-market公开收费allowlist | App Store／Web生产、支持、状态页、日对账 | 每个地区的Go/No-go全部通过；不是仅美国或自动开放全部地区 |
+ 
+ ### 全球版发布前必须有的文件与能力
+ 
+@@ -335,7 +335,9 @@
+ 11. 公开法律页已经由目标法域律师审阅，且版本／同意可追溯；
+ 12. 已批准首次真实收费与退款演练，且现金准备金足以支撑至少 12 个月固定合规和基础设施。
+ 
+-## 现在开始的唯一执行顺序
++## 商业发布依赖顺序 — 非当前任务交接
++
++这是商业发布的路线图，不是当前工作流的另一套“唯一下一步”。实际任务、已完成节点和最新授权以[handoff.md](handoff.md)与[AGENTS.md](../AGENTS.md)为准。Provider-neutral目录和Stripe测试已完成其记录范围，不重复初始化；实际收费仍需完整产品、运营与渠道证据。
+ 
+ ### 轨道 A：未来 14 周完成 Global 收费发布
+ 
+@@ -363,9 +365,9 @@
+ 9. 只在全部门通过后公开大陆收费版；
+ 10. 小程序只作为后续有限入口，不替代独立 App。
+ 
+-## Owner 必须参与的重大门
+-
+-Agent 可以继续完成可逆的代码、测试、文档、报价清单和沙盒配置，不再逐项等待。以下仍需 Owner 明确批准或本人操作：
++## 平台本人事实与独立发布验收
++
++本项目已获Owner默认授权，遵循最新[AGENTS.md](../AGENTS.md)，不把下列历史清单变成重复的逐项确认。平台强制本人登录、必须由本人提供的事实或更高优先级工具要求才交回相应步骤；产品授权与验收完成仍是不同证据。以下事项需各自完成真实事实／平台流程，未完成时不得声称已开放：
+ 
+ - 选择最终 US$／RMB 价格并创建真实商品；
+ - 接受 Apple／Stripe／Paddle／微信／支付宝／银联的付费、税务或法律合同；
+--- before/docs/identity-data-region.md
++++ after/docs/identity-data-region.md
+@@ -4,8 +4,8 @@
+ Authority scope: provider boundary, login protocol, recovery baseline and first deployment-region candidate  
+ Superseded by: later reviewed decision recorded in `docs/decision-log.md`  
+ Do not use for: claiming production identity, completed recovery assurance, legal residency compliance or production deployment  
+-Status: AUTH0 EU AND SYNTHETIC AWS FRANKFURT STAGING LIVE; AUTH0 CLI／API READBACK COMPLETE; IOS NATIVE／HYBRID ACCOUNT BUILDS WITH NATIVE APPLE AND FREE PASSKEY ENABLED IN DEBUG; GOOGLE IOS CLIENT WIRED BUT NATIVE GOOGLE DEFERRED ON VERIFIED AUTH0 IOS／PLAN BOUNDARY; RELEASE PROVIDER GATES OFF; ZERO-NEW-FIXED-COST PUBLIC LEGAL HOST LIVE SEPARATELY AT `LEGAL.RILLORA.XYZ`; PRODUCTION RECOVERY AND RELEASE GATES PARTIAL  
+-Last updated: 2026-09-06
++Status: AUTH0 EU / SYNTHETIC AWS FRANKFURT ACTIVE; IOS DIRECT HOSTED LOGIN SINCE SEPTEMBER 6; HOSTED APPLE CONFIGURATION RESTORED SEPTEMBER 9; INVITATIONS DEPLOYED SEPTEMBER 10; REAL RECIPIENT IDENTITY / PRODUCTION RECOVERY / RELEASE GATES OPEN  
++Last updated: 2026-09-10 (documentation alignment; runtime evidence retains its dated checkpoint)  
+ 
+ ## Current Decision
+ 
+@@ -14,7 +14,7 @@
+ 首个生产平台角色分工是：
+ 
+ - 身份：Auth0 EU tenant，Web使用Universal Login与OpenID Connect Authorization Code + PKCE；
+-- iOS：原生SwiftUI客户端保留Auth0 EU作为identity／token权威，但2026-09-04起不再把整套Universal Login作为唯一主界面。原生Account页在邮箱输入下提供小字、未预勾选的版本化法律同意；Apple走`AuthenticationServices`原生交换，Passkey走Auth0 challenge／login与Apple platform credential provider。2026-09-05已按Owner动作确认创建并回读一个Google iOS OAuth client；公开client IDs和官方URL scheme已写入本地工程，但Auth0内建Google Native Social Login要求Android package，付费Custom Token Exchange又不符合零收入阶段，因此iOS Google继续隐藏并由hosted fallback承接。Passkey的数据库policy、connection、Device Settings、AASA、grant和200 challenge均通过，Debug现显示而Release仍关闭；邮箱、恢复和复杂challenge继续由`login.rillora.xyz`兜底。Auth0 access token只用于一次性换取Rillora本地不透明Bearer会话，随后不被持久化；Keychain只保存本产品会话，Web Cookie不作为iOS认证方案。此前系统浏览器Code + PKCE合成路径仍是历史证据，不证明新原生Account页、Passkey ceremony、真实邀请、加密导出或Release配置；
++- iOS：原生SwiftUI的Profile身份入口及私有操作直接进入 `login.rillora.xyz` 的系统托管认证事务；2026-09-06决定已取代9月4日原生／hybrid Account、邮箱预填及独立法律页。同一托管事务收集未预勾选的必要协议并返回精确版本凭证；邮箱优先，Google／Apple／passkey按真实托管可用性显示。9月9日Apple连接替换密钥与入口恢复已回读，实际本人Apple回调仍单独验证。系统Code + PKCE后由API验证provider token及当前协议凭证，换取Rillora不透明Bearer；Keychain只保存本产品会话，不持久化Auth0 access/refresh token。取消回到来源并保留意图；旧原生适配器与截图仅为历史配置证据，不能恢复为当前主入口。
+ - 认证后的Rillora Web、API与业务数据：以AWS Frankfurt `eu-central-1`作为核心部署平面；
+ - 数据服务：PostgreSQL/RDS、S3和单区域KMS保持在同一区域，跨区域复制默认关闭；
+ - Vercel：只允许承载公开官网、帮助内容或不含真实身份／规划者数据的预览；不承载生产API，不代理认证后的规划者响应，不接收Rillora会话Cookie；
+@@ -101,7 +101,7 @@
+ 
+ iOS不复用上述Cookie。Hosted fallback仍可由Auth0.swift通过系统浏览器Code + PKCE取得短期API access token；原生Apple／Google／Passkey在对应协议完成后也由Auth0签发同一API audience的短期access token。客户端只把该token与当前精确法律proof提交给`POST /auth/native/session`；API使用Auth0 EU JWKS验证`issuer / audience / RS256 / sub / exp / iat / azp / scope`，确认`azp`等于原生client ID且包含`session:create`后，签发`native_bearer`类型的Rillora不透明会话。Web的`browser_cookie`会话不能作为Bearer使用，原生Bearer也不能当Cookie使用；Rillora不接收Auth0密码或Google／Apple凭据。
+ 
+-- 身份映射只持久化提供商`issuer + subject`；经过验证的显示名/locale可用于初始化本产品规划者资料，会话另存认证时间和认证方法。API不持久化Auth0 access token或refresh token，也不请求当前产品不使用的email scope。
++- 身份主键仍是提供商 `issuer + subject`，不按邮箱合并账户。显示名／locale可初始化规划者资料，会话记录认证时间／方法。账号绑定邀请现请求并验证 `email` scope：原始邮箱不作身份主键；精确匹配摘要与遮罩用于目标接收检查，摘要仍属个人数据。旧会话没有已验证邮箱时只能继续普通计划，不能接受定向邀请。API不持久化Auth0 access/refresh token。
+ - 浏览器不把认证令牌放进`localStorage`、URL或可读JavaScript状态；应用状态使用同源BFF Cookie会话。
+ - 登录事务短时、一次性使用；state和外部事务Cookie按哈希匹配，PKCE verifier与nonce只在未完成事务中短期保存。
+ - 创建账户只使用受控的同源登录入口与精确`screen_hint=signup`；不把任意查询值转发给身份提供商。
+--- before/docs/infrastructure-roadmap.md
++++ after/docs/infrastructure-roadmap.md
+@@ -5,7 +5,7 @@
+ Superseded by: later explicit Owner decision, stricter security／legal requirement or verified provider limit  
+ Do not use for: claiming production readiness, creating paid resources, storing real sensitive data or opening a market  
+ Status: ZERO-NEW-FIXED-COST PUBLIC-LEGAL PATH LIVE AT `LEGAL.RILLORA.XYZ`; SITES／DNS／TLS／ROUTE／SECURITY VERIFICATION PASS; FUTURE AWS PRODUCTION BLUEPRINT PROVISIONAL  
+-Last updated: 2026-09-06
++Last updated: 2026-09-10 (documentation alignment; runtime evidence retains its dated checkpoint)  
+ 
+ ## Owner Objective — LOCKED
+ 
+@@ -254,7 +254,7 @@
+ 6. Verify GoDaddy API, authoritative／public DNS, Sites domain state, managed TLS, anonymous HTTP behavior, security headers and rendered page facts. **Complete.**
+ 7. Save Google OAuth homepage／Privacy／Terms against the live custom URLs, reload Branding, and prove Audience remains External／Testing. **Complete.**
+ 8. After a fresh client-secret creation-time mapping and separate action-time confirmation, deactivate and delete only the older unused Google client secret; preserve the later Auth0 credential and require an exact one-enabled-secret readback. **Complete.**
+-9. The legal-host work is complete. Resume the current native／hybrid iOS Account verification in `docs/handoff.md`; the Owner deferred physical-device work on 2026-09-04. StoreKit Sandbox purchase remains a separate deferred gate and does not block the current Simulator task.
++9. The legal-host work is complete. Resume only the latest task in [handoff.md](handoff.md); the native Account intermediary was removed September 6 and synthetic sharing staging was updated September 10. Do not restart either from this historical sequence. Owner-deferred physical-device/StoreKit work remains a separate evidence boundary.
+ 10. Do not change root hosting, AWS staging, Google publication, Auth0, production identity, market rows or billing without their existing gates.
+ 
+ ## Primary Pricing And Platform Anchors
+--- before/docs/ios-layout-matrix.md
++++ after/docs/ios-layout-matrix.md
+@@ -5,7 +5,7 @@
+ Superseded by: a later approved revision of this file  
+ Do not use for: physical-device, TestFlight, market, legal or production identity claims  
+ Status: WHOLE-APP STANDARD-SIZE AND AX5 SIMULATOR CHECKS PASS; LANDSCAPE GEOMETRY VERIFIED; FULL FIVE-DEVICE AND PHYSICAL ACCESSIBILITY REMAIN OPEN  
+-Last updated: 2026-09-07  
++Last updated: 2026-09-10 (documentation alignment; runtime evidence retains its dated checkpoint)  
+ 
+ ## Purpose
+ 
+@@ -36,7 +36,7 @@
+ - compact-height landscape uses Apple’s native TabBar geometry: each tab must remain visible and hittable, at least `44pt` wide, and at least the system-reported `36pt` high;
+ - Overview primary action reachable and at least `44pt` high;
+ - signed-out launch opens a public Overview rather than an authentication error or Account sheet;
+-- the three-row static product map is readable without an account; Overview creation, Matters addition and Profile sign-in directly open the hosted authentication transaction, with no native Account/email/method page; system-notice and hosted-browser cancellation return to the source;
++- the selectable animated product map works without an account and preserves understandable feedback under Reduce Motion; Overview creation, Matters addition and Profile sign-in directly open hosted authentication, with no native Account/email/method page; cancellation returns to the source and preserves its selection;
+ - signed-out Matters and Profile remain useful public destinations with no private-data editor or false private state;
+ - signed-out Overview and Profile do not promote `Plan & access`, Family or price amounts before explicit paid-capability intent;
+ - no missing accessibility label on visible buttons.
+@@ -268,7 +268,13 @@
+ separate checks; this pass is not the complete five-device matrix.
+ 
+ 
+-## 2026-09-06 Direct hosted login follow-up — Current
++## 2026-09-06 Direct hosted login follow-up — Historical checkpoint
++
++The following counts belong to September 6. Hosted Apple/email-first ordering and
++the interactive map now follow the September 9/10 checkpoints in
++[authentication-experience.md](authentication-experience.md),
++[interaction-experience.md](interaction-experience.md) and [trusted-sharing.md](trusted-sharing.md).
++The September 10 documentation audit did not rerun this device matrix.
+ 
+ The Owner removed the native Account intermediary. All three private intents
+ now directly open hosted authentication; the system domain notice is retained.
+--- before/docs/platform-contract.md
++++ after/docs/platform-contract.md
+@@ -52,7 +52,7 @@
+ 
+ | Capability | Web | iOS | Shared truth |
+ | --- | --- | --- | --- |
+-| 账户前产品理解 | Public root + static product map | Native public Overview + static product map | 三行真实能力与三个独立事件事实；不展示假记录；私有意图进入Account任务 |
++| 账户前产品理解 | Public root + selectable animated product map | Native public Overview + selectable animated product map | 真实能力的图形选择与三个独立事件事实；不展示假记录；Web进入Account任务，iOS私有意图直接托管认证 |
+ | 注册与登录 | Required | Required | 同一用户和会话策略 |
+ | 非阻塞首次使用 | Overview panel | Native overview + guide sheet | 同一`firstUseState / firstUseStep`、两路径、退出／恢复和准备度边界 |
+ | 动机选择 | Required | Required | 同一枚举与实验属性 |
+@@ -81,6 +81,9 @@
+ - Person
+ - RoleAssignment
+ - Invitation
++- SharingConnection (planner-directed account binding; separate from event roles)
++- SharingGrant (per-recipient, per-matter field level)
++- SharingHandoff (short-lived private invitation continuation)
+ - OfficialSetupCheck
+ - ClaimSimulation
+ - DisclosureRehearsal
+@@ -200,6 +203,13 @@
+ 
+ ## Account-bound direct sharing — 2026-09-10
+ 
++Commercial parity follows [monetization.md](monetization.md): Free 1 / provisional
++Family 5 outgoing relationships, free receiving and equal per-item privacy.
++Catalog allowance is not enforcement: current sharing routes have no plan-based
++quota. The future server decision must govern Web/iOS identically, including
++pending-slot reservation, expiry, cancellation, safe downgrade and no duplicate
++charge. Preserve drafts; do not activate a purchase wall while billing is closed.
++
+ Owner explicitly requests real invitation/account acceptance and independent B/C
+ visibility. Web and iOS now implement contact creation, empty-by-default per-item
+ Name/Directions/Details grants, email-bound link/QR, authenticated acceptance,
+--- before/docs/product-events.md
++++ after/docs/product-events.md
+@@ -5,7 +5,7 @@
+ Superseded by: later explicit privacy, consent or analytics decision  
+ Do not use for: market evidence, third-party analytics approval or production retention compliance  
+ Status: LOCAL SERVER-GENERATED CONTRACT IMPLEMENTED; EXTERNAL COLLECTION CLOSED  
+-Last updated: 2026-08-10
++Last updated: 2026-09-10 (future measurement clarification only; current schema unchanged)
+ 
+ ## Purpose
+ 
+@@ -32,7 +32,14 @@
+ 
+ `pricing_viewed`, `subscription_started`, `subscription_refunded`, `subscription_cancelled`, `plan_reviewed_30d` and `plan_maintained_90d` are named in the MVP measurement contract but are not part of the current local write allowlist. They cannot be emitted until payment remains within scope and a separate schema/privacy decision defines exact low-cardinality properties.
+ 
+-Commercial amounts, tax, fees, cash settlement, invoice/provider IDs and recognized revenue belong in the tenant-safe commerce/finance ledger, not in a generic analytics payload. Product events may later carry only reviewed references such as immutable `price_code`, billing period, storefront and coarse cohort; they must not carry card data, customer plan content or contact identity. Unit-economics and finance-source requirements are defined in [`unit-economics.md`](unit-economics.md).
++Commercial amounts, tax, fees, cash settlement, invoice/provider IDs and recognized revenue belong in the tenant-safe commerce/finance ledger, not in a generic analytics payload. Future reviewed low-cardinality properties may include immutable `price_code`, plan/offer version, billing period, purchase-route-policy version and coarse cohort. Do not persist the ephemeral Storefront to a customer profile or generic marketing analytics; never include card data, plan content or contact identity. Unit-economics requirements are in [`unit-economics.md`](unit-economics.md).
++
++September 10 packaging review defines the future measurement sequence in
++[monetization.md](monetization.md): completed recipient acceptance and comprehension,
++an eligible activated household's paid intent, actual offer exposure/payment,
++then meaningful 30/90-day maintenance. Sharing audit events are not automatically
++part of this product-event schema. Implement and review the exact schema and
++retention/cleanup before measurement; this document change deploys no tracking.
+ 
+ ## Provenance And Write Path
+ 
+--- before/docs/quality-gates.md
++++ after/docs/quality-gates.md
+@@ -5,7 +5,7 @@
+ Superseded by: stricter platform, legal, security or Owner requirement  
+ Do not use for: replacing a detailed test plan  
+ Status: ACTIVE  
+-Last updated: 2026-09-07  
++Last updated: 2026-09-10 (documentation alignment; runtime evidence retains its dated checkpoint)  
+ 
+ ## Product Definition Gate
+ 
+@@ -29,7 +29,7 @@
+ 
+ 首轮测试前，Web与iOS都必须能够：
+ 
+-1. 注册并选择动机；
++1. 注册／登录后进入可用的私有计划；动机引导可跳过，不阻塞添加或浏览；
+ 2. 添加至少五项事务；
+ 3. 设置处理意愿和角色；
+ 4. 邀请可信联系人；
+@@ -226,7 +226,12 @@
+ separate checks; this pass is not the complete five-device matrix.
+ 
+ 
+-## 2026-09-06 Direct hosted login follow-up — Current
++## 2026-09-06 Direct hosted login follow-up — Historical checkpoint
++
++September 9 restored hosted Apple and email-first ordering. September 9/10
++interaction/sharing evidence supersedes this checkpoint's provider/layout status;
++use [authentication-experience.md](authentication-experience.md),
++[interaction-experience.md](interaction-experience.md) and [handoff.md](handoff.md).
+ 
+ The Owner removed the native Account intermediary. All three private intents
+ now directly open hosted authentication; the system domain notice is retained.
+--- before/docs/trust-safety-legal.md
++++ after/docs/trust-safety-legal.md
+@@ -5,7 +5,7 @@
+ Superseded by: stricter applicable law, platform rule, security evidence or Owner decision  
+ Do not use for: personal legal advice  
+ Status: ACTIVE; MVP BOUNDARIES LOCKED  
+-Last updated: 2026-08-25
++Last updated: 2026-09-10 (documentation alignment; runtime evidence retains its dated checkpoint)  
+ 
+ ## Core Separation
+ 
+@@ -146,7 +146,7 @@
+ 
+ 2026-08-24 Owner明确不聘请外部律师并要求尽量压缩个人责任。当前候选已扩展为Privacy、Terms、Subscription、Refund／Cancellation、Acceptable Use、Cookie和Legal Notice七页，并加入最大合法范围内的免责声明、间接／后果损失排除、`max(US$100, 过去12个月已付费用)`总责任上限、用户不当使用赔偿、force majeure、拟议一年索赔期和香港法／非专属香港法院默认。欺诈、故意不当、适用的重大过失、人身伤亡、强制消费者／隐私责任等不可排除项目明确保留；不得为了“免责更强”写一个更容易整体无效的绝对免责。
+ 
+-账户注册／使用同意成为技术硬门而不是browsewrap。Web使用紧凑的未勾选Account控件；iOS已删除Owner否决的原生长文Sheet，在原生Account页把小字Terms／Privacy／电子记录行紧跟邮箱输入显示，未勾选时Apple／Google／Passkey／邮箱与hosted fallback全部不可用。Apple使用原生系统协议；Google／Passkey只在其原生配置完整时显示；邮箱密码、恢复、复杂MFA和异常挑战继续由`login.rillora.xyz`托管，Rillora不收集Auth0密码。Privacy是acknowledgement，Terms和电子记录是affirmative acceptance，且注册同意不授权自动续费。API仍只接受当前精确版本、consent-copy版本和normalized bundle digest，planner、append-only acceptance与session同事务提交。删除账户时，法律证据只保留去关联的身份摘要、版本、digest、surface和时间，不以举证为由保留私人地图。
++账户注册／使用同意是技术硬门。Web保留紧凑未勾选Account控件；iOS依据2026-09-06决定直接进入托管认证，在同一事务内完成未预勾选的Terms／Privacy／电子记录确认，不再显示原生Account邮箱页或独立法律页。Rillora不收集Auth0密码；Privacy是acknowledgement，Terms和电子记录为affirmative acceptance，注册同意不授权自动续费。API验证当前精确版本、consent-copy版本、normalized bundle digest及托管凭证，planner、append-only acceptance与session同事务提交。删除账户时只保留合同允许的去关联法律证据，不以举证为由保留私人地图。此处仅校正已批准的确认位置，不改法律正文、版本、digest或既有记录。
+ 
+ 2026-08-25进一步澄清：continuity purpose可能持续几十年，active account／private map按账户目的寿命保留；未登录、漏复核、设备沉默、付款失败、取消订阅或降级Free都不是删除、死亡、放弃或披露触发器。只有核验后的主动删除或确认purpose结束才启动30天active-system／90天backup清理；最小合同／付款记录候选保留7年，security logs候选不超过12个月。退款按channel拆分：Rillora只控制direct Web／Stripe决定，Apple及未来其他store由对应provider流程决定；所有强制消费者权利继续保留。
+ 
+--- before/docs/trusted-sharing.md
++++ after/docs/trusted-sharing.md
+@@ -62,6 +62,15 @@
+ 
+ ## UI
+ 
++Commercial counting follows [the current packaging contract](monetization.md):
++Free targets one outgoing relationship; Family provisionally targets five. Contact
++records and incoming accepted shares are not paid seats. Every included recipient
++gets the same Name/Directions/Details privacy controls and revocation. The current
++sharing API has no plan-based quota enforcement; multi-recipient staging tests do
++not prove purchased Family or a public unlimited-Free offer. Ordinary billing is
++closed. Add transactional quota/downgrade behavior only with the complete release
++contract, preserving existing recipient retrieval.
++
+ Keep the current low-text interaction contract: People list, Invite action,
+ per-matter selection and detail control, real local QR/share controls, and a
+ recipient inbox. Do not replace this with explanatory cards or simulated acceptance.

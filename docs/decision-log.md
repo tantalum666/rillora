@@ -2882,3 +2882,12 @@ unreachable release remains a different closed workflow. See [sharing contract](
 - 报告只作为待核实证据，不把第三方建议当作Owner指令。确认的权限、账户一致性、并发和调用合同问题必须修复并补触发原问题的验证。
 - 撤回旧独立工程完成判断，保留原部署／测试的具体历史事实。设计、定价、真实数据和FanPass保持。
 - [修复合同](code-review-repair-20260930.md)与[当前交接](handoff.md)管理该质量门。
+
+## 2026-09-30 — Owner要求所有Rillora工作进入Git，支持Dot协作
+
+- Status: LOCKED scope; implementation choices recorded below.
+- Owner明确：“把所有rillora的工作都推到git上，我可能会使用dot协作，注意是所有”。该要求取代September23仅源码／规范、raw output全部本地保留的策略。
+- 在现有私有Rillora仓库保存代码、文档、设计源稿、发布候选、QA原件及历史；不改仓库可见性、不新建仓库、不重写历史，也不碰FanPass。
+- Agent采用可读脱敏副本＋逐文件目录＋age加密原件／Git LFS。实际凭据、真实数据库备份、整机诊断及可重建缓存按明确规则排除；密钥仅在本机受保护位置，Dot普通源码协作不需要密钥。
+- 旧Web与法律站Git历史经扫描后使用独立archive tags保留；本地内部检查点只提取项目源码，不发布夹带缓存／秘密的完整内部对象。
+- 连续写入的旧QA日志须先冻结再归档；保留原服务和原件。归档清单、原始对象、密文、远端对象与CI分别验证；保存成功不等于修复部署或正式上线。[完整合同](source-control.md)。

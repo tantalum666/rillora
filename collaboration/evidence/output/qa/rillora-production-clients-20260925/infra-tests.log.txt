@@ -1,0 +1,34 @@
+
+> rillora-aws-infrastructure@0.1.0 test
+> vitest run --exclude 'dist/**' --maxWorkers=2 --testTimeout=20000
+
+
+ RUN  v4.1.11 /Users/tantalum/Documents/电子遗嘱app/infra/aws
+
+ ❯ test/rillora-production-web-stack.test.ts (3 tests | 1 failed) 1401ms
+     × uses only private assets and the exact API; never creates or changes the database/runtime 1388ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/rillora-production-web-stack.test.ts > Closed production client delivery > uses only private assets and the exact API; never creates or changes the database/runtime
+AssertionError: expected '4135ea2d-6df8-44a3-9df3-4b5a84be39ad' to be '413f160f-8c98-48ef-a907-0391cba05e7a' // Object.is equality
+
+Expected: "413f160f-8c98-48ef-a907-0391cba05e7a"
+Received: "4135ea2d-6df8-44a3-9df3-4b5a84be39ad"
+
+ ❯ test/rillora-production-web-stack.test.ts:33:49
+     31|       expect(d.Origins.some((o: any) => o.DomainName === contract.orig…
+     32|       expect(d.CacheBehaviors[0].PathPattern).toBe('/api/*');
+     33|       expect(d.CacheBehaviors[0].CachePolicyId).toBe('413f160f-8c98-48…
+       |                                                 ^
+     34|       expect(d.CustomErrorResponses.every((r: any) => r.ErrorCachingMi…
+     35|       const headers = Object.values(template.findResources('AWS::Cloud…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 6 passed (7)
+      Tests  1 failed | 38 passed (39)
+   Start at  16:18:50
+   Duration  10.47s (transform 168ms, setup 0ms, import 1.54s, tests 18.36s, environment 0ms)
+

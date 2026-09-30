@@ -1,0 +1,36 @@
+
+> continuity-api@0.1.0 test
+> vitest run --run tests/api.integration.test.ts tests/stripe-test-adapter.test.ts
+
+
+ RUN  v4.1.10 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/api.integration.test.ts (49 tests | 1 failed) 1326ms
+     × generates a reviewed minimum-disclosure printable guide without retaining a server copy 234ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/api.integration.test.ts > Continuity API > generates a reviewed minimum-disclosure printable guide without retaining a server copy
+Error: expected 201 "Created", got 404 "Not Found"
+ ❯ tests/api.integration.test.ts:2223:7
+    2221|         acknowledgesNoRevocation: true,
+    2222|       }),
+    2223|     ).expect(201);
+       |       ^
+    2224|
+    2225|     expect(printable.headers["cache-control"]).toContain("no-store");
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ Server.<anonymous> node_modules/supertest/lib/test.js:152:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 58 passed (59)
+   Start at  23:57:04
+   Duration  2.14s (transform 230ms, setup 68ms, import 494ms, tests 1.34s, environment 0ms)
+

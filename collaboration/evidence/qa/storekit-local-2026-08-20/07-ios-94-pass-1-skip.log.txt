@@ -1,0 +1,415 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora.xcodeproj -scheme RilloraStoreKitLocal -configuration Debug -skipMacroValidation -destination "platform=iOS Simulator,id=65EC97D1-85F7-4622-88E0-80A1CE452088" -collect-test-diagnostics never COMPILER_INDEX_STORE_ENABLE=NO ONLY_ACTIVE_ARCH=YES -packageCachePath /Users/tantalum/Library/Caches/org.swift.swiftpm -derivedDataPath /tmp/rillora-storekit-26-4-derived-data -testProductsPath /Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-08-20T16-13-55-687Z_pid1983_e3aa9166.xctestproducts build-for-testing
+
+Build settings from command line:
+    COMPILER_INDEX_STORE_ENABLE = NO
+    ONLY_ACTIVE_ARCH = YES
+
+2026-08-21 00:13:56.313 xcodebuild[90628:1009412] Writing test products to /Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-08-20T16-13-55-687Z_pid1983_e3aa9166.xctestproducts
+Resolve Package Graph
+
+
+Resolved source packages:
+  SimpleKeychain: https://github.com/auth0/SimpleKeychain.git @ 1.3.0
+  JWTDecode: https://github.com/auth0/JWTDecode.swift.git @ 4.0.0
+  Auth0: https://github.com/auth0/Auth0.swift @ 3.0.2
+
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (9 targets)
+    Target 'RilloraTests' in project 'Rillora'
+        ➜ Explicit dependency on target 'Rillora' in project 'Rillora'
+    Target 'Rillora' in project 'Rillora'
+        ➜ Explicit dependency on target 'Auth0' in project 'Auth0'
+    Target 'Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'Auth0_Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'SimpleKeychain' in project 'SimpleKeychain'
+        ➜ Explicit dependency on target 'JWTDecode' in project 'JWTDecode'
+    Target 'Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'Auth0_Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'SimpleKeychain' in project 'SimpleKeychain'
+        ➜ Explicit dependency on target 'JWTDecode' in project 'JWTDecode'
+    Target 'JWTDecode' in project 'JWTDecode'
+        ➜ Explicit dependency on target 'JWTDecode' in project 'JWTDecode'
+    Target 'JWTDecode' in project 'JWTDecode' (no dependencies)
+    Target 'SimpleKeychain' in project 'SimpleKeychain'
+        ➜ Explicit dependency on target 'SimpleKeychain' in project 'SimpleKeychain'
+    Target 'SimpleKeychain' in project 'SimpleKeychain' (no dependencies)
+    Target 'Auth0_Auth0' in project 'Auth0' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk /tmp/rillora-storekit-26-4-derived-data/SDKStatCaches.noindex/iphonesimulator26.5-23F73-6cfe768891a92b912361537c460fe42b.sdkstatcache
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -o /tmp/rillora-storekit-26-4-derived-data/SDKStatCaches.noindex/iphonesimulator26.5-23F73-6cfe768891a92b912361537c460fe42b.sdkstatcache
+
+SwiftDriver RilloraTests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name RilloraTests -Onone @/tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.SwiftFileList -DDEBUG -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /tmp/rillora-storekit-26-4-derived-data/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -enable-testing -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 6 -I /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk/Developer/Library/Frameworks -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/rillora-storekit-26-4-derived-data/SDKStatCaches.noindex/iphonesimulator26.5-23F73-6cfe768891a92b912361537c460fe42b.sdkstatcache -output-file-map /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/rillora-storekit-26-4-derived-data/ModuleCache.noindex -sdk-module-cache-path /tmp/rillora-storekit-26-4-derived-data/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.swiftmodule -validate-clang-modules-once -clang-build-session-file /tmp/rillora-storekit-26-4-derived-data/ModuleCache.noindex/Session.modulevalidation -Xcc -I/tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-generated-files.hmap -Xcc -I/tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-own-target-headers.hmap -Xcc -I/tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora-2e4d4d6abf42f2b7fe8911a304de3ecb-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-project-headers.hmap -Xcc -I/tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/DerivedSources-normal/arm64 -Xcc -I/tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/DerivedSources/arm64 -Xcc -I/tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests-Swift.h -working-directory /Users/tantalum/Documents/电子遗嘱app/apps/ios -experimental-emit-module-separately -disable-cmo
+
+SwiftCompile normal arm64 Compiling\ AppleStoreKitClientTests.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/AppleStoreKitClientTests.swift (in target 'RilloraTests' from project 'Rillora')
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/AppleStoreKitClientTests.swift (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ RilloraTests (in target 'RilloraTests' from project 'Rillora')
+
+EmitSwiftModule normal arm64 (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling AppleStoreKitClientTests.swift (in target 'RilloraTests' from project 'Rillora')
+
+SwiftDriver\ Compilation RilloraTests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-Swift-Compilation -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name RilloraTests -Onone @/tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.SwiftFileList -DDEBUG -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /tmp/rillora-storekit-26-4-derived-data/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -enable-testing -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 6 -I /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk/Developer/Library/Frameworks -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/rillora-storekit-26-4-derived-data/SDKStatCaches.noindex/iphonesimulator26.5-23F73-6cfe768891a92b912361537c460fe42b.sdkstatcache -output-file-map /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/rillora-storekit-26-4-derived-data/ModuleCache.noindex -sdk-module-cache-path /tmp/rillora-storekit-26-4-derived-data/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.swiftmodule -validate-clang-modules-once -clang-build-session-file /tmp/rillora-storekit-26-4-derived-data/ModuleCache.noindex/Session.modulevalidation -Xcc -I/tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-generated-files.hmap -Xcc -I/tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-own-target-headers.hmap -Xcc -I/tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora-2e4d4d6abf42f2b7fe8911a304de3ecb-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-project-headers.hmap -Xcc -I/tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/DerivedSources-normal/arm64 -Xcc -I/tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/DerivedSources/arm64 -Xcc -I/tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests-Swift.h -working-directory /Users/tantalum/Documents/电子遗嘱app/apps/ios -experimental-emit-module-separately -disable-cmo
+
+SwiftDriverJobDiscovery normal arm64 Emitting module for RilloraTests (in target 'RilloraTests' from project 'Rillora')
+
+SwiftDriver\ Compilation\ Requirements RilloraTests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name RilloraTests -Onone @/tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.SwiftFileList -DDEBUG -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /tmp/rillora-storekit-26-4-derived-data/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -enable-testing -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 6 -I /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk/Developer/Library/Frameworks -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/rillora-storekit-26-4-derived-data/SDKStatCaches.noindex/iphonesimulator26.5-23F73-6cfe768891a92b912361537c460fe42b.sdkstatcache -output-file-map /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/rillora-storekit-26-4-derived-data/ModuleCache.noindex -sdk-module-cache-path /tmp/rillora-storekit-26-4-derived-data/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.swiftmodule -validate-clang-modules-once -clang-build-session-file /tmp/rillora-storekit-26-4-derived-data/ModuleCache.noindex/Session.modulevalidation -Xcc -I/tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-generated-files.hmap -Xcc -I/tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-own-target-headers.hmap -Xcc -I/tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora-2e4d4d6abf42f2b7fe8911a304de3ecb-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-project-headers.hmap -Xcc -I/tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/DerivedSources-normal/arm64 -Xcc -I/tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/DerivedSources/arm64 -Xcc -I/tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests-Swift.h -working-directory /Users/tantalum/Documents/电子遗嘱app/apps/ios -experimental-emit-module-separately -disable-cmo
+
+Copy /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/RilloraTests.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.swiftsourceinfo (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.swiftsourceinfo /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/RilloraTests.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo
+
+Copy /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/RilloraTests.swiftmodule/arm64-apple-ios-simulator.abi.json /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.abi.json (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.abi.json /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/RilloraTests.swiftmodule/arm64-apple-ios-simulator.abi.json
+
+Ld /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/RilloraTests normal (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios17.0-simulator -bundle -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -O0 -L/tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -L/tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator -L/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F/tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -F/tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk/Developer/Library/Frameworks -filelist /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.LinkFileList -Xlinker -rpath -Xlinker /usr/lib/swift -Xlinker -rpath -Xlinker /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/PackageFrameworks -Xlinker -rpath -Xlinker @loader_path/Frameworks -Xlinker -rpath -Xlinker @executable_path/Frameworks -Xlinker -dead_strip -bundle_loader /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora -Xlinker -object_path_lto -Xlinker /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests_lto.o -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -debug_variant -Xlinker -dependency_info -Xlinker /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests_dependency_info.dat -fobjc-link-runtime -fprofile-instr-generate -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.swiftmodule @/tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests-linker-args.resp -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Xlinker -needed_framework -Xlinker XCTest -framework XCTest -Xlinker -needed-lXCTestSwiftSupport -lXCTestSwiftSupport /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora.debug.dylib -Xlinker -no_adhoc_codesign -o /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/RilloraTests
+
+ExtractAppIntentsMetadata (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name RilloraTests --sdk-root /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk --xcode-version 17F42 --platform-family iOS --deployment-target 17.0 --bundle-identifier com.rillora.ios.tests --output /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest --target-triple arm64-apple-ios17.0-simulator --binary-file /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/RilloraTests --dependency-file /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests_dependency_info.dat --stringsdata-file /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.SwiftFileList --metadata-file-list /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests.DependencyMetadataFileList --static-metadata-file-list /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests.DependencyStaticMetadataFileList --swift-const-vals-list /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-08-21 00:13:59.380 appintentsmetadataprocessor[90645:1009593] Starting appintentsmetadataprocessor export
+2026-08-21 00:13:59.384 appintentsmetadataprocessor[90645:1009593] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+
+CopySwiftLibs /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-swiftStdLibTool --copy --verbose --sign - --scan-executable /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/RilloraTests --scan-folder /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/Frameworks --scan-folder /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/PlugIns --scan-folder /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/SystemExtensions --scan-folder /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/Extensions --platform iphonesimulator --toolchain /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/Frameworks --strip-bitcode --scan-executable /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libXCTestSwiftSupport.dylib --strip-bitcode-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+
+GenerateDSYMFile /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest.dSYM /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/RilloraTests (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/RilloraTests -o /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest.dSYM
+
+CodeSign /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --timestamp\=none --generate-entitlement-der /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest
+
+CodeSign /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora.debug.dylib (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --timestamp\=none --generate-entitlement-der /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora.debug.dylib
+/tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora.debug.dylib: replacing existing signature
+
+CodeSign /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app/__preview.dylib (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --timestamp\=none --generate-entitlement-der /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app/__preview.dylib
+/tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app/__preview.dylib: replacing existing signature
+
+CodeSign /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --entitlements /tmp/rillora-storekit-26-4-derived-data/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora.app.xcent --timestamp\=none --generate-entitlement-der /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app
+/tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app: replacing existing signature
+
+Validate /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-validationUtility /tmp/rillora-storekit-26-4-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app -shallow-bundle -infoplist-subpath Info.plist
+
+** TEST BUILD SUCCEEDED **
+
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -testProductsPath /Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-08-20T16-13-55-687Z_pid1983_e3aa9166.xctestproducts -destination "platform=iOS Simulator,id=65EC97D1-85F7-4622-88E0-80A1CE452088" -collect-test-diagnostics never -resultBundlePath /Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/result-bundles/test_sim_2026-08-20T16-13-55-687Z_pid1983_1ea58af0.xcresult test-without-building
+
+2026-08-21 00:14:00.432 xcodebuild[90651:1009635] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+Writing result bundle at path:
+	/Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/result-bundles/test_sim_2026-08-20T16-13-55-687Z_pid1983_1ea58af0.xcresult
+
+2026-08-21 00:14:00.438 xcodebuild[90651:1009635] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-08-21 00:14:01.254 xcodebuild[90651:1009635] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-08-21 00:14:01.880 xcodebuild[90651:1009635] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-08-21 00:14:02.091 xcodebuild[90651:1009635] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-08-21 00:14:17.894834+0800 Rillora[90838:1012003] [General] Failed to send CA Event for app launch measurements for ca_event_type: 0 event_name: com.apple.app_launch_measurement.FirstFramePresentationMetric
+Test Suite 'All tests' started at 2026-08-21 00:14:18.359.
+Test Suite 'RilloraTests.xctest' started at 2026-08-21 00:14:18.359.
+Test Suite 'APIClientTests' started at 2026-08-21 00:14:18.360.
+Test Case '-[RilloraTests.APIClientTests testAppleSignInFeatureGateDefaultsClosed]' started.
+Test Case '-[RilloraTests.APIClientTests testAppleSignInFeatureGateDefaultsClosed]' passed (0.002 seconds).
+Test Case '-[RilloraTests.APIClientTests testAppleSignInFeatureGateRequiresExplicitEnablement]' started.
+Test Case '-[RilloraTests.APIClientTests testAppleSignInFeatureGateRequiresExplicitEnablement]' passed (0.000 seconds).
+Test Case '-[RilloraTests.APIClientTests testAuthenticationFailureIsPreservedForTheUI]' started.
+Test Case '-[RilloraTests.APIClientTests testAuthenticationFailureIsPreservedForTheUI]' passed (0.013 seconds).
+Test Case '-[RilloraTests.APIClientTests testCommerceContractRejectsClientGrantedAccessBoundary]' started.
+Test Case '-[RilloraTests.APIClientTests testCommerceContractRejectsClientGrantedAccessBoundary]' passed (0.020 seconds).
+Test Case '-[RilloraTests.APIClientTests testCommerceStatusAndPurchaseRouteUseServerAuthoritativeContracts]' started.
+2026-08-21 00:14:18.403848+0800 Rillora[90838:1012014] [General] Failed to send CA Event for app launch measurements for ca_event_type: 1 event_name: com.apple.app_launch_measurement.ExtendedLaunchMetrics
+Test Case '-[RilloraTests.APIClientTests testCommerceStatusAndPurchaseRouteUseServerAuthoritativeContracts]' passed (0.009 seconds).
+Test Case '-[RilloraTests.APIClientTests testCreateAndArchiveMatterUseTheSharedMutationContract]' started.
+Test Case '-[RilloraTests.APIClientTests testCreateAndArchiveMatterUseTheSharedMutationContract]' passed (0.005 seconds).
+Test Case '-[RilloraTests.APIClientTests testCreateAndRevokeTrustedContactUseExplicitEvidenceContract]' started.
+Test Case '-[RilloraTests.APIClientTests testCreateAndRevokeTrustedContactUseExplicitEvidenceContract]' passed (0.009 seconds).
+Test Case '-[RilloraTests.APIClientTests testCreatePrintableStartHereRejectsRetainedServerCopyClaim]' started.
+Test Case '-[RilloraTests.APIClientTests testCreatePrintableStartHereRejectsRetainedServerCopyClaim]' passed (0.003 seconds).
+Test Case '-[RilloraTests.APIClientTests testCreatePrintableStartHereValidatesHeadersAndSendsAcknowledgements]' started.
+Test Case '-[RilloraTests.APIClientTests testCreatePrintableStartHereValidatesHeadersAndSendsAcknowledgements]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testDisclosureRehearsalFailsClosedOnReleaseOrForbiddenPreviewFields]' started.
+Test Case '-[RilloraTests.APIClientTests testDisclosureRehearsalFailsClosedOnReleaseOrForbiddenPreviewFields]' passed (0.019 seconds).
+Test Case '-[RilloraTests.APIClientTests testDisclosureRehearsalUsesVersionedSimulationOnlyMutations]' started.
+Test Case '-[RilloraTests.APIClientTests testDisclosureRehearsalUsesVersionedSimulationOnlyMutations]' passed (0.002 seconds).
+Test Case '-[RilloraTests.APIClientTests testEncryptedStartHerePreparationAndFinalizePreserveClientKeyBoundary]' started.
+Test Case '-[RilloraTests.APIClientTests testEncryptedStartHerePreparationAndFinalizePreserveClientKeyBoundary]' passed (0.012 seconds).
+Test Case '-[RilloraTests.APIClientTests testFetchAndUpdateOfficialSetupUseSelfReportedContract]' started.
+Test Case '-[RilloraTests.APIClientTests testFetchAndUpdateOfficialSetupUseSelfReportedContract]' passed (0.007 seconds).
+Test Case '-[RilloraTests.APIClientTests testFetchAndUpdatePlanMotivationUseLatestOptimisticVersion]' started.
+Test Case '-[RilloraTests.APIClientTests testFetchAndUpdatePlanMotivationUseLatestOptimisticVersion]' passed (0.006 seconds).
+Test Case '-[RilloraTests.APIClientTests testFetchOverviewUsesDevelopmentIdentityAndDecodesSharedContract]' started.
+Test Case '-[RilloraTests.APIClientTests testFetchOverviewUsesDevelopmentIdentityAndDecodesSharedContract]' passed (0.005 seconds).
+Test Case '-[RilloraTests.APIClientTests testFetchOverviewUsesKeychainBackedBearerWhenDevelopmentIdentityIsDisabled]' started.
+Test Case '-[RilloraTests.APIClientTests testFetchOverviewUsesKeychainBackedBearerWhenDevelopmentIdentityIsDisabled]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testLocalSessionPresenceUsesOnlyExplicitDevelopmentOrStoredBearerState]' started.
+Test Case '-[RilloraTests.APIClientTests testLocalSessionPresenceUsesOnlyExplicitDevelopmentOrStoredBearerState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testMatterVersionConflictIsPreservedForRecoveryUI]' started.
+Test Case '-[RilloraTests.APIClientTests testMatterVersionConflictIsPreservedForRecoveryUI]' passed (0.002 seconds).
+Test Case '-[RilloraTests.APIClientTests testNativeAuthenticationIntentKeepsEmailAndGoogleRoutesDistinct]' started.
+Test Case '-[RilloraTests.APIClientTests testNativeAuthenticationIntentKeepsEmailAndGoogleRoutesDistinct]' passed (0.000 seconds).
+Test Case '-[RilloraTests.APIClientTests testOfficialSetupRejectsEvidenceThatIsNotSelfReported]' started.
+Test Case '-[RilloraTests.APIClientTests testOfficialSetupRejectsEvidenceThatIsNotSelfReported]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testRoleAssignmentFailsClosedOnAuthorityOrUnexpectedSecretField]' started.
+Test Case '-[RilloraTests.APIClientTests testRoleAssignmentFailsClosedOnAuthorityOrUnexpectedSecretField]' passed (0.010 seconds).
+Test Case '-[RilloraTests.APIClientTests testRoleAssignmentListPreservesScopeAndNoAuthorityBoundary]' started.
+Test Case '-[RilloraTests.APIClientTests testRoleAssignmentListPreservesScopeAndNoAuthorityBoundary]' passed (0.002 seconds).
+Test Case '-[RilloraTests.APIClientTests testRoleAssignmentRequestsAreVersionedAndExplicitlyRecordOnly]' started.
+Test Case '-[RilloraTests.APIClientTests testRoleAssignmentRequestsAreVersionedAndExplicitlyRecordOnly]' passed (0.004 seconds).
+Test Case '-[RilloraTests.APIClientTests testRunSimulationRejectsAnyOperativeResponse]' started.
+Test Case '-[RilloraTests.APIClientTests testRunSimulationRejectsAnyOperativeResponse]' passed (0.005 seconds).
+Test Case '-[RilloraTests.APIClientTests testRunSimulationSendsOneDistinctLifeEventAndDecodesSafeResult]' started.
+Test Case '-[RilloraTests.APIClientTests testRunSimulationSendsOneDistinctLifeEventAndDecodesSafeResult]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testStartHereDecodesNoFilePreviewAndSendsEmptyJSONBody]' started.
+Test Case '-[RilloraTests.APIClientTests testStartHereDecodesNoFilePreviewAndSendsEmptyJSONBody]' passed (0.012 seconds).
+Test Case '-[RilloraTests.APIClientTests testStartHereRejectsAResponseThatClaimsAnEncryptedPackage]' started.
+Test Case '-[RilloraTests.APIClientTests testStartHereRejectsAResponseThatClaimsAnEncryptedPackage]' passed (0.171 seconds).
+Test Case '-[RilloraTests.APIClientTests testSyntheticRecipientAcceptanceAndEnrollmentUseIsolatedMemorySession]' started.
+Test Case '-[RilloraTests.APIClientTests testSyntheticRecipientAcceptanceAndEnrollmentUseIsolatedMemorySession]' passed (0.035 seconds).
+Test Case '-[RilloraTests.APIClientTests testUpdateMatterSendsOptimisticVersionAndExplicitNulls]' started.
+Test Case '-[RilloraTests.APIClientTests testUpdateMatterSendsOptimisticVersionAndExplicitNulls]' passed (0.001 seconds).
+Test Suite 'APIClientTests' passed at 2026-08-21 00:14:18.730.
+	 Executed 29 tests, with 0 failures (0 unexpected) in 0.359 (0.370) seconds
+Test Suite 'AppleStoreKitClientTests' started at 2026-08-21 00:14:18.730.
+Test Case '-[RilloraTests.AppleStoreKitClientTests testLoadsExactLocalFamilyCatalogAndReturnsVerifiedBoundPurchase]' started.
+2026-08-21 00:14:19.260980+0800 Rillora[90838:1011718] [SKTestSession] Error saving configuration file: Error Domain=SKInternalErrorDomain Code=3 "(null)"
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/AppleStoreKitClientTests.swift:43: -[RilloraTests.AppleStoreKitClientTests testLoadsExactLocalFamilyCatalogAndReturnsVerifiedBoundPurchase] : Test skipped - The current Xcode/iOS runtime did not expose the scheme's local StoreKit catalog to automated tests. The Xcode Run purchase path is verified separately.
+Test Case '-[RilloraTests.AppleStoreKitClientTests testLoadsExactLocalFamilyCatalogAndReturnsVerifiedBoundPurchase]' skipped (1.254 seconds).
+Test Suite 'AppleStoreKitClientTests' passed at 2026-08-21 00:14:19.984.
+	 Executed 1 test, with 1 test skipped and 0 failures (0 unexpected) in 1.254 (1.254) seconds
+Test Suite 'CommerceStoreTests' started at 2026-08-21 00:14:19.984.
+Test Case '-[RilloraTests.CommerceStoreTests testLocalStoreKitPurchaseFinishesOnlyAfterMatchingVerifiedEvidence]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testLocalStoreKitPurchaseFinishesOnlyAfterMatchingVerifiedEvidence]' passed (0.002 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testLocalStoreKitPurchaseRejectsWrongAccountTokenWithoutFinishing]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testLocalStoreKitPurchaseRejectsWrongAccountTokenWithoutFinishing]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testLocalSubscriptionLifecycleStatesNeverMutateServerAccess]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testLocalSubscriptionLifecycleStatesNeverMutateServerAccess]' passed (0.002 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testMatchingTransactionUpdateIsRecordedAndFinishedWithoutChangingAccess]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testMatchingTransactionUpdateIsRecordedAndFinishedWithoutChangingAccess]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testMissingStorefrontFailsClosedWithoutCallingPurchaseRoute]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testMissingStorefrontFailsClosedWithoutCallingPurchaseRoute]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testRefreshRoutesWithCurrentStorefrontAndReevaluatesOnChange]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testRefreshRoutesWithCurrentStorefrontAndReevaluatesOnChange]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testRestoreIgnoresEntitlementBoundToAnotherRilloraAccount]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testRestoreIgnoresEntitlementBoundToAnotherRilloraAccount]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testRestoreIsExplicitAndRefreshesOnlyLocalEntitlementEvidence]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testRestoreIsExplicitAndRefreshesOnlyLocalEntitlementEvidence]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testSubscriptionStatusOutsideLocalAccountIsIgnored]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testSubscriptionStatusOutsideLocalAccountIsIgnored]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testSubscriptionStatusUpdateRefreshesLifecycleWithoutFinishingOrGrantingAccess]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testSubscriptionStatusUpdateRefreshesLifecycleWithoutFinishingOrGrantingAccess]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testUnverifiedLocalStoreKitPurchaseNeverFinishes]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testUnverifiedLocalStoreKitPurchaseNeverFinishes]' passed (0.001 seconds).
+Test Suite 'CommerceStoreTests' passed at 2026-08-21 00:14:20.006.
+	 Executed 11 tests, with 0 failures (0 unexpected) in 0.013 (0.021) seconds
+Test Suite 'DisclosureRehearsalStoreTests' started at 2026-08-21 00:14:20.006.
+Test Case '-[RilloraTests.DisclosureRehearsalStoreTests testActionUsesLatestOptimisticVersionAndFixedAcknowledgement]' started.
+Test Case '-[RilloraTests.DisclosureRehearsalStoreTests testActionUsesLatestOptimisticVersionAndFixedAcknowledgement]' passed (0.001 seconds).
+Test Case '-[RilloraTests.DisclosureRehearsalStoreTests testCancellationRestoresIdleAndFailureCanRecoverWithoutDiscardingResult]' started.
+Test Case '-[RilloraTests.DisclosureRehearsalStoreTests testCancellationRestoresIdleAndFailureCanRecoverWithoutDiscardingResult]' passed (0.002 seconds).
+Test Case '-[RilloraTests.DisclosureRehearsalStoreTests testCreateUsesSelectedDistinctEventAndPublishesRehearsal]' started.
+Test Case '-[RilloraTests.DisclosureRehearsalStoreTests testCreateUsesSelectedDistinctEventAndPublishesRehearsal]' passed (0.001 seconds).
+Test Suite 'DisclosureRehearsalStoreTests' passed at 2026-08-21 00:14:20.015.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.004 (0.009) seconds
+Test Suite 'FirstUseGuideStoreTests' started at 2026-08-21 00:14:20.016.
+Test Case '-[RilloraTests.FirstUseGuideStoreTests testOptionalMotivationAdvancesToMatterStep]' started.
+Test Case '-[RilloraTests.FirstUseGuideStoreTests testOptionalMotivationAdvancesToMatterStep]' passed (0.001 seconds).
+Test Case '-[RilloraTests.FirstUseGuideStoreTests testSaveAndExitPersistsPausedStep]' started.
+Test Case '-[RilloraTests.FirstUseGuideStoreTests testSaveAndExitPersistsPausedStep]' passed (0.001 seconds).
+Test Case '-[RilloraTests.FirstUseGuideStoreTests testStartRecordsInProgressStepOneWithoutChangingReadiness]' started.
+Test Case '-[RilloraTests.FirstUseGuideStoreTests testStartRecordsInProgressStepOneWithoutChangingReadiness]' passed (0.001 seconds).
+Test Suite 'FirstUseGuideStoreTests' passed at 2026-08-21 00:14:20.019.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.003 (0.003) seconds
+Test Suite 'MatterEditorStoreTests' started at 2026-08-21 00:14:20.024.
+Test Case '-[RilloraTests.MatterEditorStoreTests testArchiveUsesTheLatestOptimisticVersion]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testArchiveUsesTheLatestOptimisticVersion]' passed (0.001 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testFirstUseDraftKeepsChosenCategoryWithoutPrefillingMatter]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testFirstUseDraftKeepsChosenCategoryWithoutPrefillingMatter]' passed (0.000 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testNewMatterUsesCreateContract]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testNewMatterUsesCreateContract]' passed (0.003 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testSaveUsesCurrentVersionAndAppliesServerResponse]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testSaveUsesCurrentVersionAndAppliesServerResponse]' passed (0.001 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testValidationStopsAnEmptyTitleBeforeTransport]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testValidationStopsAnEmptyTitleBeforeTransport]' passed (0.010 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testVersionConflictKeepsDraftAndOffersRecoveryState]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testVersionConflictKeepsDraftAndOffersRecoveryState]' passed (0.001 seconds).
+Test Suite 'MatterEditorStoreTests' passed at 2026-08-21 00:14:20.041.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.016 (0.017) seconds
+Test Suite 'OfficialProviderGuideCatalogTests' started at 2026-08-21 00:14:20.041.
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testAppleAndGoogleProvideSetupAndAfterDeathRoutes]' started.
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testAppleAndGoogleProvideSetupAndAfterDeathRoutes]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testBinanceIsNotPresentedAsAProactiveLegacyContactFeature]' started.
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testBinanceIsNotPresentedAsAProactiveLegacyContactFeature]' passed (0.007 seconds).
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testCatalogContainsUniqueActionableCommonProviderGuides]' started.
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testCatalogContainsUniqueActionableCommonProviderGuides]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testEveryGuideUsesHTTPSOnAnOfficialHost]' started.
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testEveryGuideUsesHTTPSOnAnOfficialHost]' passed (0.001 seconds).
+Test Suite 'OfficialProviderGuideCatalogTests' passed at 2026-08-21 00:14:20.051.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.009 (0.010) seconds
+Test Suite 'OfficialSetupStoreTests' started at 2026-08-21 00:14:20.051.
+Test Case '-[RilloraTests.OfficialSetupStoreTests testCancelledUpdateRollsBackOptimisticDisplayWithoutFailure]' started.
+Test Case '-[RilloraTests.OfficialSetupStoreTests testCancelledUpdateRollsBackOptimisticDisplayWithoutFailure]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OfficialSetupStoreTests testConflictKeepsConfirmedServerStateAndOffersReload]' started.
+Test Case '-[RilloraTests.OfficialSetupStoreTests testConflictKeepsConfirmedServerStateAndOffersReload]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OfficialSetupStoreTests testNoOpDoesNotWriteAnUnchangedSelfReport]' started.
+Test Case '-[RilloraTests.OfficialSetupStoreTests testNoOpDoesNotWriteAnUnchangedSelfReport]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OfficialSetupStoreTests testReloadPublishesOfficialSetupChecks]' started.
+Test Case '-[RilloraTests.OfficialSetupStoreTests testReloadPublishesOfficialSetupChecks]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OfficialSetupStoreTests testUpdateUsesOptimisticVersionAndAppliesSelfReport]' started.
+Test Case '-[RilloraTests.OfficialSetupStoreTests testUpdateUsesOptimisticVersionAndAppliesSelfReport]' passed (0.001 seconds).
+Test Suite 'OfficialSetupStoreTests' passed at 2026-08-21 00:14:20.058.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.004 (0.007) seconds
+Test Suite 'OverviewStoreTests' started at 2026-08-21 00:14:20.058.
+Test Case '-[RilloraTests.OverviewStoreTests testAuthenticationFailureBecomesSignedOutInsteadOfAnErrorWall]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testAuthenticationFailureBecomesSignedOutInsteadOfAnErrorWall]' passed (0.008 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testCancelledLoadRestoresItsPreviousState]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testCancelledLoadRestoresItsPreviousState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testReloadPublishesLoadedSnapshot]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testReloadPublishesLoadedSnapshot]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testReloadPublishesSafeFailureState]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testReloadPublishesSafeFailureState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testReloadPublishesSignedOutWithoutFetchingPrivateOverview]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testReloadPublishesSignedOutWithoutFetchingPrivateOverview]' passed (0.001 seconds).
+Test Suite 'OverviewStoreTests' passed at 2026-08-21 00:14:20.071.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.012 (0.013) seconds
+Test Suite 'PlanMotivationStoreTests' started at 2026-08-21 00:14:20.073.
+Test Case '-[RilloraTests.PlanMotivationStoreTests testCancelledLatestLoadRestoresReadyState]' started.
+Test Case '-[RilloraTests.PlanMotivationStoreTests testCancelledLatestLoadRestoresReadyState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.PlanMotivationStoreTests testCancelledSaveReturnsToReadyWithoutChangingSource]' started.
+Test Case '-[RilloraTests.PlanMotivationStoreTests testCancelledSaveReturnsToReadyWithoutChangingSource]' passed (0.001 seconds).
+Test Case '-[RilloraTests.PlanMotivationStoreTests testConflictKeepsSelectedMotivationForRecovery]' started.
+Test Case '-[RilloraTests.PlanMotivationStoreTests testConflictKeepsSelectedMotivationForRecovery]' passed (0.001 seconds).
+Test Case '-[RilloraTests.PlanMotivationStoreTests testLoadLatestAppliesServerMotivationAndVersion]' started.
+Test Case '-[RilloraTests.PlanMotivationStoreTests testLoadLatestAppliesServerMotivationAndVersion]' passed (0.001 seconds).
+Test Case '-[RilloraTests.PlanMotivationStoreTests testSaveUsesLatestVersionAndAppliesResponse]' started.
+Test Case '-[RilloraTests.PlanMotivationStoreTests testSaveUsesLatestVersionAndAppliesResponse]' passed (0.001 seconds).
+Test Suite 'PlanMotivationStoreTests' passed at 2026-08-21 00:14:20.078.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.004 (0.005) seconds
+Test Suite 'RoleAssignmentPolicyStoreTests' started at 2026-08-21 00:14:20.078.
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testCreateUsesMatterScopeAndMarksEarlierRehearsalsStale]' started.
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testCreateUsesMatterScopeAndMarksEarlierRehearsalsStale]' passed (0.001 seconds).
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testFailedMutationPreservesAssignmentsAndExposesConflict]' started.
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testFailedMutationPreservesAssignmentsAndExposesConflict]' passed (0.001 seconds).
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testLoadKeepsPlanWideAndCurrentMatterAssignmentsSeparate]' started.
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testLoadKeepsPlanWideAndCurrentMatterAssignmentsSeparate]' passed (0.003 seconds).
+Test Suite 'RoleAssignmentPolicyStoreTests' passed at 2026-08-21 00:14:20.084.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.005 (0.006) seconds
+Test Suite 'SimulationStoreTests' started at 2026-08-21 00:14:20.085.
+Test Case '-[RilloraTests.SimulationStoreTests testAPIFailureProducesRecoverableFailureState]' started.
+Test Case '-[RilloraTests.SimulationStoreTests testAPIFailureProducesRecoverableFailureState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SimulationStoreTests testCancellationRestoresPreviousReadyState]' started.
+Test Case '-[RilloraTests.SimulationStoreTests testCancellationRestoresPreviousReadyState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SimulationStoreTests testRunUsesSelectedDistinctLifeEventAndPublishesResult]' started.
+Test Case '-[RilloraTests.SimulationStoreTests testRunUsesSelectedDistinctLifeEventAndPublishesResult]' passed (0.004 seconds).
+Test Suite 'SimulationStoreTests' passed at 2026-08-21 00:14:20.091.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.005 (0.006) seconds
+Test Suite 'StartHereEncryptionServiceTests' started at 2026-08-21 00:14:20.091.
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testDecryptsPackageGeneratedByPinnedWebHPKELibrary]' started.
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testDecryptsPackageGeneratedByPinnedWebHPKELibrary]' passed (0.012 seconds).
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testEncryptsAndLocallyRecoversWithoutPuttingPrivateKeyInArtifact]' started.
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testEncryptsAndLocallyRecoversWithoutPuttingPrivateKeyInArtifact]' passed (0.003 seconds).
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testRejectsCiphertextTamperingBeforeDecryption]' started.
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testRejectsCiphertextTamperingBeforeDecryption]' passed (0.003 seconds).
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testSyntheticRecipientDecryptsWithMemoryOnlyDeviceKeyAndRejectsAnotherKey]' started.
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testSyntheticRecipientDecryptsWithMemoryOnlyDeviceKeyAndRejectsAnotherKey]' passed (0.008 seconds).
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testWrapsTheContentKeyForEveryEligibleRecipientDevice]' started.
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testWrapsTheContentKeyForEveryEligibleRecipientDevice]' passed (0.003 seconds).
+Test Suite 'StartHereEncryptionServiceTests' passed at 2026-08-21 00:14:20.122.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.030 (0.031) seconds
+Test Suite 'StartHerePreviewStoreTests' started at 2026-08-21 00:14:20.122.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCancellationRestoresReadyState]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCancellationRestoresReadyState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCreateEncryptedPublishesOnlyAfterLocalRecoveryAndFinalize]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCreateEncryptedPublishesOnlyAfterLocalRecoveryAndFinalize]' passed (0.029 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCreatePreviewPublishesNoFileResult]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCreatePreviewPublishesNoFileResult]' passed (0.001 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCreatePrintablePublishesShareableInMemoryArtifact]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCreatePrintablePublishesShareableInMemoryArtifact]' passed (0.001 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testFailureCanReturnToReadyState]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testFailureCanReturnToReadyState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testPrintableCancellationRestoresIdleState]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testPrintableCancellationRestoresIdleState]' passed (0.001 seconds).
+Test Suite 'StartHerePreviewStoreTests' passed at 2026-08-21 00:14:20.157.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.032 (0.034) seconds
+Test Suite 'TrustedContactEditorStoreTests' started at 2026-08-21 00:14:20.157.
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testEditUsesLatestOptimisticVersionAndAppliesResponse]' started.
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testEditUsesLatestOptimisticVersionAndAppliesResponse]' passed (0.001 seconds).
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testNewContactUsesRecordOnlyCreateContract]' started.
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testNewContactUsesRecordOnlyCreateContract]' passed (0.001 seconds).
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testOpeningExistingContactLoadsLatestServerVersion]' started.
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testOpeningExistingContactLoadsLatestServerVersion]' passed (0.001 seconds).
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testRevokeUsesPersistedIdentityAndExplicitRevokedStatus]' started.
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testRevokeUsesPersistedIdentityAndExplicitRevokedStatus]' passed (0.001 seconds).
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testValidationStopsEmptyNameBeforeTransport]' started.
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testValidationStopsEmptyNameBeforeTransport]' passed (0.002 seconds).
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testVersionConflictKeepsContactDraftForRecovery]' started.
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testVersionConflictKeepsContactDraftForRecovery]' passed (0.001 seconds).
+Test Suite 'TrustedContactEditorStoreTests' passed at 2026-08-21 00:14:20.164.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.006 (0.007) seconds
+Test Suite 'RilloraTests.xctest' passed at 2026-08-21 00:14:20.164.
+	 Executed 95 tests, with 1 test skipped and 0 failures (0 unexpected) in 1.755 (1.805) seconds
+Test Suite 'All tests' passed at 2026-08-21 00:14:20.165.
+	 Executed 95 tests, with 1 test skipped and 0 failures (0 unexpected) in 1.755 (1.806) seconds
+2026-08-21 00:14:20.489 xcodebuild[90651:1009635] [MT] IDETestOperationsObserverDebug: 19.231 elapsed -- Testing started completed.
+2026-08-21 00:14:20.489 xcodebuild[90651:1009635] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-08-21 00:14:20.489 xcodebuild[90651:1009635] [MT] IDETestOperationsObserverDebug: 19.231 sec, +19.231 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/result-bundles/test_sim_2026-08-20T16-13-55-687Z_pid1983_1ea58af0.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

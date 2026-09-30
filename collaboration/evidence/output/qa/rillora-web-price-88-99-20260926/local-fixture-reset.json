@@ -1,0 +1,20 @@
+{
+  "checkedAt": "2026-09-25T18:52:10.337Z",
+  "server": "127.0.0.1:5432",
+  "databases": [
+    "continuity_test",
+    "continuity_content_test",
+    "continuity_family_test",
+    "continuity_matter_test",
+    "continuity_email_verification_test",
+    "continuity_commercial_sharing_test",
+    "continuity_p1_repair_final_test",
+    "continuity_sharing_test",
+    "continuity_content_migration_test",
+    "continuity_recovery_test",
+    "continuity_recovery_restore_test",
+    "continuity_production_commerce_test"
+  ],
+  "reason": "Correct unpublished migration draft and recreate only disposable local suite fixtures; published migrations and cloud data unchanged.",
+  "newWebAnnualMinor": 8899
+}

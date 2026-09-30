@@ -35,8 +35,10 @@ jobs:
         run: |
           python3 -m unittest discover -s tools/release -p 'test_*.py'
           python3 -m unittest discover -s tools/godaddy -p 'test_*.py'
+          python3 -m unittest discover -s tools/collaboration -p 'test_*.py'
           python3 tools/release/prepare_repository.py
           python3 tools/release/scan_repository.py --report output/ci/source-scan.json
+          python3 tools/collaboration/verify_publication.py --scan --report output/ci/work-publication.json
 
   api:
     runs-on: ubuntu-24.04

@@ -1,0 +1,134 @@
+{
+  "at": "2026-09-28T16:36:12.934Z",
+  "passed": true,
+  "htmlSha256": "9d6e3bf64d9b82ab7219f541ee9be8d338c4747d2bdd1c60a8d4e10046618bdd",
+  "results": [
+    {
+      "path": "/",
+      "status": 200,
+      "statusPass": true,
+      "shellPass": true,
+      "csp": "default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+      "cookies": false
+    },
+    {
+      "path": "/product",
+      "status": 200,
+      "statusPass": true,
+      "shellPass": true,
+      "csp": "default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+      "cookies": false
+    },
+    {
+      "path": "/security",
+      "status": 200,
+      "statusPass": true,
+      "shellPass": true,
+      "csp": "default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+      "cookies": false
+    },
+    {
+      "path": "/pricing",
+      "status": 200,
+      "statusPass": true,
+      "shellPass": true,
+      "csp": "default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+      "cookies": false
+    },
+    {
+      "path": "/support",
+      "status": 200,
+      "statusPass": true,
+      "shellPass": true,
+      "csp": "default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+      "cookies": false
+    },
+    {
+      "path": "/legal",
+      "status": 200,
+      "statusPass": true,
+      "shellPass": true,
+      "csp": "default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+      "cookies": false
+    },
+    {
+      "path": "/legal/licenses",
+      "status": 200,
+      "statusPass": true,
+      "shellPass": true,
+      "csp": "default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+      "cookies": false
+    },
+    {
+      "path": "/account",
+      "status": 404,
+      "statusPass": true,
+      "shellPass": true,
+      "csp": "default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+      "cookies": false
+    },
+    {
+      "path": "/api",
+      "status": 404,
+      "statusPass": true,
+      "shellPass": true,
+      "csp": "default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+      "cookies": false
+    },
+    {
+      "path": "/not-a-route",
+      "status": 404,
+      "statusPass": true,
+      "shellPass": true,
+      "csp": "default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+      "cookies": false
+    },
+    {
+      "path": "/assets/website-appearance-af85b6f9631212fa.js",
+      "status": 200,
+      "exactBytes": true,
+      "cookies": false
+    },
+    {
+      "path": "/",
+      "method": "POST",
+      "status": 403,
+      "statusPass": true
+    },
+    {
+      "legalPath": "/terms",
+      "status": 200,
+      "statusPass": true
+    },
+    {
+      "legalPath": "/privacy",
+      "status": 200,
+      "statusPass": true
+    },
+    {
+      "legalPath": "/subscription-terms",
+      "status": 200,
+      "statusPass": true
+    },
+    {
+      "legalPath": "/refund-policy",
+      "status": 200,
+      "statusPass": true
+    },
+    {
+      "legalPath": "/acceptable-use",
+      "status": 200,
+      "statusPass": true
+    },
+    {
+      "legalPath": "/cookies",
+      "status": 200,
+      "statusPass": true
+    },
+    {
+      "legalPath": "/legal",
+      "status": 200,
+      "statusPass": true
+    }
+  ]
+}

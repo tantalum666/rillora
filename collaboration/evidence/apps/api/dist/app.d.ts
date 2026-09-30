@@ -1,0 +1,26 @@
+import { type Express } from "express";
+import type { AppleProductionIntake } from './apple-production-intake.js';
+import { type EmailIdentityVerifying } from "./email-verification.js";
+import type { AppConfig } from "./config.js";
+import type { DatabasePool } from "./db.js";
+import { type AccountIdentityDeleting, type AccountDeletionProcessor } from "./account-deletion.js";
+import { type AuthDependencies } from "./auth-routes.js";
+import { StripeCommerceExecutor, type StripeCommerceProvider } from "./stripe-commerce-executor.js";
+import { type StripeProductionConfig } from './stripe-production-adapter.js';
+import { type AppleSignedDataVerifying } from "./apple-storekit-adapter.js";
+import { type AppleAppStoreServerApi, type StoreKitSandboxSnapshotProvider } from "./apple-storekit-server-api.js";
+export type AppDependencies = AuthDependencies & {
+    appleReviewIntake?: AppleProductionIntake;
+    appleProductionIntake?: AppleProductionIntake;
+    transportReady?: () => boolean;
+    emailIdentityVerifier?: EmailIdentityVerifying;
+    accountIdentityDeleter?: AccountIdentityDeleting;
+    accountDeletionProcessor?: AccountDeletionProcessor;
+    stripeProvider?: StripeCommerceProvider;
+    stripeExecutor?: StripeCommerceExecutor;
+    stripeProductionConfig?: StripeProductionConfig;
+    appleSignedDataVerifier?: AppleSignedDataVerifying;
+    appleServerApi?: AppleAppStoreServerApi;
+    appleSnapshotProvider?: StoreKitSandboxSnapshotProvider;
+};
+export declare function createApp(pool: DatabasePool, config: AppConfig, dependencies?: AppDependencies): Express;

@@ -1,0 +1,95 @@
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  1.112MB
+
+Step 1/23 : FROM node:22.22.3-bookworm-slim AS build
+ ---> e21fc383b50d
+Step 2/23 : WORKDIR /app
+ ---> Using cache
+ ---> 8d90de72c6c4
+Step 3/23 : COPY package.json package-lock.json ./
+ ---> ba18b5c3f774
+Step 4/23 : RUN npm ci
+ ---> Running in 9173c3b7de27
+[91mnpm warn deprecated jsrsasign@11.1.5: This package is no longer maintained.
+[0m
+added 255 packages, and audited 256 packages in 16s
+
+59 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+[91mnpm notice
+npm notice New major version of npm available! 10.9.8 -> 12.1.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.1.0
+npm notice To update run: npm install -g npm@12.1.0
+npm notice
+[0m ---> Removed intermediate container 9173c3b7de27
+ ---> 5c4c28127e86
+Step 5/23 : COPY tsconfig.json tsconfig.build.json ./
+ ---> fc4683dc649b
+Step 6/23 : COPY src ./src
+ ---> 407eda28bdc2
+Step 7/23 : COPY migrations ./migrations
+ ---> eb121460b7a5
+Step 8/23 : COPY certificates ./certificates
+ ---> 00c546b43d39
+Step 9/23 : RUN npm run build && npm prune --omit=dev
+ ---> Running in 6124641a5790
+
+> continuity-api@0.1.0 build
+> tsc -p tsconfig.build.json
+
+
+up to date, audited 178 packages in 586ms
+
+38 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+ ---> Removed intermediate container 6124641a5790
+ ---> 89bc8c483e8c
+Step 10/23 : FROM node:22.22.3-bookworm-slim AS runtime
+ ---> e21fc383b50d
+Step 11/23 : ARG RDS_CA_BUNDLE_SHA256=e5bb2084ccf45087bda1c9bffdea0eb15ee67f0b91646106e466714f9de3c7e3
+ ---> Using cache
+ ---> e0a1b518f917
+Step 12/23 : ENV NODE_ENV=production     HOST=0.0.0.0     PORT=8080     DATABASE_SSL_MODE=verify-full     DATABASE_SSL_CA_PATH=/app/certs/rds-global-bundle.pem
+ ---> Using cache
+ ---> d1267cea24fb
+Step 13/23 : RUN apt-get update     && apt-get install --yes --no-install-recommends ca-certificates curl     && mkdir -p /app/certs     && curl --fail --show-error --silent       https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem       --output /app/certs/rds-global-bundle.pem     && echo "${RDS_CA_BUNDLE_SHA256}  /app/certs/rds-global-bundle.pem" | sha256sum --check --strict     && apt-get purge --yes --auto-remove curl     && rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 5dd00ea76429
+Step 14/23 : WORKDIR /app
+ ---> Using cache
+ ---> 6808c039257c
+Step 15/23 : COPY --chown=node:node --from=build /app/package.json ./package.json
+ ---> 1028e825c292
+Step 16/23 : COPY --chown=node:node --from=build /app/node_modules ./node_modules
+ ---> 4b6c57b5dd74
+Step 17/23 : COPY --chown=node:node --from=build /app/dist ./dist
+ ---> 51878c87d51d
+Step 18/23 : COPY --chown=node:node --from=build /app/migrations ./migrations
+ ---> 0607aa2a228b
+Step 19/23 : COPY --chown=node:node --from=build /app/certificates ./certificates
+ ---> 4e548c4c279c
+Step 20/23 : USER node
+ ---> Running in 9b933a7a9f50
+ ---> Removed intermediate container 9b933a7a9f50
+ ---> da141f66d18d
+Step 21/23 : EXPOSE 8080
+ ---> Running in 2231a4c00cb0
+ ---> Removed intermediate container 2231a4c00cb0
+ ---> 728ce6cdf511
+Step 22/23 : HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3   CMD ["node", "-e", "fetch('http://127.0.0.1:8080/health/live').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+ ---> Running in 783e692a98a4
+ ---> Removed intermediate container 783e692a98a4
+ ---> 8e793f783ae3
+Step 23/23 : CMD ["node", "dist/server.js"]
+ ---> Running in 0422fadc5c58
+ ---> Removed intermediate container 0422fadc5c58
+ ---> 6c1f19f61e82
+Successfully built 6c1f19f61e82
+Successfully tagged rillora-production-runtime:20260924

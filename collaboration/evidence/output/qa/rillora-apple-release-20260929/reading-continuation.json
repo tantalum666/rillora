@@ -1,0 +1,33 @@
+{
+  "baseline": "../rillora-launch-goal-20260926/full-read.json",
+  "baselineFileCount": 147,
+  "baselineBodyLines": 25917,
+  "mode": "continuation_focused_recovery",
+  "excluded": "Dependencies, caches, build products, third-party packages and generated output evidence; no project-owned specification/history excluded from the baseline",
+  "recovered": [
+    "AGENTS.md full",
+    "docs/product.md current locks and authority",
+    "docs/handoff.md full",
+    "docs/decision-log.md latest decisions and new appended entry",
+    "docs/production-apple-20260926.md focused current body and history",
+    "docs/storekit.md current contract with original full-read baseline",
+    "docs/channel-pricing-20260921.md current direction and provider evidence",
+    "docs/release-readiness.md current gates",
+    "modified source and newly authored Markdown in full"
+  ],
+  "newlyAuthoredBodyRanges": {
+    "docs/apple-review-validation-20260929.md": {
+      "start": 1,
+      "end": 132
+    },
+    "docs/handoff-history-20260930-before-apple-closeout.md": {
+      "start": 1,
+      "end": 118
+    },
+    "docs/handoff.md": {
+      "start": 1,
+      "end": 96
+    }
+  },
+  "warning": "File hashes only track changes, not a substitute for the body reads."
+}

@@ -1,0 +1,36 @@
+{
+  "name": "web",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build --mode internal && node scripts/prepare-sites-build.mjs",
+    "build:release": "node scripts/validate-legal-release.mjs && vite build --mode production && node scripts/prepare-sites-build.mjs",
+    "build:legal": "node scripts/validate-legal-release.mjs && vite build --mode legal && node scripts/prepare-legal-sites-build.mjs",
+    "build:public": "vite build --mode public && node scripts/prepare-public-build.mjs",
+    "build:production-closed": "node scripts/validate-legal-release.mjs && vite build --mode production-closed && node scripts/prepare-production-build.mjs",
+    "preview": "vite preview",
+    "test:api-client": "node --test tests/api-client.test.mjs",
+    "test:first-use": "node --test tests/first-use.test.mjs",
+    "test:mobile-navigation": "node --test tests/mobile-navigation.test.mjs",
+    "test:commercial-access": "node --test tests/commercial-access.test.mjs",
+    "test:product-truth": "node --test tests/contact-evidence.test.mjs",
+    "test:crypto": "node --test tests/start-here-crypto.test.mjs",
+    "test:sites": "node --test tests/sites-worker.test.mjs",
+    "test:legal-sites": "node --test tests/legal-sites-worker.test.mjs"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.3.0",
+    "@fontsource/source-serif-4": "^5.3.0",
+    "@hpke/core": "^1.9.0",
+    "@phosphor-icons/react": "^2.1.10",
+    "@radix-ui/react-accordion": "1.2.20",
+    "@vitejs/plugin-react": "5.0.4",
+    "motion": "13.4.4",
+    "qrcode": "^1.5.4",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "vite": "6.4.3"
+  }
+}

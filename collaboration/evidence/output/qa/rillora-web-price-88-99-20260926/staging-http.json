@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-09-25T19:23:34.854Z",
+  "passed": false,
+  "checks": [
+    {
+      "path": "/",
+      "status": 200,
+      "expected": 200,
+      "matchesArtifact": true
+    },
+    {
+      "path": "/account",
+      "status": 200,
+      "expected": 200,
+      "matchesArtifact": true
+    },
+    {
+      "path": "/api/health/ready",
+      "status": 404,
+      "expected": 200,
+      "noStore": false
+    },
+    {
+      "path": "/api/v1/session",
+      "status": 401,
+      "expected": 401,
+      "noStore": true
+    }
+  ],
+  "boundary": "Public transport/artifact and unauthorized API boundary, not a purchase."
+}

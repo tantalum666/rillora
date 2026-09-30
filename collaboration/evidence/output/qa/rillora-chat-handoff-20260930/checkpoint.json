@@ -1,0 +1,181 @@
+{
+  "checkedAt": "2026-09-30T00:27:03.441724+08:00",
+  "scope": "Save-only cross-chat continuation; no engineering, tests, deployment, provider submission or authentication repeated",
+  "sourceBeforeHandoff": "9b9968674f9d95c13b763ea02a43052dcd8d4fc0",
+  "remoteBeforeHandoffMatches": true,
+  "engineering": "79cea6429b8a6b0d0712a4af4aeea3096e7e35d5",
+  "engineeringCI": "https://github.com/tantalum666/rillora/actions/runs/36596303754",
+  "engineeringCIStatus": "previously_verified_success",
+  "criticalArtifacts": [
+    {
+      "path": "output/qa/rillora-apple-release-20260929/README.md",
+      "bytes": 1914,
+      "sha256": "d3681a12e319212f3bf329985e8ed3c646b5e7c932698f2c50d528dd381607b4"
+    },
+    {
+      "path": "output/qa/rillora-apple-release-20260929/work-state.json",
+      "bytes": 4327,
+      "sha256": "4674b43da82d4909330e13937621a79bed4b81fb6da76fc25e6ac41cb3c77792"
+    },
+    {
+      "path": "output/qa/rillora-apple-release-20260929/reading-continuation.json",
+      "bytes": 1249,
+      "sha256": "36a958bfc8bbaad4ade7dd78a9b2a4bbdd78a2f7920049fecccf1ed423bb1664"
+    },
+    {
+      "path": "output/qa/rillora-apple-release-20260929/api-tests-boundary-final.log",
+      "bytes": 321,
+      "sha256": "524cdeaa33099c425c9e6b3ad054f7e467793381a26f9ce7ed0b4a4cf9b3d34f"
+    },
+    {
+      "path": "output/qa/rillora-apple-release-20260929/native-tests.json",
+      "bytes": 932,
+      "sha256": "ebaf538001720cd26be24c00722c980733a54a6dc9ef30ab40b5f4a3e02336ac"
+    },
+    {
+      "path": "output/qa/rillora-apple-release-20260929/native-final-focused.json",
+      "bytes": 1451,
+      "sha256": "0a48b2f030766395061daa0fc661f0335b5b368456ccc446fd38ac7959a0acde"
+    },
+    {
+      "path": "output/qa/rillora-apple-release-20260929/distribution-verification-final.json",
+      "bytes": 684,
+      "sha256": "c6ee987d85419784ef749cab4148cec29707c8c946fcdef01a4041019a696280"
+    },
+    {
+      "path": "output/qa/rillora-apple-release-20260929/distribution-final/Rillora.ipa",
+      "bytes": 10007641,
+      "sha256": "33e216d620f50f6eba8c85d39ad3fd0fef3a1aa6fb05477629a8100e0cd7fa97"
+    },
+    {
+      "path": "output/qa/rillora-apple-release-20260929/Rillora-Final.xcarchive/Info.plist",
+      "bytes": 907,
+      "sha256": "5f9134f356b667eff7567d02d5609a877cc6bdaa2af284bd57f02ffce1fc5b2a"
+    },
+    {
+      "path": "output/qa/rillora-apple-release-20260929/small-business-submitted.png",
+      "bytes": 56581,
+      "sha256": "11d65ef99241fecdaf283ce088a925ca1b98e1356ee08466d673acd75b4303a5"
+    },
+    {
+      "path": "output/qa/rillora-apple-release-20260929/small-business-submitted.txt",
+      "bytes": 231,
+      "sha256": "90695d9749b3650e703fd0b65e08a9c7be43bb2513e6554ad619047c82a4e38e"
+    },
+    {
+      "path": "output/qa/rillora-apple-release-20260929/store-links-saved.png",
+      "bytes": 56820,
+      "sha256": "902ef0baf236ea8ca7895fa5b7a37f92bcfc853150a75ccf1f8f21c949d5e451"
+    },
+    {
+      "path": "output/qa/rillora-apple-release-20260929/streamlined-purchasing-blocked.png",
+      "bytes": 60575,
+      "sha256": "b9a9b847ab5cad4998fb92803c4693e39c47533bb994d409dbef5582df89558d"
+    },
+    {
+      "path": "output/qa/rillora-apple-release-20260929/testflight-no-builds.png",
+      "bytes": 24253,
+      "sha256": "6377069b26538756a9cb3ffd255a7ffa16191956a049067326d6dde218f5b222"
+    },
+    {
+      "path": "output/qa/rillora-apple-release-20260929/simulator-install.json",
+      "bytes": 455,
+      "sha256": "5effb65f6e7e64c9a13a11e19a3d28b86c232db69d796e54e73e3800594ec68f"
+    },
+    {
+      "path": "output/qa/rillora-apple-release-20260929/ordinary-simulator.png",
+      "bytes": 189050,
+      "sha256": "cb757a3ca06b8266f2101746cd89994142b617df92e9ae167ac3317b343a1cab"
+    },
+    {
+      "path": "output/qa/rillora-apple-release-20260929/ci35-readback.txt",
+      "bytes": 520,
+      "sha256": "56772ed551dd2f2602c210ff132dc4ac772b999f564b19aa599e355895cd7d5a"
+    },
+    {
+      "path": "output/qa/rillora-apple-release-20260929/source-scan-final.json",
+      "bytes": 9076,
+      "sha256": "334ae340eeb797d8bbd966d6fddd100e0b85ea31f5a4abe3a341a72a00967023"
+    },
+    {
+      "path": "output/qa/rillora-apple-release-20260929/markdown-links.json",
+      "bytes": 58,
+      "sha256": "88c058e426b0c50f266867c8d8e124d5e35971492e2e7c417d6ab1e9248b3b16"
+    }
+  ],
+  "nativeEvidence": [
+    {
+      "kind": "buildLogPath",
+      "path": "/Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-09-29T15-46-24-223Z_pid2366_61688760.log",
+      "exists": true
+    },
+    {
+      "kind": "xcresultPath",
+      "path": "/Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/result-bundles/test_sim_2026-09-29T15-46-24-223Z_pid2366_cb8daef5.xcresult",
+      "exists": true
+    },
+    {
+      "kind": "testProductsPath",
+      "path": "/Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-09-29T15-46-24-223Z_pid2366_1adf1e95.xctestproducts",
+      "exists": true
+    },
+    {
+      "kind": "buildLogPath",
+      "path": "/Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-09-29T15-55-48-079Z_pid2366_d7415e27.log",
+      "exists": true
+    },
+    {
+      "kind": "xcresultPath",
+      "path": "/Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/result-bundles/test_sim_2026-09-29T15-55-48-079Z_pid2366_bcf3c090.xcresult",
+      "exists": true
+    },
+    {
+      "kind": "testProductsPath",
+      "path": "/Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-09-29T15-55-48-079Z_pid2366_37dfe429.xctestproducts",
+      "exists": true
+    },
+    {
+      "kind": "buildLogPath",
+      "path": "/Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-09-29T15-57-10-806Z_pid2366_7811421a.log",
+      "exists": true
+    },
+    {
+      "kind": "xcresultPath",
+      "path": "/Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/result-bundles/test_sim_2026-09-29T15-57-10-806Z_pid2366_a503d7bf.xcresult",
+      "exists": true
+    },
+    {
+      "kind": "testProductsPath",
+      "path": "/Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-09-29T15-57-10-806Z_pid2366_d0a2288c.xctestproducts",
+      "exists": true
+    }
+  ],
+  "ipaHashMatches": true,
+  "managedGoal": null,
+  "activeSubagents": 0,
+  "secrets": "kept in existing protected locations; not copied or printed",
+  "next": "Production review identity/runtime/catalog and real Apple Sandbox purchase/restore; canonical docs/handoff.md",
+  "documentation": [
+    "docs/chat-resume-20260930.md",
+    "docs/handoff.md",
+    "docs/decision-log.md",
+    "docs/journey/PROJECT_JOURNEY.md"
+  ],
+  "newProductDecision": false,
+  "productTestsRerun": false,
+  "reading": "Save-only continuation; re-read AGENTS, current product/handoff, latest decisions/journey, release register and current Apple QA; earlier full-read baseline retained",
+  "linkValidation": {
+    "files": 164,
+    "localLinks": 1634,
+    "missing": []
+  },
+  "savedAt": "2026-09-30T00:28:06.969903+08:00",
+  "handoffCommit": "a98018f2d6caa45783d005747da637765d38afd6",
+  "remoteMain": "a98018f2d6caa45783d005747da637765d38afd6",
+  "workingTreeClean": true,
+  "browserPagesPreserved": [
+    "Apple Small Business enrollment receipt",
+    "Rillora TestFlight"
+  ],
+  "saveComplete": true
+}

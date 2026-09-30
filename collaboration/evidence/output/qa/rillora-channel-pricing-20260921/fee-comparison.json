@@ -1,0 +1,120 @@
+{
+  "checkedAt": "2026-09-21T12:12:43.115063+08:00",
+  "catalogSHA256": "88f7e06375b751db5a78e3ab6b2edeaec090fe00ec5f019e87c3cb87937959e2",
+  "currency": "USD",
+  "inputs": {
+    "stripeHKPaymentRate": "0.034",
+    "internationalCardSurcharge": "0.005",
+    "stripeBillingPayAsYouGo": "0.007",
+    "fixedUSDSettlementFee": "0.30"
+  },
+  "scope": "Illustrative tax-free USD sale; transaction and billing fees only, not settlement proceeds or gross margin",
+  "excluded": [
+    "consumer VAT/sales tax",
+    "currency conversion",
+    "non-default currency payout fees and minimums",
+    "refunds/disputes",
+    "tax tooling",
+    "hosting/support/operating costs"
+  ],
+  "appleSmallBusinessEnrollment": "not established in current project evidence",
+  "candidatePrices": "advisory only; not saved or price-point-verified in this turn",
+  "rows": [
+    {
+      "period": "annual",
+      "channel": "Web example: international card, USD settlement",
+      "price": "88.8",
+      "rate": "0.046",
+      "fixedFeeUSD": "0.30",
+      "feeOnlyBalanceUSD": "84.42"
+    },
+    {
+      "period": "annual",
+      "channel": "Apple IAP same price",
+      "price": "88.8",
+      "rate": "0.15",
+      "fixedFeeUSD": "0",
+      "feeOnlyBalanceUSD": "75.48",
+      "differenceVsWebUSD": "-8.94",
+      "equalBalanceApplePriceUSD": "99.31"
+    },
+    {
+      "period": "annual",
+      "channel": "Apple IAP candidate",
+      "price": "99.99",
+      "rate": "0.15",
+      "fixedFeeUSD": "0",
+      "feeOnlyBalanceUSD": "84.99",
+      "differenceVsWebUSD": "0.58",
+      "equalBalanceApplePriceUSD": "99.31"
+    },
+    {
+      "period": "annual",
+      "channel": "Apple IAP same price",
+      "price": "88.8",
+      "rate": "0.30",
+      "fixedFeeUSD": "0",
+      "feeOnlyBalanceUSD": "62.16",
+      "differenceVsWebUSD": "-22.26",
+      "equalBalanceApplePriceUSD": "120.59"
+    },
+    {
+      "period": "annual",
+      "channel": "Apple IAP candidate",
+      "price": "119.99",
+      "rate": "0.30",
+      "fixedFeeUSD": "0",
+      "feeOnlyBalanceUSD": "83.99",
+      "differenceVsWebUSD": "-0.42",
+      "equalBalanceApplePriceUSD": "120.59"
+    },
+    {
+      "period": "monthly",
+      "channel": "Web example: international card, USD settlement",
+      "price": "9.99",
+      "rate": "0.046",
+      "fixedFeeUSD": "0.30",
+      "feeOnlyBalanceUSD": "9.23"
+    },
+    {
+      "period": "monthly",
+      "channel": "Apple IAP same price",
+      "price": "9.99",
+      "rate": "0.15",
+      "fixedFeeUSD": "0",
+      "feeOnlyBalanceUSD": "8.49",
+      "differenceVsWebUSD": "-0.74",
+      "equalBalanceApplePriceUSD": "10.86"
+    },
+    {
+      "period": "monthly",
+      "channel": "Apple IAP candidate",
+      "price": "10.99",
+      "rate": "0.15",
+      "fixedFeeUSD": "0",
+      "feeOnlyBalanceUSD": "9.34",
+      "differenceVsWebUSD": "0.11",
+      "equalBalanceApplePriceUSD": "10.86"
+    },
+    {
+      "period": "monthly",
+      "channel": "Apple IAP same price",
+      "price": "9.99",
+      "rate": "0.30",
+      "fixedFeeUSD": "0",
+      "feeOnlyBalanceUSD": "6.99",
+      "differenceVsWebUSD": "-2.24",
+      "equalBalanceApplePriceUSD": "13.19"
+    },
+    {
+      "period": "monthly",
+      "channel": "Apple IAP candidate",
+      "price": "12.99",
+      "rate": "0.30",
+      "fixedFeeUSD": "0",
+      "feeOnlyBalanceUSD": "9.09",
+      "differenceVsWebUSD": "-0.14",
+      "equalBalanceApplePriceUSD": "13.19"
+    }
+  ]
+}

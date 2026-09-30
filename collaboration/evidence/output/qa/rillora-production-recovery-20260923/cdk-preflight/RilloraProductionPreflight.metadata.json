@@ -1,0 +1,109 @@
+{
+  "/RilloraProductionPreflight": [
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:57:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraProductionPreflight/ReadinessRoleArn": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ReadinessRoleArn"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new RilloraProductionPreflightStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-production-preflight-stack.ts:27:5)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:57:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraProductionPreflight/BootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "BootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/RilloraProductionPreflight/CheckBootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CheckBootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/RilloraProductionPreflight/ReadinessReader/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ReadinessReader42B6BA8F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Role2 in aws-cdk-lib...",
+        "new RilloraProductionPreflightStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-production-preflight-stack.ts:10:16)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:57:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraProductionPreflight/AssumeOnlyReadinessReader/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AssumeOnlyReadinessReader130DE871"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Policy2 in aws-cdk-lib...",
+        "new RilloraProductionPreflightStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-production-preflight-stack.ts:24:5)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:57:3)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraProductionPreflight/CDKMetadata/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CDKMetadata"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/RilloraProductionPreflight/ReadinessReader/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ReadinessReaderDefaultPolicyB319D0A0"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.<anonymous> in aws-cdk-lib...",
+        "new RilloraProductionPreflightStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-production-preflight-stack.ts:16:10)",
+        "<anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:57:3)",
+        "...node internals..."
+      ]
+    }
+  ]
+}

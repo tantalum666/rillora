@@ -1,0 +1,22 @@
+23:26:54.061 xcodebuild[23047:14088714] Sim Rillora-Matrix-13-mini: Unregistering for sim device notification with token 3
+23:26:54.062 xcodebuild[23047:14088714] Calling -[SimDevice getenv:error:] for TESTMANAGERD_SIM_SOCK
+23:26:54.063 xcodebuild[23047:14088714] Sim Rillora-Matrix-13-mini has testmanagerd socket at /private/var/tmp/com.apple.launchd.DVguMhVqem/com.apple.testmanagerd.unix-domain.socket
+23:26:54.063 xcodebuild[23047:14088714] Validating test connection socket path (/private/var/tmp/com.apple.launchd.DVguMhVqem/com.apple.testmanagerd.unix-domain.socket)
+23:26:54.063 xcodebuild[23047:14088714] Constructing transport for test connection socket
+23:26:54.063 xcodebuild[23047:14088714] Connected socket 29 to testmanagerd for Sim Rillora-Matrix-13-mini
+23:26:54.067 xcodebuild[23047:14088714] Initiating control session with IDE capabilities: <XCTCapabilities: 0x724804410>: {
+}
+23:26:56.366 xcodebuild[23047:14088472] Got reply to control session initiation request (result:error): <XCTCapabilities: 0x7249ee6c0>: {
+    "authorize test session capability" = 1;
+    "automation mode" = 1;
+    "daemon container sandbox extension" = 1;
+    "initiate daemon control session capability" = 4;
+    "initiate test runner session capability" = 2;
+    "record UI interaction capability" = 2;
+    "recording events as source code" = 1;
+    "report crashes capability" = 1;
+    "request log archive capability" = 1;
+    "supports delayed attachment transfers" = 1;
+}: (null)
+23:26:56.367 xcodebuild[23047:14088716] Requesting crash report collection for process names: DTServiceHub, testmanagerd, FrontBoard, SpringBoard, runningboardd, backboardd, Rillora, xctest, assertiond, RilloraLayoutMatrixTests-Runner, debugserver, RilloraLayoutMatrixTests
+23:26:56.392 xcodebuild[23047:14088716] Got reply to crash report collection request (error: (null))

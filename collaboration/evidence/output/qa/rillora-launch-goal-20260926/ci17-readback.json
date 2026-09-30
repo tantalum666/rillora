@@ -1,0 +1,28 @@
+{
+  "checkedAt": "2026-09-26T12:34:28.129Z",
+  "sourceCommit": "cd7f203fb8b1dd5441b7df8bd8a89616c6b57e5a",
+  "runId": 36242214340,
+  "runNumber": 17,
+  "status": "completed",
+  "conclusion": "success",
+  "url": "https://github.com/tantalum666/rillora/actions/runs/36242214340",
+  "source": "GitHub connector workflow-run readback",
+  "boundary": "Exact source CI; no AWS migration, provider configuration, native build or real transaction.",
+  "jobs": [
+    {
+      "name": "source",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "api",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "web-and-infrastructure",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "mode": "compressed-context incremental recovery within existing release workstream",
+  "reusedFullBodyRead": "../rillora-release-readiness-20260919/full-read-completion.json",
+  "noNewFullReadClaim": true,
+  "exclusions": [
+    "dependencies",
+    "caches",
+    "build products",
+    "third-party packages",
+    "generated output evidence"
+  ],
+  "readAreas": {
+    "AGENTS.md": "full",
+    "docs/product.md": "1-246; focused current decisions and authority map",
+    "docs/handoff.md": "full before replacement",
+    "docs/decision-log.md": "latest145 lines;latest45 reread after truncated combined output",
+    "docs/monetization.md": "prior full-read reused;1-90,168-235,316-336 and touched policy paragraphs",
+    "docs/pricing-88-80-20260919.md": "full",
+    "docs/storekit.md": "1-43,current product/state matches; historical body reused",
+    "docs/release-readiness.md": "full",
+    "docs/infrastructure-roadmap.md": "1-95; unchanged remainder reused",
+    "docs/subscription-value-20260921.md": "full",
+    "docs/channel-pricing-20260921.md": "top/current state, previous full research read reused",
+    "docs/journey/PROJECT_JOURNEY.md": "latest24 lines and date;history reused",
+    "infra/auth0/README.md": "scope and apply-template workflow",
+    "assets/brand/rillora/README.md": "full"
+  },
+  "recordedAt": "2026-09-21T06:00:29.039407+00:00",
+  "postEditFingerprintsOnly": {
+    "AGENTS.md": "321e1bf37563f466aea4eda8e5e2024f0b8f6f05e0e59fda06a174a24db695a3",
+    "docs/product.md": "8621db1ef726783e9d02d8e8610d6f9f32785fd2622793560067e9f40dabb8a4",
+    "docs/handoff.md": "d7de195042ad02a2c8047c0c5d5996393b1cb649160ef4fe5ad118d4080c43a4",
+    "docs/decision-log.md": "a08649b4fe1a28f744ffebadc2fae1e94a37338bde3bdb3a79b632e1cc212a28",
+    "docs/monetization.md": "654c884374a0d2586090e044fb3e9fc0cce83b79c5e957f2e79ed2acfe35c47c",
+    "docs/pricing-88-80-20260919.md": "858ad0e51a3dfd8ab189fb52943ea8a87296120c91bb6d37e7c8aa5df67d9c64",
+    "docs/storekit.md": "97683a44e4a05df0bb0a1bd1b8f9332dd27e9c9cc09ed800a45e703a36c9e4dd",
+    "docs/release-readiness.md": "5a20cf096c120c97bb2901e0ecd3810ab95cb2a1c52f2f4ad7f3d5af5ced75ae",
+    "docs/infrastructure-roadmap.md": "6ce48dfbc018d40d8f36236c4a525335568edb93c075f9ed26a21a939704b03d",
+    "docs/logo-design-20260919.md": "e018dc4aa6d1fc9f7567166eb1342e6daa32c04f0be2f5585d049e51de14e08b",
+    "docs/subscription-value-20260921.md": "1c2564018fb7b65a8c8cbf52ef9b389c74bd082ce7315f687a5325a32fe56c00",
+    "docs/channel-pricing-20260921.md": "9b31649b92cd04d75522d20041a9f30aa1e6c06100312dff7af106cf83620118",
+    "docs/journey/PROJECT_JOURNEY.md": "bcb8df14f6891a348b4e2d71224f2ed8c9113996655c9ef358ecff3bcd0aa996",
+    "infra/auth0/README.md": "1f51781ebc8b062f31fc719ca337811f1985b8e5f2032ab6a4f0c78a257effc6",
+    "assets/brand/rillora/README.md": "0b42170f4754081e60458025080d7a853b7e8fc83a31b404c2fcdc2b1c8bb5a6"
+  }
+}

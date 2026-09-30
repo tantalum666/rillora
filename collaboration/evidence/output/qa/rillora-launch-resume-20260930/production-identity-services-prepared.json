@@ -1,0 +1,24 @@
+{
+  "at": "2026-09-29T20:02:45.904739+00:00",
+  "services": [
+    {
+      "service": "deletion",
+      "clientId": "TrmdYLDKuqOxF6MhRz2YvXzZhbVvIQo0",
+      "scopes": [
+        "delete:users"
+      ],
+      "grantReadback": true
+    },
+    {
+      "service": "verification",
+      "clientId": "dFELApIxWsoJbsSm9ScWTRTy4NtlcglP",
+      "scopes": [
+        "read:users"
+      ],
+      "grantReadback": true
+    }
+  ],
+  "oldClientsChanged": false,
+  "userDataChanged": false,
+  "secretPrinted": false
+}

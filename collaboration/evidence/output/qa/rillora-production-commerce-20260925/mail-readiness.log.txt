@@ -1,0 +1,34 @@
+{
+  "checkedAt": "2026-09-25T16:43:40.118928+00:00",
+  "account": "133857166372",
+  "region": "eu-central-1",
+  "identity": "notify.rillora.xyz",
+  "configurationSet": "rillora-transactional",
+  "readOnly": true,
+  "mailSent": false,
+  "checks": {
+    "productionAccessEnabled": false,
+    "accountSendingEnabled": true,
+    "accountHealthy": true,
+    "positiveSendQuota": true,
+    "accountSuppression": true,
+    "domainVerified": true,
+    "dkimVerified2048": true,
+    "mailFromVerifiedAndRejectsFallback": true,
+    "identityDefaultConfiguration": true,
+    "configurationName": true,
+    "tlsRequired": true,
+    "configurationSendingEnabled": true,
+    "configurationSuppression": true,
+    "engagementTrackingDisabled": true,
+    "aggregateEventsOnly": true
+  },
+  "blockers": [
+    "productionAccessEnabled"
+  ],
+  "domainAndConfigurationReady": true,
+  "sesConfigurationReady": false,
+  "reviewStatus": "DENIED",
+  "customerEmailFlowVerified": false,
+  "boundary": "SES configuration only. Support replies do not grant access. Auth0 sender permissions/templates, current DNS, real verification/reset/continuation, inbox placement and alert delivery need separate evidence."
+}

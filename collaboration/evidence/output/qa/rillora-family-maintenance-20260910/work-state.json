@@ -1,0 +1,103 @@
+{
+  "task": "Implement a tangible Family shared-maintenance workflow on API, Web and iOS",
+  "phase": "complete: implemented, tested, deployed, documented",
+  "reading": {
+    "mode": "continuation of read-complete Free/Family workflow; current authority and changed docs recovered",
+    "originalProof": "output/qa/rillora-packaging-review-20260910/full-read-completion.json",
+    "fullFiles": 55,
+    "fullLines": 16011,
+    "currentGuidanceRead": [
+      "AGENTS.md",
+      "docs/product.md",
+      "docs/handoff.md",
+      "docs/monetization.md",
+      "latest decisions and journey",
+      "apps/web/AGENTS.md"
+    ],
+    "originalTruncationsReread": true
+  },
+  "scope": [
+    "owner creates scoped review and due date",
+    "accepted recipients confirm or flag missing/outdated directions",
+    "one explicitly selected collaborator proposes safe direction corrections",
+    "owner reviews before/after and accepts or dismisses using version checks",
+    "persistent history, stale/revoke isolation, review cadence and due state",
+    "native and Web actual interactions, no real messages or billing"
+  ],
+  "billing": "Normal paid entitlements remain off; explicit server-owned preview for local/existing synthetic staging only",
+  "next": "Next independent engineering gate is commercial cutoff-safe sharing; current feature request delivered as working preview",
+  "startedAt": "2026-09-10T11:51:46.480720+08:00",
+  "completed": [
+    "Migration 0037 Family review tables and RLS/service projections",
+    "API settings/request/respond/decide/close, real Matter approval + before/after history",
+    "11 API integration cases passed; null collaborator SQL corrected and rerun pending",
+    "Web review dashboard/dialogs/draft guard and build pass",
+    "Native models/store/review screens compile and initial build/run passed; Profile wiring now added"
+  ],
+  "important": "0037 edited only before release; only dedicated continuity_family_test was recreated to re-run checksum-safe migration. No staging migration yet.",
+  "qa": {
+    "web": [
+      "A created 3 checks and set B collaborator",
+      "B only sees two assigned items; confirmed photo and suggested location correction",
+      "C only sees project; cannot suggest; flagged outdated",
+      "A approved -> real Matter and history changed; handled C and finished round",
+      "next review persisted 2026-12-09; dirty close keeps 3 selections"
+    ],
+    "native": [
+      "wired build/run succeeded",
+      "native loads history from Web approval",
+      "Done triggers draft warning; Keep editing preserves selection",
+      "A created second review in native",
+      "B submitted green-folder correction in native",
+      "A applied and viewed before/after history; MP4 recorded",
+      "Native cadence changed to 30 days and persisted",
+      "AX5 and Reduce Motion receiving flow completed; decorative icon width subsequently adjusted"
+    ]
+  },
+  "servers": {
+    "api": 4210,
+    "webA": 4211,
+    "webB": 4212,
+    "webC": 4213,
+    "apiSession": 55361
+  },
+  "fixes": [
+    "Settings use PATCH, matching existing CORS policy; earlier PUT browser error corrected",
+    "Approved task now displays accepted new fields, not stale before value",
+    "Scoped ring SVG and segmented tabs/44px refresh controls fixed"
+  ],
+  "tests": {
+    "api": 129,
+    "webProduct": 54,
+    "legalArtifact": 7,
+    "nativeUnit": 129,
+    "nativeFocusedFinal": 5,
+    "infra": 10
+  },
+  "deployment": {
+    "session": 66762,
+    "stage": "complete",
+    "flags": {
+      "stripeTest": true,
+      "appleSandbox": false,
+      "familyPreview": true
+    },
+    "profile": "rillora-operator",
+    "readbackProfile": "rillora-cdk-deploy",
+    "firstStackReadDenied": "IAM user has no direct DescribeStacks; existing deployment role used for readback",
+    "note": "aws-stack-before.json was recovered during phase0, not claimed as pristine pre-update snapshot; CDK uses previous parameters",
+    "migrationRevision": 14,
+    "apiRevision": 19,
+    "desired": 1,
+    "running": 1,
+    "pending": 0,
+    "httpChecks": 27
+  },
+  "completedAt": "2026-09-10",
+  "documentation": {
+    "filesChecked": 58,
+    "localLinksChecked": 304,
+    "passed": true
+  },
+  "normalNativeRestored": true
+}

@@ -1,0 +1,62 @@
+ M .github/workflows/verify.yml
+ M SECURITY.md
+ M apps/api/package.json
+ M apps/api/src/account-data-routes.ts
+ M apps/api/src/account-deletion.ts
+ M apps/api/src/app.ts
+ M apps/api/src/auth.ts
+ M apps/api/src/overview.ts
+ M apps/api/src/planner-records.ts
+ M apps/api/src/recent-authentication.ts
+ M apps/api/src/routes.ts
+ M apps/api/src/security.ts
+ M apps/api/src/sharing-routes.ts
+ M apps/api/src/stripe-commerce-executor.ts
+ M apps/api/src/stripe-production-adapter.ts
+ M apps/api/tests/api.integration.test.ts
+ M apps/api/tests/apple-production-intake.integration.test.ts
+ M apps/api/tests/bootstrap-runtime.test.ts
+ M apps/api/tests/email-verification.integration.test.ts
+ M apps/api/tests/family-maintenance.integration.test.ts
+ M apps/api/tests/p1-repair.integration.test.ts
+ M apps/api/tests/production-commerce.integration.test.ts
+ M apps/api/tests/recent-authentication.integration.test.ts
+ M apps/api/tests/sharing-lifecycle.integration.test.ts
+ M apps/api/tests/sharing.integration.test.ts
+ M apps/api/tests/stripe-production-adapter.test.ts
+ M apps/ios-prototype/src/Prototype.tsx
+ M apps/ios/Rillora/Core/API/APIClient.swift
+ M apps/ios/Rillora/Core/API/APIConfiguration.swift
+ M apps/ios/Rillora/Core/Authentication/NativeAuthenticationService.swift
+ M apps/ios/Rillora/Core/Domain/Models.swift
+ M apps/ios/Rillora/Features/Contacts/ContactSharingView.swift
+ M apps/ios/Rillora/Features/Contacts/TrustedContactEditorView.swift
+ M apps/ios/Rillora/Features/FirstUse/FirstUseViews.swift
+ M apps/ios/Rillora/Features/Matters/MatterEditorView.swift
+ M apps/ios/Rillora/Features/Overview/OverviewView.swift
+ M apps/ios/RilloraLayoutMatrixTests/RilloraLayoutMatrixTests.swift
+ M apps/ios/RilloraTests/APIClientTests.swift
+ M apps/ios/RilloraTests/ProductionConnectionTests.swift
+ M apps/web/src/App.jsx
+ M apps/web/src/api.js
+ M apps/web/src/landing/PlanSection.jsx
+ M apps/web/tests/api-client.test.mjs
+ M apps/web/tests/production-router.test.mjs
+ M apps/web/worker/production-router.js
+ M config/release-gates.json
+ M config/repository-scan-exceptions.json
+ M docs/chat-resume-20260930.md
+ M docs/decision-log.md
+ M docs/handoff.md
+ M docs/journey/PROJECT_JOURNEY.md
+ M docs/platform-contract.md
+ M docs/product.md
+ M docs/quality-gates.md
+ M docs/release-engineering-20260930.md
+ M tools/run-ios-layout-matrix.sh
+?? apps/api/tests/dedicated-test-database.test.ts
+?? apps/api/tests/dedicated-test-database.ts
+?? apps/api/tests/native-ui-fixture.ts
+?? docs/code-review-repair-20260930.md
+?? docs/handoff-history-20260930-before-dot-review.md
+?? tools/release/test_native_ui_contract.py

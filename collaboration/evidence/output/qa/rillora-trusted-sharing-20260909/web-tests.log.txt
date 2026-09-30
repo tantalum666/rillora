@@ -1,0 +1,298 @@
+TAP version 13
+# Subtest: public browsing stays separate from explicit account and identity entry points
+ok 1 - public browsing stays separate from explicit account and identity entry points
+  ---
+  duration_ms: 1.002958
+  type: 'test'
+  ...
+# Subtest: authentication starts only through an explicit legal-acceptance POST
+ok 2 - authentication starts only through an explicit legal-acceptance POST
+  ---
+  duration_ms: 25.54125
+  type: 'test'
+  ...
+# Subtest: API client uses credentials and the development identity only when configured
+ok 3 - API client uses credentials and the development identity only when configured
+  ---
+  duration_ms: 0.254333
+  type: 'test'
+  ...
+# Subtest: commercial reads and route evaluation use the authenticated shared API
+ok 4 - commercial reads and route evaluation use the authenticated shared API
+  ---
+  duration_ms: 0.649375
+  type: 'test'
+  ...
+# Subtest: public session detection uses a non-error status endpoint before private workspace loading
+ok 5 - public session detection uses a non-error status endpoint before private workspace loading
+  ---
+  duration_ms: 0.3175
+  type: 'test'
+  ...
+# Subtest: API client binds state changes to the CSRF cookie token
+ok 6 - API client binds state changes to the CSRF cookie token
+  ---
+  duration_ms: 0.36025
+  type: 'test'
+  ...
+# Subtest: first-use progress and the first matter use the shared authenticated API
+ok 7 - first-use progress and the first matter use the shared authenticated API
+  ---
+  duration_ms: 0.479875
+  type: 'test'
+  ...
+# Subtest: API client returns bounded server errors without exposing response internals
+ok 8 - API client returns bounded server errors without exposing response internals
+  ---
+  duration_ms: 1.078584
+  type: 'test'
+  ...
+# Subtest: API client sends a CSRF-bound all-session revocation request
+ok 9 - API client sends a CSRF-bound all-session revocation request
+  ---
+  duration_ms: 0.536708
+  type: 'test'
+  ...
+# Subtest: API client validates and returns the minimum-disclosure printable artifact
+ok 10 - API client validates and returns the minimum-disclosure printable artifact
+  ---
+  duration_ms: 1.038291
+  type: 'test'
+  ...
+# Subtest: API client rejects a printable response that claims a retained server copy
+ok 11 - API client rejects a printable response that claims a retained server copy
+  ---
+  duration_ms: 0.842416
+  type: 'test'
+  ...
+# Subtest: synthetic recipient capabilities stay in request bodies and the isolated authorization header
+ok 12 - synthetic recipient capabilities stay in request bodies and the isolated authorization header
+  ---
+  duration_ms: 0.455167
+  type: 'test'
+  ...
+# Subtest: disclosure rehearsal mutations are CSRF-bound, versioned, and explicitly simulation-only
+ok 13 - disclosure rehearsal mutations are CSRF-bound, versioned, and explicitly simulation-only
+  ---
+  duration_ms: 0.449541
+  type: 'test'
+  ...
+# Subtest: disclosure rehearsal responses fail closed if release or high-risk fields appear
+ok 14 - disclosure rehearsal responses fail closed if release or high-risk fields appear
+  ---
+  duration_ms: 0.273709
+  type: 'test'
+  ...
+# Subtest: role assignment mutations stay versioned, explicit, and record-only
+ok 15 - role assignment mutations stay versioned, explicit, and record-only
+  ---
+  duration_ms: 0.571959
+  type: 'test'
+  ...
+# Subtest: role assignment responses fail closed on unsafe authority or secret fields
+ok 16 - role assignment responses fail closed on unsafe authority or secret fields
+  ---
+  duration_ms: 0.236125
+  type: 'test'
+  ...
+# Subtest: commercial state is derived from the server catalog while billing remains closed
+ok 17 - commercial state is derived from the server catalog while billing remains closed
+  ---
+  duration_ms: 15.298166
+  type: 'test'
+  ...
+# Subtest: unsafe or malformed commercial responses fail closed
+ok 18 - unsafe or malformed commercial responses fail closed
+  ---
+  duration_ms: 0.292667
+  type: 'test'
+  ...
+# Subtest: purchase routing rejects a client-success or contradictory route
+ok 19 - purchase routing rejects a client-success or contradictory route
+  ---
+  duration_ms: 0.104417
+  type: 'test'
+  ...
+# Subtest: commercial details stay out of public discovery until explicit paid-capability intent
+ok 20 - commercial details stay out of public discovery until explicit paid-capability intent
+  ---
+  duration_ms: 0.048958
+  type: 'test'
+  ...
+# Subtest: simulation evidence is never promoted to accepted
+ok 21 - simulation evidence is never promoted to accepted
+  ---
+  duration_ms: 1.2215
+  type: 'test'
+  ...
+# Subtest: only a non-simulated accepted invitation receives accepted evidence
+ok 22 - only a non-simulated accepted invitation receives accepted evidence
+  ---
+  duration_ms: 0.060125
+  type: 'test'
+  ...
+# Subtest: record-only, pending and revoked states remain distinct
+ok 23 - record-only, pending and revoked states remain distinct
+  ---
+  duration_ms: 0.066
+  type: 'test'
+  ...
+# Subtest: first-use state fails safely to an available non-blocking overview
+ok 24 - first-use state fails safely to an available non-blocking overview
+  ---
+  duration_ms: 1.31725
+  type: 'test'
+  ...
+# Subtest: paused and completed guides do not keep nagging on the overview
+ok 25 - paused and completed guides do not keep nagging on the overview
+  ---
+  duration_ms: 0.0615
+  type: 'test'
+  ...
+# Subtest: resume copy follows saved progress without changing readiness
+ok 26 - resume copy follows saved progress without changing readiness
+  ---
+  duration_ms: 0.059542
+  type: 'test'
+  ...
+# Subtest: mobile keeps three primary destinations
+ok 27 - mobile keeps three primary destinations
+  ---
+  duration_ms: 1.248667
+  type: 'test'
+  ...
+# Subtest: desktop-only destinations remain reachable through More
+ok 28 - desktop-only destinations remain reachable through More
+  ---
+  duration_ms: 0.095166
+  type: 'test'
+  ...
+# Subtest: official provider catalog covers the curated common platforms
+ok 29 - official provider catalog covers the curated common platforms
+  ---
+  duration_ms: 1.422292
+  type: 'test'
+  ...
+# Subtest: every provider link is HTTPS and uses an official host
+ok 30 - every provider link is HTTPS and uses an official host
+  ---
+  duration_ms: 0.221
+  type: 'test'
+  ...
+# Subtest: Binance is described as a regional estate request, not a legacy contact
+ok 31 - Binance is described as a regional estate request, not a legacy contact
+  ---
+  duration_ms: 0.105
+  type: 'test'
+  ...
+# Subtest: public discovery explains the real product before plan creation
+ok 32 - public discovery explains the real product before plan creation
+  ---
+  duration_ms: 0.927958
+  type: 'test'
+  ...
+# Subtest: public legal routes and registration clickwrap remain visible without false claims
+ok 33 - public legal routes and registration clickwrap remain visible without false claims
+  ---
+  duration_ms: 1.03975
+  type: 'test'
+  ...
+# Subtest: a chosen matter category survives the account and callback routes
+ok 34 - a chosen matter category survives the account and callback routes
+  ---
+  duration_ms: 1.910083
+  type: 'test'
+  ...
+# Subtest: ordinary account entry does not create a deferred editor
+ok 35 - ordinary account entry does not create a deferred editor
+  ---
+  duration_ms: 0.278333
+  type: 'test'
+  ...
+# Subtest: unknown categories and external targets cannot become a continuation
+ok 36 - unknown categories and external targets cannot become a continuation
+  ---
+  duration_ms: 0.234625
+  type: 'test'
+  ...
+# Subtest: invitation URLs carry a bounded fragment capability
+ok 37 - invitation URLs carry a bounded fragment capability
+  ---
+  duration_ms: 0.906667
+  type: 'test'
+  ...
+# Subtest: name-level views reject accidental location disclosure
+ok 38 - name-level views reject accidental location disclosure
+  ---
+  duration_ms: 0.299167
+  type: 'test'
+  ...
+# Subtest: directions exclude masked hints and fields from unrelated connections
+ok 39 - directions exclude masked hints and fields from unrelated connections
+  ---
+  duration_ms: 0.107
+  type: 'test'
+  ...
+# Subtest: a recipient response never grants writes or event-conditioned release
+ok 40 - a recipient response never grants writes or event-conditioned release
+  ---
+  duration_ms: 0.110541
+  type: 'test'
+  ...
+# Subtest: serves existing static assets without a fallback
+ok 41 - serves existing static assets without a fallback
+  ---
+  duration_ms: 27.687708
+  type: 'test'
+  ...
+# Subtest: falls back to index.html for an unknown app route
+ok 42 - falls back to index.html for an unknown app route
+  ---
+  duration_ms: 0.698625
+  type: 'test'
+  ...
+# Subtest: does not turn missing API or write requests into the app shell
+ok 43 - does not turn missing API or write requests into the app shell
+  ---
+  duration_ms: 0.305042
+  type: 'test'
+  ...
+# Subtest: emits the files required by Sites packaging
+ok 44 - emits the files required by Sites packaging
+  ---
+  duration_ms: 3.540667
+  type: 'test'
+  ...
+# Subtest: creates a recovery-only package without leaking its private or content key
+ok 45 - creates a recovery-only package without leaking its private or content key
+  ---
+  duration_ms: 19.097083
+  type: 'test'
+  ...
+# Subtest: wraps the same content key independently for an accepted recipient device
+ok 46 - wraps the same content key independently for an accepted recipient device
+  ---
+  duration_ms: 5.028
+  type: 'test'
+  ...
+# Subtest: decrypts a synthetic recipient artifact with only the memory-held device key
+ok 47 - decrypts a synthetic recipient artifact with only the memory-held device key
+  ---
+  duration_ms: 6.77175
+  type: 'test'
+  ...
+# Subtest: rejects tampered ciphertext and a recovery key from another package
+ok 48 - rejects tampered ciphertext and a recovery key from another package
+  ---
+  duration_ms: 6.151708
+  type: 'test'
+  ...
+1..48
+# tests 48
+# suites 0
+# pass 48
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 172.952125

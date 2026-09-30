@@ -1,0 +1,56 @@
+{
+  "checkedAt": "2026-09-26T10:26:12.074283+00:00",
+  "account": "[REDACTED_EMAIL]",
+  "case": "179022088800001",
+  "source": "Gmail connector read-only",
+  "supportMessages": [
+    {
+      "id": "1a0d17b1d984a139",
+      "sentAt": "2026-09-24T03:35:00Z",
+      "result": "Requested sending frequency, recipient list practices, bounce/complaint/unsubscribe handling and sample emails; verified domain recommended."
+    },
+    {
+      "id": "1a0d99ce9bd00b22",
+      "sentAt": "2026-09-25T17:28:53Z",
+      "result": "Production access/sending limit increase denied; specific assessment criteria explicitly undisclosed. AUP, service terms and SES best-practices links are general guidance, not a named violation."
+    }
+  ],
+  "alertMessages": [
+    {
+      "id": "1a0d13bd4db179d4",
+      "kind": "Complaint ALARM",
+      "datapointAt": "2026-09-24T02:10:00Z",
+      "value": 1
+    },
+    {
+      "id": "1a0d13b3f2acbebf",
+      "kind": "Bounce ALARM",
+      "datapointAt": "2026-09-24T02:10:00Z",
+      "value": 1
+    },
+    {
+      "id": "1a0d16509c275c1e",
+      "kind": "Complaint OK",
+      "sentAt": "2026-09-24T03:10:54Z"
+    },
+    {
+      "id": "1a0d16473a73bc3d",
+      "kind": "Bounce OK",
+      "sentAt": "2026-09-24T03:10:15Z"
+    }
+  ],
+  "limits": [
+    "Alarm mail alone does not identify recipient/test source or establish denial causality.",
+    "No message sent, draft created, email label changed or case reopened."
+  ],
+  "alarmAssessment": {
+    "conclusion": "The stored September 24 mailbox-simulator run has one bounce and one complaint, consistent with the alert window/counts. Alarm mail does not itself prove causality for SES denial.",
+    "simulatorEvidence": [
+      "output/qa/rillora-production-identity-20260924/mail-simulator-submission.json",
+      "output/qa/rillora-production-identity-20260924/mail-simulator-metrics.json"
+    ],
+    "freshAccountHealth": "HEALTHY (mail-readiness.json, 2026-09-26T09:42:36Z)",
+    "officialSource": "https://docs.aws.amazon.com/ses/latest/dg/send-an-email-from-console.html",
+    "officialRule": "Mailbox simulator emails do not count toward sending quotas or reputation bounce/complaint rates."
+  }
+}

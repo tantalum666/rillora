@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E">
+    <title>Rillora Universal Login preview</title>
+    <style>
+      :root{color-scheme:dark;--canvas:#171c1c;--surface:#1d2322;--muted-surface:#252c29;--border:#39433f;--ink:#f1ece2;--body:#dad8cf;--muted:#b8bab2;--sage:#bfd79a;--clay:#cb704c;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",sans-serif}*{box-sizing:border-box}html,body{min-height:100%;margin:0;background:var(--canvas)}body{min-height:100vh;color:var(--body)}main{display:grid;grid-template-columns:minmax(320px,.82fr) minmax(520px,1.18fr);min-height:100vh}.brand{display:flex;flex-direction:column;justify-content:space-between;padding:clamp(32px,5vw,72px);border-right:1px solid var(--border);background:var(--surface)}.wordmark,.mobile-wordmark{margin:0;color:var(--ink);font-family:Georgia,"Times New Roman",serif;font-size:30px;font-weight:700;line-height:1;letter-spacing:-.02em}.brand-copy{max-width:520px}.kicker{margin:0 0 18px;color:var(--sage);font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase}.brand h1{max-width:10ch;margin:0;color:var(--ink);font:700 clamp(40px,5.2vw,76px)/.98 Georgia,"Times New Roman",serif;letter-spacing:-.04em}.note{margin:24px 0 0;color:var(--muted);font-size:16px;line-height:1.55}.panel{display:flex;align-items:center;justify-content:center;padding:32px 24px}.frame{width:min(100%,440px)}.panel a,.panel button{display:inline-flex;min-height:44px;align-items:center}.mobile-wordmark{display:none}.widget{padding:32px;border:1px solid var(--border);border-radius:18px;background:var(--surface)}.widget h2{margin:0;color:var(--ink);font-size:24px;line-height:1.2}.widget .subtitle{margin:12px 0 28px;color:var(--muted);line-height:1.5}.label{display:block;margin:0 0 8px;color:var(--body);font-size:14px}.input{height:52px;width:100%;padding:0 14px;border:1px solid #56615c;border-radius:10px;background:var(--canvas);color:var(--ink);font:inherit}.consent{margin:14px 0 0}.consent label{display:grid;grid-template-columns:18px minmax(0,1fr);align-items:start;gap:9px;color:var(--body);font-size:12px;line-height:1.5;cursor:pointer}.consent input{width:18px;height:18px;margin:1px 0 0;accent-color:var(--sage)}.panel .consent a{display:inline;min-height:0;color:var(--sage);text-underline-offset:3px}.consent small{display:block;margin:6px 0 0;padding-left:27px;color:var(--muted);font-size:11px;line-height:1.45}.primary,.secondary{display:flex;min-height:52px;width:100%;align-items:center;justify-content:center;margin-top:16px;border-radius:10px;font:700 16px/1 inherit}.primary{border:1px solid var(--clay);background:var(--clay);color:var(--canvas)}.primary:disabled{cursor:not-allowed;opacity:.46}.divider{display:flex;align-items:center;gap:12px;margin:24px 0;color:var(--muted);font-size:13px}.divider:before,.divider:after{content:"";height:1px;flex:1;background:var(--border)}.secondary{margin:0;border:1px solid #56615c;background:transparent;color:var(--ink)}.switch{margin:22px 0 0;color:var(--muted);font-size:14px}.switch a{color:var(--sage);font-weight:700;text-decoration:none}@media(max-width:840px){main{display:block}.brand{display:none}.panel{min-height:100vh;align-items:flex-start;padding:28px 12px}.frame{width:min(100%,480px)}.mobile-wordmark{display:block;margin:0 0 28px;text-align:center;font-size:28px}}@media(max-width:480px){.widget{padding:24px 20px}.mobile-wordmark{margin-bottom:18px;font-size:25px}}
+    </style>
+    <style>
+      .consent { margin-top: 10px; }
+      .consent label { grid-template-columns: 17px minmax(0, 1fr); gap: 8px; color: var(--muted); font-size: 11px; line-height: 1.45; }
+      .consent input { width: 16px; height: 16px; }
+      .panel .consent a { color: var(--body); }
+      .consent small { margin-top: 4px; padding-left: 25px; font-size: 10px; line-height: 1.4; opacity: 0.84; }
+      .primary { margin-top: 12px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <aside class="brand" aria-label="Rillora">
+        <p class="wordmark">Rillora</p>
+        <div class="brand-copy">
+          <p class="kicker">Private continuity</p>
+          <h1>A clear plan for what comes next.</h1>
+          <p class="note">Your account opens the private map you chose to create or continue.</p>
+        </div>
+      </aside>
+      <section class="panel" aria-label="Account access">
+        <div class="frame">
+          <p class="mobile-wordmark">Rillora</p>
+          <div class="widget">
+            <h2>Create your account</h2>
+            <p class="subtitle">Use your email or continue with Google.</p>
+            <label class="label" for="email">Email address</label>
+            <input class="input" id="email" type="email" autocomplete="email">
+            <div class="consent">
+              <label>
+                <input id="legal-consent" type="checkbox" aria-describedby="legal-consent-note">
+                <span>I agree to the <a href="https://legal.rillora.xyz/terms" target="_blank" rel="noreferrer">Terms</a>, acknowledge the <a href="https://legal.rillora.xyz/privacy" target="_blank" rel="noreferrer">Privacy Policy</a>, and consent to electronic records.</span>
+              </label>
+              <small id="legal-consent-note">Required for account access. No recurring charge.</small>
+            </div>
+            <button class="primary" type="button" disabled>Create account</button>
+            <div class="divider">OR</div>
+            <button class="secondary" type="button">Continue with Google</button>
+            <p class="switch">Already have an account? <a href="#">Sign in</a></p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script>
+      const consent = document.querySelector("#legal-consent");
+      const createAccount = document.querySelector(".primary");
+      consent.addEventListener("change", () => {
+        createAccount.disabled = !consent.checked;
+      });
+    </script>
+  </body>
+</html>

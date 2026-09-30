@@ -1,0 +1,65 @@
+{
+  "asOf": "2026-09-10",
+  "currency": "USD",
+  "annualPrices": [39, 49, 59, 99],
+  "annualCandidate": 49,
+  "monthlyCandidate": 6.99,
+  "case": 2,
+  "cases": ["Low service cost", "Planning base", "High service cost"],
+  "drivers": [
+    {"id":"webShare","label":"Web share of paid households","values":[0.8,0.7,0.5],"format":"percent","basis":"Assumption; no observed purchase mix"},
+    {"id":"appleRate","label":"Apple commission","values":[0.15,0.30,0.30],"format":"percent","basis":"Official 15% only after SBP approval; base first-year 30%","source":"https://developer.apple.com/app-store/subscriptions/"},
+    {"id":"refundRate","label":"Refund / revenue reversal rate","values":[0.02,0.03,0.07],"format":"percent","basis":"Assumption; not a refund guarantee; excludes extra dispute fee"},
+    {"id":"freeRatio","label":"Active Free planners per paid household","values":[5,10,30],"basis":"Assumption; excludes receivers already in paid-household costs"},
+    {"id":"freeInfra","label":"Cloud / email per Free planner / year","values":[0.1,0.12,0.3],"format":"usd","basis":"Assumption; text only; fixed hosting counted separately"},
+    {"id":"freeSupportMinutes","label":"Support minutes per Free planner / year","values":[0.25,0.5,1],"basis":"Assumption; all assisted Free users included, not only tickets"},
+    {"id":"paidInfra","label":"Cloud / email per paid household / year","values":[1.2,2.4,6],"format":"usd","basis":"Assumption; owner and up to five receivers; no paid AI or attachments"},
+    {"id":"onboardingMinutes","label":"Initial support minutes per new payer","values":[5,10,20],"basis":"Assumption; average across all payers, not per ticket"},
+    {"id":"ongoingMinutes","label":"Recurring support minutes / paid year","values":[7,10,30],"basis":"Assumption; excludes specialist legal or case handling"},
+    {"id":"laborRate","label":"Loaded support / operations hourly rate","values":[24,24,36],"format":"usd","basis":"Assumption; founder time included even when unpaid"},
+    {"id":"annualRenewal","label":"Annual renewal sensitivity","values":[0.65,0.5,0.3],"format":"percent","basis":"Unknown; three-year sensitivity, not measured LTV"},
+    {"id":"monthlySurvival","label":"Month-to-month paid survival","values":[0.85,0.75,0.55],"format":"percent","basis":"Unknown; new monthly cohort, maximum twelve months"},
+    {"id":"cac","label":"Acquisition cost per new payer","values":[5,15,35],"format":"usd","basis":"Assumption; attributable founder / partner time included"},
+    {"id":"paidMAU","label":"Active owner / receiver identities per paid HH","values":[2,3,4],"basis":"Assumption; Auth0 capacity includes receivers"},
+    {"id":"retainedRatio","label":"Inactive retained plans per active paid HH","values":[5,10,20],"basis":"Assumption; includes lapsed plans, no perpetual-hosting promise"},
+    {"id":"retainedCost","label":"Inactive retained plan storage / year","values":[0.02,0.05,0.12],"format":"usd","basis":"Assumption; bounded text / archival projections, no attachments"},
+    {"id":"fixedCloudMonthly","label":"Fixed production hosting / backup / logs monthly","values":[120,220,450],"format":"usd","basis":"Planning budget, not AWS quote or staging bill; higher availability than synthetic staging"},
+    {"id":"prodOpsHoursMonthly","label":"Fixed production operations hours monthly","values":[2,4,8],"basis":"Planning budget; separate from per-user support and feature development"}
+  ],
+  "fees": {
+    "stripeCard":0.034,"internationalIncrement":0.005,"internationalShare":1,
+    "stripeFixed":0.3,"billingRate":0.007,"taxToolRate":0.005,"taxToolShare":1,
+    "webTaxRate":0,"appleTaxRate":0,"webFxRate":0.02,"webFxShare":0,
+    "usdPayoutRate":0.01,"usdPayoutMinimum":5,"payoutsPerYear":12,
+    "disputeIncidence":0.002,"disputeCostUSD":22,
+    "appleRefundFeeRetention":1,"appleRenewalRate":0.15,
+    "source":"https://stripe.com/en-hk/pricing",
+    "note":"Base USD settlement with 1% payouts (minimum $5 per payout), no FX; use one settlement route. If switching to converted HKD set USD payout fees to zero. Tax rates are editable, taxes excluded from revenue. USD22 dispute reserve approximates two HKD85 fees, not a quoted FX conversion. Conservatively retain Apple fees on refunds pending actual statements."
+  },
+  "fixedOpex": [
+    {"label":"Apple developer membership allocation","amount":99,"basis":"Official annual USD reference; conservatively allocate full amount","source":"https://developer.apple.com/programs/enroll/"},
+    {"label":"Domain and role mailbox","amount":60,"basis":"Budget; renewal invoice not obtained"},
+    {"label":"Accounting / tax filing","amount":1500,"basis":"Budget; narrow initial markets, not global coverage or vendor quote"},
+    {"label":"Security assurance / legal / insurance reserve","amount":4000,"basis":"Budget; scope and actual quotes required"},
+    {"label":"Development tools and synthetic staging","amount":840,"basis":"Budget; separates R&D staging from production COGS"}
+  ],
+  "annualAcquisitionShare":0.8,
+  "maintenanceHoursMonthly":20,"developerRate":30,"adminHoursMonthly":6,
+  "fullTimeCompAnnual":36000,"launchCashReserve":15000,
+  "auth0FreeMAU":25000,"auth0IncrementMonthly":500,
+  "auth0IncrementBasis":"Unquoted planning reserve above Free capacity; scalable costs unknown, not a purchasable plan price",
+  "hostingStepPaid":2500,"hostingStepMonthly":150,
+  "additional99": [
+    {"label":"Assisted capture, extraction and source confirmation","lowHours":80,"highHours":140,"annualFixed":1200,"perHH":2.4},
+    {"label":"Consent-based scheduled delivery, retries and preferences","lowHours":50,"highHours":80,"annualFixed":1200,"perHH":0.6},
+    {"label":"Scoped action workspace and document-request checklist","lowHours":80,"highHours":140,"annualFixed":1800,"perHH":1.8},
+    {"label":"Web / iOS QA, privacy review and integration","lowHours":70,"highHours":120,"annualFixed":600,"perHH":0}
+  ],
+  "extra99SupportMinutes":15,"premiumTargetCM":0.65,
+  "premiumWarning":"Candidate software bundle only. No legal documents, death verification, bank-sync or included human concierge. Additional variable costs are budgets, not an AI provider quotation or deployed capability. Development ranges are planning estimates, not a promised delivery date.",
+  "competitors": [
+    {"name":"MyLifeLedger","annual":49,"basis":"Current official annual price; first-year companion account promotion, voice-assisted capture advertised","source":"https://www.mylifeledger.com/pricing"},
+    {"name":"Everplans Premium","annual":99.99,"basis":"Current official annual price; broader organization, guides and sharing; no WTP inference","source":"https://help.everplans.com/hc/en-us/articles/215665778-How-much-does-Everplans-cost"},
+    {"name":"Trustworthy Silver","annual":120,"basis":"$10 monthly equivalent, billed annually; automation advertised","source":"https://www.trustworthy.com/pricing"}
+  ]
+}

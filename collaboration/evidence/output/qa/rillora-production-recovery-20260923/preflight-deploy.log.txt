@@ -1,0 +1,36 @@
+
+✨  Synthesis time: 4.08s
+
+RilloraProductionPreflight: start: Building RilloraProductionPreflight Template
+RilloraProductionPreflight: success: Built RilloraProductionPreflight Template
+RilloraProductionPreflight: start: Publishing RilloraProductionPreflight Template (133857166372-eu-central-1-8c460e7f)
+RilloraProductionPreflight: success: Published RilloraProductionPreflight Template (133857166372-eu-central-1-8c460e7f)
+RilloraProductionPreflight: creating CloudFormation changeset...
+RilloraProductionPreflight: deploying... [1/1]
+RilloraProductionPreflight | 0/5 | 3:16:57 PM | REVIEW_IN_PROGRESS      | AWS::CloudFormation::Stack | RilloraProductionPreflight User Initiated
+RilloraProductionPreflight | 0/5 | 3:17:06 PM | CREATE_IN_PROGRESS      | AWS::CloudFormation::Stack | RilloraProductionPreflight User Initiated
+RilloraProductionPreflight | 0/5 | 3:17:08 PM | CREATE_IN_PROGRESS      | AWS::CDK::Metadata         | CDKMetadata/Default (CDKMetadata) 
+RilloraProductionPreflight | 0/5 | 3:17:08 PM | CREATE_IN_PROGRESS      | AWS::IAM::Role             | ReadinessReader (ReadinessReader42B6BA8F) 
+RilloraProductionPreflight | 0/5 | 3:17:08 PM | CREATE_IN_PROGRESS      | AWS::CDK::Metadata         | CDKMetadata/Default (CDKMetadata) Resource creation Initiated
+RilloraProductionPreflight | 1/5 | 3:17:08 PM | CREATE_COMPLETE         | AWS::CDK::Metadata         | CDKMetadata/Default (CDKMetadata) 
+RilloraProductionPreflight | 1/5 | 3:17:09 PM | CREATE_IN_PROGRESS      | AWS::IAM::Role             | ReadinessReader (ReadinessReader42B6BA8F) Resource creation Initiated
+RilloraProductionPreflight | 2/5 | 3:17:26 PM | CREATE_COMPLETE         | AWS::IAM::Role             | ReadinessReader (ReadinessReader42B6BA8F) 
+RilloraProductionPreflight | 2/5 | 3:17:27 PM | CREATE_IN_PROGRESS      | AWS::IAM::Policy           | ReadinessReader/DefaultPolicy (ReadinessReaderDefaultPolicyB319D0A0) 
+RilloraProductionPreflight | 2/5 | 3:17:27 PM | CREATE_IN_PROGRESS      | AWS::IAM::Policy           | AssumeOnlyReadinessReader (AssumeOnlyReadinessReader130DE871) 
+RilloraProductionPreflight | 2/5 | 3:17:28 PM | CREATE_IN_PROGRESS      | AWS::IAM::Policy           | ReadinessReader/DefaultPolicy (ReadinessReaderDefaultPolicyB319D0A0) Resource creation Initiated
+RilloraProductionPreflight | 2/5 | 3:17:28 PM | CREATE_IN_PROGRESS      | AWS::IAM::Policy           | AssumeOnlyReadinessReader (AssumeOnlyReadinessReader130DE871) Resource creation Initiated
+RilloraProductionPreflight | 3/5 | 3:17:44 PM | CREATE_COMPLETE         | AWS::IAM::Policy           | ReadinessReader/DefaultPolicy (ReadinessReaderDefaultPolicyB319D0A0) 
+RilloraProductionPreflight | 4/5 | 3:17:44 PM | CREATE_COMPLETE         | AWS::IAM::Policy           | AssumeOnlyReadinessReader (AssumeOnlyReadinessReader130DE871) 
+RilloraProductionPreflight | 5/5 | 3:17:45 PM | CREATE_COMPLETE         | AWS::CloudFormation::Stack | RilloraProductionPreflight 
+
+✅  RilloraProductionPreflight
+
+✨  Deployment time: 45.26s
+
+Outputs:
+RilloraProductionPreflight.ReadinessRoleArn = arn:aws:iam::133857166372:role/rillora/rillora-production-preflight
+Stack ARN:
+arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraProductionPreflight/c2d2c1d0-b71e-11f1-823b-02422d137b51
+
+✨  Total time: 67.2s
+

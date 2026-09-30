@@ -1,0 +1,46 @@
+/* Public website: default system appearance with an explicit on-device override. */
+:root.public-document {
+  color-scheme: light;
+  --lp-paper: #f5f1e8;
+  --lp-ink: #23473d;
+  --lp-muted: #607268;
+  --lp-bronze: #ad825d;
+  --lp-rule: #23473d26;
+  --lp-border: #23473d55;
+  --lp-soft: #23473d0e;
+  --lp-sheet: #faf7f0;
+  --lp-icon-bg: #e2e5d9;
+  --lp-fold: #e5e1d7;
+  --lp-action: #23473d;
+  --lp-action-ink: #f5f1e8;
+  --lp-action-hover: #17382f;
+  --lp-focus-soft: #bd947322;
+  background: var(--lp-paper);
+}
+.public-document body {
+  background: var(--lp-paper);
+  color: var(--lp-ink);
+}
+:root.public-document[data-appearance="dark"] {
+  color-scheme: dark;
+  --lp-paper: #171f1b;
+  --lp-ink: #f1ece2;
+  --lp-muted: #b8bab2;
+  --lp-bronze: #bd9473;
+  --lp-rule: #3b4941;
+  --lp-border: #637568;
+  --lp-soft: #28352d;
+  --lp-sheet: #212d25;
+  --lp-icon-bg: #354537;
+  --lp-fold: #3b4941;
+  --lp-action: #cde1b0;
+  --lp-action-ink: #171f1b;
+  --lp-action-hover: #deedc9;
+  --lp-focus-soft: #cde1b01f;
+}
+@media (prefers-color-scheme: dark) {
+  :root.public-document:not([data-appearance]),
+  :root.public-document:not([data-appearance]) body {
+    background: #171f1b;
+  }
+}

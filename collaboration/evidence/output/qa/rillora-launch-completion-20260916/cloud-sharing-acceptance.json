@@ -1,0 +1,21 @@
+{
+  "checks": [
+    "Free one slot reserved",
+    "Free still permits contact records",
+    "Second Free reservation rejected",
+    "Incoming reading remains available",
+    "Purchase failure did not grant Family",
+    "Paid family five slots",
+    "Paid reader sees original",
+    "Ended-period reader only receives saved copy",
+    "Post-end values absent from reader",
+    "Explicit Free choice resumes current fields",
+    "Saved copy stays redacted after name",
+    "Saved copy stays redacted after details",
+    "Revocation removes recipient items"
+  ],
+  "passed": 13,
+  "scope": "Admin-created disposable cloud sessions; manual15minute entitlement fixture for lifecycle, not provider purchase or real user consent.",
+  "realBCompleted": false,
+  "newPriceStripePaymentCompleted": false
+}

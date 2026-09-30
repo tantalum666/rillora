@@ -1,0 +1,6 @@
+### Result
+{"visitorCanExplore":true,"perPersonAccountExplanation":true,"originalSelectorLabels":true}
+### Ran Playwright code
+```js
+await (async (page) => { await page.setViewportSize({width:390,height:844}); await page.getByRole("button",{name:"Who can help",exact:true}).click(); await page.getByText("Invite by link. They use their own account and see only what you share.",{exact:true}).waitFor(); await page.screenshot({path:"/Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-p2-repair-20260916/behavior-20260916/published-public-mobile.png",fullPage:true}); return {visitorCanExplore:true,perPersonAccountExplanation:true,originalSelectorLabels:true}; })(page);
+```

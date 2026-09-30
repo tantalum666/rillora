@@ -1,0 +1,30 @@
+{
+  "reviewedAt": "2026-09-18T18:31:43.733662+00:00",
+  "coinbase": {
+    "source": "https://github.com/coinbase/cds",
+    "revision": "1e9dd1347462254cea684fd8f8b325cac6c955fb",
+    "licenseRead": "Apache-2.0; copyright reproduction assessed separately from trademark reference",
+    "scope": "Exact original source path, dark-mode white; no full CDS dependency"
+  },
+  "netflix": {
+    "url": "https://brand.netflix.com/en/terms/",
+    "method": "Actual rendered browser accessibility body, Terms modal",
+    "finding": "Brand-asset approval requirement includes marketing, advertising, content or other materials; silence is not approval. No download or approval request submitted."
+  },
+  "binance": {
+    "linkedFrom": "https://www.binance.com/en-GB/press",
+    "url": "https://design.binance.vision/882e92a34/p/001e0b-binance-style-guide",
+    "method": "Actual rendered browser page",
+    "finding": "This page is private; password input and Access button. No access attempted."
+  },
+  "yahoo": {
+    "url": "https://legal.yahoo.com/us/en/yahoo/permissions/branduseguidelines/",
+    "finding": "Indexed official rule requires approval. Direct permissions-body retrieval returned999; no false full-body verification."
+  },
+  "steam": {
+    "url": "https://partner.steamgames.com/doc/marketing/branding?l=english&language=english",
+    "finding": "Partner branding and review/attribution conditions; not a new general company-mark grant."
+  },
+  "unchangedGuideContent": true,
+  "noLogoLookupService": true
+}

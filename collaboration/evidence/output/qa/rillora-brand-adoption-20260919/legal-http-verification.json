@@ -1,0 +1,167 @@
+{
+  "passed": 31,
+  "total": 31,
+  "checks": [
+    {
+      "path": "/terms",
+      "status": 200,
+      "securityHeaders": true,
+      "passed": true
+    },
+    {
+      "path": "/privacy",
+      "status": 200,
+      "securityHeaders": true,
+      "passed": true
+    },
+    {
+      "path": "/subscription-terms",
+      "status": 200,
+      "securityHeaders": true,
+      "passed": true
+    },
+    {
+      "path": "/refund-policy",
+      "status": 200,
+      "securityHeaders": true,
+      "passed": true
+    },
+    {
+      "path": "/acceptable-use",
+      "status": 200,
+      "securityHeaders": true,
+      "passed": true
+    },
+    {
+      "path": "/cookies",
+      "status": 200,
+      "securityHeaders": true,
+      "passed": true
+    },
+    {
+      "path": "/legal",
+      "status": 200,
+      "securityHeaders": true,
+      "passed": true
+    },
+    {
+      "path": "/",
+      "status": 308,
+      "passed": true
+    },
+    {
+      "path": "/account",
+      "status": 404,
+      "passed": true
+    },
+    {
+      "path": "/api/auth/session-status",
+      "status": 404,
+      "passed": true
+    },
+    {
+      "path": "/unknown",
+      "status": 404,
+      "passed": true
+    },
+    {
+      "path": "POST /privacy",
+      "status": 404,
+      "passed": true
+    },
+    {
+      "path": "/assets/source-serif-4-latin-500-normal-CUHe9xxf.woff2",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/assets/apple-touch-icon-BnycESAq.png",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/assets/inter-latin-500-normal-BL9OpVg8.woff",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/assets/font-licenses-zRG9uVbj.txt",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/assets/source-serif-4-latin-600-normal-DMD1h6_f.woff",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/assets/lockup-reversed-Bw_tOiWn.svg",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/assets/legal-XoPt1Qli.css",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/assets/legal-Ba0RaEu-.js",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/assets/lockup-small-reversed-CE6wvxUF.svg",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/assets/source-serif-4-latin-600-normal-DouSKlru.woff2",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/assets/favicon-C2efLEML.svg",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/assets/source-serif-4-latin-500-normal-DVVamBqs.woff",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/assets/inter-latin-600-normal-CiBQ2DWP.woff",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/assets/inter-latin-600-normal-LgqL8muc.woff2",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/assets/favicon-32-2IifP-mn.png",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/assets/inter-latin-400-normal-CyCys3Eg.woff",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/assets/inter-latin-400-normal-C38fXH4l.woff2",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/assets/inter-latin-500-normal-Cerq10X2.woff2",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "compiled legal version",
+      "passed": true
+    }
+  ]
+}

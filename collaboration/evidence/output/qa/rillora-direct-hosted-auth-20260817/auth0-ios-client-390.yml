@@ -1,0 +1,29 @@
+- main [ref=f2e2]:
+  - region "Account access" [ref=f2e3]:
+    - generic [ref=f2e4]:
+      - paragraph [ref=f2e5]: Rillora
+      - main [ref=f2e6]:
+        - generic [ref=f2e8]:
+          - generic [ref=f2e10] [cursor=pointer]
+          - generic [ref=f2e11]:
+            - generic [ref=f2e12]:
+              - heading "Welcome back" [level=1] [ref=f2e13]
+              - paragraph [ref=f2e15]: Sign in to continue your private map.
+            - generic [ref=f2e16]:
+              - generic [ref=f2e19]:
+                - generic [ref=f2e24]:
+                  - generic [ref=f2e25]: Email address *
+                  - textbox "Email address" [ref=f2e26]
+                - paragraph [ref=f2e27]:
+                  - link "Can't log in to your account?" [ref=f2e28] [cursor=pointer]:
+                    - /url: /u/login/password-reset-start/Username-Password-Authentication?state=[REDACTED_CAPABILITY]
+                - button "Continue" [ref=f2e30] [cursor=pointer]
+              - paragraph [ref=f2e32]:
+                - text: New to Rillora?
+                - link "Create account" [ref=f2e33] [cursor=pointer]:
+                  - /url: /u/signup/identifier?state=[REDACTED_CAPABILITY]
+              - generic [ref=f2e34]: Or
+              - button "Continue with a passkey" [ref=f2e39] [cursor=pointer]
+              - generic [ref=f2e43]:
+                - button "Continue with Google" [ref=f2e45] [cursor=pointer]
+                - button "Continue with Apple" [ref=f2e49] [cursor=pointer]

@@ -1,0 +1,25 @@
+
+✨  Synthesis time: 3.16s
+
+RilloraPublicWeb: creating CloudFormation changeset...
+RilloraPublicWeb: deploying... [1/1]
+RilloraPublicWeb | 0/3 | 9:43:03 PM | UPDATE_IN_PROGRESS      | AWS::CloudFormation::Stack             | RilloraPublicWeb User Initiated
+RilloraPublicWeb | 0/3 | 9:43:05 PM | UPDATE_IN_PROGRESS      | AWS::CloudFront::Function              | PublicRoutes (PublicRoutesC0C4D2B4) 
+RilloraPublicWeb | 1/3 | 9:43:55 PM | UPDATE_COMPLETE         | AWS::CloudFront::Function              | PublicRoutes (PublicRoutesC0C4D2B4) 
+RilloraPublicWeb | 2/3 | 9:43:58 PM | UPDATE_COMPLETE_CLEANUP | AWS::CloudFormation::Stack             | RilloraPublicWeb 
+RilloraPublicWeb | 3/3 | 9:43:59 PM | UPDATE_COMPLETE         | AWS::CloudFormation::Stack             | RilloraPublicWeb 
+
+✅  RilloraPublicWeb
+
+✨  Deployment time: 62.43s
+
+Outputs:
+RilloraPublicWeb.BucketName = rillorapublicweb-publicassetsacf28b1b-2lrttva1bc8p
+RilloraPublicWeb.DistributionDomain = d1zq6qpnicab3e.cloudfront.net
+RilloraPublicWeb.DistributionId = E1H3EWWIZNTZDO
+RilloraPublicWeb.PublicUrl = https://www.rillora.xyz
+Stack ARN:
+arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraPublicWeb/8b064b60-b7c2-11f1-8199-0ac9000d7ba3
+
+✨  Total time: 86.74s
+

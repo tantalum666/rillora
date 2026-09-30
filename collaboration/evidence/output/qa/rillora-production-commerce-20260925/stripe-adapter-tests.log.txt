@@ -1,0 +1,25 @@
+
+ RUN  v4.1.11 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/stripe-production-adapter.test.ts (7 tests | 1 failed) 15ms
+     × requires confirmed active tax registrations and refreshes returning customer address 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/stripe-production-adapter.test.ts > production Stripe boundary without live network access > requires confirmed active tax registrations and refreshes returning customer address
+AssertionError: expected [Function] to throw error including 'registrations' but got 'Automatic tax requires confirmed acti…'
+
+Expected: "registrations"
+Received: "Automatic tax requires confirmed active registration references"
+
+ ❯ tests/stripe-production-adapter.test.ts:79:126
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 27 passed (28)
+   Start at  23:11:59
+   Duration  789ms (transform 87ms, setup 97ms, import 266ms, tests 52ms, environment 0ms)
+

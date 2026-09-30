@@ -4,12 +4,13 @@ Role: cross-chat checkpoint and artifact/tool routing, not a second product auth
 Status: SAVED FOR CONTINUATION; LAUNCH OBJECTIVE INCOMPLETE
 Last updated: 2026-09-30 (Asia/Hong_Kong)
 
-Owner要求先保存全部工作，准备在新聊天继续。本次只核对／保存交接，不新增产品实现、
-部署、购买、邮件、Apple申请或本人认证。唯一下一步仍以[当前交接](handoff.md)为准。
+Owner最新要求把所有Rillora工作推到Git，准备与Dot协作。当前入口是
+[完整协作包](../collaboration/README.md)、[保存合同](source-control.md)和[当前交接](handoff.md)。
+下方按日期保留旧交接事实，不从历史段落生成第二个活动“下一步”。
 
 ## September30 Dot review修复 — 最新恢复入口
 
-Owner后续提供13项Dot代码发现并质疑质量；当前任务已切换为[修复与验证](code-review-repair-20260930.md)。先完成该质量门，不能把下方旧“仅等待Owner”结论继续当作当前状态。唯一下一步以[当前交接](handoff.md)为准。
+Owner后续提供13项Dot代码发现并质疑质量；[修复与验证](code-review-repair-20260930.md)已完成本地验收，源码38307b0d0的CI41通过。修复尚未云端部署，已有AWS会话实际过期。不能把下方旧“仅等待Owner”结论继续当作当前状态。唯一下一步以[当前交接](handoff.md)为准。
 
 ## September30后续执行 — 当前恢复入口
 
@@ -84,8 +85,9 @@ FanPass、现有`apps/web/.git`历史、真实用户数据和原有授权均须�
 `output/qa/rillora-apple-release-20260929/`，入口[README](../output/qa/rillora-apple-release-20260929/README.md)。
 最终分发包：`distribution-final/Rillora.ipa`；归档：`Rillora-Final.xcarchive`；
 对应[签名及SHA256记录](../output/qa/rillora-apple-release-20260929/distribution-verification-final.json)。
-`output`、IPA、xcarchive、测试结果和原始截图是本机文件，按既有策略不进入源码仓库。
-换聊天继续用此工作目录即可；只克隆Git不能自动取得这些本机产物。
+上述旧保存策略已被Owner的全量Git要求取代。现在原始产物在Git LFS加密归档中；
+脱敏文本与已审设计素材可直接查看。旧 `output/...` 路径通过
+`python3 tools/collaboration/resolve_evidence.py '<原路径>'` 查询，解密恢复需Owner本机的归档密钥。
 
 凭据仍保存在原钥匙串、`.local-secrets/`及既有云端受保护配置中。本次未移动、复制
 或输出密钥。Apple登录密钥、IAP服务器密钥和分发签名是不同用途，不得互相替代。
@@ -103,7 +105,7 @@ IAP现有本机受保护位置为`.local-secrets/storekit/`；正式／review va
 本次返回null：文档中的最终上线目标仍未完成，但没有可假定在后台继续运行的托管
 长任务。新聊天按交接继续执行，不能把聊天状态写成已上线。
 
-## 接手时的唯一推进方向
+## HISTORICAL — 原交接时的推进方向（已由当前handoff取代）
 
 接通生产审核测试账号／API／目录和通知配置，以真实Apple Sandbox购买／恢复
 验收作为下一里程碑，再生成并上传可用TestFlight候选。后台审核等待期间，其余

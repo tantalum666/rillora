@@ -1,0 +1,1299 @@
+{
+  "startedAt": "2026-09-21T05:46:38.717638+00:00",
+  "finishedAt": "2026-09-21T05:47:15.840579+00:00",
+  "fixture": {
+    "users": 100,
+    "mattersPerUser": 20,
+    "totalMatters": 2000
+  },
+  "normalRequestsPerSecond": 5,
+  "shortPeakRequestsPerSecond": 10,
+  "maxWorkers": 10,
+  "summary": {
+    "requests": 180,
+    "successes": 179,
+    "p50Ms": 1331.6,
+    "p95Ms": 1477.9,
+    "maxMs": 10000,
+    "httpCodes": [
+      0,
+      200
+    ]
+  },
+  "phases": {
+    "normal": {
+      "requests": 180,
+      "successes": 179,
+      "p50Ms": 1331.6,
+      "p95Ms": 1477.9,
+      "maxMs": 10000,
+      "httpCodes": [
+        0,
+        200
+      ]
+    }
+  },
+  "boundary": "HTTPS private API reads through API Gateway with administrator-seeded disposable native sessions; no Auth0 login, browser rendering, payment, email or 100-simultaneous-user claim.",
+  "requests": [
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.514821,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.436844,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.348497,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.30135,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.572582,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.369252,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.31598,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.496999,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.328879,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.364873,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.309125,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.226368,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.306588,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.344713,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.378599,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.462951,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.390769,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.332447,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.402574,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.237613,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.186798,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.415858,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.373831,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.285345,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.278721,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.345535,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.367017,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.33845,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.376892,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.390539,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.323497,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.415955,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.263367,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.3277,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.229107,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.325874,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.468508,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.36206,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.302757,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.402722,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.510927,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.379314,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.420978,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.35277,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.331581,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.348008,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.1974,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.233229,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.339531,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.477947,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.280817,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.362217,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.260708,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.270471,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.363308,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.334595,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.283756,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.450965,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.256287,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.235729,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.397256,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.206464,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.373677,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.311871,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.241316,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.289439,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.242694,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 4.35836,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.201543,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.308169,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 4.334824,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.348937,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.373343,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.251472,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.290337,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.315969,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 0,
+      "seconds": 10,
+      "valid": false,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.326272,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 4.29475,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.284594,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.280451,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.374986,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.180564,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.371525,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.371594,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.331795,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.32383,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.29101,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.344032,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.187317,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.320241,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.318242,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.278017,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.278934,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.262951,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.198709,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.318328,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.324539,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.306831,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.444652,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.341457,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.346934,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.373274,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.291049,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.174078,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.391941,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.342813,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.441085,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.249674,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.248472,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.247898,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.395275,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.472322,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.386733,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.30394,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.392201,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.248642,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.299095,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.190058,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.253275,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.443744,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.404059,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.254148,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.374544,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.198599,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.339025,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.373016,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.2376,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.264444,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.34398,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.29971,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.351889,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.278479,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.309126,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.263718,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.380652,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.229667,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.28939,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.36369,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.471628,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.269663,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.430972,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.287629,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.253889,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.224848,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.325148,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.32149,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.340164,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.375767,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.431906,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.319792,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.408942,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.425318,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.404389,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.302847,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.371993,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.296006,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.249817,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.252214,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.505711,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.450134,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.406076,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.430804,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.243496,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.312982,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.348156,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.3317,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.313202,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.407063,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.272404,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.25697,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.34977,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.353666,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.369106,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.347011,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.471902,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.275426,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.374266,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/matters?limit=50",
+      "status": 200,
+      "seconds": 1.282374,
+      "valid": true,
+      "phase": "normal"
+    },
+    {
+      "path": "/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "status": 200,
+      "seconds": 1.300066,
+      "valid": true,
+      "phase": "normal"
+    }
+  ]
+}

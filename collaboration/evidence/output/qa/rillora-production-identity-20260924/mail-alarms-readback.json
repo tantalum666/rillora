@@ -1,0 +1,134 @@
+{
+  "MetricAlarms": [
+    {
+      "AlarmName": "RilloraOperations-MailBounceDFC06FB0-elWg8iAoL9d3",
+      "AlarmArn": "arn:aws:cloudwatch:eu-central-1:133857166372:alarm:RilloraOperations-MailBounceDFC06FB0-elWg8iAoL9d3",
+      "AlarmConfigurationUpdatedTimestamp": "2026-09-24T10:20:51.551000+08:00",
+      "ActionsEnabled": true,
+      "OKActions": [
+        "arn:aws:sns:eu-central-1:133857166372:RilloraOperations-Alerts91F83244-3hyvJ2Vrg4zo"
+      ],
+      "AlarmActions": [
+        "arn:aws:sns:eu-central-1:133857166372:RilloraOperations-Alerts91F83244-3hyvJ2Vrg4zo"
+      ],
+      "InsufficientDataActions": [],
+      "StateValue": "OK",
+      "StateReason": "Threshold Crossed: no datapoints were received for 1 period and 1 missing datapoint was treated as [NonBreaching].",
+      "StateReasonData": "{\"version\":\"1.0\",\"queryDate\":\"2026-09-24T02:22:15.890+0000\",\"statistic\":\"Sum\",\"period\":900,\"recentDatapoints\":[],\"threshold\":1.0,\"evaluatedDatapoints\":[{\"timestamp\":\"2026-09-24T02:07:00.000+0000\"}]}",
+      "StateUpdatedTimestamp": "2026-09-24T10:22:15.891000+08:00",
+      "MetricName": "Bounce",
+      "Namespace": "AWS/SES",
+      "Statistic": "Sum",
+      "Dimensions": [
+        {
+          "Name": "ses:configuration-set",
+          "Value": "rillora-transactional"
+        }
+      ],
+      "Period": 900,
+      "EvaluationPeriods": 1,
+      "Threshold": 1.0,
+      "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+      "TreatMissingData": "notBreaching",
+      "StateTransitionedTimestamp": "2026-09-24T10:22:15.891000+08:00"
+    },
+    {
+      "AlarmName": "RilloraOperations-MailComplaintAAEC7183-MimKNKhWkM5Y",
+      "AlarmArn": "arn:aws:cloudwatch:eu-central-1:133857166372:alarm:RilloraOperations-MailComplaintAAEC7183-MimKNKhWkM5Y",
+      "AlarmConfigurationUpdatedTimestamp": "2026-09-24T10:20:50.140000+08:00",
+      "ActionsEnabled": true,
+      "OKActions": [
+        "arn:aws:sns:eu-central-1:133857166372:RilloraOperations-Alerts91F83244-3hyvJ2Vrg4zo"
+      ],
+      "AlarmActions": [
+        "arn:aws:sns:eu-central-1:133857166372:RilloraOperations-Alerts91F83244-3hyvJ2Vrg4zo"
+      ],
+      "InsufficientDataActions": [],
+      "StateValue": "OK",
+      "StateReason": "Threshold Crossed: no datapoints were received for 1 period and 1 missing datapoint was treated as [NonBreaching].",
+      "StateReasonData": "{\"version\":\"1.0\",\"queryDate\":\"2026-09-24T02:21:54.251+0000\",\"statistic\":\"Sum\",\"period\":900,\"recentDatapoints\":[],\"threshold\":1.0,\"evaluatedDatapoints\":[{\"timestamp\":\"2026-09-24T02:06:00.000+0000\"}]}",
+      "StateUpdatedTimestamp": "2026-09-24T10:21:54.252000+08:00",
+      "MetricName": "Complaint",
+      "Namespace": "AWS/SES",
+      "Statistic": "Sum",
+      "Dimensions": [
+        {
+          "Name": "ses:configuration-set",
+          "Value": "rillora-transactional"
+        }
+      ],
+      "Period": 900,
+      "EvaluationPeriods": 1,
+      "Threshold": 1.0,
+      "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+      "TreatMissingData": "notBreaching",
+      "StateTransitionedTimestamp": "2026-09-24T10:21:54.252000+08:00"
+    },
+    {
+      "AlarmName": "RilloraOperations-MailDelayedFF5B84EF-S5RlwMooABT5",
+      "AlarmArn": "arn:aws:cloudwatch:eu-central-1:133857166372:alarm:RilloraOperations-MailDelayedFF5B84EF-S5RlwMooABT5",
+      "AlarmConfigurationUpdatedTimestamp": "2026-09-24T10:20:51.394000+08:00",
+      "ActionsEnabled": true,
+      "OKActions": [
+        "arn:aws:sns:eu-central-1:133857166372:RilloraOperations-Alerts91F83244-3hyvJ2Vrg4zo"
+      ],
+      "AlarmActions": [
+        "arn:aws:sns:eu-central-1:133857166372:RilloraOperations-Alerts91F83244-3hyvJ2Vrg4zo"
+      ],
+      "InsufficientDataActions": [],
+      "StateValue": "OK",
+      "StateReason": "Threshold Crossed: no datapoints were received for 1 period and 1 missing datapoint was treated as [NonBreaching].",
+      "StateReasonData": "{\"version\":\"1.0\",\"queryDate\":\"2026-09-24T02:21:57.925+0000\",\"statistic\":\"Sum\",\"period\":900,\"recentDatapoints\":[],\"threshold\":1.0,\"evaluatedDatapoints\":[{\"timestamp\":\"2026-09-24T02:06:00.000+0000\"}]}",
+      "StateUpdatedTimestamp": "2026-09-24T10:21:57.927000+08:00",
+      "MetricName": "DeliveryDelay",
+      "Namespace": "AWS/SES",
+      "Statistic": "Sum",
+      "Dimensions": [
+        {
+          "Name": "ses:configuration-set",
+          "Value": "rillora-transactional"
+        }
+      ],
+      "Period": 900,
+      "EvaluationPeriods": 1,
+      "Threshold": 1.0,
+      "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+      "TreatMissingData": "notBreaching",
+      "StateTransitionedTimestamp": "2026-09-24T10:21:57.927000+08:00"
+    },
+    {
+      "AlarmName": "RilloraOperations-MailRejected21E3A73A-YNHynTLS5u5r",
+      "AlarmArn": "arn:aws:cloudwatch:eu-central-1:133857166372:alarm:RilloraOperations-MailRejected21E3A73A-YNHynTLS5u5r",
+      "AlarmConfigurationUpdatedTimestamp": "2026-09-24T10:20:50.099000+08:00",
+      "ActionsEnabled": true,
+      "OKActions": [
+        "arn:aws:sns:eu-central-1:133857166372:RilloraOperations-Alerts91F83244-3hyvJ2Vrg4zo"
+      ],
+      "AlarmActions": [
+        "arn:aws:sns:eu-central-1:133857166372:RilloraOperations-Alerts91F83244-3hyvJ2Vrg4zo"
+      ],
+      "InsufficientDataActions": [],
+      "StateValue": "OK",
+      "StateReason": "Threshold Crossed: no datapoints were received for 1 period and 1 missing datapoint was treated as [NonBreaching].",
+      "StateReasonData": "{\"version\":\"1.0\",\"queryDate\":\"2026-09-24T02:21:57.068+0000\",\"statistic\":\"Sum\",\"period\":900,\"recentDatapoints\":[],\"threshold\":1.0,\"evaluatedDatapoints\":[{\"timestamp\":\"2026-09-24T02:06:00.000+0000\"}]}",
+      "StateUpdatedTimestamp": "2026-09-24T10:21:57.069000+08:00",
+      "MetricName": "Reject",
+      "Namespace": "AWS/SES",
+      "Statistic": "Sum",
+      "Dimensions": [
+        {
+          "Name": "ses:configuration-set",
+          "Value": "rillora-transactional"
+        }
+      ],
+      "Period": 900,
+      "EvaluationPeriods": 1,
+      "Threshold": 1.0,
+      "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+      "TreatMissingData": "notBreaching",
+      "StateTransitionedTimestamp": "2026-09-24T10:21:57.069000+08:00"
+    }
+  ],
+  "CompositeAlarms": [],
+  "LogAlarms": []
+}

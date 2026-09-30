@@ -1,0 +1,24 @@
+{
+  "createdAt": "2026-09-28",
+  "tool": "built-in image_gen",
+  "mode": "UI concepts followed by standalone referenced-image assets",
+  "brief": "Rillora public landing redesign with approved Legacy Imprint03 logo; paper#F5F1E8, forest#23473D, bronze#BD9473; Source Serif4/Inter; top-right Sign in; purposeful real interaction, low text density, no repeated card grids or fake metrics. Preserve private App UI.",
+  "sectionPrompts": {
+    "hero": "Header and full hero. Exact text: Leave less / for them to / figure out. A private map of your important things, shared with the people you choose. How it works; Guides; Sign in; See how it works; Received an invitation? Right-side photographic forest-cloth folio on a paper tabletop, natural sunlight, empty left text area, no fake dashboard or gradients. Lower edge Organise / Choose / Share.",
+    "sharing": "Forest section. Different people. Different pieces. Keep some things private. Share the rest, person by person. Your map folio, recipient controls Mum / Alex, connection paths and one paper sheet. Three step controls Add a matter / Choose what to show / Send an invitation. Interactive example.",
+    "guidance": "Paper section. A next step, not a dead end. Find the official process for the accounts that matter. Ruled Apple / Google / Coinbase guide links. Two FAQ disclosures. Forest closing Make the important things clear. Explore Rillora. Footer Support / Privacy / Terms."
+  },
+  "assetPrompts": {
+    "hero-art": "Recreate the same hero still life without all UI/text/logos. Folio on right55percent, calm paper background left45percent, retain angle, linen texture, natural shadow and plant; no color overlay.",
+    "sharing-folio": "Recreate only the tilted forest-cloth folio and cream dividers on transparent background. Remove all text, logos, photos and UI. Preserve texture, padding and soft shadow; use exact vector brand separately."
+  },
+  "outputs": [
+    "hero-concept.png",
+    "sharing-concept.png",
+    "guidance-concept.png",
+    "hero-art.png",
+    "sharing-folio.png"
+  ],
+  "implementationCorrections": "See docs/landing-page-20260928.md: explicit Preview choice; omit unshared titles, fake people/slogans, duplicate headers and unapproved provider marks.",
+  "claimBoundary": "Concept references and original generated assets, not flattened shipped UI or proof of a live account action."
+}

@@ -1,0 +1,49 @@
+{
+  "MetricDataResults": [
+    {
+      "Id": "send",
+      "Label": "Send",
+      "Timestamps": [
+        "2026-09-24T10:24:00+08:00"
+      ],
+      "Values": [
+        3.0
+      ],
+      "StatusCode": "Complete"
+    },
+    {
+      "Id": "delivery",
+      "Label": "Delivery",
+      "Timestamps": [
+        "2026-09-24T10:24:00+08:00"
+      ],
+      "Values": [
+        2.0
+      ],
+      "StatusCode": "Complete"
+    },
+    {
+      "Id": "bounce",
+      "Label": "Bounce",
+      "Timestamps": [
+        "2026-09-24T10:24:00+08:00"
+      ],
+      "Values": [
+        1.0
+      ],
+      "StatusCode": "Complete"
+    },
+    {
+      "Id": "complaint",
+      "Label": "Complaint",
+      "Timestamps": [
+        "2026-09-24T10:24:00+08:00"
+      ],
+      "Values": [
+        1.0
+      ],
+      "StatusCode": "Complete"
+    }
+  ],
+  "Messages": []
+}

@@ -1,0 +1,14 @@
+{
+  "syntheticSessions": true,
+  "actualAuth0ManagementRead": true,
+  "providerFlagChangedOnlyByTestAdministrator": true,
+  "emailDeliveryTested": false,
+  "sameOpaqueTokenUsed": true,
+  "checks": [
+    "provider false stays unverified",
+    "unverified targeted acceptance denied",
+    "same bearer accepts after current provider proof changes",
+    "permitted read-only projection available",
+    "revocation removes reads and the same old capability cannot reaccept"
+  ]
+}

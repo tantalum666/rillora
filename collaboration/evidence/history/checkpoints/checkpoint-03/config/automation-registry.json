@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-09-19",
+  "deploymentEvidenceRequired": true,
+  "jobs": [
+    {
+      "id": "public-health",
+      "state": "cloud_schedule_enabled_delivery_and_silence_verified",
+      "trigger": "Every15minutes",
+      "implementation": "tools/ops/handler.mjs",
+      "maximumSeconds": 15,
+      "sideEffects": "Public HTTPS metadata and redacted metrics only",
+      "livePrerequisites": [],
+      "scheduleEnabled": true,
+      "deliveryMaximumAttempts": 3,
+      "functionMaximumAttempts": 2,
+      "evidence": "output/qa/rillora-release-readiness-20260919/operations-final-readback.json",
+      "concurrency": "Shared AWS account pool; single schedule, 15-second timeout, bounded retries; no per-function reservation",
+      "deliveryEvidence": "output/qa/rillora-release-readiness-20260919/all-alarm-delivery-evidence.json",
+      "environment": "synthetic-staging",
+      "silenceObservation": "Three15-minute evaluation periods; actual missing-data lookback produced75.4-minute first alert, not a45-minute maximum guarantee"
+    },
+    {
+      "id": "billing-reconciliation",
+      "state": "planned",
+      "trigger": "Signed webhook plus daily backfill",
+      "maximumAttempts": 3,
+      "sideEffects": "Reconcile verified provider facts to own ledger; no unsigned callback entitlement",
+      "livePrerequisites": [
+        "Paid cutoff and quota lifecycle",
+        "production merchant readiness",
+        "idempotent outbox"
+      ]
+    },
+    {
+      "id": "notification-delivery",
+      "state": "planned",
+      "trigger": "User-authorized invite/review and due reminders",
+      "maximumAttempts": 3,
+      "sideEffects": "Minimal transactional messages with opt-out preferences and suppression",
+      "livePrerequisites": [
+        "Verified sender",
+        "template and language test",
+        "outbox and recipient consent",
+        "delivery and bounce test"
+      ]
+    },
+    {
+      "id": "backup-restore",
+      "state": "planned",
+      "trigger": "Daily backup freshness; monthly isolated restore; pre-migration restore",
+      "maximumAttempts": 1,
+      "sideEffects": "Restore only into encrypted isolated disposable target; never production overwrite",
+      "livePrerequisites": [
+        "Separate production",
+        "7day retention",
+        "budget and cleanup TTL",
+        "sanitized restore validation"
+      ]
+    },
+    {
+      "id": "dependency-security",
+      "state": "planned",
+      "trigger": "Dependency change and weekly advisory review",
+      "maximumAttempts": 1,
+      "sideEffects": "Evidence-backed patch and regression checks; production rollout separate",
+      "livePrerequisites": [
+        "Connected source CI",
+        "lockfile/SBOM capture",
+        "secret scan",
+        "rollback tested"
+      ]
+    },
+    {
+      "id": "cost-quota",
+      "state": "planned",
+      "trigger": "Daily spend/quota read; monthly reconciliation",
+      "maximumAttempts": 2,
+      "sideEffects": "Notify forecast variance; pause optional AI/content spend at cap",
+      "livePrerequisites": [
+        "Read-only billing and quota roles",
+        "baseline bills",
+        "verified notification",
+        "core retention never automatically disabled"
+      ]
+    },
+    {
+      "id": "support-triage",
+      "state": "planned",
+      "trigger": "User-initiated support conversation",
+      "maximumAttempts": 2,
+      "sideEffects": "Grounded short answer or authorized self-service link; no credential, authority or private ACL override",
+      "livePrerequisites": [
+        "Redacted knowledge base",
+        "evaluation set",
+        "cost cap",
+        "escalation and reopen tracking"
+      ]
+    },
+    {
+      "id": "content-drafts",
+      "state": "planned",
+      "trigger": "Weekly content batch",
+      "maximumAttempts": 2,
+      "sideEffects": "Local reviewable draft and asset brief only",
+      "livePrerequisites": [
+        "Current product claims",
+        "chosen audience",
+        "generation budget"
+      ]
+    },
+    {
+      "id": "social-publish",
+      "state": "disabled_unconnected",
+      "trigger": "Approved batch schedule",
+      "maximumAttempts": 2,
+      "sideEffects": "Publish only to explicitly authorized owned channels",
+      "livePrerequisites": [
+        "Owned channel OAuth",
+        "publishing scope",
+        "evidence-linked content",
+        "idempotency and remote post IDs",
+        "rollback"
+      ]
+    },
+    {
+      "id": "operator-review",
+      "state": "planned",
+      "trigger": "Weekly exception digest; monthly economics",
+      "maximumAttempts": 1,
+      "sideEffects": "Private redacted unresolved-action digest; unchanged state quiet",
+      "livePrerequisites": [
+        "Deployed scheduler",
+        "verified private destination",
+        "incident ownership"
+      ]
+    }
+  ]
+}

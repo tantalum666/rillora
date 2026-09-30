@@ -1,0 +1,210 @@
+{
+  "stage": "COMPLETE \u2014 recorded UI/UX audit scope and repairs; release goal remains active",
+  "at": "2026-09-29T12:21:29.883192+00:00",
+  "readingManifest": "../rillora-launch-goal-20260926/full-read.json",
+  "readingPolicy": "Same ongoing release workflow; original full 147-file reading retained, focused current authority and changed implementation read. Prior audit used only for coverage leads, not evidence.",
+  "ownerTask": "Fix forced-dark Profile and very careful whole Web/iOS UI/UX audit",
+  "checks": {
+    "nativeBuild": "succeeded signed Debug with same entitlements",
+    "nativeAppearanceUnit": {
+      "passed": 3,
+      "result": "AppearanceUnitFixed.xcresult"
+    },
+    "nativeThemeUITest": {
+      "passed": 1,
+      "result": "AppearanceNavigation.xcresult"
+    },
+    "webDraftStorageTests": 8,
+    "webDraftRecoveryUI": "Resume restored exact note, saved and API version2 read back; offline later retried and saved version3",
+    "webTests": 107,
+    "webLegalTests": 7,
+    "legalCheckoutTests": 7,
+    "nativeJourneyFinal": 2,
+    "nativeLargeText": {
+      "passed": 1,
+      "result": "LargeTextIsolated.xcresult",
+      "oldFixtureFailure": "LargeTextFinal.xcresult"
+    },
+    "markdownLinks": {
+      "files": 161,
+      "localLinks": 1583,
+      "missing": 0
+    },
+    "productionClosedBuild": "passed; not deployed"
+  },
+  "nativeOrdinaryConfig": {
+    "simulatorId": "EA356940-5220-4AA8-89CF-499C6D5D14E4",
+    "derivedData": "/tmp/rillora-simulator-refresh-20260929",
+    "bundle": "com.rillora.ios",
+    "normalApi": "existing staging; normal UI currently may be under UI-test harness",
+    "currentLaunch": "ordinary signed Debug, System, no fixture/test launch env; binary/assets match; see simulator-final.json"
+  },
+  "isolatedAuditEnvironment": {
+    "database": "rillora_uiux_20260929",
+    "api": "http://127.0.0.1:4280/v1",
+    "webA": "http://127.0.0.1:4273",
+    "devAuth": "local-only explicit synthetic headers",
+    "A": "11111111-1111-4111-8111-111111111111",
+    "B": "22222222-2222-4222-8222-222222222222",
+    "C": "33333333-3333-4333-8333-333333333333",
+    "empty": "44444444-4444-4444-8444-444444444444",
+    "seededMatters": 10,
+    "externalIdentityEmailPayment": false
+  },
+  "processes": {
+    "apiSession": 73590,
+    "webASession": 86604,
+    "webBSession": 98250,
+    "webDSession": 8362,
+    "publicPreviewSession": 15764
+  },
+  "capture": {
+    "root": "screens",
+    "accepted": [
+      "01-ios-profile-forced-dark-before",
+      "02-ios-home-system-light-before",
+      "03-ios-profile-system-light-after",
+      "04-web-empty-map-before",
+      "05-web-empty-map-1280",
+      "08-web-contextual-guide-and-form",
+      "09-web-overview-loaded",
+      "10-web-dirty-exit-confirmation",
+      "11-web-refresh-opens-server-values",
+      "12-web-recovery-prompt-after-fix",
+      "14-ios-authenticated-overview-light"
+    ],
+    "rejected": [
+      "06-web-required-account-form",
+      "07-web-account-form-chrome",
+      "13-ios-authenticated-overview-light"
+    ],
+    "notes": "IAB1280 pointer coordinates unreliable; Chrome2 pointer and keyboard confirmed. Capture closure retained prior IAB tab after switching; now explicit tab argument mandatory. 07 rejected wrong tab. Empty-map artwork is also an Add button; accessible duplicate name is not duplicate visual primary control. Native capture helper also must accept explicit App handle after rebind. Native AX tree sometimes empty after install/launch; current screenshot14 shows actual synthetic A but no navigable AX. Purpose-built read snapshot also returned0targets. Do not call this product deadlock."
+  },
+  "coverage": [
+    {
+      "flow": "Public WWW navigation/themes/mobile",
+      "status": "pending"
+    },
+    {
+      "flow": "Native public Home and appearance navigation",
+      "status": "pending"
+    },
+    {
+      "flow": "Web account/invitation entry and return",
+      "status": "pending"
+    },
+    {
+      "flow": "Empty-map first use",
+      "status": "pending"
+    },
+    {
+      "flow": "Authenticated Overview/Matters/Profile",
+      "status": "pending"
+    },
+    {
+      "flow": "Seven category forms and conditional crypto fields",
+      "status": "pending"
+    },
+    {
+      "flow": "Required validation, save and reload",
+      "status": "pending"
+    },
+    {
+      "flow": "Draft cancel/recovery and errors",
+      "status": "pending"
+    },
+    {
+      "flow": "Outgoing contact/invitation/QR",
+      "status": "pending"
+    },
+    {
+      "flow": "Incoming invitation/signup/verification boundary",
+      "status": "pending"
+    },
+    {
+      "flow": "Recipient allowed-field projection and revocation",
+      "status": "pending"
+    },
+    {
+      "flow": "Shared reviews",
+      "status": "pending"
+    },
+    {
+      "flow": "Start Here scoped export and encrypted recovery",
+      "status": "pending"
+    },
+    {
+      "flow": "Account backup/import/archived data/deletion",
+      "status": "pending"
+    },
+    {
+      "flow": "Plan and subscription lifecycle UI",
+      "status": "pending"
+    },
+    {
+      "flow": "Contextual account inheritance and official links",
+      "status": "pending"
+    },
+    {
+      "flow": "Safety/legal/about multilevel navigation",
+      "status": "pending"
+    },
+    {
+      "flow": "Keyboard/focus/320-390px/AX5/reduced motion",
+      "status": "pending"
+    }
+  ],
+  "requiredCloseout": [
+    "Finish current-run screenshot/behavior audit across both clients",
+    "Regression UI tests and inspect screenshots",
+    "Restore normal Simulator app configuration; no fixture left as ordinary login",
+    "Update focused contracts, decision/handoff/journey, evidence index; source scan/link checks; commit/push/CI",
+    "Reset temporary browser overrides; stop only audit-owned servers if no deliverable needs them"
+  ],
+  "imageGen": {
+    "result": "/Users/tantalum/.codex/generated_images/01a07265-dfac-70d0-9eac-a6bb66b09a5b/exec-e7d1cd02-af9e-4c9e-aaf3-f75b46c2b623.png",
+    "copiedSource": "assets/illustrations/rillora-folio-cutout-20260929/folio-cutout.png",
+    "hasAlpha": true,
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "bytesApprox": 1400000,
+    "status": "Native/Web references changed; final composites and asset-size optimization pending"
+  },
+  "ownerWebAppearanceApproved": true,
+  "deployments": {
+    "www": "RilloraPublicWeb static-asset-only CDK succeeded",
+    "preview": "Final artifact matches actual CloudFront HTML; account390px14px agreement/22px checkbox verified; System live media change verified",
+    "legal": {
+      "version": 10,
+      "source": "8a884b58882c721f536afe0c82f013f786f7e656",
+      "deployment": "appgdep_6abba72a31508191aec5bf90f46d8db4",
+      "status": "succeeded",
+      "audience": "public"
+    }
+  },
+  "additionalCoverage": [
+    "A/B scoped invitation acceptance, detail reduction, revoke and same-link replay",
+    "Complete backup export/import into Empty D",
+    "Plaintext directions 9/10 with Never disclose omitted",
+    "Encrypted package creation, recovery-key exit guard and local decrypt to9matters",
+    "Family synthetic 3h entitlement; create round, B confirm, A complete and history; no billing/mail",
+    "All7matter categories required field states;320/390px forms;offline draft retry",
+    "Ordinary Simulator Home\u2192Profile actual light screenshot53; System restored before additional large-text test"
+  ],
+  "source": {
+    "engineeringCommit": "eadefd435841bce6103cff6a0cd4c6c4b0d4e8b9",
+    "ci": "https://github.com/tantalum666/rillora/actions/runs/36566846971",
+    "status": "success",
+    "reviewedNonSecrets": 25,
+    "unreviewed": 0,
+    "documentationCommit": "a27f987f483f18ee81ca446d4a2f9b3100a2f735",
+    "workingTree": "clean",
+    "pushed": true
+  },
+  "ordinarySimulator": "System at Profile; no test env; executable/assets match, existing stage API; simulator-final.json",
+  "remaining": "Release gates in handoff; no P1 task-data issue intentionally left open in audited scope",
+  "closedAt": "2026-09-29T12:28:11.375158+00:00",
+  "cleanup": "six isolated listeners stopped; fixtures retained for QA; existing4180/4181 untouched; all temporary viewport/network settings reset; ordinary native System and actual Preview entry remain"
+}

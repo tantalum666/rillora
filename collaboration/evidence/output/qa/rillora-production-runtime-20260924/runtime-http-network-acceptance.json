@@ -1,0 +1,109 @@
+{
+  "checkedAt": "2026-09-24T01:17:35.568563+00:00",
+  "publicIngress": [
+    {
+      "port": 8443,
+      "reachable": true
+    },
+    {
+      "port": 8080,
+      "reachable": true
+    },
+    {
+      "port": 443,
+      "reachable": true
+    }
+  ],
+  "httpsGateway": [
+    {
+      "path": "/health/live",
+      "status": 200,
+      "expected": 200,
+      "pass": true,
+      "headers": {
+        "cache-control": null,
+        "set-cookie": null,
+        "strict-transport-security": "max-age=31536000; includeSubDomains"
+      }
+    },
+    {
+      "path": "/health/ready",
+      "status": 200,
+      "expected": 200,
+      "pass": true,
+      "headers": {
+        "cache-control": null,
+        "set-cookie": null,
+        "strict-transport-security": "max-age=31536000; includeSubDomains"
+      }
+    },
+    {
+      "path": "/api/auth/start",
+      "status": 503,
+      "expected": 503,
+      "pass": true,
+      "headers": {
+        "cache-control": "no-store, max-age=0",
+        "set-cookie": null,
+        "strict-transport-security": "max-age=31536000; includeSubDomains"
+      }
+    },
+    {
+      "path": "/auth/native/session",
+      "status": 503,
+      "expected": 503,
+      "pass": true,
+      "headers": {
+        "cache-control": "no-store, max-age=0",
+        "set-cookie": null,
+        "strict-transport-security": "max-age=31536000; includeSubDomains"
+      }
+    },
+    {
+      "path": "/api/v1/session",
+      "status": 503,
+      "expected": 503,
+      "pass": true,
+      "headers": {
+        "cache-control": "no-store, max-age=0",
+        "set-cookie": null,
+        "strict-transport-security": "max-age=31536000; includeSubDomains"
+      }
+    },
+    {
+      "path": "/api/v1/matters",
+      "status": 503,
+      "expected": 503,
+      "pass": true,
+      "headers": {
+        "cache-control": "no-store, max-age=0",
+        "set-cookie": null,
+        "strict-transport-security": "max-age=31536000; includeSubDomains"
+      }
+    },
+    {
+      "path": "/sharing/invitations/example",
+      "status": 503,
+      "expected": 503,
+      "pass": true,
+      "headers": {
+        "cache-control": "no-store, max-age=0",
+        "set-cookie": null,
+        "strict-transport-security": "max-age=31536000; includeSubDomains"
+      }
+    },
+    {
+      "path": "/api/commerce/stripe/webhook",
+      "status": 503,
+      "expected": 503,
+      "pass": true,
+      "headers": {
+        "cache-control": "no-store, max-age=0",
+        "set-cookie": null,
+        "strict-transport-security": "max-age=31536000; includeSubDomains"
+      }
+    }
+  ],
+  "passed": false,
+  "scope": "Owned production task public IP negative probes plus actual closed API HTTPS; not broad penetration or customer login testing."
+}

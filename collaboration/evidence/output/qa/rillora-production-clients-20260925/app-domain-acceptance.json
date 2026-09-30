@@ -1,0 +1,72 @@
+{
+  "dns": [
+    {
+      "server": "ns73.domaincontrol.com",
+      "cname": "d3mtr349015b96.cloudfront.net.",
+      "matches": true
+    },
+    {
+      "server": "ns74.domaincontrol.com",
+      "cname": "d3mtr349015b96.cloudfront.net.",
+      "matches": true
+    },
+    {
+      "server": "1.1.1.1",
+      "cname": "d3mtr349015b96.cloudfront.net.",
+      "matches": true
+    },
+    {
+      "server": "8.8.8.8",
+      "cname": "d3mtr349015b96.cloudfront.net.",
+      "matches": true
+    }
+  ],
+  "https": [
+    {
+      "path": "/",
+      "status": 200,
+      "expected": 200,
+      "passed": true,
+      "cache": "public,max-age=300,must-revalidate",
+      "cookie": false,
+      "sha256": "63e8f245a25f81f3d7dc194b457ae7c8ab76968bff87ad7dbce2b95d05f548ef"
+    },
+    {
+      "path": "/account",
+      "status": 200,
+      "expected": 200,
+      "passed": true,
+      "cache": "public,max-age=300,must-revalidate",
+      "cookie": false,
+      "sha256": "63e8f245a25f81f3d7dc194b457ae7c8ab76968bff87ad7dbce2b95d05f548ef"
+    },
+    {
+      "path": "/api/health/ready",
+      "status": 200,
+      "expected": 200,
+      "passed": true,
+      "cache": "no-store",
+      "cookie": false,
+      "sha256": "31bf75f4c0a97cc1f7b60df824fa390b3be9ba014f29b63c87c698ba63d9a9fd"
+    },
+    {
+      "path": "/api/v1/session",
+      "status": 503,
+      "expected": 503,
+      "passed": true,
+      "cache": "no-store",
+      "cookie": false,
+      "sha256": "93bd73011d4326bf3da5e977bdd400ae4657281f49621fcfc8444bdc116a195d"
+    },
+    {
+      "path": "/assets/rillora-folio-CuJbCsyr.jpg",
+      "status": 200,
+      "expected": 200,
+      "passed": true,
+      "cache": "public,max-age=300,must-revalidate",
+      "cookie": false,
+      "sha256": "536cf7e6658ce0be63fd74964f51c66870c6d39b0b9f7223343c3a8cd21f9901"
+    }
+  ],
+  "passed": true
+}

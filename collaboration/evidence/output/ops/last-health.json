@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "environment": "synthetic-staging",
+  "checkedAt": "2026-09-10T17:09:40.726Z",
+  "ok": false,
+  "failed": 7,
+  "checks": [
+    {
+      "id": "public-app",
+      "ok": false,
+      "httpStatus": null,
+      "certificateDaysRemaining": null,
+      "latencyMs": 18,
+      "issues": [
+        "PRIVATE_ADDRESS_BLOCKED"
+      ]
+    },
+    {
+      "id": "legal-terms",
+      "ok": false,
+      "httpStatus": null,
+      "certificateDaysRemaining": null,
+      "latencyMs": 7,
+      "issues": [
+        "PRIVATE_ADDRESS_BLOCKED"
+      ]
+    },
+    {
+      "id": "legal-private-route-blocked",
+      "ok": false,
+      "httpStatus": null,
+      "certificateDaysRemaining": null,
+      "latencyMs": 7,
+      "issues": [
+        "PRIVATE_ADDRESS_BLOCKED"
+      ]
+    },
+    {
+      "id": "api-live",
+      "ok": false,
+      "httpStatus": null,
+      "certificateDaysRemaining": null,
+      "latencyMs": 7,
+      "issues": [
+        "PRIVATE_ADDRESS_BLOCKED"
+      ]
+    },
+    {
+      "id": "api-ready",
+      "ok": false,
+      "httpStatus": null,
+      "certificateDaysRemaining": null,
+      "latencyMs": 7,
+      "issues": [
+        "PRIVATE_ADDRESS_BLOCKED"
+      ]
+    },
+    {
+      "id": "private-session-blocked",
+      "ok": false,
+      "httpStatus": null,
+      "certificateDaysRemaining": null,
+      "latencyMs": 9,
+      "issues": [
+        "PRIVATE_ADDRESS_BLOCKED"
+      ]
+    },
+    {
+      "id": "identity-discovery",
+      "ok": false,
+      "httpStatus": null,
+      "certificateDaysRemaining": null,
+      "latencyMs": 8,
+      "issues": [
+        "PRIVATE_ADDRESS_BLOCKED"
+      ]
+    }
+  ],
+  "scope": "public-metadata-only",
+  "responseBodiesStored": false
+}

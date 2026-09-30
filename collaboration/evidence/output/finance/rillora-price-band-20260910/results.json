@@ -1,0 +1,724 @@
+{
+  "prices": [
+    49,
+    59,
+    69,
+    79,
+    88
+  ],
+  "stages": [
+    100,
+    300,
+    1000
+  ],
+  "operatingCosts": [
+    {
+      "paid": 100,
+      "usage": 1.066,
+      "requests": 50.0,
+      "ai": 1.2,
+      "humanHours": 0.8333333333333333,
+      "human": 20.0,
+      "ops": 12.0,
+      "noncommerce": 79.26599999999999,
+      "opex": 71.25
+    },
+    {
+      "paid": 300,
+      "usage": 3.198,
+      "requests": 150.0,
+      "ai": 3.6,
+      "humanHours": 2.4999999999999996,
+      "human": 59.999999999999986,
+      "ops": 24,
+      "noncommerce": 165.798,
+      "opex": 93.25
+    },
+    {
+      "paid": 1000,
+      "usage": 10.66,
+      "requests": 500.0,
+      "ai": 12.0,
+      "humanHours": 8.333333333333332,
+      "human": 199.99999999999997,
+      "ops": 48,
+      "noncommerce": 390.65999999999997,
+      "opex": 138.25
+    }
+  ],
+  "steadyBudgets": [
+    {
+      "maintenance": 2,
+      "growth": 1,
+      "admin": 0.5
+    },
+    {
+      "maintenance": 3,
+      "growth": 1.5,
+      "admin": 1
+    },
+    {
+      "maintenance": 4,
+      "growth": 2,
+      "admin": 1.5
+    }
+  ],
+  "matrix": [
+    {
+      "price": 49,
+      "paid": 100,
+      "apple": 0.3,
+      "web": 0.7,
+      "revenue": 396.0833333333333,
+      "fees": 55.940908333333326,
+      "grossProfit": 260.87642500000004,
+      "grossMargin": 0.6586402482642543,
+      "cashBeforeOwner": 221.62642500000004,
+      "steadyOwnerHours": 4.833333333333333,
+      "recurringReplacementCost": 128.0,
+      "normalizedSurplus": 93.62642500000004
+    },
+    {
+      "price": 59,
+      "paid": 100,
+      "apple": 0.3,
+      "web": 0.7,
+      "revenue": 476.9166666666667,
+      "fees": 66.95199166666667,
+      "grossProfit": 330.698675,
+      "grossMargin": 0.6934097676044032,
+      "cashBeforeOwner": 291.448675,
+      "steadyOwnerHours": 4.833333333333333,
+      "recurringReplacementCost": 128.0,
+      "normalizedSurplus": 163.44867499999998
+    },
+    {
+      "price": 69,
+      "paid": 100,
+      "apple": 0.3,
+      "web": 0.7,
+      "revenue": 557.75,
+      "fees": 77.963075,
+      "grossProfit": 400.52092500000003,
+      "grossMargin": 0.7181011653966831,
+      "cashBeforeOwner": 361.27092500000003,
+      "steadyOwnerHours": 4.833333333333333,
+      "recurringReplacementCost": 128.0,
+      "normalizedSurplus": 233.27092500000003
+    },
+    {
+      "price": 79,
+      "paid": 100,
+      "apple": 0.3,
+      "web": 0.7,
+      "revenue": 638.5833333333334,
+      "fees": 88.97415833333334,
+      "grossProfit": 470.3431750000001,
+      "grossMargin": 0.7365415764061074,
+      "cashBeforeOwner": 431.0931750000001,
+      "steadyOwnerHours": 4.833333333333333,
+      "recurringReplacementCost": 128.0,
+      "normalizedSurplus": 303.0931750000001
+    },
+    {
+      "price": 88,
+      "paid": 100,
+      "apple": 0.3,
+      "web": 0.7,
+      "revenue": 711.3333333333334,
+      "fees": 98.88413333333334,
+      "grossProfit": 533.1832,
+      "grossMargin": 0.7495546391752578,
+      "cashBeforeOwner": 493.93320000000006,
+      "steadyOwnerHours": 4.833333333333333,
+      "recurringReplacementCost": 128.0,
+      "normalizedSurplus": 365.93320000000006
+    },
+    {
+      "price": 49,
+      "paid": 300,
+      "apple": 0.3,
+      "web": 0.7,
+      "revenue": 1188.25,
+      "fees": 167.822725,
+      "grossProfit": 854.629275,
+      "grossMargin": 0.7192335577529981,
+      "cashBeforeOwner": 845.379275,
+      "steadyOwnerHours": 9.0,
+      "recurringReplacementCost": 234.0,
+      "normalizedSurplus": 611.379275
+    },
+    {
+      "price": 59,
+      "paid": 300,
+      "apple": 0.3,
+      "web": 0.7,
+      "revenue": 1430.75,
+      "fees": 200.855975,
+      "grossProfit": 1064.096025,
+      "grossMargin": 0.743733024637428,
+      "cashBeforeOwner": 1054.846025,
+      "steadyOwnerHours": 9.0,
+      "recurringReplacementCost": 234.0,
+      "normalizedSurplus": 820.846025
+    },
+    {
+      "price": 69,
+      "paid": 300,
+      "apple": 0.3,
+      "web": 0.7,
+      "revenue": 1673.25,
+      "fees": 233.889225,
+      "grossProfit": 1273.562775,
+      "grossMargin": 0.7611311967727477,
+      "cashBeforeOwner": 1264.312775,
+      "steadyOwnerHours": 9.0,
+      "recurringReplacementCost": 234.0,
+      "normalizedSurplus": 1030.312775
+    },
+    {
+      "price": 79,
+      "paid": 300,
+      "apple": 0.3,
+      "web": 0.7,
+      "revenue": 1915.75,
+      "fees": 266.922475,
+      "grossProfit": 1483.029525,
+      "grossMargin": 0.77412476836748,
+      "cashBeforeOwner": 1473.779525,
+      "steadyOwnerHours": 9.0,
+      "recurringReplacementCost": 234.0,
+      "normalizedSurplus": 1239.779525
+    },
+    {
+      "price": 88,
+      "paid": 300,
+      "apple": 0.3,
+      "web": 0.7,
+      "revenue": 2134.0,
+      "fees": 296.6524,
+      "grossProfit": 1671.5496,
+      "grossMargin": 0.7832940955951265,
+      "cashBeforeOwner": 1662.2996,
+      "steadyOwnerHours": 9.0,
+      "recurringReplacementCost": 234.0,
+      "normalizedSurplus": 1428.2996
+    },
+    {
+      "price": 49,
+      "paid": 1000,
+      "apple": 0.3,
+      "web": 0.7,
+      "revenue": 3960.8333333333335,
+      "fees": 559.4090833333333,
+      "grossProfit": 3010.76425,
+      "grossMargin": 0.7601340416579003,
+      "cashBeforeOwner": 3120.51425,
+      "steadyOwnerHours": 17.833333333333332,
+      "recurringReplacementCost": 452.0,
+      "normalizedSurplus": 2668.51425
+    },
+    {
+      "price": 59,
+      "paid": 1000,
+      "apple": 0.3,
+      "web": 0.7,
+      "revenue": 4769.166666666667,
+      "fees": 669.5199166666667,
+      "grossProfit": 3708.98675,
+      "grossMargin": 0.7777012231347195,
+      "cashBeforeOwner": 3818.73675,
+      "steadyOwnerHours": 17.833333333333332,
+      "recurringReplacementCost": 452.0,
+      "normalizedSurplus": 3366.73675
+    },
+    {
+      "price": 69,
+      "paid": 1000,
+      "apple": 0.3,
+      "web": 0.7,
+      "revenue": 5577.5,
+      "fees": 779.6307499999999,
+      "grossProfit": 4407.20925,
+      "grossMargin": 0.7901764679515912,
+      "cashBeforeOwner": 4516.95925,
+      "steadyOwnerHours": 17.833333333333332,
+      "recurringReplacementCost": 452.0,
+      "normalizedSurplus": 4064.95925
+    },
+    {
+      "price": 79,
+      "paid": 1000,
+      "apple": 0.3,
+      "web": 0.7,
+      "revenue": 6385.833333333333,
+      "fees": 889.7415833333332,
+      "grossProfit": 5105.43175,
+      "grossMargin": 0.7994934229414068,
+      "cashBeforeOwner": 5215.18175,
+      "steadyOwnerHours": 17.833333333333332,
+      "recurringReplacementCost": 452.0,
+      "normalizedSurplus": 4763.18175
+    },
+    {
+      "price": 88,
+      "paid": 1000,
+      "apple": 0.3,
+      "web": 0.7,
+      "revenue": 7113.333333333333,
+      "fees": 988.8413333333333,
+      "grossProfit": 5733.832,
+      "grossMargin": 0.806068228678538,
+      "cashBeforeOwner": 5843.582,
+      "steadyOwnerHours": 17.833333333333332,
+      "recurringReplacementCost": 452.0,
+      "normalizedSurplus": 5391.582
+    },
+    {
+      "price": 49,
+      "paid": 100,
+      "apple": 0.15,
+      "web": 0.7,
+      "revenue": 396.0833333333333,
+      "fees": 37.565908333333326,
+      "grossProfit": 279.25142500000004,
+      "grossMargin": 0.7050320008415739,
+      "cashBeforeOwner": 240.00142500000004,
+      "steadyOwnerHours": 4.833333333333333,
+      "recurringReplacementCost": 128.0,
+      "normalizedSurplus": 112.00142500000004
+    },
+    {
+      "price": 59,
+      "paid": 100,
+      "apple": 0.15,
+      "web": 0.7,
+      "revenue": 476.9166666666667,
+      "fees": 44.82699166666667,
+      "grossProfit": 352.823675,
+      "grossMargin": 0.7398015201817228,
+      "cashBeforeOwner": 313.573675,
+      "steadyOwnerHours": 4.833333333333333,
+      "recurringReplacementCost": 128.0,
+      "normalizedSurplus": 185.57367499999998
+    },
+    {
+      "price": 69,
+      "paid": 100,
+      "apple": 0.15,
+      "web": 0.7,
+      "revenue": 557.75,
+      "fees": 52.088074999999996,
+      "grossProfit": 426.39592500000003,
+      "grossMargin": 0.7644929179740028,
+      "cashBeforeOwner": 387.14592500000003,
+      "steadyOwnerHours": 4.833333333333333,
+      "recurringReplacementCost": 128.0,
+      "normalizedSurplus": 259.14592500000003
+    },
+    {
+      "price": 79,
+      "paid": 100,
+      "apple": 0.15,
+      "web": 0.7,
+      "revenue": 638.5833333333334,
+      "fees": 59.349158333333335,
+      "grossProfit": 499.9681750000001,
+      "grossMargin": 0.7829333289834269,
+      "cashBeforeOwner": 460.7181750000001,
+      "steadyOwnerHours": 4.833333333333333,
+      "recurringReplacementCost": 128.0,
+      "normalizedSurplus": 332.7181750000001
+    },
+    {
+      "price": 88,
+      "paid": 100,
+      "apple": 0.15,
+      "web": 0.7,
+      "revenue": 711.3333333333334,
+      "fees": 65.88413333333334,
+      "grossProfit": 566.1832,
+      "grossMargin": 0.7959463917525773,
+      "cashBeforeOwner": 526.9332,
+      "steadyOwnerHours": 4.833333333333333,
+      "recurringReplacementCost": 128.0,
+      "normalizedSurplus": 398.93320000000006
+    },
+    {
+      "price": 49,
+      "paid": 300,
+      "apple": 0.15,
+      "web": 0.7,
+      "revenue": 1188.25,
+      "fees": 112.69772499999999,
+      "grossProfit": 909.754275,
+      "grossMargin": 0.7656253103303177,
+      "cashBeforeOwner": 900.504275,
+      "steadyOwnerHours": 9.0,
+      "recurringReplacementCost": 234.0,
+      "normalizedSurplus": 666.504275
+    },
+    {
+      "price": 59,
+      "paid": 300,
+      "apple": 0.15,
+      "web": 0.7,
+      "revenue": 1430.75,
+      "fees": 134.480975,
+      "grossProfit": 1130.471025,
+      "grossMargin": 0.7901247772147475,
+      "cashBeforeOwner": 1121.221025,
+      "steadyOwnerHours": 9.0,
+      "recurringReplacementCost": 234.0,
+      "normalizedSurplus": 887.221025
+    },
+    {
+      "price": 69,
+      "paid": 300,
+      "apple": 0.15,
+      "web": 0.7,
+      "revenue": 1673.25,
+      "fees": 156.264225,
+      "grossProfit": 1351.187775,
+      "grossMargin": 0.8075229493500673,
+      "cashBeforeOwner": 1341.937775,
+      "steadyOwnerHours": 9.0,
+      "recurringReplacementCost": 234.0,
+      "normalizedSurplus": 1107.937775
+    },
+    {
+      "price": 79,
+      "paid": 300,
+      "apple": 0.15,
+      "web": 0.7,
+      "revenue": 1915.75,
+      "fees": 178.047475,
+      "grossProfit": 1571.904525,
+      "grossMargin": 0.8205165209447997,
+      "cashBeforeOwner": 1562.654525,
+      "steadyOwnerHours": 9.0,
+      "recurringReplacementCost": 234.0,
+      "normalizedSurplus": 1328.654525
+    },
+    {
+      "price": 88,
+      "paid": 300,
+      "apple": 0.15,
+      "web": 0.7,
+      "revenue": 2134.0,
+      "fees": 197.6524,
+      "grossProfit": 1770.5496,
+      "grossMargin": 0.8296858481724462,
+      "cashBeforeOwner": 1761.2996,
+      "steadyOwnerHours": 9.0,
+      "recurringReplacementCost": 234.0,
+      "normalizedSurplus": 1527.2996
+    },
+    {
+      "price": 49,
+      "paid": 1000,
+      "apple": 0.15,
+      "web": 0.7,
+      "revenue": 3960.8333333333335,
+      "fees": 375.65908333333334,
+      "grossProfit": 3194.51425,
+      "grossMargin": 0.8065257942352199,
+      "cashBeforeOwner": 3304.26425,
+      "steadyOwnerHours": 17.833333333333332,
+      "recurringReplacementCost": 452.0,
+      "normalizedSurplus": 2852.26425
+    },
+    {
+      "price": 59,
+      "paid": 1000,
+      "apple": 0.15,
+      "web": 0.7,
+      "revenue": 4769.166666666667,
+      "fees": 448.2699166666667,
+      "grossProfit": 3930.23675,
+      "grossMargin": 0.8240929757120391,
+      "cashBeforeOwner": 4039.98675,
+      "steadyOwnerHours": 17.833333333333332,
+      "recurringReplacementCost": 452.0,
+      "normalizedSurplus": 3587.98675
+    },
+    {
+      "price": 69,
+      "paid": 1000,
+      "apple": 0.15,
+      "web": 0.7,
+      "revenue": 5577.5,
+      "fees": 520.8807499999999,
+      "grossProfit": 4665.95925,
+      "grossMargin": 0.8365682205289108,
+      "cashBeforeOwner": 4775.70925,
+      "steadyOwnerHours": 17.833333333333332,
+      "recurringReplacementCost": 452.0,
+      "normalizedSurplus": 4323.70925
+    },
+    {
+      "price": 79,
+      "paid": 1000,
+      "apple": 0.15,
+      "web": 0.7,
+      "revenue": 6385.833333333333,
+      "fees": 593.4915833333332,
+      "grossProfit": 5401.68175,
+      "grossMargin": 0.8458851755187263,
+      "cashBeforeOwner": 5511.43175,
+      "steadyOwnerHours": 17.833333333333332,
+      "recurringReplacementCost": 452.0,
+      "normalizedSurplus": 5059.43175
+    },
+    {
+      "price": 88,
+      "paid": 1000,
+      "apple": 0.15,
+      "web": 0.7,
+      "revenue": 7113.333333333333,
+      "fees": 658.8413333333332,
+      "grossProfit": 6063.832,
+      "grossMargin": 0.8524599812558576,
+      "cashBeforeOwner": 6173.582,
+      "steadyOwnerHours": 17.833333333333332,
+      "recurringReplacementCost": 452.0,
+      "normalizedSurplus": 5721.582
+    }
+  ],
+  "thresholds": [
+    {
+      "paid": 100,
+      "apple": 0.3,
+      "target": 0.8,
+      "price": 157.60117671779787
+    },
+    {
+      "paid": 100,
+      "apple": 0.3,
+      "target": 0.85,
+      "price": 729.4315852472454
+    },
+    {
+      "paid": 100,
+      "apple": 0.3,
+      "target": 0.9,
+      "price": null
+    },
+    {
+      "paid": 300,
+      "apple": 0.3,
+      "target": 0.8,
+      "price": 111.04970339599467
+    },
+    {
+      "paid": 300,
+      "apple": 0.3,
+      "target": 0.85,
+      "price": 513.9756115807565
+    },
+    {
+      "paid": 300,
+      "apple": 0.3,
+      "target": 0.9,
+      "price": null
+    },
+    {
+      "paid": 1000,
+      "apple": 0.3,
+      "target": 0.8,
+      "price": 79.62745890377741
+    },
+    {
+      "paid": 1000,
+      "apple": 0.3,
+      "target": 0.85,
+      "price": 368.5428293558752
+    },
+    {
+      "paid": 1000,
+      "apple": 0.3,
+      "target": 0.9,
+      "price": null
+    },
+    {
+      "paid": 100,
+      "apple": 0.15,
+      "target": 0.8,
+      "price": 91.2378189712446
+    },
+    {
+      "paid": 100,
+      "apple": 0.15,
+      "target": 0.85,
+      "price": 167.05179296520294
+    },
+    {
+      "paid": 100,
+      "apple": 0.15,
+      "target": 0.9,
+      "price": 988.1739130434714
+    },
+    {
+      "paid": 300,
+      "apple": 0.15,
+      "target": 0.8,
+      "price": 64.28843328623428
+    },
+    {
+      "paid": 300,
+      "apple": 0.15,
+      "target": 0.85,
+      "price": 117.70884232528631
+    },
+    {
+      "paid": 300,
+      "apple": 0.15,
+      "target": 0.9,
+      "price": 696.2918820310147
+    },
+    {
+      "paid": 1000,
+      "apple": 0.15,
+      "target": 0.8,
+      "price": 46.0975979488523
+    },
+    {
+      "paid": 1000,
+      "apple": 0.15,
+      "target": 0.85,
+      "price": 84.40235064334288
+    },
+    {
+      "paid": 1000,
+      "apple": 0.15,
+      "target": 0.9,
+      "price": 499.2715110976
+    }
+  ],
+  "channels": [
+    {
+      "web": 0.7,
+      "apple": 0.3,
+      "ceiling": 0.863780412371134,
+      "result88": {
+        "price": 88,
+        "paid": 1000,
+        "apple": 0.3,
+        "web": 0.7,
+        "revenue": 7113.333333333333,
+        "fees": 988.8413333333333,
+        "grossProfit": 5733.832,
+        "grossMargin": 0.806068228678538,
+        "cashBeforeOwner": 5843.582,
+        "steadyOwnerHours": 17.833333333333332,
+        "recurringReplacementCost": 452.0,
+        "normalizedSurplus": 5391.582
+      }
+    },
+    {
+      "web": 0.9,
+      "apple": 0.3,
+      "ceiling": 0.9132257731958763,
+      "result88": {
+        "price": 88,
+        "paid": 1000,
+        "apple": 0.3,
+        "web": 0.9,
+        "revenue": 7113.333333333333,
+        "fees": 642.7959999999998,
+        "grossProfit": 6079.877333333334,
+        "grossMargin": 0.8547156513589504,
+        "cashBeforeOwner": 6189.627333333334,
+        "steadyOwnerHours": 17.833333333333332,
+        "recurringReplacementCost": 452.0,
+        "normalizedSurplus": 5737.627333333334
+      }
+    },
+    {
+      "web": 1,
+      "apple": 0.3,
+      "ceiling": 0.9379484536082474,
+      "result88": {
+        "price": 88,
+        "paid": 1000,
+        "apple": 0.3,
+        "web": 1,
+        "revenue": 7113.333333333333,
+        "fees": 469.7733333333332,
+        "grossProfit": 6252.9,
+        "grossMargin": 0.8790393626991565,
+        "cashBeforeOwner": 6362.65,
+        "steadyOwnerHours": 17.833333333333332,
+        "recurringReplacementCost": 452.0,
+        "normalizedSurplus": 5910.65
+      }
+    },
+    {
+      "web": 0.7,
+      "apple": 0.15,
+      "ceiling": 0.9101721649484537,
+      "result88": {
+        "price": 88,
+        "paid": 1000,
+        "apple": 0.15,
+        "web": 0.7,
+        "revenue": 7113.333333333333,
+        "fees": 658.8413333333332,
+        "grossProfit": 6063.832,
+        "grossMargin": 0.8524599812558576,
+        "cashBeforeOwner": 6173.582,
+        "steadyOwnerHours": 17.833333333333332,
+        "recurringReplacementCost": 452.0,
+        "normalizedSurplus": 5721.582
+      }
+    },
+    {
+      "web": 0.9,
+      "apple": 0.15,
+      "ceiling": 0.9286896907216495,
+      "result88": {
+        "price": 88,
+        "paid": 1000,
+        "apple": 0.15,
+        "web": 0.9,
+        "revenue": 7113.333333333333,
+        "fees": 532.7959999999998,
+        "grossProfit": 6189.877333333334,
+        "grossMargin": 0.8701795688847236,
+        "cashBeforeOwner": 6299.627333333334,
+        "steadyOwnerHours": 17.833333333333332,
+        "recurringReplacementCost": 452.0,
+        "normalizedSurplus": 5847.627333333334
+      }
+    },
+    {
+      "web": 1,
+      "apple": 0.15,
+      "ceiling": 0.9379484536082474,
+      "result88": {
+        "price": 88,
+        "paid": 1000,
+        "apple": 0.15,
+        "web": 1,
+        "revenue": 7113.333333333333,
+        "fees": 469.7733333333332,
+        "grossProfit": 6252.9,
+        "grossMargin": 0.8790393626991565,
+        "cashBeforeOwner": 6362.65,
+        "steadyOwnerHours": 17.833333333333332,
+        "recurringReplacementCost": 452.0,
+        "normalizedSurplus": 5910.65
+      }
+    }
+  ],
+  "conversionIllustration": [
+    {
+      "apple": 0.3,
+      "maximumRelativePaidCountDrop": 0.10647545541791104
+    },
+    {
+      "apple": 0.15,
+      "maximumRelativePaidCountDrop": 0.10625290444286695
+    }
+  ]
+}

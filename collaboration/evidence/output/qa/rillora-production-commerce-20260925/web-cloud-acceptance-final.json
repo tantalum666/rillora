@@ -1,0 +1,61 @@
+{
+  "checkedAt": "2026-09-25T17:05:09.132Z",
+  "passed": true,
+  "artifactHTML": "86b3bc921d24f7ae61b79c5794e7fb3bdce31ba92bbb9b6fdc9559d3cea8a38a",
+  "sourceCommit": "7cf75bb4ad4b3403a9932a2095edf2ad891ecdff",
+  "checks": [
+    {
+      "path": "/",
+      "status": 200,
+      "expected": 200,
+      "noStore": false,
+      "noSessionCookie": true,
+      "matchesArtifact": true
+    },
+    {
+      "path": "/account/billing",
+      "status": 200,
+      "expected": 200,
+      "noStore": false,
+      "noSessionCookie": true,
+      "matchesArtifact": true
+    },
+    {
+      "path": "/account/billing/complete?session_id=untrusted-fixture",
+      "status": 200,
+      "expected": 200,
+      "noStore": false,
+      "noSessionCookie": true,
+      "matchesArtifact": true
+    },
+    {
+      "path": "/api/health/ready",
+      "status": 200,
+      "expected": 200,
+      "noStore": true,
+      "noSessionCookie": true
+    },
+    {
+      "path": "/api/v1/commerce/stripe/quote",
+      "status": 503,
+      "expected": 503,
+      "noStore": true,
+      "noSessionCookie": true
+    },
+    {
+      "path": "/.env",
+      "status": 404,
+      "expected": 404,
+      "noStore": true,
+      "noSessionCookie": true
+    },
+    {
+      "path": "/account/billing/unsafe",
+      "status": 404,
+      "expected": 404,
+      "noStore": true,
+      "noSessionCookie": true
+    }
+  ],
+  "boundary": "Closed Web artifact only; API runtime, provider credentials and new migrations not deployed."
+}

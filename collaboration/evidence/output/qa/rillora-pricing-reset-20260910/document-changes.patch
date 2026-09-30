@@ -1,0 +1,1560 @@
+--- before/docs/decision-log.md
++++ after/docs/decision-log.md
+@@ -5,7 +5,7 @@
+ Superseded by: later entries in this file  
+ Do not use for: treating casual feedback as global approval  
+ Status: ACTIVE  
+-Last updated: 2026-09-10 (documentation alignment; runtime evidence retains its dated checkpoint)  
++Last updated: 2026-09-10 (pricing/value reset; runtime evidence retains its dated checkpoint)  
+ 
+ 新条目使用以下模板：
+ 
+@@ -1991,3 +1991,42 @@
+ - [Feature contract](family-maintenance.md), [full verification](../output/qa/rillora-family-maintenance-20260910/README.md).
+   Full paid-cutoff sharing/quotas, external reminders, complete co-owner functions,
+   real-provider receiving proof and live billing remain separate gates.
++
++## 2026-09-10 — Reprice current self-service scope; retire reviews as US$99 core value
++
++- Owner explicitly says review still does not justify99 and asks to reprice from
++  costs/profit/margins or build materially sufficient value. This continues the
++  read-complete commercial workflow; current/focused authority was recovered.
++- Agent chooses the repricing route under the current task/default authorization:
++  prospective Family US$49/year or US$6.99/month, permanent Free and one paid tier.
++  This is a reversible validation hypothesis, not an Owner-confirmed optimal price
++  or market WTP. US$39/59 are sensitivities, old89 is historical,99 is deferred
++  expanded-product research. No active founder promotion or new tier.
++- Supersedes the earlier99 planning center and the idea that shared reviews alone
++  form its core paid benefit. Reviews remain useful supporting functionality.
++  No unbuilt capability is represented as included in a current paid offer.
++- Rebuilt an editable five-sheet model using official current HK Stripe/Apple
++  components and explicit estimates for Free/retained users, support, fixed COGS,
++  operations, acquisition, monthly survival and owner labor. Added previously
++  missing USD payout fees and Apple post-year renewal rate; old89 workbook archived
++  by authority note, not relabeled or overwritten.
++- Base49 new annual contribution26.72 /56.2%; at1,000 annual households gross
++  margin48.2%. All-new cohort after assumed CAC loses7,502/year; steady state after
++  replacement CAC and part-time labor yields3,101 before tax. Full-time model
++  breaks even around2,350 annual households using unquoted identity reserves.
++  These are scenario outputs, not operating results, quotes or financing claims.
++- The99 extension would need demonstrably faster accurate capture, consent-based
++  change delivery and a scoped action/materials workspace. Estimate280–480 hours
++  plus4,800/year fixed and10.80/household variable. Expanded99 contribution60.2%
++  in base; no included human concierge. Demand and scope remain conditional, not
++  an automatic development commitment just to defend a price.
++- The normal one-month customer is legitimate; do not tax cancellation, restrict
++  export or bypass current privacy/expiry design. Base one-month6.99 contributes
++  only0.48 before CAC/fixed costs, so short-month paid acquisition is unsuitable.
++- No API/catalog/provider price/UI deployment, real transaction, recruitment or
++  message. Old99/9.99 Sandbox amounts and receipts keep their exact history. AWS
++  actual-cost read failed due to expired login; no bill or renewed auth is claimed.
++- [Current economics and source/assumption boundaries](unit-economics.md),
++  [QA and workbook validation](../output/qa/rillora-pricing-reset-20260910/README.md).
++  Next engineering item remains the now49-scoped accurate sharing/expiry lifecycle
++  with new prospective price records; sales remain closed until evidenced.
+--- before/docs/family-maintenance.md
++++ after/docs/family-maintenance.md
+@@ -1,7 +1,10 @@
+ # Family shared maintenance
+ 
+ Status: IMPLEMENTED ON API / WEB / IOS; SYNTHETIC STAGING PREVIEW DEPLOYED — 2026-09-10  
+-Authority: Owner requests planning and implementation of tangible US$99 value.
++Authority: implemented under the earlier Owner request for Family value. The later
++same-day correction rejects this slice as sufficient US$99 value. It remains a
++supporting capability in the prospective US$49/year self-service offer, not
++premium-price validation. [Current economics](unit-economics.md).
+ 
+ ## Paid job
+ 
+--- before/docs/free-paid-ui-audit.md
++++ after/docs/free-paid-ui-audit.md
+@@ -8,6 +8,13 @@
+ Last updated: 2026-09-10
+ 
+ ## Current commercial surface and implementation gap — 2026-09-10
++
++Latest economics reset selects prospective US$49/year or US$6.99/month. Review is
++a supporting capability. Existing 99/9.99 test previews are historical, not the
++current proposal; no catalog migration or UI deployment occurred in this reset.
++Both clients need distinct prospective price versions and truthful contributor
++copy before customer exposure. Do not sell the unbuilt99 expansion.
++[Economics and rollout order](unit-economics.md).
+ 
+ Later implementation checkpoint: Shared reviews is now a real authenticated task
+ in Web More/sidebar and native Profile, with an explicit server-owned preview.
+@@ -24,9 +31,8 @@
+ evidence is in [interaction-experience.md](interaction-experience.md).
+ 
+ The catalog already declares Free's `trusted_person_basic` allowance as 1 and
+-Family's co-planner allowance as 1; multiple trusted people remains `planned`
+-with a null allowance. Null in that dormant row is not a published unlimited
+-promise. New sharing routes do not read those commercial allowances and do not
++Family's co-planner allowance as 1; the later planned v2 sets multiple
++recipients to5. The earlier v1 null was never a published unlimited promise. New sharing routes do not read those commercial allowances and do not
+ enforce a plan-based person limit. The September 10 packaging contract now defines
+ Free 1 / provisional Family 5 **outgoing relationships**, free incoming access and
+ equal per-item privacy controls. Its quota/downgrade release behavior remains to
+--- before/docs/global-mainland-commerce-plan.md
++++ after/docs/global-mainland-commerce-plan.md
+@@ -6,6 +6,10 @@
+ Do not use for: 个案法律／税务意见、服务商报价、许可证必然获批证明、真实付款授权或公开发布授权  
+ Status: 中文执行版完成；架构与顺序已定；Global角色邮箱组织／个人两步验证、内部闭环、三条Gmail外部往返及监控目标已完成有限证据门；长期SLA表现、价格、主体、合同、采购、备案和首次真实收费仍是 Owner 资金／法律门  
+ Last reviewed: 2026-09-10 (current-decision alignment only; dated legal, fee and financial research is not a fresh revalidation)
++
++## 当前价格覆盖 — 2026-09-10
++
++主路线改为US$49/年、US$6.99/月的自助Family验证价。下文99与¥698渠道算例均为历史研究，非当前报价。[新版经济合同](unit-economics.md)加入美元出款、Free／留存人群和劳动成本。旧逐项确认字样服从AGENTS最新默认授权；真实本人交互、实际商户与生产证据仍独立。
+ 
+ ## 一句话决定
+ 
+@@ -49,7 +53,7 @@
+ 
+ Small Business Program 适用于符合条件的新开发者或前一日历年总 proceeds 不超过 US$1 million 的开发者，但需要 Account Holder 接受 Paid Apps agreement、申报关联开发者账户并完成申请。不能因为 Rillora 规模小就自动按 15%／12%记账。
+ 
+-### 对 US$99 年付的直观影响
++### 历史US$99佣金算例 — 非当前报价
+ 
+ 以下只展示佣金，不包含用户所在市场消费税、退款、汇兑、预提税和 Rillora 自身所得税：
+ 
+@@ -88,13 +92,15 @@
+ 
+ 核心公式：
+ 
+-`单户净收入 = 标价 - 消费税/平台代扣税 - 渠道费 - 退款/拒付准备 - 单户云与支持变量成本`
+-
+-`贡献毛利率 = 单户净收入 ÷ 标价`
++`单户净收入 = 排除消费税的服务收入 - 退款/收入冲回`
++
++`贡献 = 单户净收入 - 渠道费 - 变动服务成本 - Free/留存人群分摊`
++
++`贡献率 = 贡献 ÷ 单户净收入`
+ 
+ `盈亏平衡付费户数 = 年度固定合规/安全/法务/基础设施成本 ÷ 单户年度贡献毛利`
+ 
+-### 全球 Web 渠道的 US$99 年付演示
++### 历史US$99渠道算例 — 未计美元出款，非当前完整成本
+ 
+ | 渠道 | 使用的公开费率组件 | 估算渠道费 | 渠道费后余额 | 未包含 |
+ | --- | --- | ---: | ---: | --- |
+@@ -110,14 +116,16 @@
+ 
+ 当前收费发布的**推荐建模基准**改为：
+ 
+-- Global：`US$9.99/月` 或 `US$99/年`；年付比 12 个月月付低约 17.4%。
+-- 中国大陆：`¥68/月` 或 `¥698/年` 作为验证假设；最终必须映射到 Apple 可用价格点，并在本地用户研究、服务商费率和合规成本报价后确认。
++- Global：当前前瞻验证价`US$6.99/月`或`US$49/年`；年付比12个月月付低41.6%。
++- 中国大陆：旧`¥68/月`／`¥698/年`只保留为历史假设；当地成本、需求和价格点单独重算，不自动沿用USD。
+ - 永久 Free 保留；首发没有自动转付费试用。
+ - 现行直接Web退款候选遵循强制法律或书面例外；早期首购30天保证已被2026-08-27决定取代，只保留为关闭的未来实验。App Store退款按Apple流程。
+ 
+-为什么不继续以 US$8.99／US$89 作为基准：在 Apple 30% 首年情形、5%退款／拒付准备、真实安全与合规固定成本下，原价格的缓冲较薄。US$9.99／US$99 仍属于待验证价格，不是市场接受度证明，也不是创建真实商品的授权。
+-
+-首发经营目标：
++最新选择是先以较小自助产品验证49／6.99，依据实际可交付范围、较近竞品与成本预算。更高毛利不能证明用户愿付99；较低价格也不自动证明可规模经营。现有支付商品和地区开关未改。
++
++历史扩张目标（非当前结果）：
++
++新版49基准贡献率56.2%，1,000年付户毛利率48.2%；低服务成本情形较好，高成本情形亏损。下列旧目标不能作为已满足事实或用来倒推必须收99。
+ 
+ - 1,000 个付费家庭时的 blended contribution margin 目标至少 75%；
+ - Apple 30% 等最差渠道下的贡献毛利底线至少 60%；
+@@ -157,7 +165,7 @@
+ 
+ | 周期 | 操作 | 交付物 | 硬门 |
+ | --- | --- | --- | --- |
+-| 第 0–1 周 | 冻结首发地区、运营者、Free／Family权益、US$9.99／99建模价 | 市场登记行、数据流、功能／不功能清单 | Owner 仅确认涉及钱和法律的最终选择 |
++| 第 0–1 周 | 冻结首发地区、运营者、Free／Family权益与当前49／6.99验证价 | 市场登记行、数据流、功能／不功能清单 | Owner 仅确认涉及钱和法律的最终选择 |
+ | 第 1–3 周 | 香港入境／经营资格、商业登记时点、PRC税务居民和境外收入审阅 | 一份 HK/PRC operator-tax memo | 不得用身份证替代税务结论 |
+ | 第 1–4 周 | 完成生产数据图、subprocessor清单、保留／删除／备份／legal hold | Data map、ROPA/PIPIA 类记录、DPA清单 | 与真实代码／云配置一致 |
+ | 第 2–5 周 | 美国市场的 Privacy、Terms、自动续费、取消、退款、免责声明和未成年人规则审阅 | 可发布法律页＋版本号＋同意记录 | 不宣称全球遗嘱效力或自动判定死亡 |
+@@ -342,7 +350,7 @@
+ ### 轨道 A：未来 14 周完成 Global 收费发布
+ 
+ 1. 完成 provider-neutral catalog／price／subscription／finance ledger；
+-2. 将 US$9.99／99 写成 disabled price version，不创建真实商品；
++2. 为US$49年付／6.99月付准备新的disabled price version；保留旧测试映射与历史账单，再完成两端实际报价验证；
+ 3. Owner已确认个人运营意图；当前Agent只完成条款、隐私、订阅、退款、责任和最小披露合同，签证／经营许可／商业登记资格由Owner、主管机关或合资格顾问在外部单独处理；
+ 4. 已建立`support@rillora.xyz`单一Zoho邮箱及`privacy@`／`security@`别名；组织／个人两步验证、内部闭环、三条Gmail独立往返和内部监控目标均已完成其有限证据门；长期SLA表现仍未证明；
+ 5. 完成 Global 生产数据平面、安全审计和法律页；
+--- before/docs/handoff-history-20260910.md
++++ after/docs/handoff-history-20260910.md
+@@ -1554,3 +1554,93 @@
+ 0036 / API task 18 / service 1/1; it has account-bound direct sharing and 18 prior
+ HTTPS checks. Real recipient-provider acceptance, physical-device review, actual
+ billing and production security remain independent open evidence boundaries.
++
++
++## HISTORICAL — shared maintenance before pricing reset
++
++Superseded by the later Owner pricing and value request.
++
++# Rillora Current Handoff
++
++Role: compact restart and execution handoff  
++Status: FAMILY SHARED-MAINTENANCE PREVIEW IMPLEMENTED AND DEPLOYED  
++Last updated: 2026-09-10 (Asia/Hong_Kong)
++
++## Current Owner task and completed result
++
++Owner asks to implement tangible Family value instead of more discussion. The
++first complete shared-maintenance loop now works on API, Web and iOS:
++owner request -> permitted recipient check/issue -> selected contributor's
++provider/location suggestion -> owner approval -> real Matter + before/after
++history -> persisted next review. [Focused contract](family-maintenance.md).
++
++Web entry: authenticated sidebar/More -> Shared reviews. Native: Profile ->
++Shared reviews. Receivers with active assignments land in their inbox. The owner
++can share an account/inbox link without private IDs or grants; actual forwarding
++is the user's action. An existing accepted sharing relationship is required.
++
++Scope is deliberate: one contributor can suggest corrections for approval, not
++edit the whole plan. History records approved review changes. Cadence/reminders
++are in product; email/SMS/push delivery and real-event release are not implemented.
++
++## Verification and deployment
++
++- API:129 passes, including14 new review integration cases.
++- Web:54 product/source tests plus7 legal-isolation checks on the proper separate
++  artifact. Product build restored afterward; review UI lazy-loads.
++- Native:129 unit passes/one existing StoreKit skip;5 final focused passes after
++  model/wiring refinement. Later decorative icon adjustment built and visually checked.
++- Infrastructure:10 passes. Browser desktop/390/320 and native A/B, dirty-close,
++  history, cadence, AX5/Reduce Motion tested. Web also verified independent B/C.
++- AWS two-phase update: migration task14 exit0; migration/runtime-role logs both
++  successful; API task19 desired/running1/1, pending0, failed0, completed rollout
++  and CloudFormation UPDATE_COMPLETE.27 HTTPS/asset checks pass.
++- Remote flags: Family preview true, development auth false, prior Stripe test
++  true, Apple Sandbox false. Ordinary sales and paid mutation remain closed.
++
++[QA, tests, screenshots, video and readback](../output/qa/rillora-family-maintenance-20260910/README.md).
++Normal Simulator launch is restored to cloud Debug with no actor/AX5 override.
++Simulator: Rillora-Matrix-17-Pro, iOS26.5,
++EA356940-5220-4AA8-89CF-499C6D5D14E4.
++DerivedData: /tmp/rillora-family-maintenance-20260910-derived-data.
++Web: https://app.staging.rillora.xyz.
++
++## Current commercial truth
++
++Permanent Free + one Family tier remains the contract; US$9.99/month or US$99/year
++is unvalidated. Shared reviews now have implemented value, but the future paid
++bundle is not all complete. Planned outgoing allowances remain Free1/Family5;
++base sharing routes still do not enforce those commercial counts. The earlier
++all-recipient live access after expiry proposal was superseded: the intended
++lifecycle keeps one Free live recipient and authorized paid-cutoff copies for
++others. Those accurate cutoff copies and base-sharing enforcement are not shipped.
++Do not sell a lifecycle that does not yet exist.
++
++## Next step — one bounded work item
++
++Implement and verify the default-disabled commercial sharing lifecycle from
++[monetization.md](monetization.md): accurate paid-cutoff copies, one selected Free
++live recipient, atomic reservation/replacement and server checks on continued
++access. Preserve free owner editing/export, restrictive privacy/revoke behavior
++and existing recipient retrieval. Keep ordinary sales closed until that lifecycle
++and the independent merchant/production gates are evidenced. The current preview
++already supplies the shared-maintenance workflow; do not redesign it from scratch.
++
++## Recovery and independent open gates
++
++This continues the workflow whose full Markdown read covered55 files/16,011 lines.
++Current/changed authority and relevant source/skills were recovered before edits.
++After compaction, use AGENTS -> product -> this handoff -> latest decision ->
++family-maintenance/monetization and changed files. Prior checkpoints are
++[historical](handoff-history-20260910.md), not alternative next actions.
++
++Real provider receiving-session proof, actual family delivery/WTP, physical-device
++review, full co-owner editing, external notifications, all-plan history and live
++billing remain separate. Do not restart completed AWS/Auth0 login-key work from
++old notes. Use rillora-operator for CDK, rillora-cdk-deploy for CFN lookup and the
++restricted staging operator for exact ECS/log operations; its missing broad list/
++task-definition rights do not call for permission expansion.
++
++Local synthetic preview artifacts/actor IDs are in the QA directory. API4210,
++Web A4211/B4212/C4213, database continuity_family_preview; separate integration DB
++continuity_family_test is disposable. These are not default product identities.
+--- before/docs/handoff.md
++++ after/docs/handoff.md
+@@ -1,84 +1,82 @@
+ # Rillora Current Handoff
+ 
+-Role: compact restart and execution handoff  
+-Status: FAMILY SHARED-MAINTENANCE PREVIEW IMPLEMENTED AND DEPLOYED  
++Role: compact current-task and execution handoff  
++Status: PRICING RESET COMPLETE; US$49 / US$6.99 PROSPECTIVE OFFER, SALES CLOSED  
+ Last updated: 2026-09-10 (Asia/Hong_Kong)
+ 
+-## Current Owner task and completed result
++## Current task and decision
+ 
+-Owner asks to implement tangible Family value instead of more discussion. The
+-first complete shared-maintenance loop now works on API, Web and iOS:
+-owner request -> permitted recipient check/issue -> selected contributor's
+-provider/location suggestion -> owner approval -> real Matter + before/after
+-history -> persisted next review. [Focused contract](family-maintenance.md).
++Owner rejects shared review as enough for US$99 and asks to reprice from full
++costs/profit/margins or build materially greater value. Selected the repricing
++route: prospective Family US$49/year or US$6.99/month, permanent Free and one paid
++tier. Review is supporting functionality.39/59 are sensitivity comparisons;99 is
++a deferred expanded-product scenario. All prices and demand remain unvalidated.
+ 
+-Web entry: authenticated sidebar/More -> Shared reviews. Native: Profile ->
+-Shared reviews. Receivers with active assignments land in their inbox. The owner
+-can share an account/inbox link without private IDs or grants; actual forwarding
+-is the user's action. An existing accepted sharing relationship is required.
++[Current economics, costs and rollout](unit-economics.md).
++[Editable workbook](../output/finance/rillora-pricing-reset-20260910/Rillora_Pricing_Reset.xlsx).
+ 
+-Scope is deliberate: one contributor can suggest corrections for approval, not
+-edit the whole plan. History records approved review changes. Cadence/reminders
+-are in product; email/SMS/push delivery and real-event release are not implemented.
++## What completed in this reset
+ 
+-## Verification and deployment
++- Rebuilt the old89 financial model into five linked sheets, with one scenario
++  selector, Free/retained populations, paid support, Stripe HK including USD
++  payout/minimums, Apple first/renewal rates, short-month cohorts, fixed costs,
++  acquisition and part-time/full-time founder labor. Tax unknown stays unavailable.
++- Base49 new annual contribution26.72/56.2%;1,000 annual households gross margin
++  48.2%. All-new cohort after assumed CAC loses7,502/year; assumed steady state
++  after replacement CAC and part-time labor yields3,101 before tax. About2,350
++  annual households cover the modeled full-time founder compensation. Identity
++  capacity beyond25k MAU uses an unquoted reserve, so scale is not a vendor quote.
++- Expanded99 would require faster accurate capture, substantive change delivery
++  and a scoped action/materials workspace.280–480 hours plus ongoing costs are
++  budgeted; no feature or willingness-to-pay claim follows. Development is deferred.
++- Workbook authoring recalculated all cases; imported saved XLSX passed96 numerical,
++  input-boundary, source-binding and independent Python comparisons with zero
++  formula errors. All five sheets were rendered and inspected. Native Excel/WPS
++  recalculation was not performed.
++- Updated monetization/product/MVP/channel/StoreKit/UI/feature records; appended
++  decisions/journey and preserved superseded economics/handoff as HISTORICAL.
++  [Full QA](../output/qa/rillora-pricing-reset-20260910/README.md).
+ 
+-- API:129 passes, including14 new review integration cases.
+-- Web:54 product/source tests plus7 legal-isolation checks on the proper separate
+-  artifact. Product build restored afterward; review UI lazy-loads.
+-- Native:129 unit passes/one existing StoreKit skip;5 final focused passes after
+-  model/wiring refinement. Later decorative icon adjustment built and visually checked.
+-- Infrastructure:10 passes. Browser desktop/390/320 and native A/B, dirty-close,
+-  history, cadence, AX5/Reduce Motion tested. Web also verified independent B/C.
+-- AWS two-phase update: migration task14 exit0; migration/runtime-role logs both
+-  successful; API task19 desired/running1/1, pending0, failed0, completed rollout
+-  and CloudFormation UPDATE_COMPLETE.27 HTTPS/asset checks pass.
+-- Remote flags: Family preview true, development auth false, prior Stripe test
+-  true, Apple Sandbox false. Ordinary sales and paid mutation remain closed.
++## Runtime and evidence boundary
+ 
+-[QA, tests, screenshots, video and readback](../output/qa/rillora-family-maintenance-20260910/README.md).
+-Normal Simulator launch is restored to cloud Debug with no actor/AX5 override.
+-Simulator: Rillora-Matrix-17-Pro, iOS26.5,
+-EA356940-5220-4AA8-89CF-499C6D5D14E4.
+-DerivedData: /tmp/rillora-family-maintenance-20260910-derived-data.
+-Web: https://app.staging.rillora.xyz.
++No API, provider catalog, price UI or deployment changed in the pricing reset.
++Existing99/9.99 Stripe/Xcode/App Store Sandbox records retain original test amounts
++and mappings; they are not the current prospective offer. No actual invoice,
++revenue, profit, support cohort, recruitment, recipient message or WTP was obtained.
++The AWS actual-cost read failed because the operator session expired; this is not
++a reason to repeat login merely to finish planning.
+ 
+-## Current commercial truth
+-
+-Permanent Free + one Family tier remains the contract; US$9.99/month or US$99/year
+-is unvalidated. Shared reviews now have implemented value, but the future paid
+-bundle is not all complete. Planned outgoing allowances remain Free1/Family5;
+-base sharing routes still do not enforce those commercial counts. The earlier
+-all-recipient live access after expiry proposal was superseded: the intended
+-lifecycle keeps one Free live recipient and authorized paid-cutoff copies for
+-others. Those accurate cutoff copies and base-sharing enforcement are not shipped.
+-Do not sell a lifecycle that does not yet exist.
++The earlier shared-review implementation remains deployed to synthetic staging:
++Web https://app.staging.rillora.xyz, API task19, migrations through0039. Preview on,
++dev auth off, existing Stripe test on, Apple Sandbox off; ordinary sales closed.
++[Prior implementation/test/deployment checkpoint](family-maintenance.md) and
++[QA/video](../output/qa/rillora-family-maintenance-20260910/README.md) retain their
++own dates; no API/Web/native regression suite was rerun for the financial work.
+ 
+ ## Next step — one bounded work item
+ 
+-Implement and verify the default-disabled commercial sharing lifecycle from
+-[monetization.md](monetization.md): accurate paid-cutoff copies, one selected Free
+-live recipient, atomic reservation/replacement and server checks on continued
+-access. Preserve free owner editing/export, restrictive privacy/revoke behavior
+-and existing recipient retrieval. Keep ordinary sales closed until that lifecycle
+-and the independent merchant/production gates are evidenced. The current preview
+-already supplies the shared-maintenance workflow; do not redesign it from scratch.
++Implement the default-disabled commercial sharing lifecycle for the smaller49
++self-service offer: accurate per-recipient paid-cutoff copies, one chosen Free
++live recipient, atomic reservations/replacement, continued server checks and
++cross-platform live/saved/paused state. Prepare distinct prospective49/6.99 price
++records without changing historical test bindings. Preserve owner editing/export,
++revocation and privacy narrowing. Keep ordinary sales closed until this lifecycle,
++real receiving identity and the existing production/merchant gates are evidenced.
++Do not restart shared-review design or build the entire99 expansion first.
+ 
+-## Recovery and independent open gates
++## Recovery
+ 
+-This continues the workflow whose full Markdown read covered55 files/16,011 lines.
+-Current/changed authority and relevant source/skills were recovered before edits.
+-After compaction, use AGENTS -> product -> this handoff -> latest decision ->
+-family-maintenance/monetization and changed files. Prior checkpoints are
+-[historical](handoff-history-20260910.md), not alternative next actions.
++This continues the original complete55-file/16,011-line Markdown read. After
++compaction use AGENTS -> product -> this handoff -> latest decision ->
++unit-economics/monetization/trusted-sharing and changed source files. The saved
++[recovery record](../output/qa/rillora-pricing-reset-20260910/recovery.json) lists
++focused ranges; do not repeat full scans, old tests/deploys or completed Auth0 work.
++[Previous handoffs](handoff-history-20260910.md) are historical, not parallel gates.
+ 
+-Real provider receiving-session proof, actual family delivery/WTP, physical-device
+-review, full co-owner editing, external notifications, all-plan history and live
+-billing remain separate. Do not restart completed AWS/Auth0 login-key work from
+-old notes. Use rillora-operator for CDK, rillora-cdk-deploy for CFN lookup and the
+-restricted staging operator for exact ECS/log operations; its missing broad list/
+-task-definition rights do not call for permission expansion.
++Synthetic local API4210, Web4211/4212/4213 and continuity_family_preview DB are
++prior QA surfaces. Normal Simulator uses cloud Debug, no QA actor/AX5 overrides.
++Simulator EA356940-5220-4AA8-89CF-499C6D5D14E4; prior derived data at
++/tmp/rillora-family-maintenance-20260910-derived-data. Real-provider receiving,
++physical-device, production-data, operational readiness and live billing remain
++separate; blanket authorization is not evidence that those steps succeeded.
+ 
+-Local synthetic preview artifacts/actor IDs are in the QA directory. API4210,
+-Web A4211/B4212/C4213, database continuity_family_preview; separate integration DB
+-continuity_family_test is disposable. These are not default product identities.
+--- before/docs/ios-external-payment-research.md
++++ after/docs/ios-external-payment-research.md
+@@ -5,7 +5,7 @@
+ Superseded by: Apple 最新审核规则、法院／监管变化、Apple entitlement 条款、正式 App Review 结果，或 `docs/decision-log.md` 中更新的 Owner 决定  
+ Do not use for: 保证 App Store 审核通过、规避平台合同、个人法律／税务意见、创建真实 Stripe 商品或收费授权  
+ Status: RESEARCH-BACKED ROUTING DECISION；STRIPE PHASE 1C TEST LIFECYCLE COMPLETE；STOREKIT SK0 LOCAL LIFECYCLE INCLUDING EXPLICIT RESTORE COMPLETE；美国外部 Web 结账仍为 Global iOS 首发主路径；非美／大陆StoreKit与Apple外部门保持关闭  
+-Last reviewed: 2026-08-21
++Last reviewed: 2026-09-10 (pricing cross-reference only; legal/platform research remains dated August 21)
+ 
+ ## Executive Summary（执行摘要）
+ 
+@@ -193,7 +193,9 @@
+ 
+ 当前公开文档没有给出对 Rillora 的预先批准机制。即使规则文字支持，美国外部支付仍必须以真实 App Review 结果为发布证据；在审核通过前只能写“计划采用”，不能写“Apple 已允许 Rillora”。
+ 
+-## US$99 年付单位经济比较
++## 历史US$99渠道算例 — 已非当前价格
++
++当前Family验证价为US$49/年、6.99/月。下表保留旧渠道组件比较，未计美元出款，不是当前完整成本或利润。新模型见[unit-economics.md](unit-economics.md)。
+ 
+ 以下只比较可公开建模的渠道组件，不包含消费税、退款、拒付、支持、会计、汇率差异和 Rillora 自身所得税。
+ 
+--- before/docs/journey/PROJECT_JOURNEY.md
++++ after/docs/journey/PROJECT_JOURNEY.md
+@@ -1,6 +1,6 @@
+ # Digital Legacy Ongoing Project Journey
+ 
+-Last updated: 2026-09-10 (documentation alignment; runtime evidence retains its dated checkpoint)  
++Last updated: 2026-09-10 (pricing/value reset; runtime evidence retains its dated checkpoint)  
+ 
+ ## 记录范围
+ 
+@@ -2025,3 +2025,38 @@
+ not validated US$99 demand, a full co-owner role, external reminders, all-plan
+ history or a complete commercial cutoff/archival lifecycle. Real-provider receiving,
+ physical device, production data/security and merchant gates remain independent.
++
++## 2026-09-10 — Recompute price after the Owner rejects review as99 value
++
++**Goal.** Choose between an economically viable price for current capabilities
++and a substantially more valuable99 product. Owner says the implemented review
++loop is insufficient as the core paid reason.
++
++**Attempt.** Continued the original full-read workflow with focused recovery.
++Inspected the historical financial builder and current offer/receipt sources,
++rechecked official HK Stripe, Apple, Auth0 and competitor pricing, and built a
++formula-driven five-sheet model. Compared39/49/59/99, explicit Free/retained costs,
++human labor, short monthly use, channel fees, tax separation, CAC, operating scale
++and incremental99 delivery costs. Preserved the old workbook and contracts as
++historical. No fresh production data or payment was obtained.
++
++**Judgment change.** Costs constrain an offer but cannot prove willingness to pay.
++The prior89 workbook had not become a current99 model by changing document copy.
++Monthly users cannot be assumed to pay all twelve months, Free receivers and
++planners are distinct populations, USD payout fees matter, and gross contribution
++does not equal company gross margin or cash profit. Shared review is supporting
++functionality. Expanding it to defend99 would amplify an unvalidated hypothesis.
++
++**Result.** Selected prospective49/year and6.99/month, one Family tier with useful
++Free intact. Base contribution26.72;1,000 annual households yield48.2% gross margin,
++but only3,101/year before tax in the assumed steady-state/part-time case. Full-time
++compensation requires about2,350 annual households under unquoted capacity reserves.
++The proposed99 capture/change/action workspace has an explicit280–480-hour and
++ongoing-service budget, and is deferred pending demand. Formula recalculation,
++independent computations, saved-file readback and visual checks are recorded in
++[pricing-reset QA](../../output/qa/rillora-pricing-reset-20260910/README.md).
++
++**Unfinished.** No actual cloud bill (expired operator login), support cohort,
++renewal, CAC, WTP or net profit. No provider catalog or runtime price was changed.
++The safe commercial sharing lifecycle/new prospective offer remains the next
++engineering item; existing real-data/merchant/receiving-identity gates still apply.
+--- before/docs/monetization.md
++++ after/docs/monetization.md
+@@ -11,7 +11,7 @@
+ 
+ Rillora should charge for ongoing coordination work that it performs, not for information that users can already configure for free through Apple, Google or another provider, and not for baseline security, export or recipient access.
+ 
+-The launch catalog is deliberately simple: a permanent `Free` plan and exactly one paid entitlement tier, `Rillora Family`. The paid tier has two billing periods, not two product tiers. For paid-launch planning, the primary standard-price hypothesis is now **US$9.99 monthly** or **US$99 annually**, a **17.4%** saving versus twelve monthly charges. **US$6.99/month or US$59/year** remains only a bounded founder/willingness-to-pay cell; the former US$8.99/month or US$89/year center is retained as a downside sensitivity rather than the default. All prices remain research hypotheses, not validated market truth and not authorization to create products or activate payments.
++The launch catalog remains permanent `Free` plus one `Rillora Family` entitlement with two billing periods. The current prospective validation price is **US$6.99/month or US$49/year**, after the Owner rejected shared reviews as sufficient US$99 value. Annual is US$4.08/month equivalent and 41.6% below twelve monthly payments. This is a reversible Agent-selected hypothesis under the current repricing instruction, not validated willingness to pay. US$39/59 are comparisons, US$89 is historical, and US$99 is a conditional expanded-product scenario. No second paid tier, founder promotion or introductory-price expiry is active. See [rebuilt economics](unit-economics.md).
+ 
+ The product and data model must nevertheless support future `Personal`, `Family`, human-service add-ons and a separate professional catalog. Entitlements must be capability-based and versioned; no client or API may reduce the model to `isPremium`.
+ 
+@@ -22,6 +22,8 @@
+ Stripe Account `acct_1U6B2RCxTlowhyiG` remains separate from FanPass and contains only non-live test objects. A restricted `rk_test_` and endpoint-specific `whsec_` are stored separately in AWS Secrets Manager; broad `Core: Read` remains rejected. The raw-body Webhook and authenticated test-only Checkout／Portal routes are live in synthetic Frankfurt staging. One US$9.99 sandbox payment completed with synthetic data, creating test Customer／Subscription and four applied signed events. Every reconciliation kept `entitlementMutationApplied=false`, and ordinary access remains Free. Customer Portal creation and scheduled cancellation are verified. A later full test refund was resolved through authoritative Refund／Charge／Invoice Payments／Invoice／Subscription reads; `refund.updated` now applies `revoke / refunded` without entitlement mutation, and a second delivery is idempotent. No live card, real payment, saleable offer or entitlement activation exists.
+ 
+ The same sandbox now covers a fraudulent Dispute from created／under-review revoke through won restore, plus a subscription-linked failed renewal from `invoice.payment_failed / past_due` through successful invoice recovery to active. The restricted key adds only Payment Disputes read on top of the refund／invoice reads. These are operational test-state transitions, not revenue or entitlement evidence: ordinary plan state stays Free throughout.
++
++**Runtime boundary, September 10:** existing US$9.99/99 Stripe, Xcode and App Store Sandbox objects and `family_usd_*_v1` records retain their original test amounts. They are not the current proposed offer. This reset changes the product decision and economic model, not provider catalog, API or deployed price UI. Before customer exposure, use distinct prospective price codes bound to the actual capability version. Do not relabel receipts or mix old/new offers. Ordinary billing remains closed. Necessary work follows AGENTS default authorization; missing personal interaction, merchant facts and production evidence remain separate.
+ 
+ ## How The Research Rounds Fit Together
+ 
+@@ -60,6 +62,8 @@
+ The recurring price is justified only while those recurring responsibilities are real and evidenced. Storage volume alone is not the value proposition.
+ 
+ ## 2026-09-10 Packaging Resolution — Current
++
++**Latest correction:** shared review is a supporting capability, not sufficient US$99 core value. The main route is a smaller self-service offer at US$49/year or US$6.99/month for controlled validation. Do not expand review dashboards or contacts merely to defend99. The assisted-capture, substantive-change and action-workspace extension is unbuilt, conditional and separately costed in [unit-economics.md](unit-economics.md).
+ 
+ **Implementation checkpoint after Owner's “直接规划并落实”:** the
+ [shared-maintenance slice](family-maintenance.md) is now implemented and deployed
+@@ -79,8 +83,8 @@
+ | Share the plan you own | 1 outgoing relationship receiving current updates, including link/QR and acceptance | Up to 5 current-updating recipients per plan; parents, partner and friends may have different scopes | Direct sharing is implemented and deployed to synthetic staging; **plan-based count enforcement is absent**; archival access mode is not implemented |
+ | Choose what each person sees | Every included recipient supports per-item Name / Directions / Details, default-private and revoke | Same privacy controls for all included recipients | API field projections and local B/C isolation verified; real-provider recipient acceptance remains open |
+ | Receive someone else's plan | Free Web/iOS acceptance and authorized reading; whether content is live or an authorized saved version depends on the owner's access | Identical; recipients do not buy seats | Receiver flow implemented; received relationships do not consume an outgoing allowance; no commercial snapshot mode exists yet |
+-| Maintain together | Planner edits their own plan | 1 additional, separately scoped co-planner for the household plan | Implemented preview: one chosen contributor suggests provider/location corrections and owner approves; full co-owner editing remains planned |
+-| Keep the plan current | Manual checks and basic non-operative rehearsal | Configurable review schedule, actionable changes/overdue items, change history and joint review | Preview implements shared checks, in-product cadence/due state and approved-correction history; external automation and all-plan history remain planned |
++| Maintain together | Planner edits their own plan | 1 scoped contributor suggests provider/location corrections; owner approves | This bounded contributor flow is implemented in preview; full co-owner editing is outside the smaller launch promise |
++| Keep the plan current | Manual checks and basic non-operative rehearsal | Joint checks, in-product due dates and approved-correction history | Implemented preview scope; external automation and all-plan history are outside the smaller launch promise |
+ | Rehearse and prepare | Existing basic/field-level safety previews and Start Here export remain Free | Saved comparisons and coordinated multi-person review when implemented | Existing role simulation must not be removed or relabeled paid; no real-event release is open |
+ | Trust and exit | Authentication, privacy, safe export, deletion and basic recipient retrieval | Identical baseline | Each claim keeps its existing security/operational evidence boundary |
+ 
+@@ -136,7 +140,7 @@
+ 
+ On 2026-09-10, [Everplans' own FAQ](https://www.everplans.com/faq) lists a three-item Free allowance and US$99.99/year Premium. [Trustworthy's pricing](https://www.trustworthy.com/pricing) lists Free with one family member and Silver at US$10/month billed annually with five; its all-plan baseline includes security/privacy and download. These are external packaging examples, not equivalent entitlement units, independent security validation or evidence that Rillora customers will pay. Rillora deliberately preserves the complete lightweight text map. [Apple 3.1.2](https://developer.apple.com/app-store/review/guidelines/#subscriptions) also requires ongoing subscription value and a clear description of what the price buys; it does not pre-approve Rillora.
+ 
+-Keep US$9.99/month or US$99/year as the existing price hypothesis; show the full annual charge, not just US$8.25/month equivalent. Do not add an extra tier, lifetime promise, automatic trial, fabricated discount or new refund guarantee. Free supplies the initial experience; the disabled no-card preview is not activated by this review.
++Use the prospective US$6.99/month or US$49/year hypothesis and show the complete annual charge, with an optional US$4.08 monthly equivalent. Old US$99 test objects are historical; they do not define the current offer. Do not add an extra tier, lifetime promise, automatic trial, fabricated discount or new refund guarantee. Free supplies the initial experience; the disabled no-card preview is not activated by this review.
+ 
+ Validate in order, when real-user/payment gates are ready:
+ 
+@@ -181,20 +185,20 @@
+ | Offer | Launch visibility | Price hypothesis | Intended value |
+ | --- | --- | ---: | --- |
+ | Rillora Free | Visible | US$0 | Complete lightweight map, one trusted-person path, basic rehearsal, official guides, basic export and all baseline trust controls |
+-| Rillora Family monthly | Visible when billing opens | Paid-launch hypothesis US$9.99/month; bounded founder cell US$6.99/month | Same Family entitlements with lower commitment |
+-| Rillora Family annual | Visible and recommended, not preselected deceptively | Paid-launch hypothesis US$99/year; bounded founder cell US$59/year | Same Family entitlements; standard annual is US$8.25/month equivalent and 17.4% below twelve standard monthly payments |
+-| Personal | Hidden/dormant | Future hypothesis US$39–49/year | Lower-cost individual maintenance; do not launch until data shows Family is too broad |
++| Rillora Family monthly | Visible when billing opens | Prospective US$6.99/month | Same verified entitlements; no minimum term |
++| Rillora Family annual | Visible when billing opens; full annual amount | Prospective US$49/year | Same verified entitlements; US$4.08 monthly equivalent, 41.6% below twelve monthly payments |
++| Personal | Hidden/dormant | No active price | No additional launch tier; US$39/59 are comparisons for the same Family scope |
+ | Human setup/review | Hidden/dormant add-on | Preliminary US$199–299 research range only after time-and-motion evidence | Bounded setup or review with a separate services P&L, excluding legal advice and real claim handling |
+ 
+ Monthly and annual products share the same entitlement set. Billing interval must never change security, data ownership, recipient rights or feature quality.
+ 
+ ### Intended `Rillora Family` entitlements
+ 
+-- one co-planner/household collaborator;
++- one scoped suggestion contributor; the owner approves provider/location corrections, with no full co-owner permission implied;
+ - up to five outgoing current-updating trusted-person relationships as the provisional launch allowance, with independent scopes and no charge to recipients;
+-- coordinated role packages and saved review comparisons; baseline per-item privacy and existing safety rehearsal remain Free;
+-- adaptive review reminders and plan-health maintenance;
+-- version history and change review;
++- joint checks, actionable recipient issues and configurable in-product review dates;
++- before/after history for approved review corrections, not every edit to the full plan;
++- coordinated advanced packages, adaptive external reminders and all-plan history are deferred extensions, not included launch benefits; baseline per-item privacy and existing safety rehearsal remain Free;
+ - encrypted attachments only in a later evidenced capability version after their production security gate is complete;
+ - priority product support only after response expectations and operating capacity are defined, excluding legal advice and real-event case handling.
+ 
+@@ -285,7 +289,7 @@
+ - let users turn off renewal self-service without contacting support;
+ - paid access continues through the paid term after cancellation.
+ 
+-The US$99 standard annual hypothesis sits above lightweight organizers and within the entry range of broader digital-legacy/household systems. The move from US$89 is an economic safety margin for Apple’s 30% first-year downside, refunds, security and compliance; it is not proof of willingness to pay. US$9.99 monthly gives a lower-commitment path without making monthly and annual feel like different products. The US$59/US$6.99 cell may be used only with a predeclared cohort/date and renewal promise; it is not a sustainable permanent list-price conclusion. Full economic assumptions and break-even effects are in [`unit-economics.md`](unit-economics.md).
++The US$49 annual / US$6.99 monthly hypothesis reflects a smaller self-service scope and nearby lower-price alternatives. Monthly has an initial support burden: the base model leaves only US$0.48 contribution from a one-month purchase before CAC and fixed costs. One-month use remains legitimate. Do not buy such customers through expensive acquisition, restrict basic export or add an undisclosed minimum term. If US$49 does not convert, revisit the job and audience before further cuts or feature expansion. Full assumptions are in [unit-economics.md](unit-economics.md).
+ 
+ ## Paid-Ready Public Release — LOCKED Sequence
+ 
+@@ -478,8 +482,8 @@
+ 
+ ## Open Gates
+ 
+-- exact launch price approval after a real pricing screen is ready;
+-- exact founder-offer cohort/closing date, duration and renewal-price promise;
++- distinct prospective US$49/US$6.99 price versions and truthful screens, followed by real purchase and cost evidence;
++- no active founder offer; any future promotion needs its own cohort, term and renewal promise;
+ - actual operator／merchant onboarding and provider selection for the first market;
+ - Stripe test-card／signed Webhook／authoritative lifecycle／no-entitlement-mutation evidence is complete. StoreKit has the full Xcode-local lifecycle plus non-live App Store Connect group／products, eight representative storefronts and two retained purpose-limited testers. Official Apple PKI verification, device／notification intake, Server API signed-status normalization and durable no-entitlement reconciliation are implemented locally. The earlier Pro Max unavailable result was caused by stale Xcode-local StoreKit routing; clean iOS 26.4／26.5 Simulators now load the real USA annual／monthly catalog. Chrome final IAP credentials are secured locally, construct the official Sandbox client and receive Apple's bounded `4040010` authenticated response; two earlier no-private-file keys were revoked and Apple retains one active key. A Debug-only purchase scheme keeps transactions unfinished until durable server acknowledgement. Tester credentials were submitted after Owner confirmation, but three independent account attempts across both runtimes all failed in Apple's post-AuthKit persistence layer with `AMSErrorDomain 100 / Password reuse not available for account`; therefore no transaction exists. One automation-exposed replacement tester was deleted and rotated. Apple-enabled AWS has not been deployed, StoreKit Sandbox ledger rows／mutations remain zero, and no completed real Sandbox purchase／restore／notification, App Review or ordinary access mutation exists;
+ - first launch countries, tax/Merchant-of-Record responsibilities and local consumer terms;
+--- before/docs/mvp.md
++++ after/docs/mvp.md
+@@ -153,13 +153,13 @@
+ 
+ - 免费：可形成有意义的轻量事务地图、一名可信人的基础路径、官方设置检查、基础演练、基础导出，以及认证、安全、导出、删除和接收人基础访问。不得把Apple／Google等本来免费的官方设置指导、最低安全或离开产品的能力锁进付费墙。
+ - 首发目录：永久`Free`之外只开放一个付费权益层级`Rillora Family`；月付与年付是同一权益的两个账期，不是两个套餐。
+-- 价格梯度：收费发布主假设为US$9.99/月或US$99/年，年付相当于US$8.25/月，比连续月付低17.4%；US$8.99/月或US$89/年作为下行情形，US$6.99/月或US$59/年仅作为必须预先写明人数／截止时间、期限和续费规则的Founder/WTP测试单元。大陆¥68/月或¥698/年是独立验证假设。全部未获真实付款验证，也未授权创建真实商品。
++- 最新价格：US$6.99/月或US$49/年的前瞻验证价，复核为辅助能力；39/59仅作敏感性，99为另需开发／成果证据的扩展方案，不增加第二付费层或Founder促销。大陆旧¥68/698是历史假设，不能由USD价自动换算上线。全部未获真实付款验证；旧Stripe／StoreKit测试商品未改。见[重算模型](unit-economics.md)。
+ - 首发不启用自动转付费试用；永久Free承担体验作用。2026-08-27现行法律候选取代早期30天首购退款保证：直接Web按强制法律或书面例外处理，Apple按其渠道处理。30天保证及14天Family预览都保持关闭，不是当前承诺。
+ - 取消后使用到已付周期末，再安全降级到Free；账户、核心文本、基础导出和接收人基础访问不因取消或付款失败删除／锁死，订阅状态也永不触发死亡、失能、失联或披露。
+ - 每个地区首次公开发布都必须同时具备永久Free和可用的Family订阅；Global与Mainland独立过门、无需同日发布。支付未就绪的地区停留在受控beta，不先做公开Free-only发布。
+ 
+ 完整长期套餐、权益、退款、全球Storefront和订阅生命周期设计见[`docs/monetization.md`](monetization.md)；单位经济、成本分配、毛利、LTV/CAC、跑道和尽调指标见[`docs/unit-economics.md`](unit-economics.md)。价格尚未验证且支付未激活；首轮目标仍是区分赞同、完成、邀请和付款四种强度不同的信号，并把付款后的30／90天维护、退款、取消和直接支持时间作为独立队列证据。
+ 
+-2026-09-10区分补全：Free的“一人”指向外共享关系，不限制保存联系人记录或接收别人分享；Family暂定五位接收人及一位共同维护者。逐项权限、安全、基本演练和退出能力两版相同。多人邀请已在合成staging实现，但人数收费限制、共同编辑、自动复核与历史尚未完成，不可写成已交付的付费套餐。先验证免费的一人完整结果，再以第二位接收人／共同维护等真实意图验证付费，具体计数、降级和验证分母以商业合同为准。
++2026-09-10区分补全：Free的“一人”指向外共享关系，不限制保存联系人记录或接收别人分享；Family暂定五位接收人及一位共同维护者。逐项权限、安全、基本演练和退出能力两版相同。多人邀请和有界复核已在合成staging实现；provider/location建议审批、修正历史和产品内日期已完成。人数收费限制、完整共同编辑、外部通知与全计划历史仍未完成，不能描述成已交付完整套餐。先验证免费的一人完整结果，再以第二位接收人／共同维护等真实意图验证付费，具体计数、降级和验证分母以商业合同为准。
+ 
+ 同日Owner追问后的修订：“基本接收访问保留”指保留已获准的资料取回，不是免费保留所有人的持续更新。计划到期后，一位指定接收人继续获得当前内容，其余已接受者只读到期前获准的固定版本；用户自己的文本仍可编辑／导出。关闭续费先保留当前已付周期。固定版本、准确截止时间、持续权益检查和跨端状态均尚未实现，须在收费前验收。按月购买后正常取消或隔月再订本身不视为滥用。
+--- before/docs/product.md
++++ after/docs/product.md
+@@ -160,6 +160,8 @@
+ 
+ ## Current Evidence Boundary
+ 
++2026-09-10最新重定价：Owner否定共同复核足以支撑US$99。主路线改为按较小自助产品验证 **US$49/年、US$6.99/月**；永久Free与单一Family保留，39/59作敏感性，99退为有实际成果门槛的扩展方案。新版可编辑模型计入Free／留存、人工支持、渠道／美元出款、短月付、获客和固定成本；基准49年付新客贡献26.72美元，1,000年付户毛利率48.2%，均为假设而非真实利润。旧89模型已归档；支付平台和运行中的99测试对象未改，不是当前报价。见[当前经济合同](unit-economics.md)。
++
+ 2026-09-10 Family功能落实：Owner要求直接规划并实现可体现年费价值的功能。API／Web／iOS现已实现并部署Shared reviews：按现有权限发起复核、接收人确认／报问题、指定一人提出provider／location更正、本人审批更新真实事项、保留修改前后历史与复核日期，并可分享不含私密标识或权限的收件箱入口。API129、Web产品54＋法律隔离7、原生129／既有跳过1及最终聚焦5、基础设施10通过；实际Web A/B/C、原生A/B、草稿保护和AX5／Reduce Motion已观察。AWS迁移14退出0、API19服务1/1、27项HTTPS／文件检查通过；预览开启，开发身份关闭，普通收费仍关闭。完整协作者所有权、外部通知、全计划历史、人数商业限制与到期固定版本不在本轮完成范围；不宣称US$99意愿已验证。见[共同维护合同](family-maintenance.md)与[交接](handoff.md)。
+ 
+ 2026-09-10同轮竞品收费复核：以MyLifeLedger、Quicken LifeHub、Everplans、Trustworthy、GoodTrust官方价格／帮助页对照收费价值。较低价直接替代品存在；“地图而非密码”、逐项共享和提醒不是已证明的独有优势。竞品的年付月均价、首次制作费、当前协作者与未来接收人不能混成同一单位。Rillora仍需以低负担录入、接收人的具体可执行准备与真实共同维护结果验证差异，US$99继续只是待验证假设。未开通竞品账户／收费服务或改变本项目套餐，详见[当前商业比较](competitor-ux-audit.md)。
+@@ -186,7 +188,7 @@
+ - 常用provider官方指引：2026-08-20以Apple、Google、Meta、GitHub、Microsoft、LinkedIn、X、PayPal、Coinbase、Binance、Bitwarden和1Password的官方页面建立首批十一类Web／iOS指导目录。生前可设置与身后申请被分开；每项提供简短步骤、通常材料、provider专属边界、最后复核日期和HTTPS官方外链。iOS仍只对既有五项保存`self_reported`状态；额外平台是可执行参考，不伪装成provider验证。Binance明确记录为按地区／实体发起的inheritance support申请，未声称存在公开global Legacy Contact开关。该功能检查点为Web `40 / 40`、iOS `91 passed / 0 failed / 1 skipped`、Debug build及Apple官方链接真实打开；后续StoreKit工作把完整native套件提高到`94 passed / 0 failed / 1 skipped`，不改变provider证据边界。它仍不证明外部设置完成、文件有效、provider批准、资产／账号转移或法律权限。
+ - 登录后iOS根页面：2026-08-20根据Owner实图反馈，空计划Overview／Matters／Profile从重复说明卡收敛为图标与行动优先的根层级。Overview只保留一个Add动作和一张圆环／Matter／联系人进度面；Profile统一action surface并删除根级`Policy version`和长权限说明，准备／支持入口使用普通字号两列、辅助字号一列的SF Symbols任务网格；空Matters改为一个图标、一句提示和一个Add动作。该UX检查点为Owner控制的空计划Simulator默认字号与AX5、真实route push／Back、Debug／Release build、native `87 passed / 0 failed / 1 skipped`及Layout Matrix build-for-testing；后续完整native套件为`94 passed / 0 failed / 1 skipped`。它不证明填充数据全组合、完整XCUITest矩阵、真机辅助技术、外部理解或发布。
+ - 安全：仓库级威胁模型、最小权限数据库角色、强制RLS、OIDC身份映射、typed Cookie/Bearer本地会话、CSRF边界、客户端加密合同和集成测试已完成初版。Auth0 EU Free开发身份、虚拟Web Passkey和`login.rillora.xyz`托管TLS／默认域已联调，Web与iOS Debug均在新issuer下完成合成身份登录、会话和退出；Start Here服务端只保存密文、公钥和封装后的密钥，不接收恢复私钥、收件人私钥或明文。合成收件人路径使用独立最小权限数据库角色、单向能力摘要和生产启动禁用开关。披露策略演练另以数据库约束和三端响应验证固定`simulationOnly: true`及所有操作性标志为`false`。Owner交互式本地API已停止，本机PostgreSQL只保留自动化测试用途；Frankfurt合成staging已通过非root operator完成私有RDS、分离migration/runtime身份、Fargate Spot、API Gateway和CloudFront两阶段部署，正式staging域可达，但只获准处理合成数据。Owner也已本人完成一次模拟器云端Auth0登录；这不构成生产身份或真实敏感资料许可。真实恢复、原生Passkey、Release配置、真实收件人密钥生命周期、生产对象存储/KMS、冗余与私有出口、DPIA、生产渗透测试和独立审计尚未完成；Vercel未用于认证后产品面。
+-- 商业：永久Free、一个Family权益层级和月／年两个账期保持锁定；US$9.99／US$99仍只是收费发布主假设，所有公开市场／销售路由和普通entitlement mutation关闭。Stripe Phase 1C已在独立Rillora测试账户完成付款、signed Webhook、Portal取消、全额退款、duplicate、dispute revoked／won与past-due／恢复，所有对账均未改变普通Free access。StoreKit SK0的Xcode本地完整矩阵继续有效；App Store Connect现另有非直播同组月／年商品、八个代表storefront和两个保留的目的限定Sandbox tester。官方Apple `x5c`验证、设备交易／Notifications V2 intake、App Store Server API signed-status规范化和durable subscription／reconciliation executor已在本地实现，只有authoritative snapshot提交成功才返回finish授权，且每次都记录`entitlement_mutation_applied=false`。此前Pro Max的`Products unavailable`已定位为残留Xcode-local StoreKit服务；干净iOS 26.4／26.5 Simulator均从真实USA Sandbox目录返回年付US$99与月付US$9.99。新增Debug-only purchase scheme只在本地合成planner／API下开放真实Sandbox按钮，且服务端确认前不finish。当前API`98 / 98`、iOS`101 / 0 / 1`、AWS IaC`9 / 9`；Chrome最终key的`.p8`已安全落盘并通过PKCS#8／OpenSSL／官方客户端构造及真实Apple `4040010`认证探针，前两把无私钥key已撤销，Apple只保留一把有效key。Owner明确确认后，原tester与两个新建tester在两套干净Simulator上都由AuthKit识别，但Apple账号持久化随后统一失败为`AMSErrorDomain 100 / Password reuse not available for account`，因此没有payment sheet或交易。被一次UI自动化回显的replacement credential已撤销／删除并轮换；当前第三套只在Keychain。数据库StoreKit Sandbox inbox／event／subscription／reconciliation／mutation均为0，普通`commerce-v1`仍Free。Apple-enabled secrets／stack仍只synth未部署；实体iPhone当前离线。App Review、真实Sandbox购买完成／通知／restore、Apple-enabled staging、live Stripe KYC／税务和真实收费仍是独立门。StoreKit细节见`docs/storekit.md`；套餐、地区与经济边界继续见`docs/monetization.md`、`docs/global-mainland-commerce-plan.md`和`docs/unit-economics.md`。
++- 商业：永久Free、一个Family权益层级和月／年两个账期保持锁定；US$9.99／US$99是该历史检查点的测试金额，已由2026-09-10的US$6.99／US$49前瞻验证假设取代，所有公开市场／销售路由和普通entitlement mutation关闭。Stripe Phase 1C已在独立Rillora测试账户完成付款、signed Webhook、Portal取消、全额退款、duplicate、dispute revoked／won与past-due／恢复，所有对账均未改变普通Free access。StoreKit SK0的Xcode本地完整矩阵继续有效；App Store Connect现另有非直播同组月／年商品、八个代表storefront和两个保留的目的限定Sandbox tester。官方Apple `x5c`验证、设备交易／Notifications V2 intake、App Store Server API signed-status规范化和durable subscription／reconciliation executor已在本地实现，只有authoritative snapshot提交成功才返回finish授权，且每次都记录`entitlement_mutation_applied=false`。此前Pro Max的`Products unavailable`已定位为残留Xcode-local StoreKit服务；干净iOS 26.4／26.5 Simulator均从真实USA Sandbox目录返回年付US$99与月付US$9.99。新增Debug-only purchase scheme只在本地合成planner／API下开放真实Sandbox按钮，且服务端确认前不finish。当前API`98 / 98`、iOS`101 / 0 / 1`、AWS IaC`9 / 9`；Chrome最终key的`.p8`已安全落盘并通过PKCS#8／OpenSSL／官方客户端构造及真实Apple `4040010`认证探针，前两把无私钥key已撤销，Apple只保留一把有效key。Owner明确确认后，原tester与两个新建tester在两套干净Simulator上都由AuthKit识别，但Apple账号持久化随后统一失败为`AMSErrorDomain 100 / Password reuse not available for account`，因此没有payment sheet或交易。被一次UI自动化回显的replacement credential已撤销／删除并轮换；当前第三套只在Keychain。数据库StoreKit Sandbox inbox／event／subscription／reconciliation／mutation均为0，普通`commerce-v1`仍Free。Apple-enabled secrets／stack仍只synth未部署；实体iPhone当前离线。App Review、真实Sandbox购买完成／通知／restore、Apple-enabled staging、live Stripe KYC／税务和真实收费仍是独立门。StoreKit细节见`docs/storekit.md`；套餐、地区与经济边界继续见`docs/monetization.md`、`docs/global-mainland-commerce-plan.md`和`docs/unit-economics.md`。
+ - 运营主体与市场：Owner已锁定开发、封闭测试和首次公开发布都由真实个人运营，不为发布虚构公司；`Rillora`是产品／品牌，不是尚不存在的合同方、商户或数据控制者。Owner另披露持有非永久香港身份证，这使真实香港个人／独资经营路线进入条件评估，但不自动证明经商许可、香港税务居民、Business Registration、银行／运营实质或免除中国大陆全球所得申报。Global公开收费不再限制为美国单一storefront，而是开放所有通过版本化market register的ready国家／地区；`USA`与`HKG`是首波核心候选。美国Web／iOS可在真实香港经营链与Stripe live门通过后使用Rillora Web外部结账，StoreKit保留审核fallback；香港及普通ready非美iOS使用StoreKit，香港Web Stripe仍等待真实经营／Business Registration、KYC、银行与税务。购买界面按瞬时StoreKit storefront判定，服务资格另按服务市场、支付账单国和现有订阅求交集；任何Apple Account地区都不是居住证明。Stripe与StoreKit共用一套服务端权益／财务账本，同一家庭层级最多一条活动续费渠道，换区不自动迁移或重复购买。日本／巴西／韩国、EU/EEA、UK及其他特殊规则市场逐项过门；中国大陆继续使用共享核心但分离数据／身份／支付／法律平面的独立App路线。Apple可选店面不自动成为法律开放；只有ready rows进入实际availability。完整合同见`docs/individual-operator-launch-plan.md`、`docs/global-mainland-commerce-plan.md`与`docs/ios-external-payment-research.md`。
+ - 私人运营者输入：2026-08-27 Owner已私下提供英文法定姓名、香港居住／税务国家输入和地址，并确认香港法／非专属法院、责任cap、一年索赔期、按渠道退款、长期活跃账户保留、个人运营、独立购买同意和`USA / HKG`首波意图。Owner随后明确授权把此前提供的地址作为Rillora公开法律服务地址使用；六项发布字段的值与公开用途因此全部确认。准确个人值仍不得进入仓库、Markdown、普通测试或日志，只能在release build中受控注入。当前工作不由Agent判断签证／NOL／自雇或商业登记资格；运营许可不因条款成立而成立。
+ - 正式法律文本与Cookie提示：Owner于2026-08-27确认全部十二项审阅结果，七份英文文本统一为`2026-08-27-1`正式版本，页面状态为`Effective`；Terms／Privacy bundle SHA-256为`73d9cb6039b97f72d802e543d03944355e68b2bc59a7f859326ce3236b704d2b`。2026-08-29六项字段通过隐藏输入进入Git忽略的本地`0700/0600`配置，Owner本人确认最低必要公开字段，Agent未读取或截图个人字段。2026-09-03法律专用Sites version 3已于`https://legal.rillora.xyz`公开，七路由／DNS／TLS／安全头／脱敏渲染及Web／发布`48 / 48`通过；Google OAuth Branding又保存并重载回读根域、Privacy与Terms精确URL，Audience仍为`External / Testing`。它不证明真实用户同意、Google验证／生产发布、市场开放或任何条款在所有司法辖区必然可执行。
+--- before/docs/storekit.md
++++ after/docs/storekit.md
+@@ -5,7 +5,16 @@
+ Superseded by: newer Apple platform rules, verified App Store Connect state, a later Owner decision, or stricter payment/security evidence  
+ Do not use for: proof of App Store approval, accepted Paid Apps Agreement, banking/tax completion, live IAP products, production entitlement or a real charge  
+ Status: COMPLETE LOCAL XCODE SK0; APP STORE CONNECT SANDBOX METADATA／PRICES／EIGHT STOREFRONTS／TWO PURPOSE-LIMITED TESTERS CREATED; LIVE USA SANDBOX CATALOG LOAD VERIFIED ON CLEAN IOS 26.4／26.5 SIMULATORS; DEBUG-ONLY SERVER-GATED PURCHASE HARNESS READY; OFFICIAL APPLE JWS／SERVER API SNAPSHOT／DURABLE NO-ENTITLEMENT RECONCILIATION IMPLEMENTED LOCALLY; ONE ACTIVE CHROME IAP KEY `.P8` SECURED LOCALLY, OFFICIAL CLIENT CONSTRUCTION AND AUTHENTICATED SERVER API PROBE VERIFIED; SIMULATOR SANDBOX ACCOUNT PERSISTENCE BLOCKED BY APPLE `AMSERRORDOMAIN 100 / PASSWORD REUSE NOT AVAILABLE`; STAGING DEPLOYMENT／PURCHASE COMPLETION／REVIEW REMAIN OPEN  
+-Last updated: 2026-08-24
++Last updated: 2026-09-10 (prospective-price note; Sandbox evidence remains dated August 24)
++
++## Prospective price and retained test objects
++
++The latest prospective validation price is US$49/year or US$6.99/month. Existing
++99/9.99 Xcode and App Store Sandbox products below retain their original amounts
++and recorded evidence. They are not current commercial recommendations. No new
++provider price, test purchase or deployment occurred in the economics reset.
++A new offer must use versioned mappings and actual localized provider prices.
++[Current economic contract](unit-economics.md).
+ 
+ ## Current Result
+ 
+--- before/docs/unit-economics.md
++++ after/docs/unit-economics.md
+@@ -1,399 +1,142 @@
+-# Rillora Pricing, Unit Economics And Fundability Contract
++# Rillora 定价与单位经济合同
+ 
+-Role: pricing economics, cost allocation, runway and fundraising/acquisition readiness authority  
+-Authority scope: price hypotheses, unit-economics definitions, scenario model, cost map, finance instrumentation and diligence gates  
+-Superseded by: later Owner decision recorded in `docs/decision-log.md`  
+-Do not use for: market validation, valuation, financing amount, accounting/tax/legal advice, payment activation or a claim of profitability  
+-Status: PROVISIONAL PAID-LAUNCH MODEL; PAYMENT CLOSED  
+-Last reviewed: 2026-09-10 (current-decision alignment only; dated legal, fee and financial research is not a fresh revalidation)
++Role: current pricing economics, cost allocation and decision authority  
++Status: REPRICING SELECTED; US$49 / US$6.99 PROSPECTIVE VALIDATION PRICE; SALES CLOSED  
++Last updated: 2026-09-10 (Asia/Hong_Kong)  
++Evidence: current official fee references plus assumptions; no actual revenue, WTP, vendor invoice or profit claim.
+ 
+-## Decision Summary
++## 当前决定
+ 
+-The current `US$6.99/month` or `US$59/year` should no longer be treated as the likely permanent list price. It remains useful as a **bounded founder / willingness-to-pay cell**. The primary paid-launch hypothesis for product, margin and fundraising planning is:
++Owner否定共同复核足以支撑US$99，要求重定价或做出实质价值。本轮选择**先重新定价**：永久Free与单一Family不变，下一轮Family验证价为**US$49/年、US$6.99/月**。这是Agent在最新任务和默认授权下选择的可逆假设，不是Owner或市场已验证的最优价格。年付整笔49美元，相当于月均4.08美元，比连续12个月月付低41.6%；不是首年促销，不隐藏续费或最低期限。
+ 
+-- `Rillora Family monthly`: **US$9.99/month**;
+-- `Rillora Family annual`: **US$99/year**;
+-- annual saving versus twelve monthly charges: **17.4%**;
+-- downside sensitivity: **US$8.99/month or US$89/year**.
++- 复核保留为辅助能力，不再作为足以支撑99的核心卖点。
++- 39／59美元仅作同一范围的价格敏感性，不增加第二个付费层或Founder促销。
++- 99退出当前目标价，作为有额外投入和需求门槛的扩展方案；不为保住99继续堆文字、卡片、提醒或联系人数量。
++- 49也不保证购买。若仍无法形成有用的真实付费，应重新审视任务／人群，不能无止境降价或扩功能。
+ 
+-This is not evidence that users will pay US$99. It is the safer paid-launch planning center because it preserves more room for Apple’s 30% first-year downside, high-trust support, security, compliance and acquisition cost. The exact price remains `PROVISIONAL`; permanent `Free`, a single launch `Family` entitlement and provider-neutral plan/version/price architecture remain the governing decisions in [`monetization.md`](monetization.md).
++当前可编辑模型：[Rillora_Pricing_Reset.xlsx](../output/finance/rillora-pricing-reset-20260910/Rillora_Pricing_Reset.xlsx)。`Inputs`的Scenario selector为唯一情景控制；年价、月价、费用、人数、人工时间均可调整。工作簿包括价格对照、短期月付、规模经营和99扩展投入，三套情景使用同一组公式重算，图表同步。
+ 
+-The companion editable model is [`Rillora_Unit_Economics.xlsx`](../output/finance/rillora-unit-economics-20260813/Rillora_Unit_Economics.xlsx), and the portable review surface is [`Rillora_Pricing_And_Fundability_Report.html`](../output/finance/rillora-unit-economics-20260813/Rillora_Pricing_And_Fundability_Report.html). Orange spreadsheet cells are hypotheses. Every current output must be replaced by actual cohort, vendor and jurisdiction data when available.
++旧[经济合同](unit-economics-history-20260910.md)和[2026-08-13工作簿](../output/finance/rillora-unit-economics-20260813/Rillora_Unit_Economics.xlsx)保持HISTORICAL：旧表仍以89美元为中心，使用较旧渠道模型，没有独立Free人群和短月付队列。不能把旧输出改成99标签当作重算。
+ 
+-September 10 commercial comparison adds lower-priced direct alternatives and
+-different billing/seat units; see [the source review](competitor-ux-audit.md).
+-The US$99 model center provides a cost scenario, not a demonstrated competitive
+-price or conversion advantage. Include those alternatives in real willingness-
+-to-pay research before a sellable offer. This document update does not recalculate
+-the old workbook, change catalog prices or validate any assumed fee or margin.
++## 价格依据与证据限制
+ 
+-## What Changed From The Previous Pricing Round
++MyLifeLedger当前官方价格49美元/年，并宣传语音辅助整理与首年第二账户；Everplans Premium为99.99美元/年，包含较广的整理、导入和指导；Trustworthy Silver显示月均10美元、按年付，并宣传自动整理。这些是公开报价和宣传，不证明其毛利或Rillora客户会买。[MyLifeLedger](https://www.mylifeledger.com/pricing)、[Everplans](https://help.everplans.com/hc/en-us/articles/215665778-How-much-does-Everplans-cost)、[Trustworthy](https://www.trustworthy.com/pricing)。
+ 
+-The previous round answered what should be free, what Rillora may ethically charge for, how many visible tiers to launch and how cancellation/refunds should behave. It compared public prices but did not fully model the business behind the price.
++49是测试起点：比旧99更符合当前自助产品范围，基准成本下有正贡献。39的获客余量更薄；59虽改善账面利润，却没有额外购买证据；99的高利润假设不能替代价值。省事程度、可信度与接收人实际结果仍须证明，“地图而非密码”、逐项权限和提醒不构成已验证独有优势。
+ 
+-This round adds five missing layers:
++本轮重新查阅Stripe HK／Billing、Apple订阅／SBP、Auth0、Apple开发者会员、SES及上述竞品官方页。没有真实付费家庭、续费、退款率、获客或支持时间数据。AWS Cost Explorer只读请求因`rillora-operator`会话过期失败，没有取得账单，也没有为此再次要求本人登录或扩大权限。旧staging每月30–40美元估算不能代表真实数据生产环境。
+ 
+-1. payment/store fees by billing period and channel;
+-2. refunds, direct support and infrastructure as cost of revenue;
+-3. variable contribution margin versus fully allocated reported gross margin;
+-4. retention, LTV, CAC capacity, payback and paid-household break-even;
+-5. cash runway, revenue recognition, compliance reserves and a diligence-ready finance/data contract.
++所以云、客服、留存、法务／安全、维护、转化与续费全是可调预算。Auth0超过25,000 MAU的每月500美元是**未报价准备金**，不代表能以此购买具体容量；高规模结果仅是对此预算的敏感性。接收人身份也占MAU。容量或高级身份能力实际触发费用前须取得供应商报价。
+ 
+-The two rounds are complementary. Competitor prices anchor the range; this model asks whether a price can finance a durable product.
++## 财务口径
+ 
+-## Evidence Boundary
++1. 净订阅收入：服务收入排除代收消费税，再扣退款／收入冲回；年付按覆盖期确认，不是首日现金全部成为收入。
++2. 贡献：净收入减支付／Billing／商店／出款费用、变动云成本、直接客服、Free和非活跃保留人群分摊。
++3. 贡献率：贡献除以净收入。尚未扣固定生产成本，不等于公司毛利率。
++4. 毛利：贡献合计减固定生产托管、直接运维和最低出款费用补足。
++5. 税前经营盈余：毛利再扣会计／法务／安全／保险、产品维护、一般管理与获客。
++6. 税后净利润：所得税率未知时显示`n.a.`，不把未知当零，也不把税前盈余称为净利润。
+ 
+-As of 2026-08-13, Rillora has no real:
++不同渠道的会计净额／总额列报按实际合同与会计政策确认；模型统一以排税及退款的服务收入作分母、渠道费作成本以便比较。银行实收、递延收入、会计利润和ARR分开。本轮不决定融资额、估值或并购事项。
+ 
+-- paid household;
+-- subscription renewal or cancellation cohort;
+-- refund or chargeback;
+-- attributed CAC;
+-- production support-time distribution;
+-- production cloud cost per paid household;
+-- tax filing, insurance, legal or security-assurance quote;
+-- recognized subscription revenue.
++## 基准假设
+ 
+-Therefore all margin, LTV, break-even and runway outputs are planning sensitivities. They are useful for choosing what to measure and detecting an economically impossible offer. They are not forecasts and must not be inserted into an investor deck as historical performance.
++| 参数 | 基准值 | 含义 |
++| --- | ---: | --- |
++| 年付／月付 | US$49／US$6.99 | 分别计算，不能假设月付都持续12个月 |
++| 渠道 | Web70%／Apple30% | 无实际分布；Apple首个付费年按30%佣金 |
++| 退款／收入冲回 | 3% | 预算，不是退款政策或实际发生率 |
++| 独立Free规划者 | 每付费户10人 | 不重复计已包含在付费户中的接收人 |
++| Free变动成本 | US$0.32/人年 | 云／邮件0.12，加平均0.5分钟支持×24美元/小时 |
++| 付费户云／邮件 | US$2.40/年 | owner与接收人；不含AI、大附件或固定托管 |
++| 付费户支持 | 新客10分钟＋全年10分钟 | 24美元/小时，共8美元；分母为全部付费户，不是每张工单 |
++| 非活跃保留 | 每付费户10份×US$0.05/年 | 可调留存人群，不是永久托管承诺 |
++| 固定生产 | 托管220/月＋运维4小时/月 | 运维24美元/小时，共3,792美元/年 |
++| 固定经营 | US$6,499/年 | 会员99、域名邮箱60、会计1,500、安全法务保险准备4,000、工具及研发staging840 |
++| 产品维护／管理 | US$8,928/年 | 月20小时×30美元开发＋月6小时×24美元管理；不重复算客服／生产运维 |
++| 新客CAC | US$15/户 | 包括可归属的本人、合作渠道和创意劳动 |
++| 年续费／月存续 | 50%／75% | 无实测；月付首12个月期望付3.87个月 |
+ 
+-## Price Architecture
++生产预算须替换成适合真实数据的BOM、恢复／安全要求及报价，不能为命中价格删掉必要控制。全职情形用36,000美元/年替换8,928美元兼职产品／管理预算，直接客服和运维角色仍计成本；不是Owner薪资事实或完整团队预算。
+ 
+-### Recommended commercial ladder
++## 每户49美元的成本
+ 
+-| Price cell | Monthly | Annual | Annual saving | Use |
+-| --- | ---: | ---: | ---: | --- |
+-| Founder / WTP | US$6.99 | US$59 | 29.7% | Bounded first-cohort transaction and trust test; not permanent list and not lifetime grandfathering |
+-| Downside sensitivity | US$8.99 | US$89 | 17.5% | Tests whether the paid-launch center needs to move down after real conversion data |
+-| Recommended paid-launch list | US$9.99 | US$99 | 17.4% | Primary hypothesis for product, margin and fundraising planning |
++| 每个新年付家庭 | US$/年 |
++| --- | ---: |
++| 标价 | 49.00 |
++| 退款／收入冲回 | -1.47 |
++| 净收入 | 47.53 |
++| 加权渠道费、美元出款及拒付费准备 | -6.71 |
++| 付费户变动云／邮件 | -2.40 |
++| 直接客服劳动 | -8.00 |
++| Free人群分摊 | -3.20 |
++| 非活跃保留分摊 | -0.50 |
++| **贡献，尚未扣固定成本和获客** | **26.72** |
++| **贡献率** | **56.2%** |
+ 
+-### Why US$99 is the planning center
++同一当前范围在39／59／99美元的基准贡献分别18.34／35.10／68.61美元，贡献率48.5%／61.3%／71.4%。99扩展版新增成本另算，不能用这里的71.4%代表扩展后的产品。
+ 
+-- It remains within the observed public annual range for broader digital-legacy/household products while sitting above lightweight organizers.
+-- A 17.4% annual saving rewards commitment without a 30% discount that materially compresses future acquisition capacity.
+-- Annual is the economic engine because it reduces fixed per-transaction fees, improves cash collection and fits a product maintained over years. Monthly remains available because trust and flexibility matter.
+-- It provides additional downside capacity for Apple’s standard 30% first-year commission, refunds and professional compliance costs; the existing spreadsheet remains a historical US$89 model until a new editable model is regenerated.
+-- It does not force a multi-tier launch: price and entitlement count are separate decisions.
++低服务成本情形（少支持和Free分摊、获批Apple15%）下，49贡献率76.7%。高服务成本情形（30个Free/付费户、50分钟付费支持、36美元时薪等）下，49贡献负28.82美元；连同范围99也仅贡献8.69美元、9.4%。不能靠加价掩盖成本失控。
+ 
+-### Founder-cell guardrails
++## 规模与经营利润
+ 
+-The founder price must be bounded before it is shown. Recommended test contract:
++以下是**年付家庭**年度敏感性，不是获客预测。稳定规模的50%续费和15美元补客CAC是假设。
+ 
+-- maximum cohort or closing date is written into the offer;
+-- benefit lasts only for the purchased term or another explicitly defined period;
+-- renewal price and notice rules are disclosed before purchase;
+-- no “lifetime,” “forever” or indefinite storage promise;
+-- no individualized hidden price discrimination;
+-- founder and full-price cohorts retain distinct `price_code` values so revenue, refunds, retention and support can be compared.
++| 年付家庭数 | 首年毛利率 | 未计获客税前盈余 | 稳定规模，含流失补客 | 另按全职工资预算 |
++| ---: | ---: | ---: | ---: | ---: |
++| 100 | -24.2% | -16,576 | -17,016 | -44,088 |
++| 500 | 40.3% | -5,860 | -8,059 | -35,131 |
++| 1,000 | 48.2% | 7,498 | 3,101 | -23,971 |
++| 2,500 | 48.0% | 41,574 | 30,580 | 3,508 |
+ 
+-Do not spend meaningful paid acquisition against the founder cell. Its modeled CAC ceiling is too low to support an uncertain consumer funnel.
++1,000个年付家庭净收入47,530美元，毛利22,925美元。若全部是新客，再扣15,000美元CAC后，税前亏损7,502美元。稳定规模计入免重复新客支持、Apple完整付费年后15%费率以及补流失成本，不能当作第一年实测。
+ 
+-## Unit-Economics Definitions
++按50户步长、跨成本阶梯求平衡点：基准约900个稳定年付家庭，含全职工资约2,350户。超过身份免费容量后仍用未报价准备金，因此不是精确经营承诺。上线准备金15,000美元加半年固定生产、经营与兼职劳动预算约24,600美元，另计获客及99开发；不是已付款额或全球所有市场预算。没有提取工资会少付现金，却不会消除劳动成本。
+ 
+-Rillora must use one metric contract across the ledger, dashboards, board updates and diligence exports.
++## 月付与退出
+ 
+-### Revenue and cash
++6.99月付只用一个月，基准贡献约**0.48美元**，扣15美元CAC后为**负14.52美元**，尚未摊固定费用。基准75%月存续时，首年期望付3.87个月，贡献14.41美元，扣CAC后负0.59美元。按80%新客年付、20%月付的可调混合情形，首12个月每个新付费者净收入43.28、贡献24.26、扣CAC后9.26美元；不能把所有新付费者都视为49美元完整年付家庭。
+ 
+-- **Gross billings**: customer price charged before refund, excluding collected indirect tax from revenue.
+-- **Cash collected**: settlement cash after timing, provider reserves and deductions; it is not recognized revenue.
+-- **Recognized subscription revenue**: service revenue allocated over the paid coverage period. An annual payment creates cash upfront and deferred revenue, not twelve months of day-one revenue.
+-- **Refunds/credits**: reduction of revenue or liability according to the approved accounting policy; retained processing fees remain cost.
+-- **Net subscription revenue**: gross recognized revenue less refunds/credits, excluding tax.
++- 一个月购买和到期取消属正常使用；不能藏月付、收退出费或锁基础导出制造留存。
++- 付费期结束才停止增量服务；Free一位实时接收人、其他已授权付费截止固定版本的设计继续适用。
++- 不能用高CAC获取短月付客户或附送无限人工整理；应降低用户自助输入、接受和退出成本。
++- 用户资料复制与合法导出无法彻底阻止；服务端防的是超期多人生效和新付费操作，不是用户拥有自己的资料。
++- 基准年付谨慎CAC预算约13.36美元。实际成本和续费未知，仍不启动规模投放，不把假设续费当确定LTV。
+ 
+-Merchant-of-Record principal/agent presentation and the treatment of fees, tax, refunds and deferred revenue must be confirmed from the signed contract and an accountant. The model does not decide GAAP/IFRS presentation.
++## 99方向需另交付的成果
+ 
+-### Cost of revenue
++以下是条件方案，不是新活动套餐或必做排期。只有结果有明确需求，才恢复99报价测试。
+ 
+-Direct software cost of revenue should include consistently allocated:
++| 用户成果 | 必需工作 | 验收方式 |
++| --- | --- | --- |
++| 更快完成有用的计划 | 辅助录入、去重、出处对照、本人确认，只保存允许定位信息 | 五项准确事务的耗时、修正与放弃率；内部目标比手工基线省至少一半时间 |
++| 重要变更被正确处理 | 经同意定时投递、失败重试、偏好和具体事项分工 | 实际送达、正确接收人、有限范围及变更完成；不是仅添加App内提醒 |
++| 家人找到办理下一步 | 按事项／角色的官方申请入口、材料清单、缺件与进度工作区 | 无Owner口头帮助，接收人3分钟内找到指定资料方向与下一步；不宣称授权成立或申请获批 |
+ 
+-- payment, billing, App Store and commerce-provider fees;
+-- production compute, database, storage, network, monitoring and backup serving customers;
+-- identity or security tools consumed by active customer accounts;
+-- directly attributable customer support and production operations;
+-- refund/chargeback cost that is not recovered;
+-- any direct third-party delivery or verification cost.
++不包含全球法律文件、死亡核验、银行自动同步、完整密码、未经本人确认的AI输出或包办遗产。基本官方指引与导出继续免费。收费必须来自实际省掉的整理和协作劳动，不能重新给安全收费。
+ 
+-R&D, general legal work, fundraising, broad product research and general corporate administration do not become cost of revenue merely because they are expensive. Conversely, direct support and production operations must not be relabeled as R&D to inflate gross margin.
++新增开发估计280–480小时×30美元/小时，即8,400–14,400美元；另加4,800美元/年固定维护／内容／投递运营，每户年变动成本约10.80美元（处理预算4.80＋额外15分钟支持6）。这些不是供应商报价、AI定价或工期承诺。99扩展版基准贡献57.81美元、60.2%，仍未摊新增固定与开发。
+ 
+-### Two gross-margin views
++若假设现有49客户都愿意升到99，约522次升级才能覆盖中点开发和首年新增固定成本；真实转化未知。65%软件贡献率目标下，此基准没有余量再附送人工管家。人工服务必须独立核算范围、工时、风险和价格。当前不为保住99直接投入整套扩展。
+ 
+-1. **Contribution margin** = `(net revenue - commerce fees - variable infrastructure - direct support) / net revenue` per paid household.
+-2. **Reported gross margin** = `(total contribution profit - fixed direct production COGS) / total net revenue` at an actual scale.
++## 落实顺序与停止条件
+ 
+-The first helps price and acquire a customer. The second is the defensible company metric. At small scale, reported gross margin can be negative even when the unit contribution is healthy.
++1. 本轮已重建和验证模型，商业合同改为49／6.99并退出99复核核心叙事。
++2. 唯一下一项工程：默认关闭的商业共享生命周期；一位Free实时接收人、准确付费截止固定版本、原子名额和替换、隐私收紧／撤销及跨端状态。同一工作项准备新前瞻价格记录，保留旧测试映射。
++3. 实際报价前完成真实接收身份、普通权益、取消以及真实数据／商户门。当前仅合成staging共享与复核预览，不能视为公开收费。
++4. 沿用MVP30–50人的操作验证；前三笔真实付款仅是初始信号。下一批至少50个完成基础任务且实际看过49报价的合格家庭，内部继续门暂定8笔付款并完成首次付费任务；记录窗口、全部分子分母与未购买原因，8/50不是统计显著性或行业标准。
++5. 记录均值与P90支持分钟、Free/付费比、月付实际时长、退款和渠道费。20分钟付费年支持、每Free年0.32美元必须由实际数据替换；若毛利只能靠漏计劳动与留存实现，暂停扩大。
++6. 49仍无购买或多数人只需要一次整理，重审任务和人群，不继续扩复核或买广告。只有省时整理／实际办理成果有独立需求、成本可承受并有人愿付99，才恢复扩展。
+ 
+-### LTV and CAC
++这些是缺失成果与证据，不是重新索取Owner确认。当前任务已默认授权。没有本轮新Stripe／StoreKit写入、API迁移、UI部署、真实消息或招募。旧99／9.99测试对象保留原值，不是当前报价；实际展示前必须使用新价格代码和真实渠道本地价格。
+ 
+-The initial spreadsheet uses a deliberately simple planning formula:
++## 当前费用来源
+ 
+-`simple contribution LTV = annual contribution profit / (1 - annual renewal rate)`
++- [Stripe HK](https://stripe.com/en-hk/pricing)：USD结算示例3.4%＋0.30美元，国际卡＋0.5%，必要FX＋2%；美元出款1%、每次最低5美元。基准采用USD出款，没有同时加FX；模型在规模层补最低费用，假设一年12次均匀出款。
++- [Stripe Billing](https://stripe.com/en-hk/billing/pricing)：按量0.7%。Tax Basic适用无代码注册交易0.5%，本表保守按全部Web计；不是税务注册或MoR证明。拒付另按每笔0.2%×22美元预算，22近似两笔HK$85费用，非精确FX。费用返还等待真实账单，暂保守保留原费用。
++- [Apple订阅](https://developer.apple.com/app-store/subscriptions/)和[SBP](https://developer.apple.com/app-store/small-business-program/)：首年30%，完整付费年后续费15%；获批SBP才从首期按15%，不能自行假设获批。
++- [Auth0](https://auth0.com/pricing)：Free25,000 MAU，包括活跃接收人；更高容量与高级功能另报价。
++- [Apple Developer](https://developer.apple.com/programs/enroll/)：USD99年会员参考，地区价格可能不同；模型保守将全额分摊给本项目。
++- [Amazon SES](https://aws.amazon.com/ses/pricing/)：按量基础发信0.10美元/千封，数据和可选项另算；基础发送价格不等于完整投递／监控／开发成本，也不证明当前已实现通知。
+ 
+-`CAC ceiling = simple contribution LTV / target LTV:CAC`
+-
+-This is not a board-ready LTV after real data exists. It omits cohort age, monthly/annual differences, expansion/contraction, survival shape, discount rate and changing support cost. Once payments open, use observed contribution by cohort and show the complete formula, source rows and maturity.
+-
+-CAC includes paid media, partner fees, agency/creative spend, attributable sales labor and other acquisition costs. Organic acquisition is not “zero CAC” if founder or team time is the channel.
+-
+-## Scenario Results
+-
+-Historical workbook snapshot: the row labels below preserve its former US$89
+-center and assumptions. They were not recalculated on September 10 and must not
+-be quoted as the economics of the current US$99 / provisional five-recipient
+-Family bundle. Rebuild from observed use/support before a real price decision.
+-
+-### Per paid household per year
+-
+-| Price / scenario | Gross billings | Net revenue | Contribution profit | Contribution margin | Simple contribution LTV | CAC ceiling at 3.0x | Payback on assumed CAC |
+-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+-| Founder US$59 — Base | US$65.22 | US$62.94 | US$45.17 | 71.8% | US$82.14 | US$27.38 | 10.6 months on US$40 CAC |
+-| Recommended US$89 — Downside | US$96.55 | US$89.79 | US$52.79 | 58.8% | US$75.41 | US$25.14 | 13.6 months on US$60 CAC |
+-| Recommended US$89 — Base | US$93.72 | US$90.44 | US$70.25 | 77.7% | US$127.74 | US$42.58 | 6.8 months on US$40 CAC |
+-| Recommended US$89 — Upside | US$91.83 | US$90.00 | US$76.51 | 85.0% | US$191.27 | US$63.76 | 3.9 months on US$25 CAC |
+-| Upper US$99 — Base | US$104.22 | US$100.57 | US$79.49 | 79.0% | US$144.54 | US$48.18 | 6.0 months on US$40 CAC |
+-
+-The annualized gross-billings figure can exceed the annual price because the model includes a monthly cohort paying twelve monthly charges. None of these figures is actual ARR.
+-
+-### What drives the downside
+-
+-The model's Downside case assumes 60% annual billing, 50% Web share, 7% refunds, US$6 variable infrastructure, US$20 direct support and only 30% annual renewal. The US$89 offer still has positive contribution, but a CAC ceiling near US$25 means paid consumer acquisition would be dangerous. The correct response would be improving ongoing value, trust, support efficiency and organic/partner distribution, not merely raising price.
+-
+-### Scale and reported gross margin
+-
+-At the Recommended/Base assumptions, using explicit fixed direct production COGS placeholders:
+-
+-| Paid households | Annualized gross billings | Annualized net revenue | Reported gross profit | Reported gross margin |
+-| ---: | ---: | ---: | ---: | ---: |
+-| 100 | US$9,372 | US$9,044 | -US$4,975 | -55.0% |
+-| 1,000 | US$93,720 | US$90,440 | US$46,255 | 51.1% |
+-| 10,000 | US$937,200 | US$904,398 | US$630,549 | 69.7% |
+-| 50,000 | US$4,686,000 | US$4,521,990 | US$3,332,743 | 73.7% |
+-
+-These are run-rate sensitivities, not a forecast. They demonstrate why a 77.7% per-household contribution margin must not be reported as company gross margin at 100 customers.
+-
+-### Operating break-even sensitivity
+-
+-Using annual company fixed-cost reference cases and Base contribution profit:
+-
+-| Operating model | Annual fixed cost | Paid households at US$89 | Paid households at US$59 |
+-| --- | ---: | ---: | ---: |
+-| Lean founder-led | US$150,000 | 2,135 | 3,320 |
+-| Small product team | US$500,000 | 7,117 | 11,068 |
+-| Scale team | US$1,000,000 | 14,234 | 22,136 |
+-
+-Price does not substitute for retention or distribution, but the founder price requires roughly 55% more paid households to cover the same fixed cost in this Base model.
+-
+-## Channel Economics
+-
+-### Public list-fee snapshot
+-
+-- Stripe Hong Kong's public card rate is 3.4% + HK$2.35 for a domestic card or 3.4% + US$0.30 when settled in USD, plus 0.5% for an international card and 2% when currency conversion is required. Billing pay-as-you-go is 0.7%; Tax Basic is 0.5% for no-code transactions where registered. Calculation tooling does not make direct Stripe a Merchant of Record or remove registration/filing work.
+-- Paddle publicly lists 5% + US$0.50 per Checkout transaction as Merchant of Record, including tax/compliance, billing, fraud/chargeback protection and payment-related buyer support. Its contract, provider authority and payout terms still require review.
+-- Stripe Managed Payments adds a listed 3.5% on top of Payments and assumes covered Merchant-of-Record responsibilities, but is currently public preview and lists China as a restricted customer country. Other recurring/product fees and eligibility must be confirmed before modeling it as an all-in rate.
+-- Apple's Small Business Program can reduce commission to 15% outside mainland China for eligible and accepted developers. Standard subscriptions otherwise yield 70% in the first paid year and 85% after one accumulated paid year, minus applicable taxes. Since 2026-03-15, mainland China iOS/iPadOS standard IAP commission is 25% and the qualifying Small Business／post-year rate is 12%. Neither reduced rate may be assumed until its qualification is proven.
+-
+-At the former US$89 model price, the historical spreadsheet produced the rows below. They are retained only for traceability and must not be presented as the current US$99 result:
+-
+-| Channel | Annual purchase cost | Twelve monthly purchases | Observation |
+-| --- | ---: | ---: | --- |
+-| Paddle MoR | US$4.95 | US$11.39 | Fixed fee makes monthly materially more expensive; includes broader MoR operations |
+-| Stripe HK direct + international + Billing + Tax Basic | US$4.84 | US$9.10 | Before FX, registrations, filings, dispute/billing support and accounting labor |
+-| Stripe Managed Payments + international card, minimum listed payment components | US$6.89 | US$11.58 | Before any separately applicable recurring/product fee; public-preview and eligibility risk |
+-| Apple at modeled 15% | US$13.35 | US$16.18 | Largest channel cost; assumption depends on eligibility and storefront |
+-
+-### Launch-planning recommendation
+-
+-Use Stripe HK direct as the primary Global Web planning route after a genuine Hong Kong condition-of-stay, business-registration/commencement, bank, tax/accounting and KYC chain is proven. Keep Paddle MoR as the scheduled operational fallback if those direct-merchant duties are not launch-ready at week 8. At US$99, the currently selected public components are approximately US$4.85 for `Stripe HK + international + Billing`, US$6.83 when 2% FX also applies, and US$5.45 for Paddle; the small list-fee difference is immaterial beside tax registrations/filings, refunds, disputes, support, accounting labor, reserves and provider-control terms.
+-
+-The US-storefront iOS route now uses the same Rillora Web + Stripe Checkout path as Global Web, subject to actual App Review. StoreKit remains the non-US/default fallback. At the US$99 annual planning price:
+-
+-| iOS purchase route | Selected public components | Estimated channel cost | Balance after listed cost | Excluded |
+-| --- | --- | ---: | ---: | --- |
+-| Apple SBP | 15% | US$14.85 | US$84.15 | applicable tax, refunds and operator tax |
+-| Apple standard first year | 30% | US$29.70 | US$69.30 | same |
+-| Stripe HK international card + Billing | 3.4% + 0.5% + 0.7% + US$0.30 | US$4.85 | US$94.15 | Stripe Tax, tax filing, disputes, refunds and support |
+-| Stripe route + Tax Basic | above + 0.5% | US$5.35 | US$93.65 | registrations, filing labor, disputes, refunds and support |
+-
+-Against Apple at 15%, the selected Stripe-plus-Tax components retain US$9.50 more per annual subscription. The external Web route therefore needs to preserve approximately `84.15 / 93.65 = 89.9%` of the IAP conversion rate to match the same listed-cost net revenue; it can lose about 10.1% relative conversion before the apparent fee advantage disappears. Against Apple at 30%, the equivalent threshold is about 74.0%. These are conversion break-even ratios, not forecasts. Tax operations, refund/chargeback labor, App Review risk and customer-support cost can move the threshold materially.
+-
+-Measure `purchase_route`, Apple storefront, plan view, checkout open, completed entitlement, abandonment, refund/dispute and renewal by cohort. The decision metric is `eligible purchase intents × conversion × net contribution`, not payment-fee percentage in isolation. Full classification and routing are in [`ios-external-payment-research.md`](ios-external-payment-research.md).
+-
+-### Cost treatment for pricing and break-even
+-
+-- commerce fees, refunds/chargebacks, variable infrastructure and direct support are per-household contribution costs;
+-- VAT/GST/sales tax is modeled by storefront and merchant role, not as revenue;
+-- legal, tax, security, insurance, filing, MLPS and minimum production capacity are annual fixed costs and drive the break-even household count;
+-- reserve 5% of gross billings for refund/chargeback/bad-debt planning until observed cohorts replace it;
+-- target at least 75% blended contribution margin at 1,000 paid households and at least 60% in the Apple 30% downside channel.
+-
+-Internal readiness reserves, not quotes: Global one-time US$15,000–40,000 plus US$5,000–15,000 recurring annually; mainland public paid readiness ¥150,000–400,000 one-time plus ¥50,000–150,000 recurring annually, with cloud usage separate. Obtain three scoped quotes before any purchase.
+-
+-The provider decision tree, Hong Kong/mainland boundaries and complete official source register are in [`global-mainland-commerce-plan.md`](global-mainland-commerce-plan.md). Unit economics must preserve separate rows for `stripe_hk_direct`, `stripe_managed_payments`, `paddle_mor` and `apple_storekit`; never collapse them into a generic payment-rate assumption after real data exists.
+-
+-This is not a provider decision. Before a contract:
+-
+-- model actual merchant country, customer countries, currencies, tax registrations and payout timing;
+-- review reserves, chargebacks, refunds, data export, termination and change-of-control terms;
+-- preserve a provider-neutral product catalog, entitlement ledger, invoice identity and transaction journal;
+-- confirm App Store purchase rules for each intended surface and storefront;
+-- prevent duplicate Web/App Store subscriptions from creating double charges or conflicting entitlements.
+-
+-Merchant of Record does not remove Rillora's privacy, security, consumer-protection, corporate-income-tax, accounting or product-safety obligations.
+-
+-## Compliance And Cost Map
+-
+-### Before first payment
+-
+-The true commercial gate is not code. It is a complete answer to:
+-
+-1. Which legal operator is the merchant/supplier? The current answer is the individual Owner; the exact legal name and tax residence remain private publication/onboarding inputs.
+-2. Which countries are actually open at launch?
+-3. Is Web commerce MoR or direct PSP?
+-4. Which consumer-withdrawal, renewal-reminder, refund and cancellation rules apply?
+-5. Which VAT/GST/sales-tax registrations or MoR records are required?
+-6. Does EU/UK targeting require a representative, data-protection fee, DPIA, DPA/SCC or local filing?
+-7. What insurance, incident response and customer support coverage is required for the actual service promises?
+-
+-The EU One Stop Shop can simplify qualifying cross-border B2C VAT reporting, but tax is generally tied to the customer's place of consumption. GDPR can require a non-EU controller targeting the EU to appoint a representative unless a narrow exception applies; likely-high-risk processing requires a DPIA before processing. Consumer renewal/cancellation requirements differ and change. Counsel must verify the selected markets immediately before launch.
+-
+-### Budget reserves, not vendor quotes
+-
+-Until entity and markets are chosen, the model keeps legal, privacy, tax, accounting, security assurance and insurance inside explicit cash-planning reserves instead of inventing per-customer precision. The 18-month sensitivity includes:
+-
+-| Scenario | Subtotal | 15% contingency | 18-month cash need | Average monthly burn | 24-month equivalent |
+-| --- | ---: | ---: | ---: | ---: | ---: |
+-| Validation / founder-led | US$234,000 | US$35,100 | US$269,100 | US$14,950 | US$358,800 |
+-| Core small team | US$784,000 | US$117,600 | US$901,600 | US$50,089 | US$1,202,133 |
+-| Accelerated | US$1,640,000 | US$246,000 | US$1,886,000 | US$104,778 | US$2,514,667 |
+-
+-These figures are not a recommended raise. They include cash-compensation assumptions, contractors, infrastructure, legal/privacy/tax/accounting, security review, insurance/admin, research/support/ops and marketing/partner tests. They exclude transaction-specific financing costs, closing delay and a required minimum cash balance. Replace each category with signed plans or quotes before external fundraising.
+-
+-## Human Service Must Be A Separate Business
+-
+-The prior US$99–149 setup/review idea is not economically supportable without observed labor. `care_addon` must have its own revenue, labor, supervision, insurance/QA, refunds and margin.
+-
+-Minimum price formula:
+-
+-`price >= (loaded labor + supervision + QA + direct insurance/risk + provider fees + expected redo/refund cost) / (1 - target services gross margin)`
+-
+-A preliminary **US$199–299** range is only a research placeholder for a tightly bounded 1.5–2 hour setup/review service. It may still be too low. Before activation:
+-
+-- run time-and-motion tests with synthetic cases;
+-- define included minutes, follow-up and exclusions;
+-- exclude legal advice, fiduciary judgment, death determination and real claim handling;
+-- set a services gross-margin target separate from software;
+-- obtain insurance and jurisdiction review;
+-- never hide human work inside Family ARR or software gross margin.
+-
+-## Fundraising Readiness
+-
+-### Milestones that are honest before annual renewal exists
+-
+-- 50–100 paid households at full list or a clearly bounded founder offer before material paid acquisition;
+-- price, channel, refund and support-time cohort records from the first payment;
+-- a defined 90-day plan-maintenance rate based on meaningful review/update behavior;
+-- refund planning target below 5%, investigated by reason rather than hidden;
+-- observed path to software gross margin above 75% using a documented COGS policy;
+-- CAC payback planning target below 18 months and LTV:CAC at least 3.0x;
+-- actual annual renewal only after an eligible cohort reaches renewal—never replaced by a fabricated proxy;
+-- no untracked dependence on one partner, channel or commerce provider.
+-
+-These are gates for disciplined learning, not universal investor requirements.
+-
+-### Required data model
+-
+-For every commercial metric, preserve:
+-
+-- numerator and denominator;
+-- cohort start and maturity;
+-- product, immutable plan version and price code;
+-- billing period, currency, country and storefront;
+-- gross billings, tax, refunds, fees, cash settlement and recognized revenue;
+-- acquisition source, partner and attributable spend;
+-- direct support minutes/category and allocated infrastructure cost;
+-- cancellation, refund, renewal and downgrade reasons;
+-- exact source record and report generation time.
+-
+-Never report ARR from Stripe/Paddle/App Store gross sales alone. Reconcile provider exports to the internal ledger, bank cash and accounting records.
+-
+-## Acquisition Readiness
+-
+-A buyer will discount Rillora for hidden liability even if topline growth looks good. Build the data room before it is requested:
+-
+-- clean entity records, cap table and approval authority;
+-- founder/employee/contractor IP assignment, domain/trademark ownership and OSS/SBOM inventory;
+-- billings-to-cash-to-recognized-revenue and deferred-revenue reconciliation;
+-- immutable subscription/entitlement history, refunds and cancellation evidence;
+-- privacy RoPA, DPA/SCC, DPIA where required, subprocessors, DSAR/deletion/export and incident logs;
+-- access reviews, threat model, backup/restore, key-management and deletion proof;
+-- disclosure policy/version history and audit events supporting the map-not-password boundary;
+-- vendor contracts, renewal/termination, data export and change-of-control obligations;
+-- separate software and human-services P&Ls;
+-- channel, partner and customer concentration analysis.
+-
+-The product's strongest strategic option value is not “blockchain” or storing more secrets. It is a defensible trust architecture, provider portability, clean metrics and low successor liability.
+-
+-## Experiment Sequence
+-
+-1. Finish provider-neutral entitlement, price-version and finance-event contracts while payment remains closed.
+-2. Select entity and a narrow set of launch countries; obtain tax/privacy/consumer-law and insurance quotes.
+-3. Use the current US$9.99/month or US$99/year provisional list in a truthful pricing screen, with any founder cell separately bounded and labeled; US$89 remains only the historical model/downside sensitivity. Do not add multiple visible paid tiers.
+-4. Instrument billings, tax, fees, refunds, deferred revenue, support minutes, price cohort and attribution before the first transaction.
+-5. Validate a small founder cohort operationally, then expose a full-list cohort before meaningful paid acquisition.
+-6. Review after 30 and 90 days; preserve annual renewal as an open question until twelve-month evidence exists.
+-7. Activate `Personal`, human service, professional distribution, trials or regional discounts only when a specific cohort problem justifies each one.
+-
+-## Stop / Reprice Signals
+-
+-Pause acquisition or rework the offer when any of the following appears:
+-
+-- contribution margin is positive only by excluding direct support or production security cost;
+-- refund/cancellation indicates users misunderstood what Family provides;
+-- monthly customers use Family briefly and abandon plan maintenance;
+-- CAC exceeds the cohort's modeled ceiling without a proven retention improvement;
+-- Apple/channel concentration makes net revenue dependent on one changing contract;
+-- a service promise requires unpriced human review or legal judgment;
+-- launch-market compliance cost is being ignored rather than quoted;
+-- the company starts using billings, cash, ARR and recognized revenue interchangeably.
+-
+-## Open Owner Gates
+-
+-The following require Owner approval before external commitment:
+-
+-- final list price and the exact founder-offer cohort/renewal promise;
+-- merchant legal operator details and initial launch countries;
+-- Paddle MoR versus Stripe HK direct versus eligible Stripe Managed Payments, and App Store purchase architecture;
+-- external legal, privacy, tax, accounting, security or insurance spend;
+-- payment activation, App Store product creation or a real recurring-charge test;
+-- fundraising amount, timing, dilution, valuation or investor outreach;
+-- activation and price of any human service.
+-
+-## Primary Sources
+-
+-Commerce and platforms:
+-
+-- [Stripe Hong Kong pricing](https://stripe.com/en-hk/pricing)
+-- [Stripe Hong Kong Billing pricing](https://stripe.com/en-hk/billing/pricing)
+-- [Stripe Managed Payments](https://docs.stripe.com/payments/managed-payments/how-it-works?locale=en-GB)
+-- [Paddle pricing](https://www.paddle.com/pricing)
+-- [Paddle terms](https://www.paddle.com/legal/terms)
+-- [Apple App Store Small Business Program](https://developer.apple.com/app-store/small-business-program/)
+-- [Apple auto-renewable subscriptions](https://developer.apple.com/app-store/subscriptions/)
+-- [Apple Developer Program membership](https://developer.apple.com/support/compare-memberships/)
+-- [Auth0 pricing](https://auth0.com/pricing)
+-- [AWS Fargate pricing](https://aws.amazon.com/fargate/pricing/)
+-- [AWS API Gateway pricing](https://aws.amazon.com/api-gateway/pricing/)
+-- [AWS RDS for PostgreSQL pricing](https://aws.amazon.com/rds/postgresql/pricing/)
+-
+-Tax, consumer and privacy:
+-
+-- [EU VAT One Stop Shop](https://vat-one-stop-shop.ec.europa.eu/one-stop-shop_en)
+-- [Directive (EU) 2023/2673 summary](https://eur-lex.europa.eu/legal-content/en/LSU/?uri=CELEX%3A32023L2673)
+-- [FTC Negative Option Rule](https://www.ftc.gov/legal-library/browse/rules/negative-option-rule)
+-- [GDPR consolidated text](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016R0679)
+-- [EDPB DPIA topic](https://www.edpb.europa.eu/topics/accountability-and-compliance-tools/data-protection-impact-assessment_en)
+-- [ICO data protection fee](https://ico.org.uk/for-organisations/data-protection-fee/data-protection-fee/)
+-
+-Directional benchmarks, not Rillora evidence:
+-
+-- [RevenueCat State of Subscription Apps 2026 — Utilities](https://www.revenuecat.com/state-of-subscription-apps-2026-utilities)
+-- [High Alpha 2025 SaaS Benchmarks](https://online.flippingbook.com/view/1018476450)
+-- [Benchmarkit / Baker Tilly 2025 B2B SaaS Benchmark Report](https://www.bakertilly.com/insights/b2b-saas-benchmark-report)
++当次公式、渲染、来源与文档收尾记录见[QA](../output/qa/rillora-pricing-reset-20260910/README.md)。
+--- /dev/null
++++ after/docs/unit-economics-history-20260910.md
+@@ -0,0 +1,403 @@
++# HISTORICAL — economics before the September 10 value reset
++
++Status: HISTORICAL. Recommendations, old approval wording, fee omissions and financial outputs below are superseded by [current unit economics](unit-economics.md). Archived 2026-09-10.
++
++# Rillora Pricing, Unit Economics And Fundability Contract
++
++Role: pricing economics, cost allocation, runway and fundraising/acquisition readiness authority  
++Authority scope: price hypotheses, unit-economics definitions, scenario model, cost map, finance instrumentation and diligence gates  
++Superseded by: later Owner decision recorded in `docs/decision-log.md`  
++Do not use for: market validation, valuation, financing amount, accounting/tax/legal advice, payment activation or a claim of profitability  
++Status: PROVISIONAL PAID-LAUNCH MODEL; PAYMENT CLOSED  
++Last reviewed: 2026-09-10 (current-decision alignment only; dated legal, fee and financial research is not a fresh revalidation)
++
++## Decision Summary
++
++The current `US$6.99/month` or `US$59/year` should no longer be treated as the likely permanent list price. It remains useful as a **bounded founder / willingness-to-pay cell**. The primary paid-launch hypothesis for product, margin and fundraising planning is:
++
++- `Rillora Family monthly`: **US$9.99/month**;
++- `Rillora Family annual`: **US$99/year**;
++- annual saving versus twelve monthly charges: **17.4%**;
++- downside sensitivity: **US$8.99/month or US$89/year**.
++
++This is not evidence that users will pay US$99. It is the safer paid-launch planning center because it preserves more room for Apple’s 30% first-year downside, high-trust support, security, compliance and acquisition cost. The exact price remains `PROVISIONAL`; permanent `Free`, a single launch `Family` entitlement and provider-neutral plan/version/price architecture remain the governing decisions in [`monetization.md`](monetization.md).
++
++The companion editable model is [`Rillora_Unit_Economics.xlsx`](../output/finance/rillora-unit-economics-20260813/Rillora_Unit_Economics.xlsx), and the portable review surface is [`Rillora_Pricing_And_Fundability_Report.html`](../output/finance/rillora-unit-economics-20260813/Rillora_Pricing_And_Fundability_Report.html). Orange spreadsheet cells are hypotheses. Every current output must be replaced by actual cohort, vendor and jurisdiction data when available.
++
++September 10 commercial comparison adds lower-priced direct alternatives and
++different billing/seat units; see [the source review](competitor-ux-audit.md).
++The US$99 model center provides a cost scenario, not a demonstrated competitive
++price or conversion advantage. Include those alternatives in real willingness-
++to-pay research before a sellable offer. This document update does not recalculate
++the old workbook, change catalog prices or validate any assumed fee or margin.
++
++## What Changed From The Previous Pricing Round
++
++The previous round answered what should be free, what Rillora may ethically charge for, how many visible tiers to launch and how cancellation/refunds should behave. It compared public prices but did not fully model the business behind the price.
++
++This round adds five missing layers:
++
++1. payment/store fees by billing period and channel;
++2. refunds, direct support and infrastructure as cost of revenue;
++3. variable contribution margin versus fully allocated reported gross margin;
++4. retention, LTV, CAC capacity, payback and paid-household break-even;
++5. cash runway, revenue recognition, compliance reserves and a diligence-ready finance/data contract.
++
++The two rounds are complementary. Competitor prices anchor the range; this model asks whether a price can finance a durable product.
++
++## Evidence Boundary
++
++As of 2026-08-13, Rillora has no real:
++
++- paid household;
++- subscription renewal or cancellation cohort;
++- refund or chargeback;
++- attributed CAC;
++- production support-time distribution;
++- production cloud cost per paid household;
++- tax filing, insurance, legal or security-assurance quote;
++- recognized subscription revenue.
++
++Therefore all margin, LTV, break-even and runway outputs are planning sensitivities. They are useful for choosing what to measure and detecting an economically impossible offer. They are not forecasts and must not be inserted into an investor deck as historical performance.
++
++## Price Architecture
++
++### Recommended commercial ladder
++
++| Price cell | Monthly | Annual | Annual saving | Use |
++| --- | ---: | ---: | ---: | --- |
++| Founder / WTP | US$6.99 | US$59 | 29.7% | Bounded first-cohort transaction and trust test; not permanent list and not lifetime grandfathering |
++| Downside sensitivity | US$8.99 | US$89 | 17.5% | Tests whether the paid-launch center needs to move down after real conversion data |
++| Recommended paid-launch list | US$9.99 | US$99 | 17.4% | Primary hypothesis for product, margin and fundraising planning |
++
++### Why US$99 is the planning center
++
++- It remains within the observed public annual range for broader digital-legacy/household products while sitting above lightweight organizers.
++- A 17.4% annual saving rewards commitment without a 30% discount that materially compresses future acquisition capacity.
++- Annual is the economic engine because it reduces fixed per-transaction fees, improves cash collection and fits a product maintained over years. Monthly remains available because trust and flexibility matter.
++- It provides additional downside capacity for Apple’s standard 30% first-year commission, refunds and professional compliance costs; the existing spreadsheet remains a historical US$89 model until a new editable model is regenerated.
++- It does not force a multi-tier launch: price and entitlement count are separate decisions.
++
++### Founder-cell guardrails
++
++The founder price must be bounded before it is shown. Recommended test contract:
++
++- maximum cohort or closing date is written into the offer;
++- benefit lasts only for the purchased term or another explicitly defined period;
++- renewal price and notice rules are disclosed before purchase;
++- no “lifetime,” “forever” or indefinite storage promise;
++- no individualized hidden price discrimination;
++- founder and full-price cohorts retain distinct `price_code` values so revenue, refunds, retention and support can be compared.
++
++Do not spend meaningful paid acquisition against the founder cell. Its modeled CAC ceiling is too low to support an uncertain consumer funnel.
++
++## Unit-Economics Definitions
++
++Rillora must use one metric contract across the ledger, dashboards, board updates and diligence exports.
++
++### Revenue and cash
++
++- **Gross billings**: customer price charged before refund, excluding collected indirect tax from revenue.
++- **Cash collected**: settlement cash after timing, provider reserves and deductions; it is not recognized revenue.
++- **Recognized subscription revenue**: service revenue allocated over the paid coverage period. An annual payment creates cash upfront and deferred revenue, not twelve months of day-one revenue.
++- **Refunds/credits**: reduction of revenue or liability according to the approved accounting policy; retained processing fees remain cost.
++- **Net subscription revenue**: gross recognized revenue less refunds/credits, excluding tax.
++
++Merchant-of-Record principal/agent presentation and the treatment of fees, tax, refunds and deferred revenue must be confirmed from the signed contract and an accountant. The model does not decide GAAP/IFRS presentation.
++
++### Cost of revenue
++
++Direct software cost of revenue should include consistently allocated:
++
++- payment, billing, App Store and commerce-provider fees;
++- production compute, database, storage, network, monitoring and backup serving customers;
++- identity or security tools consumed by active customer accounts;
++- directly attributable customer support and production operations;
++- refund/chargeback cost that is not recovered;
++- any direct third-party delivery or verification cost.
++
++R&D, general legal work, fundraising, broad product research and general corporate administration do not become cost of revenue merely because they are expensive. Conversely, direct support and production operations must not be relabeled as R&D to inflate gross margin.
++
++### Two gross-margin views
++
++1. **Contribution margin** = `(net revenue - commerce fees - variable infrastructure - direct support) / net revenue` per paid household.
++2. **Reported gross margin** = `(total contribution profit - fixed direct production COGS) / total net revenue` at an actual scale.
++
++The first helps price and acquire a customer. The second is the defensible company metric. At small scale, reported gross margin can be negative even when the unit contribution is healthy.
++
++### LTV and CAC
++
++The initial spreadsheet uses a deliberately simple planning formula:
++
++`simple contribution LTV = annual contribution profit / (1 - annual renewal rate)`
++
++`CAC ceiling = simple contribution LTV / target LTV:CAC`
++
++This is not a board-ready LTV after real data exists. It omits cohort age, monthly/annual differences, expansion/contraction, survival shape, discount rate and changing support cost. Once payments open, use observed contribution by cohort and show the complete formula, source rows and maturity.
++
++CAC includes paid media, partner fees, agency/creative spend, attributable sales labor and other acquisition costs. Organic acquisition is not “zero CAC” if founder or team time is the channel.
++
++## Scenario Results
++
++Historical workbook snapshot: the row labels below preserve its former US$89
++center and assumptions. They were not recalculated on September 10 and must not
++be quoted as the economics of the current US$99 / provisional five-recipient
++Family bundle. Rebuild from observed use/support before a real price decision.
++
++### Per paid household per year
++
++| Price / scenario | Gross billings | Net revenue | Contribution profit | Contribution margin | Simple contribution LTV | CAC ceiling at 3.0x | Payback on assumed CAC |
++| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
++| Founder US$59 — Base | US$65.22 | US$62.94 | US$45.17 | 71.8% | US$82.14 | US$27.38 | 10.6 months on US$40 CAC |
++| Recommended US$89 — Downside | US$96.55 | US$89.79 | US$52.79 | 58.8% | US$75.41 | US$25.14 | 13.6 months on US$60 CAC |
++| Recommended US$89 — Base | US$93.72 | US$90.44 | US$70.25 | 77.7% | US$127.74 | US$42.58 | 6.8 months on US$40 CAC |
++| Recommended US$89 — Upside | US$91.83 | US$90.00 | US$76.51 | 85.0% | US$191.27 | US$63.76 | 3.9 months on US$25 CAC |
++| Upper US$99 — Base | US$104.22 | US$100.57 | US$79.49 | 79.0% | US$144.54 | US$48.18 | 6.0 months on US$40 CAC |
++
++The annualized gross-billings figure can exceed the annual price because the model includes a monthly cohort paying twelve monthly charges. None of these figures is actual ARR.
++
++### What drives the downside
++
++The model's Downside case assumes 60% annual billing, 50% Web share, 7% refunds, US$6 variable infrastructure, US$20 direct support and only 30% annual renewal. The US$89 offer still has positive contribution, but a CAC ceiling near US$25 means paid consumer acquisition would be dangerous. The correct response would be improving ongoing value, trust, support efficiency and organic/partner distribution, not merely raising price.
++
++### Scale and reported gross margin
++
++At the Recommended/Base assumptions, using explicit fixed direct production COGS placeholders:
++
++| Paid households | Annualized gross billings | Annualized net revenue | Reported gross profit | Reported gross margin |
++| ---: | ---: | ---: | ---: | ---: |
++| 100 | US$9,372 | US$9,044 | -US$4,975 | -55.0% |
++| 1,000 | US$93,720 | US$90,440 | US$46,255 | 51.1% |
++| 10,000 | US$937,200 | US$904,398 | US$630,549 | 69.7% |
++| 50,000 | US$4,686,000 | US$4,521,990 | US$3,332,743 | 73.7% |
++
++These are run-rate sensitivities, not a forecast. They demonstrate why a 77.7% per-household contribution margin must not be reported as company gross margin at 100 customers.
++
++### Operating break-even sensitivity
++
++Using annual company fixed-cost reference cases and Base contribution profit:
++
++| Operating model | Annual fixed cost | Paid households at US$89 | Paid households at US$59 |
++| --- | ---: | ---: | ---: |
++| Lean founder-led | US$150,000 | 2,135 | 3,320 |
++| Small product team | US$500,000 | 7,117 | 11,068 |
++| Scale team | US$1,000,000 | 14,234 | 22,136 |
++
++Price does not substitute for retention or distribution, but the founder price requires roughly 55% more paid households to cover the same fixed cost in this Base model.
++
++## Channel Economics
++
++### Public list-fee snapshot
++
++- Stripe Hong Kong's public card rate is 3.4% + HK$2.35 for a domestic card or 3.4% + US$0.30 when settled in USD, plus 0.5% for an international card and 2% when currency conversion is required. Billing pay-as-you-go is 0.7%; Tax Basic is 0.5% for no-code transactions where registered. Calculation tooling does not make direct Stripe a Merchant of Record or remove registration/filing work.
++- Paddle publicly lists 5% + US$0.50 per Checkout transaction as Merchant of Record, including tax/compliance, billing, fraud/chargeback protection and payment-related buyer support. Its contract, provider authority and payout terms still require review.
++- Stripe Managed Payments adds a listed 3.5% on top of Payments and assumes covered Merchant-of-Record responsibilities, but is currently public preview and lists China as a restricted customer country. Other recurring/product fees and eligibility must be confirmed before modeling it as an all-in rate.
++- Apple's Small Business Program can reduce commission to 15% outside mainland China for eligible and accepted developers. Standard subscriptions otherwise yield 70% in the first paid year and 85% after one accumulated paid year, minus applicable taxes. Since 2026-03-15, mainland China iOS/iPadOS standard IAP commission is 25% and the qualifying Small Business／post-year rate is 12%. Neither reduced rate may be assumed until its qualification is proven.
++
++At the former US$89 model price, the historical spreadsheet produced the rows below. They are retained only for traceability and must not be presented as the current US$99 result:
++
++| Channel | Annual purchase cost | Twelve monthly purchases | Observation |
++| --- | ---: | ---: | --- |
++| Paddle MoR | US$4.95 | US$11.39 | Fixed fee makes monthly materially more expensive; includes broader MoR operations |
++| Stripe HK direct + international + Billing + Tax Basic | US$4.84 | US$9.10 | Before FX, registrations, filings, dispute/billing support and accounting labor |
++| Stripe Managed Payments + international card, minimum listed payment components | US$6.89 | US$11.58 | Before any separately applicable recurring/product fee; public-preview and eligibility risk |
++| Apple at modeled 15% | US$13.35 | US$16.18 | Largest channel cost; assumption depends on eligibility and storefront |
++
++### Launch-planning recommendation
++
++Use Stripe HK direct as the primary Global Web planning route after a genuine Hong Kong condition-of-stay, business-registration/commencement, bank, tax/accounting and KYC chain is proven. Keep Paddle MoR as the scheduled operational fallback if those direct-merchant duties are not launch-ready at week 8. At US$99, the currently selected public components are approximately US$4.85 for `Stripe HK + international + Billing`, US$6.83 when 2% FX also applies, and US$5.45 for Paddle; the small list-fee difference is immaterial beside tax registrations/filings, refunds, disputes, support, accounting labor, reserves and provider-control terms.
++
++The US-storefront iOS route now uses the same Rillora Web + Stripe Checkout path as Global Web, subject to actual App Review. StoreKit remains the non-US/default fallback. At the US$99 annual planning price:
++
++| iOS purchase route | Selected public components | Estimated channel cost | Balance after listed cost | Excluded |
++| --- | --- | ---: | ---: | --- |
++| Apple SBP | 15% | US$14.85 | US$84.15 | applicable tax, refunds and operator tax |
++| Apple standard first year | 30% | US$29.70 | US$69.30 | same |
++| Stripe HK international card + Billing | 3.4% + 0.5% + 0.7% + US$0.30 | US$4.85 | US$94.15 | Stripe Tax, tax filing, disputes, refunds and support |
++| Stripe route + Tax Basic | above + 0.5% | US$5.35 | US$93.65 | registrations, filing labor, disputes, refunds and support |
++
++Against Apple at 15%, the selected Stripe-plus-Tax components retain US$9.50 more per annual subscription. The external Web route therefore needs to preserve approximately `84.15 / 93.65 = 89.9%` of the IAP conversion rate to match the same listed-cost net revenue; it can lose about 10.1% relative conversion before the apparent fee advantage disappears. Against Apple at 30%, the equivalent threshold is about 74.0%. These are conversion break-even ratios, not forecasts. Tax operations, refund/chargeback labor, App Review risk and customer-support cost can move the threshold materially.
++
++Measure `purchase_route`, Apple storefront, plan view, checkout open, completed entitlement, abandonment, refund/dispute and renewal by cohort. The decision metric is `eligible purchase intents × conversion × net contribution`, not payment-fee percentage in isolation. Full classification and routing are in [`ios-external-payment-research.md`](ios-external-payment-research.md).
++
++### Cost treatment for pricing and break-even
++
++- commerce fees, refunds/chargebacks, variable infrastructure and direct support are per-household contribution costs;
++- VAT/GST/sales tax is modeled by storefront and merchant role, not as revenue;
++- legal, tax, security, insurance, filing, MLPS and minimum production capacity are annual fixed costs and drive the break-even household count;
++- reserve 5% of gross billings for refund/chargeback/bad-debt planning until observed cohorts replace it;
++- target at least 75% blended contribution margin at 1,000 paid households and at least 60% in the Apple 30% downside channel.
++
++Internal readiness reserves, not quotes: Global one-time US$15,000–40,000 plus US$5,000–15,000 recurring annually; mainland public paid readiness ¥150,000–400,000 one-time plus ¥50,000–150,000 recurring annually, with cloud usage separate. Obtain three scoped quotes before any purchase.
++
++The provider decision tree, Hong Kong/mainland boundaries and complete official source register are in [`global-mainland-commerce-plan.md`](global-mainland-commerce-plan.md). Unit economics must preserve separate rows for `stripe_hk_direct`, `stripe_managed_payments`, `paddle_mor` and `apple_storekit`; never collapse them into a generic payment-rate assumption after real data exists.
++
++This is not a provider decision. Before a contract:
++
++- model actual merchant country, customer countries, currencies, tax registrations and payout timing;
++- review reserves, chargebacks, refunds, data export, termination and change-of-control terms;
++- preserve a provider-neutral product catalog, entitlement ledger, invoice identity and transaction journal;
++- confirm App Store purchase rules for each intended surface and storefront;
++- prevent duplicate Web/App Store subscriptions from creating double charges or conflicting entitlements.
++
++Merchant of Record does not remove Rillora's privacy, security, consumer-protection, corporate-income-tax, accounting or product-safety obligations.
++
++## Compliance And Cost Map
++
++### Before first payment
++
++The true commercial gate is not code. It is a complete answer to:
++
++1. Which legal operator is the merchant/supplier? The current answer is the individual Owner; the exact legal name and tax residence remain private publication/onboarding inputs.
++2. Which countries are actually open at launch?
++3. Is Web commerce MoR or direct PSP?
++4. Which consumer-withdrawal, renewal-reminder, refund and cancellation rules apply?
++5. Which VAT/GST/sales-tax registrations or MoR records are required?
++6. Does EU/UK targeting require a representative, data-protection fee, DPIA, DPA/SCC or local filing?
++7. What insurance, incident response and customer support coverage is required for the actual service promises?
++
++The EU One Stop Shop can simplify qualifying cross-border B2C VAT reporting, but tax is generally tied to the customer's place of consumption. GDPR can require a non-EU controller targeting the EU to appoint a representative unless a narrow exception applies; likely-high-risk processing requires a DPIA before processing. Consumer renewal/cancellation requirements differ and change. Counsel must verify the selected markets immediately before launch.
++
++### Budget reserves, not vendor quotes
++
++Until entity and markets are chosen, the model keeps legal, privacy, tax, accounting, security assurance and insurance inside explicit cash-planning reserves instead of inventing per-customer precision. The 18-month sensitivity includes:
++
++| Scenario | Subtotal | 15% contingency | 18-month cash need | Average monthly burn | 24-month equivalent |
++| --- | ---: | ---: | ---: | ---: | ---: |
++| Validation / founder-led | US$234,000 | US$35,100 | US$269,100 | US$14,950 | US$358,800 |
++| Core small team | US$784,000 | US$117,600 | US$901,600 | US$50,089 | US$1,202,133 |
++| Accelerated | US$1,640,000 | US$246,000 | US$1,886,000 | US$104,778 | US$2,514,667 |
++
++These figures are not a recommended raise. They include cash-compensation assumptions, contractors, infrastructure, legal/privacy/tax/accounting, security review, insurance/admin, research/support/ops and marketing/partner tests. They exclude transaction-specific financing costs, closing delay and a required minimum cash balance. Replace each category with signed plans or quotes before external fundraising.
++
++## Human Service Must Be A Separate Business
++
++The prior US$99–149 setup/review idea is not economically supportable without observed labor. `care_addon` must have its own revenue, labor, supervision, insurance/QA, refunds and margin.
++
++Minimum price formula:
++
++`price >= (loaded labor + supervision + QA + direct insurance/risk + provider fees + expected redo/refund cost) / (1 - target services gross margin)`
++
++A preliminary **US$199–299** range is only a research placeholder for a tightly bounded 1.5–2 hour setup/review service. It may still be too low. Before activation:
++
++- run time-and-motion tests with synthetic cases;
++- define included minutes, follow-up and exclusions;
++- exclude legal advice, fiduciary judgment, death determination and real claim handling;
++- set a services gross-margin target separate from software;
++- obtain insurance and jurisdiction review;
++- never hide human work inside Family ARR or software gross margin.
++
++## Fundraising Readiness
++
++### Milestones that are honest before annual renewal exists
++
++- 50–100 paid households at full list or a clearly bounded founder offer before material paid acquisition;
++- price, channel, refund and support-time cohort records from the first payment;
++- a defined 90-day plan-maintenance rate based on meaningful review/update behavior;
++- refund planning target below 5%, investigated by reason rather than hidden;
++- observed path to software gross margin above 75% using a documented COGS policy;
++- CAC payback planning target below 18 months and LTV:CAC at least 3.0x;
++- actual annual renewal only after an eligible cohort reaches renewal—never replaced by a fabricated proxy;
++- no untracked dependence on one partner, channel or commerce provider.
++
++These are gates for disciplined learning, not universal investor requirements.
++
++### Required data model
++
++For every commercial metric, preserve:
++
++- numerator and denominator;
++- cohort start and maturity;
++- product, immutable plan version and price code;
++- billing period, currency, country and storefront;
++- gross billings, tax, refunds, fees, cash settlement and recognized revenue;
++- acquisition source, partner and attributable spend;
++- direct support minutes/category and allocated infrastructure cost;
++- cancellation, refund, renewal and downgrade reasons;
++- exact source record and report generation time.
++
++Never report ARR from Stripe/Paddle/App Store gross sales alone. Reconcile provider exports to the internal ledger, bank cash and accounting records.
++
++## Acquisition Readiness
++
++A buyer will discount Rillora for hidden liability even if topline growth looks good. Build the data room before it is requested:
++
++- clean entity records, cap table and approval authority;
++- founder/employee/contractor IP assignment, domain/trademark ownership and OSS/SBOM inventory;
++- billings-to-cash-to-recognized-revenue and deferred-revenue reconciliation;
++- immutable subscription/entitlement history, refunds and cancellation evidence;
++- privacy RoPA, DPA/SCC, DPIA where required, subprocessors, DSAR/deletion/export and incident logs;
++- access reviews, threat model, backup/restore, key-management and deletion proof;
++- disclosure policy/version history and audit events supporting the map-not-password boundary;
++- vendor contracts, renewal/termination, data export and change-of-control obligations;
++- separate software and human-services P&Ls;
++- channel, partner and customer concentration analysis.
++
++The product's strongest strategic option value is not “blockchain” or storing more secrets. It is a defensible trust architecture, provider portability, clean metrics and low successor liability.
++
++## Experiment Sequence
++
++1. Finish provider-neutral entitlement, price-version and finance-event contracts while payment remains closed.
++2. Select entity and a narrow set of launch countries; obtain tax/privacy/consumer-law and insurance quotes.
++3. Use the current US$9.99/month or US$99/year provisional list in a truthful pricing screen, with any founder cell separately bounded and labeled; US$89 remains only the historical model/downside sensitivity. Do not add multiple visible paid tiers.
++4. Instrument billings, tax, fees, refunds, deferred revenue, support minutes, price cohort and attribution before the first transaction.
++5. Validate a small founder cohort operationally, then expose a full-list cohort before meaningful paid acquisition.
++6. Review after 30 and 90 days; preserve annual renewal as an open question until twelve-month evidence exists.
++7. Activate `Personal`, human service, professional distribution, trials or regional discounts only when a specific cohort problem justifies each one.
++
++## Stop / Reprice Signals
++
++Pause acquisition or rework the offer when any of the following appears:
++
++- contribution margin is positive only by excluding direct support or production security cost;
++- refund/cancellation indicates users misunderstood what Family provides;
++- monthly customers use Family briefly and abandon plan maintenance;
++- CAC exceeds the cohort's modeled ceiling without a proven retention improvement;
++- Apple/channel concentration makes net revenue dependent on one changing contract;
++- a service promise requires unpriced human review or legal judgment;
++- launch-market compliance cost is being ignored rather than quoted;
++- the company starts using billings, cash, ARR and recognized revenue interchangeably.
++
++## Open Owner Gates
++
++The following require Owner approval before external commitment:
++
++- final list price and the exact founder-offer cohort/renewal promise;
++- merchant legal operator details and initial launch countries;
++- Paddle MoR versus Stripe HK direct versus eligible Stripe Managed Payments, and App Store purchase architecture;
++- external legal, privacy, tax, accounting, security or insurance spend;
++- payment activation, App Store product creation or a real recurring-charge test;
++- fundraising amount, timing, dilution, valuation or investor outreach;
++- activation and price of any human service.
++
++## Primary Sources
++
++Commerce and platforms:
++
++- [Stripe Hong Kong pricing](https://stripe.com/en-hk/pricing)
++- [Stripe Hong Kong Billing pricing](https://stripe.com/en-hk/billing/pricing)
++- [Stripe Managed Payments](https://docs.stripe.com/payments/managed-payments/how-it-works?locale=en-GB)
++- [Paddle pricing](https://www.paddle.com/pricing)
++- [Paddle terms](https://www.paddle.com/legal/terms)
++- [Apple App Store Small Business Program](https://developer.apple.com/app-store/small-business-program/)
++- [Apple auto-renewable subscriptions](https://developer.apple.com/app-store/subscriptions/)
++- [Apple Developer Program membership](https://developer.apple.com/support/compare-memberships/)
++- [Auth0 pricing](https://auth0.com/pricing)
++- [AWS Fargate pricing](https://aws.amazon.com/fargate/pricing/)
++- [AWS API Gateway pricing](https://aws.amazon.com/api-gateway/pricing/)
++- [AWS RDS for PostgreSQL pricing](https://aws.amazon.com/rds/postgresql/pricing/)
++
++Tax, consumer and privacy:
++
++- [EU VAT One Stop Shop](https://vat-one-stop-shop.ec.europa.eu/one-stop-shop_en)
++- [Directive (EU) 2023/2673 summary](https://eur-lex.europa.eu/legal-content/en/LSU/?uri=CELEX%3A32023L2673)
++- [FTC Negative Option Rule](https://www.ftc.gov/legal-library/browse/rules/negative-option-rule)
++- [GDPR consolidated text](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016R0679)
++- [EDPB DPIA topic](https://www.edpb.europa.eu/topics/accountability-and-compliance-tools/data-protection-impact-assessment_en)
++- [ICO data protection fee](https://ico.org.uk/for-organisations/data-protection-fee/data-protection-fee/)
++
++Directional benchmarks, not Rillora evidence:
++
++- [RevenueCat State of Subscription Apps 2026 — Utilities](https://www.revenuecat.com/state-of-subscription-apps-2026-utilities)
++- [High Alpha 2025 SaaS Benchmarks](https://online.flippingbook.com/view/1018476450)
++- [Benchmarkit / Baker Tilly 2025 B2B SaaS Benchmark Report](https://www.bakertilly.com/insights/b2b-saas-benchmark-report)

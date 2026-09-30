@@ -1,0 +1,215 @@
+{
+  "source": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonRDS/current/eu-central-1/index.json",
+  "publicationDate": "2026-09-22T19:31:30Z",
+  "products": {
+    "Q2VA4XH2YFYXPGX4": {
+      "sku": "Q2VA4XH2YFYXPGX4",
+      "productFamily": "Database Instance",
+      "attributes": {
+        "servicecode": "AmazonRDS",
+        "location": "EU (Frankfurt)",
+        "locationType": "AWS Region",
+        "instanceType": "db.t4g.micro",
+        "currentGeneration": "Yes",
+        "instanceFamily": "General purpose",
+        "vcpu": "2",
+        "physicalProcessor": "AWS Graviton2",
+        "memory": "1 GiB",
+        "storage": "EBS Only",
+        "networkPerformance": "Up to 5 Gigabit",
+        "processorArchitecture": "64-bit",
+        "engineCode": "14",
+        "databaseEngine": "PostgreSQL",
+        "licenseModel": "No license required",
+        "deploymentOption": "Single-AZ",
+        "usagetype": "EUC1-InstanceUsage:db.t4g.micro",
+        "operation": "CreateDBInstance:0014",
+        "instanceTypeFamily": "T4G",
+        "normalizationSizeFactor": "0.5",
+        "regionCode": "eu-central-1",
+        "servicename": "Amazon Relational Database Service",
+        "unbundledLicensing": "FALSE"
+      }
+    }
+  },
+  "terms": {
+    "OnDemand": {
+      "Q2VA4XH2YFYXPGX4": {
+        "Q2VA4XH2YFYXPGX4.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "Q2VA4XH2YFYXPGX4",
+          "effectiveDate": "2026-09-01T00:00:00Z",
+          "priceDimensions": {
+            "Q2VA4XH2YFYXPGX4.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "Q2VA4XH2YFYXPGX4.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$ 0.019 per RDS db.t4g.micro Single-AZ instance hour (or partial hour) running PostgreSQL",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "Hrs",
+              "pricePerUnit": {
+                "USD": "0.0190000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      }
+    },
+    "Reserved": {
+      "Q2VA4XH2YFYXPGX4": {
+        "Q2VA4XH2YFYXPGX4.6QCMYABX3D": {
+          "offerTermCode": "6QCMYABX3D",
+          "sku": "Q2VA4XH2YFYXPGX4",
+          "effectiveDate": "2026-09-22T19:32:48Z",
+          "priceDimensions": {
+            "Q2VA4XH2YFYXPGX4.6QCMYABX3D.6YS6EN2CT7": {
+              "rateCode": "Q2VA4XH2YFYXPGX4.6QCMYABX3D.6YS6EN2CT7",
+              "description": "PostgreSQL, db.t4g.micro reserved instance applied",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "Hrs",
+              "pricePerUnit": {
+                "USD": "0.0000000000"
+              },
+              "appliesTo": []
+            },
+            "Q2VA4XH2YFYXPGX4.6QCMYABX3D.2TG2D8R56U": {
+              "rateCode": "Q2VA4XH2YFYXPGX4.6QCMYABX3D.2TG2D8R56U",
+              "description": "Upfront Fee",
+              "unit": "Quantity",
+              "pricePerUnit": {
+                "USD": "104"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {
+            "LeaseContractLength": "1yr",
+            "PurchaseOption": "All Upfront",
+            "OfferingClass": "standard"
+          }
+        },
+        "Q2VA4XH2YFYXPGX4.HU7G6KETJZ": {
+          "offerTermCode": "HU7G6KETJZ",
+          "sku": "Q2VA4XH2YFYXPGX4",
+          "effectiveDate": "2026-09-22T19:32:48Z",
+          "priceDimensions": {
+            "Q2VA4XH2YFYXPGX4.HU7G6KETJZ.6YS6EN2CT7": {
+              "rateCode": "Q2VA4XH2YFYXPGX4.HU7G6KETJZ.6YS6EN2CT7",
+              "description": "PostgreSQL, db.t4g.micro reserved instance applied",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "Hrs",
+              "pricePerUnit": {
+                "USD": "0.0060000000"
+              },
+              "appliesTo": []
+            },
+            "Q2VA4XH2YFYXPGX4.HU7G6KETJZ.2TG2D8R56U": {
+              "rateCode": "Q2VA4XH2YFYXPGX4.HU7G6KETJZ.2TG2D8R56U",
+              "description": "Upfront Fee",
+              "unit": "Quantity",
+              "pricePerUnit": {
+                "USD": "53"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {
+            "LeaseContractLength": "1yr",
+            "PurchaseOption": "Partial Upfront",
+            "OfferingClass": "standard"
+          }
+        },
+        "Q2VA4XH2YFYXPGX4.38NPMPTW36": {
+          "offerTermCode": "38NPMPTW36",
+          "sku": "Q2VA4XH2YFYXPGX4",
+          "effectiveDate": "2026-09-22T19:32:48Z",
+          "priceDimensions": {
+            "Q2VA4XH2YFYXPGX4.38NPMPTW36.6YS6EN2CT7": {
+              "rateCode": "Q2VA4XH2YFYXPGX4.38NPMPTW36.6YS6EN2CT7",
+              "description": "PostgreSQL, db.t4g.micro reserved instance applied",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "Hrs",
+              "pricePerUnit": {
+                "USD": "0.0042000000"
+              },
+              "appliesTo": []
+            },
+            "Q2VA4XH2YFYXPGX4.38NPMPTW36.2TG2D8R56U": {
+              "rateCode": "Q2VA4XH2YFYXPGX4.38NPMPTW36.2TG2D8R56U",
+              "description": "Upfront Fee",
+              "unit": "Quantity",
+              "pricePerUnit": {
+                "USD": "110"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {
+            "LeaseContractLength": "3yr",
+            "PurchaseOption": "Partial Upfront",
+            "OfferingClass": "standard"
+          }
+        },
+        "Q2VA4XH2YFYXPGX4.4NA7Y494T4": {
+          "offerTermCode": "4NA7Y494T4",
+          "sku": "Q2VA4XH2YFYXPGX4",
+          "effectiveDate": "2026-09-22T19:32:48Z",
+          "priceDimensions": {
+            "Q2VA4XH2YFYXPGX4.4NA7Y494T4.6YS6EN2CT7": {
+              "rateCode": "Q2VA4XH2YFYXPGX4.4NA7Y494T4.6YS6EN2CT7",
+              "description": "PostgreSQL, db.t4g.micro reserved instance applied",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "Hrs",
+              "pricePerUnit": {
+                "USD": "0.0126000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {
+            "LeaseContractLength": "1yr",
+            "PurchaseOption": "No Upfront",
+            "OfferingClass": "standard"
+          }
+        },
+        "Q2VA4XH2YFYXPGX4.NQ3QZPMQV9": {
+          "offerTermCode": "NQ3QZPMQV9",
+          "sku": "Q2VA4XH2YFYXPGX4",
+          "effectiveDate": "2026-09-22T19:32:48Z",
+          "priceDimensions": {
+            "Q2VA4XH2YFYXPGX4.NQ3QZPMQV9.6YS6EN2CT7": {
+              "rateCode": "Q2VA4XH2YFYXPGX4.NQ3QZPMQV9.6YS6EN2CT7",
+              "description": "PostgreSQL, db.t4g.micro reserved instance applied",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "Hrs",
+              "pricePerUnit": {
+                "USD": "0.0000000000"
+              },
+              "appliesTo": []
+            },
+            "Q2VA4XH2YFYXPGX4.NQ3QZPMQV9.2TG2D8R56U": {
+              "rateCode": "Q2VA4XH2YFYXPGX4.NQ3QZPMQV9.2TG2D8R56U",
+              "description": "Upfront Fee",
+              "unit": "Quantity",
+              "pricePerUnit": {
+                "USD": "215"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {
+            "LeaseContractLength": "3yr",
+            "PurchaseOption": "All Upfront",
+            "OfferingClass": "standard"
+          }
+        }
+      }
+    }
+  }
+}

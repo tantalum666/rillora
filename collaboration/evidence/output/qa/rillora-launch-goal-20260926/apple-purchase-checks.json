@@ -1,0 +1,55 @@
+{
+  "checkedAt": "2026-09-27T14:42:19.603182+00:00",
+  "api": {
+    "tests": 300,
+    "files": 34,
+    "typecheck": "pass",
+    "build": "pass",
+    "log": "apple-purchase-api-tests.log"
+  },
+  "native": {
+    "tests": 171,
+    "passed": 170,
+    "failed": 0,
+    "skipped": 1,
+    "existingSkipRetained": true,
+    "source": "XcodeBuildMCP test_sim 2026-09-27T14:29:28",
+    "resultBundle": "/Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/result-bundles/test_sim_2026-09-27T14-29-28-138Z_pid42684_62e1372e.xcresult",
+    "resultBundleExists": true,
+    "skippedTest": "AppleStoreKitClientTests.testLoadsExactLocalFamilyCatalogAndReturnsVerifiedBoundPurchase",
+    "skippedReason": "Existing guard skips SKTestSession synchronization on installed iOS26.4/26.5 due known project-observed failure/hang. Source references a related26.6fix; verify current official runtime availability and actual result before closing this gate."
+  },
+  "visual": {
+    "app": "com.rillora.component-preview",
+    "simulator": "Rillora-Matrix-17-Pro / iOS26.5",
+    "normalAndAccessibility3": "Observed via CUA native screenshots/AX; prices/consent/policies/actions wrap without truncation, lower actions reachable through scroll",
+    "finalPreview": "Built, installed and launched 2026-09-27T13:54:17; updated benefit row visible; checkbox off disables Subscribe, local fixture toggle enables it, restored unchecked",
+    "scope": "Standalone local layout fixture; no API client, SDK purchase, customer identity or real charge;99.99is not an adopted Apple price"
+  },
+  "migrations": [
+    "0083_apple_purchase_preflight.sql",
+    "0084_purchase_consent_financial_retention.sql",
+    "0085_active_purchase_owner.sql"
+  ],
+  "covered": [
+    "exact Apple localized price vs reviewed quote",
+    "annual-only new purchase and historical monthly restoration",
+    "separate versioned purchase consent",
+    "shared cross-channel unfinished checkout and resumable subscription checks",
+    "prepared-only expiry; started/pending retained",
+    "owner/catalog/policy/feature readiness before sheet",
+    "receipt/consent retention with paid records",
+    "account-switch async safety and no finish before committed server acknowledgement",
+    "history failure does not claim no purchase",
+    "SDK unfinished replay and restored transaction handles",
+    "expected account UUID checked before order/consent creation",
+    "fresh confirmed Stripe termination updates the cross-channel renewal flag"
+  ],
+  "notProven": [
+    "Cloud migration or deployment",
+    "Apple exact commission/price selection",
+    "Real StoreKit purchase/signature/TestFlight/Review transaction",
+    "Public launch or real customer result"
+  ],
+  "initialHarnessFailure": "Rerun found a retained synthetic production SKU referencing the fixture price; cleanup now removes only that disposable fixture SKU first. No application permission was broadened."
+}

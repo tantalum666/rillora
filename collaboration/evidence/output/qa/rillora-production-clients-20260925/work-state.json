@@ -1,0 +1,64 @@
+{
+  "status": "client_checkpoint_verified_commerce_next",
+  "objective": "Closed production Web/iOS connection preparation, then payment/release work",
+  "aws": "Official same-device CLI callback completed despite Chrome blocked-page UI; fresh STS/account, SES and production stack reads succeeded.",
+  "planned": [
+    "Independent production Web delivery stack and exact same-origin API proxy",
+    "Production-only native configuration validation and isolated session storage",
+    "Correct closed-service client feedback without UI redesign",
+    "Private build/negative-path checks; keep customer routes closed"
+  ],
+  "knownProductionApi": "https://j749rhzub7.execute-api.eu-central-1.amazonaws.com",
+  "appDns": "No existing app CNAME at current guarded GoDaddy read",
+  "runtimeChanged": false,
+  "sourceChanged": true,
+  "updatedAt": "2026-09-25T14:18:05.544139+00:00",
+  "localChecks": {
+    "infra": 39,
+    "releaseGuards": 21,
+    "webFocused": 4,
+    "webClosedBuild": "passed",
+    "nativeReleaseBuild": "passed, actual Info.plist readback5/5; account accessNO",
+    "nativeTargetedTests": "4pass",
+    "actualSimulator": "Release candidate public home and closed-account message observed",
+    "web": "84full checks,4focused routing after JPEG change",
+    "monitor": "7pass"
+  },
+  "certificateArn": "arn:aws:acm:us-east-1:133857166372:certificate/399c5574-c36b-484e-a360-57dca11c6757",
+  "next": "Continue production commerce engineering; closed client checkpoint is committed and CI10success.",
+  "certificateStatus": "ISSUED",
+  "apiRuntimeChanged": false,
+  "clientDeliveryDeployed": true,
+  "clientUrl": "https://app.rillora.xyz",
+  "distributionId": "E2D4X9TBTJK942",
+  "distributionDomain": "d3mtr349015b96.cloudfront.net",
+  "bucket": "rilloraproductionweb-assets9a31d427-ltbwfplzu6ks",
+  "customerAccess": "closed",
+  "monitorTargets": 14,
+  "monitorCloudResult": {
+    "ok": true,
+    "failed": 0
+  },
+  "publicJpegCorrection": "The probed JPG belongs only to the complete product artifact. WWW has no reference to it; WWW403 for that absent object is not a broken referenced image. Both router allowlists and actual-asset build checks are hardened. Product JPG returns200.",
+  "stripePreparation": {
+    "cliVersion": "1.52.0 updated from1.50.10; existing config preserved",
+    "docs": "CLI401; MCP transport unavailable; bundled official Billing/Security/Payments/Tax references fully read",
+    "npmLatestObserved": "22.6.2",
+    "apiCodeChanged": false,
+    "liveKeysOrChargesCreated": false
+  },
+  "sourcePublication": {
+    "engineeringCommit": "a83eab147b3810d23a7712cadf2f1eb179189c0d",
+    "privateRepository": "https://github.com/tantalum666/rillora",
+    "pushed": true,
+    "ci": "success",
+    "reviewedFiles": 43,
+    "codeScope": "Closed client delivery, environment isolation, asset routing and monitoring; no API/billing source change",
+    "markdownFiles": 139,
+    "localLinks": 1338,
+    "sourceScan": "886files/23reviewed/0unknown",
+    "ciRunUrl": "https://github.com/tantalum666/rillora/actions/runs/36147534791",
+    "ciRun": 10,
+    "ciDuration": "1m32s"
+  }
+}

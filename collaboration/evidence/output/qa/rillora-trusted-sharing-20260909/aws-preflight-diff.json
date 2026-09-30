@@ -1,0 +1,34 @@
+[
+  {
+    "resource": "ApiServiceC9037CF0",
+    "type": "AWS::ECS::Service",
+    "change": "modified",
+    "properties": [
+      "DesiredCount"
+    ]
+  },
+  {
+    "resource": "ApiTaskDefinition51EA709E",
+    "type": "AWS::ECS::TaskDefinition",
+    "change": "modified",
+    "properties": [
+      "ContainerDefinitions"
+    ]
+  },
+  {
+    "resource": "MigrationTaskDefinitionE89B136E",
+    "type": "AWS::ECS::TaskDefinition",
+    "change": "modified",
+    "properties": [
+      "ContainerDefinitions"
+    ]
+  },
+  {
+    "resource": "WebDeploymentCustomResource08EEC474",
+    "type": "Custom::CDKBucketDeployment",
+    "change": "modified",
+    "properties": [
+      "SourceObjectKeys"
+    ]
+  }
+]

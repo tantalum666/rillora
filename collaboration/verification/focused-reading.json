@@ -1,0 +1,23 @@
+{
+  "continuationOf": "rillora-launch-resume-20260930",
+  "fullReadLedger": "output/qa/rillora-launch-resume-20260930/full-read-completion.json",
+  "fullReadOwnedFiles": 165,
+  "fullReadLines": 29003,
+  "currentTask": "Publish all Rillora work for Git and Dot collaboration",
+  "focusedReads": [
+    "AGENTS.md",
+    "docs/product.md current Owner decisions and authority map",
+    "docs/handoff.md",
+    "docs/source-control.md",
+    "docs/chat-resume-20260930.md",
+    "docs/decision-log.md current decisions",
+    "docs/journey/PROJECT_JOURNEY.md current results",
+    "README.md",
+    ".gitignore",
+    "apps/ios/.gitignore",
+    "tools/release/prepare_repository.py",
+    "tools/release/scan_repository.py",
+    ".github/workflows/verify.yml"
+  ],
+  "newWorkBoundary": "Git preservation only; no repeated product tests, deployment, login or provider applications"
+}

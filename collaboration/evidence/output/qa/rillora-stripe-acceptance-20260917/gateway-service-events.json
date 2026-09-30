@@ -1,0 +1,105 @@
+{
+    "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingApiTaskDefinitionF6347BA4:28",
+    "running": 1,
+    "pending": 0,
+    "deployments": [
+        {
+            "status": "PRIMARY",
+            "rollout": "COMPLETED",
+            "created": "2026-09-17T00:54:03.115000+08:00",
+            "updated": "2026-09-17T09:11:59.438000+08:00"
+        }
+    ],
+    "events": [
+        {
+            "id": "ebced6f2-716f-424d-9861-996dfe370ead",
+            "createdAt": "2026-09-17T09:11:59.467000+08:00",
+            "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+            "id": "9e525d4a-f064-4f19-9586-7363948b53cc",
+            "createdAt": "2026-09-17T09:10:43.404000+08:00",
+            "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has started 1 tasks: (task 18423f37c9864e6a9e3f83d74bb3b32a)."
+        },
+        {
+            "id": "a9b3fabf-108a-4fac-af55-ea7f5a0909e8",
+            "createdAt": "2026-09-17T09:04:59.146000+08:00",
+            "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+            "id": "ce10317b-5427-4326-811b-a735f636090f",
+            "createdAt": "2026-09-17T03:04:57.752000+08:00",
+            "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+            "id": "4fe3fa6a-806a-4cd6-856c-5c7a57320a40",
+            "createdAt": "2026-09-17T00:56:52.300000+08:00",
+            "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+            "id": "efffd749-9634-43f2-9028-20f3bd89d944",
+            "createdAt": "2026-09-17T00:56:52.299000+08:00",
+            "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) (deployment ecs-svc/7965586876810903274) deployment completed."
+        },
+        {
+            "id": "5bc9e8c3-4f93-4d54-99b0-cf12ab7d4fde",
+            "createdAt": "2026-09-17T00:55:24.370000+08:00",
+            "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has stopped 1 running tasks: (task f4c92b17e0ff48a7a35b2f3aa4527069)."
+        },
+        {
+            "id": "1a9b472e-ceca-47fd-849a-6ff7caf2dacc",
+            "createdAt": "2026-09-17T00:54:15.392000+08:00",
+            "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has started 1 tasks: (task ed5bc73edb844b5e9751383ae3c8d66e)."
+        },
+        {
+            "id": "9fd1a391-93e4-4f1a-8537-3778de412672",
+            "createdAt": "2026-09-17T00:46:11.492000+08:00",
+            "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+            "id": "a9a99025-9bad-4871-97a0-0871713c1193",
+            "createdAt": "2026-09-17T00:46:11.491000+08:00",
+            "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) (deployment ecs-svc/6093282009983997542) deployment completed."
+        },
+        {
+            "id": "fcc7da88-16bc-4b96-accc-98c7b388a8e0",
+            "createdAt": "2026-09-17T00:44:49.012000+08:00",
+            "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has stopped 1 running tasks: (task ff1a480dbae64d078cf916c7eaacb3e1)."
+        },
+        {
+            "id": "b2756d5e-301b-415a-9801-5a8372eecb12",
+            "createdAt": "2026-09-17T00:43:39.967000+08:00",
+            "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has started 1 tasks: (task f4c92b17e0ff48a7a35b2f3aa4527069)."
+        },
+        {
+            "id": "c01b3164-3ae0-4878-a64d-35a5fe48f8b6",
+            "createdAt": "2026-09-17T00:20:40.986000+08:00",
+            "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+            "id": "71a9a6ea-2aad-4e4a-a606-9f498dfa15cc",
+            "createdAt": "2026-09-17T00:20:40.985000+08:00",
+            "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) (deployment ecs-svc/1331976813700203342) deployment completed."
+        },
+        {
+            "id": "4e1f5aa1-e3fd-4dc4-a609-b40a553c2361",
+            "createdAt": "2026-09-17T00:18:51.914000+08:00",
+            "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has stopped 1 running tasks: (task 1c63088c49974d0db9f5b2ccc3327be0)."
+        },
+        {
+            "id": "c12da9a9-9da9-44d8-b8af-671e4fc36b10",
+            "createdAt": "2026-09-17T00:17:32.829000+08:00",
+            "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has started 1 tasks: (task ff1a480dbae64d078cf916c7eaacb3e1)."
+        },
+        {
+            "id": "e31421c5-726a-4a54-a2ce-826c1779a794",
+            "createdAt": "2026-09-16T23:45:19.658000+08:00",
+            "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has reached a steady state."
+        },
+        {
+            "id": "367e1ddc-8077-4034-874e-eb5dcdfa14a5",
+            "createdAt": "2026-09-16T23:44:11.019000+08:00",
+            "message": "(service RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n) has started 1 tasks: (task 1c63088c49974d0db9f5b2ccc3327be0)."
+        }
+    ]
+}

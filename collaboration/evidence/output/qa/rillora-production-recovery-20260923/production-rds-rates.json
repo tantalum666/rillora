@@ -1,0 +1,23 @@
+{
+  "queriedAt": "2026-09-23T11:59:26.618660+00:00",
+  "source": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonRDS/current/eu-central-1/index.json",
+  "offerPublicationDate": "2026-09-22T19:31:30Z",
+  "rates": [
+    {
+      "sku": "JN8MTUNBMV3GFTFY",
+      "family": "Database Storage",
+      "description": "$0.137 per GB-month of provisioned GP3 storage running PostgreSQL",
+      "unit": "GB-Mo",
+      "usd": "0.1370000000",
+      "effectiveDate": "2026-09-01T00:00:00Z"
+    },
+    {
+      "sku": "Q2VA4XH2YFYXPGX4",
+      "family": "Database Instance",
+      "description": "$ 0.019 per RDS db.t4g.micro Single-AZ instance hour (or partial hour) running PostgreSQL",
+      "unit": "Hrs",
+      "usd": "0.0190000000",
+      "effectiveDate": "2026-09-01T00:00:00Z"
+    }
+  ]
+}

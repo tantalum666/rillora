@@ -1,0 +1,21 @@
+{
+  "at": "2026-09-29T20:10:08.859820+00:00",
+  "services": [
+    {
+      "service": "deletion",
+      "tokenIssued": true,
+      "scope": "delete:users",
+      "expiresIn": 86400
+    },
+    {
+      "service": "verification",
+      "tokenIssued": true,
+      "scope": "read:users",
+      "expiresIn": 86400,
+      "exactSyntheticIdentityRead": true,
+      "verifiedEmail": false
+    }
+  ],
+  "deletionInvoked": false,
+  "mailSent": false
+}

@@ -1,0 +1,53 @@
+{
+  "checkedAt": "2026-09-24T01:08:04.723612+00:00",
+  "tenant": {
+    "friendly_name": "Rillora",
+    "support_email": null,
+    "environment_tag": null
+  },
+  "managementAccess": true,
+  "successfulRoute": "Owner email field, human verification/password/MFA, existing rillora-dev dashboard, CLI renewal",
+  "newTenantCreated": false,
+  "email": {
+    "configured": false,
+    "notFound": true,
+    "error": "\n=== rillora-dev.eu.auth0.com error\n\n \u25b8    404: API request failed: {\"statusCode\":404,\"error\":\"Not Found\",\"message\":\"There is not a configured email provider\",\"errorCode\":\"inexiste"
+  },
+  "applications": [
+    {
+      "tenant": "rillora-dev",
+      "name": "Default App",
+      "client_id": "1CgR7DCxMI6Swtym2j4AqEHNzkC578dC"
+    },
+    {
+      "tenant": "rillora-dev",
+      "name": "Rillora Web",
+      "client_id": "Sbf9lj69O25Cf7JZSZJuI09bTcRi2i0x",
+      "app_type": "regular_web"
+    },
+    {
+      "tenant": "rillora-dev",
+      "name": "Rillora iOS",
+      "client_id": "HDfmJrHaM08lDAgsygPm7b5OB1aaUhrZ",
+      "app_type": "native"
+    },
+    {
+      "tenant": "rillora-dev",
+      "name": "Rillora Account Deletion Service",
+      "client_id": "8PNcymHitFBsqlqfsHqvkp3fzQF8KXK7",
+      "app_type": "non_interactive"
+    },
+    {
+      "tenant": "rillora-dev",
+      "name": "Rillora current-session email verification",
+      "client_id": "85FI2tG6AtD7pvzxrxVOIeVqhDPhrANc",
+      "app_type": "non_interactive"
+    },
+    {
+      "tenant": "rillora-dev",
+      "name": "All Applications",
+      "client_id": "DOZmk4dvIIwcz1UPhed5co8QKmfMwXQi"
+    }
+  ],
+  "domain": "rillora-dev.eu.auth0.com"
+}

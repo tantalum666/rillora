@@ -1,0 +1,20 @@
+{
+    "Location": "https://cloudfront.amazonaws.com/2020-05-31/distribution/E3JEUEZ78Z8TMR/invalidation/I9Z20UBCYVF2C70P20NLFYEAO4",
+    "Invalidation": {
+        "Id": "I9Z20UBCYVF2C70P20NLFYEAO4",
+        "Status": "InProgress",
+        "CreateTime": "2026-09-29T11:44:08.520000+00:00",
+        "InvalidationBatch": {
+            "Paths": {
+                "Quantity": 4,
+                "Items": [
+                    "/account",
+                    "/index.html",
+                    "/",
+                    "/invite"
+                ]
+            },
+            "CallerReference": "cli-1790682247-678981"
+        }
+    }
+}

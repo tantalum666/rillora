@@ -1,0 +1,15 @@
+{
+  "env": "prod",
+  "expired": false,
+  "expires_at": "2026-09-24T02:21:59Z",
+  "provider": "godaddy",
+  "refreshable": true,
+  "scopes": [
+    "apps.app-registry:read",
+    "offline_access",
+    "domains.domain:read",
+    "domains.dns:update"
+  ],
+  "credentialStore": "macOS Keychain (explicit keyring mode)",
+  "version": "0.2.20"
+}

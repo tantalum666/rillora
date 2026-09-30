@@ -1,0 +1,24 @@
+23:01:54.259 xcodebuild[61357:17096906] Sim Rillora-Matrix-SE-3: Unregistering for sim device notification with token 3
+23:01:54.260 xcodebuild[61357:17096906] Calling -[SimDevice getenv:error:] for TESTMANAGERD_SIM_SOCK
+23:01:54.262 xcodebuild[61357:17096906] Sim Rillora-Matrix-SE-3 has testmanagerd socket at /private/var/tmp/com.apple.launchd.SjHBMNPNyc/com.apple.testmanagerd.unix-domain.socket
+23:01:54.262 xcodebuild[61357:17096906] Validating test connection socket path (/private/var/tmp/com.apple.launchd.SjHBMNPNyc/com.apple.testmanagerd.unix-domain.socket)
+23:01:54.262 xcodebuild[61357:17096906] Constructing transport for test connection socket
+23:01:54.262 xcodebuild[61357:17096906] Connected socket 29 to testmanagerd for Sim Rillora-Matrix-SE-3
+23:01:54.263 xcodebuild[61357:17096906] Initiating control session with IDE capabilities: <XCTCapabilities: 0x88861b3f0>: {
+}
+23:01:54.707 xcodebuild[61357:17096905] Got reply to control session initiation request (result:error): <XCTCapabilities: 0x888989eb0>: {
+    "authorize test session capability" = 1;
+    "automation mode" = 1;
+    "daemon container sandbox extension" = 1;
+    "initiate daemon control session capability" = 4;
+    "initiate test runner session capability" = 2;
+    "record UI interaction capability" = 2;
+    "recording events as source code" = 1;
+    "report crashes capability" = 1;
+    "request log archive capability" = 1;
+    "supports delayed attachment transfers" = 1;
+}: (null)
+23:01:54.707 xcodebuild[61357:17096906] Requesting crash report collection for process names: DTServiceHub, RilloraLayoutMatrixTests-Runner, Rillora, runningboardd, backboardd, FrontBoard, xctest, assertiond, RilloraLayoutMatrixTests, debugserver, testmanagerd, SpringBoard
+23:01:54.735 xcodebuild[61357:17096906] Got reply to crash report collection request (error: (null))
+23:02:07.535 xcodebuild[61357:17096900] Requesting authorization for pid 61599
+23:02:07.536 xcodebuild[61357:17096904] Got reply to authorization request for pid 61599 (result:error): 1: (null)

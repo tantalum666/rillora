@@ -1,0 +1,457 @@
+{
+  "startedAt": "2026-09-21T05:48:05.878932+00:00",
+  "finishedAt": "2026-09-21T05:48:15.088268+00:00",
+  "fixture": {
+    "users": 100,
+    "mattersPerUser": 20,
+    "totalMatters": 2000
+  },
+  "normalRequestsPerSecond": 5,
+  "shortPeakRequestsPerSecond": 10,
+  "maxWorkers": 10,
+  "summary": {
+    "requests": 60,
+    "successes": 60,
+    "p50Ms": 1363.3,
+    "p95Ms": 1532.2,
+    "maxMs": 1824.0,
+    "httpCodes": [
+      200
+    ]
+  },
+  "phases": {
+    "short_peak": {
+      "requests": 60,
+      "successes": 60,
+      "p50Ms": 1363.3,
+      "p95Ms": 1532.2,
+      "maxMs": 1824.0,
+      "httpCodes": [
+        200
+      ]
+    }
+  },
+  "boundary": "HTTPS private API reads through API Gateway with administrator-seeded disposable native sessions; no Auth0 login, browser rendering, payment, email or 100-simultaneous-user claim.",
+  "requests": [
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.417916,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.375751,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.326195,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.424878,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.548239,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.442508,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.44899,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.450894,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.450557,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.491901,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.537022,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.482198,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.432634,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.437261,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.521335,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.423781,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.420571,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.416925,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.317054,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.408836,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.356231,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.417433,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.35622,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.317534,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.314049,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.397689,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.397016,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.30533,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.301495,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.359741,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.82395,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.303537,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.391595,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.283406,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.30768,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.317968,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.327108,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.316003,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.532184,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.240192,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.299297,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.381373,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.415857,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.438074,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.299527,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.263111,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.245059,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.329175,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.293088,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.344892,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.241989,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.322368,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.388996,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.225962,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.309413,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.294837,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.333383,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.466215,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.375473,
+      "valid": true,
+      "phase": "short_peak"
+    },
+    {
+      "path": "/v1/overview",
+      "status": 200,
+      "seconds": 1.363259,
+      "valid": true,
+      "phase": "short_peak"
+    }
+  ]
+}

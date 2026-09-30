@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: first-use state fails safely to an available non-blocking overview
+ok 1 - first-use state fails safely to an available non-blocking overview
+  ---
+  duration_ms: 1.208375
+  type: 'test'
+  ...
+# Subtest: paused guides stay recoverable and completed guides stay dismissed
+ok 2 - paused guides stay recoverable and completed guides stay dismissed
+  ---
+  duration_ms: 0.058708
+  type: 'test'
+  ...
+# Subtest: resume copy follows saved progress without changing readiness
+ok 3 - resume copy follows saved progress without changing readiness
+  ---
+  duration_ms: 0.067834
+  type: 'test'
+  ...
+# Subtest: mobile keeps three primary destinations
+ok 4 - mobile keeps three primary destinations
+  ---
+  duration_ms: 1.334583
+  type: 'test'
+  ...
+# Subtest: desktop-only destinations remain reachable through More
+ok 5 - desktop-only destinations remain reachable through More
+  ---
+  duration_ms: 0.098167
+  type: 'test'
+  ...
+# Subtest: restores existing root destinations, filters and selected matter
+ok 6 - restores existing root destinations, filters and selected matter
+  ---
+  duration_ms: 1.926209
+  type: 'test'
+  ...
+# Subtest: unknown tasks and invalid identifiers cannot become arbitrary navigation
+ok 7 - unknown tasks and invalid identifiers cannot become arbitrary navigation
+  ---
+  duration_ms: 0.066792
+  type: 'test'
+  ...
+# Subtest: draft fields and invitation credentials stay out of history
+ok 8 - draft fields and invitation credentials stay out of history
+  ---
+  duration_ms: 0.123709
+  type: 'test'
+  ...
+# Subtest: account and authentication-return destinations remain intact
+ok 9 - account and authentication-return destinations remain intact
+  ---
+  duration_ms: 0.058375
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 101.439375

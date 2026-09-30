@@ -1,0 +1,134 @@
+
+> rillora-aws-infrastructure@0.1.0 test
+> vitest run --exclude 'dist/**'
+
+
+ RUN  v4.1.10 /Users/tantalum/Documents/电子遗嘱app/infra/aws
+
+ ❯ test/rillora-staging-stack.test.ts (10 tests | 1 failed) 4235ms
+     × keeps maintenance preview explicit without adding billing resources 1607ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/rillora-staging-stack.test.ts > Rillora staging infrastructure > keeps maintenance preview explicit without adding billing resources
+AssertionError: Template has 2 resources with type AWS::ECS::TaskDefinition, but none match as expected.
+The 2 closest matches:
+ApiTaskDefinition51EA709E :: {
+  "Properties": {
+    "ContainerDefinitions": [
+!!     Could not match arrayWith pattern 0. This is the closest match
+      {
+        "Environment": [
+          { ... },
+          { ... },
+          { ... },
+          { ... },
+          { ... },
+          { ... },
+          { ... },
+          { ... },
+          { ... },
+          { ... },
+          { ... },
+          { ... },
+          { ... },
+          { ... },
+          { ... },
+          { ... },
+          { ... },
+          { ... },
+          { ... },
+          { ... },
+          { ... },
+          { ... },
+!!         arrayWith pattern 0 matched here
+          {
+            "Name": "ALLOW_FAMILY_MAINTENANCE_PREVIEW",
+            "Value": "true"
+          },
+!!         Could not match arrayWith pattern 1. This is the closest match
+          {
+!!           Expected ALLOW_DEV_AUTH but received ALLOW_APPLE_SANDBOX_INTEGRATION
+            "Name": "ALLOW_APPLE_SANDBOX_INTEGRATION",
+            "Value": "false"
+          }
+        ],
+        "Essential": true,
+        "HealthCheck": { ... },
+        "Image": { "Fn::Sub": "111111111111.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-111111111111-eu-central-1:4ccad714a7f4a80b2ec81173497c40e335ce98b9cafe09d3752e91ea194e8c7d" },
+        "LogConfiguration": { ... },
+        "Name": "Api",
+        "PortMappings": [ { ... } ],
+        "Secrets": [ ... ]
+      }
+    ],
+    "Cpu": "256",
+    "ExecutionRoleArn": { "Fn::GetAtt": [ "ApiTaskDefinitionExecutionRoleA3303016", "Arn" ] },
+    "Family": "TestStackApiTaskDefinition5052A9A4",
+    "Memory": "512",
+    "NetworkMode": "awsvpc",
+    "RequiresCompatibilities": [ "FARGATE" ],
+    "RuntimePlatform": { ... },
+    "TaskRoleArn": { "Fn::GetAtt": [ "ApiTaskDefinitionTaskRole7EE87BD7", "Arn" ] }
+  },
+  "Type": "AWS::ECS::TaskDefinition"
+}
+MigrationTaskDefinitionE89B136E :: {
+  "Properties": {
+    "ContainerDefinitions": [
+!!     Could not match arrayWith pattern 0. This is the closest match
+      {
+        "Command": [ ... ],
+        "Environment": [
+!!         Could not match arrayWith pattern 0. This is the closest match
+          {
+!!           Expected ALLOW_FAMILY_MAINTENANCE_PREVIEW but received NODE_ENV
+            "Name": "NODE_ENV",
+!!           Expected true but received production
+            "Value": "production"
+          },
+          { ... },
+          { ... },
+          { ... },
+          { ... },
+          { ... },
+          { ... },
+          { ... },
+          { ... },
+          { ... }
+        ],
+        "Essential": true,
+        "Image": { "Fn::Sub": "111111111111.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-111111111111-eu-central-1:4ccad714a7f4a80b2ec81173497c40e335ce98b9cafe09d3752e91ea194e8c7d" },
+        "LogConfiguration": { ... },
+        "Name": "Migration",
+        "Secrets": [ ... ]
+      }
+    ],
+    "Cpu": "256",
+    "ExecutionRoleArn": { "Fn::GetAtt": [ "MigrationTaskDefinitionExecutionRoleB0331BA1", "Arn" ] },
+    "Family": "TestStackMigrationTaskDefinitionD922E0B2",
+    "Memory": "512",
+    "NetworkMode": "awsvpc",
+    "RequiresCompatibilities": [ "FARGATE" ],
+    "RuntimePlatform": { ... },
+    "TaskRoleArn": { "Fn::GetAtt": [ "MigrationTaskDefinitionTaskRole01342380", "Arn" ] }
+  },
+  "Type": "AWS::ECS::TaskDefinition"
+}
+ ❯ Template.hasResourceProperties node_modules/aws-cdk-lib/assertions/lib/template.js:1:4243
+ ❯ test/rillora-staging-stack.test.ts:26:14
+     24|   it("keeps maintenance preview explicit without adding billing resour…
+     25|     const template = templateFor(1, false, false, true);
+     26|     template.hasResourceProperties("AWS::ECS::TaskDefinition", {
+       |              ^
+     27|       ContainerDefinitions: Match.arrayWith([Match.objectLike({
+     28|         Environment: Match.arrayWith([
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 9 passed (10)
+   Start at  14:04:06
+   Duration  4.86s (transform 49ms, setup 0ms, import 503ms, tests 4.24s, environment 0ms)
+

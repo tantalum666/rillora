@@ -1,0 +1,20 @@
+start: Building RilloraPublicWeb Template
+success: Built RilloraPublicWeb Template
+start: Publishing RilloraPublicWeb Template (133857166372-eu-central-1-7fdf4c7b)
+success: Published RilloraPublicWeb Template (133857166372-eu-central-1-7fdf4c7b)
+Hold on while we create a read-only change set to get a diff with accurate replacement information (use --method=template to use a less accurate but faster template-only diff)
+
+Stack RilloraPublicWeb
+Resources
+[~] Custom::CDKBucketDeployment PublicDeployment/CustomResource PublicDeploymentCustomResource947B276F may be replaced
+ └─ [~] SourceObjectKeys (may cause replacement)
+     └─ @@ -1,3 +1,3 @@
+        [ ] [
+        [-]   "dc3110deedf1f46f78b6dc139fa04dbd852fdac144537b1ee9d16f50cd3a5cc8.zip"
+        [+]   "21fbd704502244ab7981ee2f9dda495b54cce191e4920f8ac38ca9a88ca9ddab.zip"
+        [ ] ]
+
+
+
+✨  Number of stacks with differences: 1
+

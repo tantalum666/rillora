@@ -1,0 +1,518 @@
+{
+  "updatedAt": "2026-09-28T14:40:57.985197+00:00",
+  "goal": "active final launch readiness goal; no token budget",
+  "ownerTask": "User explicitly requested long task, self decomposition and maintainable implementation plus careful review",
+  "phase": "Owner website/logo/system-theme/legal-placement feedback completed; final launch goal remains active",
+  "readingManifest": "full-read.json",
+  "reader": "Full read complete; after compaction use focused recovery only",
+  "engineeringChangesThisGoal": true,
+  "AWS": {
+    "CLI": "aws login --profile rillora-operator --region eu-central-1 --remote",
+    "ptySession": null,
+    "browserName": "Chrome",
+    "browserId": "2",
+    "tabId": "1082157368",
+    "userReportedLoginComplete": true,
+    "cliCompletionVerified": true,
+    "blocker": null,
+    "pendingUserQuestion": null,
+    "nativeHandle": "rilloraChromeLoginApp",
+    "nativePath": "/Applications/Google Chrome.app",
+    "verifiedPrincipal": "arn:aws:iam::133857166372:user/rillora/rillora-operator",
+    "evidence": "aws-identity-readback.json",
+    "secretHandoff": "Standard Node RSA-OAEP/AES-GCM kept the one-time code out of tool plaintext; mode0600 intermediate removed after CLI completion. No private encryption key was printed.",
+    "toolRecovery": "Old Chrome tab debugger was unattached, not proven extension disconnect. Fresh tab on same selected browser restored documented page control; reuse active AWS session with remote CLI to avoid loopback issue.",
+    "helperGuardCorrection": "AWS login succeeded; first guard incorrectly expected an IAM user without a path. Fresh STS exact account plus /rillora/rillora-operator matched; no cloud write before identity proof.",
+    "completedSessions": [
+      57296,
+      49980
+    ],
+    "cleanup": {
+      "oneTimeCredentialFileRemoved": true,
+      "freshConfirmationTabClosed": true,
+      "supportReadTabClosed": true,
+      "oldConfirmationTabCloseBlockedByStaleDebugger": true
+    },
+    "browserReauthenticatedAt": "2026-09-28T04:47:35.170191+00:00",
+    "browserPrincipalVerified": true,
+    "CLIcurrentState": "refreshed through same-device flow onSeptember28; exact principal verified"
+  },
+  "sourceBaseline": "9b07a532dfeffd15fed8f18490ba9168beb39a5d",
+  "planDraft": [
+    "Finish refreshed full MD read and fix current-vs-history authority drift",
+    "Map existing architecture and split thin routes/domain/provider/worker responsibilities before adding production Apple logic",
+    "Complete Apple versioned catalog/snapshot/intake/notifications/retry and native purchase/restore with historical receipt support",
+    "Complete durable automated retention/recovery-commerce reconciliation/operational alarms and final production policy",
+    "Finish identity/cutover and SES reconsideration first, with Resend only as fallback after actual SES rejection; complete real delivery and account return/recovery acceptance, preserving explicit vendor/cost/legal gates",
+    "Build signed distribution/TestFlight and current review assets; run final independent maintenance/security and cross-end journey checks",
+    "Mark goal complete only when required readiness evidence is actually complete; maintain explicit Owner-deferred and provider gates"
+  ],
+  "constraints": [
+    "Web88.99/year only; no new monthly sales",
+    "Apple channel-specific price separate;99.99/119.99conditional notapproved",
+    "Keep existingUI/LegacyImprint03",
+    "Do not touchFanPass",
+    "FullE2EEdeferred; no bank-grade or certificationclaim",
+    "Business and physical devices previouslyOwner-deferred; new broad goal does not fabricate completed evidence",
+    "Do not spawn subagents absent explicit user/applicable skill instruction"
+  ],
+  "findingsDuringRead": [
+    "Several current-looking historic headings in backend/security/quality/README conflict with newer completed checkpoints; normalize authority after read, preserve original evidence.",
+    "README still has active88.80 and oldAPI37 whereas currentWeb88.99/API38/schema75."
+  ],
+  "next": "Resume safe final-App Apple review/TestFlight validation with enrolled accounts; resolve actual channel price/fee and review binding. Continue identity/mail and recovery gates without reopening prior approvals.",
+  "emailBlocker": {
+    "status": "reconsideration_submitted_case_reopened_still_sandbox",
+    "evidence": "ses-reconsideration-submitted-20260928.json",
+    "next": "Await provider reply; do not duplicate submission. Keep Auth0; Resend fallback only."
+  },
+  "workPackageDraft": "work-packages.md",
+  "mailGmailEvidence": "ses-gmail-readback.json",
+  "fullReadComplete": true,
+  "docsUpdated": [
+    "README.md",
+    "config/release-gates.json",
+    "docs/backend.md",
+    "docs/decision-log.md",
+    "docs/family-maintenance.md",
+    "docs/handoff-history-20260926-before-launch-goal.md",
+    "docs/handoff.md",
+    "docs/journey/PROJECT_JOURNEY.md",
+    "docs/monetization.md",
+    "docs/mvp.md",
+    "docs/product.md",
+    "docs/production-apple-20260926.md",
+    "docs/production-identity-mail-20260924.md",
+    "docs/release-readiness.md",
+    "docs/storekit.md",
+    "infra/auth0/README.md",
+    "infra/aws/README.md"
+  ],
+  "checks": {
+    "typecheck": "pass",
+    "focusedAppleTests": 26,
+    "apiTests": 258,
+    "apiTestFiles": 30,
+    "build": "pass",
+    "logs": [
+      "api-tests.log",
+      "api-build.log"
+    ],
+    "notProven": [
+      "real Apple signature/purchase/OCSP",
+      "cloud deployment",
+      "production identity or email",
+      "live billing"
+    ]
+  },
+  "sourceCheckpoint": {
+    "checkedAt": "2026-09-26T11:01:13.432352+00:00",
+    "sourceCommit": "4ed6a8295d6674473e1a673a0ae7f8ddb2994221",
+    "runId": 36237208779,
+    "runNumber": 15,
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/tantalum666/rillora/actions/runs/36237208779",
+    "source": "GitHub connector API; existing scoped repository access; no permission change",
+    "jobs": [
+      {
+        "name": "source",
+        "conclusion": "success"
+      },
+      {
+        "name": "api",
+        "conclusion": "success"
+      },
+      {
+        "name": "web-and-infrastructure",
+        "conclusion": "success"
+      }
+    ],
+    "boundary": "CI verifies exact source; no AWS/provider/deployment/native/customer result."
+  },
+  "mailAlternativeResearch": "mail-alternative-research.json",
+  "sourceScan": {
+    "files": 920,
+    "reviewedNonSecrets": 25,
+    "unreviewed": 0,
+    "passed": true
+  },
+  "documentationChecks": {
+    "files": 148,
+    "localTargets": 1459,
+    "missing": 0,
+    "evidence": "ses-cognito-documentation-checks-20260928.json"
+  },
+  "scopeBoundaries": [
+    "No cloud deployment this goal slice",
+    "Resend signup request withdrawn on September28; no provider/account/key/DNS change",
+    "No adopted Apple price or actual Apple purchase",
+    "No new native build; purchase quote/preflight/consent and native glue remain",
+    "One authorized AWS support reconsideration submitted; no customer email/provider activation"
+  ],
+  "documentationReceipt": {
+    "commit": "e1978a46c9ecde70f3f268743b9a5972bea0a82c",
+    "remoteMatches": true,
+    "workingTreeClean": false,
+    "ci": "Documentation/configuration-registry only, skip CI; no new application checks. CI18 remains exact prior engineering evidence.",
+    "evidence": "ses-cognito-documentation-checks-20260928.json",
+    "sourceScan": "ses-cognito-source-scan-20260928.json"
+  },
+  "previousGoalTurnClassification": "progress: ordinary native purchase/restore, exact price/consent/order preparation, cross-channel protection, current-owner guards, 300API and170native passes, actual Preview/policy-page inspection",
+  "localUnpublishedMigrations": [
+    "0076_provider_grace_access_clock.sql",
+    "0077_apple_versioned_prices_and_receipts.sql",
+    "0078_verified_subscription_price_refresh.sql",
+    "0079_absolute_provider_grace_windows.sql",
+    "0080_apple_production_delivery.sql",
+    "0081_provider_observation_reconciliation.sql",
+    "0082_reconciliation_restore_index_name.sql",
+    "0083_apple_purchase_preflight.sql",
+    "0084_purchase_consent_financial_retention.sql",
+    "0085_active_purchase_owner.sql"
+  ],
+  "currentChecks": {
+    "api": 300,
+    "files": 34,
+    "nativePassed": 170,
+    "nativeSkipped": 1,
+    "typecheck": "pass",
+    "build": "pass",
+    "evidence": "apple-purchase-checks.json",
+    "cloudDeployment": false
+  },
+  "implementationNotes": [
+    "Use existing shared commerce-subscription-ledger.ts; do not duplicate grant/period rules into a new Apple implementation.",
+    "Apple price binding is one-to-many; generic commerce/status offers remain Web channel. Exact Apple price not chosen.",
+    "Streamlined Purchasing still observed enabled previously; its out-of-app account binding must be resolved before release.",
+    "Do not widen to future features or treat this source-only increment as a real provider/customer result.",
+    "Expose paid-period end and graceEndsAt distinctly in Web/iOS billing status; do not show a grace user as expired merely because paid period ended.",
+    "Production receipt intake is implemented and isolated behind a named-vault runtime flag; it requires a pre-created active commerce account and does not create one from a received token.",
+    "Notifications are verified/durable before200; leased internal retries are bounded, aggregate EMF and opt-in cloud alarms are prepared but not deployed.",
+    "Current Apple price bindings are loaded at worker startup; restart with reviewed catalog changes before activation.",
+    "September28 supersedes Resend-first: existing signup request withdrawn; keep it a fallback and prioritize SES reconsideration.",
+    "TestFlight runs Apple Sandbox. Explicitly plan its isolated validation endpoint/build configuration; never relabel Sandbox evidence as production or let ordinary customers use test grants.",
+    "Native production coordinator/API models/ordinary prepare and server-gated restore now implemented. Release customer gate remains off; staging primary UI unchanged.",
+    "TestFlight/App Review uses Sandbox: current production coordinator explicitly refuses it. Final build needs a separately verified, enrolled-account validation route, never ordinary customer test grants or a misleading production claim.",
+    "Generic route display remains access-oriented; actual checkout guards now block foreign resumable terminal records and unfinished purchases. Reconcile provider truth before treating stale billing history as terminated.",
+    "US external-Web primary/fallback routing and approved market/price activation still need final cross-channel acceptance.",
+    "Python urllib403 on legal links was checked with normal current Chrome: all3correct pages/version headings render. No protection was disabled.",
+    "Final security audit should explicitly trace authentication-context changes across other native mutations, in addition to the implemented purchase expected-owner guard; do not assert those unrelated flows were audited by these purchase tests.",
+    "Do not describe the native skip as merely lacking a fixture: inspect AppleStoreKitClientTests lines7-24 and verify a supported fixed Simulator runtime before actual StoreKit acceptance."
+  ],
+  "goalStatus": "active",
+  "latestEngineeringCheckpoint": {
+    "checkedAt": "2026-09-27T14:52:52.800Z",
+    "sourceCommit": "0a51db9e880ee6d4b324170be72c075b0b1218e0",
+    "runId": 36327186360,
+    "runNumber": 18,
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/tantalum666/rillora/actions/runs/36327186360",
+    "jobs": [
+      {
+        "name": "source",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "web-and-infrastructure",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "api",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ],
+    "source": "GitHub connector run and jobs readback",
+    "boundary": "Source CI only; native tests separate local evidence; no cloud deployment or provider transaction."
+  },
+  "currentSourceScan": {
+    "files": 955,
+    "reviewedNonSecrets": 25,
+    "unknown": 0,
+    "passed": true,
+    "evidence": "apple-purchase-receipt-source-scan.json",
+    "exceptionChange": "None"
+  },
+  "nativePointers": [
+    "apps/ios/Rillora/Core/Commerce/CommerceStore.swift",
+    "apps/ios/Rillora/Core/Commerce/StoreKitClient.swift",
+    "apps/ios/Rillora/Core/Domain/CommerceModels.swift",
+    "apps/ios/Rillora/Core/API/APIClient.swift",
+    "apps/ios/Rillora/Features/Account/PlanAccessView.swift",
+    "apps/ios/RilloraTests/CommerceStoreTests.swift"
+  ],
+  "activeNativeTest": null,
+  "nativeFocusedResult": {
+    "passed": 9,
+    "failed": 0,
+    "scope": "Initial coordinator fixture tests; later race fix and tenth test now in full run",
+    "source": "XcodeBuildMCP test_sim 2026-09-26T13:04:43"
+  },
+  "nativeBuildResult": {
+    "status": "succeeded",
+    "source": "XcodeBuildMCP build_sim 2026-09-26T13:01:25",
+    "boundary": "Debug Simulator only; no signed distribution or real purchase"
+  },
+  "currentWorktreeChanges": [
+    "0083 Apple purchase intents and consent RLS",
+    "0084 paid purchase consent deletion retention",
+    "Apple native quote/prepare/start/pending/cancel + shared cross-channel conflicts",
+    "Production native controller, exact StoreKit price metadata, unfinished transaction replay",
+    "App/API bindings and existing Plan UI purchase section; default prod access still off"
+  ],
+  "apiPreflightChecks": {
+    "tests": 296,
+    "files": 34,
+    "typecheck": "pass",
+    "build": "pass",
+    "log": "apple-purchase-api-tests.log"
+  },
+  "activePreviewBuild": null,
+  "nativeFinalResult": {
+    "tests": 171,
+    "passed": 170,
+    "failed": 0,
+    "skipped": 1,
+    "existingSkipRetained": true,
+    "source": "XcodeBuildMCP test_sim 2026-09-27T14:29:28",
+    "resultBundle": "/Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/result-bundles/test_sim_2026-09-27T14-29-28-138Z_pid42684_62e1372e.xcresult",
+    "resultBundleExists": true,
+    "skippedTest": "AppleStoreKitClientTests.testLoadsExactLocalFamilyCatalogAndReturnsVerifiedBoundPurchase",
+    "skippedReason": "Existing guard skips SKTestSession synchronization on installed iOS26.4/26.5 due known project-observed failure/hang. Source references a related26.6fix; verify current official runtime availability and actual result before closing this gate."
+  },
+  "visualChecks": {
+    "app": "com.rillora.component-preview",
+    "simulator": "Rillora-Matrix-17-Pro / iOS26.5",
+    "normalAndAccessibility3": "Observed via CUA native screenshots/AX; prices/consent/policies/actions wrap without truncation, lower actions reachable through scroll",
+    "finalPreview": "Built, installed and launched 2026-09-27T13:54:17; updated benefit row visible; checkbox off disables Subscribe, local fixture toggle enables it, restored unchecked",
+    "scope": "Standalone local layout fixture; no API client, SDK purchase, customer identity or real charge;99.99is not an adopted Apple price"
+  },
+  "currentBrowser": {
+    "id": "3",
+    "handle": "currentRilloraBrowser",
+    "resendHandle": "currentResendSignup",
+    "resendTabId": "1082157391",
+    "oldBrowser2Absent": true
+  },
+  "historicalResendHandoff": {
+    "service": "Resend",
+    "step": "Owner signup/login and current account terms; no password/OTP in chat",
+    "browserId": "3",
+    "tabId": "1082157391",
+    "url": "https://resend.com/signup",
+    "proposal": "Free only;3000/month,100/day,3domains; Auth0 account messages; US storage/30day retention disclosed",
+    "requiredBecause": "Browser policy: new credential entry requires handoff; account-creation terms require action-time confirmation",
+    "currentState": "Current Chrome3 still has Resend signup tab1082157391; re-marked handoff. No signup completion, terms, key, DNS or Auth0 change observed.",
+    "proposalEvidence": "resend-free-proposal.json",
+    "status": "withdrawn for now on2026-09-28 after service-consolidation review"
+  },
+  "pendingUserStep": null,
+  "mailConsolidationReview": {
+    "checkedAt": "2026-09-28T04:30:12.499215+00:00",
+    "evidence": "mail-consolidation-20260928.json",
+    "status": "SES reconsideration authorized, submitted and reopened; Resend fallback; no identity migration",
+    "newProviderRead": "mail-readiness-20260928.json; incomplete at get-caller-identity"
+  },
+  "previousEmailRefusal": {
+    "checkedAt": "2026-09-26T09:47:38.726143+00:00",
+    "source": "Authenticated normal AWS Support console, account133857166372, case179022088800001",
+    "replyTimestamp": "2026-09-26T01:28:49+08:00",
+    "caseStateEvidence": "Reopen case button visible; prior authorized supplement timestamp2026-09-25T01:12:39+08:00 retained",
+    "decision": "Request unable to be approved at this time; specific assessment criteria not disclosed",
+    "meaning": "The new reply is an actual rejection after review, superseding the earlier request-for-information-only observation. APIproductionAccessEnabledfalse remains consistent.",
+    "noNewMessageSent": true,
+    "noCaseReopened": true,
+    "noSupportPlanPurchased": true,
+    "next": "Prepare evidence-based SES reconsideration with existing Auth0. Draft is unsent; no support communication without explicit message authorization. Resend fallback only."
+  },
+  "cognitoAssessment": "cognito-cost-migration-20260928.json",
+  "currentResearchResult": "Authorized SES reconsideration submitted and read back; future Cognito migration and identity pricing assessed; no provider migration",
+  "currentUIWork": {
+    "iteration": 3,
+    "status": "published_and_verified",
+    "sourceCI": {
+      "checkedAt": "2026-09-28T14:40:57.985197+00:00",
+      "implementationCommit": "6177d6e50",
+      "implementationRun": 22,
+      "implementationStatus": "success",
+      "finalEngineeringCommit": "b54d7342dae31e34b6d32044c0466de1e7e3ba5b",
+      "run": 23,
+      "status": "success",
+      "url": "https://github.com/tantalum666/rillora/actions/runs/36436946592",
+      "evidence": "Authenticated Chrome Actions label for exact matching commit title; CLI Actions scope unchanged"
+    },
+    "qa": "output/qa/rillora-launch-goal-20260926/landing-v3/work-state.json",
+    "legalVersion": 8,
+    "contract": "docs/landing-page-20260928.md",
+    "privateAppNativeAPIData": "unchanged",
+    "liveURL": "https://www.rillora.xyz",
+    "pending": null
+  },
+  "runtimeGoal": {
+    "status": "active",
+    "restoredAt": "2026-09-28T08:15:10.335244+00:00",
+    "note": "Runtime returned null during focused recovery; explicitly requested ongoing objective recreated without token budget, no completion claim."
+  },
+  "uiHistory": [
+    {
+      "status": "complete_static_publication_verified",
+      "scope": "continuous richer landing, signed-in guide placement, public support coherence; private App UI preserved",
+      "contract": "docs/landing-page-20260928.md",
+      "qa": "output/qa/rillora-launch-goal-20260926/landing-v2/",
+      "tests": {
+        "web": 102,
+        "publicInfrastructure": 2,
+        "infraTypecheck": true,
+        "native": "Debug build/install/launch and guest Profile UI verified"
+      },
+      "website": "https://www.rillora.xyz",
+      "account": "https://app.staging.rillora.xyz/account",
+      "productionCustomerAccess": "closed",
+      "pending": null,
+      "previousSourceCI": {
+        "commit": "3ee0a474f8dd8304d98e5315d981da02bb219f50",
+        "run": 19,
+        "status": "success",
+        "url": "https://github.com/tantalum666/rillora/actions/runs/36389419418",
+        "evidence": "Current authenticated browser; Actions CLI denied with403, no permission expansion"
+      },
+      "sourceCI": {
+        "checkedAt": "2026-09-28T08:19:12.827524+00:00",
+        "commit": "dbf07700b823469fd9716701e3535f213af3e750",
+        "run": 20,
+        "status": "success",
+        "url": "https://github.com/tantalum666/rillora/actions/runs/36396298290",
+        "method": "Authenticated Chrome Actions UI: completed successfully label adjacent to exact dbf0770 commit link",
+        "duration": "1m 36s",
+        "cli": "Actions API403; no permission expansion requested or applied"
+      },
+      "sourceScan": {
+        "fileCount": 1002,
+        "reviewedNonSecrets": 25,
+        "unreviewed": 0
+      },
+      "completedAt": "2026-09-28T08:22:39.450195+00:00",
+      "finalPublicReadback": {
+        "checkedAt": "2026-09-28T08:19:57.032Z",
+        "exactHTML": true,
+        "liveHash": "c7b7e38b63eef863929092797857aecdb79493b7b13da7ae0e6e098a5b529c80",
+        "localHash": "c7b7e38b63eef863929092797857aecdb79493b7b13da7ae0e6e098a5b529c80",
+        "csp": "default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+        "checks": [
+          {
+            "path": "/assets/favicon-n-8qLNzh.svg",
+            "status": 200,
+            "location": null,
+            "hash": "900d5b173603512a32291e4694ee9ff35a86b0771113a0aa9d2297529c870232",
+            "cookie": false
+          },
+          {
+            "path": "/assets/favicon-32-BmTNsIid.png",
+            "status": 200,
+            "location": null,
+            "hash": "11b92ba5fa91e351fb8b9f7bda3938a4a55a98ae204776590f9d01c71372dcd1",
+            "cookie": false
+          },
+          {
+            "path": "/assets/apple-touch-icon-BnycESAq.png",
+            "status": 200,
+            "location": null,
+            "hash": "3d5a51ae1de80d0d2d0ed101fb103336f74088f7f792ac1ce8e0859899fbaca3",
+            "cookie": false
+          },
+          {
+            "path": "/assets/public-BbC_tNAX.js",
+            "status": 200,
+            "location": null,
+            "hash": "43f6563343c6feea941f19a9ca08284f2d38dc2e0c216a97e8082491fcff17d6",
+            "cookie": false
+          },
+          {
+            "path": "/assets/public-N-PxHma6.css",
+            "status": 200,
+            "location": null,
+            "hash": "a72f12c92f7b5298b9ec81b89ec59913a9319c7e0a0951c2ff76782a43ee442f",
+            "cookie": false
+          },
+          {
+            "path": "/support",
+            "status": 200,
+            "location": null,
+            "hash": "c7b7e38b63eef863929092797857aecdb79493b7b13da7ae0e6e098a5b529c80",
+            "cookie": false
+          },
+          {
+            "path": "/guides?service=binance",
+            "status": 302,
+            "location": "https://app.staging.rillora.xyz/account?next=guides&service=binance",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "cookie": false
+          },
+          {
+            "path": "/guides/",
+            "status": 302,
+            "location": "https://app.staging.rillora.xyz/account?next=guides",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "cookie": false
+          },
+          {
+            "path": "/guides?service=unknown&return_to=https%3A%2F%2Fexample.invalid",
+            "status": 302,
+            "location": "https://app.staging.rillora.xyz/account?next=guides",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "cookie": false
+          },
+          {
+            "path": "/account",
+            "status": 404,
+            "location": null,
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "cookie": false
+          },
+          {
+            "path": "/api/auth/start",
+            "status": 404,
+            "location": null,
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "cookie": false
+          },
+          {
+            "path": "/.env",
+            "status": 404,
+            "location": null,
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "cookie": false
+          },
+          {
+            "path": "/unknown",
+            "status": 404,
+            "location": null,
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "cookie": false
+          }
+        ]
+      },
+      "documentationLinks": {
+        "files": 151,
+        "localLinks": 1491,
+        "missing": 0
+      },
+      "documentationCommit": "af173c02dcb00ac6e527f25d86547e608f56d90f",
+      "documentationPushed": true,
+      "workingTreeClean": true,
+      "localPreviewStopped": true,
+      "browser": "Final live WWW tab retained; temporary viewport and media overrides reset"
+    }
+  ],
+  "uiWork": {
+    "stage": "Native public homepage now uses selected website visual, installed and verified",
+    "at": "2026-09-28T17:38:15.545085+00:00",
+    "evidence": "simulator-refresh-20260929/work-state.json",
+    "sourceCI": "f21666a3a / CI27 success",
+    "realRelease": false
+  }
+}

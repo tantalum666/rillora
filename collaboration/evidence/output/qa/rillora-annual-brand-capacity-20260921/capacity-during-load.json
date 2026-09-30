@@ -1,0 +1,152 @@
+[
+  {
+    "namespace": "AWS/ECS",
+    "metric": "CPUUtilization",
+    "data": {
+      "Label": "CPUUtilization",
+      "Datapoints": [
+        {
+          "Timestamp": "2026-09-21T13:31:00+08:00",
+          "Average": 1.6572912534077961,
+          "Minimum": 0.0,
+          "Maximum": 4.971873760223389,
+          "Unit": "Percent"
+        },
+        {
+          "Timestamp": "2026-09-21T13:32:00+08:00",
+          "Average": 8.20678456624349,
+          "Minimum": 5.941637992858887,
+          "Maximum": 12.320608139038086,
+          "Unit": "Percent"
+        },
+        {
+          "Timestamp": "2026-09-21T13:33:00+08:00",
+          "Average": 1.5828760454896837,
+          "Minimum": 0.0,
+          "Maximum": 4.745975494384766,
+          "Unit": "Percent"
+        }
+      ]
+    }
+  },
+  {
+    "namespace": "AWS/ECS",
+    "metric": "MemoryUtilization",
+    "data": {
+      "Label": "MemoryUtilization",
+      "Datapoints": [
+        {
+          "Timestamp": "2026-09-21T13:31:00+08:00",
+          "Average": 9.9609375,
+          "Minimum": 9.9609375,
+          "Maximum": 9.9609375,
+          "Unit": "Percent"
+        },
+        {
+          "Timestamp": "2026-09-21T13:32:00+08:00",
+          "Average": 12.890625,
+          "Minimum": 11.42578125,
+          "Maximum": 14.0625,
+          "Unit": "Percent"
+        },
+        {
+          "Timestamp": "2026-09-21T13:33:00+08:00",
+          "Average": 14.2578125,
+          "Minimum": 14.2578125,
+          "Maximum": 14.2578125,
+          "Unit": "Percent"
+        }
+      ]
+    }
+  },
+  {
+    "namespace": "AWS/RDS",
+    "metric": "CPUUtilization",
+    "data": {
+      "Label": "CPUUtilization",
+      "Datapoints": [
+        {
+          "Timestamp": "2026-09-21T13:31:00+08:00",
+          "Average": 4.5,
+          "Minimum": 4.5,
+          "Maximum": 4.5,
+          "Unit": "Percent"
+        },
+        {
+          "Timestamp": "2026-09-21T13:32:00+08:00",
+          "Average": 7.746255976278133,
+          "Minimum": 7.746255976278133,
+          "Maximum": 7.746255976278133,
+          "Unit": "Percent"
+        },
+        {
+          "Timestamp": "2026-09-21T13:33:00+08:00",
+          "Average": 5.052442013639927,
+          "Minimum": 5.052442013639927,
+          "Maximum": 5.052442013639927,
+          "Unit": "Percent"
+        }
+      ]
+    }
+  },
+  {
+    "namespace": "AWS/RDS",
+    "metric": "DatabaseConnections",
+    "data": {
+      "Label": "DatabaseConnections",
+      "Datapoints": [
+        {
+          "Timestamp": "2026-09-21T13:33:00+08:00",
+          "Average": 2.0,
+          "Minimum": 2.0,
+          "Maximum": 2.0,
+          "Unit": "Count"
+        },
+        {
+          "Timestamp": "2026-09-21T13:32:00+08:00",
+          "Average": 2.0,
+          "Minimum": 2.0,
+          "Maximum": 2.0,
+          "Unit": "Count"
+        },
+        {
+          "Timestamp": "2026-09-21T13:31:00+08:00",
+          "Average": 1.0,
+          "Minimum": 1.0,
+          "Maximum": 1.0,
+          "Unit": "Count"
+        }
+      ]
+    }
+  },
+  {
+    "namespace": "AWS/RDS",
+    "metric": "FreeableMemory",
+    "data": {
+      "Label": "FreeableMemory",
+      "Datapoints": [
+        {
+          "Timestamp": "2026-09-21T13:31:00+08:00",
+          "Average": 182833152.0,
+          "Minimum": 182833152.0,
+          "Maximum": 182833152.0,
+          "Unit": "Bytes"
+        },
+        {
+          "Timestamp": "2026-09-21T13:33:00+08:00",
+          "Average": 179523584.0,
+          "Minimum": 179523584.0,
+          "Maximum": 179523584.0,
+          "Unit": "Bytes"
+        },
+        {
+          "Timestamp": "2026-09-21T13:32:00+08:00",
+          "Average": 179089408.0,
+          "Minimum": 179089408.0,
+          "Maximum": 179089408.0,
+          "Unit": "Bytes"
+        }
+      ]
+    }
+  }
+]

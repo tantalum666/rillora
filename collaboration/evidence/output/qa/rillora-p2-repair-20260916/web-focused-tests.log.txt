@@ -1,0 +1,82 @@
+TAP version 13
+# Subtest: simulation evidence is never promoted to accepted
+ok 1 - simulation evidence is never promoted to accepted
+  ---
+  duration_ms: 1.56525
+  type: 'test'
+  ...
+# Subtest: only a non-simulated accepted invitation receives accepted evidence
+ok 2 - only a non-simulated accepted invitation receives accepted evidence
+  ---
+  duration_ms: 0.081417
+  type: 'test'
+  ...
+# Subtest: record-only, pending and revoked states remain distinct
+ok 3 - record-only, pending and revoked states remain distinct
+  ---
+  duration_ms: 0.071667
+  type: 'test'
+  ...
+# Subtest: first-use state fails safely to an available non-blocking overview
+ok 4 - first-use state fails safely to an available non-blocking overview
+  ---
+  duration_ms: 3.175416
+  type: 'test'
+  ...
+# Subtest: paused and completed guides do not keep nagging on the overview
+ok 5 - paused and completed guides do not keep nagging on the overview
+  ---
+  duration_ms: 0.079667
+  type: 'test'
+  ...
+# Subtest: resume copy follows saved progress without changing readiness
+ok 6 - resume copy follows saved progress without changing readiness
+  ---
+  duration_ms: 0.235166
+  type: 'test'
+  ...
+# Subtest: mobile keeps three primary destinations
+ok 7 - mobile keeps three primary destinations
+  ---
+  duration_ms: 2.611333
+  type: 'test'
+  ...
+# Subtest: desktop-only destinations remain reachable through More
+ok 8 - desktop-only destinations remain reachable through More
+  ---
+  duration_ms: 0.186041
+  type: 'test'
+  ...
+# Subtest: invitation URLs carry a bounded fragment capability
+ok 9 - invitation URLs carry a bounded fragment capability
+  ---
+  duration_ms: 0.877666
+  type: 'test'
+  ...
+# Subtest: name-level views reject accidental location disclosure
+ok 10 - name-level views reject accidental location disclosure
+  ---
+  duration_ms: 0.305875
+  type: 'test'
+  ...
+# Subtest: directions exclude masked hints and fields from unrelated connections
+ok 11 - directions exclude masked hints and fields from unrelated connections
+  ---
+  duration_ms: 0.080875
+  type: 'test'
+  ...
+# Subtest: a recipient response never grants writes or event-conditioned release
+ok 12 - a recipient response never grants writes or event-conditioned release
+  ---
+  duration_ms: 0.078667
+  type: 'test'
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 12
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 99.408208

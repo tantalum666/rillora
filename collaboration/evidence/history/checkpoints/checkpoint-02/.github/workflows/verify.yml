@@ -1,0 +1,136 @@
+name: Verify source
+
+on:
+  push:
+    branches: [main, 'codex/**']
+  pull_request:
+  workflow_dispatch:
+
+# This workflow has no cloud credentials, release permissions or deployments.
+permissions:
+  contents: read
+
+concurrency:
+  group: verify-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12'
+      - name: Install verified secret scanner
+        run: |
+          curl --fail --location --retry 3 --output "$RUNNER_TEMP/gitleaks.tar.gz" https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz
+          echo "551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb  $RUNNER_TEMP/gitleaks.tar.gz" | sha256sum --check --strict
+          tar -xzf "$RUNNER_TEMP/gitleaks.tar.gz" -C "$RUNNER_TEMP" gitleaks
+          sudo install "$RUNNER_TEMP/gitleaks" /usr/local/bin/gitleaks
+      - name: Test publication guards and scan current source
+        run: |
+          python3 -m unittest discover -s tools/release -p 'test_*.py'
+          python3 -m unittest discover -s tools/godaddy -p 'test_*.py'
+          python3 tools/release/prepare_repository.py
+          python3 tools/release/scan_repository.py --report output/ci/source-scan.json
+
+  api:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:16.13
+        # Disposable runner-only database: no cloud identities or user records.
+        env:
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports:
+          - 127.0.0.1:5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 12
+    env:
+      PGHOST: 127.0.0.1
+      PGPORT: '5432'
+      PGUSER: postgres
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '22.22.3'
+          cache: npm
+          cache-dependency-path: apps/api/package-lock.json
+      - name: Create isolated test databases
+        run: |
+          for database in continuity_test continuity_content_test continuity_family_test continuity_matter_test continuity_email_verification_test continuity_commercial_sharing_test continuity_p1_repair_final_test continuity_sharing_test continuity_content_migration_test continuity_recovery_test continuity_recovery_restore_test rillora_review_access_test rillora_retention_test rillora_commerce_recovery_test rillora_recent_auth_test; do
+            createdb "$database"
+            psql -d postgres -v ON_ERROR_STOP=1 -c "COMMENT ON DATABASE \"$database\" IS 'rillora-disposable-test:$database'"
+          done
+      - run: npm ci
+        working-directory: apps/api
+      - run: npm run typecheck && npm run build && npm test
+        working-directory: apps/api
+
+  web-and-infrastructure:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '22.22.3'
+          cache: npm
+          cache-dependency-path: |
+            apps/web/package-lock.json
+            infra/aws/package-lock.json
+            tools/snapshot-retention/package-lock.json
+      - name: Verify Web source and internal build
+        working-directory: apps/web
+        run: |
+          npm ci
+          npm run build
+          web_tests=()
+          for test_file in tests/*.test.mjs; do
+            if [[ "$test_file" != tests/legal-sites-worker.test.mjs ]]; then web_tests+=("$test_file"); fi
+          done
+          node --test "${web_tests[@]}"
+      - name: Build public information artifact without account or API entry
+        working-directory: apps/web
+        run: npm run build:public
+      - name: Verify legal packaging fixture (not a publication artifact)
+        working-directory: apps/web
+        # Intentionally no real operator/address environment and no upload.
+        # Production publishing still requires the build:legal validation gate.
+        run: |
+          npx vite build --mode legal
+          node scripts/prepare-legal-sites-build.mjs
+          node --test tests/legal-sites-worker.test.mjs
+      - name: Verify infrastructure without AWS credentials
+        working-directory: infra/aws
+        run: npm ci && npm run typecheck && npm test
+      - name: Verify bounded legacy snapshot retirement
+        working-directory: tools/snapshot-retention
+        run: npm ci --ignore-scripts && npm test
+      - name: Build closed-client fixture (not publishable)
+        working-directory: apps/web
+        env:
+          VITE_LEGAL_OPERATOR_NAME: Unpublished CI fixture
+          VITE_LEGAL_OPERATOR_COUNTRY: Fixture
+          VITE_LEGAL_SERVICE_ADDRESS: Unpublished fixture address
+          VITE_LEGAL_SUPPORT_EMAIL: support@example.test
+          VITE_LEGAL_PRIVACY_EMAIL: privacy@example.test
+          VITE_LEGAL_SECURITY_EMAIL: security@example.test
+        run: npm run build:production-closed
+      - name: Verify public health checker
+        run: node --test tools/ops/health-check.test.mjs
+      - name: Verify restricted review identity action
+        run: node --test infra/auth0/hosted-consent/production-review-action.test.cjs

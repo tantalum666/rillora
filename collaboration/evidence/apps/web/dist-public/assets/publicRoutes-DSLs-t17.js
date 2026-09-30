@@ -1,0 +1,1 @@
+const e=Object.freeze({home:"/",account:"/account",savedCopy:"/open-copy",guides:"/guides",privacy:"/privacy",terms:"/terms",subscriptions:"/subscription-terms",refunds:"/refund-policy",acceptableUse:"/acceptable-use",cookies:"/cookies",legalNotice:"/legal"});export{e as p};

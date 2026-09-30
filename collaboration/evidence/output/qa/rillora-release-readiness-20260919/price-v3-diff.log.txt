@@ -1,0 +1,48 @@
+Stack RilloraStaging
+Resources
+[~] AWS::ECS::TaskDefinition ApiTaskDefinition ApiTaskDefinition51EA709E replace
+ └─ [~] ContainerDefinitions (requires replacement)
+     └─ @@ -162,12 +162,16 @@
+        [ ]   "Value": "2"
+        [ ] },
+        [ ] {
+        [+]   "Name": "STRIPE_FAMILY_PRICE_VERSION",
+        [+]   "Value": "3"
+        [+] },
+        [+] {
+        [ ]   "Name": "STRIPE_FAMILY_MONTHLY_PRICE_ID",
+        [-]   "Value": "price_1UGKadCxTlowhyiGJ0bnY9Kn"
+        [+]   "Value": "price_1UHMlhCxTlowhyiGvBEPdb4x"
+        [ ] },
+        [ ] {
+        [ ]   "Name": "STRIPE_FAMILY_ANNUAL_PRICE_ID",
+        [-]   "Value": "price_1UGKXlCxTlowhyiGVLKAkfl1"
+        [+]   "Value": "price_1UHMkTCxTlowhyiGu3do5wps"
+        [ ] },
+        [ ] {
+        [ ]   "Name": "STRIPE_CHECKOUT_SUCCESS_URL",
+        @@ -194,7 +198,7 @@
+        [ ]   "Timeout": 5
+        [ ] },
+        [ ] "Image": {
+        [-]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:cd5097bad1f18ba475597dd18598b1913186620ee5e2be12dfeed662d3405ab2"
+        [+]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:0610962c6e42a498f5ab6c277b030c5e26d9c1bccd8bc8114e32ab1d1368e1d1"
+        [ ] },
+        [ ] "LogConfiguration": {
+        [ ]   "LogDriver": "awslogs",
+[~] AWS::ECS::TaskDefinition MigrationTaskDefinition MigrationTaskDefinitionE89B136E replace
+ └─ [~] ContainerDefinitions (requires replacement)
+     └─ @@ -59,7 +59,7 @@
+        [ ] ],
+        [ ] "Essential": true,
+        [ ] "Image": {
+        [-]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:cd5097bad1f18ba475597dd18598b1913186620ee5e2be12dfeed662d3405ab2"
+        [+]   "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:0610962c6e42a498f5ab6c277b030c5e26d9c1bccd8bc8114e32ab1d1368e1d1"
+        [ ] },
+        [ ] "LogConfiguration": {
+        [ ]   "LogDriver": "awslogs",
+
+
+
+✨  Number of stacks with differences: 1
+

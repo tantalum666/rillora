@@ -1,0 +1,36 @@
+- banner:
+  - link "Rillora home":
+    - /url: /
+  - navigation "Public navigation":
+    - link "Account":
+      - /url: /account
+- main "Sign in to view account guidance":
+  - button "Back to Rillora":
+    - text: Back to Rillora
+  - heading "Sign in to view account guidance" [level=1]
+  - region "Account options":
+    - button "Create account" [disabled]:
+      - text: Create account
+    - button "Sign in" [disabled]
+    - checkbox "I agree to the Terms, acknowledge the Privacy Policy, and consent to electronic records."
+    - text: I agree to the
+    - link "Terms":
+      - /url: /terms
+    - text: ", acknowledge the"
+    - link "Privacy Policy":
+      - /url: /privacy
+    - text: ", and consent to electronic records."
+- contentinfo:
+  - img "Rillora"
+  - paragraph: Digital legacy and estate continuity. Directions, not passwords.
+  - navigation "Legal and account links":
+    - link "Privacy":
+      - /url: /privacy
+    - link "Terms":
+      - /url: /terms
+    - link "Legal":
+      - /url: /legal
+    - link "Account":
+      - /url: /account
+    - link "Open saved copy":
+      - /url: /open-copy

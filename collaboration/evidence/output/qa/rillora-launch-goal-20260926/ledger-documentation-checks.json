@@ -1,0 +1,16 @@
+{
+  "files": 148,
+  "localTargets": 1425,
+  "missing": [],
+  "decisionLog": "Added Resend proposal with actual cost/data/terms boundary; no accepted account terms or vendor activation claim.",
+  "journey": "docs/journey/PROJECT_JOURNEY.md",
+  "handoff": "docs/handoff.md",
+  "tests": "266 API/31 files, typecheck/build pass",
+  "deployment": "None; migrations0076-0079 local only",
+  "initialTestCorrections": [
+    "Use the public sharing_access_status facade instead of granting application access to an internal helper.",
+    "The actual commerce response field is offers, not prices."
+  ],
+  "next": "Production Apple intake/notification/leases/retry/native lifecycle remains open.",
+  "checkedAt": "2026-09-26T11:49:30.722742+00:00"
+}

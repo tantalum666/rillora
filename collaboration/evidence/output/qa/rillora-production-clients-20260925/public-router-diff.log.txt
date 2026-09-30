@@ -1,0 +1,41 @@
+start: Building RilloraPublicWeb Template
+success: Built RilloraPublicWeb Template
+start: Publishing RilloraPublicWeb Template (133857166372-eu-central-1-2ec12476)
+success: Published RilloraPublicWeb Template (133857166372-eu-central-1-2ec12476)
+Hold on while we create a read-only change set to get a diff with accurate replacement information (use --method=template to use a less accurate but faster template-only diff)
+
+Stack RilloraPublicWeb
+Resources
+[~] AWS::CloudFront::Function PublicRoutes PublicRoutesC0C4D2B4
+ └─ [~] FunctionCode
+     ├─ [-] function handler(event) {
+  var request = event.request;
+  if (request.method !== 'GET' && request.method !== 'HEAD') {
+    return { statusCode: 405, headers: { 'cache-control': { value: 'no-store' }, allow: { value: 'GET, HEAD' } } };
+  }
+  if (['/', '/guides', '/guides/', '/support', '/support/'].indexOf(request.uri) !== -1) {
+    request.uri = '/index.html';
+    return request;
+  }
+  if (/^\/assets\/[A-Za-z0-9_-]+\.(js|css|png|svg|woff|woff2|txt)$/.test(request.uri)) return request;
+  return { statusCode: 404, headers: { 'cache-control': { value: 'no-store' } } };
+}
+
+     └─ [+] function handler(event) {
+  var request = event.request;
+  if (request.method !== 'GET' && request.method !== 'HEAD') {
+    return { statusCode: 405, headers: { 'cache-control': { value: 'no-store' }, allow: { value: 'GET, HEAD' } } };
+  }
+  if (['/', '/guides', '/guides/', '/support', '/support/'].indexOf(request.uri) !== -1) {
+    request.uri = '/index.html';
+    return request;
+  }
+  if (/^\/assets\/[A-Za-z0-9_-]+\.(js|css|png|jpe?g|webp|svg|woff|woff2|txt)$/.test(request.uri)) return request;
+  return { statusCode: 404, headers: { 'cache-control': { value: 'no-store' } } };
+}
+
+
+
+
+✨  Number of stacks with differences: 1
+

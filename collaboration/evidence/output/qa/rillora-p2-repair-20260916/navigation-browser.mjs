@@ -1,0 +1,31 @@
+async (page) => {
+  const check = (value, message) => { if (!value) throw new Error(message); };
+  const search = page.getByRole('searchbox', {name:'Search matters'});
+  await search.fill('Navigation QA');
+  await page.getByRole('button', {name:'To review', exact:true}).click();
+  await page.reload();
+  await page.getByRole('heading', {name:'Your matters', exact:true}).waitFor();
+  check(await search.inputValue() === 'Navigation QA', 'search lost on reload');
+  check(await page.getByRole('button', {name:'To review', exact:true}).getAttribute('aria-pressed') === 'true', 'filter lost');
+  await page.getByRole('button', {name:/Open Navigation QA document/}).click();
+  await page.getByRole('dialog', {name:'Edit matter'}).waitFor();
+  await page.getByRole('textbox', {name:'Notes', exact:true}).fill('Unsaved local QA');
+  await page.evaluate(() => history.back());
+  await page.getByRole('button', {name:'Keep editing', exact:true}).click();
+  await page.waitForURL(/task=matter/);
+  check(await page.getByRole('textbox', {name:'Notes', exact:true}).inputValue() === 'Unsaved local QA','cancel lost draft');
+  await page.evaluate(() => history.back());
+  await page.getByRole('button', {name:'Discard changes', exact:true}).click();
+  await page.getByRole('dialog', {name:'Edit matter'}).waitFor({state:'hidden'});
+  check(await search.inputValue() === 'Navigation QA','back lost search');
+  await page.evaluate(() => history.forward());
+  await page.getByRole('dialog', {name:'Edit matter'}).waitFor();
+  check(await page.getByRole('textbox', {name:'Notes', exact:true}).inputValue() === 'Synthetic local test','forward did not reload saved content');
+  await page.getByRole('button', {name:'Close panel', exact:true}).click();
+  await page.getByRole('dialog').waitFor({state:'hidden'});
+  await page.getByRole('button', {name:'Settings', exact:true}).click();
+  await page.reload();
+  await page.getByRole('heading', {name:'Settings', exact:true}).waitFor();
+  await page.screenshot({path:'/Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-p2-repair-20260916/restored-settings.png',fullPage:true});
+  console.log(JSON.stringify({settingsReload:true,searchFilterReload:true,backCancelRetainsDraft:true,backDiscard:true,forward:true,closeReturns:true}));
+}

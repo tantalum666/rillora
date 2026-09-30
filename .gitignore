@@ -47,7 +47,8 @@ __pycache__/
 .vscode/
 
 # Raw QA evidence can contain sessions, identities or database fixtures.
-# Reviewed release summaries live in docs; raw artifacts remain local/restricted.
+# Complete collaboration copies/catalogs and encrypted raw artifacts live in
+# collaboration/ under the publication policy in docs/source-control.md.
 /output/
 /qa/
 /rillora-*.png

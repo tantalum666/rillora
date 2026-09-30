@@ -1,0 +1,171 @@
+{
+  "at": "2026-09-30T14:38:41.550737+08:00",
+  "basis": "Latest result per current case across targeted corrective runs; not one all-green run and not every device/font combination",
+  "device": "iPhone 17 Pro simulator / iOS26.5",
+  "uniqueCases": 28,
+  "unresolvedFailures": 0,
+  "runs": [
+    {
+      "file": "native-ui-run-1.log",
+      "passed": 18,
+      "failed": 9
+    },
+    {
+      "file": "native-ui-run-2.log",
+      "passed": 7,
+      "failed": 3
+    },
+    {
+      "file": "native-ui-run-3.log",
+      "passed": 2,
+      "failed": 1
+    },
+    {
+      "file": "native-ui-run-4.log",
+      "passed": 1,
+      "failed": 0
+    }
+  ],
+  "cases": {
+    "testAccountBoundInvitationAndRecipientPrivacy": {
+      "status": "passed",
+      "seconds": 149.04,
+      "evidence": "native-ui-run-2.log"
+    },
+    "testAppearancePersistsAcrossTabsAndNestedPages": {
+      "status": "passed",
+      "seconds": 33.327,
+      "evidence": "native-ui-run-1.log"
+    },
+    "testAuthenticatedRootsUseCondensedHierarchy": {
+      "status": "passed",
+      "seconds": 21.634,
+      "evidence": "native-ui-run-1.log"
+    },
+    "testContinuousEditorKeepsTheSameUnsavedDraft": {
+      "status": "passed",
+      "seconds": 45.701,
+      "evidence": "native-ui-run-1.log"
+    },
+    "testDeepTasksSupportLargeTextAndReducedMotion": {
+      "status": "passed",
+      "seconds": 56.596,
+      "evidence": "native-ui-run-3.log"
+    },
+    "testEmptyMapAndOptionalGuideRemainUseful": {
+      "status": "passed",
+      "seconds": 29.683,
+      "evidence": "native-ui-run-3.log"
+    },
+    "testEncryptedGuideKeepsRecoveryKeyUntilExplicitExit": {
+      "status": "passed",
+      "seconds": 49.953,
+      "evidence": "native-ui-run-2.log"
+    },
+    "testEveryOfficialGuideAndItsDetailsRemainReachable": {
+      "status": "passed",
+      "seconds": 142.007,
+      "evidence": "native-ui-run-1.log"
+    },
+    "testExpiredSessionKeepsPublicExploration": {
+      "status": "passed",
+      "seconds": 19.267,
+      "evidence": "native-ui-run-1.log"
+    },
+    "testInitialConnectionFailureOffersRetry": {
+      "status": "passed",
+      "seconds": 7.082,
+      "evidence": "native-ui-run-2.log"
+    },
+    "testLargeTextEditorsAndRoleScope": {
+      "status": "passed",
+      "seconds": 79.048,
+      "evidence": "native-ui-run-2.log"
+    },
+    "testMatterSearchAndContactDraftRecovery": {
+      "status": "passed",
+      "seconds": 38.061,
+      "evidence": "native-ui-run-1.log"
+    },
+    "testOrientationChangeKeepsRootsReachable": {
+      "status": "passed",
+      "seconds": 18.874,
+      "evidence": "native-ui-run-1.log"
+    },
+    "testOverviewOpensTheNamedMatterAndProtectsUnsavedEdits": {
+      "status": "passed",
+      "seconds": 21.526,
+      "evidence": "native-ui-run-1.log"
+    },
+    "testPreparationResultsAndExportChoices": {
+      "status": "passed",
+      "seconds": 29.534,
+      "evidence": "native-ui-run-2.log"
+    },
+    "testPrimaryEditorsAndPreparationRoutes": {
+      "status": "passed",
+      "seconds": 99.918,
+      "evidence": "native-ui-run-4.log"
+    },
+    "testPrivateIntentsOpenHostedAuthenticationAndCancelBackToSource": {
+      "status": "passed",
+      "seconds": 38.063,
+      "evidence": "native-ui-run-1.log"
+    },
+    "testProfileOmitsInternalRehearsalAndMotivationRoutes": {
+      "status": "passed",
+      "seconds": 9.849,
+      "evidence": "native-ui-run-1.log"
+    },
+    "testPublicExplorationSupportsLargeTextAndReducedMotion": {
+      "status": "passed",
+      "seconds": 26.587,
+      "evidence": "native-ui-run-1.log"
+    },
+    "testPublicExplorerAndCategoriesStayOutsideAuthentication": {
+      "status": "passed",
+      "seconds": 23.553,
+      "evidence": "native-ui-run-1.log"
+    },
+    "testPublicHomeAppearanceAndInvitationReturn": {
+      "status": "passed",
+      "seconds": 25.869,
+      "evidence": "native-ui-run-1.log"
+    },
+    "testPushedContactEditorProtectsDraftFromEdgeBackAndCancel": {
+      "status": "passed",
+      "seconds": 28.427,
+      "evidence": "native-ui-run-1.log"
+    },
+    "testRootDestinationsPortrait": {
+      "status": "passed",
+      "seconds": 18.704,
+      "evidence": "native-ui-run-1.log"
+    },
+    "testSharingControlsSupportLargeTextAndSafeDismissal": {
+      "status": "passed",
+      "seconds": 37.729,
+      "evidence": "native-ui-run-2.log"
+    },
+    "testSignedOutCommercialDetailsStayDeferred": {
+      "status": "passed",
+      "seconds": 7.899,
+      "evidence": "native-ui-run-1.log"
+    },
+    "testSignedOutExperienceUsesHostedAuthentication": {
+      "status": "passed",
+      "seconds": 57.736,
+      "evidence": "native-ui-run-1.log"
+    },
+    "testVisibleActionsExposeLabelsAndMinimumTabTargets": {
+      "status": "passed",
+      "seconds": 8.431,
+      "evidence": "native-ui-run-1.log"
+    },
+    "testMatterAfterFirstPageCanBeFoundAndOpened": {
+      "status": "passed",
+      "seconds": 13.942,
+      "evidence": "native-ui-run-2.log"
+    }
+  }
+}

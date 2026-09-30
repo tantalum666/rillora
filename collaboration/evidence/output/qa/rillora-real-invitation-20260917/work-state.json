@@ -1,0 +1,72 @@
+{
+  "status": "DEPLOYED_AND_VERIFIED_CLOSEOUT",
+  "updatedAt": "2026-09-17T14:01:29.313941+08:00",
+  "ownerSteering": "After real B accepted, Owner reported email verification incorrectly forced another login; fix the continuation within the existing UI.",
+  "realAcceptance": {
+    "A": "Actual Google/native session and original scope observed",
+    "B": "Owner completed signup, email verification and explicit acceptance; actual browser showed only disposable shared details and Notes, Read only",
+    "revocation": "A Stop sharing confirmed; native Disconnected and0/1 place used; B reload shows Nothing shared with you yet. Real old-token reopen not executed because prior manual-transfer browser policy still applies.",
+    "oldLink": "Original real link not retained; no human browser re-open. Separate actual cloud fixture proves same old capability cannot reaccept."
+  },
+  "newFindings": [
+    "Verification proof was captured only at session issuance; the unverified action incorrectly reused logout plus prompt=login.",
+    "A continuously open recipient detail did not revalidate until a later event/refresh; periodic visible checks added."
+  ],
+  "implementation": [
+    "Current-session exact issuer/subject Auth0 read-only proof refresh; same cookie/bearer and legal receipt",
+    "0060 minimal auth-role grants",
+    "Web/native retry and foreground verification preserve invitation and session",
+    "15-second visible shared-item revalidation without loading flicker; clear on failure/revocation"
+  ],
+  "verification": {
+    "api": 177,
+    "webApp": 78,
+    "infra": 19,
+    "nativeBaseline": {
+      "passed": 151,
+      "failed": 0,
+      "skipped": 1
+    },
+    "nativeFinalSharedStore": 4,
+    "localRenderedUI": {
+      "loginStarts": 0,
+      "logouts": 0,
+      "invitationContextPreserved": true,
+      "recoveryAfterProviderFailure": true,
+      "revocationWithoutFocusOrReloadMs": 15360,
+      "expiredSessionOffersExplicitSignIn": true
+    },
+    "webFollowup": "Back/context persistence, consent below both choices, unchecked/withdrawn gating,320px no overflow; actual live Back link observed",
+    "cloud": "Actual Auth0 + deployed API same-token false-to-true proof, granted projection and old-capability rejection; disposable admin fixtures"
+  },
+  "provider": {
+    "Auth0Admin": "Expired session restored through existing browser SSO; no Owner credential or MFA needed",
+    "readOnlyClient": "Created with exactly read:users, protected credential installed in AWS and actual cloud API exercised; no runtime profile writes",
+    "AWS": "Owner IAM login completed; CLI recovered with current official response format and exact STS identity confirmed. Do not repeat."
+  },
+  "deployment": "API30/migration23/0060 and final Web published,42 HTTP checks, actual FARGATE HEALTHY1/1",
+  "tools": {
+    "simulatorProfile": "owner-cloud",
+    "testSimulator": "Shutdown confirmed",
+    "ownerSimulator": "Normal updated cloud build, env{}, public entry after prior session expiry",
+    "localWeb": "Stopped",
+    "playwrightSession": "Closed",
+    "ChromeBTab": "1082156537",
+    "ChromeAWSTab": "1082156554",
+    "nativeBuildExecCell": "745",
+    "cdkPrepareSession": 34031
+  },
+  "next": "Independent public-monitor destination/delivery gate; no repeat B or provider login",
+  "cleanup": {
+    "oldFixtureTokensDenied": true,
+    "temporaryAuth0IdentityAbsent": true,
+    "protectedFixtureTokensRemoved": true,
+    "realAAndBAccountsUntouched": true
+  },
+  "localCleanup": {
+    "localPort4280Closed": true,
+    "ownedPlaywrightBrowserClosed": true,
+    "testSimulatorShutdown": true,
+    "normalSimulatorRetained": true
+  }
+}

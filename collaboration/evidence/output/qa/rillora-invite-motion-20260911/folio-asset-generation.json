@@ -1,0 +1,69 @@
+{
+  "tool_mode": "built-in image_gen",
+  "iterations": 2,
+  "selected_iteration": 1,
+  "reference": "assets/concepts/rillora-authenticated-motion-20260911/prepared-folio.png",
+  "source": "/Users/tantalum/.codex/generated_images/01a08f73-f86b-78e0-979d-bfe7914e7371/exec-d6290829-9e88-4d92-a6e3-548a964d37ea.png",
+  "saved_asset": "assets/concepts/rillora-authenticated-motion-20260911/folio-asset.png",
+  "size_px": [
+    1254,
+    1254
+  ],
+  "mode": "RGB",
+  "bytes": 1586222,
+  "sha256": "39f329c9f7a472380b484cac9ac9e6e23b9dba04050ceadf80f983ea0439acaf",
+  "background_target": "#171C1C",
+  "background_exact_match": false,
+  "corners_rgb": {
+    "top_left": [
+      24,
+      29,
+      30
+    ],
+    "top_right": [
+      23,
+      29,
+      27
+    ],
+    "bottom_left": [
+      22,
+      27,
+      28
+    ],
+    "bottom_right": [
+      24,
+      30,
+      30
+    ]
+  },
+  "edge_unique_colors": 40,
+  "edge_channel_ranges": [
+    [
+      20,
+      24
+    ],
+    [
+      26,
+      30
+    ],
+    [
+      26,
+      30
+    ]
+  ],
+  "edge_mean_absolute_channel_error": 0.6372040436286246,
+  "visual_checks": [
+    "Graphite folio, sage account sheet, limestone document sheet and clay device sheet preserved",
+    "Generic document, account and device glyphs preserved",
+    "No UI, words, 0, MATTERS or checkerboard",
+    "Whole object has more than 12 percent padding visually",
+    "Near-flat dark background has small RGB noise; pixel-exact solid-color condition not achieved"
+  ],
+  "limits": [
+    "Image tool returned 1254x1254 despite 1024x1024 request",
+    "No manual image editing, resizing or WebP conversion performed",
+    "Second attempt background had higher mean absolute RGB error and was not selected",
+    "No source code or Markdown files modified"
+  ],
+  "selected_prompt": "Use case: precise-object-edit. Asset type: one standalone production raster illustration for an existing native iOS and Web app, 1024x1024 square. Input image 1 is the selected reference: preserve exactly the central tactile layered folio object only. Extract/recreate that graphite dark green folio with the sage account sheet, pale warm limestone document sheet and clay orange device sheet, preserving the original composition, gentle 3D depth, perspective, finely grained matte paper/leather textures, rounded corners, document glyph, person glyph and laptop glyph. Remove ALL other UI from the reference. Front folio cover must be completely blank: no 0, no MATTERS, no wording or typography anywhere. Center the whole folio object on the square with at least 12% empty padding on every side, no cropped edges. Scene/backdrop: absolutely perfectly uniform flat solid RGB(23,28,28), hex #171C1C, across all empty pixels to all four image edges. This must look like a clean placed asset on a flat colored canvas, not a photographic scene or vignette. Maintain depth only INSIDE the object, with no cast shadow on the background. No horizon, no floor, no vignette, no glow, no checkerboard, no transparency grid, no background texture, no background gradient, no rectangular background shadow, no UI labels, no buttons, no controls, no logo, no watermark. Preserve the close visual identity of the selected folio and its subtle icons."
+}

@@ -1,0 +1,119 @@
+{
+  "capturedAt": "2026-09-23T02:58:53.290821+00:00",
+  "files": [
+    {
+      "path": "apps/api/package.json",
+      "sha256": "e68dac0b9c46fedf815205027f5e8941413a488a0abe99e11961615eec1da6c7"
+    },
+    {
+      "path": "apps/api/package-lock.json",
+      "sha256": "7a94a8214b418cd65a9f0a28dc0f7735ea854de8714007c7d62e4c7f0cb8a09f"
+    },
+    {
+      "path": "apps/api/src/private-content.ts",
+      "sha256": "d96cd52ea9d56adca07ff1b9b46febd1589980ea24dd37df81d35cef7d0c71c4"
+    },
+    {
+      "path": "apps/api/src/migrate-private-content.ts",
+      "sha256": "09ca0c627ddd075ac6212d9e3d22f74977cfda062fd8eeade69e9bb0c25d907b"
+    },
+    {
+      "path": "apps/api/src/config.ts",
+      "sha256": "767ebb8846e9c08ede2a50f7b6a7a83ea815ce51d5210ef3eea4b06a64e13fb9"
+    },
+    {
+      "path": "apps/api/src/db.ts",
+      "sha256": "f7dc18c75b5dbf1f056de386bf9f682616f1a4f0cf91dfe6b1a6698f2177f203"
+    },
+    {
+      "path": "apps/api/src/app.ts",
+      "sha256": "fd018c04369825dd8006b84c349fcfa8cfbee2205c0ccb295ea2040c50a4a0f3"
+    },
+    {
+      "path": "apps/api/src/server.ts",
+      "sha256": "dc4c33149418147dbca828baa41b1d355e59b66926d348795e88ef33814406fc"
+    },
+    {
+      "path": "apps/api/src/bootstrap-runtime.ts",
+      "sha256": "0d6fc2cf2fa00a878db8aa11030534b7e150bac8d3aea97d13c1e300e05c86bc"
+    },
+    {
+      "path": "apps/api/src/routes.ts",
+      "sha256": "606ebde8c2d591f8a0d5f8333b114b7766edb62253d3d053a88093b00aee2e5c"
+    },
+    {
+      "path": "apps/api/src/account-data-routes.ts",
+      "sha256": "58bf866e3dc1ad6f12ee71560671ef9561a5ccb925e2e7c40db5e0d820e744c3"
+    },
+    {
+      "path": "apps/api/src/family-maintenance-routes.ts",
+      "sha256": "ab0a1a139fef93f27d7ce323807ad7dd80b727e45fd519fdd16fda82988983c5"
+    },
+    {
+      "path": "apps/api/src/disclosure-rehearsal-routes.ts",
+      "sha256": "9457bc4fae145d5c28722d54970e8eea63916743175dd5201c589887028f2de1"
+    },
+    {
+      "path": "apps/api/src/role-assignment-routes.ts",
+      "sha256": "c86c2da5b9734a133480d63a3c6d98e8fb21f18c95c92500b54ff6a07e558ba3"
+    },
+    {
+      "path": "apps/api/migrations/0064_private_content_envelopes.sql",
+      "sha256": "f5d4da9a83c9e4b71d6745a1a5901c6f22adb3b0ba87683423833f111645a8ee"
+    },
+    {
+      "path": "apps/api/migrations/0067_content_migration_grant_lookup.sql",
+      "sha256": "36dc0f93c26090e81347f320a9b2e8ef0cf609701c21aed7d4cfb8b4b0d8e16b"
+    },
+    {
+      "path": "apps/api/migrations/0066_content_migration_representation.sql",
+      "sha256": "f8321ca44578ef4d71d33950130b09efad4a62addc66a7733d597f878906cd1f"
+    },
+    {
+      "path": "apps/api/migrations/0065_content_maintenance.sql",
+      "sha256": "05972573d9d9c6d0b1c92a2b612499447cd06456a5f4c7d3a5e825529d8cb928"
+    },
+    {
+      "path": "infra/aws/lib/rillora-staging-stack.ts",
+      "sha256": "e12900df2e404efe6b25b1f16d006b722370ad3db354b2ba5da69a713e148620"
+    },
+    {
+      "path": "infra/aws/bin/rillora.ts",
+      "sha256": "83a7a72a0a745b92e43f5c2c18462fb4b43667d242b63b74ef9fd81f7f5bedfc"
+    },
+    {
+      "path": "infra/aws/scripts/content-rollout.py",
+      "sha256": "4146de3f5805889e558a27a56f146828513e72df8caa460d0d1c7c7170bca2b1"
+    },
+    {
+      "path": "infra/aws/test/rillora-staging-stack.test.ts",
+      "sha256": "2325c3f6c8f6d9c967527bfdcab945c7634c6fd7f67eb0e268c8f6fb9c8c5f41"
+    },
+    {
+      "path": "apps/api/tests/private-content.integration.test.ts",
+      "sha256": "8ed1c3b7b3f6e4eee1adb6983ab3e2e84efbe7de14a2419a60f563a6aba9d033"
+    },
+    {
+      "path": "apps/api/tests/private-content-migration.integration.test.ts",
+      "sha256": "a2de23819246effdff9d7263346222af0fccacedb93f4bd830503a8d7eb61305"
+    },
+    {
+      "path": "apps/api/tests/private-content-kms.test.ts",
+      "sha256": "ba2ad2653ece4f2ed9f26498508c2d6914a334d5a1baa9281ed13a67775e27cb"
+    },
+    {
+      "path": "apps/api/tests/content-test-keys.ts",
+      "sha256": "2405602cf9ab285f60a5581be693cacdbf04deda9fe415f99fb305bd5a168879"
+    },
+    {
+      "path": "apps/api/tests/config.test.ts",
+      "sha256": "ddeca1dffad52d3e9dc867fedb74401b1b96f08f9d152bf11f06a439fcafa428"
+    },
+    {
+      "path": "apps/api/tests/bootstrap-runtime.test.ts",
+      "sha256": "74db75b71c34455b8e763efa3c7b0ac9a6ec9c970841f823b4347831363924f0"
+    }
+  ],
+  "apiImage": "[REDACTED_SCANNER_LITERAL]",
+  "note": "Working tree remains uncommitted; prior source evidence not rewritten."
+}

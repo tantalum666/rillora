@@ -1,0 +1,41 @@
+{
+  "at": "2026-09-29T20:28:21.574400+00:00",
+  "archive": "output/qa/rillora-launch-resume-20260930/Rillora-ReleasePrepared.xcarchive",
+  "ipa": "output/qa/rillora-launch-resume-20260930/distribution-final/Rillora.ipa",
+  "ipaSha256": "5aa2ad2e5b60bba4ff6c52ecb64f93520fcaf558c732ebb023a21e5f851b52e8",
+  "signedStrict": true,
+  "bundleId": "com.rillora.ios",
+  "team": "8L99CFNK24",
+  "debuggable": false,
+  "archiveDevelopmentSigning": true,
+  "profileExpires": "2027-06-16T05:13:12",
+  "info": {
+    "RilloraAuth0Audience": "urn:rillora:production:api",
+    "RilloraGoogleIOSClientID": "",
+    "RilloraAuth0ClientID": "[REDACTED_SCANNER_LITERAL]",
+    "RilloraGoogleServerClientID": "",
+    "RilloraAuth0Domain": "login.rillora.xyz",
+    "RilloraAPIBaseURL": "https://app.rillora.xyz/api/v1",
+    "RilloraAppleSignInEnabled": "NO",
+    "RilloraGoogleNativeSignInEnabled": "NO",
+    "RilloraPasskeyNativeSignInEnabled": "NO",
+    "RilloraServiceMarketCode": "GLOBAL_US",
+    "RilloraCustomerAccessEnabled": "NO",
+    "RilloraDevPlannerID": "",
+    "RilloraNativeSessionURL": "https://app.rillora.xyz/api/auth/native/session"
+  },
+  "appPrivacyManifest": {
+    "NSPrivacyTracking": false,
+    "NSPrivacyTrackingDomains": [],
+    "NSPrivacyAccessedAPITypes": [
+      {
+        "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryUserDefaults",
+        "NSPrivacyAccessedAPITypeReasons": [
+          "CA92.1"
+        ]
+      }
+    ]
+  },
+  "storeKitFixtureBundled": false,
+  "uploaded": false
+}

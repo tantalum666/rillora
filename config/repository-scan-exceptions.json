@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "reviewedAt": "2026-09-25",
+  "reviewedAt": "2026-09-30",
   "boundary": "Only exact unchanged source spans are approved. New or changed findings still block upload.",
   "findings": [
     {
@@ -202,6 +202,22 @@
       "endLine": 18,
       "sourceSpanSha256": "bcba003aa57db2f4f2c680db106d8c3f5779d2645a5038baf7394406df3fe088",
       "reason": "Public Auth0 production M2M client identifier, verified against provider client/grant readback; not a client secret or bearer token."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/ios/Rillora.xcodeproj/project.pbxproj",
+      "startLine": 1249,
+      "endLine": 1249,
+      "sourceSpanSha256": "5de471a1bd1102dd7f3284468f430bc8b8c0d137dcaef7c8aa9d27cc17aae11e",
+      "reason": "Native public Auth0 client identifier, byte-matched to the already reviewed project.yml value; shared generated Xcode project, not a client secret."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/ios/Rillora.xcodeproj/project.pbxproj",
+      "startLine": 1500,
+      "endLine": 1500,
+      "sourceSpanSha256": "84b43e023d7ae444915797275d0661dbab0b68c1f6201663e2cd623b995b19ab",
+      "reason": "Native public Auth0 client identifier, byte-matched to the already reviewed project.yml value; shared generated Xcode project, not a client secret."
     }
   ]
 }

@@ -1,0 +1,201 @@
+Stack RilloraOperations
+IAM Statement Changes
+┌───┬───────────────────────────────────────────────────────────────────────────────────────────┬────────┬─────────────────────────────────┬──────────────────────────────────────────────┬─────────────────────────────────────────────────────────────────────┐
+│   │ Resource                                                                                  │ Effect │ Action                          │ Principal                                    │ Condition                                                           │
+├───┼───────────────────────────────────────────────────────────────────────────────────────────┼────────┼─────────────────────────────────┼──────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────┤
+│ + │ ${Alerts}                                                                                 │ Allow  │ sns:Publish                     │ Service:cloudwatch.amazonaws.com             │ "StringEquals": {                                                   │
+│   │                                                                                           │        │                                 │                                              │   "aws:SourceAccount": "133857166372"                               │
+│   │                                                                                           │        │                                 │                                              │ },                                                                  │
+│   │                                                                                           │        │                                 │                                              │ "ArnEquals": {                                                      │
+│   │                                                                                           │        │                                 │                                              │   "aws:SourceArn": [                                                │
+│   │                                                                                           │        │                                 │                                              │     "${Unhealthy.Arn}",                                             │
+│   │                                                                                           │        │                                 │                                              │     "${MissingHeartbeat.Arn}",                                      │
+│   │                                                                                           │        │                                 │                                              │     "${InvocationErrors.Arn}",                                      │
+│   │                                                                                           │        │                                 │                                              │     "${DeadLetters.Arn}",                                           │
+│   │                                                                                           │        │                                 │                                              │     "${MailBounce.Arn}",                                            │
+│   │                                                                                           │        │                                 │                                              │     "${MailComplaint.Arn}",                                         │
+│   │                                                                                           │        │                                 │                                              │     "${MailRejected.Arn}",                                          │
+│   │                                                                                           │        │                                 │                                              │     "${MailDelayed.Arn}",                                           │
+│   │                                                                                           │        │                                 │                                              │     "${AppleReviewDeliveryFailed.Arn}",                             │
+│   │                                                                                           │        │                                 │                                              │     "${AppleReviewDeliveryWorkerErrors.Arn}",                       │
+│   │                                                                                           │        │                                 │                                              │     "${AppleReviewDeliveryOldestPendingSeconds.Arn}",               │
+│   │                                                                                           │        │                                 │                                              │     "${AppleReviewDeliveryHeartbeat.Arn}",                          │
+│   │                                                                                           │        │                                 │                                              │     "${SnapshotRetirement/SnapshotFailures.Arn}",                   │
+│   │                                                                                           │        │                                 │                                              │     "${SnapshotRetirement/SnapshotOverdue.Arn}",                    │
+│   │                                                                                           │        │                                 │                                              │     "${SnapshotRetirement/SnapshotHeartbeat.Arn}"                   │
+│   │                                                                                           │        │                                 │                                              │   ]                                                                 │
+│   │                                                                                           │        │                                 │                                              │ }                                                                   │
+│ - │ ${Alerts}                                                                                 │ Allow  │ sns:Publish                     │ Service:cloudwatch.amazonaws.com             │ "StringEquals": {                                                   │
+│   │                                                                                           │        │                                 │                                              │   "aws:SourceAccount": "133857166372"                               │
+│   │                                                                                           │        │                                 │                                              │ },                                                                  │
+│   │                                                                                           │        │                                 │                                              │ "ArnEquals": {                                                      │
+│   │                                                                                           │        │                                 │                                              │   "aws:SourceArn": [                                                │
+│   │                                                                                           │        │                                 │                                              │     "${Unhealthy.Arn}",                                             │
+│   │                                                                                           │        │                                 │                                              │     "${MissingHeartbeat.Arn}",                                      │
+│   │                                                                                           │        │                                 │                                              │     "${InvocationErrors.Arn}",                                      │
+│   │                                                                                           │        │                                 │                                              │     "${DeadLetters.Arn}",                                           │
+│   │                                                                                           │        │                                 │                                              │     "${MailBounce.Arn}",                                            │
+│   │                                                                                           │        │                                 │                                              │     "${MailComplaint.Arn}",                                         │
+│   │                                                                                           │        │                                 │                                              │     "${MailRejected.Arn}",                                          │
+│   │                                                                                           │        │                                 │                                              │     "${MailDelayed.Arn}",                                           │
+│   │                                                                                           │        │                                 │                                              │     "${AppleReviewDeliveryFailed.Arn}",                             │
+│   │                                                                                           │        │                                 │                                              │     "${AppleReviewDeliveryWorkerErrors.Arn}",                       │
+│   │                                                                                           │        │                                 │                                              │     "${AppleReviewDeliveryOldestPendingSeconds.Arn}",               │
+│   │                                                                                           │        │                                 │                                              │     "${AppleReviewDeliveryHeartbeat.Arn}"                           │
+│   │                                                                                           │        │                                 │                                              │   ]                                                                 │
+│   │                                                                                           │        │                                 │                                              │ }                                                                   │
+├───┼───────────────────────────────────────────────────────────────────────────────────────────┼────────┼─────────────────────────────────┼──────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────┤
+│ + │ ${AppleReviewDeliveryFailed.Arn}                                                          │ Allow  │ cloudwatch:DescribeAlarmHistory │ AWS:rillora-staging-operator                 │                                                                     │
+│   │ ${AppleReviewDeliveryHeartbeat.Arn}                                                       │        │ cloudwatch:DescribeAlarms       │                                              │                                                                     │
+│   │ ${AppleReviewDeliveryOldestPendingSeconds.Arn}                                            │        │ cloudwatch:SetAlarmState        │                                              │                                                                     │
+│   │ ${AppleReviewDeliveryWorkerErrors.Arn}                                                    │        │                                 │                                              │                                                                     │
+│   │ ${DeadLetters.Arn}                                                                        │        │                                 │                                              │                                                                     │
+│   │ ${InvocationErrors.Arn}                                                                   │        │                                 │                                              │                                                                     │
+│   │ ${MailBounce.Arn}                                                                         │        │                                 │                                              │                                                                     │
+│   │ ${MailComplaint.Arn}                                                                      │        │                                 │                                              │                                                                     │
+│   │ ${MailDelayed.Arn}                                                                        │        │                                 │                                              │                                                                     │
+│   │ ${MailRejected.Arn}                                                                       │        │                                 │                                              │                                                                     │
+│   │ ${MissingHeartbeat.Arn}                                                                   │        │                                 │                                              │                                                                     │
+│   │ ${SnapshotRetirement/SnapshotFailures.Arn}                                                │        │                                 │                                              │                                                                     │
+│   │ ${SnapshotRetirement/SnapshotHeartbeat.Arn}                                               │        │                                 │                                              │                                                                     │
+│   │ ${SnapshotRetirement/SnapshotOverdue.Arn}                                                 │        │                                 │                                              │                                                                     │
+│   │ ${Unhealthy.Arn}                                                                          │        │                                 │                                              │                                                                     │
+├───┼───────────────────────────────────────────────────────────────────────────────────────────┼────────┼─────────────────────────────────┼──────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────┤
+│ - │ ${AppleReviewDeliveryFailed.Arn}                                                          │ Allow  │ cloudwatch:DescribeAlarmHistory │ AWS:rillora-staging-operator                 │                                                                     │
+│   │ ${AppleReviewDeliveryHeartbeat.Arn}                                                       │        │ cloudwatch:DescribeAlarms       │                                              │                                                                     │
+│   │ ${AppleReviewDeliveryOldestPendingSeconds.Arn}                                            │        │ cloudwatch:SetAlarmState        │                                              │                                                                     │
+│   │ ${AppleReviewDeliveryWorkerErrors.Arn}                                                    │        │                                 │                                              │                                                                     │
+│   │ ${DeadLetters.Arn}                                                                        │        │                                 │                                              │                                                                     │
+│   │ ${InvocationErrors.Arn}                                                                   │        │                                 │                                              │                                                                     │
+│   │ ${MailBounce.Arn}                                                                         │        │                                 │                                              │                                                                     │
+│   │ ${MailComplaint.Arn}                                                                      │        │                                 │                                              │                                                                     │
+│   │ ${MailDelayed.Arn}                                                                        │        │                                 │                                              │                                                                     │
+│   │ ${MailRejected.Arn}                                                                       │        │                                 │                                              │                                                                     │
+│   │ ${MissingHeartbeat.Arn}                                                                   │        │                                 │                                              │                                                                     │
+│   │ ${Unhealthy.Arn}                                                                          │        │                                 │                                              │                                                                     │
+├───┼───────────────────────────────────────────────────────────────────────────────────────────┼────────┼─────────────────────────────────┼──────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────┤
+│ + │ ${SnapshotRetirement/Logs.Arn}                                                            │ Allow  │ logs:DescribeLogStreams         │ AWS:rillora-production-operator              │                                                                     │
+│   │ ${SnapshotRetirement/Logs.Arn}:*                                                          │        │ logs:FilterLogEvents            │                                              │                                                                     │
+│   │                                                                                           │        │ logs:GetLogEvents               │                                              │                                                                     │
+├───┼───────────────────────────────────────────────────────────────────────────────────────────┼────────┼─────────────────────────────────┼──────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────┤
+│ + │ ${SnapshotRetirement/Worker.Arn}                                                          │ Allow  │ lambda:InvokeFunction           │ Service:events.amazonaws.com                 │ "ArnLike": {                                                        │
+│   │                                                                                           │        │                                 │                                              │   "AWS:SourceArn": "${SnapshotRetirement/Schedule.Arn}"             │
+│   │                                                                                           │        │                                 │                                              │ }                                                                   │
+│ + │ ${SnapshotRetirement/Worker.Arn}                                                          │ Allow  │ lambda:GetFunctionConfiguration │ AWS:rillora-production-operator              │                                                                     │
+│   │                                                                                           │        │ lambda:InvokeFunction           │                                              │                                                                     │
+├───┼───────────────────────────────────────────────────────────────────────────────────────────┼────────┼─────────────────────────────────┼──────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────┤
+│ + │ ${SnapshotRetirement/Worker/ServiceRole.Arn}                                              │ Allow  │ sts:AssumeRole                  │ Service:lambda.amazonaws.com                 │                                                                     │
+├───┼───────────────────────────────────────────────────────────────────────────────────────────┼────────┼─────────────────────────────────┼──────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────┤
+│ + │ *                                                                                         │ Allow  │ rds:DescribeDBInstances         │ AWS:${SnapshotRetirement/Worker/ServiceRole} │ "StringEquals": {                                                   │
+│   │                                                                                           │        │ rds:DescribeDBSnapshots         │                                              │   "aws:RequestedRegion": "eu-central-1"                             │
+│   │                                                                                           │        │                                 │                                              │ }                                                                   │
+├───┼───────────────────────────────────────────────────────────────────────────────────────────┼────────┼─────────────────────────────────┼──────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────┤
+│ + │ arn:aws:rds:eu-central-1:133857166372:snapshot:rillora-content-encryption-before-20260923 │ Allow  │ rds:ListTagsForResource         │ AWS:${SnapshotRetirement/Worker/ServiceRole} │                                                                     │
+│ + │ arn:aws:rds:eu-central-1:133857166372:snapshot:rillora-content-encryption-before-20260923 │ Allow  │ rds:DeleteDBSnapshot            │ AWS:${SnapshotRetirement/Worker/ServiceRole} │ "StringEquals": {                                                   │
+│   │                                                                                           │        │                                 │                                              │   "rds:snapshot-tag/RilloraRetirementManaged": "true",              │
+│   │                                                                                           │        │                                 │                                              │   "rds:snapshot-tag/RilloraRetireAfter": "2026-12-21T16:13:05.877Z" │
+│   │                                                                                           │        │                                 │                                              │ },                                                                  │
+│   │                                                                                           │        │                                 │                                              │ "StringNotEquals": {                                                │
+│   │                                                                                           │        │                                 │                                              │   "rds:snapshot-tag/RilloraLegalHold": "true"                       │
+│   │                                                                                           │        │                                 │                                              │ },                                                                  │
+│   │                                                                                           │        │                                 │                                              │ "DateGreaterThan": {                                                │
+│   │                                                                                           │        │                                 │                                              │   "aws:CurrentTime": "2026-12-21T16:13:05.877Z"                     │
+│   │                                                                                           │        │                                 │                                              │ }                                                                   │
+│ + │ arn:aws:rds:eu-central-1:133857166372:snapshot:rillora-content-encryption-before-20260923 │ Allow  │ rds:ListTagsForResource         │ AWS:rillora-production-operator              │                                                                     │
+│ + │ arn:aws:rds:eu-central-1:133857166372:snapshot:rillora-content-encryption-before-20260923 │ Allow  │ rds:AddTagsToResource           │ AWS:rillora-production-operator              │ "ForAllValues:StringEquals": {                                      │
+│   │                                                                                           │        │                                 │                                              │   "aws:TagKeys": [                                                  │
+│   │                                                                                           │        │                                 │                                              │     "RilloraRetirementManaged",                                     │
+│   │                                                                                           │        │                                 │                                              │     "RilloraRetireAfter",                                           │
+│   │                                                                                           │        │                                 │                                              │     "RilloraLegalHold"                                              │
+│   │                                                                                           │        │                                 │                                              │   ]                                                                 │
+│   │                                                                                           │        │                                 │                                              │ },                                                                  │
+│   │                                                                                           │        │                                 │                                              │ "StringEqualsIfExists": {                                           │
+│   │                                                                                           │        │                                 │                                              │   "aws:RequestTag/RilloraRetirementManaged": "true",                │
+│   │                                                                                           │        │                                 │                                              │   "aws:RequestTag/RilloraRetireAfter": "2026-12-21T16:13:05.877Z"   │
+│   │                                                                                           │        │                                 │                                              │ }                                                                   │
+└───┴───────────────────────────────────────────────────────────────────────────────────────────┴────────┴─────────────────────────────────┴──────────────────────────────────────────────┴─────────────────────────────────────────────────────────────────────┘
+IAM Policy Changes
+┌───┬──────────────────────────────────────────┬────────────────────────────────────────────────────────────────────────────────┐
+│   │ Resource                                 │ Managed Policy ARN                                                             │
+├───┼──────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────┤
+│ + │ ${SnapshotRetirement/Worker/ServiceRole} │ arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole │
+└───┴──────────────────────────────────────────┴────────────────────────────────────────────────────────────────────────────────┘
+(NOTE: There may be security-related changes not in this list. See https://github.com/aws/aws-cdk/issues/1299)
+
+Resources
+[+] AWS::Logs::LogGroup SnapshotRetirement/Logs SnapshotRetirementLogs5CFC046D
+[+] AWS::IAM::Role SnapshotRetirement/Worker/ServiceRole SnapshotRetirementWorkerServiceRoleE2653785
+[+] AWS::IAM::Policy SnapshotRetirement/Worker/ServiceRole/DefaultPolicy SnapshotRetirementWorkerServiceRoleDefaultPolicyF06FAE52
+[+] AWS::Lambda::Function SnapshotRetirement/Worker SnapshotRetirementWorker036281CC
+[+] AWS::Lambda::EventInvokeConfig SnapshotRetirement/Worker/EventInvokeConfig SnapshotRetirementWorkerEventInvokeConfigD1C43C5C
+[+] AWS::Events::Rule SnapshotRetirement/Schedule SnapshotRetirementScheduleFB86796D
+[+] AWS::Lambda::Permission SnapshotRetirement/Schedule/AllowEventRuleRilloraOperationsSnapshotRetirementWorker57A82C08 SnapshotRetirementScheduleAllowEventRuleRilloraOperationsSnapshotRetirementWorker57A82C08BAB494FE
+[+] AWS::CloudWatch::Alarm SnapshotRetirement/SnapshotFailures SnapshotRetirementSnapshotFailures75D039D7
+[+] AWS::CloudWatch::Alarm SnapshotRetirement/SnapshotOverdue SnapshotRetirementSnapshotOverdueCC18CA19
+[+] AWS::CloudWatch::Alarm SnapshotRetirement/SnapshotHeartbeat SnapshotRetirementSnapshotHeartbeat6F6AEB6B
+[+] AWS::IAM::Policy SnapshotRetirement/Runbook SnapshotRetirementRunbook91A9EB67
+[~] AWS::SNS::TopicPolicy Alerts/Policy AlertsPolicy425C338D
+ └─ [~] PolicyDocument
+     └─ [~] .Statement:
+         └─ @@ -92,6 +92,24 @@
+            [ ]         "AppleReviewDeliveryHeartbeatD28FFF4B",
+            [ ]         "Arn"
+            [ ]       ]
+            [+]     },
+            [+]     {
+            [+]       "Fn::GetAtt": [
+            [+]         "SnapshotRetirementSnapshotFailures75D039D7",
+            [+]         "Arn"
+            [+]       ]
+            [+]     },
+            [+]     {
+            [+]       "Fn::GetAtt": [
+            [+]         "SnapshotRetirementSnapshotOverdueCC18CA19",
+            [+]         "Arn"
+            [+]       ]
+            [+]     },
+            [+]     {
+            [+]       "Fn::GetAtt": [
+            [+]         "SnapshotRetirementSnapshotHeartbeat6F6AEB6B",
+            [+]         "Arn"
+            [+]       ]
+            [ ]     }
+            [ ]   ]
+            [ ] }
+[~] AWS::IAM::Policy OperationsRunbook OperationsRunbook277D4959
+ └─ [~] PolicyDocument
+     └─ [~] .Statement:
+         └─ @@ -131,6 +131,24 @@
+            [ ]         "AppleReviewDeliveryHeartbeatD28FFF4B",
+            [ ]         "Arn"
+            [ ]       ]
+            [+]     },
+            [+]     {
+            [+]       "Fn::GetAtt": [
+            [+]         "SnapshotRetirementSnapshotFailures75D039D7",
+            [+]         "Arn"
+            [+]       ]
+            [+]     },
+            [+]     {
+            [+]       "Fn::GetAtt": [
+            [+]         "SnapshotRetirementSnapshotOverdueCC18CA19",
+            [+]         "Arn"
+            [+]       ]
+            [+]     },
+            [+]     {
+            [+]       "Fn::GetAtt": [
+            [+]         "SnapshotRetirementSnapshotHeartbeat6F6AEB6B",
+            [+]         "Arn"
+            [+]       ]
+            [ ]     }
+            [ ]   ]
+            [ ] },
+
+Outputs
+[+] Output SnapshotRetirement/FunctionName SnapshotRetirementFunctionNameEA07C724: {"Value":{"Ref":"SnapshotRetirementWorker036281CC"}}
+[+] Output SnapshotRetirement/LogGroupName SnapshotRetirementLogGroupNameD0C870D7: {"Value":{"Ref":"SnapshotRetirementLogs5CFC046D"}}
+
+
+
+✨  Number of stacks with differences: 1
+

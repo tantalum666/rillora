@@ -1,0 +1,97 @@
+.authenticated-overview { max-width:1060px; margin:0 auto; }
+.authenticated-overview[data-empty=false] { max-width:900px; }
+.authenticated-overview[data-empty=false] .folio-title { justify-content:flex-start; min-height:108px; }
+.authenticated-overview[data-empty=false] .folio-title .folio-artwork { width:108px; margin-left:auto; }
+.review-next { width:100%; display:flex; align-items:center; justify-content:space-between; gap:20px; padding:20px 24px; margin:8px 0 20px; border:1px solid var(--divider); border-radius:16px; background:#25312b; color:var(--ink); text-align:left; cursor:pointer; }
+.review-next span { display:grid; gap:7px; }.review-next small { color:var(--sage); }.review-next strong { font-size:20px; }
+.folio-add { margin-top:18px; width:100%; }.folio-add svg:last-child { margin-left:auto; }
+.folio-connections { margin-top:26px; }.folio-connections header { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.folio-connections h2 { font:500 25px "Source Serif 4",Georgia,serif; }
+.profile-tools { display:flex; gap:12px; flex-wrap:wrap; margin:20px 0; }
+.account-summary { margin:24px 0; }.account-summary h2 { font-size:20px; }
+.matter-sharing-summary .person-main { width:100%; justify-content:space-between; }
+.matter-sharing-summary .person-main strong,.matter-sharing-summary .person-main small { display:block; }.matter-sharing-summary .person-main small { color:var(--muted); margin-top:5px; }
+@media(max-width:760px) { .authenticated-overview[data-empty=false] .folio-title { gap:10px; min-height:90px; }.authenticated-overview[data-empty=false] .folio-title .folio-artwork { width:76px; }.folio-title h1 { white-space:nowrap; }.review-next { padding:16px; }.folio-connections header { flex-wrap:wrap; } }
+.app-shell .main-content { background:#171c1c; width:100%; }
+.folio-brand { display:none; }
+div.app-shell { width:100%; min-height:100dvh; margin:0; border:0; }
+.sharing-link-actions > button { min-width:0; width:0; flex:1 1 0; min-height:54px; padding:12px; font-size:15px; }
+.invitation-people .connection-visual,.invitation-people .connection-path,.invitation-people .connection-path > span { background:none; border-radius:0; }
+.invitation-people .connection-visual { width:auto; }
+.invitation-people .connection-path { width:64px; height:auto; }
+.invitation-people .connection-path > span { height:0; width:100%; }
+.folio-title { display:flex; align-items:baseline; gap:18px; justify-content:space-between; }
+.folio-title h1 { font:500 clamp(32px,4vw,46px)/1.15 "Source Serif 4",Georgia,serif; margin:12px 0; color:var(--ink); }
+.folio-title > span { color:var(--muted); font-size:15px; white-space:nowrap; }
+.folio-workspace { display:grid; grid-template-columns:1fr minmax(300px,.9fr); gap:40px; align-items:center; margin:16px 0 30px; }
+.folio-open { display:flex; align-items:center; justify-content:center; padding:0; background:none; border:0; cursor:pointer; border-radius:20px; }
+.folio-artwork { display:block; width:min(100%,420px); height:auto; object-fit:contain; user-select:none; animation:folio-settle 650ms cubic-bezier(.18,.7,.25,1) both; }
+.folio-artwork.compact { width:min(100%,320px); }
+.folio-open .folio-artwork { transition:transform 260ms ease; }
+.folio-open:hover .folio-artwork { transform:translateY(-5px) rotate(-1deg); }
+.folio-open:active .folio-artwork { transform:translateY(0) scale(.98); }
+.folio-actions { display:grid; gap:14px; }
+.folio-actions > .primary-button { width:100%; justify-content:space-between; min-height:54px; }
+.connection-visual { display:inline-flex; align-items:center; justify-content:center; gap:16px; height:88px; color:var(--sage); flex-shrink:0; }
+.connection-visual > svg { width:54px; height:54px; flex-shrink:0; }
+.connection-visual > svg:last-child { color:var(--clay); }
+.connection-visual[data-state=accepted] > svg:last-child { color:var(--sage); }
+.connection-path { display:grid; place-items:center; width:64px; gap:5px; }
+.connection-path > span { display:block; width:100%; border-top:1px dashed var(--muted); transform-origin:left; animation:connection-draw 420ms ease-out both; }
+.connection-path > svg { width:18px; height:18px; }
+.connection-visual[data-state=accepted] .connection-path > span { border-top-style:solid; border-color:var(--sage); }
+.connection-visual.compact { gap:8px; height:48px; }
+.connection-visual.compact > svg { width:34px; height:34px; }
+.connection-visual.compact .connection-path { width:28px; }
+.invite-action { width:100%; min-height:90px; border:0; padding:14px 0; display:flex; align-items:center; gap:18px; background:none; color:var(--ink); text-align:left; cursor:pointer; }
+.invite-action > span:nth-child(2) { flex:1; min-width:0; }
+.invite-action strong { display:block; font-size:18px; font-weight:600; }
+.invite-action small { display:block; margin-top:5px; font-size:14px; line-height:1.4; color:var(--muted); }
+.invite-action > svg:last-child { flex-shrink:0; }
+.incoming-action { display:flex; align-items:center; gap:14px; min-height:68px; width:100%; padding:16px 0; border:0; border-top:1px solid var(--divider); background:none; color:var(--ink); cursor:pointer; text-align:left; }
+.incoming-action > span { flex:1; }
+.incoming-action > svg:first-child { color:var(--sage); }
+.connection-refresh-note { font-size:13px; color:var(--muted); }
+.optional-guide { justify-self:start; min-height:44px; }
+.folio-matters > header { display:flex; justify-content:space-between; align-items:center; gap:18px; }
+.folio-matters h2 { font:500 26px "Source Serif 4",Georgia,serif; }
+.invitation-steps { list-style:none; padding:0; margin:8px 0 26px; display:flex; gap:8px; }
+.invitation-steps li { flex:1; min-width:0; padding-top:10px; border-top:3px solid var(--divider); font-size:13px; color:var(--muted); transition:border-color 220ms,color 220ms; }
+.invitation-steps [aria-current=step],.invitation-steps [data-complete=true] { border-color:var(--sage); color:var(--sage); }
+.invitation-steps [aria-current=step] { font-weight:600; }
+.motion-page,.contact-editor-panel,.contact-sharing-panel,.shared-item-detail { animation:task-enter 280ms ease-out both; }
+.sharing-levels,.sharing-level-description { animation:task-enter 220ms ease-out both; }
+.invitation-qr { animation:folio-settle 380ms ease-out both; }
+.invitation-ready h2 { font:500 30px "Source Serif 4",Georgia,serif; margin:22px 0 10px; }
+.people-panel > .invite-action { border-bottom:1px solid var(--divider); }
+.invite-action,.incoming-action,.person-main,.shared-item-row { transition:transform 150ms,color 150ms; }
+.invite-action:active,.incoming-action:active,.person-main:active,.shared-item-row:active { transform:scale(.988); }
+@keyframes folio-settle { from { transform:translateY(12px) rotateY(7deg); } to { transform:translateY(0) rotateY(0); } }
+@keyframes connection-draw { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+@keyframes task-enter { from { transform:translateY(7px); } to { transform:translateY(0); } }
+@media(max-width:760px) {
+ .folio-brand { display:block; text-align:center; font-weight:600; font-size:16px; margin-bottom:22px; }
+ .folio-workspace { grid-template-columns:1fr; gap:4px; margin:0 0 22px; }
+ .folio-open { height:280px; overflow:hidden; }
+ .folio-artwork { width:350px; max-width:100%; }
+ .folio-artwork.compact { width:190px; }
+ .folio-open:has(.compact) { height:174px; }
+ .folio-actions { gap:4px; }
+ .folio-title h1 { font-size:32px; }
+ .authenticated-overview[data-empty=true] .folio-title { flex-direction:column; align-items:center; gap:0; }
+ .authenticated-overview[data-empty=true] .folio-title h1 { font-size:38px; margin-bottom:5px; }
+ .authenticated-overview[data-empty=true] .folio-title > span { margin-bottom:5px; }
+ .invite-action { gap:14px; }
+ .invite-action strong { font-size:17px; }
+ .folio-matters h2 { font-size:23px; }
+}
+@media(max-width:350px) {
+ .connection-visual.compact { gap:5px; }
+ .connection-visual.compact .connection-path { width:18px; }
+ .invite-action { gap:10px; }
+}
+@media(prefers-reduced-motion:reduce) {
+ .folio-artwork,.motion-page,.contact-editor-panel,.contact-sharing-panel,.shared-item-detail,.sharing-levels,.sharing-level-description,.invitation-qr,.connection-path > span { animation:none; }
+ .folio-open .folio-artwork,.invite-action,.incoming-action,.person-main,.shared-item-row,.invitation-steps li { transition:none; }
+ .folio-open:hover .folio-artwork,.folio-open:active .folio-artwork,.invite-action:active,.incoming-action:active,.person-main:active,.shared-item-row:active { transform:none; }
+}

@@ -1,0 +1,23 @@
+{
+  "validationPath": "CUA persistent browser API; no separate Playwright process or added browser dependency",
+  "browserId": "1",
+  "tabId": "20",
+  "targets": [
+    "http://127.0.0.1:5173",
+    "https://legal.rillora.xyz/terms"
+  ],
+  "widths": [
+    1280,
+    390,
+    320
+  ],
+  "checks": [
+    "public home and guides logo loaded",
+    "Rillora home link returns from Guides",
+    "no horizontal overflow at narrow widths",
+    "legal Terms brand and font resource loaded; no forms"
+  ],
+  "personalLoginPerformed": false,
+  "viewportReset": true,
+  "handoffURL": "https://rillora-legal-pages.y-uanfangda666.chatgpt.site"
+}

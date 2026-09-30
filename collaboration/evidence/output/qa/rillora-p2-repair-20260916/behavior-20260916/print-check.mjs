@@ -1,0 +1,15 @@
+async (page) => {
+  const checks=[];
+  for(const route of ['terms','privacy','subscription-terms','refund-policy','acceptable-use','cookies','legal']) {
+    await page.goto('http://127.0.0.1:4265/'+route+'?qa=print-final-4');
+    await page.locator('.legal-summary').waitFor();
+    await page.evaluate(()=>document.fonts.ready);
+    await page.emulateMedia({media:'print'});
+    const styles=await page.evaluate(()=>({scheme:getComputedStyle(document.documentElement).colorScheme,summary:getComputedStyle(document.querySelector('.legal-summary')).color,opacity:getComputedStyle(document.querySelector('.legal-page')).opacity,animation:getComputedStyle(document.querySelector('.legal-page')).animationName,emphasis:[...document.querySelectorAll('.legal-document strong')].every(el=>getComputedStyle(el).color==='rgb(17, 17, 17)'),cookie:[...document.querySelectorAll('.cookie-notice-banner')].every(el=>getComputedStyle(el).display==='none')}));
+    if(styles.summary!=='rgb(17, 17, 17)' || !styles.emphasis || !styles.cookie || styles.opacity!=='1' || styles.animation!=='none' || styles.scheme!=='light') throw Error('Print contrast failed: '+route+' '+JSON.stringify(styles));
+    await page.pdf({path:'/Users/tantalum/Documents/电子遗嘱app/.local-secrets/compiled-p2-20260916/print-checks/'+route+'.pdf',format:'A4',margin:{top:'16mm',bottom:'16mm',left:'16mm',right:'16mm'},printBackground:true});
+    checks.push({route,...styles});
+    await page.emulateMedia({media:'screen'});
+  }
+  return checks;
+}

@@ -1,0 +1,35 @@
+
+> continuity-api@0.1.0 test
+> vitest run tests/apple-production-intake.integration.test.ts -t re-fetches
+
+
+ RUN  v4.1.11 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/apple-production-intake.integration.test.ts (13 tests | 1 failed | 12 skipped) 400ms
+     × re-fetches a duplicate client receipt and applies a later refund without duplicate receipts 173ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/apple-production-intake.integration.test.ts > production Apple durable intake (decoded Apple fixtures + real isolated PostgreSQL) > re-fetches a duplicate client receipt and applies a later refund without duplicate receipts
+error: duplicate key value violates unique constraint "commerce_reconciliation_event_unique"
+ ❯ node_modules/pg/lib/client.js:652:17
+ ❯ persistReconciliation src/commerce-subscription-ledger.ts:69:3
+     67|   const applied = (await client.query<{ applied: boolean }>(
+     68|     'select app.apply_verified_subscription_entitlements($1) as applie…
+     69|   await client.query(`insert into app.commerce_reconciliation_runs(
+       |   ^
+     70|       planner_id,commerce_account_id,provider_event_id,subscription_id…
+     71|       reason_code,entitlement_mutation_applied)
+ ❯ src/apple-production-ledger.ts:70:32
+ ❯ inRoleTransaction src/db.ts:78:20
+ ❯ commitAppleObservation src/apple-production-ledger.ts:12:18
+ ❯ tests/apple-production-intake.integration.test.ts:136:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 12 skipped (13)
+   Start at  20:16:18
+   Duration  1.29s (transform 296ms, setup 39ms, import 717ms, tests 400ms, environment 0ms)
+

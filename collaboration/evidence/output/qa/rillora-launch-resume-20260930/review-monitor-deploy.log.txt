@@ -1,0 +1,42 @@
+
+✨  Synthesis time: 0.41s
+
+RilloraOperations: start: Building RilloraOperations Template
+RilloraOperations: success: Built RilloraOperations Template
+RilloraOperations: start: Publishing RilloraOperations Template (133857166372-eu-central-1-0fc1dba6)
+RilloraOperations: success: Published RilloraOperations Template (133857166372-eu-central-1-0fc1dba6)
+RilloraOperations: creating CloudFormation changeset...
+RilloraOperations: deploying... [1/1]
+RilloraOperations | 0/8 | 1:38:11 AM | UPDATE_IN_PROGRESS      | AWS::CloudFormation::Stack     | RilloraOperations User Initiated
+RilloraOperations | 0/8 | 1:38:14 AM | CREATE_IN_PROGRESS      | AWS::CloudWatch::Alarm         | AppleReviewDeliveryOldestPendingSeconds (AppleReviewDeliveryOldestPendingSeconds172CEFD0) 
+RilloraOperations | 0/8 | 1:38:14 AM | CREATE_IN_PROGRESS      | AWS::CloudWatch::Alarm         | AppleReviewDeliveryFailed (AppleReviewDeliveryFailedD36C6BF7) 
+RilloraOperations | 0/8 | 1:38:14 AM | CREATE_IN_PROGRESS      | AWS::CloudWatch::Alarm         | AppleReviewDeliveryWorkerErrors (AppleReviewDeliveryWorkerErrors6302C0ED) 
+RilloraOperations | 0/8 | 1:38:14 AM | CREATE_IN_PROGRESS      | AWS::CloudWatch::Alarm         | AppleReviewDeliveryHeartbeat (AppleReviewDeliveryHeartbeatD28FFF4B) 
+RilloraOperations | 0/8 | 1:38:15 AM | CREATE_IN_PROGRESS      | AWS::CloudWatch::Alarm         | AppleReviewDeliveryFailed (AppleReviewDeliveryFailedD36C6BF7) Resource creation Initiated
+RilloraOperations | 0/8 | 1:38:15 AM | CREATE_IN_PROGRESS      | AWS::CloudWatch::Alarm         | AppleReviewDeliveryHeartbeat (AppleReviewDeliveryHeartbeatD28FFF4B) Resource creation Initiated
+RilloraOperations | 0/8 | 1:38:16 AM | CREATE_IN_PROGRESS      | AWS::CloudWatch::Alarm         | AppleReviewDeliveryOldestPendingSeconds (AppleReviewDeliveryOldestPendingSeconds172CEFD0) Resource creation Initiated
+RilloraOperations | 0/8 | 1:38:16 AM | CREATE_IN_PROGRESS      | AWS::CloudWatch::Alarm         | AppleReviewDeliveryWorkerErrors (AppleReviewDeliveryWorkerErrors6302C0ED) Resource creation Initiated
+RilloraOperations | 1/8 | 1:38:16 AM | CREATE_COMPLETE         | AWS::CloudWatch::Alarm         | AppleReviewDeliveryFailed (AppleReviewDeliveryFailedD36C6BF7) 
+RilloraOperations | 2/8 | 1:38:17 AM | CREATE_COMPLETE         | AWS::CloudWatch::Alarm         | AppleReviewDeliveryHeartbeat (AppleReviewDeliveryHeartbeatD28FFF4B) 
+RilloraOperations | 3/8 | 1:38:18 AM | CREATE_COMPLETE         | AWS::CloudWatch::Alarm         | AppleReviewDeliveryOldestPendingSeconds (AppleReviewDeliveryOldestPendingSeconds172CEFD0) 
+RilloraOperations | 4/8 | 1:38:18 AM | CREATE_COMPLETE         | AWS::CloudWatch::Alarm         | AppleReviewDeliveryWorkerErrors (AppleReviewDeliveryWorkerErrors6302C0ED) 
+RilloraOperations | 4/8 | 1:38:22 AM | UPDATE_IN_PROGRESS      | AWS::SNS::TopicPolicy          | Alerts/Policy (AlertsPolicy425C338D) 
+RilloraOperations | 4/8 | 1:38:22 AM | UPDATE_IN_PROGRESS      | AWS::IAM::Policy               | OperationsRunbook (OperationsRunbook277D4959) 
+RilloraOperations | 5/8 | 1:38:22 AM | UPDATE_COMPLETE         | AWS::SNS::TopicPolicy          | Alerts/Policy (AlertsPolicy425C338D) 
+RilloraOperations | 6/8 | 1:38:38 AM | UPDATE_COMPLETE         | AWS::IAM::Policy               | OperationsRunbook (OperationsRunbook277D4959) 
+RilloraOperations | 7/8 | 1:38:39 AM | UPDATE_COMPLETE_CLEANUP | AWS::CloudFormation::Stack     | RilloraOperations 
+RilloraOperations | 8/8 | 1:38:39 AM | UPDATE_COMPLETE         | AWS::CloudFormation::Stack     | RilloraOperations 
+
+✅  RilloraOperations
+
+✨  Deployment time: 38.89s
+
+Outputs:
+RilloraOperations.ActivationBoundary = Requires deploy, real cloud invocation, verified subscriber delivery and missing-heartbeat drill
+RilloraOperations.AlertTopicArn = arn:aws:sns:eu-central-1:133857166372:RilloraOperations-Alerts91F83244-3hyvJ2Vrg4zo
+RilloraOperations.CheckerFunctionName = RilloraOperations-HealthCheckA1C381C7-1C2bQQnv9BUn
+Stack ARN:
+arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraOperations/61327be0-b1ed-11f1-96b7-02118794ecd3
+
+✨  Total time: 68.82s
+

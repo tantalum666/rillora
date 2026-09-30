@@ -1,0 +1,342 @@
+
+✨  Synthesis time: 5.28s
+
+RilloraStaging: start: Building RilloraStaging Template
+RilloraStaging: success: Built RilloraStaging Template
+RilloraStaging: start: Building ApiTaskDefinition/Api/AssetImage
+RilloraStaging: start: Publishing RilloraStaging Template (133857166372-eu-central-1-b633ecdd)
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  964.1kB
+
+Step 1/23 : FROM node:22.22.3-bookworm-slim AS build
+ ---> e21fc383b50d
+Step 2/23 : WORKDIR /app
+ ---> Using cache
+ ---> 8d90de72c6c4
+Step 3/23 : COPY package.json package-lock.json ./
+ ---> Using cache
+ ---> de89a9b3320f
+Step 4/23 : RUN npm ci
+ ---> Using cache
+ ---> 6fb7d55537a6
+Step 5/23 : COPY tsconfig.json tsconfig.build.json ./
+ ---> Using cache
+ ---> ae0a45043c45
+Step 6/23 : COPY src ./src
+RilloraStaging: success: Published RilloraStaging Template (133857166372-eu-central-1-b633ecdd)
+ ---> 96b962f1e9d3
+Step 7/23 : COPY migrations ./migrations
+ ---> ea96c8af0d2b
+Step 8/23 : COPY certificates ./certificates
+ ---> 95f3df236cf2
+Step 9/23 : RUN npm run build && npm prune --omit=dev
+ ---> Running in 7fd7308e9a1b
+
+> continuity-api@0.1.0 build
+> tsc -p tsconfig.build.json
+
+
+up to date, audited 147 packages in 1s
+
+38 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+ ---> Removed intermediate container 7fd7308e9a1b
+ ---> 8fac53f13cb2
+Step 10/23 : FROM node:22.22.3-bookworm-slim AS runtime
+ ---> e21fc383b50d
+Step 11/23 : ARG RDS_CA_BUNDLE_SHA256=e5bb2084ccf45087bda1c9bffdea0eb15ee67f0b91646106e466714f9de3c7e3
+ ---> Using cache
+ ---> e0a1b518f917
+Step 12/23 : ENV NODE_ENV=production     HOST=0.0.0.0     PORT=8080     DATABASE_SSL_MODE=verify-full     DATABASE_SSL_CA_PATH=/app/certs/rds-global-bundle.pem
+ ---> Using cache
+ ---> d1267cea24fb
+Step 13/23 : RUN apt-get update     && apt-get install --yes --no-install-recommends ca-certificates curl     && mkdir -p /app/certs     && curl --fail --show-error --silent       https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem       --output /app/certs/rds-global-bundle.pem     && echo "${RDS_CA_BUNDLE_SHA256}  /app/certs/rds-global-bundle.pem" | sha256sum --check --strict     && apt-get purge --yes --auto-remove curl     && rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 5dd00ea76429
+Step 14/23 : WORKDIR /app
+ ---> Using cache
+ ---> 6808c039257c
+Step 15/23 : COPY --chown=node:node --from=build /app/package.json ./package.json
+ ---> Using cache
+ ---> 39e87eec29ee
+Step 16/23 : COPY --chown=node:node --from=build /app/node_modules ./node_modules
+ ---> Using cache
+ ---> 8d23d21e27c6
+Step 17/23 : COPY --chown=node:node --from=build /app/dist ./dist
+ ---> 546ae477e03f
+Step 18/23 : COPY --chown=node:node --from=build /app/migrations ./migrations
+ ---> 73cc106043cc
+Step 19/23 : COPY --chown=node:node --from=build /app/certificates ./certificates
+ ---> 860e877b51aa
+Step 20/23 : USER node
+ ---> Running in cfe39f7bd74f
+ ---> Removed intermediate container cfe39f7bd74f
+ ---> 88d468db68df
+Step 21/23 : EXPOSE 8080
+ ---> Running in 70f9871293a1
+ ---> Removed intermediate container 70f9871293a1
+ ---> 3289c47c8927
+Step 22/23 : HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3   CMD ["node", "-e", "fetch('http://127.0.0.1:8080/health/live').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+ ---> Running in 7eaa5b16fc14
+ ---> Removed intermediate container 7eaa5b16fc14
+ ---> 9f5bd1065548
+Step 23/23 : CMD ["node", "dist/server.js"]
+ ---> Running in 4d0154b88ec3
+ ---> Removed intermediate container 4d0154b88ec3
+ ---> 40d10baead67
+Successfully built 40d10baead67
+Successfully tagged cdkasset-0610962c6e42a498f5ab6c277b030c5e26d9c1bccd8bc8114e32ab1d1368e1d1:latest
+RilloraStaging: success: Built ApiTaskDefinition/Api/AssetImage
+RilloraStaging: start: Publishing ApiTaskDefinition/Api/AssetImage (133857166372-eu-central-1-3f92dbdc)
+The push refers to repository [133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1]
+f65b12bde977: Waiting
+5121819f5166: Waiting
+6266a283c634: Waiting
+aff88cd70f0e: Waiting
+e380f485a275: Waiting
+938cc5c50fd9: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+620d41e441a2: Waiting
+1cc5913ac5fc: Waiting
+8dd7531094cc: Waiting
+5121819f5166: Waiting
+6266a283c634: Waiting
+aff88cd70f0e: Waiting
+e380f485a275: Waiting
+938cc5c50fd9: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+620d41e441a2: Waiting
+1cc5913ac5fc: Waiting
+8dd7531094cc: Waiting
+f65b12bde977: Waiting
+620d41e441a2: Waiting
+1cc5913ac5fc: Waiting
+8dd7531094cc: Waiting
+f65b12bde977: Waiting
+5121819f5166: Waiting
+6266a283c634: Waiting
+aff88cd70f0e: Waiting
+e380f485a275: Waiting
+938cc5c50fd9: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+6266a283c634: Waiting
+aff88cd70f0e: Waiting
+e380f485a275: Waiting
+938cc5c50fd9: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+620d41e441a2: Waiting
+1cc5913ac5fc: Waiting
+8dd7531094cc: Waiting
+f65b12bde977: Waiting
+5121819f5166: Waiting
+8dd7531094cc: Waiting
+f65b12bde977: Waiting
+5121819f5166: Waiting
+6266a283c634: Waiting
+aff88cd70f0e: Waiting
+e380f485a275: Waiting
+938cc5c50fd9: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+620d41e441a2: Waiting
+1cc5913ac5fc: Waiting
+620d41e441a2: Waiting
+1cc5913ac5fc: Waiting
+8dd7531094cc: Waiting
+f65b12bde977: Waiting
+5121819f5166: Waiting
+6266a283c634: Waiting
+aff88cd70f0e: Waiting
+e380f485a275: Waiting
+938cc5c50fd9: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+1cc5913ac5fc: Waiting
+8dd7531094cc: Waiting
+f65b12bde977: Waiting
+5121819f5166: Waiting
+6266a283c634: Waiting
+aff88cd70f0e: Waiting
+e380f485a275: Waiting
+938cc5c50fd9: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+620d41e441a2: Waiting
+aff88cd70f0e: Waiting
+e380f485a275: Waiting
+938cc5c50fd9: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+620d41e441a2: Waiting
+1cc5913ac5fc: Waiting
+8dd7531094cc: Waiting
+f65b12bde977: Waiting
+5121819f5166: Waiting
+6266a283c634: Waiting
+6266a283c634: Waiting
+aff88cd70f0e: Waiting
+e380f485a275: Waiting
+938cc5c50fd9: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+620d41e441a2: Waiting
+1cc5913ac5fc: Waiting
+8dd7531094cc: Waiting
+f65b12bde977: Waiting
+5121819f5166: Waiting
+5121819f5166: Waiting
+6266a283c634: Waiting
+aff88cd70f0e: Waiting
+e380f485a275: Waiting
+938cc5c50fd9: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+620d41e441a2: Waiting
+1cc5913ac5fc: Waiting
+8dd7531094cc: Waiting
+f65b12bde977: Waiting
+e380f485a275: Waiting
+938cc5c50fd9: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+620d41e441a2: Waiting
+1cc5913ac5fc: Waiting
+8dd7531094cc: Waiting
+f65b12bde977: Waiting
+5121819f5166: Waiting
+6266a283c634: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+1cc5913ac5fc: Waiting
+8dd7531094cc: Waiting
+f65b12bde977: Waiting
+5121819f5166: Waiting
+6266a283c634: Waiting
+aff88cd70f0e: Waiting
+e380f485a275: Waiting
+938cc5c50fd9: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+938cc5c50fd9: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+620d41e441a2: Waiting
+1cc5913ac5fc: Waiting
+8dd7531094cc: Waiting
+f65b12bde977: Waiting
+5121819f5166: Waiting
+6266a283c634: Waiting
+aff88cd70f0e: Waiting
+e380f485a275: Waiting
+f65b12bde977: Waiting
+5121819f5166: Waiting
+6266a283c634: Waiting
+aff88cd70f0e: Waiting
+e380f485a275: Waiting
+938cc5c50fd9: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+620d41e441a2: Waiting
+1cc5913ac5fc: Waiting
+8dd7531094cc: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+620d41e441a2: Waiting
+1cc5913ac5fc: Waiting
+8dd7531094cc: Waiting
+f65b12bde977: Waiting
+5121819f5166: Waiting
+6266a283c634: Waiting
+aff88cd70f0e: Waiting
+e380f485a275: Waiting
+938cc5c50fd9: Waiting
+aff88cd70f0e: Layer already exists
+e380f485a275: Waiting
+938cc5c50fd9: Layer already exists
+402614bd39aa: Layer already exists
+7a269be6e4b9: Waiting
+620d41e441a2: Waiting
+1cc5913ac5fc: Waiting
+8dd7531094cc: Layer already exists
+f65b12bde977: Waiting
+5121819f5166: Waiting
+6266a283c634: Waiting
+7a269be6e4b9: Layer already exists
+620d41e441a2: Layer already exists
+1cc5913ac5fc: Waiting
+f65b12bde977: Waiting
+5121819f5166: Waiting
+6266a283c634: Waiting
+e380f485a275: Waiting
+1cc5913ac5fc: Waiting
+f65b12bde977: Waiting
+5121819f5166: Waiting
+6266a283c634: Waiting
+e380f485a275: Waiting
+1cc5913ac5fc: Waiting
+f65b12bde977: Layer already exists
+5121819f5166: Waiting
+6266a283c634: Waiting
+e380f485a275: Layer already exists
+6266a283c634: Waiting
+5121819f5166: Waiting
+5121819f5166: Waiting
+5121819f5166: Waiting
+6266a283c634: Pushed
+1cc5913ac5fc: Pushed
+5121819f5166: Pushed
+0610962c6e42a498f5ab6c277b030c5e26d9c1bccd8bc8114e32ab1d1368e1d1: digest: sha256:40d10baead67d658fc06daa073b4e55b83b583481ba3dee1eb82dea982dab97b size: 2727
+RilloraStaging: success: Published ApiTaskDefinition/Api/AssetImage (133857166372-eu-central-1-3f92dbdc)
+RilloraStaging: creating CloudFormation changeset...
+RilloraStaging: deploying... [1/1]
+RilloraStaging | 0/6 | 7:58:09 PM | UPDATE_IN_PROGRESS      | AWS::CloudFormation::Stack                  | RilloraStaging User Initiated
+RilloraStaging | 0/6 | 7:58:15 PM | UPDATE_IN_PROGRESS      | AWS::ECS::TaskDefinition                    | ApiTaskDefinition (ApiTaskDefinition51EA709E) Requested update requires the creation of a new physical resource; hence creating one.
+RilloraStaging | 0/6 | 7:58:15 PM | UPDATE_IN_PROGRESS      | AWS::ECS::TaskDefinition                    | MigrationTaskDefinition (MigrationTaskDefinitionE89B136E) Requested update requires the creation of a new physical resource; hence creating one.
+RilloraStaging | 0/6 | 7:58:16 PM | UPDATE_IN_PROGRESS      | AWS::ECS::TaskDefinition                    | ApiTaskDefinition (ApiTaskDefinition51EA709E) Resource creation Initiated
+RilloraStaging | 1/6 | 7:58:17 PM | UPDATE_COMPLETE         | AWS::ECS::TaskDefinition                    | ApiTaskDefinition (ApiTaskDefinition51EA709E) 
+RilloraStaging | 1/6 | 7:58:17 PM | UPDATE_IN_PROGRESS      | AWS::ECS::TaskDefinition                    | MigrationTaskDefinition (MigrationTaskDefinitionE89B136E) Resource creation Initiated
+RilloraStaging | 2/6 | 7:58:18 PM | UPDATE_COMPLETE         | AWS::ECS::TaskDefinition                    | MigrationTaskDefinition (MigrationTaskDefinitionE89B136E) 
+RilloraStaging | 2/6 | 7:58:18 PM | UPDATE_IN_PROGRESS      | AWS::ECS::Service                           | ApiService/Service (ApiServiceC9037CF0) 
+RilloraStaging | 3/6 | 8:01:42 PM | UPDATE_COMPLETE         | AWS::ECS::Service                           | ApiService/Service (ApiServiceC9037CF0) 
+RilloraStaging | 3/6 | 8:01:44 PM | UPDATE_IN_PROGRESS      | AWS::IAM::Policy                            | StagingOperatorRole/DefaultPolicy (StagingOperatorRoleDefaultPolicyCF77C65B) 
+RilloraStaging | 4/6 | 8:02:00 PM | UPDATE_COMPLETE         | AWS::IAM::Policy                            | StagingOperatorRole/DefaultPolicy (StagingOperatorRoleDefaultPolicyCF77C65B) 
+RilloraStaging | 5/6 | 8:02:03 PM | UPDATE_COMPLETE_CLEANUP | AWS::CloudFormation::Stack                  | RilloraStaging 
+RilloraStaging | 5/6 | 8:02:04 PM | DELETE_IN_PROGRESS      | AWS::ECS::TaskDefinition                    | ApiTaskDefinition (ApiTaskDefinition51EA709E) 
+RilloraStaging | 5/6 | 8:02:04 PM | DELETE_IN_PROGRESS      | AWS::ECS::TaskDefinition                    | MigrationTaskDefinition (MigrationTaskDefinitionE89B136E) 
+RilloraStaging | 4/6 | 8:02:05 PM | DELETE_COMPLETE         | AWS::ECS::TaskDefinition                    | ApiTaskDefinition (ApiTaskDefinition51EA709E) 
+RilloraStaging | 3/6 | 8:02:05 PM | DELETE_COMPLETE         | AWS::ECS::TaskDefinition                    | MigrationTaskDefinition (MigrationTaskDefinitionE89B136E) 
+RilloraStaging | 4/6 | 8:02:05 PM | UPDATE_COMPLETE         | AWS::CloudFormation::Stack                  | RilloraStaging 
+
+✅  RilloraStaging
+
+✨  Deployment time: 245.97s
+
+Outputs:
+RilloraStaging.AccountDeletionClientSecretArn = arn:aws:secretsmanager:eu-central-1:133857166372:secret:AccountDeletionClientSecret-TwZNALLyb7Rn-p2D5qD
+RilloraStaging.ApiEndpoint = https://l1g8350qw0.execute-api.eu-central-1.amazonaws.com
+RilloraStaging.ClusterName = RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5
+RilloraStaging.EmailVerificationClientSecretArn = arn:aws:secretsmanager:eu-central-1:133857166372:secret:EmailVerificationClientSecr-rUwJxh95pBti-KF2wjA
+RilloraStaging.MigrationTaskDefinitionArn = arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingMigrationTaskDefinitionD83F7D18:25
+RilloraStaging.PublicSubnetIds = subnet-0344e3c6bae4e3731,subnet-0610e7921274f95bd
+RilloraStaging.ServiceDesiredCount = 1
+RilloraStaging.StagingOperatorRoleArn = arn:aws:iam::133857166372:role/rillora/rillora-staging-operator
+RilloraStaging.StripeTestApiKeySecretArn = arn:aws:secretsmanager:eu-central-1:133857166372:secret:StripeTestSecret04351D5D-RYsCQzd9tQVc-pzQZlf
+RilloraStaging.StripeTestWebhookSecretArn = arn:aws:secretsmanager:eu-central-1:133857166372:secret:StripeTestWebhookSecret27AD-DjIcVJgvFIix-BNvgFG
+RilloraStaging.TaskSecurityGroupId = sg-062c63db94ecf2e16
+RilloraStaging.WebDistributionDomainName = d1ee12jk5j6ple.cloudfront.net
+RilloraStaging.WebOidcClientSecretArn = arn:aws:secretsmanager:eu-central-1:133857166372:secret:WebOidcClientSecret8C81BEC4-R2rkmUprqisV-VWDgAO
+RilloraStaging.WebUrl = https://app.staging.rillora.xyz
+Stack ARN:
+arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319
+
+✨  Total time: 298.93s
+

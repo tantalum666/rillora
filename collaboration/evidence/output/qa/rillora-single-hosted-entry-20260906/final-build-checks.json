@@ -1,0 +1,69 @@
+{
+  "date": "2026-09-06",
+  "checks": [
+    {
+      "key": "single_hosted_recovery_units",
+      "summary": {
+        "status": "SUCCEEDED",
+        "durationMs": 18094,
+        "counts": {
+          "passed": 116,
+          "failed": 0,
+          "skipped": 1
+        },
+        "target": "simulator"
+      },
+      "artifacts": {
+        "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-09-06T15-28-46-085Z_pid14424_1a34ffe0.log",
+        "xcresultPath": "output/qa/rillora-single-hosted-entry-20260906/unit-session-recovery-final.xcresult",
+        "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-09-06T15-28-46-085Z_pid14424_0f5084e9.xctestproducts"
+      }
+    },
+    {
+      "key": "single_hosted_final_debug",
+      "summary": {
+        "status": "SUCCEEDED",
+        "durationMs": 11835,
+        "target": "simulator"
+      },
+      "artifacts": {
+        "appPath": "/tmp/rillora-single-hosted-entry-20260906-derived-data/Build/Products/Debug-iphonesimulator/Rillora.app",
+        "bundleId": "com.rillora.ios",
+        "processId": 5883,
+        "simulatorId": "EA356940-5220-4AA8-89CF-499C6D5D14E4",
+        "buildLogPath": "/Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/build_run_sim_2026-09-06T15-33-19-971Z_pid14424_b2e847f9.log",
+        "runtimeLogPath": "/Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/com.rillora.ios_2026-09-06T15-33-30-758Z_helperpid5859_ownerpid14424_65189aec.log",
+        "osLogPath": "/Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/com.rillora.ios_oslog_2026-09-06T15-33-31-758Z_helperpid5988_ownerpid14424_48935457.log"
+      }
+    },
+    {
+      "key": "single_hosted_final_release",
+      "summary": {
+        "status": "SUCCEEDED",
+        "durationMs": 31346,
+        "target": "simulator"
+      },
+      "artifacts": {
+        "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/build_sim_2026-09-06T15-30-57-041Z_pid14424_27c772df.log"
+      }
+    }
+  ],
+  "formVisual": {
+    "version": "v7",
+    "initialInspected": true,
+    "uncheckedErrorInspected": true,
+    "cancelInspected": true,
+    "googleGuidanceInspected": true,
+    "agentSubmittedAcceptance": false
+  },
+  "sessionRecovery": {
+    "keychainItemFound": true,
+    "created": "2026-09-06T14:19:49Z",
+    "modified": "2026-09-06T14:19:49Z",
+    "apiErrorCode": "authentication_required",
+    "sourceIdleDefaultMinutes": 30,
+    "liveIdleOverrideVerified": false,
+    "activeRestoredSessionClaimed": false,
+    "normalDebugAndRecoveryUIInspected": true
+  }
+}

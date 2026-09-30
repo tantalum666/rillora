@@ -1,0 +1,50 @@
+{
+  "date": "2026-09-11",
+  "phase": "Complete: final Web asset published; API20 1/1, schema0040-0042 exact; final verification30/30; native133/0/1 and Web58; docs/QA closed",
+  "lastFullyReadChunk": 80,
+  "lastAcknowledgedChunk": 80,
+  "nextCommand": "Inspect relevant implementation; full read must not be restarted after compaction.",
+  "reading": "62 owned files,18731 lines,2267034 bytes;81 chunks with complete line ranges. Initial large chunk and batched output truncated, then smaller0/1/2 reread fully. Use one chunk per tool call, max_output_tokens10000. Acknowledge only after actual full output. Do not restart after compaction.",
+  "userRequirements": [
+    "Sign in / Sign up instead of Sign in again, including expired Profile",
+    "Sending/creating/managing invitations requires authentication; signed-out can open received invitation; no-account user chooses registration and returns to accept after account creation",
+    "Remove 2–3second Opening Rillora blocking page/optimize login-return critical path without bypassing verified session",
+    "Audit authenticated Profile and remove meaningless simulation/filler controls",
+    "Combine Details/Directions/People into one New matter form; choose meaningful required fields; client and API prevent saving invalid required data",
+    "Type-specific detail fields, especially crypto exchange vs on-chain/network/public wallet address, and optional free-text notes at bottom for every type"
+  ],
+  "plannedScope": "Shipping SwiftUI apps/ios plus shared API and Web parity; preserve user's graphite visual target, guest browsing, draft/cancel/return safety and granular sharing/privacy. No logo work or pricing change. Current68/year and7.99/month preserved; prior cutoff/quota commercial next step is superseded in priority by this UX request, not forgotten.",
+  "skillsReadThisTurn": [
+    "swiftui-ui-patterns/SKILL.md",
+    "ios-debugger-agent/SKILL.md"
+  ],
+  "skillsAnnounced": "SwiftUI patterns, Simulator debugger and Auth0 (Auth0 skill already read earlier in conversation)",
+  "subagents": "Not authorized by current developer/AGENTS; none used",
+  "nextAfterReading": "Record full coverage/hash stability, inspect current source and actual UI, define type-specific required schema and safe projection semantics, implement Web/iOS/API, test real flows and reduced/large-text states, build/install normal Simulator and deploy existing staging if authorized session available; update focused docs/decision/handoff/journey and QA before final",
+  "constraints": "No passwords/private keys/seed phrases. Public wallet address is locating info and private in app ACL; never fetch chain or store app records on-chain. Auth remains Auth0 hosted; no same-email automatic account merge or account enumeration. Invite token stays out of logs/analytics and acceptance requires identity proof. Actual network/token verification latency may remain; do not claim zero-time authentication from removing UI. No fresh login/key rotation just because historical docs say pending.",
+  "memory": "Registry shifted; relevant lines477 authority and284–301 UI/sharing. Final cite only relevant memory actually used with current line ranges. Do not write global memory.",
+  "authSession": 24476,
+  "apiSession": 96416,
+  "webSession": 56893,
+  "uiDatabase": "continuity_account_ux",
+  "uiApi": "http://127.0.0.1:4220/v1/",
+  "uiWeb": "http://127.0.0.1:4221",
+  "remaining": [],
+  "awsDiagnosis": "CLI login succeeded and STS verified exact IAM identity. No additional login required; official --remote is only a future fallback if a real loopback failure leaves STS invalid.",
+  "deploymentSessions": {
+    "phase0": 22520,
+    "migration": 57526,
+    "phase1": 99579,
+    "schemaRead": 43785
+  },
+  "uiFinal": "Normal cloud Debug restored, no development identity, expired-session or AX5/reduced-motion overrides. Guest Profile displayed.",
+  "verification": {
+    "api": 136,
+    "signupReturnFocused": 1,
+    "nativePassed": 133,
+    "nativeExistingStoreKitSkip": 1,
+    "webApp": 58,
+    "cloudHttpsAssets": 30
+  },
+  "next": "Deferred commercial cutoff/allowance/cancel/restore lifecycle in current handoff; no repeated AWS login while existing profile works"
+}

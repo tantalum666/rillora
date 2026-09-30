@@ -1,0 +1,132 @@
+{
+  "status": "ses_reply_submitted_waiting_provider_review",
+  "updatedAt": "2026-09-24T17:18:46.258480+00:00",
+  "ownerDirection": "Keep Auth0 Free; test now, perform reviewed prelaunch cleanup/cutover. No upgrade or user cleanup now.",
+  "currentWork": [
+    "Production Auth0 clients/audience prepared, connections disabled and previous bindings unchanged",
+    "RilloraMail/domain/DKIM/TLS/suppression and simulator event alarms verified; SES approval still open",
+    "Public WWW and root HTTP/HTTPS redirection verified; 12-target cloud monitor passed",
+    "Google production brand, approved protected hosted credential and minimal identity scopes saved; still Testing",
+    "Source/docs committed to private Rillora repository; CI8passed, with failed CI7retained",
+    "Approved SES follow-up submitted/read back at01:12:39+08:00; case status 客户操作已完成",
+    "New read-only mail checker:7tests pass;14live configuration checks pass, productionAccessEnabled remains false"
+  ],
+  "auth0": {
+    "tenant": "rillora-dev.eu.auth0.com",
+    "webClientId": "EcevpyKt1GELKwkLnVU3aCbh3Ix2SJhz",
+    "iosClientId": "POpNKTqlr6dHbJZLWPWxhyjg5qPtdrm4",
+    "audience": "urn:rillora:production:api",
+    "webSecretLocation": ".local-secrets/production-identity/web-client.json",
+    "secretPrinted": false,
+    "oldBindingsPreserved": true
+  },
+  "publicWeb": {
+    "distribution": "E1H3EWWIZNTZDO",
+    "hostname": "d1zq6qpnicab3e.cloudfront.net",
+    "certificateArn": "arn:aws:acm:us-east-1:133857166372:certificate/2cb5bc68-e923-440f-a4ca-4480a64a4ee0",
+    "wwwSavedThroughUI": true,
+    "rootComingSoonStillPresent": false,
+    "wwwAccepted": true,
+    "rootForward": "HTTP302, Chrome HTTPS and modern monitor TLS1.3/302 verified; earlier client errors retained"
+  },
+  "limits": [
+    "No Auth0 paid plan",
+    "No test account deletion",
+    "No public customer access or commerce",
+    "SES still sandbox; Auth0 email provider unchanged",
+    "No final Release iOS/Web private build"
+  ],
+  "next": "Await the provider review, rerun the read-only mail readiness check, and complete sender/Auth0 configuration plus real verification/recovery before controlled identity cutover.",
+  "google": {
+    "observedAt": "2026-09-24T03:48:44.216211+00:00",
+    "projectId": "rillora-production-identity",
+    "projectNumber": "370509231437",
+    "name": "Rillora Production Identity",
+    "brandCreated": true,
+    "userDataPolicyAcceptedWithOwnerConfirmation": true,
+    "appName": "Rillora",
+    "homePage": "https://www.rillora.xyz/",
+    "privacy": "https://legal.rillora.xyz/privacy",
+    "terms": "https://legal.rillora.xyz/terms",
+    "authorizedDomains": [
+      "rillora.xyz"
+    ],
+    "logoSource": "assets/brand/rillora/app-icon-dark.png",
+    "logoPersistedAfterReload": true,
+    "status": "Testing",
+    "oauthClientCreated": true,
+    "oldGoogleProjectPreserved": true,
+    "newBillingResourcesCreated": false,
+    "credentialReceipt": "google-credential-receipt.json",
+    "declaredScopes": [
+      "openid",
+      "https://www.googleapis.com/auth/userinfo.email",
+      "https://www.googleapis.com/auth/userinfo.profile"
+    ],
+    "sensitiveScopes": [],
+    "restrictedScopes": [],
+    "scopeSaveConfirmationObserved": true,
+    "auth0ConnectionChanged": false
+  },
+  "sesReviewStatus": "DENIED",
+  "monitorTargets": 12,
+  "monitorCloudResult": {
+    "ok": true,
+    "failed": 0
+  },
+  "sesCase": "179022088800001",
+  "awsSession": "Refreshed after Owner login; STS verified the existing rillora-operator in account 133857166372",
+  "sesSupportCaseMeaning": "Additional information requested for continued review; no terminal refusal reason in visible case message",
+  "sesReplySent": true,
+  "sourcePublication": {
+    "checkedAt": "2026-09-24T17:09:45.518321+00:00",
+    "commit": "f8d1344ce75bd92f7312dead5bfad058aceed5b5",
+    "remoteHead": "f8d1344ce75bd92f7312dead5bfad058aceed5b5",
+    "private": true,
+    "repository": "https://github.com/tantalum666/rillora",
+    "reviewedFiles": 44,
+    "ciRunUrl": "https://github.com/tantalum666/rillora/actions/runs/36031875706",
+    "ciStatus": "success",
+    "nestedWebGitPreserved": true,
+    "fanPassModified": false,
+    "initialCi": {
+      "url": "https://github.com/tantalum666/rillora/actions/runs/36031517629",
+      "commit": "af69a6e6a2c975fc4c52dd28302479d7a1fa3b6a",
+      "result": "failed",
+      "source": "passed",
+      "api": "212 passed",
+      "infra": "34 passed, 2 default-5000ms synthesis timeouts"
+    },
+    "ciFix": "Two workers retained; CDK synthesis tests have a20-second timeout. Resource assertions and15-minute job cap unchanged; local36pass.",
+    "ciDuration": "1m28s",
+    "ciJobs": {
+      "source": "success",
+      "api": "success,212tests",
+      "web-and-infrastructure": "success,Web/legal/public builds and36infra tests"
+    },
+    "documentationCommit": "30c125a0dcec7b8448eb90933651dc3af56f25c3",
+    "finalRemoteHead": "30c125a0dcec7b8448eb90933651dc3af56f25c3",
+    "documentationOnlyVerified": true,
+    "cleanWorkingTree": true
+  },
+  "sesReplyReceipt": "ses-followup-submission.json",
+  "replyContinuationSource": {
+    "checkedAt": "2026-09-24T17:22:45.911581+00:00",
+    "engineeringCommit": "37761e224ba4920f9d65c3b754e705b94b20d685",
+    "remoteHead": "37761e224ba4920f9d65c3b754e705b94b20d685",
+    "ciRunUrl": "https://github.com/tantalum666/rillora/actions/runs/36033511894",
+    "ciStatus": "success",
+    "targetedNewTests": 7,
+    "localReleaseGuards": 20,
+    "scope": "Read-only SES readiness and current submission/docs; no deployment or mail send beyond the approved support reply",
+    "ciDuration": "1m19s",
+    "ciJobs": {
+      "source": "success",
+      "api": "success,212tests",
+      "web-and-infrastructure": "success,36infra and Web/legal/public builds"
+    },
+    "documentationCommit": "c1645179f96996427a41ab1195650e4f8d7c7622",
+    "finalRemoteHead": "c1645179f96996427a41ab1195650e4f8d7c7622",
+    "cleanWorkingTree": true
+  }
+}

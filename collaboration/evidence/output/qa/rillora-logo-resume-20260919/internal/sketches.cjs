@@ -1,0 +1,20 @@
+const fs=require('fs');
+const sharp=require('/Users/tantalum/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/sharp');
+const out=__dirname;
+// Individually drawn constructions, not parameter sweeps or reused rejected paths.
+const marks=[
+{id:'K7',paths:['M58 46 L139 46 C191 46 219 74 219 117 L219 149 C176 145 153 123 153 88 L115 88 C115 151 151 185 205 190 C195 211 174 224 143 224 L79 224 C48 224 31 204 37 174 Z']},
+{id:'M2',paths:['M46 211 L46 89 C46 53 76 33 112 40 L171 52 C134 62 113 86 113 122 L113 191 Z','M128 211 L128 126 C128 97 144 77 176 67 L210 79 L210 211 Z']},
+{id:'Q4',paths:['M55 55 C93 36 138 40 169 64 C196 85 207 117 201 149 C180 122 157 103 122 96 C90 90 65 98 37 117 C34 87 39 64 55 55 Z','M38 139 C68 112 97 105 124 113 C167 126 192 159 210 192 C185 213 154 222 120 214 C80 207 49 178 38 139 Z']},
+{id:'L9',paths:['M52 60 L125 36 C160 24 198 45 209 81 L226 145 L179 162 L164 105 C161 94 155 90 145 93 L113 103 L136 182 L77 221 L35 100 C29 83 37 65 52 60 Z','M158 180 L202 165 L218 210 L172 225 Z']},
+{id:'N3',paths:['M43 154 C72 152 87 137 88 103 L89 49 L133 30 L132 119 C132 179 100 211 44 212 Z','M151 108 L152 43 L196 60 L195 126 C194 172 217 182 233 180 L214 220 C172 216 150 182 151 108 Z']},
+{id:'P8',paths:['M61 50 L142 30 C177 21 207 42 213 77 L221 118 L162 135 L157 105 C154 90 145 85 131 89 L110 95 L137 208 L77 224 L44 83 C40 67 47 54 61 50 Z']},
+{id:'T5',paths:['M36 151 C36 91 65 54 111 47 L151 42 L139 89 C111 92 98 110 100 139 L104 176 L56 220 C45 203 36 179 36 151 Z','M161 85 L173 39 C202 60 219 95 215 132 C212 173 182 206 139 218 L128 171 C149 163 161 144 161 123 Z']},
+{id:'V1',paths:['M45 169 C79 165 106 137 106 93 L106 42 C135 48 154 69 154 100 L154 130 C154 191 112 224 48 220 Z','M175 58 C204 74 219 98 219 132 L219 181 C192 180 175 161 175 132 Z']},
+{id:'W6',paths:['M45 57 L105 38 L105 142 C105 161 112 173 130 180 L145 221 C91 229 45 197 45 145 Z','M123 38 L170 52 L170 137 C170 164 191 183 221 184 L212 220 C155 216 123 190 123 140 Z']}
+];
+fs.writeFileSync(out+'/sketches.json',JSON.stringify(marks,null,2));
+let svg='<svg xmlns="http://www.w3.org/2000/svg" width="1140" height="1080" viewBox="0 0 1140 1080"><rect width="1140" height="1080" fill="white"/>';
+for(let i=0;i<marks.length;i++){let m=marks[i],x=(i%3)*380,y=Math.floor(i/3)*360;svg+=`<g transform="translate(${x+78} ${y+45}) scale(.85)">${m.paths.map(d=>`<path fill="#111" d="${d}"/>`).join('')}</g><text x="${x+190}" y="${y+305}" text-anchor="middle" font-family="Helvetica,Arial" font-size="16" fill="#777">${m.id} · internal sketch</text>`;}
+svg+='</svg>';fs.writeFileSync(out+'/sketch-field.svg',svg);
+sharp(Buffer.from(svg)).png().toFile(out+'/sketch-field.png').then(()=>console.log(out+'/sketch-field.png'));

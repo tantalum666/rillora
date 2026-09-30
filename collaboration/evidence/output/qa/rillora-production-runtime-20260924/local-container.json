@@ -1,0 +1,18 @@
+{
+  "id": "sha256:8426279e5de8cd394c9ebae8c35549d0a01703a84a3398dda5cb82c476cfad6b",
+  "architecture": "arm64",
+  "os": "linux",
+  "created": "2026-09-24T00:30:02.760717335+08:00",
+  "healthcheck": {
+    "Interval": 30000000000,
+    "Retries": 3,
+    "StartPeriod": 20000000000,
+    "Test": [
+      "CMD",
+      "node",
+      "dist/healthcheck.js"
+    ],
+    "Timeout": 5000000000
+  },
+  "boundary": "Local build only, not ECR publication or deployment."
+}

@@ -1,0 +1,50 @@
+{
+  "checkedAt": "2026-09-26T11:01:13.433223+00:00",
+  "status": "comparison in progress; no provider selected or provisioned",
+  "directoryAttempt": {
+    "cliVersion": "1.52.0",
+    "result": "Directory plugin metadata unavailable because the existing CLI credential is expired. Do not reconnect or repurpose another project account solely for discovery. Public provider documentation used as fallback.",
+    "changes": false
+  },
+  "candidates": [
+    {
+      "name": "Resend",
+      "integration": "Auth0 currently lists a direct provider integration with domain-scoped API keys.",
+      "observedLimits": "Free100/day,3domains,30-day email/log retention; older official3000/month announcement requires fresh price/portal confirmation.",
+      "controls": "Enforced TLS domain option and automatic suppression documented. No tracking proposed.",
+      "residency": "Official GDPR page says message content/logs/webhook/account data stored in US; selecting eu-west-1 controls sending, not EEA-only storage.",
+      "sources": [
+        "https://auth0.com/docs/customize/email/smtp-email-providers/resend",
+        "https://resend.com/pricing",
+        "https://resend.com/security/gdpr",
+        "https://resend.com/changelog/advanced-tls-configuration"
+      ],
+      "open": [
+        "Account review and real quota",
+        "Actual suppression export/import availability: indexed new managed-list example contains a later October date; do not assume current availability",
+        "Concrete DPA/privacy/retention treatment",
+        "No account/key/domain created"
+      ]
+    },
+    {
+      "name": "Zoho CPaaS email (formerly ZeptoMail entry)",
+      "integration": "Auth0 generic SMTP supports LOGIN plus TLS1.2 or higher/public CA. Zoho current KB retains ZeptoMail SMTP domains; exact account/DC needed.",
+      "observedPricing": "Current pricing entry redirects to CPaaS; official indexed USD2.50/credit,10000emails/credit,6month validity,first credit free. Exact local/account quote not obtained.",
+      "controls": "Legacy ZeptoMail docs make content retention optional; current CPaaS KB lists60day logs and opt-in body storage. Actual policy/config verification required.",
+      "residency": "Legacy official page ties service data to registration DC. Existing human Zoho mailbox does not establish the transactional account region.",
+      "sources": [
+        "https://www.zoho.com/cpaas/pricing.html",
+        "https://www.zoho.com/zeptomail/gdpr.html",
+        "https://help.zoho.com/portal/en/kb/zoho-cpaas/faqs/sending-emails",
+        "https://auth0.com/docs/customize/email/smtp-email-providers/smtp-server"
+      ],
+      "open": [
+        "Current region availability and actual SMTP TLS/suppression controls",
+        "Account review, credit limits and current final price",
+        "Retention policy and suppression portability",
+        "No account/key/domain created"
+      ]
+    }
+  ],
+  "boundary": "No purchase, terms acceptance, message, DNS write or Auth0 tenant change. No private user content supplied."
+}

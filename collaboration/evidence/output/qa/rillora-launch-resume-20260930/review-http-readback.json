@@ -1,0 +1,91 @@
+{
+  "at": "2026-09-29T17:30:06.523262+00:00",
+  "checks": [
+    {
+      "name": "live",
+      "status": 200,
+      "expected": 200,
+      "passes": true,
+      "cacheControl": null,
+      "publicBody": {
+        "status": "ok"
+      }
+    },
+    {
+      "name": "ready",
+      "status": 200,
+      "expected": 200,
+      "passes": true,
+      "cacheControl": null,
+      "publicBody": {
+        "status": "ready"
+      }
+    },
+    {
+      "name": "private",
+      "status": 401,
+      "expected": 401,
+      "passes": true,
+      "cacheControl": "no-store",
+      "publicBody": {
+        "error": {
+          "code": "authentication_required",
+          "message": "Authentication is required."
+        }
+      }
+    },
+    {
+      "name": "dev-rejected",
+      "status": 401,
+      "expected": 401,
+      "passes": true,
+      "cacheControl": "no-store",
+      "publicBody": {
+        "error": {
+          "code": "authentication_required",
+          "message": "Authentication is required."
+        }
+      }
+    },
+    {
+      "name": "bearer-rejected",
+      "status": 401,
+      "expected": 401,
+      "passes": true,
+      "cacheControl": "no-store",
+      "publicBody": {
+        "error": {
+          "code": "authentication_required",
+          "message": "Authentication is required."
+        }
+      }
+    },
+    {
+      "name": "session-status",
+      "status": 200,
+      "expected": 200,
+      "passes": true,
+      "cacheControl": "no-store",
+      "publicBody": {
+        "authenticated": false
+      }
+    },
+    {
+      "name": "legal-contract",
+      "status": 200,
+      "expected": 200,
+      "passes": true,
+      "cacheControl": "no-store",
+      "publicBody": {
+        "termsVersion": "terms-2026-08-27-1",
+        "privacyVersion": "privacy-2026-09-15-1",
+        "consentTextVersion": "registration-clickwrap-2026-08-24-1",
+        "bundleSha256": "3eb7d7bf4d3c420c49946dbfcd322293136cce556407339dc0cafa0aa5f30602",
+        "termsUrl": "https://legal.rillora.xyz/terms",
+        "privacyUrl": "https://legal.rillora.xyz/privacy",
+        "registrationRequiresAcceptance": true,
+        "recurringChargeRequiresSeparateConsent": true
+      }
+    }
+  ]
+}

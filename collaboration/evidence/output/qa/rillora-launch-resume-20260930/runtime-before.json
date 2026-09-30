@@ -1,0 +1,114 @@
+{
+  "taskDefinitionArn": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRuntimeApiTask93405B31:1",
+  "image": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1:4e75f2b26123145a0b6a7e8a04c4e1a33368d9d2e61d7582dfbb0df6b71933bb",
+  "environment": [
+    {
+      "name": "ALLOW_FAMILY_MAINTENANCE_PREVIEW",
+      "value": "false"
+    },
+    {
+      "name": "DATABASE_HOST",
+      "value": "rillora-production.cxcqa2usex01.eu-central-1.rds.amazonaws.com"
+    },
+    {
+      "name": "ALLOW_APPLE_SANDBOX_INTEGRATION",
+      "value": "false"
+    },
+    {
+      "name": "ALLOW_SYNTHETIC_RECIPIENT_REHEARSAL",
+      "value": "false"
+    },
+    {
+      "name": "HOST",
+      "value": "0.0.0.0"
+    },
+    {
+      "name": "ALLOW_DEV_AUTH",
+      "value": "false"
+    },
+    {
+      "name": "PRODUCTION_RUNTIME_MODE",
+      "value": "closed"
+    },
+    {
+      "name": "DATABASE_SSL_CA_PATH",
+      "value": "/app/certs/rds-global-bundle.pem"
+    },
+    {
+      "name": "API_TLS_SERVER_NAME",
+      "value": "origin.production.rillora.xyz"
+    },
+    {
+      "name": "ALLOW_STRIPE_TEST_INTEGRATION",
+      "value": "false"
+    },
+    {
+      "name": "CONTENT_KEY_NAMESPACE",
+      "value": "rillora-production"
+    },
+    {
+      "name": "DATABASE_POOL_MAX",
+      "value": "5"
+    },
+    {
+      "name": "DATABASE_NAME",
+      "value": "rillora"
+    },
+    {
+      "name": "PORT",
+      "value": "8443"
+    },
+    {
+      "name": "RECOVERY_JOURNAL_TABLE",
+      "value": "RilloraProduction-RecoveryJournal06BB91CD-1EBHY2PWCGS9F"
+    },
+    {
+      "name": "DATABASE_PORT",
+      "value": "5432"
+    },
+    {
+      "name": "TRUST_PROXY_HOPS",
+      "value": "1"
+    },
+    {
+      "name": "CORS_ORIGINS",
+      "value": "https://app.rillora.xyz"
+    },
+    {
+      "name": "CONTENT_PROTECTION_MODE",
+      "value": "encrypted"
+    },
+    {
+      "name": "RECOVERY_ENVIRONMENT",
+      "value": "production"
+    },
+    {
+      "name": "DATA_REGION",
+      "value": "eu-central-1"
+    },
+    {
+      "name": "NODE_ENV",
+      "value": "production"
+    },
+    {
+      "name": "DATABASE_CONNECTION_TIMEOUT_MS",
+      "value": "10000"
+    },
+    {
+      "name": "DATABASE_SSL_MODE",
+      "value": "verify-full"
+    },
+    {
+      "name": "CONTENT_KMS_KEY_ARN",
+      "value": "arn:aws:kms:eu-central-1:133857166372:key/0f60cf8f-25b6-4e8e-94c5-03fc127a5b72"
+    },
+    {
+      "name": "API_TLS_CERTIFICATE_ARN",
+      "value": "arn:aws:acm:eu-central-1:133857166372:certificate/8435fada-00ca-4c0e-880b-ff26e0fb6191"
+    }
+  ],
+  "secretNames": [
+    "DATABASE_USER",
+    "DATABASE_PASSWORD"
+  ]
+}

@@ -1,0 +1,5 @@
+
+> rillora-aws-infrastructure@0.1.0 typecheck
+> tsc -p tsconfig.json --noEmit
+
+lib/rillora-production-stack.ts(108,33): error TS2339: Property 'instanceSubnetGroup' does not exist on type 'DatabaseInstance'.

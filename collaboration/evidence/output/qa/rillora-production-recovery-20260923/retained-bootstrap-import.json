@@ -1,0 +1,16 @@
+[
+  {
+    "ResourceType": "AWS::Logs::LogGroup",
+    "LogicalResourceId": "MaintenanceLogs61C6A99C",
+    "ResourceIdentifier": {
+      "LogGroupName": "RilloraProduction-MaintenanceLogs61C6A99C-2niRZtkO9Ivq"
+    }
+  },
+  {
+    "ResourceType": "AWS::SecretsManager::Secret",
+    "LogicalResourceId": "RuntimeCredential871C86BA",
+    "ResourceIdentifier": {
+      "Id": "arn:aws:secretsmanager:eu-central-1:133857166372:secret:RuntimeCredential871C86BA-OO3vKO9TLttB-xFGX4w"
+    }
+  }
+]

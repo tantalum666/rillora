@@ -1,0 +1,37 @@
+{
+  "checkedAt": "2026-09-29T15:49:53.434752+00:00",
+  "preflightPassed": false,
+  "publicationApproval": false,
+  "gateBlockers": [
+    "production-runtime: in_progress",
+    "production-identity: in_progress",
+    "production-billing: in_progress",
+    "merchant-market: owner_deferred",
+    "apple-transactions: in_progress",
+    "backup-retention: in_progress",
+    "release-security: open",
+    "apple-submission: in_progress",
+    "physical-device: owner_deferred"
+  ],
+  "nativeArtifactBlockers": [
+    "Customer account access is closed in this artifact"
+  ],
+  "sourceInventory": {
+    "nativeReleaseFieldsConfigured": {
+      "RILLORA_API_BASE_URL": true,
+      "RILLORA_AUTH0_DOMAIN": true,
+      "RILLORA_AUTH0_CLIENT_ID": true,
+      "RILLORA_AUTH0_AUDIENCE": true,
+      "RILLORA_NATIVE_SESSION_URL": true
+    },
+    "mainAppIconConfigured": true,
+    "stripeTestAdapterRejectsLiveObjects": true,
+    "stripeProductionAdapterSourcePresent": true,
+    "productionPurchaseConsentSourcePresent": true,
+    "appleProductionVerificationSourcePresent": true,
+    "appleProductionPriceBindingsSourcePresent": true,
+    "productionInfrastructureSourcePresent": true,
+    "note": "Source inventory only. A present value/file does not prove deployment or release acceptance."
+  },
+  "evidenceLimit": "Local preflight is not provider approval, deployment, App Review or legal clearance."
+}

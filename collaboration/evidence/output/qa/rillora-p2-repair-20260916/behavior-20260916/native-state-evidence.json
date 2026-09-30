@@ -1,0 +1,824 @@
+[
+  {
+    "stage": "accepted",
+    "result": {
+      "schema": "xcodebuildmcp.output.ui-action-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "action": {
+          "type": "tap",
+          "elementRef": "e185",
+          "x": 201,
+          "y": 480
+        },
+        "artifacts": {
+          "simulatorId": "EA356940-5220-4AA8-89CF-499C6D5D14E4"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "0cdnohr",
+          "seq": 7,
+          "count": 206,
+          "targets": [
+            "e53|tap|button|Invite someone, Share by link or QR||contact.add",
+            "e64|tap|button|Shared with me, Items others let you see||shared.open",
+            "e80|tap|button|Plan & access, Subscription and included features, Free||plan-access.open",
+            "e91|tap|button|Shared reviews, Check directions and review updates together||maintenance.open",
+            "e107|tap|button|My data, Backups and saved copies||account-data.open",
+            "e117|tap|button|Export directions, Create a guide you can keep||start-here.open",
+            "e137|tap|tab|Overview|0|house",
+            "e139|tap|tab|Matters|0|list.bullet.rectangle",
+            "e141|tap|tab|Profile|1|person.crop.circle",
+            "e168|tap|button|Received invitation||BackButton",
+            "e172|tap|button|Refresh shared items||arrow.clockwise",
+            "e189|tap|button|Foreground QA wallet||shared.item.71209a1a-0fbb-4ff0-85b0-767822892f5f"
+          ],
+          "scroll": [
+            "e21|swipe|other|||profile.list",
+            "e177|swipe|other|||shared.inbox"
+          ],
+          "text": [
+            "e38|text|text|Local QA identity||",
+            "e44|text|text|Debug only · not production sign-in||",
+            "e191|text|text|Foreground QA wallet||",
+            "e198|text|text|Read only||",
+            "e56|text|text|Invite someone||",
+            "e57|text|text|Share by link or QR||",
+            "e66|text|text|Shared with me||",
+            "e67|text|text|Items others let you see||",
+            "e82|text|text|Plan & access||",
+            "e84|text|text|Free||",
+            "e83|text|text|Subscription and included features||",
+            "e93|text|text|Shared reviews||",
+            "e94|text|text|Check directions and review updates together||",
+            "e109|text|text|My data||",
+            "e110|text|text|Backups and saved copies||",
+            "e119|text|text|Export directions||"
+          ],
+          "udid": "EA356940-5220-4AA8-89CF-499C6D5D14E4"
+        }
+      },
+      "nextSteps": [
+        "Batch same-screen taps: batch({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", steps: [{\"action\":\"tap\",\"elementRef\":\"e168\"},{\"action\":\"tap\",\"elementRef\":\"e172\"}] })",
+        "Tap an elementRef: tap({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", elementRef: \"e53\" })",
+        "Scroll visible content: swipe({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", withinElementRef: \"e21\", direction: \"up\", distance: 0.5 })"
+      ]
+    }
+  },
+  {
+    "stage": "returned-after-acceptance",
+    "result": {
+      "schema": "xcodebuildmcp.output.ui-action-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "action": {
+          "type": "tap",
+          "elementRef": "e168",
+          "x": 38,
+          "y": 100
+        },
+        "artifacts": {
+          "simulatorId": "EA356940-5220-4AA8-89CF-499C6D5D14E4"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "1qjiild",
+          "seq": 8,
+          "count": 190,
+          "targets": [
+            "e53|tap|button|Invite someone, Share by link or QR||contact.add",
+            "e64|tap|button|Shared with me, Items others let you see||shared.open",
+            "e80|tap|button|Plan & access, Subscription and included features, Free||plan-access.open",
+            "e91|tap|button|Shared reviews, Check directions and review updates together||maintenance.open",
+            "e107|tap|button|My data, Backups and saved copies||account-data.open",
+            "e117|tap|button|Export directions, Create a guide you can keep||start-here.open",
+            "e137|tap|tab|Overview|0|house",
+            "e139|tap|tab|Matters|0|list.bullet.rectangle",
+            "e141|tap|tab|Profile|1|person.crop.circle",
+            "e184|tap|button|Open shared items||invitation.open-shared",
+            "e170|tap|button|Close||"
+          ],
+          "scroll": [
+            "e21|swipe|other|||profile.list",
+            "e176|swipe|scroll-view|||invitation.view"
+          ],
+          "text": [
+            "e38|text|text|Local QA identity||",
+            "e181|text|text|Local QA · test data||",
+            "e44|text|text|Debug only · not production sign-in||",
+            "e56|text|text|Invite someone||",
+            "e182|text|text|Connected with Alex QA||",
+            "e57|text|text|Share by link or QR||",
+            "e183|text|text|For 22***@example.test||",
+            "e66|text|text|Shared with me||",
+            "e67|text|text|Items others let you see||",
+            "e82|text|text|Plan & access||",
+            "e84|text|text|Free||",
+            "e83|text|text|Subscription and included features||",
+            "e93|text|text|Shared reviews||",
+            "e94|text|text|Check directions and review updates together||",
+            "e109|text|text|My data||",
+            "e110|text|text|Backups and saved copies||",
+            "e119|text|text|Export directions||"
+          ],
+          "udid": "EA356940-5220-4AA8-89CF-499C6D5D14E4"
+        }
+      },
+      "nextSteps": [
+        "Tap an elementRef: tap({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", elementRef: \"e53\" })",
+        "Scroll visible content: swipe({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", withinElementRef: \"e176\", direction: \"up\", distance: 0.5 })"
+      ]
+    }
+  },
+  {
+    "stage": "shared-details-before-background",
+    "result": {
+      "schema": "xcodebuildmcp.output.ui-action-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "action": {
+          "type": "tap",
+          "elementRef": "e189",
+          "x": 201,
+          "y": 217
+        },
+        "artifacts": {
+          "simulatorId": "EA356940-5220-4AA8-89CF-499C6D5D14E4"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "1jngki9",
+          "seq": 10,
+          "count": 206,
+          "targets": [
+            "e53|tap|button|Invite someone, Share by link or QR||contact.add",
+            "e64|tap|button|Shared with me, Items others let you see||shared.open",
+            "e80|tap|button|Plan & access, Subscription and included features, Free||plan-access.open",
+            "e91|tap|button|Shared reviews, Check directions and review updates together||maintenance.open",
+            "e107|tap|button|My data, Backups and saved copies||account-data.open",
+            "e117|tap|button|Export directions, Create a guide you can keep||start-here.open",
+            "e137|tap|tab|Overview|0|house",
+            "e139|tap|tab|Matters|0|list.bullet.rectangle",
+            "e141|tap|tab|Profile|1|person.crop.circle",
+            "e168|tap|button|Foreground QA wallet||BackButton",
+            "e172|tap|button|Refresh shared items||arrow.clockwise",
+            "e189|tap|button|Foreground QA wallet||shared.item.71209a1a-0fbb-4ff0-85b0-767822892f5f"
+          ],
+          "scroll": [
+            "e21|swipe|other|||profile.list",
+            "e177|swipe|other|||shared.inbox"
+          ],
+          "text": [
+            "e38|text|text|Local QA identity||",
+            "e44|text|text|Debug only · not production sign-in||",
+            "e191|text|text|Foreground QA wallet||",
+            "e198|text|text|Read only||",
+            "e56|text|text|Invite someone||",
+            "e57|text|text|Share by link or QR||",
+            "e66|text|text|Shared with me||",
+            "e67|text|text|Items others let you see||",
+            "e82|text|text|Plan & access||",
+            "e84|text|text|Free||",
+            "e83|text|text|Subscription and included features||",
+            "e93|text|text|Shared reviews||",
+            "e94|text|text|Check directions and review updates together||",
+            "e109|text|text|My data||",
+            "e110|text|text|Backups and saved copies||",
+            "e119|text|text|Export directions||"
+          ],
+          "udid": "EA356940-5220-4AA8-89CF-499C6D5D14E4"
+        }
+      },
+      "nextSteps": [
+        "Batch same-screen taps: batch({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", steps: [{\"action\":\"tap\",\"elementRef\":\"e168\"},{\"action\":\"tap\",\"elementRef\":\"e172\"}] })",
+        "Tap an elementRef: tap({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", elementRef: \"e53\" })",
+        "Scroll visible content: swipe({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", withinElementRef: \"e21\", direction: \"up\", distance: 0.5 })"
+      ]
+    }
+  },
+  {
+    "stage": "shared-detail-original-navigation",
+    "result": {
+      "schema": "xcodebuildmcp.output.ui-action-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "action": {
+          "type": "tap",
+          "elementRef": "e189",
+          "x": 201,
+          "y": 217
+        },
+        "artifacts": {
+          "simulatorId": "EA356940-5220-4AA8-89CF-499C6D5D14E4"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "0mlkrvu",
+          "seq": 19,
+          "count": 244,
+          "targets": [
+            "e53|tap|button|Invite someone, Share by link or QR||contact.add",
+            "e64|tap|button|Shared with me, Items others let you see||shared.open",
+            "e80|tap|button|Plan & access, Subscription and included features, Free||plan-access.open",
+            "e91|tap|button|Shared reviews, Check directions and review updates together||maintenance.open",
+            "e107|tap|button|My data, Backups and saved copies||account-data.open",
+            "e117|tap|button|Export directions, Create a guide you can keep||start-here.open",
+            "e137|tap|tab|Overview|0|house",
+            "e139|tap|tab|Matters|0|list.bullet.rectangle",
+            "e141|tap|tab|Profile|1|person.crop.circle",
+            "e168|tap|button|Shared with me||BackButton"
+          ],
+          "scroll": [
+            "e21|swipe|other|||profile.list",
+            "e174|swipe|other|||shared.detail"
+          ],
+          "text": [
+            "e38|text|text|Local QA identity||",
+            "e44|text|text|Debug only · not production sign-in||",
+            "e188|text|text|Alex QA · Read only||",
+            "e56|text|text|Invite someone||",
+            "e195|text|text|Crypto asset||",
+            "e57|text|text|Share by link or QR||",
+            "e66|text|text|Shared with me||",
+            "e203|text|text|Importance||",
+            "e67|text|text|Items others let you see||",
+            "e204|text|text|Important||",
+            "e210|text|text|Held in||",
+            "e211|text|text|Self Custody||",
+            "e82|text|text|Plan & access||",
+            "e84|text|text|Free||",
+            "e83|text|text|Subscription and included features||",
+            "e218|text|text|Blockchain network||",
+            "e219|text|text|Ethereum||",
+            "e93|text|text|Shared reviews||",
+            "e94|text|text|Check directions and review updates together||",
+            "e226|text|text|Public wallet address||",
+            "e227|text|text|0x000000000000000000000000000000000000dEaD||",
+            "e234|text|text|Notes||",
+            "e109|text|text|My data||",
+            "e235|text|text|Visible only before scope changes||",
+            "e110|text|text|Backups and saved copies||",
+            "e119|text|text|Export directions||"
+          ],
+          "udid": "EA356940-5220-4AA8-89CF-499C6D5D14E4"
+        }
+      },
+      "nextSteps": [
+        "Tap an elementRef: tap({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", elementRef: \"e53\" })",
+        "Scroll visible content: swipe({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", withinElementRef: \"e21\", direction: \"up\", distance: 0.5 })"
+      ]
+    }
+  },
+  {
+    "stage": "foreground-downgrade-name",
+    "result": {
+      "schema": "xcodebuildmcp.output.capture-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "artifacts": {
+          "simulatorId": "EA356940-5220-4AA8-89CF-499C6D5D14E4"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "0u029s6",
+          "seq": 20,
+          "count": 204,
+          "targets": [
+            "e53|tap|button|Invite someone, Share by link or QR||contact.add",
+            "e64|tap|button|Shared with me, Items others let you see||shared.open",
+            "e80|tap|button|Plan & access, Subscription and included features, Free||plan-access.open",
+            "e91|tap|button|Shared reviews, Check directions and review updates together||maintenance.open",
+            "e107|tap|button|My data, Backups and saved copies||account-data.open",
+            "e117|tap|button|Export directions, Create a guide you can keep||start-here.open",
+            "e137|tap|tab|Overview|0|house",
+            "e139|tap|tab|Matters|0|list.bullet.rectangle",
+            "e141|tap|tab|Profile|1|person.crop.circle",
+            "e168|tap|button|Shared with me||BackButton"
+          ],
+          "scroll": [
+            "e21|swipe|other|||profile.list",
+            "e174|swipe|other|||shared.detail"
+          ],
+          "text": [
+            "e38|text|text|Local QA identity||",
+            "e44|text|text|Debug only · not production sign-in||",
+            "e188|text|text|Alex QA · Read only||",
+            "e56|text|text|Invite someone||",
+            "e195|text|text|Crypto asset||",
+            "e57|text|text|Share by link or QR||",
+            "e66|text|text|Shared with me||",
+            "e67|text|text|Items others let you see||",
+            "e82|text|text|Plan & access||",
+            "e84|text|text|Free||",
+            "e83|text|text|Subscription and included features||",
+            "e93|text|text|Shared reviews||",
+            "e94|text|text|Check directions and review updates together||",
+            "e109|text|text|My data||",
+            "e110|text|text|Backups and saved copies||",
+            "e119|text|text|Export directions||"
+          ],
+          "udid": "EA356940-5220-4AA8-89CF-499C6D5D14E4"
+        }
+      },
+      "nextSteps": [
+        "Refresh after layout changes: snapshot_ui({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\" })",
+        "Wait for UI to settle: wait_for_ui({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", predicate: \"settled\" })",
+        "Tap an elementRef: tap({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", elementRef: \"e53\" })",
+        "Scroll visible content: swipe({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", withinElementRef: \"e21\", direction: \"up\", distance: 0.5 })"
+      ]
+    }
+  },
+  {
+    "stage": "foreground-revoked-same-process",
+    "pid": 34593,
+    "result": {
+      "schema": "xcodebuildmcp.output.capture-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "artifacts": {
+          "simulatorId": "EA356940-5220-4AA8-89CF-499C6D5D14E4"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "1iktk6b",
+          "seq": 21,
+          "count": 191,
+          "targets": [
+            "e53|tap|button|Invite someone, Share by link or QR||contact.add",
+            "e64|tap|button|Shared with me, Items others let you see||shared.open",
+            "e80|tap|button|Plan & access, Subscription and included features, Free||plan-access.open",
+            "e91|tap|button|Shared reviews, Check directions and review updates together||maintenance.open",
+            "e107|tap|button|My data, Backups and saved copies||account-data.open",
+            "e117|tap|button|Export directions, Create a guide you can keep||start-here.open",
+            "e137|tap|tab|Overview|0|house",
+            "e139|tap|tab|Matters|0|list.bullet.rectangle",
+            "e141|tap|tab|Profile|1|person.crop.circle",
+            "e168|tap|button|Shared with me||BackButton"
+          ],
+          "scroll": [
+            "e21|swipe|other|||profile.list",
+            "e174|swipe|other|||shared.detail"
+          ],
+          "text": [
+            "e38|text|text|Local QA identity||",
+            "e183|text|text|Access changed. This item is no longer shared with you.||",
+            "e44|text|text|Debug only · not production sign-in||",
+            "e56|text|text|Invite someone||",
+            "e57|text|text|Share by link or QR||",
+            "e66|text|text|Shared with me||",
+            "e67|text|text|Items others let you see||",
+            "e82|text|text|Plan & access||",
+            "e84|text|text|Free||",
+            "e83|text|text|Subscription and included features||",
+            "e93|text|text|Shared reviews||",
+            "e94|text|text|Check directions and review updates together||",
+            "e109|text|text|My data||",
+            "e110|text|text|Backups and saved copies||",
+            "e119|text|text|Export directions||"
+          ],
+          "udid": "EA356940-5220-4AA8-89CF-499C6D5D14E4"
+        }
+      },
+      "nextSteps": [
+        "Refresh after layout changes: snapshot_ui({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\" })",
+        "Wait for UI to settle: wait_for_ui({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", predicate: \"settled\" })",
+        "Tap an elementRef: tap({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", elementRef: \"e53\" })",
+        "Scroll visible content: swipe({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", withinElementRef: \"e21\", direction: \"up\", distance: 0.5 })"
+      ]
+    }
+  },
+  {
+    "stage": "web-paused-guide-resumed-natively",
+    "result": {
+      "schema": "xcodebuildmcp.output.ui-action-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "action": {
+          "type": "tap",
+          "elementRef": "e55",
+          "x": 107,
+          "y": 849
+        },
+        "artifacts": {
+          "simulatorId": "EA356940-5220-4AA8-89CF-499C6D5D14E4"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "0b1oad4",
+          "seq": 23,
+          "count": 86,
+          "targets": [
+            "e45|tap|button|Invite someone, Share by link or QR||overview.invite",
+            "e55|tap|button|Resume quick start guide||",
+            "e39|tap|button|Add a matter||",
+            "e41|tap|button|Add your first matter||overview.add-first",
+            "e51|tap|button|Shared with me||overview.shared",
+            "e64|tap|tab|Overview|1|house",
+            "e66|tap|tab|Matters|0|list.bullet.rectangle",
+            "e68|tap|tab|Profile|0|person.crop.circle"
+          ],
+          "scroll": [
+            "e20|swipe|scroll-view|||overview.scroll"
+          ],
+          "text": [
+            "e36|text|text|Local QA · test data||overview.development-identity",
+            "e38|text|text|0 matters||",
+            "e43|text|text|Add your first matter||",
+            "e48|text|text|Invite someone||",
+            "e49|text|text|Share by link or QR||",
+            "e53|text|text|Shared with me||"
+          ],
+          "udid": "EA356940-5220-4AA8-89CF-499C6D5D14E4"
+        }
+      },
+      "nextSteps": [
+        "Batch same-screen taps: batch({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", steps: [{\"action\":\"tap\",\"elementRef\":\"e39\"},{\"action\":\"tap\",\"elementRef\":\"e41\"}] })",
+        "Tap an elementRef: tap({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", elementRef: \"e45\" })",
+        "Scroll visible content: swipe({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", withinElementRef: \"e20\", direction: \"up\", distance: 0.5 })"
+      ]
+    }
+  },
+  {
+    "stage": "guide-resumed-after-scroll",
+    "result": {
+      "schema": "xcodebuildmcp.output.ui-action-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "action": {
+          "type": "tap",
+          "elementRef": "e57",
+          "x": 107,
+          "y": 740
+        },
+        "artifacts": {
+          "simulatorId": "EA356940-5220-4AA8-89CF-499C6D5D14E4"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "1a6wf0h",
+          "seq": 26,
+          "count": 176,
+          "targets": [
+            "e48|tap|button|Invite someone, Share by link or QR||overview.invite",
+            "e42|tap|button|Add a matter||",
+            "e44|tap|button|Add your first matter||overview.add-first",
+            "e54|tap|button|Shared with me||overview.shared",
+            "e58|tap|button|Quick start guide||",
+            "e67|tap|tab|Overview|1|house",
+            "e69|tap|tab|Matters|0|list.bullet.rectangle",
+            "e71|tap|tab|Profile|0|person.crop.circle",
+            "e100|tap|button|Save & exit||first-use.save-exit",
+            "e127|tap|button|Online account||matter.category.account",
+            "e130|tap|button|Document||matter.category.document",
+            "e133|tap|button|Device||matter.category.device",
+            "e136|tap|button|Financial asset||matter.category.financial_asset",
+            "e153|tap|button|Add this matter||first-use.add-matter",
+            "e164|tap|button|About optional setup||",
+            "e167|tap|button|||"
+          ],
+          "scroll": [
+            "e21|swipe|scroll-view|||overview.scroll",
+            "e106|swipe|other|||first-use.guide",
+            "e125|swipe|scroll-view|||"
+          ],
+          "text": [
+            "e39|text|text|Local QA · test data||overview.development-identity",
+            "e41|text|text|0 matters||",
+            "e135|text|text|Device||",
+            "e129|text|text|Account||",
+            "e132|text|text|Document||",
+            "e138|text|text|Asset||",
+            "e155|text|text|Add this matter||",
+            "e166|text|text|About optional setup||",
+            "e46|text|text|Add your first matter||",
+            "e51|text|text|Invite someone||",
+            "e52|text|text|Share by link or QR||",
+            "e56|text|text|Shared with me||"
+          ],
+          "udid": "EA356940-5220-4AA8-89CF-499C6D5D14E4"
+        }
+      },
+      "nextSteps": [
+        "Batch same-screen taps: batch({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", steps: [{\"action\":\"tap\",\"elementRef\":\"e42\"},{\"action\":\"tap\",\"elementRef\":\"e44\"}] })",
+        "Tap an elementRef: tap({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", elementRef: \"e48\" })",
+        "Scroll visible content: swipe({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", withinElementRef: \"e21\", direction: \"up\", distance: 0.5 })"
+      ]
+    }
+  },
+  {
+    "stage": "inline-preview-change-and-keep-editing",
+    "result": {
+      "schema": "xcodebuildmcp.output.ui-action-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "action": {
+          "type": "tap",
+          "elementRef": "e71",
+          "x": 313,
+          "y": 280
+        },
+        "artifacts": {
+          "simulatorId": "EA356940-5220-4AA8-89CF-499C6D5D14E4"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "0ji5w81",
+          "seq": 40,
+          "count": 149,
+          "targets": [
+            "e15|tap|button|Edit matter||BackButton",
+            "e18|tap|button|Done||",
+            "e65|tap|switch|Foreground QA wallet|1|sharing.matter.71209a1a-0fbb-4ff0-85b0-767822892f5f",
+            "e69|tap|button|Name||sharing.level.71209a1a-0fbb-4ff0-85b0-767822892f5f.name",
+            "e70|tap|button|Directions||sharing.level.71209a1a-0fbb-4ff0-85b0-767822892f5f.directions",
+            "e71|tap|button|Details||sharing.level.71209a1a-0fbb-4ff0-85b0-767822892f5f.details",
+            "e78|tap|switch|Navigation QA document|0|sharing.matter.3924ee24-4e1e-45bb-b6f5-869589be369a",
+            "e98|tap|button|Edit contact record||",
+            "e106|tap|button|Stop sharing||sharing.revoke",
+            "e113|tap|button|Visible details||",
+            "e116|tap|button|||"
+          ],
+          "scroll": [
+            "e24|swipe|other|||sharing.editor"
+          ],
+          "text": [
+            "e32|text|text|Normal browser QA||",
+            "e33|text|text|Connected||sharing.status",
+            "e54|text|text|22***@example.test||",
+            "e68|text|text|Foreground QA wallet||",
+            "e72|text|text|All saved details||",
+            "e81|text|text|Navigation QA document||",
+            "e90|text|text|Save sharing||",
+            "e99|text|text|Edit contact record||",
+            "e115|text|text|Visible details||",
+            "e124|text|text|Foreground QA wallet||",
+            "e125|text|text|Crypto asset||",
+            "e126|text|text|Importance||",
+            "e127|text|text|Important||"
+          ],
+          "udid": "EA356940-5220-4AA8-89CF-499C6D5D14E4"
+        }
+      },
+      "nextSteps": [
+        "Batch visible switch toggles: batch({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", steps: [{\"action\":\"tap\",\"elementRef\":\"e65\"},{\"action\":\"tap\",\"elementRef\":\"e78\"}] })",
+        "Tap an elementRef: tap({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", elementRef: \"e15\" })",
+        "Scroll visible content: swipe({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", withinElementRef: \"e24\", direction: \"up\", distance: 0.5 })"
+      ]
+    }
+  },
+  {
+    "stage": "sharing-return-to-same-matter",
+    "result": {
+      "schema": "xcodebuildmcp.output.ui-action-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "action": {
+          "type": "tap",
+          "elementRef": "e18",
+          "x": 108,
+          "y": 84
+        },
+        "artifacts": {
+          "simulatorId": "EA356940-5220-4AA8-89CF-499C6D5D14E4"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "1q4h1la",
+          "seq": 42,
+          "count": 144,
+          "targets": [
+            "e47|tap|button|Preferred outcome, Not decided||",
+            "e69|tap|button|Recipient QA, Not shared||matter.sharing.person.f7db203f-2ef3-4cbc-aadf-7814415ae06e",
+            "e78|tap|button|Browser acceptance QA, Details · Connected||matter.sharing.person.9a3aa813-22a9-47a7-8fde-967b77b62dab",
+            "e88|tap|button|Lost response QA, Details · Connected||matter.sharing.person.67ed5706-5045-4a86-a2be-edc27fb2a4e9",
+            "e98|tap|button|Normal browser QA, Details · Connected||matter.sharing.person.720d07b8-ac8b-4e8a-b2b1-b7a40ec641a3",
+            "e120|typeText|text-field|Notes, optional|Visible only before scope changes|matter.edit.notes",
+            "e15|tap|button|Matters||BackButton",
+            "e54|tap|button|More options||",
+            "e56|tap|button|||",
+            "e108|tap|button|Invite someone||matter.sharing.invite",
+            "e133|tap|button|Archive matter||matter.edit.archive"
+          ],
+          "scroll": [
+            "e24|swipe|other|||matter.editor"
+          ],
+          "text": [
+            "e46|text|text|Preferred outcome||",
+            "e48|text|text|Not decided||",
+            "e55|text|text|More options||",
+            "e70|text|text|Recipient QA||",
+            "e71|text|text|Not shared||",
+            "e79|text|text|Browser acceptance QA||",
+            "e80|text|text|Details · Connected||",
+            "e89|text|text|Lost response QA||",
+            "e90|text|text|Details · Connected||",
+            "e99|text|text|Normal browser QA||",
+            "e100|text|text|Details · Connected||",
+            "e110|text|text|Invite someone||",
+            "e119|text|text|Notes · Optional||",
+            "e128|text|text|Keep passwords, private keys and recovery phrases out.||"
+          ],
+          "udid": "EA356940-5220-4AA8-89CF-499C6D5D14E4"
+        }
+      },
+      "nextSteps": [
+        "Batch same-screen taps: batch({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", steps: [{\"action\":\"tap\",\"elementRef\":\"e15\"},{\"action\":\"tap\",\"elementRef\":\"e54\"}] })",
+        "Tap an elementRef: tap({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", elementRef: \"e47\" })",
+        "Scroll visible content: swipe({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", withinElementRef: \"e24\", direction: \"up\", distance: 0.5 })"
+      ]
+    }
+  },
+  {
+    "stage": "public-control-labels",
+    "result": {
+      "schema": "xcodebuildmcp.output.capture-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "artifacts": {
+          "simulatorId": "EA356940-5220-4AA8-89CF-499C6D5D14E4"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "0h59mdx",
+          "seq": 43,
+          "count": 100,
+          "targets": [
+            "e40|tap|button|Explore what exists||doc.text.fill",
+            "e41|tap|button|Explore what happens||arrow.triangle.branch",
+            "e42|tap|button|Explore who can help||person.2.fill",
+            "e43|tap|button|What exists||public-overview.focus.what",
+            "e46|tap|button|What happens||public-overview.focus.next",
+            "e49|tap|button|Who can help||public-overview.focus.who",
+            "e63|tap|button|Explore matters||public-overview.explore",
+            "e66|tap|button|Add my first matter||public-overview.start-final",
+            "e78|tap|tab|Overview|1|",
+            "e80|tap|tab|Matters|0|",
+            "e82|tap|tab|Profile|0|"
+          ],
+          "scroll": [
+            "e22|swipe|scroll-view|||public-overview.scroll"
+          ],
+          "text": [
+            "e17|text|text|Rillora||",
+            "e35|text|text|DIGITAL LEGACY||",
+            "e37|text|text|Your important things, connected.||public-overview.purpose",
+            "e45|text|text|What||",
+            "e48|text|text|Next step||",
+            "e51|text|text|Who||",
+            "e52|text|text|Accounts · Documents · Devices||public-overview.focus-description",
+            "e56|text|text|Death||",
+            "e59|text|text|Incapacity||",
+            "e62|text|text|Unreachable||",
+            "e65|text|text|Explore matters||",
+            "e67|text|text|Add my first matter||",
+            "e69|text|text|Directions, not passwords. Never save passwords, recovery codes, private keys, or seed phrases in Rillora.||"
+          ],
+          "udid": "EA356940-5220-4AA8-89CF-499C6D5D14E4"
+        }
+      },
+      "nextSteps": [
+        "Refresh after layout changes: snapshot_ui({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\" })",
+        "Wait for UI to settle: wait_for_ui({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", predicate: \"settled\" })",
+        "Batch same-screen taps: batch({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", steps: [{\"action\":\"tap\",\"elementRef\":\"e40\"},{\"action\":\"tap\",\"elementRef\":\"e41\"}] })",
+        "Tap an elementRef: tap({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", elementRef: \"e40\" })",
+        "Scroll visible content: swipe({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", withinElementRef: \"e22\", direction: \"up\", distance: 0.5 })"
+      ]
+    }
+  },
+  {
+    "stage": "new-person-invite-returns-to-source-matter",
+    "result": {
+      "schema": "xcodebuildmcp.output.ui-action-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "action": {
+          "type": "tap",
+          "elementRef": "e167",
+          "x": 52,
+          "y": 100
+        },
+        "artifacts": {
+          "simulatorId": "EA356940-5220-4AA8-89CF-499C6D5D14E4"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "1gbtyfa",
+          "seq": 67,
+          "count": 157,
+          "targets": [
+            "e47|tap|button|Preferred outcome, Not decided||",
+            "e69|tap|button|Recipient QA, Not shared||matter.sharing.person.f7db203f-2ef3-4cbc-aadf-7814415ae06e",
+            "e78|tap|button|Browser acceptance QA, Not shared||matter.sharing.person.9a3aa813-22a9-47a7-8fde-967b77b62dab",
+            "e88|tap|button|Lost response QA, Not shared||matter.sharing.person.67ed5706-5045-4a86-a2be-edc27fb2a4e9",
+            "e98|tap|button|Normal browser QA, Not shared||matter.sharing.person.720d07b8-ac8b-4e8a-b2b1-b7a40ec641a3",
+            "e108|tap|button|New native recipient QA, Name · Invitation pending||matter.sharing.person.17752539-234f-4d67-85a4-09f0825eaa21",
+            "e130|typeText|text-field|Notes, optional|Synthetic local test|matter.edit.notes",
+            "e15|tap|button|Rillora||BackButton",
+            "e54|tap|button|More options||",
+            "e56|tap|button|||",
+            "e118|tap|button|Invite someone||matter.sharing.invite"
+          ],
+          "scroll": [
+            "e24|swipe|other|||matter.editor"
+          ],
+          "text": [
+            "e46|text|text|Preferred outcome||",
+            "e48|text|text|Not decided||",
+            "e55|text|text|More options||",
+            "e70|text|text|Recipient QA||",
+            "e71|text|text|Not shared||",
+            "e79|text|text|Browser acceptance QA||",
+            "e80|text|text|Not shared||",
+            "e89|text|text|Lost response QA||",
+            "e90|text|text|Not shared||",
+            "e99|text|text|Normal browser QA||",
+            "e100|text|text|Not shared||",
+            "e109|text|text|New native recipient QA||",
+            "e110|text|text|Name · Invitation pending||",
+            "e120|text|text|Invite someone||",
+            "e129|text|text|Notes · Optional||",
+            "e138|text|text|Keep passwords, private keys and recovery phrases out.||"
+          ],
+          "udid": "EA356940-5220-4AA8-89CF-499C6D5D14E4"
+        }
+      },
+      "nextSteps": [
+        "Batch same-screen taps: batch({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", steps: [{\"action\":\"tap\",\"elementRef\":\"e15\"},{\"action\":\"tap\",\"elementRef\":\"e54\"}] })",
+        "Tap an elementRef: tap({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", elementRef: \"e47\" })",
+        "Scroll visible content: swipe({ simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\", withinElementRef: \"e24\", direction: \"up\", distance: 0.5 })"
+      ]
+    }
+  }
+]

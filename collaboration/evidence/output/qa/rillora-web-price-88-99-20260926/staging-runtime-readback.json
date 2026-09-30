@@ -1,0 +1,25 @@
+{
+  "serviceTask": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingApiTaskDefinitionF6347BA4:38",
+  "desired": 1,
+  "running": 1,
+  "rollout": [
+    "COMPLETED"
+  ],
+  "configuration": {
+    "STRIPE_FAMILY_PLAN_VERSION": "2",
+    "ALLOW_DEV_AUTH": "false",
+    "ALLOW_STRIPE_TEST_INTEGRATION": "true",
+    "CONTENT_KEY_NAMESPACE": "rillora-staging",
+    "STRIPE_FAMILY_ANNUAL_PRICE_ID": "price_1UJe38CxTlowhyiGdx5ypIKJ",
+    "STRIPE_FAMILY_PRICE_VERSION": "4",
+    "CONTENT_PROTECTION_MODE": "encrypted"
+  },
+  "tasks": [
+    {
+      "status": "RUNNING",
+      "health": "HEALTHY",
+      "image": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1:0032fca08797551749bc99a92b0d711da0e2a94f36d435e43a4b5e920c687751",
+      "digest": "sha256:d369ad21df483f3a1182e34998af9a96ffaab1adc1bac1b858fd636f569cdc32"
+    }
+  ]
+}

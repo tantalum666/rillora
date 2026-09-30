@@ -1,0 +1,6 @@
+### Result
+{"outcomes":[{"id":"f6162fe2-5b7b-4bb3-ab78-7e4bbf042f11","status":200}],"active":0,"statuses":[{"id":"0de445e8-186f-4fab-8c8d-7dda4deaf080","status":"revoked"},{"id":"f6162fe2-5b7b-4bb3-ab78-7e4bbf042f11","status":"revoked"}]}
+### Ran Playwright code
+```js
+await (async(page)=>{const headers={'x-dev-planner-id':'11111111-1111-4111-8111-111111111111'};const res=await page.request.get('http://127.0.0.1:4250/v1/sharing/connections',{headers});const rows=(await res.json()).connections;const outcomes=[];for(const item of rows.filter(x=>x.status!=='revoked')){const r=await page.request.delete('http://127.0.0.1:4250/v1/sharing/connections/'+item.publicId,{headers:{...headers,'if-match':String(item.version)}});outcomes.push({id:item.publicId,status:r.status()});}const latest=(await (await page.request.get('http://127.0.0.1:4250/v1/sharing/connections',{headers})).json()).connections;return {outcomes,active:latest.filter(x=>x.status!=='revoked').length,statuses:latest.map(x=>({id:x.publicId,status:x.status}))};})(page);
+```

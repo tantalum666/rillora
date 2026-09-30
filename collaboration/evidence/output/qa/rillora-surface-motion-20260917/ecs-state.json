@@ -1,0 +1,16 @@
+{
+    "desired": 1,
+    "running": 1,
+    "pending": 0,
+    "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingApiTaskDefinitionF6347BA4:30",
+    "rollouts": [
+        "COMPLETED"
+    ],
+    "capacity": [
+        {
+            "capacityProvider": "FARGATE",
+            "weight": 1,
+            "base": 0
+        }
+    ]
+}

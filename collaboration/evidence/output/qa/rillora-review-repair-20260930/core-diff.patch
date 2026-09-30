@@ -1,0 +1,250 @@
+diff --git a/apps/api/src/auth.ts b/apps/api/src/auth.ts
+index ce6899cd1..129e763e1 100644
+--- a/apps/api/src/auth.ts
++++ b/apps/api/src/auth.ts
+@@ -14,6 +14,20 @@ const developmentPlannerHeader = "x-dev-planner-id";
+ const csrfHeader = "x-csrf-token";
+ export const sessionCookieName = "continuity_session";
+ 
++/** The header is a consistency precondition, never authority to choose a tenant. */
++export const requireWorkspaceIdentity: RequestHandler = (request, _response, next) => {
++  const expected = request.get('x-rillora-planner');
++  if (expected !== undefined && expected.toLowerCase() !== request.auth.plannerPublicId.toLowerCase()) {
++    next(new ApiError(409, 'account_changed', 'The signed-in account changed. Reload before continuing.'));
++    return;
++  }
++  if (request.auth.mode === 'session' && !['GET', 'HEAD', 'OPTIONS'].includes(request.method) && !expected) {
++    requireCsrf(request, _response, error => next(error ?? new ApiError(409, 'workspace_identity_required', 'Reload your map before making changes.')));
++    return;
++  }
++  next();
++};
++
+ type PlannerIdentityRow = {
+   planner_id: string;
+   planner_public_id: string;
+diff --git a/apps/api/src/recent-authentication.ts b/apps/api/src/recent-authentication.ts
+index 20aba97a1..ee99f337a 100644
+--- a/apps/api/src/recent-authentication.ts
++++ b/apps/api/src/recent-authentication.ts
+@@ -14,16 +14,11 @@ export function requireRecentAuthentication(config: AppConfig, auth: Request['au
+     throw new ApiError(403, 'reauthentication_required', 'Sign in again to continue. Your changes have not been submitted.');
+   }
+ }
+-// Reducing or revoking access deliberately does not appear here. Scope expansion
+-// is checked inside the sharing transaction against the existing owned grants.
+-export function sensitiveActionAuthentication(config: AppConfig): RequestHandler {
++/** Attach to the business route so authorization uses the same match as dispatch. */
++export function recentAuthenticationRequired(config: AppConfig): RequestHandler {
+   return (request, _response, next) => {
+     try {
+-      if (request.method === 'POST' && (
+-        ['/account/map/export', '/account/map/import', '/account/delete', '/sharing/connections',
+-          '/exports/start-here/printable', '/exports/start-here/encrypted/prepare'].includes(request.path)
+-        || /^\/sharing\/connections\/[^/]+\/(link|live)$/.test(request.path)
+-      )) requireRecentAuthentication(config, request.auth);
++      requireRecentAuthentication(config, request.auth);
+       next();
+     } catch (error) { next(error); }
+   };
+diff --git a/apps/api/src/stripe-commerce-executor.ts b/apps/api/src/stripe-commerce-executor.ts
+index a3593477c..39c19da36 100644
+--- a/apps/api/src/stripe-commerce-executor.ts
++++ b/apps/api/src/stripe-commerce-executor.ts
+@@ -304,36 +304,33 @@ export class StripeCommerceExecutor {
+     }
+ 
+     try {
+-      const providerSnapshot = await this.provider.retrieveAuthoritativeSubscription({
+-        providerSubscriptionReference: signal.providerSubscriptionReference,
+-        expectedCommerceAccountReference: commerceAccountReference,
+-        expectedStripeCustomerReference: customerReference,
++      const result = await withCommerceAccountDatabase(this.pool, commerceAccountReference, async (client, context) => {
++        // One database transaction owns observation through commit across processes.
++        // Do not queue pooled connections behind a slow provider; durable inbox and
++        // provider retries obtain a fresh snapshot after the current owner finishes.
++        await acquireStripeObservation(client, this.providerEnvironment, signal.providerSubscriptionReference!);
++        // Initial financial lookup supplies routing only. Re-read it under the same
++        // ownership as the subscription so a delayed dispute/refund cannot regress it.
++        if (financialResolution) {
++          const current = await this.provider.resolveFinancialSignal!(signal);
++          if (current.providerSubscriptionReference !== signal.providerSubscriptionReference
++            || current.providerCustomerReference !== customerReference) throw new Error('Financial observation binding changed');
++          financialResolution = current;
++        }
++        const providerSnapshot = await this.provider.retrieveAuthoritativeSubscription({
++          providerSubscriptionReference: signal.providerSubscriptionReference!,
++          expectedCommerceAccountReference: commerceAccountReference,
++          expectedStripeCustomerReference: customerReference,
++        });
++        if (financialResolution?.authoritativeStateOverride && !providerSnapshot.providerInvoiceReference) {
++          throw new Error('Financial invoice binding missing');
++        }
++        const appliesToCurrentPeriod = financialResolution?.providerInvoiceReference === providerSnapshot.providerInvoiceReference;
++        const snapshot = financialResolution?.authoritativeStateOverride && appliesToCurrentPeriod
++          ? Object.freeze({ ...providerSnapshot, state: financialResolution.authoritativeStateOverride, cancelAtPeriodEnd: false })
++          : providerSnapshot;
++        return applyAuthoritativeSnapshot(client, context, inbox.publicId, signal, snapshot, this.config, financialResolution);
+       });
+-      if (financialResolution?.authoritativeStateOverride && !providerSnapshot.providerInvoiceReference) {
+-        await updateInboxStatus(this.pool, inbox.publicId, "needs_mapping", "financial_invoice_binding_missing");
+-        return Object.freeze({ received: true, status: "needs_mapping", testOnly: this.providerEnvironment === "test" });
+-      }
+-      const appliesToCurrentPeriod = financialResolution?.providerInvoiceReference === providerSnapshot.providerInvoiceReference;
+-      const snapshot = financialResolution?.authoritativeStateOverride && appliesToCurrentPeriod
+-        ? Object.freeze({
+-            ...providerSnapshot,
+-            state: financialResolution.authoritativeStateOverride,
+-            cancelAtPeriodEnd: false,
+-          })
+-        : providerSnapshot;
+-      const result = await withCommerceAccountDatabase(
+-        this.pool,
+-        commerceAccountReference,
+-        (client, context) => applyAuthoritativeSnapshot(
+-          client,
+-          context,
+-          inbox.publicId,
+-          signal,
+-          snapshot,
+-          this.config,
+-          financialResolution,
+-        ),
+-      );
+       if (!result) throw new Error("Verified Stripe commerce account was not found");
+       return Object.freeze({ received: true, status: result, testOnly: this.providerEnvironment === "test" });
+     } catch (error) {
+@@ -638,6 +635,7 @@ async function reserveCheckout(
+     if (subscriptions.rows.length > 20) throw new ApiError(409, "billing_review_required", "Your billing history needs review before another subscription can start.");
+     for (const sub of subscriptions.rows) {
+       if (sub.renewal_provider !== "stripe" || sub.provider_environment !== environment || !sub.provider_customer_reference) throw new ApiError(409, "existing_subscription", "Manage your existing subscription before starting another.");
++      await acquireStripeObservation(client, environment, sub.provider_subscription_reference);
+       const current = await provider.retrieveAuthoritativeSubscription({ providerSubscriptionReference: sub.provider_subscription_reference,
+         expectedCommerceAccountReference: accountRow.public_id, expectedStripeCustomerReference: sub.provider_customer_reference });
+       if (current.state !== "expired_read_only" || current.renewalIsPossible !== false) throw new ApiError(409, "existing_subscription", "Manage your existing subscription before starting another.");
+@@ -841,6 +839,15 @@ async function resolveCustomerReference(
+   return result ?? null;
+ }
+ 
++async function acquireStripeObservation(client: PoolClient, environment: string, subscription: string): Promise<void> {
++  const locked = await client.query<{ acquired: boolean }>(
++    "select pg_try_advisory_xact_lock(hashtextextended($1,0)) as acquired",
++    [`stripe-observation:${environment}:${subscription}`],
++  );
++  if (!locked.rows[0]?.acquired) throw new ApiError(503, 'subscription_observation_busy', 'Subscription reconciliation will retry.');
++  await client.query("set local idle_in_transaction_session_timeout = '120s'");
++}
++
+ async function applyAuthoritativeSnapshot(
+   client: PoolClient,
+   context: { commerceAccountId: string; plannerId: string; publicId: string },
+diff --git a/apps/web/src/api.js b/apps/web/src/api.js
+index ea7942128..45e29b0db 100644
+--- a/apps/web/src/api.js
++++ b/apps/web/src/api.js
+@@ -24,12 +24,48 @@ export function createApiClient({
+     ? normalizedBase.slice(0, -3)
+     : normalizedBase;
+ 
++  let expectedPlanner = devPlannerId;
++  let accountChanged = false;
++  function rejectAccountChange() {
++    accountChanged = true;
++    if (typeof window !== 'undefined') window.dispatchEvent(new Event('rillora:account-changed'));
++    return new ApiClientError(409, 'account_changed', 'The signed-in account changed. Reload before continuing.');
++  }
++  function bindWorkspace(session) {
++    const planner = session?.plannerPublicId;
++    if (!planner) throw new ApiClientError(502, 'invalid_session', 'The account could not be verified.');
++    if (expectedPlanner && expectedPlanner.toLowerCase() !== planner.toLowerCase()) throw rejectAccountChange();
++    expectedPlanner = planner;
++    return session;
++  }
++  async function getSession() { return bindWorkspace(await request('/session')); }
++  async function getOverview() {
++    const snapshot = await request('/overview');
++    bindWorkspace(snapshot.session);
++    const matters = new Map(snapshot.matters.map(matter => [matter.publicId, matter]));
++    const cursors = new Set();
++    let cursor = snapshot.nextCursor;
++    while (cursor) {
++      if (cursors.has(cursor)) throw new ApiClientError(502, 'invalid_pagination', 'The map could not be loaded completely.');
++      cursors.add(cursor);
++      const page = await getMatters({ cursor });
++      for (const matter of page.matters) matters.set(matter.publicId, matter);
++      cursor = page.nextCursor;
++    }
++    return { ...snapshot, matters: [...matters.values()], nextCursor: null };
++  }
++  function getMatters({ cursor = null } = {}) {
++    return request(`/matters?limit=50${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ''}`);
++  }
++
+   async function request(path, options = {}, context = {}) {
++    if (accountChanged && !context.publicAuth && !context.publicRehearsal) throw rejectAccountChange();
+     const responseKind = options.responseKind ?? "json";
+     const { responseKind: _responseKind, ...fetchOptions } = options;
+     const method = (options.method ?? "GET").toUpperCase();
+     const headers = new Headers(options.headers);
+     if (!context.publicRehearsal) headers.set("x-rillora-client", "web");
++    if (expectedPlanner && !context.publicRehearsal && !context.publicAuth) headers.set('x-rillora-planner', expectedPlanner);
+     if (context.rehearsalSessionToken) {
+       headers.set("authorization", `Rillora-Rehearsal ${context.rehearsalSessionToken}`);
+     } else if (devPlannerId) {
+@@ -56,12 +92,15 @@ export function createApiClient({
+         : JSON.stringify(options.body),
+     });
+     const requestId = response.headers.get("x-request-id");
++    if (accountChanged && !context.publicAuth && !context.publicRehearsal) throw rejectAccountChange();
+     if (response.status === 204) return null;
+     const contentType = response.headers.get("content-type") ?? "";
+     const payload = (
+       contentType.includes("application/json") || contentType.includes("+json")
+     ) ? await response.json() : null;
++    if (accountChanged && !context.publicAuth && !context.publicRehearsal) throw rejectAccountChange();
+     if (!response.ok) {
++      if (payload?.error?.code === 'account_changed') throw rejectAccountChange();
+       if (response.status === 403 && payload?.error?.code === 'reauthentication_required' && typeof window !== 'undefined') {
+         window.dispatchEvent(new Event('rillora:reauthentication-required'));
+       }
+@@ -103,6 +142,7 @@ export function createApiClient({
+   }
+ 
+   return {
++    getMatter: id => request(`/matters/${encodeURIComponent(id)}`),
+     getCreatedMatter: (requestId) => request(`/matters/creation/${encodeURIComponent(requestId)}`),
+     archiveMatter: (id, expectedVersion) => request(`/matters/${encodeURIComponent(id)}`, {method:"DELETE",headers:{"if-match":String(expectedVersion)}}),
+     getFamilyMaintenance: () => request("/maintenance/overview").then(validateFamilyMaintenance),
+@@ -135,23 +175,23 @@ export function createApiClient({
+     acceptSharingInvitation: (input) => request("/sharing/invitations/accept", { method: "POST", body: input }),
+     getSharedWithMe: () => request("/sharing/shared-with-me").then(validateSharedResponse),
+     checkEmailVerification: () => request("/sharing/email-verification", { method: "POST", body: {} }),
+-    getSessionStatus: () => devPlannerId
+-      ? request("/session").then((session) => ({
+-        authenticated: session?.authenticationMode === "development"
+-          && session?.plannerPublicId?.toLowerCase() === devPlannerId.toLowerCase(),
+-      }))
+-      : request("/auth/session-status", {}, { publicAuth: true }),
++    getSessionStatus: async () => {
++      const status = devPlannerId ? { authenticated: true }
++        : await request('/auth/session-status', {}, { publicAuth: true });
++      if (status.authenticated) await getSession();
++      return status;
++    },
+     startReauthentication: () => request('/auth/reauthenticate', { method: 'POST', body: {} }, { publicAuth: true }),
+     getReauthenticationStatus: pollToken => request('/auth/reauthentication-status', { method: 'POST', body: { pollToken } }, { publicAuth: true }),
+     startAuthentication: (input) => request("/auth/start", {
+       method: "POST",
+       body: input,
+     }, { publicAuth: true }),
+-    getOverview: () => request("/overview"),
+-    getSession: () => request("/session"),
++    getOverview,
++    getSession,
+     getLegalAcceptance: () => request("/legal/acceptance"),
+     getPlan: () => request("/plan"),
+-    getMatters: () => request("/matters?limit=50"),
++    getMatters,
+     getTrustedContacts: () => request("/trusted-contacts"),
+     createTrustedContact: (input) => request("/trusted-contacts", { method: "POST", body: input }),
+     updateTrustedContact: (publicId, input) => request(`/trusted-contacts/${encodeURIComponent(publicId)}`, { method: "PATCH", body: input }),

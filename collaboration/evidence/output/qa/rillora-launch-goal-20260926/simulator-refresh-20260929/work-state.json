@@ -1,0 +1,90 @@
+{
+  "stage": "Completed: ordinary native homepage installed, opened and interactive; source pushed with CI27 success",
+  "at": "2026-09-28T17:38:15.543477+00:00",
+  "ownerDirection": "希望原生 App 首页也采用新版官网的视觉",
+  "readingManifest": "../full-read.json",
+  "reading": "Reused 147-file/25917-line full-read manifest. Focused recovery covered root AGENTS, product/handoff/latest decisions, native AppShell/App/Overview/SignedOut/Theme/Brand/project and UI tests, website Landing/Sharing/model/appearance contracts, platform/interaction/license contracts and relevant skills; newly authored native contract recorded before implementation.",
+  "preRefresh": "before.json",
+  "build": "XcodeBuildMCP Debug Rillora; Simulator EA356940-5220-4AA8-89CF-499C6D5D14E4; signed ad hoc with project entitlements",
+  "firstAttemptIssue": "Unsigned CODE_SIGNING_ALLOWED=NO prevented Keychain access. Corrected build signing; no Keychain reset, app uninstall, account clearing or fail-open code. Ordinary launch now reaches public Home.",
+  "visualFindings": [
+    "Light status text initially inherited hidden dark navigation scheme; corrected per-home scheme",
+    "Parent demo AX identifier propagated to children; contained group now preserves per-control IDs",
+    "AX5 decorative avatar initial and selected check were oversized; fixed only decoration size, preserved Dynamic Type labels; final screenshot inspected"
+  ],
+  "checks": {
+    "lightAndDarkRendered": true,
+    "themeAndInvitationReturnUI": {
+      "passed": 1,
+      "bundle": "HomeUITests.xcresult"
+    },
+    "explorationInitialFailures": "Shared scroll helper assumed navigation bar existed. Homepage intentionally uses its own header; helper now checks existence. Rerun in progress.",
+    "uniqueUITestsPassed": 4,
+    "largeTextFinalRetest": {
+      "passed": 1,
+      "bundle": "HomeLargeTextFinal.xcresult"
+    },
+    "explorationRerun": {
+      "passed": 3,
+      "bundle": "HomeExplorationTests.xcresult"
+    },
+    "installedArtifact": {
+      "at": "2026-09-28T17:26:03.863770+00:00",
+      "simulator": "Rillora-Matrix-17-Pro",
+      "bundle": "com.rillora.ios",
+      "version": "1.0",
+      "build": "1",
+      "installedExecutableSha256": "5207af13e5124a641fd41534289e9916f470475cfcc0df35f7ee2f43dc06db55",
+      "matchesBuiltExecutable": true,
+      "installedAssetsSha256": "8ea5262f4dffee3d94c56d0a0c3b04ffd0be627dbb4b32379e048ef8e9750a4d",
+      "matchesBuiltAssets": true,
+      "forcedAppearance": null,
+      "api": "https://l1g8350qw0.execute-api.eu-central-1.amazonaws.com/v1"
+    },
+    "ordinaryRunAfterUIAutomation": "Simulator frontend tree temporarily absent; frontend and app reopened without resetting data. Fresh AX controls and actual Dark→System selection verified."
+  },
+  "boundaries": [
+    "No App Store upload, production account or payment",
+    "No user data erased; only existing app installed in place",
+    "WWW unchanged this follow-up",
+    "No paid entitlement change",
+    "Public demo is local sample content, not shared private data"
+  ],
+  "sourceCI": {
+    "commit": "f21666a3ae6d5f3bbb6ea7a70c8b10037012e9d4",
+    "run": 27,
+    "status": "success",
+    "url": "https://github.com/tantalum666/rillora/actions/runs/36458434095"
+  },
+  "pending": [],
+  "finalState": {
+    "app": "Rillora",
+    "page": "Signed-out Overview / native Home",
+    "appearance": "System",
+    "debugFixtureEnvironment": false,
+    "dataReset": false
+  },
+  "sourceScan": {
+    "reviewedNonSecrets": 25,
+    "unreviewed": 0,
+    "lineAdjustments": "Two public OAuth client IDs have identical content/hash, positions107→106 and122→121"
+  },
+  "documentation": {
+    "files": 158,
+    "localLinks": 1552,
+    "missing": 0,
+    "updated": [
+      "native-home-20260929.md",
+      "product.md",
+      "platform-contract.md",
+      "asset-licenses.md",
+      "decision-log.md",
+      "handoff.md",
+      "journey/PROJECT_JOURNEY.md"
+    ],
+    "handoffHistory": "handoff-history-20260929-before-native-home.md"
+  },
+  "documentationCommit": "446b27972",
+  "documentationPushed": true,
+  "workingTreeClean": true
+}

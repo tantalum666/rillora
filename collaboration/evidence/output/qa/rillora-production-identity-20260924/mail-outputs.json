@@ -1,0 +1,15 @@
+{
+  "RilloraMail": {
+    "Dkim1Name": "uindmbdho6fsywhs2zc2qqpsxqlivufr._domainkey.notify.rillora.xyz",
+    "ConfigurationSet": "rillora-transactional",
+    "Dkim2Value": "e72bxaidtogictet4f5ittbyyxfywrfl.dkim.amazonses.com",
+    "MailFromSpf": "v=spf1 include:amazonses.com -all",
+    "MailFromMx": "10 feedback-smtp.eu-central-1.amazonses.com",
+    "ActivationBoundary": "Domain verification is not production access, Auth0 configuration or end-user delivery",
+    "Dkim3Value": "4ki2lv3epotn2fmb7zj5wm6ky35lkwfl.dkim.amazonses.com",
+    "IdentityArn": "arn:aws:ses:eu-central-1:133857166372:identity/notify.rillora.xyz",
+    "Dkim1Value": "uindmbdho6fsywhs2zc2qqpsxqlivufr.dkim.amazonses.com",
+    "Dkim2Name": "e72bxaidtogictet4f5ittbyyxfywrfl._domainkey.notify.rillora.xyz",
+    "Dkim3Name": "4ki2lv3epotn2fmb7zj5wm6ky35lkwfl._domainkey.notify.rillora.xyz"
+  }
+}

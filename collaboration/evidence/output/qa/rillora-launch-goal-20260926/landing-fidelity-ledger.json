@@ -1,0 +1,87 @@
+{
+  "checkedAt": "2026-09-28T06:33:47.504091+00:00",
+  "method": "Chrome/CUA; generated concepts and rendered screenshots inspected using view_image",
+  "concepts": [
+    "hero-concept.png",
+    "sharing-concept.png",
+    "guidance-concept.png"
+  ],
+  "conceptDirectory": "assets/concepts/rillora-landing-20260928",
+  "nativeViewports": [
+    [
+      1544,
+      1018
+    ],
+    [
+      1469,
+      1071
+    ],
+    [
+      1347,
+      1168
+    ]
+  ],
+  "mobileViewport": [
+    390,
+    844
+  ],
+  "comparisons": [
+    {
+      "point": "Copy and hierarchy",
+      "result": "Headline, supporting text, actions and three stages preserved; Preview added at Owner request"
+    },
+    {
+      "point": "Layout",
+      "result": "Header links recentered; generous open hero and ruled guides; sharing sheet kept as sole large panel"
+    },
+    {
+      "point": "Typography",
+      "result": "Approved Source Serif4/Inter retained; display weight refined to400 for visual reference; code-native text throughout"
+    },
+    {
+      "point": "Palette and image treatment",
+      "result": "Paper/forest/bronze retained; standalone ImageGen photography without tint; mobile edge mask and flow layout prevent text overlap"
+    },
+    {
+      "point": "Brand geometry",
+      "result": "Full approved10-path master replaces microfavicon; actual SVG/PNG deployed and checked; exact SVG overlays replace generated logo approximation"
+    },
+    {
+      "point": "Motion and interaction",
+      "result": "Recipient switches,3stages,clickable example details,keyboard FAQ and reduced-motion mode work; no fake real invitation"
+    },
+    {
+      "point": "Responsive",
+      "result": "390px scrollWidth390; mobile ordering regression found and repaired; image now flows after copy instead of using fragile top offsets"
+    }
+  ],
+  "intentionalDeviations": [
+    "Single header rather than repeated section-reference headers",
+    "Unshared titles omitted from recipient projection",
+    "Initial avatars replace invented portrait",
+    "Existing licensed provider-mark policy retained",
+    "Generated extra cover/handwritten slogans omitted",
+    "Preview badge and sample-data notice explicitly chosen by Owner",
+    "Closing uses approved static brand mark instead of invented topographic lines"
+  ],
+  "firstViewportCopyDiff": "pass: expected copy plus explicitly approved Preview label",
+  "liveChecks": [
+    "WWW HTML and SVG/PNG matched build",
+    "CSP retained; live account/API/metadata routes stay404",
+    "Actual Preview click reached staging/account with2sign-in/create-account controls",
+    "Received invitation route loaded required-link form and Back control",
+    "Coinbase guide and its official request link loaded",
+    "Live Alex selection removes Insurance",
+    "Keyboard FAQ expansion works",
+    "No first-party console errors; MetaMask extension warnings separately identified"
+  ],
+  "applicationTests": 98,
+  "legalTests": 7,
+  "savedScreenshots": [
+    "landing-live-desktop.png",
+    "landing-mobile.png",
+    "landing-sharing.png",
+    "landing-guidance.png"
+  ],
+  "remaining": "Final example-detail CDN update and source/CI closeout; no known unresolved local interaction or visual defects"
+}

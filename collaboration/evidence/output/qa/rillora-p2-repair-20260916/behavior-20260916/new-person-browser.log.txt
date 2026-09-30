@@ -1,0 +1,9 @@
+### Result
+{"newPersonToLink":true,"qrVisible":true,"closeSkipsCompletedPersonStep":true,"returnedToMatter":true}
+### Ran Playwright code
+```js
+await (async (page) => { await page.getByRole("textbox",{name:"Recipient\u0027s sign-in email · Required",exact:true}).fill("web.recipient@example.test"); await page.getByRole("checkbox",{name:"Foreground QA wallet",exact:true}).check(); await page.getByRole("button",{name:"Create link & QR",exact:true}).click(); await page.getByRole("heading",{name:"Ready to share",exact:true}).waitFor(); await page.getByRole("img",{name:"Scan to open this invitation",exact:true}).waitFor(); await page.getByRole("button",{name:"Close panel",exact:true}).click(); await page.getByRole("dialog").waitFor({state:"hidden"}); await page.getByRole("button",{name:"Back to Foreground QA wallet",exact:true}).click(); await page.getByRole("heading",{name:"Edit matter",exact:true}).waitFor(); return {newPersonToLink:true,qrVisible:true,closeSkipsCompletedPersonStep:true,returnedToMatter:true}; })(page);
+```
+### Page
+- Page URL: http://127.0.0.1:4261/?view=matters&q=Foreground&task=matter&matter=71209a1a-0fbb-4ff0-85b0-767822892f5f
+- Page Title: Rillora — Your private map for what comes next

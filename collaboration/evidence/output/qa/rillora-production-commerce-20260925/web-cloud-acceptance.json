@@ -1,0 +1,60 @@
+{
+  "checkedAt": "2026-09-25T16:45:28.235Z",
+  "origin": "https://app.rillora.xyz",
+  "passed": true,
+  "checks": [
+    {
+      "path": "/",
+      "status": 200,
+      "expected": 200,
+      "noStore": false,
+      "noSessionCookie": true,
+      "matchesArtifact": true
+    },
+    {
+      "path": "/account/billing",
+      "status": 200,
+      "expected": 200,
+      "noStore": false,
+      "noSessionCookie": true,
+      "matchesArtifact": true
+    },
+    {
+      "path": "/account/billing/complete?session_id=untrusted-fixture",
+      "status": 200,
+      "expected": 200,
+      "noStore": false,
+      "noSessionCookie": true,
+      "matchesArtifact": true
+    },
+    {
+      "path": "/api/health/ready",
+      "status": 200,
+      "expected": 200,
+      "noStore": true,
+      "noSessionCookie": true
+    },
+    {
+      "path": "/api/v1/commerce/stripe/quote",
+      "status": 503,
+      "expected": 503,
+      "noStore": true,
+      "noSessionCookie": true
+    },
+    {
+      "path": "/.env",
+      "status": 404,
+      "expected": 404,
+      "noStore": true,
+      "noSessionCookie": true
+    },
+    {
+      "path": "/account/billing/unsafe",
+      "status": 404,
+      "expected": 404,
+      "noStore": true,
+      "noSessionCookie": true
+    }
+  ],
+  "boundary": "Closed Web delivery only. API runtime and billing credentials were not deployed."
+}

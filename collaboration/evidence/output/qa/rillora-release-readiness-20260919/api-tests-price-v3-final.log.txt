@@ -1,0 +1,54 @@
+
+> continuity-api@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/api.integration.test.ts (50 tests | 1 failed) 1293ms
+     × exposes the provider-neutral catalog as disabled commercial state 20ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/api.integration.test.ts > Continuity API > exposes the provider-neutral catalog as disabled commercial state
+AssertionError: expected [ { …(4) }, { …(4) }, { …(4) }, …(3) ] to deeply equal [ { …(4) }, { …(4) }, { …(4) }, …(1) ]
+
+- Expected
++ Received
+
+@@ -21,6 +21,18 @@
+      "external_parent_product_reference": "prod_V6O8lAFbTCDmKd",
+      "external_product_reference": "price_1UGKXlCxTlowhyiGVLKAkfl1",
+      "provider_account_reference": "acct_1U6B2RCxTlowhyiG",
+      "status": "test_only",
+    },
++   {
++     "external_parent_product_reference": "prod_V6O8lAFbTCDmKd",
++     "external_product_reference": "price_1UHMkTCxTlowhyiGu3do5wps",
++     "provider_account_reference": "acct_1U6B2RCxTlowhyiG",
++     "status": "test_only",
++   },
++   {
++     "external_parent_product_reference": "prod_V6O8lAFbTCDmKd",
++     "external_product_reference": "price_1UHMlhCxTlowhyiGvBEPdb4x",
++     "provider_account_reference": "acct_1U6B2RCxTlowhyiG",
++     "status": "test_only",
++   },
+  ]
+
+ ❯ tests/api.integration.test.ts:740:33
+    738|        order by external_product_reference`,
+    739|     );
+    740|     expect(stripeBindings.rows).toEqual([
+       |                                 ^
+    741|       {
+    742|         external_product_reference: "price_1U6BMnCxTlowhyiGJEC1w596",
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 16 passed (17)
+      Tests  1 failed | 178 passed (179)
+   Start at  19:51:33
+   Duration  12.89s (transform 343ms, setup 472ms, import 2.52s, tests 7.92s, environment 1ms)
+

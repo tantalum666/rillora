@@ -1,0 +1,136 @@
+{
+  "checkedAt": "2026-09-28T08:09:11.575247+00:00",
+  "method": "Chrome CUA local and live page, CDP responsive/media overrides, direct view_image comparison of all three references and implementation captures",
+  "nativeViewports": [
+    [
+      1402,
+      1122
+    ],
+    [
+      1036,
+      1518
+    ]
+  ],
+  "additionalViewports": [
+    [
+      1440,
+      1000
+    ],
+    [
+      1280,
+      1000
+    ],
+    [
+      390,
+      844
+    ],
+    [
+      320,
+      740
+    ]
+  ],
+  "points": [
+    {
+      "area": "Palette and continuity",
+      "reference": "All three V2 section references use the same paper/forest palette",
+      "render": "All six chapters and Support use computed rgb(245,241,232); dark bands removed",
+      "result": "matched"
+    },
+    {
+      "area": "Typography",
+      "reference": "Serif display, plain sans controls",
+      "render": "Source Serif4 weight400, ~66px at1402; 40px narrow; deliberate button text sizes",
+      "result": "matched; p specificity repaired"
+    },
+    {
+      "area": "Meaningful composition",
+      "reference": "Matter form and map rail; folio/person/shared sheet",
+      "render": "Matter rail+read-only sheet followed by folio/person/shared sheet",
+      "result": "intentional: omit repeated folio in organiser; reserve asset for hero/sharing"
+    },
+    {
+      "area": "Real content",
+      "reference": "Four categories, life situations, controls, table and FAQ",
+      "render": "Four working category changes, three distinct situations, four control disclosures, real sample download, explicit comparison and four FAQ",
+      "result": "matched with truthful product-boundary copy"
+    },
+    {
+      "area": "Permissions",
+      "reference": "Different recipient views",
+      "render": "Alex removes Mum Insurance/Home from DOM, permitted Crypto only",
+      "result": "verified; no hidden-title teaser"
+    },
+    {
+      "area": "Brand/art",
+      "reference": "Textured green folio on paper",
+      "render": "Generated blank-cover folio + canonical complete03SVG; original approved brand preserved",
+      "result": "matched; omit extra generated slogans and decorative plants"
+    },
+    {
+      "area": "Responsive",
+      "reference": "Readable controls and proportionate spacing",
+      "render": "390px flowing sheets, wrapped category controls;320px no offscreen links/buttons;1036px sample label now wraps instead of overlapping sheet",
+      "result": "repaired and verified"
+    },
+    {
+      "area": "Motion",
+      "reference": "Flow between chapters and selected controls",
+      "render": "Reveal, folio response, recipient path draw, sheet transition, disclosure,16-second finite opt-in tour",
+      "result": "works and stops; static reduced-motion view verified"
+    },
+    {
+      "area": "Short support content",
+      "reference": "Continuous paper surface through footer",
+      "render": "Support initially exposed the old document background below its footer in a tall viewport",
+      "result": "repaired with full-viewport paper shell: actual1150px shell at1150px viewport, screenshot inspected through view_image; final published HTML exact"
+    }
+  ],
+  "aboveFoldCopy": {
+    "hero": "unchanged from selected V1 hero",
+    "navChange": "Guides to Your control, required by signed-in guide direction",
+    "newMarketingClaims": false
+  },
+  "intentionalDeviations": [
+    "Comparison requires explicit plan-review intent; no purchase CTA",
+    "Read-only examples rather than fake editable fields/save",
+    "Plain map illustration for export/closing rather than unapproved fabricated PDF branding",
+    "Recorded browser animation is a QA MP4, not Sora footage or autoplay network payload",
+    "Vertical density adapts to readable product content; not a pixel-identical flattening of the mock"
+  ],
+  "functional": [
+    "102 Web tests pass",
+    "2 infra tests + typecheck pass",
+    "iOS Debug build/install/launch; signed-out Profile AX confirms no guide link",
+    "live WWW /guides?service=binance -> staging account intent, consent remains unchecked",
+    "Support same visual shell with Back",
+    "guide completion after real authentication not re-performed this iteration; pure safe-return/state hydration tests pass"
+  ],
+  "screenshots": [
+    "organise-native-reference.png",
+    "people-native-reference.png",
+    "plans-native-reference.png",
+    "support-live.png",
+    "hero-live.png",
+    "../landing-v2-mobile-matters.png",
+    "../landing-v2-mobile-plans.png",
+    "support-final.png"
+  ],
+  "video": {
+    "path": "rillora-walkthrough.mp4",
+    "source": "actual synthetic local UI screencast",
+    "frames": 72,
+    "durationSeconds": 17.12
+  },
+  "review": "Reference-based visual verification completed; listed departures are deliberate product/copy decisions, not claims of pixel-perfect cloning. No unresolved clipped controls or unexpected dark sections observed.",
+  "sourceCI": {
+    "checkedAt": "2026-09-28T08:19:12.827524+00:00",
+    "commit": "dbf07700b823469fd9716701e3535f213af3e750",
+    "run": 20,
+    "status": "success",
+    "url": "https://github.com/tantalum666/rillora/actions/runs/36396298290",
+    "method": "Authenticated Chrome Actions UI: completed successfully label adjacent to exact dbf0770 commit link",
+    "duration": "1m 36s",
+    "cli": "Actions API403; no permission expansion requested or applied"
+  },
+  "finalPublicHTML": "c7b7e38b63eef863929092797857aecdb79493b7b13da7ae0e6e098a5b529c80"
+}

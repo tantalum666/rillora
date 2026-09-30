@@ -1,0 +1,262 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "Rillora iOS 外部支付与 Stripe 可行性决策",
+    "description": "按 Apple storefront 规则、产品分类、渠道经济和审核风险决定 Rillora 应在何处使用 Stripe 或 StoreKit。",
+    "generatedAt": "2026-08-19T00:00:00+08:00",
+    "blocks": [
+      {
+        "id": "title",
+        "type": "markdown",
+        "layout": "full",
+        "body": "# Rillora iOS 外部支付与 Stripe 可行性决策\n\n结论不是全球绕开 IAP，而是按 storefront 合规路由：美国 Web 与 iOS 统一用 Stripe 外部 Web 结账；非美市场使用 StoreKit 或不显示购买入口。"
+      },
+      {
+        "id": "executive-summary",
+        "type": "markdown",
+        "layout": "full",
+        "sourceId": "ios-payment-research",
+        "body": "## Executive Summary（执行摘要）\n\nRillora Family 是消费级数字 SaaS，不属于 Reader App、实体服务或企业专用例外。美国 storefront 当前允许无需额外 entitlement 的外部购买 CTA，因此美国首发可在明确购买意图后用系统浏览器打开 Rillora Web + Stripe Checkout。EU 外购仍有 Apple 条款、报告与费用；中国大陆和普通非美 storefront 保留 StoreKit。"
+      },
+      {
+        "id": "classification",
+        "type": "markdown",
+        "layout": "full",
+        "body": "## 不能照搬其他 App 的原因\n\nNetflix/Spotify 是 Reader App；Uber/Airbnb 销售 App 外消费的现实服务；Slack 常由组织购买；1:1 真人服务另有例外。Rillora Family 的核心价值直接在 iOS 内使用，最近的消费级 SaaS 参照仍然是提供 IAP 的 1Password 与 Dropbox。"
+      },
+      {
+        "id": "category-table-block",
+        "type": "table",
+        "layout": "full",
+        "tableId": "category-table"
+      },
+      {
+        "id": "route-matrix",
+        "type": "markdown",
+        "layout": "full",
+        "body": "## 地区购买路由\n\n首发 App Store availability 只开美国。美国用户在明确方案意图后进入外部 Web 结账；非美隐藏 CTA，既有订阅者仍可登录。EU 与大陆不继承美国规则。"
+      },
+      {
+        "id": "route-table-block",
+        "type": "table",
+        "layout": "full",
+        "tableId": "route-table"
+      },
+      {
+        "id": "economics",
+        "type": "markdown",
+        "layout": "full",
+        "body": "## US$99 年付的渠道经济\n\n所选 Stripe + Tax Basic 公开组件约 US$5.35，Apple 15% 为 US$14.85。Stripe 路径每笔表面多保留 US$9.50，但只要外部 Web 转化低于假设 IAP 转化的约 89.9%，列明费用优势就会消失。税务、拒付、退款和支持尚未包含。"
+      },
+      {
+        "id": "net-chart-block",
+        "type": "chart",
+        "layout": "full",
+        "chartId": "net-chart"
+      },
+      {
+        "id": "economics-table-block",
+        "type": "table",
+        "layout": "full",
+        "tableId": "economics-table"
+      },
+      {
+        "id": "recommended-steps",
+        "type": "markdown",
+        "layout": "full",
+        "body": "## 推荐步骤\n\n1. 先实现 provider-neutral catalog、storefront policy、subscription、entitlement 与 finance ledger。\n2. 把美国 `stripe_web_external`、非美 `storekit_or_none`、大陆 `apple_storekit` 写成 disabled versioned policy。\n3. 完成香港经营／税务／KYC与美国法律页后才创建 Stripe test 商品。\n4. 准备 App Review 说明包、非美入口隐藏和跨端恢复证据。\n5. 审核通过后做受控真实交易；若拒审或转化低于门槛，启用 StoreKit fallback。"
+      },
+      {
+        "id": "questions",
+        "type": "markdown",
+        "layout": "full",
+        "body": "## Further Questions（待验证问题）\n\nApple 是否接受 Rillora 的实际呈现？Stripe 是否接受真实香港运营者与产品？外部浏览器结账能否保持 89.9%以上的相对转化？美国各州自动续费、取消与税务审阅结果如何？政策变化时如何无重复收费地迁回 StoreKit？"
+      },
+      {
+        "id": "caveats",
+        "type": "markdown",
+        "layout": "full",
+        "body": "## Caveats And Assumptions（边界与假设）\n\n这是 2026-08-19 的规则与公开费率快照，不是 Apple 预先批准、Stripe KYC 通过、法律税务意见、报价或付款授权。所有转化率均为 break-even 演算，不是 Rillora 市场数据。没有创建商品、开放 storefront、提交审核或收款。"
+      }
+    ],
+    "charts": [
+      {
+        "id": "net-chart",
+        "title": "US$99 年付扣除列明渠道组件后的余额",
+        "subtitle": "Stripe 路径未包含税务申报、拒付、退款、客服和 App Review 风险。",
+        "type": "bar",
+        "dataset": "channel_economics",
+        "source": {
+          "id": "economics-query",
+          "label": "Apple 与 Stripe 公开费率演算",
+          "path": "docs/ios-external-payment-research.md",
+          "query": {
+            "engine": "SQLite",
+            "language": "sql",
+            "executed_at": "2026-08-19T00:00:00+08:00",
+            "description": "将列明渠道组件应用于 US$99 年付价格。",
+            "sql": "WITH channel_economics(route,listed_cost,after_cost,excluded) AS (VALUES ('Apple 15%',14.85,84.15,'税款、退款、经营所得税'),('Apple 30%',29.70,69.30,'税款、退款、经营所得税'),('Stripe HK + Billing',4.85,94.15,'Tax、申报、退款、拒付、支持'),('Stripe + Tax Basic',5.35,93.65,'注册申报、退款、拒付、支持')) SELECT route,listed_cost,after_cost,excluded FROM channel_economics ORDER BY after_cost DESC;",
+            "filters": ["US$99 年付", "只比较列明渠道组件"],
+            "metric_definitions": ["after_cost = 99 - listed_cost；不是最终净收入。"]
+          }
+        },
+        "intent": "comparison",
+        "question": "不同购买路线在列明渠道组件后保留多少？",
+        "rationale": "将费率差异转为同一标价下的可比金额，并暴露未包含责任。",
+        "encodings": {
+          "x": { "field": "route", "type": "nominal", "label": "购买路线" },
+          "y": { "field": "after_cost", "type": "quantitative", "label": "费用后余额（USD）", "format": "currency" },
+          "tooltip": [
+            { "field": "route", "type": "text", "label": "路线" },
+            { "field": "listed_cost", "type": "quantitative", "label": "列明成本", "format": "currency" },
+            { "field": "after_cost", "type": "quantitative", "label": "费用后余额", "format": "currency" },
+            { "field": "excluded", "type": "text", "label": "未包含" }
+          ]
+        },
+        "valueFormat": "currency",
+        "layout": "full",
+        "maxRows": 10,
+        "compatibleTypes": ["bar"]
+      }
+    ],
+    "tables": [
+      {
+        "id": "category-table",
+        "title": "常见非 IAP 案例与 Rillora 的分类差异",
+        "subtitle": "其他 App 有付款不代表 Family 数字订阅自动获得同一例外。",
+        "dataset": "category_comparison",
+        "source": {
+          "id": "category-query",
+          "label": "Apple 3.1 类别与官方产品资料",
+          "path": "docs/ios-external-payment-research.md",
+          "query": {
+            "engine": "SQLite",
+            "language": "sql",
+            "executed_at": "2026-08-19T00:00:00+08:00",
+            "description": "按 Apple 规则将典型购买类型与 Rillora 分类比较。",
+            "sql": "WITH category_comparison(ord,category,examples,reason,same_as_rillora) AS (VALUES (1,'Reader App','Netflix / Spotify','访问已购媒体内容','否'),(2,'现实商品／服务','Uber / Airbnb','消费发生在 App 外','否'),(3,'企业服务','Slack 组织购买','组织为员工采购','否'),(4,'消费级数字 SaaS','1Password / Dropbox','数字权益在 App 内使用','是，最近参照')) SELECT ord,category,examples,reason,same_as_rillora FROM category_comparison ORDER BY ord;",
+            "filters": ["官方公开分类", "不代表个别 App 审核合同"],
+            "metric_definitions": ["same_as_rillora 是产品分类判断，不是侵权或法律结论。"]
+          }
+        },
+        "defaultSort": { "field": "ord", "direction": "asc" },
+        "density": "spacious",
+        "layout": "full",
+        "columns": [
+          { "field": "ord", "label": "顺序", "type": "number" },
+          { "field": "category", "label": "类别", "type": "text" },
+          { "field": "examples", "label": "例子", "type": "text" },
+          { "field": "reason", "label": "非 IAP 原因／特征", "type": "text" },
+          { "field": "same_as_rillora", "label": "与 Rillora 相同？", "type": "text" }
+        ]
+      },
+      {
+        "id": "route-table",
+        "title": "Rillora iOS 地区购买路由",
+        "subtitle": "storefront 由 Apple Account 市场决定，不用 IP、GPS 或语言替代。",
+        "dataset": "regional_routes",
+        "source": {
+          "id": "route-query",
+          "label": "Apple 地区规则与 Rillora 发布门",
+          "path": "docs/ios-external-payment-research.md",
+          "query": {
+            "engine": "SQLite",
+            "language": "sql",
+            "executed_at": "2026-08-19T00:00:00+08:00",
+            "description": "把美国、EU、普通非美和大陆规则映射到产品路由。",
+            "sql": "WITH regional_routes(ord,storefront,in_app_route,checkout,decision) AS (VALUES (1,'美国','明确意图后外部 CTA','Rillora Web + Stripe','首发主路径'),(2,'EU／EEA','entitlement 特殊路径','外部支付另有 Apple 费','首发关闭'),(3,'其他非美','StoreKit 或无 CTA','StoreKit／既有订阅访问','逐市场过门'),(4,'中国大陆','StoreKit','Apple IAP','大陆收费主路径')) SELECT ord,storefront,in_app_route,checkout,decision FROM regional_routes ORDER BY ord;",
+            "filters": ["2026-08-19 规则快照"],
+            "metric_definitions": ["decision 是 Rillora 当前产品决定，不是平台批准。"]
+          }
+        },
+        "defaultSort": { "field": "ord", "direction": "asc" },
+        "density": "spacious",
+        "layout": "full",
+        "columns": [
+          { "field": "ord", "label": "顺序", "type": "number" },
+          { "field": "storefront", "label": "Storefront", "type": "text" },
+          { "field": "in_app_route", "label": "App 内呈现", "type": "text" },
+          { "field": "checkout", "label": "结账", "type": "text" },
+          { "field": "decision", "label": "当前决定", "type": "text" }
+        ]
+      },
+      {
+        "id": "economics-table",
+        "title": "US$99 年付列明渠道组件",
+        "subtitle": "费用后余额不是会计净收入。",
+        "dataset": "channel_economics",
+        "source": {
+          "id": "economics-table-query",
+          "label": "Apple 与 Stripe 公开费率演算",
+          "path": "docs/ios-external-payment-research.md",
+          "query": {
+            "engine": "SQLite",
+            "language": "sql",
+            "executed_at": "2026-08-19T00:00:00+08:00",
+            "description": "同图表数据，保留未包含成本。",
+            "sql": "WITH channel_economics(route,listed_cost,after_cost,excluded) AS (VALUES ('Apple 15%',14.85,84.15,'税款、退款、经营所得税'),('Apple 30%',29.70,69.30,'税款、退款、经营所得税'),('Stripe HK + Billing',4.85,94.15,'Tax、申报、退款、拒付、支持'),('Stripe + Tax Basic',5.35,93.65,'注册申报、退款、拒付、支持')) SELECT route,listed_cost,after_cost,excluded FROM channel_economics ORDER BY after_cost DESC;",
+            "filters": ["US$99 年付"],
+            "metric_definitions": ["break-even relative conversion = 84.15 / 93.65 = 89.9%。"]
+          }
+        },
+        "defaultSort": { "field": "after_cost", "direction": "desc" },
+        "density": "spacious",
+        "layout": "full",
+        "columns": [
+          { "field": "route", "label": "路线", "type": "text" },
+          { "field": "listed_cost", "label": "列明成本", "type": "currency", "currency": "USD" },
+          { "field": "after_cost", "label": "费用后余额", "type": "currency", "currency": "USD" },
+          { "field": "excluded", "label": "未包含", "type": "text" }
+        ]
+      }
+    ],
+    "sources": [
+      { "id": "ios-payment-research", "label": "Rillora iOS 外部支付与 Stripe 可行性研究", "path": "docs/ios-external-payment-research.md" },
+      { "id": "apple-guidelines", "label": "Apple App Review Guidelines", "href": "https://developer.apple.com/app-store/review/guidelines/" },
+      { "id": "apple-us-update", "label": "Apple 美国审核规则更新", "href": "https://developer.apple.com/news/?id=9txfddzf" },
+      { "id": "apple-eu", "label": "Apple EU external offers", "href": "https://developer.apple.com/support/communication-and-promotion-of-offers-on-the-app-store-in-the-eu/" },
+      { "id": "stripe-hk", "label": "Stripe Hong Kong pricing", "href": "https://stripe.com/en-hk/pricing" },
+      { "id": "stripe-tax", "label": "Stripe Tax pricing", "href": "https://stripe.com/tax/pricing" }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "generatedAt": "2026-08-19T00:00:00+08:00",
+    "status": "ready",
+    "datasets": {
+      "category_comparison": [
+        { "ord": 1, "category": "Reader App", "examples": "Netflix / Spotify", "reason": "访问已购媒体内容", "same_as_rillora": "否" },
+        { "ord": 2, "category": "现实商品／服务", "examples": "Uber / Airbnb", "reason": "消费发生在 App 外", "same_as_rillora": "否" },
+        { "ord": 3, "category": "企业服务", "examples": "Slack 组织购买", "reason": "组织为员工采购", "same_as_rillora": "否" },
+        { "ord": 4, "category": "消费级数字 SaaS", "examples": "1Password / Dropbox", "reason": "数字权益在 App 内使用", "same_as_rillora": "是，最近参照" }
+      ],
+      "regional_routes": [
+        { "ord": 1, "storefront": "美国", "in_app_route": "明确意图后外部 CTA", "checkout": "Rillora Web + Stripe", "decision": "首发主路径" },
+        { "ord": 2, "storefront": "EU／EEA", "in_app_route": "entitlement 特殊路径", "checkout": "外部支付另有 Apple 费", "decision": "首发关闭" },
+        { "ord": 3, "storefront": "其他非美", "in_app_route": "StoreKit 或无 CTA", "checkout": "StoreKit／既有订阅访问", "decision": "逐市场过门" },
+        { "ord": 4, "storefront": "中国大陆", "in_app_route": "StoreKit", "checkout": "Apple IAP", "decision": "大陆收费主路径" }
+      ],
+      "channel_economics": [
+        { "route": "Apple 15%", "listed_cost": 14.85, "after_cost": 84.15, "excluded": "税款、退款、经营所得税" },
+        { "route": "Apple 30%", "listed_cost": 29.70, "after_cost": 69.30, "excluded": "税款、退款、经营所得税" },
+        { "route": "Stripe HK + Billing", "listed_cost": 4.85, "after_cost": 94.15, "excluded": "Tax、申报、退款、拒付、支持" },
+        { "route": "Stripe + Tax Basic", "listed_cost": 5.35, "after_cost": 93.65, "excluded": "注册申报、退款、拒付、支持" }
+      ]
+    }
+  },
+  "sources": [
+    { "id": "ios-payment-research", "label": "Rillora iOS 外部支付与 Stripe 可行性研究", "path": "docs/ios-external-payment-research.md" },
+    { "id": "apple-guidelines", "label": "Apple App Review Guidelines", "href": "https://developer.apple.com/app-store/review/guidelines/" },
+    { "id": "apple-us-update", "label": "Apple 美国审核规则更新", "href": "https://developer.apple.com/news/?id=9txfddzf" },
+    { "id": "apple-eu", "label": "Apple EU external offers", "href": "https://developer.apple.com/support/communication-and-promotion-of-offers-on-the-app-store-in-the-eu/" },
+    { "id": "stripe-hk", "label": "Stripe Hong Kong pricing", "href": "https://stripe.com/en-hk/pricing" },
+    { "id": "stripe-tax", "label": "Stripe Tax pricing", "href": "https://stripe.com/tax/pricing" }
+  ],
+  "package_info": {
+    "reportId": "rillora-ios-external-payment-20260819",
+    "language": "zh-CN",
+    "evidenceBoundary": "基于 2026-08-19 官方公开资料与费用演算；不是法律税务意见、Apple批准、Stripe KYC、报价、发布或付款激活证明。"
+  }
+}

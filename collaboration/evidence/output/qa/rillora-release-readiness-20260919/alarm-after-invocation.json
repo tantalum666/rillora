@@ -1,0 +1,134 @@
+{
+  "MetricAlarms": [
+    {
+      "AlarmName": "RilloraOperations-DeadLettersBBF8BAAB-VAFBbsMzk5nf",
+      "AlarmArn": "arn:aws:cloudwatch:eu-central-1:133857166372:alarm:RilloraOperations-DeadLettersBBF8BAAB-VAFBbsMzk5nf",
+      "AlarmConfigurationUpdatedTimestamp": "2026-09-17T00:41:10.634000+08:00",
+      "ActionsEnabled": true,
+      "OKActions": [
+        "arn:aws:sns:eu-central-1:133857166372:RilloraOperations-Alerts91F83244-3hyvJ2Vrg4zo"
+      ],
+      "AlarmActions": [
+        "arn:aws:sns:eu-central-1:133857166372:RilloraOperations-Alerts91F83244-3hyvJ2Vrg4zo"
+      ],
+      "InsufficientDataActions": [],
+      "StateValue": "OK",
+      "StateReason": "Threshold Crossed: no datapoints were received for 1 period and 1 missing datapoint was treated as [NonBreaching].",
+      "StateReasonData": "{\"version\":\"1.0\",\"queryDate\":\"2026-09-16T16:42:32.344+0000\",\"statistic\":\"Maximum\",\"period\":900,\"recentDatapoints\":[],\"threshold\":1.0,\"evaluatedDatapoints\":[{\"timestamp\":\"2026-09-16T16:26:00.000+0000\"}]}",
+      "StateUpdatedTimestamp": "2026-09-17T00:42:32.345000+08:00",
+      "MetricName": "ApproximateNumberOfMessagesVisible",
+      "Namespace": "AWS/SQS",
+      "Statistic": "Maximum",
+      "Dimensions": [
+        {
+          "Name": "QueueName",
+          "Value": "RilloraOperations-FailedDeliveriesE3540845-593faUJ9Mplv"
+        }
+      ],
+      "Period": 900,
+      "EvaluationPeriods": 1,
+      "Threshold": 1.0,
+      "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+      "TreatMissingData": "notBreaching",
+      "StateTransitionedTimestamp": "2026-09-17T00:42:32.345000+08:00"
+    },
+    {
+      "AlarmName": "RilloraOperations-InvocationErrors5F3DC47A-NOJQQXBwrDnb",
+      "AlarmArn": "arn:aws:cloudwatch:eu-central-1:133857166372:alarm:RilloraOperations-InvocationErrors5F3DC47A-NOJQQXBwrDnb",
+      "AlarmConfigurationUpdatedTimestamp": "2026-09-17T00:42:15.347000+08:00",
+      "ActionsEnabled": true,
+      "OKActions": [
+        "arn:aws:sns:eu-central-1:133857166372:RilloraOperations-Alerts91F83244-3hyvJ2Vrg4zo"
+      ],
+      "AlarmActions": [
+        "arn:aws:sns:eu-central-1:133857166372:RilloraOperations-Alerts91F83244-3hyvJ2Vrg4zo"
+      ],
+      "InsufficientDataActions": [],
+      "StateValue": "OK",
+      "StateReason": "Threshold Crossed: no datapoints were received for 1 period and 1 missing datapoint was treated as [NonBreaching].",
+      "StateReasonData": "{\"version\":\"1.0\",\"queryDate\":\"2026-09-16T16:43:01.695+0000\",\"statistic\":\"Sum\",\"period\":900,\"recentDatapoints\":[],\"threshold\":1.0,\"evaluatedDatapoints\":[{\"timestamp\":\"2026-09-16T16:28:00.000+0000\"}]}",
+      "StateUpdatedTimestamp": "2026-09-17T00:43:01.696000+08:00",
+      "MetricName": "Errors",
+      "Namespace": "AWS/Lambda",
+      "Statistic": "Sum",
+      "Dimensions": [
+        {
+          "Name": "FunctionName",
+          "Value": "RilloraOperations-HealthCheckA1C381C7-1C2bQQnv9BUn"
+        }
+      ],
+      "Period": 900,
+      "EvaluationPeriods": 1,
+      "Threshold": 1.0,
+      "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+      "TreatMissingData": "notBreaching",
+      "StateTransitionedTimestamp": "2026-09-17T00:43:01.696000+08:00"
+    },
+    {
+      "AlarmName": "RilloraOperations-MissingHeartbeatF959D2A8-0rDLmZO2UqtG",
+      "AlarmArn": "arn:aws:cloudwatch:eu-central-1:133857166372:alarm:RilloraOperations-MissingHeartbeatF959D2A8-0rDLmZO2UqtG",
+      "AlarmConfigurationUpdatedTimestamp": "2026-09-17T00:41:10.499000+08:00",
+      "ActionsEnabled": true,
+      "OKActions": [
+        "arn:aws:sns:eu-central-1:133857166372:RilloraOperations-Alerts91F83244-3hyvJ2Vrg4zo"
+      ],
+      "AlarmActions": [
+        "arn:aws:sns:eu-central-1:133857166372:RilloraOperations-Alerts91F83244-3hyvJ2Vrg4zo"
+      ],
+      "InsufficientDataActions": [],
+      "StateValue": "OK",
+      "StateReason": "Threshold Crossed: 1 datapoint [1.0 (19/09/26 08:46:00)] was not less than the threshold (1.0) and 2 missing datapoints were treated as [Breaching].",
+      "StateReasonData": "{\"version\":\"1.0\",\"queryDate\":\"2026-09-19T09:01:09.434+0000\",\"startDate\":\"2026-09-19T08:46:00.000+0000\",\"statistic\":\"Sum\",\"period\":900,\"recentDatapoints\":[1.0],\"threshold\":1.0,\"evaluatedDatapoints\":[{\"timestamp\":\"2026-09-19T08:46:00.000+0000\",\"sampleCount\":1.0,\"value\":1.0}]}",
+      "StateUpdatedTimestamp": "2026-09-19T17:01:09.437000+08:00",
+      "MetricName": "Heartbeat",
+      "Namespace": "Rillora/Operations",
+      "Statistic": "Sum",
+      "Dimensions": [
+        {
+          "Name": "Environment",
+          "Value": "synthetic-staging"
+        }
+      ],
+      "Period": 900,
+      "EvaluationPeriods": 3,
+      "Threshold": 1.0,
+      "ComparisonOperator": "LessThanThreshold",
+      "TreatMissingData": "breaching",
+      "StateTransitionedTimestamp": "2026-09-19T17:01:09.437000+08:00"
+    },
+    {
+      "AlarmName": "RilloraOperations-Unhealthy9594204A-p3hU67LKgX91",
+      "AlarmArn": "arn:aws:cloudwatch:eu-central-1:133857166372:alarm:RilloraOperations-Unhealthy9594204A-p3hU67LKgX91",
+      "AlarmConfigurationUpdatedTimestamp": "2026-09-17T00:41:10.602000+08:00",
+      "ActionsEnabled": true,
+      "OKActions": [
+        "arn:aws:sns:eu-central-1:133857166372:RilloraOperations-Alerts91F83244-3hyvJ2Vrg4zo"
+      ],
+      "AlarmActions": [
+        "arn:aws:sns:eu-central-1:133857166372:RilloraOperations-Alerts91F83244-3hyvJ2Vrg4zo"
+      ],
+      "InsufficientDataActions": [],
+      "StateValue": "OK",
+      "StateReason": "Threshold Crossed: no datapoints were received for 1 period and 1 missing datapoint was treated as [NonBreaching].",
+      "StateReasonData": "{\"version\":\"1.0\",\"queryDate\":\"2026-09-16T16:42:03.924+0000\",\"statistic\":\"Maximum\",\"period\":900,\"recentDatapoints\":[],\"threshold\":1.0,\"evaluatedDatapoints\":[{\"timestamp\":\"2026-09-16T16:27:00.000+0000\"}]}",
+      "StateUpdatedTimestamp": "2026-09-17T00:42:03.925000+08:00",
+      "MetricName": "FailedChecks",
+      "Namespace": "Rillora/Operations",
+      "Statistic": "Maximum",
+      "Dimensions": [
+        {
+          "Name": "Environment",
+          "Value": "synthetic-staging"
+        }
+      ],
+      "Period": 900,
+      "EvaluationPeriods": 1,
+      "Threshold": 1.0,
+      "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+      "TreatMissingData": "notBreaching",
+      "StateTransitionedTimestamp": "2026-09-17T00:42:03.925000+08:00"
+    }
+  ],
+  "CompositeAlarms": [],
+  "LogAlarms": []
+}

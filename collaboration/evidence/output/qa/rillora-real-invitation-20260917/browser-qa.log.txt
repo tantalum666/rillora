@@ -1,0 +1,88 @@
+### Result
+{"mockedLocalUI":true,"acceptedWithSameSession":true,"invitationContextPreserved":true,"expiredSessionOffersExplicitSignIn":true,"verificationOutageRecoverable":true,"loginStarts":0,"logouts":0,"visibleRevocationWithoutFocusOrReload":true,"revocationMs":15360,"pageErrors":[]}
+### Ran Playwright code
+```js
+await (async (page) => {
+  await page.unrouteAll({behavior:'ignoreErrors'});
+  const origin='http://127.0.0.1:4280';
+  const id='11111111-1111-4111-8111-111111111111';
+  const matter='22222222-2222-4222-8222-222222222222';
+  const errors=[]; page.on('pageerror',error=>errors.push(error.message));
+  const html=(await (await page.request.get(origin+'/')).text()).replace('/src/main.jsx','/__verification_qa.js');
+  let view='invitation', verified=false, revoke=false, unavailable=false, expired=false;
+  let accepts=0, verificationChecks=0, loginStarts=0, logouts=0;
+  await page.route('**/__verification_qa.js*',route=>route.fulfill({contentType:'application/javascript',body:`
+    import React from '/node_modules/.vite/deps/react.js';
+    import ReactDOMClient from '/node_modules/.vite/deps/react-dom_client.js';
+    const {createRoot}=ReactDOMClient;
+    import {InvitationPage} from '/src/InvitationPage.jsx';
+    import {SharedWithMePanel} from '/src/SharingPanels.jsx';
+    import {createApiClient} from '/src/api.js';
+    import '/src/styles.css';
+    createRoot(document.getElementById('root')).render(React.createElement(${view==='invitation'?'InvitationPage':'SharedWithMePanel'}, {apiClient:createApiClient()}));
+  `}));
+  await page.route(origin+'/invite/'+id,route=>route.fulfill({contentType:'text/html',body:html}));
+  await page.route(origin+'/qa-shared',route=>route.fulfill({contentType:'text/html',body:html}));
+  await page.route(origin+'/?view=shared',route=>route.fulfill({contentType:'text/html',body:'<h1>Accepted test invitation</h1>'}));
+  await page.route('**/api/**',async route=>{
+    const path=route.request().url().replace(origin,'').split('?')[0];
+    let body={}; let status=200;
+    if(path.endsWith('/auth/session-status')) body={authenticated:true};
+    else if(path.endsWith('/sharing/invitations/'+id)) body={invitation:{publicId:id,ownerName:'QA sender',emailHint:'r***@example.test',status:'pending'}};
+    else if(path.endsWith('/sharing/invitations/accept')){
+      accepts++;
+      if(expired){status=401;body={error:{code:'authentication_required',message:'Sign in to continue with this invitation.'}};}
+      else if(!verified){status=403;body={error:{code:'verified_email_required',message:'Open the verification email, then return here to continue. Your invitation is saved.'}};}
+      else body={connection:{publicId:id,status:'accepted'},readOnly:true,purpose:'planner_directed'};
+    }else if(path.endsWith('/sharing/email-verification')){
+      verificationChecks++;
+      if(unavailable){status=503;body={error:{code:'email_verification_unavailable',message:'Email verification could not be checked. Keep this invitation open and try again.'}};}
+      else body={verified};
+    }else if(path.endsWith('/sharing/shared-with-me')) body={readOnly:true,purpose:'planner_directed',connections:view==='shared'&&!revoke?[{publicId:id,ownerName:'QA sender',readOnly:true}]:[],items:view==='shared'&&!revoke?[{connectionPublicId:id,matterPublicId:matter,ownerName:'QA sender',detailLevel:'details',fields:{title:'Disposable QA matter',category:'document',notes:'Previously permitted test note'}}]:[]};
+    else if(path.includes('/auth/start')){loginStarts++;throw Error('Unexpected login restart');}
+    else if(path.includes('/logout')){logouts++;throw Error('Unexpected logout');}
+    else throw Error('Unexpected API route: '+path);
+    await route.fulfill({status,json:body});
+  });
+  await page.setViewportSize({width:390,height:844});
+  await page.goto(origin+'/invite/'+id);
+  await page.getByRole('button',{name:'Accept invitation',exact:true}).click();
+  await page.getByRole('button',{name:"I've verified my email",exact:true}).waitFor();
+  if(page.url()!==origin+'/invite/'+id)throw Error('Invitation context lost');
+  await page.screenshot({path:'/Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-real-invitation-20260917/verification-mobile.png'});
+  unavailable=true;
+  await page.evaluate(()=>window.dispatchEvent(new Event('focus')));
+  await page.getByRole('alert').filter({hasText:'could not be checked'}).waitFor();
+  unavailable=false, expired=false;verified=true;
+  await page.evaluate(()=>window.dispatchEvent(new Event('focus')));
+  await page.getByRole('button',{name:'Accept invitation',exact:true}).waitFor();
+  await page.getByRole('button',{name:'Accept invitation',exact:true}).click();
+  await page.getByRole('heading',{name:'Accepted test invitation'}).waitFor();
+  if(accepts!==2||verificationChecks!==2||loginStarts||logouts)throw Error(JSON.stringify({accepts,verificationChecks,loginStarts,logouts}));
+  expired=true;
+  await page.goto(origin+'/invite/'+id);
+  await page.getByRole('button',{name:'Accept invitation',exact:true}).click();
+  await page.getByRole('button',{name:'Already have an account? Sign in',exact:true}).waitFor();
+  if(logouts||loginStarts)throw Error('Expired session attempted implicit logout/login');
+  expired=false;
+  view='shared';
+  await page.goto(origin+'/qa-shared');
+  await page.getByRole('button',{name:'Open Disposable QA matter, shared by QA sender'}).click();
+  await page.getByText('Previously permitted test note',{exact:true}).waitFor();
+  revoke=true; const started=Date.now();
+  await page.getByText('Access changed. This item is no longer shared with you.',{exact:true}).waitFor({timeout:20_000});
+  const revocationMs=Date.now()-started;
+  if(await page.getByText('Previously permitted test note',{exact:true}).count())throw Error('Revoked note remained visible');
+  await page.screenshot({path:'/Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-real-invitation-20260917/revoked-mobile.png'});
+  if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth))throw Error('Mobile overflow');
+  if(errors.length)throw Error(JSON.stringify(errors));
+  return {mockedLocalUI:true,acceptedWithSameSession:true,invitationContextPreserved:true,expiredSessionOffersExplicitSignIn:true,verificationOutageRecoverable:true,loginStarts,logouts,visibleRevocationWithoutFocusOrReload:true,revocationMs,pageErrors:errors};
+}
+)(page);
+```
+### Page
+- Page URL: http://127.0.0.1:4280/qa-shared
+- Page Title: Rillora — Your private map for what comes next
+- Console: 3 errors, 0 warnings
+### Events
+- New console entries: .playwright-cli/console-2026-09-17T03-20-15-962Z.log#L44-L70

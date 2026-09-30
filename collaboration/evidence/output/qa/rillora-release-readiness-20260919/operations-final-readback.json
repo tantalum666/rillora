@@ -1,0 +1,81 @@
+{
+  "observedAt": "2026-09-19T12:03:13.062520+00:00",
+  "scheduleState": "ENABLED",
+  "cadence": "rate(15 minutes)",
+  "scheduledInvocationsAfterEnable": 1,
+  "reports": [
+    {
+      "timestamp": 1789819211657,
+      "heartbeat": 1,
+      "failedChecks": 0,
+      "report": {
+        "schemaVersion": 1,
+        "environment": "synthetic-staging",
+        "checkedAt": "2026-09-19T12:00:09.042Z",
+        "ok": true,
+        "failed": 0,
+        "checks": [
+          {
+            "id": "public-app",
+            "ok": true,
+            "httpStatus": 200,
+            "certificateDaysRemaining": 159,
+            "latencyMs": 740,
+            "issues": []
+          },
+          {
+            "id": "legal-terms",
+            "ok": true,
+            "httpStatus": 200,
+            "certificateDaysRemaining": 73,
+            "latencyMs": 2402,
+            "issues": []
+          },
+          {
+            "id": "legal-private-route-blocked",
+            "ok": true,
+            "httpStatus": 404,
+            "certificateDaysRemaining": 73,
+            "latencyMs": 2440,
+            "issues": []
+          },
+          {
+            "id": "api-live",
+            "ok": true,
+            "httpStatus": 200,
+            "certificateDaysRemaining": 49,
+            "latencyMs": 736,
+            "issues": []
+          },
+          {
+            "id": "api-ready",
+            "ok": true,
+            "httpStatus": 200,
+            "certificateDaysRemaining": 49,
+            "latencyMs": 736,
+            "issues": []
+          },
+          {
+            "id": "private-session-blocked",
+            "ok": true,
+            "httpStatus": 401,
+            "certificateDaysRemaining": 49,
+            "latencyMs": 870,
+            "issues": []
+          },
+          {
+            "id": "identity-discovery",
+            "ok": true,
+            "httpStatus": 200,
+            "certificateDaysRemaining": 49,
+            "latencyMs": 735,
+            "issues": []
+          }
+        ],
+        "scope": "public-metadata-only",
+        "responseBodiesStored": false
+      }
+    }
+  ],
+  "scope": "Current synthetic-staging/public URLs; no private payloads; no production readiness claim"
+}

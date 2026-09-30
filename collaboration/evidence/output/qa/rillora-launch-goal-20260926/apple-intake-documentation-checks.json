@@ -1,0 +1,20 @@
+{
+  "checkedAt": "2026-09-26T12:30:30.998557+00:00",
+  "files": 148,
+  "localTargets": 1432,
+  "missing": [],
+  "focusedUpdated": [
+    "docs/backend.md",
+    "docs/production-apple-20260926.md",
+    "docs/storekit.md",
+    "docs/release-readiness.md",
+    "infra/aws/README.md",
+    "config/release-gates.json"
+  ],
+  "decisionLog": "No new Owner/product/commercial decision; bounded implementation follows existing launch instruction. No append needed.",
+  "handoff": "docs/handoff.md",
+  "journey": "docs/journey/PROJECT_JOURNEY.md",
+  "tests": "285API/40infra/typechecks/API build pass",
+  "scanException": "Exact existing PEM delimiter source hash unchanged; only line numbers shifted from510-511to519-520",
+  "boundary": "No deployment, real Apple transaction, new native build or message sent"
+}

@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-23T13:10:43.775133+00:00",
+  "mode": "compaction recovery in same workstream",
+  "fullBodyBaseline": "output/qa/rillora-release-readiness-20260919/full-read-completion.json",
+  "continuedFiles": [
+    "AGENTS.md",
+    "docs/product.md current locks and Authority Map",
+    "docs/handoff.md",
+    "docs/decision-log.md latest relevant decisions",
+    "docs/production-recovery-20260923.md",
+    "docs/source-control.md",
+    "README.md lines1-106"
+  ],
+  "priorFocusedFullReadsPreserved": [
+    "AGENTS.md",
+    "docs/infrastructure-roadmap.md",
+    "docs/solo-operations-and-portability.md",
+    "docs/identity-data-region.md",
+    "docs/backend.md",
+    "docs/quality-gates.md"
+  ],
+  "newHistoricalHandoffWritten": true
+}

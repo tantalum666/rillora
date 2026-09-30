@@ -1,0 +1,83 @@
+
+✨  Synthesis time: 2.55s
+
+RilloraOperations: start: Building HealthCheck/Code
+RilloraOperations: success: Built HealthCheck/Code
+RilloraOperations: start: Publishing HealthCheck/Code (133857166372-eu-central-1-f7bc6dd5)
+RilloraOperations: success: Published HealthCheck/Code (133857166372-eu-central-1-f7bc6dd5)
+RilloraOperations: creating CloudFormation changeset...
+RilloraOperations: deploying... [1/1]
+RilloraOperations |  0/17 | 12:32:16 AM | REVIEW_IN_PROGRESS      | AWS::CloudFormation::Stack     | RilloraOperations User Initiated
+RilloraOperations |  0/17 | 12:32:28 AM | CREATE_IN_PROGRESS      | AWS::CloudFormation::Stack     | RilloraOperations User Initiated
+RilloraOperations |  0/17 | 12:32:30 AM | CREATE_IN_PROGRESS      | AWS::SNS::Topic                | Alerts (Alerts91F83244) 
+RilloraOperations |  0/17 | 12:32:30 AM | CREATE_IN_PROGRESS      | AWS::CDK::Metadata             | CDKMetadata/Default (CDKMetadata) 
+RilloraOperations |  0/17 | 12:32:30 AM | CREATE_IN_PROGRESS      | AWS::Logs::LogGroup            | HealthLogs (HealthLogs34B37038) 
+RilloraOperations |  0/17 | 12:32:30 AM | CREATE_IN_PROGRESS      | AWS::SQS::Queue                | FailedDeliveries (FailedDeliveriesE3540845) 
+RilloraOperations |  0/17 | 12:32:30 AM | CREATE_IN_PROGRESS      | AWS::IAM::Role                 | HealthCheck/ServiceRole (HealthCheckServiceRoleC964F23C) 
+RilloraOperations |  0/17 | 12:32:31 AM | CREATE_IN_PROGRESS      | AWS::Logs::LogGroup            | HealthLogs (HealthLogs34B37038) Resource creation Initiated
+RilloraOperations |  0/17 | 12:32:31 AM | CREATE_IN_PROGRESS      | AWS::SQS::Queue                | FailedDeliveries (FailedDeliveriesE3540845) Resource creation Initiated
+RilloraOperations |  0/17 | 12:32:31 AM | CREATE_IN_PROGRESS      | AWS::CDK::Metadata             | CDKMetadata/Default (CDKMetadata) Resource creation Initiated
+RilloraOperations |  0/17 | 12:32:31 AM | CREATE_IN_PROGRESS      | AWS::SNS::Topic                | Alerts (Alerts91F83244) Resource creation Initiated
+RilloraOperations |  1/17 | 12:32:31 AM | CREATE_COMPLETE         | AWS::CDK::Metadata             | CDKMetadata/Default (CDKMetadata) 
+RilloraOperations |  1/17 | 12:32:31 AM | CREATE_IN_PROGRESS      | AWS::IAM::Role                 | HealthCheck/ServiceRole (HealthCheckServiceRoleC964F23C) Resource creation Initiated
+RilloraOperations |  2/17 | 12:32:31 AM | CREATE_COMPLETE         | AWS::SNS::Topic                | Alerts (Alerts91F83244) 
+RilloraOperations |  2/17 | 12:32:31 AM | CREATE_IN_PROGRESS      | AWS::SQS::Queue                | FailedDeliveries (FailedDeliveriesE3540845) Eventual consistency check initiated
+RilloraOperations |  2/17 | 12:32:32 AM | CREATE_IN_PROGRESS      | AWS::CloudWatch::Alarm         | Unhealthy (Unhealthy9594204A) 
+RilloraOperations |  2/17 | 12:32:32 AM | CREATE_IN_PROGRESS      | AWS::SNS::TopicPolicy          | Alerts/Policy (AlertsPolicy425C338D) 
+RilloraOperations |  2/17 | 12:32:32 AM | CREATE_IN_PROGRESS      | AWS::CloudWatch::Alarm         | MissingHeartbeat (MissingHeartbeatF959D2A8) 
+RilloraOperations |  2/17 | 12:32:32 AM | CREATE_IN_PROGRESS      | AWS::CloudWatch::Alarm         | DeadLetters (DeadLettersBBF8BAAB) 
+RilloraOperations |  2/17 | 12:32:32 AM | CREATE_IN_PROGRESS      | AWS::CloudWatch::Alarm         | Unhealthy (Unhealthy9594204A) Resource creation Initiated
+RilloraOperations |  2/17 | 12:32:32 AM | CREATE_IN_PROGRESS      | AWS::SNS::TopicPolicy          | Alerts/Policy (AlertsPolicy425C338D) Resource creation Initiated
+RilloraOperations |  2/17 | 12:32:32 AM | CREATE_IN_PROGRESS      | AWS::CloudWatch::Alarm         | MissingHeartbeat (MissingHeartbeatF959D2A8) Resource creation Initiated
+RilloraOperations |  2/17 | 12:32:33 AM | CREATE_IN_PROGRESS      | AWS::CloudWatch::Alarm         | DeadLetters (DeadLettersBBF8BAAB) Resource creation Initiated
+RilloraOperations |  3/17 | 12:32:33 AM | CREATE_COMPLETE         | AWS::SNS::TopicPolicy          | Alerts/Policy (AlertsPolicy425C338D) 
+RilloraOperations |  4/17 | 12:32:34 AM | CREATE_COMPLETE         | AWS::CloudWatch::Alarm         | MissingHeartbeat (MissingHeartbeatF959D2A8) 
+RilloraOperations |  5/17 | 12:32:34 AM | CREATE_COMPLETE         | AWS::CloudWatch::Alarm         | Unhealthy (Unhealthy9594204A) 
+RilloraOperations |  6/17 | 12:32:34 AM | CREATE_COMPLETE         | AWS::CloudWatch::Alarm         | DeadLetters (DeadLettersBBF8BAAB) 
+RilloraOperations |  6/17 | 12:32:40 AM | CREATE_IN_PROGRESS      | AWS::Logs::LogGroup            | HealthLogs (HealthLogs34B37038) Eventual consistency check initiated
+RilloraOperations |  7/17 | 12:32:40 AM | CREATE_COMPLETE         | AWS::Logs::LogGroup            | HealthLogs (HealthLogs34B37038) 
+RilloraOperations |  8/17 | 12:32:47 AM | CREATE_COMPLETE         | AWS::IAM::Role                 | HealthCheck/ServiceRole (HealthCheckServiceRoleC964F23C) 
+RilloraOperations |  8/17 | 12:32:48 AM | CREATE_IN_PROGRESS      | AWS::IAM::Policy               | HealthCheck/ServiceRole/DefaultPolicy (HealthCheckServiceRoleDefaultPolicyAE8FE253) 
+RilloraOperations |  8/17 | 12:32:49 AM | CREATE_IN_PROGRESS      | AWS::IAM::Policy               | HealthCheck/ServiceRole/DefaultPolicy (HealthCheckServiceRoleDefaultPolicyAE8FE253) Resource creation Initiated
+RilloraOperations |  9/17 | 12:33:04 AM | CREATE_COMPLETE         | AWS::IAM::Policy               | HealthCheck/ServiceRole/DefaultPolicy (HealthCheckServiceRoleDefaultPolicyAE8FE253) 
+RilloraOperations | 10/17 | 12:33:32 AM | CREATE_COMPLETE         | AWS::SQS::Queue                | FailedDeliveries (FailedDeliveriesE3540845) 
+RilloraOperations | 10/17 | 12:33:33 AM | CREATE_IN_PROGRESS      | AWS::Lambda::Function          | HealthCheck (HealthCheckA1C381C7) 
+RilloraOperations | 10/17 | 12:33:35 AM | CREATE_IN_PROGRESS      | AWS::Lambda::Function          | HealthCheck (HealthCheckA1C381C7) Resource creation Initiated
+RilloraOperations | 10/17 | 12:33:35 AM | CREATE_FAILED           | AWS::Lambda::Function          | HealthCheck (HealthCheckA1C381C7) Resource handler returned message: "Specified ReservedConcurrentExecutions for function decreases account's UnreservedConcurrentExecution below its minimum value of [10]. (Service: Lambda, Status Code: 400, Request ID: 5e4210fc-d92e-4d21-be91-daa98a12c562) (SDK Attempt Count: 1)" (RequestToken: acc257c2-cca2-2004-d865-6edb5b9a78cf, HandlerErrorCode: InvalidRequest)
+RilloraOperations | 10/17 | 12:33:35 AM | ROLLBACK_IN_PROGRESS    | AWS::CloudFormation::Stack     | RilloraOperations The following resource(s) failed to create: [HealthCheckA1C381C7]. Rollback requested by user.
+RilloraOperations | 10/17 | 12:33:38 AM | DELETE_IN_PROGRESS      | AWS::CloudWatch::Alarm         | Unhealthy (Unhealthy9594204A) 
+RilloraOperations | 10/17 | 12:33:38 AM | DELETE_IN_PROGRESS      | AWS::SNS::TopicPolicy          | Alerts/Policy (AlertsPolicy425C338D) 
+RilloraOperations | 10/17 | 12:33:38 AM | DELETE_IN_PROGRESS      | AWS::Lambda::Function          | HealthCheck (HealthCheckA1C381C7) 
+RilloraOperations | 10/17 | 12:33:38 AM | DELETE_IN_PROGRESS      | AWS::CloudWatch::Alarm         | DeadLetters (DeadLettersBBF8BAAB) 
+RilloraOperations | 10/17 | 12:33:38 AM | DELETE_IN_PROGRESS      | AWS::CDK::Metadata             | CDKMetadata/Default (CDKMetadata) 
+RilloraOperations | 10/17 | 12:33:38 AM | DELETE_IN_PROGRESS      | AWS::CloudWatch::Alarm         | MissingHeartbeat (MissingHeartbeatF959D2A8) 
+RilloraOperations |  9/17 | 12:33:39 AM | DELETE_COMPLETE         | AWS::CDK::Metadata             | CDKMetadata/Default (CDKMetadata) 
+RilloraOperations |  8/17 | 12:33:39 AM | DELETE_COMPLETE         | AWS::SNS::TopicPolicy          | Alerts/Policy (AlertsPolicy425C338D) 
+RilloraOperations |  7/17 | 12:33:39 AM | DELETE_COMPLETE         | AWS::CloudWatch::Alarm         | Unhealthy (Unhealthy9594204A) 
+RilloraOperations |  6/17 | 12:33:39 AM | DELETE_COMPLETE         | AWS::CloudWatch::Alarm         | MissingHeartbeat (MissingHeartbeatF959D2A8) 
+RilloraOperations |  5/17 | 12:33:40 AM | DELETE_COMPLETE         | AWS::CloudWatch::Alarm         | DeadLetters (DeadLettersBBF8BAAB) 
+RilloraOperations |  5/17 | 12:33:40 AM | DELETE_IN_PROGRESS      | AWS::SNS::Topic                | Alerts (Alerts91F83244) 
+RilloraOperations |  6/17 | 12:33:42 AM | DELETE_COMPLETE         | AWS::Lambda::Function          | HealthCheck (HealthCheckA1C381C7) 
+RilloraOperations |  6/17 | 12:33:42 AM | DELETE_IN_PROGRESS      | AWS::IAM::Policy               | HealthCheck/ServiceRole/DefaultPolicy (HealthCheckServiceRoleDefaultPolicyAE8FE253) 
+RilloraOperations |  6/17 | 12:33:42 AM | DELETE_SKIPPED          | AWS::Logs::LogGroup            | HealthLogs (HealthLogs34B37038) 
+RilloraOperations |  5/17 | 12:33:43 AM | DELETE_COMPLETE         | AWS::IAM::Policy               | HealthCheck/ServiceRole/DefaultPolicy (HealthCheckServiceRoleDefaultPolicyAE8FE253) 
+RilloraOperations |  5/17 | 12:33:43 AM | DELETE_IN_PROGRESS      | AWS::IAM::Role                 | HealthCheck/ServiceRole (HealthCheckServiceRoleC964F23C) 
+RilloraOperations |  5/17 | 12:33:44 AM | DELETE_SKIPPED          | AWS::SQS::Queue                | FailedDeliveries (FailedDeliveriesE3540845) 
+RilloraOperations |  4/17 | 12:33:55 AM | DELETE_COMPLETE         | AWS::IAM::Role                 | HealthCheck/ServiceRole (HealthCheckServiceRoleC964F23C) 
+RilloraOperations |  3/17 | 12:34:26 AM | DELETE_COMPLETE         | AWS::SNS::Topic                | Alerts (Alerts91F83244) 
+RilloraOperations |  4/17 | 12:34:27 AM | ROLLBACK_COMPLETE       | AWS::CloudFormation::Stack     | RilloraOperations 
+
+Failed resources:
+RilloraOperations | 12:33:35 AM | CREATE_FAILED           | AWS::Lambda::Function          | HealthCheck (HealthCheckA1C381C7) Resource handler returned message: "Specified ReservedConcurrentExecutions for function decreases account's UnreservedConcurrentExecution below its minimum value of [10]. (Service: Lambda, Status Code: 400, Request ID: 5e4210fc-d92e-4d21-be91-daa98a12c562) (SDK Attempt Count: 1)" (RequestToken: acc257c2-cca2-2004-d865-6edb5b9a78cf, HandlerErrorCode: InvalidRequest)
+❌  RilloraOperations failed: DeploymentError: Resource updates failed:
+RilloraOperations/HealthCheck/Resource  (AWS::Lambda::Function HealthCheckA1C381C7)
+  Resource handler returned message: "Specified ReservedConcurrentExecutions for function decreases account's
+  UnreservedConcurrentExecution below its minimum value of [10]. (Service: Lambda, Status Code: 400, Request ID:
+  5e4210fc-d92e-4d21-be91-daa98a12c562) (SDK Attempt Count: 1)" (RequestToken: acc257c2-cca2-2004-d865-6edb5b9a78cf,
+  HandlerErrorCode: InvalidRequest)
+Source Location: ...new Function2 in aws-cdk-lib...
+                 new RilloraOperationsStack (/Users/tantalum/Documents/电子遗嘱app/infra/aws/lib/rillora-operations-stack.ts:27:21)
+                 <anonymous> (/Users/tantalum/Documents/电子遗嘱app/infra/aws/bin/rillora.ts:48:3)
+                 ...node internals...
+
+   CloudTrail delivery can lag up to 15 minutes behind the failure; re-run `cdk diagnose` in a few minutes to check for additional control-plane errors (e.g. AccessDenied).

@@ -1,0 +1,65 @@
+apps/ios/Rillora/Features/Overview/ContinuityExplorer.swift:46:struct ContinuityExplorer: View {
+apps/ios/Rillora/Features/Simulation/SimulationView.swift:3:struct SimulationView: View {
+apps/ios/Rillora/Features/Simulation/SimulationView.swift:99:private struct SimulationResultSection: View {
+apps/ios/Rillora/Features/Plan/PlanMotivationView.swift:3:struct PlanMotivationView: View {
+apps/ios/Rillora/Features/Account/ProfileDashboardComponents.swift:3:struct ProfileSectionHeader: View {
+apps/ios/Rillora/Features/Account/ProfileDashboardComponents.swift:20:struct ProfileTaskLabel: View {
+apps/ios/Rillora/Features/Account/ProfileDashboardComponents.swift:91:struct ProfilePreparationGrid: View {
+apps/ios/Rillora/Features/Account/ProfileDashboardComponents.swift:139:        .navigationDestination(item: $destination) { destination in
+apps/ios/Rillora/Features/Account/ProfileDashboardComponents.swift:158:struct ProfileSupportGrid: View {
+apps/ios/Rillora/Features/Account/ProfileDashboardComponents.swift:181:        .navigationDestination(item: $destination) { destination in
+apps/ios/Rillora/Features/Account/ProfileDashboardComponents.swift:212:private struct ProfileToolTile: View {
+apps/ios/Rillora/Features/Account/ProfileSupportViews.swift:18:struct ProfileActionLabel: View {
+apps/ios/Rillora/Features/Account/ProfileSupportViews.swift:61:struct RilloraSafetyPrivacyView: View {
+apps/ios/Rillora/Features/Account/ProfileSupportViews.swift:65:                NavigationLink {
+apps/ios/Rillora/Features/Account/ProfileSupportViews.swift:76:                NavigationLink {
+apps/ios/Rillora/Features/Account/ProfileSupportViews.swift:97:struct RilloraSafeInformationChecklistView: View {
+apps/ios/Rillora/Features/Account/ProfileSupportViews.swift:120:private struct SafetyChecklistRow: View {
+apps/ios/Rillora/Features/Account/ProfileSupportViews.swift:147:struct RilloraReleaseSafeguardsView: View {
+apps/ios/Rillora/Features/Account/ProfileSupportViews.swift:209:struct AboutRilloraView: View {
+apps/ios/Rillora/Features/Account/PlanAccessView.swift:3:struct PlanAccessView: View {
+apps/ios/Rillora/Features/Roles/RoleAssignmentPolicyView.swift:3:struct RoleAssignmentPolicyView: View {
+apps/ios/Rillora/Features/Roles/RoleAssignmentPolicyView.swift:166:private struct RoleAssignmentEditorRow: View {
+apps/ios/Rillora/Features/Matters/MatterEditorView.swift:3:struct MatterEditorView: View {
+apps/ios/Rillora/Features/Matters/MatterEditorView.swift:157:                    NavigationLink {
+apps/ios/Rillora/Features/Account/AccountView.swift:3:struct ProfileView: View {
+apps/ios/Rillora/Features/Overview/SignedOutExperienceViews.swift:3:struct SignedOutOverviewView: View {
+apps/ios/Rillora/Features/Overview/SignedOutExperienceViews.swift:69:struct SignedOutMattersView: View {
+apps/ios/Rillora/Features/Overview/SignedOutExperienceViews.swift:178:struct SignedOutProfileView: View {
+apps/ios/Rillora/Features/Overview/SignedOutExperienceViews.swift:201:                NavigationLink {
+apps/ios/Rillora/Features/Overview/SignedOutExperienceViews.swift:212:                NavigationLink {
+apps/ios/Rillora/Features/Overview/OverviewView.swift:3:struct OverviewView: View {
+apps/ios/Rillora/Features/Overview/OverviewView.swift:66:struct OverviewContent: View {
+apps/ios/Rillora/Features/Overview/OverviewView.swift:124:private struct OverviewHero: View {
+apps/ios/Rillora/Features/Overview/OverviewView.swift:211:private struct DevelopmentIdentityBanner: View {
+apps/ios/Rillora/Features/Overview/OverviewView.swift:235:struct SectionEyebrow: View {
+apps/ios/Rillora/Features/Contacts/TrustedContactEditorView.swift:3:struct TrustedContactEditorView: View {
+apps/ios/Rillora/Features/Matters/MattersView.swift:3:struct MattersView: View {
+apps/ios/Rillora/Features/Matters/MattersView.swift:70:private struct MattersContent: View {
+apps/ios/Rillora/Features/Matters/MattersView.swift:123:        NavigationLink {
+apps/ios/Rillora/Features/Matters/MattersView.swift:138:private struct MattersEmptyState: View {
+apps/ios/Rillora/Features/StartHere/StartHerePreviewView.swift:5:struct StartHerePreviewView: View {
+apps/ios/Rillora/Features/StartHere/StartHerePreviewView.swift:468:private struct StartHereBoundarySection: View {
+apps/ios/Rillora/Features/FirstUse/FirstUseViews.swift:3:struct FirstUseStarterCard: View {
+apps/ios/Rillora/Features/FirstUse/FirstUseViews.swift:101:struct FirstUseGuideView: View {
+apps/ios/Rillora/Features/FirstUse/FirstUseViews.swift:182:                    NavigationLink {
+apps/ios/Rillora/Features/Overview/OverviewStateViews.swift:3:private struct RilloraRefreshStatusModifier: ViewModifier {
+apps/ios/Rillora/Features/Overview/OverviewStateViews.swift:36:struct OverviewLoadingView: View {
+apps/ios/Rillora/Features/Overview/OverviewStateViews.swift:53:struct OverviewFailureView: View {
+apps/ios/Rillora/Features/Simulation/DisclosureRehearsalView.swift:3:struct DisclosureRehearsalView: View {
+apps/ios/Rillora/Features/Simulation/DisclosureRehearsalView.swift:169:private struct DisclosureRolePreviewSection: View {
+apps/ios/Rillora/Features/Simulation/DisclosureRehearsalView.swift:218:private struct DisclosureFieldPolicyView: View {
+apps/ios/Rillora/Features/Simulation/DisclosureRehearsalView.swift:241:private struct DisclosureMatterPreviewView: View {
+apps/ios/Rillora/Features/Account/StoreKitSandboxCatalogView.swift:3:struct StoreKitSandboxCatalogView: View {
+apps/ios/Rillora/Features/Overview/OverviewDashboardComponents.swift:3:struct OverviewProgressCard: View {
+apps/ios/Rillora/Features/Overview/OverviewDashboardComponents.swift:131:private struct OverviewMetricButton: View {
+apps/ios/Rillora/Features/Overview/OverviewDashboardComponents.swift:184:struct MattersSummary: View {
+apps/ios/Rillora/Features/Overview/OverviewDashboardComponents.swift:228:struct MatterSummaryRow: View {
+apps/ios/Rillora/Features/Overview/OverviewDashboardComponents.swift:302:struct CompactSafetyNote: View {
+apps/ios/Rillora/Features/Account/AuthenticatedProfileContent.swift:3:struct AuthenticatedProfileContent: View {
+apps/ios/Rillora/Features/Account/AuthenticatedProfileContent.swift:64:            NavigationLink {
+apps/ios/Rillora/Features/Account/AuthenticatedProfileContent.swift:118:            NavigationLink {
+apps/ios/Rillora/Features/OfficialSetup/OfficialSetupView.swift:3:struct OfficialSetupView: View {
+apps/ios/Rillora/Features/OfficialSetup/OfficialSetupView.swift:139:        NavigationLink {
+apps/ios/Rillora/Features/OfficialSetup/OfficialSetupView.swift:200:private struct OfficialProviderGuideDetailView: View {
+apps/ios/Rillora/Features/OfficialSetup/OfficialSetupView.swift:420:private struct OfficialProviderMark: View {

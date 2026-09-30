@@ -1,0 +1,22 @@
+
+ RUN  v4.1.11 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/production-commerce.integration.test.ts (12 tests | 1 failed) 784ms
+     × owns subscription reads through commit and retries concurrent cancellation without resurrecting access 20ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/production-commerce.integration.test.ts > production commerce ledger with a synthetic provider only > owns subscription reads through commit and retries concurrent cancellation without resurrecting access
+error: column "status" does not exist
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ tests/production-commerce.integration.test.ts:230:15
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 30 passed (31)
+   Start at  13:26:06
+   Duration  3.36s (transform 306ms, setup 95ms, import 976ms, tests 1.92s, environment 0ms)
+

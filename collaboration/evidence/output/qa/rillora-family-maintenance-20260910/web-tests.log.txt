@@ -1,0 +1,442 @@
+TAP version 13
+# Subtest: public browsing stays separate from explicit account and identity entry points
+ok 1 - public browsing stays separate from explicit account and identity entry points
+  ---
+  duration_ms: 0.894041
+  type: 'test'
+  ...
+# Subtest: authentication starts only through an explicit legal-acceptance POST
+ok 2 - authentication starts only through an explicit legal-acceptance POST
+  ---
+  duration_ms: 44.690917
+  type: 'test'
+  ...
+# Subtest: API client uses credentials and the development identity only when configured
+ok 3 - API client uses credentials and the development identity only when configured
+  ---
+  duration_ms: 0.290417
+  type: 'test'
+  ...
+# Subtest: commercial reads and route evaluation use the authenticated shared API
+ok 4 - commercial reads and route evaluation use the authenticated shared API
+  ---
+  duration_ms: 0.709917
+  type: 'test'
+  ...
+# Subtest: public session detection uses a non-error status endpoint before private workspace loading
+ok 5 - public session detection uses a non-error status endpoint before private workspace loading
+  ---
+  duration_ms: 0.378
+  type: 'test'
+  ...
+# Subtest: API client binds state changes to the CSRF cookie token
+ok 6 - API client binds state changes to the CSRF cookie token
+  ---
+  duration_ms: 0.234125
+  type: 'test'
+  ...
+# Subtest: first-use progress and the first matter use the shared authenticated API
+ok 7 - first-use progress and the first matter use the shared authenticated API
+  ---
+  duration_ms: 0.416209
+  type: 'test'
+  ...
+# Subtest: API client returns bounded server errors without exposing response internals
+ok 8 - API client returns bounded server errors without exposing response internals
+  ---
+  duration_ms: 1.255041
+  type: 'test'
+  ...
+# Subtest: API client sends a CSRF-bound all-session revocation request
+ok 9 - API client sends a CSRF-bound all-session revocation request
+  ---
+  duration_ms: 0.619958
+  type: 'test'
+  ...
+# Subtest: API client validates and returns the minimum-disclosure printable artifact
+ok 10 - API client validates and returns the minimum-disclosure printable artifact
+  ---
+  duration_ms: 1.202792
+  type: 'test'
+  ...
+# Subtest: API client rejects a printable response that claims a retained server copy
+ok 11 - API client rejects a printable response that claims a retained server copy
+  ---
+  duration_ms: 0.838708
+  type: 'test'
+  ...
+# Subtest: synthetic recipient capabilities stay in request bodies and the isolated authorization header
+ok 12 - synthetic recipient capabilities stay in request bodies and the isolated authorization header
+  ---
+  duration_ms: 0.359166
+  type: 'test'
+  ...
+# Subtest: disclosure rehearsal mutations are CSRF-bound, versioned, and explicitly simulation-only
+ok 13 - disclosure rehearsal mutations are CSRF-bound, versioned, and explicitly simulation-only
+  ---
+  duration_ms: 0.414209
+  type: 'test'
+  ...
+# Subtest: disclosure rehearsal responses fail closed if release or high-risk fields appear
+ok 14 - disclosure rehearsal responses fail closed if release or high-risk fields appear
+  ---
+  duration_ms: 0.349375
+  type: 'test'
+  ...
+# Subtest: role assignment mutations stay versioned, explicit, and record-only
+ok 15 - role assignment mutations stay versioned, explicit, and record-only
+  ---
+  duration_ms: 0.475041
+  type: 'test'
+  ...
+# Subtest: role assignment responses fail closed on unsafe authority or secret fields
+ok 16 - role assignment responses fail closed on unsafe authority or secret fields
+  ---
+  duration_ms: 0.205417
+  type: 'test'
+  ...
+# Subtest: commercial state is derived from the server catalog while billing remains closed
+ok 17 - commercial state is derived from the server catalog while billing remains closed
+  ---
+  duration_ms: 37.873083
+  type: 'test'
+  ...
+# Subtest: unsafe or malformed commercial responses fail closed
+ok 18 - unsafe or malformed commercial responses fail closed
+  ---
+  duration_ms: 0.415167
+  type: 'test'
+  ...
+# Subtest: purchase routing rejects a client-success or contradictory route
+ok 19 - purchase routing rejects a client-success or contradictory route
+  ---
+  duration_ms: 0.123167
+  type: 'test'
+  ...
+# Subtest: commercial details stay out of public discovery until explicit paid-capability intent
+ok 20 - commercial details stay out of public discovery until explicit paid-capability intent
+  ---
+  duration_ms: 0.053375
+  type: 'test'
+  ...
+# Subtest: simulation evidence is never promoted to accepted
+ok 21 - simulation evidence is never promoted to accepted
+  ---
+  duration_ms: 2.944333
+  type: 'test'
+  ...
+# Subtest: only a non-simulated accepted invitation receives accepted evidence
+ok 22 - only a non-simulated accepted invitation receives accepted evidence
+  ---
+  duration_ms: 0.163667
+  type: 'test'
+  ...
+# Subtest: record-only, pending and revoked states remain distinct
+ok 23 - record-only, pending and revoked states remain distinct
+  ---
+  duration_ms: 0.152791
+  type: 'test'
+  ...
+# Subtest: a dated check stops counting as resolved when its source changes
+ok 24 - a dated check stops counting as resolved when its source changes
+  ---
+  duration_ms: 0.688084
+  type: 'test'
+  ...
+# Subtest: hidden fields and unscoped suggestions never render as review directions
+ok 25 - hidden fields and unscoped suggestions never render as review directions
+  ---
+  duration_ms: 0.390125
+  type: 'test'
+  ...
+# Subtest: incoming data cannot grant owner control or bypass a changed scope
+ok 26 - incoming data cannot grant owner control or bypass a changed scope
+  ---
+  duration_ms: 0.091792
+  type: 'test'
+  ...
+# Subtest: preview cannot pretend to bill or send external messages
+ok 27 - preview cannot pretend to bill or send external messages
+  ---
+  duration_ms: 8.318875
+  type: 'test'
+  ...
+# Subtest: first-use state fails safely to an available non-blocking overview
+ok 28 - first-use state fails safely to an available non-blocking overview
+  ---
+  duration_ms: 3.288625
+  type: 'test'
+  ...
+# Subtest: paused and completed guides do not keep nagging on the overview
+ok 29 - paused and completed guides do not keep nagging on the overview
+  ---
+  duration_ms: 0.072167
+  type: 'test'
+  ...
+# Subtest: resume copy follows saved progress without changing readiness
+ok 30 - resume copy follows saved progress without changing readiness
+  ---
+  duration_ms: 0.060375
+  type: 'test'
+  ...
+# Subtest: redirects the publication root to Terms
+ok 31 - redirects the publication root to Terms
+  ---
+  duration_ms: 27.913334
+  type: 'test'
+  ...
+# Subtest: serves only allowlisted legal routes through the app shell
+ok 32 - serves only allowlisted legal routes through the app shell
+  ---
+  duration_ms: 2.576292
+  type: 'test'
+  ...
+# Subtest: rejects account, API, unknown and write routes
+ok 33 - rejects account, API, unknown and write routes
+  ---
+  duration_ms: 1.01875
+  type: 'test'
+  ...
+# Subtest: caches fingerprinted assets immutably
+ok 34 - caches fingerprinted assets immutably
+  ---
+  duration_ms: 0.273333
+  type: 'test'
+  ...
+# Subtest: emits a legal entry and the Sites package files
+not ok 35 - emits a legal entry and the Sites package files
+  ---
+  duration_ms: 8.264042
+  type: 'test'
+  location: '/Users/tantalum/Documents/电子遗嘱app/apps/web/tests/legal-sites-worker.test.mjs:75:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /Rillora Legal/. Input:
+    
+    'export default {\n' +
+      '  async fetch(request, env) {\n' +
+      '    const response = await env.ASSETS.fetch(request);\n' +
+      '    const acceptsHtml = request.headers.get("accept")?.includes("text/html");\n' +
+      '\n' +
+      '    if (response.status !== 404 || !acceptsHtml || !["GET", "HEAD"].includes(request.method)) {\n' +
+      '      return response;\n' +
+      '    }\n' +
+      '\n' +
+      '    const indexUrl = new URL(request.url);\n' +
+      '    indexUrl.pathname = "/index.html";\n' +
+      '    indexUrl.search = "";\n' +
+      '    return env.ASSETS.fetch(new Request(indexUrl, request));\n' +
+      '  },\n' +
+      '};\n'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: |-
+    export default {
+      async fetch(request, env) {
+        const response = await env.ASSETS.fetch(request);
+        const acceptsHtml = request.headers.get("accept")?.includes("text/html");
+    
+        if (response.status !== 404 || !acceptsHtml || !["GET", "HEAD"].includes(request.method)) {
+          return response;
+        }
+    
+        const indexUrl = new URL(request.url);
+        indexUrl.pathname = "/index.html";
+        indexUrl.search = "";
+        return env.ASSETS.fetch(new Request(indexUrl, request));
+      },
+    };
+    
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tantalum/Documents/%E7%94%B5%E5%AD%90%E9%81%97%E5%98%B1app/apps/web/tests/legal-sites-worker.test.mjs:77:10)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: embeds the built legal shell in the deployed Worker
+not ok 36 - embeds the built legal shell in the deployed Worker
+  ---
+  duration_ms: 1.78475
+  type: 'test'
+  location: '/Users/tantalum/Documents/电子遗嘱app/apps/web/tests/legal-sites-worker.test.mjs:88:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    404 !== 200
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 200
+  actual: 404
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tantalum/Documents/%E7%94%B5%E5%AD%90%E9%81%97%E5%98%B1app/apps/web/tests/legal-sites-worker.test.mjs:94:10)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: keeps the legal artifact inside its performance and content budgets
+not ok 37 - keeps the legal artifact inside its performance and content budgets
+  ---
+  duration_ms: 0.801583
+  type: 'test'
+  location: '/Users/tantalum/Documents/电子遗嘱app/apps/web/tests/legal-sites-worker.test.mjs:98:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    3 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 3
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tantalum/Documents/%E7%94%B5%E5%AD%90%E9%81%97%E5%98%B1app/apps/web/tests/legal-sites-worker.test.mjs:104:10)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: mobile keeps three primary destinations
+ok 38 - mobile keeps three primary destinations
+  ---
+  duration_ms: 1.738042
+  type: 'test'
+  ...
+# Subtest: desktop-only destinations remain reachable through More
+ok 39 - desktop-only destinations remain reachable through More
+  ---
+  duration_ms: 0.118541
+  type: 'test'
+  ...
+# Subtest: official provider catalog covers the curated common platforms
+ok 40 - official provider catalog covers the curated common platforms
+  ---
+  duration_ms: 1.669125
+  type: 'test'
+  ...
+# Subtest: every provider link is HTTPS and uses an official host
+ok 41 - every provider link is HTTPS and uses an official host
+  ---
+  duration_ms: 0.314542
+  type: 'test'
+  ...
+# Subtest: Binance is described as a regional estate request, not a legacy contact
+ok 42 - Binance is described as a regional estate request, not a legacy contact
+  ---
+  duration_ms: 0.178917
+  type: 'test'
+  ...
+# Subtest: public discovery explains the real product before plan creation
+ok 43 - public discovery explains the real product before plan creation
+  ---
+  duration_ms: 1.11525
+  type: 'test'
+  ...
+# Subtest: public legal routes and registration clickwrap remain visible without false claims
+ok 44 - public legal routes and registration clickwrap remain visible without false claims
+  ---
+  duration_ms: 1.344417
+  type: 'test'
+  ...
+# Subtest: a chosen matter category survives the account and callback routes
+ok 45 - a chosen matter category survives the account and callback routes
+  ---
+  duration_ms: 1.789959
+  type: 'test'
+  ...
+# Subtest: ordinary account entry does not create a deferred editor
+ok 46 - ordinary account entry does not create a deferred editor
+  ---
+  duration_ms: 0.15275
+  type: 'test'
+  ...
+# Subtest: unknown categories and external targets cannot become a continuation
+ok 47 - unknown categories and external targets cannot become a continuation
+  ---
+  duration_ms: 0.108083
+  type: 'test'
+  ...
+# Subtest: invitation URLs carry a bounded fragment capability
+ok 48 - invitation URLs carry a bounded fragment capability
+  ---
+  duration_ms: 0.874917
+  type: 'test'
+  ...
+# Subtest: name-level views reject accidental location disclosure
+ok 49 - name-level views reject accidental location disclosure
+  ---
+  duration_ms: 0.298792
+  type: 'test'
+  ...
+# Subtest: directions exclude masked hints and fields from unrelated connections
+ok 50 - directions exclude masked hints and fields from unrelated connections
+  ---
+  duration_ms: 0.075833
+  type: 'test'
+  ...
+# Subtest: a recipient response never grants writes or event-conditioned release
+ok 51 - a recipient response never grants writes or event-conditioned release
+  ---
+  duration_ms: 0.075292
+  type: 'test'
+  ...
+# Subtest: serves existing static assets without a fallback
+ok 52 - serves existing static assets without a fallback
+  ---
+  duration_ms: 24.49675
+  type: 'test'
+  ...
+# Subtest: falls back to index.html for an unknown app route
+ok 53 - falls back to index.html for an unknown app route
+  ---
+  duration_ms: 0.715125
+  type: 'test'
+  ...
+# Subtest: does not turn missing API or write requests into the app shell
+ok 54 - does not turn missing API or write requests into the app shell
+  ---
+  duration_ms: 0.315625
+  type: 'test'
+  ...
+# Subtest: emits the files required by Sites packaging
+ok 55 - emits the files required by Sites packaging
+  ---
+  duration_ms: 3.619791
+  type: 'test'
+  ...
+# Subtest: creates a recovery-only package without leaking its private or content key
+ok 56 - creates a recovery-only package without leaking its private or content key
+  ---
+  duration_ms: 19.289333
+  type: 'test'
+  ...
+# Subtest: wraps the same content key independently for an accepted recipient device
+ok 57 - wraps the same content key independently for an accepted recipient device
+  ---
+  duration_ms: 4.959834
+  type: 'test'
+  ...
+# Subtest: decrypts a synthetic recipient artifact with only the memory-held device key
+ok 58 - decrypts a synthetic recipient artifact with only the memory-held device key
+  ---
+  duration_ms: 8.051417
+  type: 'test'
+  ...
+# Subtest: rejects tampered ciphertext and a recovery key from another package
+ok 59 - rejects tampered ciphertext and a recovery key from another package
+  ---
+  duration_ms: 7.516625
+  type: 'test'
+  ...
+1..59
+# tests 59
+# suites 0
+# pass 56
+# fail 3
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 296.10475

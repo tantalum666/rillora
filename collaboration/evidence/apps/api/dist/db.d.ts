@@ -1,0 +1,33 @@
+import pg, { type PoolClient, type QueryResult, type QueryResultRow } from "pg";
+import type { AppConfig, DatabaseConfig } from "./config.js";
+import { contentClient, type ContentKeyProvider, type ContentProtectionConfig } from "./private-content.js";
+declare const Pool: typeof import("pg").Pool;
+export type DatabasePool = InstanceType<typeof Pool>;
+export declare function configureContentPool(pool: DatabasePool, config: ContentProtectionConfig | null, preview?: boolean, provider?: ContentKeyProvider | null): void;
+export declare function checkContentKeys(pool: DatabasePool): Promise<void>;
+export declare function databaseConnectionOptions(config: DatabaseConfig): pg.PoolConfig;
+export declare function createPool(config: AppConfig, testContentProvider?: ContentKeyProvider): DatabasePool;
+export type RecipientRehearsalContext = {
+    id: string;
+    publicId: string;
+    plannerId: string;
+    personId: string;
+    invitationId: string;
+};
+export declare function withRecipientAcceptanceDatabase<T>(pool: DatabasePool, acceptanceTokenHash: Buffer, newSessionTokenHash: Buffer, operation: (client: PoolClient) => Promise<T>): Promise<T>;
+export declare function withRecipientRehearsalDatabase<T>(pool: DatabasePool, sessionTokenHash: Buffer, operation: (client: PoolClient, context: RecipientRehearsalContext) => Promise<T>): Promise<T | null>;
+export declare function withAuthDatabase<T>(pool: DatabasePool, operation: (client: PoolClient) => Promise<T>): Promise<T>;
+export declare function withPlannerDatabase<T>(pool: DatabasePool, plannerId: string, operation: (client: PoolClient) => Promise<T>): Promise<T>;
+export declare function withPlannerSnapshotDatabase<T>(pool: DatabasePool, plannerId: string, operation: (client: PoolClient) => Promise<T>): Promise<T>;
+export declare function withContentMigrationDatabase<T>(pool: DatabasePool, plannerId: string, operation: (raw: PoolClient, client: PoolClient, session: ReturnType<typeof contentClient>["session"]) => Promise<T>): Promise<T>;
+export declare function sweepContentOrphans(pool: DatabasePool): Promise<number>;
+export declare function withCommercePlannerDatabase<T>(pool: DatabasePool, plannerId: string, operation: (client: PoolClient) => Promise<T>): Promise<T>;
+export declare function withCommerceAccountDatabase<T>(pool: DatabasePool, commerceAccountReference: string, operation: (client: PoolClient, context: {
+    commerceAccountId: string;
+    plannerId: string;
+    planId: string;
+    publicId: string;
+}) => Promise<T>): Promise<T | null>;
+export declare function withCommerceInboxDatabase<T>(pool: DatabasePool, operation: (client: PoolClient) => Promise<T>): Promise<T>;
+export declare function oneOrNull<T extends QueryResultRow>(result: QueryResult<T>): Promise<T | null>;
+export {};

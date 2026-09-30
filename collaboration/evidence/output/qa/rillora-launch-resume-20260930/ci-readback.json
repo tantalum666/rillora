@@ -1,0 +1,35 @@
+{
+  "observedAt": "2026-09-29T21:09:11.612507+00:00",
+  "source": "existing authenticated GitHub Actions browser UI",
+  "runId": 36630649822,
+  "runNumber": 38,
+  "url": "https://github.com/tantalum666/rillora/actions/runs/36630649822",
+  "headSha": "73dd50d36988e6def406908beae1c984e70c4fa8",
+  "event": "push",
+  "branch": "main",
+  "status": "completed",
+  "conclusion": "success",
+  "durationSeconds": 109,
+  "jobs": [
+    {
+      "name": "source",
+      "status": "success",
+      "durationSeconds": 11
+    },
+    {
+      "name": "api",
+      "status": "success",
+      "durationSeconds": 104,
+      "testFilesPassed": 41,
+      "testsPassed": 341
+    },
+    {
+      "name": "web-and-infrastructure",
+      "status": "success",
+      "durationSeconds": 76,
+      "infrastructureTestFilesPassed": 7,
+      "infrastructureTestsPassed": 47
+    }
+  ],
+  "cliReadLimitation": "HTTP403 Actions permission unavailable; not session expiry; no scope expansion or new login"
+}

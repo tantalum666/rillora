@@ -1,0 +1,30 @@
+{
+  "tool": "installed CUA Chrome browser (mandatory tool path; no external Playwright fallback)",
+  "target": "http://127.0.0.1:4197",
+  "flow": "home -> Who can help -> Guides -> search Binance -> guide -> Next -> All platforms retains query -> home",
+  "viewport": [
+    {
+      "width": 1329,
+      "height": 681,
+      "source": "actual default screenshot"
+    },
+    {
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "checks": {
+    "identity": true,
+    "meaningfulContent": true,
+    "noFrameworkOverlay": true,
+    "appConsoleErrors": 0,
+    "mobileNoHorizontalOverflow": true,
+    "guideStepsAndReturn": true,
+    "screenshotEvidence": "native screenshots emitted in current task"
+  },
+  "warnings": "MetaMask extension EventEmitter warnings; no app/CSP error observed",
+  "limitations": [
+    "Only Chromium verified; iOS physical device excluded",
+    "No private/login/billing route available in this public artifact"
+  ]
+}

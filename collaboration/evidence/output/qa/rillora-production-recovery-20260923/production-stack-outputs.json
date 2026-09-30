@@ -1,0 +1,23 @@
+{
+  "RilloraProduction": {
+    "RecoverySecurityGroupId": "sg-09cdb1445e4e84d7e",
+    "DatabaseIdentifier": "rillora-production",
+    "ContentKeyArn": "arn:aws:kms:eu-central-1:133857166372:key/0f60cf8f-25b6-4e8e-94c5-03fc127a5b72",
+    "MigrationSecurityGroupId": "sg-0bdbb583c7d22b27a",
+    "ProductionVpcId": "vpc-07e1ea12ac1185897",
+    "DatabaseHost": "rillora-production.cxcqa2usex01.eu-central-1.rds.amazonaws.com",
+    "MaintenanceSubnetIds": "subnet-070c4a18e68f26f1d,subnet-0d218a58218e10e36",
+    "MaintenanceLogGroup": "RilloraProduction-MaintenanceLogs61C6A99C-2niRZtkO9Ivq",
+    "DatabaseSecurityGroupId": "sg-0176b4c45717eb1b7",
+    "RecoveryDatabaseSecurityGroupId": "sg-0a2749f1ef2b22600",
+    "RecoveryJournalTable": "RilloraProduction-RecoveryJournal06BB91CD-1EBHY2PWCGS9F",
+    "ProductionTrafficReady": "false",
+    "OperatorRoleArn": "arn:aws:iam::133857166372:role/rillora/rillora-production-operator",
+    "DatabaseSubnetGroup": "rilloraproduction-databasesubnets-grsk2po0xunc",
+    "RecoveryTaskDefinitionArn": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRecoveryTask4FA4E62D:2",
+    "BackupRetentionDays": "7",
+    "ClusterName": "RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm",
+    "DatabaseParameterGroup": "rilloraproduction-postgresparameters8ea48b37-aidag1ktlvb3",
+    "MigrationTaskDefinitionArn": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionMigrationTask3A96A2B6:2"
+  }
+}

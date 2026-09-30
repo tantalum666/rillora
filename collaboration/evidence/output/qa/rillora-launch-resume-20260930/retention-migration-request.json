@@ -1,0 +1,19 @@
+{
+  "cluster": "RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm",
+  "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionMigrationTask3A96A2B6:6",
+  "launchType": "FARGATE",
+  "count": 1,
+  "clientToken": "[REDACTED_SCANNER_LITERAL]",
+  "networkConfiguration": {
+    "awsvpcConfiguration": {
+      "subnets": [
+        "subnet-070c4a18e68f26f1d",
+        "subnet-0d218a58218e10e36"
+      ],
+      "securityGroups": [
+        "sg-0bdbb583c7d22b27a"
+      ],
+      "assignPublicIp": "ENABLED"
+    }
+  }
+}

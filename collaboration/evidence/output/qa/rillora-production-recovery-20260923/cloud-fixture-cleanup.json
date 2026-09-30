@@ -1,0 +1,13 @@
+{
+  "taskArn": "arn:aws:ecs:eu-central-1:133857166372:task/RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm/343492c985e5418995f6a32bba8e30d5",
+  "phase": "cleanup-fixtures",
+  "status": "STOPPED",
+  "exitCode": 0,
+  "imageDigest": "sha256:19b9287d289397801f607f2a6550c9a336d8771c04738116f388db775863fa46",
+  "stoppedReason": "Essential container in task exited",
+  "checkedAt": "2026-09-23T15:12:58.496859+00:00",
+  "messages": [
+    "{\"syntheticFixtureAccountsRemoved\":true,\"remainingPlanners\":0,\"remainingContentKeys\":0,\"remainingContentValues\":0}"
+  ],
+  "taskSucceeded": true
+}

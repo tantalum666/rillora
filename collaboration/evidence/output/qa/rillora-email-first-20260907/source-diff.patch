@@ -1,0 +1,306 @@
+--- before/DESIGN.md
++++ after/DESIGN.md
+@@ -156,6 +156,7 @@
+ 
+ ## Hosted Authentication Composition
+ 
++- Owner-directed order (2026-09-07): email and its Continue action come before the alternative methods. Keep the Google return hint concise; do not move social methods above email to solve method recall. The actual mobile header gap is checked after changing order and copy.
+ - `login.rillora.xyz` uses Auth0 New Universal Login with a Rillora-owned Liquid page shell and widget theme. Auth0 still owns the credential form, passkey, Google, recovery and challenge semantics; the visual work does not create an embedded Rillora password form.
+ - The hosted surface inherits the same graphite canvas, tonal surfaces, limestone ink, eucalyptus structure and clay action grammar as Web and iOS. It never switches to a white authentication microsite, advertises a plan or presents registration as product onboarding.
+ - Wide screens may place a quiet editorial Rillora panel beside one focused authentication task. At `840px` and below the editorial panel disappears; the page shows the text wordmark and the Auth0 task in one scrollable column.
+--- before/README.md
++++ after/README.md
+@@ -2,7 +2,7 @@
+ 
+ 最后更新：2026-09-07（Asia/Hong_Kong）
+ 
+-当前工作：原生Account中转页已删除，三个私有入口直接使用托管登录。Form、已部署Action及绑定已应用并回读，Owner的Google登录、协议确认和返回私有总览已经走通；确认页的排版、未勾选错误及取消也已实测。Google入口前置并增加原登录方式提示；Apple托管入口因配置未完整而暂时关闭，未创建或合并身份。其余整App UI/UX改进保留。当前状态与独立身份门见[交接记录](docs/handoff.md)，实际截图和证据见[托管登录复核](output/qa/rillora-single-hosted-entry-20260906/README.md)。
++当前工作：原生Account中转页已删除，三个私有入口直接使用托管登录。Form、已部署Action及绑定已应用并回读，Owner的Google登录、协议确认和返回私有总览已经走通；确认页的排版、未勾选错误及取消也已实测。邮箱主流程在前、其他方式在后，Google提示缩短；Apple网页登录配置已补齐，等待已准备好的旧登录密钥轮换批准，未创建或合并身份。其余整App UI/UX改进保留。当前状态与独立身份门见[交接记录](docs/handoff.md)，实际截图和证据见[托管登录复核](output/qa/rillora-single-hosted-entry-20260906/README.md)。
+ 
+ 公开法律站的七份正式英文文本已在2026-09-03部署到[legal.rillora.xyz](https://legal.rillora.xyz/terms)，版本为2026-08-27-1。Google Branding链接已保存，Audience仍为External／Testing。应用没有可选跟踪；Sites／Cloudflare的聚合流量与必要安全Cookie按既有合同单独记录。这不开放产品账号、私人数据、市场或收费。
+ 
+--- before/docs/authentication-experience.md
++++ after/docs/authentication-experience.md
+@@ -4,10 +4,29 @@
+ Authority scope: Auth0 identity boundary, direct hosted iOS entry, hosted appearance, prompt-state behavior and evidence requirements  
+ Superseded by: later Owner direction recorded in `docs/decision-log.md`  
+ Do not use for: credential storage, API authorization rules, production identity approval or legal claims  
+-Status: DIRECT HOSTED ENTRY INSTALLED; GOOGLE/REQUIRED CONFIRMATION/CALLBACK OBSERVED; FINAL FORM INITIAL AND UNCHECKED-ERROR UI VERIFIED; APPLE HOSTED BINDING PAUSED  
++Status: EMAIL-FIRST HOSTED LAYOUT VERIFIED; APPLE WEB SERVICES ID CONFIGURED; REPLACEMENT KEY DRAFT AWAITS OWNER APPROVAL; APPLE BINDING PAUSED  
+ Last updated: 2026-09-07
+ 
+-## 2026-09-06 Direct Hosted Entry — Current
++## 2026-09-07 Email-first layout and Apple restoration — Current
++
++The Owner explicitly places email and Continue first, with other methods below.
++The shortened Google reminder remains useful while reducing header height. The
++supported theme and text were applied and read back; 390px/320px and actual iOS
++hosting checks confirm the order, readable wrapping and no horizontal overflow.
++
++Apple's missing web Services ID is now registered as `com.rillora.auth`, grouped
++with `com.rillora.ios`, with the exact login domain and Auth0 callback URL saved
++and reopened. Both Apple and Auth0 still reference the previously exposed login
++key. A replacement draft is prepared with only Rillora Sign in with Apple; no
++new key has been registered and no old key revoked. Owner approval is pending
++for the concrete rotation/storage/Auth0 transmission/revocation plan. Restore
++the Apple binding only after that approved rotation is verified. The StoreKit
++key and unrelated apps are not part of it.
++
++Exact readbacks and images are in
++[the email-first follow-up](../output/qa/rillora-email-first-20260907/README.md).
++
++## 2026-09-06 Direct Hosted Entry — Earlier entry checkpoint
+ 
+ The Owner explicitly chose “删除图一，直接使用托管登录”. The native Account
+ intermediary is removed. Overview, Matters and Profile enter Auth0 Web Auth
+@@ -40,8 +59,8 @@
+ ### Returning-user method clarity and hosted confirmation layout
+ 
+ An Owner attempt exposed a real recovery problem: an existing social identity
+-was being mistaken for a separate email/password account. The hosted theme now
+-places social methods above email, and the login/password descriptions explain
++was being mistaken for a separate email/password account. The Owner subsequently requested email first. The hosted theme now
++places email and Continue above the other methods, and the login/password descriptions explain
+ how a person who registered with Google can return through Google. This is
+ generic guidance shown to everyone; the public form does not disclose which
+ provider is attached to an arbitrary email address.
+--- before/docs/decision-log.md
++++ after/docs/decision-log.md
+@@ -1797,3 +1797,11 @@
+ - The post-QA restart retained the original Keychain item but the API required reauthentication. The default 30 idle minutes is consistent with the elapsed interval; a live override was not verified because the scoped AWS management session was expired. No timeout or remote session was changed.
+ - Overview now distinguishes a new visitor from a rejected stored session. Welcome back / Sign in again replaces the create-map pitch in that recovery state, with public tabs still available and no automatic credential page.
+ - Reset, recovery and authentication rejection are covered by the final 116 / 0 / 1 native suite. Debug runtime and Release compile pass. This change clarifies the existing state; it does not extend authorization or manufacture acceptance.
++
++
++## 2026-09-07 — Email first, other sign-in methods below
++
++- Owner explicitly reverses the earlier agent placement of social methods above email and requests less empty space plus Apple restoration.
++- Email/Continue now precede the alternatives. The Google reminder is shortened, with 390px/320px and actual iOS visual evidence. No native intermediary returns.
++- The missing Apple Services ID and exact web URLs are created and read back. The exposed login key remains active in both Apple and Auth0, so replacement is prepared at the final registration step and the Owner is asked for the required credential-operation approval.
++- A configured Services ID and a draft key are not completed Apple authentication. Apple stays paused until the approved rotation, readback and scoped binding restoration are verified. StoreKit is outside this operation.
+--- before/docs/handoff.md
++++ after/docs/handoff.md
+@@ -4,10 +4,32 @@
+ Authority scope: current phase, evidence boundary, open gates and exact next action  
+ Superseded by: a later update to this file  
+ Do not use for: overriding `docs/product.md`, legal truth or security evidence  
+-Status: DIRECT HOSTED GOOGLE LOGIN AND CALLBACK VERIFIED; NATIVE ACCOUNT REMOVED; FINAL HOSTED CONFIRMATION INITIAL/ERROR/CANCEL UI VERIFIED; APPLE HOSTED BINDING PAUSED
++Status: EMAIL-FIRST LAYOUT AND SPACING VERIFIED; APPLE SERVICES ID CONFIGURED; OWNER APPROVAL REQUIRED FOR PREPARED LOGIN-KEY ROTATION
+ Last updated: 2026-09-07
+ 
+-## 2026-09-06–07 Direct Hosted Login — Current
++## 2026-09-07 Email-first layout and Apple — Current
++
++The latest Owner instruction puts email above the other sign-in methods and
++reduces the large header gap. Theme/text application and actual iOS plus
++390px/320px checks pass. The native intermediary stays removed.
++
++Apple Services ID `com.rillora.auth` is created, enabled for Sign in with Apple,
++linked to `com.rillora.ios`, and its exact login domain/callback URLs are saved
++and reopened. Both consoles still show the exposed old login key. The new draft
++`Rillora Auth0 20260907` is ready at Apple's Register button, with only the
++Rillora Sign in with Apple capability. No new key exists yet.
++
++**Unique next step:** wait for the Owner's explicit answer to the pending key
++rotation question. If approved, create/download the prepared replacement, keep
++it only in the protected ignored Apple directory, run the scoped apply with
++readback, revoke the exact old login key after the replacement is configured,
++then restore only the existing iOS Apple binding and inspect the hosted entry.
++Do not treat completion of the earlier Apple administrator login as approval
++for key creation/transmission/revocation. Do not touch the StoreKit key.
++
++Source and evidence: [email-first follow-up](../output/qa/rillora-email-first-20260907/README.md).
++
++## 2026-09-06–07 Direct Hosted Login — Earlier checkpoint
+ 
+ The Owner explicitly selected removal of the native Account intermediary after
+ comparing it with the hosted password page. This is the latest entry decision.
+--- before/docs/journey/PROJECT_JOURNEY.md
++++ after/docs/journey/PROJECT_JOURNEY.md
+@@ -1763,3 +1763,16 @@
+ 
+ 
+ **Restart follow-up →** Read-only runtime checks confirmed unchanged Keychain metadata after the UI isolation, while the API required a fresh session. The idle-time default fits the elapsed check, but the live override is not claimed. The UI had a real clarity defect: it silently presented the new-user create-map page. Overview now offers Welcome back / Sign in again, with the default visitor journey retained. Current native units remain 116 / 0 / 1; final Debug and Release builds pass. The agent leaves personal reauthentication and the legal checkbox to the Owner and changes no backend session limit.
++
++
++## 2026-09-07 — Restore email-first hierarchy and prepare Apple restoration
++
++**Goal →** Follow the Owner's requested email-first order, tighten the blank area and restore Apple.
++
++**Attempt →** Applied the supported theme bottom-method layout and shorter reminder. Checked actual iOS plus 390px/320px rendering. Inspected Apple: no Services ID existed, so registered and verified the exact Rillora web configuration. Confirmed the old exposed login key remains in both systems, prepared a replacement limited to the Rillora primary App and a secret-safe apply script.
++
++**Judgment change →** The prior social-first placement tried to help a returning Google user but overrode the Owner's preferred hierarchy and created an excessive header gap. The correction preserves a concise reminder with email as the main path. Apple's missing button requires completion of the real web/key configuration, not a visual-only re-enable.
++
++**Result →** Email order and spacing are applied and visually verified. Services ID configuration is saved and read back. No replacement key is created and no old key revoked.
++
++**Unfinished →** Owner approval of the concrete key rotation/storage/Auth0 transmission/revocation plan, then binding restoration and Apple entry verification. The key draft remains at Register; unrelated StoreKit credentials are excluded.
+--- before/docs/product.md
++++ after/docs/product.md
+@@ -153,7 +153,7 @@
+ 
+ ## Current Evidence Boundary
+ 
+-2026-09-06最新认证入口决定：Owner明确选择“删除图一，直接使用托管登录”，取代原生Account中转页。iOS的私有意图直接进入Auth0托管流程，必要协议确认也在托管事务内完成。新客户端必须收到当前同意记录后才交换Rillora会话。Form、已部署Action及绑定已应用并回读，Owner的Google登录、必要确认、code exchange与返回私有总览已观察到；最终确认页的初始、未勾选错误及取消状态另经实际UI检查。登录方式前置并增加Google提示；同邮箱自动合并未启用，Apple托管连接的独立配置门仍保留。其余整App UI/UX改进继续有效。以 `docs/handoff.md` 与 `docs/authentication-experience.md` 的最新状态为准。
++2026-09-06最新认证入口决定：Owner明确选择“删除图一，直接使用托管登录”，取代原生Account中转页。iOS的私有意图直接进入Auth0托管流程，必要协议确认也在托管事务内完成。新客户端必须收到当前同意记录后才交换Rillora会话。Form、已部署Action及绑定已应用并回读，Owner的Google登录、必要确认、code exchange与返回私有总览已观察到；最终确认页的初始、未勾选错误及取消状态另经实际UI检查。邮箱在前、其他方式在后，保留简短Google提示；同邮箱自动合并未启用，Apple托管连接的独立配置门仍保留。其余整App UI/UX改进继续有效。以 `docs/handoff.md` 与 `docs/authentication-experience.md` 的最新状态为准。
+ 
+ 2026-09-06整 App UI/UX 检查点：Owner明确将审阅范围扩大到整个原生App。当前候选采用灰色输入、移除Account底部域名说明、事务直达与待复核优先、可搜索列表、持续可见的字段标签、未保存修改保护、描述清楚的工具入口和分开的预览／导出选择。原生单元测试 `111 / 0 / 1`、常规字号 UI 的 14 项路径及额外 AX5 路径通过。横屏通过显式窗口几何请求与实际宽高断言验证，自动旋转的设备行为仍单独开放。当前实现、证据和唯一下一步见 `docs/handoff.md`，具体视觉规则见 `DESIGN.md`。这不改变共享领域、身份、法律或发布边界。
+ 
+--- before/infra/auth0/README.md
++++ after/infra/auth0/README.md
+@@ -27,7 +27,18 @@
+ The static [`universal-login/preview.html`](universal-login/preview.html) is a
+ local visual-QA fixture only; it is never uploaded and cannot authenticate.
+ 
+-## 2026-09-06 direct hosted iOS entry — current
++## 2026-09-07 email-first layout and Apple preparation — current
++
++Email and Continue now precede the alternative methods, with a shorter Google
++reminder and actual mobile layout checks. Apple web Services ID
++`com.rillora.auth` is registered and configured for the existing Rillora primary
++App, login domain and callback. The old exposed login key remains active; the
++replacement is prepared at the Register step and awaits Owner approval.
++`tools/auth0/apply-apple-hosted.py` handles only the approved secret/configuration
++update with redacted readback and no automatic binding enablement. The StoreKit
++key is excluded. See [the current report](../../output/qa/rillora-email-first-20260907/README.md).
++
++## 2026-09-06 direct hosted iOS entry — earlier entry checkpoint
+ 
+ The Owner explicitly selected removal of the native intermediary and direct
+ hosted login. [The hosted-consent configuration](hosted-consent/README.md)
+--- before/infra/auth0/universal-login/custom-text/login-id.en.json
++++ after/infra/auth0/universal-login/custom-text/login-id.en.json
+@@ -2,7 +2,7 @@
+   "login-id": {
+     "pageTitle": "Sign in | Rillora",
+     "title": "Welcome back",
+-    "description": "Signed up with Google? Use Continue with Google below.",
++    "description": "Signed up with Google? Use Google.",
+     "buttonText": "Continue",
+     "signupActionText": "New to Rillora?",
+     "signupActionLinkText": "Create account"
+--- before/infra/auth0/universal-login/theme.json
++++ after/infra/auth0/universal-login/theme.json
+@@ -72,6 +72,6 @@
+     "logo_height": 32,
+     "logo_position": "none",
+     "logo_url": "",
+-    "social_buttons_layout": "top"
++    "social_buttons_layout": "bottom"
+   }
+ }
+--- before/tools/auth0/apply-apple-hosted.py
++++ after/tools/auth0/apply-apple-hosted.py
+@@ -0,0 +1,113 @@
++#!/usr/bin/env python3
++"""Install an Owner-approved replacement Apple key into the existing connection.
++
++Default mode is read-only. This does not create/revoke Apple keys or enable the
++connection; those remain explicit, separately verified steps of the rotation.
++Private key bytes never enter output or an evidence file.
++"""
++import argparse
++import hmac
++import json
++import os
++from pathlib import Path
++import plistlib
++import re
++import runpy
++import stat
++import subprocess
++
++ROOT = Path(__file__).resolve().parents[2]
++SERVICES_ID = "com.rillora.auth"
++OLD_KEY_ID = "9H3JRBA558"
++APPLE_TEAM = "8L99CFNK24"
++
++
++def main():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--key-id", required=True)
++    parser.add_argument("--key-file", type=Path, required=True)
++    parser.add_argument("--ios-info-plist", type=Path, required=True)
++    parser.add_argument("--output", type=Path, required=True)
++    parser.add_argument("--apply", action="store_true")
++    args = parser.parse_args()
++    if not re.fullmatch(r"[A-Z0-9]{10}", args.key_id) or args.key_id == OLD_KEY_ID:
++        raise RuntimeError("Use the newly issued replacement Key ID.")
++    key_file = args.key_file.resolve()
++    if key_file.parent != (ROOT / ".local-secrets/apple").resolve():
++        raise RuntimeError("Move the approved key into the protected Apple secret directory first.")
++    if key_file.name != f"AuthKey_{args.key_id}.p8":
++        raise RuntimeError("The downloaded filename and Apple Key ID must match.")
++    if stat.S_IMODE(key_file.stat().st_mode) != 0o600 or stat.S_IMODE(key_file.parent.stat().st_mode) != 0o700:
++        raise RuntimeError("The key must be mode 0600 inside a mode 0700 directory.")
++    if key_file.stat().st_uid != os.getuid():
++        raise RuntimeError("The key must belong to the current local user.")
++    ignored = subprocess.run(["git", "check-ignore", "--quiet", str(key_file.relative_to(ROOT))], cwd=ROOT, capture_output=True)
++    if ignored.returncode:
++        raise RuntimeError("The private key path must be excluded from Git before use.")
++    key = key_file.read_bytes()
++    if len(key) > 16384 or not key.startswith(b"-----BEGIN PRIVATE KEY-----"):
++        raise RuntimeError("Expected the Apple PKCS8 private key file.")
++    public = subprocess.run(["openssl", "pkey", "-pubout", "-outform", "DER"], input=key, capture_output=True, timeout=10)
++    if public.returncode:
++        raise RuntimeError("The replacement key could not be parsed; no key bytes were logged.")
++    curve = subprocess.run(["openssl", "pkey", "-pubin", "-inform", "DER", "-text", "-noout"], input=public.stdout, capture_output=True, timeout=10)
++    if curve.returncode or b"prime256v1" not in curve.stdout:
++        raise RuntimeError("Expected the Apple P256 signing key.")
++
++    helpers = runpy.run_path(str(ROOT / "tools/auth0/apply-hosted-consent.py"))
++    api, save = helpers["api"], helpers["save"]
++    info = plistlib.loads(args.ios_info_plist.read_bytes())
++    client_id = info["RilloraAuth0ClientID"]
++    client = api("get", f"clients/{client_id}?fields=name,app_type&include_fields=true")
++    if client.get("name") != "Rillora iOS" or client.get("app_type") != "native":
++        raise RuntimeError("The active tenant is not the intended Rillora iOS target.")
++    connections = api("get", "connections?strategy=apple&fields=id,name,options&include_fields=true")
++    if len(connections) != 1:
++        raise RuntimeError("Expected exactly one existing Apple connection.")
++    connection = connections[0]
++    options = connection["options"]
++    if options.get("team_id") != APPLE_TEAM or options.get("kid") not in {OLD_KEY_ID, args.key_id}:
++        raise RuntimeError("The current Apple team/key differs from the approved rotation target.")
++    if options.get("client_id") not in {None, "", SERVICES_ID}:
++        raise RuntimeError("An unexpected Apple web identifier requires review.")
++    bindings = api("get", f"connections/{connection['id']}/clients?take=1000")
++    if bindings.get("next"):
++        raise RuntimeError("Complete binding readback is required.")
++    if args.output.exists():
++        raise RuntimeError("Use a new evidence directory to preserve prior readbacks.")
++    args.output.mkdir(parents=True)
++    save(args.output / "plan.json", {
++        "connection_id": connection["id"], "old_key_id": options.get("kid"),
++        "new_key_id": args.key_id, "services_id": SERVICES_ID,
++        "scope": "existing Apple connection and Rillora primary App only",
++        "binding_unchanged": True, "secret_values_retained": False,
++    })
++    if not args.apply:
++        print("Replacement key and target checked. No Auth0 change applied.")
++        return
++
++    wanted = dict(options)
++    wanted.update({"kid": args.key_id, "client_id": SERVICES_ID, "app_secret": key.decode().strip()})
++    api("patch", f"connections/{connection['id']}", {"options": wanted})
++    actual = api("get", f"connections/{connection['id']}?fields=options&include_fields=true")["options"]
++    if not hmac.compare_digest(actual.get("app_secret", "").strip(), wanted["app_secret"]):
++        raise RuntimeError("Secret readback did not match; keep Apple disabled.")
++    public_wanted = {k: v for k, v in wanted.items() if k != "app_secret"}
++    if not helpers["subset"](public_wanted, actual):
++        raise RuntimeError("Apple connection readback differed; keep Apple disabled.")
++    if api("get", f"connections/{connection['id']}/clients?take=1000") != bindings:
++        raise RuntimeError("Bindings changed concurrently; review before restoring Apple.")
++    save(args.output / "result.json", {
++        "applied": True, "readback_matches": True, "new_key_id": args.key_id,
++        "services_id": SERVICES_ID, "secret_values_retained": False,
++        "binding_unchanged": True, "old_key_revocation_verified": False,
++        "real_apple_login_verified": False,
++    })
++    print("Replacement Apple configuration read back. Verify old-key revocation before restoring the binding.")
++
++
++if __name__ == "__main__":
++    try:
++        main()
++    except (RuntimeError, OSError, subprocess.TimeoutExpired) as error:
++        raise SystemExit(str(error))

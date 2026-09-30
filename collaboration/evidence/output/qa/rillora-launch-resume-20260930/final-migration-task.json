@@ -1,0 +1,67 @@
+{
+  "tasks": [
+    {
+      "attachments": [
+        {
+          "id": "acd0b684-3f24-41ab-b134-461f27763e92",
+          "type": "ElasticNetworkInterface",
+          "status": "PRECREATED",
+          "details": [
+            {
+              "name": "subnetId",
+              "value": "subnet-0d218a58218e10e36"
+            }
+          ]
+        }
+      ],
+      "attributes": [
+        {
+          "name": "ecs.cpu-architecture",
+          "value": "arm64"
+        }
+      ],
+      "availabilityZone": "eu-central-1b",
+      "clusterArn": "arn:aws:ecs:eu-central-1:133857166372:cluster/RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm",
+      "containers": [
+        {
+          "containerArn": "arn:aws:ecs:eu-central-1:133857166372:container/RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm/9281d7f5703b4f04b78c9f8cb512dd0f/aa3ba95c-8450-43c5-8045-e204f74bfbec",
+          "taskArn": "arn:aws:ecs:eu-central-1:133857166372:task/RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm/9281d7f5703b4f04b78c9f8cb512dd0f",
+          "name": "Maintenance",
+          "image": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1:fa2acc8e507192442b31e868d363bfe66970c33b5447a56077a1dcf00159a3f6",
+          "lastStatus": "PENDING",
+          "networkInterfaces": [],
+          "cpu": "0"
+        }
+      ],
+      "cpu": "256",
+      "createdAt": "2026-09-30T04:17:08.786000+08:00",
+      "desiredStatus": "RUNNING",
+      "enableExecuteCommand": false,
+      "group": "family:RilloraProductionMigrationTask3A96A2B6",
+      "lastStatus": "PROVISIONING",
+      "launchType": "FARGATE",
+      "memory": "512",
+      "overrides": {
+        "containerOverrides": [
+          {
+            "name": "Maintenance"
+          }
+        ],
+        "inferenceAcceleratorOverrides": []
+      },
+      "platformVersion": "1.4.0",
+      "platformFamily": "Linux",
+      "tags": [],
+      "taskArn": "arn:aws:ecs:eu-central-1:133857166372:task/RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm/9281d7f5703b4f04b78c9f8cb512dd0f",
+      "taskDefinitionArn": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionMigrationTask3A96A2B6:8",
+      "version": 1,
+      "ephemeralStorage": {
+        "sizeInGiB": 20
+      },
+      "fargateEphemeralStorage": {
+        "sizeInGiB": 20
+      }
+    }
+  ],
+  "failures": []
+}

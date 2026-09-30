@@ -1,0 +1,357 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project Rillora.xcodeproj -scheme RilloraLayoutMatrix -configuration Debug -destination "platform=iOS Simulator,id=89C3327E-CDDC-46C3-9E99-B05545BB3165" -derivedDataPath /Users/tantalum/Documents/电子遗嘱app/output/qa/ios-layout-matrix-20260814-230952/DerivedData -parallel-testing-enabled NO -resultBundlePath /Users/tantalum/Documents/电子遗嘱app/output/qa/ios-layout-matrix-20260814-230952/se-medium-root.xcresult "RILLORA_API_BASE_URL=http://127.0.0.1:4181/v1" RILLORA_DEV_PLANNER_ID=11111111-1111-4111-8111-111111111111 "-only-testing:RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testRootDestinationsPortrait" "-only-testing:RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testSignedOutExperienceDefersAccountEntry" "-only-testing:RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testSignedOutCommercialDetailsStayDeferred" test-without-building
+
+Build settings from command line:
+    RILLORA_API_BASE_URL = http://127.0.0.1:4181/v1
+    RILLORA_DEV_PLANNER_ID = 11111111-1111-4111-8111-111111111111
+
+Resolve Package Graph
+
+
+Resolved source packages:
+  SimpleKeychain: https://github.com/auth0/SimpleKeychain.git @ 1.3.0
+  JWTDecode: https://github.com/auth0/JWTDecode.swift.git @ 4.0.0
+  Auth0: https://github.com/auth0/Auth0.swift @ 3.0.2
+
+Writing result bundle at path:
+	/Users/tantalum/Documents/电子遗嘱app/output/qa/ios-layout-matrix-20260814-230952/se-medium-root.xcresult
+
+2026-08-14 23:22:34.306486+0800 RilloraLayoutMatrixTests-Runner[75870:17239364] [Default] Running tests...
+2026-08-14 23:22:34.400852+0800 RilloraLayoutMatrixTests-Runner[75870:17239551] [General] Failed to send CA Event for app launch measurements for ca_event_type: 0 event_name: com.apple.app_launch_measurement.FirstFramePresentationMetric
+    t =      nans Interface orientation changed to Portrait
+2026-08-14 23:22:35.122373+0800 RilloraLayoutMatrixTests-Runner[75870:17239712] [General] Failed to send CA Event for app launch measurements for ca_event_type: 1 event_name: com.apple.app_launch_measurement.ExtendedLaunchMetrics
+Test Suite 'Selected tests' started at 2026-08-14 23:22:35.273.
+Test Suite 'RilloraLayoutMatrixTests.xctest' started at 2026-08-14 23:22:35.275.
+Test Suite 'RilloraLayoutMatrixTests' started at 2026-08-14 23:22:35.275.
+Test Case '-[RilloraLayoutMatrixTests.RilloraLayoutMatrixTests testRootDestinationsPortrait]' started.
+    t =     0.00s Start Test at 2026-08-14 23:22:35.276
+    t =     0.06s Set Up
+    t =     0.06s Setting device orientation to Portrait
+    t =     0.08s     Wait for com.apple.springboard to idle
+    t =     0.09s Open com.rillora.ios
+    t =     0.09s     Launch com.rillora.ios
+2026-08-14 23:22:35.716 xcodebuild[75822:17238563] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-08-14 23:22:35.716 xcodebuild[75822:17238563] [MT] IDELaunchParametersSnapshot: no debugger version
+objc[75870]: Class UIAccessibilityLoaderWebShared is implemented in both /Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x10b8f4310) and /Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x10a58c398). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =     1.27s         Setting up automation session
+    t =     2.22s         Wait for com.rillora.ios to idle
+    t =     3.94s Waiting 20.0s for "overview.scroll" Any to exist
+    t =     5.01s     Checking `Expect predicate `existsNoRetry == 1` for object "overview.scroll" Any`
+    t =     5.01s         Checking existence of `"overview.scroll" Any`
+    t =     5.21s Waiting 20.0s for "overview.scroll" Any to exist
+    t =     6.28s     Checking `Expect predicate `existsNoRetry == 1` for object "overview.scroll" Any`
+    t =     6.29s         Checking existence of `"overview.scroll" Any`
+    t =     6.34s Waiting 10.0s for TabBar (First Match) to exist
+    t =     7.43s     Checking `Expect predicate `existsNoRetry == 1` for object TabBar (First Match)`
+    t =     7.43s         Checking existence of `TabBar (First Match)`
+    t =     7.44s Get number of matches for: Descendants matching type Button
+    t =     7.45s Checking existence of `"Overview" Button`
+    t =     7.47s Find the "Overview" Button
+    t =     7.50s Find the "Overview" Button
+    t =     7.52s Find the "Overview" Button
+    t =     7.53s Find the "Overview" Button
+    t =     7.55s Find the Target Application 'com.rillora.ios'
+    t =     7.57s Checking existence of `"Matters" Button`
+    t =     7.59s Find the "Matters" Button
+    t =     7.61s Find the "Matters" Button
+    t =     7.63s Find the "Matters" Button
+    t =     7.64s Find the "Matters" Button
+    t =     7.66s Find the Target Application 'com.rillora.ios'
+    t =     7.68s Checking existence of `"More" Button`
+    t =     7.69s Find the "More" Button
+    t =     7.71s Find the "More" Button
+    t =     7.73s Find the "More" Button
+    t =     7.75s Find the "More" Button
+    t =     7.76s Find the Target Application 'com.rillora.ios'
+    t =     7.78s Find the "Overview" Button
+    t =     7.79s Checking existence of `"overview.scroll" Any`
+    t =     7.85s Checking existence of `"overview.review-next" Any`
+    t =     7.92s Find the "overview.review-next" Any
+    t =     8.00s Find the "overview.review-next" Button
+    t =     8.08s Find the "overview.review-next" Button
+    t =     8.15s Find the "overview.review-next" Button
+    t =     8.22s Find the "overview.review-next" Button
+    t =     8.29s Find the Target Application 'com.rillora.ios'
+    t =     8.31s Find the Target Application 'com.rillora.ios'
+    t =     8.38s Added attachment named 'Rillora-Matrix-SE-3-overview-portrait'
+    t =     8.39s Tap "Matters" Button
+    t =     8.39s     Wait for com.rillora.ios to idle
+    t =     8.39s     Find the "Matters" Button
+    t =     8.40s     Check for interrupting elements affecting "Matters" Button
+    t =     8.44s     Synthesize event
+    t =     8.75s     Wait for com.rillora.ios to idle
+    t =    10.50s Waiting 10.0s for "matters.list" Any to exist
+    t =    11.58s     Checking `Expect predicate `existsNoRetry == 1` for object "matters.list" Any`
+    t =    11.59s         Checking existence of `"matters.list" Any`
+    t =    11.66s Waiting 10.0s for TabBar (First Match) to exist
+    t =    12.73s     Checking `Expect predicate `existsNoRetry == 1` for object TabBar (First Match)`
+    t =    12.73s         Checking existence of `TabBar (First Match)`
+    t =    12.75s Get number of matches for: Descendants matching type Button
+    t =    12.76s Checking existence of `"Overview" Button`
+    t =    12.77s Find the "Overview" Button
+    t =    12.79s Find the "Overview" Button
+    t =    12.81s Find the "Overview" Button
+    t =    12.82s Find the "Overview" Button
+    t =    12.84s Find the Target Application 'com.rillora.ios'
+    t =    12.88s Checking existence of `"Matters" Button`
+    t =    12.90s Find the "Matters" Button
+    t =    12.92s Find the "Matters" Button
+    t =    12.93s Find the "Matters" Button
+    t =    12.95s Find the "Matters" Button
+    t =    12.97s Find the Target Application 'com.rillora.ios'
+    t =    13.00s Checking existence of `"More" Button`
+    t =    13.01s Find the "More" Button
+    t =    13.03s Find the "More" Button
+    t =    13.05s Find the "More" Button
+    t =    13.07s Find the "More" Button
+    t =    13.08s Find the Target Application 'com.rillora.ios'
+    t =    13.11s Find the "Matters" Button
+    t =    13.13s Find the Target Application 'com.rillora.ios'
+    t =    13.22s Added attachment named 'Rillora-Matrix-SE-3-matters-portrait'
+    t =    13.22s Tap "More" Button
+    t =    13.22s     Wait for com.rillora.ios to idle
+    t =    13.22s     Find the "More" Button
+    t =    13.24s     Check for interrupting elements affecting "More" Button
+    t =    13.28s     Synthesize event
+    t =    13.58s     Wait for com.rillora.ios to idle
+    t =    15.10s Waiting 10.0s for "more.list" Any to exist
+    t =    16.18s     Checking `Expect predicate `existsNoRetry == 1` for object "more.list" Any`
+    t =    16.19s         Checking existence of `"more.list" Any`
+    t =    16.25s Waiting 10.0s for TabBar (First Match) to exist
+    t =    17.32s     Checking `Expect predicate `existsNoRetry == 1` for object TabBar (First Match)`
+    t =    17.32s         Checking existence of `TabBar (First Match)`
+    t =    17.34s Get number of matches for: Descendants matching type Button
+    t =    17.36s Checking existence of `"Overview" Button`
+    t =    17.37s Find the "Overview" Button
+    t =    17.40s Find the "Overview" Button
+    t =    17.41s Find the "Overview" Button
+    t =    17.43s Find the "Overview" Button
+    t =    17.44s Find the Target Application 'com.rillora.ios'
+    t =    17.48s Checking existence of `"Matters" Button`
+    t =    17.49s Find the "Matters" Button
+    t =    17.51s Find the "Matters" Button
+    t =    17.53s Find the "Matters" Button
+    t =    17.55s Find the "Matters" Button
+    t =    17.56s Find the Target Application 'com.rillora.ios'
+    t =    17.59s Checking existence of `"More" Button`
+    t =    17.60s Find the "More" Button
+    t =    17.63s Find the "More" Button
+    t =    17.64s Find the "More" Button
+    t =    17.66s Find the "More" Button
+    t =    17.68s Find the Target Application 'com.rillora.ios'
+    t =    17.71s Find the "More" Button
+    t =    17.72s Find the Target Application 'com.rillora.ios'
+    t =    17.80s Added attachment named 'Rillora-Matrix-SE-3-more-portrait'
+    t =    17.81s Tear Down
+Test Case '-[RilloraLayoutMatrixTests.RilloraLayoutMatrixTests testRootDestinationsPortrait]' passed (18.050 seconds).
+Test Case '-[RilloraLayoutMatrixTests.RilloraLayoutMatrixTests testSignedOutCommercialDetailsStayDeferred]' started.
+    t =     0.00s Start Test at 2026-08-14 23:22:53.329
+    t =     0.04s Set Up
+    t =     0.04s Setting device orientation to Portrait
+    t =     0.04s     Wait for com.rillora.ios to idle
+    t =     0.05s Open com.rillora.ios
+    t =     0.05s     Launch com.rillora.ios
+    t =     0.05s         Terminate com.rillora.ios:75925
+2026-08-14 23:22:54.433 xcodebuild[75822:17238563] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-08-14 23:22:54.433 xcodebuild[75822:17238563] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     1.32s         Setting up automation session
+    t =     2.32s         Wait for com.rillora.ios to idle
+    t =     3.95s Waiting 20.0s for "public-overview.scroll" Any to exist
+    t =     5.03s     Checking `Expect predicate `existsNoRetry == 1` for object "public-overview.scroll" Any`
+    t =     5.03s         Checking existence of `"public-overview.scroll" Any`
+    t =     5.17s Checking existence of `"Rillora Family" StaticText`
+    t =     5.22s Checking existence of `"US$8.99 monthly  ·  US$89 yearly" StaticText`
+    t =     5.26s Tap "More" Button
+    t =     5.26s     Wait for com.rillora.ios to idle
+    t =     5.26s     Find the "More" Button
+    t =     5.27s     Check for interrupting elements affecting "More" Button
+    t =     5.31s     Synthesize event
+    t =     5.60s     Wait for com.rillora.ios to idle
+    t =     7.68s Waiting 10.0s for "public-more.list" Any to exist
+    t =     8.77s     Checking `Expect predicate `existsNoRetry == 1` for object "public-more.list" Any`
+    t =     8.78s         Checking existence of `"public-more.list" Any`
+    t =     8.93s Checking existence of `"public-more.plan-access" Any`
+    t =     9.15s Checking existence of `"Rillora Family" StaticText`
+    t =     9.19s Checking existence of `"Planned Rillora Family" StaticText`
+    t =     9.22s Checking existence of `"public-more.account" Any`
+    t =     9.35s Find the Target Application 'com.rillora.ios'
+    t =     9.46s Added attachment named 'Rillora-Matrix-SE-3-signed-out-commercial-details-deferred'
+    t =     9.46s Tear Down
+Test Case '-[RilloraLayoutMatrixTests.RilloraLayoutMatrixTests testSignedOutCommercialDetailsStayDeferred]' passed (9.693 seconds).
+Test Case '-[RilloraLayoutMatrixTests.RilloraLayoutMatrixTests testSignedOutExperienceDefersAccountEntry]' started.
+    t =     0.00s Start Test at 2026-08-14 23:23:03.023
+    t =     0.04s Set Up
+    t =     0.04s Setting device orientation to Portrait
+    t =     0.09s     Wait for com.rillora.ios to idle
+    t =     0.09s Open com.rillora.ios
+    t =     0.09s     Launch com.rillora.ios
+    t =     0.09s         Terminate com.rillora.ios:76041
+2026-08-14 23:23:04.125 xcodebuild[75822:17238563] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-08-14 23:23:04.125 xcodebuild[75822:17238563] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     1.31s         Setting up automation session
+    t =     2.48s         Wait for com.rillora.ios to idle
+    t =     4.11s Waiting 20.0s for "public-overview.scroll" Any to exist
+    t =     5.18s     Checking `Expect predicate `existsNoRetry == 1` for object "public-overview.scroll" Any`
+    t =     5.18s         Checking existence of `"public-overview.scroll" Any`
+    t =     5.32s Waiting 10.0s for TabBar (First Match) to exist
+    t =     6.40s     Checking `Expect predicate `existsNoRetry == 1` for object TabBar (First Match)`
+    t =     6.40s         Checking existence of `TabBar (First Match)`
+    t =     6.41s Get number of matches for: Descendants matching type Button
+    t =     6.43s Checking existence of `"Overview" Button`
+    t =     6.44s Find the "Overview" Button
+    t =     6.47s Find the "Overview" Button
+    t =     6.48s Find the "Overview" Button
+    t =     6.50s Find the "Overview" Button
+    t =     6.51s Find the Target Application 'com.rillora.ios'
+    t =     6.54s Checking existence of `"Matters" Button`
+    t =     6.56s Find the "Matters" Button
+    t =     6.58s Find the "Matters" Button
+    t =     6.59s Find the "Matters" Button
+    t =     6.61s Find the "Matters" Button
+    t =     6.62s Find the Target Application 'com.rillora.ios'
+    t =     6.65s Checking existence of `"More" Button`
+    t =     6.66s Find the "More" Button
+    t =     6.68s Find the "More" Button
+    t =     6.70s Find the "More" Button
+    t =     6.71s Find the "More" Button
+    t =     6.73s Find the Target Application 'com.rillora.ios'
+    t =     6.75s Find the "Overview" Button
+    t =     6.77s Checking existence of `"overview.retry" Any`
+    t =     6.90s Checking existence of `"Sign-in required" StaticText`
+    t =     6.93s Checking existence of `"account-entry.view" Any`
+    t =     7.07s Checking existence of `"Map what matters" StaticText`
+    t =     7.10s Checking existence of `"Your plan is not public content" StaticText`
+    t =     7.14s Checking existence of `"public-overview.hero" Any`
+    t =     7.21s Checking existence of `"public-overview.purpose" Any`
+    t =     7.28s Checking existence of `"public-overview.example" Any`
+    t =     7.36s Find the "public-overview.example" Any
+    t =     7.45s Find the "public-overview.example" Button
+    t =     7.53s Tap "public-overview.example" Button
+    t =     7.53s     Wait for com.rillora.ios to idle
+    t =     7.53s     Find the "public-overview.example" Button
+    t =     7.61s     Check for interrupting elements affecting "public-overview.example" Button
+    t =     7.67s     Synthesize event
+    t =     7.97s     Wait for com.rillora.ios to idle
+    t =     8.04s Waiting 10.0s for "public-example.view" Any to exist
+    t =     9.11s     Checking `Expect predicate `existsNoRetry == 1` for object "public-example.view" Any`
+    t =     9.11s         Checking existence of `"public-example.view" Any`
+    t =     9.19s Checking existence of `"account-entry.view" Any`
+    t =     9.46s Checking existence of `"public-example.use" Any`
+    t =     9.69s Press Target Application 'com.rillora.ios'[0.50, 0.72] for 0.1 seconds, then drag to Target Application 'com.rillora.ios'[0.50, 0.48] with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =     9.69s     Wait for com.rillora.ios to idle
+    t =     9.69s     Find the Target Application 'com.rillora.ios'
+    t =     9.75s     Check for interrupting elements affecting "Rillora" Application
+    t =     9.80s     Synthesize event
+    t =     9.80s         Find the Target Application 'com.rillora.ios'
+    t =     9.85s         Find the Target Application 'com.rillora.ios'
+    t =     9.89s         Find the Target Application 'com.rillora.ios'
+    t =     9.94s         Find the Target Application 'com.rillora.ios'
+    t =     9.99s         Find the Target Application 'com.rillora.ios'
+    t =    10.65s     Wait for com.rillora.ios to idle
+    t =    11.73s Checking existence of `"public-example.use" Any`
+    t =    11.95s Find the "public-example.use" Any
+    t =    12.17s Checking existence of `"public-example.use" Button`
+    t =    12.35s Find the "public-example.use" Button
+    t =    12.55s Tap "public-example.use" Button
+    t =    12.55s     Wait for com.rillora.ios to idle
+    t =    12.60s     Find the "public-example.use" Button
+    t =    12.79s     Check for interrupting elements affecting "public-example.use" Button
+    t =    12.87s     Synthesize event
+    t =    13.16s     Wait for com.rillora.ios to idle
+    t =    13.53s Waiting 10.0s for "account-entry.view" Any to exist
+    t =    14.61s     Checking `Expect predicate `existsNoRetry == 1` for object "account-entry.view" Any`
+    t =    14.61s         Checking existence of `"account-entry.view" Any`
+    t =    14.70s Checking existence of `"account-entry.create" Any`
+    t =    14.79s Find the "account-entry.create" Any
+    t =    14.90s Find the "account-entry.create" Button
+    t =    15.02s Find the "account-entry.create" Button
+    t =    15.12s Find the "account-entry.create" Button
+    t =    15.22s Find the "account-entry.create" Button
+    t =    15.32s Find the Target Application 'com.rillora.ios'
+    t =    15.36s Checking existence of `"account-entry.sign-in" Any`
+    t =    15.46s Find the "account-entry.sign-in" Any
+    t =    15.57s Press Target Application 'com.rillora.ios'[0.50, 0.72] for 0.1 seconds, then drag to Target Application 'com.rillora.ios'[0.50, 0.48] with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    15.57s     Wait for com.rillora.ios to idle
+    t =    15.57s     Find the Target Application 'com.rillora.ios'
+    t =    15.61s     Check for interrupting elements affecting "Rillora" Application
+    t =    15.66s     Synthesize event
+    t =    15.66s         Find the Target Application 'com.rillora.ios'
+    t =    15.70s         Find the Target Application 'com.rillora.ios'
+    t =    15.74s         Find the Target Application 'com.rillora.ios'
+    t =    15.78s         Find the Target Application 'com.rillora.ios'
+    t =    15.82s         Find the Target Application 'com.rillora.ios'
+    t =    16.48s     Wait for com.rillora.ios to idle
+    t =    17.10s Checking existence of `"account-entry.sign-in" Button`
+    t =    17.20s Find the "account-entry.sign-in" Button
+    t =    17.30s Find the "account-entry.sign-in" Button
+    t =    17.41s Find the "account-entry.sign-in" Button
+    t =    17.51s Find the "account-entry.sign-in" Button
+    t =    17.60s Find the "account-entry.sign-in" Button
+    t =    17.70s Find the Target Application 'com.rillora.ios'
+    t =    17.74s Checking existence of `"account-entry.not-now" Any`
+    t =    17.83s Find the "account-entry.not-now" Any
+    t =    17.93s Find the "account-entry.not-now" Button
+    t =    18.03s Find the "account-entry.not-now" Button
+    t =    18.12s Find the "account-entry.not-now" Button
+    t =    18.22s Find the "account-entry.not-now" Button
+    t =    18.31s Find the Target Application 'com.rillora.ios'
+    t =    18.35s Tap "account-entry.not-now" Button
+    t =    18.35s     Wait for com.rillora.ios to idle
+    t =    18.35s     Find the "account-entry.not-now" Button
+    t =    18.45s     Check for interrupting elements affecting "account-entry.not-now" Button
+    t =    18.51s     Synthesize event
+    t =    18.80s     Wait for com.rillora.ios to idle
+    t =    19.17s Waiting 10.0s for "public-overview.scroll" Any to exist
+    t =    20.23s     Checking `Expect predicate `existsNoRetry == 1` for object "public-overview.scroll" Any`
+    t =    20.23s         Checking existence of `"public-overview.scroll" Any`
+    t =    20.30s Checking existence of `"public-overview.start" Any`
+    t =    20.38s Find the "public-overview.start" Any
+    t =    20.47s Find the "public-overview.start" Button
+    t =    20.55s Find the "public-overview.start" Button
+    t =    20.64s Find the "public-overview.start" Button
+    t =    20.72s Find the "public-overview.start" Button
+    t =    20.80s Find the Target Application 'com.rillora.ios'
+    t =    20.83s Tap "Matters" Button
+    t =    20.83s     Wait for com.rillora.ios to idle
+    t =    20.83s     Find the "Matters" Button
+    t =    20.84s     Check for interrupting elements affecting "Matters" Button
+    t =    20.88s     Synthesize event
+    t =    21.17s     Wait for com.rillora.ios to idle
+    t =    22.32s Waiting 10.0s for "public-matters.scroll" Any to exist
+    t =    23.39s     Checking `Expect predicate `existsNoRetry == 1` for object "public-matters.scroll" Any`
+    t =    23.39s         Checking existence of `"public-matters.scroll" Any`
+    t =    23.45s Checking existence of `"matter.add" Any`
+    t =    23.52s Tap "More" Button
+    t =    23.52s     Wait for com.rillora.ios to idle
+    t =    23.52s     Find the "More" Button
+    t =    23.53s     Check for interrupting elements affecting "More" Button
+    t =    23.55s     Synthesize event
+    t =    23.85s     Wait for com.rillora.ios to idle
+    t =    25.34s Waiting 10.0s for "public-more.list" Any to exist
+    t =    26.38s     Checking `Expect predicate `existsNoRetry == 1` for object "public-more.list" Any`
+    t =    26.38s         Checking existence of `"public-more.list" Any`
+    t =    26.44s Checking existence of `"public-more.example" Any`
+    t =    26.57s Checking existence of `"public-more.plan-access" Any`
+    t =    26.71s Checking existence of `"Rillora Family" StaticText`
+    t =    26.75s Checking existence of `"public-more.account" Any`
+    t =    26.87s Find the "public-more.account" Any
+    t =    27.01s Checking existence of `"public-more.account" Button`
+    t =    27.14s Checking existence of `"more.list" Any`
+    t =    27.29s Tear Down
+Test Case '-[RilloraLayoutMatrixTests.RilloraLayoutMatrixTests testSignedOutExperienceDefersAccountEntry]' passed (27.535 seconds).
+Test Suite 'RilloraLayoutMatrixTests' passed at 2026-08-14 23:23:30.558.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 55.279 (55.283) seconds
+Test Suite 'RilloraLayoutMatrixTests.xctest' passed at 2026-08-14 23:23:30.559.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 55.279 (55.285) seconds
+Test Suite 'Selected tests' passed at 2026-08-14 23:23:30.560.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 55.279 (55.287) seconds
+2026-08-14 23:23:30.927 xcodebuild[75822:17238563] [MT] IDETestOperationsObserverDebug: 59.879 elapsed -- Testing started completed.
+2026-08-14 23:23:30.927 xcodebuild[75822:17238563] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-08-14 23:23:30.927 xcodebuild[75822:17238563] [MT] IDETestOperationsObserverDebug: 59.879 sec, +59.879 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/tantalum/Documents/电子遗嘱app/output/qa/ios-layout-matrix-20260814-230952/se-medium-root.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

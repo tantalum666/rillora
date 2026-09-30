@@ -1,0 +1,29 @@
+{
+  "updatedAt": "2026-09-24T17:18:46.258480+00:00",
+  "scope": "Production identity/mail/public website preparation; no customer activation",
+  "focusedSpecs": [
+    "docs/production-identity-mail-20260924.md",
+    "docs/public-product-website-20260924.md"
+  ],
+  "otherUpdatedContracts": [
+    "docs/product.md",
+    "docs/release-readiness.md",
+    "docs/quality-gates.md",
+    "docs/infrastructure-roadmap.md",
+    "infra/aws/README.md",
+    "infra/auth0/README.md",
+    "tools/godaddy/README.md",
+    "config/release-gates.json"
+  ],
+  "decisions": "docs/decision-log.md September24-25, Free/cutover and approved Google credential; CI budget is implementation-only",
+  "handoff": "docs/handoff.md",
+  "history": "docs/handoff-history-20260924-before-identity.md",
+  "journey": "docs/journey/PROJECT_JOURNEY.md September24-25",
+  "sourceReceipt": "source-publication.json",
+  "launchPreflight": "release-preflight.json remains false",
+  "messageAuthorization": "Owner authorized sending; exact prepared reply submitted and visible in the case",
+  "secretsInGitOrQa": false,
+  "mailReadiness": "7targeted tests pass; live configuration14pass and production approval blocked",
+  "replyContinuationCI": "CI9 success on37761e2; see source-after-reply.json",
+  "status": "completed_submission_and_check_tool; provider_approval_pending"
+}

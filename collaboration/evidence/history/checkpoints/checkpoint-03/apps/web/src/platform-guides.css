@@ -1,0 +1,46 @@
+.platform-guide-directory { display: grid; gap: 24px; }
+.platform-guide-search { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border: 1px solid var(--divider); border-radius: 14px; background: var(--surface); color: var(--muted); }
+.platform-guide-search input { width: 100%; min-width: 0; min-height: 28px; padding: 0; border: 0; background: transparent; color: var(--body); font: inherit; }
+.platform-guide-directory .section-label { margin: 0 0 12px; }
+.platform-guide-directory .guide-list { margin-top: 0; }
+.platform-guide-directory .guide-row { width: 100%; }
+.platform-guide-directory .guide-row > svg { flex-shrink: 0; color: var(--sage); }
+.platform-guide-directory .guide-row span { min-width: 0; }
+.platform-guide-directory .guide-row strong, .platform-guide-directory .guide-row small { white-space: normal; overflow-wrap: anywhere; }
+.public-platform-guides { width: min(820px, 100%); margin: 0 auto; padding: 24px 24px 80px; box-sizing: border-box; }
+.public-platform-guides h1 { margin: 14px 0 28px; font: 500 clamp(30px, 5vw, 48px)/1.15 "Source Serif 4", Georgia, serif; color: var(--ink); }
+.public-platform-guides .platform-guide-detail { display: grid; gap: 20px; }
+.public-platform-guides .platform-guide-detail > h1 { margin: 0; }
+.public-platform-guides .text-button { justify-self: start; display: inline-flex; align-items: center; gap: 9px; min-height: 44px; }
+.platform-guide-detail .provider-guide-intro:empty { display: none; }
+.guide-documents { line-height: 1.6; color: var(--body); }
+.guide-documents h3 { color: var(--ink); margin: 0 0 12px; }
+.guide-documents ul { padding-left: 22px; }
+.guide-documents li { padding-block: 5px; }
+.guide-documents > p { padding: 14px 0; border-top: 1px solid var(--divider); color: var(--muted); }
+.public-platform-guides .guide-step-reader { margin: 0; }
+.public-platform-guides .provider-guide-links { margin: 0; }
+.public-platform-guides .secondary-button { text-align: left; justify-content: space-between; line-height: 1.45; height: auto; min-height: 48px; }
+.public-platform-guides .secondary-button svg { flex-shrink: 0; }
+
+.matter-account-guides { margin: 12px 0; padding: 14px; border: 1px solid var(--divider); border-radius: 14px; background: var(--surface); }
+.matter-account-guides .section-label { margin: 0 0 8px; }
+.matter-account-guide + .matter-account-guide { border-top: 1px solid var(--divider); }
+.matter-account-guide > summary { cursor: pointer; display: flex; align-items: center; gap: 12px; min-height: 48px; color: var(--ink); }
+.matter-account-guide > summary svg { flex-shrink: 0; color: var(--sage); }
+.matter-account-guide > summary span { display: grid; gap: 5px; min-width: 0; }
+.matter-account-guide > summary small { color: var(--muted); font-weight: normal; }
+.matter-account-guide > summary::after { content: "+"; margin-left: auto; }
+.matter-account-guide[open] > summary::after { content: "−"; }
+.matter-account-guide-reader { padding-top: 16px; }
+.matter-account-guide-reader .guide-step-reader { margin: 20px 0; }
+.matter-account-guide-reader .provider-guide-links .secondary-button { height: auto; min-height: 48px; white-space: normal; }
+.guide-source-links ul { list-style: none; padding: 0; display: grid; gap: 16px; }
+.guide-source-links li { display: grid; gap: 7px; }
+.guide-source-links a { overflow-wrap: anywhere; color: var(--sage); }
+.platform-guide-directory .provider-mark, .matter-account-guide .provider-mark { flex-shrink: 0; background: var(--surface); }
+/* Official Dropbox artwork contains its own clear space. */
+.provider-mark.is-dropbox img { width: 38px; height: 38px; }
+.provider-mark.is-facebook img { width: 24px; height: 24px; }
+.provider-mark.is-coinbase img { width: 24px; height: 24px; }
+.guide-credits-link { justify-self: start; display: inline-flex; align-items: center; min-height: 44px; color: var(--muted); font-size: 14px; text-underline-offset: 3px; }

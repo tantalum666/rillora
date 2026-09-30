@@ -1,0 +1,57 @@
+
+ RUN  v4.1.11 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/recent-authentication.integration.test.ts (8 tests | 2 failed) 1061ms
+     × browser reauthentication is CSRF-protected, bound to the original account and session, and requires a fresh transaction 42ms
+     × a different browser identity cannot change the original session or provision a new planner 19ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/recent-authentication.integration.test.ts > Recent identity authentication without replaying the sensitive action > browser reauthentication is CSRF-protected, bound to the original account and session, and requires a fresh transaction
+Error: expected 200 "OK", got 409 "Conflict"
+ ❯ tests/recent-authentication.integration.test.ts:107:157
+    105|     expect((await status().expect(200)).body.completed).toBe(true);
+    106|     await request(f.app).get(`/auth/callback?state=[REDACTED_CAPABILITY]&code=[REDACTED_CAPABILITY]
+    107|     await request(f.app).post('/v1/account/map/export').set('Cookie',s…
+       |                                                                                                                                                             ^
+    108|   });
+    109|   it('a different browser identity cannot change the original session …
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/recent-authentication.integration.test.ts > Recent identity authentication without replaying the sensitive action > a different browser identity cannot change the original session or provision a new planner
+Error: expected 403 "Forbidden", got 409 "Conflict"
+ ❯ tests/recent-authentication.integration.test.ts:117:157
+    115|     await request(f.app).get(`/auth/callback?state=[REDACTED_CAPABILITY]&code=[REDACTED_CAPABILITY]
+    116|     expect((await pool.query('select count(*)::int as n from app.ident…
+    117|     await request(f.app).post('/v1/account/map/export').set('Cookie',s…
+       |                                                                                                                                                             ^
+    118|   });
+    119|   it('scope comparison permits reductions/removal and catches addition…
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  2 failed | 10 passed (12)
+   Start at  13:19:33
+   Duration  2.53s (transform 352ms, setup 109ms, import 809ms, tests 1.21s, environment 0ms)
+

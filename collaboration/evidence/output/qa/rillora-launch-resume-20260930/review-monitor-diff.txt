@@ -1,0 +1,142 @@
+Stack RilloraOperations
+IAM Statement Changes
+┌───┬────────────────────────────────────────────────┬────────┬─────────────────────────────────┬──────────────────────────────────┬───────────────────────────────────────────────────────┐
+│   │ Resource                                       │ Effect │ Action                          │ Principal                        │ Condition                                             │
+├───┼────────────────────────────────────────────────┼────────┼─────────────────────────────────┼──────────────────────────────────┼───────────────────────────────────────────────────────┤
+│ + │ ${Alerts}                                      │ Allow  │ sns:Publish                     │ Service:cloudwatch.amazonaws.com │ "StringEquals": {                                     │
+│   │                                                │        │                                 │                                  │   "aws:SourceAccount": "133857166372"                 │
+│   │                                                │        │                                 │                                  │ },                                                    │
+│   │                                                │        │                                 │                                  │ "ArnEquals": {                                        │
+│   │                                                │        │                                 │                                  │   "aws:SourceArn": [                                  │
+│   │                                                │        │                                 │                                  │     "${Unhealthy.Arn}",                               │
+│   │                                                │        │                                 │                                  │     "${MissingHeartbeat.Arn}",                        │
+│   │                                                │        │                                 │                                  │     "${InvocationErrors.Arn}",                        │
+│   │                                                │        │                                 │                                  │     "${DeadLetters.Arn}",                             │
+│   │                                                │        │                                 │                                  │     "${MailBounce.Arn}",                              │
+│   │                                                │        │                                 │                                  │     "${MailComplaint.Arn}",                           │
+│   │                                                │        │                                 │                                  │     "${MailRejected.Arn}",                            │
+│   │                                                │        │                                 │                                  │     "${MailDelayed.Arn}",                             │
+│   │                                                │        │                                 │                                  │     "${AppleReviewDeliveryFailed.Arn}",               │
+│   │                                                │        │                                 │                                  │     "${AppleReviewDeliveryWorkerErrors.Arn}",         │
+│   │                                                │        │                                 │                                  │     "${AppleReviewDeliveryOldestPendingSeconds.Arn}", │
+│   │                                                │        │                                 │                                  │     "${AppleReviewDeliveryHeartbeat.Arn}"             │
+│   │                                                │        │                                 │                                  │   ]                                                   │
+│   │                                                │        │                                 │                                  │ }                                                     │
+│ - │ ${Alerts}                                      │ Allow  │ sns:Publish                     │ Service:cloudwatch.amazonaws.com │ "StringEquals": {                                     │
+│   │                                                │        │                                 │                                  │   "aws:SourceAccount": "133857166372"                 │
+│   │                                                │        │                                 │                                  │ },                                                    │
+│   │                                                │        │                                 │                                  │ "ArnEquals": {                                        │
+│   │                                                │        │                                 │                                  │   "aws:SourceArn": [                                  │
+│   │                                                │        │                                 │                                  │     "${Unhealthy.Arn}",                               │
+│   │                                                │        │                                 │                                  │     "${MissingHeartbeat.Arn}",                        │
+│   │                                                │        │                                 │                                  │     "${InvocationErrors.Arn}",                        │
+│   │                                                │        │                                 │                                  │     "${DeadLetters.Arn}",                             │
+│   │                                                │        │                                 │                                  │     "${MailBounce.Arn}",                              │
+│   │                                                │        │                                 │                                  │     "${MailComplaint.Arn}",                           │
+│   │                                                │        │                                 │                                  │     "${MailRejected.Arn}",                            │
+│   │                                                │        │                                 │                                  │     "${MailDelayed.Arn}"                              │
+│   │                                                │        │                                 │                                  │   ]                                                   │
+│   │                                                │        │                                 │                                  │ }                                                     │
+├───┼────────────────────────────────────────────────┼────────┼─────────────────────────────────┼──────────────────────────────────┼───────────────────────────────────────────────────────┤
+│ + │ ${AppleReviewDeliveryFailed.Arn}               │ Allow  │ cloudwatch:DescribeAlarmHistory │ AWS:rillora-staging-operator     │                                                       │
+│   │ ${AppleReviewDeliveryHeartbeat.Arn}            │        │ cloudwatch:DescribeAlarms       │                                  │                                                       │
+│   │ ${AppleReviewDeliveryOldestPendingSeconds.Arn} │        │ cloudwatch:SetAlarmState        │                                  │                                                       │
+│   │ ${AppleReviewDeliveryWorkerErrors.Arn}         │        │                                 │                                  │                                                       │
+│   │ ${DeadLetters.Arn}                             │        │                                 │                                  │                                                       │
+│   │ ${InvocationErrors.Arn}                        │        │                                 │                                  │                                                       │
+│   │ ${MailBounce.Arn}                              │        │                                 │                                  │                                                       │
+│   │ ${MailComplaint.Arn}                           │        │                                 │                                  │                                                       │
+│   │ ${MailDelayed.Arn}                             │        │                                 │                                  │                                                       │
+│   │ ${MailRejected.Arn}                            │        │                                 │                                  │                                                       │
+│   │ ${MissingHeartbeat.Arn}                        │        │                                 │                                  │                                                       │
+│   │ ${Unhealthy.Arn}                               │        │                                 │                                  │                                                       │
+├───┼────────────────────────────────────────────────┼────────┼─────────────────────────────────┼──────────────────────────────────┼───────────────────────────────────────────────────────┤
+│ - │ ${DeadLetters.Arn}                             │ Allow  │ cloudwatch:DescribeAlarmHistory │ AWS:rillora-staging-operator     │                                                       │
+│   │ ${InvocationErrors.Arn}                        │        │ cloudwatch:DescribeAlarms       │                                  │                                                       │
+│   │ ${MailBounce.Arn}                              │        │ cloudwatch:SetAlarmState        │                                  │                                                       │
+│   │ ${MailComplaint.Arn}                           │        │                                 │                                  │                                                       │
+│   │ ${MailDelayed.Arn}                             │        │                                 │                                  │                                                       │
+│   │ ${MailRejected.Arn}                            │        │                                 │                                  │                                                       │
+│   │ ${MissingHeartbeat.Arn}                        │        │                                 │                                  │                                                       │
+│   │ ${Unhealthy.Arn}                               │        │                                 │                                  │                                                       │
+└───┴────────────────────────────────────────────────┴────────┴─────────────────────────────────┴──────────────────────────────────┴───────────────────────────────────────────────────────┘
+(NOTE: There may be security-related changes not in this list. See https://github.com/aws/aws-cdk/issues/1299)
+
+Resources
+[+] AWS::CloudWatch::Alarm AppleReviewDeliveryFailed AppleReviewDeliveryFailedD36C6BF7
+[+] AWS::CloudWatch::Alarm AppleReviewDeliveryWorkerErrors AppleReviewDeliveryWorkerErrors6302C0ED
+[+] AWS::CloudWatch::Alarm AppleReviewDeliveryOldestPendingSeconds AppleReviewDeliveryOldestPendingSeconds172CEFD0
+[+] AWS::CloudWatch::Alarm AppleReviewDeliveryHeartbeat AppleReviewDeliveryHeartbeatD28FFF4B
+[~] AWS::SNS::TopicPolicy Alerts/Policy AlertsPolicy425C338D
+ └─ [~] PolicyDocument
+     └─ [~] .Statement:
+         └─ @@ -68,6 +68,30 @@
+            [ ]         "MailDelayedFF5B84EF",
+            [ ]         "Arn"
+            [ ]       ]
+            [+]     },
+            [+]     {
+            [+]       "Fn::GetAtt": [
+            [+]         "AppleReviewDeliveryFailedD36C6BF7",
+            [+]         "Arn"
+            [+]       ]
+            [+]     },
+            [+]     {
+            [+]       "Fn::GetAtt": [
+            [+]         "AppleReviewDeliveryWorkerErrors6302C0ED",
+            [+]         "Arn"
+            [+]       ]
+            [+]     },
+            [+]     {
+            [+]       "Fn::GetAtt": [
+            [+]         "AppleReviewDeliveryOldestPendingSeconds172CEFD0",
+            [+]         "Arn"
+            [+]       ]
+            [+]     },
+            [+]     {
+            [+]       "Fn::GetAtt": [
+            [+]         "AppleReviewDeliveryHeartbeatD28FFF4B",
+            [+]         "Arn"
+            [+]       ]
+            [ ]     }
+            [ ]   ]
+            [ ] }
+[~] AWS::IAM::Policy OperationsRunbook OperationsRunbook277D4959
+ └─ [~] PolicyDocument
+     └─ [~] .Statement:
+         └─ @@ -107,6 +107,30 @@
+            [ ]         "MailDelayedFF5B84EF",
+            [ ]         "Arn"
+            [ ]       ]
+            [+]     },
+            [+]     {
+            [+]       "Fn::GetAtt": [
+            [+]         "AppleReviewDeliveryFailedD36C6BF7",
+            [+]         "Arn"
+            [+]       ]
+            [+]     },
+            [+]     {
+            [+]       "Fn::GetAtt": [
+            [+]         "AppleReviewDeliveryWorkerErrors6302C0ED",
+            [+]         "Arn"
+            [+]       ]
+            [+]     },
+            [+]     {
+            [+]       "Fn::GetAtt": [
+            [+]         "AppleReviewDeliveryOldestPendingSeconds172CEFD0",
+            [+]         "Arn"
+            [+]       ]
+            [+]     },
+            [+]     {
+            [+]       "Fn::GetAtt": [
+            [+]         "AppleReviewDeliveryHeartbeatD28FFF4B",
+            [+]         "Arn"
+            [+]       ]
+            [ ]     }
+            [ ]   ]
+            [ ] },
+
+
+
+✨  Number of stacks with differences: 1
+
