@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-09-30 (Asia/Hong_Kong)
+Last updated: 2026-10-01 (Asia/Shanghai)
 
 新条目使用以下模板：
 
@@ -2892,3 +2892,25 @@ unreachable release remains a different closed workflow. See [sharing contract](
 - 旧Web与法律站Git历史经扫描后使用独立archive tags保留；本地内部检查点只提取项目源码，不发布夹带缓存／秘密的完整内部对象。
 - 连续写入的旧QA日志须先冻结再归档；保留原服务和原件。归档清单、原始对象、密文、远端对象与CI分别验证；保存成功不等于修复部署或正式上线。[完整合同](source-control.md)。
 - 最后对受保护目录做元数据核对，识别出305个旧客户端构建文件／包。它们是非凭据工作产物，按精确路径白名单补充密文保存；不是导出凭据库，也不生成可读个人法律身份副本。最终范围见snapshot.json。
+
+## 2026-10-01 — Owner adopts Resend; SES-first direction superseded
+
+- Status: LOCKED provider choice; actual acceptance boundaries retained.
+- Owner explicitly says to use Resend after registering and installing its plugin,
+  then confirms local CLI credentials are configured. This supersedes September28
+  SES-first/reconsideration priority without migrating Auth0 or purchasing a plan.
+- Reuse GoDaddy's installed official CLI and its refreshable grant; add exactly the
+  four domain records while preserving root Zoho and every prior record. Retain old
+  SES resources/case without duplicate applications or support messages.
+- Use the retained tenant's native Resend provider and a dedicated domain-restricted
+  sending key, protected in Keychain/provider storage. Keep operator credentials
+  separate; enforce TLS and leave tracking/receiving disabled. Provider configuration
+  is tenant-wide and therefore also changes Preview's delivery transport.
+- Two official simulator sends establish direct and Auth0-generated mail transport.
+  Only a uniquely tagged temporary identity is removed; no link is followed or real
+  user marked verified. Free limits and disabled pay-as-you-go are read back; three
+  additional official failure simulations verify bounced/complained/suppressed event
+  visibility. Real-user acceptance and launch gates remain open. Preserve US message/log processing facts and current legal
+  versions; no assertion of final legal compliance is made.
+- No runtime UI, pricing, real data, FanPass, public customer access or Apple release
+  state changes. [Current sender contract](transaction-mail-resend-20261001.md).

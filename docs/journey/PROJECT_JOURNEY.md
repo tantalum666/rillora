@@ -1,6 +1,6 @@
 # Digital Legacy Ongoing Project Journey
 
-Last updated: 2026-09-30 (Asia/Hong_Kong)
+Last updated: 2026-10-01 (Asia/Shanghai)
 
 ## 记录范围
 
@@ -2970,3 +2970,13 @@ Owner先确认小型企业资格事实、再当场确认最终声明，申请已
 ## 2026-09-30 — 全量Git远端与恢复核验完成
 
 目标：让Dot接手时能实际取得所有纳入范围的Rillora工作。尝试：上传7个age/Git LFS归档与两个旧历史标签，另建全新远端克隆，重新下载3,363,731,990字节，解密全部20,108对象并恢复一个IPA；检查本次CI42。判断变化：大包传输读取位置多次回退，单并发／较长活动超时的本次重试复用已接受的5个对象；下载完成不等于工作树已展开，验证先拒绝7个残留指针，再以clone局部LFS初始化及checkout完成恢复，指引已补齐。结果：46,768路径全部对应；恢复IPA与原候选SHA一致，两个历史标签原提交不变，CI42通过，无遗漏的合格路径。CLI的Actions权限不足且连接器断开时，使用现有Chrome登录读回成功，未要求Owner重新登录。未完成项仍是原发布门；没有新云部署、Apple上传、真实交易或重复申请。[最终保存回执](../../collaboration/verification/closeout.json)。
+
+## 2026-10-01 — GoDaddy复用与Resend实际接入Auth0
+
+- **目标**：Owner已选择Resend，要求接好GoDaddy CLI与新的邮件服务；沿用已有授权和完整阅读，保留产品、真实数据及FanPass。
+- **尝试**：复用gddy的自动刷新和Rillora域名限定入口，预览后新增四条准确记录；安装官方Resend CLI，Owner通过本机隐藏输入完成现有密钥配置。读取域名与Auth0状态，原管理会话按原92scope续期；新建限定域名发信密钥并通过受保护stdin装入原生provider。
+- **判断变化**：插件安装不等于CLI已认证；过期access token也不等于GoDaddy需要本人重登。Resend域名GET不返回TLS，改用已保存的Configuration页面读回；Auth0 provider GET默认不返回From，改用显式字段。旧`/help`路径实际404，未写入配置，改用现有且HTTP200的`/support`。旧SES-first下一步已被Owner明确选用Resend取代。
+- **结果**：原30条DNS全部保留，新增4条；16项权威／公共DNS和4项DoH检查通过。域名Verified、TLS Enforced、追踪和接收关闭；Auth0启用Resend且From读回一致。直接发信与Auth0验证邮件均到达官方模拟地址，实际事件delivered；精确标记的临时身份已删除并回读不存在，未访问验证链接。账户／安全邮件的美国处理事实已记入当前规范。
+- **未完成项**：模拟投递不等于真实邮箱／验证／重置／邀请成功，也不证明真实地址抑制或外部告警送达。三个AWS profile当次实际确认过期，修复候选仍未云端发布。真实Apple、法律确认、经营／设备暂缓及最终发布门保持；不重复申请、产品测试或部署。[当前合同](../transaction-mail-resend-20261001.md)与[证据](../../collaboration/verification/resend-20261001/README.md)。
+
+同轮补齐：实际Usage页读回Free每日100／每月3,000、3域名、共享10req/s，付费超量关闭；仅使用官方地址的退信／投诉／抑制三项新增模拟均返回对应事件，API可观察。没有为限额验收发送大量邮件，也没有新增真实身份、营销或收费服务。

@@ -1,6 +1,6 @@
 # Source control, complete work preservation and release rollback
 
-Last updated: 2026-09-30 (Asia/Shanghai)
+Last updated: 2026-10-01 (Asia/Shanghai)
 
 The private remote is [tantalum666/rillora](https://github.com/tantalum666/rillora).
 Owner explicitly requested **all Rillora work** for Git and Dot collaboration on
@@ -11,6 +11,15 @@ a fresh remote clone; all 7 downloaded archives were decrypted and verified.
 [CI 42](https://github.com/tantalum666/rillora/actions/runs/36737542600) passed for
 `4befe456763d38e7f3385e52a5165bfe698e6b0a`; [receipts](../collaboration/verification/README.md)
 record exact scope. The final receipts commit only changes documentation/metadata.
+
+October1's [Resend configuration evidence](../collaboration/verification/resend-20261001/README.md)
+is an additive follow-up. Its newly generated receipts contain public configuration,
+synthetic simulator identifiers and redacted session outcomes, with no secret token,
+email ticket/body or real recipient. Reviewed originals are copied byte-for-byte as
+readable evidence with an explicit coverage map; the one-off probe is reference text.
+Reproducible vendor OpenAPI/help caches and credentials are explicitly excluded.
+This avoids recapturing the immutable September30 archives or the generated remote
+clone, while preserving all new eligible work and refreshing the readable manifest.
 
 ## What belongs in the complete snapshot
 

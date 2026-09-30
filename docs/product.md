@@ -5,9 +5,13 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-09-30 (Asia/Hong_Kong)
+Last updated: 2026-10-01 (Asia/Shanghai)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-10-01 Owner采用Resend事务邮件
+
+Owner明确“现在用Resend”，已注册账户、安装插件并完成本机CLI认证。此决定取代September28的SES优先方向；保留Auth0身份系统与GoDaddy域名，接入Resend原生发信provider。域名、受限密钥、TLS／关闭追踪及两项官方模拟收件传输已验证，真实收件／验证／重置／邀请继续单独验收；不以邮件接通冒充正式上线。[当前Resend合同](transaction-mail-resend-20261001.md)。
 
 ## 2026-09-30 全量 Git 与 Dot 协作保存
 
@@ -325,6 +329,7 @@ Owner于2026-09-09明确：“本项目全部默认授权与确认”。当前�
 
 | Task | Read next | Role |
 | --- | --- | --- |
+| Resend事务邮件、GoDaddy DNS、Auth0发信或实际收件验收 | `docs/transaction-mail-resend-20261001.md` → `docs/production-identity-mail-20260924.md` | 当前发送服务、凭据边界和邮件证据；SES旧工单不再阻塞Resend |
 | Git完整保存、Dot协作、旧证据或发布候选检索 | `docs/source-control.md` → `collaboration/README.md` | 全量文件清单、脱敏证据、加密原件与历史；不是部署或数据库恢复证明 |
 | 正式上线、剩余工作、发布预检与排期 | `docs/release-readiness.md` | 当前首发范围、缺口和验收；不等于发布批准 |
 | P1可靠性／导出范围／草稿／自助退出修复 | `docs/p1-reliability-repair-20260915.md` | 已部署P1基线及验收；新一轮发布状态见handoff |

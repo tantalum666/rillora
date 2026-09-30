@@ -5,6 +5,24 @@ appearance. Auth0 continues to own credentials, password recovery, passkey,
 social-login and challenge handling. Rillora owns the surrounding visual shell,
 theme tokens and approved prompt copy.
 
+## October1 native Resend provider — current
+
+The retained tenant now has the native `resend` provider enabled, From
+`Rillora <account@notify.rillora.xyz>`, using a dedicated `sending_access` key
+restricted to the verified `notify.rillora.xyz` domain. TLS is enforced; tracking
+and receiving are disabled. Existing `gpt` operator credentials are not installed
+in Auth0. Missing public support metadata now uses `support@rillora.xyz` and the
+verified `https://www.rillora.xyz/support` page. No custom template bodies or hosted
+UI changes were made. This tenant-wide provider also handles current Preview mail.
+
+The original administrator session renewed with the same 92 scopes. Direct sender
+and actual Auth0-generated verification transport passed using official Resend
+simulator recipients only; the single tagged temporary identity is confirmed absent.
+Real verification/reset/invitation continuation and reviewed customer cutover remain
+open. Earlier no-provider/SES-first statements below describe their dated state.
+[Configuration and evidence](../../docs/transaction-mail-resend-20261001.md) ·
+[CLI read-only operations](../../tools/resend/README.md).
+
 ## September30 independent production service identities
 
 The restricted production review Action precedes enabling the two production clients

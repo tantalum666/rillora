@@ -1,0 +1,33 @@
+{
+  "checks": [
+    {
+      "name": "resend._domainkey.notify",
+      "type": "TXT",
+      "resolver": "Google DNS over HTTPS",
+      "status": 0,
+      "matches": true
+    },
+    {
+      "name": "send.notify",
+      "type": "MX",
+      "resolver": "Google DNS over HTTPS",
+      "status": 0,
+      "matches": true
+    },
+    {
+      "name": "send.notify",
+      "type": "TXT",
+      "resolver": "Google DNS over HTTPS",
+      "status": 0,
+      "matches": true
+    },
+    {
+      "name": "rsend.notify",
+      "type": "CNAME",
+      "resolver": "Google DNS over HTTPS",
+      "status": 0,
+      "matches": true
+    }
+  ],
+  "passed": true
+}

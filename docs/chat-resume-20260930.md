@@ -2,17 +2,21 @@
 
 Role: cross-chat checkpoint and artifact/tool routing, not a second product authority
 Status: SAVED FOR CONTINUATION; LAUNCH OBJECTIVE INCOMPLETE
-Last updated: 2026-09-30 (Asia/Hong_Kong)
+Last updated: 2026-10-01 (Asia/Shanghai)
 
 Owner最新要求的全量Git保存已完成，7个LFS归档已从远端下载、解密并逐对象核验，CI42通过。Dot协作入口是
 [完整协作包](../collaboration/README.md)、[保存合同](source-control.md)和[当前交接](handoff.md)。
 下方按日期保留旧交接事实，不从历史段落生成第二个活动“下一步”。
 
-## September30 Dot review修复 — 最新恢复入口
+## October1 Resend已接通 — 最新恢复入口
+
+Owner已明确采用Resend并完成本机CLI认证。域名、DNS、限定域名发信密钥和Auth0原生provider已配置；两项官方模拟收件传输通过，临时身份已清理。旧SES优先及等待批准的发信路线被取代；不重复登录、发信或申请。真实用户验证／重置／邀请仍分开验收。[当前邮件合同](transaction-mail-resend-20261001.md)。AWS三个profile刚实际确认过期，原修复部署仍待会话恢复；唯一下一步见[handoff](handoff.md)。
+
+## September30 Dot review修复 — 保留的源码检查点
 
 Owner后续提供13项Dot代码发现并质疑质量；[修复与验证](code-review-repair-20260930.md)已完成本地验收，源码38307b0d0的CI41通过。修复尚未云端部署，已有AWS会话实际过期。不能把下方旧“仅等待Owner”结论继续当作当前状态。唯一下一步以[当前交接](handoff.md)为准。
 
-## September30后续执行 — 当前恢复入口
+## September30后续执行 — 保留的部署检查点
 
 同日后续Owner要求完成所有不需要本人参与／确认、也不依赖AWS回复的发布前工作。
 本轮完整阅读为165文件／29,003行，后续工程见[当前发布合同](release-engineering-20260930.md)

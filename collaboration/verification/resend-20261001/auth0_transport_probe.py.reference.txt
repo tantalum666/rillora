@@ -1,0 +1,61 @@
+from pathlib import Path
+import datetime, hashlib, json, secrets, subprocess, time, urllib.parse, uuid
+Q=Path('output/qa/rillora-resend-20261001')
+TENANT='rillora-dev.eu.auth0.com'
+STATE=Q/'auth0-transport-probe-state.json'
+if STATE.exists():raise SystemExit('Existing probe state retained; reconcile instead of creating another identity')
+for trigger in ['pre-user-registration','post-user-registration']:
+ assert json.loads((Q/(trigger+'-bindings.json')).read_text()).get('bindings')==[]
+marker=uuid.uuid4().hex
+address='delivered+rillora-auth0-20261001-'+marker[:10]+'@resend.dev'
+state={'marker':marker,'recipient':address,'tenant':TENANT,'purpose':'Auth0 to Resend verification-template transport only','officialSimulator':True,'realUser':False,'rilloraApiCalls':0,'startedAt':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+def save():STATE.write_text(json.dumps(state,indent=2)+'\n')
+def auth(method,path,payload=None,allow_missing=False):
+ args=['auth0','api',method,path,'--tenant',TENANT,'--no-input']
+ if method=='delete':args+=['--force']
+ r=subprocess.run(args,input=json.dumps(payload) if payload is not None else None,capture_output=True,text=True)
+ if r.returncode:
+  if allow_missing and '404' in r.stdout+r.stderr:return None
+  raise RuntimeError('Auth0 request failed for '+method+' '+path.split('?')[0])
+ return json.loads(r.stdout) if r.stdout.strip() else {}
+def resend(args):
+ r=subprocess.run(['resend',*args,'--profile','rillora','--quiet'],capture_output=True,text=True)
+ if r.returncode:raise RuntimeError('Resend transport inspection failed')
+ return json.loads(r.stdout)
+save();user_id=None
+try:
+ existing=auth('get','users-by-email?email='+urllib.parse.quote(address,safe=''))
+ assert existing==[], 'Probe address already exists; no overwrite'
+ created=auth('post','users',{'connection':'Username-Password-Authentication','email':address,'email_verified':False,'verify_email':False,'password':secrets.token_urlsafe(32)+'Aa1!','name':'Rillora transport probe','app_metadata':{'rillora_mail_transport_probe':marker}})
+ user_id=created['user_id'];state['userId']=user_id;save()
+ job=auth('post','jobs/verification-email',{'user_id':user_id})
+ state['jobId']=job['id'];save();print('Submitted one synthetic Auth0 verification email.',flush=True)
+ delivered=None
+ for attempt in range(12):
+  listing=resend(['emails','list','--limit','20'])
+  items=listing.get('data',[]) if isinstance(listing,dict) else listing
+  matches=[m for m in items if address in (m.get('to',[]) if isinstance(m.get('to',[]),list) else [m.get('to')])]
+  if matches:
+   item=resend(['emails','get',matches[0]['id']])
+   if item.get('last_event')=='delivered':delivered=item;break
+  time.sleep(5)
+ if delivered is None:raise RuntimeError('No delivered simulator event observed within this bounded check')
+ detail=auth('get','users/'+urllib.parse.quote(user_id,safe='')+'?fields=user_id,email,email_verified,app_metadata&include_fields=true')
+ assert detail['email']==address and detail['app_metadata'].get('rillora_mail_transport_probe')==marker
+ assert detail['email_verified'] is False
+ state.update(result='simulated_delivery_observed',resendEmail={k:delivered.get(k) for k in ['id','from','to','subject','last_event','created_at']},auth0Job=auth('get','jobs/'+state['jobId']),emailVerifiedRemainsFalse=True,verificationLinkFollowed=False,bodySha256=hashlib.sha256((delivered.get('html') or delivered.get('text') or '').encode()).hexdigest())
+ save();print('Auth0-generated email reached the Resend official delivery simulator.',flush=True)
+finally:
+ if user_id:
+  path='users/'+urllib.parse.quote(user_id,safe='')
+  detail=auth('get',path+'?fields=user_id,email,app_metadata&include_fields=true',allow_missing=True)
+  if detail is not None:
+   if detail.get('email')!=address or detail.get('app_metadata',{}).get('rillora_mail_transport_probe')!=marker:
+    state['cleanup']='identity mismatch; not deleted';save();raise RuntimeError('Probe cleanup guard refused unexpected identity')
+   auth('delete',path)
+  absent=auth('get',path,allow_missing=True) is None
+  state['cleanup']={'exactUserAbsent':absent,'onlyNewTaggedIdentityTargeted':True}
+  save()
+  if not absent:raise RuntimeError('Probe cleanup not confirmed')
+state['completedAt']=datetime.datetime.now(datetime.timezone.utc).isoformat();save()
+print(json.dumps({'result':state.get('result'),'cleanup':state.get('cleanup'),'realInboxAcceptance':False}))

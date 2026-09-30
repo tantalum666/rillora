@@ -1,0 +1,49 @@
+{
+  "object": "domain",
+  "id": "e44b01df-6a2a-4dfb-bd74-a70ed851d2f3",
+  "name": "notify.rillora.xyz",
+  "created_at": "2026-09-30 14:38:44.473341+00",
+  "status": "verified",
+  "capabilities": {
+    "sending": "enabled",
+    "receiving": "disabled"
+  },
+  "records": [
+    {
+      "record": "DKIM",
+      "name": "resend._domainkey.notify",
+      "value": "p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDadBFOPG/9HuxBYDXvkv027LYmq3NglHT9VU+P1fNpZKSTSYrFGbIvAiFx6AmO6mOn8pfYkxZKu1+EUzWX41y/4kiCLYk/ja55AZ20IhjHmFvQLiEM6WenQZyjZ7sN7UGsZ8SsRYq2oR6MztnTI6DVM/tuYz3JG4+UZWF+YkBUZQIDAQAB",
+      "type": "TXT",
+      "status": "verified",
+      "ttl": "Auto"
+    },
+    {
+      "record": "SPF",
+      "name": "send.notify",
+      "type": "MX",
+      "ttl": "Auto",
+      "status": "verified",
+      "value": "feedback-smtp.eu-west-1.amazonses.com",
+      "priority": 10
+    },
+    {
+      "record": "SPF",
+      "name": "send.notify",
+      "value": "v=spf1 include:amazonses.com ~all",
+      "type": "TXT",
+      "ttl": "Auto",
+      "status": "verified"
+    },
+    {
+      "record": "SPF",
+      "name": "rsend.notify",
+      "value": "send.forge.rmta.net",
+      "type": "CNAME",
+      "status": "verified",
+      "ttl": "Auto"
+    }
+  ],
+  "region": "eu-west-1",
+  "open_tracking": false,
+  "click_tracking": false
+}

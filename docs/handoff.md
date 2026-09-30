@@ -1,64 +1,75 @@
 # Rillora Current Handoff
 
-Status: ALL PROJECT WORK PUBLISHED; REMOTE ARTIFACT RECOVERY VERIFIED; RELEASE STILL INCOMPLETE
-Last updated: 2026-09-30 (Asia/Shanghai)
+Status: RESEND AND AUTH0 TRANSPORT VERIFIED; REVIEW FIXES AWAIT AWS LOGIN; RELEASE INCOMPLETE
+Last updated: 2026-10-01 (Asia/Shanghai)
 
-## Current Owner task — completed
+## Current Owner task — configuration complete
 
-Owner requested all Rillora work in Git for possible Dot collaboration. The existing
-private repository now includes current source and shared Xcode configuration,
-product/research/history documents, design and store-image sources, release candidates,
-QA originals, old Git histories and filtered local checkpoints. Start at the
-[collaboration guide](../collaboration/README.md) and [preservation contract](source-control.md).
-Current UI/full 03 brand, Free 1/Family 5, Web US$88.99 annual-only, conditional Apple
-prices, real data and FanPass are preserved.
+Owner selected Resend, registered the account, installed its plugin and completed
+`resend login --profile rillora`. GoDaddy CLI was already installed and renewed its
+existing credentials automatically. The native Auth0 provider is now enabled with
+`Rillora <account@notify.rillora.xyz>`, using a dedicated domain-restricted send key.
+The verified Resend domain has enforced TLS, no open/click tracking and no receiving.
+[Current configuration and operations](transaction-mail-resend-20261001.md).
 
-## Verified preservation
+This replaces the old SES-first direction; retain the existing SES case without
+another application/message. Its approval no longer blocks this sender. Auth0 still
+owns identity and recovery; the setting is tenant-wide, including current Preview
+mail. Current UI/full03 brand, Free1/Family5, Web US$88.99 annual-only, conditional
+Apple prices, real data and FanPass are preserved.
 
-- 46,768 work files; 8,876 readable copies; 7 encrypted archives totalling
-  3,363,731,990 bytes. The catalog retains every included original path.
-- A fresh GitHub clone read back source commit `4befe456763d38e7f3385e52a5165bfe698e6b0a`
-  and the exact old Web/legal-site tags. All archive bytes were downloaded again;
-  all 20,108 stored objects passed decryption and SHA-256 verification. One IPA was
-  restored to a new directory and exactly matched the original candidate hash.
-- [CI 42](https://github.com/tantalum666/rillora/actions/runs/36737542600) passed for
-  that source commit. Publication guards, readable evidence and current source scans
-  passed; final receipts are a separate documentation-only commit, with no runtime change.
-- Old Web's 14 commits and the legal-site's 18 commits remain under archive tags.
-  Four local checkpoint references preserve two distinct filtered source snapshots.
-  Original local repositories and history remain intact; no force push occurred.
-- Actual keys, sessions, recovery codes, real backups/personal exports and machine
-  caches stay local. Reviewed historical website build artifacts formerly inside a
-  protected directory are included encrypted under exact-path exceptions. Recovery
-  identity stays at `.local-secrets/collaboration-git/identity.txt`, outside Git.
+## Completed and verified
 
-[Complete receipts](../collaboration/verification/README.md) distinguish local scans,
-remote references, actual LFS bytes, artifact recovery and CI. This does not validate
-cloud database recovery or formal release. Reuse the 165-file/29,003-line
-[full reading ledger](../collaboration/evidence/output/qa/rillora-launch-resume-20260930/full-read-completion.json)
-and this continuation's focused changed-document reads.
+- Four DNS additions preserve all prior30 records. Public/authoritative checks pass
+  16/16 and DNS-over-HTTPS 4/4; Resend reports domain verified.
+- Auth0 and Resend settings are read back. Operator `gpt` stays in the CLI; Auth0 uses
+  the domain-restricted send credential, protected in Keychain and provider storage.
+  No key value is in Git or receipts. Auth0 renewal retained the same92 scopes.
+- Current Free limits are100/day and3,000/month, with pay-as-you-go off. Three official
+  failure simulations returned bounced/complained/suppressed and are readable by API.
+- Direct sender and Auth0-generated verification mail each reached the official
+  Resend delivery simulator. The uniquely tagged new Auth0 identity was deleted and
+  absence verified; no real identity, private map or Rillora API was used.
+- Missing public Auth0 support fields now point to the existing support mailbox and
+  verified `/support` page. Templates, hosted UI and client bindings were unchanged.
+- [Current receipts](../collaboration/verification/resend-20261001/README.md) retain
+  actual provider results and the limits of this check. No product tests, deploys,
+  Apple uploads or provider applications were repeated.
 
-## Retained product work and release blocker
+The previous complete Git preservation remains verified:46,768 work paths,
+8,876 readable evidence copies and7 encrypted/LFS archives, all20,108 objects
+read back from a fresh remote clone. [CI42](https://github.com/tantalum666/rillora/actions/runs/36737542600)
+passed for source `4befe456763d38e7f3385e52a5165bfe698e6b0a`; this mail change has
+no runtime source modification. [Preservation receipts](../collaboration/verification/README.md)
+and [Dot guide](../collaboration/README.md) remain the source of that dated proof.
+Reuse the165-file/29,003-line full body-reading ledger and the focused continuation
+reads; a chat restart does not authorize repeating completed work.
 
-The [Dot review repair](code-review-repair-20260930.md) fixed all 13 reported issues.
-Prior runtime evidence includes API 349, Web 112, infrastructure 47, native 181 pass
-with 1 existing StoreKit skip, and final passing outcomes for 28 targeted native UI
-cases. This preservation task did not rerun native/browser acceptance. The new closed
-IPA/Web/WWW candidates and 4 iPhone/2 iPad store designs are preserved, not uploaded.
+## Evidence boundaries and blockers
 
-AWS operator/CDK/production sessions actually expired during the preceding repair;
-its ordinary login recovery timed out. This Git task did not change cloud services,
-run migrations, repeat provider applications or require a new login. Last observed
-production remains API 7/schema 0091 with customer access closed; the local repairs
-have not been deployed. Owner login/legal acceptance, review enrollment, real Apple
-Sandbox purchase/restore/notifications, TestFlight/App Review, SES reply/delivery,
-SBP fee and final Apple price remain separate gates. Merchant and physical-device
-facts remain Owner-deferred.
+Simulated `delivered` proves transport, not real inbox placement, completed email
+verification, password reset or invitation continuation. Real suppression history,
+external alarm delivery and legal/market acceptance remain separate. Resend stores message/log
+data in the US despite the Ireland sending region; internal processing facts are
+recorded, not described as a new public legal approval.
+
+All13 Dot findings are locally repaired. Retained checks:API349,Web112,infra47,
+native181 pass/1 existing StoreKit skip, and final passing outcomes for28 targeted
+native UI cases. Closed repaired API/Web/router/WWW candidates, signed IPA and
+4iPhone/2iPad store designs are preserved; no new upload or deployment occurred.
+
+October1 actual read-only STS attempts confirm `rillora-operator`,
+`rillora-cdk-session` and `rillora-production-operator` all expired. Last observed
+production remains API7/schema0091 with customer access closed. Owner login/legal
+acceptance, review enrollment, real Apple Sandbox purchase/restore/notifications,
+usable TestFlight/App Review, SBP fee and final Apple price remain open. Merchant
+and physical-device facts remain Owner-deferred.
 
 ## Single next step
 
-Check the existing AWS session and restore it only if it is still actually expired;
-then deploy the prepared repaired API, closed-access Web/invitation router and WWW
-artifacts, and read back their exact versions. Preserve schema 0091 and reuse unchanged
-acceptance evidence. The [previous handoff](handoff-history-20260930-before-full-git.md)
-is historical and creates no second active next step.
+Restore the actually expired existing AWS operator session with the Owner's required
+login/MFA, then deploy the already prepared repaired API, closed Web/invitation
+router and WWW artifacts and read back their exact versions. Preserve schema0091
+and reuse unchanged acceptance evidence. Do not ask for Resend/GoDaddy/Auth0 login
+again unless a later real request shows expiry. The
+[previous handoff](handoff-history-20261001-before-resend.md) is historical.

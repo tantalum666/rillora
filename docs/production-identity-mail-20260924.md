@@ -2,9 +2,33 @@
 
 Role: focused release integration and evidence boundary
 
-Status: PRODUCTION IDENTITY SERVICES VERIFIED; REAL SIGN-IN/DELIVERY OPEN; AWAITING EXISTING SES CASE
+Status: RESEND DOMAIN AND AUTH0 TRANSPORT VERIFIED; REAL SIGN-IN/RECOVERY ACCEPTANCE OPEN
 
-Last updated: 2026-09-30 (Asia/Hong_Kong)
+Last updated: 2026-10-01 (Asia/Shanghai)
+
+## October1 current mail provider — Resend installed
+
+Owner explicitly adopted Resend, registered the account and completed local CLI
+credentials. The existing GoDaddy CLI renewed automatically and added the exact
+four Resend records, preserving all prior 30 records. DNS checks pass 16/16 plus
+4/4 DNS-over-HTTPS; `notify.rillora.xyz` is verified. The retained Auth0 tenant now
+uses native Resend with a domain-restricted sending key and From
+`Rillora <account@notify.rillora.xyz>`. TLS is enforced; open/click tracking and
+receiving are off. Existing Zoho incoming/support mail remains intact.
+
+Both direct sender and Auth0-generated verification email reached the official
+Resend delivery simulator; the uniquely tagged Auth0 fixture is deleted and absence
+confirmed. This is transport evidence, not real inbox placement or completed
+verification/reset/invitation acceptance. Native provider configuration is
+tenant-wide, including current Preview mail; client bindings and actual users are
+unchanged. [Current configuration, processing record and evidence](transaction-mail-resend-20261001.md).
+
+The September28 SES-first recommendation and earlier absence of an external
+provider below are historical. Preserve the original SES case without duplicate
+messages or applications; its approval is no longer required for this Resend path.
+Auth0 retirement/issued-token and real-user release gates remain open. The old
+`check_mail_readiness.py` is specifically a SES checker; it does not evaluate the
+current Resend provider. Use the [Resend read-only guide](../tools/resend/README.md).
 
 ## September30 independent production identity services
 
@@ -203,7 +227,7 @@ has changed. Independent release engineering continues.
 [pricing](https://resend.com/pricing),[processing boundary](https://resend.com/security/gdpr),
 [terms](https://resend.com/legal/terms-of-service).
 
-## Current scope and findings
+## Historical September24–25 scope and findings — identity cutover rules retained
 
 Continue the existing production release workflow. The verified database, recovery
 journal, closed HTTPS runtime, UI and annual-only offer remain unchanged. Existing
@@ -251,7 +275,7 @@ token quota; that quota is neither the MAU count nor a count of all app API call
 Sources: [Auth0 environments](https://auth0.com/docs/get-started/auth0-overview/create-tenants/create-multiple-tenants),
 [limits of separation within one tenant](https://support.auth0.com/center/s/article/Using-Auth0-Tenant-for-Production-and-Development).
 
-## Transaction mail foundation
+## Historical SES transaction mail foundation
 
 The existing tenant has no external email provider. AWS SES Frankfurt is currently
 in the sandbox:200messages/day,1/second and verified recipients/simulator only.
@@ -280,7 +304,7 @@ is introduced.
 Sources: [Auth0 Amazon SES](https://auth0.com/docs/customize/email/smtp-email-providers/configure-amazon-ses-as-external-smtp-email-provider),
 [SES sandbox and production access](https://docs.aws.amazon.com/ses/latest/dg/request-production-access.html).
 
-## Apply and verify
+## Historical SES apply and verify
 
 Run infrastructure typecheck and focused mail/Operations tests. Synthesize and
 inspect the separate mail template, then deploy with `mailOnly=true` and the
@@ -370,7 +394,7 @@ said to proceed. The Support Console now lists the operator's actual communicati
 at2026-09-25 01:12:39+08:00. Submission is verified, not production approval. The
 old test flows remain available. Protected Google/Web secrets remain outside source and QA.
 
-## Repeatable read-only mail check
+## Legacy SES-only read check — not the current Resend gate
 
 Run `python3 tools/release/check_mail_readiness.py --output output/qa/mail-readiness.json`
 from the repository root. It verifies the existing AWS account before reading only

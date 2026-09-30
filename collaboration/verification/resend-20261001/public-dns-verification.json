@@ -1,0 +1,133 @@
+{
+  "checks": [
+    {
+      "resolver": "ns73.domaincontrol.com",
+      "type": "TXT",
+      "name": "resend._domainkey.notify.rillora.xyz",
+      "matches": true,
+      "answerCount": 1,
+      "commandExit": 0
+    },
+    {
+      "resolver": "ns73.domaincontrol.com",
+      "type": "MX",
+      "name": "send.notify.rillora.xyz",
+      "matches": true,
+      "answerCount": 1,
+      "commandExit": 0
+    },
+    {
+      "resolver": "ns73.domaincontrol.com",
+      "type": "TXT",
+      "name": "send.notify.rillora.xyz",
+      "matches": true,
+      "answerCount": 1,
+      "commandExit": 0
+    },
+    {
+      "resolver": "ns73.domaincontrol.com",
+      "type": "CNAME",
+      "name": "rsend.notify.rillora.xyz",
+      "matches": true,
+      "answerCount": 1,
+      "commandExit": 0
+    },
+    {
+      "resolver": "ns74.domaincontrol.com",
+      "type": "TXT",
+      "name": "resend._domainkey.notify.rillora.xyz",
+      "matches": true,
+      "answerCount": 1,
+      "commandExit": 0
+    },
+    {
+      "resolver": "ns74.domaincontrol.com",
+      "type": "MX",
+      "name": "send.notify.rillora.xyz",
+      "matches": true,
+      "answerCount": 1,
+      "commandExit": 0
+    },
+    {
+      "resolver": "ns74.domaincontrol.com",
+      "type": "TXT",
+      "name": "send.notify.rillora.xyz",
+      "matches": true,
+      "answerCount": 1,
+      "commandExit": 0
+    },
+    {
+      "resolver": "ns74.domaincontrol.com",
+      "type": "CNAME",
+      "name": "rsend.notify.rillora.xyz",
+      "matches": true,
+      "answerCount": 1,
+      "commandExit": 0
+    },
+    {
+      "resolver": "1.1.1.1",
+      "type": "TXT",
+      "name": "resend._domainkey.notify.rillora.xyz",
+      "matches": true,
+      "answerCount": 1,
+      "commandExit": 0
+    },
+    {
+      "resolver": "1.1.1.1",
+      "type": "MX",
+      "name": "send.notify.rillora.xyz",
+      "matches": true,
+      "answerCount": 1,
+      "commandExit": 0
+    },
+    {
+      "resolver": "1.1.1.1",
+      "type": "TXT",
+      "name": "send.notify.rillora.xyz",
+      "matches": true,
+      "answerCount": 1,
+      "commandExit": 0
+    },
+    {
+      "resolver": "1.1.1.1",
+      "type": "CNAME",
+      "name": "rsend.notify.rillora.xyz",
+      "matches": true,
+      "answerCount": 1,
+      "commandExit": 0
+    },
+    {
+      "resolver": "8.8.8.8",
+      "type": "TXT",
+      "name": "resend._domainkey.notify.rillora.xyz",
+      "matches": true,
+      "answerCount": 1,
+      "commandExit": 0
+    },
+    {
+      "resolver": "8.8.8.8",
+      "type": "MX",
+      "name": "send.notify.rillora.xyz",
+      "matches": true,
+      "answerCount": 1,
+      "commandExit": 0
+    },
+    {
+      "resolver": "8.8.8.8",
+      "type": "TXT",
+      "name": "send.notify.rillora.xyz",
+      "matches": true,
+      "answerCount": 1,
+      "commandExit": 0
+    },
+    {
+      "resolver": "8.8.8.8",
+      "type": "CNAME",
+      "name": "rsend.notify.rillora.xyz",
+      "matches": true,
+      "answerCount": 1,
+      "commandExit": 0
+    }
+  ],
+  "passed": true
+}

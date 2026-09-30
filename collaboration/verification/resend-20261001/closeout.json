@@ -1,0 +1,125 @@
+{
+  "completedAt": "2026-09-30T18:22:22.540977+00:00",
+  "scope": "GoDaddy reuse, Owner-selected Resend and native Auth0 transactional transport",
+  "configurationComplete": true,
+  "domain": "notify.rillora.xyz",
+  "dns": {
+    "before": 30,
+    "after": 34,
+    "priorRecordsUnchanged": true,
+    "authoritativeAndPublicChecksPassed": 16,
+    "dohChecksPassed": 4
+  },
+  "sender": {
+    "provider": "resend",
+    "enabled": true,
+    "from": "Rillora <account@notify.rillora.xyz>",
+    "permission": "sending_access",
+    "domainRestricted": true,
+    "tls": "enforced",
+    "openTracking": false,
+    "clickTracking": false,
+    "receiving": false
+  },
+  "simulatorEmails": [
+    "01a0f35d-364f-740b-be90-976acf970486",
+    "01a0f369-5f2a-7250-af1c-79d454b183a6"
+  ],
+  "auth0ProbeCleaned": true,
+  "realRecipientMailSent": false,
+  "realInboxAcceptance": false,
+  "verificationLinkFollowed": false,
+  "runtimeSourceChanged": false,
+  "productSuitesRerun": false,
+  "cloudDeploymentPerformed": false,
+  "appleUploadPerformed": false,
+  "providerApplicationRepeated": false,
+  "awsProfilesActuallyExpired": [
+    "rillora-operator",
+    "rillora-cdk-session",
+    "rillora-production-operator"
+  ],
+  "documentsUpdated": [
+    "docs/transaction-mail-resend-20261001.md",
+    "docs/production-identity-mail-20260924.md",
+    "docs/product.md",
+    "docs/release-readiness.md",
+    "docs/chat-resume-20260930.md",
+    "docs/source-control.md",
+    "config/release-gates.json",
+    "infra/auth0/README.md",
+    "tools/godaddy/README.md",
+    "tools/resend/README.md",
+    "docs/handoff.md",
+    "docs/handoff-history-20261001-before-resend.md",
+    "docs/decision-log.md",
+    "docs/journey/PROJECT_JOURNEY.md",
+    "collaboration/verification/README.md"
+  ],
+  "decision": "Owner-selected Resend supersedes SES-first; dedicated domain-only sender and simulator evidence recorded in decision-log",
+  "handoff": "docs/handoff.md",
+  "journey": "docs/journey/PROJECT_JOURNEY.md",
+  "retainedSourceCI": {
+    "commit": "4befe456763d38e7f3385e52a5165bfe698e6b0a",
+    "run": 42,
+    "url": "https://github.com/tantalum666/rillora/actions/runs/36737542600",
+    "notRerunThisTask": true
+  },
+  "singleNextStep": "Restore actually expired existing AWS operator login with Owner ceremony, then deploy already prepared repaired closed API/Web/router/WWW; schema0091 unchanged.",
+  "publication": "Additive exact-byte public evidence; Git upload proof is recorded separately after push.",
+  "validation": {
+    "sourceSecretScanPassed": true,
+    "reviewedNonSecrets": 29,
+    "unreviewedFindings": 0,
+    "readableEvidenceScanPassed": true,
+    "markdownFilesChecked": 176,
+    "localLinksChecked": 1804,
+    "missingLocalLinks": 0,
+    "runtimeSourcesUnchanged": true,
+    "releaseGatesRemainIncomplete": true,
+    "note": "Publication manifest is regenerated after adding these check receipts; unchanged runtime product suites are not rerun."
+  },
+  "failureSimulatorCases": [
+    {
+      "expected": "bounced",
+      "to": "bounced+rillora-setup-20261001@resend.dev",
+      "dryRunPassed": true,
+      "idempotencyKey": "rillora-resend-20261001-bounced",
+      "id": "01a0f38b-4140-7079-94e7-4ce405ed8759",
+      "lastEvent": "bounced",
+      "passed": true,
+      "from": "Rillora <account@notify.rillora.xyz>",
+      "createdAt": "2026-09-30 18:19:45.002000+00"
+    },
+    {
+      "expected": "complained",
+      "to": "complained+rillora-setup-20261001@resend.dev",
+      "dryRunPassed": true,
+      "idempotencyKey": "rillora-resend-20261001-complained",
+      "id": "01a0f38b-45ce-748c-9106-4c630d376352",
+      "lastEvent": "complained",
+      "passed": true,
+      "from": "Rillora <account@notify.rillora.xyz>",
+      "createdAt": "2026-09-30 18:19:46.183000+00"
+    },
+    {
+      "expected": "suppressed",
+      "to": "suppressed@resend.dev",
+      "dryRunPassed": true,
+      "idempotencyKey": "rillora-resend-20261001-suppressed",
+      "id": "01a0f38b-4a8a-74ec-9ff5-b1e43abb7c05",
+      "lastEvent": "suppressed",
+      "passed": true,
+      "from": "Rillora <account@notify.rillora.xyz>",
+      "createdAt": "2026-09-30 18:19:47.378000+00"
+    }
+  ],
+  "totalOfficialSimulatorMessages": 5,
+  "accountLimitsVerified": {
+    "plan": "Free",
+    "daily": 100,
+    "monthly": 3000,
+    "requestsPerSecond": 10,
+    "paidOverage": false
+  }
+}

@@ -1,4 +1,12 @@
-# Publication verification — 2026-09-30
+# Publication verification
+
+Last updated: 2026-10-01 (Asia/Shanghai)
+
+[October1 Resend configuration and verification](resend-20261001/README.md) is an
+additive record. The complete September30 snapshot and its proof below remain dated
+and unchanged; provider configuration does not rerun the product's previous tests.
+
+## September30 complete work preservation
 
 This folder records preservation and artifact recovery, not a cloud database restore or product launch.
 

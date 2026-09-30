@@ -1,0 +1,16 @@
+{
+  "tenant": "rillora-dev.eu.auth0.com",
+  "provider": {
+    "default_from_address": "Rillora <account@notify.rillora.xyz>",
+    "enabled": true,
+    "name": "resend"
+  },
+  "readbackVerified": true,
+  "credentialsNotPublished": true,
+  "senderKeyName": "Rillora Auth0 notify sender",
+  "senderKeyLimitedTo": "notify.rillora.xyz",
+  "credentialReadbackRequested": false,
+  "secretSuppliedOnStdin": true,
+  "completedAt": "2026-09-30T17:29:27.266735+00:00",
+  "apiProjectionNote": "GET defaults to name/enabled; from address verified using explicit fields."
+}

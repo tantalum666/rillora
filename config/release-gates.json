@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-30",
+  "updatedAt": "2026-10-01",
   "release": "Rillora Global 1.0",
   "scope": "Web and native iOS; existing Free and Family only",
   "gates": [
@@ -21,9 +21,10 @@
         "output/qa/rillora-launch-resume-20260930/final-runtime-readback.json",
         "output/qa/rillora-launch-resume-20260930/release-acceptance-retry-result.json",
         "output/qa/rillora-launch-resume-20260930/final-http-readback.json",
-        "docs/code-review-repair-20260930.md"
+        "docs/code-review-repair-20260930.md",
+        "collaboration/verification/resend-20261001/aws-session-boundary.json"
       ],
-      "next": "Existing AWS sessions actually expired. Roll out the prepared review fixes to API7successor and closed Web/router only after restoration;schema0091is unchanged. Actual reviewer login/legal acceptance and core real-user journeys remain separate."
+      "next": "All three existing AWS profiles actually report expiry on October1. Restore that session, then roll out the prepared review fixes to the API7 successor and closed Web/router/WWW with exact version readback; schema0091 is unchanged. Actual reviewer login/legal acceptance and core real-user journeys remain separate."
     },
     {
       "id": "production-identity",
@@ -49,9 +50,15 @@
         "docs/release-engineering-20260930.md",
         "output/qa/rillora-launch-resume-20260930/production-identity-services-installed.json",
         "output/qa/rillora-launch-resume-20260930/identity-service-token-probes.json",
-        "output/qa/rillora-launch-resume-20260930/production-deletion-probe-result.json"
+        "output/qa/rillora-launch-resume-20260930/production-deletion-probe-result.json",
+        "docs/transaction-mail-resend-20261001.md",
+        "collaboration/verification/resend-20261001/auth0-resend-installed.json",
+        "collaboration/verification/resend-20261001/resend-domain-verified.json",
+        "collaboration/verification/resend-20261001/auth0-transport-probe-state.json",
+        "collaboration/verification/resend-20261001/resend-account-limits.json",
+        "collaboration/verification/resend-20261001/resend-failure-simulators.json"
       ],
-      "next": "Separate production M2M clients/vaults are active;exactscope tokens,synthetic verification read and disposable provider deletion204/404 are confirmed. Real login/legal acceptance and delivery remain pending. Await the existing SES reply; do not resend. Before customer cutover retire old test grants and wait the measured86400second tokenTTL plus skew; preserve current Preview meanwhile."
+      "next": "Resend is the Owner-selected active Auth0 sender; verified domain, domain-restricted sending key, enforced TLS, tracking off and two official simulator delivery receipts are confirmed. Free limits and disabled pay-as-you-go are read back; official bounced/complained/suppressed events are observable. Real inbox verification/reset/invitation continuation and actual login/legal acceptance remain open; simulator results do not prove actual end-user failure handling or delivered external alarms. SES approval is not required for this sender; preserve the existing case without another message. Before customer cutover retire old test grants and wait the measured 86400-second token TTL plus skew; preserve current Preview meanwhile."
     },
     {
       "id": "production-billing",

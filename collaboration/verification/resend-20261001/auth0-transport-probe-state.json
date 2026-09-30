@@ -1,0 +1,37 @@
+{
+  "marker": "3a8cc91c7c2542e98bfba7cc1abfba9a",
+  "recipient": "delivered+rillora-auth0-20261001-3a8cc91c7c@resend.dev",
+  "tenant": "rillora-dev.eu.auth0.com",
+  "purpose": "Auth0 to Resend verification-template transport only",
+  "officialSimulator": true,
+  "realUser": false,
+  "rilloraApiCalls": 0,
+  "startedAt": "2026-09-30T17:42:37.101712+00:00",
+  "userId": "auth0|6abd4a1059cc5d01caae0068",
+  "jobId": "job_BsnsZBI1skWhOGNA",
+  "result": "simulated_delivery_observed",
+  "resendEmail": {
+    "id": "01a0f369-5f2a-7250-af1c-79d454b183a6",
+    "from": "\"Rillora\" <account@notify.rillora.xyz>",
+    "to": [
+      "delivered+rillora-auth0-20261001-3a8cc91c7c@resend.dev"
+    ],
+    "subject": "Verify your email",
+    "last_event": "delivered",
+    "created_at": "2026-09-30 17:42:44.422000+00"
+  },
+  "auth0Job": {
+    "type": "verification_email",
+    "status": "completed",
+    "created_at": "2026-09-30T17:42:43.004Z",
+    "id": "job_BsnsZBI1skWhOGNA"
+  },
+  "emailVerifiedRemainsFalse": true,
+  "verificationLinkFollowed": false,
+  "bodySha256": "9e0e8877982f64e61c017aad6fbee7a3b96fa2ecd11c6d6b8412aadf61adf5f6",
+  "cleanup": {
+    "exactUserAbsent": true,
+    "onlyNewTaggedIdentityTargeted": true
+  },
+  "completedAt": "2026-09-30T17:42:57.871584+00:00"
+}

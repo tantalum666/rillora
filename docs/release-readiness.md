@@ -2,9 +2,36 @@
 
 Role: current launch scope, remaining work and release evidence contract  
 Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; CUSTOMER ACCOUNTS AND SALES CLOSED
-Last updated: 2026-09-30 (Asia/Hong_Kong)
+Last updated: 2026-10-01 (Asia/Shanghai)
 
-## September30 independent engineering — current delta
+## October1 current release delta
+
+Owner selected Resend. GoDaddy DNS, verified sending domain, domain-restricted
+sender key and the native Auth0 provider are now configured and read back. Direct
+and Auth0-generated verification messages reached only Resend's official simulator;
+real inbox, signup/reset and invitation continuation remain separate acceptance.
+Free limits100/day and3,000/month with pay-as-you-go off are read back; three failure
+simulators also return bounced/complained/suppressed. TLS is enforced and tracking/
+receiving are off. SES approval is no longer required
+for this sender, and the existing case has not received another message.
+[Current mail contract](transaction-mail-resend-20261001.md).
+
+The 13 Dot findings remain locally repaired. Retained checks are API349, Web112,
+infra47, native181 with 1 existing StoreKit skip, and passing final outcomes for
+28 targeted native UI cases. CI42 and complete Git/LFS recovery are retained
+September30 evidence; this provider/documentation work reran no product suite.
+The closed repaired API/Web/router/WWW and signed IPA remain prepared. All three
+AWS profiles freshly report actual expiry on October1, so those repairs are still
+not deployed. Last observed production is API7/schema0091, customers closed.
+
+Four iPhone and two iPad designed store images are prepared, not uploaded or
+finally adopted. Real review login/affirmative legal acceptance, Apple Sandbox
+purchase/restore/notifications, usable TestFlight and final declarations, SBP fee
+and channel-price decisions remain open; merchant and physical-device facts stay
+Owner-deferred. Use [handoff](handoff.md) for the one active next step and
+[the gate register](../config/release-gates.json) for the full release boundary.
+
+## HISTORICAL — September30 independent engineering before review repairs
 
 Owner now asks to finish all work outside their participation/confirmation and the
 existing AWS reply wait. Restricted production API7/schema0091, independent identity
@@ -111,7 +138,7 @@ presentation/entry correction only; private App UI and production activation gat
 remain unchanged. No pending API migration or billing activation is bundled with
 these static releases.
 
-## September28 mail-provider priority
+## HISTORICAL — September28 mail-provider priority, superseded October1
 
 Owner asks to reduce service sprawl and reconsider AWS. Retain AWS plus Auth0;
 prepare evidence-based SES reconsideration, with Resend only as a fallback and no
@@ -149,7 +176,7 @@ The refreshed full read covers147project-owned Markdown files/25,917lines.
 AWS login is now verified, superseding the expired-session observation below.
 SES's actual September26 refusal is confirmed in both Support and Gmail; specific
 criteria remain undisclosed. September28 prioritizes reconsideration with existing
-SES; a legitimate alternative remains fallback. Continue independent engineering.
+SES at that dated checkpoint; Owner selected and configured Resend on October1. Continue independent engineering.
 [Current mail facts](production-identity-mail-20260924.md).
 
 Execution packages are: Apple authoritative transaction/status/intake and native

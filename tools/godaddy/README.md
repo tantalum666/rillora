@@ -1,8 +1,8 @@
 # Rillora DNS command line
 
-Status: OFFICIAL CLI AND CNAME GUARD VERIFIED; LEGACY WWW EDIT USED CONSOLE
+Status: OFFICIAL CLI REUSED; RESEND DNS VERIFIED; LEGACY WWW LIMITATION RETAINED
 
-Last updated: 2026-09-24 (Asia/Hong_Kong)
+Last updated: 2026-10-01 (Asia/Shanghai)
 
 The Owner explicitly requested GoDaddy CLI setup. The official `gddy`0.2.20
 Apple Silicon binary is installed at `~/.local/bin/gddy` from the public
@@ -16,6 +16,19 @@ macOS keyring storage, with no PAT in environment variables or repository.
 The browser callback later showed connection-refused after the local listener
 ended, but CLI status and actual API calls independently prove authentication
 succeeded. Do not repeatedly log in because of that spent callback page.
+
+## October1 Resend configuration
+
+The existing installation was reused; no reinstall or new GoDaddy login was needed.
+Although the access token had expired, the valid refresh grant renewed on an actual
+`rillora-dns list`. Four exact Resend DKIM/SPF/MX/CNAME records were previewed and
+added, taking 30 records to 34 with every prior record unchanged. Two authoritative
+and two public resolvers pass 16/16 checks, plus a separate 4/4 DNS-over-HTTPS read.
+The Resend domain is verified. Root Zoho mail, strict notify DMARC, old SES records,
+login/staging/web and FanPass remain intact. The historical WWW limitation below
+has not been reclassified or retested.
+[Current sender contract](../../docs/transaction-mail-resend-20261001.md) ·
+[Current receipts](../../collaboration/verification/resend-20261001/README.md).
 
 ## Use the project entry
 

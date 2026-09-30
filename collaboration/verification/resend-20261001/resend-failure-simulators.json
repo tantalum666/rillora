@@ -1,0 +1,44 @@
+{
+  "startedAt": "2026-09-30T18:19:43.677174+00:00",
+  "officialSimulator": true,
+  "realRecipient": false,
+  "auth0IdentityCreated": false,
+  "cases": [
+    {
+      "expected": "bounced",
+      "to": "bounced+rillora-setup-20261001@resend.dev",
+      "dryRunPassed": true,
+      "idempotencyKey": "rillora-resend-20261001-bounced",
+      "id": "01a0f38b-4140-7079-94e7-4ce405ed8759",
+      "lastEvent": "bounced",
+      "passed": true,
+      "from": "Rillora <account@notify.rillora.xyz>",
+      "createdAt": "2026-09-30 18:19:45.002000+00"
+    },
+    {
+      "expected": "complained",
+      "to": "complained+rillora-setup-20261001@resend.dev",
+      "dryRunPassed": true,
+      "idempotencyKey": "rillora-resend-20261001-complained",
+      "id": "01a0f38b-45ce-748c-9106-4c630d376352",
+      "lastEvent": "complained",
+      "passed": true,
+      "from": "Rillora <account@notify.rillora.xyz>",
+      "createdAt": "2026-09-30 18:19:46.183000+00"
+    },
+    {
+      "expected": "suppressed",
+      "to": "suppressed@resend.dev",
+      "dryRunPassed": true,
+      "idempotencyKey": "rillora-resend-20261001-suppressed",
+      "id": "01a0f38b-4a8a-74ec-9ff5-b1e43abb7c05",
+      "lastEvent": "suppressed",
+      "passed": true,
+      "from": "Rillora <account@notify.rillora.xyz>",
+      "createdAt": "2026-09-30 18:19:47.378000+00"
+    }
+  ],
+  "completedAt": "2026-09-30T18:19:50.856812+00:00",
+  "passed": true,
+  "boundary": "Provider simulator states and API observability only; not real-recipient suppression, inbox placement, Auth0 failure ceremony or delivered external alarm."
+}

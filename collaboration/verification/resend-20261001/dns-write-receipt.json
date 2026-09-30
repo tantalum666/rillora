@@ -1,0 +1,77 @@
+{
+  "completedAt": "2026-09-30T16:28:38.496047+00:00",
+  "before": 30,
+  "after": 34,
+  "results": [
+    {
+      "type": "TXT",
+      "name": "resend._domainkey.notify",
+      "receipt": {
+        "domain": "rillora.xyz",
+        "applied": true,
+        "result": {
+          "created": 1,
+          "domain": "rillora.xyz",
+          "failed": 0,
+          "name": "resend._domainkey.notify",
+          "type": "TXT"
+        },
+        "unrelatedRecordsUnchanged": true,
+        "snapshot": "/Users/tantalum/Documents/\u7535\u5b50\u9057\u5631app/.local/dns-backups/20260930T162814Z-efbd38f6.json"
+      }
+    },
+    {
+      "type": "MX",
+      "name": "send.notify",
+      "receipt": {
+        "domain": "rillora.xyz",
+        "applied": true,
+        "result": {
+          "created": 1,
+          "domain": "rillora.xyz",
+          "failed": 0,
+          "name": "send.notify",
+          "type": "MX"
+        },
+        "unrelatedRecordsUnchanged": true,
+        "snapshot": "/Users/tantalum/Documents/\u7535\u5b50\u9057\u5631app/.local/dns-backups/20260930T162820Z-49f5c093.json"
+      }
+    },
+    {
+      "type": "TXT",
+      "name": "send.notify",
+      "receipt": {
+        "domain": "rillora.xyz",
+        "applied": true,
+        "result": {
+          "created": 1,
+          "domain": "rillora.xyz",
+          "failed": 0,
+          "name": "send.notify",
+          "type": "TXT"
+        },
+        "unrelatedRecordsUnchanged": true,
+        "snapshot": "/Users/tantalum/Documents/\u7535\u5b50\u9057\u5631app/.local/dns-backups/20260930T162826Z-0e8ff224.json"
+      }
+    },
+    {
+      "type": "CNAME",
+      "name": "rsend.notify",
+      "receipt": {
+        "domain": "rillora.xyz",
+        "applied": true,
+        "result": {
+          "created": 1,
+          "domain": "rillora.xyz",
+          "failed": 0,
+          "name": "rsend.notify",
+          "type": "CNAME"
+        },
+        "unrelatedRecordsUnchanged": true,
+        "snapshot": "/Users/tantalum/Documents/\u7535\u5b50\u9057\u5631app/.local/dns-backups/20260930T162832Z-fcfaacc4.json"
+      }
+    }
+  ],
+  "allPriorRecordsUnchanged": true,
+  "noNewLoginRequired": true
+}
