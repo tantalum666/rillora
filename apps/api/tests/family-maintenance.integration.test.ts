@@ -29,7 +29,7 @@ async function actor(name:string) {
     select $1,$2,id,$8,$9,now()+interval '1 hour',$10 from a`,[row.planner_id,row.identity_account_id,currentLegalContract.termsVersion,
     currentLegalContract.privacyVersion,currentLegalContract.consentTextVersion,Buffer.from(currentLegalContract.bundleSha256,'hex'),
     hash(`https://family.example\u001freview|${name}`),hash(token),hash(csrf),verifiedEmailDigest(`${name.toLowerCase()}@family.test`)]);
-  return {id:String(row.planner_id),headers:{cookie:`continuity_session=${token}`,'x-csrf-token':csrf}};
+  return {id:String(row.planner_id),headers:{cookie:`continuity_session=${token}`,'x-csrf-token':csrf,'x-rillora-planner':row.planner_public_id}};
 }
 async function matter(title:string) {
   return (await request(app).post('/v1/matters').set(owner).send({category:'document',title,institutionName:'Archive',locationHint:'Blue folder',

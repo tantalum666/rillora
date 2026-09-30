@@ -95,6 +95,15 @@ struct APIConfiguration: Equatable, Sendable {
 }
 
 struct NativeAuthenticationConfiguration: Equatable, Sendable {
+    var plannerAPIBaseURL: URL {
+        var components = URLComponents(url: sessionExchangeURL.deletingLastPathComponent()
+            .deletingLastPathComponent().deletingLastPathComponent().appendingPathComponent("v1"),
+            resolvingAgainstBaseURL: false)!
+        components.query = nil
+        components.fragment = nil
+        return components.url!
+    }
+
     let domain: String
     let clientID: String
     let audience: String

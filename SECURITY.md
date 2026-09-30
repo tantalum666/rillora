@@ -1,6 +1,20 @@
 # Digital Legacy Repository Threat Model
 
-Last updated: 2026-09-23 (staging content-key boundary; earlier evidence keeps its dates)
+Last updated: 2026-09-30 (request identity and route-bound recent authentication)
+
+## September30 supplied review repair
+
+Recent-authentication checks belong directly to each sensitive business route, using
+the exact router dispatch match. No separate URL-string authorization whitelist may
+skip case/trailing-slash variants. Browser mutations additionally require the planner
+identity pinned when the workspace loaded; the server compares it to the authenticated
+session before any mutation. That header is a precondition, never authority to choose
+another tenant. Stale private client state and delayed responses must be discarded.
+Stripe subscription observation is serialized from provider reads through database
+commit, including checkout preflight. Contention retains retryable inbox evidence;
+local response-completion times are not reliable provider-state ordering.
+These repairs have local regression evidence in [the current contract](docs/code-review-repair-20260930.md),
+not a new independent security certification or verified cloud deployment.
 
 ## September23 application content encryption boundary
 

@@ -5,7 +5,20 @@ Authority scope: Web/iOS responsibilities, shared state and first validation rel
 Superseded by: later explicit platform decision  
 Do not use for: final framework choice or visual tokens  
 Status: CORE PARITY CONTRACT ACTIVE; CURRENT RUNTIME AND RELEASE GATES IN HANDOFF
-Last updated: 2026-09-29 (native public Home visual adoption; release gates unchanged)
+Last updated: 2026-09-30 (review repair request identity and complete matter hydration)
+
+## September30 request and hydration contract
+
+The browser pins the planner returned by its first verified session/overview. Every
+subsequent planner request carries x-rillora-planner as an expected identity; it is
+never tenant authority. Cookie mutations require that precondition plus CSRF. A
+mismatch returns409account_changed, clears stale visible state, and requires an
+explicit workspace reload. Native Bearer sessions retain their credential boundary.
+Both clients load every overview cursor before presenting a complete workspace;
+a repeated cursor or failed page must not silently publish a truncated map. Single
+matter recovery/conflict reads use the by-ID endpoint, including archived/404 outcomes.
+Production invitation routing and native logout retain the same public API prefix.
+[Current repair evidence](code-review-repair-20260930.md).
 
 ## September29 native public Home
 

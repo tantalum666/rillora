@@ -304,36 +304,33 @@ export class StripeCommerceExecutor {
     }
 
     try {
-      const providerSnapshot = await this.provider.retrieveAuthoritativeSubscription({
-        providerSubscriptionReference: signal.providerSubscriptionReference,
-        expectedCommerceAccountReference: commerceAccountReference,
-        expectedStripeCustomerReference: customerReference,
+      const result = await withCommerceAccountDatabase(this.pool, commerceAccountReference, async (client, context) => {
+        // One database transaction owns observation through commit across processes.
+        // Do not queue pooled connections behind a slow provider; durable inbox and
+        // provider retries obtain a fresh snapshot after the current owner finishes.
+        await acquireStripeObservation(client, this.providerEnvironment, signal.providerSubscriptionReference!);
+        // Initial financial lookup supplies routing only. Re-read it under the same
+        // ownership as the subscription so a delayed dispute/refund cannot regress it.
+        if (financialResolution) {
+          const current = await this.provider.resolveFinancialSignal!(signal);
+          if (current.providerSubscriptionReference !== signal.providerSubscriptionReference
+            || current.providerCustomerReference !== customerReference) throw new Error('Financial observation binding changed');
+          financialResolution = current;
+        }
+        const providerSnapshot = await this.provider.retrieveAuthoritativeSubscription({
+          providerSubscriptionReference: signal.providerSubscriptionReference!,
+          expectedCommerceAccountReference: commerceAccountReference,
+          expectedStripeCustomerReference: customerReference,
+        });
+        if (financialResolution?.authoritativeStateOverride && !providerSnapshot.providerInvoiceReference) {
+          throw new Error('Financial invoice binding missing');
+        }
+        const appliesToCurrentPeriod = financialResolution?.providerInvoiceReference === providerSnapshot.providerInvoiceReference;
+        const snapshot = financialResolution?.authoritativeStateOverride && appliesToCurrentPeriod
+          ? Object.freeze({ ...providerSnapshot, state: financialResolution.authoritativeStateOverride, cancelAtPeriodEnd: false })
+          : providerSnapshot;
+        return applyAuthoritativeSnapshot(client, context, inbox.publicId, signal, snapshot, this.config, financialResolution);
       });
-      if (financialResolution?.authoritativeStateOverride && !providerSnapshot.providerInvoiceReference) {
-        await updateInboxStatus(this.pool, inbox.publicId, "needs_mapping", "financial_invoice_binding_missing");
-        return Object.freeze({ received: true, status: "needs_mapping", testOnly: this.providerEnvironment === "test" });
-      }
-      const appliesToCurrentPeriod = financialResolution?.providerInvoiceReference === providerSnapshot.providerInvoiceReference;
-      const snapshot = financialResolution?.authoritativeStateOverride && appliesToCurrentPeriod
-        ? Object.freeze({
-            ...providerSnapshot,
-            state: financialResolution.authoritativeStateOverride,
-            cancelAtPeriodEnd: false,
-          })
-        : providerSnapshot;
-      const result = await withCommerceAccountDatabase(
-        this.pool,
-        commerceAccountReference,
-        (client, context) => applyAuthoritativeSnapshot(
-          client,
-          context,
-          inbox.publicId,
-          signal,
-          snapshot,
-          this.config,
-          financialResolution,
-        ),
-      );
       if (!result) throw new Error("Verified Stripe commerce account was not found");
       return Object.freeze({ received: true, status: result, testOnly: this.providerEnvironment === "test" });
     } catch (error) {
@@ -638,6 +635,7 @@ async function reserveCheckout(
     if (subscriptions.rows.length > 20) throw new ApiError(409, "billing_review_required", "Your billing history needs review before another subscription can start.");
     for (const sub of subscriptions.rows) {
       if (sub.renewal_provider !== "stripe" || sub.provider_environment !== environment || !sub.provider_customer_reference) throw new ApiError(409, "existing_subscription", "Manage your existing subscription before starting another.");
+      await acquireStripeObservation(client, environment, sub.provider_subscription_reference);
       const current = await provider.retrieveAuthoritativeSubscription({ providerSubscriptionReference: sub.provider_subscription_reference,
         expectedCommerceAccountReference: accountRow.public_id, expectedStripeCustomerReference: sub.provider_customer_reference });
       if (current.state !== "expired_read_only" || current.renewalIsPossible !== false) throw new ApiError(409, "existing_subscription", "Manage your existing subscription before starting another.");
@@ -839,6 +837,15 @@ async function resolveCustomerReference(
     },
   );
   return result ?? null;
+}
+
+async function acquireStripeObservation(client: PoolClient, environment: string, subscription: string): Promise<void> {
+  const locked = await client.query<{ acquired: boolean }>(
+    "select pg_try_advisory_xact_lock(hashtextextended($1,0)) as acquired",
+    [`stripe-observation:${environment}:${subscription}`],
+  );
+  if (!locked.rows[0]?.acquired) throw new ApiError(503, 'subscription_observation_busy', 'Subscription reconciliation will retry.');
+  await client.query("set local idle_in_transaction_session_timeout = '120s'");
 }
 
 async function applyAuthoritativeSnapshot(

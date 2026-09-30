@@ -140,7 +140,9 @@ export class StripeProductionAdapter {
     expectedStripeCustomerReference: string }): Promise<AuthoritativeSubscriptionSnapshot> {
     assertStripeObjectId(input.providerSubscriptionReference, 'sub_'); assertStripeObjectId(input.expectedStripeCustomerReference, 'cus_');
     assertCommerceReference(input.expectedCommerceAccountReference);
-    const subscription = await this.sdk.retrieveSubscription(input.providerSubscriptionReference); this.requireLive(subscription.livemode);
+    const subscription = await this.sdk.retrieveSubscription(input.providerSubscriptionReference);
+    const observedAt = this.now().toISOString();
+    this.requireLive(subscription.livemode);
     if (stripeObjectReference(subscription.customer) !== input.expectedStripeCustomerReference
       || subscription.metadata.rillora_commerce_account_reference !== input.expectedCommerceAccountReference
       || subscription.metadata.rillora_plan_code !== 'family' || subscription.metadata.rillora_environment !== 'production') throw new Error('Subscription account/environment binding rejected');
@@ -158,7 +160,7 @@ export class StripeProductionAdapter {
         || stripeObjectReference(invoice.parent?.subscription_details?.subscription) !== subscription.id) throw new Error('Subscription payment is not authoritatively settled');
     }
     return { provider: 'stripe', providerEnvironment: 'production', providerSubscriptionReference: subscription.id,
-      commerceAccountReference: input.expectedCommerceAccountReference, planCode: 'family', state, observedAt: this.now().toISOString(),
+      commerceAccountReference: input.expectedCommerceAccountReference, planCode: 'family', state, observedAt,
       currentPeriodEndsAt: epochSecondsToIso(subscription.status === 'canceled' && subscription.ended_at ? Math.min(item.current_period_end, subscription.ended_at) : item.current_period_end),
       currentPeriodStartsAt: epochSecondsToIso(item.current_period_start), cancelAtPeriodEnd: stripeHasScheduledCancellation(subscription),
       providerCustomerReference: input.expectedStripeCustomerReference, priceCode: binding.priceCode, providerInvoiceReference: invoiceId,

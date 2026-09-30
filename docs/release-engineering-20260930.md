@@ -16,6 +16,13 @@ security/operational behavior and preparation artifacts.
 ledger across context compression. The older resume entry is a checkpoint, not an
 instruction to repeat completed tests, provider applications, deployments or login.
 
+## Later September30 quality correction
+
+The Owner-supplied Dot review reopened independent engineering. The counts and API7/
+schema0091receipts below retain their original dates and scope; they do not validate
+new fixes. Current repairs, failures and replacement-artifact gates are tracked in
+[the review contract](code-review-repair-20260930.md) and[current handoff](handoff.md).
+
 ## Restricted production review
 
 The API and a separate Auth0 Post Login Action admit one explicitly prepared,

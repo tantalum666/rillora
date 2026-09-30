@@ -5,7 +5,20 @@ Authority scope: product truth, design, Web/iOS parity, trust and validation evi
 Superseded by: stricter platform, legal, security or Owner requirement  
 Do not use for: replacing a detailed test plan  
 Status: ACTIVE  
-Last updated: 2026-09-25 (Asia/Hong_Kong)
+Last updated: 2026-09-30 (Asia/Hong_Kong)
+
+## September30 supplied review and current-path coverage
+
+The Owner-supplied Dot report reopens the release quality gate. Existing green CI,
+unit counts and dated deployment receipts do not prove current UI routes, concurrent
+provider ordering or cross-tab consistency. Keep each finding traceable to its repair
+and positive/negative regression. Tests must execute current controls and required
+choices, including export audience; do not restore retired UI to satisfy old tests.
+The native matrix uses an identified, dedicated local synthetic fixture, not an
+arbitrary healthy developer server. API mutation fixtures carry the same browser
+identity precondition as real clients. CI Node is aligned with the22.22.3runtime.
+New source and distribution artifacts need their own receipts; cloud publication
+remains pending when its actual session is expired. [Repair contract](code-review-repair-20260930.md).
 
 ## September25 closed production client evidence
 

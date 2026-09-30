@@ -1307,6 +1307,7 @@ struct Readiness: Decodable, Equatable, Sendable {
 }
 
 struct OverviewSnapshot: Decodable, Equatable, Sendable {
+    var nextCursor: String? = nil
     let session: SessionInfo
     let plan: Plan
     let matters: [Matter]

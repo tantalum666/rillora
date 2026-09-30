@@ -20,9 +20,10 @@
         "docs/release-engineering-20260930.md",
         "output/qa/rillora-launch-resume-20260930/final-runtime-readback.json",
         "output/qa/rillora-launch-resume-20260930/release-acceptance-retry-result.json",
-        "output/qa/rillora-launch-resume-20260930/final-http-readback.json"
+        "output/qa/rillora-launch-resume-20260930/final-http-readback.json",
+        "docs/code-review-repair-20260930.md"
       ],
-      "next": "API7/schema0091 and restricted real-OIDC review mode are deployed;91checksums,TLS,runtime role,7same-origin HTTP checks pass. General customers and live payments remainclosed. Actual authorized sign-in and Web/iOS create/edit/invite/accept/revoke/export/delete journeys require Owner participation; enable final clients only after those gates."
+      "next": "Existing AWS sessions actually expired. Roll out the prepared review fixes to API7successor and closed Web/router only after restoration;schema0091is unchanged. Actual reviewer login/legal acceptance and core real-user journeys remain separate."
     },
     {
       "id": "production-identity",
@@ -147,9 +148,10 @@
         "docs/release-engineering-20260930.md",
         "output/qa/rillora-launch-resume-20260930/reauthentication-ui-check.json",
         "output/qa/rillora-launch-resume-20260930/native-final-distribution-check.json",
-        "output/qa/rillora-launch-resume-20260930/api-final-regression.json"
+        "output/qa/rillora-launch-resume-20260930/api-final-regression.json",
+        "docs/code-review-repair-20260930.md"
       ],
-      "next": "Current restricted runtime/artifact permissions,negative-access,auth_time reauthentication,client draft preservation and dependency patch are verified. Source scans/current CI and final artifact checks are in the September30ledger. Actual provider reauthentication and the later enabled customer candidate still require their specific acceptance; no independent certification is claimed."
+      "next": "Locally verified route-bound reauthentication,account-bound browser requests and serialized Stripe observations await AWS rollout. Preserve old source/deployment evidence separately; actual provider reauthentication and general customer cutover remain distinct gates."
     },
     {
       "id": "apple-submission",
@@ -176,7 +178,7 @@
     },
     {
       "id": "public-surface",
-      "status": "verified",
+      "status": "in_progress",
       "required": true,
       "title": "Public product and support entry",
       "evidence": [
@@ -186,9 +188,21 @@
         "output/qa/rillora-production-identity-20260924/root-browser-acceptance.json",
         "output/qa/rillora-production-identity-20260924/root-monitor-compatibility.json",
         "docs/ui-ux-audit-20260929.md",
-        "output/qa/rillora-ui-ux-audit-20260929/online-readback.json"
+        "output/qa/rillora-ui-ux-audit-20260929/online-readback.json",
+        "docs/code-review-repair-20260930.md"
       ],
-      "next": "WWW landing/support/legal and Preview-labelled account entry are published. Detailed provider guidance remains behind sign-in. App-wide appearance and ten scoped UX repairs are verified/installed/staged; these do not activate production accounts or subscriptions. Switch the public entry only after the separate customer release gates pass."
+      "next": "Restore the actually expired AWS session and publish the prepared WWW subscription-terms link correction; retained domain/TLS/hosting evidence stays dated."
+    },
+    {
+      "id": "review-remediation",
+      "status": "in_progress",
+      "required": true,
+      "title": "Owner-supplied Dot review remediation",
+      "evidence": [
+        "docs/code-review-repair-20260930.md",
+        "output/qa/rillora-review-repair-20260930/work-state.json"
+      ],
+      "next": "All13source fixes and local regressions are complete. Restore existing AWS login and deploy changed closed API/Web/router/WWW artifacts with exact readback. No schema0091change or new provider application."
     }
   ],
   "retainedEvidence": [

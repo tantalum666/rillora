@@ -15,7 +15,8 @@
     "bootstrap:runtime": "tsx src/bootstrap-runtime.ts",
     "seed:dev": "tsx src/seed-dev.ts",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "qa:native-ui": "tsx tests/native-ui-fixture.ts"
   },
   "dependencies": {
     "@apple/app-store-server-library": "^3.1.0",

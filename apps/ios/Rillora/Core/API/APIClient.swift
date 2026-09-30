@@ -304,7 +304,21 @@ actor APIClient: OverviewServing, PlanEditing, MatterEditing, TrustedContactEdit
     }
 
     func fetchOverview() async throws -> OverviewSnapshot {
-        try await get("overview")
+        let snapshot: OverviewSnapshot = try await get("overview")
+        var matters = snapshot.matters
+        var seenIDs = Set(matters.map(\.publicId))
+        var cursors = Set<String>()
+        var cursor = snapshot.nextCursor
+        while let next = cursor {
+            guard cursors.insert(next).inserted else { throw RilloraAPIError.invalidResponse }
+            var query = URLComponents()
+            query.queryItems = [URLQueryItem(name: "limit", value: "50"), URLQueryItem(name: "cursor", value: next)]
+            let page: MattersEnvelope = try await get("matters?\(query.percentEncodedQuery ?? "")")
+            matters.append(contentsOf: page.matters.filter { seenIDs.insert($0.publicId).inserted })
+            cursor = page.nextCursor
+        }
+        return OverviewSnapshot(session: snapshot.session, plan: snapshot.plan, matters: matters,
+            trustedContacts: snapshot.trustedContacts, readiness: snapshot.readiness)
     }
 
     func fetchPlan() async throws -> Plan {

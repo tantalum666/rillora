@@ -132,11 +132,11 @@ describe.sequential("P1 map reliability and export privacy",()=>{
   let calls=0;const processor=new AccountDeletionProcessor(pool,{async deleteIdentity(value){expect(value.subject).toBe("auth0|erase-fixture");if(++calls===1)throw Error("transient");}});
   const instance=createApp(pool,config,{accountDeletionProcessor:processor});
   const body={confirmation:"DELETE",receipt,acknowledgesSavedCopies:true,acknowledgesBilling:true};
-  const unavailable=await request(app).post("/v1/account/delete").set({cookie:`continuity_session=${session}`,"x-csrf-token":csrf}).send(body).expect(409);
+  const unavailable=await request(app).post("/v1/account/delete").set({cookie:`continuity_session=${session}`,"x-csrf-token":csrf,"x-rillora-planner":identity.planner_public_id}).send(body).expect(409);
   expect(unavailable.body.error.code).toBe("account_deletion_unavailable");
   expect((await pool.query("select status from app.planners where id=$1",[identity.planner_id])).rows[0].status).toBe("active");
   await request(instance).post("/v1/account/delete").set("cookie",`continuity_session=${session}`).send(body).expect(403);
-  const result=await request(instance).post("/v1/account/delete").set({cookie:`continuity_session=${session}`,"x-csrf-token":csrf}).send(body).expect(202);
+  const result=await request(instance).post("/v1/account/delete").set({cookie:`continuity_session=${session}`,"x-csrf-token":csrf,"x-rillora-planner":identity.planner_public_id}).send(body).expect(202);
   expect(result.body.deletion.status).toBe("pending");
   expect((await pool.query("select status from app.planners where id=$1",[identity.planner_id])).rows[0].status).toBe("deletion_pending");
   await request(instance).get("/v1/overview").set("cookie",`continuity_session=${session}`).expect(401);

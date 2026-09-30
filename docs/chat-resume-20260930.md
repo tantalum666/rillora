@@ -7,6 +7,10 @@ Last updated: 2026-09-30 (Asia/Hong_Kong)
 Owner要求先保存全部工作，准备在新聊天继续。本次只核对／保存交接，不新增产品实现、
 部署、购买、邮件、Apple申请或本人认证。唯一下一步仍以[当前交接](handoff.md)为准。
 
+## September30 Dot review修复 — 最新恢复入口
+
+Owner后续提供13项Dot代码发现并质疑质量；当前任务已切换为[修复与验证](code-review-repair-20260930.md)。先完成该质量门，不能把下方旧“仅等待Owner”结论继续当作当前状态。唯一下一步以[当前交接](handoff.md)为准。
+
 ## September30后续执行 — 当前恢复入口
 
 同日后续Owner要求完成所有不需要本人参与／确认、也不依赖AWS回复的发布前工作。

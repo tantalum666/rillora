@@ -38,7 +38,7 @@ async function actor(name: string, email?: string) {
     sha(`https://identity.example\u001fsharing|${name}`), sha(token), sha(csrf), email ? verifiedEmailDigest(email) : null]);
   return { id: String(row.planner_id), publicId: row.planner_public_id, token };
 }
-const as = (who: typeof B) => ({ cookie: `continuity_session=${who.token}`, "x-csrf-token": csrf });
+const as = (who: typeof B) => ({ cookie: `continuity_session=${who.token}`, "x-csrf-token": csrf, "x-rillora-planner": who.publicId });
 const owner = { "x-dev-planner-id": A };
 async function contact() {
   const response = await request(app).post("/v1/trusted-contacts").set(owner).send({ displayName: "Parent", relationshipLabel: "Family" }).expect(201);
@@ -178,7 +178,7 @@ describe.sequential("Account-bound directed sharing", () => {
     await request(app).get(`/sharing/invitations/${invite.publicId}`).set("cookie", handoff).expect(200);
     await request(app).get(`/sharing/invitations/${invite.publicId}`).expect(404);
     await request(app).post("/v1/sharing/invitations/accept").set("cookie", `${handoff}; continuity_session=${B.token}`)
-      .set("x-csrf-token", csrf).send({ invitationPublicId: invite.publicId, accepted: true }).expect(200);
+      .set("x-csrf-token", csrf).set("x-rillora-planner", B.publicId).send({ invitationPublicId: invite.publicId, accepted: true }).expect(200);
   });
 
   it("invalidates old links, rejects expired links and atomically consumes concurrent acceptance", async () => {

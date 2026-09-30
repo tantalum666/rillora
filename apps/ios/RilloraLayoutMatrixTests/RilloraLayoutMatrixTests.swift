@@ -4,6 +4,10 @@ import CoreImage
 @MainActor
 final class RilloraLayoutMatrixTests: XCTestCase {
     private var app: XCUIApplication!
+    private var qaAPIBaseURL: String {
+        ProcessInfo.processInfo.environment["RILLORA_MATRIX_API_BASE_URL"] ?? "http://127.0.0.1:4395/v1"
+    }
+
 
     func testSharingControlsSupportLargeTextAndSafeDismissal() async throws {
         let created = try await sharingRequest("trusted-contacts", method: "POST", body: ["displayName": "QA large-type sharing"])
@@ -24,11 +28,11 @@ final class RilloraLayoutMatrixTests: XCTestCase {
         assertMinimumTarget(level, label: "Sharing detail level")
         assertVisibleTextFitsWidth()
         attachScreenshot("sharing-ax5-permissions")
-        tapNavigationButton(named: "Done")
+        tapNavigationButton(named: "Close")
         XCTAssertTrue(app.alerts.buttons["Keep editing"].waitForExistence(timeout: 5))
         app.alerts.buttons["Keep editing"].tap()
         XCTAssertTrue(page.exists)
-        tapNavigationButton(named: "Done"); app.alerts.buttons["Discard changes"].tap()
+        tapNavigationButton(named: "Close"); app.alerts.buttons["Discard changes"].tap()
         _ = try await sharingRequest("trusted-contacts/\(personID)", method: "PATCH", body: ["expectedVersion": 1, "status": "archived"])
     }
 
@@ -91,10 +95,11 @@ final class RilloraLayoutMatrixTests: XCTestCase {
 
         launchApp(environment: ["RILLORA_DEV_PLANNER_ID": friend, "RILLORA_UI_TEST_INVITATION_TOKEN": token], expectedRoot: "invitation.view")
         XCTAssertTrue(element("invitation.view").waitForExistence(timeout: 10))
-        XCTAssertTrue(element("invitation.accept").waitForExistence(timeout: 15))
-        element("invitation.accept").tap()
-        XCTAssertTrue(element("invitation.error").waitForExistence(timeout: 10))
-        XCTAssertFalse(element("shared.inbox").exists)
+        XCTAssertTrue(app.staticTexts["This invitation has been accepted. Use the invited account to open shared items."].waitForExistence(timeout: 10))
+        app.buttons["Open shared items"].firstMatch.tap()
+        XCTAssertTrue(element("shared.inbox").waitForExistence(timeout: 10))
+        XCTAssertFalse(element("shared.item.\(first)").exists)
+        XCTAssertFalse(element("shared.item.\(second)").exists)
         attachScreenshot("sharing-wrong-recipient")
 
         launchApp(); tab("Profile").tap()
@@ -121,7 +126,7 @@ final class RilloraLayoutMatrixTests: XCTestCase {
         return try XCTUnwrap((response["matter"] as? [String: Any])?["publicId"] as? String)
     }
     private func sharingRequest(_ path: String, method: String = "GET", body: [String: Any]? = nil, version: Int? = nil) async throws -> [String: Any] {
-        var request = URLRequest(url: URL(string: "http://127.0.0.1:4181/v1/\(path)")!)
+        var request = URLRequest(url: URL(string: "\(qaAPIBaseURL)/\(path)")!)
         request.httpMethod = method
         request.setValue("11111111-1111-4111-8111-111111111111", forHTTPHeaderField: "x-dev-planner-id")
         if let body { request.httpBody = try JSONSerialization.data(withJSONObject: body); request.setValue("application/json", forHTTPHeaderField: "Content-Type") }
@@ -139,6 +144,9 @@ final class RilloraLayoutMatrixTests: XCTestCase {
         }
         XCUIDevice.shared.orientation = .portrait
         app = XCUIApplication()
+        app.launchEnvironment["RILLORA_API_BASE_URL"] = qaAPIBaseURL
+        app.launchEnvironment["RILLORA_DEV_PLANNER_ID"] = "11111111-1111-4111-8111-111111111111"
+        app.launchEnvironment["RILLORA_CUSTOMER_ACCESS_ENABLED"] = "YES"
         app.launchEnvironment.merge(environment) { _, new in new }
         app.launch()
         let overview = element(expectedRoot)
@@ -266,7 +274,7 @@ final class RilloraLayoutMatrixTests: XCTestCase {
         let deathDisclosure = element("profile.safety.disclosure.death")
         XCTAssertTrue(deathDisclosure.isHittable)
         deathDisclosure.tap()
-        XCTAssertTrue(app.staticTexts["A report starts evidence checks. It does not release a matter by itself."].exists)
+        XCTAssertTrue(app.staticTexts["A report alone must never release information. A live claims service is not available yet."].exists)
         attachScreenshot("signed-out-profile-disclosure-safeguards")
         tapFirstBackButton()
         XCTAssertTrue(safetyView.waitForExistence(timeout: 5))
@@ -558,6 +566,35 @@ final class RilloraLayoutMatrixTests: XCTestCase {
         XCUIDevice.shared.orientation = .portrait
     }
 
+    func testPushedContactEditorProtectsDraftFromEdgeBackAndCancel() async throws {
+        let response = try await sharingRequest("trusted-contacts", method: "POST", body: ["displayName": "Draft exit fixture"])
+        let contact = try XCTUnwrap(response["trustedContact"] as? [String: Any])
+        let id = try XCTUnwrap(contact["publicId"] as? String)
+        openProfileFresh()
+        let row = element("contact.open.\(id)")
+        scroll(row, intoViewWithin: element("profile.list")); row.tap()
+        let edit = element("contact.record.edit")
+        scroll(edit, intoViewWithin: element("sharing.editor")); edit.tap()
+        let name = app.textFields["contact.edit.name"]
+        XCTAssertTrue(name.waitForExistence(timeout: 5))
+        name.tap(); name.typeText(" unsaved")
+        name.typeText(XCUIKeyboardKey.return.rawValue)
+        let expected = name.value as? String
+        let start = app.coordinate(withNormalizedOffset: CGVector(dx: 0.01, dy: 0.5))
+        start.press(forDuration: 0.1, thenDragTo: app.coordinate(withNormalizedOffset: CGVector(dx: 0.8, dy: 0.5)))
+        XCTAssertTrue(element("contact.editor").exists)
+        XCTAssertEqual(name.value as? String, expected)
+        element("contact.edit.cancel").tap()
+        app.buttons["Keep editing"].firstMatch.tap()
+        XCTAssertEqual(name.value as? String, expected)
+        element("contact.edit.cancel").tap()
+        app.buttons["Discard changes"].firstMatch.tap()
+        XCTAssertTrue(element("sharing.editor").waitForExistence(timeout: 5))
+        let latest = try await sharingRequest("trusted-contacts")["trustedContacts"] as? [[String: Any]]
+        XCTAssertEqual(latest?.first { $0["publicId"] as? String == id }?["displayName"] as? String, "Draft exit fixture")
+        _ = try await sharingRequest("trusted-contacts/\(id)", method: "PATCH", body: ["expectedVersion": 1, "status": "archived"])
+    }
+
     func testPrimaryEditorsAndPreparationRoutes() {
         launchApp()
         tab("Matters").tap()
@@ -576,12 +613,16 @@ final class RilloraLayoutMatrixTests: XCTestCase {
         XCTAssertTrue(existingMatter.waitForExistence(timeout: 10))
         existingMatter.tap()
         XCTAssertTrue(element("matter.editor").waitForExistence(timeout: 10))
-        element("matter.section.people").tap()
+        openMatterMoreOptions()
         let rolePolicy = element("matter.edit.role-policy")
         scroll(rolePolicy, intoViewWithin: element("matter.editor"))
         XCTAssertTrue(rolePolicy.isHittable)
+        XCTAssertTrue(rolePolicy.isEnabled)
+        attachScreenshot("recorded-role-entry")
         rolePolicy.tap()
-        XCTAssertTrue(element("role-policy.editor").waitForExistence(timeout: 10))
+        let roleDestination = element("role-policy.editor").waitForExistence(timeout: 10)
+        if !roleDestination { attachScreenshot("recorded-role-destination-failure"); print(app.debugDescription) }
+        XCTAssertTrue(roleDestination)
         attachScreenshot("role-policy-editor")
         tapFirstBackButton()
         XCTAssertTrue(element("matter.editor").waitForExistence(timeout: 5))
@@ -594,7 +635,6 @@ final class RilloraLayoutMatrixTests: XCTestCase {
 
         openPushRoute(
             "plan-access.open",
-            labelPrefix: "Plan & access",
             expected: "plan-access.view",
             screenshot: "plan-access"
         )
@@ -603,40 +643,19 @@ final class RilloraLayoutMatrixTests: XCTestCase {
         tapNavigationButton(named: "Cancel")
         XCTAssertTrue(profileList.waitForExistence(timeout: 5))
 
-        openPushRoute(
-            "plan-motivation.open",
-            labelPrefix: "Why I’m preparing",
-            expected: "plan-motivation.view",
-            screenshot: "plan-motivation"
-        )
         openOfficialProviderGuide()
         openPushRoute(
-            "simulation.open",
-            labelPrefix: "Simulation rehearsal",
-            expected: "simulation.view",
-            screenshot: "simulation"
-        )
-        openPushRoute(
-            "disclosure-rehearsal.open",
-            labelPrefix: "Role disclosure rehearsal",
-            expected: "disclosure-rehearsal.view",
-            screenshot: "role-disclosure"
-        )
-        openPushRoute(
             "start-here.open",
-            labelPrefix: "Start Here guide",
             expected: "start-here.view",
             screenshot: "start-here"
         )
         openPushRoute(
             "profile.safety",
-            labelPrefix: "Safety & privacy",
             expected: "profile.safety.view",
             screenshot: "profile-safety"
         )
         openPushRoute(
             "profile.about",
-            labelPrefix: "About Rillora",
             expected: "profile.about.view",
             screenshot: "profile-about"
         )
@@ -702,29 +721,10 @@ final class RilloraLayoutMatrixTests: XCTestCase {
     func testPreparationResultsAndExportChoices() {
         openProfileFresh()
         let profile = element("profile.list")
-        let simulation = element("simulation.open")
-        scroll(simulation, intoViewWithin: profile)
-        attachScreenshot("profile-preparation")
-        simulation.tap()
-        let run = element("simulation.run")
-        XCTAssertTrue(run.waitForExistence(timeout: 5))
-        scroll(run, intoViewWithin: element("simulation.view"))
-        run.tap()
-        XCTAssertTrue(element("simulation.result").waitForExistence(timeout: 15))
-        attachScreenshot("simulation-result")
-        tapFirstBackButton()
-        let disclosure = element("disclosure-rehearsal.open")
-        scroll(disclosure, intoViewWithin: profile)
-        disclosure.tap()
-        let create = element("disclosure-rehearsal.create")
-        scroll(create, intoViewWithin: element("disclosure-rehearsal.view"))
-        create.tap()
-        XCTAssertTrue(element("disclosure-rehearsal.state").waitForExistence(timeout: 15))
-        attachScreenshot("role-disclosure-result")
-        tapFirstBackButton()
         let startHere = element("start-here.open")
         scroll(startHere, intoViewWithin: profile)
         startHere.tap()
+        choosePersonalExportAudience()
         let preview = element("start-here.preview")
         scroll(preview, intoViewWithin: element("start-here.view"))
         preview.tap()
@@ -752,22 +752,19 @@ final class RilloraLayoutMatrixTests: XCTestCase {
         attachScreenshot("start-here-encrypted-choice")
     }
 
-    func testEditorSectionsKeepTheSameUnsavedDraft() {
+    func testContinuousEditorKeepsTheSameUnsavedDraft() {
         launchApp()
         tab("Matters").tap()
         element("matter.add").tap()
         let name = app.textFields["matter.edit.title"]
         XCTAssertTrue(name.waitForExistence(timeout: 5))
         name.tap(); name.typeText("Section draft")
-        element("matter.section.directions").tap()
-        let outcome = element("matter.outcome.close")
-        scroll(outcome, intoViewWithin: element("matter.editor"))
-        outcome.tap()
-        attachScreenshot("matter-directions-selected")
-        element("matter.section.people").tap()
-        XCTAssertTrue(app.staticTexts["Save this matter before adding people."].waitForExistence(timeout: 5))
-        attachScreenshot("new-matter-people-boundary")
-        element("matter.section.details").tap()
+        name.typeText(XCUIKeyboardKey.return.rawValue)
+        let notes = app.textFields["matter.edit.notes"]
+        scroll(notes, intoViewWithin: element("matter.editor"))
+        XCTAssertTrue(app.staticTexts["Private until you choose to share"].exists)
+        XCTAssertTrue(notes.exists)
+        scroll(name, intoViewWithin: element("matter.editor"), towardStart: true)
         XCTAssertEqual(name.value as? String, "Section draft")
         tapNavigationButton(named: "Cancel")
         XCTAssertTrue(app.buttons["Keep editing"].firstMatch.waitForExistence(timeout: 5))
@@ -803,46 +800,19 @@ final class RilloraLayoutMatrixTests: XCTestCase {
         }
     }
 
-    func testRehearsalSwitchClearsOldResultAndPolicyActionsAdvance() {
+    func testProfileOmitsInternalRehearsalAndMotivationRoutes() {
         openProfileFresh()
-        let profile = element("profile.list")
-        let simulation = element("simulation.open")
-        scroll(simulation, intoViewWithin: profile); simulation.tap()
-        element("simulation.event.incapacity").tap()
-        attachScreenshot("rehearsal-incapacity-selection")
-        let run = element("simulation.run")
-        scroll(run, intoViewWithin: element("simulation.view")); run.tap()
-        XCTAssertTrue(element("simulation.result").waitForExistence(timeout: 15))
-        attachScreenshot("rehearsal-incapacity-result")
-        element("simulation.event.missing").tap()
-        XCTAssertFalse(element("simulation.result").exists)
-        attachScreenshot("rehearsal-new-event-clears-result")
-        tapFirstBackButton()
-        let disclosure = element("disclosure-rehearsal.open")
-        scroll(disclosure, intoViewWithin: profile); disclosure.tap()
-        let create = element("disclosure-rehearsal.create")
-        scroll(create, intoViewWithin: element("disclosure-rehearsal.view")); create.tap()
-        let state = element("disclosure-rehearsal.state")
-        XCTAssertTrue(state.waitForExistence(timeout: 15))
-        for step in 0..<7 {
-            let advance = element("disclosure-rehearsal.action.advance")
-            let hold = element("disclosure-rehearsal.action.simulate_cooling_off_elapsed")
-            let action = advance.exists ? advance : hold
-            guard action.exists else { break }
-            let previous = state.label
-            scroll(action, intoViewWithin: element("disclosure-rehearsal.view")); action.tap()
-            let changed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "label != %@", previous), object: state)
-            XCTAssertEqual(XCTWaiter.wait(for: [changed], timeout: 15), .completed)
-            attachScreenshot("disclosure-state-\(step + 1)")
+        for retired in ["simulation.open", "disclosure-rehearsal.open", "plan-motivation.open"] {
+            XCTAssertFalse(element(retired).exists)
         }
+        XCTAssertTrue(element("profile.list").exists)
     }
 
     func testDeepTasksSupportLargeTextAndReducedMotion() {
         launchApp(environment: ["RILLORA_UI_TEST_LARGE_TEXT": "1", "RILLORA_UI_TEST_REDUCE_MOTION": "1"])
         tab("Matters").tap(); element("matter.add").tap()
         let editor = element("matter.editor")
-        XCTAssertGreaterThan(element("matter.section.directions").frame.minY, element("matter.section.details").frame.minY,
-                             "Large-text sheets must actually receive the accessibility size, with stacked section controls")
+        XCTAssertTrue(editor.waitForExistence(timeout: 10))
         let name = app.textFields["matter.edit.title"]
         scroll(name, intoViewWithin: editor)
         assertMinimumTarget(element("matter.edit.title.control"), label: "Matter name control")
@@ -852,9 +822,14 @@ final class RilloraLayoutMatrixTests: XCTestCase {
         assertVisibleTextFitsWidth()
         attachScreenshot("deep-ax5-matter")
         tapNavigationButton(named: "Cancel")
+        if app.buttons["Discard changes"].firstMatch.waitForExistence(timeout: 2) {
+            app.buttons["Discard changes"].firstMatch.tap()
+        }
+        XCTAssertTrue(element("matters.list").waitForExistence(timeout: 5))
         tab("Profile").tap()
         let start = element("start-here.open")
         scroll(start, intoViewWithin: element("profile.list")); start.tap()
+        choosePersonalExportAudience()
         let preview = element("start-here.preview")
         scroll(preview, intoViewWithin: element("start-here.view")); preview.tap()
         XCTAssertTrue(element("start-here.preview-result").waitForExistence(timeout: 15))
@@ -871,6 +846,7 @@ final class RilloraLayoutMatrixTests: XCTestCase {
         let start = element("start-here.open")
         scroll(start, intoViewWithin: element("profile.list")); start.tap()
         let page = element("start-here.view")
+        choosePersonalExportAudience()
         let preview = element("start-here.preview")
         scroll(preview, intoViewWithin: page); preview.tap()
         XCTAssertTrue(element("start-here.preview-result").waitForExistence(timeout: 15))
@@ -910,16 +886,10 @@ final class RilloraLayoutMatrixTests: XCTestCase {
         }
         launchApp(environment: ["RILLORA_DEV_PLANNER_ID": plannerID])
         attachScreenshot("empty-overview")
-        let guide = element("first-use.open-guide")
-        if guide.exists {
-            scroll(guide, intoViewWithin: element("overview.scroll"))
-            guide.tap()
-        } else {
-            tab("Profile").tap()
-            let resume = element("first-use.account-open")
-            scroll(resume, intoViewWithin: element("profile.list"))
-            resume.tap()
-        }
+        let guide = element("overview.quick-start")
+        scroll(guide, intoViewWithin: element("overview.scroll"))
+        XCTAssertTrue(guide.isHittable, "The dedicated empty fixture must have onboarding available")
+        guide.tap()
         let form = element("first-use.guide")
         XCTAssertTrue(form.waitForExistence(timeout: 10))
         attachScreenshot("optional-guide")
@@ -947,6 +917,7 @@ final class RilloraLayoutMatrixTests: XCTestCase {
         continueAfterFailure = false
         app = XCUIApplication()
         app.launchEnvironment["RILLORA_API_BASE_URL"] = "http://127.0.0.1:1/v1"
+        app.launchEnvironment["RILLORA_DEV_PLANNER_ID"] = "11111111-1111-4111-8111-111111111111"
         app.launch()
         let retry = element("overview.retry")
         XCTAssertTrue(retry.waitForExistence(timeout: 20))
@@ -981,8 +952,7 @@ final class RilloraLayoutMatrixTests: XCTestCase {
         let bank = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Bank account")).firstMatch
         scroll(bank, intoViewWithin: element("matters.list"))
         bank.tap()
-        scroll(element("matter.section.people"), intoViewWithin: editor)
-        element("matter.section.people").tap()
+        openMatterMoreOptions()
         let roles = element("matter.edit.role-policy")
         scroll(roles, intoViewWithin: editor)
         roles.tap()
@@ -990,7 +960,9 @@ final class RilloraLayoutMatrixTests: XCTestCase {
         assertVisibleTextFitsWidth()
         attachScreenshot("large-role-scope")
         tapFirstBackButton()
+        XCTAssertTrue(element("matter.editor").waitForExistence(timeout: 5))
         tapFirstBackButton()
+        XCTAssertTrue(element("matters.list").waitForExistence(timeout: 5))
         tab("Profile").tap()
         openSheetRoute("contact.add", expected: "contact.editor", screenshot: "large-contact-editor")
         assertMinimumTarget(element("contact.edit.name.control"), label: "Contact name control")
@@ -1016,16 +988,37 @@ final class RilloraLayoutMatrixTests: XCTestCase {
         }
     }
 
-    func testProfilePlannerRouteIsReachable() {
-        openProfileFresh()
-        let route = routeElement(
-            identifier: "plan-motivation.open",
-            labelPrefix: "Why I’m preparing"
-        )
-        scroll(route, intoViewWithin: element("profile.list"))
-        XCTAssertTrue(route.isHittable, "The planner-motivation route is not reachable")
-        route.tap()
-        XCTAssertTrue(element("plan-motivation.view").waitForExistence(timeout: 10))
+    private func choosePersonalExportAudience() {
+        let page = element("start-here.view")
+        let audience = element("start-here.audience")
+        XCTAssertTrue(audience.waitForExistence(timeout: 5))
+        scroll(audience, intoViewWithin: page)
+        let button = audience.buttons.firstMatch
+        if button.exists { button.tap() } else { audience.tap() }
+        let personal = app.buttons["For me"].firstMatch
+        if personal.waitForExistence(timeout: 2) { personal.tap() }
+        else { app.staticTexts["For me"].firstMatch.tap() }
+        if !element("start-here.preview").exists { tapFirstBackButton() }
+        XCTAssertTrue(element("start-here.preview").isEnabled)
+    }
+
+    func testMatterAfterFirstPageCanBeFoundAndOpened() {
+        launchApp(environment: ["RILLORA_DEV_PLANNER_ID": "22222222-2222-4222-8222-222222222222"])
+        tab("Matters").tap()
+        let search = app.searchFields.firstMatch
+        XCTAssertTrue(search.waitForExistence(timeout: 5))
+        search.tap(); search.typeText("Pagination record 51")
+        let result = element(withIdentifierPrefix: "matter.open.")
+        XCTAssertTrue(result.waitForExistence(timeout: 10)); result.tap()
+        XCTAssertEqual(app.textFields["matter.edit.title"].value as? String, "Pagination record 51")
+        attachScreenshot("native-matter-after-first-page")
+    }
+
+    private func openMatterMoreOptions() {
+        let options = app.buttons["More options"].firstMatch
+        scroll(options, intoViewWithin: element("matter.editor"))
+        XCTAssertTrue(options.isHittable)
+        options.tap()
     }
 
     private func openSheetRoute(
@@ -1049,10 +1042,7 @@ final class RilloraLayoutMatrixTests: XCTestCase {
 
     private func openOfficialProviderGuide() {
         let profileList = element("profile.list")
-        let route = routeElement(
-            identifier: "official-setup.open",
-            labelPrefix: "Official provider checks"
-        )
+        let route = element("official-setup.open")
         scroll(route, intoViewWithin: profileList)
         XCTAssertTrue(route.isHittable, "Official checks route is not reachable")
         route.tap()
@@ -1096,12 +1086,11 @@ final class RilloraLayoutMatrixTests: XCTestCase {
 
     private func openPushRoute(
         _ routeIdentifier: String,
-        labelPrefix: String,
         expected destinationIdentifier: String,
         screenshot: String
     ) {
         let profileList = element("profile.list")
-        let route = routeElement(identifier: routeIdentifier, labelPrefix: labelPrefix)
+        let route = element(routeIdentifier)
         scroll(route, intoViewWithin: profileList)
         XCTAssertTrue(route.isHittable, "Route \(routeIdentifier) is not reachable")
         route.tap()
@@ -1111,15 +1100,6 @@ final class RilloraLayoutMatrixTests: XCTestCase {
         XCTAssertTrue(profileList.waitForExistence(timeout: 5))
     }
 
-    private func routeElement(identifier: String, labelPrefix: String) -> XCUIElement {
-        let identifierMatch = element(identifier)
-        if identifierMatch.exists {
-            return identifierMatch
-        }
-        return app.descendants(matching: .any)
-            .matching(NSPredicate(format: "label BEGINSWITH %@", labelPrefix))
-            .firstMatch
-    }
 
     private func assertNativeTabs(selected: String = "Overview", minimumTabHeight: CGFloat = 44) {
         let tabBar = app.tabBars.firstMatch
@@ -1150,20 +1130,25 @@ final class RilloraLayoutMatrixTests: XCTestCase {
         XCTAssertTrue(target.frame.intersects(app.frame), "\(label) lies outside the app frame")
     }
 
-    private func scroll(_ target: XCUIElement, intoViewWithin container: XCUIElement) {
+    private func scroll(_ target: XCUIElement, intoViewWithin container: XCUIElement, towardStart: Bool = false) {
         _ = container
-        for _ in 0..<14 {
-            if target.exists && target.isHittable && targetCenterClearsSystemChrome(target) {
-                return
-            }
+        for _ in 0..<24 {
+            if target.exists && target.isHittable && targetCenterClearsSystemChrome(target) { return }
             let navigationBar = app.navigationBars.firstMatch
             let safeTop = navigationBar.exists ? navigationBar.frame.maxY + 8 : app.frame.minY
-            let shouldScrollDown = target.exists && !target.frame.isEmpty && target.frame.maxY < safeTop
-            let start = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: shouldScrollDown ? 0.42 : 0.72))
-            let end = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: shouldScrollDown ? 0.70 : 0.48))
+            let keyboard = app.keyboards.firstMatch
+            let tabBar = app.tabBars.firstMatch
+            var safeBottom = tabBar.exists && tabBar.isHittable ? tabBar.frame.minY - 8 : app.frame.maxY - 24
+            if keyboard.exists { safeBottom = min(safeBottom, keyboard.frame.minY - 8) }
+            let shouldScrollDown = towardStart || (target.exists && !target.frame.isEmpty && target.frame.maxY < safeTop)
+            let height = max(80, safeBottom - safeTop)
+            let startY = (safeTop + height * (shouldScrollDown ? 0.2 : 0.8) - app.frame.minY) / app.frame.height
+            let endY = (safeTop + height * (shouldScrollDown ? 0.8 : 0.2) - app.frame.minY) / app.frame.height
+            let start = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: startY))
+            let end = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: endY))
             start.press(forDuration: 0.05, thenDragTo: end)
         }
-        attachScreenshot("unreachable-\(target.identifier)")
+        attachScreenshot("unreachable-ui-target")
     }
 
     private func targetCenterClearsSystemChrome(_ target: XCUIElement) -> Bool {
@@ -1203,7 +1188,10 @@ final class RilloraLayoutMatrixTests: XCTestCase {
         XCTAssertTrue(navigationBar.waitForExistence(timeout: 5))
         let backButton = navigationBar.buttons.element(boundBy: 0)
         XCTAssertTrue(backButton.exists, "Missing navigation back button")
+        let oldTitle = navigationBar.identifier
         backButton.tap()
+        let changed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "identifier != %@", oldTitle), object: app.navigationBars.firstMatch)
+        XCTAssertEqual(XCTWaiter.wait(for: [changed], timeout: 5), .completed, "Back must reach the previous navigation destination")
     }
 
     private func attachScreenshot(_ name: String) {

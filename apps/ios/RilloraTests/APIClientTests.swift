@@ -228,6 +228,37 @@ final class APIClientTests: XCTestCase {
         XCTAssertTrue(configuration.passkeyNativeSignInEnabled)
     }
 
+    func testOverviewLoadsThe51stMatterAndRejectsRepeatedCursors() async throws {
+        let raw = try XCTUnwrap(Fixtures.successResponses["/v1/overview"]?.body)
+        var overview = try XCTUnwrap(JSONSerialization.jsonObject(with: Data(raw.utf8)) as? [String: Any])
+        let original = try XCTUnwrap((overview["matters"] as? [[String: Any]])?.first)
+        let matters = (0..<51).map { index in
+            var matter = original
+            matter["publicId"] = "00000000-0000-4000-8000-\(String(format: "%012d", index))"
+            matter["title"] = "Matter \(index)"
+            return matter
+        }
+        overview["matters"] = Array(matters.prefix(50)); overview["nextCursor"] = matters[49]["publicId"]
+        func json(_ value: Any) throws -> String {
+            String(data: try JSONSerialization.data(withJSONObject: value), encoding: .utf8)!
+        }
+        let config = APIConfiguration(baseURL: URL(string: "https://api.example.test/v1")!, developmentPlannerID: Fixtures.plannerID)
+        for repeated in [false, true] {
+            let page: [String: Any] = ["matters": [matters[50]], "nextCursor": repeated ? matters[49]["publicId"]! : NSNull()]
+            let transport = StubTransport(responses: ["/v1/overview": .init(body: try json(overview)), "/v1/matters": .init(body: try json(page))])
+            let client = APIClient(configuration: config, transport: transport)
+            do {
+                let snapshot = try await client.fetchOverview()
+                XCTAssertFalse(repeated)
+                XCTAssertEqual(snapshot.matters.count, 51)
+                XCTAssertEqual(snapshot.matters.last?.title, "Matter 50")
+            } catch { XCTAssertTrue(repeated) }
+            let requests = await transport.recordedRequests()
+            XCTAssertEqual(requests.count, 2)
+            XCTAssertTrue(requests[1].url?.query?.contains("cursor=") == true)
+        }
+    }
+
     func testFetchOverviewUsesDevelopmentIdentityAndDecodesSharedContract() async throws {
         let transport = StubTransport(responses: Fixtures.successResponses)
         let configuration = APIConfiguration(

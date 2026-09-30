@@ -14,6 +14,20 @@ const developmentPlannerHeader = "x-dev-planner-id";
 const csrfHeader = "x-csrf-token";
 export const sessionCookieName = "continuity_session";
 
+/** The header is a consistency precondition, never authority to choose a tenant. */
+export const requireWorkspaceIdentity: RequestHandler = (request, _response, next) => {
+  const expected = request.get('x-rillora-planner');
+  if (expected !== undefined && expected.toLowerCase() !== request.auth.plannerPublicId.toLowerCase()) {
+    next(new ApiError(409, 'account_changed', 'The signed-in account changed. Reload before continuing.'));
+    return;
+  }
+  if (request.auth.mode === 'session' && !['GET', 'HEAD', 'OPTIONS'].includes(request.method) && !expected) {
+    requireCsrf(request, _response, error => next(error ?? new ApiError(409, 'workspace_identity_required', 'Reload your map before making changes.')));
+    return;
+  }
+  next();
+};
+
 type PlannerIdentityRow = {
   planner_id: string;
   planner_public_id: string;

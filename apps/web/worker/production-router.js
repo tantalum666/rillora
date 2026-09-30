@@ -9,7 +9,7 @@ function handler(event) {
   if (request.method !== 'GET' && request.method !== 'HEAD') return { statusCode: 405, headers: { 'cache-control': { value: 'no-store' }, allow: { value: 'GET, HEAD' } } };
   var path = request.uri.length > 1 ? request.uri.replace(/\/+$/, '') : '/';
   var pages = ['/', '/account', '/account/billing', '/account/billing/complete', '/guides', '/open-copy', '/privacy', '/terms', '/subscription-terms', '/refund-policy', '/acceptable-use', '/cookies', '/legal', '/accept', '/account-deletion'];
-  if (pages.indexOf(path) !== -1) { request.uri = '/index.html'; return request; }
+  if (pages.indexOf(path) !== -1 || path === '/invite' || /^\/invite\/[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(path)) { request.uri = '/index.html'; return request; }
   if (/^\/assets\/[A-Za-z0-9_-]+\.(js|css|png|jpe?g|webp|svg|woff|woff2|txt)$/.test(request.uri)) return request;
   return { statusCode: 404, headers: { 'cache-control': { value: 'no-store' } } };
 }

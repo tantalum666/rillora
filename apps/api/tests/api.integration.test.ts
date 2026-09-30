@@ -16,6 +16,7 @@ import type { StoreKitSandboxSnapshotProvider } from "../src/apple-storekit-serv
 import type { AppConfig } from "../src/config.js";
 import { createPool, type DatabasePool } from "../src/db.js";
 import { runMigrations } from "../src/migrate.js";
+import { dedicatedTestDatabaseUrl, assertDedicatedTestDatabase } from "./dedicated-test-database.js";
 import { developmentPlannerPublicId, seedDevelopmentFixture } from "../src/seed-dev.js";
 import type { IdentityProvider, NativeIdentityVerifier } from "../src/identity.js";
 import type { StripeCommerceProvider } from "../src/stripe-commerce-executor.js";
@@ -23,7 +24,7 @@ import { currentLegalContract } from "../src/legal-contract.js";
 import { ApiError } from "../src/errors.js";
 
 const { Client } = pg;
-const databaseUrl = process.env.TEST_DATABASE_URL ?? "postgresql:///continuity_test";
+const databaseUrl = dedicatedTestDatabaseUrl(process.env.TEST_DATABASE_URL ?? "postgresql:///continuity_test", "continuity_test");
 const secondPlannerPublicId = "22222222-2222-4222-8222-222222222222";
 const sessionToken = "s".repeat(43);
 const csrfToken = "c".repeat(43);
@@ -263,7 +264,7 @@ let secondPlannerMatterPublicId: string;
 
 describe.sequential("Continuity API", () => {
   beforeAll(async () => {
-    await assertDedicatedTestDatabase();
+    await assertDedicatedTestDatabase(databaseUrl, "continuity_test");
     await runMigrations(databaseUrl);
     pool = createPool(config);
     await pool.query(
@@ -281,7 +282,7 @@ describe.sequential("Continuity API", () => {
   });
 
   afterAll(async () => {
-    await pool.end();
+    await pool?.end();
   });
 
   it("serves health checks with hardened headers", async () => {
@@ -350,6 +351,7 @@ describe.sequential("Continuity API", () => {
     for (const route of ["checkout", "portal", "checkout/cancel"]) {
       await agent.post(`/v1/commerce/test/${route}`).send({ billingPeriod: "annual" }).expect(403);
     }
+    agent.set("x-rillora-planner", (await agent.get("/v1/session").expect(200)).body.plannerPublicId);
     const unregisteredTestBilling = await agent.post("/v1/commerce/test/checkout")
       .set("x-csrf-token", csrf).set("idempotency-key", "unenrolled-checkout-request-0001")
       .send({ billingPeriod: "annual" }).expect(403);
@@ -1746,7 +1748,7 @@ describe.sequential("Continuity API", () => {
     const simulation = await request(app)
       .post("/v1/simulations")
       .set("Cookie", `continuity_session=${sessionToken}`)
-      .set("x-csrf-token", csrfToken)
+      .set("x-csrf-token", csrfToken).set("x-rillora-planner", developmentPlannerPublicId)
       .send({ lifeEvent: "death" })
       .expect(201);
     expect(simulation.body.simulation.simulationOnly).toBe(true);
@@ -2692,6 +2694,7 @@ describe.sequential("Continuity API", () => {
     expect(resolved.body.invitation.status).toBe("pending");
     const cookie = (callback.headers["set-cookie"] as unknown as string[]).find((value) => value.startsWith("continuity_csrf="))!;
     const csrf = decodeURIComponent(cookie.split(";")[0]!.split("=")[1]!);
+    recipient.set("x-rillora-planner", (await recipient.get("/v1/session").expect(200)).body.plannerPublicId);
     await recipient.post("/v1/sharing/invitations/accept").set("x-csrf-token", csrf).send({ invitationPublicId: invitation.connection.publicId, accepted: true }).expect(200);
     expect((await recipient.get("/v1/sharing/shared-with-me").expect(200)).body.connections.some((value: { publicId: string }) => value.publicId === invitation.connection.publicId)).toBe(true);
   });
@@ -2711,19 +2714,6 @@ function asDevelopmentPlanner(testRequest: Test): Test {
       code: response.body?.error?.code, text: response.text?.slice(0, 160),
     });
   });
-}
-
-async function assertDedicatedTestDatabase(): Promise<void> {
-  const client = new Client({ connectionString: databaseUrl });
-  await client.connect();
-  try {
-    const result = await client.query<{ name: string }>("select current_database() as name");
-    if (result.rows[0]?.name !== "continuity_test") {
-      throw new Error("Integration tests refuse to modify any database except continuity_test");
-    }
-  } finally {
-    await client.end();
-  }
 }
 
 async function seedSecondPlanner(database: DatabasePool): Promise<string> {

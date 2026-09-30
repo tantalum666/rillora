@@ -14,6 +14,24 @@ final class ProductionConnectionTests: XCTestCase {
                 passkeyNativeSignInEnabled: false), customerAccessEnabled: false)
     }
 
+    @MainActor
+    func testBothNativeRevocationsUseTheProductionProxyAndRequireServerSuccess() async throws {
+        let tokenStore = VolatileSessionTokenStore()
+        try await tokenStore.save(String(repeating: "t", count: 43))
+        let sessionConfig = URLSessionConfiguration.ephemeral
+        sessionConfig.protocolClasses = [LogoutURLProtocol.self]
+        let session = URLSession(configuration: sessionConfig)
+        defer { session.invalidateAndCancel() }
+        LogoutURLProtocol.probe.reset()
+        let service = Auth0NativeAuthenticationService(configuration: try XCTUnwrap(configuration().nativeAuthentication),
+            tokenStore: tokenStore, session: session)
+        try await service.revokeSession(allDevices: false)
+        try await service.revokeSession(allDevices: true)
+        XCTAssertEqual(LogoutURLProtocol.probe.paths(), ["/api/v1/auth/logout", "/api/v1/auth/logout-all"])
+        XCTAssertEqual(configuration().nativeAuthentication?.plannerAPIBaseURL.absoluteString, "https://app.rillora.xyz/api/v1")
+        XCTAssertEqual(configuration(exchange: "https://api.example.test/auth/native/session").nativeAuthentication?.plannerAPIBaseURL.path, "/v1")
+    }
+
     func testPreparedProductionConnectionIsValidButDoesNotOpenAccounts() throws {
         let value = configuration()
         try value.validateProduction()
@@ -57,4 +75,28 @@ final class ProductionConnectionTests: XCTestCase {
             XCTAssertEqual(error.localizedDescription, "Accounts are not open yet. You can still explore Rillora and its guides.")
         }
     }
+}
+
+private final class LogoutProbe: @unchecked Sendable {
+    private let lock = NSLock()
+    private var values: [String] = []
+    func reset() { lock.withLock { values = [] } }
+    func record(_ path: String) { lock.withLock { values.append(path) } }
+    func paths() -> [String] { lock.withLock { values } }
+}
+private final class LogoutURLProtocol: URLProtocol, @unchecked Sendable {
+    static let probe = LogoutProbe()
+    override class func canInit(with request: URLRequest) -> Bool { true }
+    override class func canonicalRequest(for request: URLRequest) -> URLRequest { request }
+    override func startLoading() {
+        let path = request.url!.path
+        Self.probe.record(path)
+        let valid = request.url?.host == "app.rillora.xyz" && request.httpMethod == "POST"
+            && request.value(forHTTPHeaderField: "Authorization") == "Bearer " + String(repeating: "t", count: 43)
+            && ["/api/v1/auth/logout", "/api/v1/auth/logout-all"].contains(path)
+        let response = HTTPURLResponse(url: request.url!, statusCode: valid ? 204 : 404, httpVersion: "HTTP/1.1", headerFields: nil)!
+        client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
+        client?.urlProtocolDidFinishLoading(self)
+    }
+    override func stopLoading() {}
 }

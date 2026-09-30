@@ -360,6 +360,30 @@ export function App() {
     return () => window.clearTimeout(toastTimer.current);
   }, [loadWorkspace, startsOnPublicReadOnlyRoute, startsOnInvitationRoute]);
 
+  useEffect(() => {
+    const invalidate = () => {
+      ++workspaceRevision.current;
+      setSession(null); setPlan(null); setMatters([]); setContacts([]);
+      setChecks([]); setAuditEvents([]); setDrawer(null); setRecoverableDraft(null);
+      setCommerce(unavailableCommercialStatus()); setBusy(false); setLoading(false);
+      draftOwner.current = null;
+      setLoadError(new ApiClientError(409, 'account_changed', 'The signed-in account changed. Reload before continuing.'));
+    };
+    const verify = () => {
+      if (session && !document.hidden) void api.getSession().catch(error => {
+        if (error.status === 401 || error.code === 'account_changed') invalidate();
+      });
+    };
+    window.addEventListener('rillora:account-changed', invalidate);
+    window.addEventListener('focus', verify);
+    document.addEventListener('visibilitychange', verify);
+    return () => {
+      window.removeEventListener('rillora:account-changed', invalidate);
+      window.removeEventListener('focus', verify);
+      document.removeEventListener('visibilitychange', verify);
+    };
+  }, [session]);
+
   const completed = useMemo(() => matters.filter((matter) => matter.status === "added").length, [matters]);
   const currentMatter = drawer?.type === "matter" ? matters.find((matter) => matter.id === drawer.id) : null;
   const currentProviderGuide = drawer?.type === "provider-guide"
@@ -656,11 +680,12 @@ export function App() {
     setBusy(true);
     try {
       if (drawer.type === "matter") {
-        const response = await api.getMatters();
-        const latest = response.matters.map(mapMatter);
-        const item = latest.find((matter) => matter.id === drawer.id);
-        if (!item) throw new Error("This matter is no longer available.");
-        discardRecoveredDraft(); setMatters(latest); openMatter(item);
+        const { matter } = await api.getMatter(drawer.id);
+        if (matter.archivedAt) throw new Error("This matter is no longer available.");
+        const item = mapMatter(matter);
+        discardRecoveredDraft();
+        setMatters(items => items.map(current => current.id === item.id ? item : current));
+        openMatter(item);
       } else if (drawer.type === "settings") {
         const response = await api.getOfficialSetupChecks();
         setChecks(response.officialSetupChecks.map((check) => ({ ...check, serverCompleted: check.completed })));
@@ -782,20 +807,22 @@ export function App() {
   if (!session || !plan) {
     const signedOut = loadError instanceof ApiClientError && loadError.status === 401;
     const serviceNotOpen = loadError instanceof ApiClientError && loadError.code === "service_not_open";
+    const accountChanged = loadError instanceof ApiClientError && loadError.code === "account_changed";
+    const retry = accountChanged ? () => window.location.assign('/') : () => void loadWorkspace();
     if (!signedOut && !serviceNotOpen && !browsePublic) return <main className="workspace-gate" aria-busy={loading}>
       <span className="workspace-gate-brand"><RilloraBrand /></span>
       <FileText size={44} aria-hidden="true" />
-      <h1>{loading ? "Loading your map" : "Your map is temporarily unavailable"}</h1>
+      <h1>{loading ? "Loading your map" : accountChanged ? "Account changed" : "Your map is temporarily unavailable"}</h1>
       {loading ? <p role="status">Checking your connection…</p> : <>
-        <p role="alert">We could not load your map. Try again when your connection is ready.</p>
-        <button className="primary-button" onClick={() => void loadWorkspace()}>Try again</button>
+        <p role="alert">{accountChanged ? "A different account is signed in. Your previous draft has not been submitted. Reload to open the current account." : "We could not load your map. Try again when your connection is ready."}</p>
+        <button className="primary-button" onClick={retry}>{accountChanged ? "Reload map" : "Try again"}</button>
         <button className="text-button" onClick={() => setBrowsePublic(true)}>Browse Rillora</button>
       </>}
     </main>;
     return (
       <PublicExperience
         sessionStatus={loading ? "checking" : signedOut ? "signed_out" : serviceNotOpen ? "not_open" : "unavailable"}
-        onRetry={() => void loadWorkspace()}
+        onRetry={retry}
       />
     );
   }

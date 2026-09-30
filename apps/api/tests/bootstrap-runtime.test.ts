@@ -2,30 +2,30 @@ import pg from "pg";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { bootstrapRuntimeRole } from "../src/bootstrap-runtime.js";
 import { runMigrations } from "../src/migrate.js";
+import { assertDedicatedTestDatabase } from './dedicated-test-database.js';
 
 const { Client } = pg;
-const databaseUrl = process.env.TEST_DATABASE_URL ?? "postgresql:///continuity_test";
+let databaseUrl = process.env.TEST_DATABASE_URL ?? "postgresql:///continuity_test";
 const runtimeRole = "continuity_runtime_staging_test";
 const runtimePassword = "local-test-runtime-password-0000000001";
 
 let client: InstanceType<typeof Client>;
+let initialized = false;
 
 describe.sequential("runtime database role bootstrap", () => {
   beforeAll(async () => {
+    databaseUrl = await assertDedicatedTestDatabase(databaseUrl, 'continuity_test');
     await runMigrations(databaseUrl);
     client = new Client({ connectionString: databaseUrl, application_name: "runtime-role-test" });
     await client.connect();
-    const database = await client.query<{ database: string }>("select current_database() as database");
-    if (database.rows[0]?.database !== "continuity_test") {
-      throw new Error("Runtime-role tests refuse to modify roles outside continuity_test");
-    }
     await client.query(`drop role if exists ${runtimeRole}`);
+    initialized = true;
   });
 
   afterAll(async () => {
     if (!client) return;
-    await client.query(`drop role if exists ${runtimeRole}`);
-    await client.end();
+    try { if (initialized) await client.query(`drop role if exists ${runtimeRole}`); }
+    finally { await client.end(); }
   });
 
   it("creates a non-inheriting login that can assume only the application roles", async () => {

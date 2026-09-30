@@ -352,7 +352,7 @@ describe('production Apple durable intake (decoded Apple fixtures + real isolate
       hash('synthetic identity reference'), hash(cookie), hash(csrf)]);
     await request(app).post(endpoint).set('Cookie', `continuity_session=${cookie}`)
       .send({ signedTransaction: f.input.signedTransaction }).expect(403);
-    await request(app).post(endpoint).set('Cookie', `continuity_session=${cookie}`).set('x-csrf-token', csrf)
+    await request(app).post(endpoint).set('Cookie', `continuity_session=${cookie}`).set('x-csrf-token', csrf).set('x-rillora-planner', owner.plannerPublicId)
       .send({ signedTransaction: f.input.signedTransaction }).expect(200);
     const result = await request(app).post(endpoint).set('x-dev-planner-id', owner.plannerPublicId)
       .send({ signedTransaction: f.input.signedTransaction }).expect(200);

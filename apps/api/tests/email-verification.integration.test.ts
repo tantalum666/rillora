@@ -27,7 +27,7 @@ async function actor(credentialKind = "browser_cookie") {
     [who.planner_id, who.identity_account_id, legal.termsVersion, legal.privacyVersion, legal.consentTextVersion, Buffer.from(legal.bundleSha256,"hex"),hash(subject)])).rows[0].id;
   const session = (await pool.query(`insert into app.auth_sessions(planner_id,identity_account_id,legal_acceptance_id,token_hash,csrf_token_hash,credential_kind,expires_at)
     values($1,$2,$3,$4,$5,$6,now()+interval '1 hour') returning public_id`, [who.planner_id,who.identity_account_id,acceptance,hash(token),hash(csrf),credentialKind])).rows[0].public_id;
-  const headers = credentialKind === "browser_cookie" ? { cookie: `continuity_session=${token}`, "x-csrf-token":csrf } : { authorization:`Bearer ${token}` };
+  const headers = credentialKind === "browser_cookie" ? { cookie: `continuity_session=${token}`, "x-csrf-token":csrf, "x-rillora-planner":who.planner_public_id } : { authorization:`Bearer ${token}` };
   return { subject, session, headers, token, plannerId: who.planner_id, acceptance };
 }
 describe.sequential("Email verification without another sign-in", () => {

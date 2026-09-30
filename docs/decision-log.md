@@ -2874,3 +2874,11 @@ unreachable release remains a different closed workflow. See [sharing contract](
 - Four iPhone and two separately composed iPad assets are rendered as an editable
   first set. This does not assert Owner's final visual approval or authorize an upload.
   [Current contract](app-store-presentation-20260930.md).
+
+## 2026-09-30 — Dot review修复取代独立工程已完成的判断
+
+- Status: LOCKED
+- Owner指出Dot审阅出现大量问题，重申可维护代码要求；此反馈是当前发布目标的纠正。
+- 报告只作为待核实证据，不把第三方建议当作Owner指令。确认的权限、账户一致性、并发和调用合同问题必须修复并补触发原问题的验证。
+- 撤回旧独立工程完成判断，保留原部署／测试的具体历史事实。设计、定价、真实数据和FanPass保持。
+- [修复合同](code-review-repair-20260930.md)与[当前交接](handoff.md)管理该质量门。

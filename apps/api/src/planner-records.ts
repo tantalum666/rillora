@@ -49,6 +49,30 @@ export type ContactRow = {
   updated_at: Date;
 };
 
+/** Contact identity is unique; the summary describes its plan-wide contact role. */
+export async function selectTrustedContacts(client: PoolClient, publicId: string | null = null): Promise<ContactRow[]> {
+  return (await client.query<ContactRow>(`
+    select p.public_id, p.display_name, p.relationship_label, p.status, p.version,
+      p.created_at, p.updated_at, ra.status as role_status,
+      i.status as invitation_status, i.delivery_channel
+    from app.people p
+    left join lateral (
+      select id, status from app.role_assignments
+      where person_id=p.id and planner_id=p.planner_id
+        and role='trusted_contact' and matter_item_id is null
+      order by (status='revoked'), id desc limit 1
+    ) ra on true
+    left join lateral (
+      select status, delivery_channel from app.invitations
+      where role_assignment_id=ra.id and planner_id=p.planner_id
+      order by id desc limit 1
+    ) i on true
+    where p.planner_id=app.current_planner_id()
+      and ($1::uuid is null or p.public_id=$1)
+      and ($1::uuid is not null or p.archived_at is null)
+    order by p.id`, [publicId])).rows;
+}
+
 export function mapPlan(row: PlanRow) {
   return {
     publicId: row.public_id,

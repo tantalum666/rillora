@@ -132,6 +132,7 @@ struct TrustedContactEditorView: View {
         .navigationTitle(editor.isNew && onCreated != nil ? "Invite someone" : editor.isNew ? "New contact" : "Edit contact")
         .navigationBarTitleDisplayMode(.inline)
         .interactiveDismissDisabled(editor.isBusy || editor.hasUnsavedChanges)
+        .navigationBarBackButtonHidden(editor.isBusy || editor.hasUnsavedChanges)
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 Button(editor.state == .saving ? "Saving…" : editor.isNew && onCreated != nil ? "Next" : "Save") {
@@ -157,6 +158,7 @@ struct TrustedContactEditorView: View {
                     else { dismiss() }
                 }
                 .disabled(editor.isBusy)
+                .accessibilityIdentifier("contact.edit.cancel")
                 .alert("Discard unsaved changes?", isPresented: $showsDiscardConfirmation) {
                     Button("Discard changes", role: .destructive) { dismiss() }
                     Button("Keep editing", role: .cancel) {}

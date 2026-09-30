@@ -7,7 +7,7 @@ matrix_ios_root="$matrix_repo_root/apps/ios"
 matrix_output_root="$matrix_repo_root/output/qa/ios-layout-matrix-$(date +%Y%m%d-%H%M%S)"
 matrix_derived_data="$matrix_output_root/DerivedData"
 matrix_runtime="${RILLORA_IOS_RUNTIME:-com.apple.CoreSimulator.SimRuntime.iOS-26-5}"
-matrix_api_port="${RILLORA_MATRIX_API_PORT:-4181}"
+matrix_api_port="${RILLORA_MATRIX_API_PORT:-4395}"
 matrix_api_url="http://127.0.0.1:$matrix_api_port/v1"
 matrix_planner_id="11111111-1111-4111-8111-111111111111"
 matrix_api_pid=""
@@ -30,25 +30,20 @@ cleanup_matrix() {
 }
 trap cleanup_matrix EXIT INT TERM
 
-if ! curl -fsS "http://127.0.0.1:$matrix_api_port/health/ready" >/dev/null 2>&1; then
+if ! curl -fsS "http://127.0.0.1:$matrix_api_port/qa/native-ui-fixture" | python3 -c 'import json,sys; assert json.load(sys.stdin)["fixture"] == "rillora-native-ui-v1"' >/dev/null 2>&1; then
   (
     cd "$matrix_repo_root/apps/api"
-    PORT="$matrix_api_port" \
-      DATABASE_URL="postgresql:///continuity_dev" \
-      ALLOW_DEV_AUTH=true \
-      CORS_ORIGINS="http://127.0.0.1:4175" \
-      npm run dev >"$matrix_output_root/api.log" 2>&1
+    RILLORA_MATRIX_API_PORT="$matrix_api_port" npm run qa:native-ui >"$matrix_output_root/api.log" 2>&1
   ) &
   matrix_api_pid=$!
-  for _ in {1..40}; do
-    if curl -fsS "http://127.0.0.1:$matrix_api_port/health/ready" >/dev/null 2>&1; then
-      break
-    fi
+  for _ in {1..80}; do
+    if curl -fsS "http://127.0.0.1:$matrix_api_port/qa/native-ui-fixture" >/dev/null 2>&1; then break; fi
     sleep 0.25
   done
 fi
-
-curl -fsS "http://127.0.0.1:$matrix_api_port/health/ready" >/dev/null
+curl -fsS "http://127.0.0.1:$matrix_api_port/qa/native-ui-fixture" | python3 -c 'import json,sys; data=json.load(sys.stdin); assert data["fixture"] == "rillora-native-ui-v1" and data["syntheticOnly"] is True'
+export TEST_RUNNER_RILLORA_MATRIX_API_BASE_URL="$matrix_api_url"
+export TEST_RUNNER_RILLORA_UI_QA_EMPTY_PLANNER_ID="33333333-3333-4333-8333-333333333333"
 
 warm_matrix_api() {
   local attempt

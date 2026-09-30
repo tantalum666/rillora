@@ -61,6 +61,8 @@ final class Auth0NativeAuthenticationService: NativeAuthenticating {
 
     func takeInitialOverview() -> OverviewSnapshot? {
         defer { initialOverview = nil }
+        // A partial exchange payload must go through APIClient's complete hydration.
+        guard initialOverview?.nextCursor == nil else { return nil }
         return initialOverview
     }
 
@@ -261,25 +263,7 @@ final class Auth0NativeAuthenticationService: NativeAuthenticating {
 
     func signOut() async {
         initialOverview = nil
-        let token = try? await tokenStore.read()
-        if let token {
-            var components = URLComponents(
-                url: configuration.sessionExchangeURL,
-                resolvingAgainstBaseURL: false
-            )
-            components?.path = "/v1/auth/logout"
-            components?.query = nil
-            components?.fragment = nil
-            guard let logoutURL = components?.url else {
-                try? await tokenStore.delete()
-                return
-            }
-            var request = URLRequest(url: logoutURL)
-            request.httpMethod = "POST"
-            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-            request.setValue("application/json", forHTTPHeaderField: "Accept")
-            _ = try? await session.data(for: request)
-        }
+        try? await revokeSession(allDevices: false)
         try? await tokenStore.delete()
         try? await Auth0
             .webAuth(clientId: configuration.clientID, domain: configuration.domain)
@@ -292,32 +276,24 @@ final class Auth0NativeAuthenticationService: NativeAuthenticating {
     }
 
     func signOutAll() async throws {
-        guard let token = try await tokenStore.read() else {
-            throw NativeAuthenticationError.invalidSession
-        }
-        var components = URLComponents(
-            url: configuration.sessionExchangeURL,
-            resolvingAgainstBaseURL: false
-        )
-        components?.path = "/v1/auth/logout-all"
-        components?.query = nil
-        components?.fragment = nil
-        guard let logoutURL = components?.url else {
-            throw NativeAuthenticationError.invalidResponse
-        }
-        var request = URLRequest(url: logoutURL)
-        request.httpMethod = "POST"
-        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        let (_, response) = try await session.data(for: request)
-        guard let httpResponse = response as? HTTPURLResponse,
-              (200..<300).contains(httpResponse.statusCode) else {
-            throw NativeAuthenticationError.sessionRevocationRejected
-        }
+        try await revokeSession(allDevices: true)
         try await tokenStore.delete()
         try? await Auth0
             .webAuth(clientId: configuration.clientID, domain: configuration.domain)
             .logout()
+    }
+
+    func revokeSession(allDevices: Bool) async throws {
+        guard let token = try await tokenStore.read() else { throw NativeAuthenticationError.invalidSession }
+        let url = configuration.plannerAPIBaseURL.appendingPathComponent(allDevices ? "auth/logout-all" : "auth/logout")
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        let (_, response) = try await session.data(for: request)
+        guard let http = response as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {
+            throw NativeAuthenticationError.sessionRevocationRejected
+        }
     }
 
     private func refreshRilloraSession(accessToken: String, idToken: String) async throws {

@@ -110,7 +110,7 @@ struct ContactSharingView: View {
                 Section {
                     NavigationLink("Edit contact record") {
                         TrustedContactEditorView(contact: store.contact, service: contactService, overviewStore: overviewStore)
-                    }.disabled(store.hasChanges)
+                    }.disabled(store.hasChanges).accessibilityIdentifier("contact.record.edit")
                     if store.isActive {
                         Button("Stop sharing", role: .destructive) { confirmation = .revoke }.accessibilityIdentifier("sharing.revoke")
                     }

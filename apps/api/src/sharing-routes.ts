@@ -1,3 +1,4 @@
+import { recentAuthenticationRequired } from "./recent-authentication.js";
 import { expandsSharing, requireRecentAuthentication } from "./recent-authentication.js";
 import { createHash, randomBytes } from "node:crypto";
 import { parseCookie } from "cookie";
@@ -166,7 +167,7 @@ export function createSharingRouter(pool: DatabasePool, config: AppConfig, email
       (await client.query("select app.sharing_access_status() as access")).rows[0].access);
     response.json({ access });
   }));
-  router.post("/connections/:publicId/live", requireCsrf, asyncHandler(async (request, response) => {
+  router.post("/connections/:publicId/live", recentAuthenticationRequired(config), requireCsrf, asyncHandler(async (request, response) => {
     const id = idSchema.parse(request.params.publicId);
     const input = z.object({ expectedVersion: versionSchema, expectedAccessVersion: z.number().int().min(0),
       useFreeSlot: z.boolean() }).strict().parse(request.body);
@@ -234,7 +235,7 @@ export function createSharingRouter(pool: DatabasePool, config: AppConfig, email
     response.json({ ...items, readOnly: true, purpose: "planner_directed", preview: true });
   }));
 
-  router.post("/connections", requireCsrf, asyncHandler(async (request, response) => {
+  router.post("/connections", recentAuthenticationRequired(config), requireCsrf, asyncHandler(async (request, response) => {
     const input = createSchema.parse(request.body); const token = randomBytes(32).toString("base64url");
     const url = invitationUrl(config, token);
     const connection = await withPlannerDatabase(pool, request.auth.plannerId, async (client) => {
@@ -272,7 +273,7 @@ export function createSharingRouter(pool: DatabasePool, config: AppConfig, email
     }); response.json(connection);
   }));
 
-  router.post("/connections/:publicId/link", requireCsrf, asyncHandler(async (request, response) => {
+  router.post("/connections/:publicId/link", recentAuthenticationRequired(config), requireCsrf, asyncHandler(async (request, response) => {
     const id = idSchema.parse(request.params.publicId); const input = linkSchema.parse(request.body);
     const token = randomBytes(32).toString("base64url"); const url = invitationUrl(config, token);
     const connection = await withPlannerDatabase(pool, request.auth.plannerId, async (client) => {

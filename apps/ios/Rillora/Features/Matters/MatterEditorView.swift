@@ -4,6 +4,7 @@ struct MatterEditorView: View {
     @State private var editor: MatterEditorStore
     @State private var showsArchiveConfirmation = false
     @State private var showsDiscardConfirmation = false
+    @State private var showsMoreOptions = false
     @RilloraReduceMotion private var reduceMotion
     let overviewStore: OverviewStore
     let roleAssignmentService: any RoleAssignmentEditing
@@ -115,7 +116,23 @@ struct MatterEditorView: View {
                 RilloraAdaptivePicker("Preferred outcome", selection: $editor.draft.desiredOutcome) {
                     ForEach(MatterOutcome.allCases) { Text($0.label).tag($0) }
                 }
-                DisclosureGroup("More options") {
+                Button {
+                    withAnimation(reduceMotion ? nil : .easeOut(duration: 0.2)) { showsMoreOptions.toggle() }
+                } label: {
+                    HStack {
+                        Text("More options")
+                        Spacer()
+                        Image(systemName: showsMoreOptions ? "chevron.down" : "chevron.right")
+                            .font(.footnote.weight(.semibold)).foregroundStyle(RilloraTheme.muted)
+                    }
+                    .frame(minHeight: 28).contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel("More options")
+                .accessibilityValue(showsMoreOptions ? "Expanded" : "Collapsed")
+                // Keep each control in its own Form row. Multiple automatic pickers
+                // inside one DisclosureGroup row can capture a sibling link's tap.
+                if showsMoreOptions {
                     RilloraAdaptivePicker("Importance", selection: $editor.draft.importance) {
                         ForEach(MatterImportance.allCases) { Text($0.label).tag($0) }
                     }

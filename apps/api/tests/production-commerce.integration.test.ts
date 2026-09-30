@@ -202,4 +202,33 @@ describe('production commerce ledger with a synthetic provider only', () => {
       .toMatchObject({state:'expired_read_only',renewal_is_possible:false,grace_ends_at:null});
   });
 
+  it('owns subscription reads through commit and retries concurrent cancellation without resurrecting access', async () => {
+    const original = provider.retrieveAuthoritativeSubscription;
+    let entered!: () => void, resume!: () => void;
+    const started = new Promise<void>(resolve => { entered = resolve; });
+    const invoice = new Promise<void>(resolve => { resume = resolve; });
+    let calls = 0;
+    const observation = vi.spyOn(provider, 'retrieveAuthoritativeSubscription').mockImplementation(async input => {
+      calls++;
+      const snapshot = await original(input);
+      if (calls === 1) { entered(); await invoice; }
+      return { ...snapshot, observedAt: new Date().toISOString() };
+    });
+    currentState.value = 'active'; currentState.mayRenew = true;
+    invoiceReference = 'in_concurrent_paid_renewal';
+    const event = (id: string) => executor.acceptWebhook(Buffer.from(JSON.stringify({ id })), 'fixture');
+    try {
+      const older = event('evt_slow_active');
+      await started;
+      currentState.value = 'expired_read_only'; currentState.mayRenew = false;
+      await expect(event('evt_concurrent_cancel')).rejects.toMatchObject({ code: 'subscription_observation_busy' });
+      expect(calls).toBe(1); // second worker cannot even read a competing provider snapshot
+      resume(); await older;
+      await expect(event('evt_concurrent_cancel')).resolves.toMatchObject({ status: 'applied' });
+      const final = (await pool.query("select state,renewal_is_possible from app.commerce_subscriptions where provider_subscription_reference='sub_local_fixture'")).rows[0];
+      expect(final).toMatchObject({ state: 'expired_read_only', renewal_is_possible: false });
+      expect((await pool.query("select count(*)::int as n from app.commerce_entitlement_grants where revoked_at is null and (expires_at is null or expires_at>now()) and subscription_id in(select id from app.commerce_subscriptions where provider_subscription_reference='sub_local_fixture')")).rows[0].n).toBe(0);
+    } finally { resume(); observation.mockRestore(); }
+  });
+
 });

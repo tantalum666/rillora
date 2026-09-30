@@ -1,5 +1,5 @@
 import { withPlannerDatabase, type DatabasePool } from "./db.js";
-import { getPlan, mapPlan, mapMatter, mapContact, type MatterRow, type ContactRow } from "./planner-records.js";
+import { getPlan, mapPlan, mapMatter, mapContact, selectTrustedContacts, type MatterRow } from "./planner-records.js";
 
 type OverviewSession = { plannerPublicId: string; authenticationMode: string; authenticationMethods: string[]; authenticatedAt: Date | string | null };
 
@@ -9,20 +9,7 @@ export async function fetchInitialOverview(pool: DatabasePool, plannerId: string
     const plan = await getPlan(client);
     const matters = await client.query<MatterRow>(`select * from app.matter_items
       where planner_id = app.current_planner_id() and archived_at is null order by id limit 51`);
-    const contacts = await client.query<ContactRow>(`select p.public_id, p.display_name, p.relationship_label, p.status, p.version,
-                  p.created_at, p.updated_at, ra.status as role_status,
-                  i.status as invitation_status, i.delivery_channel
-           from app.people p
-           left join app.role_assignments ra
-             on ra.person_id = p.id and ra.planner_id = p.planner_id and ra.role = 'trusted_contact'
-           left join lateral (
-             select status, delivery_channel
-             from app.invitations
-             where role_assignment_id = ra.id
-             order by id desc limit 1
-           ) i on true
-           where p.planner_id = app.current_planner_id() and p.archived_at is null
-           order by p.id`);
+    const contacts = await selectTrustedContacts(client);
     const counts = await client.query<{
       total_matters: number; ready_matters: number; assigned_outcomes: number;
       confirmed_contacts: number; completed_official_checks: number; completed_simulations: number;
@@ -46,7 +33,7 @@ export async function fetchInitialOverview(pool: DatabasePool, plannerId: string
     return {
       session, plan: mapPlan(plan), matters: matters.rows.slice(0, 50).map(mapMatter),
       nextCursor: matters.rows.length > 50 ? matters.rows[49]!.public_id : null,
-      trustedContacts: contacts.rows.map(mapContact),
+      trustedContacts: contacts.map(mapContact),
       readiness: {
         totalMatters: readiness.total_matters, readyMatters: readiness.ready_matters,
         assignedOutcomes: readiness.assigned_outcomes, confirmedContacts: readiness.confirmed_contacts,

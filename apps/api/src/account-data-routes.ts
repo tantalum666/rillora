@@ -1,3 +1,5 @@
+import type { AppConfig } from "./config.js";
+import { recentAuthenticationRequired } from "./recent-authentication.js";
 import { createHash, randomUUID } from "node:crypto";
 import { protectFields, protectMatterInput } from "./private-content.js";
 import { Router } from "express";
@@ -43,7 +45,7 @@ export const mapBackupSchema = z.object({
   }
 });
 
-export function createAccountDataRouter(pool: DatabasePool) {
+export function createAccountDataRouter(pool: DatabasePool, config: AppConfig) {
   const router = Router();
   router.get("/profile", asyncHandler(async (request, response) => {
     const account = await withPlannerDatabase(pool, request.auth.plannerId, async client => {
@@ -57,7 +59,7 @@ export function createAccountDataRouter(pool: DatabasePool) {
       mapBackup: { version:"rillora-map-backup-v1",maxMatters:500,importRequiresEmptyMap:true,restoresAccess:false } });
   }));
 
-  router.post("/map/export", requireCsrf, asyncHandler(async (request,response) => {
+  router.post("/map/export", recentAuthenticationRequired(config), requireCsrf, asyncHandler(async (request,response) => {
     z.object({ acknowledgesPrivateCopy:z.literal(true) }).strict().parse(request.body);
     const backup = await withPlannerSnapshotDatabase(pool, request.auth.plannerId, async client => {
       const planner = (await client.query(`select public_id,display_name,locale,time_zone from app.planners where id=app.current_planner_id()`)).rows[0];
@@ -88,7 +90,7 @@ export function createAccountDataRouter(pool: DatabasePool) {
     response.json(document);
   }));
 
-  router.post("/map/import", requireCsrf, asyncHandler(async(request,response)=>{
+  router.post("/map/import", recentAuthenticationRequired(config), requireCsrf, asyncHandler(async(request,response)=>{
     const input=z.object({backup:mapBackupSchema,acknowledgesPrivateImport:z.literal(true)}).strict().parse(request.body);
     const backup=input.backup;
     const hash=createHash("sha256").update(JSON.stringify(backup)).digest();

@@ -524,3 +524,53 @@ function roleAssignmentResponse() {
     },
   };
 }
+
+test('workspace pins the verified account across pagination and later writes despite a changed CSRF cookie', async () => {
+  const calls = []; let csrf = 'A';
+  const first = Array.from({length:50},(_,i)=>({publicId:`matter-${i}`,title:`Matter ${i}`}));
+  const client = createApiClient({csrfTokenReader:()=>csrf, fetchImpl:async(url,options)=>{
+    calls.push({url,options});
+    if(url.endsWith('/overview')) return jsonResponse({session:{plannerPublicId:'planner-A'},plan:{},matters:first,nextCursor:'matter-49'});
+    if(url.includes('cursor=')) return jsonResponse({matters:[{publicId:'matter-50',title:'Last matter'}],nextCursor:null});
+    return jsonResponse({error:{code:'account_changed',message:'Account changed'}},409);
+  }});
+  const overview=await client.getOverview();
+  assert.equal(overview.matters.length,51); assert.equal(overview.matters[50].title,'Last matter');
+  assert.equal(calls[1].options.headers.get('x-rillora-planner'),'planner-A');
+  csrf='B';
+  await assert.rejects(client.createMatter({title:'A private draft'}),error=>error.code==='account_changed');
+  assert.equal(calls[2].options.headers.get('x-csrf-token'),'B');
+  assert.equal(calls[2].options.headers.get('x-rillora-planner'),'planner-A');
+  await assert.rejects(client.getPlan(),error=>error.code==='account_changed');
+  assert.equal(calls.length,3);
+});
+
+test('missing original draft records can be checked by ID without discarding archived or failed results', async () => {
+  for(const [status,payload] of [[200,{matter:{publicId:'a/b',archivedAt:null}}],
+    [200,{matter:{publicId:'a/b',archivedAt:'2026-09-30'}}],
+    [404,{error:{code:'matter_not_found'}}],[503,{error:{code:'temporarily_unavailable'}}]]) {
+    let requested;
+    const client=createApiClient({fetchImpl:async url=>{requested=url;return jsonResponse(payload,status);}});
+    if(status===200) assert.deepEqual(await client.getMatter('a/b'),payload);
+    else await assert.rejects(client.getMatter('a/b'),error=>error.status===status);
+    assert.equal(requested,'/api/v1/matters/a%2Fb');
+  }
+});
+
+test('pagination fails visibly instead of silently truncating or looping on a repeated cursor',async()=>{
+  const client=createApiClient({fetchImpl:async url=>jsonResponse(url.endsWith('/overview')
+    ? {session:{plannerPublicId:'a'},matters:[],nextCursor:'same'} : {matters:[],nextCursor:'same'})});
+  await assert.rejects(client.getOverview(),error=>error.code==='invalid_pagination');
+});
+
+test('every API operation used by a rendered Web consumer exists on the client contract',async()=>{
+  const {readdir,readFile}=await import('node:fs/promises');
+  const root=new URL('../src/',import.meta.url),client=createApiClient();
+  for(const file of await readdir(root,{recursive:true})) {
+    if(!/\.jsx$/.test(file))continue;
+    const source=await readFile(new URL(file,root),'utf8');
+    for(const [,method]of source.matchAll(/\b(?:api|apiClient)\.([A-Za-z][A-Za-z0-9_]*)\s*\(/g)) {
+      assert.equal(typeof client[method],'function',`${file} calls missing API client method ${method}`);
+    }
+  }
+});

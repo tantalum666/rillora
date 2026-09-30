@@ -33,7 +33,7 @@ async function recipient(email: string) {
     select $1,$2,id,$8,$9,now()+interval '1 hour',$10 from legal`,
   [actor.planner_id, actor.identity_account_id, currentLegalContract.termsVersion, currentLegalContract.privacyVersion,
     currentLegalContract.consentTextVersion, Buffer.from(currentLegalContract.bundleSha256, "hex"), digest(`qa-${serial}`), digest(token), digest(csrf), verifiedEmailDigest(email)]);
-  return { cookie: `continuity_session=${token}`, "x-csrf-token": csrf };
+  return { cookie: `continuity_session=${token}`, "x-csrf-token": csrf, "x-rillora-planner": actor.planner_public_id };
 }
 async function accept(result: Response, actor: Record<string, string>) {
   const token = new URLSearchParams(new URL(result.body.invitationUrl).hash.slice(1)).get("invitation");

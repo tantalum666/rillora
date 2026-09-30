@@ -24,12 +24,48 @@ export function createApiClient({
     ? normalizedBase.slice(0, -3)
     : normalizedBase;
 
+  let expectedPlanner = devPlannerId;
+  let accountChanged = false;
+  function rejectAccountChange() {
+    accountChanged = true;
+    if (typeof window !== 'undefined') window.dispatchEvent(new Event('rillora:account-changed'));
+    return new ApiClientError(409, 'account_changed', 'The signed-in account changed. Reload before continuing.');
+  }
+  function bindWorkspace(session) {
+    const planner = session?.plannerPublicId;
+    if (!planner) throw new ApiClientError(502, 'invalid_session', 'The account could not be verified.');
+    if (expectedPlanner && expectedPlanner.toLowerCase() !== planner.toLowerCase()) throw rejectAccountChange();
+    expectedPlanner = planner;
+    return session;
+  }
+  async function getSession() { return bindWorkspace(await request('/session')); }
+  async function getOverview() {
+    const snapshot = await request('/overview');
+    bindWorkspace(snapshot.session);
+    const matters = new Map(snapshot.matters.map(matter => [matter.publicId, matter]));
+    const cursors = new Set();
+    let cursor = snapshot.nextCursor;
+    while (cursor) {
+      if (cursors.has(cursor)) throw new ApiClientError(502, 'invalid_pagination', 'The map could not be loaded completely.');
+      cursors.add(cursor);
+      const page = await getMatters({ cursor });
+      for (const matter of page.matters) matters.set(matter.publicId, matter);
+      cursor = page.nextCursor;
+    }
+    return { ...snapshot, matters: [...matters.values()], nextCursor: null };
+  }
+  function getMatters({ cursor = null } = {}) {
+    return request(`/matters?limit=50${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ''}`);
+  }
+
   async function request(path, options = {}, context = {}) {
+    if (accountChanged && !context.publicAuth && !context.publicRehearsal) throw rejectAccountChange();
     const responseKind = options.responseKind ?? "json";
     const { responseKind: _responseKind, ...fetchOptions } = options;
     const method = (options.method ?? "GET").toUpperCase();
     const headers = new Headers(options.headers);
     if (!context.publicRehearsal) headers.set("x-rillora-client", "web");
+    if (expectedPlanner && !context.publicRehearsal && !context.publicAuth) headers.set('x-rillora-planner', expectedPlanner);
     if (context.rehearsalSessionToken) {
       headers.set("authorization", `Rillora-Rehearsal ${context.rehearsalSessionToken}`);
     } else if (devPlannerId) {
@@ -56,12 +92,15 @@ export function createApiClient({
         : JSON.stringify(options.body),
     });
     const requestId = response.headers.get("x-request-id");
+    if (accountChanged && !context.publicAuth && !context.publicRehearsal) throw rejectAccountChange();
     if (response.status === 204) return null;
     const contentType = response.headers.get("content-type") ?? "";
     const payload = (
       contentType.includes("application/json") || contentType.includes("+json")
     ) ? await response.json() : null;
+    if (accountChanged && !context.publicAuth && !context.publicRehearsal) throw rejectAccountChange();
     if (!response.ok) {
+      if (payload?.error?.code === 'account_changed') throw rejectAccountChange();
       if (response.status === 403 && payload?.error?.code === 'reauthentication_required' && typeof window !== 'undefined') {
         window.dispatchEvent(new Event('rillora:reauthentication-required'));
       }
@@ -103,6 +142,7 @@ export function createApiClient({
   }
 
   return {
+    getMatter: id => request(`/matters/${encodeURIComponent(id)}`),
     getCreatedMatter: (requestId) => request(`/matters/creation/${encodeURIComponent(requestId)}`),
     archiveMatter: (id, expectedVersion) => request(`/matters/${encodeURIComponent(id)}`, {method:"DELETE",headers:{"if-match":String(expectedVersion)}}),
     getFamilyMaintenance: () => request("/maintenance/overview").then(validateFamilyMaintenance),
@@ -135,23 +175,23 @@ export function createApiClient({
     acceptSharingInvitation: (input) => request("/sharing/invitations/accept", { method: "POST", body: input }),
     getSharedWithMe: () => request("/sharing/shared-with-me").then(validateSharedResponse),
     checkEmailVerification: () => request("/sharing/email-verification", { method: "POST", body: {} }),
-    getSessionStatus: () => devPlannerId
-      ? request("/session").then((session) => ({
-        authenticated: session?.authenticationMode === "development"
-          && session?.plannerPublicId?.toLowerCase() === devPlannerId.toLowerCase(),
-      }))
-      : request("/auth/session-status", {}, { publicAuth: true }),
+    getSessionStatus: async () => {
+      const status = devPlannerId ? { authenticated: true }
+        : await request('/auth/session-status', {}, { publicAuth: true });
+      if (status.authenticated) await getSession();
+      return status;
+    },
     startReauthentication: () => request('/auth/reauthenticate', { method: 'POST', body: {} }, { publicAuth: true }),
     getReauthenticationStatus: pollToken => request('/auth/reauthentication-status', { method: 'POST', body: { pollToken } }, { publicAuth: true }),
     startAuthentication: (input) => request("/auth/start", {
       method: "POST",
       body: input,
     }, { publicAuth: true }),
-    getOverview: () => request("/overview"),
-    getSession: () => request("/session"),
+    getOverview,
+    getSession,
     getLegalAcceptance: () => request("/legal/acceptance"),
     getPlan: () => request("/plan"),
-    getMatters: () => request("/matters?limit=50"),
+    getMatters,
     getTrustedContacts: () => request("/trusted-contacts"),
     createTrustedContact: (input) => request("/trusted-contacts", { method: "POST", body: input }),
     updateTrustedContact: (publicId, input) => request(`/trusted-contacts/${encodeURIComponent(publicId)}`, { method: "PATCH", body: input }),

@@ -129,6 +129,7 @@ struct OverviewContent: View {
                 if snapshot.plan.firstUseState.showsStarter {
                     Button(snapshot.plan.firstUseState == .guidePaused ? "Resume quick start guide" : "Quick start guide", action: onOpenFirstUseGuide)
                         .font(.subheadline).frame(minHeight: 44)
+                        .accessibilityIdentifier("overview.quick-start")
                 }
             }
             .padding(.horizontal, 20)

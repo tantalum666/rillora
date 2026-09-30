@@ -1,4 +1,5 @@
-import { getPlan, mapPlan, mapMatter, mapMatterInput, mapContact, type PlanRow, type MatterRow, type ContactRow } from "./planner-records.js";
+import { recentAuthenticationRequired } from "./recent-authentication.js";
+import { getPlan, mapPlan, mapMatter, mapMatterInput, mapContact, selectTrustedContacts, type PlanRow, type MatterRow, type ContactRow } from "./planner-records.js";
 import { fetchInitialOverview } from "./overview.js";
 import { createHash, ECDH, timingSafeEqual, randomUUID } from "node:crypto";
 import { protectFields, protectMatterInput } from "./private-content.js";
@@ -588,25 +589,7 @@ export function createApiRouter(pool: DatabasePool, config: AppConfig): Router {
   router.get(
     "/trusted-contacts",
     asyncHandler(async (request, response) => {
-      const contacts = await withPlannerDatabase(pool, request.auth.plannerId, async (client) => {
-        const result = await client.query<ContactRow>(
-          `select p.public_id, p.display_name, p.relationship_label, p.status, p.version,
-                  p.created_at, p.updated_at, ra.status as role_status,
-                  i.status as invitation_status, i.delivery_channel
-           from app.people p
-           left join app.role_assignments ra
-             on ra.person_id = p.id and ra.planner_id = p.planner_id and ra.role = 'trusted_contact'
-           left join lateral (
-             select status, delivery_channel
-             from app.invitations
-             where role_assignment_id = ra.id
-             order by id desc limit 1
-           ) i on true
-           where p.planner_id = app.current_planner_id() and p.archived_at is null
-           order by p.id`,
-        );
-        return result.rows;
-      });
+      const contacts = await withPlannerDatabase(pool, request.auth.plannerId, selectTrustedContacts);
       response.json({ trustedContacts: contacts.map(mapContact) });
     }),
   );
@@ -938,7 +921,7 @@ export function createApiRouter(pool: DatabasePool, config: AppConfig): Router {
 
   router.post(
     "/exports/start-here/encrypted/prepare",
-    requireCsrf,
+    recentAuthenticationRequired(config), requireCsrf,
     asyncHandler(async (request, response) => {
       const input = z.object({ previewPublicId: publicIdSchema }).strict().parse(request.body);
       const prepared = await withPlannerDatabase(pool, request.auth.plannerId, async (client) => {
@@ -1290,7 +1273,7 @@ export function createApiRouter(pool: DatabasePool, config: AppConfig): Router {
 
   router.post(
     "/exports/start-here/printable",
-    requireCsrf,
+    recentAuthenticationRequired(config), requireCsrf,
     asyncHandler(async (request, response) => {
       const input = createPrintableStartHereSchema.parse(request.body);
       const printable = await withPlannerDatabase(pool, request.auth.plannerId, async (client) => {
@@ -1560,14 +1543,12 @@ export async function collectStartHerePackage(client: PoolClient, connectionPubl
   }>(
     `select p.display_name, p.relationship_label
      from app.people p
-     join app.role_assignments ra
-       on ra.person_id = p.id
-      and ra.planner_id = p.planner_id
-      and ra.role = 'trusted_contact'
      where p.planner_id = app.current_planner_id()
        and p.archived_at is null
        and p.status not in ('revoked', 'archived')
-       and ra.status <> 'revoked'
+       and exists (select 1 from app.role_assignments ra
+         where ra.person_id=p.id and ra.planner_id=p.planner_id
+           and ra.role='trusted_contact' and ra.status <> 'revoked')
      order by p.id`,
   );
 
@@ -1694,23 +1675,7 @@ async function selectTrustedContact(
   client: PoolClient,
   publicId: string,
 ): Promise<ContactRow | null> {
-  const result = await client.query<ContactRow>(
-    `select p.public_id, p.display_name, p.relationship_label, p.status, p.version,
-            p.created_at, p.updated_at, ra.status as role_status,
-            i.status as invitation_status, i.delivery_channel
-     from app.people p
-     left join app.role_assignments ra
-       on ra.person_id = p.id and ra.planner_id = p.planner_id and ra.role = 'trusted_contact'
-     left join lateral (
-       select status, delivery_channel
-       from app.invitations
-       where role_assignment_id = ra.id
-       order by id desc limit 1
-     ) i on true
-     where p.planner_id = app.current_planner_id() and p.public_id = $1`,
-    [publicId],
-  );
-  return result.rows[0] ?? null;
+  return (await selectTrustedContacts(client, publicId))[0] ?? null;
 }
 
 async function throwMissingOrConflict(

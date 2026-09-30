@@ -1,3 +1,4 @@
+import { publicRoutes } from "../publicRoutes.js";
 import { AppearanceLink } from "../AppearanceControl.jsx";
 import { ArrowRight, Check } from "@phosphor-icons/react";
 import { publicEntry } from "../publicEntry.js";
@@ -78,7 +79,7 @@ export function PlanSection() {
       </p>
       <a
         className="lp-text-link"
-        href="https://legal.rillora.xyz/subscriptions"
+        href={`https://legal.rillora.xyz${publicRoutes.subscriptions}`}
       >
         Subscription terms <ArrowRight size={20} aria-hidden="true" />
       </a>

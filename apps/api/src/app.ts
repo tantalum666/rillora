@@ -1,10 +1,9 @@
-import { sensitiveActionAuthentication } from "./recent-authentication.js";
 import express, { type Express, type RequestHandler } from "express";
 import type { AppleProductionIntake } from './apple-production-intake.js';
 import { createAppleProductionNotificationHandler, createAppleProductionRouter } from './apple-production-routes.js';
 import { appleReviewContext, appleProductionContext } from './apple-execution-context.js';
 import { ApplePurchasePreflight } from './apple-purchase-preflight.js';
-import { authenticate } from "./auth.js";
+import { authenticate, requireWorkspaceIdentity } from "./auth.js";
 import { Auth0EmailIdentityVerifier, SessionEmailVerification, type EmailIdentityVerifying } from "./email-verification.js";
 import type { AppConfig } from "./config.js";
 import type { DatabasePool } from "./db.js";
@@ -206,7 +205,7 @@ export function createApp(
 
   const plannerApi = express.Router();
   plannerApi.use(preventCaching, authenticate(pool, config));
-  plannerApi.use(rejectForbiddenSecretFields, sensitiveActionAuthentication(config));
+  plannerApi.use(requireWorkspaceIdentity, rejectForbiddenSecretFields);
   if (config.allowSyntheticRecipientRehearsal) {
     plannerApi.use(
       "/recipient-rehearsals",
@@ -235,8 +234,8 @@ export function createApp(
   if (appleProductionIntake) plannerApi.use('/commerce/storekit/production', createAppleProductionRouter(appleProductionIntake,new ApplePurchasePreflight(pool)));
   plannerApi.use("/commerce", createCommerceRouter(pool,
     new Set([...(stripeExecutor?.providerEnvironment === 'production' ? ['stripe'] : []),...(appleProductionIntake ? ['storekit'] : [])])));
-  plannerApi.use("/account", createAccountDataRouter(pool));
-  plannerApi.use("/account", createAccountDeletionRouter(pool, accountDeletion));
+  plannerApi.use("/account", createAccountDataRouter(pool, config));
+  plannerApi.use("/account", createAccountDeletionRouter(pool, accountDeletion, config));
   plannerApi.use(createApiRouter(pool, config));
   app.use("/v1", plannerApi);
   app.use("/api/v1", plannerApi);

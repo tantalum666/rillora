@@ -14,16 +14,11 @@ export function requireRecentAuthentication(config: AppConfig, auth: Request['au
     throw new ApiError(403, 'reauthentication_required', 'Sign in again to continue. Your changes have not been submitted.');
   }
 }
-// Reducing or revoking access deliberately does not appear here. Scope expansion
-// is checked inside the sharing transaction against the existing owned grants.
-export function sensitiveActionAuthentication(config: AppConfig): RequestHandler {
+/** Attach to the business route so authorization uses the same match as dispatch. */
+export function recentAuthenticationRequired(config: AppConfig): RequestHandler {
   return (request, _response, next) => {
     try {
-      if (request.method === 'POST' && (
-        ['/account/map/export', '/account/map/import', '/account/delete', '/sharing/connections',
-          '/exports/start-here/printable', '/exports/start-here/encrypted/prepare'].includes(request.path)
-        || /^\/sharing\/connections\/[^/]+\/(link|live)$/.test(request.path)
-      )) requireRecentAuthentication(config, request.auth);
+      requireRecentAuthentication(config, request.auth);
       next();
     } catch (error) { next(error); }
   };

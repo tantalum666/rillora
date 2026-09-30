@@ -124,4 +124,18 @@ describe('production Stripe boundary without live network access', () => {
     expect(stripeSubscriptionReference({ object: 'invoice', metadata: { rillora_subscription_reference: 'sub_wrong' }, parent: { subscription_details: { subscription: 'sub_right' } } })).toBe('sub_right');
     expect(stripeSubscriptionReference({ metadata: { rillora_subscription_reference: 'sub_fallback' } })).toBe('sub_fallback');
   });
+  it('dates the subscription observation before a delayed invoice response', async () => {
+    let resume!: () => void, entered!: () => void;
+    const started = new Promise<void>(resolve => { entered = resolve; });
+    const gate = new Promise<void>(resolve => { resume = resolve; });
+    let clock = now;
+    const provider = sdk();
+    const adapter = new StripeProductionAdapter(config, sdk({ retrieveInvoice: async id => {
+      entered(); await gate; return provider.retrieveInvoice(id);
+    } }), () => clock);
+    const pending = adapter.retrieveAuthoritativeSubscription(snapshotInput);
+    await started; clock = new Date(now.getTime() + 10_000); resume();
+    expect((await pending).observedAt).toBe(now.toISOString());
+  });
+
 });

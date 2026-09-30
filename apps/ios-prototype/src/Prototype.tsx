@@ -17,7 +17,7 @@ import {
   PersonIcon,
   ReaderIcon,
 } from "@radix-ui/react-icons";
-import { BottomSheet, KeyboardInput, MobileScroll } from "./mobile";
+import { BottomSheet, KeyboardInput, MobileScroll, useKeyboard } from "./mobile";
 
 type Matter = {
   id: string;
@@ -78,7 +78,12 @@ function MatterRow({ matter, onOpen }: { matter: Matter; onOpen: () => void }) {
 export default function Prototype() {
   const [matters, setMatters] = useState(initialMatters);
   const [activeTab, setActiveTab] = useState("overview");
-  const [sheet, setSheet] = useState<SheetState>(null);
+  const [sheet, setSheetState] = useState<SheetState>(null);
+  const keyboard = useKeyboard();
+  function setSheet(next: SheetState) {
+    keyboard.hide();
+    setSheetState(next);
+  }
   const [checks, setChecks] = useState({ apple: false, google: false, github: true });
   const [confirmed, setConfirmed] = useState(true);
   const [toast, setToast] = useState("");
@@ -164,11 +169,14 @@ export default function Prototype() {
 
       {currentMatter && (
         <BottomSheet open={Boolean(sheet)} onOpenChange={(open) => !open && setSheet(null)} title={currentMatter.label} description="Add a safe location and an intended outcome—never a password." snap={0.69}>
-          <div className="legacy-sheet-form">
-            <label>Account or policy hint<KeyboardInput defaultValue={currentMatter.hint} /></label>
-            <label>Safe location hint<KeyboardInput defaultValue={currentMatter.status === "added" ? "Documents · Personal plan" : ""} placeholder="Where can this be found?" /></label>
+          <div className="legacy-sheet-form" onBlurCapture={(event) => {
+            if (!(event.relatedTarget instanceof HTMLElement)
+              || !event.relatedTarget.matches('[data-rillora-keyboard-input]')) keyboard.hide();
+          }}>
+            <label>Account or policy hint<KeyboardInput data-rillora-keyboard-input defaultValue={currentMatter.hint} /></label>
+            <label>Safe location hint<KeyboardInput data-rillora-keyboard-input defaultValue={currentMatter.status === "added" ? "Documents · Personal plan" : ""} placeholder="Where can this be found?" /></label>
             <div className="sheet-safety"><InfoCircledIcon /> Directions only. Do not add passwords, recovery codes or seed phrases.</div>
-            <button className="mobile-primary sheet-primary" onClick={() => saveMatter(currentMatter.id)}>{currentMatter.status === "added" ? "Save changes" : "Add to my plan"} <ArrowRightIcon /></button>
+            <button className="mobile-primary sheet-primary" onMouseDown={(event) => event.preventDefault()} onClick={() => saveMatter(currentMatter.id)}>{currentMatter.status === "added" ? "Save changes" : "Add to my plan"} <ArrowRightIcon /></button>
           </div>
         </BottomSheet>
       )}
