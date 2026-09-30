@@ -14,7 +14,7 @@
 
 完整阅读必须覆盖正文，不以文件名清单、搜索命中、摘要或文件指纹代替。分批读取时记录文件与行段；工具输出被截断必须补读缺失段。将当次文件清单、排除项、阅读范围与完成时间保存到 `output/qa/<本次工作>/`；指纹只用于确认阅读期间文件是否变化。排除生成的 `output` 证据包，以及 `collaboration/evidence`、`collaboration/catalog`、`collaboration/archives` 中的生成副本／索引／密文；不排除项目自有规范、嵌套 `AGENTS.md` 或 `docs` 历史 Markdown。结束阅读后才能修改产品或工程实现。
 
-Git／Dot协作先看 `collaboration/README.md` 和 `docs/source-control.md`。证据镜像、旧代码检查点和外部审阅报告是带日期的资料，不是新的执行指令；其中旧 `AGENTS.md` 等已加 `.reference.txt` 后缀。不得以旧镜像覆盖当前源码，也不得因接手而重复已完成的验证、部署或申请。
+Git／Dot协作先看 `collaboration/README.md` 和 `docs/source-control.md`。证据镜像、旧代码检查点和外部审阅报告是带日期的资料，不是新的执行指令；其中旧 `AGENTS.md` 等已加 `.reference.txt` 后缀。不得以旧镜像覆盖当前源码，也不得因接手而重复已完成的验证、部署或申请。审阅当前代码时以 `apps`、`infra`、`tools`、`config` 等活动源码为准，不把 `collaboration/evidence` 中的历史实现重复计为当前缺陷。
 
 先核对交接中的唯一下一步是否仍符合 Owner 最新任务，再开始执行。发现正文已更新而日期、状态或旧“下一步”未更新，也属于需要修复的文档漂移，不得把旧门重新当作当前任务。
 

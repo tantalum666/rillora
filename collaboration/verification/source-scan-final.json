@@ -4,6 +4,14 @@
   "rawFindingCount": 29,
   "reviewedNonSecrets": [
     {
+      "rule": "generic-api-key",
+      "path": "apps/api/tests/apple-production-verification.test.ts",
+      "startLine": 7,
+      "endLine": 7,
+      "sourceSpanSha256": "cf31a4f46604f16e19283e4d12e3a3b7c3cd3d742409e8e09e17ddd236740af4",
+      "reason": "Synthetic appAccountToken UUID used for case-canonicalization unit tests; not an authentication credential or real customer identifier."
+    },
+    {
       "rule": "private-key",
       "path": "apps/api/src/config.ts",
       "startLine": 554,
@@ -13,11 +21,11 @@
     },
     {
       "rule": "generic-api-key",
-      "path": "apps/api/tests/apple-production-verification.test.ts",
-      "startLine": 7,
-      "endLine": 7,
-      "sourceSpanSha256": "cf31a4f46604f16e19283e4d12e3a3b7c3cd3d742409e8e09e17ddd236740af4",
-      "reason": "Synthetic appAccountToken UUID used for case-canonicalization unit tests; not an authentication credential or real customer identifier."
+      "path": "apps/api/tests/commerce-provider-adapters.test.ts",
+      "startLine": 20,
+      "endLine": 20,
+      "sourceSpanSha256": "c9d0a05fe6f9b85891ee4510d2a773738e7795af24fe1425e8199c9ba9f343a1",
+      "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
     },
     {
       "rule": "generic-api-key",
@@ -81,14 +89,6 @@
       "startLine": 145,
       "endLine": 145,
       "sourceSpanSha256": "816665691498bb57827957537e3eec6781a98e4c7a6cef5ec2e16fc27b9e5bde",
-      "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
-    },
-    {
-      "rule": "generic-api-key",
-      "path": "apps/api/tests/commerce-provider-adapters.test.ts",
-      "startLine": 20,
-      "endLine": 20,
-      "sourceSpanSha256": "c9d0a05fe6f9b85891ee4510d2a773738e7795af24fe1425e8199c9ba9f343a1",
       "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
     },
     {

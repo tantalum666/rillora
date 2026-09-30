@@ -2,7 +2,7 @@
 
 最后更新：2026-09-30（Asia/Shanghai）
 
-当前任务：按Owner要求保存所有Rillora工作，支持Git／Dot协作。请先看[完整协作入口](collaboration/README.md)、[保存范围与恢复方法](docs/source-control.md)和[当前交接](docs/handoff.md)。源码、设计与文档、发布候选、QA和历史都有目录；原件加密归档由Git LFS管理。
+已完成Owner要求的全量Rillora Git保存，支持Dot协作。请先看[完整协作入口](collaboration/README.md)、[保存范围与恢复方法](docs/source-control.md)和[当前交接](docs/handoff.md)。源码、设计与文档、发布候选、QA和历史都有目录；46,768工作文件和7个加密归档已从远端完整读回验证，[CI42通过](https://github.com/tantalum666/rillora/actions/runs/36737542600)。
 
 最新发布边界：Dot报告的13项问题已本地修复；38307b0d0的CI41通过。修复尚未云端部署，AWS既有会话实际过期；生产最后观察为API7／schema0091、客户访问关闭。新商店设计已有四张iPhone和两张iPad图，尚未上传或获得最终视觉确认。本人验证、真实Apple交易、SES／SBP回复和最终发布仍分开验收。
 

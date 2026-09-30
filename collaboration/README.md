@@ -2,6 +2,8 @@
 
 Updated: 2026-09-30 (Asia/Shanghai)
 
+全量保存已完成：远端main／历史标签已读回，7个Git LFS归档已重新下载、解密核验，[CI42通过](https://github.com/tantalum666/rillora/actions/runs/36737542600)。[完整回执](verification/README.md)。
+
 这是Owner要求的全量工作保存入口。当前源码与权威文档仍在仓库原位置；这里补齐之前被
 output/、qa/等忽略规则挡住的设计、发布材料、验证记录和历史资料。
 

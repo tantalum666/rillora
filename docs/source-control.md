@@ -6,6 +6,11 @@ The private remote is [tantalum666/rillora](https://github.com/tantalum666/rillo
 Owner explicitly requested **all Rillora work** for Git and Dot collaboration on
 September 30. This supersedes the September 23 source-only publication policy.
 The readable starting point is [the collaboration guide](../collaboration/README.md).
+The complete snapshot and both history tags have been published and read back from
+a fresh remote clone; all 7 downloaded archives were decrypted and verified.
+[CI 42](https://github.com/tantalum666/rillora/actions/runs/36737542600) passed for
+`4befe456763d38e7f3385e52a5165bfe698e6b0a`; [receipts](../collaboration/verification/README.md)
+record exact scope. The final receipts commit only changes documentation/metadata.
 
 ## What belongs in the complete snapshot
 
@@ -83,6 +88,7 @@ and deferred Owner/provider gates carry forward.
 To fetch and verify original artifacts, install Git LFS, age and zstd, then:
 
 ```sh
+git lfs install --local
 git lfs pull --include='collaboration/archives/*.age'
 python3 tools/collaboration/verify_archives.py --identity /protected/path/identity.txt
 ```

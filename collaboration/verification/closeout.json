@@ -1,0 +1,53 @@
+{
+  "status": "COMPLETE_PROJECT_WORK_PUBLICATION_AND_REMOTE_ARTIFACT_RECOVERY_VERIFIED",
+  "completedAt": "2026-09-30T23:47:03.220505+08:00",
+  "repository": "https://github.com/tantalum666/rillora",
+  "private": true,
+  "verifiedSourceCommit": "4befe456763d38e7f3385e52a5165bfe698e6b0a",
+  "finalReceiptCommit": "The metadata-only commit containing this receipt; its parent is the verified source commit. No runtime implementation changes.",
+  "ci": {
+    "runNumber": 42,
+    "runId": 36737542600,
+    "url": "https://github.com/tantalum666/rillora/actions/runs/36737542600",
+    "conclusion": "success"
+  },
+  "workFiles": 46768,
+  "readableCopies": 8876,
+  "storedRawObjects": 20108,
+  "distinctContents": 20026,
+  "encryptedArchives": 7,
+  "encryptedArchiveBytes": 3363731990,
+  "freshRemoteClone": true,
+  "allRemoteLfsBytesDownloadedAndVerified": true,
+  "allRawObjectsDecryptedAndHashVerified": true,
+  "restoredIpaMatchesOriginal": true,
+  "unaccountedEligiblePaths": [],
+  "localChecks": {
+    "collaborationGuardsPassed": 8,
+    "releaseGuardsPassed": 23,
+    "sourceReviewedNonSecrets": 29,
+    "sourceUnreviewedFindings": 0,
+    "readableEvidenceUnreviewedFindings": 0
+  },
+  "retainedExcludedMaterial": [
+    "Actual credential stores and recovery codes",
+    "Personal map exports and real database/provider backups",
+    "Machine-wide diagnostics and IDE personal state",
+    "Reproducible dependency/compiler caches"
+  ],
+  "gitHistoryPolicy": "Original histories and local repositories retained; two archive tags pushed; no force push or history rewrite",
+  "publicationScope": "Dated work snapshot plus current source and final receipts; later bytes from an existing continuously running QA log are outside the capture interval",
+  "launchBoundary": "No cloud deployment, Apple upload, provider application or new real transaction; UI/pricing/real data/FanPass preserved",
+  "documentsUpdated": [
+    "AGENTS.md",
+    "README.md",
+    "docs/product.md",
+    "docs/source-control.md",
+    "docs/chat-resume-20260930.md",
+    "docs/handoff.md",
+    "docs/decision-log.md",
+    "docs/journey/PROJECT_JOURNEY.md",
+    "collaboration/README.md"
+  ],
+  "decisionReason": "Owner explicitly superseded source-only publication with all-work Git preservation; encrypted originals and reviewed protected-build exceptions documented."
+}

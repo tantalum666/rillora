@@ -4,7 +4,7 @@ Role: cross-chat checkpoint and artifact/tool routing, not a second product auth
 Status: SAVED FOR CONTINUATION; LAUNCH OBJECTIVE INCOMPLETE
 Last updated: 2026-09-30 (Asia/Hong_Kong)
 
-Owner最新要求把所有Rillora工作推到Git，准备与Dot协作。当前入口是
+Owner最新要求的全量Git保存已完成，7个LFS归档已从远端下载、解密并逐对象核验，CI42通过。Dot协作入口是
 [完整协作包](../collaboration/README.md)、[保存合同](source-control.md)和[当前交接](handoff.md)。
 下方按日期保留旧交接事实，不从历史段落生成第二个活动“下一步”。
 
