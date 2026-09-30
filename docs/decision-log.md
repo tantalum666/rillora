@@ -2863,3 +2863,14 @@ unreachable release remains a different closed workflow. See [sharing contract](
   Direct JPEG screenshots preserve the app UI while meeting the no-alpha requirement.
   No final Apple price,SBP approval,SES approval or merchant fact is inferred.
   [Focused contract](release-engineering-20260930.md).
+
+## 2026-09-30 — Owner requests designed App Store presentation
+
+- Owner explicitly rejects bare screenshots as sufficiently designed store imagery.
+  Treat the existing captures as source/evidence and create a real marketing sequence.
+- Agent uses the selected paper/forest identity,full03logo,licensed serif/sans type,
+  actual UI in device frames and one magnified existing disclosure control. No app UI,
+  price,real record or new feature/security/financial claim changes.
+- Four iPhone and two separately composed iPad assets are rendered as an editable
+  first set. This does not assert Owner's final visual approval or authorize an upload.
+  [Current contract](app-store-presentation-20260930.md).

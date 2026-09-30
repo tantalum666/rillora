@@ -172,6 +172,14 @@ removed or image content fabricated. Raw PNG evidence is retained; direct JPEG
 captures avoid Apple's disallowed alpha channels. iPhone1320×2868and iPad2064×2752
 match the published device classes.[Apple screenshot specifications](https://developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications/).
 
+## Later September30 store-image design correction
+
+Owner says direct screenshots need presentation design. The raw captures now remain
+source/evidence;[the new designed set](app-store-presentation-20260930.md) provides four
+iPhone/two iPad compositions,exact typography,device framing and one true UI detail
+magnification. No app UI,price,runtime or real records change. This supersedes treating
+the six bare captures above as the final marketing presentation; no upload is implied.
+
 ## Remaining Owner/provider gates
 
 - Actual review login/affirmative terms, real provider sign-in and account journeys;

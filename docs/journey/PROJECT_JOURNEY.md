@@ -2934,3 +2934,17 @@ Owner先确认小型企业资格事实、再当场确认最终声明，申请已
   [本轮收尾记录](../../output/qa/rillora-launch-resume-20260930/closeout.json)。旧检查点不得
   冒充本次重跑，新工程验收不等于正式上线。
 - [当前合同](../release-engineering-20260930.md) · [准备材料](../../output/release/rillora-20260930/README.md)
+
+## 2026-09-30 — From raw captures to designed store presentation
+
+- **目标**：Owner指出App Store直接截图不好看，要求进行展示设计。
+- **尝试**：保留真实截图与完整03Logo，采用墨绿／纸色／鼠尾草色、SourceSerif4＋Inter、
+  大标题与设备构图，按整理、共享、副本、开始的顺序设计；iPad使用自身实际界面。
+- **判断变化**：此前尺寸合规只证明原始素材可用，不代表营销设计已经完成。拒绝字体
+  被宿主替代的初次输出，改为读取授权字体轮廓。共享图放大实际权限选项，避免重画
+  成不存在的UI；iPad构图放大有效内容并有意裁去屏幕下方空白。
+- **结果**：四张iPhone、两张iPad JPEG与SVG源稿、文案／版式生成器、字体许可及下载包
+  已完成。尺寸、无alpha、sRGB和原图指纹检查通过，单图与并排缩略图已目视检查。
+  [本轮材料](../../output/release/rillora-store-design-20260930/v1/README.md)。
+- **未完成项**：未上传App Store，也不把首次设计稿写成Owner已经最终采纳。原有本人
+  登录／法律确认及真实Apple、邮件、商户／设备、定价和发布门保持；不重做产品测试／部署。

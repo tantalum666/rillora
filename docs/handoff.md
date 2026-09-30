@@ -5,7 +5,9 @@ Last updated: 2026-09-30 (Asia/Hong_Kong)
 
 ## Current Owner task
 
-Finish prelaunch work that does not need Owner participation/confirmation or the
+Owner subsequently requests designed App Store images because direct captures look
+unattractive. The first six-image designed set is prepared locally,with current UI
+retained. Continue prelaunch work that does not need Owner participation/confirmation or the
 existing AWS reply. Preserve current UI/full03brand,Free1/Family5,WebUS$88.99annual-only,
 differential Apple price decision,real data,history andFanPass. Do not request the
 Owner-deferred merchant/physical-device facts again or repeat old work/login.
@@ -46,8 +48,9 @@ implementation and limitations are in[September30release engineering](release-en
   checks pass. Two callback checks passed in the prior targeted run. Counts overlap
   historical suites; do not sum them. ip-address is patched to10.7.2.
 - Strictly verified distribution IPA has no debug entitlement/StoreKit fixture,
-  exact production connections and CustomerAccessNO. It is not uploaded. Six direct
-  JPEG screenshots have accepted dimensions/no alpha; original PNG evidence retained.
+  exact production connections and CustomerAccessNO. It is not uploaded. Raw JPEG/PNG captures remain source evidence. Owner then requests designed store
+  presentation:four iPhone/two iPad compositions,large typography,actual UI framing
+  and exact disclosure-control enlargement are rendered/checked in[the designed set](app-store-presentation-20260930.md).
   Listing and final-declaration/reviewer worksheets are[prepared locally](../output/release/rillora-20260930/README.md).
   New closed Web candidate is retained locally; Preview/WWW/legal publications stay unchanged.
 
