@@ -65,6 +65,14 @@ acceptance, review enrollment, real Apple Sandbox purchase/restore/notifications
 usable TestFlight/App Review, SBP fee and final Apple price remain open. Merchant
 and physical-device facts remain Owner-deferred.
 
+## October1 remaining-work review
+
+Owner asked what still prevents launch. The [seven work packages](release-readiness.md#october1-remaining-work-inventory)
+reconcile the existing gate register without inventing new completion or retesting.
+This status check corrected stale SES wording in the earlier engineering and Dot
+entry documents. No provider portal/session was rechecked, no application repeated,
+and no new decision or change to the release scope occurred. The next step is unchanged.
+
 ## Single next step
 
 Restore the actually expired existing AWS operator session with the Owner's required

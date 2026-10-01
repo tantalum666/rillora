@@ -2,7 +2,7 @@
 
 Role: current implementation, operating limits and release evidence
 Status: RESTRICTED REVIEW RUNTIME VERIFIED; OWNER/PROVIDER RELEASE GATES OPEN; CUSTOMER SALES CLOSED
-Last updated: 2026-09-30 (Asia/Hong_Kong)
+Last updated: 2026-10-01 (Asia/Shanghai; status routing only, no engineering rerun)
 
 Owner asks to finish every prelaunch task that does not need their participation or
 confirmation, excluding the existing AWS reply wait. This narrows the active work;
@@ -189,12 +189,19 @@ the six bare captures above as the final marketing presentation; no upload is im
 
 ## Remaining Owner/provider gates
 
+October1 status reconciliation: the restricted-runtime and test results above keep
+their September30 evidence date. The later Dot repairs remain undeployed, and the
+Owner-selected Resend provider replaces the historical SES dependency below.
+Use the [current remaining-work inventory](release-readiness.md#october1-remaining-work-inventory)
+and the single next step in [handoff](handoff.md).
+
 - Actual review login/affirmative terms, real provider sign-in and account journeys;
   reviewer enrollment and Apple Sandbox notifications/purchase/restore/lifecycle.
 - Owner-deferred physical devices and truthful merchant/market facts; live Stripe
   configuration and actual cross-channel payment, cancellation/refund/expiry.
-- SES response/production access, then actual verification/reset/invitation delivery.
-  No duplicate AWS correspondence or email-provider purchase is authorized by this work.
+- Resend is configured and its delivery/failure simulators pass; actual mailbox
+  verification/reset/invitation continuation remains open. SES approval is no longer
+  required for this sender; do not duplicate the existing AWS correspondence.
 - SBP approval/effective rate and final differential Apple annual-price choice;
   final privacy/age/encryption declarations, review contact and usable TestFlight /
   App Review submission after the above evidence exists.

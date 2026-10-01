@@ -31,6 +31,37 @@ and channel-price decisions remain open; merchant and physical-device facts stay
 Owner-deferred. Use [handoff](handoff.md) for the one active next step and
 [the gate register](../config/release-gates.json) for the full release boundary.
 
+## October1 remaining-work inventory
+
+This is a status reconciliation of existing receipts, not a new product test,
+provider-session probe, portal decision or deployment. Twelve register entries
+share dependencies; they are grouped into seven practical work packages below.
+The Resend setup and13local review fixes are retained as complete for their scope.
+
+| Work package | Remaining acceptance | Dependency / participation |
+| --- | --- | --- |
+| Deploy prepared repairs | Publish repaired API, closed Web/invitation router and WWW; read exact deployed versions and focused production outcomes | Owner restores actually expired AWS login/MFA; Agent performs the existing rollout |
+| Real account and core journeys | Real verification/reset/invitation continuation; production provider login and affirmative legal acceptance; final Web/iOS create/share/revoke/export/delete/reauthentication journey evidence | Agent prepares and verifies; Owner/test recipient performs personal authentication and genuine consent |
+| Apple purchase lifecycle | Enroll the restricted review identity; confirm notification configuration; actual Apple Sandbox purchase, restore, renewal/refund/expiry and shared-entitlement results | Depends on the repaired environment and a usable signed test build; personal Apple interaction remains separate |
+| Merchant, markets and live billing | Owner-deferred operating/merchant/tax facts; supported launch markets; live Stripe configuration and payment lifecycle; effective Apple fee and final differential price | Owner supplies factual/required attestations; provider onboarding and Agent integration follow. Web88.99 remains locked; Apple99.99/119.99 are conditional candidates |
+| Physical-device acceptance | Actual device authentication/accessibility and relevant native return/purchase paths | Owner-deferred; Simulator results do not close this item |
+| Final distribution and submission | Usable signed build, TestFlight, chosen designed screenshots, privacy/age/encryption/contact/reviewer fields; submit App/IAP, address review feedback and release | Agent prepares/uploads within existing scope; Owner supplies missing facts and any required declarations; Apple controls approval |
+| Controlled customer cutover | Retire exact old test clients/grants/workers, preserve real/Owner data, expire old tokens, check negative access and final permission/log/rollback/payment-reconciliation boundaries, then open eligible customer access | Agent executes after upstream acceptance; measured86400-second old-token lifetime plus clock tolerance must be observed |
+
+The already signed IPA still has customer access disabled; signed/exported does
+not mean usable TestFlight or a submitted version. Designed4iPhone/2iPad assets
+already exist and need no new design round merely for this inventory. Apple SBP
+has a submission receipt but no approval/effective-rate evidence in the retained
+record; this review does not claim a new portal read. Application, review and
+actual public availability remain distinct.
+
+Apple confirms TestFlight uses its sandbox and requires metadata plus a selected
+build for App Review. Those platform facts do not establish Rillora's completion.
+[Sandbox testing](https://developer.apple.com/help/app-store-connect/test-a-beta-version/testing-subscriptions-and-in-app-purchases-in-testflight/),
+[submission](https://developer.apple.com/help/app-store-connect/manage-submissions-to-app-review/submit-an-app/).
+The single next action remains AWS session restoration followed by the prepared
+closed rollout; no new SES application, redesign or full unchanged test rerun is needed.
+
 ## HISTORICAL — September30 independent engineering before review repairs
 
 Owner now asks to finish all work outside their participation/confirmation and the

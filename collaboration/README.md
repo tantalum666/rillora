@@ -1,6 +1,6 @@
 # Rillora — Git / Dot 协作入口
 
-Updated: 2026-09-30 (Asia/Shanghai)
+Updated: 2026-10-01 (Asia/Shanghai)
 
 全量保存已完成：远端main／历史标签已读回，7个Git LFS归档已重新下载、解密核验，[CI42通过](https://github.com/tantalum666/rillora/actions/runs/36737542600)。[完整回执](verification/README.md)。
 
@@ -16,7 +16,8 @@ output/、qa/等忽略规则挡住的设计、发布材料、验证记录和历�
 
 当前发布事实：Dot报告的13项问题已完成本地修复，38307b0d0的CI41成功；修复尚未部署，
 AWS已有会话实际过期。现有UI、完整03品牌、Free1／Family5、Web88.99年付与Apple待定渠道价、
-真实数据和FanPass继续保留。本人验证、真实交易、SES／SBP回复和最终上架有各自门槛。
+真实数据和FanPass继续保留。Resend已接通并通过官方投递／失败模拟，SES批准不再阻塞当前发信路线。本人验证、真实交易、SBP有效费率和最终上架仍分开验收。
+[当前七组剩余工作](../docs/release-readiness.md#october1-remaining-work-inventory)归并重复依赖；旧快照的日期和数量保持原样。
 
 ## 包含什么
 
