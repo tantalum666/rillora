@@ -183,3 +183,8 @@ directly readable. Generated extraction/publication copies and actual credential
 stores are excluded explicitly. Local cryptographic verification and fresh remote
 object verification have separate receipts; upload/Apple processing do not prove
 an installation, transaction or public release.
+
+The new archive was then freshly fetched from GitHub at e1a5054b16d29e8dff774e9420e259af472c24ca.
+All109objects/111paths decrypted and verified against remotely read metadata.
+[Remote receipt](../collaboration/verification/independent-release-20261002/remote-readback.json)
+records this additional result without repeating earlier archive downloads.

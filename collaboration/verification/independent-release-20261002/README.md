@@ -35,3 +35,9 @@ and [handoff](../../../docs/handoff.md) remain authoritative.
 
 Publication scans and the fresh remote LFS readback are separate closeout receipts;
 the local archive verification alone is not a remote-push assertion.
+
+Remote readback is now complete at commit `e1a5054b16d29e8dff774e9420e259af472c24ca`: fresh
+GitHub metadata and a new isolated LFS download matched;109objects/111paths decrypt
+and verify. No earlier archive was downloaded again. [Remote receipt](remote-readback.json).
+Source/privacy scans and local link checks pass; this continuation adds no runtime
+source change or repeated product CI run.
