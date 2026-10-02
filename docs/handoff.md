@@ -1,80 +1,69 @@
 # Rillora Current Handoff
 
-Status: REPAIRS AND SIGNUP COPY LIVE; REAL ACCOUNTS VERIFIED; RESET/SHARING ACCEPTANCE IN PROGRESS
+Status: INDEPENDENT RELEASE PREPARATION COMPLETE FOR CURRENT DEPENDENCIES; INTERNAL TESTFLIGHT BUILD UPLOADED
 Last updated: 2026-10-02 (Asia/Shanghai)
 
 ## Current task
 
-Owner requested packages1/2/3: deploy prepared repairs, real account/email journeys,
-and actual Apple Sandbox purchase/restore/lifecycle. Latest feedback requires clear
-existing-account signup errors. Owner has explicitly reaffirmed physical-device work
-is deferred. [Execution contract](release-123-20261001.md). Preserve UI/full03,
-Free1/Family5,Web88.99,conditional Apple prices,real data and FanPass. Public customers
-and live billing remain closed.
+Owner asks to finish all work not requiring their participation. Preserve UI/full03,
+Free1/Family5, Web88.99, conditional Apple prices, real data and FanPass. Physical-device
+and merchant facts remain explicitly deferred. Public customers and live billing stay
+closed. [Current independent contract](independent-release-closeout-20261002.md).
 
 ## Completed
 
-- Prepared API/Web/router/WWW repairs and restricted clients/identity configuration
-  are deployed. API10 is healthy with1running instance; schema0091 is unchanged.
-  Original October6review expiry is retained. No duplicate rollout/migration.
-- Owner's Google production Web login/terms saved one clearly synthetic matter and
-  one QA contact. Planner self-acceptance was refused; QQ signed in and accepted the
-  Directions invitation. Owner later found the assisted invitation email in spam or
-  another classification. Real arrival is confirmed; primary-inbox placement is not.
-- Owner completed native Google/Account terms. The actual callback loaded that same
-  one synthetic Web matter and displayed the QA recipient Connected. Actual native
-  sign-in and cross-platform read are verified; prior real data/Keychain remain.
-- Duplicate signup logged existing user. Exactly two supported English error keys
-  now guide Sign in/Forgot password. Provider GET/merge/PUT/full readback matched after
-  Owner Auth0 login and same-scope renewal. Accounts/security settings are unchanged.
-  Actual repeated error rendering was not retriggered with a real password.
-- Apple Sandbox URL persisted; unsigned input refused. Actual TEST exposed blocked
-  OCSP; bounded review-only Apple17/8 TCP80 and retryable503 handling deployed while
-  keeping online checks. Same payload replay200 and fresh official TEST SUCCESS saved.
-- Owner AWS MFA restored the same scoped operator. One bounded task enrolled only the
-  already-consented QA planner for Apple Sandbox until the original expiry, verifying
-  no production commerce existed. No order, entitlement or fake purchase was created.
-- A Release Apple Development build for the paired iPhone is prepared, strictly signed,
-  production-connected and fixture-free. Owner then reaffirmed device deferral;
-  nothing was installed or operated on the phone. This is not an App Store export.
-- Preflight now recognizes all12required gates; regression failed before the fix and
-  7focused checks pass. Dot remediation is correctly verified;10other gates remain.
-  Runtime source572fae4c7 passed CI43; preflight/signup follow-up156a390f0 passed CI44.
+- API10/restricted Web/router/WWW repairs, schema0091, retention/recovery/monitoring
+  preparation and all13Dot fixes retain their actual deployment/test evidence.
+  CI44 covers the latest source; no unchanged product suite or cloud rollout repeated.
+- Real Google Web and native consent/login loaded the same one synthetic matter;
+  QQ accepted the Directions share and found the assisted email outside the primary
+  inbox. Password reset succeeded in Owner/provider evidence, new QQ Web login works,
+  and API200/no-store/readOnly returns exactly5allowed fields without Notes/private hint.
+- The supported duplicate-signup guidance is saved/read back in Auth0. Mail images
+  are present, HTTP200 and rendered in Resend; QQ-specific image loading is unresolved.
+- Apple Sandbox notification URL/official TEST succeeded after the measured OCSP
+  fix. Only the existing consented QA planner is enrolled; original expiry remains
+  2026-10-06T17:08:57Z. No real order or entitlement was fabricated.
+- Internal TestFlight1.0(2) is archived, App Store signed, strictly verified and
+  uploaded through existing Xcode credentials at19:40+08. Apple processed it and
+  reports Internal / Missing Compliance. Eight artifact checks pass; no debug
+  entitlement, development planner or StoreKit fixture. Source defaults stay closed.
+- Four iPhone/two iPad designed images are saved in the English App Store draft and
+  read back in intended order. Existing public listing matches source. Beta basics
+  and build-specific test steps are saved/read back. No tester invite or installation.
 
-## Current pending evidence and constraints
+## Evidence boundaries and parked dependencies
 
-Owner reported the prior recovery link expired and requested a replacement. One new
-email was delivered at18:16Asia/Shanghai; Owner then completed the reset and Auth0
-recorded scp success at18:26:59. Owner then completed QQ Web login. The actual private map and shared Directions
-item load; API200/no-store returns exactly the5allowed fields, with no Notes or
-private reference marker. The planner simulator later returned Authentication is
-required. Only its old session was signed out; Google was reused and a fresh
-unchecked Account terms step now awaits Owner. Revocation has not yet been attempted.
+Build2 is internal-only; it cannot be used for external TestFlight/App Store release.
+Apple's encryption questionnaire was inspected and cancelled unanswered. Final export,
+privacy/age/contact/market declarations, SBP effective fee/final Apple price and a later
+submission build remain. Local export hash and Apple's upload/processing result are
+separate evidence. All12gate classifications remain, with2verified and10dependent gates.
 
-Owner also reported all email images missing. The sent HTML contains the correct
-Rillora PNG and two Auth0 PNGs; all URLs return200 and all3render in Resend's actual
-preview. No paid-feature gate is observed. QQ's exact external-image loading cause
-remains unproven. [Safe mail evidence](../collaboration/verification/email-logo-20261002/README.md).
-No template, image host, DNS, plan or security setting was changed on speculation.
+The native planner's later session actually expired. Only that simulator session was
+signed out; Google reuse reached a fresh unchecked Account terms. This genuine Owner
+step is parked; no synthetic-share revocation has been performed. Do not manufacture
+consent through an operator task. Remaining core journeys use this existing synthetic
+fixture; deletion must use a deliberately disposable identity, never a real Owner account.
 
-Detailed shared-field/reload/revocation, other remaining actual journeys and Apple
-purchase/restore/lifecycle stay open. Real-device work remains Owner-deferred; do not
-ask again or install merely because a paired phone exists. Merchant facts/final Apple
-price/SBP rate/submission remain separate. No TestFlight upload or ordinary launch.
+Real-device purchase/restore/lifecycle and actual provider reconciliation remain
+Owner-deferred. Do not install or ask again merely because the paired phone exists.
+Live Stripe depends on real merchant facts; customer cutover depends on upstream
+acceptance and exact Preview retirement plus86400seconds token expiry and skew.
+No further SES application/reply wait is required for the adopted Resend sender.
 
-Historical full suites keep their original dates; new CI43/44 cover their exact source.
-Two additive archives preserve463paths/306objects and were freshly downloaded/decrypted.
-The later112file versions/105objects and prepared device artifact are also pushed;
-their new archive was freshly downloaded and decrypted/verified. [Git evidence](../collaboration/verification/release-123-20261002/README.md).
-Secrets, private subjects, enrollment request and device inventory stay in
-.local-secrets/production-review; never publish their raw values.
+The new archive, local export, logs and safe Apple receipts are preserved by the
+[current Git addendum](../collaboration/verification/independent-release-20261002/README.md).
+Prior archives and CI keep their original dates. Credentials, raw recovery links,
+personal authentication UI and device inventories remain excluded from Git.
 
 ## Single next step
 
-Await Owner confirmation of the planner simulator's new Account terms step, then
-revoke only the named synthetic sharing connection and verify the QQ recipient loses
-access. QQ password reset, new login and Directions field filtering are already verified;
-do not repeat them. Finish the current evidence/Git follow-up afterward. Keep physical-device work deferred. The localhost3200 simulator mirror
-(exec24106) is signed in; stop it with its scoped cleanup when acceptance ends. AWS
-and Auth0 renewal are complete; do not ask again without an actual new failure.
-[Previous handoff](handoff-history-20261001-before-release-123.md) is HISTORICAL.
+When Owner resumes personal participation, complete the planner's pending genuine
+Account terms/authentication and continue only the named synthetic share's remaining
+scope/revocation acceptance. Do not ask again or restart this step while Owner's
+current instruction is independent work only. Keep physical-device work deferred;
+export compliance and final declarations remain separately parked. Existing Apple,
+AWS and Auth0 sessions are reused until an actual failure proves renewal is needed.
+The exact mirror cleanup/state is recorded in the current QA closeout.
+[Previous handoff](handoff-history-20261002-before-independent-preparation.md) is HISTORICAL.

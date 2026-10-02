@@ -2,7 +2,7 @@
 
 Role: current implementation, operating limits and release evidence
 Status: RESTRICTED REVIEW RUNTIME VERIFIED; OWNER/PROVIDER RELEASE GATES OPEN; CUSTOMER SALES CLOSED
-Last updated: 2026-10-01 (Asia/Shanghai; status routing only, no engineering rerun)
+Last updated: 2026-10-02 (Asia/Shanghai; status routing only, no engineering rerun)
 
 Owner asks to finish every prelaunch task that does not need their participation or
 confirmation, excluding the existing AWS reply wait. This narrows the active work;
@@ -189,18 +189,22 @@ the six bare captures above as the final marketing presentation; no upload is im
 
 ## Remaining Owner/provider gates
 
-October1 status reconciliation: the restricted-runtime and test results above keep
-their September30 evidence date. The later Dot repairs remain undeployed, and the
-Owner-selected Resend provider replaces the historical SES dependency below.
+October2 status reconciliation: the restricted-runtime and test results above keep
+their September30 evidence date. Later Dot repairs and restricted acceptance/OCSP
+follow-ups are deployed as API10. Resend replaces the historical SES dependency;
+QQ receipt/reset/new login and native cross-platform read are verified. The latest
+[internal build and saved store materials](independent-release-closeout-20261002.md)
+supersede the earlier no-upload state; real transactions and declarations stay open.
 Use the [current remaining-work inventory](release-readiness.md#october1-remaining-work-inventory)
 and the single next step in [handoff](handoff.md).
 
-- Actual review login/affirmative terms, real provider sign-in and account journeys;
-  reviewer enrollment and Apple Sandbox notifications/purchase/restore/lifecycle.
+- Remaining dedicated reviewer/account journeys and the current planner consent
+  step; A/B sign-in, consented planner enrollment and official TEST delivery are
+  complete. Actual Apple purchase/restore/lifecycle remains separate.
 - Owner-deferred physical devices and truthful merchant/market facts; live Stripe
   configuration and actual cross-channel payment, cancellation/refund/expiry.
-- Resend is configured and its delivery/failure simulators pass; actual mailbox
-  verification/reset/invitation continuation remains open. SES approval is no longer
+- Resend and actual QQ receipt/reset/new login are verified; genuine new-user
+  verification and remaining shared-account journeys stay separate. SES approval is no longer
   required for this sender; do not duplicate the existing AWS correspondence.
 - SBP approval/effective rate and final differential Apple annual-price choice;
   final privacy/age/encryption declarations, review contact and usable TestFlight /

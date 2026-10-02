@@ -1,7 +1,7 @@
 # Rillora transaction mail — Resend
 
 Role: current sender configuration, operating contract and evidence boundary
-Status: DOMAIN VERIFIED; AUTH0 PROVIDER ACTIVE; SIMULATOR TRANSPORT PASSED; REAL USER ACCEPTANCE OPEN
+Status: AUTH0 RESEND ACTIVE; REAL QQ RECEIPT, RESET AND NEW LOGIN VERIFIED; REMAINING JOURNEYS OPEN
 Last updated: 2026-10-02 (Asia/Shanghai)
 
 ## Owner decision and scope
@@ -134,9 +134,10 @@ alarm or Auth0 end-user failure ceremony is claimed from these provider results.
 
 ## Remaining release acceptance
 
-Real-user verification, password reset and invitation continuation still need the
-appropriate actual recipient/login ceremony. Test identities must not be marked
-verified manually to bypass it. Retain current Preview capabilities until reviewed
+QQ invitation receipt/acceptance, password reset and the new-password Web login
+now have actual evidence. A new-user verification ceremony and remaining sharing/
+recent-authentication journeys remain separate. Test identities must not be marked
+verified manually to bypass them. Retain current Preview capabilities until reviewed
 cutover; retire old test grants/workers and wait their measured 86,400-second token
 lifetime plus clock tolerance before admitting general customers.
 
@@ -147,7 +148,8 @@ and the dashboard exposes `250 OK: queued as.`, and Owner later confirmed arriva
 Primary-inbox placement remains unproven; direct-link acceptance alone was not used
 as mailbox evidence. No blind
 resend, password change, verification-flag manipulation or automatic invite-mail
-feature was added. Real reset/native/Apple purchase and final publication remain open.
+feature was added. Later reset/new login/native results are recorded below; remaining
+sharing, Apple purchase and final publication stay open.
 
 ## Evidence and continuation
 
@@ -163,7 +165,7 @@ stores and protected DNS snapshots remain outside Git. Cache/help copies of vend
 documentation are reproducible third-party material, explicitly listed as excluded
 in the evidence coverage receipt.
 
-## October2 actual account completion follow-up
+## HISTORICAL — October2 account completion before the later reset
 
 Owner confirmed finding the QQ email in spam or another classification. Real arrival
 is now confirmed; primary-inbox placement is not. Owner also completed the native
@@ -186,7 +188,7 @@ Owner reported the prior link expired and explicitly requested a resend. A TLS
 handshake failure produced no new provider mail; after reconciliation one fresh
 Auth0 request succeeded and Resend delivered one email at18:16Asia/Shanghai. Owner
 then confirmed a completed password reset, independently matched by Auth0's scp
-success event at18:26:59. New QQ Web sign-in remains pending. Old ticket expiry
+success event at18:26:59. New QQ Web sign-in and Directions field filtering were subsequently verified. Old ticket expiry
 policy/cause was not inferred or weakened.
 
 Owner's screenshot shows all three body images replaced by placeholders. The sent
@@ -196,3 +198,8 @@ paid-feature gate is indicated. The exact QQ client/privacy/network/image-proxy
 condition remains unverified; do not claim it is repaired from server checks alone.
 No template, DNS, image hosting, subscription or security setting changed.
 [Safe evidence](../collaboration/verification/email-logo-20261002/README.md).
+
+Current continuation: QQ reset/new login and exact shared fields are complete.
+The fresh planner native legal step is parked under Owner's independent-work
+direction; no new recovery email is needed. The image-client boundary remains as
+above. [Current independent closeout](independent-release-closeout-20261002.md).

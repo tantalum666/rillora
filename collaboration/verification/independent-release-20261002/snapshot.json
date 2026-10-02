@@ -1,0 +1,31 @@
+{
+  "capturedFrom": "2026-10-02T12:04:58.799848+00:00",
+  "capturedThrough": "2026-10-02T12:04:59.407762+00:00",
+  "workFiles": 111,
+  "uniqueRawObjects": 109,
+  "workBytes": 60448608,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-011.tar.zst.age",
+      "sha256": "a2672ad623cf935a649d02eb41c2af2e12dd6b37a38977f70c24737ef6a405ca",
+      "bytes": 21163687,
+      "plainBytes": 60446609,
+      "uniqueObjects": 109
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/independent-release-20261002/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": "output/qa/rillora-independent-closeout-20261002/publication",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    },
+    {
+      "path": "output/qa/rillora-independent-closeout-20261002/ipa-inspection",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    }
+  ],
+  "selection": "New release/QA roots and four explicitly changed dated package documents; prior archives untouched.",
+  "boundary": "No credential store, raw recovery image/link, browser authentication state, device inventory, or unrelated project included."
+}

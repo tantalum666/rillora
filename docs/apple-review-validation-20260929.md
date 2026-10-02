@@ -1,13 +1,22 @@
 # Apple review validation and distribution preparation
 
 Role: current TestFlight/App Review engineering and provider evidence
-Status: RESTRICTED REVIEW CLOUD VERIFIED; DISTRIBUTION PREPARED; REAL TRANSACTIONS AND SUBMISSION OPEN
+Status: INTERNAL TESTFLIGHT BUILD UPLOADED; REAL TRANSACTIONS AND DECLARATIONS OPEN
 Last updated: 2026-10-02 (Asia/Shanghai)
 
 Owner requests Apple-related release work. Existing UI, annual-only new sales,
 WebUS$88.99, differential Apple pricing, historical receipts and FanPass stay intact.
 The launch workflow's147-file full reading baseline remains valid; this is a focused
 continuation, not a new project scan. [QA](../output/qa/rillora-apple-release-20260929/work-state.json).
+
+## October2 independent distribution follow-up
+
+[Internal1.0(2)](independent-release-closeout-20261002.md) is now strictly checked,
+uploaded and processed by Apple. The actual status is Internal / Missing Compliance.
+Six designed screenshots and beta basics are saved and read back. No installation,
+transaction, tester invitation, declaration or review submission is inferred. This
+supersedes earlier no-build/no-upload preparation statements below. Final externally
+distributable submission still depends on actual acceptance and truthful declarations.
 
 ## October2 actual review preparation follow-up
 

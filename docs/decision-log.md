@@ -2954,3 +2954,19 @@ unreachable release remains a different closed workflow. See [sharing contract](
 - Continue the already authorized backend/enrollment, account recovery and evidence
   work. Owner completed the actual AWS MFA; this is renewed access, not a deployment
   or purchase result. Preserve the original review expiry and test-only boundaries.
+
+## 2026-10-02 — Complete independent preparation before returning personal gates
+
+- Owner explicitly asks to do all work not requiring their participation. This
+  supersedes waiting on the fresh simulator Account terms as the sole executable
+  task; actual consent, deferred devices/merchant facts and final declarations are
+  not silently waived or repeatedly requested.
+- Agent prepares a separate1.0(2) distribution from unchanged native source with
+  build-only version/account-entry overrides. Upload is restricted to internal
+  TestFlight. This establishes the distribution path before later personal device
+  acceptance, without asserting purchase success or making an untested external
+  release available. Original server allowlist/expiry and closed live billing stay.
+- Use the existing six designed store images in the reversible unsubmitted draft;
+  save existing public beta support information and accurate test instructions.
+  This is Agent execution under current scope, not invented Owner visual approval,
+  final declaration or review submission. [Evidence](independent-release-closeout-20261002.md).

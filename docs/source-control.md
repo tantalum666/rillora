@@ -170,3 +170,16 @@ The later addendum was also read back from remote commit8987b2c8b, and its new
 archive was freshly downloaded and decrypted/verified. Old archive readbacks are
 retained without another download. Exact results are in followup-remote-readback.json
 in the linked current addendum.
+
+## October2 independent distribution and store-draft addendum
+
+The [new addendum](../collaboration/verification/independent-release-20261002/README.md)
+preserves111eligible file paths/109objects in raw-work-011,21,163,687bytes. The
+internal TestFlight archive/local IPA, build/upload logs, safe Apple evidence and
+four corrected dated package documents are included; previous archives are not
+rebuilt. Signed artifact bytes and private-header screenshots stay encrypted only.
+Source, current authority documents, redacted receipts and safe screenshots remain
+directly readable. Generated extraction/publication copies and actual credential
+stores are excluded explicitly. Local cryptographic verification and fresh remote
+object verification have separate receipts; upload/Apple processing do not prove
+an installation, transaction or public release.

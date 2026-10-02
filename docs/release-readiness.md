@@ -6,67 +6,53 @@ Last updated: 2026-10-02 (Asia/Shanghai)
 
 ## October2 current release delta
 
-Owner selected Resend. GoDaddy DNS, verified sending domain, domain-restricted
-sender key and the native Auth0 provider are now configured and read back. Direct
-and Auth0-generated verification messages reached only Resend's official simulator;
-real inbox, signup/reset and invitation continuation remain separate acceptance.
-Free limits100/day and3,000/month with pay-as-you-go off are read back; three failure
-simulators also return bounced/complained/suppressed. TLS is enforced and tracking/
-receiving are off. SES approval is no longer required
-for this sender, and the existing case has not received another message.
-[Current mail contract](transaction-mail-resend-20261001.md).
+Owner now asks to finish all work that does not require their participation. The
+[latest independent preparation](independent-release-closeout-20261002.md) records
+an uploaded/processed internal TestFlight1.0(2), six saved designed store images,
+read-back beta metadata and the remaining actual dependencies. Apple currently
+reports Missing Compliance; no device installation, purchase or review submission.
 
-The 13 Dot findings remain locally repaired. Retained checks are API349, Web112,
-infra47, native181 with 1 existing StoreKit skip, and passing final outcomes for
-28 targeted native UI cases. CI42 and complete Git/LFS recovery are retained
-September30 evidence; this provider/documentation work reran no product suite.
-The repaired API/Web/router/WWW rollout is complete. Restricted real-account
-access was subsequently deployed; Owner completed Web Google consent/login and
-the existing QQ recipient accepted one synthetic Directions invitation. Owner later
-confirmed actual QQ arrival outside the primary inbox, and native consent/callback
-loaded the same synthetic Web record. Password-reset completion remains pending. Apple notification
-verification was repaired and one official TEST succeeded; API10 is the deployment
-output, schema0091 remains unchanged. New scoped checks and remaining personal
-steps are in [the current acceptance contract](release-123-20261001.md).
+Resend is configured and the existing QQ mailbox actually received the assisted
+invitation. Password reset has Owner/provider success evidence; subsequent QQ Web
+login and the exact Directions field boundary are verified. Native Google login
+and cross-platform read passed earlier; the later native session expired and its
+new genuine Account terms step remains parked. QQ external-image rendering has
+healthy sender/preview evidence but no verified client-side repair.
 
-Four iPhone and two iPad designed store images are prepared, not uploaded or
-finally adopted. Real review login/affirmative legal acceptance, Apple Sandbox
-purchase/restore/notifications, usable TestFlight and final declarations, SBP fee
-and channel-price decisions remain open; merchant and physical-device facts stay
-Owner-deferred. Use [handoff](handoff.md) for the one active next step and
-[the gate register](../config/release-gates.json) for the full release boundary.
+The13Dot fixes, API10/restricted Web/router/WWW rollout, schema0091 and bounded
+retention/recovery/monitoring preparation are retained. CI44 and earlier full/scoped
+tests keep their original dates. This continuation builds and inspects a new
+artifact and reads actual Apple results; it repeats no unchanged product suite,
+cloud deployment, Apple TEST notification or SES application. SES is no longer a
+required approval for the Owner-selected sender.
 
-## October1 remaining-work inventory
+<a id="october1-remaining-work-inventory"></a>
 
-The seven work packages below now incorporate the October1–2 execution receipts.
-Twelve register entries
-share dependencies; they are grouped into seven practical work packages below.
-The Resend setup and13local review fixes are retained as complete for their scope.
+## October2 remaining-work inventory
 
-| Work package | Remaining acceptance | Dependency / participation |
+The12register gates share dependencies and are grouped below. Two are verified;
+ten remain open/in-progress/deferred. Counts are not a completion percentage.
+
+| Work package | Current evidence and remaining work | Dependency / participation |
 | --- | --- | --- |
-| Deploy prepared repairs | Completed: repaired API/Web/router/WWW, restricted-review follow-up and Apple verification repair deployed with focused evidence | Reuse the saved rollout; do not repeat it because sessions later expire |
-| Real account and core journeys | Real verification/reset/invitation continuation; production provider login and affirmative legal acceptance; final Web/iOS create/share/revoke/export/delete/reauthentication journey evidence | Agent prepares and verifies; Owner/test recipient performs personal authentication and genuine consent |
-| Apple purchase lifecycle | Enroll the restricted review identity; notification configuration and official TEST delivery are complete; actual Apple Sandbox purchase, restore, renewal/refund/expiry and shared-entitlement results | Depends on the repaired environment and a usable signed test build; personal Apple interaction remains separate |
-| Merchant, markets and live billing | Owner-deferred operating/merchant/tax facts; supported launch markets; live Stripe configuration and payment lifecycle; effective Apple fee and final differential price | Owner supplies factual/required attestations; provider onboarding and Agent integration follow. Web88.99 remains locked; Apple99.99/119.99 are conditional candidates |
-| Physical-device acceptance | Actual device authentication/accessibility and relevant native return/purchase paths | Owner-deferred; Simulator results do not close this item |
-| Final distribution and submission | Usable signed build, TestFlight, chosen designed screenshots, privacy/age/encryption/contact/reviewer fields; submit App/IAP, address review feedback and release | Agent prepares/uploads within existing scope; Owner supplies missing facts and any required declarations; Apple controls approval |
-| Controlled customer cutover | Retire exact old test clients/grants/workers, preserve real/Owner data, expire old tokens, check negative access and final permission/log/rollback/payment-reconciliation boundaries, then open eligible customer access | Agent executes after upstream acceptance; measured86400-second old-token lifetime plus clock tolerance must be observed |
+| Deploy prepared repairs | Complete: repaired API/Web/router/WWW and review/Apple verification follow-ups are deployed | Preserve rollout evidence; no repeat merely because credentials later expire |
+| Real account and core journeys | Real A/B login, native read, QQ arrival, reset/new login and Directions filtering complete; final scope/revoke/export/delete/recent-auth acceptance remains | Current planner genuine consent/authentication; account deletion uses a disposable identity |
+| Apple purchase lifecycle | Review environment/enrollment, notifications/official TEST, dev build and internal TestFlight upload complete; actual purchase/restore/renewal/refund/expiry remain | Export-compliance determination and Owner resuming deferred physical Apple test interaction |
+| Merchant, markets and live billing | Existing integration retained; real operator/merchant/tax facts, live provider lifecycle, effective SBP fee and final Apple price remain | Owner-deferred facts and final decisions, then provider/Agent execution; Web88.99 stays locked |
+| Physical-device acceptance | Prepared development/distribution builds; actual device authentication/accessibility/return/purchase remains | Owner explicitly deferred; do not install or ask again just because the phone is paired |
+| Final distribution and submission | Internal1.0(2) uploaded/processed; six designed screenshots and beta basics saved; privacy/age/encryption/reviewer worksheets prepared | Truthful final declarations/contact/market/price, operative reviewer access and acceptance; then a new external-distribution build, review and manual release |
+| Controlled customer cutover | Isolated production/recovery/security foundations complete; exact Preview retirement, old-token expiry, negative checks and customer opening remain | Upstream acceptance first; measured86400second token lifetime plus clock tolerance; preserve Owner/real data |
 
-The already signed IPA still has customer access disabled; signed/exported does
-not mean usable TestFlight or a submitted version. Designed4iPhone/2iPad assets
-already exist and need no new design round merely for this inventory. Apple SBP
-has a submission receipt but no approval/effective-rate evidence in the retained
-record; this review does not claim a new portal read. Application, review and
-actual public availability remain distinct.
+Build2 is internal-only and Apple reports Missing Compliance. Its local artifact
+checks have no blockers; this does not close transaction, declarations or submission
+gates. No TestFlight invitations were sent. Four6.9inch iPhone and two13inch iPad
+designs are saved in the unsubmitted English draft; no redesign is needed. SBP still
+has a submission receipt, without new approval/effective-rate proof.
 
-Apple confirms TestFlight uses its sandbox and requires metadata plus a selected
-build for App Review. Those platform facts do not establish Rillora's completion.
-[Sandbox testing](https://developer.apple.com/help/app-store-connect/test-a-beta-version/testing-subscriptions-and-in-app-purchases-in-testflight/),
-[submission](https://developer.apple.com/help/app-store-connect/manage-submissions-to-app-review/submit-an-app/).
-Use handoff for the single next action. Requested signup-copy application/readback
-is complete after Owner authentication; real inbox/reset/native and Apple purchase
-acceptance remain. No new SES application, redesign or repeated rollout is needed.
+Use [handoff](handoff.md) for the single next step and the
+[gate register](../config/release-gates.json) for exact evidence boundaries. Actual
+TestFlight install, App Review submission, approval and public availability remain
+distinct. Existing UI, full03, prices, real data and FanPass are preserved.
 
 ## HISTORICAL — September30 independent engineering before review repairs
 

@@ -1,0 +1,49 @@
+{
+  "updatedAt": "2026-10-02T12:00:32.695144+00:00",
+  "ownerDirection": "Complete independent release preparation; do not keep asking for personal gates",
+  "newNativeArchiveAndExport": "1.0(2), restricted account entry, App Store distribution signing",
+  "artifactChecksPassed": 8,
+  "nativePreflightBlockers": 0,
+  "releaseGateClassificationsUnchanged": {
+    "verified": 2,
+    "notVerified": 10
+  },
+  "testflight": "Uploaded once, Apple processed, internal-only, Missing Compliance",
+  "screenshots": "4 iPhone / 2 iPad saved and reloaded in intended order",
+  "metadata": "Existing public listing retained; beta basics and build-specific steps saved/reloaded",
+  "runtimeSourceChanged": false,
+  "productTestsRerun": false,
+  "retainedSourceCI": "CI44 / 156a390f010a675d3d3c6637f1e538d1a0551657",
+  "cloudDeploymentRepeated": false,
+  "physicalDeviceUsed": false,
+  "testInvitesSent": false,
+  "newCredentialsOrPermissions": false,
+  "decisionAppended": "Owner renewed independent scope; Agent internal-only distribution and reversible store-draft execution",
+  "updatedAuthorityAndRegisterFiles": [
+    "docs/product.md",
+    "docs/release-readiness.md",
+    "docs/release-engineering-20260930.md",
+    "docs/apple-review-validation-20260929.md",
+    "docs/app-store-presentation-20260930.md",
+    "docs/release-123-20261001.md",
+    "docs/transaction-mail-resend-20261001.md",
+    "docs/independent-release-closeout-20261002.md",
+    "docs/handoff.md",
+    "docs/handoff-history-20261002-before-independent-preparation.md",
+    "docs/decision-log.md",
+    "docs/journey/PROJECT_JOURNEY.md",
+    "docs/source-control.md",
+    "collaboration/README.md",
+    "config/release-gates.json",
+    "config/app-store-listing.en-US.json"
+  ],
+  "publication": "pending scan, new encrypted archive and remote readback; see separate publication receipts",
+  "evidenceBoundary": "No actual install, purchase, recovery reconciliation, declaration, App Review, or customer opening implied",
+  "simulatorMirror": {
+    "state": "Retained for the existing unfinished consent handoff",
+    "listener": "127.0.0.1:3200",
+    "processObserved": 50500,
+    "scope": "Only the existing simulator mirror; no phone or new device access",
+    "cleanup": "Use serve-sim --kill for EA356940-5220-4AA8-89CF-499C6D5D14E4 when that acceptance ends."
+  }
+}

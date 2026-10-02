@@ -1,14 +1,23 @@
 # App Store presentation design
 
 Role: current store-image composition and source-preservation contract
-Status: DESIGNED V1 RENDERED AND CHECKED; LOCAL REVIEW; NOT UPLOADED
-Last updated: 2026-09-30 (Asia/Hong_Kong)
+Status: DESIGNED V1 SAVED IN UNSUBMITTED APP STORE DRAFT
+Last updated: 2026-10-02 (Asia/Shanghai)
 
 Owner says the direct screenshots look unattractive and asks for actual App Store
 image design. This supersedes treating the raw September30captures as the completed
 marketing presentation. It does not authorize another app UI redesign,price change,
 new feature claim or store submission. Reuse the completed release workflow's full
 Markdown reading ledger and current brand/native-home authority.
+
+## October2 upload and persisted readback
+
+Under Owner's renewed direction to finish independent release preparation, the
+existing four iPhone/two iPad JPEGs are uploaded to the English App Store1.0 draft.
+The iPhone order is corrected to1/2/3/4; actual reload/navigation confirms all six
+filenames and counts. This records Agent selection for a reversible draft, not
+Owner's personal final visual approval or App Review submission. No redesign or
+new product claim occurred. [Current evidence](independent-release-closeout-20261002.md).
 
 ## Visual and narrative direction
 
@@ -58,6 +67,7 @@ deployment was repeated for this graphics-only change.
 - [Export/source validation](../output/release/rillora-store-design-20260930/v1/validation.json)
 - [QA and workflow record](../output/qa/rillora-store-design-20260930/README.md)
 
-This is a completed first visual set for inspection,not evidence of Owner approval,
-App Store upload,TestFlight or public release. Actual reviewer login/terms,transactions,
+The original September30result was a completed first visual set for inspection.
+October2now adds saved App Store draft evidence; it still does not prove Owner's
+final visual approval, App Review acceptance or public release. Actual reviewer login/terms,transactions,
 mail,merchant/device,pricing and submission gates remain in the current handoff.
