@@ -88,3 +88,8 @@ prepared device app. [Its catalog](followup-catalog.json) is separate from the e
 463-path capture, because mutable receipts keep dated versions. [Local decryption verification](followup-archive-verification.json)
 passed. Credentials, authentication UI and device inventory remain excluded. Current
 remote follow-up is recorded separately; the first two archive readbacks are retained.
+
+[Later remote readback](followup-remote-readback.json) confirms8987b2c8b and a fresh
+download/decryption of raw-work-010:112file versions/105objects. Old archives were
+not downloaded again. The final proof-only commit updates these receipts and does
+not change the implementation or gate classifications already covered by CI44.

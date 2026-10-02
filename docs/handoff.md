@@ -57,8 +57,8 @@ price/SBP rate/submission remain separate. No TestFlight upload or ordinary laun
 
 Historical full suites keep their original dates; new CI43/44 cover their exact source.
 Two additive archives preserve463paths/306objects and were freshly downloaded/decrypted.
-Latest continuation evidence/device artifact preservation is being completed before
-final handoff. [Git evidence](../collaboration/verification/release-123-20261002/README.md).
+The later112file versions/105objects and prepared device artifact are also pushed;
+their new archive was freshly downloaded and decrypted/verified. [Git evidence](../collaboration/verification/release-123-20261002/README.md).
 Secrets, private subjects, enrollment request and device inventory stay in
 .local-secrets/production-review; never publish their raw values.
 

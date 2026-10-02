@@ -165,3 +165,8 @@ Its separate catalog preserves changed versions without replacing the earlier
 463-path capture. Personal auth screens, credential/capability files, exact device
 inventory and reproducible caches remain excluded. See the current addendum index
 for local/remote verification and the completed-versus-pending account boundaries.
+
+The later addendum was also read back from remote commit8987b2c8b, and its new
+archive was freshly downloaded and decrypted/verified. Old archive readbacks are
+retained without another download. Exact results are in followup-remote-readback.json
+in the linked current addendum.

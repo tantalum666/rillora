@@ -1,17 +1,17 @@
 {
-  "updatedAt": "2026-10-02T07:10:32.516673+00:00",
+  "updatedAt": "2026-10-02T09:17:08.769046+00:00",
   "sourceScanned": true,
   "readableScanPassed": true,
   "localLinkCheck": {
     "files": 179,
-    "links": 1854,
+    "links": 1870,
     "missing": 0
   },
   "newWorkFilesArchived": 463,
   "newArchiveObjects": 306,
   "newArchiveBytes": 56164478,
   "historicalArchivesRebuilt": false,
-  "gitPush": "source_and_all_new_eligible_artifacts_pushed",
+  "gitPush": "all_eligible_current_work_pushed_to8987b2c8b_before_proof_only_closeout",
   "CI": "44_passed_for_156a390f0",
   "auth0Copy": "provider_applied_full_readback_matches",
   "ownerAuthenticationRequired": false,
@@ -30,7 +30,7 @@
   "remoteObjectsVerified": 306,
   "sourceScanUnreviewedFindings": 0,
   "readableScanUnreviewedFindings": 0,
-  "finalReceiptCommit": "evidence-only follow-up; runtime and preflight source unchanged from156a390f0; skip duplicate CI",
+  "finalReceiptCommit": "proof-only follow-up; implementation and gate classifications unchanged from156a390f0/CI44",
   "releasePreflight": {
     "regressionReproducedBeforeFix": true,
     "testsPassed": 7,
@@ -50,5 +50,6 @@
   "reviewEnrollmentSucceeded": true,
   "laterPreservedFileVersions": 112,
   "laterObjects": 105,
-  "laterArchiveBytes": 8977879
+  "laterArchiveBytes": 8977879,
+  "laterRemoteArchiveVerification": true
 }
