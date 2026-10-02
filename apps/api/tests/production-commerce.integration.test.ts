@@ -1,3 +1,4 @@
+import { assertDedicatedTestDatabase, dedicatedTestDatabaseUrl } from './dedicated-test-database.js';
 import { createHash } from 'node:crypto';
 import pg from 'pg';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
@@ -11,9 +12,12 @@ import { productionExecutionConfig } from '../src/stripe-execution-config.js';
 import type { StripeProductionConfig } from '../src/stripe-production-adapter.js';
 import { currentLegalContract } from '../src/legal-contract.js';
 import { purchaseConsentContract } from '../src/purchase-consent.js';
+import type Stripe from 'stripe';
+import type { StripeSdkPort } from '../src/stripe-sdk.js';
+import { resolveStripeFinancialSignal } from '../src/stripe-financial-resolution.js';
 
 // A dedicated local test database. Never accept a remote database override.
-const databaseUrl = 'postgresql://127.0.0.1:5432/continuity_production_commerce_test';
+const databaseUrl = dedicatedTestDatabaseUrl('postgresql://127.0.0.1:5432/continuity_production_commerce_test', 'continuity_production_commerce_test');
 const plannerPublicId = '77777777-7777-4777-8777-777777777777';
 const billing: StripeProductionConfig = {
   apiKey: 'rk_live_production_integration_fixture_only', webhookSecret: 'whsec_production_integration_fixture_only',
@@ -68,9 +72,10 @@ const postCheckout = (proof: unknown = consent, key = 'production-fixture-idempo
 
 describe('production commerce ledger with a synthetic provider only', () => {
   beforeAll(async () => {
-    const admin = new pg.Client({ connectionString: 'postgresql://127.0.0.1:5432/postgres' }); await admin.connect();
+    const admin = new pg.Client({ connectionString: new URL('/postgres', databaseUrl).href }); await admin.connect();
     try { if (!(await admin.query("select 1 from pg_database where datname='continuity_production_commerce_test'")).rowCount) await admin.query('create database continuity_production_commerce_test'); }
     finally { await admin.end(); }
+    await assertDedicatedTestDatabase(databaseUrl, 'continuity_production_commerce_test');
     await runMigrations(databaseUrl); pool = createPool(config);
     await pool.query('truncate app.commerce_provider_event_inbox,app.planners restart identity cascade');
     await pool.query("update app.commerce_market_policies set sales_enabled=false,status='configured_disabled'");
@@ -229,6 +234,57 @@ describe('production commerce ledger with a synthetic provider only', () => {
       expect(final).toMatchObject({ state: 'expired_read_only', renewal_is_possible: false });
       expect((await pool.query("select count(*)::int as n from app.commerce_entitlement_grants where revoked_at is null and (expires_at is null or expires_at>now()) and subscription_id in(select id from app.commerce_subscriptions where provider_subscription_reference='sub_local_fixture')")).rows[0].n).toBe(0);
     } finally { resume(); observation.mockRestore(); }
+  });
+
+  it('keeps the dispute reference for the fresh locked read and reconciles dispute recovery', async () => {
+    currentState.value = 'active'; currentState.mayRenew = true;
+    invoiceReference = 'in_dispute_current';
+    let status: Stripe.Dispute.Status = 'under_review';
+    let resolveBeforeLockedRead = true;
+    const retrieveDispute = vi.fn(async (id: string) => {
+      expect(id).toBe('du_current_fixture');
+      const result = { id, charge: 'ch_dispute_fixture', payment_intent: 'pi_dispute_fixture',
+        livemode: true, status } as Stripe.Dispute;
+      if (resolveBeforeLockedRead) status = 'won';
+      return result;
+    });
+    const sdk = {
+      retrieveDispute,
+      retrieveCharge: async () => ({ id: 'ch_dispute_fixture', livemode: true,
+        customer: 'cus_local_fixture', payment_intent: 'pi_dispute_fixture', amount: 8899, amount_refunded: 0 }),
+      listInvoicePaymentsByPaymentIntent: async () => ({ has_more: false,
+        data: [{ livemode: true, invoice: invoiceReference }] }),
+      retrieveInvoice: async () => ({ id: invoiceReference, livemode: true, customer: 'cus_local_fixture',
+        parent: { subscription_details: { subscription: 'sub_local_fixture' } } }),
+    } as unknown as StripeSdkPort;
+    const disputeProvider: StripeCommerceProvider = {
+      ...provider,
+      verifyWebhook(body, signature) {
+        return { ...provider.verifyWebhook(body, signature), sourceEventType: 'charge.dispute.updated',
+          signalType: 'dispute_changed', providerTransactionReference: 'du_current_fixture', providerRefundReference: null };
+      },
+      resolveFinancialSignal: signal => resolveStripeFinancialSignal(sdk, signal, 'production'),
+    };
+    const disputes = new StripeCommerceExecutor(pool, productionExecutionConfig(billing), disputeProvider);
+    const receive = (id: string) => disputes.acceptWebhook(Buffer.from(JSON.stringify({ id })), 'fixture');
+    const subscription = async () => (await pool.query("select state,financial_state_override from app.commerce_subscriptions where provider_subscription_reference='sub_local_fixture'")).rows[0];
+
+    await expect(receive('evt_dispute_resolved_during_lookup')).resolves.toMatchObject({ status: 'applied' });
+    expect(retrieveDispute).toHaveBeenCalledTimes(2);
+    expect(await subscription()).toMatchObject({ state: 'active', financial_state_override: null });
+
+    resolveBeforeLockedRead = false; status = 'under_review';
+    await receive('evt_dispute_under_review');
+    expect(await subscription()).toMatchObject({ state: 'revoked', financial_state_override: 'revoked' });
+    expect((await pool.query('select count(*)::int as count from app.commerce_entitlement_grants where revoked_at is null')).rows[0].count).toBe(0);
+
+    status = 'won';
+    await receive('evt_dispute_won');
+    expect(await subscription()).toMatchObject({ state: 'active', financial_state_override: null });
+    expect((await pool.query('select count(*)::int as count from app.commerce_entitlement_grants where revoked_at is null')).rows[0].count).toBeGreaterThan(0);
+    const calls = retrieveDispute.mock.calls.length;
+    await expect(receive('evt_dispute_won')).resolves.toMatchObject({ status: 'duplicate' });
+    expect(retrieveDispute).toHaveBeenCalledTimes(calls);
   });
 
 });

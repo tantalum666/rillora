@@ -307,6 +307,28 @@ test("API client rejects a printable response that claims a retained server copy
   );
 });
 
+test('a delayed printable body cannot escape after the workspace account changed',async()=>{
+  let release,started,changed=false;
+  const body=new Promise(resolve=>{release=resolve;});
+  const reading=new Promise(resolve=>{started=resolve;});
+  const client=createApiClient({csrfTokenReader:()=>null,fetchImpl:async url=>{
+    if(url.endsWith('/session'))return changed
+      ? jsonResponse({error:{code:'account_changed',message:'Account changed'}},409)
+      : jsonResponse({plannerPublicId:'planner-A'});
+    const response=new Response('',{status:201,headers:{'content-type':'text/plain; charset=utf-8',
+      'content-disposition':'attachment; filename="rillora-start-here-2026-10-03.txt"',
+      'x-rillora-export-id':'99999999-9999-4999-8999-999999999999','x-rillora-server-copy-retained':'false'}});
+    response.blob=()=>{started();return body;};
+    return response;
+  }});
+  await client.getSession();
+  const exportRequest=client.createPrintableStartHere('88888888-8888-4888-8888-888888888888');
+  await reading;changed=true;
+  await assert.rejects(client.getSession(),error=>error.code==='account_changed');
+  release(new Blob(['Planner A synthetic directions']));
+  await assert.rejects(exportRequest,error=>error.code==='account_changed');
+});
+
 test("synthetic recipient capabilities stay in request bodies and the isolated authorization header", async () => {
   const calls = [];
   const client = createApiClient({

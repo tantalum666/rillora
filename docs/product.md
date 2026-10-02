@@ -5,9 +5,13 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-10-02 (Asia/Shanghai)
+Last updated: 2026-10-03 (Asia/Shanghai)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-10-02 严格全项目代码审查与直接修复
+
+Owner最新要求完整、细致审阅整个项目代码并直接修复问题。当前活动任务转为源码、数据库、Web／iOS、基础设施及工具的逐文件审查。保持现有UI、价格、真实数据与FanPass，已完成部署和本人认证沿用原证据。[本轮审查合同](code-review-20261002.md)记录覆盖、复现、修复与测试；局部通过不能当作全项目审查完成。
 
 ## 2026-10-02 继续完成所有无需本人参与的发布准备
 
@@ -234,7 +238,7 @@ Owner再次确认Free一位共享联系人的完整路径，并要求先出图�
 
 Owner已购买`rillora.xyz`。`login.rillora.xyz`锁定为Auth0身份子域，公共DNS、Auth0托管TLS和默认自定义域已生效，根域为未来公开站保留；这不等于商标通过、公开发布、生产身份完成或接受一字之差`Rilora`风险。下文历史句中的“域名策略尚未锁定”现仅指根域公开站与防御性域名策略，不再否定`rillora.xyz`取得和身份子域分工。
 
-Logo现已按Owner September19最新指令重新设计，所有以前的Logo限制均取消。旧的非字母限制、The Next Reader单一命题、形态排除及逐级门仅作为[历史探索记录](logo-discovery.md)保留，不能阻止当前设计。Agent自行选择方向并制作完整第一版，当前产物与边界见[Logo设计简报](logo-design-20260919.md)。中文名、标语、最终Logo采用和商标注册仍是各自状态；新的视觉设计不等于已完成商标清查。已有Rilora近似名称／App与.com占用的历史预清查结论也不能被误写为本轮新检索。
+Logo现已按Owner September19最新指令重新设计，所有以前的Logo限制均取消。旧的非字母限制、The Next Reader单一命题、形态排除及逐级门仅作为[历史探索记录](logo-discovery.md)保留，不能阻止当前设计。Agent自行选择方向并制作完整第一版，当前产物与边界见[Logo设计简报](logo-design-20260919.md)。中文名、标语和商标注册仍是各自状态；最终Logo已由Owner明确选定完整03母版；新的视觉设计不等于已完成商标清查。已有Rilora近似名称／App与.com占用的历史预清查结论也不能被误写为本轮新检索。
 
 ## Product Promise
 
@@ -341,6 +345,7 @@ Owner于2026-09-09明确：“本项目全部默认授权与确认”。当前�
 
 | Task | Read next | Role |
 | --- | --- | --- |
+| 严格全项目代码审查、当前缺陷与直接修复 | `docs/code-review-20261002.md` | 当前逐文件覆盖、复现与验证；与历史Dot报告和实际部署分开 |
 | Resend事务邮件、GoDaddy DNS、Auth0发信或实际收件验收 | `docs/transaction-mail-resend-20261001.md` → `docs/production-identity-mail-20260924.md` | 当前发送服务、凭据边界和邮件证据；SES旧工单不再阻塞Resend |
 | Git完整保存、Dot协作、旧证据或发布候选检索 | `docs/source-control.md` → `collaboration/README.md` | 全量文件清单、脱敏证据、加密原件与历史；不是部署或数据库恢复证明 |
 | 正式上线、剩余工作、发布预检与排期 | `docs/release-readiness.md` | 当前首发范围、缺口和验收；不等于发布批准 |

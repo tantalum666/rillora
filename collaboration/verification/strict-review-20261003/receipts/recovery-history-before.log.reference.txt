@@ -1,0 +1,61 @@
+
+ RUN  v4.1.11 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/recovery-permission-history.integration.test.ts (1 test | 1 failed) 2591ms
+     × does not resurrect saved fields, removed grant identities or withdrawn review tasks 777ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/recovery-permission-history.integration.test.ts > restore preserves permanent permission reductions > does not resurrect saved fields, removed grant identities or withdrawn review tasks
+AssertionError: expected [ { …(2) }, { …(2) }, { …(2) } ] to deeply equal [ { …(2) }, { …(2) } ]
+
+- Expected
++ Received
+
+@@ -1,12 +1,29 @@
+  [
+    {
+      "fields": {
+        "category": "document",
++       "desiredOutcome": "notify",
++       "importance": "important",
++       "locationHint": "Paid folder",
++       "notes": "Withdrawn private note",
+        "title": "Saved title",
++       "valueBand": "unknown",
+      },
+      "public_id": "723c6000-0fdb-4b65-914b-0f91c69a0f16",
++   },
++   {
++     "fields": {
++       "category": "document",
++       "desiredOutcome": "notify",
++       "importance": "important",
++       "locationHint": "Paid folder",
++       "notes": "Withdrawn private note",
++       "title": "Saved title",
++       "valueBand": "unknown",
++     },
++     "public_id": "d84dcb05-5dae-4245-97bd-af128c311a51",
+    },
+    {
+      "fields": {
+        "category": "document",
+        "desiredOutcome": "notify",
+
+ ❯ tests/recovery-permission-history.integration.test.ts:99:18
+     97|     const rows = (await restored.query(`select c.public_id,s.fields fr…
+     98|       join app.sharing_grants g on g.connection_id=c.id join app.shari…
+     99|     expect(rows).toEqual([
+       |                  ^
+    100|       { public_id: connections[0], fields: { title: 'Saved title', cat…
+    101|       { public_id: connections[2], fields: expect.objectContaining({ n…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  22:16:54
+   Duration  3.56s (transform 316ms, setup 46ms, import 788ms, tests 2.59s, environment 0ms)
+

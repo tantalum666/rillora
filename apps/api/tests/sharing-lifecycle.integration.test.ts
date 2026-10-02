@@ -10,7 +10,8 @@ import { seedDevelopmentFixture, developmentPlannerPublicId } from "../src/seed-
 import { currentLegalContract } from "../src/legal-contract.js";
 import { verifiedEmailDigest } from "../src/sharing-identity.js";
 
-const databaseUrl = "postgresql:///continuity_commercial_sharing_test";
+import {assertDedicatedTestDatabase,dedicatedTestDatabaseUrl} from './dedicated-test-database.js';
+const databaseUrl = dedicatedTestDatabaseUrl("postgresql:///continuity_commercial_sharing_test","continuity_commercial_sharing_test");
 const config = loadConfig({ NODE_ENV: "test", DATABASE_URL: databaseUrl, ALLOW_DEV_AUTH: "true", CORS_ORIGINS: "http://localhost:4191", ALLOW_FAMILY_MAINTENANCE_PREVIEW: "true" });
 const owner = { "x-dev-planner-id": developmentPlannerPublicId };
 const digest = (s: string) => createHash("sha256").update(s).digest();
@@ -66,7 +67,7 @@ async function scope(publicId: string, level: string | null) {
 }
 
 describe.sequential("Commercial sharing: quotas, paid cutoff and restrictive permissions", () => {
-  beforeAll(async () => { await runMigrations(databaseUrl); pool = createPool(config); app = createApp(pool, config); });
+  beforeAll(async () => { await assertDedicatedTestDatabase(databaseUrl,'continuity_commercial_sharing_test'); await runMigrations(databaseUrl); pool = createPool(config); app = createApp(pool, config); });
   beforeEach(async () => {
     await pool.query("truncate app.planners restart identity cascade");
     await pool.query("update app.commerce_runtime_policy set sharing_limits_enabled=true");
@@ -125,6 +126,11 @@ describe.sequential("Commercial sharing: quotas, paid cutoff and restrictive per
       .send({ connectionPublicId: invitation.body.connection.publicId, grants: [{ matterPublicId: matterId, detailLevel: "details" }] }).expect(200)).body;
     expect(actualPreview.accessMode).toBe("saved");
     expect(actualPreview.items[0].fields).toEqual(item.fields);
+    const guide=(await request(app).post('/v1/exports/start-here/preview').set(owner)
+      .send({recipientConnectionPublicId:invitation.body.connection.publicId}).expect(201)).body;
+    expect(guide.package.matters[0]).toMatchObject({title:doc.title,locationHint:doc.locationHint});
+    const personal=(await request(app).post('/v1/exports/start-here/preview').set(owner).send({}).expect(201)).body;
+    expect(personal.package.matters.find((m:{publicId:string})=>m.publicId===matterId)).toMatchObject({title:'AFTER EXPIRY',locationHint:'New folder'});
     expect((await access()).used).toBe(0);
   });
 
@@ -134,8 +140,13 @@ describe.sequential("Commercial sharing: quotas, paid cutoff and restrictive per
     const id = invitation.body.connection.publicId;
     await scope(id, "name"); await scope(id, "details");
     expect((await shared(actor)).items[0].fields).toEqual({ title: doc.title, category: "document" });
+    const guide=(await request(app).post('/v1/exports/start-here/preview').set(owner)
+      .send({recipientConnectionPublicId:id}).expect(201)).body;
+    expect(guide.package.matters[0].locationHint).toBeNull();
     await scope(id, null); await scope(id, "details");
     expect((await shared(actor)).items).toEqual([]);
+    expect((await request(app).post('/v1/exports/start-here/preview').set(owner)
+      .send({recipientConnectionPublicId:id}).expect(201)).body.package.matters).toEqual([]);
   });
 
   it("requires an explicit included-person choice and does not resume everyone after repurchase", async () => {

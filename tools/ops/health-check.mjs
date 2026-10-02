@@ -23,7 +23,12 @@ export function isPublicAddress(address){
 }
 
 export function validateConfig(config){
-  if(!config||config.schemaVersion!==1||!/^[a-z][a-z0-9-]{1,40}$/.test(config.environment)||!Array.isArray(config.allowedOrigins)||config.allowedOrigins.length>12||!Array.isArray(config.targets)||!config.targets.length||config.targets.length>16||!Number.isInteger(config.timeoutMs)||config.timeoutMs<100||config.timeoutMs>10000||!Number.isInteger(config.certificateWarningDays)||config.certificateWarningDays<1||config.certificateWarningDays>90)throw new Error('Invalid operations configuration');
+  if(!config||config.schemaVersion!==1
+    ||typeof config.environment!=='string'||!/^[a-z][a-z0-9-]{1,40}$/.test(config.environment)
+    ||!Array.isArray(config.allowedOrigins)||config.allowedOrigins.length>12
+    ||!Array.isArray(config.targets)||!config.targets.length||config.targets.length>16
+    ||!Number.isInteger(config.timeoutMs)||config.timeoutMs<100||config.timeoutMs>10000
+    ||!Number.isInteger(config.certificateWarningDays)||config.certificateWarningDays<1||config.certificateWarningDays>90)throw new Error('Invalid operations configuration');
   const origins=new Set(config.allowedOrigins.map(origin=>{
     const u=new URL(origin);
     if(u.protocol!=='https:'||u.origin!==origin||u.username||u.password||u.search||u.hash||isIP(u.hostname)||u.port)throw new Error('Invalid allowed origin');
@@ -33,7 +38,10 @@ export function validateConfig(config){
   for(const target of config.targets){
     const u=new URL(target.url);
     const statuses=Array.isArray(target.expectedStatus)?target.expectedStatus:[target.expectedStatus];
-    if(!/^[a-z][a-z0-9-]{1,60}$/.test(target.id)||ids.has(target.id)||!origins.has(u.origin)||u.username||u.password||u.search||u.hash||isIP(u.hostname)||u.port||!statuses.length||statuses.length>3||new Set(statuses).size!==statuses.length||statuses.some(s=>!Number.isInteger(s)||s<100||s>599)||!target.headers||Array.isArray(target.headers))throw new Error('Invalid health target');
+    if(typeof target.id!=='string'||!/^[a-z][a-z0-9-]{1,60}$/.test(target.id)||ids.has(target.id)
+      ||!origins.has(u.origin)||u.username||u.password||u.search||u.hash||isIP(u.hostname)||u.port
+      ||!statuses.length||statuses.length>3||new Set(statuses).size!==statuses.length||statuses.some(s=>!Number.isInteger(s)||s<100||s>599)
+      ||!target.headers||typeof target.headers!=='object'||Array.isArray(target.headers))throw new Error('Invalid health target');
     for(const [key,value]of Object.entries(target.headers))if(!['strict-transport-security','content-security-policy','cache-control','x-content-type-options'].includes(key)||typeof value!=='string'||value.length>100)throw new Error('Invalid expected header');
     ids.add(target.id);
   }

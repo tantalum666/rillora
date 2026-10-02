@@ -1,5 +1,6 @@
 import type { AppConfig } from "./config.js";
 import { recentAuthenticationRequired } from "./recent-authentication.js";
+import { accountBillingStatus } from "./account-billing.js";
 import { createHash, randomUUID } from "node:crypto";
 import { protectFields, protectMatterInput } from "./private-content.js";
 import { Router } from "express";
@@ -10,6 +11,8 @@ import { ApiError, asyncHandler } from "./errors.js";
 import { desiredOutcomeSchema, matterCategorySchema, publicIdSchema, valueBandSchema, planMotivationSchema } from "./domain.js";
 import { matterDetailsSchema, validateMatterRequirements } from "./matter-details.js";
 import { getPlan, mapPlan, mapMatter, type MatterRow } from "./planner-records.js";
+
+export const mapBackupMaxBytes = 2 * 1024 * 1024;
 
 const nullableText = (max: number) => z.string().max(max).nullable().optional();
 const backupMatter = z.object({
@@ -52,10 +55,10 @@ export function createAccountDataRouter(pool: DatabasePool, config: AppConfig) {
       const result = await client.query(`select public_id,display_name,locale,time_zone from app.planners where id=app.current_planner_id()`);
       return result.rows[0];
     });
-    const providers = await withPlannerDatabase(pool, request.auth.plannerId, async client => (await client.query<{renewal_provider:string}>("select distinct renewal_provider from app.commerce_subscriptions where planner_id=app.current_planner_id()" )).rows.map(row=>row.renewal_provider));
+    const billing = await withPlannerDatabase(pool, request.auth.plannerId, accountBillingStatus);
     response.json({ account: { publicId:account.public_id,displayName:account.display_name,locale:account.locale,timeZone:account.time_zone },
       session: { mode:request.auth.mode,authenticatedAt:request.auth.authenticatedAt??null },
-      billing: { hasSubscription:providers.length>0,providers },
+      billing,
       mapBackup: { version:"rillora-map-backup-v1",maxMatters:500,importRequiresEmptyMap:true,restoresAccess:false } });
   }));
 
@@ -85,13 +88,16 @@ export function createAccountDataRouter(pool: DatabasePool, config: AppConfig) {
     const serialized = JSON.stringify(backup);
     const document = JSON.parse(serialized);
     mapBackupSchema.parse(document);
-    if (Buffer.byteLength(serialized, "utf8") > 2 * 1024 * 1024) throw new ApiError(413,"backup_size_limit","This map exceeds the current 2 MB single-file backup limit. No records were omitted.");
+    if (Buffer.byteLength(serialized, "utf8") > mapBackupMaxBytes) throw new ApiError(413,"backup_size_limit","This map exceeds the current 2 MB single-file backup limit. No records were omitted.");
     response.setHeader("x-rillora-server-copy-retained","false");
     response.json(document);
   }));
 
   router.post("/map/import", recentAuthenticationRequired(config), requireCsrf, asyncHandler(async(request,response)=>{
     const input=z.object({backup:mapBackupSchema,acknowledgesPrivateImport:z.literal(true)}).strict().parse(request.body);
+    if (Buffer.byteLength(JSON.stringify(request.body.backup), "utf8") > mapBackupMaxBytes) {
+      throw new ApiError(413,"backup_size_limit","This backup exceeds the current 2 MB single-file limit.");
+    }
     const backup=input.backup;
     const hash=createHash("sha256").update(JSON.stringify(backup)).digest();
     const result=await withPlannerDatabase(pool,request.auth.plannerId,async client=>{

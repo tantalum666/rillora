@@ -1,0 +1,154 @@
+from pathlib import Path
+import json,re
+root=Path.cwd(); changed=[]
+def update(path, body):
+ p=root/path;s=p.read_text();s=re.sub(r'Last updated: [^\n]+','Last updated: 2026-10-03 (Asia/Shanghai)',s,count=1)
+ at=s.index('\n## ')
+ s=s[:at]+'\n## October3 strict-review implementation boundary\n\n'+body.strip()+'\n'+s[at:]
+ p.write_text(s);changed.append(path)
+update('docs/backend.md','''The latest retained deployment is API10/schema0091 with restricted review identities;
+ordinary customers and live billing stay closed. The new strict-review source adds
+0092/0093 and repairs OIDC retries, parsed return paths, TLS overrides, migration
+transaction/role checks, permission-history replay, retention serialization, file
+limits, recipient export projection and deletion/checkout ordering. Readiness counts
+and synthetic rehearsals never assert a verified emergency plan. API typecheck/build
+and48files/400tests pass locally. These changes are not deployed; do not reuse the
+older deployment assertions below as their validation. [Full report](code-review-20261002.md).''')
+p=root/'docs/backend.md';s=p.read_text();a=s.index('## Production-Open Gates');b=s.index('### 2026-08-11',a)
+s=s[:a]+'''## Production-Open Gates
+
+Current deployment has independent encrypted RDS/KMS, private TLS, constrained runtime
+roles, restricted Release clients, monitoring and bounded retention. These are dated
+implementation/deployment facts, not proof of public customer readiness. Remaining
+requirements follow [release-readiness](release-readiness.md) and the gate registry:
+
+1. Roll out and verify the strict-review fixes, including schema0092/0093, under the
+   existing closed/restricted access boundary; preserve old applied SQL checksums.
+2. Complete remaining real account, provider reauthentication, recipient revocation
+   and recovery journeys without repeating the verified QQ reset/login.
+3. Complete actual Apple purchase/restore and later provider reconciliation when
+   Owner resumes deferred device work; live merchant facts stay separately deferred.
+4. Keep independent security assessment, market/legal declarations and final store
+   submission separate from local tests or the existing internal TestFlight upload.
+5. Claims/release automation, durable recipient keys and encrypted attachments retain
+   their separate product and trust gates. No inactivity-based disclosure is allowed.
+
+'''+s[b:];p.write_text(s)
+update('docs/recovery-control-journal.md','''Migration0092 records permissionHistoryVersion2, grant lineage IDs, remaining field
+names and revocation bounds. Replay intersects both lineage and fields with restored
+snapshots, preserving permanent saved-copy redaction and preventing remove/regrant
+from reviving old grants. A pending legacy accepted-connection update cannot prove
+intermediate restrictions and remains quarantined for reconciliation. Unaffected
+recipients keep their independently proven scope. No private body enters the journal.
+
+Migration0093 and the application acquire the same transaction advisory lock before
+fresh hold/cleanup reads, preventing a hold acknowledged concurrently with deletion.
+The recovery task driver only reuses a saved ECS RunTask request within55minutes,
+with identical reconstructed parameters/token, fresh clone/snapshot checks and a
+current source freeze. Old freeze evidence cannot be renewed by retrying the CLI.
+The cloud's idempotency retention may be as short as task lifetime plus1hour;
+[official ECS contract](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_Idempotency.html).
+Actual local PostgreSQL backup/replay and mocked AWS positive/negative checks pass.
+These migrations/tool repairs remain undeployed; earlier real cloud drills are retained
+with their original scope. [Strict review](code-review-20261002.md).''')
+update('docs/start-here-export.md','''Recipient guides use the same live/saved/paused projection as recipient reads,
+including permanent redaction and historical encrypted references. Free personal
+exports retain current owner content. Maximum65536-byte encrypted ciphertext fits
+the authenticated finalize transport; backup artifacts stay bounded at2MiB independent
+of their request envelope. Oversized requests return413. Web downloads use compact
+JSON so a valid artifact remains readable under that same byte limit.
+
+Late file reads/unlocks cannot replace a newer selection or resurrect a closed reader;
+private printable responses are rejected after an observed account change. Real Blob
+round trips, HTTP/DB tests and actual React file-input races pass locally. These
+repairs do not create new delivery or recipient-key capabilities. [Report](code-review-20261002.md).''')
+update('docs/trusted-sharing.md','''The live/saved/paused projection also governs recipient-specific printable guides.
+Restores retain historical redaction and grant lineage under0092; removing then
+regranting access cannot revive a prior saved copy. Ambiguous legacy history stays
+quarantined rather than inventing missing evidence. Existing real QQ acceptance/login
+and limited field proof retain their October2 scope; the new replay/export repairs
+are locally verified, not deployed. [Review and limitations](code-review-20261002.md).''')
+update('docs/p1-reliability-repair-20260915.md','''Deletion now checks pending purchases and existing subscriptions within the same
+serialized transaction as deletion, sharing checkout/reconciliation locks. A late
+billing obligation produces a fresh unchecked acknowledgement on both clients; the
+account is retained and delete remains disabled until the user explicitly confirms.
+
+Web shared-review drafts and all related form guards publish dirty/busy state before
+paint; repeated browser Back/Forward keeps the current view and URL synchronized.
+Native editors reject overlapping writes/reloads, and an acknowledged role mutation
+survives a failed follow-up list read with an explicit retry. Cancelled old-account
+startup cannot reset the new account's purchase coordinator. Existing visual layout,
+permissions and product semantics are retained. [Current local proof](code-review-20261002.md)
+is separate from the historical September16 deployment below.''')
+update('docs/platform-contract.md','''Both clients distinguish acknowledged writes from failed follow-up reads and prevent
+concurrent editor operations. Deletion requires the same current billing acknowledgement
+for pending purchases as active subscriptions; a race returns400 and refreshes the
+existing confirmation UI without deleting the account. Browser account binding extends
+through downloaded response bodies, while native purchase setup is bounded by account
+lifecycle revision. Readiness never labels counts or rehearsals as verified emergency
+plans. [Strict-review evidence](code-review-20261002.md) is local; previous real-provider
+and deployment evidence retains its original date.''')
+update('docs/public-product-website-20260924.md','''The public artifact manifest is version3 and binds every uploaded regular file by
+path, byte length and SHA-256. The public and closed-production stack share the same
+file-tree verifier: changed, added, missing, symlinked or non-regular files are rejected
+before creating a deployment asset. The manifest itself is verified separately from
+its content inventory. Negative mutations,53infrastructure tests and an actual public
+build pass locally. No website publication is performed by this review. Current public
+routes and appearance remain those in the later September28/29 contracts, not the
+original September24 route list below. [Report](code-review-20261002.md).''')
+update('docs/quality-gates.md','''The strict review covers every active first-party engineering text body, with exact
+ranges/hashes and separate validation of six dependency locks. API mutation fixtures
+must name and verify a disposable test database instead of inheriting ambient remote
+connection defaults. Native UI fixtures require a loopback HTTP /v1 endpoint without
+credentials/query/fragment. The matrix runner creates unique per-run simulators and
+cleans only its recorded IDs, including failure cleanup; it must never reuse an Owner
+session merely because its name matches a test profile.
+
+Auth0 preparation rejects incomplete inventories, conflicting protected credentials
+and already activated clients; a theme read failure only means absent on confirmed404.
+DNS verification includes MX priority and CAA flag/tag, and health configurations
+require typed IDs/headers. Tests intercept all provider mutations. The current review
+includes before/after results, full local regression and explicit plugin/dependency
+limitations. [Report](code-review-20261002.md) owns exact counts; none of this proves a
+new deployment, independent certification or real purchase.''')
+update('tools/godaddy/README.md','''DNS readback now verifies requested MX priority and CAA flag/tag in addition to
+value/TTL. An add may retain an older same-value record with different attributes,
+but must find the exact requested new record; a misleading same-value readback fails.
+All10guard tests pass with the CLI intercepted. No DNS write or fresh OAuth login
+was performed in this review. [Evidence](../../docs/code-review-20261002.md).''')
+# Reconcile current claims while retaining historical evidence paragraphs.
+p=root/'docs/product-events.md';s=p.read_text().replace('Last updated: 2026-09-10 (future measurement clarification only; current schema unchanged)','Last updated: 2026-10-03 (retention implementation/evidence reconciliation)')
+s=s.replace('Each row receives an `expires_at` deletion deadline 90 days after creation. This is a retention marker, not proof of deletion: no scheduled cleanup job currently exists. Production use requires a tested deletion worker, failure monitoring, consent/notice review, lawful export or aggregation rules and a clear operator access path before any retention claim can be made.','Each row receives an `expires_at` deadline90days after creation. The bounded retention worker and enabled heartbeat alarms were deployed in the September30 release work. Independent legal/security holds and idempotent privacy replay remain part of deletion. October3 adds a locally tested hold/cleanup serialization repair; it is not yet deployed. A deadline, heartbeat or local test does not prove deletion of a specific production row. Consent/notice, lawful aggregation and operator-access boundaries remain. See [retention/recovery](recovery-control-journal.md) and [strict review](code-review-20261002.md).')
+s=s.replace('The current full regression baseline is API 40/40','The historical local regression baseline was API 40/40').replace('the current overall API baseline became 41/41','the historical overall API baseline became 41/41');p.write_text(s);changed.append(str(p.relative_to(root)))
+p=root/'docs/product.md';s=p.read_text().replace('Last updated: 2026-10-02','Last updated: 2026-10-03',1);s=s.replace('中文名、标语、最终Logo采用和商标注册仍是各自状态','中文名、标语和商标注册仍是各自状态；最终Logo已由Owner明确选定完整03母版');p.write_text(s)
+p=root/'DESIGN.md';s=p.read_text().replace('Tiny browser favicons retain their separate optical assets.','Browser favicons also preserve the approved full03 geometry.');p.write_text(s)
+# Planning registries state dated deployed facts without performing a fresh cloud read.
+p=root/'config/service-registry.json';d=json.loads(p.read_text());d['updatedAt']='2026-10-03';d['scope']='Portability planning with explicitly dated retained deployment evidence; not a fresh provider read or transferable contract'
+for x in d['services']:
+ if x['id']=='identity':x['observedFeatureGaps']=['Universal Login Liquid template API returned402 at the dated Free-plan check; no paid upgrade inferred'];x['current']='Auth0 OIDC/custom login domain; separate production clients and read/delete services; restricted review activation, per October2 evidence'
+ elif x['id']=='database':x['current']='Separate encrypted production RDS with7-day backups and KMS/recovery journal, plus preserved synthetic staging; production schema0091 per October2';x['status']='restricted_production_and_staging'
+ elif x['id']=='compute':x['current']='Separate regular Fargate production API10/restricted review and staging API38, CloudFront clients; dated October2/September26 evidence';x['status']='restricted_production_and_staging'
+ elif x['id']=='email':x['current']='Zoho role mail; Auth0 native Resend provider at notify.rillora.xyz, adopted October1. QQ receipt/reset/new login verified October2; inbox placement is separate. Invites remain user-driven link/QR; the assisted test email is not an automated application outbox.';x['status']='resend_identity_transport_active_application_outbox_planned';x['port']='Auth0 native Resend transport; portable application notification/outbox adapter remains planned'
+ elif x['id']=='jobs':x['current']='Public metadata checker, bounded retention and exact-snapshot retirement workers deployed, per September30/October2 evidence; other automation remains planned';x['status']='bounded_operations_workers_active_other_jobs_planned'
+ elif x['id']=='observability':x['current']='Cloud logs,14public targets, restricted-runtime and worker alarms; original delivered alarm/silence evidence retained';x['status']='metadata_and_runtime_monitoring_active_dated_evidence'
+p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n');changed.append(str(p.relative_to(root)))
+p=root/'config/automation-registry.json';d=json.loads(p.read_text());d['updatedAt']='2026-10-03'
+for x in d['jobs']:
+ if x['id']=='backup-restore':x['state']='automated_backups_and_scoped_restore_verified_recurring_drill_planned';x['livePrerequisites']=['Repeat drill schedule/cleanup acceptance','Current-provider reconciliation after real transactions','Deploy strict-review permission-history and retry guard repairs'];x['evidence']='docs/recovery-control-journal.md'
+ elif x['id']=='notification-delivery':x['livePrerequisites']=['Application outbox/recipient consent and template review','Dedupe/retry and actual app-triggered invitation acceptance'];x['evidence']='docs/transaction-mail-resend-20261001.md'
+ elif x['id']=='dependency-security':x['state']='source_ci_and_current_audit_verified_recurring_review_planned';x['livePrerequisites']=['Recurring advisory schedule remains unconfigured','CDK bundled brace-expansion upstream patch','Bounded patch regression and separate production rollout'];x['evidence']='docs/code-review-20261002.md'
+ elif x['id']=='billing-reconciliation':x['state']='restricted_intake_and_recovery_implemented_live_daily_backfill_planned';x['livePrerequisites']=['Actual Apple purchase/restore evidence','Production merchant readiness','Daily backfill/outbox operational acceptance']
+if not any(x['id']=='retention-cleanup' for x in d['jobs']):
+ d['jobs'].append({'id':'retention-cleanup','state':'deployed_heartbeat_verified_strict_review_serialization_not_deployed','trigger':'Bounded scheduled retention worker','implementation':'apps/api/src/retention-worker.ts','sideEffects':'Delete only due eligible records without active independent holds; privacy-journal replay preserves restrictions','evidence':'docs/release-engineering-20260930.md','livePrerequisites':['Deploy and verify0093/hold-cleanup serialization repair']})
+if not any(x['id']=='manual-snapshot-retirement' for x in d['jobs']):
+ d['jobs'].append({'id':'manual-snapshot-retirement','state':'deployed_exact_resource_deadline_guard','trigger':'Scheduled exact-snapshot90day deadline check','implementation':'tools/snapshot-retention/handler.mjs','sideEffects':'Retire only the named snapshot after its actual deadline; no broad backup deletion','evidence':'docs/release-engineering-20260930.md','livePrerequisites':[]})
+p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n');changed.append(str(p.relative_to(root)))
+p=root/'config/release-gates.json';d=json.loads(p.read_text());d['updatedAt']='2026-10-03'
+for x in d['gates']:
+ if x['id'] in ('release-security','backup-retention','public-surface'):
+  if 'docs/code-review-20261002.md' not in x['evidence']:x['evidence'].append('docs/code-review-20261002.md')
+  x['next']='October3 strict-review fixes are locally verified but not deployed; stage and validate the changed source/migrations before closing this gate. '+x['next']
+ if x['id']=='release-security':x['next']+=' Manual all-source review is complete; the optional deep-scan coordinator could not start. CDK bundled dependency advisory remains a build-tool limitation, not a verified runtime exploit.'
+p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n');changed.append(str(p.relative_to(root)))
+(root/'output/qa/rillora-strict-review-20261002/focused-doc-updates.json').write_text(json.dumps(changed,ensure_ascii=False,indent=2)+'\n')
+print('Updated',len(changed),'focused contracts/registries; no provider state changed.')

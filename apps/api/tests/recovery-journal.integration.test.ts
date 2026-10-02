@@ -14,8 +14,10 @@ import { replayRecoveryControls,validateRecoveryHost,validateRecoveryWindow } fr
 import { TestContentKeys } from './content-test-keys.js';
 import request from './http-fixture.js';
 import { currentLegalContract as legal } from '../src/legal-contract.js';
+import {assertDedicatedTestDatabase,dedicatedTestDatabaseUrl} from './dedicated-test-database.js';
 
-const sourceUrl='postgresql:///continuity_recovery_test',restoreUrl='postgresql:///continuity_recovery_restore_test';
+const sourceUrl=dedicatedTestDatabaseUrl('postgresql:///continuity_recovery_test','continuity_recovery_test');
+const restoreUrl=dedicatedTestDatabaseUrl('postgresql:///continuity_recovery_restore_test','continuity_recovery_restore_test');
 const config=loadConfig({NODE_ENV:'test',DATABASE_URL:sourceUrl,ALLOW_DEV_AUTH:'true',
  CONTENT_PROTECTION_MODE:'encrypted',CONTENT_KEY_NAMESPACE:'recovery-test',
  CONTENT_KMS_KEY_ARN:'arn:aws:kms:eu-central-1:000000000000:key/11111111-1111-4111-8111-111111111111'});
@@ -31,6 +33,8 @@ let restored:ReturnType<typeof createPool>|undefined;
 
 describe.sequential('Durable restrictions and quarantined restore',()=>{
  beforeAll(async()=>{
+  await assertDedicatedTestDatabase(sourceUrl,'continuity_recovery_test');
+  await assertDedicatedTestDatabase(restoreUrl,'continuity_recovery_restore_test');
   await runMigrations(sourceUrl);
   await pool.query('update app.recovery_policy set enforced=false');
   await pool.query('truncate app.planners restart identity cascade');

@@ -1,6 +1,6 @@
 # Source control, complete work preservation and release rollback
 
-Last updated: 2026-10-02 (Asia/Shanghai)
+Last updated: 2026-10-03 (Asia/Shanghai)
 
 The private remote is [tantalum666/rillora](https://github.com/tantalum666/rillora).
 Owner explicitly requested **all Rillora work** for Git and Dot collaboration on
@@ -188,3 +188,14 @@ The new archive was then freshly fetched from GitHub at e1a5054b16d29e8dff774e94
 All109objects/111paths decrypted and verified against remotely read metadata.
 [Remote receipt](../collaboration/verification/independent-release-20261002/remote-readback.json)
 records this additional result without repeating earlier archive downloads.
+
+## October3 strict-review additive preservation
+
+The [strict-review addendum](../collaboration/verification/strict-review-20261003/README.md)
+preserves1,433new eligible paths/934objects in raw-work-012, including QA/failed
+attempts, result bundles and the five local build outputs. Archive originals are
+14,412,702bytes; the encrypted archive is7,533,297bytes and locally decrypted/verified.
+Existing archives remain immutable. Final publication/Git/CI receipts are directly
+saved reviewed nonsecret originals, separately from the archive capture interval.
+The current work branch is codex/strict-review-20261002; source review and remote
+preservation do not deploy the new0092/0093 migrations or open customers/billing.

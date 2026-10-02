@@ -1,0 +1,135 @@
+{
+  "unsignedHarnessResult": {
+    "schema": "xcodebuildmcp.output.ui-action-result",
+    "schemaVersion": "2",
+    "didError": false,
+    "error": null,
+    "data": {
+      "summary": {
+        "status": "SUCCEEDED"
+      },
+      "action": {
+        "type": "tap",
+        "elementRef": "e113",
+        "x": 201,
+        "y": 266
+      },
+      "artifacts": {
+        "simulatorId": "2B8F75C5-7AB3-4CCA-ADB3-CA154E622D43"
+      },
+      "capture": {
+        "type": "runtime-snapshot",
+        "rs": "1",
+        "screenHash": "0r5oqwm",
+        "seq": 10,
+        "count": 157,
+        "targets": [
+          "e50|tap|switch|I understand copies already saved or shared cannot be removed.|1|account-delete.copies",
+          "e58|typeText|text-field||DELETE|account-delete.confirmation",
+          "e15|tap|button|My data||BackButton",
+          "e52|tap|switch||1|",
+          "e66|tap|button|Save deletion reference||",
+          "e83|tap|button|Delete account||account-delete.submit"
+        ],
+        "scroll": [
+          "e1|swipe|application|Rillora||"
+        ],
+        "text": [
+          "e29|text|text|Alex Chen||",
+          "e35|text|text|Your private map, people, saved packages and Rillora access will be removed.||",
+          "e42|text|text|Required consent and payment records may be retained.||",
+          "e51|text|text|I understand copies already saved or shared cannot be removed.||",
+          "e68|text|text|Save deletion reference||",
+          "e76|text|text|The deletion reference could not be saved on this device. Try again before deleting.||"
+        ],
+        "udid": "2B8F75C5-7AB3-4CCA-ADB3-CA154E622D43"
+      }
+    },
+    "nextSteps": [
+      "Batch visible switch toggles: batch({ simulatorId: \"2B8F75C5-7AB3-4CCA-ADB3-CA154E622D43\", steps: [{\"action\":\"tap\",\"elementRef\":\"e50\"},{\"action\":\"tap\",\"elementRef\":\"e52\"}] })",
+      "Tap an elementRef: tap({ simulatorId: \"2B8F75C5-7AB3-4CCA-ADB3-CA154E622D43\", elementRef: \"e15\" })"
+    ]
+  },
+  "adhocBuild": {
+    "schema": "xcodebuildmcp.output.build-run-result",
+    "schemaVersion": "2",
+    "didError": false,
+    "error": null,
+    "data": {
+      "summary": {
+        "status": "SUCCEEDED",
+        "durationMs": 13922,
+        "target": "simulator"
+      },
+      "artifacts": {
+        "appPath": "/tmp/rillora-strict-review-derived-data-20261003/Build/Products/Debug-iphonesimulator/Rillora.app",
+        "bundleId": "com.rillora.ios",
+        "processId": 44112,
+        "simulatorId": "2B8F75C5-7AB3-4CCA-ADB3-CA154E622D43",
+        "buildLogPath": "/Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/build_run_sim_2026-10-02T17-01-35-912Z_pid26593_815f00a3.log",
+        "runtimeLogPath": "/Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/com.rillora.ios_2026-10-02T17-01-46-886Z_helperpid44106_ownerpid26593_e6fd8967.log",
+        "osLogPath": "/Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/com.rillora.ios_oslog_2026-10-02T17-01-49-757Z_helperpid44260_ownerpid26593_c8edabd5.log"
+      },
+      "diagnostics": {
+        "warnings": [],
+        "errors": []
+      }
+    },
+    "nextSteps": [
+      "Stop app in simulator: stop_app_sim({ simulatorId: \"2B8F75C5-7AB3-4CCA-ADB3-CA154E622D43\", bundleId: \"com.rillora.ios\" })"
+    ]
+  },
+  "signedUi": {
+    "schema": "xcodebuildmcp.output.ui-action-result",
+    "schemaVersion": "2",
+    "didError": false,
+    "error": null,
+    "data": {
+      "summary": {
+        "status": "SUCCEEDED"
+      },
+      "action": {
+        "type": "tap",
+        "elementRef": "e113",
+        "x": 201,
+        "y": 266
+      },
+      "artifacts": {
+        "simulatorId": "2B8F75C5-7AB3-4CCA-ADB3-CA154E622D43"
+      },
+      "capture": {
+        "type": "runtime-snapshot",
+        "rs": "1",
+        "screenHash": "12akerr",
+        "seq": 18,
+        "count": 166,
+        "targets": [
+          "e50|tap|switch|I understand copies already saved or shared cannot be removed.|1|account-delete.copies",
+          "e58|tap|switch|I understand account deletion does not cancel provider billing.|0|",
+          "e67|typeText|text-field||DELETE|account-delete.confirmation",
+          "e15|tap|button|My data||BackButton",
+          "e52|tap|switch||1|",
+          "e60|tap|switch||0|",
+          "e75|tap|button|Save deletion reference||"
+        ],
+        "scroll": [
+          "e1|swipe|application|Rillora||"
+        ],
+        "text": [
+          "e29|text|text|Alex Chen||",
+          "e35|text|text|Your private map, people, saved packages and Rillora access will be removed.||",
+          "e42|text|text|Required consent and payment records may be retained.||",
+          "e51|text|text|I understand copies already saved or shared cannot be removed.||",
+          "e59|text|text|I understand account deletion does not cancel provider billing.||",
+          "e77|text|text|Save deletion reference||",
+          "e85|text|text|Review your subscription or pending purchase before deleting this account. Deletion does not cancel provider billing.||"
+        ],
+        "udid": "2B8F75C5-7AB3-4CCA-ADB3-CA154E622D43"
+      }
+    },
+    "nextSteps": [
+      "Batch visible switch toggles: batch({ simulatorId: \"2B8F75C5-7AB3-4CCA-ADB3-CA154E622D43\", steps: [{\"action\":\"tap\",\"elementRef\":\"e50\"},{\"action\":\"tap\",\"elementRef\":\"e52\"}] })",
+      "Tap an elementRef: tap({ simulatorId: \"2B8F75C5-7AB3-4CCA-ADB3-CA154E622D43\", elementRef: \"e15\" })"
+    ]
+  }
+}

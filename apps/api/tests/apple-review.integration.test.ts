@@ -1,3 +1,4 @@
+import { assertDedicatedTestDatabase, dedicatedTestDatabaseUrl } from './dedicated-test-database.js';
 import pg from 'pg';
 import { randomUUID } from 'node:crypto';
 import { beforeAll, beforeEach, afterAll, describe, expect, it, vi } from 'vitest';
@@ -17,7 +18,7 @@ import { loadConfig } from '../src/config.js';
 import { createApp } from '../src/app.js';
 import request from './http-fixture.js';
 
-const databaseUrl='postgresql://127.0.0.1:5432/continuity_apple_review_test';
+const databaseUrl = dedicatedTestDatabaseUrl('postgresql://127.0.0.1:5432/continuity_apple_review_test', 'continuity_apple_review_test');
 let pool:DatabasePool, plannerId:string, plannerPublicId:string, account:string;
 let purchases:ApplePurchasePreflight;
 const selection={serviceMarketCode:'GLOBAL_US',storefrontCountryCode:'USA'};
@@ -48,9 +49,10 @@ async function fixture() {
 
 describe('enrolled Apple review purchases share the strict lifecycle without production sales',()=>{
   beforeAll(async()=>{
-    const admin=new pg.Client({connectionString:'postgresql://127.0.0.1:5432/postgres'});await admin.connect();
+    const admin=new pg.Client({connectionString:new URL('/postgres', databaseUrl).href});await admin.connect();
     try{if(!(await admin.query("select 1 from pg_database where datname='continuity_apple_review_test'")).rowCount)await admin.query('create database continuity_apple_review_test');}
     finally{await admin.end();}
+    await assertDedicatedTestDatabase(databaseUrl, 'continuity_apple_review_test');
     await runMigrations(databaseUrl);pool=new pg.Pool({connectionString:databaseUrl,max:4});
     purchases=new ApplePurchasePreflight(pool,appleReviewContext);
     await pool.query('truncate app.commerce_provider_event_inbox,app.planners restart identity cascade');

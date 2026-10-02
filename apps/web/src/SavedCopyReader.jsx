@@ -1,21 +1,31 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FileArrowUp, LockKey } from "@phosphor-icons/react";
 import { readSavedFile, validateDirectionsCopy } from "./savedCopy.js";
 
 export function SavedCopyReader({ onImport, busy = false }) {
   const [copy,setCopy]=useState(null),[error,setError]=useState(""),[opening,setOpening]=useState(false);
-  async function open(file){if(!file)return;setError("");setCopy(null);try{setCopy(await readSavedFile(file));}catch(e){setError(e.message);}}
+  const generation=useRef(0);
+  useEffect(()=>()=>{generation.current++;},[]);
+  async function open(file){
+    if(!file)return;
+    const current=++generation.current;
+    setError("");setCopy(null);setOpening(false);
+    try{const result=await readSavedFile(file);if(current===generation.current)setCopy(result);}
+    catch(e){if(current===generation.current)setError(e.message);}
+  }
   async function unlock(file){
     if(!file || !copy)return;
+    const current=++generation.current;
     setOpening(true);setError("");
     try{
       if(file.size>16_384)throw new Error("The recovery file is too large.");
       const recovery=JSON.parse(await file.text());
       const {decryptEncryptedStartHere}=await import("./startHereCrypto.js");
       const payload=await decryptEncryptedStartHere(copy.value,recovery);
-      setCopy({kind:"directions",value:validateDirectionsCopy(payload.package)});
-    }catch{setError("This recovery file could not open the package. Check that the two files belong together.");}
-    finally{setOpening(false);}
+      const value=validateDirectionsCopy(payload.package);
+      if(current===generation.current)setCopy({kind:"directions",value});
+    }catch{if(current===generation.current)setError("This recovery file could not open the package. Check that the two files belong together.");}
+    finally{if(current===generation.current)setOpening(false);}
   }
   const readable=(key,value)=>key==="desiredOutcome"?({notify:"Notify someone",transfer_request:"Request transfer",close:"Request closure",delete_request:"Request deletion",memorialize:"Request memorialization",delay_disclosure:"Delay disclosure",never_disclose:"Never disclose",undecided:"Not decided"}[value]??value):key==="cryptoCustody"?({exchange:"Exchange",self_custody:"On-chain wallet"}[value]??value):value;
   const records=copy?.kind==="backup"||copy?.kind==="directions"?copy.value.matters:[];
@@ -32,7 +42,7 @@ export function SavedCopyReader({ onImport, busy = false }) {
       {records.map(m=><details className="task-details" key={m.publicId}><summary>{m.title}{m.archivedAt?" · Archived":""}</summary><dl className="export-preview-fields"><dt>Type</dt><dd>{m.category.replaceAll("_"," ")}</dd>{Object.entries({...m,...m.details}).filter(([k,v])=>Object.hasOwn(fieldLabels,k)&&typeof v==="string"&&v).map(([k,v])=><div key={k}><dt>{fieldLabels[k]}</dt><dd>{readable(k,v)}</dd></div>)}</dl></details>)}
       {copy.kind==="backup"&&<details className="task-details"><summary>People · {copy.value.people.length}</summary>{copy.value.people.map(p=><p key={p.publicId}>{p.displayName}{p.relationshipLabel?` · ${p.relationshipLabel}`:""}</p>)}</details>}
       {copy.kind==="backup"&&onImport&&<button className="primary-button" disabled={busy} onClick={()=>onImport(copy.value)}>Import into an empty map</button>}
-      <button className="text-button" disabled={busy} onClick={()=>{setCopy(null);setError("");}}>Close this copy</button>
+      <button className="text-button" disabled={busy} onClick={()=>{generation.current++;setCopy(null);setError("");setOpening(false);}}>Close this copy</button>
     </>}
   </section>;
 }

@@ -1,0 +1,39 @@
+
+ RUN  v4.1.11 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/api.integration.test.ts (56 tests | 3 failed | 49 skipped) 454ms
+     × rejects external OIDC return paths including URL-normalized controls: "/\t/attacker.example" 8ms
+     × rejects external OIDC return paths including URL-normalized controls: "/\n/attacker.example" 4ms
+     × rejects external OIDC return paths including URL-normalized controls: "/\r/attacker.example" 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/api.integration.test.ts > Continuity API > rejects external OIDC return paths including URL-normalized controls: "/\t/attacker.example"
+ FAIL  tests/api.integration.test.ts > Continuity API > rejects external OIDC return paths including URL-normalized controls: "/\n/attacker.example"
+ FAIL  tests/api.integration.test.ts > Continuity API > rejects external OIDC return paths including URL-normalized controls: "/\r/attacker.example"
+Error: expected 400 "Bad Request", got 201 "Created"
+ ❯ tests/api.integration.test.ts:637:8
+    635|         legalAcceptance,
+    636|       })
+    637|       .expect(400);
+       |        ^
+    638|     expect(response.body.error.code).toBe("invalid_return_path");
+    639|     expect((await pool.query("select count(*)::int as count from app.a…
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:892:11
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 4 passed | 49 skipped (56)
+   Start at  21:28:00
+   Duration  1.42s (transform 323ms, setup 40ms, import 782ms, tests 454ms, environment 0ms)
+

@@ -4,7 +4,8 @@ set -euo pipefail
 
 matrix_repo_root="${0:A:h:h}"
 matrix_ios_root="$matrix_repo_root/apps/ios"
-matrix_output_root="$matrix_repo_root/output/qa/ios-layout-matrix-$(date +%Y%m%d-%H%M%S)"
+matrix_run_id="$(date +%Y%m%d-%H%M%S)-$$"
+matrix_output_root="$matrix_repo_root/output/qa/ios-layout-matrix-$matrix_run_id"
 matrix_derived_data="$matrix_output_root/DerivedData"
 matrix_runtime="${RILLORA_IOS_RUNTIME:-com.apple.CoreSimulator.SimRuntime.iOS-26-5}"
 matrix_api_port="${RILLORA_MATRIX_API_PORT:-4395}"
@@ -13,16 +14,16 @@ matrix_planner_id="11111111-1111-4111-8111-111111111111"
 matrix_api_pid=""
 matrix_failures=0
 matrix_summary="$matrix_output_root/matrix-summary.tsv"
+typeset -a matrix_created_devices=()
 
 mkdir -p "$matrix_output_root"
 print -r -- $'slice\tdevice\tcontent_size\tresult' > "$matrix_summary"
 
 cleanup_matrix() {
-  for device_name in Rillora-Matrix-SE-3 Rillora-Matrix-13-mini Rillora-Matrix-13 Rillora-Matrix-17-Pro Rillora-Matrix-17-Pro-Max; do
-    if xcrun simctl list devices | rg -q "${device_name} .*\\(Booted\\)"; then
-      xcrun simctl ui "$device_name" content_size large >/dev/null 2>&1 || true
-    fi
-    xcrun simctl shutdown "$device_name" >/dev/null 2>&1 || true
+  local device_id
+  for device_id in "${matrix_created_devices[@]}"; do
+    xcrun simctl shutdown "$device_id" >/dev/null 2>&1 || true
+    xcrun simctl delete "$device_id" >/dev/null 2>&1 || true
   done
   if [[ -n "$matrix_api_pid" ]]; then
     kill "$matrix_api_pid" >/dev/null 2>&1 || true
@@ -58,23 +59,26 @@ warm_matrix_api() {
   return 1
 }
 
-ensure_matrix_device() {
-  local device_name="$1"
-  local device_type="$2"
-  local device_id
-  device_id="$(xcrun simctl list devices available | sed -n "s/^[[:space:]]*$device_name (\([0-9A-F-]*\)).*/\1/p" | head -n 1)"
-  if [[ -z "$device_id" ]]; then
-    device_id="$(xcrun simctl create "$device_name" "$device_type" "$matrix_runtime")"
-  fi
-  print -r -- "$device_id"
-}
-
 typeset -A matrix_devices
-matrix_devices[se]="$(ensure_matrix_device Rillora-Matrix-SE-3 com.apple.CoreSimulator.SimDeviceType.iPhone-SE-3rd-generation)"
-matrix_devices[mini]="$(ensure_matrix_device Rillora-Matrix-13-mini com.apple.CoreSimulator.SimDeviceType.iPhone-13-mini)"
-matrix_devices[standard]="$(ensure_matrix_device Rillora-Matrix-13 com.apple.CoreSimulator.SimDeviceType.iPhone-13)"
-matrix_devices[pro]="$(ensure_matrix_device Rillora-Matrix-17-Pro com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro)"
-matrix_devices[max]="$(ensure_matrix_device Rillora-Matrix-17-Pro-Max com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro-Max)"
+typeset -A matrix_device_types=(
+  se com.apple.CoreSimulator.SimDeviceType.iPhone-SE-3rd-generation
+  mini com.apple.CoreSimulator.SimDeviceType.iPhone-13-mini
+  standard com.apple.CoreSimulator.SimDeviceType.iPhone-13
+  pro com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro
+  max com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro-Max
+)
+# Existing named simulators may now hold the Owner's real account session.
+# Record this run's freshly created IDs before any build or UI action.
+for device_key in se mini standard pro max; do
+  device_id="$(xcrun simctl create "Rillora-Matrix-$device_key-$matrix_run_id" "${matrix_device_types[$device_key]}" "$matrix_runtime")"
+  if [[ ! "$device_id" =~ '^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$' ]]; then
+    print -u2 -- "Simulator creation did not return a single device ID."
+    exit 1
+  fi
+  matrix_devices[$device_key]="$device_id"
+  matrix_created_devices+=("$device_id")
+  printf '%s\t%s\n' "$device_key" "$device_id" >> "$matrix_output_root/devices.tsv"
+done
 
 cd "$matrix_ios_root"
 xcodegen generate --spec project.yml >/dev/null

@@ -1,0 +1,33 @@
+
+ RUN  v4.1.11 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/p1-repair.integration.test.ts (14 tests | 1 failed | 13 skipped) 375ms
+     × rechecks billing atomically when a concurrent checkout commits before deletion 56ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/p1-repair.integration.test.ts > P1 map reliability and export privacy > rechecks billing atomically when a concurrent checkout commits before deletion
+AssertionError: expected 200 to be 400 // Object.is equality
+
+- Expected
++ Received
+
+- 400
++ 200
+
+ ❯ tests/p1-repair.integration.test.ts:226:26
+    224|    await checkout.query('commit');
+    225|    const result=await deletion;
+    226|    expect(result.status).toBe(400);expect(result.body.error.code).toBe…
+       |                          ^
+    227|    expect((await pool.query('select status from app.planners where id=…
+    228|    const profile=(await request(app).get('/v1/account/profile').set('x…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 13 skipped (14)
+   Start at  22:42:23
+   Duration  1.32s (transform 311ms, setup 41ms, import 775ms, tests 375ms, environment 0ms)
+

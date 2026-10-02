@@ -1,0 +1,58 @@
+
+ RUN  v4.1.11 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/sharing-lifecycle.integration.test.ts (15 tests | 2 failed | 13 skipped) 1045ms
+     × keeps the paid-term version when a later edit occurs before any expiry job/read 527ms
+     × redacts narrowed/removed grants permanently and never backfills new saved content 212ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/sharing-lifecycle.integration.test.ts > Commercial sharing: quotas, paid cutoff and restrictive permissions > keeps the paid-term version when a later edit occurs before any expiry job/read
+AssertionError: expected { …(7) } to match object { title: 'Paid-term directions', …(1) }
+(5 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "locationHint": "Original folder",
+-   "title": "Paid-term directions",
++   "locationHint": "New folder",
++   "title": "AFTER EXPIRY",
+  }
+
+ ❯ tests/sharing-lifecycle.integration.test.ts:131:38
+    129|     const guide=(await request(app).post('/v1/exports/start-here/previ…
+    130|       .send({recipientConnectionPublicId:invitation.body.connection.pu…
+    131|     expect(guide.package.matters[0]).toMatchObject({title:doc.title,lo…
+       |                                      ^
+    132|     const personal=(await request(app).post('/v1/exports/start-here/pr…
+    133|     expect(personal.package.matters[0]).toMatchObject({title:'AFTER EX…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/sharing-lifecycle.integration.test.ts > Commercial sharing: quotas, paid cutoff and restrictive permissions > redacts narrowed/removed grants permanently and never backfills new saved content
+AssertionError: expected 'Original folder' to be null
+
+- Expected:
+null
+
++ Received:
+"Original folder"
+
+ ❯ tests/sharing-lifecycle.integration.test.ts:145:51
+    143|     const guide=(await request(app).post('/v1/exports/start-here/previ…
+    144|       .send({recipientConnectionPublicId:id}).expect(201)).body;
+    145|     expect(guide.package.matters[0].locationHint).toBeNull();
+       |                                                   ^
+    146|     await scope(id, null); await scope(id, "details");
+    147|     expect((await shared(actor)).items).toEqual([]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 13 skipped (15)
+   Start at  22:36:26
+   Duration  2.16s (transform 361ms, setup 43ms, import 913ms, tests 1.04s, environment 0ms)
+

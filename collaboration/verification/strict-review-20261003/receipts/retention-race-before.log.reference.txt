@@ -1,0 +1,33 @@
+
+ RUN  v4.1.11 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/retention.integration.test.ts (8 tests | 1 failed) 468ms
+     × serializes placing a hold with the retention worker before reporting success 43ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/retention.integration.test.ts > Purpose-specific bounded retention > serializes placing a hold with the retention worker before reporting success
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/retention.integration.test.ts:134:53
+    132|    expect(await waitFor('insert into app.retention_holds')).toBe(true);
+    133|    cleaning=runRetentionBatch(pool).then(result=>{cleaned=true;return …
+    134|    expect(await waitFor('app.run_retention_batch')).toBe(true);
+       |                                                     ^
+    135|   }finally{
+    136|    await observer.query('select pg_advisory_unlock($1)',[barrier]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 7 passed (8)
+   Start at  22:22:43
+   Duration  904ms (transform 120ms, setup 42ms, import 252ms, tests 468ms, environment 0ms)
+

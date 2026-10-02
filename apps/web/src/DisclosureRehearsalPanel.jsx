@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import {
   ArrowRight,
   Broadcast,
@@ -41,7 +41,7 @@ export function DisclosureRehearsalPanel({ apiClient, onChanged, onBusyChange })
   const [busyAction, setBusyAction] = useState(null);
   const [error, setError] = useState("");
 
-  useEffect(() => onBusyChange?.(busyAction !== null), [busyAction, onBusyChange]);
+  useLayoutEffect(() => onBusyChange?.(busyAction !== null), [busyAction, onBusyChange]);
 
   useEffect(() => {
     let active = true;

@@ -5,7 +5,18 @@ Authority scope: Web/iOS responsibilities, shared state and first validation rel
 Superseded by: later explicit platform decision  
 Do not use for: final framework choice or visual tokens  
 Status: CORE PARITY CONTRACT ACTIVE; CURRENT RUNTIME AND RELEASE GATES IN HANDOFF
-Last updated: 2026-09-30 (review repair request identity and complete matter hydration)
+Last updated: 2026-10-03 (Asia/Shanghai)
+
+## October3 strict-review implementation boundary
+
+Both clients distinguish acknowledged writes from failed follow-up reads and prevent
+concurrent editor operations. Deletion requires the same current billing acknowledgement
+for pending purchases as active subscriptions; a race returns400 and refreshes the
+existing confirmation UI without deleting the account. Browser account binding extends
+through downloaded response bodies, while native purchase setup is bounded by account
+lifecycle revision. Readiness never labels counts or rehearsals as verified emergency
+plans. [Strict-review evidence](code-review-20261002.md) is local; previous real-provider
+and deployment evidence retains its original date.
 
 ## September30 request and hydration contract
 

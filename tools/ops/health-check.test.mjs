@@ -3,6 +3,11 @@ import {test} from 'node:test';
 import {isPublicAddress,validateConfig,runHealthChecks} from './health-check.mjs';
 const config={schemaVersion:1,environment:'test',allowedOrigins:['https://app.rillora.xyz'],timeoutMs:1000,certificateWarningDays:21,targets:[{id:'private-denial',url:'https://app.rillora.xyz/v1/session',expectedStatus:401,headers:{'cache-control':'no-store'}}]};
 const now=()=>Date.parse('2026-09-11T00:00:00Z');
+test('requires real string metric identifiers and a header object',()=>{
+  for(const environment of [undefined,true])assert.throws(()=>validateConfig({...config,environment}));
+  for(const id of [undefined,true])assert.throws(()=>validateConfig({...config,targets:[{...config.targets[0],id}]}));
+  for(const headers of [true,42])assert.throws(()=>validateConfig({...config,targets:[{...config.targets[0],headers}]}));
+});
 test('closed and restricted-review denial are allowed but success and unplanned errors still alarm',async()=>{
   const review={...config,targets:[{...config.targets[0],expectedStatus:[401,503]}]};
   for(const status of [401,503,200,400,500]){

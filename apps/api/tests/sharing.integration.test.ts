@@ -1,3 +1,4 @@
+import { assertDedicatedTestDatabase, dedicatedTestDatabaseUrl } from './dedicated-test-database.js';
 import { createHash } from "node:crypto";
 import request from "./http-fixture.js";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
@@ -9,7 +10,7 @@ import { seedDevelopmentFixture, developmentPlannerPublicId as A } from "../src/
 import { currentLegalContract } from "../src/legal-contract.js";
 import { verifiedEmailDigest } from "../src/sharing-identity.js";
 
-const databaseUrl = "postgresql:///continuity_sharing_test";
+const databaseUrl = dedicatedTestDatabaseUrl("postgresql:///continuity_sharing_test", "continuity_sharing_test");
 const config = loadConfig({ NODE_ENV: "test", DATABASE_URL: databaseUrl, ALLOW_DEV_AUTH: "true", CORS_ORIGINS: "http://localhost:4191" });
 const sha = (text: string) => createHash("sha256").update(text).digest();
 const csrf = "c".repeat(43);
@@ -59,7 +60,7 @@ async function shared(who = B) {
 
 describe.sequential("Account-bound directed sharing", () => {
   beforeAll(async () => {
-    if (!databaseUrl.endsWith("/continuity_sharing_test")) throw new Error("Dedicated sharing test database required");
+    await assertDedicatedTestDatabase(databaseUrl, 'continuity_sharing_test');
     await runMigrations(databaseUrl); pool = createPool(config);
     await pool.query("truncate app.planners restart identity cascade");
     await seedDevelopmentFixture(pool); app = createApp(pool, config);

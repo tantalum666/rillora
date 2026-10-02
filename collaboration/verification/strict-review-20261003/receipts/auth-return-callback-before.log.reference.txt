@@ -1,0 +1,34 @@
+
+ RUN  v4.1.11 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/api.integration.test.ts (57 tests | 1 failed | 56 skipped) 294ms
+     × rejects an unsafe previously stored OIDC return path before issuing a session 32ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/api.integration.test.ts > Continuity API > rejects an unsafe previously stored OIDC return path before issuing a session
+Error: expected 400 "Bad Request", got 303 "See Other"
+ ❯ tests/api.integration.test.ts:660:86
+    658|     ]);
+    659|     const before = await pool.query("select count(*)::int as count fro…
+    660|     const callback = await agent.get(`/auth/callback?code=[REDACTED_CAPABILITY]&st…
+       |                                                                                      ^
+    661|     expect(callback.body.error.code).toBe("invalid_return_path");
+    662|     expect(callback.headers.location).toBeUndefined();
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 56 skipped (57)
+   Start at  21:29:07
+   Duration  1.22s (transform 331ms, setup 39ms, import 758ms, tests 294ms, environment 0ms)
+

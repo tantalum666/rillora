@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-02 (Asia/Shanghai)
+Last updated: 2026-10-03 (Asia/Shanghai)
 
 新条目使用以下模板：
 
@@ -2970,3 +2970,31 @@ unreachable release remains a different closed workflow. See [sharing contract](
   save existing public beta support information and accurate test instructions.
   This is Agent execution under current scope, not invented Owner visual approval,
   final declaration or review submission. [Evidence](independent-release-closeout-20261002.md).
+
+
+## 2026-10-02 — Strict whole-project review supersedes the parked release next step
+
+- Status: LOCKED
+- Scope: Current engineering workflow only.
+- Owner requests every project code file reviewed very carefully and problems repaired directly.
+- Continue code/correctness/security-boundary work under existing authorization; preserve current UI, price decisions, real data and FanPass. Personal consent, physical-device and merchant deferrals are not reopened.
+- Full Markdown reading, file-level review coverage, reproduced defects, fixes, tests and deployment remain distinct evidence. Initial repairs do not close the whole review or launch.
+- Evidence: [current review contract](code-review-20261002.md).
+
+## 2026-10-03 — Strict-review safety and preservation choices
+
+- Existing Owner authority covers28confirmed correctness/toolchain fixes; no new
+  UI direction, price, legal consent, billing activation or real-data decision.
+- Preserve all91applied migration bytes; implement permission-history and retention
+  serialization as0092/0093. Ambiguous legacy accepted-sharing history requires
+  quarantined reconciliation instead of inventing intermediate restriction evidence.
+- Bound uncertain ECS retries by exact request/token and fresh isolation/freeze
+  checks. Fixture mutation targets must be explicitly disposable/local, and native
+  matrix cleanup may affect only per-run created simulators.
+- Keep the CDK bundled advisory visible: latest upstream still contains it. Do not
+  substitute an ineffective update, suppressed audit or bespoke postinstall rewrite
+  for a genuine upstream fix. Direct source review is not the failed optional scan.
+- Save current source/tests/contracts and all eligible QA/build artifacts on the
+  strict-review branch under the standing all-work Git policy. Production rollout
+  remains separate from code review, CI and encrypted-original preservation.
+  [Full evidence and limits](code-review-20261002.md).

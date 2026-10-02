@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { Check, Info, UserCircle } from "@phosphor-icons/react";
 import { InvitationSteps } from "./SharingMotion.jsx";
 import { getTrustedContactEvidence } from "./contactEvidence.js";
@@ -12,8 +12,8 @@ export function ContactEditorPanel({ contact, apiClient, onSaved, onDirtyChange,
   const dirty = name !== (original.current?.displayName ?? "") || relationship !== (original.current?.relationshipLabel ?? "");
   const evidence = getTrustedContactEvidence(original.current);
   const initials = name.trim().split(/\s+/).filter(Boolean).slice(0, 2).map((part) => part[0]).join("").toUpperCase();
-  useEffect(() => onDirtyChange(dirty), [dirty, onDirtyChange]);
-  useEffect(() => onBusyChange(busy), [busy, onBusyChange]);
+  useLayoutEffect(() => onDirtyChange(dirty), [dirty, onDirtyChange]);
+  useLayoutEffect(() => onBusyChange(busy), [busy, onBusyChange]);
 
   async function save() {
     if (busy || !name.trim()) return;

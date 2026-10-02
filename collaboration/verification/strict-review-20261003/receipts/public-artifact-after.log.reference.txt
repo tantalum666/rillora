@@ -1,0 +1,13 @@
+
+> rillora-aws-infrastructure@0.1.0 test
+> vitest run --exclude 'dist/**' --maxWorkers=2 --testTimeout=20000 test/rillora-public-web-stack.test.ts test/rillora-production-web-stack.test.ts
+
+
+ RUN  v4.1.11 /Users/tantalum/Documents/电子遗嘱app/infra/aws
+
+
+ Test Files  2 passed (2)
+      Tests  12 passed (12)
+   Start at  01:57:43
+   Duration  1.99s (transform 77ms, setup 0ms, import 500ms, tests 3.17s, environment 0ms)
+

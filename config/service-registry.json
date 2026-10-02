@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-28",
-  "scope": "Planning registry, not proof of deployed adapters or transferable contracts",
+  "updatedAt": "2026-10-03",
+  "scope": "Portability planning with explicitly dated retained deployment evidence; not a fresh provider read or transferable contract",
   "services": [
     {
       "id": "identity",
-      "current": "Auth0 OIDC; first-party login subdomain",
+      "current": "Auth0 OIDC/custom login domain; separate production clients and read/delete services; restricted review activation, per October2 evidence",
       "status": "existing",
       "observedQuota": {
         "checkedAt": "2026-09-21",
@@ -17,8 +17,7 @@
         "tenantEnvironment": "DEVELOPMENT"
       },
       "observedFeatureGaps": [
-        "Universal Login Liquid template API returns402 paid subscription required",
-        "No custom email provider configured; built-in delivery is development-only"
+        "Universal Login Liquid template API returned402 at the dated Free-plan check; no paid upgrade inferred"
       ],
       "businessKey": "planner UUID plus explicit issuer/subject bindings",
       "port": "IdentityProvider / NativeIdentityVerifier",
@@ -35,8 +34,8 @@
     },
     {
       "id": "database",
-      "current": "Managed AWS RDS PostgreSQL16.13 db.t4g.micro,20GiB gp3,SingleAZ,1-day backup in synthetic staging; read back September21",
-      "status": "existing_staging",
+      "current": "Separate encrypted production RDS with7-day backups and KMS/recovery journal, plus preserved synthetic staging; production schema0091 per October2",
+      "status": "restricted_production_and_staging",
       "businessKey": "Application UUIDs and ordered SQL migrations",
       "port": "PostgreSQL, SQL migrations and node-postgres",
       "exit": "Encrypted logical backup/restore to compatible managed PostgreSQL; extension and role manifest",
@@ -45,8 +44,8 @@
     },
     {
       "id": "compute",
-      "current": "Express on one regular Fargate0.25vCPU/512MiB task; CloudFront Web; September21 scoped private-API check with100 synthetic users and2000 matters",
-      "status": "existing_staging",
+      "current": "Separate regular Fargate production API10/restricted review and staging API38, CloudFront clients; dated October2/September26 evidence",
+      "status": "restricted_production_and_staging",
       "businessKey": "Versioned API contracts and immutable image digest",
       "port": "OCI container, HTTPS, environment references",
       "exit": "Deploy same image against restored Postgres on managed container service; preserve host/cookies/callbacks",
@@ -85,18 +84,18 @@
     },
     {
       "id": "email",
-      "current": "Zoho role mail; user-driven invite link/QR; Auth0 built-in test sender remains. AWS SES domain/control foundation exists; production sending remains sandbox. Original support case reopened after authorized2026-09-28reconsideration; Resend fallback only.",
-      "status": "ses_reconsideration_submitted_production_transactions_not_enabled",
+      "current": "Zoho role mail; Auth0 native Resend provider at notify.rillora.xyz, adopted October1. QQ receipt/reset/new login verified October2; inbox placement is separate. Invites remain user-driven link/QR; the assisted test email is not an automated application outbox.",
+      "status": "resend_identity_transport_active_application_outbox_planned",
       "businessKey": "Opaque notification ID and template version",
-      "port": "TransactionalEmailAdapter and outbox (planned)",
+      "port": "Auth0 native Resend transport; portable application notification/outbox adapter remains planned",
       "exit": "Portable templates, suppression list, delivery state and verified sending DNS",
       "scaleTrigger": "Service message needs, delivery failures or support volume",
       "migrationGate": "User opt-in, minimal message content, retries and dedupe, bounce/suppression; no contact list or private title in email"
     },
     {
       "id": "jobs",
-      "current": "Deployed public EventBridge/Lambda checks; 15-minute schedule enabled after delivered failure/recovery/silence proof",
-      "status": "public_monitor_active_other_jobs_planned",
+      "current": "Public metadata checker, bounded retention and exact-snapshot retirement workers deployed, per September30/October2 evidence; other automation remains planned",
+      "status": "bounded_operations_workers_active_other_jobs_planned",
       "businessKey": "Job/version/idempotency key and attempt state",
       "port": "Portable Node handler; future durable application outbox",
       "exit": "Same job contract on another scheduler/queue; import pending/failed job IDs",
@@ -125,8 +124,8 @@
     },
     {
       "id": "observability",
-      "current": "Cloud logs plus deployed public checker, verified Owner SNS mail delivery and silence detection",
-      "status": "public_metadata_active_production_private_monitoring_pending",
+      "current": "Cloud logs,14public targets, restricted-runtime and worker alarms; original delivered alarm/silence evidence retained",
+      "status": "metadata_and_runtime_monitoring_active_dated_evidence",
       "businessKey": "Environment/job IDs; no individual-user labels",
       "port": "JSON metrics and first-party diagnostic event contracts",
       "exit": "Export alert definitions/dashboards, retentions and incident runbooks",

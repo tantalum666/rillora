@@ -1,0 +1,143 @@
+add lightningcss-win32-x64-msvc 1.33.0
+add lightningcss-win32-arm64-msvc 1.33.0
+add lightningcss-linux-x64-musl 1.33.0
+add lightningcss-linux-x64-gnu 1.33.0
+add lightningcss-linux-arm64-musl 1.33.0
+add lightningcss-linux-arm64-gnu 1.33.0
+add lightningcss-linux-arm-gnueabihf 1.33.0
+add lightningcss-freebsd-x64 1.33.0
+add lightningcss-darwin-x64 1.33.0
+add lightningcss-android-arm64 1.33.0
+add @rolldown/binding-win32-x64-msvc 1.2.9
+add @rolldown/binding-win32-arm64-msvc 1.2.9
+add @rolldown/binding-openharmony-arm64 1.2.9
+add @rolldown/binding-linux-x64-musl 1.2.9
+add @rolldown/binding-linux-x64-gnu 1.2.9
+add @rolldown/binding-linux-s390x-gnu 1.2.9
+add @rolldown/binding-linux-ppc64-gnu 1.2.9
+add @rolldown/binding-linux-arm64-musl 1.2.9
+add @rolldown/binding-linux-arm64-gnu 1.2.9
+add @rolldown/binding-linux-arm-gnueabihf 1.2.9
+add @rolldown/binding-freebsd-x64 1.2.9
+add @rolldown/binding-darwin-x64 1.2.9
+add @rolldown/binding-android-arm64 1.2.9
+add @rolldown/binding-android-arm-eabi 1.2.9
+add @esbuild/win32-x64 0.28.2
+add @esbuild/win32-ia32 0.28.2
+add @esbuild/win32-arm64 0.28.2
+add @esbuild/sunos-x64 0.28.2
+add @esbuild/openharmony-arm64 0.28.2
+add @esbuild/openbsd-x64 0.28.2
+add @esbuild/openbsd-arm64 0.28.2
+add @esbuild/netbsd-x64 0.28.2
+add @esbuild/netbsd-arm64 0.28.2
+add @esbuild/linux-x64 0.28.2
+add @esbuild/linux-s390x 0.28.2
+add @esbuild/linux-riscv64 0.28.2
+add @esbuild/linux-ppc64 0.28.2
+add @esbuild/linux-mips64el 0.28.2
+add @esbuild/linux-loong64 0.28.2
+add @esbuild/linux-ia32 0.28.2
+add @esbuild/linux-arm64 0.28.2
+add @esbuild/linux-arm 0.28.2
+add @esbuild/freebsd-x64 0.28.2
+add @esbuild/freebsd-arm64 0.28.2
+add @esbuild/darwin-x64 0.28.2
+add @esbuild/android-x64 0.28.2
+add @esbuild/android-arm64 0.28.2
+add @esbuild/android-arm 0.28.2
+add @esbuild/aix-ppc64 0.28.2
+{
+  "added": 49,
+  "removed": 0,
+  "changed": 0,
+  "audited": 127,
+  "funding": 28,
+  "audit": {
+    "auditReportVersion": 2,
+    "vulnerabilities": {
+      "brace-expansion": {
+        "name": "brace-expansion",
+        "severity": "high",
+        "isDirect": false,
+        "via": [
+          {
+            "source": 1240103,
+            "name": "brace-expansion",
+            "dependency": "brace-expansion",
+            "title": "brace-expansion: Quadratic-time expansion of the `{a},b}` rewrite causes CPU denial of service",
+            "url": "https://github.com/advisories/GHSA-q2hr-2g5m-vwhr",
+            "severity": "moderate",
+            "cwe": [
+              "CWE-400",
+              "CWE-407"
+            ],
+            "cvss": {
+              "score": 5.3,
+              "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
+            },
+            "range": ">=4.0.0 <5.0.12"
+          },
+          {
+            "source": 1240107,
+            "name": "brace-expansion",
+            "dependency": "brace-expansion",
+            "title": "brace-expansion: DoS via uncontrolled recursion on nested brace groups causing stack exhaustion",
+            "url": "https://github.com/advisories/GHSA-qhr7-859c-m2p7",
+            "severity": "high",
+            "cwe": [
+              "CWE-400",
+              "CWE-674"
+            ],
+            "cvss": {
+              "score": 7.5,
+              "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+            },
+            "range": ">=4.0.0 <5.0.11"
+          },
+          {
+            "source": 1240111,
+            "name": "brace-expansion",
+            "dependency": "brace-expansion",
+            "title": "brace-expansion: DoS via uncontrolled recursion in parseCommaParts causing stack exhaustion",
+            "url": "https://github.com/advisories/GHSA-6j4f-fj2g-mc7p",
+            "severity": "high",
+            "cwe": [
+              "CWE-400",
+              "CWE-674"
+            ],
+            "cvss": {
+              "score": 7.5,
+              "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+            },
+            "range": ">=4.0.0 <5.0.10"
+          }
+        ],
+        "effects": [],
+        "range": "4.0.0 - 5.0.11",
+        "nodes": [
+          ""
+        ],
+        "fixAvailable": true
+      }
+    },
+    "metadata": {
+      "vulnerabilities": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 1,
+        "critical": 0,
+        "total": 1
+      },
+      "dependencies": {
+        "prod": 1,
+        "dev": 126,
+        "optional": 53,
+        "peer": 0,
+        "peerOptional": 0,
+        "total": 126
+      }
+    }
+  }
+}

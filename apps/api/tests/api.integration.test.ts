@@ -618,16 +618,49 @@ describe.sequential("Continuity API", () => {
     expect(response.body.error.code).toBe("session_management_unavailable");
   });
 
-  it("rejects external OIDC return paths", async () => {
+  it.each([
+    "https://attacker.example",
+    "//attacker.example",
+    "/\\attacker.example",
+    "/\t/attacker.example",
+    "/\n/attacker.example",
+    "/\r/attacker.example",
+  ])("rejects external OIDC return paths including URL-normalized controls: %j", async (returnTo) => {
+    const before = await pool.query("select count(*)::int as count from app.auth_transactions");
     const response = await request(app)
       .post("/auth/start")
       .send({
         intent: "signin",
-        returnTo: "https://attacker.example",
+        returnTo,
         legalAcceptance,
       })
       .expect(400);
     expect(response.body.error.code).toBe("invalid_return_path");
+    expect((await pool.query("select count(*)::int as count from app.auth_transactions")).rows)
+      .toEqual(before.rows);
+  });
+
+  it("preserves a same-origin OIDC return path with query and fragment", async () => {
+    const agent = request.agent(app);
+    const returnTo = "/account?next=guides&service=apple#details";
+    const login = await agent.post("/auth/start").send({ intent: "signin", returnTo, legalAcceptance }).expect(201);
+    const state = new URL(login.body.authorizationUrl).searchParams.get("state");
+    const callback = await agent.get(`/auth/callback?code=test-code&state=${state}`).expect(303);
+    expect(callback.headers.location).toBe(`http://localhost:4173${returnTo}`);
+  });
+
+  it("rejects an unsafe previously stored OIDC return path before issuing a session", async () => {
+    const agent = request.agent(app);
+    const login = await agent.post("/auth/start").send({ intent: "signin", returnTo: "/", legalAcceptance }).expect(201);
+    const state = new URL(login.body.authorizationUrl).searchParams.get("state")!;
+    await pool.query("update app.auth_transactions set return_to=$1 where state_hash=$2", [
+      "/\t/attacker.example", createHash("sha256").update(state).digest(),
+    ]);
+    const before = await pool.query("select count(*)::int as count from app.auth_sessions");
+    const callback = await agent.get(`/auth/callback?code=test-code&state=${state}`).expect(400);
+    expect(callback.body.error.code).toBe("invalid_return_path");
+    expect(callback.headers.location).toBeUndefined();
+    expect((await pool.query("select count(*)::int as count from app.auth_sessions")).rows).toEqual(before.rows);
   });
 
   it("returns the seeded plan and matters for the authenticated planner", async () => {
@@ -2363,7 +2396,7 @@ describe.sequential("Continuity API", () => {
     );
   });
 
-  it("stores only a recovery-wrapped client-encrypted package and returns the same artifact", async () => {
+  it.each([64, 65_536])("stores only a recovery-wrapped client-encrypted package and returns the same artifact (%i bytes)", async (ciphertextBytes) => {
     const preview = await asDevelopmentPlanner(
       request(app).post("/v1/exports/start-here/preview").send({}),
     ).expect(201);
@@ -2376,7 +2409,7 @@ describe.sequential("Continuity API", () => {
     expect(preparation.body.package.recipientDeliveryPerformed).toBe(false);
     expect(preparation.body.eligibleRecipientKeys).toEqual([]);
 
-    const fixture = encryptedCryptoFixture();
+    const fixture = encryptedCryptoFixture(ciphertextBytes);
     const finalized = await asDevelopmentPlanner(
       request(app)
         .post(`/v1/exports/start-here/encrypted/${preparation.body.package.publicId}/finalize`)
@@ -2430,7 +2463,7 @@ describe.sequential("Continuity API", () => {
     expect(stored.rows[0]).toEqual({
       status: "ready",
       crypto_version: "rillora-hpke-v1",
-      ciphertext_length: 64,
+      ciphertext_length: ciphertextBytes,
       envelope_count: 1,
     });
   });
@@ -2520,7 +2553,7 @@ describe.sequential("Continuity API", () => {
     expect(missingRecipient.body.error.code).toBe("recipient_keys_changed");
   });
 
-  it("rehearses one-time recipient acceptance, public-key enrollment, decryption access and revocation", async () => {
+  it.each([64, 65_536])("rehearses one-time recipient acceptance, public-key enrollment, decryption access and revocation (%i bytes)", async (ciphertextBytes) => {
     const contact = await asDevelopmentPlanner(
       request(app).post("/v1/trusted-contacts").send({
         displayName: "Synthetic Rehearsal Recipient",
@@ -2622,7 +2655,7 @@ describe.sequential("Continuity API", () => {
       }),
     ]);
 
-    const fixture = encryptedCryptoFixture();
+    const fixture = encryptedCryptoFixture(ciphertextBytes);
     await asDevelopmentPlanner(
       request(app)
         .post(
@@ -2783,8 +2816,8 @@ function p256PublicPoint(): Buffer {
   return key.getPublicKey(undefined, "uncompressed");
 }
 
-function encryptedCryptoFixture() {
-  const contentCiphertext = Buffer.alloc(64, 7);
+function encryptedCryptoFixture(ciphertextBytes = 64) {
+  const contentCiphertext = Buffer.alloc(ciphertextBytes, 7);
   return {
     contentNonce: Buffer.alloc(12, 3).toString("base64url"),
     contentCiphertext: contentCiphertext.toString("base64url"),

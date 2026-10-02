@@ -5,7 +5,25 @@ Authority scope: product truth, design, Web/iOS parity, trust and validation evi
 Superseded by: stricter platform, legal, security or Owner requirement  
 Do not use for: replacing a detailed test plan  
 Status: ACTIVE  
-Last updated: 2026-09-30 (Asia/Hong_Kong)
+Last updated: 2026-10-03 (Asia/Shanghai)
+
+## October3 strict-review implementation boundary
+
+The strict review covers every active first-party engineering text body, with exact
+ranges/hashes and separate validation of six dependency locks. API mutation fixtures
+must name and verify a disposable test database instead of inheriting ambient remote
+connection defaults. Native UI fixtures require a loopback HTTP /v1 endpoint without
+credentials/query/fragment. The matrix runner creates unique per-run simulators and
+cleans only its recorded IDs, including failure cleanup; it must never reuse an Owner
+session merely because its name matches a test profile.
+
+Auth0 preparation rejects incomplete inventories, conflicting protected credentials
+and already activated clients; a theme read failure only means absent on confirmed404.
+DNS verification includes MX priority and CAA flag/tag, and health configurations
+require typed IDs/headers. Tests intercept all provider mutations. The current review
+includes before/after results, full local regression and explicit plugin/dependency
+limitations. [Report](code-review-20261002.md) owns exact counts; none of this proves a
+new deployment, independent certification or real purchase.
 
 ## September30 supplied review and current-path coverage
 

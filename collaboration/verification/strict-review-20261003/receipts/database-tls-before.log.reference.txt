@@ -1,0 +1,39 @@
+
+ RUN  v4.1.11 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/database-tls-config.test.ts (6 tests | 4 failed) 9ms
+     × rejects URL options that can override managed TLS: ssl=no-verify 5ms
+     × rejects URL options that can override managed TLS: ssl=0 1ms
+     × rejects URL options that can override managed TLS: ssl=false 0ms
+     × rejects URL options that can override managed TLS: ssl=true 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/database-tls-config.test.ts > database URL TLS precedence > rejects URL options that can override managed TLS: ssl=no-verify
+ FAIL  tests/database-tls-config.test.ts > database URL TLS precedence > rejects URL options that can override managed TLS: ssl=0
+ FAIL  tests/database-tls-config.test.ts > database URL TLS precedence > rejects URL options that can override managed TLS: ssl=false
+ FAIL  tests/database-tls-config.test.ts > database URL TLS precedence > rejects URL options that can override managed TLS: ssl=true
+AssertionError: expected [Function] to throw an error
+
+- Expected:
+null
+
++ Received:
+undefined
+
+ ❯ tests/database-tls-config.test.ts:15:11
+     13|       expect(() => loadDatabaseConfig({ ...environment,
+     14|         DATABASE_URL: `postgresql://fixture@database.example/fixture?$…
+     15|       })).toThrow('must be configured through DATABASE_SSL_MODE and DA…
+       |           ^
+     16|     });
+     17|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 2 passed (6)
+   Start at  21:37:01
+   Duration  302ms (transform 48ms, setup 39ms, import 123ms, tests 9ms, environment 0ms)
+

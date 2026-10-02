@@ -5,7 +5,7 @@ Authority scope: current local MVP event names, properties, provenance and reten
 Superseded by: later explicit privacy, consent or analytics decision  
 Do not use for: market evidence, third-party analytics approval or production retention compliance  
 Status: LOCAL SERVER-GENERATED CONTRACT IMPLEMENTED; EXTERNAL COLLECTION CLOSED  
-Last updated: 2026-09-10 (future measurement clarification only; current schema unchanged)
+Last updated: 2026-10-03 (retention implementation/evidence reconciliation)
 
 ## Purpose
 
@@ -51,12 +51,12 @@ retention/cleanup before measurement; this document change deploys no tracking.
 
 ## Retention Truth
 
-Each row receives an `expires_at` deletion deadline 90 days after creation. This is a retention marker, not proof of deletion: no scheduled cleanup job currently exists. Production use requires a tested deletion worker, failure monitoring, consent/notice review, lawful export or aggregation rules and a clear operator access path before any retention claim can be made.
+Each row receives an `expires_at` deadline90days after creation. The bounded retention worker and enabled heartbeat alarms were deployed in the September30 release work. Independent legal/security holds and idempotent privacy replay remain part of deletion. October3 adds a locally tested hold/cleanup serialization repair; it is not yet deployed. A deadline, heartbeat or local test does not prove deletion of a specific production row. Consent/notice, lawful aggregation and operator-access boundaries remain. See [retention/recovery](recovery-control-journal.md) and [strict review](code-review-20261002.md).
 
 ## Evidence Boundary
 
-API integration tests verify exact properties, invalid-source degradation to `unknown`, forced RLS, insert-only runtime privileges, the 90-day marker and database rejection of an extra sensitive-looking property. Web and iOS tests verify planner provenance and confirm public rehearsal requests omit it. The current full regression baseline is API 40/40, Web API-client 13/13 and iOS 71/71; those totals include later first-use work while preserving the event-contract coverage described here.
+API integration tests verify exact properties, invalid-source degradation to `unknown`, forced RLS, insert-only runtime privileges, the 90-day marker and database rejection of an extra sensitive-looking property. Web and iOS tests verify planner provenance and confirm public rehearsal requests omit it. The historical local regression baseline was API 40/40, Web API-client 13/13 and iOS 71/71; those totals include later first-use work while preserving the event-contract coverage described here.
 
-After the native-only OIDC configuration regression was added, the current overall API baseline became 41/41; the event contract itself did not change.
+After the native-only OIDC configuration regression was added, the historical overall API baseline became 41/41; the event contract itself did not change.
 
 This is local implementation evidence only. It is not a production analytics pipeline, consent decision, automatic erasure proof, dashboard, market result, user cohort or permission to add a third-party SDK.

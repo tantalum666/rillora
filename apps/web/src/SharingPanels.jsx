@@ -1,5 +1,5 @@
 import { MatterAccountGuides } from "./MatterAccountGuides.jsx";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Check, CheckCircle, Copy, Envelope, FileText, LinkSimple, LockKey, Plus, ShareNetwork, UserCircle, Users, ArrowClockwise } from "@phosphor-icons/react";
 import { ConnectionVisual, InvitationSteps, InviteAction } from "./SharingMotion.jsx";
 import { useConfirmation } from "./ConfirmationDialog.jsx";
@@ -64,8 +64,8 @@ export function ContactSharingPanel({ contact, matters, apiClient, onDirtyChange
   const grantChanged = canonical(grants) !== canonical(active ? connection.grants : []);
   const dirty = grantChanged || Boolean(email.trim());
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
-  useEffect(() => onDirtyChange?.(dirty), [dirty, onDirtyChange]);
-  useEffect(() => onBusyChange?.(loading || busy), [loading, busy, onBusyChange]);
+  useLayoutEffect(() => onDirtyChange?.(dirty), [dirty, onDirtyChange]);
+  useLayoutEffect(() => onBusyChange?.(loading || busy), [loading, busy, onBusyChange]);
   const load = useCallback(async () => {
     const generation = ++loadGeneration.current;
     setLoading(true); setError("");

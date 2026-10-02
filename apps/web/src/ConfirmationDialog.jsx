@@ -21,7 +21,7 @@ export function useConfirmation() {
     resolver.current?.(false);
     resolver.current = null;
   }, []);
-  return { confirm, confirmation: request && <ConfirmationDialog {...request} onAnswer={settle} /> };
+  return { confirm, cancel: () => settle(false), confirmation: request && <ConfirmationDialog {...request} onAnswer={settle} /> };
 }
 
 function ConfirmationDialog({ title, message, confirmLabel = "Discard changes", cancelLabel = "Keep editing", onAnswer }) {

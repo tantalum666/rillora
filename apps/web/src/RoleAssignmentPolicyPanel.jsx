@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { ArrowRight, Check, FileText, Info, Shield, ShieldCheck, Trash, UserCircle, WarningCircle } from "@phosphor-icons/react";
 import { ApiClientError } from "./api.js";
 import { useConfirmation } from "./ConfirmationDialog.jsx";
@@ -39,8 +39,8 @@ export function RoleAssignmentPolicyPanel({
     if (current.has(id) === dirty) return current;
     const next = new Set(current); if (dirty) next.add(id); else next.delete(id); return next;
   }), []);
-  useEffect(() => onDirtyChange?.(dirtyRows.size > 0), [dirtyRows, onDirtyChange]);
-  useEffect(() => onBusyChange?.(busy !== ""), [busy, onBusyChange]);
+  useLayoutEffect(() => onDirtyChange?.(dirtyRows.size > 0), [dirtyRows, onDirtyChange]);
+  useLayoutEffect(() => onBusyChange?.(busy !== ""), [busy, onBusyChange]);
 
   const loadAssignments = useCallback(async () => {
     setLoading(true);
@@ -183,7 +183,7 @@ function AssignmentRow({ assignment, matters, disabled, onSave, onRevoke, onDirt
     || draft.scope !== assignment.scope
     || (draft.scope === "matter_specific" && draft.matterPublicId !== assignment.matter?.publicId);
 
-  useEffect(() => onDirtyChange(assignment.publicId, assignment.editable && changed), [assignment.publicId, assignment.editable, changed, onDirtyChange]);
+  useLayoutEffect(() => onDirtyChange(assignment.publicId, assignment.editable && changed), [assignment.publicId, assignment.editable, changed, onDirtyChange]);
 
   function setRole(value) {
     setDraft((current) => ({

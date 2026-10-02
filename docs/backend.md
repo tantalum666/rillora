@@ -4,8 +4,19 @@ Role: canonical backend implementation and boundary contract
 Authority scope: API, PostgreSQL model, runtime security controls and production-open gates  
 Superseded by: later reviewed backend decision recorded in `docs/decision-log.md`  
 Do not use for: claiming production identity, real recipient delivery, production end-to-end encryption, legal validity or real release  
-Status: RESTRICTED PRODUCTION API7/SCHEMA0091 VERIFIED; STAGING BASELINE RETAINED; REAL SIGN-IN/PAYMENT/JOURNEYS OPEN
-Last updated: 2026-09-30 (Asia/Hong_Kong)
+Status: RESTRICTED PRODUCTION API10/SCHEMA0091 RETAINED; STRICT-REVIEW0092/0093 LOCAL; RELEASE GATES OPEN
+Last updated: 2026-10-03 (Asia/Shanghai)
+
+## October3 strict-review implementation boundary
+
+The latest retained deployment is API10/schema0091 with restricted review identities;
+ordinary customers and live billing stay closed. The new strict-review source adds
+0092/0093 and repairs OIDC retries, parsed return paths, TLS overrides, migration
+transaction/role checks, permission-history replay, retention serialization, file
+limits, recipient export projection and deletion/checkout ordering. Readiness counts
+and synthetic rehearsals never assert a verified emergency plan. API typecheck/build
+and48files/400tests pass locally. These changes are not deployed; do not reuse the
+older deployment assertions below as their validation. [Full report](code-review-20261002.md).
 
 ## September30 production security and lifecycle increment
 
@@ -303,17 +314,21 @@ Current provider result: Stripe Phase 1C remains `82 / 82` at its deployed check
 
 ## Production-Open Gates
 
-Before any real user data enters the system:
+Current deployment has independent encrypted RDS/KMS, private TLS, constrained runtime
+roles, restricted Release clients, monitoring and bounded retention. These are dated
+implementation/deployment facts, not proof of public customer readiness. Remaining
+requirements follow [release-readiness](release-readiness.md) and the gate registry:
 
-1. complete the remaining real-email recovery/link-consumption, Guardian/backup-factor, recovery notification and post-recovery freeze tests; add Auth0 provider-session revocation only under a separately approved plan/capability, and validate native iOS Passkey on a separate test Apple identity plus reviewed domain/associated-domain setup;
-2. before real sensitive data, replace the current synthetic-only Single-AZ/Fargate Spot posture with reviewed recovery and egress controls, add a budget notification recipient, complete regional evidence and an independent deployment/security review; AWS Budgets is delayed monitoring and does not guarantee an automatic stop at the ceiling;
-3. complete DPIA, retention, deletion, backup and incident-response design;
-4. add KMS-backed envelope encryption only for fields whose product purpose justifies storage;
-5. move Auth0/session settings from local Debug callbacks to reviewed Release configuration, then complete the remaining native P0 truth gaps: real invitation delivery/identity-bound acceptance, durable recipient device-key lifecycle and recipient portal; before production analytics, add consent/notice review, retention cleanup, aggregation/export rules and operator access controls;
-6. add deployment TLS, edge limits, CSP for the Web shell, secret management and independent security review;
-7. keep real claims and release closed until the full trust-and-safety gate is independently met.
-
-Production identity issuance, real email delivery, identity-bound recipient enrollment/delivery, encrypted attachments, production encrypted storage, real claims and release are not implied by the current passing tests.
+1. Roll out and verify the strict-review fixes, including schema0092/0093, under the
+   existing closed/restricted access boundary; preserve old applied SQL checksums.
+2. Complete remaining real account, provider reauthentication, recipient revocation
+   and recovery journeys without repeating the verified QQ reset/login.
+3. Complete actual Apple purchase/restore and later provider reconciliation when
+   Owner resumes deferred device work; live merchant facts stay separately deferred.
+4. Keep independent security assessment, market/legal declarations and final store
+   submission separate from local tests or the existing internal TestFlight upload.
+5. Claims/release automation, durable recipient keys and encrypted attachments retain
+   their separate product and trust gates. No inactivity-based disclosure is allowed.
 
 ### 2026-08-11 native-only real-auth launch
 

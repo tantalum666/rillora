@@ -1,3 +1,4 @@
+import { assertDedicatedTestDatabase, dedicatedTestDatabaseUrl } from './dedicated-test-database.js';
 import {randomUUID} from 'node:crypto';
 import {beforeAll,beforeEach,afterAll,describe,it,expect,vi} from 'vitest';
 import {loadConfig} from '../src/config.js';
@@ -8,7 +9,7 @@ import {configureRecoveryPool,type RecoveryControl} from '../src/recovery-journa
 import {replayRecoveryControls} from '../src/recovery-replay.js';
 import {reconcileRecoveryCommerce} from '../src/recovery-commerce.js';
 import type {RecoveryProviderObservation} from '../src/recovery-commerce-readers.js';
-const url='postgresql:///rillora_commerce_recovery_test';
+const url = dedicatedTestDatabaseUrl('postgresql:///rillora_commerce_recovery_test', 'rillora_commerce_recovery_test');
 const pool=createPool(loadConfig({NODE_ENV:'test',DATABASE_URL:url}));
 let owner:string,account:string,subscription:string,generation:string,event:RecoveryControl;
 const journal=new Map<string,RecoveryControl>();
@@ -29,7 +30,8 @@ async function simulateOlderBackup(){
  }finally{c.release();}
 }
 describe.sequential('Current provider reconciliation in an isolated restored database',()=>{
- beforeAll(async()=>{await runMigrations(url);});
+ beforeAll(async()=>{await assertDedicatedTestDatabase(url, 'rillora_commerce_recovery_test');
+    await runMigrations(url);});
  beforeEach(async()=>{
   await pool.query('update app.recovery_policy set enforced=false');await pool.query('truncate app.planners,app.recovery_controls cascade');journal.clear();
   await seedDevelopmentFixture(pool);

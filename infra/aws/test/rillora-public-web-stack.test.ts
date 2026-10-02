@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { mkdtempSync, writeFileSync, readFileSync, rmSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync, symlinkSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { App } from 'aws-cdk-lib';
@@ -10,13 +10,35 @@ import { PUBLIC_CSP, RilloraPublicWebStack } from '../lib/rillora-public-web-sta
 const certificateArn = 'arn:aws:acm:us-east-1:111111111111:certificate/11111111-1111-4111-8111-111111111111';
 function fixture(mutated = false) {
   const directory = mkdtempSync(join(tmpdir(), 'rillora-public-'));
-  const html = '<!doctype html><title>Public fixture</title>';
+  const html = '<!doctype html><title>Public fixture</title><script src="/assets/app-test.js"></script>';
+  mkdirSync(join(directory, 'assets'));
+  writeFileSync(join(directory, 'assets/app-test.js'), 'void 0');
   writeFileSync(join(directory, 'index.html'), html);
-  writeFileSync(join(directory, 'public-build.json'), JSON.stringify({ surface: 'public-information', accountsEnabled: mutated,
+  const files = Object.fromEntries(['index.html', 'assets/app-test.js'].map(name => [name,
+    createHash('sha256').update(readFileSync(join(directory, name))).digest('hex')]));
+  writeFileSync(join(directory, 'public-build.json'), JSON.stringify({ version: 3, files, surface: 'public-information', accountsEnabled: mutated,
     apiEnabled: false, cookiesOrStorage: false, htmlSha256: createHash('sha256').update(html).digest('hex') }));
   return directory;
 }
 describe('Public information hosting', () => {
+  it.each(['changed', 'extra', 'missing', 'symlink', 'unmanifested'])('rejects %s public assets after packaging', mutation => {
+    const assetDirectory = fixture();
+    try {
+      if (mutation === 'changed') writeFileSync(join(assetDirectory, 'assets/app-test.js'), 'window.changed = true');
+      if (mutation === 'extra') writeFileSync(join(assetDirectory, 'assets/unreviewed.js'), 'window.extra = true');
+      if (mutation === 'missing') rmSync(join(assetDirectory, 'assets/app-test.js'));
+      if (mutation === 'symlink') {
+        rmSync(join(assetDirectory, 'assets/app-test.js'));
+        symlinkSync(join(assetDirectory, 'index.html'), join(assetDirectory, 'assets/app-test.js'));
+      }
+      if (mutation === 'unmanifested') {
+        const file = join(assetDirectory, 'public-build.json'), marker = JSON.parse(readFileSync(file, 'utf8'));
+        delete marker.files;
+        writeFileSync(file, JSON.stringify(marker));
+      }
+      expect(() => new RilloraPublicWebStack(new App(), 'ChangedArtifact', { certificateArn, assetDirectory })).toThrow();
+    } finally { rmSync(assetDirectory, { recursive: true }); }
+  });
   it('keeps storage private and has no API/database/customer secret origin', () => {
     const assetDirectory = fixture();
     try {
@@ -43,7 +65,7 @@ describe('Public information hosting', () => {
     try {
       const file = join(assetDirectory, 'public-build.json');
       const marker = JSON.parse(readFileSync(file, 'utf8'));
-      marker.version = 2; marker.cookiesOrStorage = true;
+      marker.version = 3; marker.cookiesOrStorage = true;
       marker.browserStorage = { cookies: false, localStorageKeys: ['rillora.website.appearance.v1'], purpose: 'user-selected-appearance', tracking: false };
       writeFileSync(file, JSON.stringify(marker));
       expect(() => new RilloraPublicWebStack(new App(), 'AppearanceOnly', { certificateArn, assetDirectory })).not.toThrow();

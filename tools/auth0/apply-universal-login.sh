@@ -43,6 +43,12 @@ if auth0 api get "branding/themes/default" \
   2> "$EVIDENCE_DIR/theme-before-error.txt"; then
   HAD_THEME=true
 else
+  # Only a confirmed 404 proves absence. A transient/provider/permission failure
+  # must not choose the create branch and replace an existing default theme.
+  if ! rg -iq '"statusCode"[[:space:]]*:[[:space:]]*404|(^|[^[:digit:]])404[[:space:]:-]+not[[:space:]_-]*found' "$EVIDENCE_DIR/theme-before-error.txt"; then
+    echo "Unable to read the current default theme; no remote write was attempted." >&2
+    exit 1
+  fi
   HAD_THEME=false
   jq -n \
     --arg status "absent" \

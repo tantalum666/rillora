@@ -1,3 +1,4 @@
+import { assertDedicatedTestDatabase, dedicatedTestDatabaseUrl } from './dedicated-test-database.js';
 import { createHash, randomUUID } from 'node:crypto';
 import { beforeAll, afterAll, describe, it, expect } from 'vitest';
 import request from './http-fixture.js';
@@ -9,7 +10,7 @@ import { currentLegalContract } from '../src/legal-contract.js';
 import { verifiedAuthenticationTime, type ExternalIdentity, type AuthorizationIntent } from '../src/identity.js';
 import { expandsSharing } from '../src/recent-authentication.js';
 
-const url='postgresql:///rillora_recent_auth_test';
+const url = dedicatedTestDatabaseUrl('postgresql:///rillora_recent_auth_test', 'rillora_recent_auth_test');
 const config=loadConfig({NODE_ENV:'test',DATABASE_URL:url,REQUIRE_RECENT_AUTHENTICATION:'true',
   CORS_ORIGINS:'http://localhost:4173',WEB_APP_ORIGIN:'http://localhost:4173',
   OIDC_ISSUER_URL:'https://identity.example',OIDC_CLIENT_ID:'fixture-web',
@@ -39,7 +40,8 @@ async function web(f:ReturnType<typeof fixture>) {
   return {cookies, csrf, planner: session.body.plannerPublicId};
 }
 describe.sequential('Recent identity authentication without replaying the sensitive action',()=>{
-  beforeAll(async()=>{await runMigrations(url);pool=createPool(config);});
+  beforeAll(async()=>{await assertDedicatedTestDatabase(url, 'rillora_recent_auth_test');
+    await runMigrations(url);pool=createPool(config);});
   afterAll(async()=>{await pool?.end();});
   it('never substitutes token issue time and rejects invalid/future auth_time',()=>{
     expect(verifiedAuthenticationTime(undefined)).toBeNull();

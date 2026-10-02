@@ -1,4 +1,5 @@
 import { recentAuthenticationRequired } from "./recent-authentication.js";
+import { accountBillingStatus } from "./account-billing.js";
 import { createHash } from "node:crypto";
 import { Router } from "express";
 import { z } from "zod";
@@ -63,9 +64,16 @@ export function createAccountDeletionRouter(pool:DatabasePool,processor:AccountD
   router.post("/delete",recentAuthenticationRequired(config), requireCsrf,asyncHandler(async(request,response)=>{
     const input=z.object({confirmation:z.literal("DELETE"),receipt:z.string().regex(receiptPattern),acknowledgesSavedCopies:z.literal(true),acknowledgesBilling:z.boolean().optional()}).strict().parse(request.body);
     if(request.auth.mode!=="development" && !processor.identityCleanupConfigured)throw new ApiError(409,"account_deletion_unavailable","Account deletion is temporarily unavailable. Your account is unchanged. Please try again later.");
-    const hasBilling=await withPlannerDatabase(pool,request.auth.plannerId,async client=>(await client.query("select exists(select 1 from app.commerce_subscriptions where planner_id=app.current_planner_id()) as present")).rows[0].present);
-    if(hasBilling && input.acknowledgesBilling!==true)throw new ApiError(400,"billing_confirmation_required","Review your subscription billing before deleting this account.");
-    const id=await withPlannerDatabase(pool,request.auth.plannerId,async client=>(await client.query<{id:string}>("select app.request_account_deletion($1) as id",[receiptHash(input.receipt)])).rows[0]!.id);
+    const id=await withPlannerDatabase(pool,request.auth.plannerId,async client=>{
+      // Same order as purchase preparation: serialize new checkouts, then
+      // provider reconciliation/sharing, and retain both locks through deletion.
+      await client.query("select pg_advisory_xact_lock(hashtextextended('checkout:'||app.current_planner_id()::text,0))");
+      await client.query("select pg_advisory_xact_lock(hashtextextended('sharing:'||app.current_planner_id()::text,0))");
+      const billing=await accountBillingStatus(client);
+      if((billing.hasSubscription||billing.hasPendingPurchase) && input.acknowledgesBilling!==true)
+        throw new ApiError(400,"billing_confirmation_required","Review your subscription or pending purchase before deleting this account. Deletion does not cancel provider billing.");
+      return (await client.query<{id:string}>("select app.request_account_deletion($1) as id",[receiptHash(input.receipt)])).rows[0]!.id;
+    });
     // The receipt was generated on the device before this request, so even a
     // dropped response cannot strand the user after their sessions are revoked.
     try{await processor.process(id);}catch{ /* A leased job remains retryable. */ }

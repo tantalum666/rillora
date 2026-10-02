@@ -1,6 +1,6 @@
 # Digital Legacy Ongoing Project Journey
 
-Last updated: 2026-10-02 (Asia/Shanghai)
+Last updated: 2026-10-03 (Asia/Shanghai)
 
 ## 记录范围
 
@@ -3032,3 +3032,66 @@ Owner先确认小型企业资格事实、再当场确认最终声明，申请已
 - **判断变化**：Apple实际详情和Xcode上传均可复用现有登录，无需再次打扰Owner。批量图片上传按完成顺序改变了2/3位置，使用支持的键盘排序纠正。准备签名文件、上传完成、Apple处理完成与实际可安装／购买仍是不同结果。
 - **结果**：8项新产物检查通过，预检不再报告原生文件阻塞；Apple已处理内部build2并明确显示缺少出口合规证明。六图计数／顺序及测试文案保存后回读。修正主清单里的重置未完成、旧修复未部署和没有上传等过期状态；原实现／测试／部署不重跑。
 - **未完成项**：真实本人同意／剩余共享与敏感操作验收、已暂缓真机和Apple交易、真实商户事实／有效费率／最终价格与申报，随后才有外部分发、客户切换和最终上架。加密问卷只读后取消，未冒填；未邀请测试员或操作手机。[本轮合同](../independent-release-closeout-20261002.md)。
+
+
+## 2026-10-02 — 严格全项目代码审查开始，首批可复现问题修复
+
+- **目标**：Owner要求全部代码逐项细审并直接修复问题，取代等待本人条款确认的活动下一步。
+- **尝试**：完整阅读184份Markdown共31665行，建立活动工程文件与阅读行段账本；尝试一次深度安全协调器，再直接检查当前源码并补失败前回归。
+- **判断变化**：插件因当前权限配置不能创建受管只读工作器而未启动，没有安全报告。实际源码检查已发现普通回归漏掉的URL规范化、失败Promise缓存、数据库TLS参数优先级和Stripe二次争议核验问题；测试替身需经过真实解析器而非忽略输入。
+- **阶段结果**：四项本地修复及各自聚焦验证通过，原始失败和一次测试放置错误分别保留。尚未提交、部署或完成全项目覆盖；不拿旧CI／部署结果替代新修复验证。
+- **未完成项**：继续全部剩余代码、SQL最终状态与客户端／工具检查，验证恢复撤销历史和文件大小边界等候选，完成回归、文档漂移与完整Git保存。个人、真机和实际付款门保持原状态。[当前合同](../code-review-20261002.md)。
+
+## 2026-10-02 — Strict review second repair batch; whole-project coverage remains open
+
+- Goal: validate the database and recovery candidates with actual local concurrency and restore evidence.
+- Attempts: separate guarded fixtures exercised nested migration COMMIT, unsafe runtime roles, old paid-copy restore after narrow/expand and remove/regrant, hold/cleanup races, and near-limit file round trips.
+- Judgment change: latest permission state alone is insufficient restore evidence; immutable grant identity and permanently retained field/review bounds are needed. A row lock alone cannot refresh an earlier hold predicate, so hold placement and cleanup share a transaction advisory lock.
+- Result: R05–R09 locally repaired; new migrations0092/0093, constrained role/restore checks, maximum65536-byte ciphertext,2097136-byte backup roundtrip and independent oversize rejection pass. API typecheck passes. Original applied91SQLfiles are unchanged; production has not been modified.
+- Incomplete: remaining active code body review, outstanding candidates, full integration, documentation drift and Git/evidence preservation. These nine fixes do not close the whole review or release.
+
+## 2026-10-02 — Strict review third repair batch and first full API regression
+
+- Goal: align recipient exports, account deletion and test execution with the existing permission/consent/data boundaries.
+- Attempts: reproduced post-cutoff guide leakage, checkout/deletion concurrency, ambient PostgreSQL host resolution, and synthetic checklist completion setting a verified flag.
+- Judgment change: recipient-specific exports must use the same saved projection as recipient reads; pending checkout is billing activity before a subscription row exists. A test database name alone is not connection identity. Simulated preparation never verifies a real emergency plan.
+- Result: R10–R13 implemented. Shared billing-status and readiness helpers remove duplicated logic.48APItestfiles/399tests pass before R13; R13then passes6focused checks. Web/native existing billing confirmation controls now include pending purchases and a fresh server demand, with client verification still pending.
+- Incomplete: full Web/iOS/infra/tools/config source review, client validation, final integration and Git/evidence closeout. Production, real data, price, UIlayout and FanPass remain unchanged. No additional Owner product decision was needed.
+
+## 2026-10-03 — Browser race repairs and isolated native billing validation
+
+- Goal: exercise the real client paths around unsaved drafts, private files, account changes and deletion acknowledgement.
+- Attempts: reproduce fast/repeated browser Back, delayed file reads and private Blob completion; add a pending synthetic order after each client's deletion page is already open. Inspect the original Swift models and purchase lifecycle while an isolated simulator runs the changed app.
+- Judgment change: a guard notified by a passive React effect can miss immediate navigation. A latest-only local file choice also needs explicit invalidation on Close. Unsigned simulator Keychain failure was a test-build limitation; local ad-hoc signing restored the intended path without weakening production storage.
+- Result: R14–R17 repaired with13navigation checks across two viewports,2real file-input race checks and27API-client/saved-copy checks. Web internal build/115tests, public build, legal fixture/7tests and native AccountDataTests/3tests pass. Both rendered deletion flows reject the late pending purchase and reveal an unchecked billing acknowledgement; account retention is read back and synthetic orders removed. R09also preserves the exact2MiB downloaded backup. R18's native account-switch purchase-state race is reproduced and fixed;31related native commerce tests pass.
+- Incomplete: remaining native/infra/tools/config source coverage, final integration, focused-contract/current-document reconciliation and Git preservation. No new product decision, deployment, real login, payment, physical-device action or FanPass operation was required.
+
+## 2026-10-03 — Native mutation ordering and acknowledgement recovery
+
+- Goal: prevent duplicate editor operations and preserve server-confirmed outcomes during network failure.
+- Attempts: hold the first contact/matter/role request while repeating save or requesting reload/archive/revoke; separately fail a role-list read after the mutation acknowledgement. Trace the invitation email retry through the actual server route.
+- Judgment change: disabled controls are not a sufficient serialization boundary for asynchronous editor methods. A later read failure does not undo an acknowledged write. The email retry candidate is rejected because the existing accept endpoint already refreshes provider proof before acceptance.
+- Result: R19guards editor operations, and R20preserves confirmed role state with a bounded refresh retry.26editor tests and the earlier31native commerce checks pass. The local UI runner now validates its loopback-only endpoint before mutation; its URL guard passes. Final API typecheck/build and48files/400tests pass, including the readiness correction omitted from the first full run.
+- Incomplete: complete native unit run, remaining infrastructure/tool/config/test body review, source/contract reconciliation and Git preservation. No additional Owner product decision or live environment change is required.
+
+## 2026-10-03 — Full source coverage and strict-review closeout
+
+- Goal: inspect the entire active project carefully and directly repair confirmed
+  defects while preserving the selected UI, pricing, real accounts and FanPass.
+- Attempts: completed686source bodies/91721lines after184Markdown startup files;
+  reproduced failures in local PostgreSQL/HTTP, actual browser interactions, isolated
+  native tests and intercepted provider/release tooling. Validated six dependency
+  locks and preserved every applied migration checksum.
+- Judgment changes: old green tests missed race/restore/operational branches; these
+  needed negative-before proof. A suspected native email retry was rejected after
+  tracing the existing server refresh. CDK latest still bundles the advisory version,
+  so a blind library upgrade would not resolve it. Optional security scan could not
+  start and contributes no scan evidence.
+- Result:28repairs locally verified; final API400, Web115/7, native190/1existing skip,
+  infra53, prototype10/4 and tool/operations regressions recorded with overlap limits.
+  Task-only fixture servers stopped, simulator shut down, global profile restored.
+  QA/build originals are encrypted in additive raw-work-012; readable references,
+  current contracts and source are prepared for Git with exact final receipts.
+- Unfinished: remote/CI closeout is recorded separately as it completes; new repairs
+  and0092/0093 are not deployed. CDK upstream patch, real transactions, deferred
+  personal/device/merchant work and final store gates remain distinct.

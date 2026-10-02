@@ -54,7 +54,12 @@ enum AccountDeletionReferenceStore {
 
 struct AccountDataProfile: Decodable, Sendable {
     struct Account: Decodable, Sendable { let publicId: String; let displayName: String }
-    struct Billing: Decodable, Sendable { let hasSubscription: Bool; let providers: [String] }
+    struct Billing: Decodable, Sendable {
+        let hasSubscription: Bool
+        let providers: [String]
+        let hasPendingPurchase: Bool?
+        var requiresAcknowledgement: Bool { hasSubscription || hasPendingPurchase == true }
+    }
     let account: Account
     let billing: Billing?
 }

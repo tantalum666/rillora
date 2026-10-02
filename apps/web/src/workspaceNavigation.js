@@ -43,13 +43,13 @@ export function drawerRoute(drawer) {
     contactId: drawer?.contactId ?? null, providerKey: drawer?.providerKey ?? null };
 }
 
-export function useWorkspaceHistory({ state, enabled, restore, canLeave }) {
-  const callbacks = useRef({ restore, canLeave }); callbacks.current = { restore, canLeave };
+export function useWorkspaceHistory({ state, enabled, restore, canLeave, cancelLeave }) {
+  const callbacks = useRef({ restore, canLeave, cancelLeave }); callbacks.current = { restore, canLeave, cancelLeave };
   const current = useRef(null);
-  const skipping = useRef(false);
-  const pending = useRef(false);
+  const rollbackIndex = useRef(null);
+  const pending = useRef(null);
   useEffect(() => {
-    if (!enabled) { current.current = null; return; }
+    if (!enabled) { current.current = null; pending.current = null; rollbackIndex.current = null; return; }
     const route = readWorkspaceRoute(window.location.href);
     const entry = window.history.state?.rillora ?? { index: 0, scroll: 0, panelScroll: 0 };
     current.current = { ...entry, route };
@@ -58,45 +58,66 @@ export function useWorkspaceHistory({ state, enabled, restore, canLeave }) {
     const oldRestoration = window.history.scrollRestoration;
     window.history.scrollRestoration = "manual";
     const onScroll = () => {
-      if (!current.current || pending.current) return;
+      if (!current.current || pending.current || rollbackIndex.current !== null) return;
       current.current.scroll = window.scrollY;
       window.history.replaceState({ rillora: { index: current.current.index, scroll: window.scrollY, panelScroll: current.current.panelScroll ?? 0 } }, "");
     };
     const onPanelScroll = event => {
-      if (!current.current || pending.current || !event.target.matches?.("dialog.drawer")) return;
+      if (!current.current || pending.current || rollbackIndex.current !== null || !event.target.matches?.("dialog.drawer")) return;
       current.current.panelScroll = event.target.scrollTop;
       window.history.replaceState({ rillora: { index: current.current.index, scroll: current.current.scroll, panelScroll: current.current.panelScroll } }, "");
     };
     const onPop = async (event) => {
-      if (skipping.current) { skipping.current = false; return; }
       const previous = current.current;
       const next = event.state?.rillora;
-      if (!next || !previous || pending.current) return;
-      pending.current = true;
-      const route = readWorkspaceRoute(window.location.href);
-      const allowed = await callbacks.current.canLeave(route);
-      pending.current = false;
-      if (!allowed) {
-        skipping.current = true;
-        window.history.go(previous.index - next.index);
+      if (!next || !previous) return;
+      if (rollbackIndex.current !== null) {
+        if (next.index === rollbackIndex.current) rollbackIndex.current = null;
+        else window.history.go(rollbackIndex.current - next.index);
         return;
       }
-      current.current = { ...next, route };
-      callbacks.current.restore(route);
+      const target = { ...next, route: readWorkspaceRoute(window.location.href) };
+      // The browser can move again while the discard dialog is open. Retain
+      // its actual latest entry so cancel/accept uses the correct history delta.
+      if (pending.current) {
+        pending.current.target = target;
+        // Returning to the original entry withdraws the navigation request;
+        // never leave a stale discard decision capable of clearing its draft.
+        if (target.index === previous.index) callbacks.current.cancelLeave?.();
+        return;
+      }
+      const traversal = { target };
+      pending.current = traversal;
+      let allowed = false;
+      try { allowed = await callbacks.current.canLeave(target.route); } catch { /* Preserve the draft if the guard fails. */ }
+      if (pending.current !== traversal) return;
+      pending.current = null;
+      const destination = traversal.target;
+      if (!allowed) {
+        if (previous.index !== destination.index) {
+          rollbackIndex.current = previous.index;
+          window.history.go(previous.index - destination.index);
+        }
+        return;
+      }
+      const applied = { ...destination, hydrated: true };
+      current.current = applied;
+      callbacks.current.restore(destination.route);
       requestAnimationFrame(() => requestAnimationFrame(() => {
-        window.scrollTo(0, next.scroll ?? 0);
+        if (current.current !== applied) return;
+        window.scrollTo(0, destination.scroll ?? 0);
         const panel = document.querySelector("dialog.drawer");
-        if (panel) panel.scrollTop = next.panelScroll ?? 0;
+        if (panel) panel.scrollTop = destination.panelScroll ?? 0;
       }));
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("popstate", onPop);
     document.addEventListener("scroll", onPanelScroll, true);
-    return () => { window.history.scrollRestoration = oldRestoration; window.removeEventListener("scroll", onScroll); window.removeEventListener("popstate", onPop); document.removeEventListener("scroll", onPanelScroll, true); };
+    return () => { pending.current = null; rollbackIndex.current = null; window.history.scrollRestoration = oldRestoration; window.removeEventListener("scroll", onScroll); window.removeEventListener("popstate", onPop); document.removeEventListener("scroll", onPanelScroll, true); };
   }, [enabled]);
   const url = workspaceURL(state);
   useEffect(() => {
-    if (!enabled || !current.current || pending.current || skipping.current) return;
+    if (!enabled || !current.current || pending.current || rollbackIndex.current !== null) return;
     if (workspaceURL(current.current.route) === url) return;
     // Initial hydration is complete only once the URL's requested task has been restored.
     if (!current.current.hydrated) { current.current.hydrated = true; return; }

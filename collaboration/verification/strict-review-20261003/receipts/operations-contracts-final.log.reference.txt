@@ -1,0 +1,178 @@
+TAP version 13
+# Subtest: hosted entry starts unchecked and creates no receipt before submission
+ok 1 - hosted entry starts unchecked and creates no receipt before submission
+  ---
+  duration_ms: 1.008667
+  type: 'test'
+  ...
+# Subtest: a checked, current form produces the exact API contract
+ok 2 - a checked, current form produces the exact API contract
+  ---
+  duration_ms: 4.023792
+  type: 'test'
+  ...
+# Subtest: unchecked, missing and coerced values cannot produce a receipt
+ok 3 - unchecked, missing and coerced values cannot produce a receipt
+  ---
+  duration_ms: 0.135917
+  type: 'test'
+  ...
+# Subtest: a different form or stale server-side contract is rejected
+ok 4 - a different form or stale server-side contract is rejected
+  ---
+  duration_ms: 0.48375
+  type: 'test'
+  ...
+# Subtest: other applications are not changed by this iOS migration
+ok 5 - other applications are not changed by this iOS migration
+  ---
+  duration_ms: 0.078292
+  type: 'test'
+  ...
+# Subtest: existing iOS versions are not given an extra hosted consent step
+ok 6 - existing iOS versions are not given an extra hosted consent step
+  ---
+  duration_ms: 0.051667
+  type: 'test'
+  ...
+# Subtest: form contains only one required legal field and the ordinary continue action
+ok 7 - form contains only one required legal field and the ordinary continue action
+  ---
+  duration_ms: 0.13075
+  type: 'test'
+  ...
+# Subtest: preserves other clients and denies unknown identities and expired review access
+ok 8 - preserves other clients and denies unknown identities and expired review access
+  ---
+  duration_ms: 34.555792
+  type: 'test'
+  ...
+# Subtest: native consent starts unchecked and only exact affirmative continuation sets a receipt
+ok 9 - native consent starts unchecked and only exact affirmative continuation sets a receipt
+  ---
+  duration_ms: 2.731333
+  type: 'test'
+  ...
+# Subtest: Web keeps the existing API clickwrap and receives no invented hosted receipt
+ok 10 - Web keeps the existing API clickwrap and receives no invented hosted receipt
+  ---
+  duration_ms: 1.498083
+  type: 'test'
+  ...
+# Subtest: both named review participants can authenticate while a third identity stays denied
+ok 11 - both named review participants can authenticate while a third identity stays denied
+  ---
+  duration_ms: 1.501041
+  type: 'test'
+  ...
+# Subtest: malformed, duplicate or oversized review lists fail closed
+ok 12 - malformed, duplicate or oversized review lists fail closed
+  ---
+  duration_ms: 3.610917
+  type: 'test'
+  ...
+# Subtest: requires real string metric identifiers and a header object
+ok 13 - requires real string metric identifiers and a header object
+  ---
+  duration_ms: 6.273375
+  type: 'test'
+  ...
+# Subtest: closed and restricted-review denial are allowed but success and unplanned errors still alarm
+ok 14 - closed and restricted-review denial are allowed but success and unplanned errors still alarm
+  ---
+  duration_ms: 1.985542
+  type: 'test'
+  ...
+# Subtest: rejects private, mapped, loopback and reserved DNS addresses
+ok 15 - rejects private, mapped, loopback and reserved DNS addresses
+  ---
+  duration_ms: 0.91025
+  type: 'test'
+  ...
+# Subtest: blocks off-registry origins, credentials, queries, fragments and IP targets
+ok 16 - blocks off-registry origins, credentials, queries, fragments and IP targets
+  ---
+  duration_ms: 0.46
+  type: 'test'
+  ...
+# Subtest: keeps expanded production monitoring bounded and rejects duplicate identifiers
+ok 17 - keeps expanded production monitoring bounded and rejects duplicate identifiers
+  ---
+  duration_ms: 0.466291
+  type: 'test'
+  ...
+# Subtest: successful denial and TLS check never retain response data
+ok 18 - successful denial and TLS check never retain response data
+  ---
+  duration_ms: 0.299792
+  type: 'test'
+  ...
+# Subtest: unexpected success on a private endpoint is a failure, without logging contents
+ok 19 - unexpected success on a private endpoint is a failure, without logging contents
+  ---
+  duration_ms: 1.819084
+  type: 'test'
+  ...
+# Subtest: network failure does not leak arbitrary error messages or codes
+ok 20 - network failure does not leak arbitrary error messages or codes
+  ---
+  duration_ms: 0.43925
+  type: 'test'
+  ...
+# Subtest: missing certificate evidence is unknown, not a healthy default
+ok 21 - missing certificate evidence is unknown, not a healthy default
+  ---
+  duration_ms: 0.524834
+  type: 'test'
+  ...
+# Subtest: never deletes before the pinned90day deadline or from a dry run
+ok 22 - never deletes before the pinned90day deadline or from a dry run
+  ---
+  duration_ms: 1.603916
+  type: 'test'
+  ...
+# Subtest: preserves the milliseconds in real AWS SDK Date values when validating the pinned snapshot
+ok 23 - preserves the milliseconds in real AWS SDK Date values when validating the pinned snapshot
+  ---
+  duration_ms: 0.509667
+  type: 'test'
+  ...
+# Subtest: deletes only the exact due managed snapshot with a healthy current recovery window
+ok 24 - deletes only the exact due managed snapshot with a healthy current recovery window
+  ---
+  duration_ms: 0.72425
+  type: 'test'
+  ...
+# Subtest: preserves holds, changed resources and a missing or stale current backup
+ok 25 - preserves holds, changed resources and a missing or stale current backup
+  ---
+  duration_ms: 0.641625
+  type: 'test'
+  ...
+# Subtest: rechecks a newly placed hold immediately before deletion
+ok 26 - rechecks a newly placed hold immediately before deletion
+  ---
+  duration_ms: 0.35575
+  type: 'test'
+  ...
+# Subtest: treats misspelled or unknown hold values as a hold
+ok 27 - treats misspelled or unknown hold values as a hold
+  ---
+  duration_ms: 0.236208
+  type: 'test'
+  ...
+# Subtest: rejects a foreign account, unknown resource or shortened retention policy
+ok 28 - rejects a foreign account, unknown resource or shortened retention policy
+  ---
+  duration_ms: 0.438291
+  type: 'test'
+  ...
+1..28
+# tests 28
+# suites 0
+# pass 28
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 199.841708

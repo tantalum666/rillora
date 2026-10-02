@@ -97,6 +97,10 @@ def main():
     if not args.apply:
         print(json.dumps({'preview': str(args.output), 'applied': False}))
         return
+    existing_production = [existing['client_id'] for spec in CLIENTS.values()
+                           if (existing := exact(clients, spec['name']))]
+    if any(identifier in bindings for identifier in existing_production for bindings in before.values()):
+        raise RuntimeError('Existing production client has active connection bindings; preparation cannot disable an activated client')
     production = []
     for kind, spec in CLIENTS.items():
         desired = {**spec, **COMMON}
@@ -127,6 +131,8 @@ def main():
         # these prepared IDs, preserving every pre-existing connection/client pair.
         for connection in connections:
             if identifier in connection_clients(connection['id']):
+                if existing:
+                    raise RuntimeError('Existing production client acquired active connection bindings; preparation stopped')
                 api('patch', f"connections/{connection['id']}/clients",
                     [{'client_id': identifier, 'status': False}])
         report['clients'][kind] = current

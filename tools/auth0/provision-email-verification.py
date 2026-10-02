@@ -20,7 +20,9 @@ def api(method, path, body=None):
 
 
 def main():
-    clients = api('get', 'clients?fields=client_id,name,app_type&include_fields=true')
+    clients = api('get', 'clients?fields=client_id,name,app_type&include_fields=true&per_page=100')
+    if not isinstance(clients, list) or len(clients) >= 100:
+        raise RuntimeError('Incomplete client inventory; stop before creating service identities')
     matches = [item for item in clients if item['name'] == NAME]
     if len(matches) > 1:
         raise RuntimeError('Multiple matching clients; do not create another.')
@@ -31,6 +33,8 @@ def main():
         if client['client_id'] != matches[0]['client_id']:
             raise RuntimeError('Protected credential does not match the existing client.')
     else:
+        if TARGET.exists():
+            raise RuntimeError('Protected credential exists without a matching remote client; do not create another')
         TARGET.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
         os.chmod(TARGET.parent, 0o700)
         client = api('post', 'clients', {'name': NAME, 'app_type': 'non_interactive',

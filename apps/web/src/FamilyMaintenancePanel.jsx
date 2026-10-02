@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ArrowClockwise, ArrowLeft, ArrowRight, CalendarCheck, Check, CheckCircle, Clock, FileText, PencilSimple, Users, X, ShareNetwork, Tray } from "@phosphor-icons/react";
 import { SurfaceIcon } from "./SurfaceMotion.jsx";
 import { isReviewResolved, reviewReasons, reviewTaskLabel, reviewShareUrl } from "./familyMaintenance.js";
@@ -17,7 +17,9 @@ const taskIcon = task => isReviewResolved(task) ? CheckCircle : task.state === '
 export function FamilyMaintenancePanel({
   apiClient,
   onChanged,
-  onManageSharing
+  onManageSharing,
+  onDirtyChange,
+  onBusyChange
 }) {
   const [data, setData] = useState(null),
     [error, setError] = useState(''),
@@ -138,7 +140,7 @@ export function FamilyMaintenancePanel({
           task,
           owner: false
         })} /></details>}</>}
-    {dialog && <ReviewDialog key={dialog.task?.publicId ?? dialog.type} model={dialog} data={data} apiClient={apiClient} onClose={close} onSaved={saved} />}</div>;
+    {dialog && <ReviewDialog key={dialog.task?.publicId ?? dialog.type} model={dialog} data={data} apiClient={apiClient} onClose={close} onSaved={saved} onDirtyChange={onDirtyChange} onBusyChange={onBusyChange} />}</div>;
 }
 function TaskList({
   tasks,
@@ -161,13 +163,23 @@ function ReviewDialog({
   data,
   apiClient,
   onClose,
-  onSaved
+  onSaved,
+  onDirtyChange,
+  onBusyChange
 }) {
   const ref = useRef(null);
   const [busy, setBusy] = useState(false),
     [error, setError] = useState(''),
     [leaving, setLeaving] = useState(false),
     [dirty, setDirty] = useState(false);
+  // Publish the committed form state before a native browser Back event can
+  // reach the parent's guard; a passive effect leaves a short data-loss window.
+  useLayoutEffect(() => { onDirtyChange?.(dirty); }, [dirty, onDirtyChange]);
+  useLayoutEffect(() => { onBusyChange?.(busy); }, [busy, onBusyChange]);
+  useLayoutEffect(() => () => {
+    onDirtyChange?.(false);
+    onBusyChange?.(false);
+  }, [onDirtyChange, onBusyChange]);
   const [selected, setSelected] = useState([]),
     [dueDate, setDueDate] = useState(inputDate(Date.now() + 7 * 86400000));
   const [requestKey] = useState(() => crypto.randomUUID());

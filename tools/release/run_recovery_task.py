@@ -4,8 +4,51 @@ import argparse
 from datetime import datetime,timezone
 import json
 from pathlib import Path
+import re
 import uuid
-from recovery_drill import Aws,ACCOUNT,validate_state,validate_target,require,save
+from recovery_drill import Aws,ACCOUNT,validate_state,validate_target,validate_snapshot,require,save
+
+
+def recorded_time(value, label):
+    require(isinstance(value, str), label + ' is missing or invalid')
+    try:
+        result = datetime.fromisoformat(value)
+    except ValueError:
+        raise ValueError(label + ' is missing or invalid') from None
+    require(result.tzinfo is not None, label + ' must include a timezone')
+    return result
+
+
+def ambiguous_request(prior):
+    request = prior.get('request')
+    require(isinstance(request, dict), 'Missing saved request; investigate the original invocation')
+    at = recorded_time(prior.get('requestedAt'), 'Recorded invocation time')
+    # ECS expires RunTask tokens at the earlier of 24h or task lifetime + 1h.
+    # With no task ARN, use a conservative window from the original request.
+    # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_Idempotency.html
+    require(0 <= (datetime.now(timezone.utc) - at).total_seconds() < 55 * 60,
+            'Uncertain invocation is outside the safe idempotency window; investigate it before another run')
+    token = prior.get('clientToken')
+    require(isinstance(token, str) and re.fullmatch(r'[a-f0-9]{32}', token) is not None
+            and request.get('clientToken') == token, 'The saved request lost its exact client token')
+    return request
+
+
+def original_freeze(request):
+    try:
+        containers = request['overrides']['containerOverrides']
+        require(isinstance(containers, list) and len(containers) == 1, 'Invalid saved request containers')
+        environment = containers[0]['environment']
+        require(isinstance(environment, list), 'Invalid saved request environment')
+        values = [item.get('value') for item in environment if isinstance(item, dict)
+                  and item.get('name') == 'RECOVERY_SOURCE_FROZEN_AT']
+        require(len(values) == 1, 'The saved request lacks exact source-freeze evidence')
+    except (KeyError, TypeError):
+        raise ValueError('Invalid saved request source-freeze evidence') from None
+    frozen = recorded_time(values[0], 'Recorded source-freeze time')
+    require(0 <= (datetime.now(timezone.utc) - frozen).total_seconds() < 8 * 60,
+            'The saved request source-freeze evidence expired; investigate before another run')
+    return values[0]
 
 
 def main():
@@ -48,25 +91,23 @@ def main():
         save(args.state,state)
         print(json.dumps(report))
         return
+    pending_request = None
     if args.operation in tasks:
         prior=tasks[args.operation]
         if 'arn' not in prior:
-            require('request' in prior,'Missing exact request; manual investigation is required')
-            response=aws.call('ecs','run-task',prior['request'])
-            require(not response.get('failures') and len(response.get('tasks',[]))==1,'Saved request did not resolve to one task')
-            prior['arn']=response['tasks'][0]['taskArn'];save(args.state,state)
-            print(json.dumps({'phase':args.operation,'taskArn':prior['arn'],'reconciledSameRequest':True}))
-            return
-        require(args.retry_failed,'A task is already recorded; check it before retrying')
-        prior_task=aws.call('ecs','describe-tasks',{'cluster':out['ClusterName'],'tasks':[prior['arn']]})['tasks'][0]
-        require(prior_task['lastStatus']=='STOPPED' and prior_task['containers'][0].get('exitCode')!=0,'Prior task is running or succeeded; duplicate refused')
-        state.setdefault('previousMaintenanceAttempts',[]).append({'phase':args.operation,**prior})
+            pending_request = ambiguous_request(prior)
+        else:
+            require(args.retry_failed,'A task is already recorded; check it before retrying')
+            prior_task=aws.call('ecs','describe-tasks',{'cluster':out['ClusterName'],'tasks':[prior['arn']]})['tasks'][0]
+            require(prior_task['lastStatus']=='STOPPED' and prior_task['containers'][0].get('exitCode')!=0,'Prior task is running or succeeded; duplicate refused')
+            state.setdefault('previousMaintenanceAttempts',[]).append({'phase':args.operation,**prior})
     environment=[{'name':'RECOVERY_RUN','value':state['run']}]
     recovery=args.operation in ['restore','reconcile-commerce','isolation']
     if args.operation in ['restore','reconcile-commerce']:
         target=aws.database(state['target']);require(target is not None,'Recovery target is missing');validate_target(target,state)
         require(target['DBInstanceStatus']=='available','Recovery target is not available')
         snapshot=aws.snapshot(state['snapshot']);require(snapshot is not None and snapshot['Status']=='available','Snapshot is unavailable')
+        validate_snapshot(snapshot, state)
         environment += [{'name':'DATABASE_HOST','value':target['Endpoint']['Address']},
                         {'name':'RECOVERY_SNAPSHOT_TIME','value':snapshot['SnapshotCreateTime']}]
     if args.operation=='reconcile-commerce':
@@ -77,10 +118,11 @@ def main():
         source=source['services'][0]
         require(source['desiredCount']==0 and source['runningCount']==0 and source['pendingCount']==0,
                 'Stop and verify source writers before provider recovery; this tool never stops them automatically')
-        environment.append({'name':'RECOVERY_SOURCE_FROZEN_AT','value':datetime.now(timezone.utc).isoformat()})
+        environment.append({'name':'RECOVERY_SOURCE_FROZEN_AT','value':original_freeze(pending_request) if pending_request is not None else datetime.now(timezone.utc).isoformat()})
     if args.operation=='after-snapshot':
         snapshot=aws.snapshot(state['snapshot'])
         require(snapshot is not None and snapshot['Status']=='available','Do not apply later changes before the baseline snapshot is available')
+        validate_snapshot(snapshot, state)
     command=['node','dist/recovery-admin.js',args.operation]
     if args.operation=='reconcile-commerce':command=['node','dist/recovery-commerce-admin.js']
     if args.operation=='isolation':
@@ -88,7 +130,7 @@ def main():
         command=['node','--input-type=module','-e',Path(__file__).with_name('probe_recovery_isolation.mjs').read_text()]
     if args.operation=='migrate':
         command=['/bin/sh','-c','node dist/migrate.js && node dist/bootstrap-runtime.js && node dist/migrate-private-content.js --enforce']
-    token=uuid.uuid4().hex
+    token=pending_request['clientToken'] if pending_request is not None else uuid.uuid4().hex
     # Save the idempotency token before the request; an uncertain invocation is
     # investigated by this token, never retried as a second unrecorded mutation.
     payload={'cluster':out['ClusterName'],
@@ -97,6 +139,13 @@ def main():
         'networkConfiguration':{'awsvpcConfiguration':{'subnets':out['MaintenanceSubnetIds'].split(','),
             'securityGroups':[out['RecoverySecurityGroupId' if recovery else 'MigrationSecurityGroupId']], 'assignPublicIp':'ENABLED'}},
         'overrides':{'containerOverrides':[{'name':'Maintenance','command':command,'environment':environment}]}}
+    if pending_request is not None:
+        require(pending_request == payload, 'The saved request no longer matches the current scoped operation; investigate it')
+        response=aws.call('ecs','run-task',pending_request)
+        require(not response.get('failures') and len(response.get('tasks',[]))==1,'Saved request did not resolve to one task')
+        prior['arn']=response['tasks'][0]['taskArn'];save(args.state,state)
+        print(json.dumps({'phase':args.operation,'taskArn':prior['arn'],'reconciledSameRequest':True}))
+        return
     tasks[args.operation]={'clientToken':token,'requestedAt':datetime.now(timezone.utc).isoformat(),'request':payload}
     save(args.state,state)
     response=aws.call('ecs','run-task',payload)

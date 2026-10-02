@@ -1,0 +1,34 @@
+
+ RUN  v4.1.11 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/production-commerce.integration.test.ts (13 tests | 1 failed) 510ms
+     × keeps the dispute reference for the fresh locked read and reconciles dispute recovery 5ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/production-commerce.integration.test.ts > production commerce ledger with a synthetic provider only > keeps the dispute reference for the fresh locked read and reconciles dispute recovery
+AssertionError: promise rejected "Error: A Dispute reference is required" instead of resolving
+ ❯ tests/production-commerce.integration.test.ts:270:64
+    268|     const subscription = async () => (await pool.query("select state,f…
+    269|
+    270|     await expect(receive('evt_dispute_resolved_during_lookup')).resolv…
+       |                                                                ^
+    271|     expect(retrieveDispute).toHaveBeenCalledTimes(2);
+    272|     expect(await subscription()).toMatchObject({ state: 'active', fina…
+
+Caused by: Error: A Dispute reference is required
+ ❯ resolveStripeFinancialSignal src/stripe-financial-resolution.ts:21:20
+ ❯ Object.resolveFinancialSignal tests/production-commerce.integration.test.ts:264:41
+ ❯ src/stripe-commerce-executor.ts:315:47
+ ❯ inRoleTransaction src/db.ts:78:20
+ ❯ StripeCommerceExecutor.processVerifiedSignal src/stripe-commerce-executor.ts:307:22
+ ❯ tests/production-commerce.integration.test.ts:270:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 12 passed (13)
+   Start at  21:47:28
+   Duration  1.45s (transform 321ms, setup 40ms, import 774ms, tests 510ms, environment 0ms)
+

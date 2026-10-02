@@ -5,7 +5,21 @@ Authority scope: included fields, disclosure boundary, cryptographic format, fil
 Superseded by: a later reviewed decision recorded in `docs/decision-log.md`  
 Do not use for: claiming legal authority, real recipient identity/acceptance/delivery, post-download revocation, production release or universal legal validity  
 Status: AUDIENCE-BOUND GUIDES AND BACKUP READERS DEPLOYED/VALIDATED IN SYNTHETIC STAGING; REAL DELIVERY CLOSED
-Last updated: 2026-09-30 (Asia/Hong_Kong)
+Last updated: 2026-10-03 (Asia/Shanghai)
+
+## October3 strict-review implementation boundary
+
+Recipient guides use the same live/saved/paused projection as recipient reads,
+including permanent redaction and historical encrypted references. Free personal
+exports retain current owner content. Maximum65536-byte encrypted ciphertext fits
+the authenticated finalize transport; backup artifacts stay bounded at2MiB independent
+of their request envelope. Oversized requests return413. Web downloads use compact
+JSON so a valid artifact remains readable under that same byte limit.
+
+Late file reads/unlocks cannot replace a newer selection or resurrect a closed reader;
+private printable responses are rejected after an observed account change. Real Blob
+round trips, HTTP/DB tests and actual React file-input races pass locally. These
+repairs do not create new delivery or recipient-key capabilities. [Report](code-review-20261002.md).
 
 ## September30 recent authentication before producing a copy
 

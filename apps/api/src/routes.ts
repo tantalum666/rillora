@@ -1,3 +1,4 @@
+import { loadReadiness } from "./readiness.js";
 import { recentAuthenticationRequired } from "./recent-authentication.js";
 import { getPlan, mapPlan, mapMatter, mapMatterInput, mapContact, selectTrustedContacts, type PlanRow, type MatterRow, type ContactRow } from "./planner-records.js";
 import { fetchInitialOverview } from "./overview.js";
@@ -763,49 +764,8 @@ export function createApiRouter(pool: DatabasePool, config: AppConfig): Router {
   router.get(
     "/readiness",
     asyncHandler(async (request, response) => {
-      const readiness = await withPlannerDatabase(pool, request.auth.plannerId, async (client) => {
-        const result = await client.query<{
-          total_matters: number;
-          ready_matters: number;
-          assigned_outcomes: number;
-          confirmed_contacts: number;
-          completed_official_checks: number;
-          completed_simulations: number;
-        }>(
-          `select
-             count(*) filter (where m.archived_at is null)::int as total_matters,
-             count(*) filter (where m.archived_at is null and m.status = 'ready')::int as ready_matters,
-             count(*) filter (
-               where m.archived_at is null and m.desired_outcome <> 'undecided'
-             )::int as assigned_outcomes,
-             (select count(*)::int from app.people p
-              where p.planner_id = app.current_planner_id() and p.status = 'confirmed') as confirmed_contacts,
-             (select count(*)::int from app.official_setup_checks o
-              where o.planner_id = app.current_planner_id() and o.completed) as completed_official_checks,
-             (select count(*)::int from app.claim_simulations s
-              where s.planner_id = app.current_planner_id()) as completed_simulations
-           from app.matter_items m
-           where m.planner_id = app.current_planner_id()`,
-        );
-        return result.rows[0]!;
-      });
-      const activated =
-        readiness.total_matters >= 5 &&
-        readiness.assigned_outcomes >= 5 &&
-        readiness.confirmed_contacts >= 1 &&
-        readiness.completed_simulations >= 1;
-      response.json({
-        readiness: {
-          totalMatters: readiness.total_matters,
-          readyMatters: readiness.ready_matters,
-          assignedOutcomes: readiness.assigned_outcomes,
-          confirmedContacts: readiness.confirmed_contacts,
-          completedOfficialChecks: readiness.completed_official_checks,
-          completedSimulations: readiness.completed_simulations,
-          verifiedEmergencyPlan: activated,
-          confirmationEvidenceMayBeSimulated: true,
-        },
-      });
+      const readiness = await withPlannerDatabase(pool, request.auth.plannerId, loadReadiness);
+      response.json({ readiness });
     }),
   );
 
@@ -1507,26 +1467,43 @@ export async function collectStartHerePackage(client: PoolClient, connectionPubl
 
   const plan = await getPlan(client);
   let audience: NonNullable<StartHerePackageSnapshot["audience"]> = { kind: "owner", connectionPublicId: null, name: null, version: null };
+  let recipientMode: string | null = null;
   if (connectionPublicId) {
-    const selected = await client.query<{ display_name: string; version: number }>(
-      `select p.display_name, c.version from app.sharing_connections c
+    const selected = await client.query<{ display_name: string; version: number; access: { mode: string } }>(
+      `select p.display_name, c.version, app.sharing_connection_access(c.public_id) as access from app.sharing_connections c
        join app.people p on p.id = c.person_id and p.planner_id = c.planner_id
        where c.planner_id = app.current_planner_id() and c.public_id = $1
          and c.status = 'accepted' and p.status not in ('revoked', 'archived') and p.archived_at is null
        for share of c, p`, [connectionPublicId]);
     if (!selected.rows[0]) throw new ApiError(409, "export_audience_changed", "This person is no longer connected. Choose a recipient and review again.");
     audience = { kind: "recipient", connectionPublicId, name: selected.rows[0].display_name, version: selected.rows[0].version };
+    recipientMode = selected.rows[0].access.mode;
   }
-  const matters = await client.query<{
+  type GuideMatter = {
     public_id: string;
     category: string;
     title: string;
     institution_name: string | null;
     location_hint: string | null;
-    desired_outcome: string;
-    status: string;
+    desired_outcome: string | null;
+    status: string | null;
     detail_level: string | null;
-  }>(
+  };
+  let matters: { rows: GuideMatter[] } = { rows: [] };
+  if (connectionPublicId && recipientMode === "saved") {
+    matters = await client.query<GuideMatter>(
+      `select item->>'matterPublicId' as public_id, item#>>'{fields,category}' as category,
+        item#>>'{fields,title}' as title, item#>>'{fields,institutionName}' as institution_name,
+        item#>>'{fields,locationHint}' as location_hint, item#>>'{fields,desiredOutcome}' as desired_outcome,
+        null::text as status, item->>'detailLevel' as detail_level
+       from jsonb_array_elements(app.owner_saved_sharing_preview($1,
+        (select coalesce(jsonb_agg(jsonb_build_object('matterPublicId',m.public_id,'detailLevel',g.detail_level)),'[]'::jsonb)
+         from app.sharing_connections c join app.sharing_grants g on g.connection_id=c.id
+         join app.matter_items m on m.id=g.matter_item_id
+         where c.public_id=$1 and c.planner_id=app.current_planner_id()))) item`, [connectionPublicId],
+    );
+  } else if (!connectionPublicId || recipientMode === "live") {
+    matters = await client.query<GuideMatter>(
     `select m.public_id, m.category, m.title, m.institution_name, m.location_hint,
             m.desired_outcome, m.status, g.detail_level
      from app.matter_items m
@@ -1537,6 +1514,7 @@ export async function collectStartHerePackage(client: PoolClient, connectionPubl
        and ($1::uuid is null or g.id is not null)
      order by m.id`, [connectionPublicId],
   );
+  }
   const contacts = connectionPublicId ? { rows: [] } : await client.query<{
     display_name: string;
     relationship_label: string | null;

@@ -2,7 +2,7 @@
 
 Status: OFFICIAL CLI REUSED; RESEND DNS VERIFIED; LEGACY WWW LIMITATION RETAINED
 
-Last updated: 2026-10-01 (Asia/Shanghai)
+Last updated: 2026-10-03 (Asia/Shanghai)
 
 The Owner explicitly requested GoDaddy CLI setup. The official `gddy`0.2.20
 Apple Silicon binary is installed at `~/.local/bin/gddy` from the public
@@ -16,6 +16,14 @@ macOS keyring storage, with no PAT in environment variables or repository.
 The browser callback later showed connection-refused after the local listener
 ended, but CLI status and actual API calls independently prove authentication
 succeeded. Do not repeatedly log in because of that spent callback page.
+
+## October3 strict-review implementation boundary
+
+DNS readback now verifies requested MX priority and CAA flag/tag in addition to
+value/TTL. An add may retain an older same-value record with different attributes,
+but must find the exact requested new record; a misleading same-value readback fails.
+All10guard tests pass with the CLI intercepted. No DNS write or fresh OAuth login
+was performed in this review. [Evidence](../../docs/code-review-20261002.md).
 
 ## October1 Resend configuration
 

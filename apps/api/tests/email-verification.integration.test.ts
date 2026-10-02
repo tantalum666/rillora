@@ -1,3 +1,4 @@
+import { assertDedicatedTestDatabase, dedicatedTestDatabaseUrl } from './dedicated-test-database.js';
 import { createHash, randomBytes } from "node:crypto";
 import request from "./http-fixture.js";
 import { beforeAll, afterAll, describe, it, expect } from "vitest";
@@ -9,7 +10,7 @@ import { currentLegalContract as legal } from "../src/legal-contract.js";
 import { seedDevelopmentFixture, developmentPlannerPublicId as ownerId } from "../src/seed-dev.js";
 import type { EmailIdentity } from "../src/email-verification.js";
 
-const databaseUrl = "postgresql:///continuity_email_verification_test";
+const databaseUrl = dedicatedTestDatabaseUrl("postgresql:///continuity_email_verification_test", "continuity_email_verification_test");
 const config = loadConfig({ NODE_ENV: "test", DATABASE_URL: databaseUrl, ALLOW_DEV_AUTH: "true", CORS_ORIGINS: "http://localhost:4191" });
 const hash = (value: string) => createHash("sha256").update(value).digest();
 let pool: DatabasePool;
@@ -32,7 +33,7 @@ async function actor(credentialKind = "browser_cookie") {
 }
 describe.sequential("Email verification without another sign-in", () => {
   beforeAll(async () => {
-    if (!databaseUrl.endsWith("/continuity_email_verification_test")) throw Error("Dedicated verification test database required");
+    await assertDedicatedTestDatabase(databaseUrl, 'continuity_email_verification_test');
     await runMigrations(databaseUrl); pool=createPool(config);
     await pool.query("truncate app.planners restart identity cascade"); await seedDevelopmentFixture(pool);
     app=createApp(pool,config,{emailIdentityVerifier:{verifiedEmail: identity=>proof(identity)}});

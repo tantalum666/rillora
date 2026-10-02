@@ -2,6 +2,17 @@ import XCTest
 @testable import Rillora
 
 final class AccountDataTests: XCTestCase {
+    func testBillingAcknowledgementIncludesPendingPurchaseAndDecodesOlderProfiles() throws {
+        for (fields, expected) in [
+            (#""hasSubscription":false,"hasPendingPurchase":true"#, true),
+            (#""hasSubscription":false"#, false),
+            (#""hasSubscription":true"#, true)
+        ] {
+            let data = Data("{\(fields),\"providers\":[\"stripe\"]}".utf8)
+            let billing = try JSONDecoder().decode(AccountDataProfile.Billing.self, from: data)
+            XCTAssertEqual(billing.requiresAcknowledgement, expected)
+        }
+    }
     func testDeletionReferenceIsPortableAndCannotBeAnAccountToken() throws {
         let reference = try AccountDeletionReference.create()
         XCTAssertTrue(reference.isValid)

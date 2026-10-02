@@ -4,10 +4,40 @@ import CoreImage
 @MainActor
 final class RilloraLayoutMatrixTests: XCTestCase {
     private var app: XCUIApplication!
-    private var qaAPIBaseURL: String {
+    nonisolated private var qaAPIBaseURL: String {
         ProcessInfo.processInfo.environment["RILLORA_MATRIX_API_BASE_URL"] ?? "http://127.0.0.1:4395/v1"
     }
 
+    override func setUpWithError() throws {
+        try super.setUpWithError()
+        // Validate before any test can create, archive or edit a fixture record.
+        _ = try Self.localFixtureURL(qaAPIBaseURL)
+    }
+
+    nonisolated private static func localFixtureURL(_ value: String) throws -> URL {
+        guard let parts = URLComponents(string: value), let url = parts.url,
+              parts.scheme == "http",
+              ["127.0.0.1", "localhost", "::1", "[::1]"].contains(parts.host?.lowercased() ?? ""),
+              parts.user == nil, parts.password == nil, parts.query == nil, parts.fragment == nil,
+              parts.path == "/v1" else {
+            throw NSError(domain: "RilloraLocalUITest", code: 1, userInfo: [
+                NSLocalizedDescriptionKey: "UI mutation tests require an explicit loopback /v1 fixture."
+            ])
+        }
+        return url
+    }
+
+    func testFixtureEndpointRejectsRemoteOriginsAndHiddenCredentials() throws {
+        for value in ["http://127.0.0.1:4395/v1", "http://localhost:4395/v1"] {
+            XCTAssertEqual(try Self.localFixtureURL(value).absoluteString, value)
+        }
+        for value in ["https://app.rillora.xyz/api/v1", "http://staging.example.test/v1",
+                      "http://127.0.0.1.example.test/v1", "http://operator:secret@localhost:4395/v1",
+                      "http://localhost:4395/v1?host=remote", "http://localhost:4395/v1#fragment",
+                      "http://localhost:4395/api/v1", "file:///v1"] {
+            XCTAssertThrowsError(try Self.localFixtureURL(value))
+        }
+    }
 
     func testSharingControlsSupportLargeTextAndSafeDismissal() async throws {
         let created = try await sharingRequest("trusted-contacts", method: "POST", body: ["displayName": "QA large-type sharing"])
@@ -126,7 +156,7 @@ final class RilloraLayoutMatrixTests: XCTestCase {
         return try XCTUnwrap((response["matter"] as? [String: Any])?["publicId"] as? String)
     }
     private func sharingRequest(_ path: String, method: String = "GET", body: [String: Any]? = nil, version: Int? = nil) async throws -> [String: Any] {
-        var request = URLRequest(url: URL(string: "\(qaAPIBaseURL)/\(path)")!)
+        var request = URLRequest(url: try Self.localFixtureURL(qaAPIBaseURL).appendingPathComponent(path))
         request.httpMethod = method
         request.setValue("11111111-1111-4111-8111-111111111111", forHTTPHeaderField: "x-dev-planner-id")
         if let body { request.httpBody = try JSONSerialization.data(withJSONObject: body); request.setValue("application/json", forHTTPHeaderField: "Content-Type") }

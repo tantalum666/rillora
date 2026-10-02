@@ -239,6 +239,9 @@ export function createAuthRouter(
       if (!stored) {
         throw new ApiError(401, "identity_transaction_invalid", "Sign in could not be verified.");
       }
+      // Recheck persisted transactions too: a deployment can leave a short-lived
+      // transaction created by an older return-path validator.
+      const returnTo = normalizeReturnPath(stored.return_to);
 
       const callbackUrl = new URL(config.oidc.redirectUri);
       callbackUrl.search = new URL(request.originalUrl, "http://local.invalid").search;
@@ -279,7 +282,7 @@ export function createAuthRouter(
         httpOnly: false,
         maxAge: config.sessionTtlMinutes * 60 * 1_000,
       });
-      response.redirect(303, new URL(stored.return_to, config.oidc.webAppOrigin).href);
+      response.redirect(303, new URL(returnTo, config.oidc.webAppOrigin).href);
     }),
   );
 
@@ -477,7 +480,9 @@ function normalizeReturnPath(value: unknown): string {
     value.length > 500 ||
     !value.startsWith("/") ||
     value.startsWith("//") ||
-    value.includes("\\")
+    value.includes("\\") ||
+    /[\u0000-\u001f\u007f]/.test(value) ||
+    new URL(value, "https://rillora.invalid").origin !== "https://rillora.invalid"
   ) {
     throw new ApiError(400, "invalid_return_path", "The return path is invalid.");
   }

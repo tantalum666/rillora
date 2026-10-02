@@ -161,6 +161,9 @@ export function Carousel({
   };
 
   const onPointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+    // Cancellation can end a drag without its synthetic click. A fresh gesture
+    // must not inherit suppression from that previous interaction.
+    suppressClickRef.current = false;
     const node = scrollRef.current;
     if (!draggingEnabled || !node || maxOffset(node) <= 2 || (event.pointerType === "mouse" && event.button !== 0)) return;
     stopMotion();

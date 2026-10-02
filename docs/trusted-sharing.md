@@ -1,8 +1,17 @@
 # Account-bound invitations and directed sharing
 
 Status: SHARING CONTRACT RETAINED; RESTRICTED PRODUCTION RECENT-AUTH GUARDS VERIFIED; REAL PRODUCTION JOURNEY OPEN
-Last updated: 2026-09-30 (Asia/Hong_Kong)
+Last updated: 2026-10-03 (Asia/Shanghai)
 Authority: Owner explicitly requests A -> B/C invitations, authenticated acceptance and per-person/per-matter access.
+
+## October3 strict-review implementation boundary
+
+The live/saved/paused projection also governs recipient-specific printable guides.
+Restores retain historical redaction and grant lineage under0092; removing then
+regranting access cannot revive a prior saved copy. Ambiguous legacy history stays
+quarantined rather than inventing missing evidence. Existing real QQ acceptance/login
+and limited field proof retain their October2 scope; the new replay/export repairs
+are locally verified, not deployed. [Review and limitations](code-review-20261002.md).
 
 ## September30 recent authentication for expanded access
 

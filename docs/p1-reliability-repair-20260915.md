@@ -2,9 +2,24 @@
 
 Role: current UX01–06 implementation and acceptance contract  
 Status: IMPLEMENTED AND SYNTHETIC-STAGING VALIDATED; REAL-MARKET AND LATER UX GATES OPEN
-Last updated: 2026-09-16 (deployed P1 acceptance; earlier checkpoints retain their dates)
+Last updated: 2026-10-03 (Asia/Shanghai)
 
 Owner requested “直接开始修复” after the whole-app audit. This batch repairs six P1 groups. It preserves the selected design, direct hosted login, US$68/year and US$7.99/month. It does not close UX07–22, numerical Free1/Family5 enforcement, paid cutoff/cancel/restore, real-market acceptance or billing gates. [Audit](ui-ux-audit-20260915.md), [QA](../output/qa/rillora-p1-repair-20260915/README.md).
+
+## October3 strict-review implementation boundary
+
+Deletion now checks pending purchases and existing subscriptions within the same
+serialized transaction as deletion, sharing checkout/reconciliation locks. A late
+billing obligation produces a fresh unchecked acknowledgement on both clients; the
+account is retained and delete remains disabled until the user explicitly confirms.
+
+Web shared-review drafts and all related form guards publish dirty/busy state before
+paint; repeated browser Back/Forward keeps the current view and URL synchronized.
+Native editors reject overlapping writes/reloads, and an acknowledged role mutation
+survives a failed follow-up list read with an explicit retry. Cancelled old-account
+startup cannot reset the new account's purchase coordinator. Existing visual layout,
+permissions and product semantics are retained. [Current local proof](code-review-20261002.md)
+is separate from the historical September16 deployment below.
 
 ## Deployed continuation — September16
 

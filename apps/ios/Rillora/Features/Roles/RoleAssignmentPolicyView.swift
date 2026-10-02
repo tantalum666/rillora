@@ -143,6 +143,10 @@ struct RoleAssignmentPolicyView: View {
                 Section {
                     Label(notice, systemImage: "checkmark.circle")
                         .foregroundStyle(RilloraTheme.sage)
+                    if store.needsReload {
+                        Button("Reload latest") { Task { await store.reload() } }
+                            .disabled(store.isBusy || !dirtyAssignmentIDs.isEmpty)
+                    }
                 }
             }
         }
@@ -170,7 +174,7 @@ struct RoleAssignmentPolicyView: View {
             if role == .recipient { newScope = .matterSpecific }
         }
         .alert(
-            "Role policy not saved",
+            "Role policy needs attention",
             isPresented: Binding(
                 get: { if case .failed = store.state { true } else { false } },
                 set: { if !$0 { store.clearFailure() } }

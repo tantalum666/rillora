@@ -5,11 +5,14 @@ import { fileURLToPath } from "node:url";
 import pg from "pg";
 import { loadDatabaseConfig, type DatabaseConfig } from "./config.js";
 import { databaseConnectionOptions } from "./db.js";
+import { migrationTransactionBody } from "./migration-sql.js";
 
 const { Client } = pg;
 
-export async function runMigrations(database: DatabaseConfig | string): Promise<void> {
-  const migrationsDirectory = join(dirname(fileURLToPath(import.meta.url)), "..", "migrations");
+export async function runMigrations(
+  database: DatabaseConfig | string,
+  migrationsDirectory = join(dirname(fileURLToPath(import.meta.url)), "..", "migrations"),
+): Promise<void> {
   const migrationFiles = (await readdir(migrationsDirectory))
     .filter((name) => /^\d+_[a-z0-9_]+\.sql$/.test(name))
     .sort();
@@ -22,6 +25,7 @@ export async function runMigrations(database: DatabaseConfig | string): Promise<
   await client.connect();
   try {
     await client.query("begin");
+    await client.query("set local standard_conforming_strings = on");
     await client.query("select pg_advisory_xact_lock(hashtext('continuity_schema_migrations'))");
     await client.query("create schema if not exists app");
     await client.query(`
@@ -45,7 +49,7 @@ export async function runMigrations(database: DatabaseConfig | string): Promise<
         }
         continue;
       }
-      await client.query(sql);
+      await client.query(migrationTransactionBody(sql));
       await client.query(
         "insert into app.schema_migrations (name, checksum) values ($1, $2)",
         [name, checksum],

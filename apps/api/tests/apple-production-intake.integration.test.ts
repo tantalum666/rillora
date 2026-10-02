@@ -1,3 +1,4 @@
+import { assertDedicatedTestDatabase, dedicatedTestDatabaseUrl } from './dedicated-test-database.js';
 import pg from 'pg';
 import { randomUUID, createHash } from 'node:crypto';
 import { beforeAll, beforeEach, afterAll, describe, expect, it, vi } from 'vitest';
@@ -18,7 +19,7 @@ import { ApplePurchasePreflight } from '../src/apple-purchase-preflight.js';
 import { applePurchaseTerms } from '../src/apple-purchase-consent.js';
 
 // Fixed disposable local database; no Owner/provider data or configurable cloud target.
-const databaseUrl = 'postgresql://127.0.0.1:5432/continuity_apple_delivery_test';
+const databaseUrl = dedicatedTestDatabaseUrl('postgresql://127.0.0.1:5432/continuity_apple_delivery_test', 'continuity_apple_delivery_test');
 let pool: DatabasePool;
 type Owner = { plannerId: string; plannerPublicId: string; account: string };
 let owner: Owner;
@@ -110,10 +111,11 @@ async function preparePurchase() {
 
 describe('production Apple durable intake (decoded Apple fixtures + real isolated PostgreSQL)', () => {
   beforeAll(async () => {
-    const admin = new pg.Client({ connectionString: 'postgresql://127.0.0.1:5432/postgres' });
+    const admin = new pg.Client({ connectionString: new URL('/postgres', databaseUrl).href });
     await admin.connect();
     try { if (!(await admin.query("select 1 from pg_database where datname='continuity_apple_delivery_test'")).rowCount) await admin.query('create database continuity_apple_delivery_test'); }
     finally { await admin.end(); }
+    await assertDedicatedTestDatabase(databaseUrl, 'continuity_apple_delivery_test');
     await runMigrations(databaseUrl); pool = new pg.Pool({ connectionString: databaseUrl, max: 5 });
     await pool.query('truncate app.commerce_provider_event_inbox,app.planners restart identity cascade');
     await pool.query('delete from app.commerce_apple_price_bindings');

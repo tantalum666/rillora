@@ -55,13 +55,17 @@ export async function bootstrapRuntimeRole(
       rolcreatedb: boolean | null;
       rolcreaterole: boolean | null;
       rolinherit: boolean | null;
+      rolbypassrls: boolean | null;
+      rolreplication: boolean | null;
     }>(
       `select exists(select 1 from pg_roles where rolname = $1) as exists,
               max(rolcanlogin::int)::boolean as rolcanlogin,
               max(rolsuper::int)::boolean as rolsuper,
               max(rolcreatedb::int)::boolean as rolcreatedb,
               max(rolcreaterole::int)::boolean as rolcreaterole,
-              max(rolinherit::int)::boolean as rolinherit
+              max(rolinherit::int)::boolean as rolinherit,
+              max(rolbypassrls::int)::boolean as rolbypassrls,
+              max(rolreplication::int)::boolean as rolreplication
        from pg_roles where rolname = $1`,
       [runtimeUser],
     );
@@ -75,6 +79,8 @@ export async function bootstrapRuntimeRole(
         || roleState.rolcreatedb !== false
         || roleState.rolcreaterole !== false
         || roleState.rolinherit !== false
+        || roleState.rolbypassrls !== false
+        || roleState.rolreplication !== false
       ) {
         throw new Error("Existing runtime database role violates the locked privilege boundary");
       }
@@ -83,7 +89,7 @@ export async function bootstrapRuntimeRole(
       }
     } else {
       await client.query(
-        `create role ${quotedRuntimeUser} with login nosuperuser nocreatedb nocreaterole noinherit password ${quotedRuntimePassword}`,
+        `create role ${quotedRuntimeUser} with login nosuperuser nocreatedb nocreaterole noinherit nobypassrls noreplication password ${quotedRuntimePassword}`,
       );
     }
 
@@ -91,9 +97,14 @@ export async function bootstrapRuntimeRole(
       const quotedGrantedRole = await quoteIdentifier(client, grantedRole);
       await client.query(`grant ${quotedGrantedRole} to ${quotedRuntimeUser}`);
     }
-    const contentRole=await client.query<{forbidden:boolean}>(
-      "select exists(select 1 from pg_roles where rolname in('continuity_content_service','continuity_recovery_service') and pg_has_role($1,oid,'MEMBER')) as forbidden",[runtimeUser]);
-    if(contentRole.rows[0]?.forbidden)throw new Error("Runtime database login must not hold content migration authority or recovery authority");
+    // An allowlist also rejects future service roles and indirect memberships.
+    // NOINHERIT alone does not prevent the login from using SET ROLE.
+    const memberships = await client.query<{ forbidden: boolean }>(
+      `select exists(select 1 from pg_roles where rolname <> $1
+       and not (rolname = any($2::text[])) and pg_has_role($1,oid,'MEMBER')) as forbidden`,
+      [runtimeUser, [...grantedRoles]],
+    );
+    if (memberships.rows[0]?.forbidden) throw new Error("Existing runtime database role violates the locked privilege boundary: unexpected role membership");
     await client.query("commit");
   } catch (error) {
     await client.query("rollback");

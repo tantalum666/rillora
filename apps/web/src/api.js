@@ -131,8 +131,10 @@ export function createApiClient({
           requestId,
         );
       }
+      const blob = await response.blob();
+      if (accountChanged && !context.publicAuth && !context.publicRehearsal) throw rejectAccountChange();
       return {
-        blob: await response.blob(),
+        blob,
         filename: filenameMatch[1],
         exportPublicId,
         serverCopyRetained: false,

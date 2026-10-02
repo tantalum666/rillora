@@ -1,0 +1,37 @@
+........
+======================================================================
+FAIL: test_provider_readback_must_confirm_priority_and_caa_attributes (test_rillora_dns.Guards) (options=['--type', 'MX', '--priority', '10'], attributes={'priority': 20})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/tantalum/Documents/电子遗嘱app/tools/godaddy/test_rillora_dns.py", line 22, in test_provider_readback_must_confirm_priority_and_caa_attributes
+    dns.main(['add', '--name', '_fixture', '--data', 'mail.example', '--apply', *options])
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_provider_readback_must_confirm_priority_and_caa_attributes (test_rillora_dns.Guards) (options=['--type', 'MX', '--priority', '10'], attributes={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/tantalum/Documents/电子遗嘱app/tools/godaddy/test_rillora_dns.py", line 22, in test_provider_readback_must_confirm_priority_and_caa_attributes
+    dns.main(['add', '--name', '_fixture', '--data', 'mail.example', '--apply', *options])
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_provider_readback_must_confirm_priority_and_caa_attributes (test_rillora_dns.Guards) (options=['--type', 'CAA', '--flag', '0', '--tag', 'issue'], attributes={'flag': 128, 'tag': 'issue'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/tantalum/Documents/电子遗嘱app/tools/godaddy/test_rillora_dns.py", line 22, in test_provider_readback_must_confirm_priority_and_caa_attributes
+    dns.main(['add', '--name', '_fixture', '--data', 'mail.example', '--apply', *options])
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_provider_readback_must_confirm_priority_and_caa_attributes (test_rillora_dns.Guards) (options=['--type', 'CAA', '--flag', '0', '--tag', 'issue'], attributes={'flag': 0, 'tag': 'iodef'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/tantalum/Documents/电子遗嘱app/tools/godaddy/test_rillora_dns.py", line 22, in test_provider_readback_must_confirm_priority_and_caa_attributes
+    dns.main(['add', '--name', '_fixture', '--data', 'mail.example', '--apply', *options])
+AssertionError: RuntimeError not raised
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.017s
+
+FAILED (failures=4)

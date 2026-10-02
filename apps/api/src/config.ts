@@ -224,7 +224,9 @@ function parseDatabaseConfig(parsed: ParsedEnvironment): DatabaseConfig {
     if (!['postgres:', 'postgresql:'].includes(databaseUrl.protocol)) {
       throw new Error("DATABASE_URL must use the postgres or postgresql protocol");
     }
-    for (const key of ["sslmode", "sslcert", "sslkey", "sslrootcert"]) {
+    // pg parses connection-string TLS settings after the explicit ssl object.
+    // Even `ssl=true` would discard the configured CA, while `ssl=0` disables TLS.
+    for (const key of ["ssl", "sslmode", "sslcert", "sslkey", "sslrootcert"]) {
       if (databaseUrl.searchParams.has(key)) {
         throw new Error(`${key} must be configured through DATABASE_SSL_MODE and DATABASE_SSL_CA_PATH`);
       }

@@ -1,0 +1,91 @@
+from pathlib import Path
+import json,re,datetime,collections
+q=Path('output/qa/rillora-strict-review-20261002');p=Path('docs/code-review-20261002.md');s=p.read_text()
+s=s.replace('Status: IN PROGRESS; TWENTY REPAIRS; FULL SOURCE COVERAGE AND FINAL REGRESSION OPEN','Status: ALL ACTIVE SOURCE BODIES REVIEWED;28REPAIRS LOCALLY VERIFIED;GIT CLOSEOUT IN PROGRESS;UNDEPLOYED')
+s=s.replace('## Confirmed repairs so far','## Confirmed repairs')
+insert='''| R21 | P3 | Historical prototype Carousel left click suppression latched after pointer cancellation, swallowing the next tap. Reset stale suppression on a fresh pointer; restore the missing first-party favicon. | Real Chromium cancellation/tap case fails before;10browser interaction tests and4packaging tests pass. Protected runtime hashes changed only for the verified Carousel repair. |
+| R22 | P2 | Public publication manifest bound HTML only, accepting changed/extra/missing scripts. Manifestv3 and shared file-tree verifier bind all uploaded files, reject symlinks/nonfiles and validate paths. | Three negative mutations fail before;12focused and53full infrastructure checks, typecheck and actual public build pass. |
+| R23 | P2 | Auth0 preparation treated incomplete inventory/read errors as absence, risked orphaned protected credentials and could disable already active clients on rerun. Fail closed for each case; create a theme only after confirmed404. | Five negative provider/CLI scenarios fail before;4guard tests pass after, with all real provider calls intercepted. |
+| R24 | P2 | Native matrix runner reused and shut down existing named simulators, potentially disturbing an Owner session. Create unique devices and delete only recorded per-run IDs. | Successful and failed runner scenarios fail before and pass with mocked xcrun/xcodebuild; no actual five-device matrix run is claimed. |
+| R25 | P2 | Recovery CLI replayed uncertain ECS requests indefinitely without reconstructing parameters or rechecking isolation/freeze. Bound retries to55minutes, match the exact saved request/token and recheck current safety facts. |8mocked AWS positive/negative checks pass, including expired/future retry, changed scope/commands, running source and stale freeze. No cloud task launched. |
+| R26 | P3 | Health configuration coerced missing/boolean target IDs and accepted primitive headers. Require explicit string IDs and an object of headers. |9health checks pass; no live monitor configuration changed. |
+| R27 | P2 | DNS write verification checked value/TTL but ignored MX priority and CAA flag/tag. Verify all requested typed attributes and the exact added record. |10mocked CLI guards pass, including wrong-priority/flag/tag rejection; no DNS writes. |
+| R28 | P2 | Old prototype build dependencies retained known-vulnerable PostCSS/nanoid. Update only compatible locked versions to8.5.28/3.3.19. | Build,10browser/4packaging checks and a zero-known-advisory npm lock audit pass. No shipping runtime dependency was changed. |
+'''
+pos=s.index('\nCounts above');s=s[:pos]+'\n'+insert+s[pos:]
+s=s.replace('No whole-suite or deployment result is claimed.','The later whole-suite results below cover the final relevant source; no deployment is claimed.')
+s=s.replace('The full source review and final integrated regression remain open.','This was an intermediate checkpoint; final coverage and regression are recorded below.')
+a=s.index('## Continuation and closeout');s=s[:a]+'''## Final coverage and validation
+
+All original active code bodies were read by2026-10-02T18:18:29Z. Including new
+helpers/tests and reviewed final config changes, the engineering ledger covers
+**686files/91721lines** with no missing ranges or hash drift. This is first-party
+API/SQL, Web, native Swift, browser prototype, infrastructure, tools, tests and
+configuration. It does not pretend dependency code, binary artwork, generated
+projects or historical duplicate mirrors are active first-party source. All184
+startup Markdown bodies were read before implementation; newly authored contracts
+and changed relevant documents were reviewed afterward.
+
+Six dependency lockfiles/781entries were structurally checked for declaration
+agreement, immutable versions/revisions, safe source URLs and package integrity.
+The Swift lock body was also read in full. All91previously applied SQL files remain
+byte-identical to the baseline;0092/0093are additive. Exact ranges, hashes, exclusions
+and checks are in the QA ledger, independently from test coverage.
+
+| Surface | Final local evidence |
+| --- | --- |
+| API/database | Typecheck/build;48files/400tests pass, including actual PostgreSQL rollback, concurrent operations and old-backup permission replay. |
+| Shipping Web | Internal build/115tests; public build; legal fixture/7tests; closed-production fixture build with synthetic legal values. |
+| Browser regressions |13navigation checks at desktop/mobile widths;2deferred-file-input races; real late-billing400confirmation behavior. Guard callsites are reviewed; not every form is separately rendered. |
+| Native |190unit tests pass,0fail,1existing iOS26.5StoreKitTest runtime skip. Targeted commerce/editor tests overlap this total. Actual task-only simulator deletion/pending-purchase rejection UI passes. |
+| Infrastructure | Typecheck and7files/53tests; full artifact inventory/hash mutation checks and built public manifest verification. |
+| Historical prototype | TypeScript/build,10Chromium interaction tests,4packaging tests and fresh render with0console/page errors. |
+| Operations/tools |34release,4Auth0,10GoDaddy,8collaboration Python tests;28Node operations/hosted/review/snapshot tests. The matrix/recovery/provider tests intercept external operations. |
+
+Numbers are separate suite results, not a claimed sum of unique tests. Earlier
+failed assertions, harness limitations and corrected attempts remain in the same
+QA package. No real authentication, email, purchase, device, DNS or AWS mutation
+was needed. The task-only simulator is shut down and the original Xcode profile
+restored without operating on the Owner's live simulator session.
+
+## Remaining dependency and verification limits
+
+One build-tool dependency remains upstream-bound: aws-cdk-lib2.266.0 bundles
+brace-expansion5.0.9. The actually installed/audited latest2.272.0 still contains the
+same version, so the ineffective upgrade was reverted. npm cannot replace that
+bundled copy via ordinary audit fix. The advisory is not suppressed or relabelled
+clean: infra has1high affected package; API, shipping Web, patched prototype and
+snapshot-retention have0reported npm advisories at this check. This is not an audit
+of every Swift dependency or proof of no unknown vulnerabilities.
+
+The CDK package runs only in development/synthesis against repository-owned inputs
+and is absent from the API container. No untrusted-input exploit was established.
+Use a patched upstream bundle when available and revalidate synth; introducing a
+bespoke vendored or postinstall library rewrite would add a new supply-chain burden.
+[Maintainer's patched brace release](https://github.com/juliangruber/brace-expansion/releases/tag/v5.0.12),
+[PostCSS fix](https://github.com/postcss/postcss/releases/tag/8.5.23) and
+[nanoid fix](https://github.com/ai/nanoid/releases/tag/3.3.18) establish patch availability;
+the retained installation/audit receipts establish the actual project versions.
+
+The existing StoreKit runtime skip, failed optional deep-scan startup and unperformed
+real provider/device journeys remain explicit. Source review does not certify an
+absence of all possible bugs, independent security assurance or launch readiness.
+
+## Git and deployment boundary
+
+The work is on `codex/strict-review-20261002`, based on
+`3a5739ea87c022b390a39e05bebe4e0b1f17035a`. Source, focused contracts, tests and eligible
+QA/build originals are being saved under the existing all-work preservation contract.
+Remote/CI receipts will be recorded in the strict-review collaboration addendum.
+No review fix or new migration is deployed; retained API10/schema0091 and internal
+TestFlight1.0(2) do not validate this source. Public customer/live billing gates stay
+closed, and existing UI/pricing/real data/FanPass and personal deferrals are retained.
+
+[QA directory](../output/qa/rillora-strict-review-20261002/),
+[reading completion](../output/qa/rillora-strict-review-20261002/full-read-completion.json),
+[code coverage](../output/qa/rillora-strict-review-20261002/code-review.json),
+[observations](../output/qa/rillora-strict-review-20261002/review-observations.json),
+[dependency structure](../output/qa/rillora-strict-review-20261002/dependency-structure.json).
+'''
+p.write_text(s)
+a=json.loads((q/'review-observations.json').read_text());print(collections.Counter(x.get('priority') for x in a if x.get('status','').startswith('fixed')))

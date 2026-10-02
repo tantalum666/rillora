@@ -1,3 +1,4 @@
+import { assertDedicatedTestDatabase, dedicatedTestDatabaseUrl } from './dedicated-test-database.js';
 import { randomUUID } from 'node:crypto';
 import { beforeAll, afterAll, describe, it, expect } from 'vitest';
 import request from './http-fixture.js';
@@ -9,7 +10,7 @@ import { reviewIdentityDigest } from '../src/production-review-access.js';
 import { currentLegalContract } from '../src/legal-contract.js';
 import type { ExternalIdentity, IdentityProvider } from '../src/identity.js';
 
-const databaseUrl='postgresql:///rillora_review_access_test';
+const databaseUrl = dedicatedTestDatabaseUrl('postgresql:///rillora_review_access_test', 'rillora_review_access_test');
 const base=loadConfig({NODE_ENV:'test',DATABASE_URL:databaseUrl,CORS_ORIGINS:'http://localhost:4173',
  WEB_APP_ORIGIN:'http://localhost:4173',OIDC_ISSUER_URL:'https://identity.example',OIDC_CLIENT_ID:'fixture-web',
  OIDC_CLIENT_SECRET:'synthetic-fixture-credential-only',OIDC_REDIRECT_URI:'http://localhost:4173/auth/callback',
@@ -35,7 +36,8 @@ async function web(target:ReturnType<typeof app>,expected=303){
  return result;
 }
 describe.sequential('Production review identity restriction',()=>{
- beforeAll(async()=>{await runMigrations(databaseUrl);pool=createPool(base);});
+ beforeAll(async()=>{await assertDedicatedTestDatabase(databaseUrl, 'rillora_review_access_test');
+    await runMigrations(databaseUrl);pool=createPool(base);});
  afterAll(async()=>{await pool?.end();});
  it('rejects both verified native and Web identities before creating a planner, receipt or session',async()=>{
   expect((await native(app(other))).status).toBe(403);

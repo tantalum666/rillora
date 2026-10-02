@@ -8,11 +8,12 @@ struct AccountDeletionView: View {
     @State private var word = ""
     @State private var savedCopies = false
     @State private var billing = false
+    @State private var billingRequiredByServer = false
     @State private var confirm = false
     @State private var busy = false
     @State private var error: String?
     @State private var reference: AccountDeletionReference?
-    private var needsBilling: Bool { profile.billing?.hasSubscription == true }
+    private var needsBilling: Bool { billingRequiredByServer || profile.billing?.requiresAcknowledgement == true }
     var body: some View {
         RilloraForm {
             Section {
@@ -60,7 +61,8 @@ struct AccountDeletionView: View {
             _ = try await service.requestAccountDeletion(receipt: reference.receipt, acknowledgesBilling: billing)
             await onRequested(reference)
         } catch let failure as RilloraAPIError {
-            if case .server(let status, _, _, _) = failure, status < 500 {
+            if case .server(let status, let code, _, _) = failure, status < 500 {
+                if code == "billing_confirmation_required" { billingRequiredByServer = true }
                 error = failure.localizedDescription; busy = false
             } else { await onRequested(reference) }
         } catch { await onRequested(reference) }

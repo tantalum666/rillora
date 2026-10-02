@@ -120,7 +120,12 @@ export function createOidcIdentityProvider(config: OidcConfig): IdentityProvider
       config.clientId,
       config.clientSecret,
       oidc.ClientSecretPost(config.clientSecret),
-    );
+    ).catch(error => {
+      // Share concurrent discovery, but let the next explicit login attempt
+      // recover after a transient provider or network failure.
+      discovered = undefined;
+      throw error;
+    });
     return discovered;
   };
 

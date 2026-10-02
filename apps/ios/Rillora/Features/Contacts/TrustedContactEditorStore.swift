@@ -105,7 +105,7 @@ final class TrustedContactEditorStore {
     }
 
     func loadLatest() async {
-        guard let source else { return }
+        guard !isBusy, let source else { return }
         let previousState = state
         state = .loading
         do {
@@ -128,6 +128,7 @@ final class TrustedContactEditorStore {
     }
 
     func save() async -> TrustedContact? {
+        guard !isBusy else { return nil }
         guard draft.validationMessage == nil else {
             state = .failed(
                 message: draft.validationMessage ?? "Review this contact before saving.",
@@ -172,7 +173,7 @@ final class TrustedContactEditorStore {
     }
 
     func revoke() async -> TrustedContact? {
-        guard let source else { return nil }
+        guard !isBusy, let source else { return nil }
         let previousState = state
         state = .revoking
         do {

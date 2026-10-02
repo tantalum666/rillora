@@ -1,0 +1,23 @@
+
+> ios-prototype@0.1.0 test:runtime
+> playwright test
+
+
+Running 10 tests using 2 workers
+
+(node:39111) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:39110) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/navigation.spec.ts:3:1 › mobile information architecture keeps only three primary destinations (772ms)
+  ✓   2 tests/mobile-runtime.spec.ts:25:1 › horizontal intent stays in Carousel and cannot create parent momentum (1.1s)
+  ✓   3 tests/mobile-runtime.spec.ts:42:1 › vertical intent over a carousel is handed to MobileScroll in both directions (549ms)
+  ✓   4 tests/mobile-runtime.spec.ts:58:1 › tap activates a card but a completed drag does not (397ms)
+  ✓   5 tests/mobile-runtime.spec.ts:67:1 › a cancelled touch drag does not consume the next deliberate card tap (1.6s)
+  ✓   6 tests/mobile-runtime.spec.ts:88:1 › Carousel preserves momentum and edge rubber-banding (1.4s)
+  ✓   7 tests/mobile-runtime.spec.ts:111:1 › BottomSheet remains mounted while its default exit animation plays (867ms)
+  ✓   8 tests/mobile-runtime.spec.ts:121:1 › keyboard and its attached footer dismiss on the same transition (779ms)
+  ✓   9 tests/mobile-runtime.spec.ts:150:1 › switching to Pixel keeps the composer above Android navigation (1.1s)
+  ✓  10 tests/mobile-runtime.spec.ts:237:1 › FlowStack pushes and pops screens while dismissing the keyboard (2.0s)
+
+  10 passed (10.8s)

@@ -1,3 +1,4 @@
+import { assertDedicatedTestDatabase, dedicatedTestDatabaseUrl } from './dedicated-test-database.js';
 import pg from 'pg';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { runMigrations } from '../src/migrate.js';
@@ -8,7 +9,7 @@ import { loadConfig } from '../src/config.js';
 import request from './http-fixture.js';
 
 // Fixed disposable localhost target; never accept a cloud/Owner database override.
-const databaseUrl = 'postgresql://127.0.0.1:5432/continuity_apple_commerce_test';
+const databaseUrl = dedicatedTestDatabaseUrl('postgresql://127.0.0.1:5432/continuity_apple_commerce_test', 'continuity_apple_commerce_test');
 let pool: DatabasePool;
 let plannerId: string;
 let subscriptionId: string;
@@ -16,13 +17,14 @@ let plannerPublicId: string;
 
 describe('shared subscription clock with Apple-authorized grace (isolated database)', () => {
   beforeAll(async () => {
-    const admin = new pg.Client({ connectionString: 'postgresql://127.0.0.1:5432/postgres' });
+    const admin = new pg.Client({ connectionString: new URL('/postgres', databaseUrl).href });
     await admin.connect();
     try {
       if (!(await admin.query("select 1 from pg_database where datname='continuity_apple_commerce_test'")).rowCount) {
         await admin.query('create database continuity_apple_commerce_test');
       }
     } finally { await admin.end(); }
+    await assertDedicatedTestDatabase(databaseUrl, 'continuity_apple_commerce_test');
     await runMigrations(databaseUrl);
     pool = new pg.Pool({ connectionString: databaseUrl, max: 3 });
     await pool.query('truncate app.commerce_provider_event_inbox, app.planners restart identity cascade');

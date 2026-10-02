@@ -1,0 +1,33 @@
+
+ RUN  v4.1.11 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/migration-sql.test.ts (14 tests | 1 failed) 7ms
+     × preserves procedure bodies, quoted semicolons, nested comments and original checksum input 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/migration-sql.test.ts > migration transaction boundaries > preserves procedure bodies, quoted semicolons, nested comments and original checksum input
+AssertionError: expected '\n/* outer /* COMMIT; */ comment */\n…' to be '\n/* outer /* COMMIT; */ comment */\n…' // Object.is equality
+
+- Expected
++ Received
+
+@@ -4,6 +4,5 @@
+  BEGIN
+    perform 'COMMIT;';
+  END;
+  $probe$;
+  select E'escaped\'; COMMIT;', 'it''s; COMMIT;', "semi;colon";
+-
+
+ ❯ tests/migration-sql.test.ts:7:85
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 15 passed (16)
+   Start at  22:08:35
+   Duration  807ms (transform 124ms, setup 89ms, import 241ms, tests 199ms, environment 0ms)
+

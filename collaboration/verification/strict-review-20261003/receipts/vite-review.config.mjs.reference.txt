@@ -1,0 +1,5 @@
+import configuration from '../../../apps/web/vite.config.mjs';
+export default (context) => ({ ...configuration(context), envDir: false,
+  define: { 'import.meta.env.VITE_API_BASE_URL': JSON.stringify('http://127.0.0.1:4414/v1'),
+    'import.meta.env.VITE_DEV_PLANNER_ID': JSON.stringify('11111111-1111-4111-8111-111111111111'),
+    'import.meta.env.VITE_RILLORA_CUSTOMER_ACCESS': JSON.stringify('local-synthetic') } });

@@ -11,8 +11,9 @@ export function AccountDataPanel({ apiClient, onChanged, onDeletionRequested }) 
   const {confirm,confirmation}=useConfirmation();
   const [deleteWord,setDeleteWord]=useState(""),[savedCopies,setSavedCopies]=useState(false),[billing,setBilling]=useState(false),[reference,setReference]=useState(null);
   const [reload,setReload]=useState(0);
+  const [billingRequiredByServer,setBillingRequiredByServer]=useState(false);
   useEffect(()=>{let active=true;Promise.all([apiClient.getAccountProfile(),apiClient.getArchivedMatters()]).then(([p,a])=>{if(active){setProfile({...p.account,billing:p.billing});setArchives(a.matters);setError("");}}).catch(()=>{if(active)setError("Your data tools could not be loaded. Try again.");});return()=>{active=false};},[apiClient,reload]);
-  const needsBilling = profile?.billing?.hasSubscription === true;
+  const needsBilling = billingRequiredByServer || profile?.billing?.hasSubscription === true || profile?.billing?.hasPendingPurchase === true;
   async function run(action){setBusy(true);setError("");setMessage("");try{await action();}catch(e){setError(e.message||"This action could not be completed.");}finally{setBusy(false);}}
   async function backup(){if(!await confirm({title:"Keep a complete private copy?",message:"This file includes private matters, Notes and recorded people. Anyone with the file can read it.",confirmLabel:"Download my map",cancelLabel:"Cancel"}))return;await run(async()=>{downloadMapBackup(await apiClient.exportMapBackup());setMessage("Backup prepared. Keep the file private.");});}
   async function restore(backup){if(!await confirm({title:"Import this map?",message:`Import ${backup.matters.length} matters into ${profile?.displayName??"your account"}? Existing records are never replaced. Sharing and invitations stay off.`,confirmLabel:"Import private records",cancelLabel:"Cancel"}))return;await run(async()=>{const result=await apiClient.importMapBackup(backup);setMessage(`${result.matterCount} matters imported. Choose sharing separately.`);await onChanged?.();});}
@@ -21,7 +22,7 @@ export function AccountDataPanel({ apiClient, onChanged, onDeletionRequested }) 
     if(!await confirm({title:"Delete this Rillora account?",message:"This removes your private map, people, saved packages and Rillora access. It cannot be undone.",confirmLabel:"Delete account",cancelLabel:"Keep my account"}))return;
     setBusy(true);setError("");
     try{await apiClient.requestAccountDeletion(reference.receipt,billing);onDeletionRequested(reference);}
-    catch(e){if(e.status&&e.status<500){setError(e.message);setBusy(false);}else onDeletionRequested(reference);}
+    catch(e){if(e.status&&e.status<500){if(e.code==='billing_confirmation_required')setBillingRequiredByServer(true);setError(e.message);setBusy(false);}else onDeletionRequested(reference);}
   }
   return <section className="account-data-panel">
     {confirmation}{profile&&<div className="account-data-heading"><SurfaceIcon icon={Files} emblem/><p className="account-identity">{profile.displayName}</p></div>}
@@ -35,7 +36,7 @@ export function AccountDataPanel({ apiClient, onChanged, onDeletionRequested }) 
     {section==="delete"&&<section className="account-delete-form" aria-label="Delete account">
       <h3>Delete your Rillora account</h3><p>Keep a map backup first if you need it. Required consent and payment records may be retained.</p>
       <label><input type="checkbox" checked={savedCopies} onChange={e=>setSavedCopies(e.target.checked)}/>I understand copies already saved or shared cannot be removed.</label>
-      {needsBilling&&<><label><input type="checkbox" checked={billing} onChange={e=>setBilling(e.target.checked)}/>I understand deleting the account does not cancel provider billing.</label>{profile.billing.providers.some(p=>["apple","storekit"].includes(p))&&<a href="https://apps.apple.com/account/subscriptions" target="_blank" rel="noreferrer">Manage Apple subscriptions</a>}</>}
+      {needsBilling&&<><label><input type="checkbox" checked={billing} onChange={e=>setBilling(e.target.checked)}/>I understand deleting the account does not cancel provider billing.</label>{profile.billing?.providers?.some(p=>["apple","storekit"].includes(p))&&<a href="https://apps.apple.com/account/subscriptions" target="_blank" rel="noreferrer">Manage Apple subscriptions</a>}</>}
       <label className="field-label">Type DELETE to confirm<input aria-label="Type DELETE to confirm" value={deleteWord} autoComplete="off" onChange={e=>setDeleteWord(e.target.value)}/></label>
       {reference&&<button className="secondary-button" onClick={()=>saveDeletionReference(reference)}>Save deletion reference</button>}
       <button className="primary-button" disabled={busy||deleteWord!=="DELETE"||!savedCopies||(needsBilling&&!billing)} onClick={()=>void removeAccount()}>{busy?"Requesting deletion…":"Delete account"}</button>

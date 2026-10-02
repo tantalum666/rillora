@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { ArrowRight, CheckCircle, DownloadSimple, Eye, FileText, Users, Info, Key, LockKey, Printer, ShieldCheck, WarningCircle } from "@phosphor-icons/react";
 import { ApiClientError } from "./api.js";
 import { PanelTabs } from "./TaskPanels.jsx";
@@ -41,8 +41,8 @@ export function StartHerePanel({ apiClient, onGenerated, onBusyChange, onExitWar
     return () => { active = false; };
   }, [apiClient]);
 
-  useEffect(() => onBusyChange?.(busyAction !== null), [busyAction, onBusyChange]);
-  useEffect(() => onExitWarning?.(encryptedResult && !recoverySaved
+  useLayoutEffect(() => onBusyChange?.(busyAction !== null), [busyAction, onBusyChange]);
+  useLayoutEffect(() => onExitWarning?.(encryptedResult && !recoverySaved
     ? "Your recovery key is only here until you save it. Leave without keeping the key?" : ""),
   [encryptedResult, recoverySaved, onExitWarning]);
   useEffect(() => {

@@ -1,0 +1,39 @@
+from pathlib import Path
+import datetime, hashlib, json, re, subprocess
+from urllib.parse import urlparse
+root=Path.cwd();q=root/'output/qa/rillora-strict-review-20261002'
+ledger=json.loads((q/'code-review.json').read_text());results=[]
+for item in ledger['dependencyManifests']:
+ path=root/item['path'];data=json.loads(path.read_text());checks=[]
+ if path.name=='package-lock.json':
+  package=json.loads((path.parent/'package.json').read_text());assert data['lockfileVersion']==3
+  for field in ('dependencies','devDependencies','optionalDependencies'):
+   assert data['packages'][''].get(field,{})==package.get(field,{}),(path,field)
+  for name,p in data['packages'].items():
+   if not name:continue
+   assert p.get('version'),(path,name)
+   if not p.get('inBundle') and not p.get('link'):
+    url=urlparse(p.get('resolved','')); assert url.scheme=='https' and url.netloc=='registry.npmjs.org' and not url.username,(path,name)
+    assert re.fullmatch(r'sha(256|384|512)-[A-Za-z0-9+/=]+',p.get('integrity','')),(path,name)
+  checks=['root package declarations match','every package version pinned','all unbundled downloads HTTPS npm registry with integrity','platform optional packages retained']
+  count=len(data['packages'])-1
+ else:
+  assert data['version'] in (2,3)
+  pins=data['pins']; assert len({x['identity'] for x in pins})==len(pins)
+  for pin in pins:
+   u=urlparse(pin['location']);assert u.scheme=='https' and u.hostname=='github.com' and not u.username
+   assert re.fullmatch('[0-9a-f]{40}',pin['state']['revision'])
+  count=len(pins);checks=['unique Swift identities','HTTPS GitHub locations','40-character immutable commit revisions','entire 122-line lock body read']
+  item['readRanges']=[[1,len(path.read_text().splitlines())]]
+ item.update(bytes=path.stat().st_size,lines=len(path.read_text().splitlines()),sha256=hashlib.sha256(path.read_bytes()).hexdigest(),reviewNotes=checks)
+ results.append({'path':item['path'],'entries':count,'passed':True,'checks':checks})
+# Existing applied migrations are immutable, including their original wrappers.
+old=json.loads(subprocess.check_output(['git','show','HEAD:apps/api/package.json']))
+migrations=[]
+for name in subprocess.check_output(['git','ls-tree','-r','--name-only','HEAD','apps/api/migrations'],text=True).splitlines():
+ assert (root/name).read_bytes()==subprocess.check_output(['git','show','HEAD:'+name]),name
+ migrations.append(name)
+assert len(migrations)==91
+(q/'dependency-structure.json').write_text(json.dumps({'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'lockfiles':results,'unchangedAppliedMigrations':len(migrations),'boundary':'Dependency metadata validation, not review of third-party source or assertion of zero vulnerabilities. Bundled CDK advisory remains explicit.'},indent=2)+'\n')
+(q/'code-review.json').write_text(json.dumps(ledger,ensure_ascii=False,indent=2)+'\n')
+print(json.dumps({'locks':len(results),'entries':sum(r['entries'] for r in results),'unchangedMigrations':len(migrations),'passed':True}))

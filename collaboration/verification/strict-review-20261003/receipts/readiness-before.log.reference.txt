@@ -1,0 +1,33 @@
+
+ RUN  v4.1.11 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/matter-details.integration.test.ts (6 tests | 1 failed) 378ms
+     × never represents synthetic checklist completion as a verified emergency plan 12ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/matter-details.integration.test.ts > Category-specific matter entry and initial map > never represents synthetic checklist completion as a verified emergency plan
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/matter-details.integration.test.ts:88:44
+     86|       expect(result.confirmedContacts).toBeGreaterThanOrEqual(1);
+     87|       expect(result.completedSimulations).toBeGreaterThanOrEqual(1);
+     88|       expect(result.verifiedEmergencyPlan).toBe(false);
+       |                                            ^
+     89|     }
+     90|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 5 passed (6)
+   Start at  23:00:09
+   Duration  1.35s (transform 329ms, setup 42ms, import 789ms, tests 378ms, environment 0ms)
+

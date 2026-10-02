@@ -2,12 +2,32 @@
 
 Role: engineering contract for restoring encrypted Rillora data safely
 Status: SCOPED CLOUD RESTORE BASELINE RETAINED; HOLDS/COMMERCE REPLAY IMPLEMENTED; REAL TRANSACTION ACCEPTANCE OPEN
-Last updated: 2026-09-30 (Asia/Hong_Kong)
+Last updated: 2026-10-03 (Asia/Shanghai)
 
 The production foundation is separate from staging. Customer traffic remains
 closed while the [production/recovery gate](production-recovery-20260923.md)
 is validated. Git source history, database snapshots and control-state recovery
 are distinct evidence.
+
+## October3 strict-review implementation boundary
+
+Migration0092 records permissionHistoryVersion2, grant lineage IDs, remaining field
+names and revocation bounds. Replay intersects both lineage and fields with restored
+snapshots, preserving permanent saved-copy redaction and preventing remove/regrant
+from reviving old grants. A pending legacy accepted-connection update cannot prove
+intermediate restrictions and remains quarantined for reconciliation. Unaffected
+recipients keep their independently proven scope. No private body enters the journal.
+
+Migration0093 and the application acquire the same transaction advisory lock before
+fresh hold/cleanup reads, preventing a hold acknowledged concurrently with deletion.
+The recovery task driver only reuses a saved ECS RunTask request within55minutes,
+with identical reconstructed parameters/token, fresh clone/snapshot checks and a
+current source freeze. Old freeze evidence cannot be renewed by retrying the CLI.
+The cloud's idempotency retention may be as short as task lifetime plus1hour;
+[official ECS contract](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_Idempotency.html).
+Actual local PostgreSQL backup/replay and mocked AWS positive/negative checks pass.
+These migrations/tool repairs remain undeployed; earlier real cloud drills are retained
+with their original scope. [Strict review](code-review-20261002.md).
 
 ## September30 holds and commerce reconciliation
 

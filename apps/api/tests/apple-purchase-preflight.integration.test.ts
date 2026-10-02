@@ -1,3 +1,4 @@
+import { assertDedicatedTestDatabase, dedicatedTestDatabaseUrl } from './dedicated-test-database.js';
 import pg from 'pg';
 import { randomUUID } from 'node:crypto';
 import { beforeAll, beforeEach, afterAll, describe, expect, it } from 'vitest';
@@ -7,7 +8,7 @@ import { ApplePurchasePreflight } from '../src/apple-purchase-preflight.js';
 import { applePurchaseTerms } from '../src/apple-purchase-consent.js';
 import { assertNoForeignPurchase } from '../src/commerce-purchase-conflicts.js';
 
-const databaseUrl='postgresql://127.0.0.1:5432/continuity_apple_purchase_test';
+const databaseUrl = dedicatedTestDatabaseUrl('postgresql://127.0.0.1:5432/continuity_apple_purchase_test', 'continuity_apple_purchase_test');
 let pool:DatabasePool, purchases:ApplePurchasePreflight, plannerId:string, plannerPublicId:string;
 const selection={serviceMarketCode:'GLOBAL_US',storefrontCountryCode:'USA'};
 const consent={...applePurchaseTerms,acceptedSubscriptionTerms:true,acceptedAnnualRenewal:true,acknowledgedCancellation:true} as const;
@@ -19,9 +20,10 @@ const reserveWeb=()=>withCommercePlannerDatabase(pool,plannerId,async client=>{
 
 describe('ordinary Apple purchase preflight with a local, synthetic catalog',()=>{
   beforeAll(async()=>{
-    const admin=new pg.Client({connectionString:'postgresql://127.0.0.1:5432/postgres'});await admin.connect();
+    const admin=new pg.Client({connectionString:new URL('/postgres', databaseUrl).href});await admin.connect();
     try{if(!(await admin.query("select 1 from pg_database where datname='continuity_apple_purchase_test'")).rowCount)await admin.query('create database continuity_apple_purchase_test');}
     finally{await admin.end();}
+    await assertDedicatedTestDatabase(databaseUrl, 'continuity_apple_purchase_test');
     await runMigrations(databaseUrl);pool=new pg.Pool({connectionString:databaseUrl,max:4});purchases=new ApplePurchasePreflight(pool);
     await pool.query('truncate app.commerce_provider_event_inbox,app.planners restart identity cascade');
     await pool.query('delete from app.commerce_apple_price_bindings');

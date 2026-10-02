@@ -1,0 +1,69 @@
+..
+======================================================================
+FAIL: test_old_future_or_missing_invocation_time_cannot_reissue_a_task (test_recovery_task_retry.RecoveryTaskRetryTests) (age=datetime.timedelta(days=2))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/tantalum/Documents/电子遗嘱app/tools/release/test_recovery_task_retry.py", line 71, in test_old_future_or_missing_invocation_time_cannot_reissue_a_task
+    self.invoke(state, provider)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_old_future_or_missing_invocation_time_cannot_reissue_a_task (test_recovery_task_retry.RecoveryTaskRetryTests) (age=datetime.timedelta(seconds=7200))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/tantalum/Documents/电子遗嘱app/tools/release/test_recovery_task_retry.py", line 71, in test_old_future_or_missing_invocation_time_cannot_reissue_a_task
+    self.invoke(state, provider)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_old_future_or_missing_invocation_time_cannot_reissue_a_task (test_recovery_task_retry.RecoveryTaskRetryTests) (age=datetime.timedelta(seconds=3300))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/tantalum/Documents/电子遗嘱app/tools/release/test_recovery_task_retry.py", line 71, in test_old_future_or_missing_invocation_time_cannot_reissue_a_task
+    self.invoke(state, provider)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_old_future_or_missing_invocation_time_cannot_reissue_a_task (test_recovery_task_retry.RecoveryTaskRetryTests) (age=datetime.timedelta(days=-1, seconds=86340))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/tantalum/Documents/电子遗嘱app/tools/release/test_recovery_task_retry.py", line 71, in test_old_future_or_missing_invocation_time_cannot_reissue_a_task
+    self.invoke(state, provider)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_old_future_or_missing_invocation_time_cannot_reissue_a_task (test_recovery_task_retry.RecoveryTaskRetryTests) (age=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/tantalum/Documents/电子遗嘱app/tools/release/test_recovery_task_retry.py", line 71, in test_old_future_or_missing_invocation_time_cannot_reissue_a_task
+    self.invoke(state, provider)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_recent_retry_cannot_change_saved_scope_or_lose_its_token (test_recovery_task_retry.RecoveryTaskRetryTests) (mutation='cluster')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/tantalum/Documents/电子遗嘱app/tools/release/test_recovery_task_retry.py", line 84, in test_recent_retry_cannot_change_saved_scope_or_lose_its_token
+    self.invoke(state, provider)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_recent_retry_cannot_change_saved_scope_or_lose_its_token (test_recovery_task_retry.RecoveryTaskRetryTests) (mutation='token')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/tantalum/Documents/电子遗嘱app/tools/release/test_recovery_task_retry.py", line 84, in test_recent_retry_cannot_change_saved_scope_or_lose_its_token
+    self.invoke(state, provider)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_recent_retry_cannot_change_saved_scope_or_lose_its_token (test_recovery_task_retry.RecoveryTaskRetryTests) (mutation='command')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/tantalum/Documents/电子遗嘱app/tools/release/test_recovery_task_retry.py", line 84, in test_recent_retry_cannot_change_saved_scope_or_lose_its_token
+    self.invoke(state, provider)
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.016s
+
+FAILED (failures=8)

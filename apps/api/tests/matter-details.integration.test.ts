@@ -1,3 +1,4 @@
+import { assertDedicatedTestDatabase, dedicatedTestDatabaseUrl } from './dedicated-test-database.js';
 import request from "./http-fixture.js";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { createApp } from "../src/app.js";
@@ -6,7 +7,7 @@ import { createPool, type DatabasePool } from "../src/db.js";
 import { runMigrations } from "../src/migrate.js";
 import { seedDevelopmentFixture, developmentPlannerPublicId } from "../src/seed-dev.js";
 
-const databaseUrl = "postgresql:///continuity_matter_test";
+const databaseUrl = dedicatedTestDatabaseUrl("postgresql:///continuity_matter_test", "continuity_matter_test");
 const config = loadConfig({ NODE_ENV: "test", DATABASE_URL: databaseUrl, ALLOW_DEV_AUTH: "true" });
 const owner = { "x-dev-planner-id": developmentPlannerPublicId };
 let pool: DatabasePool;
@@ -15,7 +16,7 @@ const wallet = { category: "crypto_asset", title: "Family wallet", details: { cr
 
 describe.sequential("Category-specific matter entry and initial map", () => {
   beforeAll(async () => {
-    if (!databaseUrl.endsWith("/continuity_matter_test")) throw new Error("Dedicated matter test database required");
+    await assertDedicatedTestDatabase(databaseUrl, 'continuity_matter_test');
     await runMigrations(databaseUrl); pool = createPool(config);
     await pool.query("truncate app.planners restart identity cascade");
     await seedDevelopmentFixture(pool); app = createApp(pool, config);
@@ -72,5 +73,19 @@ describe.sequential("Category-specific matter entry and initial map", () => {
     expect(text).not.toContain(wallet.details.walletAddress); expect(text).not.toContain("walletLabel");
     const audit = (await request(app).get("/v1/audit-events").set(owner).expect(200)).body;
     expect(JSON.stringify(audit)).not.toContain(wallet.details.walletAddress);
+  });
+
+  it('never represents synthetic checklist completion as a verified emergency plan', async () => {
+    await pool.query("update app.matter_items set desired_outcome='notify' where planner_id=(select id from app.planners where public_id=$1)", [developmentPlannerPublicId]);
+    await pool.query("update app.people set status='confirmed' where planner_id=(select id from app.planners where public_id=$1)", [developmentPlannerPublicId]);
+    await request(app).post('/v1/simulations').set(owner).send({lifeEvent:'death'}).expect(201);
+    for (const endpoint of ['/v1/readiness', '/v1/overview']) {
+      const result=(await request(app).get(endpoint).set(owner).expect(200)).body.readiness;
+      expect(result.totalMatters).toBeGreaterThanOrEqual(5);
+      expect(result.assignedOutcomes).toBeGreaterThanOrEqual(5);
+      expect(result.confirmedContacts).toBeGreaterThanOrEqual(1);
+      expect(result.completedSimulations).toBeGreaterThanOrEqual(1);
+      expect(result.verifiedEmergencyPlan).toBe(false);
+    }
   });
 });

@@ -2,15 +2,19 @@
 
 Role: cross-chat checkpoint and artifact/tool routing, not a second product authority
 Status: SAVED FOR CONTINUATION; LAUNCH OBJECTIVE INCOMPLETE
-Last updated: 2026-10-02 (Asia/Shanghai)
+Last updated: 2026-10-03 (Asia/Shanghai)
 
 Owner最新要求的全量Git保存已完成，7个LFS归档已从远端下载、解密并逐对象核验，CI42通过。Dot协作入口是
 [完整协作包](../collaboration/README.md)、[保存合同](source-control.md)和[当前交接](handoff.md)。
 下方按日期保留旧交接事实，不从历史段落生成第二个活动“下一步”。
 
-## October2 前三项发布工作与注册提示 — 最新恢复入口
+## October3 最新恢复入口
 
-修复API／Web／WWW已部署，受限真实身份与Web随后接通；Owner完成Google同意／登录，QQ接受一条明确的合成Directions共享。Owner已确认QQ在垃圾箱或其他分类找到邮件；原生同意／回调也已显示相同合成事项。新的重置密码邮件已实际发出，仍待本人完成。Apple真实TEST先失败，OCSP网络／重试分类修复部署后成功；不代表购买恢复。误点注册的重复账号提示已在Owner完成实际过期的Auth0管理登录后应用，并完整读回一致；没有扩权或修改账号。后续唯一下一步见[handoff](handoff.md)，完整记录见[前三项合同](release-123-20261001.md)。
+Owner后续要求严格审阅整个项目并直接修复。当前活动分支为`codex/strict-review-20261002`；[审查报告](code-review-20261002.md)记录完整正文覆盖、已修复问题、测试和依赖限制。以[handoff](handoff.md)的一个下一步继续，不能回到下方已被取代的等待登录任务。保留的发布状态为API10／schema0091、内部TestFlight1.0(2)已处理但Missing Compliance、六张商店图已保存；本轮修复是否部署单独记录。
+
+## October2 前三项发布工作与注册提示 — 保留的验收检查点
+
+修复API／Web／WWW已部署，受限真实身份与Web随后接通；Owner完成Google同意／登录，QQ接受一条明确的合成Directions共享。Owner已确认QQ在垃圾箱或其他分类找到邮件；原生同意／回调也已显示相同合成事项。密码重置及QQ使用新密码重新登录随后均已完成，不能再次列为待办。Apple真实TEST先失败，OCSP网络／重试分类修复部署后成功；不代表购买恢复。误点注册的重复账号提示已在Owner完成实际过期的Auth0管理登录后应用，并完整读回一致；没有扩权或修改账号。完整记录见[前三项合同](release-123-20261001.md)。
 
 ## HISTORICAL — October1 Resend已接通
 
@@ -34,7 +38,7 @@ TestFlight仍有独立门。新的source/CI精确记录见本轮QA，禁止重�
 ## 新聊天从哪里开始
 
 工作目录：`/Users/tantalum/Documents/电子遗嘱app`。源码私有仓库：
-[tantalum666/rillora](https://github.com/tantalum666/rillora)，当前分支`main`。
+[tantalum666/rillora](https://github.com/tantalum666/rillora)，当前工作分支见顶部恢复入口及实际Git读回。
 
 先读根目录[AGENTS.md](../AGENTS.md)，按其中新工作流开工协议盘点并完整阅读项目
 自有Markdown：先[product.md](product.md)，按Authority Map路由，排除依赖／缓存／

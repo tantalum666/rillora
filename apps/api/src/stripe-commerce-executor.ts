@@ -249,6 +249,10 @@ export class StripeCommerceExecutor {
       return Object.freeze({ received: true, status: "ignored", testOnly: this.providerEnvironment === "test" });
     }
 
+    // Keep the provider event's original reference. Resolution replaces its
+    // transaction reference with the Charge for ledger routing; a fresh dispute
+    // lookup still needs the original Dispute ID.
+    const financialSignal = signal;
     let financialResolution: StripeFinancialSignalResolution | null = null;
     if (
       ["refund_changed", "dispute_changed"].includes(signal.signalType)
@@ -312,7 +316,7 @@ export class StripeCommerceExecutor {
         // Initial financial lookup supplies routing only. Re-read it under the same
         // ownership as the subscription so a delayed dispute/refund cannot regress it.
         if (financialResolution) {
-          const current = await this.provider.resolveFinancialSignal!(signal);
+          const current = await this.provider.resolveFinancialSignal!(financialSignal);
           if (current.providerSubscriptionReference !== signal.providerSubscriptionReference
             || current.providerCustomerReference !== customerReference) throw new Error('Financial observation binding changed');
           financialResolution = current;

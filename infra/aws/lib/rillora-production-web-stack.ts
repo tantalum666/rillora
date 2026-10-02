@@ -1,11 +1,12 @@
 import { createHash } from 'node:crypto';
-import { readFileSync, readdirSync, lstatSync } from 'node:fs';
-import { dirname, resolve, relative } from 'node:path';
+import { readFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { CfnOutput, Duration, RemovalPolicy, Stack, Tags, type StackProps,
   aws_s3 as s3, aws_s3_deployment as deployment, aws_cloudfront as cloudfront,
   aws_cloudfront_origins as origins, aws_certificatemanager as acm, aws_iam as iam } from 'aws-cdk-lib';
 import type { Construct } from 'constructs';
+import { readVerifiedClientArtifact } from './client-artifact-files.js';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const contractBytes = readFileSync(resolve(root, 'config/production-connections.json'));
@@ -13,33 +14,15 @@ export const productionConnections = JSON.parse(contractBytes.toString());
 export const PRODUCTION_WEB_CSP = "default-src 'self'; base-uri 'self'; connect-src 'self'; font-src 'self'; form-action 'self' https://login.rillora.xyz; frame-ancestors 'none'; img-src 'self' data:; object-src 'none'; script-src 'self'; style-src 'self'";
 
 export function verifyProductionClientArtifact(directory: string, reviewEnabled = false): void {
-  const manifest = JSON.parse(readFileSync(resolve(directory, 'production-build.json'), 'utf8'));
+  const manifest = readVerifiedClientArtifact(directory, 'production-build.json');
   if (productionConnections.schemaVersion !== 1 || productionConnections.customerAccess !== 'closed'
     || manifest.version !== 1 || manifest.surface !== 'production-client' || manifest.customerAccess !== 'closed'
     || manifest.publicationCandidate !== true
     || (reviewEnabled ? manifest.reviewAccess !== 'identity-allowlist' : manifest.reviewAccess !== undefined)
     || manifest.webOrigin !== productionConnections.webOrigin || manifest.apiBaseURL !== productionConnections.apiBaseURL
-    || manifest.connectionsSha256 !== createHash('sha256').update(contractBytes).digest('hex')
-    || !manifest.files || typeof manifest.files !== 'object' || Array.isArray(manifest.files)) {
+    || manifest.connectionsSha256 !== createHash('sha256').update(contractBytes).digest('hex')) {
     throw new Error('Only a matching production client artifact with the explicitly selected access mode is accepted');
   }
-  const observed: string[] = [];
-  function visit(folder: string) {
-    for (const name of readdirSync(folder)) {
-      const path = resolve(folder, name), stat = lstatSync(path);
-      if (stat.isSymbolicLink()) throw new Error('Artifact symlink rejected');
-      if (stat.isDirectory()) visit(path);
-      else {
-        const key = relative(directory, path);
-        if (key === 'production-build.json') continue;
-        if (key !== 'index.html' && !/^assets\/[A-Za-z0-9_-]+\.(js|css|png|jpe?g|webp|svg|woff|woff2|txt)$/.test(key)) throw new Error('Unexpected production artifact path');
-        observed.push(key);
-        if (manifest.files[key] !== createHash('sha256').update(readFileSync(path)).digest('hex')) throw new Error('Production asset hash mismatch');
-      }
-    }
-  }
-  visit(resolve(directory));
-  if (!observed.includes('index.html') || JSON.stringify(observed.sort()) !== JSON.stringify(Object.keys(manifest.files).sort())) throw new Error('Production asset manifest is incomplete');
 }
 
 /** Same-origin client delivery only. Existing API/customer activation is untouched. */

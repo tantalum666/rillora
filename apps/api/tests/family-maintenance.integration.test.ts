@@ -1,3 +1,4 @@
+import { assertDedicatedTestDatabase, dedicatedTestDatabaseUrl } from './dedicated-test-database.js';
 import { createHash, randomUUID } from "node:crypto";
 import request from "./http-fixture.js";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
@@ -9,7 +10,7 @@ import { seedDevelopmentFixture, developmentPlannerPublicId as A } from "../src/
 import { currentLegalContract } from "../src/legal-contract.js";
 import { verifiedEmailDigest } from "../src/sharing-identity.js";
 
-const databaseUrl="postgresql:///continuity_family_test";
+const databaseUrl = dedicatedTestDatabaseUrl("postgresql:///continuity_family_test", "continuity_family_test");
 const config=loadConfig({NODE_ENV:"test",DATABASE_URL:databaseUrl,ALLOW_DEV_AUTH:"true",ALLOW_FAMILY_MAINTENANCE_PREVIEW:"true",CORS_ORIGINS:"http://localhost:4211"});
 const hash=(s:string)=>createHash('sha256').update(s).digest();
 const csrf='r'.repeat(43); const owner={"x-dev-planner-id":A};
@@ -51,7 +52,7 @@ const due=()=>new Date(Date.now()+7*86_400_000).toISOString();
 
 describe.sequential('Family maintenance — scoped ongoing work',()=>{
   beforeAll(async()=>{
-    if(!databaseUrl.endsWith('/continuity_family_test'))throw new Error('Dedicated Family database required');
+    await assertDedicatedTestDatabase(databaseUrl, 'continuity_family_test');
     await runMigrations(databaseUrl);pool=createPool(config);await pool.query('truncate app.planners restart identity cascade');
     await seedDevelopmentFixture(pool);app=createApp(pool,config);closed=createApp(pool,{...config,allowFamilyMaintenancePreview:false});
     B=await actor('B');C=await actor('C');X=await actor('X');ownId=String((await pool.query('select id from app.planners where public_id=$1',[A])).rows[0].id);

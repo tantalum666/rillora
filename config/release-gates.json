@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-02",
+  "updatedAt": "2026-10-03",
   "release": "Rillora Global 1.0",
   "scope": "Web and native iOS; existing Free and Family only",
   "gates": [
@@ -153,9 +153,10 @@
         "docs/release-engineering-20260930.md",
         "output/qa/rillora-launch-resume-20260930/release-acceptance-retry-result.json",
         "output/qa/rillora-launch-resume-20260930/snapshot-cloud-result.json",
-        "output/qa/rillora-launch-resume-20260930/api-final-regression.json"
+        "output/qa/rillora-launch-resume-20260930/api-final-regression.json",
+        "docs/code-review-20261002.md"
       ],
-      "next": "Bounded retention, independent retention holds and exact90day manual-snapshot retirement are deployed. Current-provider post-restore reconciliation and freeze/isolation guards are implemented and locally tested. Preserve the prior real RDS/KMS/privacy replay proof; actual reconciliation against later real Apple/Stripe transactions depends on the still-open purchase/provider gates."
+      "next": "October3 strict-review fixes are locally verified but not deployed; stage and validate the changed source/migrations before closing this gate. Bounded retention, independent retention holds and exact90day manual-snapshot retirement are deployed. Current-provider post-restore reconciliation and freeze/isolation guards are implemented and locally tested. Preserve the prior real RDS/KMS/privacy replay proof; actual reconciliation against later real Apple/Stripe transactions depends on the still-open purchase/provider gates."
     },
     {
       "id": "release-security",
@@ -172,9 +173,10 @@
         "docs/code-review-repair-20260930.md",
         "docs/release-123-20261001.md",
         "collaboration/verification/release-123-20261002/ci43.json",
-        "docs/independent-release-closeout-20261002.md"
+        "docs/independent-release-closeout-20261002.md",
+        "docs/code-review-20261002.md"
       ],
-      "next": "Route-bound reauthentication, account-bound browser requests and serialized Stripe observations are deployed. CI43 covers the changed source. Complete actual provider reauthentication/remaining core user journeys and general customer cutover without treating local or deployment evidence as acceptance."
+      "next": "October3 strict-review fixes are locally verified but not deployed; stage and validate the changed source/migrations before closing this gate. Route-bound reauthentication, account-bound browser requests and serialized Stripe observations are deployed. CI43 covers the changed source. Complete actual provider reauthentication/remaining core user journeys and general customer cutover without treating local or deployment evidence as acceptance. Manual all-source review is complete; the optional deep-scan coordinator could not start. CDK bundled dependency advisory remains a build-tool limitation, not a verified runtime exploit."
     },
     {
       "id": "apple-submission",
@@ -215,9 +217,10 @@
         "output/qa/rillora-ui-ux-audit-20260929/online-readback.json",
         "docs/code-review-repair-20260930.md",
         "docs/release-123-20261001.md",
-        "collaboration/verification/release-123-20261002/receipts/repair-rollout-readback.json"
+        "collaboration/verification/release-123-20261002/receipts/repair-rollout-readback.json",
+        "docs/code-review-20261002.md"
       ],
-      "next": "The WWW subscription-terms correction and product invitation router are deployed. Retain domain/TLS/hosting and focused route readbacks; final public customer transition remains dependent on the other release gates."
+      "next": "October3 strict-review fixes are locally verified but not deployed; stage and validate the changed source/migrations before closing this gate. The WWW subscription-terms correction and product invitation router are deployed. Retain domain/TLS/hosting and focused route readbacks; final public customer transition remains dependent on the other release gates."
     },
     {
       "id": "review-remediation",

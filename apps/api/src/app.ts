@@ -12,7 +12,7 @@ import { checkRecoveryJournal } from './recovery-journal.js';
 import { findForbiddenSecretField } from "./domain.js";
 import { ApiError, errorHandler, notFoundHandler } from "./errors.js";
 import { createApiRouter } from "./routes.js";
-import { createAccountDataRouter } from "./account-data-routes.js";
+import { createAccountDataRouter, mapBackupMaxBytes } from "./account-data-routes.js";
 import { createAccountDeletionRouter, createPublicAccountDeletionRouter, deletionProcessor, type AccountIdentityDeleting, type AccountDeletionProcessor } from "./account-deletion.js";
 import { createDisclosureRehearsalRouter } from "./disclosure-rehearsal-routes.js";
 import { createCommerceRouter } from "./commerce-routes.js";
@@ -173,15 +173,24 @@ export function createApp(
       preventCaching,express.json({limit:'256kb',strict:true,type:'application/json'}),
       createAppleProductionNotificationHandler(appleReviewIntake));
   }
-  // A bounded map import needs more room than ordinary mutations. Authenticate
-  // before reading its larger body; the usual parser skips the already-read body.
-  app.use(["/v1/account/map/import", "/api/v1/account/map/import"],
-    preventCaching, authenticate(pool, config), express.json({ limit:"2mb",strict:true,type:"application/json" }));
+  // File endpoints keep separate, authenticated transport bounds. Base64 adds
+  // one third to ciphertext size; the import envelope also sits outside the
+  // backup's own 2 MiB limit, which the handler enforces independently.
+  const jsonTypes = ["application/json", "application/*+json"];
+  const fileAuthentication = [preventCaching, authenticate(pool, config), requireWorkspaceIdentity];
+  app.post(["/v1/account/map/import", "/api/v1/account/map/import"],
+    ...fileAuthentication, express.json({ limit: mapBackupMaxBytes + 1024, strict: true, type: jsonTypes }));
+  const encryptedPaths = ["/v1/exports/start-here/encrypted/:publicId/finalize", "/api/v1/exports/start-here/encrypted/:publicId/finalize"];
+  if (config.allowSyntheticRecipientRehearsal) encryptedPaths.push(
+    "/v1/recipient-rehearsals/:publicId/packages/:packagePublicId/finalize",
+    "/api/v1/recipient-rehearsals/:publicId/packages/:packagePublicId/finalize",
+  );
+  app.post(encryptedPaths, ...fileAuthentication, express.json({ limit: "128kb", strict: true, type: jsonTypes }));
   app.use(
     express.json({
       limit: "64kb",
       strict: true,
-      type: ["application/json", "application/*+json"],
+      type: jsonTypes,
     }),
   );
 

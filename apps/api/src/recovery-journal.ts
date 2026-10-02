@@ -12,6 +12,15 @@ const publishers=new WeakMap<Pool,RecoveryJournalPublisher>();
 
 export function configureRecoveryPool(pool:Pool,publisher:RecoveryJournalPublisher):void{publishers.set(pool,publisher);}
 const deleted=z.object({deleted:z.literal(true)}).strict();
+const grantLevel=z.enum(['name','directions','details']);
+const recordSequence=z.string().regex(/^[1-9][0-9]{0,18}$/);
+const savedField=z.enum(['title','category','institutionName','locationHint','desiredOutcome',
+ 'accountHint','valueBand','currencyCode','importance','notes','assetType','debtType','documentType',
+ 'deviceModel','billingCycle','renewalDate','cryptoCustody','network','walletAddress','walletLabel','assetSymbol']);
+const connectionBase={status:z.enum(['pending','accepted','revoked']),recipient:z.uuid().nullable(),version:z.number().int().positive()};
+export const recoveryConnectionHistorySchema=z.object({...connectionBase,historyVersion:z.literal(2),
+ grants:z.array(z.object({matter:z.uuid(),level:grantLevel,grantId:recordSequence,
+  savedFieldNames:z.array(savedField).max(21).nullable(),revokedReviewThrough:recordSequence.nullable()}).strict()).max(5000)}).strict();
 export const recoveryCommerceInventorySchema=z.object({version:z.literal(1),manualAccess:z.boolean(),
  subscriptions:z.array(z.object({provider:z.enum(['stripe','storekit','paddle','wechat','alipay','unionpay','local_web']),
   environment:z.enum(['production','sandbox','test','internal']),reference:z.string().min(1).max(255).nullable(),
@@ -20,8 +29,8 @@ export const recoveryCommerceInventorySchema=z.object({version:z.literal(1),manu
 export type RecoverySubscriptionReference=z.infer<typeof recoveryCommerceInventorySchema>['subscriptions'][number];
 const factsByKind={
  account:z.union([deleted,z.object({status:z.enum(['active','locked','deletion_pending','closed'])}).strict()]),
- connection:z.union([deleted,z.object({status:z.enum(['pending','accepted','revoked']),recipient:z.uuid().nullable(),version:z.number().int().positive(),
-  grants:z.array(z.object({matter:z.uuid(),level:z.enum(['name','directions','details'])}).strict()).max(5000)}).strict()]),
+ connection:z.union([deleted,recoveryConnectionHistorySchema,z.object({...connectionBase,
+  grants:z.array(z.object({matter:z.uuid(),level:grantLevel}).strict()).max(5000)}).strict()]),
  matter:z.union([deleted,z.object({version:z.number().int().positive(),archived:z.boolean(),private:z.boolean()}).strict()]),
  person:z.union([deleted,z.object({version:z.number().int().positive(),restricted:z.boolean()}).strict()]),
  free_slot:z.union([deleted,z.object({connection:z.uuid().nullable()}).strict()]),

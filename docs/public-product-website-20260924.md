@@ -4,7 +4,18 @@ Role: public-entry implementation and publication boundary
 
 Status: DESIGNED PUBLIC LANDING WITH OWNER-SELECTED PREVIEW ACCOUNT GATEWAY
 
-Last updated: 2026-09-29 (Asia/Hong_Kong)
+Last updated: 2026-10-03 (Asia/Shanghai)
+
+## October3 strict-review implementation boundary
+
+The public artifact manifest is version3 and binds every uploaded regular file by
+path, byte length and SHA-256. The public and closed-production stack share the same
+file-tree verifier: changed, added, missing, symlinked or non-regular files are rejected
+before creating a deployment asset. The manifest itself is verified separately from
+its content inventory. Negative mutations,53infrastructure tests and an actual public
+build pass locally. No website publication is performed by this review. Current public
+routes and appearance remain those in the later September28/29 contracts, not the
+original September24 route list below. [Report](code-review-20261002.md).
 
 ## September29 Home and manual appearance
 

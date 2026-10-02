@@ -1,0 +1,30 @@
+from pathlib import Path
+import json,re,subprocess,datetime
+from urllib.parse import unquote,urlparse
+root=Path.cwd(); out=root/'collaboration/verification/strict-review-20261003'
+files=[root/x for x in subprocess.check_output(['git','ls-files','--cached','--others','--exclude-standard','-z'],text=True).split('\0') if x and x.endswith('.md') and not x.startswith(('collaboration/evidence/','collaboration/catalog/','collaboration/archives/'))]
+files=sorted(set(files));covered=set()
+# Historical output links may legitimately resolve through the immutable archive catalogs.
+for p in list((root/'collaboration/catalog').glob('*.json'))+list((root/'collaboration/verification').glob('*/catalog*.json')):
+ try:d=json.loads(p.read_text())
+ except json.JSONDecodeError:continue
+ if isinstance(d,list):covered.update(x['sourcePath'] for x in d if isinstance(x,dict) and 'sourcePath' in x)
+broken=[];checked=0;archived=[]
+for p in files:
+ text=re.sub(r'```.*?```','',p.read_text(),flags=re.S)
+ for m in re.finditer(r'!?\[[^\]\n]*\]\(([^\n]*?)\)',text):
+  raw=m.group(1).strip(); raw=raw[1:raw.index('>')] if raw.startswith('<') and '>' in raw else re.split(r'\s+[\"\']',raw,1)[0]
+  u=urlparse(raw)
+  if u.scheme or raw.startswith(('#','//')):continue
+  raw=unquote(raw.split('#',1)[0].split('?',1)[0])
+  if not raw:continue
+  checked+=1;target=(p.parent/raw).resolve()
+  if target.exists():continue
+  try:rel=target.relative_to(root).as_posix()
+  except ValueError:rel=str(target)
+  entry={'source':str(p.relative_to(root)),'target':raw}
+  if rel in covered or any(x.startswith(rel.rstrip('/')+'/') for x in covered):archived.append(entry)
+  else:broken.append(entry)
+result={'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'markdownFiles':len(files),'relativeTargetsChecked':checked,'historicalArchiveResolved':len(archived),'unresolved':broken,'boundary':'Local Markdown link target existence and catalog resolution; code fences, external URLs and heading anchors are not network/anchor validation.'}
+(out/'markdown-links.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+print(json.dumps(result,ensure_ascii=False))

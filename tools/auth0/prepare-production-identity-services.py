@@ -26,6 +26,7 @@ def api(method,path,body=None):
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--output',type=Path,required=True);args=parser.parse_args()
     clients=api('get','clients?fields=client_id,name,app_type&include_fields=true&per_page=100')
+    if not isinstance(clients,list) or len(clients)>=100:raise RuntimeError('Incomplete client inventory; stop before creating service identities')
     DIRECTORY.mkdir(parents=True,exist_ok=True,mode=0o700);os.chmod(DIRECTORY,0o700)
     report={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'services':[],
             'oldClientsChanged':False,'userDataChanged':False,'secretPrinted':False}

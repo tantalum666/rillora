@@ -1,11 +1,10 @@
-import { createHash } from 'node:crypto';
-import { readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { CfnOutput, Duration, RemovalPolicy, Stack, Tags, type StackProps,
   aws_s3 as s3, aws_s3_deployment as deployment, aws_cloudfront as cloudfront,
   aws_cloudfront_origins as origins, aws_certificatemanager as acm } from 'aws-cdk-lib';
 import type { Construct } from 'constructs';
+import { readVerifiedClientArtifact } from './client-artifact-files.js';
 
 export const PUBLIC_CSP = "default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'";
 
@@ -15,17 +14,17 @@ export class RilloraPublicWebStack extends Stack {
     if (!/^arn:aws:acm:us-east-1:\d{12}:certificate\/[0-9a-f-]+$/.test(props.certificateArn)) throw new Error('Public CloudFront requires the reviewed us-east-1 certificate');
     const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
     const directory = props.assetDirectory ?? resolve(root, 'apps/web/dist-public');
-    const marker = JSON.parse(readFileSync(resolve(directory, 'public-build.json'), 'utf8'));
-    const digest = createHash('sha256').update(readFileSync(resolve(directory, 'index.html'))).digest('hex');
+    const marker = readVerifiedClientArtifact(directory, 'public-build.json');
+    const digest = marker.files['index.html'];
     const storage = marker.browserStorage;
     const noBrowserStorage = marker.cookiesOrStorage === false && storage === undefined;
-    const appearanceOnly = marker.version === 2 && marker.cookiesOrStorage === true
+    const appearanceOnly = marker.cookiesOrStorage === true
       && storage?.cookies === false && storage?.tracking === false
       && storage?.purpose === 'user-selected-appearance'
       && Array.isArray(storage?.localStorageKeys) && storage.localStorageKeys.length === 1
       && storage.localStorageKeys[0] === 'rillora.website.appearance.v1'
       && Object.keys(storage).length === 4;
-    if (marker.surface !== 'public-information' || marker.accountsEnabled !== false
+    if (marker.version !== 3 || marker.surface !== 'public-information' || marker.accountsEnabled !== false
       || marker.apiEnabled !== false || (!noBrowserStorage && !appearanceOnly) || marker.htmlSha256 !== digest) {
       throw new Error('Only the verified public-information artifact is accepted');
     }

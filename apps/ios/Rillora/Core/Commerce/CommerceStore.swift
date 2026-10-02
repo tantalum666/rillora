@@ -33,6 +33,7 @@ final class CommerceStore {
     private var localAppAccountToken: UUID?
     private var pendingStoreKitSandboxTransaction: StoreKitTransactionEvidence?
     private var refreshRevision = 0
+    private var lifecycleRevision = 0
 
     init(
         service: any CommerceServing,
@@ -89,23 +90,30 @@ final class CommerceStore {
     }
 
     func start(appAccountToken: UUID? = nil) async {
+        guard !Task.isCancelled else { return }
+        lifecycleRevision += 1
+        let lifecycle = lifecycleRevision
         localAppAccountToken = appAccountToken
         await refresh()
+        guard lifecycle == lifecycleRevision, !Task.isCancelled else { return }
         if storeKitTestEnvironment.isEnabled {
             await loadStoreKitProducts()
         }
+        guard lifecycle == lifecycleRevision, !Task.isCancelled else { return }
         if storeKitLocalTestingEnabled {
             await refreshLocalStoreKitState()
         }
+        guard lifecycle == lifecycleRevision, !Task.isCancelled else { return }
 
         async let storefrontUpdates: Void = observeStorefrontUpdates()
         async let transactionUpdates: Void = observeStoreKitTransactionUpdates()
         async let subscriptionStatusUpdates: Void = observeStoreKitSubscriptionStatusUpdates()
-        async let productionUpdates: Void = startProductionPurchases(owner: appAccountToken)
+        async let productionUpdates: Void = startProductionPurchases(owner: appAccountToken, lifecycle: lifecycle)
         _ = await (storefrontUpdates, transactionUpdates, subscriptionStatusUpdates, productionUpdates)
     }
 
-    private func startProductionPurchases(owner: UUID?) async {
+    private func startProductionPurchases(owner: UUID?, lifecycle: Int) async {
+        guard lifecycle == lifecycleRevision, !Task.isCancelled else { return }
         if let owner { await applePurchase?.start(owner: owner) }
     }
 
@@ -190,6 +198,7 @@ final class CommerceStore {
     }
 
     func reset() {
+        lifecycleRevision += 1
         refreshRevision += 1
         applePurchase?.reset()
         status = nil

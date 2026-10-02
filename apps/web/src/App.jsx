@@ -283,7 +283,7 @@ export function App() {
   const [panelBusy, setPanelBusy] = useState(false);
   const [panelExitWarning, setPanelExitWarning] = useState("");
   const [sharingRefreshVersion, setSharingRefreshVersion] = useState(0);
-  const { confirm, confirmation } = useConfirmation();
+  const { confirm, confirmation, cancel: cancelConfirmation } = useConfirmation();
   const [toast, setToast] = useState("");
   const [toastKind, setToastKind] = useState("success");
   const [loading, setLoading] = useState(true);
@@ -492,7 +492,7 @@ export function App() {
 
   useWorkspaceHistory({ enabled: !!session && !!plan && !startsOnInvitationRoute && !startsOnPublicReadOnlyRoute,
     state: { view: activeNav, q: matterQuery, filter: matterFilter, sharingMatterId: activeNav === "contacts" ? sharingMatterId : null, ...drawerRoute(drawer) },
-    restore: restoreRoute, canLeave: mayLeaveDrawer });
+    restore: restoreRoute, canLeave: mayLeaveDrawer, cancelLeave: cancelConfirmation });
 
   function contactSaved(saved) {
     const isNew = !contacts.some((person) => person.publicId === saved.publicId);
@@ -784,7 +784,7 @@ export function App() {
         {activeNav === "plan" && <div className="plan-card"><ProgressSummary count={completed} total={Math.max(matters.length, 5)} /><button className="primary-button" onClick={matters.length ? openNextMatter : () => openNewMatter()}>{matters.length ? "Continue next step" : "Add your first matter"} <ArrowRight size={20} /></button><button className="secondary-button" onClick={() => setDrawer({ type: "start-here" })}>Review Start Here guide <FileText size={20} /></button></div>}
         {activeNav === "contacts" && <PeoplePanel contacts={contacts} matterContext={matters.find(item => item.id === sharingMatterId)} onReturnToMatter={() => { if ((window.history.state?.rillora?.index ?? 0) > 0) window.history.back(); else { const item = matters.find(item => item.id === sharingMatterId); setActiveNav("matters"); if (item) openMatter(item); } }} apiClient={api} refreshVersion={sharingRefreshVersion} onAdd={() => setDrawer({ type: "contact" })} onEdit={(person) => setDrawer({ type: "contact", contactId: person.publicId })} onShare={(person) => setDrawer({ type: "contact-sharing", contactId: person.publicId })} onIncoming={() => setActiveNav("shared")} />}
         {activeNav === "shared" && <SharedWithMePanel apiClient={api} />}
-        {activeNav === "maintenance" && <Suspense fallback={<p role="status">Loading reviews…</p>}><FamilyMaintenancePanel apiClient={api} onChanged={() => void loadWorkspace()} onManageSharing={() => setActiveNav("contacts")} /></Suspense>}
+        {activeNav === "maintenance" && <Suspense fallback={<p role="status">Loading reviews…</p>}><FamilyMaintenancePanel apiClient={api} onChanged={() => void loadWorkspace()} onManageSharing={() => setActiveNav("contacts")} onDirtyChange={setPanelHasChanges} onBusyChange={setPanelBusy} /></Suspense>}
         {activeNav === "guides" && <PlatformGuideDirectory renderMark={(guide) => <ProviderMark providerKey={guide.key} label={guide.label}/>} onOpen={(guide) => setDrawer({ type: "provider-guide", providerKey: guide.key })}/>}
         {activeNav === "access" && <PlanAccessPreview commerce={commerce} onAccessChanged={setCommerce} returnedFromCheckout={returnedFromCheckout} />}
         {activeNav === "activity" && <div className="activity-list">{auditEvents.length ? auditEvents.map((event) => <p key={event.publicId}><Check size={17} /> {formatAuditAction(event)}{event.resourceType === "matter" && matters.some(item => item.id === event.resourcePublicId) && <button className="text-button" onClick={() => openMatter(matters.find(item => item.id === event.resourcePublicId))}>{matters.find(item => item.id === event.resourcePublicId).label}</button>}{event.action.startsWith("sharing.") && <button className="text-button" onClick={() => setActiveNav("contacts")}>View people</button>}{event.action.startsWith("family_review.") && <button className="text-button" onClick={() => setActiveNav("maintenance")}>Open review</button>} <span>{formatDate(event.occurredAt)}</span></p>) : <p>No recorded plan changes yet.</p>}</div>}
