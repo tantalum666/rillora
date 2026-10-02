@@ -199,3 +199,10 @@ Existing archives remain immutable. Final publication/Git/CI receipts are direct
 saved reviewed nonsecret originals, separately from the archive capture interval.
 The current work branch is codex/strict-review-20261002; source review and remote
 preservation do not deploy the new0092/0093 migrations or open customers/billing.
+
+This addendum's new archive has now been freshly downloaded from GitHub and decrypted:
+934objects/1,433paths pass. Latest reviewed source ef09d0b22f7586cf4e60d3039f986b6fe6c19d02
+matches the remote review branch; [CI47](https://github.com/tantalum666/rillora/actions/runs/37056754027)
+passes all three jobs. Thirty already-redacted browser/result references were explicitly
+tracked after global cache/result patterns excluded them; no ignore or scan rule was
+weakened. Staged readable file paths and bytes now exactly match the complete manifest.

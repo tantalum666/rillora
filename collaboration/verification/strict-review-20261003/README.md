@@ -1,6 +1,6 @@
 # Strict whole-project review — October3 preservation
 
-Status: local source/regression/archive verification complete; remote and CI readback pending
+Status: SOURCE REVIEW,28REPAIRS,REMOTE PRESERVATION AND CI47 COMPLETE;UNDEPLOYED
 Last updated: 2026-10-03 (Asia/Shanghai)
 
 Owner requested a very detailed whole-project code review and direct repairs.
@@ -14,6 +14,11 @@ This additive capture preserves1,433eligible file paths/934deduplicated objects,
 verification decrypts and checks every object plus the complete catalog mapping.
 Earlier archives are unchanged and were not downloaded or rebuilt again.
 
+- [CI47: all three jobs passed](ci47.json)
+- [Fresh remote archive decryption/readback](remote-readback.json)
+- [Final remote source commit](remote-source-readback.json)
+- [Final body ledger after CI fixture correction](final-code-review.json)
+- [Final local closeout](local-closeout.json)
 - [Capture scope and exclusions](snapshot.json)
 - [Every original path and readable/raw location](catalog.json)
 - [Local cryptographic verification](archive-verification.json)
@@ -38,3 +43,10 @@ This avoids rewriting the archive to include its own publication/readback receip
 Source and current authority are on codex/strict-review-20261002. Changes are not
 merged into the released baseline or deployed. Existing UI, prices, data, FanPass,
 Owner simulator session and deferred physical-device/provider steps remain protected.
+
+CI47 passes all three jobs at ef09d0b22f7586cf4e60d3039f986b6fe6c19d02. CI45's
+missing shell prerequisites and CI46's30ignored reference files are retained as
+failed attempts, with their bounded corrections. The final receipts-only commit
+uses [skip ci]; application, tests, workflow and configuration stay byte-identical
+to this passing source. Final readable manifest/index and secret checks run locally.
+No production deployment or public launch follows from this preservation result.

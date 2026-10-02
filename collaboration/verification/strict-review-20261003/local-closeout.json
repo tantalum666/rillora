@@ -1,5 +1,5 @@
 {
-  "completedAt": "2026-10-02T19:34:01.633739+00:00",
+  "completedAt": "2026-10-02T19:55:50.546022+00:00",
   "sourceReviewComplete": true,
   "fixedFindings": 28,
   "priorities": {
@@ -61,5 +61,15 @@
   "taskFixtureServersStopped": true,
   "prototypePreviewRetained": "http://127.0.0.1:4174/",
   "boundary": "Local tests and complete body review. No cloud/provider/account/email/purchase/device or production rollout.",
-  "ciFollowup": "Explicit Linux shell prerequisites and positive404theme path; no provider calls."
+  "ciFollowup": "Explicit Linux shell prerequisites and positive404theme path; no provider calls.",
+  "status": "Review,repair,remote-preservation and CI complete; undeployed",
+  "ciRun": 37056754027,
+  "ciConclusion": "success",
+  "testedEngineeringCommit": "ef09d0b22f7586cf4e60d3039f986b6fe6c19d02",
+  "remoteArchiveVerification": {
+    "objects": 934,
+    "paths": 1433,
+    "freshDownload": true
+  },
+  "currentSourceLedger": "final-code-review.json"
 }

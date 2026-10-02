@@ -3106,3 +3106,9 @@ Owner先确认小型企业资格事实、再当场确认最终声明，申请已
   its readable-manifest guard exposed30ignored reference copies. Their encrypted
   originals were already remote-verified. Stage only the scanned exact references
   and validate the staged inventory; preserve global ignore rules and failedCI evidence.
+
+- Final result: CI47 at ef09d0b22f7586cf4e60d3039f986b6fe6c19d02 passes all three jobs.
+  The new archive was freshly fetched and934objects/1,433paths decrypted/verified.
+  Final active-source coverage is686files/91,738lines after the small CI/test follow-up.
+  Review/repairs/Git preservation are complete; coordinated restricted rollout of
+  reviewed source and0092/0093 is the single next step, not another personal login.

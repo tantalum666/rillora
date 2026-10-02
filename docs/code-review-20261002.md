@@ -1,7 +1,7 @@
 # Strict whole-project code review — October2
 
 Role: current whole-project review, repair and validation contract
-Status: ALL ACTIVE SOURCE BODIES REVIEWED;28REPAIRS LOCALLY VERIFIED;GIT CLOSEOUT IN PROGRESS;UNDEPLOYED
+Status: COMPLETE SOURCE REVIEW;28REPAIRS VERIFIED;CI47/PRESERVATION PASS;UNDEPLOYED
 Last updated: 2026-10-03 (Asia/Shanghai)
 
 Owner explicitly requests every project code file to be reviewed very carefully and
@@ -168,7 +168,7 @@ absence of all possible bugs, independent security assurance or launch readiness
 
 The work is on `codex/strict-review-20261002`, based on
 `3a5739ea87c022b390a39e05bebe4e0b1f17035a`. Source, focused contracts, tests and eligible
-QA/build originals are being saved under the existing all-work preservation contract.
+QA/build originals are saved under the existing all-work preservation contract.
 Remote/CI receipts are recorded separately in the [strict-review addendum](../collaboration/verification/strict-review-20261003/README.md).
 No review fix or new migration is deployed; retained API10/schema0091 and internal
 TestFlight1.0(2) do not validate this source. Public customer/live billing gates stay
@@ -194,3 +194,11 @@ result reference files inherited global cache/result ignore patterns. The origin
 bytes were already in remotely verified raw-work-012. Those exact scanned references
 are explicitly tracked; no broad ignore exemption or guard suppression is used.
 Index-to-manifest equality is now checked before the follow-up push.
+
+The final [CI47](https://github.com/tantalum666/rillora/actions/runs/37056754027)
+passes source/API/Web-infrastructure at ef09d0b22f7586cf4e60d3039f986b6fe6c19d02.
+The new archive was freshly fetched/decrypted:934objects/1,433paths verified.
+[Final source ledger](../collaboration/verification/strict-review-20261003/final-code-review.json)
+includes the CI fixture follow-up; no unread ranges or changed reviewed hashes remain.
+The final documentation/receipt commit leaves tested engineering bytes unchanged
+and has its own local link/index/secret checks. Review is complete; rollout is next.

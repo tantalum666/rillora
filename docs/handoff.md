@@ -1,6 +1,6 @@
 # Rillora Current Handoff
 
-Status: WHOLE-PROJECT SOURCE REVIEW AND28LOCAL REPAIRS COMPLETE;GIT CLOSEOUT IN PROGRESS;UNDEPLOYED
+Status: WHOLE-PROJECT REVIEW/28REPAIRS/GIT PRESERVATION COMPLETE;CI47PASS;UNDEPLOYED
 Last updated: 2026-10-03 (Asia/Shanghai)
 
 ## Current task and result
@@ -21,7 +21,7 @@ are unchanged;0092/0093are additive and not applied to production.
 Source/docs/tests and all eligible new QA/build originals are preserved in the
 [strict-review addendum](../collaboration/verification/strict-review-20261003/README.md).
 Branch codex/strict-review-20261002 starts at3a5739ea87c022b390a39e05bebe4e0b1f17035a;
-remote/CI closeout is recorded in that addendum separately from local verification.
+remote source, fresh encrypted-object readback and successful CI47 are recorded in that addendum. The passing engineering commit is ef09d0b22f7586cf4e60d3039f986b6fe6c19d02; subsequent receipts-only changes do not modify its tested engineering bytes.
 
 ## Limits and preserved release state
 
@@ -43,7 +43,7 @@ simulator is shut down. Historical browser prototype preview remains local.
 
 ## Single next step
 
-After remote/CI preservation completes, prepare the coordinated restricted rollout
+Prepare the coordinated restricted rollout
 of this reviewed source and migrations0092/0093, with exact artifacts/checksums and
 post-migration regression. Keep the existing closed/public and Owner-deferred gates;
 check real sessions only when needed and do not repeat completed earlier ceremonies.
