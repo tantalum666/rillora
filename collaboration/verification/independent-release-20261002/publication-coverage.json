@@ -36,6 +36,18 @@
       "published": "collaboration/verification/independent-release-20261002/final-readable-manifest-check.json",
       "sha256": "0791c53455badfc3462f88abef380fa31559d49f7963a9cf8e5a84df673edfbb",
       "mode": "reviewed byte-identical safe publication receipt generated after raw archive capture"
+    },
+    {
+      "source": "output/qa/rillora-independent-closeout-20261002/publication/final-links.json",
+      "published": "collaboration/verification/independent-release-20261002/final-links.json",
+      "sha256": "5e4f1813cebc5369bab4202d7a2c83595bb5f674a9bc1b2d9bcd0ce41b642247",
+      "mode": "final safe verification receipt; identical empty scanner result reuses the already published bytes"
+    },
+    {
+      "source": "output/qa/rillora-independent-closeout-20261002/publication/final-closeout-secret-scan.json",
+      "published": "collaboration/verification/independent-release-20261002/final-new-readable-scan.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "mode": "final safe verification receipt; identical empty scanner result reuses the already published bytes"
     }
   ],
   "excluded": "Generated frozen buffers, IPA inspection copy and fresh remote verification cache; source work is in catalog.json or normal tracked files."
