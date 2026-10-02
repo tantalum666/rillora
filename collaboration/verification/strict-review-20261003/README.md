@@ -5,7 +5,7 @@ Last updated: 2026-10-03 (Asia/Shanghai)
 
 Owner requested a very detailed whole-project code review and direct repairs.
 [The full report](../../../docs/code-review-20261002.md) contains all28confirmed
-fixes, negative/positive regression,686first-party source files/91721lines of body
+fixes, negative/positive regression,686first-party source files/91738lines of body
 coverage, six validated locks and the explicit remaining CDK upstream limitation.
 The optional deep-security coordinator did not start; no scan report is claimed.
 

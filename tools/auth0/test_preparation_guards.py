@@ -93,7 +93,7 @@ class PreparationGuards(unittest.TestCase):
                     main(module, '--apply', '--output', str(Path(temporary) / 'receipt.json'))
             self.assertEqual(writes, [])
 
-    def test_theme_read_failure_cannot_be_treated_as_a_missing_theme(self):
+    def run_theme_fixture(self, first_read_status):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
             cli = root / 'auth0'
@@ -102,8 +102,8 @@ import json, os, sys
 args = sys.argv[1:]
 with open(os.environ['RILLORA_AUTH0_FIXTURE_LOG'], 'a') as log:
     log.write(json.dumps(args[:3]) + '\\n')
-if args[:3] == ['api', 'get', 'branding/themes/default']:
-    print('503 Service Unavailable', file=sys.stderr)
+if args[:3] == ['api', 'get', 'branding/themes/default'] and len(open(os.environ['RILLORA_AUTH0_FIXTURE_LOG']).readlines()) == 1:
+    print(os.environ['RILLORA_AUTH0_FIXTURE_FIRST_READ_STATUS'], file=sys.stderr)
     raise SystemExit(1)
 if args[:2] == ['api', 'post']:
     print(json.dumps({'themeId': 'a' * 32}))
@@ -113,11 +113,24 @@ else:
             cli.chmod(0o700)
             log = root / 'calls.jsonl'
             result = subprocess.run(['bash', str(HERE / 'apply-universal-login.sh'), str(root / 'evidence')],
-                env={**os.environ, 'PATH': str(root) + os.pathsep + os.environ['PATH'], 'RILLORA_AUTH0_FIXTURE_LOG': str(log)},
+                env={**os.environ, 'PATH': str(root) + os.pathsep + os.environ['PATH'],
+                    'RILLORA_AUTH0_FIXTURE_LOG': str(log),
+                    'RILLORA_AUTH0_FIXTURE_FIRST_READ_STATUS': first_read_status},
                 text=True, capture_output=True, timeout=15)
-            self.assertNotEqual(result.returncode, 0)
+            self.assertTrue(log.exists(), result.stderr)
             calls = [json.loads(line) for line in log.read_text().splitlines()]
-            self.assertFalse(any(row[:2] in [['api', 'post'], ['api', 'patch']] or row[:3] == ['universal-login', 'templates', 'update'] for row in calls))
+            return result, calls
+
+    def test_theme_read_failure_cannot_be_treated_as_a_missing_theme(self):
+        result, calls = self.run_theme_fixture('503 Service Unavailable')
+        self.assertNotEqual(result.returncode, 0)
+        self.assertFalse(any(row[:2] in [['api', 'post'], ['api', 'patch']] or row[:3] == ['universal-login', 'templates', 'update'] for row in calls))
+
+    def test_confirmed_missing_theme_can_use_the_creation_path(self):
+        result, calls = self.run_theme_fixture('404 Not Found')
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn(['api', 'post', 'branding/themes'], calls)
+        self.assertIn(['universal-login', 'templates', 'update'], calls)
 
 
 if __name__ == '__main__':

@@ -50,7 +50,7 @@ CI is not new regression evidence. Never run fixtures against real accounts/data
 
 | R21 | P3 | Historical prototype Carousel left click suppression latched after pointer cancellation, swallowing the next tap. Reset stale suppression on a fresh pointer; restore the missing first-party favicon. | Real Chromium cancellation/tap case fails before;10browser interaction tests and4packaging tests pass. Protected runtime hashes changed only for the verified Carousel repair. |
 | R22 | P2 | Public publication manifest bound HTML only, accepting changed/extra/missing scripts. Manifestv3 and shared file-tree verifier bind all uploaded files, reject symlinks/nonfiles and validate paths. | Three negative mutations fail before;12focused and53full infrastructure checks, typecheck and actual public build pass. |
-| R23 | P2 | Auth0 preparation treated incomplete inventory/read errors as absence, risked orphaned protected credentials and could disable already active clients on rerun. Fail closed for each case; create a theme only after confirmed404. | Five negative provider/CLI scenarios fail before;4guard tests pass after, with all real provider calls intercepted. |
+| R23 | P2 | Auth0 preparation treated incomplete inventory/read errors as absence, risked orphaned protected credentials and could disable already active clients on rerun. Fail closed for each case; create a theme only after confirmed404. | Five negative provider/CLI scenarios fail before;5guard tests pass after, with all real provider calls intercepted. |
 | R24 | P2 | Native matrix runner reused and shut down existing named simulators, potentially disturbing an Owner session. Create unique devices and delete only recorded per-run IDs. | Successful and failed runner scenarios fail before and pass with mocked xcrun/xcodebuild; no actual five-device matrix run is claimed. |
 | R25 | P2 | Recovery CLI replayed uncertain ECS requests indefinitely without reconstructing parameters or rechecking isolation/freeze. Bound retries to55minutes, match the exact saved request/token and recheck current safety facts. |8mocked AWS positive/negative checks pass, including expired/future retry, changed scope/commands, running source and stale freeze. No cloud task launched. |
 | R26 | P3 | Health configuration coerced missing/boolean target IDs and accepted primitive headers. Require explicit string IDs and an object of headers. |9health checks pass; no live monitor configuration changed. |
@@ -112,7 +112,7 @@ do not label it as a completed Codex Security deep scan or independent certifica
 
 All original active code bodies were read by2026-10-02T18:18:29Z. Including new
 helpers/tests and reviewed final config changes, the engineering ledger covers
-**686files/91721lines** with no missing ranges or hash drift. This is first-party
+**686files/91738lines** with no missing ranges or hash drift. This is first-party
 API/SQL, Web, native Swift, browser prototype, infrastructure, tools, tests and
 configuration. It does not pretend dependency code, binary artwork, generated
 projects or historical duplicate mirrors are active first-party source. All184
@@ -133,7 +133,7 @@ and checks are in the QA ledger, independently from test coverage.
 | Native |190unit tests pass,0fail,1existing iOS26.5StoreKitTest runtime skip. Targeted commerce/editor tests overlap this total. Actual task-only simulator deletion/pending-purchase rejection UI passes. |
 | Infrastructure | Typecheck and7files/53tests; full artifact inventory/hash mutation checks and built public manifest verification. |
 | Historical prototype | TypeScript/build,10Chromium interaction tests,4packaging tests and fresh render with0console/page errors. |
-| Operations/tools |34release,4Auth0,10GoDaddy,8collaboration Python tests;28Node operations/hosted/review/snapshot tests. The matrix/recovery/provider tests intercept external operations. |
+| Operations/tools |34release,5Auth0,10GoDaddy,8collaboration Python tests;28Node operations/hosted/review/snapshot tests. The matrix/recovery/provider tests intercept external operations. |
 
 Numbers are separate suite results, not a claimed sum of unique tests. Earlier
 failed assertions, harness limitations and corrected attempts remain in the same
@@ -179,3 +179,11 @@ closed, and existing UI/pricing/real data/FanPass and personal deferrals are ret
 [code coverage](../output/qa/rillora-strict-review-20261002/code-review.json),
 [observations](../output/qa/rillora-strict-review-20261002/review-observations.json),
 [dependency structure](../output/qa/rillora-strict-review-20261002/dependency-structure.json).
+
+CI45 on8f1adcc passed API and Web/infrastructure but failed the source job because
+the shell fixture exited before its intercepted provider call. The hosted runner
+now explicitly installs jq/ripgrep/zsh/SHA utilities, the test surfaces preflight
+stderr and a positive404creation test passes locally. Matrix cases run on Linux
+when zsh is present; the initial two skipped cases are not called remotely passed.
+The follow-up source ledger records this small CI/test change separately from the
+immutable captured ledger. New CI outcome is retained in the collaboration addendum.

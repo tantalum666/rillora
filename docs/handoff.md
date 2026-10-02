@@ -6,7 +6,7 @@ Last updated: 2026-10-03 (Asia/Shanghai)
 ## Current task and result
 
 Owner requested an extremely detailed review of every project code file and direct
-repairs. All active first-party source bodies are reviewed:686files/91721lines,
+repairs. All active first-party source bodies are reviewed:686files/91738lines,
 plus184startup Markdown bodies and six separately validated dependency locks.
 28confirmed problems are fixed and locally verified (6P1/20P2/2P3). Complete findings,
 reproductions, exclusions and evidence are in [the review report](code-review-20261002.md).

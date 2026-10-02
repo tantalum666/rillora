@@ -3095,3 +3095,9 @@ Owner先确认小型企业资格事实、再当场确认最终声明，申请已
 - Unfinished: remote/CI closeout is recorded separately as it completes; new repairs
   and0092/0093 are not deployed. CDK upstream patch, real transactions, deferred
   personal/device/merchant work and final store gates remain distinct.
+
+- CI follow-up: first remote CI45 passed API/Web/infrastructure, while a new Auth0
+  shell fixture lacked runner prerequisites. Explicit Linux prerequisites and better
+  failure diagnostics are added; the legitimate404creation branch also passes.
+  The code ledger is reconciled after this focused correction; the original failure
+  and archive capture remain immutable dated evidence.
