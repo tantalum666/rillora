@@ -3101,3 +3101,8 @@ Owner先确认小型企业资格事实、再当场确认最终声明，申请已
   failure diagnostics are added; the legitimate404creation branch also passes.
   The code ledger is reconciled after this focused correction; the original failure
   and archive capture remain immutable dated evidence.
+
+- Publication follow-up: CI46 passed tools, API, Web/infrastructure and source scan;
+  its readable-manifest guard exposed30ignored reference copies. Their encrypted
+  originals were already remote-verified. Stage only the scanned exact references
+  and validate the staged inventory; preserve global ignore rules and failedCI evidence.

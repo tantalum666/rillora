@@ -1,0 +1,30 @@
+2026-10-02T19:41:30.7770018Z .....
+2026-10-02T19:41:30.7778798Z ----------------------------------------------------------------------
+2026-10-02T19:41:30.7779964Z Ran 5 tests in 0.221s
+2026-10-02T19:41:30.7780319Z
+2026-10-02T19:41:30.7780834Z OK
+2026-10-02T19:41:30.8518981Z ........
+2026-10-02T19:41:30.8519938Z ----------------------------------------------------------------------
+2026-10-02T19:41:30.8520900Z Ran 8 tests in 0.005s
+2026-10-02T19:41:30.8521265Z
+2026-10-02T19:41:30.8521776Z OK
+2026-10-02T19:41:31.1744102Z {"fileCount": 1146, "totalBytes": 73849185, "nestedRepositoriesPreserved": [], "committed": false, "uploaded": false}
+2026-10-02T19:41:32.8214012Z {"passed": true, "reviewedNonSecrets": 29, "unreviewed": 0}
+2026-10-02T19:41:34.4539846Z Traceback (most recent call last):
+2026-10-02T19:41:34.4547152Z   File "/home/runner/work/rillora/rillora/tools/collaboration/verify_publication.py", line 113, in <module>
+2026-10-02T19:41:34.4548241Z     main()
+2026-10-02T19:41:34.4549720Z   File "/home/runner/work/rillora/rillora/tools/collaboration/verify_publication.py", line 104, in main
+2026-10-02T19:41:34.4550483Z     result = verify(root, args.scan)
+2026-10-02T19:41:34.4550914Z              ^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-02T19:41:34.4551594Z   File "/home/runner/work/rillora/rillora/tools/collaboration/verify_publication.py", line 43, in verify
+2026-10-02T19:41:34.4576430Z ##[error]    raise ValueError('Readable manifest has missing, extra or duplicate files')
+2026-10-02T19:41:34.4584170Z ValueError: Readable manifest has missing, extra or duplicate files
+2026-10-02T19:41:34.4643696Z ##[error]Process completed with exit code 1.
+2026-10-02T19:41:34.4752552Z Post job cleanup.
+2026-10-02T19:41:34.5530102Z [command]/usr/bin/git version
+2026-10-02T19:41:34.5562695Z git version 2.55.0
+2026-10-02T19:41:34.5614490Z Temporarily overriding HOME='/home/runner/work/_temp/7784c871-a870-4864-bf23-2d454ed9dc12' before making global git config changes
+2026-10-02T19:41:34.5616996Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-02T19:41:34.5619490Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/rillora/rillora
+2026-10-02T19:41:34.5702401Z Removing SSH command configuration
+2026-10-02T19:41:34.5719805Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand

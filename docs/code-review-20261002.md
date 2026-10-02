@@ -187,3 +187,10 @@ stderr and a positive404creation test passes locally. Matrix cases run on Linux
 when zsh is present; the initial two skipped cases are not called remotely passed.
 The follow-up source ledger records this small CI/test change separately from the
 immutable captured ledger. New CI outcome is retained in the collaboration addendum.
+
+CI46 then passed all57Python tool checks and the source secret scan, plus API and
+Web/infrastructure. Publication coverage correctly failed because30redacted browser/
+result reference files inherited global cache/result ignore patterns. The original
+bytes were already in remotely verified raw-work-012. Those exact scanned references
+are explicitly tracked; no broad ignore exemption or guard suppression is used.
+Index-to-manifest equality is now checked before the follow-up push.
