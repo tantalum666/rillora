@@ -663,3 +663,16 @@ created on Web and showed the synthetic recipient Connected. Actual native sign-
 and this cross-platform read are verified; password reset, detailed shared-field/
 revocation boundaries and real Apple purchase/restore remain separate unfinished work.
 [Current receipt](../collaboration/verification/release-123-20261002/real-account-progress-20261002.json).
+
+## October2 password reset completion
+
+After Owner requested a replacement for an expired link, one newly delivered reset
+email led to Owner-confirmed completion and a matching Auth0 success event. This
+closes the actual reset transition, not the subsequent new-password login or shared
+content acceptance. The Web account page remains at its unchecked personal terms
+step; no consent/password is supplied by Agent. [Evidence](../collaboration/verification/email-logo-20261002/README.md).
+
+The Owner subsequently completed QQ Web login. A real shared-item response confirms
+the expected Directions projection. The planner simulator's old session returned
+authentication-required and was recovered only to a fresh unchecked terms step;
+that Owner confirmation and subsequent revoke test are still pending.

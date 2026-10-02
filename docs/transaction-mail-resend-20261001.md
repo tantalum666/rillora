@@ -179,3 +179,20 @@ the supplied new-password field is a required human handoff. Earlier direct CLI 
 failures produced no observed new message and were reconciled before one successful
 request through the already configured local system proxy. No app/provider/TLS setting
 was weakened to fix the local transport.
+
+## October2 fresh recovery link and all missing images
+
+Owner reported the prior link expired and explicitly requested a resend. A TLS
+handshake failure produced no new provider mail; after reconciliation one fresh
+Auth0 request succeeded and Resend delivered one email at18:16Asia/Shanghai. Owner
+then confirmed a completed password reset, independently matched by Auth0's scp
+success event at18:26:59. New QQ Web sign-in remains pending. Old ticket expiry
+policy/cause was not inferred or weakened.
+
+Owner's screenshot shows all three body images replaced by placeholders. The sent
+HTML contains the Rillora PNG and two Auth0 PNGs; all URLs return200, the Rillora
+bytes match source, and all three load/render in the actual Resend preview. No
+paid-feature gate is indicated. The exact QQ client/privacy/network/image-proxy
+condition remains unverified; do not claim it is repaired from server checks alone.
+No template, DNS, image hosting, subscription or security setting changed.
+[Safe evidence](../collaboration/verification/email-logo-20261002/README.md).

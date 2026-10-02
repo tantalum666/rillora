@@ -1,0 +1,18 @@
+{
+  "requestedAt": "2026-10-02T10:12:05.177827+00:00",
+  "reason": "Owner reports expired previous link and explicitly requests a fresh reset email",
+  "recipient": "previously confirmed QQ account",
+  "state": "accepted",
+  "passwordSetByAgent": false,
+  "httpStatus": 200,
+  "curlExit": 0,
+  "priorAttempt": {
+    "requestedAt": "2026-10-02T10:12:05.177827+00:00",
+    "httpStatus": 0,
+    "curlExit": 35,
+    "state": "requires_reconciliation"
+  },
+  "retryStartedAt": "2026-10-02T10:16:32.747043+00:00",
+  "priorSendReconciledAbsent": true,
+  "response": "We've just sent you an email to reset your password."
+}

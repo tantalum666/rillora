@@ -43,12 +43,19 @@ and live billing remain closed.
 
 ## Current pending evidence and constraints
 
-A normal Auth0 QQ password-reset email was accepted and Resend reported delivered
-at October2 08:45UTC, subject Reset your password. Earlier direct CLI TLS failures
-were reconciled with no outgoing email; using the existing local system proxy worked,
-with TLS checks intact and no global setting changed. Owner has been asked to enter
-and submit the new password personally and use QQ to sign in again at the open Chrome
-account page. Password reset and that new sign-in are NOT yet confirmed.
+Owner reported the prior recovery link expired and requested a replacement. One new
+email was delivered at18:16Asia/Shanghai; Owner then completed the reset and Auth0
+recorded scp success at18:26:59. Owner then completed QQ Web login. The actual private map and shared Directions
+item load; API200/no-store returns exactly the5allowed fields, with no Notes or
+private reference marker. The planner simulator later returned Authentication is
+required. Only its old session was signed out; Google was reused and a fresh
+unchecked Account terms step now awaits Owner. Revocation has not yet been attempted.
+
+Owner also reported all email images missing. The sent HTML contains the correct
+Rillora PNG and two Auth0 PNGs; all URLs return200 and all3render in Resend's actual
+preview. No paid-feature gate is observed. QQ's exact external-image loading cause
+remains unproven. [Safe mail evidence](../collaboration/verification/email-logo-20261002/README.md).
+No template, image host, DNS, plan or security setting was changed on speculation.
 
 Detailed shared-field/reload/revocation, other remaining actual journeys and Apple
 purchase/restore/lifecycle stay open. Real-device work remains Owner-deferred; do not
@@ -64,9 +71,10 @@ Secrets, private subjects, enrollment request and device inventory stay in
 
 ## Single next step
 
-Await the already-requested QQ password reset/relogin result, verify the actual signed-in
-recipient and shared-field/revocation boundaries, and finish independent evidence/Git
-preservation. Keep physical-device work deferred. The localhost3200 simulator mirror
+Await Owner confirmation of the planner simulator's new Account terms step, then
+revoke only the named synthetic sharing connection and verify the QQ recipient loses
+access. QQ password reset, new login and Directions field filtering are already verified;
+do not repeat them. Finish the current evidence/Git follow-up afterward. Keep physical-device work deferred. The localhost3200 simulator mirror
 (exec24106) is signed in; stop it with its scoped cleanup when acceptance ends. AWS
 and Auth0 renewal are complete; do not ask again without an actual new failure.
 [Previous handoff](handoff-history-20261001-before-release-123.md) is HISTORICAL.
