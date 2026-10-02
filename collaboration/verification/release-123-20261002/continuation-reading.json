@@ -1,0 +1,27 @@
+{
+  "workflow": "same release continuation; not a new full read",
+  "completedAt": "2026-10-02T07:30:59.778404+00:00",
+  "reusedFullBodyLedger": "output/qa/rillora-launch-resume-20260930/full-read-completion.json",
+  "baselineFiles": 165,
+  "baselineLines": 29003,
+  "focusedRecovery": [
+    "AGENTS.md full",
+    "docs/product.md current decisions and locked constraints/Authority Map; omitted historical detail retained from full baseline",
+    "docs/handoff.md full",
+    "docs/decision-log.md latest entries",
+    "docs/release-123-20261001.md full",
+    "collaboration/README.md full",
+    "docs/source-control.md full",
+    "docs/authentication-experience.md current sections",
+    "docs/release-readiness.md current sections",
+    "docs/chat-resume-20260930.md current routing",
+    "infra/aws/README.md current contexts",
+    "infra/auth0/hosted-consent/README.md full",
+    "config/release-gates.json full",
+    "tools/release/preflight.py full",
+    "tools/release/test_preflight.py full",
+    "changed implementation diffs and new files full"
+  ],
+  "exclusions": "Dependencies, caches, generated output and historical evidence replicas retain the original protocol exclusions. No full rescan or unchanged deployment/application repeated.",
+  "truncationRecovery": "Focused product authority rows/handoff/current contract were reread separately after batched output truncation; generated catalogs were inspected as data, not substituted for source Markdown bodies."
+}

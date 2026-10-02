@@ -18,7 +18,8 @@ CONNECTIONS = json.loads((ROOT / 'config/production-connections.json').read_text
 STATES = {'open', 'in_progress', 'owner_deferred', 'verified'}
 GATE_IDS = {'production-runtime', 'production-identity', 'production-billing',
             'merchant-market', 'apple-transactions', 'operations', 'backup-retention',
-            'release-security', 'apple-submission', 'physical-device', 'public-surface'}
+            'release-security', 'apple-submission', 'physical-device', 'public-surface',
+            'review-remediation'}
 
 
 def native_findings(info):

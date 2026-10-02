@@ -14,8 +14,11 @@ account. The Auth0 failure log identifies a duplicate. Supported signup-password
 text now has a direct Sign in / Forgot password instruction for email-in-use and
 a conditional instruction for generic validation failures. Existing enumeration
 protection and hosted layout remain. No public account lookup or automatic linking
-is introduced. The source is prepared; provider application/readback is pending the
-actually expired administrator login. See the [current acceptance record](release-123-20261001.md).
+is introduced. Owner completed the actual expired administrator login on October2.
+The same-scope CLI renewal and two-key GET/merge/PUT/readback succeeded; all other
+text and security settings remain unchanged. This English prompt text is tenant-wide,
+including the existing Preview hosted flow. Actual repeated error rendering has
+not been retested. See the [current acceptance record](release-123-20261001.md).
 
 ## September30 sensitive-action verification
 

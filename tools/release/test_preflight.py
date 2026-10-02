@@ -1,4 +1,5 @@
 import importlib.util
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -9,6 +10,13 @@ spec.loader.exec_module(preflight)
 
 
 class PublicationBoundaryTests(unittest.TestCase):
+    def test_current_register_is_complete_and_review_gate_cannot_be_removed(self):
+        data = json.loads((preflight.ROOT / 'config/release-gates.json').read_text())
+        missing = 'Release register does not contain the complete required gate set'
+        self.assertNotIn(missing, preflight.gate_findings(data))
+        data['gates'] = [gate for gate in data['gates'] if gate['id'] != 'review-remediation']
+        self.assertIn(missing, preflight.gate_findings(data))
+
     def test_build_success_with_empty_release_configuration_cannot_pass(self):
         issues = preflight.native_findings({'CFBundleIdentifier': 'com.rillora.ios'})
         for key in preflight.REQUIRED_NATIVE:

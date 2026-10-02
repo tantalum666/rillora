@@ -63,8 +63,8 @@ Apple confirms TestFlight uses its sandbox and requires metadata plus a selected
 build for App Review. Those platform facts do not establish Rillora's completion.
 [Sandbox testing](https://developer.apple.com/help/app-store-connect/test-a-beta-version/testing-subscriptions-and-in-app-purchases-in-testflight/),
 [submission](https://developer.apple.com/help/app-store-connect/manage-submissions-to-app-review/submit-an-app/).
-Use handoff for the single next action. Requested signup-copy application awaits
-actual administrator authentication; real inbox/reset/native and Apple purchase
+Use handoff for the single next action. Requested signup-copy application/readback
+is complete after Owner authentication; real inbox/reset/native and Apple purchase
 acceptance remain. No new SES application, redesign or repeated rollout is needed.
 
 ## HISTORICAL — September30 independent engineering before review repairs
@@ -457,3 +457,13 @@ September19曾记录5–10个工程日的初步预算；随后Owner先行安排�
 ## HISTORICAL — Selected brand checkpoint — September19
 
 The Owner-selected Legacy Imprint03 closes the Logo-choice and missing-source-icon work. The main target now configuresAppIcon; the inspected Debug bundle declares it and the Simulator home screen renders the selected image. Existing app/Web brand slots, font licences and legal Sites6 are updated. [Brand QA](../output/qa/rillora-brand-adoption-20260919/README.md) distinguishes this from a production Release artifact: readonly preflight still reports missing production fields, test endpoints/StoreKit fixture and the existing release gates. Do not count a Debug icon or legally published Terms as product/App Store release approval. Resume isolated production configuration and backup/restore work; keep the existing Appleannual-price question and Owner-deferred registration/device work separate.
+
+## October2 release-register drift correction
+
+The register had12required gates while the checker still recognized11. A regression
+against the actual register reproduced the false incomplete-set error before the fix.
+The checker now explicitly includes review-remediation and still fails if it is removed.
+Seven focused preflight tests pass. The13Dot fixes are now correctly recorded as
+verified/deployed; other10unverified gates remain blockers. No approval or missing
+user/provider result is invented. Existing deployment/identity/Apple/public-surface
+next descriptions now match the current receipts.

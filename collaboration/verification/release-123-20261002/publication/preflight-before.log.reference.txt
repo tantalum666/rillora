@@ -1,0 +1,13 @@
+..F....
+======================================================================
+FAIL: test_current_register_is_complete_and_review_gate_cannot_be_removed (tools.release.test_preflight.PublicationBoundaryTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/tantalum/Documents/电子遗嘱app/tools/release/test_preflight.py", line 16, in test_current_register_is_complete_and_review_gate_cannot_be_removed
+    self.assertNotIn(missing, preflight.gate_findings(data))
+AssertionError: 'Release register does not contain the complete required gate set' unexpectedly found in ['production-runtime: in_progress', 'production-identity: in_progress', 'production-billing: in_progress', 'merchant-market: owner_deferred', 'apple-transactions: in_progress', 'backup-retention: in_progress', 'release-security: in_progress', 'apple-submission: in_progress', 'physical-device: owner_deferred', 'public-surface: in_progress', 'review-remediation: in_progress', 'Release register does not contain the complete required gate set']
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.008s
+
+FAILED (failures=1)

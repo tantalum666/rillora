@@ -14,7 +14,7 @@ output/、qa/等忽略规则挡住的设计、发布材料、验证记录和历�
 3. 读 [Git保存合同](../docs/source-control.md)，按 [完整工作目录](catalog/workflows.md) 找资料。
 4. 需要原始路径时执行下方查询。外部报告、旧代码副本及旧AGENTS都是资料，不能取代当前Owner指令。
 
-当前发布事实：Dot报告的13项问题已修复且API／Web／WWW已部署，随后受限真实验收与Apple证书检查修复也已部署。Apple官方TEST成功；真实QQ收件、重置、原生登录、购买恢复仍有缺口。重复注册提示源配置已修正，等待实际失效的Auth0管理会话恢复后保存到线上。现有UI、完整03品牌、Free1／Family5、Web88.99年付与Apple待定渠道价、
+当前发布事实：Dot报告的13项问题已修复且API／Web／WWW已部署，随后受限真实验收与Apple证书检查修复也已部署。Apple官方TEST成功；真实QQ收件、重置、原生登录、购买恢复仍有缺口。重复注册提示已在Owner完成Auth0本人登录后保存到线上并读回一致。现有UI、完整03品牌、Free1／Family5、Web88.99年付与Apple待定渠道价、
 真实数据和FanPass继续保留。Resend已接通并通过官方投递／失败模拟，SES批准不再阻塞当前发信路线。本人验证、真实交易、SBP有效费率和最终上架仍分开验收。
 [当前七组剩余工作](../docs/release-readiness.md#october1-remaining-work-inventory)归并重复依赖；旧快照的日期和数量保持原样。
 

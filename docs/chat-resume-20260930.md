@@ -10,7 +10,7 @@ Owner最新要求的全量Git保存已完成，7个LFS归档已从远端下载�
 
 ## October2 前三项发布工作与注册提示 — 最新恢复入口
 
-修复API／Web／WWW已部署，受限真实身份与Web随后接通；Owner完成Google同意／登录，QQ接受一条明确的合成Directions共享。QQ收件仍未由本人确认；服务器250回执不能替代收件箱结果。Apple真实TEST先失败，OCSP网络／重试分类修复部署后成功；不代表购买恢复。误点注册的重复账号提示已准备，Auth0管理会话实际失效，正在等待本人完成验证后应用。后续唯一下一步见[handoff](handoff.md)，完整记录见[前三项合同](release-123-20261001.md)。
+修复API／Web／WWW已部署，受限真实身份与Web随后接通；Owner完成Google同意／登录，QQ接受一条明确的合成Directions共享。QQ收件仍未由本人确认；服务器250回执不能替代收件箱结果。Apple真实TEST先失败，OCSP网络／重试分类修复部署后成功；不代表购买恢复。误点注册的重复账号提示已在Owner完成实际过期的Auth0管理登录后应用，并完整读回一致；没有扩权或修改账号。后续唯一下一步见[handoff](handoff.md)，完整记录见[前三项合同](release-123-20261001.md)。
 
 ## HISTORICAL — October1 Resend已接通
 

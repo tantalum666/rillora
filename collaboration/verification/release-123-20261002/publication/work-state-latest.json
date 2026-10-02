@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-02T07:10:32.514784+00:00",
+  "updatedAt": "2026-10-02T07:29:13.369677+00:00",
   "ownerTask": "Complete work packages 1, 2 and 3 first: repaired production rollout, real account/email journeys, actual Apple Sandbox purchase/restore.",
   "sourceBase": "b3fed06d93d47479897a64a95a136633d63d7192",
   "reading": {
@@ -90,7 +90,7 @@
     "qqSMTPResponse": "250 OK: queued as.",
     "october2WebSession": "no_active_session_after_account_changed_reload"
   },
-  "next": "Apply clear signup errors, investigate QQ inbox delivery, then continue recipient/native/Apple purchase acceptance without repeating completed rollout.",
+  "next": "Continue fresh native login and remaining actual inbox/reset/Apple purchase acceptance.",
   "publicCustomersOpened": false,
   "liveBillingEnabled": false,
   "appleBuildUploaded": false,
@@ -119,11 +119,13 @@
   "signupCopy": {
     "requestedByOwner": true,
     "localChangePrepared": true,
-    "providerApplied": false,
-    "blockedOnActuallyExpiredAuth0ManagementSession": true,
-    "ownerAuth0QuestionPending": true,
+    "providerApplied": true,
+    "blockedOnActuallyExpiredAuth0ManagementSession": false,
+    "ownerAuth0QuestionPending": false,
     "cliDeviceCodeExpiredWhileWaiting": true,
-    "resume": "After human admin authentication, start one fresh CLI device flow to reuse that session; do not ask for credentials in chat."
+    "resume": "After human admin authentication, start one fresh CLI device flow to reuse that session; do not ask for credentials in chat.",
+    "readbackMatches": true,
+    "securitySettingsChanged": false
   },
   "browser": {
     "oldChromeId": "3",
@@ -136,5 +138,14 @@
     "Native production identity journey",
     "Apple Sandbox actual purchase/restore/lifecycle",
     "Publish all current source/evidence and final closeout"
-  ]
+  ],
+  "git": {
+    "sourceCommit": "572fae4c7cab9987d19662547b78f0754a18b3f9",
+    "pushed": true,
+    "newFilesPreserved": 463,
+    "freshRemoteArchiveVerification": true,
+    "ci": 43,
+    "ciStatus": "success",
+    "receiptFollowupPending": true
+  }
 }

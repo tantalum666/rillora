@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-01",
+  "updatedAt": "2026-10-02",
   "release": "Rillora Global 1.0",
   "scope": "Web and native iOS; existing Free and Family only",
   "gates": [
@@ -22,9 +22,12 @@
         "output/qa/rillora-launch-resume-20260930/release-acceptance-retry-result.json",
         "output/qa/rillora-launch-resume-20260930/final-http-readback.json",
         "docs/code-review-repair-20260930.md",
-        "collaboration/verification/resend-20261001/aws-session-boundary.json"
+        "collaboration/verification/resend-20261001/aws-session-boundary.json",
+        "docs/release-123-20261001.md",
+        "collaboration/verification/release-123-20261002/receipts/repair-rollout-readback.json",
+        "collaboration/verification/release-123-20261002/receipts/ocsp-deploy-outputs.json"
       ],
-      "next": "All three existing AWS profiles actually report expiry on October1. Restore that session, then roll out the prepared review fixes to the API7 successor and closed Web/router/WWW with exact version readback; schema0091 is unchanged. Actual reviewer login/legal acceptance and core real-user journeys remain separate."
+      "next": "Repairs and restricted review runtime/Web/WWW are deployed. API10 deployment outputs and Apple TEST delivery are retained; schema0091 is unchanged. Finish remaining real Web/native journeys and controlled customer cutover. A later expired AWS session is not a reason to repeat completed rollout."
     },
     {
       "id": "production-identity",
@@ -56,9 +59,13 @@
         "collaboration/verification/resend-20261001/resend-domain-verified.json",
         "collaboration/verification/resend-20261001/auth0-transport-probe-state.json",
         "collaboration/verification/resend-20261001/resend-account-limits.json",
-        "collaboration/verification/resend-20261001/resend-failure-simulators.json"
+        "collaboration/verification/resend-20261001/resend-failure-simulators.json",
+        "docs/release-123-20261001.md",
+        "collaboration/verification/release-123-20261002/receipts/qq-delivery-investigation.json",
+        "collaboration/verification/release-123-20261002/receipts/qq-auth-failure-readback.json",
+        "collaboration/verification/release-123-20261002/signup-copy-applied.json"
       ],
-      "next": "Resend is the Owner-selected active Auth0 sender; verified domain, domain-restricted sending key, enforced TLS, tracking off and two official simulator delivery receipts are confirmed. Free limits and disabled pay-as-you-go are read back; official bounced/complained/suppressed events are observable. Real inbox verification/reset/invitation continuation and actual login/legal acceptance remain open; simulator results do not prove actual end-user failure handling or delivered external alarms. SES approval is not required for this sender; preserve the existing case without another message. Before customer cutover retire old test grants and wait the measured 86400-second token TTL plus skew; preserve current Preview meanwhile."
+      "next": "Existing Google planner and QQ recipient completed production Web login/consent and direct-link invitation acceptance in this workflow. Resend delivered/SMTP250 does not resolve Owner-reported missing QQ inbox mail. Complete actual inbox/reset and native identity acceptance; signup guidance has been applied/read back after Owner admin renewal. Preserve existing identities/data, original review expiry and separate old-token retirement gate."
     },
     {
       "id": "production-billing",
@@ -100,9 +107,11 @@
         "docs/release-engineering-20260930.md",
         "output/qa/rillora-launch-resume-20260930/catalog-result.json",
         "output/qa/rillora-launch-resume-20260930/apple-price-readback.json",
-        "output/qa/rillora-launch-resume-20260930/final-runtime-readback.json"
+        "output/qa/rillora-launch-resume-20260930/final-runtime-readback.json",
+        "docs/release-123-20261001.md",
+        "collaboration/verification/release-123-20261002/receipts/apple-test-notification-after-fix.json"
       ],
-      "next": "Restricted review API/vault/catalog are deployed and actual USA6800Sandbox binding is verified. Actual review login/affirmative terms/enrollment, notification configuration confirmation, Sandbox purchase/restore/lifecycle and physical-device evidence remain pending. SBP receipt is retained; approval/effective rate and final differential price stay separate."
+      "next": "Sandbox notification URL is saved and official Apple TEST succeeded after the measured OCSP repair. No repeated TEST send is needed. Actual review enrollment, Apple-signed Sandbox purchase/restore/lifecycle and device results remain; SBP approval/effective rate and final channel price are separate."
     },
     {
       "id": "operations",
@@ -156,9 +165,11 @@
         "output/qa/rillora-launch-resume-20260930/reauthentication-ui-check.json",
         "output/qa/rillora-launch-resume-20260930/native-final-distribution-check.json",
         "output/qa/rillora-launch-resume-20260930/api-final-regression.json",
-        "docs/code-review-repair-20260930.md"
+        "docs/code-review-repair-20260930.md",
+        "docs/release-123-20261001.md",
+        "collaboration/verification/release-123-20261002/ci43.json"
       ],
-      "next": "Locally verified route-bound reauthentication,account-bound browser requests and serialized Stripe observations await AWS rollout. Preserve old source/deployment evidence separately; actual provider reauthentication and general customer cutover remain distinct gates."
+      "next": "Route-bound reauthentication, account-bound browser requests and serialized Stripe observations are deployed. CI43 covers the changed source. Complete actual provider reauthentication/remaining core user journeys and general customer cutover without treating local or deployment evidence as acceptance."
     },
     {
       "id": "apple-submission",
@@ -196,20 +207,25 @@
         "output/qa/rillora-production-identity-20260924/root-monitor-compatibility.json",
         "docs/ui-ux-audit-20260929.md",
         "output/qa/rillora-ui-ux-audit-20260929/online-readback.json",
-        "docs/code-review-repair-20260930.md"
+        "docs/code-review-repair-20260930.md",
+        "docs/release-123-20261001.md",
+        "collaboration/verification/release-123-20261002/receipts/repair-rollout-readback.json"
       ],
-      "next": "Restore the actually expired AWS session and publish the prepared WWW subscription-terms link correction; retained domain/TLS/hosting evidence stays dated."
+      "next": "The WWW subscription-terms correction and product invitation router are deployed. Retain domain/TLS/hosting and focused route readbacks; final public customer transition remains dependent on the other release gates."
     },
     {
       "id": "review-remediation",
-      "status": "in_progress",
+      "status": "verified",
       "required": true,
       "title": "Owner-supplied Dot review remediation",
       "evidence": [
         "docs/code-review-repair-20260930.md",
-        "output/qa/rillora-review-repair-20260930/work-state.json"
+        "output/qa/rillora-review-repair-20260930/work-state.json",
+        "docs/release-123-20261001.md",
+        "collaboration/verification/release-123-20261002/ci43.json",
+        "collaboration/verification/release-123-20261002/receipts/repair-rollout-readback.json"
       ],
-      "next": "All13source fixes and local regressions are complete. Restore existing AWS login and deploy changed closed API/Web/router/WWW artifacts with exact readback. No schema0091change or new provider application."
+      "next": "All13confirmed Dot fixes are locally verified and deployed; CI43 passed on the changed source. This remediation gate is complete. Real identity, purchase, distribution and customer cutover remain separate gates; do not repeat this rollout."
     }
   ],
   "retainedEvidence": [

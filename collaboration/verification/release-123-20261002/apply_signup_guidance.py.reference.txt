@@ -1,0 +1,28 @@
+"""Apply only the two Owner-requested English signup errors after admin renewal."""
+from pathlib import Path
+import copy,datetime,json,subprocess
+ROOT=Path(__file__).resolve().parents[3]
+QA=ROOT/'output/qa/rillora-release-123-20261001'
+TENANT='rillora-dev.eu.auth0.com'
+ENDPOINT='prompts/signup-password/custom-text/en'
+KEYS=('email-in-use','auth0-users-validation')
+def call(method,payload=None):
+ result=subprocess.run(['auth0','api',method,ENDPOINT,'--tenant',TENANT,'--no-input','--no-color'],input=None if payload is None else json.dumps(payload),capture_output=True,text=True,timeout=60)
+ if result.returncode:
+  expired='expired' in (result.stderr+result.stdout).lower()
+  raise RuntimeError('Auth0 session expired; complete normal administrator login.' if expired else 'Auth0 request failed; no response body or credential is printed.')
+ return json.loads(result.stdout) if result.stdout.strip() else {}
+source=json.loads((ROOT/'infra/auth0/universal-login/custom-text/signup-password.en.json').read_text())['signup-password']
+assert all(isinstance(source[k],str) and source[k].strip() for k in KEYS)
+before=call('get');assert isinstance(before,dict)
+after=copy.deepcopy(before);screen=after.setdefault('signup-password',{});assert isinstance(screen,dict)
+for key in KEYS:screen[key]=source[key]
+changed=before!=after
+if changed:
+ assert call('get')==before,'Custom text changed concurrently; inspect before retrying.'
+ (QA/'signup-copy-before-apply.json').write_text(json.dumps(before,indent=2)+'\n')
+ call('put',after)
+readback=call('get');assert readback==after,'Provider readback differs; investigate instead of claiming applied.'
+(QA/'signup-copy-after-apply.json').write_text(json.dumps(readback,indent=2)+'\n')
+receipt={'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'tenant':TENANT,'prompt':'signup-password','language':'en','updatedKeys':list(KEYS),'providerApplied':True,'writeNeeded':changed,'readbackMatches':True,'otherCustomTextPreserved':True,'securitySettingsChanged':False,'liveErrorScreenRetested':False}
+(QA/'signup-copy-applied.json').write_text(json.dumps(receipt,indent=2)+'\n');print(json.dumps(receipt))

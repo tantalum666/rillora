@@ -1,6 +1,6 @@
 # Rillora Current Handoff
 
-Status: REPAIRS DEPLOYED; APPLE TEST DELIVERED; SIGNUP COPY AND REAL ACCEPTANCE OPEN
+Status: REPAIRS DEPLOYED; APPLE TEST DELIVERED; SIGNUP COPY APPLIED; REAL ACCEPTANCE OPEN
 Last updated: 2026-10-02 (Asia/Shanghai)
 
 ## Current task
@@ -31,15 +31,16 @@ customers/live billing remain closed.
   production-infra8,typechecks/API build pass. Review Web/native Release simulator build
   passed; native source/data/Keychain and prior Debug bundle were preserved.
 - Duplicate signup is confirmed by Auth0's existing-user failure log. Two supported
-  text overrides are prepared, with conditional generic wording and no account lookup.
+  text overrides are applied/read back after Owner admin login. Generic validation
+  wording stays conditional; other text/security settings and accounts are unchanged.
 
 ## Current blockers and evidence boundary
 
-Auth0 management actually expired again on October2; the original email-login page
-is at verification/login. Owner has been asked to finish that concrete step, no
-password/OTP requested in chat. Copy is NOT applied yet. Chrome4 tab1082157813 was left for that renewal. CLI33303 has since ended with
-actual device-code expiry while waiting; after human authentication use one fresh
-CLI flow to reuse it. Do not repeatedly request personal login.
+Auth0 management actually expired on October2, then Owner completed authentication.
+CLI78633 successfully renewed the same scopes using that session; the earlier expired
+device code was not reused. The prepared two-key helper ran and full prompt readback
+matched. No need to ask for Auth0 login again without an actual new failure.
+Actual signup-error rendering was not retriggered with a real password.
 A later AWS read also actually expired, after the completed deploy/delivery evidence;
 no new deployment is needed merely to refresh status. Apple portal now shows login;
 request personal login only when an actual pending operation requires it.
@@ -52,17 +53,22 @@ successful A/B observations keep their date; do not manufacture fresh acceptance
 No TestFlight upload,final submission,SBP approval,final Apple price or customer launch.
 
 Prior full API349/Web112/infra47/native181/28UI and CI42 keep their original dates;
-new source changes require their own CI. Git/LFS historical archives are retained.
-Current source/evidence publication is being completed; read the current remote receipt
-before claiming it is pushed. `output/qa/rillora-release-123-20261001/work-state.json`
+new source572fae4c7 passed CI43. Git/LFS historical archives are retained.
+Current source and463eligible new work files are pushed; both new LFS archives were
+freshly downloaded and decrypted/verified. [Remote/CI receipts](../collaboration/verification/release-123-20261002/README.md)
+separate this source result from the subsequent preflight/register correction.
+The checker now recognizes all12required gates;7focused tests pass, with10real
+unverified gates still blocking release. Its new CI is checked separately. `output/qa/rillora-release-123-20261001/work-state.json`
 and the execution contract retain details. Protected identity records,credentials,
 invitation capability and rollback source stay in `.local-secrets/`.
 
 ## Single next step
 
-After Owner completes the pending Auth0 administrator verification/login, GET-merge-PUT
-only the two prepared signup-password English error keys and read them back. Then
-continue the remaining real recipient/native/Apple acceptance from saved evidence,
-handing over only concrete personal authentication,password or legal steps. Do not
-repeat completed rollout,official TEST sends or applications.
+Continue the remaining actual recipient/native/Apple acceptance from the saved
+production records, beginning with the fresh native hosted login now opened in the
+local simulator mirror. Hand over only concrete personal authentication, password
+or affirmative legal steps. QQ inbox placement/reset and Apple purchase/restore
+remain distinct; do not repeat signup-copy application, completed rollout, official
+TEST sends or provider applications. The mirror is localhost-only on port3200;
+exec24106 has scoped cleanup when this acceptance session ends.
 [Previous handoff](handoff-history-20261001-before-release-123.md) is HISTORICAL.

@@ -11,10 +11,10 @@
   "newArchiveObjects": 306,
   "newArchiveBytes": 56164478,
   "historicalArchivesRebuilt": false,
-  "gitPush": "pending",
-  "CI": "pending",
-  "auth0Copy": "source_prepared_provider_not_applied",
-  "ownerAuthenticationRequired": true,
+  "gitPush": "source_and_all_new_eligible_artifacts_pushed",
+  "CI": "43_passed_for_572fae4c7",
+  "auth0Copy": "provider_applied_full_readback_matches",
+  "ownerAuthenticationRequired": false,
   "currentFocalDocs": [
     "release-123-20261001.md",
     "authentication-experience.md",
@@ -24,5 +24,18 @@
     "code-review-repair-20260930.md"
   ],
   "decisionAndJourneyAppended": true,
-  "singleNextStep": "Apply two scoped hosted signup error keys after actual admin login; read back before calling it live."
+  "singleNextStep": "Continue fresh native sign-in and remaining real inbox/reset/purchase acceptance.",
+  "remoteArchivesDownloadedAndVerified": true,
+  "remoteFilesVerified": 463,
+  "remoteObjectsVerified": 306,
+  "sourceScanUnreviewedFindings": 0,
+  "readableScanUnreviewedFindings": 0,
+  "finalReceiptCommit": "preflight_fix_and_readback_followup_pending",
+  "releasePreflight": {
+    "regressionReproducedBeforeFix": true,
+    "testsPassed": 7,
+    "requiredGateSet": 12,
+    "remainingUnverifiedGates": 10,
+    "publicationApproval": false
+  }
 }
