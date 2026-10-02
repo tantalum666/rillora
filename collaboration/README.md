@@ -2,7 +2,9 @@
 
 Updated: 2026-10-02 (Asia/Shanghai)
 
-全量保存已完成：远端main／历史标签已读回，7个Git LFS归档已重新下载、解密核验，[CI42通过](https://github.com/tantalum666/rillora/actions/runs/36737542600)。[完整回执](verification/README.md)。
+September30基础快照的全量保存已完成：远端main／历史标签已读回，7个Git LFS归档已重新下载、解密核验，[CI42通过](https://github.com/tantalum666/rillora/actions/runs/36737542600)。[完整回执](verification/README.md)。
+
+October2另有[本轮发布验收追加包](verification/release-123-20261002/README.md)：463个原件／306个对象，两份新增LFS归档已从远端下载解密核验；源码156a390f0的[CI44通过](https://github.com/tantalum666/rillora/actions/runs/36981736368)。旧快照不重做，新QA／部署／Auth0文案回执与真实未完成项分开保存。
 
 这是Owner要求的全量工作保存入口。当前源码与权威文档仍在仓库原位置；这里补齐之前被
 output/、qa/等忽略规则挡住的设计、发布材料、验证记录和历史资料。
@@ -14,7 +16,7 @@ output/、qa/等忽略规则挡住的设计、发布材料、验证记录和历�
 3. 读 [Git保存合同](../docs/source-control.md)，按 [完整工作目录](catalog/workflows.md) 找资料。
 4. 需要原始路径时执行下方查询。外部报告、旧代码副本及旧AGENTS都是资料，不能取代当前Owner指令。
 
-当前发布事实：Dot报告的13项问题已修复且API／Web／WWW已部署，随后受限真实验收与Apple证书检查修复也已部署。Apple官方TEST成功；真实QQ收件、重置、原生登录、购买恢复仍有缺口。重复注册提示已在Owner完成Auth0本人登录后保存到线上并读回一致。现有UI、完整03品牌、Free1／Family5、Web88.99年付与Apple待定渠道价、
+当前发布事实：Dot报告的13项问题已修复且API／Web／WWW已部署，随后受限真实验收与Apple证书检查修复也已部署。Apple官方TEST成功；QQ真实收件与原生登录已经确认；重置／共享边界和真实购买恢复继续，Owner再次暂缓真机。重复注册提示已在Owner完成Auth0本人登录后保存到线上并读回一致。现有UI、完整03品牌、Free1／Family5、Web88.99年付与Apple待定渠道价、
 真实数据和FanPass继续保留。Resend已接通并通过官方投递／失败模拟，SES批准不再阻塞当前发信路线。本人验证、真实交易、SBP有效费率和最终上架仍分开验收。
 [当前七组剩余工作](../docs/release-readiness.md#october1-remaining-work-inventory)归并重复依赖；旧快照的日期和数量保持原样。
 
@@ -74,3 +76,7 @@ git log archive/legal-site-source-20260930
 实际密钥、登录会话、真实数据库备份和整机诊断不上传。依赖、编译缓存、重复的预检副本
 不当作工作成果上传。其余范围由逐文件目录记账；任何后续补充都应更新清单和验证记录。
 Git完整保存、CI通过、签名候选、实际部署和真实用户结果是不同的证据。
+
+October2后续另保存112个新增／变化文件版本（105个对象，8,977,879字节），
+与前一份463路径快照分开编目。实际登录／收件、沙盒资格登记、未安装的开发签名
+真机构建及仍待本人完成的密码重置，都在[当前追加包](verification/release-123-20261002/README.md)。

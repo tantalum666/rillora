@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-02T07:29:13.369677+00:00",
+  "updatedAt": "2026-10-02T08:54:52.270338+00:00",
   "ownerTask": "Complete work packages 1, 2 and 3 first: repaired production rollout, real account/email journeys, actual Apple Sandbox purchase/restore.",
   "sourceBase": "b3fed06d93d47479897a64a95a136633d63d7192",
   "reading": {
@@ -29,7 +29,9 @@
     "initiallyExpired": true,
     "renewedAndStsVerified": true,
     "account": "133857166372",
-    "october2Refresh": "actually_expired_after_completed_deployments"
+    "october2Refresh": "actually_expired_after_completed_deployments",
+    "october2MfaCompleted": true,
+    "productionOperatorReverified": true
   },
   "auth0": {
     "initiallyExpired": true,
@@ -47,7 +49,8 @@
     "testNotificationRequested": true,
     "testNotificationDelivered": true,
     "blocker": null,
-    "successfulNotificationReceipt": "apple-test-notification-after-fix.json"
+    "successfulNotificationReceipt": "apple-test-notification-after-fix.json",
+    "reviewEnrollmentSucceeded": true
   },
   "rollout": {
     "state": "repair_completed_then_review_configuration_completed",
@@ -85,12 +88,15 @@
     "qqDuplicateSignupLog": "The user already exists.",
     "recipientAcceptedObserved": true,
     "recipientSharedListObserved": true,
-    "realQQInboxReceived": false,
-    "userReportsQQMailMissing": true,
+    "realQQInboxReceived": true,
+    "userReportsQQMailMissing": false,
     "qqSMTPResponse": "250 OK: queued as.",
-    "october2WebSession": "no_active_session_after_account_changed_reload"
+    "october2WebSession": "no_active_session_after_account_changed_reload",
+    "foundOutsidePrimaryInbox": true,
+    "passwordResetEmailRequestedAndDelivered": true,
+    "passwordResetCompleted": false
   },
-  "next": "Continue fresh native login and remaining actual inbox/reset/Apple purchase acceptance.",
+  "next": "Await Owner QQ password reset/relogin, then validate recipient fields/revocation; real-device work stays explicitly deferred.",
   "publicCustomersOpened": false,
   "liveBillingEnabled": false,
   "appleBuildUploaded": false,
@@ -114,7 +120,15 @@
     "cuaScreenCaptureFailure": "SCStreamErrorDomain -3811",
     "mirrorUrl": "http://localhost:3200",
     "mirrorSessionId": 24106,
-    "october2HostedTransaction": "old transaction displayed provider error after Google selection; cancelled safely to home; no new native login claimed"
+    "october2HostedTransaction": "old transaction displayed provider error after Google selection; cancelled safely to home; no new native login claimed",
+    "networkRecovered": true,
+    "googleSessionReused": true,
+    "waitingForOwnerAccountTerms": false,
+    "ownerCompletedTerms": true,
+    "privateMapObserved": true,
+    "physicalDeviceOwnerDeferred": true,
+    "physicalReviewBuildVerified": true,
+    "physicalBuildInstalled": false
   },
   "signupCopy": {
     "requestedByOwner": true,
@@ -140,11 +154,11 @@
     "Publish all current source/evidence and final closeout"
   ],
   "git": {
-    "sourceCommit": "572fae4c7cab9987d19662547b78f0754a18b3f9",
+    "sourceCommit": "156a390f010a675d3d3c6637f1e538d1a0551657",
     "pushed": true,
     "newFilesPreserved": 463,
     "freshRemoteArchiveVerification": true,
-    "ci": 43,
+    "ci": 44,
     "ciStatus": "success",
     "receiptFollowupPending": true
   }

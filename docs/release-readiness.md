@@ -22,8 +22,9 @@ infra47, native181 with 1 existing StoreKit skip, and passing final outcomes for
 September30 evidence; this provider/documentation work reran no product suite.
 The repaired API/Web/router/WWW rollout is complete. Restricted real-account
 access was subsequently deployed; Owner completed Web Google consent/login and
-the existing QQ recipient accepted one synthetic Directions invitation. Inbox
-arrival remains unresolved despite the mail server accepting it. Apple notification
+the existing QQ recipient accepted one synthetic Directions invitation. Owner later
+confirmed actual QQ arrival outside the primary inbox, and native consent/callback
+loaded the same synthetic Web record. Password-reset completion remains pending. Apple notification
 verification was repaired and one official TEST succeeded; API10 is the deployment
 output, schema0091 remains unchanged. New scoped checks and remaining personal
 steps are in [the current acceptance contract](release-123-20261001.md).

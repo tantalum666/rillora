@@ -158,3 +158,10 @@ it does not automatically restore AWS configuration or KMS access. An API predat
 encrypted references cannot safely serve the current encrypted database. Preserve
 the previous source baseline `f7b797d89f5e1f1d63e37f7708fb2487c0265bb5` and release
 checkpoint tags; no initial commit, history rewrite or new public repository is needed.
+
+The later October2 continuation has a separate112-version/105-object addendum in
+raw-work-010, including the prepared device app and updated acceptance receipts.
+Its separate catalog preserves changed versions without replacing the earlier
+463-path capture. Personal auth screens, credential/capability files, exact device
+inventory and reproducible caches remain excluded. See the current addendum index
+for local/remote verification and the completed-versus-pending account boundaries.

@@ -1,0 +1,62 @@
+"""Seal only new/changed continuation evidence and the prepared device app."""
+import datetime,json,os,shlex,subprocess,sys,tempfile,uuid
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[3];sys.path.insert(0,str(ROOT/'tools/collaboration'))
+import build_snapshot as b
+from snapshot_policy import directory_exclusion,file_exclusion,readable_text
+from verify_archives import verify
+Q=ROOT/'output/qa/rillora-release-123-20261001';D=ROOT/'collaboration/verification/release-123-20261002';target=ROOT/'collaboration/archives/raw-work-010.tar.zst.age'
+if target.exists():raise SystemExit('Use the saved follow-up archive, do not reseal it.')
+old=json.loads((D/'snapshot.json').read_text());cutoff=datetime.datetime.fromisoformat(old['capturedThrough']).timestamp();known={r['sourcePath'] for r in json.loads((D/'catalog.json').read_text())}
+app=Q/'ios-review-device/Build/Products/Release-iphoneos/Rillora.app';assert app.is_dir()
+files=[];excluded=[]
+for root in [Q,app]:
+ for base,dirs,names in os.walk(root):
+  parent=Path(base)
+  for name in list(dirs):
+   path=parent/name;rel=path.relative_to(ROOT).as_posix();reason=None if root==app else directory_exclusion(rel)
+   if name=='publication':reason='generated_publication_and_remote_verification_cache'
+   if reason:dirs.remove(name);excluded.append({'path':rel,'reason':reason})
+  for name in names:
+   path=parent/name;rel=path.relative_to(ROOT).as_posix();reason=file_exclusion(rel)
+   if path.is_symlink():reason='machine_specific_link'
+   if path.suffix in {'.jpg','.png'} and name.startswith(('aws-','auth0-','apple-login')):reason='personal_authentication_UI_state'
+   if reason:excluded.append({'path':rel,'reason':reason});continue
+   if rel in known and path.stat().st_mtime<=cutoff:continue
+   files.append((rel,path))
+assert len(files)==len({n for n,p in files})
+values=b.sensitive_values();legal=set()
+for line in (ROOT/'.local-secrets/legal/release.env').read_text().splitlines():
+ line=line.strip().removeprefix('export ').strip()
+ if line.startswith(('VITE_LEGAL_OPERATOR_NAME=','VITE_LEGAL_SERVICE_ADDRESS=')):legal.update(shlex.split(line.partition('=')[2])[:1])
+invite=(ROOT/'.local-secrets/production-review/acceptance-invite-20261001.txt').read_text().strip()
+needles={v.encode() for v in values-legal if len(v)>=16}|{invite.encode(),invite.split('invitation=')[-1].encode()}
+cache=Q/'publication/frozen-later';cache.mkdir(parents=True,mode=0o700,exist_ok=True)
+objects={};records=[];start=datetime.datetime.now(datetime.timezone.utc).isoformat()
+for name,path in sorted(files):
+ frozen,digest=b.freeze_file(path,cache)
+ if readable_text(name) and any(v in frozen.read_bytes() for v in needles):
+  excluded.append({'path':name,'reason':'protected_credential_or_capability'});continue
+ blob=objects.setdefault(digest,{'id':uuid.uuid4().hex,'sha256':digest,'bytes':frozen.stat().st_size,'source':str(frozen),'paths':[]});blob['paths'].append(name)
+ r={'sourcePath':name,'bytes':blob['bytes'],'rawObject':blob['id'],'rawArchive':target.relative_to(ROOT).as_posix(),'version':'later October2 acceptance capture'}
+ if readable_text(name) and '/ios-review-device/' not in name:
+  try:text=frozen.read_text()
+  except UnicodeError:text=None
+  if text is not None and '\x00' not in text:
+   text,changed=b.redact(text,values)
+   rel=path.relative_to(Q).as_posix()
+   if path.suffix in {'.py','.mjs','.md','.log'}:rel+='.reference.txt'
+   pub=D/'later-receipts'/rel;pub.parent.mkdir(parents=True,exist_ok=True);pub.write_text(text)
+   r.update(readablePath=pub.relative_to(ROOT).as_posix(),privacyRedactions=bool(changed))
+ records.append(r)
+recipient=subprocess.check_output(['age-keygen','-y',str(b.IDENTITY)],text=True).strip();a=b.seal_chunk(10,list(objects.values()),recipient)
+catalog=D/'followup-catalog.json';catalog.write_text(json.dumps(records,ensure_ascii=False,indent=2)+'\n')
+s={'capturedFrom':start,'capturedThrough':datetime.datetime.now(datetime.timezone.utc).isoformat(),'workFiles':len(records),'uniqueRawObjects':len(objects),'workBytes':sum(r['bytes'] for r in records),'archives':[a],'catalogFiles':[catalog.relative_to(ROOT).as_posix()],'excluded':excluded,'previousCaptureRetained':'snapshot.json','selection':'new original paths or changed modification time since previous capture; compiler/dependency/publication caches excluded; device app explicitly included','boundary':'Later versions of mutable receipts retain original paths in a separate dated snapshot. Earlier archive bytes and catalog are unchanged.'}
+(D/'followup-snapshot.json').write_text(json.dumps(s,ensure_ascii=False,indent=2)+'\n')
+with tempfile.TemporaryDirectory(prefix='rillora-later-acceptance-verify-') as tmp:
+ root=Path(tmp);(root/'collaboration').mkdir();(root/'collaboration/snapshot.json').write_text(json.dumps(s))
+ for name in [a['path'],*s['catalogFiles']]:
+  p=root/name;p.parent.mkdir(parents=True,exist_ok=True);os.link(ROOT/name,p)
+ result=verify(root,b.IDENTITY)
+(D/'followup-archive-verification.json').write_text(json.dumps(result,indent=2)+'\n')
+print(json.dumps({'files':len(records),'objects':len(objects),'archiveBytes':a['bytes'],'verified':result['passed'],'credentialExclusions':sum(x['reason']=='protected_credential_or_capability' for x in excluded)}))

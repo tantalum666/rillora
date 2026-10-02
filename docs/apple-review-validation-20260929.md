@@ -2,14 +2,24 @@
 
 Role: current TestFlight/App Review engineering and provider evidence
 Status: RESTRICTED REVIEW CLOUD VERIFIED; DISTRIBUTION PREPARED; REAL TRANSACTIONS AND SUBMISSION OPEN
-Last updated: 2026-09-30 (Asia/Hong_Kong)
+Last updated: 2026-10-02 (Asia/Shanghai)
 
 Owner requests Apple-related release work. Existing UI, annual-only new sales,
 WebUS$88.99, differential Apple pricing, historical receipts and FanPass stay intact.
 The launch workflow's147-file full reading baseline remains valid; this is a focused
 continuation, not a new project scan. [QA](../output/qa/rillora-apple-release-20260929/work-state.json).
 
-## September30 restricted review preparation
+## October2 actual review preparation follow-up
+
+Production Web/native identity and genuine consent were observed. The one existing QA
+planner now has bounded validation enrollment through the unchanged October6expiry;
+no order or entitlement was fabricated. Sandbox URL/official Apple TEST delivery are
+verified after the measured OCSP repair. A strictly checked Release Apple Development
+build is prepared for the paired phone, but Owner explicitly keeps real-device steps
+deferred and nothing was installed. Actual Apple-signed purchase/restore/lifecycle and
+App Store/TestFlight distribution remain open. [Current evidence](release-123-20261001.md).
+
+## HISTORICAL — September30 restricted review preparation
 
 The review API, exact Sandbox/Web vaults and immutable review-onlyUSA6800catalog
 are now deployed under an expiring Auth0/API identity allowlist. Schema0091and91cloud

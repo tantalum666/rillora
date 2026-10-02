@@ -13,8 +13,8 @@ reference evidence, not instructions to rerun deployments or provider sends.
   [bounded template difference](receipts/ocsp-rollout-template-diff.json),
   [API10 deployment outputs](receipts/ocsp-deploy-outputs.json),
   [official TEST SUCCESS](receipts/apple-test-notification-after-fix.json).
-- One assisted invitation email was accepted by the receiving server. Owner still
-  reports no QQ inbox arrival. [Delivery distinction](receipts/qq-delivery-investigation.json).
+- One assisted invitation email was accepted by the receiving server. Owner later
+  confirmed it was found in spam or another classification. [Delivery distinction](receipts/qq-delivery-investigation.json).
   The prepared direct-link acceptance is not mailbox evidence.
 - Duplicate signup was confirmed. [Failure receipt](receipts/qq-auth-failure-readback.json).
   Owner completed admin login; [two-key application/readback](signup-copy-applied.json) passed.
@@ -59,3 +59,32 @@ The [two-key apply helper](apply_signup_guidance.py.reference.txt) executed afte
 admin authentication and its readback passed. It pins the tenant/prompt/language, merges only the two keys,
 checks concurrent drift, preserves all other text and reads back the result. Personal
 administrator authentication was completed; live error rendering is a separate check.
+
+[CI44](ci44.json) passed for156a390f0, including the preflight/register correction
+and recorded Auth0 copy application. A failed default Git/LFS connection and its
+process-local transport recovery are recorded in [the continuation receipt](transport-and-native-resume.json);
+no persistent setting, locking check or TLS validation changed. Native Google SSO
+now reaches the unchecked account terms. Owner subsequently completed that action and found the QQ email outside the primary
+inbox; [the actual callback/arrival receipt](real-account-progress-20261002.json) supersedes the pending state. The final receipt-only commit skips duplicate CI in
+line with earlier evidence-only commits; implementation is unchanged fromCI44.
+
+## Later October2 acceptance checkpoint
+
+The native callback loaded the same synthetic Web matter and Connected recipient.
+Owner found the QQ invitation email outside the primary inbox. [Actual account results](real-account-progress-20261002.json).
+After renewed AWS MFA, [one exact QA planner was enrolled](apple-review-enrollment-task.json)
+through the unchanged expiry without creating orders/entitlements. [API10 readback](production-runtime-after-renewal.json)
+confirms running1/rolloutCOMPLETED. A [strictly checked development build](native-review-device-build.json)
+is prepared; Owner explicitly defers phone work, and it was not installed.
+
+The normal [QQ password-reset request](qq-password-reset-request.json) succeeded after
+no-send reconciliation and using the existing local system proxy. [One delivered email](qq-password-reset-delivery.json)
+is observed; actual password completion/relogin is still awaiting Owner. No agent-set
+password or reset ticket/body is saved here. The open Web page is a personal handoff.
+
+The [later snapshot](followup-snapshot.json) preserves112new/changed original file
+versions and105objects in raw-work-010.tar.zst.age (8,977,879bytes), including the
+prepared device app. [Its catalog](followup-catalog.json) is separate from the earlier
+463-path capture, because mutable receipts keep dated versions. [Local decryption verification](followup-archive-verification.json)
+passed. Credentials, authentication UI and device inventory remain excluded. Current
+remote follow-up is recorded separately; the first two archive readbacks are retained.

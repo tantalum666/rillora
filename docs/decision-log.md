@@ -2945,3 +2945,12 @@ unreachable release remains a different closed workflow. See [sharing contract](
   follows deployment; no purchase, entitlement or public release is inferred.
 - Keep the original review expiry, source/UI/pricing/data boundaries, and distinguish
   later session expiry from completed rollout. [Execution contract](release-123-20261001.md).
+
+## 2026-10-02 — Owner reaffirms physical-device deferral during Sandbox preparation
+
+- Owner explicitly chooses to keep real-device steps deferred after the prepared
+  build and actual locked-device read were explained. Do not install or operate on
+  the phone, or infer that pairing authorizes resuming deferred acceptance.
+- Continue the already authorized backend/enrollment, account recovery and evidence
+  work. Owner completed the actual AWS MFA; this is renewed access, not a deployment
+  or purchase result. Preserve the original review expiry and test-only boundaries.

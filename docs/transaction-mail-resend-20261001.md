@@ -143,8 +143,9 @@ lifetime plus clock tolerance before admitting general customers.
 After this sender setup, the repaired runtime/Web/WWW were deployed in the
 [October1–2 acceptance workflow](release-123-20261001.md). One operator-assisted
 invitation handoff went to the Owner-confirmed QQ mailbox. Resend recorded delivered
-and the dashboard exposes `250 OK: queued as.`, but Owner reports no inbox arrival.
-Keep that unresolved: direct-link acceptance is not mailbox evidence. No blind
+and the dashboard exposes `250 OK: queued as.`, and Owner later confirmed arrival in spam or another classification.
+Primary-inbox placement remains unproven; direct-link acceptance alone was not used
+as mailbox evidence. No blind
 resend, password change, verification-flag manipulation or automatic invite-mail
 feature was added. Real reset/native/Apple purchase and final publication remain open.
 
@@ -161,3 +162,20 @@ The local originals are under `output/qa/rillora-resend-20261001/`. Credential
 stores and protected DNS snapshots remain outside Git. Cache/help copies of vendor
 documentation are reproducible third-party material, explicitly listed as excluded
 in the evidence coverage receipt.
+
+## October2 actual account completion follow-up
+
+Owner confirmed finding the QQ email in spam or another classification. Real arrival
+is now confirmed; primary-inbox placement is not. Owner also completed the native
+Account terms. The Release simulator callback loaded the same one synthetic matter
+created on Web and showed the synthetic recipient Connected. Actual native sign-in
+and this cross-platform read are verified; password reset, detailed shared-field/
+revocation boundaries and real Apple purchase/restore remain separate unfinished work.
+[Current receipt](../collaboration/verification/release-123-20261002/real-account-progress-20261002.json).
+
+October2's normal Auth0 QQ password-reset email is also accepted and provider-delivered.
+The agent did not set or retrieve the password. Personal reset/relogin remains pending;
+the supplied new-password field is a required human handoff. Earlier direct CLI TLS
+failures produced no observed new message and were reconciled before one successful
+request through the already configured local system proxy. No app/provider/TLS setting
+was weakened to fix the local transport.

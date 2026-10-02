@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-10-02T08:07:44.261279+00:00",
+  "gitPushAttempts": [
+    {
+      "transport": "default",
+      "result": "LFS locking verification connection EOF; refs not pushed"
+    },
+    {
+      "transport": "default retry",
+      "result": "same EOF; refs not pushed"
+    },
+    {
+      "transport": "single-process HTTP/1.1",
+      "result": "push succeeded to156a390f0"
+    }
+  ],
+  "persistentSettingsChanged": false,
+  "lockingChecksDisabled": false,
+  "tlsVerificationDisabled": false,
+  "nativeHostedNetworkErrorObserved": true,
+  "hostProbeStatuses": {
+    "login.rillora.xyz": 200,
+    "accounts.google.com": 302
+  },
+  "nativeRetryReachedGoogleAccountChoice": true,
+  "existingOwnerGoogleSessionReused": true,
+  "nativeNowAtUncheckedAccountTerms": true,
+  "nativeLegalAcceptanceSubmittedByAgent": false,
+  "causalLimit": "Temporary transport recovery is observed; proxy or HTTP2 root cause is not established.",
+  "reference": "https://pkg.go.dev/net/http#hdr-HTTP_2"
+}

@@ -1,0 +1,18 @@
+{
+  "startedAt": "2026-10-02T08:40:15.135892+00:00",
+  "taskArn": "arn:aws:ecs:eu-central-1:133857166372:task/RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm/f4fe15ad3a06417eaa2a4e1acfc2274c",
+  "cluster": "RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm",
+  "logGroup": "RilloraProduction-MaintenanceLogs61C6A99C-2niRZtkO9Ivq",
+  "logStream": "migration/Maintenance/f4fe15ad3a06417eaa2a4e1acfc2274c",
+  "expiresAt": "2026-10-06T17:08:57Z",
+  "expiryExtended": false,
+  "target": "existing Owner QA planner only",
+  "migrationOrDeployment": false,
+  "taskSucceeded": true,
+  "checkedAt": "2026-10-02T08:42:40.765990+00:00",
+  "status": "STOPPED",
+  "exitCode": 0,
+  "messages": [
+    "{\"enrolled\":true,\"inserted\":true,\"expiresAt\":\"2026-10-06T17:08:57Z\",\"existingConsentPreserved\":true,\"realCommerceAbsent\":true,\"noOrderOrEntitlementCreated\":true}"
+  ]
+}

@@ -4,7 +4,7 @@ Role: focused product, visual and implementation contract for account authentica
 Authority scope: Auth0 identity boundary, direct hosted iOS entry, hosted appearance, prompt-state behavior and evidence requirements  
 Superseded by: later Owner direction recorded in `docs/decision-log.md`  
 Do not use for: credential storage, API authorization rules, production identity approval or legal claims  
-Status: HOSTED FLOW RETAINED; RECENT-AUTH CONTROLS VERIFIED; REAL PRODUCTION SIGN-IN OPEN
+Status: HOSTED PRODUCTION SIGN-IN OBSERVED; SIGNUP GUIDANCE APPLIED; RECOVERY ACCEPTANCE IN PROGRESS
 Last updated: 2026-10-02 (Asia/Shanghai)
 
 ## October2 duplicate-signup guidance
@@ -653,3 +653,13 @@ and shows the same useful public exploration as a fresh visitor. Recovery wordin
 belongs in the Profile account row or the explicit private action. The Add intent
 preserves its category through hosted authentication; cancel returns to its public
 source. A Welcome back-only Overview is no longer permitted.
+
+## October2 actual account completion follow-up
+
+Owner confirmed finding the QQ email in spam or another classification. Real arrival
+is now confirmed; primary-inbox placement is not. Owner also completed the native
+Account terms. The Release simulator callback loaded the same one synthetic matter
+created on Web and showed the synthetic recipient Connected. Actual native sign-in
+and this cross-platform read are verified; password reset, detailed shared-field/
+revocation boundaries and real Apple purchase/restore remain separate unfinished work.
+[Current receipt](../collaboration/verification/release-123-20261002/real-account-progress-20261002.json).

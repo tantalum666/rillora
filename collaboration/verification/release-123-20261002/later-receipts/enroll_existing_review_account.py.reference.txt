@@ -1,0 +1,61 @@
+"""Enroll only the already-consented Owner QA planner, with the existing review expiry."""
+import datetime,hashlib,json,os,subprocess,uuid
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[3];QA=ROOT/'output/qa/rillora-release-123-20261001';PRIVATE=ROOT/'.local-secrets/production-review'
+receipt=QA/'apple-review-enrollment-task.json';saved=PRIVATE/'apple-review-enrollment-request-20261002.json'
+def aws(args):
+ r=subprocess.run(['aws',*args,'--profile','rillora-production-operator','--region','eu-central-1','--output','json'],capture_output=True,text=True,timeout=50)
+ if r.returncode:raise RuntimeError('AWS operation failed; no response or private task overrides printed')
+ return json.loads(r.stdout)
+if receipt.exists():raise SystemExit('Enrollment task already recorded; inspect it, never launch a duplicate.')
+who=aws(['sts','get-caller-identity']);assert who['Account']=='133857166372' and ':assumed-role/rillora-production-operator/' in who['Arn']
+stack=aws(['cloudformation','describe-stacks','--stack-name','RilloraProduction'])['Stacks'][0];assert stack['StackStatus']=='UPDATE_COMPLETE'
+out={x['OutputKey']:x['OutputValue'] for x in stack['Outputs']};assert out['ProductionTrafficReady']=='false'
+access=json.loads((PRIVATE/'review-access-20261001.json').read_text());expiry=access['expiresAt'];assert datetime.datetime.fromisoformat(expiry.replace('Z','+00:00'))>datetime.datetime.now(datetime.timezone.utc)
+a=next(x for x in json.loads((PRIVATE/'acceptance-identities-20261001.json').read_text())['accounts'] if x['role']=='planner');assert len(a['matches'])==1
+subject=a['matches'][0]['subject'];digest=hashlib.sha256(('https://login.rillora.xyz\x1f'+subject).encode()).hexdigest();assert digest in access['identityDigests']
+script="""import pg from 'pg';
+import {loadDatabaseConfig,loadContentProtectionConfig} from './dist/config.js';
+import {databaseConnectionOptions} from './dist/db.js';
+import {currentLegalContract as legal} from './dist/legal-contract.js';
+const ok=(v,m)=>{if(!v)throw new Error(m)};
+const cfg=loadDatabaseConfig(),content=loadContentProtectionConfig();
+ok(cfg.sslMode==='verify-full'&&/^rillora-production\\.[a-z0-9]+\\.eu-central-1\\.rds\\.amazonaws\\.com$/.test(cfg.host),'wrong_database_boundary');
+ok(content?.namespace==='rillora-production'&&content.mode==='encrypted','wrong_namespace');
+const pool=new pg.Pool({...databaseConnectionOptions(cfg),max:1,application_name:'rillora-review-enrollment'});
+const c=await pool.connect();let committed=false;
+try{
+ok((await c.query('select ssl from pg_stat_ssl where pid=pg_backend_pid()')).rows[0]?.ssl===true,'tls_required');
+await c.query('begin');
+const found=await c.query(`select p.id,p.status from app.planners p join app.identity_accounts i on i.planner_id=p.id
+ where i.issuer='https://login.rillora.xyz' and i.subject=$1 for update of p`,[process.env.RILLORA_QA_SUBJECT]);
+ok(found.rowCount===1&&found.rows[0].status==='active','exact_existing_planner_required');const id=found.rows[0].id;
+const consent=await c.query(`select 1 from app.legal_acceptances where planner_id=$1 and terms_version=$2
+ and privacy_version=$3 and consent_text_version=$4 and legal_bundle_sha256=$5
+ and accepted_terms and acknowledged_privacy and accepted_electronic_records limit 1`,
+ [id,legal.termsVersion,legal.privacyVersion,legal.consentTextVersion,Buffer.from(legal.bundleSha256,'hex')]);
+ok(consent.rowCount===1,'existing_genuine_current_consent_required');
+const live=await c.query(`select exists(select 1 from app.commerce_orders where planner_id=$1 and provider_environment='production')
+ or exists(select 1 from app.commerce_subscriptions where planner_id=$1 and provider_environment='production') as present`,[id]);
+ok(!live.rows[0].present,'real_commerce_account_refused');
+const expiry=process.env.RILLORA_QA_EXPIRY,reason='Owner-authorized Rillora Apple Sandbox release acceptance 2026-10-02';
+ok(Date.parse(expiry)>Date.now(),'review_expired');
+const prior=await c.query('select expires_at,reason from app.commerce_validation_accounts where planner_id=$1 for update',[id]);
+let inserted=false;
+if(prior.rowCount){ok(prior.rows[0].reason===reason&&new Date(prior.rows[0].expires_at).getTime()===Date.parse(expiry),'unexpected_existing_enrollment');}
+else{await c.query('insert into app.commerce_validation_accounts(planner_id,expires_at,reason) values($1,$2,$3)',[id,expiry,reason]);inserted=true;}
+ok((await c.query('select app.apple_review_account_enabled($1) as enabled',[id])).rows[0]?.enabled===true,'enrollment_readback_failed');
+await c.query('commit');committed=true;
+console.log(JSON.stringify({enrolled:true,inserted,expiresAt:expiry,existingConsentPreserved:true,realCommerceAbsent:true,noOrderOrEntitlementCreated:true}));
+}catch(error){if(!committed)await c.query('rollback');console.error(JSON.stringify({enrolled:false,code:error.code??null,reason:/^[a-z_]+$/.test(error.message)?error.message:'database_operation_failed'}));process.exitCode=2;}
+finally{c.release();await pool.end();}
+"""
+body={'cluster':out['ClusterName'],'taskDefinition':out['MigrationTaskDefinitionArn'],'launchType':'FARGATE','clientToken':uuid.uuid4().hex,'networkConfiguration':{'awsvpcConfiguration':{'subnets':out['MaintenanceSubnetIds'].split(','),'securityGroups':[out['MigrationSecurityGroupId']],'assignPublicIp':'ENABLED'}},'overrides':{'containerOverrides':[{'name':'Maintenance','command':['node','--input-type=module','-e',script],'environment':[{'name':'RILLORA_QA_SUBJECT','value':subject},{'name':'RILLORA_QA_EXPIRY','value':expiry}]}]}}
+assert len(json.dumps(body['overrides']))<8192
+if saved.exists():body=json.loads(saved.read_text())
+else:
+ with os.fdopen(os.open(saved,os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600),'w') as f:json.dump(body,f)
+result=aws(['ecs','run-task','--cli-input-json','file://'+str(saved)]);assert not result.get('failures') and len(result['tasks'])==1
+task=result['tasks'][0]
+r={'startedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'taskArn':task['taskArn'],'cluster':out['ClusterName'],'logGroup':out['MaintenanceLogGroup'],'logStream':'migration/Maintenance/'+task['taskArn'].split('/')[-1],'expiresAt':expiry,'expiryExtended':False,'target':'existing Owner QA planner only','migrationOrDeployment':False,'taskSucceeded':False}
+receipt.write_text(json.dumps(r,indent=2)+'\n');print(json.dumps(r))

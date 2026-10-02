@@ -4,7 +4,7 @@
   "readableScanPassed": true,
   "localLinkCheck": {
     "files": 179,
-    "links": 1845,
+    "links": 1854,
     "missing": 0
   },
   "newWorkFilesArchived": 463,
@@ -12,7 +12,7 @@
   "newArchiveBytes": 56164478,
   "historicalArchivesRebuilt": false,
   "gitPush": "source_and_all_new_eligible_artifacts_pushed",
-  "CI": "43_passed_for_572fae4c7",
+  "CI": "44_passed_for_156a390f0",
   "auth0Copy": "provider_applied_full_readback_matches",
   "ownerAuthenticationRequired": false,
   "currentFocalDocs": [
@@ -24,18 +24,31 @@
     "code-review-repair-20260930.md"
   ],
   "decisionAndJourneyAppended": true,
-  "singleNextStep": "Continue fresh native sign-in and remaining real inbox/reset/purchase acceptance.",
+  "singleNextStep": "Await already-requested QQ password reset/relogin, then verify recipient fields/revocation. Physical-device work remains Owner-deferred.",
   "remoteArchivesDownloadedAndVerified": true,
   "remoteFilesVerified": 463,
   "remoteObjectsVerified": 306,
   "sourceScanUnreviewedFindings": 0,
   "readableScanUnreviewedFindings": 0,
-  "finalReceiptCommit": "preflight_fix_and_readback_followup_pending",
+  "finalReceiptCommit": "evidence-only follow-up; runtime and preflight source unchanged from156a390f0; skip duplicate CI",
   "releasePreflight": {
     "regressionReproducedBeforeFix": true,
     "testsPassed": 7,
     "requiredGateSet": 12,
     "remainingUnverifiedGates": 10,
     "publicationApproval": false
-  }
+  },
+  "sourceCommit": "156a390f010a675d3d3c6637f1e538d1a0551657",
+  "ownerNativeAffirmativeTermsPending": false,
+  "qqInboxQuestionPending": false,
+  "nativePrivateMapVerified": true,
+  "realQQArrivalVerified": true,
+  "primaryInboxPlacementVerified": false,
+  "ownerPasswordResetPending": true,
+  "physicalDeviceOwnerDeferred": true,
+  "physicalAppInstalled": false,
+  "reviewEnrollmentSucceeded": true,
+  "laterPreservedFileVersions": 112,
+  "laterObjects": 105,
+  "laterArchiveBytes": 8977879
 }

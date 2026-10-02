@@ -1,0 +1,13 @@
+"""One transport retry after TLS-before-send failure and provider reconciliation."""
+import json,subprocess,datetime
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[3];QA=ROOT/'output/qa/rillora-release-123-20261001';path=QA/'qq-password-reset-request.json';r=json.loads(path.read_text())
+assert r['state']=='not_submitted_tls_handshake_failed' and not r['deliveryReconciliation']['matchingNewEmails']
+a=json.loads((ROOT/'.local-secrets/production-review/acceptance-identities-20261001.json').read_text())['accounts'];email=next(x['email'] for x in a if x['role']=='recipient')
+r['firstAttempt']={k:r[k] for k in ['requestedAt','state','exceptionType','deliveryReconciliation']};r['retryRequestedAt']=datetime.datetime.now(datetime.timezone.utc).isoformat();r['state']='reconciled_transport_retry_started';path.write_text(json.dumps(r,indent=2)+'\n')
+body=json.dumps({'client_id':'EcevpyKt1GELKwkLnVU3aCbh3Ix2SJhz','email':email,'connection':'Username-Password-Authentication'})
+p=subprocess.run(['curl','--silent','--show-error','--http1.1','--max-time','25','--retry','0','--header','Content-Type: application/json','--data-binary','@-','--write-out','\n%{http_code}','https://login.rillora.xyz/dbconnections/change_password'],input=body,capture_output=True,text=True)
+status=p.stdout.rsplit('\n',1)[-1] if p.stdout else '000';r['httpStatus']=int(status) if status.isdigit() else 0;r['transport']='single HTTPS HTTP/1.1 request; normal TLS validation'
+r['state']='request_accepted' if p.returncode==0 and r['httpStatus']==200 else 'request_outcome_requires_reconciliation'
+r['providerReply']=p.stdout.rsplit('\n',1)[0] if r['state']=='request_accepted' else 'Response withheld; inspect provider before any retry.'
+path.write_text(json.dumps(r,indent=2)+'\n');print(json.dumps(r))

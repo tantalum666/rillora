@@ -2,8 +2,8 @@
   "files": [
     {
       "path": "collaboration/README.md",
-      "bytes": 5628,
-      "sha256": "f17a5b850a56a1f2e0b7893d3bac38a95f714cfae8dcff6f4a409f8d82e58aa0"
+      "bytes": 6405,
+      "sha256": "5dba3d2ff040691914228df5106f050306d58ea10e6dbbbb80d4b92d994dfc20"
     },
     {
       "path": "collaboration/catalog/files-001.json",
@@ -45112,8 +45112,13 @@
     },
     {
       "path": "collaboration/verification/release-123-20261002/README.md",
-      "bytes": 4325,
-      "sha256": "d87a52c1075fb23558e5acade01ab1141f991354c99e5eb47dcf50dc185b0666"
+      "bytes": 6669,
+      "sha256": "7e9b295e7bd72d94d9bbcbc8a8efa090c1d5d0825e8bf8852fc10ef393e091eb"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/apple-review-enrollment-task.json",
+      "bytes": 866,
+      "sha256": "d90e16aaed330caaddf91eb5d3ab5864c3b1a1061df7462f8731f38cf53a9943"
     },
     {
       "path": "collaboration/verification/release-123-20261002/apply_signup_guidance.py.reference.txt",
@@ -45146,9 +45151,14 @@
       "sha256": "10206cb413374e38263fa154ef1931739e5d575b7acf78d48ac8f0b1273cdd8d"
     },
     {
+      "path": "collaboration/verification/release-123-20261002/ci44.json",
+      "bytes": 420,
+      "sha256": "04478b1d11f0e0ec91ec6a7030eac5a9b7fe56fc4dae5ead22a16a0e677947ab"
+    },
+    {
       "path": "collaboration/verification/release-123-20261002/closeout.json",
-      "bytes": 1329,
-      "sha256": "7971df2ecb888da2adba23604a9dcd71830151c212ace1b61a9719d69cf1c535"
+      "bytes": 1930,
+      "sha256": "6a8e396917e33ef9e63cf61b00c7742a7c3522cfe5f84aaf96cfdfb71561d1d4"
     },
     {
       "path": "collaboration/verification/release-123-20261002/complete_addendum.py.reference.txt",
@@ -45161,9 +45171,149 @@
       "sha256": "30eb5293101b7d574afcc980924efc69cab760093f08c6a577f9a57662855c99"
     },
     {
+      "path": "collaboration/verification/release-123-20261002/followup-archive-verification.json",
+      "bytes": 113,
+      "sha256": "96e41d4d996e8d98b81de223384828e6c1c11faed85220f3d5000f82ccacc47d"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/followup-catalog.json",
+      "bytes": 42227,
+      "sha256": "0e2054637cd872573734e5246ad5d122ce4e11711e8c105447e96c506e6efc05"
+    },
+    {
       "path": "collaboration/verification/release-123-20261002/followup-coverage.json",
-      "bytes": 3664,
-      "sha256": "b6f9b11e425498061757bc4681da8968986e99051d57c56ccfe58356ebff5459"
+      "bytes": 4302,
+      "sha256": "7025add72dbe8690c105a9947712a1d4727d7b239ff73c4c084c9d746215a311"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/followup-snapshot.json",
+      "bytes": 5911,
+      "sha256": "80da9c262dab1a9f20394a7d53521566b18093e29314055c205de1d738f1fd1c"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/later-receipts/README.md.reference.txt",
+      "bytes": 2890,
+      "sha256": "f0e687b7221af0e6f8c81657c3cb9e107fbfffd9262343864af73afd303b024e"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/later-receipts/apple-review-enrollment-task.json",
+      "bytes": 866,
+      "sha256": "d90e16aaed330caaddf91eb5d3ab5864c3b1a1061df7462f8731f38cf53a9943"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/later-receipts/apply_signup_guidance.py.reference.txt",
+      "bytes": 2158,
+      "sha256": "ee1f00a6da30b37512c96617eb34adb96467d002fa7f27061169adbc535e033b"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/later-receipts/archive_later_acceptance.py.reference.txt",
+      "bytes": 5252,
+      "sha256": "03bdac99696188db78b4dbb49982d005bcae693a905d33c533967b33948e38a5"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/later-receipts/auth0-scope-renewal-20261002.json",
+      "bytes": 91,
+      "sha256": "f8a887858eeb8275789cfecd7dae96f9bd03ad6dfaad60aa2628457a6ea629af"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/later-receipts/enroll_existing_review_account.py.reference.txt",
+      "bytes": 6350,
+      "sha256": "c0f202200f13c753afb81833d509d768ef7d40191cac5901b127095cbb76697f"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/later-receipts/native-review-device-build.json",
+      "bytes": 745,
+      "sha256": "d83bce3a1be0ab4b638dfb8daeb079259a0f3be7089f58ef3f824e10ae5ac1bb"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/later-receipts/native-review-device-build.log.reference.txt",
+      "bytes": 2000716,
+      "sha256": "d3bb802abcea4109c93826376a3fe11d11b5dba44a1a86836d8270c6679ec517"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/later-receipts/production-runtime-after-renewal.json",
+      "bytes": 269,
+      "sha256": "7ae53cd2f816b1d04052b3ba98f3a2559a4f52f8f5e06f96bf8158d7c7dac9d1"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/later-receipts/qq-password-reset-delivery.json",
+      "bytes": 417,
+      "sha256": "2b5fe807e2b15e81b466e98e887547307ae7e28bbaa08b13606d210c837eaecf"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/later-receipts/qq-password-reset-request.json",
+      "bytes": 1479,
+      "sha256": "21a9a0279a20d56c1a40d5f864ffe8e7c4c9b9e0f17cffd7d9f3b8d98e576c76"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/later-receipts/real-account-progress-20261002.json",
+      "bytes": 570,
+      "sha256": "a48b44f68fe9cd7a9ce3509e75511572244c74eb2178a7fb6d6b865b45377dc0"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/later-receipts/request_qq_password_reset.py.reference.txt",
+      "bytes": 2397,
+      "sha256": "8e2a6c00d47ad49ed280f580b08cb87c645fff8c58f0491e2adb05bedfa7ee48"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/later-receipts/reset_through_existing_proxy.py.reference.txt",
+      "bytes": 2118,
+      "sha256": "c2ea27226ed9429813672abbd752ac400bf980ce9348d45073ff8d97e417f815"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/later-receipts/retry_confirmed_unsent_reset.py.reference.txt",
+      "bytes": 1797,
+      "sha256": "92cc93d6d16062694d025bffee89fa3ef0d83d7ebabe7ad15a4f3b1760505ab6"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/later-receipts/signup-copy-after-apply.json",
+      "bytes": 622,
+      "sha256": "2c7fe1b71cdccf2eeb53b1ea6e6e07b08e2fd7a67490f4559dd0f0723599bfb2"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/later-receipts/signup-copy-applied.json",
+      "bytes": 403,
+      "sha256": "f9749d6fd2ae53ed49a50aebccdf9a5da98c7efb6787f4758bd8892cb59e7a55"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/later-receipts/signup-copy-before-apply.json",
+      "bytes": 303,
+      "sha256": "13567f144544af3e6d4727720e3cbfd1fcc751325ab93843b7eade337e648294"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/later-receipts/work-state.json",
+      "bytes": 6234,
+      "sha256": "975c77175313b24c54bf11363414dd672076f97e01f652e06b4d01685941933b"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/native-google-network-error.jpg",
+      "bytes": 20200,
+      "sha256": "ea619ca45af93f6f9e8e69088adf07b6dcef896ddcdc47c8454e7686773a1bf9"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/native-production-consent-required.jpg",
+      "bytes": 23694,
+      "sha256": "d6a02e0a5d1a8a33615e1914ef0f32476ad7e4897bc433006c2f964daafebe34"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/native-production-map.jpg",
+      "bytes": 31426,
+      "sha256": "52d424bceb6fa77165550a8c4c697fa3f3d3a6bfc1eff62b84d884c906268119"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/native-review-device-build.json",
+      "bytes": 745,
+      "sha256": "d83bce3a1be0ab4b638dfb8daeb079259a0f3be7089f58ef3f824e10ae5ac1bb"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/password-reset-login-needed.jpg",
+      "bytes": 30103,
+      "sha256": "8f3175aae25a37e9fb0fe1b5467cb3b73e2b80a1f07e2d2aea6c6d3164a6f7fb"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/production-runtime-after-renewal.json",
+      "bytes": 269,
+      "sha256": "7ae53cd2f816b1d04052b3ba98f3a2559a4f52f8f5e06f96bf8158d7c7dac9d1"
     },
     {
       "path": "collaboration/verification/release-123-20261002/public-identifier-redaction.json",
@@ -45191,9 +45341,24 @@
       "sha256": "96f723b022442c43005f4f46d7d33dd8760aec07e085e57e2f7a8d2d91d66331"
     },
     {
+      "path": "collaboration/verification/release-123-20261002/publication/evidence-only-boundary.json",
+      "bytes": 261,
+      "sha256": "31115f2addc8fad7031df4b6d32811c2c169b5f18aaf6db2647f524c993e13f4"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/publication/final-guard.json",
+      "bytes": 220,
+      "sha256": "51f4b0e351555d5ee5e21435e003c21f7e959501df5371d5ac0d2d18de90e0e1"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/publication/later-scan.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
       "path": "collaboration/verification/release-123-20261002/publication/markdown-links.json",
       "bytes": 127,
-      "sha256": "99ece86b77a81433314af89269280a1bf79e6ac3e833b31e3e5eb20ef28fdafe"
+      "sha256": "ab9f43a66e9bb377f3ab27b15341befb9f0f7e80e6cba962b6c9429853ee79f5"
     },
     {
       "path": "collaboration/verification/release-123-20261002/publication/preflight-after.log.reference.txt",
@@ -45247,8 +45412,23 @@
     },
     {
       "path": "collaboration/verification/release-123-20261002/publication/work-state-latest.json",
-      "bytes": 5664,
-      "sha256": "be3cf2ced13a9c778c8f385d487d52e100ad51ddf19918a16b32ea83b6c1a99a"
+      "bytes": 6234,
+      "sha256": "975c77175313b24c54bf11363414dd672076f97e01f652e06b4d01685941933b"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/qq-password-reset-delivery.json",
+      "bytes": 427,
+      "sha256": "4075079c21e092b87a78e36a20c9add84daab7b6fd529ad496f111e0933e1a38"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/qq-password-reset-request.json",
+      "bytes": 1479,
+      "sha256": "21a9a0279a20d56c1a40d5f864ffe8e7c4c9b9e0f17cffd7d9f3b8d98e576c76"
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/real-account-progress-20261002.json",
+      "bytes": 570,
+      "sha256": "a48b44f68fe9cd7a9ce3509e75511572244c74eb2178a7fb6d6b865b45377dc0"
     },
     {
       "path": "collaboration/verification/release-123-20261002/receipts/README.md.reference.txt",
@@ -45801,6 +45981,11 @@
       "sha256": "d6631589a3edef2294658375be57c76e8df74911c0bca859adc05ed40509fa24"
     },
     {
+      "path": "collaboration/verification/release-123-20261002/transport-and-native-resume.json",
+      "bytes": 991,
+      "sha256": "8fc00c33ca8818ef21df60d12e82f30d62f17ecd51f853283cd7121dd5c2216d"
+    },
+    {
       "path": "collaboration/verification/release-status-20261001/coverage.json",
       "bytes": 938,
       "sha256": "93fab0ff8f798bf8af12e8f1d8abd808660d67f7a609fec8a44c2bfc1349b26d"
@@ -46081,6 +46266,6 @@
       "sha256": "fed30615ae7228027cfcf1a2c0f840640c34149c6a8b412e5d8392b7848f2f05"
     }
   ],
-  "fileCount": 9216,
-  "totalBytes": 227818493
+  "fileCount": 9253,
+  "totalBytes": 230019025
 }
