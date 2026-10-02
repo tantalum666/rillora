@@ -1,0 +1,36 @@
+
+✨  Synthesis time: 0.45s
+
+RilloraProductionWeb: start: Building Deployment/Asset1
+RilloraProductionWeb: success: Built Deployment/Asset1
+RilloraProductionWeb: start: Building RilloraProductionWeb Template
+RilloraProductionWeb: success: Built RilloraProductionWeb Template
+RilloraProductionWeb: start: Publishing Deployment/Asset1 (133857166372-eu-central-1-b5f8734d)
+RilloraProductionWeb: start: Publishing RilloraProductionWeb Template (133857166372-eu-central-1-470b0297)
+RilloraProductionWeb: success: Published RilloraProductionWeb Template (133857166372-eu-central-1-470b0297)
+RilloraProductionWeb: success: Published Deployment/Asset1 (133857166372-eu-central-1-b5f8734d)
+RilloraProductionWeb: creating CloudFormation changeset...
+RilloraProductionWeb: deploying... [1/1]
+RilloraProductionWeb | 0/4 | 2:48:00 PM | UPDATE_IN_PROGRESS      | AWS::CloudFormation::Stack             | RilloraProductionWeb User Initiated
+RilloraProductionWeb | 0/4 | 2:48:03 PM | UPDATE_IN_PROGRESS      | AWS::CloudFront::Function              | Routes (Routes4F6D566C) 
+RilloraProductionWeb | 1/4 | 2:49:01 PM | UPDATE_COMPLETE         | AWS::CloudFront::Function              | Routes (Routes4F6D566C) 
+RilloraProductionWeb | 1/4 | 2:49:04 PM | UPDATE_IN_PROGRESS      | Custom::CDKBucketDeployment            | Deployment/CustomResource/Default (DeploymentCustomResource47E8B2E6) 
+RilloraProductionWeb | 2/4 | 2:50:34 PM | UPDATE_COMPLETE         | Custom::CDKBucketDeployment            | Deployment/CustomResource/Default (DeploymentCustomResource47E8B2E6) 
+RilloraProductionWeb | 3/4 | 2:50:36 PM | UPDATE_COMPLETE_CLEANUP | AWS::CloudFormation::Stack             | RilloraProductionWeb 
+RilloraProductionWeb | 4/4 | 2:50:36 PM | UPDATE_COMPLETE         | AWS::CloudFormation::Stack             | RilloraProductionWeb 
+
+✅  RilloraProductionWeb
+
+✨  Deployment time: 162.69s
+
+Outputs:
+RilloraProductionWeb.BucketName = rilloraproductionweb-assets9a31d427-ltbwfplzu6ks
+RilloraProductionWeb.ClientUrl = https://app.rillora.xyz
+RilloraProductionWeb.CustomerAccess = closed
+RilloraProductionWeb.DistributionDomain = d3mtr349015b96.cloudfront.net
+RilloraProductionWeb.DistributionId = E2D4X9TBTJK942
+Stack ARN:
+arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraProductionWeb/073e36f0-b8e7-11f1-8c86-06a768c8f0df
+
+✨  Total time: 198.38s
+

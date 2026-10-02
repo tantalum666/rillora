@@ -12,15 +12,16 @@ const contractBytes = readFileSync(resolve(root, 'config/production-connections.
 export const productionConnections = JSON.parse(contractBytes.toString());
 export const PRODUCTION_WEB_CSP = "default-src 'self'; base-uri 'self'; connect-src 'self'; font-src 'self'; form-action 'self' https://login.rillora.xyz; frame-ancestors 'none'; img-src 'self' data:; object-src 'none'; script-src 'self'; style-src 'self'";
 
-export function verifyProductionClientArtifact(directory: string): void {
+export function verifyProductionClientArtifact(directory: string, reviewEnabled = false): void {
   const manifest = JSON.parse(readFileSync(resolve(directory, 'production-build.json'), 'utf8'));
   if (productionConnections.schemaVersion !== 1 || productionConnections.customerAccess !== 'closed'
     || manifest.version !== 1 || manifest.surface !== 'production-client' || manifest.customerAccess !== 'closed'
     || manifest.publicationCandidate !== true
+    || (reviewEnabled ? manifest.reviewAccess !== 'identity-allowlist' : manifest.reviewAccess !== undefined)
     || manifest.webOrigin !== productionConnections.webOrigin || manifest.apiBaseURL !== productionConnections.apiBaseURL
     || manifest.connectionsSha256 !== createHash('sha256').update(contractBytes).digest('hex')
     || !manifest.files || typeof manifest.files !== 'object' || Array.isArray(manifest.files)) {
-    throw new Error('Only a matching closed production client artifact is accepted');
+    throw new Error('Only a matching production client artifact with the explicitly selected access mode is accepted');
   }
   const observed: string[] = [];
   function visit(folder: string) {
@@ -43,13 +44,13 @@ export function verifyProductionClientArtifact(directory: string): void {
 
 /** Same-origin client delivery only. Existing API/customer activation is untouched. */
 export class RilloraProductionWebStack extends Stack {
-  constructor(scope: Construct, id: string, props: StackProps & { certificateArn: string; assetDirectory?: string }) {
+  constructor(scope: Construct, id: string, props: StackProps & { certificateArn: string; assetDirectory?: string; reviewEnabled?: boolean }) {
     super(scope, id, props);
     if (props.env?.region !== 'eu-central-1') throw new Error('Production origin storage remains in Frankfurt');
     if (!/^arn:aws:acm:us-east-1:\d{12}:certificate\/[0-9a-f-]+$/.test(props.certificateArn)
       || props.certificateArn.split(':')[4] !== props.env.account) throw new Error('Use the reviewed same-account CloudFront certificate');
-    const directory = props.assetDirectory ?? resolve(root, 'apps/web/dist-production');
-    verifyProductionClientArtifact(directory);
+    const directory = props.assetDirectory ?? resolve(root, props.reviewEnabled ? 'apps/web/dist-production-review' : 'apps/web/dist-production');
+    verifyProductionClientArtifact(directory, props.reviewEnabled);
     Tags.of(this).add('Project', 'Rillora'); Tags.of(this).add('Environment', 'Production');
     const assets = new s3.Bucket(this, 'Assets', {
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL, enforceSSL: true,
@@ -74,7 +75,9 @@ export class RilloraProductionWebStack extends Stack {
     });
     const association = [{ eventType: cloudfront.FunctionEventType.VIEWER_REQUEST, function: router }];
     const distribution = new cloudfront.Distribution(this, 'Client', {
-      comment: 'Rillora production client candidate; server and client account access closed',
+      comment: props.reviewEnabled
+        ? 'Rillora restricted review client; server identity allowlist required, public customers closed'
+        : 'Rillora production client candidate; server and client account access closed',
       domainNames: [new URL(productionConnections.webOrigin).hostname],
       certificate: acm.Certificate.fromCertificateArn(this, 'Certificate', props.certificateArn),
       minimumProtocolVersion: cloudfront.SecurityPolicyProtocol.TLS_V1_2_2021,
@@ -116,5 +119,6 @@ export class RilloraProductionWebStack extends Stack {
     new CfnOutput(this, 'DistributionDomain', { value: distribution.distributionDomainName });
     new CfnOutput(this, 'BucketName', { value: assets.bucketName });
     new CfnOutput(this, 'CustomerAccess', { value: 'closed' });
+    if (props.reviewEnabled) new CfnOutput(this, 'ReviewAccess', { value: 'identity-allowlist' });
   }
 }

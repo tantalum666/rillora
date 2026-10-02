@@ -1,0 +1,138 @@
+{
+  "updatedAt": "2026-10-02T07:00:28.003015+00:00",
+  "ownerTask": "Complete work packages 1, 2 and 3 first: repaired production rollout, real account/email journeys, actual Apple Sandbox purchase/restore.",
+  "sourceBase": "b3fed06d93d47479897a64a95a136633d63d7192",
+  "reading": {
+    "continuation": true,
+    "fullBodyBaseline": "output/qa/rillora-launch-resume-20260930/full-read-completion.json",
+    "baselineFiles": 165,
+    "baselineLines": 29003,
+    "latestContinuation": "collaboration/verification/resend-20261001/continuation-reading.json",
+    "currentFocusedReads": [
+      "AGENTS.md",
+      "docs/product.md current decisions",
+      "docs/handoff.md",
+      "docs/decision-log.md latest decisions",
+      "docs/code-review-repair-20260930.md",
+      "docs/release-readiness.md current remaining work",
+      "docs/apple-review-validation-20260929.md",
+      "docs/release-engineering-20260930.md",
+      "docs/production-runtime-20260924.md",
+      "infra/aws/README.md current deployment contexts",
+      "infra/auth0/hosted-consent/README.md",
+      "docs/source-control.md",
+      "collaboration/README.md"
+    ],
+    "noFullRescanOrUnchangedProductTestRerun": true
+  },
+  "aws": {
+    "initiallyExpired": true,
+    "renewedAndStsVerified": true,
+    "account": "133857166372",
+    "october2Refresh": "actually_expired_after_completed_deployments"
+  },
+  "auth0": {
+    "initiallyExpired": true,
+    "renewedWithoutOwnerReentry": true,
+    "newScopes": 0,
+    "providerStillResend": true
+  },
+  "apple": {
+    "initialListWasCached": true,
+    "actualDetailRedirectedToLogin": true,
+    "passwordRequired": true,
+    "ownerPromptPending": false,
+    "loginRestored": true,
+    "sandboxNotificationUrlSavedAndReloaded": true,
+    "testNotificationRequested": true,
+    "testNotificationDelivered": true,
+    "blocker": null,
+    "successfulNotificationReceipt": "apple-test-notification-after-fix.json"
+  },
+  "rollout": {
+    "state": "repair_completed_then_review_configuration_completed",
+    "stacks": [
+      "RilloraProduction",
+      "RilloraProductionWeb",
+      "RilloraPublicWeb"
+    ],
+    "noMigrationRequired": true,
+    "initialSynthesisRejectedUnrelatedDiff": true,
+    "acceptedProductionDiff": "Only 3 existing task-definition images; no database/network/key/IAM/secret change",
+    "apiAssembly": "cdk-production-preserved",
+    "taskSessions": {
+      "production": 65803,
+      "productionWeb": 84093,
+      "publicWeb": 90854
+    },
+    "repairTaskRevision": 8,
+    "reviewParameterTaskRevision": 9,
+    "ocspFixDeploymentCompleted": true,
+    "ocspSignedReplayHttpStatus": 200,
+    "ocspTaskRevision": 10
+  },
+  "accounts": {
+    "ownerConfirmedPreviousABEmails": true,
+    "privateRecord": ".local-secrets/production-review/acceptance-identities-20261001.json",
+    "planner": "existing Google identity, already verified",
+    "recipient": "existing database identity, already verified",
+    "preserveExistingVerificationAndData": true,
+    "newSignupNotYetProven": true,
+    "ownerWebLoginReported": true,
+    "realWebMapObservedEmptyThenSavedOneSyntheticMatter": true,
+    "reviewWebDeployedAndHtmlMatched": true,
+    "qqSignupMistakeConfirmedByOwner": true,
+    "qqDuplicateSignupLog": "The user already exists.",
+    "recipientAcceptedObserved": true,
+    "recipientSharedListObserved": true,
+    "realQQInboxReceived": false,
+    "userReportsQQMailMissing": true,
+    "qqSMTPResponse": "250 OK: queued as.",
+    "october2WebSession": "no_active_session_after_account_changed_reload"
+  },
+  "next": "Apply clear signup errors, investigate QQ inbox delivery, then continue recipient/native/Apple purchase acceptance without repeating completed rollout.",
+  "publicCustomersOpened": false,
+  "liveBillingEnabled": false,
+  "appleBuildUploaded": false,
+  "newChecks": {
+    "reviewAction": 5,
+    "webBuildModes": 1,
+    "reviewWebInfrastructure": 4,
+    "appleVerificationUnits": 29,
+    "appleIntakeIntegration": 20,
+    "productionInfrastructure": 8,
+    "typechecksPassed": true
+  },
+  "native": {
+    "reviewSimulatorBuildSucceeded": true,
+    "releaseConfiguration": true,
+    "customerEntryEnabledForServerAllowlist": true,
+    "installed": true,
+    "launched": true,
+    "mcpSnapshotTargets": 0,
+    "screenshotShowsWorkingPublicHome": true,
+    "cuaScreenCaptureFailure": "SCStreamErrorDomain -3811",
+    "mirrorUrl": "http://localhost:3200",
+    "mirrorSessionId": 24106,
+    "october2HostedTransaction": "old transaction displayed provider error after Google selection; cancelled safely to home; no new native login claimed"
+  },
+  "signupCopy": {
+    "requestedByOwner": true,
+    "localChangePrepared": true,
+    "providerApplied": false,
+    "blockedOnActuallyExpiredAuth0ManagementSession": true,
+    "ownerAuth0QuestionPending": true
+  },
+  "browser": {
+    "oldChromeId": "3",
+    "currentChromeId": "4",
+    "reason": "old browser became unavailable; restored tabs discovered in fresh Chrome instance"
+  },
+  "remaining": [
+    "QQ actual inbox placement",
+    "Password recovery completion",
+    "Native production identity journey",
+    "Apple Sandbox actual purchase/restore/lifecycle",
+    "Publish all current source/evidence and final closeout"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "startedAt": "2026-10-01T07:08:05.792Z",
+  "environment": "sandbox",
+  "bundleId": "com.rillora.ios",
+  "purpose": "One official Apple TEST notification to the configured Rillora review endpoint",
+  "realPurchase": false,
+  "status": "awaiting_success",
+  "testNotificationToken": "[REDACTED_PUBLIC_IDENTIFIER]",
+  "observations": [
+    {
+      "checkedAt": "2026-10-01T07:12:17.216Z",
+      "sendAttempts": [
+        {
+          "attemptDate": 1790838486597,
+          "sendAttemptResult": "UNSUCCESSFUL_HTTP_RESPONSE_CODE"
+        }
+      ],
+      "signedPayloadSha256": "c4818c605aa2e1b4745d9c7251345f7faaf0cf648c20df2527ac842c96ac4251"
+    }
+  ],
+  "delivered": false
+}

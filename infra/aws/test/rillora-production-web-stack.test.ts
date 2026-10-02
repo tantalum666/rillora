@@ -62,4 +62,24 @@ describe('Closed production client delivery', () => {
   it('rejects another-account or wrong-region certificate before provisioning', () => {
     expect(() => new RilloraProductionWebStack(new App(), 'Wrong', { env: { account: '222222222222', region: 'eu-central-1' }, certificateArn })).toThrow('same-account');
   });
+  it('requires an explicit review deployment and matching artifact in both directions', () => {
+    const assetDirectory = fixture();
+    try {
+      expect(() => verifyProductionClientArtifact(assetDirectory, true)).toThrow('access mode');
+      const path = join(assetDirectory, 'production-build.json');
+      const manifest = JSON.parse(readFileSync(path, 'utf8'));
+      manifest.reviewAccess = 'identity-allowlist';
+      writeFileSync(path, JSON.stringify(manifest));
+      expect(() => verifyProductionClientArtifact(assetDirectory)).toThrow('access mode');
+      expect(() => verifyProductionClientArtifact(assetDirectory, true)).not.toThrow();
+      const template = Template.fromStack(new RilloraProductionWebStack(new App(), 'ReviewWebTest', {
+        env: { account: '111111111111', region: 'eu-central-1' }, certificateArn, assetDirectory, reviewEnabled: true,
+      }));
+      template.hasOutput('CustomerAccess', { Value: 'closed' });
+      template.hasOutput('ReviewAccess', { Value: 'identity-allowlist' });
+      manifest.customerAccess = 'open';
+      writeFileSync(path, JSON.stringify(manifest));
+      expect(() => verifyProductionClientArtifact(assetDirectory, true)).toThrow();
+    } finally { rmSync(assetDirectory, { recursive: true }); }
+  });
 });

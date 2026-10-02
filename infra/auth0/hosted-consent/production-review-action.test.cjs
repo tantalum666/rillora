@@ -3,8 +3,8 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');const vm=require('node:vm');const crypto=require('node:crypto');
 const subject='auth0|synthetic-review';
 const digest=crypto.createHash('sha256').update(`https://login.rillora.xyz\u001f${subject}`).digest('hex');
-function run(expiry=new Date(Date.now()+60_000).toISOString()){
- const code=fs.readFileSync(__dirname+'/production-review-action.cjs','utf8').replace('__REVIEW_IDENTITY_DIGEST__',digest).replace('__REVIEW_EXPIRES_AT__',expiry).replace('__RILLORA_FORM_ID__','ap_fixture');
+function run(expiry=new Date(Date.now()+60_000).toISOString(),digests=[digest]){
+ const code=fs.readFileSync(__dirname+'/production-review-action.cjs','utf8').replace('__REVIEW_IDENTITY_DIGEST__',digests.join(',')).replace('__REVIEW_EXPIRES_AT__',expiry).replace('__RILLORA_FORM_ID__','ap_fixture');
  const context={exports:{},require,Date};vm.runInNewContext(code,context);return context.exports;
 }
 function fixture(client='POpNKTqlr6dHbJZLWPWxhyjg5qPtdrm4'){
@@ -26,4 +26,21 @@ test('native consent starts unchecked and only exact affirmative continuation se
 test('Web keeps the existing API clickwrap and receives no invented hosted receipt',async()=>{
  const f=fixture('EcevpyKt1GELKwkLnVU3aCbh3Ix2SJhz');await run().onExecutePostLogin(f.event,f.api);
  assert.equal(f.calls.denied.length,0);assert.equal(f.calls.forms.length,0);assert.equal(f.calls.claims.length,0);
+});
+test('both named review participants can authenticate while a third identity stays denied',async()=>{
+ const second='auth0|synthetic-recipient';
+ const secondDigest=crypto.createHash('sha256').update(`https://login.rillora.xyz\u001f${second}`).digest('hex');
+ const action=run(undefined,[digest,secondDigest]);
+ for(const id of [subject,second,'auth0|stranger']){
+  const f=fixture();f.event.user.user_id=id;await action.onExecutePostLogin(f.event,f.api);
+  assert.equal(f.calls.denied.length,id==='auth0|stranger'?1:0);
+  assert.equal(f.calls.forms.length,id==='auth0|stranger'?0:1);
+ }
+});
+test('malformed, duplicate or oversized review lists fail closed',async()=>{
+ const oversized=Array.from({length:9},(_,i)=>crypto.createHash('sha256').update(String(i)).digest('hex'));
+ for(const values of [[],[digest,'bad'],[digest,digest],[digest,...oversized]]){
+  const f=fixture();await run(undefined,values).onExecutePostLogin(f.event,f.api);
+  assert.equal(f.calls.denied.length,1);assert.equal(f.calls.forms.length,0);
+ }
 });

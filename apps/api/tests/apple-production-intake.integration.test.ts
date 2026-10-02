@@ -1,7 +1,7 @@
 import pg from 'pg';
 import { randomUUID, createHash } from 'node:crypto';
 import { beforeAll, beforeEach, afterAll, describe, expect, it, vi } from 'vitest';
-import { Environment, InAppOwnershipType, Status, Type, type JWSTransactionDecodedPayload,
+import { Environment, InAppOwnershipType, Status, Type, VerificationException, VerificationStatus, type JWSTransactionDecodedPayload,
   type JWSRenewalInfoDecodedPayload, type ResponseBodyV2DecodedPayload } from '@apple/app-store-server-library';
 import { runMigrations } from '../src/migrate.js';
 import { type DatabasePool, withCommercePlannerDatabase, withPlannerDatabase } from '../src/db.js';
@@ -202,6 +202,17 @@ describe('production Apple durable intake (decoded Apple fixtures + real isolate
     await pool.query('update app.commerce_runtime_policy set production_entitlements_enabled=false');
     expect(await f.intake.acceptClientTransaction(f.input)).toMatchObject({ finishAuthorized: false });
     expect(await state()).toBeUndefined();
+  });
+
+  it('keeps online-verifier outages retryable without accepting a transaction or creating an inbox row', async () => {
+    const f = await harness();
+    const outage = new VerificationException(VerificationStatus.RETRYABLE_VERIFICATION_FAILURE);
+    vi.spyOn(f.verification, 'verifyNotification').mockRejectedValue(outage);
+    vi.spyOn(f.verification, 'verifyClientTransaction').mockRejectedValue(outage);
+    await expect(f.intake.acceptNotification(f.notice())).rejects.toMatchObject({ status: 503, code: 'apple_verification_unavailable' });
+    await expect(f.intake.acceptClientTransaction(f.input)).rejects.toMatchObject({ status: 503, code: 'apple_verification_unavailable' });
+    expect((await pool.query('select count(*)::int as n from app.commerce_provider_event_inbox')).rows[0].n).toBe(0);
+    expect((await pool.query('select count(*)::int as n from app.commerce_apple_transaction_receipts')).rows[0].n).toBe(0);
   });
 
   it('leases the original subscription across concurrent workers and reclaims a crashed worker', async () => {

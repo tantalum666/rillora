@@ -1,0 +1,19 @@
+import {readFile,writeFile,stat} from 'node:fs/promises';
+import {fileURLToPath} from 'node:url';
+import {AppStoreServerAPIClient,Environment} from '../../../apps/api/node_modules/@apple/app-store-server-library/dist/index.js';
+import {AppleProductionVerification,createRilloraAppleReviewVerifier} from '../../../apps/api/dist/apple-production-verification.js';
+import {appleReviewContext} from '../../../apps/api/dist/apple-execution-context.js';
+const root=new URL('../../../',import.meta.url);
+async function secret(name){const p=new URL('.local-secrets/storekit/'+name,root);if((await stat(p)).mode&0o077)throw new Error('Credential permissions');return readFile(p,'utf8');}
+const client=new AppStoreServerAPIClient(await secret('iap-private-key.p8'),(await secret('key-id')).trim(),(await secret('issuer-id')).trim(),'com.rillora.ios',Environment.SANDBOX);
+const receipt=JSON.parse(await readFile(new URL('apple-test-notification.json',import.meta.url),'utf8'));
+const result=await client.getTestNotificationStatus(receipt.testNotificationToken);
+const verifier=new AppleProductionVerification(createRilloraAppleReviewVerifier(fileURLToPath(new URL('apps/api/certificates/apple',root))),new Set(['USA']),appleReviewContext);
+const report={at:new Date().toISOString(),localVerified:false};
+try{
+ const signal=await verifier.verifyNotification(result.signedPayload);report.localVerified=true;report.sourceEventType=signal.sourceEventType;report.signalType=signal.signalType;
+ if(signal.sourceEventType!=='TEST')throw new Error('Only the retained TEST event may be replayed');
+ const response=await fetch('https://app.rillora.xyz/api/commerce/storekit/review/notifications',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({signedPayload:result.signedPayload}),signal:AbortSignal.timeout(25000)});
+ report.replayHttpStatus=response.status;const body=await response.json();report.replayResult=body;
+}catch(error){report.failure={name:error.name,message:error.message,status:error.status??null,cause:error.cause?.name??null};}
+await writeFile(new URL('apple-test-notification-diagnosis.json',import.meta.url),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));

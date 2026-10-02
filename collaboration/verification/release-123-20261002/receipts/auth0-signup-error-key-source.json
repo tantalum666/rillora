@@ -1,0 +1,18 @@
+{
+  "source": "https://auth0.com/docs/customize/login-pages/universal-login/customize-text-elements",
+  "screen": "signup-password",
+  "matchingErrorRows": [
+    [
+      "The user already exists.",
+      "email-in-use"
+    ],
+    [
+      "Something went wrong, please try again later.",
+      "custom-script-error-code"
+    ],
+    [
+      "Something went wrong, please try again later",
+      "auth0-users-validation"
+    ]
+  ]
+}

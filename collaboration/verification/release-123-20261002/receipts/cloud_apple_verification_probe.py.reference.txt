@@ -1,0 +1,26 @@
+from pathlib import Path
+import json,subprocess,datetime
+Q=Path('output/qa/rillora-release-123-20261001');out=json.loads((Q/'production-deploy-outputs.json').read_text())['RilloraProduction'];receipt=json.loads((Q/'apple-test-notification.json').read_text())
+path=Q/'apple-cloud-verification-task.json'
+if path.exists():raise SystemExit('Existing diagnostic task retained; inspect rather than run another')
+script="""import {AppStoreServerAPIClient,Environment} from '@apple/app-store-server-library';
+import {loadAppleReviewSecret} from './dist/apple-production-secret.js';
+import {createRilloraAppleReviewVerifier} from './dist/apple-production-verification.js';
+console.log(JSON.stringify({probe:'apple-test-signature',phase:'start',time:new Date().toISOString()}));
+try {
+const c=await loadAppleReviewSecret(process.env.APPLE_REVIEW_SECRET_ARN);
+const api=new AppStoreServerAPIClient(c.privateKey,c.keyId,c.issuerId,c.bundleId,Environment.SANDBOX);
+const status=await api.getTestNotificationStatus(TOKEN);
+const verifier=await createRilloraAppleReviewVerifier('/app/certificates/apple');
+const payload=await verifier.verifyAndDecodeNotification(status.signedPayload);
+console.log(JSON.stringify({probe:'apple-test-signature',verified:true,type:payload.notificationType,environment:payload.data?.environment,bundleId:payload.data?.bundleId}));
+} catch(e) {console.log(JSON.stringify({probe:'apple-test-signature',verified:false,status:e.status??null,name:e.name,causeName:e.cause?.name??null,causeType:e.cause?.type??null,causeCode:e.cause?.code??null,message:e.message}));process.exitCode=2;}
+""".replace('TOKEN',json.dumps(receipt['testNotificationToken']))
+body={'cluster':out['ClusterName'],'taskDefinition':out['RecoveryTaskDefinitionArn'],'launchType':'FARGATE','networkConfiguration':{'awsvpcConfiguration':{'subnets':out['MaintenanceSubnetIds'].split(','),'securityGroups':[out['RecoverySecurityGroupId']],'assignPublicIp':'ENABLED'}},'overrides':{'containerOverrides':[{'name':'Maintenance','command':['node','--input-type=module','-e',script]}]},'tags':[{'key':'Project','value':'Rillora'},{'key':'Purpose','value':'AppleSignatureReadOnlyProbe'}]}
+body.pop('tags',None)
+body_path=Q/'apple-cloud-probe-request.json';body_path.write_text(json.dumps(body,indent=2)+'\n')
+r=subprocess.run(['aws','ecs','run-task','--cli-input-json','file://'+str(body_path.resolve()),'--profile','rillora-production-operator','--region','eu-central-1','--output','json'],capture_output=True,text=True,timeout=45)
+if r.returncode:raise RuntimeError('Diagnostic start failed: '+r.stderr[-350:])
+data=json.loads(r.stdout);assert not data.get('failures') and len(data['tasks'])==1
+result={'startedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'taskArn':data['tasks'][0]['taskArn'],'cluster':out['ClusterName'],'logGroup':out['MaintenanceLogGroup'],'logStream':'recovery/Maintenance/'+data['tasks'][0]['taskArn'].split('/')[-1],'noDatabaseOperation':True,'sameAppleTestNotification':True}
+path.write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))

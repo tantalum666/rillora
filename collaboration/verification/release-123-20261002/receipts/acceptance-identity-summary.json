@@ -1,0 +1,32 @@
+[
+  {
+    "role": "planner",
+    "matches": 1,
+    "accounts": [
+      {
+        "emailVerified": true,
+        "providers": [
+          {
+            "provider": "google-oauth2",
+            "connection": "google-oauth2"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "role": "recipient",
+    "matches": 1,
+    "accounts": [
+      {
+        "emailVerified": true,
+        "providers": [
+          {
+            "provider": "auth0",
+            "connection": "Username-Password-Authentication"
+          }
+        ]
+      }
+    ]
+  }
+]

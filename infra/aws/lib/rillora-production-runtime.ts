@@ -1,4 +1,5 @@
 import { Construct } from 'constructs';
+import { allowAppleCertificateStatusChecks } from './apple-certificate-egress.js';
 import { CfnOutput, CfnParameter, Duration, RemovalPolicy, aws_ec2 as ec2, aws_ecs as ecs,
  aws_iam as iam, aws_logs as logs, aws_kms as kms, aws_dynamodb as dynamodb,
  aws_rds as rds, aws_secretsmanager as secrets, aws_certificatemanager as acm,
@@ -31,6 +32,7 @@ export class RilloraProductionRuntime extends Construct {
   network.addIngressRule(ingress,ec2.Port.tcp(8443),'Verified TLS from the exact private VPC Link');
   ingress.addEgressRule(network,ec2.Port.tcp(8443),'Production HTTPS only');
   network.addEgressRule(ec2.Peer.ipv4('0.0.0.0/0'),ec2.Port.tcp(443),'Outbound AWS and identity HTTPS');
+  if(p.reviewEnabled)allowAppleCertificateStatusChecks(network);
   network.addEgressRule(p.databaseNetwork,ec2.Port.tcp(5432),'Verified TLS to private production PostgreSQL');
   p.databaseNetwork.addIngressRule(network,ec2.Port.tcp(5432),'Only the production runtime login');
   const namespace=new discovery.PrivateDnsNamespace(this,'Namespace',{vpc:p.vpc,name:'production.rillora.internal'});

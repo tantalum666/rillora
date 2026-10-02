@@ -1,0 +1,45 @@
+import datetime,hashlib,json,os,shlex,subprocess,sys,tempfile,uuid
+from pathlib import Path
+ROOT=Path.cwd();sys.path.insert(0,str(ROOT/'tools/collaboration'))
+import build_snapshot as b
+from verify_archives import verify
+D=ROOT/'collaboration/verification/release-123-20261002'
+s=json.loads((D/'snapshot.json').read_text());records=json.loads((D/'catalog.json').read_text())
+p=ROOT/'apps/web/dist-production-review/assets/index-Dzj3tdHb.js';text=p.read_text()
+matched={v for v in b.sensitive_values() if len(v)>=16 and v in text};legal=set()
+for line in (ROOT/'.local-secrets/legal/release.env').read_text().splitlines():
+ line=line.strip().removeprefix('export ').strip()
+ if line.startswith(('VITE_LEGAL_OPERATOR_NAME=','VITE_LEGAL_SERVICE_ADDRESS=')):legal.update(shlex.split(line.partition('=')[2])[:1])
+assert matched and matched<=legal,'Unexpected credential material; do not archive'
+assert not (ROOT/'collaboration/archives/raw-work-009.tar.zst.age').exists()
+frozen,digest=b.freeze_file(p,ROOT/'output/qa/rillora-release-123-20261001/publication/frozen')
+blob={'id':uuid.uuid4().hex,'sha256':digest,'bytes':frozen.stat().st_size,'source':str(frozen),'paths':[p.relative_to(ROOT).as_posix()]}
+recipient=subprocess.check_output(['age-keygen','-y',str(b.IDENTITY)],text=True).strip()
+a=b.seal_chunk(9,[blob],recipient)
+records.append({'sourcePath':blob['paths'][0],'bytes':blob['bytes'],'rawObject':blob['id'],'rawArchive':a['path']})
+s['archives'].append(a);s['workFiles']+=1;s['uniqueRawObjects']+=1;s['workBytes']+=blob['bytes'];s['capturedThrough']=datetime.datetime.now(datetime.timezone.utc).isoformat()
+s['excluded']=[x for x in s['excluded'] if x['path']!=blob['paths'][0]]
+s['protectedIdentityArtifactReview']={'path':blob['paths'][0],'matchedOnlyExistingPublishedLegalIdentity':True,'containsCredential':False,'readableCopy':False,'reason':'Preserved encrypted in a second additive archive after differentiating legal identity text from credentials.'}
+# Scanner findings are documented public IDs/object names; omit their values in readable references.
+keys={'objectKey','s3Key','S3Key','RilloraAuth0ClientID','testNotificationToken'}
+redacted=[]
+def walk(x):
+ if isinstance(x,dict):return {k:('[REDACTED_PUBLIC_IDENTIFIER]' if k in keys and isinstance(v,str) else walk(v)) for k,v in x.items()}
+ if isinstance(x,list):return [walk(y) for y in x]
+ return x
+for r in records:
+ if 'readablePath' not in r:continue
+ f=ROOT/r['readablePath']
+ if f.suffix!='.json':continue
+ before=f.read_text();after=json.dumps(walk(json.loads(before)),ensure_ascii=False,indent=2)+'\n'
+ if json.loads(before)!=json.loads(after):
+  f.write_text(after);r['privacyRedactions']=True;redacted.append(r['readablePath'])
+(D/'catalog.json').write_text(json.dumps(records,ensure_ascii=False,indent=2)+'\n');(D/'snapshot.json').write_text(json.dumps(s,ensure_ascii=False,indent=2)+'\n')
+with tempfile.TemporaryDirectory(prefix='rillora-addendum-verify-') as temp:
+ root=Path(temp);(root/'collaboration').mkdir();(root/'collaboration/snapshot.json').write_text(json.dumps(s))
+ for name in [a['path'] for a in s['archives']]+s['catalogFiles']:
+  dst=root/name;dst.parent.mkdir(parents=True,exist_ok=True);os.link(ROOT/name,dst)
+ result=verify(root,b.IDENTITY)
+(D/'archive-verification.json').write_text(json.dumps(result,indent=2)+'\n')
+(D/'public-identifier-redaction.json').write_text(json.dumps({'keys':sorted(keys),'files':redacted,'reason':'Public identifiers and object keys omitted from readable references to avoid ambiguous scanner matches; exact originals stay sealed.'},indent=2)+'\n')
+print(json.dumps({'files':s['workFiles'],'objects':s['uniqueRawObjects'],'archiveBytes':sum(a['bytes'] for a in s['archives']),'verified':result['passed']}))

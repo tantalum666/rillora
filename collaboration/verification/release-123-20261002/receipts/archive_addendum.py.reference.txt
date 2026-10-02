@@ -1,0 +1,70 @@
+#!/usr/bin/env python3
+"""One dated additive preservation; never rebuild the September30 archives."""
+import collections,datetime,gzip,hashlib,json,os,shutil,subprocess,sys,tempfile,uuid
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[3]
+sys.path.insert(0,str(ROOT/'tools/collaboration'))
+import build_snapshot as archive
+from snapshot_policy import directory_exclusion,file_exclusion,readable_text
+from verify_archives import verify
+QA=ROOT/'output/qa/rillora-release-123-20261001'
+DEST=ROOT/'collaboration/verification/release-123-20261002'
+DEST.mkdir(parents=True,exist_ok=True)
+ARCHIVE=ROOT/'collaboration/archives/raw-work-008.tar.zst.age'
+if ARCHIVE.exists(): raise SystemExit('Existing addendum archive must be reused, not regenerated.')
+SKIP_AUTH={'aws-mfa-required.jpg','auth0-renewed.jpg','apple-login-required.jpg','auth0-admin-login-required-20261002.jpg'}
+roots=[QA,ROOT/'apps/web/dist-production-review',QA/'ios-review-simulator/Build/Products/Release-iphonesimulator/Rillora.app']
+files=[];excluded=[]
+for base_root in roots:
+ for base,dirs,names in os.walk(base_root):
+  parent=Path(base)
+  for name in list(dirs):
+   p=parent/name;rel=p.relative_to(ROOT).as_posix()
+   reason=directory_exclusion(rel) if base_root!=roots[2] else None
+   if name=='publication':reason='generated_addendum_work_area'
+   if reason:dirs.remove(name);excluded.append({'path':rel,'reason':reason})
+  for name in sorted(names):
+   p=parent/name;rel=p.relative_to(ROOT).as_posix();reason=file_exclusion(rel)
+   if name in SKIP_AUTH:reason='personal_authentication_UI_state'
+   if p.is_symlink():reason='machine_specific_link'
+   if reason:excluded.append({'path':rel,'reason':reason})
+   else:files.append((rel,p))
+if len({n for n,_ in files})!=len(files):raise RuntimeError('Duplicate input path')
+values=archive.sensitive_values()
+invitation=(ROOT/'.local-secrets/production-review/acceptance-invite-20261001.txt').read_text().strip()
+credential_needles={v.encode() for v in values if len(v)>=16}|{invitation.encode(),invitation.split('invitation=')[-1].encode()}
+cache=QA/'publication/frozen';cache.mkdir(parents=True,mode=0o700,exist_ok=True)
+objects={};records=[];start=datetime.datetime.now(datetime.timezone.utc).isoformat()
+for name,p in sorted(files):
+ frozen,digest=archive.freeze_file(p,cache)
+ if readable_text(name):
+  raw=frozen.read_bytes()
+  if any(v in raw for v in credential_needles):
+   excluded.append({'path':name,'reason':'contains_protected_credential_or_capability'});continue
+ blob=objects.setdefault(digest,{'id':uuid.uuid4().hex,'sha256':digest,'bytes':frozen.stat().st_size,'source':str(frozen),'paths':[]})
+ blob['paths'].append(name)
+ record={'sourcePath':name,'bytes':blob['bytes'],'rawObject':blob['id'],'rawArchive':ARCHIVE.relative_to(ROOT).as_posix()}
+ # Rendered clients and native binaries stay encrypted. Only QA text is readable.
+ if name.startswith(QA.relative_to(ROOT).as_posix()+'/') and readable_text(name) and 'ordinary-debug-before-review.app/' not in name and '/ios-review-simulator/' not in name:
+  try:text=frozen.read_text()
+  except UnicodeError:text=None
+  if text is not None and '\x00' not in text:
+   text,changed=archive.redact(text,values)
+   relative=p.relative_to(QA).as_posix()
+   if p.suffix in {'.md','.py','.mjs','.cjs','.sh','.log'}:relative+='.reference.txt'
+   target=DEST/'receipts'/relative;target.parent.mkdir(parents=True,exist_ok=True);target.write_text(text)
+   record.update(readablePath=target.relative_to(ROOT).as_posix(),privacyRedactions=bool(changed))
+ records.append(record)
+recipient=subprocess.check_output(['age-keygen','-y',str(archive.IDENTITY)],text=True).strip()
+receipt=archive.seal_chunk(8,list(objects.values()),recipient)
+catalog=DEST/'catalog.json';catalog.write_text(json.dumps(records,ensure_ascii=False,indent=2)+'\n')
+summary={'capturedFrom':start,'capturedThrough':datetime.datetime.now(datetime.timezone.utc).isoformat(),'sourceBase':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'workFiles':len(records),'uniqueRawObjects':len(objects),'workBytes':sum(r['bytes'] for r in records),'archives':[receipt],'catalogFiles':[catalog.relative_to(ROOT).as_posix()],'excluded':excluded,'boundary':'Additive release1/2/3 evidence; September30 archive bytes and catalog remain unchanged.'}
+(DEST/'snapshot.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
+# Verify only this new archive with the unchanged strict verifier through a temporary metadata root.
+with tempfile.TemporaryDirectory(prefix='rillora-addendum-verify-') as temp:
+ mirror=Path(temp);(mirror/'collaboration').mkdir();(mirror/'collaboration/snapshot.json').write_text(json.dumps(summary))
+ for name in [receipt['path'],*summary['catalogFiles']]:
+  target=mirror/name;target.parent.mkdir(parents=True,exist_ok=True);os.link(ROOT/name,target)
+ result=verify(mirror,archive.IDENTITY)
+(DEST/'archive-verification.json').write_text(json.dumps(result,indent=2)+'\n')
+print(json.dumps({'files':len(records),'objects':len(objects),'bytes':receipt['bytes'],'excludedReasons':dict(collections.Counter(x['reason'] for x in excluded)),'verified':result['passed']}))

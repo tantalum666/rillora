@@ -1,6 +1,6 @@
 # Source control, complete work preservation and release rollback
 
-Last updated: 2026-10-01 (Asia/Shanghai)
+Last updated: 2026-10-02 (Asia/Shanghai)
 
 The private remote is [tantalum666/rillora](https://github.com/tantalum666/rillora).
 Owner explicitly requested **all Rillora work** for Git and Dot collaboration on
@@ -20,6 +20,23 @@ readable evidence with an explicit coverage map; the one-off probe is reference 
 Reproducible vendor OpenAPI/help caches and credentials are explicitly excluded.
 This avoids recapturing the immutable September30 archives or the generated remote
 clone, while preserving all new eligible work and refreshing the readable manifest.
+
+## October2 additive release acceptance preservation
+
+The [release1/2/3 addendum](../collaboration/verification/release-123-20261002/README.md)
+preserves new eligible QA, deployment receipts, restricted Web/native artifacts and
+prior installed Debug bundle in two additional encrypted LFS archives. Its463-path
+catalog is independent of the immutable September30 snapshot;305 objects were sealed
+first, then one rendered client asset containing only published legal identity text
+was classified separately and retained encrypted. No credential was included.
+
+Readable QA references omit personal values and ambiguous public identifier fields;
+exact originals remain sealed. Authentication UI/session state, actual credentials/
+capabilities and reproducible caches remain explicit exclusions. The strict existing
+archive verifier checked this addendum through an isolated metadata root; previous
+archives were not rebuilt or redownloaded. Publication and remote/CI results are
+separate receipts in that addendum. The old snapshot resolver covers its dated catalog;
+use the addendum's own catalog for these new paths.
 
 ## What belongs in the complete snapshot
 

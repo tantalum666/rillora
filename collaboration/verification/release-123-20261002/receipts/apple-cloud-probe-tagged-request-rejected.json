@@ -1,0 +1,40 @@
+{
+  "cluster": "RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm",
+  "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRecoveryTask4FA4E62D:9",
+  "launchType": "FARGATE",
+  "networkConfiguration": {
+    "awsvpcConfiguration": {
+      "subnets": [
+        "subnet-070c4a18e68f26f1d",
+        "subnet-0d218a58218e10e36"
+      ],
+      "securityGroups": [
+        "sg-09cdb1445e4e84d7e"
+      ],
+      "assignPublicIp": "ENABLED"
+    }
+  },
+  "overrides": {
+    "containerOverrides": [
+      {
+        "name": "Maintenance",
+        "command": [
+          "node",
+          "--input-type=module",
+          "-e",
+          "import {AppStoreServerAPIClient,Environment} from '@apple/app-store-server-library';\nimport {loadAppleReviewSecret} from './dist/apple-production-secret.js';\nimport {createRilloraAppleReviewVerifier} from './dist/apple-production-verification.js';\nconsole.log(JSON.stringify({probe:'apple-test-signature',phase:'start',time:new Date().toISOString()}));\ntry {\nconst c=await loadAppleReviewSecret(process.env.APPLE_REVIEW_SECRET_ARN);\nconst api=new AppStoreServerAPIClient(c.privateKey,c.keyId,c.issuerId,c.bundleId,Environment.SANDBOX);\nconst status=await api.getTestNotificationStatus(\"56ef9595-2978-4314-b894-9b0f0e5e730e_1790838486521\");\nconst verifier=await createRilloraAppleReviewVerifier('/app/certificates/apple');\nconst payload=await verifier.verifyAndDecodeNotification(status.signedPayload);\nconsole.log(JSON.stringify({probe:'apple-test-signature',verified:true,type:payload.notificationType,environment:payload.data?.environment,bundleId:payload.data?.bundleId}));\n} catch(e) {console.log(JSON.stringify({probe:'apple-test-signature',verified:false,status:e.status??null,name:e.name,causeName:e.cause?.name??null,causeType:e.cause?.type??null,causeCode:e.cause?.code??null,message:e.message}));process.exitCode=2;}\n"
+        ]
+      }
+    ]
+  },
+  "tags": [
+    {
+      "key": "Project",
+      "value": "Rillora"
+    },
+    {
+      "key": "Purpose",
+      "value": "AppleSignatureReadOnlyProbe"
+    }
+  ]
+}

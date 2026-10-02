@@ -1,0 +1,18 @@
+import {readFile,writeFile,stat} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {AppStoreServerAPIClient,Environment} from '../../../apps/api/node_modules/@apple/app-store-server-library/dist/index.js';
+const recordName=process.argv[2]??'apple-test-notification.json';
+if(!/^apple-test-notification(?:-after-fix)?\.json$/.test(recordName))throw new Error('Unexpected receipt name');
+const root=new URL('../../../',import.meta.url),record=new URL(recordName,import.meta.url);
+const receipt=JSON.parse(await readFile(record,'utf8'));
+if(!receipt.testNotificationToken)throw new Error('No acknowledged test request; do not create another');
+async function secret(name){const p=new URL('.local-secrets/storekit/'+name,root);if((await stat(p)).mode&0o077)throw new Error('Credential permissions');return readFile(p,'utf8');}
+const client=new AppStoreServerAPIClient(await secret('iap-private-key.p8'),(await secret('key-id')).trim(),(await secret('issuer-id')).trim(),'com.rillora.ios',Environment.SANDBOX);
+try{
+ const result=await client.getTestNotificationStatus(receipt.testNotificationToken);
+ const observation={checkedAt:new Date().toISOString(),sendAttempts:result.sendAttempts??[],signedPayloadSha256:typeof result.signedPayload==='string'?createHash('sha256').update(result.signedPayload).digest('hex'):null};
+ receipt.observations??=[];receipt.observations.push(observation);receipt.delivered=observation.sendAttempts.some(x=>x.sendAttemptResult==='SUCCESS');
+ receipt.status=receipt.delivered?'test_delivered':'awaiting_success';
+ await writeFile(record,JSON.stringify(receipt,null,2)+'\n');
+ console.log(JSON.stringify({status:receipt.status,observation}));
+}catch(error){console.log(JSON.stringify({readFailed:true,httpStatus:error.httpStatusCode??null,apiError:error.apiError??null}));process.exitCode=1;}

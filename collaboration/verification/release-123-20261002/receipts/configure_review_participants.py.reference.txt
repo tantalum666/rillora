@@ -1,0 +1,59 @@
+from pathlib import Path
+import datetime, hashlib, json, os, re, subprocess, urllib.parse
+ROOT=Path.cwd();Q=ROOT/'output/qa/rillora-release-123-20261001';P=ROOT/'.local-secrets/production-review'
+REPORT=Q/'review-participants-configured.json'
+if REPORT.exists():raise SystemExit('A configuration receipt exists; reconcile it rather than reapply')
+def call(args,payload=None):
+ r=subprocess.run(args,input=None if payload is None else json.dumps(payload),capture_output=True,text=True,timeout=60)
+ if r.returncode:raise RuntimeError('Provider operation failed; response withheld from public logs')
+ return json.loads(r.stdout) if r.stdout.strip() else {}
+def auth(method,path,payload=None):return call(['auth0','api',method,path,'--tenant','rillora-dev.eu.auth0.com','--no-input'],payload)
+def aws(args):return call(['aws',*args,'--profile','rillora-cdk-deploy','--region','eu-central-1','--output','json'])
+def private(path,data):
+ with os.fdopen(os.open(path,os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600),'w') as f:json.dump(data,f)
+CLIENTS=['EcevpyKt1GELKwkLnVU3aCbh3Ix2SJhz','POpNKTqlr6dHbJZLWPWxhyjg5qPtdrm4']
+for client,name in zip(CLIENTS,['Rillora Production Web','Rillora Production iOS']):
+ assert auth('get',f'clients/{client}?fields=client_id,name&include_fields=true')['name']==name
+accounts=json.loads((P/'acceptance-identities-20261001.json').read_text())['accounts'];assert {a['role'] for a in accounts}=={'planner','recipient'}
+prior=json.loads((P/'reviewer.json').read_text());expiry=prior['expiresAt'];assert datetime.datetime.fromisoformat(expiry.replace('Z','+00:00'))>datetime.datetime.now(datetime.timezone.utc)
+digests=[prior['identityDigest']]
+for a in accounts:
+ assert len(a['matches'])==1
+ saved=a['matches'][0]
+ current=auth('get','users/'+urllib.parse.quote(saved['subject'],safe='')+'?fields=user_id,email,email_verified&include_fields=true')
+ assert current['email']==a['email'] and current['email_verified'] is True
+ digest=hashlib.sha256(('https://login.rillora.xyz\x1f'+current['user_id']).encode()).hexdigest();assert digest==saved['identityDigest'];digests.append(digest)
+assert len(set(digests))==3 and all(re.fullmatch('[a-f0-9]{64}',x) for x in digests)
+listing=auth('get','actions/actions?per_page=100');assert listing.get('total',len(listing['actions']))==len(listing['actions'])
+matches=[a for a in listing['actions'] if a['name']=='Rillora production review access'];assert len(matches)==1
+action=auth('get','actions/actions/'+matches[0]['id']);old=action['deployed_version']['code']
+assert "const IDENTITY_DIGEST = '"+prior['identityDigest']+"';" in old
+assert "const EXPIRES_AT = '"+expiry+"';" in old
+form=re.search(r"const FORM = '(ap_[A-Za-z0-9]+)';",old).group(1)
+bindings=auth('get','actions/triggers/post-login/bindings?per_page=100')['bindings'];binding_ids=[(x['id'],x['action']['id']) for x in bindings];assert action['id'] in [x[1] for x in binding_ids]
+connections=auth('get','connections?fields=id,name,strategy&include_fields=true&per_page=100');assert len(connections)<100
+before={};option_digests={}
+for c in connections:
+ b=auth('get','connections/'+c['id']+'/clients?take=100');assert not b.get('next');before[c['id']]=sorted(x['client_id'] for x in b['clients'])
+google=[c for c in connections if c['strategy']=='google-oauth2' and c['name']=='google-oauth2'];assert len(google)==1;google=google[0]
+options=auth('get','connections/'+google['id']+'?fields=options&include_fields=true')['options'];option_digest=hashlib.sha256(json.dumps(options,sort_keys=True).encode()).hexdigest()
+stack=aws(['cloudformation','describe-stacks','--stack-name','RilloraProduction'])['Stacks'][0];assert stack['StackStatus']=='UPDATE_COMPLETE'
+params=stack['Parameters'];digest_keys=[x['ParameterKey'] for x in params if 'ReviewIdentityDigests' in x['ParameterKey']];assert len(digest_keys)==1
+expiry_value=next(x['ParameterValue'] for x in params if 'ReviewExpiresAt' in x['ParameterKey']);assert expiry_value==expiry
+private(P/'action-before-participants-20261001.json',{'id':action['id'],'code':old,'runtime':action['runtime'],'supported_triggers':action['supported_triggers'],'bindingIds':binding_ids})
+private(P/'review-access-20261001.json',{'identityDigests':digests,'expiresAt':expiry,'clientIds':CLIENTS})
+new=(ROOT/'infra/auth0/hosted-consent/production-review-action.cjs').read_text().replace('__REVIEW_IDENTITY_DIGEST__',','.join(digests)).replace('__REVIEW_EXPIRES_AT__',expiry).replace('__RILLORA_FORM_ID__',form)
+auth('patch','actions/actions/'+action['id'],{'code':new});auth('post','actions/actions/'+action['id']+'/deploy')
+assert auth('get','actions/actions/'+action['id'])['deployed_version']['code']==new
+assert [(x['id'],x['action']['id']) for x in auth('get','actions/triggers/post-login/bindings?per_page=100')['bindings']]==binding_ids
+# Add only the two production clients to the existing Google connection.
+auth('patch','connections/'+google['id']+'/clients',[{'client_id':x,'status':True} for x in CLIENTS])
+for c in connections:
+ b=auth('get','connections/'+c['id']+'/clients?take=100');assert not b.get('next');ids=sorted(x['client_id'] for x in b['clients'])
+ assert ids==(sorted(set(before[c['id']])|set(CLIENTS)) if c['id']==google['id'] else before[c['id']])
+assert hashlib.sha256(json.dumps(auth('get','connections/'+google['id']+'?fields=options&include_fields=true')['options'],sort_keys=True).encode()).hexdigest()==option_digest
+body={'StackName':'RilloraProduction','UsePreviousTemplate':True,'Parameters':[{'ParameterKey':x['ParameterKey'],**({'ParameterValue':','.join(digests)} if x['ParameterKey']==digest_keys[0] else {'UsePreviousValue':True})} for x in params],'Capabilities':stack.get('Capabilities',[]),'RoleARN':stack['RoleARN']}
+private(P/'review-stack-parameters-20261001.json',body)
+result=aws(['cloudformation','update-stack','--cli-input-json','file://'+str(P/'review-stack-parameters-20261001.json')])
+report={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'actionId':action['id'],'actionReadbackMatches':True,'postLoginBindingsUnchanged':True,'existingIdentitiesPreserved':True,'identityCount':3,'ownerABAdded':2,'expiresAt':expiry,'expiryExtended':False,'googleProductionClientsEnabled':2,'otherClientBindingsAndGoogleOptionsUnchanged':True,'cloudParameterUpdateStarted':True,'stackId':result['StackId'],'cloudParameterUpdateComplete':False,'publicCustomersOpen':False,'realEmailVerifiedFieldsChanged':False}
+REPORT.write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))

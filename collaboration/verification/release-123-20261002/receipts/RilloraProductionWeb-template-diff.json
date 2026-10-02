@@ -1,0 +1,17 @@
+{
+  "stack": "RilloraProductionWeb",
+  "changed": [
+    {
+      "id": "DeploymentCustomResource47E8B2E6",
+      "type": "Custom::CDKBucketDeployment"
+    },
+    {
+      "id": "Routes4F6D566C",
+      "type": "AWS::CloudFront::Function"
+    }
+  ],
+  "added": [],
+  "removed": [],
+  "protectedResourceChanges": [],
+  "parametersSame": true
+}

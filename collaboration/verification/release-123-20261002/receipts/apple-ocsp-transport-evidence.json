@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-01T07:23:35.971Z",
+  "source": "Exact Apple TEST notification that passed local online verification",
+  "signedPayloadSha256": "c4818c605aa2e1b4745d9c7251345f7faaf0cf648c20df2527ac842c96ac4251",
+  "endpoints": [
+    "http://ocsp.apple.com/ocsp03-wwdrg602",
+    "http://ocsp.apple.com/ocsp03-applerootcag3"
+  ],
+  "dns": [
+    {
+      "host": "ocsp.apple.com",
+      "addresses": [
+        "17.253.83.135",
+        "17.253.83.134"
+      ],
+      "allWithinApple17Block": true
+    }
+  ],
+  "cloudFailure": {
+    "verificationStatus": 2,
+    "cause": "ETIMEDOUT"
+  },
+  "existingCloudEgress": "TCP443 only, plus explicit database traffic",
+  "proposedChange": "Permit TCP80 only to Apple-owned 17.0.0.0/8 for OCSP; keep online certificate and signed response checks enabled"
+}

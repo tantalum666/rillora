@@ -1,0 +1,21 @@
+{
+  "changed": [
+    {
+      "id": "MigrationTask69EAEF9D",
+      "type": "AWS::ECS::TaskDefinition"
+    },
+    {
+      "id": "RecoveryTaskD940248B",
+      "type": "AWS::ECS::TaskDefinition"
+    },
+    {
+      "id": "RuntimeApiTaskCF645D67",
+      "type": "AWS::ECS::TaskDefinition"
+    }
+  ],
+  "added": [],
+  "removed": [],
+  "unexpected": [],
+  "parametersSame": true,
+  "description": "Same account-agnostic synthesis as existing stack; no KMS, network, database, IAM or secret change accepted"
+}

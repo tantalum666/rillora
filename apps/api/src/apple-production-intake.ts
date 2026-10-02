@@ -1,4 +1,5 @@
 import { withCommercePlannerDatabase, type DatabasePool } from './db.js';
+import { VerificationException, VerificationStatus } from '@apple/app-store-server-library';
 import { appleProductionContext, assertAppleContext, requireAppleReviewEnrollment, type AppleExecutionContext } from './apple-execution-context.js';
 import { ApiError } from './errors.js';
 import type { AppleProductionVerification } from './apple-production-verification.js';
@@ -25,7 +26,7 @@ export class AppleProductionIntake {
     let signal: AppleProductionSignal;
     try { signal = await this.verifier.verifyClientTransaction({ signedTransaction: input.signedTransaction,
       expectedAppAccountToken: input.plannerPublicId }); }
-    catch { throw new ApiError(400, 'apple_transaction_rejected', 'The Apple-signed transaction could not be verified.'); }
+    catch (error) { throw verificationFailure(error, 'transaction'); }
     if (!signal.receipt || !signal.providerSubscriptionReference || !signal.providerTransactionReference
       || signal.accountBindingReference !== input.plannerPublicId.toLowerCase()) {
       throw new ApiError(400, 'apple_transaction_rejected', 'The Apple-signed transaction is missing its account binding.');
@@ -41,7 +42,7 @@ export class AppleProductionIntake {
   async acceptNotification(signedPayload: string): Promise<{ received: true; status: string }> {
     let signal: AppleProductionSignal;
     try { signal = await this.verifier.verifyNotification(signedPayload); }
-    catch { throw new ApiError(400, 'apple_notification_rejected', 'The Apple notification could not be verified.'); }
+    catch (error) { throw verificationFailure(error, 'notification'); }
     const reservation = await this.inbox.receive(signal);
     // A 200 means the verified signal is durably queued, not that it granted access.
     return { received: true, status: reservation.status };
@@ -84,4 +85,14 @@ export class AppleProductionIntake {
       return null;
     }
   }
+}
+
+function verificationFailure(error: unknown, kind: 'transaction' | 'notification'): ApiError {
+  if (error instanceof VerificationException && error.status === VerificationStatus.RETRYABLE_VERIFICATION_FAILURE) {
+    return new ApiError(503, 'apple_verification_unavailable',
+      'Apple verification is temporarily unavailable. Try again shortly.');
+  }
+  return kind === 'transaction'
+    ? new ApiError(400, 'apple_transaction_rejected', 'The Apple-signed transaction could not be verified.')
+    : new ApiError(400, 'apple_notification_rejected', 'The Apple notification could not be verified.');
 }

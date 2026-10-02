@@ -1,0 +1,53 @@
+{
+  "checkedAt": "2026-10-01T06:58:11.643054+00:00",
+  "stackStatus": "UPDATE_COMPLETE",
+  "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRuntimeApiTask93405B31:8",
+  "image": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1:e3e523ddcbd373dafd7d404c68a8cd1fe5939572b725efd8ac9c7a7fecd67664",
+  "running": 1,
+  "rollout": "COMPLETED",
+  "runtimeMode": "review",
+  "reviewExpiry": "2026-10-06T17:08:57Z",
+  "reviewIdentityCount": 1,
+  "retentionEnabled": true,
+  "liveProvidersEnabled": false,
+  "migrationsExecuted": false,
+  "http": [
+    {
+      "url": "https://app.rillora.xyz/api/health/live",
+      "status": 200,
+      "sha256": "a29ee2b15c494311c52521766e44af56a3ad2248e7a8ab465e5206463c13d288",
+      "cacheControl": "no-store"
+    },
+    {
+      "url": "https://app.rillora.xyz/api/health/ready",
+      "status": 200,
+      "sha256": "31bf75f4c0a97cc1f7b60df824fa390b3be9ba014f29b63c87c698ba63d9a9fd",
+      "cacheControl": "no-store"
+    },
+    {
+      "url": "https://app.rillora.xyz/invite",
+      "status": 200,
+      "sha256": "38ad545bbe55bd4973950518f84f667482d06312a5ff77176714a71f27c5c270",
+      "cacheControl": "public,max-age=300,must-revalidate"
+    },
+    {
+      "url": "https://app.rillora.xyz/invite/11111111-1111-4111-8111-111111111111",
+      "status": 200,
+      "sha256": "38ad545bbe55bd4973950518f84f667482d06312a5ff77176714a71f27c5c270",
+      "cacheControl": "public,max-age=300,must-revalidate"
+    },
+    {
+      "url": "https://app.rillora.xyz/invite/not-a-uuid",
+      "status": 404,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "cacheControl": "no-store"
+    },
+    {
+      "url": "https://www.rillora.xyz/pricing",
+      "status": 200,
+      "sha256": "9de2981f1005ab76768efc1312caf076d3d368501c2c5268598d029e88497f67",
+      "cacheControl": "public,max-age=300,must-revalidate"
+    }
+  ],
+  "readScopeCorrection": "CDK deployment role cannot inspect ECS services; existing production operator used without permission changes."
+}

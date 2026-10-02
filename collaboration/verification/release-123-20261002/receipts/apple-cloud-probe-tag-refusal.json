@@ -1,0 +1,6 @@
+{
+  "operation": "ecs:RunTask",
+  "deniedOptionalAction": "ecs:TagResource",
+  "noTaskArnReturned": true,
+  "correction": "Use the already allowed exact diagnostic task without optional tags; no permission grant"
+}

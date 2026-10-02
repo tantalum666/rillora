@@ -1,0 +1,19 @@
+from pathlib import Path
+import json,re,subprocess,urllib.parse,datetime
+root=Path.cwd();names=set(subprocess.check_output(['git','ls-files','--cached','--others','--exclude-standard','-z']).decode().strip('\0').split('\0'))
+files=sorted(n for n in names if n.endswith('.md') and not n.startswith(('collaboration/evidence/','collaboration/catalog/','collaboration/archives/')))
+missing=[];count=0
+for n in files:
+ p=root/n
+ if not p.is_file():continue
+ for m in re.finditer(r'\[[^\]\n]*\]\(([^)\n]+)\)',p.read_text()):
+  value=m.group(1).strip()
+  if value.startswith('<'):value=value[1:value.find('>')]
+  else:value=re.sub(r'\s+[\"\'].*$','',value)
+  if re.match(r'^[a-zA-Z][a-zA-Z0-9+.-]*:',value) or value.startswith('#'):continue
+  value=urllib.parse.unquote(value.split('#')[0].split('?')[0])
+  if not value:continue
+  count+=1
+  if not (p.parent/value).exists():missing.append({'file':n,'line':p.read_text()[:m.start()].count('\n')+1,'target':value})
+result={'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'files':len(files),'localLinks':count,'missing':missing,'passed':not missing}
+Path('output/qa/rillora-release-123-20261001/publication/markdown-links.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n');print(json.dumps(result,ensure_ascii=False))

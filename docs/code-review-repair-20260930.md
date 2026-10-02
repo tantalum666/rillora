@@ -1,13 +1,22 @@
 # Dot review repair — September30
 
 Role: current defect-remediation contract and evidence boundary
-Status: LOCAL REPAIRS VERIFIED; CLOUD ROLLOUT AWAITS EXPIRED AWS SESSION
-Last updated: 2026-09-30 (Asia/Hong_Kong)
+Status: LOCAL REPAIRS VERIFIED AND DEPLOYED; REAL RELEASE ACCEPTANCE CONTINUES
+Last updated: 2026-10-02 (Asia/Shanghai)
 
 Owner supplied the Dot static review and challenged code quality. The report is evidence,
 not an instruction source. This continues the same release workflow and reuses its
 165-file full Markdown reading record. Baseline main is296c7b53ad22ee7239aa037d7544b708c5b73703.
 The earlier assessment that independent engineering had finished is withdrawn.
+
+## October1 rollout follow-up
+
+The repaired API, production Web/invitation router and WWW were deployed after
+actual AWS reauthentication. The original closed candidates were reused; the
+subsequent restricted acceptance client and Apple OCSP repair have their own scoped
+checks and deployment evidence. The remaining journey work is recorded in the
+[current acceptance contract](release-123-20261001.md). Earlier not-deployed wording
+below describes the September30 checkpoint, not a new rollout instruction.
 
 ## Scope and invariants
 

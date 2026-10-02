@@ -1,0 +1,66 @@
+{
+  "stack": "RilloraProduction",
+  "changed": [
+    {
+      "id": "ContentKey78A057A4",
+      "type": "AWS::KMS::Key"
+    },
+    {
+      "id": "RuntimeApiTaskCF645D67",
+      "type": "AWS::ECS::TaskDefinition"
+    },
+    {
+      "id": "OperatorDefaultPolicyA84BD3A6",
+      "type": "AWS::IAM::Policy"
+    },
+    {
+      "id": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A",
+      "type": "AWS::Lambda::Function"
+    },
+    {
+      "id": "VpcdataSubnet1SubnetE2B009FB",
+      "type": "AWS::EC2::Subnet"
+    },
+    {
+      "id": "RecoveryTaskExecutionRoleDefaultPolicyAB82B7C9",
+      "type": "AWS::IAM::Policy"
+    },
+    {
+      "id": "VpcmaintenanceSubnet1SubnetB36026C0",
+      "type": "AWS::EC2::Subnet"
+    },
+    {
+      "id": "RuntimeApiTaskExecutionRoleDefaultPolicy98299827",
+      "type": "AWS::IAM::Policy"
+    },
+    {
+      "id": "VpcmaintenanceSubnet2Subnet5D5D514C",
+      "type": "AWS::EC2::Subnet"
+    },
+    {
+      "id": "RecoveryTaskD940248B",
+      "type": "AWS::ECS::TaskDefinition"
+    },
+    {
+      "id": "MigrationTask69EAEF9D",
+      "type": "AWS::ECS::TaskDefinition"
+    },
+    {
+      "id": "VpcdataSubnet2SubnetAD08DFFF",
+      "type": "AWS::EC2::Subnet"
+    },
+    {
+      "id": "MigrationTaskExecutionRoleDefaultPolicy91A4C2FE",
+      "type": "AWS::IAM::Policy"
+    }
+  ],
+  "added": [],
+  "removed": [],
+  "protectedResourceChanges": [
+    {
+      "id": "ContentKey78A057A4",
+      "type": "AWS::KMS::Key"
+    }
+  ],
+  "parametersSame": true
+}

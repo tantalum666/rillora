@@ -1,0 +1,17 @@
+import {readFile,writeFile,stat} from 'node:fs/promises';
+import {AppStoreServerAPIClient,Environment} from '../../../apps/api/node_modules/@apple/app-store-server-library/dist/index.js';
+const recordName=process.argv[2]??'apple-test-notification.json';
+if(!/^apple-test-notification(?:-after-fix)?\.json$/.test(recordName))throw new Error('Unexpected receipt name');
+const root=new URL('../../../',import.meta.url);
+const record=new URL(recordName,import.meta.url);
+try {await stat(record);throw new Error('Existing notification receipt retained; inspect rather than resend');} catch(error){if(error.code!=='ENOENT')throw error;}
+async function secret(name){const url=new URL('.local-secrets/storekit/'+name,root);if((await stat(url)).mode&0o077)throw new Error('Credential permissions are too broad');return readFile(url,'utf8');}
+const client=new AppStoreServerAPIClient(await secret('iap-private-key.p8'),(await secret('key-id')).trim(),(await secret('issuer-id')).trim(),'com.rillora.ios',Environment.SANDBOX);
+const receipt={startedAt:new Date().toISOString(),environment:'sandbox',bundleId:'com.rillora.ios',purpose:'One official Apple TEST notification to the configured Rillora review endpoint',realPurchase:false,status:'request_started'};
+await writeFile(record,JSON.stringify(receipt,null,2)+'\n');
+try {
+ const response=await client.requestTestNotification();
+ receipt.testNotificationToken=response.testNotificationToken;receipt.status='requested';
+ await writeFile(record,JSON.stringify(receipt,null,2)+'\n');
+ console.log(JSON.stringify({status:receipt.status,testNotificationToken:receipt.testNotificationToken}));
+} catch(error){receipt.status='request_failed';receipt.error={httpStatus:error.httpStatusCode??null,apiError:error.apiError??null};await writeFile(record,JSON.stringify(receipt,null,2)+'\n');console.log(JSON.stringify(receipt.error));process.exitCode=1;}

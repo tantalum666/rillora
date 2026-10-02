@@ -5,6 +5,29 @@ in AWS Frankfurt (`eu-central-1`). The deployed revision is evidence only for th
 exact resources and checks recorded in `docs/handoff.md`; staging is not approved
 for external private plans and production customer traffic remains closed.
 
+## October1–2 restricted acceptance rollout
+
+The prepared Dot repairs were deployed, followed by the existing three-identity
+allowlist and restricted Web artifact. Use `tools/release/build-web-production.sh --review`
+and explicitly set `productionWebReviewEnabled=true` for that artifact; closed and
+review artifacts cannot be interchanged accidentally. Public customer access remains
+closed and the original review expiry is retained.
+
+For RilloraProduction preserve account-agnostic synthesis with
+`--app 'env -u CDK_DEFAULT_ACCOUNT npx tsx bin/rillora.ts'` and the contexts below;
+an account/AZ-expression-only diff was rejected before the rollout. Web stacks still
+require the exact account for their existing certificate guard. Compare each saved
+assembly against the deployed template and deploy that assembly with previous
+NoEcho review parameters retained.
+
+Actual Apple TEST delivery exposed blocked certificate-status requests. Review-mode
+runtime/recovery groups now allow TCP80 to Apple17.0.0.0/8 for OCSP; this is not
+FQDN-only filtering. Official signature/revocation checks remain enabled. API10
+deployment and subsequent official TEST SUCCESS are saved in the
+[acceptance contract](../../docs/release-123-20261001.md). They are not a purchase or
+ordinary customer launch. Resend has replaced SES for transactional delivery;
+the dated SES sections below remain historical evidence.
+
 ## September30 production contexts and immutable rollout
 
 Current RilloraProduction uses productionFoundationOnly=true,

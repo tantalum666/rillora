@@ -5,9 +5,17 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-10-01 (Asia/Shanghai)
+Last updated: 2026-10-02 (Asia/Shanghai)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-10-02 注册错误提示与真实收件纠正
+
+Owner明确指出误点注册时不能只显示通用错误。使用Auth0支持的错误文案，明确引导已有用户登录／找回密码，保留账号枚举保护；QQ收件以本人实际结果为准，provider已接收不能冒充收件箱成功。[当前验收与修复](release-123-20261001.md)。
+
+## 2026-10-01 优先完成部署、真实账户与Apple沙盒验收
+
+Owner明确先完成剩余清单第1／2／3项：发布已修复版本、真实账户／邮件闭环，以及Apple沙盒购买恢复。继续使用已验证工程，受限测试身份不等于开放普通客户或正式收费。[当前执行合同](release-123-20261001.md)。
 
 ## 2026-10-01 Owner采用Resend事务邮件
 

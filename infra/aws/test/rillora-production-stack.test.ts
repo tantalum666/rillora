@@ -80,6 +80,9 @@ describe('Optional closed production HTTPS runtime',()=>{
   expect(env.PRODUCTION_REVIEW_IDENTITY_SHA256.Ref).toBeDefined();expect(env.PRODUCTION_REVIEW_EXPIRES_AT.Ref).toBeDefined();
   for(const name of ['ALLOW_DEV_AUTH','ALLOW_APPLE_PRODUCTION_INTEGRATION','ALLOW_STRIPE_PRODUCTION_INTEGRATION','ALLOW_APPLE_SANDBOX_INTEGRATION'])expect(env[name]).toBe('false');
   expect(api.Secrets).toHaveLength(3);t.hasOutput('ProductionTrafficReady',{Value:'false'});
+  const ocspRules=Object.values(t.findResources('AWS::EC2::SecurityGroup')).flatMap((g:any)=>g.Properties.SecurityGroupEgress??[]).filter((r:any)=>r.FromPort===80);
+  expect(ocspRules).toHaveLength(2);
+  expect(ocspRules.every((r:any)=>r.ToPort===80&&r.IpProtocol==='tcp'&&r.CidrIp==='17.0.0.0/8')).toBe(true);
   expect(()=>new RilloraProductionStack(new App(),'Bad',{...props,reviewPrepared:false})).toThrow();
   expect(()=>new RilloraProductionStack(new App(),'Bad',{...props,runtimeImageTag:'a'.repeat(64)})).toThrow();
  });
@@ -106,6 +109,8 @@ describe('Optional closed production HTTPS runtime',()=>{
   const api=tasks.flatMap(t=>t.Properties.ContainerDefinitions).find(c=>c.Name==='Api');
   const env=Object.fromEntries(api.Environment.map((e:any)=>[e.Name,e.Value]));
   expect(env.PRODUCTION_RUNTIME_MODE).toBe('closed');expect(env.PORT).toBe('8443');
+  const httpRules=Object.values(t.findResources('AWS::EC2::SecurityGroup')).flatMap((g:any)=>g.Properties.SecurityGroupEgress??[]).filter((r:any)=>r.FromPort===80);
+  expect(httpRules).toHaveLength(0);
   expect(env.ALLOW_DEV_AUTH).toBe('false');expect(env.ALLOW_STRIPE_TEST_INTEGRATION).toBe('false');
   expect(api.ReadonlyRootFilesystem).toBe(true);expect(api.LinuxParameters.Capabilities.Drop).toContain('ALL');
   expect(api.Secrets).toHaveLength(2);expect(JSON.stringify(api.Secrets)).not.toContain('DatabaseSecret');

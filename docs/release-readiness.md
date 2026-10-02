@@ -2,9 +2,9 @@
 
 Role: current launch scope, remaining work and release evidence contract  
 Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; CUSTOMER ACCOUNTS AND SALES CLOSED
-Last updated: 2026-10-01 (Asia/Shanghai)
+Last updated: 2026-10-02 (Asia/Shanghai)
 
-## October1 current release delta
+## October2 current release delta
 
 Owner selected Resend. GoDaddy DNS, verified sending domain, domain-restricted
 sender key and the native Auth0 provider are now configured and read back. Direct
@@ -20,9 +20,13 @@ The 13 Dot findings remain locally repaired. Retained checks are API349, Web112,
 infra47, native181 with 1 existing StoreKit skip, and passing final outcomes for
 28 targeted native UI cases. CI42 and complete Git/LFS recovery are retained
 September30 evidence; this provider/documentation work reran no product suite.
-The closed repaired API/Web/router/WWW and signed IPA remain prepared. All three
-AWS profiles freshly report actual expiry on October1, so those repairs are still
-not deployed. Last observed production is API7/schema0091, customers closed.
+The repaired API/Web/router/WWW rollout is complete. Restricted real-account
+access was subsequently deployed; Owner completed Web Google consent/login and
+the existing QQ recipient accepted one synthetic Directions invitation. Inbox
+arrival remains unresolved despite the mail server accepting it. Apple notification
+verification was repaired and one official TEST succeeded; API10 is the deployment
+output, schema0091 remains unchanged. New scoped checks and remaining personal
+steps are in [the current acceptance contract](release-123-20261001.md).
 
 Four iPhone and two iPad designed store images are prepared, not uploaded or
 finally adopted. Real review login/affirmative legal acceptance, Apple Sandbox
@@ -33,16 +37,16 @@ Owner-deferred. Use [handoff](handoff.md) for the one active next step and
 
 ## October1 remaining-work inventory
 
-This is a status reconciliation of existing receipts, not a new product test,
-provider-session probe, portal decision or deployment. Twelve register entries
+The seven work packages below now incorporate the October1–2 execution receipts.
+Twelve register entries
 share dependencies; they are grouped into seven practical work packages below.
 The Resend setup and13local review fixes are retained as complete for their scope.
 
 | Work package | Remaining acceptance | Dependency / participation |
 | --- | --- | --- |
-| Deploy prepared repairs | Publish repaired API, closed Web/invitation router and WWW; read exact deployed versions and focused production outcomes | Owner restores actually expired AWS login/MFA; Agent performs the existing rollout |
+| Deploy prepared repairs | Completed: repaired API/Web/router/WWW, restricted-review follow-up and Apple verification repair deployed with focused evidence | Reuse the saved rollout; do not repeat it because sessions later expire |
 | Real account and core journeys | Real verification/reset/invitation continuation; production provider login and affirmative legal acceptance; final Web/iOS create/share/revoke/export/delete/reauthentication journey evidence | Agent prepares and verifies; Owner/test recipient performs personal authentication and genuine consent |
-| Apple purchase lifecycle | Enroll the restricted review identity; confirm notification configuration; actual Apple Sandbox purchase, restore, renewal/refund/expiry and shared-entitlement results | Depends on the repaired environment and a usable signed test build; personal Apple interaction remains separate |
+| Apple purchase lifecycle | Enroll the restricted review identity; notification configuration and official TEST delivery are complete; actual Apple Sandbox purchase, restore, renewal/refund/expiry and shared-entitlement results | Depends on the repaired environment and a usable signed test build; personal Apple interaction remains separate |
 | Merchant, markets and live billing | Owner-deferred operating/merchant/tax facts; supported launch markets; live Stripe configuration and payment lifecycle; effective Apple fee and final differential price | Owner supplies factual/required attestations; provider onboarding and Agent integration follow. Web88.99 remains locked; Apple99.99/119.99 are conditional candidates |
 | Physical-device acceptance | Actual device authentication/accessibility and relevant native return/purchase paths | Owner-deferred; Simulator results do not close this item |
 | Final distribution and submission | Usable signed build, TestFlight, chosen designed screenshots, privacy/age/encryption/contact/reviewer fields; submit App/IAP, address review feedback and release | Agent prepares/uploads within existing scope; Owner supplies missing facts and any required declarations; Apple controls approval |
@@ -59,8 +63,9 @@ Apple confirms TestFlight uses its sandbox and requires metadata plus a selected
 build for App Review. Those platform facts do not establish Rillora's completion.
 [Sandbox testing](https://developer.apple.com/help/app-store-connect/test-a-beta-version/testing-subscriptions-and-in-app-purchases-in-testflight/),
 [submission](https://developer.apple.com/help/app-store-connect/manage-submissions-to-app-review/submit-an-app/).
-The single next action remains AWS session restoration followed by the prepared
-closed rollout; no new SES application, redesign or full unchanged test rerun is needed.
+Use handoff for the single next action. Requested signup-copy application awaits
+actual administrator authentication; real inbox/reset/native and Apple purchase
+acceptance remain. No new SES application, redesign or repeated rollout is needed.
 
 ## HISTORICAL — September30 independent engineering before review repairs
 

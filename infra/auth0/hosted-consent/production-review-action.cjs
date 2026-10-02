@@ -2,7 +2,7 @@
 const crypto = require('node:crypto');
 const WEB = 'EcevpyKt1GELKwkLnVU3aCbh3Ix2SJhz';
 const IOS = 'POpNKTqlr6dHbJZLWPWxhyjg5qPtdrm4';
-const IDENTITY_DIGEST = '__REVIEW_IDENTITY_DIGEST__';
+const IDENTITY_DIGESTS = '__REVIEW_IDENTITY_DIGEST__'.split(',');
 const EXPIRES_AT = '__REVIEW_EXPIRES_AT__';
 const FORM = '__RILLORA_FORM_ID__';
 const CURRENT = Object.freeze({
@@ -13,7 +13,10 @@ const CURRENT = Object.freeze({
 });
 function authorized(event, api) {
   const digest = crypto.createHash('sha256').update(`https://login.rillora.xyz\u001f${event.user.user_id}`).digest('hex');
-  if (!/^[a-f0-9]{64}$/.test(IDENTITY_DIGEST) || digest !== IDENTITY_DIGEST
+  if (IDENTITY_DIGESTS.length < 1 || IDENTITY_DIGESTS.length > 8
+      || new Set(IDENTITY_DIGESTS).size !== IDENTITY_DIGESTS.length
+      || !IDENTITY_DIGESTS.every(value => /^[a-f0-9]{64}$/.test(value))
+      || !IDENTITY_DIGESTS.includes(digest)
       || !Number.isFinite(Date.parse(EXPIRES_AT)) || Date.now() >= Date.parse(EXPIRES_AT)) {
     api.access.deny('Account access is not open for this identity.'); return false;
   }

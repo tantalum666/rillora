@@ -10,6 +10,7 @@
     "build:legal": "node scripts/validate-legal-release.mjs && vite build --mode legal && node scripts/prepare-legal-sites-build.mjs",
     "build:public": "vite build --mode public && node scripts/prepare-public-build.mjs",
     "build:production-closed": "node scripts/validate-legal-release.mjs && vite build --mode production-closed && node scripts/prepare-production-build.mjs",
+    "build:production-review": "node scripts/validate-legal-release.mjs && vite build --mode production-review && node scripts/prepare-production-build.mjs --review",
     "preview": "vite preview",
     "test:api-client": "node --test tests/api-client.test.mjs",
     "test:first-use": "node --test tests/first-use.test.mjs",

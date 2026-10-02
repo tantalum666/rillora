@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-01 (Asia/Shanghai)
+Last updated: 2026-10-02 (Asia/Shanghai)
 
 新条目使用以下模板：
 
@@ -2914,3 +2914,34 @@ unreachable release remains a different closed workflow. See [sharing contract](
   versions; no assertion of final legal compliance is made.
 - No runtime UI, pricing, real data, FanPass, public customer access or Apple release
   state changes. [Current sender contract](transaction-mail-resend-20261001.md).
+
+## 2026-10-01 — Owner prioritizes release packages1/2/3 and confirms real A/B participants
+
+- Owner explicitly requests the first three remaining packages and confirms reuse
+  of the previous two controlled mailboxes for planner/recipient acceptance.
+- Preserve those existing verified provider identities and their data; do not create
+  duplicates or falsify verification/consent. Their exact subjects remain protected.
+- Agent uses the existing expiring review boundary for these two participants plus
+  the original reviewer. Match Auth0 and API lists, cap at8 unique exact identities,
+  retain the original expiry,legal Form/versions and other client bindings.
+- Build restricted-review clients separately and require explicit Web deployment
+  selection; ordinary public customers and live billing remain closed. An enabled
+  client entry does not prove a completed user journey or authorize public release.
+- Existing unchanged tests are retained. New configuration/guard checks and actual
+  cloud/provider/user outcomes are recorded separately in[the execution contract](release-123-20261001.md).
+
+## 2026-10-02 — Actual acceptance corrects duplicate-signup and notification assumptions
+
+- Owner says the apparent QQ login failure was accidental signup and requests clear
+  existing-account guidance. Use supported Auth0 text keys; retain conditional generic
+  validation wording, anti-enumeration controls and existing account mappings.
+- Preserve Owner's missing-inbox report despite provider delivered/SMTP250 evidence.
+  The single assisted invitation email and direct-link acceptance are separate facts;
+  neither implies automatic in-app email delivery or successful inbox placement.
+- Actual Apple TEST delivery failed because certificate-status requests timed out in
+  HTTPS-only egress. Agent allows TCP80 only within Apple17/8 on the two review-mode
+  groups, retains online cryptographic checks, and maps actual retryable verifier
+  exceptions to503 without accepting unverified input. Fresh official TEST SUCCESS
+  follows deployment; no purchase, entitlement or public release is inferred.
+- Keep the original review expiry, source/UI/pricing/data boundaries, and distinguish
+  later session expiry from completed rollout. [Execution contract](release-123-20261001.md).

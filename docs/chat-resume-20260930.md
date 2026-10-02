@@ -2,13 +2,17 @@
 
 Role: cross-chat checkpoint and artifact/tool routing, not a second product authority
 Status: SAVED FOR CONTINUATION; LAUNCH OBJECTIVE INCOMPLETE
-Last updated: 2026-10-01 (Asia/Shanghai)
+Last updated: 2026-10-02 (Asia/Shanghai)
 
 Owner最新要求的全量Git保存已完成，7个LFS归档已从远端下载、解密并逐对象核验，CI42通过。Dot协作入口是
 [完整协作包](../collaboration/README.md)、[保存合同](source-control.md)和[当前交接](handoff.md)。
 下方按日期保留旧交接事实，不从历史段落生成第二个活动“下一步”。
 
-## October1 Resend已接通 — 最新恢复入口
+## October2 前三项发布工作与注册提示 — 最新恢复入口
+
+修复API／Web／WWW已部署，受限真实身份与Web随后接通；Owner完成Google同意／登录，QQ接受一条明确的合成Directions共享。QQ收件仍未由本人确认；服务器250回执不能替代收件箱结果。Apple真实TEST先失败，OCSP网络／重试分类修复部署后成功；不代表购买恢复。误点注册的重复账号提示已准备，Auth0管理会话实际失效，正在等待本人完成验证后应用。后续唯一下一步见[handoff](handoff.md)，完整记录见[前三项合同](release-123-20261001.md)。
+
+## HISTORICAL — October1 Resend已接通
 
 Owner已明确采用Resend并完成本机CLI认证。域名、DNS、限定域名发信密钥和Auth0原生provider已配置；两项官方模拟收件传输通过，临时身份已清理。旧SES优先及等待批准的发信路线被取代；不重复登录、发信或申请。真实用户验证／重置／邀请仍分开验收。[当前邮件合同](transaction-mail-resend-20261001.md)。AWS三个profile刚实际确认过期，原修复部署仍待会话恢复；唯一下一步见[handoff](handoff.md)。
 

@@ -70,10 +70,13 @@ if (operationsOnly !== undefined && ![true, false, "true", "false"].includes(ope
   throw new Error("operationsOnly must be true or false");
 }
 if (productionWebSelected) {
+  const review = app.node.tryGetContext('productionWebReviewEnabled');
+  if (review !== undefined && ![true, false, 'true', 'false'].includes(review)) throw new Error('productionWebReviewEnabled must be true or false');
   new RilloraProductionWebStack(app, 'RilloraProductionWeb', {
     env: { account: process.env.CDK_DEFAULT_ACCOUNT || undefined, region: 'eu-central-1' },
     description: 'Closed production Web client and same-origin API delivery; no account activation',
     certificateArn: app.node.tryGetContext('productionWebCertificateArn') ?? '',
+    reviewEnabled: review === true || review === 'true',
   });
 } else if (publicWebSelected) {
   new RilloraPublicWebStack(app, 'RilloraPublicWeb', {

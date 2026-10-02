@@ -1,5 +1,19 @@
 # iOS direct hosted login — consent configuration
 
+## October1 production review participants
+
+`production-review-action.cjs` separately gates the two production clients with
+1–8 unique exact identity digests and an explicit expiry. Empty, malformed,
+duplicate or oversized lists deny access. The original reviewer and Owner's two
+existing acceptance identities are configured until the original October6 deadline;
+no expiry extension or public access is implied. The same current Form and legal
+receipt checks remain. Web retains its own genuine clickwrap. See the
+[current acceptance contract](../../../docs/release-123-20261001.md).
+
+The singular substitution marker is retained for compatibility with the existing
+preparation script; its value may contain a validated comma-separated list.
+Never put actual subjects, passwords or provider tokens in this source.
+
 The Owner explicitly chose direct hosted login on 2026-09-06 after rejecting
 the native email/method page that still led to the hosted password page. The
 native Account view is removed. Authentication begins with Auth0 Web Auth from

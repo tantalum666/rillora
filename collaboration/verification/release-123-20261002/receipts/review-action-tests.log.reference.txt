@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: preserves other clients and denies unknown identities and expired review access
+ok 1 - preserves other clients and denies unknown identities and expired review access
+  ---
+  duration_ms: 3.351333
+  type: 'test'
+  ...
+# Subtest: native consent starts unchecked and only exact affirmative continuation sets a receipt
+ok 2 - native consent starts unchecked and only exact affirmative continuation sets a receipt
+  ---
+  duration_ms: 0.553375
+  type: 'test'
+  ...
+# Subtest: Web keeps the existing API clickwrap and receives no invented hosted receipt
+ok 3 - Web keeps the existing API clickwrap and receives no invented hosted receipt
+  ---
+  duration_ms: 0.437125
+  type: 'test'
+  ...
+# Subtest: both named review participants can authenticate while a third identity stays denied
+ok 4 - both named review participants can authenticate while a third identity stays denied
+  ---
+  duration_ms: 0.5205
+  type: 'test'
+  ...
+# Subtest: malformed, duplicate or oversized review lists fail closed
+ok 5 - malformed, duplicate or oversized review lists fail closed
+  ---
+  duration_ms: 1.495333
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 90.288667

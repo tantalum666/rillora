@@ -1,0 +1,16 @@
+{
+  "changedResources": [
+    {
+      "id": "Client4A7F64DF",
+      "type": "AWS::CloudFront::Distribution"
+    },
+    {
+      "id": "DeploymentCustomResource47E8B2E6",
+      "type": "Custom::CDKBucketDeployment"
+    }
+  ],
+  "distributionOnlyCommentChanged": true,
+  "publicCustomerAccess": "closed",
+  "reviewClientEnabled": true,
+  "dataAndNetworkResourcesChanged": false
+}

@@ -1,0 +1,27 @@
+{
+  "changed": [
+    {
+      "id": "RecoveryNetworkB16F29A5",
+      "type": "AWS::EC2::SecurityGroup"
+    },
+    {
+      "id": "MigrationTask69EAEF9D",
+      "type": "AWS::ECS::TaskDefinition"
+    },
+    {
+      "id": "RecoveryTaskD940248B",
+      "type": "AWS::ECS::TaskDefinition"
+    },
+    {
+      "id": "RuntimeApiNetwork3B2CC8BA",
+      "type": "AWS::EC2::SecurityGroup"
+    },
+    {
+      "id": "RuntimeApiTaskCF645D67",
+      "type": "AWS::ECS::TaskDefinition"
+    }
+  ],
+  "onlyAppleHttp80EgressAdded": true,
+  "protectedDataResourcesUnchanged": true,
+  "existingIdentityAndExpiryParametersRetained": true
+}

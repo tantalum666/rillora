@@ -2,7 +2,7 @@
 
 Role: current sender configuration, operating contract and evidence boundary
 Status: DOMAIN VERIFIED; AUTH0 PROVIDER ACTIVE; SIMULATOR TRANSPORT PASSED; REAL USER ACCEPTANCE OPEN
-Last updated: 2026-10-01 (Asia/Shanghai)
+Last updated: 2026-10-02 (Asia/Shanghai)
 
 ## Owner decision and scope
 
@@ -140,11 +140,13 @@ verified manually to bypass it. Retain current Preview capabilities until review
 cutover; retire old test grants/workers and wait their measured 86,400-second token
 lifetime plus clock tolerance before admitting general customers.
 
-The October1 read-only AWS check confirms all three operator/CDK/production
-profiles expired. The prepared review-repair API/Web/router/WWW artifacts remain
-undeployed; API 7/schema 0091 is the last observed production checkpoint. This mail
-configuration required no AWS deployment. No Apple build upload, real payment,
-merchant assertion, price change or duplicate application occurred.
+After this sender setup, the repaired runtime/Web/WWW were deployed in the
+[October1–2 acceptance workflow](release-123-20261001.md). One operator-assisted
+invitation handoff went to the Owner-confirmed QQ mailbox. Resend recorded delivered
+and the dashboard exposes `250 OK: queued as.`, but Owner reports no inbox arrival.
+Keep that unresolved: direct-link acceptance is not mailbox evidence. No blind
+resend, password change, verification-flag manipulation or automatic invite-mail
+feature was added. Real reset/native/Apple purchase and final publication remain open.
 
 ## Evidence and continuation
 

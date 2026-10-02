@@ -5,7 +5,17 @@ Authority scope: Auth0 identity boundary, direct hosted iOS entry, hosted appear
 Superseded by: later Owner direction recorded in `docs/decision-log.md`  
 Do not use for: credential storage, API authorization rules, production identity approval or legal claims  
 Status: HOSTED FLOW RETAINED; RECENT-AUTH CONTROLS VERIFIED; REAL PRODUCTION SIGN-IN OPEN
-Last updated: 2026-09-30 (Asia/Hong_Kong)
+Last updated: 2026-10-02 (Asia/Shanghai)
+
+## October2 duplicate-signup guidance
+
+Owner reported a generic error after accidentally choosing signup for an existing
+account. The Auth0 failure log identifies a duplicate. Supported signup-password
+text now has a direct Sign in / Forgot password instruction for email-in-use and
+a conditional instruction for generic validation failures. Existing enumeration
+protection and hosted layout remain. No public account lookup or automatic linking
+is introduced. The source is prepared; provider application/readback is pending the
+actually expired administrator login. See the [current acceptance record](release-123-20261001.md).
 
 ## September30 sensitive-action verification
 
