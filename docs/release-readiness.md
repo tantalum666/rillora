@@ -4,7 +4,19 @@ Role: current launch scope, remaining work and release evidence contract
 Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; CUSTOMER ACCOUNTS AND SALES CLOSED
 Last updated: 2026-10-03 (Asia/Shanghai)
 
-## October3 current release delta after strict review
+## October3 selected packages1/2 — latest execution
+
+Owner selected deployment and the new native candidate. [The actual rollout](review-rollout-20261003.md)
+is now complete for API11/schema0093 and restricted Web/WWW, with data/role/TLS checks,
+new successful retention heartbeats and116matching live files. The previous strict-review
+undeployed statements below are the pre-rollout checkpoint.
+
+Signed1.0(3) is uploaded/processed with normal distribution eligibility, test notes saved
+and0testers/groups. Its specific OS-only encryption declaration was confirmed by Owner, saved and read
+back asReady to Submit; Missing Compliance is cleared. No purchase, device install, review or
+public customer/live-billing opening is implied. Packages3–6remain at their existing gates.
+
+## HISTORICAL — October3 post-review inventory before rollout
 
 The whole-project review and28repairs are complete in source, locally verified and
 covered by CI47; source and evidence are pushed through4d061c49. The new fixes and
@@ -70,15 +82,15 @@ ten remain open/in-progress/deferred. Counts are not a completion percentage.
 
 | Work package | Current evidence and remaining work | Dependency / participation |
 | --- | --- | --- |
-| Deploy newly reviewed repairs | Previous13Dot/API10 fixes are deployed; the new28fixes and0092/0093are locally/CI verified but not deployed | Agent can prepare and execute coordinated restricted rollout/validation; only actual expired-session ceremony requires Owner |
+| Deploy newly reviewed repairs | Complete: API11/schema0093 and restricted Web/WWW deployed; role/TLS/data preservation and116live file hashes verified | Preserve this evidence; no repeated rollout or authentication merely on continuation |
 | Real account and core journeys | Real A/B login, native read, QQ arrival, reset/new login and Directions filtering complete; final scope/revoke/export/delete/recent-auth acceptance remains | Current planner genuine consent/authentication; account deletion uses a disposable identity |
 | Apple purchase lifecycle | Review environment/enrollment, notifications/official TEST, dev build and internal TestFlight upload complete; actual purchase/restore/renewal/refund/expiry remain | Export-compliance determination and Owner resuming deferred physical Apple test interaction |
 | Merchant, markets and live billing | Existing integration retained; real operator/merchant/tax facts, live provider lifecycle, effective SBP fee and final Apple price remain | Owner-deferred facts and final decisions, then provider/Agent execution; Web88.99 stays locked |
 | Physical-device acceptance | Prepared development/distribution builds; actual device authentication/accessibility/return/purchase remains | Owner explicitly deferred; do not install or ask again just because the phone is paired |
-| Final distribution and submission | Internal1.0(2) uploaded/processed; six designed screenshots and beta basics saved; privacy/age/encryption/reviewer worksheets prepared | Truthful final declarations/contact/market/price, operative reviewer access and acceptance; then a new external-distribution build, review and manual release |
+| Final distribution and submission | New1.0(3) uploaded/processed with normal eligibility; six designed screenshots retained, new test notes saved; Owner-confirmed encryption declaration saved; Apple showsReady to Submit | Truthful final declarations/contact/market/price, operative reviewer access and acceptance; then a new external-distribution build, review and manual release |
 | Controlled customer cutover | Isolated production/recovery/security foundations complete; exact Preview retirement, old-token expiry, negative checks and customer opening remain | Upstream acceptance first; measured86400second token lifetime plus clock tolerance; preserve Owner/real data |
 
-Build2 is internal-only and Apple reports Missing Compliance. Its local artifact
+The older build2is internal-only. New build3has normal eligibility and its Owner-confirmed encryption declaration is saved; Apple showsReady to Submit. Both retain separate records. Its local artifact
 checks have no blockers; this does not close transaction, declarations or submission
 gates. No TestFlight invitations were sent. Four6.9inch iPhone and two13inch iPad
 designs are saved in the unsubmitted English draft; no redesign is needed. SBP still

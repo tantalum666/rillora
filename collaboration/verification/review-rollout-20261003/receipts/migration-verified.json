@@ -1,0 +1,27 @@
+{
+  "taskArn": "arn:aws:ecs:eu-central-1:133857166372:task/RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm/67b04a4527d64a9eb32c86086128f8c0",
+  "imageDigest": "sha256:7fe1d89a7cf22c2269372b27731f2d42a3abd59ee662c74923306f4cc7db14e3",
+  "stage": "migration-verified",
+  "schema": "0093",
+  "checksumsMatched": 93,
+  "old91ChecksumsUnchanged": true,
+  "privateRecordFingerprintsUnchanged": true,
+  "runtimeRole": "continuity_runtime_production",
+  "verifiedTls": true,
+  "privilegedServiceMemberships": false,
+  "retentionExecutionRolledBack": true,
+  "retentionProbeCounts": {
+    "sessions": 0,
+    "auditEvents": 0,
+    "productEvents": 0,
+    "releasedHolds": 0,
+    "closedPayments": 0,
+    "sharingHandoffs": 0,
+    "authTransactions": 0,
+    "deletionReceipts": 0,
+    "legalAcceptances": 0
+  },
+  "permissionHistoryVersion": 2,
+  "customerAccessOpened": false,
+  "liveBilling": false
+}

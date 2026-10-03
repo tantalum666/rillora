@@ -1,56 +1,63 @@
 # Rillora Current Handoff
 
-Status: WHOLE-PROJECT REVIEW/28REPAIRS/GIT PRESERVATION COMPLETE;CI47PASS;UNDEPLOYED
+Status: PACKAGES1/2COMPLETE;API11/SCHEMA0093LIVE;NATIVE1.0(3)READY TO SUBMIT;PUBLIC LAUNCH CLOSED
 Last updated: 2026-10-03 (Asia/Shanghai)
 
-## Current task and result
+## Current task
 
-Owner requested an extremely detailed review of every project code file and direct
-repairs. All active first-party source bodies are reviewed:686files/91738lines,
-plus184startup Markdown bodies and six separately validated dependency locks.
-28confirmed problems are fixed and locally verified (6P1/20P2/2P3). The October3
-[remaining launch inventory](release-readiness.md#october3-remaining-work-inventory) now
-separates this undeployed batch from the completed earlier rollout. Complete findings,
-reproductions, exclusions and evidence are in [the review report](code-review-20261002.md).
+Owner selected remaining launch packages1and2: deploy the reviewed repairs and prepare
+a new signed native candidate. [Current execution and evidence](review-rollout-20261003.md).
+Keep UI/full03, Free1/Family5, Web88.99annual, conditional Apple price, real data and
+FanPass. Physical-device/merchant deferrals and ordinary customer/live billing closure
+remain. Reuse the completed184Markdown/686source reading and CI47 evidence.
 
-API typecheck/build and400tests, Web115internal/7legal plus separate public/closed
-fixture builds, native190pass/1existing StoreKit runtime skip, infra53, prototype
-10browser/4packaging and scoped operations/tool regressions pass. Actual browser
-race checks and native deletion/billing UI are separately recorded; suite counts
-overlap and do not prove every real-provider journey. Existing91migration files
-are unchanged;0092/0093are additive and not applied to production.
+## Completed
 
-Source/docs/tests and all eligible new QA/build originals are preserved in the
-[strict-review addendum](../collaboration/verification/strict-review-20261003/README.md).
-Branch codex/strict-review-20261002 starts at3a5739ea87c022b390a39e05bebe4e0b1f17035a;
-remote source, fresh encrypted-object readback and successful CI47 are recorded in that addendum. The passing engineering commit is ef09d0b22f7586cf4e60d3039f986b6fe6c19d02; subsequent receipts-only changes do not modify its tested engineering bytes.
+- API11/schema0093 and restricted Web/WWW are deployed. The maintenance window changed
+  only three task images and desired1to0to1; no data/network/key/secret resource replacement.
+- Migration task11 exited0. All93checksums match; original91migration bytes and eight
+  private table fingerprints are unchanged. Runtime TLS and forbidden service-role
+  memberships are checked; the retention probe was rolled back. New worker heartbeats
+  have0failures. Actual service is1/1HEALTHY/COMPLETED.
+- Image digest: sha256:7fe1d89a7cf22c2269372b27731f2d42a3abd59ee662c74923306f4cc7db14e3.
+  Runtime environment/secret references and original review identities/expiry are unchanged.
+- All86restricted Web/30public files match actual HTTPS bytes. Static negative routes,
+  API live/ready200, private unauth401/no-store/no-cookie and rendered public/account
+  entry checks pass. Genuine account consent remains unchecked and was not performed.
+- Signed1.0(3)archive/IPA passes8artifact checks and inventories11privacy manifests.
+  Xcode uploaded it at18:21:03Asia/Shanghai; Apple processed build60051464-b509-4fd8-aa16-f683607bc21d
+  with normal distribution eligibility. Test notes saved; groups/testers0. No beta/AppReview
+  submission, physical install, actual purchase or ordinary customer activation.
+- AWS actual expiry was renewed through existing browser login; original roles verified.
+  Apple sessions worked. No new credentials/privileges, provider applications or mail.
 
-## Limits and preserved release state
+## Pending and retained boundaries
 
-One upstream build-tool issue remains: CDK2.266.0 and actually checked latest2.272.0
-both bundle vulnerable brace-expansion5.0.9. It processes owned synthesis inputs,
-is absent from API runtime, and is not suppressed as a clean audit. Other four npm
-project audits have0known advisories after the prototype patch. The optional deep
-security coordinator failed before starting due to unavailable managed read-only
-worker permissions; no scan ID/report or independent certification exists.
+Owner confirmed the exact OS-only encryption declaration; it was saved for1.0(3).
+Fresh build-list readback shows准备提交 (Ready to Submit), with Missing Compliance
+cleared. Source Info.plist records the matching false non-exempt-encryption flag for
+future builds; no runtime encryption change or repeated build3upload. Apple tab now
+shows the completed result. [Technical basis](../output/qa/rillora-review-rollout-20261003/encryption-declaration-review.md).
 
-The review fixes are not deployed. Retain dated API10/schema0091, restricted review
-expiry2026-10-06T17:08:57Z, closed public customer/live billing, Resend, verified QQ
-receipt/reset/new login and limited shared-field proof, six saved store images and
-Internal/Missing Compliance TestFlight1.0(2). Owner still defers the physical device
-and merchant facts. Preserve UI/full03, Free1/Family5, Web88.99annual, conditional
-Apple pricing, real data and FanPass. No login/email/consent/TEST/application/deployment
-was repeated for this review. Original simulator/profile is preserved; task-only
-simulator is shut down. Historical browser prototype preview remains local.
+The server review allowlist still expires2026-10-06T17:08:57Z (October7 01:08:57Asia/Shanghai).
+No automatic extension. Retain prior QQ receipt/reset/new login/shared-field and native
+read evidence, six saved store images and official AppleTEST success. Real final core,
+physical-device/purchase/restore/reconciliation, commercial facts and AppReview/cutover
+remain separate. Existing upstream CDK advisory and failed optional scan startup keep
+their recorded limits; no independent certification is invented.
+
+Deployed source is1ab6316a8bfd9a168ba029155e0dd0891c423139 oncodex/strict-review-20261002;
+application bytes match CI47. Current full suites retain their original dates and are
+not rerun for this rollout. Current QA isoutput/qa/rillora-review-rollout-20261003;
+new artifacts areoutput/release/rillora-review-20261003. Git/all-work closeout follows
+this execution state; source checkout is not the old main branch's deployment state.
 
 ## Single next step
 
-Prepare the coordinated restricted rollout
-of this reviewed source and migrations0092/0093, with exact artifacts/checksums and
-post-migration regression. Keep the existing closed/public and Owner-deferred gates;
-check real sessions only when needed and do not repeat completed earlier ceremonies.
+Proceed to the remaining real Web/native core and Apple purchase/restore acceptance
+package when Owner resumes its required personal/device steps. First inspect the
+actual existing session and review expiry; do not repeat completed QQ reset/login or
+silently resume the explicitly deferred physical device. Deployment and build3/
+encryption preparation are complete and must not be repeated on continuation.
 
-After compaction reuse the completed startup and code-review ledgers; read only
-current authority, the focused report and changed task files. Do not rescan or rerun
-unchanged work. [Previous release handoff](handoff-history-20261002-before-strict-review.md)
-is HISTORICAL.
+[Previous review handoff](handoff-history-20261003-before-reviewed-rollout.md) isHISTORICAL.

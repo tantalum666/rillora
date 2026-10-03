@@ -26,9 +26,10 @@
         "docs/release-123-20261001.md",
         "collaboration/verification/release-123-20261002/receipts/repair-rollout-readback.json",
         "collaboration/verification/release-123-20261002/receipts/ocsp-deploy-outputs.json",
-        "docs/code-review-20261002.md"
+        "docs/code-review-20261002.md",
+        "docs/review-rollout-20261003.md"
       ],
-      "next": "The prior13Dot repairs/API10/schema0091 rollout is complete. New strict-review28fixes and additive0092/0093are verified locally/CI47 and remain undeployed. First perform coordinated restricted rollout and targeted post-deployment validation, then remaining real journeys and controlled customer cutover. Preserve existing data, review boundaries and prior deployment evidence."
+      "next": "Reviewed repairs and0092/0093are deployed asAPI11/schema0093 with1/1healthy service, unchanged private records/runtime boundaries and116matching Web/WWWfiles. Deployment package1is complete. Remaining genuine core journeys and controlled customer cutover stay separate; do not repeat this rollout."
     },
     {
       "id": "production-identity",
@@ -114,9 +115,10 @@
         "output/qa/rillora-launch-resume-20260930/final-runtime-readback.json",
         "docs/release-123-20261001.md",
         "collaboration/verification/release-123-20261002/receipts/apple-test-notification-after-fix.json",
-        "docs/independent-release-closeout-20261002.md"
+        "docs/independent-release-closeout-20261002.md",
+        "docs/review-rollout-20261003.md"
       ],
-      "next": "Restricted review enrollment and official TEST delivery are complete. Internal TestFlight1.0(2) is uploaded/processed but Missing Compliance; no tester invite or install. Export-compliance determination and Owner-resumed physical Apple interaction precede actual purchase/restore/lifecycle and provider reconciliation. Original review expiry and prices remain."
+      "next": "Existing review enrollment/official TEST retained. New1.0(3)is uploaded/processed; Owner-confirmed encryption declaration saved andReady to Submit. Owner still defers physical-device interaction. Actual Sandbox purchase/restore/renewal/refund/expiry and provider reconciliation remain unverified; no testers invited or transactions created."
     },
     {
       "id": "operations",
@@ -155,9 +157,10 @@
         "output/qa/rillora-launch-resume-20260930/release-acceptance-retry-result.json",
         "output/qa/rillora-launch-resume-20260930/snapshot-cloud-result.json",
         "output/qa/rillora-launch-resume-20260930/api-final-regression.json",
-        "docs/code-review-20261002.md"
+        "docs/code-review-20261002.md",
+        "docs/review-rollout-20261003.md"
       ],
-      "next": "October3 strict-review fixes are locally verified but not deployed; stage and validate the changed source/migrations before closing this gate. Bounded retention, independent retention holds and exact90day manual-snapshot retirement are deployed. Current-provider post-restore reconciliation and freeze/isolation guards are implemented and locally tested. Preserve the prior real RDS/KMS/privacy replay proof; actual reconciliation against later real Apple/Stripe transactions depends on the still-open purchase/provider gates."
+      "next": "Permission-history/hold serialization0092/0093are deployed;93checksums, unchanged private records, actual constrained-role rolled-back retention check and new successful worker heartbeats pass. Retain prior real RDS/KMS restore proof. Current-provider reconciliation with later real transactions still depends on actual Apple/Stripe acceptance."
     },
     {
       "id": "release-security",
@@ -175,9 +178,10 @@
         "docs/release-123-20261001.md",
         "collaboration/verification/release-123-20261002/ci43.json",
         "docs/independent-release-closeout-20261002.md",
-        "docs/code-review-20261002.md"
+        "docs/code-review-20261002.md",
+        "docs/review-rollout-20261003.md"
       ],
-      "next": "Strict-review28repairs and source/secret checks pass, with CI47 at ef09d0b22 and complete remote evidence preservation. The new fixes/migrations remain undeployed; verify exact final artifacts, permissions and changed live paths during restricted rollout. Complete remaining genuine reauthentication/core journeys before customer cutover. Optional deep scan did not start; no independent certification is claimed. CDK bundled dependency advisory remains a build-tool limitation without an established runtime exploit."
+      "next": "Manual full-source review/28repairs/CI47 and current source/secret checks are retained. Production-related repairs,93migration checksums, constrained runtime/TLS and exact Web artifacts are now live-verified. Native3is signed/uploaded/processed; Owner-confirmed encryption declaration is saved; genuine core/purchase acceptance and final submission gates remain. Optional deep scan never started; CDK bundled build dependency limit remains explicit."
     },
     {
       "id": "apple-submission",
@@ -191,9 +195,10 @@
         "docs/release-engineering-20260930.md",
         "output/qa/rillora-launch-resume-20260930/native-final-distribution-check.json",
         "docs/app-store-presentation-20260930.md",
-        "docs/independent-release-closeout-20261002.md"
+        "docs/independent-release-closeout-20261002.md",
+        "docs/review-rollout-20261003.md"
       ],
-      "next": "Internal TestFlight1.0(2) is strictly checked, uploaded and processed; Apple reports Missing Compliance. Four iPhone/two iPad designs and beta basics are saved/read back; public listing matches source. Final declarations/contact/market/price, operative reviewer access and acceptance remain; a new build number with external-distribution configuration is required for eventual submission. No review or public release."
+      "next": "New signed1.0(3)is uploaded/processed with normal distribution eligibility; Owner-confirmed OS-only encryption declaration is saved and Apple showsReady to Submit. Test notes saved,groups/testers0. Existing six store images retained. Final privacy/age/contact/market/price, operative reviewer access, actual acceptance, submission/review and manual release remain; no repeat build3upload or declaration needed."
     },
     {
       "id": "physical-device",
@@ -219,9 +224,10 @@
         "docs/code-review-repair-20260930.md",
         "docs/release-123-20261001.md",
         "collaboration/verification/release-123-20261002/receipts/repair-rollout-readback.json",
-        "docs/code-review-20261002.md"
+        "docs/code-review-20261002.md",
+        "docs/review-rollout-20261003.md"
       ],
-      "next": "October3 strict-review fixes are locally verified but not deployed; stage and validate the changed source/migrations before closing this gate. The WWW subscription-terms correction and product invitation router are deployed. Retain domain/TLS/hosting and focused route readbacks; final public customer transition remains dependent on the other release gates."
+      "next": "Reviewed restricted Web/WWW artifacts are deployed and116files match actual HTTPS bytes; rendered public/account entry and negative routes pass. Preserve Preview navigation and public customer closure until the remaining release gates pass."
     },
     {
       "id": "review-remediation",

@@ -1,0 +1,118 @@
+{
+  "checkedAt": "2026-10-03T11:30:34.100862+00:00",
+  "reason": "Secret scanner flagged content-addressed S3object keys and one ECS idempotency ID. All findings classified as these two noncredential formats. Omit them from readable mirrors instead of weakening scanner rules; exact originals remain in verified encrypted archive.",
+  "changed": [
+    {
+      "path": "collaboration/verification/review-rollout-20261003/receipts/production-web-synth.log.reference.txt",
+      "contentAddressedObjectKeys": 4,
+      "idempotencyIds": 0
+    },
+    {
+      "path": "collaboration/verification/review-rollout-20261003/receipts/RilloraPublicWeb-before-get-template.json",
+      "contentAddressedObjectKeys": 4,
+      "idempotencyIds": 0
+    },
+    {
+      "path": "collaboration/verification/review-rollout-20261003/receipts/production-maintenance-synth.log.reference.txt",
+      "contentAddressedObjectKeys": 1,
+      "idempotencyIds": 0
+    },
+    {
+      "path": "collaboration/verification/review-rollout-20261003/receipts/production-active-synth.log.reference.txt",
+      "contentAddressedObjectKeys": 1,
+      "idempotencyIds": 0
+    },
+    {
+      "path": "collaboration/verification/review-rollout-20261003/receipts/public-web-synth.log.reference.txt",
+      "contentAddressedObjectKeys": 4,
+      "idempotencyIds": 0
+    },
+    {
+      "path": "collaboration/verification/review-rollout-20261003/receipts/migration-request.json",
+      "contentAddressedObjectKeys": 0,
+      "idempotencyIds": 1
+    },
+    {
+      "path": "collaboration/verification/review-rollout-20261003/receipts/RilloraProduction-before-get-template.json",
+      "contentAddressedObjectKeys": 1,
+      "idempotencyIds": 0
+    },
+    {
+      "path": "collaboration/verification/review-rollout-20261003/receipts/RilloraProductionWeb-before-get-template.json",
+      "contentAddressedObjectKeys": 4,
+      "idempotencyIds": 0
+    },
+    {
+      "path": "collaboration/verification/review-rollout-20261003/receipts/cdk-production-web/RilloraProductionWeb.assets.json",
+      "contentAddressedObjectKeys": 5,
+      "idempotencyIds": 0
+    },
+    {
+      "path": "collaboration/verification/review-rollout-20261003/receipts/cdk-production-web/manifest.json",
+      "contentAddressedObjectKeys": 1,
+      "idempotencyIds": 0
+    },
+    {
+      "path": "collaboration/verification/review-rollout-20261003/receipts/cdk-production-web/RilloraProductionWeb.template.json",
+      "contentAddressedObjectKeys": 4,
+      "idempotencyIds": 0
+    },
+    {
+      "path": "collaboration/verification/review-rollout-20261003/receipts/cdk-production-web/tree.json",
+      "contentAddressedObjectKeys": 2,
+      "idempotencyIds": 0
+    },
+    {
+      "path": "collaboration/verification/review-rollout-20261003/receipts/cdk-production-active/RilloraProduction.template.json",
+      "contentAddressedObjectKeys": 1,
+      "idempotencyIds": 0
+    },
+    {
+      "path": "collaboration/verification/review-rollout-20261003/receipts/cdk-production-active/manifest.json",
+      "contentAddressedObjectKeys": 1,
+      "idempotencyIds": 0
+    },
+    {
+      "path": "collaboration/verification/review-rollout-20261003/receipts/cdk-production-active/RilloraProduction.assets.json",
+      "contentAddressedObjectKeys": 2,
+      "idempotencyIds": 0
+    },
+    {
+      "path": "collaboration/verification/review-rollout-20261003/receipts/cdk-production-maintenance/RilloraProduction.template.json",
+      "contentAddressedObjectKeys": 1,
+      "idempotencyIds": 0
+    },
+    {
+      "path": "collaboration/verification/review-rollout-20261003/receipts/cdk-production-maintenance/manifest.json",
+      "contentAddressedObjectKeys": 1,
+      "idempotencyIds": 0
+    },
+    {
+      "path": "collaboration/verification/review-rollout-20261003/receipts/cdk-production-maintenance/RilloraProduction.assets.json",
+      "contentAddressedObjectKeys": 2,
+      "idempotencyIds": 0
+    },
+    {
+      "path": "collaboration/verification/review-rollout-20261003/receipts/cdk-public-web/RilloraPublicWeb.template.json",
+      "contentAddressedObjectKeys": 4,
+      "idempotencyIds": 0
+    },
+    {
+      "path": "collaboration/verification/review-rollout-20261003/receipts/cdk-public-web/manifest.json",
+      "contentAddressedObjectKeys": 1,
+      "idempotencyIds": 0
+    },
+    {
+      "path": "collaboration/verification/review-rollout-20261003/receipts/cdk-public-web/RilloraPublicWeb.assets.json",
+      "contentAddressedObjectKeys": 5,
+      "idempotencyIds": 0
+    },
+    {
+      "path": "collaboration/verification/review-rollout-20261003/receipts/cdk-public-web/tree.json",
+      "contentAddressedObjectKeys": 2,
+      "idempotencyIds": 0
+    }
+  ],
+  "credentialsPublished": false,
+  "archiveBytesUnchanged": true
+}

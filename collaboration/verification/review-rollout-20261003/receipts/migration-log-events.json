@@ -1,0 +1,16 @@
+{
+  "events": [
+    {
+      "timestamp": 1791022554933,
+      "message": "{\"stage\":\"before-migration\",\"schemaCount\":91,\"fingerprints\":{\"planners\":{\"rows\":2,\"fingerprint\":\"8cee32b15086bf5fa377d1cf9dc62364\"},\"identity_accounts\":{\"rows\":2,\"fingerprint\":\"a7f301f8bc5918144569f24f4e9fc529\"},\"matter_items\":{\"rows\":1,\"fingerprint\":\"8f31b0dd7365a1e7e12215bc56ddf7af\"},\"people\":{\"rows\":1,\"fingerprint\":\"566e6d149ce48d80a4bb11e9a2d7b04c\"},\"sharing_connections\":{\"rows\":1,\"fingerprint\":\"4d7e6c274471ee4e09a9ef19f9f9e178\"},\"sharing_grants\":{\"rows\":1,\"fingerprint\":\"b38527093fd4faea27958f0dfc18c518\"},\"sharing_saved_items\":{\"rows\":0,\"fingerprint\":\"d41d8cd98f00b204e9800998ecf8427e\"},\"family_review_tasks\":{\"rows\":0,\"fingerprint\":\"d41d8cd98f00b204e9800998ecf8427e\"}}}",
+      "ingestionTime": 1791022558759
+    },
+    {
+      "timestamp": 1791022555249,
+      "message": "{\"stage\":\"migration-verified\",\"schema\":\"0093\",\"checksumsMatched\":93,\"old91ChecksumsUnchanged\":true,\"privateRecordFingerprintsUnchanged\":true,\"runtimeRole\":\"continuity_runtime_production\",\"verifiedTls\":true,\"privilegedServiceMemberships\":false,\"retentionExecutionRolledBack\":true,\"retentionProbeCounts\":{\"sessions\":0,\"auditEvents\":0,\"productEvents\":0,\"releasedHolds\":0,\"closedPayments\":0,\"sharingHandoffs\":0,\"authTransactions\":0,\"deletionReceipts\":0,\"legalAcceptances\":0},\"permissionHistoryVersion\":2,\"customerAccessOpened\":false,\"liveBilling\":false}",
+      "ingestionTime": 1791022558759
+    }
+  ],
+  "nextForwardToken": "f/39941137649429184461294767341477334242231464118385377281/s",
+  "nextBackwardToken": "b/39941137642382148978559090428752047268074581882495565824/s"
+}

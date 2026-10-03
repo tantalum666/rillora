@@ -1,0 +1,78 @@
+{
+  "checkedAt": "2026-10-03T10:16:51.142456+00:00",
+  "ipa": "output/release/rillora-review-20261003/ipa/Rillora.ipa",
+  "sha256": "4c3ae91a1e9a1c555806410f59afe968ee79e5cbbd43320938c329dda72b0b82",
+  "bytes": 7079796,
+  "checks": {
+    "strictSignature": true,
+    "exactConfiguration": true,
+    "notDebuggable": true,
+    "noDeviceList": true,
+    "notEnterprise": true,
+    "correctTeam": true,
+    "noStoreKitFixture": true,
+    "iconPresent": true
+  },
+  "fields": {
+    "CFBundleIdentifier": "com.rillora.ios",
+    "CFBundleVersion": "3",
+    "CFBundleShortVersionString": "1.0",
+    "RilloraAPIBaseURL": "https://app.rillora.xyz/api/v1",
+    "RilloraNativeSessionURL": "https://app.rillora.xyz/api/auth/native/session",
+    "RilloraAuth0Domain": "login.rillora.xyz",
+    "RilloraAuth0ClientID": "[PUBLIC_IDENTIFIER_OMITTED]",
+    "RilloraAuth0Audience": "urn:rillora:production:api",
+    "RilloraCustomerAccessEnabled": "YES",
+    "RilloraDevPlannerID": ""
+  },
+  "privacyManifests": [
+    {
+      "path": "PrivacyInfo.xcprivacy",
+      "sha256": "03e0fa61628dea9b9b45dba38ca4103cfc643156c342f9253e9f86ea3a06b48d"
+    },
+    {
+      "path": "GTMSessionFetcher_GTMSessionFetcherCore.bundle/PrivacyInfo.xcprivacy",
+      "sha256": "3e4a93cbe86acef7dd7e063a28c849992f556e7f52cadc5f37c1e8b0e1b54686"
+    },
+    {
+      "path": "Auth0_Auth0.bundle/PrivacyInfo.xcprivacy",
+      "sha256": "4f86f92b96133a5f9095775eeb53e97980cc4fff507b50db42c21152f18d9a83"
+    },
+    {
+      "path": "GoogleSignIn_GoogleSignIn.bundle/PrivacyInfo.xcprivacy",
+      "sha256": "9300972853096f7d570d6c4a4bf7152a36c798e89c4f0d81d3b4c6b5dfaddfd0"
+    },
+    {
+      "path": "AppAuth_AppAuth.bundle/PrivacyInfo.xcprivacy",
+      "sha256": "5ade962faaea1eddbbdd06c4cf8a872cec554f64c55a00e00136004d378e1ced"
+    },
+    {
+      "path": "GoogleUtilities_GoogleUtilities-Logger.bundle/PrivacyInfo.xcprivacy",
+      "sha256": "1377eccedff8f8320f78040e9c9d3e17ecc0ea569594b56af0ef17be44197c7a"
+    },
+    {
+      "path": "AppAuth_AppAuthCore.bundle/PrivacyInfo.xcprivacy",
+      "sha256": "5ade962faaea1eddbbdd06c4cf8a872cec554f64c55a00e00136004d378e1ced"
+    },
+    {
+      "path": "Promises_FBLPromises.bundle/PrivacyInfo.xcprivacy",
+      "sha256": "74b0cd72fc23c1ef302f22ee2753f61817cdc5af0ff7a7f2d0632b524fb8acea"
+    },
+    {
+      "path": "GoogleUtilities_GoogleUtilities-UserDefaults.bundle/PrivacyInfo.xcprivacy",
+      "sha256": "fac507c510aba7884e805fb5feff1a8a8d0c7f42c01d174f927a2bdfaa7130b4"
+    },
+    {
+      "path": "GoogleUtilities_GoogleUtilities-Environment.bundle/PrivacyInfo.xcprivacy",
+      "sha256": "b08273d687379394792f71c94c1083616a04af8afaa396d8058980f444cfb3d4"
+    },
+    {
+      "path": "GTMAppAuth_GTMAppAuth.bundle/PrivacyInfo.xcprivacy",
+      "sha256": "5a9b8fc0cddb10201bb47cc2804b3f004c7251476622d25bfc4eb54ed46e1084"
+    }
+  ],
+  "encryptionDeclarationPresent": false,
+  "uploaded": false,
+  "physicalDeviceRun": false,
+  "boundary": "New reviewed distribution artifact; account entry remains restricted by unchanged server identity allowlist/expiry. No transaction or AppReview submission."
+}

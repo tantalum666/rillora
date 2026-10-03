@@ -1,0 +1,94 @@
+{
+  "observedAfterNewDeployment": true,
+  "events": [
+    {
+      "timestamp": 1791022723358,
+      "stream": "api/Api/2c2c7c9fa0ba40e1b24cb58b28de8af5",
+      "metrics": {
+        "_aws": {
+          "Timestamp": 1791022723358,
+          "CloudWatchMetrics": [
+            {
+              "Namespace": "Rillora/Retention",
+              "Dimensions": [
+                [
+                  "Environment"
+                ]
+              ],
+              "Metrics": [
+                {
+                  "Name": "Heartbeat",
+                  "Unit": "Count"
+                },
+                {
+                  "Name": "Failures",
+                  "Unit": "Count"
+                },
+                {
+                  "Name": "RowsDeleted",
+                  "Unit": "Count"
+                },
+                {
+                  "Name": "BatchFull",
+                  "Unit": "Count"
+                }
+              ]
+            }
+          ]
+        },
+        "Environment": "production",
+        "Heartbeat": 1,
+        "Failures": 0,
+        "RowsDeleted": 0,
+        "BatchFull": 0
+      }
+    },
+    {
+      "timestamp": 1791023623350,
+      "stream": "api/Api/2c2c7c9fa0ba40e1b24cb58b28de8af5",
+      "metrics": {
+        "_aws": {
+          "Timestamp": 1791023623350,
+          "CloudWatchMetrics": [
+            {
+              "Namespace": "Rillora/Retention",
+              "Dimensions": [
+                [
+                  "Environment"
+                ]
+              ],
+              "Metrics": [
+                {
+                  "Name": "Heartbeat",
+                  "Unit": "Count"
+                },
+                {
+                  "Name": "Failures",
+                  "Unit": "Count"
+                },
+                {
+                  "Name": "RowsDeleted",
+                  "Unit": "Count"
+                },
+                {
+                  "Name": "BatchFull",
+                  "Unit": "Count"
+                }
+              ]
+            }
+          ]
+        },
+        "Environment": "production",
+        "Heartbeat": 1,
+        "Failures": 0,
+        "RowsDeleted": 0,
+        "BatchFull": 0
+      }
+    }
+  ],
+  "otherNamespacesExcluded": [
+    "Rillora/Commerce"
+  ],
+  "firstProbeCorrection": "Heartbeat alone also matched other workers; select the actual retention namespace before inspecting its Failures field. No runtime repair needed.",
+  "boundary": "Actual aggregate worker heartbeat, not new alarm delivery or a full restore drill."
+}

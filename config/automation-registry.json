@@ -52,10 +52,9 @@
       "sideEffects": "Restore only into encrypted isolated disposable target; never production overwrite",
       "livePrerequisites": [
         "Repeat drill schedule/cleanup acceptance",
-        "Current-provider reconciliation after real transactions",
-        "Deploy strict-review permission-history and retry guard repairs"
+        "Current-provider reconciliation after real transactions"
       ],
-      "evidence": "docs/recovery-control-journal.md"
+      "evidence": "docs/review-rollout-20261003.md"
     },
     {
       "id": "dependency-security",
@@ -136,14 +135,12 @@
     },
     {
       "id": "retention-cleanup",
-      "state": "deployed_heartbeat_verified_strict_review_serialization_not_deployed",
+      "state": "deployed_serialized_hold_cleanup_heartbeat_verified",
       "trigger": "Bounded scheduled retention worker",
       "implementation": "apps/api/src/retention.ts",
       "sideEffects": "Delete only due eligible records without active independent holds; privacy-journal replay preserves restrictions",
-      "evidence": "docs/release-engineering-20260930.md",
-      "livePrerequisites": [
-        "Deploy and verify0093/hold-cleanup serialization repair"
-      ]
+      "evidence": "docs/review-rollout-20261003.md",
+      "livePrerequisites": []
     },
     {
       "id": "manual-snapshot-retirement",

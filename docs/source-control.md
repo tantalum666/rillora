@@ -206,3 +206,15 @@ matches the remote review branch; [CI47](https://github.com/tantalum666/rillora/
 passes all three jobs. Thirty already-redacted browser/result references were explicitly
 tracked after global cache/result patterns excluded them; no ignore or scan rule was
 weakened. Staged readable file paths and bytes now exactly match the complete manifest.
+
+## October3 reviewed deployment and native3addendum
+
+The [rollout addendum](../collaboration/verification/review-rollout-20261003/README.md)
+preserves312eligible paths/284objects (116,632,072raw bytes) in raw-work-013, including
+new QA, signed native archive/IPA and the actually deployed review/public clients.
+Encrypted bytes are51,343,122; local decryption/object/catalog checks pass. Previous
+archives remain unchanged. Final source/publication and remote receipts are separate.
+The deployed API/native application code is pinned to1ab6316a8 on the current
+codex/strict-review-20261002 branch; do not assume oldmain describes the live runtime.
+The later native source change only stores Owner-confirmed encryption declaration
+metadata for future builds; the existing uploaded3was not rebuilt/re-uploaded.

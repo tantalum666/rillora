@@ -1,13 +1,21 @@
 # Strict whole-project code review — October2
 
 Role: current whole-project review, repair and validation contract
-Status: COMPLETE SOURCE REVIEW;28REPAIRS VERIFIED;CI47/PRESERVATION PASS;UNDEPLOYED
+Status: COMPLETE REVIEW;CI47PASS;API/WEB/WWW REPAIRS DEPLOYED OCTOBER3;NATIVE3UPLOADED
 Last updated: 2026-10-03 (Asia/Shanghai)
 
 Owner explicitly requests every project code file to be reviewed very carefully and
 confirmed problems repaired directly. Keep the existing UI, pricing, real data,
 FanPass and deferred personal/platform steps. This is a new review of active source;
 historical implementation mirrors and the old Dot report are dated references.
+
+## October3 rollout update
+
+The production-related repairs and0092/0093are now deployed asAPI11/schema0093 and
+restricted Web/WWW. New signed native1.0(3) is uploaded/processed; encryption
+declaration is saved after Owner confirmation and Apple showsReady to Submit. [Actual rollout evidence](review-rollout-20261003.md) supersedes
+the pre-rollout local-only statements below. Tool/prototype repairs remain source
+artifacts; no physical-device or real transaction result is claimed.
 
 ## Scope and evidence
 
@@ -87,7 +95,7 @@ run passes190tests with1existing iOS26.5 StoreKitTest runtime skip. An apparent 
 the existing accept endpoint's provider-proof refresh; no unnecessary client change
 was made for that candidate.
 
-Migrations0092/0093are new local source, not applied to production schema0091. Existing
+At the review checkpoint, migrations0092/0093were local and production was0091; the October3rollout above now records their application. Existing
 applied SQL bytes remain unchanged. Recovery rejects a pending legacy accepted-connection
 update whose intermediate restrictions cannot be proved; it does not globally revoke
 unaffected connections or claim that historical journal metadata contains missing facts.
@@ -170,7 +178,7 @@ The work is on `codex/strict-review-20261002`, based on
 `3a5739ea87c022b390a39e05bebe4e0b1f17035a`. Source, focused contracts, tests and eligible
 QA/build originals are saved under the existing all-work preservation contract.
 Remote/CI receipts are recorded separately in the [strict-review addendum](../collaboration/verification/strict-review-20261003/README.md).
-No review fix or new migration is deployed; retained API10/schema0091 and internal
+At the pre-rollout checkpoint no new review fix was deployed; then-retained API10/schema0091 and internal
 TestFlight1.0(2) do not validate this source. Public customer/live billing gates stay
 closed, and existing UI/pricing/real data/FanPass and personal deferrals are retained.
 
@@ -201,4 +209,4 @@ The new archive was freshly fetched/decrypted:934objects/1,433paths verified.
 [Final source ledger](../collaboration/verification/strict-review-20261003/final-code-review.json)
 includes the CI fixture follow-up; no unread ranges or changed reviewed hashes remain.
 The final documentation/receipt commit leaves tested engineering bytes unchanged
-and has its own local link/index/secret checks. Review is complete; rollout is next.
+and has its own local link/index/secret checks. Review is complete; the subsequent rollout is recorded in the October3update above.

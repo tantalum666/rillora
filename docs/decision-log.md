@@ -2998,3 +2998,32 @@ unreachable release remains a different closed workflow. See [sharing contract](
   strict-review branch under the standing all-work Git policy. Production rollout
   remains separate from code review, CI and encrypted-original preservation.
   [Full evidence and limits](code-review-20261002.md).
+
+## 2026-10-03 — Owner selects reviewed rollout and the new native candidate
+
+- Owner explicitly selects remaining packages1and2. Existing project authorization
+  applies to restricted deployment, new signed artifact/upload and bounded checks;
+  personal declarations, physical-device/merchant deferrals and public/live activation
+  remain distinct. Preserve identities, original review expiry, UI, prices and FanPass.
+- Agent uses a bounded0task maintenance window for0092/0093 so old/new permission
+  logic cannot overlap, then restores1healthy task. No data/network/key/secret resource
+  replacement or permission expansion is introduced; only expected image/count changes.
+- Build3has normal upload eligibility and no testers. Source/third-party/linked-framework
+  evidence supports Apple's OS-only encryption option. The final formal declaration
+  still awaits Owner action-time confirmation under the browser rule; no silent Save.
+- Existing full suites/CI47 are retained; actual new deployment/artifact evidence has
+  its own date. [Execution and proof](review-rollout-20261003.md).
+
+## 2026-10-03 — Owner confirms the specific native3OS-only encryption declaration
+
+- Owner explicitly confirms提交这份声明 for the prepared1.0(3)option excluding
+  proprietary and non-OS standard algorithms. The technical basis is the current
+  CryptoKit/Security/HTTPS implementation and linked dependency inventory.
+- Save completed and Apple's build list now shows准备提交. This is the specific
+  App Store Connect documentation declaration, not a blanket legal clearance or
+  a statement that Rillora has no encryption. No other personal/store declaration
+  or market/price decision is implied.
+- Record the same non-exempt-encryption=false Info.plist metadata for future builds;
+  all other plist values and runtime cryptography stay unchanged. Reassess if the
+  crypto/dependency basis changes. Existing build3uses the saved portal record and
+  is not rebuilt/re-uploaded. No tester invite, review submission or physical use.

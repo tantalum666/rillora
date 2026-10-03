@@ -1,0 +1,19 @@
+/tmp/rillora-review-release-20260930/SourcePackages/checkouts/Auth0.swift/Auth0/ChallengeGenerator.swift:3:import CommonCrypto
+/tmp/rillora-review-release-20260930/SourcePackages/checkouts/Auth0.swift/Auth0/DPoP/ECPublicKey.swift:2:import CryptoKit
+/tmp/rillora-review-release-20260930/SourcePackages/checkouts/Auth0.swift/Auth0/DPoP/DPoP.swift:2:import CryptoKit
+/tmp/rillora-review-release-20260930/SourcePackages/checkouts/Auth0.swift/Auth0/DPoP/DPoPError.swift:41:    /// A CryptoKit operation failed.
+/tmp/rillora-review-release-20260930/SourcePackages/checkouts/Auth0.swift/Auth0/DPoP/DPoPKeyStore.swift:2:import CryptoKit
+/tmp/rillora-review-release-20260930/SourcePackages/checkouts/Auth0.swift/Auth0/DPoP/DPoPProofGenerator.swift:2:import CryptoKit
+/tmp/rillora-review-release-20260930/SourcePackages/checkouts/Auth0.swift/Auth0/DPoP/KeychainKeyStore.swift:2:import CryptoKit
+/tmp/rillora-review-release-20260930/SourcePackages/checkouts/Auth0.swift/Auth0/DPoP/KeychainKeyStore.swift:79:        // Convert the SecKey into a CryptoKit key
+/tmp/rillora-review-release-20260930/SourcePackages/checkouts/Auth0.swift/Auth0/DPoP/KeychainKeyStore.swift:89:            let message = "Unable to create a CryptoKit private key from the retrieved SecKey."
+/tmp/rillora-review-release-20260930/SourcePackages/checkouts/Auth0.swift/Auth0/DPoP/SecureEnclaveKeyStore.swift:2:import CryptoKit
+/tmp/rillora-review-release-20260930/SourcePackages/checkouts/app-check/AppCheckCore/Sources/Core/Utils/GACAppCheckCryptoUtils.m:19:#import <CommonCrypto/CommonDigest.h>
+/tmp/rillora-review-release-20260930/SourcePackages/checkouts/Auth0.swift/Auth0Tests/Mocks.swift:2:import CryptoKit
+/tmp/rillora-review-release-20260930/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuthCore/OIDTokenUtilities.m:21:#import <CommonCrypto/CommonDigest.h>
+/tmp/rillora-review-release-20260930/SourcePackages/checkouts/Auth0.swift/Auth0Tests/DPoP/DPoPSpec.swift:2:import CryptoKit
+/tmp/rillora-review-release-20260930/SourcePackages/checkouts/Auth0.swift/Auth0Tests/DPoP/KeychainKeyStoreSpec.swift:4:import CryptoKit
+/tmp/rillora-review-release-20260930/SourcePackages/checkouts/Auth0.swift/Auth0Tests/DPoP/KeychainKeyStoreSpec.swift:92:                    let errorMessage = "Unable to create a CryptoKit private key from the retrieved SecKey."
+/tmp/rillora-review-release-20260930/SourcePackages/checkouts/Auth0.swift/Auth0Tests/DPoP/SecureEnclaveKeyStoreSpec.swift:4:import CryptoKit
+/tmp/rillora-review-release-20260930/SourcePackages/checkouts/Auth0.swift/Auth0Tests/DPoP/DPoPProofGeneratorSpec.swift:4:import CryptoKit
+/tmp/rillora-review-release-20260930/SourcePackages/checkouts/Auth0.swift/Auth0Tests/DPoP/ECPublicKeySpec.swift:4:import CryptoKit

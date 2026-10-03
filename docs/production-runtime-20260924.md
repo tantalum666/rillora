@@ -4,7 +4,15 @@ Role: production transport implementation and acceptance contract
 
 Status: PRODUCTION HTTPS AND RESTRICTED REVIEW VERIFIED; GENERAL CUSTOMERS CLOSED
 
-Last updated: 2026-09-30 (Asia/Hong_Kong)
+Last updated: 2026-10-03 (Asia/Shanghai)
+
+## October3 reviewed rollout — current runtime
+
+API11/schema0093 is deployed with the same restricted review identities/expiry and
+closed live billing.93checksums, unchanged private records, constrained runtime/TLS,
+1/1healthy service and new successful retention heartbeats are verified. The older
+checkpoints below keep their dates. [Current execution](review-rollout-20261003.md).
+
 
 ## September30 restricted review runtime
 

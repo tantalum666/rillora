@@ -2,13 +2,21 @@
 
 Role: focused client-delivery and environment-isolation contract
 Status: CLOSED CLIENT DELIVERY VERIFIED; CUSTOMER ACTIVATION STILL CLOSED
-Last updated: 2026-09-30 (Asia/Hong_Kong)
+Last updated: 2026-10-03 (Asia/Shanghai)
 
 Owner explicitly asks to start the remaining release engineering. Continue the
 existing release workflow and reading baseline. Preserve the current UI/brand,
 annual-only offer, test accounts/data, private data/recovery foundation and
 FanPass. Public customer access remains closed until the separate release gates
 are accepted.
+
+## October3 reviewed clients — current checkpoint
+
+Restricted production Web and WWW are deployed, with86/30actual file hashes matched.
+Native1.0(3) is signed, uploaded and processed with normal distribution eligibility;
+Owner-confirmed encryption declaration is saved and Apple showsReady to Submit. No testers or AppReview
+submission, actual purchase or public activation follows. [Execution](review-rollout-20261003.md).
+
 
 ## September30 client security and distribution preparation
 

@@ -9,6 +9,15 @@ closed while the [production/recovery gate](production-recovery-20260923.md)
 is validated. Git source history, database snapshots and control-state recovery
 are distinct evidence.
 
+## October3 deployed permission history and hold serialization
+
+0092/0093 are now applied to production schema0093. All93checksums match; existing91
+migration bytes and eight private table fingerprints are unchanged. Actual constrained
+runtime/TLS checks and a rolled-back retention call pass. New worker heartbeat has
+0failures. This is not a repeated cloud restore drill or real paid-history reconciliation.
+[Rollout evidence](review-rollout-20261003.md).
+
+
 ## October3 strict-review implementation boundary
 
 Migration0092 records permissionHistoryVersion2, grant lineage IDs, remaining field

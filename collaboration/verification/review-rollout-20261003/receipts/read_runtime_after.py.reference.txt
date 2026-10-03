@@ -1,0 +1,24 @@
+from pathlib import Path
+import subprocess,json,re,hashlib,datetime
+q=Path(__file__).resolve().parent;o=json.loads((q/'active-deploy-outputs.json').read_text())['RilloraProduction']
+def aws(*args):
+ r=subprocess.run(['aws',*args,'--profile','rillora-production-operator','--region','eu-central-1','--no-cli-pager','--output','json'],capture_output=True,text=True);assert r.returncode==0,r.stderr;return json.loads(r.stdout)
+s=aws('ecs','describe-services','--cluster',o['ClusterName'],'--services',o['RuntimeApiServiceNameF8B88348'])['services'][0]
+assert s['desiredCount']==s['runningCount']==1 and s['pendingCount']==0
+assert any(x['status']=='PRIMARY' and x['rolloutState']=='COMPLETED' and x['taskDefinition']==o['RuntimeApiTaskDefinitionArn02DA653E'] for x in s['deployments'])
+event=next(x for x in s['events'] if 'has started' in x['message'] and re.search(r'\(task [a-f0-9]{32}\)',x['message']))
+tid=re.search(r'\(task ([a-f0-9]{32})\)',event['message'])[1]
+task=aws('ecs','describe-tasks','--cluster',o['ClusterName'],'--tasks',tid)['tasks'][0]
+assert task['lastStatus']=='RUNNING' and task['healthStatus']=='HEALTHY' and task['taskDefinitionArn']==o['RuntimeApiTaskDefinitionArn02DA653E']
+expected=json.loads((q/'migration-verified.json').read_text())['imageDigest'];assert task['containers'][0]['imageDigest']==expected
+current=aws('ecs','describe-task-definition','--task-definition',task['taskDefinitionArn'])
+for c in current['taskDefinition']['containerDefinitions']:
+ for v in c.get('environment',[]):
+  if v['name']=='PRODUCTION_REVIEW_IDENTITY_SHA256':v['value']='sha256-of-set:'+hashlib.sha256(v['value'].encode()).hexdigest()
+before=json.loads((q/'api-task-before-redacted.json').read_text());a=before['taskDefinition']['containerDefinitions'][0];b=current['taskDefinition']['containerDefinitions'][0]
+assert sorted(a['environment'],key=lambda x:x['name'])==sorted(b['environment'],key=lambda x:x['name'])
+assert a['secrets']==b['secrets']
+env={v['name']:v['value'] for v in b['environment']};assert env['PRODUCTION_RUNTIME_MODE']=='review' and env['ALLOW_STRIPE_PRODUCTION_INTEGRATION']=='false' and env['ALLOW_APPLE_PRODUCTION_INTEGRATION']=='false'
+(q/'api-task-after-redacted.json').write_text(json.dumps(current,indent=2)+'\n')
+result={'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'desired':1,'running':1,'rollout':'COMPLETED','health':'HEALTHY','taskDefinition':task['taskDefinitionArn'],'imageDigest':expected,'runtimeEnvironmentAndSecretReferencesUnchanged':True,'reviewIdentityDigestSetUnchanged':True,'reviewExpiry':env['PRODUCTION_REVIEW_EXPIRES_AT'],'ordinaryCustomerAccess':False,'liveBilling':False,'retentionWorker':env['ALLOW_RETENTION_WORKER']}
+(q/'runtime-after.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))

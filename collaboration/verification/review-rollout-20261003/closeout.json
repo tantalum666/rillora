@@ -1,0 +1,39 @@
+{
+  "completedAt": "2026-10-03T11:27:31.448645+00:00",
+  "packages": {
+    "1": "deployed and verified",
+    "2": "signed/uploaded/processed,Owner declaration saved,Ready to Submit"
+  },
+  "sourceCommit": "1ab6316a8bfd9a168ba029155e0dd0891c423139",
+  "apiRevision": 11,
+  "schema": "0093",
+  "matchingMigrationChecksums": 93,
+  "oldMigrationFilesUnchanged": 91,
+  "privateTableFingerprintsUnchanged": 8,
+  "healthyTasks": "1/1",
+  "reviewIdentityAndExpiryUnchanged": true,
+  "liveArtifactHashes": {
+    "reviewWeb": 86,
+    "publicWeb": 30
+  },
+  "nativeVersion": "1.0(3)",
+  "artifactChecksPassed": 8,
+  "privacyManifests": 11,
+  "appleBuildId": "60051464-b509-4fd8-aa16-f683607bc21d",
+  "appleStatus": "\u51c6\u5907\u63d0\u4ea4 / Ready to Submit",
+  "ownerConfirmedDeclaration": true,
+  "futurePlistMetadataChecked": true,
+  "testers": 0,
+  "groups": 0,
+  "physicalDeviceUsed": false,
+  "appReviewSubmitted": false,
+  "ordinaryCustomersOpened": false,
+  "liveBillingEnabled": false,
+  "productTestsRerun": false,
+  "retainedRegression": "CI47/API400/Web115+7/native190pass1existingSkip/infra53",
+  "git": "private current review branch;newarchive local verification complete,remote pending",
+  "exclusions": "Credentials/auth URLs/session state,machine inventories,caches,expanded CDK assets and full third-party doc download",
+  "boundary": "Release packages1/2completion, not final public launch or real purchase.",
+  "nativeMetadataOnlyValidation": "Info.plist syntax passes;only false non-exempt-encryption key added;all other semantic values equal",
+  "oldRegressionNotRerun": true
+}

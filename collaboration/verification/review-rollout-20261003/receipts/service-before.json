@@ -1,0 +1,515 @@
+{
+  "services": [
+    {
+      "serviceArn": "arn:aws:ecs:eu-central-1:133857166372:service/RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm/RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL",
+      "serviceName": "RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL",
+      "clusterArn": "arn:aws:ecs:eu-central-1:133857166372:cluster/RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm",
+      "loadBalancers": [],
+      "serviceRegistries": [
+        {
+          "registryArn": "arn:aws:servicediscovery:eu-central-1:133857166372:service/srv-d73zcg4vlo6htopu",
+          "containerName": "Api",
+          "containerPort": 8443
+        }
+      ],
+      "status": "ACTIVE",
+      "desiredCount": 1,
+      "runningCount": 1,
+      "pendingCount": 0,
+      "capacityProviderStrategy": [
+        {
+          "capacityProvider": "FARGATE",
+          "weight": 1,
+          "base": 0
+        }
+      ],
+      "platformVersion": "LATEST",
+      "platformFamily": "Linux",
+      "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRuntimeApiTask93405B31:10",
+      "deploymentConfiguration": {
+        "deploymentCircuitBreaker": {
+          "enable": true,
+          "rollback": true,
+          "resetOnHealthyTask": true,
+          "thresholdConfiguration": {
+            "type": "BOUNDED_PERCENT",
+            "value": 50
+          }
+        },
+        "maximumPercent": 200,
+        "minimumHealthyPercent": 100,
+        "alarms": {
+          "alarmNames": [],
+          "rollback": false,
+          "enable": false
+        },
+        "strategy": "ROLLING",
+        "bakeTimeInMinutes": 0
+      },
+      "deployments": [
+        {
+          "id": "ecs-svc/4910588301553162557",
+          "status": "PRIMARY",
+          "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRuntimeApiTask93405B31:10",
+          "desiredCount": 1,
+          "pendingCount": 0,
+          "runningCount": 1,
+          "failedTasks": 0,
+          "createdAt": "2026-10-01T15:44:02.176000+08:00",
+          "updatedAt": "2026-10-01T15:47:08.643000+08:00",
+          "capacityProviderStrategy": [
+            {
+              "capacityProvider": "FARGATE",
+              "weight": 1,
+              "base": 0
+            }
+          ],
+          "platformVersion": "1.4.0",
+          "platformFamily": "Linux",
+          "networkConfiguration": {
+            "awsvpcConfiguration": {
+              "subnets": [
+                "subnet-070c4a18e68f26f1d",
+                "subnet-0d218a58218e10e36"
+              ],
+              "securityGroups": [
+                "sg-014722f6f6b5b18ff"
+              ],
+              "assignPublicIp": "ENABLED"
+            }
+          },
+          "rolloutState": "COMPLETED",
+          "rolloutStateReason": "ECS deployment ecs-svc/4910588301553162557 completed."
+        }
+      ],
+      "roleArn": "arn:aws:iam::133857166372:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+      "events": [
+        {
+          "id": "2a73475f-2e4f-4125-9be4-1da2ebc00d4a",
+          "createdAt": "2026-10-03T14:34:47.665000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "6e18e456-53b5-4a1b-8107-8690c75c0d88",
+          "createdAt": "2026-10-03T08:34:42.584000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "84896cdd-b37b-4829-970c-bdc426004743",
+          "createdAt": "2026-10-03T02:34:28.111000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "5048a96b-58eb-4400-8ca2-e5470e25cb53",
+          "createdAt": "2026-10-02T20:34:24.213000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "4d16a7dc-189f-4591-bf6d-5140e7a4d12c",
+          "createdAt": "2026-10-02T15:46:09.095000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "d1dd1b2d-ca0d-436a-9336-7eabd54f530d",
+          "createdAt": "2026-10-02T09:45:58.984000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "5c94bed4-fb13-4ebb-93c4-03c0c351c724",
+          "createdAt": "2026-10-02T03:45:54.320000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "a19a20f9-72da-491e-9ead-1e67670d970a",
+          "createdAt": "2026-10-01T21:45:44.056000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "045a8fb4-ef17-4fba-890b-071367aa80fa",
+          "createdAt": "2026-10-01T15:47:08.667000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "c4c49342-8210-4b1a-8d35-d5ce9d49fe72",
+          "createdAt": "2026-10-01T15:47:08.666000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) (deployment ecs-svc/4910588301553162557) deployment completed."
+        },
+        {
+          "id": "c1fb8841-57f9-4899-a964-9bc1c452fb55",
+          "createdAt": "2026-10-01T15:45:23.021000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has stopped 1 running tasks: (task 079fe80b36b745118d01cd7f109fc04e)."
+        },
+        {
+          "id": "8aa17eec-62dc-4b87-95bf-6360a12f3549",
+          "createdAt": "2026-10-01T15:44:14.207000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has started 1 tasks: (task 52d831839e7743cebb5cbf58769975ff)."
+        },
+        {
+          "id": "afca96a7-6bfc-4159-9eae-11f9b1285c39",
+          "createdAt": "2026-10-01T15:04:32.110000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "f649de35-8ca3-483d-8312-c6d8d740230e",
+          "createdAt": "2026-10-01T15:04:32.109000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) (deployment ecs-svc/4943979427280336318) deployment completed."
+        },
+        {
+          "id": "6da98582-24ad-438f-9d91-a3deb65ca44c",
+          "createdAt": "2026-10-01T15:03:08.350000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has stopped 1 running tasks: (task 1e4e727b924745a58f1913a986f6be6f)."
+        },
+        {
+          "id": "6f2f32d9-669a-45fd-9768-d0fe669bb9cc",
+          "createdAt": "2026-10-01T15:01:57.709000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has started 1 tasks: (task 079fe80b36b745118d01cd7f109fc04e)."
+        },
+        {
+          "id": "9f802280-0347-44e3-adbf-5d5c45ebcd0b",
+          "createdAt": "2026-10-01T14:51:26.028000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "68c8f372-732c-4d6e-bd05-27d72d3759e5",
+          "createdAt": "2026-10-01T14:51:26.027000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) (deployment ecs-svc/8523549843415069545) deployment completed."
+        },
+        {
+          "id": "ad3cb950-b8de-468c-9f9c-3549e9b3d8ff",
+          "createdAt": "2026-10-01T14:50:00.008000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has stopped 1 running tasks: (task b455937e62f24fae8cb0e970f93c7a3b)."
+        },
+        {
+          "id": "336c815c-7b43-4dcd-a1d1-e6f2ed15beaf",
+          "createdAt": "2026-10-01T14:48:50.991000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has started 1 tasks: (task 1e4e727b924745a58f1913a986f6be6f)."
+        },
+        {
+          "id": "d500009f-c63d-4d89-b0d9-aee15055662d",
+          "createdAt": "2026-10-01T10:30:07.963000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "cd0a3c8b-b912-4925-845c-674528309a7e",
+          "createdAt": "2026-10-01T04:29:59.322000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "87e2bd05-0bf8-4581-b2a5-f737b710c092",
+          "createdAt": "2026-09-30T22:29:35.417000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "c484ddab-183d-4118-a877-42c5ba7511cc",
+          "createdAt": "2026-09-30T16:29:15.874000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "14699bed-16bc-494a-9511-2da736ba0b86",
+          "createdAt": "2026-09-30T10:29:14.973000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "652f16e4-9ec7-463d-8889-12eba55d8077",
+          "createdAt": "2026-09-30T04:30:31.467000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "cb5f5f9d-dd65-4722-ab5d-88f2750f1eb2",
+          "createdAt": "2026-09-30T04:30:31.466000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) (deployment ecs-svc/8148895525102386985) deployment completed."
+        },
+        {
+          "id": "2602631a-97b9-494b-b8a1-c46be3c4de51",
+          "createdAt": "2026-09-30T04:28:47.536000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has stopped 1 running tasks: (task 5bddecc1f91b4119bee1299e6d75dcac)."
+        },
+        {
+          "id": "6a6245ce-a1ca-49c4-8c7f-0deeb6f78beb",
+          "createdAt": "2026-09-30T04:27:38.723000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has started 1 tasks: (task b455937e62f24fae8cb0e970f93c7a3b)."
+        },
+        {
+          "id": "47150d6c-caf3-4660-81af-68ed5d24f500",
+          "createdAt": "2026-09-30T04:15:33.718000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "c1727148-bc6a-43b2-a372-c0048cc628e3",
+          "createdAt": "2026-09-30T04:15:33.717000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) (deployment ecs-svc/1957001186940121522) deployment completed."
+        },
+        {
+          "id": "82bda80f-5e10-47b1-920c-ac79f5a3ce25",
+          "createdAt": "2026-09-30T04:14:08.710000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has stopped 1 running tasks: (task f328a3381f7048f1b0de1f720cf3dd85)."
+        },
+        {
+          "id": "27a91116-9269-42aa-b868-f82531a3c654",
+          "createdAt": "2026-09-30T04:13:00.456000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has started 1 tasks: (task 5bddecc1f91b4119bee1299e6d75dcac)."
+        },
+        {
+          "id": "0929351d-3f42-4a53-9a64-4bd5adad3af5",
+          "createdAt": "2026-09-30T03:29:44.793000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "b4c02e1f-4ca9-4921-a634-84356c1dd46a",
+          "createdAt": "2026-09-30T03:29:44.791000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) (deployment ecs-svc/9393642901228895835) deployment completed."
+        },
+        {
+          "id": "1ba73791-cd3b-4385-a896-80053e561d79",
+          "createdAt": "2026-09-30T03:28:00.926000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has stopped 1 running tasks: (task a8e744ae109a48e9a759fbae435ffd97)."
+        },
+        {
+          "id": "247ab96e-4410-4b8b-8331-45780daa0c25",
+          "createdAt": "2026-09-30T03:26:52.719000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has started 1 tasks: (task f328a3381f7048f1b0de1f720cf3dd85)."
+        },
+        {
+          "id": "dc747935-dd72-4e3f-b96c-6eb19fc8a034",
+          "createdAt": "2026-09-30T01:56:56.832000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "6b2ab8ab-49ae-4fc8-a7c8-5a7d3a46818c",
+          "createdAt": "2026-09-30T01:56:56.831000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) (deployment ecs-svc/3070127345547792349) deployment completed."
+        },
+        {
+          "id": "f79e2af3-4dcb-4b24-a316-96142b62f9ff",
+          "createdAt": "2026-09-30T01:55:13.266000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has stopped 1 running tasks: (task 0d7633c24bdb443a8d8f963c475879ee)."
+        },
+        {
+          "id": "c2941f43-77da-4527-91b7-e76719724f05",
+          "createdAt": "2026-09-30T01:54:05.869000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has started 1 tasks: (task a8e744ae109a48e9a759fbae435ffd97)."
+        },
+        {
+          "id": "865a2bbe-2d4d-4dc4-b2af-2017d3842cba",
+          "createdAt": "2026-09-30T01:29:05.497000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "7f7c6749-3035-4371-b15f-1d7e30364c98",
+          "createdAt": "2026-09-30T01:29:05.496000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) (deployment ecs-svc/2703407032577439613) deployment completed."
+        },
+        {
+          "id": "cdf58a70-24d3-4e77-9cd8-0090cf3e5c62",
+          "createdAt": "2026-09-30T01:27:39.234000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has stopped 1 running tasks: (task d07683cbf66f47fd9cae818ebfedb858)."
+        },
+        {
+          "id": "c7d8d408-cfe4-446a-976e-18d849bb5e27",
+          "createdAt": "2026-09-30T01:26:30.993000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has started 1 tasks: (task 0d7633c24bdb443a8d8f963c475879ee)."
+        },
+        {
+          "id": "e1176178-b4df-4210-83f2-8454c595285c",
+          "createdAt": "2026-09-30T01:09:01.610000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "6e37534d-7b43-400a-b18e-a09df1792d00",
+          "createdAt": "2026-09-30T01:09:01.609000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) (deployment ecs-svc/2098428089233612425) deployment completed."
+        },
+        {
+          "id": "f0de23ac-08ae-4402-afb0-047d21be4c8e",
+          "createdAt": "2026-09-30T01:07:38.381000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has stopped 1 running tasks: (task 45d8d065423243ec9db646cc0c584c39)."
+        },
+        {
+          "id": "45552af9-35ae-4ffa-9299-6a5397463ccc",
+          "createdAt": "2026-09-30T01:06:29.441000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has started 1 tasks: (task d07683cbf66f47fd9cae818ebfedb858)."
+        },
+        {
+          "id": "ba932438-ab2c-4df5-a41a-b9cf1a9a4481",
+          "createdAt": "2026-09-29T22:26:16.845000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "13c98783-3b50-49d2-9df7-03b1724ca825",
+          "createdAt": "2026-09-29T16:26:04.252000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "205cef24-324b-4173-b858-4a3c4cbcf5dc",
+          "createdAt": "2026-09-29T10:26:03.791000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "0317d913-b025-4efb-b6c6-6cd24e714487",
+          "createdAt": "2026-09-29T09:42:21.146000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "942c66de-f437-4bb4-b0b2-7586b4d4e39c",
+          "createdAt": "2026-09-29T07:59:06.860000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "d53eacda-8273-4aa0-8c13-975bc026a4ea",
+          "createdAt": "2026-09-29T07:38:37.527000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "5a08ab6b-3aa3-4a30-9996-e344d2bbfee8",
+          "createdAt": "2026-09-29T01:54:01.718000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "95cc34c7-d7a9-4acd-8eb7-ccd49872b05e",
+          "createdAt": "2026-09-28T19:53:55.080000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "2993644c-17ff-4ea6-b021-3f71e3d38b7e",
+          "createdAt": "2026-09-28T13:53:43.594000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "85898937-dcff-4808-b998-79883adf6780",
+          "createdAt": "2026-09-28T07:53:23.442000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "07076ad0-1119-43ec-aae2-6374b06a918c",
+          "createdAt": "2026-09-28T01:53:06.533000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "efd0193d-bf91-4291-85ec-6d24a5e015af",
+          "createdAt": "2026-09-27T19:52:51.186000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "a0a00ac7-8b88-4c30-b3a5-175a028a722f",
+          "createdAt": "2026-09-27T13:52:47.102000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "c3bb525b-b1cb-4040-ae9d-108e6998d15e",
+          "createdAt": "2026-09-27T07:52:24.533000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "f147e4d7-d5de-4ee5-a5ee-20953eebabf0",
+          "createdAt": "2026-09-27T01:52:21.505000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "fd55cd95-25c8-4767-b6ff-fa8a7b962dc3",
+          "createdAt": "2026-09-26T19:52:09.905000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "6c13866d-8521-45d8-aedb-6518dc1e28ad",
+          "createdAt": "2026-09-26T13:51:54.688000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "f724107b-9743-4db7-bce4-0ba9cb9739e4",
+          "createdAt": "2026-09-26T07:51:50.695000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "3c820e24-a66d-4fac-ace3-b630dc453d6f",
+          "createdAt": "2026-09-26T01:51:23.175000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "b50feaa8-9557-4e5e-b233-2a6d8490c635",
+          "createdAt": "2026-09-25T19:51:17.505000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "8ed155a4-22e7-4e62-9887-52b5ca0befd4",
+          "createdAt": "2026-09-25T13:50:46.892000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "ede519e2-00d8-4460-aff7-1030cd1b1df4",
+          "createdAt": "2026-09-25T07:50:16.002000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "93b4fe66-4b55-4120-9f6a-8cecdce345e2",
+          "createdAt": "2026-09-25T01:50:01.948000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "ff1f48be-0e66-4098-bb90-29f122c78a38",
+          "createdAt": "2026-09-24T21:14:33.140000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "b70d9486-f0b5-40f2-998a-7f6da45c1a56",
+          "createdAt": "2026-09-24T15:14:26.998000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "755990cb-6553-4a45-850e-93da8806b82e",
+          "createdAt": "2026-09-24T09:14:01.279000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "b58ec1ad-2022-4e1f-a1c9-cb3dc2b510d3",
+          "createdAt": "2026-09-24T09:12:53.160000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has started 1 tasks: (task 45d8d065423243ec9db646cc0c584c39)."
+        },
+        {
+          "id": "0feb6b68-3583-4bd4-a561-c1259e48fd17",
+          "createdAt": "2026-09-24T09:09:04.189000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) has reached a steady state."
+        },
+        {
+          "id": "9cddb195-9ed2-4217-895c-f3c12a30675e",
+          "createdAt": "2026-09-24T09:09:04.188000+08:00",
+          "message": "(service RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL) (deployment ecs-svc/8785630440501495849) deployment completed."
+        }
+      ],
+      "createdAt": "2026-09-24T09:08:50.499000+08:00",
+      "currentServiceRevisions": [
+        {
+          "arn": "arn:aws:ecs:eu-central-1:133857166372:service-revision/RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm/RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL/4910588301553162557",
+          "requestedTaskCount": 1,
+          "runningTaskCount": 1,
+          "pendingTaskCount": 0
+        }
+      ],
+      "placementConstraints": [],
+      "placementStrategy": [],
+      "networkConfiguration": {
+        "awsvpcConfiguration": {
+          "subnets": [
+            "subnet-070c4a18e68f26f1d",
+            "subnet-0d218a58218e10e36"
+          ],
+          "securityGroups": [
+            "sg-014722f6f6b5b18ff"
+          ],
+          "assignPublicIp": "ENABLED"
+        }
+      },
+      "healthCheckGracePeriodSeconds": 0,
+      "schedulingStrategy": "REPLICA",
+      "deploymentController": {
+        "type": "ECS"
+      },
+      "createdBy": "arn:aws:iam::133857166372:role/cdk-hnb659fds-cfn-exec-role-133857166372-eu-central-1",
+      "enableECSManagedTags": true,
+      "propagateTags": "SERVICE",
+      "enableExecuteCommand": false,
+      "availabilityZoneRebalancing": "ENABLED",
+      "resourceManagementType": "CUSTOMER"
+    }
+  ],
+  "failures": []
+}

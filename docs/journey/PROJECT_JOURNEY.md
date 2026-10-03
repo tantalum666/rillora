@@ -3125,3 +3125,27 @@ Owner先确认小型企业资格事实、再当场确认最终声明，申请已
 - Unfinished: coordinated restricted rollout is still first; real core/Apple acceptance,
   operator/payment facts, final store declarations/review and customer cutover follow.
   No product tests, deployment, private portal refresh or personal login were repeated.
+
+## 2026-10-03 — Deploy reviewed repairs and prepare build3
+
+- Goal: complete Owner-selected packages1/2 without changing UI/pricing/data/FanPass
+  or resuming deferred physical-device/merchant work.
+- Attempt: actual AWS expiry was renewed through existing browser login; constrain
+  template diffs, pause the review API, migrate once, verify checksums/data/roles and
+  restore1healthy task. Build/export/check/upload the new signed native candidate.
+- Judgment changes: first Web readback targeted an older closed build directory;
+  correct manifest gives full matching bytes. Heartbeat parsing needs the retention
+  namespace because commerce also emits Heartbeat. Neither required product repair.
+- Result: API11/schema0093 and Web/WWW deployed;93checksums, unchanged eight-table
+  fingerprints, runtime/TLS/closed-billing checks and116HTTP file hashes pass. Native
+  1.0(3) is uploaded/processed,8artifact checks pass, test notes saved and testers0.
+- Unfinished: final OS-only encryption declaration is prepared for action-time Owner
+  confirmation. Real core/device/purchase, commercial facts and AppReview/cutover remain
+  separate. No completed authentication/email/AppleTEST/application was repeated.
+
+- Completion after Owner reply: the specific OS-only declaration was explicitly
+  confirmed, saved for1.0(3), and read back in the build list as准备提交. Matching
+  declaration metadata is now versioned for later builds; plist syntax and an exact
+  semantic comparison pass. Business/encryption code is unchanged, and build3was
+  not rebuilt or re-uploaded. Packages1/2are complete; remaining real core/device/
+  purchase and store/commercial gates retain their separate scope.

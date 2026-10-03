@@ -34,7 +34,7 @@
     },
     {
       "id": "database",
-      "current": "Separate encrypted production RDS with7-day backups and KMS/recovery journal, plus preserved synthetic staging; production schema0091 per October2",
+      "current": "Separate encrypted production RDS with7-day backups/KMS/recovery journal and preserved staging; production schema0093 verified October3 with unchanged private records",
       "status": "restricted_production_and_staging",
       "businessKey": "Application UUIDs and ordered SQL migrations",
       "port": "PostgreSQL, SQL migrations and node-postgres",
@@ -44,7 +44,7 @@
     },
     {
       "id": "compute",
-      "current": "Separate regular Fargate production API10/restricted review and staging API38, CloudFront clients; dated October2/September26 evidence",
+      "current": "Regular Fargate production API11/restricted review and preserved stagingAPI38; reviewed CloudFront Web/WWW artifacts verified October3",
       "status": "restricted_production_and_staging",
       "businessKey": "Versioned API contracts and immutable image digest",
       "port": "OCI container, HTTPS, environment references",
