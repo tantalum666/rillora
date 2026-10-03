@@ -3112,3 +3112,16 @@ Owner先确认小型企业资格事实、再当场确认最终声明，申请已
   Final active-source coverage is686files/91,738lines after the small CI/test follow-up.
   Review/repairs/Git preservation are complete; coordinated restricted rollout of
   reviewed source and0092/0093 is the single next step, not another personal login.
+
+## 2026-10-03 — Remaining launch work after strict review
+
+- Goal: answer what remains before release using current source and dated provider evidence.
+- Attempt: reconcile handoff, release gates, submission worksheet and latest distribution
+  receipts; check Apple's current encryption/submission/TestFlight guidance.
+- Judgment change: the older release inventory still called repair deployment complete.
+  That is true for the previous13Dot fixes, but not the new28strict-review repairs.
+- Result: correct the deployment row and runtime/security gate descriptions; preserve
+  all12gate IDs/statuses, existing authorization, completed mail/images/CI and deferrals.
+- Unfinished: coordinated restricted rollout is still first; real core/Apple acceptance,
+  operator/payment facts, final store declarations/review and customer cutover follow.
+  No product tests, deployment, private portal refresh or personal login were repeated.

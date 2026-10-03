@@ -25,9 +25,10 @@
         "collaboration/verification/resend-20261001/aws-session-boundary.json",
         "docs/release-123-20261001.md",
         "collaboration/verification/release-123-20261002/receipts/repair-rollout-readback.json",
-        "collaboration/verification/release-123-20261002/receipts/ocsp-deploy-outputs.json"
+        "collaboration/verification/release-123-20261002/receipts/ocsp-deploy-outputs.json",
+        "docs/code-review-20261002.md"
       ],
-      "next": "Repairs and restricted review runtime/Web/WWW are deployed. API10 deployment outputs and Apple TEST delivery are retained; schema0091 is unchanged. Finish remaining real Web/native journeys and controlled customer cutover. A later expired AWS session is not a reason to repeat completed rollout."
+      "next": "The prior13Dot repairs/API10/schema0091 rollout is complete. New strict-review28fixes and additive0092/0093are verified locally/CI47 and remain undeployed. First perform coordinated restricted rollout and targeted post-deployment validation, then remaining real journeys and controlled customer cutover. Preserve existing data, review boundaries and prior deployment evidence."
     },
     {
       "id": "production-identity",
@@ -176,7 +177,7 @@
         "docs/independent-release-closeout-20261002.md",
         "docs/code-review-20261002.md"
       ],
-      "next": "October3 strict-review fixes are locally verified but not deployed; stage and validate the changed source/migrations before closing this gate. Route-bound reauthentication, account-bound browser requests and serialized Stripe observations are deployed. CI43 covers the changed source. Complete actual provider reauthentication/remaining core user journeys and general customer cutover without treating local or deployment evidence as acceptance. Manual all-source review is complete; the optional deep-scan coordinator could not start. CDK bundled dependency advisory remains a build-tool limitation, not a verified runtime exploit."
+      "next": "Strict-review28repairs and source/secret checks pass, with CI47 at ef09d0b22 and complete remote evidence preservation. The new fixes/migrations remain undeployed; verify exact final artifacts, permissions and changed live paths during restricted rollout. Complete remaining genuine reauthentication/core journeys before customer cutover. Optional deep scan did not start; no independent certification is claimed. CDK bundled dependency advisory remains a build-tool limitation without an established runtime exploit."
     },
     {
       "id": "apple-submission",

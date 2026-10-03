@@ -2,9 +2,44 @@
 
 Role: current launch scope, remaining work and release evidence contract  
 Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; CUSTOMER ACCOUNTS AND SALES CLOSED
-Last updated: 2026-10-02 (Asia/Shanghai)
+Last updated: 2026-10-03 (Asia/Shanghai)
 
-## October2 current release delta
+## October3 current release delta after strict review
+
+The whole-project review and28repairs are complete in source, locally verified and
+covered by CI47; source and evidence are pushed through4d061c49. The new fixes and
+migrations0092/0093are **not deployed**. The deployment row below now refers to this
+new batch; the earlier13Dot fixes/API10/schema0091 rollout stays complete and must
+not be repeated as if it had never happened. [Review](code-review-20261002.md).
+
+The next executable package is coordinated restricted API/Web/WWW rollout, additive
+migrations and post-deployment validation, plus a new native candidate incorporating
+reviewed changes. Keep ordinary customers and live billing closed. Then finish the
+remaining real core journeys and Apple lifecycle, final declarations/market/price,
+merchant readiness where applicable, submission/review and controlled customer cutover.
+
+This status reconciliation reads current source/receipts; it does not refresh private
+provider portals. Apple Internal/Missing Compliance build1.0(2), six saved screenshots,
+QQ recovery/login and API10 are the last retained October2 observations. The recorded
+review allowlist expires2026-10-07at01:08:57Asia/Shanghai; recheck operative reviewer
+access before acceptance/submission without automatically extending authority.
+
+Owner participation is limited to actual personal authentication/consent when needed,
+resuming explicitly deferred physical-device testing, truthful operator/merchant facts
+and final personal declarations/decisions. The existing authorization remains in force.
+SES reply is no longer required for Resend. The isolated CDK advisory and optional
+scanner startup failure remain their recorded bounded risks, not new paid certification
+or feature work. No additional UI redesign or screenshot production is required.
+
+Apple still requires an encryption determination for apps using encryption, and a
+submission needs required metadata and an eligible chosen build. TestFlight purchases
+run in sandbox; an upload is separate from a purchase/restore result.
+[Encryption](https://developer.apple.com/help/app-store-connect/manage-app-information/overview-of-export-compliance/),
+[submission](https://developer.apple.com/help/app-store-connect/manage-submissions-to-app-review/submit-an-app/),
+[TestFlight testing](https://developer.apple.com/help/app-store-connect/test-a-beta-version/testing-subscriptions-and-in-app-purchases-in-testflight/).
+
+## October2 release delta — retained evidence
+
 
 Owner now asks to finish all work that does not require their participation. The
 [latest independent preparation](independent-release-closeout-20261002.md) records
@@ -28,14 +63,14 @@ required approval for the Owner-selected sender.
 
 <a id="october1-remaining-work-inventory"></a>
 
-## October2 remaining-work inventory
+## October3 remaining-work inventory
 
 The12register gates share dependencies and are grouped below. Two are verified;
 ten remain open/in-progress/deferred. Counts are not a completion percentage.
 
 | Work package | Current evidence and remaining work | Dependency / participation |
 | --- | --- | --- |
-| Deploy prepared repairs | Complete: repaired API/Web/router/WWW and review/Apple verification follow-ups are deployed | Preserve rollout evidence; no repeat merely because credentials later expire |
+| Deploy newly reviewed repairs | Previous13Dot/API10 fixes are deployed; the new28fixes and0092/0093are locally/CI verified but not deployed | Agent can prepare and execute coordinated restricted rollout/validation; only actual expired-session ceremony requires Owner |
 | Real account and core journeys | Real A/B login, native read, QQ arrival, reset/new login and Directions filtering complete; final scope/revoke/export/delete/recent-auth acceptance remains | Current planner genuine consent/authentication; account deletion uses a disposable identity |
 | Apple purchase lifecycle | Review environment/enrollment, notifications/official TEST, dev build and internal TestFlight upload complete; actual purchase/restore/renewal/refund/expiry remain | Export-compliance determination and Owner resuming deferred physical Apple test interaction |
 | Merchant, markets and live billing | Existing integration retained; real operator/merchant/tax facts, live provider lifecycle, effective SBP fee and final Apple price remain | Owner-deferred facts and final decisions, then provider/Agent execution; Web88.99 stays locked |
