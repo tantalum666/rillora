@@ -218,3 +218,10 @@ The deployed API/native application code is pinned to1ab6316a8 on the current
 codex/strict-review-20261002 branch; do not assume oldmain describes the live runtime.
 The later native source change only stores Owner-confirmed encryption declaration
 metadata for future builds; the existing uploaded3was not rebuilt/re-uploaded.
+
+The artifact commit94a4b8890292a4e1e0858e30328ec6839234f8c8 now matches the remote
+branch readback. Raw-work-013 was freshly downloaded into separate empty LFS storage;
+its exact ciphertext hash/size and all284objects/312catalog paths pass decryption
+verification against metadata read from GitHub. [Remote receipt](../collaboration/verification/review-rollout-20261003/remote-readback.json).
+Receipt-only follow-up changes preserve this immutable capture and the original CI47
+scope; no previous archive, deployment, native upload or product suite is repeated.

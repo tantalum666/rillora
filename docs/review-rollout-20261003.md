@@ -105,3 +105,12 @@ migration, constrained-runtime, HTTP/file and rendered-page acceptance. They do 
 prove a new real sign-in, consent, recipient revocation, purchase, restore, AppReview
 or public release. Existing QQ outcomes, six saved store images and earlier actual
 Apple TEST evidence are retained. No AWS SES reply is needed for Resend.
+
+All eligible new QA and signed/deployed artifacts are preserved in raw-work-013:
+312paths/284objects,116,632,072original bytes. GitHub artifact commit
+94a4b8890292a4e1e0858e30328ec6839234f8c8 matches the review branch readback; a fresh
+download of the51,343,122-byte ciphertext passes decryption, every object hash and
+catalog mapping. [Complete addendum](../collaboration/verification/review-rollout-20261003/README.md).
+Final reviewed nonsecret publication receipts are stored directly after capture;
+the archive is not recursively rebuilt. Credentials/auth state/real backups remain
+excluded under the standing complete-work preservation contract.

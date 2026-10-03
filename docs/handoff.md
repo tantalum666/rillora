@@ -49,8 +49,12 @@ their recorded limits; no independent certification is invented.
 Deployed source is1ab6316a8bfd9a168ba029155e0dd0891c423139 oncodex/strict-review-20261002;
 application bytes match CI47. Current full suites retain their original dates and are
 not rerun for this rollout. Current QA isoutput/qa/rillora-review-rollout-20261003;
-new artifacts areoutput/release/rillora-review-20261003. Git/all-work closeout follows
-this execution state; source checkout is not the old main branch's deployment state.
+new artifacts areoutput/release/rillora-review-20261003. All eligible new work was
+pushed at94a4b8890292a4e1e0858e30328ec6839234f8c8. A fresh GitHub download of
+raw-work-013 decrypted and verified all284objects/312paths; older archives were not
+repeated. [Remote preservation receipt](../collaboration/verification/review-rollout-20261003/remote-readback.json).
+Final receipt-only changes follow that immutable artifact commit on the same branch;
+source checkout is not the old main branch's deployment state.
 
 ## Single next step
 

@@ -2,9 +2,9 @@
 
 Updated: 2026-10-03 (Asia/Shanghai)
 
-October3后续[部署与新构建追加包](verification/review-rollout-20261003/README.md)：API11/schema0093及受限Web/WWW已部署，116个线上文件逐一匹配；新1.0(3)已上传处理，Owner确认的加密声明已保存，Apple显示“准备提交”。当前仍未邀请测试员、提审或开放普通客户／正式收费。原始QA和签名产物保存在新增raw-work-013；当前代码分支保持`codex/strict-review-20261002`。
+October3后续[部署与新构建追加包](verification/review-rollout-20261003/README.md)：API11/schema0093及受限Web/WWW已部署，116个线上文件逐一匹配；新1.0(3)已上传处理，Owner确认的加密声明已保存，Apple显示“准备提交”。当前仍未邀请测试员、提审或开放普通客户／正式收费。原始QA和签名产物保存在新增raw-work-013，已从GitHub重新下载并解密核验284个对象／312条路径；当前代码分支保持`codex/strict-review-20261002`。
 
-October3最新任务是[严格全项目代码审查](../docs/code-review-20261002.md)：686份活动源码正文已完整审阅，28项修复完成本地验证，CI47三个任务通过、新证据归档已从远端下载解密核验；新源码尚未部署。当前工作分支为`codex/strict-review-20261002`。[本轮追加保存](verification/strict-review-20261003/README.md)包含原始QA、失败记录、结果包和本地构建，原有历史归档保持不变。当前待办只看handoff。
+October3较早完成[严格全项目代码审查](../docs/code-review-20261002.md)：686份活动源码正文已完整审阅，28项修复完成本地验证，CI47三个任务通过、新证据归档已从远端下载解密核验；该审查检查点尚未部署，随后部署结果见上方追加包。当前工作分支为`codex/strict-review-20261002`。[本轮追加保存](verification/strict-review-20261003/README.md)包含原始QA、失败记录、结果包和本地构建，原有历史归档保持不变。当前待办只看handoff。
 
 September30基础快照的全量保存已完成：远端main／历史标签已读回，7个Git LFS归档已重新下载、解密核验，[CI42通过](https://github.com/tantalum666/rillora/actions/runs/36737542600)。[完整回执](verification/README.md)。
 

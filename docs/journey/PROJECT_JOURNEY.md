@@ -3149,3 +3149,9 @@ Owner先确认小型企业资格事实、再当场确认最终声明，申请已
   semantic comparison pass. Business/encryption code is unchanged, and build3was
   not rebuilt or re-uploaded. Packages1/2are complete; remaining real core/device/
   purchase and store/commercial gates retain their separate scope.
+
+- Preservation closeout: artifact commit94a4b8890292a4e1e0858e30328ec6839234f8c8 was
+  pushed on the current review branch. A fresh GitHub LFS download and remotely read
+  metadata verify raw-work-013,284objects/312paths, with no previous archive downloads.
+  Two remaining present-tense references to未部署 were corrected into dated historical
+  states. Final receipt-only changes do not repeat CI47, deployment, upload or consent.

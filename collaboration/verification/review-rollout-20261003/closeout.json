@@ -20,7 +20,7 @@
   "artifactChecksPassed": 8,
   "privacyManifests": 11,
   "appleBuildId": "60051464-b509-4fd8-aa16-f683607bc21d",
-  "appleStatus": "\u51c6\u5907\u63d0\u4ea4 / Ready to Submit",
+  "appleStatus": "准备提交 / Ready to Submit",
   "ownerConfirmedDeclaration": true,
   "futurePlistMetadataChecked": true,
   "testers": 0,
@@ -31,9 +31,24 @@
   "liveBillingEnabled": false,
   "productTestsRerun": false,
   "retainedRegression": "CI47/API400/Web115+7/native190pass1existingSkip/infra53",
-  "git": "private current review branch;newarchive local verification complete,remote pending",
+  "git": {
+    "branch": "codex/strict-review-20261002",
+    "artifactCommit": "94a4b8890292a4e1e0858e30328ec6839234f8c8",
+    "remoteBranchMatched": true,
+    "freshRemoteArchiveVerified": true,
+    "archiveFiles": 312,
+    "archiveObjects": 284,
+    "previousArchivesRepeated": false,
+    "receiptFollowup": "Reviewed nonsecret closeout documentation follows the verified immutable artifact commit."
+  },
   "exclusions": "Credentials/auth URLs/session state,machine inventories,caches,expanded CDK assets and full third-party doc download",
   "boundary": "Release packages1/2completion, not final public launch or real purchase.",
   "nativeMetadataOnlyValidation": "Info.plist syntax passes;only false non-exempt-encryption key added;all other semantic values equal",
-  "oldRegressionNotRerun": true
+  "oldRegressionNotRerun": true,
+  "preservationCompletedAt": "2026-10-03T11:46:22.590331+00:00",
+  "documentationDriftCorrected": [
+    "docs/product.md historical review paragraph",
+    "collaboration/README.md historical review paragraph"
+  ],
+  "decisionLog": "Existing October3 scope and exact Owner encryption-approval entries cover this completion. Git receipt closeout adds no product decision."
 }

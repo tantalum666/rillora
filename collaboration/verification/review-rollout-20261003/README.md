@@ -1,6 +1,6 @@
 # Reviewed rollout and native3 — October3
 
-Status: PACKAGES1/2EXECUTED AND VERIFIED;LOCAL ARCHIVE PASSES;REMOTE PRESERVATION PENDING
+Status: PACKAGES1/2COMPLETE;LOCAL AND FRESH REMOTE ARCHIVE VERIFICATION PASS
 Last updated: 2026-10-03 (Asia/Shanghai)
 
 [Current execution](../../../docs/review-rollout-20261003.md) records API11/schema0093,
@@ -11,10 +11,14 @@ submission, real-device transaction or public customer/live-billing activation.
 This additive archive preserves312paths/284objects,116,632,072original bytes.
 Raw-work-013 is51,343,122encrypted bytes. Local verification decrypts/checks every
 object and catalog mapping. Earlier archives are unchanged and not redownloaded.
+GitHub branch readback matched94a4b8890292a4e1e0858e30328ec6839234f8c8. The new
+51,343,122-byte archive was fetched into separate empty LFS storage, then decrypted
+and verified against metadata read from GitHub at that commit:284objects/312paths pass.
 
 - [Complete new capture and exclusions](snapshot.json)
 - [Per-file readable/raw mapping](catalog.json)
 - [Local cryptographic verification](archive-verification.json)
+- [Fresh remote download and decryption](remote-readback.json)
 - [Deployment acceptance](receipts/deployment-acceptance.json)
 - [Migration/checksum/data evidence](receipts/migration-verified.json)
 - [Actual runtime](receipts/runtime-after.json)
