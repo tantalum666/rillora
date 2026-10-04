@@ -23,7 +23,8 @@ never automatically retries or publishes an unfinalized package. Other failures
 retain their normal alerts. Focused tests reproduced3failures then passed10of10;
 the fixed Release simulator completed the actual sign-in/retry/file/decrypt flow.
 An expired preview still requires refresh and review. No layout, crypto or server
-permission change; uploaded build3predates the fix and needs a new candidate.
+permission change. New signed1.0(4)includes the fix, is uploaded/processed as Ready
+to Submit, and has saved test notes with0groups; build3remains its prior checkpoint.
 [Current actual evidence](real-core-acceptance-20261004.md).
 
 ## October3 strict-review implementation boundary

@@ -247,3 +247,11 @@ authentication/MFA screens, runtime authentication logs and reproducible caches 
 excluded. Current disposable-account terms/import/delete and temporary-access cleanup
 stay explicit pending items. Local/remote archive receipts are separate from product
 acceptance; final receipt files follow the frozen capture without recursive resealing.
+
+
+The follow-up archive is35,005,928bytes, covering387paths/262objects. A fresh remote
+LFS download atbc9b502fbfe4de6f25f56c3e6794abcd1c3fae86 decrypted and verified them
+against GitHub-read metadata. [Remote receipt](../collaboration/verification/real-core-20261004-followup/remote-readback.json).
+Opaque public/wrapped crypto strings were removed from the readable package reference
+when the scanner flagged them; the exact original remains sealed, and the unchanged
+scanner then passed. The recovery private key was never part of either publication.

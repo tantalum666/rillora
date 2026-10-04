@@ -63,8 +63,9 @@ October3deployment/email/reset/invitation/AppleTEST/store-image evidence remains
 unchanged in[the rollout contract](review-rollout-20261003.md). Latest runtime image:
 sha256:7fe1d89a7cf22c2269372b27731f2d42a3abd59ee662c74923306f4cc7db14e3.
 Original archive14captured pre-consent progress and was remotely decrypted/verified.
-Later work is an additive preservation, with credentials/authscreens/recovery keys
-excluded; see[the collaboration index](../collaboration/README.md) for receipts.
+Later387paths/262objects are sealed in raw-work-015and freshly downloaded/decrypted
+from remote artifact commitbc9b502fbfe4de6f25f56c3e6794abcd1c3fae86. Credentials,
+authscreens and recovery keys are excluded; see[the collaboration index](../collaboration/README.md).
 
 ## Single next step
 

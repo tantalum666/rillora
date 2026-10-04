@@ -2,7 +2,7 @@
 
 Updated: 2026-10-04 (Asia/Hong_Kong)
 
-October4最新[真实核心验收追加包](verification/real-core-20261004-followup/README.md)：实际Google原生／QQ Web的Name/Details范围、重新认证、文件保存／跨端读取、撤销与当前设备退出已验证。实际验收发现的原生导出认证提示冲突已修复，10项针对性测试和CI48通过；新1.0(4)已上传处理为“准备提交”，测试说明保存，群组0。独立可删除账号的Web条款确认仍待Owner回复，导入／删除和临时权限回收未完成。修复／证据／签名产物追加到raw-work-015，分支仍为`codex/strict-review-20261002`。
+October4最新[真实核心验收追加包](verification/real-core-20261004-followup/README.md)：实际Google原生／QQ Web的Name/Details范围、重新认证、文件保存／跨端读取、撤销与当前设备退出已验证。实际验收发现的原生导出认证提示冲突已修复，10项针对性测试和CI48通过；新1.0(4)已上传处理为“准备提交”，测试说明保存，群组0。独立可删除账号的Web条款确认仍待Owner回复，导入／删除和临时权限回收未完成。修复／证据／签名产物已追加到raw-work-015，387路径／262对象已经从远端下载并解密核验，分支仍为`codex/strict-review-20261002`。
 
 较早[archive14检查点](verification/real-core-20261004/README.md)仅记录原生同意前的进度，135路径／112对象已从远端下载解密核验；其旧“下一步”不再活动。
 

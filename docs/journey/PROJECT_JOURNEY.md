@@ -3211,3 +3211,12 @@ Owner先确认小型企业资格事实、再当场确认最终声明，申请已
   at the actual unchecked page. Import/Web fresh-auth/delete have not occurred.
   Temporary4identity access is verified with original expiry and same runtime image;
   restore original3after acceptance. This dependency does not undo completed journeys.
+
+
+- Preservation closeout: raw-work-015contains387new/changed paths and262objects,
+  35,005,928encrypted bytes. A fresh remote LFS download atbc9b502fbfe4de6f25f56c3e6794abcd1c3fae86
+  decrypts/verifies every object/catalog path. Readable scan initially matched public/
+  wrapped crypto strings; omit them from the metadata reference, retain exact sealed
+  originals and rescan with0findings. No scanner suppression or recovery-key publication.
+  The current incomplete disposable-identity gate remains explicit; all12release gate
+  statuses are retained. Final receipt-only changes do not repeat CI48or uploads.

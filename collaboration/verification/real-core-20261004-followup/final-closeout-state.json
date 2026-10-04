@@ -1,0 +1,70 @@
+{
+  "recordedAt": "2026-10-04T15:18:15.532487+00:00",
+  "status": "Partial actual core acceptance; isolated account Web terms confirmation pending",
+  "implementationChanges": [
+    "RilloraAPIError exact recent-auth predicate",
+    "StartHerePreviewStore retains prior state for shared authentication recovery",
+    "four behavior regression tests"
+  ],
+  "newProductTests": {
+    "focusedNativeBefore": "7passed/3failed/0skipped",
+    "focusedNativeAfter": "10passed/0failed/0skipped",
+    "ci": "CI48 all three jobs succeeded at81c08bf4c"
+  },
+  "newDeploymentOrStoreUpload": {
+    "cloud": "Temporary exact fourth identity only; API12 same image/schema/roles/secrets/expiry; restore original3after use",
+    "native": "1.0(4)uploaded/processed/ReadyToSubmit; prior approved crypto metadata retained; test notes saved; groups0"
+  },
+  "focusedDocs": [
+    "docs/real-core-acceptance-20261004.md",
+    "docs/trusted-sharing.md",
+    "docs/start-here-export.md",
+    "docs/platform-contract.md",
+    "config/release-gates.json",
+    "docs/source-control.md",
+    "collaboration/README.md"
+  ],
+  "authority": [
+    "docs/product.md",
+    "docs/handoff.md",
+    "docs/decision-log.md",
+    "docs/journey/PROJECT_JOURNEY.md"
+  ],
+  "decisionReason": "Bounded disposable identity and observed correctness repair under current Owner authority; no new product/pricing/crypto/access-duration decision",
+  "passedEvidence": [
+    "web-baseline.json",
+    "name-scope.json",
+    "details-scope-and-reauth.json",
+    "native-plaintext-guide.json",
+    "native-complete-backup.json",
+    "native-encrypted-copy.json",
+    "native-export-reauth-defect.json",
+    "revocation.json",
+    "web-logout.json",
+    "native-logout.json",
+    "ci48.json",
+    "distribution-build4.json",
+    "apple-build4-readback.json"
+  ],
+  "notProven": [
+    "empty-target actual import",
+    "Web fresh-auth successful retry",
+    "disposable-account deletion and provider cleanup",
+    "final original3identity access restoration",
+    "physical-device/install/purchase/restore/AppReview/public release"
+  ],
+  "publicationExclusions": [
+    "native-account-terms.jpg and aws-mfa-required.jpg actual authentication screens",
+    "provider/authentication/runtime session logs",
+    "credentials/recovery keys/deletion receipts/callback/capability URLs",
+    "reproducible dependency/compiler/extraction/publication cache"
+  ],
+  "retainedRegression": "CI47 and earlier full native suite190pass/1existingStoreKitSkip retain original dates; no whole native suite rerun",
+  "publication": {
+    "archive15": "freshremoteverified262objects/387paths",
+    "artifactCommit": "bc9b502fbfe4de6f25f56c3e6794abcd1c3fae86",
+    "sourceScanner": "passed29reviewednonsecretspans0unknown",
+    "readableScanner": "passedafteropaquecryptometadataredaction0findings",
+    "priorArchivesRebuilt": false
+  }
+}

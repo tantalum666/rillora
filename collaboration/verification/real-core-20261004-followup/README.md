@@ -1,6 +1,6 @@
 # Actual core acceptance follow-up — October4
 
-Status: LOCAL ARCHIVE VERIFIED; REMOTE PRESERVATION IN PROGRESS; DISPOSABLE TERMS PENDING
+Status: LOCAL AND FRESH REMOTE ARCHIVE VERIFIED; DISPOSABLE TERMS/IMPORT/DELETE PENDING
 Last updated: 2026-10-04 (Asia/Hong_Kong)
 
 [Current contract](../../../docs/real-core-acceptance-20261004.md) records actual
@@ -39,3 +39,9 @@ mapping. Previous archives were not rebuilt or remotely downloaded again.
 Final nonsecret metadata and publication/remote receipts are reviewed directly after
 this capture. They do not cause recursive archive resealing. Historical
 source counts are not substituted for this dated per-file catalog.
+
+
+[Fresh remote verification](remote-readback.json) confirms262objects/387paths from
+artifact commitbc9b502fbfe4de6f25f56c3e6794abcd1c3fae86. Source and readable scans pass;
+opaque public/wrapped crypto strings are omitted from the reference JSON while the
+exact package remains sealed. The separate recovery private key is excluded entirely.

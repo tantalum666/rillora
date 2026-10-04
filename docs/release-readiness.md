@@ -1,10 +1,29 @@
 # Rillora 1.0 正式发布准备
 
 Role: current launch scope, remaining work and release evidence contract  
-Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; CUSTOMER ACCOUNTS AND SALES CLOSED
-Last updated: 2026-10-03 (Asia/Shanghai)
+Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; ORDINARY CUSTOMER ACCESS AND SALES CLOSED
+Last updated: 2026-10-04 (Asia/Hong_Kong)
 
-## October3 selected packages1/2 — latest execution
+## October4 actual core acceptance and build4 — latest execution
+
+[Actual native/Web acceptance](real-core-acceptance-20261004.md) now verifies
+Name/Details restriction/expansion, native recent-auth cancellation/retry, saved
+plaintext/full-map/encrypted cross-client reading, open-detail revocation clearing,
+and current-device logout. Native restart stays signed out. The isolated disposable
+Web account is awaiting current terms confirmation before import, successful Web
+fresh-auth retry and final confirmed/provider-backed deletion.
+
+The actual export journey exposed one additional native competing-alert defect.
+Focused red/green and the real fixed flow pass; CI48passes. Signed1.0(4)contains
+the fix, passed9artifact checks, uploaded/processed to Ready to Submit and saved
+its test notes. Groups0; no physical install, invitations or review submission.
+Approved encryption metadata is retained; no repeated build3upload/declaration.
+
+Temporary fourth-identity access uses API12with the same application image/schema93,
+roles/network/secrets and original expiry; restore the original3identities after the
+current disposable test. Neither Owner account nor real source data was deleted.
+
+## October3 selected packages1/2 — retained completed rollout
 
 Owner selected deployment and the new native candidate. [The actual rollout](review-rollout-20261003.md)
 is now complete for API11/schema0093 and restricted Web/WWW, with data/role/TLS checks,
@@ -75,7 +94,7 @@ required approval for the Owner-selected sender.
 
 <a id="october1-remaining-work-inventory"></a>
 
-## October3 remaining-work inventory
+## October4 remaining-work inventory
 
 The12register gates share dependencies and are grouped below. Two are verified;
 ten remain open/in-progress/deferred. Counts are not a completion percentage.
@@ -83,14 +102,14 @@ ten remain open/in-progress/deferred. Counts are not a completion percentage.
 | Work package | Current evidence and remaining work | Dependency / participation |
 | --- | --- | --- |
 | Deploy newly reviewed repairs | Complete: API11/schema0093 and restricted Web/WWW deployed; role/TLS/data preservation and116live file hashes verified | Preserve this evidence; no repeated rollout or authentication merely on continuation |
-| Real account and core journeys | Real A/B login, native read, QQ arrival, reset/new login and Directions filtering complete; final scope/revoke/export/delete/recent-auth acceptance remains | Current planner genuine consent/authentication; account deletion uses a disposable identity |
-| Apple purchase lifecycle | Review environment/enrollment, notifications/official TEST, dev build and internal TestFlight upload complete; actual purchase/restore/renewal/refund/expiry remain | Export-compliance determination and Owner resuming deferred physical Apple test interaction |
+| Real account and core journeys | Prior login/mail/reset retained; actual scope changes, native recent-auth, saved copies/recovery, revocation and current-device logout now pass. Empty-map import, Web fresh-auth retry and provider-backed deletion remain | Pending current Web terms confirmation for isolated disposable identity; final deletion needs action-time confirmation |
+| Apple purchase lifecycle | Review environment/enrollment and official TEST retained; latest eligible1.0(4)processed. Actual purchase/restore/renewal/refund/expiry remain | Owner resuming deferred physical Apple test interaction; completed OS-only declaration retained |
 | Merchant, markets and live billing | Existing integration retained; real operator/merchant/tax facts, live provider lifecycle, effective SBP fee and final Apple price remain | Owner-deferred facts and final decisions, then provider/Agent execution; Web88.99 stays locked |
 | Physical-device acceptance | Prepared development/distribution builds; actual device authentication/accessibility/return/purchase remains | Owner explicitly deferred; do not install or ask again just because the phone is paired |
-| Final distribution and submission | New1.0(3) uploaded/processed with normal eligibility; six designed screenshots retained, new test notes saved; Owner-confirmed encryption declaration saved; Apple showsReady to Submit | Truthful final declarations/contact/market/price, operative reviewer access and acceptance; then a new external-distribution build, review and manual release |
+| Final distribution and submission | Latest1.0(4)uploaded/processed with normal eligibility and approved encryption metadata; six designed screenshots retained, test notes saved; Ready to Submit | Truthful final declarations/contact/market/price, operative reviewer access and actual acceptance; then submission/review and manual release |
 | Controlled customer cutover | Isolated production/recovery/security foundations complete; exact Preview retirement, old-token expiry, negative checks and customer opening remain | Upstream acceptance first; measured86400second token lifetime plus clock tolerance; preserve Owner/real data |
 
-The older build2is internal-only. New build3has normal eligibility and its Owner-confirmed encryption declaration is saved; Apple showsReady to Submit. Both retain separate records. Its local artifact
+The older build2is internal-only. Latestbuild4has normal eligibility, approved encryption metadata and Ready to Submit; build3retains its separate completed record. Its local artifact
 checks have no blockers; this does not close transaction, declarations or submission
 gates. No TestFlight invitations were sent. Four6.9inch iPhone and two13inch iPad
 designs are saved in the unsubmitted English draft; no redesign is needed. SBP still
