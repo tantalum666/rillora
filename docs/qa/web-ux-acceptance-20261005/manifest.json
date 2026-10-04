@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "checkpoint": "01",
+  "checkpoint": "01-publication-update",
   "repository_base": "2cc95f77c1279bdad43547b7e58a8faca9da7a93",
   "runtime_commit_verified": false,
   "capture_interval_utc": "2026-10-04T18:43:00Z/2026-10-04T18:57:00Z",
@@ -15,9 +15,9 @@
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/README.md",
-      "bytes": 3082,
-      "sha256": "222a350ce65cd1a8f08c7d91781d704a151fe2f5661a5d0b0e267af4a999115d",
-      "git_blob_sha": "23be863f5f383c97a6cb11d6a0ff85acfebc4baa",
+      "bytes": 3293,
+      "sha256": "43ca9f9555a7be98673cfa8021f5a8d2d150c05a264951ed63790e3fd1191e59",
+      "git_blob_sha": "a21a7c5b7ea8ff0ed248b2739955be70a8e8b7dc",
       "kind": "qa-document",
       "publication_status": "included_in_checkpoint"
     },
@@ -83,7 +83,7 @@
       "sha256": "366ab050504c92922226885fcea14d9c75bd2bc26278bc0477d4e49c6787cea4",
       "git_blob_sha": "0feab5bc2dab98b745c3a010ade3225ba82d38a6",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_pending_upload"
+      "publication_status": "included_in_checkpoint"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/08-signup-entry.png",
@@ -91,7 +91,7 @@
       "sha256": "0ed2030248ce770669125677641802aae722113a4ea2f8ec08af9a713aa66c5b",
       "git_blob_sha": "3dc9e25aa1b6c8edbbe976ecda6c4b75870c279f",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_pending_upload"
+      "publication_status": "included_in_checkpoint"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/09-signup-auth-page.png",
@@ -99,7 +99,7 @@
       "sha256": "a07a17f1ebef085e2e50e41799080dac35c9b9f0c57ea6edce2796af179f1d58",
       "git_blob_sha": "43a0e104a3d0f74185c6905b5a3f7f4909826f80",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_pending_upload"
+      "publication_status": "included_in_checkpoint"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/10-signup-empty-validation.png",
@@ -107,7 +107,7 @@
       "sha256": "a2fda933686e4fde63f460659655c90878b7e8bea34086579ffa2e2e7b17f5cb",
       "git_blob_sha": "fd1d94cd5ea16cb2f1f9eba3fd2d2b152b0b9eef",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_pending_upload"
+      "publication_status": "included_in_checkpoint"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/11-signup-invalid-validation.png",
@@ -115,7 +115,7 @@
       "sha256": "b74d9138adb43b43e9a497d65bf1145848c78e882515be88759182cf4992a983",
       "git_blob_sha": "926266011504ab6b23e400dab17e1fd55dc25d48",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_pending_upload"
+      "publication_status": "included_in_checkpoint"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/12-support-sharing-answer.png",
@@ -123,7 +123,7 @@
       "sha256": "35fe47f3ceff9d5eb0a7f4f03670b74b55dcd808eb314d18e7101768bb531d63",
       "git_blob_sha": "54db5a39a3b3e11df1337d73a8d792bed45ebe4e",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_pending_upload"
+      "publication_status": "included_in_checkpoint"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/13-signup-passkey-choice.png",
@@ -131,7 +131,7 @@
       "sha256": "ddd156fc8591cddd0d70ea33ea8e391ed0d662bde8acc7c9c319713e056ada97",
       "git_blob_sha": "40fcf07456fda05769053ddc1e53426598968660",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_pending_upload"
+      "publication_status": "included_in_checkpoint"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/15-security-desktop.png",
@@ -139,7 +139,7 @@
       "sha256": "fe9290652283d19cbac5e10ae94ae2d6f61bb0b2ecf8ab499e6e40326dced425",
       "git_blob_sha": "bca2afdb0bea0fa0603ed6f7cb7eb13d34b3e2a8",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_pending_upload"
+      "publication_status": "blocked"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/16-first-login-empty-map.png",
@@ -147,7 +147,7 @@
       "sha256": "f2cbba0adefe31343682c9e933d50a0506c0544f52523ebb3992b75eb3206b7a",
       "git_blob_sha": "d8d8cc18c97990c7730fc3485e81aae88b56b9fc",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_pending_upload"
+      "publication_status": "captured_not_published"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/17-quick-start-guide.png",
@@ -155,7 +155,7 @@
       "sha256": "2e0def77877b3cd6637cbabbfda76b5ad218ff489ff9f550a31b06fba493010f",
       "git_blob_sha": "d073a327c2df1364f606509eb21b0fade7ab68b8",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_pending_upload"
+      "publication_status": "captured_not_published"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/18-quick-start-next-step.png",
@@ -163,7 +163,7 @@
       "sha256": "b09f05b8374e4fc262469d21b51cfdacb14a643af461dc0235a34f29a9ce3885",
       "git_blob_sha": "f7a0c9e9b35a0a6787fca72345c7ca3b58d9e300",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_pending_upload"
+      "publication_status": "captured_not_published"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/19-new-matter-empty-form.png",
@@ -171,7 +171,7 @@
       "sha256": "58a56c25f476017f39e8fa6bf7af5553c778836b49438eae8b813a86be03408e",
       "git_blob_sha": "f18613a26abd76e9f8b000f054b7a2c68261f50e",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_pending_upload"
+      "publication_status": "captured_not_published"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/20-unsaved-matter-close.png",
@@ -179,7 +179,7 @@
       "sha256": "901ca4a6e1c4014ed0f4773e8b906e36117df23ad009fe994a0d53294ee14108",
       "git_blob_sha": "a36c5a184a3792b956ff37f96d21fba8da85cf6f",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_pending_upload"
+      "publication_status": "captured_not_published"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/21-draft-refresh-recovery.png",
@@ -187,7 +187,7 @@
       "sha256": "1fb5167c3b3043e688ccd43ad6e971c779f8403f8cca562ba91ac156b2f8b1c7",
       "git_blob_sha": "806b6b6a19a3da4451b6906dd971545e56934268",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_pending_upload"
+      "publication_status": "captured_not_published"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/22-first-matter-saved.png",
@@ -195,7 +195,7 @@
       "sha256": "feaed728d2f6772794a2145a747ad1e5e2a017ada44b51c226134f50a7607d06",
       "git_blob_sha": "675ddcdd813d3ea7facb23abacb27dab8622141e",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_pending_upload"
+      "publication_status": "captured_not_published"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/23-matters-list-first-record.png",
@@ -203,7 +203,7 @@
       "sha256": "90740d834efc1edf56059107b355f2b2e622095185b17ec342b45df363fd4d89",
       "git_blob_sha": "4f3c50ac48ffc1b5eb6316e7540d3cf9210226e3",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_pending_upload"
+      "publication_status": "captured_not_published"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/24-matter-detail-draft.png",
@@ -211,7 +211,7 @@
       "sha256": "2471b2421142045e1e8a9ba410472a4669bb6ee817ce9a8d9d438cf57c292371",
       "git_blob_sha": "342cec61077f73dc6e12e260fee83c361408d412",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_pending_upload"
+      "publication_status": "captured_not_published"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/25-search-no-results.png",
@@ -219,7 +219,7 @@
       "sha256": "32c02d2d67bfb12c5221119b726aa5df71bb5494364c2f7942c2edda529c6e85",
       "git_blob_sha": "ba9ae4b089b6b93f21789c5465e66d8e1f31ef9d",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_pending_upload"
+      "publication_status": "captured_not_published"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/26-manage-matter-sharing-empty.png",
@@ -227,7 +227,7 @@
       "sha256": "706933c6fea218ea45ec38c29188b258fc31c71adbad1f77e1f91ad9f913835f",
       "git_blob_sha": "53054d40e8c14f5a235bbb039012caa38bd448a8",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_pending_upload"
+      "publication_status": "captured_not_published"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/27-invite-person-empty.png",
@@ -235,7 +235,7 @@
       "sha256": "6468016dd7e7efad2de4c47ec9be66e8cfadda5194c8d72328c3e615b19b8707",
       "git_blob_sha": "f8ee8ed82649b6ec78cc625fe5e64c16835a0955",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_pending_upload"
+      "publication_status": "captured_not_published"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/28-invite-access-scope.png",
@@ -243,7 +243,7 @@
       "sha256": "29b46a43a8faf0a7b3fb17d199d97b2aa217d237676f8778c0c7e081a4a6f113",
       "git_blob_sha": "0066b5cae5a21433e0a3c6504895db65618fdf60",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_pending_upload"
+      "publication_status": "captured_not_published"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/29-invite-visible-details-name-only.png",
@@ -251,7 +251,7 @@
       "sha256": "ea3b9c77ef3fac334dc6b0afc5b8ceb04d10f6df61772748b71aa1d9a32476c5",
       "git_blob_sha": "af69c63358ba8e4e1ae959f04ece547391de89fd",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_pending_upload"
+      "publication_status": "captured_not_published"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/30-invite-directions-preview.png",
@@ -259,7 +259,7 @@
       "sha256": "17ec63c2a727001e1c66a44e1d69318858256da0635774628746c1fdde7e88fd",
       "git_blob_sha": "f14f8a7297f3834234d32e0f89570a98d56a6eb0",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_pending_upload"
+      "publication_status": "captured_not_published"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/31-invite-full-details-preview.png",
@@ -267,7 +267,7 @@
       "sha256": "66465c76d5a4fc068cfffdd3261ba2c96dbbfaef6862bb93b97a7bdda6d24758",
       "git_blob_sha": "2023a7c98de52037782c615dffb0de21ea113199",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_pending_upload"
+      "publication_status": "captured_not_published"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/32-invite-invalid-email-disabled.png",
@@ -275,7 +275,7 @@
       "sha256": "15507663a927c1c1412e3d97fb52ddb100b402f20019aca3b632c5208904c4e7",
       "git_blob_sha": "c277e23c40e80d508e65cd158a557bd241e0c23c",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_pending_upload"
+      "publication_status": "captured_not_published"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/33-cancelled-invite-contact-persists.png",
@@ -283,7 +283,15 @@
       "sha256": "dd64d4d69787a39e3dc711517ccb87b0258af866de3a97a7ba486bdf6291cc70",
       "git_blob_sha": "954b81023562b300bc591411bf04ac9efee0f51b",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_pending_upload"
+      "publication_status": "captured_not_published"
+    },
+    {
+      "path": "docs/qa/web-ux-acceptance-20261005/publication-log.md",
+      "bytes": 1358,
+      "sha256": "64c0ddc0efab78da9e4ad76743b181f533ecf1e120d72b9969618f6b47045a88",
+      "git_blob_sha": "f850149b6ecf90f9dffd01f475cc4e77b6c0e92d",
+      "kind": "qa-document",
+      "publication_status": "included_in_checkpoint"
     }
   ],
   "excluded": [
@@ -291,5 +299,5 @@
     "inspection-*: derivative contact sheets; may include excluded frame",
     "audit-progress.md: superseded working draft"
   ],
-  "boundary": "Only these allowlisted documents and screenshots are published. Manifest does not include itself."
+  "boundary": "Only included_in_checkpoint files are in this Git tree. blocked/captured_not_published images are not uploaded; hashes only identify local captures. Manifest excludes itself."
 }
