@@ -192,7 +192,7 @@ Directions预览仅包含Provider / Location / Wishes。Notes里的具体步骤�
 
 - 分享默认Name档，未选择事项不共享；逐档可见字段预览明确
 - 创建未保存时关闭有保护，Keep editing保留输入；刷新有显眼Resume draft
-- 归档说明可恢复位置；恢复明确为private Draft，未直接恢复旧分享
+- 归档说明可恢复位置；恢复明确为private Draft，UI说明分享保持关闭，仍需收件侧复测
 - 真实注册的空/非法邮箱错误清楚，焦点处理比邀请表单更成熟
 - 明文导出前明确说明plaintext和副本不可撤销
 - 价格/当前能力多处明确Preview或尚未开放，没有把支付入口伪装成可用
