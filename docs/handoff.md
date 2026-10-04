@@ -1,77 +1,78 @@
 # Rillora Current Handoff
 
-Status: REAL CORE IN PROGRESS; NATIVE REAUTH REPAIR AND EXPORT READBACK PASSED; IMPORT/REVOKE/DELETE/LOGOUT REMAIN
+Status: ACTUAL CORE PARTIAL; DISPOSABLE WEB TERMS CONFIRMATION PENDING
 Last updated: 2026-10-04 (Asia/Hong_Kong)
 
 ## Current task
 
-Owner asks to complete the remaining real Web/native core journeys. Continue
-[the current acceptance contract](real-core-acceptance-20261004.md). Keep UI/full03,
+Owner asks to complete remaining real Web/native core journeys. Continue
+[the current acceptance contract](real-core-acceptance-20261004.md). Preserve UI/full03,
 Free1/Family5, Web88.99annual/conditional Apple price, real records and FanPass.
 Physical-device/merchant deferrals and ordinary customer/live billing closure remain.
-Reuse the completed184Markdown/686source review and CI47; no new full-suite rerun.
+The184Markdown/686source full-read baseline is retained; this is not a new review.
 
 ## Completed this continuation
 
-- Owner restored the genuinely signed-out QQ Web session. Actual private overview
-  has0owned matters; the existing synthetic shared matter is readable. Observed
-  HTTP200/readOnly/live response contains exactly the5Directions fields.
-- Web deletion preview starts unchecked/empty with final action disabled. Leaving
-  without submission preserves the account and private overview. No deletion occurred.
-- The empty QQ map backup was saved through the actual Chrome Save dialog and opened
-  by the product reader (1,299bytes,0matters/0people,readOnly). Later, aged recent-auth
-  blocked another sensitive export with403; Keep editing preserved ordinary sharing.
-  Populated cross-platform recovery/import and successful fresh-auth retry remain.
-- Existing simulator Rillora app datedOctober1, so a current-source Release simulator
-  artifact was built, signature/production connection/fixture checks passed, then
-  installed/launched without uninstall, data/Keychain erase or physical-device use.
-- Native sign-in reused the original Google session. Owner explicitly confirmed
-  the exact Account terms action; it was submitted and returned to1synthetic matter
-  and the existing Connected recipient. Current native private callback is verified.
-- Native Directions-to-Name reduction was saved; the open QQ detail updated without
-  reload and its actual response contains onlytitle/category. Details expansion then
-  required recent authentication; Keep editing retained the draft and persisted Name
-  scope. Google reauthentication and explicit retry completed, and QQ now reads Details.
-- Native plaintext guide and full map backup were saved and read in Web. A new native
-  reauthentication-alert defect was reproduced/fixed with10focused tests passing.
-  The fixed Release simulator completed sign-in, explicit retry, fresh-preview handling,
-  encrypted-package save and successful Web decryption. Recovery keys stay protected.
-  The old uploaded build3predates this fix; a new signed candidate remains required.
-- AWS and Auth0 management access are restored after actual expiry. A deliberately
-  disposable identity was created without email verification; a reviewed temporary
-  fourth-identity task/service-only change is rolling out, retaining original expiry.
-  Remove that temporary access after the actual deletion test.
+- Actual Google native planner and QQ Web recipient authenticated after explicit
+  personal confirmation. Only the existing synthetic matter was used. Name reduction
+  and Details expansion reflect the exact permitted fields; cancelled recent-auth
+  preserves the draft, and successful authentication requires explicit Save sharing.
+- Native plaintext guide (962bytes), full map backup (2,291bytes;1matter/1person/1role)
+  and encrypted package (2,507bytes) were saved through Files and read by deployed Web.
+  The encrypted file also opened in the native local reader. Minimum guides omit
+  Notes/reference; the complete backup retains them. The343-byte recovery key is
+  separately protected and excluded from QA/Git.
+- A real native export alert hid the common reauthentication prompt. The targeted
+  store repair reproduced3failures then passed10focused tests; fixed Release UI
+  completed fresh sign-in, explicit retry, expired-preview refresh and saved-file
+  recovery. Current source81c08bf4c5b577468bae4a77672b64a059365675 is pushed on
+  codex/strict-review-20261002 and CI48passes all three jobs.
+- Stop sharing showed native Disconnected/0of1place. QQ's already-open detail cleared
+  without reload; actual HTTP200 returns empty connections/items and readOnly=true.
+  Saved external copies remain readable. Neither Owner account nor source matter deleted.
+- QQ sign-out and reopening its private route show public content. Native sign-out
+  completed Auth0 exit, and same-binary restart remains signed out. This is current
+  device evidence, not a claim about every other device or physical app updates.
+- New signed1.0(4)contains the fix;9artifact checks pass, upload/Apple processing
+  succeeded, Ready to Submit observed and test notes persisted on reload. Groups0,
+  no tester invitations or App Review submission. Build3was retained, not re-uploaded.
 
-## Retained completed release evidence
+## Current dependency and temporary cloud state
 
-API11/schema0093 and restricted Web/WWW are deployed;93checksums/91old migration
-bytes, eight private-table fingerprints, runtime role/TLS and116live files passed.
-The active image digest issha256:7fe1d89a7cf22c2269372b27731f2d42a3abd59ee662c74923306f4cc7db14e3.
-Native1.0(3)is uploaded/processed with Owner-confirmed saved encryption declaration,
-AppleReady to Submit, test notes saved and0testers/groups. No repeat upload/declaration.
-Previous eligible work and raw-work-013were pushed and fresh-remote decrypted/verified
-through e673f1c808654a9f82845c8cedc6a52d06284638 oncodex/strict-review-20261002.
-[Completed rollout](review-rollout-20261003.md), [remote archive receipt](../collaboration/verification/review-rollout-20261003/remote-readback.json).
+AWS and Auth0 management genuinely expired and were restored; Owner completed AWS
+MFA and later Apple login. Do not repeat those ceremonies without actual failure.
+The isolated Auth0 identity rillora-core-delete-20261004@example.test was prepared
+with verification false and no mail requested. Exact temporary fourth-identity
+access is now active: API12uses the same API11application image/schema0093 and
+unchanged roles/network/secrets. The original3identities and original expiry
+2026-10-06T17:08:57Z (October7 01:08:57Hong Kong) are retained. Auth0 Action/bindings,
+active task list and1healthy task were verified. Restore original3after the test.
 
-## Evidence boundary and current dependency
+The actual Web account page is unchecked and awaits the already-issued Owner terms
+confirmation for this new disposable identity. It has not signed in, imported data
+or been deleted. Gmail/QQ consent cannot substitute for this account's consent.
+Actual import, successful Web fresh-auth retry, final destructive confirmation and
+provider-backed deletion remain. Do not mark the whole core package complete.
 
-New QA: output/qa/rillora-real-core-20261004. Simulator artifact:
-output/release/rillora-core-simulator-20261004. It is not a TestFlight install or
-physical-device result. Original review access still ends2026-10-06T17:08:57Z
-(October7 01:08:57Hong Kong); the original three remain, with only a temporary fourth
-disposable identity currently being added for deletion acceptance.
-Prior QQ arrival/reset/new-password login, original native legal/cross-platform read,
-invitation acceptance, six store images and AppleTEST remain their dated evidence.
-Current scope/revoke/export/recovery/recent-auth/disposable-deletion acceptance is
-unfinished. No Owner real account is a deletion fixture. Native legal confirmation
-was completed only after the explicit Owner reply; no API/fixture consent substitute.
+## Evidence and retained checkpoints
+
+Current QA: output/qa/rillora-real-core-20261004. Fixed simulator artifact:
+output/release/rillora-core-simulator-20261004/reauth-fix. New signed candidate:
+output/release/rillora-review-20261004. These are not physical-device/TestFlight use.
+October3deployment/email/reset/invitation/AppleTEST/store-image evidence remains
+unchanged in[the rollout contract](review-rollout-20261003.md). Latest runtime image:
+sha256:7fe1d89a7cf22c2269372b27731f2d42a3abd59ee662c74923306f4cc7db14e3.
+Original archive14captured pre-consent progress and was remotely decrypted/verified.
+Later work is an additive preservation, with credentials/authscreens/recovery keys
+excluded; see[the collaboration index](../collaboration/README.md) for receipts.
 
 ## Single next step
 
-Continue from the saved encrypted-copy result: finish native reader/import and Web
-fresh-auth checks, then revoke the active Details connection and complete disposable
-delete/logout acceptance. The temporary access rollout must be verified and restored
-to the original three after use. Do not repeat completed mail/reset/deployment/build3
-upload or resume the deferred phone. Preserve the current QQ tab and native session.
+Resume the pending exact Owner confirmation on the current Web Account page, sign
+in the isolated disposable identity normally, then finish synthetic backup import,
+Web fresh-auth and confirmed deletion; verify provider cleanup and restore original3
+access. Preserve that browser tab. The original Google/QQ sessions were intentionally
+signed out after their checks; do not repeat registration/reset or deferred phone work.
 
-[Previous rollout handoff](handoff-history-20261004-before-real-core.md) isHISTORICAL.
+[Previous rollout handoff](handoff-history-20261004-before-real-core.md) and
+[mid-core checkpoint](handoff-history-20261004-mid-core.md) are HISTORICAL.

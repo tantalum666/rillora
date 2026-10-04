@@ -2,7 +2,9 @@
 
 Updated: 2026-10-04 (Asia/Hong_Kong)
 
-October4正在继续[真实双端核心验收](verification/real-core-20261004/README.md)：QQ会话与共享字段、未确认删除的安全退出、空地图实际保存／本地打开、近期认证过期后的阻止与取消已观察。最新源码的Release模拟器版已安装，原生Account terms等待当场确认；完整核心验收尚未完成。新增QA与模拟器包进入raw-work-014，继续使用`codex/strict-review-20261002`。
+October4最新[真实核心验收追加包](verification/real-core-20261004-followup/README.md)：实际Google原生／QQ Web的Name/Details范围、重新认证、文件保存／跨端读取、撤销与当前设备退出已验证。实际验收发现的原生导出认证提示冲突已修复，10项针对性测试和CI48通过；新1.0(4)已上传处理为“准备提交”，测试说明保存，群组0。独立可删除账号的Web条款确认仍待Owner回复，导入／删除和临时权限回收未完成。修复／证据／签名产物追加到raw-work-015，分支仍为`codex/strict-review-20261002`。
+
+较早[archive14检查点](verification/real-core-20261004/README.md)仅记录原生同意前的进度，135路径／112对象已从远端下载解密核验；其旧“下一步”不再活动。
 
 October3后续[部署与新构建追加包](verification/review-rollout-20261003/README.md)：API11/schema0093及受限Web/WWW已部署，116个线上文件逐一匹配；新1.0(3)已上传处理，Owner确认的加密声明已保存，Apple显示“准备提交”。当前仍未邀请测试员、提审或开放普通客户／正式收费。原始QA和签名产物保存在新增raw-work-013，已从GitHub重新下载并解密核验284个对象／312条路径；当前代码分支保持`codex/strict-review-20261002`。
 

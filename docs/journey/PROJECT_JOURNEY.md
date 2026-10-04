@@ -3199,3 +3199,15 @@ Owner先确认小型企业资格事实、再当场确认最终声明，申请已
   logout; new signed candidate and additive Git evidence preservation. AWS/CLI restored
   after Owner MFA. Temporary fourth-identity-only access is being prepared, retaining
   the original three/expiry and restoring them after the test; no Owner account deletion.
+
+
+- Later October4 result: the encrypted package opens in both actual readers. Native
+  revocation clears the already-open QQ detail and HTTP200returns empty items/connections.
+  Both current-device logout paths passed; restarting the fixed native binary stays
+  public. Signed1.0(4)passed9artifact checks, uploaded/processed to Ready to Submit,
+  retained approved encryption metadata and saved test notes; groups0. CI48passed
+  for81c08bf4c. No physical purchase, tester invitation or review submission occurred.
+- Remaining personal gate: isolated disposable Web terms confirmation was requested
+  at the actual unchecked page. Import/Web fresh-auth/delete have not occurred.
+  Temporary4identity access is verified with original expiry and same runtime image;
+  restore original3after acceptance. This dependency does not undo completed journeys.

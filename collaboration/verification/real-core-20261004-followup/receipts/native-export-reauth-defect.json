@@ -1,0 +1,42 @@
+{
+  "recordedAt": "2026-10-04T12:59:11.453621+00:00",
+  "observed": "Expired recent authentication during encrypted export showed generic Start Here action not completed with Refresh and review/OK, instead of the required login action. After that alert remained open past30seconds, dismissing it left no login prompt.",
+  "cause": "NativeReauthenticationPrompt waits at most30seconds behind other UIAlertControllers; StartHerePreviewStore published a failed state for the same403 and created a competing SwiftUI alert.",
+  "beforeTests": {
+    "total": 10,
+    "passed": 7,
+    "failed": 3,
+    "skipped": 0,
+    "failureCases": [
+      "printable recent authentication",
+      "encrypted preparation recent authentication",
+      "encrypted finalization recent authentication"
+    ]
+  },
+  "fix": "Recognize exact403reauthentication_required and preserve the previous operation/preview state, leaving recovery to the shared prompt and requiring explicit retry. Other errors remain failures.",
+  "changedFiles": [
+    "apps/ios/Rillora/Core/API/RilloraAPIError.swift",
+    "apps/ios/Rillora/Features/StartHere/StartHerePreviewStore.swift",
+    "apps/ios/RilloraTests/StartHerePreviewStoreTests.swift"
+  ],
+  "cryptoOrPermissionsChanged": false,
+  "afterTests": {
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "skipped": 0,
+    "durationSeconds": 58.4,
+    "simulator": "isolated existing QA worker; Owner session not used"
+  },
+  "actualFixedUI": {
+    "at": "2026-10-04T14:32:30.902127+00:00",
+    "commonPromptPresented": true,
+    "noCompetingGenericAlert": true,
+    "sameGoogleReauthenticationCompleted": true,
+    "choicesRetained": true,
+    "manualRetryRequired": true,
+    "expiredPreviewBlockedAndRefreshed": true,
+    "encryptedPackageCreatedSavedAndWebDecrypted": true
+  },
+  "updatedAt": "2026-10-04T13:05:52.727012+00:00"
+}

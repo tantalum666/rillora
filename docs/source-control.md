@@ -230,7 +230,20 @@ scope; no previous archive, deployment, native upload or product suite is repeat
 
 The [new addendum](../collaboration/verification/real-core-20261004/README.md) preserves
 135paths/112objects (58143731original bytes) and the current Release simulator app
-in raw-work-014. Local ciphertext/object/catalog verification passes. Native legal
-confirmation and the remaining actual core cases are still pending, explicitly
-separate from source/artifact preservation. Auth handoff/session material and compiler
+in raw-work-014. Local ciphertext/object/catalog verification passes. At that frozen checkpoint, native legal
+confirmation and the remaining actual cases were pending. Later actual results are
+recorded separately; the archive is historical, not the current execution gate. Auth handoff/session material and compiler
 caches are excluded; previous archives are unchanged.
+
+
+## October4 actual core follow-up preservation
+
+The [follow-up addendum](../collaboration/verification/real-core-20261004-followup/README.md)
+records completed actual scope/copy/recovery/revocation/logout, the observed native
+reauthentication repair, CI48and uploaded/processed1.0(4). Its raw-work-015capture
+includes only new/changed QA versions, the fixed simulator and new signed candidate;
+unchanged archive14paths and earlier archives are retained. Recovery private keys,
+authentication/MFA screens, runtime authentication logs and reproducible caches remain
+excluded. Current disposable-account terms/import/delete and temporary-access cleanup
+stay explicit pending items. Local/remote archive receipts are separate from product
+acceptance; final receipt files follow the frozen capture without recursive resealing.

@@ -1,9 +1,11 @@
 # Real core acceptance checkpoint — October4
 
-Status: IN PROGRESS; CURRENT NATIVE TERMS CONFIRMATION PENDING; LOCAL ARCHIVE VERIFIED
+Status: HISTORICAL PRE-CONSENT CHECKPOINT; LOCAL AND FRESH REMOTE ARCHIVE VERIFIED
 Last updated: 2026-10-04 (Asia/Hong_Kong)
 
-[Current contract](../../../docs/real-core-acceptance-20261004.md) records actual QQ
+This is the earlier immutable capture. Later progress is in the
+[follow-up addendum](../real-core-20261004-followup/README.md) and current handoff.
+At this historical point, the [contract](../../../docs/real-core-acceptance-20261004.md) recorded actual QQ
 Web session/shared-field/deletion-cancel, empty-map save/local-read and aged-recent-auth
 403/cancel observations. The reviewed Release simulator artifact is built/installed;
 native Google returns to Account terms, awaiting explicit Owner confirmation.
@@ -28,3 +30,5 @@ are preserved encrypted; readable text is redacted reference material.
 Final nonsecret publication/remote receipts follow the frozen capture directly;
 the archive is not recursively rebuilt. This is a resumable partial-acceptance
 checkpoint, not final core completion or public launch.
+
+[Fresh remote verification](remote-readback.json) passed112objects/135paths at3e94fce46331c1bf960fe5e4dea286b5ba3e996c.

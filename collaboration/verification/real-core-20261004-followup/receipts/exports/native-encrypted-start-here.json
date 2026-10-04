@@ -1,0 +1,27 @@
+{
+  "boundaries": {
+    "externalCopiesRevocable": false,
+    "recipientDeliveryPerformed": false,
+    "releasePerformed": false,
+    "serverCanDecrypt": false
+  },
+  "content": {
+    "algorithm": "AES-256-GCM",
+    "ciphertext": "[OPAQUE_CRYPTOGRAPHIC_VALUE_OMITTED]",
+    "ciphertextSha256": "[OPAQUE_CRYPTOGRAPHIC_VALUE_OMITTED]",
+    "nonce": "[OPAQUE_CRYPTOGRAPHIC_VALUE_OMITTED]"
+  },
+  "createdAt": "2026-10-04T14:23:54.095Z",
+  "cryptoVersion": "rillora-hpke-v1",
+  "packagePublicId": "2fcfe29e-1ee1-4f77-8ed2-5d93d60e2944",
+  "previewPublicId": "5cff4b95-b1b4-402f-9f6b-9bb5f23e1d36",
+  "recipients": [],
+  "recovery": {
+    "encapsulatedKey": "[OPAQUE_CRYPTOGRAPHIC_VALUE_OMITTED]",
+    "publicKey": "[OPAQUE_CRYPTOGRAPHIC_VALUE_OMITTED]",
+    "wrappedKey": "[OPAQUE_CRYPTOGRAPHIC_VALUE_OMITTED]"
+  },
+  "schemaVersion": "rillora-encrypted-start-here-v1",
+  "sourceCommitment": "[OPAQUE_CRYPTOGRAPHIC_VALUE_OMITTED]",
+  "_referenceOnly": "Redacted metadata reference. Use the sealed original for file recovery; this JSON is not an importable package."
+}

@@ -1,0 +1,77 @@
+{
+  "updatedAt": "2026-10-04T14:58:34.935492+00:00",
+  "cases": [
+    {
+      "id": "recipient-existing-account",
+      "status": "passed",
+      "proof": "web-baseline.json; Owner authenticated QQ; actual shared response/DOM"
+    },
+    {
+      "id": "recipient-directions-fields",
+      "status": "passed",
+      "proof": "Actual HTTP200 response, readOnly/live, exactly5allowed fields"
+    },
+    {
+      "id": "web-delete-unconfirmed-exit",
+      "status": "passed",
+      "proof": "Unchecked/empty deletion form, submitdisabled, navigation leaves account usable"
+    },
+    {
+      "id": "reviewed-native-simulator-artifact",
+      "status": "passed",
+      "proof": "native-artifact-check.json; built/installed/launched; no data/keychain erase"
+    },
+    {
+      "id": "planner-current-session",
+      "status": "passed",
+      "proof": "native-owner-consent.json and native-planner-opened.jpg"
+    },
+    {
+      "id": "scope-restrict-expand",
+      "status": "passed",
+      "proof": "name-scope.json; details-scope-and-reauth.json; actual native saves and recipient HTTP/DOM readback"
+    },
+    {
+      "id": "revoke-open-recipient-view",
+      "status": "passed",
+      "proof": "revocation.json; native Disconnected and actual Web HTTP200 empty items/connections; open detail cleared without reload"
+    },
+    {
+      "id": "scoped-plaintext-encrypted-copy",
+      "status": "passed",
+      "proof": "native-plaintext-guide.json; native-encrypted-copy.json; actual saved files opened in deployed Web"
+    },
+    {
+      "id": "backup-local-reader-import",
+      "status": "partial-import-pending",
+      "proof": "native-complete-backup.json; actual populated backup saved and read; import not yet submitted"
+    },
+    {
+      "id": "recent-auth-cancel-retry",
+      "status": "native-passed-web-retry-pending",
+      "proof": "native-export-reauth-defect.json; actual native scope and export retry; Web block/cancel passed"
+    },
+    {
+      "id": "disposable-account-deletion",
+      "status": "temporary-access-ready-current-Web-terms-confirmation-pending",
+      "boundary": "Never delete Owner Gmail/QQ accounts; actual provider-side destructive completion needs its own proof"
+    },
+    {
+      "id": "logout-private-access-boundary",
+      "status": "passed-current-device",
+      "proof": "web-logout.json and native-logout-public-profile.jpg; explicit normal logout; no claim for other devices"
+    },
+    {
+      "id": "web-empty-backup-save-read",
+      "status": "passed",
+      "proof": "web-copy-and-reauth.json; actual Chrome save and product file reader"
+    },
+    {
+      "id": "web-old-auth-block-and-cancel",
+      "status": "passed",
+      "proof": "Actual403reauthentication_required; Keep editing preserves ordinary sharing access"
+    }
+  ],
+  "retained": "Registration/email/reset/prior acceptance/CI47/API11/schema93/build3not repeated",
+  "physicalDevice": "Owner-deferred, not resumed"
+}

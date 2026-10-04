@@ -1,0 +1,144 @@
+"""Bounded, reversible access for the single disposable core acceptance identity."""
+from pathlib import Path
+import datetime, hashlib, json, os, re, subprocess, sys
+
+ROOT = Path.cwd()
+P = ROOT / '.local-secrets/real-core-20261004'
+Q = ROOT / 'output/qa/rillora-real-core-20261004'
+
+def call(args, payload=None):
+    r = subprocess.run(args, input=None if payload is None else json.dumps(payload),
+                       capture_output=True, text=True, timeout=90)
+    if r.returncode:
+        raise RuntimeError('Provider operation failed; protected response withheld')
+    return json.loads(r.stdout) if r.stdout.strip() else {}
+
+def auth(method, path, body=None):
+    return call(['auth0','api',method,path,'--tenant','rillora-dev.eu.auth0.com','--no-input'], body)
+
+def aws(*args):
+    profile = 'rillora-production-operator' if args[0] == 'ecs' else 'rillora-cdk-deploy'
+    return call(['aws',*args,'--profile',profile,'--region','eu-central-1',
+                 '--output','json','--no-cli-pager'])
+
+def private(name, data):
+    target = P / name
+    with os.fdopen(os.open(target, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600), 'w') as f:
+        json.dump(data, f)
+
+def report(name, data):
+    data = {'at':datetime.datetime.now(datetime.timezone.utc).isoformat(), **data}
+    (Q / name).write_text(json.dumps(data, indent=2)+'\n')
+    print(json.dumps(data))
+
+def preflight():
+    assert not (P/'access-before-disposable.json').exists()
+    prior=json.loads((ROOT/'.local-secrets/production-review/review-access-20261001.json').read_text())
+    fixture=json.loads((P/'disposable-identity.json').read_text())
+    listing=auth('get','actions/actions?per_page=100')
+    assert listing.get('total',len(listing['actions']))==len(listing['actions'])
+    matches=[a for a in listing['actions'] if a['name']=='Rillora production review access']
+    assert len(matches)==1
+    action=auth('get','actions/actions/'+matches[0]['id'])
+    code=action['deployed_version']['code']
+    values=re.search(r"const IDENTITY_DIGESTS = '([a-f0-9,]+)'\.split",code).group(1).split(',')
+    assert values==prior['identityDigests'] and len(values)==3
+    assert fixture['identityDigest'] not in values
+    form=re.search(r"const FORM = '(ap_[A-Za-z0-9]+)';",code).group(1)
+    expected=(ROOT/'infra/auth0/hosted-consent/production-review-action.cjs').read_text().replace(
+        '__REVIEW_IDENTITY_DIGEST__',','.join(values)).replace('__REVIEW_EXPIRES_AT__',prior['expiresAt']).replace('__RILLORA_FORM_ID__',form)
+    assert code==expected
+    stack=aws('cloudformation','describe-stacks','--stack-name','RilloraProduction')['Stacks'][0]
+    assert stack['StackStatus']=='UPDATE_COMPLETE'
+    params=stack['Parameters']
+    dig=[p for p in params if 'ReviewIdentityDigests' in p['ParameterKey']]
+    exp=[p for p in params if 'ReviewExpiresAt' in p['ParameterKey']]
+    assert len(dig)==len(exp)==1 and exp[0]['ParameterValue']==prior['expiresAt']
+    # The CloudFormation parameter is NoEcho. Verify exact values on the active task.
+    outputs={v['OutputKey']:v['OutputValue'] for v in stack['Outputs']}
+    service=aws('ecs','describe-services','--cluster',outputs['ClusterName'],
+                '--services',outputs['RuntimeApiServiceNameF8B88348'])['services'][0]
+    assert service['desiredCount']==service['runningCount']==1 and service['pendingCount']==0
+    assert all(d['rolloutState']=='COMPLETED' for d in service['deployments'])
+    task=aws('ecs','describe-task-definition','--task-definition',service['taskDefinition'])['taskDefinition']
+    env={v['name']:v['value'] for v in task['containerDefinitions'][0]['environment']}
+    assert env['PRODUCTION_REVIEW_IDENTITY_SHA256'].split(',')==values
+    assert env['PRODUCTION_REVIEW_EXPIRES_AT']==prior['expiresAt']
+    assert env['PRODUCTION_RUNTIME_MODE']=='review'
+    assert env['ALLOW_STRIPE_PRODUCTION_INTEGRATION']==env['ALLOW_APPLE_PRODUCTION_INTEGRATION']=='false'
+    bindings=[(v['id'],v['action']['id']) for v in auth('get','actions/triggers/post-login/bindings?per_page=100')['bindings']]
+    private('access-before-disposable.json',{'action':action,'stack':stack,'service':service,
+            'task':task,'bindings':bindings,'identityDigests':values,'expiresAt':prior['expiresAt'],
+            'fixtureDigest':fixture['identityDigest'],'form':form,'digestParameterKey':dig[0]['ParameterKey']})
+    report('disposable-access-preflight.json',{'originalIdentityCount':3,'actionTemplateExact':True,
+           'activeTaskAndActionListsMatch':True,'originalExpiryRetained':True,'stackStable':True,
+           'disposableIdentityCurrentlyAllowed':False,'backupSavedProtected':True,'noMutation':True})
+
+def prepare_change(mode):
+    before=json.loads((P/'access-before-disposable.json').read_text())
+    assert datetime.datetime.fromisoformat(before['expiresAt'].replace('Z','+00:00'))>datetime.datetime.now(datetime.timezone.utc)
+    values=before['identityDigests']+([before['fixtureDigest']] if mode=='add' else [])
+    assert len(set(values))==len(values) and all(re.fullmatch('[a-f0-9]{64}',v) for v in values)
+    s=aws('cloudformation','describe-stacks','--stack-name','RilloraProduction')['Stacks'][0]
+    assert s['StackStatus']=='UPDATE_COMPLETE'
+    name='rillora-core-disposable-'+mode+'-20261004'
+    body={'StackName':'RilloraProduction','ChangeSetName':name,'ChangeSetType':'UPDATE',
+          'UsePreviousTemplate':True,'Description':'Temporary isolated core acceptance identity; original expiry and runtime image retained.',
+          'Parameters':[{'ParameterKey':p['ParameterKey'],**({'ParameterValue':','.join(values)}
+            if p['ParameterKey']==before['digestParameterKey'] else {'UsePreviousValue':True})} for p in s['Parameters']],
+          'Capabilities':s.get('Capabilities',[]),'RoleARN':s['RoleARN']}
+    private('access-change-'+mode+'.json',body)
+    result=aws('cloudformation','create-change-set','--cli-input-json','file://'+str(P/('access-change-'+mode+'.json')))
+    private('access-change-'+mode+'-result.json',result)
+    report('disposable-access-'+mode+'-prepared.json',{'changeSetCreated':True,'identityCount':len(values),
+           'originalThreeRetained':True,'expiryExtended':False,'previousTemplateUsed':True,'executed':False})
+
+def finish_change(mode):
+    before=json.loads((P/'access-before-disposable.json').read_text())
+    values=before['identityDigests']+([before['fixtureDigest']] if mode=='add' else [])
+    stack=aws('cloudformation','describe-stacks','--stack-name','RilloraProduction')['Stacks'][0]
+    assert stack['StackStatus']=='UPDATE_COMPLETE'
+    outputs={v['OutputKey']:v['OutputValue'] for v in stack['Outputs']}
+    service=aws('ecs','describe-services','--cluster',outputs['ClusterName'],
+                '--services',outputs['RuntimeApiServiceNameF8B88348'])['services'][0]
+    assert service['desiredCount']==service['runningCount']==1 and service['pendingCount']==0
+    assert len(service['deployments'])==1 and service['deployments'][0]['rolloutState']=='COMPLETED'
+    task=aws('ecs','describe-task-definition','--task-definition',service['taskDefinition'])['taskDefinition']
+    expected=json.loads(json.dumps(before['task']['containerDefinitions']))
+    for v in expected[0]['environment']:
+        if v['name']=='PRODUCTION_REVIEW_IDENTITY_SHA256': v['value']=','.join(values)
+    assert task['containerDefinitions']==expected
+    for field in ['taskRoleArn','executionRoleArn','networkMode','volumes','placementConstraints',
+                  'requiresCompatibilities','cpu','memory','ephemeralStorage','runtimePlatform']:
+        assert task.get(field)==before['task'].get(field)
+    event=next(e for e in service['events'] if 'has started' in e['message']
+               and re.search(r'\(task [a-f0-9]{32}\)',e['message']))
+    task_id=re.search(r'\(task ([a-f0-9]{32})\)',event['message']).group(1)
+    actual=aws('ecs','describe-tasks','--cluster',outputs['ClusterName'],'--tasks',task_id)['tasks'][0]
+    assert actual['lastStatus']=='RUNNING' and actual['healthStatus']=='HEALTHY'
+    assert actual['taskDefinitionArn']==service['taskDefinition']
+    original=before['action']['deployed_version']['code']
+    expanded=original.replace("const IDENTITY_DIGESTS = '"+','.join(before['identityDigests'])+"'",
+                               "const IDENTITY_DIGESTS = '"+','.join(before['identityDigests']+[before['fixtureDigest']])+"'")
+    assert expanded!=original
+    target=expanded if mode=='add' else original
+    aid=before['action']['id']; current=auth('get','actions/actions/'+aid)
+    assert current['deployed_version']['code'] in (original,expanded)
+    if current['deployed_version']['code']!=target:
+        auth('patch','actions/actions/'+aid,{'code':target})
+        auth('post','actions/actions/'+aid+'/deploy')
+    assert auth('get','actions/actions/'+aid)['deployed_version']['code']==target
+    bindings=[[v['id'],v['action']['id']] for v in auth('get','actions/triggers/post-login/bindings?per_page=100')['bindings']]
+    assert bindings==before['bindings']
+    report('disposable-access-'+mode+'-complete.json',{'complete':True,'identityCount':len(values),
+        'originalThreeRetained':True,'originalExpiryRetained':True,'actionReadbackMatches':True,
+        'bindingsUnchanged':True,'taskAndActionListsMatch':True,'runtimeContainerChangesOnlyIdentityList':True,
+        'rolesNetworkSecretsImageUnchanged':True,'healthyTaskCount':1,'publicCustomersOpen':False,
+        'liveBillingOpen':False,'imageDigest':actual['containers'][0]['imageDigest'],
+        'taskDefinitionRevision':task['revision'],'restoredOriginalAccess':mode=='remove'})
+
+if __name__=='__main__':
+    if sys.argv[1]=='preflight': preflight()
+    elif sys.argv[1] in ('prepare-add','prepare-remove'): prepare_change(sys.argv[1].split('-')[1])
+    elif sys.argv[1] in ('finish-add','finish-remove'): finish_change(sys.argv[1].split('-')[1])
+    else: raise SystemExit('Unknown explicit stage')

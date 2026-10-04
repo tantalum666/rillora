@@ -1,6 +1,6 @@
 # Account-bound invitations and directed sharing
 
-Status: SHARING CONTRACT RETAINED; RESTRICTED PRODUCTION RECENT-AUTH GUARDS VERIFIED; REAL PRODUCTION JOURNEY OPEN
+Status: SHARING CONTRACT RETAINED; ACTUAL NATIVE-TO-WEB SCOPE AND REVOCATION VERIFIED
 Last updated: 2026-10-04 (Asia/Hong_Kong)
 Authority: Owner explicitly requests A -> B/C invitations, authenticated acceptance and per-person/per-matter access.
 
@@ -14,9 +14,13 @@ and limited field proof retain their October2 scope. The new replay/export repai
 were locally verified at review closeout and subsequently deployed under
 [the October3 rollout](review-rollout-20261003.md). [Review and limitations](code-review-20261002.md).
 
-October4 actual QQ session recovery again returned only the5Directions fields for
-the existing synthetic shared record. This is current restricted-production read
-evidence; changed scope and revocation remain in[the ongoing real-core acceptance](real-core-acceptance-20261004.md).
+October4 native-to-Web acceptance used the existing synthetic record and actual
+Google/QQ sessions. Name reduction returned onlytitle/category; Details expansion
+was blocked until actual recent authentication and an explicit Save sharing retry.
+Native Stop sharing then showed Disconnected/0of1place, while the already-open QQ
+detail cleared without reload. Its actual HTTP200response has empty connections/items
+and readOnly=true. Downloaded copies remain readable; no remote-erasure claim or
+new family delivery. [Actual evidence](real-core-acceptance-20261004.md).
 
 ## September30 recent authentication for expanded access
 

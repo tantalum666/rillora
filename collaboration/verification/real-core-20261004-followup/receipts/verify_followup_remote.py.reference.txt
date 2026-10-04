@@ -1,0 +1,33 @@
+"""Verify new committed metadata and a fresh remote LFS download only."""
+from pathlib import Path
+import base64,datetime,hashlib,json,os,subprocess,sys,tempfile
+root=Path.cwd();q=root/'output/qa/rillora-real-core-20261004/publication';d=root/'collaboration/verification/real-core-20261004-followup'
+commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+remote=subprocess.check_output(['git','-c','http.version=HTTP/1.1','ls-remote','origin','refs/heads/codex/strict-review-20261002'],text=True).split()[0]
+assert remote==commit,'Remote review branch does not match this completed push.'
+def read_json(path):
+ payload=json.loads(subprocess.check_output(['gh','api',f'repos/tantalum666/rillora/contents/{path}?ref={commit}'],text=True))
+ assert payload['encoding']=='base64'
+ return base64.b64decode(payload['content'])
+summary_bytes=read_json('collaboration/verification/real-core-20261004-followup/snapshot.json');summary=json.loads(summary_bytes)
+assert len(summary['archives'])==1
+archive=summary['archives'][0];assert archive['path']=='collaboration/archives/raw-work-015.tar.zst.age'
+assert archive==json.loads((d/'snapshot.json').read_text())['archives'][0]
+cache=q/'followup-fresh-remote-lfs';assert not cache.exists(),'Use the completed receipt or a new empty verification cache.'
+env=dict(os.environ,GODEBUG='http2client=0')
+fetch=subprocess.run(['git','-c','http.version=HTTP/1.1','-c',f'lfs.storage={cache}','lfs','fetch','--include='+archive['path'],'--exclude=','origin',commit],env=env,capture_output=True,text=True)
+(q/'followup-fresh-lfs-fetch.log').write_text(fetch.stdout+fetch.stderr)
+if fetch.returncode:raise SystemExit('Fresh remote LFS download failed; inspect bounded fetch log.')
+sha=archive['sha256'];downloaded=cache/'objects'/sha[:2]/sha[2:4]/sha
+assert downloaded.stat().st_size==archive['bytes'];assert hashlib.sha256(downloaded.read_bytes()).hexdigest()==sha
+sys.path.insert(0,str(root/'tools/collaboration'));from verify_archives import verify
+with tempfile.TemporaryDirectory(prefix='rillora-remote-rollout-') as temporary:
+ stage=Path(temporary);(stage/'collaboration').mkdir();(stage/'collaboration/snapshot.json').write_bytes(summary_bytes)
+ for path in summary['catalogFiles']:
+  assert path=='collaboration/verification/real-core-20261004-followup/catalog.json'
+  data=read_json(path);assert data==(root/path).read_bytes();target=stage/path;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(data)
+ target=stage/archive['path'];target.parent.mkdir(parents=True,exist_ok=True);os.link(downloaded,target)
+ result=verify(stage,root/'.local-secrets/collaboration-git/identity.txt')
+receipt={'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'remoteCommit':commit,'remoteReviewBranchMatched':True,'metadataReadFromGitHubContentsAtCommit':True,'freshSeparateLfsStorage':True,'previousArchivesDownloadedAgain':False,'archive':archive,'verification':result,'boundary':'This checks committed work metadata and newly downloaded encrypted originals; it is not cloud runtime or end-user acceptance.'}
+(d/'remote-readback.json').write_text(json.dumps(receipt,indent=2)+'\n')
+print(json.dumps({'remoteCommit':commit,'freshRemoteDownload':True,'bytes':archive['bytes'],'verification':result}))

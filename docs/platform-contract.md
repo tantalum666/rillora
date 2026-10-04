@@ -5,7 +5,21 @@ Authority scope: Web/iOS responsibilities, shared state and first validation rel
 Superseded by: later explicit platform decision  
 Do not use for: final framework choice or visual tokens  
 Status: CORE PARITY CONTRACT ACTIVE; CURRENT RUNTIME AND RELEASE GATES IN HANDOFF
-Last updated: 2026-10-03 (Asia/Shanghai)
+Last updated: 2026-10-04 (Asia/Hong_Kong)
+
+## October4 actual core continuation
+
+The native planner changed Name/Details access under real recent authentication;
+the open QQ Web detail followed the allowed field projection and cleared after
+native Stop sharing. Actual native plaintext/full-map/encrypted files opened in Web,
+and the encrypted file also reopened in the native local reader. Current-device
+logout returned both clients to public state; native restart stayed signed out.
+A native export alert could obscure required sign-in; the focused store repair is
+verified by10tests and the actual retry/recovery flow. CI48and uploaded/processed
+1.0(4)include that repair. A separate disposable account now awaits current Web
+terms confirmation before actual import/fresh-auth/deletion. These remaining cases,
+physical-device/Apple purchases and public release are not implied complete.
+[Current acceptance](real-core-acceptance-20261004.md).
 
 ## October3 strict-review implementation boundary
 

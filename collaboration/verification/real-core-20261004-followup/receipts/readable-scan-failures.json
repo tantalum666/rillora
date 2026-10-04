@@ -1,0 +1,42 @@
+[
+  {
+    "RuleID": "generic-api-key",
+    "Description": "Detected a Generic API Key, potentially exposing access to various services and sensitive operations.",
+    "StartLine": 22,
+    "EndLine": 22,
+    "StartColumn": 7,
+    "EndColumn": 114,
+    "Match": "encapsulatedKey\" : \"REDACTED\"",
+    "Secret": "REDACTED",
+    "File": "/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/rillora-core-followup-scan-m7eyx0ps/readable/collaboration/verification/real-core-20261004-followup/receipts/exports/native-encrypted-start-here.json",
+    "SymlinkFile": "",
+    "Commit": "",
+    "Entropy": 5.6149077,
+    "Author": "",
+    "Email": "",
+    "Date": "",
+    "Message": "",
+    "Tags": [],
+    "Fingerprint": "/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/rillora-core-followup-scan-m7eyx0ps/readable/collaboration/verification/real-core-20261004-followup/receipts/exports/native-encrypted-start-here.json:generic-api-key:22"
+  },
+  {
+    "RuleID": "generic-api-key",
+    "Description": "Detected a Generic API Key, potentially exposing access to various services and sensitive operations.",
+    "StartLine": 24,
+    "EndLine": 24,
+    "StartColumn": 7,
+    "EndColumn": 86,
+    "Match": "wrappedKey\" : \"REDACTED\"",
+    "Secret": "REDACTED",
+    "File": "/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/rillora-core-followup-scan-m7eyx0ps/readable/collaboration/verification/real-core-20261004-followup/receipts/exports/native-encrypted-start-here.json",
+    "SymlinkFile": "",
+    "Commit": "",
+    "Entropy": 5.277115,
+    "Author": "",
+    "Email": "",
+    "Date": "",
+    "Message": "",
+    "Tags": [],
+    "Fingerprint": "/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/rillora-core-followup-scan-m7eyx0ps/readable/collaboration/verification/real-core-20261004-followup/receipts/exports/native-encrypted-start-here.json:generic-api-key:24"
+  }
+]

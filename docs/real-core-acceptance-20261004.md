@@ -1,7 +1,7 @@
 # Real Web and native core acceptance — October4
 
 Role: remaining actual account/core journey acceptance after the reviewed rollout
-Status: IN PROGRESS; SCOPE AND NATIVE EXPORT RECOVERY VERIFIED; IMPORT/REVOKE/DELETION/LOGOUT REMAIN
+Status: IN PROGRESS; SCOPE AND NATIVE EXPORT RECOVERY VERIFIED; IMPORT/WEB FRESH-AUTH/DELETION AWAIT DISPOSABLE TERMS
 Last updated: 2026-10-04 (Asia/Hong_Kong)
 
 Owner asks to complete the remaining real two-platform core flows. This continues
@@ -56,7 +56,9 @@ updated without manual reload and the actual response contains onlytitle/categor
 An attempted Details expansion required recent authentication. Keep editing retained
 that draft while QQ stayed Name only. Actual Google reauthentication succeeded; QQ
 stayed Name until the explicit Save sharing retry. It then showed Details, including
-the existing synthetic Notes/reference. The current connection is still active at Details.
+the existing synthetic Notes/reference. Subsequent Stop sharing showed Disconnected/0of1place. The already-open QQ detail
+cleared without reload, and the actual HTTP200response contains empty connections
+and items. This closes the new scope/revocation check; downloaded copies remain readable.
 
 The native recipient plaintext guide was saved through Files (962bytes), then read by
 the deployed Web local reader. Its minimum projection excludes Notes/reference. The
@@ -78,25 +80,34 @@ The fixed binary retains its signed-in session across a stop/relaunch. Replacing
 ad-hoc simulator app initially showed signed out; exact plist/entitlement comparison
 found no change, so the cause remains unattributed. This is not physical signed-update
 persistence evidence. The already-uploaded1.0(3)does not contain this newly found fix;
-a new signed candidate is required after acceptance.
+a new signed1.0(4)candidate has now passed9artifact checks, uploaded, and processed
+to Apple Ready to Submit. Test notes persisted on reload; groups0. CI48passes all
+three repository jobs. No tester invitation, physical install or review submission.
 
 AWS/CLI and Auth0 management were genuinely expired and have been restored. The new
 disposable Auth0 identity is unverified and requested no verification email. The exact
 three existing identities and expiry match the active task and Auth0 Action. A reviewed
 CloudFormation change set only replaces the task definition and updates its service
 reference to add the temporary fourth identity; the runtime image is retained. Its
-rollout is currently in progress. No Owner account is used as a deletion fixture.
+rollout is complete:1healthyAPI12task uses the same application image/schema/roles/
+network/secrets, with only the extra digest. Auth0 Action readback and bindings match.
+The disposable account has not signed in or accepted terms; the current Web page
+awaits exact Owner confirmation. No Owner account is used as a deletion fixture.
+
+After revocation, QQ logged out and reopening its private route showed only public
+content. Native Google logout completed the normal Auth0 session exit; the same
+binary relaunched signed out. No Owner account or source matter was deleted.
 
 ## Remaining acceptance sequence
 
-1. Finish native local-reader and backup import checks using only the saved synthetic data.
-2. Preserve completed scope, plaintext/encrypted-copy and native recent-auth evidence.
-3. Complete successful Web fresh-auth retry without replacing personal credentials.
-4. Revoke the selected connection and verify the already-open recipient view clears.
-5. Exercise deletion with a deliberately disposable identity only; the Owner's
-   Google and QQ identities are not deletion fixtures. Confirm the irreversible
-   final UI action at action time and separately verify provider/data completion.
-6. Finish session/logout checks after other journeys to avoid unnecessary new logins.
+1. Obtain the pending current Web terms confirmation for the isolated disposable
+   identity, then sign it in normally. Do not borrow Gmail/QQ consent or invent proof.
+2. Import only the saved synthetic backup into its empty map, verify sharing stays
+   off, and complete the remaining successful Web fresh-auth retry.
+3. Reach the disposable account's irreversible delete confirmation, obtain its
+   action-time approval, and verify actual provider/data completion separately.
+4. Restore the exact original three review identities in Auth0 and the API, retaining
+   the existing expiry; verify the resulting healthy task and closed billing.
 
 The sequence may adapt to visible session/flow dependencies. A downloaded copy cannot
 be remotely erased; the local reader is not new disclosure authority. No generated
@@ -114,6 +125,6 @@ source acceptance build, not physical-device or TestFlight installation proof.
 
 October3 API11/schema0093 deployment,116live file hashes, native3/Apple declaration,
 CI47 and earlier real registration/mail/reset/invitation acceptance keep their original
-dates and are not rerun. Scope restriction/expansion and native plaintext/encrypted save-to-Web-read now have
-actual evidence. Import, revocation, deletion and final session checks remain; the
-complete real core package is not yet closed.
+dates and are not rerun. Scope restriction/expansion/revocation, saved-copy reading and current-device logout
+now have actual evidence. Import, Web fresh-auth retry and disposable deletion remain;
+the complete real core package is not yet closed.
