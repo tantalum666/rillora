@@ -1,6 +1,6 @@
 # Digital Legacy Ongoing Project Journey
 
-Last updated: 2026-10-04 (Asia/Hong_Kong)
+Last updated: 2026-10-05 (Asia/Hong_Kong)
 
 ## 记录范围
 
@@ -3220,3 +3220,11 @@ Owner先确认小型企业资格事实、再当场确认最终声明，申请已
   originals and rescan with0findings. No scanner suppression or recovery-key publication.
   The current incomplete disposable-identity gate remains explicit; all12release gate
   statuses are retained. Final receipt-only changes do not repeat CI48or uploads.
+
+## 2026-10-05 — 将 AI/MCP 接口方向整理为可实施交接
+
+- 目标：回答 Rillora 能否进入 OpenAI 插件目录/接 MCP，并按 Owner 后续要求把接口预留方案整理推到 Git。
+- 尝试：核对当前 OpenAI 官方插件、认证、安全与提交规则，对照 strict-review 的 API、RLS、共享投影、近期认证、版本/幂等和导出源码。
+- 判断变化：目录、MCP 与业务 API 是不同层；已有 Auth0 第一方会话不能直接当第三方 AI 授权。现有 export preview 会持久化元数据，不能因名称称为只读；Matter draft 也不等于未写真实事项。平台指南保留当前登录后访问规则。额外复核明确生产审核身份限制不可被新入口绕过，幂等回执也需当前连接重新授权。
+- 结果：[实施交接](../architecture/ai-mcp-plan-20261005.md)明确现有与待建能力、最小工具/字段、OAuth 同意/撤销、精确确认、注入防护、加密边界、验收矩阵及 Codex 完成条件。独立文档分支不合并 Web 验收分支，运行代码与发布门不变。
+- 未完成项：全部 AI/MCP 运行时实现、实际 OAuth/客户端测试、真实数据披露流程、安全/隐私验收与目录提交。本文档不关闭当前真实核心验收，不将 AI 集成新增为首发阻塞项。文档验证范围见[本轮 QA](../qa/ai-mcp-plan-20261005/README.md)。
