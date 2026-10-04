@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-04 (Asia/Hong_Kong)
+Last updated: 2026-10-05 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -3052,3 +3052,13 @@ unreachable release remains a different closed workflow. See [sharing contract](
   No new product/price/crypto decision is introduced. Focused red/green and actual
   saved-file-to-Web-decrypt evidence support the fix; build3predates it and a new
   signed candidate is needed. [Current acceptance](real-core-acceptance-20261004.md).
+
+## 2026-10-05 — 保存 AI/MCP 接口预留方案，实施仍为提案
+
+- Status: LOCKED（本轮文档与 Git 交付范围）；技术分期与接口设计为 PROVISIONAL。
+- Scope: 未来用户通过 AI 使用 Rillora 的接口准备与工程交接。
+- Decision: Owner 提出需预留 AI 接口，并明确要求“整理好也推到git去”。保存[AI/MCP 计划](architecture/ai-mcp-plan-20261005.md)，将版本化领域 API、MCP 适配与公开目录分开；不新增当前首发阻塞项。
+- Evidence: 本轮 Owner 的两条直接请求；当前官方资料及 strict-review 源码映射记录在计划中。
+- Supersedes: 无；不取代已锁定的地图/密码边界、共享权限、加密、当前真实核心验收或发布门。
+- Does not imply: 技术方案已经实现、MCP 已部署、AI 数据披露已获用户同意、公开目录审核通过，或允许创建凭据/配置身份/提交发布。
+- Implementation impact: 后续按计划 C0–C6 独立接手；建议先规划者只读、再独立草稿与可信确认写入。实际实现前重新核对授权、源码和平台规则。
