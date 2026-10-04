@@ -1,7 +1,7 @@
 # Rillora Current Handoff
 
 Status: ACTUAL CORE PARTIAL; DISPOSABLE WEB TERMS CONFIRMATION PENDING
-Last updated: 2026-10-04 (Asia/Hong_Kong)
+Last updated: 2026-10-05 (Asia/Hong_Kong)
 
 ## Current task
 
@@ -10,6 +10,17 @@ Owner asks to complete remaining real Web/native core journeys. Continue
 Free1/Family5, Web88.99annual/conditional Apple price, real records and FanPass.
 Physical-device/merchant deferrals and ordinary customer/live billing closure remain.
 The184Markdown/686source full-read baseline is retained; this is not a new review.
+
+## AI/MCP planning addendum — documentation only, October5
+
+Owner requested future AI-facing interface planning and Git preservation. The
+[AI/MCP implementation handoff](architecture/ai-mcp-plan-20261005.md) is a proposal,
+not implemented functionality. It separates domain APIs, an MCP adapter and public
+directory review; all proposed tools and acceptance cases remain future work.
+This isolated documentation branch changes no runtime, provider configuration,
+credentials, data, release gates or other branches. It does not add an AI launch
+blocker or replace the core acceptance task and single next step below. See the
+[document QA scope](qa/ai-mcp-plan-20261005/README.md).
 
 ## Completed this continuation
 
