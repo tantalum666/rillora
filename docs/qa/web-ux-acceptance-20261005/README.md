@@ -27,7 +27,7 @@
 - [证据索引](evidence-index.md)与[文件清单](manifest.json)：63 张捕获中 14、42 含测试邮箱，明确排除；其余 48 张安全捕获未上传，不能将本地证据编号视为 Git 文件链接
 - 截图 15 的二进制写入在补充精确图像/哈希和授权后仍被权限审核拒绝，后续图片写入已停止。完整复现文字已保存；不换路径绕过限制
 - [无个人信息文本探针](fixtures/plain-text-viewer-probe.txt)用于 `Open saved copy` 普通文本显示，不能证明包格式校验或加密导入
-- [发布记录](publication-log.md)区分远端提交、截图覆盖与 CI。检查点跳过 CI；终版提交触发原仓库 Verify source，未得到实际结果前不称其通过
+- [发布记录](publication-log.md)与[核验回执](verification.json)区分远端提交、截图覆盖与 CI。终版提交 e3835d19 的 [Verify source #50](https://github.com/tantalum666/rillora/actions/runs/37228860248) 三个 job 全部通过；后续仅文档回执提交跳过 CI，不把旧检查点或其他代码当作本轮验证
 
 ## 留存状态与未完成门
 

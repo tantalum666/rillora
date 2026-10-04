@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "status": "final_report_with_scope_clarification",
+  "status": "verified_docs_handoff",
   "repository_base": "2cc95f77c1279bdad43547b7e58a8faca9da7a93",
   "runtime_commit_verified": false,
   "capture_interval_utc": "2026-10-04T18:43:00Z–2026-10-04T19:26:28Z",
@@ -21,9 +21,9 @@
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/README.md",
-      "bytes": 3809,
-      "sha256": "a6254674557d5658419d6b68c540c2c425701ddec93d057bc9fa4ed05e4f15e1",
-      "git_blob_sha": "bd2a00e122521e7f97d5b5427975659b42b44680",
+      "bytes": 3968,
+      "sha256": "53e5475d6406e1ae93b5052bcf7fdab5d943e12136607a1163819732a42d721c",
+      "git_blob_sha": "9cb5f0166b86a67ccb34efbffc84eb669ddcfee8",
       "kind": "qa-text",
       "publication_status": "included"
     },
@@ -69,9 +69,9 @@
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/publication-log.md",
-      "bytes": 1974,
-      "sha256": "ec47f9409488c74ba748932d983f7566634b33a3cf425f0f96a98b42e17de56e",
-      "git_blob_sha": "c85b811ac56a5890ec4afcc6a079eba290906ea0",
+      "bytes": 2924,
+      "sha256": "b4fd70eb1d6857f50d70f7e9298fc4c9ec66d85f0c48fb86f0bef2c5595640fe",
+      "git_blob_sha": "6c6fb6c8bef578ba110954f0b6967413fa106650",
       "kind": "qa-text",
       "publication_status": "included"
     },
@@ -177,6 +177,14 @@
       "sha256": "ddd156fc8591cddd0d70ea33ea8e391ed0d662bde8acc7c9c319713e056ada97",
       "git_blob_sha": "40fcf07456fda05769053ddc1e53426598968660",
       "kind": "original-reviewed-screenshot",
+      "publication_status": "included"
+    },
+    {
+      "path": "docs/qa/web-ux-acceptance-20261005/verification.json",
+      "bytes": 1904,
+      "sha256": "73c343c270527852fdbfead798da09780fedc36eedc6f6017a547156f11699b9",
+      "git_blob_sha": "6491a2321d3116087aa4f604f55023c0a7e763b0",
+      "kind": "qa-text",
       "publication_status": "included"
     }
   ],
@@ -751,5 +759,6 @@
     "authentication/session state and credentials",
     "audit-progress.md: superseded working draft"
   ],
-  "boundary": "files is the exact published payload excluding this self-referential manifest; captures includes explicitly unpublished metadata and is not a Git file list."
+  "boundary": "files is the exact published payload excluding this self-referential manifest; captures includes explicitly unpublished metadata and is not a Git file list.",
+  "verification_receipt": "verification.json"
 }

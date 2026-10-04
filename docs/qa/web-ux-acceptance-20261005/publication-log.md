@@ -24,3 +24,12 @@
 - 最终捕获 63 张：13 张已在 Git，48 张安全捕获未上传，2 张含邮箱排除；所有图片上传仍停止
 - 追加无个人信息的普通文本探针和全量状态/哈希索引，不含原始认证状态、下载的个人副本或密钥
 - 本次终版提交不跳过 Verify source；实际 CI 结果需按该精确提交读取，不能沿用此前 CI48
+
+## 2026-10-04 19:39 UTC：远端与 CI 收尾
+
+- 最终验收正文及权限范围修正：[e3835d19](https://github.com/tantalum666/rillora/commit/e3835d198359e257f20cddf0c39de1c6b4ed563f)
+- [Verify source #50](https://github.com/tantalum666/rillora/actions/runs/37228860248) 于 19:38:43 UTC 完成，source、api、web-and-infrastructure 三个 job 均 success；source 包含原有发布保护与秘密扫描
+- 精确证据提交的远端树含 22 个 docs/qa 文件；清单列出的所有文件 blob SHA 匹配，13 张图片在远端，其他分支保持原 SHA
+- 本回执是额外的纯文档/元数据提交，使用 [skip ci]，不会把此前运行冒充回执提交的新 CI
+- 最终 Git 包含报告、两个历史检查点、索引、文件/捕获清单、文本探针、13 张安全截图和核验回执；图片发布限制仍未解决
+- 没有合并、部署或代码修改；CI 成功不关闭终版报告列出的真实验收门
