@@ -1,33 +1,79 @@
 {
-  "schema_version": 1,
-  "checkpoint": "01-publication-update",
+  "schema_version": 2,
+  "status": "final_report_prepared",
   "repository_base": "2cc95f77c1279bdad43547b7e58a8faca9da7a93",
   "runtime_commit_verified": false,
-  "capture_interval_utc": "2026-10-04T18:43:00Z/2026-10-04T18:57:00Z",
+  "capture_interval_utc": "2026-10-04T18:43:00Z–2026-10-04T19:26:28Z",
+  "summary": {
+    "captured_screenshots": 63,
+    "git_screenshots": 13,
+    "safe_captured_not_published": 48,
+    "excluded_private_screenshots": 2
+  },
   "files": [
     {
       "path": "docs/qa/README.md",
-      "bytes": 524,
-      "sha256": "27bf4473294b4683eaf106f93c6b36252248b97f2976fb4053c2a4a79f41a7b1",
-      "git_blob_sha": "652209861827dc982c2c836394dd870bcae62db4",
-      "kind": "qa-document",
-      "publication_status": "included_in_checkpoint"
+      "bytes": 615,
+      "sha256": "33d059c8b9043f3f1dfe15cbee91ee87cf6f8dfc3d7ebdef9b12a7576b9fec1d",
+      "git_blob_sha": "4ae682bedba05e8a829aa0c134349211d9e3314f",
+      "kind": "qa-text",
+      "publication_status": "included"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/README.md",
-      "bytes": 3293,
-      "sha256": "43ca9f9555a7be98673cfa8021f5a8d2d150c05a264951ed63790e3fd1191e59",
-      "git_blob_sha": "a21a7c5b7ea8ff0ed248b2739955be70a8e8b7dc",
-      "kind": "qa-document",
-      "publication_status": "included_in_checkpoint"
+      "bytes": 3809,
+      "sha256": "a6254674557d5658419d6b68c540c2c425701ddec93d057bc9fa4ed05e4f15e1",
+      "git_blob_sha": "bd2a00e122521e7f97d5b5427975659b42b44680",
+      "kind": "qa-text",
+      "publication_status": "included"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/checkpoint-01.md",
       "bytes": 8822,
       "sha256": "e6d170c4e15d7a85b24f4ce305530f66a72f6a246c408b7bdad8dda7a494cabc",
       "git_blob_sha": "820e56a5a449c7294a8d244b3053333b91a7f210",
-      "kind": "qa-document",
-      "publication_status": "included_in_checkpoint"
+      "kind": "qa-text",
+      "publication_status": "included"
+    },
+    {
+      "path": "docs/qa/web-ux-acceptance-20261005/checkpoint-02.md",
+      "bytes": 6779,
+      "sha256": "fc77fea0221baa61a50737b7e53510bf52b82a73d3de86646446d6bee8460b7a",
+      "git_blob_sha": "f697edd0c0c9dc135e9db5b0ecd025e8aa2e19c9",
+      "kind": "qa-text",
+      "publication_status": "included"
+    },
+    {
+      "path": "docs/qa/web-ux-acceptance-20261005/evidence-index.md",
+      "bytes": 4920,
+      "sha256": "b10e6dc3c72a0cb66de83ffd54faa678e30c8b9208bf002db43e79842c37c5d5",
+      "git_blob_sha": "bd322eb47a8ffd4808193bfabdec566fbcade8dd",
+      "kind": "qa-text",
+      "publication_status": "included"
+    },
+    {
+      "path": "docs/qa/web-ux-acceptance-20261005/final-report.md",
+      "bytes": 16956,
+      "sha256": "a9fd6f44908491f7b93e99b7e315cf4a52611080844152d8dbe64018d13800a5",
+      "git_blob_sha": "d749f6b403e9e08032c27975250c62daea2d62d1",
+      "kind": "qa-text",
+      "publication_status": "included"
+    },
+    {
+      "path": "docs/qa/web-ux-acceptance-20261005/fixtures/plain-text-viewer-probe.txt",
+      "bytes": 67,
+      "sha256": "325a5ca099db993f5f5a0cfcc8aef4d05ec6958cd40320bf488eefa3a5f83a6e",
+      "git_blob_sha": "756bc95d35148f1fa61a62926023915b38a688e5",
+      "kind": "qa-text",
+      "publication_status": "included"
+    },
+    {
+      "path": "docs/qa/web-ux-acceptance-20261005/publication-log.md",
+      "bytes": 1974,
+      "sha256": "ec47f9409488c74ba748932d983f7566634b33a3cf425f0f96a98b42e17de56e",
+      "git_blob_sha": "c85b811ac56a5890ec4afcc6a079eba290906ea0",
+      "kind": "qa-text",
+      "publication_status": "included"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/01-home-desktop.png",
@@ -35,7 +81,7 @@
       "sha256": "7fff8fb29546a5e6cdb44819b6321d407d32e127677dda21b586afe0e8f3bb4c",
       "git_blob_sha": "6bbe6fdf9c12afcf4fca9f7c2c7def03167f79ee",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "included_in_checkpoint"
+      "publication_status": "included"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/02-product-desktop.png",
@@ -43,7 +89,7 @@
       "sha256": "4698f8da2cda3dad574e62e870c4a357600e2a3efa0a24ff1a25d8e1a494eb5e",
       "git_blob_sha": "072309e218a42e20751219408d83edda62900b8c",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "included_in_checkpoint"
+      "publication_status": "included"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/03-preview-entry.png",
@@ -51,7 +97,7 @@
       "sha256": "5d14c22b5ed44a5c8fbe29c64d9d0b9c9b64f3ddd3a4641fa030f01caa9ec881",
       "git_blob_sha": "b8979dc26ff84652c6438ada8b7c72d54b52125a",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "included_in_checkpoint"
+      "publication_status": "included"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/04-sharing-example-alex.png",
@@ -59,7 +105,7 @@
       "sha256": "8499b9181e656f0c80533ad2f756c7349b43bfa3e555bce32458c667bec94330",
       "git_blob_sha": "3e8732a4cbf71722598e94abcac50afd32289466",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "included_in_checkpoint"
+      "publication_status": "included"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/05-sharing-example-expanded.png",
@@ -67,7 +113,7 @@
       "sha256": "8e849e53f6b251907d3d1024e5c3f0472ace6db6461f6ee8200989448768d5bf",
       "git_blob_sha": "7e5c0a26ebf8993cab9985fc3a7f36161ba3ac8d",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "included_in_checkpoint"
+      "publication_status": "included"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/06-pricing-desktop.png",
@@ -75,7 +121,7 @@
       "sha256": "9c4f47f1a8069e2b2ccc7438b86a889016ffd4b4b9a751fb45ebabb4156eb2af",
       "git_blob_sha": "d223e82359d7a99ecd31236eca9d3ffcd33adde2",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "included_in_checkpoint"
+      "publication_status": "included"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/07-support-desktop.png",
@@ -83,7 +129,7 @@
       "sha256": "366ab050504c92922226885fcea14d9c75bd2bc26278bc0477d4e49c6787cea4",
       "git_blob_sha": "0feab5bc2dab98b745c3a010ade3225ba82d38a6",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "included_in_checkpoint"
+      "publication_status": "included"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/08-signup-entry.png",
@@ -91,7 +137,7 @@
       "sha256": "0ed2030248ce770669125677641802aae722113a4ea2f8ec08af9a713aa66c5b",
       "git_blob_sha": "3dc9e25aa1b6c8edbbe976ecda6c4b75870c279f",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "included_in_checkpoint"
+      "publication_status": "included"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/09-signup-auth-page.png",
@@ -99,7 +145,7 @@
       "sha256": "a07a17f1ebef085e2e50e41799080dac35c9b9f0c57ea6edce2796af179f1d58",
       "git_blob_sha": "43a0e104a3d0f74185c6905b5a3f7f4909826f80",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "included_in_checkpoint"
+      "publication_status": "included"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/10-signup-empty-validation.png",
@@ -107,7 +153,7 @@
       "sha256": "a2fda933686e4fde63f460659655c90878b7e8bea34086579ffa2e2e7b17f5cb",
       "git_blob_sha": "fd1d94cd5ea16cb2f1f9eba3fd2d2b152b0b9eef",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "included_in_checkpoint"
+      "publication_status": "included"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/11-signup-invalid-validation.png",
@@ -115,7 +161,7 @@
       "sha256": "b74d9138adb43b43e9a497d65bf1145848c78e882515be88759182cf4992a983",
       "git_blob_sha": "926266011504ab6b23e400dab17e1fd55dc25d48",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "included_in_checkpoint"
+      "publication_status": "included"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/12-support-sharing-answer.png",
@@ -123,7 +169,7 @@
       "sha256": "35fe47f3ceff9d5eb0a7f4f03670b74b55dcd808eb314d18e7101768bb531d63",
       "git_blob_sha": "54db5a39a3b3e11df1337d73a8d792bed45ebe4e",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "included_in_checkpoint"
+      "publication_status": "included"
     },
     {
       "path": "docs/qa/web-ux-acceptance-20261005/screens/13-signup-passkey-choice.png",
@@ -131,173 +177,579 @@
       "sha256": "ddd156fc8591cddd0d70ea33ea8e391ed0d662bde8acc7c9c319713e056ada97",
       "git_blob_sha": "40fcf07456fda05769053ddc1e53426598968660",
       "kind": "original-reviewed-screenshot",
-      "publication_status": "included_in_checkpoint"
+      "publication_status": "included"
+    }
+  ],
+  "captures": [
+    {
+      "id": "01",
+      "file": "01-home-desktop.png",
+      "publication_status": "included",
+      "note": "",
+      "bytes": 97681,
+      "sha256": "7fff8fb29546a5e6cdb44819b6321d407d32e127677dda21b586afe0e8f3bb4c",
+      "git_blob_sha": "6bbe6fdf9c12afcf4fca9f7c2c7def03167f79ee"
     },
     {
-      "path": "docs/qa/web-ux-acceptance-20261005/screens/15-security-desktop.png",
+      "id": "02",
+      "file": "02-product-desktop.png",
+      "publication_status": "included",
+      "note": "",
+      "bytes": 56710,
+      "sha256": "4698f8da2cda3dad574e62e870c4a357600e2a3efa0a24ff1a25d8e1a494eb5e",
+      "git_blob_sha": "072309e218a42e20751219408d83edda62900b8c"
+    },
+    {
+      "id": "03",
+      "file": "03-preview-entry.png",
+      "publication_status": "included",
+      "note": "",
+      "bytes": 37366,
+      "sha256": "5d14c22b5ed44a5c8fbe29c64d9d0b9c9b64f3ddd3a4641fa030f01caa9ec881",
+      "git_blob_sha": "b8979dc26ff84652c6438ada8b7c72d54b52125a"
+    },
+    {
+      "id": "04",
+      "file": "04-sharing-example-alex.png",
+      "publication_status": "included",
+      "note": "",
+      "bytes": 50240,
+      "sha256": "8499b9181e656f0c80533ad2f756c7349b43bfa3e555bce32458c667bec94330",
+      "git_blob_sha": "3e8732a4cbf71722598e94abcac50afd32289466"
+    },
+    {
+      "id": "05",
+      "file": "05-sharing-example-expanded.png",
+      "publication_status": "included",
+      "note": "",
+      "bytes": 56099,
+      "sha256": "8e849e53f6b251907d3d1024e5c3f0472ace6db6461f6ee8200989448768d5bf",
+      "git_blob_sha": "7e5c0a26ebf8993cab9985fc3a7f36161ba3ac8d"
+    },
+    {
+      "id": "06",
+      "file": "06-pricing-desktop.png",
+      "publication_status": "included",
+      "note": "",
+      "bytes": 47003,
+      "sha256": "9c4f47f1a8069e2b2ccc7438b86a889016ffd4b4b9a751fb45ebabb4156eb2af",
+      "git_blob_sha": "d223e82359d7a99ecd31236eca9d3ffcd33adde2"
+    },
+    {
+      "id": "07",
+      "file": "07-support-desktop.png",
+      "publication_status": "included",
+      "note": "",
+      "bytes": 52828,
+      "sha256": "366ab050504c92922226885fcea14d9c75bd2bc26278bc0477d4e49c6787cea4",
+      "git_blob_sha": "0feab5bc2dab98b745c3a010ade3225ba82d38a6"
+    },
+    {
+      "id": "08",
+      "file": "08-signup-entry.png",
+      "publication_status": "included",
+      "note": "Transient loading feedback, not a defect",
+      "bytes": 28227,
+      "sha256": "0ed2030248ce770669125677641802aae722113a4ea2f8ec08af9a713aa66c5b",
+      "git_blob_sha": "3dc9e25aa1b6c8edbbe976ecda6c4b75870c279f"
+    },
+    {
+      "id": "09",
+      "file": "09-signup-auth-page.png",
+      "publication_status": "included",
+      "note": "",
+      "bytes": 43152,
+      "sha256": "a07a17f1ebef085e2e50e41799080dac35c9b9f0c57ea6edce2796af179f1d58",
+      "git_blob_sha": "43a0e104a3d0f74185c6905b5a3f7f4909826f80"
+    },
+    {
+      "id": "10",
+      "file": "10-signup-empty-validation.png",
+      "publication_status": "included",
+      "note": "",
+      "bytes": 44991,
+      "sha256": "a2fda933686e4fde63f460659655c90878b7e8bea34086579ffa2e2e7b17f5cb",
+      "git_blob_sha": "fd1d94cd5ea16cb2f1f9eba3fd2d2b152b0b9eef"
+    },
+    {
+      "id": "11",
+      "file": "11-signup-invalid-validation.png",
+      "publication_status": "included",
+      "note": "",
+      "bytes": 44933,
+      "sha256": "b74d9138adb43b43e9a497d65bf1145848c78e882515be88759182cf4992a983",
+      "git_blob_sha": "926266011504ab6b23e400dab17e1fd55dc25d48"
+    },
+    {
+      "id": "12",
+      "file": "12-support-sharing-answer.png",
+      "publication_status": "included",
+      "note": "",
+      "bytes": 56914,
+      "sha256": "35fe47f3ceff9d5eb0a7f4f03670b74b55dcd808eb314d18e7101768bb531d63",
+      "git_blob_sha": "54db5a39a3b3e11df1337d73a8d792bed45ebe4e"
+    },
+    {
+      "id": "13",
+      "file": "13-signup-passkey-choice.png",
+      "publication_status": "included",
+      "note": "",
+      "bytes": 58804,
+      "sha256": "ddd156fc8591cddd0d70ea33ea8e391ed0d662bde8acc7c9c319713e056ada97",
+      "git_blob_sha": "40fcf07456fda05769053ddc1e53426598968660"
+    },
+    {
+      "id": "14",
+      "file": "14-signup-password-gate.png",
+      "publication_status": "excluded_private",
+      "note": "Exclude: account email visible"
+    },
+    {
+      "id": "15",
+      "file": "15-security-desktop.png",
+      "publication_status": "blocked",
+      "note": "",
       "bytes": 58728,
       "sha256": "fe9290652283d19cbac5e10ae94ae2d6f61bb0b2ecf8ab499e6e40326dced425",
-      "git_blob_sha": "bca2afdb0bea0fa0603ed6f7cb7eb13d34b3e2a8",
-      "kind": "original-reviewed-screenshot",
-      "publication_status": "blocked"
+      "git_blob_sha": "bca2afdb0bea0fa0603ed6f7cb7eb13d34b3e2a8"
     },
     {
-      "path": "docs/qa/web-ux-acceptance-20261005/screens/16-first-login-empty-map.png",
+      "id": "16",
+      "file": "16-first-login-empty-map.png",
+      "publication_status": "captured_not_published",
+      "note": "",
       "bytes": 44009,
       "sha256": "f2cbba0adefe31343682c9e933d50a0506c0544f52523ebb3992b75eb3206b7a",
-      "git_blob_sha": "d8d8cc18c97990c7730fc3485e81aae88b56b9fc",
-      "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_not_published"
+      "git_blob_sha": "d8d8cc18c97990c7730fc3485e81aae88b56b9fc"
     },
     {
-      "path": "docs/qa/web-ux-acceptance-20261005/screens/17-quick-start-guide.png",
+      "id": "17",
+      "file": "17-quick-start-guide.png",
+      "publication_status": "captured_not_published",
+      "note": "",
       "bytes": 30859,
       "sha256": "2e0def77877b3cd6637cbabbfda76b5ad218ff489ff9f550a31b06fba493010f",
-      "git_blob_sha": "d073a327c2df1364f606509eb21b0fade7ab68b8",
-      "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_not_published"
+      "git_blob_sha": "d073a327c2df1364f606509eb21b0fade7ab68b8"
     },
     {
-      "path": "docs/qa/web-ux-acceptance-20261005/screens/18-quick-start-next-step.png",
+      "id": "18",
+      "file": "18-quick-start-next-step.png",
+      "publication_status": "captured_not_published",
+      "note": "",
       "bytes": 34733,
       "sha256": "b09f05b8374e4fc262469d21b51cfdacb14a643af461dc0235a34f29a9ce3885",
-      "git_blob_sha": "f7a0c9e9b35a0a6787fca72345c7ca3b58d9e300",
-      "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_not_published"
+      "git_blob_sha": "f7a0c9e9b35a0a6787fca72345c7ca3b58d9e300"
     },
     {
-      "path": "docs/qa/web-ux-acceptance-20261005/screens/19-new-matter-empty-form.png",
+      "id": "19",
+      "file": "19-new-matter-empty-form.png",
+      "publication_status": "captured_not_published",
+      "note": "",
       "bytes": 43845,
       "sha256": "58a56c25f476017f39e8fa6bf7af5553c778836b49438eae8b813a86be03408e",
-      "git_blob_sha": "f18613a26abd76e9f8b000f054b7a2c68261f50e",
-      "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_not_published"
+      "git_blob_sha": "f18613a26abd76e9f8b000f054b7a2c68261f50e"
     },
     {
-      "path": "docs/qa/web-ux-acceptance-20261005/screens/20-unsaved-matter-close.png",
+      "id": "20",
+      "file": "20-unsaved-matter-close.png",
+      "publication_status": "captured_not_published",
+      "note": "",
       "bytes": 24327,
       "sha256": "901ca4a6e1c4014ed0f4773e8b906e36117df23ad009fe994a0d53294ee14108",
-      "git_blob_sha": "a36c5a184a3792b956ff37f96d21fba8da85cf6f",
-      "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_not_published"
+      "git_blob_sha": "a36c5a184a3792b956ff37f96d21fba8da85cf6f"
     },
     {
-      "path": "docs/qa/web-ux-acceptance-20261005/screens/21-draft-refresh-recovery.png",
+      "id": "21",
+      "file": "21-draft-refresh-recovery.png",
+      "publication_status": "captured_not_published",
+      "note": "",
       "bytes": 52949,
       "sha256": "1fb5167c3b3043e688ccd43ad6e971c779f8403f8cca562ba91ac156b2f8b1c7",
-      "git_blob_sha": "806b6b6a19a3da4451b6906dd971545e56934268",
-      "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_not_published"
+      "git_blob_sha": "806b6b6a19a3da4451b6906dd971545e56934268"
     },
     {
-      "path": "docs/qa/web-ux-acceptance-20261005/screens/22-first-matter-saved.png",
+      "id": "22",
+      "file": "22-first-matter-saved.png",
+      "publication_status": "captured_not_published",
+      "note": "",
       "bytes": 38384,
       "sha256": "feaed728d2f6772794a2145a747ad1e5e2a017ada44b51c226134f50a7607d06",
-      "git_blob_sha": "675ddcdd813d3ea7facb23abacb27dab8622141e",
-      "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_not_published"
+      "git_blob_sha": "675ddcdd813d3ea7facb23abacb27dab8622141e"
     },
     {
-      "path": "docs/qa/web-ux-acceptance-20261005/screens/23-matters-list-first-record.png",
+      "id": "23",
+      "file": "23-matters-list-first-record.png",
+      "publication_status": "captured_not_published",
+      "note": "",
       "bytes": 37381,
       "sha256": "90740d834efc1edf56059107b355f2b2e622095185b17ec342b45df363fd4d89",
-      "git_blob_sha": "4f3c50ac48ffc1b5eb6316e7540d3cf9210226e3",
-      "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_not_published"
+      "git_blob_sha": "4f3c50ac48ffc1b5eb6316e7540d3cf9210226e3"
     },
     {
-      "path": "docs/qa/web-ux-acceptance-20261005/screens/24-matter-detail-draft.png",
+      "id": "24",
+      "file": "24-matter-detail-draft.png",
+      "publication_status": "captured_not_published",
+      "note": "",
       "bytes": 43436,
       "sha256": "2471b2421142045e1e8a9ba410472a4669bb6ee817ce9a8d9d438cf57c292371",
-      "git_blob_sha": "342cec61077f73dc6e12e260fee83c361408d412",
-      "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_not_published"
+      "git_blob_sha": "342cec61077f73dc6e12e260fee83c361408d412"
     },
     {
-      "path": "docs/qa/web-ux-acceptance-20261005/screens/25-search-no-results.png",
+      "id": "25",
+      "file": "25-search-no-results.png",
+      "publication_status": "captured_not_published",
+      "note": "",
       "bytes": 41249,
       "sha256": "32c02d2d67bfb12c5221119b726aa5df71bb5494364c2f7942c2edda529c6e85",
-      "git_blob_sha": "ba9ae4b089b6b93f21789c5465e66d8e1f31ef9d",
-      "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_not_published"
+      "git_blob_sha": "ba9ae4b089b6b93f21789c5465e66d8e1f31ef9d"
     },
     {
-      "path": "docs/qa/web-ux-acceptance-20261005/screens/26-manage-matter-sharing-empty.png",
+      "id": "26",
+      "file": "26-manage-matter-sharing-empty.png",
+      "publication_status": "captured_not_published",
+      "note": "",
       "bytes": 39711,
       "sha256": "706933c6fea218ea45ec38c29188b258fc31c71adbad1f77e1f91ad9f913835f",
-      "git_blob_sha": "53054d40e8c14f5a235bbb039012caa38bd448a8",
-      "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_not_published"
+      "git_blob_sha": "53054d40e8c14f5a235bbb039012caa38bd448a8"
     },
     {
-      "path": "docs/qa/web-ux-acceptance-20261005/screens/27-invite-person-empty.png",
+      "id": "27",
+      "file": "27-invite-person-empty.png",
+      "publication_status": "captured_not_published",
+      "note": "",
       "bytes": 31238,
       "sha256": "6468016dd7e7efad2de4c47ec9be66e8cfadda5194c8d72328c3e615b19b8707",
-      "git_blob_sha": "f8ee8ed82649b6ec78cc625fe5e64c16835a0955",
-      "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_not_published"
+      "git_blob_sha": "f8ee8ed82649b6ec78cc625fe5e64c16835a0955"
     },
     {
-      "path": "docs/qa/web-ux-acceptance-20261005/screens/28-invite-access-scope.png",
+      "id": "28",
+      "file": "28-invite-access-scope.png",
+      "publication_status": "captured_not_published",
+      "note": "",
       "bytes": 41764,
       "sha256": "29b46a43a8faf0a7b3fb17d199d97b2aa217d237676f8778c0c7e081a4a6f113",
-      "git_blob_sha": "0066b5cae5a21433e0a3c6504895db65618fdf60",
-      "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_not_published"
+      "git_blob_sha": "0066b5cae5a21433e0a3c6504895db65618fdf60"
     },
     {
-      "path": "docs/qa/web-ux-acceptance-20261005/screens/29-invite-visible-details-name-only.png",
+      "id": "29",
+      "file": "29-invite-visible-details-name-only.png",
+      "publication_status": "captured_not_published",
+      "note": "",
       "bytes": 47694,
       "sha256": "ea3b9c77ef3fac334dc6b0afc5b8ceb04d10f6df61772748b71aa1d9a32476c5",
-      "git_blob_sha": "af69c63358ba8e4e1ae959f04ece547391de89fd",
-      "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_not_published"
+      "git_blob_sha": "af69c63358ba8e4e1ae959f04ece547391de89fd"
     },
     {
-      "path": "docs/qa/web-ux-acceptance-20261005/screens/30-invite-directions-preview.png",
+      "id": "30",
+      "file": "30-invite-directions-preview.png",
+      "publication_status": "captured_not_published",
+      "note": "",
       "bytes": 45343,
       "sha256": "17ec63c2a727001e1c66a44e1d69318858256da0635774628746c1fdde7e88fd",
-      "git_blob_sha": "f14f8a7297f3834234d32e0f89570a98d56a6eb0",
-      "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_not_published"
+      "git_blob_sha": "f14f8a7297f3834234d32e0f89570a98d56a6eb0"
     },
     {
-      "path": "docs/qa/web-ux-acceptance-20261005/screens/31-invite-full-details-preview.png",
+      "id": "31",
+      "file": "31-invite-full-details-preview.png",
+      "publication_status": "captured_not_published",
+      "note": "",
       "bytes": 47879,
       "sha256": "66465c76d5a4fc068cfffdd3261ba2c96dbbfaef6862bb93b97a7bdda6d24758",
-      "git_blob_sha": "2023a7c98de52037782c615dffb0de21ea113199",
-      "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_not_published"
+      "git_blob_sha": "2023a7c98de52037782c615dffb0de21ea113199"
     },
     {
-      "path": "docs/qa/web-ux-acceptance-20261005/screens/32-invite-invalid-email-disabled.png",
+      "id": "32",
+      "file": "32-invite-invalid-email-disabled.png",
+      "publication_status": "captured_not_published",
+      "note": "",
       "bytes": 48261,
       "sha256": "15507663a927c1c1412e3d97fb52ddb100b402f20019aca3b632c5208904c4e7",
-      "git_blob_sha": "c277e23c40e80d508e65cd158a557bd241e0c23c",
-      "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_not_published"
+      "git_blob_sha": "c277e23c40e80d508e65cd158a557bd241e0c23c"
     },
     {
-      "path": "docs/qa/web-ux-acceptance-20261005/screens/33-cancelled-invite-contact-persists.png",
+      "id": "33",
+      "file": "33-cancelled-invite-contact-persists.png",
+      "publication_status": "captured_not_published",
+      "note": "",
       "bytes": 44206,
       "sha256": "dd64d4d69787a39e3dc711517ccb87b0258af866de3a97a7ba486bdf6291cc70",
-      "git_blob_sha": "954b81023562b300bc591411bf04ac9efee0f51b",
-      "kind": "original-reviewed-screenshot",
-      "publication_status": "captured_not_published"
+      "git_blob_sha": "954b81023562b300bc591411bf04ac9efee0f51b"
     },
     {
-      "path": "docs/qa/web-ux-acceptance-20261005/publication-log.md",
-      "bytes": 1358,
-      "sha256": "64c0ddc0efab78da9e4ad76743b181f533ecf1e120d72b9969618f6b47045a88",
-      "git_blob_sha": "f850149b6ecf90f9dffd01f475cc4e77b6c0e92d",
-      "kind": "qa-document",
-      "publication_status": "included_in_checkpoint"
+      "id": "34",
+      "file": "34-start-here-guide-audience.png",
+      "publication_status": "captured_not_published",
+      "note": "",
+      "bytes": 28229,
+      "sha256": "a049c1fb6ede34f39d8c7e8bb0b436e34b6965762193f8286a1e8b3d770aeb30",
+      "git_blob_sha": "5721c0acf66df0f7b9ca903fdfc5da5442cc5121"
+    },
+    {
+      "id": "35",
+      "file": "35-start-here-preview.png",
+      "publication_status": "captured_not_published",
+      "note": "",
+      "bytes": 33611,
+      "sha256": "a3e0f01dabcca9dfe892574f0b26ef4d34e83dc2165c98686f5d16cbae6528ea",
+      "git_blob_sha": "a2244cd3eaa3277ce04acca3a80e6231fed76fc2"
+    },
+    {
+      "id": "36",
+      "file": "36-printable-export-confirmation.png",
+      "publication_status": "captured_not_published",
+      "note": "",
+      "bytes": 33399,
+      "sha256": "4899db8b398dea47ad47bc5120efe569bf3dc9e1dd9caaa4515036c1df75a16d",
+      "git_blob_sha": "6f7bfb17483090bb500a04f3388795753f31df68"
+    },
+    {
+      "id": "37",
+      "file": "37-export-guide-ready.png",
+      "publication_status": "captured_not_published",
+      "note": "",
+      "bytes": 33213,
+      "sha256": "bbe4657cf5c4b291876703857b4e9d636bff4571464a82c55017dac5452c2d9c",
+      "git_blob_sha": "6975522fd75bfa78904db7d2c8e687d631000d7d"
+    },
+    {
+      "id": "38",
+      "file": "38-encrypted-export-warning.png",
+      "publication_status": "captured_not_published",
+      "note": "",
+      "bytes": 47582,
+      "sha256": "1fcfa1b309829971be67974af025038a37f8acd84588a1138d21c053654cfbfa",
+      "git_blob_sha": "f5d8327fdec606729482b71272c86bfb094fdd3b"
+    },
+    {
+      "id": "39",
+      "file": "39-my-plan-one-of-five.png",
+      "publication_status": "captured_not_published",
+      "note": "",
+      "bytes": 38471,
+      "sha256": "9e366c96b479a65bf2a0b06c46d702203d5a0c81f766c267ff9bb4c8f8d87f71",
+      "git_blob_sha": "2917c28d9eeab2f11e43aab806d2de7dac73327a"
+    },
+    {
+      "id": "40",
+      "file": "40-next-step-reopens-same-matter.png",
+      "publication_status": "captured_not_published",
+      "note": "",
+      "bytes": 44959,
+      "sha256": "c871adba4545d52189f338ab740eb4180fdb3f8fdcbe40554e52ea2d2651c5a3",
+      "git_blob_sha": "7ced1ea39729a92065be37108f520319654bc2a4"
+    },
+    {
+      "id": "41",
+      "file": "41-archive-confirmation.png",
+      "publication_status": "captured_not_published",
+      "note": "",
+      "bytes": 29881,
+      "sha256": "525f55372637100e6681e62411ea43e67f466a055197f3eb761a57baaf013879",
+      "git_blob_sha": "0c030a9728c607b17c46934142243ff78e346157"
+    },
+    {
+      "id": "42",
+      "file": "42-archived-matter-restore.png",
+      "publication_status": "excluded_private",
+      "note": "Exclude: account email visible"
+    },
+    {
+      "id": "43",
+      "file": "43-restore-private-safe-view.png",
+      "publication_status": "captured_not_published",
+      "note": "",
+      "bytes": 41692,
+      "sha256": "85fd5741a7eb7e18196b3ed5e1adf08715e5ca3d7d8718e0d22ca6fc542750e5",
+      "git_blob_sha": "9e1de452d48a1bc563aebed8931afd75b552403f"
+    },
+    {
+      "id": "44",
+      "file": "44-restored-matter-list.png",
+      "publication_status": "captured_not_published",
+      "note": "",
+      "bytes": 37175,
+      "sha256": "02a5b613eec5bd858dd8b446d075dfcf7948642dc3283c98c5933595e843f47c",
+      "git_blob_sha": "4e68a3fa2e74afdf7769f3fffdca022061245fdf"
+    },
+    {
+      "id": "45",
+      "file": "45-narrow-web-matters.png",
+      "publication_status": "captured_not_published",
+      "note": "",
+      "bytes": 21868,
+      "sha256": "17dabad238080ec32d023bbbef416962d5dca365395dbdc58c219cc0188c4579",
+      "git_blob_sha": "0a888268db96cf9219f76f0dd2b11d4b5a6cd928"
+    },
+    {
+      "id": "46",
+      "file": "46-400css-web-matters.png",
+      "publication_status": "captured_not_published",
+      "note": "",
+      "bytes": 18628,
+      "sha256": "e57109ff8acd0a8dd4aa01f5419f86a0a65103814f90bda580ebbccc166c5abb",
+      "git_blob_sha": "0f271fcf900a4f45292712bf61109f2b85c1ac85"
+    },
+    {
+      "id": "47",
+      "file": "47-mobile-web-more.png",
+      "publication_status": "captured_not_published",
+      "note": "",
+      "bytes": 20823,
+      "sha256": "fd960ddd579d1e952b4bc29fbf3fe497651b3b9ff4aae7afe085988b062d3ab0",
+      "git_blob_sha": "7b21f7f33ce3d648ef56f1d416512212511e3877"
+    },
+    {
+      "id": "48",
+      "file": "48-mobile-document-form.png",
+      "publication_status": "captured_not_published",
+      "note": "",
+      "bytes": 21528,
+      "sha256": "07af432648d24b2b1f8ea9b3fd003e4963f09bcf77a6317334367965687c4c4b",
+      "git_blob_sha": "5b53a2ab769aa75647b00e7e18f00a90be3d8123"
+    },
+    {
+      "id": "49",
+      "file": "49-mobile-form-save-visible.png",
+      "publication_status": "captured_not_published",
+      "note": "",
+      "bytes": 22312,
+      "sha256": "c42c021ff5f49266990ea6602dad853c6f80f0276d475fa5fba26fe5a68f56cc",
+      "git_blob_sha": "0ab27a15e9a3826e4d1f6a55ebbae22a4c1f2b24"
+    },
+    {
+      "id": "50",
+      "file": "50-mobile-long-title-list.png",
+      "publication_status": "captured_not_published",
+      "note": "",
+      "bytes": 24355,
+      "sha256": "ff2212ca1d245538f2b0636e9090fd399f0de2e0e118091558d71ae1f1ad29a3",
+      "git_blob_sha": "5d951ccade584bd69691469c529190681be6a6d6"
+    },
+    {
+      "id": "51",
+      "file": "51-mobile-long-title-scroll-bottom.png",
+      "publication_status": "captured_not_published",
+      "note": "",
+      "bytes": 27115,
+      "sha256": "c4f1726a86ed7dfb3da3bd71c54c9af93e1ef9b27495e0c2a2375e2b9631ad51",
+      "git_blob_sha": "715b19ae9a2fbd7ee60d328d79425785252b121e"
+    },
+    {
+      "id": "52",
+      "file": "52-mobile-modal-keyboard-focus.png",
+      "publication_status": "captured_not_published",
+      "note": "",
+      "bytes": 25453,
+      "sha256": "7873497e51d9d8371fd4bd54ccd5f83b92b8ba083089c273ddaf53600fcef419",
+      "git_blob_sha": "63b0f4f0c2f2f82793b40dd647772b5eb2e14a3b"
+    },
+    {
+      "id": "53",
+      "file": "53-focus-after-modal-close.png",
+      "publication_status": "captured_not_published",
+      "note": "",
+      "bytes": 25265,
+      "sha256": "79d4b0a1af809f68d33eff5fa231cfef2935b8554a60be3c928c262db5ce45ac",
+      "git_blob_sha": "26f3ed57f5b7830b585f32f5478e81cb3fe888b7"
+    },
+    {
+      "id": "54",
+      "file": "54-mobile-plan-access.png",
+      "publication_status": "captured_not_published",
+      "note": "",
+      "bytes": 23762,
+      "sha256": "0d4aac357da488c12e6ad4d742c3a5b935faeed7a5904eb7e39ea2153ccfa1c7",
+      "git_blob_sha": "34715efa8aba6dd958e10a441685312ac29d9199"
+    },
+    {
+      "id": "55",
+      "file": "55-mobile-shared-reviews-empty.png",
+      "publication_status": "captured_not_published",
+      "note": "",
+      "bytes": 21628,
+      "sha256": "d8ff647a681a16b6e23411c4a160cd87739e889201a32107ae120687f33b6696",
+      "git_blob_sha": "844a7f1850d2d09f8179726d425e97108e9cafb6"
+    },
+    {
+      "id": "56",
+      "file": "56-mobile-review-settings-disabled.png",
+      "publication_status": "captured_not_published",
+      "note": "",
+      "bytes": 23019,
+      "sha256": "512ba400c87036b11f838cd47981a46c26e34b4bf47c5f551549cf28ff0525af",
+      "git_blob_sha": "2eff827b9391cbf52a5bf9c91f76a80e24f66452"
+    },
+    {
+      "id": "57",
+      "file": "57-mobile-shared-with-me-empty.png",
+      "publication_status": "captured_not_published",
+      "note": "",
+      "bytes": 15345,
+      "sha256": "3b90c2648d2df357ea2293c80e26afba1932ecab069ab8279f9f30f9ebbf2140",
+      "git_blob_sha": "6d910d89dc8c08b72f29e664e10fb46b239004ac"
+    },
+    {
+      "id": "58",
+      "file": "58-mobile-dark-mode.png",
+      "publication_status": "captured_not_published",
+      "note": "",
+      "bytes": 18108,
+      "sha256": "34d0c3c98083c6c1ae8d15aaf7cfb961f91ba09d243fca35b3e938106c4fbf5f",
+      "git_blob_sha": "53ebac5dda171312ebe30565e65465ae17579af9"
+    },
+    {
+      "id": "59",
+      "file": "59-activity-missing-restored-event.png",
+      "publication_status": "captured_not_published",
+      "note": "",
+      "bytes": 23556,
+      "sha256": "3805e2ebd5557aae25e501dba3095ac1f599ae2524465cacf91a801cafffd0bf",
+      "git_blob_sha": "096f45452ad9f3bc0b1e0da004dfae5de13be499"
+    },
+    {
+      "id": "60",
+      "file": "60-mobile-official-guide.png",
+      "publication_status": "captured_not_published",
+      "note": "",
+      "bytes": 20576,
+      "sha256": "d1b52ffe3394e49e632ac4113bf8d0a2eae9f98b4aac1ee993ed1f1d1fcd42b8",
+      "git_blob_sha": "1b3099cafe884846219dfd5e8583a3dfd6b51616"
+    },
+    {
+      "id": "61",
+      "file": "61-desktop-activity-history.png",
+      "publication_status": "captured_not_published",
+      "note": "",
+      "bytes": 52874,
+      "sha256": "32f6742e9a7631f4924255d254911ac11d05924ba63500322eba47a76675d4a5",
+      "git_blob_sha": "35e2d632460770455c7f8388770d58903a3d53d8"
+    },
+    {
+      "id": "62",
+      "file": "62-invalid-email-after-blur.png",
+      "publication_status": "captured_not_published",
+      "note": "",
+      "bytes": 52880,
+      "sha256": "5990a0d7f1ac565701668af3825f2a8a8d21a4874a9638c3ff85de95773c205d",
+      "git_blob_sha": "4012cb3e3886dd5b9fbf87ce368fa10444bdf1d5"
+    },
+    {
+      "id": "63",
+      "file": "63-details-preview-notes-and-hint.png",
+      "publication_status": "captured_not_published",
+      "note": "",
+      "bytes": 48224,
+      "sha256": "c4b1b922db17938acdce38b6ddeb416d0b813ed2d153e28d6d1182e8cb23d4c6",
+      "git_blob_sha": "4273de42ddc440a89d71f95fff5669f76082a0b7"
     }
   ],
   "excluded": [
     "14-signup-password-gate.png: contains test-account email",
-    "inspection-*: derivative contact sheets; may include excluded frame",
+    "42-archived-matter-restore.png: contains test-account email",
+    "inspection-*: derivative contact sheets",
+    "downloaded account copy: includes account email",
+    "authentication/session state and credentials",
     "audit-progress.md: superseded working draft"
   ],
-  "boundary": "Only included_in_checkpoint files are in this Git tree. blocked/captured_not_published images are not uploaded; hashes only identify local captures. Manifest excludes itself."
+  "boundary": "files is the exact published payload excluding this self-referential manifest; captures includes explicitly unpublished metadata and is not a Git file list."
 }
