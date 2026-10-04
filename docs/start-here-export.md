@@ -7,13 +7,23 @@ Do not use for: claiming legal authority, real recipient identity/acceptance/del
 Status: AUDIENCE-BOUND GUIDES AND BACKUP READERS DEPLOYED/VALIDATED IN SYNTHETIC STAGING; REAL DELIVERY CLOSED
 Last updated: 2026-10-04 (Asia/Hong_Kong)
 
-## October4 actual Web file and recent-auth check
+## October4 actual cross-client exports and native reauthentication repair
 
-The existing QQ account's empty complete-map backup was saved through Chrome's Save
-dialog and opened by the product's local reader:1,299bytes,readOnly,0matters/0people.
-After authentication naturally aged, the next sensitive export was blocked with
-403reauthentication_required; cancelling with Keep editing preserved ordinary shared
-reads. This does not close populated cross-platform guide/recovery/import acceptance.
+The QQ empty backup (1,299bytes) and native populated backup (2,291bytes,
+1matter/1person/1role) were saved through their actual system file dialogs and read
+by the deployed Web reader. The native recipient plaintext guide (962bytes) and
+native encrypted package (2,507bytes) also opened in Web with only minimum fields;
+Notes/reference remain exclusive to the full private backup. The343-byte recovery
+key was saved separately and stays outside ordinary QA/Git. Import remains pending.
+
+Real native encrypted export exposed a generic alert competing with the shared
+recent-auth prompt. The store now preserves preview/action state for the exact
+403reauthentication_required response, leaving the shared prompt in control. It
+never automatically retries or publishes an unfinalized package. Other failures
+retain their normal alerts. Focused tests reproduced3failures then passed10of10;
+the fixed Release simulator completed the actual sign-in/retry/file/decrypt flow.
+An expired preview still requires refresh and review. No layout, crypto or server
+permission change; uploaded build3predates the fix and needs a new candidate.
 [Current actual evidence](real-core-acceptance-20261004.md).
 
 ## October3 strict-review implementation boundary

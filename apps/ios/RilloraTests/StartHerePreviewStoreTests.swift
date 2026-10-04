@@ -90,6 +90,90 @@ final class StartHerePreviewStoreTests: XCTestCase {
             Data(bundle!.recoveryKit.privateKey.utf8)
         ))
     }
+
+    func testPrintableReauthenticationKeepsPreviewAndRequiresExplicitRetry() async {
+        let service = StubStartHereService(
+            result: .value(.previewFixture),
+            printableResult: .failure(.recentAuthenticationFixture)
+        )
+        let store = StartHerePreviewStore(service: service)
+        let preview = await store.createPreview()
+
+        let interrupted = await store.createPrintable(previewPublicID: preview!.export.publicId)
+
+        XCTAssertNil(interrupted)
+        XCTAssertEqual(store.state, .loaded(.previewFixture))
+        XCTAssertEqual(store.printableState, .idle, "Do not present a competing generic failure alert.")
+        let callsBeforeRetry = await service.printableCallCount()
+        XCTAssertEqual(callsBeforeRetry, 1)
+
+        await service.setPrintableResult(.value(.printableFixture))
+        let retry = await store.createPrintable(previewPublicID: preview!.export.publicId)
+        XCTAssertEqual(retry, .printableFixture)
+        let callsAfterRetry = await service.printableCallCount()
+        XCTAssertEqual(callsAfterRetry, 2)
+    }
+
+    func testEncryptedPreparationReauthenticationDoesNotFinalizeOrPublish() async {
+        let service = StubStartHereService(result: .value(.previewFixture), preparationError: .recentAuthenticationFixture)
+        let store = StartHerePreviewStore(service: service)
+        _ = await store.createPreview()
+
+        let interrupted = await store.createEncrypted(preview: .previewFixture)
+
+        XCTAssertNil(interrupted)
+        XCTAssertEqual(store.state, .loaded(.previewFixture))
+        XCTAssertEqual(store.encryptedState, .idle, "The shared authentication prompt owns this recovery.")
+        let submitted = await service.submittedFinalizeRequest()
+        XCTAssertNil(submitted)
+        let callsBeforeRetry = await service.preparationCallCount()
+        XCTAssertEqual(callsBeforeRetry, 1)
+
+        await service.clearEncryptionErrors()
+        let retry = await store.createEncrypted(preview: .previewFixture)
+        XCTAssertNotNil(retry)
+        let callsAfterRetry = await service.preparationCallCount()
+        XCTAssertEqual(callsAfterRetry, 2)
+    }
+
+    func testEncryptedFinalizeReauthenticationKeepsPreviewUntilExplicitRetry() async {
+        let service = StubStartHereService(result: .value(.previewFixture), finalizationError: .recentAuthenticationFixture)
+        let store = StartHerePreviewStore(service: service)
+        _ = await store.createPreview()
+
+        let interrupted = await store.createEncrypted(preview: .previewFixture)
+
+        XCTAssertNil(interrupted)
+        XCTAssertEqual(store.state, .loaded(.previewFixture))
+        XCTAssertEqual(store.encryptedState, .idle, "Never publish a package before finalization succeeds.")
+        let callsBeforeRetry = await service.finalizationCallCount()
+        XCTAssertEqual(callsBeforeRetry, 1)
+
+        await service.clearEncryptionErrors()
+        let retry = await store.createEncrypted(preview: .previewFixture)
+        XCTAssertNotNil(retry)
+        guard case .loaded = store.encryptedState else { return XCTFail("Expected the explicitly retried package.") }
+        let callsAfterRetry = await service.finalizationCallCount()
+        XCTAssertEqual(callsAfterRetry, 2)
+    }
+
+    func testOtherForbiddenExportsStillPublishTheirFailure() async {
+        let error = RilloraAPIError.server(status: 403, code: "export_not_allowed", message: "Not allowed.", requestID: nil)
+        let service = StubStartHereService(result: .value(.previewFixture), printableResult: .failure(error), preparationError: error)
+        let store = StartHerePreviewStore(service: service)
+
+        _ = await store.createPrintable(previewPublicID: StartHerePreview.previewFixture.export.publicId)
+        _ = await store.createEncrypted(preview: .previewFixture)
+
+        XCTAssertEqual(store.printableState, .failed(message: "Not allowed."))
+        XCTAssertEqual(store.encryptedState, .failed(message: "Not allowed."))
+    }
+}
+
+private extension RilloraAPIError {
+    static let recentAuthenticationFixture = RilloraAPIError.server(
+        status: 403, code: "reauthentication_required", message: "Sign in again to continue.", requestID: nil
+    )
 }
 
 private enum StubStartHereResult: Sendable {
@@ -122,17 +206,25 @@ private enum StubPrintableResult: Sendable {
 
 private actor StubStartHereService: StartHerePreviewing {
     private let result: StubStartHereResult
-    private let printableResult: StubPrintableResult
+    private var printableResult: StubPrintableResult
+    private var preparationError: RilloraAPIError?
+    private var finalizationError: RilloraAPIError?
     private var calls = 0
     private var printableCalls = 0
+    private var preparationCalls = 0
+    private var finalizationCalls = 0
     private var submittedEncryptedRequest: EncryptedStartHereFinalizeRequest?
 
     init(
         result: StubStartHereResult,
-        printableResult: StubPrintableResult = .failure(.requestFailed("Unavailable"))
+        printableResult: StubPrintableResult = .failure(.requestFailed("Unavailable")),
+        preparationError: RilloraAPIError? = nil,
+        finalizationError: RilloraAPIError? = nil
     ) {
         self.result = result
         self.printableResult = printableResult
+        self.preparationError = preparationError
+        self.finalizationError = finalizationError
     }
 
     func previewStartHere() async throws -> StartHerePreview {
@@ -155,10 +247,17 @@ private actor StubStartHereService: StartHerePreviewing {
         printableCalls
     }
 
+    func setPrintableResult(_ value: StubPrintableResult) { printableResult = value }
+    func clearEncryptionErrors() { preparationError = nil; finalizationError = nil }
+    func preparationCallCount() -> Int { preparationCalls }
+    func finalizationCallCount() -> Int { finalizationCalls }
+
     func prepareEncryptedStartHere(
         previewPublicID: String
     ) async throws -> EncryptedStartHerePreparation {
-        .storeFixture
+        preparationCalls += 1
+        if let preparationError { throw preparationError }
+        return .storeFixture
     }
 
     func finalizeEncryptedStartHere(
@@ -166,6 +265,8 @@ private actor StubStartHereService: StartHerePreviewing {
         request: EncryptedStartHereFinalizeRequest
     ) async throws -> EncryptedStartHereFinalizedRecord {
         submittedEncryptedRequest = request
+        finalizationCalls += 1
+        if let finalizationError { throw finalizationError }
         return .storeFixture
     }
 

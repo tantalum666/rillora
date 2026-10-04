@@ -3040,3 +3040,15 @@ unreachable release remains a different closed workflow. See [sharing contract](
 - Account deletion must use a deliberately disposable identity, never the Owner's
   Gmail/QQ records. Personal terms and any irreversible final UI action retain their
   action-time rules. [Current evidence](real-core-acceptance-20261004.md).
+
+
+## 2026-10-04 — Bounded disposable acceptance and observed native export repair
+
+- Preserve the original three review identities and expiry. Add exactly one isolated,
+  unverified disposable identity for actual delete acceptance, then restore the three;
+  no new connection binding, false verification/consent, public access or live billing.
+- Fix the observed native competing-alert defect under existing direct-repair authority.
+  Preserve draft state only for the exact recent-auth error and require explicit retry.
+  No new product/price/crypto decision is introduced. Focused red/green and actual
+  saved-file-to-Web-decrypt evidence support the fix; build3predates it and a new
+  signed candidate is needed. [Current acceptance](real-core-acceptance-20261004.md).

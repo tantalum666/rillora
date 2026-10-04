@@ -24,6 +24,11 @@ enum RilloraAPIError: LocalizedError, Equatable, Sendable {
         return status == 401 || code == "authentication_required"
     }
 
+    var isReauthenticationRequired: Bool {
+        guard case .server(let status, let code, _, _) = self else { return false }
+        return status == 403 && code == "reauthentication_required"
+    }
+
     var isVersionConflict: Bool {
         guard case .server(let status, let code, _, _) = self else { return false }
         return status == 409 && code == "version_conflict"

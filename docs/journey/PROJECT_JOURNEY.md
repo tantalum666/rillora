@@ -3180,3 +3180,22 @@ Owner先确认小型企业资格事实、再当场确认最终声明，申请已
   recent-auth aged naturally, a further export returned403reauthentication_required;
   Keep editing cancelled the escalation while ordinary shared reading remained usable.
   The pending native Account terms is still a personal confirmation dependency.
+
+
+## 2026-10-04 — Actual scope, saved copies and native recent-auth repair
+
+- Goal: continue the real planner/recipient core loop after Owner consent.
+- Attempt: save Name restriction, cancel then complete fresh authentication for Details,
+  save native plaintext/full-map/encrypted files, and read those exact files in Web.
+- Judgment change: real encrypted export showed a generic alert masking the common
+  sign-in prompt. This was a product defect, distinct from earlier automation/no-target
+  output and transient network errors. Fix only that state ownership; keep UI/crypto.
+- Result: actual Name/Details recipient projection and explicit retry passed. Focused
+  native tests went from7pass/3fail to10pass; fixed Release UI completed authentication,
+  expired-preview refresh, encryption, independent file save and Web local decryption.
+  Same fixed binary retains its session on restart; initial ad-hoc replacement signout
+  remains unattributed. Original build3does not contain this new repair.
+- Unfinished: native reader/import, Web fresh-auth, revocation, disposable deletion and
+  logout; new signed candidate and additive Git evidence preservation. AWS/CLI restored
+  after Owner MFA. Temporary fourth-identity-only access is being prepared, retaining
+  the original three/expiry and restoring them after the test; no Owner account deletion.

@@ -1,6 +1,6 @@
 # Rillora Current Handoff
 
-Status: REAL CORE ACCEPTANCE IN PROGRESS; QQ WEB SESSION VERIFIED; NATIVE TERMS CONFIRMATION PENDING
+Status: REAL CORE IN PROGRESS; NATIVE REAUTH REPAIR AND EXPORT READBACK PASSED; IMPORT/REVOKE/DELETE/LOGOUT REMAIN
 Last updated: 2026-10-04 (Asia/Hong_Kong)
 
 ## Current task
@@ -25,8 +25,22 @@ Reuse the completed184Markdown/686source review and CI47; no new full-suite reru
 - Existing simulator Rillora app datedOctober1, so a current-source Release simulator
   artifact was built, signature/production connection/fixture checks passed, then
   installed/launched without uninstall, data/Keychain erase or physical-device use.
-- Native sign-in reused the original Google session. Current Account terms is
-  unchecked; the specific action-time confirmation question is pending.
+- Native sign-in reused the original Google session. Owner explicitly confirmed
+  the exact Account terms action; it was submitted and returned to1synthetic matter
+  and the existing Connected recipient. Current native private callback is verified.
+- Native Directions-to-Name reduction was saved; the open QQ detail updated without
+  reload and its actual response contains onlytitle/category. Details expansion then
+  required recent authentication; Keep editing retained the draft and persisted Name
+  scope. Google reauthentication and explicit retry completed, and QQ now reads Details.
+- Native plaintext guide and full map backup were saved and read in Web. A new native
+  reauthentication-alert defect was reproduced/fixed with10focused tests passing.
+  The fixed Release simulator completed sign-in, explicit retry, fresh-preview handling,
+  encrypted-package save and successful Web decryption. Recovery keys stay protected.
+  The old uploaded build3predates this fix; a new signed candidate remains required.
+- AWS and Auth0 management access are restored after actual expiry. A deliberately
+  disposable identity was created without email verification; a reviewed temporary
+  fourth-identity task/service-only change is rolling out, retaining original expiry.
+  Remove that temporary access after the actual deletion test.
 
 ## Retained completed release evidence
 
@@ -44,18 +58,20 @@ through e673f1c808654a9f82845c8cedc6a52d06284638 oncodex/strict-review-20261002.
 New QA: output/qa/rillora-real-core-20261004. Simulator artifact:
 output/release/rillora-core-simulator-20261004. It is not a TestFlight install or
 physical-device result. Original review access still ends2026-10-06T17:08:57Z
-(October7 01:08:57Hong Kong); exact identities/expiry were not changed.
+(October7 01:08:57Hong Kong); the original three remain, with only a temporary fourth
+disposable identity currently being added for deletion acceptance.
 Prior QQ arrival/reset/new-password login, original native legal/cross-platform read,
 invitation acceptance, six store images and AppleTEST remain their dated evidence.
 Current scope/revoke/export/recovery/recent-auth/disposable-deletion acceptance is
 unfinished. No Owner real account is a deletion fixture. Native legal confirmation
-is governed by the browser action-time rule; no API/fixture consent substitute.
+was completed only after the explicit Owner reply; no API/fixture consent substitute.
 
 ## Single next step
 
-Resolve the pending native Account terms confirmation, verify its actual callback,
-then execute the remaining core acceptance matrix with the already signed-in QQ
-recipient. Preserve the browser tab and simulator state; do not repeat registration,
-password reset, completed rollout or upload, and do not resume the deferred phone.
+Continue from the saved encrypted-copy result: finish native reader/import and Web
+fresh-auth checks, then revoke the active Details connection and complete disposable
+delete/logout acceptance. The temporary access rollout must be verified and restored
+to the original three after use. Do not repeat completed mail/reset/deployment/build3
+upload or resume the deferred phone. Preserve the current QQ tab and native session.
 
 [Previous rollout handoff](handoff-history-20261004-before-real-core.md) isHISTORICAL.
