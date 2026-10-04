@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-03 (Asia/Shanghai)
+Last updated: 2026-10-04 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -3027,3 +3027,16 @@ unreachable release remains a different closed workflow. See [sharing contract](
   all other plist values and runtime cryptography stay unchanged. Reassess if the
   crypto/dependency basis changes. Existing build3uses the saved portal record and
   is not rebuilt/re-uploaded. No tester invite, review submission or physical use.
+
+## 2026-10-04 — Owner resumes real two-platform core acceptance
+
+- Owner explicitly selects the remaining real Web/native core journeys after the
+  completed deployment/build packages. Continue existing controlled identities and
+  synthetic test content, restoring authentication only on actual signed-out state.
+- Preserve existing completed mail/reset/invitation evidence and the original review
+  identity/expiry restriction. Physical-device purchase and merchant deferrals remain.
+- Update the older installed simulator app to reviewed-source Release for acceptance,
+  preserving data/Keychain. It is not another store upload or physical-device result.
+- Account deletion must use a deliberately disposable identity, never the Owner's
+  Gmail/QQ records. Personal terms and any irreversible final UI action retain their
+  action-time rules. [Current evidence](real-core-acceptance-20261004.md).

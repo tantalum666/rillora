@@ -1,0 +1,71 @@
+{
+  "updatedAt": "2026-10-04T12:12:04.022263+00:00",
+  "cases": [
+    {
+      "id": "recipient-existing-account",
+      "status": "passed",
+      "proof": "web-baseline.json; Owner authenticated QQ; actual shared response/DOM"
+    },
+    {
+      "id": "recipient-directions-fields",
+      "status": "passed",
+      "proof": "Actual HTTP200 response, readOnly/live, exactly5allowed fields"
+    },
+    {
+      "id": "web-delete-unconfirmed-exit",
+      "status": "passed",
+      "proof": "Unchecked/empty deletion form, submitdisabled, navigation leaves account usable"
+    },
+    {
+      "id": "reviewed-native-simulator-artifact",
+      "status": "passed",
+      "proof": "native-artifact-check.json; built/installed/launched; no data/keychain erase"
+    },
+    {
+      "id": "planner-current-session",
+      "status": "waiting-owner",
+      "proof": "Google existing session reused; current native Account terms unchecked; specific action-time question pending"
+    },
+    {
+      "id": "scope-restrict-expand",
+      "status": "pending-planner"
+    },
+    {
+      "id": "revoke-open-recipient-view",
+      "status": "pending-planner"
+    },
+    {
+      "id": "scoped-plaintext-encrypted-copy",
+      "status": "pending-planner"
+    },
+    {
+      "id": "backup-local-reader-import",
+      "status": "pending-planner"
+    },
+    {
+      "id": "recent-auth-cancel-retry",
+      "status": "pending-planner"
+    },
+    {
+      "id": "disposable-account-deletion",
+      "status": "pending-disposable-identity-and-final-confirmation",
+      "boundary": "Never delete Owner Gmail/QQ accounts; actual provider-side destructive completion needs its own proof"
+    },
+    {
+      "id": "logout-private-access-boundary",
+      "status": "pending-final-step"
+    },
+    {
+      "id": "web-empty-backup-save-read",
+      "status": "passed",
+      "proof": "web-copy-and-reauth.json; actual Chrome save and product file reader"
+    },
+    {
+      "id": "web-old-auth-block-and-cancel",
+      "status": "passed",
+      "proof": "Actual403reauthentication_required; Keep editing preserves ordinary sharing access"
+    }
+  ],
+  "retained": "Registration/email/reset/prior acceptance/CI47/API11/schema93/build3not repeated",
+  "physicalDevice": "Owner-deferred, not resumed"
+}

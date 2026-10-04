@@ -1,7 +1,7 @@
 # Account-bound invitations and directed sharing
 
 Status: SHARING CONTRACT RETAINED; RESTRICTED PRODUCTION RECENT-AUTH GUARDS VERIFIED; REAL PRODUCTION JOURNEY OPEN
-Last updated: 2026-10-03 (Asia/Shanghai)
+Last updated: 2026-10-04 (Asia/Hong_Kong)
 Authority: Owner explicitly requests A -> B/C invitations, authenticated acceptance and per-person/per-matter access.
 
 ## October3 strict-review implementation boundary
@@ -10,8 +10,13 @@ The live/saved/paused projection also governs recipient-specific printable guide
 Restores retain historical redaction and grant lineage under0092; removing then
 regranting access cannot revive a prior saved copy. Ambiguous legacy history stays
 quarantined rather than inventing missing evidence. Existing real QQ acceptance/login
-and limited field proof retain their October2 scope; the new replay/export repairs
-are locally verified, not deployed. [Review and limitations](code-review-20261002.md).
+and limited field proof retain their October2 scope. The new replay/export repairs
+were locally verified at review closeout and subsequently deployed under
+[the October3 rollout](review-rollout-20261003.md). [Review and limitations](code-review-20261002.md).
+
+October4 actual QQ session recovery again returned only the5Directions fields for
+the existing synthetic shared record. This is current restricted-production read
+evidence; changed scope and revocation remain in[the ongoing real-core acceptance](real-core-acceptance-20261004.md).
 
 ## September30 recent authentication for expanded access
 

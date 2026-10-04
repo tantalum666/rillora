@@ -5,7 +5,16 @@ Authority scope: included fields, disclosure boundary, cryptographic format, fil
 Superseded by: a later reviewed decision recorded in `docs/decision-log.md`  
 Do not use for: claiming legal authority, real recipient identity/acceptance/delivery, post-download revocation, production release or universal legal validity  
 Status: AUDIENCE-BOUND GUIDES AND BACKUP READERS DEPLOYED/VALIDATED IN SYNTHETIC STAGING; REAL DELIVERY CLOSED
-Last updated: 2026-10-03 (Asia/Shanghai)
+Last updated: 2026-10-04 (Asia/Hong_Kong)
+
+## October4 actual Web file and recent-auth check
+
+The existing QQ account's empty complete-map backup was saved through Chrome's Save
+dialog and opened by the product's local reader:1,299bytes,readOnly,0matters/0people.
+After authentication naturally aged, the next sensitive export was blocked with
+403reauthentication_required; cancelling with Keep editing preserved ordinary shared
+reads. This does not close populated cross-platform guide/recovery/import acceptance.
+[Current actual evidence](real-core-acceptance-20261004.md).
 
 ## October3 strict-review implementation boundary
 

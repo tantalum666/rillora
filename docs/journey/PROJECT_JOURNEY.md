@@ -1,6 +1,6 @@
 # Digital Legacy Ongoing Project Journey
 
-Last updated: 2026-10-03 (Asia/Shanghai)
+Last updated: 2026-10-04 (Asia/Hong_Kong)
 
 ## 记录范围
 
@@ -3155,3 +3155,28 @@ Owner先确认小型企业资格事实、再当场确认最终声明，申请已
   metadata verify raw-work-013,284objects/312paths, with no previous archive downloads.
   Two remaining present-tense references to未部署 were corrected into dated historical
   states. Final receipt-only changes do not repeat CI47, deployment, upload or consent.
+
+## 2026-10-04 — Continue real Web/native core acceptance
+
+- Goal: finish remaining core journeys under actual production identities while
+  preserving the reviewed deployment, UI/prices/data/FanPass and phone deferral.
+- Attempt: inspect actual browser/native state; Owner restores the absent QQ session.
+  The simulator still has the October1app, so build/check/install the reviewed Release
+  simulator artifact without erasing data, then reuse the existing Google session.
+- Judgment change: Xcode runtime semantic snapshots returned no interaction targets;
+  use the supported CUA Simulator screenshot controls. No source or accessibility
+  defect is inferred from the automation snapshot. Browser warnings sampled are
+  extension scripts rather than a proved Rillora failure.
+- Result so far: QQ actual shared HTTP200/live/readOnly response retains exactly5
+  Directions fields. Unchecked deletion preview can be left with the account intact.
+  The native session reaches current unchecked Account terms; confirmation is pending.
+- Unfinished: actual planner callback and scope/revoke/export/recovery/recent-auth/
+  disposable-account-deletion acceptance. Existing full suites, mail/reset, deployment
+  and Apple upload/declaration are retained; no false completion of the core package.
+
+- Additional actual Web result: the download event initially waited on Chrome's native
+  Save dialog. Saving through that dialog produced the1,299-byte empty-map JSON,
+  and the product reader opened the exact file as readOnly/0matters/0people. After
+  recent-auth aged naturally, a further export returned403reauthentication_required;
+  Keep editing cancelled the escalation while ordinary shared reading remained usable.
+  The pending native Account terms is still a personal confirmation dependency.

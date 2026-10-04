@@ -1,6 +1,8 @@
 # Rillora — Git / Dot 协作入口
 
-Updated: 2026-10-03 (Asia/Shanghai)
+Updated: 2026-10-04 (Asia/Hong_Kong)
+
+October4正在继续[真实双端核心验收](verification/real-core-20261004/README.md)：QQ会话与共享字段、未确认删除的安全退出、空地图实际保存／本地打开、近期认证过期后的阻止与取消已观察。最新源码的Release模拟器版已安装，原生Account terms等待当场确认；完整核心验收尚未完成。新增QA与模拟器包进入raw-work-014，继续使用`codex/strict-review-20261002`。
 
 October3后续[部署与新构建追加包](verification/review-rollout-20261003/README.md)：API11/schema0093及受限Web/WWW已部署，116个线上文件逐一匹配；新1.0(3)已上传处理，Owner确认的加密声明已保存，Apple显示“准备提交”。当前仍未邀请测试员、提审或开放普通客户／正式收费。原始QA和签名产物保存在新增raw-work-013，已从GitHub重新下载并解密核验284个对象／312条路径；当前代码分支保持`codex/strict-review-20261002`。
 

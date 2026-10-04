@@ -2,8 +2,8 @@
   "files": [
     {
       "path": "collaboration/README.md",
-      "bytes": 7923,
-      "sha256": "5a9b62d85844775eb5ef660d5361b1cb148f4c184997c51d622167e1808a4e7e"
+      "bytes": 8375,
+      "sha256": "1b6b2764ac604bd2423b4dcaf18d560b48f799c271099fbd6eacf60034cd7fff"
     },
     {
       "path": "collaboration/catalog/files-001.json",
@@ -45421,6 +45421,131 @@
       "sha256": "dab1ea2aae4c1c083791cbb457512d23b99f28da0b185592d0fb29a7d538886a"
     },
     {
+      "path": "collaboration/verification/real-core-20261004/README.md",
+      "bytes": 1795,
+      "sha256": "90fb08d2339fe7bae66d7d336e016b9f22a00d7ac24583368011b67b1cb1f642"
+    },
+    {
+      "path": "collaboration/verification/real-core-20261004/archive-verification.json",
+      "bytes": 113,
+      "sha256": "5a32b5490d52aa710fd1f11169ec924f7ddefe4e0c3e7dd3b7378e4755eb7c0c"
+    },
+    {
+      "path": "collaboration/verification/real-core-20261004/catalog.json",
+      "bytes": 39667,
+      "sha256": "a3b6cca7235f3e37b606085d8b797582479bcc286432c11df90e760bc6766be2"
+    },
+    {
+      "path": "collaboration/verification/real-core-20261004/markdown-links.json",
+      "bytes": 630,
+      "sha256": "c44fcfbd15bd0d80e4aabb304c2d02857c1c375542d54c580be12f9e187ce682"
+    },
+    {
+      "path": "collaboration/verification/real-core-20261004/readable-scan.json",
+      "bytes": 216,
+      "sha256": "ec388ded9976c24d9e3d15a304fecfd23e287a95c6b65649ef6c17a609f6fbbe"
+    },
+    {
+      "path": "collaboration/verification/real-core-20261004/receipts/acceptance-matrix.json",
+      "bytes": 2262,
+      "sha256": "060b7877ac372adc635a23a9366a7b971150933e1739a2d12b81c02716ec180b"
+    },
+    {
+      "path": "collaboration/verification/real-core-20261004/receipts/closeout-state.json",
+      "bytes": 1511,
+      "sha256": "70ea66098a1144e1f2538924813ff997cbb20b56e86adbed55cc4af5596b6353"
+    },
+    {
+      "path": "collaboration/verification/real-core-20261004/receipts/continuation-reading.json",
+      "bytes": 930,
+      "sha256": "233242f11004f25490ccfa3d02ffd4de95728847186437360ed1a8d5813511eb"
+    },
+    {
+      "path": "collaboration/verification/real-core-20261004/receipts/exports/qq-empty-map.json",
+      "bytes": 1298,
+      "sha256": "610e03dfe05770bc25780a6e3c09a3eae217181729dbda31e61c71074e709c92"
+    },
+    {
+      "path": "collaboration/verification/real-core-20261004/receipts/installed-native-before.json",
+      "bytes": 817,
+      "sha256": "8c4a028eaa349b01f933b05e2e40507ff5671393982d16747aefc697f45f586e"
+    },
+    {
+      "path": "collaboration/verification/real-core-20261004/receipts/native-artifact-check.json",
+      "bytes": 770,
+      "sha256": "5a48f11b2af595b14d2799e469d6092880d964f7cff2bbe8812349ccf4006b89"
+    },
+    {
+      "path": "collaboration/verification/real-core-20261004/receipts/native-build.log.reference.txt",
+      "bytes": 3100735,
+      "sha256": "3394698b3e84a70cfc549a64f253a4f2d1490a7caab1bbed5c7661eb3d16d25f"
+    },
+    {
+      "path": "collaboration/verification/real-core-20261004/receipts/preserve_work.py.reference.txt",
+      "bytes": 6679,
+      "sha256": "70d8605c5b588eacb617a5d533a3cc9b7695bb9724299a8a37c98c4aa2382d55"
+    },
+    {
+      "path": "collaboration/verification/real-core-20261004/receipts/web-baseline.json",
+      "bytes": 833,
+      "sha256": "21ed0ac00afac5dfb0817d8b33054b63ce46c046b8fc6f9292afa5ff5d52b8fe"
+    },
+    {
+      "path": "collaboration/verification/real-core-20261004/receipts/web-copy-and-reauth.json",
+      "bytes": 1176,
+      "sha256": "80ee06268ff57620ae656a5d75ac7450c8724fe9863a38167d46e611c1d7196d"
+    },
+    {
+      "path": "collaboration/verification/real-core-20261004/receipts/work-state.json",
+      "bytes": 1991,
+      "sha256": "1405dfa0c44a72a41405b7a6bcd933802219377a3d3d73df7381296b1b5a5951"
+    },
+    {
+      "path": "collaboration/verification/real-core-20261004/snapshot.json",
+      "bytes": 1227,
+      "sha256": "ab695fabc0d09ba941f8a9fc815c5fd87b5cc8389e0fdec8271f6cb9912c7e50"
+    },
+    {
+      "path": "collaboration/verification/real-core-20261004/source-candidate.json",
+      "bytes": 210282,
+      "sha256": "a745553b0c2208c888dd6e362995ec5491dcf01d3364700e9c32672ec541ccd4"
+    },
+    {
+      "path": "collaboration/verification/real-core-20261004/source-scan.json",
+      "bytes": 10712,
+      "sha256": "56f0ef09289874458a4d4bd5be72c9d144bc2f67d49064c8a70c83a917b4c62e"
+    },
+    {
+      "path": "collaboration/verification/real-core-20261004/source-scope-check.json",
+      "bytes": 540,
+      "sha256": "ecddcd00ba6a26087926aea6f8fd789771bd8073219568b79be3e6306a491635"
+    },
+    {
+      "path": "collaboration/verification/real-core-20261004/web-delete-unconfirmed.jpg",
+      "bytes": 26235,
+      "sha256": "d9cd8bd695d1400896dcbe29e9c77001730e9cd6a6bcb4d8730d38d28f8fd499"
+    },
+    {
+      "path": "collaboration/verification/real-core-20261004/web-empty-copy-read.jpg",
+      "bytes": 14983,
+      "sha256": "761b506238ae40d8604c7ab1dac8c93992556167e4cab1915acfd37b482d93fe"
+    },
+    {
+      "path": "collaboration/verification/real-core-20261004/web-recent-auth-required.jpg",
+      "bytes": 13958,
+      "sha256": "44ee89c0c747469dc8a9a55c8e90ff6da919795d5d16b40e1ce23068c3d1ae49"
+    },
+    {
+      "path": "collaboration/verification/real-core-20261004/web-recipient-baseline.jpg",
+      "bytes": 44114,
+      "sha256": "2836f65ca091d20165ecd4343a0ab6b57de619758fe6949f858753b92c1ff847"
+    },
+    {
+      "path": "collaboration/verification/real-core-20261004/web-signin-required.jpg",
+      "bytes": 30103,
+      "sha256": "8f3175aae25a37e9fb0fe1b5467cb3b73e2b80a1f07e2d2aea6c6d3164a6f7fb"
+    },
+    {
       "path": "collaboration/verification/redact_scan_findings.py.reference.txt",
       "bytes": 3710,
       "sha256": "60ee5d45f4a0a4927bf2a1ba6855bd726f06d8c1a22a28eed8b2098e71a82357"
@@ -48281,6 +48406,6 @@
       "sha256": "33c4f42e8e2c730d54aa6bff46075b11ed7357c4c82659917d87ab3842b3ffdc"
     }
   ],
-  "fileCount": 9656,
-  "totalBytes": 238990939
+  "fileCount": 9681,
+  "totalBytes": 242504968
 }

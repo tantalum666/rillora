@@ -5,9 +5,13 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-10-03 (Asia/Shanghai)
+Last updated: 2026-10-04 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-10-04 Owner继续真实双端核心验收
+
+Owner要求先完成真实双端核心流程的剩余步骤。接着已完成的审查部署与构建，验收共享范围／撤销、导出／恢复、重新认证与可丢弃身份的删除。沿用已有注册、邮件与恢复结果；实际失效的会话才恢复。真机购买和商户事实仍保持暂缓，现有UI、价格、真实数据与FanPass不变。[当前验收合同](real-core-acceptance-20261004.md)。
 
 ## 2026-10-03 Owner选择先完成部署与新iOS构建
 
@@ -349,6 +353,7 @@ Owner于2026-09-09明确：“本项目全部默认授权与确认”。当前�
 
 | Task | Read next | Role |
 | --- | --- | --- |
+| 真实双端核心流程的剩余验收 | `docs/real-core-acceptance-20261004.md` | 当前会话、共享／撤销、导出／恢复、近期认证及删除的实际结果 |
 | 本轮审查修复部署、新iOS构建与加密声明 | `docs/review-rollout-20261003.md` | API11/schema0093与新构建3的实际结果；真实验收与公开发布仍分开 |
 | 严格全项目代码审查、当前缺陷与直接修复 | `docs/code-review-20261002.md` | 当前逐文件覆盖、复现与验证；与历史Dot报告和实际部署分开 |
 | Resend事务邮件、GoDaddy DNS、Auth0发信或实际收件验收 | `docs/transaction-mail-resend-20261001.md` → `docs/production-identity-mail-20260924.md` | 当前发送服务、凭据边界和邮件证据；SES旧工单不再阻塞Resend |

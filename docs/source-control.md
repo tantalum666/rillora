@@ -1,6 +1,6 @@
 # Source control, complete work preservation and release rollback
 
-Last updated: 2026-10-03 (Asia/Shanghai)
+Last updated: 2026-10-04 (Asia/Hong_Kong)
 
 The private remote is [tantalum666/rillora](https://github.com/tantalum666/rillora).
 Owner explicitly requested **all Rillora work** for Git and Dot collaboration on
@@ -225,3 +225,12 @@ its exact ciphertext hash/size and all284objects/312catalog paths pass decryptio
 verification against metadata read from GitHub. [Remote receipt](../collaboration/verification/review-rollout-20261003/remote-readback.json).
 Receipt-only follow-up changes preserve this immutable capture and the original CI47
 scope; no previous archive, deployment, native upload or product suite is repeated.
+
+## October4 real-core acceptance checkpoint
+
+The [new addendum](../collaboration/verification/real-core-20261004/README.md) preserves
+135paths/112objects (58143731original bytes) and the current Release simulator app
+in raw-work-014. Local ciphertext/object/catalog verification passes. Native legal
+confirmation and the remaining actual core cases are still pending, explicitly
+separate from source/artifact preservation. Auth handoff/session material and compiler
+caches are excluded; previous archives are unchanged.
