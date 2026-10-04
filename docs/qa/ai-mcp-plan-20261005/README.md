@@ -44,11 +44,15 @@ Last updated: 2026-10-05 (Asia/Hong_Kong)
 - 首次批量 Git tree 请求未返回可确认结果；回读确认目标分支仍在原基线后，改用逐文件 Contents API 提交。未移动其他分支、无强推/合并
 - 中间文档保存提交使用仓库已有 `[skip ci]` 惯例；本条完成文档提交不加跳过标记，允许 Verify source 验证汇总后的全部文档状态
 
-## 待最终回执记录
+## 最终远端与 CI 回执
 
-提交后按不可变 commit 读回正文并逐字符比较；核对累计只改文档。
-本次普通提交触发的 Verify source 跟进至终态，CI 只验证既有源码/出版保护，
-不证明 AI 功能已实现。最终纯回执提交可以沿用 `[skip ci]` 并明确标记。
+- 实质正文提交：[`ffb9dfb024e1c1a12375788e930e1e221ff0009d`](https://github.com/tantalum666/rillora/commit/ffb9dfb024e1c1a12375788e930e1e221ff0009d)
+- 在该不可变 commit 逐一读回六份文档，与准备正文逐字符一致；相对基线的 compare 只有上述六个 docs 路径
+- 主计划：280 行、33,857 UTF-8 字节；SHA-256 `6c429d229f3a6a21268fd9523b56dfa8a2294afe9f69424781494221d2bfbec2`；Git blob `fa6778aec45c325fddf53420d0a8bbebaa73a14f`
+- [Verify source #51](https://github.com/tantalum666/rillora/actions/runs/37245412500) 在该准确 SHA 终态 success；source、api、web-and-infrastructure 三个 job 全部 success
+- 本条仅补最终回执，提交使用仓库 `[skip ci]` 惯例；不把回执提交说成重新跑过 CI，不改计划或运行代码
+- 没有 PR、合并、部署、Auth0 配置、凭据创建、数据授权或公开目录提交；原 strict-review、Web 验收与 main 分支未被本任务移动
 
-新功能单测、合成/真实 OAuth、MCP Inspector、生产浏览器、部署和目录验证全部未执行。
-不得借用 Web 验收分支的 CI50 或旧 CI48 作为本次新提交结果。
+CI 验证的是既有源码/出版保护与本次文档保存兼容性，不证明 AI 功能已实现。
+新 AI 功能单测、合成/真实 OAuth、MCP Inspector、生产浏览器、部署和目录验证全部未执行。
+没有借用 Web 验收分支的 CI50 或旧 CI48 作为本次新提交结果。
