@@ -5,9 +5,13 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-10-04 (Asia/Hong_Kong)
+Last updated: 2026-10-05 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-10-05 Owner要求可维护的中文Web界面
+
+Owner要求直接实现中文界面并推送Git。本轮为Web应用和官网增加简体中文/English切换，集中语义词典、浏览器偏好、格式化与回归测试；不改市场、价格、权限或英文法律合同，也不暗示Auth0/邮件/iOS已翻译。[实施与维护合同](web-localization-20261005.md)及[QA](qa/chinese-web-20261005/README.md)明确浏览器环境受阻、未部署和原真实核心验收仍保留。
 
 ## 2026-10-04 Owner继续真实双端核心验收
 

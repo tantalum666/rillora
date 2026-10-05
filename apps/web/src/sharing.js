@@ -4,19 +4,24 @@ export const sharingLevels = [
   { value: "details", label: "Details", description: "All saved details", fields: ["title", "category", "institutionName", "locationHint", "desiredOutcome", "accountHint", "valueBand", "currencyCode", "importance", "assetType", "debtType", "documentType", "deviceModel", "billingCycle", "renewalDate", "cryptoCustody", "network", "walletAddress", "walletLabel", "assetSymbol", "notes"] },
 ];
 export const sharingStatus = { pending: "Invitation pending", expired: "Link expired", accepted: "Connected", revoked: "Disconnected" };
-export function connectionStatus(connection) {
+export function connectionStatus(connection, t) {
+  if (t) {
+    const status = connection?.status === "revoked" ? "revoked" : ["saved", "paused"].includes(connection?.access?.mode) ? "paused" : Object.hasOwn(sharingStatus, connection?.status) ? connection.status : "notInvited";
+    return t(`sharing.status.${status}`);
+  }
   if (connection?.status === "revoked") return "Disconnected";
   if (connection?.access?.mode === "saved") return "Updates paused";
   if (connection?.access?.mode === "paused") return "Updates paused";
   return sharingStatus[connection?.status] ?? "Not invited";
 }
-export function savedCopyLabel(item) {
+export function savedCopyLabel(item, t, formatDate) {
   if (item.accessMode !== "saved") return "";
-  const date = new Date(item.savedAt);
+  const date = item.savedAt ? new Date(item.savedAt) : new Date(NaN);
+  if (t) return t("sharing.saved.label", { date: Number.isNaN(date.getTime()) ? t("sharing.saved.duringPaid") : formatDate(item.savedAt) });
   return `Updates paused · Saved ${Number.isNaN(date.getTime()) ? "during the paid period" : date.toLocaleDateString("en", { year: "numeric", month: "short", day: "numeric" })}`;
 }
 export const sharedFieldLabels = { institutionName: "Provider", locationHint: "Where to find it", desiredOutcome: "Wishes", accountHint: "Masked hint", valueBand: "Value range", currencyCode: "Currency", importance: "Importance", assetType: "Asset type", debtType: "Debt type", documentType: "Document type", deviceModel: "Model", billingCycle: "Billing cycle", renewalDate: "Next renewal", cryptoCustody: "Held in", network: "Blockchain network", walletAddress: "Public wallet address", walletLabel: "Wallet app or device", assetSymbol: "Asset or token", notes: "Notes" };
-export function sharedFieldValue(key, value) {
+export function sharedFieldValue(key, value, t) {
   const labels = {
     desiredOutcome: { notify: "Notify someone", transfer_request: "Request transfer", close: "Request closure", delete_request: "Request deletion", memorialize: "Request memorialization", delay_disclosure: "Delay disclosure", never_disclose: "Never disclose", undecided: "Not decided" },
     cryptoCustody: { exchange: "An exchange", self_custody: "An on-chain wallet" },
@@ -24,7 +29,7 @@ export function sharedFieldValue(key, value) {
     valueBand: { none: "No monetary value", under_1k: "Under 1,000", "1k_10k": "1,000–10,000", "10k_100k": "10,000–100,000", "100k_plus": "100,000+" },
     importance: { standard: "Standard", important: "Important", critical: "Critical" },
   };
-  return labels[key]?.[value] ?? value;
+  return labels[key]?.[value] ? t ? t(`sharing.value.${key}.${value}`) : labels[key][value] : value;
 }
 const uuid = /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i;
 export function invitationTokenFromUrl(value) {
@@ -59,4 +64,16 @@ export function validateSharingPreview(value, grants) {
     seen.add(item.matterPublicId);
   }
   return value;
+}
+
+// Resolve only application-owned message descriptors. Never interpret saved content as a key.
+export function sharingMessage(value, t, errorMessage) {
+  if (typeof value === "string") return t(value);
+  if (value?.cause) return errorMessage(value.cause, value.key);
+  return value?.key ? t(value.key, value.params) : "";
+}
+
+export function sharedCategoryLabel(value, t) {
+  return ["account", "financial_asset", "debt", "document", "device", "subscription", "crypto_asset"].includes(value)
+    ? t(`forms.category.${value}`) : value;
 }

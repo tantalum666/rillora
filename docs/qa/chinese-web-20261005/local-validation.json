@@ -1,0 +1,45 @@
+{
+  "checked_at_utc": "2026-10-05T00:28:04.041349+00:00",
+  "node_version": "v24.19.0",
+  "checks": [
+    {
+      "check": "internal-build",
+      "result": "passed",
+      "last_lines": "dist/client/assets/index-CxtUjJG0.css                                     110.11 kB │ gzip:  20.42 kB\ndist/client/assets/__vite-browser-external-BIHI7g3E.js                      0.03 kB │ gzip:   0.05 kB\ndist/client/assets/browser-GoYyXT1U.js                                     25.78 kB │ gzip:  10.13 kB\ndist/client/assets/FamilyMaintenancePanel-CatFl3u_.js                      26.02 kB │ gzip:   7.02 kB\ndist/client/assets/index-CJNcLi2O.js                                      826.17 kB │ gzip: 229.68 kB\n\n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\n✓ built in 3.57s\nPrepared Sites build: dist/server/index.js and dist/.openai/hosting.json"
+    },
+    {
+      "check": "app-tests",
+      "result": "passed",
+      "last_lines": "✔ unknown tasks and invalid identifiers cannot become arbitrary navigation (0.148764ms)\n✔ draft fields and invitation credentials stay out of history (0.214333ms)\n✔ account and authentication-return destinations remain intact (0.165799ms)\n✔ legacy guide and account continuations hydrate only the authenticated guide task (0.202595ms)\nℹ tests 162\nℹ suites 0\nℹ pass 162\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 782.72383"
+    },
+    {
+      "check": "public-build-and-package",
+      "result": "passed",
+      "last_lines": "dist-public/assets/inter-latin-500-normal-BL9OpVg8.woff             31.28 kB\ndist-public/assets/design-credits-BCNZEGoJ.txt                      36.61 kB │ gzip:   8.14 kB\ndist-public/assets/hero-dark-uXYCzRbW.webp                         114.64 kB\ndist-public/assets/hero-still-life-lQEC4lBu.webp                   151.19 kB\ndist-public/assets/folio-transparent-BR5qiEcs.webp                 220.19 kB\ndist-public/assets/public-DFIWy0D9.css                              67.68 kB │ gzip:  13.87 kB\ndist-public/assets/publicRoutes-DSLs-t17.js                          0.28 kB │ gzip:   0.20 kB\ndist-public/assets/PlanSection-DwPjX6t1.js                           2.52 kB │ gzip:   0.73 kB\ndist-public/assets/LegalInformation-Cr0cVGCD.js                     42.30 kB │ gzip:   9.87 kB\ndist-public/assets/ProductPages-Bnb0z9_o.js                         55.79 kB │ gzip:  16.95 kB\ndist-public/assets/public-DvfuhAoN.js                              423.59 kB │ gzip: 134.12 kB\n✓ built in 3.48s"
+    },
+    {
+      "check": "legal-fixture-build-and-package",
+      "result": "passed",
+      "last_lines": "dist/client/assets/inter-latin-400-normal-CyCys3Eg.woff             30.70 kB\ndist/client/assets/inter-latin-600-normal-CiBQ2DWP.woff             31.26 kB\ndist/client/assets/inter-latin-500-normal-BL9OpVg8.woff             31.28 kB\ndist/client/assets/legal-B15tQlXD.css                               57.82 kB │ gzip: 11.23 kB\ndist/client/assets/legal-z77eOUOS.js                               259.15 kB │ gzip: 81.98 kB\n✓ built in 2.72s\nnpm notice\nnpm notice New major version of npm available! 11.9.0 -> 12.2.0\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0\nnpm notice To update run: npm install -g npm@12.2.0\nnpm notice\nPrepared legal-only Sites build."
+    },
+    {
+      "check": "legal-fixture-tests",
+      "result": "passed",
+      "last_lines": "✔ caches fingerprinted assets immutably (0.331138ms)\n✔ emits a legal entry and the Sites package files (7.161601ms)\n✔ embeds the built legal shell in the deployed Worker (1.543892ms)\n✔ keeps the legal artifact inside its performance and content budgets (9.864847ms)\nℹ tests 7\nℹ suites 0\nℹ pass 7\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 94.273577"
+    },
+    {
+      "check": "closed-client-fixture",
+      "result": "passed",
+      "last_lines": "dist-production/assets/FamilyMaintenancePanel-D-UiaxBi.css                      7.42 kB │ gzip:   2.05 kB\ndist-production/assets/index-CxtUjJG0.css                                     110.11 kB │ gzip:  20.42 kB\ndist-production/assets/__vite-browser-external-BIHI7g3E.js                      0.03 kB │ gzip:   0.05 kB\ndist-production/assets/FamilyMaintenancePanel-BoptPoWx.js                      37.54 kB │ gzip:   9.43 kB\ndist-production/assets/index-BgtsxHe4.js                                      613.43 kB │ gzip: 178.40 kB\n\n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\n✓ built in 3.21s\nPrepared closed production client artifact; public customer access remains closed."
+    },
+    {
+      "check": "restricted-review-client-fixture",
+      "result": "passed",
+      "last_lines": "\n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\n✓ built in 3.60s\nPrepared restricted-review production client artifact; public customer access remains closed.\nnpm notice\nnpm notice New major version of npm available! 11.9.0 -> 12.2.0\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0\nnpm notice To update run: npm install -g npm@12.2.0\nnpm notice"
+    }
+  ],
+  "production_artifact_notice": "Closed/review builds use fake CI legal fields only. These are verification fixtures, not deployable or published artifacts.",
+  "browser_status": "blocked before navigation; zero rendered checks",
+  "dependency_changes": false,
+  "lint_and_typecheck": "No independent lint/typecheck script exists in apps/web package.json. Vite build/Node/SSR/catalog validation were run; not a TypeScript full-repository pass."
+}

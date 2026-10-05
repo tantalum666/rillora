@@ -1,6 +1,7 @@
+import { sharingMessage, sharedCategoryLabel, sharedFieldValue } from "./sharing.js";
+import { useI18n } from "./i18n/I18nProvider.jsx";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { ArrowRight, CheckCircle, DownloadSimple, Eye, FileText, Users, Info, Key, LockKey, Printer, ShieldCheck, WarningCircle } from "@phosphor-icons/react";
-import { ApiClientError } from "./api.js";
 import { PanelTabs } from "./TaskPanels.jsx";
 import { useConfirmation } from "./ConfirmationDialog.jsx";
 import guideArtwork from "./assets/continuity-guide.png";
@@ -11,6 +12,7 @@ import {
 } from "./startHereCrypto.js";
 
 export function StartHerePanel({ apiClient, onGenerated, onBusyChange, onExitWarning }) {
+  const { t, formatDate, errorMessage: translateError } = useI18n();
   const [preview, setPreview] = useState(null);
   const [audience, setAudience] = useState("");
   const [recipientId, setRecipientId] = useState("");
@@ -37,13 +39,13 @@ export function StartHerePanel({ apiClient, onGenerated, onBusyChange, onExitWar
     let active = true;
     apiClient.getSharingConnections().then(({ connections }) => {
       if (active) setRecipients(connections.filter(item => item.status === "accepted"));
-    }).catch(() => { if (active) setRecipientError("Connected people could not be loaded. Close this panel and try again."); });
+    }).catch(() => { if (active) setRecipientError("sharing.copy.peopleError"); });
     return () => { active = false; };
   }, [apiClient]);
 
   useLayoutEffect(() => onBusyChange?.(busyAction !== null), [busyAction, onBusyChange]);
   useLayoutEffect(() => onExitWarning?.(encryptedResult && !recoverySaved
-    ? "Your recovery key is only here until you save it. Leave without keeping the key?" : ""),
+    ? { key: "sharing.copy.exitWarning" } : ""),
   [encryptedResult, recoverySaved, onExitWarning]);
   useEffect(() => {
     if ((!encryptedResult || recoverySaved) && busyAction !== "encrypted") return undefined;
@@ -60,7 +62,7 @@ export function StartHerePanel({ apiClient, onGenerated, onBusyChange, onExitWar
 
   async function createPreview() {
     if (!audience || (audience === "recipient" && !recipientId)) return;
-    if (encryptedResult && !recoverySaved && !await confirm({ title: "Replace this recovery key?", message: "Keep the current key before refreshing. Rillora cannot recover it.", confirmLabel: "Replace preview", cancelLabel: "Keep current guide" })) return;
+    if (encryptedResult && !recoverySaved && !await confirm({ titleKey: "sharing.copy.replaceKeyTitle", messageKey: "sharing.copy.replaceKeyBody", confirmLabelKey: "sharing.copy.replacePreview", cancelLabelKey: "sharing.copy.keepGuide" })) return;
     setBusyAction("preview");
     setError("");
     try {
@@ -81,7 +83,7 @@ export function StartHerePanel({ apiClient, onGenerated, onBusyChange, onExitWar
         setRehearsalContacts(eligible); setSelectedRehearsalContact(eligible[0]?.publicId ?? "");
       }
     } catch (caught) {
-      setError(messageFor(caught, "The Start Here preview could not be created."));
+      setError(messageFor(caught, "sharing.copy.previewError"));
     } finally {
       setBusyAction(null);
     }
@@ -127,12 +129,12 @@ export function StartHerePanel({ apiClient, onGenerated, onBusyChange, onExitWar
         decryptedMatterCount: decrypted.package.matters.length,
         revoked: false,
       });
-      await onGenerated?.("Synthetic recipient acceptance and local decryption rehearsal passed. No delivery or release occurred.");
+      await onGenerated?.({key:"sharing.diagnostics.passedNotice"});
     } catch (caught) {
       if (rehearsalPublicId) {
         try { await apiClient.revokeRecipientRehearsal(rehearsalPublicId); } catch { /* best-effort cleanup */ }
       }
-      setError(messageFor(caught, "The synthetic recipient rehearsal could not be completed."));
+      setError(messageFor(caught, "sharing.diagnostics.runError"));
     } finally {
       setBusyAction(null);
     }
@@ -149,7 +151,7 @@ export function StartHerePanel({ apiClient, onGenerated, onBusyChange, onExitWar
       );
       setRehearsalResult({ ...rehearsalResult, sessionToken: null, revoked: true });
     } catch (caught) {
-      setError(messageFor(caught, "The synthetic recipient key could not be revoked."));
+      setError(messageFor(caught, "sharing.diagnostics.revokeError"));
     } finally {
       setBusyAction(null);
     }
@@ -167,9 +169,9 @@ export function StartHerePanel({ apiClient, onGenerated, onBusyChange, onExitWar
         encrypted.submission,
       );
       setEncryptedResult({ ...encrypted, finalized: finalized.encryptedPackage });
-      await onGenerated?.("Encrypted copy ready. Keep the recovery key separately.");
+      await onGenerated?.({ key: "sharing.copy.encryptedNotice" });
     } catch (caught) {
-      setError(messageFor(caught, "The encrypted package could not be created."));
+      setError(messageFor(caught, "sharing.copy.encryptError"));
     } finally {
       setBusyAction(null);
     }
@@ -183,105 +185,105 @@ export function StartHerePanel({ apiClient, onGenerated, onBusyChange, onExitWar
       const result = await apiClient.createPrintableStartHere(preview.export.publicId);
       downloadArtifact(result.blob, result.filename);
       setArtifact(result);
-      await onGenerated?.("Printable guide prepared. Download started.");
+      await onGenerated?.({ key: "sharing.copy.printNotice" });
     } catch (caught) {
-      setError(messageFor(caught, "The printable guide could not be created."));
+      setError(messageFor(caught, "sharing.copy.printError"));
     } finally {
       setBusyAction(null);
     }
   }
 
-  const errorMessage = error && <div className="start-here-error" role="alert"><p><WarningCircle size={18} /> {error}</p>{preview && <button className="secondary-button" disabled={!!busyAction} onClick={() => void createPreview()}>Refresh and review</button>}</div>;
+  const errorMessage = error && <div className="start-here-error" role="alert"><p><WarningCircle size={18} /> {sharingMessage(error, t, translateError)}</p>{preview && <button className="secondary-button" disabled={!!busyAction} onClick={() => void createPreview()}>{t("sharing.copy.refreshReview")}</button>}</div>;
   const artwork = <img className="guide-illustration" src={guideArtwork} alt="" width="1254" height="1254" />;
 
   if (!preview) return <div className="start-here-panel">
-    <h3>Who is this copy for?</h3>
-    <div className="copy-format-choices" role="group" aria-label="Copy audience">
-      <button type="button" aria-pressed={audience === "owner"} onClick={() => setAudience("owner")}><FileText size={34} /><span>For me</span></button>
-      <button type="button" aria-pressed={audience === "recipient"} onClick={() => setAudience("recipient")}><Users size={34} /><span>For a person</span></button>
+    <h3>{t("sharing.copy.audienceQuestion")}</h3>
+    <div className="copy-format-choices" role="group" aria-label={t("sharing.copy.audience")}>
+      <button type="button" aria-pressed={audience === "owner"} onClick={() => setAudience("owner")}><FileText size={34} /><span>{t("sharing.copy.forMe")}</span></button>
+      <button type="button" aria-pressed={audience === "recipient"} onClick={() => setAudience("recipient")}><Users size={34} /><span>{t("sharing.copy.forPerson")}</span></button>
     </div>
-    {audience === "owner" && <p className="matter-form-hint">A personal directions overview. Choose a person before making a copy to share.</p>}
-    {audience === "recipient" && <><label className="field-label">Connected person · Required<select aria-label="Connected person" value={recipientId} onChange={event => setRecipientId(event.target.value)}><option value="">Choose a person</option>{recipients.map(person => <option key={person.publicId} value={person.publicId}>{person.personName}</option>)}</select></label>{recipientError && <p role="alert">{recipientError}</p>}{!recipientError && recipients.length === 0 && <p>No connected people yet. Send an invitation first.</p>}<p className="matter-form-hint">Only their currently shared matters and permitted directions.</p></>}
+    {audience === "owner" && <p className="matter-form-hint">{t("sharing.copy.ownerHint")}</p>}
+    {audience === "recipient" && <><label className="field-label">{t("sharing.copy.connectedRequired")}<select aria-label={t("sharing.copy.connectedPerson")} value={recipientId} onChange={event => setRecipientId(event.target.value)}><option value="">{t("sharing.copy.choosePerson")}</option>{recipients.map(person => <option key={person.publicId} value={person.publicId}>{person.personName}</option>)}</select></label>{recipientError && <p role="alert">{sharingMessage(recipientError, t, translateError)}</p>}{!recipientError && recipients.length === 0 && <p>{t("sharing.copy.noPeople")}</p>}<p className="matter-form-hint">{t("sharing.copy.recipientBoundary")}</p></>}
     {errorMessage}
-    <button className="primary-button drawer-primary" disabled={busyAction !== null || !audience || (audience === "recipient" && !recipientId)} onClick={() => void createPreview()}>{busyAction === "preview" ? "Preparing preview…" : "Review this copy"}<Eye size={20} aria-hidden="true" /></button>
-    <details className="task-details"><summary><Info size={18} aria-hidden="true" /> Preview only</summary><p>Only you see this preview. No file is created or shared.</p></details>
+    <button className="primary-button drawer-primary" disabled={busyAction !== null || !audience || (audience === "recipient" && !recipientId)} onClick={() => void createPreview()}>{busyAction === "preview" ? t("sharing.copy.preparingPreview") : t("sharing.copy.reviewCopy")}<Eye size={20} aria-hidden="true" /></button>
+    <details className="task-details"><summary><Info size={18} aria-hidden="true" /> {t("sharing.copy.previewOnly")}</summary><p>{t("sharing.copy.previewBoundary")}</p></details>
   </div>;
 
   return <div className="start-here-panel" data-copy-format={format}>
     {confirmation}
-    <PanelTabs items={[["review", "Review"], ["format", "Format"], ["save", "Save"]]} selected={step} onSelect={(value) => { if (!busyAction) setStep(value); }} label="Guide stage" />
+    <PanelTabs items={[["review", t("sharing.copy.review")], ["format", t("sharing.copy.format")], ["save", t("sharing.copy.save")]]} selected={step} onSelect={(value) => { if (!busyAction) setStep(value); }} label={t("sharing.copy.stage")} />
     {errorMessage}
     {step === "review" && <>
-      <div className="start-here-status"><Eye size={20} aria-hidden="true" />{preview.package.audience?.kind === "recipient" ? `For ${preview.package.audience.name}` : "Personal directions · for me"}</div>
-      <p>{preview.package.matters.length} {preview.package.matters.length === 1 ? "matter" : "matters"} in this copy</p>
-      {preview.package.matters.map((matter) => <details className="task-details" key={matter.publicId}><summary>{matter.title}</summary><dl className="export-preview-fields"><dt>Type</dt><dd>{formatLabel(matter.category)}</dd>{matter.institutionName && <><dt>Provider</dt><dd>{matter.institutionName}</dd></>}{matter.locationHint && <><dt>Where to find it</dt><dd>{matter.locationHint}</dd></>}{matter.desiredOutcome && <><dt>Wishes</dt><dd>{formatLabel(matter.desiredOutcome)}</dd></>}{!matter.desiredOutcome && <><dt>Access</dt><dd>Name only</dd></>}</dl></details>)}
-      {preview.package.trustedContacts.length > 0 && <details className="task-details"><summary>Contact names included · {preview.package.trustedContacts.length}</summary>{preview.package.trustedContacts.map((contact, index) => <div className="start-here-preview-row" key={index}><strong>{contact.displayName}</strong><span>{contact.relationshipLabel}</span></div>)}</details>}
-      <button className="primary-button drawer-primary" onClick={() => setStep("format")}>Choose a format <ArrowIcon /></button>
-      <button className="text-button" onClick={async () => { if (encryptedResult && !recoverySaved && !await confirm({title:"Keep your recovery key",message:"Changing the audience removes this unsaved recovery key.",confirmLabel:"Change audience",cancelLabel:"Keep current copy"})) return;setPreview(null);setArtifact(null);setEncryptedResult(null);setError(""); }}>Change who this is for</button>
-      <details className="task-details"><summary>Preview details</summary><p>Expires {formatExpiry(preview.export.expiresAt)}. Refresh after changing your map.</p><button className="secondary-button" disabled={busyAction !== null} onClick={() => void createPreview()}>Refresh preview</button></details>
+      <div className="start-here-status"><Eye size={20} aria-hidden="true" />{preview.package.audience?.kind === "recipient" ? t("sharing.copy.forName", { name: preview.package.audience.name }) : t("sharing.copy.personalDirections")}</div>
+      <p>{t("sharing.copy.matterCount", { count: preview.package.matters.length })}</p>
+      {preview.package.matters.map((matter) => <details className="task-details" key={matter.publicId}><summary>{matter.title}</summary><dl className="export-preview-fields"><dt>{t("sharing.common.type")}</dt><dd>{sharedCategoryLabel(matter.category, t)}</dd>{matter.institutionName && <><dt>{t("sharing.common.provider")}</dt><dd>{matter.institutionName}</dd></>}{matter.locationHint && <><dt>{t("sharing.common.location")}</dt><dd>{matter.locationHint}</dd></>}{matter.desiredOutcome && <><dt>{t("sharing.common.wishes")}</dt><dd>{sharedFieldValue("desiredOutcome", matter.desiredOutcome, t)}</dd></>}{!matter.desiredOutcome && <><dt>{t("sharing.common.access")}</dt><dd>{t("sharing.common.nameOnly")}</dd></>}</dl></details>)}
+      {preview.package.trustedContacts.length > 0 && <details className="task-details"><summary>{t("sharing.copy.peopleCount", { count: preview.package.trustedContacts.length })}</summary>{preview.package.trustedContacts.map((contact, index) => <div className="start-here-preview-row" key={index}><strong>{contact.displayName}</strong><span>{contact.relationshipLabel}</span></div>)}</details>}
+      <button className="primary-button drawer-primary" onClick={() => setStep("format")}>{t("sharing.copy.chooseFormat")} <ArrowIcon /></button>
+      <button className="text-button" onClick={async () => { if (encryptedResult && !recoverySaved && !await confirm({titleKey:"sharing.copy.keepKeyTitle",messageKey:"sharing.copy.changeAudienceBody",confirmLabelKey:"sharing.copy.changeAudience",cancelLabelKey:"sharing.copy.keepCopy"})) return;setPreview(null);setArtifact(null);setEncryptedResult(null);setError(""); }}>{t("sharing.copy.changeWho")}</button>
+      <details className="task-details"><summary>{t("sharing.copy.previewDetails")}</summary><p>{t("sharing.copy.expiry", { date: preview.export.expiresAt ? formatDate(preview.export.expiresAt, { hour: "numeric", minute: "2-digit" }) : t("sharing.copy.soon") })}</p><button className="secondary-button" disabled={busyAction !== null} onClick={() => void createPreview()}>{t("sharing.copy.refreshPreview")}</button></details>
     </>}
     {step === "format" && <>
       {artwork}
-      <div className="copy-format-choices" role="group" aria-label="Copy format">
-        <button type="button" aria-pressed={format === "printable"} disabled={Boolean(busyAction)} onClick={() => chooseFormat("printable")}><Printer size={34} aria-hidden="true" /><span>Printable</span></button>
-        <button type="button" aria-pressed={format === "encrypted"} disabled={Boolean(busyAction)} onClick={() => chooseFormat("encrypted")}><LockKey size={34} aria-hidden="true" /><span>Encrypted</span></button>
+      <div className="copy-format-choices" role="group" aria-label={t("sharing.copy.formatLabel")}>
+        <button type="button" aria-pressed={format === "printable"} disabled={Boolean(busyAction)} onClick={() => chooseFormat("printable")}><Printer size={34} aria-hidden="true" /><span>{t("sharing.copy.printable")}</span></button>
+        <button type="button" aria-pressed={format === "encrypted"} disabled={Boolean(busyAction)} onClick={() => chooseFormat("encrypted")}><LockKey size={34} aria-hidden="true" /><span>{t("sharing.copy.encrypted")}</span></button>
       </div>
-      <button className="primary-button drawer-primary" onClick={() => setStep("save")}>Continue <ArrowIcon /></button>
+      <button className="primary-button drawer-primary" onClick={() => setStep("save")}>{t("sharing.copy.continue")} <ArrowIcon /></button>
     </>}
     {step === "save" && format === "printable" && <>
-      <h3>Printable guide</h3>
+      <h3>{t("sharing.copy.printableGuide")}</h3><p className="matter-form-hint">{t("sharing.copy.artifactLanguage")}</p>
       {!artifact && <div className="start-here-acknowledgements">
-        <label><input type="checkbox" checked={acknowledgesPlaintext} onChange={(event) => setAcknowledgesPlaintext(event.target.checked)} /><span>I reviewed the guide and understand this file is plaintext.</span></label>
-        <label><input type="checkbox" checked={acknowledgesNoRevocation} onChange={(event) => setAcknowledgesNoRevocation(event.target.checked)} /><span>Saved, shared or printed copies cannot be revoked.</span></label>
+        <label><input type="checkbox" checked={acknowledgesPlaintext} onChange={(event) => setAcknowledgesPlaintext(event.target.checked)} /><span>{t("sharing.copy.plaintextAck")}</span></label>
+        <label><input type="checkbox" checked={acknowledgesNoRevocation} onChange={(event) => setAcknowledgesNoRevocation(event.target.checked)} /><span>{t("sharing.copy.irrevocableAck")}</span></label>
       </div>}
-      {artifact ? <><p className="start-here-complete" role="status">Guide ready</p><button className="primary-button drawer-primary" onClick={() => downloadArtifact(artifact.blob, artifact.filename)}>Download guide <DownloadSimple size={20} /></button></>
-        : <button className="primary-button drawer-primary" disabled={busyAction !== null || !acknowledgesPlaintext || !acknowledgesNoRevocation} onClick={() => void createPrintable()}>{busyAction === "printable" ? "Preparing guide…" : "Download printable guide"}<DownloadSimple size={20} /></button>}
-      <details className="task-details"><summary>Included information</summary><p>The plaintext guide excludes dedicated account hints, financial values and currencies.</p></details>
+      {artifact ? <><p className="start-here-complete" role="status">{t("sharing.copy.guideReady")}</p><button className="primary-button drawer-primary" onClick={() => downloadArtifact(artifact.blob, artifact.filename)}>{t("sharing.copy.downloadGuide")} <DownloadSimple size={20} /></button></>
+        : <button className="primary-button drawer-primary" disabled={busyAction !== null || !acknowledgesPlaintext || !acknowledgesNoRevocation} onClick={() => void createPrintable()}>{busyAction === "printable" ? t("sharing.copy.preparingGuide") : t("sharing.copy.downloadPrintable")}<DownloadSimple size={20} /></button>}
+      <details className="task-details"><summary>{t("sharing.copy.included")}</summary><p>{t("sharing.copy.plaintextBoundary")}</p></details>
     </>}
     {step === "save" && format === "encrypted" && <>
-      <h3>Encrypted package</h3>
+      <h3>{t("sharing.copy.encryptedPackage")}</h3>
       {!encryptedResult ? <>
         <div className="start-here-acknowledgements">
-          <label><input type="checkbox" checked={acknowledgesRecoveryRisk} onChange={(event) => setAcknowledgesRecoveryRisk(event.target.checked)} /><span>Rillora cannot replace the recovery key. Anyone holding it can decrypt this copy.</span></label>
-          <label><input type="checkbox" checked={acknowledgesEncryptedCopies} onChange={(event) => setAcknowledgesEncryptedCopies(event.target.checked)} /><span>Copies outside Rillora cannot be remotely revoked.</span></label>
+          <label><input type="checkbox" checked={acknowledgesRecoveryRisk} onChange={(event) => setAcknowledgesRecoveryRisk(event.target.checked)} /><span>{t("sharing.copy.recoveryAck")}</span></label>
+          <label><input type="checkbox" checked={acknowledgesEncryptedCopies} onChange={(event) => setAcknowledgesEncryptedCopies(event.target.checked)} /><span>{t("sharing.copy.externalCopyAck")}</span></label>
         </div>
-        <button className="primary-button drawer-primary" disabled={busyAction !== null || !acknowledgesRecoveryRisk || !acknowledgesEncryptedCopies} onClick={() => void createEncrypted()}>{busyAction === "encrypted" ? "Encrypting…" : "Create encrypted package"}<ShieldCheck size={20} /></button>
+        <button className="primary-button drawer-primary" disabled={busyAction !== null || !acknowledgesRecoveryRisk || !acknowledgesEncryptedCopies} onClick={() => void createEncrypted()}>{busyAction === "encrypted" ? t("sharing.copy.encrypting") : t("sharing.copy.createEncrypted")}<ShieldCheck size={20} /></button>
       </> : <>
-        <p className="start-here-complete" role="status"><CheckCircle size={18} />Encrypted copy ready</p>
-        {encryptedResult.finalized.recipientKeyCount === 0 && <p>Only your recovery key can open this copy.</p>}
-        <button className="primary-button drawer-primary" onClick={() => downloadJson(encryptedResult.recoveryKit, `rillora-recovery-${encryptedResult.finalized.publicId}.json`)}>Download recovery key <Key size={20} /></button>
-        <button className="secondary-button" onClick={() => downloadJson(encryptedResult.artifact, `rillora-encrypted-start-here-${encryptedResult.finalized.publicId}.json`)}>Download package <DownloadSimple size={20} /></button>
-        <div className="start-here-acknowledgements"><label><input type="checkbox" checked={recoverySaved} onChange={(event) => setRecoverySaved(event.target.checked)} /><span>I kept the recovery key separately.</span></label></div>
+        <p className="start-here-complete" role="status"><CheckCircle size={18} />{t("sharing.copy.encryptedReady")}</p>
+        {encryptedResult.finalized.recipientKeyCount === 0 && <p>{t("sharing.copy.keyOnly")}</p>}
+        <button className="primary-button drawer-primary" onClick={() => downloadJson(encryptedResult.recoveryKit, `rillora-recovery-${encryptedResult.finalized.publicId}.json`)}>{t("sharing.copy.downloadKey")} <Key size={20} /></button>
+        <button className="secondary-button" onClick={() => downloadJson(encryptedResult.artifact, `rillora-encrypted-start-here-${encryptedResult.finalized.publicId}.json`)}>{t("sharing.copy.downloadPackage")} <DownloadSimple size={20} /></button>
+        <div className="start-here-acknowledgements"><label><input type="checkbox" checked={recoverySaved} onChange={(event) => setRecoverySaved(event.target.checked)} /><span>{t("sharing.copy.keySavedAck")}</span></label></div>
       </>}
-      <details className="task-details"><summary>About encryption</summary><p>The recovery file is a decryption secret. Keep it separate from the package.</p><p>Encryption happens in this browser. The API receives ciphertext and wrapped keys, not your recovery private key. Recipient delivery is not active.</p></details>
+      <details className="task-details"><summary>{t("sharing.copy.aboutEncryption")}</summary><p>{t("sharing.copy.keyBoundary")}</p><p>{t("sharing.copy.encryptionBoundary")}</p></details>
     </>}
     {showDiagnostics && step === "save" && (<section className="start-here-encrypted" aria-labelledby="recipient-rehearsal-title">
-        <div className="start-here-status"><ShieldCheck size={20} weight="fill" /> <span id="recipient-rehearsal-title">Synthetic recipient rehearsal</span></div>
-        <p className="drawer-intro">Locally exercise acceptance, a memory-only device key, recipient-only package access and decryption. This sends no invitation, verifies no identity, detects no death and releases nothing.</p>
+        <div className="start-here-status"><ShieldCheck size={20} weight="fill" /> <span id="recipient-rehearsal-title">{t("sharing.diagnostics.title")}</span></div>
+        <p className="drawer-intro">{t("sharing.diagnostics.body")}</p>
         {!rehearsalResult ? (
           <>
-            <label className="field-label" htmlFor="recipient-rehearsal-contact">Test contact record</label>
+            <label className="field-label" htmlFor="recipient-rehearsal-contact">{t("sharing.diagnostics.contact")}</label>
             <select
               id="recipient-rehearsal-contact"
               value={selectedRehearsalContact}
               onChange={(event) => setSelectedRehearsalContact(event.target.value)}
               disabled={busyAction !== null}
             >
-              {rehearsalContacts.length === 0 && <option value="">Add a synthetic trusted-contact record first</option>}
+              {rehearsalContacts.length === 0 && <option value="">{t("sharing.diagnostics.addContact")}</option>}
               {rehearsalContacts.map((contact) => (
                 <option value={contact.publicId} key={contact.publicId}>{contact.displayName}</option>
               ))}
             </select>
             <button className="primary-button drawer-primary" disabled={busyAction !== null || !selectedRehearsalContact} onClick={() => void runRecipientRehearsal()}>
-              {busyAction === "rehearsal" ? "Running isolated rehearsal…" : "Run recipient decryption rehearsal"} {busyAction !== "rehearsal" && <ShieldCheck size={20} />}
+              {busyAction === "rehearsal" ? t("sharing.diagnostics.running") : t("sharing.diagnostics.run")} {busyAction !== "rehearsal" && <ShieldCheck size={20} />}
             </button>
           </>
         ) : (
           <div className="start-here-encrypted-result">
-            <p className="start-here-complete" role="status"><CheckCircle size={18} weight="fill" /> Recipient-side decryption passed for {rehearsalResult.decryptedMatterCount} matter directions. Delivery: no. Release: no.</p>
-            <p className="drawer-intro">Revocation prevents this simulated active device from fetching the package again. It cannot erase plaintext or copies already obtained outside Rillora.</p>
+            <p className="start-here-complete" role="status"><CheckCircle size={18} weight="fill" /> {t("sharing.diagnostics.passed", { count: rehearsalResult.decryptedMatterCount })}</p>
+            <p className="drawer-intro">{t("sharing.diagnostics.revocationBody")}</p>
             <button className="secondary-button" disabled={busyAction !== null || rehearsalResult.revoked} onClick={() => void revokeRehearsalKey()}>
-              {rehearsalResult.revoked ? "Synthetic device key revoked" : busyAction === "revoke-rehearsal-key" ? "Revoking…" : "Revoke synthetic device key"}
+              {rehearsalResult.revoked ? t("sharing.diagnostics.revoked") : busyAction === "revoke-rehearsal-key" ? t("sharing.diagnostics.revoking") : t("sharing.diagnostics.revoke")}
             </button>
           </div>
         )}
@@ -310,15 +312,6 @@ function downloadJson(value, filename) {
   );
 }
 
-function messageFor(error, fallback) {
-  return error instanceof ApiClientError ? error.message : fallback;
-}
-
-function formatLabel(value) {
-  return value.replaceAll("_", " ").replace(/^./, (character) => character.toUpperCase());
-}
-
-function formatExpiry(value) {
-  if (!value) return "soon";
-  return new Intl.DateTimeFormat(undefined, { hour: "numeric", minute: "2-digit" }).format(new Date(value));
+function messageFor(error, key) {
+  return { cause: error, key };
 }

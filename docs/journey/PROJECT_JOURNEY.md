@@ -1,6 +1,6 @@
 # Digital Legacy Ongoing Project Journey
 
-Last updated: 2026-10-04 (Asia/Hong_Kong)
+Last updated: 2026-10-05 (Asia/Hong_Kong)
 
 ## 记录范围
 
@@ -3220,3 +3220,13 @@ Owner先确认小型企业资格事实、再当场确认最终声明，申请已
   originals and rescan with0findings. No scanner suppression or recovery-key publication.
   The current incomplete disposable-identity gate remains explicit; all12release gate
   statuses are retained. Final receipt-only changes do not repeat CI48or uploads.
+
+
+## 2026-10-05 — Chinese Web interface
+
+- Goal: Owner asks to implement Chinese directly and push maintainable code.
+- Attempt: materialize exact current Web source through authorized GitHub access, verify original blob hashes, complete 194 project-owned Markdown body reads, then implement semantic English/Simplified-Chinese catalogs and reactive locale context across Web/public flows. Preserve frontend state and request semantics rather than runtime DOM replacement.
+- Judgment changes: review found English plural fallback selected Chinese plural rules and automatic browser language became a persisted cross-site choice; both were fixed with regressions. Complete public packaging rejected a dotted Chinese sample filename; renamed within the existing safe asset rule. Existing legal source digest means even a lang attribute belongs in a wrapper, not the accepted document module.
+- Result: 1,274 paired messages; 162 App/locale and 7 legal tests pass; internal/public/legal/closed/review fixture builds pass. 98 API-call ASTs and 13 protected files preserve the baseline. No new dependencies or deployment.
+- Remaining: local Chromium fails before navigation with socket EPERM and supported cloud preview is blocked. Zero rendered checks/screenshots; real responsive/keyboard/draft/file/browser-history acceptance remains. Auth0/mail/iOS/English legal/provider/server export bodies are explicitly outside translation. Original real-core acceptance is preserved separately, not called complete.
+- [Maintenance contract](../web-localization-20261005.md), [QA](../qa/chinese-web-20261005/README.md), [remote publication/CI receipt](../qa/chinese-web-20261005/remote-verification.json).

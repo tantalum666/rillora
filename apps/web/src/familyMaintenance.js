@@ -13,7 +13,8 @@ export const reviewReasons = Object.freeze({
   outdated: "Out of date",
   unclear: "Directions unclear"
 });
-export function reviewTaskLabel(task) {
+export function reviewTaskLabel(task, t) {
+  if (t) return t(`sharing.review.state.${!task.scopeAvailable ? "sharingChanged" : task.isStale ? "checkAgain" : Object.hasOwn(reviewStates, task.state) ? task.state : "unavailable"}`);
   if (!task.scopeAvailable) return "Sharing changed";
   if (task.isStale) return "Check again";
   return reviewStates[task.state] ?? "Unavailable";

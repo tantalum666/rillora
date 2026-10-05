@@ -1,3 +1,4 @@
+import { useI18n } from "./i18n/I18nProvider.jsx";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 
 // Keep the decision inside the product, with the non-destructive action focused.
@@ -24,7 +25,12 @@ export function useConfirmation() {
   return { confirm, cancel: () => settle(false), confirmation: request && <ConfirmationDialog {...request} onAnswer={settle} /> };
 }
 
-function ConfirmationDialog({ title, message, confirmLabel = "Discard changes", cancelLabel = "Keep editing", onAnswer }) {
+function ConfirmationDialog({ title, message, confirmLabel, cancelLabel, titleKey, messageKey, confirmLabelKey, cancelLabelKey, params, onAnswer }) {
+  const { t } = useI18n();
+  const displayedTitle = titleKey ? t(titleKey, params) : title;
+  const displayedMessage = messageKey ? t(messageKey, params) : message;
+  const displayedConfirm = confirmLabelKey ? t(confirmLabelKey, params) : confirmLabel ?? t("forms.discardChanges");
+  const displayedCancel = cancelLabelKey ? t(cancelLabelKey, params) : cancelLabel ?? t("forms.keepEditing");
   const ref = useRef(null);
   const titleId = useId();
   const messageId = useId();
@@ -39,13 +45,13 @@ function ConfirmationDialog({ title, message, confirmLabel = "Discard changes", 
     };
   }, []);
   return <dialog ref={ref} className="task-confirmation" aria-labelledby={titleId}
-    aria-describedby={message ? messageId : undefined}
+    aria-describedby={displayedMessage ? messageId : undefined}
     onCancel={(event) => { event.preventDefault(); onAnswer(false); }}>
-    <h2 id={titleId}>{title}</h2>
-    {message && <p id={messageId}>{message}</p>}
+    <h2 id={titleId}>{displayedTitle}</h2>
+    {displayedMessage && <p id={messageId}>{displayedMessage}</p>}
     <div className="task-confirmation-actions">
-      <button data-keep className="primary-button" onClick={() => onAnswer(false)}>{cancelLabel}</button>
-      <button className="secondary-button" onClick={() => onAnswer(true)}>{confirmLabel}</button>
+      <button data-keep className="primary-button" onClick={() => onAnswer(false)}>{displayedCancel}</button>
+      <button className="secondary-button" onClick={() => onAnswer(true)}>{displayedConfirm}</button>
     </div>
   </dialog>;
 }

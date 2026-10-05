@@ -1,0 +1,2346 @@
+{
+  "base_commit": "2cc95f77c1279bdad43547b7e58a8faca9da7a93",
+  "completed_at_utc": "2026-10-05T00:05:34Z",
+  "scope": "All 194 project-owned Markdown files at baseline; full text, not a filename/hash-only reading. Initial truncated outputs were supplemented with bounded ranges.",
+  "excluded": [
+    "output/ generated QA",
+    "collaboration/evidence generated copies",
+    "collaboration/catalog generated indexes",
+    "collaboration/archives encrypted history",
+    "dependencies and caches"
+  ],
+  "transport": "Source materialized through authorized GitHub connector; one surplus terminal LF was removed where required, then original Git blob SHA verified. Source text unchanged before implementation.",
+  "file_count": 194,
+  "byte_count": 3587490,
+  "line_count": 33195,
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "lines": 84,
+      "read_ranges": [
+        [
+          1,
+          84
+        ]
+      ],
+      "source_blob_sha": "15de9cb23266bc03473e5704965ca3ccdc5ca08d",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "DESIGN.md",
+      "lines": 285,
+      "read_ranges": [
+        [
+          1,
+          285
+        ]
+      ],
+      "source_blob_sha": "48406b35506d9b6860f63873a29dcab4a7a8859a",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "README.md",
+      "lines": 122,
+      "read_ranges": [
+        [
+          1,
+          122
+        ]
+      ],
+      "source_blob_sha": "a9f237c380500d6fd40f8360f859ca0f6d2f51d7",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "SECURITY.md",
+      "lines": 329,
+      "read_ranges": [
+        [
+          1,
+          329
+        ]
+      ],
+      "source_blob_sha": "2701969e9505fca093422961e143a0b61f374096",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "lines": 631,
+      "read_ranges": [
+        [
+          1,
+          631
+        ]
+      ],
+      "source_blob_sha": "69a3fdcf3ac2bf9e22b3b8870ed9b9e41e7077a8",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "apps/ios-prototype/AGENTS.md",
+      "lines": 73,
+      "read_ranges": [
+        [
+          1,
+          73
+        ]
+      ],
+      "source_blob_sha": "6bfbfb4980e646c5877bbfeda6c9a4a6b3196b24",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "apps/ios-prototype/src/mobile/COMPONENTS.md",
+      "lines": 31,
+      "read_ranges": [
+        [
+          1,
+          31
+        ]
+      ],
+      "source_blob_sha": "653194a057e0cfbb567070a836b6e89b94f491ed",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "apps/web/AGENTS.md",
+      "lines": 42,
+      "read_ranges": [
+        [
+          1,
+          42
+        ]
+      ],
+      "source_blob_sha": "fdf2f458eace01c54c0dc60c5a17605f15d85152",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "assets/brand/rillora-identity-02-open-folio-20260919/README.md",
+      "lines": 37,
+      "read_ranges": [
+        [
+          1,
+          37
+        ]
+      ],
+      "source_blob_sha": "7a096be39ba0e0bd4e3d5071ca45deb80488c549",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "assets/brand/rillora-identity-03-legacy-imprint-20260919/README.md",
+      "lines": 28,
+      "read_ranges": [
+        [
+          1,
+          28
+        ]
+      ],
+      "source_blob_sha": "6ccb2edbbff04ce8a38ba471187ab5e4e813f4db",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "assets/brand/rillora-identity-05-line-tree-20260919/README.md",
+      "lines": 12,
+      "read_ranges": [
+        [
+          1,
+          12
+        ]
+      ],
+      "source_blob_sha": "2ad1d84226389c8a154c70db7f14cd37ad9b2104",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "assets/brand/rillora-identity-20260919/README.md",
+      "lines": 36,
+      "read_ranges": [
+        [
+          1,
+          36
+        ]
+      ],
+      "source_blob_sha": "438743500f143cbb46800c66c72e447adf8b4fe3",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "assets/brand/rillora/README.md",
+      "lines": 29,
+      "read_ranges": [
+        [
+          1,
+          29
+        ]
+      ],
+      "source_blob_sha": "8a1e753e7863583d9053c40772293e437ec9e58b",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "assets/concepts/rillora-authenticated-motion-20260911/README.md",
+      "lines": 13,
+      "read_ranges": [
+        [
+          1,
+          13
+        ]
+      ],
+      "source_blob_sha": "8a22a00171dc0dd2484cac2f402751bc884dfc19",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "assets/concepts/rillora-landing-20260928-v2/implementation-target.md",
+      "lines": 39,
+      "read_ranges": [
+        [
+          1,
+          39
+        ]
+      ],
+      "source_blob_sha": "708425e5d2d592f70b866edd078f94beeef84d1f",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "assets/concepts/rillora-landing-20260928-v3/implementation-target.md",
+      "lines": 30,
+      "read_ranges": [
+        [
+          1,
+          30
+        ]
+      ],
+      "source_blob_sha": "40fa4eee9c3372947a35e1ad481cad2f2c454fb2",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "assets/concepts/rillora-logo-gate2-dual-embrace-20260808/README.md",
+      "lines": 30,
+      "read_ranges": [
+        [
+          1,
+          30
+        ]
+      ],
+      "source_blob_sha": "f4531bb58e2d56fc2a095ff4e69e2cc5306ea29b",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "assets/concepts/rillora-public-motion-20260909/README.md",
+      "lines": 20,
+      "read_ranges": [
+        [
+          1,
+          20
+        ]
+      ],
+      "source_blob_sha": "2f532e6317401e2c255f4eb068f6051fe3ad8185",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "assets/concepts/rillora-trusted-sharing-20260909/README.md",
+      "lines": 16,
+      "read_ranges": [
+        [
+          1,
+          16
+        ]
+      ],
+      "source_blob_sha": "0ba28d12eb21d898227c50cf67c41f764e79e782",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "assets/concepts/rillora-ui-directions-20260814/README.md",
+      "lines": 28,
+      "read_ranges": [
+        [
+          1,
+          28
+        ]
+      ],
+      "source_blob_sha": "f5087b0b8a6659a9e776714dcad1d297f74f6289",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "assets/illustrations/rillora-folio-cutout-20260929/README.md",
+      "lines": 12,
+      "read_ranges": [
+        [
+          1,
+          12
+        ]
+      ],
+      "source_blob_sha": "52784eef93f902a76e4365dcbb89341b0a1d420d",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "collaboration/README.md",
+      "lines": 92,
+      "read_ranges": [
+        [
+          1,
+          92
+        ]
+      ],
+      "source_blob_sha": "8fe8d28940c9f8d8139dce752c7d62246d0036e1",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "collaboration/verification/README.md",
+      "lines": 27,
+      "read_ranges": [
+        [
+          1,
+          27
+        ]
+      ],
+      "source_blob_sha": "42889fca998bfed6f5d6a60a3bd22c156bb6a828",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "collaboration/verification/email-logo-20261002/README.md",
+      "lines": 25,
+      "read_ranges": [
+        [
+          1,
+          25
+        ]
+      ],
+      "source_blob_sha": "daf0dad2a517a22f6f3d2307cfcd801fffa59c8b",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "collaboration/verification/independent-release-20261002/README.md",
+      "lines": 43,
+      "read_ranges": [
+        [
+          1,
+          43
+        ]
+      ],
+      "source_blob_sha": "6ee88a85f88ab6594482d2c4cbfce5c2749edefe",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "collaboration/verification/real-core-20261004-followup/README.md",
+      "lines": 47,
+      "read_ranges": [
+        [
+          1,
+          47
+        ]
+      ],
+      "source_blob_sha": "a7b597420f393cf01d8e2b827f66f7e5216fc033",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "collaboration/verification/real-core-20261004/README.md",
+      "lines": 34,
+      "read_ranges": [
+        [
+          1,
+          34
+        ]
+      ],
+      "source_blob_sha": "a732f02c3cb63217f955d7e096c2dc45a85292a0",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "collaboration/verification/release-123-20261002/README.md",
+      "lines": 95,
+      "read_ranges": [
+        [
+          1,
+          95
+        ]
+      ],
+      "source_blob_sha": "1a61b2bd6d6acb7bc41f85da91873f46b57bd52f",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "collaboration/verification/resend-20261001/README.md",
+      "lines": 54,
+      "read_ranges": [
+        [
+          1,
+          54
+        ]
+      ],
+      "source_blob_sha": "36e42e5905e02431722478de10a18b729ea6f4e8",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "collaboration/verification/review-rollout-20261003/README.md",
+      "lines": 43,
+      "read_ranges": [
+        [
+          1,
+          43
+        ]
+      ],
+      "source_blob_sha": "51c817452de71846d123fe57e084e6d402e39938",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "collaboration/verification/strict-review-20261003/README.md",
+      "lines": 52,
+      "read_ranges": [
+        [
+          1,
+          52
+        ]
+      ],
+      "source_blob_sha": "24c0dc8a878445ae79a0683580f9e655c77de0f0",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "design-qa.md",
+      "lines": 58,
+      "read_ranges": [
+        [
+          1,
+          58
+        ]
+      ],
+      "source_blob_sha": "e26aaabc6eea8ae91ba48bb55789fe4b02241adc",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/account-matter-ux.md",
+      "lines": 61,
+      "read_ranges": [
+        [
+          1,
+          61
+        ]
+      ],
+      "source_blob_sha": "3e00ba3db08c121430a79ff1009d351bf87209e2",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/annual-brand-capacity-20260921.md",
+      "lines": 100,
+      "read_ranges": [
+        [
+          1,
+          100
+        ]
+      ],
+      "source_blob_sha": "0cfc210e150ad5aa160b35606953366693817561",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/app-store-presentation-20260930.md",
+      "lines": 73,
+      "read_ranges": [
+        [
+          1,
+          73
+        ]
+      ],
+      "source_blob_sha": "c769b8d5fe251eb3725950b1faa4c9d282952b78",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/apple-review-validation-20260929.md",
+      "lines": 174,
+      "read_ranges": [
+        [
+          1,
+          174
+        ]
+      ],
+      "source_blob_sha": "999ea49bc472e60a350ab297ef935ce9bdb29019",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/apple-watch-death-signal-research.md",
+      "lines": 311,
+      "read_ranges": [
+        [
+          1,
+          311
+        ]
+      ],
+      "source_blob_sha": "1c1b3a1a7a2277aa08bcbf1fec52bab72bb3ad45",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/asset-licenses.md",
+      "lines": 185,
+      "read_ranges": [
+        [
+          1,
+          185
+        ]
+      ],
+      "source_blob_sha": "c802c699083598d319a87365c39964f8a4a1b287",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/auth0-cognito-migration-20260928.md",
+      "lines": 108,
+      "read_ranges": [
+        [
+          1,
+          108
+        ]
+      ],
+      "source_blob_sha": "d63fcd96b6a779caa0b9bb884865c9acbb5ebfa6",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/authentication-experience.md",
+      "lines": 678,
+      "read_ranges": [
+        [
+          1,
+          678
+        ]
+      ],
+      "source_blob_sha": "f5dfc9d5c8a1b59a17b314c6b78eb76522211bcb",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/backend.md",
+      "lines": 360,
+      "read_ranges": [
+        [
+          1,
+          360
+        ]
+      ],
+      "source_blob_sha": "2384faba07b01e2ba680fb385e528dd4de81afce",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/blockchain.md",
+      "lines": 63,
+      "read_ranges": [
+        [
+          1,
+          63
+        ]
+      ],
+      "source_blob_sha": "ed7ea13069d70a254f5250195cd5ca883d9a5294",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/brand-font-license-20260919.md",
+      "lines": 38,
+      "read_ranges": [
+        [
+          1,
+          38
+        ]
+      ],
+      "source_blob_sha": "03e84d1429a2e9430077ddd8d86b97bdf92153bd",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/channel-pricing-20260921.md",
+      "lines": 102,
+      "read_ranges": [
+        [
+          1,
+          102
+        ]
+      ],
+      "source_blob_sha": "f45fc35a7a0346b34708d647a19d544e0af69947",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/chat-resume-20260930.md",
+      "lines": 127,
+      "read_ranges": [
+        [
+          1,
+          127
+        ]
+      ],
+      "source_blob_sha": "b91d19637a8b247e540657808e477a3e0e956df1",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/cloud-cost-options-20260924.md",
+      "lines": 103,
+      "read_ranges": [
+        [
+          1,
+          103
+        ]
+      ],
+      "source_blob_sha": "7b5cf09e8e3589a34a5392e81dfc10fb50d1eddb",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/code-review-20261002.md",
+      "lines": 212,
+      "read_ranges": [
+        [
+          1,
+          212
+        ]
+      ],
+      "source_blob_sha": "62b75c7d0d75f95fdc718c2c05ee1cf397c488ba",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/code-review-repair-20260930.md",
+      "lines": 106,
+      "read_ranges": [
+        [
+          1,
+          106
+        ]
+      ],
+      "source_blob_sha": "8ba23a37fff9bd8fe10c3ef1c85fc84a659ae965",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/commercial-completion-20260916.md",
+      "lines": 45,
+      "read_ranges": [
+        [
+          1,
+          45
+        ]
+      ],
+      "source_blob_sha": "8f768202bc4f78ff7c9f9fdb6ef31322642979ba",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/competitor-ux-audit.md",
+      "lines": 694,
+      "read_ranges": [
+        [
+          1,
+          694
+        ]
+      ],
+      "source_blob_sha": "4c2bbfd67a6964ccda5b0cbd584d2372ae926a7b",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/component-preview-20260918.md",
+      "lines": 34,
+      "read_ranges": [
+        [
+          1,
+          34
+        ]
+      ],
+      "source_blob_sha": "f46dce86cdbae9cc9fd29df08099baed0d9ff641",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/dark-ui-redesign-brief.md",
+      "lines": 121,
+      "read_ranges": [
+        [
+          1,
+          121
+        ]
+      ],
+      "source_blob_sha": "b314614547fc00b635362ebf89344dac37941e0b",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/death-verification-evidence-research.md",
+      "lines": 163,
+      "read_ranges": [
+        [
+          1,
+          163
+        ]
+      ],
+      "source_blob_sha": "66ee11f8f4285fcbd4d425ff36505e5f1aecd677",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/decision-log.md",
+      "lines": 3054,
+      "read_ranges": [
+        [
+          1,
+          3054
+        ]
+      ],
+      "source_blob_sha": "5dbb9bc07293693f83a1f48e065a8002509a5012",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/disclosure-rehearsal.md",
+      "lines": 109,
+      "read_ranges": [
+        [
+          1,
+          109
+        ]
+      ],
+      "source_blob_sha": "7f3ecc4dc21055b965975e22f5f1703b6e57ba2e",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/e2ee-effort-20260922.md",
+      "lines": 64,
+      "read_ranges": [
+        [
+          1,
+          64
+        ]
+      ],
+      "source_blob_sha": "a6850c750cedd751b70a9001b02fbde46c45f383",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/family-maintenance.md",
+      "lines": 119,
+      "read_ranges": [
+        [
+          1,
+          119
+        ]
+      ],
+      "source_blob_sha": "8e4ea93e936c0e368dd9024a1872866b55f2a06e",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/free-paid-ui-audit.md",
+      "lines": 153,
+      "read_ranges": [
+        [
+          1,
+          153
+        ]
+      ],
+      "source_blob_sha": "9b56c50be01d54a2981bcd9bb32c031daf887ce9",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/global-mainland-commerce-plan.md",
+      "lines": 433,
+      "read_ranges": [
+        [
+          1,
+          433
+        ]
+      ],
+      "source_blob_sha": "37ea9847ee6e85f530e79c58f7ed2f10d7009cc1",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260910.md",
+      "lines": 1894,
+      "read_ranges": [
+        [
+          1,
+          1894
+        ]
+      ],
+      "source_blob_sha": "aecc6f498451ff796f889f7e20554aa77ed97783",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260911.md",
+      "lines": 116,
+      "read_ranges": [
+        [
+          1,
+          116
+        ]
+      ],
+      "source_blob_sha": "a65f6b6619c17130610862b4bba3328bee9e7d0e",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260915-p1-start.md",
+      "lines": 32,
+      "read_ranges": [
+        [
+          1,
+          32
+        ]
+      ],
+      "source_blob_sha": "8ccd42975ee8002daefc82a810692776f8d12d37",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260915.md",
+      "lines": 33,
+      "read_ranges": [
+        [
+          1,
+          33
+        ]
+      ],
+      "source_blob_sha": "056422b144706a9abd56934c9c953596dda35576",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260916-before-behavior-release.md",
+      "lines": 37,
+      "read_ranges": [
+        [
+          1,
+          37
+        ]
+      ],
+      "source_blob_sha": "790375abacde3c5a8c2e43ea6d66060bb4120625",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260916-before-commercial-completion.md",
+      "lines": 38,
+      "read_ranges": [
+        [
+          1,
+          38
+        ]
+      ],
+      "source_blob_sha": "34ba87d01ea45524832a904079a48b732393957f",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260916-before-ui-scope-correction.md",
+      "lines": 33,
+      "read_ranges": [
+        [
+          1,
+          33
+        ]
+      ],
+      "source_blob_sha": "9503fd3ef3164646628ac93d2be8864052c69fd0",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260916-p1-deployment.md",
+      "lines": 37,
+      "read_ranges": [
+        [
+          1,
+          37
+        ]
+      ],
+      "source_blob_sha": "df8684629c0d53630e13adea050685adb2758eb4",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260917-invitation-complete.md",
+      "lines": 38,
+      "read_ranges": [
+        [
+          1,
+          38
+        ]
+      ],
+      "source_blob_sha": "538377f640ef9cb18a4d6ecf1a78a101df527d68",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260917-provider-acceptance-in-progress.md",
+      "lines": 38,
+      "read_ranges": [
+        [
+          1,
+          38
+        ]
+      ],
+      "source_blob_sha": "f37162c16cfdbb1947a4cc684210df37cbf8caa5",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260917-stripe-complete.md",
+      "lines": 38,
+      "read_ranges": [
+        [
+          1,
+          38
+        ]
+      ],
+      "source_blob_sha": "85baf535749e9730e82d27d144784ceceb9aab30",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260918-component-preview.md",
+      "lines": 30,
+      "read_ranges": [
+        [
+          1,
+          30
+        ]
+      ],
+      "source_blob_sha": "702e25eb793801c37f577b69f8e790c368f0ad9c",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260918-filter-components.md",
+      "lines": 32,
+      "read_ranges": [
+        [
+          1,
+          32
+        ]
+      ],
+      "source_blob_sha": "39fe360feb2cdc252798eec32f40217506cbc353",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260918-platform-library.md",
+      "lines": 32,
+      "read_ranges": [
+        [
+          1,
+          32
+        ]
+      ],
+      "source_blob_sha": "3e7240b50072f6da219eff62587d3c12f07eeb82",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260918-surface-motion.md",
+      "lines": 36,
+      "read_ranges": [
+        [
+          1,
+          36
+        ]
+      ],
+      "source_blob_sha": "27205cbc1a129cc0ebfdd7be4dcf9c9934d5a50e",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260919-before-approved-brand.md",
+      "lines": 32,
+      "read_ranges": [
+        [
+          1,
+          32
+        ]
+      ],
+      "source_blob_sha": "4e827d5778a1cdc3e1f8c20e16a7d9a9f944d4e4",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260919-before-logo-alternative.md",
+      "lines": 36,
+      "read_ranges": [
+        [
+          1,
+          36
+        ]
+      ],
+      "source_blob_sha": "71d10861a02569038bf6597671bc407f1c1797f2",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260919-before-logo-reset.md",
+      "lines": 37,
+      "read_ranges": [
+        [
+          1,
+          37
+        ]
+      ],
+      "source_blob_sha": "b474be5be1e87f5bb64ed75f94b15921a4cdc872",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260919-before-logo03.md",
+      "lines": 33,
+      "read_ranges": [
+        [
+          1,
+          33
+        ]
+      ],
+      "source_blob_sha": "e964de807097cc0986c7cc33b0a31b6f54b8916b",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260919-before-release-preparation.md",
+      "lines": 36,
+      "read_ranges": [
+        [
+          1,
+          36
+        ]
+      ],
+      "source_blob_sha": "914ee8cbf5d3c6c5ad0c2dacfdc5957cb7f8aaab",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260919-before-tree-variants.md",
+      "lines": 36,
+      "read_ranges": [
+        [
+          1,
+          36
+        ]
+      ],
+      "source_blob_sha": "adaef5b6000d3df16a3df02ee5ad20dd4d2a9fd3",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260919-contextual-guidance.md",
+      "lines": 32,
+      "read_ranges": [
+        [
+          1,
+          32
+        ]
+      ],
+      "source_blob_sha": "1d67960136163da327f742bde845661d07c616fc",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260919-icon-practice.md",
+      "lines": 36,
+      "read_ranges": [
+        [
+          1,
+          36
+        ]
+      ],
+      "source_blob_sha": "ed8214de902c723697e9df8cd741514e0ab5f00e",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260919-provider-marks.md",
+      "lines": 34,
+      "read_ranges": [
+        [
+          1,
+          34
+        ]
+      ],
+      "source_blob_sha": "6d4df82b9a63c9a2bc7f0d8fe55d10aa8606744c",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260920-before-logo-consistency.md",
+      "lines": 36,
+      "read_ranges": [
+        [
+          1,
+          36
+        ]
+      ],
+      "source_blob_sha": "00c1f28ffd9b38dbf030a03f092c128c7cf78cb1",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260921-before-annual-only.md",
+      "lines": 32,
+      "read_ranges": [
+        [
+          1,
+          32
+        ]
+      ],
+      "source_blob_sha": "141ff714624557ab182d4e9a41e6c7a334526155",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260921-before-channel-pricing.md",
+      "lines": 32,
+      "read_ranges": [
+        [
+          1,
+          32
+        ]
+      ],
+      "source_blob_sha": "b4fe024c20e43598efe008ef840a8463cb90e1f9",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260921-before-security-positioning.md",
+      "lines": 42,
+      "read_ranges": [
+        [
+          1,
+          42
+        ]
+      ],
+      "source_blob_sha": "0db5c43621813de48b851a181924740e5ae1e778",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260921-before-subscription-review.md",
+      "lines": 32,
+      "read_ranges": [
+        [
+          1,
+          32
+        ]
+      ],
+      "source_blob_sha": "1578f5c2d03c1cae5dbca01e3ae292840d4b5b9d",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260922-before-content-implementation.md",
+      "lines": 41,
+      "read_ranges": [
+        [
+          1,
+          41
+        ]
+      ],
+      "source_blob_sha": "3b883d42655083be5d9c4c563fc972f7082f606c",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260922-before-e2ee-effort.md",
+      "lines": 41,
+      "read_ranges": [
+        [
+          1,
+          41
+        ]
+      ],
+      "source_blob_sha": "d93ca39b9ef67fa8fb6625d2f3c816776e1ba7de",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260923-before-production-start.md",
+      "lines": 40,
+      "read_ranges": [
+        [
+          1,
+          40
+        ]
+      ],
+      "source_blob_sha": "b230d92dfd9251ad2615353a2f9877ef1b2f5445",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260923-before-release-gap-review.md",
+      "lines": 37,
+      "read_ranges": [
+        [
+          1,
+          37
+        ]
+      ],
+      "source_blob_sha": "6e9e1c1dc881a138d8927d9871bcb32449ffbac9",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260923-production-attempts.md",
+      "lines": 34,
+      "read_ranges": [
+        [
+          1,
+          34
+        ]
+      ],
+      "source_blob_sha": "9d9654a8458e0a6a4cdd5011a89ce5725bf48f30",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260924-access-recovery.md",
+      "lines": 34,
+      "read_ranges": [
+        [
+          1,
+          34
+        ]
+      ],
+      "source_blob_sha": "59a675e15d26cd019adc317bc0415b0575d99045",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260924-before-identity.md",
+      "lines": 31,
+      "read_ranges": [
+        [
+          1,
+          31
+        ]
+      ],
+      "source_blob_sha": "e7a23a6b09209df05fc536e954e08458bc4a49a4",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260924-before-runtime.md",
+      "lines": 34,
+      "read_ranges": [
+        [
+          1,
+          34
+        ]
+      ],
+      "source_blob_sha": "a533721d53472a4006ec327e5b69d6add6f8cb94",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260925-before-clients.md",
+      "lines": 34,
+      "read_ranges": [
+        [
+          1,
+          34
+        ]
+      ],
+      "source_blob_sha": "445b6a198293f41eb6f053079454bb3c31646d2f",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260926-before-apple.md",
+      "lines": 66,
+      "read_ranges": [
+        [
+          1,
+          66
+        ]
+      ],
+      "source_blob_sha": "bc4a940dd1e26fc2d114ca082a9e0fd214e4f5d7",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260926-before-channel-correction.md",
+      "lines": 66,
+      "read_ranges": [
+        [
+          1,
+          66
+        ]
+      ],
+      "source_blob_sha": "6580567b54857a2d42aabb06f5a8992984d89382",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260926-before-commerce.md",
+      "lines": 64,
+      "read_ranges": [
+        [
+          1,
+          64
+        ]
+      ],
+      "source_blob_sha": "05edd3b8ad798ec5907e12cefdc48c4060fcc67c",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260926-before-launch-goal.md",
+      "lines": 78,
+      "read_ranges": [
+        [
+          1,
+          78
+        ]
+      ],
+      "source_blob_sha": "8ec088c19b0b4310c3620d96a561b37b996651f3",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260926-before-web-88-99.md",
+      "lines": 75,
+      "read_ranges": [
+        [
+          1,
+          75
+        ]
+      ],
+      "source_blob_sha": "8d35ffa82a96ca26a63d2a02c1d9a1c609a50814",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260928-before-landing-v2.md",
+      "lines": 129,
+      "read_ranges": [
+        [
+          1,
+          129
+        ]
+      ],
+      "source_blob_sha": "8681a4e5a60e6eaae19717f6781235aa9493dafa",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260928-before-theme-closeout.md",
+      "lines": 111,
+      "read_ranges": [
+        [
+          1,
+          111
+        ]
+      ],
+      "source_blob_sha": "0afffef60da901b7025b1c2a67b48205aa3389e8",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260929-before-appearance-closeout.md",
+      "lines": 109,
+      "read_ranges": [
+        [
+          1,
+          109
+        ]
+      ],
+      "source_blob_sha": "81fb61420cd4e18ba53c8439d0d139e9a29cbefb",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260929-before-native-home.md",
+      "lines": 104,
+      "read_ranges": [
+        [
+          1,
+          104
+        ]
+      ],
+      "source_blob_sha": "c0264cc48ee878318ebdb429a4eb1d4aaff37406",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260929-before-ui-ux-closeout.md",
+      "lines": 143,
+      "read_ranges": [
+        [
+          1,
+          143
+        ]
+      ],
+      "source_blob_sha": "5844e2364214fd57f9940e4fe5695f74a88e64ee",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260930-before-apple-closeout.md",
+      "lines": 118,
+      "read_ranges": [
+        [
+          1,
+          118
+        ]
+      ],
+      "source_blob_sha": "63938e6eb726caaa9a5ee242d384b8f6ab928c33",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260930-before-dot-review.md",
+      "lines": 96,
+      "read_ranges": [
+        [
+          1,
+          96
+        ]
+      ],
+      "source_blob_sha": "34c9dffacf126a4343cb74c96b3d6574cc4f0549",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260930-before-full-git.md",
+      "lines": 59,
+      "read_ranges": [
+        [
+          1,
+          59
+        ]
+      ],
+      "source_blob_sha": "4bf6ed7ae7d335c358efb9204d18a52b87e9e3df",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20260930-before-review-runtime.md",
+      "lines": 116,
+      "read_ranges": [
+        [
+          1,
+          116
+        ]
+      ],
+      "source_blob_sha": "0eed46c703a95337dc4bf3286ff9fb04e3bd156a",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20261001-before-release-123.md",
+      "lines": 87,
+      "read_ranges": [
+        [
+          1,
+          87
+        ]
+      ],
+      "source_blob_sha": "b2bde7a649c0e843bd5a4d067da6f0ea14dcb1a1",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20261001-before-resend.md",
+      "lines": 69,
+      "read_ranges": [
+        [
+          1,
+          69
+        ]
+      ],
+      "source_blob_sha": "c0f3b616d39c1750e40fb37916caae77b766872f",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20261002-before-independent-preparation.md",
+      "lines": 86,
+      "read_ranges": [
+        [
+          1,
+          86
+        ]
+      ],
+      "source_blob_sha": "79818c5f9784351ef29d62f89b65f3bcb81bae47",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20261002-before-strict-review.md",
+      "lines": 74,
+      "read_ranges": [
+        [
+          1,
+          74
+        ]
+      ],
+      "source_blob_sha": "c160626c8603380f03e17203d6dbd9747f80f426",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20261003-before-reviewed-rollout.md",
+      "lines": 58,
+      "read_ranges": [
+        [
+          1,
+          58
+        ]
+      ],
+      "source_blob_sha": "202266ddf6b715a2f9083060c275cbb9802f65a3",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20261004-before-real-core.md",
+      "lines": 71,
+      "read_ranges": [
+        [
+          1,
+          71
+        ]
+      ],
+      "source_blob_sha": "15e9fe6afee156242480e997337ca6b326a03efe",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff-history-20261004-mid-core.md",
+      "lines": 82,
+      "read_ranges": [
+        [
+          1,
+          82
+        ]
+      ],
+      "source_blob_sha": "24660559077f04ed329f49ac56d4417d0109322d",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/handoff.md",
+      "lines": 79,
+      "read_ranges": [
+        [
+          1,
+          79
+        ]
+      ],
+      "source_blob_sha": "f5a8ae4b821c4029bcea77e665551c3ecd6f3bba",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/identity-data-region.md",
+      "lines": 208,
+      "read_ranges": [
+        [
+          1,
+          208
+        ]
+      ],
+      "source_blob_sha": "cccd5058743a40f7201d26ad2705970bddc09ef8",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/independent-release-closeout-20261002.md",
+      "lines": 80,
+      "read_ranges": [
+        [
+          1,
+          80
+        ]
+      ],
+      "source_blob_sha": "b60199a5fd176dee69d41d002c8eb122b9178411",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/individual-operator-launch-plan.md",
+      "lines": 261,
+      "read_ranges": [
+        [
+          1,
+          261
+        ]
+      ],
+      "source_blob_sha": "97899784140eb91a2355f9bb3546864d5bdf769d",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/infrastructure-roadmap.md",
+      "lines": 379,
+      "read_ranges": [
+        [
+          1,
+          379
+        ]
+      ],
+      "source_blob_sha": "c2d6e4f70f30dbf699831e098bb6539ae263ac0c",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/interaction-experience.md",
+      "lines": 90,
+      "read_ranges": [
+        [
+          1,
+          90
+        ]
+      ],
+      "source_blob_sha": "5af01382086871474102f97ab233037b4db22daf",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/invitation-motion-ux.md",
+      "lines": 73,
+      "read_ranges": [
+        [
+          1,
+          73
+        ]
+      ],
+      "source_blob_sha": "beb761d16a08e8681ff5a82759c64b06f3b5c101",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/ios-external-payment-research.md",
+      "lines": 382,
+      "read_ranges": [
+        [
+          1,
+          382
+        ]
+      ],
+      "source_blob_sha": "7b59956febe73c9bb3a0bc8134c74e42fac86ccb",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/ios-layout-matrix.md",
+      "lines": 308,
+      "read_ranges": [
+        [
+          1,
+          308
+        ]
+      ],
+      "source_blob_sha": "80fe4b97fecb33e9467f3a405779cea112e4943c",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "lines": 3222,
+      "read_ranges": [
+        [
+          1,
+          3222
+        ]
+      ],
+      "source_blob_sha": "8ae02bcb51aa8f1f6fe0fb1a889c3c95195c4de7",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/landing-page-20260928-v2-history.md",
+      "lines": 130,
+      "read_ranges": [
+        [
+          1,
+          130
+        ]
+      ],
+      "source_blob_sha": "cb00368094336887d08038e3cda1e40ea82899c7",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/landing-page-20260928.md",
+      "lines": 94,
+      "read_ranges": [
+        [
+          1,
+          94
+        ]
+      ],
+      "source_blob_sha": "ce9a13798f46414121ecf78e1a0ceb56b960363e",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/legal-candidate-zh.md",
+      "lines": 436,
+      "read_ranges": [
+        [
+          1,
+          436
+        ]
+      ],
+      "source_blob_sha": "65ef603facf860115398d9a2e89ea7d671b6f895",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/logo-ai-workflow.md",
+      "lines": 169,
+      "read_ranges": [
+        [
+          1,
+          169
+        ]
+      ],
+      "source_blob_sha": "1d8d98fa3b16f3fb9969c0b7170eacdb9070291a",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/logo-design-20260919.md",
+      "lines": 98,
+      "read_ranges": [
+        [
+          1,
+          98
+        ]
+      ],
+      "source_blob_sha": "673e4837778f1094cf01454e5e1026d92400ab19",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/logo-discovery.md",
+      "lines": 386,
+      "read_ranges": [
+        [
+          1,
+          386
+        ]
+      ],
+      "source_blob_sha": "580b1bdacd48f610f95442008174fb4871f6f3c2",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/logo-form-brief.md",
+      "lines": 165,
+      "read_ranges": [
+        [
+          1,
+          165
+        ]
+      ],
+      "source_blob_sha": "dcda87ced9e486b97a9c338d095112d82869064a",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/monetization.md",
+      "lines": 562,
+      "read_ranges": [
+        [
+          1,
+          562
+        ]
+      ],
+      "source_blob_sha": "49e5455da7097a2d1f6672de7608d901cbb9938f",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/mvp.md",
+      "lines": 165,
+      "read_ranges": [
+        [
+          1,
+          165
+        ]
+      ],
+      "source_blob_sha": "be767bd52bd12886318c13b72e6148f9022ecca0",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/native-home-20260929.md",
+      "lines": 63,
+      "read_ranges": [
+        [
+          1,
+          63
+        ]
+      ],
+      "source_blob_sha": "474aa9ac65ab16d59c5d1d42c4636d728903e8c5",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/p1-reliability-repair-20260915.md",
+      "lines": 69,
+      "read_ranges": [
+        [
+          1,
+          69
+        ]
+      ],
+      "source_blob_sha": "94e87351deb1e74500fd7c7d5752be2bed527ce6",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/platform-contract.md",
+      "lines": 344,
+      "read_ranges": [
+        [
+          1,
+          344
+        ]
+      ],
+      "source_blob_sha": "9cbb493743969c36d04cd3e27f6589e8761ec51c",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/pricing-68-20260911.md",
+      "lines": 73,
+      "read_ranges": [
+        [
+          1,
+          73
+        ]
+      ],
+      "source_blob_sha": "87c2d425c0ddb930a4a1a8c7c46bf1a8df6871a2",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/pricing-88-80-20260919.md",
+      "lines": 53,
+      "read_ranges": [
+        [
+          1,
+          53
+        ]
+      ],
+      "source_blob_sha": "397a017643c667c34a12fd1ee9cd2a96b995bb41",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/pricing-88-99-20260926.md",
+      "lines": 86,
+      "read_ranges": [
+        [
+          1,
+          86
+        ]
+      ],
+      "source_blob_sha": "719677c0b9c54cb43cadeb99fa9fd5f2b2e317a6",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/pricing-band-20260910.md",
+      "lines": 84,
+      "read_ranges": [
+        [
+          1,
+          84
+        ]
+      ],
+      "source_blob_sha": "56c6a6ad360d77f35a270049090836b9f08e92fc",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/product-events.md",
+      "lines": 62,
+      "read_ranges": [
+        [
+          1,
+          62
+        ]
+      ],
+      "source_blob_sha": "85fe06791e9a589591a21c0f5a7a592c479056d5",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/product.md",
+      "lines": 449,
+      "read_ranges": [
+        [
+          1,
+          449
+        ]
+      ],
+      "source_blob_sha": "7a559e90459af7c9f8647f5ec000f9745e53b93b",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/production-apple-20260926.md",
+      "lines": 338,
+      "read_ranges": [
+        [
+          1,
+          338
+        ]
+      ],
+      "source_blob_sha": "1059cfa43c87ef1ab3f0276e151cc84a59cbc39e",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/production-clients-20260925.md",
+      "lines": 127,
+      "read_ranges": [
+        [
+          1,
+          127
+        ]
+      ],
+      "source_blob_sha": "97e204031334d018186039e5e54bf439d4aabb6a",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/production-commerce-20260926.md",
+      "lines": 143,
+      "read_ranges": [
+        [
+          1,
+          143
+        ]
+      ],
+      "source_blob_sha": "def540b5ee393c6b300769079328c3b9e089da58",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/production-identity-mail-20260924.md",
+      "lines": 411,
+      "read_ranges": [
+        [
+          1,
+          411
+        ]
+      ],
+      "source_blob_sha": "a260d5ff4af0370320ffb58f7342f24ff31907b3",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/production-recovery-20260923.md",
+      "lines": 200,
+      "read_ranges": [
+        [
+          1,
+          200
+        ]
+      ],
+      "source_blob_sha": "83b75c4c81adfd3549ef0ede44a84eb187f756e5",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/production-runtime-20260924.md",
+      "lines": 176,
+      "read_ranges": [
+        [
+          1,
+          176
+        ]
+      ],
+      "source_blob_sha": "34b00c28401bce622636a969b55d78e813632624",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/provider-death-account-guides-history-20260820.md",
+      "lines": 254,
+      "read_ranges": [
+        [
+          1,
+          254
+        ]
+      ],
+      "source_blob_sha": "4247eb52aa975f191c30aa339fd740e76deaac52",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/provider-death-account-guides.md",
+      "lines": 108,
+      "read_ranges": [
+        [
+          1,
+          108
+        ]
+      ],
+      "source_blob_sha": "b8d22f8154d7ecf0019dba3e15c2ea9d23270a15",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/provider-icon-practice-research.md",
+      "lines": 99,
+      "read_ranges": [
+        [
+          1,
+          99
+        ]
+      ],
+      "source_blob_sha": "0ebc373deba418eb09100ae14f5dd472f876ac37",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/provider-mark-usage.md",
+      "lines": 73,
+      "read_ranges": [
+        [
+          1,
+          73
+        ]
+      ],
+      "source_blob_sha": "cec6983e4137075cde3559ee8e9975c1975e710b",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/public-legal-pages.md",
+      "lines": 285,
+      "read_ranges": [
+        [
+          1,
+          285
+        ]
+      ],
+      "source_blob_sha": "e1d93ad0f9ca1dea351ea8fd9d9d733819983f96",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/public-product-website-20260924.md",
+      "lines": 164,
+      "read_ranges": [
+        [
+          1,
+          164
+        ]
+      ],
+      "source_blob_sha": "5c3f8b86c806566361735885deb94672e8f0dcc0",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/quality-gates.md",
+      "lines": 386,
+      "read_ranges": [
+        [
+          1,
+          386
+        ]
+      ],
+      "source_blob_sha": "e8c262da6a80f531f145c9043f560d3039a0efa3",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/real-core-acceptance-20261004.md",
+      "lines": 130,
+      "read_ranges": [
+        [
+          1,
+          130
+        ]
+      ],
+      "source_blob_sha": "1069ac1340b509197ccac630e3454c341cef870f",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/recovery-control-journal.md",
+      "lines": 157,
+      "read_ranges": [
+        [
+          1,
+          157
+        ]
+      ],
+      "source_blob_sha": "eb99e71ff1513ea9b6271f3257e9f9f724f7e1e9",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/release-123-20261001.md",
+      "lines": 233,
+      "read_ranges": [
+        [
+          1,
+          233
+        ]
+      ],
+      "source_blob_sha": "22b78c8ab6d402c6409ada6cc558caee76e56e43",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/release-engineering-20260930.md",
+      "lines": 215,
+      "read_ranges": [
+        [
+          1,
+          215
+        ]
+      ],
+      "source_blob_sha": "05bb59a6c3e0650c355a3b52656c3c16c185823e",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/release-readiness.md",
+      "lines": 522,
+      "read_ranges": [
+        [
+          1,
+          522
+        ]
+      ],
+      "source_blob_sha": "03d2c902af6163613e0467eec470e913b3068f7d",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/research.md",
+      "lines": 612,
+      "read_ranges": [
+        [
+          1,
+          612
+        ]
+      ],
+      "source_blob_sha": "bbd0463a5c00d8f95e2bec60b8e8efae4f52dc7e",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/review-rollout-20261003.md",
+      "lines": 116,
+      "read_ranges": [
+        [
+          1,
+          116
+        ]
+      ],
+      "source_blob_sha": "54339b5b83426ccbf2d629124ee486c41ea1cb8e",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/role-assignment-policy.md",
+      "lines": 72,
+      "read_ranges": [
+        [
+          1,
+          72
+        ]
+      ],
+      "source_blob_sha": "1ba2bcc7c7b90ff3311cf157ccaf1b5afcefcb1e",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/security-hardening-20260921/context.md",
+      "lines": 20,
+      "read_ranges": [
+        [
+          1,
+          20
+        ]
+      ],
+      "source_blob_sha": "dec35b903a2f338917eee1c900c0fa0f3b87407d",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/security-hardening-20260921/hardening.md",
+      "lines": 33,
+      "read_ranges": [
+        [
+          1,
+          33
+        ]
+      ],
+      "source_blob_sha": "ffefa6d5055b07a8e301d4deda0fda60fb85f46d",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/security-hardening-20260921/implementation/envelope.md",
+      "lines": 56,
+      "read_ranges": [
+        [
+          1,
+          56
+        ]
+      ],
+      "source_blob_sha": "4395632a447e31da84ff49758b16caab27a6fb80",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/security-hardening-20260921/implementation/operations.md",
+      "lines": 108,
+      "read_ranges": [
+        [
+          1,
+          108
+        ]
+      ],
+      "source_blob_sha": "d1fdc35372c8c6a3d47a8ba57291ed8ec06cd805",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/security-hardening-20260921/proposals/private-content-boundary.md",
+      "lines": 185,
+      "read_ranges": [
+        [
+          1,
+          185
+        ]
+      ],
+      "source_blob_sha": "dc135a89065bd14f9218bd7c9b3aa0096bdcd7b3",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/security-positioning-20260921.md",
+      "lines": 76,
+      "read_ranges": [
+        [
+          1,
+          76
+        ]
+      ],
+      "source_blob_sha": "c57fcb1447e0eea456787eca1ad50a72196ef20d",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/solo-operations-and-portability.md",
+      "lines": 191,
+      "read_ranges": [
+        [
+          1,
+          191
+        ]
+      ],
+      "source_blob_sha": "2e65c0e9b44bb28eb9aeda2786d97faf627d7f68",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/source-control.md",
+      "lines": 257,
+      "read_ranges": [
+        [
+          1,
+          257
+        ]
+      ],
+      "source_blob_sha": "33064b4c15a04b524be9a7ed8e4977511fb8002f",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/start-here-export.md",
+      "lines": 202,
+      "read_ranges": [
+        [
+          1,
+          202
+        ]
+      ],
+      "source_blob_sha": "b740d675e0b51b50b3dc4f561ea7472ecad134ee",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/storekit.md",
+      "lines": 310,
+      "read_ranges": [
+        [
+          1,
+          310
+        ]
+      ],
+      "source_blob_sha": "eeb67d0c4430e96243aa60b6105bb2474dd009e6",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/subscription-value-20260921.md",
+      "lines": 78,
+      "read_ranges": [
+        [
+          1,
+          78
+        ]
+      ],
+      "source_blob_sha": "178e94e4527103a7636cd7f0421ff364b2786a35",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/surface-motion-20260917.md",
+      "lines": 40,
+      "read_ranges": [
+        [
+          1,
+          40
+        ]
+      ],
+      "source_blob_sha": "d716b417c370648e741d22f2c77cdef7421018ea",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/transaction-mail-resend-20261001.md",
+      "lines": 205,
+      "read_ranges": [
+        [
+          1,
+          205
+        ]
+      ],
+      "source_blob_sha": "f7eb53eab1785a27a66388de20e7efd0282539cd",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/trust-safety-legal.md",
+      "lines": 218,
+      "read_ranges": [
+        [
+          1,
+          218
+        ]
+      ],
+      "source_blob_sha": "1af2696d795917c3cb5ee2cf5ad7ee16867eb1ea",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/trusted-sharing.md",
+      "lines": 172,
+      "read_ranges": [
+        [
+          1,
+          172
+        ]
+      ],
+      "source_blob_sha": "fdde410faab69715741a18cdfdb5059242c62db5",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/ui-ux-audit-20260915.md",
+      "lines": 256,
+      "read_ranges": [
+        [
+          1,
+          256
+        ]
+      ],
+      "source_blob_sha": "2a129972f11ab9d99102922deb1fef8f36e672e1",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/ui-ux-audit-20260929.md",
+      "lines": 119,
+      "read_ranges": [
+        [
+          1,
+          119
+        ]
+      ],
+      "source_blob_sha": "994a85d5f051ab9ef5229bf2470827a1aaef8cca",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/unit-economics-history-20260910.md",
+      "lines": 403,
+      "read_ranges": [
+        [
+          1,
+          403
+        ]
+      ],
+      "source_blob_sha": "57194f68e97cd6937046114ced629cb159218b45",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/unit-economics-pricing-reset-history-20260910.md",
+      "lines": 146,
+      "read_ranges": [
+        [
+          1,
+          146
+        ]
+      ],
+      "source_blob_sha": "950da0c825b572d9a4db94c3bc41e9a9b5c15ac7",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/unit-economics.md",
+      "lines": 149,
+      "read_ranges": [
+        [
+          1,
+          149
+        ]
+      ],
+      "source_blob_sha": "9f55c937998829c658bdec372f8215287473dcee",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/ux-behavior-repair-20260916.md",
+      "lines": 50,
+      "read_ranges": [
+        [
+          1,
+          50
+        ]
+      ],
+      "source_blob_sha": "a530d6319ce7769d5c37584f895f0d9bb9e66df5",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "docs/website-appearance-controls-20260929.md",
+      "lines": 78,
+      "read_ranges": [
+        [
+          1,
+          78
+        ]
+      ],
+      "source_blob_sha": "6b5f1ca773121778d18e85eff80a546ba653ce40",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "infra/auth0/README.md",
+      "lines": 338,
+      "read_ranges": [
+        [
+          1,
+          338
+        ]
+      ],
+      "source_blob_sha": "b8e9797c8c34a7a44349d823d551293fafa99b8c",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "infra/auth0/hosted-consent/README.md",
+      "lines": 116,
+      "read_ranges": [
+        [
+          1,
+          116
+        ]
+      ],
+      "source_blob_sha": "7e2afbe31ab7ebe6e9745b3ef178e92b002ae1f2",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "infra/aws/README.md",
+      "lines": 398,
+      "read_ranges": [
+        [
+          1,
+          398
+        ]
+      ],
+      "source_blob_sha": "ad26b69a82638cf0aed02cd008cd9f33e5aa1928",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "tools/godaddy/README.md",
+      "lines": 117,
+      "read_ranges": [
+        [
+          1,
+          117
+        ]
+      ],
+      "source_blob_sha": "ab73e20a55ca8f68582410acdd8adeb16d979195",
+      "full_body_reviewed": true
+    },
+    {
+      "path": "tools/resend/README.md",
+      "lines": 59,
+      "read_ranges": [
+        [
+          1,
+          59
+        ]
+      ],
+      "source_blob_sha": "38d4669958ebb060eb6a30fd7a0a18402056529c",
+      "full_body_reviewed": true
+    }
+  ]
+}

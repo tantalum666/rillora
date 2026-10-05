@@ -1,3 +1,4 @@
+import { useI18n } from "../i18n/I18nProvider.jsx";
 import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import {
@@ -10,6 +11,7 @@ import {
 const icons = { insurance: FileText, home: House, crypto: CurrencyBtc };
 
 export function ExampleMatter({ matter }) {
+  const { t } = useI18n();
   const [open, setOpen] = useState(false);
   const reduce = useReducedMotion();
   const Icon = icons[matter.id];
@@ -27,8 +29,8 @@ export function ExampleMatter({ matter }) {
           <Icon size={25} aria-hidden="true" />
         </span>
         <span>
-          <strong>{matter.title}</strong>
-          <small>{matter.detail}</small>
+          <strong>{t(matter.titleKey)}</strong>
+          <small>{t(matter.detailKey)}</small>
         </span>
         <ArrowRight size={18} aria-hidden="true" />
       </button>
@@ -38,13 +40,13 @@ export function ExampleMatter({ matter }) {
             id={detailsId}
             className="lp-example-note"
             role="region"
-            aria-label={`${matter.title} example`}
+            aria-label={t("public.example.region", { title: t(matter.titleKey) })}
             initial={reduce ? false : { height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: reduce ? 0 : 0.2 }}
           >
-            <p>{matter.note}</p>
+            <p>{t(matter.noteKey)}</p>
           </motion.div>
         )}
       </AnimatePresence>

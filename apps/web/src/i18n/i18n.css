@@ -1,0 +1,12 @@
+.language-control { display:inline-flex; align-items:center; gap:6px; min-width:0; color:inherit; }
+.language-control > svg { flex-shrink:0; }
+.language-control select { width:auto; max-width:100%; min-height:44px; padding:8px 24px 8px 8px; border:1px solid currentColor; border-radius:6px; background:transparent; color:inherit; font:inherit; font-size:14px; cursor:pointer; }
+.language-control select option { background:var(--lp-paper, var(--surface, #252c29)); color:var(--lp-ink, var(--ink, #f1ece2)); }
+.language-control select:focus-visible { outline:2px solid currentColor; outline-offset:3px; }
+html[lang="zh-CN"] body { font-family:Inter,"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",system-ui,sans-serif; line-break:strict; }
+html[lang="zh-CN"] :is(h1,h2,h3) { font-family:"Source Serif 4","Songti SC","Noto Serif CJK SC",serif; line-height:1.35; }
+html[lang="zh-CN"] :is(button,summary,label,select) { letter-spacing:normal; }
+html[lang="zh-CN"] :is(button,summary,.field-label,.navigation-label) { overflow-wrap:anywhere; }
+html[lang="zh-CN"] .section-label { letter-spacing:.06em; }
+html[lang="zh-CN"] [lang="en"] { line-break:auto; }
+@media (max-width:400px) { .language-control { gap:3px; } .language-control > svg { display:none; } .language-control select { font-size:13px; padding-left:6px; padding-right:18px; } }

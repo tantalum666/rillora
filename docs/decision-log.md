@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-04 (Asia/Hong_Kong)
+Last updated: 2026-10-05 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -3052,3 +3052,12 @@ unreachable release remains a different closed workflow. See [sharing contract](
   No new product/price/crypto decision is introduced. Focused red/green and actual
   saved-file-to-Web-decrypt evidence support the fix; build3predates it and a new
   signed candidate is needed. [Current acceptance](real-core-acceptance-20261004.md).
+
+
+## 2026-10-05 — Maintainable Chinese Web interface
+
+- Owner explicitly requests a Chinese interface, direct implementation and Git push, with maintainable code.
+- Implement Simplified Chinese plus English for Web/app and public website on 2cc95f77, using central semantic catalogs/context, browser preference, explicit choice handoff and Intl formatting. Future Traditional Chinese can be a separate catalog; none is claimed now.
+- Preserve English operative legal content/digests, provider/hosted-auth/transaction-mail/native scopes, user data, API/permission enums, markets and actual currency/amount. Locale is presentation only.
+- Implementation/local testing and Git/CI readback are distinct from rendered acceptance and deployment. Browser sockets/cloud preview are blocked; no actual responsive/keyboard screenshot pass or production release is claimed.
+- [Contract](web-localization-20261005.md), [QA](qa/chinese-web-20261005/README.md).

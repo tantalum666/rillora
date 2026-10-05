@@ -1,3 +1,4 @@
+import { useI18n } from "../i18n/I18nProvider.jsx";
 import { WebsiteAppearanceDisclosure } from "../WebsiteAppearanceDisclosure.jsx";
 import { publicRoutes } from "../publicRoutes.js";
 import { ArrowRight, DownloadSimple } from "@phosphor-icons/react";
@@ -5,62 +6,60 @@ import notices from "../assets/design-credits.txt?raw";
 import noticesFile from "../assets/design-credits.txt?url";
 
 const documents = [
-  ["Terms of Service", "How you use Rillora", publicRoutes.terms],
+  ["public.legal.terms", "public.legal.termsDetail", publicRoutes.terms],
   [
-    "Privacy Policy",
-    "How personal information is handled",
+    "public.legal.privacy",
+    "public.legal.privacyDetail",
     publicRoutes.privacy,
   ],
   [
-    "Subscription Terms",
-    "Payment, renewal and cancellation",
+    "public.legal.subscriptions",
+    "public.legal.subscriptionsDetail",
     publicRoutes.subscriptions,
   ],
   [
-    "Refund & Cancellation",
-    "Cancellation and refund information",
+    "public.legal.refunds",
+    "public.legal.refundsDetail",
     publicRoutes.refunds,
   ],
   [
-    "Acceptable Use",
-    "Responsible use of the service",
+    "public.legal.acceptable",
+    "public.legal.acceptableDetail",
     publicRoutes.acceptableUse,
   ],
   [
-    "Cookie Notice",
-    "Necessary storage and tracking boundaries",
+    "public.legal.cookies",
+    "public.legal.cookiesDetail",
     publicRoutes.cookies,
   ],
   [
-    "Legal Notice",
-    "Operator and service information",
+    "public.legal.notice",
+    "public.legal.noticeDetail",
     publicRoutes.legalNotice,
   ],
 ];
 export function LegalInformation() {
+  const { t } = useI18n();
   return (
     <main id="lp-main" className="lp-page-content lp-legal-index lp-container">
       <header className="lp-page-intro">
-        <h1>Legal information.</h1>
-        <p>
-          The documents behind Rillora and the acknowledgements for the tools we
-          use.
-        </p>
+        <h1>{t("public.legal.title")}</h1>
+        <p>{t("public.legal.description")}</p>
       </header>
-      <nav className="lp-document-links" aria-label="Legal information">
-        {documents.map(([label, detail, path]) => (
+      <nav className="lp-document-links" aria-label={t("public.legal.label")}>
+        {documents.map(([labelKey, detailKey, path]) => (
           <a key={path} href={`https://legal.rillora.xyz${path}`}>
             <span>
-              <strong>{label}</strong>
-              <small>{detail}</small>
+              <strong>{t(labelKey)}</strong>
+              <small>{t(detailKey)}</small>
             </span>
             <ArrowRight size={22} aria-hidden="true" />
           </a>
         ))}
         <a href="/legal/licenses">
           <span>
-            <strong>Third-party notices</strong>
-            <small>Open-source software, fonts and artwork</small>
+            <strong>{t("public.legal.thirdParty")}</strong>
+            <small>{t("public.legal.thirdPartyDetail")}</small>
           </span>
           <ArrowRight size={22} aria-hidden="true" />
         </a>
@@ -70,38 +69,27 @@ export function LegalInformation() {
   );
 }
 export function ThirdPartyNotices() {
+  const { t } = useI18n();
   return (
     <main id="lp-main" className="lp-page-content lp-notices lp-container">
-      <a className="lp-text-link" href="/legal">
-        Legal information
-      </a>
+      <a className="lp-text-link" href="/legal">{t("public.legal.label")}</a>
       <header className="lp-page-intro">
-        <h1>Third-party notices.</h1>
-        <p>
-          Copyright and licence acknowledgements for software, fonts and artwork
-          used in Rillora.
-        </p>
+        <h1>{t("public.legal.thirdPartyTitle")}</h1>
+        <p>{t("public.legal.thirdPartyDescription")}</p>
       </header>
       <div className="lp-notice-overview">
         <section>
-          <h2>Software & components</h2>
-          <p>
-            Open-source components include Motion, Radix, Phosphor and the Figma
-            Simple Design System. Their copyright and licence notices are
-            retained below.
-          </p>
+          <h2>{t("public.legal.softwareTitle")}</h2>
+          <p>{t("public.legal.softwareDescription")}</p>
         </section>
         <section>
-          <h2>Type & artwork</h2>
-          <p>
-            Inter and Source Serif 4 use the SIL Open Font License. Identifying
-            platform marks have their own source credits and usage conditions.
-          </p>
+          <h2>{t("public.legal.artTitle")}</h2>
+          <p>{t("public.legal.artDescription")}</p>
         </section>
       </div>
       <details className="lp-full-notices">
-        <summary>Read the full acknowledgements and licences</summary>
-        <div className="lp-license-text">
+        <summary>{t("public.legal.fullNotices")}</summary>
+        <div className="lp-license-text" lang="en">
           {notices
             .trim()
             .split(/\n{2,}/)
@@ -115,9 +103,7 @@ export function ThirdPartyNotices() {
         download="rillora-third-party-notices.txt"
         href={noticesFile}
       >
-        <DownloadSimple size={20} aria-hidden="true" />
-        Download a copy
-      </a>
+        <DownloadSimple size={20} aria-hidden="true" />{t("public.legal.download")}</a>
     </main>
   );
 }
