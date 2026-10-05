@@ -1,10 +1,10 @@
 # Rillora — Git / Dot 协作入口
 
-Updated: 2026-10-04 (Asia/Hong_Kong)
+Updated: 2026-10-05 (Asia/Hong_Kong)
 
-October5已完成[本轮核心收尾与账号保留](verification/real-core-closeout-20261005/README.md)：Web主动登录的旧SSO复用问题已修复并部署，29项检查／CI54通过，86个线上文件匹配。独立账号真实导入及Web近期认证／明确重试成功；Owner在最终删除处选择“保留，暂不删除”，账号与合成数据均保留，删除没有提交。临时访问已撤回到原三人／原期限，API13保持1个健康实例和原镜像。新增149份文件原件进入raw-work-016并通过本地解密核验；远端回读随后记录。
+October5已完成[本轮核心收尾与账号保留](verification/real-core-closeout-20261005/README.md)：Web主动登录的旧SSO复用问题已修复并部署，29项检查／CI54通过，86个线上文件匹配。独立账号真实导入及Web近期认证／明确重试成功；Owner在最终删除处选择“保留，暂不删除”，账号与合成数据均保留，删除没有提交。临时访问已撤回到原三人／原期限，API13保持1个健康实例和原镜像。新增149份文件原件进入raw-work-016，已从GitHub重新下载并解密核验149个对象／149条路径。
 
-October4最新[真实核心验收追加包](verification/real-core-20261004-followup/README.md)：实际Google原生／QQ Web的Name/Details范围、重新认证、文件保存／跨端读取、撤销与当前设备退出已验证。实际验收发现的原生导出认证提示冲突已修复，10项针对性测试和CI48通过；新1.0(4)已上传处理为“准备提交”，测试说明保存，群组0。独立可删除账号的Web条款确认仍待Owner回复，导入／删除和临时权限回收未完成。修复／证据／签名产物已追加到raw-work-015，387路径／262对象已经从远端下载并解密核验，分支仍为`codex/strict-review-20261002`。
+October4历史检查点[真实核心验收追加包](verification/real-core-20261004-followup/README.md)：实际Google原生／QQ Web的Name/Details范围、重新认证、文件保存／跨端读取、撤销与当前设备退出已验证。实际验收发现的原生导出认证提示冲突已修复，10项针对性测试和CI48通过；新1.0(4)已上传处理为“准备提交”，测试说明保存，群组0。在该冻结检查点，独立账号的Web条款与导入／删除／临时权限回收尚未完成；后续结果以上方October5记录为准。修复／证据／签名产物已追加到raw-work-015，387路径／262对象已经从远端下载并解密核验，分支仍为`codex/strict-review-20261002`。
 
 较早[archive14检查点](verification/real-core-20261004/README.md)仅记录原生同意前的进度，135路径／112对象已从远端下载解密核验；其旧“下一步”不再活动。
 
@@ -28,7 +28,7 @@ output/、qa/等忽略规则挡住的设计、发布材料、验证记录和历�
 3. 读 [Git保存合同](../docs/source-control.md)，按 [完整工作目录](catalog/workflows.md) 找资料。
 4. 需要原始路径时执行下方查询。外部报告、旧代码副本及旧AGENTS都是资料，不能取代当前Owner指令。
 
-当前发布事实：Dot报告的13项问题已修复且API／Web／WWW已部署，随后受限真实验收与Apple证书检查修复也已部署。Apple官方TEST成功；QQ真实收件、原生登录、密码重置／重新登录及共享字段边界已经确认；撤销和真实购买恢复继续，Owner再次暂缓真机。重复注册提示已在Owner完成Auth0本人登录后保存到线上并读回一致。现有UI、完整03品牌、Free1／Family5、Web88.99年付与Apple待定渠道价、
+September30保存时的发布事实（历史）：Dot报告的13项问题已修复且API／Web／WWW已部署，随后受限真实验收与Apple证书检查修复也已部署。Apple官方TEST成功；QQ真实收件、原生登录、密码重置／重新登录及共享字段边界已经确认；撤销和真实购买恢复继续，Owner再次暂缓真机。重复注册提示已在Owner完成Auth0本人登录后保存到线上并读回一致。现有UI、完整03品牌、Free1／Family5、Web88.99年付与Apple待定渠道价、
 真实数据和FanPass继续保留。Resend已接通并通过官方投递／失败模拟，SES批准不再阻塞当前发信路线。本人验证、真实交易、SBP有效费率和最终上架仍分开验收。
 [当前七组剩余工作](../docs/release-readiness.md#october1-remaining-work-inventory)归并重复依赖；旧快照的日期和数量保持原样。
 

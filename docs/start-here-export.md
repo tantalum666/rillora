@@ -4,7 +4,7 @@ Role: Start Here preview, printable guide and client-encrypted package contract
 Authority scope: included fields, disclosure boundary, cryptographic format, file lifecycle, cross-platform semantics and evidence language  
 Superseded by: a later reviewed decision recorded in `docs/decision-log.md`  
 Do not use for: claiming legal authority, real recipient identity/acceptance/delivery, post-download revocation, production release or universal legal validity  
-Status: AUDIENCE-BOUND GUIDES AND BACKUP READERS DEPLOYED/VALIDATED IN SYNTHETIC STAGING; REAL DELIVERY CLOSED
+Status: CONTROLLED PRODUCTION COPY/RECOVERY/IMPORT VERIFIED; THIRD-PARTY FILE DELIVERY NOT VERIFIED
 Last updated: 2026-10-05 (Asia/Hong_Kong)
 
 ## October5 actual empty-map import and Web reauthentication

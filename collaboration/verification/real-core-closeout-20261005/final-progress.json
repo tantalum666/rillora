@@ -1,0 +1,37 @@
+{
+  "at": "2026-10-05T05:48:46.811964+00:00",
+  "task": "Continue approved disposable-account Web terms, import, recent-auth and deletion then restore original3review identities",
+  "ownerTermsConfirmation": "October5explicit confirmed; applies to the disposable identity and unchanged current Web terms",
+  "observedIssue": "Ordinary Account sign-in reused existing QQ Auth0 SSO without a choice; identity was checked before any import/deletion and QQ signed out again",
+  "repair": "PublicExperience Account beginAuthentication sends existing selectAccount:true for intentional signin/signup; no markup/legal/provider config/permission change",
+  "sourceChanged": [
+    "apps/web/src/PublicExperience.jsx"
+  ],
+  "checks": "29focusedchecks/reviewbuild/localandfreshproviderdiff passed; CI54all3jobs passed",
+  "completedPriorWorkRetained": "CI48/native4/scope/copies/revoke/logout/archives14and15",
+  "cloudAccess": "AWS renewed using Owner MFA; timeout retried against already-restored browser session without new MFA; Auth0 same91scopes restored",
+  "pending": [
+    "AWSMFA",
+    "Web-onlydiff/deployandactualaccountselectionproof",
+    "disposablelogin/import/freshauth",
+    "finaldeletionconfirmation/actualprovidercleanup",
+    "original3accessrestoration",
+    "allnewworkGitpreservation"
+  ],
+  "sourceCommit": "5714ec1583109e618024c647310f946acf89285b",
+  "deployment": "Web-only rollout complete;86livefiles matched and negative routes/write checks pass; CI54all3passed",
+  "next": "Only resume Owner-deferred release gate after explicit new instruction; retain account/data and restricted public/billing closure",
+  "account": "Repaired actual hostedform appeared; existing password login reached RilloraDisposableCoreQA, initial0matters; no newpasskey/mail",
+  "ownerConsent": "Exact October5confirmation reused only for unchanged disposableWebterms",
+  "import": "ActualHTTP201,1matter/1person,alreadyImportedfalse,sharingRestoredfalse; newIDs/draftstates/Notes/referencepreserved; contactNotinvited",
+  "freshAuth": "Actual403afterserverauthAtaged; sameaccountpasswordreauthcompleted; noautoexport; explicitretryHTTP200andactual2309bytefileverified",
+  "cleanup": "Completedandreadbackverified: original3identities/originalexpiry;1healthyAPI13sameimage/roles/network/secrets;Auth0fixturestillpresent",
+  "remaining": [],
+  "deletion": "Owner explicitly chose保留，暂不删除; clickedKeepmyaccount, clearedDELETEandack; never submitteddelete; testaccount/dataretained",
+  "ownerDeferred": [
+    "actualirreversibleaccountdeletion",
+    "physicaldevicepurchase",
+    "merchantfacts"
+  ],
+  "publication": "Archive16/source/contracts pushed; freshremote149objects149pathsdecryptedandverified"
+}

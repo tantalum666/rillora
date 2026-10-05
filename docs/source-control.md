@@ -1,6 +1,6 @@
 # Source control, complete work preservation and release rollback
 
-Last updated: 2026-10-04 (Asia/Hong_Kong)
+Last updated: 2026-10-05 (Asia/Hong_Kong)
 
 The private remote is [tantalum666/rillora](https://github.com/tantalum666/rillora).
 Owner explicitly requested **all Rillora work** for Git and Dot collaboration on
@@ -266,3 +266,9 @@ Owner's keep-account result and original3-access restoration. Irreversible delet
 was not submitted or claimed verified. Native4and previous archives remain unchanged.
 Source5714ec158on the existing review branch hasCI54success; source/ciphertext/Git
 preservation remain separate from public launch, physical purchases and deletion.
+
+
+The new archive was freshly downloaded and decrypted/verified atd7aad3b38d02e172ff687088845b9481dd20b669:
+149objects/149paths pass against GitHub-read metadata. [Remote receipt](../collaboration/verification/real-core-closeout-20261005/remote-readback.json).
+Final metadata is preserved directly after the capture; no old archive, CI54, native4
+upload or completed user journey is repeated for this receipt-only closeout.

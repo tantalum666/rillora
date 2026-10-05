@@ -4,7 +4,7 @@ Role: focused product, visual and implementation contract for account authentica
 Authority scope: Auth0 identity boundary, direct hosted iOS entry, hosted appearance, prompt-state behavior and evidence requirements  
 Superseded by: later Owner direction recorded in `docs/decision-log.md`  
 Do not use for: credential storage, API authorization rules, production identity approval or legal claims  
-Status: HOSTED PRODUCTION SIGN-IN OBSERVED; SIGNUP GUIDANCE APPLIED; RECOVERY ACCEPTANCE IN PROGRESS
+Status: HOSTED SIGN-IN OBSERVED; WEB ACCOUNT CHOICE/REAUTH VERIFIED; SIGNUP GUIDANCE APPLIED
 Last updated: 2026-10-05 (Asia/Hong_Kong)
 
 ## October5 explicit account choice on ordinary Web entry

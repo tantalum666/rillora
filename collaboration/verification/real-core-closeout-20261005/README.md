@@ -1,6 +1,6 @@
 # Actual core closeout and retained QA account — October5
 
-Status: ACTUAL NON-DEFERRED CORE AND LOCAL ARCHIVE VERIFIED; REMOTE READBACK PENDING
+Status: NON-DEFERRED CORE AND FRESH REMOTE ARCHIVE VERIFIED; OWNER DELETION DEFERRAL RETAINED
 Last updated: 2026-10-05 (Asia/Hong_Kong)
 
 Owner confirmed the isolated Web terms, then explicitly chose保留，暂不删除 at the
@@ -44,3 +44,10 @@ catalog mapping pass. Earlier archives were not resealed or downloaded again.
 Final nonsecret publication/remote receipts follow this frozen capture directly.
 They do not require recursive archive resealing. Actual query capabilities and
 recovery/login credentials remain local and protected.
+
+
+[Fresh remote verification](remote-readback.json) atd7aad3b38d02e172ff687088845b9481dd20b669 confirms all149objects/149paths
+from a new isolated LFS download. Source and readable scans pass. The scanner's opaque
+CDK asset-filename matches were removed from readable references while preserving
+exact sealed originals; no suppression was added. [Final closeout](final-closeout.json)
+keeps the Owner's account-retention decision separate from unperformed deletion.

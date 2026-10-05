@@ -56,8 +56,9 @@ output/release/rillora-review-20261004. Runtime application image remains
 sha256:7fe1d89a7cf22c2269372b27731f2d42a3abd59ee662c74923306f4cc7db14e3, schema0093.
 AWS/Auth0 were genuinely expired and renewed; do not repeat authentication without
 actual failure. No whole native suite, old deployment, email or AppleTEST is repeated.
-Archive14/15remote proofs are retained; the October5work is an additive capture in
-[the collaboration index](../collaboration/README.md). Keys/authscreens/receipt capabilities
+Archive14/15remote proofs are retained. October5raw-work-016has149paths/149objects,
+freshly downloaded/decrypted/verified atd7aad3b38d02e172ff687088845b9481dd20b669.
+[The collaboration index](../collaboration/README.md) has exact preservation receipts. Keys/authscreens/receipt capabilities
 remain excluded. Controller/browser IDs can change after reset; rediscover Chrome by
 its actual browser/profile rather than reusing an old numeric ID.
 
