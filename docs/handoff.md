@@ -22,6 +22,15 @@ credentials, data, release gates or other branches. It does not add an AI launch
 blocker or replace the core acceptance task and single next step below. See the
 [document QA scope](qa/ai-mcp-plan-20261005/README.md).
 
+October5 follow-up: Owner asked to add the optional
+[MCP Events chapter](architecture/ai-mcp-plan-20261005.md). P1E/C3E begins only after
+read-only MCP is stable; the initial candidate is review.due. Domain scheduling,
+authorized subscriptions, minimal payloads, callback verification, retries and
+revocation are documented proposals. No event runtime or subscription was created.
+Runtime facts elsewhere in this documentation branch remain the inherited source
+checkpoint; this update does not overwrite later active implementation handoffs
+or the independent Web/iOS localization branches.
+
 ## Completed this continuation
 
 - Actual Google native planner and QQ Web recipient authenticated after explicit
