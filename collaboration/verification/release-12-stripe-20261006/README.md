@@ -1,6 +1,6 @@
 # October6 bilingual rollout and Stripe Web preservation
 
-Status: LOCAL ARCHIVE VERIFIED; SOURCE10194de6a/CI58PASS; REMOTE ARCHIVE READBACK PENDING
+Status: LOCAL AND FRESH REMOTE ARCHIVE VERIFIED; SOURCE10194de6a/CI58 AND ARTIFACT557af9f11/CI59 PASS
 Updated: 2026-10-06 (Asia/Hong_Kong)
 
 This additive snapshot preserves9,769eligible file paths/1,541unique original objects
@@ -26,3 +26,10 @@ Owner/FanPass account/data or original simulator was deleted. Local test service
 only3createdsimulators are cleaned up. TEST provider/identity boundaries are explicit:
 real hosted TEST payment/refund with synthetic cookie identity/consent; no live charge,
 full accounting-ledger claim, physicalAppletransaction, invitation/AppReview or launch.
+
+A fresh GitHub download into empty LFS storage at557af9f11a19ca7af64fa4b04d76a9f756e9d697
+passes decryption and all1,541object/9,769path checks. [Remote receipt](remote-readback.json).
+[CI59](https://github.com/tantalum666/rillora/actions/runs/37359307226) succeeds for that
+artifact commit. Final metadata follows separately; previous archives were not fetched
+again. Generated readable hashes/objectkeys that triggered the scanner were redacted
+without changing originals or weakening scanner rules. Source/readable scans pass.

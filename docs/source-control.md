@@ -298,3 +298,8 @@ exact deployed Web/WWW and actual Rillora TEST commerce results; prior archives 
 Source10194de6a/CI58passes. Native5is Ready to Submit with saved/reloaded testnotes and
 zero groups/testers. Public customers/live billing stay closed. Fresh remote archive
 verification and final metadata are separate post-capture receipts, not repeat tests.
+
+Archive19has now been freshly downloaded from GitHub at557af9f11a19ca7af64fa4b04d76a9f756e9d697:
+all1,541objects/9,769paths decrypt and match remotely read metadata. CI59passes that
+artifact commit; CI58covers source10194de6a. [Remote receipt](../collaboration/verification/release-12-stripe-20261006/remote-readback.json).
+Final receipt-only updates do not rerun product tests, deployments or Apple uploads.

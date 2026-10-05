@@ -3390,3 +3390,8 @@ real charge, tester invite or public launch claim. [Exact evidence](../release-1
 Ready to Submit; test notes saved/reloaded exactly, groups/individualtesters0. Local
 Stripecookie/testeligibility was expired, listener/fixtures stopped, and only3task-created
 simulators removed; all other simulator identities/states match. AdditiveGitproof follows.
+
+- Final Git result: artifact557af9f11/CI59passes. Archive19fresh remote download of
+581,672,952bytes decrypts and verifies1,541objects/9,769paths against GitHub metadata.
+The source/readable scans and changed-document links pass; final receipt-only work is
+preserved directly. No previous archive, passed flow, deployment or upload is repeated.

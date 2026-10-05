@@ -1,6 +1,6 @@
 # Bilingual release acceptance and Stripe Web priority
 
-Status: ACCEPTANCE AND RESTRICTED CLOUD ROLLOUT PASS; NATIVE5 READY TO SUBMIT; FINAL GIT PRESERVATION
+Status: SELECTED INDEPENDENT WORK COMPLETE; STRIPE TEST PASS; NATIVE5 READY; REMOTE PRESERVATION VERIFIED
 Last updated: 2026-10-06 (Asia/Hong_Kong)
 
 ## October6 current result
@@ -66,8 +66,8 @@ is claimed. Earlier68/7.99 TEST results remain unchanged historical evidence.
 
 `output/qa/rillora-release-12-stripe-20261005/README.md` maps exact passed replacement
 runs and all failed attempts. No product suite/deployment/old store upload is repeated
-for documentation. Apple processing/notes are read back. Final new archive/remote receipts follow
-as separate results. Credentials, auth screens, cookies, raw signed events and vendor
+for documentation. Apple processing/notes are read back. Archive19contains9,769paths/1,541objects; a fresh
+581,672,952byte GitHub download decrypted/verified at557af9f11, whose CI59passes. Credentials, auth screens, cookies, raw signed events and vendor
 documentation caches are excluded from Git; eligible originals remain additive.
 
 Owner explicitly requests completion of the current launch packages1and2,then prioritizes
@@ -95,14 +95,14 @@ bearer actors;browser return was signed out. It does not prove current88.99or a 
 Web purchase UI. September26created the immutable88.99TESTPrice and v4mapping,without a
 new hosted payment. Retain both records and test only the current gap.
 
-## Access observed this continuation
+## Initial October5 access observation — HISTORICAL
 
 AWS rillora-cdk-session currently resolves the existing Rillora operator. No MFA requested.
 Stripe MCP returnedUNAUTHORIZED/re-authentication;CLI rillora has no key;CLI docs returned401.
 An async request asks Owner to reconnect the existing Rillora plugin,notFanPass. Independent
 packages1/2continue. No key,token,real card or new security grant is placed in chat/QA.
 
-## Findings being addressed
+## Observed defects — repaired by the October6 checkpoint
 
 - UX-01:Web openNextMatter falls back to the first already-completed matter;progress goal
 and next-action target need explicit truthful explanation.
@@ -112,7 +112,7 @@ metadata-only event within the existing transaction and verify isolation/stale r
 Evidence:output/qa/rillora-release-12-stripe-20261005. Current result/status is updated as
 actions complete;this initial plan is not verification,deployment,payment or store proof.
 
-## October 5 acceptance checkpoint — still in progress
+## HISTORICAL — October5 acceptance checkpoint
 
 - Web My plan now names the unfinished matter, focuses Preparation status, explains the
   five-matter organizing goal, and moves to creation/list when no unfinished record remains.
@@ -148,7 +148,7 @@ Artifacts: `output/qa/rillora-release-12-stripe-20261005/`. Existing true produc
 results remain at their earlier checkpoints; these new results are local/synthetic unless
 explicitly identified as a cloud readback.
 
-## Later October5 checkpoint
+## HISTORICAL — later October5 checkpoint
 
 Source85d79c891is pushed; actual GitHub CI57completed successfully in2m12s. The new
 APIimage-only rollout is now in progress, issued once with previous parameters. There
@@ -158,3 +158,13 @@ between Format/Save. The step now starts at the top without replacing parent exp
 state; its targeted test is running. Actual Chinese backup was reopened as a read-only
 five-matter copy with the original Notes. Owner requested another Stripe retry; MCP
 still401, CLI unauthenticated, and no new CLI grant was approved.
+
+## Final October6 closeout
+
+Source10194de6a/CI58 and artifact557af9f11/CI59 are verified. New archive19 was fetched
+into empty LFS storage; all1,541objects/9,769paths match remote metadata. Temporary
+services/listener and only3createdsimulators are cleaned up, synthetic sessions revoked.
+Final metadata receipts are added directly after capture without resealing old artifacts.
+[Git receipts](../collaboration/verification/release-12-stripe-20261006/README.md).
+Remaining release gates are Owner-deferred facts/device/deletion, live operations,
+final store review and customer cutover; this continuation does not open customers.
