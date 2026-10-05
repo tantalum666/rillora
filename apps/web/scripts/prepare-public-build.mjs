@@ -24,8 +24,8 @@ for (const asset of Object.keys(files).filter(name => name !== 'index.html')) {
   if (route({ request: { uri: `/${asset}`, method: 'GET' } }).statusCode) throw new Error(`Public asset is blocked by the deployed router: ${asset}`);
 }
 await writeFile('dist-public/public-build.json', JSON.stringify({
-  version: 3, files, surface: 'public-information', accountsEnabled: false,
+  version: 4, files, surface: 'public-information', accountsEnabled: false,
   apiEnabled: false, cookiesOrStorage: true,
-  browserStorage: { cookies: false, localStorageKeys: ['rillora.website.appearance.v1'], purpose: 'user-selected-appearance', tracking: false },
+  browserStorage: { cookies: false, localStorageKeys: ['rillora.website.appearance.v1', 'rillora.locale.v1'], purpose: 'user-selected-appearance-and-language', tracking: false },
   htmlSha256: createHash('sha256').update(html).digest('hex'),
 }) + '\n');

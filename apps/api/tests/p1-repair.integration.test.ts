@@ -110,6 +110,14 @@ describe.sequential("P1 map reliability and export privacy",()=>{
   await request(app).post(`/v1/account/archived-matters/${bank}/restore`).set(owner).send({expectedVersion:archived.version}).expect(200);
   expect((await request(app).get("/v1/sharing/shared-with-me").set("x-dev-planner-id",B)).body.items).toEqual([]);
   expect((await request(app).get("/v1/sharing/shared-with-me").set("x-dev-planner-id",C)).body.items).toHaveLength(1);
+  await request(app).post(`/v1/account/archived-matters/${bank}/restore`).set(owner).send({expectedVersion:archived.version}).expect(409);
+  const audit=(await request(app).get("/v1/audit-events?limit=100").set(owner).expect(200)).body.auditEvents;
+  const restored=audit.filter((event:any)=>event.action==="matter.restored" && event.resourcePublicId===bank);
+  expect(restored).toHaveLength(1);
+  expect(restored[0].metadata).toEqual({status:"draft",sharingRestored:false});
+  expect(JSON.stringify(restored[0])).not.toContain("Private bank note");
+  const recipientAudit=(await request(app).get("/v1/audit-events?limit=100").set("x-dev-planner-id",B).expect(200)).body.auditEvents;
+  expect(recipientAudit.some((event:any)=>event.resourcePublicId===bank)).toBe(false);
  });
  it("account removal revokes access and exposes only an opaque status receipt",async()=>{
   const receipt=randomBytes(32).toString("base64url");

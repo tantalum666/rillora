@@ -3,6 +3,10 @@
 Status: CONSOLIDATED; XCODE BUILDS / UNIT / BILINGUAL UI SMOKE PASS; WIDER MATRIX PENDING; NOT DEPLOYED
 Last updated: 2026-10-05 (Asia/Hong_Kong)
 
+## October5 后续验收（进行中）
+
+独立小屏模拟器已通过中英文外壳、中文已登录横屏三主页面；大字号流程实际生成明文指引，系统审计发现多行Label裁切提示，正在修复复测。英文导出入口已明确用途；XcodeGen规格补齐已有的OS-only加密声明元数据以防生成时丢失。原有真实模拟器、Keychain和账号保持。更宽矩阵与新商店候选仍未完成，见[当前结果](release-12-stripe-20261005.md)。
+
 ## October5 中文文案复核
 
 Owner要求仔细斟酌中文。已按[中文文案口径](chinese-copy-guidelines-20261005.md)逐条审阅两端资源，统一语气/术语，区分导出与入门、姓名与事项名称，并明确共享、备份、恢复密钥和法律权限边界。Web371条及原生225个中文单元已修订；原生另新增姓名上下文键，英文显示不变。实际编译/界面证据与初版静态检查分开记录，仍未部署。

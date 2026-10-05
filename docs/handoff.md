@@ -1,14 +1,14 @@
 # Rillora Current Handoff
 
-Status: DOT WORK CONSOLIDATED; TARGETED FIXES AND LOCAL ACCEPTANCE PASS; NOT DEPLOYED
+Status: PACKAGES1/2 AND STRIPE WEB ACCEPTANCE IN PROGRESS
 Last updated: 2026-10-05 (Asia/Hong_Kong)
 
 ## Current task
 
-Owner asks to follow Dot's GitHub work and carefully review Chinese product copy. Four branches are now consolidated on
-`codex/dot-integration-20261005` from03c97fc, retaining all source branch histories.
-[Current scope, branch tips, results and limits](qa/dot-followup-20261005/README.md).
-Preserve UI/full03,Free1/Family5,Web88.99annual,conditional Apple price,real data andFanPass.
+Owner requests completion of current packages1and2and prioritizesStripe/WeboverApple
+physical purchases. Work on`codex/release-12-stripe-20261005`from36555a22c.
+[Active execution contract](release-12-stripe-20261005.md)records scope and real evidence.
+Preserve existing UI/price/data,FanPassand the explicit phone/merchant/deletiondeferrals.
 
 ## Completed
 
@@ -48,12 +48,20 @@ The[current seven-package launch inventory](release-readiness.md#october5-remain
 now includes the undeployed bilingual delta. This is a source/receipt status read,not a
 fresh provider check; personal deferrals and gate statuses are unchanged.
 
+## Current continuation checkpoint
+
+Local My-plan navigation and private restore audit are fixed and exercised in both languages.
+API400/Web165/legal7/infra54pass; actual synthetic Chrome backup bytes verified. Native
+compact shells/landscape pass,AX5 audit fixes are in progress. Public artifact storage
+declaration is corrected. Cloud readback/synthesis only; no new rollout/upload/transaction.
+Detailed current evidence:[execution checkpoint](release-12-stripe-20261005.md).
+
 ## Single next step
 
-Continue the consolidated branch's remaining bilingual interaction matrix and Dot
-UX-01plan-next-action/English UX-04export-entry follow-up, then prepare the corresponding restricted
-release candidate. Preserve deferred deletion,phone and merchant decisions; do not replay
-completed provider journeys or implement the optional AI proposal as part of this gate.
+Finish scoped UX repairs and remaining bilingual acceptance,then ship the matching restricted
+clients/newnativecandidate and complete current88.99StripeWebTESTacceptance. Existing Stripe
+MCP still returns401after Owner reconnect/retry; browser Rillora TEST login is valid. CLI device authorization is unapproved; AWS is valid. Do not pause independent
+work or reopen deferred Applephone/account-deletion steps.
 
 [Previous retained-account handoff](handoff-history-20261005-before-dot-integration.md),
 [Dot iOS checkpoint](handoff-history-20261005-dot-ios.md),
@@ -61,3 +69,5 @@ completed provider journeys or implement the optional AI proposal as part of thi
 [Dot AI checkpoint](handoff-history-20261005-dot-ai.md)are HISTORICAL.
 
 October5最终文案检查：21项原生本地化、2项双语UI、Debug/Release编译、Web162及原生静态9项通过；旧法律7项验证沿用未变正文的检查点。当前Simulator安装的是本轮Debug双语QA版，未清Keychain，测试以临时未登录状态运行，截图后已停止。新原件见[文案保存包](../collaboration/verification/chinese-copy-20261005/README.md)。
+
+[Prior consolidated handoff](handoff-history-20261005-before-release-12-stripe.md)is HISTORICAL.

@@ -3135,3 +3135,13 @@ Separate native Contact name from matterNamewhile keeping its English displayNam
 - No new price,entitlement,legal text,market,provider or user-data decision. Exact copy
 is an Agent editorial choice under this scope,not claimed individual Owner approval.
 [Copy contract and coverage](chinese-copy-guidelines-20261005.md).
+
+## 2026-10-05 — Owner selects packages1/2 and prioritizes Stripe Web
+
+- Complete bilingual/remaining UX acceptance and corresponding restricted rollout/new
+nativecandidate. Payment acceptance priority is StripeWebbeforeApplephysicaltransactions.
+- Preserve prior actual StripeTESTresults at their old price and fixture scope;do not
+mislabel them current88.99signed-inbrowser orlivecharge acceptance.
+- Default project authorization continues. Physicalphone/account-deletion/merchant fact
+choices are not silently reopened;provider authentication only on observed expiry.
+[Execution contract](release-12-stripe-20261005.md).

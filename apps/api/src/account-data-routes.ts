@@ -1,3 +1,4 @@
+import { appendPlannerAudit } from "./planner-audit.js";
 import type { AppConfig } from "./config.js";
 import { recentAuthenticationRequired } from "./recent-authentication.js";
 import { accountBillingStatus } from "./account-billing.js";
@@ -151,6 +152,9 @@ export function createAccountDataRouter(pool: DatabasePool, config: AppConfig) {
       if(!result.rows[0])throw new ApiError(409,"version_conflict","This archive changed. Refresh and try again.");
       await client.query(`with removed as (delete from app.sharing_grants where planner_id=app.current_planner_id() and matter_item_id=(select id from app.matter_items where public_id=$1 and planner_id=app.current_planner_id()) returning connection_id)
         update app.sharing_connections set version=version+1,updated_at=now() where planner_id=app.current_planner_id() and id in(select connection_id from removed)`,[id]);
+      await appendPlannerAudit(client, "matter.restored", "matter", result.rows[0].public_id, {
+        status: "draft", sharingRestored: false,
+      });
       return mapMatter(result.rows[0]);
     });response.json({matter,sharingRestored:false});
   }));

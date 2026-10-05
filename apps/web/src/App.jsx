@@ -1,3 +1,4 @@
+import { planProgress } from "./planProgress.js";
 import { useI18n } from "./i18n/I18nProvider.jsx";
 import { LanguageControl } from "./i18n/LanguageControl.jsx";
 import { ReauthenticationPrompt } from "./ReauthenticationPrompt.jsx";
@@ -404,7 +405,8 @@ export function App() {
     if (session && plan) document.title = `${t(`workspace.nav.${activeNav}`)} · Rillora`;
   }, [session, plan, activeNav, t]);
 
-  const completed = useMemo(() => matters.filter((matter) => matter.status === "added").length, [matters]);
+  const progress = useMemo(() => planProgress(matters), [matters]);
+  const { completed } = progress;
   const currentMatter = drawer?.type === "matter" ? matters.find((matter) => matter.id === drawer.id) : null;
   const currentProviderGuide = drawer?.type === "provider-guide"
     ? getOfficialProviderGuide(drawer.providerKey)
@@ -428,10 +430,10 @@ export function App() {
     toastTimer.current = window.setTimeout(() => setToast(""), 2_600);
   }
 
-  function openMatter(matter) {
+  function openMatter(matter, reviewPreparation = false) {
     if (offerPendingMatterDraft()) return;
     const values = toMatterDraft(matter);
-    setDrawer({ type: "matter", id: matter.id, expectedVersion: matter.version, ...values, initialValues: values });
+    setDrawer({ type: "matter", id: matter.id, expectedVersion: matter.version, ...values, initialValues: values, reviewPreparation });
   }
 
   function openNewMatter(seed = {}) {
@@ -633,8 +635,10 @@ export function App() {
   }
 
   function openNextMatter() {
-    const next = matters.find((matter) => matter.status !== "added") ?? matters[0];
-    if (next) openMatter(next);
+    const { action } = progress;
+    if (action.kind === "review") openMatter(action.matter, true);
+    else if (action.kind === "add") openNewMatter();
+    else setActiveNav("matters");
   }
 
   async function archiveCurrentMatter() {
@@ -797,7 +801,23 @@ export function App() {
           {(matterQuery || matterFilter !== "all") && <button type="button" className="text-button" onClick={() => { setMatterQuery(""); setMatterFilter("all"); }}>{t("workspace.matters.clear")}</button>}
         </>}
 
-        {activeNav === "plan" && <div className="plan-card"><ProgressSummary count={completed} total={Math.max(matters.length, 5)} /><button className="primary-button" onClick={matters.length ? openNextMatter : () => openNewMatter()}>{matters.length ? t("workspace.plan.continue") : t("workspace.plan.firstMatter")} <ArrowRight size={20} /></button><button className="secondary-button" onClick={() => setDrawer({ type: "start-here" })}>{t("workspace.plan.reviewStart")} <FileText size={20} /></button></div>}
+        {activeNav === "plan" && <div className="plan-card">
+          <ProgressSummary count={completed} total={progress.total} />
+          <button className="primary-button" onClick={openNextMatter}>
+            {progress.action.kind === "review"
+              ? t("workspace.plan.reviewMatter", { name: progress.action.matter.label })
+              : t(progress.action.kind === "view" ? "workspace.plan.viewMap"
+                : matters.length ? "workspace.plan.addAnother" : "workspace.plan.firstMatter")}
+            <ArrowRight size={20} />
+          </button>
+          <details className="task-details"><summary>{t("workspace.plan.progressDetails")}</summary>
+            <p>{t("workspace.plan.goalExplanation")}</p>
+            <ul>{matters.map(matter => <li key={matter.id}>
+              <button className="text-button" onClick={() => openMatter(matter, true)}>{matter.label} · {matterStatusLabel(matter, t)}</button>
+            </li>)}</ul>
+          </details>
+          <button className="secondary-button" onClick={() => setDrawer({ type: "start-here" })}>{t("workspace.plan.reviewStart")} <FileText size={20} /></button>
+        </div>}
         {activeNav === "contacts" && <PeoplePanel contacts={contacts} matterContext={matters.find(item => item.id === sharingMatterId)} onReturnToMatter={() => { if ((window.history.state?.rillora?.index ?? 0) > 0) window.history.back(); else { const item = matters.find(item => item.id === sharingMatterId); setActiveNav("matters"); if (item) openMatter(item); } }} apiClient={api} refreshVersion={sharingRefreshVersion} onAdd={() => setDrawer({ type: "contact" })} onEdit={(person) => setDrawer({ type: "contact", contactId: person.publicId })} onShare={(person) => setDrawer({ type: "contact-sharing", contactId: person.publicId })} onIncoming={() => setActiveNav("shared")} />}
         {activeNav === "shared" && <SharedWithMePanel apiClient={api} />}
         {activeNav === "maintenance" && <Suspense fallback={<p role="status">{t("workspace.reviews.loading")}</p>}><FamilyMaintenancePanel apiClient={api} onChanged={() => void loadWorkspace()} onManageSharing={() => setActiveNav("contacts")} onDirtyChange={setPanelHasChanges} onBusyChange={setPanelBusy} /></Suspense>}
@@ -1045,6 +1065,7 @@ const auditActionKeys = new Set([
   "matter.created",
   "matter.updated",
   "matter.archived",
+  "matter.restored",
   "trusted_contact.created",
   "trusted_contact.updated",
   "official_setup.self_reported",

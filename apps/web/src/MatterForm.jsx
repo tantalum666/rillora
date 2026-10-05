@@ -9,6 +9,18 @@ const valueBands = ["unknown", "none", "under_1k", "1k_10k", "10k_100k", "100k_p
 
 export function MatterForm({ draft, onChange, busy, onSave, isNew, onReload, persistenceFailed, onArchive, onManageSharing }) {
   const { t, formatNumber, errorMessage } = useI18n();
+  const formRef = useRef(null);
+  useEffect(() => {
+    if (!draft.reviewPreparation) return;
+    const frame = requestAnimationFrame(() => {
+      const section = formRef.current?.querySelector("[data-preparation]");
+      if (section) section.open = true;
+      const status = section?.querySelector("[data-preparation-status]");
+      status?.focus();
+      status?.scrollIntoView({ block: "center" });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [draft.reviewPreparation]);
   const errorRef = useRef(null);
   const saveRef = useRef(null);
   const saveError = draft.errorKey ? t(draft.errorKey, draft.errorParams) : draft.errorError ? errorMessage(draft.errorError, "workspace.error.save") : draft.error;
@@ -22,7 +34,7 @@ export function MatterForm({ draft, onChange, busy, onSave, isNew, onReload, per
   const details = draft.details ?? {};
   const setDetail = (key, value) => onChange("details", { ...details, [key]: value });
   const text = (key, title, placeholder, required = false, max = 160) => <label className="field-label" key={key}>{title}<small>{t(required ? "forms.required" : "forms.optional")}</small><input aria-label={title} autoCorrect={key === "title" || key === "institution" ? "off" : undefined} required={required} value={draft[key] ?? ""} placeholder={placeholder} maxLength={max} onChange={(event) => onChange(key, event.target.value)} /></label>;
-  return <form className="matter-form" onSubmit={(event) => { event.preventDefault(); if (!validation && !busy) onSave(); }}>
+  return <form ref={formRef} className="matter-form" onSubmit={(event) => { event.preventDefault(); if (!validation && !busy) onSave(); }}>
     <fieldset disabled={busy}>
       <label className="field-label">{t("forms.category")}<small>{t("forms.required")}</small><select aria-label={t("forms.category")} value={draft.category} onChange={(event) => onChange("category", event.target.value)}>{matterCategories.map(([value]) => <option key={value} value={value}>{t(`forms.category.${value}`)}</option>)}</select></label>
       {text("title", t("forms.name"), t("forms.namePlaceholder"), true, 120)}
@@ -38,8 +50,9 @@ export function MatterForm({ draft, onChange, busy, onSave, isNew, onReload, per
       </section>
       <section className="matter-form-section" aria-label={t("forms.directions")}>
         <label className="field-label">{t("forms.outcome")}<small>{t("forms.optional")}</small><select aria-label={t("forms.outcome")} value={draft.desiredOutcome} onChange={(event) => onChange("desiredOutcome", event.target.value)}>{outcomes.map(value => <option key={value} value={value}>{t(`forms.outcome.${value}`)}</option>)}</select></label>
-        <details className="task-details"><summary>{t("forms.moreOptions")}</summary><label className="field-label">{t("forms.importance")}<select value={draft.importance} onChange={(event) => onChange("importance", event.target.value)}>{["standard", "important", "critical"].map(value => <option key={value} value={value}>{t(`forms.importance.${value}`)}</option>)}</select></label><label className="field-label">{t("forms.preparationStatus")}<select value={draft.status} onChange={(event) => onChange("status", event.target.value)}>{["draft", "ready", "needs_review"].map(value => <option key={value} value={value}>{t(`forms.status.${value}`)}</option>)}</select></label></details>
+        <details className="task-details" data-preparation><summary>{t("forms.moreOptions")}</summary><label className="field-label">{t("forms.importance")}<select value={draft.importance} onChange={(event) => onChange("importance", event.target.value)}>{["standard", "important", "critical"].map(value => <option key={value} value={value}>{t(`forms.importance.${value}`)}</option>)}</select></label><label className="field-label">{t("forms.preparationStatus")}<select data-preparation-status aria-label={t("forms.preparationStatus")} value={draft.status} onChange={(event) => onChange("status", event.target.value)}>{["draft", "ready", "needs_review"].map(value => <option key={value} value={value}>{t(`forms.status.${value}`)}</option>)}</select></label></details>
       </section>
+      {draft.reviewPreparation && <p className="matter-form-hint">{t("forms.preparationReview")}</p>}
       <p className="matter-privacy"><LockKey size={18} aria-hidden="true" />{t(isNew ? "forms.privateUntilShared" : "forms.sharedAsChosen")}</p>{!isNew && <><button className="text-button" type="button" disabled={busy || matterDraftChanged(draft)} onClick={onManageSharing}>{t("forms.manageSharing")}</button>{matterDraftChanged(draft) && <p className="matter-form-hint">{t("forms.saveBeforeSharing")}</p>}</>}
       <label className="field-label">{t("forms.notes")}<small>{t("forms.optional")}</small><textarea aria-label={t("forms.notes")} rows={4} maxLength={2000} value={draft.notes} placeholder={t("forms.notesPlaceholder")} onChange={(event) => onChange("notes", event.target.value)} /></label>
       <p className="matter-form-hint">{t("forms.secretsWarning")}</p>

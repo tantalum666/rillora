@@ -3354,3 +3354,12 @@ latest. Preserve that history with explicit dated status and update the active i
 existing delete/device/merchant deferrals retained. Register IDs/statuses unchanged.
 - Unfinished: actual acceptance,new client rollout,real transactions,personal facts,
 submission/review and final customer cutover. No new login,provider check,test or deployment.
+
+
+## 2026-10-05 — 按Owner优先级推进双语验收与Stripe Web
+
+- 目标：完成剩余双语/首发体验与匹配版本部署，付款优先Stripe Web。
+- 尝试：沿用完整阅读及旧验证，核对当前88.99与旧68TEST证据；复现计划下一步及恢复历史，新增独立小屏语言/横屏/AX5原生流程，实际下载中文测试备份。
+- 判断变化：旧Stripe托管付款没有当前登录Web回程证据；官网存储清单漏记已实现的语言偏好；AX5系统审计发现普通截图不易发现的多行Label问题。插件重连后仍401，后台登录实际有效，不能混称Owner未登录。
+- 结果：API400/归档恢复14、Web165及独立法律7、infra54通过；浏览器进度/恢复活动与3879字节合成备份核对成功。受限API模板审阅为仅三镜像更新，没有部署/迁移/购买。
+- 未完成：原生审计修复复测、更多设备/语言/共享/系统偏好、受限部署与新候选上传、当前88.99Stripe端到端TEST及独立live门。旧真机/删除/经营事实暂缓保持。详见[当前合同](../release-12-stripe-20261005.md)。

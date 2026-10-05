@@ -13,6 +13,12 @@ const name = 'rillora_native_ui_test';
 const url = dedicatedTestDatabaseUrl(`postgresql://127.0.0.1:5432/${name}`, name);
 const port = Number(process.env.RILLORA_MATRIX_API_PORT ?? 4395);
 if (!Number.isInteger(port) || port < 1024 || port > 65535) throw new Error('Invalid local fixture port');
+const webOrigin = process.env.RILLORA_MATRIX_WEB_ORIGIN;
+if (webOrigin) {
+  const origin = new URL(webOrigin);
+  if (origin.protocol !== 'http:' || !['127.0.0.1', 'localhost', '[::1]'].includes(origin.hostname)
+    || origin.origin !== webOrigin) throw new Error('UI fixture Web origin must be an explicit loopback origin');
+}
 const adminUrl = new URL(url); adminUrl.pathname = '/postgres';
 await assertDedicatedTestDatabase(adminUrl.toString(), 'postgres');
 const admin = new pg.Client({ connectionString: adminUrl.toString() });
@@ -31,7 +37,7 @@ if (!(await owner.query("select pg_try_advisory_lock(hashtext('rillora-native-ui
 await runMigrations(url);
 const config = loadConfig({ NODE_ENV: 'test', DATABASE_URL: url, ALLOW_DEV_AUTH: 'true',
   ALLOW_FAMILY_MAINTENANCE_PREVIEW: 'true',
-  CORS_ORIGINS: `http://127.0.0.1:${port}` });
+  CORS_ORIGINS: [`http://127.0.0.1:${port}`, webOrigin].filter(Boolean).join(',') });
 const pool = createPool(config);
 await pool.query('truncate app.commerce_provider_event_inbox, app.planners restart identity cascade');
 await seedDevelopmentFixture(pool);

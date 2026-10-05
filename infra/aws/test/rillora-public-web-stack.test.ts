@@ -84,4 +84,25 @@ describe('Public information hosting', () => {
       expect(() => new RilloraPublicWebStack(new App(), 'WrongRegion', { certificateArn: certificateArn.replace('us-east-1', 'eu-central-1'), assetDirectory })).toThrow('us-east-1');
     } finally { rmSync(assetDirectory, { recursive: true }); }
   });
+  it('accepts the disclosed bilingual preferences and rejects broader or mislabelled storage', () => {
+    const assetDirectory = fixture();
+    try {
+      const file = join(assetDirectory, 'public-build.json');
+      const marker = JSON.parse(readFileSync(file, 'utf8'));
+      marker.version = 4; marker.cookiesOrStorage = true;
+      marker.browserStorage = { cookies: false, tracking: false, purpose: 'user-selected-appearance-and-language',
+        localStorageKeys: ['rillora.website.appearance.v1', 'rillora.locale.v1'] };
+      writeFileSync(file, JSON.stringify(marker));
+      expect(() => new RilloraPublicWebStack(new App(), 'Bilingual', { certificateArn, assetDirectory })).not.toThrow();
+      for (const patch of [
+        { version: 3 }, { version: 5 }, { cookiesOrStorage: false },
+        { browserStorage: { ...marker.browserStorage, localStorageKeys: ['rillora.website.appearance.v1', 'session'] } },
+        { browserStorage: { ...marker.browserStorage, tracking: true } },
+        { browserStorage: { ...marker.browserStorage, cookies: true } },
+      ]) {
+        writeFileSync(file, JSON.stringify({ ...marker, ...patch }));
+        expect(() => new RilloraPublicWebStack(new App(), 'InvalidBilingual', { certificateArn, assetDirectory })).toThrow('public-information');
+      }
+    } finally { rmSync(assetDirectory, { recursive: true }); }
+  });
 });

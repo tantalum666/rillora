@@ -1,3 +1,4 @@
+import { appendPlannerAudit as appendAudit } from "./planner-audit.js";
 import { loadReadiness } from "./readiness.js";
 import { recentAuthenticationRequired } from "./recent-authentication.js";
 import { getPlan, mapPlan, mapMatter, mapMatterInput, mapContact, selectTrustedContacts, type PlanRow, type MatterRow, type ContactRow } from "./planner-records.js";
@@ -1633,21 +1634,6 @@ function printableLabel(value: string): string {
 }
 
 
-
-async function appendAudit(
-  client: PoolClient,
-  action: string,
-  resourceType: string,
-  resourcePublicId: string | null,
-  metadata: Record<string, unknown>,
-): Promise<void> {
-  await client.query(
-    `insert into app.audit_events (
-       planner_id, actor_type, action, resource_type, resource_public_id, metadata
-     ) values (app.current_planner_id(), 'planner', $1, $2, $3, $4::jsonb)`,
-    [action, resourceType, resourcePublicId, JSON.stringify(metadata)],
-  );
-}
 
 async function selectTrustedContact(
   client: PoolClient,

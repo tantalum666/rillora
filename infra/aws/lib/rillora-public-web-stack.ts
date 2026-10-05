@@ -17,15 +17,22 @@ export class RilloraPublicWebStack extends Stack {
     const marker = readVerifiedClientArtifact(directory, 'public-build.json');
     const digest = marker.files['index.html'];
     const storage = marker.browserStorage;
-    const noBrowserStorage = marker.cookiesOrStorage === false && storage === undefined;
-    const appearanceOnly = marker.cookiesOrStorage === true
+    const noBrowserStorage = marker.version === 3 && marker.cookiesOrStorage === false && storage === undefined;
+    const appearanceOnly = marker.version === 3 && marker.cookiesOrStorage === true
       && storage?.cookies === false && storage?.tracking === false
       && storage?.purpose === 'user-selected-appearance'
       && Array.isArray(storage?.localStorageKeys) && storage.localStorageKeys.length === 1
       && storage.localStorageKeys[0] === 'rillora.website.appearance.v1'
       && Object.keys(storage).length === 4;
-    if (marker.version !== 3 || marker.surface !== 'public-information' || marker.accountsEnabled !== false
-      || marker.apiEnabled !== false || (!noBrowserStorage && !appearanceOnly) || marker.htmlSha256 !== digest) {
+    const displayPreferences = marker.version === 4 && marker.cookiesOrStorage === true
+      && storage?.cookies === false && storage?.tracking === false
+      && storage?.purpose === 'user-selected-appearance-and-language'
+      && Array.isArray(storage?.localStorageKeys) && storage.localStorageKeys.length === 2
+      && storage.localStorageKeys[0] === 'rillora.website.appearance.v1'
+      && storage.localStorageKeys[1] === 'rillora.locale.v1'
+      && Object.keys(storage).length === 4;
+    if (marker.surface !== 'public-information' || marker.accountsEnabled !== false
+      || marker.apiEnabled !== false || (!noBrowserStorage && !appearanceOnly && !displayPreferences) || marker.htmlSha256 !== digest) {
       throw new Error('Only the verified public-information artifact is accepted');
     }
     Tags.of(this).add('Project', 'Rillora');

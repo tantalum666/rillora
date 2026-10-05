@@ -3,6 +3,10 @@
 Status: CONSOLIDATED; LOCAL BUILD/TEST AND FOCUSED BROWSER ACCEPTANCE; NOT DEPLOYED
 Last updated: 2026-10-05 (Asia/Hong_Kong)
 
+## October5 后续验收（进行中）
+
+计划下一步、归档恢复活动和英文导出入口已修复并在真实浏览器操作合成数据验证；完整备份已落盘并核对原文。官网构建清单v4准确声明外观与语言两个本地偏好，部署校验拒绝额外存储、Cookie和追踪。新产物尚未部署；详见[当前结果](release-12-stripe-20261005.md)。
+
 ## October5 中文文案复核
 
 Owner要求仔细斟酌中文。已按[中文文案口径](chinese-copy-guidelines-20261005.md)逐条审阅两端资源，统一语气/术语，区分导出与入门、姓名与事项名称，并明确共享、备份、恢复密钥和法律权限边界。Web371条及原生225个中文单元已修订；原生另新增姓名上下文键，英文显示不变。实际编译/界面证据与初版静态检查分开记录，仍未部署。

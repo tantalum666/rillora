@@ -49,6 +49,7 @@ targets:
       path: Rillora/Resources/Info.plist
       properties:
         CFBundleDisplayName: Rillora
+        ITSAppUsesNonExemptEncryption: false
         CFBundleLocalizations: [en, zh-Hans]
         UIPrefersShowingLanguageSettings: true
         UILaunchScreen:

@@ -1,6 +1,7 @@
 // Application-owned form and guidance chrome. Provider bodies and legal contracts stay in their source language.
 
 export const en = {
+  "forms.preparationReview": "Check the information, then choose Directions added under Preparation status when you are satisfied. This records your progress only; it does not verify the information or change sharing.",
   "forms.required": "Required",
   "forms.optional": "Optional",
   "forms.category": "Category",
@@ -236,6 +237,7 @@ export const en = {
 };
 
 export const zhCN = {
+  "forms.preparationReview": "核对资料后，可将准备状态设为“已添加查找指引”。这仅记录你的整理进度，不代表资料已核验，也不会改变共享。",
   "forms.required": "必填",
   "forms.optional": "选填",
   "forms.category": "类别",
