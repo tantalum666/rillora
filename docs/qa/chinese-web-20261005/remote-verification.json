@@ -1,7 +1,80 @@
 {
+  "repository": "tantalum666/rillora",
   "branch": "codex/chinese-web-20261005",
+  "status": "implementation_published_and_ci_passed",
+  "branch_url": "https://github.com/tantalum666/rillora/tree/codex/chinese-web-20261005",
   "base_commit": "2cc95f77c1279bdad43547b7e58a8faca9da7a93",
-  "status": "pending_remote_publication",
-  "ci_status": "not_yet_observed",
-  "deployment": "not_requested_or_performed"
+  "implementation_commit": "6b7987506d84287cc5399c998f8c6e1e1138bd7d",
+  "implementation_tree": "a9976cb63ca91b4872d4d182e4dab9838f161983",
+  "verification": {
+    "changed_files": 92,
+    "matching_git_blob_hashes": 92,
+    "remote_tree_entries": 12678,
+    "remote_tree_truncated": false,
+    "branch_head_readback_matched": true
+  },
+  "ci": {
+    "run_id": 37260303343,
+    "url": "https://github.com/tantalum666/rillora/actions/runs/37260303343",
+    "head_sha": "6b7987506d84287cc5399c998f8c6e1e1138bd7d",
+    "status": "completed",
+    "conclusion": "success",
+    "completed_at": "2026-10-05T03:41:40Z",
+    "jobs": [
+      {
+        "name": "api",
+        "id": 111605935064,
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "web-and-infrastructure",
+        "id": 111605935227,
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "source",
+        "id": 111605935417,
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "local_validation": {
+    "app_and_locale_tests_passed": 162,
+    "legal_fixture_tests_passed": 7,
+    "builds_passed": [
+      "internal",
+      "public_and_packaging",
+      "legal_fixture_and_packaging",
+      "production_closed_fixture",
+      "production_review_fixture"
+    ],
+    "production_fixtures": "Use fake CI legal fields only; not publishable artifacts.",
+    "additional_changed_file_scan": {
+      "scanner": "gitleaks 8.30.1",
+      "findings": 0
+    }
+  },
+  "browser_acceptance": {
+    "status": "blocked_before_navigation",
+    "executed_checks": 0,
+    "screenshots": 0,
+    "limits": [
+      "Chromium socket EPERM",
+      "Official local cloud preview ERR_BLOCKED_BY_CLIENT"
+    ],
+    "reference": "BROWSER-QA.md"
+  },
+  "publication_recovery": "After an uncertain large tree request, the branch was read back at the unchanged base. Content-addressed blobs were reconciled by SHA and only missing reviewed files were uploaded. Every file and the final tree matched before the non-forced branch update.",
+  "related_native_branch": {
+    "name": "codex/chinese-ios-20261005",
+    "sha": "26134d44c3bf43c22841039df410d14e133bb6de",
+    "url": "https://github.com/tantalum666/rillora/tree/codex/chinese-ios-20261005",
+    "relationship": "Separate native implementation; not merged or altered by this Web task."
+  },
+  "receipt_note": "Metadata-only follow-up. CI above covers the exact implementation commit; no new implementation or deployment is implied.",
+  "merged": false,
+  "deployed": false
 }
