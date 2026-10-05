@@ -17,10 +17,10 @@ struct TrustedContactDraft: Equatable, Sendable {
 
     var validationMessage: String? {
         let cleanName = displayName.trimmingCharacters(in: .whitespacesAndNewlines)
-        if cleanName.isEmpty { return "Add the contact’s name." }
-        if cleanName.count > 120 { return "The contact name must be 120 characters or fewer." }
+        if cleanName.isEmpty { return String(localized: "Add the contact’s name.") }
+        if cleanName.count > 120 { return String(localized: "The contact name must be 120 characters or fewer.") }
         if relationshipLabel.count > 120 {
-            return "The relationship must be 120 characters or fewer."
+            return String(localized: "The relationship must be 120 characters or fewer.")
         }
         return nil
     }
@@ -112,7 +112,7 @@ final class TrustedContactEditorStore {
             let contacts = try await service.fetchTrustedContacts()
             guard let latest = contacts.first(where: { $0.publicId == source.publicId }) else {
                 throw RilloraAPIError.requestFailed(
-                    "This trusted-contact record is no longer available."
+                    String(localized: "This trusted-contact record is no longer available.")
                 )
             }
             apply(latest)
@@ -131,7 +131,7 @@ final class TrustedContactEditorStore {
         guard !isBusy else { return nil }
         guard draft.validationMessage == nil else {
             state = .failed(
-                message: draft.validationMessage ?? "Review this contact before saving.",
+                message: draft.validationMessage ?? String(localized: "Review this contact before saving."),
                 conflict: false
             )
             return nil

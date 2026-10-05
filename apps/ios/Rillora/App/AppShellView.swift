@@ -205,7 +205,7 @@ struct AppShellView: View {
                 authenticationStore.errorMessage = nil
             }
         } message: {
-            Text(authenticationStore.errorMessage ?? "Please try again.")
+            Text(authenticationStore.errorMessage ?? String(localized: "Please try again."))
         }
         .alert(
             "Setup couldn’t be saved",
@@ -216,7 +216,7 @@ struct AppShellView: View {
         ) {
             Button("OK", role: .cancel) { firstUseError = nil }
         } message: {
-            Text(firstUseError ?? "Please try again.")
+            Text(firstUseError ?? String(localized: "Please try again."))
         }
         }
     }

@@ -9,32 +9,32 @@ struct StoreKitSandboxCatalogView: View {
                 RilloraFactStrip([
                     .init(
                         title: store.storeKitSandboxPurchaseTestingEnabled
-                            ? "Sandbox purchase"
-                            : "Catalog only",
+                            ? String(localized: "Sandbox purchase")
+                            : String(localized: "Catalog only"),
                         systemImage: "shippingbox"
                     ),
                     .init(
                         title: store.storeKitSandboxPurchaseTestingEnabled
-                            ? "Server-gated finish"
-                            : "No purchase",
+                            ? String(localized: "Server-gated finish")
+                            : String(localized: "No purchase"),
                         systemImage: "lock.shield"
                     ),
                 ])
             }
 
-            Section("Current storefront") {
+            Section(String(localized: "Current storefront")) {
                 LabeledContent(
-                    "Storefront",
-                    value: store.storefrontCountryCode ?? "Unavailable"
+                    String(localized: "Storefront"),
+                    value: store.storefrontCountryCode ?? String(localized: "Unavailable")
                 )
             }
 
-            Section("Rillora Family") {
+            Section(String(localized: "Rillora Family")) {
                 if store.isStoreKitWorking {
-                    ProgressView("Loading App Store products…")
+                    ProgressView(String(localized: "Loading App Store products…"))
                         .frame(maxWidth: .infinity, alignment: .leading)
                 } else if store.storeKitProducts.isEmpty {
-                    Label("Products unavailable", systemImage: "exclamationmark.triangle")
+                    Label(String(localized: "Products unavailable"), systemImage: "exclamationmark.triangle")
                         .foregroundStyle(RilloraTheme.muted)
                 } else {
                     ForEach(store.storeKitProducts) { product in
@@ -71,9 +71,9 @@ struct StoreKitSandboxCatalogView: View {
             }
 
             if store.storeKitSandboxPurchaseTestingEnabled {
-                Section("Server gate") {
+                Section(String(localized: "Server gate")) {
                     if let status = store.storeKitSandboxServerStatus {
-                        LabeledContent("Last server state", value: status)
+                        LabeledContent(String(localized: "Last server state"), value: status)
                     }
                     if store.storeKitSandboxTransactionPending {
                         Button {
@@ -81,19 +81,19 @@ struct StoreKitSandboxCatalogView: View {
                                 await store.retryStoreKitSandboxServerVerification()
                             }
                         } label: {
-                            Label("Retry authoritative verification", systemImage: "arrow.clockwise")
+                            Label(String(localized: "Retry authoritative verification"), systemImage: "arrow.clockwise")
                         }
                         .disabled(store.isStoreKitWorking)
                         .accessibilityIdentifier("storekit-sandbox.retry-server")
                     }
-                    Text("Apple purchase success never grants Rillora access. The transaction is finished only after the signed App Store Server API status is durably committed; entitlement mutation stays off.")
+                    Text(String(localized: "Apple purchase success never grants Rillora access. The transaction is finished only after the signed App Store Server API status is durably committed; entitlement mutation stays off."))
                         .font(.footnote)
                         .foregroundStyle(RilloraTheme.body)
                 }
             }
         }
         .rilloraStructuredList()
-        .navigationTitle("StoreKit Sandbox")
+        .navigationTitle(String(localized: "StoreKit Sandbox"))
         .navigationBarTitleDisplayMode(.inline)
         .accessibilityIdentifier("storekit-sandbox.catalog")
         .task { await store.startSandboxCatalog() }
@@ -126,9 +126,9 @@ struct StoreKitSandboxCatalogView: View {
 
     private func intervalLabel(_ productID: String) -> String {
         switch RilloraStoreKitCatalog.billingInterval(for: productID) {
-        case "monthly": "Monthly test subscription"
-        case "annual": "Yearly test subscription"
-        default: "Test subscription"
+        case "monthly": String(localized: "Monthly test subscription")
+        case "annual": String(localized: "Yearly test subscription")
+        default: String(localized: "Test subscription")
         }
     }
 }

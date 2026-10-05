@@ -9,15 +9,15 @@ struct MatterAccountGuides: View {
     var body: some View {
         if !guides.isEmpty {
             VStack(alignment: .leading, spacing: 8) {
-                Text("Account inheritance guidance")
+                Text(String(localized: "Account inheritance guidance"))
                     .font(.caption.weight(.semibold)).foregroundStyle(RilloraTheme.muted)
                 ForEach(guides) { guide in
                     Button { selectedGuide = guide } label: {
                         HStack(spacing: 12) {
                             OfficialProviderMark(guide: guide, size: 36)
                             VStack(alignment: .leading, spacing: 3) {
-                                Text("\(guide.name) guidance").font(.body.weight(.semibold))
-                                Text("Prepare now · After a death").font(.footnote).foregroundStyle(RilloraTheme.muted)
+                                Text(L10n.format("%1$@ guidance", guide.name)).font(.body.weight(.semibold))
+                                Text(String(localized: "Prepare now · After a death")).font(.footnote).foregroundStyle(RilloraTheme.muted)
                             }.frame(maxWidth: .infinity, alignment: .leading)
                             Image(systemName: "chevron.right").font(.caption).accessibilityHidden(true)
                         }.frame(minHeight: 44).contentShape(Rectangle())
@@ -42,7 +42,7 @@ private struct MatterAccountGuideSheet: View {
         NavigationStack {
             OfficialProviderGuideDetailView(guide: guide, initialPart: preparing ? "now" : nil)
                 .toolbar {
-                    ToolbarItem(placement: .cancellationAction) { Button("Close") { dismiss() } }
+                    ToolbarItem(placement: .cancellationAction) { Button(String(localized: "Close")) { dismiss() } }
                 }
         }.rilloraFocusedTask()
     }

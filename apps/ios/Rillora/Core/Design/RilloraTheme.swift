@@ -324,7 +324,7 @@ struct RilloraTextField: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 7) {
-            Text(required ? "\(title) · Required" : "\(title) · Optional")
+            Text(required ? L10n.format("%1$@ · Required", title) : L10n.format("%1$@ · Optional", title))
                 .font(.caption.weight(.semibold))
                 .foregroundStyle(isFocused ? RilloraTheme.tabSelection : RilloraTheme.muted)
             TextField(
@@ -340,7 +340,7 @@ struct RilloraTextField: View {
             .focused($isFocused)
             .submitLabel(.done)
             .onSubmit { isFocused = false }
-            .accessibilityLabel(required ? "\(title), required" : "\(title), optional")
+            .accessibilityLabel(required ? L10n.format("%1$@, required", title) : L10n.format("%1$@, optional", title))
             .accessibilityIdentifier(identifier)
         }
         .padding(.vertical, 5)

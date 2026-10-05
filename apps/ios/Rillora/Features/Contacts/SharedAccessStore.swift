@@ -27,7 +27,7 @@ final class SharedAccessStore {
             let current = try await service.fetchSharedWithMe()
             guard request == generation else { return }
             if Task.isCancelled { isLoading = false; return }
-            guard current.isValid else { throw RilloraAPIError.invalidPayload("Shared information could not be verified.") }
+            guard current.isValid else { throw RilloraAPIError.invalidPayload(String(localized: "Shared information could not be verified.")) }
             data = current
         } catch {
             guard request == generation else { return }

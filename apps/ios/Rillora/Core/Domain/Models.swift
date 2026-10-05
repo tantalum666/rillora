@@ -49,32 +49,32 @@ enum PlanMotivation: String, CaseIterable, Identifiable, Codable, Sendable {
 
     var label: String {
         switch self {
-        case .lifeChange: "A life change"
-        case .familyResponsibility: "Responsibility for family or others"
-        case .crossBorder: "Life or accounts across countries"
-        case .complexDigitalLife: "A complex digital life"
-        case .recentEstateExperience: "Recent experience handling an estate"
-        case .generalPreparedness: "General preparedness"
-        case .other: "Another reason"
+        case .lifeChange: String(localized: "A life change")
+        case .familyResponsibility: String(localized: "Responsibility for family or others")
+        case .crossBorder: String(localized: "Life or accounts across countries")
+        case .complexDigitalLife: String(localized: "A complex digital life")
+        case .recentEstateExperience: String(localized: "Recent experience handling an estate")
+        case .generalPreparedness: String(localized: "General preparedness")
+        case .other: String(localized: "Another reason")
         }
     }
 
     var explanation: String {
         switch self {
         case .lifeChange:
-            "You are reviewing continuity after a major personal or household change."
+            String(localized: "You are reviewing continuity after a major personal or household change.")
         case .familyResponsibility:
-            "Other people may depend on you or need clear directions."
+            String(localized: "Other people may depend on you or need clear directions.")
         case .crossBorder:
-            "Your life, accounts or responsibilities span more than one country."
+            String(localized: "Your life, accounts or responsibilities span more than one country.")
         case .complexDigitalLife:
-            "You have many online accounts, devices, subscriptions or digital assets."
+            String(localized: "You have many online accounts, devices, subscriptions or digital assets.")
         case .recentEstateExperience:
-            "A recent experience showed how difficult fragmented information can be."
+            String(localized: "A recent experience showed how difficult fragmented information can be.")
         case .generalPreparedness:
-            "You want a practical plan before there is an emergency."
+            String(localized: "You want a practical plan before there is an emergency.")
         case .other:
-            "You have another reason. Rillora stores only this broad category, not a narrative."
+            String(localized: "You have another reason. Rillora stores only this broad category, not a narrative.")
         }
     }
 }
@@ -135,7 +135,7 @@ struct Matter: Decodable, Equatable, Identifiable, Sendable {
 
     var id: String { publicId }
     var isReady: Bool { status == "ready" }
-    var preparationLabel: String { MatterStatus(rawValue: status)?.label ?? "Draft" }
+    var preparationLabel: String { MatterStatus(rawValue: status)?.label ?? String(localized: "Draft") }
 }
 
 struct MatterEnvelope: Decodable, Sendable {
@@ -155,13 +155,13 @@ enum MatterCategory: String, CaseIterable, Identifiable, Sendable {
 
     var label: String {
         switch self {
-        case .financialAsset: "Financial asset"
-        case .debt: "Debt"
-        case .account: "Online account"
-        case .device: "Device"
-        case .document: "Document"
-        case .subscription: "Subscription"
-        case .cryptoAsset: "Crypto asset"
+        case .financialAsset: String(localized: "Financial asset")
+        case .debt: String(localized: "Debt")
+        case .account: String(localized: "Online account")
+        case .device: String(localized: "Device")
+        case .document: String(localized: "Document")
+        case .subscription: String(localized: "Subscription")
+        case .cryptoAsset: String(localized: "Crypto asset")
         }
     }
 }
@@ -180,14 +180,14 @@ enum MatterOutcome: String, CaseIterable, Identifiable, Sendable {
 
     var label: String {
         switch self {
-        case .notify: "Notify someone"
-        case .transferRequest: "Request transfer"
-        case .close: "Request closure"
-        case .deleteRequest: "Request deletion"
-        case .memorialize: "Request memorialization"
-        case .delayDisclosure: "Delay disclosure"
-        case .neverDisclose: "Never disclose"
-        case .undecided: "Not decided"
+        case .notify: String(localized: "Notify someone")
+        case .transferRequest: String(localized: "Request transfer")
+        case .close: String(localized: "Request closure")
+        case .deleteRequest: String(localized: "Request deletion")
+        case .memorialize: String(localized: "Request memorialization")
+        case .delayDisclosure: String(localized: "Delay disclosure")
+        case .neverDisclose: String(localized: "Never disclose")
+        case .undecided: String(localized: "Not decided")
         }
     }
 }
@@ -198,7 +198,13 @@ enum MatterImportance: String, CaseIterable, Identifiable, Sendable {
     case critical
 
     var id: String { rawValue }
-    var label: String { rawValue.capitalized }
+    var label: String {
+        switch self {
+        case .standard: String(localized: "Standard")
+        case .important: String(localized: "Important")
+        case .critical: String(localized: "Critical")
+        }
+    }
 }
 
 enum MatterStatus: String, CaseIterable, Identifiable, Sendable {
@@ -210,9 +216,9 @@ enum MatterStatus: String, CaseIterable, Identifiable, Sendable {
 
     var label: String {
         switch self {
-        case .draft: "Draft"
-        case .ready: "Directions added"
-        case .needsReview: "Needs review"
+        case .draft: String(localized: "Draft")
+        case .ready: String(localized: "Directions added")
+        case .needsReview: String(localized: "Needs review")
         }
     }
 }
@@ -229,12 +235,12 @@ enum MatterValueBand: String, CaseIterable, Identifiable, Sendable {
 
     var label: String {
         switch self {
-        case .none: "No monetary value"
-        case .under1k: "Under 1,000"
-        case .oneToTenK: "1,000–10,000"
-        case .tenToHundredK: "10,000–100,000"
-        case .hundredKPlus: "100,000+"
-        case .unknown: "Unknown / not stated"
+        case .none: String(localized: "No monetary value")
+        case .under1k: String(localized: "Under 1,000")
+        case .oneToTenK: String(localized: "1,000–10,000")
+        case .tenToHundredK: String(localized: "10,000–100,000")
+        case .hundredKPlus: String(localized: "100,000+")
+        case .unknown: String(localized: "Unknown / not stated")
         }
     }
 }
@@ -375,11 +381,11 @@ struct TrustedContact: Decodable, Equatable, Identifiable, Sendable {
     }
 
     var evidenceLabel: String {
-        if isRevoked { return "Role revoked" }
-        if hasSimulatedAcceptance { return "Simulated acceptance" }
-        if hasAcceptedInvitation { return "Invitation accepted" }
-        if invitationStatus == "pending" { return "Invitation pending" }
-        return "Record only — no invitation sent"
+        if isRevoked { return String(localized: "Role revoked") }
+        if hasSimulatedAcceptance { return String(localized: "Simulated acceptance") }
+        if hasAcceptedInvitation { return String(localized: "Invitation accepted") }
+        if invitationStatus == "pending" { return String(localized: "Invitation pending") }
+        return String(localized: "Record only — no invitation sent")
     }
 }
 
@@ -442,7 +448,7 @@ struct OfficialSetupCheck: Decodable, Equatable, Identifiable, Sendable {
         case "google": "Google"
         case "meta": "Meta"
         case "github": "GitHub"
-        case "password_manager": "Password manager"
+        case "password_manager": String(localized: "Password manager")
         default: providerKey.replacingOccurrences(of: "_", with: " ").capitalized
         }
     }
@@ -471,20 +477,20 @@ enum LifeEvent: String, CaseIterable, Identifiable, Codable, Sendable {
 
     var title: String {
         switch self {
-        case .death: "Death"
-        case .incapacity: "Incapacity"
-        case .missing: "Missing / unreachable"
+        case .death: String(localized: "Death")
+        case .incapacity: String(localized: "Incapacity")
+        case .missing: String(localized: "Missing / unreachable")
         }
     }
 
     var explanation: String {
         switch self {
         case .death:
-            "Rehearse a future path after death. This does not report or verify a death."
+            String(localized: "Rehearse a future path after death. This does not report or verify a death.")
         case .incapacity:
-            "Rehearse support while you are alive but unable to manage the plan. This does not grant authority."
+            String(localized: "Rehearse support while you are alive but unable to manage the plan. This does not grant authority.")
         case .missing:
-            "Rehearse a temporary missing or unreachable path. This does not declare death or incapacity."
+            String(localized: "Rehearse a temporary missing or unreachable path. This does not declare death or incapacity.")
         }
     }
 }
@@ -529,11 +535,11 @@ enum DisclosureRehearsalAction: String, Codable, CaseIterable, Identifiable, Sen
 
     var label: String {
         switch self {
-        case .advance: "Advance simulated review"
-        case .simulateCoolingOffElapsed: "Simulate hold elapsed"
-        case .appeal: "Place on appeal hold"
-        case .restartReview: "Restart simulated review"
-        case .cancel: "Cancel this rehearsal"
+        case .advance: String(localized: "Advance simulated review")
+        case .simulateCoolingOffElapsed: String(localized: "Simulate hold elapsed")
+        case .appeal: String(localized: "Place on appeal hold")
+        case .restartReview: String(localized: "Restart simulated review")
+        case .cancel: String(localized: "Cancel this rehearsal")
         }
     }
 }
@@ -608,9 +614,9 @@ struct DisclosureAssignedPerson: Decodable, Equatable, Identifiable, Sendable {
 
     var evidenceLabel: String {
         switch invitationEvidence {
-        case "simulation": "Simulated acceptance"
-        case "real": "Recorded invitation evidence"
-        default: "Record only"
+        case "simulation": String(localized: "Simulated acceptance")
+        case "real": String(localized: "Recorded invitation evidence")
+        default: String(localized: "Record only")
         }
     }
 }
@@ -811,9 +817,9 @@ enum RoleAssignmentRole: String, Codable, CaseIterable, Identifiable, Sendable {
 
     var label: String {
         switch self {
-        case .trustedContact: "Trusted contact"
-        case .executor: "Executor record"
-        case .recipient: "Matter recipient"
+        case .trustedContact: String(localized: "Trusted contact")
+        case .executor: String(localized: "Executor record")
+        case .recipient: String(localized: "Matter recipient")
         }
     }
 }
@@ -823,7 +829,7 @@ enum RoleAssignmentScope: String, Codable, CaseIterable, Identifiable, Sendable 
     case matterSpecific = "matter_specific"
 
     var id: String { rawValue }
-    var label: String { self == .planWide ? "Whole plan" : "This matter" }
+    var label: String { self == .planWide ? String(localized: "Whole plan") : String(localized: "This matter") }
 }
 
 enum RoleAssignmentEvidence: String, Decodable, Sendable {
@@ -834,10 +840,10 @@ enum RoleAssignmentEvidence: String, Decodable, Sendable {
 
     var label: String {
         switch self {
-        case .recordOnly: "Record only"
-        case .simulation: "Simulated acceptance"
-        case .invitationPending: "Invitation pending"
-        case .invitationAccepted: "Invitation accepted"
+        case .recordOnly: String(localized: "Record only")
+        case .simulation: String(localized: "Simulated acceptance")
+        case .invitationPending: String(localized: "Invitation pending")
+        case .invitationAccepted: String(localized: "Invitation accepted")
         }
     }
 }

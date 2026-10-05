@@ -62,16 +62,16 @@ struct FamilyReviewTask: Decodable, Sendable, Identifiable {
     var id: String { publicId }
     var isResolved: Bool { scopeAvailable && !isStale && ["confirmed", "applied", "dismissed"].contains(state) }
     var statusLabel: String {
-        if !scopeAvailable { return "Sharing changed" }
-        if isStale { return "Check again" }
+        if !scopeAvailable { return String(localized: "Sharing changed") }
+        if isStale { return String(localized: "Check again") }
         switch state {
-        case "waiting": return "Waiting"
-        case "confirmed": return "Checked"
-        case "needs_update": return "Needs attention"
-        case "suggested": return "Update suggested"
-        case "applied": return "Updated"
-        case "dismissed": return "Kept current"
-        default: return "Unavailable"
+        case "waiting": return String(localized: "Waiting")
+        case "confirmed": return String(localized: "Checked")
+        case "needs_update": return String(localized: "Needs attention")
+        case "suggested": return String(localized: "Update suggested")
+        case "applied": return String(localized: "Updated")
+        case "dismissed": return String(localized: "Kept current")
+        default: return String(localized: "Unavailable")
         }
     }
     var symbol: String { isResolved ? "checkmark.circle" : state == "suggested" ? "pencil.circle" : "clock" }
@@ -118,7 +118,7 @@ protocol FamilyMaintenanceServing: Sendable {
     func closeFamilyReview(_ id: String, request: FamilyReviewActionRequest) async throws
 }
 struct UnavailableFamilyMaintenanceService: FamilyMaintenanceServing {
-    private var error: RilloraAPIError { .requestFailed("Shared reviews are unavailable. Try again when connected.") }
+    private var error: RilloraAPIError { .requestFailed(String(localized: "Shared reviews are unavailable. Try again when connected.")) }
     func fetchFamilyMaintenance() async throws -> FamilyMaintenanceOverview { throw error }
     func startFamilyReview(_ request: FamilyReviewStartRequest) async throws { throw error }
     func saveFamilyReviewSettings(_ request: FamilyReviewSettingsRequest) async throws { throw error }
@@ -133,5 +133,5 @@ enum FamilyReviewDate {
         let parser = ISO8601DateFormatter(); parser.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
         return parser.date(from: value) ?? ISO8601DateFormatter().date(from: value)
     }
-    static func label(_ value: String?) -> String { parse(value)?.formatted(date: .abbreviated, time: .omitted) ?? "Not scheduled" }
+    static func label(_ value: String?) -> String { parse(value)?.formatted(date: .abbreviated, time: .omitted) ?? String(localized: "Not scheduled") }
 }

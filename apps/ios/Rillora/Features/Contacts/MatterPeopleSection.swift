@@ -18,13 +18,13 @@ struct MatterPeopleSection: View {
 
     var body: some View {
         if matter.desiredOutcome == "never_disclose" {
-            Label("Never disclose. This matter stays private.", systemImage: "lock").font(.subheadline).foregroundStyle(RilloraTheme.muted)
+            Label(String(localized: "Never disclose. This matter stays private."), systemImage: "lock").font(.subheadline).foregroundStyle(RilloraTheme.muted)
         } else {
             if let error {
                 Text(error).font(.subheadline).foregroundStyle(RilloraTheme.clay)
-                Button("Retry sharing status") { Task { await load() } }
+                Button(String(localized: "Retry sharing status")) { Task { await load() } }
             } else if let connections {
-                if contacts.isEmpty { Label("Only you can see this matter.", systemImage: "lock").font(.subheadline).foregroundStyle(RilloraTheme.muted) }
+                if contacts.isEmpty { Label(String(localized: "Only you can see this matter."), systemImage: "lock").font(.subheadline).foregroundStyle(RilloraTheme.muted) }
                 ForEach(contacts) { person in
                     let connection = connections.first { $0.personPublicId == person.publicId && $0.isActive }
                     let grant = connection?.grants.first { $0.matterPublicId == matter.publicId }
@@ -34,13 +34,13 @@ struct MatterPeopleSection: View {
                     } label: {
                         VStack(alignment: .leading, spacing: 4) {
                             Text(person.displayName)
-                            Text(grant.map { "\($0.detailLevel.title) · \(connection?.statusLabel ?? "Not invited")" } ?? "Not shared")
+                            Text(grant.map { L10n.format("%1$@ · %2$@", $0.detailLevel.title, connection?.statusLabel ?? String(localized: "Not invited")) } ?? String(localized: "Not shared"))
                                 .font(.footnote).foregroundStyle(RilloraTheme.muted)
                         }
                     }.accessibilityIdentifier("matter.sharing.person.\(person.publicId)")
                 }
-            } else { ProgressView("Checking sharing…") }
-            Button { createdContact = nil; showsInvite = true } label: { Label("Invite someone", systemImage: "person.badge.plus") }
+            } else { ProgressView(String(localized: "Checking sharing…")) }
+            Button { createdContact = nil; showsInvite = true } label: { Label(String(localized: "Invite someone"), systemImage: "person.badge.plus") }
                 .accessibilityIdentifier("matter.sharing.invite")
                 .sheet(isPresented: $showsInvite, onDismiss: { Task { await load() } }) {
                     NavigationStack {

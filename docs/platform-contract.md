@@ -5,7 +5,16 @@ Authority scope: Web/iOS responsibilities, shared state and first validation rel
 Superseded by: later explicit platform decision  
 Do not use for: final framework choice or visual tokens  
 Status: CORE PARITY CONTRACT ACTIVE; CURRENT RUNTIME AND RELEASE GATES IN HANDOFF
-Last updated: 2026-10-04 (Asia/Hong_Kong)
+Last updated: 2026-10-05 (Asia/Hong_Kong)
+
+## October5 native bilingual interface
+
+Owner explicitly includes native iOS in the Chinese UI request. Both clients use the
+same Name / Directions / Details disclosure terms while retaining native interaction.
+Native uses Apple String Catalogs and iOS per-app language settings; changing language
+does not change raw domain values, saved text, market, currency or sharing access.
+[Native implementation and pending Mac acceptance](native-localization-20261005.md)
+are distinct from the separate Web branch and prior deployed English/native4 proofs.
 
 ## October4 actual core continuation
 

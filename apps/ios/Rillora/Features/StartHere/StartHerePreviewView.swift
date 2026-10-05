@@ -39,14 +39,14 @@ struct StartHerePreviewView: View {
             }
         }
         .rilloraFocusedTask()
-        .navigationTitle("Export directions")
+        .navigationTitle(String(localized: "Export directions"))
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(exportStep != "review" || hasUnkeptRecoveryKey)
         .interactiveDismissDisabled(isBusy || hasUnkeptRecoveryKey)
         .toolbar {
             if exportStep != "review" || hasUnkeptRecoveryKey {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Back") {
+                    Button(String(localized: "Back")) {
                         if exportStep != "review" { exportStep = exportStep == "save" ? "format" : "review" }
                         else { pendingPreviewReplacement = false; pendingAudienceChange = false; showsRecoveryExitWarning = true }
                     }
@@ -55,7 +55,7 @@ struct StartHerePreviewView: View {
             }
         }
         .alert(
-            "Start Here action not completed",
+            String(localized: "Start Here action not completed"),
             isPresented: Binding(
                 get: {
                     if case .failed = previewStore.state { return true }
@@ -68,12 +68,12 @@ struct StartHerePreviewView: View {
             )
         ) {
             if case .loaded = previewStore.state {
-                Button("Refresh and review") {
+                Button(String(localized: "Refresh and review")) {
                     previewStore.clearFailure()
                     Task { await refreshPreview() }
                 }
             }
-            Button("OK", role: .cancel) {
+            Button(String(localized: "OK"), role: .cancel) {
                 previewStore.clearFailure()
                 rehearsalStore.clearFailure()
             }
@@ -89,16 +89,16 @@ struct StartHerePreviewView: View {
             }
         }
         .accessibilityElement(children: .contain)
-        .confirmationDialog("Keep your recovery key", isPresented: $showsRecoveryExitWarning, titleVisibility: .visible) {
+        .confirmationDialog(String(localized: "Keep your recovery key"), isPresented: $showsRecoveryExitWarning, titleVisibility: .visible) {
             // Popover-style confirmations can omit the implicit cancel action.
-            Button("Go to recovery key") { exportStep = "save" }
-            Button(pendingAudienceChange ? "Change audience" : pendingPreviewReplacement ? "Replace preview" : "Leave anyway", role: .destructive) {
+            Button(String(localized: "Go to recovery key")) { exportStep = "save" }
+            Button(pendingAudienceChange ? String(localized: "Change audience") : pendingPreviewReplacement ? String(localized: "Replace preview") : String(localized: "Leave anyway"), role: .destructive) {
                 if pendingAudienceChange { resetAudience() }
                 else if pendingPreviewReplacement { Task { await refreshPreview(discardRecovery: true) } }
                 else { dismiss() }
             }
         } message: {
-            Text("Leaving or replacing this preview can remove the only recovery key for this copy.")
+            Text(String(localized: "Leaving or replacing this preview can remove the only recovery key for this copy."))
         }
         .accessibilityIdentifier("start-here.view")
         .task { await previewStore.loadRecipients() }
@@ -108,47 +108,49 @@ struct StartHerePreviewView: View {
         ScrollView {
             VStack(spacing: 22) {
                 if !dynamicTypeSize.isAccessibilitySize {
-                    Text("Who is this copy for?")
+                    Text(String(localized: "Who is this copy for?"))
                         .font(.subheadline.weight(.semibold))
                         .foregroundStyle(RilloraTheme.ink)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
-                RilloraAdaptivePicker("Who is this copy for?", selection: $audienceChoice) {
-                    Text("Choose an audience…").tag("")
-                    Text("For me").tag("owner")
-                    Text("For a person").tag("recipient")
+                RilloraAdaptivePicker(String(localized: "Who is this copy for?"), selection: $audienceChoice) {
+                    Text(String(localized: "Choose an audience…")).tag("")
+                    Text(String(localized: "For me")).tag("owner")
+                    Text(String(localized: "For a person")).tag("recipient")
                 }.accessibilityIdentifier("start-here.audience")
                 if audienceChoice == "recipient" {
-                    RilloraAdaptivePicker("Connected person · Required", selection: $recipientConnectionID) {
-                        Text("Choose a person").tag("")
+                    RilloraAdaptivePicker(String(localized: "Connected person · Required"), selection: $recipientConnectionID) {
+                        Text(String(localized: "Choose a person")).tag("")
                         ForEach(previewStore.recipients) { Text($0.personName).tag($0.publicId) }
                     }.accessibilityIdentifier("start-here.recipient")
                     if let message = previewStore.recipientError {
                         Text(message)
-                        Button("Try again") { Task { await previewStore.loadRecipients() } }
+                        Button(String(localized: "Try again")) { Task { await previewStore.loadRecipients() } }
                     } else if previewStore.recipients.isEmpty {
-                        Text("No connected people yet. Send an invitation first.").foregroundStyle(RilloraTheme.muted)
+                        Text(String(localized: "No connected people yet. Send an invitation first.")).foregroundStyle(RilloraTheme.muted)
                     }
-                    Text("Only their currently shared matters and permitted directions.").font(.subheadline).foregroundStyle(RilloraTheme.muted)
+                    Text(String(localized: "Only their currently shared matters and permitted directions.")).font(.subheadline).foregroundStyle(RilloraTheme.muted)
                 } else if audienceChoice == "owner" {
-                    Text("A personal directions overview. Choose a person before making a copy to share.").font(.subheadline).foregroundStyle(RilloraTheme.muted)
+                    Text(String(localized: "A personal directions overview. Choose a person before making a copy to share.")).font(.subheadline).foregroundStyle(RilloraTheme.muted)
                 }
                 Button {
                     Task { await refreshPreview() }
                 } label: {
-                    Label("Review this copy", systemImage: "eye")
+                    Label(String(localized: "Review this copy"), systemImage: "eye")
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(RilloraPrimaryActionButtonStyle())
                 .disabled(audienceChoice.isEmpty || (audienceChoice == "recipient" && recipientConnectionID.isEmpty))
                 .accessibilityIdentifier("start-here.preview")
-                RilloraInfoDisclosure("Before you export") {
-                    Text("Only you see this preview. No file is created or shared.")
+                RilloraInfoDisclosure(String(localized: "Before you export")) {
+                    Text(String(localized: "The server-generated guide and recovery-file warnings remain in English. Your saved content is unchanged."))
+                        .font(.subheadline).foregroundStyle(RilloraTheme.body)
+                    Text(String(localized: "Only you see this preview. No file is created or shared."))
                         .font(.subheadline).foregroundStyle(RilloraTheme.body)
                     RilloraFactStrip([
-                        .init(title: "Directions only", systemImage: "map"),
-                        .init(title: "No authority", systemImage: "building.columns"),
-                        .init(title: "No delivery", systemImage: "envelope"),
+                        .init(title: String(localized: "Directions only"), systemImage: "map"),
+                        .init(title: String(localized: "No authority"), systemImage: "building.columns"),
+                        .init(title: String(localized: "No delivery"), systemImage: "envelope"),
                     ])
                 }
             }
@@ -161,7 +163,7 @@ struct StartHerePreviewView: View {
         ScrollView {
             VStack(spacing: 22) {
                 guideArtwork.frame(height: 250).opacity(0.65)
-                ProgressView("Preparing preview…")
+                ProgressView(String(localized: "Preparing preview…"))
                     .tint(RilloraTheme.tabSelection)
                     .frame(maxWidth: .infinity, minHeight: 52)
             }
@@ -182,9 +184,9 @@ struct StartHerePreviewView: View {
         RilloraForm {
             Section {
                 RilloraTaskTabs(tabs: [
-                    .init(id: "review", title: "Review", symbol: "doc.text"),
-                    .init(id: "format", title: "Format", symbol: "square.on.square"),
-                    .init(id: "save", title: "Save", symbol: "square.and.arrow.down"),
+                    .init(id: "review", title: String(localized: "Review"), symbol: "doc.text"),
+                    .init(id: "format", title: String(localized: "Format"), symbol: "square.on.square"),
+                    .init(id: "save", title: String(localized: "Save"), symbol: "square.and.arrow.down"),
                 ], selection: $exportStep, identifierPrefix: "start-here.step")
                 .disabled(isBusy)
             }
@@ -193,25 +195,25 @@ struct StartHerePreviewView: View {
 
             if exportStep == "review" {
                 Section {
-                    Label(preview.package.audience?.kind == "recipient" ? "For \(preview.package.audience?.name ?? "your recipient")" : "Personal directions · for me", systemImage: "eye")
+                    Label(preview.package.audience?.kind == "recipient" ? L10n.format("For %1$@", preview.package.audience?.name ?? String(localized: "your recipient")) : String(localized: "Personal directions · for me"), systemImage: "eye")
                         .font(.subheadline.weight(.semibold)).foregroundStyle(RilloraTheme.tabSelection)
                         .accessibilityIdentifier("start-here.preview-result")
-                    LabeledContent("Planner", value: preview.package.planner.displayName)
-                    Text("\(preview.package.matters.count) \(preview.package.matters.count == 1 ? "matter" : "matters") in this copy").foregroundStyle(RilloraTheme.muted)
+                    LabeledContent(String(localized: "Planner"), value: preview.package.planner.displayName)
+                    Text(L10n.format("%1$lld matters in this copy", preview.package.matters.count)).foregroundStyle(RilloraTheme.muted)
                     ForEach(preview.package.matters) { matter in
                         DisclosureGroup(matter.title) {
                             VStack(alignment: .leading, spacing: 12) {
                                 Text(MatterCategory(rawValue: matter.category)?.label ?? matter.category).font(.footnote)
-                                if let provider = matter.institutionName { LabeledContent("Provider", value: provider) }
-                                if let location = matter.locationHint { VStack(alignment: .leading) { Text("Where to find it").font(.caption); Text(location) } }
+                                if let provider = matter.institutionName { LabeledContent(String(localized: "Provider"), value: provider) }
+                                if let location = matter.locationHint { VStack(alignment: .leading) { Text(String(localized: "Where to find it")).font(.caption); Text(location) } }
                                 if let outcome = matter.desiredOutcome { Text(MatterOutcome(rawValue: outcome)?.label ?? outcome) }
-                                else { Text("Name only — no directions in this copy") }
+                                else { Text(String(localized: "Name only — no directions in this copy")) }
                             }
                             .font(.subheadline).padding(.vertical, 8)
                         }
                     }
                     if !preview.package.trustedContacts.isEmpty {
-                        DisclosureGroup("Contact names included · \(preview.package.trustedContacts.count)") {
+                        DisclosureGroup(L10n.format("Contact names included · %1$lld", preview.package.trustedContacts.count)) {
                             ForEach(Array(preview.package.trustedContacts.enumerated()), id: \.offset) { _, contact in
                                 LabeledContent(contact.displayName, value: contact.relationshipLabel ?? "")
                             }
@@ -219,27 +221,27 @@ struct StartHerePreviewView: View {
                     }
                 }
                 Section {
-                    Button("Choose a format") { exportStep = "format" }
+                    Button(String(localized: "Choose a format")) { exportStep = "format" }
                         .buttonStyle(RilloraPrimaryActionButtonStyle())
                         .accessibilityIdentifier("start-here.choose-format")
-                    Button("Change who this is for") {
+                    Button(String(localized: "Change who this is for")) {
                         if hasUnkeptRecoveryKey { pendingAudienceChange = true; showsRecoveryExitWarning = true }
                         else { resetAudience() }
                     }
                 }
                 .listRowBackground(Color.clear)
                 Section {
-                    RilloraInfoDisclosure("Preview details") {
+                    RilloraInfoDisclosure(String(localized: "Preview details")) {
                         if let expiry = formattedExpiry(preview.export.expiresAt) {
-                            Text("Expires \(expiry). Refresh after changing your map.")
+                            Text(L10n.format("Expires %1$@. Refresh after changing your map.", expiry))
                                 .font(.subheadline).foregroundStyle(RilloraTheme.muted)
                         }
-                        Button("Refresh preview") { Task { await refreshPreview() } }
+                        Button(String(localized: "Refresh preview")) { Task { await refreshPreview() } }
                             .disabled(isBusy)
                         RilloraFactStrip([
-                            .init(title: "No file created", systemImage: "doc"),
-                            .init(title: "No delivery", systemImage: "envelope"),
-                            .init(title: "No authority", systemImage: "building.columns"),
+                            .init(title: String(localized: "No file created"), systemImage: "doc"),
+                            .init(title: String(localized: "No delivery"), systemImage: "envelope"),
+                            .init(title: String(localized: "No authority"), systemImage: "building.columns"),
                         ])
                     }
                 }
@@ -260,42 +262,44 @@ struct StartHerePreviewView: View {
                 }
                 .listRowBackground(Color.clear)
                 Section {
-                    Button("Continue") { exportStep = "save" }
+                    Button(String(localized: "Continue")) { exportStep = "save" }
                         .buttonStyle(RilloraPrimaryActionButtonStyle())
                         .accessibilityIdentifier("start-here.format-continue")
                 }
                 .listRowBackground(Color.clear)
             } else {
                 if exportFormat == .printable {
-                    Section("Printable guide") {
+                    Section(String(localized: "Printable guide")) {
+                        Text(String(localized: "The server-generated guide and recovery-file warnings remain in English. Your saved content is unchanged."))
+                            .font(.subheadline).foregroundStyle(RilloraTheme.muted)
                         if case .loaded = previewStore.printableState {} else {
-                            Toggle("I reviewed the guide and understand this file is plaintext.", isOn: $acknowledgesPlaintext)
+                            Toggle(String(localized: "I reviewed the guide and understand this file is plaintext."), isOn: $acknowledgesPlaintext)
                                 .accessibilityIdentifier("start-here.ack.plaintext")
-                            Toggle("Saved, shared or printed copies cannot be revoked.", isOn: $acknowledgesNoRevocation)
+                            Toggle(String(localized: "Saved, shared or printed copies cannot be revoked."), isOn: $acknowledgesNoRevocation)
                                 .accessibilityIdentifier("start-here.ack.copies")
                         }
                         printableAction(for: preview)
                     }
                     Section {
-                        RilloraInfoDisclosure("Included information") {
-                            Text("The guide excludes dedicated account hints, financial values and currencies. It is not an encrypted digital package.")
+                        RilloraInfoDisclosure(String(localized: "Included information")) {
+                            Text(String(localized: "The guide excludes dedicated account hints, financial values and currencies. It is not an encrypted digital package."))
                                 .font(.subheadline).foregroundStyle(RilloraTheme.body)
                         }
                     }
                 } else {
-                    Section("Encrypted package") {
+                    Section(String(localized: "Encrypted package")) {
                         if case .loaded = previewStore.encryptedState {} else {
-                            Toggle("Rillora cannot replace the recovery key. Anyone holding it can decrypt this copy.", isOn: $acknowledgesRecoveryRisk)
+                            Toggle(String(localized: "Rillora cannot replace the recovery key. Anyone holding it can decrypt this copy."), isOn: $acknowledgesRecoveryRisk)
                                 .accessibilityIdentifier("start-here.ack.recovery")
-                            Toggle("Copies saved outside Rillora cannot be remotely revoked.", isOn: $acknowledgesEncryptedCopies)
+                            Toggle(String(localized: "Copies saved outside Rillora cannot be remotely revoked."), isOn: $acknowledgesEncryptedCopies)
                                 .accessibilityIdentifier("start-here.ack.encrypted-copies")
                         }
                         encryptedAction(for: preview)
                     }
                     Section {
-                        RilloraInfoDisclosure("About encryption") {
-                            Text("Keep the recovery file separate from the encrypted package. It is a decryption secret.")
-                            Text("Encryption and recovery testing happen on this device. The API receives ciphertext and wrapped keys, not the recovery private key or unwrapped content key.")
+                        RilloraInfoDisclosure(String(localized: "About encryption")) {
+                            Text(String(localized: "Keep the recovery file separate from the encrypted package. It is a decryption secret."))
+                            Text(String(localized: "Encryption and recovery testing happen on this device. The API receives ciphertext and wrapped keys, not the recovery private key or unwrapped content key."))
                                 .font(.subheadline).foregroundStyle(RilloraTheme.muted)
                         }
                     }
@@ -328,8 +332,8 @@ struct StartHerePreviewView: View {
 
     private var formatChoices: some View {
         Group {
-            formatChoice(.printable, title: "Printable", symbol: "printer")
-            formatChoice(.encrypted, title: "Encrypted", symbol: "lock.fill")
+            formatChoice(.printable, title: String(localized: "Printable"), symbol: "printer")
+            formatChoice(.encrypted, title: String(localized: "Encrypted"), symbol: "lock.fill")
         }
     }
 
@@ -367,18 +371,18 @@ struct StartHerePreviewView: View {
     @ViewBuilder
     private func recipientRehearsalSection(_ preview: StartHerePreview) -> some View {
         Section {
-            Label("Synthetic recipient rehearsal", systemImage: "person.badge.key.fill")
+            Label(String(localized: "Synthetic recipient rehearsal"), systemImage: "person.badge.key.fill")
                 .font(.headline)
                 .foregroundStyle(RilloraTheme.ink)
-            Text("Exercises acceptance, a memory-only device key, recipient-only package access and local decryption.")
+            Text(String(localized: "Exercises acceptance, a memory-only device key, recipient-only package access and local decryption."))
                 .foregroundStyle(RilloraTheme.body)
             switch rehearsalStore.state {
             case .idle, .failed:
                 if rehearsalStore.contacts.isEmpty {
-                    Text("Add a synthetic trusted-contact record before running this rehearsal.")
+                    Text(String(localized: "Add a synthetic trusted-contact record before running this rehearsal."))
                         .foregroundStyle(RilloraTheme.muted)
                 } else {
-                    RilloraAdaptivePicker("Test contact record", selection: $selectedRehearsalContactID) {
+                    RilloraAdaptivePicker(String(localized: "Test contact record"), selection: $selectedRehearsalContactID) {
                         ForEach(rehearsalStore.contacts) { contact in
                             Text(contact.displayName).tag(contact.publicId)
                         }
@@ -391,7 +395,7 @@ struct StartHerePreviewView: View {
                             )
                         }
                     } label: {
-                        Label("Run recipient decryption rehearsal", systemImage: "checkmark.shield")
+                        Label(String(localized: "Run recipient decryption rehearsal"), systemImage: "checkmark.shield")
                             .frame(maxWidth: .infinity, alignment: .center)
                     }
                     .buttonStyle(.borderedProminent)
@@ -402,28 +406,28 @@ struct StartHerePreviewView: View {
             case .loading:
                 HStack(spacing: 10) {
                     ProgressView()
-                    Text("Running isolated acceptance and decryption…")
+                    Text(String(localized: "Running isolated acceptance and decryption…"))
                 }
             case .revoking:
                 HStack(spacing: 10) {
                     ProgressView()
-                    Text("Revoking synthetic device key…")
+                    Text(String(localized: "Revoking synthetic device key…"))
                 }
             case .passed(let result):
-                Label("Recipient-side decryption passed", systemImage: "checkmark.shield.fill")
+                Label(String(localized: "Recipient-side decryption passed"), systemImage: "checkmark.shield.fill")
                     .foregroundStyle(RilloraTheme.sage)
-                Text("Decrypted \(result.decryptedMatterCount) matter directions. Delivery: no. Release: no.")
+                Text(L10n.format("Decrypted %1$lld matter directions. Delivery: no. Release: no.", result.decryptedMatterCount))
                     .font(.footnote)
                     .foregroundStyle(RilloraTheme.muted)
-                Button(result.keyRevoked ? "Synthetic device key revoked" : "Revoke synthetic device key") {
+                Button(result.keyRevoked ? String(localized: "Synthetic device key revoked") : String(localized: "Revoke synthetic device key")) {
                     Task { await rehearsalStore.revokeKey() }
                 }
                 .disabled(result.keyRevoked || isBusy)
             }
         } header: {
-            Text("Recipient rehearsal")
+            Text(String(localized: "Recipient rehearsal"))
         } footer: {
-            Text("This verifies no identity, detects no death, sends no invitation and releases no data. Revocation cannot erase plaintext or external copies already obtained.")
+            Text(String(localized: "This verifies no identity, detects no death, sends no invitation and releases no data. Revocation cannot erase plaintext or external copies already obtained."))
         }
     }
 
@@ -434,7 +438,7 @@ struct StartHerePreviewView: View {
             Button {
                 Task { await previewStore.createEncrypted(preview: preview) }
             } label: {
-                Label("Create encrypted package", systemImage: "lock.shield")
+                Label(String(localized: "Create encrypted package"), systemImage: "lock.shield")
                     .frame(maxWidth: .infinity, alignment: .center)
             }
             .buttonStyle(RilloraPrimaryActionButtonStyle())
@@ -447,7 +451,7 @@ struct StartHerePreviewView: View {
         case .loading:
             HStack(spacing: 10) {
                 ProgressView()
-                Text("Encrypting and recovery-testing on this device…")
+                Text(String(localized: "Encrypting and recovery-testing on this device…"))
             }
             .frame(maxWidth: .infinity, alignment: .center)
         case .loaded(let bundle, let record):
@@ -459,21 +463,21 @@ struct StartHerePreviewView: View {
                 data: bundle.artifactData,
                 filename: "rillora-encrypted-start-here-\(record.publicId).json"
             )
-            Label("Encrypted copy ready", systemImage: "checkmark.shield.fill")
+            Label(String(localized: "Encrypted copy ready"), systemImage: "checkmark.shield.fill")
                 .foregroundStyle(RilloraTheme.sage)
             if record.recipientKeyCount == 0 {
-                Text("Only your recovery key can open this copy.")
+                Text(String(localized: "Only your recovery key can open this copy."))
                     .font(.footnote)
                     .foregroundStyle(RilloraTheme.clay)
             }
             ShareLink(
                 item: recoveryDocument,
                 preview: SharePreview(
-                    "Rillora offline recovery key",
+                    String(localized: "Rillora offline recovery key"),
                     icon: Image(systemName: "key")
                 )
             ) {
-                Label("Save recovery key", systemImage: "key")
+                Label(String(localized: "Save recovery key"), systemImage: "key")
                     .frame(maxWidth: .infinity, alignment: .center)
             }
             .buttonStyle(RilloraPrimaryActionButtonStyle())
@@ -482,16 +486,16 @@ struct StartHerePreviewView: View {
             ShareLink(
                 item: artifactDocument,
                 preview: SharePreview(
-                    "Rillora encrypted Start Here package",
+                    String(localized: "Rillora encrypted Start Here package"),
                     icon: Image(systemName: "doc.badge.lock")
                 )
             ) {
-                Label("Save package", systemImage: "square.and.arrow.up")
+                Label(String(localized: "Save package"), systemImage: "square.and.arrow.up")
                     .frame(maxWidth: .infinity, alignment: .center)
             }
             .buttonStyle(.bordered)
             .accessibilityIdentifier("start-here.share-encrypted")
-            Toggle("I kept the recovery key separately.", isOn: $acknowledgesRecoveryKept)
+            Toggle(String(localized: "I kept the recovery key separately."), isOn: $acknowledgesRecoveryKept)
                 .accessibilityIdentifier("start-here.ack.key-kept")
         }
     }
@@ -505,7 +509,7 @@ struct StartHerePreviewView: View {
                     await previewStore.createPrintable(previewPublicID: preview.export.publicId)
                 }
             } label: {
-                Label("Prepare printable guide", systemImage: "doc.text")
+                Label(String(localized: "Prepare printable guide"), systemImage: "doc.text")
                     .frame(maxWidth: .infinity, alignment: .center)
             }
             .buttonStyle(RilloraPrimaryActionButtonStyle())
@@ -514,7 +518,7 @@ struct StartHerePreviewView: View {
         case .loading:
             HStack(spacing: 10) {
                 ProgressView()
-                Text("Preparing the guide…")
+                Text(String(localized: "Preparing the guide…"))
             }
             .frame(maxWidth: .infinity, alignment: .center)
         case .loaded(let artifact):
@@ -525,17 +529,17 @@ struct StartHerePreviewView: View {
             ShareLink(
                 item: document,
                 preview: SharePreview(
-                    "Rillora Start Here guide",
+                    String(localized: "Rillora Start Here guide"),
                     icon: Image(systemName: "doc.text")
                 )
             ) {
-                Label("Share or print guide", systemImage: "square.and.arrow.up")
+                Label(String(localized: "Share or print guide"), systemImage: "square.and.arrow.up")
                     .frame(maxWidth: .infinity, alignment: .center)
             }
             .buttonStyle(RilloraPrimaryActionButtonStyle())
             .accessibilityIdentifier("start-here.share")
 
-            Text("Guide prepared. No server copy is retained.")
+            Text(String(localized: "Guide prepared. No server copy is retained."))
                 .font(.footnote)
                 .foregroundStyle(RilloraTheme.muted)
         }
@@ -605,9 +609,9 @@ private struct StartHereBoundarySection: View {
     var body: some View {
         Section {
             RilloraFactStrip([
-                .init(title: "Directions only", systemImage: "map"),
-                .init(title: "No authority", systemImage: "building.columns"),
-                .init(title: "No delivery", systemImage: "person.crop.circle.badge.xmark"),
+                .init(title: String(localized: "Directions only"), systemImage: "map"),
+                .init(title: String(localized: "No authority"), systemImage: "building.columns"),
+                .init(title: String(localized: "No delivery"), systemImage: "person.crop.circle.badge.xmark"),
             ])
         }
     }

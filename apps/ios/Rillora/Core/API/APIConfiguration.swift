@@ -227,13 +227,13 @@ enum APIConfigurationError: LocalizedError, Equatable {
     var errorDescription: String? {
         switch self {
         case .missingBaseURL:
-            "No API endpoint is configured for this build."
+            String(localized: "No API endpoint is configured for this build.")
         case .incompleteNativeAuthentication:
-            "Native sign-in configuration is incomplete for this build."
+            String(localized: "Native sign-in configuration is incomplete for this build.")
         case .invalidServiceMarketCode:
-            "No valid service market is configured for this build."
+            String(localized: "No valid service market is configured for this build.")
         case .invalidProductionConfiguration:
-            "This app version cannot connect to the account service."
+            String(localized: "This app version cannot connect to the account service.")
         }
     }
 }

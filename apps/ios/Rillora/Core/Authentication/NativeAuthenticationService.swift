@@ -449,29 +449,29 @@ enum NativeAuthenticationError: LocalizedError, Sendable {
     var errorDescription: String? {
         switch self {
         case .accountsNotOpen:
-            "Accounts are not open yet. You can still explore Rillora and its guides."
+            String(localized: "Accounts are not open yet. You can still explore Rillora and its guides.")
         case .notConfigured:
-            "Native sign in is not configured for this build."
+            String(localized: "Native sign in is not configured for this build.")
         case .appleSignInNotConfigured:
-            "Sign in with Apple is not configured for this build."
+            String(localized: "Sign in with Apple is not configured for this build.")
         case .googleSignInNotConfigured:
-            "Sign in with Google is not configured for this build."
+            String(localized: "Sign in with Google is not configured for this build.")
         case .passkeySignInNotConfigured:
-            "Passkey sign in is not configured for this build."
+            String(localized: "Passkey sign in is not configured for this build.")
         case .invalidAppleAuthorization:
-            "Apple did not return a valid authorization code."
+            String(localized: "Apple did not return a valid authorization code.")
         case .invalidGoogleIdentity:
-            "Google did not return a valid identity token."
+            String(localized: "Google did not return a valid identity token.")
         case .invalidPasskeyIdentity:
-            "The passkey provider did not return a valid credential."
+            String(localized: "The passkey provider did not return a valid credential.")
         case .invalidResponse:
-            "The identity service returned an invalid response."
+            String(localized: "The identity service returned an invalid response.")
         case .exchangeRejected:
-            "The identity service could not establish a Rillora session."
+            String(localized: "The identity service could not establish a Rillora session.")
         case .invalidSession:
-            "The identity service returned an invalid session."
+            String(localized: "The identity service returned an invalid session.")
         case .sessionRevocationRejected:
-            "Rillora could not revoke every active app session."
+            String(localized: "Rillora could not revoke every active app session.")
         }
     }
 }

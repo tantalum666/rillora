@@ -32,16 +32,16 @@ struct ContactSharingView: View {
             if showLink, let url = store.invitationURL {
                 Section {
                   VStack(alignment: .leading, spacing: 14) {
-                    Button { showLink = false } label: { Label("Sharing settings", systemImage: "arrow.left") }
+                    Button { showLink = false } label: { Label(String(localized: "Sharing settings"), systemImage: "arrow.left") }
                         .frame(minHeight: 44)
-                    Text("Ready to share").font(.title2.weight(.semibold)).foregroundStyle(RilloraTheme.ink)
+                    Text(String(localized: "Ready to share")).font(.title2.weight(.semibold)).foregroundStyle(RilloraTheme.ink)
                     Label(store.connection?.emailHint ?? "", systemImage: "envelope")
                         .font(.subheadline).foregroundStyle(RilloraTheme.muted)
                     InvitationQRCodeView(url: url).frame(maxWidth: .infinity)
                     SharingAdaptiveRow(spacing: 12) { linkActions(url) }
-                    Text("Waiting for them to accept").font(.subheadline).foregroundStyle(RilloraTheme.muted)
+                    Text(String(localized: "Waiting for them to accept")).font(.subheadline).foregroundStyle(RilloraTheme.muted)
                     if let expires = store.connection?.expiresAt {
-                        Text("Expires \(shortDate(expires))").font(.footnote).foregroundStyle(RilloraTheme.muted)
+                        Text(L10n.format("Expires %1$@", shortDate(expires))).font(.footnote).foregroundStyle(RilloraTheme.muted)
                     }
                   }.padding(.vertical, 4)
                 }.listRowBackground(Color.clear).listRowSeparator(.hidden)
@@ -49,13 +49,13 @@ struct ContactSharingView: View {
                 Section {
                     SharingAdaptiveRow(spacing: 14) { personHeading }.padding(.vertical, 6)
                     if let allowance = store.allowance, allowance.enforcementEnabled {
-                        Text("\(allowance.used) of \(allowance.limit) sharing \(allowance.limit == 1 ? "place" : "places") used").font(.subheadline).foregroundStyle(RilloraTheme.muted)
+                        Text(L10n.format("Sharing places used: %1$lld of %2$lld", allowance.used, allowance.limit)).font(.subheadline).foregroundStyle(RilloraTheme.muted)
                     }
-                    if !store.hasLoaded && store.isWorking { ProgressView("Loading sharing…") }
+                    if !store.hasLoaded && store.isWorking { ProgressView(String(localized: "Loading sharing…")) }
                 }.listRowBackground(Color.clear)
                 if !store.isActive {
                     Section {
-                        RilloraTextField(title: "Recipient's sign-in email", prompt: "person@example.com", text: $store.email,
+                        RilloraTextField(title: String(localized: "Recipient's sign-in email"), prompt: "person@example.com", text: $store.email,
                                         identifier: "sharing.recipient-email", required: true)
                             .keyboardType(.emailAddress).textInputAutocapitalization(.never).autocorrectionDisabled()
                     }
@@ -63,11 +63,11 @@ struct ContactSharingView: View {
                     Section { Label(connection.emailHint, systemImage: "envelope").foregroundStyle(RilloraTheme.muted) }
                         .listRowBackground(Color.clear)
                 }
-                Section("Choose what to share") {
+                Section(String(localized: "Choose what to share")) {
                     ForEach(matters) { matter in
                         VStack(alignment: .leading, spacing: 9) {
                             if matter.desiredOutcome == MatterOutcome.neverDisclose.rawValue {
-                                Label("\(matter.title) · Private", systemImage: "lock")
+                                Label(L10n.format("%1$@ · Private", matter.title), systemImage: "lock")
                                     .foregroundStyle(RilloraTheme.muted).frame(minHeight: 44)
                             } else {
                                 Toggle(isOn: Binding(get: { store.selected(matter.publicId) }, set: { store.setSelected(matter.publicId, $0) })) {
@@ -82,52 +82,52 @@ struct ContactSharingView: View {
                         }.padding(.vertical, 4)
                             .animation(reduceMotion ? nil : .easeInOut(duration: 0.24), value: store.selected(matter.publicId))
                     }
-                    if matters.isEmpty { Text("Invite now. Choose matters later.").foregroundStyle(RilloraTheme.muted) }
+                    if matters.isEmpty { Text(String(localized: "Invite now. Choose matters later.")).foregroundStyle(RilloraTheme.muted) }
                 }
                 Section {
                     Button { if store.replacement != nil { confirmation = .replacement } else { save() } } label: {
                         HStack { if store.isWorking { ProgressView() }; Text(saveLabel).frame(maxWidth: .infinity); Image(systemName: "arrow.right") }
                     }.buttonStyle(RilloraPrimaryActionButtonStyle()).disabled(!store.canSave)
                         .accessibilityIdentifier("sharing.save")
-                    if savedFeedback && !store.hasChanges { Label("Sharing saved", systemImage: "checkmark.circle.fill").foregroundStyle(RilloraTheme.tabSelection) }
-                    if revokedFeedback { Label("Sharing stopped", systemImage: "lock.fill").foregroundStyle(RilloraTheme.tabSelection).accessibilityIdentifier("sharing.revoked") }
+                    if savedFeedback && !store.hasChanges { Label(String(localized: "Sharing saved"), systemImage: "checkmark.circle.fill").foregroundStyle(RilloraTheme.tabSelection) }
+                    if revokedFeedback { Label(String(localized: "Sharing stopped"), systemImage: "lock.fill").foregroundStyle(RilloraTheme.tabSelection).accessibilityIdentifier("sharing.revoked") }
                     if store.isActive && !store.isConnected {
                         Button {
                             if store.invitationURL != nil { showLink = true } else { confirmation = .newLink }
-                        } label: { Label(store.invitationURL == nil ? "Create new link" : "Show invitation", systemImage: "link") }
+                        } label: { Label(store.invitationURL == nil ? String(localized: "Create new link") : String(localized: "Show invitation"), systemImage: "link") }
                             .disabled(store.isWorking || store.hasChanges).frame(minHeight: 44)
                             .accessibilityIdentifier("sharing.new-link")
                     }
                 }.listRowBackground(Color.clear).listRowSeparator(.hidden)
                 if store.isActive && !store.isConnected {
                     Section {
-                        DisclosureGroup("Change invited email") {
-                            RilloraTextField(title: "New sign-in email", prompt: "person@example.com", text: $store.email, identifier: "sharing.replace-email")
+                        DisclosureGroup(String(localized: "Change invited email")) {
+                            RilloraTextField(title: String(localized: "New sign-in email"), prompt: "person@example.com", text: $store.email, identifier: "sharing.replace-email")
                                 .keyboardType(.emailAddress).textInputAutocapitalization(.never).autocorrectionDisabled()
                         }
                     }
                 }
                 Section {
-                    NavigationLink("Edit contact record") {
+                    NavigationLink(String(localized: "Edit contact record")) {
                         TrustedContactEditorView(contact: store.contact, service: contactService, overviewStore: overviewStore)
                     }.disabled(store.hasChanges).accessibilityIdentifier("contact.record.edit")
                     if store.isActive {
-                        Button("Stop sharing", role: .destructive) { confirmation = .revoke }.accessibilityIdentifier("sharing.revoke")
+                        Button(String(localized: "Stop sharing"), role: .destructive) { confirmation = .revoke }.accessibilityIdentifier("sharing.revoke")
                     }
                     if store.isActive, store.connection?.status != .expired, store.allowance?.enforcementEnabled == true {
                         if store.connection?.access?.mode == .live {
-                            Button("Pause current updates") { confirmation = .pause }.disabled(store.hasChanges)
+                            Button(String(localized: "Pause current updates")) { confirmation = .pause }.disabled(store.hasChanges)
                         }
                         if store.connection?.access?.isFreeRecipient == true {
-                            Text("Your included place").foregroundStyle(RilloraTheme.muted)
+                            Text(String(localized: "Your included place")).foregroundStyle(RilloraTheme.muted)
                         } else {
-                            Button("Use included place") { confirmation = .freeRecipient }.disabled(store.hasChanges)
+                            Button(String(localized: "Use included place")) { confirmation = .freeRecipient }.disabled(store.hasChanges)
                         }
                         if store.connection?.access?.mode != .live, store.allowance?.paidUntil != nil {
-                            Button("Resume current updates") { Task { await store.selectLive(useFreeSlot: false) } }.disabled(store.hasChanges)
+                            Button(String(localized: "Resume current updates")) { Task { await store.selectLive(useFreeSlot: false) } }.disabled(store.hasChanges)
                         }
                     }
-                    RilloraInfoDisclosure("Visible details") {
+                    RilloraInfoDisclosure(String(localized: "Visible details")) {
                         SharingPreviewContent(grants: store.grants, service: sharingService,
                             connectionPublicID: store.isActive && store.connection?.access != nil ? store.connection?.publicId : nil,
                             connectionState: "\(store.connection?.version ?? 0)-\(store.connection?.access?.mode.rawValue ?? "live")")
@@ -137,18 +137,18 @@ struct ContactSharingView: View {
             if let error = store.errorMessage {
                 Section {
                     Text(error).foregroundStyle(RilloraTheme.clay)
-                    Button("Reload current settings") { if store.hasChanges { confirmation = .reload } else { Task { await store.load() } } }
+                    Button(String(localized: "Reload current settings")) { if store.hasChanges { confirmation = .reload } else { Task { await store.load() } } }
                 }
             }
         }
         .rilloraStructuredList().rilloraFocusedTask()
         .listSectionSpacing(12)
         .disabled(store.isWorking)
-        .navigationTitle(showLink ? "Invite \(store.contact.displayName)" : "Share with \(store.contact.displayName)")
+        .navigationTitle(showLink ? L10n.format("Invite %1$@", store.contact.displayName) : L10n.format("Share with %1$@", store.contact.displayName))
         .navigationBarTitleDisplayMode(.inline)
         .interactiveDismissDisabled(store.hasChanges || store.isWorking)
         .navigationBarBackButtonHidden(store.hasChanges || store.isWorking)
-        .toolbar { ToolbarItem(placement: .cancellationAction) { Button(store.isActive ? "Done" : "Close") { if store.hasChanges { confirmation = .discard } else { dismiss() } }.disabled(store.isWorking) } }
+        .toolbar { ToolbarItem(placement: .cancellationAction) { Button(store.isActive ? String(localized: "Done") : String(localized: "Close")) { if store.hasChanges { confirmation = .discard } else { dismiss() } }.disabled(store.isWorking) } }
         .task { await store.load() }
         .onChange(of: scenePhase) { _, next in
             if next == .active && !store.hasChanges && !store.isWorking && confirmation == nil {
@@ -170,55 +170,55 @@ struct ContactSharingView: View {
         case discard, revoke, newLink, reload, freeRecipient, replacement, pause
         var title: String {
             switch self {
-            case .discard: "Discard sharing changes?"
-            case .revoke: "Stop sharing with this person?"
-            case .newLink: "Replace invitation link?"
-            case .reload: "Replace this draft?"
-            case .freeRecipient: "Use your included place for this person?"
-            case .replacement: "Replace current updates?"
-            case .pause: "Pause current updates?"
+            case .discard: String(localized: "Discard sharing changes?")
+            case .revoke: String(localized: "Stop sharing with this person?")
+            case .newLink: String(localized: "Replace invitation link?")
+            case .reload: String(localized: "Replace this draft?")
+            case .freeRecipient: String(localized: "Use your included place for this person?")
+            case .replacement: String(localized: "Replace current updates?")
+            case .pause: String(localized: "Pause current updates?")
             }
         }
     }
     private func confirmationMessage(_ choice: SharingConfirmation) -> String {
         switch choice {
-        case .discard, .reload: "Your unsaved changes will be discarded."
-        case .revoke: "Future access stops. Copies already kept cannot be erased."
-        case .newLink: "The previous link will stop working."
-        case .freeRecipient: "This person receives current updates. Your previous choice keeps only an eligible saved copy unless covered by Family."
-        case .replacement: "Your included place moves from \(store.replacement?.personName ?? "the current person") to \(store.contact.displayName). Only an eligible saved copy remains for the previous person."
-        case .pause: "This frees a sharing place. Only an eligible paid-period saved copy remains available."
+        case .discard, .reload: String(localized: "Your unsaved changes will be discarded.")
+        case .revoke: String(localized: "Future access stops. Copies already kept cannot be erased.")
+        case .newLink: String(localized: "The previous link will stop working.")
+        case .freeRecipient: String(localized: "This person receives current updates. Your previous choice keeps only an eligible saved copy unless covered by Family.")
+        case .replacement: L10n.format("Your included place moves from %1$@ to %2$@. Only an eligible saved copy remains for the previous person.", store.replacement?.personName ?? String(localized: "the current person"), store.contact.displayName)
+        case .pause: String(localized: "This frees a sharing place. Only an eligible paid-period saved copy remains available.")
         }
     }
     @ViewBuilder private func confirmationActions(_ choice: SharingConfirmation) -> some View {
         switch choice {
         case .discard:
-            Button("Discard changes", role: .destructive) { dismiss() }
-            Button("Keep editing", role: .cancel) {}
+            Button(String(localized: "Discard changes"), role: .destructive) { dismiss() }
+            Button(String(localized: "Keep editing"), role: .cancel) {}
         case .reload:
-            Button("Load latest", role: .destructive) { Task { await store.load() } }
-            Button("Keep editing", role: .cancel) {}
+            Button(String(localized: "Load latest"), role: .destructive) { Task { await store.load() } }
+            Button(String(localized: "Keep editing"), role: .cancel) {}
         case .newLink:
-            Button("Create new link") { Task { if await store.regenerate() { showLink = true; copied = false } } }
-            Button("Keep current link", role: .cancel) {}
+            Button(String(localized: "Create new link")) { Task { if await store.regenerate() { showLink = true; copied = false } } }
+            Button(String(localized: "Keep current link"), role: .cancel) {}
         case .revoke:
-            Button("Stop sharing", role: .destructive) { Task { if await store.revoke() { revokedFeedback = true; savedFeedback = false } } }
-            Button("Keep sharing", role: .cancel) {}
+            Button(String(localized: "Stop sharing"), role: .destructive) { Task { if await store.revoke() { revokedFeedback = true; savedFeedback = false } } }
+            Button(String(localized: "Keep sharing"), role: .cancel) {}
         case .freeRecipient:
-            Button("Use included place") { Task { await store.selectLive(useFreeSlot: true) } }
-            Button("Keep current choice", role: .cancel) {}
+            Button(String(localized: "Use included place")) { Task { await store.selectLive(useFreeSlot: true) } }
+            Button(String(localized: "Keep current choice"), role: .cancel) {}
         case .replacement:
-            Button("Replace and create invitation") { save(replacing: true) }
-            Button("Keep editing", role: .cancel) {}
+            Button(String(localized: "Replace and create invitation")) { save(replacing: true) }
+            Button(String(localized: "Keep editing"), role: .cancel) {}
         case .pause:
-            Button("Pause updates") { Task { await store.pauseUpdates() } }
-            Button("Keep updating", role: .cancel) {}
+            Button(String(localized: "Pause updates")) { Task { await store.pauseUpdates() } }
+            Button(String(localized: "Keep updating"), role: .cancel) {}
         }
     }
     private var saveLabel: String {
-        if store.isWorking { return "Saving…" }
-        if store.replacement != nil { return "Replace included person" }
-        return !store.isActive || !store.email.isEmpty ? "Create link & QR" : "Save sharing"
+        if store.isWorking { return String(localized: "Saving…") }
+        if store.replacement != nil { return String(localized: "Replace included person") }
+        return !store.isActive || !store.email.isEmpty ? String(localized: "Create link & QR") : String(localized: "Save sharing")
     }
     private func save(replacing: Bool = false) {
         Task {
@@ -232,17 +232,17 @@ struct ContactSharingView: View {
         RilloraConnectionVisual(state: ConnectionVisualState(store.connection?.status), compact: true)
         VStack(alignment: .leading, spacing: 5) {
             Text(store.contact.displayName).font(.headline)
-            Text(store.connection?.statusLabel ?? (store.hasLoaded ? "Not invited" : "Checking connection…"))
+            Text(store.connection?.statusLabel ?? (store.hasLoaded ? String(localized: "Not invited") : String(localized: "Checking connection…")))
                 .font(.footnote).foregroundStyle(RilloraTheme.muted)
                 .fixedSize(horizontal: false, vertical: true).accessibilityIdentifier("sharing.status")
         }
     }
     @ViewBuilder private func linkActions(_ url: URL) -> some View {
-        ShareLink(item: url) { Label("Share", systemImage: "square.and.arrow.up").frame(maxWidth: .infinity) }
-            .buttonStyle(RilloraPrimaryActionButtonStyle()).accessibilityLabel("Share invitation")
+        ShareLink(item: url) { Label(String(localized: "Share"), systemImage: "square.and.arrow.up").frame(maxWidth: .infinity) }
+            .buttonStyle(RilloraPrimaryActionButtonStyle()).accessibilityLabel(String(localized: "Share invitation"))
             .accessibilityIdentifier("sharing.invitation.share")
         Button { UIPasteboard.general.string = url.absoluteString; copied = true } label: {
-            Label(copied ? "Copied" : "Copy link", systemImage: copied ? "checkmark.circle.fill" : "link")
+            Label(copied ? String(localized: "Copied") : String(localized: "Copy link"), systemImage: copied ? "checkmark.circle.fill" : "link")
                 .font(.body.weight(.semibold)).foregroundStyle(RilloraTheme.tabSelection)
                 .frame(maxWidth: .infinity, minHeight: 52).padding(.horizontal, 14)
                 .background(RilloraTheme.actionSurface, in: RoundedRectangle(cornerRadius: 15))
@@ -253,7 +253,7 @@ struct ContactSharingView: View {
         let fractional = ISO8601DateFormatter()
         fractional.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
         let date = fractional.date(from: text) ?? ISO8601DateFormatter().date(from: text)
-        return date?.formatted(date: .abbreviated, time: .omitted) ?? "Unavailable"
+        return date?.formatted(date: .abbreviated, time: .omitted) ?? String(localized: "Unavailable")
     }
 }
 
@@ -297,7 +297,7 @@ struct InvitationQRCodeView: View {
             if let image { Image(uiImage: image).interpolation(.none).resizable().scaledToFit() }
             else { ProgressView() }
         }.aspectRatio(1, contentMode: .fit).frame(maxWidth: 240).padding(16).background(.white, in: RoundedRectangle(cornerRadius: 18))
-            .accessibilityElement(children: .ignore).accessibilityLabel("Invitation QR code")
+            .accessibilityElement(children: .ignore).accessibilityLabel(String(localized: "Invitation QR code"))
             .task(id: url) {
                 let filter = CIFilter.qrCodeGenerator(); filter.message = Data(url.absoluteString.utf8); filter.correctionLevel = "M"
                 if let output = filter.outputImage, let bitmap = CIContext().createCGImage(output, from: output.extent) { image = UIImage(cgImage: bitmap) }

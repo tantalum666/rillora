@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-04 (Asia/Hong_Kong)
+Last updated: 2026-10-05 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -3052,3 +3052,17 @@ unreachable release remains a different closed workflow. See [sharing contract](
   No new product/price/crypto decision is introduced. Focused red/green and actual
   saved-file-to-Web-decrypt evidence support the fix; build3predates it and a new
   signed candidate is needed. [Current acceptance](real-core-acceptance-20261004.md).
+
+
+## 2026-10-05 — Chinese UI explicitly includes native iOS
+
+- Status: LOCKED
+- Scope: Owner-requested Chinese interface includes the shipping native SwiftUI app.
+- Evidence: Owner明确「不只是做web哦，ios也要做」。
+- Decision: preserve English and add Simplified Chinese with Apple String Catalogs,
+standard system/per-app language selection and shared Web/native terminology.
+- Supersedes: treating a Web-only localization delivery as completing this request.
+- Does not imply: translation of operative legal texts/provider-controlled content,
+market/price changes, compilation, deployment, store upload or public release.
+- Implementation: [native contract](native-localization-20261005.md); isolated source
+branch, static checks and explicit Mac acceptance gate.

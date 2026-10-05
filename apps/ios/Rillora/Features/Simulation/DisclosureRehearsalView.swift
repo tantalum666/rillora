@@ -32,8 +32,8 @@ struct DisclosureRehearsalView: View {
                             if rehearsalStore.isWorking { ProgressView() }
                             Label(
                                 rehearsalStore.isWorking
-                                    ? "Preparing preview…"
-                                    : "Preview role access",
+                                    ? String(localized: "Preparing preview…")
+                                    : String(localized: "Preview role access"),
                                 systemImage: "shield.lefthalf.filled"
                             )
                             .frame(maxWidth: .infinity, alignment: .center)
@@ -45,9 +45,9 @@ struct DisclosureRehearsalView: View {
                 }
                 .listRowBackground(Color.clear)
                 Section {
-                    RilloraInfoDisclosure("Simulation only") {
+                    RilloraInfoDisclosure(String(localized: "Simulation only")) {
                         Text(rehearsalStore.selectedLifeEvent.explanation)
-                        Text("Only you see this rehearsal. It verifies no evidence, contacts nobody and releases nothing. Cooling periods do not elapse automatically here.")
+                        Text(String(localized: "Only you see this rehearsal. It verifies no evidence, contacts nobody and releases nothing. Cooling periods do not elapse automatically here."))
                             .font(.subheadline).foregroundStyle(RilloraTheme.muted)
                     }
                 }
@@ -57,17 +57,17 @@ struct DisclosureRehearsalView: View {
         .rilloraStructuredList()
         .listSectionSpacing(18)
         .rilloraFocusedTask()
-        .navigationTitle("Role disclosure")
+        .navigationTitle(String(localized: "Role disclosure"))
         .navigationBarTitleDisplayMode(.inline)
         .animation(reduceMotion ? nil : .easeOut(duration: 0.22), value: rehearsalStore.rehearsal?.state)
         .alert(
-            "Rehearsal not updated",
+            String(localized: "Rehearsal not updated"),
             isPresented: Binding(
                 get: { if case .failed = rehearsalStore.phase { true } else { false } },
                 set: { if !$0 { rehearsalStore.clearFailure() } }
             )
         ) {
-            Button("OK", role: .cancel) { rehearsalStore.clearFailure() }
+            Button(String(localized: "OK"), role: .cancel) { rehearsalStore.clearFailure() }
         } message: {
             if case .failed(let message) = rehearsalStore.phase {
                 Text(message)
@@ -86,13 +86,15 @@ struct DisclosureRehearsalView: View {
                     .frame(width: 76, height: 76)
                     .background(RilloraTheme.sageSoft, in: Circle())
                     .accessibilityHidden(true)
+                Text(String(localized: "Server-generated rehearsal labels and explanations remain in English."))
+                    .font(.subheadline).foregroundStyle(RilloraTheme.muted)
                 Text(rehearsal.stateLabel)
                     .font(.title3.weight(.semibold))
                     .foregroundStyle(RilloraTheme.ink)
                     .multilineTextAlignment(.center)
                     .contentTransition(.opacity)
                     .accessibilityIdentifier("disclosure-rehearsal.state")
-                Text("\(rehearsal.lifeEvent.title) · simulation only")
+                Text(L10n.format("%1$@ · simulation only", rehearsal.lifeEvent.title))
                     .font(.footnote).foregroundStyle(RilloraTheme.muted)
                 HStack(spacing: 8) {
                     let completed = Set(rehearsal.completedCheckpoints.map(\.code))
@@ -124,22 +126,22 @@ struct DisclosureRehearsalView: View {
         }
 
         Section {
-            RilloraInfoDisclosure("Policy path") {
+            RilloraInfoDisclosure(String(localized: "Policy path")) {
                 let completed = Set(rehearsal.completedCheckpoints.map(\.code))
                 ForEach(rehearsal.stateSequence) { step in
                     let isCurrent = rehearsal.state == step.key
                     Label(step.label, systemImage: completed.contains(step.key) ? "checkmark.circle.fill" : "circle")
                         .font(.subheadline)
                         .foregroundStyle(isCurrent ? RilloraTheme.tabSelection : RilloraTheme.body)
-                        .accessibilityValue(isCurrent ? "Current step" : completed.contains(step.key) ? "Simulated" : "Not reached")
+                        .accessibilityValue(isCurrent ? String(localized: "Current step") : completed.contains(step.key) ? String(localized: "Simulated") : String(localized: "Not reached"))
                 }
                 if let end = rehearsal.coolingOffEndsAt, rehearsal.coolingOffSimulatedAt == nil {
-                    LabeledContent("Illustrative hold", value: formattedDate(end))
+                    LabeledContent(String(localized: "Illustrative hold"), value: formattedDate(end))
                 }
-                Text("Policy \(rehearsal.policyVersion). No evidence is verified and nobody receives these fields.")
+                Text(L10n.format("Policy %1$@. No evidence is verified and nobody receives these fields.", rehearsal.policyVersion))
                     .font(.footnote).foregroundStyle(RilloraTheme.muted)
             }
-            Button("Start a separate event rehearsal") { rehearsalStore.startSeparateEvent() }
+            Button(String(localized: "Start a separate event rehearsal")) { rehearsalStore.startSeparateEvent() }
                 .disabled(rehearsalStore.isWorking)
         }
         .listRowBackground(Color.clear)
@@ -177,7 +179,7 @@ private struct DisclosureRolePreviewSection: View {
     var body: some View {
         Section {
             DisclosureGroup {
-            LabeledContent("Preview stage", value: view.previewStage.capitalized)
+            LabeledContent(String(localized: "Preview stage"), value: view.previewStage.capitalized)
             Text(view.reason)
                 .font(.subheadline)
                 .foregroundStyle(RilloraTheme.body)
@@ -202,7 +204,7 @@ private struct DisclosureRolePreviewSection: View {
             if view.eligibleForProjectedPreview,
                view.matters.isEmpty,
                view.summary.matterCount > 0 {
-                LabeledContent("Matter count only", value: String(view.summary.matterCount))
+                LabeledContent(String(localized: "Matter count only"), value: view.summary.matterCount.formatted())
             }
             } label: {
                 HStack {
@@ -218,9 +220,9 @@ private struct DisclosureRolePreviewSection: View {
 
     private var roleTitle: String {
         switch view.role {
-        case "trusted_contact": "Trusted contact"
-        case "executor": "Executor record"
-        case "recipient": "Matter recipient"
+        case "trusted_contact": String(localized: "Trusted contact")
+        case "executor": String(localized: "Executor record")
+        case "recipient": String(localized: "Matter recipient")
         default: view.role.replacingOccurrences(of: "_", with: " ").capitalized
         }
     }
@@ -231,7 +233,7 @@ private struct DisclosureFieldPolicyView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 7) {
-            Text("Allowed fields")
+            Text(String(localized: "Allowed fields"))
                 .font(.footnote.weight(.semibold))
                 .foregroundStyle(RilloraTheme.muted)
             RilloraFlowLayout(spacing: 6, rowSpacing: 6) {
@@ -265,6 +267,18 @@ private struct DisclosureMatterPreviewView: View {
 
 private func fieldLabel(_ value: String) -> String {
     let leaf = value.split(separator: ".").last.map(String.init) ?? value
+    if let category = MatterCategory(rawValue: leaf) { return category.label }
+    if let outcome = MatterOutcome(rawValue: leaf) { return outcome.label }
+    switch leaf {
+    case "title", "displayName": return String(localized: "Name")
+    case "category": return String(localized: "Category")
+    case "institutionName": return String(localized: "Provider")
+    case "locationHint": return String(localized: "Where to find it")
+    case "desiredOutcome": return String(localized: "Wishes")
+    case "timeZone": return String(localized: "Time zone")
+    case "matterCount": return String(localized: "Matter count")
+    default: break
+    }
     return leaf
         .replacingOccurrences(of: "_", with: " ")
         .replacingOccurrences(

@@ -7,9 +7,9 @@ private struct RilloraRefreshStatusModifier: ViewModifier {
         content.safeAreaInset(edge: .top, spacing: 0) {
             if store.refreshError != nil {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Showing your last loaded map")
+                    Text(String(localized: "Showing your last loaded map"))
                         .font(.subheadline.weight(.semibold))
-                    Button("Couldn’t refresh. Try again") {
+                    Button(String(localized: "Couldn’t refresh. Try again")) {
                         Task { await store.reload() }
                     }
                     .font(.footnote)
@@ -44,7 +44,7 @@ struct OverviewLoadingView: View {
             }
             .padding(24)
             .accessibilityElement(children: .ignore)
-            .accessibilityLabel("Loading your map")
+            .accessibilityLabel(String(localized: "Loading your map"))
         }
     }
 }
@@ -66,14 +66,14 @@ struct OverviewFailureView: View {
             RilloraTheme.canvas.ignoresSafeArea()
             ContentUnavailableView {
                 Label(
-                    "Rillora is unavailable",
+                    String(localized: "Rillora is unavailable"),
                     systemImage: "wifi.exclamationmark"
                 )
             } description: {
                 Text(message)
             } actions: {
                 Button(action: retry) {
-                    Text("Try again")
+                    Text(String(localized: "Try again"))
                         .frame(minWidth: 100, minHeight: 44)
                 }
                     .buttonStyle(.bordered)

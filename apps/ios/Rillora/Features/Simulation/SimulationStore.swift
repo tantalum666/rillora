@@ -42,7 +42,7 @@ final class SimulationStore {
                 return nil
             }
             guard simulation.lifeEvent == requestedEvent else {
-                state = .failed(message: "The rehearsal returned a different scenario. Try again.")
+                state = .failed(message: String(localized: "The rehearsal returned a different scenario. Try again."))
                 return nil
             }
             state = .completed(simulation)

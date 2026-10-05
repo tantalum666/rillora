@@ -1,6 +1,6 @@
 # Digital Legacy Ongoing Project Journey
 
-Last updated: 2026-10-04 (Asia/Hong_Kong)
+Last updated: 2026-10-05 (Asia/Hong_Kong)
 
 ## 记录范围
 
@@ -3220,3 +3220,18 @@ Owner先确认小型企业资格事实、再当场确认最终声明，申请已
   originals and rescan with0findings. No scanner suppression or recovery-key publication.
   The current incomplete disposable-identity gate remains explicit; all12release gate
   statuses are retained. Final receipt-only changes do not repeat CI48or uploads.
+
+
+## 2026-10-05 — Native Chinese localization continuation
+
+- Goal: fulfill Owner's correction that Chinese UI must include native iOS.
+- Attempt: materialize and Git-blob verify current native source, reuse the completed
+full-document reading, apply native String Catalogs and OS-owned language settings.
+- Judgment change: Web localization alone does not complete the bilingual task;
+source/static results also cannot substitute for a Chinese Simulator build.
+- Result: 1,058 paired entries, 8 plural entries, core flows and accessibility/error
+text covered; 9 static checks and 21 additional native tests prepared. Independent
+review caught and repaired an initial checked-in project group/phase wiring issue.
+- Remaining: Mac Debug/Release builds, native tests, Chinese/English layout and
+interaction acceptance, then separately decide merge/deployment. Preserve prior
+real-account acceptance dependencies and deferred physical/purchase gates.

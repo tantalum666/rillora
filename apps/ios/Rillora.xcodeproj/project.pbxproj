@@ -237,6 +237,17 @@
 		FCE61A2592FFDD5B686ED253 /* ApplePurchaseEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB7A71AC8F443A33D673990 /* ApplePurchaseEntryView.swift */; };
 		FD4A7A9DB4A55A31F62A5021 /* AppleStoreKitClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22B9A0851B957091F11E291 /* AppleStoreKitClientTests.swift */; };
 		FEC13587F2BC1C637D35FD61 /* RilloraStoreKitCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08BF752E4D2C8FCDFC2D420 /* RilloraStoreKitCatalog.swift */; };
+		414335C4FC2BD4B86EA545B7 /* L10n.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D29A5E92140930CCA48CD2 /* L10n.swift */; };
+		6D5AF1B7CC57A716BC86FF89 /* L10n.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D29A5E92140930CCA48CD2 /* L10n.swift */; };
+		B1DEB05ADC1B322EF50FDE17 /* AppLanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468C77DB00F0A497B082DD0E /* AppLanguageView.swift */; };
+		0EBB97A8E987909B2AE4FA70 /* AppLanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468C77DB00F0A497B082DD0E /* AppLanguageView.swift */; };
+		B32083B8D27D7B1B88AF18E1 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E17827154D2FFF59623CFB4B /* Localizable.xcstrings */; };
+		D5997C11FAFDD5DB68D4CCD6 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E17827154D2FFF59623CFB4B /* Localizable.xcstrings */; };
+		4D16CBE58B65CAEA6848240E /* LocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DFC0868D2714B7474CF4E4 /* LocalizationTests.swift */; };
+		24F9466618CB013FBCBC4DB1 /* AccountLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19876B958E28B992A02C52B0 /* AccountLocalizationTests.swift */; };
+		8B18F7326BD70F8ECD6FD125 /* CoreLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A5988213FE2FB0B33C50C9 /* CoreLocalizationTests.swift */; };
+		31D50A25840759506342E23E /* SharingLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49713192E55CB7AA092B8B4 /* SharingLocalizationTests.swift */; };
+		A3255E6711BBE22071AAD20D /* RilloraLocalizationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9424D6FDA42F3614921C22 /* RilloraLocalizationUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -391,6 +402,14 @@
 		F729771BBE65B7274DE66EDB /* OfficialSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficialSetupView.swift; sourceTree = "<group>"; };
 		F96078F80376BE720CC65B0E /* FamilyMaintenanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyMaintenanceView.swift; sourceTree = "<group>"; };
 		FFC0EB5676F35029F1EAFEBD /* ApplePurchaseServing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePurchaseServing.swift; sourceTree = "<group>"; };
+		55D29A5E92140930CCA48CD2 /* L10n.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = L10n.swift; sourceTree = "<group>"; };
+		468C77DB00F0A497B082DD0E /* AppLanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLanguageView.swift; sourceTree = "<group>"; };
+		E17827154D2FFF59623CFB4B /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		52DFC0868D2714B7474CF4E4 /* LocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationTests.swift; sourceTree = "<group>"; };
+		19876B958E28B992A02C52B0 /* AccountLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountLocalizationTests.swift; sourceTree = "<group>"; };
+		C7A5988213FE2FB0B33C50C9 /* CoreLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLocalizationTests.swift; sourceTree = "<group>"; };
+		D49713192E55CB7AA092B8B4 /* SharingLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingLocalizationTests.swift; sourceTree = "<group>"; };
+		CD9424D6FDA42F3614921C22 /* RilloraLocalizationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RilloraLocalizationUITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -561,6 +580,8 @@
 		8DBBDD7E49AEC3D4E5F112C1 /* Design */ = {
 			isa = PBXGroup;
 			children = (
+				468C77DB00F0A497B082DD0E /* AppLanguageView.swift */,
+				55D29A5E92140930CCA48CD2 /* L10n.swift */,
 				34FD57CE1138B0C50DF9D29D /* AppAppearance.swift */,
 				6FD336D9FA20F70B979C1AA2 /* RilloraBrand.swift */,
 				CD81185A801763CDE53499CD /* RilloraInteractionComponents.swift */,
@@ -632,6 +653,7 @@
 		A40E651AE1E8AB4EEA5A4F7C /* RilloraLayoutMatrixTests */ = {
 			isa = PBXGroup;
 			children = (
+				CD9424D6FDA42F3614921C22 /* RilloraLocalizationUITests.swift */,
 				277C88190142202353AEFE91 /* RilloraJourneyAuditTests.swift */,
 				3688828A823975F148CEBCC3 /* RilloraLayoutMatrixTests.swift */,
 			);
@@ -641,6 +663,7 @@
 		AB6DAB15075C8FEAF3947E48 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E17827154D2FFF59623CFB4B /* Localizable.xcstrings */,
 				4C1C3516704D03D29CAAFAA3 /* Assets.xcassets */,
 				358AC02DE82DE8869DCCC92D /* DesignCredits.txt */,
 				7E55D36AF14646260A5900D0 /* Info.plist */,
@@ -665,6 +688,10 @@
 		C3534E5969EE148FB9508306 /* RilloraTests */ = {
 			isa = PBXGroup;
 			children = (
+				D49713192E55CB7AA092B8B4 /* SharingLocalizationTests.swift */,
+				C7A5988213FE2FB0B33C50C9 /* CoreLocalizationTests.swift */,
+				19876B958E28B992A02C52B0 /* AccountLocalizationTests.swift */,
+				52DFC0868D2714B7474CF4E4 /* LocalizationTests.swift */,
 				CB8A2EFE3C7435561BFC4C25 /* AccountDataTests.swift */,
 				421CFD34578C568D1C30ACAD /* APIClientTests.swift */,
 				0513C60D4D1B5C28C2607DFA /* AppAppearanceTests.swift */,
@@ -914,6 +941,7 @@
 			knownRegions = (
 				Base,
 				en,
+				"zh-Hans",
 			);
 			mainGroup = EE5A34CA37316093E0C7303D;
 			minimizedProjectReferenceProxies = 1;
@@ -941,6 +969,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5997C11FAFDD5DB68D4CCD6 /* Localizable.xcstrings in Resources */,
 				6040C76BB7CBE99044741332 /* Assets.xcassets in Resources */,
 				8EC0040E1A1506F06C5A645C /* DesignCredits.txt in Resources */,
 				1FBD3ED09CD12B2434E80C73 /* GoogleSans-SemiBold.ttf in Resources */,
@@ -962,6 +991,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B32083B8D27D7B1B88AF18E1 /* Localizable.xcstrings in Resources */,
 				850486D903BB40963BA76930 /* Assets.xcassets in Resources */,
 				4B4247B7DED77E425FEACAAA /* DesignCredits.txt in Resources */,
 				1612F51EBE373D64E0EF6150 /* GoogleSans-SemiBold.ttf in Resources */,
@@ -978,6 +1008,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31D50A25840759506342E23E /* SharingLocalizationTests.swift in Sources */,
+				8B18F7326BD70F8ECD6FD125 /* CoreLocalizationTests.swift in Sources */,
+				24F9466618CB013FBCBC4DB1 /* AccountLocalizationTests.swift in Sources */,
+				4D16CBE58B65CAEA6848240E /* LocalizationTests.swift in Sources */,
 				5DA83641DAD435046E60EB75 /* APIClientTests.swift in Sources */,
 				BAA26DECE64B0CDF8135A531 /* AccountDataTests.swift in Sources */,
 				1F1B02B3EC356FBC0065484E /* AppAppearanceTests.swift in Sources */,
@@ -1011,6 +1045,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1DEB05ADC1B322EF50FDE17 /* AppLanguageView.swift in Sources */,
+				414335C4FC2BD4B86EA545B7 /* L10n.swift in Sources */,
 				8066A0C6F50FF1AC687FD3B3 /* APIClient.swift in Sources */,
 				D45831FCF4B400E2AD31BFF8 /* APIConfiguration.swift in Sources */,
 				A51B96B1791F011241516BCC /* AccountDataModels.swift in Sources */,
@@ -1108,6 +1144,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EBB97A8E987909B2AE4FA70 /* AppLanguageView.swift in Sources */,
+				6D5AF1B7CC57A716BC86FF89 /* L10n.swift in Sources */,
 				AE13BBDCC5162BB66074920F /* APIClient.swift in Sources */,
 				804361BF43B935F832B107AB /* APIConfiguration.swift in Sources */,
 				A1ECAB9B7255ACB33DD9BCDD /* AccountDataModels.swift in Sources */,
@@ -1206,6 +1244,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3255E6711BBE22071AAD20D /* RilloraLocalizationUITests.swift in Sources */,
 				89E3408DDF63D04B5ABF2B60 /* RilloraJourneyAuditTests.swift in Sources */,
 				7DA84BD6B95FFD7EC42EBBC8 /* RilloraLayoutMatrixTests.swift in Sources */,
 			);
@@ -1381,6 +1420,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
@@ -1439,6 +1479,7 @@
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
 			};
 			name = Release;
