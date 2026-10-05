@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-04 (Asia/Hong_Kong)
+Last updated: 2026-10-05 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -3052,3 +3052,15 @@ unreachable release remains a different closed workflow. See [sharing contract](
   No new product/price/crypto decision is introduced. Focused red/green and actual
   saved-file-to-Web-decrypt evidence support the fix; build3predates it and a new
   signed candidate is needed. [Current acceptance](real-core-acceptance-20261004.md).
+
+
+## 2026-10-05 — Owner confirms disposable Web terms and actual SSO choice is repaired
+
+- Owner explicitly says确认，继续工作 in reply to the pending isolated-account Web
+  terms confirmation. Proceed with that exact identity/terms; the irreversible final
+  deletion still has its separate action-time rule.
+- Actual ordinary sign-in reused the old QQ SSO identity before any import/delete.
+  Under existing direct-repair authority, request the already-supported account
+  selection option from intentional Account signin/signup. Preserve active Rillora
+  sessions, layout, legal versions, provider settings and all data; no tenant-wide
+  SSO disablement or public access expansion. Verify the real deployed choice.

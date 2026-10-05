@@ -5,7 +5,27 @@ Authority scope: Auth0 identity boundary, direct hosted iOS entry, hosted appear
 Superseded by: later Owner direction recorded in `docs/decision-log.md`  
 Do not use for: credential storage, API authorization rules, production identity approval or legal claims  
 Status: HOSTED PRODUCTION SIGN-IN OBSERVED; SIGNUP GUIDANCE APPLIED; RECOVERY ACCEPTANCE IN PROGRESS
-Last updated: 2026-10-02 (Asia/Shanghai)
+Last updated: 2026-10-05 (Asia/Hong_Kong)
+
+## October5 explicit account choice on ordinary Web entry
+
+Actual continuation of the disposable-account test found that a fresh click on
+Account Sign in could silently return to the previous QQ identity via Auth0 SSO,
+even after the Rillora session had been signed out. Identity was checked before
+any import or deletion, so no records were written to the wrong account.
+
+Ordinary Account sign-in/signup now requests the existingselectAccount option,
+which the existing API translates toprompt=login. An active Rillora session is
+unchanged; only a user-triggered new identity transaction opens the hosted form.
+The user can choose the intended identity. Signup still usesscreen_hint=signup;
+return intent, unchecked legal control/versions and session security stay unchanged.
+No account picker layout, provider configuration or tenant-wide SSO switch is added.
+
+29focused existing Web/API-client/return checks and the review production build pass.
+Actual deployed account selection and subsequent disposable acceptance are pending.
+Auth0 documents the [prompt behavior](https://support.auth0.com/center/s/article/Clarification-about-what-happens-when-the-prompt-parameter-is-not-sent-to-authorize).
+This is an account-choice UX control, not a substitute for server-side recent-auth
+verification. Current evidence continues in[the core contract](real-core-acceptance-20261004.md).
 
 ## October2 duplicate-signup guidance
 

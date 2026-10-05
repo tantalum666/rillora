@@ -1,6 +1,6 @@
 # Digital Legacy Ongoing Project Journey
 
-Last updated: 2026-10-04 (Asia/Hong_Kong)
+Last updated: 2026-10-05 (Asia/Hong_Kong)
 
 ## 记录范围
 
@@ -3220,3 +3220,20 @@ Owner先确认小型企业资格事实、再当场确认最终声明，申请已
   originals and rescan with0findings. No scanner suppression or recovery-key publication.
   The current incomplete disposable-identity gate remains explicit; all12release gate
   statuses are retained. Final receipt-only changes do not repeat CI48or uploads.
+
+
+## 2026-10-05 — Resume confirmed disposable-account acceptance
+
+- Goal: complete synthetic empty-map import, Web fresh-auth and confirmed deletion,
+  then remove the exact temporary identity while retaining the original expiry.
+- Attempt: submit Owner-confirmed Web terms and normal sign-in; check actual identity
+  before mutations. Auth0/CLI and AWS credentials were genuinely expired overnight.
+- Judgment change: normal entry silently reused QQ's Auth0 SSO account. Stop before
+  import/delete, sign out the old Rillora session, and use the existing API account
+  selection option for intentional public signin/signup; no visual or permission change.
+- Result so far:29focused checks and the new review Web build pass. Auth0 renewed with
+  the same91scopes and exact disposable user readback. AWS reused saved password and
+  is waiting only for actual MFA. Earlier native4/CI48/core evidence stays retained.
+- Unfinished: Web-only deployment/account-choice proof, disposable import/fresh-auth/
+  final deletion confirmation/provider cleanup, original3access restoration and new
+  additive Git preservation. No Owner data or account has been deleted.

@@ -1,7 +1,7 @@
 # Rillora Current Handoff
 
-Status: ACTUAL CORE PARTIAL; DISPOSABLE WEB TERMS CONFIRMATION PENDING
-Last updated: 2026-10-04 (Asia/Hong_Kong)
+Status: CORE CONTINUATION; WEB ACCOUNT-CHOICE REPAIR READY; ACTUAL AWS MFA PENDING
+Last updated: 2026-10-05 (Asia/Hong_Kong)
 
 ## Current task
 
@@ -48,11 +48,18 @@ unchanged roles/network/secrets. The original3identities and original expiry
 2026-10-06T17:08:57Z (October7 01:08:57Hong Kong) are retained. Auth0 Action/bindings,
 active task list and1healthy task were verified. Restore original3after the test.
 
-The actual Web account page is unchecked and awaits the already-issued Owner terms
-confirmation for this new disposable identity. It has not signed in, imported data
-or been deleted. Gmail/QQ consent cannot substitute for this account's consent.
-Actual import, successful Web fresh-auth retry, final destructive confirmation and
-provider-backed deletion remain. Do not mark the whole core package complete.
+Owner has now explicitly confirmed the disposable Web terms step. The first normal
+sign-in reused the old QQ Auth0 SSO identity; Settings identified it before any
+import/delete. QQ was signed out again. PublicExperience now sends the existing
+selectAccount option for intentional signin/signup;29focused tests and the restricted
+production Web build pass. Actual Web deployment/choice proof remains.
+
+October5Auth0 management was renewed with the same91scopes and the disposable user
+matched. AWS credentials actually expired overnight; the saved password is reused
+and the already-issued question waits only for MFA. Do not ask for passwords/codes
+in chat. Current QA continues in output/qa/rillora-real-core-closeout-20261005.
+Import, successful Web fresh-auth, final destructive confirmation and provider-backed
+deletion remain. The original4identity/expiry state is unchanged until cleanup.
 
 ## Evidence and retained checkpoints
 
@@ -69,11 +76,11 @@ authscreens and recovery keys are excluded; see[the collaboration index](../coll
 
 ## Single next step
 
-Resume the pending exact Owner confirmation on the current Web Account page, sign
-in the isolated disposable identity normally, then finish synthetic backup import,
-Web fresh-auth and confirmed deletion; verify provider cleanup and restore original3
-access. Preserve that browser tab. The original Google/QQ sessions were intentionally
-signed out after their checks; do not repeat registration/reset or deferred phone work.
+Resume the actual AWS MFA request, verify the Web-only deployment diff, publish the
+account-choice repair and sign in the approved disposable identity normally. Then
+complete synthetic import/Web fresh-auth/confirmed deletion, verify provider cleanup
+and restore original3access. Preserve the AWS and Rillora tabs; no repeated native
+build4upload or deferred phone work.
 
 [Previous rollout handoff](handoff-history-20261004-before-real-core.md) and
 [mid-core checkpoint](handoff-history-20261004-mid-core.md) are HISTORICAL.
