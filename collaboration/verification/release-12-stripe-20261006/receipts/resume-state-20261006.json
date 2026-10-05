@@ -1,0 +1,34 @@
+{
+  "at": "2026-10-05T17:29:54.494080+00:00",
+  "source": "85d79c8916ab117213d520a79b88c9d1337f7407",
+  "nativeMatrix": "large zh/en 2 each pass; iPad two failures are tab-selector type mismatch; script147 stopped before ipad-en",
+  "services": {
+    "nativeFixture": 55151,
+    "nativeWeb": 50844,
+    "stripeListener": 95580,
+    "stripeFixture": 88778,
+    "stripeWeb": 88872
+  },
+  "stripe": {
+    "profile": "rillora",
+    "account": "acct_1U6B2RCxTlowhyiG",
+    "mode": "test",
+    "localPlanner": "09f6d803-f8c8-4a73-ba0c-54226742107f",
+    "database": "rillora_stripe_web_20261006_test",
+    "completed": [
+      "cancel return",
+      "resume same Checkout",
+      "real declined test card staysFree",
+      "real8899test payment and cookie return Family",
+      "manual retry+duplicate"
+    ],
+    "next": "Portal cancel at end/resume, full TEST refund, final cleanup; providerCLI/account credentials already valid"
+  },
+  "unfinished": [
+    "iPad selector adaptation and both locales",
+    "system language persistence and localized sharing",
+    "rendered deployed clients",
+    "new signed iOS candidate/upload",
+    "native/source docs commits, raw-work-019 and remote readback"
+  ]
+}

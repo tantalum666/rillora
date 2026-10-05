@@ -1,6 +1,8 @@
 # Rillora — Git / Dot 协作入口
 
-Updated: 2026-10-05 (Asia/Hong_Kong)
+Updated: 2026-10-06 (Asia/Hong_Kong)
+
+October6当前：`codex/release-12-stripe-20261005`源码10194de6a/CI58通过；双语多设备/大字号/系统语言、共享/文件与88.99StripeWeb TEST闭环完成。API14及Web/WWW已部署；新1.0(5)已上传处理为准备提交，说明回读一致，群组/独立测试员0。[新增完整保存包](verification/release-12-stripe-20261006/README.md)的raw-work-019包含9,769路径/1,541对象，本地解密核验通过；远端回读另记。旧归档/真实数据/FanPass保留，真人/真机/live/最终审核门仍分开。
 
 October5 Dot后续：四条独立分支及当前发布修复整合到`codex/dot-integration-20261005`；原生Debug/Release、215单测／1既有跳过、2双语UI及Web162／法律7检查通过。四项实际复现问题已聚焦修复，生产与商店未变。[当前整合证据](verification/dot-followup-20261005/README.md)新增raw-work-017（1,404路径／772对象），旧归档保持。
 

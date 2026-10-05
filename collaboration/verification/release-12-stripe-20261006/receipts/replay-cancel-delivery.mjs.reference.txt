@@ -1,0 +1,8 @@
+import{readdir,readFile,writeFile}from'node:fs/promises';import{createHash}from'node:crypto';
+const dir='.local-secrets/release-12-stripe-20261005/stripe-events';const found=[];
+for(const file of await readdir(dir)){const c=JSON.parse(await readFile(dir+'/'+file,'utf8'));const raw=Buffer.from(c.bodyBase64,'base64');const e=JSON.parse(raw);if(e.type==='customer.subscription.updated'&&e.livemode===false&&e.data.object.id==='sub_1UNFL0CxTlowhyiG2e70vTZk'&&(e.data.object.cancel_at_period_end===true||Number(e.data.object.cancel_at)>Date.now()/1000))found.push({c,raw,e});}
+const one=found.sort((a,b)=>b.e.created-a.e.created)[0];if(!one)throw Error('Verified cancellation delivery not captured yet');
+const age=Date.now()/1000-Number(one.c.signature.match(/(?:^|,)t=(\d+)/)?.[1]);if(age>240)throw Error('Original signature too old for this check');
+const r=await fetch('http://127.0.0.1:4496/commerce/stripe/webhook',{method:'POST',headers:{'content-type':'application/json','stripe-signature':one.c.signature},body:one.raw});const result=await r.json();
+const evidence={at:new Date().toISOString(),http:r.status,result,originalPayloadAndSignatureReplayed:true,signatureAgeSeconds:Math.round(age),eventSha256:createHash('sha256').update(one.e.id).digest('hex'),payloadSha256:createHash('sha256').update(one.raw).digest('hex')};
+await writeFile('output/qa/rillora-release-12-stripe-20261005/stripe-original-signed-duplicate.json',JSON.stringify(evidence,null,2)+'\n');console.log(JSON.stringify(evidence));if(r.status!==200||result.status!=='duplicate')throw Error('Duplicate not recognized');

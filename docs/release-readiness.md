@@ -10,7 +10,7 @@ The narrow remaining Dot fixes and bilingual Web/WWW are now deployed with API14
 unchanged schema0093 and the original three expiring reviewer identities. Local source,
 actual cloud hash/health checks and bilingual rendered checks pass. Native compact/large/
 iPad English/Chinese landscape, AX5, sharing/export and actual system-language persistence
-checks pass. Native1.0(5) uploaded successfully; Apple processing/notes closeout continues.
+checks pass. Native1.0(5) uploaded successfully; Apple reports Ready to Submit; exact notes persist after reload, groups/testers0.
 [Current exact results](release-12-stripe-20261005.md).
 
 Current88.99StripeWeb hosted TEST purchase/cancel/decline/return, Portal cancellation/
@@ -149,7 +149,7 @@ percentage. Packages1/2 now have the completed results below; existing personal 
 | # | 工作包 | 还需要完成 | 依赖 |
 | --- | --- | --- | --- |
 | 1 | 新版双语与剩余体验验收 | 本轮独立工作已完成：小屏/大屏/iPad、中英文横屏、最大辅助字号、共享/文件、系统语言重启持久化，以及计划下一步和恢复历史修复均有通过证据。真机 VoiceOver 朗读/手势仍未验证。 | 剩余真实辅助技术检查随 Owner 暂缓的真机步骤。 |
-| 2 | 最新版本的受限部署与发行候选 | API14、Web86/WWW31文件已部署并核验；1.0(5)已上传，等待本轮Apple处理状态/说明最终回读与Git归档。 | Agent收尾；不重复旧部署或上传构建4。 |
+| 2 | 最新版本的受限部署与发行候选 | API14、Web86/WWW31文件已部署并核验；1.0(5)已上传，Apple已处理为准备提交，说明回读一致，测试群组/独立测试员0；本轮Git归档正在收尾。 | Agent收尾；不重复旧部署或上传构建4。 |
 | 3 | 支付生命周期与真机 | 当前88.99StripeWeb TEST闭环已通过。Apple实际安装/登录/购买/恢复及生命周期仍未完成；Web live收款单列第5项。 | Owner仍暂缓真机；TEST不是实际收费或完整会计账本。 |
 | 4 | 账号删除真实验收 | 实际不可撤销删除与身份/数据清理尚未执行。Owner明确保留原独立测试账号；不以导入/恢复成功代替删除成功。 | Owner暂缓；未经新的明确指令不重启删除。 |
 | 5 | 经营、市场、最终价格与正式收款 | 补齐Owner暂缓的经营/登记/税务事实，核对正式收款与真实支付退款，确认首发市场和Apple最终渠道价；SBP只有申请回执，批准/生效证据需核对。WebUS$88.99/年保持。 | Owner事实/决定、provider结果，随后Agent执行。 |

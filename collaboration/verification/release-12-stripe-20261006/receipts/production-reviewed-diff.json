@@ -1,0 +1,21 @@
+{
+  "scope": "three task images only; no migration run",
+  "preserveExistingParameters": true,
+  "changes": [
+    [
+      "/Resources/MigrationTask69EAEF9D/Properties/ContainerDefinitions/0/Image/Fn::Sub",
+      "${AWS::AccountId}.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-${AWS::AccountId}-eu-central-1:1c28cb38877a12ca1ac10e07ae8f05a3fa7e47a0eec86e45a8e7eec8bf2e6c32",
+      "${AWS::AccountId}.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-${AWS::AccountId}-eu-central-1:cd59fe6bb469751197c068b00c786283b7f26e5e0c2a7e106333a5f5cb16ca50"
+    ],
+    [
+      "/Resources/RecoveryTaskD940248B/Properties/ContainerDefinitions/0/Image/Fn::Sub",
+      "${AWS::AccountId}.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-${AWS::AccountId}-eu-central-1:1c28cb38877a12ca1ac10e07ae8f05a3fa7e47a0eec86e45a8e7eec8bf2e6c32",
+      "${AWS::AccountId}.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-${AWS::AccountId}-eu-central-1:cd59fe6bb469751197c068b00c786283b7f26e5e0c2a7e106333a5f5cb16ca50"
+    ],
+    [
+      "/Resources/RuntimeApiTaskCF645D67/Properties/ContainerDefinitions/0/Image/Fn::Sub",
+      "${AWS::AccountId}.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-${AWS::AccountId}-eu-central-1:1c28cb38877a12ca1ac10e07ae8f05a3fa7e47a0eec86e45a8e7eec8bf2e6c32",
+      "${AWS::AccountId}.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-${AWS::AccountId}-eu-central-1:cd59fe6bb469751197c068b00c786283b7f26e5e0c2a7e106333a5f5cb16ca50"
+    ]
+  ]
+}

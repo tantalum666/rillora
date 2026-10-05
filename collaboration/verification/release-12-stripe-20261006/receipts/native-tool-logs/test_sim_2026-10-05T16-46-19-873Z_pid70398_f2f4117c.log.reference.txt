@@ -1,0 +1,498 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -testProductsPath /Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-05T15-46-59-561Z_pid70398_101e4f6a.xctestproducts -destination "platform=iOS Simulator,id=03F5BDE5-0643-408A-A1F2-22246457A0E4" -collect-test-diagnostics never "-only-testing:RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLocalizedLargeTextDraftAndPrintableExport" "-only-testing:RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLocalizedAuthenticatedRootsAndLandscape" -parallel-testing-enabled NO -resultBundlePath /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-release-12-stripe-20261005/large-zh.xcresult test-without-building
+
+2026-10-06 00:46:21.536 xcodebuild[11066:26682079] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+Writing result bundle at path:
+	/Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-release-12-stripe-20261005/large-zh.xcresult
+
+2026-10-06 00:46:21.545 xcodebuild[11066:26682079] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-06 00:46:22.737 xcodebuild[11066:26682079] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-06 00:46:23.491 xcodebuild[11066:26682079] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-06 00:46:23.686 xcodebuild[11066:26682079] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-06 00:47:04.834222+0800 RilloraLayoutMatrixTests-Runner[11382:26685982] [Default] Running tests...
+objc[11382]: Class UIAccessibilityLoaderWebShared is implemented in both /Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x107318310) and /Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x106754398). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+Test Suite 'Selected tests' started at 2026-10-06 00:47:11.515.
+Test Suite 'RilloraLayoutMatrixTests.xctest' started at 2026-10-06 00:47:11.516.
+Test Suite 'RilloraLocalizationUITests' started at 2026-10-06 00:47:11.516.
+Test Case '-[RilloraLayoutMatrixTests.RilloraLocalizationUITests testLocalizedAuthenticatedRootsAndLandscape]' started.
+    t =     0.00s Start Test at 2026-10-06 00:47:11.518
+    t =     0.70s Set Up
+    t =     0.71s Setting device orientation to Portrait
+    t =     0.74s     Device orientation changed to Portrait
+    t =     0.77s     Wait for com.apple.springboard to idle
+    t =     0.86s Open com.rillora.ios
+    t =     0.86s     Launch com.rillora.ios
+2026-10-06 00:47:13.028 xcodebuild[11066:26682079] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-06 00:47:13.028 xcodebuild[11066:26682079] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     8.65s         Setting up automation session
+    t =    10.01s         Wait for com.rillora.ios to idle
+    t =    11.96s Waiting 20.0s for "overview.scroll" Any to exist
+    t =    11.96s     Interface orientation changed to Landscape Left
+    t =    13.00s     Checking `Expect predicate `existsNoRetry == 1` for object "overview.scroll" Any`
+    t =    13.00s         Checking existence of `"overview.scroll" Any`
+    t =    13.25s Setting device orientation to Landscape Left
+    t =    13.26s     Device orientation changed to Landscape Left
+    t =    13.31s     Interface orientation changed to Landscape Right
+    t =    13.31s     Wait for com.rillora.ios to idle
+    t =    14.41s Checking `Expect predicate `BLOCKPREDICATE(0x105a2bc00)` for object Target Application 'com.rillora.ios'`
+    t =    14.41s     Find the Target Application 'com.rillora.ios'
+    t =    14.46s     Find the Target Application 'com.rillora.ios'
+    t =    14.48s Waiting 10.0s for "总览" Button to exist
+    t =    15.54s     Checking `Expect predicate `existsNoRetry == 1` for object "总览" Button`
+    t =    15.54s         Checking existence of `"总览" Button`
+    t =    15.61s Tap "总览" Button
+    t =    15.62s     Wait for com.rillora.ios to idle
+    t =    15.62s     Find the "总览" Button
+    t =    15.66s     Check for interrupting elements affecting "总览" Button
+    t =    15.71s     Synthesize event
+    t =    16.15s     Wait for com.rillora.ios to idle
+    t =    17.92s Waiting 10.0s for "overview.scroll" Any to exist
+    t =    19.01s     Checking `Expect predicate `existsNoRetry == 1` for object "overview.scroll" Any`
+    t =    19.04s         Checking existence of `"overview.scroll" Any`
+    t =    19.22s Find the "总览" Button
+    t =    19.27s Find the "总览" Button
+    t =    19.48s Added attachment named 'zh-Hans-localized-landscape-overview.scroll'
+    t =    19.49s Waiting 10.0s for "事项" Button to exist
+    t =    20.56s     Checking `Expect predicate `existsNoRetry == 1` for object "事项" Button`
+    t =    20.56s         Checking existence of `"事项" Button`
+    t =    20.65s Tap "事项" Button
+    t =    20.65s     Wait for com.rillora.ios to idle
+    t =    20.71s     Find the "事项" Button
+    t =    20.90s     Check for interrupting elements affecting "事项" Button
+    t =    21.08s     Synthesize event
+    t =    21.55s     Wait for com.rillora.ios to idle
+    t =    23.92s Waiting 10.0s for "matters.list" Any to exist
+    t =    24.97s     Checking `Expect predicate `existsNoRetry == 1` for object "matters.list" Any`
+    t =    24.98s         Checking existence of `"matters.list" Any`
+    t =    25.14s Find the "事项" Button
+    t =    25.28s Find the "事项" Button
+    t =    25.45s Added attachment named 'zh-Hans-localized-landscape-matters.list'
+    t =    25.46s Waiting 10.0s for "个人中心" Button to exist
+    t =    26.51s     Checking `Expect predicate `existsNoRetry == 1` for object "个人中心" Button`
+    t =    26.51s         Checking existence of `"个人中心" Button`
+    t =    26.56s Tap "个人中心" Button
+    t =    26.56s     Wait for com.rillora.ios to idle
+    t =    26.56s     Find the "个人中心" Button
+    t =    26.61s     Check for interrupting elements affecting "个人中心" Button
+    t =    26.66s     Synthesize event
+    t =    26.96s     Wait for com.rillora.ios to idle
+    t =    29.05s Waiting 10.0s for "profile.list" Any to exist
+    t =    30.08s     Checking `Expect predicate `existsNoRetry == 1` for object "profile.list" Any`
+    t =    30.08s         Checking existence of `"profile.list" Any`
+    t =    30.17s Find the "个人中心" Button
+    t =    30.22s Find the "个人中心" Button
+    t =    30.38s Added attachment named 'zh-Hans-localized-landscape-profile.list'
+    t =    30.38s Setting device orientation to Portrait
+    t =    30.39s     Device orientation changed to Portrait
+    t =    30.55s     Interface orientation changed to Portrait
+    t =    30.56s     Wait for com.rillora.ios to idle
+    t =    32.13s Terminate com.rillora.ios:11476
+    t =    33.14s Tear Down
+Test Case '-[RilloraLayoutMatrixTests.RilloraLocalizationUITests testLocalizedAuthenticatedRootsAndLandscape]' passed (33.281 seconds).
+Test Case '-[RilloraLayoutMatrixTests.RilloraLocalizationUITests testLocalizedLargeTextDraftAndPrintableExport]' started.
+    t =     0.00s Start Test at 2026-10-06 00:47:44.802
+    t =     0.06s Set Up
+    t =     0.07s Setting device orientation to Portrait
+    t =     0.07s     Wait for com.apple.springboard to idle
+    t =     0.08s Open com.rillora.ios
+    t =     0.08s     Launch com.rillora.ios
+2026-10-06 00:47:44.919 xcodebuild[11066:26682079] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-06 00:47:44.920 xcodebuild[11066:26682079] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     0.54s         Setting up automation session
+    t =     1.76s         Wait for com.rillora.ios to idle
+    t =     3.34s Waiting 20.0s for "overview.scroll" Any to exist
+    t =     4.39s     Checking `Expect predicate `existsNoRetry == 1` for object "overview.scroll" Any`
+    t =     4.39s         Checking existence of `"overview.scroll" Any`
+    t =     4.58s Tap "事项" Button
+    t =     4.58s     Wait for com.rillora.ios to idle
+    t =     4.61s     Find the "事项" Button
+    t =     4.66s     Check for interrupting elements affecting "事项" Button
+    t =     4.70s     Synthesize event
+    t =     4.99s     Wait for com.rillora.ios to idle
+    t =     6.63s Tap "matter.add" Any
+    t =     6.63s     Wait for com.rillora.ios to idle
+    t =     6.64s     Find the "matter.add" Any
+    t =     6.70s     Check for interrupting elements affecting "matter.add" Button
+    t =     6.78s     Synthesize event
+    t =     7.07s     Wait for com.rillora.ios to idle
+    t =     7.97s Checking existence of `NavigationBar (First Match)`
+    t =     7.99s Find the NavigationBar (First Match)
+    t =     8.02s Checking existence of `TabBar (First Match)`
+    t =     8.03s Find the TabBar (First Match)
+    t =     8.08s Find the Target Application 'com.rillora.ios'
+    t =     8.15s Checking existence of `"matter.edit.title" TextField`
+    t =     8.21s Find the "matter.edit.title" TextField
+    t =     8.29s Find the "matter.edit.title" TextField
+    t =     8.36s Find the "matter.edit.title" TextField
+    t =     8.42s Tap "matter.edit.title" TextField
+    t =     8.42s     Wait for com.rillora.ios to idle
+    t =     8.43s     Find the "matter.edit.title" TextField
+    t =     8.49s     Check for interrupting elements affecting "matter.edit.title" TextField
+    t =     8.55s     Synthesize event
+    t =     8.85s     Wait for com.rillora.ios to idle
+    t =     9.35s Type 'QA localization un...' into "matter.edit.title" TextField
+    t =     9.35s     Wait for com.rillora.ios to idle
+    t =    10.05s     Find the "matter.edit.title" TextField
+    t =    10.14s     Check for interrupting elements affecting "matter.edit.title" TextField
+    t =    10.22s     Synthesize event
+    t =    10.91s     Wait for com.rillora.ios to idle
+    t =    10.91s Type '' into "matter.edit.title" TextField
+    t =    10.91s     Wait for com.rillora.ios to idle
+    t =    10.91s     Find the "matter.edit.title" TextField
+    t =    10.99s     Check for interrupting elements affecting "matter.edit.title" TextField
+    t =    11.06s     Synthesize event
+    t =    11.28s     Wait for com.rillora.ios to idle
+    t =    12.07s Tap "取消" Button
+    t =    12.07s     Wait for com.rillora.ios to idle
+    t =    12.07s     Find the "取消" Button
+    t =    12.13s     Check for interrupting elements affecting "取消" Button
+    t =    12.20s     Synthesize event
+    t =    12.50s     Wait for com.rillora.ios to idle
+    t =    13.30s Waiting 5.0s for "继续编辑" Button to exist
+    t =    14.34s     Checking `Expect predicate `existsNoRetry == 1` for object "继续编辑" Button`
+    t =    14.34s         Checking existence of `"继续编辑" Button`
+    t =    14.40s Tap "继续编辑" Button
+    t =    14.40s     Wait for com.rillora.ios to idle
+    t =    14.40s     Find the "继续编辑" Button
+    t =    14.45s     Check for interrupting elements affecting "继续编辑" Button
+    t =    14.54s     Synthesize event
+    t =    14.84s     Wait for com.rillora.ios to idle
+    t =    15.19s Find the "matter.edit.title" TextField
+    t =    15.44s Added attachment named 'zh-Hans-localized-ax5-retained-draft'
+    t =    15.45s Tap "取消" Button
+    t =    15.45s     Wait for com.rillora.ios to idle
+    t =    15.45s     Find the "取消" Button
+    t =    15.55s     Check for interrupting elements affecting "取消" Button
+    t =    15.62s     Synthesize event
+    t =    15.93s     Wait for com.rillora.ios to idle
+    t =    16.72s Tap "放弃修改" Button
+    t =    16.72s     Wait for com.rillora.ios to idle
+    t =    16.72s     Find the "放弃修改" Button
+    t =    16.77s     Check for interrupting elements affecting "放弃修改" Button
+    t =    16.86s     Synthesize event
+    t =    17.16s     Wait for com.rillora.ios to idle
+    t =    17.55s Waiting 5.0s for "matters.list" Any to exist
+    t =    18.56s     Checking `Expect predicate `existsNoRetry == 1` for object "matters.list" Any`
+    t =    18.56s         Checking existence of `"matters.list" Any`
+    t =    18.63s Tap "个人中心" Button
+    t =    18.63s     Wait for com.rillora.ios to idle
+    t =    18.64s     Find the "个人中心" Button
+    t =    18.68s     Check for interrupting elements affecting "person.crop.circle" Button
+    t =    18.71s     Synthesize event
+    t =    19.01s     Wait for com.rillora.ios to idle
+    t =    20.84s Checking existence of `NavigationBar (First Match)`
+    t =    20.86s Find the NavigationBar (First Match)
+    t =    20.89s Checking existence of `TabBar (First Match)`
+    t =    20.90s Find the TabBar (First Match)
+    t =    20.93s Find the "标签页栏" TabBar
+    t =    20.95s Find the "标签页栏" TabBar
+    t =    20.96s Checking existence of `"start-here.open" Any`
+    t =    21.12s Checking existence of `"start-here.open" Any`
+    t =    21.27s Find the Target Application 'com.rillora.ios'
+    t =    21.31s Find the Target Application 'com.rillora.ios'
+    t =    21.34s Press Target Application 'com.rillora.ios'[0.00, 0.00] -> (220.0, 716.8) for 0.1 seconds, then drag to Target Application 'com.rillora.ios'[0.00, 0.00] -> (220.0, 272.2) with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    21.34s     Wait for com.rillora.ios to idle
+    t =    21.34s     Find the Target Application 'com.rillora.ios'
+    t =    21.37s     Check for interrupting elements affecting "Rillora" Application
+    t =    21.40s     Synthesize event
+    t =    21.41s         Find the Target Application 'com.rillora.ios'
+    t =    21.44s         Find the Target Application 'com.rillora.ios'
+    t =    21.47s         Find the Target Application 'com.rillora.ios'
+    t =    21.50s         Find the Target Application 'com.rillora.ios'
+    t =    21.53s         Find the Target Application 'com.rillora.ios'
+    t =    22.75s     Wait for com.rillora.ios to idle
+    t =    23.22s Checking existence of `NavigationBar (First Match)`
+    t =    23.24s Find the NavigationBar (First Match)
+    t =    23.26s Checking existence of `TabBar (First Match)`
+    t =    23.27s Find the TabBar (First Match)
+    t =    23.29s Find the "标签页栏" TabBar
+    t =    23.31s Find the "标签页栏" TabBar
+    t =    23.32s Checking existence of `"start-here.open" Any`
+    t =    23.48s Checking existence of `"start-here.open" Any`
+    t =    23.64s Find the Target Application 'com.rillora.ios'
+    t =    23.67s Find the Target Application 'com.rillora.ios'
+    t =    23.70s Press Target Application 'com.rillora.ios'[0.00, 0.00] -> (220.0, 716.8) for 0.1 seconds, then drag to Target Application 'com.rillora.ios'[0.00, 0.00] -> (220.0, 272.2) with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    23.70s     Wait for com.rillora.ios to idle
+    t =    23.92s     Find the Target Application 'com.rillora.ios'
+    t =    23.95s     Check for interrupting elements affecting "Rillora" Application
+    t =    23.99s     Synthesize event
+    t =    23.99s         Find the Target Application 'com.rillora.ios'
+    t =    24.02s         Find the Target Application 'com.rillora.ios'
+    t =    24.05s         Find the Target Application 'com.rillora.ios'
+    t =    24.08s         Find the Target Application 'com.rillora.ios'
+    t =    24.12s         Find the Target Application 'com.rillora.ios'
+    t =    25.33s     Wait for com.rillora.ios to idle
+    t =    25.77s Checking existence of `NavigationBar (First Match)`
+    t =    25.79s Find the NavigationBar (First Match)
+    t =    25.81s Checking existence of `TabBar (First Match)`
+    t =    25.82s Find the TabBar (First Match)
+    t =    25.84s Find the "标签页栏" TabBar
+    t =    25.86s Find the "标签页栏" TabBar
+    t =    25.87s Checking existence of `"start-here.open" Any`
+    t =    26.03s Checking existence of `"start-here.open" Any`
+    t =    26.20s Find the Target Application 'com.rillora.ios'
+    t =    26.23s Find the Target Application 'com.rillora.ios'
+    t =    26.26s Press Target Application 'com.rillora.ios'[0.00, 0.00] -> (220.0, 716.8) for 0.1 seconds, then drag to Target Application 'com.rillora.ios'[0.00, 0.00] -> (220.0, 272.2) with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    26.26s     Wait for com.rillora.ios to idle
+    t =    26.48s     Find the Target Application 'com.rillora.ios'
+    t =    26.51s     Check for interrupting elements affecting "Rillora" Application
+    t =    26.55s     Synthesize event
+    t =    26.55s         Find the Target Application 'com.rillora.ios'
+    t =    26.58s         Find the Target Application 'com.rillora.ios'
+    t =    26.61s         Find the Target Application 'com.rillora.ios'
+    t =    26.65s         Find the Target Application 'com.rillora.ios'
+    t =    26.68s         Find the Target Application 'com.rillora.ios'
+    t =    27.90s     Wait for com.rillora.ios to idle
+    t =    28.43s Checking existence of `NavigationBar (First Match)`
+    t =    28.46s Find the NavigationBar (First Match)
+    t =    28.48s Checking existence of `TabBar (First Match)`
+    t =    28.49s Find the TabBar (First Match)
+    t =    28.51s Find the "标签页栏" TabBar
+    t =    28.53s Find the "标签页栏" TabBar
+    t =    28.54s Checking existence of `"start-here.open" Any`
+    t =    28.71s Checking existence of `"start-here.open" Any`
+    t =    28.88s Find the Target Application 'com.rillora.ios'
+    t =    28.91s Find the Target Application 'com.rillora.ios'
+    t =    28.94s Press Target Application 'com.rillora.ios'[0.00, 0.00] -> (220.0, 716.8) for 0.1 seconds, then drag to Target Application 'com.rillora.ios'[0.00, 0.00] -> (220.0, 272.2) with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    28.94s     Wait for com.rillora.ios to idle
+    t =    29.13s     Find the Target Application 'com.rillora.ios'
+    t =    29.16s     Check for interrupting elements affecting "Rillora" Application
+    t =    29.20s     Synthesize event
+    t =    29.20s         Find the Target Application 'com.rillora.ios'
+    t =    29.24s         Find the Target Application 'com.rillora.ios'
+    t =    29.27s         Find the Target Application 'com.rillora.ios'
+    t =    29.30s         Find the Target Application 'com.rillora.ios'
+    t =    29.33s         Find the Target Application 'com.rillora.ios'
+    t =    30.55s     Wait for com.rillora.ios to idle
+    t =    31.60s Checking existence of `NavigationBar (First Match)`
+    t =    31.63s Find the NavigationBar (First Match)
+    t =    31.65s Checking existence of `TabBar (First Match)`
+    t =    31.67s Find the TabBar (First Match)
+    t =    31.69s Find the "标签页栏" TabBar
+    t =    31.71s Find the "标签页栏" TabBar
+    t =    31.72s Checking existence of `"start-here.open" Any`
+    t =    31.86s Find the "start-here.open" Any
+    t =    32.01s Find the "start-here.open" Button
+    t =    32.15s Find the "start-here.open" Button
+    t =    32.28s Tap "start-here.open" Button
+    t =    32.28s     Wait for com.rillora.ios to idle
+    t =    32.28s     Find the "start-here.open" Button
+    t =    32.42s     Check for interrupting elements affecting "start-here.open" Button
+    t =    32.48s     Synthesize event
+    t =    32.78s     Wait for com.rillora.ios to idle
+    t =    33.83s Waiting 10.0s for "start-here.audience" Any to exist
+    t =    34.85s     Checking `Expect predicate `existsNoRetry == 1` for object "start-here.audience" Any`
+    t =    34.86s         Checking existence of `"start-here.audience" Any`
+    t =    34.92s Checking existence of `NavigationBar (First Match)`
+    t =    34.94s Find the NavigationBar (First Match)
+    t =    34.96s Checking existence of `TabBar (First Match)`
+    t =    34.99s Find the Target Application 'com.rillora.ios'
+    t =    35.01s Checking existence of `"start-here.audience" Any`
+    t =    35.05s Find the "start-here.audience" Any
+    t =    35.10s Find the "start-here.audience" Other
+    t =    35.14s Find the "start-here.audience" Other
+    t =    35.19s Checking existence of `Button (First Match)`
+    t =    35.23s Tap Button (First Match)
+    t =    35.23s     Wait for com.rillora.ios to idle
+    t =    35.23s     Find the Button (First Match)
+    t =    35.29s     Check for interrupting elements affecting "这份副本是给谁的？" Button
+    t =    35.33s     Synthesize event
+    t =    35.62s     Wait for com.rillora.ios to idle
+    t =    35.97s Waiting 2.0s for "给我自己" Button to exist
+    t =    37.01s     Checking `Expect predicate `existsNoRetry == 1` for object "给我自己" Button`
+    t =    37.01s         Checking existence of `"给我自己" Button`
+    t =    37.07s Tap "给我自己" Button
+    t =    37.07s     Wait for com.rillora.ios to idle
+    t =    37.07s     Find the "给我自己" Button
+    t =    37.11s     Check for interrupting elements affecting "给我自己" Button
+    t =    37.13s     Synthesize event
+    t =    37.42s     Wait for com.rillora.ios to idle
+    t =    37.79s Checking existence of `"start-here.preview" Any`
+    t =    37.84s Checking existence of `NavigationBar (First Match)`
+    t =    37.86s Find the NavigationBar (First Match)
+    t =    37.87s Checking existence of `TabBar (First Match)`
+    t =    37.90s Find the Target Application 'com.rillora.ios'
+    t =    37.92s Checking existence of `"start-here.preview" Any`
+    t =    37.96s Find the "start-here.preview" Any
+    t =    38.02s Find the "start-here.preview" Button
+    t =    38.06s Find the "start-here.preview" Button
+    t =    38.11s Find the "start-here.preview" Button
+    t =    38.15s Tap "start-here.preview" Button
+    t =    38.15s     Wait for com.rillora.ios to idle
+    t =    38.15s     Find the "start-here.preview" Button
+    t =    38.19s     Check for interrupting elements affecting "start-here.preview" Button
+    t =    38.24s     Synthesize event
+    t =    38.53s     Wait for com.rillora.ios to idle
+    t =    38.53s Waiting 15.0s for "start-here.preview-result" Any to exist
+    t =    39.55s     Checking `Expect predicate `existsNoRetry == 1` for object "start-here.preview-result" Any`
+    t =    39.55s         Checking existence of `"start-here.preview-result" Any`
+    t =    39.66s Checking existence of `NavigationBar (First Match)`
+    t =    39.67s Find the NavigationBar (First Match)
+    t =    39.69s Checking existence of `TabBar (First Match)`
+    t =    39.74s Find the Target Application 'com.rillora.ios'
+    t =    39.76s Checking existence of `"start-here.step.format" Any`
+    t =    39.83s Find the "start-here.step.format" Any
+    t =    39.92s Find the "start-here.step.format" Button
+    t =    40.00s Find the "start-here.step.format" Button
+    t =    40.08s Tap "start-here.step.format" Button
+    t =    40.08s     Wait for com.rillora.ios to idle
+    t =    40.08s     Find the "start-here.step.format" Button
+    t =    40.16s     Check for interrupting elements affecting "start-here.step.format" Button
+    t =    40.21s     Synthesize event
+    t =    40.51s     Wait for com.rillora.ios to idle
+    t =    40.51s Checking existence of `NavigationBar (First Match)`
+    t =    40.52s Find the NavigationBar (First Match)
+    t =    40.54s Checking existence of `TabBar (First Match)`
+    t =    40.58s Find the Target Application 'com.rillora.ios'
+    t =    40.60s Checking existence of `"start-here.format.printable" Any`
+    t =    40.69s Find the "start-here.format.printable" Any
+    t =    40.77s Find the "start-here.format.printable" Button
+    t =    40.85s Find the "start-here.format.printable" Button
+    t =    40.93s Tap "start-here.format.printable" Button
+    t =    40.93s     Wait for com.rillora.ios to idle
+    t =    40.93s     Find the "start-here.format.printable" Button
+    t =    41.01s     Check for interrupting elements affecting "start-here.format.printable" Button
+    t =    41.06s     Synthesize event
+    t =    41.36s     Wait for com.rillora.ios to idle
+    t =    41.80s Checking existence of `NavigationBar (First Match)`
+    t =    41.83s Find the NavigationBar (First Match)
+    t =    41.85s Checking existence of `TabBar (First Match)`
+    t =    41.89s Find the Target Application 'com.rillora.ios'
+    t =    41.91s Checking existence of `"start-here.format-continue" Any`
+    t =    42.00s Checking existence of `"start-here.format-continue" Any`
+    t =    42.09s Find the Target Application 'com.rillora.ios'
+    t =    42.11s Find the Target Application 'com.rillora.ios'
+    t =    42.13s Press Target Application 'com.rillora.ios'[0.00, 0.00] -> (220.0, 770.4) for 0.1 seconds, then drag to Target Application 'com.rillora.ios'[0.00, 0.00] -> (220.0, 285.6) with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    42.13s     Wait for com.rillora.ios to idle
+    t =    42.13s     Find the Target Application 'com.rillora.ios'
+    t =    42.15s     Check for interrupting elements affecting "Rillora" Application
+    t =    42.18s     Synthesize event
+    t =    42.18s         Find the Target Application 'com.rillora.ios'
+    t =    42.20s         Find the Target Application 'com.rillora.ios'
+    t =    42.22s         Find the Target Application 'com.rillora.ios'
+    t =    42.24s         Find the Target Application 'com.rillora.ios'
+    t =    42.27s         Find the Target Application 'com.rillora.ios'
+    t =    43.56s     Wait for com.rillora.ios to idle
+    t =    43.95s Checking existence of `NavigationBar (First Match)`
+    t =    43.96s Find the NavigationBar (First Match)
+    t =    43.98s Checking existence of `TabBar (First Match)`
+    t =    44.03s Find the Target Application 'com.rillora.ios'
+    t =    44.06s Checking existence of `"start-here.format-continue" Any`
+    t =    44.15s Find the "start-here.format-continue" Any
+    t =    44.24s Find the "start-here.format-continue" Button
+    t =    44.33s Find the "start-here.format-continue" Button
+    t =    44.42s Tap "start-here.format-continue" Button
+    t =    44.42s     Wait for com.rillora.ios to idle
+    t =    44.43s     Find the "start-here.format-continue" Button
+    t =    44.51s     Check for interrupting elements affecting "start-here.format-continue" Button
+    t =    44.56s     Synthesize event
+    t =    44.86s     Wait for com.rillora.ios to idle
+    t =    44.86s Checking existence of `NavigationBar (First Match)`
+    t =    44.88s Find the NavigationBar (First Match)
+    t =    44.89s Checking existence of `TabBar (First Match)`
+    t =    44.94s Find the Target Application 'com.rillora.ios'
+    t =    44.96s Checking existence of `"start-here.printable" Any`
+    t =    45.04s Checking existence of `"start-here.printable" Any`
+    t =    45.13s Find the Target Application 'com.rillora.ios'
+    t =    45.15s Find the Target Application 'com.rillora.ios'
+    t =    45.17s Press Target Application 'com.rillora.ios'[0.00, 0.00] -> (220.0, 770.4) for 0.1 seconds, then drag to Target Application 'com.rillora.ios'[0.00, 0.00] -> (220.0, 285.6) with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    45.17s     Wait for com.rillora.ios to idle
+    t =    45.17s     Find the Target Application 'com.rillora.ios'
+    t =    45.20s     Check for interrupting elements affecting "Rillora" Application
+    t =    45.22s     Synthesize event
+    t =    45.22s         Find the Target Application 'com.rillora.ios'
+    t =    45.25s         Find the Target Application 'com.rillora.ios'
+    t =    45.27s         Find the Target Application 'com.rillora.ios'
+    t =    45.29s         Find the Target Application 'com.rillora.ios'
+    t =    45.31s         Find the Target Application 'com.rillora.ios'
+    t =    46.60s     Wait for com.rillora.ios to idle
+    t =    48.11s Checking existence of `NavigationBar (First Match)`
+    t =    48.13s Find the NavigationBar (First Match)
+    t =    48.15s Checking existence of `TabBar (First Match)`
+    t =    48.21s Find the Target Application 'com.rillora.ios'
+    t =    48.24s Checking existence of `"start-here.printable" Any`
+    t =    48.33s Find the "start-here.printable" Any
+    t =    48.44s Find the "start-here.printable" Button
+    t =    48.54s Find the "start-here.printable" Button
+    t =    48.64s Find the "start-here.printable" Button
+    t =    48.73s Checking existence of `NavigationBar (First Match)`
+    t =    48.74s Find the NavigationBar (First Match)
+    t =    48.76s Checking existence of `TabBar (First Match)`
+    t =    48.81s Find the Target Application 'com.rillora.ios'
+    t =    48.83s Checking existence of `"start-here.ack.plaintext" Any`
+    t =    48.93s Find the "start-here.ack.plaintext" Any
+    t =    49.03s Find the "start-here.ack.plaintext" Switch
+    t =    49.13s Find the "start-here.ack.plaintext" Switch
+    t =    49.23s Find the "start-here.ack.plaintext" Switch
+    t =    49.32s Tap "start-here.ack.plaintext" Switch
+    t =    49.32s     Wait for com.rillora.ios to idle
+    t =    49.38s     Find the "start-here.ack.plaintext" Switch
+    t =    49.47s     Check for interrupting elements affecting "start-here.ack.plaintext" Switch
+    t =    49.53s     Synthesize event
+    t =    49.82s     Wait for com.rillora.ios to idle
+    t =    50.27s Find the "start-here.ack.plaintext" Switch
+    t =    50.37s Checking existence of `NavigationBar (First Match)`
+    t =    50.38s Find the NavigationBar (First Match)
+    t =    50.40s Checking existence of `TabBar (First Match)`
+    t =    50.49s Find the Target Application 'com.rillora.ios'
+    t =    50.52s Checking existence of `"start-here.ack.copies" Any`
+    t =    50.65s Find the "start-here.ack.copies" Any
+    t =    50.76s Find the "start-here.ack.copies" Switch
+    t =    50.85s Find the "start-here.ack.copies" Switch
+    t =    50.95s Find the "start-here.ack.copies" Switch
+    t =    51.05s Tap "start-here.ack.copies" Switch
+    t =    51.05s     Wait for com.rillora.ios to idle
+    t =    51.05s     Find the "start-here.ack.copies" Switch
+    t =    51.15s     Check for interrupting elements affecting "start-here.ack.copies" Switch
+    t =    51.21s     Synthesize event
+    t =    51.51s     Wait for com.rillora.ios to idle
+    t =    51.51s Find the "start-here.ack.copies" Switch
+    t =    51.61s Checking existence of `NavigationBar (First Match)`
+    t =    51.62s Find the NavigationBar (First Match)
+    t =    51.64s Checking existence of `TabBar (First Match)`
+    t =    51.69s Find the Target Application 'com.rillora.ios'
+    t =    51.72s Checking existence of `"start-here.printable" Button`
+    t =    51.81s Find the "start-here.printable" Button
+    t =    51.92s Find the "start-here.printable" Button
+    t =    52.02s Find the "start-here.printable" Button
+    t =    52.12s Find the "start-here.printable" Button
+    t =    52.34s Added attachment named 'zh-Hans-localized-ax5-export-acknowledgements'
+    t =    52.34s Tap "start-here.printable" Button
+    t =    52.34s     Wait for com.rillora.ios to idle
+    t =    52.34s     Find the "start-here.printable" Button
+    t =    52.44s     Check for interrupting elements affecting "start-here.printable" Button
+    t =    52.49s     Synthesize event
+    t =    52.79s     Wait for com.rillora.ios to idle
+    t =    52.79s Waiting 20.0s for "start-here.share" Any to exist
+    t =    53.81s     Checking `Expect predicate `existsNoRetry == 1` for object "start-here.share" Any`
+    t =    53.81s         Checking existence of `"start-here.share" Any`
+    t =    53.90s Checking existence of `NavigationBar (First Match)`
+    t =    53.92s Find the NavigationBar (First Match)
+    t =    53.93s Checking existence of `TabBar (First Match)`
+    t =    53.98s Find the Target Application 'com.rillora.ios'
+    t =    54.00s Checking existence of `"start-here.share" Any`
+    t =    54.10s Find the "start-here.share" Any
+    t =    54.20s Find the "start-here.share" Button
+    t =    54.29s Find the "start-here.share" Button
+    t =    54.39s Find the "start-here.share" Button
+    t =    54.49s Find the "start-here.share" Button
+    t =    54.70s Added attachment named 'zh-Hans-localized-ax5-prepared-printable'
+    t =    56.92s Terminate com.rillora.ios:11585
+    t =    58.01s Tear Down
+Test Case '-[RilloraLayoutMatrixTests.RilloraLocalizationUITests testLocalizedLargeTextDraftAndPrintableExport]' passed (58.220 seconds).
+Test Suite 'RilloraLocalizationUITests' passed at 2026-10-06 00:48:43.022.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 91.501 (91.506) seconds
+Test Suite 'RilloraLayoutMatrixTests.xctest' passed at 2026-10-06 00:48:43.023.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 91.501 (91.507) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 00:48:43.023.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 91.501 (91.508) seconds
+2026-10-06 00:48:43.478 xcodebuild[11066:26682079] [MT] IDETestOperationsObserverDebug: 140.736 elapsed -- Testing started completed.
+2026-10-06 00:48:43.478 xcodebuild[11066:26682079] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 00:48:43.478 xcodebuild[11066:26682079] [MT] IDETestOperationsObserverDebug: 140.736 sec, +140.736 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-release-12-stripe-20261005/large-zh.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

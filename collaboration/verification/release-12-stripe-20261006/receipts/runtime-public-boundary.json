@@ -1,0 +1,29 @@
+{
+  "checkedAt": "2026-10-05T15:27:36.068Z",
+  "checks": [
+    {
+      "path": "/api/health/live",
+      "status": 200,
+      "cacheControl": "no-store",
+      "issuedCookie": false
+    },
+    {
+      "path": "/api/health/ready",
+      "status": 200,
+      "cacheControl": "no-store",
+      "issuedCookie": false
+    },
+    {
+      "path": "/api/v1/session",
+      "status": 401,
+      "cacheControl": "no-store",
+      "issuedCookie": false
+    },
+    {
+      "path": "/api/v1/overview",
+      "status": 401,
+      "cacheControl": "no-store",
+      "issuedCookie": false
+    }
+  ]
+}

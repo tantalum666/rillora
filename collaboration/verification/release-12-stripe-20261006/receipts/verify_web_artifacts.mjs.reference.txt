@@ -1,0 +1,19 @@
+import{readFileSync,writeFileSync}from'node:fs';import{createHash}from'node:crypto';
+const base='output/qa/rillora-release-12-stripe-20261005/';const reports=[];
+for(const [name,origin,manifest]of[['production','https://app.rillora.xyz','apps/web/dist-production-review/production-build.json']]){
+ const m=JSON.parse(readFileSync(manifest));if(name==='production'&&(m.reviewAccess!=='identity-allowlist'||m.publicationCandidate!==true))throw Error('Expected current restricted review artifact');const rows=[];
+ for(const [path,digest]of Object.entries(m.files)){
+  const response=await fetch(origin+'/'+(path==='index.html'?'':path),{redirect:'manual',signal:AbortSignal.timeout(20000)});
+  const body=Buffer.from(await response.arrayBuffer());const hash=createHash('sha256').update(body).digest('hex');
+  if(response.status!==200||hash!==digest)throw Error(`${name} artifact mismatch ${path}:HTTP${response.status}`);
+  rows.push({path,status:200,sha256:hash,bytes:body.length});
+ }
+ for(const path of [name==='production'?'/production-build.json':'/public-build.json','/not-a-rillora-route','/api/not-a-static-file']){
+  if(name==='production'&&path.startsWith('/api/'))continue;
+  const r=await fetch(origin+path,{redirect:'manual',signal:AbortSignal.timeout(15000)});if(r.status!==404)throw Error(`${name} route isolation ${path}:${r.status}`);rows.push({path,status:r.status});
+ }
+ const r=await fetch(origin+'/',{method:'POST',body:'{}',headers:{'content-type':'application/json'},redirect:'manual',signal:AbortSignal.timeout(15000)});if(r.status!==403)throw Error(name+' static write isolation:'+r.status);
+ reports.push({surface:name,origin,filesVerified:Object.keys(m.files).length,checks:rows,staticWriteStatus:r.status,accountsEnabled:m.accountsEnabled,reviewAccess:m.reviewAccess});
+ console.log(JSON.stringify({surface:name,filesVerified:Object.keys(m.files).length,status:'matched'}));
+}
+writeFileSync(base+'web-artifacts-live.json',JSON.stringify({checkedAt:new Date().toISOString(),reports},null,2)+'\n');

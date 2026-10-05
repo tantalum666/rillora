@@ -1,0 +1,219 @@
+{
+  "capturedFrom": "2026-10-05T18:43:18.825480+00:00",
+  "capturedThrough": "2026-10-05T18:43:43.043513+00:00",
+  "workFiles": 9769,
+  "uniqueRawObjects": 1541,
+  "workBytes": 4632253518,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-019.tar.zst.age",
+      "sha256": "aa3b39d3623cd3b35fab0a7584ff294d7482e3bfbe14036a26fb6d5079e9e53f",
+      "bytes": 581672952,
+      "plainBytes": 1366461442,
+      "uniqueObjects": 1541
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/release-12-stripe-20261006/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": "output/qa/rillora-release-12-stripe-20261005/publication",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    },
+    {
+      "path": "output/qa/rillora-release-12-stripe-20261005/stripe-go-live.md",
+      "reason": "reproducible_vendor_documentation_cache"
+    },
+    {
+      "path": "output/qa/rillora-release-12-stripe-20261005/stripe-cli-authorization.png",
+      "reason": "actual_authentication_handoff_screen"
+    },
+    {
+      "path": "output/qa/rillora-release-12-stripe-20261005/stripe-subscriptions-docs.md",
+      "reason": "reproducible_vendor_documentation_cache"
+    },
+    {
+      "path": "output/qa/rillora-release-12-stripe-20261005/stripe-webhooks-docs.md",
+      "reason": "reproducible_vendor_documentation_cache"
+    },
+    {
+      "path": "output/qa/rillora-release-12-stripe-20261005/stripe-security-reference.md",
+      "reason": "reproducible_vendor_documentation_cache"
+    },
+    {
+      "path": "output/qa/rillora-release-12-stripe-20261005/stripe-billing-reference.md",
+      "reason": "reproducible_vendor_documentation_cache"
+    },
+    {
+      "path": "output/qa/rillora-release-12-stripe-20261005/stripe-cli-authorization-retry.png",
+      "reason": "actual_authentication_handoff_screen"
+    },
+    {
+      "path": "output/qa/rillora-release-12-stripe-20261005/stripe-keys-docs.md",
+      "reason": "reproducible_vendor_documentation_cache"
+    },
+    {
+      "path": "output/qa/rillora-release-12-stripe-20261005/stripe-testing-docs.md",
+      "reason": "reproducible_vendor_documentation_cache"
+    },
+    {
+      "path": "output/qa/rillora-release-12-stripe-20261005/cdk-RilloraProductionWeb/asset.97e9ebf0b174a5c8f7faa505739022b7f509edddffcab9211dcd08b759944c4f",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-release-12-stripe-20261005/cdk-RilloraProductionWeb/asset.877ed4ccc433ec0d6dc3cd881f3260e6e364a600ad1ea379687bae756e3777e5",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-release-12-stripe-20261005/cdk-production-reviewed/asset.cd59fe6bb469751197c068b00c786283b7f26e5e0c2a7e106333a5f5cb16ca50",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-release-12-stripe-20261005/cdk-production-reviewed/asset.2819175352ad1ce0dae768e83fc328fb70fb5f10b4a8ff0ccbcb791f02b0716d",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-release-12-stripe-20261005/cdk-production-tokenized/asset.cd59fe6bb469751197c068b00c786283b7f26e5e0c2a7e106333a5f5cb16ca50",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-release-12-stripe-20261005/cdk-production-tokenized/asset.2819175352ad1ce0dae768e83fc328fb70fb5f10b4a8ff0ccbcb791f02b0716d",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-release-12-stripe-20261005/cdk-production/asset.cd59fe6bb469751197c068b00c786283b7f26e5e0c2a7e106333a5f5cb16ca50",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-release-12-stripe-20261005/cdk-production/asset.faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-release-12-stripe-20261005/cdk-production/asset.97e9ebf0b174a5c8f7faa505739022b7f509edddffcab9211dcd08b759944c4f",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-release-12-stripe-20261005/cdk-production/asset.2819175352ad1ce0dae768e83fc328fb70fb5f10b4a8ff0ccbcb791f02b0716d",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-release-12-stripe-20261005/cdk-production/asset.5ec950a164afe42042b0c07ac8ee7d116db8993aa9e283c5c6fe9013410ebecc",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-release-12-stripe-20261005/cdk-RilloraPublicWeb/asset.97e9ebf0b174a5c8f7faa505739022b7f509edddffcab9211dcd08b759944c4f",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-release-12-stripe-20261005/cdk-RilloraPublicWeb/asset.668ec88825ed89d605fb548674cd2ef11aa1a62ed25673c9f8ace1156aebeea8",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/release/rillora-review-20261006/inspection",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    },
+    {
+      "path": "output/release/rillora-review-20261006/test-products/test_sim_2026-10-05T15-15-23-978Z_pid70398_97cc71b5.xctestproducts/Tests/0/Release-iphonesimulator",
+      "reason": "machine_specific_link"
+    },
+    {
+      "path": "output/release/rillora-review-20261006/test-products/test_sim_2026-10-05T15-15-23-978Z_pid70398_97cc71b5.xctestproducts/Tests/0/Debug-iphonesimulator",
+      "reason": "machine_specific_link"
+    },
+    {
+      "path": "output/release/rillora-review-20261006/test-products/test_sim_2026-10-05T17-39-40-112Z_pid70398_7837a015.xctestproducts/Tests/0/Release-iphonesimulator",
+      "reason": "machine_specific_link"
+    },
+    {
+      "path": "output/release/rillora-review-20261006/test-products/test_sim_2026-10-05T17-39-40-112Z_pid70398_7837a015.xctestproducts/Tests/0/Debug-iphonesimulator",
+      "reason": "machine_specific_link"
+    },
+    {
+      "path": "output/release/rillora-review-20261006/test-products/test_sim_2026-10-05T14-52-00-809Z_pid70398_141262ca.xctestproducts/Tests/0/Release-iphonesimulator",
+      "reason": "machine_specific_link"
+    },
+    {
+      "path": "output/release/rillora-review-20261006/test-products/test_sim_2026-10-05T14-52-00-809Z_pid70398_141262ca.xctestproducts/Tests/0/Debug-iphonesimulator",
+      "reason": "machine_specific_link"
+    },
+    {
+      "path": "output/release/rillora-review-20261006/test-products/test_sim_2026-10-05T15-01-48-815Z_pid70398_c3f1601b.xctestproducts/Tests/0/Release-iphonesimulator",
+      "reason": "machine_specific_link"
+    },
+    {
+      "path": "output/release/rillora-review-20261006/test-products/test_sim_2026-10-05T15-01-48-815Z_pid70398_c3f1601b.xctestproducts/Tests/0/Debug-iphonesimulator",
+      "reason": "machine_specific_link"
+    },
+    {
+      "path": "output/release/rillora-review-20261006/test-products/test_sim_2026-10-05T14-56-33-015Z_pid70398_118c5a3c.xctestproducts/Tests/0/Release-iphonesimulator",
+      "reason": "machine_specific_link"
+    },
+    {
+      "path": "output/release/rillora-review-20261006/test-products/test_sim_2026-10-05T14-56-33-015Z_pid70398_118c5a3c.xctestproducts/Tests/0/Debug-iphonesimulator",
+      "reason": "machine_specific_link"
+    },
+    {
+      "path": "output/release/rillora-review-20261006/test-products/test_sim_2026-10-05T14-38-49-207Z_pid70398_f08e2366.xctestproducts/Tests/0/Release-iphonesimulator",
+      "reason": "machine_specific_link"
+    },
+    {
+      "path": "output/release/rillora-review-20261006/test-products/test_sim_2026-10-05T14-38-49-207Z_pid70398_f08e2366.xctestproducts/Tests/0/Debug-iphonesimulator",
+      "reason": "machine_specific_link"
+    },
+    {
+      "path": "output/release/rillora-review-20261006/test-products/test_sim_2026-10-05T15-24-00-649Z_pid70398_c5122363.xctestproducts/Tests/0/Release-iphonesimulator",
+      "reason": "machine_specific_link"
+    },
+    {
+      "path": "output/release/rillora-review-20261006/test-products/test_sim_2026-10-05T15-24-00-649Z_pid70398_c5122363.xctestproducts/Tests/0/Debug-iphonesimulator",
+      "reason": "machine_specific_link"
+    },
+    {
+      "path": "output/release/rillora-review-20261006/test-products/test_sim_2026-10-05T17-57-34-624Z_pid70398_0da224d1.xctestproducts/Tests/0/Release-iphonesimulator",
+      "reason": "machine_specific_link"
+    },
+    {
+      "path": "output/release/rillora-review-20261006/test-products/test_sim_2026-10-05T17-57-34-624Z_pid70398_0da224d1.xctestproducts/Tests/0/Debug-iphonesimulator",
+      "reason": "machine_specific_link"
+    },
+    {
+      "path": "output/release/rillora-review-20261006/test-products/test_sim_2026-10-05T15-46-59-561Z_pid70398_101e4f6a.xctestproducts/Tests/0/Release-iphonesimulator",
+      "reason": "machine_specific_link"
+    },
+    {
+      "path": "output/release/rillora-review-20261006/test-products/test_sim_2026-10-05T15-46-59-561Z_pid70398_101e4f6a.xctestproducts/Tests/0/Debug-iphonesimulator",
+      "reason": "machine_specific_link"
+    },
+    {
+      "path": "output/release/rillora-review-20261006/test-products/test_sim_2026-10-05T14-43-22-671Z_pid70398_7d439c37.xctestproducts/Tests/0/Release-iphonesimulator",
+      "reason": "machine_specific_link"
+    },
+    {
+      "path": "output/release/rillora-review-20261006/test-products/test_sim_2026-10-05T14-43-22-671Z_pid70398_7d439c37.xctestproducts/Tests/0/Debug-iphonesimulator",
+      "reason": "machine_specific_link"
+    },
+    {
+      "path": "output/release/rillora-review-20261006/test-products/test_sim_2026-10-05T18-26-09-153Z_pid70398_9336b9e8.xctestproducts/Tests/0/Release-iphonesimulator",
+      "reason": "machine_specific_link"
+    },
+    {
+      "path": "output/release/rillora-review-20261006/test-products/test_sim_2026-10-05T18-26-09-153Z_pid70398_9336b9e8.xctestproducts/Tests/0/Debug-iphonesimulator",
+      "reason": "machine_specific_link"
+    },
+    {
+      "path": "output/release/rillora-review-20261006/test-products/test_sim_2026-10-05T14-31-57-969Z_pid70398_85518b62.xctestproducts/Tests/0/Release-iphonesimulator",
+      "reason": "machine_specific_link"
+    },
+    {
+      "path": "output/release/rillora-review-20261006/test-products/test_sim_2026-10-05T14-31-57-969Z_pid70398_85518b62.xctestproducts/Tests/0/Debug-iphonesimulator",
+      "reason": "machine_specific_link"
+    },
+    {
+      "path": ".local-secrets/release-12-stripe-20261005",
+      "reason": "credentials_cookies_and_raw_signed_events_not_archived"
+    }
+  ],
+  "selection": "Current bilingual rollout/native5/Stripe TEST QA, failed and passed attempts, exact deployed Web/WWW and native signed/test products. Prior archives are immutable. Protected credentials, raw signed events, auth screens and caches excluded.",
+  "boundary": "Actual API14/Web/WWW deployment, native5 upload and Rillora TEST commerce retain precise evidence; no live charge, ordinary customer opening, App Review, retained-account deletion or physical-device acceptance."
+}

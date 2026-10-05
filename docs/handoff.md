@@ -1,13 +1,14 @@
 # Rillora Current Handoff
 
-Status: BILINGUAL/STRIPE TEST ACCEPTANCE AND RESTRICTED ROLLOUT VERIFIED; NATIVE5 UPLOADED; FINAL CLOSEOUT
+Status: BILINGUAL/STRIPE TEST ACCEPTANCE AND RESTRICTED ROLLOUT VERIFIED; NATIVE5 READY TO SUBMIT; FINAL GIT CLOSEOUT
 Last updated: 2026-10-06 (Asia/Hong_Kong)
 
 ## Current task
 
 Finish Owner-selected packages1/2 and StripeWebfirst. Branch`codex/release-12-stripe-20261005`.
 Deployed source85d79c891 has CI57success. Native AX5/scroll/copy fixes and the local TEST
-fixture are being committed; Apple processing and full additive Git preservation follow.
+fixture are committed as10194de6a with CI58success. Apple5is Ready to Submit; exact notes
+persist after reload, groups/individualtesters0. Full additive Git preservation follows.
 Keep existing UI, WebUSD88.99annual, Free1/Family5, real data and FanPass.
 [Current detailed contract](release-12-stripe-20261005.md).
 
@@ -29,7 +30,7 @@ findings. Spoken VoiceOver/physical-device interaction is not proved by system a
 - Signed1.0(5) archived/exported/validated/uploaded once. IPA SHA256
 `46acd025c7187ce4fe7ac9a2808e7e1df5368b68db2dcb2493e9ded0cda2490b`.
 App source/project hashes match; no debug/device/StoreKitfixture, correct production
-config and approved OS-only declaration. Actual Apple list currentlyProcessing.
+config and approved OS-only declaration. Actual Apple list Ready to Submit; saved notes match after reload.
 - Rillora-onlyTEST CLI1.53.0 is authorized foracct_1U6B2RCxTlowhyiG; no new login needed.
 MCP unavailable is not CLI failure. Existing restricted TEST key reused; FanPass untouched.
 - Current8899USD hosted checkoutcancel/decline/success, signed-inreturn, Portalperiod-end
@@ -48,16 +49,16 @@ Owner explicitly retains the independent delete-QA account. Do not delete it, re
 physicalphone/merchantfactdeferrals, invite testers, submit review or open customers.
 Six designed storeimages and prior approved declaration remain; no oldbuildreupload.
 
-Local task fixtures/listener and three task-created simulators still need bounded cleanup.
-All new eligible QA/signed products/deployment receipts need archive19 and fresh remote
-verification. Exclude credentials, cookies, raw signed events, auth screens and vendor
+Local task fixtures/listener are stopped; synthetic cookie sessions revoked. Only the
+three task-created simulators were removed; all other simulator identities/states match.
+Archive19locally preserves9,769eligible paths/1,541objects (581,672,952bytes) and passes
+decryption/object/catalog checks. Fresh remote verification is the remaining closeout. Exclude credentials, cookies, raw signed events, auth screens and vendor
 caches even from encrypted Git. Priorarchives17/18arealreadyverified, do notredo them.
 
 ## Single next step
 
-Finish this same closeout: read Apple5processing result and save/reopen testnotes, commit
-current source, clean up only task fixtures, then seal/push/readback all new eligible
-work and update the final launch-gap record. Do not rerun passed unchanged flows.
+Finish this same closeout: seal/push/readback all new eligible work and update the
+final launch-gap record. Source10194de6a/CI58and Apple5/cleanup are complete. Do not rerun passed unchanged flows.
 
 [Previous consolidated handoff](handoff-history-20261005-before-release-12-stripe.md) is
 HISTORICAL. Owner's later kept-account and physical/merchant deferrals retain priority.

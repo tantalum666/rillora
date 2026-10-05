@@ -3385,3 +3385,8 @@ Apple processing and additive Git/remote proof are being closed out separately.
 - Remaining: spoken VoiceOver/physicalApplepurchase, Owner-retained deletion, merchant/
 live/market/price facts, final store review and customer cutover. No deleted account,
 real charge, tester invite or public launch claim. [Exact evidence](../release-12-stripe-20261005.md).
+
+- Same-continuation closeout: source10194de6a has actual CI58success. Apple1.0(5) is
+Ready to Submit; test notes saved/reloaded exactly, groups/individualtesters0. Local
+Stripecookie/testeligibility was expired, listener/fixtures stopped, and only3task-created
+simulators removed; all other simulator identities/states match. AdditiveGitproof follows.

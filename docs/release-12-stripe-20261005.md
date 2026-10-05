@@ -1,13 +1,13 @@
 # Bilingual release acceptance and Stripe Web priority
 
-Status: ACCEPTANCE AND RESTRICTED CLOUD ROLLOUT PASS; NATIVE5 UPLOADED; FINAL APPLE/GIT CLOSEOUT
+Status: ACCEPTANCE AND RESTRICTED CLOUD ROLLOUT PASS; NATIVE5 READY TO SUBMIT; FINAL GIT PRESERVATION
 Last updated: 2026-10-06 (Asia/Hong_Kong)
 
 ## October6 current result
 
 The work below continued across midnight. Source85d79c891 has actual CI57 success;
-the native accessibility repairs, final UI driver and provider fixture are the next
-source delta. The October5 checkpoints below are historical and do not override this
+the native accessibility repairs, final UI driver and provider fixture are committed
+as10194de6a with actual CI58success. The October5 checkpoints below are historical and do not override this
 section or the current handoff.
 
 - API400, focused restore14, Web165, isolated legal7 and infrastructure54 pass. Narrow
@@ -31,7 +31,8 @@ section or the current handoff.
   approved OS-only encryption metadata; strict signature, no debug entitlement/device
   list/StoreKit fixture, bilingual bundles and unchanged privacy manifest pass. SHA256:
   `46acd025c7187ce4fe7ac9a2808e7e1df5368b68db2dcb2493e9ded0cda2490b`.
-  Upload succeeded at2026-10-05T18:28:47Z; actual Apple list reports Processing.
+  Upload succeeded at2026-10-05T18:28:47Z; actual Apple list reports Ready to Submit. Exact test notes persist after reload;
+  groups0/individualtesters0. No invitations or review submission.
 - Owner completed Rillora-only TEST CLI authorization. CLI1.53.0 works for
   `acct_1U6B2RCxTlowhyiG`; MCP's current tool-unavailable result is not a CLI/login
   failure. Existing restricted TEST key reused; no key/permission creation or FanPass use.
@@ -65,7 +66,7 @@ is claimed. Earlier68/7.99 TEST results remain unchanged historical evidence.
 
 `output/qa/rillora-release-12-stripe-20261005/README.md` maps exact passed replacement
 runs and all failed attempts. No product suite/deployment/old store upload is repeated
-for documentation. Final new archive/remote receipts and Apple processing/notes follow
+for documentation. Apple processing/notes are read back. Final new archive/remote receipts follow
 as separate results. Credentials, auth screens, cookies, raw signed events and vendor
 documentation caches are excluded from Git; eligible originals remain additive.
 

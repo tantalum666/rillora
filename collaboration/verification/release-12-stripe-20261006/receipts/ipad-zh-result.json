@@ -1,0 +1,61 @@
+{
+  "schema": "xcodebuildmcp.output.test-result",
+  "schemaVersion": "3",
+  "didError": true,
+  "error": "Tests failed",
+  "data": {
+    "summary": {
+      "status": "FAILED",
+      "durationMs": 85429,
+      "counts": {
+        "passed": 0,
+        "failed": 2,
+        "skipped": 0
+      },
+      "target": "simulator"
+    },
+    "artifacts": {
+      "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-10-05T16-50-41-880Z_pid70398_435ded45.log",
+      "xcresultPath": "output/qa/rillora-release-12-stripe-20261005/ipad-zh.xcresult",
+      "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-05T15-46-59-561Z_pid70398_101e4f6a.xctestproducts"
+    },
+    "diagnostics": {
+      "warnings": [],
+      "errors": [],
+      "testFailures": [
+        {
+          "suite": "RilloraLocalizationUITests",
+          "test": "testLocalizedAuthenticatedRootsAndLandscape",
+          "message": "XCTAssertTrue failed",
+          "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraLayoutMatrixTests/RilloraLocalizationUITests.swift:76"
+        },
+        {
+          "suite": "RilloraLocalizationUITests",
+          "test": "testLocalizedLargeTextDraftAndPrintableExport",
+          "message": "Failed to tap \"事项\" Button: No matches found for Descendants matching type TabBar from input {(",
+          "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraLayoutMatrixTests/RilloraLocalizationUITests.swift:87"
+        },
+        {
+          "suite": "RilloraLocalizationUITests",
+          "test": "testLocalizedLargeTextDraftAndPrintableExport()",
+          "message": "Failed to tap \"事项\" Button: No matches found for Descendants matching type TabBar from input {(\n    Application, pid: 12842, label: 'Rillora'\n)}\nPossibly caused by runtime issues:\nAutomation type mismatch: computed Button from legacy attributes vs Cell from modern attribute. Input attributes and values: {\n    \"XC_kAXXCAttributeAutomationType\" = 75;\n    \"XC_kAXXCAttributeElementBaseType\" = \"_UIFloatingTabBarItemCell\";\n    \"XC_kAXXCAttributeElementType\" = \"_UIFloatingTabBarItemCell\";\n    \"XC_kAXXCAttributeTraits\" = 146297323520;\n}\nAutomation type mismatch: computed Button from legacy attributes vs Cell from modern attribute. Input attributes and values: {\n    \"XC_kAXXCAttributeAutomationType\" = 75;\n    \"XC_kAXXCAttributeElementBaseType\" = \"_UIFloatingTabBarItemCell\";\n    \"XC_kAXXCAttributeElementType\" = \"_UIFloatingTabBarItemCell\";\n    \"XC_kAXXCAttributeTraits\" = 146297323528;\n}\nAutomation type mismatch: computed Button from legacy attributes vs Other from modern attribute. Input attributes and values: {\n    \"XC_kAXXCAttributeAutomationType\" = 0;\n    \"XC_kAXXCAttributeElementBaseType\" = \"_UIFloatingTabBarItemView\";\n    \"XC_kAXXCAttributeElementType\" = \"_UIFloatingTabBarItemView\";\n    \"XC_kAXXCAttributeTraits\" = 8858370056;\n}\nAutomation type mismatch: computed Button from legacy attributes vs Other from modern attribute. Input attributes and values: {\n    \"XC_kAXXCAttributeAutomationType\" = 0;\n    \"XC_kAXXCAttributeElementBaseType\" = \"_UIFloatingTabBarItemView\";\n    \"XC_kAXXCAttributeElementType\" = \"_UIFloatingTabBarItemView\";\n    \"XC_kAXXCAttributeTraits\" = 8858370048;\n}\nSee test report attachments for more detail.",
+          "location": "RilloraLocalizationUITests.swift:87"
+        }
+      ]
+    },
+    "testCases": [
+      {
+        "suite": "RilloraLocalizationUITests",
+        "test": "testLocalizedAuthenticatedRootsAndLandscape",
+        "status": "failed",
+        "durationMs": 24527
+      },
+      {
+        "suite": "RilloraLocalizationUITests",
+        "test": "testLocalizedLargeTextDraftAndPrintableExport",
+        "status": "failed",
+        "durationMs": 11347
+      }
+    ]
+  }
+}

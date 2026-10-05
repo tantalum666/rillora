@@ -1,6 +1,6 @@
 # Source control, complete work preservation and release rollback
 
-Last updated: 2026-10-05 (Asia/Hong_Kong)
+Last updated: 2026-10-06 (Asia/Hong_Kong)
 
 The private remote is [tantalum666/rillora](https://github.com/tantalum666/rillora).
 Owner explicitly requested **all Rillora work** for Git and Dot collaboration on
@@ -288,3 +288,13 @@ receipts are appended separately; no previous archive or deployment is repeated.
 Owner's subsequent Chinese copy request is preserved separately in [archive18addendum](../collaboration/verification/chinese-copy-20261005/README.md):625paths/383objects,25932470ciphertext bytes,locally decrypted/verified. Archive17remains immutable; original English/data/permission/price boundaries are retained.
 
 Both new archives have now been freshly downloaded from GitHub and decrypted/verified at`747c98874b8517a5f41c1a6293ed6ca0eb4ee3a8`:17covers1,404paths/772objects;18covers625paths/383objects. [CI56](https://github.com/tantalum666/rillora/actions/runs/37279020925)is successful for that exact integrated source. Prior archives/source branches and production remain unchanged.
+
+## October6 bilingual rollout and current-price Stripe Web addendum
+
+[Archive19](../collaboration/verification/release-12-stripe-20261006/README.md) preserves
+9,769eligible paths/1,541objects in581,672,952ciphertext bytes. Local decryption/object/
+catalog verification passes. This includes new failed/passed UI evidence, signednative5,
+exact deployed Web/WWW and actual Rillora TEST commerce results; prior archives remain.
+Source10194de6a/CI58passes. Native5is Ready to Submit with saved/reloaded testnotes and
+zero groups/testers. Public customers/live billing stay closed. Fresh remote archive
+verification and final metadata are separate post-capture receipts, not repeat tests.

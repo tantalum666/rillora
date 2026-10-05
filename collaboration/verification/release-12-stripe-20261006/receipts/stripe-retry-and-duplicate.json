@@ -1,0 +1,61 @@
+{
+  "at": "2026-10-05T17:23:59.989Z",
+  "initialTransient": "subscription_observation_busy on concurrent callbacks; invoice.paid applied",
+  "retries": [
+    {
+      "type": "checkout.session.completed",
+      "eventSha256": "c7fe43eb6adbce2293bf9370ae47818a54337656e27f4171e4813f7ef037857d",
+      "http": 200,
+      "result": {
+        "received": true,
+        "status": "applied",
+        "testOnly": true
+      },
+      "source": "real immutable Stripe event retrieved with CLI; fresh SDK TEST signature for local retry"
+    },
+    {
+      "type": "customer.subscription.created",
+      "eventSha256": "a20e28e985671b8aae8ca4cdc2b8328d7d048dd806592366eae0f9f53b961877",
+      "http": 200,
+      "result": {
+        "received": true,
+        "status": "applied",
+        "testOnly": true
+      },
+      "source": "real immutable Stripe event retrieved with CLI; fresh SDK TEST signature for local retry"
+    },
+    {
+      "type": "invoice.paid",
+      "eventSha256": "1da10b8d67e1419c247c97f96f8dea56c44f22fc220797d3c03df026afc49ce7",
+      "originalPayloadSha256": "bdb746c8dddf8cd07d470440014ba607d2f944ed66b7df7f989de65fcafff1b8",
+      "http": 200,
+      "result": {
+        "received": true,
+        "status": "duplicate",
+        "testOnly": true
+      },
+      "source": "original successfully delivered bytes; fresh SDK TEST signature because original timestamp expired"
+    }
+  ],
+  "inbox": [
+    {
+      "event_type": "invoice.paid",
+      "processing_status": "applied",
+      "attempt_count": 1,
+      "last_error_code": null
+    },
+    {
+      "event_type": "checkout.session.completed",
+      "processing_status": "applied",
+      "attempt_count": 1,
+      "last_error_code": null
+    },
+    {
+      "event_type": "customer.subscription.created",
+      "processing_status": "applied",
+      "attempt_count": 1,
+      "last_error_code": null
+    }
+  ],
+  "scope": "Real Stripe TEST objects; local signed retry injection, not a claim of automatic provider retry or a live charge"
+}
