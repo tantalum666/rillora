@@ -21,9 +21,9 @@ enum NativeReauthenticationPrompt {
             guard let controller = topController() else { return }
             if controller is UIAlertController || controller.isBeingPresented || controller.isBeingDismissed { continue }
             let proceed = await withCheckedContinuation { continuation in
-                let alert = UIAlertController(title: "Sign in again", message: "Confirm it is still you before continuing. Your changes stay here and nothing is submitted automatically.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Keep editing", style: .cancel) { _ in continuation.resume(returning: false) })
-                alert.addAction(UIAlertAction(title: "Sign in again", style: .default) { _ in continuation.resume(returning: true) })
+                let alert = UIAlertController(title: String(localized: "Sign in again"), message: String(localized: "Confirm it is still you before continuing. Your changes stay here and nothing is submitted automatically."), preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: String(localized: "Keep editing"), style: .cancel) { _ in continuation.resume(returning: false) })
+                alert.addAction(UIAlertAction(title: String(localized: "Sign in again"), style: .default) { _ in continuation.resume(returning: true) })
                 controller.present(alert, animated: true)
             }
             guard proceed else { return }
@@ -33,9 +33,9 @@ enum NativeReauthenticationPrompt {
             guard completed || failure != nil else { return } // cancellation retains the old session
             try? await Task.sleep(for: .milliseconds(350))
             guard let presenter = topController(), !(presenter is UIAlertController) else { return }
-            let alert = UIAlertController(title: completed ? "Sign-in complete" : "Sign in could not be verified",
-                message: completed ? "Your changes are still here. Try the action again when you are ready." : "Use the same account and try again. Your changes have not been submitted.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Return to editing", style: .cancel))
+            let alert = UIAlertController(title: completed ? String(localized: "Sign-in complete") : String(localized: "Sign in could not be verified"),
+                message: completed ? String(localized: "Your changes are still here. Try the action again when you are ready.") : String(localized: "Use the same account and try again. Your changes have not been submitted."), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String(localized: "Return to editing"), style: .cancel))
             presenter.present(alert, animated: true)
             return
         }

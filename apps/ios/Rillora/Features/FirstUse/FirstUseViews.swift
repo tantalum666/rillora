@@ -37,14 +37,14 @@ struct FirstUseGuideView: View {
                     }
                 }
                 .accessibilityElement()
-                .accessibilityLabel("Step \(editor.step) of 2")
+                .accessibilityLabel(L10n.format("Step %1$lld of 2", editor.step))
             }
 
             if editor.step == 1 {
                 Section {
                     MotivationChoices(selection: $editor.motivation)
 
-                    Button(editor.motivation == nil ? "Skip this question" : "Continue") {
+                    Button(editor.motivation == nil ? String(localized: "Skip this question") : String(localized: "Continue")) {
                         Task {
                             guard let saved = await editor.continueToMatter() else { return }
                             overviewStore.applySavedPlan(saved)
@@ -53,7 +53,7 @@ struct FirstUseGuideView: View {
                     .fontWeight(.semibold)
                     .accessibilityIdentifier("first-use.continue")
                 } header: {
-                    Text("Why now? Optional")
+                    Text(String(localized: "Why now? Optional"))
                 }
             } else {
                 Section {
@@ -70,17 +70,17 @@ struct FirstUseGuideView: View {
                             onSaved: { dismiss() }
                         )
                     } label: {
-                        Label("Add this matter", systemImage: "plus.circle.fill")
+                        Label(String(localized: "Add this matter"), systemImage: "plus.circle.fill")
                             .fontWeight(.semibold)
                     }
                     .accessibilityIdentifier("first-use.add-matter")
                 } header: {
-                    Text("Add one useful matter")
+                    Text(String(localized: "Add one useful matter"))
                 }
             }
             Section {
-                RilloraInfoDisclosure("About optional setup") {
-                    Text("This choice only tailors guidance. Setup itself does not count as preparedness. Never enter passwords, recovery codes, private keys or seed phrases.")
+                RilloraInfoDisclosure(String(localized: "About optional setup")) {
+                    Text(String(localized: "This choice only tailors guidance. Setup itself does not count as preparedness. Never enter passwords, recovery codes, private keys or seed phrases."))
                         .font(.subheadline).foregroundStyle(RilloraTheme.body)
                 }
             }
@@ -89,11 +89,11 @@ struct FirstUseGuideView: View {
         .rilloraStructuredList()
         .rilloraFocusedTask()
         .disabled(editor.isBusy)
-        .navigationTitle("Optional setup")
+        .navigationTitle(String(localized: "Optional setup"))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
-                Button(editor.isBusy ? "Saving…" : "Save & exit") {
+                Button(editor.isBusy ? String(localized: "Saving…") : String(localized: "Save & exit")) {
                     Task {
                         if let saved = await editor.pause() {
                             overviewStore.applySavedPlan(saved)
@@ -112,13 +112,13 @@ struct FirstUseGuideView: View {
             }
         }
         .alert(
-            editorHasConflict ? "This plan changed" : "Setup not saved",
+            editorHasConflict ? String(localized: "This plan changed") : String(localized: "Setup not saved"),
             isPresented: Binding(
                 get: { if case .failed = editor.state { true } else { false } },
                 set: { if !$0 { editor.clearFailure() } }
             )
         ) {
-            Button("Close", role: .cancel) { editor.clearFailure() }
+            Button(String(localized: "Close"), role: .cancel) { editor.clearFailure() }
         } message: {
             Text(editorFailureMessage)
         }

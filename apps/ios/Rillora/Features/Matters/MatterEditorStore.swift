@@ -50,16 +50,16 @@ struct MatterDraft: Equatable, Sendable {
 
     var validationMessage: String? {
         let cleanTitle = title.trimmingCharacters(in: .whitespacesAndNewlines)
-        if cleanTitle.isEmpty { return "Add a short name for this matter." }
-        if cleanTitle.count > 120 { return "The matter name must be 120 characters or fewer." }
-        if showsProvider && institutionName.count > 160 { return "The institution must be 160 characters or fewer." }
-        if showsAccountHint && accountHint.count > 160 { return "The account hint must be 160 characters or fewer." }
-        if locationHint.count > 500 { return "The location note must be 500 characters or fewer." }
+        if cleanTitle.isEmpty { return String(localized: "Add a short name for this matter.") }
+        if cleanTitle.count > 120 { return String(localized: "The matter name must be 120 characters or fewer.") }
+        if showsProvider && institutionName.count > 160 { return String(localized: "The institution must be 160 characters or fewer.") }
+        if showsAccountHint && accountHint.count > 160 { return String(localized: "The account hint must be 160 characters or fewer.") }
+        if locationHint.count > 500 { return String(localized: "The location note must be 500 characters or fewer.") }
 
         let cleanCurrency = currencyCode.trimmingCharacters(in: .whitespacesAndNewlines)
         if category.hasValue, !cleanCurrency.isEmpty,
            cleanCurrency.range(of: "^[A-Za-z]{3}$", options: .regularExpression) == nil {
-            return "Use a three-letter currency code such as USD or EUR."
+            return String(localized: "Use a three-letter currency code such as USD or EUR.")
         }
         return detailValidationMessage
     }
@@ -182,7 +182,7 @@ final class MatterEditorStore {
         guard !isBusy else { return nil }
         guard draft.validationMessage == nil else {
             state = .failed(
-                message: draft.validationMessage ?? "Review this matter before saving.",
+                message: draft.validationMessage ?? String(localized: "Review this matter before saving."),
                 conflict: false
             )
             return nil
@@ -216,7 +216,7 @@ final class MatterEditorStore {
             if case .server(_, "saved_draft_changed", _, _) = error,
                let saved = try? await service.fetchCreatedMatter(requestID: createRequestID), saved.archivedAt == nil {
                 source = saved
-                state = .failed(message: "The first save completed. Your latest edits are kept here; review them and save again.", conflict: false)
+                state = .failed(message: String(localized: "The first save completed. Your latest edits are kept here; review them and save again."), conflict: false)
                 return nil
             }
             state = .failed(message: error.localizedDescription, conflict: error.isVersionConflict)

@@ -464,9 +464,9 @@ enum StoreKitClientError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .productUnavailable:
-            "The selected StoreKit product is unavailable."
+            String(localized: "The selected StoreKit product is unavailable.")
         case .unexpectedPurchaseResult:
-            "StoreKit returned an unsupported purchase result."
+            String(localized: "StoreKit returned an unsupported purchase result.")
         }
     }
 }

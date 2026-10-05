@@ -50,7 +50,7 @@ struct SignedOutOverviewView: View {
             Button(action: onSignIn) {
                 HStack(spacing: 6) {
                     if isAuthenticating { ProgressView().tint(palette.onAccent) }
-                    Text(isAuthenticating ? "Opening…" : "Sign in")
+                    Text(isAuthenticating ? String(localized: "Opening…") : String(localized: "Sign in"))
                         .font(.subheadline.weight(.medium)).fixedSize()
                 }
                 .padding(.horizontal, 16).frame(minHeight: 44)
@@ -65,21 +65,21 @@ struct SignedOutOverviewView: View {
     private var hero: some View {
         VStack(alignment: .leading, spacing: 0) {
             VStack(alignment: .leading, spacing: 20) {
-                Text("Leave less\nfor them to\nfigure out.")
+                Text(String(localized: "Leave less\nfor them to\nfigure out."))
                     .font(.system(size: titleSize, weight: .regular, design: .serif))
                     .tracking(-0.9).lineSpacing(-1)
                     .foregroundStyle(palette.ink)
                     .fixedSize(horizontal: false, vertical: true)
                     .accessibilityAddTraits(.isHeader)
                     .accessibilityIdentifier("public-overview.hero")
-                Text("A private map of your important things, shared with the people you choose.")
+                Text(String(localized: "A private map of your important things, shared with the people you choose."))
                     .font(.body).foregroundStyle(palette.muted)
                     .fixedSize(horizontal: false, vertical: true)
                     .accessibilityIdentifier("public-overview.purpose")
-                PublicHomeAction(title: "Explore matters", palette: palette, action: onExploreMatters)
+                PublicHomeAction(title: String(localized: "Explore matters"), palette: palette, action: onExploreMatters)
                     .accessibilityIdentifier("public-overview.explore")
                 Button(action: onOpenInvitation) {
-                    Label("Received an invitation?", systemImage: "link")
+                    Label(String(localized: "Received an invitation?"), systemImage: "link")
                         .font(.subheadline).foregroundStyle(palette.ink)
                         .frame(minHeight: 44)
                 }
@@ -101,13 +101,13 @@ struct SignedOutOverviewView: View {
     private var destinations: some View {
         VStack(alignment: .leading, spacing: 0) {
             Button(action: onExploreMatters) {
-                destinationLabel("A place for what matters.", detail: "Accounts, documents, devices.", symbol: "square.stack.3d.up")
+                destinationLabel(String(localized: "A place for what matters."), detail: String(localized: "Accounts, documents, devices."), symbol: "square.stack.3d.up")
             }.buttonStyle(.plain)
             NavigationLink {
                 RilloraSafetyPrivacyView()
                     .toolbar(.visible, for: .navigationBar)
             } label: {
-                destinationLabel("Stay in control.", detail: "Your information. Your choices.", symbol: "hand.raised")
+                destinationLabel(String(localized: "Stay in control."), detail: String(localized: "Your information. Your choices."), symbol: "hand.raised")
             }.buttonStyle(.plain).accessibilityIdentifier("public-home.privacy")
         }
     }
@@ -130,12 +130,12 @@ struct SignedOutOverviewView: View {
 
     private var closing: some View {
         VStack(alignment: .leading, spacing: 18) {
-            Text("Make the important\nthings clear.")
+            Text(String(localized: "Make the important\nthings clear."))
                 .font(.system(.largeTitle, design: .serif)).foregroundStyle(palette.ink)
                 .fixedSize(horizontal: false, vertical: true).accessibilityAddTraits(.isHeader)
-            PublicHomeAction(title: "Start your map", palette: palette, action: onStartPrivatePlan)
+            PublicHomeAction(title: String(localized: "Start your map"), palette: palette, action: onStartPrivatePlan)
                 .disabled(isAuthenticating).accessibilityIdentifier("public-overview.start-final")
-            Text("Directions, not passwords.")
+            Text(String(localized: "Directions, not passwords."))
                 .font(.footnote).foregroundStyle(palette.muted)
         }
     }

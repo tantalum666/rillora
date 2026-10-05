@@ -3079,3 +3079,16 @@ unreachable release remains a different closed workflow. See [sharing contract](
 - Actual import and Web recent-auth retry are verified. Deletion remains unverified
   and Owner-deferred, alongside the existing physical-device/merchant deferrals.
   Do not automatically reopen any of those decisions or call the complete launch ready.
+
+## 2026-10-05 — Chinese UI explicitly includes native iOS
+
+- Status: LOCKED
+- Scope: Owner-requested Chinese interface includes the shipping native SwiftUI app.
+- Evidence: Owner明确「不只是做web哦，ios也要做」。
+- Decision: preserve English and add Simplified Chinese with Apple String Catalogs,
+standard system/per-app language selection and shared Web/native terminology.
+- Supersedes: treating a Web-only localization delivery as completing this request.
+- Does not imply: translation of operative legal texts/provider-controlled content,
+market/price changes, compilation, deployment, store upload or public release.
+- Implementation: [native contract](native-localization-20261005.md); isolated source
+branch, static checks and explicit Mac acceptance gate.

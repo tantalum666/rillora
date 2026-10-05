@@ -10,22 +10,22 @@ struct PlanAccessView: View {
             if let status = store.status {
                 planList(status)
             } else if store.isLoading {
-                ProgressView("Checking plan access…")
+                ProgressView(String(localized: "Checking plan access…"))
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             } else {
                 ContentUnavailableView {
-                    Label("Plan access unavailable", systemImage: "lock.shield")
+                    Label(String(localized: "Plan access unavailable"), systemImage: "lock.shield")
                 } description: {
-                    Text(store.errorMessage ?? "Try checking your plan again.")
+                    Text(store.errorMessage ?? String(localized: "Try checking your plan again."))
                 } actions: {
-                    Button("Try again") {
+                    Button(String(localized: "Try again")) {
                         Task { await store.refresh() }
                     }
                 }
             }
         }
         .rilloraFocusedTask()
-        .navigationTitle("Plan & access")
+        .navigationTitle(String(localized: "Plan & access"))
         .navigationBarTitleDisplayMode(.inline)
         .accessibilityIdentifier("plan-access.view")
         .task {
@@ -57,9 +57,9 @@ struct PlanAccessView: View {
                                 .foregroundStyle(RilloraTheme.body)
                                 .padding(.vertical, 5)
                         }
-                        Text("Core planning stays available without a subscription.")
+                        Text(String(localized: "Core planning stays available without a subscription."))
                             .font(.footnote).foregroundStyle(RilloraTheme.muted)
-                    } label: { Label("Included features", systemImage: "checklist") }
+                    } label: { Label(String(localized: "Included features"), systemImage: "checklist") }
                 }
             }
 
@@ -70,14 +70,14 @@ struct PlanAccessView: View {
                             items: plannedCapabilities(familyPlan).map { capabilityLabel($0.code) },
                             systemImage: "plus.circle"
                         )
-                        DisclosureGroup("Later roadmap · not included yet") {
+                        DisclosureGroup(String(localized: "Later roadmap · not included yet")) {
                             ForEach(familyPlan.capabilities.filter { $0.enforcementMode == "planned" && !["family_maintenance", "trusted_people_multiple"].contains($0.code) && $0.availability != "retired" }, id: \.code) { capability in
                                 Text(capabilityLabel(capability.code)).foregroundStyle(RilloraTheme.muted).padding(.vertical, 4)
                             }
                         }
                         if store.applePurchase == nil && !status.offers.isEmpty {
                             if status.offers.count > 1 {
-                                RilloraFilterPicker(title: "Billing period", options: status.offers.map {
+                                RilloraFilterPicker(title: String(localized: "Billing period"), options: status.offers.map {
                                     .init(id: $0.billingInterval, title: intervalLabel($0.billingInterval))
                                 }, selection: $billingInterval, identifier: "plan-access.billing-period")
                             }
@@ -86,10 +86,10 @@ struct PlanAccessView: View {
                             }
                         }
                         if !status.billingOpen {
-                            Label("Billing is not open", systemImage: "lock")
+                            Label(String(localized: "Billing is not open"), systemImage: "lock")
                                 .font(.subheadline).foregroundStyle(RilloraTheme.muted)
                         }
-                    } label: { Label(status.billingOpen ? "Family" : "Family · Not available yet", systemImage: "person.2") }
+                    } label: { Label(status.billingOpen ? String(localized: "Family") : String(localized: "Family · Not available yet"), systemImage: "person.2") }
                 }
             }
 
@@ -102,9 +102,9 @@ struct PlanAccessView: View {
             }
             Section {
                 DisclosureGroup {
-                    Text("You keep your own records and exports. Free includes one live recipient. Extra recipients retain only their permitted paid-period copy, without later updates.")
-                    Text("You can always restrict or revoke sharing. Billing does not trigger disclosure.")
-                } label: { Label("Access when Family ends", systemImage: "clock.arrow.circlepath") }
+                    Text(String(localized: "You keep your own records and exports. Free includes one live recipient. Extra recipients retain only their permitted paid-period copy, without later updates."))
+                    Text(String(localized: "You can always restrict or revoke sharing. Billing does not trigger disclosure."))
+                } label: { Label(String(localized: "Access when Family ends"), systemImage: "clock.arrow.circlepath") }
                 .font(.subheadline)
             }
 
@@ -123,20 +123,20 @@ struct PlanAccessView: View {
     private var storeKitTestSection: some View {
         Section {
             if store.storeKitLocalTestingEnabled {
-                RilloraBoundaryPanel("Xcode StoreKit test only", systemImage: "testtube.2") {
-                    Text("These products come from a local StoreKit configuration. They are not App Store Connect products, create no real charge, and never grant a Rillora entitlement.")
+                RilloraBoundaryPanel(String(localized: "Xcode StoreKit test only"), systemImage: "testtube.2") {
+                    Text(String(localized: "These products come from a local StoreKit configuration. They are not App Store Connect products, create no real charge, and never grant a Rillora entitlement."))
                 }
             } else {
-                RilloraBoundaryPanel("App Store Sandbox catalog", systemImage: "shippingbox") {
-                    Text("Names and prices come from App Store Connect for the current storefront. This SK1 build cannot purchase, finish a transaction, or change Rillora access.")
+                RilloraBoundaryPanel(String(localized: "App Store Sandbox catalog"), systemImage: "shippingbox") {
+                    Text(String(localized: "Names and prices come from App Store Connect for the current storefront. This SK1 build cannot purchase, finish a transaction, or change Rillora access."))
                 }
             }
 
             if store.storeKitProducts.isEmpty {
                 Label(
                     store.storeKitLocalTestingEnabled
-                        ? "Local products unavailable"
-                        : "Sandbox products unavailable",
+                        ? String(localized: "Local products unavailable")
+                        : String(localized: "Sandbox products unavailable"),
                     systemImage: "exclamationmark.triangle"
                 )
                     .foregroundStyle(RilloraTheme.muted)
@@ -168,18 +168,18 @@ struct PlanAccessView: View {
                 Button {
                     Task { await store.restoreLocalStoreKitPurchases() }
                 } label: {
-                    Label("Refresh local purchase history", systemImage: "arrow.clockwise")
+                    Label(String(localized: "Refresh local purchase history"), systemImage: "arrow.clockwise")
                 }
                 .disabled(store.isStoreKitWorking)
                 .accessibilityIdentifier("storekit-local.restore")
 
                 LabeledContent(
-                    "Verified local transactions",
-                    value: "\(store.storeKitLocalTransactions.count)"
+                    String(localized: "Verified local transactions"),
+                    value: store.storeKitLocalTransactions.count.formatted()
                 )
                 LabeledContent(
-                    "Current local entitlements",
-                    value: "\(store.storeKitLocalEntitlements.count)"
+                    String(localized: "Current local entitlements"),
+                    value: store.storeKitLocalEntitlements.count.formatted()
                 )
 
                 ForEach(store.storeKitLocalSubscriptionStatuses) { status in
@@ -198,7 +198,7 @@ struct PlanAccessView: View {
 
                 if store.storeKitContainsUnverifiedEntitlement {
                     Label(
-                        "An unverified StoreKit entitlement was ignored.",
+                        String(localized: "An unverified StoreKit entitlement was ignored."),
                         systemImage: "exclamationmark.shield"
                     )
                     .foregroundStyle(RilloraTheme.clay)
@@ -206,7 +206,7 @@ struct PlanAccessView: View {
 
                 if store.storeKitContainsUnverifiedSubscriptionStatus {
                     Label(
-                        "An unverified subscription status was ignored.",
+                        String(localized: "An unverified subscription status was ignored."),
                         systemImage: "exclamationmark.shield"
                     )
                     .foregroundStyle(RilloraTheme.clay)
@@ -214,7 +214,7 @@ struct PlanAccessView: View {
 
                 if store.storeKitContainsMismatchedEntitlement {
                     Label(
-                        "A StoreKit entitlement for another account, environment, product, or storefront was ignored.",
+                        String(localized: "A StoreKit entitlement for another account, environment, product, or storefront was ignored."),
                         systemImage: "person.crop.circle.badge.exclamationmark"
                     )
                     .foregroundStyle(RilloraTheme.clay)
@@ -222,7 +222,7 @@ struct PlanAccessView: View {
 
                 if store.storeKitContainsMismatchedSubscriptionStatus {
                     Label(
-                        "A subscription status outside this local account or catalog was ignored.",
+                        String(localized: "A subscription status outside this local account or catalog was ignored."),
                         systemImage: "person.crop.circle.badge.exclamationmark"
                     )
                     .foregroundStyle(RilloraTheme.clay)
@@ -230,18 +230,18 @@ struct PlanAccessView: View {
 
                 if store.storeKitSubscriptionStatusLoadFailed {
                     Label(
-                        "Local subscription status is temporarily unavailable.",
+                        String(localized: "Local subscription status is temporarily unavailable."),
                         systemImage: "arrow.trianglehead.2.clockwise.rotate.90"
                     )
                     .foregroundStyle(RilloraTheme.muted)
                 }
             } else {
                 LabeledContent(
-                    "Storefront",
-                    value: store.storefrontCountryCode ?? "Unavailable"
+                    String(localized: "Storefront"),
+                    value: store.storefrontCountryCode ?? String(localized: "Unavailable")
                 )
                 Label(
-                    "Purchase waits for server verification",
+                    String(localized: "Purchase waits for server verification"),
                     systemImage: "lock.shield"
                 )
                 .foregroundStyle(RilloraTheme.muted)
@@ -254,12 +254,12 @@ struct PlanAccessView: View {
                     .accessibilityIdentifier("storekit-local.message")
             }
         } header: {
-            Text(store.storeKitLocalTestingEnabled ? "StoreKit local test" : "StoreKit Sandbox")
+            Text(store.storeKitLocalTestingEnabled ? String(localized: "StoreKit local test") : String(localized: "StoreKit Sandbox"))
         } footer: {
             Text(
                 store.storeKitLocalTestingEnabled
-                    ? "The production path will submit Apple-signed transaction evidence to Rillora’s server ledger before finishing a transaction or changing access."
-                    : "Catalog display is evidence only. The server-owned access ledger remains Free."
+                    ? String(localized: "The production path will submit Apple-signed transaction evidence to Rillora’s server ledger before finishing a transaction or changing access.")
+                    : String(localized: "Catalog display is evidence only. The server-owned access ledger remains Free.")
             )
         }
     }
@@ -284,31 +284,31 @@ struct PlanAccessView: View {
 
     private func localProductDetail(_ product: StoreKitProductSnapshot) -> String {
         switch RilloraStoreKitCatalog.billingInterval(for: product.productID) {
-        case "monthly": "Family · monthly test subscription"
-        case "annual": "Family · yearly test subscription"
+        case "monthly": String(localized: "Family · monthly test subscription")
+        case "annual": String(localized: "Family · yearly test subscription")
         default: product.description
         }
     }
 
     private func localStatusProductLabel(_ productID: String) -> String {
         switch RilloraStoreKitCatalog.billingInterval(for: productID) {
-        case "monthly": "Monthly lifecycle"
-        case "annual": "Yearly lifecycle"
-        default: "Subscription lifecycle"
+        case "monthly": String(localized: "Monthly lifecycle")
+        case "annual": String(localized: "Yearly lifecycle")
+        default: String(localized: "Subscription lifecycle")
         }
     }
 
     private func localStatusLabel(_ status: StoreKitLocalSubscriptionStatusRecord) -> String {
         let state = switch status.state {
-        case .subscribed: "Subscribed"
-        case .expired: "Expired"
-        case .inBillingRetryPeriod: "Billing retry"
-        case .inGracePeriod: "Grace period"
-        case .revoked: "Revoked"
-        case .unknown: "Unknown"
+        case .subscribed: String(localized: "Subscribed")
+        case .expired: String(localized: "Expired")
+        case .inBillingRetryPeriod: String(localized: "Billing retry")
+        case .inGracePeriod: String(localized: "Grace period")
+        case .revoked: String(localized: "Revoked")
+        case .unknown: String(localized: "Unknown")
         }
         guard status.state == .subscribed else { return state }
-        return status.willAutoRenew ? "\(state) · renews" : "\(state) · ends"
+        return status.willAutoRenew ? L10n.format("%1$@ · renews", state) : L10n.format("%1$@ · ends", state)
     }
 
     private func localStatusIcon(_ state: StoreKitSubscriptionState) -> String {
@@ -364,28 +364,28 @@ struct PlanAccessView: View {
 
     private func intervalLabel(_ value: String) -> String {
         switch value {
-        case "monthly": "Monthly"
-        case "annual": "Yearly"
-        default: value.capitalized
+        case "monthly": String(localized: "Monthly")
+        case "annual": String(localized: "Yearly")
+        default: value
         }
     }
 
     private func capabilityLabel(_ code: String) -> String {
         switch code {
-        case "matter_map_core": "Matter map"
-        case "official_setup_guides": "Official provider guides"
-        case "trusted_person_basic": "Sharing with a trusted person"
-        case "rehearsal_basic": "Basic rehearsal"
-        case "data_export": "Export and read saved copies"
-        case "account_deletion": "Account deletion"
-        case "household_coplanner": "Household co-planner"
-        case "family_maintenance": "Shared reviews and approved corrections"
-        case "trusted_people_multiple": "Multiple trusted people"
-        case "role_packages_advanced": "Advanced role packages"
-        case "adaptive_reviews": "Adaptive review reminders"
-        case "version_history": "Plan history"
-        case "encrypted_attachments": "Encrypted attachments"
-        default: code.replacingOccurrences(of: "_", with: " ").capitalized
+        case "matter_map_core": String(localized: "Matter map")
+        case "official_setup_guides": String(localized: "Official provider guides")
+        case "trusted_person_basic": String(localized: "Sharing with a trusted person")
+        case "rehearsal_basic": String(localized: "Basic rehearsal")
+        case "data_export": String(localized: "Export and read saved copies")
+        case "account_deletion": String(localized: "Account deletion")
+        case "household_coplanner": String(localized: "Household co-planner")
+        case "family_maintenance": String(localized: "Shared reviews and approved corrections")
+        case "trusted_people_multiple": String(localized: "Multiple trusted people")
+        case "role_packages_advanced": String(localized: "Advanced role packages")
+        case "adaptive_reviews": String(localized: "Adaptive review reminders")
+        case "version_history": String(localized: "Plan history")
+        case "encrypted_attachments": String(localized: "Encrypted attachments")
+        default: code
         }
     }
 }

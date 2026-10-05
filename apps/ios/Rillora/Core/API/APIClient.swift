@@ -20,7 +20,7 @@ extension CommerceServing {
         request: StoreKitSandboxTransactionRequest
     ) async throws -> StoreKitSandboxTransactionResponse {
         throw RilloraAPIError.requestFailed(
-            "StoreKit Sandbox server verification is unavailable."
+            String(localized: "StoreKit Sandbox server verification is unavailable.")
         )
     }
 }
@@ -130,34 +130,34 @@ protocol StartHerePreviewing: Sendable {
 
 extension StartHerePreviewing {
     func previewStartHere(recipientConnectionPublicID: String?) async throws -> StartHerePreview {
-        guard recipientConnectionPublicID == nil else { throw RilloraAPIError.requestFailed("Recipient exports are unavailable.") }
+        guard recipientConnectionPublicID == nil else { throw RilloraAPIError.requestFailed(String(localized: "Recipient exports are unavailable.")) }
         return try await previewStartHere()
     }
     func exportRecipients() async throws -> [SharingConnection] { [] }
     func recipientRehearsalContacts() async throws -> [TrustedContact] {
-        throw RilloraAPIError.requestFailed("Synthetic recipient rehearsal is unavailable.")
+        throw RilloraAPIError.requestFailed(String(localized: "Synthetic recipient rehearsal is unavailable."))
     }
 
     func createRecipientRehearsal(personPublicID: String) async throws -> RecipientRehearsalCreateEnvelope {
-        throw RilloraAPIError.requestFailed("Synthetic recipient rehearsal is unavailable.")
+        throw RilloraAPIError.requestFailed(String(localized: "Synthetic recipient rehearsal is unavailable."))
     }
 
     func acceptRecipientRehearsal(acceptanceToken: String) async throws -> RecipientRehearsalAcceptEnvelope {
-        throw RilloraAPIError.requestFailed("Synthetic recipient rehearsal is unavailable.")
+        throw RilloraAPIError.requestFailed(String(localized: "Synthetic recipient rehearsal is unavailable."))
     }
 
     func enrollRecipientDeviceKey(
         sessionToken: String,
         request: RecipientDeviceKeyCreateRequest
     ) async throws -> RecipientDeviceKeyRecord {
-        throw RilloraAPIError.requestFailed("Synthetic recipient rehearsal is unavailable.")
+        throw RilloraAPIError.requestFailed(String(localized: "Synthetic recipient rehearsal is unavailable."))
     }
 
     func prepareRecipientRehearsalPackage(
         rehearsalPublicID: String,
         previewPublicID: String
     ) async throws -> EncryptedStartHerePreparation {
-        throw RilloraAPIError.requestFailed("Synthetic recipient rehearsal is unavailable.")
+        throw RilloraAPIError.requestFailed(String(localized: "Synthetic recipient rehearsal is unavailable."))
     }
 
     func finalizeRecipientRehearsalPackage(
@@ -165,35 +165,35 @@ extension StartHerePreviewing {
         packagePublicID: String,
         request: EncryptedStartHereFinalizeRequest
     ) async throws {
-        throw RilloraAPIError.requestFailed("Synthetic recipient rehearsal is unavailable.")
+        throw RilloraAPIError.requestFailed(String(localized: "Synthetic recipient rehearsal is unavailable."))
     }
 
     func fetchRecipientRehearsalPackage(
         sessionToken: String,
         packagePublicID: String
     ) async throws -> RecipientEncryptedStartHereArtifact {
-        throw RilloraAPIError.requestFailed("Synthetic recipient rehearsal is unavailable.")
+        throw RilloraAPIError.requestFailed(String(localized: "Synthetic recipient rehearsal is unavailable."))
     }
 
     func revokeRecipientDeviceKey(sessionToken: String, keyPublicID: String) async throws {
-        throw RilloraAPIError.requestFailed("Synthetic recipient rehearsal is unavailable.")
+        throw RilloraAPIError.requestFailed(String(localized: "Synthetic recipient rehearsal is unavailable."))
     }
 
     func revokeRecipientRehearsal(publicID: String) async throws {
-        throw RilloraAPIError.requestFailed("Synthetic recipient rehearsal is unavailable.")
+        throw RilloraAPIError.requestFailed(String(localized: "Synthetic recipient rehearsal is unavailable."))
     }
 
     func prepareEncryptedStartHere(
         previewPublicID: String
     ) async throws -> EncryptedStartHerePreparation {
-        throw RilloraAPIError.requestFailed("Encrypted Start Here is unavailable.")
+        throw RilloraAPIError.requestFailed(String(localized: "Encrypted Start Here is unavailable."))
     }
 
     func finalizeEncryptedStartHere(
         packagePublicID: String,
         request: EncryptedStartHereFinalizeRequest
     ) async throws -> EncryptedStartHereFinalizedRecord {
-        throw RilloraAPIError.requestFailed("Encrypted Start Here is unavailable.")
+        throw RilloraAPIError.requestFailed(String(localized: "Encrypted Start Here is unavailable."))
     }
 }
 
@@ -1075,7 +1075,7 @@ actor APIClient: OverviewServing, PlanEditing, MatterEditing, TrustedContactEdit
             return .server(
                 status: result.response.statusCode,
                 code: "request_failed",
-                message: "The continuity service could not complete the request.",
+                message: String(localized: "The continuity service could not complete the request."),
                 requestID: requestID
             )
         }

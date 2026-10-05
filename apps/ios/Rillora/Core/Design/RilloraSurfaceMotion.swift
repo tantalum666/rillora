@@ -73,7 +73,7 @@ struct RilloraDisclosureStyle: DisclosureGroupStyle {
                 .contentShape(Rectangle())
             }
             .buttonStyle(RilloraQuietButtonStyle())
-            .accessibilityValue(configuration.isExpanded ? "Expanded" : "Collapsed")
+            .accessibilityValue(configuration.isExpanded ? String(localized: "Expanded") : String(localized: "Collapsed"))
 
             if configuration.isExpanded {
                 configuration.content

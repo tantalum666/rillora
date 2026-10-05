@@ -1,0 +1,46 @@
+{
+  "catalog_entries": 323,
+  "authored_localization_calls": 368,
+  "source_files_changed": [
+    "apps/ios/Rillora/Features/Overview/SignedOutExperienceViews.swift",
+    "apps/ios/Rillora/Features/Overview/OverviewStateViews.swift",
+    "apps/ios/Rillora/Features/Overview/OverviewView.swift",
+    "apps/ios/Rillora/Features/Overview/PublicHomeSharingDemo.swift",
+    "apps/ios/Rillora/Features/Overview/PublicHomeView.swift",
+    "apps/ios/Rillora/Features/Overview/ContinuityExplorer.swift",
+    "apps/ios/Rillora/Features/Overview/OverviewDashboardComponents.swift",
+    "apps/ios/Rillora/Features/Matters/MattersView.swift",
+    "apps/ios/Rillora/Features/Matters/MatterEditorView.swift",
+    "apps/ios/Rillora/Features/Matters/MatterEditorStore.swift",
+    "apps/ios/Rillora/Features/FirstUse/FirstUseViews.swift",
+    "apps/ios/Rillora/Features/Plan/PlanMotivationView.swift",
+    "apps/ios/Rillora/Features/OfficialSetup/MatterAccountGuides.swift",
+    "apps/ios/Rillora/Features/OfficialSetup/OfficialSetupView.swift",
+    "apps/ios/Rillora/Features/OfficialSetup/OfficialProviderGuideCatalog.swift",
+    "apps/ios/Rillora/Core/Domain/Models.swift",
+    "apps/ios/Rillora/Core/Domain/MatterDetailFields.swift"
+  ],
+  "plural_entries": [
+    "%1$lld essentials left",
+    "%1$lld matters",
+    "%1$lld matters shared. Everything else stays private."
+  ],
+  "checks": {
+    "key_coverage": "passed",
+    "placeholder_parity": "passed",
+    "literal_only_localization_keys": "passed",
+    "accessibility_identifiers": "unchanged",
+    "raw_enum_values": "unchanged",
+    "symbol_and_resource_identifiers": "unchanged",
+    "provider_suggestion_matching": "unchanged",
+    "encoded_matter_request_functions": "unchanged",
+    "six_nonpresentation_source_files": "unchanged"
+  },
+  "tests_added": "apps/ios/RilloraTests/CoreLocalizationTests.swift",
+  "not_run": [
+    "Swift compilation",
+    "Xcode tests",
+    "simulator / device UI and accessibility"
+  ],
+  "source_file_count": 23
+}

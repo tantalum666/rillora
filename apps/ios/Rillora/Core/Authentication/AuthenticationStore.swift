@@ -24,6 +24,17 @@ final class AuthenticationStore {
         self.commerceStore = commerceStore
     }
 
+    /// Only app-authored errors are translated; provider descriptions are not catalog keys.
+    private static func displayMessage(for error: Error, fallback: String = String(localized: "Sign in could not be completed. Please try again.")) -> String {
+        if error is HostedLegalAcceptanceProof.Failure {
+            return String(localized: "The sign-in service did not confirm the current Terms and Privacy acknowledgement. Please try again.")
+        }
+        if error is NativeAuthenticationError || error is SessionTokenStoreError || error is RilloraAPIError {
+            return error.localizedDescription
+        }
+        return L10n.isSimplifiedChinese(bundle: .main) ? fallback : error.localizedDescription
+    }
+
     var canSignIn: Bool { service.isConfigured }
     var canSignInWithApple: Bool { service.canSignInWithApple }
     var canSignInWithGoogle: Bool { service.canSignInWithGoogle }
@@ -79,7 +90,7 @@ final class AuthenticationStore {
         } catch is CancellationError {
             return false
         } catch {
-            errorMessage = error.localizedDescription
+            errorMessage = Self.displayMessage(for: error)
             return false
         }
     }
@@ -96,7 +107,7 @@ final class AuthenticationStore {
                authorizationError.code == .canceled {
                 return false
             }
-            errorMessage = error.localizedDescription
+            errorMessage = Self.displayMessage(for: error)
             return false
         case .success(let authorization):
             guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential,
@@ -134,7 +145,7 @@ final class AuthenticationStore {
         } catch let error as WebAuthError where error == .userCancelled {
             return false
         } catch {
-            errorMessage = error.localizedDescription
+            errorMessage = Self.displayMessage(for: error)
             return false
         }
     }
@@ -158,7 +169,7 @@ final class AuthenticationStore {
         } catch is CancellationError {
             return false
         } catch {
-            errorMessage = error.localizedDescription
+            errorMessage = Self.displayMessage(for: error)
             return false
         }
     }
@@ -172,7 +183,7 @@ final class AuthenticationStore {
         overviewStore.reset()
         await overviewStore.reload()
         if case .loaded = overviewStore.state { return true }
-        errorMessage = "Rillora could not load your private plan after sign in."
+        errorMessage = String(localized: "Rillora could not load your private plan after sign in.")
         return false
     }
 
@@ -206,7 +217,7 @@ final class AuthenticationStore {
             overviewStore.reset()
             await overviewStore.reload()
         } catch {
-            errorMessage = error.localizedDescription
+            errorMessage = Self.displayMessage(for: error, fallback: String(localized: "Could not sign out all devices. Please try again."))
         }
     }
 }

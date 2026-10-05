@@ -180,7 +180,7 @@ struct MatterCategoryChoices: View {
     var body: some View {
         Group {
             if dynamicTypeSize.isAccessibilitySize {
-                RilloraAdaptivePicker("Category", selection: $selection) {
+                RilloraAdaptivePicker(String(localized: "Category"), selection: $selection) {
                     ForEach(categories) { Text($0.label).tag($0) }
                 }
             } else {
@@ -222,13 +222,13 @@ struct MatterCategoryChoices: View {
 
     private func shortTitle(_ category: MatterCategory) -> String {
         switch category {
-        case .account: "Account"
-        case .document: "Document"
-        case .device: "Device"
-        case .financialAsset: "Asset"
-        case .debt: "Debt"
-        case .subscription: "Subscription"
-        case .cryptoAsset: "Crypto"
+        case .account: String(localized: "Account")
+        case .document: String(localized: "Document")
+        case .device: String(localized: "Device")
+        case .financialAsset: String(localized: "Asset")
+        case .debt: String(localized: "Debt")
+        case .subscription: String(localized: "Subscription")
+        case .cryptoAsset: String(localized: "Crypto")
         }
     }
 
@@ -281,7 +281,7 @@ struct RilloraAcknowledgementToggleStyle: ToggleStyle {
             .contentShape(Rectangle())
         }
         .buttonStyle(RilloraQuietButtonStyle())
-        .accessibilityValue(configuration.isOn ? "Agreed" : "Not agreed")
+        .accessibilityValue(configuration.isOn ? String(localized: "Agreed") : String(localized: "Not agreed"))
         .accessibilityAddTraits(configuration.isOn ? .isSelected : [])
     }
 }
@@ -472,6 +472,6 @@ struct LifeEventChoices: View {
     }
 
     private func displayTitle(_ event: LifeEvent) -> String {
-        event == .missing ? "Unreachable" : event.title
+        event == .missing ? String(localized: "Unreachable") : event.title
     }
 }

@@ -33,7 +33,7 @@ struct MattersView: View {
             }
         }
         .rilloraRefreshStatus(store)
-        .navigationTitle("Matters")
+        .navigationTitle(String(localized: "Matters"))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
@@ -42,7 +42,7 @@ struct MattersView: View {
                     Button {
                         presentsNewMatter = true
                     } label: {
-                        Label("Add matter", systemImage: "plus")
+                        Label(String(localized: "Add matter"), systemImage: "plus")
                     }
                     .accessibilityIdentifier("matter.add")
                 }
@@ -82,7 +82,7 @@ private struct MattersContent: View {
         let candidates = snapshot.matters.filter { filter == "all" || (filter == "added" ? $0.isReady : !$0.isReady) }
         guard !query.isEmpty else { return candidates }
         return candidates.filter {
-            [$0.title, $0.institutionName ?? "", $0.category.replacingOccurrences(of: "_", with: " ")]
+            [$0.title, $0.institutionName ?? "", MatterCategory(rawValue: $0.category)?.label ?? "", $0.category.replacingOccurrences(of: "_", with: " ")]
                 .contains { $0.localizedStandardContains(query) }
         }
     }
@@ -94,21 +94,21 @@ private struct MattersContent: View {
             } else {
                 RilloraList {
                     Section {
-                        RilloraFilterPicker(title: "Show matters", options: [
-                            .init(id: "all", title: "All"),
-                            .init(id: "review", title: "To review"),
-                            .init(id: "added", title: "Directions added"),
+                        RilloraFilterPicker(title: String(localized: "Show matters"), options: [
+                            .init(id: "all", title: String(localized: "All")),
+                            .init(id: "review", title: String(localized: "To review")),
+                            .init(id: "added", title: String(localized: "Directions added")),
                         ], selection: $filter, identifier: "matters.filter")
                     }
                     if filteredMatters.contains(where: { !$0.isReady }) {
-                        Section("To review") {
+                        Section(String(localized: "To review")) {
                             ForEach(filteredMatters.filter { !$0.isReady }) { matter in
                                 matterLink(matter)
                             }
                         }
                     }
                     if filteredMatters.contains(where: \.isReady) {
-                        Section("Directions added") {
+                        Section(String(localized: "Directions added")) {
                             ForEach(filteredMatters.filter(\.isReady)) { matter in
                                 matterLink(matter)
                             }
@@ -117,11 +117,11 @@ private struct MattersContent: View {
                 }
                 .rilloraStructuredList()
                 .animation(reduceMotion ? nil : .easeOut(duration: 0.18), value: filteredMatters.map(\.publicId))
-                .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search matters")
+                .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: String(localized: "Search matters"))
                 .overlay {
                     if filteredMatters.isEmpty {
                         if searchText.isEmpty {
-                            ContentUnavailableView("No matters match this filter", systemImage: "line.3.horizontal.decrease.circle", description: Text("Choose All to see your other matters."))
+                            ContentUnavailableView(String(localized: "No matters match this filter"), systemImage: "line.3.horizontal.decrease.circle", description: Text(String(localized: "Choose All to see your other matters.")))
                                 .accessibilityIdentifier("matters.filter-empty")
                         } else {
                             ContentUnavailableView.search(text: searchText).accessibilityIdentifier("matters.search-empty")
@@ -160,18 +160,18 @@ private struct MattersEmptyState: View {
                 RilloraFolioArtwork()
 
                 VStack(spacing: 7) {
-                    Text("No matters yet")
+                    Text(String(localized: "No matters yet"))
                         .font(.system(.title2, design: .serif).weight(.semibold))
                         .foregroundStyle(RilloraTheme.ink)
                         .accessibilityAddTraits(.isHeader)
-                    Text("Start with an account, document, debt or device.")
+                    Text(String(localized: "Start with an account, document, debt or device."))
                         .font(.subheadline)
                         .foregroundStyle(RilloraTheme.muted)
                         .multilineTextAlignment(.center)
                 }
 
                 Button(action: onAddMatter) {
-                    Label("Add your first matter", systemImage: "plus")
+                    Label(String(localized: "Add your first matter"), systemImage: "plus")
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(RilloraPrimaryActionButtonStyle())

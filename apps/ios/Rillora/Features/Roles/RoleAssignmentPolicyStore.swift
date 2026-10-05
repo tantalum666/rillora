@@ -134,13 +134,13 @@ final class RoleAssignmentPolicyStore {
                 needsReload = false
             } catch {
                 needsReload = true
-                notice = "Role policy saved. Reload to check the latest records."
+                notice = String(localized: "Role policy saved. Reload to check the latest records.")
                 state = .loaded
                 return true
             }
             notice = result.invalidatedDisclosureRehearsalCount > 0
-                ? "Role policy saved. Earlier disclosure rehearsals are now stale."
-                : "Role policy saved. No invitation or authority was created."
+                ? String(localized: "Role policy saved. Earlier disclosure rehearsals are now stale.")
+                : String(localized: "Role policy saved. No invitation or authority was created.")
             state = .loaded
             return true
         } catch is CancellationError {

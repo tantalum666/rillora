@@ -4,9 +4,9 @@ enum OfficialProviderGuideKind: String, Decodable, Sendable {
     case prepareNow, estateRequest, prepareAndRequest
     var label: String {
         switch self {
-        case .prepareNow: "Preparation guidance"
-        case .estateRequest: "After-death request"
-        case .prepareAndRequest: "Preparation and requests"
+        case .prepareNow: String(localized: "Preparation guidance")
+        case .estateRequest: String(localized: "After-death request")
+        case .prepareAndRequest: String(localized: "Preparation and requests")
         }
     }
 }
@@ -21,7 +21,7 @@ struct OfficialProviderLink: Identifiable, Equatable, Decodable, Sendable {
         guard let url = URL(string: urlString), url.scheme == "https" else { return nil }
         return url
     }
-    var hostLabel: String { url?.host?.replacingOccurrences(of: "www.", with: "") ?? "Official site" }
+    var hostLabel: String { url?.host?.replacingOccurrences(of: "www.", with: "") ?? String(localized: "Official site") }
 }
 
 struct OfficialProviderGuide: Identifiable, Equatable, Decodable, Sendable {
@@ -62,6 +62,18 @@ struct ProviderMatterMatch: Equatable, Decodable, Sendable {
 struct OfficialProviderGuideGroup: Identifiable, Decodable, Sendable {
     let id: String
     let title: String
+
+    // Known interface groups have authored keys; new source content stays verbatim.
+    var localizedTitle: String {
+        switch id {
+        case "cloud": String(localized: "Cloud & email")
+        case "social": String(localized: "Social accounts")
+        case "money": String(localized: "Money & crypto")
+        case "work": String(localized: "Work & passwords")
+        case "software": String(localized: "Software & subscriptions")
+        default: title
+        }
+    }
 }
 
 private struct ProviderGuideDocument: Decodable, Sendable {

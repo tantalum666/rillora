@@ -17,17 +17,17 @@ struct PlanMotivationView: View {
 
         RilloraForm {
             if editor.state == .loading {
-                Section { ProgressView("Checking latest plan…") }
+                Section { ProgressView(String(localized: "Checking latest plan…")) }
             }
             Section {
                 MotivationChoices(selection: $editor.selection)
             }
             Section {
-                RilloraInfoDisclosure("Optional") {
+                RilloraInfoDisclosure(String(localized: "Optional")) {
                     if let selection = editor.selection {
                         Text(selection.explanation).font(.subheadline).foregroundStyle(RilloraTheme.body)
                     }
-                    Text("Used only to tailor suggestions. It is not evidence, diagnosis, legal status or readiness.")
+                    Text(String(localized: "Used only to tailor suggestions. It is not evidence, diagnosis, legal status or readiness."))
                         .font(.subheadline).foregroundStyle(RilloraTheme.muted)
                 }
             }
@@ -36,22 +36,22 @@ struct PlanMotivationView: View {
         .rilloraStructuredList()
         .rilloraFocusedTask()
         .disabled(editor.isBusy)
-        .navigationTitle("Why I’m preparing")
+        .navigationTitle(String(localized: "Why I’m preparing"))
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(editor.hasUnsavedChanges)
         .interactiveDismissDisabled(editor.isBusy || editor.hasUnsavedChanges)
         .toolbar {
             if editor.hasUnsavedChanges {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Back") { showsDiscardConfirmation = true }
-                        .alert("Discard unsaved changes?", isPresented: $showsDiscardConfirmation) {
-                            Button("Discard changes", role: .destructive) { dismiss() }
-                            Button("Keep editing", role: .cancel) {}
+                    Button(String(localized: "Back")) { showsDiscardConfirmation = true }
+                        .alert(String(localized: "Discard unsaved changes?"), isPresented: $showsDiscardConfirmation) {
+                            Button(String(localized: "Discard changes"), role: .destructive) { dismiss() }
+                            Button(String(localized: "Keep editing"), role: .cancel) {}
                         }
                 }
             }
             ToolbarItem(placement: .confirmationAction) {
-                Button(editor.state == .saving ? "Saving…" : "Save") {
+                Button(editor.state == .saving ? String(localized: "Saving…") : String(localized: "Save")) {
                     Task {
                         guard let saved = await editor.save() else { return }
                         overviewStore.applySavedPlan(saved)
@@ -67,21 +67,21 @@ struct PlanMotivationView: View {
             await editor.loadLatestIfNeeded()
         }
         .alert(
-            editorHasConflict ? "This plan changed" : "Reason not saved",
+            editorHasConflict ? String(localized: "This plan changed") : String(localized: "Reason not saved"),
             isPresented: Binding(
                 get: { if case .failed = editor.state { true } else { false } },
                 set: { if !$0 { editor.clearFailure() } }
             )
         ) {
             if editorHasConflict {
-                Button("Reload latest") {
+                Button(String(localized: "Reload latest")) {
                     Task { await editor.loadLatest() }
                 }
-                Button("Keep editing", role: .cancel) {
+                Button(String(localized: "Keep editing"), role: .cancel) {
                     editor.clearFailure()
                 }
             } else {
-                Button("OK", role: .cancel) {
+                Button(String(localized: "OK"), role: .cancel) {
                     editor.clearFailure()
                 }
             }

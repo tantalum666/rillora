@@ -9,13 +9,13 @@ enum RilloraAPIError: LocalizedError, Equatable, Sendable {
     var errorDescription: String? {
         switch self {
         case .invalidResponse:
-            "The continuity service returned an invalid response."
+            String(localized: "The continuity service returned an invalid response.")
         case .requestFailed(let message):
             message
-        case .server(_, _, let message, _):
-            message
+        case .server(let status, let code, let message, _):
+            L10n.serverError(status: status, code: code, message: message)
         case .invalidPayload:
-            "The continuity service returned data this version cannot read."
+            String(localized: "The continuity service returned data this version cannot read.")
         }
     }
 

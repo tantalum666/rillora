@@ -15,23 +15,23 @@ struct FamilyMaintenanceView: View {
     var body: some View {
         RilloraList {
             if let error = store.errorMessage {
-                Section { Label(error, systemImage: "exclamationmark.circle"); Button("Reload reviews") { Task { await store.reload() } } }
+                Section { Label(error, systemImage: "exclamationmark.circle"); Button(String(localized: "Reload reviews")) { Task { await store.reload() } } }
             }
             if let data = store.data {
                 Section {
-                    RilloraFilterPicker(title: "Review inbox", options: [
-                        .init(id: "mine", title: "My plan"),
-                        .init(id: "incoming", title: data.incoming.contains { $0.roundState == "open" } ? "For me \(data.incoming.filter { $0.roundState == "open" }.count)" : "For me"),
+                    RilloraFilterPicker(title: String(localized: "Review inbox"), options: [
+                        .init(id: "mine", title: String(localized: "My plan")),
+                        .init(id: "incoming", title: data.incoming.contains { $0.roundState == "open" } ? L10n.format("For me %1$lld", data.incoming.filter { $0.roundState == "open" }.count) : String(localized: "For me")),
                     ], selection: $inbox, identifier: "maintenance.inbox-picker")
                 }.listRowBackground(Color.clear)
                 if inbox == "mine" { ownerContent(data) } else { incomingContent(data) }
-            } else if store.isLoading { ProgressView("Loading reviews…") }
+            } else if store.isLoading { ProgressView(String(localized: "Loading reviews…")) }
         }
         .rilloraStructuredList().rilloraFocusedTask()
-        .navigationTitle("Shared reviews").navigationBarTitleDisplayMode(.inline)
+        .navigationTitle(String(localized: "Shared reviews")).navigationBarTitleDisplayMode(.inline)
         .toolbar { ToolbarItem(placement: .primaryAction) {
             Button { Task { await store.reload() } } label: { Image(systemName: "arrow.clockwise") }
-                .accessibilityLabel("Refresh reviews").disabled(store.isLoading)
+                .accessibilityLabel(String(localized: "Refresh reviews")).disabled(store.isLoading)
         } }
         .task {
             await store.reload()
@@ -62,44 +62,44 @@ struct FamilyMaintenanceView: View {
             }
             Section {
                 if let url = data.shareURL, !round.canFinish, data.access.canCreate {
-                    ShareLink(item: url, subject: Text("Rillora review"), message: Text("Please check the directions I shared with you.")) {
-                        Label("Share review request", systemImage: "square.and.arrow.up").frame(maxWidth: .infinity)
+                    ShareLink(item: url, subject: Text(String(localized: "Rillora review")), message: Text(String(localized: "Please check the directions I shared with you."))) {
+                        Label(String(localized: "Share review request"), systemImage: "square.and.arrow.up").frame(maxWidth: .infinity)
                     }.buttonStyle(.bordered).controlSize(.large).accessibilityIdentifier("maintenance.share")
                 }
-                Button { sheet = .close(round, complete: true) } label: { Label("Finish review", systemImage: "checkmark.circle").frame(maxWidth: .infinity) }
+                Button { sheet = .close(round, complete: true) } label: { Label(String(localized: "Finish review"), systemImage: "checkmark.circle").frame(maxWidth: .infinity) }
                     .buttonStyle(RilloraPrimaryActionButtonStyle()).disabled(!round.canFinish || !data.access.canCreate)
                     .accessibilityIdentifier("maintenance.finish")
-                Button("Cancel this review", role: .destructive) { sheet = .close(round, complete: false) }
+                Button(String(localized: "Cancel this review"), role: .destructive) { sheet = .close(round, complete: false) }
             }.listRowBackground(Color.clear)
         } else if data.access.canCreate {
             Section {
                 if data.eligible.isEmpty {
-                    Button { dismiss() } label: { Label("Manage trusted contacts", systemImage: "person.2").frame(maxWidth: .infinity) }
+                    Button { dismiss() } label: { Label(String(localized: "Manage trusted contacts"), systemImage: "person.2").frame(maxWidth: .infinity) }
                         .buttonStyle(RilloraPrimaryActionButtonStyle()).accessibilityIdentifier("maintenance.connect")
-                    Text("Connect someone and share Directions or Details first.").foregroundStyle(RilloraTheme.muted)
+                    Text(String(localized: "Connect someone and share Directions or Details first.")).foregroundStyle(RilloraTheme.muted)
                 } else {
-                    Button { sheet = .start } label: { Label("Start a shared review", systemImage: "person.2.badge.gearshape").frame(maxWidth: .infinity) }
+                    Button { sheet = .start } label: { Label(String(localized: "Start a shared review"), systemImage: "person.2.badge.gearshape").frame(maxWidth: .infinity) }
                         .buttonStyle(RilloraPrimaryActionButtonStyle()).accessibilityIdentifier("maintenance.start")
                 }
             }.listRowBackground(Color.clear)
         } else {
-            Section { Text("New shared reviews are not available for this plan right now.").foregroundStyle(RilloraTheme.muted) }
+            Section { Text(String(localized: "New shared reviews are not available for this plan right now.")).foregroundStyle(RilloraTheme.muted) }
         }
         Section {
             Button { sheet = .settings(data.settings, data.eligible, enabled: data.access.canCreate) } label: {
                 Label { VStack(alignment: .leading, spacing: 6) {
-                    Text("Review schedule & collaborator").foregroundStyle(RilloraTheme.ink)
-                    Text(data.settings.cadenceDays == 0 ? "In-app reminders paused" : data.settings.nextReviewAt == nil ? "Not scheduled · In app" : "Every \(data.settings.cadenceDays) days · In app")
+                    Text(String(localized: "Review schedule & collaborator")).foregroundStyle(RilloraTheme.ink)
+                    Text(data.settings.cadenceDays == 0 ? String(localized: "In-app reminders paused") : data.settings.nextReviewAt == nil ? String(localized: "Not scheduled · In app") : L10n.format("Every %1$lld days · In app", data.settings.cadenceDays))
                         .font(.subheadline).foregroundStyle(RilloraTheme.muted)
                 } } icon: { Image(systemName: "calendar.badge.clock").foregroundStyle(RilloraTheme.tabSelection) }
             }.frame(minHeight: 48).accessibilityIdentifier("maintenance.settings")
         }
         if !data.history.isEmpty {
-            Section("Changes you approved") {
+            Section(String(localized: "Changes you approved")) {
                 ForEach(data.history) { change in
                     DisclosureGroup {
                         FamilyReviewFieldChanges(before: change.beforeFields, after: change.afterFields)
-                        Text("Suggested by \(change.suggestedBy)").font(.subheadline).foregroundStyle(RilloraTheme.muted)
+                        Text(L10n.format("Suggested by %1$@", change.suggestedBy)).font(.subheadline).foregroundStyle(RilloraTheme.muted)
                     } label: { VStack(alignment: .leading, spacing: 6) {
                         Text(change.title); Text(FamilyReviewDate.label(change.createdAt)).font(.subheadline).foregroundStyle(RilloraTheme.muted)
                     } }.accessibilityIdentifier("maintenance.history.\(change.publicId)")
@@ -108,10 +108,10 @@ struct FamilyMaintenanceView: View {
         }
         let past = data.rounds.filter { $0.state != "open" }
         if !past.isEmpty {
-            Section { DisclosureGroup("Past reviews") {
+            Section { DisclosureGroup(String(localized: "Past reviews")) {
                 ForEach(past) { round in
                     VStack(alignment: .leading, spacing: 14) {
-                        Text("\(round.state == "completed" ? "Completed" : "Cancelled") · \(FamilyReviewDate.label(round.completedAt))").font(.headline)
+                        Text(L10n.format("%1$@ · %2$@", round.state == "completed" ? String(localized: "Completed") : String(localized: "Cancelled"), FamilyReviewDate.label(round.completedAt))).font(.headline)
                         ForEach(round.tasks) { task in
                             Button { sheet = .task(task, owner: true) } label: { FamilyReviewTaskRow(task: task, receiver: false) }
                         }
@@ -126,8 +126,8 @@ struct FamilyMaintenanceView: View {
             Section {
                 VStack(spacing: 18) {
                     RilloraTaskEmblem(systemImage: "tray")
-                    Text("Nothing waiting on you").font(.title2)
-                    Text("Shared review requests will appear here.").foregroundStyle(RilloraTheme.muted)
+                    Text(String(localized: "Nothing waiting on you")).font(.title2)
+                    Text(String(localized: "Shared review requests will appear here.")).foregroundStyle(RilloraTheme.muted)
                 }.frame(maxWidth: .infinity).padding(.vertical, 24)
             }.listRowBackground(Color.clear)
         } else {
@@ -139,7 +139,7 @@ struct FamilyMaintenanceView: View {
             }
         }
         let previous = data.incoming.filter { $0.roundState != "open" }
-        if !previous.isEmpty { Section { DisclosureGroup("Previous checks") {
+        if !previous.isEmpty { Section { DisclosureGroup(String(localized: "Previous checks")) {
             ForEach(previous) { task in Button { sheet = .task(task, owner: false) } label: { FamilyReviewTaskRow(task: task, receiver: true) } }
         } } }
     }
@@ -166,14 +166,14 @@ private struct FamilyReviewHero: View {
                 Circle().stroke(RilloraTheme.divider, lineWidth: 6)
                 Circle().trim(from: 0, to: fraction).stroke(RilloraTheme.tabSelection, style: StrokeStyle(lineWidth: 6, lineCap: .round)).rotationEffect(.degrees(-90))
                     .animation(reduceMotion ? nil : .easeInOut(duration: 0.35), value: fraction)
-                if let round { Text("\(round.resolvedCount)/\(round.tasks.count)").font(.system(size: 24, weight: .medium)) }
+                if let round { Text(L10n.format("%1$lld/%2$lld", round.resolvedCount, round.tasks.count)).font(.system(size: 24, weight: .medium)) }
                 else { Image(systemName: "person.2").font(.system(size: 30)) }
             }.frame(width: 94, height: 94).foregroundStyle(RilloraTheme.ink).accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 8) {
-                Text(preview ? "Family preview" : "Shared reviews").font(.subheadline).foregroundStyle(RilloraTheme.muted)
-                Text(round == nil ? "Keep directions current" : "Check together").font(.system(.title2, design: .serif)).foregroundStyle(RilloraTheme.ink)
-                Text(round.map { "\($0.resolvedCount) of \($0.tasks.count) reviewed · Due \(FamilyReviewDate.label($0.dueAt))" }
-                     ?? "Next review · \(FamilyReviewDate.label(settings.nextReviewAt))").font(.subheadline).foregroundStyle(RilloraTheme.muted)
+                Text(preview ? String(localized: "Family preview") : String(localized: "Shared reviews")).font(.subheadline).foregroundStyle(RilloraTheme.muted)
+                Text(round == nil ? String(localized: "Keep directions current") : String(localized: "Check together")).font(.system(.title2, design: .serif)).foregroundStyle(RilloraTheme.ink)
+                Text(round.map { L10n.format("Reviewed: %1$lld of %2$lld · Due %3$@", $0.resolvedCount, $0.tasks.count, FamilyReviewDate.label($0.dueAt)) }
+                     ?? L10n.format("Next review · %1$@", FamilyReviewDate.label(settings.nextReviewAt))).font(.subheadline).foregroundStyle(RilloraTheme.muted)
             }
         }.padding(.vertical, 16)
     }
@@ -197,9 +197,9 @@ struct FamilyReviewFieldChanges: View {
     var body: some View {
         ForEach(["institutionName", "locationHint"].filter { after[$0] != nil && after[$0] != before[$0] }, id: \.self) { key in
             VStack(alignment: .leading, spacing: 10) {
-                Text(key == "locationHint" ? "Where to find it" : "Provider").font(.subheadline).foregroundStyle(RilloraTheme.muted)
-                Text(before[key].flatMap { $0.isEmpty ? nil : $0 } ?? "Not added").foregroundStyle(RilloraTheme.muted)
-                Image(systemName: "arrow.down").foregroundStyle(RilloraTheme.muted).accessibilityLabel("changes to")
+                Text(key == "locationHint" ? String(localized: "Where to find it") : String(localized: "Provider")).font(.subheadline).foregroundStyle(RilloraTheme.muted)
+                Text(before[key].flatMap { $0.isEmpty ? nil : $0 } ?? String(localized: "Not added")).foregroundStyle(RilloraTheme.muted)
+                Image(systemName: "arrow.down").foregroundStyle(RilloraTheme.muted).accessibilityLabel(String(localized: "changes to"))
                 Text(after[key] ?? "").foregroundStyle(RilloraTheme.tabSelection)
             }.padding(.vertical, 10).fixedSize(horizontal: false, vertical: true)
         }

@@ -43,7 +43,7 @@ final class StartHerePreviewStore {
 
     func loadRecipients() async {
         do { recipients = try await service.exportRecipients(); recipientError = nil }
-        catch { recipientError = "Connected people could not be loaded. Try again." }
+        catch { recipientError = String(localized: "Connected people could not be loaded. Try again.") }
     }
 
     func resetPreview() {

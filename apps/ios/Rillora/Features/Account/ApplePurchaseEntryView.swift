@@ -15,19 +15,19 @@ struct ApplePurchaseEntryView: View {
                     PlanAccessView(store: commerce, appAccountToken: UUID(uuidString: snapshot.session.plannerPublicId))
                 } else {
                     ContentUnavailableView {
-                        Label("Continue with Rillora", systemImage: "person.crop.circle")
+                        Label(String(localized: "Continue with Rillora"), systemImage: "person.crop.circle")
                     } description: {
-                        Text(authentication.errorMessage ?? "Sign in to choose the account for your subscription.")
+                        Text(authentication.errorMessage ?? String(localized: "Sign in to choose the account for your subscription."))
                     } actions: {
-                        Button(authentication.isWorking ? "Signing in…" : "Sign in / up") {
+                        Button(authentication.isWorking ? String(localized: "Signing in…") : String(localized: "Sign in / up")) {
                             Task { _ = await authentication.signIn() }
                         }
                         .disabled(authentication.isWorking)
                     }
-                    .navigationTitle("Plan & access")
+                    .navigationTitle(String(localized: "Plan & access"))
                 }
             }
-            .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Close") { dismiss() } } }
+            .toolbar { ToolbarItem(placement: .cancellationAction) { Button(String(localized: "Close")) { dismiss() } } }
             .navigationBarTitleDisplayMode(.inline)
         }
     }

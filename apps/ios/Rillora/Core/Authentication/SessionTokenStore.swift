@@ -86,9 +86,9 @@ enum SessionTokenStoreError: LocalizedError, Sendable {
     var errorDescription: String? {
         switch self {
         case .invalidToken:
-            "The local session could not be stored."
+            String(localized: "The local session could not be stored.")
         case .keychain:
-            "The secure session store is unavailable."
+            String(localized: "The secure session store is unavailable.")
         }
     }
 }

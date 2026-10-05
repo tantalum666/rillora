@@ -8,17 +8,19 @@ struct ApplePurchaseSection: View {
     var body: some View {
         Section {
             if purchase.environment == .sandbox {
-                Label("Apple test purchase · No charge", systemImage: "testtube.2")
+                Label(String(localized: "Apple test purchase · No charge"), systemImage: "testtube.2")
                     .font(.subheadline).foregroundStyle(RilloraTheme.muted)
             }
             if subscription == nil, let product = purchase.product, purchase.quote != nil {
-                LabeledContent("Family · yearly", value: product.displayPrice)
+                LabeledContent(String(localized: "Family · yearly"), value: product.displayPrice)
                     .foregroundStyle(RilloraTheme.ink)
-                Text("5 live recipients · Shared reviews")
+                Text(String(localized: "5 live recipients · Shared reviews"))
                     .font(.subheadline).foregroundStyle(RilloraTheme.body)
                 if purchase.pending?.state != "pending" {
+                    Text("Subscription consent is shown in English. The English text is authoritative.")
+                        .font(.footnote).foregroundStyle(RilloraTheme.muted)
                     Toggle(isOn: $acceptedTerms) {
-                        Text("I agree to the subscription terms and yearly renewal at \(product.displayPrice). I can cancel in Apple Settings.")
+                        Text(verbatim: "I agree to the subscription terms and yearly renewal at \(product.displayPrice). I can cancel in Apple Settings.")
                             .font(.subheadline).foregroundStyle(RilloraTheme.body)
                     }
                     .tint(RilloraTheme.sage)
@@ -32,19 +34,19 @@ struct ApplePurchaseSection: View {
                     Button {
                         Task { await purchase.purchase(acceptedTerms: acceptedTerms) }
                     } label: {
-                        Label(purchase.busy ? "Checking purchase…" : "Subscribe with Apple", systemImage: "apple.logo")
+                        Label(purchase.busy ? String(localized: "Checking purchase…") : String(localized: "Subscribe with Apple"), systemImage: "apple.logo")
                     }
                     .disabled(!acceptedTerms || purchase.busy)
                     .accessibilityIdentifier("apple-purchase.subscribe")
                 }
             }
             if subscription?.renewalProvider == "storekit" {
-                Link("Manage Apple subscription", destination: URL(string: "https://apps.apple.com/account/subscriptions")!)
+                Link(String(localized: "Manage Apple subscription"), destination: URL(string: "https://apps.apple.com/account/subscriptions")!)
             }
             Button {
                 Task { await purchase.restore() }
             } label: {
-                Label(purchase.pending == nil ? "Restore purchases" : "Check pending purchase", systemImage: "arrow.clockwise")
+                Label(purchase.pending == nil ? String(localized: "Restore purchases") : String(localized: "Check pending purchase"), systemImage: "arrow.clockwise")
             }
             .disabled(purchase.busy)
             .accessibilityIdentifier("apple-purchase.restore")
@@ -57,11 +59,11 @@ struct ApplePurchaseSection: View {
     }
 
     @ViewBuilder private var policyLinks: some View {
-        Link("Terms", destination: RilloraLegalURLs.subscriptions)
+        Link(String(localized: "Terms"), destination: RilloraLegalURLs.subscriptions)
             .fixedSize().frame(minHeight: 44)
-        Link("Privacy", destination: RilloraLegalURLs.privacy)
+        Link(String(localized: "Privacy"), destination: RilloraLegalURLs.privacy)
             .fixedSize().frame(minHeight: 44)
-        Link("Refunds", destination: RilloraLegalURLs.refunds)
+        Link(String(localized: "Refunds"), destination: RilloraLegalURLs.refunds)
             .fixedSize().frame(minHeight: 44)
     }
 }
