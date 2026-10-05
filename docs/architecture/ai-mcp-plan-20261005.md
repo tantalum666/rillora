@@ -4,7 +4,7 @@ Role: future integration architecture proposal and implementation handoff
 Authority scope: AI-facing API boundaries, phased work packages and acceptance criteria  
 Status: PROPOSAL / DOCUMENTATION ONLY — NOT IMPLEMENTED  
 Last updated: 2026-10-05 (Asia/Hong_Kong)  
-Official-source check: 2026-10-04 UTC / 2026-10-05 Asia/Hong_Kong  
+Official-source check: original sources 2026-10-04 UTC; MCP Events addendum 2026-10-05 UTC / Asia/Hong_Kong  
 Source baseline: `2cc95f77c1279bdad43547b7e58a8faca9da7a93` on `codex/strict-review-20261002`  
 Delivery branch: `codex/ai-mcp-plan-20261005`
 
@@ -15,7 +15,8 @@ Delivery branch: `codex/ai-mcp-plan-20261005`
 Owner 提出以后用户应能通过 AI 使用 Rillora，并要求“整理好也推到git去”。本轮交付是计划与 Git 保存，不是开始运行时开发的证明，也不扩展为创建凭据、配置 Auth0、开放用户数据、上线服务、上架提交或合并其他分支。
 
 - 本文的工具、scope、接口路径、阶段划分及预算控制均为待实施设计；除明确标记“现有”者外，不得写成已实现
-- 已核对基线仍为上述 strict-review SHA；仓库代码、运行部署与真实用户验收是三类证据
+- 源码映射固定在上述 strict-review SHA，不宣称它仍是活动实现分支最新 head；仓库代码、运行部署与真实用户验收是三类证据
+- 2026-10-05 Owner 要求补入 MCP Events；本次从文档分支已验证的 `554575405f8bb10bb8041fe02f473221184f8ed5` 继续，不合并后续 strict-review 或本地化分支
 - 实施前重新读取 [产品宪章](../product.md)、[当前交接](../handoff.md)、[信任边界](../trust-safety-legal.md) 与当时最新官方规则
 - 保持“地图而非密码”；AI 不获得遗嘱执行权、账号所有权、恢复权或转账权，不依据未登录/失联自动判定死亡或释放资料
 - 保留 Web/iOS 核心闭环、现有定价与共享权益；不因增加 AI 入口降低已有平台能力
@@ -68,6 +69,10 @@ REST/JSON + OpenAPI 是建议的接口契约底座；MCP 是面向支持该协�
 - 只开放小字段摘要、已授权范围内的待补信息及官方指南；具体指南依现有产品规则仍在登录后读取，不借 MCP 改为匿名公开
 - 安装与调用在支持的开发者模式完成；不要把开发者模式等同于安全审查
 - 完成标准：本计划认证、隔离、撤销、输出最小化、失败行为与只读测试通过；生产真实数据试点需要独立披露与适用审核
+
+### P1E：可选 Events（在 P1 稳定后）
+
+先预留领域事件/outbox、带权限订阅和投递适配器；首个候选是复核到期，具体方案与 EVT 验收见第 15 节。此阶段可独立排期，不成为 P2 或当前产品首发的强制前置。事件抵达不等于后续动作已获批准或执行成功。
 
 ### P2：草稿/建议与有限确认写入
 
@@ -137,7 +142,7 @@ REST/JSON + OpenAPI 是建议的接口契约底座；MCP 是面向支持该协�
 - Matter 标题、位置、Notes、指南外链内容、导入文件、搜索结果和工具返回文本均视为不可信数据；其中的“忽略权限”“发送给某地址”等文字不能成为指令
 - 不让模型提供任意 SQL、URL、owner ID、字段路径或服务器模板。所有 filter/sort/patch 字段白名单化；拒绝未知参数，限制长度、数组大小和分页
 - 默认不返回 raw Notes，输出使用专用 DTO；不能把“模型会保密”当字段隔离
-- 禁止通用 HTTP proxy、任意远程文件抓取与模型指定 webhook；未来如需引用外部资源，先加入受控解析、出站目的地与 SSRF 保护
+- 禁止通用 HTTP proxy、任意远程文件抓取与模型指定 webhook；第 15 节只为经认证协议提供且完成验证的 Events callback 定义受控例外，仍禁止任意模型目的地。未来如需引用其他外部资源，先加入受控解析、出站目的地与 SSRF 保护
 - 模型决定“想做什么”，服务端决定“允许做什么”；每次工具处理器独立授权，不能因为前一个工具成功就放行后一个
 - 不读取或拼接完整聊天历史，只接收完成该用例必需的结构化输入；默认不记录 raw prompt/response
 - 工具错误不暴露 SQL、内部账号、tenant、堆栈、令牌或隐藏对象存在性；内部 debug correlation 与模型可见业务响应分开
@@ -236,6 +241,7 @@ MCP 协议错误与业务错误分开；工具正常执行但业务拒绝时返�
 | C1 应用服务抽取 | 从现有路由抽取选定只读领域用例，共享原权限/事务层 | Web/iOS 行为对等；现有相关测试与跨用户新增回归通过；无 UI/权益改变 |
 | C2 委托授权 | OAuth metadata/校验、连接同意/撤销/expiry、最小 grant、client attribution | AUTH/ACL/REVOKE 通过；合成账户验证；生产凭据/持久访问变更另外获授权 |
 | C3 只读 MCP | 版本化 MCP server、少量 schema、准确 annotations、DTO、限流/错误 | P1 工具全部契约/负例通过；实际客户端连接可复现；禁限动作不可达 |
+| C3E 可选 Events | P1 后的 review.due、outbox、订阅/回调验证、签名投递、撤销/重试 | 第 15 节 EVT-01–12 验收；未实现；不新增当前首发门 |
 | C4 Proposal 与确认写入 | 独立 proposal、可信 review、绑定确认、幂等/版本冲突/事务审计 | WRITE/RACE/RETRY 通过；初期不向接收人静默共享新正文；取消不丢草稿 |
 | C5 安全与运维 | Prompt-injection/数据外泄测试、隐私说明、报警/配额/开关/回滚 | DATA/INJECT/CRYPTO/OPS/PRIVACY 通过；真实数据试点范围明确 |
 | C6 目录候选 | 稳定 HTTPS、包/metadata、测试账号、演示、正/负例和公开法律/支持链接 | 所有当时必需项独立检查；扫描结果已处理；提交/发布按后续授权执行 |
@@ -272,9 +278,108 @@ MCP 协议错误与业务错误分开；工具正常执行但业务拒绝时返�
 - **O7** [Responses API MCP servers](https://developers.openai.com/api/docs/guides/tools-connectors-mcp)：模型侧调用、审批/认证边界与 token 计费说明
 - **O8** [Remote MCP server review requirements](https://developers.openai.com/plugins/deploy/app-review)：私用/公开区分、公开端点与发布发现；遇到提交流程差异以 O6 最新页面为准
 
+- **O9** [MCP Events](https://developers.openai.com/plugins/build/mcp-events)：2026-10-05 UTC 实际核对的 Events 集成/生命周期/客户端支持；页面链接的 MCP Events 协议参考仍标 draft，实施前复核
+
 ## 14. 本轮完成与未完成
 
-本轮完成：当前官方资料核对、既有源码/产品约束映射、分期接口方案、风险与验收矩阵、Codex 任务及文档 Git 保存。远端回读结果另见 [文档 QA](../qa/ai-mcp-plan-20261005/README.md)。
+本轮完成：当前官方资料核对、既有源码/产品约束映射、分期接口方案、风险与验收矩阵、Codex 任务及文档 Git 保存；后续补入第 15 节可选 Events 章节、12 组验收与 P1E/C3E 任务。远端回读结果另见 [文档 QA](../qa/ai-mcp-plan-20261005/README.md)。
 
 本轮未执行：产品代码、数据库迁移、Auth0 配置、凭据/令牌创建、连接授权、MCP 部署、真实数据传给模型、OpenAI 提交、收费、合并或部署。所有验收矩阵仍为 TODO。没有把既有 CI 或部署证据写成本方案功能已完成。
 
+## 15. 可选 MCP Events：事件订阅与投递（未实现）
+
+Events addendum checked: 2026-10-05 UTC / Asia/Hong_Kong  
+Status: OPTIONAL PROPOSAL — NO EVENT RUNTIME, SUBSCRIPTION OR DELIVERY CREATED
+
+Owner 提供 [MCP Events 官方文档](https://developers.openai.com/plugins/build/mcp-events)并要求补入本计划。本章细化架构预留；不把事件支持新增为当前首发门，不改变前文只读优先或写入确认边界。
+
+### 15.1 定位、兼容性与首个场景
+
+Events 解决“选定对象发生变化时通知已订阅的 AI 客户端”，与 AI 主动调用 Rillora 工具互补。它不是定时器、短信/系统推送承诺、权限执行器或身后披露触发器。
+
+当前官方支持范围为 Web Work、桌面 Work 且选择 Cloud，以及 dots，受工作区控制。该集成要求 MCP 2.0 / 协议版本 `2026-07-28`；支持 webhook 与 callback verification，不支持 polling、streaming 或草案的 `gap`/`terminated` 控制通知。官方链接的协议参考标为 draft/design sketch；不能把它说成整个产品处于 beta，也不能推定所有移动聊天或 MCP 客户端支持。实施时重新核对协议/SDK/客户端版本。[O9]
+
+**项目建议：P1 只读 MCP 稳定后，增加独立可选 P1E；先试 `review.due` 一个场景。** 复核的日期、时区、到期计算、改期与撤销由 Rillora 自身持久化状态和调度执行；MCP 只传递已发生、仍相关的到期事实。尚未实现 Rillora 的可靠时钟/调度与去重之前，不能把“已订阅事件”说成“会准时提醒”。
+
+### 15.2 领域事件、订阅与投递分层
+
+以下均为拟议模块，不是现有表、worker 或接口：
+
+1. **领域事件/outbox**：业务事务提交后记录最少事件元数据；与真实状态变化原子一致，事务回滚不发事件。到期调度有单独业务去重键，改期/完成复核后旧到期事件不得继续触发提醒
+2. **订阅登记**：保存认证 user/client/connection/grant、精确事件与筛选范围、已验证 callback、受保护签名材料、有效期及状态。事件目录与订阅操作均受当前用户/生产准入/对象权限约束
+3. **投递适配器**：从 outbox 找到仍有效的订阅，重新授权并投影最小 payload，签名、投递、记录有界重试/结果。协议适配不直接获得数据库/KMS 管理权
+4. **AI 后续读取/行动**：事件只提供线索；通过原有只读工具查询当前获准状态。后续写入继续经过 proposal、可信确认、版本/幂等和服务端授权；订阅不等于预先批准未来所有动作
+
+| 拟议事件 | 触发与范围 | 初始最小业务 payload |
+| --- | --- | --- |
+| review.due | 用户已选择的复核对象到期，且当前仍未完成/改期；P1E 首个候选 | 受订阅范围限制的 opaque review ID、revision |
+| matter.updated | 明确选定事项的可获准版本变化；后续候选，需防止隐藏字段变化泄露 | opaque matter ID、对该订阅可见的 revision |
+| proposal.created | 独立 proposal 已保存并需要本人查看；待 P2 存在后再评估 | opaque proposal ID、revision |
+
+事件名为设计示例。MCP 信封使用协议要求的 event ID、事件名、发生时间等；业务字段放在 `data`。不随事件发送 title、Notes、正文、金额、联系人、能力链接、恢复钥匙或完整差异；opaque ID 也须对象授权，不能当作匿名或公开信息。
+
+`matter.updated` 的“可见 revision”需要定义：只改了订阅者无权知道的字段，不应通过更高版本号或新事件泄露该变化。跨用户隐藏对象、Never disclose、归档/暂停/撤销等按当前政策抑制，而不是发送一条“你无权访问的事项变了”。
+
+### 15.3 订阅、续期与撤销
+
+协议使用与工具相同的已认证 MCP endpoint，能力发现与 `events/list` 仅展示当前账号有权发现的事件；`events/subscribe` 创建/续期，`events/unsubscribe` 停止订阅。事件定义分别声明筛选输入与 payload schema。[O9]
+
+项目授权设计：
+- 订阅作为长期数据分享单独同意：谁接收、哪些事件/对象/字段、用途、期限与停用入口；不把“登录 Rillora”当订阅授权
+- 拟议 `events:subscribe` 仅为能力 scope，还要逐对象与字段 grant；续期不能扩大筛选范围或复活已撤销权限。不同 AI 连接的订阅、回执、游标与签名材料隔离
+- 按规范用认证 principal、callback、事件名与 canonical arguments 的身份实现幂等；Rillora 的 principal/内部绑定还要区分 client/connection，防止同用户的第二条窄授权连接接管宽授权订阅
+- 订阅状态跨重启保留。事件身份相同的重复请求更新现有订阅；筛选参数键顺序变化不产生重复订阅。callback 改变要按新目的地验证，不能继承旧验证
+- 有界默认有效期，按返回的 `refreshBefore` 执行到期停发；`ttlMs`/无期限请求按当前规范处理，不能暗中把用户要的短授权变成长授权。第一版建议不授予无期限订阅
+- 每次初次投递、重试和可选重放前重新检查连接、对象、grant/策略版本、有效期及当前生产准入；权限不足即停止该目的地的待投递/重试任务
+- unsubscribe 要鉴权且幂等，只能停止相应账号/连接的匹配订阅。断开账号、撤销 grant、过期或对象不再可见，均停止后续投递；已排队但未发出的也不能漏发
+- 撤销与发送建立明确串行化/检查边界；已经发到对方或在途的副本不能承诺召回。事件中的“撤销通知”不是撤销生效机制，原 API 权限立即按当前状态拒绝
+- 续期若替换签名 secret，按 Standard Webhooks 的短暂双签轮换处理；旧 secret 窗口有界，不能无限保留 [O9]
+
+### 15.4 Callback 验证、安全例外与签名
+
+前文禁止的是模型任意指定外发 webhook。本章只有一个狭窄例外：**经过认证的 Events 协议订阅请求提供、完成验证并绑定到该连接的 callback**。它不成为通用 HTTP 工具，也不允许事件/Notes/模型输出改写目的地。
+
+- 激活前执行已签名、单次且短期 challenge；成功响应及 challenge 校验通过后才允许业务 payload。验证失败保持不活跃，返回协议对应错误；缓存验证仅在有界的相同认证 principal/callback 范围内
+- callback 必须 HTTPS；每次建立连接时解析/验证目的地址，阻断 loopback、私有、link-local 与其他非公网地址，禁止重定向，实际连接到通过检查的地址并保留原 hostname 做 TLS 校验。验证请求、正常投递、重试均使用同一 SSRF 防线
+- callback 地址与 signing secret 只从受校验的订阅协议对象取得；secret 按规范校验格式/长度后受保护保存，不进入模型工具输出、日志或 Git。本轮没有生成、接收或配置任何 secret
+- 按 Standard Webhooks 签名准确请求字节；设置协议要求的 webhook ID、签名时刻、签名和 subscription ID 标头，保持信封 event ID 与 webhook ID 一致。正文序列化后不得再被 middleware 改写
+- 密钥轮换、失败分类、日志脱敏与最小留存要有合成测试；不要用“有签名”替代用户授权、目的地验证和反重放检查 [O9]
+
+### 15.5 投递语义与异常恢复
+
+官方明确：每请求一个事件，完整请求体最大 256 KiB；`2xx` 仅确认 webhook 收到，后续处理异步。暂时失败有界指数退避；重试保留 event ID，重新生成签名时刻/签名；`410`、`413` 不重试。事件可能乱序；写工具必须幂等。Replay 是可选能力；未实现时 `cursor: null`，不能承诺补回断线期间事件。[O9]
+
+Rillora 的建议实现：
+- 区分 domain-committed、queued、receipt-accepted、failed/expired/cancelled 与实际用户任务结果；收到 2xx 后不能因看不到 AI 回复而盲目重发
+- 一份领域事件可对应多条各自授权的投递记录；去重以订阅/连接与稳定 event ID 为界，不能把其他接收端的成功误当成本端成功
+- 乱序或重复到达只触发当前状态读取；旧 revision 不覆盖新数据，不把事件旧内容当作最新事实。保留原先写工具的精确确认与幂等回执授权
+- 410/413 分别记入可诊断的终止/体积失败处理；不由一次失败自动撤销所有用户连接。压缩或丢字段也不能绕过 schema/披露合同，正常 payload 应远小于上限
+- 本期先不提供历史 replay；未来若开启，游标要有范围绑定、不跳过尚未投递项，并在历史不足时真实报告 `truncated`；重放仍检查当下权限，不能泄露撤销前旧范围。gap/terminated 不在本集成可用恢复机制中
+- 事件导致 AI 写入、写入再产生事件时，要用内部 causation/operation 关联、幂等、去抖与次数/速率上限防反馈循环；内部关联记录默认不出站。首次试点不允许事件直接触发自动写入
+- 每 user/client/subscription 设有界积压、并发、重试窗口、速率与预算；事件风暴可暂停适配器而不影响 Rillora 核心业务。不能把它设为关键到期/安全通知唯一通道；Rillora 内可核验的到期状态与用户原已授权提醒路线单独负责
+- 通知与事件文本始终是不可信数据；不嵌入要求模型改权限、执行命令或给第三方发资料的行为指令
+
+### 15.6 验收增补（全部 TODO）
+
+| ID | 场景 | 完成标准 |
+| --- | --- | --- |
+| EVT-01 | 协议/客户端能力发现、目录重扫 | 在文档列明的真实客户端逐一验证；不支持时明确降级，不伪装已订阅 |
+| EVT-02 | A/B/C、不同连接、隐藏对象与筛选条件 | list/subscribe/renew/unsubscribe 无越权；只投递被授权且匹配的事件，无隐藏数量/版本侧漏 |
+| EVT-03 | 同身份重复订阅、参数键顺序、重启/续期/过期 | 订阅幂等、持久；到期停发；刷新不扩权，无期限请求正确处理 |
+| EVT-04 | challenge 错误/重放/过期、错签名、旧/新 secret 轮换 | 未验证不发业务数据；轮换窗口有界，旧材料不会无限可用 |
+| EVT-05 | DNS rebinding、IPv4/IPv6 非公网、重定向、TLS 主机名不符 | 验证和每次发送均阻断；没有仅检查字符串 URL 的漏洞 |
+| EVT-06 | 订阅后缩权/撤销/断连；积压/正在重试/可选 replay | 当前权限再次检查；未发送队列停止，不复活旧 grant；不承诺在途副本召回 |
+| EVT-07 | 事务回滚、重复定时作业、到期前改期/完成、时区边界 | 不产生虚假/重复到期；只有仍相关的 review.due，时钟在 Rillora |
+| EVT-08 | 超时、5xx、410/413、256 KiB 边界、2xx 后 AI 未处理 | 正确退避/停重试/尺寸拒绝；保留 event ID 与新签名，不把送达当任务完成 |
+| EVT-09 | 重复/乱序/批处理风暴，AI 写入产生新事件 | 不重复写入/覆盖新状态/无限循环；批处理开启与关闭各测 |
+| EVT-10 | 未实现 replay 的断线，或将来游标历史不足/跨连接重放 | cursor/truncated 真实；不会跳过待投递或借历史泄密；漏事件不伪装已恢复 |
+| EVT-11 | 恶意 title/Notes/正文/回调提示、秘密扫描 | payload 只有允许的 opaque 引用/版本，未带正文或行为指令 |
+| EVT-12 | 关闭 Events/解除订阅/恢复服务 | 核心 Web/iOS/只读 API 与关键权限独立有效；原已授权提醒不依赖 MCP 单通道 |
+
+### 15.7 Codex 可选任务与 Done
+
+新增 **C3E（依赖 C0–C3 和 P1 验收）**：先交付事件 schema、review.due 领域时钟/outbox、connection-scoped subscriptions、验证/签名 delivery adapter、停用/撤销/重试与可观测性。matter.updated 与 proposal.created 留作后续候选，不要求同批上线。
+
+Done = EVT-01–12 按范围有实际证据 + 与既有 AUTH/ACL/REVOKE/INJECT/RETRY 验收联测 + 官方当前协议/客户端重新核对 + 专用合成账号端到端。若要接真实数据或创建持久连接/凭据，按独立授权与隐私要求执行。公开工具/events 改变后还要重新扫描；扫描、生产部署和目录发布仍是分开的步骤。[O9]
+
+本次只把上述内容纳入同一文档分支；没有新增事件表、定时作业、outbox worker、订阅、callback、签名密钥、webhook 投递、持续权限或通知任务。
