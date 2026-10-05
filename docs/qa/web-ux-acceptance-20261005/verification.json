@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "verified_at_utc": "2026-10-04T19:39:24Z",
+  "repository": "tantalum666/rillora",
+  "branch": "codex/web-ux-acceptance-20261005",
+  "base_commit": "2cc95f77c1279bdad43547b7e58a8faca9da7a93",
+  "verified_evidence_commit": "e3835d198359e257f20cddf0c39de1c6b4ed563f",
+  "verified_evidence_tree": "e9723916802679b58e7c438a37cb4040c62799c8",
+  "remote_readback": {
+    "file_count_before_receipt": 22,
+    "screenshot_count": 13,
+    "manifest_file_blob_mismatches": 0,
+    "changes_limited_to": "docs/qa/",
+    "other_branches_unchanged": {
+      "codex/strict-review-20261002": "2cc95f77c1279bdad43547b7e58a8faca9da7a93",
+      "main": "3a5739ea87c022b390a39e05bebe4e0b1f17035a"
+    }
+  },
+  "ci": {
+    "workflow": "Verify source",
+    "run_number": 50,
+    "run_id": 37228860248,
+    "url": "https://github.com/tantalum666/rillora/actions/runs/37228860248",
+    "head_sha": "e3835d198359e257f20cddf0c39de1c6b4ed563f",
+    "status": "completed",
+    "conclusion": "success",
+    "updated_at": "2026-10-04T19:38:43Z",
+    "jobs": [
+      {
+        "id": 111514249861,
+        "name": "api",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 111514250032,
+        "name": "source",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 111514250035,
+        "name": "web-and-infrastructure",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "screenshot_coverage": {
+    "captured": 63,
+    "published": 13,
+    "private_excluded": 2,
+    "safe_captured_not_published": 48,
+    "binary_publication_stopped": true
+  },
+  "boundary": "CI applies to verified_evidence_commit only. This receipt-only follow-up changes documentation/metadata, skips CI, and does not deploy, merge, fix product code, certify full acceptance, or bypass screenshot publication limits."
+}
