@@ -3339,3 +3339,5 @@ placeholders,raw enums,privacy choices,prices and consent text remain. Existing 
 assertions are updated to the explicit glossary;permission/data assertions remain.
 - Remaining: final artifact/push receipts,broader matrix and live bilingual rollout;
 no personal deferral or optionalAIimplementation reopened. [Copy contract](../chinese-copy-guidelines-20261005.md).
+
+- Final publication:integrated source`747c98874`pushed with[CI56](https://github.com/tantalum666/rillora/actions/runs/37279020925)all3jobs successful. Raw-work-017/018fresh remote downloads pass decryption and exact object/catalog mapping. Copy-specific native21/UI2and Web162results remain separate from prior native215/1skip. Final receipts do not repeat builds,provider steps or deployment.

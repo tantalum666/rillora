@@ -58,3 +58,5 @@ Owner在Dot整合进行中明确要求“中文版的那些文字和文案你要
 原始逐条对照、变更账、编译/测试和截图在`output/qa/rillora-dot-followup-20261005/copy-review/`。新证据按[全量保存合同](source-control.md)独立追加，不覆盖先前raw-work-017。当前发布状态仍看[唯一交接](handoff.md)；本轮审校不等于真实用户理解研究、全部无障碍验收或线上中文已发布。
 
 October5最终文案检查：21项原生本地化、2项双语UI、Debug/Release编译、Web162及原生静态9项通过；旧法律7项验证沿用未变正文的检查点。当前Simulator安装的是本轮Debug双语QA版，未清Keychain，测试以临时未登录状态运行，截图后已停止。新原件见[文案保存包](../collaboration/verification/chinese-copy-20261005/README.md)。
+
+远端完成：整合源码`747c98874`的[CI56](https://github.com/tantalum666/rillora/actions/runs/37279020925)三项成功，中文追加归档018已从GitHub新下载并解密核验383对象/625路径。未部署，文案质量判断仍与真实用户理解研究分开。

@@ -19,3 +19,5 @@ Remote commit/CI and fresh new-archive recovery are recorded separately after pu
 The previous branch-specific CI results are not the integrated source's CI.
 
 Local verification passed: 1404 paths / 772 objects, 111,539,826 original bytes; new ciphertext 26,500,710 bytes. Exact snapshot interval and exclusions are retained in snapshot.json.
+
+Remote readback completed at`747c98874b8517a5f41c1a6293ed6ca0eb4ee3a8`. The new archive was freshly downloaded into separate LFS storage and every object/path decrypted and verified; [receipt](remote-readback.json). [CI56](https://github.com/tantalum666/rillora/actions/runs/37279020925) passes all three jobs for the exact integrated source commit. Final metadata updates use[skip ci]and do not claim another native/product test or deployment.

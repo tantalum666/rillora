@@ -25,6 +25,10 @@ Chrome exercises Chinese/English public pages,entry,drafts,confirmation and focu
 - Existing Account selectAccount=true and native export reauthentication fixes remain.
 AI/MCP/Events remains documentation only and does not become a first-launch prerequisite.
 
+- Published integrated source`747c98874`has[CI56](https://github.com/tantalum666/rillora/actions/runs/37279020925)success in all3jobs.
+Archives17/18were newly downloaded from GitHub and decrypted/verified (1,404/772and625/383
+paths/objects); final receipts are metadata only. Original Dot/strict-review/main refs remain.
+
 ## Evidence boundaries and retained decisions
 
 Local bilingual source is not deployed or uploaded. Existing running API13/schema0093,

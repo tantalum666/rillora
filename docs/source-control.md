@@ -286,3 +286,5 @@ Keychain,provider session,real database or other project is included. Remote dow
 receipts are appended separately; no previous archive or deployment is repeated.
 
 Owner's subsequent Chinese copy request is preserved separately in [archive18addendum](../collaboration/verification/chinese-copy-20261005/README.md):625paths/383objects,25932470ciphertext bytes,locally decrypted/verified. Archive17remains immutable; original English/data/permission/price boundaries are retained.
+
+Both new archives have now been freshly downloaded from GitHub and decrypted/verified at`747c98874b8517a5f41c1a6293ed6ca0eb4ee3a8`:17covers1,404paths/772objects;18covers625paths/383objects. [CI56](https://github.com/tantalum666/rillora/actions/runs/37279020925)is successful for that exact integrated source. Prior archives/source branches and production remain unchanged.

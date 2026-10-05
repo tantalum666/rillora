@@ -17,3 +17,5 @@ no real consent,invitation,account deletion,purchase,provider configuration or d
 Remote commit/CI and fresh archive readback are recorded separately after publication.
 
 Local verification: 625 paths / 383 objects; 25,932,470 encrypted bytes, locally decrypted and verified.
+
+Remote readback completed at`747c98874b8517a5f41c1a6293ed6ca0eb4ee3a8`. The new archive was freshly downloaded into separate LFS storage and every object/path decrypted and verified; [receipt](remote-readback.json). [CI56](https://github.com/tantalum666/rillora/actions/runs/37279020925) passes all three jobs for the exact integrated source commit. Final metadata updates use[skip ci]and do not claim another native/product test or deployment.
