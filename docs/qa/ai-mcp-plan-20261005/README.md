@@ -72,4 +72,10 @@ CI 验证的是既有源码/出版保护与本次文档保存兼容性，不证�
 
 ### Events 增补最终回执
 
-待实际 Git 提交、不可变正文回读和本次 CI 终态后记录；未完成前不把这里当成功证明。
+- 实质增补提交：[`2fec00c39711f5a58512000170687d47c258d915`](https://github.com/tantalum666/rillora/commit/2fec00c39711f5a58512000170687d47c258d915)
+- 该 SHA 的计划、handoff、journey 与 QA 四份文档全部远端读回，正文逐字符一致；相对 `55457540` 的累计差异仅以上四个 docs 路径
+- 增补后主计划 385 行、47,671 UTF-8 字节；SHA-256 `05d65cd68fb482e908b2d24a3e8809a933814f7fd84701edd233f78335a058d7`；Git blob `7fdbb6a67f1cd5df858cc78f8bb32791d5781e03`
+- [Verify source #55](https://github.com/tantalum666/rillora/actions/runs/37264038784) 对准确增补 SHA 终态 success；source、api、web-and-infrastructure 三个 job 全部 success
+- 本条只补本次实际回执，按仓库惯例 `[skip ci]`；不宣称回执提交重跑了 CI，主方案正文不变
+- 所有 EVT 验收仍为 TODO；CI 只证明文档保存与既有源码保护/回归兼容，不证明 Events 已实现或收到真实事件
+- 没有更新其他分支，没有新增订阅、callback、签名凭据、outbox/调度运行、持续权限、通知、目录提交或部署
