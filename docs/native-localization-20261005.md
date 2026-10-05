@@ -1,7 +1,15 @@
 # 原生 iOS 中英双语界面与维护合同
 
-Status: CONSOLIDATED; XCODE BUILDS / UNIT / BILINGUAL UI SMOKE PASS; WIDER MATRIX PENDING; NOT DEPLOYED
-Last updated: 2026-10-05 (Asia/Hong_Kong)
+Status: BILINGUAL SIMULATOR MATRIX AND SYSTEM LANGUAGE PASS; NATIVE 1.0(5) UPLOADED; APPLE PROCESSING
+Last updated: 2026-10-06 (Asia/Hong_Kong)
+
+## October6 当前验收结果
+
+小屏 iPhone、大屏 iPhone 和 iPad 的中英文已登录横屏及最大辅助字号导出流程通过。系统审计的描述、文字裁切和点击区域三类问题均为零，没有忽略发现。修复限定为大字号多行标签与导出步骤的滚动起点，父级选择和恢复密钥状态保留。中英文共享/接受/错误接收人/撤销及加密导出密钥保留共 3 项回归通过。
+
+在本次独立模拟器的 iOS 设置中实际选择 English，两次不带语言覆盖参数的重新启动均保持英文，原测试事项继续可读。此项不是仅用 AppleLanguages 启动参数模拟偏好。系统设置与操作记录保存在 xcresult；未修改 Owner 原模拟器或 Mac 语言。
+
+原生 1.0(5) 已完成 Release 归档、导出、严格签名及配置/内容检查，实际上传成功，Apple 正在处理。原生源码指纹与归档输入一致。系统审计/可访问性标签检查不等于真机 VoiceOver 朗读和手势验收，后者随 Owner 暂缓的真机步骤保留。[当前完整证据](release-12-stripe-20261005.md)。下面各 October5 段落是有日期的历史检查点，不再表示当前未部署状态。
 
 ## October5 后续验收（进行中）
 

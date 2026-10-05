@@ -1,7 +1,13 @@
 # Web 中英双语界面与维护合同
 
-Status: CONSOLIDATED; LOCAL BUILD/TEST AND FOCUSED BROWSER ACCEPTANCE; NOT DEPLOYED
-Last updated: 2026-10-05 (Asia/Hong_Kong)
+Status: BILINGUAL BROWSER ACCEPTANCE AND RESTRICTED WEB/WWW DEPLOYMENT VERIFIED
+Last updated: 2026-10-06 (Asia/Hong_Kong)
+
+## October6 当前验收与部署
+
+中英文计划进度、准确的下一事项/准备状态焦点、恢复为私有草稿的活动记录均已通过真实浏览器合成数据验收。中文完整地图备份实际保存并重新打开，5 条事项和多行 Notes 原文保持；文件为 3,879 字节。Web 165 项和独立法律构建 7 项通过。
+
+受限 Web 的 86 个文件、官网的 31 个文件已部署并逐文件匹配构建 SHA256。正式官网和 Account 页实际中英文切换通过，没有溢出、损坏图片或控制台警告/错误；账户条款始终未预勾选。官网仍沿用已选 Preview 入口，未开放普通客户或收费。Rillora 当前 USD88.99 年付另已完成真实 Stripe TEST 托管付款、回程保留登录、拒付/取消/恢复/退款与权限回落验收。[当前结果及 TEST 边界](release-12-stripe-20261005.md)。以下 October5 段落保留为历史交付/验收检查点。
 
 ## October5 后续验收（进行中）
 

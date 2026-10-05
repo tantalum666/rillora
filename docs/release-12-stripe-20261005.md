@@ -1,7 +1,73 @@
 # Bilingual release acceptance and Stripe Web priority
 
-Status: IN PROGRESS
-Last updated: 2026-10-05 (Asia/Hong_Kong)
+Status: ACCEPTANCE AND RESTRICTED CLOUD ROLLOUT PASS; NATIVE5 UPLOADED; FINAL APPLE/GIT CLOSEOUT
+Last updated: 2026-10-06 (Asia/Hong_Kong)
+
+## October6 current result
+
+The work below continued across midnight. Source85d79c891 has actual CI57 success;
+the native accessibility repairs, final UI driver and provider fixture are the next
+source delta. The October5 checkpoints below are historical and do not override this
+section or the current handoff.
+
+- API400, focused restore14, Web165, isolated legal7 and infrastructure54 pass. Narrow
+  Web plan navigation/progress and private restore history repairs are implemented.
+  Actual bilingual browser progress, history, backup download and read-only reopening
+  pass; five synthetic matters and multiline Chinese Notes are retained byte-for-byte.
+- API14 is deployed 1/1 HEALTHY with completed rollout. Exact image digest:
+  `sha256:7d101420d19982d747438316833f769ff4998ebb0d735520cd97a14870fc30f1`.
+  Roles, secrets and the original three review identities/expiry match. No migration
+  ran; schema0093 is retained. Public health200 and unauthenticated private401 checks
+  pass. Web86/WWW31 deployed files match their built hashes. Actual bilingual rendered
+  pages pass; no console errors, broken images or overflow, and consent stays unchecked.
+- Native compact/large/iPad English and Chinese landscape roots and AX5 draft/printable
+  export pass. Adaptive multiline labels and export-step scroll reset repair observed
+  failures. Accessibility audits report zero issues for description, clipping and hit
+  region; nothing is suppressed. English/Chinese sharing and encrypted-key retention
+  regressions pass3/3. Actual iOS Settings preference survives two relaunches without
+  AppleLanguages arguments and retains the synthetic matter. Spoken VoiceOver/physical
+  use remains a separate device check under Owner's existing deferral.
+- Native1.0(5) archived/exported with exact production identity/configuration and
+  approved OS-only encryption metadata; strict signature, no debug entitlement/device
+  list/StoreKit fixture, bilingual bundles and unchanged privacy manifest pass. SHA256:
+  `46acd025c7187ce4fe7ac9a2808e7e1df5368b68db2dcb2493e9ded0cda2490b`.
+  Upload succeeded at2026-10-05T18:28:47Z; actual Apple list reports Processing.
+- Owner completed Rillora-only TEST CLI authorization. CLI1.53.0 works for
+  `acct_1U6B2RCxTlowhyiG`; MCP's current tool-unavailable result is not a CLI/login
+  failure. Existing restricted TEST key reused; no key/permission creation or FanPass use.
+
+## Actual USD88.99 Stripe Web TEST result
+
+The isolated loopback fixture uses the shipping cookie/CSRF, commerce and signature
+handlers with the official Stripe SDK and CLI relay. Its identity/consent rows are
+explicitly synthetic; it does not prove Auth0 login or human recurring-purchase consent.
+
+| Case | Observed result |
+| --- | --- |
+| Checkout cancel/return | Browser remains signed in and Free; Continue reuses the same Checkout. |
+| Official declined test card | Hosted checkout rejects it; app remains Free. |
+| Official successful test card | Stripe receives8899USD; app returns signed in with Family TEST throughOctober6,2027. |
+| Portal cancel at paid-period end | Paid access remains; cancel_at timestamp is respected even when cancel_at_period_end is false. |
+| Portal resume | cancel_at clears; one invoice/payment remains, without a second purchase. |
+| Full TEST refund | Stripe reports succeeded8899; app shows refunded and Free. |
+| Subscription termination | Exact TEST subscription ends, with no proration/new invoice; renewal disabled. |
+| Concurrent callbacks | Transient subscription_observation_busy503 is explicit; controlled retries of the same actual events apply. |
+| Signed duplicate | Original CLI-relayed bytes and original signature replayed within81seconds return200duplicate. |
+| Final app/provider reconciliation | Ten inbox events applied, one8899paid order, refunded entitlement override, renewal false, one linked actual refund. |
+
+Provider refund receipt `re_3UNFEMCxTlowhyiG0xIw2UEg` is the numeric amount authority.
+The adapter does not populate scaffold `commerce_refunds`; evidence is the provider
+receipt plus signed events/object linkage/access override, not a complete accounting
+ledger. No live charge, live billing configuration or complete live-operations acceptance
+is claimed. Earlier68/7.99 TEST results remain unchanged historical evidence.
+
+## Evidence and closeout
+
+`output/qa/rillora-release-12-stripe-20261005/README.md` maps exact passed replacement
+runs and all failed attempts. No product suite/deployment/old store upload is repeated
+for documentation. Final new archive/remote receipts and Apple processing/notes follow
+as separate results. Credentials, auth screens, cookies, raw signed events and vendor
+documentation caches are excluded from Git; eligible originals remain additive.
 
 Owner explicitly requests completion of the current launch packages1and2,then prioritizes
 Stripe/Web acceptance over Apple physical-device transactions. Keep WebUSD88.99annual,
@@ -80,3 +146,14 @@ actions complete;this initial plan is not verification,deployment,payment or sto
 Artifacts: `output/qa/rillora-release-12-stripe-20261005/`. Existing true production/user
 results remain at their earlier checkpoints; these new results are local/synthetic unless
 explicitly identified as a cloud readback.
+
+## Later October5 checkpoint
+
+Source85d79c891is pushed; actual GitHub CI57completed successfully in2m12s. The new
+APIimage-only rollout is now in progress, issued once with previous parameters. There
+is no migration execution. Chinese compact AX5 audit passes without excluded findings;
+English landscape passes, while the export test identified carried-over scroll position
+between Format/Save. The step now starts at the top without replacing parent export
+state; its targeted test is running. Actual Chinese backup was reopened as a read-only
+five-matter copy with the original Notes. Owner requested another Stripe retry; MCP
+still401, CLI unauthenticated, and no new CLI grant was approved.

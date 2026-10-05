@@ -1,6 +1,6 @@
 # Digital Legacy Ongoing Project Journey
 
-Last updated: 2026-10-05 (Asia/Hong_Kong)
+Last updated: 2026-10-06 (Asia/Hong_Kong)
 
 ## 记录范围
 
@@ -3363,3 +3363,25 @@ submission/review and final customer cutover. No new login,provider check,test o
 - 判断变化：旧Stripe托管付款没有当前登录Web回程证据；官网存储清单漏记已实现的语言偏好；AX5系统审计发现普通截图不易发现的多行Label问题。插件重连后仍401，后台登录实际有效，不能混称Owner未登录。
 - 结果：API400/归档恢复14、Web165及独立法律7、infra54通过；浏览器进度/恢复活动与3879字节合成备份核对成功。受限API模板审阅为仅三镜像更新，没有部署/迁移/购买。
 - 未完成：原生审计修复复测、更多设备/语言/共享/系统偏好、受限部署与新候选上传、当前88.99Stripe端到端TEST及独立live门。旧真机/删除/经营事实暂缓保持。详见[当前合同](../release-12-stripe-20261005.md)。
+
+## 2026-10-06 — Current-price Stripe Web and bilingual rollout completed
+
+- Goal: finish the independently executable acceptance/rollout and test current StripeWeb.
+- Attempt: recover the specifically approved CLI handshake; use official Rillora TEST
+Checkout/Portal with a separate real-cookie/CSRF fixture; complete current device/language
+matrix and retain every failed iteration. Deploy reviewed API14/Web/WWW and upload5once.
+- Judgment changes: CLI polling must complete while the code is valid; an authenticated
+Dashboard does not by itself install CLI credentials. Stripe period-end cancellation can
+use cancel_at while cancel_at_period_end is false. Transient concurrent callbacks503need
+explicit recovery evidence. Refund event/object linkage is present, but commerce_refunds
+is scaffold and cannot be represented as a full accounting ledger. Native iPad tabs and
+disabled-control hit testing needed correct system-aware test drivers; actual AX5 label
+and step-scroll problems needed product fixes.
+- Result: current8899hostedTESTpayment/refund/cancel/resume/duplicate flow and10applied
+events, Family→Free and no renewed subscription. Native18case/configuration outcomes
+pass, including actual Settings→two launches with data retained. API14healthy/schema93
+unchanged;86Web/31WWWfiles match and bilingual render checks pass. Signed1.0(5)uploaded;
+Apple processing and additive Git/remote proof are being closed out separately.
+- Remaining: spoken VoiceOver/physicalApplepurchase, Owner-retained deletion, merchant/
+live/market/price facts, final store review and customer cutover. No deleted account,
+real charge, tester invite or public launch claim. [Exact evidence](../release-12-stripe-20261005.md).

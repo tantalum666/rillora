@@ -2,9 +2,24 @@
 
 Role: current launch scope, remaining work and release evidence contract  
 Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; ORDINARY CUSTOMER ACCESS AND SALES CLOSED
-Last updated: 2026-10-05 (Asia/Hong_Kong)
+Last updated: 2026-10-06 (Asia/Hong_Kong)
 
-## October5 after Dot integration and Chinese copy — current inventory
+## October6 selected packages1/2 and Stripe Web — current inventory
+
+The narrow remaining Dot fixes and bilingual Web/WWW are now deployed with API14,
+unchanged schema0093 and the original three expiring reviewer identities. Local source,
+actual cloud hash/health checks and bilingual rendered checks pass. Native compact/large/
+iPad English/Chinese landscape, AX5, sharing/export and actual system-language persistence
+checks pass. Native1.0(5) uploaded successfully; Apple processing/notes closeout continues.
+[Current exact results](release-12-stripe-20261005.md).
+
+Current88.99StripeWeb hosted TEST purchase/cancel/decline/return, Portal cancellation/
+resume, full refund, permission downgrade and signed-event duplicate handling pass using
+shipping cookie/CSRF middleware. The isolated identity and consent are synthetic; live
+merchant facts, human live consent/charge and cloud live billing remain separate gates.
+Spoken VoiceOver and actual physical-device use remain unverified under the device deferral.
+
+## HISTORICAL — October5 after Dot integration and Chinese copy
 
 The current integrated source747c98874hasCI56success and final receipts throughaf34fd1be.
 Dot's four branches and the latest account-choice/export fixes are preserved together.
@@ -125,24 +140,24 @@ required approval for the Owner-selected sender.
 
 <a id="october1-remaining-work-inventory"></a>
 
-## October5 remaining-work inventory
+## October6 remaining-work inventory
 
 The12register gates are grouped into seven current work packages below. Two register gates
 are verified; the remaining states are deliberately unchanged. This is not a completion
-percentage. Package1and2are independently executable; existing personal deferrals remain.
+percentage. Packages1/2 now have the completed results below; existing personal deferrals remain.
 
 | # | 工作包 | 还需要完成 | 依赖 |
 | --- | --- | --- | --- |
-| 1 | 新版双语与剩余体验验收 | 完成iPad/大字号/横竖屏/VoiceOver/系统语言持久化及已登录共享、文件路径；处理影响首发的Dot剩余问题（计划下一步导航、英文导出入口、恢复历史观察等）。 | Agent可继续，真实本人认证只在实际需要时交回。 |
-| 2 | 最新版本的受限部署与发行候选 | 将747c98874整合后的Web/WWW更新到受限环境，制作并上传匹配双语修复的iOS候选，再做部署后关键路径核对。既有API13/schema0093不因接手重复部署。 | Agent可继续；沿用现有授权、真实数据及受限边界。 |
-| 3 | 真机与Apple真实沙盒交易 | 完成实际安装、登录返回及购买/恢复，再验证续费、退款、到期和服务器权益/对账。已有Apple TEST不代表真实购买。 | Owner仍暂缓真机；恢复后处理本人Apple交互。 |
+| 1 | 新版双语与剩余体验验收 | 本轮独立工作已完成：小屏/大屏/iPad、中英文横屏、最大辅助字号、共享/文件、系统语言重启持久化，以及计划下一步和恢复历史修复均有通过证据。真机 VoiceOver 朗读/手势仍未验证。 | 剩余真实辅助技术检查随 Owner 暂缓的真机步骤。 |
+| 2 | 最新版本的受限部署与发行候选 | API14、Web86/WWW31文件已部署并核验；1.0(5)已上传，等待本轮Apple处理状态/说明最终回读与Git归档。 | Agent收尾；不重复旧部署或上传构建4。 |
+| 3 | 支付生命周期与真机 | 当前88.99StripeWeb TEST闭环已通过。Apple实际安装/登录/购买/恢复及生命周期仍未完成；Web live收款单列第5项。 | Owner仍暂缓真机；TEST不是实际收费或完整会计账本。 |
 | 4 | 账号删除真实验收 | 实际不可撤销删除与身份/数据清理尚未执行。Owner明确保留原独立测试账号；不以导入/恢复成功代替删除成功。 | Owner暂缓；未经新的明确指令不重启删除。 |
 | 5 | 经营、市场、最终价格与正式收款 | 补齐Owner暂缓的经营/登记/税务事实，核对正式收款与真实支付退款，确认首发市场和Apple最终渠道价；SBP只有申请回执，批准/生效证据需核对。WebUS$88.99/年保持。 | Owner事实/决定、provider结果，随后Agent执行。 |
-| 6 | 最终商店申报、审核与发布 | 基于最终候选核对隐私/年龄/联系信息/市场/价格及可用审核访问；提交App Review并处理反馈，审核后手动发布。构建4、六张设计图和已确认加密声明保留，不重复上传/确认旧项。 | Agent准备；必要本人声明与Apple审核独立。 |
+| 6 | 最终商店申报、审核与发布 | 基于最终候选核对隐私/年龄/联系信息/市场/价格及可用审核访问；提交App Review并处理反馈，审核后手动发布。新构建5、六张设计图和已确认加密声明保留，不重复上传/确认旧项。 | Agent准备；必要本人声明与Apple审核独立。 |
 | 7 | 公开客户切换 | 上游验收完成后退役Preview/旧凭据，按已测24小时旧令牌有效期加时钟容差执行切换和负面检查，再开放普通客户与已验收收费渠道。 | 前述发布条件完成后Agent受控执行。 |
 
-The earlier repaired API13/schema0093and Web5714ec158are retained dated deployments;
-latest processed store1.0(4)predates the new bilingual source. The six designed English
+The earlier API13/Web5714ec158 and store1.0(4) remain dated artifacts; currentAPI14,
+localized Web/WWW and the uploaded1.0(5) are separately verified above. The six designed English
 store images and approved OS-only encryption metadata are retained. Actual device use,
 purchase/restore,submission,approval and public availability remain separate outcomes.
 

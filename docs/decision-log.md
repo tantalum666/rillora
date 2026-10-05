@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-05 (Asia/Hong_Kong)
+Last updated: 2026-10-06 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -3145,3 +3145,18 @@ mislabel them current88.99signed-inbrowser orlivecharge acceptance.
 - Default project authorization continues. Physicalphone/account-deletion/merchant fact
 choices are not silently reopened;provider authentication only on observed expiry.
 [Execution contract](release-12-stripe-20261005.md).
+
+## 2026-10-06 — Rillora-only TEST CLI approval and current-price acceptance
+
+- Owner explicitly completed the new Rillora CLI device authorization after the earlier
+code expired. Scope is only the existing Rillora account/testmode; no FanPass/live grant.
+Reusing this valid credential needs no repeated login request. Existing restricted TEST
+key was reused without new permission or key creation.
+- Current88.99hosted browser/TEST lifecycle is executed under the selected payment scope.
+Synthetic cookie identity/consent is labelled; human consent, live money, cloud live
+callbacks and a complete accounting ledger are not inferred from it.
+- Agent fixes observed native AX5 label/scroll issues within standing repair scope and
+uses only task-created simulators for actual OS-language acceptance. No new UI direction,
+price, sharing permission or data policy. Existing deletion/phone/merchant deferrals remain.
+- New1.0(5) retains the previously approved OS-only declaration because cryptography has
+not changed. Upload is authorized distribution preparation, not App Review or public release.

@@ -310,6 +310,9 @@ struct StartHerePreviewView: View {
             }
         }
         .rilloraStructuredList()
+        // A new step starts at its instructions; export state belongs to this view,
+        // outside the Form, so audience, format and recovery-key state are retained.
+        .id(exportStep)
         .toggleStyle(RilloraAcknowledgementToggleStyle())
         .animation(reduceMotion ? nil : .easeOut(duration: 0.2), value: exportStep)
         .onChange(of: exportFormat) { _, _ in
@@ -533,8 +536,16 @@ struct StartHerePreviewView: View {
                     icon: Image(systemName: "doc.text")
                 )
             ) {
-                Label(String(localized: "Share or print guide"), systemImage: "square.and.arrow.up")
-                    .frame(maxWidth: .infinity, alignment: .center)
+                Group {
+                    if dynamicTypeSize.isAccessibilitySize {
+                        Text(String(localized: "Share or print guide"))
+                            .fixedSize(horizontal: false, vertical: true)
+                    } else {
+                        Label(String(localized: "Share or print guide"), systemImage: "square.and.arrow.up")
+                    }
+                }
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity, alignment: .center)
             }
             .buttonStyle(RilloraPrimaryActionButtonStyle())
             .accessibilityIdentifier("start-here.share")

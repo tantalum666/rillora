@@ -2,7 +2,25 @@
 
 Role: focused ordinary Web purchase, consent and provider-isolation contract
 Status: SOURCE AND LOCAL LIFECYCLE VERIFIED; CLOSED WEB DEPLOYED; LIVE BILLING NOT CONFIGURED
-Last updated: 2026-09-26 (Asia/Hong_Kong)
+Last updated: 2026-10-06 (Asia/Hong_Kong)
+
+## October6 current-price browser TEST acceptance
+
+The existing Rillora account's USD88.99 annual TEST Price has now completed hosted
+Checkout cancellation/return, declined and successful test cards, signed-in Family
+return, Portal scheduled cancellation/resumption, full succeeded8899 TEST refund and
+subscription termination. Free access returns after the refund. The official CLI's
+original signed webhook replay returns duplicate; all10observed inbox events finish
+applied after controlled retries of transient concurrency503responses.
+
+The loopback fixture uses shipping cookie/CSRF middleware and a synthetic identity/
+consent record. This is real Stripe TEST transport and browser UI, not upstream OIDC,
+human purchase consent, cloud live-webhook or real-money acceptance. The refund amount
+is verified against Stripe; the adapter stores event/object linkage and the entitlement
+override, while the scaffold commerce_refunds table remains unpopulated. Do not claim
+a complete accounting ledger. Live merchant/tax/market facts, actual production secret
+installation, final reconciliation/alert operation and controlled sales activation keep
+their separate gates. [Full evidence](release-12-stripe-20261005.md).
 
 Owner asks to complete release engineering. Keep Free plus WebUS$88.99 annual Family,
 current UI/brand, historical receipts, test identities and FanPass. This increment

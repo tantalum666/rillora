@@ -335,6 +335,7 @@ struct RilloraInfoDisclosure<Content: View>: View {
     let content: Content
     @State private var expanded = false
     @RilloraReduceMotion private var reduceMotion
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     init(_ title: String, @ViewBuilder content: () -> Content) {
         self.title = title
@@ -345,7 +346,16 @@ struct RilloraInfoDisclosure<Content: View>: View {
         DisclosureGroup(isExpanded: $expanded) {
             content.padding(.vertical, 8)
         } label: {
-            Label(title, systemImage: "info.circle")
+            Group {
+                if dynamicTypeSize.isAccessibilitySize {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Image(systemName: "info.circle").accessibilityHidden(true)
+                        Text(title).fixedSize(horizontal: false, vertical: true)
+                    }
+                } else {
+                    Label(title, systemImage: "info.circle")
+                }
+            }
                 .font(.subheadline)
                 .foregroundStyle(RilloraTheme.muted)
                 .frame(minHeight: 44)

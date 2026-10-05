@@ -1,73 +1,63 @@
 # Rillora Current Handoff
 
-Status: PACKAGES1/2 AND STRIPE WEB ACCEPTANCE IN PROGRESS
-Last updated: 2026-10-05 (Asia/Hong_Kong)
+Status: BILINGUAL/STRIPE TEST ACCEPTANCE AND RESTRICTED ROLLOUT VERIFIED; NATIVE5 UPLOADED; FINAL CLOSEOUT
+Last updated: 2026-10-06 (Asia/Hong_Kong)
 
 ## Current task
 
-Owner requests completion of current packages1and2and prioritizesStripe/WeboverApple
-physical purchases. Work on`codex/release-12-stripe-20261005`from36555a22c.
-[Active execution contract](release-12-stripe-20261005.md)records scope and real evidence.
-Preserve existing UI/price/data,FanPassand the explicit phone/merchant/deletiondeferrals.
+Finish Owner-selected packages1/2 and StripeWebfirst. Branch`codex/release-12-stripe-20261005`.
+Deployed source85d79c891 has CI57success. Native AX5/scroll/copy fixes and the local TEST
+fixture are being committed; Apple processing and full additive Git preservation follow.
+Keep existing UI, WebUSD88.99annual, Free1/Family5, real data and FanPass.
+[Current detailed contract](release-12-stripe-20261005.md).
 
 ## Completed
 
-- Dot's three-round Web acceptance report, native/Web bilingual implementation and
-AI/MCP/optional Events proposal are included. Conflicting old next steps are archived;
-the later keep-account decision and actual runtime13cleanup evidence remain authoritative.
-- Reproduced and repaired Web drawer focus return,narrow status text,Activity timestamp
-layout and invitation email feedback. Clarified Notes/reference disclosure wording and
-preserved multiline fields without changing permission projections.
-- Actual native Debug/Release compile;215unit passes/1existing skip;21new bilingual cases
-included;2native bilingual UI cases pass. Web162and legal7checks/builds pass. Real local
-Chrome exercises Chinese/English public pages,entry,drafts,confirmation and focused repairs.
-- Chinese copy reviewed across1,276Web/1,058native original entries;371Web/225native units revised,plus one context key for contact姓名 while matterName stays名称. [Copy contract](chinese-copy-guidelines-20261005.md)keeps English/legal/data/permissions intact. New local checks are recorded separately from the initial integration suite.
-- Existing Account selectAccount=true and native export reauthentication fixes remain.
-AI/MCP/Events remains documentation only and does not become a first-launch prerequisite.
+- Web actual bilingual plan next action/progress, private restore audit, export naming,
+backup download/reopening with5synthetic matters and original Chinese Notes. API400,
+restore14subset, Web165, isolatedlegal7, infra54 and source scan pass.
+- API14 is 1/1HEALTHY/rolloutCOMPLETED, digest
+`sha256:7d101420d19982d747438316833f769ff4998ebb0d735520cd97a14870fc30f1`.
+No migrations; schema0093retained. Runtime roles/secrets and original3reviewidentities/
+expiry2026-10-06T17:08:57Z match. Web86/WWW31deployed files match SHA256; actual bilingual
+render, image/overflow/console and unchecked-consent checks pass. Preview target retained.
+- Native compact/large/iPad English/Chinese landscape and AX5 export pass, plus both
+language sharing/revocation and encrypted-key retention. Real Settings language survives
+two launches without language overrides and retains saved synthetic matter.18distinct
+case/configuration outcomes pass. Failed attempts remain; current final audits ignore no
+findings. Spoken VoiceOver/physical-device interaction is not proved by system audits.
+- Signed1.0(5) archived/exported/validated/uploaded once. IPA SHA256
+`46acd025c7187ce4fe7ac9a2808e7e1df5368b68db2dcb2493e9ded0cda2490b`.
+App source/project hashes match; no debug/device/StoreKitfixture, correct production
+config and approved OS-only declaration. Actual Apple list currentlyProcessing.
+- Rillora-onlyTEST CLI1.53.0 is authorized foracct_1U6B2RCxTlowhyiG; no new login needed.
+MCP unavailable is not CLI failure. Existing restricted TEST key reused; FanPass untouched.
+- Current8899USD hosted checkoutcancel/decline/success, signed-inreturn, Portalperiod-end
+cancel/resume, fullsucceededrefund and subscriptionend verified. FinalFree/refunded,
+renewalfalse, onepaidorder and10appliedeventrows. OriginalCLI-signedduplicate→200duplicate.
+Concurrent503events were recovered by controlled actual-event retries; no automatic
+external-retry claim. RefundamountcomesfromStripe; commerce_refunds scaffoldisnotfilled.
 
-- Published integrated source`747c98874`has[CI56](https://github.com/tantalum666/rillora/actions/runs/37279020925)success in all3jobs.
-Archives17/18were newly downloaded from GitHub and decrypted/verified (1,404/772and625/383
-paths/objects); final receipts are metadata only. Original Dot/strict-review/main refs remain.
+## Evidence boundaries and retained deferrals
 
-## Evidence boundaries and retained decisions
+QA:`output/qa/rillora-release-12-stripe-20261005/README.md` and its exact receipts.
+Stripefixture identity/consent is synthetic, shippingcookie/CSRFandproviderTESTareactual.
+No new human Auth0/recurringconsent, livecharge, livebillingdeployment or complete
+accountingledger proof. Prior Google/QQ identity/share/recovery results retain their dates.
+Owner explicitly retains the independent delete-QA account. Do not delete it, reopen the
+physicalphone/merchantfactdeferrals, invite testers, submit review or open customers.
+Six designed storeimages and prior approved declaration remain; no oldbuildreupload.
 
-Local bilingual source is not deployed or uploaded. Existing running API13/schema0093,
-Web5714ec158and store1.0(4)are dated retained checkpoints, not rechecked this task. Current
-production restriction keeps original3identities and expiry2026-10-06T17:08:57Z; no extension.
-User explicitly retained the isolated QA account/data; deletion is Owner-deferred, not
-passed. Temporary identity access was already removed. No new login/MFA was required.
-Physical-device purchase/restore and merchant facts remain deferred; customers/live
-billing,TestFlight invitations and App Review are still separate unfinished release gates.
-
-Local browser uses synthetic read-only fixtures. Remaining localization acceptance:
-iPad/large accessibility text/orientation/VoiceOver/system language persistence and full
-localized authenticated file/share paths. Dot's UX-01,English UX-04,and remaining UX-05/06/P3/OBS-01remain open; UX-03
-is only partially improved. Do not call all Dot issues or release acceptance complete.
-
-The[current seven-package launch inventory](release-readiness.md#october5-remaining-work-inventory)
-now includes the undeployed bilingual delta. This is a source/receipt status read,not a
-fresh provider check; personal deferrals and gate statuses are unchanged.
-
-## Current continuation checkpoint
-
-Local My-plan navigation and private restore audit are fixed and exercised in both languages.
-API400/Web165/legal7/infra54pass; actual synthetic Chrome backup bytes verified. Native
-compact shells/landscape pass,AX5 audit fixes are in progress. Public artifact storage
-declaration is corrected. Cloud readback/synthesis only; no new rollout/upload/transaction.
-Detailed current evidence:[execution checkpoint](release-12-stripe-20261005.md).
+Local task fixtures/listener and three task-created simulators still need bounded cleanup.
+All new eligible QA/signed products/deployment receipts need archive19 and fresh remote
+verification. Exclude credentials, cookies, raw signed events, auth screens and vendor
+caches even from encrypted Git. Priorarchives17/18arealreadyverified, do notredo them.
 
 ## Single next step
 
-Finish scoped UX repairs and remaining bilingual acceptance,then ship the matching restricted
-clients/newnativecandidate and complete current88.99StripeWebTESTacceptance. Existing Stripe
-MCP still returns401after Owner reconnect/retry; browser Rillora TEST login is valid. CLI device authorization is unapproved; AWS is valid. Do not pause independent
-work or reopen deferred Applephone/account-deletion steps.
+Finish this same closeout: read Apple5processing result and save/reopen testnotes, commit
+current source, clean up only task fixtures, then seal/push/readback all new eligible
+work and update the final launch-gap record. Do not rerun passed unchanged flows.
 
-[Previous retained-account handoff](handoff-history-20261005-before-dot-integration.md),
-[Dot iOS checkpoint](handoff-history-20261005-dot-ios.md),
-[Dot Web checkpoint](handoff-history-20261005-dot-web.md),and
-[Dot AI checkpoint](handoff-history-20261005-dot-ai.md)are HISTORICAL.
-
-October5最终文案检查：21项原生本地化、2项双语UI、Debug/Release编译、Web162及原生静态9项通过；旧法律7项验证沿用未变正文的检查点。当前Simulator安装的是本轮Debug双语QA版，未清Keychain，测试以临时未登录状态运行，截图后已停止。新原件见[文案保存包](../collaboration/verification/chinese-copy-20261005/README.md)。
-
-[Prior consolidated handoff](handoff-history-20261005-before-release-12-stripe.md)is HISTORICAL.
+[Previous consolidated handoff](handoff-history-20261005-before-release-12-stripe.md) is
+HISTORICAL. Owner's later kept-account and physical/merchant deferrals retain priority.

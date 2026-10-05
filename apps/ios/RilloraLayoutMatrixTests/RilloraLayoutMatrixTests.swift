@@ -4,6 +4,7 @@ import CoreImage
 @MainActor
 final class RilloraLayoutMatrixTests: XCTestCase {
     private var app: XCUIApplication!
+    private var chineseSharing = false
     nonisolated private var qaAPIBaseURL: String {
         ProcessInfo.processInfo.environment["RILLORA_MATRIX_API_BASE_URL"] ?? "http://127.0.0.1:4395/v1"
     }
@@ -66,7 +67,16 @@ final class RilloraLayoutMatrixTests: XCTestCase {
         _ = try await sharingRequest("trusted-contacts/\(personID)", method: "PATCH", body: ["expectedVersion": 1, "status": "archived"])
     }
 
+    func testChineseAccountBoundInvitationAndRecipientPrivacy() async throws {
+        chineseSharing = true
+        try await assertAccountBoundInvitationAndRecipientPrivacy()
+    }
+
     func testAccountBoundInvitationAndRecipientPrivacy() async throws {
+        try await assertAccountBoundInvitationAndRecipientPrivacy()
+    }
+
+    private func assertAccountBoundInvitationAndRecipientPrivacy() async throws {
         let parent = "c6a631bb-f907-4260-aaae-58b116738a27"
         let friend = "d30d0270-4520-49b6-bef2-9d7dc2b4376c"
         let suffix = String(UUID().uuidString.prefix(6))
@@ -105,7 +115,7 @@ final class RilloraLayoutMatrixTests: XCTestCase {
         XCTAssertEqual(components.host, "127.0.0.1")
         let fragment = try XCTUnwrap(components.fragment)
         let token = try XCTUnwrap(URLComponents(string: "?\(fragment)")?.queryItems?.first(where: { $0.name == "invitation" })?.value)
-        copy.tap(); XCTAssertTrue(app.staticTexts["Copied"].exists || app.buttons.matching(NSPredicate(format: "label CONTAINS %@", "Copied")).firstMatch.exists)
+        copy.tap(); XCTAssertTrue(app.staticTexts[sharingText("Copied")].exists || app.buttons.matching(NSPredicate(format: "label CONTAINS %@", sharingText("Copied"))).firstMatch.exists)
         let people = try await sharingRequest("trusted-contacts")["trustedContacts"] as? [[String: Any]] ?? []
         let contact = try XCTUnwrap(people.first { $0["displayName"] as? String == name })
         let contactID = try XCTUnwrap(contact["publicId"] as? String)
@@ -119,14 +129,14 @@ final class RilloraLayoutMatrixTests: XCTestCase {
         attachScreenshot("sharing-parent-inbox")
         element("shared.item.\(first)").tap()
         XCTAssertTrue(element("shared.detail").waitForExistence(timeout: 10))
-        XCTAssertFalse(app.staticTexts["Where to find it"].exists)
-        XCTAssertFalse(app.staticTexts["Masked hint"].exists)
+        XCTAssertFalse(app.staticTexts[sharingText("Where to find it")].exists)
+        XCTAssertFalse(app.staticTexts[sharingText("Masked hint")].exists)
         attachScreenshot("sharing-parent-name-only")
 
         launchApp(environment: ["RILLORA_DEV_PLANNER_ID": friend, "RILLORA_UI_TEST_INVITATION_TOKEN": token], expectedRoot: "invitation.view")
         XCTAssertTrue(element("invitation.view").waitForExistence(timeout: 10))
-        XCTAssertTrue(app.staticTexts["This invitation has been accepted. Use the invited account to open shared items."].waitForExistence(timeout: 10))
-        app.buttons["Open shared items"].firstMatch.tap()
+        XCTAssertTrue(app.staticTexts[sharingText("This invitation has been accepted. Use the invited account to open shared items.")].waitForExistence(timeout: 10))
+        app.buttons[sharingText("Open shared items")].firstMatch.tap()
         XCTAssertTrue(element("shared.inbox").waitForExistence(timeout: 10))
         XCTAssertFalse(element("shared.item.\(first)").exists)
         XCTAssertFalse(element("shared.item.\(second)").exists)
@@ -138,7 +148,7 @@ final class RilloraLayoutMatrixTests: XCTestCase {
         XCTAssertTrue(element("sharing.editor").waitForExistence(timeout: 10))
         let revoke = element("sharing.revoke")
         scroll(revoke, intoViewWithin: element("sharing.editor")); revoke.tap()
-        app.alerts.buttons["Stop sharing"].tap()
+        app.alerts.buttons[sharingText("Stop sharing")].tap()
         let stopped = element("sharing.revoked")
         scroll(stopped, intoViewWithin: element("sharing.editor"))
         XCTAssertTrue(stopped.waitForExistence(timeout: 10))
@@ -174,6 +184,8 @@ final class RilloraLayoutMatrixTests: XCTestCase {
         }
         XCUIDevice.shared.orientation = .portrait
         app = XCUIApplication()
+        // Legacy English assertions are independent of the simulator system language.
+        app.launchArguments = ["-AppleLanguages", chineseSharing ? "(zh-Hans)" : "(en)", "-AppleLocale", chineseSharing ? "zh_CN" : "en_US"]
         app.launchEnvironment["RILLORA_API_BASE_URL"] = qaAPIBaseURL
         app.launchEnvironment["RILLORA_DEV_PLANNER_ID"] = "11111111-1111-4111-8111-111111111111"
         app.launchEnvironment["RILLORA_CUSTOMER_ACCESS_ENABLED"] = "YES"
@@ -199,6 +211,8 @@ final class RilloraLayoutMatrixTests: XCTestCase {
         }
         XCUIDevice.shared.orientation = .portrait
         app = XCUIApplication()
+        // Legacy English assertions are independent of the simulator system language.
+        app.launchArguments = ["-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
         app.launchEnvironment["RILLORA_DEV_PLANNER_ID"] = ""
         app.launchEnvironment["RILLORA_UI_TEST_FORCE_SIGNED_OUT"] = "1"
         app.launchEnvironment.merge(environment) { _, new in new }
@@ -1204,7 +1218,17 @@ final class RilloraLayoutMatrixTests: XCTestCase {
     }
 
     private func tab(_ label: String) -> XCUIElement {
-        app.tabBars.buttons[label].firstMatch
+        app.tabBars.buttons[sharingText(label)].firstMatch
+    }
+
+    private func sharingText(_ english: String) -> String {
+        guard chineseSharing else { return english }
+        let labels = ["Overview": "总览", "Matters": "事项", "Profile": "个人中心", "Copied": "已复制",
+                      "Where to find it": "查找位置", "Masked hint": "识别提示", "Open shared items": "查看共享事项",
+                      "Stop sharing": "停止共享",
+                      "This invitation has been accepted. Use the invited account to open shared items.": "此邀请已被接受。请使用受邀账号打开共享事项。"]
+        guard let value = labels[english] else { preconditionFailure("Missing localized sharing assertion") }
+        return value
     }
 
     private func tapNavigationButton(named name: String) {
