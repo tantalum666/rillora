@@ -1,8 +1,10 @@
+import { useI18n } from "./i18n/I18nProvider.jsx";
 import { useEffect, useRef, useState } from 'react';
 
 export function ReauthenticationPrompt({ apiClient }) {
+  const { t } = useI18n();
   const [phase, setPhase] = useState(null);
-  const [message, setMessage] = useState('');
+  const [messageKey, setMessageKey] = useState('');
   const dialog = useRef(null);
   const run = useRef(null);
   useEffect(() => {
@@ -24,15 +26,15 @@ export function ReauthenticationPrompt({ apiClient }) {
       queueMicrotask(() => { if (previousFocus?.isConnected) previousFocus.focus({ preventScroll: true }); });
     };
   }, [Boolean(phase)]);
-  function close() { run.current?.abort(); run.current = null; setPhase(null); setMessage(''); }
+  function close() { run.current?.abort(); run.current = null; setPhase(null); setMessageKey(''); }
   async function signIn() {
     // Open during the click, before any network await; the work page stays mounted.
     const popup = window.open('about:blank', '_blank', 'popup,width=520,height=760');
-    if (!popup) { setMessage('Allow the sign-in window, then try again. Your editing window stays open.'); return; }
+    if (!popup) { setMessageKey('forms.reauth.allowPopup'); return; }
     popup.opener = null;
     const controller = new AbortController();
     run.current = controller;
-    setPhase('working'); setMessage('Complete sign in in the other window, then return here.');
+    setPhase('working'); setMessageKey('forms.reauth.completeElsewhere');
     try {
       const transaction = await apiClient.startReauthentication();
       if (controller.signal.aborted) { popup.close(); return; }
@@ -44,29 +46,29 @@ export function ReauthenticationPrompt({ apiClient }) {
         const result = await apiClient.getReauthenticationStatus(transaction.pollToken);
         if (controller.signal.aborted) return;
         if (result.completed) {
-          setPhase('complete'); setMessage('Sign-in complete. Return to your editing window and try the action again.');
+          setPhase('complete'); setMessageKey('forms.reauth.completeMessage');
           return;
         }
-        if (result.failed) { setPhase('ready'); setMessage('Sign in was not completed with the same account. Your changes are still here.'); return; }
+        if (result.failed) { setPhase('ready'); setMessageKey('forms.reauth.wrongAccount'); return; }
         await new Promise(resolve => {
           const finish = () => { clearTimeout(timer); controller.signal.removeEventListener('abort', finish); resolve(); };
           const timer = setTimeout(finish, 2000);
           controller.signal.addEventListener('abort', finish, { once: true });
         });
       }
-      if (!controller.signal.aborted) { setPhase('ready'); setMessage('Sign in was not completed in time. Your changes are still here.'); }
+      if (!controller.signal.aborted) { setPhase('ready'); setMessageKey('forms.reauth.expired'); }
     } catch {
-      if (!controller.signal.aborted) { setPhase('ready'); setMessage('Sign in could not be verified. Use the same account and try again.'); }
+      if (!controller.signal.aborted) { setPhase('ready'); setMessageKey('forms.reauth.error'); }
     } finally { if (run.current === controller) run.current = null; }
   }
   if (!phase) return null;
   return <dialog ref={dialog} className="task-confirmation" aria-labelledby="reauth-title" aria-describedby="reauth-message"
     onCancel={event => { event.preventDefault(); close(); }}>
-    <h2 id="reauth-title">{phase === 'complete' ? 'Sign-in complete' : 'Sign in again'}</h2>
-    <p id="reauth-message" role="status">{message || 'Confirm it is still you before continuing. Your changes stay here and nothing is submitted automatically.'}</p>
+    <h2 id="reauth-title">{t(phase === 'complete' ? 'forms.reauth.complete' : 'forms.reauth.signIn')}</h2>
+    <p id="reauth-message" role="status">{t(messageKey || 'forms.reauth.explanation')}</p>
     <div className="task-confirmation-actions">
-      <button data-keep className="primary-button" onClick={close}>{phase === 'complete' ? 'Return to editing' : 'Keep editing'}</button>
-      {phase === 'ready' && <button className="secondary-button" onClick={() => void signIn()}>Sign in again</button>}
+      <button data-keep className="primary-button" onClick={close}>{t(phase === 'complete' ? 'forms.reauth.return' : 'forms.keepEditing')}</button>
+      {phase === 'ready' && <button className="secondary-button" onClick={() => void signIn()}>{t("forms.reauth.signIn")}</button>}
     </div>
   </dialog>;
 }

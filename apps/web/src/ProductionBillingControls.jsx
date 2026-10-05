@@ -1,9 +1,12 @@
+import { useI18n } from "./i18n/I18nProvider.jsx";
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { billingStateLabel } from "./commercialAccess.js";
 import { api } from './api.js';
 import { publicRoutes } from './publicRoutes.js';
-import { productionBillingDestination, productionBillingStatus, purchaseProof, purchaseQuote, webAnnualOffer, webAnnualPriceLabel } from './productionBilling.js';
+import { productionBillingDestination, productionBillingStatus, purchaseProof, purchaseQuote, webAnnualOffer } from './productionBilling.js';
 
 export function ProductionBillingControls({ commerce, onAccessChanged, returnedFromCheckout = false, apiClient = api }) {
+  const { t, formatDate, formatMoney, errorMessage } = useI18n();
   const [status, setStatus] = useState(null);
   const [quote, setQuote] = useState(null);
   const [accepted, setAccepted] = useState(false);
@@ -21,53 +24,53 @@ export function ProductionBillingControls({ commerce, onAccessChanged, returnedF
     } catch (failure) {
       if (version !== requestVersion.current) return;
       if (failure.status === 404) { setStatus(null); return; }
-      setError(failure.message);
+      setError(failure);
     }
   }, [apiClient, commerce.serviceMarketCode, onAccessChanged]);
   useEffect(() => { void refresh(); return () => { ++requestVersion.current; }; }, [refresh]);
   const run = async operation => {
     if (locked.current) return;
     locked.current = true; setBusy(true); setError(''); setMessage('');
-    try { await operation(); } catch (failure) { setError(failure.message); }
+    try { await operation(); } catch (failure) { setError(failure); }
     finally { locked.current = false; setBusy(false); }
   };
   if (!status && !error) return null;
   const sub = status?.subscription;
   const active = commerce.currentAccess?.planCode === 'family';
   const annualAvailable = commerce.billingOpen && commerce.offers.some(offer => offer.priceCode === webAnnualOffer.priceCode && offer.purchasable);
-  const labels = { active: 'Family is active', cancel_at_period_end: 'Renewal canceled', grace: 'Payment needs attention', past_due: 'Payment needs attention', expired_read_only: 'Family has ended', refunded: 'Payment refunded', revoked: 'Family access ended' };
-  return <section className="task-details production-billing-controls" aria-label="Family subscription">
-    <h2>{sub ? labels[sub.state] ?? 'Family subscription' : 'Rillora Family'}</h2>
-    {sub?.currentPeriodEndsAt && <p>{sub.cancelAtPeriodEnd ? 'Paid access ends ' : active ? 'Current period ends ' : 'Last period ended '}{new Date(sub.currentPeriodEndsAt).toLocaleDateString()}</p>}
-    {returnedFromCheckout && status?.checkoutPending && !active && <p role="status">Payment confirmation may take a moment. Refresh access to check the latest result.</p>}
-    {error && <p role="alert">{error}</p>}{message && <p role="status">{message}</p>}
-    {!active && annualAvailable && !quote && <><p className="access-plan-price"><strong>{webAnnualPriceLabel}</strong></p>
+  const annualPrice = t("workspace.price.annual", { price: formatMoney(webAnnualOffer.amountMinor, webAnnualOffer.currency, 2) });
+  return <section className="task-details production-billing-controls" aria-label={t("workspace.billing.subscription")}>
+    <h2>{sub ? billingStateLabel(sub.state, t) : t("workspace.billing.family")}</h2>
+    {sub?.currentPeriodEndsAt && <p>{t(sub.cancelAtPeriodEnd ? "workspace.billing.paidEnds" : active ? "workspace.billing.periodEnds" : "workspace.billing.periodEnded", { date: formatDate(sub.currentPeriodEndsAt) })}</p>}
+    {returnedFromCheckout && status?.checkoutPending && !active && <p role="status">{t("workspace.billing.confirmationPending")}</p>}
+    {error && <p role="alert">{errorMessage(error, "workspace.billing.errorOperation")}</p>}{message && <p role="status">{t(message)}</p>}
+    {!active && annualAvailable && !quote && <><p className="access-plan-price"><strong>{annualPrice}</strong></p>
       <button className="primary-button" disabled={busy || !status} onClick={() => run(async () => {
         const route = await apiClient.resolvePurchaseRoute({ clientSurface: 'web', serviceMarketCode: commerce.serviceMarketCode, intent: 'plan_access' });
         if (route.reason !== 'available' || route.purchaseRoute !== 'web_direct') throw new Error('A new subscription is not available. Refresh access or manage your existing subscription.');
         setQuote(purchaseQuote(await apiClient.getProductionPurchaseQuote())); setAccepted(false);
-      })}>{status?.checkoutPending ? 'Continue checkout' : 'Review annual subscription'}</button></>}
+      })}>{status?.checkoutPending ? t("workspace.billing.continueCheckout") : t("workspace.billing.reviewAnnual")}</button></>}
     {quote && !active && annualAvailable && <form onSubmit={event => { event.preventDefault(); void run(async () => {
       const result = await apiClient.startProductionCheckout(purchaseProof(quote, accepted), checkoutKey.current);
       window.location.assign(productionBillingDestination(result, 'checkout'));
     }); }}>
-      <p className="access-plan-price"><strong>{webAnnualPriceLabel}</strong></p>
-      <p>Renews yearly until canceled. Cancel in Manage subscription before the next renewal. Any applicable tax is shown at checkout.</p>
+      <p className="access-plan-price"><strong>{annualPrice}</strong></p>
+      <p>{t("workspace.billing.renewal")}</p>
       <label><input type="checkbox" checked={accepted} disabled={busy} onChange={event => setAccepted(event.target.checked)} />
-        <span>I agree to the <a href={publicRoutes.subscriptions} target="_blank" rel="noopener noreferrer">Subscription Terms</a> and <a href={publicRoutes.refunds} target="_blank" rel="noopener noreferrer">Refund Policy</a>, including yearly renewal and cancellation.</span></label>
-      <button className="primary-button" type="submit" disabled={!accepted || busy}>Continue to secure checkout</button>
-      <button className="text-button" type="button" disabled={busy} onClick={() => { setQuote(null); setAccepted(false); }}>Back</button>
+        <span lang="en">I agree to the <a href={publicRoutes.subscriptions} target="_blank" rel="noopener noreferrer">Subscription Terms</a> and <a href={publicRoutes.refunds} target="_blank" rel="noopener noreferrer">Refund Policy</a>, including yearly renewal and cancellation.</span></label>
+      <button className="primary-button" type="submit" disabled={!accepted || busy}>{t("workspace.billing.secureCheckout")}</button>
+      <button className="text-button" type="button" disabled={busy} onClick={() => { setQuote(null); setAccepted(false); }}>{t("workspace.billing.back")}</button>
     </form>}
-    {!active && !annualAvailable && <p>New subscriptions are not available yet.</p>}
+    {!active && !annualAvailable && <p>{t("workspace.billing.newClosed")}</p>}
     <div className="drawer-actions">
       {status?.canManage && <button className="secondary-button" disabled={busy} onClick={() => run(async () => {
         window.location.assign(productionBillingDestination(await apiClient.openProductionBillingPortal(), 'portal'));
-      })}>Manage subscription</button>}
+      })}>{t("workspace.billing.manage")}</button>}
       {status?.checkoutPending && <button className="secondary-button" disabled={busy} onClick={() => run(async () => {
         await apiClient.cancelProductionCheckout(); checkoutKey.current = crypto.randomUUID(); setQuote(null); setAccepted(false);
-        await refresh(); setMessage('Unfinished checkout closed.');
-      })}>Close unfinished checkout</button>}
-      <button className="secondary-button" disabled={busy} onClick={() => run(refresh)}>{busy ? 'Checking…' : 'Refresh access'}</button>
+        await refresh(); setMessage("workspace.billing.checkoutClosed");
+      })}>{t("workspace.billing.closeCheckout")}</button>}
+      <button className="secondary-button" disabled={busy} onClick={() => run(refresh)}>{busy ? t("workspace.billing.checking") : t("workspace.billing.refresh")}</button>
     </div>
   </section>;
 }

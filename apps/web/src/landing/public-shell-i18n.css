@@ -1,0 +1,14 @@
+.public-header > .language-control { margin-left: 18px; }
+.account-consent-translation {
+  padding-left: 34px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.65;
+}
+@media (max-width: 600px) {
+  .public-header { flex-wrap: wrap; height: auto; min-height: 112px; gap: 4px 12px; padding-block: 10px; }
+  .public-header > .public-wordmark { flex-basis: calc(100% - 70px); }
+  .public-header > nav { margin-left: 0; }
+  .public-header > .language-control { margin-left: auto; }
+  .public-header > .app-appearance { margin-left: 0; }
+}

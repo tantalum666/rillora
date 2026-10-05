@@ -1,68 +1,65 @@
+import { useI18n } from "../i18n/I18nProvider.jsx";
 import { ArrowDown, ArrowRight } from "@phosphor-icons/react";
+import chineseExample from "./rillora-sharing-example-zh-CN.txt?url&no-inline";
 import example from "../assets/landing/rillora-sharing-example.txt?url&no-inline";
 import { QuestionList } from "./LandingFAQ.jsx";
 
 const controls = [
   {
-    title: "Choose what you share",
-    answer:
-      "Share selected matters and details with each person. Your other items stay private. A trusted contact does not automatically receive your whole map.",
+    titleKey: "public.control.sharing.title",
+    answerKey:
+      "public.control.sharing.answer",
   },
   {
-    title: "Change or revoke access",
-    answer:
-      "You can adjust a person’s live access or remove it. Information they have already copied or downloaded cannot be taken back.",
+    titleKey: "public.control.revoke.title",
+    answerKey:
+      "public.control.revoke.answer",
   },
   {
-    title: "Keep your own copy",
-    answer:
-      "Export your information from My data when signed in. Basic export and privacy controls are available on both plans.",
+    titleKey: "public.control.export.title",
+    answerKey:
+      "public.control.export.answer",
   },
   {
-    title: "Encrypted application data",
-    answer:
-      "Private content uses application-layer encryption with separately managed keys. Rillora’s authorised service can decrypt it to provide the product. This is not end-to-end encryption.",
+    titleKey: "public.control.encryption.title",
+    answerKey:
+      "public.control.encryption.answer",
   },
 ];
 
 export function ControlSection() {
+  const { t, locale } = useI18n();
   return (
     <section
       className="lp-section lp-container"
       id="your-control"
       tabIndex={-1}
-      aria-label="Sharing, export and encryption controls"
+      aria-label={t("public.control.label")}
     >
       <div className="lp-section-body">
         <div className="lp-control-grid">
           <QuestionList questions={controls} />
           <div className="lp-export-example">
-            <div className="lp-export-paper" aria-label="Example export">
+            <div className="lp-export-paper" aria-label={t("public.control.example")}>
               <span>Rillora</span>
-              <h3>Shared directions</h3>
-              <p>
-                Insurance
-                <br />
-                Home documents
-              </p>
-              <small>Shared with Mum</small>
+              <h3>{t("public.control.directions")}</h3>
+              <p>{t("public.example.insurance.title")}<br />{t("public.example.home.title")}</p>
+              <small>{t("public.control.sharedMum")}</small>
             </div>
             <div>
-              <h3>A clear, portable view.</h3>
-              <p>See how a simple set of directions can read.</p>
+              <h3>{t("public.control.portableTitle")}</h3>
+              <p>{t("public.control.portableDescription")}</p>
               <a
                 className="lp-text-link"
-                download="rillora-sharing-example.txt"
-                href={example}
-              >
-                Download an example <ArrowDown size={20} aria-hidden="true" />
+                download={locale === "zh-CN" ? "rillora-sharing-example-zh-CN.txt" : "rillora-sharing-example.txt"}
+                href={locale === "zh-CN" ? chineseExample : example}
+              >{t("public.control.download")}<ArrowDown size={20} aria-hidden="true" />
               </a>
-              <small>Sample text file · no account data</small>
+              <small>{t("public.control.sample")}</small>
             </div>
           </div>
         </div>
-        <a className="lp-section-next" href="https://legal.rillora.xyz/privacy">
-          Read our privacy policy <ArrowRight size={20} aria-hidden="true" />
+        <a className="lp-section-next" href="https://legal.rillora.xyz/privacy">{t("public.control.privacy")}<ArrowRight size={20} aria-hidden="true" />
         </a>
       </div>
     </section>

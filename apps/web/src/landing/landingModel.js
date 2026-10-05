@@ -1,34 +1,35 @@
+// Public synthetic examples contain message IDs, never account or recipient data.
 export const demoMatters = Object.freeze([
   {
     id: "insurance",
-    title: "Insurance",
-    detail: "Policy location",
-    note: "Example: the policy documents are in the green folder at home. Contact the insurer for the next step.",
+    titleKey: "public.example.insurance.title",
+    detailKey: "public.example.insurance.detail",
+    noteKey: "public.example.insurance.note",
     recipients: ["mum"],
   },
   {
     id: "home",
-    title: "Home documents",
-    detail: "Where to find them",
-    note: "Example: property records and the solicitor’s contact details are kept together in the home documents folder.",
+    titleKey: "public.example.home.title",
+    detailKey: "public.example.home.detail",
+    noteKey: "public.example.home.note",
     recipients: ["mum"],
   },
   {
     id: "crypto",
-    title: "Crypto account",
-    detail: "Exchange and next steps",
-    note: "Example: this account is held at Coinbase. Use its official estate request process; no passwords or recovery phrases belong here.",
+    titleKey: "public.example.crypto.title",
+    detailKey: "public.example.crypto.detail",
+    noteKey: "public.example.crypto.note",
     recipients: ["alex"],
   },
 ]);
 
 export const demoPeople = Object.freeze([
-  { id: "mum", name: "Mum", initial: "M" },
-  { id: "alex", name: "Alex", initial: "A" },
+  { id: "mum", nameKey: "public.example.mum" },
+  { id: "alex", nameKey: "public.example.alex" },
 ]);
 
 export function sharedDemoMatters(person) {
   return demoMatters
     .filter((matter) => matter.recipients.includes(person))
-    .map(({ id, title, detail, note }) => ({ id, title, detail, note }));
+    .map(({ id, titleKey, detailKey, noteKey }) => ({ id, titleKey, detailKey, noteKey }));
 }

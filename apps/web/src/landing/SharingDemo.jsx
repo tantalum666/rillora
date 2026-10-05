@@ -1,3 +1,4 @@
+import { useI18n } from "../i18n/I18nProvider.jsx";
 import { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { Check, ArrowRight } from "@phosphor-icons/react";
@@ -8,6 +9,7 @@ import { Reveal } from "./LandingMotion.jsx";
 import { ExampleMatter } from "./ExampleMatter.jsx";
 
 export function SharingDemo() {
+  const { t } = useI18n();
   const [personId, setPersonId] = useState("mum");
   const reduce = useReducedMotion();
   const person = demoPeople.find((item) => item.id === personId);
@@ -22,11 +24,9 @@ export function SharingDemo() {
       <div className="lp-section-body">
         <Reveal className="lp-sharing-heading">
           <h2 id="lp-sharing-title">
-            Let the right people
-            <br />
-            see the right details.
+            {t("public.sharing.title")}
           </h2>
-          <p>Choose a person. Choose their view.</p>
+          <p>{t("public.sharing.intro")}</p>
         </Reveal>
         <div className="lp-sharing-scene">
           <div className="lp-demo-folio">
@@ -59,7 +59,7 @@ export function SharingDemo() {
           <div
             className="lp-demo-people"
             role="group"
-            aria-label="Choose an example recipient"
+            aria-label={t("public.sharing.chooseRecipient")}
           >
             {demoPeople.map((item) => (
               <button
@@ -70,15 +70,15 @@ export function SharingDemo() {
                 onClick={() => setPersonId(item.id)}
               >
                 <span className="lp-person-avatar">
-                  {item.initial}
+                  {Array.from(t(item.nameKey))[0]}
                   <span className="lp-person-check">
                     <Check size={12} weight="bold" aria-hidden="true" />
                   </span>
                 </span>
-                <span>{item.name}</span>
+                <span>{t(item.nameKey)}</span>
               </button>
             ))}
-            <small>Interactive example</small>
+            <small>{t("public.sharing.example")}</small>
           </div>
           <div
             className="lp-shared-sheet"
@@ -86,10 +86,8 @@ export function SharingDemo() {
             aria-atomic="true"
           >
             <span className="lp-sheet-fold" aria-hidden="true" />
-            <h3>Shared with {person.name}</h3>
-            <p className="lp-sheet-description">
-              These are the items they can see.
-            </p>
+            <h3>{t("public.sharing.sharedWith", { name: t(person.nameKey) })}</h3>
+            <p className="lp-sheet-description">{t("public.sharing.visibleDescription")}</p>
             <motion.div
               key={personId}
               className="lp-shared-rows"
@@ -101,14 +99,12 @@ export function SharingDemo() {
                 <ExampleMatter key={item.id} matter={item} />
               ))}
               <p className="lp-shared-count">
-                {matters.length} {matters.length === 1 ? "matter" : "matters"}{" "}
-                shared. Everything else stays private.
+                {t("public.sharing.count", { count: matters.length })}
               </p>
             </motion.div>
           </div>
         </div>
-        <a className="lp-section-next" href="/product#sharing">
-          How invitations work <ArrowRight size={20} aria-hidden="true" />
+        <a className="lp-section-next" href="/product#sharing">{t("public.sharing.invitationHow")}<ArrowRight size={20} aria-hidden="true" />
         </a>
       </div>
     </section>

@@ -1,14 +1,11 @@
+import { LanguageControl } from "./i18n/LanguageControl.jsx";
+import { useI18n } from "./i18n/I18nProvider.jsx";
 import { AppAppearanceControl } from "./AppearanceControl.jsx";
 import { RilloraBrand } from "./RilloraBrand.jsx";
 import { useEffect, useRef, useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
-  FileText,
-  LockKey,
-  MapTrifold,
-  ShieldCheck,
-  UserCircle,
 } from "@phosphor-icons/react";
 import { api } from "./api.js";
 import { LegalDocumentPage } from "./LegalDocumentPage.jsx";
@@ -17,6 +14,7 @@ import "./interaction-refinement.css";
 import { LEGAL_CONTRACT } from "./legalContract.js";
 import { publicRoutes, resolvePublicView } from "./publicRoutes.js";
 import "./public-experience.css";
+import "./landing/public-shell-i18n.css";
 import { PublicHome } from "./PublicHome.jsx";
 import { accountPathForMatter, authenticationReturnPath } from "./publicIntent.js";
 import { isGuideRequest } from './guideAccess.js';
@@ -38,6 +36,7 @@ function hasDismissedCookieNotice() {
 }
 
 export function PublicExperience({ sessionStatus, onRetry }) {
+  const { t } = useI18n();
   const [view, setView] = useState(() => requestedPublicView());
   const [hasVisitedHome, setHasVisitedHome] = useState(view === "home");
   const homeScroll = useRef(0);
@@ -58,19 +57,19 @@ export function PublicExperience({ sessionStatus, onRetry }) {
 
   useEffect(() => {
     const titles = {
-      home: "Rillora — A clear plan for what comes next",
-      account: "Account — Rillora",
-      savedCopy: "Open saved copy — Rillora",
-      privacy: "Privacy Policy — Rillora",
-      terms: "Terms of Service — Rillora",
-      subscriptions: "Subscription Terms — Rillora",
-      refunds: "Refund & Cancellation — Rillora",
-      acceptableUse: "Acceptable Use — Rillora",
-      cookies: "Cookie Notice — Rillora",
-      legalNotice: "Legal Notice — Rillora",
+      home: t("public.title.appHome"),
+      account: t("public.title.account"),
+      savedCopy: t("public.title.savedCopy"),
+      privacy: t("public.title.privacy"),
+      terms: t("public.title.terms"),
+      subscriptions: t("public.title.subscriptions"),
+      refunds: t("public.title.refunds"),
+      acceptableUse: t("public.title.acceptable"),
+      cookies: t("public.title.cookies"),
+      legalNotice: t("public.title.notice"),
     };
     document.title = titles[view] ?? titles.home;
-  }, [view]);
+  }, [view, t]);
 
   function navigate(path) {
     const next = requestedPublicView(path);
@@ -100,24 +99,25 @@ export function PublicExperience({ sessionStatus, onRetry }) {
   return (
     <div className={`public-shell public-shell-${view}${showCookieNotice ? " has-cookie-notice" : ""}`}>
       <header className="public-header">
-        <a className="public-wordmark" href={publicRoutes.home} onClick={(event) => handleNavigation(event, publicRoutes.home)} aria-label="Rillora home"><RilloraBrand decorative /></a>
-        <nav aria-label="Public navigation">
-          <a className={view === "account" ? "is-current" : ""} href={publicRoutes.account} onClick={(event) => handleNavigation(event, publicRoutes.account)}>Account</a>
+        <a className="public-wordmark" href={publicRoutes.home} onClick={(event) => handleNavigation(event, publicRoutes.home)} aria-label={t("public.nav.homeLabel")}><RilloraBrand decorative /></a>
+        <nav aria-label={t("public.nav.publicLabel")}>
+          <a className={view === "account" ? "is-current" : ""} href={publicRoutes.account} onClick={(event) => handleNavigation(event, publicRoutes.account)}>{t("public.nav.account")}</a>
         </nav>
+        <LanguageControl />
         <AppAppearanceControl />
       </header>
 
       {hasVisitedHome && <div hidden={view !== "home"}>
         <PublicHome onStart={(category) => navigate(accountPathForMatter(category))} />
       </div>}
-      {view === "savedCopy" ? <main className="public-copy-page"><button className="text-button" onClick={() => navigate(publicRoutes.home)}>Back to Rillora</button><h1>Open a saved copy</h1><SavedCopyReader /></main> : view === "account" ? (
+      {view === "savedCopy" ? <main className="public-copy-page"><button className="text-button" onClick={() => navigate(publicRoutes.home)}>{t("public.navigation.back")}</button><h1>{t("public.savedCopy.title")}</h1><SavedCopyReader /></main> : view === "account" ? (
         <AccountPage
           sessionStatus={sessionStatus}
           onRetry={onRetry}
           onBack={() => navigate(publicRoutes.home)}
         />
       ) : ["privacy", "terms", "subscriptions", "refunds", "acceptableUse", "cookies", "legalNotice"].includes(view) ? (
-        <LegalDocumentPage documentKey={view} onBack={() => navigate(publicRoutes.home)} />
+        <div lang="en"><LegalDocumentPage documentKey={view} onBack={() => navigate(publicRoutes.home)} /></div>
       ) : null}
 
       {showCookieNotice && (
@@ -129,13 +129,13 @@ export function PublicExperience({ sessionStatus, onRetry }) {
 
       <footer className="public-footer">
         <span><RilloraBrand /></span>
-        <p>Digital legacy and estate continuity. Directions, not passwords.</p>
-        <nav aria-label="Legal and account links">
-          <a href={publicRoutes.privacy} onClick={(event) => handleNavigation(event, publicRoutes.privacy)}>Privacy</a>
-          <a href={publicRoutes.terms} onClick={(event) => handleNavigation(event, publicRoutes.terms)}>Terms</a>
-          <a href={publicRoutes.legalNotice} onClick={(event) => handleNavigation(event, publicRoutes.legalNotice)}>Legal</a>
-          <a href={publicRoutes.account} onClick={(event) => handleNavigation(event, publicRoutes.account)}>Account</a>
-          <a href={publicRoutes.savedCopy} onClick={(event) => handleNavigation(event, publicRoutes.savedCopy)}>Open saved copy</a>
+        <p>{t("public.footer.tagline")}</p>
+        <nav aria-label={t("public.nav.accountLegalLabel")}>
+          <a href={publicRoutes.privacy} onClick={(event) => handleNavigation(event, publicRoutes.privacy)}>{t("public.nav.privacy")}</a>
+          <a href={publicRoutes.terms} onClick={(event) => handleNavigation(event, publicRoutes.terms)}>{t("public.nav.terms")}</a>
+          <a href={publicRoutes.legalNotice} onClick={(event) => handleNavigation(event, publicRoutes.legalNotice)}>{t("public.nav.legal")}</a>
+          <a href={publicRoutes.account} onClick={(event) => handleNavigation(event, publicRoutes.account)}>{t("public.nav.account")}</a>
+          <a href={publicRoutes.savedCopy} onClick={(event) => handleNavigation(event, publicRoutes.savedCopy)}>{t("public.savedCopy.open")}</a>
         </nav>
       </footer>
     </div>
@@ -143,15 +143,16 @@ export function PublicExperience({ sessionStatus, onRetry }) {
 }
 
 function CookieNoticeBanner({ onDismiss, onReview }) {
+  const { t } = useI18n();
   return (
     <aside className="cookie-notice-banner" role="region" aria-labelledby="cookie-notice-title">
       <div>
-        <strong id="cookie-notice-title">Necessary cookies only</strong>
-        <p>For sign-in, security and draft recovery. No ads or behavioural analytics.</p>
+        <strong id="cookie-notice-title">{t("public.cookie.title")}</strong>
+        <p>{t("public.cookie.description")}</p>
       </div>
       <div className="cookie-notice-actions">
-        <button type="button" className="cookie-notice-review" onClick={onReview}>Review Cookie Notice</button>
-        <button type="button" className="cookie-notice-dismiss" onClick={onDismiss}>Got it</button>
+        <button type="button" className="cookie-notice-review" onClick={onReview}>{t("public.cookie.review")}</button>
+        <button type="button" className="cookie-notice-dismiss" onClick={onDismiss}>{t("public.cookie.dismiss")}</button>
       </div>
     </aside>
   );
@@ -159,6 +160,7 @@ function CookieNoticeBanner({ onDismiss, onReview }) {
 
 
 function AccountPage({ sessionStatus, onRetry, onBack }) {
+  const { t, locale, errorMessage: localizeError } = useI18n();
   const checking = sessionStatus === "checking";
   const unavailable = sessionStatus === "unavailable";
   const notOpen = sessionStatus === "not_open";
@@ -187,42 +189,44 @@ function AccountPage({ sessionStatus, onRetry, onBack }) {
       });
       window.location.assign(response.authorizationUrl);
     } catch (error) {
-      setErrorMessage(error?.message || "The secure sign-in flow could not be opened.");
+      setErrorMessage(error);
       setWorkingIntent(null);
     }
   }
 
   return (
     <main className="public-account" aria-labelledby="account-title">
-      <button className="account-back" type="button" onClick={onBack}><ArrowLeft size={18} aria-hidden="true" /> Back to Rillora</button>
+      <button className="account-back" type="button" onClick={onBack}><ArrowLeft size={18} aria-hidden="true" />{t("public.navigation.back")}</button>
       <div className="account-layout">
         <section>
-          <h1 id="account-title">{isGuideRequest(window.location.search, window.location.pathname) ? "Sign in to view account guidance" : new URLSearchParams(window.location.search).get("next") === "reviews" ? "Open your review inbox" : "Your private map"}</h1>
+          <h1 id="account-title">{isGuideRequest(window.location.search, window.location.pathname) ? t("public.account.guideTitle") : new URLSearchParams(window.location.search).get("next") === "reviews" ? t("public.account.reviewsTitle") : t("public.account.mapTitle")}</h1>
         </section>
-        <section className="account-actions" aria-label="Account options">
-          {checking && <p className="account-status">Checking whether you already have an active session…</p>}
-          {notOpen && <p className="account-status" role="status">Accounts are not open yet. You can still explore Rillora.</p>}
-          {unavailable && <><p className="account-status is-error">The account service is temporarily unavailable. The public site is still available.</p><button className="secondary-button" type="button" onClick={onRetry}>Try account service again</button></>}
+        <section className="account-actions" aria-label={t("public.account.options")}>
+          {checking && <p className="account-status">{t("public.account.checking")}</p>}
+          {notOpen && <p className="account-status" role="status">{t("public.account.notOpen")}</p>}
+          {unavailable && <><p className="account-status is-error">{t("public.account.unavailable")}</p><button className="secondary-button" type="button" onClick={onRetry}>{t("public.account.retry")}</button></>}
           {!checking && !unavailable && !notOpen && <>
             <div className="account-action-form">
               <button className="primary-button" type="button" disabled={!hasAccepted || Boolean(workingIntent)} onClick={() => beginAuthentication("signup")}>
-                {workingIntent === "signup" ? "Opening secure signup…" : "Create account"} <ArrowRight size={20} aria-hidden="true" />
+                {workingIntent === "signup" ? t("public.account.signingUp") : t("public.auth.signup")} <ArrowRight size={20} aria-hidden="true" />
               </button>
               <button className="secondary-button" type="button" disabled={!hasAccepted || Boolean(workingIntent)} onClick={() => beginAuthentication("signin")}>
-                {workingIntent === "signin" ? "Opening secure sign in…" : "Sign in"}
+                {workingIntent === "signin" ? t("public.account.signingIn") : t("public.auth.signin")}
               </button>
               <div className="account-consent">
                 <label>
                   <input
                     type="checkbox"
                     checked={hasAccepted}
+                    aria-describedby={locale === "zh-CN" ? "account-consent-translation" : undefined}
                     onChange={(event) => setHasAccepted(event.target.checked)}
                   />
-                  <span>I agree to the <a href={publicRoutes.terms} target="_blank" rel="noreferrer">Terms</a>, acknowledge the <a href={publicRoutes.privacy} target="_blank" rel="noreferrer">Privacy Policy</a>, and consent to electronic records.</span>
+                  <span lang="en">I agree to the <a href={publicRoutes.terms} target="_blank" rel="noreferrer">Terms</a>, acknowledge the <a href={publicRoutes.privacy} target="_blank" rel="noreferrer">Privacy Policy</a>, and consent to electronic records.</span>
                 </label>
+                {locale === "zh-CN" && <p id="account-consent-translation" className="account-consent-translation">{t("public.account.consentTranslation")}</p>}
               </div>
             </div>
-            {errorMessage && <p className="account-status is-error" role="alert">{errorMessage}</p>}
+            {errorMessage && <p className="account-status is-error" role="alert">{localizeError(errorMessage, "public.account.launchFailed")}</p>}
           </>}
         </section>
       </div>

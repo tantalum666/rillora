@@ -1,3 +1,5 @@
+import { useI18n } from "./i18n/I18nProvider.jsx";
+import { LanguageControl } from "./i18n/LanguageControl.jsx";
 import { ReauthenticationPrompt } from "./ReauthenticationPrompt.jsx";
 import { AppAppearanceControl } from "./AppearanceControl.jsx";
 import { RilloraBrand } from "./RilloraBrand.jsx";
@@ -57,7 +59,8 @@ import { requestedMatterCategory } from "./publicIntent.js";
 import { FirstUseGuide, FirstUseStarter } from "./FirstUsePanel.jsx";
 import { firstUseStates, normalizeFirstUse, shouldShowFirstUsePanel } from "./firstUse.js";
 import {
-  formatMoneyMinor,
+  commercialFeatureLabel,
+  commercialPlanLabel,
   unavailableCommercialStatus,
 } from "./commercialAccess.js";
 import {
@@ -72,15 +75,15 @@ import {
 } from "./officialProviderGuides.js";
 
 const navigation = [
-  { id: "overview", label: "Overview", icon: House },
-  { id: "plan", label: "My plan", icon: ClipboardText },
-  { id: "matters", label: "Matters", icon: AddressBook },
-  { id: "contacts", label: "Trusted contacts", icon: UserCircle },
-  { id: "shared", label: "Shared with me", icon: UserCircle },
-  { id: "maintenance", label: "Shared reviews", icon: ClipboardText },
-  { id: "guides", label: "Account inheritance", icon: BookOpen },
-  { id: "access", label: "Plan & access", icon: CreditCard },
-  { id: "activity", label: "Activity", icon: Pulse },
+  { id: "overview", icon: House },
+  { id: "plan", icon: ClipboardText },
+  { id: "matters", icon: AddressBook },
+  { id: "contacts", icon: UserCircle },
+  { id: "shared", icon: UserCircle },
+  { id: "maintenance", icon: ClipboardText },
+  { id: "guides", icon: BookOpen },
+  { id: "access", icon: CreditCard },
+  { id: "activity", icon: Pulse },
 ];
 
 const FamilyMaintenancePanel = lazy(() => import("./FamilyMaintenancePanel.jsx").then((module) => ({ default: module.FamilyMaintenancePanel })));
@@ -144,11 +147,12 @@ function SectionLabel({ children }) {
 }
 
 function ProgressSummary({ count, total = 5 }) {
+  const { t, formatNumber } = useI18n();
   return (
     <section className="progress-section" aria-labelledby="progress-heading">
-      <SectionLabel>Your progress</SectionLabel>
-      <h2 id="progress-heading">{count} of {total} essentials</h2>
-      <div className="progress-track" aria-label={`${count} of ${total} essentials completed`} role="img">
+      <SectionLabel>{t("workspace.progress.label")}</SectionLabel>
+      <h2 id="progress-heading">{t("workspace.progress.count", { count: formatNumber(count), total: formatNumber(total) })}</h2>
+      <div className="progress-track" aria-label={t("workspace.progress.completed", { count: formatNumber(count), total: formatNumber(total) })} role="img">
         {Array.from({ length: total }, (_, segment) => (
           <span key={segment} className={segment < count ? "is-complete" : ""} />
         ))}
@@ -158,43 +162,43 @@ function ProgressSummary({ count, total = 5 }) {
 }
 
 function CommercialFeatureList({ features, planned = false }) {
-  return <ul className={`commercial-feature-list${planned ? " is-planned" : ""}`}>{features.map((feature) => <li key={feature}>{!planned && <CheckCircle size={18} weight="fill" aria-hidden="true" />}<span>{feature}</span></li>)}</ul>;
+  const { t } = useI18n();
+  return <ul className={`commercial-feature-list${planned ? " is-planned" : ""}`}>{features.map((feature) => <li key={feature}>{!planned && <CheckCircle size={18} weight="fill" aria-hidden="true" />}<span>{commercialFeatureLabel(feature, t)}</span></li>)}</ul>;
 }
 
 function PlanAccessPreview({ commerce, onAccessChanged, returnedFromCheckout }) {
-  if (!commerce.available) return <section className="current-access-card"><CreditCard size={36} aria-hidden="true" /><h2>Temporarily unavailable</h2><p>Core planning remains available.</p></section>;
+  const { t, formatMoney } = useI18n();
+  if (!commerce.available) return <section className="current-access-card"><CreditCard size={36} aria-hidden="true" /><h2>{t("workspace.access.unavailable")}</h2><p>{t("workspace.access.coreAvailable")}</p></section>;
   const annualOffer = commerce.offers.find(({ billingInterval }) => billingInterval === "annual");
   return <div className="plan-access-preview">
     <section className="current-access-card" aria-labelledby="current-access-title">
-      <div><SurfaceIcon icon={CreditCard} emblem /></div><div><SectionLabel>Current access</SectionLabel><h2 id="current-access-title">{commerce.currentAccessLabel}</h2></div>
-      <details className="task-details"><summary>Included with Free</summary><CommercialFeatureList features={commerce.freeFeatures} /></details>
+      <div><SurfaceIcon icon={CreditCard} emblem /></div><div><SectionLabel>{t("workspace.access.current")}</SectionLabel><h2 id="current-access-title">{commercialPlanLabel(commerce, t)}</h2></div>
+      <details className="task-details"><summary>{t("workspace.access.freeIncluded")}</summary><CommercialFeatureList features={commerce.freeFeatures} /></details>
     </section>
     {commerce.validationOnly && <TestBillingControls commerce={commerce} onAccessChanged={onAccessChanged} />}
     {!commerce.validationOnly && <ProductionBillingControls commerce={commerce} onAccessChanged={onAccessChanged} returnedFromCheckout={returnedFromCheckout} />}
-    <details className="task-details access-future plan-disclosure"><summary><SurfaceIcon icon={AddressBook}/><span>{commerce.billingOpen || commerce.currentAccess?.planCode === "family" ? "Included with Family" : "Rillora Family · Not available yet"}</span><CaretRight size={17} className="disclosure-chevron" aria-hidden="true"/></summary>
-      {annualOffer && !commerce.billingOpen && commerce.currentAccess?.planCode !== "family" && <p className="access-plan-price"><strong>{formatOffer(annualOffer)}</strong></p>}
+    <details className="task-details access-future plan-disclosure"><summary><SurfaceIcon icon={AddressBook}/><span>{commerce.billingOpen || commerce.currentAccess?.planCode === "family" ? t("workspace.access.familyIncluded") : t("workspace.access.familyFuture")}</span><CaretRight size={17} className="disclosure-chevron" aria-hidden="true"/></summary>
+      {annualOffer && !commerce.billingOpen && commerce.currentAccess?.planCode !== "family" && <p className="access-plan-price"><strong>{formatOffer(annualOffer, t, formatMoney)}</strong></p>}
       <CommercialFeatureList features={commerce.familyFeatures} planned />
-      {commerce.futureFeatures?.length > 0 && <details className="task-details"><summary>Later roadmap · not included yet</summary><CommercialFeatureList features={commerce.futureFeatures} planned /></details>}
-      {!commerce.billingOpen && <p>New subscriptions are not available.</p>}
+      {commerce.futureFeatures?.length > 0 && <details className="task-details"><summary>{t("workspace.access.roadmap")}</summary><CommercialFeatureList features={commerce.futureFeatures} planned /></details>}
+      {!commerce.billingOpen && <p>{t("workspace.access.newClosed")}</p>}
     </details>
-    <details className="task-details plan-disclosure"><summary><SurfaceIcon icon={Shield}/><span>Access when Family ends</span><CaretRight size={17} className="disclosure-chevron" aria-hidden="true"/></summary><p>You keep your own records and exports. Free includes one live recipient. Extra recipients retain only their permitted paid-period copy, without later updates.</p><p>You can always restrict or revoke sharing. Billing does not trigger disclosure.</p></details>
+    <details className="task-details plan-disclosure"><summary><SurfaceIcon icon={Shield}/><span>{t("workspace.access.afterFamily")}</span><CaretRight size={17} className="disclosure-chevron" aria-hidden="true"/></summary><p>{t("workspace.access.afterFamilyDetails")}</p><p>{t("workspace.access.disclosureBoundary")}</p></details>
   </div>;
 }
 
-function formatOffer(offer) {
-  const interval = offer.billingInterval === "annual" ? "year" : "month";
-  return `${formatMoneyMinor(
-    offer.amountMinor,
-    offer.currencyCode,
-    offer.minorUnitExponent,
-  )}/${interval}`;
+function formatOffer(offer, t, formatMoney) {
+  return t(offer.billingInterval === "annual" ? "workspace.price.annual" : "workspace.price.monthly", {
+    price: formatMoney(offer.amountMinor, offer.currencyCode, offer.minorUnitExponent),
+  });
 }
 
 function MatterRow({ matter, onOpen }) {
+  const { t } = useI18n();
   const added = matter.status === "added";
-  const statusLabel = matterStatusLabel(matter);
+  const statusLabel = matterStatusLabel(matter, t);
   return (
-    <button className="matter-row" onClick={() => onOpen(matter)} aria-label={`Open ${matter.label}, ${statusLabel.toLowerCase()}`}>
+    <button className="matter-row" onClick={() => onOpen(matter)} aria-label={t("workspace.matter.open", { name: matter.label, status: statusLabel })}>
       <MatterIcon matter={matter} />
       <span className="matter-name">{matter.label}</span>
       <span className={`matter-status ${added ? "is-added" : "is-missing"}`}>
@@ -206,7 +210,8 @@ function MatterRow({ matter, onOpen }) {
   );
 }
 
-function Drawer({ title, eyebrow, onClose, closeLabel = "Close panel", busy = false, error, onReload, children }) {
+function Drawer({ title, eyebrow, onClose, closeLabel, busy = false, error, onReload, children }) {
+  const { t } = useI18n();
   const dialogRef = useRef(null);
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -229,21 +234,23 @@ function Drawer({ title, eyebrow, onClose, closeLabel = "Close panel", busy = fa
       }}>
       <header className="drawer-header">
         <div>{eyebrow && <SectionLabel>{eyebrow}</SectionLabel>}<h2 id="drawer-title">{title}</h2></div>
-        <button className="icon-button drawer-close" disabled={busy} onClick={onClose} aria-label={closeLabel}><X size={20} /></button>
+        <button className="icon-button drawer-close" disabled={busy} onClick={onClose} aria-label={closeLabel ?? t("workspace.drawer.close")}><X size={20} /></button>
       </header>
-      {error && <div className="drawer-alert" role="alert"><p>{error}</p>{onReload && <button className="secondary-button" type="button" disabled={busy} onClick={onReload}>Load latest · replaces draft</button>}</div>}
+      {error && <div className="drawer-alert" role="alert"><p>{error}</p>{onReload && <button className="secondary-button" type="button" disabled={busy} onClick={onReload}>{t("workspace.drawer.loadLatest")}</button>}</div>}
       {children}
     </dialog>
   );
 }
 
 function ContactEvidence({ contact }) {
-  const evidence = getTrustedContactEvidence(contact);
+  const { t } = useI18n();
+  const evidence = getTrustedContactEvidence(contact, t);
   const Icon = evidence.accepted ? CheckCircle : Info;
   return <p className="contact-evidence"><Icon size={17} weight={evidence.accepted ? "fill" : "regular"} /> {evidence.label}</p>;
 }
 
 export function App() {
+  const { t, formatDate, errorMessage } = useI18n();
   const initialPublicPath = window.location.pathname.length > 1
     ? window.location.pathname.replace(/\/+$/, "")
     : window.location.pathname;
@@ -384,6 +391,10 @@ export function App() {
     };
   }, [session]);
 
+  useEffect(() => {
+    if (session && plan) document.title = `${t(`workspace.nav.${activeNav}`)} · Rillora`;
+  }, [session, plan, activeNav, t]);
+
   const completed = useMemo(() => matters.filter((matter) => matter.status === "added").length, [matters]);
   const currentMatter = drawer?.type === "matter" ? matters.find((matter) => matter.id === drawer.id) : null;
   const currentProviderGuide = drawer?.type === "provider-guide"
@@ -392,8 +403,14 @@ export function App() {
   const contact = contacts[0] ?? null;
   const editingContact = drawer?.contactId ? contacts.find((person) => person.publicId === drawer.contactId) ?? null : null;
   const sharingContact = drawer?.type === "contact-sharing" ? contacts.find((person) => person.publicId === drawer.contactId) : null;
-  const contactEvidence = getTrustedContactEvidence(contact);
+  const contactEvidence = getTrustedContactEvidence(contact, t);
   const contactInitials = getInitials(contact?.displayName ?? "Trusted contact");
+
+  const activeDrawerError = drawer?.errorKey ? t(drawer.errorKey, drawer.errorParams)
+    : drawer?.errorError ? errorMessage(drawer.errorError, "workspace.error.save") : drawer?.error;
+
+  function notifyKey(key, kind = "success", params) { notify({ key, params }, kind); }
+  function notifyError(error, fallbackKey) { notify({ error, fallbackKey }, "error"); }
 
   function notify(message, kind = "success") {
     window.clearTimeout(toastTimer.current);
@@ -425,7 +442,7 @@ export function App() {
     if (!saved) return false;
     setRecoverableDraft(saved);
     setDrawer(null);
-    notify("Resume or discard your unsaved matter first.", "info");
+    notifyKey("workspace.draft.resumeFirst", "info");
     return true;
   }
 
@@ -453,9 +470,9 @@ export function App() {
           setDrawer(saved); setRecoverableDraft(null); setDraftPersistenceFailed(false); return;
         }
       } catch (error) {
-        if (error.status !== 404) { notify("Your draft is kept. The original matter could not be checked."); return; }
+        if (error.status !== 404) { notifyKey("workspace.draft.originalUnavailable"); return; }
       }
-      if (!await confirm({ title: "Original matter is not in this map", message: "Keep these changes as a new private matter?", confirmLabel: "Create from draft", cancelLabel: "Keep draft" })) return;
+      if (!await confirm({ titleKey: "workspace.draft.originalMissing", messageKey: "workspace.draft.createQuestion", confirmLabelKey: "workspace.draft.create", cancelLabelKey: "workspace.draft.keep" })) return;
       setDrawer({ type: "matter-create", requestId: crypto.randomUUID(), ...toMatterDraft(saved), initialValues: toMatterDraft() });
     } else setDrawer(saved.type === "matter-create" ? { ...saved, requestId: saved.requestId ?? crypto.randomUUID() } : saved);
     setRecoverableDraft(null);
@@ -464,10 +481,10 @@ export function App() {
 
   async function mayLeaveDrawer() {
     if (busy || panelBusy) return false;
-    if (panelExitWarning && !await confirm({ title: "Keep your recovery key", message: panelExitWarning, confirmLabel: "Leave without key", cancelLabel: "Return to guide" })) return false;
+    if (panelExitWarning && !await confirm({ titleKey: "workspace.recovery.keepKey", ...(typeof panelExitWarning === "string" ? { message: panelExitWarning } : { messageKey: panelExitWarning.key, params: panelExitWarning.params }), confirmLabelKey: "workspace.recovery.leaveWithout", cancelLabelKey: "workspace.recovery.returnGuide" })) return false;
     const dirty = panelHasChanges || (editingMatter && matterDraftChanged(drawer))
       || (drawer?.type === "settings" && checks.some((check) => check.completed !== check.serverCompleted));
-    if (dirty && !await confirm({ title: "Discard unsaved changes?" })) return false;
+    if (dirty && !await confirm({ titleKey: "workspace.draft.discardQuestion" })) return false;
     if (editingMatter) discardCurrentMatterDraft();
     if (drawer?.type === "settings") setChecks((items) => items.map((item) => ({ ...item, completed: item.serverCompleted })));
     setPanelHasChanges(false); setPanelExitWarning("");
@@ -484,7 +501,7 @@ export function App() {
     setActiveNav(route.view); setMatterQuery(route.q); setMatterFilter(route.filter); setSharingMatterId(route.sharingMatterId);
     if (route.task === "matter") {
       const item = matters.find(matter => matter.id === route.id);
-      if (item) openMatter(item); else { setDrawer(null); notify("This matter is no longer in your active map."); }
+      if (item) openMatter(item); else { setDrawer(null); notifyKey("workspace.matter.noLongerActive"); }
     } else if (route.task === "matter-create") openNewMatter(route.category ? { category: route.category } : {});
     else if (route.task === "first-use-guide") setDrawer({ type: route.task, step: Math.max(1, plan?.firstUseStep ?? 1), motivation: plan?.motivation ?? "" });
     else setDrawer(route.task ? { type: route.task, matterId: route.id, contactId: route.contactId, providerKey: route.providerKey } : null);
@@ -498,7 +515,7 @@ export function App() {
     const isNew = !contacts.some((person) => person.publicId === saved.publicId);
     setContacts((items) => items.some((item) => item.publicId === saved.publicId)
       ? items.map((item) => item.publicId === saved.publicId ? saved : item) : [...items, saved]);
-    setPanelHasChanges(false); setDrawer(isNew ? { type: "contact-sharing", contactId: saved.publicId } : null); notify("Contact saved");
+    setPanelHasChanges(false); setDrawer(isNew ? { type: "contact-sharing", contactId: saved.publicId } : null); notifyKey("workspace.contact.saved");
   }
 
   function updateNewMatterDraft(field, value) {
@@ -508,13 +525,13 @@ export function App() {
   async function saveNewMatter() {
     if (drawer?.type !== "matter-create" || matterValidation(drawer) || busy) return;
     setBusy(true);
-    setDrawer((current) => current ? { ...current, error: null } : current);
+    setDrawer((current) => current ? { ...current, error: null, errorKey: null, errorError: null } : current);
     try {
       const response = await api.createMatter({ ...matterPayload(drawer), requestId: drawer.requestId });
       setMatters((items) => [...items.filter(item => item.id !== response.matter.publicId), mapMatter(response.matter)]);
       discardCurrentMatterDraft();
       setDrawer(null);
-      notify("Matter saved");
+      notifyKey("workspace.matter.saved");
       const revision = workspaceRevision.current;
       void Promise.allSettled([api.getPlan(), api.getAuditEvents()]).then(([updatedPlan, audit]) => {
         if (workspaceRevision.current !== revision) return;
@@ -590,7 +607,7 @@ export function App() {
   async function saveMatter() {
     if (!currentMatter || drawer?.type !== "matter" || matterValidation(drawer) || busy || !matterDraftChanged(drawer)) return;
     setBusy(true);
-    setDrawer((current) => current ? { ...current, error: null } : current);
+    setDrawer((current) => current ? { ...current, error: null, errorKey: null, errorError: null } : current);
     try {
       const response = await api.updateMatter(currentMatter.id, {
         ...matterPayload(drawer), expectedVersion: drawer.expectedVersion,
@@ -598,7 +615,7 @@ export function App() {
       setMatters((items) => items.map((matter) => matter.id === currentMatter.id ? mapMatter(response.matter) : matter));
       discardCurrentMatterDraft();
       setDrawer(null);
-      notify("Matter changes saved");
+      notifyKey("workspace.matter.changesSaved");
     } catch (error) {
       await handleMutationError(error);
     } finally {
@@ -613,12 +630,12 @@ export function App() {
 
   async function archiveCurrentMatter() {
     if (busy || drawer?.type !== "matter" || !currentMatter) return;
-    const warning = matterDraftChanged(drawer) ? "Unsaved edits will be discarded. " : "";
-    if (!await confirm({title:"Archive this matter?",message:warning+"It will leave your active map and shared views. You can restore it privately from Settings → Archived matters.",confirmLabel:"Archive matter",cancelLabel:"Keep editing"})) return;
+    const archiveMessageKey = matterDraftChanged(drawer) ? "workspace.matter.archiveUnsavedMessage" : "workspace.matter.archiveMessage";
+    if (!await confirm({titleKey:"workspace.matter.archiveQuestion",messageKey:archiveMessageKey,confirmLabelKey:"workspace.matter.archive",cancelLabelKey:"workspace.draft.keepEditing"})) return;
     setBusy(true);
     try {
       await api.archiveMatter(currentMatter.id, drawer.expectedVersion);
-      setMatters(items=>items.filter(item=>item.id!==currentMatter.id));discardRecoveredDraft();setDrawer(null);notify("Matter archived");
+      setMatters(items=>items.filter(item=>item.id!==currentMatter.id));discardRecoveredDraft();setDrawer(null);notifyKey("workspace.matter.archived");
     } catch(error) { await handleMutationError(error); }
     finally { setBusy(false); }
   }
@@ -641,7 +658,7 @@ export function App() {
         return replacement ? { ...replacement, serverCompleted: replacement.completed } : check;
       }));
       setDrawer(null);
-      notify(changed.length ? "Official settings review saved" : "No checklist changes to save");
+      notifyKey(changed.length ? "workspace.settings.reviewSaved" : "workspace.settings.noChanges");
     } catch (error) {
       await handleMutationError(error);
     } finally {
@@ -655,7 +672,7 @@ export function App() {
         const { matter } = await api.getCreatedMatter(drawer.requestId);
         if (!matter.archivedAt) {
           setMatters(items => [...items.filter(item => item.id !== matter.publicId), mapMatter(matter)]);
-          setDrawer(current => ({ ...current, type: "matter", id: matter.publicId, expectedVersion: matter.version, initialValues: toMatterDraft(mapMatter(matter)), error: "The first save completed. Your latest edits are kept here; review them and save again." }));
+          setDrawer(current => ({ ...current, type: "matter", id: matter.publicId, expectedVersion: matter.version, initialValues: toMatterDraft(mapMatter(matter)), errorKey: "workspace.error.firstSaved", error: null, errorError: null }));
           return;
         }
       } catch { /* Keep the original draft and error if the saved record cannot be verified. */ }
@@ -665,18 +682,17 @@ export function App() {
       return;
     }
     if (error instanceof ApiClientError && error.code === "version_conflict") {
-      if (!drawer) { notify("Your plan changed elsewhere. Refreshing the current version.", "error"); await loadWorkspace(); return; }
-      setDrawer((current) => current ? { ...current, error: "This record changed elsewhere. Your draft is kept.", conflict: true } : current);
+      if (!drawer) { notifyKey("workspace.error.planChanged", "error"); await loadWorkspace(); return; }
+      setDrawer((current) => current ? { ...current, errorKey: "workspace.error.recordChanged", error: null, errorError: null, conflict: true } : current);
       return;
     }
-    const message = error instanceof ApiClientError ? error.message : "The change could not be saved.";
-    setDrawer((current) => current ? { ...current, error: message } : current);
-    if (!drawer) notify(message, "error");
+    setDrawer((current) => current ? { ...current, errorError: error, errorKey: null, error: null } : current);
+    if (!drawer) notifyError(error, "workspace.error.save");
   }
 
   async function reloadCurrentDraft() {
     if (!drawer || busy) return;
-    if (editingMatter && matterDraftChanged(drawer) && !await confirm({ title: "Replace these unsaved changes?", message: "Load the latest saved version of this matter.", confirmLabel: "Load latest", cancelLabel: "Keep editing" })) return;
+    if (editingMatter && matterDraftChanged(drawer) && !await confirm({ titleKey: "workspace.draft.replaceQuestion", messageKey: "workspace.draft.loadMessage", confirmLabelKey: "workspace.draft.loadLatest", cancelLabelKey: "workspace.draft.keepEditing" })) return;
     setBusy(true);
     try {
       if (drawer.type === "matter") {
@@ -692,9 +708,9 @@ export function App() {
         setDrawer({ type: "settings" });
       } else {
         await loadWorkspace();
-        setDrawer((current) => current ? { ...current, error: null, conflict: false } : current);
+        setDrawer((current) => current ? { ...current, error: null, errorKey: null, errorError: null, conflict: false } : current);
       }
-    } catch (failure) { notify(failure?.message || "Could not refresh this record."); }
+    } catch (failure) { notifyError(failure, "workspace.error.refresh"); }
     finally { setBusy(false); }
   }
 
@@ -706,13 +722,13 @@ export function App() {
       discardRecoveredDraft();
       window.location.assign("/");
     } catch (error) {
-      notify(error instanceof ApiClientError ? error.message : "Sign out could not be completed.");
+      notifyError(error, "workspace.error.signOut");
       setBusy(false);
     }
   }
 
   async function signOutAllDevices() {
-    const confirmed = await confirm({ title: "Sign out all devices?", message: "Rillora sessions will end. Your Google or Apple session stays separate.", confirmLabel: "Sign out all", cancelLabel: "Keep sessions" });
+    const confirmed = await confirm({ titleKey: "workspace.session.signOutQuestion", messageKey: "workspace.session.signOutDetails", confirmLabelKey: "workspace.session.signOutAll", cancelLabelKey: "workspace.session.keep" });
     if (!confirmed) return;
     setBusy(true);
     try {
@@ -721,7 +737,7 @@ export function App() {
       discardRecoveredDraft();
       window.location.assign("/");
     } catch (error) {
-      notify(error instanceof ApiClientError ? error.message : "Active sessions could not be revoked.");
+      notifyError(error, "workspace.error.revokeSessions");
       setBusy(false);
     }
   }
@@ -751,47 +767,38 @@ export function App() {
     && `${matter.label} ${matter.institution}`.toLowerCase().includes(matterQuery.trim().toLowerCase()));
 
   function showSection() {
-    const meta = {
-      plan: ["My plan", "A clear path from first item to a shareable Start Here package."],
-      matters: ["Your matters", "Keep important accounts, obligations and documents easy to locate."],
-      contacts: ["Trusted contacts", "Choose people for notification and support without granting automatic ownership."],
-      shared: ["Shared with me", "Read-only information shared with you."],
-      maintenance: ["Shared reviews", "Keep permitted directions current together."],
-      guides: ["Official guides", "Review each provider’s current process before anyone needs it."],
-      access: ["Plan & access", "See what stays free and what Family adds over time."],
-      activity: ["Plan activity", "A private record of the changes you make to this plan."],
-      settings: ["Settings", "Manage optional setup and Rillora account sessions."],
-      more: ["More", "Plan tools, people, guidance and account settings."],
-    }[activeNav];
+    const titleKey = {
+      matters: "workspace.matters.title", guides: "workspace.guides.title", activity: "workspace.activity.title",
+    }[activeNav] ?? `workspace.nav.${activeNav}`;
 
     return (
       <section className="secondary-view">
-        {activeNav === "activity" && <SectionLabel>Private audit</SectionLabel>}
-        <h1 style={activeNav === "maintenance" ? { fontSize: "clamp(32px, 4vw, 44px)", lineHeight: 1.08 } : undefined}>{meta[0]}</h1>
+        {activeNav === "activity" && <SectionLabel>{t("workspace.activity.private")}</SectionLabel>}
+        <h1 style={activeNav === "maintenance" ? { fontSize: "clamp(32px, 4vw, 44px)", lineHeight: 1.08 } : undefined}>{t(titleKey)}</h1>
         {activeNav === "matters" && <>
           {matters.length === 0 && <div className="matter-empty-folio"><FolioArtwork compact /></div>}
           <div className="matter-list-tools">
-            <label className="matter-search"><span className="sr-only">Search matters</span><input type="search" placeholder="Search matters" value={matterQuery} onChange={(event) => setMatterQuery(event.target.value)} /></label>
-            <button className="primary-button" type="button" onClick={() => openNewMatter()}>Add a matter <ArrowRight size={20} aria-hidden="true" /></button>
+            <label className="matter-search"><span className="sr-only">{t("workspace.matters.search")}</span><input type="search" placeholder={t("workspace.matters.search")} value={matterQuery} onChange={(event) => setMatterQuery(event.target.value)} /></label>
+            <button className="primary-button" type="button" onClick={() => openNewMatter()}>{t("workspace.matters.add")} <ArrowRight size={20} aria-hidden="true" /></button>
           </div>
-          <div className="panel-tabs" role="group" aria-label="Filter matters">
-            {[["all", "All"], ["review", "To review"], ["added", "Directions added"]].map(([value, label]) => <button type="button" key={value} aria-pressed={matterFilter === value} onClick={() => setMatterFilter(value)}>{label}</button>)}
+          <div className="panel-tabs" role="group" aria-label={t("workspace.matters.filter")}>
+            {[["all", t("workspace.filter.all")], ["review", t("workspace.filter.review")], ["added", t("workspace.matterStatus.ready")]].map(([value, label]) => <button type="button" key={value} aria-pressed={matterFilter === value} onClick={() => setMatterFilter(value)}>{label}</button>)}
           </div>
-          <div className="matter-list secondary-list">{filteredMatters.map(matter => <MatterRow key={matter.id} matter={matter} onOpen={openMatter}/>)}{!filteredMatters.length && <p className="drawer-intro" role="status">{matters.length === 0 ? "No matters yet. Add an account, document or other important item." : matterQuery ? `No matters match “${matterQuery}”.` : "No matters match this filter."}</p>}</div>
-          {(matterQuery || matterFilter !== "all") && <button type="button" className="text-button" onClick={() => { setMatterQuery(""); setMatterFilter("all"); }}>Clear filters</button>}
+          <div className="matter-list secondary-list">{filteredMatters.map(matter => <MatterRow key={matter.id} matter={matter} onOpen={openMatter}/>)}{!filteredMatters.length && <p className="drawer-intro" role="status">{matters.length === 0 ? t("workspace.matters.empty") : matterQuery ? t("workspace.matters.noQueryMatch", { query: matterQuery }) : t("workspace.matters.noFilterMatch")}</p>}</div>
+          {(matterQuery || matterFilter !== "all") && <button type="button" className="text-button" onClick={() => { setMatterQuery(""); setMatterFilter("all"); }}>{t("workspace.matters.clear")}</button>}
         </>}
 
-        {activeNav === "plan" && <div className="plan-card"><ProgressSummary count={completed} total={Math.max(matters.length, 5)} /><button className="primary-button" onClick={matters.length ? openNextMatter : () => openNewMatter()}>{matters.length ? "Continue next step" : "Add your first matter"} <ArrowRight size={20} /></button><button className="secondary-button" onClick={() => setDrawer({ type: "start-here" })}>Review Start Here guide <FileText size={20} /></button></div>}
+        {activeNav === "plan" && <div className="plan-card"><ProgressSummary count={completed} total={Math.max(matters.length, 5)} /><button className="primary-button" onClick={matters.length ? openNextMatter : () => openNewMatter()}>{matters.length ? t("workspace.plan.continue") : t("workspace.plan.firstMatter")} <ArrowRight size={20} /></button><button className="secondary-button" onClick={() => setDrawer({ type: "start-here" })}>{t("workspace.plan.reviewStart")} <FileText size={20} /></button></div>}
         {activeNav === "contacts" && <PeoplePanel contacts={contacts} matterContext={matters.find(item => item.id === sharingMatterId)} onReturnToMatter={() => { if ((window.history.state?.rillora?.index ?? 0) > 0) window.history.back(); else { const item = matters.find(item => item.id === sharingMatterId); setActiveNav("matters"); if (item) openMatter(item); } }} apiClient={api} refreshVersion={sharingRefreshVersion} onAdd={() => setDrawer({ type: "contact" })} onEdit={(person) => setDrawer({ type: "contact", contactId: person.publicId })} onShare={(person) => setDrawer({ type: "contact-sharing", contactId: person.publicId })} onIncoming={() => setActiveNav("shared")} />}
         {activeNav === "shared" && <SharedWithMePanel apiClient={api} />}
-        {activeNav === "maintenance" && <Suspense fallback={<p role="status">Loading reviews…</p>}><FamilyMaintenancePanel apiClient={api} onChanged={() => void loadWorkspace()} onManageSharing={() => setActiveNav("contacts")} onDirtyChange={setPanelHasChanges} onBusyChange={setPanelBusy} /></Suspense>}
+        {activeNav === "maintenance" && <Suspense fallback={<p role="status">{t("workspace.reviews.loading")}</p>}><FamilyMaintenancePanel apiClient={api} onChanged={() => void loadWorkspace()} onManageSharing={() => setActiveNav("contacts")} onDirtyChange={setPanelHasChanges} onBusyChange={setPanelBusy} /></Suspense>}
         {activeNav === "guides" && <PlatformGuideDirectory renderMark={(guide) => <ProviderMark providerKey={guide.key} label={guide.label}/>} onOpen={(guide) => setDrawer({ type: "provider-guide", providerKey: guide.key })}/>}
         {activeNav === "access" && <PlanAccessPreview commerce={commerce} onAccessChanged={setCommerce} returnedFromCheckout={returnedFromCheckout} />}
-        {activeNav === "activity" && <div className="activity-list">{auditEvents.length ? auditEvents.map((event) => <p key={event.publicId}><Check size={17} /> {formatAuditAction(event)}{event.resourceType === "matter" && matters.some(item => item.id === event.resourcePublicId) && <button className="text-button" onClick={() => openMatter(matters.find(item => item.id === event.resourcePublicId))}>{matters.find(item => item.id === event.resourcePublicId).label}</button>}{event.action.startsWith("sharing.") && <button className="text-button" onClick={() => setActiveNav("contacts")}>View people</button>}{event.action.startsWith("family_review.") && <button className="text-button" onClick={() => setActiveNav("maintenance")}>Open review</button>} <span>{formatDate(event.occurredAt)}</span></p>) : <p>No recorded plan changes yet.</p>}</div>}
+        {activeNav === "activity" && <div className="activity-list">{auditEvents.length ? auditEvents.map((event) => <p key={event.publicId}><Check size={17} /> {formatAuditAction(event, t)}{event.resourceType === "matter" && matters.some(item => item.id === event.resourcePublicId) && <button className="text-button" onClick={() => openMatter(matters.find(item => item.id === event.resourcePublicId))}>{matters.find(item => item.id === event.resourcePublicId).label}</button>}{event.action.startsWith("sharing.") && <button className="text-button" onClick={() => setActiveNav("contacts")}>{t("workspace.activity.viewPeople")}</button>}{event.action.startsWith("family_review.") && <button className="text-button" onClick={() => setActiveNav("maintenance")}>{t("workspace.activity.openReview")}</button>} <span>{formatDate(event.occurredAt, { year: "numeric", month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZoneName: "short" })}</span></p>) : <p>{t("workspace.activity.empty")}</p>}</div>}
         {activeNav === "settings" && <AccountDataPanel apiClient={api} onChanged={() => void loadWorkspace()} onDeletionRequested={accountDeletionRequested}/>}
-        {activeNav === "settings" && <div className="plan-card settings-card"><button className="secondary-button" type="button" onClick={() => setActiveNav("access")}><CreditCard size={20} /> Review plan & access</button>{session?.authenticationMode === "session" && <><button className="secondary-button settings-sign-out" disabled={busy} onClick={() => void signOut()}><SignOut size={20} /> {busy ? "Signing out…" : "Sign out"}</button><button className="secondary-button settings-sign-out" disabled={busy} onClick={() => void signOutAllDevices()}><SignOut size={20} /> Sign out all Rillora devices</button><p className="drawer-intro">Revokes Rillora sessions only.</p></>}</div>}
+        {activeNav === "settings" && <div className="plan-card settings-card"><button className="secondary-button" type="button" onClick={() => setActiveNav("access")}><CreditCard size={20} /> {t("workspace.settings.reviewAccess")}</button>{session?.authenticationMode === "session" && <><button className="secondary-button settings-sign-out" disabled={busy} onClick={() => void signOut()}><SignOut size={20} /> {busy ? t("workspace.settings.signingOut") : t("workspace.settings.signOut")}</button><button className="secondary-button settings-sign-out" disabled={busy} onClick={() => void signOutAllDevices()}><SignOut size={20} /> {t("workspace.settings.signOutAll")}</button><p className="drawer-intro">{t("workspace.settings.sessionScope")}</p></>}</div>}
         {activeNav === "more" && <InviteAction onInvite={() => setDrawer({ type: "contact" })} />}
-        {activeNav === "more" && <nav className="mobile-more-menu" aria-label="More destinations">{mobileMoreDestinations.map(({ id, label, detail, icon: Icon }) => <button type="button" key={id} onClick={() => setActiveNav(id)}><Icon size={22} aria-hidden="true" /><span><strong>{label}</strong><small>{detail}</small></span><CaretRight size={18} aria-hidden="true" /></button>)}</nav>}
+        {activeNav === "more" && <nav className="mobile-more-menu" aria-label={t("workspace.nav.moreDestinations")}>{mobileMoreDestinations.map(({ id, icon: Icon }) => <button type="button" key={id} onClick={() => setActiveNav(id)}><Icon size={22} aria-hidden="true" /><span><strong>{t(`workspace.nav.${id}`)}</strong><small>{t(`workspace.navDetail.${id}`)}</small></span><CaretRight size={18} aria-hidden="true" /></button>)}</nav>}
       </section>
     );
   }
@@ -811,12 +818,13 @@ export function App() {
     const retry = accountChanged ? () => window.location.assign('/') : () => void loadWorkspace();
     if (!signedOut && !serviceNotOpen && !browsePublic) return <main className="workspace-gate" aria-busy={loading}>
       <span className="workspace-gate-brand"><RilloraBrand /></span>
+      <LanguageControl />
       <FileText size={44} aria-hidden="true" />
-      <h1>{loading ? "Loading your map" : accountChanged ? "Account changed" : "Your map is temporarily unavailable"}</h1>
-      {loading ? <p role="status">Checking your connection…</p> : <>
-        <p role="alert">{accountChanged ? "A different account is signed in. Your previous draft has not been submitted. Reload to open the current account." : "We could not load your map. Try again when your connection is ready."}</p>
-        <button className="primary-button" onClick={retry}>{accountChanged ? "Reload map" : "Try again"}</button>
-        <button className="text-button" onClick={() => setBrowsePublic(true)}>Browse Rillora</button>
+      <h1>{loading ? t("workspace.gate.loading") : accountChanged ? t("workspace.gate.accountChanged") : t("workspace.gate.unavailable")}</h1>
+      {loading ? <p role="status">{t("workspace.gate.checking")}</p> : <>
+        <p role="alert">{accountChanged ? t("workspace.gate.changedDetails") : t("workspace.gate.connectionDetails")}</p>
+        <button className="primary-button" onClick={retry}>{accountChanged ? t("workspace.gate.reload") : t("workspace.gate.retry")}</button>
+        <button className="text-button" onClick={() => setBrowsePublic(true)}>{t("workspace.gate.browse")}</button>
       </>}
     </main>;
     return (
@@ -830,28 +838,28 @@ export function App() {
   return (
     <div className="app-shell">
       <ReauthenticationPrompt apiClient={api} />
-      <aside className="sidebar" aria-label="Primary navigation">
-        <nav>{navigation.map(({ id, label, icon: Icon }) => <button type="button" key={id} className={activeNav === id ? "active" : ""} aria-current={activeNav === id ? "page" : undefined} onClick={() => setActiveNav(id)}><Icon size={23} weight="regular" aria-hidden="true" /> <span>{label}</span></button>)}</nav>
+      <aside className="sidebar" aria-label={t("workspace.nav.primary")}>
+        <nav>{navigation.map(({ id, icon: Icon }) => <button type="button" key={id} className={activeNav === id ? "active" : ""} aria-current={activeNav === id ? "page" : undefined} onClick={() => setActiveNav(id)}><Icon size={23} weight="regular" aria-hidden="true" /> <span>{t(`workspace.nav.${id}`)}</span></button>)}</nav>
         <div className="sidebar-spacer" />
-        <section className="safety-note"><Leaf size={27} /><strong>Directions, not passwords.</strong><button onClick={() => setDrawer({ type: "safety" })}>Safety & privacy</button></section>
-        {session?.authenticationMode === "session" && <button type="button" className="sign-out-nav" disabled={busy} onClick={() => void signOut()}><SignOut size={23} aria-hidden="true" /> <span>Sign out</span></button>}
-        <button type="button" className={`settings-nav ${activeNav === "settings" ? "active" : ""}`} aria-current={activeNav === "settings" ? "page" : undefined} onClick={() => setActiveNav("settings")}><GearSix size={23} aria-hidden="true" /> <span>Settings</span></button>
+        <section className="safety-note"><Leaf size={27} /><strong>{t("workspace.safety.motto")}</strong><button onClick={() => setDrawer({ type: "safety" })}>{t("workspace.safety.title")}</button></section>
+        {session?.authenticationMode === "session" && <button type="button" className="sign-out-nav" disabled={busy} onClick={() => void signOut()}><SignOut size={23} aria-hidden="true" /> <span>{t("workspace.settings.signOut")}</span></button>}
+        <button type="button" className={`settings-nav ${activeNav === "settings" ? "active" : ""}`} aria-current={activeNav === "settings" ? "page" : undefined} onClick={() => setActiveNav("settings")}><GearSix size={23} aria-hidden="true" /> <span>{t("workspace.settings.title")}</span></button>
       </aside>
 
       <main className="main-content">
-        <div className="workspace-chrome">{session?.authenticationMode === "development" && <p className="development-notice">Local QA · test data</p>}<AppAppearanceControl /></div>
-        {recoverableDraft && !drawer && <section className="draft-recovery" aria-label="Unsaved matter draft">
-          <div><strong>Continue your unsaved matter</strong><p>{recoverableDraft.title || "New matter"}</p></div>
-          <button className="secondary-button" onClick={() => void resumeDraft()}>Resume draft</button>
-          <button className="text-button" onClick={discardRecoveredDraft}>Discard draft</button>
+        <div className="workspace-chrome">{session?.authenticationMode === "development" && <p className="development-notice">{t("workspace.workspace.testData")}</p>}<LanguageControl /><AppAppearanceControl /></div>
+        {recoverableDraft && !drawer && <section className="draft-recovery" aria-label={t("workspace.draft.label")}>
+          <div><strong>{t("workspace.draft.continue")}</strong><p>{recoverableDraft.title || t("workspace.matter.new")}</p></div>
+          <button className="secondary-button" onClick={() => void resumeDraft()}>{t("workspace.draft.resume")}</button>
+          <button className="text-button" onClick={discardRecoveredDraft}>{t("workspace.draft.discard")}</button>
         </section>}
-        {loadError && <div className="workspace-refresh" role="status"><span>Showing your last loaded map.</span><button type="button" onClick={() => void loadWorkspace()}>Retry</button></div>}
-        {loading && session && <div className="workspace-refresh" role="status">Refreshing…</div>}
+        {loadError && <div className="workspace-refresh" role="status"><span>{t("workspace.refresh.lastLoaded")}</span><button type="button" onClick={() => void loadWorkspace()}>{t("workspace.refresh.retry")}</button></div>}
+        {loading && session && <div className="workspace-refresh" role="status">{t("workspace.refresh.busy")}</div>}
         <div className="motion-page" key={activeNav}>{activeNav === "overview" ? showOverview() : showSection()}</div>
       </main>
 
-      <nav className="mobile-navigation" aria-label="Mobile primary navigation">
-        {mobileNavigation.map(({ id, label, icon: Icon }) => {
+      <nav className="mobile-navigation" aria-label={t("workspace.nav.mobilePrimary")}>
+        {mobileNavigation.map(({ id, icon: Icon }) => {
           const isActive = isMobilePrimaryActive(id, activeNav);
           return (
             <button
@@ -862,7 +870,7 @@ export function App() {
               onClick={() => setActiveNav(id)}
             >
               <Icon size={22} weight="regular" aria-hidden="true" />
-              <span>{label}</span>
+              <span>{t(`workspace.nav.${id}`)}</span>
             </button>
           );
         })}
@@ -870,11 +878,11 @@ export function App() {
 
       {drawer?.type === "first-use-guide" && (
         <Drawer
-          title={drawer.step === 1 ? "Optional setup" : "Your first matter"}
-          eyebrow="Optional guide"
-          closeLabel="Save and exit guide"
+          title={drawer.step === 1 ? t("workspace.guide.setup") : t("workspace.guide.firstMatter")}
+          eyebrow={t("workspace.guide.optional")}
+          closeLabel={t("workspace.guide.saveExit")}
           busy={busy}
-          error={drawer.error}
+          error={activeDrawerError}
           onReload={drawer.conflict ? () => void reloadCurrentDraft() : undefined}
           onClose={() => void pauseFirstUse(drawer.step, drawer.motivation)}
         >
@@ -892,7 +900,7 @@ export function App() {
       )}
 
       {(drawer?.type === "matter-create" || (currentMatter && drawer?.type === "matter")) && (
-        <Drawer title={drawer.type === "matter-create" ? "New matter" : "Edit matter"} busy={busy || panelBusy} onClose={closeDrawer}>
+        <Drawer title={drawer.type === "matter-create" ? t("workspace.matter.new") : t("workspace.matter.edit")} busy={busy || panelBusy} onClose={closeDrawer}>
           <MatterForm draft={drawer} onChange={drawer.type === "matter-create" ? updateNewMatterDraft : updateMatterDraft}
             onManageSharing={drawer.type === "matter" ? () => { setSharingMatterId(drawer.id); setDrawer(null); setActiveNav("contacts"); } : undefined}
             onArchive={drawer.type === "matter" ? () => void archiveCurrentMatter() : undefined}
@@ -903,14 +911,14 @@ export function App() {
       )}
 
       {drawer?.type === "settings" && (
-        <Drawer title="Official settings" eyebrow="Provider checklist" busy={busy || panelBusy} error={drawer?.error} onReload={drawer?.conflict ? () => void reloadCurrentDraft() : undefined} onClose={closeDrawer}>
-          <p className="contact-evidence">Self-reported</p>
+        <Drawer title={t("workspace.settings.official")} eyebrow={t("workspace.settings.checklist")} busy={busy || panelBusy} error={activeDrawerError} onReload={drawer?.conflict ? () => void reloadCurrentDraft() : undefined} onClose={closeDrawer}>
+          <p className="contact-evidence">{t("workspace.settings.selfReported")}</p>
           <div className="check-list">{officialCheckDefinitions.map((item) => {
             const check = checks.find((candidate) => candidate.providerKey === item.key);
             return <label key={item.key}><span><strong>{item.label}</strong></span><input type="checkbox" disabled={!check || busy} checked={check?.completed ?? false} onChange={() => check && toggleCheck(check.publicId)} /></label>;
           })}</div>
-          <button className="primary-button drawer-primary" disabled={busy} onClick={() => void saveOfficialChecks()}>{busy ? "Saving…" : "Save review"} {!busy && <Check size={20} />}</button>
-          <details className="task-details"><summary>What this records</summary><p>Provider settings only change on each provider’s official website.</p></details>
+          <button className="primary-button drawer-primary" disabled={busy} onClick={() => void saveOfficialChecks()}>{busy ? t("workspace.settings.saving") : t("workspace.settings.saveReview")} {!busy && <Check size={20} />}</button>
+          <details className="task-details"><summary>{t("workspace.settings.whatRecorded")}</summary><p>{t("workspace.settings.providerBoundary")}</p></details>
         </Drawer>
       )}
 
@@ -922,32 +930,32 @@ export function App() {
         </Drawer>
       )}
 
-      {drawer?.type === "safety" && <Drawer title="Safety & privacy" onClose={closeDrawer}><SafetyPanel /></Drawer>}
+      {drawer?.type === "safety" && <Drawer title={t("workspace.safety.title")} onClose={closeDrawer}><SafetyPanel /></Drawer>}
 
       {drawer?.type === "contact" && (
-        <Drawer title={editingContact ? "Edit contact" : "Invite someone"} busy={busy || panelBusy} error={drawer?.error} onReload={drawer?.conflict ? () => void reloadCurrentDraft() : undefined} onClose={closeDrawer}>
+        <Drawer title={editingContact ? t("workspace.contact.edit") : t("workspace.contact.invite")} busy={busy || panelBusy} error={activeDrawerError} onReload={drawer?.conflict ? () => void reloadCurrentDraft() : undefined} onClose={closeDrawer}>
           <ContactEditorPanel key={editingContact?.publicId ?? "new"} contact={editingContact} apiClient={api} onSaved={contactSaved} onDirtyChange={setPanelHasChanges} onBusyChange={setPanelBusy} />
         </Drawer>
       )}
 
-      {sharingContact && <Drawer title={`Share with ${sharingContact.displayName}`} busy={panelBusy} onClose={closeDrawer}>
+      {sharingContact && <Drawer title={t("workspace.contact.shareWith", { name: sharingContact.displayName })} busy={panelBusy} onClose={closeDrawer}>
         <ContactSharingPanel key={sharingContact.publicId} contact={sharingContact} matters={matters} focusMatterId={sharingMatterId} apiClient={api} onDirtyChange={setPanelHasChanges} onBusyChange={setPanelBusy} onChanged={() => setSharingRefreshVersion((value) => value + 1)} />
       </Drawer>}
 
       {drawer?.type === "start-here" && (
-        <Drawer title="Start Here guide" eyebrow="Minimum disclosure" busy={busy || panelBusy} error={drawer?.error} onReload={drawer?.conflict ? () => void reloadCurrentDraft() : undefined} onClose={closeDrawer}>
+        <Drawer title={t("workspace.start.title")} eyebrow={t("workspace.start.minimum")} busy={busy || panelBusy} error={activeDrawerError} onReload={drawer?.conflict ? () => void reloadCurrentDraft() : undefined} onClose={closeDrawer}>
           <StartHerePanel apiClient={api} onGenerated={handleStartHereGenerated} onBusyChange={setPanelBusy} onExitWarning={setPanelExitWarning} />
         </Drawer>
       )}
 
       {drawer?.type === "disclosure-rehearsal" && (
-        <Drawer title="Role disclosure rehearsal" eyebrow="Planner-only policy preview" busy={busy || panelBusy} error={drawer?.error} onReload={drawer?.conflict ? () => void reloadCurrentDraft() : undefined} onClose={closeDrawer}>
+        <Drawer title={t("workspace.rehearsal.title")} eyebrow={t("workspace.rehearsal.private")} busy={busy || panelBusy} error={activeDrawerError} onReload={drawer?.conflict ? () => void reloadCurrentDraft() : undefined} onClose={closeDrawer}>
           <DisclosureRehearsalPanel apiClient={api} onChanged={handleStartHereGenerated} onBusyChange={setPanelBusy} />
         </Drawer>
       )}
 
       {drawer?.type === "role-policy" && (
-        <Drawer title="Role and disclosure scope" eyebrow="Planner-authored policy" busy={busy || panelBusy} error={drawer?.error} onReload={drawer?.conflict ? () => void reloadCurrentDraft() : undefined} onClose={closeDrawer}>
+        <Drawer title={t("workspace.role.title")} eyebrow={t("workspace.role.policy")} busy={busy || panelBusy} error={activeDrawerError} onReload={drawer?.conflict ? () => void reloadCurrentDraft() : undefined} onClose={closeDrawer}>
           <RoleAssignmentPolicyPanel
             apiClient={api}
             contacts={contacts}
@@ -961,7 +969,7 @@ export function App() {
       )}
 
       {confirmation}
-      {toast && <div className="toast" role={toastKind === "error" ? "alert" : "status"}>{toastKind === "error" ? <Info size={19} /> : <CheckCircle size={19} weight="fill" />} {toast}</div>}
+      {toast && <div className="toast" role={toastKind === "error" ? "alert" : "status"}>{toastKind === "error" ? <Info size={19} /> : <CheckCircle size={19} weight="fill" />} {typeof toast === "string" ? toast : toast.key ? t(toast.key, toast.params) : errorMessage(toast.error, toast.fallbackKey)}</div>}
     </div>
   );
 }
@@ -985,49 +993,47 @@ function getInitials(value) {
   return value.split(/\s+/).filter(Boolean).slice(0, 2).map((part) => part[0]?.toUpperCase()).join("") || "TC";
 }
 
-function formatAuditAction(event) {
-  const action = event.action;
-  if (action === "family_review.responded") return { confirmed: "Directions checked", needs_update: "An update was requested", suggested: "A correction was suggested" }[event.metadata?.response] ?? "A shared review was answered";
-  const labels = {
-    "sharing.invitation_created": "Invitation link created",
-    "sharing.invitation_regenerated": "Invitation link replaced",
-    "sharing.invitation_accepted": "Invitation accepted",
-    "sharing.scope_updated": "Shared details changed",
-    "sharing.connection_revoked": "Sharing stopped",
-    "family_review.created": "Shared review requested",
-    "family_review.responded": "A shared review was answered",
-    "family_review.confirmed": "Directions checked",
-    "family_review.needs_update": "An update was requested",
-    "family_review.suggested": "A correction was suggested",
-    "family_review.approve": "Suggested correction approved",
-    "family_review.reject": "Suggested correction declined",
-    "family_review.cancel": "Shared review canceled",
-    "family_review.reissue": "Fresh review requested",
-    "matter.created": "Matter added",
-    "matter.updated": "Matter updated",
-    "matter.archived": "Matter archived",
-    "trusted_contact.created": "Trusted contact added",
-    "trusted_contact.updated": "Trusted contact updated",
-    "official_setup.self_reported": "Official setting reviewed",
-    "simulation.completed": "Simulation completed",
-    "disclosure_rehearsal.created": "Disclosure rehearsal created",
-    "disclosure_rehearsal.advance": "Disclosure rehearsal advanced",
-    "disclosure_rehearsal.simulate_cooling_off_elapsed": "Disclosure hold elapsed in rehearsal",
-    "disclosure_rehearsal.appeal": "Disclosure rehearsal placed on appeal hold",
-    "disclosure_rehearsal.restart_review": "Disclosure rehearsal review restarted",
-    "disclosure_rehearsal.cancel": "Disclosure rehearsal canceled",
-    "role_assignment.created": "Role record added",
-    "role_assignment.updated": "Role scope updated",
-    "role_assignment.revoked": "Role record revoked",
-    "export.previewed": "Start Here previewed",
-    "export.generated": "Printable Start Here guide generated",
-    "export.encryption_prepared": "Encrypted Start Here package prepared",
-    "export.encrypted": "Encrypted Start Here package created",
-    "plan.updated": "Plan updated",
-  };
-  return labels[action] ?? "Account activity recorded";
+function formatAuditAction(event, t) {
+  const action = event.action === "family_review.responded"
+    ? { confirmed: "family_review.confirmed", needs_update: "family_review.needs_update", suggested: "family_review.suggested" }[event.metadata?.response] ?? event.action
+    : event.action;
+  return t(auditActionKeys.has(action) ? `workspace.audit.${action}` : "workspace.audit.recorded");
 }
 
-function formatDate(value) {
-  return new Intl.DateTimeFormat("en", { year: "numeric", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }).format(new Date(value));
-}
+const auditActionKeys = new Set([
+  "sharing.invitation_created",
+  "sharing.invitation_regenerated",
+  "sharing.invitation_accepted",
+  "sharing.scope_updated",
+  "sharing.connection_revoked",
+  "family_review.created",
+  "family_review.responded",
+  "family_review.confirmed",
+  "family_review.needs_update",
+  "family_review.suggested",
+  "family_review.approve",
+  "family_review.reject",
+  "family_review.cancel",
+  "family_review.reissue",
+  "matter.created",
+  "matter.updated",
+  "matter.archived",
+  "trusted_contact.created",
+  "trusted_contact.updated",
+  "official_setup.self_reported",
+  "simulation.completed",
+  "disclosure_rehearsal.created",
+  "disclosure_rehearsal.advance",
+  "disclosure_rehearsal.simulate_cooling_off_elapsed",
+  "disclosure_rehearsal.appeal",
+  "disclosure_rehearsal.restart_review",
+  "disclosure_rehearsal.cancel",
+  "role_assignment.created",
+  "role_assignment.updated",
+  "role_assignment.revoked",
+  "export.previewed",
+  "export.generated",
+  "export.encryption_prepared",
+  "export.encrypted",
+  "plan.updated"
+]);

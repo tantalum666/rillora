@@ -1,0 +1,76 @@
+# Web 中英双语界面与维护合同
+
+Status: IMPLEMENTED; LOCAL BUILD/TEST EVIDENCE; BROWSER ACCEPTANCE BLOCKED; NOT DEPLOYED
+Last updated: 2026-10-05 (Asia/Hong_Kong)
+
+## 本次授权与范围
+
+Owner要求「还有rillora要做一个中文的语言界面，你直接做吧，做完推到git上，记得要构建可维护代码」。本轮在活动工程基线 `2cc95f77c1279bdad43547b7e58a8faca9da7a93` 上，为 Web 应用与官网加入简体中文，保留 English。代码交付分支为 `codex/chinese-web-20261005`；没有合并、部署、修改 Auth0/邮件/provider、原生 iOS 或开放市场/收费。
+
+不是在页面上匹配英文后替换 DOM，也没有调用翻译服务。应用自己编写的文案通过稳定语义键、集中双语词典与 React context 渲染；输入/已保存内容按原样显示。
+
+## 已实现的界面覆盖
+
+- 官网：Home/Product/Security/Pricing/Support、FAQ、示例交互、法律信息外壳、独立中文示例下载、导航/页标题/ARIA
+- 公共应用：介绍、账户入口、必要存储提示、只读副本入口、收到邀请后的登录/接受/返回及错误状态
+- 工作区：桌面/移动导航、总览、搜索/筛选、事项编辑、分类字段/验证、联系人、可跳过的首次引导、草稿恢复、确认框、通知、活动与设置
+- 共享/数据：逐人逐事项范围、接收人只读内容外壳、Name/Directions/Details、共享复核、导出/恢复/完整备份/归档恢复/删除、近期认证、角色和非操作性演练控件
+- 计费：套餐/权限说明、真实报价格式与关闭状态；不翻译或改写版本化英文购买同意原文
+
+当前五个词典共 **1,274 对消息**：common 38、public 274、workspace 257、forms 232、sharing 473。官网只载入 common/public，共312条；不打包私有指南正文、App、API客户端或私有词典。
+
+## 必须保留的语言边界
+
+- Name＝名称；Directions＝查找指引；Details＝已保存的详细信息；Matter＝事项；Asset Map＝事务地图；Trusted Contact＝可信联系人；Recipient＝接收人
+- 正式法律正文、法律版本/digest与英文同意句原样保留。中文同意辅助说明明确是参考；英文正文通过外层 `lang="en"` 标记，未改受摘要约束的模块
+- Auth0托管登录、事务邮件、第三方平台页面、官方平台指南正文仍为原语言。指南控件可中文，但指南正文/来源/复核日期不被伪装成已翻译或重新审核
+- 服务端生成的 Start Here 明文文件及诊断正文仍可为英文，界面明确标注；已保存的外部文件、恢复密钥、导出格式和真实用户内容不翻译
+- 此轮没有繁体中文词典或 iOS 本地化。中文浏览器先使用简体中文；界面明确显示「简体中文」
+- 语言不会改变 storefront、市场/数据地区、币种、定价、共享权限或同意事实。当前新购 Web 报价仍是 USD88.99/年、Free1/Family5；旧权利/收据不变
+
+## 代码结构
+
+入口：`apps/web/src/i18n/`。
+
+- `core.js`：纯函数消息查找、English回退、命名插值、`Intl.PluralRules`、日期/数量/金额、词典完整性与合并去重。回退到英文复数消息时使用英文复数规则
+- `localeStore.js`：可注入浏览器适配层。默认跟随浏览器，显式选择才写 `rillora.locale.v1`；存储失败仍可在当前页使用。订阅跨标签变化，不重新挂载工作区
+- `I18nProvider.jsx`：context与格式化/错误消息API。`useI18n()`供组件使用，表单等纯函数可显式接收 `t`，默认英文合同保持兼容
+- `LanguageControl.jsx`：原生可聚焦select，English/简体中文自称；控件放在外观控制之前，保留外观按钮最右规则
+- `messages/{common,public,workspace,forms,sharing}.js`：各自导出 `en` / `zhCN`，使用稳定前缀与语义键，不把英文句子、序号或内容哈希作为键
+- `appCatalogs.js` / `publicCatalogs.js`：按入口隔离词典。法律专用入口不启用locale store，仍是独立英文静态站
+- `errors.js`：只按已知机器错误码本地化；未知错误使用任务上下文回退，不把服务端自由文本当翻译键
+
+`html.lang`随显示语言更新。CJK使用系统中文字体回退、适当行高和换行；不新增网络字体、第三方脚本或依赖。
+
+## 偏好与导航合同
+
+1. 优先级：有效的显式`lang`链接选择 → 本站已保存选择 → 浏览器语言 → English
+2. 自动浏览器判断不写存储，也不伪装成显式偏好传给另一站
+3. 仅已有两个App origin允许附带`lang=en`或`lang=zh-CN`；不把它加到Auth0、法律站或任意外部地址
+4. App消费有效`lang`时，只去掉该参数，保留其他查询参数、邀请fragment和history state。未知值不执行导航或产生权限
+5. 官网旧`/guides`的edge302只额外透传上述两个显式枚举；未带语言的旧书签仍遵循目标站已有偏好/浏览器语言。不会从edge读取localStorage
+6. 修改语言不自动提交表单、丢弃草稿、保存共享、接受同意或重试敏感操作。消息/确认框保存语义描述符，渲染时再取当前语言
+
+## 增加或修改文案
+
+```js
+// messages/forms.js：两种语言同时添加，插值参数名称保持一致。
+export const en = { "forms.example.count": { one: "{count} item", other: "{count} items" } };
+export const zhCN = { "forms.example.count": { other: "{count} 项" } };
+// 组件内：const { t } = useI18n();
+// t("forms.example.count", { count: actualCount })
+```
+
+不要把用户输入传给 `t` 作为键；只能作为命名参数/普通React文本。API枚举、路径、授权条件、DOM id、存储键与文件格式保持稳定。日期用 `formatDate`；金额用 `formatMoney(amountMinor, currencyCode, minorUnitExponent)`，保留实际币种，不换汇。React负责转义，不使用HTML翻译字符串或`dangerouslySetInnerHTML`。
+
+新增语言时扩展受支持枚举、catalog合并、语言控件、浏览器解析及链接白名单测试，补齐所有键/占位符/复数。另行审阅第三方/正式法律文本范围，不能把内部法律参考稿直接公开。
+
+## 验证与交付边界
+
+详见[本轮QA](qa/chinese-web-20261005/README.md)、[源码审阅](qa/chinese-web-20261005/source-review.json)、[完整阅读范围](qa/chinese-web-20261005/reading-coverage.json)及[远端回读](qa/chinese-web-20261005/remote-verification.json)。
+
+当前可执行的Node/SSR、catalog检查和实际构建已经覆盖语言与原有Web回归；没有仓库独立lint/typecheck脚本，不把JS构建称为TypeScript全库通过。API/基础设施的完整远端结果以此分支的GitHub CI为准，不借用旧CI48。
+
+真实浏览器被运行环境阻止：Chromium在导航前socket EPERM；官方云预览被ERR_BLOCKED_BY_CLIENT拦截。没有截图或真实320/390px、键盘、焦点/遮挡/草稿交互通过的证据。保留[受阻记录与可复现脚本](qa/chinese-web-20261005/BROWSER-QA.md)；不能把SSR当视觉验收，也不能把当前生产英文站当作此分支已部署。
+
+下一步：在具备浏览器能力的环境完成窄屏、键盘、草稿/确认框切换、真实文件读取与返回历史验收，再单独决定合并/部署。原来的可丢弃身份真实核心验收仍保留在[历史交接](handoff-history-20261005-before-chinese-web.md)，没有被本轮本地化关闭或重做。

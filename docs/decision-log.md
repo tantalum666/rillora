@@ -3092,3 +3092,11 @@ standard system/per-app language selection and shared Web/native terminology.
 market/price changes, compilation, deployment, store upload or public release.
 - Implementation: [native contract](native-localization-20261005.md); isolated source
 branch, static checks and explicit Mac acceptance gate.
+
+## 2026-10-05 — Maintainable Chinese Web interface
+
+- Owner explicitly requests a Chinese interface, direct implementation and Git push, with maintainable code.
+- Implement Simplified Chinese plus English for Web/app and public website on 2cc95f77, using central semantic catalogs/context, browser preference, explicit choice handoff and Intl formatting. Future Traditional Chinese can be a separate catalog; none is claimed now.
+- Preserve English operative legal content/digests, provider/hosted-auth/transaction-mail/native scopes, user data, API/permission enums, markets and actual currency/amount. Locale is presentation only.
+- Implementation/local testing and Git/CI readback are distinct from rendered acceptance and deployment. Browser sockets/cloud preview are blocked; no actual responsive/keyboard screenshot pass or production release is claimed.
+- [Contract](web-localization-20261005.md), [QA](qa/chinese-web-20261005/README.md).

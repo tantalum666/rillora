@@ -1,3 +1,8 @@
+import { createTranslator } from "./i18n/core.js";
+import { en, zhCN } from "./i18n/messages/forms.js";
+
+const english = createTranslator("en", { en, "zh-CN": zhCN });
+
 export const firstUseStates = Object.freeze({
   available: "available",
   guideInProgress: "guide_in_progress",
@@ -18,9 +23,9 @@ export function shouldShowFirstUsePanel(plan) {
   return state !== firstUseStates.completed;
 }
 
-export function guideActionLabel(plan) {
+export function guideActionLabel(plan, t = english) {
   const { state, step } = normalizeFirstUse(plan);
   return state === firstUseStates.guideInProgress || state === firstUseStates.guidePaused || step > 0
-    ? "Resume the guide"
-    : "Optional guide";
+    ? t("forms.firstUse.resume")
+    : t("forms.firstUse.optionalGuide");
 }

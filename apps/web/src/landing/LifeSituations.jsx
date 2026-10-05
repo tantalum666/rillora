@@ -1,3 +1,4 @@
+import { useI18n } from "../i18n/I18nProvider.jsx";
 import { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import {
@@ -11,31 +12,32 @@ import { Reveal } from "./LandingMotion.jsx";
 const situations = [
   {
     id: "death",
-    label: "After a death",
-    title: "A place to begin.",
-    detail:
-      "Find the information and directions already shared with you. Legal authority and each provider’s requirements still apply.",
+    labelKey: "public.life.death.label",
+    titleKey: "public.life.death.title",
+    detailKey:
+      "public.life.death.detail",
     icon: FileText,
   },
   {
     id: "incapacity",
-    label: "Unable to act",
-    title: "Help, with the right authority.",
-    detail:
-      "Leave directions for the people helping you. Being a trusted contact does not make someone a legal representative.",
+    labelKey: "public.life.incapacity.label",
+    titleKey: "public.life.incapacity.title",
+    detailKey:
+      "public.life.incapacity.detail",
     icon: HandHeart,
   },
   {
     id: "unreachable",
-    label: "Out of reach",
-    title: "Clarity without assumptions.",
-    detail:
-      "Being out of touch never triggers an automatic release. Your existing sharing choices remain in control.",
+    labelKey: "public.life.unreachable.label",
+    titleKey: "public.life.unreachable.title",
+    detailKey:
+      "public.life.unreachable.detail",
     icon: LinkIcon,
   },
 ];
 
 export function LifeSituations() {
+  const { t } = useI18n();
   const [active, setActive] = useState(2);
   const reduce = useReducedMotion();
   const item = situations[active];
@@ -47,15 +49,13 @@ export function LifeSituations() {
     >
       <div className="lp-section-body">
         <Reveal>
-          <h2 id="lp-life-title">Ready for life’s changes.</h2>
-          <p className="lp-section-intro">
-            Different situations. Clear boundaries.
-          </p>
+          <h2 id="lp-life-title">{t("public.life.title")}</h2>
+          <p className="lp-section-intro">{t("public.life.intro")}</p>
         </Reveal>
         <div
           className="lp-situation-choices"
           role="group"
-          aria-label="Explore a life situation"
+          aria-label={t("public.life.choose")}
         >
           {situations.map((situation, index) => (
             <button
@@ -64,7 +64,7 @@ export function LifeSituations() {
               aria-pressed={index === active}
               onClick={() => setActive(index)}
             >
-              {situation.label}
+              {t(situation.labelKey)}
             </button>
           ))}
         </div>
@@ -77,29 +77,25 @@ export function LifeSituations() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: reduce ? 0 : 0.25 }}
           >
-            <h3>{item.title}</h3>
-            <p>{item.detail}</p>
+            <h3>{t(item.titleKey)}</h3>
+            <p>{t(item.detailKey)}</p>
           </motion.div>
           <div
             className="lp-life-path"
-            aria-label="Sharing remains your choice"
+            aria-label={t("public.life.sharingChoice")}
           >
             <span>
               <i>
                 <Icon size={36} aria-hidden="true" />
               </i>
-              You choose what
-              <br />
-              to share
+              {t("public.life.youChoose")}
             </span>
             <span className="lp-life-connector" aria-hidden="true" />
             <span>
               <i>
                 <UserCircle size={38} aria-hidden="true" />
               </i>
-              They see only
-              <br />
-              what you’ve chosen
+              {t("public.life.theySee")}
             </span>
           </div>
         </div>

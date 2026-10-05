@@ -89,3 +89,16 @@ test("public routing rejects writes without an API or account fallback", () => {
     assert.equal(request("/assets/logo-123.svg", method).statusCode, 405);
   }
 });
+
+
+test("guide redirects retain only an explicitly supported language enum", () => {
+  for (const language of ["en", "zh-CN", "zh-HK", "javascript:alert(1)", "zh-CN&return_to=https://evil.test", "", undefined]) {
+    const result = handler({ request: { uri: "/guides", method: "GET", querystring: {
+      service: { value: "google" }, lang: { value: language },
+      token: { value: "private" }, return_to: { value: "https://evil.test" },
+    } } });
+    const expected = `${entry.appOrigin}/account?next=guides&service=google${["en", "zh-CN"].includes(language) ? `&lang=${language}` : ""}`;
+    assert.equal(result.headers.location.value, expected);
+    assert.equal(result.headers["cache-control"].value, "no-store");
+  }
+});

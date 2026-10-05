@@ -9,6 +9,11 @@ Last updated: 2026-10-05 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
 
+## 2026-10-05 Owner要求可维护的中文Web界面
+
+Owner要求直接实现中文界面并推送Git。本轮为Web应用和官网增加简体中文/English切换，集中语义词典、浏览器偏好、格式化与回归测试；不改市场、价格、权限或英文法律合同，也不暗示Auth0/邮件/iOS已翻译。[实施与维护合同](web-localization-20261005.md)及[QA](qa/chinese-web-20261005/README.md)明确浏览器环境受阻、未部署和原真实核心验收仍保留。
+
+
 ## 2026-10-05 Owner明确中文界面也包括原生iOS
 
 Owner补充「不只是做web哦，ios也要做」。在真实SwiftUI应用加入English／简体中文String Catalog、原生逐应用语言设置、错误与可访问性文案；与Web共享术语，不改变权限、价格、法律同意或真实数据。代码与静态校验不是原生编译／安装完成。[原生维护合同](native-localization-20261005.md)与[QA](qa/chinese-ios-20261005/README.md)记录Mac离线、Xcode／模拟器未运行的边界；仍需双端验收。

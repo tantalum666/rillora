@@ -1,6 +1,8 @@
 # Rillora — Digital Legacy & Estate Continuity / 数字遗产与事务连续性
 
-最后更新：2026-10-03（Asia/Shanghai）
+最后更新：2026-10-05（Asia/Shanghai）
+
+October5中文Web：应用和官网已实现简体中文/English、集中可维护词典与语言偏好，保留原业务/法律边界。本地构建与169项Web/法律测试通过；浏览器视觉验收被环境阻止，未部署。[维护合同](docs/web-localization-20261005.md) · [QA与Git/CI回读](docs/qa/chinese-web-20261005/README.md)。本条仅描述中文分支，不把下方旧检查点当作新验证。
 
 已完成Owner要求的全量Rillora Git保存，支持Dot协作。请先看[完整协作入口](collaboration/README.md)、[保存范围与恢复方法](docs/source-control.md)和[当前交接](docs/handoff.md)。源码、设计与文档、发布候选、QA和历史都有目录；46,768工作文件和7个加密归档已从远端完整读回验证，[CI42通过](https://github.com/tantalum666/rillora/actions/runs/36737542600)。
 

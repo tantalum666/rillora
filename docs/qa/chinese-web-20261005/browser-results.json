@@ -1,0 +1,40 @@
+{
+  "evidence": "synthetic local browser only",
+  "checks": [],
+  "runtimeErrors": [],
+  "externalAttempts": [],
+  "unexpectedApi": [],
+  "mutations": [],
+  "scriptSha256": "f6d918e12d7cf1ddfaa10d55e66bd4a9a6342bb2172b0d44f48cc233b7e2112d",
+  "status": "blocked",
+  "exception": "Chromium aborted before page navigation: process_singleton_posix.cc:297 socket() failed: Operation not permitted (1). An isolated retry had the same failure. Official cloud preview returned net::ERR_BLOCKED_BY_CLIENT.",
+  "scriptSyntaxChecked": true,
+  "scriptExecutionValidated": false,
+  "cloudBrowserAttempt": {
+    "status": "blocked_before_navigation",
+    "error": "ERR_BLOCKED_BY_CLIENT"
+  },
+  "escalatedLaunchAttempt": {
+    "status": "blocked_before_navigation",
+    "error": "socket EPERM; ptrace EPERM"
+  },
+  "timestampUTC": "2026-10-05T00:22:47Z",
+  "attempts": [
+    {
+      "method": "Isolated local Chromium",
+      "status": "blocked_before_navigation",
+      "error": "socket EPERM"
+    },
+    {
+      "method": "Reviewed isolated retry",
+      "status": "blocked_before_navigation",
+      "error": "socket EPERM; ptrace EPERM"
+    },
+    {
+      "method": "Official cloud preview",
+      "status": "blocked_before_navigation",
+      "error": "ERR_BLOCKED_BY_CLIENT"
+    }
+  ],
+  "screenshots": []
+}

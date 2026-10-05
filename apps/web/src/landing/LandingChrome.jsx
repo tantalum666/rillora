@@ -1,3 +1,5 @@
+import { LanguageControl } from "../i18n/LanguageControl.jsx";
+import { useI18n } from "../i18n/I18nProvider.jsx";
 import { AppearanceLink } from "../AppearanceControl.jsx";
 import { useState } from "react";
 import { ArrowRight, List, X } from "@phosphor-icons/react";
@@ -7,8 +9,9 @@ import { AppearanceControl, ThemePicture } from "./AppearanceControl.jsx";
 import { publicEntry } from "../publicEntry.js";
 
 export function LandingBrand() {
+  const { t } = useI18n();
   return (
-    <a className="lp-brand" href="/" aria-label="Rillora home">
+    <a className="lp-brand" href="/" aria-label={t("public.nav.homeLabel")}>
       <ThemePicture
         light={logo}
         dark={reversedLogo}
@@ -21,31 +24,33 @@ export function LandingBrand() {
 }
 
 export function PreviewAccountLink() {
+  const { t } = useI18n();
   return (
     <AppearanceLink
       className="lp-sign-in"
       href={publicEntry.accountURL}
       aria-label={
         publicEntry.preview
-          ? "Sign in to the Rillora preview"
-          : "Sign in to Rillora"
+          ? t("public.auth.previewLabel")
+          : t("public.auth.signinLabel")
       }
     >
-      {publicEntry.preview && <span className="lp-preview-label">Preview</span>}
-      <span>Sign in</span>
+      {publicEntry.preview && <span className="lp-preview-label">{t("public.auth.preview")}</span>}
+      <span>{t("public.auth.signin")}</span>
       <ArrowRight size={20} aria-hidden="true" />
     </AppearanceLink>
   );
 }
 
 const destinations = [
-  ["/", "Home"],
-  ["/product", "Product"],
-  ["/security", "Security"],
-  ["/pricing", "Pricing"],
-  ["/support", "Support"],
+  ["/", "public.nav.home"],
+  ["/product", "public.nav.product"],
+  ["/security", "public.nav.security"],
+  ["/pricing", "public.nav.pricing"],
+  ["/support", "public.nav.support"],
 ];
 export function LandingHeader({ path = "/" }) {
+  const { t } = useI18n();
   const [panel, setPanel] = useState(null);
   const open = panel === "navigation";
   return (
@@ -64,7 +69,7 @@ export function LandingHeader({ path = "/" }) {
         className="lp-menu-toggle"
         aria-expanded={open}
         aria-controls="lp-navigation"
-        aria-label={open ? "Close navigation" : "Open navigation"}
+        aria-label={open ? t("public.nav.close") : t("public.nav.open")}
         onClick={() => setPanel(open ? null : "navigation")}
       >
         {open ? (
@@ -76,19 +81,20 @@ export function LandingHeader({ path = "/" }) {
       <nav
         id="lp-navigation"
         className={`lp-nav ${open ? "is-open" : ""}`}
-        aria-label="Public navigation"
+        aria-label={t("public.nav.publicLabel")}
       >
-        {destinations.map(([href, label]) => (
+        {destinations.map(([href, labelKey]) => (
           <a
             href={href}
             key={href}
             aria-current={path === href ? "page" : undefined}
           >
-            {label}
+            {t(labelKey)}
           </a>
         ))}
       </nav>
       <PreviewAccountLink />
+      <LanguageControl className="lp-language" />
       <AppearanceControl
         open={panel === "appearance"}
         onOpenChange={(value) => setPanel(value ? "appearance" : null)}
@@ -98,21 +104,22 @@ export function LandingHeader({ path = "/" }) {
 }
 
 export function LandingFooter() {
+  const { t } = useI18n();
   return (
     <footer className="lp-footer lp-container">
       <div className="lp-footer-row">
         <LandingBrand />
-        <nav aria-label="Information and legal links">
-          <a href="/support">Support</a>
-          <a href="https://legal.rillora.xyz/privacy">Privacy</a>
-          <a href="https://legal.rillora.xyz/terms">Terms</a>
-          <a href="/legal">Legal</a>
+        <nav aria-label={t("public.nav.legalLabel")}>
+          <a href="/support">{t("public.nav.support")}</a>
+          <a href="https://legal.rillora.xyz/privacy">{t("public.nav.privacy")}</a>
+          <a href="https://legal.rillora.xyz/terms">{t("public.nav.terms")}</a>
+          <a href="/legal">{t("public.nav.legal")}</a>
         </nav>
       </div>
       <div className="lp-footer-notes">
-        <p>Access and transfers follow each provider’s own process.</p>
+        <p>{t("public.footer.providerProcess")}</p>
         {publicEntry.preview && (
-          <p>Preview uses the test app. Please use sample information.</p>
+          <p>{t("public.footer.preview")}</p>
         )}
       </div>
     </footer>

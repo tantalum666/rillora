@@ -1,13 +1,10 @@
+import { sharingMessage } from "./sharing.js";
+import { useI18n } from "./i18n/I18nProvider.jsx";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ArrowClockwise, ArrowLeft, ArrowRight, CalendarCheck, Check, CheckCircle, Clock, FileText, PencilSimple, Users, X, ShareNetwork, Tray } from "@phosphor-icons/react";
 import { SurfaceIcon } from "./SurfaceMotion.jsx";
 import { isReviewResolved, reviewReasons, reviewTaskLabel, reviewShareUrl } from "./familyMaintenance.js";
 import "./family-maintenance.css";
-const dateLabel = value => value ? new Date(value).toLocaleDateString("en", {
-  month: "short",
-  day: "numeric",
-  year: "numeric"
-}) : "Not scheduled";
 const inputDate = value => {
   const d = new Date(value);
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
@@ -21,6 +18,8 @@ export function FamilyMaintenancePanel({
   onDirtyChange,
   onBusyChange
 }) {
+  const { t, formatDate, formatNumber, errorMessage } = useI18n();
+  const dateLabel = value => value ? formatDate(value) : t("sharing.review.notScheduled");
   const [data, setData] = useState(null),
     [error, setError] = useState(''),
     [loading, setLoading] = useState(false),
@@ -47,7 +46,7 @@ export function FamilyMaintenancePanel({
       }
     } catch (failure) {
       if (run === generation.current) {
-        setError(failure.name === 'TypeError' ? 'Reviews could not be loaded. Check your connection and try again.' : failure.message || 'Reviews could not be loaded.');
+        setError({ cause: failure, key: failure.name === "TypeError" ? "sharing.review.networkLoadError" : "sharing.review.loadError" });
         if (failure.status === 401) setData(null);
       }
     } finally {
@@ -78,7 +77,7 @@ export function FamilyMaintenancePanel({
     await load();
     if (changedMap) onChanged?.();
   }
-  if (!data) return <div className="review-empty" role={error ? 'alert' : 'status'}><CalendarCheck size={54} /><p>{error || 'Loading reviews…'}</p>{error && <button className="secondary-button" onClick={() => void load()}>Retry</button>}</div>;
+  if (!data) return <div className="review-empty" role={error ? 'alert' : 'status'}><CalendarCheck size={54} /><p>{error ? sharingMessage(error, t, errorMessage) : t("sharing.review.loading")}</p>{error && <button className="secondary-button" onClick={() => void load()}>{t("sharing.common.retry")}</button>}</div>;
   const round = data.rounds.find(r => r.state === 'open');
   const tasks = round?.tasks ?? [];
   const resolved = tasks.filter(isReviewResolved).length;
@@ -88,54 +87,54 @@ export function FamilyMaintenancePanel({
   const share = async () => {
     try {
       if (navigator.share) await navigator.share({
-        title: 'Rillora review',
-        text: 'Please check the directions I shared with you.',
+        title: t("sharing.review.shareTitle"),
+        text: t("sharing.review.shareBody"),
         url: shareUrl
       });else {
         await navigator.clipboard.writeText(shareUrl);
         setCopiedLink(true);
       }
     } catch (failure) {
-      if (failure.name !== 'AbortError') setError('The review link could not be shared. Try again.');
+      if (failure.name !== 'AbortError') setError("sharing.review.shareError");
     }
   };
   return <div className="family-review-panel">
-    <div className="review-toolbar"><div className="panel-tabs" role="group" aria-label="Review inbox"><button aria-pressed={tab === 'mine'} onClick={() => setTab('mine')}>My plan</button><button aria-pressed={tab === 'incoming'} onClick={() => setTab('incoming')}>For me {incoming.length > 0 && <span className="review-counter">{incoming.length}</span>}</button></div><button className="icon-button" disabled={loading} aria-label="Refresh reviews" onClick={() => void load()}><ArrowClockwise size={22} /></button></div>
-    {error && <p className="drawer-alert" role="alert">{error}</p>}
+    <div className="review-toolbar"><div className="panel-tabs" role="group" aria-label={t("sharing.review.inbox")}><button aria-pressed={tab === 'mine'} onClick={() => setTab('mine')}>{t("sharing.review.myPlan")}</button><button aria-pressed={tab === 'incoming'} onClick={() => setTab('incoming')}>{t("sharing.copy.forMe")} {incoming.length > 0 && <span className="review-counter">{formatNumber(incoming.length)}</span>}</button></div><button className="icon-button" disabled={loading} aria-label={t("sharing.review.refresh")} onClick={() => void load()}><ArrowClockwise size={22} /></button></div>
+    {error && <p className="drawer-alert" role="alert">{sharingMessage(error, t, errorMessage)}</p>}
     {tab === 'mine' ? <>
-      <div className="review-hero"><div className="review-ring" role="img" aria-label={round ? `${resolved} of ${tasks.length} checks resolved` : 'Shared review'}><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52" /><circle cx="60" cy="60" r="52" pathLength="100" style={{
+      <div className="review-hero"><div className="review-ring" role="img" aria-label={round ? t("sharing.review.progress", { resolved, count: tasks.length }) : t("sharing.review.shared")}><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52" /><circle cx="60" cy="60" r="52" pathLength="100" style={{
               opacity: resolved ? 1 : 0
-            }} strokeDasharray={`${tasks.length ? resolved / tasks.length * 100 : 0} 100`} /></svg><strong>{round ? `${resolved}/${tasks.length}` : <Users size={35} />}</strong></div><div><span className="review-kicker">{data.access.mode === 'preview' ? 'Family preview' : 'Shared reviews'}</span><h2>{round ? 'Check together' : 'Keep directions current'}</h2><p>{round ? `Due ${dateLabel(round.dueAt)}` : due ? 'Your next review is due' : `Next review · ${dateLabel(data.settings.nextReviewAt)}`}</p></div></div>
+            }} strokeDasharray={`${tasks.length ? resolved / tasks.length * 100 : 0} 100`} /></svg><strong>{round ? `${formatNumber(resolved)}/${formatNumber(tasks.length)}` : <Users size={35} />}</strong></div><div><span className="review-kicker">{data.access.mode === 'preview' ? t("sharing.review.familyPreview") : t("sharing.review.sharedPlural")}</span><h2>{round ? t("sharing.review.together") : t("sharing.review.keepCurrent")}</h2><p>{round ? t("sharing.review.dueDate", { date: dateLabel(round.dueAt) }) : due ? t("sharing.review.due") : t("sharing.review.nextDate", { date: dateLabel(data.settings.nextReviewAt) })}</p></div></div>
       {round ? <><TaskList tasks={tasks} onOpen={task => open({
           type: 'task',
           task,
           owner: true
-        })} />{shareUrl && data.access.canCreate && resolved < tasks.length && <button className="secondary-button review-share" onClick={() => void share()}><ShareNetwork size={21} />{copiedLink ? 'Copied review link' : 'Share review request'}</button>}<div className="review-round-actions"><button className="primary-button" disabled={!tasks.length || resolved !== tasks.length || !data.access.canCreate} onClick={() => open({
+        })} />{shareUrl && data.access.canCreate && resolved < tasks.length && <button className="secondary-button review-share" onClick={() => void share()}><ShareNetwork size={21} />{copiedLink ? t("sharing.review.copied") : t("sharing.review.shareRequest")}</button>}<div className="review-round-actions"><button className="primary-button" disabled={!tasks.length || resolved !== tasks.length || !data.access.canCreate} onClick={() => open({
             type: 'close',
             round,
             action: 'complete'
-          })}>Finish review<Check size={21} /></button><button className="text-button" onClick={() => open({
+          })}>{t("sharing.review.finish")}<Check size={21} /></button><button className="text-button" onClick={() => open({
             type: 'close',
             round,
             action: 'cancel'
-          })}>Cancel this review</button></div></> : data.access.canCreate && data.eligible.length > 0 ? <button className="primary-button review-start" onClick={() => open({
+          })}>{t("sharing.review.cancelThis")}</button></div></> : data.access.canCreate && data.eligible.length > 0 ? <button className="primary-button review-start" onClick={() => open({
         type: 'start'
-      })}>Start a shared review<ArrowRight size={22} /></button> : !data.access.canCreate ? <p className="review-paused">New shared reviews are not available for this plan right now.</p> : null}
-      {data.eligible.length === 0 && !round && <button className="shared-inbox-entry" onClick={onManageSharing}><Users size={25} /><span>Connect someone and share directions</span><ArrowRight size={20} /></button>}
+      })}>{t("sharing.review.start")}<ArrowRight size={22} /></button> : !data.access.canCreate ? <p className="review-paused">{t("sharing.review.unavailable")}</p> : null}
+      {data.eligible.length === 0 && !round && <button className="shared-inbox-entry" onClick={onManageSharing}><Users size={25} /><span>{t("sharing.review.connect")}</span><ArrowRight size={20} /></button>}
       <button className="review-setting-entry" onClick={() => open({
         type: 'settings'
-      })}><CalendarCheck size={25} /><span><strong>Review schedule & collaborator</strong><small>{data.settings.cadenceDays ? data.settings.nextReviewAt ? `Every ${data.settings.cadenceDays} days` : 'Not scheduled' : 'Reminders paused'} · In app</small></span><ArrowRight size={20} /></button>
-      {data.history.length > 0 && <section className="review-history"><h3>Changes you approved</h3>{data.history.map(entry => <details key={entry.publicId} className="task-details"><summary><span>{entry.title}<small>{dateLabel(entry.createdAt)} · Suggested by {entry.suggestedBy}</small></span></summary><FieldChanges before={entry.beforeFields} after={entry.afterFields} /></details>)}</section>}
-      {data.rounds.some(r => r.state !== 'open') && <details className="task-details review-past"><summary>Past reviews</summary>{data.rounds.filter(r => r.state !== 'open').map(r => <section key={r.publicId}><h3>{r.state === 'completed' ? 'Completed' : 'Cancelled'} · {dateLabel(r.completedAt)}</h3><TaskList tasks={r.tasks} onOpen={task => open({
+      })}><CalendarCheck size={25} /><span><strong>{t("sharing.review.settingsEntry")}</strong><small>{t("sharing.review.inApp", { cadence: data.settings.cadenceDays ? data.settings.nextReviewAt ? t("sharing.review.everyDays", { count: data.settings.cadenceDays }) : t("sharing.review.notScheduled") : t("sharing.review.remindersPaused") })}</small></span><ArrowRight size={20} /></button>
+      {data.history.length > 0 && <section className="review-history"><h3>{t("sharing.review.history")}</h3>{data.history.map(entry => <details key={entry.publicId} className="task-details"><summary><span>{entry.title}<small>{t("sharing.review.suggestedBy", { date: dateLabel(entry.createdAt), name: entry.suggestedBy })}</small></span></summary><FieldChanges before={entry.beforeFields} after={entry.afterFields} /></details>)}</section>}
+      {data.rounds.some(r => r.state !== 'open') && <details className="task-details review-past"><summary>{t("sharing.review.past")}</summary>{data.rounds.filter(r => r.state !== 'open').map(r => <section key={r.publicId}><h3>{r.state === 'completed' ? t("sharing.review.completed") : t("sharing.review.cancelled")} · {dateLabel(r.completedAt)}</h3><TaskList tasks={r.tasks} onOpen={task => open({
             type: 'task',
             task,
             owner: true
           })} /></section>)}</details>}
-    </> : <>{incoming.length ? <><p className="review-inbox-caption">People who asked you to check their directions</p><TaskList tasks={incoming} receiver onOpen={task => open({
+    </> : <>{incoming.length ? <><p className="review-inbox-caption">{t("sharing.review.inboxCaption")}</p><TaskList tasks={incoming} receiver onOpen={task => open({
           type: 'task',
           task,
           owner: false
-        })} /></> : <div className="review-empty"><SurfaceIcon icon={Tray} emblem/><h2>Nothing waiting on you</h2><p>Shared review requests will appear here.</p></div>}{data.incoming.some(t => t.roundState !== 'open') && <details className="task-details"><summary>Previous checks</summary><TaskList tasks={data.incoming.filter(t => t.roundState !== 'open')} receiver onOpen={task => open({
+        })} /></> : <div className="review-empty"><SurfaceIcon icon={Tray} emblem/><h2>{t("sharing.review.nothingWaiting")}</h2><p>{t("sharing.review.empty")}</p></div>}{data.incoming.some(t => t.roundState !== 'open') && <details className="task-details"><summary>{t("sharing.review.previous")}</summary><TaskList tasks={data.incoming.filter(t => t.roundState !== 'open')} receiver onOpen={task => open({
           type: 'task',
           task,
           owner: false
@@ -147,16 +146,18 @@ function TaskList({
   onOpen,
   receiver = false
 }) {
+  const { t } = useI18n();
   return <div className="review-task-list">{tasks.map(task => {
       const Icon = taskIcon(task);
-      return <button className="review-task-row" data-ready={isReviewResolved(task)} key={task.publicId} onClick={() => onOpen(task)}><Icon size={25} aria-hidden="true" /><span><strong>{task.title}</strong><small>{receiver ? task.ownerName : task.personName}</small></span><span className="review-state" data-ready={isReviewResolved(task)}>{reviewTaskLabel(task)}</span><ArrowRight size={18} aria-hidden="true" /></button>;
+      return <button className="review-task-row" data-ready={isReviewResolved(task)} key={task.publicId} onClick={() => onOpen(task)}><Icon size={25} aria-hidden="true" /><span><strong>{task.title}</strong><small>{receiver ? task.ownerName : task.personName}</small></span><span className="review-state" data-ready={isReviewResolved(task)}>{reviewTaskLabel(task, t)}</span><ArrowRight size={18} aria-hidden="true" /></button>;
     })}</div>;
 }
 function FieldChanges({
   before,
   after
 }) {
-  return <dl className="review-diff">{Object.keys(after).filter(key => after[key] !== before[key]).map(key => <div key={key}><dt>{key === 'locationHint' ? 'Where to find it' : 'Provider'}</dt><dd><span className="review-old">{before[key] || 'Not added'}</span><ArrowRight size={17} aria-label="changes to" /><strong>{after[key]}</strong></dd></div>)}</dl>;
+  const { t } = useI18n();
+  return <dl className="review-diff">{Object.keys(after).filter(key => after[key] !== before[key]).map(key => <div key={key}><dt>{key === 'locationHint' ? t("sharing.common.location") : t("sharing.common.provider")}</dt><dd><span className="review-old">{before[key] || t("sharing.common.notAdded")}</span><ArrowRight size={17} aria-label={t("sharing.review.changesTo")} /><strong>{after[key]}</strong></dd></div>)}</dl>;
 }
 function ReviewDialog({
   model,
@@ -167,6 +168,7 @@ function ReviewDialog({
   onDirtyChange,
   onBusyChange
 }) {
+  const { t, errorMessage } = useI18n();
   const ref = useRef(null);
   const [busy, setBusy] = useState(false),
     [error, setError] = useState(''),
@@ -223,12 +225,12 @@ function ReviewDialog({
       setDirty(false);
       await onSaved(changesMap);
     } catch (failure) {
-      setError(failure.name === 'TypeError' ? 'Could not confirm your changes. Check your connection and try again. Your draft is still here.' : failure.message || 'Your changes were not saved. The draft is still here.');
+      setError({ cause: failure, key: failure.name === "TypeError" ? "sharing.review.saveNetworkError" : "sharing.review.saveError" });
     } finally {
       setBusy(false);
     }
   }
-  const title = model.type === 'start' ? 'Choose what to check' : model.type === 'settings' ? 'Review settings' : model.type === 'close' ? model.action === 'complete' ? 'Finish this review?' : 'Cancel this review?' : model.task.title;
+  const title = model.type === 'start' ? t("sharing.review.chooseChecks") : model.type === 'settings' ? t("sharing.review.settings") : model.type === 'close' ? model.action === 'complete' ? t("sharing.review.finishTitle") : t("sharing.review.cancelTitle") : model.task.title;
   const task = model.task;
   const connected = [...new Map(data.eligible.map(item => [item.connectionPublicId, item])).values()];
   const proposal = {
@@ -254,82 +256,82 @@ function ReviewDialog({
     event.preventDefault();
     close();
   }}>
-    <header><h2 id="review-dialog-title">{title}</h2><button className="icon-button" disabled={busy} aria-label="Close review panel" onClick={close}><X size={22} /></button></header>
-    {leaving ? <div className="review-dialog-body"><h3>Keep this draft?</h3><button className="primary-button" onClick={() => setLeaving(false)}>Keep editing</button><button className="text-button danger-text" onClick={() => leaveTarget === 'choices' ? returnToChoices() : onClose()}>Discard draft</button></div> : <div className="review-dialog-body">
-      {error && <p className="drawer-alert" role="alert">{error}</p>}
-      {model.type === 'start' && <><label className="field-label">Review by<input type="date" min={inputDate(Date.now())} max={inputDate(Date.now() + 365 * 86400000)} value={dueDate} onChange={e => {
+    <header><h2 id="review-dialog-title">{title}</h2><button className="icon-button" disabled={busy} aria-label={t("sharing.review.closePanel")} onClick={close}><X size={22} /></button></header>
+    {leaving ? <div className="review-dialog-body"><h3>{t("sharing.review.keepDraft")}</h3><button className="primary-button" onClick={() => setLeaving(false)}>{t("sharing.common.keepEditing")}</button><button className="text-button danger-text" onClick={() => leaveTarget === 'choices' ? returnToChoices() : onClose()}>{t("sharing.review.discard")}</button></div> : <div className="review-dialog-body">
+      {error && <p className="drawer-alert" role="alert">{sharingMessage(error, t, errorMessage)}</p>}
+      {model.type === 'start' && <><label className="field-label">{t("sharing.review.by")}<input type="date" min={inputDate(Date.now())} max={inputDate(Date.now() + 365 * 86400000)} value={dueDate} onChange={e => {
             setDueDate(e.target.value);
             setDirty(true);
           }} disabled={busy} /></label>
-        <div className="review-selection">{data.eligible.map(item => <label key={pairKey(item)}><FileText size={22} aria-hidden="true" /><span><strong>{item.title}</strong><small>{item.personName}{item.missingLocation ? ' · Location missing' : ''}</small></span><input type="checkbox" disabled={busy} checked={selected.includes(pairKey(item))} onChange={() => {
+        <div className="review-selection">{data.eligible.map(item => <label key={pairKey(item)}><FileText size={22} aria-hidden="true" /><span><strong>{item.title}</strong><small>{item.personName}{item.missingLocation ? t("sharing.review.locationMissing") : ''}</small></span><input type="checkbox" disabled={busy} checked={selected.includes(pairKey(item))} onChange={() => {
               setSelected(old => old.includes(pairKey(item)) ? old.filter(id => id !== pairKey(item)) : [...old, pairKey(item)]);
               setDirty(true);
             }} /></label>)}</div>
-        {!data.eligible.length && <p>Connect a person and share Directions or Details first.</p>}
-        <button className="primary-button" disabled={busy || !selected.length || !dueDate} onClick={() => void startReview()}>{busy ? 'Creating…' : `Request ${selected.length || ''} ${selected.length === 1 ? 'check' : 'checks'}`}<ArrowRight size={21} /></button><p className="review-inline-note">Appears in their Rillora review inbox.</p></>}
-      {model.type === 'settings' && <><label className="field-label">Review cadence<select disabled={busy || !data.access.canCreate} value={cadence} onChange={e => {
+        {!data.eligible.length && <p>{t("sharing.review.connectFirst")}</p>}
+        <button className="primary-button" disabled={busy || !selected.length || !dueDate} onClick={() => void startReview()}>{busy ? t("sharing.review.creating") : t("sharing.review.requestCount", { count: selected.length })}<ArrowRight size={21} /></button><p className="review-inline-note">{t("sharing.review.requestHint")}</p></>}
+      {model.type === 'settings' && <><label className="field-label">{t("sharing.review.cadence")}<select disabled={busy || !data.access.canCreate} value={cadence} onChange={e => {
             setCadence(Number(e.target.value));
             setDirty(true);
-          }}>{[[0, 'Off'], [30, 'Every month'], [90, 'Every 3 months'], [180, 'Every 6 months'], [365, 'Every year']].map(([value, label]) => <option value={value} key={value}>{label}</option>)}</select></label><label className="field-label">Who can suggest corrections?<select disabled={busy || !data.access.canCreate} value={collaborator} onChange={e => {
+          }}>{[[0, t("sharing.review.off")], [30, t("sharing.review.month")], [90, t("sharing.review.threeMonths")], [180, t("sharing.review.sixMonths")], [365, t("sharing.review.year")]].map(([value, label]) => <option value={value} key={value}>{label}</option>)}</select></label><label className="field-label">{t("sharing.review.collaborator")}<select disabled={busy || !data.access.canCreate} value={collaborator} onChange={e => {
             setCollaborator(e.target.value);
             setDirty(true);
-          }}><option value="">No one · checks only</option>{connected.map(c => <option key={c.connectionPublicId} value={c.connectionPublicId}>{c.personName}</option>)}</select></label><p className="review-inline-note">You approve changes before your map updates.</p><button className="primary-button" disabled={busy || !dirty || !data.access.canCreate} onClick={() => void run(() => apiClient.saveFamilyReviewSettings({
+          }}><option value="">{t("sharing.review.noCollaborator")}</option>{connected.map(c => <option key={c.connectionPublicId} value={c.connectionPublicId}>{c.personName}</option>)}</select></label><p className="review-inline-note">{t("sharing.review.approvalHint")}</p><button className="primary-button" disabled={busy || !dirty || !data.access.canCreate} onClick={() => void run(() => apiClient.saveFamilyReviewSettings({
           expectedVersion: data.settings.version,
           cadenceDays: cadence,
           collaboratorConnectionPublicId: collaborator || null,
           nextReviewAt: cadence === data.settings.cadenceDays ? data.settings.nextReviewAt : null
-        }))}>Save settings<Check size={21} /></button>{!data.access.canCreate && <button className="secondary-button" disabled={busy} onClick={() => void run(() => apiClient.saveFamilyReviewSettings({
+        }))}>{t("sharing.review.saveSettings")}<Check size={21} /></button>{!data.access.canCreate && <button className="secondary-button" disabled={busy} onClick={() => void run(() => apiClient.saveFamilyReviewSettings({
           expectedVersion: data.settings.version,
           cadenceDays: 0,
           collaboratorConnectionPublicId: null,
           nextReviewAt: null
-        }))}>Pause reviews and suggestions</button>}</>}
-      {model.type === 'close' && <><div className="review-complete-symbol"><CheckCircle size={60} /></div><p>{model.action === 'complete' ? 'These checks and your decisions stay in review history.' : 'Existing directions and sharing stay unchanged.'}</p><button className="primary-button" disabled={busy} onClick={() => void run(() => apiClient.closeFamilyReview(model.round.publicId, {
+        }))}>{t("sharing.review.pause")}</button>}</>}
+      {model.type === 'close' && <><div className="review-complete-symbol"><CheckCircle size={60} /></div><p>{model.action === 'complete' ? t("sharing.review.finishBody") : t("sharing.review.cancelBody")}</p><button className="primary-button" disabled={busy} onClick={() => void run(() => apiClient.closeFamilyReview(model.round.publicId, {
           expectedVersion: model.round.version,
           action: model.action
-        }))}>{model.action === 'complete' ? 'Finish review' : 'Cancel review'}<Check size={21} /></button></>}
-      {task && <><p className="review-task-person">{model.owner ? task.personName : task.ownerName} · {reviewTaskLabel(task)}</p>
-        <dl className="review-directions"><div><dt>Provider</dt><dd>{task.fields.institutionName || 'Not added'}</dd></div><div><dt>Where to find it</dt><dd>{task.fields.locationHint || 'Not added'}</dd></div></dl>
-        {task.reason && <p className="review-issue">{reviewReasons[task.reason]}</p>}
-        {task.proposal && <><h3>Suggested correction</h3><FieldChanges before={task.fields} after={{
+        }))}>{model.action === 'complete' ? t("sharing.review.finish") : t("sharing.review.cancel")}<Check size={21} /></button></>}
+      {task && <><p className="review-task-person">{model.owner ? task.personName : task.ownerName} · {reviewTaskLabel(task, t)}</p>
+        <dl className="review-directions"><div><dt>{t("sharing.common.provider")}</dt><dd>{task.fields.institutionName || t("sharing.common.notAdded")}</dd></div><div><dt>{t("sharing.common.location")}</dt><dd>{task.fields.locationHint || t("sharing.common.notAdded")}</dd></div></dl>
+        {task.reason && <p className="review-issue">{t(`sharing.review.reason.${task.reason}`)}</p>}
+        {task.proposal && <><h3>{t("sharing.review.suggestion")}</h3><FieldChanges before={task.fields} after={{
             ...task.fields,
             ...task.proposal
           }} /></>}
-        {(!task.scopeAvailable || task.isStale) && <p className="review-issue">{task.isStale ? 'The matter changed. A fresh check is needed.' : 'Sharing changed. This check is no longer current.'}</p>}
+        {(!task.scopeAvailable || task.isStale) && <p className="review-issue">{task.isStale ? t("sharing.review.stale") : t("sharing.review.scopeChanged")}</p>}
         {model.owner && task.canManage && <div className="review-decision-actions">{task.state === 'suggested' && !task.isStale && task.scopeAvailable && task.canSuggest && <button className="primary-button" disabled={busy} onClick={() => void run(() => apiClient.decideFamilyReview(task.publicId, {
             expectedVersion: task.version,
             action: 'apply'
-          }), true)}>Apply update<Check size={21} /></button>}{['suggested', 'needs_update'].includes(task.state) && <button className="secondary-button" disabled={busy} onClick={() => void run(() => apiClient.decideFamilyReview(task.publicId, {
+          }), true)}>{t("sharing.review.apply")}<Check size={21} /></button>}{['suggested', 'needs_update'].includes(task.state) && <button className="secondary-button" disabled={busy} onClick={() => void run(() => apiClient.decideFamilyReview(task.publicId, {
             expectedVersion: task.version,
             action: 'dismiss'
-          }))}>Keep current directions</button>}<button className="text-button" disabled={busy} onClick={() => void run(() => apiClient.decideFamilyReview(task.publicId, {
+          }))}>{t("sharing.review.keepDirections")}</button>}<button className="text-button" disabled={busy} onClick={() => void run(() => apiClient.decideFamilyReview(task.publicId, {
             expectedVersion: task.version,
             action: 'reopen'
-          }))}>Request a fresh check</button></div>}
+          }))}>{t("sharing.review.recheck")}</button></div>}
         {!model.owner && task.canRespond && !suggesting && <><button className="primary-button" disabled={busy} onClick={() => void run(() => apiClient.respondToFamilyReview(task.publicId, {
             expectedVersion: task.version,
             response: 'confirmed'
-          }))}>I can find it<CheckCircle size={22} /></button><div className="review-reasons">{Object.entries(reviewReasons).map(([reason, label]) => <button className="secondary-button" key={reason} disabled={busy} onClick={() => void run(() => apiClient.respondToFamilyReview(task.publicId, {
+          }))}>{t("sharing.review.canFind")}<CheckCircle size={22} /></button><div className="review-reasons">{Object.entries(reviewReasons).map(([reason, label]) => <button className="secondary-button" key={reason} disabled={busy} onClick={() => void run(() => apiClient.respondToFamilyReview(task.publicId, {
               expectedVersion: task.version,
               response: 'needs_update',
               reason
-            }))}>{label}</button>)}</div>{task.canSuggest && <button className="text-button" onClick={() => setSuggesting(true)}><PencilSimple size={21} />Suggest a correction</button>}</>}
+            }))}>{t(`sharing.review.reason.${reason}`)}</button>)}</div>{task.canSuggest && <button className="text-button" onClick={() => setSuggesting(true)}><PencilSimple size={21} />{t("sharing.review.suggest")}</button>}</>}
         {!model.owner && task.canRespond && suggesting && <><button className="text-button" disabled={busy} onClick={() => {
             if (dirty) {
               setLeaveTarget('choices');
               setLeaving(true);
             } else returnToChoices();
-          }}><ArrowLeft size={18} />Review choices</button><label className="field-label">Provider<input value={provider} maxLength={160} disabled={busy} onChange={e => {
+          }}><ArrowLeft size={18} />{t("sharing.review.choices")}</button><label className="field-label">{t("sharing.common.provider")}<input value={provider} maxLength={160} disabled={busy} onChange={e => {
               setProvider(e.target.value);
               setDirty(true);
-            }} /></label><label className="field-label">Where to find it<textarea value={location} maxLength={500} rows={3} disabled={busy} onChange={e => {
+            }} /></label><label className="field-label">{t("sharing.common.location")}<textarea value={location} maxLength={500} rows={3} disabled={busy} onChange={e => {
               setLocation(e.target.value);
               setDirty(true);
             }} /></label><button className="primary-button" disabled={busy || !Object.keys(proposal).length || Object.values(proposal).some(v => !v)} onClick={() => void run(() => apiClient.respondToFamilyReview(task.publicId, {
             expectedVersion: task.version,
             response: 'suggested',
             proposal
-          }))}>Send for approval<ArrowRight size={21} /></button></>}
+          }))}>{t("sharing.review.submit")}<ArrowRight size={21} /></button></>}
       </>}
     </div>}
   </dialog>;

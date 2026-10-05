@@ -36,6 +36,9 @@ function handler(event) {
       request.querystring.service.value;
     var target = "https://app.staging.rillora.xyz/account?next=guides";
     if (providers.indexOf(service) !== -1) target += "&service=" + service;
+    // Display language only; all other untrusted query values remain discarded.
+    var language = request.querystring && request.querystring.lang && request.querystring.lang.value;
+    if (language === "en" || language === "zh-CN") target += "&lang=" + language;
     return {
       statusCode: 302,
       headers: {

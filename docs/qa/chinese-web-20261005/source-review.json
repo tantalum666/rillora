@@ -1,0 +1,196 @@
+{
+  "reviewedAt": "2026-10-05T00:26:42.950Z",
+  "baselineCommit": "5d25bbc5aa9353eaba1c65dda0b93775a66a67d8",
+  "scope": "Read-only integrated source review plus this evidence file; no external services or browser runtime exercised.",
+  "result": "passed",
+  "apiCallAstComparison": {
+    "filesCompared": 50,
+    "callsCompared": 98,
+    "differences": [],
+    "method": "Parse HEAD and current sources with the installed @babel/parser; compare complete api.* and apiClient.* CallExpression subtrees as multisets, dropping only source locations, parser extra data and comments."
+  },
+  "immutableFiles": [
+    {
+      "file": "apps/web/src/LegalDocumentPage.jsx",
+      "headSha256": "3eb7d7bf4d3c420c49946dbfcd322293136cce556407339dc0cafa0aa5f30602",
+      "currentSha256": "3eb7d7bf4d3c420c49946dbfcd322293136cce556407339dc0cafa0aa5f30602",
+      "unchanged": true
+    },
+    {
+      "file": "apps/web/src/legalContract.js",
+      "headSha256": "d22f117a65554c0999463296120146fa8e286c9b3ac3789153c71edbc6dcc428",
+      "currentSha256": "d22f117a65554c0999463296120146fa8e286c9b3ac3789153c71edbc6dcc428",
+      "unchanged": true
+    },
+    {
+      "file": "apps/web/src/LegalPublicationApp.jsx",
+      "headSha256": "1d68f91410491d8d6c4548ac30e7f76ac4fa31b430618ba9fad7a595b8340754",
+      "currentSha256": "1d68f91410491d8d6c4548ac30e7f76ac4fa31b430618ba9fad7a595b8340754",
+      "unchanged": true
+    },
+    {
+      "file": "apps/web/src/legal-main.jsx",
+      "headSha256": "b886d7dfd3f9b77a784333ed04e9128ead721542d6741708c6cbfcdfc238afad",
+      "currentSha256": "b886d7dfd3f9b77a784333ed04e9128ead721542d6741708c6cbfcdfc238afad",
+      "unchanged": true
+    },
+    {
+      "file": "apps/web/src/api.js",
+      "headSha256": "7efa95e813530d01bd74fe34d1a1b9e9323cb9da624f1f7777f6e3af53e03c2d",
+      "currentSha256": "7efa95e813530d01bd74fe34d1a1b9e9323cb9da624f1f7777f6e3af53e03c2d",
+      "unchanged": true
+    },
+    {
+      "file": "apps/web/src/accountDeletionClient.js",
+      "headSha256": "2b013aaca74af34a4a28fd9f16eb7008c2573cfb56e4842c5669e22acc5d0c02",
+      "currentSha256": "2b013aaca74af34a4a28fd9f16eb7008c2573cfb56e4842c5669e22acc5d0c02",
+      "unchanged": true
+    },
+    {
+      "file": "apps/web/src/productionBilling.js",
+      "headSha256": "ae5d12dbedacb3805a7df7c1eca1e580534a3429e20fdca86d3faa8a51d8a054",
+      "currentSha256": "ae5d12dbedacb3805a7df7c1eca1e580534a3429e20fdca86d3faa8a51d8a054",
+      "unchanged": true
+    },
+    {
+      "file": "apps/web/src/savedCopy.js",
+      "headSha256": "992cc372b0c0ed14e146be5e26eaca6dde9aefab7311ae355df4461844c21319",
+      "currentSha256": "992cc372b0c0ed14e146be5e26eaca6dde9aefab7311ae355df4461844c21319",
+      "unchanged": true
+    },
+    {
+      "file": "apps/web/src/startHereCrypto.js",
+      "headSha256": "25d862807e149d7ac80fd3e6d86a0cd2ffadf35582d25a3df80a841db9fdf85e",
+      "currentSha256": "25d862807e149d7ac80fd3e6d86a0cd2ffadf35582d25a3df80a841db9fdf85e",
+      "unchanged": true
+    },
+    {
+      "file": "apps/web/src/officialProviderGuides.js",
+      "headSha256": "bc227ba3a2f033cd297b07e6d3ce8d2bd1ad83b4c8525c3d43c3bee667b7d57b",
+      "currentSha256": "bc227ba3a2f033cd297b07e6d3ce8d2bd1ad83b4c8525c3d43c3bee667b7d57b",
+      "unchanged": true
+    },
+    {
+      "file": "config/product-catalog.json",
+      "headSha256": "6481391c74e08c9e2e8a31c4e33a7f4db93d442bb7b6edd1c952d367decae509",
+      "currentSha256": "6481391c74e08c9e2e8a31c4e33a7f4db93d442bb7b6edd1c952d367decae509",
+      "unchanged": true
+    },
+    {
+      "file": "config/provider-guides.json",
+      "headSha256": "a515e2c2e50b495a32ec4301866332054f0b5a8aa985e60d5d67af83e7a1c542",
+      "currentSha256": "a515e2c2e50b495a32ec4301866332054f0b5a8aa985e60d5d67af83e7a1c542",
+      "unchanged": true
+    },
+    {
+      "file": "config/public-entry.json",
+      "headSha256": "5b7d62cc1ac06e493bfec5140f3531eae420843e216168b63837238b85b73e5a",
+      "currentSha256": "5b7d62cc1ac06e493bfec5140f3531eae420843e216168b63837238b85b73e5a",
+      "unchanged": true
+    }
+  ],
+  "publicSourceIsolation": {
+    "entry": "apps/web/src/public-main.jsx",
+    "method": "Recursively traverse static relative import/from and dynamic import string specifiers in JS/JSX/MJS/JSON, stripping Vite query suffixes.",
+    "modules": [
+      "apps/web/src/AppearanceControl.jsx",
+      "apps/web/src/PublicWebsite.jsx",
+      "apps/web/src/WebsiteAppearanceDisclosure.jsx",
+      "apps/web/src/appearanceLink.js",
+      "apps/web/src/guideAccess.js",
+      "apps/web/src/guideIdentifiers.js",
+      "apps/web/src/i18n/I18nProvider.jsx",
+      "apps/web/src/i18n/LanguageControl.jsx",
+      "apps/web/src/i18n/core.js",
+      "apps/web/src/i18n/errors.js",
+      "apps/web/src/i18n/localeStore.js",
+      "apps/web/src/i18n/messages/common.js",
+      "apps/web/src/i18n/messages/public.js",
+      "apps/web/src/i18n/publicCatalogs.js",
+      "apps/web/src/landing/AppearanceControl.jsx",
+      "apps/web/src/landing/ControlSection.jsx",
+      "apps/web/src/landing/ExampleMatter.jsx",
+      "apps/web/src/landing/LandingChrome.jsx",
+      "apps/web/src/landing/LandingFAQ.jsx",
+      "apps/web/src/landing/LandingMotion.jsx",
+      "apps/web/src/landing/LandingPage.jsx",
+      "apps/web/src/landing/LegalInformation.jsx",
+      "apps/web/src/landing/LifeSituations.jsx",
+      "apps/web/src/landing/MatterDemo.jsx",
+      "apps/web/src/landing/PlanSection.jsx",
+      "apps/web/src/landing/ProductPages.jsx",
+      "apps/web/src/landing/PublicFragmentNavigation.jsx",
+      "apps/web/src/landing/SharingDemo.jsx",
+      "apps/web/src/landing/landingModel.js",
+      "apps/web/src/landing/matterExamples.js",
+      "apps/web/src/public-main.jsx",
+      "apps/web/src/publicEntry.js",
+      "apps/web/src/publicRoutes.js",
+      "apps/web/src/websiteAppearance.js",
+      "config/product-catalog.json",
+      "config/public-entry.json"
+    ],
+    "forbiddenModules": []
+  },
+  "catalogValidation": {
+    "appKeyCount": 1274,
+    "publicKeyCount": 312,
+    "errors": []
+  },
+  "unicodeAndFormContract": {
+    "interpolationPreservesExactCodepoints": true,
+    "validationAndPayloadCases": 168,
+    "differences": [],
+    "method": "Compare HEAD/current matterValidation eligibility and matterPayload JSON for all seven categories and BMP Han, supplementary Han, emoji and combining-sequence strings at lengths 1/59/60/119/120/121.",
+    "boundary": "Existing UTF-16 .length/maxLength validation remains unchanged; no new code-point-counting contract is claimed."
+  },
+  "focusedTests": {
+    "command": "node --test apps/web/tests/forms-i18n-render.test.mjs apps/web/tests/forms-i18n.test.mjs apps/web/tests/i18n-catalogs.test.mjs apps/web/tests/i18n-core.test.mjs apps/web/tests/public-i18n.test.mjs apps/web/tests/public-website.test.mjs apps/web/tests/sharing-i18n.test.mjs apps/web/tests/workspace-i18n.test.mjs",
+    "exitCode": 0,
+    "summary": [
+      "ℹ tests 51",
+      "ℹ suites 0",
+      "ℹ pass 51",
+      "ℹ fail 0",
+      "ℹ cancelled 0",
+      "ℹ skipped 0",
+      "ℹ todo 0",
+      "ℹ duration_ms 564.687521"
+    ],
+    "stderr": ""
+  },
+  "resolvedFindings": [
+    "English missing-key plural fallback uses English PluralRules.",
+    "Automatic browser locale is not persisted or propagated as a manual preference; explicit choices are carried only to allowlisted App origins.",
+    "Legacy guide client fallback and server redirect preserve an explicitly supported locale enum without forwarding other untrusted query values."
+  ],
+  "manualReview": {
+    "apiAndSecurityGuards": "Reviewed changed IfStatement conditions. Changes concern localized confirmation descriptors, UI error states and display mapping; no removed request authorization gate identified.",
+    "legalAndAuthentication": "Accepted English legal document module and versioned contract remain byte-identical. Chinese account consent is reference text; unchecked/default consent gates and authentication API arguments remain unchanged.",
+    "accessibility": "Native language select has an associated label, lang-tagged options, visible focus styling and a storage-failure status description. English legal body is tagged by an external lang=en wrapper.",
+    "preferences": "Focused tests cover read/write storage failures, reload, invalid values, cross-tab changes, explicit vs implicit selection, handoff allowlists and preservation of unrelated query/hash/history state."
+  },
+  "limits": [
+    "Static source and Node/SSR checks are not browser interaction, keyboard, screenshot, responsive-layout, hosted-auth or deployment evidence.",
+    "API-call AST equality does not alone prove all control-flow security; changed conditions were also manually reviewed.",
+    "Catalog completeness is not a guarantee of perfect linguistic quality."
+  ],
+  "reproduction": {
+    "focusedTests": "Run focusedTests.command from the repository root.",
+    "immutableDigests": "For each immutableFiles entry compare git show HEAD:<file> | sha256sum with sha256sum <file>.",
+    "sourceAlgorithms": "The AST and graph algorithms are described in their respective method fields and use the locally installed parser; no network dependency is required."
+  },
+  "upstreamCommit": "2cc95f77c1279bdad43547b7e58a8faca9da7a93",
+  "sourceProvenance": {
+    "kind": "Exact-file sparse materialization through the authorized GitHub connector; not a remote Git clone.",
+    "localBaseline": "baselineCommit identifies an unpublished local comparison checkpoint, not a published upstream commit.",
+    "normalization": "The local checkpoint was amended after eight supplemental source/config files had transport-only surplus terminal LF removed and their Git blob SHAs verified. Functional localization changes were not folded into the checkpoint.",
+    "boundary": "This review independently rechecks local HEAD/current digests. Upstream blob transport verification is distinct from these local digest checks."
+  },
+  "finalDeltaReview": {
+    "languageControl": "Initial workspace loading/error gate and account-deletion status now include the existing accessible LanguageControl; request and deletion logic remain unchanged.",
+    "documentTitle": "Signed-in title is derived only from the existing activeNav enum and the active translator; effect performs no navigation or request.",
+    "legacyGuideRedirect": "worker/public-router.js forwards only the exact en / zh-CN enum alongside the existing allowlisted service. Destination remains hardcoded; arbitrary query values remain discarded; redirect remains no-store.",
+    "routerTests": "Positive en/zh-CN and negative zh-HK, script-like, query-injection, empty and undefined language cases pass, together with existing route/write rejection tests."
+  }
+}

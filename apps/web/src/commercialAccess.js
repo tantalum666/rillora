@@ -157,3 +157,28 @@ function humanize(value) {
     .map((part) => part[0]?.toUpperCase() + part.slice(1))
     .join(" ");
 }
+
+// Rendering adapters keep the normalized API model and legacy English labels stable.
+// Only recognized catalog capabilities are localized; unknown server data is never rewritten.
+const capabilityCodesByLabel = new Map(Object.entries(capabilityLabels).map(([code, label]) => [label, code]));
+
+export function commercialFeatureLabel(label, t) {
+  const code = capabilityCodesByLabel.get(label);
+  return t && code ? t(`workspace.capability.${code}`) : label;
+}
+
+export function commercialPlanLabel(commerce, t) {
+  if (!t) return commerce.currentAccessLabel;
+  if (!commerce.available) return t("workspace.plan.unavailable");
+  const code = commerce.currentAccess?.planCode;
+  if (!["free", "family"].includes(code)) return commerce.currentAccessLabel;
+  const plan = t(`workspace.plan.${code}`);
+  return commerce.validationOnly ? t("workspace.plan.testAccess", { plan }) : plan;
+}
+
+const billingStates = new Set(["active", "cancel_at_period_end", "grace", "past_due", "expired_read_only", "refunded", "revoked", "previewing"]);
+
+export function billingStateLabel(state, t) {
+  if (!t) return typeof state === "string" ? state.replaceAll("_", " ") : "Family subscription";
+  return t(billingStates.has(state) ? `workspace.billing.state.${state}` : "workspace.billing.subscription");
+}
