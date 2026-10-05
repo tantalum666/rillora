@@ -19,6 +19,10 @@ no Bundle override/view identity reset. App and Preview catalog wiring and four 
 native test files are recorded in the committed project and XcodeGen specification
 - Static catalog/source/target/placeholder checks; 21 added native XCTest cases remain
 unrun. [QA](qa/chinese-ios-20261005/README.md) keeps local, remote and native evidence separate
+- Source commit `c68b9d678814128a9e6ee9da346cf56439ef0d86` is pushed and all 92
+changed file blobs read back exactly. [CI](https://github.com/tantalum666/rillora/actions/runs/37250896930)
+passes source/API/Web-infrastructure jobs; this is not a native build.
+[Remote receipt](qa/chinese-ios-20261005/remote-verification.json).
 - User data, shared-field permissions, machine enums, legal acceptance, actual prices,
 crypto and file formats remain intact. No production/provider/store action occurred
 

@@ -37,8 +37,10 @@ with no new blanket ignore rule
 [sharing](sharing-validation.json). The combined catalog reconciles repeated terms with
 the Web glossary; these reports are focused checks, not native build results
 
-Final local and remote outcomes are recorded in local-validation.json and
-remote-verification.json when available. No live service, provider, database, billing,
+Final [local validation](local-validation.json), [static test log](static-tests.log),
+and [remote verification](remote-verification.json) are saved. Source commit c68b9d67
+has all 92 changed blobs verified and all three existing CI jobs passed. The CI
+checks source/API/Web/infrastructure, not Xcode or Simulator. No live service, provider, database, billing,
 App Store or deployed client was changed by this source task.
 
 ## Required Mac acceptance
