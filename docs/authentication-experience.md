@@ -21,8 +21,12 @@ The user can choose the intended identity. Signup still usesscreen_hint=signup;
 return intent, unchecked legal control/versions and session security stay unchanged.
 No account picker layout, provider configuration or tenant-wide SSO switch is added.
 
-29focused existing Web/API-client/return checks and the review production build pass.
-Actual deployed account selection and subsequent disposable acceptance are pending.
+29 focused existing Web/API-client/return checks, the review production build and
+CI54 pass. The Web-only rollout is complete and86live files match. The actual hosted
+form then accepted the intended disposable identity. Its later naturally aged
+authentication returned403; same-account reauthentication and explicit export retry
+returned200and produced a saved file. Owner subsequently retained the isolated
+account and deferred final deletion; its temporary review access is now removed.
 Auth0 documents the [prompt behavior](https://support.auth0.com/center/s/article/Clarification-about-what-happens-when-the-prompt-parameter-is-not-sent-to-authorize).
 This is an account-choice UX control, not a substitute for server-side recent-auth
 verification. Current evidence continues in[the core contract](real-core-acceptance-20261004.md).

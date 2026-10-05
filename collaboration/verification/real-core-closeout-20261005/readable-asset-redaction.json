@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-05T05:39:37.745531+00:00",
+  "scannerFindings": 9,
+  "classification": "Generic key heuristic matched opaque content-addressed CDK S3 object filenames; not authentication credentials",
+  "changes": [
+    {
+      "readablePath": "collaboration/verification/real-core-closeout-20261005/receipts/cdk-production-web/RilloraProductionWeb.assets.json",
+      "opaqueAssetFilenamesOmitted": 5
+    },
+    {
+      "readablePath": "collaboration/verification/real-core-closeout-20261005/receipts/cdk-production-web/RilloraProductionWeb.template.json",
+      "opaqueAssetFilenamesOmitted": 4
+    },
+    {
+      "readablePath": "collaboration/verification/real-core-closeout-20261005/receipts/cdk-production-web/tree.json",
+      "opaqueAssetFilenamesOmitted": 2
+    },
+    {
+      "readablePath": "collaboration/verification/real-core-closeout-20261005/receipts/web-live-template-before.json",
+      "opaqueAssetFilenamesOmitted": 4
+    }
+  ],
+  "scannerSuppressionAdded": false,
+  "sealedOriginalsUnchanged": true
+}

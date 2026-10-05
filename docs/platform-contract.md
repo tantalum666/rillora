@@ -5,7 +5,7 @@ Authority scope: Web/iOS responsibilities, shared state and first validation rel
 Superseded by: later explicit platform decision  
 Do not use for: final framework choice or visual tokens  
 Status: CORE PARITY CONTRACT ACTIVE; CURRENT RUNTIME AND RELEASE GATES IN HANDOFF
-Last updated: 2026-10-04 (Asia/Hong_Kong)
+Last updated: 2026-10-05 (Asia/Hong_Kong)
 
 ## October4 actual core continuation
 
@@ -16,9 +16,10 @@ and the encrypted file also reopened in the native local reader. Current-device
 logout returned both clients to public state; native restart stayed signed out.
 A native export alert could obscure required sign-in; the focused store repair is
 verified by10tests and the actual retry/recovery flow. CI48and uploaded/processed
-1.0(4)include that repair. A separate disposable account now awaits current Web
-terms confirmation before actual import/fresh-auth/deletion. These remaining cases,
-physical-device/Apple purchases and public release are not implied complete.
+1.0(4)include that repair. October5completed real Web import and fresh-auth retry in the independent account.
+Owner then retained that account/data, so irreversible deletion remains deferred.
+The temporary fourth-identity access was removed and the test session ended. Physical
+Apple purchases and public release are not implied complete.
 [Current acceptance](real-core-acceptance-20261004.md).
 
 ## October3 strict-review implementation boundary

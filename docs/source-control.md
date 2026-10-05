@@ -255,3 +255,14 @@ against GitHub-read metadata. [Remote receipt](../collaboration/verification/rea
 Opaque public/wrapped crypto strings were removed from the readable package reference
 when the scanner flagged them; the exact original remains sealed, and the unchanged
 scanner then passed. The recovery private key was never part of either publication.
+
+
+## October5 import, Web account choice and retained-account cleanup
+
+The [October5addendum](../collaboration/verification/real-core-closeout-20261005/README.md)
+preserves149eligible QA/client paths and149objects in raw-work-016,28,717,330encrypted
+bytes. It includes the Web-only repaired artifact, actual import/recent-auth outcomes,
+Owner's keep-account result and original3-access restoration. Irreversible deletion
+was not submitted or claimed verified. Native4and previous archives remain unchanged.
+Source5714ec158on the existing review branch hasCI54success; source/ciphertext/Git
+preservation remain separate from public launch, physical purchases and deletion.

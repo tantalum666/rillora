@@ -1,17 +1,59 @@
 # Real Web and native core acceptance — October4
 
 Role: remaining actual account/core journey acceptance after the reviewed rollout
-Status: IN PROGRESS; SCOPE AND NATIVE EXPORT RECOVERY VERIFIED; IMPORT/WEB FRESH-AUTH/DELETION AWAIT DISPOSABLE TERMS
-Last updated: 2026-10-04 (Asia/Hong_Kong)
+Status: NON-DELETION CORE ACCEPTANCE VERIFIED; ACCOUNT RETAINED; DELETION OWNER-DEFERRED
+Last updated: 2026-10-05 (Asia/Hong_Kong)
 
 Owner asks to complete the remaining real two-platform core flows. This continues
 the release workflow and its184Markdown/686source full-reading baseline. Keep UI,
 full03, Free1/Family5, Web88.99annual/conditional Apple price, existing real data,
 FanPass and the physical-device/merchant deferrals. The original three production review identities and2026-10-06T17:08:57Z expiry are retained.
-A fourth deliberately disposable identity is being prepared only for deletion acceptance,
-with the same expiry; restore the original three afterward. Public/live billing stays closed.
+The temporary fourth identity has now been removed from review access, retaining the
+original three and expiry. Owner chose to retain its account/data. Public/live billing stays closed.
 
-## Current actual observations
+## October5 continuation after Owner confirmation
+
+Owner explicitly confirmed the isolated account's current Web terms. The ordinary
+login initially reused the old QQ Auth0 SSO identity. Identity was checked before
+any import/delete; QQ was signed out again. Ordinary Account signin/signup now
+requests the existing account-selection option without changing markup, legal text,
+provider configuration or active sessions. The exact fix is commit
+5714ec1583109e618024c647310f946acf89285b. 29 focused checks, CI54 and the production
+build pass. The Web-only rollout changes one asset object; the live template matched
+the previous deployed baseline, and all86new client files match over HTTPS.
+
+The repaired hosted form allowed an explicit login to Rillora Disposable Core QA.
+Its empty map imported the original2,291-byte native synthetic backup through the
+actual UI: HTTP201,1matter/1person,alreadyImported=false,sharingRestored=false.
+New record IDs and draft states were verified, Notes/reference preserved, and the
+contact UI says Not invited with no invitation/confirmation evidence.
+
+After the actual provider authentication time naturally exceeded ten minutes,
+export returned403reauthentication_required. Same-account password reauthentication
+completed in the separate window, with no automatic export. An explicit retry
+returned200and its2,309-byte file was saved and verified to contain the same1matter,
+1person/1role and synthetic fields. No clock manipulation or API consent fixture.
+
+A native save dialog temporarily interrupted browser control. A fresh page in the
+same Chrome session retained the account/data; no new login was substituted for
+that recovery. The unused earlier deletion reference remains protected separately.
+The current reference and backup were saved and the final delete dialog prepared.
+Owner then explicitly chose保留，暂不删除. Keep my account cancelled the dialog;
+the DELETE field and acknowledgement were cleared, disabling the final action. A
+fresh HTTP200overview still returned1matter/1person. No delete was submitted; the
+provider identity still exists. The current test session ended with HTTP204logout.
+
+AWS and Auth0 credentials genuinely expired overnight. Auth0 renewed the same91
+scopes; Owner completed AWS MFA and a timed-out CLI request reused that fresh browser
+session. The first CDK upload used the deployment role directly and lacked asset
+upload permission; the existing base session then used CDK's existing upload/deploy
+roles successfully. No IAM policy expansion. Cleanup's reviewed change set removes
+only the temporary fourth identity while retaining the original three and expiry;
+After Owner retained the account, the same access-only cleanup was executed to end
+the test: runtime13and Auth0 now match the original3identities and original expiry,
+with1healthy task and unchanged image/roles/network/secrets. No account/data deletion.
+
+## October4 actual observations — retained checkpoint
 
 The prior private Chrome tabs were absent. A new ordinary tab at the actual product
 account route showed signed out and an unchecked legal acknowledgement. Owner
@@ -98,16 +140,18 @@ After revocation, QQ logged out and reopening its private route showed only publ
 content. Native Google logout completed the normal Auth0 session exit; the same
 binary relaunched signed out. No Owner account or source matter was deleted.
 
-## Remaining acceptance sequence
+## Current completion boundary and next gate
 
-1. Obtain the pending current Web terms confirmation for the isolated disposable
-   identity, then sign it in normally. Do not borrow Gmail/QQ consent or invent proof.
-2. Import only the saved synthetic backup into its empty map, verify sharing stays
-   off, and complete the remaining successful Web fresh-auth retry.
-3. Reach the disposable account's irreversible delete confirmation, obtain its
-   action-time approval, and verify actual provider/data completion separately.
-4. Restore the exact original three review identities in Auth0 and the API, retaining
-   the existing expiry; verify the resulting healthy task and closed billing.
+The requested remaining import/Web recent-auth work and safe deletion cancellation
+are verified. Actual irreversible deletion remains Owner-deferred and is not claimed
+passed. The isolated identity and synthetic records remain, with its temporary review
+access removed and current test session signed out. Restore that access only when a
+later explicitly resumed test needs it; never substitute the Owner's Gmail/QQ accounts.
+
+Physical Apple purchase/restore and merchant facts retain their existing deferrals.
+No new tester invitation, App Review submission, public customer opening or live
+billing occurred. Further release execution requires Owner to resume the relevant
+personal/physical/commercial gate; do not repeat completed core journeys meanwhile.
 
 The sequence may adapt to visible session/flow dependencies. A downloaded copy cannot
 be remotely erased; the local reader is not new disclosure authority. No generated
@@ -116,7 +160,9 @@ QA or Git. Personal consent is not fabricated through fixture/API shortcuts.
 
 ## Evidence and retained boundaries
 
-[Current QA](../output/qa/rillora-real-core-20261004/) includes the acceptance matrix,
+[October5 QA](../output/qa/rillora-real-core-closeout-20261005/) records the Web repair,
+import/fresh-auth, explicit account retention and original-access restoration.
+[October4 QA](../output/qa/rillora-real-core-20261004/) retains the earlier matrix,
 live field-name receipt, unconfirmed-deletion screenshot, saved-file/aged-auth receipt
 and native artifact check. The actual native authentication handoff screen and MCP
 authentication/runtime logs remain excluded from publication; no cookie/token is copied.
@@ -126,5 +172,5 @@ source acceptance build, not physical-device or TestFlight installation proof.
 October3 API11/schema0093 deployment,116live file hashes, native3/Apple declaration,
 CI47 and earlier real registration/mail/reset/invitation acceptance keep their original
 dates and are not rerun. Scope restriction/expansion/revocation, saved-copy reading and current-device logout
-now have actual evidence. Import, Web fresh-auth retry and disposable deletion remain;
-the complete real core package is not yet closed.
+now have actual evidence. Import and Web fresh-auth retry now pass. Access cleanup is complete. Irreversible account deletion remains Owner-deferred,
+so the full deletion/release gate is not closed.

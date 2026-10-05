@@ -3064,3 +3064,18 @@ unreachable release remains a different closed workflow. See [sharing contract](
   selection option from intentional Account signin/signup. Preserve active Rillora
   sessions, layout, legal versions, provider settings and all data; no tenant-wide
   SSO disablement or public access expansion. Verify the real deployed choice.
+
+
+## 2026-10-05 — Owner retains the isolated account and defers actual deletion
+
+- At the prepared final account-deletion dialog, Owner explicitly chooses保留，暂不删除.
+  Keep that Auth0 identity and its1synthetic matter/1person/1role. No deletion request
+  or provider user deletion is submitted. This supersedes executing the prepared purge.
+- Agent cancels the final dialog, clears the confirmation, verifies retained data and
+  ends the test session. Restore the original three expiring review identities as
+  bounded test cleanup; this is reversible access restriction, not account deletion.
+  Runtime13and Auth0 readbacks match the original set/expiry, with one healthy task
+  and unchanged application image, roles, network and secret references.
+- Actual import and Web recent-auth retry are verified. Deletion remains unverified
+  and Owner-deferred, alongside the existing physical-device/merchant deferrals.
+  Do not automatically reopen any of those decisions or call the complete launch ready.

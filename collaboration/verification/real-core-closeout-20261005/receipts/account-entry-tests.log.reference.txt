@@ -1,0 +1,184 @@
+TAP version 13
+# Subtest: sharing rollout compatibility only treats an absent endpoint as unavailable controls
+ok 1 - sharing rollout compatibility only treats an absent endpoint as unavailable controls
+  ---
+  duration_ms: 31.98475
+  type: 'test'
+  ...
+# Subtest: public browsing stays separate from explicit account and identity entry points
+ok 2 - public browsing stays separate from explicit account and identity entry points
+  ---
+  duration_ms: 0.148792
+  type: 'test'
+  ...
+# Subtest: authentication starts only through an explicit legal-acceptance POST
+ok 3 - authentication starts only through an explicit legal-acceptance POST
+  ---
+  duration_ms: 0.347625
+  type: 'test'
+  ...
+# Subtest: API client uses credentials and the development identity only when configured
+ok 4 - API client uses credentials and the development identity only when configured
+  ---
+  duration_ms: 0.285541
+  type: 'test'
+  ...
+# Subtest: commercial reads and route evaluation use the authenticated shared API
+ok 5 - commercial reads and route evaluation use the authenticated shared API
+  ---
+  duration_ms: 0.8005
+  type: 'test'
+  ...
+# Subtest: public session detection uses a non-error status endpoint before private workspace loading
+ok 6 - public session detection uses a non-error status endpoint before private workspace loading
+  ---
+  duration_ms: 0.30925
+  type: 'test'
+  ...
+# Subtest: API client binds state changes to the CSRF cookie token
+ok 7 - API client binds state changes to the CSRF cookie token
+  ---
+  duration_ms: 0.206625
+  type: 'test'
+  ...
+# Subtest: first-use progress and the first matter use the shared authenticated API
+ok 8 - first-use progress and the first matter use the shared authenticated API
+  ---
+  duration_ms: 1.647375
+  type: 'test'
+  ...
+# Subtest: API client returns bounded server errors without exposing response internals
+ok 9 - API client returns bounded server errors without exposing response internals
+  ---
+  duration_ms: 0.5515
+  type: 'test'
+  ...
+# Subtest: API client sends a CSRF-bound all-session revocation request
+ok 10 - API client sends a CSRF-bound all-session revocation request
+  ---
+  duration_ms: 0.437083
+  type: 'test'
+  ...
+# Subtest: API client validates and returns the minimum-disclosure printable artifact
+ok 11 - API client validates and returns the minimum-disclosure printable artifact
+  ---
+  duration_ms: 0.766458
+  type: 'test'
+  ...
+# Subtest: API client rejects a printable response that claims a retained server copy
+ok 12 - API client rejects a printable response that claims a retained server copy
+  ---
+  duration_ms: 0.201834
+  type: 'test'
+  ...
+# Subtest: a delayed printable body cannot escape after the workspace account changed
+ok 13 - a delayed printable body cannot escape after the workspace account changed
+  ---
+  duration_ms: 0.324709
+  type: 'test'
+  ...
+# Subtest: synthetic recipient capabilities stay in request bodies and the isolated authorization header
+ok 14 - synthetic recipient capabilities stay in request bodies and the isolated authorization header
+  ---
+  duration_ms: 0.222958
+  type: 'test'
+  ...
+# Subtest: disclosure rehearsal mutations are CSRF-bound, versioned, and explicitly simulation-only
+ok 15 - disclosure rehearsal mutations are CSRF-bound, versioned, and explicitly simulation-only
+  ---
+  duration_ms: 0.340667
+  type: 'test'
+  ...
+# Subtest: disclosure rehearsal responses fail closed if release or high-risk fields appear
+ok 16 - disclosure rehearsal responses fail closed if release or high-risk fields appear
+  ---
+  duration_ms: 0.212916
+  type: 'test'
+  ...
+# Subtest: role assignment mutations stay versioned, explicit, and record-only
+ok 17 - role assignment mutations stay versioned, explicit, and record-only
+  ---
+  duration_ms: 1.070667
+  type: 'test'
+  ...
+# Subtest: role assignment responses fail closed on unsafe authority or secret fields
+ok 18 - role assignment responses fail closed on unsafe authority or secret fields
+  ---
+  duration_ms: 0.313125
+  type: 'test'
+  ...
+# Subtest: workspace pins the verified account across pagination and later writes despite a changed CSRF cookie
+ok 19 - workspace pins the verified account across pagination and later writes despite a changed CSRF cookie
+  ---
+  duration_ms: 0.545625
+  type: 'test'
+  ...
+# Subtest: missing original draft records can be checked by ID without discarding archived or failed results
+ok 20 - missing original draft records can be checked by ID without discarding archived or failed results
+  ---
+  duration_ms: 0.400917
+  type: 'test'
+  ...
+# Subtest: pagination fails visibly instead of silently truncating or looping on a repeated cursor
+ok 21 - pagination fails visibly instead of silently truncating or looping on a repeated cursor
+  ---
+  duration_ms: 0.143
+  type: 'test'
+  ...
+# Subtest: every API operation used by a rendered Web consumer exists on the client contract
+ok 22 - every API operation used by a rendered Web consumer exists on the client contract
+  ---
+  duration_ms: 25.383292
+  type: 'test'
+  ...
+# Subtest: public discovery explains the real product before plan creation
+ok 23 - public discovery explains the real product before plan creation
+  ---
+  duration_ms: 0.899
+  type: 'test'
+  ...
+# Subtest: public legal routes and registration clickwrap remain visible without false claims
+ok 24 - public legal routes and registration clickwrap remain visible without false claims
+  ---
+  duration_ms: 1.229333
+  type: 'test'
+  ...
+# Subtest: a chosen matter category survives the account and callback routes
+ok 25 - a chosen matter category survives the account and callback routes
+  ---
+  duration_ms: 1.024291
+  type: 'test'
+  ...
+# Subtest: ordinary account entry does not create a deferred editor
+ok 26 - ordinary account entry does not create a deferred editor
+  ---
+  duration_ms: 0.095416
+  type: 'test'
+  ...
+# Subtest: guide sign-in returns to the selected guide without private or external parameters
+ok 27 - guide sign-in returns to the selected guide without private or external parameters
+  ---
+  duration_ms: 0.091458
+  type: 'test'
+  ...
+# Subtest: a review link returns to the receiving inbox without carrying private identifiers
+ok 28 - a review link returns to the receiving inbox without carrying private identifiers
+  ---
+  duration_ms: 0.055042
+  type: 'test'
+  ...
+# Subtest: unknown categories and external targets cannot become a continuation
+ok 29 - unknown categories and external targets cannot become a continuation
+  ---
+  duration_ms: 0.091666
+  type: 'test'
+  ...
+1..29
+# tests 29
+# suites 0
+# pass 29
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 178.196666

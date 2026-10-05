@@ -5,9 +5,13 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-10-04 (Asia/Hong_Kong)
+Last updated: 2026-10-05 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-10-05 Owner保留独立验收账号
+
+Owner在最终删除确认处明确选择“保留，暂不删除”。保留这一个独立测试身份及其合成记录，实际账号删除验收转为Owner暂缓；取消待提交删除，并按既有边界结束测试会话、回收临时审核访问。该选择不能记成删除通过。已完成的导入、重新认证、共享、恢复与原生构建证据继续有效；真机和商业事项仍沿用原暂缓决定。[当前实际记录](real-core-acceptance-20261004.md)。
 
 ## 2026-10-04 Owner继续真实双端核心验收
 

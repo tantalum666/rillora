@@ -1,0 +1,75 @@
+{
+  "StackId": "arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraProductionWeb/073e36f0-b8e7-11f1-8c86-06a768c8f0df",
+  "StackName": "RilloraProductionWeb",
+  "ChangeSetId": "arn:aws:cloudformation:eu-central-1:133857166372:changeSet/cdk-deploy-change-set/705e97ee-6733-4d02-ae43-19f2403242e7",
+  "Description": "Closed production Web client and same-origin API delivery; no account activation",
+  "Parameters": [
+    {
+      "ParameterKey": "BootstrapVersion",
+      "ParameterValue": "/cdk-bootstrap/hnb659fds/version",
+      "ResolvedValue": "32"
+    }
+  ],
+  "CreationTime": "2026-09-25T13:43:02.598000+00:00",
+  "LastUpdatedTime": "2026-10-03T10:19:35.413000+00:00",
+  "RollbackConfiguration": {},
+  "StackStatus": "UPDATE_COMPLETE",
+  "DisableRollback": false,
+  "DeploymentConfig": {
+    "Mode": "STANDARD",
+    "DisableRollback": false
+  },
+  "NotificationARNs": [],
+  "Capabilities": [
+    "CAPABILITY_IAM",
+    "CAPABILITY_NAMED_IAM",
+    "CAPABILITY_AUTO_EXPAND"
+  ],
+  "Outputs": [
+    {
+      "OutputKey": "DistributionDomain",
+      "OutputValue": "d3mtr349015b96.cloudfront.net"
+    },
+    {
+      "OutputKey": "BucketName",
+      "OutputValue": "rilloraproductionweb-assets9a31d427-ltbwfplzu6ks"
+    },
+    {
+      "OutputKey": "CustomerAccess",
+      "OutputValue": "closed"
+    },
+    {
+      "OutputKey": "ClientUrl",
+      "OutputValue": "https://app.rillora.xyz"
+    },
+    {
+      "OutputKey": "DistributionId",
+      "OutputValue": "E2D4X9TBTJK942"
+    },
+    {
+      "OutputKey": "ReviewAccess",
+      "OutputValue": "identity-allowlist"
+    }
+  ],
+  "RoleARN": "arn:aws:iam::133857166372:role/cdk-hnb659fds-cfn-exec-role-133857166372-eu-central-1",
+  "Tags": [
+    {
+      "Key": "Project",
+      "Value": "Rillora"
+    },
+    {
+      "Key": "Environment",
+      "Value": "Production"
+    }
+  ],
+  "EnableTerminationProtection": false,
+  "DriftInformation": {
+    "StackDriftStatus": "NOT_CHECKED"
+  },
+  "LastOperations": [
+    {
+      "OperationType": "UPDATE_STACK",
+      "OperationId": "32b68fef-f529-4690-870f-ec897bf55ea2"
+    }
+  ]
+}

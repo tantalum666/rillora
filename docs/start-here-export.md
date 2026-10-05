@@ -5,7 +5,20 @@ Authority scope: included fields, disclosure boundary, cryptographic format, fil
 Superseded by: a later reviewed decision recorded in `docs/decision-log.md`  
 Do not use for: claiming legal authority, real recipient identity/acceptance/delivery, post-download revocation, production release or universal legal validity  
 Status: AUDIENCE-BOUND GUIDES AND BACKUP READERS DEPLOYED/VALIDATED IN SYNTHETIC STAGING; REAL DELIVERY CLOSED
-Last updated: 2026-10-04 (Asia/Hong_Kong)
+Last updated: 2026-10-05 (Asia/Hong_Kong)
+
+## October5 actual empty-map import and Web reauthentication
+
+The native2,291-byte synthetic backup was imported through deployed Web into the
+explicitly verified isolated empty account: HTTP201,1matter/1person and no restored
+sharing. New identifiers/draft states and preserved Notes/reference were read back;
+the contact stayed Not invited. After natural recent-auth expiry, export returned403.
+Same-account reauthentication retained the working page and required explicit retry;
+that retry returned200and saved a2,309-byte complete map with1matter/1person/1role.
+
+Owner retained the test account/data at the final deletion dialog. No purge occurred;
+the test session ended and temporary access was removed. This does not remotely erase
+any saved copy. [Actual record](real-core-acceptance-20261004.md).
 
 ## October4 actual cross-client exports and native reauthentication repair
 
@@ -14,7 +27,8 @@ The QQ empty backup (1,299bytes) and native populated backup (2,291bytes,
 by the deployed Web reader. The native recipient plaintext guide (962bytes) and
 native encrypted package (2,507bytes) also opened in Web with only minimum fields;
 Notes/reference remain exclusive to the full private backup. The343-byte recovery
-key was saved separately and stays outside ordinary QA/Git. Import remains pending.
+key was saved separately and stays outside ordinary QA/Git. Import was still pending
+at that October4checkpoint; the October5result above closes that case.
 
 Real native encrypted export exposed a generic alert competing with the shared
 recent-auth prompt. The store now preserves preview/action state for the exact

@@ -2,7 +2,23 @@
 
 Role: current launch scope, remaining work and release evidence contract  
 Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; ORDINARY CUSTOMER ACCESS AND SALES CLOSED
-Last updated: 2026-10-04 (Asia/Hong_Kong)
+Last updated: 2026-10-05 (Asia/Hong_Kong)
+
+## October5 core closeout and retained-account decision — latest execution
+
+Actual isolated-account login, native-backup import into an empty Web map and
+naturally aged Web authentication/retry are verified. Import restores no sharing;
+new identifiers/draft states and private fields were checked. A Web account-choice
+issue discovered during this test was repaired with the existing API option,
+verified by29focused checks/CI54and deployed with86matching live files.
+
+At the final irreversible account-deletion dialog, Owner chose保留，暂不删除.
+The dialog was cancelled, the account/data remain, and no deletion request/provider
+purge was submitted. Actual deletion is Owner-deferred and not claimed passed.
+The test session ended and Auth0/runtime13were restored to the original3review
+identities/expiry with1healthy task; application image/roles/network/secrets remain.
+Native4, store images and previous provider checks are retained without re-upload.
+[Current acceptance](real-core-acceptance-20261004.md).
 
 ## October4 actual core acceptance and build4 — latest execution
 
@@ -94,7 +110,7 @@ required approval for the Owner-selected sender.
 
 <a id="october1-remaining-work-inventory"></a>
 
-## October4 remaining-work inventory
+## October5 remaining-work inventory
 
 The12register gates share dependencies and are grouped below. Two are verified;
 ten remain open/in-progress/deferred. Counts are not a completion percentage.
@@ -102,7 +118,7 @@ ten remain open/in-progress/deferred. Counts are not a completion percentage.
 | Work package | Current evidence and remaining work | Dependency / participation |
 | --- | --- | --- |
 | Deploy newly reviewed repairs | Complete: API11/schema0093 and restricted Web/WWW deployed; role/TLS/data preservation and116live file hashes verified | Preserve this evidence; no repeated rollout or authentication merely on continuation |
-| Real account and core journeys | Prior login/mail/reset retained; actual scope changes, native recent-auth, saved copies/recovery, revocation and current-device logout now pass. Empty-map import, Web fresh-auth retry and provider-backed deletion remain | Pending current Web terms confirmation for isolated disposable identity; final deletion needs action-time confirmation |
+| Real account and core journeys | Login/mail/reset, scope, copies/recovery, revocation, current-device logout, real empty-map import and Web fresh-auth retry pass. Final account deletion was cancelled at Owner request; account/data remain and temporary access is removed | Irreversible deletion is Owner-deferred; resume only after a new explicit Owner instruction |
 | Apple purchase lifecycle | Review environment/enrollment and official TEST retained; latest eligible1.0(4)processed. Actual purchase/restore/renewal/refund/expiry remain | Owner resuming deferred physical Apple test interaction; completed OS-only declaration retained |
 | Merchant, markets and live billing | Existing integration retained; real operator/merchant/tax facts, live provider lifecycle, effective SBP fee and final Apple price remain | Owner-deferred facts and final decisions, then provider/Agent execution; Web88.99 stays locked |
 | Physical-device acceptance | Prepared development/distribution builds; actual device authentication/accessibility/return/purchase remains | Owner explicitly deferred; do not install or ask again just because the phone is paired |

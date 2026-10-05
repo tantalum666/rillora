@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-04",
+  "updatedAt": "2026-10-05",
   "release": "Rillora Global 1.0",
   "scope": "Web and native iOS; existing Free and Family only",
   "gates": [
@@ -28,9 +28,10 @@
         "collaboration/verification/release-123-20261002/receipts/ocsp-deploy-outputs.json",
         "docs/code-review-20261002.md",
         "docs/review-rollout-20261003.md",
-        "output/qa/rillora-real-core-20261004/disposable-access-add-complete.json"
+        "output/qa/rillora-real-core-20261004/disposable-access-add-complete.json",
+        "output/qa/rillora-real-core-closeout-20261005/disposable-access-remove-complete.json"
       ],
-      "next": "October3reviewed rollout remains complete: schema0093 and restricted Web/WWW, data/role/TLS checks and116live file hashes retained. October4API12changes only the exact temporary fourth disposable identity, keeping the same application image/roles/network/secrets and original expiry.1healthy task verified; restore original3identities after current acceptance. No repeated code/migration deployment."
+      "next": "Reviewed API application/schema0093 retained. Runtime13restores the original3review identities and original expiry after the controlled test, with1healthy task and unchanged image/roles/network/secrets. New Web-only account-choice repair5714ec158is deployed;86live files match. Public/live activation remains closed; no repeat migration/code-image rollout."
     },
     {
       "id": "production-identity",
@@ -70,9 +71,10 @@
         "collaboration/verification/email-logo-20261002/reset-completion.json",
         "collaboration/verification/email-logo-20261002/qq-shared-api-fields.json",
         "docs/independent-release-closeout-20261002.md",
-        "docs/real-core-acceptance-20261004.md"
+        "docs/real-core-acceptance-20261004.md",
+        "output/qa/rillora-real-core-closeout-20261005/deletion-owner-deferred.json"
       ],
-      "next": "October4 actual native-to-Web Name/Details scope, fresh native authentication, saved plaintext/full-map/encrypted cross-client reading, revocation clearing and current-device logout passed. Independent disposable account terms confirmation is pending before actual import, Web fresh-auth retry and provider-backed deletion. Temporary exact4identities retain original expiry; restore original3after use. Prior mail/reset evidence and phone deferral retained."
+      "next": "Actual scope/recovery/revoke/logout evidence retained. October5explicit disposable login, synthetic empty-map import and Web recent-auth403/password verification/explicit200export retry passed. Owner chose保留，暂不删除 at the final dialog; delete was cancelled and never submitted. Account/data remain; temporary access removed and original3/expiry restored. Actual irreversible deletion is Owner-deferred, not passed. No new email or personal login is requested merely to continue."
     },
     {
       "id": "production-billing",
@@ -183,9 +185,10 @@
         "docs/independent-release-closeout-20261002.md",
         "docs/code-review-20261002.md",
         "docs/review-rollout-20261003.md",
-        "output/qa/rillora-real-core-20261004/apple-build4-readback.json"
+        "output/qa/rillora-real-core-20261004/apple-build4-readback.json",
+        "output/qa/rillora-real-core-closeout-20261005/deletion-owner-deferred.json"
       ],
-      "next": "Manual full-source28repair review/CI47 retained. One additional native export recent-auth alert defect found during actual acceptance is fixed: focused red/green10tests and actual file/recovery flow pass, CI48passes, signed1.0(4)uploaded/processed. Production93migration checksums and prior runtime/TLS/Web proofs retained; current temporary identity-onlyAPI12has1healthy task. Optional deep scan never started; upstreamCDKbuild-only advisory remains explicit. Import/deletion and physical/purchase/final release gates remain."
+      "next": "Manual28repair review/CI47 and prior production proofs retained. Later native export-auth repair passed focused10andCI48/build4; Web explicit-account-choice repair passed29focusedchecks, CI54 and86livefilehashes. Runtime13onlyrestores original review list. Account deletion was Owner-deferred at final confirmation; no full-launch/security-certification claim. Optional deep scan never started; upstreamCDKbuild advisory remains explicit."
     },
     {
       "id": "apple-submission",

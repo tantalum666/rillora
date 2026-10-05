@@ -3237,3 +3237,27 @@ Owner先确认小型企业资格事实、再当场确认最终声明，申请已
 - Unfinished: Web-only deployment/account-choice proof, disposable import/fresh-auth/
   final deletion confirmation/provider cleanup, original3access restoration and new
   additive Git preservation. No Owner data or account has been deleted.
+
+
+- October5 actual results: the Web-only repair deployed with86matching files andCI54.
+  The initial upload used the wrong existing role; switching to the existing CDK
+  base-session role flow fixed publishing without changing IAM. The intended disposable
+  login/import passed (201,1matter/1person,no sharing restored,new draft IDs). Natural
+  recent-auth expiry produced403, same-account reauthentication completed, and explicit
+  export retry produced200plus a verified2,309-byte saved file. A save-panel controller
+  interruption was recovered in a fresh tab using the existing account session.
+- Current gate: the isolated account's final irreversible delete dialog is prepared,
+  with backup/reference retained; action-time Owner confirmation has been requested.
+  Cleanup's original3-identity-only change set is prepared/reviewed, not executed.
+
+
+- Owner result: at the actual final irreversible dialog, Owner chose保留，暂不删除.
+  Cancelled with Keep my account, cleared DELETE/acknowledgement, then freshly read
+  HTTP200with1matter/1person. Auth0 independently still returns the prepared identity;
+  no deletion endpoint/provider delete was called. Current-session logout returned204.
+- Cleanup result: the reviewed access-only change completed as runtime13; Auth0/runtime
+  lists are the original3and original expiry,1healthy task, same image/roles/network/
+  secrets. The account/data remain. Actual deletion is Owner-deferred, not passed;
+  physical-device/merchant deferrals and public/live closure remain separate.
+- Remaining for this execution: final documentation and additive all-work Git archive;
+  no repeated native4upload, old full-suite run, email send or new public activation.
