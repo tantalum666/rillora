@@ -1,0 +1,86 @@
+{
+  "checkedAt": "2026-10-05T08:32:21.981354+00:00",
+  "timezone": "Asia/Hong_Kong",
+  "sourceHead": "af34fd1bedc32c5c3c809f770fcaa790a2f7bee9",
+  "sourceCI": "747c98874b8517a5f41c1a6293ed6ca0eb4ee3a8 / CI56",
+  "readScope": [
+    "AGENTS.md retained complete instructions",
+    "docs/product.md current1-62",
+    "docs/handoff.md complete",
+    "docs/release-readiness.md current1-195 and438-454",
+    "config/release-gates.json complete",
+    "docs/decision-log.md latest100",
+    "docs/journey/PROJECT_JOURNEY.md latest60",
+    "docs/apple-review-validation-20260929.md117-168 dated scope",
+    "docs/channel-pricing-20260921.md1-38"
+  ],
+  "readingBaseline": "existing continuous release full-read retained; no new implementation",
+  "packages": [
+    {
+      "number": 1,
+      "title": "新版双语与剩余体验验收",
+      "remaining": "完成iPad/大字号/横竖屏/VoiceOver/系统语言持久化及已登录共享、文件路径；处理影响首发的Dot剩余问题（计划下一步导航、英文导出入口、恢复历史观察等）。",
+      "dependency": "Agent可继续，真实本人认证只在实际需要时交回。"
+    },
+    {
+      "number": 2,
+      "title": "最新版本的受限部署与发行候选",
+      "remaining": "将747c98874整合后的Web/WWW更新到受限环境，制作并上传匹配双语修复的iOS候选，再做部署后关键路径核对。既有API13/schema0093不因接手重复部署。",
+      "dependency": "Agent可继续；沿用现有授权、真实数据及受限边界。"
+    },
+    {
+      "number": 3,
+      "title": "真机与Apple真实沙盒交易",
+      "remaining": "完成实际安装、登录返回及购买/恢复，再验证续费、退款、到期和服务器权益/对账。已有Apple TEST不代表真实购买。",
+      "dependency": "Owner仍暂缓真机；恢复后处理本人Apple交互。"
+    },
+    {
+      "number": 4,
+      "title": "账号删除真实验收",
+      "remaining": "实际不可撤销删除与身份/数据清理尚未执行。Owner明确保留原独立测试账号；不以导入/恢复成功代替删除成功。",
+      "dependency": "Owner暂缓；未经新的明确指令不重启删除。"
+    },
+    {
+      "number": 5,
+      "title": "经营、市场、最终价格与正式收款",
+      "remaining": "补齐Owner暂缓的经营/登记/税务事实，核对正式收款与真实支付退款，确认首发市场和Apple最终渠道价；SBP只有申请回执，批准/生效证据需核对。WebUS$88.99/年保持。",
+      "dependency": "Owner事实/决定、provider结果，随后Agent执行。"
+    },
+    {
+      "number": 6,
+      "title": "最终商店申报、审核与发布",
+      "remaining": "基于最终候选核对隐私/年龄/联系信息/市场/价格及可用审核访问；提交App Review并处理反馈，审核后手动发布。构建4、六张设计图和已确认加密声明保留，不重复上传/确认旧项。",
+      "dependency": "Agent准备；必要本人声明与Apple审核独立。"
+    },
+    {
+      "number": 7,
+      "title": "公开客户切换",
+      "remaining": "上游验收完成后退役Preview/旧凭据，按已测24小时旧令牌有效期加时钟容差执行切换和负面检查，再开放普通客户与已验收收费渠道。",
+      "dependency": "前述发布条件完成后Agent受控执行。"
+    }
+  ],
+  "gateStatusesUnchanged": {
+    "production-runtime": "in_progress",
+    "production-identity": "in_progress",
+    "production-billing": "in_progress",
+    "merchant-market": "owner_deferred",
+    "apple-transactions": "in_progress",
+    "operations": "verified",
+    "backup-retention": "in_progress",
+    "release-security": "in_progress",
+    "apple-submission": "in_progress",
+    "physical-device": "owner_deferred",
+    "public-surface": "in_progress",
+    "review-remediation": "verified"
+  },
+  "providerPortalsRechecked": false,
+  "newTestsOrDeployment": false,
+  "decisionLog": "No new product/price/permission decision; no append needed",
+  "filesUpdated": [
+    "docs/release-readiness.md",
+    "config/release-gates.json",
+    "docs/handoff.md",
+    "docs/journey/PROJECT_JOURNEY.md"
+  ],
+  "allWorkPreservation": "Exact nonsecret status metadata copied directly; no raw binary/credential material or old archive recapture"
+}

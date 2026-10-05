@@ -3341,3 +3341,16 @@ assertions are updated to the explicit glossary;permission/data assertions remai
 no personal deferral or optionalAIimplementation reopened. [Copy contract](../chinese-copy-guidelines-20261005.md).
 
 - Final publication:integrated source`747c98874`pushed with[CI56](https://github.com/tantalum666/rillora/actions/runs/37279020925)all3jobs successful. Raw-work-017/018fresh remote downloads pass decryption and exact object/catalog mapping. Copy-specific native21/UI2and Web162results remain separate from prior native215/1skip. Final receipts do not repeat builds,provider steps or deployment.
+
+## 2026-10-05 — Reconcile the remaining launch work after bilingual integration
+
+- Goal: answer Owner's current launch-gap question from evidence after Dot/copy work.
+- Attempt: read current handoff,release register,latest decisions/product and dated
+Apple/price records; compare current sourceaf34fd1beandCI56with the deployed checkpoints.
+- Judgment change: the release sheet's old completed-rollout row omitted the newly
+undeployed bilingual clients,and its October4temporary identity text was still labelled
+latest. Preserve that history with explicit dated status and update the active inventory.
+- Result: seven non-duplicated work packages; first two remain independently executable,
+existing delete/device/merchant deferrals retained. Register IDs/statuses unchanged.
+- Unfinished: actual acceptance,new client rollout,real transactions,personal facts,
+submission/review and final customer cutover. No new login,provider check,test or deployment.

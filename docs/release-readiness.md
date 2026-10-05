@@ -4,7 +4,22 @@ Role: current launch scope, remaining work and release evidence contract
 Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; ORDINARY CUSTOMER ACCESS AND SALES CLOSED
 Last updated: 2026-10-05 (Asia/Hong_Kong)
 
-## October5 core closeout and retained-account decision — latest execution
+## October5 after Dot integration and Chinese copy — current inventory
+
+The current integrated source747c98874hasCI56success and final receipts throughaf34fd1be.
+Dot's four branches and the latest account-choice/export fixes are preserved together.
+Chinese wording has been reviewed across both clients. Actual local Web/native builds,
+focused language/UI tests and browser repair checks pass; the broader bilingual matrix
+and affected flows still require acceptance. These changes are **not deployed or uploaded**.
+[Integration evidence](qa/dot-followup-20261005/README.md),[Chinese copy](chinese-copy-guidelines-20261005.md).
+
+This October5status reconciliation uses current source and dated project/provider receipts.
+It does not reopen Apple/AWS/Stripe portals,repeat authentication,deployments or transactions,
+or imply a new SBP approval/current provider rate. Previously confirmed mail/login/recovery,
+sharing/revocation,backup import and store imagery remain completed evidence. Resend means
+SES approval is no longer a sending prerequisite. No AI/MCP implementation is added to launch.
+
+## October5 core closeout and retained-account decision — retained result
 
 Actual isolated-account login, native-backup import into an empty Web map and
 naturally aged Web authentication/retry are verified. Import restores no sharing;
@@ -20,7 +35,7 @@ identities/expiry with1healthy task; application image/roles/network/secrets rem
 Native4, store images and previous provider checks are retained without re-upload.
 [Current acceptance](real-core-acceptance-20261004.md).
 
-## October4 actual core acceptance and build4 — latest execution
+## HISTORICAL — October4 core acceptance before the October5 closeout
 
 [Actual native/Web acceptance](real-core-acceptance-20261004.md) now verifies
 Name/Details restriction/expansion, native recent-auth cancellation/retry, saved
@@ -112,29 +127,34 @@ required approval for the Owner-selected sender.
 
 ## October5 remaining-work inventory
 
-The12register gates share dependencies and are grouped below. Two are verified;
-ten remain open/in-progress/deferred. Counts are not a completion percentage.
+The12register gates are grouped into seven current work packages below. Two register gates
+are verified; the remaining states are deliberately unchanged. This is not a completion
+percentage. Package1and2are independently executable; existing personal deferrals remain.
 
-| Work package | Current evidence and remaining work | Dependency / participation |
-| --- | --- | --- |
-| Deploy newly reviewed repairs | Complete: API11/schema0093 and restricted Web/WWW deployed; role/TLS/data preservation and116live file hashes verified | Preserve this evidence; no repeated rollout or authentication merely on continuation |
-| Real account and core journeys | Login/mail/reset, scope, copies/recovery, revocation, current-device logout, real empty-map import and Web fresh-auth retry pass. Final account deletion was cancelled at Owner request; account/data remain and temporary access is removed | Irreversible deletion is Owner-deferred; resume only after a new explicit Owner instruction |
-| Apple purchase lifecycle | Review environment/enrollment and official TEST retained; latest eligible1.0(4)processed. Actual purchase/restore/renewal/refund/expiry remain | Owner resuming deferred physical Apple test interaction; completed OS-only declaration retained |
-| Merchant, markets and live billing | Existing integration retained; real operator/merchant/tax facts, live provider lifecycle, effective SBP fee and final Apple price remain | Owner-deferred facts and final decisions, then provider/Agent execution; Web88.99 stays locked |
-| Physical-device acceptance | Prepared development/distribution builds; actual device authentication/accessibility/return/purchase remains | Owner explicitly deferred; do not install or ask again just because the phone is paired |
-| Final distribution and submission | Latest1.0(4)uploaded/processed with normal eligibility and approved encryption metadata; six designed screenshots retained, test notes saved; Ready to Submit | Truthful final declarations/contact/market/price, operative reviewer access and actual acceptance; then submission/review and manual release |
-| Controlled customer cutover | Isolated production/recovery/security foundations complete; exact Preview retirement, old-token expiry, negative checks and customer opening remain | Upstream acceptance first; measured86400second token lifetime plus clock tolerance; preserve Owner/real data |
+| # | 工作包 | 还需要完成 | 依赖 |
+| --- | --- | --- | --- |
+| 1 | 新版双语与剩余体验验收 | 完成iPad/大字号/横竖屏/VoiceOver/系统语言持久化及已登录共享、文件路径；处理影响首发的Dot剩余问题（计划下一步导航、英文导出入口、恢复历史观察等）。 | Agent可继续，真实本人认证只在实际需要时交回。 |
+| 2 | 最新版本的受限部署与发行候选 | 将747c98874整合后的Web/WWW更新到受限环境，制作并上传匹配双语修复的iOS候选，再做部署后关键路径核对。既有API13/schema0093不因接手重复部署。 | Agent可继续；沿用现有授权、真实数据及受限边界。 |
+| 3 | 真机与Apple真实沙盒交易 | 完成实际安装、登录返回及购买/恢复，再验证续费、退款、到期和服务器权益/对账。已有Apple TEST不代表真实购买。 | Owner仍暂缓真机；恢复后处理本人Apple交互。 |
+| 4 | 账号删除真实验收 | 实际不可撤销删除与身份/数据清理尚未执行。Owner明确保留原独立测试账号；不以导入/恢复成功代替删除成功。 | Owner暂缓；未经新的明确指令不重启删除。 |
+| 5 | 经营、市场、最终价格与正式收款 | 补齐Owner暂缓的经营/登记/税务事实，核对正式收款与真实支付退款，确认首发市场和Apple最终渠道价；SBP只有申请回执，批准/生效证据需核对。WebUS$88.99/年保持。 | Owner事实/决定、provider结果，随后Agent执行。 |
+| 6 | 最终商店申报、审核与发布 | 基于最终候选核对隐私/年龄/联系信息/市场/价格及可用审核访问；提交App Review并处理反馈，审核后手动发布。构建4、六张设计图和已确认加密声明保留，不重复上传/确认旧项。 | Agent准备；必要本人声明与Apple审核独立。 |
+| 7 | 公开客户切换 | 上游验收完成后退役Preview/旧凭据，按已测24小时旧令牌有效期加时钟容差执行切换和负面检查，再开放普通客户与已验收收费渠道。 | 前述发布条件完成后Agent受控执行。 |
 
-The older build2is internal-only. Latestbuild4has normal eligibility, approved encryption metadata and Ready to Submit; build3retains its separate completed record. Its local artifact
-checks have no blockers; this does not close transaction, declarations or submission
-gates. No TestFlight invitations were sent. Four6.9inch iPhone and two13inch iPad
-designs are saved in the unsubmitted English draft; no redesign is needed. SBP still
-has a submission receipt, without new approval/effective-rate proof.
+The earlier repaired API13/schema0093and Web5714ec158are retained dated deployments;
+latest processed store1.0(4)predates the new bilingual source. The six designed English
+store images and approved OS-only encryption metadata are retained. Actual device use,
+purchase/restore,submission,approval and public availability remain separate outcomes.
 
-Use [handoff](handoff.md) for the single next step and the
-[gate register](../config/release-gates.json) for exact evidence boundaries. Actual
-TestFlight install, App Review submission, approval and public availability remain
-distinct. Existing UI, full03, prices, real data and FanPass are preserved.
+The original three-identity review access was recorded to expire at2026-10-06T17:08:57Z
+(October7 01:08:57Hong Kong). Verify that reviewer access is operative before further
+acceptance/submission; no extension or permission change occurs in this status review.
+The already-measured24hour old-token lifetime is a cutover planning input,not a new
+24hour expiry imposed on normal customers or an overall launch time estimate.
+
+Use[handoff](handoff.md)for one next step and[the register](../config/release-gates.json)
+for exact evidence. No reliable public-launch date is asserted while owner-deferred
+facts/device work and provider/submission outcomes remain unresolved.
 
 ## HISTORICAL — September30 independent engineering before review repairs
 

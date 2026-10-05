@@ -44,6 +44,10 @@ iPad/large accessibility text/orientation/VoiceOver/system language persistence 
 localized authenticated file/share paths. Dot's UX-01,English UX-04,and remaining UX-05/06/P3/OBS-01remain open; UX-03
 is only partially improved. Do not call all Dot issues or release acceptance complete.
 
+The[current seven-package launch inventory](release-readiness.md#october5-remaining-work-inventory)
+now includes the undeployed bilingual delta. This is a source/receipt status read,not a
+fresh provider check; personal deferrals and gate statuses are unchanged.
+
 ## Single next step
 
 Continue the consolidated branch's remaining bilingual interaction matrix and Dot
