@@ -8,9 +8,9 @@ final class CoreLocalizationTests: XCTestCase {
         for (key, expected) in [
             "Matters": "事项",
             "Name": "名称",
-            "Details": "已保存的详细信息",
+            "Details": "详细资料",
             "Trusted contact": "可信联系人",
-            "Online account": "网络账户",
+            "Online account": "在线账号",
             "Guide content is in English.": "指南正文为英文。",
         ] {
             XCTAssertEqual(bundle.localizedString(forKey: key, value: nil, table: "Localizable"), expected)

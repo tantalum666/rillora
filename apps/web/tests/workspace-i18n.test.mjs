@@ -19,7 +19,7 @@ test('workspace catalogs have complete keys, matching parameters and localized c
   assert.deepEqual(validateCatalogs(catalogs), []);
   assert.equal(english('workspace.overview.matterCount', { count: 1, total: 1 }), '1 matter');
   assert.equal(english('workspace.overview.matterCount', { count: 2, total: 2 }), '2 matters');
-  assert.equal(chinese('workspace.overview.matterCount', { count: 2, total: 2 }), '2 项事项');
+  assert.equal(chinese('workspace.overview.matterCount', { count: 2, total: 2 }), '2 个事项');
   assert.equal(chinese('workspace.nav.shared'), '与我共享');
 });
 
@@ -52,11 +52,11 @@ test('localized matter and contact labels preserve evidence, statuses and legacy
 test('commercial rendering adapters localize known metadata without changing access or unknown values', () => {
   const access = Object.freeze({ available: true, currentAccessLabel: 'Rillora Free · Test access', currentAccess: Object.freeze({ planCode: 'free' }), validationOnly: true, billingOpen: false });
   assert.equal(commercialPlanLabel(access), access.currentAccessLabel);
-  assert.equal(commercialPlanLabel(access, chinese), 'Rillora Free · 测试权限');
+  assert.equal(commercialPlanLabel(access, chinese), 'Rillora 免费版 · 测试权限');
   assert.equal(access.billingOpen, false);
-  assert.equal(billingStateLabel('active', chinese), 'Family 已启用');
-  assert.equal(billingStateLabel('unknown_future_state', chinese), 'Family 订阅');
-  assert.equal(commercialFeatureLabel('Matter map', chinese), '事务地图');
+  assert.equal(billingStateLabel('active', chinese), '家庭版已启用');
+  assert.equal(billingStateLabel('unknown_future_state', chinese), '家庭版订阅');
+  assert.equal(commercialFeatureLabel('Matter map', chinese), '事项地图');
   assert.equal(commercialFeatureLabel('Matter map'), 'Matter map');
   assert.equal(commercialFeatureLabel('Unknown capability from server', chinese), 'Unknown capability from server');
   assert.equal(commercialPlanLabel({ ...access, currentAccessLabel: 'Future plan', currentAccess: { planCode: 'future' } }, chinese), 'Future plan');

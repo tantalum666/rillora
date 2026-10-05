@@ -7,3 +7,5 @@
 | 2026-10-05 Web 新用户全流程（Hong Kong；UTC 为 10 月 4 日） | 三轮实测完成；存在待修问题、未完成门及图片发布限制 | [Codex 接手入口](web-ux-acceptance-20261005/README.md) / [终版报告](web-ux-acceptance-20261005/final-report.md) |
 
 “通过”只适用于对应矩阵中实际执行的步骤；待测、工具受阻和需本人参与的门不得视为通过。
+
+October5后续：[本机整合与修复](dot-followup-20261005/README.md)记录新的源码/实际验证；旧报告保持其独立证据边界。

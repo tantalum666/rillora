@@ -1,0 +1,27 @@
+{
+  "schema": "xcodebuildmcp.output.build-result",
+  "schemaVersion": "3",
+  "didError": false,
+  "error": null,
+  "data": {
+    "summary": {
+      "status": "SUCCEEDED",
+      "durationMs": 31096,
+      "target": "simulator"
+    },
+    "artifacts": {
+      "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/build_sim_2026-10-05T06-20-34-949Z_pid21617_35d8e439.log",
+      "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/build_sim_2026-10-05T06-20-34-947Z_pid21617_71d5915d.xctestproducts",
+      "xctestrunPaths": [
+        "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/build_sim_2026-10-05T06-20-34-947Z_pid21617_71d5915d.xctestproducts/Tests/0/Rillora.xctestrun"
+      ]
+    },
+    "diagnostics": {
+      "warnings": [],
+      "errors": []
+    }
+  },
+  "nextSteps": [
+    "Run prepared tests: test_sim({ testProductsPath: \"~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/build_sim_2026-10-05T06-20-34-947Z_pid21617_71d5915d.xctestproducts\", simulatorId: \"EA356940-5220-4AA8-89CF-499C6D5D14E4\" })"
+  ]
+}

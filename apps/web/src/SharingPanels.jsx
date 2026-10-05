@@ -53,6 +53,7 @@ export function ContactSharingPanel({ contact, matters, apiClient, onDirtyChange
   const connectionVersion = useRef(null);
   const [grants, setGrants] = useState([]);
   const [email, setEmail] = useState("");
+  const [emailTouched, setEmailTouched] = useState(false);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
@@ -67,6 +68,7 @@ export function ContactSharingPanel({ contact, matters, apiClient, onDirtyChange
   const grantChanged = canonical(grants) !== canonical(active ? connection.grants : []);
   const dirty = grantChanged || Boolean(email.trim());
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+  const emailError = emailTouched && !emailValid && (!active || Boolean(email.trim()));
   useLayoutEffect(() => onDirtyChange?.(dirty), [dirty, onDirtyChange]);
   useLayoutEffect(() => onBusyChange?.(loading || busy), [loading, busy, onBusyChange]);
   const load = useCallback(async () => {
@@ -82,7 +84,7 @@ export function ContactSharingPanel({ contact, matters, apiClient, onDirtyChange
         setInviteUrl(""); setShowLink(false);
       }
       connectionVersion.current = latest?.version ?? null;
-      setConnection(latest); setGrants(latest && latest.status !== "revoked" ? latest.grants : []); setEmail("");
+      setConnection(latest); setGrants(latest && latest.status !== "revoked" ? latest.grants : []); setEmail(""); setEmailTouched(false);
     } catch (failure) { if (generation === loadGeneration.current) setError({ cause: failure, key: "sharing.contact.loadError" }); }
     finally { if (generation === loadGeneration.current) setLoading(false); }
   }, [apiClient, contact.publicId]);
@@ -108,7 +110,7 @@ export function ContactSharingPanel({ contact, matters, apiClient, onDirtyChange
   function apply(result) {
     loadGeneration.current += 1;
     connectionVersion.current = result.connection.version;
-    setConnection(result.connection); setGrants(result.connection.grants); setEmail("");
+    setConnection(result.connection); setGrants(result.connection.grants); setEmail(""); setEmailTouched(false);
     if (result.invitationUrl) { setInviteUrl(result.invitationUrl); setShowLink(true); setCopied(false); }
     if (result.connection.access?.mode === "paused" || ["accepted", "revoked", "expired"].includes(result.connection.status)) { setInviteUrl(""); setShowLink(false); }
     setSaved(true); onChanged?.();
@@ -173,8 +175,9 @@ export function ContactSharingPanel({ contact, matters, apiClient, onDirtyChange
     </div> : <>
       <div className="sharing-person-heading"><ConnectionVisual status={connection?.status} compact /><span><strong>{contact.displayName}</strong><small>{connectionStatus(connection, t)}</small></span></div>
       {access?.enforcementEnabled && <p className="sharing-expiry">{t("sharing.contact.capacity", { used: access.used, count: access.limit })}</p>}
-      {!active ? <label className="field-label">{t("sharing.contact.requiredEmail")}<input type="email" autoComplete="off" placeholder="person@example.com" value={email} disabled={busy} onChange={(event) => setEmail(event.target.value)} /></label>
+      {!active ? <label className="field-label">{t("sharing.contact.requiredEmail")}<input type="email" autoComplete="off" placeholder="person@example.com" value={email} disabled={busy} onBlur={() => setEmailTouched(true)} aria-invalid={emailError || undefined} aria-describedby="sharing-email-feedback" onChange={(event) => setEmail(event.target.value)} /></label>
         : <p className="sharing-email-hint"><Envelope size={18} />{connection.emailHint}</p>}
+      {!active && <p id="sharing-email-feedback" className="sharing-expiry" role={emailError ? "alert" : undefined}>{t(emailError ? "sharing.contact.invalidEmail" : "sharing.contact.emailNeeded")}</p>}
       <h3 className="sharing-section-title">{t("sharing.contact.chooseMatters")}</h3>
       <div className="sharing-matter-list">{[...matters].sort((a, b) => Number(b.id === focusMatterId) - Number(a.id === focusMatterId)).map((matter) => {
         const grant = grants.find((item) => item.matterPublicId === matter.id);
@@ -190,7 +193,7 @@ export function ContactSharingPanel({ contact, matters, apiClient, onDirtyChange
       {saved && !dirty && <p className="sharing-expiry" role="status"><CheckCircle size={18} />{connection?.status === "revoked" ? t("sharing.contact.stopped") : t("sharing.contact.saved")}</p>}
       {active && connection.status !== "accepted" && <>
         <button className="secondary-button" disabled={busy || dirty} onClick={() => inviteUrl ? setShowLink(true) : void regenerate()}><LinkSimple size={19} />{inviteUrl ? t("sharing.contact.showInvitation") : t("sharing.contact.newLink")}</button>
-        <details className="task-details"><summary>{t("sharing.contact.changeEmail")}</summary><label className="field-label">{t("sharing.contact.newEmail")}<input type="email" value={email} disabled={busy} onChange={(event) => setEmail(event.target.value)} /></label></details>
+        <details className="task-details"><summary>{t("sharing.contact.changeEmail")}</summary><label className="field-label">{t("sharing.contact.newEmail")}<input type="email" value={email} disabled={busy} onBlur={() => setEmailTouched(true)} aria-invalid={emailError || undefined} aria-describedby={emailError ? "sharing-email-feedback" : undefined} onChange={(event) => setEmail(event.target.value)} /></label>{emailError && <p id="sharing-email-feedback" className="sharing-expiry" role="alert">{t("sharing.contact.invalidEmail")}</p>}</details>
       </>}
       {active && <button className="text-button danger-text sharing-revoke" disabled={busy} onClick={() => void revoke()}>{t("sharing.contact.stop")}</button>}
       {active && access?.enforcementEnabled && connection.status !== "expired" && <>

@@ -68,7 +68,7 @@ class NativeLocalizationTests(unittest.TestCase):
 
     def test_glossary_does_not_confuse_disclosure_and_ownership(self):
         expected = {'Matters': '事项', 'Name': '名称', 'Directions': '查找指引',
-                    'Details': '已保存的详细信息', 'Trusted contact': '可信联系人',
+                    'Details': '详细资料', 'Trusted contact': '可信联系人',
                     'Profile': '个人中心', 'Language': '语言'}
         for key, value in expected.items():
             self.assertEqual(self.strings[key]['localizations']['zh-Hans']['stringUnit']['value'], value)

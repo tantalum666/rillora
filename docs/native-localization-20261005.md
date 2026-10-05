@@ -1,9 +1,24 @@
 # 原生 iOS 中英双语界面与维护合同
 
-Status: IMPLEMENTED; STATIC VALIDATION; XCODE / SIMULATOR ACCEPTANCE PENDING; NOT DEPLOYED
+Status: CONSOLIDATED; XCODE BUILDS / UNIT / BILINGUAL UI SMOKE PASS; WIDER MATRIX PENDING; NOT DEPLOYED
 Last updated: 2026-10-05 (Asia/Hong_Kong)
 
-## 最新范围与实现
+## October5 中文文案复核
+
+Owner要求仔细斟酌中文。已按[中文文案口径](chinese-copy-guidelines-20261005.md)逐条审阅两端资源，统一语气/术语，区分导出与入门、姓名与事项名称，并明确共享、备份、恢复密钥和法律权限边界。Web371条及原生225个中文单元已修订；原生另新增姓名上下文键，英文显示不变。实际编译/界面证据与初版静态检查分开记录，仍未部署。
+
+## October5 Mac follow-up
+
+The consolidated branch has actual Debug/Release builds,215unit passes/1existing skip
+and two English/Chinese native UI passes. All21added catalog/formatting cases ran.
+Prepared test products need an explicit English xctestrun/test-host language for legacy
+English assertions; both initial mismatch and corrected results are retained. No tests
+were weakened or system language preference changed. XcodeGen regeneration and the
+wider iPad/AX5/orientation/VoiceOver/authenticated matrix remain. Store4is unchanged.
+[Current evidence and exact limits](qa/dot-followup-20261005/README.md).
+The original Linux-only report below remains the dated source delivery checkpoint.
+
+## 初版源码范围（Dot交付检查点）
 
 Owner明确补充「中文那个页面做完了吗，不只是做web哦，ios也要做」。中文界面覆盖真实 `apps/ios` SwiftUI 应用；不是 WebView 或 `apps/ios-prototype` 演示。独立分支 `codex/chinese-ios-20261005` 从已核实的 `2cc95f77c1279bdad43547b7e58a8faca9da7a93` 开始，不覆盖 Web 中文分支，不合并、部署或上传商店构建。
 
@@ -29,7 +44,7 @@ Apple 依据：[逐应用语言与系统入口](https://developer.apple.com/vide
 - 个人中心、外观、语言、安全/关于页面、套餐/权益和购买恢复/失败状态、VoiceOver 标签与动态数值
 - API 已知机器错误码的中文解释；未知服务器文字在中文下使用安全、可读的任务错误，不把外部消息当作翻译键。英文继续保留原有服务器说明
 
-共享术语：Matter＝事项，Asset Map＝事务地图，Name＝名称，Directions＝查找指引，Details＝已保存的详细信息，Trusted Contact＝可信联系人，Recipient＝接收人。这里的共享与披露不表示外部账号访问、法定权限或所有权转移。
+共享术语：Matter＝事项，Asset Map＝事项地图，Name＝名称，Directions＝查找指引，Details＝详细资料，Trusted Contact＝可信联系人，Recipient＝接收人。这里的共享与披露不表示外部账号访问、法定权限或所有权转移。
 
 ## 保留边界
 
@@ -49,7 +64,7 @@ Apple 依据：[逐应用语言与系统入口](https://developer.apple.com/vide
 
 本地快速校验：`python3 -m unittest discover -s tools/release -p 'test_native_localization.py' -v`。它也由原有源码 CI 的 `test_*.py` 自动运行。新增资源/测试文件应通过 `xcodegen generate` 重新生成后检查目标归属；本轮 Linux 无 XcodeGen，已直接同步并解析核对提交工程的组、路径和 build phase，不宣称已运行 XcodeGen。
 
-## 验证与下一步
+## 初版验证与当时下一步（HISTORICAL）
 
 [QA 与未执行矩阵](qa/chinese-ios-20261005/README.md)区分静态测试、语法辅助检查、Xcode 编译、原生 UI 和远端 CI。静态覆盖不能替代 SDK 类型检查或真实排版；旧英文构建4不能证明此次中文代码可运行。
 

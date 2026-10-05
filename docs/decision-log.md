@@ -3110,3 +3110,28 @@ branch, static checks and explicit Mac acceptance gate.
 - Supersedes: 无；不取代已锁定的地图/密码边界、共享权限、加密、当前真实核心验收或发布门。
 - Does not imply: 技术方案已经实现、MCP 已部署、AI 数据披露已获用户同意、公开目录审核通过，或允许创建凭据/配置身份/提交发布。
 - Implementation impact: 后续按计划 C0–C6 独立接手；建议先规划者只读、再独立草稿与可信确认写入。实际实现前重新核对授权、源码和平台规则。
+
+## 2026-10-05 — Follow Dot branches without reopening superseded personal gates
+
+- Owner asks to follow GitHub progress. Consolidate the four dated Dot tips on a new
+integration branch based on03c97fc; retain the latest account-choice/export repairs,
+Owner keep-account decision and original-three cleanup evidence.
+- Resolve current documentation by preserving both additive decision/journey records
+and archiving branch-specific handoffs. No old pending deletion step regains authority.
+- Apply narrow reproduced focus/status/date/email fixes and Notes disclosure clarity
+under standing repair authorization; no new permission level, pricing, layout direction
+or legal consent. Optional AI/MCP/Events remains PROPOSAL, with no runtime work.
+- Source integration/local tests are distinct from restricted deployment/store upload.
+[Scope and evidence](qa/dot-followup-20261005/README.md).
+
+
+## 2026-10-05 — Owner requests careful Chinese product copy
+
+- Owner explicitly asks to scrutinize Chinese wording during Dot integration. Review
+both actual Web and native catalogs in full,not only translation completeness.
+- Agent adopts plain你voice,shared terminology,clear action/status copy and explicit
+Notes/key/copy/legal boundaries. Export instructions are distinct from quick start.
+Separate native Contact name from matterNamewhile keeping its English displayName.
+- No new price,entitlement,legal text,market,provider or user-data decision. Exact copy
+is an Agent editorial choice under this scope,not claimed individual Owner approval.
+[Copy contract and coverage](chinese-copy-guidelines-20261005.md).

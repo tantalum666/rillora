@@ -1,0 +1,13 @@
+import {readFileSync,writeFileSync} from 'node:fs';
+import {createRequire} from 'node:module';
+import {resolve} from 'node:path';
+const require=createRequire(resolve('apps/web/package.json'));
+const {parse}=require('@babel/parser');
+const overrides=JSON.parse(readFileSync('output/qa/rillora-dot-followup-20261005/copy-review/web-overrides.json','utf8'));
+for(const name of ['common','forms','public','workspace','sharing']){
+ const file=`apps/web/src/i18n/messages/${name}.js`;let source=readFileSync(file,'utf8');
+ const ast=parse(source,{sourceType:'module'});const declaration=ast.program.body.find(n=>n.type==='ExportNamedDeclaration'&&n.declaration?.declarations?.some(d=>d.id.name==='zhCN')).declaration.declarations.find(d=>d.id.name==='zhCN');
+ const edits=declaration.init.properties.filter(p=>Object.hasOwn(overrides,p.key.value)).map(p=>({start:p.value.start,end:p.value.end,value:JSON.stringify(overrides[p.key.value])}));
+ for(const e of edits.sort((a,b)=>b.start-a.start))source=source.slice(0,e.start)+e.value+source.slice(e.end);
+ writeFileSync(file,source);
+}

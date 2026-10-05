@@ -26,11 +26,11 @@ test("sharing catalogs have matching keys and interpolation variables", () => {
 
 test("sharing names and status follow the render locale without changing grant values", () => {
   assert.deepEqual(sharingLevels.map(level => level.value), ["name", "directions", "details"]);
-  assert.deepEqual(sharingLevels.map(level => zh(`sharing.level.${level.value}`)), ["名称", "查找指引", "已保存的详细信息"]);
+  assert.deepEqual(sharingLevels.map(level => zh(`sharing.level.${level.value}`)), ["名称", "查找指引", "详细资料"]);
   const paused = { status: "accepted", access: { mode: "saved" } };
   assert.equal(connectionStatus(paused), "Updates paused");
   assert.equal(connectionStatus(paused, zh), "更新已暂停");
-  assert.equal(connectionStatus({ status: "revoked", access: { mode: "saved" } }, zh), "已断开连接");
+  assert.equal(connectionStatus({ status: "revoked", access: { mode: "saved" } }, zh), "已停止共享");
   assert.equal(connectionStatus(null, zh), "尚未邀请");
 });
 
@@ -70,7 +70,7 @@ test("persistent notices and errors resolve again when the user changes language
 
 test("review labels preserve scope-change and stale checks in either locale", () => {
   assert.equal(reviewTaskLabel({ scopeAvailable: false }, zh), "共享已更改");
-  assert.equal(reviewTaskLabel({ scopeAvailable: true, isStale: true }, zh), "重新检查");
+  assert.equal(reviewTaskLabel({ scopeAvailable: true, isStale: true }, zh), "重新复核");
   for (const state of Object.keys(reviewStates)) {
     assert.equal(reviewTaskLabel({ scopeAvailable: true, isStale: false, state }, zh), zh(`sharing.review.state.${state}`));
   }

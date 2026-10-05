@@ -9,7 +9,7 @@ import { AuthenticatedOverview, FolioArtwork, InviteAction } from "./SharingMoti
 import { MatterForm } from "./MatterForm.jsx";
 import { toMatterDraft, matterPayload, matterValidation, matterDraftChanged } from "./matterForm.js";
 import { clearMatterDraft, clearMatchingMatterDraft, readMatterDraft, writeMatterDraft, matterStatusLabel } from "./matterDraftStorage.js";
-import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import {
   AddressBook,
   ArrowRight,
@@ -213,8 +213,9 @@ function MatterRow({ matter, onOpen }) {
 function Drawer({ title, eyebrow, onClose, closeLabel, busy = false, error, onReload, children }) {
   const { t } = useI18n();
   const dialogRef = useRef(null);
-  useEffect(() => {
+  useLayoutEffect(() => {
     const dialog = dialogRef.current;
+    const trigger = document.activeElement;
     const oldOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     if (!dialog.open) dialog.showModal();
@@ -222,6 +223,14 @@ function Drawer({ title, eyebrow, onClose, closeLabel, busy = false, error, onRe
     return () => {
       dialog.close();
       document.body.style.overflow = oldOverflow;
+      // Unmounting removes the browser's implicit dialog return target. Wait until
+      // removal is committed, and never steal focus from a replacement dialog.
+      requestAnimationFrame(() => {
+        if (dialog.isConnected || document.querySelector("dialog[open]")) return;
+        const target = trigger?.isConnected && trigger !== document.body
+          ? trigger : document.querySelector("main.main-content");
+        target?.focus({ preventScroll: true });
+      });
     };
   }, []);
   return (
@@ -794,7 +803,25 @@ export function App() {
         {activeNav === "maintenance" && <Suspense fallback={<p role="status">{t("workspace.reviews.loading")}</p>}><FamilyMaintenancePanel apiClient={api} onChanged={() => void loadWorkspace()} onManageSharing={() => setActiveNav("contacts")} onDirtyChange={setPanelHasChanges} onBusyChange={setPanelBusy} /></Suspense>}
         {activeNav === "guides" && <PlatformGuideDirectory renderMark={(guide) => <ProviderMark providerKey={guide.key} label={guide.label}/>} onOpen={(guide) => setDrawer({ type: "provider-guide", providerKey: guide.key })}/>}
         {activeNav === "access" && <PlanAccessPreview commerce={commerce} onAccessChanged={setCommerce} returnedFromCheckout={returnedFromCheckout} />}
-        {activeNav === "activity" && <div className="activity-list">{auditEvents.length ? auditEvents.map((event) => <p key={event.publicId}><Check size={17} /> {formatAuditAction(event, t)}{event.resourceType === "matter" && matters.some(item => item.id === event.resourcePublicId) && <button className="text-button" onClick={() => openMatter(matters.find(item => item.id === event.resourcePublicId))}>{matters.find(item => item.id === event.resourcePublicId).label}</button>}{event.action.startsWith("sharing.") && <button className="text-button" onClick={() => setActiveNav("contacts")}>{t("workspace.activity.viewPeople")}</button>}{event.action.startsWith("family_review.") && <button className="text-button" onClick={() => setActiveNav("maintenance")}>{t("workspace.activity.openReview")}</button>} <span>{formatDate(event.occurredAt, { year: "numeric", month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZoneName: "short" })}</span></p>) : <p>{t("workspace.activity.empty")}</p>}</div>}
+        {activeNav === "activity" && <div className="activity-list">
+          {auditEvents.length ? auditEvents.map((event) => {
+            const matter = event.resourceType === "matter"
+              ? matters.find((item) => item.id === event.resourcePublicId) : null;
+            return <p key={event.publicId}>
+              <Check size={17} aria-hidden="true" />
+              <span className="activity-action">
+                {formatAuditAction(event, t)}
+                {matter && <button className="text-button" onClick={() => openMatter(matter)}>{matter.label}</button>}
+                {event.action.startsWith("sharing.") && <button className="text-button" onClick={() => setActiveNav("contacts")}>{t("workspace.activity.viewPeople")}</button>}
+                {event.action.startsWith("family_review.") && <button className="text-button" onClick={() => setActiveNav("maintenance")}>{t("workspace.activity.openReview")}</button>}
+              </span>
+              <time dateTime={event.occurredAt}>{formatDate(event.occurredAt, {
+                year: "numeric", month: "short", day: "numeric", hour: "numeric",
+                minute: "2-digit", timeZoneName: "short",
+              })}</time>
+            </p>;
+          }) : <p>{t("workspace.activity.empty")}</p>}
+        </div>}
         {activeNav === "settings" && <AccountDataPanel apiClient={api} onChanged={() => void loadWorkspace()} onDeletionRequested={accountDeletionRequested}/>}
         {activeNav === "settings" && <div className="plan-card settings-card"><button className="secondary-button" type="button" onClick={() => setActiveNav("access")}><CreditCard size={20} /> {t("workspace.settings.reviewAccess")}</button>{session?.authenticationMode === "session" && <><button className="secondary-button settings-sign-out" disabled={busy} onClick={() => void signOut()}><SignOut size={20} /> {busy ? t("workspace.settings.signingOut") : t("workspace.settings.signOut")}</button><button className="secondary-button settings-sign-out" disabled={busy} onClick={() => void signOutAllDevices()}><SignOut size={20} /> {t("workspace.settings.signOutAll")}</button><p className="drawer-intro">{t("workspace.settings.sessionScope")}</p></>}</div>}
         {activeNav === "more" && <InviteAction onInvite={() => setDrawer({ type: "contact" })} />}
@@ -846,7 +873,7 @@ export function App() {
         <button type="button" className={`settings-nav ${activeNav === "settings" ? "active" : ""}`} aria-current={activeNav === "settings" ? "page" : undefined} onClick={() => setActiveNav("settings")}><GearSix size={23} aria-hidden="true" /> <span>{t("workspace.settings.title")}</span></button>
       </aside>
 
-      <main className="main-content">
+      <main className="main-content" tabIndex={-1}>
         <div className="workspace-chrome">{session?.authenticationMode === "development" && <p className="development-notice">{t("workspace.workspace.testData")}</p>}<LanguageControl /><AppAppearanceControl /></div>
         {recoverableDraft && !drawer && <section className="draft-recovery" aria-label={t("workspace.draft.label")}>
           <div><strong>{t("workspace.draft.continue")}</strong><p>{recoverableDraft.title || t("workspace.matter.new")}</p></div>

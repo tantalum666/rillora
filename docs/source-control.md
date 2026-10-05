@@ -272,3 +272,17 @@ The new archive was freshly downloaded and decrypted/verified atd7aad3b38d02e172
 149objects/149paths pass against GitHub-read metadata. [Remote receipt](../collaboration/verification/real-core-closeout-20261005/remote-readback.json).
 Final metadata is preserved directly after the capture; no old archive, CI54, native4
 upload or completed user journey is repeated for this receipt-only closeout.
+
+## October5 Dot branch consolidation addendum
+
+Owner requested follow-up of Dot's GitHub progress. The new `codex/dot-integration-20261005`
+branch starts from03c97fcand merges all four fetched Dot tips without moving their
+branches,strict-review ormain. Current handoff retains Owner's later keep-account choice.
+[The addendum](../collaboration/verification/dot-followup-20261005/README.md) preserves
+1,404paths/772objects in raw-work-017 (26,500,710encrypted bytes), locally decrypted and
+verified. Exact originals include failed/passed Mac results,Simulator app bundles and
+synthetic browser QA; readable screenshots/receipts are separately checked. No credential,
+Keychain,provider session,real database or other project is included. Remote download/CI
+receipts are appended separately; no previous archive or deployment is repeated.
+
+Owner's subsequent Chinese copy request is preserved separately in [archive18addendum](../collaboration/verification/chinese-copy-20261005/README.md):625paths/383objects,25932470ciphertext bytes,locally decrypted/verified. Archive17remains immutable; original English/data/permission/price boundaries are retained.

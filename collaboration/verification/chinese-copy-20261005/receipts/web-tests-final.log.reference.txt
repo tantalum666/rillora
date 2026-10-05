@@ -1,0 +1,982 @@
+TAP version 13
+# Subtest: sharing rollout compatibility only treats an absent endpoint as unavailable controls
+ok 1 - sharing rollout compatibility only treats an absent endpoint as unavailable controls
+  ---
+  duration_ms: 33.874625
+  type: 'test'
+  ...
+# Subtest: public browsing stays separate from explicit account and identity entry points
+ok 2 - public browsing stays separate from explicit account and identity entry points
+  ---
+  duration_ms: 0.169583
+  type: 'test'
+  ...
+# Subtest: authentication starts only through an explicit legal-acceptance POST
+ok 3 - authentication starts only through an explicit legal-acceptance POST
+  ---
+  duration_ms: 0.419917
+  type: 'test'
+  ...
+# Subtest: API client uses credentials and the development identity only when configured
+ok 4 - API client uses credentials and the development identity only when configured
+  ---
+  duration_ms: 0.29125
+  type: 'test'
+  ...
+# Subtest: commercial reads and route evaluation use the authenticated shared API
+ok 5 - commercial reads and route evaluation use the authenticated shared API
+  ---
+  duration_ms: 0.650125
+  type: 'test'
+  ...
+# Subtest: public session detection uses a non-error status endpoint before private workspace loading
+ok 6 - public session detection uses a non-error status endpoint before private workspace loading
+  ---
+  duration_ms: 0.292584
+  type: 'test'
+  ...
+# Subtest: API client binds state changes to the CSRF cookie token
+ok 7 - API client binds state changes to the CSRF cookie token
+  ---
+  duration_ms: 0.206708
+  type: 'test'
+  ...
+# Subtest: first-use progress and the first matter use the shared authenticated API
+ok 8 - first-use progress and the first matter use the shared authenticated API
+  ---
+  duration_ms: 1.834583
+  type: 'test'
+  ...
+# Subtest: API client returns bounded server errors without exposing response internals
+ok 9 - API client returns bounded server errors without exposing response internals
+  ---
+  duration_ms: 0.485458
+  type: 'test'
+  ...
+# Subtest: API client sends a CSRF-bound all-session revocation request
+ok 10 - API client sends a CSRF-bound all-session revocation request
+  ---
+  duration_ms: 0.407625
+  type: 'test'
+  ...
+# Subtest: API client validates and returns the minimum-disclosure printable artifact
+ok 11 - API client validates and returns the minimum-disclosure printable artifact
+  ---
+  duration_ms: 0.771625
+  type: 'test'
+  ...
+# Subtest: API client rejects a printable response that claims a retained server copy
+ok 12 - API client rejects a printable response that claims a retained server copy
+  ---
+  duration_ms: 0.211334
+  type: 'test'
+  ...
+# Subtest: a delayed printable body cannot escape after the workspace account changed
+ok 13 - a delayed printable body cannot escape after the workspace account changed
+  ---
+  duration_ms: 0.333125
+  type: 'test'
+  ...
+# Subtest: synthetic recipient capabilities stay in request bodies and the isolated authorization header
+ok 14 - synthetic recipient capabilities stay in request bodies and the isolated authorization header
+  ---
+  duration_ms: 0.210083
+  type: 'test'
+  ...
+# Subtest: disclosure rehearsal mutations are CSRF-bound, versioned, and explicitly simulation-only
+ok 15 - disclosure rehearsal mutations are CSRF-bound, versioned, and explicitly simulation-only
+  ---
+  duration_ms: 0.33475
+  type: 'test'
+  ...
+# Subtest: disclosure rehearsal responses fail closed if release or high-risk fields appear
+ok 16 - disclosure rehearsal responses fail closed if release or high-risk fields appear
+  ---
+  duration_ms: 0.216084
+  type: 'test'
+  ...
+# Subtest: role assignment mutations stay versioned, explicit, and record-only
+ok 17 - role assignment mutations stay versioned, explicit, and record-only
+  ---
+  duration_ms: 0.475792
+  type: 'test'
+  ...
+# Subtest: role assignment responses fail closed on unsafe authority or secret fields
+ok 18 - role assignment responses fail closed on unsafe authority or secret fields
+  ---
+  duration_ms: 0.283708
+  type: 'test'
+  ...
+# Subtest: workspace pins the verified account across pagination and later writes despite a changed CSRF cookie
+ok 19 - workspace pins the verified account across pagination and later writes despite a changed CSRF cookie
+  ---
+  duration_ms: 0.49
+  type: 'test'
+  ...
+# Subtest: missing original draft records can be checked by ID without discarding archived or failed results
+ok 20 - missing original draft records can be checked by ID without discarding archived or failed results
+  ---
+  duration_ms: 0.317416
+  type: 'test'
+  ...
+# Subtest: pagination fails visibly instead of silently truncating or looping on a repeated cursor
+ok 21 - pagination fails visibly instead of silently truncating or looping on a repeated cursor
+  ---
+  duration_ms: 0.151958
+  type: 'test'
+  ...
+# Subtest: every API operation used by a rendered Web consumer exists on the client contract
+ok 22 - every API operation used by a rendered Web consumer exists on the client contract
+  ---
+  duration_ms: 173.079709
+  type: 'test'
+  ...
+# Subtest: dark semantic text and primary actions meet 4.5:1
+ok 23 - dark semantic text and primary actions meet 4.5:1
+  ---
+  duration_ms: 2.756
+  type: 'test'
+  ...
+# Subtest: light semantic text and primary actions meet 4.5:1
+ok 24 - light semantic text and primary actions meet 4.5:1
+  ---
+  duration_ms: 0.949333
+  type: 'test'
+  ...
+# Subtest: commercial state is derived from the server catalog while billing remains closed
+ok 25 - commercial state is derived from the server catalog while billing remains closed
+  ---
+  duration_ms: 13.963542
+  type: 'test'
+  ...
+# Subtest: unsafe or malformed commercial responses fail closed
+ok 26 - unsafe or malformed commercial responses fail closed
+  ---
+  duration_ms: 0.310458
+  type: 'test'
+  ...
+# Subtest: purchase routing rejects a client-success or contradictory route
+ok 27 - purchase routing rejects a client-success or contradictory route
+  ---
+  duration_ms: 0.114875
+  type: 'test'
+  ...
+# Subtest: commercial details stay out of public discovery until explicit paid-capability intent
+ok 28 - commercial details stay out of public discovery until explicit paid-capability intent
+  ---
+  duration_ms: 0.096916
+  type: 'test'
+  ...
+# Subtest: test billing enrollment is explicit and hosted destinations reject lookalikes and credentials
+ok 29 - test billing enrollment is explicit and hosted destinations reject lookalikes and credentials
+  ---
+  duration_ms: 0.2475
+  type: 'test'
+  ...
+# Subtest: Family benefits remain visible when their catalog enforcement becomes included
+ok 30 - Family benefits remain visible when their catalog enforcement becomes included
+  ---
+  duration_ms: 0.078292
+  type: 'test'
+  ...
+# Subtest: simulation evidence is never promoted to accepted
+ok 31 - simulation evidence is never promoted to accepted
+  ---
+  duration_ms: 4.011375
+  type: 'test'
+  ...
+# Subtest: only a non-simulated accepted invitation receives accepted evidence
+ok 32 - only a non-simulated accepted invitation receives accepted evidence
+  ---
+  duration_ms: 0.189958
+  type: 'test'
+  ...
+# Subtest: record-only, pending and revoked states remain distinct
+ok 33 - record-only, pending and revoked states remain distinct
+  ---
+  duration_ms: 0.286166
+  type: 'test'
+  ...
+# Subtest: a review link is an account destination without capability tokens or private fields
+ok 34 - a review link is an account destination without capability tokens or private fields
+  ---
+  duration_ms: 0.679083
+  type: 'test'
+  ...
+# Subtest: a dated check stops counting as resolved when its source changes
+ok 35 - a dated check stops counting as resolved when its source changes
+  ---
+  duration_ms: 0.18625
+  type: 'test'
+  ...
+# Subtest: hidden fields and unscoped suggestions never render as review directions
+ok 36 - hidden fields and unscoped suggestions never render as review directions
+  ---
+  duration_ms: 0.42425
+  type: 'test'
+  ...
+# Subtest: incoming data cannot grant owner control or bypass a changed scope
+ok 37 - incoming data cannot grant owner control or bypass a changed scope
+  ---
+  duration_ms: 0.085041
+  type: 'test'
+  ...
+# Subtest: preview cannot pretend to bill or send external messages
+ok 38 - preview cannot pretend to bill or send external messages
+  ---
+  duration_ms: 0.218292
+  type: 'test'
+  ...
+# Subtest: first-use state fails safely to an available non-blocking overview
+ok 39 - first-use state fails safely to an available non-blocking overview
+  ---
+  duration_ms: 1.280667
+  type: 'test'
+  ...
+# Subtest: paused guides stay recoverable and completed guides stay dismissed
+ok 40 - paused guides stay recoverable and completed guides stay dismissed
+  ---
+  duration_ms: 0.063209
+  type: 'test'
+  ...
+# Subtest: resume copy follows saved progress without changing readiness
+ok 41 - resume copy follows saved progress without changing readiness
+  ---
+  duration_ms: 0.129792
+  type: 'test'
+  ...
+# Subtest: actual form and guide components render both languages without changing source content
+ok 42 - actual form and guide components render both languages without changing source content
+  ---
+  duration_ms: 443.016209
+  type: 'test'
+  ...
+# Subtest: forms catalogs cover the same stable keys and interpolation parameters
+ok 43 - forms catalogs cover the same stable keys and interpolation parameters
+  ---
+  duration_ms: 2.08825
+  type: 'test'
+  ...
+# Subtest: form labels localize while machine field names and requirements are unchanged
+ok 44 - form labels localize while machine field names and requirements are unchanged
+  ---
+  duration_ms: 0.686583
+  type: 'test'
+  ...
+# Subtest: validation produces language-independent issues and keeps English defaults
+ok 45 - validation produces language-independent issues and keeps English defaults
+  ---
+  duration_ms: 1.786833
+  type: 'test'
+  ...
+# Subtest: locale switches cannot mutate saved values, eligibility, or hidden-field filtering
+ok 46 - locale switches cannot mutate saved values, eligibility, or hidden-field filtering
+  ---
+  duration_ms: 0.83425
+  type: 'test'
+  ...
+# Subtest: first-use helper keeps paused/resumed semantics across locales
+ok 47 - first-use helper keeps paused/resumed semantics across locales
+  ---
+  duration_ms: 0.1135
+  type: 'test'
+  ...
+# Subtest: invitation consent retains exact English proof and explicit acceptance gates
+ok 48 - invitation consent retains exact English proof and explicit acceptance gates
+  ---
+  duration_ms: 5.121125
+  type: 'test'
+  ...
+# Subtest: provider bodies remain explicitly English while navigation translates
+ok 49 - provider bodies remain explicitly English while navigation translates
+  ---
+  duration_ms: 2.7685
+  type: 'test'
+  ...
+# Subtest: all application and public messages have complete, parameter-compatible bilingual catalogs
+ok 50 - all application and public messages have complete, parameter-compatible bilingual catalogs
+  ---
+  duration_ms: 7.389917
+  type: 'test'
+  ...
+# Subtest: literal translation references and stored local-message keys resolve in both languages
+ok 51 - literal translation references and stored local-message keys resolve in both languages
+  ---
+  duration_ms: 211.73975
+  type: 'test'
+  ...
+# Subtest: catalog lookup preserves arbitrary user text literally as interpolation data
+ok 52 - catalog lookup preserves arbitrary user text literally as interpolation data
+  ---
+  duration_ms: 16.044334
+  type: 'test'
+  ...
+# Subtest: supported browser languages resolve in preference order with English fallback
+ok 53 - supported browser languages resolve in preference order with English fallback
+  ---
+  duration_ms: 0.831167
+  type: 'test'
+  ...
+# Subtest: translation uses named interpolation, plural rules and safe English fallback
+ok 54 - translation uses named interpolation, plural rules and safe English fallback
+  ---
+  duration_ms: 19.8115
+  type: 'test'
+  ...
+# Subtest: catalog checks catch omissions, untranslated parameter drift and duplicate keys
+ok 55 - catalog checks catch omissions, untranslated parameter drift and duplicate keys
+  ---
+  duration_ms: 1.422125
+  type: 'test'
+  ...
+# Subtest: formatters retain actual currency and minor-unit amount
+ok 56 - formatters retain actual currency and minor-unit amount
+  ---
+  duration_ms: 9.538708
+  type: 'test'
+  ...
+# Subtest: manual choice persists without changing any account or appearance preference
+ok 57 - manual choice persists without changing any account or appearance preference
+  ---
+  duration_ms: 1.113125
+  type: 'test'
+  ...
+# Subtest: blocked storage still allows switching and exposes accurate persistence state
+ok 58 - blocked storage still allows switching and exposes accurate persistence state
+  ---
+  duration_ms: 0.163917
+  type: 'test'
+  ...
+# Subtest: invalid stored values fall back to browser language without affecting other storage
+ok 59 - invalid stored values fall back to browser language without affecting other storage
+  ---
+  duration_ms: 0.116959
+  type: 'test'
+  ...
+# Subtest: locale link handoff is origin-bounded and preserves invitation/query state
+ok 60 - locale link handoff is origin-bounded and preserves invitation/query state
+  ---
+  duration_ms: 0.629792
+  type: 'test'
+  ...
+# Subtest: received locale handoff consumes only lang and preserves history identity
+ok 61 - received locale handoff consumes only lang and preserves history identity
+  ---
+  duration_ms: 0.405375
+  type: 'test'
+  ...
+# Subtest: cross-tab changes and reset update subscribers and remove their listener on disposal
+ok 62 - cross-tab changes and reset update subscribers and remove their listener on disposal
+  ---
+  duration_ms: 0.488416
+  type: 'test'
+  ...
+# Subtest: errors localize known codes without interpreting arbitrary server content
+ok 63 - errors localize known codes without interpreting arbitrary server content
+  ---
+  duration_ms: 0.167709
+  type: 'test'
+  ...
+# Subtest: automatic browser language is not persisted or carried as an explicit choice
+ok 64 - automatic browser language is not persisted or carried as an explicit choice
+  ---
+  duration_ms: 0.061417
+  type: 'test'
+  ...
+# Subtest: recipient demonstration omits unshared matters instead of exposing locked titles
+ok 65 - recipient demonstration omits unshared matters instead of exposing locked titles
+  ---
+  duration_ms: 1.303625
+  type: 'test'
+  ...
+# Subtest: public preview account and invitation routes stay on the explicitly selected app
+ok 66 - public preview account and invitation routes stay on the explicitly selected app
+  ---
+  duration_ms: 0.071375
+  type: 'test'
+  ...
+# Subtest: an incomplete draft survives reload only for its verified account
+ok 67 - an incomplete draft survives reload only for its verified account
+  ---
+  duration_ms: 1.665333
+  type: 'test'
+  ...
+# Subtest: recovered edits retain the reviewed version, not an automatic overwrite
+ok 68 - recovered edits retain the reviewed version, not an automatic overwrite
+  ---
+  duration_ms: 0.185042
+  type: 'test'
+  ...
+# Subtest: expiry and explicit discard remove the retained values
+ok 69 - expiry and explicit discard remove the retained values
+  ---
+  duration_ms: 0.171125
+  type: 'test'
+  ...
+# Subtest: malformed, oversized and mismatched stored drafts are rejected
+ok 70 - malformed, oversized and mismatched stored drafts are rejected
+  ---
+  duration_ms: 0.273917
+  type: 'test'
+  ...
+# Subtest: unavailable storage is a recoverable condition
+ok 71 - unavailable storage is a recoverable condition
+  ---
+  duration_ms: 0.142417
+  type: 'test'
+  ...
+# Subtest: stored existence is independent of preparation status
+ok 72 - stored existence is independent of preparation status
+  ---
+  duration_ms: 0.059417
+  type: 'test'
+  ...
+# Subtest: closing a different editor cannot remove the pending draft
+ok 73 - closing a different editor cannot remove the pending draft
+  ---
+  duration_ms: 0.250292
+  type: 'test'
+  ...
+# Subtest: new draft cleanup matches request identity and stays account scoped
+ok 74 - new draft cleanup matches request identity and stays account scoped
+  ---
+  duration_ms: 0.125875
+  type: 'test'
+  ...
+# Subtest: each category needs a real locator before saving
+ok 75 - each category needs a real locator before saving
+  ---
+  duration_ms: 1.337
+  type: 'test'
+  ...
+# Subtest: custody and category changes submit only visible typed fields without destroying drafts
+ok 76 - custody and category changes submit only visible typed fields without destroying drafts
+  ---
+  duration_ms: 3.908708
+  type: 'test'
+  ...
+# Subtest: notes round-trip, clearing, maximum, malformed dates and missing wallet addresses
+ok 77 - notes round-trip, clearing, maximum, malformed dates and missing wallet addresses
+  ---
+  duration_ms: 6.379375
+  type: 'test'
+  ...
+# Subtest: hidden generic fields are neither submitted nor a validation trap after category change
+ok 78 - hidden generic fields are neither submitted nor a validation trap after category change
+  ---
+  duration_ms: 0.121083
+  type: 'test'
+  ...
+# Subtest: mobile keeps three primary destinations
+ok 79 - mobile keeps three primary destinations
+  ---
+  duration_ms: 1.234458
+  type: 'test'
+  ...
+# Subtest: desktop-only destinations remain reachable through More
+ok 80 - desktop-only destinations remain reachable through More
+  ---
+  duration_ms: 0.095459
+  type: 'test'
+  ...
+# Subtest: suggestions honor visible fields, regional specificity and false-positive limits
+ok 81 - suggestions honor visible fields, regional specificity and false-positive limits
+  ---
+  duration_ms: 5.83575
+  type: 'test'
+  ...
+# Subtest: official provider catalog covers the curated common platforms
+ok 82 - official provider catalog covers the curated common platforms
+  ---
+  duration_ms: 0.270625
+  type: 'test'
+  ...
+# Subtest: every provider link is HTTPS and uses an official host
+ok 83 - every provider link is HTTPS and uses an official host
+  ---
+  duration_ms: 0.183667
+  type: 'test'
+  ...
+# Subtest: Binance is described as a regional estate request, not a legacy contact
+ok 84 - Binance is described as a regional estate request, not a legacy contact
+  ---
+  duration_ms: 0.10275
+  type: 'test'
+  ...
+# Subtest: aliases, regional requirements and task-specific links stay accurate
+ok 85 - aliases, regional requirements and task-specific links stay accurate
+  ---
+  duration_ms: 0.231209
+  type: 'test'
+  ...
+# Subtest: purchase consent is current, annual, separate and never inferred from an unchecked box
+ok 86 - purchase consent is current, annual, separate and never inferred from an unchecked box
+  ---
+  duration_ms: 0.840958
+  type: 'test'
+  ...
+# Subtest: billing redirects require production response, provider host and server entitlement boundary
+ok 87 - billing redirects require production response, provider host and server entitlement boundary
+  ---
+  duration_ms: 0.228625
+  type: 'test'
+  ...
+# Subtest: provider returns enter account access and discard untrusted session/payment parameters
+ok 88 - provider returns enter account access and discard untrusted session/payment parameters
+  ---
+  duration_ms: 0.622542
+  type: 'test'
+  ...
+# Subtest: production checkout uses authenticated CSRF POST, independent proof and the same retry key
+ok 89 - production checkout uses authenticated CSRF POST, independent proof and the same retry key
+  ---
+  duration_ms: 106.352375
+  type: 'test'
+  ...
+# Subtest: closed and restricted-review artifacts keep isolated outputs and pinned production routing
+ok 90 - closed and restricted-review artifacts keep isolated outputs and pinned production routing
+  ---
+  duration_ms: 1.129084
+  type: 'test'
+  ...
+# Subtest: API routes retain methods, cookies, auth and query while only the public prefix is removed
+ok 91 - API routes retain methods, cookies, auth and query while only the public prefix is removed
+  ---
+  duration_ms: 0.712209
+  type: 'test'
+  ...
+# Subtest: no API or unknown request falls back to a cached HTML response
+ok 92 - no API or unknown request falls back to a cached HTML response
+  ---
+  duration_ms: 0.277291
+  type: 'test'
+  ...
+# Subtest: real invitations survive initial fragment entry, auth return and reload with GET or HEAD
+ok 93 - real invitations survive initial fragment entry, auth return and reload with GET or HEAD
+  ---
+  duration_ms: 0.096791
+  type: 'test'
+  ...
+# Subtest: public discovery explains the real product before plan creation
+ok 94 - public discovery explains the real product before plan creation
+  ---
+  duration_ms: 0.97
+  type: 'test'
+  ...
+# Subtest: public legal routes and registration clickwrap remain visible without false claims
+ok 95 - public legal routes and registration clickwrap remain visible without false claims
+  ---
+  duration_ms: 1.088458
+  type: 'test'
+  ...
+# Subtest: every public semantic message has complete English and Chinese forms and matching interpolation
+ok 96 - every public semantic message has complete English and Chinese forms and matching interpolation
+  ---
+  duration_ms: 13.785667
+  type: 'test'
+  ...
+# Subtest: all public UI and example-data message references resolve in both languages
+ok 97 - all public UI and example-data message references resolve in both languages
+  ---
+  duration_ms: 10.823
+  type: 'test'
+  ...
+# Subtest: demonstration content is translated before rendering without widening recipient visibility
+ok 98 - demonstration content is translated before rendering without widening recipient visibility
+  ---
+  duration_ms: 0.417334
+  type: 'test'
+  ...
+# Subtest: shared-count grammar and name interpolation form complete locale-specific sentences
+ok 99 - shared-count grammar and name interpolation form complete locale-specific sentences
+  ---
+  duration_ms: 0.31675
+  type: 'test'
+  ...
+# Subtest: display locale never converts or changes the locked Web annual price and plan limits
+ok 100 - display locale never converts or changes the locked Web annual price and plan limits
+  ---
+  duration_ms: 1.313208
+  type: 'test'
+  ...
+# Subtest: legal references identify English originals while consent and licence bodies stay original
+ok 101 - legal references identify English originals while consent and licence bodies stay original
+  ---
+  duration_ms: 2.521792
+  type: 'test'
+  ...
+# Subtest: both public headers keep language selection before the far-right appearance control
+ok 102 - both public headers keep language selection before the far-right appearance control
+  ---
+  duration_ms: 2.091042
+  type: 'test'
+  ...
+# Subtest: Chinese sample download stays synthetic and separate from real export contracts
+ok 103 - Chinese sample download stays synthetic and separate from real export contracts
+  ---
+  duration_ms: 1.928
+  type: 'test'
+  ...
+# Subtest: a chosen matter category survives the account and callback routes
+ok 104 - a chosen matter category survives the account and callback routes
+  ---
+  duration_ms: 1.147583
+  type: 'test'
+  ...
+# Subtest: ordinary account entry does not create a deferred editor
+ok 105 - ordinary account entry does not create a deferred editor
+  ---
+  duration_ms: 0.1105
+  type: 'test'
+  ...
+# Subtest: guide sign-in returns to the selected guide without private or external parameters
+ok 106 - guide sign-in returns to the selected guide without private or external parameters
+  ---
+  duration_ms: 0.101333
+  type: 'test'
+  ...
+# Subtest: a review link returns to the receiving inbox without carrying private identifiers
+ok 107 - a review link returns to the receiving inbox without carrying private identifiers
+  ---
+  duration_ms: 0.058542
+  type: 'test'
+  ...
+# Subtest: unknown categories and external targets cannot become a continuation
+ok 108 - unknown categories and external targets cannot become a continuation
+  ---
+  duration_ms: 0.104667
+  type: 'test'
+  ...
+# Subtest: public route identifiers match the private catalog without shipping guide bodies
+ok 109 - public route identifiers match the private catalog without shipping guide bodies
+  ---
+  duration_ms: 1.296708
+  type: 'test'
+  ...
+# Subtest: public routing serves only public pages and fixed asset paths
+ok 110 - public routing serves only public pages and fixed asset paths
+  ---
+  duration_ms: 0.388917
+  type: 'test'
+  ...
+# Subtest: public guide bookmarks continue through sign-in on the chosen app only
+ok 111 - public guide bookmarks continue through sign-in on the chosen app only
+  ---
+  duration_ms: 0.177833
+  type: 'test'
+  ...
+# Subtest: public routing rejects writes without an API or account fallback
+ok 112 - public routing rejects writes without an API or account fallback
+  ---
+  duration_ms: 0.419791
+  type: 'test'
+  ...
+# Subtest: guide redirects retain only an explicitly supported language enum
+ok 113 - guide redirects retain only an explicitly supported language enum
+  ---
+  duration_ms: 0.303125
+  type: 'test'
+  ...
+# Subtest: complete backup preserves private Notes and cannot claim restored sharing
+ok 114 - complete backup preserves private Notes and cannot claim restored sharing
+  ---
+  duration_ms: 0.748125
+  type: 'test'
+  ...
+# Subtest: reader rejects partial, malformed and oversized files
+ok 115 - reader rejects partial, malformed and oversized files
+  ---
+  duration_ms: 0.319291
+  type: 'test'
+  ...
+# Subtest: directions require exact safety boundaries
+ok 116 - directions require exact safety boundaries
+  ---
+  duration_ms: 0.073416
+  type: 'test'
+  ...
+# Subtest: deletion references are random portable status-only receipts
+ok 117 - deletion references are random portable status-only receipts
+  ---
+  duration_ms: 2.689459
+  type: 'test'
+  ...
+# Subtest: a maximum-size backup downloads into the same file boundary its reader accepts
+ok 118 - a maximum-size backup downloads into the same file boundary its reader accepts
+  ---
+  duration_ms: 51.463792
+  type: 'test'
+  ...
+# Subtest: sharing catalogs have matching keys and interpolation variables
+ok 119 - sharing catalogs have matching keys and interpolation variables
+  ---
+  duration_ms: 14.327291
+  type: 'test'
+  ...
+# Subtest: sharing names and status follow the render locale without changing grant values
+ok 120 - sharing names and status follow the render locale without changing grant values
+  ---
+  duration_ms: 0.201958
+  type: 'test'
+  ...
+# Subtest: shared and saved fields translate only known labels and enum values
+ok 121 - shared and saved fields translate only known labels and enum values
+  ---
+  duration_ms: 0.199333
+  type: 'test'
+  ...
+# Subtest: saved-copy labels format dates in the chosen locale with a truthful paid-period fallback
+ok 122 - saved-copy labels format dates in the chosen locale with a truthful paid-period fallback
+  ---
+  duration_ms: 6.40275
+  type: 'test'
+  ...
+# Subtest: persistent notices and errors resolve again when the user changes language
+ok 123 - persistent notices and errors resolve again when the user changes language
+  ---
+  duration_ms: 0.346083
+  type: 'test'
+  ...
+# Subtest: review labels preserve scope-change and stale checks in either locale
+ok 124 - review labels preserve scope-change and stale checks in either locale
+  ---
+  duration_ms: 0.107875
+  type: 'test'
+  ...
+# Subtest: translation retains deletion confirmation, local key protection and export language boundaries
+ok 125 - translation retains deletion confirmation, local key protection and export language boundaries
+  ---
+  duration_ms: 0.366833
+  type: 'test'
+  ...
+# Subtest: preview is bound to the exact selected matter and level
+ok 126 - preview is bound to the exact selected matter and level
+  ---
+  duration_ms: 0.886417
+  type: 'test'
+  ...
+# Subtest: preview rejects additional private fields
+ok 127 - preview rejects additional private fields
+  ---
+  duration_ms: 0.0685
+  type: 'test'
+  ...
+# Subtest: preview never implies a write or event-conditioned disclosure
+ok 128 - preview never implies a write or event-conditioned disclosure
+  ---
+  duration_ms: 0.064792
+  type: 'test'
+  ...
+# Subtest: saved preview may omit newly selected matters but never expand their scope
+ok 129 - saved preview may omit newly selected matters but never expand their scope
+  ---
+  duration_ms: 0.093792
+  type: 'test'
+  ...
+# Subtest: invitation URLs carry a bounded fragment capability
+ok 130 - invitation URLs carry a bounded fragment capability
+  ---
+  duration_ms: 0.856833
+  type: 'test'
+  ...
+# Subtest: name-level views reject accidental location disclosure
+ok 131 - name-level views reject accidental location disclosure
+  ---
+  duration_ms: 0.282708
+  type: 'test'
+  ...
+# Subtest: directions exclude masked hints and fields from unrelated connections
+ok 132 - directions exclude masked hints and fields from unrelated connections
+  ---
+  duration_ms: 0.075667
+  type: 'test'
+  ...
+# Subtest: a recipient response never grants writes or event-conditioned release
+ok 133 - a recipient response never grants writes or event-conditioned release
+  ---
+  duration_ms: 0.070959
+  type: 'test'
+  ...
+# Subtest: serves existing static assets without a fallback
+ok 134 - serves existing static assets without a fallback
+  ---
+  duration_ms: 26.534834
+  type: 'test'
+  ...
+# Subtest: falls back to index.html for an unknown app route
+ok 135 - falls back to index.html for an unknown app route
+  ---
+  duration_ms: 0.958083
+  type: 'test'
+  ...
+# Subtest: does not turn missing API or write requests into the app shell
+ok 136 - does not turn missing API or write requests into the app shell
+  ---
+  duration_ms: 0.329292
+  type: 'test'
+  ...
+# Subtest: emits the files required by Sites packaging
+ok 137 - emits the files required by Sites packaging
+  ---
+  duration_ms: 3.392292
+  type: 'test'
+  ...
+# Subtest: creates a recovery-only package without leaking its private or content key
+ok 138 - creates a recovery-only package without leaking its private or content key
+  ---
+  duration_ms: 16.85375
+  type: 'test'
+  ...
+# Subtest: wraps the same content key independently for an accepted recipient device
+ok 139 - wraps the same content key independently for an accepted recipient device
+  ---
+  duration_ms: 4.538334
+  type: 'test'
+  ...
+# Subtest: decrypts a synthetic recipient artifact with only the memory-held device key
+ok 140 - decrypts a synthetic recipient artifact with only the memory-held device key
+  ---
+  duration_ms: 7.752542
+  type: 'test'
+  ...
+# Subtest: rejects tampered ciphertext and a recovery key from another package
+ok 141 - rejects tampered ciphertext and a recovery key from another package
+  ---
+  duration_ms: 6.611541
+  type: 'test'
+  ...
+# Subtest: system appearance follows changes without writing a preference
+ok 142 - system appearance follows changes without writing a preference
+  ---
+  duration_ms: 1.623708
+  type: 'test'
+  ...
+# Subtest: saved manual mode wins over system and System clears it
+ok 143 - saved manual mode wins over system and System clears it
+  ---
+  duration_ms: 0.355625
+  type: 'test'
+  ...
+# Subtest: invalid saved/input values cannot introduce arbitrary state
+ok 144 - invalid saved/input values cannot introduce arbitrary state
+  ---
+  duration_ms: 0.299292
+  type: 'test'
+  ...
+# Subtest: blocked browser storage still permits current-page switching
+ok 145 - blocked browser storage still permits current-page switching
+  ---
+  duration_ms: 0.298375
+  type: 'test'
+  ...
+# Subtest: other tabs synchronize only the appearance key; bootstrap is idempotent
+ok 146 - other tabs synchronize only the appearance key; bootstrap is idempotent
+  ---
+  duration_ms: 0.512167
+  type: 'test'
+  ...
+# Subtest: appearance handoff preserves invitation context and fragment
+ok 147 - appearance handoff preserves invitation context and fragment
+  ---
+  duration_ms: 0.511041
+  type: 'test'
+  ...
+# Subtest: system handoff clears only the appearance value; malformed hints are ignored
+ok 148 - system handoff clears only the appearance value; malformed hints are ignored
+  ---
+  duration_ms: 0.604625
+  type: 'test'
+  ...
+# Subtest: public links carry display choice only to known app origins
+ok 149 - public links carry display choice only to known app origins
+  ---
+  duration_ms: 0.222084
+  type: 'test'
+  ...
+# Subtest: workspace catalogs have complete keys, matching parameters and localized counts
+ok 150 - workspace catalogs have complete keys, matching parameters and localized counts
+  ---
+  duration_ms: 2.707208
+  type: 'test'
+  ...
+# Subtest: desktop and mobile route identities have render-time labels without translated URLs
+ok 151 - desktop and mobile route identities have render-time labels without translated URLs
+  ---
+  duration_ms: 0.948375
+  type: 'test'
+  ...
+# Subtest: localized matter and contact labels preserve evidence, statuses and legacy defaults
+ok 152 - localized matter and contact labels preserve evidence, statuses and legacy defaults
+  ---
+  duration_ms: 0.151417
+  type: 'test'
+  ...
+# Subtest: commercial rendering adapters localize known metadata without changing access or unknown values
+ok 153 - commercial rendering adapters localize known metadata without changing access or unknown values
+  ---
+  duration_ms: 0.100667
+  type: 'test'
+  ...
+# Subtest: annual USD 88.99 and historic currency amounts survive locale formatting unchanged
+ok 154 - annual USD 88.99 and historic currency amounts survive locale formatting unchanged
+  ---
+  duration_ms: 4.022708
+  type: 'test'
+  ...
+# Subtest: display localization never rewrites user names, record drafts or route filters
+ok 155 - display localization never rewrites user names, record drafts or route filters
+  ---
+  duration_ms: 0.554625
+  type: 'test'
+  ...
+# Subtest: all static workspace message references resolve in both locales
+ok 156 - all static workspace message references resolve in both locales
+  ---
+  duration_ms: 4.683833
+  type: 'test'
+  ...
+# Subtest: production purchase acceptance retains its versioned English text and unchecked state
+ok 157 - production purchase acceptance retains its versioned English text and unchecked state
+  ---
+  duration_ms: 0.684292
+  type: 'test'
+  ...
+# Subtest: restores existing root destinations, filters and selected matter
+ok 158 - restores existing root destinations, filters and selected matter
+  ---
+  duration_ms: 1.994375
+  type: 'test'
+  ...
+# Subtest: unknown tasks and invalid identifiers cannot become arbitrary navigation
+ok 159 - unknown tasks and invalid identifiers cannot become arbitrary navigation
+  ---
+  duration_ms: 0.069875
+  type: 'test'
+  ...
+# Subtest: draft fields and invitation credentials stay out of history
+ok 160 - draft fields and invitation credentials stay out of history
+  ---
+  duration_ms: 0.126
+  type: 'test'
+  ...
+# Subtest: account and authentication-return destinations remain intact
+ok 161 - account and authentication-return destinations remain intact
+  ---
+  duration_ms: 0.058666
+  type: 'test'
+  ...
+# Subtest: legacy guide and account continuations hydrate only the authenticated guide task
+ok 162 - legacy guide and account continuations hydrate only the authenticated guide task
+  ---
+  duration_ms: 0.156917
+  type: 'test'
+  ...
+1..162
+# tests 162
+# suites 0
+# pass 162
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 561.340125

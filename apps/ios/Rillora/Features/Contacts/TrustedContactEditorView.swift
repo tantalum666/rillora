@@ -59,7 +59,7 @@ struct TrustedContactEditorView: View {
 
             Section {
                 RilloraTextField(
-                    title: String(localized: "Name"),
+                    title: String(localized: "Contact name", defaultValue: "Name"),
                     prompt: String(localized: "Who would you trust to help?"),
                     text: $editor.draft.displayName,
                     identifier: "contact.edit.name",

@@ -46,7 +46,7 @@ test("demonstration content is translated before rendering without widening reci
 test("shared-count grammar and name interpolation form complete locale-specific sentences", () => {
   assert.equal(english("public.sharing.count", { count: 1 }), "1 matter shared. Everything else stays private.");
   assert.equal(english("public.sharing.count", { count: 2 }), "2 matters shared. Everything else stays private.");
-  assert.equal(chinese("public.sharing.count", { count: 2 }), "已共享 2 项事项，其他内容仍为私密。");
+  assert.equal(chinese("public.sharing.count", { count: 2 }), "已共享 2 个事项，其余内容仍保持私密。");
   assert.equal(chinese("public.sharing.sharedWith", { name: "Alex" }), "与Alex共享");
 });
 

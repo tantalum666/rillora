@@ -1,0 +1,30 @@
+{
+  "completedAt": "2026-10-05T07:08:44.023084+00:00",
+  "web": {
+    "file": "web-corpus.tsv",
+    "records": 1276,
+    "bodyRanges": [
+      "1-120",
+      "121-310",
+      "311-540",
+      "541-765",
+      "766-1000",
+      "1001-1276",
+      "1218-1268 truncation supplement"
+    ]
+  },
+  "native": {
+    "file": "native-corpus.tsv",
+    "records": 1058,
+    "bodyRanges": [
+      "1-100",
+      "101-240",
+      "241-414 (original multiline TSV, then normalized)",
+      "415-590",
+      "591-785",
+      "786-960",
+      "961-1058"
+    ]
+  },
+  "review": "All app-authored Chinese entries read with English context. Dynamic user/server content and accepted English legal text are outside copy rewriting."
+}

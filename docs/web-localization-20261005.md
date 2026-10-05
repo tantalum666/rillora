@@ -1,9 +1,22 @@
 # Web 中英双语界面与维护合同
 
-Status: IMPLEMENTED; LOCAL BUILD/TEST EVIDENCE; BROWSER ACCEPTANCE BLOCKED; NOT DEPLOYED
+Status: CONSOLIDATED; LOCAL BUILD/TEST AND FOCUSED BROWSER ACCEPTANCE; NOT DEPLOYED
 Last updated: 2026-10-05 (Asia/Hong_Kong)
 
-## 本次授权与范围
+## October5 中文文案复核
+
+Owner要求仔细斟酌中文。已按[中文文案口径](chinese-copy-guidelines-20261005.md)逐条审阅两端资源，统一语气/术语，区分导出与入门、姓名与事项名称，并明确共享、备份、恢复密钥和法律权限边界。Web371条及原生225个中文单元已修订；原生另新增姓名上下文键，英文显示不变。实际编译/界面证据与初版静态检查分开记录，仍未部署。
+
+## October5 Mac follow-up
+
+Dot source is consolidated with the latest release fixes on `codex/dot-integration-20261005`.
+Actual local Chrome acceptance now covers public320px bilingual pages,desktop Home,
+390px workspace drafts/confirmation/Back and the four reproduced repairs. Two new
+email guidance messages bring the App catalog to1,276pairs. Full hidden/authenticated
+and accessibility matrix remains; production is unchanged. [Current exact evidence](qa/dot-followup-20261005/README.md).
+The initial blocked-browser report below is retained as its dated branch checkpoint.
+
+## 初版授权与范围（Dot交付检查点）
 
 Owner要求「还有rillora要做一个中文的语言界面，你直接做吧，做完推到git上，记得要构建可维护代码」。本轮在活动工程基线 `2cc95f77c1279bdad43547b7e58a8faca9da7a93` 上，为 Web 应用与官网加入简体中文，保留 English。代码交付分支为 `codex/chinese-web-20261005`；没有合并、部署、修改 Auth0/邮件/provider、原生 iOS 或开放市场/收费。
 
@@ -21,7 +34,7 @@ Owner要求「还有rillora要做一个中文的语言界面，你直接做吧�
 
 ## 必须保留的语言边界
 
-- Name＝名称；Directions＝查找指引；Details＝已保存的详细信息；Matter＝事项；Asset Map＝事务地图；Trusted Contact＝可信联系人；Recipient＝接收人
+- Name＝名称；Directions＝查找指引；Details＝详细资料；Matter＝事项；Asset Map＝事项地图；Trusted Contact＝可信联系人；Recipient＝接收人
 - 正式法律正文、法律版本/digest与英文同意句原样保留。中文同意辅助说明明确是参考；英文正文通过外层 `lang="en"` 标记，未改受摘要约束的模块
 - Auth0托管登录、事务邮件、第三方平台页面、官方平台指南正文仍为原语言。指南控件可中文，但指南正文/来源/复核日期不被伪装成已翻译或重新审核
 - 服务端生成的 Start Here 明文文件及诊断正文仍可为英文，界面明确标注；已保存的外部文件、恢复密钥、导出格式和真实用户内容不翻译
@@ -65,7 +78,7 @@ export const zhCN = { "forms.example.count": { other: "{count} 项" } };
 
 新增语言时扩展受支持枚举、catalog合并、语言控件、浏览器解析及链接白名单测试，补齐所有键/占位符/复数。另行审阅第三方/正式法律文本范围，不能把内部法律参考稿直接公开。
 
-## 验证与交付边界
+## 初版验证与交付边界（HISTORICAL）
 
 详见[本轮QA](qa/chinese-web-20261005/README.md)、[源码审阅](qa/chinese-web-20261005/source-review.json)、[完整阅读范围](qa/chinese-web-20261005/reading-coverage.json)及[远端回读](qa/chinese-web-20261005/remote-verification.json)。
 

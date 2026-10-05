@@ -1,75 +1,55 @@
 # Rillora Current Handoff
 
-Status: NON-DELETION CORE ACCEPTANCE CLOSED; ACCOUNT RETAINED; OWNER DEFERRED GATES REMAIN
+Status: DOT WORK CONSOLIDATED; TARGETED FIXES AND LOCAL ACCEPTANCE PASS; NOT DEPLOYED
 Last updated: 2026-10-05 (Asia/Hong_Kong)
 
-## Current task and latest Owner decision
+## Current task
 
-Owner continued real Web/native core acceptance, then explicitly chose保留，暂不删除
-at the isolated account's final irreversible dialog. Keep that test identity and
-its synthetic records. Actual account deletion is deferred and must not be resumed
-without a new explicit instruction. Preserve UI/full03, Free1/Family5, Web88.99annual,
-conditional Apple pricing, real records and FanPass; physical/merchant deferrals remain.
+Owner asks to follow Dot's GitHub work and carefully review Chinese product copy. Four branches are now consolidated on
+`codex/dot-integration-20261005` from03c97fc, retaining all source branch histories.
+[Current scope, branch tips, results and limits](qa/dot-followup-20261005/README.md).
+Preserve UI/full03,Free1/Family5,Web88.99annual,conditional Apple price,real data andFanPass.
 
-## Completed actual acceptance
+## Completed
 
-- Actual native Google planner and QQ recipient verified Name/Details projection,
-  draft retention around recent-auth and explicit sharing retry. Native revocation
-  cleared the open Web detail; HTTP200had empty items/connections.
-- Native plaintext/full-map/encrypted files were saved and read across clients;
-  the encrypted copy also opened in native. Current-device logout passed on both,
-  and native restart stayed public. Original mail/reset/invitation evidence is retained.
-- The observed native competing-alert defect passed focused10tests and actual recovery.
-  CI48and signed/uploaded/processed1.0(4)include it; AppleReady to Submit, notes saved,
-  groups0. No repeated upload, physical installation, tester invitation or App Review.
-- October5ordinary Web login initially reused old QQ SSO. Identity was checked before
-  import/delete. PublicExperience's existingselectAccount option now gives an explicit
-  hosted form. Source5714ec1583109e618024c647310f946acf89285b is pushed on
-  codex/strict-review-20261002;29focusedchecks/CI54pass. Web-only rollout changes one
-  client asset, with86live hashes matched. Other remote feature branches stay separate.
-- The approved independent account logged in normally. Actual import returned201,
- 1matter/1person, new IDs/draft states, retained Notes/reference and no restored sharing.
-  Not invited was observed. Naturally aged auth returned403; same-account password
-  reauthentication retained the page, and explicit retry returned200with a saved
- 2,309-byte file containing1matter/1person/1role.
+- Dot's three-round Web acceptance report, native/Web bilingual implementation and
+AI/MCP/optional Events proposal are included. Conflicting old next steps are archived;
+the later keep-account decision and actual runtime13cleanup evidence remain authoritative.
+- Reproduced and repaired Web drawer focus return,narrow status text,Activity timestamp
+layout and invitation email feedback. Clarified Notes/reference disclosure wording and
+preserved multiline fields without changing permission projections.
+- Actual native Debug/Release compile;215unit passes/1existing skip;21new bilingual cases
+included;2native bilingual UI cases pass. Web162and legal7checks/builds pass. Real local
+Chrome exercises Chinese/English public pages,entry,drafts,confirmation and focused repairs.
+- Chinese copy reviewed across1,276Web/1,058native original entries;371Web/225native units revised,plus one context key for contact姓名 while matterName stays名称. [Copy contract](chinese-copy-guidelines-20261005.md)keeps English/legal/data/permissions intact. New local checks are recorded separately from the initial integration suite.
+- Existing Account selectAccount=true and native export reauthentication fixes remain.
+AI/MCP/Events remains documentation only and does not become a first-launch prerequisite.
 
-## Retained account and completed cleanup
+## Evidence boundaries and retained decisions
 
-The final delete dialog was cancelled with Keep my account. DELETE and the checkbox
-were cleared; a fresh200overview still returned1matter/1person. Auth0 independently
-still returns the prepared identity. No deletion request or provider user delete was
-submitted. The current test-session logout returned204.
+Local bilingual source is not deployed or uploaded. Existing running API13/schema0093,
+Web5714ec158and store1.0(4)are dated retained checkpoints, not rechecked this task. Current
+production restriction keeps original3identities and expiry2026-10-06T17:08:57Z; no extension.
+User explicitly retained the isolated QA account/data; deletion is Owner-deferred, not
+passed. Temporary identity access was already removed. No new login/MFA was required.
+Physical-device purchase/restore and merchant facts remain deferred; customers/live
+billing,TestFlight invitations and App Review are still separate unfinished release gates.
 
-Temporary fourth-identity access is removed. Auth0 Action and runtime13match the
-original3identities and original expiry2026-10-06T17:08:57Z (October7 01:08:57Hong Kong),
-with1healthy task and unchanged image/roles/network/secrets. Ordinary customers and
-live billing stay closed. Account preservation is separate from temporary review access.
-The retained test identity/credentials remain protected in .local-secrets/real-core-20261004;
-its map backup and unused deletion-query files are protected in the October5directory.
-
-## Evidence and limits
-
-Current QA: output/qa/rillora-real-core-closeout-20261005. Prior actual core evidence:
-output/qa/rillora-real-core-20261004. New Web artifact:
-output/release/rillora-account-choice-20261005/web. Latest native distribution:
-output/release/rillora-review-20261004. Runtime application image remains
-sha256:7fe1d89a7cf22c2269372b27731f2d42a3abd59ee662c74923306f4cc7db14e3, schema0093.
-AWS/Auth0 were genuinely expired and renewed; do not repeat authentication without
-actual failure. No whole native suite, old deployment, email or AppleTEST is repeated.
-Archive14/15remote proofs are retained. October5raw-work-016has149paths/149objects,
-freshly downloaded/decrypted/verified atd7aad3b38d02e172ff687088845b9481dd20b669.
-[The collaboration index](../collaboration/README.md) has exact preservation receipts. Keys/authscreens/receipt capabilities
-remain excluded. Controller/browser IDs can change after reset; rediscover Chrome by
-its actual browser/profile rather than reusing an old numeric ID.
+Local browser uses synthetic read-only fixtures. Remaining localization acceptance:
+iPad/large accessibility text/orientation/VoiceOver/system language persistence and full
+localized authenticated file/share paths. Dot's UX-01,English UX-04,and remaining UX-05/06/P3/OBS-01remain open; UX-03
+is only partially improved. Do not call all Dot issues or release acceptance complete.
 
 ## Single next step
 
-Keep the release restricted until Owner explicitly resumes the next deferred release
-acceptance, following the existing priority of physical Apple Sandbox purchase/restore.
-Do not automatically reopen account deletion, phone use or merchant fact collection.
-Existing store/commercial/final-submission gates remain in[release readiness](release-readiness.md);
-Ready to Submit and core QA do not establish public launch.
+Continue the consolidated branch's remaining bilingual interaction matrix and Dot
+UX-01plan-next-action/English UX-04export-entry follow-up, then prepare the corresponding restricted
+release candidate. Preserve deferred deletion,phone and merchant decisions; do not replay
+completed provider journeys or implement the optional AI proposal as part of this gate.
 
-[Prior rollout](handoff-history-20261004-before-real-core.md),
-[mid-core checkpoint](handoff-history-20261004-mid-core.md) and
-[before Web repair rollout](handoff-history-20261005-before-web-repair-rollout.md) are HISTORICAL.
+[Previous retained-account handoff](handoff-history-20261005-before-dot-integration.md),
+[Dot iOS checkpoint](handoff-history-20261005-dot-ios.md),
+[Dot Web checkpoint](handoff-history-20261005-dot-web.md),and
+[Dot AI checkpoint](handoff-history-20261005-dot-ai.md)are HISTORICAL.
+
+October5最终文案检查：21项原生本地化、2项双语UI、Debug/Release编译、Web162及原生静态9项通过；旧法律7项验证沿用未变正文的检查点。当前Simulator安装的是本轮Debug双语QA版，未清Keychain，测试以临时未登录状态运行，截图后已停止。新原件见[文案保存包](../collaboration/verification/chinese-copy-20261005/README.md)。

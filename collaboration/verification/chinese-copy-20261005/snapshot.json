@@ -1,0 +1,27 @@
+{
+  "capturedFrom": "2026-10-05T07:35:05.110555+00:00",
+  "capturedThrough": "2026-10-05T07:35:07.061562+00:00",
+  "workFiles": 625,
+  "uniqueRawObjects": 383,
+  "workBytes": 114493402,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-018.tar.zst.age",
+      "sha256": "6d105df4f915c4f463a50128c60ff5f6eb93e97aec247e4490252ffd3ea14178",
+      "bytes": 25932470,
+      "plainBytes": 108680144,
+      "uniqueObjects": 383
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/chinese-copy-20261005/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": "output/qa/rillora-dot-followup-20261005/copy-review/publication",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    }
+  ],
+  "selection": "Owner-requested Chinese copy corpus, exact edits, local validation and updated Simulator/Web builds. Initial Dot integration remains immutable inarchive17. Actual credentials, real data, browser state and caches excluded.",
+  "boundary": "No credentials, real account changes, provider operations, production deployment or store upload. Local synthesis and compiled tests remain distinct from actual launch and deferred account/device acceptance."
+}

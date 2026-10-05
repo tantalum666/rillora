@@ -1,0 +1,552 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-dot-followup-20261005/native-unit-en.xctestrun -destination "platform=iOS Simulator,id=EA356940-5220-4AA8-89CF-499C6D5D14E4" -collect-test-diagnostics never -disableAutomaticPackageResolution -onlyUsePackageVersionsFromResolvedFile RILLORA_CUSTOMER_ACCESS_ENABLED=NO -resultBundlePath /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-dot-followup-20261005/native-unit-en.xcresult test-without-building
+
+Build settings from command line:
+    RILLORA_CUSTOMER_ACCESS_ENABLED = NO
+
+2026-10-05 14:23:12.670 xcodebuild[35922:25965472] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+Writing result bundle at path:
+	/Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-dot-followup-20261005/native-unit-en.xcresult
+
+2026-10-05 14:23:12.680 xcodebuild[35922:25965472] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-05 14:23:14.085 xcodebuild[35922:25965472] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-05 14:23:14.480 xcodebuild[35922:25965472] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+Test Suite 'All tests' started at 2026-10-05 14:23:18.741.
+Test Suite 'RilloraTests.xctest' started at 2026-10-05 14:23:18.742.
+Test Suite 'APIClientTests' started at 2026-10-05 14:23:18.742.
+Test Case '-[RilloraTests.APIClientTests testAppleReviewTransportUsesItsOwnRouteAndRejectsProductionAcknowledgement]' started.
+Test Case '-[RilloraTests.APIClientTests testAppleReviewTransportUsesItsOwnRouteAndRejectsProductionAcknowledgement]' passed (0.014 seconds).
+Test Case '-[RilloraTests.APIClientTests testAppleSignInFeatureGateDefaultsClosed]' started.
+Test Case '-[RilloraTests.APIClientTests testAppleSignInFeatureGateDefaultsClosed]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testAppleSignInFeatureGateRequiresExplicitEnablement]' started.
+Test Case '-[RilloraTests.APIClientTests testAppleSignInFeatureGateRequiresExplicitEnablement]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testAuthenticationFailureIsPreservedForTheUI]' started.
+Test Case '-[RilloraTests.APIClientTests testAuthenticationFailureIsPreservedForTheUI]' passed (0.005 seconds).
+Test Case '-[RilloraTests.APIClientTests testCommerceContractRejectsClientGrantedAccessBoundary]' started.
+Test Case '-[RilloraTests.APIClientTests testCommerceContractRejectsClientGrantedAccessBoundary]' passed (0.017 seconds).
+Test Case '-[RilloraTests.APIClientTests testCommerceStatusAndPurchaseRouteUseServerAuthoritativeContracts]' started.
+Test Case '-[RilloraTests.APIClientTests testCommerceStatusAndPurchaseRouteUseServerAuthoritativeContracts]' passed (0.005 seconds).
+Test Case '-[RilloraTests.APIClientTests testCreateAndArchiveMatterUseTheSharedMutationContract]' started.
+Test Case '-[RilloraTests.APIClientTests testCreateAndArchiveMatterUseTheSharedMutationContract]' passed (0.005 seconds).
+Test Case '-[RilloraTests.APIClientTests testCreateAndRevokeTrustedContactUseExplicitEvidenceContract]' started.
+Test Case '-[RilloraTests.APIClientTests testCreateAndRevokeTrustedContactUseExplicitEvidenceContract]' passed (0.005 seconds).
+Test Case '-[RilloraTests.APIClientTests testCreatePrintableStartHereRejectsRetainedServerCopyClaim]' started.
+Test Case '-[RilloraTests.APIClientTests testCreatePrintableStartHereRejectsRetainedServerCopyClaim]' passed (0.003 seconds).
+Test Case '-[RilloraTests.APIClientTests testCreatePrintableStartHereValidatesHeadersAndSendsAcknowledgements]' started.
+Test Case '-[RilloraTests.APIClientTests testCreatePrintableStartHereValidatesHeadersAndSendsAcknowledgements]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testDisclosureRehearsalFailsClosedOnReleaseOrForbiddenPreviewFields]' started.
+Test Case '-[RilloraTests.APIClientTests testDisclosureRehearsalFailsClosedOnReleaseOrForbiddenPreviewFields]' passed (0.019 seconds).
+Test Case '-[RilloraTests.APIClientTests testDisclosureRehearsalUsesVersionedSimulationOnlyMutations]' started.
+Test Case '-[RilloraTests.APIClientTests testDisclosureRehearsalUsesVersionedSimulationOnlyMutations]' passed (0.002 seconds).
+Test Case '-[RilloraTests.APIClientTests testEmailVerificationKeepsTheNativeSessionAndSendsNoClientIdentityClaim]' started.
+Test Case '-[RilloraTests.APIClientTests testEmailVerificationKeepsTheNativeSessionAndSendsNoClientIdentityClaim]' passed (0.002 seconds).
+Test Case '-[RilloraTests.APIClientTests testEmailVerificationRejectsUnprovenProviderState]' started.
+Test Case '-[RilloraTests.APIClientTests testEmailVerificationRejectsUnprovenProviderState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testEncryptedStartHerePreparationAndFinalizePreserveClientKeyBoundary]' started.
+Test Case '-[RilloraTests.APIClientTests testEncryptedStartHerePreparationAndFinalizePreserveClientKeyBoundary]' passed (0.008 seconds).
+Test Case '-[RilloraTests.APIClientTests testFetchAndUpdateOfficialSetupUseSelfReportedContract]' started.
+Test Case '-[RilloraTests.APIClientTests testFetchAndUpdateOfficialSetupUseSelfReportedContract]' passed (0.006 seconds).
+Test Case '-[RilloraTests.APIClientTests testFetchAndUpdatePlanMotivationUseLatestOptimisticVersion]' started.
+Test Case '-[RilloraTests.APIClientTests testFetchAndUpdatePlanMotivationUseLatestOptimisticVersion]' passed (0.005 seconds).
+Test Case '-[RilloraTests.APIClientTests testFetchOverviewUsesDevelopmentIdentityAndDecodesSharedContract]' started.
+Test Case '-[RilloraTests.APIClientTests testFetchOverviewUsesDevelopmentIdentityAndDecodesSharedContract]' passed (0.004 seconds).
+Test Case '-[RilloraTests.APIClientTests testFetchOverviewUsesKeychainBackedBearerWhenDevelopmentIdentityIsDisabled]' started.
+Test Case '-[RilloraTests.APIClientTests testFetchOverviewUsesKeychainBackedBearerWhenDevelopmentIdentityIsDisabled]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testLegalLinksUseThePublicCustomDomain]' started.
+Test Case '-[RilloraTests.APIClientTests testLegalLinksUseThePublicCustomDomain]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testLocalSessionPresenceUsesOnlyExplicitDevelopmentOrStoredBearerState]' started.
+Test Case '-[RilloraTests.APIClientTests testLocalSessionPresenceUsesOnlyExplicitDevelopmentOrStoredBearerState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testMatterVersionConflictIsPreservedForRecoveryUI]' started.
+Test Case '-[RilloraTests.APIClientTests testMatterVersionConflictIsPreservedForRecoveryUI]' passed (0.002 seconds).
+Test Case '-[RilloraTests.APIClientTests testNativeAuthenticationIntentKeepsEmailAndGoogleRoutesDistinct]' started.
+Test Case '-[RilloraTests.APIClientTests testNativeAuthenticationIntentKeepsEmailAndGoogleRoutesDistinct]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testNativeGoogleRequiresBothOAuthClientIdentifiersBeforeEnablement]' started.
+Test Case '-[RilloraTests.APIClientTests testNativeGoogleRequiresBothOAuthClientIdentifiersBeforeEnablement]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testNativePasskeyRequiresExplicitEnablement]' started.
+Test Case '-[RilloraTests.APIClientTests testNativePasskeyRequiresExplicitEnablement]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testNativeSessionExchangeCarriesTheExactAffirmativeLegalProof]' started.
+Test Case '-[RilloraTests.APIClientTests testNativeSessionExchangeCarriesTheExactAffirmativeLegalProof]' passed (0.003 seconds).
+Test Case '-[RilloraTests.APIClientTests testOfficialSetupRejectsEvidenceThatIsNotSelfReported]' started.
+Test Case '-[RilloraTests.APIClientTests testOfficialSetupRejectsEvidenceThatIsNotSelfReported]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testOverviewLoadsThe51stMatterAndRejectsRepeatedCursors]' started.
+Test Case '-[RilloraTests.APIClientTests testOverviewLoadsThe51stMatterAndRejectsRepeatedCursors]' passed (0.004 seconds).
+Test Case '-[RilloraTests.APIClientTests testRoleAssignmentFailsClosedOnAuthorityOrUnexpectedSecretField]' started.
+Test Case '-[RilloraTests.APIClientTests testRoleAssignmentFailsClosedOnAuthorityOrUnexpectedSecretField]' passed (0.008 seconds).
+Test Case '-[RilloraTests.APIClientTests testRoleAssignmentListPreservesScopeAndNoAuthorityBoundary]' started.
+Test Case '-[RilloraTests.APIClientTests testRoleAssignmentListPreservesScopeAndNoAuthorityBoundary]' passed (0.002 seconds).
+Test Case '-[RilloraTests.APIClientTests testRoleAssignmentRequestsAreVersionedAndExplicitlyRecordOnly]' started.
+Test Case '-[RilloraTests.APIClientTests testRoleAssignmentRequestsAreVersionedAndExplicitlyRecordOnly]' passed (0.003 seconds).
+Test Case '-[RilloraTests.APIClientTests testRunSimulationRejectsAnyOperativeResponse]' started.
+Test Case '-[RilloraTests.APIClientTests testRunSimulationRejectsAnyOperativeResponse]' passed (0.004 seconds).
+Test Case '-[RilloraTests.APIClientTests testRunSimulationSendsOneDistinctLifeEventAndDecodesSafeResult]' started.
+Test Case '-[RilloraTests.APIClientTests testRunSimulationSendsOneDistinctLifeEventAndDecodesSafeResult]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testSensitiveActionRequestsFreshAuthenticationAndCarriesSignedIdentityProof]' started.
+Test Case '-[RilloraTests.APIClientTests testSensitiveActionRequestsFreshAuthenticationAndCarriesSignedIdentityProof]' passed (0.000 seconds).
+Test Case '-[RilloraTests.APIClientTests testSharingRolloutFallbackDoesNotSwallowAuthenticationFailure]' started.
+Test Case '-[RilloraTests.APIClientTests testSharingRolloutFallbackDoesNotSwallowAuthenticationFailure]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testStartHereDecodesNoFilePreviewAndSendsEmptyJSONBody]' started.
+Test Case '-[RilloraTests.APIClientTests testStartHereDecodesNoFilePreviewAndSendsEmptyJSONBody]' passed (0.007 seconds).
+Test Case '-[RilloraTests.APIClientTests testStartHereRejectsAResponseThatClaimsAnEncryptedPackage]' started.
+Test Case '-[RilloraTests.APIClientTests testStartHereRejectsAResponseThatClaimsAnEncryptedPackage]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testStoreKitSandboxTransactionRejectsEntitlementMutationBoundary]' started.
+Test Case '-[RilloraTests.APIClientTests testStoreKitSandboxTransactionRejectsEntitlementMutationBoundary]' passed (0.004 seconds).
+Test Case '-[RilloraTests.APIClientTests testStoreKitSandboxTransactionUsesServerAuthoritativeFinishContract]' started.
+Test Case '-[RilloraTests.APIClientTests testStoreKitSandboxTransactionUsesServerAuthoritativeFinishContract]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testSyntheticRecipientAcceptanceAndEnrollmentUseIsolatedMemorySession]' started.
+Test Case '-[RilloraTests.APIClientTests testSyntheticRecipientAcceptanceAndEnrollmentUseIsolatedMemorySession]' passed (0.008 seconds).
+Test Case '-[RilloraTests.APIClientTests testUpdateMatterSendsOptimisticVersionAndExplicitNulls]' started.
+Test Case '-[RilloraTests.APIClientTests testUpdateMatterSendsOptimisticVersionAndExplicitNulls]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testValidationReceiptCannotClaimChangedAccessBeforeAuthoritativeAcknowledgement]' started.
+Test Case '-[RilloraTests.APIClientTests testValidationReceiptCannotClaimChangedAccessBeforeAuthoritativeAcknowledgement]' passed (0.000 seconds).
+Test Suite 'APIClientTests' passed at 2026-10-05 14:23:18.912.
+	 Executed 42 tests, with 0 failures (0 unexpected) in 0.158 (0.170) seconds
+Test Suite 'AccountDataTests' started at 2026-10-05 14:23:18.912.
+Test Case '-[RilloraTests.AccountDataTests testBillingAcknowledgementIncludesPendingPurchaseAndDecodesOlderProfiles]' started.
+Test Case '-[RilloraTests.AccountDataTests testBillingAcknowledgementIncludesPendingPurchaseAndDecodesOlderProfiles]' passed (0.002 seconds).
+Test Case '-[RilloraTests.AccountDataTests testDeletionReferenceIsPortableAndCannotBeAnAccountToken]' started.
+Test Case '-[RilloraTests.AccountDataTests testDeletionReferenceIsPortableAndCannotBeAnAccountToken]' passed (0.002 seconds).
+Test Case '-[RilloraTests.AccountDataTests testLocalReaderRejectsUnknownPartialAndOversizeFiles]' started.
+Test Case '-[RilloraTests.AccountDataTests testLocalReaderRejectsUnknownPartialAndOversizeFiles]' passed (0.003 seconds).
+Test Suite 'AccountDataTests' passed at 2026-10-05 14:23:18.919.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.006 (0.007) seconds
+Test Suite 'AccountLocalizationTests' started at 2026-10-05 14:23:18.919.
+Test Case '-[RilloraTests.AccountLocalizationTests testEnglishAccountResourcesRemainAvailable]' started.
+Test Case '-[RilloraTests.AccountLocalizationTests testEnglishAccountResourcesRemainAvailable]' passed (0.001 seconds).
+Test Case '-[RilloraTests.AccountLocalizationTests testFormattingPreservesPrivateTitleAndPercentSigns]' started.
+Test Case '-[RilloraTests.AccountLocalizationTests testFormattingPreservesPrivateTitleAndPercentSigns]' passed (0.001 seconds).
+Test Case '-[RilloraTests.AccountLocalizationTests testImportedMatterPluralUsesTheSelectedResourceBundle]' started.
+Test Case '-[RilloraTests.AccountLocalizationTests testImportedMatterPluralUsesTheSelectedResourceBundle]' passed (0.002 seconds).
+Test Case '-[RilloraTests.AccountLocalizationTests testProviderPriceAndCurrencyRemainUnmodified]' started.
+Test Case '-[RilloraTests.AccountLocalizationTests testProviderPriceAndCurrencyRemainUnmodified]' passed (0.001 seconds).
+Test Case '-[RilloraTests.AccountLocalizationTests testSimplifiedChineseAccountAndPurchaseResources]' started.
+Test Case '-[RilloraTests.AccountLocalizationTests testSimplifiedChineseAccountAndPurchaseResources]' passed (0.001 seconds).
+Test Suite 'AccountLocalizationTests' passed at 2026-10-05 14:23:18.926.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.006 (0.007) seconds
+Test Suite 'AppAppearanceTests' started at 2026-10-05 14:23:18.926.
+Test Case '-[RilloraTests.AppAppearanceTests testOldHomePreferenceMigratesWithoutReplacingExistingAppChoice]' started.
+Test Case '-[RilloraTests.AppAppearanceTests testOldHomePreferenceMigratesWithoutReplacingExistingAppChoice]' passed (0.005 seconds).
+Test Case '-[RilloraTests.AppAppearanceTests testReadingTextAndPrimaryActionsRemainReadableInBothSchemes]' started.
+Test Case '-[RilloraTests.AppAppearanceTests testReadingTextAndPrimaryActionsRemainReadableInBothSchemes]' passed (0.000 seconds).
+Test Case '-[RilloraTests.AppAppearanceTests testSystemHasNoForcedSchemeAndInvalidLegacyValueDoesNotPersist]' started.
+Test Case '-[RilloraTests.AppAppearanceTests testSystemHasNoForcedSchemeAndInvalidLegacyValueDoesNotPersist]' passed (0.003 seconds).
+Test Suite 'AppAppearanceTests' passed at 2026-10-05 14:23:18.936.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.009 (0.009) seconds
+Test Suite 'ApplePurchaseCoordinatorTests' started at 2026-10-05 14:23:18.936.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testAccountChangeBeforeServerReceiptReturnsCannotFinishForTheNewSession]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testAccountChangeBeforeServerReceiptReturnsCannotFinishForTheNewSession]' passed (0.002 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testAccountChangeDuringPreparationCannotOpenAnotherOwnersPaymentSheet]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testAccountChangeDuringPreparationCannotOpenAnotherOwnersPaymentSheet]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testChangedPriceRequiresAnotherDeliberateConsent]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testChangedPriceRequiresAnotherDeliberateConsent]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testForeignOwnerAndSandboxNeverReachProductionReceiptIntake]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testForeignOwnerAndSandboxNeverReachProductionReceiptIntake]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testHistoryOutageIsNotPresentedAsHavingNoPurchases]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testHistoryOutageIsNotPresentedAsHavingNoPurchases]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testInconsistentFinishResponseIsRejectedEvenByInjectedService]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testInconsistentFinishResponseIsRejectedEvenByInjectedService]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testNoPurchaseWithoutCurrentPriceAndExpressConsent]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testNoPurchaseWithoutCurrentPriceAndExpressConsent]' passed (0.015 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testOnlyCommittedServerStateCanFinishThenRestoreRetries]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testOnlyCommittedServerStateCanFinishThenRestoreRetries]' passed (0.002 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testPendingAndCanceledOutcomesArePreservedWithoutFinishing]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testPendingAndCanceledOutcomesArePreservedWithoutFinishing]' passed (0.002 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testRestoresHistoricalMonthlyFromSignedStorefrontAfterCountryChange]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testRestoresHistoricalMonthlyFromSignedStorefrontAfterCountryChange]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testReviewBuildRejectsAProductionTransactionAndUnknownAppReceiptCannotPurchase]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testReviewBuildRejectsAProductionTransactionAndUnknownAppReceiptCannotPurchase]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testReviewPurchaseUsesSandboxContractAndNeverFinishesOnProductionAcknowledgement]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testReviewPurchaseUsesSandboxContractAndNeverFinishesOnProductionAcknowledgement]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testStoreKitPriceMismatchCannotShowOrStartAnOffer]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testStoreKitPriceMismatchCannotShowOrStartAnOffer]' passed (0.001 seconds).
+Test Suite 'ApplePurchaseCoordinatorTests' passed at 2026-10-05 14:23:18.969.
+	 Executed 13 tests, with 0 failures (0 unexpected) in 0.030 (0.033) seconds
+Test Suite 'AppleStoreKitClientTests' started at 2026-10-05 14:23:18.969.
+Test Case '-[RilloraTests.AppleStoreKitClientTests testLoadsExactLocalFamilyCatalogAndReturnsVerifiedBoundPurchase]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/AppleStoreKitClientTests.swift:16: -[RilloraTests.AppleStoreKitClientTests testLoadsExactLocalFamilyCatalogAndReturnsVerifiedBoundPurchase] : Test skipped - The installed iOS 26.4 and 26.5 Simulator runtimes fail or hang while SKTestSession synchronizes the local configuration with storekitd; Apple documents the related Simulator fix in iOS 26.6. Set RILLORA_RUN_UNSTABLE_STOREKITTEST=1 only for an explicit retry; the Xcode Run transaction path is verified separately.
+Test Case '-[RilloraTests.AppleStoreKitClientTests testLoadsExactLocalFamilyCatalogAndReturnsVerifiedBoundPurchase]' skipped (0.009 seconds).
+Test Suite 'AppleStoreKitClientTests' passed at 2026-10-05 14:23:18.978.
+	 Executed 1 test, with 1 test skipped and 0 failures (0 unexpected) in 0.009 (0.009) seconds
+Test Suite 'CommerceStoreTests' started at 2026-10-05 14:23:18.978.
+Test Case '-[RilloraTests.CommerceStoreTests testCancelledPreviousAccountStartCannotResetNewPurchaseCoordinator]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testCancelledPreviousAccountStartCannotResetNewPurchaseCoordinator]' passed (0.003 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testLocalStoreKitPurchaseFinishesOnlyAfterMatchingVerifiedEvidence]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testLocalStoreKitPurchaseFinishesOnlyAfterMatchingVerifiedEvidence]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testLocalStoreKitPurchaseRejectsWrongAccountTokenWithoutFinishing]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testLocalStoreKitPurchaseRejectsWrongAccountTokenWithoutFinishing]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testLocalSubscriptionLifecycleStatesNeverMutateServerAccess]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testLocalSubscriptionLifecycleStatesNeverMutateServerAccess]' passed (0.002 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testMatchingTransactionUpdateIsRecordedAndFinishedWithoutChangingAccess]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testMatchingTransactionUpdateIsRecordedAndFinishedWithoutChangingAccess]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testMissingStorefrontFailsClosedWithoutCallingPurchaseRoute]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testMissingStorefrontFailsClosedWithoutCallingPurchaseRoute]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testRefreshRoutesWithCurrentStorefrontAndReevaluatesOnChange]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testRefreshRoutesWithCurrentStorefrontAndReevaluatesOnChange]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testRestoreHistoricalMonthlyPurchaseStillRefreshesLocalEvidence]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testRestoreHistoricalMonthlyPurchaseStillRefreshesLocalEvidence]' passed (0.002 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testRestoreIgnoresEntitlementBoundToAnotherRilloraAccount]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testRestoreIgnoresEntitlementBoundToAnotherRilloraAccount]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testRetiredMonthlyProductCannotStartANewPurchase]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testRetiredMonthlyProductCannotStartANewPurchase]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxCatalogDiagnosticLoadsWithoutAPrivateCommerceSession]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxCatalogDiagnosticLoadsWithoutAPrivateCommerceSession]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxCatalogLoadsAppStoreGroupWithoutOpeningPurchasePath]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxCatalogLoadsAppStoreGroupWithoutOpeningPurchasePath]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxCatalogRejectsXcodeLocalSubscriptionGroup]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxCatalogRejectsXcodeLocalSubscriptionGroup]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxPurchaseFinishesOnlyAfterDurableServerAuthorization]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxPurchaseFinishesOnlyAfterDurableServerAuthorization]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxPurchaseRemainsUnfinishedWhileAuthoritativeSnapshotIsPending]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxPurchaseRemainsUnfinishedWhileAuthoritativeSnapshotIsPending]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testSubscriptionStatusOutsideLocalAccountIsIgnored]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testSubscriptionStatusOutsideLocalAccountIsIgnored]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testSubscriptionStatusUpdateRefreshesLifecycleWithoutFinishingOrGrantingAccess]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testSubscriptionStatusUpdateRefreshesLifecycleWithoutFinishingOrGrantingAccess]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testUnverifiedLocalStoreKitPurchaseNeverFinishes]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testUnverifiedLocalStoreKitPurchaseNeverFinishes]' passed (0.001 seconds).
+Test Suite 'CommerceStoreTests' passed at 2026-10-05 14:23:19.006.
+	 Executed 18 tests, with 0 failures (0 unexpected) in 0.023 (0.028) seconds
+Test Suite 'ContactSharingStoreTests' started at 2026-10-05 14:23:19.006.
+Test Case '-[RilloraTests.ContactSharingStoreTests testAcceptedRecipientStopsShowingThePendingInvitationLink]' started.
+Test Case '-[RilloraTests.ContactSharingStoreTests testAcceptedRecipientStopsShowingThePendingInvitationLink]' passed (0.005 seconds).
+Test Case '-[RilloraTests.ContactSharingStoreTests testRefreshKeepsCurrentLinkButDiscardsAnExternallyReplacedVersion]' started.
+Test Case '-[RilloraTests.ContactSharingStoreTests testRefreshKeepsCurrentLinkButDiscardsAnExternallyReplacedVersion]' passed (0.002 seconds).
+Test Suite 'ContactSharingStoreTests' passed at 2026-10-05 14:23:19.014.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.007 (0.008) seconds
+Test Suite 'CoreLocalizationTests' started at 2026-10-05 14:23:19.014.
+Test Case '-[RilloraTests.CoreLocalizationTests testChineseCoreTerminologyAndGuideBoundary]' started.
+Test Case '-[RilloraTests.CoreLocalizationTests testChineseCoreTerminologyAndGuideBoundary]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CoreLocalizationTests testFormattingPreservesSuppliedNamesAndFormatCharacters]' started.
+Test Case '-[RilloraTests.CoreLocalizationTests testFormattingPreservesSuppliedNamesAndFormatCharacters]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CoreLocalizationTests testGuideGroupTranslationDoesNotMutateItsSourceTitle]' started.
+Test Case '-[RilloraTests.CoreLocalizationTests testGuideGroupTranslationDoesNotMutateItsSourceTitle]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CoreLocalizationTests testMatterCountGrammarUsesTheSelectedLanguage]' started.
+Test Case '-[RilloraTests.CoreLocalizationTests testMatterCountGrammarUsesTheSelectedLanguage]' passed (0.002 seconds).
+Test Case '-[RilloraTests.CoreLocalizationTests testMatterRequestsPreserveSavedTextAndStableMachineValues]' started.
+Test Case '-[RilloraTests.CoreLocalizationTests testMatterRequestsPreserveSavedTextAndStableMachineValues]' passed (0.001 seconds).
+Test Suite 'CoreLocalizationTests' passed at 2026-10-05 14:23:19.021.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.005 (0.007) seconds
+Test Suite 'DisclosureRehearsalStoreTests' started at 2026-10-05 14:23:19.021.
+Test Case '-[RilloraTests.DisclosureRehearsalStoreTests testActionUsesLatestOptimisticVersionAndFixedAcknowledgement]' started.
+Test Case '-[RilloraTests.DisclosureRehearsalStoreTests testActionUsesLatestOptimisticVersionAndFixedAcknowledgement]' passed (0.002 seconds).
+Test Case '-[RilloraTests.DisclosureRehearsalStoreTests testCancellationRestoresIdleAndFailureCanRecoverWithoutDiscardingResult]' started.
+Test Case '-[RilloraTests.DisclosureRehearsalStoreTests testCancellationRestoresIdleAndFailureCanRecoverWithoutDiscardingResult]' passed (0.002 seconds).
+Test Case '-[RilloraTests.DisclosureRehearsalStoreTests testCreateUsesSelectedDistinctEventAndPublishesRehearsal]' started.
+Test Case '-[RilloraTests.DisclosureRehearsalStoreTests testCreateUsesSelectedDistinctEventAndPublishesRehearsal]' passed (0.001 seconds).
+Test Suite 'DisclosureRehearsalStoreTests' passed at 2026-10-05 14:23:19.026.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.004 (0.005) seconds
+Test Suite 'FamilyMaintenanceTests' started at 2026-10-05 14:23:19.027.
+Test Case '-[RilloraTests.FamilyMaintenanceTests testChangedSourceOrScopeDoesNotCountAsCompleted]' started.
+Test Case '-[RilloraTests.FamilyMaintenanceTests testChangedSourceOrScopeDoesNotCountAsCompleted]' passed (0.002 seconds).
+Test Case '-[RilloraTests.FamilyMaintenanceTests testExpiredWriteClearsPrivateCache]' started.
+Test Case '-[RilloraTests.FamilyMaintenanceTests testExpiredWriteClearsPrivateCache]' passed (0.014 seconds).
+Test Case '-[RilloraTests.FamilyMaintenanceTests testIncomingResponseCannotGrantOwnerControl]' started.
+Test Case '-[RilloraTests.FamilyMaintenanceTests testIncomingResponseCannotGrantOwnerControl]' passed (0.001 seconds).
+Test Case '-[RilloraTests.FamilyMaintenanceTests testReviewFieldsCannotContainHiddenDataOrDisclosureChanges]' started.
+Test Case '-[RilloraTests.FamilyMaintenanceTests testReviewFieldsCannotContainHiddenDataOrDisclosureChanges]' passed (0.001 seconds).
+Test Case '-[RilloraTests.FamilyMaintenanceTests testSettingsEncodeExplicitNullForRemovingCollaboratorAndDate]' started.
+Test Case '-[RilloraTests.FamilyMaintenanceTests testSettingsEncodeExplicitNullForRemovingCollaboratorAndDate]' passed (0.002 seconds).
+Test Suite 'FamilyMaintenanceTests' passed at 2026-10-05 14:23:19.048.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.020 (0.021) seconds
+Test Suite 'FirstUseGuideStoreTests' started at 2026-10-05 14:23:19.048.
+Test Case '-[RilloraTests.FirstUseGuideStoreTests testOptionalMotivationAdvancesToMatterStep]' started.
+Test Case '-[RilloraTests.FirstUseGuideStoreTests testOptionalMotivationAdvancesToMatterStep]' passed (0.001 seconds).
+Test Case '-[RilloraTests.FirstUseGuideStoreTests testPausedGuideRemainsReachableAndResumesItsSavedStep]' started.
+Test Case '-[RilloraTests.FirstUseGuideStoreTests testPausedGuideRemainsReachableAndResumesItsSavedStep]' passed (0.001 seconds).
+Test Case '-[RilloraTests.FirstUseGuideStoreTests testSaveAndExitPersistsPausedStep]' started.
+Test Case '-[RilloraTests.FirstUseGuideStoreTests testSaveAndExitPersistsPausedStep]' passed (0.001 seconds).
+Test Case '-[RilloraTests.FirstUseGuideStoreTests testStartRecordsInProgressStepOneWithoutChangingReadiness]' started.
+Test Case '-[RilloraTests.FirstUseGuideStoreTests testStartRecordsInProgressStepOneWithoutChangingReadiness]' passed (0.001 seconds).
+Test Suite 'FirstUseGuideStoreTests' passed at 2026-10-05 14:23:19.052.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.003 (0.004) seconds
+Test Suite 'HostedLegalAcceptanceProofTests' started at 2026-10-05 14:23:19.052.
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testCurrentHostedReceiptProducesTheExistingAPIProof]' started.
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testCurrentHostedReceiptProducesTheExistingAPIProof]' passed (0.001 seconds).
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testEveryConsentBooleanMustBeExplicitlyTrue]' started.
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testEveryConsentBooleanMustBeExplicitlyTrue]' passed (0.003 seconds).
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testMissingAndUnexpectedFieldsAreRejected]' started.
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testMissingAndUnexpectedFieldsAreRejected]' passed (0.001 seconds).
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testMissingClaimAndMalformedTokensFailClosed]' started.
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testMissingClaimAndMalformedTokensFailClosed]' passed (0.001 seconds).
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testStaleVersionsAndWrongDigestAreRejected]' started.
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testStaleVersionsAndWrongDigestAreRejected]' passed (0.001 seconds).
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testUnsignedReceiptIsRejectedBeforeExchange]' started.
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testUnsignedReceiptIsRejectedBeforeExchange]' passed (0.001 seconds).
+Test Suite 'HostedLegalAcceptanceProofTests' passed at 2026-10-05 14:23:19.060.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.007 (0.008) seconds
+Test Suite 'LocalizationTests' started at 2026-10-05 14:23:19.061.
+Test Case '-[RilloraTests.LocalizationTests testBothNativeLanguageResourcesExist]' started.
+Test Case '-[RilloraTests.LocalizationTests testBothNativeLanguageResourcesExist]' passed (0.001 seconds).
+Test Case '-[RilloraTests.LocalizationTests testChineseCoreTerminology]' started.
+Test Case '-[RilloraTests.LocalizationTests testChineseCoreTerminology]' passed (0.001 seconds).
+Test Case '-[RilloraTests.LocalizationTests testChineseKnownErrorUsesCodeNotServerText]' started.
+Test Case '-[RilloraTests.LocalizationTests testChineseKnownErrorUsesCodeNotServerText]' passed (0.001 seconds).
+Test Case '-[RilloraTests.LocalizationTests testEnglishFallbackStaysReadable]' started.
+Test Case '-[RilloraTests.LocalizationTests testEnglishFallbackStaysReadable]' passed (0.001 seconds).
+Test Case '-[RilloraTests.LocalizationTests testEnglishServerMessageContractIsPreserved]' started.
+Test Case '-[RilloraTests.LocalizationTests testEnglishServerMessageContractIsPreserved]' passed (0.000 seconds).
+Test Case '-[RilloraTests.LocalizationTests testFormattedPrivateValueIsNotAKeyOrFormatString]' started.
+Test Case '-[RilloraTests.LocalizationTests testFormattedPrivateValueIsNotAKeyOrFormatString]' passed (0.001 seconds).
+Test Case '-[RilloraTests.LocalizationTests testUnknownChineseErrorDoesNotExposeOrTranslateServerContent]' started.
+Test Case '-[RilloraTests.LocalizationTests testUnknownChineseErrorDoesNotExposeOrTranslateServerContent]' passed (0.001 seconds).
+Test Suite 'LocalizationTests' passed at 2026-10-05 14:23:19.066.
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.004 (0.006) seconds
+Test Suite 'MatterEditorStoreTests' started at 2026-10-05 14:23:19.066.
+Test Case '-[RilloraTests.MatterEditorStoreTests testArchiveUsesTheLatestOptimisticVersion]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testArchiveUsesTheLatestOptimisticVersion]' passed (0.001 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testCategoryDetailsAndNotesRoundTripWithoutLeakingHiddenDraftFields]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testCategoryDetailsAndNotesRoundTripWithoutLeakingHiddenDraftFields]' passed (0.001 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testCreateRetryKeepsTheSameRequestIdentityAndDraft]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testCreateRetryKeepsTheSameRequestIdentityAndDraft]' passed (0.002 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testFirstUseDraftKeepsChosenCategoryWithoutPrefillingMatter]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testFirstUseDraftKeepsChosenCategoryWithoutPrefillingMatter]' passed (0.000 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testHiddenFieldsAreNeitherSubmittedNorValidationTrapsAfterTypeChange]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testHiddenFieldsAreNeitherSubmittedNorValidationTrapsAfterTypeChange]' passed (0.001 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testNewMatterUsesCreateContract]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testNewMatterUsesCreateContract]' passed (0.002 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testOverlappingCreateReturnsOnlyOneResultToTheOverview]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testOverlappingCreateReturnsOnlyOneResultToTheOverview]' passed (0.005 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testReloadAndArchiveCannotReplaceAnInFlightSave]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testReloadAndArchiveCannotReplaceAnInFlightSave]' passed (0.001 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testRequiredLocatorsAndCryptoBranchesStopTransport]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testRequiredLocatorsAndCryptoBranchesStopTransport]' passed (0.001 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testSaveUsesCurrentVersionAndAppliesServerResponse]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testSaveUsesCurrentVersionAndAppliesServerResponse]' passed (0.001 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testValidationStopsAnEmptyTitleBeforeTransport]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testValidationStopsAnEmptyTitleBeforeTransport]' passed (0.001 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testVersionConflictKeepsDraftAndOffersRecoveryState]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testVersionConflictKeepsDraftAndOffersRecoveryState]' passed (0.001 seconds).
+Test Suite 'MatterEditorStoreTests' passed at 2026-10-05 14:23:19.086.
+	 Executed 12 tests, with 0 failures (0 unexpected) in 0.017 (0.020) seconds
+Test Suite 'NativeAuthenticationCallbackTests' started at 2026-10-05 14:23:19.086.
+Test Case '-[RilloraTests.NativeAuthenticationCallbackTests testDisabledGoogleDoesNotReceiveAnyCallback]' started.
+Test Case '-[RilloraTests.NativeAuthenticationCallbackTests testDisabledGoogleDoesNotReceiveAnyCallback]' passed (0.001 seconds).
+Test Case '-[RilloraTests.NativeAuthenticationCallbackTests testHostedLoginSharingAndForeignSchemesNeverReachGoogle]' started.
+Test Case '-[RilloraTests.NativeAuthenticationCallbackTests testHostedLoginSharingAndForeignSchemesNeverReachGoogle]' passed (0.001 seconds).
+Test Suite 'NativeAuthenticationCallbackTests' passed at 2026-10-05 14:23:19.089.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.001 (0.002) seconds
+Test Suite 'OfficialProviderGuideCatalogTests' started at 2026-10-05 14:23:19.089.
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testAppleAndGoogleProvideSetupAndAfterDeathRoutes]' started.
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testAppleAndGoogleProvideSetupAndAfterDeathRoutes]' passed (0.007 seconds).
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testBinanceIsNotPresentedAsAProactiveLegacyContactFeature]' started.
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testBinanceIsNotPresentedAsAProactiveLegacyContactFeature]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testCatalogContainsUniqueActionableCommonProviderGuides]' started.
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testCatalogContainsUniqueActionableCommonProviderGuides]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testEveryGuideUsesHTTPSOnAnOfficialHost]' started.
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testEveryGuideUsesHTTPSOnAnOfficialHost]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testRegionalGuidesAndAliasesRemainDistinct]' started.
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testRegionalGuidesAndAliasesRemainDistinct]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testSuggestionsUseOnlyVisibleAccountContextWithoutFalseRegionalMatches]' started.
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testSuggestionsUseOnlyVisibleAccountContextWithoutFalseRegionalMatches]' passed (0.055 seconds).
+Test Suite 'OfficialProviderGuideCatalogTests' passed at 2026-10-05 14:23:19.156.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.065 (0.067) seconds
+Test Suite 'OfficialSetupStoreTests' started at 2026-10-05 14:23:19.156.
+Test Case '-[RilloraTests.OfficialSetupStoreTests testCancelledUpdateRollsBackOptimisticDisplayWithoutFailure]' started.
+Test Case '-[RilloraTests.OfficialSetupStoreTests testCancelledUpdateRollsBackOptimisticDisplayWithoutFailure]' passed (0.002 seconds).
+Test Case '-[RilloraTests.OfficialSetupStoreTests testConflictKeepsConfirmedServerStateAndOffersReload]' started.
+Test Case '-[RilloraTests.OfficialSetupStoreTests testConflictKeepsConfirmedServerStateAndOffersReload]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OfficialSetupStoreTests testNoOpDoesNotWriteAnUnchangedSelfReport]' started.
+Test Case '-[RilloraTests.OfficialSetupStoreTests testNoOpDoesNotWriteAnUnchangedSelfReport]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OfficialSetupStoreTests testReloadPublishesOfficialSetupChecks]' started.
+Test Case '-[RilloraTests.OfficialSetupStoreTests testReloadPublishesOfficialSetupChecks]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OfficialSetupStoreTests testUpdateUsesOptimisticVersionAndAppliesSelfReport]' started.
+Test Case '-[RilloraTests.OfficialSetupStoreTests testUpdateUsesOptimisticVersionAndAppliesSelfReport]' passed (0.001 seconds).
+Test Suite 'OfficialSetupStoreTests' passed at 2026-10-05 14:23:19.162.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.005 (0.006) seconds
+Test Suite 'OverviewStoreTests' started at 2026-10-05 14:23:19.162.
+Test Case '-[RilloraTests.OverviewStoreTests testAuthenticationFailureBecomesSignedOutInsteadOfAnErrorWall]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testAuthenticationFailureBecomesSignedOutInsteadOfAnErrorWall]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testCancelledLoadRestoresItsPreviousState]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testCancelledLoadRestoresItsPreviousState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testExpiredSessionDiscardsPreviouslyLoadedPrivateMap]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testExpiredSessionDiscardsPreviouslyLoadedPrivateMap]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testFailedRefreshKeepsLoadedMapAndRetryClearsNotice]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testFailedRefreshKeepsLoadedMapAndRetryClearsNotice]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testMutationReconciliationDoesNotKeepAnExpiredSession]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testMutationReconciliationDoesNotKeepAnExpiredSession]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testOlderRefreshCannotOverwriteAConfirmedSave]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testOlderRefreshCannotOverwriteAConfirmedSave]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testOldSessionRefreshCannotClearTheNewSession]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testOldSessionRefreshCannotClearTheNewSession]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testReloadPublishesLoadedSnapshot]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testReloadPublishesLoadedSnapshot]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testReloadPublishesSafeFailureState]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testReloadPublishesSafeFailureState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testReloadPublishesSignedOutWithoutFetchingPrivateOverview]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testReloadPublishesSignedOutWithoutFetchingPrivateOverview]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testVerifiedLoginSnapshotEntersAppWithoutAnotherOverviewRequest]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testVerifiedLoginSnapshotEntersAppWithoutAnotherOverviewRequest]' passed (0.001 seconds).
+Test Suite 'OverviewStoreTests' passed at 2026-10-05 14:23:19.173.
+	 Executed 11 tests, with 0 failures (0 unexpected) in 0.009 (0.011) seconds
+Test Suite 'PlanMotivationStoreTests' started at 2026-10-05 14:23:19.174.
+Test Case '-[RilloraTests.PlanMotivationStoreTests testCancelledLatestLoadRestoresReadyState]' started.
+Test Case '-[RilloraTests.PlanMotivationStoreTests testCancelledLatestLoadRestoresReadyState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.PlanMotivationStoreTests testCancelledSaveReturnsToReadyWithoutChangingSource]' started.
+Test Case '-[RilloraTests.PlanMotivationStoreTests testCancelledSaveReturnsToReadyWithoutChangingSource]' passed (0.001 seconds).
+Test Case '-[RilloraTests.PlanMotivationStoreTests testConflictKeepsSelectedMotivationForRecovery]' started.
+Test Case '-[RilloraTests.PlanMotivationStoreTests testConflictKeepsSelectedMotivationForRecovery]' passed (0.001 seconds).
+Test Case '-[RilloraTests.PlanMotivationStoreTests testLoadLatestAppliesServerMotivationAndVersion]' started.
+Test Case '-[RilloraTests.PlanMotivationStoreTests testLoadLatestAppliesServerMotivationAndVersion]' passed (0.001 seconds).
+Test Case '-[RilloraTests.PlanMotivationStoreTests testSaveUsesLatestVersionAndAppliesResponse]' started.
+Test Case '-[RilloraTests.PlanMotivationStoreTests testSaveUsesLatestVersionAndAppliesResponse]' passed (0.001 seconds).
+Test Suite 'PlanMotivationStoreTests' passed at 2026-10-05 14:23:19.180.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.005 (0.006) seconds
+Test Suite 'ProductionConnectionTests' started at 2026-10-05 14:23:19.180.
+Test Case '-[RilloraTests.ProductionConnectionTests testBothNativeRevocationsUseTheProductionProxyAndRequireServerSuccess]' started.
+Test Case '-[RilloraTests.ProductionConnectionTests testBothNativeRevocationsUseTheProductionProxyAndRequireServerSuccess]' passed (0.012 seconds).
+Test Case '-[RilloraTests.ProductionConnectionTests testClosedServiceDoesNotOpenHostedAuthentication]' started.
+Test Case '-[RilloraTests.ProductionConnectionTests testClosedServiceDoesNotOpenHostedAuthentication]' passed (0.003 seconds).
+Test Case '-[RilloraTests.ProductionConnectionTests testPreparedProductionConnectionIsValidButDoesNotOpenAccounts]' started.
+Test Case '-[RilloraTests.ProductionConnectionTests testPreparedProductionConnectionIsValidButDoesNotOpenAccounts]' passed (0.000 seconds).
+Test Case '-[RilloraTests.ProductionConnectionTests testProductionRejectsTestIdentityUnsafeOriginsAndDevelopmentIdentity]' started.
+Test Case '-[RilloraTests.ProductionConnectionTests testProductionRejectsTestIdentityUnsafeOriginsAndDevelopmentIdentity]' passed (0.000 seconds).
+Test Case '-[RilloraTests.ProductionConnectionTests testSessionAndDeletionProofNamespacesCannotCrossOrigins]' started.
+Test Case '-[RilloraTests.ProductionConnectionTests testSessionAndDeletionProofNamespacesCannotCrossOrigins]' passed (0.001 seconds).
+Test Suite 'ProductionConnectionTests' passed at 2026-10-05 14:23:19.199.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.017 (0.019) seconds
+Test Suite 'RoleAssignmentPolicyStoreTests' started at 2026-10-05 14:23:19.200.
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testAcknowledgedRevocationStaysRemovedWhenTheFollowingRefreshFails]' started.
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testAcknowledgedRevocationStaysRemovedWhenTheFollowingRefreshFails]' passed (0.002 seconds).
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testAcknowledgedRoleIsRetainedWhenTheFollowingRefreshFails]' started.
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testAcknowledgedRoleIsRetainedWhenTheFollowingRefreshFails]' passed (0.001 seconds).
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testCreateUsesMatterScopeAndMarksEarlierRehearsalsStale]' started.
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testCreateUsesMatterScopeAndMarksEarlierRehearsalsStale]' passed (0.001 seconds).
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testFailedMutationPreservesAssignmentsAndExposesConflict]' started.
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testFailedMutationPreservesAssignmentsAndExposesConflict]' passed (0.001 seconds).
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testLoadKeepsPlanWideAndCurrentMatterAssignmentsSeparate]' started.
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testLoadKeepsPlanWideAndCurrentMatterAssignmentsSeparate]' passed (0.001 seconds).
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testReloadAndDuplicateCreateCannotReplaceAnInFlightRoleMutation]' started.
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testReloadAndDuplicateCreateCannotReplaceAnInFlightRoleMutation]' passed (0.001 seconds).
+Test Suite 'RoleAssignmentPolicyStoreTests' passed at 2026-10-05 14:23:19.207.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.006 (0.007) seconds
+Test Suite 'SharedAccessStoreTests' started at 2026-10-05 14:23:19.207.
+Test Case '-[RilloraTests.SharedAccessStoreTests testANameOnlyResponseWithPrivateDetailsFailsClosed]' started.
+Test Case '-[RilloraTests.SharedAccessStoreTests testANameOnlyResponseWithPrivateDetailsFailsClosed]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SharedAccessStoreTests testFailedRefreshDoesNotLeavePreviouslyGrantedContentVisible]' started.
+Test Case '-[RilloraTests.SharedAccessStoreTests testFailedRefreshDoesNotLeavePreviouslyGrantedContentVisible]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SharedAccessStoreTests testLateResponseCannotRestoreDetailsAfterBackgroundInvalidation]' started.
+Test Case '-[RilloraTests.SharedAccessStoreTests testLateResponseCannotRestoreDetailsAfterBackgroundInvalidation]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SharedAccessStoreTests testPeriodicRefreshAvoidsFlickerButClearsRevokedOrUnavailableContent]' started.
+Test Case '-[RilloraTests.SharedAccessStoreTests testPeriodicRefreshAvoidsFlickerButClearsRevokedOrUnavailableContent]' passed (0.001 seconds).
+Test Suite 'SharedAccessStoreTests' passed at 2026-10-05 14:23:19.212.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.004 (0.005) seconds
+Test Suite 'SharingLocalizationTests' started at 2026-10-05 14:23:19.212.
+Test Case '-[RilloraTests.SharingLocalizationTests testLocalizationDoesNotChangeSharingWireValuesOrScope]' started.
+Test Case '-[RilloraTests.SharingLocalizationTests testLocalizationDoesNotChangeSharingWireValuesOrScope]' passed (0.000 seconds).
+Test Case '-[RilloraTests.SharingLocalizationTests testPrivateTitleIsPreservedWithoutBeingUsedAsAFormatKey]' started.
+Test Case '-[RilloraTests.SharingLocalizationTests testPrivateTitleIsPreservedWithoutBeingUsedAsAFormatKey]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SharingLocalizationTests testReviewRequestAndExportCountsUsePluralResources]' started.
+Test Case '-[RilloraTests.SharingLocalizationTests testReviewRequestAndExportCountsUsePluralResources]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SharingLocalizationTests testSimplifiedChineseSharingTermsAndSafetyMessages]' started.
+Test Case '-[RilloraTests.SharingLocalizationTests testSimplifiedChineseSharingTermsAndSafetyMessages]' passed (0.001 seconds).
+Test Suite 'SharingLocalizationTests' passed at 2026-10-05 14:23:19.215.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.002 (0.003) seconds
+Test Suite 'SharingPreviewTests' started at 2026-10-05 14:23:19.215.
+Test Case '-[RilloraTests.SharingPreviewTests testExactSelectedFieldsAreAccepted]' started.
+Test Case '-[RilloraTests.SharingPreviewTests testExactSelectedFieldsAreAccepted]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SharingPreviewTests testFuturePrivateFieldsAndUnselectedMatterAreRejected]' started.
+Test Case '-[RilloraTests.SharingPreviewTests testFuturePrivateFieldsAndUnselectedMatterAreRejected]' passed (0.000 seconds).
+Test Case '-[RilloraTests.SharingPreviewTests testMorePermissiveLevelCannotReplaceTheSelectedLevel]' started.
+Test Case '-[RilloraTests.SharingPreviewTests testMorePermissiveLevelCannotReplaceTheSelectedLevel]' passed (0.000 seconds).
+Test Suite 'SharingPreviewTests' passed at 2026-10-05 14:23:19.218.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.002 (0.002) seconds
+Test Suite 'SharingTests' started at 2026-10-05 14:23:19.218.
+Test Case '-[RilloraTests.SharingTests testDetailsRemainBoundedToSafeFields]' started.
+Test Case '-[RilloraTests.SharingTests testDetailsRemainBoundedToSafeFields]' passed (0.000 seconds).
+Test Case '-[RilloraTests.SharingTests testDirectionsRejectFinancialDetails]' started.
+Test Case '-[RilloraTests.SharingTests testDirectionsRejectFinancialDetails]' passed (0.000 seconds).
+Test Case '-[RilloraTests.SharingTests testEnvelopeRejectsWriteOrReleaseAuthority]' started.
+Test Case '-[RilloraTests.SharingTests testEnvelopeRejectsWriteOrReleaseAuthority]' passed (0.000 seconds).
+Test Case '-[RilloraTests.SharingTests testInvitationCapabilityMustBeACompleteFragment]' started.
+Test Case '-[RilloraTests.SharingTests testInvitationCapabilityMustBeACompleteFragment]' passed (0.000 seconds).
+Test Case '-[RilloraTests.SharingTests testItemsMustBelongToAVisibleConnection]' started.
+Test Case '-[RilloraTests.SharingTests testItemsMustBelongToAVisibleConnection]' passed (0.000 seconds).
+Test Case '-[RilloraTests.SharingTests testNameAccessRejectsUnexpectedLocation]' started.
+Test Case '-[RilloraTests.SharingTests testNameAccessRejectsUnexpectedLocation]' passed (0.000 seconds).
+Test Case '-[RilloraTests.SharingTests testReplacementRequestNamesBothCurrentVersions]' started.
+Test Case '-[RilloraTests.SharingTests testReplacementRequestNamesBothCurrentVersions]' passed (0.003 seconds).
+Test Case '-[RilloraTests.SharingTests testSavedCopyDecodesItsActualDateAndStaysWithinItsSavedScope]' started.
+Test Case '-[RilloraTests.SharingTests testSavedCopyDecodesItsActualDateAndStaysWithinItsSavedScope]' passed (0.007 seconds).
+Test Suite 'SharingTests' passed at 2026-10-05 14:23:19.232.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.012 (0.015) seconds
+Test Suite 'SimulationStoreTests' started at 2026-10-05 14:23:19.233.
+Test Case '-[RilloraTests.SimulationStoreTests testAPIFailureProducesRecoverableFailureState]' started.
+Test Case '-[RilloraTests.SimulationStoreTests testAPIFailureProducesRecoverableFailureState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SimulationStoreTests testCancellationRestoresPreviousReadyState]' started.
+Test Case '-[RilloraTests.SimulationStoreTests testCancellationRestoresPreviousReadyState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SimulationStoreTests testChangingScenarioClearsThePreviousScenarioResult]' started.
+Test Case '-[RilloraTests.SimulationStoreTests testChangingScenarioClearsThePreviousScenarioResult]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SimulationStoreTests testMismatchedResponseDoesNotBecomeTheChosenScenarioResult]' started.
+Test Case '-[RilloraTests.SimulationStoreTests testMismatchedResponseDoesNotBecomeTheChosenScenarioResult]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SimulationStoreTests testRunUsesSelectedDistinctLifeEventAndPublishesResult]' started.
+Test Case '-[RilloraTests.SimulationStoreTests testRunUsesSelectedDistinctLifeEventAndPublishesResult]' passed (0.001 seconds).
+Test Suite 'SimulationStoreTests' passed at 2026-10-05 14:23:19.238.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.004 (0.006) seconds
+Test Suite 'StartHereEncryptionServiceTests' started at 2026-10-05 14:23:19.238.
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testDecryptsPackageGeneratedByPinnedWebHPKELibrary]' started.
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testDecryptsPackageGeneratedByPinnedWebHPKELibrary]' passed (0.011 seconds).
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testEncryptsAndLocallyRecoversWithoutPuttingPrivateKeyInArtifact]' started.
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testEncryptsAndLocallyRecoversWithoutPuttingPrivateKeyInArtifact]' passed (0.003 seconds).
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testRejectsCiphertextTamperingBeforeDecryption]' started.
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testRejectsCiphertextTamperingBeforeDecryption]' passed (0.003 seconds).
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testSyntheticRecipientDecryptsWithMemoryOnlyDeviceKeyAndRejectsAnotherKey]' started.
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testSyntheticRecipientDecryptsWithMemoryOnlyDeviceKeyAndRejectsAnotherKey]' passed (0.007 seconds).
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testWrapsTheContentKeyForEveryEligibleRecipientDevice]' started.
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testWrapsTheContentKeyForEveryEligibleRecipientDevice]' passed (0.003 seconds).
+Test Suite 'StartHereEncryptionServiceTests' passed at 2026-10-05 14:23:19.267.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.028 (0.029) seconds
+Test Suite 'StartHerePreviewStoreTests' started at 2026-10-05 14:23:19.267.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCancellationRestoresReadyState]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCancellationRestoresReadyState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCreateEncryptedPublishesOnlyAfterLocalRecoveryAndFinalize]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCreateEncryptedPublishesOnlyAfterLocalRecoveryAndFinalize]' passed (0.024 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCreatePreviewPublishesNoFileResult]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCreatePreviewPublishesNoFileResult]' passed (0.001 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCreatePrintablePublishesShareableInMemoryArtifact]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCreatePrintablePublishesShareableInMemoryArtifact]' passed (0.001 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testEncryptedFinalizeReauthenticationKeepsPreviewUntilExplicitRetry]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testEncryptedFinalizeReauthenticationKeepsPreviewUntilExplicitRetry]' passed (0.004 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testEncryptedPreparationReauthenticationDoesNotFinalizeOrPublish]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testEncryptedPreparationReauthenticationDoesNotFinalizeOrPublish]' passed (0.002 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testFailureCanReturnToReadyState]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testFailureCanReturnToReadyState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testOtherForbiddenExportsStillPublishTheirFailure]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testOtherForbiddenExportsStillPublishTheirFailure]' passed (0.001 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testPrintableCancellationRestoresIdleState]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testPrintableCancellationRestoresIdleState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testPrintableReauthenticationKeepsPreviewAndRequiresExplicitRetry]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testPrintableReauthenticationKeepsPreviewAndRequiresExplicitRetry]' passed (0.001 seconds).
+Test Suite 'StartHerePreviewStoreTests' passed at 2026-10-05 14:23:19.306.
+	 Executed 10 tests, with 0 failures (0 unexpected) in 0.036 (0.039) seconds
+Test Suite 'TrustedContactEditorStoreTests' started at 2026-10-05 14:23:19.306.
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testEditUsesLatestOptimisticVersionAndAppliesResponse]' started.
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testEditUsesLatestOptimisticVersionAndAppliesResponse]' passed (0.001 seconds).
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testNewContactUsesRecordOnlyCreateContract]' started.
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testNewContactUsesRecordOnlyCreateContract]' passed (0.001 seconds).
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testOpeningExistingContactLoadsLatestServerVersion]' started.
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testOpeningExistingContactLoadsLatestServerVersion]' passed (0.001 seconds).
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testOverlappingSavesCannotCreateTheContactTwice]' started.
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testOverlappingSavesCannotCreateTheContactTwice]' passed (0.005 seconds).
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testReloadAndRevokeCannotReplaceAnInFlightSave]' started.
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testReloadAndRevokeCannotReplaceAnInFlightSave]' passed (0.001 seconds).
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testRevokeUsesPersistedIdentityAndExplicitRevokedStatus]' started.
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testRevokeUsesPersistedIdentityAndExplicitRevokedStatus]' passed (0.001 seconds).
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testValidationStopsEmptyNameBeforeTransport]' started.
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testValidationStopsEmptyNameBeforeTransport]' passed (0.001 seconds).
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testVersionConflictKeepsContactDraftForRecovery]' started.
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testVersionConflictKeepsContactDraftForRecovery]' passed (0.001 seconds).
+Test Suite 'TrustedContactEditorStoreTests' passed at 2026-10-05 14:23:19.319.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.011 (0.013) seconds
+Test Suite 'RilloraTests.xctest' passed at 2026-10-05 14:23:19.320.
+	 Executed 216 tests, with 1 test skipped and 0 failures (0 unexpected) in 0.514 (0.578) seconds
+Test Suite 'All tests' passed at 2026-10-05 14:23:19.320.
+	 Executed 216 tests, with 1 test skipped and 0 failures (0 unexpected) in 0.514 (0.579) seconds
+2026-10-05 14:23:19.637 xcodebuild[35922:25965472] [MT] IDETestOperationsObserverDebug: 5.523 elapsed -- Testing started completed.
+2026-10-05 14:23:19.637 xcodebuild[35922:25965472] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-05 14:23:19.637 xcodebuild[35922:25965472] [MT] IDETestOperationsObserverDebug: 5.523 sec, +5.523 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-dot-followup-20261005/native-unit-en.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

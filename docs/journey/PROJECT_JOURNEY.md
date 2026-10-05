@@ -3307,3 +3307,35 @@ real-account acceptance dependencies and deferred physical/purchase gates.
 - 判断变化：Events 补足被动变化通知，但不承担 Rillora 的到期时钟、权限执行或关键提醒唯一通道。2xx 仅表示收到 webhook，不表示 AI 已完成；协议草案标签不等于整个产品 beta。
 - 结果：[计划第 15 节](../architecture/ai-mcp-plan-20261005.md)增加可选 P1E/C3E、review.due 首场景、领域 outbox/订阅/投递分层、最小字段、每次重试重新授权、受控 callback 例外、乱序/去重/重放/反馈循环及 12 组 TODO 验收。
 - 未完成项：全部 Events 运行时、真实订阅/签名密钥/投递、客户端端到端与生产部署。此文档扩充不新增当前首发门，不触碰后续 strict-review、Web 或 iOS 本地化分支。远端与 CI 结果见[同一 QA 记录](../qa/ai-mcp-plan-20261005/README.md)。
+
+## 2026-10-05 — Follow and consolidate Dot GitHub work on the Mac
+
+- Goal: inspect Dot progress and continue it without losing latest release evidence.
+- Attempt: fetch four branches, read new Markdown, compare fixed merge base and current
+03c97fc, merge histories on a new integration branch and reconcile documentation.
+- Judgment changes: green Linux CI did not compile native or prove browser behavior.
+Actual Mac builds pass; prepared test-product CLI language flags left31English assertions
+in Chinese, so bind the test-host language explicitly instead of changing app/tests.
+The resulting215passes/1existing skip include21new bilingual cases. Two native UI cases pass.
+- Result: four reported Web defects reproduced and repaired, with actual local browser
+return focus/readable status/time/email feedback. Cross-tab localization preserves drafts,
+confirmation and Back cancellation. Web162/legal7pass, native Debug/Release compile.
+Notes inclusion/exclusion and multiline display clarified without permission changes.
+- Unfinished: broader localized authenticated/iPad/AX5/VoiceOver/system-language matrix,
+Dot's remaining UX/OBS findings, future restricted candidate/deployment. AI remains proposal;
+Owner deletion/phone/merchant deferrals remain. [Current report](../qa/dot-followup-20261005/README.md).
+
+
+## 2026-10-05 — Chinese wording reviewed as product copy
+
+- Goal: incorporate Owner's request to carefully consider every Chinese UI phrase.
+- Attempt: read1,276Weband1,058native paired entries; trace key labels to actual editor,
+sharing,export,review and billing surfaces. Keep app-authored text separate from data.
+- Judgment changes: literal“入门指南”misidentified an export;Details incorrectly said
+already saved inside unsaved forms;included-place wording,account-inheritance labels
+and review terminology differed across clients. ContactNamealso needs its own context.
+- Result:371Web/225native revised units and a new contact-namekey;English display,
+placeholders,raw enums,privacy choices,prices and consent text remain. Existing language
+assertions are updated to the explicit glossary;permission/data assertions remain.
+- Remaining: final artifact/push receipts,broader matrix and live bilingual rollout;
+no personal deferral or optionalAIimplementation reopened. [Copy contract](../chinese-copy-guidelines-20261005.md).

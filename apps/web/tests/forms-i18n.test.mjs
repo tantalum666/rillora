@@ -17,7 +17,7 @@ test("forms catalogs cover the same stable keys and interpolation parameters", (
   assert.ok(Object.keys(en).every(key => key.startsWith("forms.")));
   assert.equal(chinese("forms.name"), "名称");
   assert.equal(chinese("forms.directions"), "查找指引");
-  assert.equal(chinese("forms.details"), "已保存的详细信息");
+  assert.equal(chinese("forms.details"), "详细资料");
   assert.equal(chinese("forms.guides.title"), "账号身后处理指南");
   assert.equal(chinese("forms.invitation.invited", { name: "Alex & <Friend>" }), "Alex & <Friend> 邀请了你");
 });
@@ -49,7 +49,7 @@ test("validation produces language-independent issues and keeps English defaults
   assert.equal(matterValidation(draft, chinese), "请填写名称。");
   draft.title = "Original name 名称";
   assert.equal(matterValidation(draft), "Add the provider.");
-  assert.equal(matterValidation(draft, chinese), "请填写服务提供方。");
+  assert.equal(matterValidation(draft, chinese), "请填写服务方。");
   draft.category = "crypto_asset";
   assert.equal(matterValidation(draft), "Choose an exchange or an on-chain wallet.");
   draft.details.cryptoCustody = "self_custody";

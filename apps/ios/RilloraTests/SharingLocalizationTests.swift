@@ -8,7 +8,7 @@ final class SharingLocalizationTests: XCTestCase {
         for (key, expected) in [
             "Name": "名称",
             "Directions": "查找指引",
-            "Details": "已保存的详细信息",
+            "Details": "详细资料",
             "Revoke trusted-contact role": "撤销可信联系人角色",
             "The encrypted package failed its local offline-recovery test.": "加密包未通过本地离线恢复测试。",
             "The server-generated guide and recovery-file warnings remain in English. Your saved content is unchanged.": "服务器生成的指引和恢复文件警告仍为英文。你保存的内容保持原样。",
@@ -23,10 +23,10 @@ final class SharingLocalizationTests: XCTestCase {
         let requestKey = "Request %1$lld checks"
         XCTAssertEqual(L10n.format(requestKey, arguments: [Int64(1)], bundle: english, locale: Locale(identifier: "en_US")), "Request 1 check")
         XCTAssertEqual(L10n.format(requestKey, arguments: [Int64(2)], bundle: english, locale: Locale(identifier: "en_US")), "Request 2 checks")
-        XCTAssertEqual(L10n.format(requestKey, arguments: [Int64(2)], bundle: chinese, locale: Locale(identifier: "zh_CN")), "请求 2 项检查")
+        XCTAssertEqual(L10n.format(requestKey, arguments: [Int64(2)], bundle: chinese, locale: Locale(identifier: "zh_CN")), "请求复核 2 个事项")
         let exportKey = "%1$lld matters in this copy"
         XCTAssertEqual(L10n.format(exportKey, arguments: [Int64(1)], bundle: english, locale: Locale(identifier: "en_US")), "1 matter in this copy")
-        XCTAssertEqual(L10n.format(exportKey, arguments: [Int64(0)], bundle: chinese, locale: Locale(identifier: "zh_CN")), "此副本包含 0 项事项")
+        XCTAssertEqual(L10n.format(exportKey, arguments: [Int64(0)], bundle: chinese, locale: Locale(identifier: "zh_CN")), "此副本包含 0 个事项")
     }
 
     func testLocalizationDoesNotChangeSharingWireValuesOrScope() throws {

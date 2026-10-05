@@ -1,0 +1,34 @@
+import { createServer } from '../../../apps/web/node_modules/vite/dist/node/index.js';
+import react from '../../../apps/web/node_modules/@vitejs/plugin-react/dist/index.js';
+import { appendFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+const root=fileURLToPath(new URL('../../../apps/web/',import.meta.url));
+const log=fileURLToPath(new URL('./fixture-requests.jsonl',import.meta.url));
+const matter={publicId:'11111111-1111-4111-8111-111111111111',title:'QA 长标题 · Documents and instructions for the family',category:'document',institutionName:'Synthetic provider',locationHint:'QA shelf 甲',accountHint:'synthetic-42',notes:'第一行原文\nSecond original line 100% %@',desiredOutcome:'notify',status:'draft',importance:'important',valueBand:'unknown',currencyCode:'USD',details:{},version:1};
+const session={plannerPublicId:'22222222-2222-4222-8222-222222222222',displayName:'Synthetic QA 林',authenticationMode:'session'};
+const contact={publicId:'33333333-3333-4333-8333-333333333333',displayName:'Synthetic Person 王',relationshipLabel:'Friend',status:'active',version:1};
+const plan={publicId:session.plannerPublicId,version:1,firstUseState:'completed',firstUseStep:2};
+for(const [port,signedIn,website] of [[4805,true,false],[4806,false,false],[4807,false,true]]){
+ const server=await createServer({root,configFile:false,envDir:false,define:{'import.meta.env.VITE_API_BASE_URL':JSON.stringify('/api/v1'),'import.meta.env.VITE_RILLORA_CUSTOMER_ACCESS':JSON.stringify('restricted-review')},plugins:[react(),{name:'synthetic-qa-only',configureServer(server){server.middlewares.use((req,res,next)=>{
+ const p=new URL(req.url,'http://localhost').pathname;
+ if(website&&!p.startsWith('/src/')&&!p.startsWith('/@')&&!p.includes('.')&&!p.startsWith('/node_modules/'))req.url='/public.html';
+ if(!p.startsWith('/api/'))return next();
+ appendFileSync(log,JSON.stringify({port,method:req.method,path:p})+'\n');
+ res.setHeader('Content-Type','application/json');res.setHeader('Cache-Control','no-store');
+ const send=(value,status=200)=>{res.statusCode=status;res.end(JSON.stringify(value));};
+ if(req.method!=='GET')return send({error:{code:'qa_write_blocked',message:'This isolated fixture does not perform mutations.'}},409);
+ if(p.endsWith('/auth/session-status'))return send({authenticated:signedIn});
+ if(!signedIn)return send({error:{code:'authentication_required',message:'Synthetic signed-out fixture'}},401);
+ if(p.endsWith('/overview'))return send({session,plan,matters:[matter],trustedContacts:[contact],nextCursor:null});
+ if(p.endsWith('/session'))return send(session);
+ if(p.endsWith('/sharing/connections'))return send({connections:[]});
+ if(p.endsWith('/sharing/access'))return send({access:null});
+ if(p.endsWith('/official-setup-checks'))return send({officialSetupChecks:[]});
+ if(p.endsWith('/audit-events'))return send({auditEvents:[{publicId:'44444444-4444-4444-8444-444444444444',resourcePublicId:matter.publicId,resourceType:'matter',action:'matter.created',occurredAt:'2026-10-04T12:05:00Z'}]});
+ if(p.endsWith('/account/archived-matters'))return send({matters:[]});
+ if(p.endsWith('/account/profile'))return send({account:session,billing:{hasSubscription:false,hasPendingPurchase:false}});
+ if(p.endsWith('/commerce/status'))return send({error:{code:'service_unavailable',message:'Billing deliberately closed in fixture'}},503);
+ return send({error:{code:'not_found',message:'Unconfigured synthetic read'}},404);
+ });}}],server:{host:'127.0.0.1',port,strictPort:true}});
+ await server.listen();console.log(`Synthetic ${website?'website':signedIn?'workspace':'signed-out'}: http://127.0.0.1:${port}`);
+}

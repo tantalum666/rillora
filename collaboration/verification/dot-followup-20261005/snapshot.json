@@ -1,0 +1,27 @@
+{
+  "capturedFrom": "2026-10-05T06:46:26.885724+00:00",
+  "capturedThrough": "2026-10-05T06:46:29.240106+00:00",
+  "workFiles": 1404,
+  "uniqueRawObjects": 772,
+  "workBytes": 111539826,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-017.tar.zst.age",
+      "sha256": "5f4b0f18fd6d3a2e9124095f82d594addd864ec05824b732ab6c89c95e797bb0",
+      "bytes": 26500710,
+      "plainBytes": 105709975,
+      "uniqueObjects": 772
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/dot-followup-20261005/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": "output/qa/rillora-dot-followup-20261005/publication",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    }
+  ],
+  "selection": "Dot consolidation QA, failed and passed native tests, Simulator builds, internal/public Web artifacts, and synthetic local browser evidence. Previous archives and source branches unchanged. Credentials, browser sessions and reproducible dependencies/caches excluded.",
+  "boundary": "No credentials, real account changes, provider operations, production deployment or store upload. Local synthesis and compiled tests remain distinct from actual launch and deferred account/device acceptance."
+}

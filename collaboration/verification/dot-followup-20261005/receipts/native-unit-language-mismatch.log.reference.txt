@@ -1,0 +1,624 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -testProductsPath /Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/build_sim_2026-10-05T06-20-34-947Z_pid21617_71d5915d.xctestproducts -destination "platform=iOS Simulator,id=EA356940-5220-4AA8-89CF-499C6D5D14E4" -collect-test-diagnostics never -disableAutomaticPackageResolution -onlyUsePackageVersionsFromResolvedFile RILLORA_CUSTOMER_ACCESS_ENABLED=NO -testLanguage en -testRegion US -resultBundlePath /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-dot-followup-20261005/native-unit-before.xcresult test-without-building
+
+Build settings from command line:
+    RILLORA_CUSTOMER_ACCESS_ENABLED = NO
+
+2026-10-05 14:21:22.783 xcodebuild[35538:25960906] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+Writing result bundle at path:
+	/Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-dot-followup-20261005/native-unit-before.xcresult
+
+2026-10-05 14:21:22.796 xcodebuild[35538:25960906] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-05 14:21:24.243 xcodebuild[35538:25960906] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-05 14:21:24.649 xcodebuild[35538:25960906] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-05 14:21:36.025001+0800 Rillora[35579:25962166] [General] Failed to send CA Event for app launch measurements for ca_event_type: 0 event_name: com.apple.app_launch_measurement.FirstFramePresentationMetric
+2026-10-05 14:21:36.139553+0800 Rillora[35579:25962166] [General] Failed to send CA Event for app launch measurements for ca_event_type: 1 event_name: com.apple.app_launch_measurement.ExtendedLaunchMetrics
+Test Suite 'All tests' started at 2026-10-05 14:21:37.080.
+Test Suite 'RilloraTests.xctest' started at 2026-10-05 14:21:37.082.
+Test Suite 'APIClientTests' started at 2026-10-05 14:21:37.082.
+Test Case '-[RilloraTests.APIClientTests testAppleReviewTransportUsesItsOwnRouteAndRejectsProductionAcknowledgement]' started.
+Test Case '-[RilloraTests.APIClientTests testAppleReviewTransportUsesItsOwnRouteAndRejectsProductionAcknowledgement]' passed (0.009 seconds).
+Test Case '-[RilloraTests.APIClientTests testAppleSignInFeatureGateDefaultsClosed]' started.
+Test Case '-[RilloraTests.APIClientTests testAppleSignInFeatureGateDefaultsClosed]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testAppleSignInFeatureGateRequiresExplicitEnablement]' started.
+Test Case '-[RilloraTests.APIClientTests testAppleSignInFeatureGateRequiresExplicitEnablement]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testAuthenticationFailureIsPreservedForTheUI]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/APIClientTests.swift:311: error: -[RilloraTests.APIClientTests testAuthenticationFailureIsPreservedForTheUI] : XCTAssertEqual failed: ("请先登录。") is not equal to ("Authentication is required.")
+Test Case '-[RilloraTests.APIClientTests testAuthenticationFailureIsPreservedForTheUI]' failed (0.423 seconds).
+Test Case '-[RilloraTests.APIClientTests testCommerceContractRejectsClientGrantedAccessBoundary]' started.
+Test Case '-[RilloraTests.APIClientTests testCommerceContractRejectsClientGrantedAccessBoundary]' passed (0.013 seconds).
+Test Case '-[RilloraTests.APIClientTests testCommerceStatusAndPurchaseRouteUseServerAuthoritativeContracts]' started.
+Test Case '-[RilloraTests.APIClientTests testCommerceStatusAndPurchaseRouteUseServerAuthoritativeContracts]' passed (0.004 seconds).
+Test Case '-[RilloraTests.APIClientTests testCreateAndArchiveMatterUseTheSharedMutationContract]' started.
+Test Case '-[RilloraTests.APIClientTests testCreateAndArchiveMatterUseTheSharedMutationContract]' passed (0.005 seconds).
+Test Case '-[RilloraTests.APIClientTests testCreateAndRevokeTrustedContactUseExplicitEvidenceContract]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/APIClientTests.swift:497: error: -[RilloraTests.APIClientTests testCreateAndRevokeTrustedContactUseExplicitEvidenceContract] : XCTAssertEqual failed: ("仅有记录，尚未发送邀请") is not equal to ("Record only — no invitation sent")
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/APIClientTests.swift:527: error: -[RilloraTests.APIClientTests testCreateAndRevokeTrustedContactUseExplicitEvidenceContract] : XCTAssertEqual failed: ("角色已撤销") is not equal to ("Role revoked")
+Test Case '-[RilloraTests.APIClientTests testCreateAndRevokeTrustedContactUseExplicitEvidenceContract]' failed (0.399 seconds).
+Test Case '-[RilloraTests.APIClientTests testCreatePrintableStartHereRejectsRetainedServerCopyClaim]' started.
+Test Case '-[RilloraTests.APIClientTests testCreatePrintableStartHereRejectsRetainedServerCopyClaim]' passed (0.314 seconds).
+Test Case '-[RilloraTests.APIClientTests testCreatePrintableStartHereValidatesHeadersAndSendsAcknowledgements]' started.
+Test Case '-[RilloraTests.APIClientTests testCreatePrintableStartHereValidatesHeadersAndSendsAcknowledgements]' passed (0.002 seconds).
+Test Case '-[RilloraTests.APIClientTests testDisclosureRehearsalFailsClosedOnReleaseOrForbiddenPreviewFields]' started.
+Test Case '-[RilloraTests.APIClientTests testDisclosureRehearsalFailsClosedOnReleaseOrForbiddenPreviewFields]' passed (0.017 seconds).
+Test Case '-[RilloraTests.APIClientTests testDisclosureRehearsalUsesVersionedSimulationOnlyMutations]' started.
+Test Case '-[RilloraTests.APIClientTests testDisclosureRehearsalUsesVersionedSimulationOnlyMutations]' passed (0.003 seconds).
+Test Case '-[RilloraTests.APIClientTests testEmailVerificationKeepsTheNativeSessionAndSendsNoClientIdentityClaim]' started.
+Test Case '-[RilloraTests.APIClientTests testEmailVerificationKeepsTheNativeSessionAndSendsNoClientIdentityClaim]' passed (0.003 seconds).
+Test Case '-[RilloraTests.APIClientTests testEmailVerificationRejectsUnprovenProviderState]' started.
+Test Case '-[RilloraTests.APIClientTests testEmailVerificationRejectsUnprovenProviderState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testEncryptedStartHerePreparationAndFinalizePreserveClientKeyBoundary]' started.
+Test Case '-[RilloraTests.APIClientTests testEncryptedStartHerePreparationAndFinalizePreserveClientKeyBoundary]' passed (0.009 seconds).
+Test Case '-[RilloraTests.APIClientTests testFetchAndUpdateOfficialSetupUseSelfReportedContract]' started.
+Test Case '-[RilloraTests.APIClientTests testFetchAndUpdateOfficialSetupUseSelfReportedContract]' passed (0.004 seconds).
+Test Case '-[RilloraTests.APIClientTests testFetchAndUpdatePlanMotivationUseLatestOptimisticVersion]' started.
+Test Case '-[RilloraTests.APIClientTests testFetchAndUpdatePlanMotivationUseLatestOptimisticVersion]' passed (0.005 seconds).
+Test Case '-[RilloraTests.APIClientTests testFetchOverviewUsesDevelopmentIdentityAndDecodesSharedContract]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/APIClientTests.swift:279: error: -[RilloraTests.APIClientTests testFetchOverviewUsesDevelopmentIdentityAndDecodesSharedContract] : XCTAssertEqual failed: ("Optional("模拟接受")") is not equal to ("Optional("Simulated acceptance")")
+Test Case '-[RilloraTests.APIClientTests testFetchOverviewUsesDevelopmentIdentityAndDecodesSharedContract]' failed (0.005 seconds).
+Test Case '-[RilloraTests.APIClientTests testFetchOverviewUsesKeychainBackedBearerWhenDevelopmentIdentityIsDisabled]' started.
+Test Case '-[RilloraTests.APIClientTests testFetchOverviewUsesKeychainBackedBearerWhenDevelopmentIdentityIsDisabled]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testLegalLinksUseThePublicCustomDomain]' started.
+Test Case '-[RilloraTests.APIClientTests testLegalLinksUseThePublicCustomDomain]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testLocalSessionPresenceUsesOnlyExplicitDevelopmentOrStoredBearerState]' started.
+Test Case '-[RilloraTests.APIClientTests testLocalSessionPresenceUsesOnlyExplicitDevelopmentOrStoredBearerState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testMatterVersionConflictIsPreservedForRecoveryUI]' started.
+Test Case '-[RilloraTests.APIClientTests testMatterVersionConflictIsPreservedForRecoveryUI]' passed (0.002 seconds).
+Test Case '-[RilloraTests.APIClientTests testNativeAuthenticationIntentKeepsEmailAndGoogleRoutesDistinct]' started.
+Test Case '-[RilloraTests.APIClientTests testNativeAuthenticationIntentKeepsEmailAndGoogleRoutesDistinct]' passed (0.000 seconds).
+Test Case '-[RilloraTests.APIClientTests testNativeGoogleRequiresBothOAuthClientIdentifiersBeforeEnablement]' started.
+Test Case '-[RilloraTests.APIClientTests testNativeGoogleRequiresBothOAuthClientIdentifiersBeforeEnablement]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testNativePasskeyRequiresExplicitEnablement]' started.
+Test Case '-[RilloraTests.APIClientTests testNativePasskeyRequiresExplicitEnablement]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testNativeSessionExchangeCarriesTheExactAffirmativeLegalProof]' started.
+Test Case '-[RilloraTests.APIClientTests testNativeSessionExchangeCarriesTheExactAffirmativeLegalProof]' passed (0.002 seconds).
+Test Case '-[RilloraTests.APIClientTests testOfficialSetupRejectsEvidenceThatIsNotSelfReported]' started.
+Test Case '-[RilloraTests.APIClientTests testOfficialSetupRejectsEvidenceThatIsNotSelfReported]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testOverviewLoadsThe51stMatterAndRejectsRepeatedCursors]' started.
+Test Case '-[RilloraTests.APIClientTests testOverviewLoadsThe51stMatterAndRejectsRepeatedCursors]' passed (0.003 seconds).
+Test Case '-[RilloraTests.APIClientTests testRoleAssignmentFailsClosedOnAuthorityOrUnexpectedSecretField]' started.
+Test Case '-[RilloraTests.APIClientTests testRoleAssignmentFailsClosedOnAuthorityOrUnexpectedSecretField]' passed (0.007 seconds).
+Test Case '-[RilloraTests.APIClientTests testRoleAssignmentListPreservesScopeAndNoAuthorityBoundary]' started.
+Test Case '-[RilloraTests.APIClientTests testRoleAssignmentListPreservesScopeAndNoAuthorityBoundary]' passed (0.002 seconds).
+Test Case '-[RilloraTests.APIClientTests testRoleAssignmentRequestsAreVersionedAndExplicitlyRecordOnly]' started.
+Test Case '-[RilloraTests.APIClientTests testRoleAssignmentRequestsAreVersionedAndExplicitlyRecordOnly]' passed (0.003 seconds).
+Test Case '-[RilloraTests.APIClientTests testRunSimulationRejectsAnyOperativeResponse]' started.
+Test Case '-[RilloraTests.APIClientTests testRunSimulationRejectsAnyOperativeResponse]' passed (0.004 seconds).
+Test Case '-[RilloraTests.APIClientTests testRunSimulationSendsOneDistinctLifeEventAndDecodesSafeResult]' started.
+Test Case '-[RilloraTests.APIClientTests testRunSimulationSendsOneDistinctLifeEventAndDecodesSafeResult]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testSensitiveActionRequestsFreshAuthenticationAndCarriesSignedIdentityProof]' started.
+Test Case '-[RilloraTests.APIClientTests testSensitiveActionRequestsFreshAuthenticationAndCarriesSignedIdentityProof]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testSharingRolloutFallbackDoesNotSwallowAuthenticationFailure]' started.
+Test Case '-[RilloraTests.APIClientTests testSharingRolloutFallbackDoesNotSwallowAuthenticationFailure]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testStartHereDecodesNoFilePreviewAndSendsEmptyJSONBody]' started.
+Test Case '-[RilloraTests.APIClientTests testStartHereDecodesNoFilePreviewAndSendsEmptyJSONBody]' passed (0.008 seconds).
+Test Case '-[RilloraTests.APIClientTests testStartHereRejectsAResponseThatClaimsAnEncryptedPackage]' started.
+Test Case '-[RilloraTests.APIClientTests testStartHereRejectsAResponseThatClaimsAnEncryptedPackage]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testStoreKitSandboxTransactionRejectsEntitlementMutationBoundary]' started.
+Test Case '-[RilloraTests.APIClientTests testStoreKitSandboxTransactionRejectsEntitlementMutationBoundary]' passed (0.004 seconds).
+Test Case '-[RilloraTests.APIClientTests testStoreKitSandboxTransactionUsesServerAuthoritativeFinishContract]' started.
+Test Case '-[RilloraTests.APIClientTests testStoreKitSandboxTransactionUsesServerAuthoritativeFinishContract]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testSyntheticRecipientAcceptanceAndEnrollmentUseIsolatedMemorySession]' started.
+Test Case '-[RilloraTests.APIClientTests testSyntheticRecipientAcceptanceAndEnrollmentUseIsolatedMemorySession]' passed (0.008 seconds).
+Test Case '-[RilloraTests.APIClientTests testUpdateMatterSendsOptimisticVersionAndExplicitNulls]' started.
+Test Case '-[RilloraTests.APIClientTests testUpdateMatterSendsOptimisticVersionAndExplicitNulls]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testValidationReceiptCannotClaimChangedAccessBeforeAuthoritativeAcknowledgement]' started.
+Test Case '-[RilloraTests.APIClientTests testValidationReceiptCannotClaimChangedAccessBeforeAuthoritativeAcknowledgement]' passed (0.000 seconds).
+Test Suite 'APIClientTests' failed at 2026-10-05 14:21:38.367.
+	 Executed 42 tests, with 4 failures (0 unexpected) in 1.273 (1.285) seconds
+Test Suite 'AccountDataTests' started at 2026-10-05 14:21:38.367.
+Test Case '-[RilloraTests.AccountDataTests testBillingAcknowledgementIncludesPendingPurchaseAndDecodesOlderProfiles]' started.
+Test Case '-[RilloraTests.AccountDataTests testBillingAcknowledgementIncludesPendingPurchaseAndDecodesOlderProfiles]' passed (0.002 seconds).
+Test Case '-[RilloraTests.AccountDataTests testDeletionReferenceIsPortableAndCannotBeAnAccountToken]' started.
+Test Case '-[RilloraTests.AccountDataTests testDeletionReferenceIsPortableAndCannotBeAnAccountToken]' passed (0.002 seconds).
+Test Case '-[RilloraTests.AccountDataTests testLocalReaderRejectsUnknownPartialAndOversizeFiles]' started.
+Test Case '-[RilloraTests.AccountDataTests testLocalReaderRejectsUnknownPartialAndOversizeFiles]' passed (0.003 seconds).
+Test Suite 'AccountDataTests' passed at 2026-10-05 14:21:38.375.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.007 (0.008) seconds
+Test Suite 'AccountLocalizationTests' started at 2026-10-05 14:21:38.375.
+Test Case '-[RilloraTests.AccountLocalizationTests testEnglishAccountResourcesRemainAvailable]' started.
+Test Case '-[RilloraTests.AccountLocalizationTests testEnglishAccountResourcesRemainAvailable]' passed (0.002 seconds).
+Test Case '-[RilloraTests.AccountLocalizationTests testFormattingPreservesPrivateTitleAndPercentSigns]' started.
+Test Case '-[RilloraTests.AccountLocalizationTests testFormattingPreservesPrivateTitleAndPercentSigns]' passed (0.001 seconds).
+Test Case '-[RilloraTests.AccountLocalizationTests testImportedMatterPluralUsesTheSelectedResourceBundle]' started.
+Test Case '-[RilloraTests.AccountLocalizationTests testImportedMatterPluralUsesTheSelectedResourceBundle]' passed (0.002 seconds).
+Test Case '-[RilloraTests.AccountLocalizationTests testProviderPriceAndCurrencyRemainUnmodified]' started.
+Test Case '-[RilloraTests.AccountLocalizationTests testProviderPriceAndCurrencyRemainUnmodified]' passed (0.001 seconds).
+Test Case '-[RilloraTests.AccountLocalizationTests testSimplifiedChineseAccountAndPurchaseResources]' started.
+Test Case '-[RilloraTests.AccountLocalizationTests testSimplifiedChineseAccountAndPurchaseResources]' passed (0.001 seconds).
+Test Suite 'AccountLocalizationTests' passed at 2026-10-05 14:21:38.382.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.006 (0.007) seconds
+Test Suite 'AppAppearanceTests' started at 2026-10-05 14:21:38.383.
+Test Case '-[RilloraTests.AppAppearanceTests testOldHomePreferenceMigratesWithoutReplacingExistingAppChoice]' started.
+Test Case '-[RilloraTests.AppAppearanceTests testOldHomePreferenceMigratesWithoutReplacingExistingAppChoice]' passed (0.006 seconds).
+Test Case '-[RilloraTests.AppAppearanceTests testReadingTextAndPrimaryActionsRemainReadableInBothSchemes]' started.
+Test Case '-[RilloraTests.AppAppearanceTests testReadingTextAndPrimaryActionsRemainReadableInBothSchemes]' passed (0.001 seconds).
+Test Case '-[RilloraTests.AppAppearanceTests testSystemHasNoForcedSchemeAndInvalidLegacyValueDoesNotPersist]' started.
+Test Case '-[RilloraTests.AppAppearanceTests testSystemHasNoForcedSchemeAndInvalidLegacyValueDoesNotPersist]' passed (0.003 seconds).
+Test Suite 'AppAppearanceTests' passed at 2026-10-05 14:21:38.393.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.009 (0.010) seconds
+Test Suite 'ApplePurchaseCoordinatorTests' started at 2026-10-05 14:21:38.393.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testAccountChangeBeforeServerReceiptReturnsCannotFinishForTheNewSession]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testAccountChangeBeforeServerReceiptReturnsCannotFinishForTheNewSession]' passed (0.004 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testAccountChangeDuringPreparationCannotOpenAnotherOwnersPaymentSheet]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testAccountChangeDuringPreparationCannotOpenAnotherOwnersPaymentSheet]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testChangedPriceRequiresAnotherDeliberateConsent]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:23: error: -[RilloraTests.ApplePurchaseCoordinatorTests testChangedPriceRequiresAnotherDeliberateConsent] : XCTAssertTrue failed
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testChangedPriceRequiresAnotherDeliberateConsent]' failed (0.002 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testForeignOwnerAndSandboxNeverReachProductionReceiptIntake]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:80: error: -[RilloraTests.ApplePurchaseCoordinatorTests testForeignOwnerAndSandboxNeverReachProductionReceiptIntake] : XCTAssertTrue failed
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:86: error: -[RilloraTests.ApplePurchaseCoordinatorTests testForeignOwnerAndSandboxNeverReachProductionReceiptIntake] : XCTAssertTrue failed
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testForeignOwnerAndSandboxNeverReachProductionReceiptIntake]' failed (0.002 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testHistoryOutageIsNotPresentedAsHavingNoPurchases]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:40: error: -[RilloraTests.ApplePurchaseCoordinatorTests testHistoryOutageIsNotPresentedAsHavingNoPurchases] : XCTAssertTrue failed
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testHistoryOutageIsNotPresentedAsHavingNoPurchases]' failed (0.002 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testInconsistentFinishResponseIsRejectedEvenByInjectedService]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testInconsistentFinishResponseIsRejectedEvenByInjectedService]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testNoPurchaseWithoutCurrentPriceAndExpressConsent]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testNoPurchaseWithoutCurrentPriceAndExpressConsent]' passed (0.018 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testOnlyCommittedServerStateCanFinishThenRestoreRetries]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:50: error: -[RilloraTests.ApplePurchaseCoordinatorTests testOnlyCommittedServerStateCanFinishThenRestoreRetries] : XCTAssertTrue failed
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testOnlyCommittedServerStateCanFinishThenRestoreRetries]' failed (0.002 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testPendingAndCanceledOutcomesArePreservedWithoutFinishing]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testPendingAndCanceledOutcomesArePreservedWithoutFinishing]' passed (0.002 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testRestoresHistoricalMonthlyFromSignedStorefrontAfterCountryChange]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testRestoresHistoricalMonthlyFromSignedStorefrontAfterCountryChange]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testReviewBuildRejectsAProductionTransactionAndUnknownAppReceiptCannotPurchase]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:173: error: -[RilloraTests.ApplePurchaseCoordinatorTests testReviewBuildRejectsAProductionTransactionAndUnknownAppReceiptCannotPurchase] : XCTAssertTrue failed
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testReviewBuildRejectsAProductionTransactionAndUnknownAppReceiptCannotPurchase]' failed (0.002 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testReviewPurchaseUsesSandboxContractAndNeverFinishesOnProductionAcknowledgement]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testReviewPurchaseUsesSandboxContractAndNeverFinishesOnProductionAcknowledgement]' passed (0.002 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testStoreKitPriceMismatchCannotShowOrStartAnOffer]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testStoreKitPriceMismatchCannotShowOrStartAnOffer]' passed (0.001 seconds).
+Test Suite 'ApplePurchaseCoordinatorTests' failed at 2026-10-05 14:21:38.439.
+	 Executed 13 tests, with 6 failures (0 unexpected) in 0.042 (0.045) seconds
+Test Suite 'AppleStoreKitClientTests' started at 2026-10-05 14:21:38.439.
+Test Case '-[RilloraTests.AppleStoreKitClientTests testLoadsExactLocalFamilyCatalogAndReturnsVerifiedBoundPurchase]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/AppleStoreKitClientTests.swift:16: -[RilloraTests.AppleStoreKitClientTests testLoadsExactLocalFamilyCatalogAndReturnsVerifiedBoundPurchase] : Test skipped - The installed iOS 26.4 and 26.5 Simulator runtimes fail or hang while SKTestSession synchronizes the local configuration with storekitd; Apple documents the related Simulator fix in iOS 26.6. Set RILLORA_RUN_UNSTABLE_STOREKITTEST=1 only for an explicit retry; the Xcode Run transaction path is verified separately.
+Test Case '-[RilloraTests.AppleStoreKitClientTests testLoadsExactLocalFamilyCatalogAndReturnsVerifiedBoundPurchase]' skipped (0.009 seconds).
+Test Suite 'AppleStoreKitClientTests' passed at 2026-10-05 14:21:38.448.
+	 Executed 1 test, with 1 test skipped and 0 failures (0 unexpected) in 0.009 (0.010) seconds
+Test Suite 'CommerceStoreTests' started at 2026-10-05 14:21:38.449.
+Test Case '-[RilloraTests.CommerceStoreTests testCancelledPreviousAccountStartCannotResetNewPurchaseCoordinator]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testCancelledPreviousAccountStartCannotResetNewPurchaseCoordinator]' passed (0.003 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testLocalStoreKitPurchaseFinishesOnlyAfterMatchingVerifiedEvidence]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/CommerceStoreTests.swift:118: error: -[RilloraTests.CommerceStoreTests testLocalStoreKitPurchaseFinishesOnlyAfterMatchingVerifiedEvidence] : XCTAssertEqual failed: ("Optional("StoreKit 已验证本地交易。普通 Rillora 权益未改变。")") is not equal to ("Optional("StoreKit verified the local transaction. It changed no ordinary Rillora entitlement.")")
+Test Case '-[RilloraTests.CommerceStoreTests testLocalStoreKitPurchaseFinishesOnlyAfterMatchingVerifiedEvidence]' failed (0.002 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testLocalStoreKitPurchaseRejectsWrongAccountTokenWithoutFinishing]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/CommerceStoreTests.swift:148: error: -[RilloraTests.CommerceStoreTests testLocalStoreKitPurchaseRejectsWrongAccountTokenWithoutFinishing] : XCTAssertEqual failed: ("Optional("本地交易与 Rillora 账户、商品目录、环境或商店地区不匹配。交易未结束。")") is not equal to ("Optional("The local transaction did not match the Rillora account, catalog, environment, or storefront. It was not finished.")")
+Test Case '-[RilloraTests.CommerceStoreTests testLocalStoreKitPurchaseRejectsWrongAccountTokenWithoutFinishing]' failed (0.002 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testLocalSubscriptionLifecycleStatesNeverMutateServerAccess]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testLocalSubscriptionLifecycleStatesNeverMutateServerAccess]' passed (0.002 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testMatchingTransactionUpdateIsRecordedAndFinishedWithoutChangingAccess]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testMatchingTransactionUpdateIsRecordedAndFinishedWithoutChangingAccess]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testMissingStorefrontFailsClosedWithoutCallingPurchaseRoute]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testMissingStorefrontFailsClosedWithoutCallingPurchaseRoute]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testRefreshRoutesWithCurrentStorefrontAndReevaluatesOnChange]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testRefreshRoutesWithCurrentStorefrontAndReevaluatesOnChange]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testRestoreHistoricalMonthlyPurchaseStillRefreshesLocalEvidence]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testRestoreHistoricalMonthlyPurchaseStillRefreshesLocalEvidence]' passed (0.002 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testRestoreIgnoresEntitlementBoundToAnotherRilloraAccount]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testRestoreIgnoresEntitlementBoundToAnotherRilloraAccount]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testRetiredMonthlyProductCannotStartANewPurchase]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/CommerceStoreTests.swift:45: error: -[RilloraTests.CommerceStoreTests testRetiredMonthlyProductCannotStartANewPurchase] : XCTAssertEqual failed: ("Optional("所选本地 StoreKit 商品不可用。")") is not equal to ("Optional("The selected local StoreKit product is not available.")")
+Test Case '-[RilloraTests.CommerceStoreTests testRetiredMonthlyProductCannotStartANewPurchase]' failed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxCatalogDiagnosticLoadsWithoutAPrivateCommerceSession]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxCatalogDiagnosticLoadsWithoutAPrivateCommerceSession]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxCatalogLoadsAppStoreGroupWithoutOpeningPurchasePath]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxCatalogLoadsAppStoreGroupWithoutOpeningPurchasePath]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxCatalogRejectsXcodeLocalSubscriptionGroup]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/CommerceStoreTests.swift:515: error: -[RilloraTests.CommerceStoreTests testSandboxCatalogRejectsXcodeLocalSubscriptionGroup] : XCTAssertEqual failed: ("Optional("App Store 沙盒商品目录不完整或属于其他订阅组。购买仍不可用。")") is not equal to ("Optional("The App Store Sandbox catalog is incomplete or belongs to another subscription group. Purchases remain unavailable.")")
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxCatalogRejectsXcodeLocalSubscriptionGroup]' failed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxPurchaseFinishesOnlyAfterDurableServerAuthorization]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/CommerceStoreTests.swift:452: error: -[RilloraTests.CommerceStoreTests testSandboxPurchaseFinishesOnlyAfterDurableServerAuthorization] : XCTAssertEqual failed: ("Optional("Apple 和 Rillora 服务器已验证沙盒订阅。持久保存确认后，交易已结束；普通访问权限仍为免费版。")") is not equal to ("Optional("Apple and the Rillora server verified the Sandbox subscription. The transaction was finished after durable acknowledgement; ordinary access remains Free.")")
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxPurchaseFinishesOnlyAfterDurableServerAuthorization]' failed (0.002 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxPurchaseRemainsUnfinishedWhileAuthoritativeSnapshotIsPending]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/CommerceStoreTests.swift:494: error: -[RilloraTests.CommerceStoreTests testSandboxPurchaseRemainsUnfinishedWhileAuthoritativeSnapshotIsPending] : XCTAssertEqual failed: ("Optional("Apple 已验证沙盒交易，但仍在等待权威服务器快照。交易尚未结束。")") is not equal to ("Optional("Apple verified the Sandbox transaction, but the authoritative server snapshot is still pending. The transaction remains unfinished.")")
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxPurchaseRemainsUnfinishedWhileAuthoritativeSnapshotIsPending]' failed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testSubscriptionStatusOutsideLocalAccountIsIgnored]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testSubscriptionStatusOutsideLocalAccountIsIgnored]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testSubscriptionStatusUpdateRefreshesLifecycleWithoutFinishingOrGrantingAccess]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/CommerceStoreTests.swift:332: error: -[RilloraTests.CommerceStoreTests testSubscriptionStatusUpdateRefreshesLifecycleWithoutFinishingOrGrantingAccess] : XCTAssertEqual failed: ("Optional("本地订阅状态：正在重试扣款。普通 Rillora 访问权限未改变。")") is not equal to ("Optional("Local subscription state: billing retry. Ordinary Rillora access is unchanged.")")
+Test Case '-[RilloraTests.CommerceStoreTests testSubscriptionStatusUpdateRefreshesLifecycleWithoutFinishingOrGrantingAccess]' failed (0.002 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testUnverifiedLocalStoreKitPurchaseNeverFinishes]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/CommerceStoreTests.swift:177: error: -[RilloraTests.CommerceStoreTests testUnverifiedLocalStoreKitPurchaseNeverFinishes] : XCTAssertEqual failed: ("Optional("StoreKit 返回了一笔未经验证的购买。该购买未被记录或结束。")") is not equal to ("Optional("StoreKit returned an unverified purchase. It was not recorded or finished.")")
+Test Case '-[RilloraTests.CommerceStoreTests testUnverifiedLocalStoreKitPurchaseNeverFinishes]' failed (0.002 seconds).
+Test Suite 'CommerceStoreTests' failed at 2026-10-05 14:21:38.480.
+	 Executed 18 tests, with 8 failures (0 unexpected) in 0.027 (0.031) seconds
+Test Suite 'ContactSharingStoreTests' started at 2026-10-05 14:21:38.480.
+Test Case '-[RilloraTests.ContactSharingStoreTests testAcceptedRecipientStopsShowingThePendingInvitationLink]' started.
+Test Case '-[RilloraTests.ContactSharingStoreTests testAcceptedRecipientStopsShowingThePendingInvitationLink]' passed (0.004 seconds).
+Test Case '-[RilloraTests.ContactSharingStoreTests testRefreshKeepsCurrentLinkButDiscardsAnExternallyReplacedVersion]' started.
+Test Case '-[RilloraTests.ContactSharingStoreTests testRefreshKeepsCurrentLinkButDiscardsAnExternallyReplacedVersion]' passed (0.001 seconds).
+Test Suite 'ContactSharingStoreTests' passed at 2026-10-05 14:21:38.486.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.005 (0.006) seconds
+Test Suite 'CoreLocalizationTests' started at 2026-10-05 14:21:38.486.
+Test Case '-[RilloraTests.CoreLocalizationTests testChineseCoreTerminologyAndGuideBoundary]' started.
+Test Case '-[RilloraTests.CoreLocalizationTests testChineseCoreTerminologyAndGuideBoundary]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CoreLocalizationTests testFormattingPreservesSuppliedNamesAndFormatCharacters]' started.
+Test Case '-[RilloraTests.CoreLocalizationTests testFormattingPreservesSuppliedNamesAndFormatCharacters]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CoreLocalizationTests testGuideGroupTranslationDoesNotMutateItsSourceTitle]' started.
+Test Case '-[RilloraTests.CoreLocalizationTests testGuideGroupTranslationDoesNotMutateItsSourceTitle]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CoreLocalizationTests testMatterCountGrammarUsesTheSelectedLanguage]' started.
+Test Case '-[RilloraTests.CoreLocalizationTests testMatterCountGrammarUsesTheSelectedLanguage]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CoreLocalizationTests testMatterRequestsPreserveSavedTextAndStableMachineValues]' started.
+Test Case '-[RilloraTests.CoreLocalizationTests testMatterRequestsPreserveSavedTextAndStableMachineValues]' passed (0.001 seconds).
+Test Suite 'CoreLocalizationTests' passed at 2026-10-05 14:21:38.492.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.004 (0.006) seconds
+Test Suite 'DisclosureRehearsalStoreTests' started at 2026-10-05 14:21:38.492.
+Test Case '-[RilloraTests.DisclosureRehearsalStoreTests testActionUsesLatestOptimisticVersionAndFixedAcknowledgement]' started.
+Test Case '-[RilloraTests.DisclosureRehearsalStoreTests testActionUsesLatestOptimisticVersionAndFixedAcknowledgement]' passed (0.002 seconds).
+Test Case '-[RilloraTests.DisclosureRehearsalStoreTests testCancellationRestoresIdleAndFailureCanRecoverWithoutDiscardingResult]' started.
+Test Case '-[RilloraTests.DisclosureRehearsalStoreTests testCancellationRestoresIdleAndFailureCanRecoverWithoutDiscardingResult]' passed (0.005 seconds).
+Test Case '-[RilloraTests.DisclosureRehearsalStoreTests testCreateUsesSelectedDistinctEventAndPublishesRehearsal]' started.
+Test Case '-[RilloraTests.DisclosureRehearsalStoreTests testCreateUsesSelectedDistinctEventAndPublishesRehearsal]' passed (0.001 seconds).
+Test Suite 'DisclosureRehearsalStoreTests' passed at 2026-10-05 14:21:38.503.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.008 (0.011) seconds
+Test Suite 'FamilyMaintenanceTests' started at 2026-10-05 14:21:38.503.
+Test Case '-[RilloraTests.FamilyMaintenanceTests testChangedSourceOrScopeDoesNotCountAsCompleted]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/FamilyMaintenanceTests.swift:27: error: -[RilloraTests.FamilyMaintenanceTests testChangedSourceOrScopeDoesNotCountAsCompleted] : XCTAssertEqual failed: ("重新检查") is not equal to ("Check again")
+Test Case '-[RilloraTests.FamilyMaintenanceTests testChangedSourceOrScopeDoesNotCountAsCompleted]' failed (0.007 seconds).
+Test Case '-[RilloraTests.FamilyMaintenanceTests testExpiredWriteClearsPrivateCache]' started.
+Test Case '-[RilloraTests.FamilyMaintenanceTests testExpiredWriteClearsPrivateCache]' passed (0.017 seconds).
+Test Case '-[RilloraTests.FamilyMaintenanceTests testIncomingResponseCannotGrantOwnerControl]' started.
+Test Case '-[RilloraTests.FamilyMaintenanceTests testIncomingResponseCannotGrantOwnerControl]' passed (0.001 seconds).
+Test Case '-[RilloraTests.FamilyMaintenanceTests testReviewFieldsCannotContainHiddenDataOrDisclosureChanges]' started.
+Test Case '-[RilloraTests.FamilyMaintenanceTests testReviewFieldsCannotContainHiddenDataOrDisclosureChanges]' passed (0.001 seconds).
+Test Case '-[RilloraTests.FamilyMaintenanceTests testSettingsEncodeExplicitNullForRemovingCollaboratorAndDate]' started.
+Test Case '-[RilloraTests.FamilyMaintenanceTests testSettingsEncodeExplicitNullForRemovingCollaboratorAndDate]' passed (0.002 seconds).
+Test Suite 'FamilyMaintenanceTests' failed at 2026-10-05 14:21:38.533.
+	 Executed 5 tests, with 1 failure (0 unexpected) in 0.028 (0.030) seconds
+Test Suite 'FirstUseGuideStoreTests' started at 2026-10-05 14:21:38.533.
+Test Case '-[RilloraTests.FirstUseGuideStoreTests testOptionalMotivationAdvancesToMatterStep]' started.
+Test Case '-[RilloraTests.FirstUseGuideStoreTests testOptionalMotivationAdvancesToMatterStep]' passed (0.001 seconds).
+Test Case '-[RilloraTests.FirstUseGuideStoreTests testPausedGuideRemainsReachableAndResumesItsSavedStep]' started.
+Test Case '-[RilloraTests.FirstUseGuideStoreTests testPausedGuideRemainsReachableAndResumesItsSavedStep]' passed (0.001 seconds).
+Test Case '-[RilloraTests.FirstUseGuideStoreTests testSaveAndExitPersistsPausedStep]' started.
+Test Case '-[RilloraTests.FirstUseGuideStoreTests testSaveAndExitPersistsPausedStep]' passed (0.001 seconds).
+Test Case '-[RilloraTests.FirstUseGuideStoreTests testStartRecordsInProgressStepOneWithoutChangingReadiness]' started.
+Test Case '-[RilloraTests.FirstUseGuideStoreTests testStartRecordsInProgressStepOneWithoutChangingReadiness]' passed (0.001 seconds).
+Test Suite 'FirstUseGuideStoreTests' passed at 2026-10-05 14:21:38.538.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.004 (0.005) seconds
+Test Suite 'HostedLegalAcceptanceProofTests' started at 2026-10-05 14:21:38.538.
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testCurrentHostedReceiptProducesTheExistingAPIProof]' started.
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testCurrentHostedReceiptProducesTheExistingAPIProof]' passed (0.001 seconds).
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testEveryConsentBooleanMustBeExplicitlyTrue]' started.
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testEveryConsentBooleanMustBeExplicitlyTrue]' passed (0.003 seconds).
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testMissingAndUnexpectedFieldsAreRejected]' started.
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testMissingAndUnexpectedFieldsAreRejected]' passed (0.001 seconds).
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testMissingClaimAndMalformedTokensFailClosed]' started.
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testMissingClaimAndMalformedTokensFailClosed]' passed (0.001 seconds).
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testStaleVersionsAndWrongDigestAreRejected]' started.
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testStaleVersionsAndWrongDigestAreRejected]' passed (0.001 seconds).
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testUnsignedReceiptIsRejectedBeforeExchange]' started.
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testUnsignedReceiptIsRejectedBeforeExchange]' passed (0.000 seconds).
+Test Suite 'HostedLegalAcceptanceProofTests' passed at 2026-10-05 14:21:38.547.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.007 (0.010) seconds
+Test Suite 'LocalizationTests' started at 2026-10-05 14:21:38.548.
+Test Case '-[RilloraTests.LocalizationTests testBothNativeLanguageResourcesExist]' started.
+Test Case '-[RilloraTests.LocalizationTests testBothNativeLanguageResourcesExist]' passed (0.001 seconds).
+Test Case '-[RilloraTests.LocalizationTests testChineseCoreTerminology]' started.
+Test Case '-[RilloraTests.LocalizationTests testChineseCoreTerminology]' passed (0.001 seconds).
+Test Case '-[RilloraTests.LocalizationTests testChineseKnownErrorUsesCodeNotServerText]' started.
+Test Case '-[RilloraTests.LocalizationTests testChineseKnownErrorUsesCodeNotServerText]' passed (0.001 seconds).
+Test Case '-[RilloraTests.LocalizationTests testEnglishFallbackStaysReadable]' started.
+Test Case '-[RilloraTests.LocalizationTests testEnglishFallbackStaysReadable]' passed (0.001 seconds).
+Test Case '-[RilloraTests.LocalizationTests testEnglishServerMessageContractIsPreserved]' started.
+Test Case '-[RilloraTests.LocalizationTests testEnglishServerMessageContractIsPreserved]' passed (0.001 seconds).
+Test Case '-[RilloraTests.LocalizationTests testFormattedPrivateValueIsNotAKeyOrFormatString]' started.
+Test Case '-[RilloraTests.LocalizationTests testFormattedPrivateValueIsNotAKeyOrFormatString]' passed (0.000 seconds).
+Test Case '-[RilloraTests.LocalizationTests testUnknownChineseErrorDoesNotExposeOrTranslateServerContent]' started.
+Test Case '-[RilloraTests.LocalizationTests testUnknownChineseErrorDoesNotExposeOrTranslateServerContent]' passed (0.002 seconds).
+Test Suite 'LocalizationTests' passed at 2026-10-05 14:21:38.559.
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.005 (0.011) seconds
+Test Suite 'MatterEditorStoreTests' started at 2026-10-05 14:21:38.559.
+Test Case '-[RilloraTests.MatterEditorStoreTests testArchiveUsesTheLatestOptimisticVersion]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testArchiveUsesTheLatestOptimisticVersion]' passed (0.001 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testCategoryDetailsAndNotesRoundTripWithoutLeakingHiddenDraftFields]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testCategoryDetailsAndNotesRoundTripWithoutLeakingHiddenDraftFields]' passed (0.009 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testCreateRetryKeepsTheSameRequestIdentityAndDraft]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testCreateRetryKeepsTheSameRequestIdentityAndDraft]' passed (0.003 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testFirstUseDraftKeepsChosenCategoryWithoutPrefillingMatter]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testFirstUseDraftKeepsChosenCategoryWithoutPrefillingMatter]' passed (0.001 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testHiddenFieldsAreNeitherSubmittedNorValidationTrapsAfterTypeChange]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testHiddenFieldsAreNeitherSubmittedNorValidationTrapsAfterTypeChange]' passed (0.001 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testNewMatterUsesCreateContract]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testNewMatterUsesCreateContract]' passed (0.002 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testOverlappingCreateReturnsOnlyOneResultToTheOverview]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testOverlappingCreateReturnsOnlyOneResultToTheOverview]' passed (0.006 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testReloadAndArchiveCannotReplaceAnInFlightSave]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testReloadAndArchiveCannotReplaceAnInFlightSave]' passed (0.001 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testRequiredLocatorsAndCryptoBranchesStopTransport]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testRequiredLocatorsAndCryptoBranchesStopTransport]' passed (0.002 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testSaveUsesCurrentVersionAndAppliesServerResponse]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testSaveUsesCurrentVersionAndAppliesServerResponse]' passed (0.001 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testValidationStopsAnEmptyTitleBeforeTransport]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/MatterEditorStoreTests.swift:96: error: -[RilloraTests.MatterEditorStoreTests testValidationStopsAnEmptyTitleBeforeTransport] : XCTAssertEqual failed: ("failed(message: "请为此事项添加一个简短名称。", conflict: false)") is not equal to ("failed(message: "Add a short name for this matter.", conflict: false)")
+Test Case '-[RilloraTests.MatterEditorStoreTests testValidationStopsAnEmptyTitleBeforeTransport]' failed (0.010 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testVersionConflictKeepsDraftAndOffersRecoveryState]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/MatterEditorStoreTests.swift:80: error: -[RilloraTests.MatterEditorStoreTests testVersionConflictKeepsDraftAndOffersRecoveryState] : XCTAssertEqual failed: ("failed(message: "此记录已更改，请刷新后重试。", conflict: true)") is not equal to ("failed(message: "The record changed. Refresh and try again.", conflict: true)")
+Test Case '-[RilloraTests.MatterEditorStoreTests testVersionConflictKeepsDraftAndOffersRecoveryState]' failed (0.002 seconds).
+Test Suite 'MatterEditorStoreTests' failed at 2026-10-05 14:21:38.602.
+	 Executed 12 tests, with 2 failures (0 unexpected) in 0.037 (0.043) seconds
+Test Suite 'NativeAuthenticationCallbackTests' started at 2026-10-05 14:21:38.602.
+Test Case '-[RilloraTests.NativeAuthenticationCallbackTests testDisabledGoogleDoesNotReceiveAnyCallback]' started.
+Test Case '-[RilloraTests.NativeAuthenticationCallbackTests testDisabledGoogleDoesNotReceiveAnyCallback]' passed (0.001 seconds).
+Test Case '-[RilloraTests.NativeAuthenticationCallbackTests testHostedLoginSharingAndForeignSchemesNeverReachGoogle]' started.
+Test Case '-[RilloraTests.NativeAuthenticationCallbackTests testHostedLoginSharingAndForeignSchemesNeverReachGoogle]' passed (0.001 seconds).
+Test Suite 'NativeAuthenticationCallbackTests' passed at 2026-10-05 14:21:38.604.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.001 (0.002) seconds
+Test Suite 'OfficialProviderGuideCatalogTests' started at 2026-10-05 14:21:38.604.
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testAppleAndGoogleProvideSetupAndAfterDeathRoutes]' started.
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testAppleAndGoogleProvideSetupAndAfterDeathRoutes]' passed (0.007 seconds).
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testBinanceIsNotPresentedAsAProactiveLegacyContactFeature]' started.
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testBinanceIsNotPresentedAsAProactiveLegacyContactFeature]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testCatalogContainsUniqueActionableCommonProviderGuides]' started.
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testCatalogContainsUniqueActionableCommonProviderGuides]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testEveryGuideUsesHTTPSOnAnOfficialHost]' started.
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testEveryGuideUsesHTTPSOnAnOfficialHost]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testRegionalGuidesAndAliasesRemainDistinct]' started.
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testRegionalGuidesAndAliasesRemainDistinct]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testSuggestionsUseOnlyVisibleAccountContextWithoutFalseRegionalMatches]' started.
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testSuggestionsUseOnlyVisibleAccountContextWithoutFalseRegionalMatches]' passed (0.053 seconds).
+Test Suite 'OfficialProviderGuideCatalogTests' passed at 2026-10-05 14:21:38.672.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.063 (0.067) seconds
+Test Suite 'OfficialSetupStoreTests' started at 2026-10-05 14:21:38.672.
+Test Case '-[RilloraTests.OfficialSetupStoreTests testCancelledUpdateRollsBackOptimisticDisplayWithoutFailure]' started.
+Test Case '-[RilloraTests.OfficialSetupStoreTests testCancelledUpdateRollsBackOptimisticDisplayWithoutFailure]' passed (0.003 seconds).
+Test Case '-[RilloraTests.OfficialSetupStoreTests testConflictKeepsConfirmedServerStateAndOffersReload]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/OfficialSetupStoreTests.swift:69: error: -[RilloraTests.OfficialSetupStoreTests testConflictKeepsConfirmedServerStateAndOffersReload] : XCTAssertEqual failed: ("Optional(Rillora.OfficialSetupMutationFailure(publicID: "66666666-6666-4666-8666-666666666666", message: "此记录已更改，请刷新后重试。", conflict: true))") is not equal to ("Optional(Rillora.OfficialSetupMutationFailure(publicID: "66666666-6666-4666-8666-666666666666", message: "The record changed. Refresh and try again.", conflict: true))")
+Test Case '-[RilloraTests.OfficialSetupStoreTests testConflictKeepsConfirmedServerStateAndOffersReload]' failed (0.006 seconds).
+Test Case '-[RilloraTests.OfficialSetupStoreTests testNoOpDoesNotWriteAnUnchangedSelfReport]' started.
+Test Case '-[RilloraTests.OfficialSetupStoreTests testNoOpDoesNotWriteAnUnchangedSelfReport]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OfficialSetupStoreTests testReloadPublishesOfficialSetupChecks]' started.
+Test Case '-[RilloraTests.OfficialSetupStoreTests testReloadPublishesOfficialSetupChecks]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OfficialSetupStoreTests testUpdateUsesOptimisticVersionAndAppliesSelfReport]' started.
+Test Case '-[RilloraTests.OfficialSetupStoreTests testUpdateUsesOptimisticVersionAndAppliesSelfReport]' passed (0.001 seconds).
+Test Suite 'OfficialSetupStoreTests' failed at 2026-10-05 14:21:38.685.
+	 Executed 5 tests, with 1 failure (0 unexpected) in 0.011 (0.013) seconds
+Test Suite 'OverviewStoreTests' started at 2026-10-05 14:21:38.685.
+Test Case '-[RilloraTests.OverviewStoreTests testAuthenticationFailureBecomesSignedOutInsteadOfAnErrorWall]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testAuthenticationFailureBecomesSignedOutInsteadOfAnErrorWall]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testCancelledLoadRestoresItsPreviousState]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testCancelledLoadRestoresItsPreviousState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testExpiredSessionDiscardsPreviouslyLoadedPrivateMap]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testExpiredSessionDiscardsPreviouslyLoadedPrivateMap]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testFailedRefreshKeepsLoadedMapAndRetryClearsNotice]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testFailedRefreshKeepsLoadedMapAndRetryClearsNotice]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testMutationReconciliationDoesNotKeepAnExpiredSession]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testMutationReconciliationDoesNotKeepAnExpiredSession]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testOlderRefreshCannotOverwriteAConfirmedSave]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testOlderRefreshCannotOverwriteAConfirmedSave]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testOldSessionRefreshCannotClearTheNewSession]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testOldSessionRefreshCannotClearTheNewSession]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testReloadPublishesLoadedSnapshot]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testReloadPublishesLoadedSnapshot]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testReloadPublishesSafeFailureState]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testReloadPublishesSafeFailureState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testReloadPublishesSignedOutWithoutFetchingPrivateOverview]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testReloadPublishesSignedOutWithoutFetchingPrivateOverview]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testVerifiedLoginSnapshotEntersAppWithoutAnotherOverviewRequest]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testVerifiedLoginSnapshotEntersAppWithoutAnotherOverviewRequest]' passed (0.001 seconds).
+Test Suite 'OverviewStoreTests' passed at 2026-10-05 14:21:38.697.
+	 Executed 11 tests, with 0 failures (0 unexpected) in 0.009 (0.012) seconds
+Test Suite 'PlanMotivationStoreTests' started at 2026-10-05 14:21:38.697.
+Test Case '-[RilloraTests.PlanMotivationStoreTests testCancelledLatestLoadRestoresReadyState]' started.
+Test Case '-[RilloraTests.PlanMotivationStoreTests testCancelledLatestLoadRestoresReadyState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.PlanMotivationStoreTests testCancelledSaveReturnsToReadyWithoutChangingSource]' started.
+Test Case '-[RilloraTests.PlanMotivationStoreTests testCancelledSaveReturnsToReadyWithoutChangingSource]' passed (0.001 seconds).
+Test Case '-[RilloraTests.PlanMotivationStoreTests testConflictKeepsSelectedMotivationForRecovery]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/PlanMotivationStoreTests.swift:58: error: -[RilloraTests.PlanMotivationStoreTests testConflictKeepsSelectedMotivationForRecovery] : XCTAssertEqual failed: ("failed(message: "此记录已更改，请刷新后重试。", conflict: true)") is not equal to ("failed(message: "The plan changed. Refresh and try again.", conflict: true)")
+Test Case '-[RilloraTests.PlanMotivationStoreTests testConflictKeepsSelectedMotivationForRecovery]' failed (0.007 seconds).
+Test Case '-[RilloraTests.PlanMotivationStoreTests testLoadLatestAppliesServerMotivationAndVersion]' started.
+Test Case '-[RilloraTests.PlanMotivationStoreTests testLoadLatestAppliesServerMotivationAndVersion]' passed (0.001 seconds).
+Test Case '-[RilloraTests.PlanMotivationStoreTests testSaveUsesLatestVersionAndAppliesResponse]' started.
+Test Case '-[RilloraTests.PlanMotivationStoreTests testSaveUsesLatestVersionAndAppliesResponse]' passed (0.001 seconds).
+Test Suite 'PlanMotivationStoreTests' failed at 2026-10-05 14:21:38.708.
+	 Executed 5 tests, with 1 failure (0 unexpected) in 0.010 (0.011) seconds
+Test Suite 'ProductionConnectionTests' started at 2026-10-05 14:21:38.708.
+Test Case '-[RilloraTests.ProductionConnectionTests testBothNativeRevocationsUseTheProductionProxyAndRequireServerSuccess]' started.
+Test Case '-[RilloraTests.ProductionConnectionTests testBothNativeRevocationsUseTheProductionProxyAndRequireServerSuccess]' passed (0.009 seconds).
+Test Case '-[RilloraTests.ProductionConnectionTests testClosedServiceDoesNotOpenHostedAuthentication]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ProductionConnectionTests.swift:75: error: -[RilloraTests.ProductionConnectionTests testClosedServiceDoesNotOpenHostedAuthentication] : XCTAssertEqual failed: ("账户功能尚未开放。你仍可了解 Rillora 及其指南。") is not equal to ("Accounts are not open yet. You can still explore Rillora and its guides.")
+Test Case '-[RilloraTests.ProductionConnectionTests testClosedServiceDoesNotOpenHostedAuthentication]' failed (0.005 seconds).
+Test Case '-[RilloraTests.ProductionConnectionTests testPreparedProductionConnectionIsValidButDoesNotOpenAccounts]' started.
+Test Case '-[RilloraTests.ProductionConnectionTests testPreparedProductionConnectionIsValidButDoesNotOpenAccounts]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ProductionConnectionTests testProductionRejectsTestIdentityUnsafeOriginsAndDevelopmentIdentity]' started.
+Test Case '-[RilloraTests.ProductionConnectionTests testProductionRejectsTestIdentityUnsafeOriginsAndDevelopmentIdentity]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ProductionConnectionTests testSessionAndDeletionProofNamespacesCannotCrossOrigins]' started.
+Test Case '-[RilloraTests.ProductionConnectionTests testSessionAndDeletionProofNamespacesCannotCrossOrigins]' passed (0.002 seconds).
+Test Suite 'ProductionConnectionTests' failed at 2026-10-05 14:21:38.727.
+	 Executed 5 tests, with 1 failure (0 unexpected) in 0.017 (0.018) seconds
+Test Suite 'RoleAssignmentPolicyStoreTests' started at 2026-10-05 14:21:38.727.
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testAcknowledgedRevocationStaysRemovedWhenTheFollowingRefreshFails]' started.
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testAcknowledgedRevocationStaysRemovedWhenTheFollowingRefreshFails]' passed (0.001 seconds).
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testAcknowledgedRoleIsRetainedWhenTheFollowingRefreshFails]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/RoleAssignmentPolicyStoreTests.swift:35: error: -[RilloraTests.RoleAssignmentPolicyStoreTests testAcknowledgedRoleIsRetainedWhenTheFollowingRefreshFails] : XCTAssertEqual failed: ("Optional("角色规则已保存。请重新加载以查看最新记录。")") is not equal to ("Optional("Role policy saved. Reload to check the latest records.")")
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testAcknowledgedRoleIsRetainedWhenTheFollowingRefreshFails]' failed (0.002 seconds).
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testCreateUsesMatterScopeAndMarksEarlierRehearsalsStale]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/RoleAssignmentPolicyStoreTests.swift:106: error: -[RilloraTests.RoleAssignmentPolicyStoreTests testCreateUsesMatterScopeAndMarksEarlierRehearsalsStale] : XCTAssertEqual failed: ("Optional("角色规则已保存。此前的披露演练已过时。")") is not equal to ("Optional("Role policy saved. Earlier disclosure rehearsals are now stale.")")
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testCreateUsesMatterScopeAndMarksEarlierRehearsalsStale]' failed (0.002 seconds).
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testFailedMutationPreservesAssignmentsAndExposesConflict]' started.
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testFailedMutationPreservesAssignmentsAndExposesConflict]' passed (0.001 seconds).
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testLoadKeepsPlanWideAndCurrentMatterAssignmentsSeparate]' started.
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testLoadKeepsPlanWideAndCurrentMatterAssignmentsSeparate]' passed (0.001 seconds).
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testReloadAndDuplicateCreateCannotReplaceAnInFlightRoleMutation]' started.
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testReloadAndDuplicateCreateCannotReplaceAnInFlightRoleMutation]' passed (0.001 seconds).
+Test Suite 'RoleAssignmentPolicyStoreTests' failed at 2026-10-05 14:21:38.736.
+	 Executed 6 tests, with 2 failures (0 unexpected) in 0.008 (0.009) seconds
+Test Suite 'SharedAccessStoreTests' started at 2026-10-05 14:21:38.736.
+Test Case '-[RilloraTests.SharedAccessStoreTests testANameOnlyResponseWithPrivateDetailsFailsClosed]' started.
+Test Case '-[RilloraTests.SharedAccessStoreTests testANameOnlyResponseWithPrivateDetailsFailsClosed]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SharedAccessStoreTests testFailedRefreshDoesNotLeavePreviouslyGrantedContentVisible]' started.
+Test Case '-[RilloraTests.SharedAccessStoreTests testFailedRefreshDoesNotLeavePreviouslyGrantedContentVisible]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SharedAccessStoreTests testLateResponseCannotRestoreDetailsAfterBackgroundInvalidation]' started.
+Test Case '-[RilloraTests.SharedAccessStoreTests testLateResponseCannotRestoreDetailsAfterBackgroundInvalidation]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SharedAccessStoreTests testPeriodicRefreshAvoidsFlickerButClearsRevokedOrUnavailableContent]' started.
+Test Case '-[RilloraTests.SharedAccessStoreTests testPeriodicRefreshAvoidsFlickerButClearsRevokedOrUnavailableContent]' passed (0.001 seconds).
+Test Suite 'SharedAccessStoreTests' passed at 2026-10-05 14:21:38.742.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.004 (0.005) seconds
+Test Suite 'SharingLocalizationTests' started at 2026-10-05 14:21:38.742.
+Test Case '-[RilloraTests.SharingLocalizationTests testLocalizationDoesNotChangeSharingWireValuesOrScope]' started.
+Test Case '-[RilloraTests.SharingLocalizationTests testLocalizationDoesNotChangeSharingWireValuesOrScope]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SharingLocalizationTests testPrivateTitleIsPreservedWithoutBeingUsedAsAFormatKey]' started.
+Test Case '-[RilloraTests.SharingLocalizationTests testPrivateTitleIsPreservedWithoutBeingUsedAsAFormatKey]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SharingLocalizationTests testReviewRequestAndExportCountsUsePluralResources]' started.
+Test Case '-[RilloraTests.SharingLocalizationTests testReviewRequestAndExportCountsUsePluralResources]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SharingLocalizationTests testSimplifiedChineseSharingTermsAndSafetyMessages]' started.
+Test Case '-[RilloraTests.SharingLocalizationTests testSimplifiedChineseSharingTermsAndSafetyMessages]' passed (0.001 seconds).
+Test Suite 'SharingLocalizationTests' passed at 2026-10-05 14:21:38.746.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.003 (0.004) seconds
+Test Suite 'SharingPreviewTests' started at 2026-10-05 14:21:38.746.
+Test Case '-[RilloraTests.SharingPreviewTests testExactSelectedFieldsAreAccepted]' started.
+Test Case '-[RilloraTests.SharingPreviewTests testExactSelectedFieldsAreAccepted]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SharingPreviewTests testFuturePrivateFieldsAndUnselectedMatterAreRejected]' started.
+Test Case '-[RilloraTests.SharingPreviewTests testFuturePrivateFieldsAndUnselectedMatterAreRejected]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SharingPreviewTests testMorePermissiveLevelCannotReplaceTheSelectedLevel]' started.
+Test Case '-[RilloraTests.SharingPreviewTests testMorePermissiveLevelCannotReplaceTheSelectedLevel]' passed (0.001 seconds).
+Test Suite 'SharingPreviewTests' passed at 2026-10-05 14:21:38.750.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.003 (0.004) seconds
+Test Suite 'SharingTests' started at 2026-10-05 14:21:38.750.
+Test Case '-[RilloraTests.SharingTests testDetailsRemainBoundedToSafeFields]' started.
+Test Case '-[RilloraTests.SharingTests testDetailsRemainBoundedToSafeFields]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SharingTests testDirectionsRejectFinancialDetails]' started.
+Test Case '-[RilloraTests.SharingTests testDirectionsRejectFinancialDetails]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SharingTests testEnvelopeRejectsWriteOrReleaseAuthority]' started.
+Test Case '-[RilloraTests.SharingTests testEnvelopeRejectsWriteOrReleaseAuthority]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SharingTests testInvitationCapabilityMustBeACompleteFragment]' started.
+Test Case '-[RilloraTests.SharingTests testInvitationCapabilityMustBeACompleteFragment]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SharingTests testItemsMustBelongToAVisibleConnection]' started.
+Test Case '-[RilloraTests.SharingTests testItemsMustBelongToAVisibleConnection]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SharingTests testNameAccessRejectsUnexpectedLocation]' started.
+Test Case '-[RilloraTests.SharingTests testNameAccessRejectsUnexpectedLocation]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SharingTests testReplacementRequestNamesBothCurrentVersions]' started.
+Test Case '-[RilloraTests.SharingTests testReplacementRequestNamesBothCurrentVersions]' passed (0.003 seconds).
+Test Case '-[RilloraTests.SharingTests testSavedCopyDecodesItsActualDateAndStaysWithinItsSavedScope]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/SharingTests.swift:49: error: -[RilloraTests.SharingTests testSavedCopyDecodesItsActualDateAndStaysWithinItsSavedScope] : XCTAssertTrue failed
+Test Case '-[RilloraTests.SharingTests testSavedCopyDecodesItsActualDateAndStaysWithinItsSavedScope]' failed (0.012 seconds).
+Test Suite 'SharingTests' failed at 2026-10-05 14:21:38.772.
+	 Executed 8 tests, with 1 failure (0 unexpected) in 0.020 (0.022) seconds
+Test Suite 'SimulationStoreTests' started at 2026-10-05 14:21:38.772.
+Test Case '-[RilloraTests.SimulationStoreTests testAPIFailureProducesRecoverableFailureState]' started.
+Test Case '-[RilloraTests.SimulationStoreTests testAPIFailureProducesRecoverableFailureState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SimulationStoreTests testCancellationRestoresPreviousReadyState]' started.
+Test Case '-[RilloraTests.SimulationStoreTests testCancellationRestoresPreviousReadyState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SimulationStoreTests testChangingScenarioClearsThePreviousScenarioResult]' started.
+Test Case '-[RilloraTests.SimulationStoreTests testChangingScenarioClearsThePreviousScenarioResult]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SimulationStoreTests testMismatchedResponseDoesNotBecomeTheChosenScenarioResult]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/SimulationStoreTests.swift:44: error: -[RilloraTests.SimulationStoreTests testMismatchedResponseDoesNotBecomeTheChosenScenarioResult] : XCTAssertEqual failed: ("failed(message: "演练返回了不同的情景，请重试。")") is not equal to ("failed(message: "The rehearsal returned a different scenario. Try again.")")
+Test Case '-[RilloraTests.SimulationStoreTests testMismatchedResponseDoesNotBecomeTheChosenScenarioResult]' failed (0.009 seconds).
+Test Case '-[RilloraTests.SimulationStoreTests testRunUsesSelectedDistinctLifeEventAndPublishesResult]' started.
+Test Case '-[RilloraTests.SimulationStoreTests testRunUsesSelectedDistinctLifeEventAndPublishesResult]' passed (0.001 seconds).
+Test Suite 'SimulationStoreTests' failed at 2026-10-05 14:21:38.786.
+	 Executed 5 tests, with 1 failure (0 unexpected) in 0.013 (0.014) seconds
+Test Suite 'StartHereEncryptionServiceTests' started at 2026-10-05 14:21:38.786.
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testDecryptsPackageGeneratedByPinnedWebHPKELibrary]' started.
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testDecryptsPackageGeneratedByPinnedWebHPKELibrary]' passed (0.010 seconds).
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testEncryptsAndLocallyRecoversWithoutPuttingPrivateKeyInArtifact]' started.
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testEncryptsAndLocallyRecoversWithoutPuttingPrivateKeyInArtifact]' passed (0.003 seconds).
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testRejectsCiphertextTamperingBeforeDecryption]' started.
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testRejectsCiphertextTamperingBeforeDecryption]' passed (0.003 seconds).
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testSyntheticRecipientDecryptsWithMemoryOnlyDeviceKeyAndRejectsAnotherKey]' started.
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testSyntheticRecipientDecryptsWithMemoryOnlyDeviceKeyAndRejectsAnotherKey]' passed (0.007 seconds).
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testWrapsTheContentKeyForEveryEligibleRecipientDevice]' started.
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testWrapsTheContentKeyForEveryEligibleRecipientDevice]' passed (0.003 seconds).
+Test Suite 'StartHereEncryptionServiceTests' passed at 2026-10-05 14:21:38.814.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.026 (0.028) seconds
+Test Suite 'StartHerePreviewStoreTests' started at 2026-10-05 14:21:38.814.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCancellationRestoresReadyState]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCancellationRestoresReadyState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCreateEncryptedPublishesOnlyAfterLocalRecoveryAndFinalize]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCreateEncryptedPublishesOnlyAfterLocalRecoveryAndFinalize]' passed (0.024 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCreatePreviewPublishesNoFileResult]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCreatePreviewPublishesNoFileResult]' passed (0.001 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCreatePrintablePublishesShareableInMemoryArtifact]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCreatePrintablePublishesShareableInMemoryArtifact]' passed (0.001 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testEncryptedFinalizeReauthenticationKeepsPreviewUntilExplicitRetry]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testEncryptedFinalizeReauthenticationKeepsPreviewUntilExplicitRetry]' passed (0.004 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testEncryptedPreparationReauthenticationDoesNotFinalizeOrPublish]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testEncryptedPreparationReauthenticationDoesNotFinalizeOrPublish]' passed (0.002 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testFailureCanReturnToReadyState]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testFailureCanReturnToReadyState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testOtherForbiddenExportsStillPublishTheirFailure]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/StartHerePreviewStoreTests.swift:168: error: -[RilloraTests.StartHerePreviewStoreTests testOtherForbiddenExportsStillPublishTheirFailure] : XCTAssertEqual failed: ("failed(message: "服务未能完成此请求。")") is not equal to ("failed(message: "Not allowed.")")
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/StartHerePreviewStoreTests.swift:169: error: -[RilloraTests.StartHerePreviewStoreTests testOtherForbiddenExportsStillPublishTheirFailure] : XCTAssertEqual failed: ("failed(message: "服务未能完成此请求。")") is not equal to ("failed(message: "Not allowed.")")
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testOtherForbiddenExportsStillPublishTheirFailure]' failed (0.011 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testPrintableCancellationRestoresIdleState]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testPrintableCancellationRestoresIdleState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testPrintableReauthenticationKeepsPreviewAndRequiresExplicitRetry]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testPrintableReauthenticationKeepsPreviewAndRequiresExplicitRetry]' passed (0.001 seconds).
+Test Suite 'StartHerePreviewStoreTests' failed at 2026-10-05 14:21:38.863.
+	 Executed 10 tests, with 2 failures (0 unexpected) in 0.046 (0.049) seconds
+Test Suite 'TrustedContactEditorStoreTests' started at 2026-10-05 14:21:38.863.
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testEditUsesLatestOptimisticVersionAndAppliesResponse]' started.
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testEditUsesLatestOptimisticVersionAndAppliesResponse]' passed (0.001 seconds).
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testNewContactUsesRecordOnlyCreateContract]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/TrustedContactEditorStoreTests.swift:61: error: -[RilloraTests.TrustedContactEditorStoreTests testNewContactUsesRecordOnlyCreateContract] : XCTAssertEqual failed: ("Optional("仅有记录，尚未发送邀请")") is not equal to ("Optional("Record only — no invitation sent")")
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testNewContactUsesRecordOnlyCreateContract]' failed (0.002 seconds).
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testOpeningExistingContactLoadsLatestServerVersion]' started.
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testOpeningExistingContactLoadsLatestServerVersion]' passed (0.001 seconds).
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testOverlappingSavesCannotCreateTheContactTwice]' started.
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testOverlappingSavesCannotCreateTheContactTwice]' passed (0.005 seconds).
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testReloadAndRevokeCannotReplaceAnInFlightSave]' started.
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testReloadAndRevokeCannotReplaceAnInFlightSave]' passed (0.001 seconds).
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testRevokeUsesPersistedIdentityAndExplicitRevokedStatus]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/TrustedContactEditorStoreTests.swift:139: error: -[RilloraTests.TrustedContactEditorStoreTests testRevokeUsesPersistedIdentityAndExplicitRevokedStatus] : XCTAssertEqual failed: ("Optional("角色已撤销")") is not equal to ("Optional("Role revoked")")
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testRevokeUsesPersistedIdentityAndExplicitRevokedStatus]' failed (0.001 seconds).
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testValidationStopsEmptyNameBeforeTransport]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/TrustedContactEditorStoreTests.swift:152: error: -[RilloraTests.TrustedContactEditorStoreTests testValidationStopsEmptyNameBeforeTransport] : XCTAssertEqual failed: ("failed(message: "请填写联系人的姓名。", conflict: false)") is not equal to ("failed(message: "Add the contact’s name.", conflict: false)")
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testValidationStopsEmptyNameBeforeTransport]' failed (0.005 seconds).
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testVersionConflictKeepsContactDraftForRecovery]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/TrustedContactEditorStoreTests.swift:114: error: -[RilloraTests.TrustedContactEditorStoreTests testVersionConflictKeepsContactDraftForRecovery] : XCTAssertEqual failed: ("failed(message: "此记录已更改，请刷新后重试。", conflict: true)") is not equal to ("failed(message: "The record changed. Refresh and try again.", conflict: true)")
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testVersionConflictKeepsContactDraftForRecovery]' failed (0.001 seconds).
+Test Suite 'TrustedContactEditorStoreTests' failed at 2026-10-05 14:21:38.882.
+	 Executed 8 tests, with 4 failures (0 unexpected) in 0.017 (0.019) seconds
+Test Suite 'RilloraTests.xctest' failed at 2026-10-05 14:21:38.883.
+	 Executed 216 tests, with 1 test skipped and 34 failures (0 unexpected) in 1.722 (1.801) seconds
+Test Suite 'All tests' failed at 2026-10-05 14:21:38.883.
+	 Executed 216 tests, with 1 test skipped and 34 failures (0 unexpected) in 1.722 (1.803) seconds
+2026-10-05 14:21:39.229 xcodebuild[35538:25960906] [MT] IDETestOperationsObserverDebug: 14.954 elapsed -- Testing started completed.
+2026-10-05 14:21:39.229 xcodebuild[35538:25960906] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-05 14:21:39.229 xcodebuild[35538:25960906] [MT] IDETestOperationsObserverDebug: 14.954 sec, +14.954 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-dot-followup-20261005/native-unit-before.xcresult
+
+Failing tests:
+	APIClientTests.testAuthenticationFailureIsPreservedForTheUI()
+	APIClientTests.testCreateAndRevokeTrustedContactUseExplicitEvidenceContract()
+	APIClientTests.testCreateAndRevokeTrustedContactUseExplicitEvidenceContract()
+	APIClientTests.testFetchOverviewUsesDevelopmentIdentityAndDecodesSharedContract()
+	ApplePurchaseCoordinatorTests.testChangedPriceRequiresAnotherDeliberateConsent()
+	ApplePurchaseCoordinatorTests.testForeignOwnerAndSandboxNeverReachProductionReceiptIntake()
+	ApplePurchaseCoordinatorTests.testForeignOwnerAndSandboxNeverReachProductionReceiptIntake()
+	ApplePurchaseCoordinatorTests.testHistoryOutageIsNotPresentedAsHavingNoPurchases()
+	ApplePurchaseCoordinatorTests.testOnlyCommittedServerStateCanFinishThenRestoreRetries()
+	ApplePurchaseCoordinatorTests.testReviewBuildRejectsAProductionTransactionAndUnknownAppReceiptCannotPurchase()
+	CommerceStoreTests.testLocalStoreKitPurchaseFinishesOnlyAfterMatchingVerifiedEvidence()
+	CommerceStoreTests.testLocalStoreKitPurchaseRejectsWrongAccountTokenWithoutFinishing()
+	CommerceStoreTests.testRetiredMonthlyProductCannotStartANewPurchase()
+	CommerceStoreTests.testSandboxCatalogRejectsXcodeLocalSubscriptionGroup()
+	CommerceStoreTests.testSandboxPurchaseFinishesOnlyAfterDurableServerAuthorization()
+	CommerceStoreTests.testSandboxPurchaseRemainsUnfinishedWhileAuthoritativeSnapshotIsPending()
+	CommerceStoreTests.testSubscriptionStatusUpdateRefreshesLifecycleWithoutFinishingOrGrantingAccess()
+	CommerceStoreTests.testUnverifiedLocalStoreKitPurchaseNeverFinishes()
+	FamilyMaintenanceTests.testChangedSourceOrScopeDoesNotCountAsCompleted()
+	MatterEditorStoreTests.testValidationStopsAnEmptyTitleBeforeTransport()
+	MatterEditorStoreTests.testVersionConflictKeepsDraftAndOffersRecoveryState()
+	OfficialSetupStoreTests.testConflictKeepsConfirmedServerStateAndOffersReload()
+	PlanMotivationStoreTests.testConflictKeepsSelectedMotivationForRecovery()
+	ProductionConnectionTests.testClosedServiceDoesNotOpenHostedAuthentication()
+	RoleAssignmentPolicyStoreTests.testAcknowledgedRoleIsRetainedWhenTheFollowingRefreshFails()
+	RoleAssignmentPolicyStoreTests.testCreateUsesMatterScopeAndMarksEarlierRehearsalsStale()
+	SharingTests.testSavedCopyDecodesItsActualDateAndStaysWithinItsSavedScope()
+	SimulationStoreTests.testMismatchedResponseDoesNotBecomeTheChosenScenarioResult()
+	StartHerePreviewStoreTests.testOtherForbiddenExportsStillPublishTheirFailure()
+	StartHerePreviewStoreTests.testOtherForbiddenExportsStillPublishTheirFailure()
+	TrustedContactEditorStoreTests.testNewContactUsesRecordOnlyCreateContract()
+	TrustedContactEditorStoreTests.testRevokeUsesPersistedIdentityAndExplicitRevokedStatus()
+	TrustedContactEditorStoreTests.testValidationStopsEmptyNameBeforeTransport()
+	TrustedContactEditorStoreTests.testVersionConflictKeepsContactDraftForRecovery()
+
+** TEST EXECUTE FAILED **
+
+Testing started
