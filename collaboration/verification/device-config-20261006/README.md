@@ -31,9 +31,14 @@ raw device logs and reproducible caches remain excluded under the existing contr
 - [Build8 checks/distribution](receipts/distribution-build8.json)
 - [Physical receipt readback](receipts/apple-purchase-readback-result.json)
 
-Remote download/decryption confirmation is recorded separately after the Git push.
+[Fresh remote readback](remote-readback.json) confirms artifact3e46e5130:141,191,492bytes downloaded into independent LFS storage,677objects/3,102paths decrypted and verified against metadata read from GitHub. Previous archives were not downloaded again.
 
 Readable scan passes with0unreviewed findings. Six source-SHA256 values resembling
 credentials were independently matched to sourcee229c4668, then represented as named
 path/sha256 rows in the readable copy. Encrypted originals are unchanged; no scanner
 exception was added. Final preservation/publication receipts are directly versioned.
+
+Source CI63 is verified. The artifact commit contains evidence/docs only; its separate
+CI result was not observed after the browser connection stopped and CLI reported missing
+Checks/Actions read permission. No extra authentication was requested. The task simulator
+was shut down; the Owner original simulator remains booted. Phone update/Restore pending.

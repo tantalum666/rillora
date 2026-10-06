@@ -3,7 +3,7 @@
 October7当前：`codex/device-config-20261006`源码08afb3821/CI63通过。首笔真实Apple Sandbox
 HKD888购买已验签；简洁购买页构建8已分发原内部组并选入未提交草稿，真机升级/购后恢复待连接。
 [新增保存包](verification/device-config-20261006/README.md)的raw-work-020保留3,102路径/
-677对象，本地解密核验通过，远端读回另记。Stripe Live凭据已保护保存、运行计费尚未接通。
+677对象，本地与GitHub独立新下载后的解密核验均通过。Stripe Live凭据已保护保存、运行计费尚未接通。
 
 
 Updated: 2026-10-06 (Asia/Hong_Kong)

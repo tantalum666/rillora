@@ -311,5 +311,6 @@ paths/677objects and141,191,492encrypted bytes. Local decryption passes. It reta
 builds6/7/8, superseded render-fix artifact, exact tests/preview products and provider
 receipts; real credentials, personal onboarding, raw device logs and caches stay excluded.
 Source08afb3821/CI63passes. Build8 internal distribution and verified HKD888 Sandbox
-receipt are separate from physical8/Restore, real Live charges and App Review. Remote
-readback is completed independently after this artifact push; never redownload1–19.
+receipt are separate from physical8/Restore, real Live charges and App Review. Fresh remote
+download/decryption verifies677objects/3,102paths against GitHub metadata at3e46e5130;
+previous1–19were not downloaded again. [Remote receipt](../collaboration/verification/device-config-20261006/remote-readback.json).
