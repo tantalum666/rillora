@@ -5,9 +5,13 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-10-06 (Asia/Hong_Kong)
+Last updated: 2026-10-07 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-10-07 购买页只显示权益、价格和购买操作
+
+Owner明确取消多余勾选框和展示给用户的Large text测试控件。iOS购买页直接显示家庭版相对免费版的实际权益、Apple返回的币种及完整年费、一个购买主按钮；续订/取消说明与条款链接紧邻按钮，最终付款由Apple系统窗口确认。按钮点击针对当时可见报价记录独立订阅接受，页面加载不提交接受，价格变化必须重新展示后再点购买。账号注册clickwrap、历史收据和退款/恢复入口保持各自合同。[当前实施](device-config-20261006.md)。
 
 ## 2026-10-06 Apple最终美国年费锁定119.99
 

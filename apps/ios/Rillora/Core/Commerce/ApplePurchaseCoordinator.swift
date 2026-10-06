@@ -70,28 +70,32 @@ final class ApplePurchaseCoordinator {
         }
     }
 
-    func purchase(acceptedTerms: Bool) async {
-        guard !busy, acceptedTerms, let expected = quote, let owner, let environment else { return }
+    /// Called only by the subscription button beside the price, renewal disclosure and terms.
+    func purchase(accepting displayedQuote: AppleQuoteResponse?) async {
+        guard !busy, let expected = displayedQuote, let owner, let environment else { return }
         let generation = revision
         busy = true; message = nil
         defer { if generation == revision { busy = false } }
         do {
+            guard quote == expected else {
+                message = String(localized: "The price changed or is unavailable. Review it before subscribing."); return
+            }
             // Re-load both prices before preparing. A changed price needs a fresh
             // deliberate consent action, even when the StoreKit sheet would confirm it.
             await refreshQuote()
             guard generation == revision, !Task.isCancelled else { return }
-            guard let current = quote, current == expected, product != nil else {
+            guard let current = quote, current == expected, let quotedProduct = product else {
                 message = String(localized: "The price changed or is unavailable. Review it before subscribing."); return
             }
             if pending?.state == "pending" { message = String(localized: "Your purchase is waiting for Apple. Check it again shortly."); return }
             let preparation = ApplePurchasePreparation(quote: current.quote,
-                consent: ApplePurchaseConsent(terms: current.purchaseTerms, accepted: acceptedTerms), expectedAppAccountToken: owner)
+                consent: ApplePurchaseConsent(terms: current.purchaseTerms, accepted: true), expectedAppAccountToken: owner)
             let prepared = try await service.prepareApplePurchase(preparation, nonce: pending?.nonce ?? UUID(), environment: environment)
             guard generation == revision, prepared.isValid(for: environment), prepared.appAccountToken == owner else { return }
             let started = try await service.changeApplePurchase(prepared.orderReference, action: "start", environment: environment)
             guard generation == revision, started.state == "started", !Task.isCancelled else { return }
             let outcome = try await client.purchase(productID: current.quote.productId, appAccountToken: owner,
-                expectedStorefrontCountryCode: current.quote.storefrontCountryCode)
+                expectedStorefrontCountryCode: current.quote.storefrontCountryCode, expectedProduct: quotedProduct)
             guard generation == revision else { return }
             switch outcome {
             case .verified(let evidence): await accept(evidence, generation: generation)
@@ -102,7 +106,15 @@ final class ApplePurchaseCoordinator {
             case .userCancelled:
                 _ = try await service.changeApplePurchase(prepared.orderReference, action: "cancel", environment: environment)
                 guard generation == revision else { return }
-                message = nil
+                await refreshQuote()
+                guard generation == revision, !Task.isCancelled else { return }
+                message = quote == current ? nil : String(localized: "The price changed or is unavailable. Review it before subscribing.")
+            case .quoteChanged:
+                _ = try await service.changeApplePurchase(prepared.orderReference, action: "cancel", environment: environment)
+                guard generation == revision, !Task.isCancelled else { return }
+                await refreshQuote()
+                guard generation == revision, !Task.isCancelled else { return }
+                message = String(localized: "The price changed or is unavailable. Review it before subscribing.")
             case .unverified:
                 message = String(localized: "Apple could not verify this purchase. Restore purchases before trying again.")
             }

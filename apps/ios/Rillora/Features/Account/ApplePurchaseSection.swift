@@ -3,42 +3,48 @@ import SwiftUI
 struct ApplePurchaseSection: View {
     let purchase: ApplePurchaseCoordinator
     let subscription: CommerceSubscription?
-    @State private var acceptedTerms = false
 
     var body: some View {
         Section {
-            if purchase.environment == .sandbox {
-                Label(String(localized: "Apple test purchase · No charge"), systemImage: "testtube.2")
-                    .font(.subheadline).foregroundStyle(RilloraTheme.muted)
-            }
-            if subscription == nil, let product = purchase.product, purchase.quote != nil {
-                LabeledContent(String(localized: "Family · yearly"), value: product.displayPrice)
-                    .foregroundStyle(RilloraTheme.ink)
-                Text(String(localized: "5 live recipients · Shared reviews"))
+            if subscription == nil, let product = purchase.product, let displayedQuote = purchase.quote {
+                VStack(alignment: .leading, spacing: 20) {
+                    Text(String(localized: "Family"))
+                        .font(.system(.title, design: .serif).weight(.medium))
+                        .foregroundStyle(RilloraTheme.ink)
+                    VStack(alignment: .leading, spacing: 12) {
+                        Label(String(localized: "5 live recipients (Free: 1)"), systemImage: "person.2")
+                        Label(String(localized: "Review shared information together"), systemImage: "checklist")
+                        Label(String(localized: "Approve corrections suggested by one trusted person"), systemImage: "pencil.line")
+                    }
                     .font(.subheadline).foregroundStyle(RilloraTheme.body)
-                if purchase.pending?.state != "pending" {
-                    Text("Subscription consent is shown in English. The English text is authoritative.")
-                        .font(.footnote).foregroundStyle(RilloraTheme.muted)
-                    Toggle(isOn: $acceptedTerms) {
-                        Text(verbatim: "I agree to the subscription terms and yearly renewal at \(product.displayPrice). I can cancel in Apple Settings.")
-                            .font(.subheadline).foregroundStyle(RilloraTheme.body)
+                    .fixedSize(horizontal: false, vertical: true)
+                    Text(String(format: String(localized: "%@ / year"), product.displayPriceWithCurrency))
+                        .font(.title2.weight(.semibold)).foregroundStyle(RilloraTheme.ink)
+                        .accessibilityIdentifier("apple-purchase.price")
+                    if purchase.environment == .sandbox {
+                        Label(String(localized: "Apple test purchase · No charge"), systemImage: "testtube.2")
+                            .font(.footnote).foregroundStyle(RilloraTheme.muted)
                     }
-                    .tint(RilloraTheme.sage)
-                    .disabled(purchase.busy)
-                    .accessibilityIdentifier("apple-purchase.consent")
-                    ViewThatFits(in: .horizontal) {
-                        HStack(spacing: 16) { policyLinks }
-                        VStack(alignment: .leading, spacing: 10) { policyLinks }
+                    if purchase.pending?.state != "pending" {
+                        Button {
+                            Task { await purchase.purchase(accepting: displayedQuote) }
+                        } label: {
+                            Label(purchase.busy ? String(localized: "Checking purchase…") : String(localized: "Subscribe with Apple"), systemImage: "apple.logo")
+                                .frame(maxWidth: .infinity)
+                        }
+                        .buttonStyle(RilloraPrimaryActionButtonStyle())
+                        .disabled(purchase.busy)
+                        .accessibilityIdentifier("apple-purchase.subscribe")
+                        Text(String(localized: "By subscribing, you agree to the Subscription Terms. Renews yearly at the price above until canceled in Apple Settings."))
+                            .font(.footnote).foregroundStyle(RilloraTheme.muted)
+                        ViewThatFits(in: .horizontal) {
+                            HStack(spacing: 16) { policyLinks }
+                            VStack(alignment: .leading, spacing: 10) { policyLinks }
+                        }
+                        .font(.footnote)
                     }
-                    .font(.footnote)
-                    Button {
-                        Task { await purchase.purchase(acceptedTerms: acceptedTerms) }
-                    } label: {
-                        Label(purchase.busy ? String(localized: "Checking purchase…") : String(localized: "Subscribe with Apple"), systemImage: "apple.logo")
-                    }
-                    .disabled(!acceptedTerms || purchase.busy)
-                    .accessibilityIdentifier("apple-purchase.subscribe")
                 }
+                .padding(.vertical, 8)
             }
             if subscription?.renewalProvider == "storekit" {
                 Link(String(localized: "Manage Apple subscription"), destination: URL(string: "https://apps.apple.com/account/subscriptions")!)
@@ -55,7 +61,6 @@ struct ApplePurchaseSection: View {
                     .accessibilityIdentifier("apple-purchase.status")
             }
         }
-        .onChange(of: purchase.quote) { _, _ in acceptedTerms = false }
     }
 
     @ViewBuilder private var policyLinks: some View {

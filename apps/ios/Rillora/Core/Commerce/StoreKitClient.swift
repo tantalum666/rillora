@@ -12,6 +12,12 @@ struct StoreKitProductSnapshot: Equatable, Identifiable, Sendable {
     var oneYearSubscription: Bool = false
 
     var id: String { productID }
+
+    /// Keep Apple's localized amount, while making ambiguous dollar symbols explicit.
+    var displayPriceWithCurrency: String {
+        guard let currencyCode, !currencyCode.isEmpty else { return displayPrice }
+        return displayPrice.contains(currencyCode) ? displayPrice : "\(currencyCode) \(displayPrice)"
+    }
 }
 
 struct StoreKitTransactionEvidence: Equatable, Sendable {
@@ -96,6 +102,7 @@ enum StoreKitPurchaseOutcome: Equatable, Sendable {
     case pending
     case userCancelled
     case unverified
+    case quoteChanged
 }
 
 enum StoreKitTransactionUpdate: Equatable, Sendable {
@@ -115,7 +122,8 @@ protocol StoreKitPurchasing: Sendable {
     func purchase(
         productID: String,
         appAccountToken: UUID,
-        expectedStorefrontCountryCode: String?
+        expectedStorefrontCountryCode: String?,
+        expectedProduct: StoreKitProductSnapshot?
     ) async throws -> StoreKitPurchaseOutcome
     func transactionUpdates(identifiers: Set<String>) -> AsyncStream<StoreKitTransactionUpdate>
     func subscriptionStatusUpdates(
@@ -259,33 +267,50 @@ actor AppleStoreKitClient: StoreKitPurchasing {
     func purchase(
         productID: String,
         appAccountToken: UUID,
-        expectedStorefrontCountryCode: String?
+        expectedStorefrontCountryCode: String?,
+        expectedProduct: StoreKitProductSnapshot?
     ) async throws -> StoreKitPurchaseOutcome {
-        let product: Product
-        if let cached = productsByID[productID] {
-            product = cached
-        } else {
-            guard let loaded = try await Product.products(for: [productID]).first,
-                  loaded.type == .autoRenewable,
-                  loaded.subscription?.subscriptionGroupID
-                    == expectedSubscriptionGroupID else {
-                throw StoreKitClientError.productUnavailable
-            }
-            productsByID[productID] = loaded
-            product = loaded
+        if let expectedStorefrontCountryCode,
+           await Storefront.current?.countryCode != expectedStorefrontCountryCode {
+            return .quoteChanged
         }
+        // The UI quote may predate account authentication or a server round trip.
+        // Never open the sheet with a cached Product from a different quote.
+        guard let product = try await Product.products(for: [productID]).first,
+              product.type == .autoRenewable,
+              product.subscription?.subscriptionGroupID == expectedSubscriptionGroupID else {
+            return .quoteChanged
+        }
+        if let expectedProduct {
+            let fresh = Self.snapshot(product)
+            guard expectedProduct.productID == productID,
+                  let amount = expectedProduct.priceMilliunits,
+                  let currency = expectedProduct.currencyCode,
+                  fresh.priceMilliunits == amount, fresh.currencyCode == currency,
+                  fresh.oneYearSubscription == expectedProduct.oneYearSubscription else {
+                return .quoteChanged
+            }
+        }
+        if let expectedStorefrontCountryCode,
+           await Storefront.current?.countryCode != expectedStorefrontCountryCode {
+            return .quoteChanged
+        }
+        productsByID[productID] = product
 
         var options: Set<Product.PurchaseOption> = [.appAccountToken(appAccountToken)]
-        if let expectedStorefrontCountryCode {
-            options.insert(.onStorefrontChange { storefront in
-                storefront.countryCode == expectedStorefrontCountryCode
-            })
+        if expectedStorefrontCountryCode != nil {
+            // Any change after the quote requires a new displayed price and consent.
+            options.insert(.onStorefrontChange { _ in false })
         }
 
         switch try await product.purchase(options: options) {
         case .pending:
             return .pending
         case .userCancelled:
+            if let expectedStorefrontCountryCode,
+               await Storefront.current?.countryCode != expectedStorefrontCountryCode {
+                return .quoteChanged
+            }
             return .userCancelled
         case .success(let result):
             switch result {
@@ -507,7 +532,8 @@ struct UnavailableStoreKitClient: StoreKitPurchasing {
     func purchase(
         productID: String,
         appAccountToken: UUID,
-        expectedStorefrontCountryCode: String?
+        expectedStorefrontCountryCode: String?,
+        expectedProduct: StoreKitProductSnapshot?
     ) async throws -> StoreKitPurchaseOutcome {
         throw StoreKitClientError.productUnavailable
     }

@@ -694,7 +694,8 @@ private actor StubStoreKitClient: StoreKitPurchasing {
     func purchase(
         productID: String,
         appAccountToken: UUID,
-        expectedStorefrontCountryCode: String?
+        expectedStorefrontCountryCode: String?,
+        expectedProduct: StoreKitProductSnapshot?
     ) async throws -> StoreKitPurchaseOutcome {
         purchaseOutcome
     }

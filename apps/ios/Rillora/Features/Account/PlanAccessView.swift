@@ -36,60 +36,64 @@ struct PlanAccessView: View {
     }
 
     private func planList(_ status: CommerceStatus) -> some View {
-        RilloraForm {
-            Section {
-                VStack(spacing: 12) {
-                    RilloraTaskEmblem(systemImage: status.currentAccess.planCode == "free" ? "map" : "person.2.fill")
-                    Text(store.currentPlanLabel)
-                        .font(.system(.title, design: .serif).weight(.medium))
-                        .foregroundStyle(RilloraTheme.ink)
-                }
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 16)
-            }
-            .listRowBackground(Color.clear)
-
-            if let freePlan = plan(code: "free", in: status) {
+        let hasAppleOffer = status.currentAccess.subscription == nil
+            && store.applePurchase?.product != nil && store.applePurchase?.quote != nil
+        return RilloraForm {
+            if !hasAppleOffer {
                 Section {
-                    DisclosureGroup {
-                        ForEach(visibleCapabilities(freePlan), id: \.code) { capability in
-                            Label(capabilityLabel(capability.code), systemImage: "checkmark.circle.fill")
-                                .foregroundStyle(RilloraTheme.body)
-                                .padding(.vertical, 5)
-                        }
-                        Text(String(localized: "Core planning stays available without a subscription."))
-                            .font(.footnote).foregroundStyle(RilloraTheme.muted)
-                    } label: { Label(String(localized: "Included features"), systemImage: "checklist") }
+                    VStack(spacing: 12) {
+                        RilloraTaskEmblem(systemImage: status.currentAccess.planCode == "free" ? "map" : "person.2.fill")
+                        Text(store.currentPlanLabel)
+                            .font(.system(.title, design: .serif).weight(.medium))
+                            .foregroundStyle(RilloraTheme.ink)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 16)
                 }
-            }
+                .listRowBackground(Color.clear)
 
-            if let familyPlan = plan(code: "family", in: status) {
-                Section {
-                    DisclosureGroup {
-                        RilloraCapabilityGrid(
-                            items: plannedCapabilities(familyPlan).map { capabilityLabel($0.code) },
-                            systemImage: "plus.circle"
-                        )
-                        DisclosureGroup(String(localized: "Later roadmap · not included yet")) {
-                            ForEach(familyPlan.capabilities.filter { $0.enforcementMode == "planned" && !["family_maintenance", "trusted_people_multiple"].contains($0.code) && $0.availability != "retired" }, id: \.code) { capability in
-                                Text(capabilityLabel(capability.code)).foregroundStyle(RilloraTheme.muted).padding(.vertical, 4)
+                if let freePlan = plan(code: "free", in: status) {
+                    Section {
+                        DisclosureGroup {
+                            ForEach(visibleCapabilities(freePlan), id: \.code) { capability in
+                                Label(capabilityLabel(capability.code), systemImage: "checkmark.circle.fill")
+                                    .foregroundStyle(RilloraTheme.body)
+                                    .padding(.vertical, 5)
                             }
-                        }
-                        if store.applePurchase == nil && !status.offers.isEmpty {
-                            if status.offers.count > 1 {
-                                RilloraFilterPicker(title: String(localized: "Billing period"), options: status.offers.map {
-                                    .init(id: $0.billingInterval, title: intervalLabel($0.billingInterval))
-                                }, selection: $billingInterval, identifier: "plan-access.billing-period")
+                            Text(String(localized: "Core planning stays available without a subscription."))
+                                .font(.footnote).foregroundStyle(RilloraTheme.muted)
+                        } label: { Label(String(localized: "Included features"), systemImage: "checklist") }
+                    }
+                }
+
+                if let familyPlan = plan(code: "family", in: status) {
+                    Section {
+                        DisclosureGroup {
+                            RilloraCapabilityGrid(
+                                items: plannedCapabilities(familyPlan).map { capabilityLabel($0.code) },
+                                systemImage: "plus.circle"
+                            )
+                            DisclosureGroup(String(localized: "Later roadmap · not included yet")) {
+                                ForEach(familyPlan.capabilities.filter { $0.enforcementMode == "planned" && !["family_maintenance", "trusted_people_multiple"].contains($0.code) && $0.availability != "retired" }, id: \.code) { capability in
+                                    Text(capabilityLabel(capability.code)).foregroundStyle(RilloraTheme.muted).padding(.vertical, 4)
+                                }
                             }
-                            if let offer = selectedOffer(in: status) {
-                                LabeledContent(intervalLabel(offer.billingInterval), value: offer.formattedPrice)
+                            if store.applePurchase == nil && !status.offers.isEmpty {
+                                if status.offers.count > 1 {
+                                    RilloraFilterPicker(title: String(localized: "Billing period"), options: status.offers.map {
+                                        .init(id: $0.billingInterval, title: intervalLabel($0.billingInterval))
+                                    }, selection: $billingInterval, identifier: "plan-access.billing-period")
+                                }
+                                if let offer = selectedOffer(in: status) {
+                                    LabeledContent(intervalLabel(offer.billingInterval), value: offer.formattedPrice)
+                                }
                             }
-                        }
-                        if !status.billingOpen {
-                            Label(String(localized: "Billing is not open"), systemImage: "lock")
-                                .font(.subheadline).foregroundStyle(RilloraTheme.muted)
-                        }
-                    } label: { Label(status.billingOpen ? String(localized: "Family") : String(localized: "Family · Not available yet"), systemImage: "person.2") }
+                            if !status.billingOpen {
+                                Label(String(localized: "Billing is not open"), systemImage: "lock")
+                                    .font(.subheadline).foregroundStyle(RilloraTheme.muted)
+                            }
+                        } label: { Label(status.billingOpen ? String(localized: "Family") : String(localized: "Family · Not available yet"), systemImage: "person.2") }
+                    }
                 }
             }
 
