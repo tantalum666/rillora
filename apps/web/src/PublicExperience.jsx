@@ -1,4 +1,4 @@
-import { withLocalePath } from "./i18n/localeStore.js";
+import { withLocalePath, preserveTransientLocale } from "./i18n/localeStore.js";
 import { LanguageControl } from "./i18n/LanguageControl.jsx";
 import { useI18n } from "./i18n/I18nProvider.jsx";
 import { AppAppearanceControl } from "./AppearanceControl.jsx";
@@ -76,7 +76,7 @@ export function PublicExperience({ sessionStatus, onRetry }) {
     const next = requestedPublicView(path);
     if (view === "home" && next !== "home") homeScroll.current = window.scrollY;
     if (next === "home") setHasVisitedHome(true);
-    if (window.location.pathname !== path) window.history.pushState({}, "", path);
+    if (window.location.pathname !== path) window.history.pushState({}, "", preserveTransientLocale(path));
     setView(next);
     window.requestAnimationFrame(() => window.scrollTo({ top: next === "home" ? homeScroll.current : 0, behavior: "auto" }));
   }

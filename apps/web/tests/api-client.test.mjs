@@ -619,3 +619,12 @@ test('identity outages never become a stale fallback email or silently select an
   const absent=createApiClient({fetchImpl:async()=>Response.json({account:{publicId:'current',displayName:'Current',verifiedEmail:'not-authoritative@example.test'},emailStatus:'not_provided'})});
   assert.equal((await absent.getAccountIdentity()).account.verifiedEmail,null);
 });
+
+test('a private401 invalidates displayed identity but a public sign-in failure does not',async()=>{
+  const prior=globalThis.window,target=new EventTarget();let expired=0;target.addEventListener('rillora:session-expired',()=>expired++);globalThis.window=target;
+  try{
+    const client=createApiClient({fetchImpl:async()=>Response.json({error:{code:'authentication_required'}},{status:401})});
+    await assert.rejects(client.getAccountIdentity());assert.equal(expired,1);
+    await assert.rejects(client.startAuthentication({}));assert.equal(expired,1);
+  }finally{if(prior===undefined)delete globalThis.window;else globalThis.window=prior;}
+});

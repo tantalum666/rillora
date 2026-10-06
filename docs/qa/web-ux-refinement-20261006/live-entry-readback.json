@@ -1,0 +1,51 @@
+{
+  "evidence": "anonymous public HTML/JavaScript only, no login",
+  "observed_at_utc": "2026-10-06T16:47:00Z",
+  "origins": {
+    "www.rillora.xyz": {
+      "status": 200,
+      "url": "https://www.rillora.xyz/",
+      "scripts": [
+        "/assets/website-appearance-6822b10cf9598455.js",
+        "/assets/public-BKkBDTS4.js"
+      ],
+      "title": [
+        "Rillora — Make the important things clear"
+      ],
+      "bundle": {
+        "url": "https://www.rillora.xyz/assets/public-BKkBDTS4.js",
+        "sha256": "07c16afde5a06fbb290c0ee0ed53549f43a16765d8725447bae3055260517499",
+        "containsChineseWorkspace": true,
+        "localeStorageKey": true,
+        "origins": [
+          "https://app.rillora.xyz",
+          "https://app.staging.rillora.xyz"
+        ],
+        "publicEntryFragment": "appOrigin:B3,preview:Z3,accountPath:q3,invitationPath:Y3},G3=new Set([\"https://app.staging.rillora.",
+        "resolvedAppOrigin": "https://app.staging.rillora.xyz"
+      }
+    },
+    "app.rillora.xyz": {
+      "status": 200,
+      "url": "https://app.rillora.xyz/",
+      "scripts": [
+        "/assets/website-appearance-6822b10cf9598455.js",
+        "/assets/index-Vd6fPE4R.js"
+      ],
+      "title": [
+        "Rillora — Your private map for what comes next"
+      ],
+      "bundle": {
+        "url": "https://app.rillora.xyz/assets/index-Vd6fPE4R.js",
+        "sha256": "b03828c6d02a0a959f947c532c40bc50d28c1278d05394756ff87ef11ee5a079",
+        "containsChineseWorkspace": true,
+        "localeStorageKey": true,
+        "origins": []
+      }
+    },
+    "app.staging.rillora.xyz": {
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    }
+  },
+  "interpretation": "Production App includes Chinese; website points to staging; staging artifact is unverified because cloud tunnel rejected it. No deployment or Preview destination changed."
+}

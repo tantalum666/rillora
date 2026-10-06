@@ -380,13 +380,15 @@ export function App() {
   }, [loadWorkspace, startsOnPublicReadOnlyRoute, startsOnInvitationRoute]);
 
   useEffect(() => {
-    const invalidate = () => {
+    const invalidate = (event) => {
       ++workspaceRevision.current;
       setSession(null); setPlan(null); setMatters([]); setContacts([]);
       setChecks([]); setAuditEvents([]); setDrawer(null); setRecoverableDraft(null);
       setCommerce(unavailableCommercialStatus()); setBusy(false); setLoading(false);
       draftOwner.current = null;
-      setLoadError(new ApiClientError(409, 'account_changed', 'The signed-in account changed. Reload before continuing.'));
+      setLoadError(event?.type === 'rillora:session-expired'
+        ? new ApiClientError(401, 'authentication_required', 'Sign in to continue.')
+        : new ApiClientError(409, 'account_changed', 'The signed-in account changed. Reload before continuing.'));
     };
     const verify = () => {
       if (session && !document.hidden) void api.getSession().catch(error => {
@@ -394,10 +396,12 @@ export function App() {
       });
     };
     window.addEventListener('rillora:account-changed', invalidate);
+    window.addEventListener('rillora:session-expired', invalidate);
     window.addEventListener('focus', verify);
     document.addEventListener('visibilitychange', verify);
     return () => {
       window.removeEventListener('rillora:account-changed', invalidate);
+      window.removeEventListener('rillora:session-expired', invalidate);
       window.removeEventListener('focus', verify);
       document.removeEventListener('visibilitychange', verify);
     };

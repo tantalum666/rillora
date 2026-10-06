@@ -1,7 +1,7 @@
 import { sharingMessage } from "./sharing.js";
 import { useI18n } from "./i18n/I18nProvider.jsx";
 import { useEffect, useState } from "react";
-import { Archive, DownloadSimple, FolderOpen, CaretRight, CheckCircle, Files } from "@phosphor-icons/react";
+import { Archive, DownloadSimple, FolderOpen, CaretRight, CheckCircle } from "@phosphor-icons/react";
 import { SurfaceIcon } from "./SurfaceMotion.jsx";
 import { SavedCopyReader } from "./SavedCopyReader.jsx";
 import { downloadMapBackup } from "./savedCopy.js";
@@ -28,7 +28,7 @@ export function AccountDataPanel({ apiClient, onChanged, onDeletionRequested }) 
     catch(e){if(e.status&&e.status<500){if(e.code==='billing_confirmation_required')setBillingRequiredByServer(true);setError({cause:e,key:"sharing.account.deleteError"});setBusy(false);}else onDeletionRequested(reference);}
   }
   return <section className="account-data-panel">
-    {confirmation}{profile&&<div className="account-data-heading"><SurfaceIcon icon={Files} emblem/><p className="account-identity">{profile.displayName}</p></div>}
+    {confirmation}
     {error&&<div className="drawer-alert" role="alert">{sharingMessage(error, t, errorMessage)}{!profile&&<button onClick={()=>setReload(n=>n+1)}>{t("sharing.common.tryAgain")}</button>}</div>}{message&&<p role="status"><CheckCircle size={22} aria-hidden="true"/>{sharingMessage(message,t,errorMessage)}</p>}
     <button className="secondary-button" disabled={busy} onClick={()=>void backup()}><SurfaceIcon icon={DownloadSimple}/><span>{t("sharing.account.downloadComplete")}</span><CaretRight className="disclosure-chevron" size={17} aria-hidden="true"/></button>
     <button className="secondary-button" disabled={busy} aria-expanded={section==="open"} aria-controls="saved-copy-tools" onClick={()=>setSection(section==="open"?"":"open")}><SurfaceIcon icon={FolderOpen}/><span>{t("sharing.account.openCopy")}</span><CaretRight className="disclosure-chevron" size={17} aria-hidden="true"/></button>

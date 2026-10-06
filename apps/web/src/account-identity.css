@@ -1,5 +1,5 @@
 .workspace-chrome { flex-wrap: wrap; }
-.account-summary { display: flex; align-items: center; text-align: left; gap: 10px; padding: 4px 0; min-width: 0; min-height: 44px; margin-right: auto; color: var(--ink); background: transparent; }
+.account-summary { border: 0; border-radius: 8px; display: flex; align-items: center; text-align: left; gap: 10px; padding: 4px 0; min-width: 0; min-height: 44px; margin-right: auto; color: var(--ink); background: transparent; }
 .account-summary > svg { flex-shrink: 0; color: var(--sage); }
 .account-summary > span { min-width: 0; }
 .account-summary small { display: block; color: var(--muted); font-size: 12px; line-height: 1.5; }
@@ -18,3 +18,5 @@
   .account-identity-panel dl { grid-template-columns: minmax(0, 1fr); gap: 6px; }
   .account-identity-panel dd + dt { margin-top: 12px; }
 }
+
+.account-summary:focus-visible { outline: 2px solid var(--sage); outline-offset: 4px; }

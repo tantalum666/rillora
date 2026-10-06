@@ -5,8 +5,18 @@ const matter = { publicId: '11111111-1111-4111-8111-111111111111', title: 'Synth
 export const overview = { session, plan: { publicId: OWNER, version: 1, firstUseState: 'completed', firstUseStep: 2 }, matters: [matter], trustedContacts: [], nextCursor: null };
 export const identity = { account: { publicId: OWNER, displayName: 'Synthetic Owner 林', verifiedEmail: 'owner@example.test' }, emailStatus: 'available' };
 export async function isolate(context, state = {}) {
-  Object.assign(state, { writes: [], unexpected: [], errors: [] });
-  context.on('page', page => page.on('pageerror', error => state.errors.push(error.message)));
+  Object.assign(state, { writes: [], unexpected: [], errors: [], console: [] });
+  context.on('page', page => {
+    page.on('pageerror', error => state.errors.push(error.message));
+    page.on('console', message => {
+      if (!['error', 'warning'].includes(message.type())) return;
+      const entry = { level: message.type(), text: message.text(), url: message.location().url };
+      const expectedApiFailure = entry.url?.includes('/api/') && /status of (401|403|404|409|503)/.test(entry.text);
+      const expectedImageFailure = state.expectedImageFailure && /Failed to load resource/.test(entry.text);
+      state.console.push({ ...entry, expectedFixtureFailure: Boolean(expectedApiFailure || expectedImageFailure) });
+      if (!expectedApiFailure && !expectedImageFailure) state.errors.push(`console ${entry.level}: ${entry.text}`);
+    });
+  });
   await context.route('**/*', async route => {
     const request = route.request(), url = new URL(request.url());
     if (url.protocol === 'data:') return route.continue();

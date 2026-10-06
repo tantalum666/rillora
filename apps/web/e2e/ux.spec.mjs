@@ -3,6 +3,7 @@ import { APP, PUBLIC, OWNER, isolate, identity } from './fixtures.mjs';
 import { guideIdentifiers } from '../src/guideIdentifiers.js';
 const routes = ['/', '/product', '/security', '/pricing', '/support', '/legal', '/legal/licenses'];
 async function healthy(page, locale) {
+  await expect(page).toHaveTitle(/Rillora/);
   await expect(page.locator('html')).toHaveAttribute('lang', locale);
   await expect(page.locator('main')).toBeVisible();
   await expect(page.locator('vite-error-overlay')).toHaveCount(0);
@@ -18,6 +19,7 @@ for (const locale of ['en', 'zh-CN']) for (const width of [320, 390, 1280, 1440,
     for (const path of routes) {
       await page.goto(PUBLIC + path); await expect(page.locator('main h1')).toBeVisible();
       await healthy(page, locale);
+      if (path === '/product') await page.screenshot({ path: test.info().outputPath(`product-${locale}-${width}.png`) });
       if (width > 1400) {
         const nav = await page.locator('.lp-nav').boundingBox(), brand = await page.locator('.lp-header > .lp-brand').boundingBox(), actions = await page.locator('.lp-header-actions').boundingBox();
         expect(Math.abs(nav.x + nav.width / 2 - width / 2)).toBeLessThan(1);
@@ -31,7 +33,7 @@ for (const locale of ['en', 'zh-CN']) for (const width of [320, 390, 1280, 1440,
       }
     }
     expect(state.errors).toEqual([]); expect(state.unexpected).toEqual([]); expect(state.writes).toEqual([]);
-    await page.screenshot({ path: test.info().outputPath(`public-${locale}-${width}.png`) }); await context.close();
+    await page.screenshot({ path: test.info().outputPath(`public-${locale}-${width}.png`) }); await test.info().attach('console-and-network', { body: Buffer.from(JSON.stringify({ console: state.console, unexpected: state.unexpected, writes: state.writes.map(write => write.path) }, null, 2)), contentType: 'application/json' }); await context.close();
   });
 }
 for (const locale of ['en', 'zh-CN']) for (const width of [390, 1440]) {
@@ -46,6 +48,10 @@ for (const locale of ['en', 'zh-CN']) for (const width of [390, 1440]) {
     await expect(page.locator('[data-mark-kind="official"]')).toHaveCount(6);
     await expect.poll(() => page.locator('.provider-mark img').evaluateAll(images => images.length === 6 && images.every(image => image.complete && image.naturalWidth > 0))).toBe(true);
     await expect(page.locator('[data-mark-kind="fallback"]')).toHaveCount(12);
+    for (const row of await page.locator('.guide-row').all()) {
+      const bounds = await row.boundingBox(), text = await row.locator('small').boundingBox();
+      expect(bounds.y + bounds.height - text.y - text.height).toBeGreaterThanOrEqual(8);
+    }
     const labels = await page.locator('.provider-mark-initials').allTextContents(); expect(new Set(labels).size).toBe(12);
     for (const key of guideIdentifiers) {
       await page.locator(`.guide-row:has([data-provider-key="${key}"])`).click();
@@ -54,9 +60,10 @@ for (const locale of ['en', 'zh-CN']) for (const width of [390, 1440]) {
       await page.reload(); await expect(page.locator('dialog.drawer')).toBeVisible();
       await page.keyboard.press('Escape'); await expect(page.locator('dialog.drawer')).toHaveCount(0);
     }
+    await page.evaluate(() => window.scrollTo(0, 0));
     await page.screenshot({ path: test.info().outputPath(`guides-${locale}-${width}.png`), fullPage: true });
     expect(state.errors).toEqual([]); expect(state.unexpected).toEqual([]); expect(state.writes).toEqual([]);
-    await context.close();
+    await test.info().attach('console-and-network', { body: Buffer.from(JSON.stringify({ console: state.console, unexpected: state.unexpected, writes: state.writes.map(write => write.path) }, null, 2)), contentType: 'application/json' }); await context.close();
   });
 }
 test('Chinese website handoff, account consent, auth return and reload stay Chinese', async ({ browser }) => {
@@ -72,10 +79,12 @@ test('Chinese website handoff, account consent, auth return and reload stay Chin
   await page.locator('.language-control select').selectOption('zh-CN'); await expect(consent).toBeChecked();
   await page.locator('.account-action-form > .secondary-button').click();
   await expect.poll(() => state.authReturn).toContain('lang=zh-CN');
+  await page.waitForURL(APP + '/account');
+  await expect(page.locator('.account-consent input[type="checkbox"]')).not.toBeChecked();
   state.signedIn = true; await page.goto(APP + state.authReturn); await expect(page.locator('.account-summary')).toBeVisible();
   await healthy(page, 'zh-CN'); await page.reload(); await healthy(page, 'zh-CN');
   expect(state.writes.map(x => x.path)).toEqual(['/api/auth/start']); expect(state.errors).toEqual([]);
-  await context.close();
+  await test.info().attach('console-and-network', { body: Buffer.from(JSON.stringify({ console: state.console, unexpected: state.unexpected, writes: state.writes.map(write => write.path) }, null, 2)), contentType: 'application/json' }); await context.close();
 });
 test('blocked storage, explicit app language and guide navigation preserve locale', async ({ browser }) => {
   const context = await browser.newContext({ locale: 'en-US' });
@@ -86,11 +95,11 @@ test('blocked storage, explicit app language and guide navigation preserve local
   await expect(page).toHaveURL(/lang=zh-CN/); await page.reload(); await healthy(page, 'zh-CN');
   await expect(page.locator('dialog.drawer')).toBeVisible(); await page.keyboard.press('Escape');
   await page.locator('.workspace-chrome .language-control select').selectOption('en');
-  await page.reload(); await healthy(page, 'en'); expect(state.errors).toEqual([]); await context.close();
+  await page.reload(); await healthy(page, 'en'); expect(state.errors).toEqual([]); await test.info().attach('console-and-network', { body: Buffer.from(JSON.stringify({ console: state.console, unexpected: state.unexpected, writes: state.writes.map(write => write.path) }, null, 2)), contentType: 'application/json' }); await context.close();
 });
 test('failed logos retain distinct local fallbacks without remote icon services', async ({ browser }) => {
   const context = await browser.newContext({ locale: 'en', colorScheme: 'dark', viewport: { width: 390, height: 960 } });
-  const state = await isolate(context), page = await context.newPage();
+  const state = await isolate(context, { expectedImageFailure: true }), page = await context.newPage();
   await context.route(/\/(?:github-invertocat-white|x-logo-white|instagram-glyph-white|facebook-primary|dropbox-glyph|coinbase-logo-white)[^/]*\.(?:svg|png)/, route => route.abort());
   await page.goto(APP + '/?view=guides');
   // Small SVGs may be inlined by Vite: dispatching the native error event covers
@@ -99,7 +108,7 @@ test('failed logos retain distinct local fallbacks without remote icon services'
   await expect(page.locator('[data-mark-kind="fallback"]')).toHaveCount(18);
   const initials = await page.locator('.provider-mark-initials').allTextContents(); expect(new Set(initials).size).toBe(18);
   await healthy(page, 'en'); expect(state.unexpected).toEqual([]); expect(state.errors).toEqual([]);
-  await page.screenshot({ path: test.info().outputPath('provider-failures-dark-mobile.png'), fullPage: true }); await context.close();
+  await page.screenshot({ path: test.info().outputPath('provider-failures-dark-mobile.png'), fullPage: true }); await test.info().attach('console-and-network', { body: Buffer.from(JSON.stringify({ console: state.console, unexpected: state.unexpected, writes: state.writes.map(write => write.path) }, null, 2)), contentType: 'application/json' }); await context.close();
 });
 test('identity is visible, bilingual, handles missing email and never displays a stale account', async ({ browser }) => {
   const context = await browser.newContext({ locale: 'zh-CN', viewport: { width: 390, height: 960 } });
@@ -114,5 +123,35 @@ test('identity is visible, bilingual, handles missing email and never displays a
   state.identity = { account: { ...identity.account, publicId: '33333333-3333-4333-8333-333333333333', verifiedEmail: 'wrong@example.test' }, emailStatus: 'available' };
   await page.reload(); await expect(page.locator('.workspace-gate')).toBeVisible();
   await expect(page.locator('body')).not.toContainText('wrong@example.test'); await expect(page.locator('.account-summary')).toHaveCount(0);
-  expect(state.errors).toEqual([]); await context.close();
+  expect(state.errors).toEqual([]); await test.info().attach('console-and-network', { body: Buffer.from(JSON.stringify({ console: state.console, unexpected: state.unexpected, writes: state.writes.map(write => write.path) }, null, 2)), contentType: 'application/json' }); await context.close();
+});
+
+test('draft text and discard decisions survive a real cross-tab language change', async ({ browser }) => {
+  const context = await browser.newContext({ locale: 'en-US', viewport: { width: 390, height: 960 } });
+  const state = await isolate(context), page = await context.newPage();
+  await page.goto(APP + '/?view=matters&task=matter-create&category=account');
+  const dialog = page.locator('dialog.drawer'); await expect(dialog).toBeVisible();
+  await dialog.locator('.matter-form input').first().fill('Original private draft 原文');
+  await dialog.locator('.matter-form textarea').last().fill('First line\n保留第二行');
+  const peer = await context.newPage(); await peer.goto(APP + '/?view=settings');
+  await peer.locator('.account-language select').selectOption('zh-CN');
+  await expect(page.locator('html')).toHaveAttribute('lang', 'zh-CN');
+  await expect(dialog.locator('.matter-form input').first()).toHaveValue('Original private draft 原文');
+  await expect(dialog.locator('.matter-form textarea').last()).toHaveValue('First line\n保留第二行');
+  await page.keyboard.press('Escape'); await expect(page.locator('dialog.task-confirmation')).toBeVisible();
+  await page.locator('dialog.task-confirmation [data-keep]').click();
+  await expect(dialog).toBeVisible(); await expect(dialog.locator('.matter-form input').first()).toHaveValue('Original private draft 原文');
+  expect(state.writes).toEqual([]); expect(state.errors).toEqual([]); await test.info().attach('console-and-network', { body: Buffer.from(JSON.stringify({ console: state.console, unexpected: state.unexpected, writes: state.writes.map(write => write.path) }, null, 2)), contentType: 'application/json' }); await context.close();
+});
+
+test('late identity responses cannot reappear after the active account is invalidated', async ({ browser }) => {
+  const context = await browser.newContext(); const state = await isolate(context, { delayIdentity: true }), page = await context.newPage();
+  await page.goto(APP + '/?view=settings');
+  await expect.poll(() => typeof state.releaseIdentity).toBe('function');
+  await page.evaluate(() => window.dispatchEvent(new Event('rillora:account-changed')));
+  state.releaseIdentity();
+  await expect(page.locator('.workspace-gate')).toBeVisible();
+  await expect(page.locator('.account-summary')).toHaveCount(0);
+  await expect(page.locator('body')).not.toContainText('owner@example.test');
+  expect(state.errors).toEqual([]); await test.info().attach('console-and-network', { body: Buffer.from(JSON.stringify({ console: state.console, unexpected: state.unexpected, writes: state.writes.map(write => write.path) }, null, 2)), contentType: 'application/json' }); await context.close();
 });

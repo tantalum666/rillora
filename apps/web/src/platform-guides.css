@@ -3,7 +3,7 @@
 .platform-guide-search input { width: 100%; min-width: 0; min-height: 28px; padding: 0; border: 0; background: transparent; color: var(--body); font: inherit; }
 .platform-guide-directory .section-label { margin: 0 0 12px; }
 .platform-guide-directory .guide-list { margin-top: 0; }
-.platform-guide-directory .guide-row { width: 100%; }
+.platform-guide-directory .guide-row { width: 100%; padding-block: 14px; }
 .platform-guide-directory .guide-row > svg { flex-shrink: 0; color: var(--sage); }
 .platform-guide-directory .guide-row span { min-width: 0; }
 .platform-guide-directory .guide-row strong, .platform-guide-directory .guide-row small { white-space: normal; overflow-wrap: anywhere; }

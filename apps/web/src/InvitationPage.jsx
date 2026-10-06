@@ -1,4 +1,4 @@
-import { withLocalePath } from "./i18n/localeStore.js";
+import { withLocalePath, preserveTransientLocale } from "./i18n/localeStore.js";
 import { LanguageControl } from "./i18n/LanguageControl.jsx";
 import { useI18n } from "./i18n/I18nProvider.jsx";
 import { AppAppearanceControl } from "./AppearanceControl.jsx";
@@ -14,7 +14,7 @@ export function InvitationPage({ apiClient }) {
   const { t, locale, localePreference, errorMessage } = useI18n();
   const initialToken = useRef(invitationTokenFromUrl(window.location.href));
   const fromShared = useRef(new URLSearchParams(window.location.search).get("from") === "shared").current;
-  const returnPath = fromShared ? "/?view=shared" : "/";
+  const returnPath = preserveTransientLocale(fromShared ? "/?view=shared" : "/");
   const invitationPath = (id) => `/invite/${id}${fromShared ? "?from=shared" : ""}`;
   const [invitation, setInvitation] = useState(null);
   const [session, setSession] = useState(null);
@@ -29,13 +29,13 @@ export function InvitationPage({ apiClient }) {
   async function load(token = initialToken.current) {
     setLoading(true); setError(null);
     const id = window.location.pathname.split("/")[2];
-    if (window.location.hash) window.history.replaceState({}, "", window.location.pathname + (fromShared ? "?from=shared" : ""));
+    if (window.location.hash) window.history.replaceState({}, "", preserveTransientLocale(window.location.pathname + (fromShared ? "?from=shared" : "")));
     try {
       const result = token ? await apiClient.resolveSharingInvitation(token)
         : id ? await apiClient.getSharingInvitation(id) : null;
       if (!result) { setInvitation(null); return; }
       setInvitation(result.invitation);
-      window.history.replaceState({}, "", invitationPath(result.invitation.publicId));
+      window.history.replaceState({}, "", preserveTransientLocale(invitationPath(result.invitation.publicId)));
       setSession(await apiClient.getSessionStatus()); setLink("");
     } catch (failure) { setError(failure); }
     finally { setLoading(false); }
@@ -80,13 +80,13 @@ export function InvitationPage({ apiClient }) {
         const shared = await apiClient.getSharedWithMe();
         if (!shared.connections.some(connection => connection.publicId === invitation.publicId)) throw Object.assign(new Error("Use the invited account to open these shared items."), { messageKey: "forms.invitation.error.account" });
       } else await apiClient.acceptSharingInvitation({ invitationPublicId: invitation.publicId, accepted: true });
-      window.location.replace("/?view=shared");
+      window.location.replace(preserveTransientLocale("/?view=shared"));
     } catch (failure) {
       // An accepted write may outlive a lost response; verify the current account before retrying.
       try {
         const shared = await apiClient.getSharedWithMe();
         if (shared.connections.some(connection => connection.publicId === invitation.publicId)) {
-          window.location.replace("/?view=shared"); return;
+          window.location.replace(preserveTransientLocale("/?view=shared")); return;
         }
       } catch { /* Keep the original failure when current access cannot be verified. */ }
       if (failure.status === 401) { setSession({ authenticated: false }); setVerificationRequired(false); }

@@ -1,3 +1,4 @@
+import { preserveTransientLocale } from "../i18n/localeStore.js";
 import { LanguageControl } from "../i18n/LanguageControl.jsx";
 import { useI18n } from "../i18n/I18nProvider.jsx";
 import { AppearanceLink } from "../AppearanceControl.jsx";
@@ -11,7 +12,7 @@ import { publicEntry } from "../publicEntry.js";
 export function LandingBrand() {
   const { t } = useI18n();
   return (
-    <a className="lp-brand" href="/" aria-label={t("public.nav.homeLabel")}>
+    <a className="lp-brand" href={preserveTransientLocale("/")} aria-label={t("public.nav.homeLabel")}>
       <ThemePicture
         light={logo}
         dark={reversedLogo}
@@ -85,7 +86,7 @@ export function LandingHeader({ path = "/" }) {
       >
         {destinations.map(([href, labelKey]) => (
           <a
-            href={href}
+            href={preserveTransientLocale(href)}
             key={href}
             aria-current={path === href ? "page" : undefined}
           >
@@ -112,10 +113,10 @@ export function LandingFooter() {
       <div className="lp-footer-row">
         <LandingBrand />
         <nav aria-label={t("public.nav.legalLabel")}>
-          <a href="/support">{t("public.nav.support")}</a>
+          <a href={preserveTransientLocale("/support")}>{t("public.nav.support")}</a>
           <a href="https://legal.rillora.xyz/privacy">{t("public.nav.privacy")}</a>
           <a href="https://legal.rillora.xyz/terms">{t("public.nav.terms")}</a>
-          <a href="/legal">{t("public.nav.legal")}</a>
+          <a href={preserveTransientLocale("/legal")}>{t("public.nav.legal")}</a>
         </nav>
       </div>
       <div className="lp-footer-notes">

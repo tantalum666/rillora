@@ -100,6 +100,9 @@ export function createApiClient({
     ) ? await response.json() : null;
     if (accountChanged && !context.publicAuth && !context.publicRehearsal) throw rejectAccountChange();
     if (!response.ok) {
+      if (response.status === 401 && !context.publicAuth && !context.publicRehearsal && typeof window !== 'undefined') {
+        window.dispatchEvent(new Event('rillora:session-expired'));
+      }
       if (payload?.error?.code === 'account_changed') throw rejectAccountChange();
       if (response.status === 403 && payload?.error?.code === 'reauthentication_required' && typeof window !== 'undefined') {
         window.dispatchEvent(new Event('rillora:reauthentication-required'));
