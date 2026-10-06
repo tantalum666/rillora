@@ -1,0 +1,29 @@
+{
+  "at": "2026-10-06T14:17:40.304725+00:00",
+  "runningCount": 1,
+  "pendingCount": 0,
+  "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRuntimeApiTask93405B31:14",
+  "deployments": [
+    {
+      "id": "ecs-svc/0195345784298730683",
+      "status": "PRIMARY",
+      "rolloutState": "COMPLETED",
+      "runningCount": 1,
+      "pendingCount": 0,
+      "failedTasks": 0
+    }
+  ],
+  "httpChecks": [
+    {
+      "url": "https://j749rhzub7.execute-api.eu-central-1.amazonaws.com/health/ready",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "url": "https://app.rillora.xyz/api/v1/session",
+      "status": 401,
+      "passed": true
+    }
+  ],
+  "customerSalesEnabled": false
+}

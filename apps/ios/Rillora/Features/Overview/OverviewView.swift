@@ -177,8 +177,8 @@ private struct OverviewHero: View {
 
     private var primaryAction: some View {
         Button {
-            if let matter = snapshot.nextMatter {
-                onOpenMatter(matter)
+            if let nextAction {
+                onOpenMatter(nextAction.matter)
             } else {
                 if snapshot.matters.isEmpty { onAddFirstMatter() }
                 else { onReviewMatters() }
@@ -233,11 +233,15 @@ private struct OverviewHero: View {
 
     private var primaryActionTitle: String {
         if snapshot.matters.isEmpty { return String(localized: "Add your first matter") }
-        return snapshot.nextMatter == nil ? String(localized: "View your matters") : String(localized: "Review next matter")
+        return nextAction?.title ?? String(localized: "View your matters")
     }
 
     private var nextMatterTitle: String? {
-        snapshot.matters.isEmpty ? nil : snapshot.nextMatter?.title
+        nextAction?.matter.title
+    }
+
+    private var nextAction: MatterOrganizationAction? {
+        MatterListPresentation.nextAction(in: snapshot.matters)
     }
 }
 

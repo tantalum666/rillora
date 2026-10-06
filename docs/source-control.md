@@ -1,6 +1,6 @@
 # Source control, complete work preservation and release rollback
 
-Last updated: 2026-10-06 (Asia/Hong_Kong)
+Last updated: 2026-10-07 (Asia/Hong_Kong)
 
 The private remote is [tantalum666/rillora](https://github.com/tantalum666/rillora).
 Owner explicitly requested **all Rillora work** for Git and Dot collaboration on
@@ -303,3 +303,14 @@ Archive19has now been freshly downloaded from GitHub at557af9f11a19ca7af64fa4b04
 all1,541objects/9,769paths decrypt and match remotely read metadata. CI59passes that
 artifact commit; CI58covers source10194de6a. [Remote receipt](../collaboration/verification/release-12-stripe-20261006/remote-readback.json).
 Final receipt-only updates do not rerun product tests, deployments or Apple uploads.
+
+## October7 device/purchase and simplified paywall increment
+
+[Archive20](../collaboration/verification/device-config-20261006/README.md) adds3,102eligible
+paths/677objects and141,191,492encrypted bytes. Local decryption passes. It retains
+builds6/7/8, superseded render-fix artifact, exact tests/preview products and provider
+receipts; real credentials, personal onboarding, raw device logs and caches stay excluded.
+Source08afb3821/CI63passes. Build8 internal distribution and verified HKD888 Sandbox
+receipt are separate from physical8/Restore, real Live charges and App Review. Fresh remote
+download/decryption verifies677objects/3,102paths against GitHub metadata at3e46e5130;
+previous1–19were not downloaded again. [Remote receipt](../collaboration/verification/device-config-20261006/remote-readback.json).

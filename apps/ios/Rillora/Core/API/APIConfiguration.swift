@@ -113,6 +113,34 @@ struct NativeAuthenticationConfiguration: Equatable, Sendable {
     let googleIOSClientID: String?
     let googleServerClientID: String?
     let passkeyNativeSignInEnabled: Bool
+    /// A reviewed database connection, not a social provider or an arbitrary build value.
+    let passwordResetConnection: String?
+
+    init(
+        domain: String,
+        clientID: String,
+        audience: String,
+        sessionExchangeURL: URL,
+        appleNativeSignInEnabled: Bool,
+        googleNativeSignInEnabled: Bool,
+        googleIOSClientID: String?,
+        googleServerClientID: String?,
+        passkeyNativeSignInEnabled: Bool,
+        passwordResetConnection: String? = nil
+    ) {
+        self.domain = domain
+        self.clientID = clientID
+        self.audience = audience
+        self.sessionExchangeURL = sessionExchangeURL
+        self.appleNativeSignInEnabled = appleNativeSignInEnabled
+        self.googleNativeSignInEnabled = googleNativeSignInEnabled
+        self.googleIOSClientID = googleIOSClientID
+        self.googleServerClientID = googleServerClientID
+        self.passkeyNativeSignInEnabled = passkeyNativeSignInEnabled
+        // Missing, unresolved and unreviewed settings disable only password reset.
+        let connection = passwordResetConnection?.trimmingCharacters(in: .whitespacesAndNewlines)
+        self.passwordResetConnection = connection == "Username-Password-Authentication" ? connection : nil
+    }
 
     static func current(
         bundle: Bundle,
@@ -172,6 +200,12 @@ struct NativeAuthenticationConfiguration: Equatable, Sendable {
             passkeyNativeSignInEnabled: booleanValue(
                 "RILLORA_PASSKEY_NATIVE_SIGN_IN_ENABLED",
                 "RilloraPasskeyNativeSignInEnabled",
+                bundle,
+                environment
+            ),
+            passwordResetConnection: optionalValue(
+                "RILLORA_PASSWORD_RESET_CONNECTION",
+                "RilloraPasswordResetConnection",
                 bundle,
                 environment
             )

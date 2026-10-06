@@ -131,7 +131,12 @@ class NativeLocalizationTests(unittest.TestCase):
             self.assertNotRegex(source, r'set\([^\n]*forKey:\s*"AppleLanguages"')
             self.assertNotRegex(source, r'\.id\([^\n]*(?:[Ll]anguage|[Ll]ocale)')
         profile = (APP / 'Features/Account/AccountView.swift').read_text()
-        self.assertLess(profile.index('AppLanguageButton()'), profile.index('AppAppearanceMenu()'))
+        self.assertNotIn('AppLanguageButton()', profile)
+        self.assertNotIn('AppAppearanceMenu()', profile)
+        preferences = (APP / 'Features/Account/AppPreferencesView.swift').read_text()
+        self.assertIn('AppLanguageView()', preferences)
+        self.assertIn('@AppStorage(AppAppearance.storageKey)', preferences)
+        self.assertIn('preferences.appearance', preferences)
 
     def test_raw_sharing_values_and_confirmation_token_are_preserved(self):
         source = (APP / 'Core/Domain/SharingModels.swift').read_text()

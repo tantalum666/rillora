@@ -197,7 +197,7 @@ extension StartHerePreviewing {
     }
 }
 
-actor APIClient: OverviewServing, PlanEditing, MatterEditing, TrustedContactEditing, OfficialSetupEditing, SimulationRunning, DisclosureRehearsing, RoleAssignmentEditing, StartHerePreviewing, CommerceServing, SharingServing, FamilyMaintenanceServing, AccountDataServing {
+actor APIClient: OverviewServing, PlanEditing, MatterEditing, TrustedContactEditing, OfficialSetupEditing, SimulationRunning, DisclosureRehearsing, RoleAssignmentEditing, StartHerePreviewing, CommerceServing, SharingServing, FamilyMaintenanceServing, AccountDataServing, AccountIdentityServing {
     private let configuration: APIConfiguration
     private let transport: any HTTPTransport
     private let sessionTokenStore: (any SessionTokenStore)?
@@ -910,6 +910,20 @@ actor APIClient: OverviewServing, PlanEditing, MatterEditing, TrustedContactEdit
     }
 
     func fetchAccountDataProfile() async throws -> AccountDataProfile { try await get("account/profile") }
+    func fetchAccountIdentity() async throws -> AccountIdentityResponse {
+        do {
+            return try await get("account/identity")
+        } catch RilloraAPIError.server(status: 404, code: _, message: _, requestID: _) {
+            // Version-compatible read: the profile endpoint is already bound to
+            // this authenticated account. It has no email, so never invent one.
+            let profile = try await fetchAccountDataProfile()
+            return AccountIdentityResponse(
+                account: .init(publicId: profile.account.publicId,
+                               displayName: profile.account.displayName, verifiedEmail: nil),
+                emailStatus: .unavailable
+            )
+        }
+    }
     func requestAccountDeletion(receipt: String, acknowledgesBilling: Bool) async throws -> AccountDeletionEnvelope {
         let body = try JSONSerialization.data(withJSONObject: ["confirmation": "DELETE", "receipt": receipt, "acknowledgesSavedCopies": true, "acknowledgesBilling": acknowledgesBilling])
         return try await send(path: "account/delete", method: "POST", body: body)

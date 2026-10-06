@@ -1,0 +1,77 @@
+{
+  "updatedAt": "2026-10-06T16:51:48.123159+00:00",
+  "status": "SOURCE_AND_DISTRIBUTION_COMPLETE_REMOTE_WORK_ARCHIVE_VERIFIED_PHONE_STEP_PENDING",
+  "sourceCommit": "08afb3821fad6f26141fea74911cad9f2a98fd50",
+  "sourceCi": {
+    "run": 63,
+    "id": 37495983960,
+    "result": "success"
+  },
+  "nativeBuild": "1.0(8)",
+  "nativeArtifactChecks": 13,
+  "targetedNativeTests": {
+    "passed": 39,
+    "failed": 0,
+    "skipped": 1
+  },
+  "nativeStaticChecks": 11,
+  "bilingualRenderVerified": true,
+  "appleBuildId": "6c5635d6-2451-4bc2-b5b5-35f75a1d670b",
+  "originalInternalGroupAssigned": true,
+  "testers": 1,
+  "appStoreDraftBuildSavedAndReloaded": "8",
+  "manualRelease": true,
+  "appReviewSubmitted": false,
+  "firstAppleSandboxPurchase": "Verified signed HKG/HKD888.00; active; initial notification/client event applied",
+  "physicalBuild8Installed": false,
+  "postPurchaseRestoreVerified": false,
+  "physicalBlock": "iPhone Mirroring reports device in use; lockscreen request pending",
+  "reviewExpiryUnchanged": "2026-10-06T17:08:57Z",
+  "runtime": "API14/schema0093 unchanged; ordinary customer sales closed",
+  "stripeLive": "Merchant/card capability enabled; runtime RAK protected; inactive price/disabled webhook/preparationOnly AWS payload, no runtime billing connection or real charge",
+  "deferred": [
+    "External2 TestFlight invitations",
+    "Disposable QA account deletion"
+  ],
+  "remaining": [
+    "Physical8 update/post-purchase Restore and cross-client readback",
+    "Business/tax facts and complete Stripe Live runtime/real lifecycle",
+    "Final App Store declarations/review and customer opening"
+  ],
+  "documentation": [
+    "docs/product.md",
+    "docs/decision-log.md",
+    "docs/handoff.md",
+    "docs/journey/PROJECT_JOURNEY.md",
+    "docs/device-config-20261006.md",
+    "docs/storekit.md",
+    "docs/production-apple-20260926.md",
+    "docs/apple-review-validation-20260929.md",
+    "docs/release-readiness.md",
+    "config/release-gates.json",
+    "docs/source-control.md",
+    "collaboration/README.md"
+  ],
+  "decisionReason": "Owner explicitly removes native checkbox and visible testing controls; not a new price, signup consent or tax decision.",
+  "readableSecretScan": {
+    "unreviewedFindings": 0,
+    "credentialFalsePositivesResolvedByReadableHashNormalization": 6
+  },
+  "raw": {
+    "archive": 20,
+    "files": 3102,
+    "objects": 677,
+    "bytes": 141191492,
+    "localDecryptionVerified": true
+  },
+  "artifactCommit": "3e46e5130bed10e5012cf73a0b2206f2b5120f6d",
+  "freshRemoteArchiveVerified": true,
+  "remoteObjects": 677,
+  "remoteWorkFiles": 3102,
+  "artifactCi": "Not read back: browser connection stopped; CLI lacks Checks/Actions read permission. Source CI63 remains verified.",
+  "cleanup": {
+    "taskSimulator": "shutdown",
+    "ownerSimulator": "left booted",
+    "phone": "not changed while in use"
+  }
+}

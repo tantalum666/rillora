@@ -78,13 +78,12 @@ private struct MattersContent: View {
     @RilloraReduceMotion private var reduceMotion
 
     private var filteredMatters: [Matter] {
-        let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
-        let candidates = snapshot.matters.filter { filter == "all" || (filter == "added" ? $0.isReady : !$0.isReady) }
-        guard !query.isEmpty else { return candidates }
-        return candidates.filter {
-            [$0.title, $0.institutionName ?? "", MatterCategory(rawValue: $0.category)?.label ?? "", $0.category.replacingOccurrences(of: "_", with: " ")]
-                .contains { $0.localizedStandardContains(query) }
-        }
+        MatterListPresentation.filteredMatters(snapshot.matters, categoryID: filter, query: searchText)
+    }
+
+    private var categoryOptions: [RilloraFilterOption] {
+        [.init(id: "all", title: String(localized: "All"))]
+            + MatterListPresentation.categories.map { .init(id: $0.rawValue, title: $0.label) }
     }
 
     var body: some View {
@@ -94,23 +93,25 @@ private struct MattersContent: View {
             } else {
                 RilloraList {
                     Section {
-                        RilloraFilterPicker(title: String(localized: "Show matters"), options: [
-                            .init(id: "all", title: String(localized: "All")),
-                            .init(id: "review", title: String(localized: "To review")),
-                            .init(id: "added", title: String(localized: "Directions added")),
-                        ], selection: $filter, identifier: "matters.filter")
+                        RilloraFilterPicker(title: String(localized: "Filter by category"), options: categoryOptions,
+                            selection: $filter, identifier: "matters.filter")
                     }
-                    if filteredMatters.contains(where: { !$0.isReady }) {
-                        Section(String(localized: "To review")) {
-                            ForEach(filteredMatters.filter { !$0.isReady }) { matter in
-                                matterLink(matter)
-                            }
+                    Section {
+                        ForEach(filteredMatters) { matter in
+                            matterLink(matter)
                         }
-                    }
-                    if filteredMatters.contains(where: \.isReady) {
-                        Section(String(localized: "Directions added")) {
-                            ForEach(filteredMatters.filter(\.isReady)) { matter in
-                                matterLink(matter)
+                        if filteredMatters.isEmpty {
+                            if searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                                ContentUnavailableView(String(localized: "No matters in this category"), systemImage: "line.3.horizontal.decrease.circle", description: Text(String(localized: "Choose All to see your other matters.")))
+                                    .accessibilityIdentifier("matters.filter-empty")
+                            } else {
+                                ContentUnavailableView.search(text: searchText)
+                                    .accessibilityIdentifier("matters.search-empty")
+                            }
+                            if filter != "all" {
+                                Button(String(localized: "Show all categories")) { filter = "all" }
+                                    .frame(maxWidth: .infinity, minHeight: 44)
+                                    .accessibilityIdentifier("matters.filter-reset")
                             }
                         }
                     }
@@ -118,16 +119,6 @@ private struct MattersContent: View {
                 .rilloraStructuredList()
                 .animation(reduceMotion ? nil : .easeOut(duration: 0.18), value: filteredMatters.map(\.publicId))
                 .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: String(localized: "Search matters"))
-                .overlay {
-                    if filteredMatters.isEmpty {
-                        if searchText.isEmpty {
-                            ContentUnavailableView(String(localized: "No matters match this filter"), systemImage: "line.3.horizontal.decrease.circle", description: Text(String(localized: "Choose All to see your other matters.")))
-                                .accessibilityIdentifier("matters.filter-empty")
-                        } else {
-                            ContentUnavailableView.search(text: searchText).accessibilityIdentifier("matters.search-empty")
-                        }
-                    }
-                }
             }
         }
         .accessibilityElement(children: .contain)

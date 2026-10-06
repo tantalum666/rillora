@@ -187,13 +187,13 @@ struct MattersSummary: View {
     let onOpenMatter: (Matter) -> Void
 
     private var nextMatters: [Matter] {
-        Array((snapshot.matters.filter { !$0.isReady } + snapshot.matters.filter(\.isReady)).prefix(3))
+        MatterListPresentation.summaryMatters(snapshot.matters)
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack(alignment: .firstTextBaseline) {
-                SectionEyebrow(String(localized: "Next matters"))
+                SectionEyebrow(String(localized: "Your matters"))
                 Spacer()
                 Button(String(localized: "View all"), action: onOpenMatters)
                     .font(.subheadline.weight(.semibold))
@@ -252,7 +252,7 @@ struct MatterSummaryRow: View {
         }
         .frame(minHeight: 58)
         .accessibilityElement(children: .combine)
-        .accessibilityLabel(L10n.format("%1$@, %2$@", matter.title, matter.preparationLabel.lowercased()))
+        .accessibilityLabel(L10n.format("%1$@, %2$@", matter.title, ownerStatusLabel.lowercased()))
     }
 
     private var matterIcon: some View {
@@ -280,9 +280,13 @@ struct MatterSummaryRow: View {
     }
 
     private var matterStatus: some View {
-        Text(matter.preparationLabel)
+        Text(ownerStatusLabel)
             .font(.caption.weight(.semibold))
             .foregroundStyle(matter.isReady ? RilloraTheme.sage : RilloraTheme.body)
+    }
+
+    private var ownerStatusLabel: String {
+        MatterListPresentation.ownerStatusLabel(for: matter)
     }
 
     private var iconName: String {

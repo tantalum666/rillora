@@ -1,0 +1,284 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora.xcodeproj -scheme Rillora -configuration Debug -skipMacroValidation -destination "platform=iOS Simulator,id=15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0" -collect-test-diagnostics never COMPILER_INDEX_STORE_ENABLE=NO ONLY_ACTIVE_ARCH=YES -packageCachePath /Users/tantalum/Library/Caches/org.swift.swiftpm -derivedDataPath /tmp/rillora-device-config-20261006 -testLanguage en -testRegion US "-only-testing:RilloraTests/ApplePurchaseCoordinatorTests" "-only-testing:RilloraTests/CommerceStoreTests" "-only-testing:RilloraTests/AppleStoreKitClientTests" -testProductsPath /Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-06T15-03-46-051Z_pid25052_e9616c93.xctestproducts build-for-testing
+
+Build settings from command line:
+    COMPILER_INDEX_STORE_ENABLE = NO
+    ONLY_ACTIVE_ARCH = YES
+
+2026-10-06 23:03:46.686 xcodebuild[65378:28131846] Writing test products to /Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-06T15-03-46-051Z_pid25052_e9616c93.xctestproducts
+Resolve Package Graph
+
+
+Resolved source packages:
+  Auth0: https://github.com/auth0/Auth0.swift @ 3.0.2
+  GoogleUtilities: https://github.com/google/GoogleUtilities.git @ 8.1.3
+  InteropForGoogle: https://github.com/google/interop-ios-for-google-sdks.git @ 101.0.0
+  GTMAppAuth: https://github.com/google/GTMAppAuth.git @ 5.0.0
+  AppAuth: https://github.com/openid/AppAuth-iOS.git @ 2.1.0
+  SwiftUI-Shimmer: https://github.com/markiv/SwiftUI-Shimmer @ 1.5.1
+  SimpleKeychain: https://github.com/auth0/SimpleKeychain.git @ 1.3.0
+  GTMSessionFetcher: https://github.com/google/gtm-session-fetcher.git @ 3.5.0
+  JWTDecode: https://github.com/auth0/JWTDecode.swift.git @ 4.0.0
+  GoogleSignIn: https://github.com/google/GoogleSignIn-iOS @ 9.2.0
+  Pow: https://github.com/EmergeTools/Pow @ 1b4b1dd
+  AppCheck: https://github.com/google/app-check.git @ 11.3.1
+  Promises: https://github.com/google/promises.git @ 2.4.1
+
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (43 targets)
+    Target 'RilloraTests' in project 'Rillora'
+        ➜ Explicit dependency on target 'Rillora' in project 'Rillora'
+    Target 'Rillora' in project 'Rillora'
+        ➜ Explicit dependency on target 'Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'Pow' in project 'Pow'
+        ➜ Explicit dependency on target 'Shimmer' in project 'SwiftUI-Shimmer'
+    Target 'Shimmer' in project 'SwiftUI-Shimmer'
+        ➜ Explicit dependency on target 'Shimmer' in project 'SwiftUI-Shimmer'
+    Target 'Shimmer' in project 'SwiftUI-Shimmer' (no dependencies)
+    Target 'Pow' in project 'Pow'
+        ➜ Explicit dependency on target 'Pow' in project 'Pow'
+        ➜ Explicit dependency on target 'Pow_Pow' in project 'Pow'
+    Target 'Pow' in project 'Pow'
+        ➜ Explicit dependency on target 'Pow_Pow' in project 'Pow'
+    Target 'Pow_Pow' in project 'Pow' (no dependencies)
+    Target 'GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'GoogleSignIn_GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppCheckCore' in project 'AppCheck'
+        ➜ Explicit dependency on target 'GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+    Target 'GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'GoogleSignIn_GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppCheckCore' in project 'AppCheck'
+        ➜ Explicit dependency on target 'GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+    Target 'GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMAppAuth_GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+    Target 'GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMAppAuth_GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+    Target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+        ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+        ➜ Explicit dependency on target 'GTMSessionFetcher_GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+    Target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+        ➜ Explicit dependency on target 'GTMSessionFetcher_GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+    Target 'GTMSessionFetcher_GTMSessionFetcherCore' in project 'GTMSessionFetcher' (no dependencies)
+    Target 'GTMAppAuth_GTMAppAuth' in project 'GTMAppAuth' (no dependencies)
+    Target 'AppCheckCore' in project 'AppCheck'
+        ➜ Explicit dependency on target 'AppCheckCore' in project 'AppCheck'
+        ➜ Explicit dependency on target 'FBLPromises' in project 'Promises'
+        ➜ Explicit dependency on target 'GULEnvironment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GULUserDefaults' in project 'GoogleUtilities'
+    Target 'AppCheckCore' in project 'AppCheck'
+        ➜ Explicit dependency on target 'FBLPromises' in project 'Promises'
+        ➜ Explicit dependency on target 'GULEnvironment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GULUserDefaults' in project 'GoogleUtilities'
+    Target 'GULUserDefaults' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-UserDefaults' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-UserDefaults' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-Logger' in project 'GoogleUtilities'
+    Target 'GoogleUtilities-UserDefaults' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-UserDefaults' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-Logger' in project 'GoogleUtilities'
+    Target 'GoogleUtilities-Logger' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-Logger' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+    Target 'GoogleUtilities_GoogleUtilities-Logger' in project 'GoogleUtilities' (no dependencies)
+    Target 'GoogleUtilities_GoogleUtilities-UserDefaults' in project 'GoogleUtilities' (no dependencies)
+    Target 'GULEnvironment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-Environment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+    Target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-Environment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+    Target 'third-party-IsAppEncrypted' in project 'GoogleUtilities' (no dependencies)
+    Target 'GoogleUtilities_GoogleUtilities-Environment' in project 'GoogleUtilities' (no dependencies)
+    Target 'FBLPromises' in project 'Promises'
+        ➜ Explicit dependency on target 'FBLPromises' in project 'Promises'
+        ➜ Explicit dependency on target 'Promises_FBLPromises' in project 'Promises'
+    Target 'FBLPromises' in project 'Promises'
+        ➜ Explicit dependency on target 'Promises_FBLPromises' in project 'Promises'
+    Target 'Promises_FBLPromises' in project 'Promises' (no dependencies)
+    Target 'AppAuthCore' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuth_AppAuthCore' in project 'AppAuth'
+    Target 'AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuth_AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+    Target 'AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuth_AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+    Target 'AppAuthCore' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuth_AppAuthCore' in project 'AppAuth'
+    Target 'AppAuth_AppAuthCore' in project 'AppAuth' (no dependencies)
+    Target 'AppAuth_AppAuth' in project 'AppAuth' (no dependencies)
+    Target 'GoogleSignIn_GoogleSignIn' in project 'GoogleSignIn' (no dependencies)
+    Target 'Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'Auth0_Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'SimpleKeychain' in project 'SimpleKeychain'
+        ➜ Explicit dependency on target 'JWTDecode' in project 'JWTDecode'
+    Target 'Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'Auth0_Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'SimpleKeychain' in project 'SimpleKeychain'
+        ➜ Explicit dependency on target 'JWTDecode' in project 'JWTDecode'
+    Target 'JWTDecode' in project 'JWTDecode'
+        ➜ Explicit dependency on target 'JWTDecode' in project 'JWTDecode'
+    Target 'JWTDecode' in project 'JWTDecode' (no dependencies)
+    Target 'SimpleKeychain' in project 'SimpleKeychain'
+        ➜ Explicit dependency on target 'SimpleKeychain' in project 'SimpleKeychain'
+    Target 'SimpleKeychain' in project 'SimpleKeychain' (no dependencies)
+    Target 'Auth0_Auth0' in project 'Auth0' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk /tmp/rillora-device-config-20261006/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-6cfe768891a92b912361537c460fe42b.sdkstatcache
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -o /tmp/rillora-device-config-20261006/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-6cfe768891a92b912361537c460fe42b.sdkstatcache
+
+** TEST BUILD SUCCEEDED **
+
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -testProductsPath /Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-06T15-03-46-051Z_pid25052_e9616c93.xctestproducts -destination "platform=iOS Simulator,id=15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0" -collect-test-diagnostics never -testLanguage en -testRegion US "-only-testing:RilloraTests/ApplePurchaseCoordinatorTests" "-only-testing:RilloraTests/CommerceStoreTests" "-only-testing:RilloraTests/AppleStoreKitClientTests" -resultBundlePath /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-device-config-20261006/currency-quote-regression-en.xcresult test-without-building
+
+2026-10-06 23:03:50.111 xcodebuild[65443:28132173] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+Writing result bundle at path:
+	/Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-device-config-20261006/currency-quote-regression-en.xcresult
+
+2026-10-06 23:03:50.119 xcodebuild[65443:28132173] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-06 23:03:51.492 xcodebuild[65443:28132173] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-06 23:03:52.263 xcodebuild[65443:28132173] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-06 23:03:52.478 xcodebuild[65443:28132173] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+Test Suite 'Selected tests' started at 2026-10-06 23:05:58.364.
+Test Suite 'RilloraTests.xctest' started at 2026-10-06 23:05:58.366.
+Test Suite 'ApplePurchaseCoordinatorTests' started at 2026-10-06 23:05:58.366.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testAccountChangeBeforeServerReceiptReturnsCannotFinishForTheNewSession]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testAccountChangeBeforeServerReceiptReturnsCannotFinishForTheNewSession]' passed (0.005 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testAccountChangeDuringAppRefreshDiscardsResultAndPreventsDuplicatePrompts]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testAccountChangeDuringAppRefreshDiscardsResultAndPreventsDuplicatePrompts]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testAccountChangeDuringPreparationCannotOpenAnotherOwnersPaymentSheet]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testAccountChangeDuringPreparationCannotOpenAnotherOwnersPaymentSheet]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testCanceledAppAuthenticationStaysQuietAndCanBeRetried]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testCanceledAppAuthenticationStaysQuietAndCanBeRetried]' passed (0.020 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testChangedApplePriceAfterPreparationClosesOldOrderWithoutReceiptIntake]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testChangedApplePriceAfterPreparationClosesOldOrderWithoutReceiptIntake]' passed (0.002 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testChangedPriceRequiresAnotherDeliberateConsent]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testChangedPriceRequiresAnotherDeliberateConsent]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testChangedQuoteReturnsTheNewPriceForFreshConsent]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testChangedQuoteReturnsTheNewPriceForFreshConsent]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testForeignOwnerAndSandboxNeverReachProductionReceiptIntake]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testForeignOwnerAndSandboxNeverReachProductionReceiptIntake]' passed (0.007 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testHistoryOutageIsNotPresentedAsHavingNoPurchases]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testHistoryOutageIsNotPresentedAsHavingNoPurchases]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testInconsistentFinishResponseIsRejectedEvenByInjectedService]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testInconsistentFinishResponseIsRejectedEvenByInjectedService]' passed (0.002 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testMissingAppReceiptIsRefreshedOnlyAfterExplicitRestore]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testMissingAppReceiptIsRefreshedOnlyAfterExplicitRestore]' passed (0.002 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testNoPurchaseWithoutCurrentPriceAndExpressConsent]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testNoPurchaseWithoutCurrentPriceAndExpressConsent]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testOnlyCommittedServerStateCanFinishThenRestoreRetries]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testOnlyCommittedServerStateCanFinishThenRestoreRetries]' passed (0.002 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testPendingAndCanceledOutcomesArePreservedWithoutFinishing]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testPendingAndCanceledOutcomesArePreservedWithoutFinishing]' passed (0.002 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testRestoresHistoricalMonthlyFromSignedStorefrontAfterCountryChange]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testRestoresHistoricalMonthlyFromSignedStorefrontAfterCountryChange]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testReviewBuildRejectsAProductionTransactionAndUnknownAppReceiptCannotPurchase]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testReviewBuildRejectsAProductionTransactionAndUnknownAppReceiptCannotPurchase]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testReviewPurchaseUsesSandboxContractAndNeverFinishesOnProductionAcknowledgement]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testReviewPurchaseUsesSandboxContractAndNeverFinishesOnProductionAcknowledgement]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testStoreKitPriceMismatchCannotShowOrStartAnOffer]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testStoreKitPriceMismatchCannotShowOrStartAnOffer]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testStoreKitReceivesTheExactDisplayedMoneyAndCurrency]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testStoreKitReceivesTheExactDisplayedMoneyAndCurrency]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testUnverifiedRefreshedAppCannotReachPurchaseOrReceiptIntake]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testUnverifiedRefreshedAppCannotReachPurchaseOrReceiptIntake]' passed (0.001 seconds).
+Test Suite 'ApplePurchaseCoordinatorTests' passed at 2026-10-06 23:05:58.426.
+	 Executed 20 tests, with 0 failures (0 unexpected) in 0.054 (0.060) seconds
+Test Suite 'AppleStoreKitClientTests' started at 2026-10-06 23:05:58.426.
+Test Case '-[RilloraTests.AppleStoreKitClientTests testLoadsExactLocalFamilyCatalogAndReturnsVerifiedBoundPurchase]' started.
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/AppleStoreKitClientTests.swift:16: -[RilloraTests.AppleStoreKitClientTests testLoadsExactLocalFamilyCatalogAndReturnsVerifiedBoundPurchase] : Test skipped - The installed iOS 26.4 and 26.5 Simulator runtimes fail or hang while SKTestSession synchronizes the local configuration with storekitd; Apple documents the related Simulator fix in iOS 26.6. Set RILLORA_RUN_UNSTABLE_STOREKITTEST=1 only for an explicit retry; the Xcode Run transaction path is verified separately.
+Test Case '-[RilloraTests.AppleStoreKitClientTests testLoadsExactLocalFamilyCatalogAndReturnsVerifiedBoundPurchase]' skipped (0.010 seconds).
+Test Suite 'AppleStoreKitClientTests' passed at 2026-10-06 23:05:58.437.
+	 Executed 1 test, with 1 test skipped and 0 failures (0 unexpected) in 0.010 (0.011) seconds
+Test Suite 'CommerceStoreTests' started at 2026-10-06 23:05:58.437.
+Test Case '-[RilloraTests.CommerceStoreTests testCancelledPreviousAccountStartCannotResetNewPurchaseCoordinator]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testCancelledPreviousAccountStartCannotResetNewPurchaseCoordinator]' passed (0.005 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testLocalStoreKitPurchaseFinishesOnlyAfterMatchingVerifiedEvidence]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testLocalStoreKitPurchaseFinishesOnlyAfterMatchingVerifiedEvidence]' passed (0.002 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testLocalStoreKitPurchaseRejectsWrongAccountTokenWithoutFinishing]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testLocalStoreKitPurchaseRejectsWrongAccountTokenWithoutFinishing]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testLocalSubscriptionLifecycleStatesNeverMutateServerAccess]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testLocalSubscriptionLifecycleStatesNeverMutateServerAccess]' passed (0.002 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testMatchingTransactionUpdateIsRecordedAndFinishedWithoutChangingAccess]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testMatchingTransactionUpdateIsRecordedAndFinishedWithoutChangingAccess]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testMissingStorefrontFailsClosedWithoutCallingPurchaseRoute]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testMissingStorefrontFailsClosedWithoutCallingPurchaseRoute]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testRefreshRoutesWithCurrentStorefrontAndReevaluatesOnChange]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testRefreshRoutesWithCurrentStorefrontAndReevaluatesOnChange]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testRestoreHistoricalMonthlyPurchaseStillRefreshesLocalEvidence]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testRestoreHistoricalMonthlyPurchaseStillRefreshesLocalEvidence]' passed (0.002 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testRestoreIgnoresEntitlementBoundToAnotherRilloraAccount]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testRestoreIgnoresEntitlementBoundToAnotherRilloraAccount]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testRetiredMonthlyProductCannotStartANewPurchase]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testRetiredMonthlyProductCannotStartANewPurchase]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxCatalogDiagnosticLoadsWithoutAPrivateCommerceSession]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxCatalogDiagnosticLoadsWithoutAPrivateCommerceSession]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxCatalogLoadsAppStoreGroupWithoutOpeningPurchasePath]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxCatalogLoadsAppStoreGroupWithoutOpeningPurchasePath]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxCatalogRejectsXcodeLocalSubscriptionGroup]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxCatalogRejectsXcodeLocalSubscriptionGroup]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxPurchaseFinishesOnlyAfterDurableServerAuthorization]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxPurchaseFinishesOnlyAfterDurableServerAuthorization]' passed (0.002 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxPurchaseRemainsUnfinishedWhileAuthoritativeSnapshotIsPending]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxPurchaseRemainsUnfinishedWhileAuthoritativeSnapshotIsPending]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testSubscriptionStatusOutsideLocalAccountIsIgnored]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testSubscriptionStatusOutsideLocalAccountIsIgnored]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testSubscriptionStatusUpdateRefreshesLifecycleWithoutFinishingOrGrantingAccess]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testSubscriptionStatusUpdateRefreshesLifecycleWithoutFinishingOrGrantingAccess]' passed (0.002 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testUnverifiedLocalStoreKitPurchaseNeverFinishes]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testUnverifiedLocalStoreKitPurchaseNeverFinishes]' passed (0.001 seconds).
+Test Suite 'CommerceStoreTests' passed at 2026-10-06 23:05:58.471.
+	 Executed 18 tests, with 0 failures (0 unexpected) in 0.028 (0.033) seconds
+Test Suite 'RilloraTests.xctest' passed at 2026-10-06 23:05:58.471.
+	 Executed 39 tests, with 1 test skipped and 0 failures (0 unexpected) in 0.093 (0.105) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 23:05:58.471.
+	 Executed 39 tests, with 1 test skipped and 0 failures (0 unexpected) in 0.093 (0.107) seconds
+2026-10-06 23:05:58.800 xcodebuild[65443:28132173] [MT] IDETestOperationsObserverDebug: 127.304 elapsed -- Testing started completed.
+2026-10-06 23:05:58.800 xcodebuild[65443:28132173] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 23:05:58.800 xcodebuild[65443:28132173] [MT] IDETestOperationsObserverDebug: 127.304 sec, +127.304 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-device-config-20261006/currency-quote-regression-en.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

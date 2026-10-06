@@ -1,0 +1,41 @@
+{
+  "at": "2026-10-06T11:50:06.493594+00:00",
+  "results": [
+    {
+      "target": "retained_owner_planner",
+      "readOnly": true,
+      "status": "active",
+      "eligibility": [
+        {
+          "enabled": true
+        }
+      ],
+      "enrollment": [
+        {
+          "expires_at": "2026-10-06T17:08:57.000Z",
+          "reason": "Owner-authorized Rillora Apple Sandbox release acceptance 2026-10-02"
+        }
+      ],
+      "sessions": [
+        {
+          "credential_kind": "native_bearer",
+          "authenticated_at": "2026-10-06T11:35:15.000Z",
+          "last_seen_at": "2026-10-06T11:46:06.021Z",
+          "expires_at": "2026-10-06T19:35:24.616Z",
+          "revoked": false
+        }
+      ],
+      "bindings": [
+        {
+          "storefront_country_code": "USA",
+          "status": "active",
+          "amount_minor": "6800",
+          "currency_code": "USD",
+          "price_code": "family_apple_review_usd_6800_20260930",
+          "price_status": "test_only"
+        }
+      ]
+    }
+  ],
+  "readOnly": true
+}

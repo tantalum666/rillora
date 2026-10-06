@@ -248,6 +248,23 @@
 		8B18F7326BD70F8ECD6FD125 /* CoreLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A5988213FE2FB0B33C50C9 /* CoreLocalizationTests.swift */; };
 		31D50A25840759506342E23E /* SharingLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49713192E55CB7AA092B8B4 /* SharingLocalizationTests.swift */; };
 		A3255E6711BBE22071AAD20D /* RilloraLocalizationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9424D6FDA42F3614921C22 /* RilloraLocalizationUITests.swift */; };
+		5C4FCBF7A83FFED57DCB6B43 /* AccountIdentityModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3E60468B94B73F69507CE5 /* AccountIdentityModels.swift */; };
+		D6B122978B53EBCAFF46462E /* AccountIdentityModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3E60468B94B73F69507CE5 /* AccountIdentityModels.swift */; };
+		5EE7646CCB077EE52475D449 /* PasswordResetStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC426DD97250CD23B8DBC32B /* PasswordResetStore.swift */; };
+		F7B6EFCB9B4F01174580429D /* PasswordResetStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC426DD97250CD23B8DBC32B /* PasswordResetStore.swift */; };
+		AFC0E1E7BAE3BFA4CBAE232A /* AccountIdentityStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CF198A5C9028F12865E9D7 /* AccountIdentityStore.swift */; };
+		92029D1B7154363FADDF086B /* AccountIdentityStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CF198A5C9028F12865E9D7 /* AccountIdentityStore.swift */; };
+		53B37423E5A03D46ED9C4732 /* AccountIdentityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF26388101D8C913008653A /* AccountIdentityView.swift */; };
+		B4670F6CAD298DC9934F6F14 /* AccountIdentityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF26388101D8C913008653A /* AccountIdentityView.swift */; };
+		12E4FA5B0D0893D40CC1FFCA /* AppPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798BE664F49A405B62F0F8FF /* AppPreferencesView.swift */; };
+		0637FCACBDA56BA4121F0DE7 /* AppPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798BE664F49A405B62F0F8FF /* AppPreferencesView.swift */; };
+		4785F5FC277E9D3E8B15D0EF /* PasswordResetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7EBB64A56C7E4C5DD976FE /* PasswordResetView.swift */; };
+		847B094148E5C0B6097BE948 /* PasswordResetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7EBB64A56C7E4C5DD976FE /* PasswordResetView.swift */; };
+		D606C80CA949F2ECC3F3C0AD /* MatterListPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F0C956FEF7ED26054DBE7A /* MatterListPresentation.swift */; };
+		B336248F2E5D5CA23A63F333 /* MatterListPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F0C956FEF7ED26054DBE7A /* MatterListPresentation.swift */; };
+		7B59D7610D5F417256B4859D /* AccountIdentityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF1EC7A427A31ECB699E3E8 /* AccountIdentityTests.swift */; };
+		EA9FD36DC31D071741F8B583 /* PasswordResetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC67A3352C85E4276B0C869 /* PasswordResetTests.swift */; };
+		86396E888D1EFD8E6999AE70 /* MatterListPresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68AD7E397227DBF17DB293C2 /* MatterListPresentationTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -410,6 +427,16 @@
 		C7A5988213FE2FB0B33C50C9 /* CoreLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLocalizationTests.swift; sourceTree = "<group>"; };
 		D49713192E55CB7AA092B8B4 /* SharingLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingLocalizationTests.swift; sourceTree = "<group>"; };
 		CD9424D6FDA42F3614921C22 /* RilloraLocalizationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RilloraLocalizationUITests.swift; sourceTree = "<group>"; };
+		7D3E60468B94B73F69507CE5 /* AccountIdentityModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountIdentityModels.swift; sourceTree = "<group>"; };
+		AC426DD97250CD23B8DBC32B /* PasswordResetStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetStore.swift; sourceTree = "<group>"; };
+		21CF198A5C9028F12865E9D7 /* AccountIdentityStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountIdentityStore.swift; sourceTree = "<group>"; };
+		FFF26388101D8C913008653A /* AccountIdentityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountIdentityView.swift; sourceTree = "<group>"; };
+		798BE664F49A405B62F0F8FF /* AppPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPreferencesView.swift; sourceTree = "<group>"; };
+		EA7EBB64A56C7E4C5DD976FE /* PasswordResetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetView.swift; sourceTree = "<group>"; };
+		33F0C956FEF7ED26054DBE7A /* MatterListPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatterListPresentation.swift; sourceTree = "<group>"; };
+		2FF1EC7A427A31ECB699E3E8 /* AccountIdentityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountIdentityTests.swift; sourceTree = "<group>"; };
+		9CC67A3352C85E4276B0C869 /* PasswordResetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetTests.swift; sourceTree = "<group>"; };
+		68AD7E397227DBF17DB293C2 /* MatterListPresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatterListPresentationTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -463,6 +490,7 @@
 		2D5CE26B5793350EBD62B23B /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				AC426DD97250CD23B8DBC32B /* PasswordResetStore.swift */,
 				653A91BCE3CEBB441054163B /* AuthenticationStore.swift */,
 				AE44809F185A0C09E7C4B2B3 /* HostedLegalAcceptanceProof.swift */,
 				11795DE85556E52D6215ACBA /* LegalConsentContract.swift */,
@@ -529,6 +557,7 @@
 		55521CC31E0243F6477A20DE /* Matters */ = {
 			isa = PBXGroup;
 			children = (
+				33F0C956FEF7ED26054DBE7A /* MatterListPresentation.swift */,
 				A7F96B398170EDA2620DE1C0 /* MatterEditorStore.swift */,
 				6895734C5E569904F22AFFD0 /* MatterEditorView.swift */,
 				50FC1C0FD1A9868BB1FED093 /* MattersView.swift */,
@@ -625,6 +654,10 @@
 		9BB160354FB361135874CA18 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				EA7EBB64A56C7E4C5DD976FE /* PasswordResetView.swift */,
+				798BE664F49A405B62F0F8FF /* AppPreferencesView.swift */,
+				FFF26388101D8C913008653A /* AccountIdentityView.swift */,
+				21CF198A5C9028F12865E9D7 /* AccountIdentityStore.swift */,
 				2A19D311D9F4F0CE95410291 /* AccountDataView.swift */,
 				6D240F4A904BC4128BF754EA /* AccountDeletionView.swift */,
 				ACCF2906D4802007DDC9143D /* AccountView.swift */,
@@ -688,6 +721,9 @@
 		C3534E5969EE148FB9508306 /* RilloraTests */ = {
 			isa = PBXGroup;
 			children = (
+				68AD7E397227DBF17DB293C2 /* MatterListPresentationTests.swift */,
+				9CC67A3352C85E4276B0C869 /* PasswordResetTests.swift */,
+				2FF1EC7A427A31ECB699E3E8 /* AccountIdentityTests.swift */,
 				D49713192E55CB7AA092B8B4 /* SharingLocalizationTests.swift */,
 				C7A5988213FE2FB0B33C50C9 /* CoreLocalizationTests.swift */,
 				19876B958E28B992A02C52B0 /* AccountLocalizationTests.swift */,
@@ -777,6 +813,7 @@
 		E0C4E4BE27D9EDACC338D0F0 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				7D3E60468B94B73F69507CE5 /* AccountIdentityModels.swift */,
 				1EFC5EB8603CF5EEDAFA1BD4 /* AccountDataModels.swift */,
 				0B4EB5667FA61EA06999C98D /* ApplePurchaseModels.swift */,
 				E310267119825E27CCEBBC6A /* CommerceModels.swift */,
@@ -1008,6 +1045,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86396E888D1EFD8E6999AE70 /* MatterListPresentationTests.swift in Sources */,
+				EA9FD36DC31D071741F8B583 /* PasswordResetTests.swift in Sources */,
+				7B59D7610D5F417256B4859D /* AccountIdentityTests.swift in Sources */,
 				31D50A25840759506342E23E /* SharingLocalizationTests.swift in Sources */,
 				8B18F7326BD70F8ECD6FD125 /* CoreLocalizationTests.swift in Sources */,
 				24F9466618CB013FBCBC4DB1 /* AccountLocalizationTests.swift in Sources */,
@@ -1045,6 +1085,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D606C80CA949F2ECC3F3C0AD /* MatterListPresentation.swift in Sources */,
+				4785F5FC277E9D3E8B15D0EF /* PasswordResetView.swift in Sources */,
+				12E4FA5B0D0893D40CC1FFCA /* AppPreferencesView.swift in Sources */,
+				53B37423E5A03D46ED9C4732 /* AccountIdentityView.swift in Sources */,
+				AFC0E1E7BAE3BFA4CBAE232A /* AccountIdentityStore.swift in Sources */,
+				5EE7646CCB077EE52475D449 /* PasswordResetStore.swift in Sources */,
+				5C4FCBF7A83FFED57DCB6B43 /* AccountIdentityModels.swift in Sources */,
 				B1DEB05ADC1B322EF50FDE17 /* AppLanguageView.swift in Sources */,
 				414335C4FC2BD4B86EA545B7 /* L10n.swift in Sources */,
 				8066A0C6F50FF1AC687FD3B3 /* APIClient.swift in Sources */,
@@ -1144,6 +1191,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B336248F2E5D5CA23A63F333 /* MatterListPresentation.swift in Sources */,
+				847B094148E5C0B6097BE948 /* PasswordResetView.swift in Sources */,
+				0637FCACBDA56BA4121F0DE7 /* AppPreferencesView.swift in Sources */,
+				B4670F6CAD298DC9934F6F14 /* AccountIdentityView.swift in Sources */,
+				92029D1B7154363FADDF086B /* AccountIdentityStore.swift in Sources */,
+				F7B6EFCB9B4F01174580429D /* PasswordResetStore.swift in Sources */,
+				D6B122978B53EBCAFF46462E /* AccountIdentityModels.swift in Sources */,
 				0EBB97A8E987909B2AE4FA70 /* AppLanguageView.swift in Sources */,
 				6D5AF1B7CC57A716BC86FF89 /* L10n.swift in Sources */,
 				AE13BBDCC5162BB66074920F /* APIClient.swift in Sources */,
@@ -1285,6 +1339,7 @@
 				RILLORA_API_BASE_URL = "https://l1g8350qw0.execute-api.eu-central-1.amazonaws.com/v1";
 				RILLORA_APPLE_SIGN_IN_ENABLED = YES;
 				RILLORA_AUTH0_AUDIENCE = "urn:rillora:api";
+				RILLORA_PASSWORD_RESET_CONNECTION = "Username-Password-Authentication";
 				RILLORA_AUTH0_CLIENT_ID = HDfmJrHaM08lDAgsygPm7b5OB1aaUhrZ;
 				RILLORA_AUTH0_DOMAIN = login.rillora.xyz;
 				RILLORA_CUSTOMER_ACCESS_ENABLED = YES;
@@ -1538,6 +1593,7 @@
 				RILLORA_API_BASE_URL = "https://app.rillora.xyz/api/v1";
 				RILLORA_APPLE_SIGN_IN_ENABLED = NO;
 				RILLORA_AUTH0_AUDIENCE = "urn:rillora:production:api";
+				RILLORA_PASSWORD_RESET_CONNECTION = "Username-Password-Authentication";
 				RILLORA_AUTH0_CLIENT_ID = POpNKTqlr6dHbJZLWPWxhyjg5qPtdrm4;
 				RILLORA_AUTH0_DOMAIN = login.rillora.xyz;
 				RILLORA_CUSTOMER_ACCESS_ENABLED = NO;

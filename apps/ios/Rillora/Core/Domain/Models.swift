@@ -218,7 +218,7 @@ enum MatterStatus: String, CaseIterable, Identifiable, Sendable {
         switch self {
         case .draft: String(localized: "Draft")
         case .ready: String(localized: "Directions added")
-        case .needsReview: String(localized: "Needs review")
+        case .needsReview: String(localized: "To organize")
         }
     }
 }

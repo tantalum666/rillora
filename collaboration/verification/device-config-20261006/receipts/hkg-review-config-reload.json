@@ -1,0 +1,21 @@
+{
+  "at": "2026-10-06T13:47:17.253834+00:00",
+  "appleEnvironment": "sandbox",
+  "beforeStorefronts": [
+    "USA"
+  ],
+  "afterStorefronts": [
+    "USA",
+    "HKG"
+  ],
+  "otherSecretFieldsUnchanged": true,
+  "readbackMatches": true,
+  "newVersionId": "ab79d7fd-4cb0-45a8-b30a-a796dca3bb88",
+  "noIdentityOrExpiryChange": true,
+  "ordinarySalesEnabled": false,
+  "cluster": "RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm",
+  "service": "RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL",
+  "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRuntimeApiTask93405B31:14",
+  "deploymentId": "ecs-svc/3221815468980032188",
+  "purpose": "Load additional HKG-only Sandbox quote and verified storefront allowlist; unchanged API14 image and identity window"
+}

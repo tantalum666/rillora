@@ -1,0 +1,40 @@
+"""Retire only the superseded USD68 Sandbox offer; retain all price and receipt facts."""
+from pathlib import Path
+import subprocess,json,datetime,os,uuid
+ROOT=Path.cwd();Q=ROOT/'output/qa/rillora-device-config-20261006';P=ROOT/'.local-secrets/device-config-20261006'
+def aws(args):
+ r=subprocess.run(['aws',*args,'--profile','rillora-production-operator','--region','eu-central-1','--output','json'],capture_output=True,text=True,timeout=50)
+ if r.returncode:raise RuntimeError('AWS diagnostic operation failed; private output suppressed')
+ return json.loads(r.stdout)
+receipt=Q/'retire-legacy-apple-offer-task.json'
+if receipt.exists():raise SystemExit('Retirement task already started; read back its outcome without resubmitting.')
+who=aws(['sts','get-caller-identity']);assert who['Account']=='133857166372' and ':assumed-role/rillora-production-operator/' in who['Arn']
+stack=aws(['cloudformation','describe-stacks','--stack-name','RilloraProduction'])['Stacks'][0];o={x['OutputKey']:x['OutputValue'] for x in stack['Outputs']};assert o['ProductionTrafficReady']=='false'
+a=next(x for x in json.loads((ROOT/'.local-secrets/production-review/acceptance-identities-20261001.json').read_text())['accounts'] if x['role']=='planner');assert len(a['matches'])==1
+script="""import pg from 'pg';
+import {loadDatabaseConfig,loadContentProtectionConfig} from './dist/config.js';
+import {databaseConnectionOptions} from './dist/db.js';
+import {loadAppleReviewQuoteRows} from './dist/apple-review-catalog.js';
+const cfg=loadDatabaseConfig(),content=loadContentProtectionConfig();
+if(cfg.sslMode!=='verify-full'||!/^rillora-production\\.[a-z0-9]+\\.eu-central-1\\.rds\\.amazonaws\\.com$/.test(cfg.host)||content?.namespace!=='rillora-production')throw Error('wrong_environment');
+const pool=new pg.Pool({...databaseConnectionOptions(cfg),max:1,application_name:'rillora-retire-old-review-quote'});const c=await pool.connect();
+try{await c.query('begin');await c.query(\"set local statement_timeout='15s'\");
+const web=async()=> (await c.query(\"select price_code,amount_minor::text,status from app.commerce_prices where price_code='family_usd_annual_v4' order by id\")).rows;
+const webBefore=await web();if(webBefore.length!==1||webBefore[0].amount_minor!=='8899')throw Error('web_price_guard');
+const old=(await c.query(`select b.binding_code,b.status,p.amount_minor::text,p.currency_code from app.commerce_apple_price_bindings b join app.commerce_prices p on p.id=b.price_id where p.price_code='family_apple_review_usd_6800_20260930' and p.amount_minor=6800 and p.currency_code='USD' and p.status='test_only' and b.provider_environment='sandbox' and b.storefront_country_code='USA' and b.product_reference='com.rillora.family.annual' for update of b`)).rows;
+if(old.length!==1)throw Error('exact_legacy_binding_required');
+const changed=await c.query(\"update app.commerce_apple_price_bindings set status='retired' where binding_code=$1 and status='active' returning binding_code,status\",[old[0].binding_code]);
+const quotes=await loadAppleReviewQuoteRows(c,{serviceMarketCode:'GLOBAL_US',storefrontCountryCode:'USA'});
+if(quotes.length!==0)throw Error('legacy_quote_still_available');
+const after=(await c.query('select binding_code,status from app.commerce_apple_price_bindings where binding_code=$1',[old[0].binding_code])).rows;
+if(after[0].status!=='retired'||JSON.stringify(webBefore)!==JSON.stringify(await web()))throw Error('readback_guard');
+await c.query('commit');console.log(JSON.stringify({legacySandboxOfferRetired:true,changed:changed.rowCount,binding:after[0],newUsaSandboxQuotes:0,web8899Unchanged:true,priceAmountsAndHistoryUnchanged:true,noDataDeletion:true,noPurchase:true}));
+}catch(e){await c.query('rollback');console.error(JSON.stringify({retired:false,error:e.code??e.message}));process.exitCode=2;}finally{c.release();await pool.end();}
+"""
+body={'cluster':o['ClusterName'],'taskDefinition':o['MigrationTaskDefinitionArn'],'launchType':'FARGATE','clientToken':uuid.uuid4().hex,'networkConfiguration':{'awsvpcConfiguration':{'subnets':o['MaintenanceSubnetIds'].split(','),'securityGroups':[o['MigrationSecurityGroupId']],'assignPublicIp':'ENABLED'}},'overrides':{'containerOverrides':[{'name':'Maintenance','command':['node','--input-type=module','-e',script],'environment':[]}]}}
+assert len(json.dumps(body['overrides']))<8192
+path=P/'retire-legacy-apple-offer-request.json'
+with os.fdopen(os.open(path,os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600),'w') as f:json.dump(body,f)
+r=aws(['ecs','run-task','--cli-input-json','file://'+str(path)]);assert not r.get('failures') and len(r['tasks'])==1
+t=r['tasks'][0];result={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'taskArn':t['taskArn'],'cluster':o['ClusterName'],'logGroup':o['MaintenanceLogGroup'],'logStream':'migration/Maintenance/'+t['taskArn'].split('/')[-1],'scope':'Retire only superseded USD68 Sandbox binding for new quotes; preserve historical amount/receipts and Web8899','migrationOrDeployment':False,'finished':False}
+receipt.write_text(json.dumps(result,indent=2)+'\n');print(result)

@@ -83,13 +83,9 @@ struct OfficialSetupView: View {
     private var reviewStatus: some View {
         if let setupStore { switch setupStore.state {
         case .idle, .loading:
-            Section {
-                HStack(spacing: 10) {
-                    ProgressView()
-                    Text(String(localized: "Loading your review status…"))
-                        .foregroundStyle(RilloraTheme.muted)
-                }
-            }
+            // Bundled guides are already usable; a background self-report read must
+            // not insert and remove an unrelated loading row above the catalog.
+            EmptyView()
         case .failed(let message, _):
             Section {
                 Button {
@@ -109,9 +105,7 @@ struct OfficialSetupView: View {
     private func guideRow(_ guide: OfficialProviderGuide) -> some View {
         NavigationLink {
             OfficialProviderGuideDetailView(
-                guide: guide,
-                setupStore: setupStore,
-                overviewStore: overviewStore
+                guide: guide
             )
         } label: {
             Group {
@@ -170,18 +164,13 @@ struct OfficialSetupView: View {
 
 struct OfficialProviderGuideDetailView: View {
     let guide: OfficialProviderGuide
-    let setupStore: OfficialSetupStore?
-    let overviewStore: OverviewStore?
-
     @State private var activePart: String
     @State private var stepIndex = 0
     @RilloraReduceMotion private var reduceMotion
     @ScaledMetric(relativeTo: .title3) private var stepMarkerSize = 38.0
 
-    init(guide: OfficialProviderGuide, setupStore: OfficialSetupStore? = nil, overviewStore: OverviewStore? = nil, initialPart: String? = nil) {
+    init(guide: OfficialProviderGuide, initialPart: String? = nil) {
         self.guide = guide
-        self.setupStore = setupStore
-        self.overviewStore = overviewStore
         _activePart = State(initialValue: initialPart ?? guide.initialPart)
     }
 
@@ -196,7 +185,6 @@ struct OfficialProviderGuideDetailView: View {
                 if activePart == "details" {
                     requirementsCard
                     boundaryCard
-                    if guide.supportsSelfReportedCheck { selfReportedCard }
                     RilloraInfoDisclosure(String(localized: "About this route")) {
                         Text(guide.summary).font(.subheadline).foregroundStyle(RilloraTheme.body)
                         Text(L10n.format("Sources reviewed %1$@. Requirements can change.", guide.lastReviewed))
@@ -206,20 +194,7 @@ struct OfficialProviderGuideDetailView: View {
                     stepReader
                 }
                 officialLinksCard
-                RilloraInfoDisclosure(String(localized: "Original source links")) {
-                    ForEach(guide.links) { link in
-                        if let url = link.url {
-                            VStack(alignment: .leading, spacing: 5) {
-                                Text(link.title).font(.subheadline.weight(.semibold))
-                                Link(link.urlString, destination: url)
-                                    .font(.footnote).multilineTextAlignment(.leading)
-                                    .fixedSize(horizontal: false, vertical: true)
-                                ShareLink(item: url) { Label(String(localized: "Share link"), systemImage: "square.and.arrow.up") }
-                                    .font(.footnote).frame(minHeight: 44)
-                            }
-                        }
-                    }
-                }
+
             }
             .padding(.horizontal, 20)
             .padding(.vertical, 18)
@@ -403,36 +378,7 @@ struct OfficialProviderGuideDetailView: View {
         .rilloraCard()
     }
 
-    @ViewBuilder
-    private var selfReportedCard: some View {
-        if let check, let setupStore {
-            VStack(alignment: .leading, spacing: 10) {
-                Toggle(
-                    String(localized: "I reviewed this guide"),
-                    isOn: Binding(
-                        get: { setupStore.displayedCompleted(for: check) },
-                        set: { completed in
-                            Task {
-                                guard await setupStore.setCompleted(
-                                    publicID: check.publicId,
-                                    completed: completed
-                                ) != nil else { return }
-                                await overviewStore?.reconcileAfterMutation()
-                            }
-                        }
-                    )
-                )
-                .disabled(setupStore.isSaving(check))
-                .accessibilityIdentifier("official-setup.toggle.\(check.providerKey)")
 
-            }
-            .rilloraCard()
-        }
-    }
-
-    private var check: OfficialSetupCheck? {
-        setupStore?.checks.first { $0.providerKey == guide.id }
-    }
 }
 
 struct OfficialProviderMark: View {

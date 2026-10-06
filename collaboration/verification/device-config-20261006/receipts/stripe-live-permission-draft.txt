@@ -1,0 +1,481 @@
+- link "Stripe logo":
+  - /url: https://stripe.com
+  - img "Stripe logo"
+- generic: ChatGPT 请求访问您的 Stripe 账户
+- generic: 仅授权给您信任的第三方。
+- generic: Stripe 尚未审查或验证 ChatGPT。我们无法确认其开发者身份或其如何使用您的数据。授权后，您即允许其根据自身的服务条款和隐私政策访问您的 Stripe 数据。
+- generic: 设置权限
+- generic: 选择默认访问级别或按权限进行自定义。
+- group "设置所有权限的访问级别":
+  - radio "读取"
+  - generic: 读取
+  - radio "写入"
+  - generic: 写入
+  - radio "自定义" [checked]
+  - generic: 自定义
+- button "Accounts Accounts":
+  - generic: Accounts
+  - group "Accounts":
+    - radio "无"
+    - generic: 无
+    - radio "读取" [checked]
+    - generic: 读取
+    - radio "写入" [disabled]
+    - generic: 写入
+- button "Account Features Account Features":
+  - generic: Account Features
+  - group "Account Features":
+    - radio "无"
+    - generic: 无
+    - radio "读取" [checked]
+    - generic: 读取
+    - radio "写入"
+    - generic: 写入
+- button "Application Fees Application Fees":
+  - generic: Application Fees
+  - group "Application Fees":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入" [disabled]
+    - generic: 写入
+- button "Atlas Company Formation Atlas Company Formation":
+  - generic: Atlas Company Formation
+  - group "Atlas Company Formation":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入"
+    - generic: 写入
+- button "Balance Balance":
+  - generic: Balance
+  - group "Balance":
+    - radio "无"
+    - generic: 无
+    - radio "读取" [checked]
+    - generic: 读取
+    - radio "写入" [disabled]
+    - generic: 写入
+- button "Test Clocks Test Clocks":
+  - generic: Test Clocks
+  - group "Test Clocks":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取" [disabled]
+    - generic: 读取
+    - radio "写入"
+    - generic: 写入
+- button "Branding Settings Branding Settings":
+  - generic: Branding Settings
+  - group "Branding Settings":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入"
+    - generic: 写入
+- button "Charges and Refunds Charges and Refunds":
+  - generic: Charges and Refunds
+  - group "Charges and Refunds":
+    - radio "无"
+    - generic: 无
+    - radio "读取" [checked]
+    - generic: 读取
+    - radio "写入"
+    - generic: 写入
+- button "Checkout Sessions Checkout Sessions":
+  - generic: Checkout Sessions
+  - group "Checkout Sessions":
+    - radio "无"
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入" [checked]
+    - generic: 写入
+- button "Enable Connect in Sandboxes Enable Connect in Sandboxes":
+  - generic: Enable Connect in Sandboxes
+  - group "Enable Connect in Sandboxes":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取" [disabled]
+    - generic: 读取
+    - radio "写入"
+    - generic: 写入
+- button "Coupons Coupons":
+  - generic: Coupons
+  - group "Coupons":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入"
+    - generic: 写入
+- button "Credit Notes Credit Notes":
+  - generic: Credit Notes
+  - group "Credit Notes":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入" [disabled]
+    - generic: 写入
+- button "Customers Customers":
+  - generic: Customers
+  - group "Customers":
+    - radio "无"
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入" [checked]
+    - generic: 写入
+- button "Customer Portal Customer Portal":
+  - generic: Customer Portal
+  - group "Customer Portal":
+    - radio "无"
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入" [checked]
+    - generic: 写入
+- button "Metrics Metrics":
+  - generic: Metrics
+  - group "Metrics":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入"
+    - generic: 写入
+- button "Queries Queries":
+  - generic: Queries
+  - group "Queries":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入"
+    - generic: 写入
+- button "Reports Reports":
+  - generic: Reports
+  - group "Reports":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入"
+    - generic: 写入
+- button "Payment Disputes Payment Disputes":
+  - generic: Payment Disputes
+  - group "Payment Disputes":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入"
+    - generic: 写入
+- button "Files Files":
+  - generic: Files
+  - group "Files":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入" [disabled]
+    - generic: 写入
+- button "Financial Reports Financial Reports":
+  - generic: Financial Reports
+  - group "Financial Reports":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入"
+    - generic: 写入
+- button "Health Alerts Health Alerts":
+  - generic: Health Alerts
+  - group "Health Alerts":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入" [disabled]
+    - generic: 写入
+- button "Invoices Invoices":
+  - generic: Invoices
+  - group "Invoices":
+    - radio "无"
+    - generic: 无
+    - radio "读取" [checked]
+    - generic: 读取
+    - radio "写入"
+    - generic: 写入
+- button "Issuing Authorizations Issuing Authorizations":
+  - generic: Issuing Authorizations
+  - group "Issuing Authorizations":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入" [disabled]
+    - generic: 写入
+- button "Issuing Cards Issuing Cards":
+  - generic: Issuing Cards
+  - group "Issuing Cards":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入" [disabled]
+    - generic: 写入
+- button "Issuing Cardholders Issuing Cardholders":
+  - generic: Issuing Cardholders
+  - group "Issuing Cardholders":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入" [disabled]
+    - generic: 写入
+- button "Issuing Disputes Issuing Disputes":
+  - generic: Issuing Disputes
+  - group "Issuing Disputes":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入" [disabled]
+    - generic: 写入
+- button "Issuing Transactions Issuing Transactions":
+  - generic: Issuing Transactions
+  - group "Issuing Transactions":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入" [disabled]
+    - generic: 写入
+- button "Personally Identifiable Information Personally Identifiable Information":
+  - generic: Personally Identifiable Information
+  - group "Personally Identifiable Information":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入" [disabled]
+    - generic: 写入
+- button "Money Management Financial Accounts Money Management Financial Accounts":
+  - generic: Money Management Financial Accounts
+  - group "Money Management Financial Accounts":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入" [disabled]
+    - generic: 写入
+- button "Money Management Transactions Money Management Transactions":
+  - generic: Money Management Transactions
+  - group "Money Management Transactions":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入" [disabled]
+    - generic: 写入
+- button "Payment Intents Payment Intents":
+  - generic: Payment Intents
+  - group "Payment Intents":
+    - radio "无"
+    - generic: 无
+    - radio "读取" [checked]
+    - generic: 读取
+    - radio "写入" [disabled]
+    - generic: 写入
+- button "Payment Links Payment Links":
+  - generic: Payment Links
+  - group "Payment Links":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入"
+    - generic: 写入
+- button "Payment Methods Payment Methods":
+  - generic: Payment Methods
+  - group "Payment Methods":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入" [disabled]
+    - generic: 写入
+- button "Payment Method Configurations Payment Method Configurations":
+  - generic: Payment Method Configurations
+  - group "Payment Method Configurations":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入"
+    - generic: 写入
+- button "Payment Method Domains Payment Method Domains":
+  - generic: Payment Method Domains
+  - group "Payment Method Domains":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入"
+    - generic: 写入
+- button "Payment Retry Evaluations Payment Retry Evaluations":
+  - generic: Payment Retry Evaluations
+  - group "Payment Retry Evaluations":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入"
+    - generic: 写入
+- button "Payouts Payouts":
+  - generic: Payouts
+  - group "Payouts":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入" [disabled]
+    - generic: 写入
+- button "Payout Settings Payout Settings":
+  - generic: Payout Settings
+  - group "Payout Settings":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入" [disabled]
+    - generic: 写入
+- button "Prices Prices":
+  - generic: Prices
+  - group "Prices":
+    - radio "无"
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入" [checked]
+    - generic: 写入
+- button "Products Products":
+  - generic: Products
+  - group "Products":
+    - radio "无"
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入" [checked]
+    - generic: 写入
+- button "Promotion Codes Promotion Codes":
+  - generic: Promotion Codes
+  - group "Promotion Codes":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入"
+    - generic: 写入
+- button "Setup Intents Setup Intents":
+  - generic: Setup Intents
+  - group "Setup Intents":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入" [disabled]
+    - generic: 写入
+- button "Sigma Queries Sigma Queries":
+  - generic: Sigma Queries
+  - group "Sigma Queries":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取" [disabled]
+    - generic: 读取
+    - radio "写入"
+    - generic: 写入
+- button "Subscriptions Subscriptions":
+  - generic: Subscriptions
+  - group "Subscriptions":
+    - radio "无"
+    - generic: 无
+    - radio "读取" [checked]
+    - generic: 读取
+    - radio "写入"
+    - generic: 写入
+- button "Product Tax Codes Product Tax Codes":
+  - generic: Product Tax Codes
+  - group "Product Tax Codes":
+    - radio "无"
+    - generic: 无
+    - radio "读取" [checked]
+    - generic: 读取
+    - radio "写入" [disabled]
+    - generic: 写入
+- button "Tax Settings, Registrations Tax Settings, Registrations":
+  - generic: Tax Settings, Registrations
+  - group "Tax Settings, Registrations":
+    - radio "无"
+    - generic: 无
+    - radio "读取" [checked]
+    - generic: 读取
+    - radio "写入"
+    - generic: 写入
+- button "Tax Calculations, Transactions Tax Calculations, Transactions":
+  - generic: Tax Calculations, Transactions
+  - group "Tax Calculations, Transactions":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入"
+    - generic: 写入
+- button "Transfers Transfers":
+  - generic: Transfers
+  - group "Transfers":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入" [disabled]
+    - generic: 写入
+- button "Webhook Endpoints, Event Destinations Webhook Endpoints, Event Destinations":
+  - generic: Webhook Endpoints, Event Destinations
+  - group "Webhook Endpoints, Event Destinations":
+    - radio "无"
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入" [checked] [active]
+    - generic: 写入
+- button "Workflow Execution Workflow Execution":
+  - generic: Workflow Execution
+  - group "Workflow Execution":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取" [disabled]
+    - generic: 读取
+    - radio "写入"
+    - generic: 写入
+- button "Workflow Definitions Workflow Definitions":
+  - generic: Workflow Definitions
+  - group "Workflow Definitions":
+    - radio "无" [checked]
+    - generic: 无
+    - radio "读取"
+    - generic: 读取
+    - radio "写入" [disabled]
+    - generic: 写入
+- button "返回"
+- button "审核"
+- link "© Stripe":
+  - /url: https://stripe.com
+  - generic: © Stripe
+- link "隐私与条款":
+  - /url: https://stripe.com/privacy

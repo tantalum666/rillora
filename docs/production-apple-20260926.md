@@ -2,12 +2,26 @@
 
 Role: current Apple production engineering, portal readback and actual evidence boundary
 Status: REVIEW FLOW LOCALLY VERIFIED; SIGNED EXPORT PREPARED; ACTUAL PROVIDER AND CLOUD ACCEPTANCE OPEN
-Last updated: 2026-09-30 (Asia/Hong_Kong)
+Last updated: 2026-10-07 (Asia/Hong_Kong)
 
 Owner completed the requested Apple login. The actual Rillora app6803957639,
 bundle com.rillora.ios, group22325627 and two existing products are accessible.
 The app/version and products remain Prepare for Submission. No build, review
 submission, live purchase or release was created in this increment.
+
+## October7 current purchase presentation
+
+The Owner supersedes the historical native checkbox with an explicit Subscribe button
+beside the displayed annual quote, renewal/cancellation disclosure and policy links.
+The button captures that displayed quote. Before preparation, the coordinator checks
+it is still current and reloads the server/StoreKit offer; before the system sheet,
+StoreKit reloads the Product and rechecks currency, amount and storefront. A changed
+quote returns to the page for a new button tap. Page load records no acceptance.
+The API's three semantic recurring-consent fields retain their meaning and versions;
+they do not describe a checkbox widget. Signup consent is independent and unchanged.
+The purchase page leads with Family5 versus Free1, shared review and one designated
+contributor's owner-approved corrections; it does not advertise roadmap capabilities.
+Latest physical receipt, build and evidence are in [the current contract](device-config-20261006.md).
 
 ## September29–30 Apple release increment — current
 

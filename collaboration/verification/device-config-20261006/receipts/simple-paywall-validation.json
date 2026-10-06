@@ -1,0 +1,21 @@
+{
+  "at": "2026-10-06T16:25:32.705381+00:00",
+  "passed": 39,
+  "failed": 0,
+  "skipped": 1,
+  "skip": "Retained iOS26.4/26.5 StoreKitTest sync issue",
+  "nativeStaticChecks": 11,
+  "observed": [
+    "Chinese and English shared purchase component",
+    "HKD HK$888.00 annual",
+    "one enabled primary Subscribe button",
+    "no checkbox or Large text/Currency control",
+    "benefits, renewal/cancellation disclosure, policy and Restore links"
+  ],
+  "boundary": "Isolated non-purchasing Preview; not a new Apple transaction or physical build8 proof",
+  "finalRendering": "English third-line initially truncated; fixed natural wrapping and re-rendered both languages. No subsequent purchase-logic change, no redundant test rerun.",
+  "screenshots": [
+    "simple-paywall-en-final.jpg",
+    "simple-paywall-zh-final.jpg"
+  ]
+}

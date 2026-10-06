@@ -5,7 +5,15 @@ Authority scope: supported platforms, concrete instructions, regional limits, si
 Superseded by: Owner decisions, newer official policy or verified regional requirements  
 Do not use for: legal advice, applicant authority, account access, provider approval or transfer guarantees  
 Status: 18 SHARED GUIDES IMPLEMENTED; CURRENT INSTALLATION AND PUBLICATION EVIDENCE IN HANDOFF  
-Last updated: 2026-09-28
+Last updated: 2026-10-07
+
+## October7 native cleanup and link maintenance
+
+The bundled directory does not display unrelated self-report loading text. Real failed
+status requests retain retry. Remove native guide-reading checkboxes without changing
+registration or sharing consent. Current canonical destinations and constrained checks
+are in [the dated link audit](qa/ios-ux-refinement-20261006/official-links.md); URL checks
+do not re-date a whole guide or guarantee permanent access/provider approval.
 
 ## Current Owner Direction
 
@@ -39,7 +47,7 @@ Owner explicitly asks to surface the guide when A writes a matter and when B rea
 - A sees the related guide directly below Provider in the continuous editor. Native opens a closeable reading sheet preserving the draft; Web expands in place without replacing the editor/history. Opening for A begins at Prepare. Name/provider autocorrection is disabled so brand names are not silently rewritten.
 - B matches only the server-projected title/provider/category/custody fields. Never read hidden owner data, notes, email/account hints or other matters to generate a suggestion. Name-only sharing with a vague title does not reveal a hidden provider through recommendation.
 - Shared-access refresh still clears revoked/private content. An already-open native guide can remain as a static reference; it contains no private matter field, and Close returns to the access-changed state. Web removes the recommendation when the projected item is gone.
-- Original source links expand to full URLs; native provides a standard Share link action. Provider login and claim submission remain entirely on the provider’s site.
+- Native shows only phase-relevant official actions; the duplicate raw-source link/share block and guide acknowledgement control are removed by the October7 Owner request. Source URLs, dates and historical self-reported state remain internally. Provider login and claim submission remain entirely on the provider’s site.
 - One shared19-case fixture validates matching and disclosure boundaries on both clients. Synthetic A/B UI/API checks do not stand in for actual provider inheritance acceptance.
 
 ## Catalog And Review Scope

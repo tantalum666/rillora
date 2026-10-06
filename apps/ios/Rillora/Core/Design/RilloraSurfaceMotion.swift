@@ -52,12 +52,15 @@ struct RilloraTaskEmblem: View {
 }
 
 struct RilloraDisclosureStyle: DisclosureGroupStyle {
-    @RilloraReduceMotion private var reduceMotion
 
     func makeBody(configuration: Configuration) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             Button {
-                withAnimation(reduceMotion ? nil : RilloraMotion.reveal) {
+                // Form/List owns row height. Spring + translated/blurred content
+                // caused a second layout motion before disclosure became visible.
+                var transaction = Transaction(animation: nil)
+                transaction.disablesAnimations = true
+                withTransaction(transaction) {
                     configuration.isExpanded.toggle()
                 }
             } label: {
@@ -72,14 +75,14 @@ struct RilloraDisclosureStyle: DisclosureGroupStyle {
                 .frame(minHeight: 44)
                 .contentShape(Rectangle())
             }
-            .buttonStyle(RilloraQuietButtonStyle())
+            .buttonStyle(.plain)
             .accessibilityValue(configuration.isExpanded ? String(localized: "Expanded") : String(localized: "Collapsed"))
 
             if configuration.isExpanded {
                 configuration.content
                     .padding(.top, 10)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .transition(reduceMotion ? .identity : RilloraMotion.contentReveal)
+                    .transition(.identity)
             }
         }
     }

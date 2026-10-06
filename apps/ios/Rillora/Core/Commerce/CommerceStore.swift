@@ -246,7 +246,8 @@ final class CommerceStore {
             let outcome = try await storeKitClient.purchase(
                 productID: productID,
                 appAccountToken: localAppAccountToken,
-                expectedStorefrontCountryCode: storefrontCountryCode
+                expectedStorefrontCountryCode: storefrontCountryCode,
+                expectedProduct: storeKitProducts.first { $0.productID == productID }
             )
             switch outcome {
             case .verified(let evidence):
@@ -255,6 +256,8 @@ final class CommerceStore {
                 storeKitMessage = String(localized: "The local StoreKit purchase is pending. No Rillora access changed.")
             case .userCancelled:
                 storeKitMessage = String(localized: "The local StoreKit purchase was cancelled.")
+            case .quoteChanged:
+                storeKitMessage = String(localized: "The price changed or is unavailable. Review it before subscribing.")
             case .unverified:
                 storeKitMessage = String(localized: "StoreKit returned an unverified purchase. It was not recorded or finished.")
             }
@@ -284,7 +287,8 @@ final class CommerceStore {
             let outcome = try await storeKitClient.purchase(
                 productID: productID,
                 appAccountToken: localAppAccountToken,
-                expectedStorefrontCountryCode: storefrontCountryCode
+                expectedStorefrontCountryCode: storefrontCountryCode,
+                expectedProduct: storeKitProducts.first { $0.productID == productID }
             )
             switch outcome {
             case .verified(let evidence):
@@ -293,6 +297,8 @@ final class CommerceStore {
                 storeKitMessage = String(localized: "The Sandbox purchase is pending. No Rillora access changed.")
             case .userCancelled:
                 storeKitMessage = String(localized: "The Sandbox purchase was cancelled.")
+            case .quoteChanged:
+                storeKitMessage = String(localized: "The price changed or is unavailable. Review it before subscribing.")
             case .unverified:
                 storeKitMessage = String(localized: "Apple returned an unverified Sandbox purchase. It was not submitted or finished.")
             }

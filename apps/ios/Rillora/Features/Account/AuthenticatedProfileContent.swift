@@ -18,7 +18,6 @@ struct AuthenticatedProfileContent: View {
     let addContact: () -> Void
     let editContact: (TrustedContact) -> Void
 
-    @State private var isConfirmingAllSessionRevocation = false
     @State private var sharingConnections: [SharingConnection] = []
     @State private var sharingLoadFailed = false
     @State private var sharingLoaded = false
@@ -26,6 +25,11 @@ struct AuthenticatedProfileContent: View {
 
     var body: some View {
         RilloraList {
+            Section {
+                AccountIdentityView(plannerPublicID: snapshot.session.plannerPublicId,
+                                    service: startHereService as? any AccountIdentityServing,
+                                    onAuthenticationRequired: store.invalidateAuthentication)
+            }
             if snapshot.session.usesDevelopmentIdentity {
                 developmentIdentitySection
             }
@@ -43,18 +47,7 @@ struct AuthenticatedProfileContent: View {
         .accessibilityIdentifier("profile.list")
         .task(id: sharingRevision) { await loadConnections() }
         .onChange(of: scenePhase) { _, phase in if phase == .active { Task { await loadConnections() } } }
-        .confirmationDialog(
-            String(localized: "Sign out all Rillora devices?"),
-            isPresented: $isConfirmingAllSessionRevocation,
-            titleVisibility: .visible
-        ) {
-            Button(String(localized: "Sign out all devices"), role: .destructive) {
-                Task { await authenticationStore.signOutAll() }
-            }
-            Button(String(localized: "Cancel"), role: .cancel) {}
-        } message: {
-            Text(String(localized: "Every active Rillora app session will stop working, including this device."))
-        }
+
     }
 
     private var developmentIdentitySection: some View {
@@ -156,9 +149,12 @@ struct AuthenticatedProfileContent: View {
 
     private var supportSection: some View {
         Section {
-            NavigationLink { RilloraSafetyPrivacyView() } label: {
+            NavigationLink { RilloraSafetyPrivacyView(authenticationStore: authenticationStore) } label: {
                 ProfileTaskLabel(title: String(localized: "Safety & privacy"), detail: String(localized: "Your data and permissions"), systemImage: "lock.shield")
             }.accessibilityIdentifier("profile.safety")
+            NavigationLink { AppPreferencesView() } label: {
+                ProfileTaskLabel(title: String(localized: "Language & appearance"), detail: String(localized: "App language and display mode"), systemImage: "slider.horizontal.3")
+            }.accessibilityIdentifier("profile.preferences")
             NavigationLink { AboutRilloraView() } label: {
                 ProfileTaskLabel(title: String(localized: "About Rillora"), detail: String(localized: "Version and app information"), systemImage: "info.circle")
             }.accessibilityIdentifier("profile.about")
@@ -180,18 +176,8 @@ struct AuthenticatedProfileContent: View {
             .disabled(authenticationStore.isWorking)
             .accessibilityIdentifier("account.sign-out")
 
-            Button(role: .destructive) {
-                isConfirmingAllSessionRevocation = true
-            } label: {
-                Label(String(localized: "Sign out all Rillora devices"), systemImage: "rectangle.stack.badge.minus")
-                    .foregroundStyle(RilloraTheme.clay)
-            }
-            .disabled(authenticationStore.isWorking)
-            .accessibilityIdentifier("account.sign-out-all")
         } header: {
             ProfileSectionHeader(String(localized: "Sessions"))
-        } footer: {
-            Text(String(localized: "Rillora sessions only"))
         }
         .rilloraProfileActionRows()
     }

@@ -1,0 +1,66 @@
+{
+  "scanner": "gitleaks",
+  "version": "8.30.1",
+  "rawFindingCount": 7,
+  "reviewedNonSecrets": [
+    {
+      "rule": "generic-api-key",
+      "path": "apps/ios/Rillora.xcodeproj/project.pbxproj",
+      "startLine": 1343,
+      "endLine": 1343,
+      "sourceSpanSha256": "5de471a1bd1102dd7f3284468f430bc8b8c0d137dcaef7c8aa9d27cc17aae11e",
+      "reason": "Native public Auth0 client identifier, byte-matched to the already reviewed project.yml value; shared generated Xcode project, not a client secret."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/ios/Rillora.xcodeproj/project.pbxproj",
+      "startLine": 1597,
+      "endLine": 1597,
+      "sourceSpanSha256": "84b43e023d7ae444915797275d0661dbab0b68c1f6201663e2cd623b995b19ab",
+      "reason": "Native public Auth0 client identifier, byte-matched to the already reviewed project.yml value; shared generated Xcode project, not a client secret."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/ios/project.yml",
+      "startLine": 112,
+      "endLine": 112,
+      "sourceSpanSha256": "c9c9eb8a723073eae64c80690be13fc7c0919031fdb81d83a953ee5a247256b4",
+      "reason": "Native public Auth0 client identifier, included in distributed app configuration."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/ios/project.yml",
+      "startLine": 128,
+      "endLine": 128,
+      "sourceSpanSha256": "5ac97cca4bf92df008a80d90fabca84d976bccc691219fdbb0bbc591b963b6ae",
+      "reason": "Prepared native public Auth0 production client identifier, verified against the approved public connection contract; not a client secret."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/ios/RilloraTests/StartHereEncryptionServiceTests.swift",
+      "startLine": 171,
+      "endLine": 171,
+      "sourceSpanSha256": "01a8ad16ed86676d58e652dc48227a1e1fbe06a725ede91abae49956de868d10",
+      "reason": "Fixed cross-platform cryptography fixture with synthetic UUIDs and no service/account authority."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/ios/RilloraTests/StartHereEncryptionServiceTests.swift",
+      "startLine": 171,
+      "endLine": 171,
+      "sourceSpanSha256": "01a8ad16ed86676d58e652dc48227a1e1fbe06a725ede91abae49956de868d10",
+      "reason": "Fixed cross-platform cryptography fixture with synthetic UUIDs and no service/account authority."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/ios/RilloraTests/StartHereEncryptionServiceTests.swift",
+      "startLine": 171,
+      "endLine": 171,
+      "sourceSpanSha256": "01a8ad16ed86676d58e652dc48227a1e1fbe06a725ede91abae49956de868d10",
+      "reason": "Fixed cross-platform cryptography fixture with synthetic UUIDs and no service/account authority."
+    }
+  ],
+  "unreviewedFindings": [],
+  "passed": true,
+  "boundary": "A scoped source scan; not proof of absence of every possible secret or personal datum."
+}

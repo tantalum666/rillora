@@ -2,21 +2,25 @@
 
 Role: current launch scope, remaining work and release evidence contract  
 Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; ORDINARY CUSTOMER ACCESS AND SALES CLOSED
-Last updated: 2026-10-06 (Asia/Hong_Kong)
+Last updated: 2026-10-07 (Asia/Hong_Kong)
 
-## October6 真机与配置 — 当前结果
+## October7 真机与配置 — 当前结果
 
-Owner已从内部TestFlight安装1.0(5)，真实Google登录并看见原有事项。恢复购买报告暂不可用，
-客户端缺少显式AppTransaction刷新已修，17项针对性测试及13项分发检查通过。1.0(6)已上传、
-处理完成并加入原内部组，等待Owner更新后的实际结果。外部两个邮箱邀请按Owner指示暂缓。
+Owner已安装构建6并完成首笔Apple Sandbox购买。真实签名收据为HKG/HKD888.00，订阅active，
+初始通知与客户端回传applied；先前AUD199.99报价订单已取消关闭，未改写收据。购后恢复、跨端
+权益及VoiceOver仍分别验收。外部两个邮箱邀请和独立删除账号按Owner指示暂缓。
 
-Apple美国年费已最终锁定并保存US$119.99，Web保持US$88.99；原8个年付销售地区不变。
-旧68停止新购，新119.99 Sandbox绑定已核验；同一API14镜像/配置滚动加载后健康，普通销售仍关闭。
+Owner要求简化购买页。构建8直接展示家庭版实际权益、明确币种的完整年费和一个购买按钮，
+移除额外勾选及展示里的测试控件；购买前刷新核对报价。39聚焦回归/11静态检查/中英文渲染/
+13分发包检查通过，1个既有StoreKitTest平台跳过。源码08afb3821/CI63成功。8已上传处理、
+分给原内部组1人，App Store草稿已保存并重新读回8/手动发布；7未分发，未提交审核。
 
-Owner亲自提交Stripe开户并批准受限Live插件权限，实际接口确认收款/提现启用、无当前待补资料。
-正式商品/8899年价暂不启用购买，门户已配置，18事件回调暂禁用；经营/税务事实、后台受限密钥、
-完整运行配置、实际交易与最终公开发布仍分别完成。独立删除验收账号保持不删。
-[本轮合同](device-config-20261006.md)与handoff给出当前唯一下一步。
+Apple美国US119.99/年、WebUS88.99保留；年付草稿为原8地区加AUS限期Sandbox测试，
+USA/HKG/AUS报价与验签配置已载入同一API14/schema0093，普通市场/销售仍关闭。
+Stripe实际处理器收款/提现启用；8899商品/年价inactive、门户配置、回调disabled、受限RAK
+已创建并保护保存/核验。AWS准备secret不可作为运行配置加载，API无ARN/权限/收费开关。
+经营/税务事实、完整Live接入和真实交易、最终商店申报/审核与客户开放仍未完成。
+[当前合同](device-config-20261006.md)与[唯一交接](handoff.md)保留精确下一步。
 
 ## October6 selected packages1/2 and Stripe Web — retained earlier checkpoint
 

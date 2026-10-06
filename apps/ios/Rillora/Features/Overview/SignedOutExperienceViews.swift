@@ -156,6 +156,11 @@ struct SignedOutProfileView: View {
                 }
                 .accessibilityIdentifier("public-profile.safety")
 
+                NavigationLink { AppPreferencesView() } label: {
+                    ProfileActionLabel(title: String(localized: "Language & appearance"), detail: String(localized: "App language and display mode"), systemImage: "slider.horizontal.3")
+                }
+                .accessibilityIdentifier("public-profile.preferences")
+
                 NavigationLink {
                     AboutRilloraView()
                 } label: {

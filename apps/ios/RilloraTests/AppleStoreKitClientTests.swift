@@ -72,7 +72,8 @@ final class AppleStoreKitClientTests: XCTestCase {
         let outcome = try await client.purchase(
             productID: RilloraStoreKitCatalog.familyAnnualProductID,
             appAccountToken: appAccountToken,
-            expectedStorefrontCountryCode: "USA"
+            expectedStorefrontCountryCode: "USA",
+            expectedProduct: products.first { $0.productID == RilloraStoreKitCatalog.familyAnnualProductID }
         )
 
         guard case .verified(let evidence) = outcome else {

@@ -1,0 +1,36 @@
+"""One bounded read-only diagnosis for the retained Owner review planner."""
+from pathlib import Path
+import subprocess,json,datetime,os,uuid
+ROOT=Path.cwd();Q=ROOT/'output/qa/rillora-device-config-20261006';P=ROOT/'.local-secrets/device-config-20261006'
+def aws(args):
+ r=subprocess.run(['aws',*args,'--profile','rillora-production-operator','--region','eu-central-1','--output','json'],capture_output=True,text=True,timeout=50)
+ if r.returncode:raise RuntimeError('AWS diagnostic operation failed; private output suppressed')
+ return json.loads(r.stdout)
+receipt=Q/'review-diagnostic-task.json'
+if receipt.exists():raise SystemExit('Diagnostic already started; use its task and readback.')
+who=aws(['sts','get-caller-identity']);assert who['Account']=='133857166372' and ':assumed-role/rillora-production-operator/' in who['Arn']
+stack=aws(['cloudformation','describe-stacks','--stack-name','RilloraProduction'])['Stacks'][0];o={x['OutputKey']:x['OutputValue'] for x in stack['Outputs']};assert o['ProductionTrafficReady']=='false'
+a=next(x for x in json.loads((ROOT/'.local-secrets/production-review/acceptance-identities-20261001.json').read_text())['accounts'] if x['role']=='planner');assert len(a['matches'])==1
+script="""import pg from 'pg';
+import {loadDatabaseConfig,loadContentProtectionConfig} from './dist/config.js';
+import {databaseConnectionOptions} from './dist/db.js';
+const cfg=loadDatabaseConfig(),content=loadContentProtectionConfig();
+if(cfg.sslMode!=='verify-full'||!/^rillora-production\\.[a-z0-9]+\\.eu-central-1\\.rds\\.amazonaws\\.com$/.test(cfg.host)||content?.namespace!=='rillora-production')throw Error('wrong_environment');
+const pool=new pg.Pool({...databaseConnectionOptions(cfg),max:1,application_name:'rillora-phone-review-readonly'});const c=await pool.connect();
+try{await c.query('begin read only');await c.query(\"set local statement_timeout='15s'\");
+const actor=await c.query(`select p.id,p.status from app.planners p join app.identity_accounts i on i.planner_id=p.id where i.issuer='https://login.rillora.xyz' and i.subject=$1`,[process.env.RILLORA_QA_SUBJECT]);
+if(actor.rowCount!==1)throw Error('expected_existing_owner');const id=actor.rows[0].id;
+const eligibility=(await c.query('select app.apple_review_account_enabled($1) as enabled',[id])).rows;
+const enrollment=(await c.query('select expires_at,reason from app.commerce_validation_accounts where planner_id=$1',[id])).rows;
+const sessions=(await c.query(`select credential_kind,authenticated_at,last_seen_at,expires_at,revoked_at is not null as revoked from app.auth_sessions where planner_id=$1 order by authenticated_at desc limit 3`,[id])).rows;
+const bindings=(await c.query(`select b.storefront_country_code,b.status,p.amount_minor::text,p.currency_code,p.price_code,p.status as price_status from app.commerce_apple_price_bindings b join app.commerce_prices p on p.id=b.price_id where b.provider_environment='sandbox' order by b.storefront_country_code,b.effective_from`)).rows;
+console.log(JSON.stringify({target:'retained_owner_planner',readOnly:true,status:actor.rows[0].status,eligibility,enrollment,sessions,bindings}));await c.query('rollback');
+}catch(e){await c.query('rollback');console.error(JSON.stringify({readOnly:true,error:e.code??e.message}));process.exitCode=2;}finally{c.release();await pool.end();}
+"""
+body={'cluster':o['ClusterName'],'taskDefinition':o['MigrationTaskDefinitionArn'],'launchType':'FARGATE','clientToken':uuid.uuid4().hex,'networkConfiguration':{'awsvpcConfiguration':{'subnets':o['MaintenanceSubnetIds'].split(','),'securityGroups':[o['MigrationSecurityGroupId']],'assignPublicIp':'ENABLED'}},'overrides':{'containerOverrides':[{'name':'Maintenance','command':['node','--input-type=module','-e',script],'environment':[{'name':'RILLORA_QA_SUBJECT','value':a['matches'][0]['subject']}]}]}}
+assert len(json.dumps(body['overrides']))<8192
+path=P/'review-diagnostic-request.json'
+with os.fdopen(os.open(path,os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600),'w') as f:json.dump(body,f)
+r=aws(['ecs','run-task','--cli-input-json','file://'+str(path)]);assert not r.get('failures') and len(r['tasks'])==1
+t=r['tasks'][0];result={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'taskArn':t['taskArn'],'cluster':o['ClusterName'],'logGroup':o['MaintenanceLogGroup'],'logStream':'migration/Maintenance/'+t['taskArn'].split('/')[-1],'scope':'READ ONLY existing Owner eligibility/session timestamps/Sandbox price bindings','migrationOrDeployment':False,'finished':False}
+receipt.write_text(json.dumps(result,indent=2)+'\n');print(result)

@@ -1,0 +1,12 @@
+{
+  "at": "2026-10-06T12:58:16.919180+00:00",
+  "purpose": "Load the approved Sandbox price binding with unchanged API14 source/image/config",
+  "cluster": "RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm",
+  "service": "RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL",
+  "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRuntimeApiTask93405B31:14",
+  "deploymentId": "ecs-svc/9152980246844323489",
+  "desiredCount": 1,
+  "sourceOrConfigurationChanged": false,
+  "identityWindowExtended": false,
+  "authorizationProfile": "existing rillora-cdk-session"
+}

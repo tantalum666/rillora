@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-06 (Asia/Hong_Kong)
+Last updated: 2026-10-07 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -3214,3 +3214,36 @@ earlier direct-phone-only preference for this acceptance. Observe/control the ex
 app; do not change the main Apple/media account or unrelated phone settings. Owner
 personally completes the actual Apple password prompt. Verified Sandbox identification
 is observed afterward; history sync failure remains a separate unresolved result.
+
+## 2026-10-06 — Explicit currency and consistent Apple checkout quote
+
+Owner confirms the Sandbox purchase succeeded, then explicitly requests currency
+prefixes and agreement between the in-app quote and Apple's final payment sheet.
+The observed app quote was AUD199.99; signed server evidence confirms the purchase
+was HKG/HKD888.00. Preserve the authoritative receipt and active test subscription.
+The old AUD preflight is already closed/canceled by reconciliation, not rewritten.
+Fix price/consent presentation and the launch-time freshness gap around cached
+StoreKit products; reuse the existing storefront-change mechanism rather than
+creating another payment flow. No new price decision or live charge is authorized.
+
+## 2026-10-07 — Owner simplifies the Apple purchase page
+
+- Owner explicitly rejects visible Large text test controls and an extra subscription
+checkbox. Present the real Family differences, explicit currency/full annual amount and
+one purchase button. Keep concise renewal/cancellation disclosure and policy links by
+the button; Apple owns final payment confirmation. Restore remains a secondary action.
+- This supersedes the earlier native unchecked-toggle presentation. The explicit button
+tap accepts its captured, displayed quote; loading a page does not record consent. The
+existing semantic acceptance contract and legal document versions are unchanged. Account
+registration clickwrap is separate and unchanged; no checkbox is silently preselected.
+- Build7 is already uploaded/processed but is not distributed. Hold it and prepare build8
+with this requested flow. Preserve the verified HKD888 Sandbox subscription; no repeat
+purchase or account reset is needed for the layout fix.
+
+## 2026-10-07 — Owner requests cloud UX repairs and visible account identity
+
+Owner explicitly requests fixes to the native guide flash, redundant source links and guide acknowledgement; removes passive safety cards; moves licenses and language/appearance into secondary settings; limits visible session actions to current logout; distinguishes matter categories from optional recipient review. Home suggests concrete organization, not blanket review. This supersedes conflicting older UI placement requirements, not backend permissions, legal consent or raw status values.
+
+Both clients must show the current authenticated account. Use server-selected identity and transient verified email, never inferred email or stale cross-account content. Native password reset uses the existing public Auth0 database flow with explicit user submission. No provider/grant configuration, actual email, MFA/passkey enrollment or production deployment occurs. Unsupported account-security management is not represented by fake controls.
+
+Source and validation documentation are approved for isolated Git branches in tantalum666/rillora; no main merge or deployment. Preserve shared identity8cc5e100 and operator08afb382 purchase changes. Current cloud checks do not establish an Xcode build. See [native contract](native-ux-refinement-20261006.md).

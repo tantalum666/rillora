@@ -5,23 +5,27 @@ Authority scope: Rillora Family StoreKit product identifiers, purchase/restore l
 Superseded by: newer Apple platform rules, verified App Store Connect state, a later Owner decision, or stricter payment/security evidence  
 Do not use for: proof of App Store approval, accepted Paid Apps Agreement, banking/tax completion, live IAP products, production entitlement or a real charge  
 Status: SHARED PRODUCTION/REVIEW FLOW LOCALLY VERIFIED; REAL PROVIDER AND CLOUD ACCEPTANCE OPEN
-Last updated: 2026-10-06 (Asia/Hong_Kong)
+Last updated: 2026-10-07 (Asia/Hong_Kong)
 
-## October6 current physical-device and price checkpoint
+## October7 current physical purchase and simplified paywall
 
-Owner installed/logged into TestFlight5 with original matters visible. Explicit Restore
-reported unavailable. Build6 adds AppTransaction.refresh only after explicit Restore,
-retains verification/account-generation guards, and passes17focused regression cases
-plus13signed-artifact checks. It is uploaded/processed and assigned to the original
-internal group; physical recovery/purchase/restore remains pending Owner's update.
+Owner completed a real TestFlight Sandbox subscription in build6. Signed server evidence
+is HKG/HKD888.00, active through October7 14:25:09UTC; initial notification and client
+receipt are applied. The old AUD199.99 preflight is closed/canceled, not rewritten.
+USA119.99 is the approved base price; HKG888 and AUS199.99 are saved Apple local prices.
+The annual draft has9territories after the scoped AUS Sandbox catalog correction.
+Normal markets/sales remain closed; API14/schema0093 are unchanged.
 
-Owner selected USA USD119.99/year; Apple saved-price readback and unchanged8territory
-annual availability pass. The old68Sandbox new-offer binding is retired; a new11999
-binding passes cloud quote and catalog-resolution checks without rewriting historical
-prices, SKU or Web8899. API14 rolled with the same source/config to load the catalog.
-No actual Sandbox transaction, SBP15%approval, App Review or public sales is inferred.
-See [current device/config contract](device-config-20261006.md). Earlier dated results
-below retain their original evidence and do not restore superseded price decisions.
+Build7 adds explicit currency, fresh Product loading before purchase and cancellation
+on any storefront change. It is uploaded/processed but held from distribution. The
+Owner then removed the extra native consent checkbox and visible preview controls:
+build8 shows actual Family benefits, full currency/year price and one Subscribe button,
+with renewal/cancellation/policy text and secondary Restore. The button captures the
+visible quote; a changed quote needs another tap. Signup consent is unchanged.
+The latest targeted regression has39passes/0failures/1retained platform skip;11native
+static checks and English/Chinese rendered previews pass. Build8 distribution and
+post-purchase physical Restore remain separate evidence. No real charge or review
+submission is implied. See [the current device contract](device-config-20261006.md).
 
 ## September29–30 review/TestFlight path — current
 

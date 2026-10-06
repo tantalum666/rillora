@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-06",
+  "updatedAt": "2026-10-07",
   "release": "Rillora Global 1.0",
   "scope": "Web and native iOS; existing Free and Family only",
   "gates": [
@@ -208,7 +208,7 @@
         "docs/release-12-stripe-20261005.md",
         "collaboration/verification/release-12-stripe-20261006/closeout.json"
       ],
-      "next": "Prior whole-project repair and bilingual acceptance/CI58/59 retained. This continuation adds StoreKit receipt recovery with red reproduction then17passing coordinator cases and13signed build6 checks. API14 unchanged. Device purchase/restore and Owner-retained deletion remain separate. New source publication still being closed out."
+      "next": "Latest source08afb3821/CI63pass. Simplified native purchase flow has39focused passes/1retained StoreKitTest skip,11static checks,bilingual renders and13signed build8 checks. API14 unchanged. Archive20 fresh remote677object/3102path recovery passes at3e46e5130; physical update/restore remain separate. No new artifact-commit CI result inferred."
     },
     {
       "id": "apple-submission",
@@ -231,7 +231,7 @@
         "docs/release-12-stripe-20261005.md",
         "collaboration/verification/release-12-stripe-20261006/closeout.json"
       ],
-      "next": "Build1.0(6) uploaded/processed Ready to Submit, approved OS-only metadata retained, notes saved and original internal group assigned. Owner installed/logged into5; await6physical verification. Six store images retained; USA annual119.99saved. External Gmail/QQ invitations explicitly deferred. Final privacy/age/contact/market/reviewer access and App Review/manual release remain; do not repeat uploads."
+      "next": "Build1.0(8) uploaded/processed and assigned only to original1-person internal group; notes and draft build8/manual-release read back. Build7 held. Existing images and approved OS-only metadata retained. External invitations deferred. Final privacy/age/contact/market/reviewer access and App Review remain."
     },
     {
       "id": "physical-device",
@@ -241,9 +241,11 @@
       "evidence": [
         "docs/device-config-20261006.md",
         "docs/release-12-stripe-20261005.md",
-        "collaboration/verification/release-12-stripe-20261006/closeout.json"
+        "collaboration/verification/release-12-stripe-20261006/closeout.json",
+        "output/qa/rillora-device-config-20261006/apple-purchase-readback-result.json",
+        "output/qa/rillora-device-config-20261006/distribution-build8.json"
       ],
-      "next": "Device confirms1.0(6). Owner now authorizes iPhone Mirroring and completed Apple password authentication. Verified Sandbox badge appears; AppStore.sync still fails and opens App Store settings. USA-only catalog mismatch is addressed with saved HKD888 HKG Sandbox binding/route; same API14 loading it. No purchase/restore or VoiceOver pass. Mirror temporarily disconnected while Owner uses phone."
+      "next": "Build6 physical login and first actual Sandbox HKG/HKD888 purchase verified by signed receipt, applied notification/client event and active Family access. Build8 simplifying price/purchase UI is distributed but not installed yet; Mirror reports phone in use. Post-purchase Restore, cross-client entitlement and spoken VoiceOver remain. Do not repurchase or silently extend review access."
     },
     {
       "id": "public-surface",
