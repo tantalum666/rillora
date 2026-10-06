@@ -326,3 +326,16 @@ scenarios plus actual Xcode checks precede [PR1](https://github.com/tantalum666/
 mergeeb5fb1a70. The merge tree equals the validated source. Fresh remote download/decryption
 verifies913objects/7,314paths at06519bde8; every readable path is staged in Git, including
 the final direct receipts. [Remote proof](../collaboration/verification/dot-integration-20261007/remote-readback.json). Previous20archives stay unchanged.
+
+## October7 reviewed rollout addendum
+
+[Archive22](../collaboration/verification/dot-rollout-20261007/README.md) preserves387paths/
+274objects and55,533,496encrypted bytes. Local authenticated decryption and catalog/object
+verification pass. It includes the exact new signed9artifact, failed/successful deployment
+logs and three live client builds. Previous1–21are immutable. Current production API16and
+same-identity expiry renewal, native9upload, later distribution/physicalRestore and public
+customer/Live activation each retain separate evidence. Remote verification follows as a
+post-capture receipt; actual credentials/authentication/private cloud readbacks are excluded.
+
+Current rollout work is preserved on `codex/dot-rollout-20261007`, based on58fadf357.
+This does not move the older main checkpoint or rewrite the merged source branch.

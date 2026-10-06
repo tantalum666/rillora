@@ -1,9 +1,15 @@
 # Rillora — Git / Dot 协作入口
 
+October7部署续接：已部署Dot整合到API16/schema0093、受限Web/官网/Preview前端；线上86/31/86
+文件匹配。原三身份与原Sandbox资格限期至香港10月9日04:00。原生9已签名上传，Apple实际
+登录失效待Owner恢复，未宣称已分发/真机安装。[本轮原件追加包](verification/dot-rollout-20261007/README.md)
+保留387路径/274对象及55,533,496加密字节，本地解密核验通过；远端回执独立追加。
+
+
 October7最新：Dot账号/Web/iOS三分支经本机审查修复，通过[PR1](https://github.com/tantalum666/rillora/pull/1)
 合入当前发布分支eb5fb1a70。272原生/1既有跳过、Debug/Release、6双语UI、174Web/17API/66guards
 及CI73/20浏览器通过。[archive21](verification/dot-integration-20261007/README.md)追加7,314路径/
-913对象，本地及GitHub独立新下载的解密核验通过；原始失败和4份完整云端浏览器ZIP也保存。新源码未部署，旧构建8/价格/真实数据保留。
+913对象，本地及GitHub独立新下载的解密核验通过；原始失败和4份完整云端浏览器ZIP也保存。在该审查检查点新源码未部署；后续部署见上方。旧构建8/价格/真实数据保留。
 
 
 October7此前设备检查点：`codex/device-config-20261006`源码08afb3821/CI63通过。首笔真实Apple Sandbox

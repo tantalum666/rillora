@@ -4,16 +4,19 @@ Role: current launch scope, remaining work and release evidence contract
 Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; ORDINARY CUSTOMER ACCESS AND SALES CLOSED
 Last updated: 2026-10-07 (Asia/Hong_Kong)
 
-## October7 Dot integration — newest source, not a rollout
+## October7 Dot rollout — current delivery
 
-[PR1](https://github.com/tantalum666/rillora/pull/1) merges the shared identity/Web/native
-UX work plus local compilation fixes into the current release branch. Native272unit
-passes/1existing skip, Debug/Release and six affected bilingual UI scenarios pass;
-174Web/17API/66guards and CI73/20browser pass. Runtime remains API14/schema0093 and
-TestFlight/App Store draft8. A new release candidate must use this merged source; do
-not call its identity/settings changes deployed. [Exact scope](dot-integration-20261007.md).
+Merged source58fadf357(application tree5a547339a) is deployed: API16/schema0093,
+production Web86/WWW31/Preview86live files match. Runtime has one healthy task;
+only image and the existing review expiry changed. The same three identities and
+existing Owner planner Sandbox enrollment now expire2026-10-08T20:00:00Z.
+No ordinary customer or live billing activation follows. Native1.0(9) passed14signed
+artifact checks and uploaded once; actual Apple detail login expired, so processing/
+distribution/draft selection await its recovery. Build8 remains the last verified
+distributed/draft version. Existing272native/174Web/17API/66guards/CI73/20browser checks
+are retained, not rerun. [Exact deployment](dot-rollout-20261007.md).
 
-## October7 真机与配置 — 当前结果
+## October7 真机与配置 — 保留的独立结果
 
 Owner已安装构建6并完成首笔Apple Sandbox购买。真实签名收据为HKG/HKD888.00，订阅active，
 初始通知与客户端回传applied；先前AUD199.99报价订单已取消关闭，未改写收据。购后恢复、跨端

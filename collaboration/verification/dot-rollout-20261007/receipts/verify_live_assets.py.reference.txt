@@ -1,0 +1,15 @@
+from pathlib import Path
+import concurrent.futures,datetime,hashlib,json,urllib.request,urllib.error
+R=Path.cwd();Q=R/'output/qa/rillora-dot-rollout-20261007'
+def verify(item):
+ surface,base,directory,marker=item
+ files=json.loads((directory/marker).read_text())['files'] if marker else {str(f.relative_to(directory)):hashlib.sha256(f.read_bytes()).hexdigest() for f in directory.rglob('*') if f.is_file()}
+ def fetch(kv):
+  path,expected=kv;url=base+('/' if path=='index.html' else '/'+path)
+  with urllib.request.urlopen(urllib.request.Request(url,headers={'Cache-Control':'no-cache'}),timeout=35) as response:
+   data=response.read();return {'path':path,'status':response.status,'expectedSha256':expected,'actualSha256':hashlib.sha256(data).hexdigest(),'match':hashlib.sha256(data).hexdigest()==expected}
+ with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:results=list(pool.map(fetch,files.items()))
+ report={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'surface':surface,'origin':base,'allMatch':all(x['match'] for x in results),'count':len(results),'files':results}
+ (Q/(surface+'-assets-live.json')).write_text(json.dumps(report,indent=2)+'\n');print(json.dumps({'surface':surface,'files':len(results),'allMatch':report['allMatch']}),flush=True);assert report['allMatch']
+if __name__=='__main__':
+ for item in [('web','https://app.rillora.xyz',R/'apps/web/dist-production-review','production-build.json'),('www','https://www.rillora.xyz',R/'apps/web/dist-public','public-build.json')]:verify(item)

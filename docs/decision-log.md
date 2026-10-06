@@ -3256,3 +3256,17 @@ for the three delivered identity/Web/native branches. Review against the latest 
 operator baseline, retain build8/prices/real data, and use necessary local validation.
 No provider settings, actual password reset mail, purchase, review-window extension or
 public release follows from a code merge. [Current scope](dot-integration-20261007.md).
+
+## 2026-10-07 — Owner authorizes deployment and the next release step
+
+- Status: LOCKED
+- Scope: deploy the reviewed Dot merge and continue release preparation.
+- Decision: Owner explicitly says “开始部署和下一步”; this supersedes the prior review-only
+  no-deployment boundary. Reuse exact-source validation and current credentials.
+- Implementation choice: Agent announced a bounded extension for the same three review
+  identities and existing planner Sandbox qualification to2026-10-08T20:00:00Z, under
+  retained release authorization. This timestamp is an Agent operational choice, not
+  a new Owner pricing/market/legal decision. No additional identity or security scope.
+- Does not imply: ordinary customer/Live sales activation, repeat purchase, deferred
+  account deletion/external invitations, invented business facts or App Review success.
+- Evidence: [reviewed deployment](dot-rollout-20261007.md), provider readbacks and signed9.

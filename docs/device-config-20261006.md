@@ -3,6 +3,10 @@
 Status: IN PROGRESS — Owner 已恢复真机与配置工作
 Last updated: 2026-10-07 (Asia/Hong_Kong)
 
+后续部署已在[October7发布记录](dot-rollout-20261007.md)完成；下文API14/构建8保留为其
+各自检查点。当前API16、原三身份期限至10月9日04:00香港时间，9已上传待Apple登录读回。
+真实HKD888购买、尚未完成的购后恢复及商业事实边界继续有效。
+
 ## 本轮范围与保留边界
 
 Owner 明确要求“现在开始真机和各项配置的工作”，随后连接并解锁原配对的 iPhone 16 Pro Max，并选择直接在手机上操作。此前真机暂缓已被这次指令取代；其后Owner明确允许Agent通过iPhone镜像操作，本人密码/系统验证仍由Owner完成。

@@ -1,37 +1,37 @@
 # Rillora 当前交接
 
-Status: Dot三条分支已审查修复并通过PR1合并；当前线上/商店仍为原检查点
+Status: 已部署Dot整合及受限续期；原生9已上传；Apple实际登录失效待恢复
 Last updated: 2026-10-07 (Asia/Hong_Kong)
 
 ## 当前任务与已完成
 
-Owner最新要求审阅GitHub、直接修复再合并。已将共享身份8cc5e100、原生3c6e05b1c和Web75d4d7d9f
-整合，保留完整operator e950078及构建8购买实现；[PR1](https://github.com/tantalum666/rillora/pull/1)
-已合入`codex/device-config-20261006`，合并提交`eb5fb1a70`，审核源码`5a547339a`。
-[审查/修复与证据](dot-integration-20261007.md)。旧云端“不合并”范围已被本次Owner指令取代。
+Owner最新要求“开始部署和下一步”。源码58fadf357（应用树5a547339a、PR1合并eb5fb1a70）
+已部署，不重复上一轮272原生/174Web/17API/66guards/CI73/20浏览器验证。
+[本轮准确结果](dot-rollout-20261007.md)。
 
-- 实际修复SwiftUI Section初始化错误及跨文件XCTest私有fixture引用。XcodeGen重新生成工程。
-  分类UI测试的装饰图片可点击假设、导航栏搜索位置假设已按截图修复；没有删掉产品断言。
-- 原生Debug/Release成功，272单测通过/0失败/1既有StoreKitTest平台跳过；中英各3个新UI
-  场景全部通过。Web174、API类型/构建和17聚焦测试、66guards、源码29已审/0未知扫描通过。
-  PR CI73和20/20浏览器场景通过（0跳过/失败/flaky），GitHub实际合并已读回。
-- 原始/中间/最终Dot浏览器包及新整合包共4份已下载并核对GitHub SHA256；本轮所有合资格
-  本机日志、结果包、截图/视频、编译产物和原始失败记录追加archive21，7,314路径/913对象本地及GitHub独立新下载解密核验均通过（06519bde8）。
-- Dot修正的archive20可读清单保留，25份被Git忽略的本机生成副本移出协作树；原3,102记录
-  和密文不变。原任务模拟器已关闭、合成fixture已停止，未操作用户其他模拟器或FanPass。
+- API镜像更新后为任务15，原审核期限更新后为16；1个HEALTHY实例、rollout完成。
+  镜像sha256:c43336c743d5ecc0cdd24d92b13ca46dd6db2eb47f918b075f91a19bf919fb43。
+  schema0093沿用，未执行迁移；与14相比仅镜像/期限变化，角色/密钥/网络/其他环境不变。
+- 生产Web86/官网31/Preview86文件全部与发布包匹配；四栈实际模板与审核模板一致。
+  官网→Preview中文延续、指南langHint/下划线ID跳转正确，健康200、匿名受保护接口401。
+- 已明示并完成原三个身份及原Owner planner Sandbox资格续至2026-10-08T20:00:00Z，
+  即香港10月9日04:00；没有新增身份/同意/订单。Auth0复用现有浏览器恢复原CLI范围。
+- 1.0(9)归档/导出14检查通过，2026-10-06T19:57:49Z上传成功，未重复旧构建。
+  双语测试说明已备好。Apple详情实际authResult=FAILED，当前Chrome停在密码页，已请求Owner。
 
-## 保留边界与阻塞
+## 证据边界与阻塞
 
-本次没有部署、上传新TestFlight、修改provider或发送真实重置邮件。线上仍API14/schema0093，
-商店/内部测试仍1.0(8)；新账号显示和原生UX源码不能写成已经上线。
-构建8的币种/新鲜报价/单按钮购买、原HKD888Sandbox签名购买和历史都保留。Apple美国119.99/
-Web88.99、Free1/Family5不变。原审核访问2026-10-06T17:08:57Z已过，未擅自延期。
-真实购后恢复、物理新构建验收、经营/税务及StripeLive接入/真实交易、最终审核/客户开放未完成。
-外部两名TestFlight邀请和独立验收账号删除保持Owner暂缓。秘密/真实日志/私人申报仍不进入Git。
+9的处理、内部组分发和App Store草稿选中尚未读回；8仍是最后已验证的分发/草稿版本。
+未提交App Review、未记录9真机安装/购后恢复/跨端权益。已验签HKD888 Sandbox购买保留，
+不要重购。Apple美国119.99/Web88.99、Free1/Family5、真实资料和FanPass保持。
+Stripe经营/税务事实、Live接通/真实交易和最终客户开放仍未完成；外部邀请和独立账号
+删除保持Owner暂缓。此次QA/签名/部署材料已追加archive22：387路径/274对象，55,533,496字节，本地解密核验通过；
+Git发布与远端回执独立记录。
 
 ## 唯一下一步
 
-以当前已合并源码准备匹配的下一轮受限发布候选；真实账号验收开始前先明确处理过期的审核访问，
-不把本轮合成测试当作生产或本人验证，不重复原成功购买。
+Owner在已打开的App Store Connect页面恢复这次实际过期的Apple登录后，读回已上传9的处理
+结果，仅分配原内部组/原测试员并更新未提交的手动发布草稿，随后继续真机更新及原购买的恢复验收。
+不重传9、不重购、不扩大测试成员或重新申请已完成事项。
 
-[此前云端交接](handoff-history-20261007-before-dot-integration.md)为HISTORICAL。
+[上一交接](handoff-history-20261007-before-dot-rollout.md)为HISTORICAL。

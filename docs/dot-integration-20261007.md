@@ -7,6 +7,10 @@ Owner requests reviewing the latest GitHub work, fixing issues and merging if so
 This supersedes the earlier cloud-only/no-merge scope. Existing release authorizations,
 prices, real data and build8 remain; no deployment/real mail/purchase is performed.
 
+Subsequent Owner deployment instruction is recorded in [the rollout](dot-rollout-20261007.md).
+The no-deployment/expired-window statements below describe this review's original
+checkpoint; they do not override the later rollout or its bounded renewal.
+
 ## Exact sources and scope
 
 - Operator baseline: e95007878729352c852b9bf411138e07c0361a1e

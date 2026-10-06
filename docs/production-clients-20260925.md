@@ -2,7 +2,7 @@
 
 Role: focused client-delivery and environment-isolation contract
 Status: CLOSED CLIENT DELIVERY VERIFIED; CUSTOMER ACTIVATION STILL CLOSED
-Last updated: 2026-10-03 (Asia/Shanghai)
+Last updated: 2026-10-07 (Asia/Hong_Kong)
 
 Owner explicitly asks to start the remaining release engineering. Continue the
 existing release workflow and reading baseline. Preserve the current UI/brand,
@@ -10,7 +10,14 @@ annual-only offer, test accounts/data, private data/recovery foundation and
 FanPass. Public customer access remains closed until the separate release gates
 are accepted.
 
-## October3 reviewed clients — current checkpoint
+## October7 current client delivery
+
+Production Web86/WWW31and Preview86files match the new deployed artifacts. Native1.0(9)
+passed14artifact checks and uploaded; Apple login recovery is needed before processing/
+distribution readback. Build8 remains the last verified draft/internal version.
+[Current execution](dot-rollout-20261007.md).
+
+## HISTORICAL — October3 reviewed clients
 
 Restricted production Web and WWW are deployed, with86/30actual file hashes matched.
 Native1.0(3) is signed, uploaded and processed with normal distribution eligibility;
