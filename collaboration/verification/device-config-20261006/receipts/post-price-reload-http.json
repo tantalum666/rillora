@@ -1,0 +1,35 @@
+{
+  "at": "2026-10-06T13:02:25.852453+00:00",
+  "checks": [
+    {
+      "name": "ready",
+      "url": "https://j749rhzub7.execute-api.eu-central-1.amazonaws.com/health/ready",
+      "status": 200,
+      "expected": 200,
+      "passed": true,
+      "body": "{\"status\":\"ready\"}"
+    },
+    {
+      "name": "anonymous-session",
+      "url": "https://app.rillora.xyz/api/v1/session",
+      "status": 401,
+      "expected": 401,
+      "passed": true,
+      "body": "{\"error\":{\"code\":\"authentication_required\",\"message\":\"Authentication is required.\"}}"
+    },
+    {
+      "name": "privacy",
+      "url": "https://legal.rillora.xyz/privacy",
+      "status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "subscription-terms",
+      "url": "https://legal.rillora.xyz/subscription-terms",
+      "status": 200,
+      "expected": 200,
+      "passed": true
+    }
+  ]
+}

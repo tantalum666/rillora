@@ -1,0 +1,53 @@
+{
+  "devicesAndConfigurations" : [
+    {
+      "device" : {
+        "architecture" : "arm64",
+        "deviceId" : "15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0",
+        "deviceName" : "Rillora-Device-Purchase-Fix-20261006",
+        "modelName" : "iPhone 17 Pro",
+        "osBuildNumber" : "23F77",
+        "osVersion" : "26.5",
+        "platform" : "iOS Simulator"
+      },
+      "expectedFailures" : 0,
+      "failedTests" : 1,
+      "passedTests" : 0,
+      "skippedTests" : 0,
+      "testPlanConfiguration" : {
+        "configurationId" : "1",
+        "configurationName" : "Test Scheme Action"
+      }
+    }
+  ],
+  "environmentDescription" : "Rillora · Built with macOS 26.5.2",
+  "expectedFailures" : 0,
+  "failedTests" : 1,
+  "finishTime" : 1791287816.496,
+  "passedTests" : 0,
+  "result" : "Failed",
+  "skippedTests" : 0,
+  "startTime" : 1791287769.204,
+  "statistics" : [
+
+  ],
+  "testFailures" : [
+    {
+      "failureText" : "XCTAssertEqual failed: (\"0\") is not equal to (\"1\")",
+      "targetName" : "RilloraTests",
+      "testIdentifier" : 1,
+      "testIdentifierString" : "ApplePurchaseCoordinatorTests/testMissingAppReceiptIsRefreshedOnlyAfterExplicitRestore()",
+      "testIdentifierURL" : "test://com.apple.xcode/Rillora/RilloraTests/ApplePurchaseCoordinatorTests/testMissingAppReceiptIsRefreshedOnlyAfterExplicitRestore",
+      "testName" : "testMissingAppReceiptIsRefreshedOnlyAfterExplicitRestore()"
+    }
+  ],
+  "title" : "Test - Rillora",
+  "topInsights" : [
+    {
+      "category" : "Common Failures",
+      "impact" : "100% of failures",
+      "text" : "2 runs of 1 test failed with XCTAssertEqual failed: (\"0\") is not equal to (\"1\")"
+    }
+  ],
+  "totalTestCount" : 1
+}

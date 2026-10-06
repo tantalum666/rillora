@@ -1,0 +1,55 @@
+{
+  "capturedFrom": "2026-10-06T16:39:40.589407+00:00",
+  "capturedThrough": "2026-10-06T16:40:14.622956+00:00",
+  "workFiles": 3102,
+  "uniqueRawObjects": 677,
+  "workBytes": 1109189483,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-020.tar.zst.age",
+      "sha256": "8bbc10982a9ad508613e297afeb6b63db931436b4afc9c23bd885f323bc6359f",
+      "bytes": 141191492,
+      "plainBytes": 612729694,
+      "uniqueObjects": 677
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/device-config-20261006/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": "output/qa/rillora-device-config-20261006/publication",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    },
+    {
+      "path": "output/qa/rillora-device-config-20261006/inspection",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    },
+    {
+      "path": "output/qa/rillora-device-config-20261006/vendor-docs",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    },
+    {
+      "path": "output/qa/rillora-device-config-20261006/stripe-live-grant-review.png",
+      "reason": "actual_authentication_handoff_screen"
+    },
+    {
+      "path": "output/qa/rillora-device-config-20261006/native-test-products/currency-quote-regression-en.xctestproducts/Tests/0/Debug-iphonesimulator",
+      "reason": "machine_specific_link"
+    },
+    {
+      "path": "output/qa/rillora-device-config-20261006/native-test-products/currency-quote-regression-1.xctestproducts/Tests/0/Debug-iphonesimulator",
+      "reason": "machine_specific_link"
+    },
+    {
+      "path": "output/release/rillora-device-config-20261006/inspection",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    },
+    {
+      "path": ".local-secrets/device-config-20261006",
+      "reason": "credentials_authentication_personal_data_and_raw_device_logs_not_archived"
+    }
+  ],
+  "selection": "Current native6/7/8 repair results, signed archive/IPA and previews, physical purchase metadata, provider pricing, scoped cloud operations and Stripe Live preparation receipts. Failed and superseded attempts retained. Previous19archives immutable. Credentials, raw device logs, personal onboarding, actual auth screens and vendor/build caches excluded.",
+  "boundary": "Build6 physical install and first HKG/HKD888 Sandbox purchase are verified; build7 is held, build8 simplifies purchase UI. USA119.99/HKG888/AUS199.99 review catalog and Stripe Live preparation remain separate evidence. Post-purchase Restore and installed build8 must be proved by their specific receipts. No live charge, customer opening, external beta review, App Review or retained-account deletion is implied."
+}

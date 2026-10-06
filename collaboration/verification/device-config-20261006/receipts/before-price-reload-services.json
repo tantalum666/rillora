@@ -1,0 +1,72 @@
+{
+  "cluster": "RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm",
+  "serviceName": "RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL",
+  "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRuntimeApiTask93405B31:14",
+  "desiredCount": 1,
+  "runningCount": 1,
+  "pendingCount": 0,
+  "deploymentConfiguration": {
+    "deploymentCircuitBreaker": {
+      "enable": true,
+      "rollback": true,
+      "resetOnHealthyTask": true,
+      "thresholdConfiguration": {
+        "type": "BOUNDED_PERCENT",
+        "value": 50
+      }
+    },
+    "maximumPercent": 200,
+    "minimumHealthyPercent": 100,
+    "alarms": {
+      "alarmNames": [],
+      "rollback": false,
+      "enable": false
+    },
+    "strategy": "ROLLING",
+    "bakeTimeInMinutes": 0
+  },
+  "deployments": [
+    {
+      "id": "ecs-svc/1782922435442464417",
+      "status": "PRIMARY",
+      "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRuntimeApiTask93405B31:14",
+      "desiredCount": 1,
+      "pendingCount": 0,
+      "runningCount": 1,
+      "failedTasks": 0,
+      "createdAt": "2026-10-05T23:14:39.714000+08:00",
+      "updatedAt": "2026-10-05T23:17:47.305000+08:00",
+      "capacityProviderStrategy": [
+        {
+          "capacityProvider": "FARGATE",
+          "weight": 1,
+          "base": 0
+        }
+      ],
+      "platformVersion": "1.4.0",
+      "platformFamily": "Linux",
+      "networkConfiguration": {
+        "awsvpcConfiguration": {
+          "subnets": [
+            "subnet-070c4a18e68f26f1d",
+            "subnet-0d218a58218e10e36"
+          ],
+          "securityGroups": [
+            "sg-014722f6f6b5b18ff"
+          ],
+          "assignPublicIp": "ENABLED"
+        }
+      },
+      "rolloutState": "COMPLETED",
+      "rolloutStateReason": "ECS deployment ecs-svc/1782922435442464417 completed."
+    }
+  ],
+  "containers": [
+    {
+      "name": "Api",
+      "image": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1:cd59fe6bb469751197c068b00c786283b7f26e5e0c2a7e106333a5f5cb16ca50",
+      "essential": true,
+      "productionClosed": true
+    }
+  ]
+}

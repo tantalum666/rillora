@@ -1,0 +1,183 @@
+[
+  {
+    "name": "provider",
+    "fields": {
+      "title": "Savings",
+      "institutionName": "Binance",
+      "category": "crypto_asset",
+      "cryptoCustody": "exchange"
+    },
+    "expected": [
+      "binance"
+    ]
+  },
+  {
+    "name": "title",
+    "fields": {
+      "title": "My Binance account",
+      "category": "account"
+    },
+    "expected": [
+      "binance"
+    ]
+  },
+  {
+    "name": "regional",
+    "fields": {
+      "title": "My Binance.US account",
+      "category": "account"
+    },
+    "expected": [
+      "binance_us"
+    ]
+  },
+  {
+    "name": "regional-cn",
+    "fields": {
+      "title": "我的币安美国账户",
+      "category": "account"
+    },
+    "expected": [
+      "binance_us"
+    ]
+  },
+  {
+    "name": "cn",
+    "fields": {
+      "title": "我的币安账户",
+      "category": "account"
+    },
+    "expected": [
+      "binance"
+    ]
+  },
+  {
+    "name": "authoritative-provider",
+    "fields": {
+      "title": "Binance notes",
+      "institutionName": "Coinbase",
+      "category": "account"
+    },
+    "expected": [
+      "coinbase"
+    ]
+  },
+  {
+    "name": "self-custody",
+    "fields": {
+      "title": "Coinbase wallet",
+      "institutionName": "Coinbase",
+      "category": "crypto_asset",
+      "cryptoCustody": "self_custody"
+    },
+    "expected": []
+  },
+  {
+    "name": "hidden",
+    "fields": {
+      "title": "Savings",
+      "category": "account",
+      "notes": "Binance",
+      "accountHint": "[REDACTED_EMAIL]",
+      "hiddenOwnerInstitutionName": "Coinbase"
+    },
+    "expected": []
+  },
+  {
+    "name": "generic",
+    "fields": {
+      "title": "cloud storage subscriptions and games",
+      "category": "subscription"
+    },
+    "expected": []
+  },
+  {
+    "name": "substring",
+    "fields": {
+      "title": "Steampunk Coinbasex",
+      "category": "account"
+    },
+    "expected": []
+  },
+  {
+    "name": "x-false",
+    "fields": {
+      "title": "Plan X",
+      "category": "account"
+    },
+    "expected": []
+  },
+  {
+    "name": "x-explicit",
+    "fields": {
+      "title": "Social account",
+      "institutionName": "X",
+      "category": "account"
+    },
+    "expected": [
+      "x"
+    ]
+  },
+  {
+    "name": "x-site",
+    "fields": {
+      "title": "My X.com profile",
+      "category": "account"
+    },
+    "expected": [
+      "x"
+    ]
+  },
+  {
+    "name": "provider-trim-case",
+    "fields": {
+      "title": "Mail",
+      "institutionName": "  GMAIL  ",
+      "category": "account"
+    },
+    "expected": [
+      "google"
+    ]
+  },
+  {
+    "name": "adobe",
+    "fields": {
+      "title": "Acrobat subscription",
+      "category": "subscription"
+    },
+    "expected": [
+      "adobe"
+    ]
+  },
+  {
+    "name": "document",
+    "fields": {
+      "title": "Binance statement",
+      "category": "document"
+    },
+    "expected": []
+  },
+  {
+    "name": "partial",
+    "fields": {
+      "title": "Bina",
+      "category": "account"
+    },
+    "expected": []
+  },
+  {
+    "name": "fullwidth",
+    "fields": {
+      "title": "Ｂｉｎａｎｃｅ account",
+      "category": "account"
+    },
+    "expected": [
+      "binance"
+    ]
+  },
+  {
+    "name": "revoked",
+    "fields": {},
+    "expected": []
+  }
+]

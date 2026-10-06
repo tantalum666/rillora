@@ -1,29 +1,30 @@
 # Apple review validation and distribution preparation
 
 Role: current TestFlight/App Review engineering and provider evidence
-Status: INTERNAL TESTFLIGHT BUILD UPLOADED; REAL TRANSACTIONS AND DECLARATIONS OPEN
-Last updated: 2026-10-06 (Asia/Hong_Kong)
+Status: FIRST SANDBOX PURCHASE VERIFIED; BUILD8 DISTRIBUTED; RESTORE AND FINAL DECLARATIONS OPEN
+Last updated: 2026-10-07 (Asia/Hong_Kong)
 
 Owner requests Apple-related release work. Existing UI, annual-only new sales,
 WebUS$88.99, differential Apple pricing, historical receipts and FanPass stay intact.
 The launch workflow's147-file full reading baseline remains valid; this is a focused
 continuation, not a new project scan. [QA](../output/qa/rillora-apple-release-20260929/work-state.json).
 
-## October6 current physical-device and price checkpoint
+## October7 current physical purchase and internal build
 
-Owner installed/logged into TestFlight5 with original matters visible. Explicit Restore
-reported unavailable. Build6 adds AppTransaction.refresh only after explicit Restore,
-retains verification/account-generation guards, and passes17focused regression cases
-plus13signed-artifact checks. It is uploaded/processed and assigned to the original
-internal group; physical recovery/purchase/restore remains pending Owner's update.
+The first actual TestFlight Sandbox purchase has signed HKG/HKD888.00 evidence and
+active Family access; initial notification and client receipt applied. Build6 remains
+the physically observed version. USA119.99/HKG888/AUS199.99 review-only catalog is
+loaded into unchanged API14/schema0093; annual draft9territories, ordinary sales closed.
 
-Owner selected USA USD119.99/year; Apple saved-price readback and unchanged8territory
-annual availability pass. The old68Sandbox new-offer binding is retired; a new11999
-binding passes cloud quote and catalog-resolution checks without rewriting historical
-prices, SKU or Web8899. API14 rolled with the same source/config to load the catalog.
-No actual Sandbox transaction, SBP15%approval, App Review or public sales is inferred.
-See [current device/config contract](device-config-20261006.md). Earlier dated results
-below retain their original evidence and do not restore superseded price decisions.
+Owner's simplified purchase page removes the extra checkbox and visible fixture controls,
+shows actual benefits/full currency/year amount/one Subscribe action, and retains fresh
+price/storefront checks. Build8 has39focused passes/1retained platform skip,11static
+checks, bilingual rendered checks and13distribution checks. Source08afb3821/CI63pass;
+8uploaded/processed, test notes and original1-person internal group saved/reloaded,
+App Store draft selects8and manual release. Build7 remains undistributed. Physical8
+update, post-purchase Restore and cross-client access remain separately unverified.
+No new purchase, real charge, SBP approval or App Review submission is inferred.
+[Current exact evidence](device-config-20261006.md).
 
 ## October2 independent distribution follow-up
 

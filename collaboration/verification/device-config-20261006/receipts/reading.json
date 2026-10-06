@@ -1,0 +1,76 @@
+{
+  "at": "2026-10-06T11:09:25.277873+00:00",
+  "continuation": true,
+  "source": "909bea4f0eaf23c9153aae3182374cb86585a70b",
+  "retainedFullRead": "output/qa/rillora-strict-review-20261002/full-read-completion.json",
+  "retainedFocusedRead": "output/qa/rillora-release-12-stripe-20261005/reading.json",
+  "scope": "Owner resumes physical-device and configuration work within existing launch workflow; not a new repository audit",
+  "focused": [
+    {
+      "file": "AGENTS.md",
+      "range": "complete",
+      "sha256": "435d9bfaf85f5584d7895aa8ed98ce7d3ddfa18e212c571e72c3de1a4163c334"
+    },
+    {
+      "file": "docs/product.md",
+      "range": "1-68,267-425; Authority Map supplemented",
+      "sha256": "256a306a5dd98527f6fa796475be2f61c4049d9cbfd141af6aaee774669b9c1a"
+    },
+    {
+      "file": "docs/handoff.md",
+      "range": "complete",
+      "sha256": "5e4b3d1dce9ee868e2b3ccfb947c11c0ccf039a4691152c0c5bbd8b9e2bef773"
+    },
+    {
+      "file": "docs/decision-log.md",
+      "range": "latest43lines",
+      "sha256": "57fa2f30d931507272316522e2ccd278e982a14ca9b4af18f4ece84d5d14b538"
+    },
+    {
+      "file": "docs/journey/PROJECT_JOURNEY.md",
+      "range": "latest36lines",
+      "sha256": "a2ac9ce9b619a59fa8968b49ac69658635f68ec35ebea9eeb77103c3f756681b"
+    },
+    {
+      "file": "docs/apple-review-validation-20260929.md",
+      "range": "1-95,96-174 complete",
+      "sha256": "6f0dcc097a93ffb61419945bdff44faf4b0eac0348d993e9ad1882ac73a86682"
+    },
+    {
+      "file": "docs/storekit.md",
+      "range": "1-100,101-155,156-205,206-260,261-310 complete; truncated batch supplemented",
+      "sha256": "c9db2a07c50e4cb4929080521476609177c42e93ec0a471ef644c03168e7d995"
+    },
+    {
+      "file": "docs/chat-resume-20260930.md",
+      "range": "1-70,71-127 complete",
+      "sha256": "ac624a10da9f91d1b982c68186ec059d7f6a6473cee237b55f0319ba62f0648d"
+    },
+    {
+      "file": "docs/production-commerce-20260926.md",
+      "range": "1-85,86-161 complete",
+      "sha256": "5c98efcef9dc6ba62eafe92d6ded3ea9a2c52a47eacbbd004a56f17cbca552c9"
+    }
+  ],
+  "exclusions": [
+    "dependencies/caches/build products",
+    "generated output evidence",
+    "collaboration/evidence/catalog/archives"
+  ],
+  "newInstruction": "现在开始真机和各项配置的工作; Owner will operate phone directly",
+  "retainedDecision": "Keep disposable QA account; no irreversible deletion authorized",
+  "recoveryUpdatedAt": "2026-10-06T16:38:41.046220+00:00",
+  "supplemented": [
+    "docs/product.md currentLOCKED and price scope",
+    "docs/channel-pricing-20260921.md complete",
+    "docs/pricing-88-99-20260926.md complete",
+    "docs/handoff.md complete",
+    "docs/device-config-20261006.md complete",
+    "docs/source-control.md current preservation contract",
+    "collaboration/README.md complete",
+    "StoreKit/production commerce current sections and active source",
+    "2026-10-07 compact recovery: AGENTS complete; product current locks 275-443 and newest decisions; handoff complete; decision latest70lines; focused Apple current contracts; PlanAccessView1-125; ApplePurchaseSection complete; coordinator complete; preview complete; affected tests; Chinese copy guidelines complete",
+    "October7 release-readiness1-85, Apple review1-90, release-gates relevant JSON records and source-control/collaboration existing additive preservation rules"
+  ],
+  "latestOwnerInstruction": "Simplify purchase page: actual benefits, explicit annual price, one purchase button; no extra checkbox or visible test controls"
+}
