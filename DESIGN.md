@@ -5,7 +5,7 @@ Authority scope: Rillora brand-name application, public-entry and private-worksp
 Superseded by: a later Owner-approved visual decision recorded in `docs/decision-log.md`  
 Do not use for: trademark clearance, legal claims, production security proof or Chinese naming  
 Status: GLOBAL GRAPHITE CONTINUITY DIRECTION OWNER-DIRECTED AND IMPLEMENTED LOCALLY; SIGNED-OUT／AUTHENTICATED ROOTS, PROFILE ACTIONS AND FOCUSED-TASK DENSITY VERIFIED; EXTERNAL AND RELEASE GATES OPEN  
-Last updated: 2026-10-03 (reconcile existing September29 appearance decisions; no redesign)
+Last updated: 2026-10-07 (owner-directed native UX refinement; current runtime gate remains open)
 
 ## Current appearance and public-home authority
 

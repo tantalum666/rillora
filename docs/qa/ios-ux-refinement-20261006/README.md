@@ -46,3 +46,7 @@ Last updated: 2026-10-07 (Asia/Hong_Kong)
 ## 远端证据
 
 共享后端基础[CI62](https://github.com/tantalum666/rillora/actions/runs/37495149572)已通过，含数据库集成。本轮原生独立分支的源提交、最终文档头和完整CI结果将在发布回执记录；未写回前不视为远端交付完成。现有CI为Linux源码／API／Web验证，不运行Xcode。
+
+## 首次精确分支 CI 与继承清单修正
+
+源码0e452bc5的API、Web/infrastructure通过；source中66+10+5+8项测试及全量源码扫描29项已审／0未审均通过，随后继承e950078的可读归档清单失败。远端树中缺少清单列出的25个被既有Git规则忽略的.xcresult/.dSYM副本；对应原始路径／对象仍在archive20目录。修正仅移除错误的“可读副本存在”声明，保留全部原始记录／密文／验证器和扫描规则。详见[准确元数据差异](inherited-publication-correction.json)。后续完整CI结果另记，不把此次部分通过写成全通过。
