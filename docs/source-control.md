@@ -323,5 +323,6 @@ compiled artifacts and four complete cloud browser ZIPs verified against GitHub 
 The read-only archive20metadata correction is preserved; ignored build/test package
 copies remain archive-only. Local decryption passes. Source5a547339a/CI73and20browser
 scenarios plus actual Xcode checks precede [PR1](https://github.com/tantalum666/rillora/pull/1)
-mergeeb5fb1a70. The merge tree equals the validated source. Remote download/decryption
-is independently recorded after this upload; previous20archives stay unchanged.
+mergeeb5fb1a70. The merge tree equals the validated source. Fresh remote download/decryption
+verifies913objects/7,314paths at06519bde8; every readable path is staged in Git, including
+the final direct receipts. [Remote proof](../collaboration/verification/dot-integration-20261007/remote-readback.json). Previous20archives stay unchanged.

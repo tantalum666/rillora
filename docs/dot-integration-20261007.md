@@ -54,3 +54,9 @@ access extension, retained-account deletion or FanPass change. Review access exp
 2026-10-06T17:08:57Z; testing here is isolated synthetic loopback and simulator only.
 
 Raw results: `output/qa/rillora-dot-integration-20261007/`. Current release state remains in [handoff](handoff.md).
+
+Final preservation: archive21at06519bde8contains7,314paths/913objects. Its233,637,603bytes
+were independently downloaded from GitHub and decrypted/hash-verified. Readable secret
+scan has0unreviewed findings,535changed-document links pass, and every manifest path
+is present in the staged Git tree. [Complete receipt](../collaboration/verification/dot-integration-20261007/closeout.json).
+The later receipt-only commit adds these exact outcomes without rerunning completed tests.

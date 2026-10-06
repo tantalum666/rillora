@@ -3,10 +3,10 @@
 October7最新：Dot账号/Web/iOS三分支经本机审查修复，通过[PR1](https://github.com/tantalum666/rillora/pull/1)
 合入当前发布分支eb5fb1a70。272原生/1既有跳过、Debug/Release、6双语UI、174Web/17API/66guards
 及CI73/20浏览器通过。[archive21](verification/dot-integration-20261007/README.md)追加7,314路径/
-913对象；原始失败和4份完整云端浏览器ZIP也保存。新源码未部署，旧构建8/价格/真实数据保留。
+913对象，本地及GitHub独立新下载的解密核验通过；原始失败和4份完整云端浏览器ZIP也保存。新源码未部署，旧构建8/价格/真实数据保留。
 
 
-October7当前：`codex/device-config-20261006`源码08afb3821/CI63通过。首笔真实Apple Sandbox
+October7此前设备检查点：`codex/device-config-20261006`源码08afb3821/CI63通过。首笔真实Apple Sandbox
 HKD888购买已验签；简洁购买页构建8已分发原内部组并选入未提交草稿，真机升级/购后恢复待连接。
 [新增保存包](verification/device-config-20261006/README.md)的raw-work-020保留3,102路径/
 677对象，本地与GitHub独立新下载后的解密核验均通过。Stripe Live凭据已保护保存、运行计费尚未接通。

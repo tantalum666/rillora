@@ -1,6 +1,6 @@
 {
-  "at": "2026-10-06T18:51:38.206168+00:00",
-  "status": "MERGED_LOCAL_ARCHIVE_VERIFIED_REMOTE_PRESERVATION_IN_PROGRESS",
+  "at": "2026-10-06T19:03:00.677082+00:00",
+  "status": "MERGED_AND_COMPLETE_WORK_PRESERVATION_REMOTE_VERIFIED",
   "pr": "https://github.com/tantalum666/rillora/pull/1",
   "source": "5a547339a689fadd4f2241d4d17d2e2756931be2",
   "merge": "eb5fb1a70290eefdcbfea029586c75bb32f9a640",
@@ -48,5 +48,16 @@
   "readableScan": {
     "passed": true,
     "unreviewedFindings": 0
-  }
+  },
+  "artifactCommit": "06519bde858d044414d735cb6217ca2da3e6172e",
+  "freshRemoteDownload": true,
+  "remoteRawVerification": {
+    "verifiedObjects": 913,
+    "coveredWorkFiles": 7314,
+    "restoredFiles": 0,
+    "archives": 1,
+    "passed": true
+  },
+  "everyReadablePathIncludedInGit": true,
+  "sourceAndBinaryChecksNotRerunForReceiptOnlyUpdate": true
 }

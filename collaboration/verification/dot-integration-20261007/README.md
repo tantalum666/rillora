@@ -29,5 +29,5 @@ so ignored.xcresult/.dSYMreadable copies cannot re-enter the manifest.
 - [Full integration browser run](receipts/browser-integration-summary.json)
 - [Retained original cloud ZIP verification](receipts/original-cloud-browser-packages.json)
 
-Fresh remote verification is recorded after upload. Final receipt-only metadata is
+[Fresh remote verification](remote-readback.json) passed at06519bde8:233,637,603bytes downloaded into independent LFS storage,913objects/7,314paths decrypted and checked against GitHub metadata. Every readable manifest path is explicitly verified present in the staged Git tree. Final receipt-only metadata is
 versioned directly; earlier20archives are not downloaded or rewritten again.
