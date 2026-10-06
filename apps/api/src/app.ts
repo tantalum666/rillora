@@ -13,6 +13,7 @@ import { findForbiddenSecretField } from "./domain.js";
 import { ApiError, errorHandler, notFoundHandler } from "./errors.js";
 import { createApiRouter } from "./routes.js";
 import { createAccountDataRouter, mapBackupMaxBytes } from "./account-data-routes.js";
+import { createAccountIdentityRouter } from "./account-identity.js";
 import { createAccountDeletionRouter, createPublicAccountDeletionRouter, deletionProcessor, type AccountIdentityDeleting, type AccountDeletionProcessor } from "./account-deletion.js";
 import { createDisclosureRehearsalRouter } from "./disclosure-rehearsal-routes.js";
 import { createCommerceRouter } from "./commerce-routes.js";
@@ -243,6 +244,7 @@ export function createApp(
   if (appleProductionIntake) plannerApi.use('/commerce/storekit/production', createAppleProductionRouter(appleProductionIntake,new ApplePurchasePreflight(pool)));
   plannerApi.use("/commerce", createCommerceRouter(pool,
     new Set([...(stripeExecutor?.providerEnvironment === 'production' ? ['stripe'] : []),...(appleProductionIntake ? ['storekit'] : [])])));
+  plannerApi.use("/account", createAccountIdentityRouter(pool, emailVerifier));
   plannerApi.use("/account", createAccountDataRouter(pool, config));
   plannerApi.use("/account", createAccountDeletionRouter(pool, accountDeletion, config));
   plannerApi.use(createApiRouter(pool, config));
