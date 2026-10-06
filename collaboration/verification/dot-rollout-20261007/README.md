@@ -1,6 +1,6 @@
 # October7 Dot rollout preservation
 
-Status: LOCAL ARCHIVE VERIFIED; REMOTE PUBLICATION PENDING
+Status: LOCAL AND FRESH REMOTE ARCHIVE VERIFIED
 Updated:2026-10-07 Asia/Hong_Kong
 
 This additive snapshot preserves 387eligible paths/274objects
@@ -22,3 +22,13 @@ version. Real9installation/restore, Live billing and App Review remain independe
 
 Final nonsecret publication, link/scan and remote verification receipts are saved
 separately after the frozen capture, without recursively resealing the archive.
+
+Fresh GitHub LFS download at`7d4189371b4c440a5c3dbbec832f03c5d12e69b5`was independently decrypted and verified:
+274objects/387paths pass against metadata read from GitHub. No earlier archive was
+downloaded. [Remote receipt](remote-readback.json). Final receipts follow this immutable
+artifact commit; the deploy/upload/provider boundaries above remain unchanged.
+
+[CI75](https://github.com/tantalum666/rillora/actions/runs/37525238866)passed source,API
+andWeb/infrastructure for the artifact commit. This was the repository's automatic
+push check, not a manually repeated local suite. API summary reports413tests/49files;
+infra reports54tests/7files. [Visible readback](ci75.json).

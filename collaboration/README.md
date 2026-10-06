@@ -3,7 +3,8 @@
 October7部署续接：已部署Dot整合到API16/schema0093、受限Web/官网/Preview前端；线上86/31/86
 文件匹配。原三身份与原Sandbox资格限期至香港10月9日04:00。原生9已签名上传，Apple实际
 登录失效待Owner恢复，未宣称已分发/真机安装。[本轮原件追加包](verification/dot-rollout-20261007/README.md)
-保留387路径/274对象及55,533,496加密字节，本地解密核验通过；远端回执独立追加。
+保留387路径/274对象及55,533,496加密字节，本地及GitHub独立新下载解密核验通过（7d4189371）；
+自动CI75三项通过。
 
 
 October7最新：Dot账号/Web/iOS三分支经本机审查修复，通过[PR1](https://github.com/tantalum666/rillora/pull/1)

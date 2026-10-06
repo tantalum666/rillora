@@ -339,3 +339,11 @@ post-capture receipt; actual credentials/authentication/private cloud readbacks 
 
 Current rollout work is preserved on `codex/dot-rollout-20261007`, based on58fadf357.
 This does not move the older main checkpoint or rewrite the merged source branch.
+
+Archive22was freshly downloaded and decrypted/verified at7d4189371b4c440a5c3dbbec832f03c5d12e69b5:
+274objects/387paths match GitHub-read metadata. [Remote receipt](../collaboration/verification/dot-rollout-20261007/remote-readback.json).
+Final metadata commits do not rebuild, upload or deploy the same product again.
+
+[CI75](https://github.com/tantalum666/rillora/actions/runs/37525238866)passed all three jobs
+for7d4189371. Final metadata receipts retain that exact result without claiming a new
+iOS build, cloud deployment, transaction or source-test rerun.

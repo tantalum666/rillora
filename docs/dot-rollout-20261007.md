@@ -77,3 +77,12 @@ App Review submission and public access remain separate unfinished gates. Extern
 TestFlight invitations and the independent account deletion retain Owner's deferral.
 
 QA: [current records](../output/qa/rillora-dot-rollout-20261007/README.md).
+
+## Complete-work publication
+
+[Archive22and receipts](../collaboration/verification/dot-rollout-20261007/README.md)
+preserve387eligible paths/274objects,55,533,496encrypted bytes. Local and independently
+fetched GitHub originals pass authenticated decryption, hashes and exact catalog mapping
+at7d4189371. All readable-manifest paths are tracked; no credential/authentication
+material is archived and no scanner exception was added. Final post-capture receipts
+are directly preserved rather than rebuilding the immutable archive.
