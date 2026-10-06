@@ -1,10 +1,20 @@
 # Web 与 Apple 内购的渠道定价
 
 Role: current rule/source check and advisory fee comparison
-Status: CHANNEL DIFFERENTIATION REAFFIRMED; SBP ENROLLMENT SUBMITTED; EXACT APPLE PRICE AND EFFECTIVE FEE OPEN
-Last reviewed: 2026-09-30 (September29 portal and SBP submission; fee examples retain their stated historical assumptions)
+Status: WEB USD88.99 / APPLE USA USD119.99 OWNER LOCKED; SBP EFFECTIVE FEE UNVERIFIED
+Last reviewed: 2026-10-06 (fee examples below retain their stated historical assumptions)
 
-## September29 小型企业计划申请 — 当前状态
+## October6 最终价格决定与实际商店读回
+
+Owner明确选择Apple美国商店US$119.99／年，Web保持US$88.99，同一Family权益。
+Apple年付商品已保存并重新打开读回119.99；自动换算香港HK$888、加拿大CAD149.99，
+原有8个年付可售地区保持。价格矩阵列出的175个国家不等于开放175个市场。
+旧68的Sandbox绑定停止新购，历史金额不变；新119.99报价和真机购买分别核验。
+SBP仍只有申请回执，不宣称15%生效。[当前执行及证据](device-config-20261006.md)。
+
+下方September研究、候选及“待Owner选择”均为HISTORICAL；不得恢复为活动决定或报价。
+
+## HISTORICAL — September29 小型企业计划申请检查点
 
 Owner明确确认没有其他关联开发者账户、上一年度总净收入不超过US$100万，
 随后当场确认最终真实性声明及提交。Apple已显示收到Small Business Program

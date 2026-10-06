@@ -4,7 +4,21 @@ Role: current launch scope, remaining work and release evidence contract
 Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; ORDINARY CUSTOMER ACCESS AND SALES CLOSED
 Last updated: 2026-10-06 (Asia/Hong_Kong)
 
-## October6 selected packages1/2 and Stripe Web — current inventory
+## October6 真机与配置 — 当前结果
+
+Owner已从内部TestFlight安装1.0(5)，真实Google登录并看见原有事项。恢复购买报告暂不可用，
+客户端缺少显式AppTransaction刷新已修，17项针对性测试及13项分发检查通过。1.0(6)已上传、
+处理完成并加入原内部组，等待Owner更新后的实际结果。外部两个邮箱邀请按Owner指示暂缓。
+
+Apple美国年费已最终锁定并保存US$119.99，Web保持US$88.99；原8个年付销售地区不变。
+旧68停止新购，新119.99 Sandbox绑定已核验；同一API14镜像/配置滚动加载后健康，普通销售仍关闭。
+
+Owner亲自提交Stripe开户并批准受限Live插件权限，实际接口确认收款/提现启用、无当前待补资料。
+正式商品/8899年价暂不启用购买，门户已配置，18事件回调暂禁用；经营/税务事实、后台受限密钥、
+完整运行配置、实际交易与最终公开发布仍分别完成。独立删除验收账号保持不删。
+[本轮合同](device-config-20261006.md)与handoff给出当前唯一下一步。
+
+## October6 selected packages1/2 and Stripe Web — retained earlier checkpoint
 
 The narrow remaining Dot fixes and bilingual Web/WWW are now deployed with API14,
 unchanged schema0093 and the original three expiring reviewer identities. Local source,
@@ -17,7 +31,7 @@ Current88.99StripeWeb hosted TEST purchase/cancel/decline/return, Portal cancell
 resume, full refund, permission downgrade and signed-event duplicate handling pass using
 shipping cookie/CSRF middleware. The isolated identity and consent are synthetic; live
 merchant facts, human live consent/charge and cloud live billing remain separate gates.
-Spoken VoiceOver and actual physical-device use remain unverified under the device deferral.
+Spoken VoiceOver and physical purchase/restore remain unverified; the later same-day device work is recorded above.
 
 ## HISTORICAL — October5 after Dot integration and Chinese copy
 
@@ -148,11 +162,11 @@ percentage. Packages1/2 now have the completed results below; existing personal 
 
 | # | 工作包 | 还需要完成 | 依赖 |
 | --- | --- | --- | --- |
-| 1 | 新版双语与剩余体验验收 | 本轮独立工作已完成：小屏/大屏/iPad、中英文横屏、最大辅助字号、共享/文件、系统语言重启持久化，以及计划下一步和恢复历史修复均有通过证据。真机 VoiceOver 朗读/手势仍未验证。 | 剩余真实辅助技术检查随 Owner 暂缓的真机步骤。 |
+| 1 | 新版双语与剩余体验验收 | 本轮独立工作已完成：小屏/大屏/iPad、中英文横屏、最大辅助字号、共享/文件、系统语言重启持久化，以及计划下一步和恢复历史修复均有通过证据。真机 VoiceOver 朗读/手势仍未验证。 | 剩余真实辅助技术检查随本轮已恢复的真机步骤。 |
 | 2 | 最新版本的受限部署与发行候选 | API14、Web86/WWW31文件已部署并核验；1.0(5)已上传，Apple已处理为准备提交，说明回读一致，测试群组/独立测试员0；源码与全部新增合格产物已推送，CI58/59通过，新归档已从GitHub下载解密核验。 | 已完成；后续只按新变化/最终提交需要继续。 |
-| 3 | 支付生命周期与真机 | 当前88.99StripeWeb TEST闭环已通过。Apple实际安装/登录/购买/恢复及生命周期仍未完成；Web live收款单列第5项。 | Owner仍暂缓真机；TEST不是实际收费或完整会计账本。 |
+| 3 | 支付生命周期与真机 | 当前88.99StripeWeb TEST闭环已通过。Apple实际安装/登录/购买/恢复及生命周期仍未完成；Web live收款单列第5项。 | Owner已恢复真机并亲自在手机操作；TEST不是实际收费或完整会计账本。 |
 | 4 | 账号删除真实验收 | 实际不可撤销删除与身份/数据清理尚未执行。Owner明确保留原独立测试账号；不以导入/恢复成功代替删除成功。 | Owner暂缓；未经新的明确指令不重启删除。 |
-| 5 | 经营、市场、最终价格与正式收款 | 补齐Owner暂缓的经营/登记/税务事实，核对正式收款与真实支付退款，确认首发市场和Apple最终渠道价；SBP只有申请回执，批准/生效证据需核对。WebUS$88.99/年保持。 | Owner事实/决定、provider结果，随后Agent执行。 |
+| 5 | 经营、市场、最终价格与正式收款 | 核对本轮配置所需的真实经营/登记/税务事实，核对正式收款与真实支付退款，确认首发市场和Apple最终渠道价；SBP只有申请回执，批准/生效证据需核对。WebUS$88.99/年保持。 | Owner事实/决定、provider结果，随后Agent执行。 |
 | 6 | 最终商店申报、审核与发布 | 基于最终候选核对隐私/年龄/联系信息/市场/价格及可用审核访问；提交App Review并处理反馈，审核后手动发布。新构建5、六张设计图和已确认加密声明保留，不重复上传/确认旧项。 | Agent准备；必要本人声明与Apple审核独立。 |
 | 7 | 公开客户切换 | 上游验收完成后退役Preview/旧凭据，按已测24小时旧令牌有效期加时钟容差执行切换和负面检查，再开放普通客户与已验收收费渠道。 | 前述发布条件完成后Agent受控执行。 |
 

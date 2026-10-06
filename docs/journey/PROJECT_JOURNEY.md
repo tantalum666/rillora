@@ -3395,3 +3395,34 @@ simulators removed; all other simulator identities/states match. AdditiveGitproo
 581,672,952bytes decrypts and verifies1,541objects/9,769paths against GitHub metadata.
 The source/readable scans and changed-document links pass; final receipt-only work is
 preserved directly. No previous archive, passed flow, deployment or upload is repeated.
+
+## 2026-10-06 — 真机与发布配置恢复
+
+- 目标：按Owner新指令开始真机和各项配置，保留上轮完成证据。
+- 尝试：读取当前权威文件，检查配对设备、App安装状态、Apple实际详情和Stripe插件/后台。
+- 判断变化：手机原连接断开，Owner连接后可读取；用户选择亲自操作手机。Apple列表是缓存，
+实际详情认证失败，因此才请求恢复。Stripe插件恢复，但仍只有TEST授权，后台确认尚需激活真实账户。
+- 结果：创建独立工作分支和当前执行合同，修正“真机暂缓”的活动方向；TestFlight已在手机，
+Rillora尚未安装，构建5沿用。尚未新增交易、商户声明、邀请或部署。
+- 未完成：Apple登录恢复、Owner内部测试分发/安装、实际购买恢复及其余真实配置/本人字段。
+
+
+## 2026-10-06 — Apple119.99、构建6及Stripe Live配置
+
+- 目标：推进已恢复的真机/配置，落实Owner最终Apple119.99决定并保留Web88.99。
+- 尝试：内部邀请/真机安装登录、只读云端会话诊断、AppTransaction显式刷新红绿测试、构建6
+上传分发、Apple价格保存读回、独立Sandbox新绑定及现有API14滚动加载、Stripe本人开户/受限授权。
+- 判断变化：旧68Sandbox报价已过期但仍在目录，现已停用；商店初始价格与销售范围分开，
+175地区价格矩阵不等于开放175地区。维护角色无服务更新权限，复用既有部署身份完成同镜像滚动，
+没有扩权。首个目录预检因UNION排序表达式失败并回滚；修正版完成新绑定，保留失败证据。
+- 结果：手机5登录保留原事项；17单测及13产物检查通过，6处理完成且仅原内部组。Apple119.99
+及新云端报价读回一致，旧历史/Web/SKU保留。Stripe实际收款/提现启用，无待补资料，Live商品/
+价格/门户/禁用回调已准备；签名秘密只在保护存储。插件Live权限已经本人批准并实际读回。
+- 未完成：Owner手机6恢复/价格/购买结果，经营及税务事实、服务器RAK最终创建/配置、真实Live
+生命周期、最终商店审核与客户开放。外部两个邮箱邀请/不可撤销删除保持Owner暂缓。
+
+- 后续：Owner批准服务器RAK并完成Stripe邮件验证；密钥本机/AWS保护保存及实际接口核验
+完成，准备JSON拒绝作为正式配置加载。Owner又允许iPhone镜像；手机6已验证Sandbox环境，
+历史同步仍失败。只读诊断发现HKG目录缺口，已追加商店HKD888的限期账号Sandbox路由，
+不改普通市场/主体/SKU/历史价格。Apple服务HTTP410仅保留为观察，未推断根因。未切换主
+Apple账户或虚构税务登记，真机交易继续核验。

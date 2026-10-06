@@ -1,8 +1,36 @@
 # Production annual commerce preparation
 
 Role: focused ordinary Web purchase, consent and provider-isolation contract
-Status: SOURCE AND LOCAL LIFECYCLE VERIFIED; CLOSED WEB DEPLOYED; LIVE BILLING NOT CONFIGURED
+Status: TEST LIFECYCLE VERIFIED; LIVE MERCHANT ENABLED; LIVE CATALOG/PORTAL PREPARED; CUSTOMER BILLING CLOSED
 Last updated: 2026-10-06 (Asia/Hong_Kong)
+
+## October6 Live merchant and configuration readback
+
+Owner approved reuse of X identity/banking, personally submitted Stripe's final form and
+approved scoped Live MCP access for Rillora only. Actual account retrieval confirms
+charges_enabled/payouts_enabled/details_submitted true, card_payments active and no
+current/past-due/pending-verification requirements. No FanPass or shared-entity website
+change was made. This processor status does not independently settle business/tax facts.
+
+Live product `prod_rillora_family_v2_live` and annual USD8899 Price
+`price_1UNXyZCxTlowhyiGJB6HlBR5` are inactive. Tax behavior remains unspecified until the
+required assessment; active Stripe registrations are empty. Setting an inactive Price
+as default was rejected without mutation; do not silently enable it to bypass that gate.
+Portal `bpc_1UNXzpCxTlowhyiGj6xNlx2w` permits invoice/payment-detail management and
+period-end cancellation, no plan change or public login link. Webhook
+`we_1UNY1yCxTlowhyiGTpwy62qY` has18supported events, pinned API2026-08-26.dahlia and
+is disabled until its runtime is ready. MCP redacted the signing secret, so its actual
+value was read through the provider UI, saved directly to protected local storage and
+hidden again. No secret belongs in Git, model output or a plaintext task environment.
+
+Owner separately approved the dedicated runtime key's3write/9read permissions and
+protected storage, then completed Stripe's required email identity check. The key now
+exists; actual SDK reads confirm the correct Live account/product/8899price. Local and
+AWS Secrets Manager payloads match. AWS labels the first version AWSCURRENT as well as
+PREPARED; this is deliberately a preparationOnly bundle that the production parser
+rejects. The running API has no billing ARN/read grant/enablement. Complete runtime
+configuration, tax/market facts, real payment and lifecycle/reconciliation remain open.
+[Current execution](device-config-20261006.md).
 
 ## October6 current-price browser TEST acceptance
 

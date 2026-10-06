@@ -3160,3 +3160,57 @@ uses only task-created simulators for actual OS-language acceptance. No new UI d
 price, sharing permission or data policy. Existing deletion/phone/merchant deferrals remain.
 - New1.0(5) retains the previously approved OS-only declaration because cryptography has
 not changed. Upload is authorized distribution preparation, not App Review or public release.
+
+## 2026-10-06 — Owner resumes physical-device and configuration work
+
+- Owner explicitly requests starting physical-device acceptance and release configuration,
+then reconnects/unlocks the previously paired phone and chooses direct on-phone operation.
+This supersedes the physical-device deferral. Do not take over iPhone Mirroring.
+- Resume investigating and preparing Apple/Stripe configuration, using truthful existing
+facts. The request supplies no missing merchant/tax/banking values and is not a final
+legal attestation, live-charge completion or permission to fabricate them.
+- Retain the explicit keep-account decision; no irreversible QA-account deletion.
+Reuse processed build5/current deployments and completed TEST evidence. Send a TestFlight
+invitation only after the specific recipient/action is explicitly authorized.
+[Current scope](device-config-20261006.md).
+
+## 2026-10-06 — Final Apple price, scoped invitations and Stripe activation
+
+- Owner reiterates that68was rejected, then explicitly selects Apple USA USD119.99/year.
+Web USD88.99 and annual-only Family-v2 remain. Retire68for new review quotes; retain
+historical immutable amounts/receipts. Synchronize actual Apple price and versioned
+server binding before any next Sandbox purchase. SBP15%is not inferred from this price.
+- Owner explicitly authorizes invitations to the three named inboxes, clarifies the
+existing Apple holder address, then defers the two external invitations at their contact
+step. The internal holder invite/install continues; no App Store Connect roles granted.
+- Owner explicitly approves reusing X identity/bank details for Rillora, and personally
+submits Stripe's final account/terms form. Shared legal-entity website edits are cancelled
+after Stripe warns they affect linked accounts. Only Rillora account-level descriptor/
+product/support-display settings are changed; FanPass is preserved.
+- Fix the observed missing-app-receipt recovery under standing repair authority. Explicit
+Restore may refresh AppTransaction and prompt Apple authentication; startup stays silent,
+only verified production/sandbox environments are accepted, and account-generation guards
+remain. Tests/builds are not a completed physical purchase/restore claim.
+
+
+## 2026-10-06 — Rillora Live access and backend credential approval
+
+- Owner completed the prepared Rillora-only Live plugin authorization. Actual connector
+readback includes the same Rillora account in both TEST and Live; no FanPass grant.
+- Owner then explicitly approved the separate production billing runtime key with only
+Customers/Checkout Sessions/Customer Portal write and9specified verification reads,
+and protected local/AWS Secrets Manager storage. This authorizes the concrete key,
+not arbitrary financial operations or broader permissions. Stripe additionally requires
+an emailed identity-verification link; that provider step is pending, not a new permission request.
+- No sales-tax registration or reviewed-no-collection policy is approved by the Owner's
+question about identity numbers. A missing Stripe Tax registration is not itself proof
+that registration is required, or that no collection is needed. Use actual market facts.
+
+
+## 2026-10-06 — Owner switches phone acceptance to Mirroring
+
+Owner now explicitly asks Agent to inspect through iPhone Mirroring, superseding the
+earlier direct-phone-only preference for this acceptance. Observe/control the existing
+app; do not change the main Apple/media account or unrelated phone settings. Owner
+personally completes the actual Apple password prompt. Verified Sandbox identification
+is observed afterward; history sync failure remains a separate unresolved result.

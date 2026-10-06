@@ -118,15 +118,25 @@ final class ApplePurchaseCoordinator {
     func restore(synchronize: Bool = true) async {
         guard let owner, !busy else { return }
         let generation = revision
-        if environment == nil { await refreshQuote() }
-        guard generation == revision, owner == self.owner else { return }
-        guard let environment else {
-            if synchronize { message = String(localized: "Apple purchases are temporarily unavailable. Please try again.") }
-            return
-        }
         busy = true
+        if synchronize { message = nil }
         defer { if generation == revision { busy = false } }
         do {
+            if environment == nil {
+                await refreshQuote()
+                guard generation == revision, owner == self.owner, !Task.isCancelled else { return }
+                if environment == nil && synchronize {
+                    let refreshed = try await client.refreshAppEnvironment()
+                    guard generation == revision, owner == self.owner, !Task.isCancelled else { return }
+                    environment = refreshed
+                    if refreshed != nil { await refreshQuote() }
+                }
+            }
+            guard generation == revision, owner == self.owner, !Task.isCancelled else { return }
+            guard let environment else {
+                if synchronize { message = String(localized: "Apple purchases are temporarily unavailable. Please try again.") }
+                return
+            }
             if synchronize { try await client.sync() }
             let entitlements = await client.currentEntitlements(identifiers: RilloraStoreKitCatalog.familyProductIDs)
             let statuses = await client.subscriptionStatuses(identifiers: RilloraStoreKitCatalog.familyProductIDs)

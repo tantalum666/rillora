@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-05",
+  "updatedAt": "2026-10-06",
   "release": "Rillora Global 1.0",
   "scope": "Web and native iOS; existing Free and Family only",
   "gates": [
@@ -31,9 +31,12 @@
         "output/qa/rillora-real-core-20261004/disposable-access-add-complete.json",
         "output/qa/rillora-real-core-closeout-20261005/disposable-access-remove-complete.json",
         "docs/qa/dot-followup-20261005/README.md",
-        "docs/chinese-copy-guidelines-20261005.md"
+        "docs/chinese-copy-guidelines-20261005.md",
+        "docs/device-config-20261006.md",
+        "docs/release-12-stripe-20261005.md",
+        "collaboration/verification/release-12-stripe-20261006/closeout.json"
       ],
-      "next": "Reviewed API application/schema0093 retained. Runtime13restores the original3review identities and original expiry after the controlled test, with1healthy task and unchanged image/roles/network/secrets. New Web-only account-choice repair5714ec158is deployed;86live files match. Public/live activation remains closed; no repeat migration/code-image rollout. New bilingual Web/WWW source747c98874passesCI56but is not deployed; finish its acceptance and client-only candidate rollout without replaying the completedAPI/schema rollout."
+      "next": "API14 was rolled with its unchanged image/config to load the approved new Apple Sandbox price. Desired/running1, pending0, rollout completed; ready200 and anonymous401 pass. Schema0093 and original review identities/expiry remain. Customer opening stays gated; do not repeat migrations or previous Web rollout."
     },
     {
       "id": "production-identity",
@@ -90,17 +93,24 @@
         "output/qa/rillora-web-price-88-99-20260926/work-state.json",
         "docs/release-engineering-20260930.md",
         "output/qa/rillora-launch-resume-20260930/api-final-regression.json",
-        "output/qa/rillora-launch-resume-20260930/release-acceptance-retry-result.json"
+        "output/qa/rillora-launch-resume-20260930/release-acceptance-retry-result.json",
+        "docs/device-config-20261006.md",
+        "docs/release-12-stripe-20261005.md",
+        "collaboration/verification/release-12-stripe-20261006/closeout.json"
       ],
-      "next": "Production schema0093 retains Web8899 annual-only and historical prices. Recovery current-provider reconciliation is implemented and locally verified; live Stripe remains disabled pending Owner-deferred merchant/tax facts and actual provider configuration/transactions. No repeated schema0070 rollout or new monthly offer is needed."
+      "next": "Owner personally submitted Stripe activation and authorized scoped Rillora Live MCP access. Actual account charges/payouts enabled with no currently due requirements. Live Family product/8899 annual Price exist inactive; Portal supports period-end cancellation. Eighteen-event webhook exists disabled; its signing secret is protected locally. No active tax registrations or supplied assessment; tax behavior intentionally unspecified. Runtime key was separately approved/created after provider email verification; actual SDK account/product/price reads and local/AWS protected equality pass. Prepared payload intentionally fails production parser; runtime ARN/read grant/enablement remain absent. No live charge, runtime activation or customer sales."
     },
     {
       "id": "merchant-market",
-      "status": "owner_deferred",
+      "status": "in_progress",
       "required": true,
       "title": "Merchant and ready-market facts",
-      "evidence": [],
-      "next": "Owner says to defer Hong Kong business/registration; do not request documents again or mark this verified. Keep live charging and public market activation closed."
+      "evidence": [
+        "docs/device-config-20261006.md",
+        "docs/release-12-stripe-20261005.md",
+        "collaboration/verification/release-12-stripe-20261006/closeout.json"
+      ],
+      "next": "Owner resumed release configuration work. Rillora currently offers only Sandbox access and the Live activation form asks whether to reuse existing entity/bank information. No selection or declaration is submitted. Obtain the actual Rillora operator/settlement facts from Owner; do not silently reuse X, Blez Online or FanPass information."
     },
     {
       "id": "apple-transactions",
@@ -123,9 +133,12 @@
         "collaboration/verification/release-123-20261002/receipts/apple-test-notification-after-fix.json",
         "docs/independent-release-closeout-20261002.md",
         "docs/review-rollout-20261003.md",
-        "output/qa/rillora-real-core-20261004/apple-build4-readback.json"
+        "output/qa/rillora-real-core-20261004/apple-build4-readback.json",
+        "docs/device-config-20261006.md",
+        "docs/release-12-stripe-20261005.md",
+        "collaboration/verification/release-12-stripe-20261006/closeout.json"
       ],
-      "next": "Existing review enrollment/official TEST retained. New1.0(4)containing the native export recent-auth fix is uploaded/processed andReady to Submit; previous Owner-approved encryption metadata retained. Physical-device deferral remains. Actual Sandbox purchase/restore/renewal/refund/expiry and provider reconciliation remain unverified; groups0/no invitations/no transactions."
+      "next": "Owner locked USA USD119.99; actual Apple saved/reopened price and unchanged8territory annual availability verified. Old68Sandbox binding retired; new11999binding and immutable history/Web/SKU guards pass in cloud. API14 reloaded. Build6 explicit AppTransaction refresh repair passes17focused cases and13artifact checks, uploaded/processed/assigned to original internal group. Owner update/Restore response and actual Sandbox purchase/server lifecycle remain pending."
     },
     {
       "id": "operations",
@@ -190,9 +203,12 @@
         "output/qa/rillora-real-core-20261004/apple-build4-readback.json",
         "output/qa/rillora-real-core-closeout-20261005/deletion-owner-deferred.json",
         "docs/qa/dot-followup-20261005/README.md",
-        "docs/chinese-copy-guidelines-20261005.md"
+        "docs/chinese-copy-guidelines-20261005.md",
+        "docs/device-config-20261006.md",
+        "docs/release-12-stripe-20261005.md",
+        "collaboration/verification/release-12-stripe-20261006/closeout.json"
       ],
-      "next": "Manual28repair review/CI47 and prior production proofs retained. Later native export-auth repair passed focused10andCI48/build4; Web explicit-account-choice repair passed29focusedchecks, CI54 and86livefilehashes. Runtime13onlyrestores original review list. Account deletion was Owner-deferred at final confirmation; no full-launch/security-certification claim. Optional deep scan never started; upstreamCDKbuild advisory remains explicit. Later Dot integration/Chinese copy747c98874hasCI56success,localDebug/Release and focused bilingual checks. Wider iPad/accessibility/authenticated matrix and scoped remaining UX observations are open; no new deploy/security certification."
+      "next": "Prior whole-project repair and bilingual acceptance/CI58/59 retained. This continuation adds StoreKit receipt recovery with red reproduction then17passing coordinator cases and13signed build6 checks. API14 unchanged. Device purchase/restore and Owner-retained deletion remain separate. New source publication still being closed out."
     },
     {
       "id": "apple-submission",
@@ -210,17 +226,24 @@
         "docs/review-rollout-20261003.md",
         "output/qa/rillora-real-core-20261004/apple-build4-readback.json",
         "docs/qa/dot-followup-20261005/README.md",
-        "docs/chinese-copy-guidelines-20261005.md"
+        "docs/chinese-copy-guidelines-20261005.md",
+        "docs/device-config-20261006.md",
+        "docs/release-12-stripe-20261005.md",
+        "collaboration/verification/release-12-stripe-20261006/closeout.json"
       ],
-      "next": "New signed1.0(4)contains the observed export-auth repair, passed9artifact checks, uploaded/processed with normal distribution eligibility and approved OS-only encryption metadata. AppleReady to Submit; test notes saved and reload matched,groups0. Six store images retained. Final privacy/age/contact/market/price, operative reviewer access, remaining actual acceptance, submission/review and manual release remain; do not repeat build3or4upload or declarations. Build4predates the bilingual integration; prepare a new matching candidate after acceptance. Do not re-upload4or claim itsReady to Submitstate covers the new source."
+      "next": "Build1.0(6) uploaded/processed Ready to Submit, approved OS-only metadata retained, notes saved and original internal group assigned. Owner installed/logged into5; await6physical verification. Six store images retained; USA annual119.99saved. External Gmail/QQ invitations explicitly deferred. Final privacy/age/contact/market/reviewer access and App Review/manual release remain; do not repeat uploads."
     },
     {
       "id": "physical-device",
-      "status": "owner_deferred",
+      "status": "in_progress",
       "required": true,
       "title": "Physical-device acceptance",
-      "evidence": [],
-      "next": "Owner explicitly reaffirmed physical-device deferral on October2. A paired device and prepared development build do not resume that scope. No installation or phone interaction; Simulator production sign-in is separate evidence."
+      "evidence": [
+        "docs/device-config-20261006.md",
+        "docs/release-12-stripe-20261005.md",
+        "collaboration/verification/release-12-stripe-20261006/closeout.json"
+      ],
+      "next": "Device confirms1.0(6). Owner now authorizes iPhone Mirroring and completed Apple password authentication. Verified Sandbox badge appears; AppStore.sync still fails and opens App Store settings. USA-only catalog mismatch is addressed with saved HKD888 HKG Sandbox binding/route; same API14 loading it. No purchase/restore or VoiceOver pass. Mirror temporarily disconnected while Owner uses phone."
     },
     {
       "id": "public-surface",
@@ -241,9 +264,12 @@
         "docs/code-review-20261002.md",
         "docs/review-rollout-20261003.md",
         "docs/qa/dot-followup-20261005/README.md",
-        "docs/chinese-copy-guidelines-20261005.md"
+        "docs/chinese-copy-guidelines-20261005.md",
+        "docs/device-config-20261006.md",
+        "docs/release-12-stripe-20261005.md",
+        "collaboration/verification/release-12-stripe-20261006/closeout.json"
       ],
-      "next": "Reviewed restricted Web/WWW artifacts are deployed and116files match actual HTTPS bytes; rendered public/account entry and negative routes pass. Preserve Preview navigation and public customer closure until the remaining release gates pass. New bilingual public/Web copy and four UI repairs are currently source/local artifacts only (747c98874/CI56); a new constrained client rollout and readback are still needed."
+      "next": "Localized Web86/WWW31 files are deployed and match SHA256; actual bilingual render and negative/private boundaries pass. Preserve Preview navigation and public customer closure until final release gates pass. No repeat client rollout is needed."
     },
     {
       "id": "review-remediation",

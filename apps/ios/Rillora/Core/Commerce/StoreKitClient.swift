@@ -105,6 +105,7 @@ enum StoreKitTransactionUpdate: Equatable, Sendable {
 
 protocol StoreKitPurchasing: Sendable {
     func verifiedAppEnvironment() async -> ApplePurchaseEnvironment?
+    func refreshAppEnvironment() async throws -> ApplePurchaseEnvironment?
     func purchaseIntents() -> AsyncStream<String>
     func loadProducts(identifiers: Set<String>) async throws -> [StoreKitProductSnapshot]
     func currentEntitlements(identifiers: Set<String>) async -> StoreKitEntitlementSnapshot
@@ -126,6 +127,7 @@ protocol StoreKitPurchasing: Sendable {
 
 extension StoreKitPurchasing {
     func verifiedAppEnvironment() async -> ApplePurchaseEnvironment? { nil }
+    func refreshAppEnvironment() async throws -> ApplePurchaseEnvironment? { nil }
     func purchaseIntents() -> AsyncStream<String> { AsyncStream { $0.finish() } }
 }
 
@@ -140,9 +142,22 @@ actor AppleStoreKitClient: StoreKitPurchasing {
     }
 
     func verifiedAppEnvironment() async -> ApplePurchaseEnvironment? {
-        // shared never calls refresh or opens a sign-in prompt. Missing/unverified
-        // app receipts leave purchases unavailable until a later explicit retry.
-        guard let result = try? await AppTransaction.shared, case .verified(let app) = result else { return nil }
+        // Routine loading is silent. Only explicit Restore may authenticate and
+        // refresh an initially missing or unverified App Store app transaction.
+        guard let result = try? await AppTransaction.shared else { return nil }
+        return Self.verifiedEnvironment(result)
+    }
+
+    func refreshAppEnvironment() async throws -> ApplePurchaseEnvironment? {
+        do {
+            return Self.verifiedEnvironment(try await AppTransaction.refresh())
+        } catch StoreKitError.userCancelled {
+            throw CancellationError()
+        }
+    }
+
+    private static func verifiedEnvironment(_ result: VerificationResult<AppTransaction>) -> ApplePurchaseEnvironment? {
+        guard case .verified(let app) = result else { return nil }
         switch app.environment {
         case .production: return .production
         case .sandbox: return .sandbox

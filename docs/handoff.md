@@ -1,69 +1,55 @@
-# Rillora Current Handoff
+# Rillora 当前交接
 
-Status: SELECTED INDEPENDENT WORK COMPLETE; NATIVE5 READY TO SUBMIT; ALL NEW ELIGIBLE WORK REMOTELY VERIFIED
+Status: 构建6已识别Sandbox；地区报价与恢复继续，Stripe凭据已保护保存
 Last updated: 2026-10-06 (Asia/Hong_Kong)
 
-## Current task
+## 当前任务
 
-Completed the independently executable parts of Owner-selected packages1/2 and StripeWebTEST. Branch`codex/release-12-stripe-20261005`.
-Deployed source85d79c891 has CI57success. Native AX5/scroll/copy fixes and the local TEST
-fixture are committed as10194de6a with CI58success. Apple5is Ready to Submit; exact notes
-persist after reload, groups/individualtesters0. Archive19was freshly downloaded from GitHub and decrypted/verified at557af9f11; CI59passes.
-Keep existing UI, WebUSD88.99annual, Free1/Family5, real data and FanPass.
-[Current detailed contract](release-12-stripe-20261005.md).
+Owner 已要求开始真机及各项配置，原配对 iPhone16ProMax 已连接。最新明确允许Agent通过
+iPhone镜像查看和操作，取代早前亲自操作的限制；本人Apple密码仍由Owner输入。
+当前分支 `codex/device-config-20261006`，基线 `909bea4f0`。
+[本轮合同与执行顺序](device-config-20261006.md)。
 
-## Completed
+## 已完成与当前观察
 
-- Web actual bilingual plan next action/progress, private restore audit, export naming,
-backup download/reopening with5synthetic matters and original Chinese Notes. API400,
-restore14subset, Web165, isolatedlegal7, infra54 and source scan pass.
-- API14 is 1/1HEALTHY/rolloutCOMPLETED, digest
-`sha256:7d101420d19982d747438316833f769ff4998ebb0d735520cd97a14870fc30f1`.
-No migrations; schema0093retained. Runtime roles/secrets and original3reviewidentities/
-expiry2026-10-06T17:08:57Z match. Web86/WWW31deployed files match SHA256; actual bilingual
-render, image/overflow/console and unchecked-consent checks pass. Preview target retained.
-- Native compact/large/iPad English/Chinese landscape and AX5 export pass, plus both
-language sharing/revocation and encrypted-key retention. Real Settings language survives
-two launches without language overrides and retains saved synthetic matter.18distinct
-case/configuration outcomes pass. Failed attempts remain; current final audits ignore no
-findings. Spoken VoiceOver/physical-device interaction is not proved by system audits.
-- Signed1.0(5) archived/exported/validated/uploaded once. IPA SHA256
-`46acd025c7187ce4fe7ac9a2808e7e1df5368b68db2dcb2493e9ded0cda2490b`.
-App source/project hashes match; no debug/device/StoreKitfixture, correct production
-config and approved OS-only declaration. Actual Apple list Ready to Submit; saved notes match after reload.
-- Rillora-onlyTEST CLI1.53.0 is authorized foracct_1U6B2RCxTlowhyiG; no new login needed.
-MCP unavailable is not CLI failure. Existing restricted TEST key reused; FanPass untouched.
-- Current8899USD hosted checkoutcancel/decline/success, signed-inreturn, Portalperiod-end
-cancel/resume, fullsucceededrefund and subscriptionend verified. FinalFree/refunded,
-renewalfalse, onepaidorder and10appliedeventrows. OriginalCLI-signedduplicate→200duplicate.
-Concurrent503events were recovered by controlled actual-event retries; no automatic
-external-retry claim. RefundamountcomesfromStripe; commerce_refunds scaffoldisnotfilled.
+- 上轮API14/schema0093、双语Web/WWW和18个原生验收结果、Stripe88.99TEST及archive19远端核验保留。
+- Apple会话已由Owner恢复；创建手动分发的Rillora Owner QA内部组并发送本人邀请。
+  Owner已安装1.0(5)，用Gmail登录并看到原有事项；设备工具核对版本一致。
+- 另两个外部邮箱邀请在首次BetaReview联系步骤被Owner暂缓。空外部组保留，未发送邀请/提审。
+- 手机恢复购买显示暂不可用。云端只读诊断确认会话/测试资格有效。客户端缺少AppTransaction
+  初次不可用时的用户触发刷新已修，红测复现后17用例通过。1.0(6)已归档、导出、13项检查，
+  已上传且Apple处理完成，测试说明及原内部组已保存。手机已确认更新6，Apple验证后出现
+  Sandbox不会扣款标记；AppStore.sync仍报无法完成请求并跳App Store设置，不算恢复通过。
+- Owner最终锁定Apple美国US119.99/年，Web88.99不变。旧US68Sandbox绑定已retired，云端
+  Apple商店已保存119.99并重新打开读回，原8个可售地区保持。新11999 Sandbox绑定已创建并
+  通过真实数据库报价/验签目录金额解析；历史68/Web8899/SKU不变。API14已同镜像滚动加载，
+  最终1个健康实例、ready200/匿名401，普通销售关闭。
+- Stripe已按明确批准复用X身份/银行；Rillora描述符为RILLORA，准确软件说明、包含的Lite，
+  税务/Climate暂未启用，可选公开电话关闭。共享实体网站编辑已取消，没有改变FanPass。
+  Owner已亲自最终提交且批准仅Rillora的Live插件授权。接口确认收款/提现启用、无待补资料。
+  Live8899商品/年价暂inactive，门户已配置，18事件回调已创建并禁用，签名秘密保护保存。
+  3写/9读服务器RAK已当场批准、完成Stripe邮件验证并创建；SDK实际读取账户/商品/价格通过。
+  本机及AWS Secrets Manager读回一致。AWS首次版本自动带AWSCURRENT，但内容是
+  preparationOnly，正式解析器实际拒绝；API没有配置ARN/读取权限/付款开关。
+  经营/税务事实、完整运行配置及真实交易仍未完成。
+- AWS CLI已复用有效浏览器会话刷新，STS确认Rillora身份。不要重复要求MFA。
 
-## Evidence boundaries and retained deferrals
+## 证据边界与保留决定
 
-QA:`output/qa/rillora-release-12-stripe-20261005/README.md` and its exact receipts.
-Stripefixture identity/consent is synthetic, shippingcookie/CSRFandproviderTESTareactual.
-No new human Auth0/recurringconsent, livecharge, livebillingdeployment or complete
-accountingledger proof. Prior Google/QQ identity/share/recovery results retain their dates.
-Owner explicitly retains the independent delete-QA account. Do not delete it, reopen the
-physicalphone/merchantfactdeferrals, invite testers, submit review or open customers.
-Six designed storeimages and prior approved declaration remain; no oldbuildreupload.
+本轮QA为 `output/qa/rillora-device-config-20261006/`；精确设备标识、认证和个人资料
+留在受保护本地目录，不上传。真机安装/登录/Sandbox识别已有结果；Apple购买/恢复和真实
+收款未证明。Stripe处理器当前资格已读回，不等于经营及税务事实已经全部完成。
 
-Local task fixtures/listener are stopped; synthetic cookie sessions revoked. Only the
-three task-created simulators were removed; all other simulator identities/states match.
-Archive19preserves9,769eligible paths/1,541objects (581,672,952bytes). Local and fresh
-remote decryption/object/catalog checks pass; all new source/artifacts/readable receipts
-are pushed. [Publication and remote receipts](../collaboration/verification/release-12-stripe-20261006/README.md). Exclude credentials, cookies, raw signed events, auth screens and vendor
-caches even from encrypted Git. Priorarchives17/18arealreadyverified, do notredo them.
+Owner已恢复真机范围，但仍保留独立删除验收账号。UI、价格、真实数据及FanPass不变。
+审核访问原到期时间仍为2026-10-06T17:08:57Z（香港10月7日01:08:57）；新的测试/提交
+动作先核对有效性，不能默默延长。未知经营/税务/银行事实和最终声明需具体核验。
 
-## Single next step
+## 唯一下一步
 
-When Owner resumes the deferred merchant/business facts, complete Stripe Live readiness:
-truthful operator/tax/banking/market inputs, exact live configuration, controlled real
-payment/refund/reconciliation and customer cutover. Current88.99TESTflow is complete;
-do not redo it or automatically reopen the retained-account/physical-device deferrals.
-The review allowlist expiry remains2026-10-06T17:08:57Z; verify/prepare operative reviewer
-access before any later store submission, without silently extending this old window.
+完成实际商店地区对应的受限Sandbox报价和验签配置，再通过已授权的手机镜像读取商品价格
+及恢复结果。手机日志店面编号143463，云端仅USA且HKG报价为0；Apple香港价已保存HKD888，
+HKG测试目录任务已发出，待结果。Apple历史同步另有sandbox.itunes.apple.com HTTP410记录，
+不把它与Rillora目录缺口混成一个故障。Stripe密钥/保护保存已完成，不重做；经营/税务状态
+仍待核实，不能用身份证代替登记。外部邀请和独立账号删除继续暂缓。
 
-[Previous consolidated handoff](handoff-history-20261005-before-release-12-stripe.md) is
-HISTORICAL. Owner's later kept-account and physical/merchant deferrals retain priority.
+[上轮交接](handoff-history-20261006-before-device-config.md)为HISTORICAL。

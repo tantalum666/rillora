@@ -173,10 +173,90 @@ final class ApplePurchaseCoordinatorTests: XCTestCase {
         XCTAssertTrue(unknown.coordinator.message?.contains("temporarily unavailable") == true)
     }
 
-    private func fixture(environment: ApplePurchaseEnvironment? = .production) async -> (coordinator: ApplePurchaseCoordinator, service: ApplePurchaseServiceSpy, client: ApplePurchaseClientSpy, owner: UUID) {
+    func testMissingAppReceiptIsRefreshedOnlyAfterExplicitRestore() async {
+        let f = await fixture(environment: nil, refreshedEnvironment: .sandbox)
+        await f.coordinator.restore(synchronize: false)
+        let automaticRefreshes = await f.client.appRefreshes
+        XCTAssertEqual(automaticRefreshes, 0)
+        XCTAssertNil(f.coordinator.environment)
+        XCTAssertNil(f.coordinator.quote)
+
+        await f.coordinator.restore()
+        let refreshes = await f.client.appRefreshes
+        let syncs = await f.client.syncs
+        let purchases = await f.client.purchases
+        XCTAssertEqual(refreshes, 1)
+        XCTAssertEqual(syncs, 1)
+        XCTAssertEqual(purchases, 0)
+        XCTAssertEqual(f.coordinator.environment, .sandbox)
+        XCTAssertNotNil(f.coordinator.quote)
+        XCTAssertFalse(f.coordinator.busy)
+    }
+
+    func testCanceledAppAuthenticationStaysQuietAndCanBeRetried() async {
+        let f = await fixture(environment: nil, refreshedEnvironment: .sandbox)
+        await f.client.cancelNextAppRefresh()
+        await f.coordinator.restore()
+        let firstSyncs = await f.client.syncs
+        XCTAssertEqual(firstSyncs, 0)
+        XCTAssertNil(f.coordinator.environment)
+        XCTAssertNil(f.coordinator.message)
+        XCTAssertFalse(f.coordinator.busy)
+        await f.coordinator.restore()
+        XCTAssertEqual(f.coordinator.environment, .sandbox)
+        XCTAssertNotNil(f.coordinator.quote)
+    }
+
+    func testUnverifiedRefreshedAppCannotReachPurchaseOrReceiptIntake() async {
+        let f = await fixture(environment: nil)
+        await f.client.setHistory(evidence(owner: f.owner, environment: "Sandbox"))
+        await f.coordinator.restore()
+        await f.coordinator.purchase(acceptedTerms: true)
+        let refreshes = await f.client.appRefreshes
+        let syncs = await f.client.syncs
+        let submissions = await f.service.submissions
+        let preparations = await f.service.preparations
+        XCTAssertEqual(refreshes, 1)
+        XCTAssertEqual(syncs, 0)
+        XCTAssertEqual(submissions, 0)
+        XCTAssertEqual(preparations, 0)
+        XCTAssertNil(f.coordinator.environment)
+        XCTAssertNil(f.coordinator.quote)
+    }
+
+    func testAccountChangeDuringAppRefreshDiscardsResultAndPreventsDuplicatePrompts() async {
+        let f = await fixture(environment: nil, refreshedEnvironment: .sandbox)
+        await f.client.pauseNextAppRefresh()
+        let restore = Task { await f.coordinator.restore() }
+        for _ in 0..<1000 {
+            if await f.client.appRefreshWaiting { break }
+            await Task.yield()
+        }
+        let waiting = await f.client.appRefreshWaiting
+        XCTAssertTrue(waiting)
+        XCTAssertTrue(f.coordinator.busy)
+        await f.coordinator.restore()
+        let refreshes = await f.client.appRefreshes
+        XCTAssertEqual(refreshes, 1)
+        f.coordinator.reset()
+        await f.coordinator.start(owner: UUID())
+        await f.client.resumeAppRefresh()
+        await restore.value
+        let syncs = await f.client.syncs
+        let submissions = await f.service.submissions
+        XCTAssertEqual(syncs, 0)
+        XCTAssertEqual(submissions, 0)
+        XCTAssertNil(f.coordinator.environment)
+        XCTAssertNil(f.coordinator.quote)
+        XCTAssertNil(f.coordinator.message)
+        XCTAssertFalse(f.coordinator.busy)
+    }
+
+    private func fixture(environment: ApplePurchaseEnvironment? = .production, refreshedEnvironment: ApplePurchaseEnvironment? = nil) async -> (coordinator: ApplePurchaseCoordinator, service: ApplePurchaseServiceSpy, client: ApplePurchaseClientSpy, owner: UUID) {
         let owner = UUID()
-        let service = ApplePurchaseServiceSpy(owner: owner, environment: environment ?? .production)
+        let service = ApplePurchaseServiceSpy(owner: owner, environment: environment ?? refreshedEnvironment ?? .production)
         let client = ApplePurchaseClientSpy(owner: owner, environment: environment)
+        await client.setRefreshedEnvironment(refreshedEnvironment)
         let coordinator = ApplePurchaseCoordinator(service: service, client: client,
             storefront: ApplePurchaseStorefrontFixture(), serviceMarket: "GLOBAL_US")
         await coordinator.start(owner: owner)
@@ -257,6 +337,22 @@ private actor ApplePurchaseServiceSpy: ApplePurchaseServing {
 private actor ApplePurchaseClientSpy: StoreKitPurchasing {
     var appEnvironment: ApplePurchaseEnvironment?
     func verifiedAppEnvironment() async -> ApplePurchaseEnvironment? { appEnvironment }
+    var refreshedEnvironment: ApplePurchaseEnvironment?
+    var appRefreshes = 0, syncs = 0
+    var cancelAppRefresh = false, pauseAppRefresh = false
+    var appRefreshContinuation: CheckedContinuation<Void, Never>?
+    var appRefreshWaiting: Bool { appRefreshContinuation != nil }
+    func setRefreshedEnvironment(_ value: ApplePurchaseEnvironment?) { refreshedEnvironment = value }
+    func cancelNextAppRefresh() { cancelAppRefresh = true }
+    func pauseNextAppRefresh() { pauseAppRefresh = true }
+    func resumeAppRefresh() { appRefreshContinuation?.resume(); appRefreshContinuation = nil }
+    func refreshAppEnvironment() async throws -> ApplePurchaseEnvironment? {
+        appRefreshes += 1
+        if pauseAppRefresh { await withCheckedContinuation { appRefreshContinuation = $0 } }
+        if cancelAppRefresh { cancelAppRefresh = false; throw CancellationError() }
+        appEnvironment = refreshedEnvironment
+        return appEnvironment
+    }
     let owner: UUID
     var amount = 99_990
     var purchases = 0
@@ -288,7 +384,7 @@ private actor ApplePurchaseClientSpy: StoreKitPurchasing {
     nonisolated func transactionUpdates(identifiers: Set<String>) -> AsyncStream<StoreKitTransactionUpdate> { AsyncStream { $0.finish() } }
     nonisolated func subscriptionStatusUpdates(identifiers: Set<String>) -> AsyncStream<StoreKitSubscriptionStatusSnapshot> { AsyncStream { $0.finish() } }
     func finish(transactionID: UInt64) async { finishes.append(transactionID) }
-    func sync() async throws {}
+    func sync() async throws { syncs += 1 }
 }
 private struct ApplePurchaseStorefrontFixture: CommerceStorefrontProviding {
     func currentCountryCode() async -> String? { "USA" }

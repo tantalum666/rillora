@@ -5,7 +5,23 @@ Authority scope: Rillora Family StoreKit product identifiers, purchase/restore l
 Superseded by: newer Apple platform rules, verified App Store Connect state, a later Owner decision, or stricter payment/security evidence  
 Do not use for: proof of App Store approval, accepted Paid Apps Agreement, banking/tax completion, live IAP products, production entitlement or a real charge  
 Status: SHARED PRODUCTION/REVIEW FLOW LOCALLY VERIFIED; REAL PROVIDER AND CLOUD ACCEPTANCE OPEN
-Last updated: 2026-09-30 (Apple review flow and signed preparation artifact; historical provider evidence retained)
+Last updated: 2026-10-06 (Asia/Hong_Kong)
+
+## October6 current physical-device and price checkpoint
+
+Owner installed/logged into TestFlight5 with original matters visible. Explicit Restore
+reported unavailable. Build6 adds AppTransaction.refresh only after explicit Restore,
+retains verification/account-generation guards, and passes17focused regression cases
+plus13signed-artifact checks. It is uploaded/processed and assigned to the original
+internal group; physical recovery/purchase/restore remains pending Owner's update.
+
+Owner selected USA USD119.99/year; Apple saved-price readback and unchanged8territory
+annual availability pass. The old68Sandbox new-offer binding is retired; a new11999
+binding passes cloud quote and catalog-resolution checks without rewriting historical
+prices, SKU or Web8899. API14 rolled with the same source/config to load the catalog.
+No actual Sandbox transaction, SBP15%approval, App Review or public sales is inferred.
+See [current device/config contract](device-config-20261006.md). Earlier dated results
+below retain their original evidence and do not restore superseded price decisions.
 
 ## September29–30 review/TestFlight path — current
 
