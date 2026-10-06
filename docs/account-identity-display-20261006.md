@@ -1,7 +1,7 @@
 # Current account identity display
 
-Status: SHARED API SOURCE AND CI62 VERIFIED; CLIENT INTEGRATION IN PROGRESS
-Last updated: 2026-10-06 (Asia/Hong_Kong)
+Status: SHARED API AND WEB CLIENT VERIFIED; NATIVE CLIENT ON SIBLING BRANCH
+Last updated: 2026-10-06 (UTC)
 
 The Owner asks both Web and native iOS to identify the currently signed-in account.
 This additive read does not change authentication, grants, consent, prices or account

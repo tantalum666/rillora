@@ -1,6 +1,6 @@
 # Web UX refinement QA, October6
 
-Status: LOCAL CHECKS PASS; EXACT BRANCH BROWSER RUN IN PROGRESS
+Status: VERIFIED SOURCE CI AND20/20 CLOUD BROWSER SCENARIOS; NO DEPLOYMENT
 
 ## Source and reference basis
 
@@ -77,3 +77,59 @@ and mobile390 current-account panel. Screenshot review found tight multiline row
 spacing and a default browser border on the new summary. Both are corrected;
 a duplicate account-name heading is removed. The next run also adds actual
 cross-tab language/draft/discard preservation and delayed-identity invalidation.
+
+
+## Final verified result
+
+Final product code is `f95a1c23ba702bffe1955a66386d50d582fe579a`.
+[Source/API/infrastructure CI](https://github.com/tantalum666/rillora/actions/runs/37501697399)
+and [Chromium acceptance](https://github.com/tantalum666/rillora/actions/runs/37501697429)
+both pass. Browser20/20, zero skipped/flaky/failed cases; final local Web174/174,
+isolated legal7/7, API typecheck/build and17 focused proof cases pass. Remote41
+changed-source blobs match the intended hashes. See [exact results](final-validation.json)
+and [source readback](source-readback.json).
+
+The final run repeats the whole matrix after adding full-width open-menu geometry
+checks and inspecting Chinese390px/English1280px open menus. Explicit grid area
+placement keeps an absolute-positioned menu attached to the entire header.
+Cross-tab draft preservation and delayed identity invalidation pass.132 recorded
+console errors are deliberate synthetic API-unavailable/signed-out/image-failure
+responses; all are classified by source, with zero unexpected console/page errors
+or external network attempts. Do not describe that as an unqualified empty console.
+
+[Complete synthetic run artifact](https://github.com/tantalum666/rillora/actions/runs/37501697429/artifacts/11430421225)
+was downloaded and its SHA256 matched before inspection. The artifact expires after
+seven days; four selected synthetic screenshots and their [hashes](screenshots.json)
+are preserved below. These contain only example.test identity data, not the Owner's
+screenshots or account. Browser reports/trace capture are not a real Auth0, payment,
+VoiceOver or deployed staging acceptance. The cloud staging tunnel403 remains an
+explicit live verification limit.
+
+## Integration
+
+The Web branch shares API foundation8cc5e100 with
+`codex/ios-ux-refinement-20261006`. Use normal branch integration so this one API
+foundation is included once. The native branch also retains newer operator commerce
+and distribution work and owns shared handoff/decision/journey/provider-link edits.
+Do not replace those files with this Web checkout or force-push the active operator
+branch. The receipt-only commit adds documentation/images without changing the
+verified Web/API code. Deployment remains a separate action and must verify the
+actual Preview-linked App origin rather than only the production App domain.
+
+## Inspected final screenshots
+
+Desktop1440px, Simplified Chinese, centered subpage navigation:
+
+![Centered desktop navigation](screenshots/desktop-navigation-zh.png)
+
+Mobile390px, Simplified Chinese, full-width navigation open:
+
+![Mobile navigation](screenshots/mobile-navigation-zh.png)
+
+Mobile390px, English, current account and language settings:
+
+![Current synthetic account](screenshots/current-account-en.png)
+
+Mobile390px, dark, distinct neutral identifiers after image failures:
+
+![Provider error fallbacks](screenshots/provider-fallbacks-dark.png)

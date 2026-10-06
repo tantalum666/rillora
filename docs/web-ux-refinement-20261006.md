@@ -1,7 +1,7 @@
 # Web navigation, language, identity and provider review
 
-Status: SOURCE FIXES PUSHED; CLOUD BROWSER ACCEPTANCE IN PROGRESS
-Last updated: 2026-10-06 (Asia/Hong_Kong)
+Status: SOURCE AND CLOUD BROWSER ACCEPTANCE VERIFIED; NOT DEPLOYED
+Last updated: 2026-10-06 (UTC)
 
 The Owner requested cloud-only fixes and a careful related-system review after
 reporting left-biased website navigation, an English-only App experience, missing
@@ -68,7 +68,7 @@ full API/database integration. The local cloud browser fails before navigation o
 socket EPERM; it is not visual evidence. A browser-capable GitHub runner executes
 only the compiled branch and synthetic fixtures, with no real account or API writes.
 
-The new matrix covers all seven public routes in both languages at320/390/1280/
+The final20/20 passing matrix onf95a1c23 covers all seven public routes in both languages at320/390/1280/
 1440/1920 widths; menu/Escape/focus, eleven workspace destinations, every provider
 and its failure fallback, language handoff/auth-return/reload and account mismatch.
 This is broader than checking only the reported rows, but is not a claim of exhaustive
@@ -79,3 +79,9 @@ The native branch owns shared handoff/decision/journey and provider-link updates
 It and the Web branch share the one API foundation, avoiding duplicated backend
 patches. The later operator commit08afb382 changes native commerce/docs, not these
 Web/API files; integration must preserve its work and merge the two client diffs.
+
+
+Final code and CI: [source](https://github.com/tantalum666/rillora/commit/f95a1c23ba702bffe1955a66386d50d582fe579a),
+[source verification](https://github.com/tantalum666/rillora/actions/runs/37501697399),
+[actual cloud browser](https://github.com/tantalum666/rillora/actions/runs/37501697429).
+The QA page includes preserved synthetic screenshots and per-scenario evidence.

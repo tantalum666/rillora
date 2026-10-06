@@ -1,0 +1,136 @@
+{
+  "commit": "f5011e2d18c29d7d0b10de346be670de7a74afad",
+  "run": "https://github.com/tantalum666/rillora/actions/runs/37500919513",
+  "artifact_id": 11429981761,
+  "artifact_sha256": "cce242182a907bde9eb7ea76594ef37dc2df6496bde9b799f816eb06d3bb83fd",
+  "stats": {
+    "startTime": "2026-10-06T17:07:00.820Z",
+    "duration": 136518.561,
+    "expected": 20,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "scenarios": [
+    {
+      "name": "public pages en 320",
+      "status": "expected",
+      "duration_ms": 4678,
+      "errors": []
+    },
+    {
+      "name": "public pages en 390",
+      "status": "expected",
+      "duration_ms": 4378,
+      "errors": []
+    },
+    {
+      "name": "public pages en 1280",
+      "status": "expected",
+      "duration_ms": 4668,
+      "errors": []
+    },
+    {
+      "name": "public pages en 1440",
+      "status": "expected",
+      "duration_ms": 4749,
+      "errors": []
+    },
+    {
+      "name": "public pages en 1920",
+      "status": "expected",
+      "duration_ms": 4477,
+      "errors": []
+    },
+    {
+      "name": "public pages zh-CN 320",
+      "status": "expected",
+      "duration_ms": 4226,
+      "errors": []
+    },
+    {
+      "name": "public pages zh-CN 390",
+      "status": "expected",
+      "duration_ms": 4306,
+      "errors": []
+    },
+    {
+      "name": "public pages zh-CN 1280",
+      "status": "expected",
+      "duration_ms": 4658,
+      "errors": []
+    },
+    {
+      "name": "public pages zh-CN 1440",
+      "status": "expected",
+      "duration_ms": 4311,
+      "errors": []
+    },
+    {
+      "name": "public pages zh-CN 1920",
+      "status": "expected",
+      "duration_ms": 4282,
+      "errors": []
+    },
+    {
+      "name": "workspace routes and all provider identifiers en 390",
+      "status": "expected",
+      "duration_ms": 15745,
+      "errors": []
+    },
+    {
+      "name": "workspace routes and all provider identifiers en 1440",
+      "status": "expected",
+      "duration_ms": 19229,
+      "errors": []
+    },
+    {
+      "name": "workspace routes and all provider identifiers zh-CN 390",
+      "status": "expected",
+      "duration_ms": 14365,
+      "errors": []
+    },
+    {
+      "name": "workspace routes and all provider identifiers zh-CN 1440",
+      "status": "expected",
+      "duration_ms": 16823,
+      "errors": []
+    },
+    {
+      "name": "Chinese website handoff, account consent, auth return and reload stay Chinese",
+      "status": "expected",
+      "duration_ms": 2536,
+      "errors": []
+    },
+    {
+      "name": "blocked storage, explicit app language and guide navigation preserve locale",
+      "status": "expected",
+      "duration_ms": 1807,
+      "errors": []
+    },
+    {
+      "name": "failed logos retain distinct local fallbacks without remote icon services",
+      "status": "expected",
+      "duration_ms": 706,
+      "errors": []
+    },
+    {
+      "name": "identity is visible, bilingual, handles missing email and never displays a stale account",
+      "status": "expected",
+      "duration_ms": 1265,
+      "errors": []
+    },
+    {
+      "name": "draft text and discard decisions survive a real cross-tab language change",
+      "status": "expected",
+      "duration_ms": 1265,
+      "errors": []
+    },
+    {
+      "name": "late identity responses cannot reappear after the active account is invalidated",
+      "status": "expected",
+      "duration_ms": 578,
+      "errors": []
+    }
+  ]
+}
