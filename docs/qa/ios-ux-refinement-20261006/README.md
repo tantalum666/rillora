@@ -1,6 +1,6 @@
 # 原生 UX 云端检查记录
 
-Status: LOCAL SOURCE CHECKS PASS; REMOTE PUBLICATION PENDING; XCODE/RUNTIME NOT RUN
+Status: SOURCE PUSHED AND CI70 PASS; XCODE/RUNTIME NOT RUN
 Last updated: 2026-10-07 (Asia/Hong_Kong)
 
 ## 准确范围
@@ -50,3 +50,15 @@ Last updated: 2026-10-07 (Asia/Hong_Kong)
 ## 首次精确分支 CI 与继承清单修正
 
 源码0e452bc5的API、Web/infrastructure通过；source中66+10+5+8项测试及全量源码扫描29项已审／0未审均通过，随后继承e950078的可读归档清单失败。远端树中缺少清单列出的25个被既有Git规则忽略的.xcresult/.dSYM副本；对应原始路径／对象仍在archive20目录。修正仅移除错误的“可读副本存在”声明，保留全部原始记录／密文／验证器和扫描规则。详见[准确元数据差异](inherited-publication-correction.json)。后续完整CI结果另记，不把此次部分通过写成全通过。
+
+## 最终源码／CI 回执
+
+独立分支 `codex/ios-ux-refinement-20261006` 已推送、读回。产品源码 `0e452bc569e2d16862314794bc70182c895523ee`；6项继承元数据修正后精确提交 `8492822ff651f3db137182d9a4b0c0a710d33b30` 的 [CI70](https://github.com/tantalum666/rillora/actions/runs/37503920129) 全部通过：source、API、Web/infrastructure。全量源码扫描29项已审／0未审，可读证据10,458份完整校验／扫描通过。修正没有改变App源码或任何原始归档对象。[机器回执](publication-receipt.json)区分测试提交与最终文档头。
+
+并行 Web 产品源码 `f95a1c23ba702bffe1955a66386d50d582fe579a` 的[全量源码CI](https://github.com/tantalum666/rillora/actions/runs/37501697399)和[20/20 Chromium场景](https://github.com/tantalum666/rillora/actions/runs/37501697429)通过；[Web合同](https://github.com/tantalum666/rillora/blob/codex/web-ux-refinement-20261006/docs/web-ux-refinement-20261006.md)单独给出覆盖，不能作为原生运行证明。
+
+维护收尾：product／platform contract／DESIGN／原生本地化／指南规范已同步；decision-log记录Owner新方向，后续CI修正不新增产品决定；当前handoff与journey保留operator和共享后端工作。此次最终回执不触发部署，也不以文档更新重复原生／生产测试。
+
+### 获准 Apple 环境中的准确运行入口（本轮未执行）
+
+先使用完整仓库、独立可丢弃模拟器和已有只含合成数据的loopback服务。运行 `xcodegen generate --spec apps/ios/project.yml` 后检查工程差异，分别编译Rillora Debug／Release，再以 `Rillora` scheme运行49个新增及相关旧单元测试。UI使用 `RilloraLayoutMatrix` scheme、`RilloraLayoutMatrixTests/RilloraLocalizationUITests` 测试类，在 `TEST_RUNNER_RILLORA_UI_QA_LANGUAGE=en` 和 `zh-Hans` 下各运行；合成API为 `http://127.0.0.1:4395/v1`，fixture由既有 `apps/api npm run qa:native-ui` 启动。系统设置语言变更用例只在明确选择的可丢弃模拟器并设置其opt-in时运行。现有shell矩阵不会自动覆盖新增测试类，不把运行旧shell集合当作3个新UI方法已验。

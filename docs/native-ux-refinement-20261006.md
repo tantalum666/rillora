@@ -1,6 +1,6 @@
 # 原生 iOS 体验修正与当前账号识别
 
-Status: SOURCE IMPLEMENTED; CLOUD VALIDATION IN PROGRESS; NATIVE RUNTIME PENDING
+Status: SOURCE PUSHED; CI70 PASS; NATIVE RUNTIME PENDING
 Last updated: 2026-10-07 (Asia/Hong_Kong)
 
 ## 范围与版本
@@ -40,3 +40,7 @@ Owner 要求云端修复原生细节、认真复核、推送独立 Git 分支，
 [本轮 QA](qa/ios-ux-refinement-20261006/README.md)记录命令、源码／资源检查、独立复核与待运行矩阵。Linux 没有 Xcode／Apple SDK；Swift 语法解析不是编译，新增 XCTest／UI 测试未运行。本次也未启用收费 macOS CI。
 
 下一道原生门：在获准的 Apple 构建环境，以此精确源码重新生成工程并比较、编译 Debug／Release、运行新增和相关旧测试；再执行中英、小屏／iPad、大字号、折叠、返回／草稿、账号切换和失效的 UI 矩阵。不为验证重复购买、发送真实重置邮件或改变本人设备／provider 设置。旧 build5／6／7／8 的证据保留其日期，不能证明这批 UX 源码已运行。
+
+## 交付回执
+
+产品源码0e452bc5、保持App源码不变的清单修正8492822f已远端读回，CI70三项全部通过。[准确提交与验证记录](qa/ios-ux-refinement-20261006/publication-receipt.json)。最终文档提交不代表新的Xcode结果。
