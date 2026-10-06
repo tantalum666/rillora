@@ -5,7 +5,7 @@ import GoogleSignIn
 import UIKit
 
 @MainActor
-protocol NativeAuthenticating: AnyObject {
+protocol NativeAuthenticating: PasswordResetRequesting {
     var isConfigured: Bool { get }
     var canSignInWithApple: Bool { get }
     var canSignInWithGoogle: Bool { get }
@@ -28,6 +28,9 @@ protocol NativeAuthenticating: AnyObject {
 }
 
 extension NativeAuthenticating {
+    var canResetPassword: Bool { false }
+    func requestPasswordReset(email: String) async throws { throw PasswordResetError.unavailable }
+
     func clearLocalSession() async { await signOut() }
     func takeInitialOverview() -> OverviewSnapshot? { nil }
 }
@@ -52,6 +55,7 @@ final class Auth0NativeAuthenticationService: NativeAuthenticating {
             && configuration.googleServerClientID != nil
     }
     var canSignInWithPasskey: Bool { configuration.passkeyNativeSignInEnabled }
+    var canResetPassword: Bool { configuration.passwordResetConnection != nil }
 
     private let configuration: NativeAuthenticationConfiguration
     private let tokenStore: any SessionTokenStore
@@ -74,6 +78,44 @@ final class Auth0NativeAuthenticationService: NativeAuthenticating {
         self.configuration = configuration
         self.tokenStore = tokenStore
         self.session = session
+    }
+
+    func requestPasswordReset(email: String) async throws {
+        guard let connection = configuration.passwordResetConnection else {
+            throw PasswordResetError.unavailable
+        }
+        guard let email = PasswordResetEmail.normalized(email) else {
+            throw PasswordResetError.invalidEmail
+        }
+        try Task.checkCancellation()
+        do {
+            // Public Authentication API only. No Management API credential, new scope,
+            // browser sign-in, session exchange, token storage or provider error display.
+            try await Auth0
+                .authentication(clientId: configuration.clientID, domain: configuration.domain, session: session)
+                .resetPassword(email: email, connection: connection)
+                .start()
+            try Task.checkCancellation()
+        } catch {
+            if Task.isCancelled || error is CancellationError {
+                throw CancellationError()
+            }
+            if let providerError = error as? AuthenticationError {
+                if let cause = providerError.cause as? URLError, cause.code == .cancelled {
+                    throw CancellationError()
+                }
+                if providerError.isNetworkError { throw PasswordResetError.network }
+                if providerError.statusCode == 429 || providerError.isTooManyAttempts {
+                    throw PasswordResetError.rateLimited
+                }
+            }
+            if let networkError = error as? URLError {
+                if networkError.code == .cancelled { throw CancellationError() }
+                throw PasswordResetError.network
+            }
+            // Never expose provider messages, email existence or account metadata.
+            throw PasswordResetError.requestFailed
+        }
     }
 
     func signIn(

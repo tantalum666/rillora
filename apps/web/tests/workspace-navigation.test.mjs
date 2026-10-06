@@ -31,3 +31,13 @@ test('legacy guide and account continuations hydrate only the authenticated guid
   }
   assert.equal(workspaceURL(readWorkspaceRoute('/guides?service=unknown&task=delete-account')), '/?view=guides');
 });
+
+test('every catalog guide survives drawer navigation, reload and Back round trips', async () => {
+  const { guideIdentifiers } = await import('../src/guideIdentifiers.js');
+  for (const providerKey of guideIdentifiers) {
+    const route = readWorkspaceRoute(`/?view=guides&task=provider-guide&provider=${providerKey}`);
+    assert.equal(route.providerKey, providerKey);
+    assert.equal(readWorkspaceRoute(workspaceURL(route)).providerKey, providerKey);
+  }
+  assert.equal(readWorkspaceRoute('/?view=guides&task=provider-guide&provider=unknown-provider').providerKey, null);
+});

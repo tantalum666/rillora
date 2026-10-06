@@ -39,6 +39,10 @@ function handler(event) {
     // Display language only; all other untrusted query values remain discarded.
     var language = request.querystring && request.querystring.lang && request.querystring.lang.value;
     if (language === "en" || language === "zh-CN") target += "&lang=" + language;
+    else {
+      var languageHint = request.querystring && request.querystring.langHint && request.querystring.langHint.value;
+      if (languageHint === "en" || languageHint === "zh-CN") target += "&langHint=" + languageHint;
+    }
     return {
       statusCode: 302,
       headers: {

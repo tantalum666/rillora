@@ -102,3 +102,10 @@ test("guide redirects retain only an explicitly supported language enum", () => 
     assert.equal(result.headers["cache-control"].value, "no-store");
   }
 });
+
+test('guide redirects pass only a safe automatic hint and explicit selection wins',()=>{
+  const redirect=querystring=>handler({request:{uri:'/guides',method:'GET',querystring}}).headers.location.value;
+  assert.equal(redirect({langHint:{value:'zh-CN'}}),`${entry.appOrigin}/account?next=guides&langHint=zh-CN`);
+  assert.equal(redirect({langHint:{value:'zh-CN'},lang:{value:'en'}}),`${entry.appOrigin}/account?next=guides&lang=en`);
+  assert.equal(redirect({langHint:{value:'zh-CN&token=secret'}}),`${entry.appOrigin}/account?next=guides`);
+});

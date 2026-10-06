@@ -5,7 +5,7 @@ import AuthenticationServices
 
 @MainActor
 @Observable
-final class AuthenticationStore {
+final class AuthenticationStore: PasswordResetRequesting {
     private(set) var isWorking = false
     var errorMessage: String?
     var deletionReference: AccountDeletionReference?
@@ -33,6 +33,13 @@ final class AuthenticationStore {
             return error.localizedDescription
         }
         return L10n.isSimplifiedChinese(bundle: .main) ? fallback : error.localizedDescription
+    }
+
+    var canResetPassword: Bool { service.canResetPassword }
+
+    /// Reset feedback belongs to PasswordResetStore; do not alter authentication state.
+    func requestPasswordReset(email: String) async throws {
+        try await service.requestPasswordReset(email: email)
     }
 
     var canSignIn: Bool { service.isConfigured }

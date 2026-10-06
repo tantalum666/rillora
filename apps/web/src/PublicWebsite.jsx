@@ -49,11 +49,11 @@ const pages = {
 
 /** Marketing and public information only. No account data or tracking; only explicit language and appearance preferences are stored. */
 export function PublicWebsite() {
-  const { t, localePreference } = useI18n();
+  const { t, localePreference, locale } = useI18n();
   const path = window.location.pathname.replace(/\/+$/, "") || "/";
   const guides = path === "/guides";
   const guide = requestedGuideKey(window.location.search);
-  const guideTarget = withLocale(`${publicEntry.accountURL}?next=guides${guide ? `&service=${encodeURIComponent(guide)}` : ""}`, localePreference);
+  const guideTarget = withLocale(`${publicEntry.accountURL}?next=guides${guide ? `&service=${encodeURIComponent(guide)}` : ""}`, localePreference, locale);
   const [Page, titleKey] = pages[path] ?? [null, "public.title.notFound"];
   useEffect(() => {
     document.title = t(titleKey);

@@ -72,4 +72,38 @@ describe.sequential("Email verification without another sign-in", () => {
     await request(app).post("/v1/sharing/email-verification").set(recipient.headers).send({}).expect(401);
     expect((await pool.query("select verified_email_hash from app.auth_sessions where public_id=$1",[recipient.session])).rows[0].verified_email_hash).toBeNull();
   });
+  it("shows only the active cookie or bearer account and does not persist displayed email", async () => {
+    for (const kind of ["browser_cookie", "native_bearer"]) {
+      const recipient = await actor(kind);
+      proof = async identity => { expect(identity.subject).toBe(recipient.subject); return "current@example.test"; };
+      const profile = (await request(app).get("/v1/account/identity?subject=ignored").set(recipient.headers).expect(200));
+      expect(profile.body.account.displayName).toBe("Recipient");
+      expect(profile.body.account.publicId).toBe((await request(app).get("/v1/session").set(recipient.headers).expect(200)).body.plannerPublicId);
+      expect(profile.body.account.verifiedEmail).toBe("current@example.test");
+      expect(profile.body.emailStatus).toBe("available");
+      expect(profile.headers["cache-control"]).toContain("no-store");
+      expect(JSON.stringify(profile.body)).not.toContain(recipient.subject);
+      expect((await pool.query("select verified_email_hash from app.auth_sessions where public_id=$1", [recipient.session])).rows[0].verified_email_hash).toBeNull();
+    }
+  });
+  it("protects display identity from anonymous and mismatched-workspace requests", async () => {
+    await request(app).get("/v1/account/identity").expect(401);
+    const recipient = await actor(); proof = async () => { throw Error("must not call provider"); };
+    await request(app).get("/v1/account/identity").set(recipient.headers).set("x-rillora-planner", ownerId).expect(409);
+  });
+  it("returns honest email fallback without blocking the authenticated account", async () => {
+    const recipient = await actor(); proof = async () => null;
+    expect((await request(app).get("/v1/account/identity").set(recipient.headers).expect(200)).body.emailStatus).toBe("not_provided");
+    proof = async () => { throw Error("provider unavailable"); };
+    const profile = (await request(app).get("/v1/account/identity").set(recipient.headers).expect(200)).body;
+    expect(profile.emailStatus).toBe("unavailable"); expect(profile.account.verifiedEmail).toBeNull();
+    await request(app).get("/v1/session").set(recipient.headers).expect(200);
+  });
+  it("discards a displayed email when its session is revoked during lookup", async () => {
+    const recipient = await actor();
+    proof = async () => { await pool.query("update app.auth_sessions set revoked_at=now() where public_id=$1", [recipient.session]); return "stale@example.test"; };
+    await request(app).get("/v1/account/identity").set(recipient.headers).expect(401);
+  });
+
 });
+

@@ -182,7 +182,7 @@
         {
           "title": "Read Microsoft’s deceased-account process",
           "detail": "Official guidance",
-          "urlString": "https://support.microsoft.com/en-us/account-billing/accessing-outlook-com-onedrive-and-other-microsoft-services-when-someone-has-died-ebbd2860-917e-4b39-9913-212362da6b2f",
+          "urlString": "https://support.microsoft.com/en-us/accounts-billing/manage/accessing-outlook-com-onedrive-and-other-microsoft-services-when-someone-has-died",
           "phase": "afterDeath"
         }
       ],
@@ -469,7 +469,7 @@
         {
           "title": "Open the deactivation request form",
           "detail": "Choose deceased or incapacitated separately",
-          "urlString": "https://help.twitter.com/forms/account-access/deactivate-or-close-account/deactivate-account-for-deceased",
+          "urlString": "https://help.x.com/en/forms/account-access/deactivate-or-close-account/deactivate-account-for-deceased",
           "phase": "afterDeath"
         }
       ],
@@ -564,7 +564,7 @@
         {
           "title": "Open Executor Services",
           "detail": "Follow Coinbase’s own-account and verification instructions",
-          "urlString": "https://help.coinbase.com/cant-sign-in?category=executor-services",
+          "urlString": "https://help.coinbase.com/en/cant-sign-in?category=executor-services",
           "phase": "afterDeath"
         }
       ],
@@ -750,16 +750,22 @@
       "boundary": "Emergency access can expose highly sensitive vault data and does not create legal authority. Never store a vault master password, Secret Key or recovery code in Rillora.",
       "links": [
         {
-          "title": "Bitwarden Emergency Access",
-          "detail": "Official guidance",
-          "urlString": "https://bitwarden.com/help/emergency-access/",
-          "phase": "both"
+          "title": "Set up Bitwarden Emergency Access",
+          "detail": "Official preparation instructions",
+          "urlString": "https://bitwarden.com/help/add-and-manage-trusted-emergency-contacts/",
+          "phase": "prepare"
+        },
+        {
+          "title": "Request Bitwarden Emergency Access",
+          "detail": "For an existing trusted emergency contact",
+          "urlString": "https://bitwarden.com/help/request-and-grant-emergency-access/",
+          "phase": "afterDeath"
         },
         {
           "title": "1Password family recovery plan",
           "detail": "Official guidance",
           "urlString": "https://support.1password.com/family-recovery-plan/",
-          "phase": "both"
+          "phase": "prepare"
         },
         {
           "title": "1Password recovery requirements",

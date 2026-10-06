@@ -81,7 +81,7 @@ test("both public headers keep language selection before the far-right appearanc
   }
   const website = await source("PublicWebsite.jsx");
   assert.match(website, /document\.title = t\(titleKey\)/);
-  assert.match(website, /const guideTarget = withLocale\(.+localePreference\)/);
+  assert.match(website, /const guideTarget = withLocale\(.+localePreference, locale\)/);
   assert.match(await source("PublicExperience.jsx"), /\[view, t\]/);
 });
 

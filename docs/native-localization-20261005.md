@@ -1,7 +1,11 @@
 # 原生 iOS 中英双语界面与维护合同
 
-Status: BILINGUAL SIMULATOR MATRIX AND SYSTEM LANGUAGE PASS; NATIVE 1.0(5) UPLOADED AND READY TO SUBMIT
-Last updated: 2026-10-06 (Asia/Hong_Kong)
+Status: BUILD5 BILINGUAL CHECKPOINT RETAINED; OCTOBER7 SETTINGS CHANGES AWAIT NATIVE RUNTIME
+Last updated: 2026-10-07 (Asia/Hong_Kong)
+
+## October7 设置入口修正
+
+新增 UX 文案与二级语言／外观入口见[当前原生修正](native-ux-refinement-20261006.md)。下述 build5 的实际结果保留其日期，不能替这批源码证明运行通过。
 
 ## October6 当前验收结果
 
@@ -42,7 +46,7 @@ Owner明确补充「中文那个页面做完了吗，不只是做web哦，ios也
 
 ## 语言选择
 
-默认使用 iOS 选择的受支持语言。Profile 右上角的语言按钮进入应用自己的说明页，再由用户打开系统 Rillora 设置选择 English / 简体中文。外观按钮仍在最右侧。
+默认使用 iOS 选择的受支持语言。October7 起，登录前后均由 Profile → 语言与外观进入语言说明，再由用户打开系统 Rillora 设置选择 English / 简体中文；外观也在该二级页。此前右上角按钮位置已被 Owner 新要求取代。
 
 这是 Apple 的原生逐应用语言偏好，持久化由 iOS 管理；没有修改 AppleLanguages、替换 Bundle、调用退出或用 `.id(locale)` 重建整个界面。说明页提醒先保存草稿，因为系统切换语言可能重新启动应用。`UIPrefersShowingLanguageSettings` 让受支持的较新 iOS 始终显示语言项；iOS 17 如未显示，可先在系统语言与地区加入第二种语言。取消或返回说明页不会修改表单、调用 API 或切换共享范围。
 
@@ -62,7 +66,7 @@ Apple 依据：[逐应用语言与系统入口](https://developer.apple.com/vide
 
 - Auth0 托管登录、事务邮件及外部页面保持其服务自身的语言配置；此分支不修改 provider
 - 官方指南正文与复核日期未重译/重审，界面显示英文正文边界；官方外链使用站点自己的语言
-- 正式法律正文、同意版本/digest、订阅同意英文句保持不变，并明确其英文原文地位
+- 正式法律正文、同意版本/digest 保持不变；October7 operator 的购买按钮／披露取代原生订阅勾选，见当前 StoreKit 合同
 - 服务器生成的指南、内部演练诊断和恢复文件警告可仍为英文，任务页明确提示；已有备份、密钥和导出格式不翻译
 - `DELETE` 确认标记、API / Codable / 存储枚举、路径、ID、权限判定、加密实现、用户原文均保留
 - StoreKit 价格使用实际商品提供的本地价格；语言不改变币种、商店地区、服务地区、Web88.99价格或 Free1/Family5 权益

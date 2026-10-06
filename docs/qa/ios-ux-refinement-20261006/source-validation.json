@@ -1,0 +1,752 @@
+{
+  "kind": "noncompiler Swift syntax comparison and parsed Xcode resource wiring",
+  "baseline": "08afb382 changed files, otherwise e229c466",
+  "swift_files": 137,
+  "results": [
+    {
+      "path": "apps/ios/Rillora/Core/API/APIClient.swift",
+      "changed": true,
+      "baseline_errors": 5,
+      "current_errors": 5,
+      "current_ranges": [
+        {
+          "kind": "ERROR",
+          "start": [
+            1057,
+            14
+          ],
+          "end": [
+            1060,
+            35
+          ]
+        },
+        {
+          "kind": "ERROR",
+          "start": [
+            1060,
+            28
+          ],
+          "end": [
+            1060,
+            33
+          ]
+        },
+        {
+          "kind": "ERROR",
+          "start": [
+            1060,
+            28
+          ],
+          "end": [
+            1060,
+            33
+          ]
+        },
+        {
+          "kind": "ERROR",
+          "start": [
+            1060,
+            8
+          ],
+          "end": [
+            1060,
+            23
+          ]
+        },
+        {
+          "kind": "ERROR",
+          "start": [
+            1060,
+            14
+          ],
+          "end": [
+            1060,
+            23
+          ]
+        }
+      ]
+    },
+    {
+      "path": "apps/ios/Rillora/Core/API/APIConfiguration.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Authentication/AuthenticationStore.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Authentication/NativeAuthenticationService.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Authentication/PasswordResetStore.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Commerce/ApplePurchaseCoordinator.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Commerce/CommerceStore.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Commerce/StoreKitClient.swift",
+      "changed": true,
+      "baseline_errors": 17,
+      "current_errors": 17,
+      "current_ranges": [
+        {
+          "kind": "ERROR",
+          "start": [
+            293,
+            8
+          ],
+          "end": [
+            326,
+            9
+          ]
+        },
+        {
+          "kind": "ERROR",
+          "start": [
+            324,
+            8
+          ],
+          "end": [
+            324,
+            25
+          ]
+        },
+        {
+          "kind": "ERROR",
+          "start": [
+            321,
+            28
+          ],
+          "end": [
+            321,
+            29
+          ]
+        },
+        {
+          "kind": "ERROR",
+          "start": [
+            316,
+            43
+          ],
+          "end": [
+            316,
+            44
+          ]
+        },
+        {
+          "kind": "ERROR",
+          "start": [
+            316,
+            31
+          ],
+          "end": [
+            316,
+            42
+          ]
+        },
+        {
+          "kind": "ERROR",
+          "start": [
+            316,
+            31
+          ],
+          "end": [
+            316,
+            42
+          ]
+        },
+        {
+          "kind": "ERROR",
+          "start": [
+            315,
+            19
+          ],
+          "end": [
+            315,
+            25
+          ]
+        },
+        {
+          "kind": "ERROR",
+          "start": [
+            315,
+            19
+          ],
+          "end": [
+            315,
+            25
+          ]
+        },
+        {
+          "kind": "ERROR",
+          "start": [
+            310,
+            15
+          ],
+          "end": [
+            314,
+            8
+          ]
+        },
+        {
+          "kind": "ERROR",
+          "start": [
+            313,
+            21
+          ],
+          "end": [
+            313,
+            33
+          ]
+        },
+        {
+          "kind": "ERROR",
+          "start": [
+            308,
+            27
+          ],
+          "end": [
+            308,
+            28
+          ]
+        },
+        {
+          "kind": "ERROR",
+          "start": [
+            306,
+            21
+          ],
+          "end": [
+            306,
+            22
+          ]
+        },
+        {
+          "kind": "ERROR",
+          "start": [
+            299,
+            51
+          ],
+          "end": [
+            305,
+            8
+          ]
+        },
+        {
+          "kind": "ERROR",
+          "start": [
+            294,
+            11
+          ],
+          "end": [
+            297,
+            41
+          ]
+        },
+        {
+          "kind": "ERROR",
+          "start": [
+            297,
+            8
+          ],
+          "end": [
+            297,
+            20
+          ]
+        },
+        {
+          "kind": "ERROR",
+          "start": [
+            280,
+            87
+          ],
+          "end": [
+            280,
+            91
+          ]
+        },
+        {
+          "kind": "ERROR",
+          "start": [
+            278,
+            8
+          ],
+          "end": [
+            278,
+            25
+          ]
+        }
+      ]
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Design/RilloraSurfaceMotion.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Domain/AccountDataModels.swift",
+      "changed": false,
+      "baseline_errors": 2,
+      "current_errors": 2,
+      "current_ranges": [
+        {
+          "kind": "ERROR",
+          "start": [
+            52,
+            0
+          ],
+          "end": [
+            52,
+            1
+          ]
+        },
+        {
+          "kind": "}",
+          "start": [
+            35,
+            5
+          ],
+          "end": [
+            35,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Domain/AccountIdentityModels.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Domain/Models.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/AccountIdentityStore.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/AccountIdentityView.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/AccountView.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/AppPreferencesView.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/ApplePurchaseSection.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/AuthenticatedProfileContent.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/PasswordResetView.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/PlanAccessView.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/ProfileSupportViews.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Matters/MatterListPresentation.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Matters/MattersView.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/Rillora/Features/OfficialSetup/OfficialSetupView.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Overview/OverviewDashboardComponents.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Overview/OverviewStore.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Overview/OverviewView.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Overview/SignedOutExperienceViews.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Roles/RoleAssignmentPolicyView.swift",
+      "changed": false,
+      "baseline_errors": 1,
+      "current_errors": 1,
+      "current_ranges": [
+        {
+          "kind": "ERROR",
+          "start": [
+            280,
+            8
+          ],
+          "end": [
+            280,
+            14
+          ]
+        }
+      ]
+    },
+    {
+      "path": "apps/ios/RilloraComponentPreview/ApplePurchaseLayoutPreview.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/RilloraLayoutMatrixTests/RilloraJourneyAuditTests.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/RilloraLayoutMatrixTests/RilloraLayoutMatrixTests.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/RilloraLayoutMatrixTests/RilloraLocalizationUITests.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/RilloraTests/AccountIdentityTests.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift",
+      "changed": true,
+      "baseline_errors": 10,
+      "current_errors": 10,
+      "current_ranges": [
+        {
+          "kind": "ERROR",
+          "start": [
+            306,
+            12
+          ],
+          "end": [
+            307,
+            30
+          ]
+        },
+        {
+          "kind": "ERROR",
+          "start": [
+            307,
+            12
+          ],
+          "end": [
+            307,
+            22
+          ]
+        },
+        {
+          "kind": "ERROR",
+          "start": [
+            205,
+            12
+          ],
+          "end": [
+            206,
+            30
+          ]
+        },
+        {
+          "kind": "ERROR",
+          "start": [
+            206,
+            12
+          ],
+          "end": [
+            206,
+            22
+          ]
+        },
+        {
+          "kind": "ERROR",
+          "start": [
+            186,
+            12
+          ],
+          "end": [
+            187,
+            30
+          ]
+        },
+        {
+          "kind": "ERROR",
+          "start": [
+            187,
+            12
+          ],
+          "end": [
+            187,
+            22
+          ]
+        },
+        {
+          "kind": "ERROR",
+          "start": [
+            94,
+            12
+          ],
+          "end": [
+            95,
+            30
+          ]
+        },
+        {
+          "kind": "ERROR",
+          "start": [
+            95,
+            12
+          ],
+          "end": [
+            95,
+            22
+          ]
+        },
+        {
+          "kind": "ERROR",
+          "start": [
+            66,
+            12
+          ],
+          "end": [
+            67,
+            30
+          ]
+        },
+        {
+          "kind": "ERROR",
+          "start": [
+            67,
+            12
+          ],
+          "end": [
+            67,
+            22
+          ]
+        }
+      ]
+    },
+    {
+      "path": "apps/ios/RilloraTests/AppleStoreKitClientTests.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/RilloraTests/CommerceStoreTests.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/RilloraTests/MatterListPresentationTests.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    },
+    {
+      "path": "apps/ios/RilloraTests/PasswordResetTests.swift",
+      "changed": true,
+      "baseline_errors": 0,
+      "current_errors": 0,
+      "current_ranges": []
+    }
+  ],
+  "new_source_wiring": [
+    {
+      "path": "apps/ios/Rillora/Core/Authentication/PasswordResetStore.swift",
+      "group": "2D5CE26B5793350EBD62B23B",
+      "source_phases": [
+        "55776018252F13489998B302",
+        "8159291C6B711935D5264660"
+      ]
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Domain/AccountIdentityModels.swift",
+      "group": "E0C4E4BE27D9EDACC338D0F0",
+      "source_phases": [
+        "55776018252F13489998B302",
+        "8159291C6B711935D5264660"
+      ]
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/AccountIdentityStore.swift",
+      "group": "9BB160354FB361135874CA18",
+      "source_phases": [
+        "55776018252F13489998B302",
+        "8159291C6B711935D5264660"
+      ]
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/AccountIdentityView.swift",
+      "group": "9BB160354FB361135874CA18",
+      "source_phases": [
+        "55776018252F13489998B302",
+        "8159291C6B711935D5264660"
+      ]
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/AppPreferencesView.swift",
+      "group": "9BB160354FB361135874CA18",
+      "source_phases": [
+        "55776018252F13489998B302",
+        "8159291C6B711935D5264660"
+      ]
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/PasswordResetView.swift",
+      "group": "9BB160354FB361135874CA18",
+      "source_phases": [
+        "55776018252F13489998B302",
+        "8159291C6B711935D5264660"
+      ]
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Matters/MatterListPresentation.swift",
+      "group": "55521CC31E0243F6477A20DE",
+      "source_phases": [
+        "55776018252F13489998B302",
+        "8159291C6B711935D5264660"
+      ]
+    },
+    {
+      "path": "apps/ios/RilloraTests/AccountIdentityTests.swift",
+      "group": "C3534E5969EE148FB9508306",
+      "source_phases": [
+        "17D774C38941D49F29094DBA"
+      ]
+    },
+    {
+      "path": "apps/ios/RilloraTests/MatterListPresentationTests.swift",
+      "group": "C3534E5969EE148FB9508306",
+      "source_phases": [
+        "17D774C38941D49F29094DBA"
+      ]
+    },
+    {
+      "path": "apps/ios/RilloraTests/PasswordResetTests.swift",
+      "group": "C3534E5969EE148FB9508306",
+      "source_phases": [
+        "17D774C38941D49F29094DBA"
+      ]
+    }
+  ],
+  "catalog_entries": 1099,
+  "xcode_build_run": false,
+  "result": "pass"
+}

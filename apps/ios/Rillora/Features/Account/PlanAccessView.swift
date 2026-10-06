@@ -63,6 +63,7 @@ struct PlanAccessView: View {
                             Text(String(localized: "Core planning stays available without a subscription."))
                                 .font(.footnote).foregroundStyle(RilloraTheme.muted)
                         } label: { Label(String(localized: "Included features"), systemImage: "checklist") }
+                        .accessibilityIdentifier("plan-access.included-features")
                     }
                 }
 

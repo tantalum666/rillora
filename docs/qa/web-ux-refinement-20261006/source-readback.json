@@ -1,0 +1,213 @@
+{
+  "commit": "f95a1c23ba702bffe1955a66386d50d582fe579a",
+  "tree": "ef42dacb68043deb0cc36b5e137c89a966b70f05",
+  "verified": 41,
+  "files": [
+    {
+      "path": "apps/api/src/account-identity.ts",
+      "sha": "133572a860b84f29fba731cfcb52da91ae1fd4f5",
+      "remote": "133572a860b84f29fba731cfcb52da91ae1fd4f5"
+    },
+    {
+      "path": "apps/api/src/app.ts",
+      "sha": "8837d2a3ef495ae42c6bf5fb0a3d3ee48a5c8459",
+      "remote": "8837d2a3ef495ae42c6bf5fb0a3d3ee48a5c8459"
+    },
+    {
+      "path": "apps/api/tests/account-identity.test.ts",
+      "sha": "bc16140b27b9b6262cdd780c8f63207f1e997584",
+      "remote": "bc16140b27b9b6262cdd780c8f63207f1e997584"
+    },
+    {
+      "path": "apps/api/tests/email-verification.integration.test.ts",
+      "sha": "c2b541db39d06df25908d050f4e8daf1808d1afb",
+      "remote": "c2b541db39d06df25908d050f4e8daf1808d1afb"
+    },
+    {
+      "path": "docs/account-identity-display-20261006.md",
+      "sha": "208101716c91f2edaa9626f1e42f1122afe11cd7",
+      "remote": "208101716c91f2edaa9626f1e42f1122afe11cd7"
+    },
+    {
+      "path": ".github/workflows/web-ux-browser.yml",
+      "sha": "120121b68cfbf9734c3b47215a51737bc614cef3",
+      "remote": "120121b68cfbf9734c3b47215a51737bc614cef3"
+    },
+    {
+      "path": "apps/web/.gitignore",
+      "sha": "c1ca0e3f714eebcfd880c5de1d1a8ff19cadb20a",
+      "remote": "c1ca0e3f714eebcfd880c5de1d1a8ff19cadb20a"
+    },
+    {
+      "path": "apps/web/e2e/fixtures.mjs",
+      "sha": "76066f6bc7712bda6f24320592d487ff1dc6e425",
+      "remote": "76066f6bc7712bda6f24320592d487ff1dc6e425"
+    },
+    {
+      "path": "apps/web/e2e/ux.spec.mjs",
+      "sha": "3e73e38ad19f09e3dc3c0c0e72f56d6f04fbc33d",
+      "remote": "3e73e38ad19f09e3dc3c0c0e72f56d6f04fbc33d"
+    },
+    {
+      "path": "apps/web/package-lock.json",
+      "sha": "72316b10777c38f1bf2d1c128171bfa7c00760fe",
+      "remote": "72316b10777c38f1bf2d1c128171bfa7c00760fe"
+    },
+    {
+      "path": "apps/web/package.json",
+      "sha": "b5575f38763a139f3838a37bb8f5212db661970e",
+      "remote": "b5575f38763a139f3838a37bb8f5212db661970e"
+    },
+    {
+      "path": "apps/web/playwright.config.mjs",
+      "sha": "4208d5be266409439442a78a006510f05890f420",
+      "remote": "4208d5be266409439442a78a006510f05890f420"
+    },
+    {
+      "path": "apps/web/src/AccountIdentity.jsx",
+      "sha": "72df2ac87f16c2c36b3355f4e6cc1dcbda4ca1d0",
+      "remote": "72df2ac87f16c2c36b3355f4e6cc1dcbda4ca1d0"
+    },
+    {
+      "path": "apps/web/src/App.jsx",
+      "sha": "8c6b5df629c85eb5793128bfb366b548ee7e46df",
+      "remote": "8c6b5df629c85eb5793128bfb366b548ee7e46df"
+    },
+    {
+      "path": "apps/web/src/AppearanceControl.jsx",
+      "sha": "77488361a145b9518c9eae0d7fd525145f51a8fd",
+      "remote": "77488361a145b9518c9eae0d7fd525145f51a8fd"
+    },
+    {
+      "path": "apps/web/src/InvitationPage.jsx",
+      "sha": "fc8ae9388c12e1dac93238e66bdfd47a5eece00b",
+      "remote": "fc8ae9388c12e1dac93238e66bdfd47a5eece00b"
+    },
+    {
+      "path": "apps/web/src/ProviderMark.jsx",
+      "sha": "5f995251c14082e91c6e2009ec1af91e07c9ebc1",
+      "remote": "5f995251c14082e91c6e2009ec1af91e07c9ebc1"
+    },
+    {
+      "path": "apps/web/src/PublicExperience.jsx",
+      "sha": "72fcb7b95f5532580d31cfa6e575c60547b8e8b8",
+      "remote": "72fcb7b95f5532580d31cfa6e575c60547b8e8b8"
+    },
+    {
+      "path": "apps/web/src/PublicWebsite.jsx",
+      "sha": "b8acaa882a9b6d52e7bef6c430e9087c500c5d71",
+      "remote": "b8acaa882a9b6d52e7bef6c430e9087c500c5d71"
+    },
+    {
+      "path": "apps/web/src/account-identity.css",
+      "sha": "7df2d306bff7df75c196ea8377c151b27905d424",
+      "remote": "7df2d306bff7df75c196ea8377c151b27905d424"
+    },
+    {
+      "path": "apps/web/src/api.js",
+      "sha": "b4a39f11063d65095ece7c55d603f0ab6a01494c",
+      "remote": "b4a39f11063d65095ece7c55d603f0ab6a01494c"
+    },
+    {
+      "path": "apps/web/src/i18n/localeStore.js",
+      "sha": "8a3d055ec4bae1a00c0901bfb9738b434fc9abb1",
+      "remote": "8a3d055ec4bae1a00c0901bfb9738b434fc9abb1"
+    },
+    {
+      "path": "apps/web/src/i18n/messages/workspace.js",
+      "sha": "d62c5740ca78f78da7787a5074c57af0a0d51389",
+      "remote": "d62c5740ca78f78da7787a5074c57af0a0d51389"
+    },
+    {
+      "path": "apps/web/src/landing/LandingChrome.jsx",
+      "sha": "10fae81b6e9184a0db1d7258e2623968249abe03",
+      "remote": "10fae81b6e9184a0db1d7258e2623968249abe03"
+    },
+    {
+      "path": "apps/web/src/landing/landing-header.css",
+      "sha": "0df2c8445a34a10e9d0d99148bdde15eae336fe6",
+      "remote": "0df2c8445a34a10e9d0d99148bdde15eae336fe6"
+    },
+    {
+      "path": "apps/web/src/landing/landing.css",
+      "sha": "f9c1e6b59df7353136281a88637a818dc2e9a514",
+      "remote": "f9c1e6b59df7353136281a88637a818dc2e9a514"
+    },
+    {
+      "path": "apps/web/src/platform-guides.css",
+      "sha": "52783bec25e0736d830661a3c7700631e23adb74",
+      "remote": "52783bec25e0736d830661a3c7700631e23adb74"
+    },
+    {
+      "path": "apps/web/src/providerMarkModel.js",
+      "sha": "892bb72656fe43b0dd42eb2e654eaa760c1dab82",
+      "remote": "892bb72656fe43b0dd42eb2e654eaa760c1dab82"
+    },
+    {
+      "path": "apps/web/src/workspaceNavigation.js",
+      "sha": "aac02e1feffe5e70dfad1445228071b031534391",
+      "remote": "aac02e1feffe5e70dfad1445228071b031534391"
+    },
+    {
+      "path": "apps/web/tests/api-client.test.mjs",
+      "sha": "1e174ee0e987ba7a6964a73979cd5c6566f6ac3f",
+      "remote": "1e174ee0e987ba7a6964a73979cd5c6566f6ac3f"
+    },
+    {
+      "path": "apps/web/tests/i18n-core.test.mjs",
+      "sha": "f8ee20d78833e34ff05fc695d00999c11660fd14",
+      "remote": "f8ee20d78833e34ff05fc695d00999c11660fd14"
+    },
+    {
+      "path": "apps/web/tests/provider-mark.test.mjs",
+      "sha": "837ed288ba2b1749fee2db5cbd71b0a140cd84e1",
+      "remote": "837ed288ba2b1749fee2db5cbd71b0a140cd84e1"
+    },
+    {
+      "path": "apps/web/tests/public-i18n.test.mjs",
+      "sha": "5ed7c99445d14912a61a7059c0c042325154a546",
+      "remote": "5ed7c99445d14912a61a7059c0c042325154a546"
+    },
+    {
+      "path": "apps/web/tests/workspace-navigation.test.mjs",
+      "sha": "f5b445283f7c9b287c0fd3ae20d56559156be9f2",
+      "remote": "f5b445283f7c9b287c0fd3ae20d56559156be9f2"
+    },
+    {
+      "path": "apps/web/src/AccountDataPanel.jsx",
+      "sha": "5d6f8a8a7e3b3ec10c9d8972e429792dc39402e9",
+      "remote": "5d6f8a8a7e3b3ec10c9d8972e429792dc39402e9"
+    },
+    {
+      "path": "apps/web/tests/public-website.test.mjs",
+      "sha": "fe1e911b467c0c02c1bd9e88a0b2c11203bf4770",
+      "remote": "fe1e911b467c0c02c1bd9e88a0b2c11203bf4770"
+    },
+    {
+      "path": "apps/web/worker/public-router.js",
+      "sha": "b3b990f85f4aa94a57d312a2e5136bdbc59568c7",
+      "remote": "b3b990f85f4aa94a57d312a2e5136bdbc59568c7"
+    },
+    {
+      "path": "docs/qa/web-ux-refinement-20261006/README.md",
+      "sha": "1fc3e476e33d25863d161c221b6307fb2c27bf6d",
+      "remote": "1fc3e476e33d25863d161c221b6307fb2c27bf6d"
+    },
+    {
+      "path": "docs/qa/web-ux-refinement-20261006/live-entry-readback.json",
+      "sha": "95b3cb3a83518fb72243f15e16be566f90c0d08e",
+      "remote": "95b3cb3a83518fb72243f15e16be566f90c0d08e"
+    },
+    {
+      "path": "docs/qa/web-ux-refinement-20261006/reading-coverage.json",
+      "sha": "60be2b549aeb50a87e90c162ae568d691dd14439",
+      "remote": "60be2b549aeb50a87e90c162ae568d691dd14439"
+    },
+    {
+      "path": "docs/web-ux-refinement-20261006.md",
+      "sha": "e9420a1d53e9dbe28e70ae1965cce49a2b3d5469",
+      "remote": "e9420a1d53e9dbe28e70ae1965cce49a2b3d5469"
+    }
+  ],
+  "failures": []
+}

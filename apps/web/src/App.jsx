@@ -1,3 +1,4 @@
+import { AccountIdentityPanel, AccountSummary, useAccountIdentity } from "./AccountIdentity.jsx";
 import { planProgress } from "./planProgress.js";
 import { useI18n } from "./i18n/I18nProvider.jsx";
 import { LanguageControl } from "./i18n/LanguageControl.jsx";
@@ -289,6 +290,7 @@ export function App() {
   const [checks, setChecks] = useState([]);
   const [auditEvents, setAuditEvents] = useState([]);
   const [session, setSession] = useState(null);
+  const accountIdentity = useAccountIdentity(api, session?.plannerPublicId);
   const [deletionReference, setDeletionReference] = useState(null);
   const [recoverableDraft, setRecoverableDraft] = useState(null);
   const [draftPersistenceFailed, setDraftPersistenceFailed] = useState(false);
@@ -378,13 +380,15 @@ export function App() {
   }, [loadWorkspace, startsOnPublicReadOnlyRoute, startsOnInvitationRoute]);
 
   useEffect(() => {
-    const invalidate = () => {
+    const invalidate = (event) => {
       ++workspaceRevision.current;
       setSession(null); setPlan(null); setMatters([]); setContacts([]);
       setChecks([]); setAuditEvents([]); setDrawer(null); setRecoverableDraft(null);
       setCommerce(unavailableCommercialStatus()); setBusy(false); setLoading(false);
       draftOwner.current = null;
-      setLoadError(new ApiClientError(409, 'account_changed', 'The signed-in account changed. Reload before continuing.'));
+      setLoadError(event?.type === 'rillora:session-expired'
+        ? new ApiClientError(401, 'authentication_required', 'Sign in to continue.')
+        : new ApiClientError(409, 'account_changed', 'The signed-in account changed. Reload before continuing.'));
     };
     const verify = () => {
       if (session && !document.hidden) void api.getSession().catch(error => {
@@ -392,10 +396,12 @@ export function App() {
       });
     };
     window.addEventListener('rillora:account-changed', invalidate);
+    window.addEventListener('rillora:session-expired', invalidate);
     window.addEventListener('focus', verify);
     document.addEventListener('visibilitychange', verify);
     return () => {
       window.removeEventListener('rillora:account-changed', invalidate);
+      window.removeEventListener('rillora:session-expired', invalidate);
       window.removeEventListener('focus', verify);
       document.removeEventListener('visibilitychange', verify);
     };
@@ -842,6 +848,7 @@ export function App() {
             </p>;
           }) : <p>{t("workspace.activity.empty")}</p>}
         </div>}
+        {activeNav === "settings" && <AccountIdentityPanel identity={accountIdentity} plannerPublicId={session.plannerPublicId}/>}
         {activeNav === "settings" && <AccountDataPanel apiClient={api} onChanged={() => void loadWorkspace()} onDeletionRequested={accountDeletionRequested}/>}
         {activeNav === "settings" && <div className="plan-card settings-card"><button className="secondary-button" type="button" onClick={() => setActiveNav("access")}><CreditCard size={20} /> {t("workspace.settings.reviewAccess")}</button>{session?.authenticationMode === "session" && <><button className="secondary-button settings-sign-out" disabled={busy} onClick={() => void signOut()}><SignOut size={20} /> {busy ? t("workspace.settings.signingOut") : t("workspace.settings.signOut")}</button><button className="secondary-button settings-sign-out" disabled={busy} onClick={() => void signOutAllDevices()}><SignOut size={20} /> {t("workspace.settings.signOutAll")}</button><p className="drawer-intro">{t("workspace.settings.sessionScope")}</p></>}</div>}
         {activeNav === "more" && <InviteAction onInvite={() => setDrawer({ type: "contact" })} />}
@@ -894,7 +901,7 @@ export function App() {
       </aside>
 
       <main className="main-content" tabIndex={-1}>
-        <div className="workspace-chrome">{session?.authenticationMode === "development" && <p className="development-notice">{t("workspace.workspace.testData")}</p>}<LanguageControl /><AppAppearanceControl /></div>
+        <div className="workspace-chrome"><AccountSummary identity={accountIdentity} plannerPublicId={session.plannerPublicId} onOpen={() => setActiveNav("settings")} />{session?.authenticationMode === "development" && <p className="development-notice">{t("workspace.workspace.testData")}</p>}<LanguageControl /><AppAppearanceControl /></div>
         {recoverableDraft && !drawer && <section className="draft-recovery" aria-label={t("workspace.draft.label")}>
           <div><strong>{t("workspace.draft.continue")}</strong><p>{recoverableDraft.title || t("workspace.matter.new")}</p></div>
           <button className="secondary-button" onClick={() => void resumeDraft()}>{t("workspace.draft.resume")}</button>

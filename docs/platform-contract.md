@@ -5,7 +5,18 @@ Authority scope: Web/iOS responsibilities, shared state and first validation rel
 Superseded by: later explicit platform decision  
 Do not use for: final framework choice or visual tokens  
 Status: CORE PARITY CONTRACT ACTIVE; CURRENT RUNTIME AND RELEASE GATES IN HANDOFF
-Last updated: 2026-10-05 (Asia/Hong_Kong)
+Last updated: 2026-10-07 (Asia/Hong_Kong)
+
+## October7 account identity and owner organization
+
+Both clients identify the current authenticated account using server-selected identity;
+verified email is transient and optional, never guessed from provider IDs or stale caches.
+Raw matter category, owner progress/status and recipient review are distinct dimensions.
+The native list filters real categories, while Home suggests missing required locators;
+shared review stays optional and permission-bound. Profile language/appearance is a
+secondary settings task, using existing platform persistence. Unsupported provider
+security management cannot be simulated with decorative buttons.
+[Current native implementation and pending runtime](native-ux-refinement-20261006.md).
 
 ## October5 native bilingual interface
 

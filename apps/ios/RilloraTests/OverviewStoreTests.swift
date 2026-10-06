@@ -235,7 +235,7 @@ private actor SignedOutOverviewService: OverviewServing {
     func fetchCount() -> Int { count }
 }
 
-private extension OverviewSnapshot {
+extension OverviewSnapshot {
     static let testFixture = OverviewSnapshot(
         session: SessionInfo(
             plannerPublicId: "11111111-1111-4111-8111-111111111111",

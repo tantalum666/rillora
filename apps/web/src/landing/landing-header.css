@@ -1,0 +1,47 @@
+/* Equal outside tracks put the navigation on the viewport center, independent
+   of the unequal logo and account/language controls. Collapse before collision. */
+.lp-header {
+  grid-template-columns: minmax(0, 1fr) max-content minmax(0, 1fr);
+  grid-template-rows: auto;
+  gap: 24px;
+  height: 108px;
+}
+.lp-header > .lp-brand { grid-column: 1; grid-row: 1; justify-self: start; }
+.lp-header > .lp-nav { grid-column: 2; grid-row: 1; justify-self: center; }
+.lp-header > .lp-menu-toggle { display: none; }
+.lp-header-actions {
+  grid-column: 3; grid-row: 1;
+  display: flex; align-items: center; justify-content: flex-end;
+  gap: 14px; min-width: 0;
+}
+.lp-header-actions > * { flex-shrink: 0; }
+.lp-header-actions .lp-sign-in { white-space: nowrap; }
+.lp-header-actions .lp-appearance { margin: 0; }
+@media (max-width: 1400px) {
+  .lp-header { grid-template-columns: minmax(0, 1fr) auto auto; height: 88px; gap: 16px; }
+  .lp-header > .lp-menu-toggle { display: inline-grid; place-items: center; grid-column: 2; grid-row: 1; }
+  .lp-header > .lp-nav { display: none; }
+  .lp-header > .lp-nav.is-open {
+    display: flex; position: absolute; z-index: 10;
+    grid-column: 1 / -1; grid-row: auto;
+    top: calc(100% - 1px); left: 0; right: 0;
+    flex-direction: column; gap: 0;
+    background: var(--lp-paper); border: 1px solid var(--lp-rule);
+    border-radius: 0 0 12px 12px; padding: 12px 20px;
+    box-shadow: 0 14px 22px #00000014;
+    max-height: calc(100dvh - 150px); overflow-y: auto;
+    justify-self: stretch;
+  }
+  .lp-header > .lp-nav a { font-size: 16px; padding: 16px 0; }
+  .lp-hero { margin-top: -88px; padding-top: 88px; }
+}
+@media (max-width: 600px) {
+  .lp-header { grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: 44px 52px; height: 124px; padding-block: 12px; gap: 4px 12px; }
+  .lp-header > .lp-brand { grid-column: 1; grid-row: 1; }
+  .lp-header > .lp-menu-toggle { grid-column: 2; grid-row: 1; }
+  .lp-header-actions { grid-column: 1 / -1; grid-row: 2; justify-content: space-between; gap: 8px; }
+  .lp-header-actions .lp-sign-in { font-size: 13px; padding-inline: 12px; gap: 8px; }
+  .lp-header-actions .lp-preview-label { padding-right: 8px; }
+  .lp-header-actions .language-control > svg { display: none; }
+  .lp-hero { margin-top: -124px; padding-top: 124px; }
+}

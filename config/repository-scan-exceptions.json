@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "reviewedAt": "2026-10-05",
+  "reviewedAt": "2026-10-07",
   "boundary": "Only exact unchanged source spans are approved. New or changed findings still block upload.",
   "findings": [
     {
@@ -126,8 +126,8 @@
     {
       "path": "apps/ios/project.yml",
       "rule": "generic-api-key",
-      "startLine": 111,
-      "endLine": 111,
+      "startLine": 112,
+      "endLine": 112,
       "sourceSpanSha256": "c9c9eb8a723073eae64c80690be13fc7c0919031fdb81d83a953ee5a247256b4",
       "reason": "Native public Auth0 client identifier, included in distributed app configuration."
     },
@@ -166,8 +166,8 @@
     {
       "rule": "generic-api-key",
       "path": "apps/ios/project.yml",
-      "startLine": 126,
-      "endLine": 126,
+      "startLine": 128,
+      "endLine": 128,
       "sourceSpanSha256": "5ac97cca4bf92df008a80d90fabca84d976bccc691219fdbb0bbc591b963b6ae",
       "reason": "Prepared native public Auth0 production client identifier, verified against the approved public connection contract; not a client secret."
     },
@@ -206,16 +206,16 @@
     {
       "rule": "generic-api-key",
       "path": "apps/ios/Rillora.xcodeproj/project.pbxproj",
-      "startLine": 1288,
-      "endLine": 1288,
+      "startLine": 1342,
+      "endLine": 1342,
       "sourceSpanSha256": "5de471a1bd1102dd7f3284468f430bc8b8c0d137dcaef7c8aa9d27cc17aae11e",
       "reason": "Native public Auth0 client identifier, byte-matched to the already reviewed project.yml value; shared generated Xcode project, not a client secret."
     },
     {
       "rule": "generic-api-key",
       "path": "apps/ios/Rillora.xcodeproj/project.pbxproj",
-      "startLine": 1541,
-      "endLine": 1541,
+      "startLine": 1596,
+      "endLine": 1596,
       "sourceSpanSha256": "84b43e023d7ae444915797275d0661dbab0b68c1f6201663e2cd623b995b19ab",
       "reason": "Native public Auth0 client identifier, byte-matched to the already reviewed project.yml value; shared generated Xcode project, not a client secret."
     }
