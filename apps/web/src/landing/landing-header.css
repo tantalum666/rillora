@@ -23,6 +23,7 @@
   .lp-header > .lp-nav { display: none; }
   .lp-header > .lp-nav.is-open {
     display: flex; position: absolute; z-index: 10;
+    grid-column: 1 / -1; grid-row: auto;
     top: calc(100% - 1px); left: 0; right: 0;
     flex-direction: column; gap: 0;
     background: var(--lp-paper); border: 1px solid var(--lp-rule);

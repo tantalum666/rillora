@@ -28,6 +28,10 @@ for (const locale of ['en', 'zh-CN']) for (const width of [320, 390, 1280, 1440,
       } else {
         const toggle = page.locator('.lp-menu-toggle');
         await toggle.click(); await expect(page.locator('.lp-nav')).toBeVisible();
+        const menu = await page.locator('.lp-nav').boundingBox(), header = await page.locator('.lp-header').boundingBox();
+        expect(Math.abs(menu.width - header.width)).toBeLessThan(3);
+        await healthy(page, locale);
+        if (path === '/product') await page.screenshot({ path: test.info().outputPath(`menu-${locale}-${width}.png`) });
         await page.keyboard.press('Escape'); await expect(toggle).toBeFocused();
         await expect(page.locator('.lp-nav')).toBeHidden();
       }
@@ -138,7 +142,7 @@ test('draft text and discard decisions survive a real cross-tab language change'
   await expect(page.locator('html')).toHaveAttribute('lang', 'zh-CN');
   await expect(dialog.locator('.matter-form input').first()).toHaveValue('Original private draft 原文');
   await expect(dialog.locator('.matter-form textarea').last()).toHaveValue('First line\n保留第二行');
-  await page.keyboard.press('Escape'); await expect(page.locator('dialog.task-confirmation')).toBeVisible();
+  await page.bringToFront(); await page.keyboard.press('Escape'); await expect(page.locator('dialog.task-confirmation')).toBeVisible();
   await page.locator('dialog.task-confirmation [data-keep]').click();
   await expect(dialog).toBeVisible(); await expect(dialog.locator('.matter-form input').first()).toHaveValue('Original private draft 原文');
   expect(state.writes).toEqual([]); expect(state.errors).toEqual([]); await test.info().attach('console-and-network', { body: Buffer.from(JSON.stringify({ console: state.console, unexpected: state.unexpected, writes: state.writes.map(write => write.path) }, null, 2)), contentType: 'application/json' }); await context.close();
