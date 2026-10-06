@@ -58,11 +58,13 @@ struct RilloraSafetyPrivacyView: View {
     var body: some View {
         RilloraList {
             if let authenticationStore, authenticationStore.canResetPassword {
-                Section(String(localized: "Account security")) {
+                Section {
                     NavigationLink { PasswordResetView(authenticationStore: authenticationStore) } label: {
                         Label(String(localized: "Reset password"), systemImage: "key")
                     }
                     .accessibilityIdentifier("profile.security.password-reset")
+                } header: {
+                    Text(String(localized: "Account security"))
                 } footer: {
                     Text(String(localized: "Passkey and two-step verification management is not available in this app yet. This does not mean those protections are turned off."))
                 }

@@ -3247,3 +3247,12 @@ Owner explicitly requests fixes to the native guide flash, redundant source link
 Both clients must show the current authenticated account. Use server-selected identity and transient verified email, never inferred email or stale cross-account content. Native password reset uses the existing public Auth0 database flow with explicit user submission. No provider/grant configuration, actual email, MFA/passkey enrollment or production deployment occurs. Unsupported account-security management is not represented by fake controls.
 
 Source and validation documentation are approved for isolated Git branches in tantalum666/rillora; no main merge or deployment. Preserve shared identity8cc5e100 and operator08afb382 purchase changes. Current cloud checks do not establish an Xcode build. See [native contract](native-ux-refinement-20261006.md).
+
+## 2026-10-07 — Owner authorizes reviewing, fixing and merging Dot delivery
+
+Owner explicitly asks to read the latest GitHub work, merge if sound and directly fix
+issues first. This supersedes the prior separate-cloud-branches/no-merge instruction
+for the three delivered identity/Web/native branches. Review against the latest active
+operator baseline, retain build8/prices/real data, and use necessary local validation.
+No provider settings, actual password reset mail, purchase, review-window extension or
+public release follows from a code merge. [Current scope](dot-integration-20261007.md).

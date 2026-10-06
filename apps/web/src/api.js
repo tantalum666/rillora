@@ -100,6 +100,9 @@ export function createApiClient({
     ) ? await response.json() : null;
     if (accountChanged && !context.publicAuth && !context.publicRehearsal) throw rejectAccountChange();
     if (!response.ok) {
+      if (response.status === 401 && !context.publicAuth && !context.publicRehearsal && typeof window !== 'undefined') {
+        window.dispatchEvent(new Event('rillora:session-expired'));
+      }
       if (payload?.error?.code === 'account_changed') throw rejectAccountChange();
       if (response.status === 403 && payload?.error?.code === 'reauthentication_required' && typeof window !== 'undefined') {
         window.dispatchEvent(new Event('rillora:reauthentication-required'));
@@ -161,6 +164,21 @@ export function createApiClient({
     selectSharingLive: (id, input) => request(`/sharing/connections/${encodeURIComponent(id)}/live`, { method: "POST", body: input }),
     pauseSharingLive: (id, input) => request(`/sharing/connections/${encodeURIComponent(id)}/pause`, { method: "POST", body: input }),
     previewSharing: (grants, connectionPublicId) => request("/sharing/preview", { method: "POST", body: { grants, ...(connectionPublicId ? { connectionPublicId } : {}) } }).then(value => validateSharingPreview(value, grants)),
+    getAccountIdentity: async () => {
+      let value;
+      try { value = await request("/account/identity"); }
+      catch (error) {
+        if (error.status !== 404 || error.code !== "not_found") throw error;
+        const profile = await request("/account/profile");
+        value = { account: { ...profile.account, verifiedEmail: null }, emailStatus: "unavailable" };
+      }
+      bindWorkspace({ plannerPublicId: value?.account?.publicId });
+      if (typeof value.account.displayName !== "string" || !["available", "not_provided", "unavailable"].includes(value.emailStatus)
+        || (value.emailStatus === "available" && (typeof value.account.verifiedEmail !== "string" || !value.account.verifiedEmail))) {
+        throw new ApiClientError(502, "invalid_identity", "The account identity could not be verified.");
+      }
+      return { ...value, account: { ...value.account, verifiedEmail: value.emailStatus === "available" ? value.account.verifiedEmail : null } };
+    },
     getAccountProfile: () => request("/account/profile"),
     requestAccountDeletion: (receipt, acknowledgesBilling = false) => request("/account/delete", {method:"POST",body:{confirmation:"DELETE",receipt,acknowledgesSavedCopies:true,acknowledgesBilling}}),
     getAccountDeletionStatus: receipt => request("/account-deletions/status", {headers:{authorization:`Deletion-Receipt ${receipt}`}}, {publicAuth:true}),

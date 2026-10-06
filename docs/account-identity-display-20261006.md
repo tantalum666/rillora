@@ -1,7 +1,7 @@
 # Current account identity display
 
-Status: SHARED API SOURCE VERIFIED; CLIENT INTEGRATION AND REMOTE CI IN PROGRESS
-Last updated: 2026-10-06 (Asia/Hong_Kong)
+Status: SHARED API AND WEB CLIENT VERIFIED; NATIVE CLIENT ON SIBLING BRANCH
+Last updated: 2026-10-06 (UTC)
 
 The Owner asks both Web and native iOS to identify the currently signed-in account.
 This additive read does not change authentication, grants, consent, prices or account
@@ -48,5 +48,5 @@ Cloud API typecheck and build pass. The new identity unit cases plus existing
 email-verification/identity-proof cases pass17/17. Integration cases cover Cookie
 and Bearer, anonymous/mismatched-account rejection, no-store, provider fallback,
 revocation and no email persistence. Local PostgreSQL is unavailable, so these
-database-backed cases require the exact published commit's GitHub CI. This is not
+database-backed cases were then verified by [CI62](https://github.com/tantalum666/rillora/actions/runs/37495149572) for8cc5e10042d5c9f3688b1093306b2e4377a92c82. This is not
 deployment, production identity acceptance or a claim that the full UI review is done.

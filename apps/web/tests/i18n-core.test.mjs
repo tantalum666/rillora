@@ -118,3 +118,27 @@ test('automatic browser language is not persisted or carried as an explicit choi
   store.setLocale('zh-CN');assert.equal(store.getSnapshot().preference,'zh-CN');
   store.reset();assert.equal(store.getSnapshot().preference,null);
 });
+
+test('inferred source language is an unsaved hint below an explicit app choice', () => {
+  const target=withLocale('https://app.staging.rillora.xyz/account?next=guides',null,'zh-CN');
+  assert.equal(new URL(target).searchParams.get('langHint'),'zh-CN');
+  const storage=memory();
+  const first=createLocaleStore({getStorage:()=>storage,languages:['en'],location:{href:target}});
+  assert.equal(first.getSnapshot().locale,'zh-CN'); assert.equal(first.getSnapshot().preference,null);
+  assert.equal(storage.getItem(LOCALE_STORAGE_KEY),null);
+  storage.setItem(LOCALE_STORAGE_KEY,'en');
+  assert.equal(createLocaleStore({getStorage:()=>storage,languages:['zh-CN'],location:{href:target}}).getSnapshot().locale,'en');
+});
+test('blocked persistence retains an explicit language in the URL across reload and auth return', async () => {
+  const {withLocalePath}=await import('../src/i18n/localeStore.js');
+  const location={href:'https://app.rillora.xyz/account?next=guides&lang=zh-CN#keep'};
+  const state={keep:true}; const history={state,replaceState:(s,_,url)=>{assert.equal(s,state);location.href=new URL(url,location.href).href;}};
+  const make=()=>createLocaleStore({getStorage:()=>{throw Error('blocked');},languages:['en'],location,history});
+  const store=make(); assert.equal(store.getSnapshot().locale,'zh-CN');
+  assert.equal(new URL(location.href).searchParams.get('lang'),'zh-CN');
+  assert.equal(make().getSnapshot().locale,'zh-CN');
+  const returned=withLocalePath('/?view=guides&task=provider-guide&provider=password_manager',store.getSnapshot().locale,store.getSnapshot().preference);
+  assert.match(returned,/lang=zh-CN/);assert.match(returned,/provider=password_manager/);
+  store.setLocale('en'); assert.equal(new URL(location.href).searchParams.get('lang'),'en');
+  for (const external of ['//evil.test/path','https://evil.test/path','/\\evil.test/path']) assert.equal(withLocalePath(external,'zh-CN','zh-CN'),external);
+});

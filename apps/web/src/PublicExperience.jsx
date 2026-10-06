@@ -1,3 +1,4 @@
+import { withLocalePath, preserveTransientLocale } from "./i18n/localeStore.js";
 import { LanguageControl } from "./i18n/LanguageControl.jsx";
 import { useI18n } from "./i18n/I18nProvider.jsx";
 import { AppAppearanceControl } from "./AppearanceControl.jsx";
@@ -75,7 +76,7 @@ export function PublicExperience({ sessionStatus, onRetry }) {
     const next = requestedPublicView(path);
     if (view === "home" && next !== "home") homeScroll.current = window.scrollY;
     if (next === "home") setHasVisitedHome(true);
-    if (window.location.pathname !== path) window.history.pushState({}, "", path);
+    if (window.location.pathname !== path) window.history.pushState({}, "", preserveTransientLocale(path));
     setView(next);
     window.requestAnimationFrame(() => window.scrollTo({ top: next === "home" ? homeScroll.current : 0, behavior: "auto" }));
   }
@@ -160,7 +161,7 @@ function CookieNoticeBanner({ onDismiss, onReview }) {
 
 
 function AccountPage({ sessionStatus, onRetry, onBack }) {
-  const { t, locale, errorMessage: localizeError } = useI18n();
+  const { t, locale, localePreference, errorMessage: localizeError } = useI18n();
   const checking = sessionStatus === "checking";
   const unavailable = sessionStatus === "unavailable";
   const notOpen = sessionStatus === "not_open";
@@ -176,7 +177,7 @@ function AccountPage({ sessionStatus, onRetry, onBack }) {
       const response = await api.startAuthentication({
         intent,
         selectAccount: true,
-        returnTo: authenticationReturnPath(window.location.search, window.location.pathname),
+        returnTo: withLocalePath(authenticationReturnPath(window.location.search, window.location.pathname), locale, localePreference),
         legalAcceptance: {
           termsVersion: LEGAL_CONTRACT.termsVersion,
           privacyVersion: LEGAL_CONTRACT.privacyVersion,

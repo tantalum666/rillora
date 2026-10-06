@@ -164,9 +164,12 @@ final class RilloraLocalizationUITests: XCTestCase {
                 XCTAssertTrue(row.exists, "The selected category must retain its own records")
             } else {
                 let empty = element(app, "matters.filter-empty")
-                reveal(empty, in: app)
+                // ContentUnavailableView may expose its identifier on a decorative image.
+                // Check the real recovery action, not whether that image accepts taps.
+                let reset = element(app, "matters.filter-reset")
+                reveal(reset, in: app)
                 XCTAssertTrue(empty.exists)
-                XCTAssertTrue(element(app, "matters.filter-reset").exists)
+                XCTAssertTrue(reset.isHittable)
             }
             for other in records where other.category != category {
                 XCTAssertFalse(element(app, "matter.open.\(other.id)").exists, "Category filter leaked \(other.category) into \(category)")
@@ -182,7 +185,9 @@ final class RilloraLocalizationUITests: XCTestCase {
         let accounts = element(app, "matters.filter.account")
         reveal(accounts, in: app, towardStart: true); accounts.tap()
         let search = app.searchFields.firstMatch
-        reveal(search, in: app, towardStart: true)
+        // Native searchable belongs to the navigation bar, above the row reveal bounds.
+        for _ in 0..<3 where !search.isHittable { app.swipeDown() }
+        XCTAssertTrue(search.isHittable)
         search.tap(); search.typeText(copy("Online account", "在线账号"))
         XCTAssertTrue(element(app, "matter.open.\(account.id)").waitForExistence(timeout: 5))
         for other in records where other.category != "account" {

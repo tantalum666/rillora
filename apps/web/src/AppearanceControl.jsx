@@ -8,8 +8,8 @@ import { withAppearance } from "./appearanceLink.js";
 
 export function AppearanceLink({ href, ...props }) {
   const { preference } = useWebsiteAppearance();
-  const { localePreference } = useI18n();
-  return <a {...props} href={withLocale(withAppearance(href, preference), localePreference)} />;
+  const { localePreference, locale } = useI18n();
+  return <a {...props} href={withLocale(withAppearance(href, preference), localePreference, locale)} />;
 }
 
 export function useWebsiteAppearance() {
