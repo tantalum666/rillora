@@ -1,3 +1,4 @@
+import { preserveTransientLocale } from "./i18n/localeStore.js";
 import { useEffect, useRef } from "react";
 import { requestedGuideKey } from './guideAccess.js';
 
@@ -21,7 +22,7 @@ export function readWorkspaceRoute(value) {
     sharingMatterId: uuid.test(p.get("sharingMatter") ?? "") ? p.get("sharingMatter") : null,
     task, category: task === "matter-create" && categories.has(p.get("category")) ? p.get("category") : null, id: uuid.test(p.get("matter") ?? "") ? p.get("matter") : null,
     contactId: uuid.test(p.get("person") ?? "") ? p.get("person") : null,
-    providerKey: /^[a-z0-9-]{1,40}$/.test(p.get("provider") ?? "") ? p.get("provider") : null };
+    providerKey: requestedGuideKey(url.search) };
 }
 
 export function workspaceURL(route) {
@@ -53,7 +54,7 @@ export function useWorkspaceHistory({ state, enabled, restore, canLeave, cancelL
     const route = readWorkspaceRoute(window.location.href);
     const entry = window.history.state?.rillora ?? { index: 0, scroll: 0, panelScroll: 0 };
     current.current = { ...entry, route };
-    window.history.replaceState({ rillora: entry }, "", workspaceURL(route));
+    window.history.replaceState({ rillora: entry }, "", preserveTransientLocale(workspaceURL(route)));
     callbacks.current.restore(route);
     const oldRestoration = window.history.scrollRestoration;
     window.history.scrollRestoration = "manual";
@@ -130,7 +131,7 @@ export function useWorkspaceHistory({ state, enabled, restore, canLeave, cancelL
     const replace = onlyFilter || sameCreateTask || finishedForm || savedContact;
     const index = current.current.index + (replace ? 0 : 1);
     const scroll = onlyFilter || sameCreateTask ? current.current.scroll : 0;
-    window.history[replace ? "replaceState" : "pushState"]({ rillora: { index, scroll, panelScroll: 0 } }, "", url);
+    window.history[replace ? "replaceState" : "pushState"]({ rillora: { index, scroll, panelScroll: 0 } }, "", preserveTransientLocale(url));
     current.current = { index, scroll, panelScroll: 0, route: state, hydrated: true };
     if (!onlyFilter && !sameCreateTask) window.scrollTo(0, 0);
   }, [url, enabled]);

@@ -596,3 +596,26 @@ test('every API operation used by a rendered Web consumer exists on the client c
     }
   }
 });
+
+test('current account identity is bound to the active planner and degrades only for an older server', async () => {
+  const publicId='11111111-1111-4111-8111-111111111111', calls=[];
+  const client=createApiClient({fetchImpl:async(url)=>{
+    calls.push(url);
+    if(url.endsWith('/session'))return Response.json({plannerPublicId:publicId});
+    if(url.endsWith('/account/identity'))return Response.json({error:{code:'not_found'}},{status:404});
+    return Response.json({account:{publicId,displayName:'Synthetic owner'}});
+  }});
+  await client.getSession();
+  assert.deepEqual(await client.getAccountIdentity(),{account:{publicId,displayName:'Synthetic owner',verifiedEmail:null},emailStatus:'unavailable'});
+  assert.equal(calls.length,3);
+  const changed=createApiClient({fetchImpl:async(url)=>Response.json(url.endsWith('/session')?{plannerPublicId:publicId}:{account:{publicId:'other',displayName:'Other',verifiedEmail:'other@example.test'},emailStatus:'available'})});
+  await changed.getSession();
+  await assert.rejects(changed.getAccountIdentity(),error=>error.code==='account_changed');
+});
+test('identity outages never become a stale fallback email or silently select another endpoint',async()=>{
+  let requests=0;
+  const client=createApiClient({fetchImpl:async()=>{requests++;return Response.json({error:{code:'offline'}},{status:503});}});
+  await assert.rejects(client.getAccountIdentity(),error=>error.status===503); assert.equal(requests,1);
+  const absent=createApiClient({fetchImpl:async()=>Response.json({account:{publicId:'current',displayName:'Current',verifiedEmail:'not-authoritative@example.test'},emailStatus:'not_provided'})});
+  assert.equal((await absent.getAccountIdentity()).account.verifiedEmail,null);
+});

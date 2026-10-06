@@ -44,3 +44,9 @@
 .provider-mark.is-facebook img { width: 24px; height: 24px; }
 .provider-mark.is-coinbase img { width: 24px; height: 24px; }
 .guide-credits-link { justify-self: start; display: inline-flex; align-items: center; min-height: 44px; color: var(--muted); font-size: 14px; text-underline-offset: 3px; }
+
+/* White official artwork keeps a dark backing in both appearance modes. */
+.platform-guide-directory .provider-mark.is-official,
+.matter-account-guide .provider-mark.is-official { background: #435444; }
+.provider-mark.is-fallback { grid-template-rows: 20px 10px; row-gap: 1px; padding-block: 3px; }
+.provider-mark-initials { font: 600 9px/1 Inter, sans-serif; letter-spacing: .04em; color: currentColor; }

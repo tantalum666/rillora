@@ -1,0 +1,20 @@
+.workspace-chrome { flex-wrap: wrap; }
+.account-summary { display: flex; align-items: center; text-align: left; gap: 10px; padding: 4px 0; min-width: 0; min-height: 44px; margin-right: auto; color: var(--ink); background: transparent; }
+.account-summary > svg { flex-shrink: 0; color: var(--sage); }
+.account-summary > span { min-width: 0; }
+.account-summary small { display: block; color: var(--muted); font-size: 12px; line-height: 1.5; }
+.account-summary strong { display: block; font-size: 14px; line-height: 1.5; overflow-wrap: anywhere; font-weight: 500; max-width: 28em; }
+.account-identity-panel { padding: 24px; margin-bottom: 22px; border: 1px solid var(--border); border-radius: 18px; background: var(--surface); }
+.account-identity-panel h3 { margin: 0 0 18px; font-size: 22px; }
+.account-identity-panel dl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 12px 24px; margin: 0; }
+.account-identity-panel dt { color: var(--muted); font-size: 14px; }
+.account-identity-panel dd { margin: 0; overflow-wrap: anywhere; font-size: 15px; }
+.account-identity-panel .account-id { font-size: 13px; }
+.account-identity-panel .text-button { margin-top: 14px; }
+.account-language { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--divider); }
+@media (max-width: 600px) {
+  .account-summary { flex-basis: 100%; }
+  .account-identity-panel { padding: 20px; }
+  .account-identity-panel dl { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .account-identity-panel dd + dt { margin-top: 12px; }
+}

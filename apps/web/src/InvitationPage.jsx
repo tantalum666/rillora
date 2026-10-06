@@ -1,3 +1,4 @@
+import { withLocalePath } from "./i18n/localeStore.js";
 import { LanguageControl } from "./i18n/LanguageControl.jsx";
 import { useI18n } from "./i18n/I18nProvider.jsx";
 import { AppAppearanceControl } from "./AppearanceControl.jsx";
@@ -10,7 +11,7 @@ import { invitationTokenFromUrl } from "./sharing.js";
 import "./sharing.css";
 
 export function InvitationPage({ apiClient }) {
-  const { t, locale, errorMessage } = useI18n();
+  const { t, locale, localePreference, errorMessage } = useI18n();
   const initialToken = useRef(invitationTokenFromUrl(window.location.href));
   const fromShared = useRef(new URLSearchParams(window.location.search).get("from") === "shared").current;
   const returnPath = fromShared ? "/?view=shared" : "/";
@@ -65,7 +66,7 @@ export function InvitationPage({ apiClient }) {
     setBusy(true); setError(null);
     try {
       const response = await apiClient.startAuthentication({ intent, selectAccount,
-        returnTo: invitationPath(invitation.publicId),
+        returnTo: withLocalePath(invitationPath(invitation.publicId), locale, localePreference),
         legalAcceptance: { ...LEGAL_CONTRACT, acceptedTerms: true, acknowledgedPrivacy: true, acceptedElectronicRecords: true },
       });
       window.location.assign(response.authorizationUrl);

@@ -93,12 +93,14 @@ export function LandingHeader({ path = "/" }) {
           </a>
         ))}
       </nav>
+      <div className="lp-header-actions">
       <PreviewAccountLink />
       <LanguageControl className="lp-language" />
       <AppearanceControl
         open={panel === "appearance"}
         onOpenChange={(value) => setPanel(value ? "appearance" : null)}
       />
+      </div>
     </header>
   );
 }

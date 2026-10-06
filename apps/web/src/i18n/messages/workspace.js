@@ -1,5 +1,18 @@
 // Workspace presentation only. Stored records, API enum values and legal contracts stay unchanged.
 export const en = {
+  "workspace.identity.open": "View current account",
+  "workspace.identity.signedInAs": "Signed in as",
+  "workspace.identity.shortId": "Account {id}",
+  "workspace.identity.current": "Current account",
+  "workspace.identity.loading": "Checking account details…",
+  "workspace.identity.name": "Account name",
+  "workspace.identity.email": "Verified sign-in email",
+  "workspace.identity.noEmail": "Your sign-in provider did not supply a verified email",
+  "workspace.identity.unavailable": "Email is unavailable. Use the account ID below to identify this account.",
+  "workspace.identity.id": "Rillora account ID",
+  "workspace.identity.retry": "Check account details again",
+  "workspace.identity.language": "Language / 语言",
+
   "workspace.plan.reviewMatter": "Review directions: {name}",
   "workspace.plan.addAnother": "Add another matter",
   "workspace.plan.viewMap": "Review your map",
@@ -269,6 +282,19 @@ export const en = {
 };
 
 export const zhCN = {
+  "workspace.identity.open": "查看当前账号",
+  "workspace.identity.signedInAs": "当前登录",
+  "workspace.identity.shortId": "账号 {id}",
+  "workspace.identity.current": "当前账号",
+  "workspace.identity.loading": "正在核对账号信息…",
+  "workspace.identity.name": "账号名称",
+  "workspace.identity.email": "已验证的登录邮箱",
+  "workspace.identity.noEmail": "登录服务未提供已验证的邮箱",
+  "workspace.identity.unavailable": "暂时无法显示邮箱，可通过下方账号编号核对当前账号。",
+  "workspace.identity.id": "Rillora 账号编号",
+  "workspace.identity.retry": "重新核对账号信息",
+  "workspace.identity.language": "语言 / Language",
+
   "workspace.plan.reviewMatter": "核对指引：{name}",
   "workspace.plan.addAnother": "再添加一个事项",
   "workspace.plan.viewMap": "查看事项地图",
