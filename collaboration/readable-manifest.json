@@ -2,8 +2,8 @@
   "files": [
     {
       "path": "collaboration/README.md",
-      "bytes": 11575,
-      "sha256": "0f13b35dedb6279f55a8ecc4f2a0b165ac82171f04cbf194ebbd1f1658a95f85"
+      "bytes": 12050,
+      "sha256": "c0b353967a1bdf539ea602c7493ecc48931920b4b2421a42ab78db8f3436ea95"
     },
     {
       "path": "collaboration/catalog/files-001.json",
@@ -46826,6 +46826,286 @@
       "sha256": "d2bd21109fca3ab07d917ec6509bc9bd31c9a7ea0243fdc7b521e1636cfd22c3"
     },
     {
+      "path": "collaboration/verification/dot-integration-20261007/README.md",
+      "bytes": 2055,
+      "sha256": "14626a09c087e0302e182b04508b1f8809ce490f8a8dff6eef73e27516bf5d4b"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/archive-verification.json",
+      "bytes": 114,
+      "sha256": "fe3024116e799fde501b2ff6b400a0c0e8c785de4d773780ce791ebb637b8a96"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/catalog.json",
+      "bytes": 2820518,
+      "sha256": "a4cfcd90df7fabbf308024f7832831bf4020dc4d9fa7acfaeedd067739f1074d"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/closeout.json",
+      "bytes": 1650,
+      "sha256": "fd233bb75bdc3dc3756f7c528215e9716ee124667d2e3114db825277d58beaab"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/git-lock-recovery.json",
+      "bytes": 320,
+      "sha256": "542af378d1803d3573102d4f808b6cbfd2c8b446e751b44d677ff8b67e711095"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/markdown-links.json",
+      "bytes": 99,
+      "sha256": "03c64e8e59b3bbf67cee666d78da2498f56d8b57932baf59a71bbbfe2473b234"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/preservation-result.log.reference.txt",
+      "bytes": 134,
+      "sha256": "5c3663c3a021a0af1f67079f566cf75cb893894b261d033de61b3a6157b80d28"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/readable-publication-check.json",
+      "bytes": 221,
+      "sha256": "a04dc14309909c79f20155474d0afb3d3acb4a54c71fc21494a54fd98ced4a89"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/README.md.reference.txt",
+      "bytes": 3733,
+      "sha256": "0fb1113837016dec62774f1bd91fdd82c5e57daba5b67e97bf2c03ba51f8fd2f"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/api-build.log.reference.txt",
+      "bytes": 60,
+      "sha256": "6a2d325dc658f145fe3d54ca9206a225c434e593b1d03759b009ee116385d3c0"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/api-identity-tests.log.reference.txt",
+      "bytes": 236,
+      "sha256": "0877661d74288211b8b07d7cf52548959c75b6972f0fb305ee213e21b87064fa"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/api-typecheck.log.reference.txt",
+      "bytes": 67,
+      "sha256": "ffc0928b3027e2dcfe907b380649612c90925a72ad06bea654c9e72e4e139d1b"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/browser-integration-job.log.reference.txt",
+      "bytes": 58617,
+      "sha256": "7790db93ff86516b8c60e223eac50feea70afaef36de0bc1b79b8b0dc685f964"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/browser-integration-summary.json",
+      "bytes": 139,
+      "sha256": "74209eeedfc3ba1d56e7cca10163e3085e0f7bf8dd2d68505163b7031c44d986"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/browser-integration.receipt.json",
+      "bytes": 382,
+      "sha256": "346eb13bd0b969cc6a3ce661c4c448ca4b0df5b282d42458fdfd81af373411f7"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/github-merge.json",
+      "bytes": 123,
+      "sha256": "11c7386441468083a4c531c606534a8881667ae92b169dc819e3376bd7324d22"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/inherited-local-copies.json",
+      "bytes": 5319,
+      "sha256": "439f03680a71a29e72a3dee68bacbdc02bdeb4665826de46220e3cf2dae50ec4"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/integration-browser-artifact.json",
+      "bytes": 885,
+      "sha256": "374bb1d65bc9a26d90bb989dae3797559032dbc0bcb06f3aec6fb47c078b02e2"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/integration-browser-job.json",
+      "bytes": 1982,
+      "sha256": "b15e53964c22b9582a52f1d5d5f98292a0d00e7df5783b99f07f2a45959a4826"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/native-first-compile-failure.log.reference.txt",
+      "bytes": 943548,
+      "sha256": "7da0c4bbea3399ecf4eac42a50f6032b1fd0e031de84b4783e189cf513ed1737"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/native-fixture.log.reference.txt",
+      "bytes": 123,
+      "sha256": "9a3e1024be970f957d48e3d34dc8be849d6859ea30a7f981634815f1996e4c0c"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/native-release-build.log.reference.txt",
+      "bytes": 3095454,
+      "sha256": "b0c9457842ed433357950bac72149d187d625dd28c72ccd3bae7c8ce11c5f1f6"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/native-release-result.json",
+      "bytes": 739,
+      "sha256": "03d9a10514437c47ccf5381f14cd772b71127c14803e00ba51c96f39419a9a40"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/native-second-compile-failure.log.reference.txt",
+      "bytes": 499126,
+      "sha256": "0b3ff71f4edeaac452b2de67e7a64f700284f4f8132c528cb7630fce3dde4361"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/native-ui-en-final-result.json",
+      "bytes": 1487,
+      "sha256": "7eae604d313c09dfb824b9cf645d7379b737e06e4459067a2d33d1fdba45d711"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/native-ui-zh-result.json",
+      "bytes": 2364,
+      "sha256": "86a03f6b1497bfb86b589af8fb852f389310e73a96e5dde83ae9e1c51725a18c"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/native-unit-result.json",
+      "bytes": 76243,
+      "sha256": "d1762e50e6393cc919d2fe78951f2d8a7b08b9c364ff8b9ef84d6f72f94af577"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/original-cloud-browser-packages.json",
+      "bytes": 1170,
+      "sha256": "892362019e3b351c0b7f0085b8fcd1aa252081b070b98a96556f7a8b128147d2"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/preserve_work.py.reference.txt",
+      "bytes": 8105,
+      "sha256": "cdf0938ceabe517d88fa5ec970d2e6561d97af21b182bce3155322a422a7887d"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/reading.json",
+      "bytes": 2349,
+      "sha256": "03f47f1ab4b833a5bd00303df20c4f5b40f88dcd585d73426144aa39e4349423"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/release-guards.log.reference.txt",
+      "bytes": 165,
+      "sha256": "44b284fdfb1e9d74a749f4e0b6a8b3cdd410e12192f01009cce00a71f7b43788"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/retained-ci-37495149572.json",
+      "bytes": 6605,
+      "sha256": "fddb99f267ab6ed165f568c503def80f766d2e2b489f086481af5d1f7af61930"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/retained-ci-37501697429.json",
+      "bytes": 1982,
+      "sha256": "052a82f25801a3cac0c62728348c67b68966bea7c7fc321e750e5d1914dc388d"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/retained-ci-37503920129.json",
+      "bytes": 6605,
+      "sha256": "c6dc119cc9b9a09e47f6931b74cbddc299a49c159c9846c2837835ce737b2902"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/scanner-line-moves.json",
+      "bytes": 532,
+      "sha256": "008752e8d07c221a89cde4b0101a55c210b68a3ddcc6821dd83546d66fc5375f"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/source-candidate-final.json",
+      "bytes": 236652,
+      "sha256": "8c2e899a58d9508ae08bd40aae0a6c827b01b7a21d17000aa1c468a2c93b4899"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/source-candidate.json",
+      "bytes": 236652,
+      "sha256": "552d9fcae499c27b4ee414b77e0f0026ee3a6af2fbcbaee5aee5237b504052ff"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/source-scan-final-refreshed.json",
+      "bytes": 10712,
+      "sha256": "2c7252e8323b52813d28f4e536016ed89e9b8cfb4c29647ab711e83fed38e2d6"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/source-scan-final.json",
+      "bytes": 10381,
+      "sha256": "b3617787d4b15503896a345de45decfe35b21e545f38abdd88a7bf341bf31b46"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/source-scan.json",
+      "bytes": 10381,
+      "sha256": "bb4e5f1b9d04400e4900c266b131736f7a7784bf8f2b7d5bc5859d47bce4b5cf"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/test_sim_2026-10-06T17-51-55-938Z_pid25052_094fcfee.log.reference.txt",
+      "bytes": 210390,
+      "sha256": "b606183841d052ae2b480e3d424353a64a7f2dda0cb4294b697ed93b012124d2"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/test_sim_2026-10-06T17-54-23-217Z_pid25052_009c4073.log.reference.txt",
+      "bytes": 1681733,
+      "sha256": "105b8a599ca894bfa347bc1652b8a55173f2ddc241408b4761717452a108fa20"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/test_sim_2026-10-06T18-01-21-968Z_pid25052_bdfc807c.log.reference.txt",
+      "bytes": 109982,
+      "sha256": "50492a1845177620b4762882229b1d425d6ccaed52f9e44b99f0d631b4ffe8cb"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/test_sim_2026-10-06T18-11-03-399Z_pid25052_9ba0c58d.log.reference.txt",
+      "bytes": 1117802,
+      "sha256": "8042793813d4e45bf28a82e9fd591caf34b9c671c9a795d1a3e723eba5f49dd5"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/test_sim_2026-10-06T18-12-29-640Z_pid25052_127f2850.log.reference.txt",
+      "bytes": 93431,
+      "sha256": "2bc9128db435429c7708bc52cf999adb6f015c9c3c582dbf247cf4ea0ae9120f"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/ui-en-fixed-attachments/74FF6C1F-B482-4459-8C1A-3F30DDD338F7.txt",
+      "bytes": 11592,
+      "sha256": "3339ea587080d4b51bc8db394d61d2e89ec133ebe7f05e6f9b22a04c768495e3"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/ui-en-fixed-attachments/manifest.json",
+      "bytes": 27090,
+      "sha256": "1e682fd8534facea987eb9c70ee45cfd278def34701e128a340b5ad3dea8e108"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/ui-zh-attachments/manifest.json",
+      "bytes": 3893,
+      "sha256": "899bbcc5c4d5e8eeb2b95fb85b7d03c450206977b9a15240973e880fb6adc18c"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/ui-zh-export.log.reference.txt",
+      "bytes": 1508,
+      "sha256": "db30318a7a02e23e5613da9151a0a1ad4d12c676ac61aa98633b0b1f6c97689e"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/validation.json",
+      "bytes": 936,
+      "sha256": "b701e6e899208ead4df645b243e55adbb8ee97dc41b9d31ede7a4fe6186d1984"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/verify_remote.py.reference.txt",
+      "bytes": 3196,
+      "sha256": "4b1346d7c6c1219a74b0136ea8e6c32b11518ef0b6260a3b2c6f2de4cd4c9e99"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/web-build.log.reference.txt",
+      "bytes": 11667,
+      "sha256": "7c06e58efc62fb51283b0d7cee7a9af7375b66babca95bb8c1a304ce90752b3d"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/web-install.log.reference.txt",
+      "bytes": 26,
+      "sha256": "b78409ae3c73aa06c602f2c753d59a4b2dae239ef0d1ff93f7ee3492bdd7b5e5"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/web-tests.log.reference.txt",
+      "bytes": 37752,
+      "sha256": "ea051ece1e73235671199d0b64c8901fbc952e23d443492d3a27716bb08e2348"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/receipts/xcodegen.log.reference.txt",
+      "bytes": 174,
+      "sha256": "5d0738d007cc561d1237babe85e349685da83ce382fb0cc175154ba3d4059979"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261007/snapshot.json",
+      "bytes": 1571,
+      "sha256": "80c707ab940c01681e04230d502e43686cc549e2c59e09d2d971d5abf58b194b"
+    },
+    {
       "path": "collaboration/verification/email-logo-20261002/README.md",
       "bytes": 1530,
       "sha256": "53b7ea3d2f3f3f8e5f2dfeaef1045f2d10a040b464afeb5a3af06c2f89b08e4b"
@@ -52291,7 +52571,6 @@
       "sha256": "33c4f42e8e2c730d54aa6bff46075b11ed7357c4c82659917d87ab3842b3ffdc"
     }
   ],
-  "fileCount": 10458,
-  "totalBytes": 297222602
+  "fileCount": 10514,
+  "totalBytes": 308583849
 }
-

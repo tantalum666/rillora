@@ -1,12 +1,18 @@
 # Rillora — Git / Dot 协作入口
 
+October7最新：Dot账号/Web/iOS三分支经本机审查修复，通过[PR1](https://github.com/tantalum666/rillora/pull/1)
+合入当前发布分支eb5fb1a70。272原生/1既有跳过、Debug/Release、6双语UI、174Web/17API/66guards
+及CI73/20浏览器通过。[archive21](verification/dot-integration-20261007/README.md)追加7,314路径/
+913对象；原始失败和4份完整云端浏览器ZIP也保存。新源码未部署，旧构建8/价格/真实数据保留。
+
+
 October7当前：`codex/device-config-20261006`源码08afb3821/CI63通过。首笔真实Apple Sandbox
 HKD888购买已验签；简洁购买页构建8已分发原内部组并选入未提交草稿，真机升级/购后恢复待连接。
 [新增保存包](verification/device-config-20261006/README.md)的raw-work-020保留3,102路径/
 677对象，本地与GitHub独立新下载后的解密核验均通过。Stripe Live凭据已保护保存、运行计费尚未接通。
 
 
-Updated: 2026-10-06 (Asia/Hong_Kong)
+Updated: 2026-10-07 (Asia/Hong_Kong)
 
 October6保留检查点：`codex/release-12-stripe-20261005`源码10194de6a/CI58通过；双语多设备/大字号/系统语言、共享/文件与88.99StripeWeb TEST闭环完成。API14及Web/WWW已部署；新1.0(5)已上传处理为准备提交，说明回读一致，群组/独立测试员0。[新增完整保存包](verification/release-12-stripe-20261006/README.md)的raw-work-019包含9,769路径/1,541对象，本地及GitHub新下载原件均已解密核验通过，归档提交557af9f11/CI59成功。旧归档/真实数据/FanPass保留，真人/真机/live/最终审核门仍分开。
 

@@ -4,6 +4,15 @@ Role: current launch scope, remaining work and release evidence contract
 Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; ORDINARY CUSTOMER ACCESS AND SALES CLOSED
 Last updated: 2026-10-07 (Asia/Hong_Kong)
 
+## October7 Dot integration — newest source, not a rollout
+
+[PR1](https://github.com/tantalum666/rillora/pull/1) merges the shared identity/Web/native
+UX work plus local compilation fixes into the current release branch. Native272unit
+passes/1existing skip, Debug/Release and six affected bilingual UI scenarios pass;
+174Web/17API/66guards and CI73/20browser pass. Runtime remains API14/schema0093 and
+TestFlight/App Store draft8. A new release candidate must use this merged source; do
+not call its identity/settings changes deployed. [Exact scope](dot-integration-20261007.md).
+
 ## October7 真机与配置 — 当前结果
 
 Owner已安装构建6并完成首笔Apple Sandbox购买。真实签名收据为HKG/HKD888.00，订阅active，

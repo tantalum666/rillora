@@ -1,0 +1,120 @@
+Attributes: Application, 0x10768f840, pid: 7388, label: 'Rillora'
+Element subtree:
+ →Application, 0x10768f840, pid: 7388, label: 'Rillora'
+    Window (Main), 0x10768f980, {{0.0, 0.0}, {402.0, 874.0}}
+      Other, 0x10768f0c0, {{0.0, 0.0}, {402.0, 874.0}}
+        Other, 0x10768f700, {{0.0, 0.0}, {402.0, 874.0}}
+          Other, 0x118676bc0, {{0.0, 0.0}, {402.0, 874.0}}
+            Other, 0x118677ac0, {{0.0, 0.0}, {402.0, 874.0}}
+              Other, 0x118677340, {{0.0, 0.0}, {402.0, 874.0}}
+                Other, 0x118674500, {{0.0, 0.0}, {402.0, 874.0}}
+                  Other, 0x118677980, {{0.0, 0.0}, {402.0, 874.0}}
+                    Other, 0x118677200, {{0.0, 0.0}, {402.0, 874.0}}
+                      Other, 0x1186775c0, {{0.0, 0.0}, {402.0, 874.0}}
+                        Other, 0x118677480, {{0.0, 0.0}, {402.0, 874.0}}
+                          Other, 0x118676f80, {{0.0, 0.0}, {402.0, 874.0}}
+                            NavigationBar, 0x118676d00, {{0.0, 62.0}, {402.0, 114.0}}, identifier: 'Matters'
+                              StaticText, 0x118676940, {{169.0, 73.7}, {64.0, 20.7}}, label: 'Matters'
+                              Button, 0x118674000, {{346.0, 66.0}, {36.0, 36.0}}, identifier: 'matter.add', label: 'Add matter'
+                              SearchField, 0x118677c00, {{16.0, 117.0}, {370.0, 44.0}}, label: 'Search matters', placeholderValue: 'Search matters'
+                                Image, 0x118677700, {{28.0, 129.3}, {20.3, 18.7}}, identifier: 'magnifyingglass', label: 'Search'
+                            Other, 0x118677840, {{0.0, 0.0}, {402.0, 874.0}}
+                              Other, 0x118676a80, {{0.0, 0.0}, {402.0, 874.0}}
+                                Other, 0x118676e40, {{0.0, 0.0}, {402.0, 874.0}}
+                                  Other, 0x117910780, {{0.0, 0.0}, {402.0, 874.0}}
+                                    CollectionView, 0x117910640, {{0.0, 0.0}, {402.0, 874.0}}, identifier: 'matters.list'
+                                      Other, 0x117913ac0, {{-16.0, -1564.0}, {434.0, 1926.0}}
+                                      Other, 0x117913700, {{0.0, 0.0}, {402.0, 874.0}}
+                                        Other, 0x117913340, {{0.0, 0.0}, {402.0, 225.8}}
+                                        Other, 0x117912bc0, {{0.0, 726.2}, {402.0, 147.8}}
+                                      Other, 0x117910a00, {{0.0, 0.0}, {402.0, 874.0}}
+                                      Cell, 0x117910c80, {{16.0, 184.0}, {370.0, 178.0}}
+                                        Other, 0x117913480, {{16.0, 184.0}, {370.0, 178.0}}
+                                          Other, 0x117910280, {{16.0, 184.0}, {370.0, 178.0}}
+                                            Other, 0x117910500, {{16.0, 184.0}, {370.0, 178.0}}
+                                        Other, 0x117910000, {{16.0, 184.0}, {370.0, 178.0}}
+                                          Other, 0x117913e80, {{16.0, 184.0}, {370.0, 178.0}}
+                                            Other, 0x1179130c0, {{16.0, 184.0}, {370.0, 178.0}}
+                                              Other, 0x1179103c0, {{32.0, 199.0}, {307.3, 148.0}}, identifier: 'matters.filter', label: 'Filter by category'
+                                                Button, 0x117910b40, {{32.0, 199.0}, {44.0, 44.0}}, identifier: 'matters.filter.all', label: 'All'
+                                                Button, 0x117912f80, {{84.0, 199.0}, {150.7, 44.0}}, identifier: 'matters.filter.account', label: 'Online account', Selected
+                                                  Image, 0x1179108c0, {{97.7, 215.3}, {11.7, 11.3}}, identifier: 'checkmark', label: 'Selected', Selected
+                                                  StaticText, 0x117913c00, {{84.0, 199.0}, {150.7, 44.0}}, label: 'Online account'
+                                                Button, 0x117913840, {{242.7, 199.0}, {96.7, 44.0}}, identifier: 'matters.filter.document', label: 'Document'
+                                                Button, 0x117913980, {{32.0, 251.0}, {72.0, 44.0}}, identifier: 'matters.filter.device', label: 'Device'
+                                                Button, 0x1179135c0, {{112.0, 251.0}, {127.7, 44.0}}, identifier: 'matters.filter.financial_asset', label: 'Financial asset'
+                                                Button, 0x117913200, {{247.7, 251.0}, {58.0, 44.0}}, identifier: 'matters.filter.debt', label: 'Debt'
+                                                Button, 0x117910140, {{32.0, 303.0}, {113.0, 44.0}}, identifier: 'matters.filter.subscription', label: 'Subscription'
+                                                Button, 0x117913d40, {{153.0, 303.0}, {114.0, 44.0}}, identifier: 'matters.filter.crypto_asset', label: 'Crypto asset'
+                                      Other, 0x117912e40, {{-16.0, 380.0}, {434.0, 1944.0}}
+                                      Cell, 0x117912d00, {{16.0, 380.0}, {370.0, 88.0}}
+                                        Other, 0x11783e1c0, {{16.0, 380.0}, {370.0, 88.0}}
+                                          Other, 0x11783e6c0, {{16.0, 380.0}, {370.0, 88.0}}
+                                            Other, 0x11783e940, {{16.0, 380.0}, {370.0, 88.0}}
+                                        Other, 0x11783d900, {{16.0, 380.0}, {370.0, 88.0}}
+                                          Other, 0x11783e080, {{16.0, 380.0}, {370.0, 88.0}}
+                                            Other, 0x11783db80, {{16.0, 380.0}, {370.0, 88.0}}
+                                              Button, 0x11783c780, {{16.0, 380.0}, {370.0, 88.0}}, identifier: 'matter.open.057d317c-7bd8-4dd6-8d97-a6d7728b44d6', label: 'Cloud photos, directions added'
+                                                StaticText, 0x11783c8c0, {{32.0, 404.0}, {316.0, 40.0}}, label: 'Cloud photos, directions added'
+                                                  Image, 0x11783e300, {{32.0, 404.0}, {40.0, 40.0}}, identifier: 'cloud', label: 'Mostly Cloudy'
+                                                  StaticText, 0x11783c140, {{86.0, 404.5}, {106.3, 20.3}}, label: 'Cloud photos'
+                                                  StaticText, 0x11783d7c0, {{86.0, 427.8}, {35.0, 15.7}}, label: 'Apple'
+                                                  StaticText, 0x11783c280, {{247.3, 416.8}, {100.7, 14.3}}, label: 'Directions added'
+                                                Image, 0x11783f980, {{360.7, 418.0}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                      Cell, 0x11783ef80, {{16.0, 468.0}, {370.0, 88.0}}
+                                        Other, 0x11783e580, {{16.0, 468.0}, {370.0, 88.0}}
+                                          Other, 0x11783f200, {{16.0, 468.0}, {370.0, 88.0}}
+                                            Other, 0x11783e800, {{16.0, 468.0}, {370.0, 88.0}}
+                                        Other, 0x11783dcc0, {{16.0, 468.0}, {370.0, 88.0}}
+                                          Other, 0x11783f840, {{16.0, 468.0}, {370.0, 88.0}}
+                                            Other, 0x11783e440, {{16.0, 468.0}, {370.0, 88.0}}
+                                              Button, 0x11783cdc0, {{16.0, 468.0}, {370.0, 88.0}}, identifier: 'matter.open.b99cd96b-2993-427c-967e-b2f0df8bd885', label: 'GitHub projects, directions added'
+                                                StaticText, 0x11783cf00, {{32.0, 492.0}, {316.0, 40.0}}, label: 'GitHub projects, directions added'
+                                                  Image, 0x11783cb40, {{32.0, 492.0}, {40.0, 40.0}}, identifier: 'cloud', label: 'Mostly Cloudy'
+                                                  StaticText, 0x11783f0c0, {{86.0, 492.5}, {125.3, 20.3}}, label: 'GitHub projects'
+                                                  StaticText, 0x11783ca00, {{86.0, 515.8}, {42.7, 15.7}}, label: 'GitHub'
+                                                  StaticText, 0x11ad30000, {{247.3, 504.8}, {100.7, 14.3}}, label: 'Directions added'
+                                                Image, 0x11ad30140, {{360.7, 506.0}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                      Other, 0x11ad30280, {{86.0, 467.0}, {284.0, 1.0}}
+                                      Other, 0x11ad303c0, {{369.0, 176.0}, {30.0, 615.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                        Other, 0x11ad30500, {{396.0, 394.0}, {3.0, 394.0}}
+                                      Other, 0x11ad30640, {{369.0, 176.0}, {30.0, 615.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                        Other, 0x11ad30780, {{396.0, 394.0}, {3.0, 394.0}}
+                            Other, 0x11ad308c0, {{0.0, 0.0}, {402.0, 874.0}}
+                              Other, 0x11ad30a00, {{0.0, 0.0}, {402.0, 874.0}}
+                Other, 0x11ad30b40, {{0.0, 791.0}, {402.0, 83.0}}
+                  Other, 0x11ad30c80, {{0.0, 0.0}, {402.0, 874.0}}
+                    TabBar, 0x11ad30dc0, {{0.0, 791.0}, {402.0, 83.0}}, label: 'Tab Bar'
+                      Other, 0x11ad30f00, {{64.0, 791.0}, {274.0, 62.0}}
+                        Other, 0x11ad31040, {{64.0, 791.0}, {94.0, 54.0}}
+                        Other, 0x11ad31180, {{64.0, 791.0}, {274.0, 62.0}}
+                          Button, 0x11ad312c0, {{68.0, 795.0}, {94.0, 54.0}}, label: 'Overview'
+                            Image, 0x11ad31400, {{98.0, 801.0}, {33.3, 28.0}}, identifier: 'house.fill', label: 'home'
+                          Button, 0x11ad31540, {{154.0, 795.0}, {94.0, 54.0}}, label: 'Matters', Selected
+                            Image, 0x11ad31680, {{185.0, 802.3}, {33.0, 25.0}}, identifier: 'list.bullet.rectangle.fill', label: 'list.bullet.rectangle.fill'
+                          Button, 0x11ad317c0, {{240.0, 795.0}, {94.0, 54.0}}, label: 'Profile'
+                            Image, 0x11ad31900, {{273.0, 801.3}, {27.3, 27.3}}, identifier: 'person.crop.circle.fill', label: 'account'
+                        Other, 0x11ad31a40, {{154.0, 795.0}, {94.0, 54.0}}
+                          Other, 0x11ad31b80, {{154.0, 795.0}, {94.0, 54.0}}
+                            Other, 0x11ad31cc0, {{154.0, 795.0}, {94.0, 54.0}}
+                            Other, 0x11ad31e00, {{154.0, 795.0}, {94.0, 54.0}}
+                              Other, 0x11ad31f40, {{154.0, 795.0}, {94.0, 54.0}}
+                                Other, 0x11ad32080, {{154.0, 795.0}, {94.0, 54.0}}
+                                  Other, 0x11ad321c0, {{154.0, 795.0}, {94.0, 54.0}}
+                                Other, 0x11ad32300, {{154.0, 795.0}, {94.0, 54.0}}
+                              Other, 0x11ad32440, {{154.0, 795.0}, {94.0, 54.0}}
+                  Other, 0x11ad32580, {{0.0, 791.0}, {402.0, 83.0}}
+                    Other, 0x11ad326c0, {{0.0, 791.0}, {402.0, 83.0}}
+                      Other, 0x11ad32800, {{0.0, 791.0}, {402.0, 83.0}}
+                        Other, 0x11ad32940, {{0.0, 791.0}, {402.0, 83.0}}
+                          Other, 0x11ad32a80, {{0.0, 791.0}, {402.0, 83.0}}
+                            Other, 0x11ad32bc0, {{0.0, 791.0}, {402.0, 83.0}}
+                        Other, 0x11ad32d00, {{0.0, 791.0}, {402.0, 83.0}}
+                          Other, 0x11ad32e40, {{0.0, 791.0}, {402.0, 83.0}}
+Path to element:
+ →Application, 0x10768f840, pid: 7388, label: 'Rillora'
+Query chain:
+ →Find: Target Application 'com.rillora.ios'
+  Output: {
+    Application, 0x11ad32f80, pid: 7388, label: 'Rillora'
+  }

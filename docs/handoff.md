@@ -1,32 +1,37 @@
 # Rillora 当前交接
 
-Status: Dot三条分支已在候选中整合；已修2处原生编译问题，最终验证/远端合并进行中
+Status: Dot三条分支已审查修复并通过PR1合并；当前线上/商店仍为原检查点
 Last updated: 2026-10-07 (Asia/Hong_Kong)
 
-## 当前任务
+## 当前任务与已完成
 
-Owner最新明确要求阅读GitHub上Dot的新工作，没问题合并、有问题直接修复。取代旧云端任务的
-不合并范围。候选`codex/dot-integration-20261007`，合入当前发布分支`codex/device-config-20261006`。
-[审查/修复合同](dot-integration-20261007.md)；原完整阅读及本轮增量记录继续有效。
+Owner最新要求审阅GitHub、直接修复再合并。已将共享身份8cc5e100、原生3c6e05b1c和Web75d4d7d9f
+整合，保留完整operator e950078及构建8购买实现；[PR1](https://github.com/tantalum666/rillora/pull/1)
+已合入`codex/device-config-20261006`，合并提交`eb5fb1a70`，审核源码`5a547339a`。
+[审查/修复与证据](dot-integration-20261007.md)。旧云端“不合并”范围已被本次Owner指令取代。
 
-## 已完成
+- 实际修复SwiftUI Section初始化错误及跨文件XCTest私有fixture引用。XcodeGen重新生成工程。
+  分类UI测试的装饰图片可点击假设、导航栏搜索位置假设已按截图修复；没有删掉产品断言。
+- 原生Debug/Release成功，272单测通过/0失败/1既有StoreKitTest平台跳过；中英各3个新UI
+  场景全部通过。Web174、API类型/构建和17聚焦测试、66guards、源码29已审/0未知扫描通过。
+  PR CI73和20/20浏览器场景通过（0跳过/失败/flaky），GitHub实际合并已读回。
+- 原始/中间/最终Dot浏览器包及新整合包共4份已下载并核对GitHub SHA256；本轮所有合资格
+  本机日志、结果包、截图/视频、编译产物和原始失败记录追加archive21，本地7,314路径/913对象解密核验通过，远端保存正在收尾。
+- Dot修正的archive20可读清单保留，25份被Git忽略的本机生成副本移出协作树；原3,102记录
+  和密文不变。原任务模拟器已关闭、合成fixture已停止，未操作用户其他模拟器或FanPass。
 
-共享身份8cc5e100、原生3c6e05b1c、Web75d4d7d9f已取回；原生含完整e950078和构建8购买源码。
-已发现并修复SwiftUI Section初始化及跨文件XCTest fixture访问错误；原生272通过/1既有跳过，
-Web174、API17/类型/构建、release guards66通过。两个英文新UI场景已通过，分类测试的两处
-可见性误判已按实际截图修正，最终英文/中文验证及Release编译待记录。Dot已有CI/20浏览器
-结果已通过GitHub接口读回。Xcode工程重新生成、两个原有扫描例外只移动行号；无新增例外。
-Dot修正的archive20可读清单保留；25份本机忽略副本移出生成树，密文/原始记录不变。
+## 保留边界与阻塞
 
-## 保留边界
-
-构建8已分发、首笔HKD888 Sandbox签名购买、Apple美国119.99/Web88.99、Free1/Family5、
-Stripe已批准准备凭据及关闭正式销售继续保留。本轮不部署/上传/下单/发邮件，也未删除保留账号。
-审核访问原到期2026-10-06T17:08:57Z已过；不因源代码测试而延期。真实购后恢复、商户/税务
-及正式发布继续独立过门。原用户模拟器和FanPass保持。本轮使用单独任务模拟器/loopback合成数据。
+本次没有部署、上传新TestFlight、修改provider或发送真实重置邮件。线上仍API14/schema0093，
+商店/内部测试仍1.0(8)；新账号显示和原生UX源码不能写成已经上线。
+构建8的币种/新鲜报价/单按钮购买、原HKD888Sandbox签名购买和历史都保留。Apple美国119.99/
+Web88.99、Free1/Family5不变。原审核访问2026-10-06T17:08:57Z已过，未擅自延期。
+真实购后恢复、物理新构建验收、经营/税务及StripeLive接入/真实交易、最终审核/客户开放未完成。
+外部两名TestFlight邀请和独立验收账号删除保持Owner暂缓。秘密/真实日志/私人申报仍不进入Git。
 
 ## 唯一下一步
 
-完成候选的剩余原生运行检查，再通过GitHub合并回当前发布分支，并追加保存本轮全部合资格工作。
+以当前已合并源码准备匹配的下一轮受限发布候选；真实账号验收开始前先明确处理过期的审核访问，
+不把本轮合成测试当作生产或本人验证，不重复原成功购买。
 
-[上次云端交接](handoff-history-20261007-before-dot-integration.md)为HISTORICAL。
+[此前云端交接](handoff-history-20261007-before-dot-integration.md)为HISTORICAL。

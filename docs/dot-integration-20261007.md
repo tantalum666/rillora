@@ -1,6 +1,6 @@
 # Dot branch integration review — 2026-10-07
 
-Status: LOCAL INTEGRATION VERIFIED IN PART; FINAL NATIVE UI/RELEASE AND GITHUB MERGE IN PROGRESS
+Status: REVIEWED, FIXED AND MERGED; DEBUG/RELEASE AND TARGETED BILINGUAL UI PASS
 Updated: 2026-10-07 (Asia/Hong_Kong)
 
 Owner requests reviewing the latest GitHub work, fixing issues and merging if sound.
@@ -47,7 +47,7 @@ availability. All original3,102raw records and ciphertext remain unchanged.
 - Initial native UI:guide and identity/settings pass; category test failures above retained.
 - Dot CI62, CI70 and20/20 browser job independently read back through GitHub connector;
   their historical scopes are retained, not claimed as a new local browser run.
-- New native final UI/Release results and merge/preservation receipts follow here.
+- Final Debug/Release compile and six affected native UI scenarios pass across English/Chinese. PR source CI73 and20/20browser scenarios pass. [PR1](https://github.com/tantalum666/rillora/pull/1) merged as eb5fb1a70290eefdcbfea029586c75bb32f9a640 into the current release branch. The wider historical iPad/VoiceOver/real-provider matrix is not claimed rerun. All four cloud browser ZIPs were downloaded/hash-verified and join the local result bundles in archive21.
 
 No iOS upload, cloud deploy, Auth0 setting, live reset email, real transaction, review
 access extension, retained-account deletion or FanPass change. Review access expired

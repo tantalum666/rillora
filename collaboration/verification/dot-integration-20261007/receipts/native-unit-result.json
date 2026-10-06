@@ -1,0 +1,1950 @@
+{
+  "summary": {
+    "status": "SUCCEEDED",
+    "durationMs": 51384,
+    "counts": {
+      "passed": 272,
+      "failed": 0,
+      "skipped": 1
+    },
+    "target": "simulator"
+  },
+  "artifacts": {
+    "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-10-06T17-51-55-938Z_pid25052_094fcfee.log",
+    "xcresultPath": "output/qa/rillora-dot-integration-20261007/native-unit-final.xcresult",
+    "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-06T17-51-55-938Z_pid25052_56904f0e.xctestproducts"
+  },
+  "tests": {
+    "selected": [
+      "RilloraTests/APIClientTests/testAppleReviewTransportUsesItsOwnRouteAndRejectsProductionAcknowledgement",
+      "RilloraTests/APIClientTests/testAppleSignInFeatureGateDefaultsClosed",
+      "RilloraTests/APIClientTests/testAppleSignInFeatureGateRequiresExplicitEnablement",
+      "RilloraTests/APIClientTests/testAuthenticationFailureIsPreservedForTheUI",
+      "RilloraTests/APIClientTests/testCommerceContractRejectsClientGrantedAccessBoundary",
+      "RilloraTests/APIClientTests/testCommerceStatusAndPurchaseRouteUseServerAuthoritativeContracts",
+      "RilloraTests/APIClientTests/testCreateAndArchiveMatterUseTheSharedMutationContract",
+      "RilloraTests/APIClientTests/testCreateAndRevokeTrustedContactUseExplicitEvidenceContract",
+      "RilloraTests/APIClientTests/testCreatePrintableStartHereRejectsRetainedServerCopyClaim",
+      "RilloraTests/APIClientTests/testCreatePrintableStartHereValidatesHeadersAndSendsAcknowledgements",
+      "RilloraTests/APIClientTests/testDisclosureRehearsalFailsClosedOnReleaseOrForbiddenPreviewFields",
+      "RilloraTests/APIClientTests/testDisclosureRehearsalUsesVersionedSimulationOnlyMutations",
+      "RilloraTests/APIClientTests/testEmailVerificationKeepsTheNativeSessionAndSendsNoClientIdentityClaim",
+      "RilloraTests/APIClientTests/testEmailVerificationRejectsUnprovenProviderState",
+      "RilloraTests/APIClientTests/testEncryptedStartHerePreparationAndFinalizePreserveClientKeyBoundary",
+      "RilloraTests/APIClientTests/testFetchAndUpdateOfficialSetupUseSelfReportedContract",
+      "RilloraTests/APIClientTests/testFetchAndUpdatePlanMotivationUseLatestOptimisticVersion",
+      "RilloraTests/APIClientTests/testFetchOverviewUsesDevelopmentIdentityAndDecodesSharedContract",
+      "RilloraTests/APIClientTests/testFetchOverviewUsesKeychainBackedBearerWhenDevelopmentIdentityIsDisabled",
+      "RilloraTests/APIClientTests/testLegalLinksUseThePublicCustomDomain",
+      "RilloraTests/APIClientTests/testLocalSessionPresenceUsesOnlyExplicitDevelopmentOrStoredBearerState",
+      "RilloraTests/APIClientTests/testMatterVersionConflictIsPreservedForRecoveryUI",
+      "RilloraTests/APIClientTests/testNativeAuthenticationIntentKeepsEmailAndGoogleRoutesDistinct",
+      "RilloraTests/APIClientTests/testNativeGoogleRequiresBothOAuthClientIdentifiersBeforeEnablement",
+      "RilloraTests/APIClientTests/testNativePasskeyRequiresExplicitEnablement",
+      "RilloraTests/APIClientTests/testNativeSessionExchangeCarriesTheExactAffirmativeLegalProof",
+      "RilloraTests/APIClientTests/testOfficialSetupRejectsEvidenceThatIsNotSelfReported",
+      "RilloraTests/APIClientTests/testOverviewLoadsThe51stMatterAndRejectsRepeatedCursors",
+      "RilloraTests/APIClientTests/testRoleAssignmentFailsClosedOnAuthorityOrUnexpectedSecretField",
+      "RilloraTests/APIClientTests/testRoleAssignmentListPreservesScopeAndNoAuthorityBoundary",
+      "RilloraTests/APIClientTests/testRoleAssignmentRequestsAreVersionedAndExplicitlyRecordOnly",
+      "RilloraTests/APIClientTests/testRunSimulationRejectsAnyOperativeResponse",
+      "RilloraTests/APIClientTests/testRunSimulationSendsOneDistinctLifeEventAndDecodesSafeResult",
+      "RilloraTests/APIClientTests/testSensitiveActionRequestsFreshAuthenticationAndCarriesSignedIdentityProof",
+      "RilloraTests/APIClientTests/testSharingRolloutFallbackDoesNotSwallowAuthenticationFailure",
+      "RilloraTests/APIClientTests/testStartHereDecodesNoFilePreviewAndSendsEmptyJSONBody",
+      "RilloraTests/APIClientTests/testStartHereRejectsAResponseThatClaimsAnEncryptedPackage",
+      "RilloraTests/APIClientTests/testStoreKitSandboxTransactionRejectsEntitlementMutationBoundary",
+      "RilloraTests/APIClientTests/testStoreKitSandboxTransactionUsesServerAuthoritativeFinishContract",
+      "RilloraTests/APIClientTests/testSyntheticRecipientAcceptanceAndEnrollmentUseIsolatedMemorySession",
+      "RilloraTests/APIClientTests/testUpdateMatterSendsOptimisticVersionAndExplicitNulls",
+      "RilloraTests/APIClientTests/testValidationReceiptCannotClaimChangedAccessBeforeAuthoritativeAcknowledgement",
+      "RilloraTests/AccountDataTests/testBillingAcknowledgementIncludesPendingPurchaseAndDecodesOlderProfiles",
+      "RilloraTests/AccountDataTests/testDeletionReferenceIsPortableAndCannotBeAnAccountToken",
+      "RilloraTests/AccountDataTests/testLocalReaderRejectsUnknownPartialAndOversizeFiles",
+      "RilloraTests/AccountIdentityTests/testAPIClientDoesNotFallBackAfterIdentityAuthenticationFailure",
+      "RilloraTests/AccountIdentityTests/testAPIClientDoesNotFallBackAfterIdentityPermissionFailure",
+      "RilloraTests/AccountIdentityTests/testAPIClientDoesNotFallBackAfterIdentityServerFailure",
+      "RilloraTests/AccountIdentityTests/testAPIClientDoesNotFallBackAfterMalformedIdentitySuccessResponse",
+      "RilloraTests/AccountIdentityTests/testAPIClientFallsBackOnlyFrom404ToTheAuthenticatedCurrentProfile",
+      "RilloraTests/AccountIdentityTests/testAPIClientFetchesIdentityThroughTheAuthenticatedReadOnlyEndpoint",
+      "RilloraTests/AccountIdentityTests/testAccountSwitchDiscardsTheOldLateResponse",
+      "RilloraTests/AccountIdentityTests/testAuxiliaryAuthenticationFailureClearsThePrivateOverview",
+      "RilloraTests/AccountIdentityTests/testClearOnLogoutDiscardsPrivateFieldsAndPendingResponses",
+      "RilloraTests/AccountIdentityTests/testIdentityDecodesVerifiedAccountAndPreservesUserText",
+      "RilloraTests/AccountIdentityTests/testMalformedAccountIDNeverMatchesEvenAnotherMalformedID",
+      "RilloraTests/AccountIdentityTests/testMismatchedResultRequiresAuthenticationAndPublishesNoIdentity",
+      "RilloraTests/AccountIdentityTests/testMissingServiceOrInvalidSessionCannotStartARead",
+      "RilloraTests/AccountIdentityTests/testNavigationCancellationDoesNotPublishALateResult",
+      "RilloraTests/AccountIdentityTests/testOpeningStoreDoesNotFetchOrUseAnAccountHint",
+      "RilloraTests/AccountIdentityTests/testRevokedSessionIsDifferentFromAnUnavailableProvider",
+      "RilloraTests/AccountIdentityTests/testUnavailableEmailDoesNotHideTheAuthenticatedAccountName",
+      "RilloraTests/AccountIdentityTests/testUnverifiedOrUnavailableEmailIsNeverPresented",
+      "RilloraTests/AccountIdentityTests/testVerifiedResultIsBoundToTheCurrentAccountAndNotFetchedTwice",
+      "RilloraTests/AccountLocalizationTests/testEnglishAccountResourcesRemainAvailable",
+      "RilloraTests/AccountLocalizationTests/testFormattingPreservesPrivateTitleAndPercentSigns",
+      "RilloraTests/AccountLocalizationTests/testImportedMatterPluralUsesTheSelectedResourceBundle",
+      "RilloraTests/AccountLocalizationTests/testProviderPriceAndCurrencyRemainUnmodified",
+      "RilloraTests/AccountLocalizationTests/testSimplifiedChineseAccountAndPurchaseResources",
+      "RilloraTests/AppAppearanceTests/testOldHomePreferenceMigratesWithoutReplacingExistingAppChoice",
+      "RilloraTests/AppAppearanceTests/testReadingTextAndPrimaryActionsRemainReadableInBothSchemes",
+      "RilloraTests/AppAppearanceTests/testSystemHasNoForcedSchemeAndInvalidLegacyValueDoesNotPersist",
+      "RilloraTests/ApplePurchaseCoordinatorTests/testAccountChangeBeforeServerReceiptReturnsCannotFinishForTheNewSession",
+      "RilloraTests/ApplePurchaseCoordinatorTests/testAccountChangeDuringAppRefreshDiscardsResultAndPreventsDuplicatePrompts",
+      "RilloraTests/ApplePurchaseCoordinatorTests/testAccountChangeDuringPreparationCannotOpenAnotherOwnersPaymentSheet",
+      "RilloraTests/ApplePurchaseCoordinatorTests/testButtonCannotAcceptAQuoteThatChangedBeforeItsTaskStarts",
+      "RilloraTests/ApplePurchaseCoordinatorTests/testCanceledAppAuthenticationStaysQuietAndCanBeRetried",
+      "RilloraTests/ApplePurchaseCoordinatorTests/testChangedApplePriceAfterPreparationClosesOldOrderWithoutReceiptIntake",
+      "RilloraTests/ApplePurchaseCoordinatorTests/testChangedPriceRequiresAnotherPurchaseButtonTap",
+      "RilloraTests/ApplePurchaseCoordinatorTests/testChangedQuoteReturnsTheNewPriceForFreshConsent",
+      "RilloraTests/ApplePurchaseCoordinatorTests/testForeignOwnerAndSandboxNeverReachProductionReceiptIntake",
+      "RilloraTests/ApplePurchaseCoordinatorTests/testHistoryOutageIsNotPresentedAsHavingNoPurchases",
+      "RilloraTests/ApplePurchaseCoordinatorTests/testInconsistentFinishResponseIsRejectedEvenByInjectedService",
+      "RilloraTests/ApplePurchaseCoordinatorTests/testMissingAppReceiptIsRefreshedOnlyAfterExplicitRestore",
+      "RilloraTests/ApplePurchaseCoordinatorTests/testOnlyCommittedServerStateCanFinishThenRestoreRetries",
+      "RilloraTests/ApplePurchaseCoordinatorTests/testOpeningPageAndMissingDisplayedQuoteCannotPurchase",
+      "RilloraTests/ApplePurchaseCoordinatorTests/testPendingAndCanceledOutcomesArePreservedWithoutFinishing",
+      "RilloraTests/ApplePurchaseCoordinatorTests/testRestoresHistoricalMonthlyFromSignedStorefrontAfterCountryChange",
+      "RilloraTests/ApplePurchaseCoordinatorTests/testReviewBuildRejectsAProductionTransactionAndUnknownAppReceiptCannotPurchase",
+      "RilloraTests/ApplePurchaseCoordinatorTests/testReviewPurchaseUsesSandboxContractAndNeverFinishesOnProductionAcknowledgement",
+      "RilloraTests/ApplePurchaseCoordinatorTests/testStoreKitPriceMismatchCannotShowOrStartAnOffer",
+      "RilloraTests/ApplePurchaseCoordinatorTests/testStoreKitReceivesTheExactDisplayedMoneyAndCurrency",
+      "RilloraTests/ApplePurchaseCoordinatorTests/testUnverifiedRefreshedAppCannotReachPurchaseOrReceiptIntake",
+      "RilloraTests/AppleStoreKitClientTests/testLoadsExactLocalFamilyCatalogAndReturnsVerifiedBoundPurchase",
+      "RilloraTests/CommerceStoreTests/testCancelledPreviousAccountStartCannotResetNewPurchaseCoordinator",
+      "RilloraTests/CommerceStoreTests/testLocalStoreKitPurchaseFinishesOnlyAfterMatchingVerifiedEvidence",
+      "RilloraTests/CommerceStoreTests/testLocalStoreKitPurchaseRejectsWrongAccountTokenWithoutFinishing",
+      "RilloraTests/CommerceStoreTests/testLocalSubscriptionLifecycleStatesNeverMutateServerAccess",
+      "RilloraTests/CommerceStoreTests/testMatchingTransactionUpdateIsRecordedAndFinishedWithoutChangingAccess",
+      "RilloraTests/CommerceStoreTests/testMissingStorefrontFailsClosedWithoutCallingPurchaseRoute",
+      "RilloraTests/CommerceStoreTests/testRefreshRoutesWithCurrentStorefrontAndReevaluatesOnChange",
+      "RilloraTests/CommerceStoreTests/testRestoreHistoricalMonthlyPurchaseStillRefreshesLocalEvidence",
+      "RilloraTests/CommerceStoreTests/testRestoreIgnoresEntitlementBoundToAnotherRilloraAccount",
+      "RilloraTests/CommerceStoreTests/testRetiredMonthlyProductCannotStartANewPurchase",
+      "RilloraTests/CommerceStoreTests/testSandboxCatalogDiagnosticLoadsWithoutAPrivateCommerceSession",
+      "RilloraTests/CommerceStoreTests/testSandboxCatalogLoadsAppStoreGroupWithoutOpeningPurchasePath",
+      "RilloraTests/CommerceStoreTests/testSandboxCatalogRejectsXcodeLocalSubscriptionGroup",
+      "RilloraTests/CommerceStoreTests/testSandboxPurchaseFinishesOnlyAfterDurableServerAuthorization",
+      "RilloraTests/CommerceStoreTests/testSandboxPurchaseRemainsUnfinishedWhileAuthoritativeSnapshotIsPending",
+      "RilloraTests/CommerceStoreTests/testSubscriptionStatusOutsideLocalAccountIsIgnored",
+      "RilloraTests/CommerceStoreTests/testSubscriptionStatusUpdateRefreshesLifecycleWithoutFinishingOrGrantingAccess",
+      "RilloraTests/CommerceStoreTests/testUnverifiedLocalStoreKitPurchaseNeverFinishes",
+      "RilloraTests/ContactSharingStoreTests/testAcceptedRecipientStopsShowingThePendingInvitationLink",
+      "RilloraTests/ContactSharingStoreTests/testRefreshKeepsCurrentLinkButDiscardsAnExternallyReplacedVersion",
+      "RilloraTests/CoreLocalizationTests/testChineseCoreTerminologyAndGuideBoundary",
+      "RilloraTests/CoreLocalizationTests/testFormattingPreservesSuppliedNamesAndFormatCharacters",
+      "RilloraTests/CoreLocalizationTests/testGuideGroupTranslationDoesNotMutateItsSourceTitle",
+      "RilloraTests/CoreLocalizationTests/testMatterCountGrammarUsesTheSelectedLanguage",
+      "RilloraTests/CoreLocalizationTests/testMatterRequestsPreserveSavedTextAndStableMachineValues",
+      "RilloraTests/DisclosureRehearsalStoreTests/testActionUsesLatestOptimisticVersionAndFixedAcknowledgement",
+      "RilloraTests/DisclosureRehearsalStoreTests/testCancellationRestoresIdleAndFailureCanRecoverWithoutDiscardingResult",
+      "RilloraTests/DisclosureRehearsalStoreTests/testCreateUsesSelectedDistinctEventAndPublishesRehearsal",
+      "RilloraTests/FamilyMaintenanceTests/testChangedSourceOrScopeDoesNotCountAsCompleted",
+      "RilloraTests/FamilyMaintenanceTests/testExpiredWriteClearsPrivateCache",
+      "RilloraTests/FamilyMaintenanceTests/testIncomingResponseCannotGrantOwnerControl",
+      "RilloraTests/FamilyMaintenanceTests/testReviewFieldsCannotContainHiddenDataOrDisclosureChanges",
+      "RilloraTests/FamilyMaintenanceTests/testSettingsEncodeExplicitNullForRemovingCollaboratorAndDate",
+      "RilloraTests/FirstUseGuideStoreTests/testOptionalMotivationAdvancesToMatterStep",
+      "RilloraTests/FirstUseGuideStoreTests/testPausedGuideRemainsReachableAndResumesItsSavedStep",
+      "RilloraTests/FirstUseGuideStoreTests/testSaveAndExitPersistsPausedStep",
+      "RilloraTests/FirstUseGuideStoreTests/testStartRecordsInProgressStepOneWithoutChangingReadiness",
+      "RilloraTests/HostedLegalAcceptanceProofTests/testCurrentHostedReceiptProducesTheExistingAPIProof",
+      "RilloraTests/HostedLegalAcceptanceProofTests/testEveryConsentBooleanMustBeExplicitlyTrue",
+      "RilloraTests/HostedLegalAcceptanceProofTests/testMissingAndUnexpectedFieldsAreRejected",
+      "RilloraTests/HostedLegalAcceptanceProofTests/testMissingClaimAndMalformedTokensFailClosed",
+      "RilloraTests/HostedLegalAcceptanceProofTests/testStaleVersionsAndWrongDigestAreRejected",
+      "RilloraTests/HostedLegalAcceptanceProofTests/testUnsignedReceiptIsRejectedBeforeExchange",
+      "RilloraTests/LocalizationTests/testBothNativeLanguageResourcesExist",
+      "RilloraTests/LocalizationTests/testChineseCoreTerminology",
+      "RilloraTests/LocalizationTests/testChineseKnownErrorUsesCodeNotServerText",
+      "RilloraTests/LocalizationTests/testEnglishFallbackStaysReadable",
+      "RilloraTests/LocalizationTests/testEnglishServerMessageContractIsPreserved",
+      "RilloraTests/LocalizationTests/testFormattedPrivateValueIsNotAKeyOrFormatString",
+      "RilloraTests/LocalizationTests/testUnknownChineseErrorDoesNotExposeOrTranslateServerContent",
+      "RilloraTests/MatterEditorStoreTests/testArchiveUsesTheLatestOptimisticVersion",
+      "RilloraTests/MatterEditorStoreTests/testCategoryDetailsAndNotesRoundTripWithoutLeakingHiddenDraftFields",
+      "RilloraTests/MatterEditorStoreTests/testCreateRetryKeepsTheSameRequestIdentityAndDraft",
+      "RilloraTests/MatterEditorStoreTests/testFirstUseDraftKeepsChosenCategoryWithoutPrefillingMatter",
+      "RilloraTests/MatterEditorStoreTests/testHiddenFieldsAreNeitherSubmittedNorValidationTrapsAfterTypeChange",
+      "RilloraTests/MatterEditorStoreTests/testNewMatterUsesCreateContract",
+      "RilloraTests/MatterEditorStoreTests/testOverlappingCreateReturnsOnlyOneResultToTheOverview",
+      "RilloraTests/MatterEditorStoreTests/testReloadAndArchiveCannotReplaceAnInFlightSave",
+      "RilloraTests/MatterEditorStoreTests/testRequiredLocatorsAndCryptoBranchesStopTransport",
+      "RilloraTests/MatterEditorStoreTests/testSaveUsesCurrentVersionAndAppliesServerResponse",
+      "RilloraTests/MatterEditorStoreTests/testValidationStopsAnEmptyTitleBeforeTransport",
+      "RilloraTests/MatterEditorStoreTests/testVersionConflictKeepsDraftAndOffersRecoveryState",
+      "RilloraTests/MatterListPresentationTests/testCategoryFilteringDoesNotUseOwnerOrSharedReviewStatus",
+      "RilloraTests/MatterListPresentationTests/testCryptoNextActionFollowsCustodyAndRequiredPublicLocators",
+      "RilloraTests/MatterListPresentationTests/testDocumentAndDeviceRequireLocationButNotProvider",
+      "RilloraTests/MatterListPresentationTests/testEveryCategoryHasOneFilterAndUsesItsRawCategory",
+      "RilloraTests/MatterListPresentationTests/testNextActionDependsOnMissingLocatorNotReadinessOrOptionalChoices",
+      "RilloraTests/MatterListPresentationTests/testOwnerStatusLabelIsNeutralWithoutChangingPersistedStatus",
+      "RilloraTests/MatterListPresentationTests/testProviderRequirementsReuseEachCategoryEditorRules",
+      "RilloraTests/MatterListPresentationTests/testSearchCombinesCategoryWithTrimmedTitleProviderAndRawCategory",
+      "RilloraTests/MatterListPresentationTests/testSearchIncludesTranslatedCategoryLabelsAndKeepsUnknownCategoriesInAll",
+      "RilloraTests/MatterListPresentationTests/testSummaryPrioritizesActualMissingLocatorsAndKeepsStableOrderWithinGroups",
+      "RilloraTests/NativeAuthenticationCallbackTests/testDisabledGoogleDoesNotReceiveAnyCallback",
+      "RilloraTests/NativeAuthenticationCallbackTests/testHostedLoginSharingAndForeignSchemesNeverReachGoogle",
+      "RilloraTests/OfficialProviderGuideCatalogTests/testAppleAndGoogleProvideSetupAndAfterDeathRoutes",
+      "RilloraTests/OfficialProviderGuideCatalogTests/testBinanceIsNotPresentedAsAProactiveLegacyContactFeature",
+      "RilloraTests/OfficialProviderGuideCatalogTests/testCatalogContainsUniqueActionableCommonProviderGuides",
+      "RilloraTests/OfficialProviderGuideCatalogTests/testEveryGuideUsesHTTPSOnAnOfficialHost",
+      "RilloraTests/OfficialProviderGuideCatalogTests/testRegionalGuidesAndAliasesRemainDistinct",
+      "RilloraTests/OfficialProviderGuideCatalogTests/testSuggestionsUseOnlyVisibleAccountContextWithoutFalseRegionalMatches",
+      "RilloraTests/OfficialSetupStoreTests/testCancelledUpdateRollsBackOptimisticDisplayWithoutFailure",
+      "RilloraTests/OfficialSetupStoreTests/testConflictKeepsConfirmedServerStateAndOffersReload",
+      "RilloraTests/OfficialSetupStoreTests/testNoOpDoesNotWriteAnUnchangedSelfReport",
+      "RilloraTests/OfficialSetupStoreTests/testReloadPublishesOfficialSetupChecks",
+      "RilloraTests/OfficialSetupStoreTests/testUpdateUsesOptimisticVersionAndAppliesSelfReport",
+      "RilloraTests/OverviewStoreTests/testAuthenticationFailureBecomesSignedOutInsteadOfAnErrorWall",
+      "RilloraTests/OverviewStoreTests/testCancelledLoadRestoresItsPreviousState",
+      "RilloraTests/OverviewStoreTests/testExpiredSessionDiscardsPreviouslyLoadedPrivateMap",
+      "RilloraTests/OverviewStoreTests/testFailedRefreshKeepsLoadedMapAndRetryClearsNotice",
+      "RilloraTests/OverviewStoreTests/testMutationReconciliationDoesNotKeepAnExpiredSession",
+      "RilloraTests/OverviewStoreTests/testOldSessionRefreshCannotClearTheNewSession",
+      "RilloraTests/OverviewStoreTests/testOlderRefreshCannotOverwriteAConfirmedSave",
+      "RilloraTests/OverviewStoreTests/testReloadPublishesLoadedSnapshot",
+      "RilloraTests/OverviewStoreTests/testReloadPublishesSafeFailureState",
+      "RilloraTests/OverviewStoreTests/testReloadPublishesSignedOutWithoutFetchingPrivateOverview",
+      "RilloraTests/OverviewStoreTests/testVerifiedLoginSnapshotEntersAppWithoutAnotherOverviewRequest",
+      "RilloraTests/PasswordResetTests/testBilingualConfirmationIsConditionalAndNeverClaimsDelivery",
+      "RilloraTests/PasswordResetTests/testBuildConfigurationParsesResetIndependentlyOfSignIn",
+      "RilloraTests/PasswordResetTests/testCancellationAndNetworkErrorsAreSafeAndRetryable",
+      "RilloraTests/PasswordResetTests/testClearIgnoresLateCompletionAndDiscardsPrivateFormData",
+      "RilloraTests/PasswordResetTests/testConfigurationDefaultsToUnavailableAndAcceptsOnlyReviewedConnection",
+      "RilloraTests/PasswordResetTests/testDefaultAndClosedAuthenticationCannotResetPasswords",
+      "RilloraTests/PasswordResetTests/testDuplicateSubmissionsAreIgnoredWhileRequestIsPending",
+      "RilloraTests/PasswordResetTests/testEmailValidationIsLocalAndPreservesTheExplicitAddress",
+      "RilloraTests/PasswordResetTests/testInvalidAndUnavailableRequestsFailBeforeTransport",
+      "RilloraTests/PasswordResetTests/testOldCompletionCannotClearANewerRequest",
+      "RilloraTests/PasswordResetTests/testOpeningAndEditingTheFormNeverSendsARequest",
+      "RilloraTests/PasswordResetTests/testRateLimitUsesSafeMessageWithoutAutomaticRetry",
+      "RilloraTests/PasswordResetTests/testResetDoesNotChangeGlobalAuthenticationOrOverviewState",
+      "RilloraTests/PasswordResetTests/testSDKNetworkCancellationIsNotDisplayedAsFailure",
+      "RilloraTests/PasswordResetTests/testSDKRateLimitNetworkAndFailureAreMappedWithoutProviderText",
+      "RilloraTests/PasswordResetTests/testSDKRequestUsesOnlyReviewedPublicResetPayloadAndLeavesTokenUntouched",
+      "RilloraTests/PasswordResetTests/testServiceRejectsMissingConfigurationAndBadEmailBeforeSDKCall",
+      "RilloraTests/PasswordResetTests/testSuccessClearsEmailAndDoesNotResend",
+      "RilloraTests/PasswordResetTests/testTaskCancellationCannotPublishSuccessOrFailure",
+      "RilloraTests/PasswordResetTests/testUnknownProviderErrorsNeverExposeEmailOrAccountExistence",
+      "RilloraTests/PlanMotivationStoreTests/testCancelledLatestLoadRestoresReadyState",
+      "RilloraTests/PlanMotivationStoreTests/testCancelledSaveReturnsToReadyWithoutChangingSource",
+      "RilloraTests/PlanMotivationStoreTests/testConflictKeepsSelectedMotivationForRecovery",
+      "RilloraTests/PlanMotivationStoreTests/testLoadLatestAppliesServerMotivationAndVersion",
+      "RilloraTests/PlanMotivationStoreTests/testSaveUsesLatestVersionAndAppliesResponse",
+      "RilloraTests/ProductionConnectionTests/testBothNativeRevocationsUseTheProductionProxyAndRequireServerSuccess",
+      "RilloraTests/ProductionConnectionTests/testClosedServiceDoesNotOpenHostedAuthentication",
+      "RilloraTests/ProductionConnectionTests/testPreparedProductionConnectionIsValidButDoesNotOpenAccounts",
+      "RilloraTests/ProductionConnectionTests/testProductionRejectsTestIdentityUnsafeOriginsAndDevelopmentIdentity",
+      "RilloraTests/ProductionConnectionTests/testSessionAndDeletionProofNamespacesCannotCrossOrigins",
+      "RilloraTests/RoleAssignmentPolicyStoreTests/testAcknowledgedRevocationStaysRemovedWhenTheFollowingRefreshFails",
+      "RilloraTests/RoleAssignmentPolicyStoreTests/testAcknowledgedRoleIsRetainedWhenTheFollowingRefreshFails",
+      "RilloraTests/RoleAssignmentPolicyStoreTests/testCreateUsesMatterScopeAndMarksEarlierRehearsalsStale",
+      "RilloraTests/RoleAssignmentPolicyStoreTests/testFailedMutationPreservesAssignmentsAndExposesConflict",
+      "RilloraTests/RoleAssignmentPolicyStoreTests/testLoadKeepsPlanWideAndCurrentMatterAssignmentsSeparate",
+      "RilloraTests/RoleAssignmentPolicyStoreTests/testReloadAndDuplicateCreateCannotReplaceAnInFlightRoleMutation",
+      "RilloraTests/SharedAccessStoreTests/testANameOnlyResponseWithPrivateDetailsFailsClosed",
+      "RilloraTests/SharedAccessStoreTests/testFailedRefreshDoesNotLeavePreviouslyGrantedContentVisible",
+      "RilloraTests/SharedAccessStoreTests/testLateResponseCannotRestoreDetailsAfterBackgroundInvalidation",
+      "RilloraTests/SharedAccessStoreTests/testPeriodicRefreshAvoidsFlickerButClearsRevokedOrUnavailableContent",
+      "RilloraTests/SharingLocalizationTests/testLocalizationDoesNotChangeSharingWireValuesOrScope",
+      "RilloraTests/SharingLocalizationTests/testPrivateTitleIsPreservedWithoutBeingUsedAsAFormatKey",
+      "RilloraTests/SharingLocalizationTests/testReviewRequestAndExportCountsUsePluralResources",
+      "RilloraTests/SharingLocalizationTests/testSimplifiedChineseSharingTermsAndSafetyMessages",
+      "RilloraTests/SharingPreviewTests/testExactSelectedFieldsAreAccepted",
+      "RilloraTests/SharingPreviewTests/testFuturePrivateFieldsAndUnselectedMatterAreRejected",
+      "RilloraTests/SharingPreviewTests/testMorePermissiveLevelCannotReplaceTheSelectedLevel",
+      "RilloraTests/SharingTests/testDetailsRemainBoundedToSafeFields",
+      "RilloraTests/SharingTests/testDirectionsRejectFinancialDetails",
+      "RilloraTests/SharingTests/testEnvelopeRejectsWriteOrReleaseAuthority",
+      "RilloraTests/SharingTests/testInvitationCapabilityMustBeACompleteFragment",
+      "RilloraTests/SharingTests/testItemsMustBelongToAVisibleConnection",
+      "RilloraTests/SharingTests/testNameAccessRejectsUnexpectedLocation",
+      "RilloraTests/SharingTests/testReplacementRequestNamesBothCurrentVersions",
+      "RilloraTests/SharingTests/testSavedCopyDecodesItsActualDateAndStaysWithinItsSavedScope",
+      "RilloraTests/SimulationStoreTests/testAPIFailureProducesRecoverableFailureState",
+      "RilloraTests/SimulationStoreTests/testCancellationRestoresPreviousReadyState",
+      "RilloraTests/SimulationStoreTests/testChangingScenarioClearsThePreviousScenarioResult",
+      "RilloraTests/SimulationStoreTests/testMismatchedResponseDoesNotBecomeTheChosenScenarioResult",
+      "RilloraTests/SimulationStoreTests/testRunUsesSelectedDistinctLifeEventAndPublishesResult",
+      "RilloraTests/StartHereEncryptionServiceTests/testDecryptsPackageGeneratedByPinnedWebHPKELibrary",
+      "RilloraTests/StartHereEncryptionServiceTests/testEncryptsAndLocallyRecoversWithoutPuttingPrivateKeyInArtifact",
+      "RilloraTests/StartHereEncryptionServiceTests/testRejectsCiphertextTamperingBeforeDecryption",
+      "RilloraTests/StartHereEncryptionServiceTests/testSyntheticRecipientDecryptsWithMemoryOnlyDeviceKeyAndRejectsAnotherKey",
+      "RilloraTests/StartHereEncryptionServiceTests/testWrapsTheContentKeyForEveryEligibleRecipientDevice",
+      "RilloraTests/StartHerePreviewStoreTests/testCancellationRestoresReadyState",
+      "RilloraTests/StartHerePreviewStoreTests/testCreateEncryptedPublishesOnlyAfterLocalRecoveryAndFinalize",
+      "RilloraTests/StartHerePreviewStoreTests/testCreatePreviewPublishesNoFileResult",
+      "RilloraTests/StartHerePreviewStoreTests/testCreatePrintablePublishesShareableInMemoryArtifact",
+      "RilloraTests/StartHerePreviewStoreTests/testEncryptedFinalizeReauthenticationKeepsPreviewUntilExplicitRetry",
+      "RilloraTests/StartHerePreviewStoreTests/testEncryptedPreparationReauthenticationDoesNotFinalizeOrPublish",
+      "RilloraTests/StartHerePreviewStoreTests/testFailureCanReturnToReadyState",
+      "RilloraTests/StartHerePreviewStoreTests/testOtherForbiddenExportsStillPublishTheirFailure",
+      "RilloraTests/StartHerePreviewStoreTests/testPrintableCancellationRestoresIdleState",
+      "RilloraTests/StartHerePreviewStoreTests/testPrintableReauthenticationKeepsPreviewAndRequiresExplicitRetry",
+      "RilloraTests/TrustedContactEditorStoreTests/testEditUsesLatestOptimisticVersionAndAppliesResponse",
+      "RilloraTests/TrustedContactEditorStoreTests/testNewContactUsesRecordOnlyCreateContract",
+      "RilloraTests/TrustedContactEditorStoreTests/testOpeningExistingContactLoadsLatestServerVersion",
+      "RilloraTests/TrustedContactEditorStoreTests/testOverlappingSavesCannotCreateTheContactTwice",
+      "RilloraTests/TrustedContactEditorStoreTests/testReloadAndRevokeCannotReplaceAnInFlightSave",
+      "RilloraTests/TrustedContactEditorStoreTests/testRevokeUsesPersistedIdentityAndExplicitRevokedStatus",
+      "RilloraTests/TrustedContactEditorStoreTests/testValidationStopsEmptyNameBeforeTransport",
+      "RilloraTests/TrustedContactEditorStoreTests/testVersionConflictKeepsContactDraftForRecovery"
+    ],
+    "discovered": {
+      "total": 273,
+      "items": [
+        "RilloraTests/APIClientTests/testAppleReviewTransportUsesItsOwnRouteAndRejectsProductionAcknowledgement",
+        "RilloraTests/APIClientTests/testAppleSignInFeatureGateDefaultsClosed",
+        "RilloraTests/APIClientTests/testAppleSignInFeatureGateRequiresExplicitEnablement",
+        "RilloraTests/APIClientTests/testAuthenticationFailureIsPreservedForTheUI",
+        "RilloraTests/APIClientTests/testCommerceContractRejectsClientGrantedAccessBoundary",
+        "RilloraTests/APIClientTests/testCommerceStatusAndPurchaseRouteUseServerAuthoritativeContracts"
+      ]
+    }
+  },
+  "diagnostics": {
+    "warnings": [],
+    "errors": [],
+    "testFailures": []
+  },
+  "testCases": [
+    {
+      "suite": "APIClientTests",
+      "test": "testAppleReviewTransportUsesItsOwnRouteAndRejectsProductionAcknowledgement",
+      "status": "passed",
+      "durationMs": 14
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testAppleSignInFeatureGateDefaultsClosed",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testAppleSignInFeatureGateRequiresExplicitEnablement",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testAuthenticationFailureIsPreservedForTheUI",
+      "status": "passed",
+      "durationMs": 3
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testCommerceContractRejectsClientGrantedAccessBoundary",
+      "status": "passed",
+      "durationMs": 8
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testCommerceStatusAndPurchaseRouteUseServerAuthoritativeContracts",
+      "status": "passed",
+      "durationMs": 4
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testCreateAndArchiveMatterUseTheSharedMutationContract",
+      "status": "passed",
+      "durationMs": 6
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testCreateAndRevokeTrustedContactUseExplicitEvidenceContract",
+      "status": "passed",
+      "durationMs": 5
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testCreatePrintableStartHereRejectsRetainedServerCopyClaim",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testCreatePrintableStartHereValidatesHeadersAndSendsAcknowledgements",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testDisclosureRehearsalFailsClosedOnReleaseOrForbiddenPreviewFields",
+      "status": "passed",
+      "durationMs": 13
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testDisclosureRehearsalUsesVersionedSimulationOnlyMutations",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testEmailVerificationKeepsTheNativeSessionAndSendsNoClientIdentityClaim",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testEmailVerificationRejectsUnprovenProviderState",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testEncryptedStartHerePreparationAndFinalizePreserveClientKeyBoundary",
+      "status": "passed",
+      "durationMs": 7
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testFetchAndUpdateOfficialSetupUseSelfReportedContract",
+      "status": "passed",
+      "durationMs": 4
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testFetchAndUpdatePlanMotivationUseLatestOptimisticVersion",
+      "status": "passed",
+      "durationMs": 4
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testFetchOverviewUsesDevelopmentIdentityAndDecodesSharedContract",
+      "status": "passed",
+      "durationMs": 4
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testFetchOverviewUsesKeychainBackedBearerWhenDevelopmentIdentityIsDisabled",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testLegalLinksUseThePublicCustomDomain",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testLocalSessionPresenceUsesOnlyExplicitDevelopmentOrStoredBearerState",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testMatterVersionConflictIsPreservedForRecoveryUI",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testNativeAuthenticationIntentKeepsEmailAndGoogleRoutesDistinct",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testNativeGoogleRequiresBothOAuthClientIdentifiersBeforeEnablement",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testNativePasskeyRequiresExplicitEnablement",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testNativeSessionExchangeCarriesTheExactAffirmativeLegalProof",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testOfficialSetupRejectsEvidenceThatIsNotSelfReported",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testOverviewLoadsThe51stMatterAndRejectsRepeatedCursors",
+      "status": "passed",
+      "durationMs": 3
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testRoleAssignmentFailsClosedOnAuthorityOrUnexpectedSecretField",
+      "status": "passed",
+      "durationMs": 7
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testRoleAssignmentListPreservesScopeAndNoAuthorityBoundary",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testRoleAssignmentRequestsAreVersionedAndExplicitlyRecordOnly",
+      "status": "passed",
+      "durationMs": 3
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testRunSimulationRejectsAnyOperativeResponse",
+      "status": "passed",
+      "durationMs": 4
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testRunSimulationSendsOneDistinctLifeEventAndDecodesSafeResult",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testSensitiveActionRequestsFreshAuthenticationAndCarriesSignedIdentityProof",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testSharingRolloutFallbackDoesNotSwallowAuthenticationFailure",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testStartHereDecodesNoFilePreviewAndSendsEmptyJSONBody",
+      "status": "passed",
+      "durationMs": 8
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testStartHereRejectsAResponseThatClaimsAnEncryptedPackage",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testStoreKitSandboxTransactionRejectsEntitlementMutationBoundary",
+      "status": "passed",
+      "durationMs": 6
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testStoreKitSandboxTransactionUsesServerAuthoritativeFinishContract",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testSyntheticRecipientAcceptanceAndEnrollmentUseIsolatedMemorySession",
+      "status": "passed",
+      "durationMs": 10
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testUpdateMatterSendsOptimisticVersionAndExplicitNulls",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testValidationReceiptCannotClaimChangedAccessBeforeAuthoritativeAcknowledgement",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "AccountDataTests",
+      "test": "testBillingAcknowledgementIncludesPendingPurchaseAndDecodesOlderProfiles",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "AccountDataTests",
+      "test": "testDeletionReferenceIsPortableAndCannotBeAnAccountToken",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "AccountDataTests",
+      "test": "testLocalReaderRejectsUnknownPartialAndOversizeFiles",
+      "status": "passed",
+      "durationMs": 3
+    },
+    {
+      "suite": "AccountIdentityTests",
+      "test": "testAccountSwitchDiscardsTheOldLateResponse",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "AccountIdentityTests",
+      "test": "testAPIClientDoesNotFallBackAfterIdentityAuthenticationFailure",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "AccountIdentityTests",
+      "test": "testAPIClientDoesNotFallBackAfterIdentityPermissionFailure",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "AccountIdentityTests",
+      "test": "testAPIClientDoesNotFallBackAfterIdentityServerFailure",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "AccountIdentityTests",
+      "test": "testAPIClientDoesNotFallBackAfterMalformedIdentitySuccessResponse",
+      "status": "passed",
+      "durationMs": 5
+    },
+    {
+      "suite": "AccountIdentityTests",
+      "test": "testAPIClientFallsBackOnlyFrom404ToTheAuthenticatedCurrentProfile",
+      "status": "passed",
+      "durationMs": 3
+    },
+    {
+      "suite": "AccountIdentityTests",
+      "test": "testAPIClientFetchesIdentityThroughTheAuthenticatedReadOnlyEndpoint",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "AccountIdentityTests",
+      "test": "testAuxiliaryAuthenticationFailureClearsThePrivateOverview",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "AccountIdentityTests",
+      "test": "testClearOnLogoutDiscardsPrivateFieldsAndPendingResponses",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "AccountIdentityTests",
+      "test": "testIdentityDecodesVerifiedAccountAndPreservesUserText",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "AccountIdentityTests",
+      "test": "testMalformedAccountIDNeverMatchesEvenAnotherMalformedID",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "AccountIdentityTests",
+      "test": "testMismatchedResultRequiresAuthenticationAndPublishesNoIdentity",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "AccountIdentityTests",
+      "test": "testMissingServiceOrInvalidSessionCannotStartARead",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "AccountIdentityTests",
+      "test": "testNavigationCancellationDoesNotPublishALateResult",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "AccountIdentityTests",
+      "test": "testOpeningStoreDoesNotFetchOrUseAnAccountHint",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "AccountIdentityTests",
+      "test": "testRevokedSessionIsDifferentFromAnUnavailableProvider",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "AccountIdentityTests",
+      "test": "testUnavailableEmailDoesNotHideTheAuthenticatedAccountName",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "AccountIdentityTests",
+      "test": "testUnverifiedOrUnavailableEmailIsNeverPresented",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "AccountIdentityTests",
+      "test": "testVerifiedResultIsBoundToTheCurrentAccountAndNotFetchedTwice",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "AccountLocalizationTests",
+      "test": "testEnglishAccountResourcesRemainAvailable",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "AccountLocalizationTests",
+      "test": "testFormattingPreservesPrivateTitleAndPercentSigns",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "AccountLocalizationTests",
+      "test": "testImportedMatterPluralUsesTheSelectedResourceBundle",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "AccountLocalizationTests",
+      "test": "testProviderPriceAndCurrencyRemainUnmodified",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "AccountLocalizationTests",
+      "test": "testSimplifiedChineseAccountAndPurchaseResources",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "AppAppearanceTests",
+      "test": "testOldHomePreferenceMigratesWithoutReplacingExistingAppChoice",
+      "status": "passed",
+      "durationMs": 5
+    },
+    {
+      "suite": "AppAppearanceTests",
+      "test": "testReadingTextAndPrimaryActionsRemainReadableInBothSchemes",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "AppAppearanceTests",
+      "test": "testSystemHasNoForcedSchemeAndInvalidLegacyValueDoesNotPersist",
+      "status": "passed",
+      "durationMs": 3
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testAccountChangeBeforeServerReceiptReturnsCannotFinishForTheNewSession",
+      "status": "passed",
+      "durationMs": 3
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testAccountChangeDuringAppRefreshDiscardsResultAndPreventsDuplicatePrompts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testAccountChangeDuringPreparationCannotOpenAnotherOwnersPaymentSheet",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testButtonCannotAcceptAQuoteThatChangedBeforeItsTaskStarts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testCanceledAppAuthenticationStaysQuietAndCanBeRetried",
+      "status": "passed",
+      "durationMs": 15
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testChangedApplePriceAfterPreparationClosesOldOrderWithoutReceiptIntake",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testChangedPriceRequiresAnotherPurchaseButtonTap",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testChangedQuoteReturnsTheNewPriceForFreshConsent",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testForeignOwnerAndSandboxNeverReachProductionReceiptIntake",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testHistoryOutageIsNotPresentedAsHavingNoPurchases",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testInconsistentFinishResponseIsRejectedEvenByInjectedService",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testMissingAppReceiptIsRefreshedOnlyAfterExplicitRestore",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testOnlyCommittedServerStateCanFinishThenRestoreRetries",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testOpeningPageAndMissingDisplayedQuoteCannotPurchase",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testPendingAndCanceledOutcomesArePreservedWithoutFinishing",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testRestoresHistoricalMonthlyFromSignedStorefrontAfterCountryChange",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testReviewBuildRejectsAProductionTransactionAndUnknownAppReceiptCannotPurchase",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testReviewPurchaseUsesSandboxContractAndNeverFinishesOnProductionAcknowledgement",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testStoreKitPriceMismatchCannotShowOrStartAnOffer",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testStoreKitReceivesTheExactDisplayedMoneyAndCurrency",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testUnverifiedRefreshedAppCannotReachPurchaseOrReceiptIntake",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "AppleStoreKitClientTests",
+      "test": "testLoadsExactLocalFamilyCatalogAndReturnsVerifiedBoundPurchase",
+      "status": "skipped",
+      "durationMs": 8
+    },
+    {
+      "suite": "CommerceStoreTests",
+      "test": "testCancelledPreviousAccountStartCannotResetNewPurchaseCoordinator",
+      "status": "passed",
+      "durationMs": 3
+    },
+    {
+      "suite": "CommerceStoreTests",
+      "test": "testLocalStoreKitPurchaseFinishesOnlyAfterMatchingVerifiedEvidence",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "CommerceStoreTests",
+      "test": "testLocalStoreKitPurchaseRejectsWrongAccountTokenWithoutFinishing",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "CommerceStoreTests",
+      "test": "testLocalSubscriptionLifecycleStatesNeverMutateServerAccess",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "CommerceStoreTests",
+      "test": "testMatchingTransactionUpdateIsRecordedAndFinishedWithoutChangingAccess",
+      "status": "passed",
+      "durationMs": 4
+    },
+    {
+      "suite": "CommerceStoreTests",
+      "test": "testMissingStorefrontFailsClosedWithoutCallingPurchaseRoute",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "CommerceStoreTests",
+      "test": "testRefreshRoutesWithCurrentStorefrontAndReevaluatesOnChange",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "CommerceStoreTests",
+      "test": "testRestoreHistoricalMonthlyPurchaseStillRefreshesLocalEvidence",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "CommerceStoreTests",
+      "test": "testRestoreIgnoresEntitlementBoundToAnotherRilloraAccount",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "CommerceStoreTests",
+      "test": "testRetiredMonthlyProductCannotStartANewPurchase",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "CommerceStoreTests",
+      "test": "testSandboxCatalogDiagnosticLoadsWithoutAPrivateCommerceSession",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "CommerceStoreTests",
+      "test": "testSandboxCatalogLoadsAppStoreGroupWithoutOpeningPurchasePath",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "CommerceStoreTests",
+      "test": "testSandboxCatalogRejectsXcodeLocalSubscriptionGroup",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "CommerceStoreTests",
+      "test": "testSandboxPurchaseFinishesOnlyAfterDurableServerAuthorization",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "CommerceStoreTests",
+      "test": "testSandboxPurchaseRemainsUnfinishedWhileAuthoritativeSnapshotIsPending",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "CommerceStoreTests",
+      "test": "testSubscriptionStatusOutsideLocalAccountIsIgnored",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "CommerceStoreTests",
+      "test": "testSubscriptionStatusUpdateRefreshesLifecycleWithoutFinishingOrGrantingAccess",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "CommerceStoreTests",
+      "test": "testUnverifiedLocalStoreKitPurchaseNeverFinishes",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ContactSharingStoreTests",
+      "test": "testAcceptedRecipientStopsShowingThePendingInvitationLink",
+      "status": "passed",
+      "durationMs": 4
+    },
+    {
+      "suite": "ContactSharingStoreTests",
+      "test": "testRefreshKeepsCurrentLinkButDiscardsAnExternallyReplacedVersion",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "CoreLocalizationTests",
+      "test": "testChineseCoreTerminologyAndGuideBoundary",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "CoreLocalizationTests",
+      "test": "testFormattingPreservesSuppliedNamesAndFormatCharacters",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "CoreLocalizationTests",
+      "test": "testGuideGroupTranslationDoesNotMutateItsSourceTitle",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "CoreLocalizationTests",
+      "test": "testMatterCountGrammarUsesTheSelectedLanguage",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "CoreLocalizationTests",
+      "test": "testMatterRequestsPreserveSavedTextAndStableMachineValues",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "DisclosureRehearsalStoreTests",
+      "test": "testActionUsesLatestOptimisticVersionAndFixedAcknowledgement",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "DisclosureRehearsalStoreTests",
+      "test": "testCancellationRestoresIdleAndFailureCanRecoverWithoutDiscardingResult",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "DisclosureRehearsalStoreTests",
+      "test": "testCreateUsesSelectedDistinctEventAndPublishesRehearsal",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "FamilyMaintenanceTests",
+      "test": "testChangedSourceOrScopeDoesNotCountAsCompleted",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "FamilyMaintenanceTests",
+      "test": "testExpiredWriteClearsPrivateCache",
+      "status": "passed",
+      "durationMs": 13
+    },
+    {
+      "suite": "FamilyMaintenanceTests",
+      "test": "testIncomingResponseCannotGrantOwnerControl",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "FamilyMaintenanceTests",
+      "test": "testReviewFieldsCannotContainHiddenDataOrDisclosureChanges",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "FamilyMaintenanceTests",
+      "test": "testSettingsEncodeExplicitNullForRemovingCollaboratorAndDate",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "FirstUseGuideStoreTests",
+      "test": "testOptionalMotivationAdvancesToMatterStep",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "FirstUseGuideStoreTests",
+      "test": "testPausedGuideRemainsReachableAndResumesItsSavedStep",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "FirstUseGuideStoreTests",
+      "test": "testSaveAndExitPersistsPausedStep",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "FirstUseGuideStoreTests",
+      "test": "testStartRecordsInProgressStepOneWithoutChangingReadiness",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "HostedLegalAcceptanceProofTests",
+      "test": "testCurrentHostedReceiptProducesTheExistingAPIProof",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "HostedLegalAcceptanceProofTests",
+      "test": "testEveryConsentBooleanMustBeExplicitlyTrue",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "HostedLegalAcceptanceProofTests",
+      "test": "testMissingAndUnexpectedFieldsAreRejected",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "HostedLegalAcceptanceProofTests",
+      "test": "testMissingClaimAndMalformedTokensFailClosed",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "HostedLegalAcceptanceProofTests",
+      "test": "testStaleVersionsAndWrongDigestAreRejected",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "HostedLegalAcceptanceProofTests",
+      "test": "testUnsignedReceiptIsRejectedBeforeExchange",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "LocalizationTests",
+      "test": "testBothNativeLanguageResourcesExist",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "LocalizationTests",
+      "test": "testChineseCoreTerminology",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "LocalizationTests",
+      "test": "testChineseKnownErrorUsesCodeNotServerText",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "LocalizationTests",
+      "test": "testEnglishFallbackStaysReadable",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "LocalizationTests",
+      "test": "testEnglishServerMessageContractIsPreserved",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "LocalizationTests",
+      "test": "testFormattedPrivateValueIsNotAKeyOrFormatString",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "LocalizationTests",
+      "test": "testUnknownChineseErrorDoesNotExposeOrTranslateServerContent",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "MatterEditorStoreTests",
+      "test": "testArchiveUsesTheLatestOptimisticVersion",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "MatterEditorStoreTests",
+      "test": "testCategoryDetailsAndNotesRoundTripWithoutLeakingHiddenDraftFields",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "MatterEditorStoreTests",
+      "test": "testCreateRetryKeepsTheSameRequestIdentityAndDraft",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "MatterEditorStoreTests",
+      "test": "testFirstUseDraftKeepsChosenCategoryWithoutPrefillingMatter",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "MatterEditorStoreTests",
+      "test": "testHiddenFieldsAreNeitherSubmittedNorValidationTrapsAfterTypeChange",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "MatterEditorStoreTests",
+      "test": "testNewMatterUsesCreateContract",
+      "status": "passed",
+      "durationMs": 3
+    },
+    {
+      "suite": "MatterEditorStoreTests",
+      "test": "testOverlappingCreateReturnsOnlyOneResultToTheOverview",
+      "status": "passed",
+      "durationMs": 5
+    },
+    {
+      "suite": "MatterEditorStoreTests",
+      "test": "testReloadAndArchiveCannotReplaceAnInFlightSave",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "MatterEditorStoreTests",
+      "test": "testRequiredLocatorsAndCryptoBranchesStopTransport",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "MatterEditorStoreTests",
+      "test": "testSaveUsesCurrentVersionAndAppliesServerResponse",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "MatterEditorStoreTests",
+      "test": "testValidationStopsAnEmptyTitleBeforeTransport",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "MatterEditorStoreTests",
+      "test": "testVersionConflictKeepsDraftAndOffersRecoveryState",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "MatterListPresentationTests",
+      "test": "testCategoryFilteringDoesNotUseOwnerOrSharedReviewStatus",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "MatterListPresentationTests",
+      "test": "testCryptoNextActionFollowsCustodyAndRequiredPublicLocators",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "MatterListPresentationTests",
+      "test": "testDocumentAndDeviceRequireLocationButNotProvider",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "MatterListPresentationTests",
+      "test": "testEveryCategoryHasOneFilterAndUsesItsRawCategory",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "MatterListPresentationTests",
+      "test": "testNextActionDependsOnMissingLocatorNotReadinessOrOptionalChoices",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "MatterListPresentationTests",
+      "test": "testOwnerStatusLabelIsNeutralWithoutChangingPersistedStatus",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "MatterListPresentationTests",
+      "test": "testProviderRequirementsReuseEachCategoryEditorRules",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "MatterListPresentationTests",
+      "test": "testSearchCombinesCategoryWithTrimmedTitleProviderAndRawCategory",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "MatterListPresentationTests",
+      "test": "testSearchIncludesTranslatedCategoryLabelsAndKeepsUnknownCategoriesInAll",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "MatterListPresentationTests",
+      "test": "testSummaryPrioritizesActualMissingLocatorsAndKeepsStableOrderWithinGroups",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "NativeAuthenticationCallbackTests",
+      "test": "testDisabledGoogleDoesNotReceiveAnyCallback",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "NativeAuthenticationCallbackTests",
+      "test": "testHostedLoginSharingAndForeignSchemesNeverReachGoogle",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "OfficialProviderGuideCatalogTests",
+      "test": "testAppleAndGoogleProvideSetupAndAfterDeathRoutes",
+      "status": "passed",
+      "durationMs": 6
+    },
+    {
+      "suite": "OfficialProviderGuideCatalogTests",
+      "test": "testBinanceIsNotPresentedAsAProactiveLegacyContactFeature",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "OfficialProviderGuideCatalogTests",
+      "test": "testCatalogContainsUniqueActionableCommonProviderGuides",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "OfficialProviderGuideCatalogTests",
+      "test": "testEveryGuideUsesHTTPSOnAnOfficialHost",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "OfficialProviderGuideCatalogTests",
+      "test": "testRegionalGuidesAndAliasesRemainDistinct",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "OfficialProviderGuideCatalogTests",
+      "test": "testSuggestionsUseOnlyVisibleAccountContextWithoutFalseRegionalMatches",
+      "status": "passed",
+      "durationMs": 50
+    },
+    {
+      "suite": "OfficialSetupStoreTests",
+      "test": "testCancelledUpdateRollsBackOptimisticDisplayWithoutFailure",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "OfficialSetupStoreTests",
+      "test": "testConflictKeepsConfirmedServerStateAndOffersReload",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "OfficialSetupStoreTests",
+      "test": "testNoOpDoesNotWriteAnUnchangedSelfReport",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "OfficialSetupStoreTests",
+      "test": "testReloadPublishesOfficialSetupChecks",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "OfficialSetupStoreTests",
+      "test": "testUpdateUsesOptimisticVersionAndAppliesSelfReport",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "OverviewStoreTests",
+      "test": "testAuthenticationFailureBecomesSignedOutInsteadOfAnErrorWall",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "OverviewStoreTests",
+      "test": "testCancelledLoadRestoresItsPreviousState",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "OverviewStoreTests",
+      "test": "testExpiredSessionDiscardsPreviouslyLoadedPrivateMap",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "OverviewStoreTests",
+      "test": "testFailedRefreshKeepsLoadedMapAndRetryClearsNotice",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "OverviewStoreTests",
+      "test": "testMutationReconciliationDoesNotKeepAnExpiredSession",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "OverviewStoreTests",
+      "test": "testOlderRefreshCannotOverwriteAConfirmedSave",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "OverviewStoreTests",
+      "test": "testOldSessionRefreshCannotClearTheNewSession",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "OverviewStoreTests",
+      "test": "testReloadPublishesLoadedSnapshot",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "OverviewStoreTests",
+      "test": "testReloadPublishesSafeFailureState",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "OverviewStoreTests",
+      "test": "testReloadPublishesSignedOutWithoutFetchingPrivateOverview",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "OverviewStoreTests",
+      "test": "testVerifiedLoginSnapshotEntersAppWithoutAnotherOverviewRequest",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "PasswordResetTests",
+      "test": "testBilingualConfirmationIsConditionalAndNeverClaimsDelivery",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "PasswordResetTests",
+      "test": "testBuildConfigurationParsesResetIndependentlyOfSignIn",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "PasswordResetTests",
+      "test": "testCancellationAndNetworkErrorsAreSafeAndRetryable",
+      "status": "passed",
+      "durationMs": 8
+    },
+    {
+      "suite": "PasswordResetTests",
+      "test": "testClearIgnoresLateCompletionAndDiscardsPrivateFormData",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "PasswordResetTests",
+      "test": "testConfigurationDefaultsToUnavailableAndAcceptsOnlyReviewedConnection",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "PasswordResetTests",
+      "test": "testDefaultAndClosedAuthenticationCannotResetPasswords",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "PasswordResetTests",
+      "test": "testDuplicateSubmissionsAreIgnoredWhileRequestIsPending",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "PasswordResetTests",
+      "test": "testEmailValidationIsLocalAndPreservesTheExplicitAddress",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "PasswordResetTests",
+      "test": "testInvalidAndUnavailableRequestsFailBeforeTransport",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "PasswordResetTests",
+      "test": "testOldCompletionCannotClearANewerRequest",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "PasswordResetTests",
+      "test": "testOpeningAndEditingTheFormNeverSendsARequest",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "PasswordResetTests",
+      "test": "testRateLimitUsesSafeMessageWithoutAutomaticRetry",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "PasswordResetTests",
+      "test": "testResetDoesNotChangeGlobalAuthenticationOrOverviewState",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "PasswordResetTests",
+      "test": "testSDKNetworkCancellationIsNotDisplayedAsFailure",
+      "status": "passed",
+      "durationMs": 15
+    },
+    {
+      "suite": "PasswordResetTests",
+      "test": "testSDKRateLimitNetworkAndFailureAreMappedWithoutProviderText",
+      "status": "passed",
+      "durationMs": 5
+    },
+    {
+      "suite": "PasswordResetTests",
+      "test": "testSDKRequestUsesOnlyReviewedPublicResetPayloadAndLeavesTokenUntouched",
+      "status": "passed",
+      "durationMs": 4
+    },
+    {
+      "suite": "PasswordResetTests",
+      "test": "testServiceRejectsMissingConfigurationAndBadEmailBeforeSDKCall",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "PasswordResetTests",
+      "test": "testSuccessClearsEmailAndDoesNotResend",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "PasswordResetTests",
+      "test": "testTaskCancellationCannotPublishSuccessOrFailure",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "PasswordResetTests",
+      "test": "testUnknownProviderErrorsNeverExposeEmailOrAccountExistence",
+      "status": "passed",
+      "durationMs": 4
+    },
+    {
+      "suite": "PlanMotivationStoreTests",
+      "test": "testCancelledLatestLoadRestoresReadyState",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "PlanMotivationStoreTests",
+      "test": "testCancelledSaveReturnsToReadyWithoutChangingSource",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "PlanMotivationStoreTests",
+      "test": "testConflictKeepsSelectedMotivationForRecovery",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "PlanMotivationStoreTests",
+      "test": "testLoadLatestAppliesServerMotivationAndVersion",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "PlanMotivationStoreTests",
+      "test": "testSaveUsesLatestVersionAndAppliesResponse",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ProductionConnectionTests",
+      "test": "testBothNativeRevocationsUseTheProductionProxyAndRequireServerSuccess",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ProductionConnectionTests",
+      "test": "testClosedServiceDoesNotOpenHostedAuthentication",
+      "status": "passed",
+      "durationMs": 3
+    },
+    {
+      "suite": "ProductionConnectionTests",
+      "test": "testPreparedProductionConnectionIsValidButDoesNotOpenAccounts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ProductionConnectionTests",
+      "test": "testProductionRejectsTestIdentityUnsafeOriginsAndDevelopmentIdentity",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ProductionConnectionTests",
+      "test": "testSessionAndDeletionProofNamespacesCannotCrossOrigins",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "RoleAssignmentPolicyStoreTests",
+      "test": "testAcknowledgedRevocationStaysRemovedWhenTheFollowingRefreshFails",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "RoleAssignmentPolicyStoreTests",
+      "test": "testAcknowledgedRoleIsRetainedWhenTheFollowingRefreshFails",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "RoleAssignmentPolicyStoreTests",
+      "test": "testCreateUsesMatterScopeAndMarksEarlierRehearsalsStale",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "RoleAssignmentPolicyStoreTests",
+      "test": "testFailedMutationPreservesAssignmentsAndExposesConflict",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "RoleAssignmentPolicyStoreTests",
+      "test": "testLoadKeepsPlanWideAndCurrentMatterAssignmentsSeparate",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "RoleAssignmentPolicyStoreTests",
+      "test": "testReloadAndDuplicateCreateCannotReplaceAnInFlightRoleMutation",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "SharedAccessStoreTests",
+      "test": "testANameOnlyResponseWithPrivateDetailsFailsClosed",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "SharedAccessStoreTests",
+      "test": "testFailedRefreshDoesNotLeavePreviouslyGrantedContentVisible",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "SharedAccessStoreTests",
+      "test": "testLateResponseCannotRestoreDetailsAfterBackgroundInvalidation",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "SharedAccessStoreTests",
+      "test": "testPeriodicRefreshAvoidsFlickerButClearsRevokedOrUnavailableContent",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "SharingLocalizationTests",
+      "test": "testLocalizationDoesNotChangeSharingWireValuesOrScope",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "SharingLocalizationTests",
+      "test": "testPrivateTitleIsPreservedWithoutBeingUsedAsAFormatKey",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "SharingLocalizationTests",
+      "test": "testReviewRequestAndExportCountsUsePluralResources",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "SharingLocalizationTests",
+      "test": "testSimplifiedChineseSharingTermsAndSafetyMessages",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "SharingPreviewTests",
+      "test": "testExactSelectedFieldsAreAccepted",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "SharingPreviewTests",
+      "test": "testFuturePrivateFieldsAndUnselectedMatterAreRejected",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "SharingPreviewTests",
+      "test": "testMorePermissiveLevelCannotReplaceTheSelectedLevel",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "SharingTests",
+      "test": "testDetailsRemainBoundedToSafeFields",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "SharingTests",
+      "test": "testDirectionsRejectFinancialDetails",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "SharingTests",
+      "test": "testEnvelopeRejectsWriteOrReleaseAuthority",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "SharingTests",
+      "test": "testInvitationCapabilityMustBeACompleteFragment",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "SharingTests",
+      "test": "testItemsMustBelongToAVisibleConnection",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "SharingTests",
+      "test": "testNameAccessRejectsUnexpectedLocation",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "SharingTests",
+      "test": "testReplacementRequestNamesBothCurrentVersions",
+      "status": "passed",
+      "durationMs": 3
+    },
+    {
+      "suite": "SharingTests",
+      "test": "testSavedCopyDecodesItsActualDateAndStaysWithinItsSavedScope",
+      "status": "passed",
+      "durationMs": 6
+    },
+    {
+      "suite": "SimulationStoreTests",
+      "test": "testAPIFailureProducesRecoverableFailureState",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "SimulationStoreTests",
+      "test": "testCancellationRestoresPreviousReadyState",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "SimulationStoreTests",
+      "test": "testChangingScenarioClearsThePreviousScenarioResult",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "SimulationStoreTests",
+      "test": "testMismatchedResponseDoesNotBecomeTheChosenScenarioResult",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "SimulationStoreTests",
+      "test": "testRunUsesSelectedDistinctLifeEventAndPublishesResult",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "StartHereEncryptionServiceTests",
+      "test": "testDecryptsPackageGeneratedByPinnedWebHPKELibrary",
+      "status": "passed",
+      "durationMs": 13
+    },
+    {
+      "suite": "StartHereEncryptionServiceTests",
+      "test": "testEncryptsAndLocallyRecoversWithoutPuttingPrivateKeyInArtifact",
+      "status": "passed",
+      "durationMs": 4
+    },
+    {
+      "suite": "StartHereEncryptionServiceTests",
+      "test": "testRejectsCiphertextTamperingBeforeDecryption",
+      "status": "passed",
+      "durationMs": 3
+    },
+    {
+      "suite": "StartHereEncryptionServiceTests",
+      "test": "testSyntheticRecipientDecryptsWithMemoryOnlyDeviceKeyAndRejectsAnotherKey",
+      "status": "passed",
+      "durationMs": 9
+    },
+    {
+      "suite": "StartHereEncryptionServiceTests",
+      "test": "testWrapsTheContentKeyForEveryEligibleRecipientDevice",
+      "status": "passed",
+      "durationMs": 4
+    },
+    {
+      "suite": "StartHerePreviewStoreTests",
+      "test": "testCancellationRestoresReadyState",
+      "status": "passed",
+      "durationMs": 7
+    },
+    {
+      "suite": "StartHerePreviewStoreTests",
+      "test": "testCreateEncryptedPublishesOnlyAfterLocalRecoveryAndFinalize",
+      "status": "passed",
+      "durationMs": 180
+    },
+    {
+      "suite": "StartHerePreviewStoreTests",
+      "test": "testCreatePreviewPublishesNoFileResult",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "StartHerePreviewStoreTests",
+      "test": "testCreatePrintablePublishesShareableInMemoryArtifact",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "StartHerePreviewStoreTests",
+      "test": "testEncryptedFinalizeReauthenticationKeepsPreviewUntilExplicitRetry",
+      "status": "passed",
+      "durationMs": 9
+    },
+    {
+      "suite": "StartHerePreviewStoreTests",
+      "test": "testEncryptedPreparationReauthenticationDoesNotFinalizeOrPublish",
+      "status": "passed",
+      "durationMs": 3
+    },
+    {
+      "suite": "StartHerePreviewStoreTests",
+      "test": "testFailureCanReturnToReadyState",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "StartHerePreviewStoreTests",
+      "test": "testOtherForbiddenExportsStillPublishTheirFailure",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "StartHerePreviewStoreTests",
+      "test": "testPrintableCancellationRestoresIdleState",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "StartHerePreviewStoreTests",
+      "test": "testPrintableReauthenticationKeepsPreviewAndRequiresExplicitRetry",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "TrustedContactEditorStoreTests",
+      "test": "testEditUsesLatestOptimisticVersionAndAppliesResponse",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "TrustedContactEditorStoreTests",
+      "test": "testNewContactUsesRecordOnlyCreateContract",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "TrustedContactEditorStoreTests",
+      "test": "testOpeningExistingContactLoadsLatestServerVersion",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "TrustedContactEditorStoreTests",
+      "test": "testOverlappingSavesCannotCreateTheContactTwice",
+      "status": "passed",
+      "durationMs": 6
+    },
+    {
+      "suite": "TrustedContactEditorStoreTests",
+      "test": "testReloadAndRevokeCannotReplaceAnInFlightSave",
+      "status": "passed",
+      "durationMs": 5
+    },
+    {
+      "suite": "TrustedContactEditorStoreTests",
+      "test": "testRevokeUsesPersistedIdentityAndExplicitRevokedStatus",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "TrustedContactEditorStoreTests",
+      "test": "testValidationStopsEmptyNameBeforeTransport",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "TrustedContactEditorStoreTests",
+      "test": "testVersionConflictKeepsContactDraftForRecovery",
+      "status": "passed",
+      "durationMs": 1
+    }
+  ]
+}

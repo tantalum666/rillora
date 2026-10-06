@@ -1,6 +1,6 @@
 # Web navigation, language, identity and provider review
 
-Status: SOURCE AND CLOUD BROWSER ACCEPTANCE VERIFIED; NOT DEPLOYED
+Status: REVIEWED AND MERGED; AFFECTED LOCAL/CI VALIDATION PASSED; NOT DEPLOYED
 Last updated: 2026-10-06 (UTC)
 
 The Owner requested cloud-only fixes and a careful related-system review after
@@ -8,6 +8,18 @@ reporting left-biased website navigation, an English-only App experience, missin
 current-account identity, and indistinguishable provider icons. Publication is to an
 independent Git branch; merge, deployment, Auth0 configuration and store release are
 not part of this task.
+
+## October7 local integration follow-up
+
+The subsequent Owner request authorizes review, direct fixes and merge. [PR1](https://github.com/tantalum666/rillora/pull/1)
+now integrates both clients/shared API into the current release branch. Actual Xcode
+Debug/Release,272unit passes/1known platform skip, six affected English/Chinese UI
+scenarios,174Web/17APIchecks and integration CI73/20browser scenarios pass. Two native
+compile failures and two UI-test visibility assumptions were repaired, not hidden.
+This does not repeat the wider previous device matrix or deploy the new source.
+[Exact review and current boundaries](dot-integration-20261007.md).
+
+Earlier cloud/build5 observations below retain their original dated scope.
 
 ## Verified findings and changes
 

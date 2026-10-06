@@ -314,3 +314,14 @@ Source08afb3821/CI63passes. Build8 internal distribution and verified HKD888 San
 receipt are separate from physical8/Restore, real Live charges and App Review. Fresh remote
 download/decryption verifies677objects/3,102paths against GitHub metadata at3e46e5130;
 previous1–19were not downloaded again. [Remote receipt](../collaboration/verification/device-config-20261006/remote-readback.json).
+
+## October7 reviewed Dot integration preservation
+
+[Archive21](../collaboration/verification/dot-integration-20261007/README.md) preserves7,314paths/
+913objects and233,637,603encrypted bytes, including failed/passed native results, exact
+compiled artifacts and four complete cloud browser ZIPs verified against GitHub digests.
+The read-only archive20metadata correction is preserved; ignored build/test package
+copies remain archive-only. Local decryption passes. Source5a547339a/CI73and20browser
+scenarios plus actual Xcode checks precede [PR1](https://github.com/tantalum666/rillora/pull/1)
+mergeeb5fb1a70. The merge tree equals the validated source. Remote download/decryption
+is independently recorded after this upload; previous20archives stay unchanged.
