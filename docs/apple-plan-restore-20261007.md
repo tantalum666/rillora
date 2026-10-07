@@ -1,7 +1,7 @@
 # Native plan display and restore correction — October7
 
 Role: focused correction after actual build9 acceptance failed
-Status: IMPLEMENTED; FOCUSED TESTS AND BILINGUAL RENDERING PASS; BUILD10 IN PREPARATION
+Status: IMPLEMENTED; FOCUSED TESTS AND BILINGUAL RENDERING PASS; BUILD11 IN PREPARATION;10HELD
 Last updated:2026-10-07 (Asia/Hong_Kong)
 
 ## Actual build9 result and why work changed
@@ -43,7 +43,7 @@ or financial identifiers and changed no database rows. The old AUD quote remains
   required; no environment guessing, local entitlement grant or new financial policy.
 - Quote request generations prevent a late catalog response replacing a newer price.
   Account-switch guards remain. Partial history cannot overwrite its warning with a
-  misleading full-success message. Restore uses an explicit borderless button style.
+  misleading full-success message. Restore retains the native Form row button behavior.
 
 [Apple's sync documentation](https://developer.apple.com/documentation/storekit/appstore/sync())
 explains that normal StoreKit history is maintained automatically and explicit sync can
@@ -64,10 +64,21 @@ stay visible; real-fixture currency remains where supplied, subscribed uses mana
 and unavailable prices are not fabricated. This is local rendering evidence, not physical
 StoreKit restoration. There are no new display/debug controls in the shipping app.
 
-Build10is being prepared from exact per-file hashes. No API/Web/WWW redeployment, price
+Build11is being prepared from exact per-file hashes. No API/Web/WWW redeployment, price
 change, re-upload of9, real purchase, account deletion, new tester or App Review submission.
 The previous cloud/runtime16, original3identity expiry (October9 04:00Hong Kong), legal
 versions, Free1/Family5, WebUSD88.99/AppleUSA119.99 and FanPass stay unchanged.
 
 QA: [build9 provider/Owner evidence](../output/qa/rillora-build9-distribution-20261007/)
 and [current correction evidence](../output/qa/rillora-apple-plan-restore-20261007/).
+
+## Final row interaction correction
+
+After10uploaded but before any group assignment, full-page tapping found that an added
+borderless style made Restore inert at the accessibility row center. Removed that style
+and retained the original native Form button behavior. Both ready and subscribed complete
+fixtures now respond to an actual Restore tap, display the expected stub history result
+and stay in the plan view; the management link is not activated.10is held and remains
+undistributed.11is the replacement candidate. This one-line view change leaves the44
+coordinator/store tests unchanged; final Debug preview and Release archive are separate
+checks. Original failure/UI snapshots and10artifact are retained.

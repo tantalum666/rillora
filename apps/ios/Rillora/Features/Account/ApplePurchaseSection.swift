@@ -77,7 +77,6 @@ struct ApplePurchaseSection: View {
             } label: {
                 Label(purchase.pending == nil ? String(localized: "Restore purchases") : String(localized: "Check pending purchase"), systemImage: "arrow.clockwise")
             }
-            .buttonStyle(.borderless)
             .disabled(purchase.busy)
             .accessibilityIdentifier("apple-purchase.restore")
             if let message = purchase.message {
