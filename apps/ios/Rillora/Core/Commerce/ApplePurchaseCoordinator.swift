@@ -7,6 +7,9 @@ final class ApplePurchaseCoordinator {
     private(set) var environment: ApplePurchaseEnvironment?
     private(set) var quote: AppleQuoteResponse?
     private(set) var product: StoreKitProductSnapshot?
+    /// Apple's current catalog price can be shown even when a new purchase is not allowed.
+    private(set) var catalogProduct: StoreKitProductSnapshot?
+    private(set) var isLoadingQuote = false
     private(set) var pending: ApplePendingPurchase?
     private(set) var busy = false
     private(set) var message: String?
@@ -17,6 +20,7 @@ final class ApplePurchaseCoordinator {
     private let serviceMarket: String
     private var owner: UUID?
     private var revision = 0
+    private var quoteRevision = 0
     private var processing: [UInt64: Int] = [:]
 
     init(service: any ApplePurchaseServing, client: any StoreKitPurchasing,
@@ -38,35 +42,49 @@ final class ApplePurchaseCoordinator {
     }
 
     func reset() {
-        revision += 1; owner = nil; quote = nil; product = nil; pending = nil
+        revision += 1; quoteRevision += 1
+        owner = nil; quote = nil; product = nil; catalogProduct = nil; pending = nil
+        isLoadingQuote = false
         busy = false; message = nil; processing = [:]; environment = nil
     }
 
     func refreshQuote() async {
         let generation = revision
         guard owner != nil else { return }
-        quote = nil; product = nil
-        if environment == nil {
-            let verified = await client.verifiedAppEnvironment()
-            guard generation == revision else { return }
-            environment = verified
+        quoteRevision += 1
+        let request = quoteRevision
+        quote = nil; product = nil; catalogProduct = nil
+        isLoadingQuote = true
+        defer {
+            if generation == revision, request == quoteRevision { isLoadingQuote = false }
         }
-        guard let environment else { return }
-        let existing = try? await service.pendingApplePurchase(environment: environment)
-        guard generation == revision else { return }
-        pending = existing?.purchase
         do {
+            let available = try await client.loadProducts(identifiers: RilloraStoreKitCatalog.purchasableFamilyProductIDs)
+            guard generation == revision, request == quoteRevision, !Task.isCancelled,
+                  available.count == 1, let match = available.first,
+                  match.productID == RilloraStoreKitCatalog.familyAnnualProductID,
+                  match.subscriptionGroupID == RilloraStoreKitCatalog.appStoreFamilySubscriptionGroupID,
+                  match.oneYearSubscription, let amount = match.priceMilliunits, amount > 0,
+                  match.currencyCode?.range(of: "^[A-Z]{3}$", options: .regularExpression) != nil else { return }
+            catalogProduct = match
+            if environment == nil {
+                let verified = await client.verifiedAppEnvironment()
+                guard generation == revision, request == quoteRevision else { return }
+                environment = verified
+            }
+            guard let environment else { return }
+            let existing = try? await service.pendingApplePurchase(environment: environment)
+            guard generation == revision, request == quoteRevision else { return }
+            pending = existing?.purchase
             guard let country = await storefront.currentCountryCode() else { return }
-            async let current = service.fetchAppleQuote(serviceMarket: serviceMarket, storefront: country, environment: environment)
-            async let products = client.loadProducts(identifiers: RilloraStoreKitCatalog.purchasableFamilyProductIDs)
-            let (response, available) = try await (current, products)
-            guard generation == revision, !Task.isCancelled, response.isValid(for: environment),
+            let response = try await service.fetchAppleQuote(serviceMarket: serviceMarket, storefront: country, environment: environment)
+            guard generation == revision, request == quoteRevision, !Task.isCancelled, response.isValid(for: environment),
                   response.quote.serviceMarketCode == serviceMarket,
                   response.quote.storefrontCountryCode == country,
-                  available.count == 1, let match = available.first, matches(match, response.quote) else { return }
+                  matches(match, response.quote) else { return }
             quote = response; product = match
         } catch {
-            if generation == revision { quote = nil; product = nil }
+            if generation == revision, request == quoteRevision { quote = nil; product = nil }
         }
     }
 
@@ -134,6 +152,18 @@ final class ApplePurchaseCoordinator {
         if synchronize { message = nil }
         defer { if generation == revision { busy = false } }
         do {
+            // StoreKit already provides verified history on launch and reinstall.
+            // A known purchase still goes through the server's authoritative Apple
+            // lookup; it does not need another system sign-in prompt first.
+            var entitlements = await client.currentEntitlements(identifiers: RilloraStoreKitCatalog.familyProductIDs)
+            var statuses = await client.subscriptionStatuses(identifiers: RilloraStoreKitCatalog.familyProductIDs)
+            guard generation == revision, owner == self.owner, !Task.isCancelled else { return }
+            let ownedHistory = (entitlements.transactions + statuses.statuses.map(\.transaction)).filter {
+                $0.appAccountToken == owner && !$0.isXcodeEnvironment
+                    && $0.subscriptionGroupID == RilloraStoreKitCatalog.appStoreFamilySubscriptionGroupID
+                    && RilloraStoreKitCatalog.familyProductIDs.contains($0.productID)
+                    && ApplePurchaseEnvironment(rawValue: $0.environment.lowercased()) != nil
+            }
             if environment == nil {
                 await refreshQuote()
                 guard generation == revision, owner == self.owner, !Task.isCancelled else { return }
@@ -149,20 +179,21 @@ final class ApplePurchaseCoordinator {
                 if synchronize { message = String(localized: "Apple purchases are temporarily unavailable. Please try again.") }
                 return
             }
-            if synchronize { try await client.sync() }
-            let entitlements = await client.currentEntitlements(identifiers: RilloraStoreKitCatalog.familyProductIDs)
-            let statuses = await client.subscriptionStatuses(identifiers: RilloraStoreKitCatalog.familyProductIDs)
-            guard generation == revision else { return }
-            let complete = !entitlements.containsUnverifiedTransaction && !statuses.containsUnverifiedStatus && !statuses.loadFailed
-            if !complete {
-                if synchronize { message = String(localized: "Apple purchase history could not be fully checked. Try again shortly.") }
+            if synchronize && ownedHistory.isEmpty {
+                try await client.sync()
+                entitlements = await client.currentEntitlements(identifiers: RilloraStoreKitCatalog.familyProductIDs)
+                statuses = await client.subscriptionStatuses(identifiers: RilloraStoreKitCatalog.familyProductIDs)
             }
+            guard generation == revision, owner == self.owner, !Task.isCancelled else { return }
+            let complete = !entitlements.containsUnverifiedTransaction && !statuses.containsUnverifiedStatus && !statuses.loadFailed
             var ids = Set<UInt64>()
             var owned = 0
             for evidence in entitlements.transactions + statuses.statuses.map(\.transaction) where ids.insert(evidence.transactionID).inserted {
                 guard generation == revision else { return }
                 if evidence.appAccountToken == owner { owned += 1; await accept(evidence, generation: generation) }
             }
+            guard generation == revision, owner == self.owner, !Task.isCancelled else { return }
+            if synchronize && !complete { message = String(localized: "Apple purchase history could not be fully checked. Try again shortly.") }
             if synchronize && complete && ids.isEmpty { message = String(localized: "No Rillora purchases were found for this Apple account.") }
             if synchronize && complete && !ids.isEmpty && owned == 0 { message = String(localized: "Use the Rillora account originally used for this purchase.") }
             let existing = try await service.pendingApplePurchase(environment: environment).purchase

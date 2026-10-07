@@ -3,6 +3,76 @@ import XCTest
 
 @MainActor
 final class ApplePurchaseCoordinatorTests: XCTestCase {
+    func testOwnedVerifiedHistoryRestoresWithoutForcingSystemAuthentication() async {
+        let f = await fixture(environment: .sandbox)
+        await f.client.setHistory(evidence(owner: f.owner, environment: "Sandbox"))
+        await f.coordinator.restore()
+        let syncs = await f.client.syncs
+        let refreshes = await f.client.appRefreshes
+        let submissions = await f.service.submissions
+        let finishes = await f.client.finishes
+        XCTAssertEqual(syncs, 0)
+        XCTAssertEqual(refreshes, 0)
+        XCTAssertEqual(submissions, 1)
+        XCTAssertEqual(finishes, [100])
+        XCTAssertEqual(f.coordinator.message, String(localized: "Your Apple purchase status is up to date."))
+    }
+
+    func testMissingHistoryUsesExplicitSyncThenServerVerification() async {
+        let f = await fixture(environment: .sandbox)
+        await f.client.setHistoryAfterSync(evidence(owner: f.owner, environment: "Sandbox"))
+        await f.coordinator.restore()
+        let syncs = await f.client.syncs
+        let submissions = await f.service.submissions
+        let finishes = await f.client.finishes
+        XCTAssertEqual(syncs, 1)
+        XCTAssertEqual(submissions, 1)
+        XCTAssertEqual(finishes, [100])
+    }
+
+    func testCatalogPriceRemainsVisibleWhenServerDisallowsNewPurchase() async {
+        let f = await fixture()
+        await f.service.rejectNewQuotes()
+        await f.coordinator.refreshQuote()
+        XCTAssertNotNil(f.coordinator.catalogProduct)
+        XCTAssertNil(f.coordinator.quote)
+        XCTAssertNil(f.coordinator.product)
+        XCTAssertFalse(f.coordinator.isLoadingQuote)
+        await f.coordinator.purchase(accepting: f.coordinator.quote)
+        let preparations = await f.service.preparations
+        XCTAssertEqual(preparations, 0)
+    }
+
+    func testOlderCatalogResponseCannotReplaceNewerDisplayedQuote() async {
+        let f = await fixture()
+        await f.client.pauseNextCatalog()
+        let older = Task { await f.coordinator.refreshQuote() }
+        for _ in 0..<1000 {
+            if await f.client.catalogWaiting { break }
+            await Task.yield()
+        }
+        let waiting = await f.client.catalogWaiting
+        XCTAssertTrue(waiting)
+        await f.client.setAmount(119_990)
+        await f.service.setAmount(119_990)
+        await f.coordinator.refreshQuote()
+        await f.client.resumeCatalog()
+        await older.value
+        XCTAssertEqual(f.coordinator.catalogProduct?.priceMilliunits, 119_990)
+        XCTAssertEqual(f.coordinator.quote?.quote.priceMilliunits, 119_990)
+        XCTAssertFalse(f.coordinator.isLoadingQuote)
+    }
+
+    func testPartialHistoryIsNotReportedAsCompletelyRestored() async {
+        let f = await fixture(environment: .sandbox)
+        await f.client.setHistory(evidence(owner: f.owner, environment: "Sandbox"))
+        await f.client.failHistory()
+        await f.coordinator.restore()
+        let submissions = await f.service.submissions
+        XCTAssertEqual(submissions, 1)
+        XCTAssertEqual(f.coordinator.message, String(localized: "Apple purchase history could not be fully checked. Try again shortly."))
+    }
+
     func testOpeningPageAndMissingDisplayedQuoteCannotPurchase() async {
         let f = await fixture()
         await f.coordinator.purchase(accepting: nil)
@@ -347,6 +417,8 @@ private actor ApplePurchaseServiceSpy: ApplePurchaseServing {
     var wrongReceiptEnvironment = false
     func useWrongReceiptEnvironment() { wrongReceiptEnvironment = true }
     func useCorrectReceiptEnvironment() { wrongReceiptEnvironment = false }
+    var rejectQuotes = false
+    func rejectNewQuotes() { rejectQuotes = true }
     var preparations = 0, submissions = 0
     var actions: [String] = []
     var finished = true, inconsistent = false, pause = false
@@ -367,7 +439,8 @@ private actor ApplePurchaseServiceSpy: ApplePurchaseServing {
         continuation?.resume(returning: intent()); continuation = nil
     }
     func fetchAppleQuote(serviceMarket: String, storefront: String, environment: ApplePurchaseEnvironment) async throws -> AppleQuoteResponse {
-        AppleQuoteResponse(contractVersion: "commerce-apple-purchase-v1", quote: ApplePurchaseQuote(bindingCode: "fixture",
+        if rejectQuotes { throw RilloraAPIError.invalidResponse }
+        return AppleQuoteResponse(contractVersion: "commerce-apple-purchase-v1", quote: ApplePurchaseQuote(bindingCode: "fixture",
             priceCode: "family_fixture", productId: RilloraStoreKitCatalog.familyAnnualProductID,
             serviceMarketCode: serviceMarket, storefrontCountryCode: storefront, currency: "USD",
             amountMinor: amount / 10, minorUnitExponent: 2, priceMilliunits: amount, billingPeriod: "annual"),
@@ -436,15 +509,27 @@ private actor ApplePurchaseClientSpy: StoreKitPurchasing {
     var history: StoreKitTransactionEvidence?
     var nextOutcome: StoreKitPurchaseOutcome?
     var historyFailed = false
+    var historyAfterSync: StoreKitTransactionEvidence?
+    var pauseCatalog = false
+    var catalogContinuation: CheckedContinuation<Void, Never>?
+    var catalogWaiting: Bool { catalogContinuation != nil }
+    func pauseNextCatalog() { pauseCatalog = true }
+    func resumeCatalog() { catalogContinuation?.resume(); catalogContinuation = nil }
+    func setHistoryAfterSync(_ value: StoreKitTransactionEvidence) { historyAfterSync = value }
     init(owner: UUID, environment: ApplePurchaseEnvironment?) { self.owner = owner; self.appEnvironment = environment }
     func setAmount(_ value: Int) { amount = value }
     func setHistory(_ value: StoreKitTransactionEvidence) { history = value }
     func setOutcome(_ value: StoreKitPurchaseOutcome) { nextOutcome = value }
     func failHistory() { historyFailed = true }
     func loadProducts(identifiers: Set<String>) async throws -> [StoreKitProductSnapshot] {
-        [.init(productID: RilloraStoreKitCatalog.familyAnnualProductID, displayName: "Fixture Family", description: "Synthetic",
+        let products: [StoreKitProductSnapshot] = [.init(productID: RilloraStoreKitCatalog.familyAnnualProductID, displayName: "Fixture Family", description: "Synthetic",
             displayPrice: "$\(amount / 1000).99", subscriptionGroupID: RilloraStoreKitCatalog.appStoreFamilySubscriptionGroupID,
             priceMilliunits: amount, currencyCode: "USD", oneYearSubscription: true)]
+        if pauseCatalog {
+            pauseCatalog = false
+            await withCheckedContinuation { catalogContinuation = $0 }
+        }
+        return products
     }
     func currentEntitlements(identifiers: Set<String>) async -> StoreKitEntitlementSnapshot {
         StoreKitEntitlementSnapshot(transactions: history.map { [$0] } ?? [], containsUnverifiedTransaction: false)
@@ -461,7 +546,7 @@ private actor ApplePurchaseClientSpy: StoreKitPurchasing {
     nonisolated func transactionUpdates(identifiers: Set<String>) -> AsyncStream<StoreKitTransactionUpdate> { AsyncStream { $0.finish() } }
     nonisolated func subscriptionStatusUpdates(identifiers: Set<String>) -> AsyncStream<StoreKitSubscriptionStatusSnapshot> { AsyncStream { $0.finish() } }
     func finish(transactionID: UInt64) async { finishes.append(transactionID) }
-    func sync() async throws { syncs += 1 }
+    func sync() async throws { syncs += 1; if let historyAfterSync { history = historyAfterSync } }
 }
 private struct ApplePurchaseStorefrontFixture: CommerceStorefrontProviding {
     func currentCountryCode() async -> String? { "USA" }

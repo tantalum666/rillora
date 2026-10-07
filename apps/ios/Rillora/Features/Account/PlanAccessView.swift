@@ -36,10 +36,9 @@ struct PlanAccessView: View {
     }
 
     private func planList(_ status: CommerceStatus) -> some View {
-        let hasAppleOffer = status.currentAccess.subscription == nil
-            && store.applePurchase?.product != nil && store.applePurchase?.quote != nil
+        let hasAppleFlow = store.applePurchase != nil
         return RilloraForm {
-            if !hasAppleOffer {
+            if !hasAppleFlow {
                 Section {
                     VStack(spacing: 12) {
                         RilloraTaskEmblem(systemImage: status.currentAccess.planCode == "free" ? "map" : "person.2.fill")
@@ -105,12 +104,14 @@ struct PlanAccessView: View {
             if store.storeKitTestEnvironment.isEnabled {
                 storeKitTestSection
             }
-            Section {
-                DisclosureGroup {
-                    Text(String(localized: "You keep your own records and exports. Free includes one live recipient. Extra recipients retain only their permitted paid-period copy, without later updates."))
-                    Text(String(localized: "You can always restrict or revoke sharing. Billing does not trigger disclosure."))
-                } label: { Label(String(localized: "Access when Family ends"), systemImage: "clock.arrow.circlepath") }
-                .font(.subheadline)
+            if !hasAppleFlow {
+                Section {
+                    DisclosureGroup {
+                        Text(String(localized: "You keep your own records and exports. Free includes one live recipient. Extra recipients retain only their permitted paid-period copy, without later updates."))
+                        Text(String(localized: "You can always restrict or revoke sharing. Billing does not trigger disclosure."))
+                    } label: { Label(String(localized: "Access when Family ends"), systemImage: "clock.arrow.circlepath") }
+                    .font(.subheadline)
+                }
             }
 
             if let message = store.errorMessage {

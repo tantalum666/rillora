@@ -3270,3 +3270,15 @@ public release follows from a code merge. [Current scope](dot-integration-202610
 - Does not imply: ordinary customer/Live sales activation, repeat purchase, deferred
   account deletion/external invitations, invented business facts or App Review success.
 - Evidence: [reviewed deployment](dot-rollout-20261007.md), provider readbacks and signed9.
+
+## 2026-10-07 — Owner rejects the actual build9 plan/restore result
+
+Owner confirms1.0(9)and original matters on the phone, then reports the benefits/price are
+still absent and Restore opens Settings again. Treat this as failed actual acceptance and
+fix the subscriber/unavailable-quote branch; the approved simple plan page applies to the
+whole real flow, not just a nil-subscription preview. Existing subscribers keep the same
+benefits/current catalog view and an appropriate management action under the existing
+one-renewal-provider rule. No duplicate purchase or relaxed server verification follows.
+Owner explicitly chooses to operate the phone directly for this turn, superseding the
+prior mirroring preference for this acceptance. Provider build selection/installation,
+local correction/tests and actual restoration remain separate evidence.
