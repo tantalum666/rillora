@@ -42,6 +42,7 @@ for (const locale of ['en', 'zh-CN']) for (const width of [320, 390, 1280, 1440,
 }
 for (const locale of ['en', 'zh-CN']) for (const width of [390, 1440]) {
   test(`workspace routes and all provider identifiers ${locale} ${width}`, async ({ browser }) => {
+    test.setTimeout(120000);
     const context = await browser.newContext({ locale, viewport: { width, height: 960 }, colorScheme: 'light', reducedMotion: 'reduce' });
     const state = await isolate(context), page = await context.newPage();
     for (const view of ['overview', 'plan', 'matters', 'contacts', 'shared', 'maintenance', 'access', 'activity', 'settings', 'more', 'guides']) {
@@ -60,6 +61,29 @@ for (const locale of ['en', 'zh-CN']) for (const width of [390, 1440]) {
     for (const key of guideIdentifiers) {
       await page.locator(`.guide-row:has([data-provider-key="${key}"])`).click();
       await expect(page.locator('dialog.drawer')).toBeVisible();
+      const reader = page.locator('dialog.drawer');
+      const contentLanguage = locale === 'zh-CN' ? 'zh-Hans' : 'en';
+      await expect(reader.locator('.guide-current-step')).toHaveAttribute('lang', contentLanguage);
+      const firstStep = await reader.locator('.guide-current-step').innerText();
+      if (locale === 'zh-CN') expect(firstStep).toMatch(/\p{Script=Han}/u);
+      await expect(reader).not.toContainText('Guide content is in English');
+      for (const tab of await reader.locator('.panel-tabs button').all()) {
+        await tab.click();
+        const step = reader.locator('.guide-current-step');
+        if (await step.count()) {
+          await expect(step).toHaveAttribute('lang', contentLanguage);
+          const next = reader.locator('.guide-step-actions button').last();
+          while (await next.isEnabled()) {
+            await next.click();
+            if (locale === 'zh-CN') expect(await step.innerText()).toMatch(/\p{Script=Han}/u);
+          }
+          const previous = reader.locator('.guide-step-actions button').first();
+          while (await previous.isEnabled()) await previous.click();
+        } else {
+          await expect(reader.locator('.guide-documents ul')).toHaveAttribute('lang', contentLanguage);
+          if (locale === 'zh-CN') expect(await reader.locator('.guide-documents').innerText()).toMatch(/\p{Script=Han}/u);
+        }
+      }
       await expect(page).toHaveURL(new RegExp(`provider=${key}`));
       await page.reload(); await expect(page.locator('dialog.drawer')).toBeVisible();
       await page.keyboard.press('Escape'); await expect(page.locator('dialog.drawer')).toHaveCount(0);

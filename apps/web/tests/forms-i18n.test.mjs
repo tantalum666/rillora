@@ -103,12 +103,12 @@ test("invitation consent retains exact English proof and explicit acceptance gat
   assert.match(invitation, /<LanguageControl \/>/);
 });
 
-test("provider bodies remain explicitly English while navigation translates", async () => {
+test("provider bodies use the resolved content locale without changing review provenance", async () => {
   const panels = await source("TaskPanels.jsx");
-  assert.match(panels, /t\("forms\.guides\.english"\)/);
-  assert.match(panels, /<ul lang="en">\{guide\.requirements/);
-  assert.match(panels, /<p lang="en">\{guide\.boundary\}/);
-  assert.match(panels, /className="guide-current-step" lang="en"/);
-  assert.match(panels, /<span lang="en">\{link\.title\}/);
+  assert.doesNotMatch(panels, /t\("forms\.guides\.english"\)/);
+  assert.match(panels, /<ul lang=\{guide\.contentLocale\}>\{guide\.requirements/);
+  assert.match(panels, /<p lang=\{guide\.contentLocale\}>\{guide\.boundary\}/);
+  assert.match(panels, /className="guide-current-step" lang=\{guide\.contentLocale\}/);
+  assert.match(panels, /<span lang=\{guide\.contentLocale\}>\{link\.title\}/);
   assert.match(panels, /timeZone: "UTC"/);
 });

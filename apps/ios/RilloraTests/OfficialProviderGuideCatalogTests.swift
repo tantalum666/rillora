@@ -2,6 +2,35 @@ import XCTest
 @testable import Rillora
 
 final class OfficialProviderGuideCatalogTests: XCTestCase {
+    func testChineseGuidesPreserveEvidenceAndCompleteEveryReadingMode() throws {
+        for source in OfficialProviderGuideCatalog.all {
+            let chinese = source.localized(localeIdentifier: "zh-Hans")
+            XCTAssertNotEqual(chinese.summary, source.summary)
+            XCTAssertEqual(chinese.prepareSteps.count, source.prepareSteps.count)
+            XCTAssertEqual(chinese.laterSteps.count, source.laterSteps.count)
+            XCTAssertEqual(chinese.usuallyRequested.count, source.usuallyRequested.count)
+            XCTAssertEqual(chinese.links.map(\.urlString), source.links.map(\.urlString))
+            XCTAssertEqual(chinese.links.map(\.phase), source.links.map(\.phase))
+            XCTAssertEqual(chinese.lastReviewed, source.lastReviewed)
+            XCTAssertEqual(chinese.matterMatch, source.matterMatch)
+            XCTAssertEqual(source.localized(localeIdentifier: "en"), source)
+            XCTAssertEqual(source.localized(localeIdentifier: "fr"), source)
+            XCTAssertEqual(source.localized(localeIdentifier: "zh_CN"), chinese)
+        }
+    }
+
+    func testMissingChineseOverlayFallsBackToEnglish() throws {
+        let data = try Data(contentsOf: XCTUnwrap(Bundle.main.url(forResource: "provider-guides", withExtension: "json")))
+        let document = try XCTUnwrap(JSONSerialization.jsonObject(with: data) as? [String: Any])
+        var first = try XCTUnwrap((document["guides"] as? [[String: Any]])?.first)
+        first.removeValue(forKey: "translations")
+        let source = try JSONDecoder().decode(OfficialProviderGuide.self, from: JSONSerialization.data(withJSONObject: first))
+        XCTAssertEqual(source.localized(localeIdentifier: "zh-CN"), source)
+        first["translations"] = ["zh-Hans": ["summary": 12]]
+        let malformed = try JSONDecoder().decode(OfficialProviderGuide.self, from: JSONSerialization.data(withJSONObject: first))
+        XCTAssertEqual(malformed.localized(localeIdentifier: "zh-CN").summary, source.summary)
+    }
+
     func testSuggestionsUseOnlyVisibleAccountContextWithoutFalseRegionalMatches() throws {
         struct MatchCase: Decodable { let name: String; let fields: [String: String]; let expected: [String] }
         let url = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "provider-guide-match-cases", withExtension: "json"))
@@ -93,3 +122,4 @@ final class OfficialProviderGuideCatalogTests: XCTestCase {
         }
     }
 }
+
