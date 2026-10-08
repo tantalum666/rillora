@@ -1,6 +1,6 @@
 # Rillora Cloudflare 托管迁移交接
 
-更新时间：2026-10-08（Asia/Hong_Kong）
+更新时间：2026-10-09（Asia/Hong_Kong；October8执行收尾）
 状态：Owner已明确由Agent执行；legal正式域名CNAME已切换，独立DNS/TLS/七页GET及Mac Safari导航验收通过。
 
 仅legal从custom-domains.chatgpt.site改到rillora-legal-pages.pages.dev，GoDaddy配置TTL600、其余33条记录保持。

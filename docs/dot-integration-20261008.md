@@ -1,7 +1,7 @@
 # Dot 整合与法律域名续接 — October8
 
-Status: MERGED; LEGAL DNS CUTOVER VERIFIED; WORK PRESERVATION IN PROGRESS
-Updated: 2026-10-08 (Asia/Hong_Kong)
+Status: MERGED; LEGAL DNS CUTOVER VERIFIED; COMPLETE WORK PUBLISHED / REMOTE VERIFIED
+Updated: 2026-10-09 (Asia/Hong_Kong; October8 work closeout)
 
 Owner要求审查、直接修复并合并Dot新增工作，并明确由本机会话执行原GoDaddy续接。
 基线为06da36071，保留手机上35f37e1b2的分类栏与原套餐/恢复修正。
@@ -58,3 +58,11 @@ CDK内嵌brace-expansion仍是既有开发工具上游限制，不宣称全仓�
 
 QA：[本轮证据](../output/qa/rillora-dot-integration-20261008/)。DNS全区/法律原文/个人字段仅保护保存。
 这轮DNS执行不等于应用Web/API部署、TestFlight、真实新购或普通客户开放；既有价格、数据和暂缓项保持。
+
+
+## October9保存收尾
+
+[Archive25及回执](../collaboration/verification/dot-integration-20261008/README.md)新增9,810路径/1,049对象，
+632,132,864加密字节，包含失败原件、测试产品、录屏及两份完整CI浏览器ZIP。
+保存提交758e6dc5f已在GitHub；新独立LFS下载、解密与目录核验全部通过，旧1–24不重新下载。
+可读材料扫描0未审核发现；本轮临时合成fixture和Safari验证标签已清理。最终文档元数据提交不重跑产品测试。

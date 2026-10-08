@@ -1,7 +1,7 @@
 # Web navigation, settings and Family plan corrections
 
 Status: IMPLEMENTED; SOURCE CI AND 43 BROWSER SCENARIOS PASS; NOT MERGED OR DEPLOYED
-Updated: 2026-10-08 UTC
+Updated: 2026-10-09 (Asia/Hong_Kong; integration closeout)
 
 
 本分支状态是独立交付检查点；后续本机整合、原生运行修正、依赖补丁及PR2合并以

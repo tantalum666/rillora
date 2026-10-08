@@ -1,6 +1,6 @@
 # Source control, complete work preservation and release rollback
 
-Last updated: 2026-10-08 (Asia/Hong_Kong)
+Last updated: 2026-10-09 (Asia/Hong_Kong)
 
 The private remote is [tantalum666/rillora](https://github.com/tantalum666/rillora).
 Owner explicitly requested **all Rillora work** for Git and Dot collaboration on
@@ -391,3 +391,10 @@ unsigned Release and local fixture/prototype build outputs. Source8cdaf2eaa/CI10
 PR2as392f0e81d with identical tree. Previous1–24remain unchanged; raw provider backups/private legal fields,
 authentication/capability URLs and reproducible caches remain excluded. Fresh remote verification follows
 as a separate receipt; application deployment/physical installation are not implied by this preservation.
+
+
+October9closeout: archive25 was freshly downloaded and decrypted/verified at
+`758e6dc5f2e6288315bc199e74181d68d647a220`: all1,049objects/9,810paths match GitHub-read
+metadata. [Remote receipt](../collaboration/verification/dot-integration-20261008/remote-readback.json).
+Previous1–24were not fetched again. Final dated receipt updates preserve the immutable
+capture and do not repeat completed application tests, DNS cutover or provider authentication.

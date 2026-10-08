@@ -1,7 +1,7 @@
 # Guide layout and bilingual bodies — October 8
 
 Status: PUSHED; EXACT-SOURCE CI AND 20/20 BROWSER PASS; NATIVE RUNTIME PENDING
-Updated: 2026-10-08 (Asia/Hong_Kong)
+Updated: 2026-10-09 (Asia/Hong_Kong; integration closeout)
 
 
 本分支状态是独立交付检查点；后续本机整合、原生运行修正、依赖补丁及PR2合并以

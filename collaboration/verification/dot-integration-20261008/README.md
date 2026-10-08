@@ -1,7 +1,7 @@
 # Dot integration and legal cutover — October8
 
-Status: MERGED / LOCALLY SEALED AND VERIFIED; REMOTE VERIFICATION PENDING
-Updated: 2026-10-08 Asia/Hong_Kong
+Status: MERGED / PUBLISHED / LOCAL AND FRESH REMOTE ARCHIVE VERIFIED
+Updated: 2026-10-09 Asia/Hong_Kong
 
 [PR2](https://github.com/tantalum666/rillora/pull/2) merged392f0e81d into codex/matter-category-bar-20261008.
 The merge tree equals tested8cdaf2eaa. CI100passes source/API/Web-infrastructure; browser11passes43scenarios.
@@ -21,3 +21,8 @@ Private DNS backups, legal personal fields, authentication and signed download U
 [Catalog](catalog.json), [capture/exclusions](snapshot.json), [local verification](archive-verification.json),
 [focused contract](../../../docs/dot-integration-20261008.md). Remote and final metadata receipts follow this frozen capture;
 there is no recursive reseal or repeated product testing for documentation-only closeout.
+
+Fresh remote verification completed after midnight October9: metadata was read from GitHub at
+758e6dc5f2e6288315bc199e74181d68d647a220, and only archive25 was downloaded into a new separate LFS store.
+All1,049objects/9,810paths decrypt and match the committed catalog. [Remote receipt](remote-readback.json).
+The final receipt commit changes documentation/metadata only; native/application deployment remains separate.
