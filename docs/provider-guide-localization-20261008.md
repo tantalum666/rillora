@@ -1,6 +1,6 @@
 # Guide layout and bilingual bodies — October 8
 
-Status: SOURCE CORRECTION; CLOUD CHECKS PASS; NATIVE RUNTIME PENDING
+Status: PUSHED; EXACT-SOURCE CI AND 20/20 BROWSER PASS; NATIVE RUNTIME PENDING
 Updated: 2026-10-08 (Asia/Hong_Kong)
 
 ## Owner report and diagnosis
@@ -71,3 +71,35 @@ under another filename. The parallel external-link guard files are untouched.
 Detailed logs and Owner screenshots are not uploaded. Gitleaks is unavailable in the
 cloud executable path; changed payloads were inspected for credentials/private data,
 and repository source CI remains required rather than claiming a local scanner pass.
+
+
+## Final remote verification
+
+Product implementation: `002201bd20db2f6af39a1a85d0b3cfccea3b0958`.
+Final test/source checkpoint: `a69df86f98be4ec4022654c61bce2743b321dc35` on
+`codex/guide-layout-locale-20261008`. All 15 original changed-file blob hashes
+matched the intended local payloads; the follow-up changes only browser test timing
+and screenshot capture.
+
+- [Source CI83](https://github.com/tantalum666/rillora/actions/runs/37713119904): success,
+  all source/API/Web-infrastructure jobs. CI82 also passed the initial product code;
+  its source scan reports 29 reviewed nonsecrets and zero unreviewed findings.
+- [Expanded Chromium regression](https://github.com/tantalum666/rillora/actions/runs/37713119855):
+  20 passed, zero failed/skipped/flaky, after repeating the complete matrix.
+- All 18 guides: both language/width combinations, every reading phase and next/previous
+  step, documents, reload and close paths. Existing cross-tab language/draft and
+  asynchronous identity/session tests also pass.
+- First browser attempt: 19 passed/1 failed. An existing synthetic logo-error event
+  fired before asynchronously restored guide rows existed. The harness now waits for
+  18 rows before dispatching the same event and keeps the 18-fallback assertion.
+  This was not a weakened assertion or hidden product failure.
+- [Final synthetic artifact](https://github.com/tantalum666/rillora/actions/runs/37713119855/artifacts/11522174888)
+  downloaded and SHA256 verified:
+  `503a96ea9ccb9488edb89f29c67692de2b82610b56d89abddbd97c8b63f7c668`.
+  Actual Chinese mobile directory, Chinese mobile Coinbase body and English desktop
+  Coinbase body pixels were inspected. The artifact expires after seven days.
+- Local Web 177/177 and native source guards 34/34 pass; internal and public builds
+  pass with existing chunk-size advisory. No native compile/runtime is implied.
+
+This final receipt changes documentation only and does not rerun or relabel the
+above exact-source results. Shared historical documents remain withheld as stated.
