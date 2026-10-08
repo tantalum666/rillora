@@ -81,7 +81,7 @@ Final test/source checkpoint: `a69df86f98be4ec4022654c61bce2743b321dc35` on
 matched the intended local payloads; the follow-up changes only browser test timing
 and screenshot capture.
 
-- [Source CI83](https://github.com/tantalum666/rillora/actions/runs/37713119904): success,
+- [Source CI86](https://github.com/tantalum666/rillora/actions/runs/37713119904): success,
   all source/API/Web-infrastructure jobs. CI82 also passed the initial product code;
   its source scan reports 29 reviewed nonsecrets and zero unreviewed findings.
 - [Expanded Chromium regression](https://github.com/tantalum666/rillora/actions/runs/37713119855):
