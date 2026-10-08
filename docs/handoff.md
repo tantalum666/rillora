@@ -18,7 +18,7 @@ Owner要求修复实际www/Preview版本缺口，随后读Gmail Stripe告警并�
 ## 证据边界与阻塞
 
 [Web部署](web-rollout-20261009.md)、[Stripe实际结果](stripe-webhook-20261009.md)及各自output/qa目录。
-当前源码8b1f91798在codex/matter-category-bar-20261008。新工作archive26已本地核验422路径/289对象；正在完成推送及独立远端读回。
+当前源码8b1f91798在codex/matter-category-bar-20261008。新工作[archive26](../collaboration/verification/web-stripe-20261009/README.md)已推送，fd17f52ea独立GitHub下载/解密核验422路径/289对象通过；旧1–25不重下。
 Preview会话长时间空闲后实际401、无可用浏览器session；Chrome已停account，Owner本人条款/登录问题已发送，尚未回复。
 不把新邮箱显示/按钮/当前托管年付流程写成通过；旧October6本地TEST闭环仅沿用原证据范围。
 

@@ -3,7 +3,7 @@
 October9当前：三套Web已实际部署并逐文件核对，Preview已补齐API40/schema93；www真实响应式导航通过。
 Stripe TEST500修复源码8b1f91798/CI三任务通过，真实8事件重发后未送达数0，独立云端inbox核验通过。
 旧TEST月订阅已取消/事件applied，原Preview测试资格就绪；本人登录后的当前年付结账仍待验收，Live未开。
-[新增archive26](verification/web-stripe-20261009/README.md)保留422路径/289对象、34,932,485加密字节，本机核验通过，远端读回正在执行。
+[新增archive26](verification/web-stripe-20261009/README.md)保留422路径/289对象、34,932,485加密字节，本机与GitHub独立新下载解密均通过（fd17f52ea）。
 手机仍35f37e1b2，本轮未直装/分发TestFlight；旧档案与价格/真实数据/FanPass保持。
 
 October8保留检查点：Dot双语指南/Web套餐导航已审查修复，经[PR2](https://github.com/tantalum666/rillora/pull/2)
