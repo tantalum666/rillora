@@ -1,0 +1,50 @@
+"""Enable 48-hour TEST checkout for the already observed Owner Preview account only."""
+from pathlib import Path
+import datetime, hashlib, json, subprocess, uuid
+ROOT=Path(__file__).resolve().parents[3]
+QA=ROOT/'output/qa/rillora-stripe-webhook-20261009'
+PRIVATE=ROOT/'.local-secrets/stripe-webhook-20261009'
+receipt=QA/'owner-test-enrollment-task.json';assert not receipt.exists()
+target=json.loads((PRIVATE/'owner-preview-target.json').read_text())['plannerPublicId']
+assert hashlib.sha256(target.encode()).hexdigest()=='71f85e687afc88517ef1134a8c9b72f6918788cb821dccf3a70600daf53083fe'
+expiry=(datetime.datetime.now(datetime.timezone.utc)+datetime.timedelta(hours=48)).isoformat()
+def aws(args,profile='rillora-staging-operator'):
+    return json.loads(subprocess.check_output(['aws',*args,'--profile',profile,'--region','eu-central-1','--output','json']))
+stack=aws(['cloudformation','describe-stacks','--stack-name','RilloraStaging'],'rillora-cdk-deploy')['Stacks'][0]
+assert stack['StackStatus']=='UPDATE_COMPLETE'
+out={x['OutputKey']:x['OutputValue'] for x in stack['Outputs']};assert out['WebUrl']=='https://app.staging.rillora.xyz'
+script="""import pg from 'pg';import {loadDatabaseConfig} from './dist/config.js';import {databaseConnectionOptions} from './dist/db.js';
+const cfg=loadDatabaseConfig();if(cfg.sslMode!=='verify-full')throw new Error('tls_required');
+const c=new pg.Client({...databaseConnectionOptions(cfg),application_name:'rillora-owner-preview-test-enrollment'});await c.connect();
+try {
+ await c.query('begin');
+ const p=(await c.query("select id,status from app.planners where public_id=$1::uuid for update",[process.env.RILLORA_QA_PLANNER])).rows;
+ if(p.length!==1||p[0].status!=='active')throw new Error('exact_active_owner_required');const id=p[0].id;
+ const unsafe=(await c.query(`select exists(select 1 from app.commerce_orders where planner_id=$1 and provider_environment='production')
+  or exists(select 1 from app.commerce_subscriptions where planner_id=$1 and (provider_environment='production'
+    or (provider_environment='test' and state in ('active','cancel_at_period_end','grace','past_due')))) as present`,[id])).rows[0].present;
+ if(unsafe)throw new Error('existing_billing_requires_review');
+ const prior=await c.query('select 1 from app.commerce_validation_accounts where planner_id=$1',[id]);
+ if(prior.rowCount)throw new Error('existing_enrollment_must_not_be_overwritten');
+ const policy=(await c.query('select * from app.commerce_runtime_policy')).rows;
+ await c.query('insert into app.commerce_validation_accounts(planner_id,expires_at,reason) values($1,$2,$3)',
+ [id,process.env.RILLORA_QA_EXPIRY,'Owner-requested Preview Stripe TEST acceptance 2026-10-09; no live billing']);
+ if(JSON.stringify(policy)!==JSON.stringify((await c.query('select * from app.commerce_runtime_policy')).rows))throw new Error('billing_policy_changed');
+ await c.query('set local role continuity_commerce');await c.query("select set_config('app.current_planner_id',$1,true)",[String(id)]);
+ if((await c.query('select app.commerce_validation_enabled() as enabled')).rows[0].enabled!==true)throw new Error('enrollment_readback_failed');
+ await c.query('commit');console.log(JSON.stringify({enrolled:true,testOnly:true,expiresAt:process.env.RILLORA_QA_EXPIRY,
+  existingOwnerOnly:true,noIdentityOrConsentCreated:true,noPaymentsCreated:true,ordinaryBillingPolicyUnchanged:true}));
+}catch(e){await c.query('rollback');throw e;}finally{await c.end();}
+"""
+prior=json.loads((QA/'mapping-read-task.json').read_text())
+body={'cluster':out['ClusterName'],'taskDefinition':out['MigrationTaskDefinitionArn'],'launchType':'FARGATE','clientToken':uuid.uuid4().hex,
+ 'networkConfiguration':{'awsvpcConfiguration':{'subnets':out['PublicSubnetIds'].split(','),'securityGroups':[out['TaskSecurityGroupId']],'assignPublicIp':'ENABLED'}},
+ 'overrides':{'containerOverrides':[{'name':'Migration','command':['node','--input-type=module','-e',script],
+  'environment':[{'name':'RILLORA_QA_PLANNER','value':target},{'name':'RILLORA_QA_EXPIRY','value':expiry}]}]}}
+path=PRIVATE/'owner-test-enrollment-request.json'
+if path.exists():body=json.loads(path.read_text())
+else:path.write_text(json.dumps(body));path.chmod(0o600)
+r=aws(['ecs','run-task','--cli-input-json','file://'+str(path)]);assert not r.get('failures') and len(r['tasks'])==1
+arn=r['tasks'][0]['taskArn'];d={'startedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'taskArn':arn,'cluster':out['ClusterName'],
+ 'logGroup':prior['logGroup'],'logStream':'migration/Migration/'+arn.rsplit('/',1)[-1],'scope':'existing Owner Preview account, TEST only'}
+receipt.write_text(json.dumps(d,indent=2)+'\n');print(json.dumps(d))

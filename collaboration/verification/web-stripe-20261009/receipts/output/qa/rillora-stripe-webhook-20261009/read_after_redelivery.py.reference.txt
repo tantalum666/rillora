@@ -1,0 +1,43 @@
+"""Read signature/mapping outcomes and the exact Owner's pending TEST checkout."""
+from pathlib import Path
+import datetime,json,subprocess,uuid
+ROOT=Path(__file__).resolve().parents[3]
+QA=ROOT/'output/qa/rillora-stripe-webhook-20261009'
+PRIVATE=ROOT/'.local-secrets/stripe-webhook-20261009'
+def aws(args,profile='rillora-staging-operator'):
+    return json.loads(subprocess.check_output(['aws',*args,'--profile',profile,'--region','eu-central-1','--output','json']))
+receipt=QA/'after-redelivery-task.json';assert not receipt.exists()
+body=json.loads((PRIVATE/'mapping-read-request.json').read_text())
+stack=aws(['cloudformation','describe-stacks','--stack-name','RilloraStaging'],'rillora-cdk-deploy')['Stacks'][0]
+assert stack['StackStatus']=='UPDATE_COMPLETE'
+out={x['OutputKey']:x['OutputValue'] for x in stack['Outputs']};assert out['WebUrl']=='https://app.staging.rillora.xyz'
+body['taskDefinition']=out['MigrationTaskDefinitionArn'];body['clientToken']=uuid.uuid4().hex
+script="""import pg from 'pg';import {loadDatabaseConfig} from './dist/config.js';import {databaseConnectionOptions} from './dist/db.js';
+const cfg=loadDatabaseConfig();if(cfg.sslMode!=='verify-full')throw new Error('tls_required');
+const c=new pg.Client({...databaseConnectionOptions(cfg),application_name:'rillora-webhook-redelivery-readback'});await c.connect();
+try{await c.query('begin read only');await c.query("set local statement_timeout='10s'");
+const events=['evt_1UNG2YCxTlowhyiGBkLsbRrH','evt_1UNFsHCxTlowhyiGoLeaoLEt','evt_1UNFlnCxTlowhyiGhQWIwnxv','evt_1UNFlmCxTlowhyiGbtm450GL','evt_1UNFL1CxTlowhyiGfsVj3hPo','evt_1UNFL2CxTlowhyiGrgPNmYeu','evt_1UNFL2CxTlowhyiGKrx5kHXu','evt_1UNFL1CxTlowhyiGMxKvJoAw','evt_1UONrzCxTlowhyiGtynlnX3Y'];
+const inbox=(await c.query(`select provider_event_reference,event_type,signature_verified,processing_status,last_error_code,attempt_count,processed_at,last_attempt_at
+ from app.commerce_provider_event_inbox where provider_code='stripe' and provider_environment='test' and provider_event_reference=any($1::text[]) order by provider_event_reference`,[events])).rows;
+const p=(await c.query('select id,status from app.planners where public_id=$1::uuid',[process.env.RILLORA_QA_PLANNER])).rows;
+if(p.length!==1||p[0].status!=='active')throw new Error('exact_active_owner_required');const id=p[0].id;
+const subscriptions=(await c.query(`select renewal_provider,provider_environment,state,provider_subscription_reference,current_period_ends_at,cancel_at_period_end
+ from app.commerce_subscriptions where planner_id=$1`,[id])).rows;
+const pending=(await c.query(`select o.public_id as order_reference,o.status,o.created_at,o.amount_minor,o.currency_code,pr.price_code,
+ a.public_id as attempt_reference,a.provider_payment_reference,a.status as attempt_status
+ from app.commerce_orders o join app.commerce_prices pr on pr.id=o.price_id
+ left join app.commerce_payment_attempts a on a.order_id=o.id and a.planner_id=o.planner_id
+ where o.planner_id=$1 and o.provider_code='stripe' and o.provider_environment='test' and o.status in ('created','pending')`,[id])).rows;
+const activeMatterCount=(await c.query('select count(*)::int as n from app.matter_items where planner_id=$1 and archived_at is null',[id])).rows[0].n;
+await c.query('commit');console.log(JSON.stringify({readOnly:true,inbox,subscriptions,pending,activeMatterCount}));
+}finally{await c.end();}"""
+body['overrides']={'containerOverrides':[{'name':'Migration','command':['node','--input-type=module','-e',script],
+ 'environment':[{'name':'RILLORA_QA_PLANNER','value':json.loads((PRIVATE/'owner-preview-target.json').read_text())['plannerPublicId']}]}]}
+path=PRIVATE/'after-redelivery-request.json'
+if path.exists():body=json.loads(path.read_text())
+else:path.write_text(json.dumps(body));path.chmod(0o600)
+r=aws(['ecs','run-task','--cli-input-json','file://'+str(path)]);assert not r.get('failures') and len(r['tasks'])==1
+arn=r['tasks'][0]['taskArn'];prior=json.loads((QA/'mapping-read-task.json').read_text())
+saved={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'taskArn':arn,'cluster':out['ClusterName'],
+ 'logGroup':prior['logGroup'],'logStream':'migration/Migration/'+arn.rsplit('/',1)[-1],'readOnly':True}
+receipt.write_text(json.dumps(saved,indent=2)+'\n');print(json.dumps(saved))

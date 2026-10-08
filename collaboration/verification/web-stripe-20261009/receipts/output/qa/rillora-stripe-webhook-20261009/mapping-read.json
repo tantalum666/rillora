@@ -1,0 +1,71 @@
+{
+  "readOnly": true,
+  "testEventAccountExistsLocally": false,
+  "inbox": [
+    {
+      "provider_event_reference": "evt_1UNFL1CxTlowhyiGfsVj3hPo",
+      "event_type": "checkout.session.completed",
+      "processing_status": "failed",
+      "last_error_code": "Error",
+      "attempt_count": 2
+    },
+    {
+      "provider_event_reference": "evt_1UNFL1CxTlowhyiGMxKvJoAw",
+      "event_type": "invoice.paid",
+      "processing_status": "failed",
+      "last_error_code": "Error",
+      "attempt_count": 2
+    },
+    {
+      "provider_event_reference": "evt_1UNFL2CxTlowhyiGKrx5kHXu",
+      "event_type": "invoice.payment_succeeded",
+      "processing_status": "failed",
+      "last_error_code": "Error",
+      "attempt_count": 2
+    },
+    {
+      "provider_event_reference": "evt_1UNFL2CxTlowhyiGrgPNmYeu",
+      "event_type": "customer.subscription.created",
+      "processing_status": "failed",
+      "last_error_code": "Error",
+      "attempt_count": 2
+    },
+    {
+      "provider_event_reference": "evt_1UNFlmCxTlowhyiGbtm450GL",
+      "event_type": "customer.subscription.updated",
+      "processing_status": "failed",
+      "last_error_code": "Error",
+      "attempt_count": 2
+    },
+    {
+      "provider_event_reference": "evt_1UNFlnCxTlowhyiGhQWIwnxv",
+      "event_type": "customer.subscription.updated",
+      "processing_status": "failed",
+      "last_error_code": "Error",
+      "attempt_count": 2
+    },
+    {
+      "provider_event_reference": "evt_1UNFsHCxTlowhyiGoLeaoLEt",
+      "event_type": "customer.subscription.updated",
+      "processing_status": "failed",
+      "last_error_code": "Error",
+      "attempt_count": 2
+    },
+    {
+      "provider_event_reference": "evt_1UNG2YCxTlowhyiGBkLsbRrH",
+      "event_type": "customer.subscription.deleted",
+      "processing_status": "failed",
+      "last_error_code": "Error",
+      "attempt_count": 2
+    }
+  ],
+  "ownerEligibility": [
+    {
+      "status": "active",
+      "has_enrollment": false,
+      "enrollment_active": false,
+      "active_matter_count": 1,
+      "usable_browser_sessions": 0
+    }
+  ]
+}

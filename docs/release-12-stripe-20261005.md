@@ -1,9 +1,14 @@
 # Bilingual release acceptance and Stripe Web priority
 
 Status: SELECTED INDEPENDENT WORK COMPLETE; STRIPE TEST PASS; NATIVE5 READY; REMOTE PRESERVATION VERIFIED
-Last updated: 2026-10-06 (Asia/Hong_Kong)
+Last updated: 2026-10-09 (Asia/Hong_Kong)
 
-## October6 current result
+## October9接续
+
+旧USD88.99测试是下述本地隔离闭环。当前云端告警已修复并真实投递，原Preview测试资格已准备；
+本人登录后的真实云端年付仍未验收。以[当前Stripe合同](stripe-webhook-20261009.md)为准，不重复或扩大旧证据。
+
+## October6 retained result
 
 The work below continued across midnight. Source85d79c891 has actual CI57 success;
 the native accessibility repairs, final UI driver and provider fixture are committed

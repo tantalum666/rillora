@@ -1,0 +1,17 @@
+{
+  "at": "2026-10-08T18:32:47.867560+00:00",
+  "originSource": "RilloraStaging ApiEndpoint output",
+  "checks": [
+    {
+      "path": "/health/live",
+      "status": 200,
+      "cacheControl": null
+    },
+    {
+      "path": "/health/ready",
+      "status": 200,
+      "cacheControl": null
+    }
+  ],
+  "note": "CloudFront app /api/health routes are not exposed and returned404; direct configured API health routes are the intended checks."
+}

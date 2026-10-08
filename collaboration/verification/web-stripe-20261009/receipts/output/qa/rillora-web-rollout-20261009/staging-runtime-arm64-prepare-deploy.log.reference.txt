@@ -1,0 +1,500 @@
+
+✨  Synthesis time: 3.14s
+
+RilloraStaging: start: Building RilloraStaging reviewed template
+RilloraStaging: success: Built RilloraStaging reviewed template
+RilloraStaging: start: Building Image
+RilloraStaging: start: Publishing RilloraStaging reviewed template (current_account-eu-central-1-68c5b8bf)
+#0 building with "colima" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.44kB done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/dockerfile:1.7
+#2 DONE 2.2s
+
+#3 docker-image://docker.io/docker/dockerfile:1.7@sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e
+#3 resolve docker.io/docker/dockerfile:1.7@sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e done
+#3 CACHED
+
+#4 [internal] load metadata for docker.io/library/node:22.22.3-bookworm-slim
+RilloraStaging: success: Published RilloraStaging reviewed template (current_account-eu-central-1-68c5b8bf)
+#4 DONE 1.8s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 84B done
+#5 DONE 0.0s
+
+#6 [runtime 1/9] FROM docker.io/library/node:22.22.3-bookworm-slim@sha256:e21fc383b50d5347dc7a9f1cae45b8f4e2f0d39f7ade28e4eef7d2934522b752
+#6 resolve docker.io/library/node:22.22.3-bookworm-slim@sha256:e21fc383b50d5347dc7a9f1cae45b8f4e2f0d39f7ade28e4eef7d2934522b752 0.0s done
+#6 DONE 0.1s
+
+#7 [internal] load build context
+#7 transferring context: 1.47MB 0.0s done
+#7 DONE 0.1s
+
+#8 [build 2/9] WORKDIR /app
+#8 DONE 0.0s
+
+#9 [runtime 2/9] COPY certificates/rds/global-bundle.pem /app/certs/rds-global-bundle.pem
+#9 DONE 0.0s
+
+#10 [build 3/9] COPY package.json package-lock.json ./
+#10 DONE 0.0s
+
+#11 [build 4/9] RUN npm ci
+#11 ...
+
+#12 [runtime 3/9] RUN apt-get update     && apt-get install --yes --no-install-recommends ca-certificates     && echo "e5bb2084ccf45087bda1c9bffdea0eb15ee67f0b91646106e466714f9de3c7e3  /app/certs/rds-global-bundle.pem" | sha256sum --check --strict     && rm -rf /var/lib/apt/lists/*
+#12 0.877 Get:1 http://deb.debian.org/debian bookworm InRelease [151 kB]
+#12 1.595 Get:2 http://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]
+#12 1.792 Get:3 http://deb.debian.org/debian-security bookworm-security InRelease [34.8 kB]
+#12 1.997 Get:4 http://deb.debian.org/debian bookworm/main arm64 Packages [8689 kB]
+#12 ...
+
+#11 [build 4/9] RUN npm ci
+#11 6.464 npm warn deprecated jsrsasign@11.1.5: This package is no longer maintained.
+#11 ...
+
+#12 [runtime 3/9] RUN apt-get update     && apt-get install --yes --no-install-recommends ca-certificates     && echo "e5bb2084ccf45087bda1c9bffdea0eb15ee67f0b91646106e466714f9de3c7e3  /app/certs/rds-global-bundle.pem" | sha256sum --check --strict     && rm -rf /var/lib/apt/lists/*
+#12 6.558 Get:5 http://deb.debian.org/debian bookworm-updates/main arm64 Packages [6936 B]
+#12 6.721 Get:6 http://deb.debian.org/debian-security bookworm-security/main arm64 Packages [347 kB]
+#12 7.304 Fetched 9285 kB in 7s (1320 kB/s)
+#12 7.304 Reading package lists...
+#12 7.695 Reading package lists...
+#12 8.018 Building dependency tree...
+#12 8.112 Reading state information...
+#12 8.199 The following additional packages will be installed:
+#12 8.199   libssl3 openssl
+#12 8.222 The following NEW packages will be installed:
+#12 8.223   ca-certificates libssl3 openssl
+#12 9.040 0 upgraded, 3 newly installed, 0 to remove and 5 not upgraded.
+#12 9.040 Need to get 3400 kB of archives.
+#12 9.040 After this operation, 8942 kB of additional disk space will be used.
+#12 9.040 Get:1 http://deb.debian.org/debian-security bookworm-security/main arm64 libssl3 arm64 3.0.22-1~deb12u1 [1828 kB]
+#12 13.88 Get:2 http://deb.debian.org/debian-security bookworm-security/main arm64 openssl arm64 3.0.22-1~deb12u1 [1410 kB]
+#12 16.02 Get:3 http://deb.debian.org/debian-security bookworm-security/main arm64 ca-certificates all 20250419~deb12u1 [162 kB]
+#12 16.49 debconf: delaying package configuration, since apt-utils is not installed
+#12 16.51 Fetched 3400 kB in 8s (421 kB/s)
+#12 16.52 Selecting previously unselected package libssl3:arm64.
+#12 16.52 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 6090 files and directories currently installed.)
+#12 16.53 Preparing to unpack .../libssl3_3.0.22-1~deb12u1_arm64.deb ...
+#12 16.53 Unpacking libssl3:arm64 (3.0.22-1~deb12u1) ...
+#12 16.62 Selecting previously unselected package openssl.
+#12 16.62 Preparing to unpack .../openssl_3.0.22-1~deb12u1_arm64.deb ...
+#12 16.62 Unpacking openssl (3.0.22-1~deb12u1) ...
+#12 16.70 Selecting previously unselected package ca-certificates.
+#12 16.70 Preparing to unpack .../ca-certificates_20250419~deb12u1_all.deb ...
+#12 16.70 Unpacking ca-certificates (20250419~deb12u1) ...
+#12 16.73 Setting up libssl3:arm64 (3.0.22-1~deb12u1) ...
+#12 16.73 Setting up openssl (3.0.22-1~deb12u1) ...
+#12 16.73 Setting up ca-certificates (20250419~deb12u1) ...
+#12 16.77 debconf: unable to initialize frontend: Dialog
+#12 16.77 debconf: (TERM is not set, so the dialog frontend is not usable.)
+#12 16.77 debconf: falling back to frontend: Readline
+#12 16.77 debconf: unable to initialize frontend: Readline
+#12 16.77 debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/aarch64-linux-gnu/perl/5.36.0 /usr/local/share/perl/5.36.0 /usr/lib/aarch64-linux-gnu/perl5/5.36 /usr/share/perl5 /usr/lib/aarch64-linux-gnu/perl-base /usr/lib/aarch64-linux-gnu/perl/5.36 /usr/share/perl/5.36 /usr/local/lib/site_perl) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+#12 16.77 debconf: falling back to frontend: Teletype
+#12 16.93 Updating certificates in /etc/ssl/certs...
+#12 17.14 150 added, 0 removed; done.
+#12 17.15 Processing triggers for libc-bin (2.36-9+deb12u14) ...
+#12 17.16 Processing triggers for ca-certificates (20250419~deb12u1) ...
+#12 17.17 Updating certificates in /etc/ssl/certs...
+#12 17.32 0 added, 0 removed; done.
+#12 17.32 Running hooks in /etc/ca-certificates/update.d...
+#12 17.32 done.
+#12 17.34 /app/certs/rds-global-bundle.pem: OK
+#12 DONE 17.4s
+
+#13 [runtime 4/9] WORKDIR /app
+#13 DONE 0.0s
+
+#11 [build 4/9] RUN npm ci
+#11 33.61 
+#11 33.61 added 256 packages, and audited 257 packages in 33s
+#11 33.61 
+#11 33.61 60 packages are looking for funding
+#11 33.61   run `npm fund` for details
+#11 33.61 npm notice
+#11 33.61 npm notice New major version of npm available! 10.9.8 -> 12.2.0
+#11 33.61 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+#11 33.61 npm notice To update run: npm install -g npm@12.2.0
+#11 33.61 npm notice
+#11 33.61 
+#11 33.61 found 0 vulnerabilities
+#11 DONE 33.8s
+
+#14 [build 5/9] COPY tsconfig.json tsconfig.build.json ./
+#14 DONE 0.1s
+
+#15 [build 6/9] COPY src ./src
+#15 DONE 0.0s
+
+#16 [build 7/9] COPY migrations ./migrations
+#16 DONE 0.0s
+
+#17 [build 8/9] COPY certificates ./certificates
+#17 DONE 0.0s
+
+#18 [build 9/9] RUN npm run build && npm prune --omit=dev
+#18 0.195 
+#18 0.195 > continuity-api@0.1.0 build
+#18 0.195 > tsc -p tsconfig.build.json
+#18 0.195 
+#18 2.537 
+#18 2.537 up to date, audited 179 packages in 1s
+#18 2.537 
+#18 2.537 39 packages are looking for funding
+#18 2.537   run `npm fund` for details
+#18 2.538 
+#18 2.538 found 0 vulnerabilities
+#18 DONE 2.6s
+
+#19 [runtime 5/9] COPY --chown=node:node --from=build /app/package.json ./package.json
+#19 DONE 0.0s
+
+#20 [runtime 6/9] COPY --chown=node:node --from=build /app/node_modules ./node_modules
+#20 DONE 0.5s
+
+#21 [runtime 7/9] COPY --chown=node:node --from=build /app/dist ./dist
+#21 DONE 0.1s
+
+#22 [runtime 8/9] COPY --chown=node:node --from=build /app/migrations ./migrations
+#22 DONE 0.0s
+
+#23 [runtime 9/9] COPY --chown=node:node --from=build /app/certificates ./certificates
+#23 DONE 0.0s
+
+#24 exporting to image
+#24 exporting layers
+#24 exporting layers 1.2s done
+#24 exporting manifest sha256:a3a8eeaeed7500264607228f11e1dc9885d1ab03157c766d3c0b893caa075086 done
+#24 exporting config sha256:2134de215ef36047fa2d1948c6eadbf492a09a3a4988706442bac71747a2996a done
+#24 naming to docker.io/library/cdkasset-7e230879fcdeb659bede997ebf43f8aee92b66d85041b054af12f684ccabc1d9:latest done
+#24 unpacking to docker.io/library/cdkasset-7e230879fcdeb659bede997ebf43f8aee92b66d85041b054af12f684ccabc1d9:latest
+#24 unpacking to docker.io/library/cdkasset-7e230879fcdeb659bede997ebf43f8aee92b66d85041b054af12f684ccabc1d9:latest 0.8s done
+#24 DONE 2.0s
+RilloraStaging: success: Built Image
+RilloraStaging: start: Publishing Image (current_account-eu-central-1-24b80aa1)
+The push refers to repository [133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1]
+19624ea4d474: Waiting
+b8d8472da642: Waiting
+7a269be6e4b9: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+f65b12bde977: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+dae90ab7dcf0: Waiting
+bc304a66552e: Waiting
+402614bd39aa: Waiting
+5ae42c9ff880: Waiting
+e31df1f1404e: Waiting
+dae90ab7dcf0: Waiting
+bc304a66552e: Waiting
+402614bd39aa: Waiting
+5ae42c9ff880: Waiting
+e31df1f1404e: Waiting
+19624ea4d474: Waiting
+b8d8472da642: Waiting
+7a269be6e4b9: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+f65b12bde977: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+f65b12bde977: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+dae90ab7dcf0: Waiting
+bc304a66552e: Waiting
+402614bd39aa: Waiting
+5ae42c9ff880: Waiting
+e31df1f1404e: Waiting
+19624ea4d474: Waiting
+b8d8472da642: Waiting
+7a269be6e4b9: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+bc304a66552e: Waiting
+402614bd39aa: Waiting
+5ae42c9ff880: Waiting
+e31df1f1404e: Waiting
+19624ea4d474: Waiting
+b8d8472da642: Waiting
+7a269be6e4b9: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+f65b12bde977: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+dae90ab7dcf0: Waiting
+bc304a66552e: Waiting
+402614bd39aa: Waiting
+5ae42c9ff880: Waiting
+e31df1f1404e: Waiting
+19624ea4d474: Waiting
+b8d8472da642: Waiting
+7a269be6e4b9: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+f65b12bde977: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+dae90ab7dcf0: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+dae90ab7dcf0: Waiting
+bc304a66552e: Waiting
+402614bd39aa: Waiting
+5ae42c9ff880: Waiting
+e31df1f1404e: Waiting
+19624ea4d474: Waiting
+b8d8472da642: Waiting
+7a269be6e4b9: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+f65b12bde977: Waiting
+7a269be6e4b9: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+f65b12bde977: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+dae90ab7dcf0: Waiting
+bc304a66552e: Waiting
+402614bd39aa: Waiting
+5ae42c9ff880: Waiting
+e31df1f1404e: Waiting
+19624ea4d474: Waiting
+b8d8472da642: Waiting
+620d41e441a2: Waiting
+f65b12bde977: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+dae90ab7dcf0: Waiting
+bc304a66552e: Waiting
+402614bd39aa: Waiting
+5ae42c9ff880: Waiting
+e31df1f1404e: Waiting
+19624ea4d474: Waiting
+b8d8472da642: Waiting
+7a269be6e4b9: Waiting
+aff88cd70f0e: Waiting
+bc304a66552e: Waiting
+402614bd39aa: Waiting
+5ae42c9ff880: Waiting
+e31df1f1404e: Waiting
+19624ea4d474: Waiting
+b8d8472da642: Waiting
+7a269be6e4b9: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+f65b12bde977: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+dae90ab7dcf0: Waiting
+402614bd39aa: Waiting
+5ae42c9ff880: Waiting
+e31df1f1404e: Waiting
+19624ea4d474: Waiting
+b8d8472da642: Waiting
+7a269be6e4b9: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+f65b12bde977: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+dae90ab7dcf0: Waiting
+bc304a66552e: Waiting
+dae90ab7dcf0: Waiting
+bc304a66552e: Waiting
+402614bd39aa: Waiting
+5ae42c9ff880: Waiting
+e31df1f1404e: Waiting
+19624ea4d474: Waiting
+b8d8472da642: Waiting
+7a269be6e4b9: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+f65b12bde977: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+5ae42c9ff880: Waiting
+e31df1f1404e: Waiting
+19624ea4d474: Waiting
+b8d8472da642: Waiting
+7a269be6e4b9: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+f65b12bde977: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+dae90ab7dcf0: Waiting
+bc304a66552e: Waiting
+402614bd39aa: Waiting
+e31df1f1404e: Waiting
+19624ea4d474: Waiting
+b8d8472da642: Waiting
+7a269be6e4b9: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+f65b12bde977: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+dae90ab7dcf0: Waiting
+bc304a66552e: Waiting
+402614bd39aa: Waiting
+5ae42c9ff880: Waiting
+402614bd39aa: Waiting
+5ae42c9ff880: Waiting
+e31df1f1404e: Waiting
+19624ea4d474: Waiting
+b8d8472da642: Waiting
+7a269be6e4b9: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+f65b12bde977: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+dae90ab7dcf0: Waiting
+bc304a66552e: Waiting
+bc304a66552e: Waiting
+402614bd39aa: Waiting
+5ae42c9ff880: Waiting
+e31df1f1404e: Waiting
+19624ea4d474: Waiting
+b8d8472da642: Waiting
+7a269be6e4b9: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+f65b12bde977: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+dae90ab7dcf0: Waiting
+7a269be6e4b9: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+f65b12bde977: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+dae90ab7dcf0: Waiting
+bc304a66552e: Waiting
+402614bd39aa: Waiting
+5ae42c9ff880: Waiting
+e31df1f1404e: Waiting
+19624ea4d474: Waiting
+b8d8472da642: Waiting
+b8d8472da642: Waiting
+7a269be6e4b9: Layer already exists
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+f65b12bde977: Layer already exists
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+dae90ab7dcf0: Waiting
+bc304a66552e: Waiting
+402614bd39aa: Waiting
+5ae42c9ff880: Waiting
+e31df1f1404e: Waiting
+19624ea4d474: Waiting
+19624ea4d474: Waiting
+b8d8472da642: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+dae90ab7dcf0: Waiting
+bc304a66552e: Waiting
+402614bd39aa: Waiting
+5ae42c9ff880: Waiting
+e31df1f1404e: Waiting
+e31df1f1404e: Waiting
+19624ea4d474: Waiting
+b8d8472da642: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+dae90ab7dcf0: Waiting
+bc304a66552e: Waiting
+402614bd39aa: Waiting
+5ae42c9ff880: Waiting
+bc304a66552e: Waiting
+402614bd39aa: Layer already exists
+5ae42c9ff880: Waiting
+e31df1f1404e: Waiting
+19624ea4d474: Waiting
+b8d8472da642: Waiting
+aff88cd70f0e: Layer already exists
+620d41e441a2: Layer already exists
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+dae90ab7dcf0: Waiting
+4f4fb700ef54: Waiting
+dae90ab7dcf0: Waiting
+bc304a66552e: Waiting
+5ae42c9ff880: Waiting
+e31df1f1404e: Waiting
+19624ea4d474: Waiting
+b8d8472da642: Waiting
+5ae42c9ff880: Waiting
+19624ea4d474: Waiting
+b8d8472da642: Waiting
+4f4fb700ef54: Waiting
+dae90ab7dcf0: Waiting
+19624ea4d474: Waiting
+4f4fb700ef54: Waiting
+dae90ab7dcf0: Waiting
+5ae42c9ff880: Waiting
+92355586286e: Pushed
+4f4fb700ef54: Pushed
+b8d8472da642: Pushed
+bc304a66552e: Pushed
+5ae42c9ff880: Pushed
+19624ea4d474: Pushed
+e31df1f1404e: Pushed
+dae90ab7dcf0: Pushed
+7e230879fcdeb659bede997ebf43f8aee92b66d85041b054af12f684ccabc1d9: digest: sha256:a3a8eeaeed7500264607228f11e1dc9885d1ab03157c766d3c0b893caa075086 size: 2859
+RilloraStaging: success: Published Image (current_account-eu-central-1-24b80aa1)
+RilloraStaging: creating CloudFormation changeset...
+RilloraStaging: deploying... [1/1]
+RilloraStaging | 0/4 | 2:04:36 AM | UPDATE_IN_PROGRESS      | AWS::CloudFormation::Stack                  | RilloraStaging User Initiated
+RilloraStaging | 0/4 | 2:04:42 AM | UPDATE_IN_PROGRESS      | AWS::ECS::TaskDefinition                    | MigrationTaskDefinition (MigrationTaskDefinitionE89B136E) Requested update requires the creation of a new physical resource; hence creating one.
+RilloraStaging | 0/4 | 2:04:43 AM | UPDATE_IN_PROGRESS      | AWS::ECS::TaskDefinition                    | MigrationTaskDefinition (MigrationTaskDefinitionE89B136E) Resource creation Initiated
+RilloraStaging | 1/4 | 2:04:44 AM | UPDATE_COMPLETE         | AWS::ECS::TaskDefinition                    | MigrationTaskDefinition (MigrationTaskDefinitionE89B136E) 
+RilloraStaging | 1/4 | 2:04:45 AM | UPDATE_IN_PROGRESS      | AWS::IAM::Policy                            | StagingOperatorRole/DefaultPolicy (StagingOperatorRoleDefaultPolicyCF77C65B) 
+RilloraStaging | 2/4 | 2:05:01 AM | UPDATE_COMPLETE         | AWS::IAM::Policy                            | StagingOperatorRole/DefaultPolicy (StagingOperatorRoleDefaultPolicyCF77C65B) 
+RilloraStaging | 3/4 | 2:05:04 AM | UPDATE_COMPLETE_CLEANUP | AWS::CloudFormation::Stack                  | RilloraStaging 
+RilloraStaging | 3/4 | 2:05:05 AM | DELETE_IN_PROGRESS      | AWS::ECS::TaskDefinition                    | MigrationTaskDefinition (MigrationTaskDefinitionE89B136E) 
+RilloraStaging | 2/4 | 2:05:06 AM | DELETE_COMPLETE         | AWS::ECS::TaskDefinition                    | MigrationTaskDefinition (MigrationTaskDefinitionE89B136E) 
+RilloraStaging | 3/4 | 2:05:07 AM | UPDATE_COMPLETE         | AWS::CloudFormation::Stack                  | RilloraStaging 
+
+✅  RilloraStaging
+
+✨  Deployment time: 40.04s
+
+Outputs:
+RilloraStaging.AccountDeletionClientSecretArn = arn:aws:secretsmanager:eu-central-1:133857166372:secret:AccountDeletionClientSecret-TwZNALLyb7Rn-p2D5qD
+RilloraStaging.ApiEndpoint = https://l1g8350qw0.execute-api.eu-central-1.amazonaws.com
+RilloraStaging.ClusterName = RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5
+RilloraStaging.ContentMigrationEnabled = false
+RilloraStaging.ContentProtectionMode = encrypted
+RilloraStaging.EmailVerificationClientSecretArn = arn:aws:secretsmanager:eu-central-1:133857166372:secret:EmailVerificationClientSecr-rUwJxh95pBti-KF2wjA
+RilloraStaging.MigrationTaskDefinitionArn = arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingMigrationTaskDefinitionD83F7D18:32
+RilloraStaging.PrivateContentKeyArn = arn:aws:kms:eu-central-1:133857166372:key/f1fead4c-dcbf-49e6-9b24-eb23c65831f6
+RilloraStaging.PublicSubnetIds = subnet-0344e3c6bae4e3731,subnet-0610e7921274f95bd
+RilloraStaging.ServiceDesiredCount = 1
+RilloraStaging.StagingOperatorRoleArn = arn:aws:iam::133857166372:role/rillora/rillora-staging-operator
+RilloraStaging.StripeTestApiKeySecretArn = arn:aws:secretsmanager:eu-central-1:133857166372:secret:StripeTestSecret04351D5D-RYsCQzd9tQVc-pzQZlf
+RilloraStaging.StripeTestWebhookSecretArn = arn:aws:secretsmanager:eu-central-1:133857166372:secret:StripeTestWebhookSecret27AD-DjIcVJgvFIix-BNvgFG
+RilloraStaging.TaskSecurityGroupId = sg-062c63db94ecf2e16
+RilloraStaging.WebDistributionDomainName = d1ee12jk5j6ple.cloudfront.net
+RilloraStaging.WebOidcClientSecretArn = arn:aws:secretsmanager:eu-central-1:133857166372:secret:WebOidcClientSecret8C81BEC4-R2rkmUprqisV-VWDgAO
+RilloraStaging.WebUrl = https://app.staging.rillora.xyz
+Stack ARN:
+arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319
+
+✨  Total time: 131.63s
+

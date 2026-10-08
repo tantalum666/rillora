@@ -1,8 +1,13 @@
 # Web navigation, settings and Family plan corrections
 
-Status: IMPLEMENTED; SOURCE CI AND 43 BROWSER SCENARIOS PASS; NOT MERGED OR DEPLOYED
+Status: MERGED AND WEB DEPLOYED; AUTHENTICATED IDENTITY/TEST CHECKOUT ACCEPTANCE PENDING
 Updated: 2026-10-09 (Asia/Hong_Kong; integration closeout)
 
+
+October9当前：三套Web已实际部署，Preview API/schema也已补齐。www实际导航通过；
+Preview旧会话已观察到导航/设置/权益/指南修正，随后真实401，邮箱与TEST购买仍待Owner原账号登录。
+[部署证据](web-rollout-20261009.md)和[Stripe入口/回调](stripe-webhook-20261009.md)拥有当前状态。
+下文独立分支验证与未部署描述是带日期的原交付检查点，不能再当作当前门。
 
 本分支状态是独立交付检查点；后续本机整合、原生运行修正、依赖补丁及PR2合并以
 [October8整合记录](dot-integration-20261008.md)为准。以下旧“未合并／原生待运行”不再作为当前执行门。

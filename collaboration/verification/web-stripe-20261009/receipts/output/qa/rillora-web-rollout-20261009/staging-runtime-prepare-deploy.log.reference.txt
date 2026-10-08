@@ -1,0 +1,47 @@
+
+✨  Synthesis time: 1.53s
+
+RilloraStaging: start: Building RilloraStaging reviewed template
+RilloraStaging: success: Built RilloraStaging reviewed template
+RilloraStaging: start: Building Image
+RilloraStaging: start: Publishing RilloraStaging reviewed template (current_account-eu-central-1-68c5b8bf)
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  1.445MB
+Step 1/23 : FROM node:22.22.3-bookworm-slim AS build
+22.22.3-bookworm-slim: Pulling from library/node
+RilloraStaging: success: Published RilloraStaging reviewed template (current_account-eu-central-1-68c5b8bf)
+911b8249aa1a: Pulling fs layer
+6122a3c9fecb: Pulling fs layer
+419ef9ca8c7d: Pulling fs layer
+005e091ec520: Pulling fs layer
+b9136609bef0: Pulling fs layer
+2ee9d0928afc: Download complete
+911b8249aa1a: Download complete
+6122a3c9fecb: Download complete
+9fa71d8c59ba: Download complete
+005e091ec520: Download complete
+b9136609bef0: Download complete
+911b8249aa1a: Pull complete
+b9136609bef0: Pull complete
+419ef9ca8c7d: Download complete
+419ef9ca8c7d: Pull complete
+6122a3c9fecb: Pull complete
+005e091ec520: Pull complete
+Digest: sha256:e21fc383b50d5347dc7a9f1cae45b8f4e2f0d39f7ade28e4eef7d2934522b752
+Status: Image is up to date for node:22.22.3-bookworm-slim
+ ---> e21fc383b50d
+Step 2/23 : WORKDIR /app
+ ---> Running in f626690d2ac2
+ ---> Removed intermediate container f626690d2ac2
+ ---> 49a9dd732ba1
+Step 3/23 : COPY package.json package-lock.json ./
+failed to get destination image "sha256:49a9dd732ba13c6a233223b460463f2eb11c729ce8442ed40830cfdbd0d927b6": image with reference sha256:49a9dd732ba13c6a233223b460463f2eb11c729ce8442ed40830cfdbd0d927b6 was found but does not provide the specified platform (linux/amd64)
+RilloraStaging: fail: docker build --tag cdkasset-826bbf2793df101867a9751103dc64594a18b30380980f61e360fa4fa0c4c485 --platform linux/amd64 . exited with error code 1: DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+failed to get destination image "sha256:49a9dd732ba13c6a233223b460463f2eb11c729ce8442ed40830cfdbd0d927b6": image with reference sha256:49a9dd732ba13c6a233223b460463f2eb11c729ce8442ed40830cfdbd0d927b6 was found but does not provide the specified platform (linux/amd64)
+Failed to build asset Image

@@ -1,0 +1,62 @@
+{
+  "requests": [
+    {
+      "sequence": 214,
+      "path": "/api/v1/overview",
+      "status": 200
+    },
+    {
+      "sequence": 251,
+      "path": "/api/v1/commerce/status",
+      "status": 200
+    },
+    {
+      "sequence": 256,
+      "path": "/api/v1/audit-events",
+      "status": 200
+    },
+    {
+      "sequence": 257,
+      "path": "/api/v1/official-setup-checks",
+      "status": 200
+    },
+    {
+      "sequence": 263,
+      "path": "/api/v1/account/identity",
+      "status": 404
+    },
+    {
+      "sequence": 268,
+      "path": "/api/v1/account/archived-matters",
+      "status": 200
+    },
+    {
+      "sequence": 273,
+      "path": "/api/v1/account/profile",
+      "status": 200
+    },
+    {
+      "sequence": 277,
+      "path": "/api/v1/account/profile",
+      "status": 200
+    },
+    {
+      "sequence": 295,
+      "path": "/api/v1/commerce/stripe/status",
+      "status": 404
+    },
+    {
+      "sequence": 370,
+      "path": "/api/v1/account/archived-matters",
+      "status": 401
+    },
+    {
+      "sequence": 387,
+      "path": "/api/v1/account/profile",
+      "status": 401
+    }
+  ],
+  "returnedToSignedOutPublicPage": true,
+  "noLogoutClicked": true,
+  "scope": "Status/path only; no cookie, token, response body or personal identifier"
+}

@@ -398,3 +398,10 @@ October9closeout: archive25 was freshly downloaded and decrypted/verified at
 metadata. [Remote receipt](../collaboration/verification/dot-integration-20261008/remote-readback.json).
 Previous1–24were not fetched again. Final dated receipt updates preserve the immutable
 capture and do not repeat completed application tests, DNS cutover or provider authentication.
+
+
+## October9 actual Web rollout and Stripe TEST addendum
+
+[Archive26](../collaboration/verification/web-stripe-20261009/README.md) preserves422eligible paths/289objects in34,932,485encrypted bytes. All3deployed Web artifacts, minimal cloud differences, migration/runtime evidence, successful and failed build/test logs, public screenshots and Stripe TEST callback/cleanup/enrollment readbacks are retained. Local decryption/object/catalog verification passes; fresh remote verification follows separately. Private credentials/auth/mail/provider payloads/cloud configuration and expanded asset/vendor caches remain excluded. Earlier1–25are not rebuilt or downloaded again.
+
+Current source8b1f91798and preceding CA repair6219c8296each have three successful CI jobs. PreviewAPI40/schema93and three frontends are actually deployed; final original-account identity/hosted TEST checkout awaits Owner login. Artifact preservation does not claim that pending acceptance, Live sales or a new phone/TestFlight distribution.

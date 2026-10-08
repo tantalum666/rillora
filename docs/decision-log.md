@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-08 (Asia/Hong_Kong)
+Last updated: 2026-10-09 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -3326,3 +3326,13 @@ local correction/tests and actual restoration remain separate evidence.
   concrete cutover; only actual provider-required authentication or higher-priority tool conditions can require Owner.
 - Boundaries: no mail/other-host DNS change, secret export, repeat same-version deployment, TestFlight distribution,
   account deletion, live billing activation or FanPass operation. DNS application and actual TLS/page acceptance remain distinct.
+
+
+## 2026-10-09 — Owner requires actual Web delivery and then Stripe diagnosis
+
+- Status: LOCKED within the existing release scope.
+- Owner disputes the live www navigation and asks to check app.staging, then explicitly queues Gmail Stripe webhook diagnosis and Web checkout after current work.
+- Continue actual rollout/verification under retained authorization. A merge, old loopback TEST, or provider setup cannot replace live-file/UI/cloud-callback evidence.
+- Agent operational choices: apply only pending Preview migrations, retain the approved pinned CA bytes for reproducible images, retain nonlocal signed TEST events as needs_mapping, cancel the exact obsolete TEST monthly subscription and close its expired/unpaid reservation, then grant only the already observed Preview owner48hours of TEST checkout.
+- These choices do not change USD88.99/Apple119.99, historical paid records, ordinary/live billing, market eligibility, user consent, production review expiry, TestFlight pause or FanPass. Preview login is handed back only after actual401.
+- Evidence: [Web deployment](web-rollout-20261009.md) and [Stripe repair/remaining acceptance](stripe-webhook-20261009.md).

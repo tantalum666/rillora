@@ -1,0 +1,91 @@
+{
+  "capturedFrom": "2026-10-08T20:35:58.027964+00:00",
+  "capturedThrough": "2026-10-08T20:35:59.025483+00:00",
+  "workFiles": 422,
+  "uniqueRawObjects": 289,
+  "workBytes": 67079718,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-026.tar.zst.age",
+      "sha256": "6deadfb3ff7ed9ecc24f0b9a7b8f959e7e829de33a559bc237a9fe63354283c8",
+      "bytes": 34932485,
+      "plainBytes": 40288501,
+      "uniqueObjects": 289
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/web-stripe-20261009/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": "output/qa/rillora-web-rollout-20261009/publication",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    },
+    {
+      "path": "output/qa/rillora-web-rollout-20261009/cdk-api-asset/asset.826bbf2793df101867a9751103dc64594a18b30380980f61e360fa4fa0c4c485",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-web-rollout-20261009/cdk-RilloraProductionWeb/asset.acf79082fef952dbaa982cf0255ac2d53d9011d1806827eb3122d360e66cd252",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-web-rollout-20261009/cdk-RilloraProductionWeb/asset.97e9ebf0b174a5c8f7faa505739022b7f509edddffcab9211dcd08b759944c4f",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-web-rollout-20261009/cdk-staging-runtime-arm64-prepare/asset.7e230879fcdeb659bede997ebf43f8aee92b66d85041b054af12f684ccabc1d9",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-web-rollout-20261009/cdk-staging-runtime-arm64-api/asset.7e230879fcdeb659bede997ebf43f8aee92b66d85041b054af12f684ccabc1d9",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-web-rollout-20261009/cdk-public/asset.97e9ebf0b174a5c8f7faa505739022b7f509edddffcab9211dcd08b759944c4f",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-web-rollout-20261009/cdk-public/asset.8e22164b0edb5873a4333610e709874e39b0b3dfc1029225153a0111e115a361",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-web-rollout-20261009/cdk-RilloraStaging/asset.ed56441357f2ee55a0d2decc68f6e149a71582293f070e8a01164b7ccfa7b3b9",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-web-rollout-20261009/cdk-staging-runtime-prepare/asset.826bbf2793df101867a9751103dc64594a18b30380980f61e360fa4fa0c4c485",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-web-rollout-20261009/cdk-api-arm64/asset.7e230879fcdeb659bede997ebf43f8aee92b66d85041b054af12f684ccabc1d9",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-stripe-webhook-20261009/stripe-webhooks-docs.md",
+      "reason": "reproducible_vendor_documentation_cache"
+    },
+    {
+      "path": "output/qa/rillora-stripe-webhook-20261009/stripe-docs-error.log",
+      "reason": "reproducible_vendor_documentation_cache"
+    },
+    {
+      "path": "output/qa/rillora-stripe-webhook-20261009/cdk-api-asset/asset.0c4291f6786e9e3516dac536c8e8405789a4f37f79cb2cdd7f97cf40b5f3a744",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-stripe-webhook-20261009/cdk-runtime/asset.0c4291f6786e9e3516dac536c8e8405789a4f37f79cb2cdd7f97cf40b5f3a744",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": ".local-secrets/web-rollout-20261009",
+      "reason": "raw_cloud_configuration_authentication_and_private_identity_not_archived"
+    },
+    {
+      "path": ".local-secrets/stripe-webhook-20261009",
+      "reason": "raw_mail_provider_objects_authentication_and_exact_private_mapping_not_archived"
+    }
+  ],
+  "selection": "All eligible new WWW/formal/Preview deployment artifacts, minimal cloud diffs, migration/hash/runtime evidence, original failed/passed build and test logs, public screenshots, Stripe TEST event/cleanup/enrollment readbacks and operational helpers. Archives1-25 unchanged; private auth/mail/provider bodies/configuration and expanded asset/vendor caches excluded.",
+  "boundary": "Frontend sourcef82179e44 deployed at3origins; PreviewAPI40/schema93 and Stripe TEST mapping fix8b1f91798 deployed. Callback delivery verified; hosted annual Web purchase and identity UI await Owner Preview login. ProductionAPI16, native install, TestFlight and Live billing unchanged. Final remote receipts follow frozen capture."
+}

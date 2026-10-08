@@ -1,0 +1,18 @@
+{
+  "requests": [
+    {
+      "path": "/api/v1/account/archived-matters",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/account/profile",
+      "status": 200
+    }
+  ],
+  "ui": {
+    "redundantMyPlan": true,
+    "settingsLanguageSelectors": 2,
+    "verifiedEmailMissing": true
+  },
+  "scope": "Observed existing signed-in Preview user; no personal identifier or response body retained here"
+}

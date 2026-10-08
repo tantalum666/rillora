@@ -1,0 +1,86 @@
+"""Update staging maintenance/API images in separate gated phases, preserving all cloud configuration."""
+from pathlib import Path
+import copy
+import datetime
+import hashlib
+import json
+import shutil
+import subprocess
+import sys
+
+ROOT=Path(__file__).resolve().parents[3]
+QA=ROOT/'output/qa/rillora-web-rollout-20261009'
+PRIVATE=ROOT/'.local-secrets/web-rollout-20261009'
+phase=sys.argv[1]
+assert phase in {'prepare','api'}
+schema=json.loads((QA/'staging-schema-inventory.json').read_text())
+assert len(schema['migrations'])==75 and not schema['checksumMismatches']
+backup=json.loads((QA/'staging-backup-readiness.json').read_text())
+assert backup['DBInstanceStatus']=='available' and backup['BackupRetentionPeriod']>=1 and backup['LatestRestorableTime']
+if phase=='api':
+    migrated=json.loads((QA/'staging-migration-complete.json').read_text())
+    assert migrated['exitCode']==0 and migrated['schemaCount']==93 and migrated['checksumsMatch']
+def cloud(args):
+    return json.loads(subprocess.check_output(['aws','cloudformation',*args,'--stack-name','RilloraStaging',
+        '--profile','rillora-cdk-deploy','--region','eu-central-1','--output','json']))
+stack=cloud(['describe-stacks'])['Stacks'][0]
+assert stack['StackStatus']=='UPDATE_COMPLETE'
+old=cloud(['get-template'])['TemplateBody']
+old=json.loads(old) if isinstance(old,str) else old
+private=PRIVATE/('staging-'+phase+'-template-before.json');private.write_text(json.dumps(old));private.chmod(0o600)
+new=copy.deepcopy(old)
+asset_root=QA/'cdk-api-arm64'
+asset_manifest=json.loads((asset_root/'RilloraStagingRuntimeAsset.assets.json').read_text())
+assert len(asset_manifest['dockerImages'])==1
+assert all(v['source'].get('platform')=='linux/arm64' for v in asset_manifest['dockerImages'].values())
+assert all(v['Properties'].get('RuntimePlatform',{}).get('CpuArchitecture')=='ARM64' for v in old['Resources'].values() if v['Type']=='AWS::ECS::TaskDefinition')
+image_hash,image_asset=next(iter(asset_manifest['dockerImages'].items()))
+task_prefix='MigrationTaskDefinition' if phase=='prepare' else 'ApiTaskDefinition'
+keys=[k for k,v in new['Resources'].items() if k.startswith(task_prefix) and v['Type']=='AWS::ECS::TaskDefinition']
+assert len(keys)==1
+container=new['Resources'][keys[0]]['Properties']['ContainerDefinitions'][0]
+before_image=copy.deepcopy(container['Image'])
+assert set(before_image)=={'Fn::Sub'}
+prefix,before_hash=before_image['Fn::Sub'].rsplit(':',1)
+assert len(before_hash)==64 and before_hash!=image_hash
+assert prefix.startswith('133857166372.dkr.ecr.eu-central-1.')
+container['Image']={'Fn::Sub':prefix+':'+image_hash}
+expected=copy.deepcopy(old)
+expected['Resources'][keys[0]]['Properties']['ContainerDefinitions'][0]['Image']=container['Image']
+assert new==expected and len(old['Resources'])==len(new['Resources'])==81
+assembly=QA/('cdk-staging-runtime-arm64-'+phase)
+assert not assembly.exists(),'Inspect an existing phase instead of launching it twice.'
+assembly.mkdir()
+base=QA/'cdk-RilloraStaging'
+for name in ['manifest.json','RilloraStaging.metadata.json','tree.json','cdk.out']:
+    shutil.copy2(base/name,assembly/name)
+manifest=json.loads((assembly/'manifest.json').read_text())
+base_assets=json.loads((base/'RilloraStaging.assets.json').read_text())
+template_asset=next(copy.deepcopy(v) for v in base_assets['files'].values() if v['source']['path']=='RilloraStaging.template.json')
+body=(json.dumps(new,indent=2)+'\n').encode()
+template_hash=hashlib.sha256(body).hexdigest()
+(assembly/'RilloraStaging.template.json').write_bytes(body)
+for destination in template_asset['destinations'].values():destination['objectKey']=template_hash+'.json'
+image_asset=copy.deepcopy(image_asset)
+shutil.copytree(asset_root/image_asset['source']['directory'],assembly/image_asset['source']['directory'])
+assets={'version':asset_manifest['version'],'files':{template_hash:template_asset},'dockerImages':{image_hash:image_asset}}
+(assembly/'RilloraStaging.assets.json').write_text(json.dumps(assets,indent=2)+'\n')
+props=manifest['artifacts']['RilloraStaging']['properties']
+props['stackTemplateAssetObjectUrl']=props['stackTemplateAssetObjectUrl'].rsplit('/',1)[0]+'/'+template_hash+'.json'
+(assembly/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+receipt={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'phase':phase,'stack':'RilloraStaging',
+    'changedTask':keys[0],'onlyChangedPath':'/Resources/'+keys[0]+'/Properties/ContainerDefinitions/0/Image',
+    'imageAssetHash':image_hash,'previousImageAssetHash':before_hash,'resourceCount':81,
+    'networkIamSecretsIdentityBillingAndClientAssetsUnchanged':True,'existingBackupLatestRestorableTime':backup['LatestRestorableTime']}
+(QA/('staging-runtime-'+phase+'-diff.json')).write_text(json.dumps(receipt,indent=2)+'\n')
+print(json.dumps(receipt),flush=True)
+with (QA/('staging-runtime-arm64-'+phase+'-deploy.log')).open('w') as log:
+    subprocess.run(['npx','cdk','deploy','RilloraStaging','--app',str(assembly),'--profile','rillora-cdk-session',
+        '--require-approval','never','--previous-parameters','true','--outputs-file',str(QA/('staging-runtime-'+phase+'-outputs.json'))],
+        cwd=ROOT/'infra/aws',env=dict(__import__('os').environ,CDK_DOCKER=str(QA/'cdk-docker-buildx.sh')),stdout=log,stderr=subprocess.STDOUT,check=True)
+actual=cloud(['get-template'])['TemplateBody'];actual=json.loads(actual) if isinstance(actual,str) else actual
+status=cloud(['describe-stacks'])['Stacks'][0]['StackStatus']
+assert actual==new and status=='UPDATE_COMPLETE'
+receipt.update(status=status,actualTemplateMatches=True)
+(QA/('staging-runtime-'+phase+'-complete.json')).write_text(json.dumps(receipt,indent=2)+'\n')
+print(json.dumps({'phase':phase,'status':status,'actualTemplateMatches':True}),flush=True)

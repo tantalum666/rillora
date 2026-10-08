@@ -9,6 +9,13 @@ Last updated: 2026-10-09 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
 
+## 2026-10-09 以实际Web部署和Stripe云端回调补齐验收
+
+Owner指出www/Preview仍有旧问题，并要求随后读取Gmail的Stripe告警、检查Web购买入口。
+已部署三套Web与匹配Preview API/schema；[实际部署合同](web-rollout-20261009.md)取代“合并即上线”的误解。
+[Stripe当前合同](stripe-webhook-20261009.md)区分旧本地TEST、当前云端回调、临时测试资格与尚未开启的Live。
+本人Preview登录实际过期后才请求恢复；不重复旧测试或代造同意，原生集中直装/TestFlight暂停保持。
+
 ## 2026-10-08 Dot增量整合与法律域名执行
 
 Owner要求审阅、直接修复并合并新增Dot工作，随后明确由Agent执行法律域名续接，取代旧GoDaddy暂缓交接。

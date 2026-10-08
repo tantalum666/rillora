@@ -1,0 +1,40 @@
+
+ RUN  v4.1.11 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/api.integration.test.ts (60 tests | 1 failed | 58 skipped) 749ms
+     × acknowledges a signed Stripe test event for a nonlocal account without granting access 28ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/api.integration.test.ts > Continuity API > acknowledges a signed Stripe test event for a nonlocal account without granting access
+AssertionError: expected [ { …(4) } ] to deeply equal [ { …(4) } ]
+
+- Expected
++ Received
+
+  [
+    {
+-     "attempt_count": 2,
++     "attempt_count": 1,
+      "last_error_code": "account_mapping_missing",
+      "processing_status": "needs_mapping",
+      "signature_verified": true,
+    },
+  ]
+
+ ❯ tests/api.integration.test.ts:1336:24
+    1334|     const inbox = await pool.query(`select processing_status, last_err…
+    1335|       from app.commerce_provider_event_inbox where provider_event_refe…
+    1336|     expect(inbox.rows).toEqual([{ processing_status: "needs_mapping", …
+       |                        ^
+    1337|       attempt_count: 2, signature_verified: true }]);
+    1338|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 passed | 58 skipped (60)
+   Start at  03:04:09
+   Duration  2.05s (transform 502ms, setup 47ms, import 1.11s, tests 749ms, environment 0ms)
+

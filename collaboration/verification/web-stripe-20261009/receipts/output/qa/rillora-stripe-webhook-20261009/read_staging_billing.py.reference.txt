@@ -1,0 +1,47 @@
+"""Read only the affected TEST event mappings and current Owner test eligibility."""
+from pathlib import Path
+import json, subprocess, uuid, datetime
+ROOT=Path(__file__).resolve().parents[3]
+QA=ROOT/'output/qa/rillora-stripe-webhook-20261009'
+PRIVATE=ROOT/'.local-secrets/stripe-webhook-20261009'
+def aws(args,profile='rillora-staging-operator'):
+    return json.loads(subprocess.check_output(['aws',*args,'--profile',profile,'--region','eu-central-1','--output','json']))
+receipt=QA/'mapping-read-task.json';assert not receipt.exists()
+s=aws(['cloudformation','describe-stacks','--stack-name','RilloraStaging'],'rillora-cdk-deploy')['Stacks'][0]
+assert s['StackStatus']=='UPDATE_COMPLETE'
+out={x['OutputKey']:x['OutputValue'] for x in s['Outputs']}
+assert out['WebUrl']=='https://app.staging.rillora.xyz'
+script="""import pg from 'pg';import {loadDatabaseConfig} from './dist/config.js';import {databaseConnectionOptions} from './dist/db.js';
+const cfg=loadDatabaseConfig();if(cfg.sslMode!=='verify-full')throw new Error('tls_required');
+const client=new pg.Client({...databaseConnectionOptions(cfg),application_name:'rillora-stripe-webhook-diagnosis'});
+await client.connect();
+try {
+ await client.query('begin read only');await client.query("set local statement_timeout='10s'");
+ const account='f974d1e4-f280-4ef2-8aeb-d7d824a5de23';
+ const events=['evt_1UNG2YCxTlowhyiGBkLsbRrH','evt_1UNFsHCxTlowhyiGoLeaoLEt','evt_1UNFlnCxTlowhyiGhQWIwnxv','evt_1UNFlmCxTlowhyiGbtm450GL','evt_1UNFL1CxTlowhyiGfsVj3hPo','evt_1UNFL2CxTlowhyiGrgPNmYeu','evt_1UNFL2CxTlowhyiGKrx5kHXu','evt_1UNFL1CxTlowhyiGMxKvJoAw'];
+ const exists=(await client.query('select exists(select 1 from app.commerce_accounts where public_id=$1::uuid) as present',[account])).rows[0].present;
+ const inbox=(await client.query(`select provider_event_reference,event_type,processing_status,last_error_code,attempt_count
+   from app.commerce_provider_event_inbox where provider_code='stripe' and provider_environment='test'
+   and provider_event_reference=any($1::text[]) order by provider_event_reference`,[events])).rows;
+ const owner='[[REDACTED_PRIVATE_VALUE]_PRIVATE_VALUE]';
+ const eligibility=(await client.query(`select p.status,
+   exists(select 1 from app.commerce_validation_accounts v where v.planner_id=p.id) as has_enrollment,
+   exists(select 1 from app.commerce_validation_accounts v where v.planner_id=p.id and v.expires_at>now()) as enrollment_active,
+   (select count(*)::int from app.matter_items m where m.planner_id=p.id and m.archived_at is null) as active_matter_count,
+   (select count(*)::int from app.auth_sessions s where s.planner_id=p.id and s.credential_kind='browser_cookie'
+     and s.revoked_at is null and s.expires_at>now() and (s.last_seen_at is null or s.last_seen_at>now()-interval '30 minutes')) as usable_browser_sessions
+   from app.planners p where p.public_id=$1::uuid`,[owner])).rows;
+ await client.query('commit');console.log(JSON.stringify({readOnly:true,testEventAccountExistsLocally:exists,inbox,ownerEligibility:eligibility}));
+}finally{await client.end();}
+"""
+prior=json.loads((ROOT/'output/qa/rillora-web-rollout-20261009/staging-schema-task.json').read_text())
+body={'cluster':out['ClusterName'],'taskDefinition':out['MigrationTaskDefinitionArn'],'launchType':'FARGATE','clientToken':uuid.uuid4().hex,
+ 'networkConfiguration':{'awsvpcConfiguration':{'subnets':out['PublicSubnetIds'].split(','),'securityGroups':[out['TaskSecurityGroupId']],'assignPublicIp':'ENABLED'}},
+ 'overrides':{'containerOverrides':[{'name':'Migration','command':['node','--input-type=module','-e',script]}]}}
+path=PRIVATE/'mapping-read-request.json'
+if path.exists():body=json.loads(path.read_text())
+else:path.write_text(json.dumps(body));path.chmod(0o600)
+r=aws(['ecs','run-task','--cli-input-json','file://'+str(path)]);assert not r.get('failures') and len(r['tasks'])==1
+arn=r['tasks'][0]['taskArn'];saved={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'taskArn':arn,'cluster':out['ClusterName'],
+ 'logGroup':prior['logGroup'],'logStream':'migration/Migration/'+arn.rsplit('/',1)[-1],'readOnly':True}
+receipt.write_text(json.dumps(saved,indent=2)+'\n');print(json.dumps(saved))

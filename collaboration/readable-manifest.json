@@ -2,8 +2,8 @@
   "files": [
     {
       "path": "collaboration/README.md",
-      "bytes": 14623,
-      "sha256": "ed402354b6b757297346fda4807086b01dbc4095c7a41074a178a74b882f49c0"
+      "bytes": 15295,
+      "sha256": "c7923cf85772d47aaa9f4ffabaeeac79d6f1e7f2348afec5d29291d39288941a"
     },
     {
       "path": "collaboration/catalog/files-001.json",
@@ -54239,8 +54239,1023 @@
       "path": "collaboration/verification/strict-review-20261003/verify_remote.py.reference.txt",
       "bytes": 3250,
       "sha256": "33c4f42e8e2c730d54aa6bff46075b11ed7357c4c82659917d87ab3842b3ffdc"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/README.md",
+      "bytes": 1966,
+      "sha256": "ce782113c20c4e850127883f11139c7f809dab3b0af81a6b3b2d7e5c194006f2"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/archive-verification.json",
+      "bytes": 113,
+      "sha256": "0ed60ad478d1dc33d536955633b3e76ef6d3a71baa78d744a6728ffeab8a24ef"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/catalog.json",
+      "bytes": 144476,
+      "sha256": "51cb57d6e3517029f09d05465de11900c847793f48f710b9f34f4f861701e810"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/links.json",
+      "bytes": 562,
+      "sha256": "ef4e7af726f0367778671eafbf6dd8e71f50346b07f84ff43446e508e7de8998"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/readable-hash-classification.json",
+      "bytes": 4051,
+      "sha256": "9f9af315a278e98dfbf31d66fb7b8d29ce925ee1ea10ffd9716d12a0447acf63"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/readable-scan.json",
+      "bytes": 221,
+      "sha256": "afd0ff110f98a4f5677c91a815fdd7e59d4ffd488ca9c82a2b3d8c725485004c"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/README.md.reference.txt",
+      "bytes": 2802,
+      "sha256": "b7ab62c2a67743a49982dea01fa6c5c563df4b0495903eef31bc6c3414a9ee10"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/after-redelivery-task.json",
+      "bytes": 405,
+      "sha256": "e06147113a8314dcb3483f4ddaaaefa28ecd1939f2f81c3f9d24c66839195dac"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/after-redelivery.json",
+      "bytes": 4443,
+      "sha256": "e235b9440f57bc9bbd9e8e32ce7f6daedd797d08ac088b16d0d1b8ee30b2adb2"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/after-redelivery.log.reference.txt",
+      "bytes": 3549,
+      "sha256": "57ce3c9df81f9ea5f6fe3a62865508ef3fa469e8f9395c52e78bc7a9299d8956"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/asset-synth.log.reference.txt",
+      "bytes": 605,
+      "sha256": "4dc315c390529d086cb6c60312ebeba23db246f56a561021efef691e4180a00a"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/build.log.reference.txt",
+      "bytes": 60,
+      "sha256": "6a2d325dc658f145fe3d54ca9206a225c434e593b1d03759b009ee116385d3c0"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/cdk-api-asset/RilloraStagingRuntimeAsset.assets.json",
+      "bytes": 1496,
+      "sha256": "8d39303acc6487b1b23d173cc710c1452fe2c0ba277c063e49c8d176ea1c4b55"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/cdk-api-asset/RilloraStagingRuntimeAsset.metadata.json",
+      "bytes": 916,
+      "sha256": "3009aee78b5ed9803994868546f08c30d1414cc7f5f9ff7149bfa6b94a362042"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/cdk-api-asset/RilloraStagingRuntimeAsset.template.json",
+      "bytes": 770,
+      "sha256": "21fbb51d7b23f6a6c262b46a9caee79d744a3ac019fd45422d988b96d44b2a22"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/cdk-api-asset/manifest.json",
+      "bytes": 27318,
+      "sha256": "d7a878d29093f661a75a92ac2b6e88193264898d2fe60881a930855d07aec08a"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/cdk-api-asset/tree.json",
+      "bytes": 1237,
+      "sha256": "70a6c9a93592a353387f48827f9dd1bff142b43af411c47e70173d8a91a21aac"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/cdk-api-asset/validation-report.json",
+      "bytes": 926,
+      "sha256": "399f9cd3ec59388f2e23e3d0b3cc659527ba91329ccd617bfb576e6e17a993ce"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/cdk-runtime/RilloraStaging.assets.json",
+      "bytes": 1482,
+      "sha256": "fbbecf55722339831a06a3cbb854f24253e22bdd50704e78c4cffa6db5aa86f0"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/cdk-runtime/RilloraStaging.metadata.json",
+      "bytes": 56321,
+      "sha256": "70c047e13af564103c624af1c5ea7713258ce13eb1d17b921f73e0bc64a37312"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/cdk-runtime/RilloraStaging.template.json",
+      "bytes": 96064,
+      "sha256": "fed985f6c9ab472b10d7de53d83fa3e00ad277b8d30c03b62d7fbc949b2c0634"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/cdk-runtime/manifest.json",
+      "bytes": 27223,
+      "sha256": "7fc3c08ef8ad9d80ebdb2170f98e7690ffc52b58d0b876f546bed2dd8a19d986"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/cdk-runtime/tree.json",
+      "bytes": 79987,
+      "sha256": "f3edb4d66ac87d5a24872154612f1beda7594d48d1902abcef8becd403fa6ece"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/deploy.log.reference.txt",
+      "bytes": 15131,
+      "sha256": "4a2209da0eb96685cf0bf7598b0adf0856054e8aaa0ac7c4551551b48de0e7bc"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/deploy_fix.py.reference.txt",
+      "bytes": 4861,
+      "sha256": "6021ac4406c57ee7a70185727e724dcea1a9c55cf24545998d03bc8d5a2d4455"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/deployment-complete.json",
+      "bytes": 578,
+      "sha256": "7bc9b5649b8f4bc61fc9d863d0acb6919c90f17f9bc7e2ef39d457dc356c8174"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/deployment-diff.json",
+      "bytes": 509,
+      "sha256": "619d5a85b79ca515f4af16146e1abd4fd8d1ac14686b1e9d7a3774f381b5d89c"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/deployment-outputs.json",
+      "bytes": 1585,
+      "sha256": "1b111689c9631521434f517433bd079708d47c229c3b056ee6e7a3768e8a8de0"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/deployment-run.log.reference.txt",
+      "bytes": 552,
+      "sha256": "0671b9ad9c5afa1081976a9f66dfd3717cc6ecbde5ea6b95af4b94e4db422d39"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/enroll_owner_preview.py.reference.txt",
+      "bytes": 4699,
+      "sha256": "bd383e3a54f0fcf0c6949755179e9fbc2f4c28f8c79fec8a02bc3ccb522bc97e"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/enroll_owner_preview_v2.py.reference.txt",
+      "bytes": 6092,
+      "sha256": "2e0248776fe8c7a70922bacbd34d93fdc5889f9e96df51098b66bb51e54551ad"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/evt_1UNFL1CxTlowhyiGMxKvJoAw-redelivery-request.json",
+      "bytes": 166,
+      "sha256": "4ee49efb35130549559c7ef1ccf330ec44bca7b80c357bc75aab6bd6c00f0d8c"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/evt_1UNFL1CxTlowhyiGfsVj3hPo-redelivery-request.json",
+      "bytes": 166,
+      "sha256": "56288c7756e93e0ad2e892cd9e3e4f61ad5c6d0eef13aef1ca2c8a0158c777e9"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/evt_1UNFL2CxTlowhyiGKrx5kHXu-redelivery-request.json",
+      "bytes": 166,
+      "sha256": "cb386b24dfae169888dafd8d252dbd8807bfa829166adaf2d30b57b3b354ae52"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/evt_1UNFL2CxTlowhyiGrgPNmYeu-redelivery-request.json",
+      "bytes": 166,
+      "sha256": "66382d1d732447c9ab4b1103779f57d6934ab78266f2e6d6f8e703d370a8b8dd"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/evt_1UNFlmCxTlowhyiGbtm450GL-redelivery-request.json",
+      "bytes": 166,
+      "sha256": "c072faa1dc03a308cdcb54f11186cad97debc6727471b1402fe3b96dce5af4a0"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/evt_1UNFlnCxTlowhyiGhQWIwnxv-redelivery-request.json",
+      "bytes": 166,
+      "sha256": "f54b82dd38df68a17c0b54b4317fb1bbc932ce5fd44d704d5d382d879fbd1eda"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/evt_1UNFsHCxTlowhyiGoLeaoLEt-redelivery-request.json",
+      "bytes": 166,
+      "sha256": "4a75066dfa484f8211c6999ce5a06605e24cf3b4708a279989ffc5144027185b"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/mail-summary.json",
+      "bytes": 400,
+      "sha256": "6c0cdf8b921c3bb555b81d79daf07cad2e9ff8f9258e6d963044880a21f5adea"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/mapping-read-task.json",
+      "bytes": 405,
+      "sha256": "ed487c9c56076c67a9fd5d9a9aa8d8972ead9ede5b0febade9b19cb2ea642d1c"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/mapping-read.json",
+      "bytes": 2081,
+      "sha256": "ffbd3ccc8ba3047690f3f414bc679c5580f69ae4e64068d6bcd9e69a47743c9f"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/mapping-read.log.reference.txt",
+      "bytes": 1608,
+      "sha256": "35adfb97bd5ed0eb52e0c4a64ee169340ecc498cbdae654ed797d0ce7d2db3b5"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/nonlocal-account-final.log.reference.txt",
+      "bytes": 250,
+      "sha256": "fd506a698d4f7a79fce5fd6b40ef5aa50325885ae11f4d3ba3416bc63d16e926"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/nonlocal-account-green.log.reference.txt",
+      "bytes": 1432,
+      "sha256": "5bc81acb6b6856e8e9b6c144fa90d80e873127c69393950c0ebb5132c9991b7e"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/nonlocal-account-red.log.reference.txt",
+      "bytes": 1706,
+      "sha256": "950320e313a982bbd6fd49ae16e5b49d058ce89d706842c026e130e7858d35b1"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/old-pending-checkout-status.json",
+      "bytes": 346,
+      "sha256": "9cfb4ac1050b33618ed75eed87d7743b974478b984b40bca4e2af48e2cefce7b"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/old-test-monthly-canceled.json",
+      "bytes": 338,
+      "sha256": "133ac13040c0e8d638316bfa8f2866195e79eb41cc5367a5c000d3492877d340"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/owner-billing-read-task.json",
+      "bytes": 385,
+      "sha256": "c1dfbf0518014f11e14077333847d98b3221545c3b8d43a94bf0fb4ce0a88c98"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/owner-billing-read-v2-task.json",
+      "bytes": 385,
+      "sha256": "4efeb1ce6a3ecc8ff49e78db0b27d8de8de28edddf3f057c8c6bd1d1cef0536e"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/owner-billing-read-v2.json",
+      "bytes": 903,
+      "sha256": "60e2d00c70c468565b37d90e2551b1ee312dce8759111cc76dcc1aef6df33c69"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/owner-billing-read-v2.log.reference.txt",
+      "bytes": 684,
+      "sha256": "df6d48103b5243097c07521dfdac4ffe289261a0fb81acc49e7ef68c20e3f1a9"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/owner-billing-read.log.reference.txt",
+      "bytes": 705,
+      "sha256": "e85eb73d7f3b0fb12e8777482fcde57cfb96b35f8d56ba2d0df871d51f1c325c"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/owner-test-enrollment-task.json",
+      "bytes": 448,
+      "sha256": "96b930789edba9286369be06af40883ddc089f78d9c3156927fc37a53a72c94b"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/owner-test-enrollment-v2-task.json",
+      "bytes": 448,
+      "sha256": "f46fe1fd6fe5e5b93276ed88c21280bf6d75bcd92ef9e4d31c0379a14cfa03a0"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/owner-test-enrollment-v2.json",
+      "bytes": 307,
+      "sha256": "a17b6b0c0a24d47da8c0cc3146018f0c31759b1bfa5fd5d07540810634952108"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/owner-test-enrollment-v2.log.reference.txt",
+      "bytes": 270,
+      "sha256": "4dd76beff29d61693a2d68872515f702058f260fcaf5c16c856fefb91ce15654"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/owner-test-enrollment.log.reference.txt",
+      "bytes": 279,
+      "sha256": "29499427d6cbfb76d3bd4d2182dcab9c3f5a2f11fd8aa2667c3022ba21da60e1"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/production-boundary.log.reference.txt",
+      "bytes": 238,
+      "sha256": "dddaa64499e2a0b94422191ad737b7f9cbaa4c56444f55c7c2701e6c6662ca66"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/provider-delivery-readback.json",
+      "bytes": 367,
+      "sha256": "f5fce8a509c5da2141749eeebaf64c231ecbee53b44e1dffcef763a9661dc8ce"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/read_after_redelivery.py.reference.txt",
+      "bytes": 4288,
+      "sha256": "7d4b98784aaba18dcc1e0e794cbd8e58f2d0353316b7bfcabb91778817ba4702"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/read_staging_billing.py.reference.txt",
+      "bytes": 4184,
+      "sha256": "36349028b68f3b9b213bb090c57375615327bb31961ae39fc03b2fd3e5ac2442"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/source-ci.json",
+      "bytes": 6685,
+      "sha256": "09f4e99db98e2980110406d6a4cb37c83178dd71860d141c0254752b5b46d6ca"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/source-inputs.json",
+      "bytes": 241768,
+      "sha256": "2e4fb6b12993fba755539c88c8a5a04d5cb26cc2097bd1802536cf033dc38f68"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/source-scan.json",
+      "bytes": 10712,
+      "sha256": "ff74dd279582e062cf113d15b71bac05edd185a20b8c70b2ca2cda1dd6d15ba3"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/staging-runtime-verified.json",
+      "bytes": 953,
+      "sha256": "7d9e8dccd830172b4449428e580d067dcbfc60412b9c337308ee61c18acd0130"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/typecheck.log.reference.txt",
+      "bytes": 67,
+      "sha256": "ffc0928b3027e2dcfe907b380649612c90925a72ad06bea654c9e72e4e139d1b"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/verify_runtime.py.reference.txt",
+      "bytes": 3382,
+      "sha256": "98028e970157f358e342486a06c5127822c9e239042a1b7d42958b9f7cb6867b"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/webhook-http-replies.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/README.md.reference.txt",
+      "bytes": 2594,
+      "sha256": "f40ccacccd4eabf87a3680ff2e60768a1ee0359d50e7e5cf9cf3c3821e120ab2"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/RilloraProductionWeb-complete.json",
+      "bytes": 454,
+      "sha256": "58e0893b6987ddea562b48576308b7069b8220945b4914de3b197fd6c44d3f75"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/RilloraProductionWeb-deploy.log.reference.txt",
+      "bytes": 2129,
+      "sha256": "8f207df746735b7611617da094ae4c413df434008f47de058d29647590626b79"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/RilloraProductionWeb-outputs.json",
+      "bytes": 322,
+      "sha256": "2ba3cc44dbfdaa27ee1e6d6108f2f5351cb3081d447c83cf1b084d9b6e61d00f"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/RilloraProductionWeb-reviewed-diff.json",
+      "bytes": 374,
+      "sha256": "500cfda1b55599bc05e44f57501588e547c84a31628655d58fa9166b857a1c7a"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/RilloraProductionWeb-synth.log.reference.txt",
+      "bytes": 85,
+      "sha256": "ce21e37637268cb51fad9d85214aa48ae38e2c5ad623ed30ef8013efa9443063"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/RilloraStaging-complete.json",
+      "bytes": 450,
+      "sha256": "7b3fac62e6ace267ed7ff5992c2d47e4b6163e0713c433bb951d0d78ff1cce5f"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/RilloraStaging-deploy.log.reference.txt",
+      "bytes": 3392,
+      "sha256": "8f719b1ce949acea57cb95266cc2a7e69971aa7270d8256a69b0884ce0e3995f"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/RilloraStaging-outputs.json",
+      "bytes": 1585,
+      "sha256": "52b08ea0ba1e5fc0348acf2d3a3a20198e7483fb88176a9f4a5f7da626da4350"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/RilloraStaging-reviewed-diff.json",
+      "bytes": 370,
+      "sha256": "81eca4cb77f5b1b4dd6b8edf6e7407131ba74d07189244b555515cfc0d8c9303"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/api-asset-arm64-synth.log.reference.txt",
+      "bytes": 602,
+      "sha256": "6457f41a49e11628f3b24090fa29d719bdc4c49ea0cac9eff0c12a3e6e28d981"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/api-asset-synth.log.reference.txt",
+      "bytes": 577,
+      "sha256": "f71b61962c6acbeb7fb5fea6913d41f16b8798d54cf66bc62c8989d65193b030"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/before-candidate-comparison.json",
+      "bytes": 711,
+      "sha256": "d5735894d332978dd27f6caba2f48846308d784e66df13b1dd0bd39eb29be915"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/buildx-install.log.reference.txt",
+      "bytes": 6699,
+      "sha256": "581eb779d5373f448837bf83bfc61b5113804082d402ac3b8a7bb37e11a978d3"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/ca-publication-guards.log.reference.txt",
+      "bytes": 100,
+      "sha256": "24adda79e21044fef19cdc7f0606a9cd7770fc9a99c705a8622ee923c13bce5d"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/ca-source-ci.json",
+      "bytes": 6685,
+      "sha256": "249654318e8154ec17ce3845abfbd9527728d375a9ddf7a38c88aa154ac8a315"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/ca-source-inputs-complete.json",
+      "bytes": 241768,
+      "sha256": "287a39d650f3b5ef6138a28968f3cff1dd95e4169f758e71f46bf5c06cb9dafa"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/ca-source-inputs.json",
+      "bytes": 241588,
+      "sha256": "1d0d5a2fadc1583470bb31ff12d02b5e8f7af12bdb7338e92636187701e64a79"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/ca-source-scan-complete.json",
+      "bytes": 10712,
+      "sha256": "633b0ab49751ff3e84d24fb327eca4b1ffd1928924a9e30519e7579027d77c90"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/ca-source-scan.json",
+      "bytes": 10712,
+      "sha256": "9964c7ec341d2507779672654f33a974dab585e68c0fa621f331b4dfca3e9a59"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-RilloraProductionWeb/RilloraProductionWeb.assets.json",
+      "bytes": 2817,
+      "sha256": "60f69eed282622caf8ce7783b41f972c0737a7dda73a30232535c43f2bd99b05"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-RilloraProductionWeb/RilloraProductionWeb.metadata.json",
+      "bytes": 10824,
+      "sha256": "3893732e1a009b51aa5751110539b2457254decb198e7a49c7a75971e0c28de3"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-RilloraProductionWeb/RilloraProductionWeb.template.json",
+      "bytes": 19638,
+      "sha256": "aa6e2ca95098951e01f9a38c0d65ccf8fc8934e37309511386152dcae4a8e8a4"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-RilloraProductionWeb/manifest.json",
+      "bytes": 27331,
+      "sha256": "52af42e6c53b60b60467cc1db2accae598841220ef7b845ffdb9dc9f79329271"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-RilloraProductionWeb/tree.json",
+      "bytes": 20169,
+      "sha256": "e47461abe870f34726a58a86897839a3d51c9218064fb507ef0049d2d268aa4e"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-RilloraProductionWeb/validation-report.json",
+      "bytes": 80,
+      "sha256": "ba990d19514a4d3818b0d9e46e6662257238d206389b9aa4ada378f1d1fb00c6"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-RilloraStaging/RilloraStaging.assets.json",
+      "bytes": 1448,
+      "sha256": "b517f542d6350bf9d8a91c9467a7a5aefe3b2b8d3b5eb4c71c1688d6a6518ec8"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-RilloraStaging/RilloraStaging.metadata.json",
+      "bytes": 56321,
+      "sha256": "70c047e13af564103c624af1c5ea7713258ce13eb1d17b921f73e0bc64a37312"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-RilloraStaging/RilloraStaging.template.json",
+      "bytes": 96064,
+      "sha256": "0382208bf0ee5b311bb54e8fccdc591d961654c6d3240fb99607371176b7040f"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-RilloraStaging/manifest.json",
+      "bytes": 27223,
+      "sha256": "1895414a46c3a3d8e4bb4555dec23d28f1136055174bc4388dba7d338ea3beda"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-RilloraStaging/tree.json",
+      "bytes": 79987,
+      "sha256": "f3edb4d66ac87d5a24872154612f1beda7594d48d1902abcef8becd403fa6ece"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-api-arm64/RilloraStagingRuntimeAsset.assets.json",
+      "bytes": 1496,
+      "sha256": "386ae3f62547e74ddc1841032db03f154a18c4e1dcd8fa2186d0d2104a373405"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-api-arm64/RilloraStagingRuntimeAsset.metadata.json",
+      "bytes": 916,
+      "sha256": "3009aee78b5ed9803994868546f08c30d1414cc7f5f9ff7149bfa6b94a362042"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-api-arm64/RilloraStagingRuntimeAsset.template.json",
+      "bytes": 770,
+      "sha256": "21fbb51d7b23f6a6c262b46a9caee79d744a3ac019fd45422d988b96d44b2a22"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-api-arm64/manifest.json",
+      "bytes": 27318,
+      "sha256": "d7a878d29093f661a75a92ac2b6e88193264898d2fe60881a930855d07aec08a"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-api-arm64/tree.json",
+      "bytes": 1237,
+      "sha256": "70a6c9a93592a353387f48827f9dd1bff142b43af411c47e70173d8a91a21aac"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-api-arm64/validation-report.json",
+      "bytes": 926,
+      "sha256": "399f9cd3ec59388f2e23e3d0b3cc659527ba91329ccd617bfb576e6e17a993ce"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-api-asset/RilloraStagingRuntimeAsset.assets.json",
+      "bytes": 1496,
+      "sha256": "a0bebc68f295ddf028d416e9675053a4a6ed9983477be069d49d12878cbf3433"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-api-asset/RilloraStagingRuntimeAsset.metadata.json",
+      "bytes": 916,
+      "sha256": "3009aee78b5ed9803994868546f08c30d1414cc7f5f9ff7149bfa6b94a362042"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-api-asset/RilloraStagingRuntimeAsset.template.json",
+      "bytes": 770,
+      "sha256": "21fbb51d7b23f6a6c262b46a9caee79d744a3ac019fd45422d988b96d44b2a22"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-api-asset/manifest.json",
+      "bytes": 27318,
+      "sha256": "d7a878d29093f661a75a92ac2b6e88193264898d2fe60881a930855d07aec08a"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-api-asset/tree.json",
+      "bytes": 1237,
+      "sha256": "70a6c9a93592a353387f48827f9dd1bff142b43af411c47e70173d8a91a21aac"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-api-asset/validation-report.json",
+      "bytes": 926,
+      "sha256": "399f9cd3ec59388f2e23e3d0b3cc659527ba91329ccd617bfb576e6e17a993ce"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-docker-buildx.sh.reference.txt",
+      "bytes": 355,
+      "sha256": "9168bb051e09fab1bd5472d9a67ce2774d2cd17cc953342bb11356805bc4f458"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-public/RilloraPublicWeb.assets.json",
+      "bytes": 2821,
+      "sha256": "4361c3ed286037d65b00db667ab86bcb1ed1c26bdf0ad535e4890510c1702cd4"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-public/RilloraPublicWeb.metadata.json",
+      "bytes": 9225,
+      "sha256": "4a45c37662977b1b63b4fa04f35cdc1f925503f2a7e89e9e4da3bdddd3d54bd9"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-public/RilloraPublicWeb.template.json",
+      "bytes": 17266,
+      "sha256": "f15fb31441b23eeead9bb16272c8c568c3052755b1e6ff7e387a24460c9c8342"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-public/manifest.json",
+      "bytes": 27302,
+      "sha256": "dcd885ebe3832b909e69660eec85e5be55d463a48e274df3ed52928215627909"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-public/tree.json",
+      "bytes": 18149,
+      "sha256": "b4dbedd74ecf125aafccfe7d1135f5889d874706f26b626177d98f59ad953006"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-public/validation-report.json",
+      "bytes": 80,
+      "sha256": "ba990d19514a4d3818b0d9e46e6662257238d206389b9aa4ada378f1d1fb00c6"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-staging-runtime-arm64-api/RilloraStaging.assets.json",
+      "bytes": 1482,
+      "sha256": "6a8f81773b32d1700b49671124043ddaa9bfbf45ebf147bfe94abe927f67f72b"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-staging-runtime-arm64-api/RilloraStaging.metadata.json",
+      "bytes": 56321,
+      "sha256": "70c047e13af564103c624af1c5ea7713258ce13eb1d17b921f73e0bc64a37312"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-staging-runtime-arm64-api/RilloraStaging.template.json",
+      "bytes": 96064,
+      "sha256": "8a28f1f707b35e6380111466c85bf3bef9c3b7101c5d9fd956011fee3ed823c3"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-staging-runtime-arm64-api/manifest.json",
+      "bytes": 27223,
+      "sha256": "a4ade35e840cdda64a65111c98fc5a104db277c6d07053b3c4ddf8c67d865b26"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-staging-runtime-arm64-api/tree.json",
+      "bytes": 79987,
+      "sha256": "f3edb4d66ac87d5a24872154612f1beda7594d48d1902abcef8becd403fa6ece"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-staging-runtime-arm64-prepare/RilloraStaging.assets.json",
+      "bytes": 1482,
+      "sha256": "73c5a0c6e89c3d6e038a26bbe9ffdec5848ba06de94e6a9b08e5b450332de907"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-staging-runtime-arm64-prepare/RilloraStaging.metadata.json",
+      "bytes": 56321,
+      "sha256": "70c047e13af564103c624af1c5ea7713258ce13eb1d17b921f73e0bc64a37312"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-staging-runtime-arm64-prepare/RilloraStaging.template.json",
+      "bytes": 96064,
+      "sha256": "1268c49f525951d3b3551b8fa185b234e8fc1d58852e5a258ebd93134bccc6e5"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-staging-runtime-arm64-prepare/manifest.json",
+      "bytes": 27223,
+      "sha256": "7eef88c25cfbb45d07d385e09a6daaf51309e3a790fc7d87238c9e45c8d0a830"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-staging-runtime-arm64-prepare/tree.json",
+      "bytes": 79987,
+      "sha256": "f3edb4d66ac87d5a24872154612f1beda7594d48d1902abcef8becd403fa6ece"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-staging-runtime-prepare/RilloraStaging.assets.json",
+      "bytes": 1482,
+      "sha256": "2aabb2d17139ffa1134fc04c6d3c1c3114f314882c0387e5b2104e561bf4bc84"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-staging-runtime-prepare/RilloraStaging.metadata.json",
+      "bytes": 56321,
+      "sha256": "70c047e13af564103c624af1c5ea7713258ce13eb1d17b921f73e0bc64a37312"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-staging-runtime-prepare/RilloraStaging.template.json",
+      "bytes": 96064,
+      "sha256": "e32df3a0d6ea56685b17337a2d502d7656436f00da1264149bc633a66f6380a3"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-staging-runtime-prepare/manifest.json",
+      "bytes": 27223,
+      "sha256": "ba203d1be4cf3ca7b164dca31c597d432332504025b2bba1f2a8b3d8df0ce4ad"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-staging-runtime-prepare/tree.json",
+      "bytes": 79987,
+      "sha256": "f3edb4d66ac87d5a24872154612f1beda7594d48d1902abcef8becd403fa6ece"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/checkpoint.json",
+      "bytes": 2325,
+      "sha256": "3af5ba01fa23bf5b099ebe35c575b316db8a319883171975228b753aa305c94b"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cloud-after.json",
+      "bytes": 246,
+      "sha256": "3b522a78bc19acfcdd229cbf6ac6541e9598da508621b47712157ed446c3c6d7"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/deploy_clients.py.reference.txt",
+      "bytes": 7098,
+      "sha256": "7af203ef42ee793828a9064a47df72d5011c51dc8f9b96f6efaabae9cf6f623b"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/deploy_public.py.reference.txt",
+      "bytes": 3838,
+      "sha256": "68577c7a640186b4bf08c4ade786e95290d0d7405d7e918a6f1592f1f75e5570"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/deploy_staging_runtime.py.reference.txt",
+      "bytes": 5769,
+      "sha256": "2642b423dd8e5dc50377fad7d5b713336ed91dc6a4996ad3f2a0096f0ab8b6d0"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/formal-assets-live.json",
+      "bytes": 25968,
+      "sha256": "475b374d270cdb1e39bdf83b6bc8ed5a37f1d1cfef5bbc82d81bf9bb35ce77c1"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/formal-deployment-run.log.reference.txt",
+      "bytes": 430,
+      "sha256": "7b00e2cf01b48429d1fa5ffc118af65508a3a0c115631d6388a6aea0e240a759"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/image-preparation-corrections.json",
+      "bytes": 504,
+      "sha256": "4ddb8289fd95660a35d55cc2cae10e1f15e85b1969e068669fa248377559a0e6"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/infra-install.log.reference.txt",
+      "bytes": 25,
+      "sha256": "e441bfcbb4e4602b6b672db43d435e6dcc0abe7dd3dbd353aa35c9bb63c48a88"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/metadata-guard-stop.json",
+      "bytes": 251,
+      "sha256": "a31902b47871aadcc7a0c2056074c47af5cedc084048d15794b91641bd341966"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/preserve_work.py.reference.txt",
+      "bytes": 8740,
+      "sha256": "9c1a076425ab5e3d11c72651099dccb3633b4f7b2848e1b125379b1c370b330c"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/preview-assets-live.json",
+      "bytes": 25977,
+      "sha256": "c18928de704fd1291e3ea266164846f320bcbad149e5f6b4976f52590d785177"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/preview-build.log.reference.txt",
+      "bytes": 11667,
+      "sha256": "72931dd8166b07eb8e6de5ed6214fb9316df0db4e1b66ab92671d6a23609afd9"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/preview-cleanup.json",
+      "bytes": 87,
+      "sha256": "9be0dbdd1618f086f2378a85d9e37674d5166c4d47bce9e32992b9b512899129"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/public-build.log.reference.txt",
+      "bytes": 2808,
+      "sha256": "77e45e757ac7a4f4cb8a6f9b895980873588f10d68ea05aca9b733ed2736a359"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/public-deploy-outputs.json",
+      "bytes": 246,
+      "sha256": "b627054e13c83aaa34e71cc631cb96d91faf6c49ec1277a2fee16ac0244e7fe3"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/public-deploy.log.reference.txt",
+      "bytes": 1967,
+      "sha256": "1b442fcd7fac86ac3a0bb3e667c0b37bfc6af69b4cf0d2c2b6d7e8c447094c48"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/public-deployment-run.log.reference.txt",
+      "bytes": 442,
+      "sha256": "b17a7dae5edf01a344fca9da5e8037f25474f9e19ddc047be572251b05ea821b"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/public-preview.log.reference.txt",
+      "bytes": 39,
+      "sha256": "4c7985a76e4aa5b833913996569e63361a3dd3abf8e5071ed08dada62b5f36d5"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/public-provisional-diff.json",
+      "bytes": 1030,
+      "sha256": "a1c38c9880f73fa37294896a1fdb79a354f03c0bd4e8dccd0a010065e293af73"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/public-reviewed-diff.json",
+      "bytes": 406,
+      "sha256": "9a150d439166cbd794a41c3dd44b511ee936cceead173928236bbe406a988528"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/public-synth-locked.log.reference.txt",
+      "bytes": 85,
+      "sha256": "ce21e37637268cb51fad9d85214aa48ae38e2c5ad623ed30ef8013efa9443063"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/public-synth-reviewed.log.reference.txt",
+      "bytes": 85,
+      "sha256": "ce21e37637268cb51fad9d85214aa48ae38e2c5ad623ed30ef8013efa9443063"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/public-synth.log.reference.txt",
+      "bytes": 85,
+      "sha256": "ce21e37637268cb51fad9d85214aa48ae38e2c5ad623ed30ef8013efa9443063"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/rds-ca-verification.json",
+      "bytes": 615,
+      "sha256": "71b2382d57170af6bcf8edd4719ceb5f9f1cb8f9b6a4a136060728fd9ba912e4"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/read_staging_schema.py.reference.txt",
+      "bytes": 3835,
+      "sha256": "099efadaca7dcb24331d01dfe515e2c49a9a2a5c40e9812070c47c0f38fa35f9"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/reading.json",
+      "bytes": 1131,
+      "sha256": "49bb41049f372edf00bbd691c70d86eb0d34c3513e9446dd9eec8c7e922459f1"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/review-build.log.reference.txt",
+      "bytes": 12755,
+      "sha256": "1837aa2b5c03346100e8a5963f2bf7d0f2f684a5a45b88b6126fb27f8a8fd44b"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/run_staging_migration.py.reference.txt",
+      "bytes": 5200,
+      "sha256": "1abe62f91c7115dc99a7b5facb56dfbf61c89b00dd9a71161a3e26f11dda21d7"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/staging-auth-after-rollout.json",
+      "bytes": 1267,
+      "sha256": "3dff60f4994d22b370810a3a709ecc2df048a5e452e1bf25126691eef7d0992a"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/staging-auth-failure-code.json",
+      "bytes": 84,
+      "sha256": "383b8414cd9325c280b8f634ee8a9e05e0e2d698424c0cf989483f27fd696536"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/staging-backup-before-migration.json",
+      "bytes": 219,
+      "sha256": "ebd611a10fe4848f5a14ea687b4f0708a6329885ac81d316ca9db31d3f8d6a6a"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/staging-backup-readiness.json",
+      "bytes": 274,
+      "sha256": "924107e3585883fc6c4670a38682def4c7cdceae2b225846d4d30cf03c24aef9"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/staging-before-api.json",
+      "bytes": 403,
+      "sha256": "2234aae34048fdf5370822c22ed8eaff28b83e9b72b3aa716bc4078521b7f355"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/staging-deployment-run.log.reference.txt",
+      "bytes": 420,
+      "sha256": "149e3c56e02ab622e6536b03420973c2fd2a42adaa53baa73f40f5f5581a68d3"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/staging-direct-health.json",
+      "bytes": 444,
+      "sha256": "0bb1c2063badb921bf42f65afb65f832dbaa7c50619f7c85a9ef4115002a48d5"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/staging-migration-complete.json",
+      "bytes": 338,
+      "sha256": "fceef518d7cfa360eb82a99ea4a03d4ba11fe7c4fe0e715c18d4bfda091ce80d"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/staging-migration-task.json",
+      "bytes": 514,
+      "sha256": "70fedd6dcd1e06ae7157aef06005dd5ecb2b755544ffec1cd9c969718a26d1cd"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/staging-migration.log.reference.txt",
+      "bytes": 179,
+      "sha256": "ccbd0566b93c4070fbb45faee82d542f8d406e1aa3ced83f9a574bee27f47e0e"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/staging-public-health.json",
+      "bytes": 457,
+      "sha256": "871db0b470c89186653ab492b8639da788ab95703deeda605852152b42ac6db5"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/staging-runtime-api-complete.json",
+      "bytes": 649,
+      "sha256": "aaecb4e05d3b0635d98876eda0d77099efc4fcb9c49d6fbcd81897f355594a34"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/staging-runtime-api-diff.json",
+      "bytes": 585,
+      "sha256": "5c9ef7b27a148e21b9d2a707f02a90118399437ca7a9c95b9808e462fe2f0e62"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/staging-runtime-api-outputs.json",
+      "bytes": 1585,
+      "sha256": "58edafa8e219215aafa0816d9b8c2db69b9d5c49d20d32813201e3d543c2ed4e"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/staging-runtime-api-run.log.reference.txt",
+      "bytes": 640,
+      "sha256": "dd0c85fe42ea9a0a9de062ed6b102a33ec4ac3a471980cf0ff208d91c8abe240"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/staging-runtime-arm64-api-deploy.log.reference.txt",
+      "bytes": 3915,
+      "sha256": "1dee263c6ea8779bd0eee7684d4c9aae87c8156756b730f1985dea3a9181e315"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/staging-runtime-arm64-prepare-deploy.log.reference.txt",
+      "bytes": 19280,
+      "sha256": "8e418c0f8a6890ad41e7fa9d3c35e42f1ce9e3b8f6ec87ac4aa2afc25512ae47"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/staging-runtime-arm64-prepare-run.log.reference.txt",
+      "bytes": 660,
+      "sha256": "a96dbc172fe0f6d6e017ef4d83edeef0d2ceae753645bdf85e8282c976253866"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/staging-runtime-prepare-buildkit.log.reference.txt",
+      "bytes": 37526,
+      "sha256": "773ed848879208af7efe92627f862a4d8518505b269ce64ef539f5ea9886fe12"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/staging-runtime-prepare-complete.json",
+      "bytes": 665,
+      "sha256": "b266282f86e247771ad6939cbe82bfd6dc1c18ea6a8406173a020d58442a2beb"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/staging-runtime-prepare-deploy.log.reference.txt",
+      "bytes": 2557,
+      "sha256": "b48dae2761f2aaf1314919258ec8728264a89022e6765ecb679df9c0a9be9b13"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/staging-runtime-prepare-diff-superseded-amd64.json",
+      "bytes": 601,
+      "sha256": "6cf9b6e13e7c937850d0b20a878c505ebca5bad866bea574cc552f905af6680a"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/staging-runtime-prepare-diff.json",
+      "bytes": 601,
+      "sha256": "2c61b919f2822ab5f79dfe0a3020dcf997fff7c0cb89ef98d99c756ab8f9fb13"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/staging-runtime-prepare-outputs.json",
+      "bytes": 1585,
+      "sha256": "58edafa8e219215aafa0816d9b8c2db69b9d5c49d20d32813201e3d543c2ed4e"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/staging-runtime-prepare-run.log.reference.txt",
+      "bytes": 1537,
+      "sha256": "934b890b7a1da038b7a167cfb4edc15777ee97f624cda7c66514c2635835be74"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/staging-runtime-verified.json",
+      "bytes": 921,
+      "sha256": "bbc5aca5f910755fa13b8e0cf966234680e8a3d6a69d030829fc176bbfaae261"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/staging-schema-inventory.json",
+      "bytes": 12255,
+      "sha256": "76c93dce6b6131028d2a18032e053cb56aeb96d96b8d955e5454f739f14428f5"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/staging-schema-read.log.reference.txt",
+      "bytes": 9425,
+      "sha256": "74def22450564477cc56e8f46a460953351235e7806d656c484b2460e192b1d9"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/staging-schema-task.json",
+      "bytes": 412,
+      "sha256": "5f6b5ed7e78d5d68dd223a5fb1f5c2505b3bae128a974513f805a7ed1f54179a"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/verify_live_assets.py.reference.txt",
+      "bytes": 1424,
+      "sha256": "53cabfadc2f38ff2c8967fac7307dc082c7ad0a088c580f694240a4334b1ae25"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/verify_remote.py.reference.txt",
+      "bytes": 3220,
+      "sha256": "b91b447d91c01687b82a54a0ad4c08071cd5f738f8e077074c0e3b54c9351f61"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/verify_staging_runtime.py.reference.txt",
+      "bytes": 3281,
+      "sha256": "6a534ed300d20ffb58e021b8233c2231f351c7080ac94083f81354daad603364"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/web-install.log.reference.txt",
+      "bytes": 26,
+      "sha256": "280329c29a814cc9921210a85ec3a3f02e5749806a471043197a2db6c8561ba9"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/www-assets-live.json",
+      "bytes": 9233,
+      "sha256": "6b76c369b1f043303b3476aa8ab3532bbf50bda58f4afd6c1666ea59212a9154"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/www-browser-live.json",
+      "bytes": 6028,
+      "sha256": "6b4557fe47ad40ce2e4f42a6c4a846abb300c46da29231c8344bd07b3d67c016"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/release/rillora-web-rollout-20261009/README.md.reference.txt",
+      "bytes": 350,
+      "sha256": "592b0bc266b8803611e8fa488720557b9f41f78edef830e362b22dfe07584480"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/snapshot.json",
+      "bytes": 4577,
+      "sha256": "4b5f1dc5072b7af547bbb5c47e28538c7d9e9136a4f1478cac7512593f86ec91"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/www-before.png",
+      "bytes": 104671,
+      "sha256": "bbd1700a0d7d120a021238dcc3f47497adc5a70228352c34d3de48132b882df8"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/www-live-desktop-en.png",
+      "bytes": 105278,
+      "sha256": "4a14fe211249340927d715ed0a2c320fe60a69d26070a75a5c4959fe11ae2387"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/www-live-desktop-zh.png",
+      "bytes": 105297,
+      "sha256": "3ffe8c63d0a51079e7c2a1c6a73780b9e4b785c94b6c394f1f2ac72586984909"
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/www-live-mobile-menu-en.png",
+      "bytes": 173891,
+      "sha256": "fa9f06467d74b9f074969cddab0e882a0ca1463c84d4a5ffafd2d401d619518b"
     }
   ],
-  "fileCount": 10848,
-  "totalBytes": 338923982
+  "fileCount": 11051,
+  "totalBytes": 342241337
 }

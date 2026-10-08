@@ -1,0 +1,39 @@
+"""Read the exact live staging image and compare retained runtime configuration."""
+from pathlib import Path
+import copy, datetime, json, subprocess
+ROOT=Path(__file__).resolve().parents[3]
+QA=ROOT/'output/qa/rillora-web-rollout-20261009'
+PRIVATE=ROOT/'.local-secrets/web-rollout-20261009'
+def aws(args,profile='rillora-cdk-session'):
+    return json.loads(subprocess.check_output(['aws',*args,'--profile',profile,'--region','eu-central-1','--output','json']))
+stack=aws(['cloudformation','describe-stacks','--stack-name','RilloraStaging'],'rillora-cdk-deploy')['Stacks'][0]
+assert stack['StackStatus']=='UPDATE_COMPLETE'
+out={x['OutputKey']:x['OutputValue'] for x in stack['Outputs']}
+service=aws(['cloudformation','describe-stack-resource','--stack-name','RilloraStaging','--logical-resource-id','ApiServiceC9037CF0'],'rillora-cdk-deploy')['StackResourceDetail']['PhysicalResourceId']
+s=aws(['ecs','describe-services','--cluster',out['ClusterName'],'--services',service])['services'][0]
+assert s['desiredCount']==s['runningCount']==1 and s['pendingCount']==0
+assert len(s['deployments'])==1 and s['deployments'][0]['rolloutState']=='COMPLETED'
+tasks=aws(['ecs','list-tasks','--cluster',out['ClusterName'],'--service-name',service.rsplit('/',1)[-1],'--desired-status','RUNNING'])['taskArns']
+assert len(tasks)==1
+task=aws(['ecs','describe-tasks','--cluster',out['ClusterName'],'--tasks',tasks[0]])['tasks'][0]
+image_hash='7e230879fcdeb659bede997ebf43f8aee92b66d85041b054af12f684ccabc1d9'
+digest='sha256:a3a8eeaeed7500264607228f11e1dc9885d1ab03157c766d3c0b893caa075086'
+assert task['containers'][0]['image'].endswith(':'+image_hash) and task['containers'][0]['imageDigest']==digest
+assert task['healthStatus']=='HEALTHY'
+old_service=json.loads((PRIVATE/'staging-service-progress.json').read_text())['services'][0]
+old_task=next(d['taskDefinition'] for d in old_service['deployments'] if d['status']=='DRAINING')
+before=aws(['ecs','describe-task-definition','--task-definition',old_task])['taskDefinition']
+after=aws(['ecs','describe-task-definition','--task-definition',s['taskDefinition']])['taskDefinition']
+for name,value in [('runtime-task-before',before),('runtime-task-after',after)]:
+    path=PRIVATE/(name+'.json');path.write_text(json.dumps(value));path.chmod(0o600)
+keys=['taskRoleArn','executionRoleArn','networkMode','volumes','placementConstraints','requiresCompatibilities','cpu','memory','runtimePlatform','ephemeralStorage']
+assert all(before.get(k)==after.get(k) for k in keys)
+a=copy.deepcopy(before['containerDefinitions']);b=copy.deepcopy(after['containerDefinitions'])
+for value in a+b:value.pop('image')
+assert a==b
+r={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'stack':'RilloraStaging','stackStatus':stack['StackStatus'],
+ 'apiTaskDefinition':s['taskDefinition'],'previousApiTaskDefinition':old_task,'desired':1,'running':1,'health':'HEALTHY',
+ 'rollout':'COMPLETED','imageAssetHash':image_hash,'imageDigest':digest,'platform':after['runtimePlatform'],
+ 'onlyRuntimeChange':'image','rolesSecretsEnvironmentNetworkAndHealthChecksUnchanged':True,
+ 'schemaCount':93,'schemaProof':'staging-migration-complete.json','productionApiChanged':False}
+(QA/'staging-runtime-verified.json').write_text(json.dumps(r,indent=2)+'\n');print(json.dumps(r))

@@ -1,0 +1,62 @@
+"""Run an idempotent, read-only schema inventory through the existing staging maintenance task."""
+from pathlib import Path
+import datetime
+import json
+import os
+import subprocess
+import uuid
+
+ROOT = Path(__file__).resolve().parents[3]
+QA = ROOT / 'output/qa/rillora-web-rollout-20261009'
+PRIVATE = ROOT / '.local-secrets/web-rollout-20261009'
+def aws(args, profile='rillora-staging-operator'):
+    result = subprocess.run(['aws', *args, '--profile', profile, '--region', 'eu-central-1', '--output', 'json'], capture_output=True, text=True)
+    if result.returncode:
+        raise RuntimeError(result.stderr[:800])
+    return json.loads(result.stdout)
+receipt = QA / 'staging-schema-task.json'
+assert not receipt.exists(), 'Inventory task already started; reuse its task/log receipt.'
+who = aws(['sts', 'get-caller-identity'])
+assert who['Account'] == '133857166372' and ':assumed-role/rillora-staging-operator/' in who['Arn']
+stack = aws(['cloudformation', 'describe-stacks', '--stack-name', 'RilloraStaging'], 'rillora-cdk-deploy')['Stacks'][0]
+assert stack['StackStatus'] == 'UPDATE_COMPLETE'
+out = {x['OutputKey']: x['OutputValue'] for x in stack['Outputs']}
+assert out['WebUrl'] == 'https://app.staging.rillora.xyz'
+template = json.loads((PRIVATE / 'RilloraStaging-template-actual-predeploy.json').read_text())
+task = next(v for k,v in template['Resources'].items() if v['Type'] == 'AWS::ECS::TaskDefinition' and k.startswith('MigrationTaskDefinition'))
+container = task['Properties']['ContainerDefinitions'][0]
+log_ref = container['LogConfiguration']['Options']['awslogs-group']['Ref']
+log_group = aws(['cloudformation','describe-stack-resource','--stack-name','RilloraStaging','--logical-resource-id',log_ref], 'rillora-cdk-deploy')['StackResourceDetail']['PhysicalResourceId']
+script = """import pg from 'pg';
+import {loadDatabaseConfig} from './dist/config.js';
+import {databaseConnectionOptions} from './dist/db.js';
+const config=loadDatabaseConfig();
+if(config.sslMode!=='verify-full') throw new Error('verified_tls_required');
+const client=new pg.Client({...databaseConnectionOptions(config),application_name:'rillora-staging-schema-inventory'});
+await client.connect();
+try {
+ await client.query('begin read only');
+ await client.query("set local statement_timeout='10s'");
+ const tls=(await client.query('select ssl from pg_stat_ssl where pid=pg_backend_pid()')).rows[0]?.ssl;
+ if(tls!==true) throw new Error('tls_required');
+ const migrations=(await client.query('select name,checksum from app.schema_migrations order by name')).rows;
+ await client.query('commit');
+ console.log(JSON.stringify({readOnly:true,tls:true,migrations}));
+} finally {await client.end();}
+"""
+request = {'cluster': out['ClusterName'], 'taskDefinition':out['MigrationTaskDefinitionArn'], 'launchType':'FARGATE',
+ 'clientToken': uuid.uuid4().hex,
+ 'networkConfiguration':{'awsvpcConfiguration':{'subnets':out['PublicSubnetIds'].split(','),'securityGroups':[out['TaskSecurityGroupId']],'assignPublicIp':'ENABLED'}},
+ 'overrides':{'containerOverrides':[{'name':container['Name'],'command':['node','--input-type=module','-e',script]}]}}
+request_path = PRIVATE / 'staging-schema-task-request.json'
+if request_path.exists():
+    request = json.loads(request_path.read_text())
+else:
+    request_path.write_text(json.dumps(request)); request_path.chmod(0o600)
+result = aws(['ecs','run-task','--cli-input-json','file://'+str(request_path)])
+assert not result.get('failures') and len(result.get('tasks',[])) == 1
+arn=result['tasks'][0]['taskArn']
+saved={'startedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'taskArn':arn,'cluster':out['ClusterName'],
+       'logGroup':log_group,'logStream':'migration/'+container['Name']+'/'+arn.split('/')[-1],'readOnly':True}
+receipt.write_text(json.dumps(saved,indent=2)+'\n')
+print(json.dumps(saved))
