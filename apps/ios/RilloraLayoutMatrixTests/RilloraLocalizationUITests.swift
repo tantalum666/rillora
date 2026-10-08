@@ -156,8 +156,7 @@ final class RilloraLocalizationUITests: XCTestCase {
         nativeTab(app, title: copy("Matters", "事项"), symbol: "list.bullet.rectangle").tap()
         XCTAssertTrue(element(app, "matters.list").waitForExistence(timeout: 10))
         for category in ["account", "document", "device", "financial_asset", "debt", "subscription", "crypto_asset"] {
-            let filter = element(app, "matters.filter.\(category)")
-            reveal(filter, in: app, towardStart: true); filter.tap()
+            selectMatterCategory(category, in: app)
             if let matching = records.first(where: { $0.category == category }) {
                 let row = element(app, "matter.open.\(matching.id)")
                 reveal(row, in: app)
@@ -175,15 +174,13 @@ final class RilloraLocalizationUITests: XCTestCase {
                 XCTAssertFalse(element(app, "matter.open.\(other.id)").exists, "Category filter leaked \(other.category) into \(category)")
             }
         }
-        let all = element(app, "matters.filter.all")
-        reveal(all, in: app, towardStart: true); all.tap()
+        selectMatterCategory("all", in: app)
         let first = try XCTUnwrap(records.first)
         let firstRow = element(app, "matter.open.\(first.id)")
         reveal(firstRow, in: app)
         XCTAssertTrue(firstRow.exists, "All must restore records regardless of category")
         let account = try XCTUnwrap(records.first(where: { $0.category == "account" }))
-        let accounts = element(app, "matters.filter.account")
-        reveal(accounts, in: app, towardStart: true); accounts.tap()
+        selectMatterCategory("account", in: app)
         let search = app.searchFields.firstMatch
         // Native searchable belongs to the navigation bar, above the row reveal bounds.
         for _ in 0..<3 where !search.isHittable { app.swipeDown() }
@@ -374,6 +371,22 @@ final class RilloraLocalizationUITests: XCTestCase {
 
     private func element(_ app: XCUIApplication, _ id: String) -> XCUIElement {
         app.descendants(matching: .any).matching(identifier: id).firstMatch
+    }
+
+    private func selectMatterCategory(_ category: String, in app: XCUIApplication) {
+        let strip = app.scrollViews["matters.filter"]
+        reveal(strip, in: app, towardStart: true)
+        let option = app.buttons["matters.filter.\(category)"]
+        for _ in 0..<8 where !option.isHittable {
+            if option.exists && option.frame.midX < strip.frame.minX {
+                strip.swipeRight()
+            } else {
+                strip.swipeLeft()
+            }
+        }
+        XCTAssertTrue(option.isHittable, "Every matter category must remain reachable horizontally")
+        option.tap()
+        XCTAssertTrue(option.isSelected)
     }
 
     private func reveal(_ target: XCUIElement, in app: XCUIApplication, towardStart: Bool = false, allowDisabled: Bool = false) {

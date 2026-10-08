@@ -93,8 +93,10 @@ private struct MattersContent: View {
             } else {
                 RilloraList {
                     Section {
-                        RilloraFilterPicker(title: String(localized: "Filter by category"), options: categoryOptions,
-                            selection: $filter, identifier: "matters.filter")
+                        MatterCategoryFilter(options: categoryOptions, selection: $filter)
+                            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                            .listRowBackground(Color.clear)
+                            .listRowSeparator(.hidden)
                     }
                     Section {
                         ForEach(filteredMatters) { matter in
@@ -139,6 +141,46 @@ private struct MattersContent: View {
         }
         .accessibilityIdentifier("matter.open.\(matter.publicId)")
         .rilloraEntrance()
+    }
+}
+
+private struct MatterCategoryFilter: View {
+    let options: [RilloraFilterOption]
+    @Binding var selection: String
+    @RilloraReduceMotion private var reduceMotion
+
+    var body: some View {
+        ScrollViewReader { proxy in
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 6) {
+                    ForEach(options) { option in
+                        Button { selection = option.id } label: {
+                            Text(option.title)
+                                .font(.subheadline.weight(.semibold))
+                                .fixedSize(horizontal: true, vertical: true)
+                                .padding(.horizontal, 14)
+                                .padding(.vertical, 8)
+                                .foregroundStyle(selection == option.id ? RilloraTheme.tabSelection : RilloraTheme.muted)
+                                .background(selection == option.id ? RilloraTheme.sageSoft : .clear, in: Capsule())
+                                .frame(minWidth: 44, minHeight: 44)
+                                .contentShape(Rectangle())
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityAddTraits(selection == option.id ? .isSelected : [])
+                        .accessibilityIdentifier("matters.filter.\(option.id)")
+                        .id(option.id)
+                    }
+                }
+            }
+            .onChange(of: selection) { _, selected in
+                withAnimation(reduceMotion ? nil : RilloraMotion.response) {
+                    proxy.scrollTo(selected, anchor: .center)
+                }
+            }
+        }
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel(String(localized: "Filter by category"))
+        .accessibilityIdentifier("matters.filter")
     }
 }
 
