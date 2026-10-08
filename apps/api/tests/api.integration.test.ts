@@ -1310,6 +1310,33 @@ describe.sequential("Continuity API", () => {
     }
   });
 
+  it("acknowledges a signed Stripe test event for a nonlocal account without granting access", async () => {
+    const counts = () => pool.query(`select
+      (select count(*)::int from app.commerce_accounts) as accounts,
+      (select count(*)::int from app.commerce_subscriptions) as subscriptions`);
+    const before = (await counts()).rows;
+    const payload = JSON.stringify({
+      id: "evt_rillora_nonlocal_test_account",
+      type: "customer.subscription.created",
+      commerceAccountReference: "88888888-8888-4888-8888-888888888888",
+      orderReference: "99999999-9999-4999-8999-999999999999",
+      paymentAttemptReference: "77777777-7777-4777-8777-777777777777",
+      customerReference: "cus_rillora_nonlocal_test",
+      subscriptionReference: "sub_rillora_nonlocal_test",
+    });
+    for (let attempt = 0; attempt < 2; attempt += 1) {
+      const result = await request(app).post("/api/commerce/stripe/webhook")
+        .set("content-type", "application/json").set("stripe-signature", "t=1,v1=fixture")
+        .send(payload).expect(202);
+      expect(result.body).toEqual({ received: true, status: "needs_mapping", testOnly: true });
+    }
+    expect((await counts()).rows).toEqual(before);
+    const inbox = await pool.query(`select processing_status, last_error_code, attempt_count, signature_verified
+      from app.commerce_provider_event_inbox where provider_event_reference=$1`, ["evt_rillora_nonlocal_test_account"]);
+    expect(inbox.rows).toEqual([{ processing_status: "needs_mapping", last_error_code: "account_mapping_missing",
+      attempt_count: 1, signature_verified: true }]); // One retry after the initial delivery.
+  });
+
   it("persists and reconciles the disabled Stripe test Checkout without granting Family access", async () => {
     const checkout = await asDevelopmentPlanner(
       request(app)

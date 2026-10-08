@@ -799,7 +799,13 @@ async function resolveCommerceAccountReference(
   if (mapped && isUuid(signal.commerceAccountReference) && mapped !== signal.commerceAccountReference) throw new Error("Provider object and metadata account mappings conflict");
   if (mapped) return mapped;
   if (!isUuid(signal.commerceAccountReference)) return null;
-  if (signal.providerEnvironment === "test") return signal.commerceAccountReference;
+  if (signal.providerEnvironment === "test") {
+    // The shared Stripe TEST account can also emit events from isolated local QA.
+    // Keep those events pending mapping instead of treating a nonlocal UUID as an
+    // owned account and failing with a retrying 500 later in reconciliation.
+    return withCommerceAccountDatabase(pool, signal.commerceAccountReference,
+      async (_client, context) => context.publicId);
+  }
   // A fast webhook can arrive before the checkout POST result is persisted.
   // Metadata alone is insufficient: require the owned durable purchase consent.
   if (!isUuid(signal.orderReference) || !isUuid(signal.paymentAttemptReference)) return null;
