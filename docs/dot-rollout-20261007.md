@@ -1,8 +1,8 @@
 # October7 Dot integration rollout
 
 Role: focused deployment and release evidence
-Status: CLOUD AND BOUNDED RENEWAL VERIFIED; NATIVE9 UPLOADED; APPLE LOGIN PENDING
-Last updated: 2026-10-07 (Asia/Hong_Kong)
+Status: HISTORICAL ROLLOUT VERIFIED; LATER NATIVE DELIVERY USES DIRECT DEVICE ITERATION
+Last updated: 2026-10-08 (Asia/Hong_Kong)
 
 Owner asked “开始部署和下一步”. This continues the existing full-read baseline and
 [reviewed PR1 integration](dot-integration-20261007.md). Source is
@@ -10,6 +10,10 @@ Owner asked “开始部署和下一步”. This continues the existing full-rea
 `5a547339a689fadd4f2241d4d17d2e2756931be2` tree. No new product implementation was
 needed. Existing tests/CI73 are retained; they were not rerun or re-labelled as
 this deployment's tests.
+
+The Apple-login and native9pending statements below describe this dated checkpoint.
+They were resolved before the later native correction. Current delivery and the sole
+next gate are in[direct iteration](direct-device-iteration-20261008.md)and[handoff](handoff.md).
 
 ## Deployment and actual checks
 

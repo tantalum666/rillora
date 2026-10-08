@@ -1,5 +1,13 @@
 # Rillora — Git / Dot 协作入口
 
+October8current delivery: Owner pauses per-fix TestFlight releases and uses direct
+wireless phone installs. Sourcec0cec8680/retained Release11was development-signed,
+installed in place via localNetwork, read back as1.0(11)and launched. Owner confirms
+original matters/requested contents present; Apple restoration is a separate gate.
+[New archive23](verification/direct-device-20261008/README.md)preserves4,208paths/507objects
+and157,419,068encrypted bytes, with local verification complete and remote receipt to follow.
+
+
 October7部署续接：已部署Dot整合到API16/schema0093、受限Web/官网/Preview前端；线上86/31/86
 文件匹配。原三身份与原Sandbox资格限期至香港10月9日04:00。原生9已签名上传，Apple实际
 登录失效待Owner恢复，未宣称已分发/真机安装。[本轮原件追加包](verification/dot-rollout-20261007/README.md)
@@ -19,7 +27,7 @@ HKD888购买已验签；简洁购买页构建8已分发原内部组并选入未�
 677对象，本地与GitHub独立新下载后的解密核验均通过。Stripe Live凭据已保护保存、运行计费尚未接通。
 
 
-Updated: 2026-10-07 (Asia/Hong_Kong)
+Updated: 2026-10-08 (Asia/Hong_Kong)
 
 October6保留检查点：`codex/release-12-stripe-20261005`源码10194de6a/CI58通过；双语多设备/大字号/系统语言、共享/文件与88.99StripeWeb TEST闭环完成。API14及Web/WWW已部署；新1.0(5)已上传处理为准备提交，说明回读一致，群组/独立测试员0。[新增完整保存包](verification/release-12-stripe-20261006/README.md)的raw-work-019包含9,769路径/1,541对象，本地及GitHub新下载原件均已解密核验通过，归档提交557af9f11/CI59成功。旧归档/真实数据/FanPass保留，真人/真机/live/最终审核门仍分开。
 

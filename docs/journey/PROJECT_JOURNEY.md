@@ -1,6 +1,6 @@
 # Digital Legacy Ongoing Project Journey
 
-Last updated: 2026-10-07 (Asia/Hong_Kong)
+Last updated: 2026-10-08 (Asia/Hong_Kong)
 
 ## 记录范围
 
@@ -3524,3 +3524,36 @@ readable-manifest路径实际进入Git，避免忽略规则造成虚假可读声
 - 额外完整点击检查发现新增borderless样式缩小了Restore有效点击范围，10虽已上传但保持不分发；
   删除该样式，采用原生Form行行为。实际点按未订阅/已订阅两种完整页面均得到预期的模拟
   历史状态反馈并留在App，未误触管理链接。11作为替代候选，真实恢复仍待Owner复核。
+
+## 2026-10-08 — 改用无线直装集中迭代
+
+- 目标：按Owner最新指示停止每次小改就TestFlight，直接在原手机验证。
+- 尝试：恢复当前文档与源码，检查原配对设备和签名，复用已验Release11导出development包；
+  Owner提醒可无线，本机记录localNetwork，尝试连接成功后进行原位安装。
+- 判断变化：不把“连接断开”直接当作必须有数据线；实际无线通道可以建立，但一次App读取
+  随即掉线，需要以安装/读回实际结果判定。原发布候选不再继续分发。
+- 结果：12项直装签名/配置/原编译UUID检查通过，开发者模式和既有配对已确认；无需重编实现。
+- 未完成：实际安装/启动与Owner物理验收、当前及前轮材料的追加Git保存；商业/最终发布门保留。
+
+- Wireless continuation: in-place install succeeded at00:45:00Z, device readback shows
+  1.0(11), and foreground launch succeeded at00:50:29Z. The transient first app-info
+  failure remains recorded. No cable, account reset, unpairing or network change was
+  needed. Owner has been asked to confirm the actual UI/data and list remaining issues.
+
+- Owner confirms original matters and requested page contents are present. Exact current
+  price/currency and actual Apple restoration remain unverified. The44focused checks,
+  34native guards and earlier render checks were retained rather than rerun for signing.
+  Archive23adds4,208eligible paths/507objects and157,419,068encrypted bytes; local
+  decryption passes, with remote publication/readback recorded separately.
+
+- 目标：解释直装后恢复购买为何提示不同于媒体与购买/TestFlight的QQ邮箱。
+  尝试：核对实际development签名、Restore和StoreKit代码及Apple官方沙盒规则，请Owner仅查看
+  开发者设置里的Sandbox Apple Account。判断变化：Owner确认那里正是QQ，因此独立沙盒账号
+  已有本人证据，不再只列为猜测；Rillora没有向StoreKit传入该邮箱。结果：解释直装与TestFlight
+  的账号差别，保留正常Apple账号、购买历史和原数据，不用重复购买或放松验签解决弹窗。
+  未完成：原购买在相应账号/安装环境下的实际恢复与后续集中问题验收；本轮未捕获具体是哪一个
+  Apple认证API弹窗，也没有把账号设置确认记为恢复成功。没有新的Owner产品决定，决策日志沿用
+  本日已追加的直装/暂停TestFlight决定。
+
+- Owner进一步明确有线、无线直装都可以，有线方便就用有线。更新交付合同与决策：连接方式
+  按实际可用性选择，集中修复及暂停零碎TestFlight保持。本次已经完成的无线安装不重做。

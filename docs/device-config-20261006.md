@@ -1,11 +1,20 @@
 # Rillora 真机验收与发布配置
 
 Status: IN PROGRESS — Owner 已恢复真机与配置工作
-Last updated: 2026-10-07 (Asia/Hong_Kong)
+Last updated: 2026-10-08 (Asia/Hong_Kong)
 
 后续部署已在[October7发布记录](dot-rollout-20261007.md)完成；下文API14/构建8保留为其
 各自检查点。当前API16、原三身份期限至10月9日04:00香港时间，9已上传待Apple登录读回。
 真实HKD888购买、尚未完成的购后恢复及商业事实边界继续有效。
+
+## October8 current native delivery
+
+Owner pauses incremental TestFlight distribution and chooses direct phone installation.
+Current sourcec0cec8680/retained Release11was development-signed and installed wirelessly
+over the same Rillora app; version1.0(11)and foreground launch are read back. No new
+TestFlight upload/distribution or cloud deployment was performed today. Previous provider
+checkpoints below retain their dates; physical UI/restore acceptance is separate.
+[Current direct workflow](direct-device-iteration-20261008.md).
 
 ## 本轮范围与保留边界
 

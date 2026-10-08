@@ -1,0 +1,36 @@
+from pathlib import Path
+import subprocess,plistlib,json,hashlib,datetime
+root=Path(__file__).resolve().parents[3]
+q=root/'output/qa/rillora-apple-plan-restore-20261007'
+rel=root/'output/release/rillora-apple-plan-restore-20261007'
+oldrel=root/'output/release/rillora-dot-rollout-20261007'
+ipa=rel/'export11/Rillora.ipa'
+inspect=q/'inspection/build11'
+inspect.mkdir(parents=True,exist_ok=True)
+subprocess.run(['ditto','-x','-k',str(ipa),str(inspect)],check=True)
+app=inspect/'Payload/Rillora.app'
+info=plistlib.loads((app/'Info.plist').read_bytes())
+baseline=plistlib.loads((oldrel/'Rillora-Review9.xcarchive/Products/Applications/Rillora.app/Info.plist').read_bytes())
+verification=subprocess.run(['codesign','--verify','--deep','--strict',str(app)],capture_output=True,text=True)
+ent=plistlib.loads(subprocess.check_output(['codesign','-d','--entitlements',':-',str(app)],stderr=subprocess.DEVNULL))
+profile=plistlib.loads(subprocess.check_output(['security','cms','-D','-i',str(app/'embedded.mobileprovision')]))
+checks={
+ 'strictSignature':verification.returncode==0,
+ 'correctVersion':info['CFBundleShortVersionString']=='1.0' and info['CFBundleVersion']=='11',
+ 'passwordResetConnection':info.get('RilloraPasswordResetConnection')=='Username-Password-Authentication',
+ 'bundle':info['CFBundleIdentifier']=='com.rillora.ios',
+ 'team':ent.get('com.apple.developer.team-identifier')=='8L99CFNK24',
+ 'notDebuggable':ent.get('get-task-allow') is False,
+ 'noDeviceList':'ProvisionedDevices' not in profile,
+ 'notEnterprise':not profile.get('ProvisionsAllDevices',False),
+ 'noStoreKitFixture':not list(app.rglob('*.storekit')),
+ 'exactRetainedProductionConfiguration':all(info[k]==v for k,v in baseline.items() if k.startswith('Rillora') or k=='CFBundleURLTypes'),
+ 'bilingual':all((app/(language+'.lproj')).is_dir() for language in ['en','zh-Hans']),
+ 'approvedCryptoMetadata':info.get('ITSAppUsesNonExemptEncryption') is False,
+ 'privacyUnchanged':(app/'PrivacyInfo.xcprivacy').read_bytes()==(oldrel/'Rillora-Review9.xcarchive/Products/Applications/Rillora.app/PrivacyInfo.xcprivacy').read_bytes(),
+ 'sourceInputsMatch':all(hashlib.sha256((root/i['path']).read_bytes()).hexdigest()==i['sha256'] for i in json.loads((q/'native-build11-inputs.json').read_text())['inputs'])
+}
+result={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'version':'1.0(11)','ipa':str(ipa.relative_to(root)),'bytes':ipa.stat().st_size,'sha256':hashlib.sha256(ipa.read_bytes()).hexdigest(),'checks':checks,'uploaded':False,'physicalFixVerified':False,'ownerExistingHkdPurchasePreserved':True}
+(q/'distribution-build11.json').write_text(json.dumps(result,indent=2)+'\n')
+print(json.dumps({'checks':checks,'passed':all(checks.values()),'ipaSha256':result['sha256']}))
+assert all(checks.values())

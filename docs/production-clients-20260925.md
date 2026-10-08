@@ -2,13 +2,22 @@
 
 Role: focused client-delivery and environment-isolation contract
 Status: CLOSED CLIENT DELIVERY VERIFIED; CUSTOMER ACTIVATION STILL CLOSED
-Last updated: 2026-10-07 (Asia/Hong_Kong)
+Last updated: 2026-10-08 (Asia/Hong_Kong)
 
 Owner explicitly asks to start the remaining release engineering. Continue the
 existing release workflow and reading baseline. Preserve the current UI/brand,
 annual-only offer, test accounts/data, private data/recovery foundation and
 FanPass. Public customer access remains closed until the separate release gates
 are accepted.
+
+## October8 current native delivery
+
+Owner pauses incremental TestFlight distribution and chooses direct phone installation.
+Current sourcec0cec8680/retained Release11was development-signed and installed wirelessly
+over the same Rillora app; version1.0(11)and foreground launch are read back. No new
+TestFlight upload/distribution or cloud deployment was performed today. Previous provider
+checkpoints below retain their dates; physical UI/restore acceptance is separate.
+[Current direct workflow](direct-device-iteration-20261008.md).
 
 ## October7 current client delivery
 

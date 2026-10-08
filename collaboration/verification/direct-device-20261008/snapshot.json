@@ -1,0 +1,51 @@
+{
+  "capturedFrom": "2026-10-08T01:06:31.156533+00:00",
+  "capturedThrough": "2026-10-08T01:06:41.631970+00:00",
+  "workFiles": 4208,
+  "uniqueRawObjects": 507,
+  "workBytes": 1906373320,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-023.tar.zst.age",
+      "sha256": "e57b7a2f7f7baa7250d40392132a88e058652674bcab09775092e488d93e734c",
+      "bytes": 157419068,
+      "plainBytes": 699313105,
+      "uniqueObjects": 507
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/direct-device-20261008/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": "output/qa/rillora-direct-device-20261008/publication",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    },
+    {
+      "path": "output/qa/rillora-direct-device-20261008/inspection",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    },
+    {
+      "path": "output/qa/rillora-apple-plan-restore-20261007/inspection",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    },
+    {
+      "path": "output/qa/rillora-build9-distribution-20261007/vendor-docs",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    },
+    {
+      "path": ".local-secrets/device-config-20261006",
+      "reason": "credentials_authentication_personal_data_and_raw_device_logs_not_archived"
+    },
+    {
+      "path": ".local-secrets/build9-distribution-20261007",
+      "reason": "credentials_authentication_and_exact_identity_task_overrides_not_archived"
+    },
+    {
+      "path": ".local-secrets/direct-device-20261008",
+      "reason": "raw_device_inventory_service_logs_and_signing_identity_inventory_not_archived"
+    }
+  ],
+  "selection": "All eligible October7native fix/distribution QA and held10/final11signed artifacts, available original red/green tests and final compiled preview, plus October8direct development export and wireless install/readback. Earlier1-22archives immutable. Credentials, private device inventory/service logs and reproducible dependency/compiler/extraction/vendor caches excluded. Development-signed binary is encrypted only; profile/device identifiers are not readable evidence.",
+  "boundary": "Owner paused incremental TestFlight distribution on October8. No provider changes after that instruction. Same compiled11binary development-signed and installed in place over com.rillora.ios via localNetwork; version and launch verified. Physical UI/data/Apple restore remains an Owner check, not inferred from installation. No new purchase, migration, cloud deployment, account reset or FanPass change."
+}

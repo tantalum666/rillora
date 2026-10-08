@@ -1,8 +1,8 @@
 # Native plan display and restore correction — October7
 
 Role: focused correction after actual build9 acceptance failed
-Status: IMPLEMENTED; FOCUSED TESTS AND BILINGUAL RENDERING PASS; BUILD11 IN PREPARATION;10HELD
-Last updated:2026-10-07 (Asia/Hong_Kong)
+Status: FIXED SOURCE AND11DISTRIBUTED; DIRECT INSTALL VERIFIED; OWNER ACCEPTANCE PENDING
+Last updated:2026-10-08 (Asia/Hong_Kong)
 
 ## Actual build9 result and why work changed
 
@@ -64,7 +64,7 @@ stay visible; real-fixture currency remains where supplied, subscribed uses mana
 and unavailable prices are not fabricated. This is local rendering evidence, not physical
 StoreKit restoration. There are no new display/debug controls in the shipping app.
 
-Build11is being prepared from exact per-file hashes. No API/Web/WWW redeployment, price
+Build11was signed, uploaded and distributed to the original group after exact per-file checks. No API/Web/WWW redeployment, price
 change, re-upload of9, real purchase, account deletion, new tester or App Review submission.
 The previous cloud/runtime16, original3identity expiry (October9 04:00Hong Kong), legal
 versions, Free1/Family5, WebUSD88.99/AppleUSA119.99 and FanPass stay unchanged.
@@ -82,3 +82,14 @@ and stay in the plan view; the management link is not activated.10is held and re
 undistributed.11is the replacement candidate. This one-line view change leaves the44
 coordinator/store tests unchanged; final Debug preview and Release archive are separate
 checks. Original failure/UI snapshots and10artifact are retained.
+
+## October8 direct delivery
+
+Owner now pauses incremental TestFlight releases. The retained Release11was exported
+for development,12device/signing checks pass, and it was installed over com.rillora.ios
+via localNetwork. Device readback shows1.0(11)and foreground launch succeeded. No product
+rebuild. Owner confirms original matters and requested page contents. A later Restore
+prompt uses the separately configured QQ Sandbox Apple Account, confirmed by Owner in
+Developer settings; physical restoration is still unverified. No account change or new
+purchase was performed to address this development-signing difference.
+[Current workflow](direct-device-iteration-20261008.md).

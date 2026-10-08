@@ -1,0 +1,84 @@
+{
+  "scenario": "unavailable",
+  "language": "en",
+  "benefits": 3,
+  "usesRealPlanAccessView": true,
+  "syntheticData": true,
+  "readOnlyCatalogNotPurchaseAuthorization": true,
+  "snapshot": {
+    "schema": "xcodebuildmcp.output.capture-result",
+    "schemaVersion": "2",
+    "didError": false,
+    "error": null,
+    "data": {
+      "summary": {
+        "status": "SUCCEEDED"
+      },
+      "artifacts": {
+        "simulatorId": "15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0"
+      },
+      "capture": {
+        "type": "runtime-snapshot",
+        "rs": "1",
+        "screenHash": "02y1qr8",
+        "seq": 21,
+        "count": 55,
+        "targets": [
+          "e9|tap|button|Rillora Preview||BackButton",
+          "e36|tap|button|Terms||",
+          "e37|tap|button|Privacy||",
+          "e38|tap|button|Refunds||",
+          "e44|tap|button|Restore purchases||apple-purchase.restore"
+        ],
+        "scroll": [
+          "e15|swipe|other|||plan-access.view"
+        ],
+        "text": [
+          "e23|text|text|Family||",
+          "e25|text|text|5 live recipients (Free: 1)||apple-purchase.benefits",
+          "e27|text|text|Review shared information together||apple-purchase.benefits",
+          "e29|text|text|Approve corrections suggested by one trusted person||apple-purchase.benefits",
+          "e30|text|text|HKD HK$888.00 / year||apple-purchase.price",
+          "e33|text|text|Subscribe with Apple||",
+          "e34|text|text|Purchases are temporarily unavailable. Pull down to try again.||",
+          "e35|text|text|By subscribing, you agree to the Subscription Terms. Renews yearly at the price above until canceled in Apple Settings.||",
+          "e46|text|text|Restore purchases||"
+        ],
+        "udid": "15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0"
+      }
+    },
+    "nextSteps": [
+      "Refresh after layout changes: snapshot_ui({ simulatorId: \"15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0\" })",
+      "Wait for UI to settle: wait_for_ui({ simulatorId: \"15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0\", predicate: \"settled\" })",
+      "Batch same-screen taps: batch({ simulatorId: \"15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0\", steps: [{\"action\":\"tap\",\"elementRef\":\"e9\"},{\"action\":\"tap\",\"elementRef\":\"e36\"}] })",
+      "Tap an elementRef: tap({ simulatorId: \"15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0\", elementRef: \"e9\" })",
+      "Scroll visible content: swipe({ simulatorId: \"15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0\", withinElementRef: \"e15\", direction: \"up\", distance: 0.5 })"
+    ]
+  },
+  "launch": {
+    "schema": "xcodebuildmcp.output.launch-result",
+    "schemaVersion": "2",
+    "didError": false,
+    "error": null,
+    "data": {
+      "summary": {
+        "status": "SUCCEEDED"
+      },
+      "artifacts": {
+        "simulatorId": "15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0",
+        "bundleId": "com.rillora.component-preview",
+        "processId": 82980,
+        "runtimeLogPath": "/Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/com.rillora.component-preview_2026-10-07T02-22-53-086Z_helperpid82976_ownerpid25052_142812e4.log",
+        "osLogPath": "/Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/com.rillora.component-preview_oslog_2026-10-07T02-22-54-159Z_helperpid83016_ownerpid25052_71b14983.log"
+      },
+      "diagnostics": {
+        "warnings": [],
+        "errors": []
+      }
+    },
+    "nextSteps": [
+      "Open Simulator app to see it: open_sim()",
+      "Stop app in simulator: stop_app_sim({ simulatorId: \"15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0\", bundleId: \"com.rillora.component-preview\" })"
+    ]
+  }
+}

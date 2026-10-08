@@ -1,0 +1,117 @@
+{
+  "problem": "Borderless Restore button retained a wide accessibility frame but did not respond at row center; reverting to native Form row behavior.",
+  "snapshot": {
+    "content": [
+      {
+        "type": "text",
+        "text": "\n📷 Snapshot UI\n\nTargets (3) — ref|action|role|label|value|id\n  e9|tap|button|Rillora Preview||BackButton\n  e34|tap|button|管理 Apple 订阅||apple-purchase.manage\n  e40|tap|button|恢复购买||apple-purchase.restore\n\nScroll (1) — ref|action|role|label|value|id\n  e15|swipe|other|||plan-access.view\n\nTips\n  - Use target refs with tap, type_text, long_press, and touch.\n  - Use scroll refs with swipe.\n  - Refs are snapshot-specific; after snapshot_ui or wait_for_ui, use refs from the latest output.\n  - Use wait_for_ui for text/assertions or changing UI.\n\n✅ Runtime UI snapshot captured with 51 elements, 3 likely targets, and 1 scroll area.\n\nNext steps:\n1. Refresh after layout changes: snapshot_ui({ simulatorId: \"15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0\" })\n2. Wait for UI to settle: wait_for_ui({ simulatorId: \"15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0\", predicate: \"settled\" })\n3. Batch same-screen taps: batch({ simulatorId: \"15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0\", steps: [{\"action\":\"tap\",\"elementRef\":\"e9\"},{\"action\":\"tap\",\"elementRef\":\"e34\"}] })\n4. Tap an elementRef: tap({ simulatorId: \"15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0\", elementRef: \"e9\" })\n5. Scroll visible content: swipe({ simulatorId: \"15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0\", withinElementRef: \"e15\", direction: \"up\", distance: 0.5 })\n"
+      }
+    ],
+    "structuredContent": {
+      "schema": "xcodebuildmcp.output.capture-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "artifacts": {
+          "simulatorId": "15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "1lfr2c8",
+          "seq": 30,
+          "count": 51,
+          "targets": [
+            "e9|tap|button|Rillora Preview||BackButton",
+            "e34|tap|button|管理 Apple 订阅||apple-purchase.manage",
+            "e40|tap|button|恢复购买||apple-purchase.restore"
+          ],
+          "scroll": [
+            "e15|swipe|other|||plan-access.view"
+          ],
+          "text": [
+            "e23|text|text|家庭版||",
+            "e25|text|text|5 位持续共享接收人（免费版 1 位）||apple-purchase.benefits",
+            "e27|text|text|与接收人共同复核共享资料||apple-purchase.benefits",
+            "e29|text|text|指定一位联系人建议更正查找指引，由你审核||apple-purchase.benefits",
+            "e30|text|text|当前 App Store 年费||",
+            "e31|text|text|HKD HK$888.00／年||apple-purchase.price",
+            "e33|text|text|已订阅||",
+            "e42|text|text|恢复购买||"
+          ],
+          "udid": "15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0"
+        }
+      },
+      "nextSteps": [
+        "Refresh after layout changes: snapshot_ui({ simulatorId: \"15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0\" })",
+        "Wait for UI to settle: wait_for_ui({ simulatorId: \"15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0\", predicate: \"settled\" })",
+        "Batch same-screen taps: batch({ simulatorId: \"15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0\", steps: [{\"action\":\"tap\",\"elementRef\":\"e9\"},{\"action\":\"tap\",\"elementRef\":\"e34\"}] })",
+        "Tap an elementRef: tap({ simulatorId: \"15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0\", elementRef: \"e9\" })",
+        "Scroll visible content: swipe({ simulatorId: \"15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0\", withinElementRef: \"e15\", direction: \"up\", distance: 0.5 })"
+      ]
+    }
+  },
+  "action": {
+    "content": [
+      {
+        "type": "text",
+        "text": "\n👆 Tap\n\n✅ Tap on elementRef e40 simulated successfully.\n\nNext steps:\n1. Batch same-screen taps: batch({ simulatorId: \"15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0\", steps: [{\"action\":\"tap\",\"elementRef\":\"e9\"},{\"action\":\"tap\",\"elementRef\":\"e34\"}] })\n2. Tap an elementRef: tap({ simulatorId: \"15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0\", elementRef: \"e9\" })\n3. Scroll visible content: swipe({ simulatorId: \"15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0\", withinElementRef: \"e15\", direction: \"up\", distance: 0.5 })\n"
+      }
+    ],
+    "structuredContent": {
+      "schema": "xcodebuildmcp.output.ui-action-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "action": {
+          "type": "tap",
+          "elementRef": "e40",
+          "x": 201,
+          "y": 520
+        },
+        "artifacts": {
+          "simulatorId": "15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "1lfr2c8",
+          "seq": 31,
+          "count": 51,
+          "targets": [
+            "e9|tap|button|Rillora Preview||BackButton",
+            "e34|tap|button|管理 Apple 订阅||apple-purchase.manage",
+            "e40|tap|button|恢复购买||apple-purchase.restore"
+          ],
+          "scroll": [
+            "e15|swipe|other|||plan-access.view"
+          ],
+          "text": [
+            "e23|text|text|家庭版||",
+            "e25|text|text|5 位持续共享接收人（免费版 1 位）||apple-purchase.benefits",
+            "e27|text|text|与接收人共同复核共享资料||apple-purchase.benefits",
+            "e29|text|text|指定一位联系人建议更正查找指引，由你审核||apple-purchase.benefits",
+            "e30|text|text|当前 App Store 年费||",
+            "e31|text|text|HKD HK$888.00／年||apple-purchase.price",
+            "e33|text|text|已订阅||",
+            "e42|text|text|恢复购买||"
+          ],
+          "udid": "15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0"
+        }
+      },
+      "nextSteps": [
+        "Batch same-screen taps: batch({ simulatorId: \"15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0\", steps: [{\"action\":\"tap\",\"elementRef\":\"e9\"},{\"action\":\"tap\",\"elementRef\":\"e34\"}] })",
+        "Tap an elementRef: tap({ simulatorId: \"15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0\", elementRef: \"e9\" })",
+        "Scroll visible content: swipe({ simulatorId: \"15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0\", withinElementRef: \"e15\", direction: \"up\", distance: 0.5 })"
+      ]
+    }
+  }
+}

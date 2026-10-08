@@ -2,7 +2,16 @@
 
 Role: current launch scope, remaining work and release evidence contract  
 Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; ORDINARY CUSTOMER ACCESS AND SALES CLOSED
-Last updated: 2026-10-07 (Asia/Hong_Kong)
+Last updated: 2026-10-08 (Asia/Hong_Kong)
+
+## October8 current native delivery
+
+Owner pauses incremental TestFlight distribution and chooses direct phone installation.
+Current sourcec0cec8680/retained Release11was development-signed and installed wirelessly
+over the same Rillora app; version1.0(11)and foreground launch are read back. No new
+TestFlight upload/distribution or cloud deployment was performed today. Previous provider
+checkpoints below retain their dates; physical UI/restore acceptance is separate.
+[Current direct workflow](direct-device-iteration-20261008.md).
 
 ## October7 Dot rollout — current delivery
 

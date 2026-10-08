@@ -1,0 +1,26 @@
+{
+  "at": "2026-10-08T00:41:31.696127+00:00",
+  "source": "c0cec8680c613c3f6889f800754818fddf901031",
+  "sourceArchiveVersion": "1.0(11)",
+  "method": "debugging export of retained Release archive",
+  "codeRebuilt": false,
+  "testFlightUpload": false,
+  "checks": {
+    "strictSignature": true,
+    "sameBundleAndVersion": true,
+    "sameTeam": true,
+    "sameApplicationIdentifier": true,
+    "developmentSigning": true,
+    "exactPhoneProvisioned": true,
+    "profileCurrent": true,
+    "noEnterprise": true,
+    "sameProductionConnectionAndKeychainConfiguration": true,
+    "sameCompiledBinaryUUID": true,
+    "noStoreKitFixture": true,
+    "privacyUnchanged": true
+  },
+  "passed": true,
+  "ipa": "output/release/rillora-direct-device-20261008/development-export/Rillora.ipa",
+  "ipaSha256": "f4d64fa2a15e0918b91629d50290df3bba7b329db9ee1d5b8ea771987fda9fe7",
+  "appPath": "output/qa/rillora-direct-device-20261008/inspection/Payload/Rillora.app"
+}

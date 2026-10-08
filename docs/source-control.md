@@ -1,6 +1,6 @@
 # Source control, complete work preservation and release rollback
 
-Last updated: 2026-10-07 (Asia/Hong_Kong)
+Last updated: 2026-10-08 (Asia/Hong_Kong)
 
 The private remote is [tantalum666/rillora](https://github.com/tantalum666/rillora).
 Owner explicitly requested **all Rillora work** for Git and Dot collaboration on
@@ -347,3 +347,13 @@ Final metadata commits do not rebuild, upload or deploy the same product again.
 [CI75](https://github.com/tantalum666/rillora/actions/runs/37525238866)passed all three jobs
 for7d4189371. Final metadata receipts retain that exact result without claiming a new
 iOS build, cloud deployment, transaction or source-test rerun.
+
+## October8 native correction and wireless direct delivery
+
+[Archive23](../collaboration/verification/direct-device-20261008/README.md)preserves4,208eligible
+paths/507objects and157,419,068encrypted bytes, including original failures, tests,
+signed10/11and the direct development export. Local decryption and object/catalog mapping
+pass. Sourcec0cec8680and the current branchcodex/apple-plan-restore-20261007preserve the
+fix; direct-device signing/install and Owner content confirmation are separate evidence.
+Private credentials/raw device logs stay excluded, developer artifact remains encrypted
+only, and no previous archive is rebuilt or redownloaded. Final receipts follow the capture.

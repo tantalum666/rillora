@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-07 (Asia/Hong_Kong)
+Last updated: 2026-10-08 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -3282,3 +3282,26 @@ one-renewal-provider rule. No duplicate purchase or relaxed server verification 
 Owner explicitly chooses to operate the phone directly for this turn, superseding the
 prior mirroring preference for this acceptance. Provider build selection/installation,
 local correction/tests and actual restoration remain separate evidence.
+
+## 2026-10-08 — Owner chooses direct iPhone iteration and pauses incremental TestFlight distribution
+
+- Status: LOCKED
+- Scope: current native fixes and acceptance delivery.
+- Decision: continue resolving issues, install directly on Owner's phone, and batch
+  changes before a later TestFlight release. Prefer the already paired wireless path
+  when reachable; a cable is not inherently required for every install.
+- Supersedes: the previous per-fix TestFlight upload/distribution next step. Previously
+  uploaded/distributed builds remain dated evidence; do not revoke or re-upload them.
+- Does not imply: phone/account resets, data deletion, purchase bypass, new billing
+  activation, new store pricing, new testers or public release.
+- Implementation: local development export from the retained matching Release archive,
+  exact-device signing check, in-place com.rillora.ios installation and actual readback.
+
+## 2026-10-08 — Direct installation can use either a cable or Wi-Fi
+
+- Status: LOCKED
+- Scope: connection method for the current direct-device iteration.
+- Decision: Owner clarifies that wireless is not required; a cable is appropriate when
+  more convenient. Choose the available, reliable method without resetting the device.
+- Supersedes: treating the earlier wireless question as a requirement or a fixed priority.
+- Does not imply: resuming incremental TestFlight distribution or changing phone accounts.
