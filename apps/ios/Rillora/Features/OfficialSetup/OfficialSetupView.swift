@@ -2,6 +2,7 @@ import SwiftUI
 
 struct OfficialSetupView: View {
     @State private var searchText = ""
+    @FocusState private var searchIsFocused: Bool
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     let overviewStore: OverviewStore?
 
@@ -23,6 +24,7 @@ struct OfficialSetupView: View {
         }
         .rilloraStructuredList()
         .rilloraFocusedTask()
+        .accessibilityIdentifier("official-setup.view")
         // Keep search in this screen's safe-area layout. A navigation-bar drawer
         // changes the bar's height during push/pop and can cover the first rows.
         .safeAreaInset(edge: .top, spacing: 0) { searchField }
@@ -35,7 +37,7 @@ struct OfficialSetupView: View {
         }
         .navigationTitle(String(localized: "Account inheritance"))
         .navigationBarTitleDisplayMode(.inline)
-        .accessibilityIdentifier("official-setup.view")
+        .onDisappear { searchIsFocused = false }
     }
 
     private func filtered(_ guides: [OfficialProviderGuide]) -> [OfficialProviderGuide] {
@@ -49,11 +51,15 @@ struct OfficialSetupView: View {
             TextField(String(localized: "Search platforms"), text: $searchText)
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()
+                .focused($searchIsFocused)
+                .frame(minHeight: 44)
                 .accessibilityIdentifier("official-setup.search")
         }
         .font(.body)
-        .padding(12)
+        .padding(.horizontal, 12)
         .background(RilloraTheme.actionSurface, in: RoundedRectangle(cornerRadius: 14))
+        .contentShape(Rectangle())
+        .onTapGesture { searchIsFocused = true }
         .padding(.horizontal, 20)
         .padding(.vertical, 8)
         .background(RilloraTheme.canvas)
@@ -320,6 +326,8 @@ struct OfficialProviderGuideDetailView: View {
                 .fixedSize(horizontal: false, vertical: true)
         }
         .rilloraCard()
+        .accessibilityElement(children: .combine)
+        .accessibilityIdentifier("official-guide.boundary.\(guide.id)")
     }
 
 
@@ -374,4 +382,3 @@ struct OfficialProviderMark: View {
         }
     }
 }
-
