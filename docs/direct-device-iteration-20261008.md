@@ -82,5 +82,8 @@ purchase evidence cannot establish restoration under a different sandbox account
 ## Complete-work preservation
 
 [Archive23](../collaboration/verification/direct-device-20261008/README.md)adds4,208paths/507objects
-and157,419,068encrypted bytes; local decryption verifies them. Earlier archives stay
-immutable. Publication and fresh-remote verification follow as separate receipts.
+and157,419,068encrypted bytes; local and fresh GitHub-download decryption verify them.
+Archive commit a14c7bb74b29ed04b1961b34303af62c9b508456 matches the remote branch and
+GitHub-read metadata. Earlier archives stay immutable and were not downloaded again.
+The full readable scan found no unreviewed secret findings; final bounded receipts are
+saved separately. No new product tests or provider deployment is implied by Git verification.

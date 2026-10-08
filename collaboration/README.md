@@ -1,16 +1,18 @@
 # Rillora — Git / Dot 协作入口
 
 October8current delivery: Owner pauses per-fix TestFlight releases and uses direct
-wireless phone installs. Sourcec0cec8680/retained Release11was development-signed,
+phone installs; either cable or Wi-Fi is acceptable. Sourcec0cec8680/retained Release11was development-signed,
 installed in place via localNetwork, read back as1.0(11)and launched. Owner confirms
 original matters/requested contents present; Apple restoration is a separate gate.
 [New archive23](verification/direct-device-20261008/README.md)preserves4,208paths/507objects
-and157,419,068encrypted bytes, with local verification complete and remote receipt to follow.
+and157,419,068encrypted bytes. Local and fresh GitHub-download decryption verify them at
+archive commit a14c7bb74. Owner confirmed that Developer settings use a separate QQ
+Sandbox Apple Account, explaining the direct-build Restore authentication prompt.
 
 
-October7部署续接：已部署Dot整合到API16/schema0093、受限Web/官网/Preview前端；线上86/31/86
+October7部署冻结检查点（历史，后续分发/安装见上方）：已部署Dot整合到API16/schema0093、受限Web/官网/Preview前端；线上86/31/86
 文件匹配。原三身份与原Sandbox资格限期至香港10月9日04:00。原生9已签名上传，Apple实际
-登录失效待Owner恢复，未宣称已分发/真机安装。[本轮原件追加包](verification/dot-rollout-20261007/README.md)
+登录在该检查点失效待Owner恢复，当时尚未分发/真机安装。[本轮原件追加包](verification/dot-rollout-20261007/README.md)
 保留387路径/274对象及55,533,496加密字节，本地及GitHub独立新下载解密核验通过（7d4189371）；
 自动CI75三项通过。
 

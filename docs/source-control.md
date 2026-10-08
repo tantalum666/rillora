@@ -357,3 +357,11 @@ pass. Sourcec0cec8680and the current branchcodex/apple-plan-restore-20261007pres
 fix; direct-device signing/install and Owner content confirmation are separate evidence.
 Private credentials/raw device logs stay excluded, developer artifact remains encrypted
 only, and no previous archive is rebuilt or redownloaded. Final receipts follow the capture.
+
+Archive23is published at a14c7bb74b29ed04b1961b34303af62c9b508456 on
+codex/apple-plan-restore-20261007. A fresh separate LFS download from GitHub and
+authenticated decryption verify all507objects/4,208paths against metadata read from
+that exact remote commit. [Remote receipt](../collaboration/verification/direct-device-20261008/remote-readback.json).
+The final account investigation and wired-or-wireless preference are separate readable
+receipts; the encrypted capture is not resealed. These documentation changes do not
+repeat native/cloud deployment, payment tests or earlier archives.
