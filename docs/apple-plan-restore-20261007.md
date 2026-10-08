@@ -1,7 +1,7 @@
 # Native plan display and restore correction — October7
 
 Role: focused correction after actual build9 acceptance failed
-Status: FIXED SOURCE AND11DISTRIBUTED; DIRECT INSTALL VERIFIED; OWNER ACCEPTANCE PENDING
+Status: FIXED SOURCE AND11DISTRIBUTED; OWNER REPORTS FAMILY AFTER DIRECT-BUILD RESTORE
 Last updated:2026-10-08 (Asia/Hong_Kong)
 
 ## Actual build9 result and why work changed
@@ -93,3 +93,9 @@ prompt uses the separately configured QQ Sandbox Apple Account, confirmed by Own
 Developer settings; physical restoration is still unverified. No account change or new
 purchase was performed to address this development-signing difference.
 [Current workflow](direct-device-iteration-20261008.md).
+
+Later October8 Owner feedback: after personally changing the Sandbox Apple Account to the
+original eason identity, Owner tapped Restore and reports the plan now displays Family.
+This supersedes the earlier absence of physical restore UI feedback. No new purchase or
+provider receipt readback was performed by Agent in this follow-up. The next scoped change
+is [the category layout](matter-category-refinement-20261008.md), not another purchase-code revision.

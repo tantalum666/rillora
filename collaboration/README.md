@@ -1,5 +1,11 @@
 # Rillora — Git / Dot 协作入口
 
+October8最新：事项分类已精简为单行横向栏，源码35f37e1b2位于codex/matter-category-bar-20261008。
+中英文七类/搜索UI回归、14guards、12签名配置检查通过，原iPhone已原位安装并启动。
+本地仍标1.0(11)，以源码/IPA指纹区分，未上传或分发TestFlight。Owner另报告切回原沙盒账号后
+恢复显示家庭版。[本轮archive24](verification/matter-categories-20261008/README.md)保留3,251路径/
+364对象、98,028,452加密字节，本地解密已核验；远端核验另存回执。
+
 October8current delivery: Owner pauses per-fix TestFlight releases and uses direct
 phone installs; either cable or Wi-Fi is acceptable. Sourcec0cec8680/retained Release11was development-signed,
 installed in place via localNetwork, read back as1.0(11)and launched. Owner confirms

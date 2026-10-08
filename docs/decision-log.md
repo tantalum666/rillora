@@ -3305,3 +3305,13 @@ local correction/tests and actual restoration remain separate evidence.
   more convenient. Choose the available, reliable method without resetting the device.
 - Supersedes: treating the earlier wireless question as a requirement or a fixed priority.
 - Does not imply: resuming incremental TestFlight distribution or changing phone accounts.
+
+## 2026-10-08 — Refine the native Matters category presentation
+
+- Status: LOCKED
+- Scope: Owner rejects the crowded category block in the supplied physical-device screenshot.
+- Decision: improve that native category UI within the current product/brand and direct-install workflow.
+- Agent implementation choice: a single horizontally scrollable row, one soft selected background,
+  unchanged categories/search,44pt targets and selected accessibility traits. This is a reversible
+  scoped implementation, not Owner approval of a new global visual system.
+- Does not imply: changing category meaning, stored matters, plan prices, billing or TestFlight policy.

@@ -1,8 +1,14 @@
 # Rillora direct device iteration
 
 Role: current native delivery workflow and evidence boundary
-Status: WIRELESS INSTALL AND OWNER CONTENT CONFIRMED; DISTINCT SANDBOX ACCOUNT EXPLAINS RESTORE PROMPT
+Status: OWNER REPORTS FAMILY AFTER RESTORE; MATTER CATEGORY REFINEMENT DIRECT-INSTALLED
 Last updated: 2026-10-08 (Asia/Hong_Kong)
+
+Latest continuation: Owner changed the Sandbox Apple Account to the original eason identity and
+reports Family after tapping Restore. This is Owner-confirmed UI evidence; no provider receipt
+was independently re-read in that turn. Owner next requested a lighter matter-category layout.
+[Source35f37e1b2 and direct update](matter-category-refinement-20261008.md) are current; the
+retained build11installation and account-prompt investigation below remain dated earlier evidence.
 
 Owner asks to continue fixing issues but stop making a TestFlight release for each small
 change, and install directly on the existing iPhone. Owner asks about wireless installation,

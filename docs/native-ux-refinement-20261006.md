@@ -1,7 +1,11 @@
 # 原生 iOS 体验修正与当前账号识别
 
-Status: REVIEWED AND MERGED; AFFECTED LOCAL/CI VALIDATION PASSED; NOT DEPLOYED
-Last updated: 2026-10-07 (Asia/Hong_Kong)
+Status: HISTORICAL SOURCE REVIEW; FOLLOW-UP DEPLOYMENT AND DIRECT ITERATION RECORDED SEPARATELY
+Last updated: 2026-10-08 (Asia/Hong_Kong)
+
+本文件下方保留当时的源码/云端与后续本机审查检查点，不再作为未部署或等待Xcode验证的活动门。
+后续已完成[October7部署](dot-rollout-20261007.md)和[当前事项分类直装](matter-category-refinement-20261008.md)。
+当前状态及一个下一步以[handoff](handoff.md)为准。
 
 ## October7 local integration follow-up
 

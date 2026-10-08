@@ -1,0 +1,47 @@
+{
+  "schema": "xcodebuildmcp.output.test-result",
+  "schemaVersion": "3",
+  "didError": false,
+  "error": null,
+  "data": {
+    "summary": {
+      "status": "SUCCEEDED",
+      "durationMs": 85957,
+      "counts": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0
+      },
+      "target": "simulator"
+    },
+    "artifacts": {
+      "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-10-08T02-08-09-705Z_pid24457_2322effe.log",
+      "xcresultPath": "output/qa/rillora-matter-categories-20261008/categories-zh.xcresult",
+      "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-08T02-08-09-706Z_pid24457_aaee72f5.xctestproducts"
+    },
+    "tests": {
+      "selected": [
+        "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLocalizedMatterFiltersUseActualCategoriesAndTranslatedSearch"
+      ],
+      "discovered": {
+        "total": 1,
+        "items": [
+          "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLocalizedMatterFiltersUseActualCategoriesAndTranslatedSearch"
+        ]
+      }
+    },
+    "diagnostics": {
+      "warnings": [],
+      "errors": [],
+      "testFailures": []
+    },
+    "testCases": [
+      {
+        "suite": "RilloraLocalizationUITests",
+        "test": "testLocalizedMatterFiltersUseActualCategoriesAndTranslatedSearch",
+        "status": "passed",
+        "durationMs": 41511
+      }
+    ]
+  }
+}

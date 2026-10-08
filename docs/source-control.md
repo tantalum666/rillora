@@ -365,3 +365,13 @@ that exact remote commit. [Remote receipt](../collaboration/verification/direct-
 The final account investigation and wired-or-wireless preference are separate readable
 receipts; the encrypted capture is not resealed. These documentation changes do not
 repeat native/cloud deployment, payment tests or earlier archives.
+
+## October8 matter category refinement and direct update
+
+[Archive24](../collaboration/verification/matter-categories-20261008/README.md) preserves3,251paths/
+364objects and98,028,452encrypted bytes for source35f37e1b2 on codex/matter-category-bar-20261008.
+It includes the supplied screenshot, actual synthetic UI captures, bilingual category/search
+results, test packages, Release archive, development export and install/readback/launch records.
+Local authenticated decryption passes; earlier archives are immutable and not downloaded again.
+Remote publication and fresh-download verification follow separately. No TestFlight distribution
+or provider deployment is implied by this source/artifact preservation.
