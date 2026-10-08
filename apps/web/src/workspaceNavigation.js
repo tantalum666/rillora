@@ -2,7 +2,7 @@ import { preserveTransientLocale } from "./i18n/localeStore.js";
 import { useEffect, useRef } from "react";
 import { requestedGuideKey } from './guideAccess.js';
 
-const pages = new Set(["overview", "plan", "matters", "contacts", "shared", "maintenance", "guides", "access", "activity", "settings", "more"]);
+const pages = new Set(["overview", "matters", "contacts", "shared", "maintenance", "guides", "access", "activity", "settings", "more"]);
 const categories = new Set(["account", "document", "device", "financial_asset", "debt", "subscription", "crypto_asset"]);
 const tasks = new Set(["matter", "matter-create", "contact", "contact-sharing", "start-here", "provider-guide", "settings", "safety", "first-use-guide", "role-policy"]);
 const uuid = /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i;

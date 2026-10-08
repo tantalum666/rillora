@@ -1,11 +1,4 @@
-/* Language is an additional display control. Keep appearance at the far right. */
-.lp-header {
-  grid-template-columns: auto minmax(0, 1fr) auto auto auto;
-  gap: 20px;
-}
-.lp-header > .lp-language { grid-column: 4; }
-.lp-header > .lp-appearance { grid-column: 5; }
-.lp-header .language-control { font-size: 14px; }
+/* Content localization; header geometry belongs to landing-header.css. */
 .lp-hero h1,
 .lp-hero-copy > p,
 .lp-closing h2,
@@ -27,39 +20,11 @@ html[lang="zh-CN"] .lp-hero h1 { font-size: clamp(48px, 5.7vw, 88px); }
 html[lang="zh-CN"] .lp-hero-copy > p { letter-spacing: 0; max-width: 26em; }
 html[lang="zh-CN"] .lp-page-intro h1 { line-height: 1.35; }
 html[lang="zh-CN"] .lp-document-links strong { font-family: inherit; font-size: 22px; }
-html[lang="zh-CN"] .lp-page .lp-sign-in { font-family: inherit; }
-@media (min-width: 1001px) and (max-width: 1200px) {
-  .lp-header { gap: 14px; }
-  .lp-nav { gap: 18px; }
-  .lp-header .lp-brand img { width: 160px; }
-  .lp-header .lp-sign-in { padding-inline: 16px; }
-}
-@media (max-width: 1000px) {
-  .lp-header { grid-template-columns: minmax(0, 1fr) auto auto auto auto; gap: 8px; }
-  .lp-header > .lp-menu-toggle { grid-column: 2; }
-  .lp-header > .lp-sign-in { grid-column: 3; }
-  .lp-header > .lp-language { grid-column: 4; }
-  .lp-header > .lp-appearance { grid-column: 5; }
-}
 @media (max-width: 600px) {
-  .lp-header {
-    grid-template-columns: minmax(0, 1fr) auto auto;
-    grid-template-rows: 44px 52px;
-    height: 124px;
-    padding-block: 12px;
-    gap: 4px 12px;
-  }
-  .lp-header > .lp-brand { grid-column: 1 / 3; grid-row: 1; }
-  .lp-header > .lp-menu-toggle { grid-column: 3; grid-row: 1; }
-  .lp-header > .lp-sign-in { grid-column: 1; grid-row: 2; justify-self: start; }
-  .lp-header > .lp-language { grid-column: 2; grid-row: 2; }
-  .lp-header > .lp-appearance { grid-column: 3; grid-row: 2; }
-  .lp-hero { margin-top: -124px; padding-top: 124px; }
   html[lang="zh-CN"] .lp-hero h1 { font-size: clamp(42px, 11vw, 60px); }
   html[lang="zh-CN"] .lp-page-intro h1 { font-size: 38px; }
   html[lang="zh-CN"] .lp-situation-choices { flex-wrap: wrap; }
   .lp-plan-comparison th > strong { font-size: clamp(15px, 4.6vw, 22px); }
-  .lp-language > svg { display: none; }
 }
 
 @media (max-width: 440px) {

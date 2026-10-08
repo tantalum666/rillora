@@ -12,7 +12,7 @@ async function healthy(page, locale) {
   const broken = await page.locator('img').evaluateAll(images => images.filter(i => i.complete && !i.naturalWidth).map(i => i.src));
   expect(broken).toEqual([]);
 }
-for (const locale of ['en', 'zh-CN']) for (const width of [320, 390, 1280, 1440, 1920]) {
+for (const locale of ['en', 'zh-CN']) for (const width of [320, 390, 768, 1024, 1280, 1440, 1920]) {
   test(`public pages ${locale} ${width}`, async ({ browser }) => {
     const context = await browser.newContext({ locale, viewport: { width, height: 960 }, reducedMotion: 'reduce', colorScheme: width === 390 || width === 1920 ? 'dark' : 'light' });
     const state = await isolate(context), page = await context.newPage();
@@ -20,11 +20,16 @@ for (const locale of ['en', 'zh-CN']) for (const width of [320, 390, 1280, 1440,
       await page.goto(PUBLIC + path); await expect(page.locator('main h1')).toBeVisible();
       await healthy(page, locale);
       if (path === '/product') await page.screenshot({ path: test.info().outputPath(`product-${locale}-${width}.png`) });
-      if (width > 1400) {
+      if (width >= 768) {
         const nav = await page.locator('.lp-nav').boundingBox(), brand = await page.locator('.lp-header > .lp-brand').boundingBox(), actions = await page.locator('.lp-header-actions').boundingBox();
         expect(Math.abs(nav.x + nav.width / 2 - width / 2)).toBeLessThan(1);
-        expect(nav.x).toBeGreaterThan(brand.x + brand.width + 8);
-        expect(nav.x + nav.width).toBeLessThan(actions.x + 1);
+        await expect(page.locator(".lp-menu-toggle")).toBeHidden();
+        if (width >= 1024) {
+          expect(nav.x).toBeGreaterThan(brand.x + brand.width + 8);
+          expect(nav.x + nav.width).toBeLessThan(actions.x + 1);
+        } else {
+          expect(nav.y).toBeGreaterThanOrEqual(Math.max(brand.y + brand.height, actions.y + actions.height));
+        }
       } else {
         const toggle = page.locator('.lp-menu-toggle');
         await toggle.click(); await expect(page.locator('.lp-nav')).toBeVisible();
@@ -44,7 +49,7 @@ for (const locale of ['en', 'zh-CN']) for (const width of [390, 1440]) {
   test(`workspace routes and all provider identifiers ${locale} ${width}`, async ({ browser }) => {
     const context = await browser.newContext({ locale, viewport: { width, height: 960 }, colorScheme: 'light', reducedMotion: 'reduce' });
     const state = await isolate(context), page = await context.newPage();
-    for (const view of ['overview', 'plan', 'matters', 'contacts', 'shared', 'maintenance', 'access', 'activity', 'settings', 'more', 'guides']) {
+    for (const view of ['overview', 'matters', 'contacts', 'shared', 'maintenance', 'access', 'activity', 'settings', 'more', 'guides']) {
       await page.goto(APP + '/?view=' + view); await expect(page.locator('.account-summary')).toContainText('owner@example.test');
       await healthy(page, locale);
     }

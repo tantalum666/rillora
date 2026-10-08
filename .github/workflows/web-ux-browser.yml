@@ -1,7 +1,7 @@
 name: Web UX browser regression
 on:
   push:
-    branches: ['codex/web-ux-refinement-20261006']
+    branches: ['codex/web-ux-refinement-20261006', 'codex/web-plan-layout-20261008']
     paths: ['apps/web/**', 'config/provider-guides.json', '.github/workflows/web-ux-browser.yml']
   pull_request:
     paths: ['apps/web/**', 'config/provider-guides.json', '.github/workflows/web-ux-browser.yml']

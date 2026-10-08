@@ -5,7 +5,7 @@ import { readWorkspaceRoute, workspaceURL, drawerRoute } from "../src/workspaceN
 test("restores existing root destinations, filters and selected matter", () => {
   const route = readWorkspaceRoute("/?view=matters&q=Bank&filter=review&task=matter&matter=11111111-1111-4111-8111-111111111111");
   assert.deepEqual(readWorkspaceRoute(workspaceURL(route)), route);
-  for (const view of ["settings", "more", "plan", "contacts", "maintenance", "guides", "access", "activity"]) assert.equal(readWorkspaceRoute(`/?view=${view}`).view, view);
+  for (const view of ["settings", "more", "contacts", "maintenance", "guides", "access", "activity"]) assert.equal(readWorkspaceRoute(`/?view=${view}`).view, view);
 });
 test("unknown tasks and invalid identifiers cannot become arbitrary navigation", () => {
   const route = readWorkspaceRoute("/?view=https://example.test&task=delete-account&matter=not-an-id&filter=hidden");
@@ -40,4 +40,9 @@ test('every catalog guide survives drawer navigation, reload and Back round trip
     assert.equal(readWorkspaceRoute(workspaceURL(route)).providerKey, providerKey);
   }
   assert.equal(readWorkspaceRoute('/?view=guides&task=provider-guide&provider=unknown-provider').providerKey, null);
+});
+
+test("retired My plan links safely return to Overview without hiding billing", () => {
+  assert.equal(readWorkspaceRoute("/?view=plan").view, "overview");
+  assert.equal(readWorkspaceRoute("/account/billing").view, "access");
 });

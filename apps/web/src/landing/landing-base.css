@@ -50,72 +50,15 @@
 .lp-skip:focus {
   top: 16px;
 }
-.lp-header {
-  height: 108px;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  justify-content: space-between;
-  gap: 32px;
-  position: relative;
-  z-index: 2;
-  border-bottom: 1px solid var(--lp-rule);
-}
-.lp-brand {
-  display: inline-flex;
-  flex: none;
-}
-.lp-brand img {
-  width: 185px;
-  height: auto;
-  display: block;
-}
-.lp-nav {
-  display: flex;
-  gap: 42px;
-  margin: 0;
-  font-size: 15px;
-}
-.lp-nav a {
-  padding: 15px 0;
-}
-.lp-nav a:hover,
 .lp-footer a:hover {
   text-decoration: underline;
   text-underline-offset: 5px;
 }
-.lp-sign-in {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  min-height: 52px;
-  padding: 12px 22px;
-  border-radius: 40px;
-  background: var(--lp-action);
-  color: var(--lp-action-ink) !important;
-  font:
-    500 15px/1.2 Inter,
-    Arial,
-    sans-serif;
-  text-decoration: none;
-}
-.lp-header > .lp-sign-in {
-  justify-self: end;
-}
-.lp-preview-label {
-  font-size: 10px;
-  letter-spacing: 0.04em;
-  padding-right: 11px;
-  border-right: 1px solid var(--lp-border);
-}
-.lp-sign-in svg,
 .lp-button svg,
 .lp-text-link svg {
   transition: transform 0.25s ease;
   flex: none;
 }
-.lp-sign-in:hover svg,
 .lp-button:hover svg,
 .lp-text-link:hover svg {
   transform: translateX(4px);
@@ -123,8 +66,6 @@
 .lp-hero {
   position: relative;
   min-height: 820px;
-  margin-top: -108px;
-  padding-top: 108px;
 }
 .lp-hero-photo {
   position: absolute;

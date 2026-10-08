@@ -174,10 +174,10 @@ export function createApiClient({
       }
       bindWorkspace({ plannerPublicId: value?.account?.publicId });
       if (typeof value.account.displayName !== "string" || !["available", "not_provided", "unavailable"].includes(value.emailStatus)
-        || (value.emailStatus === "available" && (typeof value.account.verifiedEmail !== "string" || !value.account.verifiedEmail))) {
+        || (value.emailStatus === "available" && (typeof value.account.verifiedEmail !== "string" || !value.account.verifiedEmail.trim()))) {
         throw new ApiClientError(502, "invalid_identity", "The account identity could not be verified.");
       }
-      return { ...value, account: { ...value.account, verifiedEmail: value.emailStatus === "available" ? value.account.verifiedEmail : null } };
+      return { ...value, account: { ...value.account, verifiedEmail: value.emailStatus === "available" ? value.account.verifiedEmail.trim() : null } };
     },
     getAccountProfile: () => request("/account/profile"),
     requestAccountDeletion: (receipt, acknowledgesBilling = false) => request("/account/delete", {method:"POST",body:{confirmation:"DELETE",receipt,acknowledgesSavedCopies:true,acknowledgesBilling}}),
