@@ -40,4 +40,6 @@ Owner本人已将Sandbox Apple Account改为原eason账号，点击恢复后报�
 后续继续按Owner反馈集中修复并直装，保留暂停零碎TestFlight的决定。
 
 原始工作已追加至[archive24](../collaboration/verification/matter-categories-20261008/README.md)：
-3,251路径/364对象，本地解密核验通过。远端保存单独记录，不重新归档或下载前23包。
+3,251路径/364对象，本地及GitHub独立新下载解密均通过，归档提交efc22209a。
+前23包没有重新归档或下载。后续商店候选须来自最终审核源码并采用新的可用构建号，
+不能把这份保留build11标识的本地迭代当作已经上传的TestFlight11。

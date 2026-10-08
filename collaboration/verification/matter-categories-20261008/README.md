@@ -1,6 +1,6 @@
 # Matter category refinement — October8
 
-Status: LOCAL ARCHIVE VERIFIED; REMOTE PUBLICATION NEXT
+Status: PUBLISHED; LOCAL AND FRESH REMOTE ARCHIVE VERIFIED
 Updated: 2026-10-08 Asia/Hong_Kong
 
 Source35f37e1b20fe4d62039020e80f08779d79c270cf replaces the native Matters category block
@@ -11,6 +11,12 @@ The first launch CLI-argument failure is preserved. No TestFlight/provider chang
 
 Archive24 preserves3,251paths/364objects in98,028,452encrypted bytes. Local authenticated
 decryption/object/catalog verification passes. Earlier1–23archives remain unchanged.
+
+Published at efc22209a99038d84e5523165595dd0ea81d0cef on codex/matter-category-bar-20261008.
+[Fresh remote verification](remote-readback.json) reads metadata at that exact commit,
+downloads only archive24 into separate LFS storage and verifies all364objects/3,251paths.
+No prior archive was downloaded again. Full readable scanning and focused source scanning
+both found zero unreviewed findings; final bounded receipts are recorded separately.
 The supplied before image, synthetic light/dark images, test results/products, build logs,
 Release archive and development export are included. Private credentials/device logs and
 reproducible caches are excluded; signed artifacts and device profiles stay encrypted only.

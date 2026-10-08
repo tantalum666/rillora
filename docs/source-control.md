@@ -375,3 +375,8 @@ results, test packages, Release archive, development export and install/readback
 Local authenticated decryption passes; earlier archives are immutable and not downloaded again.
 Remote publication and fresh-download verification follow separately. No TestFlight distribution
 or provider deployment is implied by this source/artifact preservation.
+
+The completed [remote receipt](../collaboration/verification/matter-categories-20261008/remote-readback.json)
+verifies archive24at efc22209a99038d84e5523165595dd0ea81d0cef: all364objects/3,251paths
+match metadata read directly from GitHub and a fresh separate LFS download. Earlier1–23
+were not fetched again. Final receipt commits do not change the installed source35f37e1b2.
