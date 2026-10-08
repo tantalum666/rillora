@@ -628,3 +628,14 @@ test('a private401 invalidates displayed identity but a public sign-in failure d
     await assert.rejects(client.startAuthentication({}));assert.equal(expired,1);
   }finally{if(prior===undefined)delete globalThis.window;else globalThis.window=prior;}
 });
+
+test('identity preserves current verified email across UUID casing and rejects whitespace-only email', async () => {
+  const publicId = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa';
+  const client = createApiClient({ fetchImpl: async url => Response.json(url.endsWith('/session')
+    ? { plannerPublicId: publicId }
+    : { account: { publicId: publicId.toUpperCase(), displayName: 'Current', verifiedEmail: ' owner@example.test ' }, emailStatus: 'available' }) });
+  await client.getSession();
+  assert.equal((await client.getAccountIdentity()).account.verifiedEmail, 'owner@example.test');
+  const invalid = createApiClient({ fetchImpl: async () => Response.json({ account: { publicId, displayName: 'Current', verifiedEmail: '  ' }, emailStatus: 'available' }) });
+  await assert.rejects(invalid.getAccountIdentity(), error => error.code === 'invalid_identity');
+});

@@ -20,3 +20,7 @@
 }
 
 .account-summary:focus-visible { outline: 2px solid var(--sage); outline-offset: 4px; }
+
+@media (max-width: 600px) {
+  .workspace-chrome.is-settings .account-summary { flex: 1 1 0; }
+}
