@@ -1,0 +1,81 @@
+{
+  "projects": [
+    {
+      "success": true,
+      "status": 200,
+      "name": "rillora-legal-pages",
+      "subdomain": "rillora-legal-pages.pages.dev",
+      "domains": [
+        "rillora-legal-pages.pages.dev"
+      ],
+      "canonical": {
+        "id": "b39769d9-d5dc-4b19-84b1-f4b9dbefca80",
+        "environment": "production",
+        "latest_stage": {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-10-08T01:06:21.176747Z",
+          "status": "success"
+        }
+      },
+      "latest": {
+        "id": "b39769d9-d5dc-4b19-84b1-f4b9dbefca80",
+        "environment": "production",
+        "latest_stage": {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-10-08T01:06:21.176747Z",
+          "status": "success"
+        }
+      },
+      "errors": []
+    },
+    {
+      "success": true,
+      "status": 200,
+      "name": "rillora-motion-review",
+      "subdomain": "rillora-motion-review.pages.dev",
+      "domains": [
+        "rillora-motion-review.pages.dev"
+      ],
+      "canonical": {
+        "id": "7daf00d2-e8ce-47b8-806b-3800e5035680",
+        "environment": "production",
+        "latest_stage": {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-10-08T01:13:19.88153Z",
+          "status": "success"
+        }
+      },
+      "latest": {
+        "id": "7daf00d2-e8ce-47b8-806b-3800e5035680",
+        "environment": "production",
+        "latest_stage": {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-10-08T01:13:19.88153Z",
+          "status": "success"
+        }
+      },
+      "errors": []
+    }
+  ],
+  "domain": {
+    "success": true,
+    "httpStatus": 200,
+    "id": "95c7c7fe-f44e-4db1-9ace-1a59c7fee9da",
+    "name": "legal.rillora.xyz",
+    "status": "pending",
+    "certificate_authority": "google",
+    "validation": {
+      "status": "pending",
+      "method": "http"
+    },
+    "verification": {
+      "status": "pending",
+      "error_message": "CNAME record not set"
+    },
+    "errors": []
+  }
+}

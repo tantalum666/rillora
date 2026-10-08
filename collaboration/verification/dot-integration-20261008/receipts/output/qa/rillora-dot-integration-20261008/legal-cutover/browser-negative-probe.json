@@ -1,0 +1,111 @@
+{
+  "attemptedPath": "/account",
+  "browserError": "net::ERR_BLOCKED_BY_CLIENT",
+  "notRetried": true,
+  "events": [
+    {
+      "method": "Network.requestWillBeSent",
+      "url": "https://legal.rillora.xyz/privacy"
+    },
+    {
+      "method": "Network.responseReceived",
+      "url": "https://legal.rillora.xyz/privacy",
+      "status": 200
+    },
+    {
+      "method": "Network.requestWillBeSent",
+      "url": "https://legal.rillora.xyz/terms"
+    },
+    {
+      "method": "Network.responseReceived",
+      "url": "https://legal.rillora.xyz/terms",
+      "status": 200
+    },
+    {
+      "method": "Network.requestWillBeSent",
+      "url": "https://legal.rillora.xyz/subscription-terms"
+    },
+    {
+      "method": "Network.responseReceived",
+      "url": "https://legal.rillora.xyz/subscription-terms",
+      "status": 200
+    },
+    {
+      "method": "Network.requestWillBeSent",
+      "url": "https://legal.rillora.xyz/refund-policy"
+    },
+    {
+      "method": "Network.responseReceived",
+      "url": "https://legal.rillora.xyz/refund-policy",
+      "status": 200
+    },
+    {
+      "method": "Network.requestWillBeSent",
+      "url": "https://legal.rillora.xyz/acceptable-use"
+    },
+    {
+      "method": "Network.responseReceived",
+      "url": "https://legal.rillora.xyz/acceptable-use",
+      "status": 200
+    },
+    {
+      "method": "Network.requestWillBeSent",
+      "url": "https://legal.rillora.xyz/cookies"
+    },
+    {
+      "method": "Network.responseReceived",
+      "url": "https://legal.rillora.xyz/cookies",
+      "status": 200
+    },
+    {
+      "method": "Network.requestWillBeSent",
+      "url": "https://legal.rillora.xyz/legal"
+    },
+    {
+      "method": "Network.responseReceived",
+      "url": "https://legal.rillora.xyz/legal",
+      "status": 200
+    },
+    {
+      "method": "Network.requestWillBeSent",
+      "url": "https://legal.rillora.xyz/privacy"
+    },
+    {
+      "method": "Network.responseReceived",
+      "url": "https://legal.rillora.xyz/privacy",
+      "status": 200
+    },
+    {
+      "method": "Network.requestWillBeSent",
+      "url": "https://legal.rillora.xyz/terms"
+    },
+    {
+      "method": "Network.responseReceived",
+      "url": "https://legal.rillora.xyz/terms",
+      "status": 200
+    },
+    {
+      "method": "Network.requestWillBeSent",
+      "url": "https://legal.rillora.xyz/"
+    },
+    {
+      "method": "Network.requestWillBeSent",
+      "url": "https://legal.rillora.xyz/terms",
+      "status": 308
+    },
+    {
+      "method": "Network.responseReceived",
+      "url": "https://legal.rillora.xyz/terms",
+      "status": 200
+    },
+    {
+      "method": "Network.requestWillBeSent",
+      "url": "https://legal.rillora.xyz/account"
+    },
+    {
+      "method": "Network.loadingFailed",
+      "error": "net::ERR_BLOCKED_BY_CLIENT",
+      "blockedReason": "inspector"
+    }
+  ]
+}

@@ -1,6 +1,16 @@
 # Digital Legacy Repository Threat Model
 
-Last updated: 2026-10-03 (strict source review and current boundary reconciliation)
+Last updated: 2026-10-08 (targeted dependency follow-up; historical review scopes retained)
+
+## October8 dependency follow-up
+
+Targeted lockfile patches update source-map-js to1.2.2 across Web/API/prototype/infra and
+API proxy-addr to2.0.8. Current Web/API/prototype npm audits show no known advisories;
+the previously documented CDK-bundled brace-expansion development advisory remains.
+Rillora validates proxy trust as a numeric hop count, not the IPv4-mapped IPv6 subnet
+configuration in GHSA-jqcg-44mw-7w3h. Version presence alone does not establish a remote
+application exploit. CI100 validates the patched source; production API16 has not been
+redeployed in this integration. See [review scope](docs/dot-integration-20261008.md).
 
 ## Current security boundary and October3 review
 

@@ -1,0 +1,13 @@
+{
+  "package": "source-map-js",
+  "from": "1.2.1",
+  "to": "1.2.2",
+  "advisory": "https://github.com/advisories/GHSA-68fv-2mgg-jv7q",
+  "paths": [
+    "apps/web/package-lock.json",
+    "apps/api/package-lock.json",
+    "apps/ios-prototype/package-lock.json",
+    "infra/aws/package-lock.json"
+  ],
+  "boundary": "Targeted compatible transitive patch; scanner high severity does not establish remote Rillora exploit. npm incidental libc removals restored."
+}

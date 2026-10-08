@@ -1,11 +1,17 @@
 # Rillora Cloudflare 托管迁移交接
 
-更新时间：2026-10-08 09:24（Asia/Hong_Kong；01:24 UTC）  
-状态：两个 Cloudflare Pages 站点已发布并通过云端浏览器验证；法律正式域名 DNS 尚未切换。Owner 最新要求将 GoDaddy 步骤写入 Git 交接，暂不执行 Mac 操作。
+更新时间：2026-10-08（Asia/Hong_Kong）
+状态：Owner已明确由Agent执行；legal正式域名CNAME已切换，独立DNS/TLS/七页GET及Mac Safari导航验收通过。
 
-**后续Owner指示取代上述暂缓：** 本机会话中Owner已明确“不是暂缓，是由你来执行”，
-现由Agent接手GoDaddy切换及独立验收。下文保留09:24的历史交接事实；最新执行状态见
-[当前handoff](handoff.md)，不能继续将旧暂缓作为阻塞。
+仅legal从custom-domains.chatgpt.site改到rillora-legal-pages.pages.dev，GoDaddy配置TTL600、其余33条记录保持。
+Cloudflare域名与证书active；复用本页原部署，无新上传。最新完整结果见
+[本机整合与切换](dot-integration-20261008.md)和[当前handoff](handoff.md)。
+原iPhone Safari、live HEAD/write/未知路径矩阵未取得本轮结果；不与已通过的GET和Mac Safari混为一谈。
+
+## HISTORICAL — 09:24交接正文
+
+以下是切换前的带日期事实和执行设计，其中“待执行／暂缓／未完成”已被上方本轮执行结果取代，
+不是活动指令。原始Cloudflare部署和本地Worker验证仍保留其当时证据范围。
 
 本文只接续本次公开托管迁移，不替代原生指南、套餐/Restore 或整个产品的当前交接。此前[外链守卫检查点](qa/external-links-20261008/README.md)中的“尚未部署、预览保留私有”是较早状态；本次部署及 Owner 随后明确批准公开动效预览，以本文时间点为准。旧报告保留为历史证据。
 

@@ -1,0 +1,30 @@
+{
+  "privacy": {
+    "url": "https://legal.rillora.xyz/privacy",
+    "title": "Privacy Policy — Rillora",
+    "images": [
+      {
+        "alt": "",
+        "loaded": true
+      },
+      {
+        "alt": "Rillora",
+        "loaded": true
+      }
+    ],
+    "samePrivacyText": true
+  },
+  "terms": {
+    "url": "https://legal.rillora.xyz/terms",
+    "title": "Terms of Service — Rillora",
+    "versionMatches": true
+  },
+  "rootRedirect": [
+    {
+      "from": "https://legal.rillora.xyz/",
+      "to": "https://legal.rillora.xyz/terms",
+      "status": 308
+    }
+  ],
+  "negativeProbeLimitation": "The browser inspector blocked /account before a server response. No alternate-path bypass or further negative probes were attempted."
+}

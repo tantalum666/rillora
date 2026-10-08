@@ -1,0 +1,757 @@
+{
+  "dotOct8NativeUnit": {
+    "content": [
+      {
+        "type": "text",
+        "text": "\n🧪 Test\n\nDiscovered 8 test(s):\n   RilloraTests/OfficialProviderGuideCatalogTests/testAppleAndGoogleProvideSetupAndAfterDeathRoutes\n   RilloraTests/OfficialProviderGuideCatalogTests/testBinanceIsNotPresentedAsAProactiveLegacyContactFeature\n   RilloraTests/OfficialProviderGuideCatalogTests/testCatalogContainsUniqueActionableCommonProviderGuides\n   RilloraTests/OfficialProviderGuideCatalogTests/testChineseGuidesPreserveEvidenceAndCompleteEveryReadingMode\n   RilloraTests/OfficialProviderGuideCatalogTests/testEveryGuideUsesHTTPSOnAnOfficialHost\n   RilloraTests/OfficialProviderGuideCatalogTests/testMissingChineseOverlayFallsBackToEnglish\n   (...and 2 more)\n\n✅ 8 tests passed, 0 failed, 0 skipped (⏱️ 40.9s)\n  └ Files:\n     ├── ~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/\n     │   ├── logs/test_sim_2026-10-08T02-51-35-154Z_pid69719_a4aacdad.log — Build Logs\n     │   └── test-products/test_sim_2026-10-08T02-51-35-155Z_pid69719_32dc8e1e.xctestproducts — Test Products\n     └── output/qa/rillora-dot-integration-20261008/guide-unit.xcresult — Result Bundle\n"
+      }
+    ],
+    "structuredContent": {
+      "schema": "xcodebuildmcp.output.test-result",
+      "schemaVersion": "3",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED",
+          "durationMs": 40914,
+          "counts": {
+            "passed": 8,
+            "failed": 0,
+            "skipped": 0
+          },
+          "target": "simulator"
+        },
+        "artifacts": {
+          "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-10-08T02-51-35-154Z_pid69719_a4aacdad.log",
+          "xcresultPath": "output/qa/rillora-dot-integration-20261008/guide-unit.xcresult",
+          "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-08T02-51-35-155Z_pid69719_32dc8e1e.xctestproducts"
+        },
+        "tests": {
+          "selected": [
+            "RilloraTests/OfficialProviderGuideCatalogTests/testAppleAndGoogleProvideSetupAndAfterDeathRoutes",
+            "RilloraTests/OfficialProviderGuideCatalogTests/testBinanceIsNotPresentedAsAProactiveLegacyContactFeature",
+            "RilloraTests/OfficialProviderGuideCatalogTests/testCatalogContainsUniqueActionableCommonProviderGuides",
+            "RilloraTests/OfficialProviderGuideCatalogTests/testChineseGuidesPreserveEvidenceAndCompleteEveryReadingMode",
+            "RilloraTests/OfficialProviderGuideCatalogTests/testEveryGuideUsesHTTPSOnAnOfficialHost",
+            "RilloraTests/OfficialProviderGuideCatalogTests/testMissingChineseOverlayFallsBackToEnglish",
+            "RilloraTests/OfficialProviderGuideCatalogTests/testRegionalGuidesAndAliasesRemainDistinct",
+            "RilloraTests/OfficialProviderGuideCatalogTests/testSuggestionsUseOnlyVisibleAccountContextWithoutFalseRegionalMatches"
+          ],
+          "discovered": {
+            "total": 8,
+            "items": [
+              "RilloraTests/OfficialProviderGuideCatalogTests/testAppleAndGoogleProvideSetupAndAfterDeathRoutes",
+              "RilloraTests/OfficialProviderGuideCatalogTests/testBinanceIsNotPresentedAsAProactiveLegacyContactFeature",
+              "RilloraTests/OfficialProviderGuideCatalogTests/testCatalogContainsUniqueActionableCommonProviderGuides",
+              "RilloraTests/OfficialProviderGuideCatalogTests/testChineseGuidesPreserveEvidenceAndCompleteEveryReadingMode",
+              "RilloraTests/OfficialProviderGuideCatalogTests/testEveryGuideUsesHTTPSOnAnOfficialHost",
+              "RilloraTests/OfficialProviderGuideCatalogTests/testMissingChineseOverlayFallsBackToEnglish"
+            ]
+          }
+        },
+        "diagnostics": {
+          "warnings": [],
+          "errors": [],
+          "testFailures": []
+        },
+        "testCases": [
+          {
+            "suite": "OfficialProviderGuideCatalogTests",
+            "test": "testAppleAndGoogleProvideSetupAndAfterDeathRoutes",
+            "status": "passed",
+            "durationMs": 10
+          },
+          {
+            "suite": "OfficialProviderGuideCatalogTests",
+            "test": "testBinanceIsNotPresentedAsAProactiveLegacyContactFeature",
+            "status": "passed",
+            "durationMs": 1
+          },
+          {
+            "suite": "OfficialProviderGuideCatalogTests",
+            "test": "testCatalogContainsUniqueActionableCommonProviderGuides",
+            "status": "passed",
+            "durationMs": 1
+          },
+          {
+            "suite": "OfficialProviderGuideCatalogTests",
+            "test": "testChineseGuidesPreserveEvidenceAndCompleteEveryReadingMode",
+            "status": "passed",
+            "durationMs": 1
+          },
+          {
+            "suite": "OfficialProviderGuideCatalogTests",
+            "test": "testEveryGuideUsesHTTPSOnAnOfficialHost",
+            "status": "passed",
+            "durationMs": 1
+          },
+          {
+            "suite": "OfficialProviderGuideCatalogTests",
+            "test": "testMissingChineseOverlayFallsBackToEnglish",
+            "status": "passed",
+            "durationMs": 1
+          },
+          {
+            "suite": "OfficialProviderGuideCatalogTests",
+            "test": "testRegionalGuidesAndAliasesRemainDistinct",
+            "status": "passed",
+            "durationMs": 1
+          },
+          {
+            "suite": "OfficialProviderGuideCatalogTests",
+            "test": "testSuggestionsUseOnlyVisibleAccountContextWithoutFalseRegionalMatches",
+            "status": "passed",
+            "durationMs": 53
+          }
+        ]
+      }
+    }
+  },
+  "dotOct8NativeUiZh": {
+    "content": [
+      {
+        "type": "text",
+        "text": "\n🧪 Test\n\nDiscovered 2 test(s):\n   RilloraLayoutMatrixTests/RilloraLocalizationUITests/testGuideColdAndWarmNavigationKeepsHeaderBelowBar\n   RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLocalizedGuideHasOneLinkSectionAndNoReviewAcknowledgement\n\nTest Failures (1):\n\n  ✗ RilloraLocalizationUITests / testGuideColdAndWarmNavigationKeepsHeaderBelowBar: XCTAssertTrue failed\n    /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraLayoutMatrixTests/RilloraLocalizationUITests.swift:130\n\n❌ 1 test failed, 1 passed, 0 skipped (⏱️ 87.1s)\n  └ Files:\n     ├── ~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/\n     │   ├── logs/test_sim_2026-10-08T03-43-40-851Z_pid69719_05cbbfca.log — Build Logs\n     │   └── test-products/test_sim_2026-10-08T03-43-40-852Z_pid69719_28c9c100.xctestproducts — Test Products\n     └── output/qa/rillora-dot-integration-20261008/guide-ui-zh.xcresult — Result Bundle\n"
+      }
+    ],
+    "structuredContent": {
+      "schema": "xcodebuildmcp.output.test-result",
+      "schemaVersion": "3",
+      "didError": true,
+      "error": "Tests failed",
+      "data": {
+        "summary": {
+          "status": "FAILED",
+          "durationMs": 87133,
+          "counts": {
+            "passed": 1,
+            "failed": 1,
+            "skipped": 0
+          },
+          "target": "simulator"
+        },
+        "artifacts": {
+          "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-10-08T03-43-40-851Z_pid69719_05cbbfca.log",
+          "xcresultPath": "output/qa/rillora-dot-integration-20261008/guide-ui-zh.xcresult",
+          "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-08T03-43-40-852Z_pid69719_28c9c100.xctestproducts"
+        },
+        "tests": {
+          "selected": [
+            "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testGuideColdAndWarmNavigationKeepsHeaderBelowBar",
+            "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLocalizedGuideHasOneLinkSectionAndNoReviewAcknowledgement"
+          ],
+          "discovered": {
+            "total": 2,
+            "items": [
+              "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testGuideColdAndWarmNavigationKeepsHeaderBelowBar",
+              "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLocalizedGuideHasOneLinkSectionAndNoReviewAcknowledgement"
+            ]
+          }
+        },
+        "diagnostics": {
+          "warnings": [],
+          "errors": [],
+          "testFailures": [
+            {
+              "suite": "RilloraLocalizationUITests",
+              "test": "testGuideColdAndWarmNavigationKeepsHeaderBelowBar",
+              "message": "XCTAssertTrue failed",
+              "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraLayoutMatrixTests/RilloraLocalizationUITests.swift:130"
+            }
+          ]
+        },
+        "testCases": [
+          {
+            "suite": "RilloraLocalizationUITests",
+            "test": "testGuideColdAndWarmNavigationKeepsHeaderBelowBar",
+            "status": "failed",
+            "durationMs": 21361
+          },
+          {
+            "suite": "RilloraLocalizationUITests",
+            "test": "testLocalizedGuideHasOneLinkSectionAndNoReviewAcknowledgement",
+            "status": "passed",
+            "durationMs": 28004
+          }
+        ]
+      }
+    },
+    "isError": true
+  },
+  "dotOct8SearchDiagnostic": {
+    "content": [
+      {
+        "type": "text",
+        "text": "\n🧪 Test\n\nDiscovered 1 test(s):\n   RilloraLayoutMatrixTests/RilloraLocalizationUITests/testGuideColdAndWarmNavigationKeepsHeaderBelowBar\n\nTest Failures (1):\n\n  ✗ RilloraLocalizationUITests / testGuideColdAndWarmNavigationKeepsHeaderBelowBar: XCTAssertTrue failed\n    /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraLayoutMatrixTests/RilloraLocalizationUITests.swift:135\n\n❌ 1 test failed, 0 passed, 0 skipped (⏱️ 39.8s)\n  └ Files:\n     ├── ~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/\n     │   ├── logs/test_sim_2026-10-08T04-02-57-043Z_pid69719_7ae58944.log — Build Logs\n     │   └── test-products/test_sim_2026-10-08T04-02-57-044Z_pid69719_ff86fc8e.xctestproducts — Test Products\n     └── output/qa/rillora-dot-integration-20261008/guide-search-diagnostic.xcresult — Result Bundle\n"
+      }
+    ],
+    "structuredContent": {
+      "schema": "xcodebuildmcp.output.test-result",
+      "schemaVersion": "3",
+      "didError": true,
+      "error": "Tests failed",
+      "data": {
+        "summary": {
+          "status": "FAILED",
+          "durationMs": 39795,
+          "counts": {
+            "passed": 0,
+            "failed": 1,
+            "skipped": 0
+          },
+          "target": "simulator"
+        },
+        "artifacts": {
+          "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-10-08T04-02-57-043Z_pid69719_7ae58944.log",
+          "xcresultPath": "output/qa/rillora-dot-integration-20261008/guide-search-diagnostic.xcresult",
+          "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-08T04-02-57-044Z_pid69719_ff86fc8e.xctestproducts"
+        },
+        "tests": {
+          "selected": [
+            "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testGuideColdAndWarmNavigationKeepsHeaderBelowBar"
+          ],
+          "discovered": {
+            "total": 1,
+            "items": [
+              "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testGuideColdAndWarmNavigationKeepsHeaderBelowBar"
+            ]
+          }
+        },
+        "diagnostics": {
+          "warnings": [],
+          "errors": [],
+          "testFailures": [
+            {
+              "suite": "RilloraLocalizationUITests",
+              "test": "testGuideColdAndWarmNavigationKeepsHeaderBelowBar",
+              "message": "XCTAssertTrue failed",
+              "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraLayoutMatrixTests/RilloraLocalizationUITests.swift:135"
+            }
+          ]
+        },
+        "testCases": [
+          {
+            "suite": "RilloraLocalizationUITests",
+            "test": "testGuideColdAndWarmNavigationKeepsHeaderBelowBar",
+            "status": "failed",
+            "durationMs": 24643
+          }
+        ]
+      }
+    },
+    "isError": true
+  },
+  "dotOct8SearchFixed": {
+    "content": [
+      {
+        "type": "text",
+        "text": "\n🧪 Test\n\nDiscovered 1 test(s):\n   RilloraLayoutMatrixTests/RilloraLocalizationUITests/testGuideColdAndWarmNavigationKeepsHeaderBelowBar\n\nTest Failures (1):\n\n  ✗ RilloraLocalizationUITests / testGuideColdAndWarmNavigationKeepsHeaderBelowBar: XCTAssertGreaterThanOrEqual failed: (\"22.0\") is less than (\"44.0\")\n    /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraLayoutMatrixTests/RilloraLocalizationUITests.swift:138\n\n❌ 1 test failed, 0 passed, 0 skipped (⏱️ 31.2s)\n  └ Files:\n     ├── ~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/\n     │   ├── logs/test_sim_2026-10-08T04-08-13-310Z_pid69719_d909c413.log — Build Logs\n     │   └── test-products/test_sim_2026-10-08T04-08-13-310Z_pid69719_7e76b3f6.xctestproducts — Test Products\n     └── output/qa/rillora-dot-integration-20261008/guide-search-fixed-zh.xcresult — Result Bundle\n"
+      }
+    ],
+    "structuredContent": {
+      "schema": "xcodebuildmcp.output.test-result",
+      "schemaVersion": "3",
+      "didError": true,
+      "error": "Tests failed",
+      "data": {
+        "summary": {
+          "status": "FAILED",
+          "durationMs": 31173,
+          "counts": {
+            "passed": 0,
+            "failed": 1,
+            "skipped": 0
+          },
+          "target": "simulator"
+        },
+        "artifacts": {
+          "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-10-08T04-08-13-310Z_pid69719_d909c413.log",
+          "xcresultPath": "output/qa/rillora-dot-integration-20261008/guide-search-fixed-zh.xcresult",
+          "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-08T04-08-13-310Z_pid69719_7e76b3f6.xctestproducts"
+        },
+        "tests": {
+          "selected": [
+            "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testGuideColdAndWarmNavigationKeepsHeaderBelowBar"
+          ],
+          "discovered": {
+            "total": 1,
+            "items": [
+              "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testGuideColdAndWarmNavigationKeepsHeaderBelowBar"
+            ]
+          }
+        },
+        "diagnostics": {
+          "warnings": [],
+          "errors": [],
+          "testFailures": [
+            {
+              "suite": "RilloraLocalizationUITests",
+              "test": "testGuideColdAndWarmNavigationKeepsHeaderBelowBar",
+              "message": "XCTAssertGreaterThanOrEqual failed: (\"22.0\") is less than (\"44.0\")",
+              "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraLayoutMatrixTests/RilloraLocalizationUITests.swift:138"
+            }
+          ]
+        },
+        "testCases": [
+          {
+            "suite": "RilloraLocalizationUITests",
+            "test": "testGuideColdAndWarmNavigationKeepsHeaderBelowBar",
+            "status": "failed",
+            "durationMs": 15260
+          }
+        ]
+      }
+    },
+    "isError": true
+  },
+  "dotOct8GuideFixedZh": {
+    "content": [
+      {
+        "type": "text",
+        "text": "\n🧪 Test\n\nDiscovered 2 test(s):\n   RilloraLayoutMatrixTests/RilloraLocalizationUITests/testGuideColdAndWarmNavigationKeepsHeaderBelowBar\n   RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLocalizedGuideHasOneLinkSectionAndNoReviewAcknowledgement\n\nTest Failures (1):\n\n  ✗ RilloraLocalizationUITests / testGuideColdAndWarmNavigationKeepsHeaderBelowBar: XCTAssertTrue failed\n    /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraLayoutMatrixTests/RilloraLocalizationUITests.swift:148\n\n❌ 1 test failed, 1 passed, 0 skipped (⏱️ 66.6s)\n  └ Files:\n     ├── ~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/\n     │   ├── logs/test_sim_2026-10-08T04-16-15-416Z_pid69719_94605fdc.log — Build Logs\n     │   └── test-products/test_sim_2026-10-08T04-16-15-418Z_pid69719_3ef95951.xctestproducts — Test Products\n     └── output/qa/rillora-dot-integration-20261008/guide-fixed-zh.xcresult — Result Bundle\n"
+      }
+    ],
+    "structuredContent": {
+      "schema": "xcodebuildmcp.output.test-result",
+      "schemaVersion": "3",
+      "didError": true,
+      "error": "Tests failed",
+      "data": {
+        "summary": {
+          "status": "FAILED",
+          "durationMs": 66604,
+          "counts": {
+            "passed": 1,
+            "failed": 1,
+            "skipped": 0
+          },
+          "target": "simulator"
+        },
+        "artifacts": {
+          "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-10-08T04-16-15-416Z_pid69719_94605fdc.log",
+          "xcresultPath": "output/qa/rillora-dot-integration-20261008/guide-fixed-zh.xcresult",
+          "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-08T04-16-15-418Z_pid69719_3ef95951.xctestproducts"
+        },
+        "tests": {
+          "selected": [
+            "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testGuideColdAndWarmNavigationKeepsHeaderBelowBar",
+            "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLocalizedGuideHasOneLinkSectionAndNoReviewAcknowledgement"
+          ],
+          "discovered": {
+            "total": 2,
+            "items": [
+              "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testGuideColdAndWarmNavigationKeepsHeaderBelowBar",
+              "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLocalizedGuideHasOneLinkSectionAndNoReviewAcknowledgement"
+            ]
+          }
+        },
+        "diagnostics": {
+          "warnings": [],
+          "errors": [],
+          "testFailures": [
+            {
+              "suite": "RilloraLocalizationUITests",
+              "test": "testGuideColdAndWarmNavigationKeepsHeaderBelowBar",
+              "message": "XCTAssertTrue failed",
+              "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraLayoutMatrixTests/RilloraLocalizationUITests.swift:148"
+            }
+          ]
+        },
+        "testCases": [
+          {
+            "suite": "RilloraLocalizationUITests",
+            "test": "testGuideColdAndWarmNavigationKeepsHeaderBelowBar",
+            "status": "failed",
+            "durationMs": 19532
+          },
+          {
+            "suite": "RilloraLocalizationUITests",
+            "test": "testLocalizedGuideHasOneLinkSectionAndNoReviewAcknowledgement",
+            "status": "passed",
+            "durationMs": 30514
+          }
+        ]
+      }
+    },
+    "isError": true
+  },
+  "dotOct8TouchFixedZh": {
+    "content": [
+      {
+        "type": "text",
+        "text": "\n🧪 Test\n\nDiscovered 1 test(s):\n   RilloraLayoutMatrixTests/RilloraLocalizationUITests/testGuideColdAndWarmNavigationKeepsHeaderBelowBar\n\n✅ 1 test passed, 0 failed, 0 skipped (⏱️ 69.2s)\n  └ Files:\n     ├── ~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/\n     │   ├── logs/test_sim_2026-10-08T04-26-41-528Z_pid69719_d9afd766.log — Build Logs\n     │   └── test-products/test_sim_2026-10-08T04-26-41-528Z_pid69719_7728377e.xctestproducts — Test Products\n     └── output/qa/rillora-dot-integration-20261008/guide-touch-fixed-zh.xcresult — Result Bundle\n"
+      }
+    ],
+    "structuredContent": {
+      "schema": "xcodebuildmcp.output.test-result",
+      "schemaVersion": "3",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED",
+          "durationMs": 69173,
+          "counts": {
+            "passed": 1,
+            "failed": 0,
+            "skipped": 0
+          },
+          "target": "simulator"
+        },
+        "artifacts": {
+          "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-10-08T04-26-41-528Z_pid69719_d9afd766.log",
+          "xcresultPath": "output/qa/rillora-dot-integration-20261008/guide-touch-fixed-zh.xcresult",
+          "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-08T04-26-41-528Z_pid69719_7728377e.xctestproducts"
+        },
+        "tests": {
+          "selected": [
+            "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testGuideColdAndWarmNavigationKeepsHeaderBelowBar"
+          ],
+          "discovered": {
+            "total": 1,
+            "items": [
+              "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testGuideColdAndWarmNavigationKeepsHeaderBelowBar"
+            ]
+          }
+        },
+        "diagnostics": {
+          "warnings": [],
+          "errors": [],
+          "testFailures": []
+        },
+        "testCases": [
+          {
+            "suite": "RilloraLocalizationUITests",
+            "test": "testGuideColdAndWarmNavigationKeepsHeaderBelowBar",
+            "status": "passed",
+            "durationMs": 52042
+          }
+        ]
+      }
+    }
+  },
+  "dotOct8GuideFinalEn": {
+    "content": [
+      {
+        "type": "text",
+        "text": "\n🧪 Test\n\nDiscovered 3 test(s):\n   RilloraLayoutMatrixTests/RilloraLocalizationUITests/testGuideColdAndWarmNavigationKeepsHeaderBelowBar\n   RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLargeTextGuideFromMatterSheetPreservesDraftAndBoundary\n   RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLocalizedGuideHasOneLinkSectionAndNoReviewAcknowledgement\n\n✅ 3 tests passed, 0 failed, 0 skipped (⏱️ 129.3s)\n  └ Files:\n     ├── ~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/\n     │   ├── logs/test_sim_2026-10-08T05-47-31-862Z_pid69719_39a2245c.log — Build Logs\n     │   └── test-products/test_sim_2026-10-08T05-47-31-863Z_pid69719_91d8311c.xctestproducts — Test Products\n     └── output/qa/rillora-dot-integration-20261008/guide-final-en.xcresult — Result Bundle\n"
+      }
+    ],
+    "structuredContent": {
+      "schema": "xcodebuildmcp.output.test-result",
+      "schemaVersion": "3",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED",
+          "durationMs": 129328,
+          "counts": {
+            "passed": 3,
+            "failed": 0,
+            "skipped": 0
+          },
+          "target": "simulator"
+        },
+        "artifacts": {
+          "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-10-08T05-47-31-862Z_pid69719_39a2245c.log",
+          "xcresultPath": "output/qa/rillora-dot-integration-20261008/guide-final-en.xcresult",
+          "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-08T05-47-31-863Z_pid69719_91d8311c.xctestproducts"
+        },
+        "tests": {
+          "selected": [
+            "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testGuideColdAndWarmNavigationKeepsHeaderBelowBar",
+            "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLargeTextGuideFromMatterSheetPreservesDraftAndBoundary",
+            "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLocalizedGuideHasOneLinkSectionAndNoReviewAcknowledgement"
+          ],
+          "discovered": {
+            "total": 3,
+            "items": [
+              "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testGuideColdAndWarmNavigationKeepsHeaderBelowBar",
+              "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLargeTextGuideFromMatterSheetPreservesDraftAndBoundary",
+              "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLocalizedGuideHasOneLinkSectionAndNoReviewAcknowledgement"
+            ]
+          }
+        },
+        "diagnostics": {
+          "warnings": [],
+          "errors": [],
+          "testFailures": []
+        },
+        "testCases": [
+          {
+            "suite": "RilloraLocalizationUITests",
+            "test": "testGuideColdAndWarmNavigationKeepsHeaderBelowBar",
+            "status": "passed",
+            "durationMs": 51970
+          },
+          {
+            "suite": "RilloraLocalizationUITests",
+            "test": "testLargeTextGuideFromMatterSheetPreservesDraftAndBoundary",
+            "status": "passed",
+            "durationMs": 25247
+          },
+          {
+            "suite": "RilloraLocalizationUITests",
+            "test": "testLocalizedGuideHasOneLinkSectionAndNoReviewAcknowledgement",
+            "status": "passed",
+            "durationMs": 29939
+          }
+        ]
+      }
+    }
+  },
+  "dotOct8GuideFinalZh": {
+    "content": [
+      {
+        "type": "text",
+        "text": "\n🧪 Test\n\nDiscovered 3 test(s):\n   RilloraLayoutMatrixTests/RilloraLocalizationUITests/testGuideColdAndWarmNavigationKeepsHeaderBelowBar\n   RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLargeTextGuideFromMatterSheetPreservesDraftAndBoundary\n   RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLocalizedGuideHasOneLinkSectionAndNoReviewAcknowledgement\n\n✅ 3 tests passed, 0 failed, 0 skipped (⏱️ 127.2s)\n  └ Files:\n     ├── ~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/\n     │   ├── logs/test_sim_2026-10-08T05-55-04-878Z_pid69719_b77e8018.log — Build Logs\n     │   └── test-products/test_sim_2026-10-08T05-55-04-878Z_pid69719_a7913621.xctestproducts — Test Products\n     └── output/qa/rillora-dot-integration-20261008/guide-final-zh.xcresult — Result Bundle\n"
+      }
+    ],
+    "structuredContent": {
+      "schema": "xcodebuildmcp.output.test-result",
+      "schemaVersion": "3",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED",
+          "durationMs": 127240,
+          "counts": {
+            "passed": 3,
+            "failed": 0,
+            "skipped": 0
+          },
+          "target": "simulator"
+        },
+        "artifacts": {
+          "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-10-08T05-55-04-878Z_pid69719_b77e8018.log",
+          "xcresultPath": "output/qa/rillora-dot-integration-20261008/guide-final-zh.xcresult",
+          "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-08T05-55-04-878Z_pid69719_a7913621.xctestproducts"
+        },
+        "tests": {
+          "selected": [
+            "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testGuideColdAndWarmNavigationKeepsHeaderBelowBar",
+            "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLargeTextGuideFromMatterSheetPreservesDraftAndBoundary",
+            "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLocalizedGuideHasOneLinkSectionAndNoReviewAcknowledgement"
+          ],
+          "discovered": {
+            "total": 3,
+            "items": [
+              "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testGuideColdAndWarmNavigationKeepsHeaderBelowBar",
+              "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLargeTextGuideFromMatterSheetPreservesDraftAndBoundary",
+              "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLocalizedGuideHasOneLinkSectionAndNoReviewAcknowledgement"
+            ]
+          }
+        },
+        "diagnostics": {
+          "warnings": [],
+          "errors": [],
+          "testFailures": []
+        },
+        "testCases": [
+          {
+            "suite": "RilloraLocalizationUITests",
+            "test": "testGuideColdAndWarmNavigationKeepsHeaderBelowBar",
+            "status": "passed",
+            "durationMs": 52441
+          },
+          {
+            "suite": "RilloraLocalizationUITests",
+            "test": "testLargeTextGuideFromMatterSheetPreservesDraftAndBoundary",
+            "status": "passed",
+            "durationMs": 24802
+          },
+          {
+            "suite": "RilloraLocalizationUITests",
+            "test": "testLocalizedGuideHasOneLinkSectionAndNoReviewAcknowledgement",
+            "status": "passed",
+            "durationMs": 27640
+          }
+        ]
+      }
+    }
+  },
+  "dotOct8GuideFinalEnUnique": {
+    "content": [
+      {
+        "type": "text",
+        "text": "\n🧪 Test\n\nDiscovered 2 test(s):\n   RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLargeTextGuideFromMatterSheetPreservesDraftAndBoundary\n   RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLocalizedGuideHasOneLinkSectionAndNoReviewAcknowledgement\n\nTest Failures (1):\n\n  ✗ RilloraLocalizationUITests / testLocalizedGuideHasOneLinkSectionAndNoReviewAcknowledgement: Failed to get matching snapshots: Timed out while evaluating UI query.\n    /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraLayoutMatrixTests/RilloraLocalizationUITests.swift:72\n\n❌ 1 test failed, 1 passed, 0 skipped (⏱️ 3769.1s)\n  └ Files:\n     ├── ~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/\n     │   ├── logs/test_sim_2026-10-08T06-04-14-976Z_pid69719_df9badc7.log — Build Logs\n     │   └── test-products/test_sim_2026-10-08T06-04-14-977Z_pid69719_8d492e3a.xctestproducts — Test Products\n     └── output/qa/rillora-dot-integration-20261008/guide-final-en-unique.xcresult — Result Bundle\n"
+      }
+    ],
+    "structuredContent": {
+      "schema": "xcodebuildmcp.output.test-result",
+      "schemaVersion": "3",
+      "didError": true,
+      "error": "Tests failed",
+      "data": {
+        "summary": {
+          "status": "FAILED",
+          "durationMs": 3769145,
+          "counts": {
+            "passed": 1,
+            "failed": 1,
+            "skipped": 0
+          },
+          "target": "simulator"
+        },
+        "artifacts": {
+          "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-10-08T06-04-14-976Z_pid69719_df9badc7.log",
+          "xcresultPath": "output/qa/rillora-dot-integration-20261008/guide-final-en-unique.xcresult",
+          "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-08T06-04-14-977Z_pid69719_8d492e3a.xctestproducts"
+        },
+        "tests": {
+          "selected": [
+            "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLargeTextGuideFromMatterSheetPreservesDraftAndBoundary",
+            "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLocalizedGuideHasOneLinkSectionAndNoReviewAcknowledgement"
+          ],
+          "discovered": {
+            "total": 2,
+            "items": [
+              "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLargeTextGuideFromMatterSheetPreservesDraftAndBoundary",
+              "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLocalizedGuideHasOneLinkSectionAndNoReviewAcknowledgement"
+            ]
+          }
+        },
+        "diagnostics": {
+          "warnings": [],
+          "errors": [],
+          "testFailures": [
+            {
+              "suite": "RilloraLocalizationUITests",
+              "test": "testLocalizedGuideHasOneLinkSectionAndNoReviewAcknowledgement",
+              "message": "Failed to get matching snapshots: Timed out while evaluating UI query.",
+              "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraLayoutMatrixTests/RilloraLocalizationUITests.swift:72"
+            }
+          ]
+        },
+        "testCases": [
+          {
+            "suite": "RilloraLocalizationUITests",
+            "test": "testLargeTextGuideFromMatterSheetPreservesDraftAndBoundary",
+            "status": "passed",
+            "durationMs": 2145094
+          },
+          {
+            "suite": "RilloraLocalizationUITests",
+            "test": "testLocalizedGuideHasOneLinkSectionAndNoReviewAcknowledgement",
+            "status": "failed",
+            "durationMs": 1587389
+          }
+        ]
+      }
+    },
+    "isError": true
+  },
+  "dotOct8EnRecovered": {
+    "content": [
+      {
+        "type": "text",
+        "text": "\n🧪 Test\n\nDiscovered 1 test(s):\n   RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLocalizedGuideHasOneLinkSectionAndNoReviewAcknowledgement\n\n✅ 1 test passed, 0 failed, 0 skipped (⏱️ 158.4s)\n  └ Files:\n     ├── ~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/\n     │   ├── logs/test_sim_2026-10-08T11-45-05-791Z_pid69719_9ca4bdc4.log — Build Logs\n     │   └── test-products/test_sim_2026-10-08T11-45-05-792Z_pid69719_d13d1ff1.xctestproducts — Test Products\n     └── output/qa/rillora-dot-integration-20261008/guide-en-recovered.xcresult — Result Bundle\n"
+      }
+    ],
+    "structuredContent": {
+      "schema": "xcodebuildmcp.output.test-result",
+      "schemaVersion": "3",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED",
+          "durationMs": 158407,
+          "counts": {
+            "passed": 1,
+            "failed": 0,
+            "skipped": 0
+          },
+          "target": "simulator"
+        },
+        "artifacts": {
+          "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-10-08T11-45-05-791Z_pid69719_9ca4bdc4.log",
+          "xcresultPath": "output/qa/rillora-dot-integration-20261008/guide-en-recovered.xcresult",
+          "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-08T11-45-05-792Z_pid69719_d13d1ff1.xctestproducts"
+        },
+        "tests": {
+          "selected": [
+            "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLocalizedGuideHasOneLinkSectionAndNoReviewAcknowledgement"
+          ],
+          "discovered": {
+            "total": 1,
+            "items": [
+              "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLocalizedGuideHasOneLinkSectionAndNoReviewAcknowledgement"
+            ]
+          }
+        },
+        "diagnostics": {
+          "warnings": [],
+          "errors": [],
+          "testFailures": []
+        },
+        "testCases": [
+          {
+            "suite": "RilloraLocalizationUITests",
+            "test": "testLocalizedGuideHasOneLinkSectionAndNoReviewAcknowledgement",
+            "status": "passed",
+            "durationMs": 63285
+          }
+        ]
+      }
+    }
+  },
+  "dotOct8TransitionFinal": {
+    "content": [
+      {
+        "type": "text",
+        "text": "\n🧪 Test\n\nDiscovered 1 test(s):\n   RilloraLayoutMatrixTests/RilloraLocalizationUITests/testGuideColdAndWarmNavigationKeepsHeaderBelowBar\n\n✅ 1 test passed, 0 failed, 0 skipped (⏱️ 661.6s)\n  └ Files:\n     ├── ~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/\n     │   ├── logs/test_sim_2026-10-08T11-52-16-743Z_pid69719_85809e09.log — Build Logs\n     │   └── test-products/test_sim_2026-10-08T11-52-16-743Z_pid69719_3ae8c10c.xctestproducts — Test Products\n     └── output/qa/rillora-dot-integration-20261008/guide-transition-final.xcresult — Result Bundle\n"
+      }
+    ],
+    "structuredContent": {
+      "schema": "xcodebuildmcp.output.test-result",
+      "schemaVersion": "3",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED",
+          "durationMs": 661599,
+          "counts": {
+            "passed": 1,
+            "failed": 0,
+            "skipped": 0
+          },
+          "target": "simulator"
+        },
+        "artifacts": {
+          "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-10-08T11-52-16-743Z_pid69719_85809e09.log",
+          "xcresultPath": "output/qa/rillora-dot-integration-20261008/guide-transition-final.xcresult",
+          "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-08T11-52-16-743Z_pid69719_3ae8c10c.xctestproducts"
+        },
+        "tests": {
+          "selected": [
+            "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testGuideColdAndWarmNavigationKeepsHeaderBelowBar"
+          ],
+          "discovered": {
+            "total": 1,
+            "items": [
+              "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testGuideColdAndWarmNavigationKeepsHeaderBelowBar"
+            ]
+          }
+        },
+        "diagnostics": {
+          "warnings": [],
+          "errors": [],
+          "testFailures": []
+        },
+        "testCases": [
+          {
+            "suite": "RilloraLocalizationUITests",
+            "test": "testGuideColdAndWarmNavigationKeepsHeaderBelowBar",
+            "status": "passed",
+            "durationMs": 345609
+          }
+        ]
+      }
+    }
+  }
+}

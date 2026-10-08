@@ -1,0 +1,89 @@
+{
+  "at": "2026-10-08T02:44:33.706490+00:00",
+  "operatorBaseline": "06da360715ad68e165bd3e1334dec32911aad345",
+  "incoming": [
+    {
+      "ref": "origin/codex/external-link-hygiene-20261007",
+      "head": "1ec30b7a3faa94899b298698133bf588a23d3878",
+      "mergeBase": "c0cec8680c613c3f6889f800754818fddf901031",
+      "paths": [
+        "apps/web/tests/external-url-hygiene.test.mjs",
+        "docs/qa/external-links-20261008/README.md",
+        "docs/qa/external-links-20261008/summary.json"
+      ]
+    },
+    {
+      "ref": "origin/codex/cloudflare-hosting-handoff-20261008",
+      "head": "3ae1abf6d3520148b4ef98be2de55270758ac079",
+      "mergeBase": "c0cec8680c613c3f6889f800754818fddf901031",
+      "paths": [
+        "apps/web/tests/external-url-hygiene.test.mjs",
+        "docs/cloudflare-hosting-handoff-20261008.md",
+        "docs/qa/external-links-20261008/README.md",
+        "docs/qa/external-links-20261008/summary.json"
+      ]
+    },
+    {
+      "ref": "origin/codex/guide-layout-locale-20261008",
+      "head": "0fb73e434751888a6c1dcca19365f433f04f24b7",
+      "mergeBase": "c0cec8680c613c3f6889f800754818fddf901031",
+      "paths": [
+        ".github/workflows/web-ux-browser.yml",
+        "apps/ios/Rillora/Features/OfficialSetup/OfficialProviderGuideCatalog.swift",
+        "apps/ios/Rillora/Features/OfficialSetup/OfficialSetupView.swift",
+        "apps/ios/RilloraLayoutMatrixTests/RilloraLocalizationUITests.swift",
+        "apps/ios/RilloraTests/OfficialProviderGuideCatalogTests.swift",
+        "apps/web/e2e/ux.spec.mjs",
+        "apps/web/src/PlatformGuides.jsx",
+        "apps/web/src/TaskPanels.jsx",
+        "apps/web/src/officialProviderGuides.js",
+        "apps/web/tests/forms-i18n-render.test.mjs",
+        "apps/web/tests/forms-i18n.test.mjs",
+        "apps/web/tests/official-provider-guides.test.mjs",
+        "config/provider-guides.json",
+        "docs/provider-guide-localization-20261008.md",
+        "tools/release/test_native_ux_refinement.py"
+      ]
+    },
+    {
+      "ref": "origin/codex/web-plan-layout-20261008",
+      "head": "a3cd0dfac66dbb77d47f3e93473f32c205ea0f43",
+      "mergeBase": "a49f3f95aa6809904e2f28a67e40fb0b10acb9f2",
+      "paths": [
+        ".github/workflows/web-ux-browser.yml",
+        "apps/web/e2e/account-identity.spec.mjs",
+        "apps/web/e2e/landing-header.spec.mjs",
+        "apps/web/e2e/plan-access.spec.mjs",
+        "apps/web/e2e/ux.spec.mjs",
+        "apps/web/src/AccountIdentity.jsx",
+        "apps/web/src/App.jsx",
+        "apps/web/src/PlanAccessPreview.jsx",
+        "apps/web/src/ProductionBillingControls.jsx",
+        "apps/web/src/TestBillingControls.jsx",
+        "apps/web/src/account-identity.css",
+        "apps/web/src/api.js",
+        "apps/web/src/i18n/LanguageControl.jsx",
+        "apps/web/src/i18n/i18n.css",
+        "apps/web/src/i18n/messages/public.js",
+        "apps/web/src/i18n/messages/workspace.js",
+        "apps/web/src/landing/LandingChrome.jsx",
+        "apps/web/src/landing/PlanSection.jsx",
+        "apps/web/src/landing/landing-base.css",
+        "apps/web/src/landing/landing-header.css",
+        "apps/web/src/landing/landing-i18n.css",
+        "apps/web/src/landing/landing-pages.css",
+        "apps/web/src/landing/landing-responsive.css",
+        "apps/web/src/mobileNavigation.js",
+        "apps/web/src/plan-access.css",
+        "apps/web/src/workspaceNavigation.js",
+        "apps/web/tests/account-identity.test.mjs",
+        "apps/web/tests/api-client.test.mjs",
+        "apps/web/tests/landing-header.test.mjs",
+        "apps/web/tests/mobile-navigation.test.mjs",
+        "apps/web/tests/plan-access-render.test.mjs",
+        "apps/web/tests/workspace-navigation.test.mjs",
+        "docs/web-plan-layout-20261008.md"
+      ]
+    }
+  ]
+}

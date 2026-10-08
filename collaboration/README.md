@@ -1,5 +1,12 @@
 # Rillora — Git / Dot 协作入口
 
+October8最新：Dot双语指南/Web套餐导航已审查修复，经[PR2](https://github.com/tantalum666/rillora/pull/2)
+合并392f0e81d，当前操作分支codex/matter-category-bar-20261008。CI100三任务/43浏览器及原生聚焦验证通过。
+legal正式域名已由Agent切到Cloudflare并独立验收；新应用源码尚未部署/直装，手机仍是35f37e1b2。
+[Archive25](verification/dot-integration-20261008/README.md)追加9,810路径/1,049对象、
+632,132,864加密字节，本地解密核验通过；远端读回另记。旧归档及TestFlight暂停继续保留。
+
+
 October8最新：事项分类已精简为单行横向栏，源码35f37e1b2位于codex/matter-category-bar-20261008。
 中英文七类/搜索UI回归、14guards、12签名配置检查通过，原iPhone已原位安装并启动。
 本地仍标1.0(11)，以源码/IPA指纹区分，未上传或分发TestFlight。Owner另报告切回原沙盒账号后

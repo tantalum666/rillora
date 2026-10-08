@@ -1,0 +1,62 @@
+{
+  "schema": "xcodebuildmcp.output.test-result",
+  "schemaVersion": "3",
+  "didError": true,
+  "error": "Tests failed",
+  "data": {
+    "summary": {
+      "status": "FAILED",
+      "durationMs": 87133,
+      "counts": {
+        "passed": 1,
+        "failed": 1,
+        "skipped": 0
+      },
+      "target": "simulator"
+    },
+    "artifacts": {
+      "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-10-08T03-43-40-851Z_pid69719_05cbbfca.log",
+      "xcresultPath": "output/qa/rillora-dot-integration-20261008/guide-ui-zh.xcresult",
+      "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-08T03-43-40-852Z_pid69719_28c9c100.xctestproducts"
+    },
+    "tests": {
+      "selected": [
+        "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testGuideColdAndWarmNavigationKeepsHeaderBelowBar",
+        "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLocalizedGuideHasOneLinkSectionAndNoReviewAcknowledgement"
+      ],
+      "discovered": {
+        "total": 2,
+        "items": [
+          "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testGuideColdAndWarmNavigationKeepsHeaderBelowBar",
+          "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLocalizedGuideHasOneLinkSectionAndNoReviewAcknowledgement"
+        ]
+      }
+    },
+    "diagnostics": {
+      "warnings": [],
+      "errors": [],
+      "testFailures": [
+        {
+          "suite": "RilloraLocalizationUITests",
+          "test": "testGuideColdAndWarmNavigationKeepsHeaderBelowBar",
+          "message": "XCTAssertTrue failed",
+          "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraLayoutMatrixTests/RilloraLocalizationUITests.swift:130"
+        }
+      ]
+    },
+    "testCases": [
+      {
+        "suite": "RilloraLocalizationUITests",
+        "test": "testGuideColdAndWarmNavigationKeepsHeaderBelowBar",
+        "status": "failed",
+        "durationMs": 21361
+      },
+      {
+        "suite": "RilloraLocalizationUITests",
+        "test": "testLocalizedGuideHasOneLinkSectionAndNoReviewAcknowledgement",
+        "status": "passed",
+        "durationMs": 28004
+      }
+    ]
+  }
+}

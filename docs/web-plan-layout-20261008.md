@@ -3,6 +3,10 @@
 Status: IMPLEMENTED; SOURCE CI AND 43 BROWSER SCENARIOS PASS; NOT MERGED OR DEPLOYED
 Updated: 2026-10-08 UTC
 
+
+本分支状态是独立交付检查点；后续本机整合、原生运行修正、依赖补丁及PR2合并以
+[October8整合记录](dot-integration-20261008.md)为准。以下旧“未合并／原生待运行”不再作为当前执行门。
+
 ## Request and source boundary
 
 The owner reported desktop navigation becoming a dropdown, missing Apple-price

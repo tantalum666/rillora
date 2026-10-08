@@ -3,6 +3,10 @@
 Status: PUSHED; EXACT-SOURCE CI AND 20/20 BROWSER PASS; NATIVE RUNTIME PENDING
 Updated: 2026-10-08 (Asia/Hong_Kong)
 
+
+本分支状态是独立交付检查点；后续本机整合、原生运行修正、依赖补丁及PR2合并以
+[October8整合记录](dot-integration-20261008.md)为准。以下旧“未合并／原生待运行”不再作为当前执行门。
+
 ## Owner report and diagnosis
 
 The Owner's two screenshots show a top navigation band clipping the Coinbase header,

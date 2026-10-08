@@ -2,8 +2,8 @@
   "files": [
     {
       "path": "collaboration/README.md",
-      "bytes": 14022,
-      "sha256": "aebfb2905276244305abdf2704388de62f23b2567892eb25b7ffe55cc1dcc02b"
+      "bytes": 14611,
+      "sha256": "ea2ece7779ed2fe9eb148f2e19450d08f798ba19e04f5959be84110c34a2a888"
     },
     {
       "path": "collaboration/catalog/files-001.json",
@@ -47571,6 +47571,501 @@
       "sha256": "80c707ab940c01681e04230d502e43686cc549e2c59e09d2d971d5abf58b194b"
     },
     {
+      "path": "collaboration/verification/dot-integration-20261008/README.md",
+      "bytes": 1785,
+      "sha256": "ce1e9a290dfc9c8813900424d8173ef962aaca4bc40c866ec82609e5c8adc076"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/archive-verification.json",
+      "bytes": 115,
+      "sha256": "6bf66acccb11343a8ccde5b6eac400051d6e1751bad9c16d2af939805b8ca4b9"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/catalog.json",
+      "bytes": 3944820,
+      "sha256": "2ff4fd800a999f3a1391251616faa49b9b5ac4316de848dbdbbf6910cc7b8516"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/docs-qa.json",
+      "bytes": 838,
+      "sha256": "dcc65cfa9eff0b3c2d0a5f23326c6bb5cf49cba224b8e060bd09bb10e88c99bc"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/final-browser-verification.json",
+      "bytes": 442,
+      "sha256": "45222dc95b33a8c965c5e88d7e4d95d80643ae2b192df466caab4efe4b69e9e6"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/final-ci-complete.json",
+      "bytes": 9701,
+      "sha256": "656bba748102f78e8725eee723c82fea01047b53e0726158ea93c06fd0963f47"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/legal-live-header.png",
+      "bytes": 27196,
+      "sha256": "61ea75b7b0a534f5348e2ed5a49461bce49d47f5ee7056be5f402382ea01fec9"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/merge-readback.json",
+      "bytes": 322,
+      "sha256": "1b2470d9ed7adfa423be3e757ca3782fabdcc1ef5e564c5ef1f75f7c9e1671ea"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/native-guide-zh.png",
+      "bytes": 200187,
+      "sha256": "c745b655b3b0c6a320efb60714ef342f11da9debce0dce833be302c05c89ec1c"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/preserve-work.log.reference.txt",
+      "bytes": 135,
+      "sha256": "94455b5d1b55350682db58460856c543232c0941baacb3aad12c3f04f7734204"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/README.md.reference.txt",
+      "bytes": 3854,
+      "sha256": "c1ee87d77c596f5a72e9a0f484147d98ae2f9f7aa34eab4146fa4c926ccaa983"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/browser-download-attempt.json",
+      "bytes": 150,
+      "sha256": "2a6b255d54cc51efb8a4da6649a7937aabed3962a58f920781cafeea98371089"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/catalog-review.json",
+      "bytes": 198,
+      "sha256": "d5af1590db80c3ff353d7459ae14547c785ff0e9d779f83d170b414e6711f30a"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/checkpoint.json",
+      "bytes": 2269,
+      "sha256": "2311e54f959a13af0d1587c46c5e3c22e1424422f7a3a824f876103682c4e0bd"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/ci-final-api.log.reference.txt",
+      "bytes": 73164,
+      "sha256": "31aca01b772a2b7d991061128ef44d38e573a011850b70d00067f0ff3000efa2"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/ci-final-browser.log.reference.txt",
+      "bytes": 61695,
+      "sha256": "f8bfeefb6efe24d38f0082eab8b5dbad328145fdf42a4c630940a258bb12e362"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/ci-final-web-infra.log.reference.txt",
+      "bytes": 205353,
+      "sha256": "72406314bfb7edf77f80e5e80eb3cd76003df04d08a84ccbcd125e5607650cc5"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/cloudflare-hosting-handoff-20261008.patch",
+      "bytes": 22362,
+      "sha256": "a85ce1276303c986423d564e56db5a2f64e7eda6eaf5a1d43ec7ad3e47387452"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/combined-browser/browser-report/index.html",
+      "bytes": 879199,
+      "sha256": "10eabbfb3b36cbfb69a3583f69d515caba89d6dbde47adfba9d2901039732d7b"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/combined-browser/browser-results/results.json",
+      "bytes": 115628,
+      "sha256": "2d8b6cc3d464c66f27324dfe37cf7b0e12b4a3b9f7186c9912c9b0dd17326005"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/dependency-update.json",
+      "bytes": 459,
+      "sha256": "1372e67effd5e64763cd06cc4a657dedd4b6a9bba43b4cdfda7345cbcc370c87"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/external-link-hygiene-20261007.patch",
+      "bytes": 11291,
+      "sha256": "ce014211c402e3144eeeb00feb1d9fc1b55beb81b05515e63b160b1670a81666"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/extract_video_frame.swift",
+      "bytes": 750,
+      "sha256": "20952ff11407535481b85c66395dcc9eff54cc14fb1d2d9b382012b6169cb8c8"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/final-browser/browser-report/index.html",
+      "bytes": 881043,
+      "sha256": "511b87d803511f79abb4493b0f81d26b90b5f1d7c39afbca26a744c117af4410"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/final-browser/browser-results/results.json",
+      "bytes": 115630,
+      "sha256": "6c47603d820d4710eede24e42a042e05dd87ccb92abb9e3d2ea08ca3e8a040d0"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/final-browser-verification.json",
+      "bytes": 442,
+      "sha256": "45222dc95b33a8c965c5e88d7e4d95d80643ae2b192df466caab4efe4b69e9e6"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/final-ci-complete.json",
+      "bytes": 9701,
+      "sha256": "656bba748102f78e8725eee723c82fea01047b53e0726158ea93c06fd0963f47"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/final-ci.json",
+      "bytes": 7533,
+      "sha256": "63b3c51ff8af48f5f98b4baf2bd2250521ae7bd59dcc915a9a417d71946e6aed"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/fixture-cleanup.json",
+      "bytes": 152,
+      "sha256": "84c2dee00d81b02bd3334d773f023be68873ab369f45351e4682421ae5e992a4"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/guide-final-zh-attachments/0A6BCE6E-4BBD-4089-B2C3-DADE9322774D.txt",
+      "bytes": 16487,
+      "sha256": "75fd6a3ca8d274aa392cee8b641c87dfc36b2dc4e90e824d820669c8bb581715"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/guide-final-zh-attachments/manifest.json",
+      "bytes": 5699,
+      "sha256": "3ddaa96845fd66173de97de9eb3ad624ef97620520f886365d2e3a6debe4685e"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/guide-final-zh-export.log.reference.txt",
+      "bytes": 2050,
+      "sha256": "bc92c28fb89fc3ece548beac21e598e0529194d0542ba97e4563911463abe4f7"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/guide-layout-locale-20261008.patch",
+      "bytes": 79095,
+      "sha256": "b5180926b40fbcacf116bfb32c828bc1e1b435c816aba35ef13f023688259e70"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/guide-search-diagnostic-all/15FA207B-908A-4676-8A84-99AC67582BD3.txt",
+      "bytes": 219,
+      "sha256": "a53e195cd6ddf02b99d618f27e8f3f0c47437cdfcc8ac0290df255719c83bc30"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/guide-search-diagnostic-all/422E9A8C-7FB1-4C70-A0CA-33C6EC1F52FE.txt",
+      "bytes": 219,
+      "sha256": "a53e195cd6ddf02b99d618f27e8f3f0c47437cdfcc8ac0290df255719c83bc30"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/guide-search-diagnostic-all/507DF442-8EC4-414A-9200-B93FFDFF4323.txt",
+      "bytes": 219,
+      "sha256": "a53e195cd6ddf02b99d618f27e8f3f0c47437cdfcc8ac0290df255719c83bc30"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/guide-search-diagnostic-all/5D38A647-FD5C-490A-855B-B41CF66AD54D.txt",
+      "bytes": 25651,
+      "sha256": "935c1ca0c1bec79dc498db5ef8bb8d909fda5f51228b43d93e379ad928e28578"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/guide-search-diagnostic-all/6592F079-FFF8-470D-A800-022DDA27BE24.txt",
+      "bytes": 219,
+      "sha256": "a53e195cd6ddf02b99d618f27e8f3f0c47437cdfcc8ac0290df255719c83bc30"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/guide-search-diagnostic-all/9952EC1B-142B-4BA2-B672-3398F1E4242C.txt",
+      "bytes": 16493,
+      "sha256": "67182b139c4d9bd6df221e66c183e302e8f7e2cf5f36dc8bffac294f74e13d1c"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/guide-search-diagnostic-all/F4125458-A81F-4541-9F39-1E09FBFACBDA.txt",
+      "bytes": 219,
+      "sha256": "a53e195cd6ddf02b99d618f27e8f3f0c47437cdfcc8ac0290df255719c83bc30"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/guide-search-diagnostic-all/manifest.json",
+      "bytes": 7991,
+      "sha256": "5aaeb056d6d25ac0f571b2e6d5ee860076397b16d42f74551dd4d8d40d832fd6"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/guide-search-diagnostic-attachments/manifest.json",
+      "bytes": 4,
+      "sha256": "ace810d7e2cbb4f8c40ce09dc8e191ae466adb4e1a7d49c59f2215b411d38b05"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/guide-touch-fixed-zh-result.json",
+      "bytes": 1435,
+      "sha256": "83fd845bc4f7bdab20f4be3ef4b70a70a613ef2afd709a1c04bf92e78eaec090"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/guide-ui-zh-attachments/manifest.json",
+      "bytes": 4,
+      "sha256": "ace810d7e2cbb4f8c40ce09dc8e191ae466adb4e1a7d49c59f2215b411d38b05"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/guide-ui-zh-result.json",
+      "bytes": 2214,
+      "sha256": "16c56e2b9c3e63a210aae38f352f59559357b70e7e03fc7b65e4cd6b6330bd5f"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/guide-ui-zh.log.reference.txt",
+      "bytes": 1413617,
+      "sha256": "e2e892d5871a0513696d176d231133995f8eb98dabba0a0e903701e2e61cd086"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/guide-unit-result.json",
+      "bytes": 4125,
+      "sha256": "2be73a93e0147031986645862569f36b840bdd9259b0e6d1da62362c61435bff"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/legal-cutover/authoritative-flags.json",
+      "bytes": 546,
+      "sha256": "569634bbd4dae184807253434689ffe922414d43c3632d45d2886c59ef2d98ac"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/legal-cutover/browser-navigation-final.json",
+      "bytes": 737,
+      "sha256": "4ec1b5cdfa99aa566776dfc9524fbc23c0e9169f7224c724ab6ea3ac0d3fe58b"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/legal-cutover/browser-negative-probe.json",
+      "bytes": 2855,
+      "sha256": "81d738f478cf6a11e71d892d596c164779d6fcd7433bd545bbd48d6cbc7e77fd"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/legal-cutover/browser-preflight.json",
+      "bytes": 197,
+      "sha256": "c9a0c90a7ef5411ab62a89b8d5fe6b243226c2e0e34e35bba82ac28371342baa"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/legal-cutover/browser-seven-routes.json",
+      "bytes": 9092,
+      "sha256": "eff32673e5333ce5a99cb2650ad1497684806ca35eecbda956ae460214fb77f5"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/legal-cutover/cloudflare-active.json",
+      "bytes": 98,
+      "sha256": "53108a582e1a22f62bb0a4a3d8aaa257197f8804bf0ca8cdaccdc723dab82ab3"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/legal-cutover/cloudflare-preflight.json",
+      "bytes": 2085,
+      "sha256": "ba7ad88ba454172f281961d5346e27e2d1daf438c0db56d91206dd516693ecf9"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/legal-cutover/dns-apply-readback.json",
+      "bytes": 535,
+      "sha256": "97e314768c7b11a92c53289e04bca8fefe39e505a37e4262346d5a6fb79f0ce0"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/legal-cutover/dns-independent-readback.json",
+      "bytes": 293,
+      "sha256": "a787adae41887b8295a441d604d2cda538b1234e75d0cee084fdc999a5d0f81b"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/legal-cutover/dns-preview.json",
+      "bytes": 549,
+      "sha256": "bd9096eff533490afe4e4b860e1877cec83edc76c13c7e1fe3f477de661ca83c"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/legal-cutover/dns-resolvers.json",
+      "bytes": 1340,
+      "sha256": "f2e05d0ff8ac32275438acfaa5c8722d0bdc6b28d1c0da8ffdc6b9e3c729b601"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/legal-cutover/godaddy-preflight.json",
+      "bytes": 330,
+      "sha256": "5a5d1bb8e160bc213901d13a8f5f35d68d5639320e0c0eeeff6b42bea30cc8a0"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/legal-cutover/http-preflight.json",
+      "bytes": 736,
+      "sha256": "32c91f772f0e9ec71f832ce785fc42105c86f51d235a01cad3ba18fd5cc881f9"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/legal-cutover/safari-readback.json",
+      "bytes": 285,
+      "sha256": "3a0fa0d3bc8dfe70d403561382a9bfc1124b23727400b53a33a1c8b0168c204c"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/legal-fixture-build.log.reference.txt",
+      "bytes": 1771,
+      "sha256": "33e7b44f9ab1c5cd2dfc10dae157cc6716676cde8de483586929e4a585a73ef1"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/legal-fixture-tests.log.reference.txt",
+      "bytes": 1306,
+      "sha256": "50c5a6df4b8dc3babdc90282d8d87bf3015b1e1e268a84618479aaf0dcef7d17"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/merge-readback.json",
+      "bytes": 322,
+      "sha256": "1b2470d9ed7adfa423be3e757ca3782fabdcc1ef5e564c5ef1f75f7c9e1671ea"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/native-locale-guards.log.reference.txt",
+      "bytes": 107,
+      "sha256": "9884269b98f75526e2b9d9cd629a65af3f6fd60585fd461163793606ef870017"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/native-matter-guards.log.reference.txt",
+      "bytes": 103,
+      "sha256": "6273232de4d3ef7acd4ecafa5c86beeeb974f56586b21089a2990b3f72facbe6"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/native-release-build.log.reference.txt",
+      "bytes": 1572350,
+      "sha256": "8ba813e95212d4782930f620a739b1ededec0526f78d0d7013adfd7e689151a1"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/native-tool-results.json",
+      "bytes": 37253,
+      "sha256": "bd6af187b0317fa491883a36c3ba35f79995086cefab27912a1ffd12f7ff67d8"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/native-ux-guards.log.reference.txt",
+      "bytes": 109,
+      "sha256": "643c7cfc3921e5830e047bed28578bc933677c101c9c5a9f6610b6207052d03c"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/npm-audit-api-patched.json",
+      "bytes": 365,
+      "sha256": "03612ecf12619c4710af8761930f9f68aa2d1ce8c5a3f16d326debe974330c13"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/npm-audit-final.json",
+      "bytes": 240,
+      "sha256": "3a21859655e937d8642f3d3a5b6ea0085b7a4c35fd55adfda43556c325959f4f"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/npm-audit-patched.json",
+      "bytes": 5558,
+      "sha256": "d72bc99bf063ae50fbacd2437d1a2f7dbe36e586a6a28c7b2a399fffc296a803"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/npm-audit-web-final.json",
+      "bytes": 1209,
+      "sha256": "4d9c087a8401cebcd32b34274c10cb6acd6c772327440502d6ea942859796ee5"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/preserve-work.log.reference.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/preserve_work.py.reference.txt",
+      "bytes": 8744,
+      "sha256": "150db3efe191026e99a843f8d22c2f6642233753c0ebf85d37d4ff6145d3a027"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/prototype-build-patched.log.reference.txt",
+      "bytes": 6552,
+      "sha256": "8ba50c93862d709a80736466004c8a3403820b361afd74acdd71730f57523d9e"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/prototype-install-patched.log.reference.txt",
+      "bytes": 25,
+      "sha256": "fa5e67e1ccc58aa71785c02e1e1cb08ae11cfe1f32fd91f6b745e81ab902bc6d"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/public-build.log.reference.txt",
+      "bytes": 2808,
+      "sha256": "49b5e56e1114afb8dbf8d303346d040a58bfe6d9265dbc498fea0e7cd72a30da"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/reading.json",
+      "bytes": 1137,
+      "sha256": "676b7681d11bbef653524c0806f9029cec8f33750f3dc74bdb97a5f412f8584d"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/simulator-recovery.json",
+      "bytes": 246,
+      "sha256": "51ae39f85c4f0d4bede678f41ce11ee844301358d9d288dd96f0dc1d507d38c2"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/source-candidate-fix.json",
+      "bytes": 241232,
+      "sha256": "8571fa6fd764c23f3b0a89d766db4591228d6ac0ef308bd0957350de272d3133"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/source-candidate.json",
+      "bytes": 241065,
+      "sha256": "85f1fc5c7a4fcff44b2c6b30d33a34d3cee139aeb0c2221ab210446e55a162a3"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/source-final.json",
+      "bytes": 241232,
+      "sha256": "42552b437e2030f33f0506849f94b80481e4c8d03637061a8c7cca344e30a372"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/source-scan-final.json",
+      "bytes": 10712,
+      "sha256": "633b0ab49751ff3e84d24fb327eca4b1ffd1928924a9e30519e7579027d77c90"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/source-scan-fix.json",
+      "bytes": 10712,
+      "sha256": "7f3e8c11f2bbe1d586535d27596a81ef4cb8a6114dfb47473c27e140f80a9c18"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/source-scan.json",
+      "bytes": 10712,
+      "sha256": "1441ff4ef419321cac4e5d95a6f655e4e9247654b2d58d20d6b2068eececba90"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/sources.json",
+      "bytes": 3774,
+      "sha256": "42ae1e7482fdc510dc7fab5961c4fe5bce351422cf9d89266e88d4d646dcafb8"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/test-product-preservation.json",
+      "bytes": 5520,
+      "sha256": "fcc97e6b9b02f0907dad4cc385e2faf4de10bf0f78bdb53e7307e3150f4a4cc6"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/verify_remote.py.reference.txt",
+      "bytes": 3239,
+      "sha256": "c4fd7bcbc6204e7ca9fe1fdd63f4b5de0b5f03034e2f8f6d4d4189fab6bf3e84"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/visual-review.json",
+      "bytes": 860,
+      "sha256": "19ade7c9927b244f734a72e08ce63df5eb41073cc06122720255762266704598"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/web-build.log.reference.txt",
+      "bytes": 11667,
+      "sha256": "6e277955c5b6870a76a6721988a6ad65ec0d2eb74a4f13e77dc8b44f5da71387"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/web-node-tests.log.reference.txt",
+      "bytes": 40526,
+      "sha256": "314ee1f60017dc6d43f067c6864d99b1c12f9ec61bd156587738eafd75c8edcf"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/web-plan-layout-20261008.patch",
+      "bytes": 104045,
+      "sha256": "993582ff2a0247dd414af4be0eb2846eae90d25a8bd28212e71e73786baee4c1"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/qa/rillora-dot-integration-20261008/web-tests.log.reference.txt",
+      "bytes": 222,
+      "sha256": "cee148d8a6001477fb44f09550968caf70d5b43dad37ed731d57b5d57bebaa6d"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/receipts/output/release/rillora-dot-integration-20261008/README.md.reference.txt",
+      "bytes": 434,
+      "sha256": "811d29537e13354d81b583bf33db4cb41027fde852cbc0c7f9e411ecc893e169"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/snapshot.json",
+      "bytes": 7451,
+      "sha256": "50d180b6a8beefa6e66c778a578691c493f54fca983b193f7741a2ce5231a043"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/source-scan-final.json",
+      "bytes": 10712,
+      "sha256": "633b0ab49751ff3e84d24fb327eca4b1ffd1928924a9e30519e7579027d77c90"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/web-family-zh.png",
+      "bytes": 77895,
+      "sha256": "f8287cce112fa9fc150ca637bfa5e9863ab640f635fd6a30ed84af398e44e52a"
+    },
+    {
+      "path": "collaboration/verification/dot-integration-20261008/web-guide-zh.png",
+      "bytes": 39712,
+      "sha256": "ecc9fc77762b2ad06a50f82c227cc61f9e0f7a2278b3cca87c833b729a89c138"
+    },
+    {
       "path": "collaboration/verification/dot-rollout-20261007/README.md",
       "bytes": 2132,
       "sha256": "a5c005e96e669ecdd94ebc7828c39db8d44d2a19912ff9fb769594f0b3885038"
@@ -53731,6 +54226,6 @@
       "sha256": "33c4f42e8e2c730d54aa6bff46075b11ed7357c4c82659917d87ab3842b3ffdc"
     }
   ],
-  "fileCount": 10746,
-  "totalBytes": 328047153
+  "fileCount": 10845,
+  "totalBytes": 338921721
 }

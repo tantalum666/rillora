@@ -380,3 +380,14 @@ The completed [remote receipt](../collaboration/verification/matter-categories-2
 verifies archive24at efc22209a99038d84e5523165595dd0ea81d0cef: all364objects/3,251paths
 match metadata read directly from GitHub and a fresh separate LFS download. Earlier1–23
 were not fetched again. Final receipt commits do not change the installed source35f37e1b2.
+
+
+## October8 reviewed Dot and legal DNS addendum
+
+[Archive25](../collaboration/verification/dot-integration-20261008/README.md) preserves9,810eligible paths/
+1,049objects and632,132,864encrypted bytes, locally decrypted and verified. It includes original
+failed/passed native results/products/videos, two digest-matched GitHub browser ZIPs, safe DNS/TLS receipts,
+unsigned Release and local fixture/prototype build outputs. Source8cdaf2eaa/CI100/browser43merges through
+PR2as392f0e81d with identical tree. Previous1–24remain unchanged; raw provider backups/private legal fields,
+authentication/capability URLs and reproducible caches remain excluded. Fresh remote verification follows
+as a separate receipt; application deployment/physical installation are not implied by this preservation.

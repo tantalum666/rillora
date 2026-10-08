@@ -1,0 +1,30 @@
+{
+  "web": {
+    "chunk_id": "89720e",
+    "wall_time_seconds": 0.000004375,
+    "exit_code": 0,
+    "original_token_count": 91,
+    "output": "{\n  \"auditReportVersion\": 2,\n  \"vulnerabilities\": {},\n  \"metadata\": {\n    \"vulnerabilities\": {\n      \"info\": 0,\n      \"low\": 0,\n      \"moderate\": 0,\n      \"high\": 0,\n      \"critical\": 0,\n      \"total\": 0\n    },\n    \"dependencies\": {\n      \"prod\": 116,\n      \"dev\": 3,\n      \"optional\": 52,\n      \"peer\": 0,\n      \"peerOptional\": 0,\n      \"total\": 170\n    }\n  }\n}\n"
+  },
+  "api": {
+    "chunk_id": "44e6bd",
+    "wall_time_seconds": 0.000005375,
+    "exit_code": 1,
+    "original_token_count": 307,
+    "output": "{\n  \"auditReportVersion\": 2,\n  \"vulnerabilities\": {\n    \"proxy-addr\": {\n      \"name\": \"proxy-addr\",\n      \"severity\": \"critical\",\n      \"isDirect\": false,\n      \"via\": [\n        {\n          \"source\": 1241210,\n          \"name\": \"proxy-addr\",\n          \"dependency\": \"proxy-addr\",\n          \"title\": \"proxy-addr vulnerable to IP spoofing via IPv4-mapped IPv6 trust subnet\",\n          \"url\": \"https://github.com/advisories/GHSA-jqcg-44mw-7w3h\",\n          \"severity\": \"critical\",\n          \"cwe\": [\n            \"CWE-290\",\n            \"CWE-348\",\n            \"CWE-697\"\n          ],\n          \"cvss\": {\n            \"score\": 9.1,\n            \"vectorString\": \"CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N\"\n          },\n          \"range\": \">=1.1.0 <2.0.8\"\n        }\n      ],\n      \"effects\": [],\n      \"range\": \"1.1.0 - 2.0.7\",\n      \"nodes\": [\n        \"node_modules/proxy-addr\"\n      ],\n      \"fixAvailable\": true\n    }\n  },\n  \"metadata\": {\n    \"vulnerabilities\": {\n      \"info\": 0,\n      \"low\": 0,\n      \"moderate\": 0,\n      \"high\": 0,\n      \"critical\": 1,\n      \"total\": 1\n    },\n    \"dependencies\": {\n      \"prod\": 178,\n      \"dev\": 145,\n      \"optional\": 74,\n      \"peer\": 0,\n      \"peerOptional\": 0,\n      \"total\": 323\n    }\n  }\n}\n"
+  },
+  "prototype": {
+    "chunk_id": "f60f0a",
+    "wall_time_seconds": 0.00000375,
+    "exit_code": 0,
+    "original_token_count": 91,
+    "output": "{\n  \"auditReportVersion\": 2,\n  \"vulnerabilities\": {},\n  \"metadata\": {\n    \"vulnerabilities\": {\n      \"info\": 0,\n      \"low\": 0,\n      \"moderate\": 0,\n      \"high\": 0,\n      \"critical\": 0,\n      \"total\": 0\n    },\n    \"dependencies\": {\n      \"prod\": 57,\n      \"dev\": 71,\n      \"optional\": 53,\n      \"peer\": 0,\n      \"peerOptional\": 0,\n      \"total\": 127\n    }\n  }\n}\n"
+  },
+  "infra": {
+    "chunk_id": "c6a3f8",
+    "wall_time_seconds": 0.000003292,
+    "exit_code": 1,
+    "original_token_count": 616,
+    "output": "{\n  \"auditReportVersion\": 2,\n  \"vulnerabilities\": {\n    \"brace-expansion\": {\n      \"name\": \"brace-expansion\",\n      \"severity\": \"high\",\n      \"isDirect\": false,\n      \"via\": [\n        {\n          \"source\": 1240103,\n          \"name\": \"brace-expansion\",\n          \"dependency\": \"brace-expansion\",\n          \"title\": \"brace-expansion: Quadratic-time expansion of the `{a},b}` rewrite causes CPU denial of service\",\n          \"url\": \"https://github.com/advisories/GHSA-q2hr-2g5m-vwhr\",\n          \"severity\": \"moderate\",\n          \"cwe\": [\n            \"CWE-400\",\n            \"CWE-407\"\n          ],\n          \"cvss\": {\n            \"score\": 5.3,\n            \"vectorString\": \"CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L\"\n          },\n          \"range\": \">=4.0.0 <5.0.12\"\n        },\n        {\n          \"source\": 1240107,\n          \"name\": \"brace-expansion\",\n          \"dependency\": \"brace-expansion\",\n          \"title\": \"brace-expansion: DoS via uncontrolled recursion on nested brace groups causing stack exhaustion\",\n          \"url\": \"https://github.com/advisories/GHSA-qhr7-859c-m2p7\",\n          \"severity\": \"high\",\n          \"cwe\": [\n            \"CWE-400\",\n            \"CWE-674\"\n          ],\n          \"cvss\": {\n            \"score\": 7.5,\n            \"vectorString\": \"CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H\"\n          },\n          \"range\": \">=4.0.0 <5.0.11\"\n        },\n        {\n          \"source\": 1240111,\n          \"name\": \"brace-expansion\",\n          \"dependency\": \"brace-expansion\",\n          \"title\": \"brace-expansion: DoS via uncontrolled recursion in parseCommaParts causing stack exhaustion\",\n          \"url\": \"https://github.com/advisories/GHSA-6j4f-fj2g-mc7p\",\n          \"severity\": \"high\",\n          \"cwe\": [\n            \"CWE-400\",\n            \"CWE-674\"\n          ],\n          \"cvss\": {\n            \"score\": 7.5,\n            \"vectorString\": \"CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H\"\n          },\n          \"range\": \">=4.0.0 <5.0.10\"\n        }\n      ],\n      \"effects\": [],\n      \"range\": \"4.0.0 - 5.0.11\",\n      \"nodes\": [\n        \"node_modules/aws-cdk-lib/node_modules/brace-expansion\"\n      ],\n      \"fixAvailable\": true\n    }\n  },\n  \"metadata\": {\n    \"vulnerabilities\": {\n      \"info\": 0,\n      \"low\": 0,\n      \"moderate\": 0,\n      \"high\": 1,\n      \"critical\": 0,\n      \"total\": 1\n    },\n    \"dependencies\": {\n      \"prod\": 1,\n      \"dev\": 126,\n      \"optional\": 53,\n      \"peer\": 0,\n      \"peerOptional\": 0,\n      \"total\": 126\n    }\n  }\n}\n"
+  }
+}

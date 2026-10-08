@@ -1,0 +1,1765 @@
+diff --git a/.github/workflows/web-ux-browser.yml b/.github/workflows/web-ux-browser.yml
+index 120121b68..dbeb92e8b 100644
+--- a/.github/workflows/web-ux-browser.yml
++++ b/.github/workflows/web-ux-browser.yml
+@@ -1,7 +1,7 @@
+ name: Web UX browser regression
+ on:
+   push:
+-    branches: ['codex/web-ux-refinement-20261006']
++    branches: ['codex/web-ux-refinement-20261006', 'codex/web-plan-layout-20261008']
+     paths: ['apps/web/**', 'config/provider-guides.json', '.github/workflows/web-ux-browser.yml']
+   pull_request:
+     paths: ['apps/web/**', 'config/provider-guides.json', '.github/workflows/web-ux-browser.yml']
+diff --git a/apps/web/e2e/account-identity.spec.mjs b/apps/web/e2e/account-identity.spec.mjs
+new file mode 100644
+index 000000000..9f334cbaa
+--- /dev/null
++++ b/apps/web/e2e/account-identity.spec.mjs
+@@ -0,0 +1,93 @@
++import { test, expect } from '@playwright/test';
++import { APP, isolate, identity, overview } from './fixtures.mjs';
++
++test('pending identity does not claim missing email and retry publishes fresh provider proof', async ({ browser }) => {
++  const context = await browser.newContext({ locale: 'en-US' });
++  const state = await isolate(context, { delayIdentity: true });
++  const page = await context.newPage();
++  await page.goto(APP + '/?view=settings');
++  const panel = page.locator('.account-identity-panel');
++  await expect(panel).toHaveAttribute('aria-busy', 'true');
++  await expect(panel).not.toContainText('Email is unavailable');
++  await expect(panel).not.toContainText('owner@example.test');
++  await expect.poll(() => typeof state.releaseIdentity).toBe('function');
++  state.identity = { ...identity, account: { ...identity.account, verifiedEmail: null }, emailStatus: 'unavailable' };
++  state.releaseIdentity();
++  await expect(panel).toHaveAttribute('aria-busy', 'false');
++  await expect(panel).toContainText('Email is unavailable');
++  state.delayIdentity = false;
++  state.identity = identity;
++  await panel.getByRole('button', { name: 'Check account details again' }).click();
++  await expect(panel).toContainText('owner@example.test');
++  expect(state.writes).toEqual([]);
++  expect(state.errors).toEqual([]);
++  await context.close();
++});
++
++test('Web recognizes the same current account with case-insensitive UUIDs like iOS', async ({ browser }) => {
++  const context = await browser.newContext({ locale: 'en-US' });
++  const id = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa';
++  const state = await isolate(context, {
++    session: { ...overview.session, plannerPublicId: id },
++    identity: { ...identity, account: { ...identity.account, publicId: id.toUpperCase() } },
++  });
++  await context.route('**/api/v1/overview', route => route.fulfill({ json: { ...overview, session: state.session } }));
++  const page = await context.newPage();
++  await page.goto(APP + '/?view=settings');
++  await expect(page.locator('.account-identity-panel')).toContainText('owner@example.test');
++  await expect(page.locator('.account-identity-panel')).toHaveAttribute('aria-busy', 'false');
++  expect(state.errors).toEqual([]);
++  await context.close();
++});
++
++test('identity hook discards old clients, canceled responses, mismatches and stale retries', async ({ browser }) => {
++  const { build } = await import('esbuild');
++  const { fileURLToPath } = await import('node:url');
++  const source = await build({ stdin: { contents: `
++import React, { useState, useLayoutEffect } from 'react';
++import { createRoot } from 'react-dom/client';
++import { useAccountIdentity } from './src/AccountIdentity.jsx';
++const pending = [];
++const clients = [0, 1].map(client => ({ getAccountIdentity: () => new Promise(resolve => pending.push({ client, resolve })) }));
++window.resolveIdentity = (index, id, email) => pending[index].resolve({ account: { publicId: id, displayName: 'Synthetic', verifiedEmail: email }, emailStatus: 'available' });
++window.pendingCount = () => pending.length;
++function Harness() {
++ const [config, configure] = useState({ client: 0, id: 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa' });
++ const identity = useAccountIdentity(clients[config.client], config.id);
++ useLayoutEffect(() => { window.configureIdentity = configure; window.retryIdentity = identity.retry;
++   window.identityState = { value: identity.value, loading: identity.loading, failed: identity.failed };
++   window.identityHistory = [...(window.identityHistory || []), window.identityState];
++ });
++ return <p>{identity.value?.account.verifiedEmail || (identity.loading ? 'loading' : 'unavailable')}</p>;
++}
++createRoot(document.getElementById('root')).render(<Harness/>);
++`, resolveDir: fileURLToPath(new URL('..', import.meta.url)), loader: 'jsx' }, bundle: true, write: false, platform: 'browser', format: 'iife', jsx: 'automatic', loader: { '.css': 'empty' } });
++  const context = await browser.newContext();
++  await context.route('**/identity-hook-test', route => route.fulfill({ contentType: 'text/html', body: '<div id="root"></div><script>' + source.outputFiles[0].text.replaceAll('</script', '<\\/script') + '</script>' }));
++  const page = await context.newPage();
++  await page.goto(APP + '/identity-hook-test');
++  const id = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa';
++  await expect.poll(() => page.evaluate(() => window.pendingCount())).toBe(1);
++  await page.evaluate(id => window.resolveIdentity(0, id.toUpperCase(), 'first@example.test'), id);
++  await expect(page.locator('p')).toHaveText('first@example.test');
++  await page.evaluate(id => { window.identityHistory = []; window.configureIdentity({ client: 1, id }); }, id);
++  await expect.poll(() => page.evaluate(() => window.pendingCount())).toBe(2);
++  expect(await page.evaluate(() => window.identityHistory.every(state => state.value === null))).toBe(true);
++  await page.evaluate(id => window.resolveIdentity(1, id, 'second@example.test'), id);
++  await expect(page.locator('p')).toHaveText('second@example.test');
++  await page.evaluate(() => { window.identityHistory = []; window.retryIdentity(); });
++  await expect.poll(() => page.evaluate(() => window.pendingCount())).toBe(3);
++  expect(await page.evaluate(() => window.identityHistory.every(state => state.value === null))).toBe(true);
++  await page.evaluate(() => window.resolveIdentity(2, 'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb', 'wrong@example.test'));
++  await expect(page.locator('p')).toHaveText('unavailable');
++  expect(await page.evaluate(() => window.identityState.failed)).toBe(true);
++  await page.evaluate(() => window.retryIdentity());
++  await expect.poll(() => page.evaluate(() => window.pendingCount())).toBe(4);
++  await page.evaluate(() => window.configureIdentity({ client: 1, id: 'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb' }));
++  await expect.poll(() => page.evaluate(() => window.pendingCount())).toBe(5);
++  await page.evaluate(id => window.resolveIdentity(3, id, 'late@example.test'), id);
++  await expect(page.locator('p')).toHaveText('loading');
++  await page.evaluate(() => window.resolveIdentity(4, 'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb', 'current@example.test'));
++  await expect(page.locator('p')).toHaveText('current@example.test');
++  await context.close();
++});
+diff --git a/apps/web/e2e/landing-header.spec.mjs b/apps/web/e2e/landing-header.spec.mjs
+new file mode 100644
+index 000000000..33a2824dd
+--- /dev/null
++++ b/apps/web/e2e/landing-header.spec.mjs
+@@ -0,0 +1,71 @@
++import { test, expect } from '@playwright/test';
++import { PUBLIC, isolate } from './fixtures.mjs';
++
++async function noHeaderCollisions(page) {
++  const boxes = await page.locator('.lp-header > .lp-brand, .lp-header > .lp-menu-toggle, .lp-header > .lp-nav, .lp-header-actions > *').evaluateAll(nodes => nodes.filter(node => getComputedStyle(node).display !== 'none').map(node => {
++    const { x, y, width, height } = node.getBoundingClientRect();
++    return { x, y, width, height, name: node.className };
++  }));
++  for (const box of boxes) {
++    expect(box.x, box.name).toBeGreaterThanOrEqual(0);
++    expect(box.x + box.width, box.name).toBeLessThanOrEqual(await page.evaluate(() => innerWidth));
++  }
++  for (let i = 0; i < boxes.length; i++) for (let j = i + 1; j < boxes.length; j++) {
++    const a = boxes[i], b = boxes[j];
++    const overlapX = Math.min(a.x + a.width, b.x + b.width) - Math.max(a.x, b.x);
++    const overlapY = Math.min(a.y + a.height, b.y + b.height) - Math.max(a.y, b.y);
++    expect(overlapX > 1 && overlapY > 1, `${a.name} overlaps ${b.name}`).toBe(false);
++  }
++}
++for (const locale of ['en', 'zh-CN']) {
++  test(`landing responsive navigation and Apple price note ${locale}`, async ({ browser }) => {
++    const context = await browser.newContext({ locale, reducedMotion: 'reduce' });
++    const state = await isolate(context), page = await context.newPage();
++    for (const width of [320, 390, 512, 600, 601, 767, 768, 1023, 1024, 1280, 1281, 1440, 1920]) {
++      await page.setViewportSize({ width, height: 960 });
++      await page.goto(`${PUBLIC}/pricing`);
++      await expect(page.locator('.lp-channel-price-note')).toContainText(locale === 'en' ? 'Apple in-app prices may differ' : '通过 Apple App 内购买的价格可能不同');
++      await expect(page.locator('.lp-channel-price-note')).not.toContainText(/\d/);
++      await noHeaderCollisions(page);
++      const language = page.locator('.lp-language select');
++      await expect(language).toHaveAccessibleName('Language / 语言');
++      await expect(language.locator('option[value="zh-CN"]')).toHaveText('简体中文');
++      await expect(language.locator('option[value="en"]')).toHaveText('English');
++      await language.focus(); await expect(language).toBeFocused();
++      if (width >= 768) {
++        await expect(page.locator('.lp-menu-toggle')).toBeHidden();
++        const nav = await page.locator('.lp-nav').boundingBox();
++        expect(Math.abs(nav.x + nav.width / 2 - width / 2)).toBeLessThan(1);
++      } else {
++        const toggle = page.locator('.lp-menu-toggle');
++        await expect(page.locator('.lp-nav')).toBeHidden();
++        await toggle.focus(); await page.keyboard.press('Enter');
++        await expect(toggle).toHaveAttribute('aria-expanded', 'true');
++        await page.keyboard.press('Tab'); await expect(page.locator('.lp-nav a').first()).toBeFocused();
++        await page.keyboard.press('Escape'); await expect(toggle).toBeFocused();
++        await expect(page.locator('.lp-nav')).toBeHidden();
++      }
++      const appearance = page.locator('.lp-appearance-trigger');
++      await appearance.click(); await expect(page.locator('.lp-appearance-options')).toBeVisible();
++      const options = await page.locator('.lp-appearance-options').boundingBox();
++      expect(options.x).toBeGreaterThanOrEqual(0); expect(options.x + options.width).toBeLessThanOrEqual(width);
++      await page.keyboard.press('Escape'); await expect(appearance).toBeFocused();
++      if ([320, 768, 1024, 1440].includes(width)) await page.screenshot({ path: test.info().outputPath(`pricing-header-${locale}-${width}.png`) });
++    }
++    // A 1024px desktop at 200% browser zoom has a 512 CSS-pixel layout viewport.
++    // Verify that reflow geometry explicitly; deviceScaleFactor is not used as zoom.
++    await page.setViewportSize({ width: 512, height: 384 });
++    await page.goto(PUBLIC); await noHeaderCollisions(page);
++    await page.locator('.lp-menu-toggle').click();
++    const nav = await page.locator('.lp-nav').boundingBox();
++    expect(nav.y + nav.height).toBeLessThanOrEqual(384);
++    await page.locator('.lp-nav a').last().focus(); await expect(page.locator('.lp-nav a').last()).toBeInViewport();
++    await page.screenshot({ path: test.info().outputPath(`zoom-equivalent-${locale}.png`) });
++    await page.keyboard.press('Escape');
++    await page.locator('.lp-language select').selectOption(locale === 'en' ? 'zh-CN' : 'en');
++    await expect(page.locator('html')).toHaveAttribute('lang', locale === 'en' ? 'zh-CN' : 'en');
++    await noHeaderCollisions(page);
++    expect(state.errors).toEqual([]); expect(state.unexpected).toEqual([]); expect(state.writes).toEqual([]);
++    await context.close();
++  });
++}
+diff --git a/apps/web/e2e/plan-access.spec.mjs b/apps/web/e2e/plan-access.spec.mjs
+new file mode 100644
+index 000000000..5aecf7ecf
+--- /dev/null
++++ b/apps/web/e2e/plan-access.spec.mjs
+@@ -0,0 +1,95 @@
++import { test, expect } from '@playwright/test';
++import { APP, isolate } from './fixtures.mjs';
++import contract from '../../../config/purchase-consent.json' with { type: 'json' };
++const boundaries = { serverAuthoritative: true, providerCallbackGrantsAccess: false, clientPurchaseResultGrantsAccess: false, billingStateCanTriggerClaim: false, billingStateCanTriggerDisclosure: false, storefrontPersistedToCustomerProfile: false, oneActiveRenewalProviderPerHouseholdPlan: true };
++const catalog = {
++  contractVersion: 'commerce-v1', billingOpen: true, serviceMarketCode: 'GLOBAL_US', currentAccess: { planCode: 'free' },
++  plans: [{ planCode: 'free', capabilities: [{ code: 'matter_map_core', enforcementMode: 'included' }, { code: 'data_export', enforcementMode: 'included' }] },
++    { planCode: 'family', capabilities: [{ code: 'family_maintenance', enforcementMode: 'included', availability: 'available' }, { code: 'trusted_people_multiple', enforcementMode: 'included', availability: 'available' }, { code: 'adaptive_reviews', enforcementMode: 'planned', availability: 'planned' }] }],
++  offers: [{ priceCode: contract.priceCode, amountMinor: contract.amountMinor, currencyCode: contract.currency, minorUnitExponent: 2, billingInterval: 'annual', purchasable: true }], boundaries,
++};
++async function commerceFixture(context, state) {
++  await context.route('**/api/v1/commerce/**', route => {
++    const req = route.request(), path = new URL(req.url()).pathname;
++    if (req.method() !== 'GET') state.writes.push({ path, body: req.postDataJSON() });
++    if (path.endsWith('/commerce/status')) return route.fulfill({ json: state.catalog });
++    if (path.endsWith('/test/status') && state.testUnavailable) return route.fulfill({ status: 404, json: { error: { code: 'not_found' } } });
++    if (path.endsWith('/test/status')) return route.fulfill({ json: { contractVersion: 'commerce-stripe-test-v1', testOnly: true, validationOnly: true, orders: [], subscriptions: [] } });
++    if (path.endsWith('/stripe/status')) return route.fulfill({ json: { contractVersion: 'commerce-stripe-production-v1', testOnly: false, subscription: state.subscription ?? null, canManage: Boolean(state.subscription), checkoutPending: false } });
++    if (path.endsWith('/purchase-route')) return route.fulfill({ json: { contractVersion: 'commerce-v1', purchaseRoute: 'web_direct', reason: 'available', requiresFreshEvaluation: true, boundaries } });
++    if (path.endsWith('/stripe/quote')) return route.fulfill({ json: { contractVersion: 'commerce-stripe-production-v1', requiresFreshEvaluation: true, applicableTaxShownAtCheckout: true, purchaseConsent: contract } });
++    state.unexpected.push(path); return route.fulfill({ status: 409, json: { error: { code: 'qa_mutation_blocked' } } });
++  });
++}
++for (const locale of ['en', 'zh-CN']) for (const width of [320, 390, 768, 1280, 1920]) {
++  test(`Family-first plans and settings ${locale} ${width}`, async ({ browser }) => {
++    const context = await browser.newContext({ locale, viewport: { width, height: 1000 }, colorScheme: width === 390 || width === 1920 ? 'dark' : 'light' });
++    const state = await isolate(context, { catalog: structuredClone(catalog) }); await commerceFixture(context, state);
++    const page = await context.newPage(); await page.goto(APP + '/?view=access');
++    const card = page.locator('.family-plan-feature'), status = page.locator('.current-access-status');
++    await expect(card).toBeVisible(); await expect(card.locator('.primary-button')).toBeVisible();
++    const cardBox = await card.boundingBox();
++    for (const button of await card.locator('button').all()) { const box = await button.boundingBox(); if (box) { expect(box.x).toBeGreaterThanOrEqual(cardBox.x); expect(box.x + box.width).toBeLessThanOrEqual(cardBox.x + cardBox.width); } }
++    await expect(status).toContainText(locale === 'en' ? 'Free' : '免费版');
++    await expect(card.locator('.family-plan-price')).toContainText('88.99');
++    await expect(card.locator('.commercial-feature-list li')).toHaveCount(2);
++    await expect(page.locator('body')).not.toContainText(/Later roadmap|后续规划|Adaptive review reminders|自适应复核/);
++    expect(await card.locator('h2').first().evaluate(e => parseFloat(getComputedStyle(e).fontSize))).toBeGreaterThan(await status.evaluate(e => parseFloat(getComputedStyle(e).fontSize)));
++    await expect(page.getByRole('button', { name: /My plan|我的计划/, exact: true })).toHaveCount(0);
++    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
++    const freeDetails = page.locator('.plan-disclosure').first(); await freeDetails.locator('summary').focus(); await page.keyboard.press('Enter'); await expect(freeDetails).toHaveAttribute('open', ''); await page.keyboard.press('Enter'); await expect(freeDetails).not.toHaveAttribute('open', '');
++    await page.screenshot({ path: test.info().outputPath(`plans-${locale}-${width}.png`), fullPage: true });
++    await page.goto(APP + '/?view=settings'); await expect(page.locator('.account-identity-panel')).toContainText('owner@example.test');
++    await expect(page.locator('.language-control select')).toHaveCount(1); await expect(page.locator('.account-language select')).toBeVisible();
++    await page.screenshot({ path: test.info().outputPath(`settings-${locale}-${width}.png`), fullPage: true });
++    await page.locator('.settings-card button').nth(1).click(); await expect(page.locator('dialog.drawer')).toBeVisible(); await page.keyboard.press('Escape'); await expect(page.locator('dialog.drawer')).toHaveCount(0); await expect(page).toHaveURL(/view=settings/);
++    await page.locator('.settings-card button').first().click(); await expect(card).toBeVisible(); await page.goBack(); await expect(page.locator('.account-identity-panel')).toBeVisible();
++    await page.goto(APP + '/?view=plan'); await expect(page).not.toHaveURL(/view=plan/); await expect(page.locator('.family-plan-feature')).toHaveCount(0);
++    expect(state.writes).toEqual([]); expect(state.unexpected).toEqual([]); expect(state.errors).toEqual([]); await context.close();
++  });
++}
++for (const locale of ['en', 'zh-CN']) {
++  test(`Plan lifecycle presentation preserves purchase consent and management ${locale}`, async ({ browser }) => {
++    const context = await browser.newContext({ locale, viewport: { width: 1280, height: 1000 } });
++    const state = await isolate(context, { catalog: structuredClone(catalog) }); await commerceFixture(context, state); const page = await context.newPage();
++    await page.goto(APP + '/?view=access');
++    const billing = page.locator('.production-billing-controls');
++    await billing.locator('.primary-button').click(); const consent = billing.locator('input[type=checkbox]');
++    await expect(consent).not.toBeChecked(); await expect(billing.locator('button[type=submit]')).toBeDisabled();
++    await consent.check(); await expect(billing.locator('button[type=submit]')).toBeEnabled();
++    await billing.locator('form button[type=button]').click(); await expect(consent).toHaveCount(0);
++    await billing.locator('.primary-button').click(); await expect(consent).not.toBeChecked();
++    await billing.locator('form button[type=button]').click();
++    state.catalog.currentAccess = { planCode: 'family' }; state.subscription = { state: 'active', cancelAtPeriodEnd: false, currentPeriodEndsAt: '2027-10-08T12:00:00Z' };
++    await page.reload(); await expect(billing.locator('.primary-button')).toHaveCount(0); await expect(billing.getByRole('button', { name: locale === 'en' ? 'Manage subscription' : '管理订阅' })).toBeVisible();
++    await page.screenshot({ path: test.info().outputPath(`subscribed-${locale}.png`), fullPage: true });
++    state.catalog.currentAccess = { planCode: 'free' }; state.catalog.billingOpen = false; state.subscription = { state: 'expired_read_only', cancelAtPeriodEnd: false, currentPeriodEndsAt: '2026-01-01T12:00:00Z' };
++    await page.reload(); await expect(billing.locator('.primary-button')).toHaveCount(0); await expect(page.locator('.current-access-status')).toContainText(locale === 'en' ? 'Free' : '免费版');
++    await expect(page.locator('.family-plan-price')).toContainText('88.99');
++    state.catalog.plans[1].capabilities = state.catalog.plans[1].capabilities.map(item => ({ ...item, enforcementMode: 'planned', availability: 'planned' }));
++    await page.reload(); await expect(page.locator('.family-plan-feature .commercial-feature-list li')).toHaveCount(2);
++    await expect(page.locator('.family-plan-feature .commercial-feature-list svg')).toHaveCount(0);
++    await expect(page.locator('.family-plan-availability')).toContainText(locale === 'en' ? 'not available' : '暂不开放');
++    await expect(billing.locator('.primary-button')).toHaveCount(0);
++    state.catalog.offers = [{ ...catalog.offers[0], priceCode: 'family_usd_annual_v1', amountMinor: 9900 }];
++    await page.reload(); await expect(page.locator('.family-plan-price')).not.toContainText(/99.00|88.99/); await expect(page.locator('.family-plan-price')).toContainText(locale === 'en' ? 'unavailable' : '无法获取');
++    expect(state.writes.map(x => x.path)).toEqual(['/api/v1/commerce/purchase-route', '/api/v1/commerce/purchase-route']);
++    expect(state.unexpected).toEqual([]); expect(state.errors).toEqual([]); await context.close();
++  });
++}
++
++for (const locale of ['en', 'zh-CN']) {
++  test(`Enrolled Stripe TEST entry remains visible while ordinary sales are closed ${locale}`, async ({ browser }) => {
++    const context = await browser.newContext({ locale, viewport: { width: 390, height: 960 } });
++    const state = await isolate(context, { catalog: { ...structuredClone(catalog), billingOpen: false, validationOnly: true } });
++    await commerceFixture(context, state); const page = await context.newPage(); await page.goto(APP + '/?view=access');
++    const testBilling = page.locator('.test-billing-controls');
++    await expect(testBilling).toBeVisible(); await expect(page.locator('.production-billing-controls')).toHaveCount(0);
++    await expect(testBilling.locator('.primary-button')).toBeDisabled();
++    await testBilling.locator('input[type=checkbox]').check(); await expect(testBilling.locator('.primary-button')).toBeEnabled();
++    await page.screenshot({ path: test.info().outputPath(`stripe-test-entry-${locale}.png`), fullPage: true });
++    state.testUnavailable = true; await page.reload(); await expect(testBilling.getByRole('alert')).toContainText(locale === 'en' ? 'not available in this environment' : '当前环境未提供');
++    await expect(testBilling.locator('.primary-button')).toBeDisabled();
++    expect(state.writes).toEqual([]); expect(state.errors).toEqual([]); await context.close();
++  });
++}
+diff --git a/apps/web/e2e/ux.spec.mjs b/apps/web/e2e/ux.spec.mjs
+index 3e73e38ad..42c37d681 100644
+--- a/apps/web/e2e/ux.spec.mjs
++++ b/apps/web/e2e/ux.spec.mjs
+@@ -12,7 +12,7 @@ async function healthy(page, locale) {
+   const broken = await page.locator('img').evaluateAll(images => images.filter(i => i.complete && !i.naturalWidth).map(i => i.src));
+   expect(broken).toEqual([]);
+ }
+-for (const locale of ['en', 'zh-CN']) for (const width of [320, 390, 1280, 1440, 1920]) {
++for (const locale of ['en', 'zh-CN']) for (const width of [320, 390, 768, 1024, 1280, 1440, 1920]) {
+   test(`public pages ${locale} ${width}`, async ({ browser }) => {
+     const context = await browser.newContext({ locale, viewport: { width, height: 960 }, reducedMotion: 'reduce', colorScheme: width === 390 || width === 1920 ? 'dark' : 'light' });
+     const state = await isolate(context), page = await context.newPage();
+@@ -20,11 +20,16 @@ for (const locale of ['en', 'zh-CN']) for (const width of [320, 390, 1280, 1440,
+       await page.goto(PUBLIC + path); await expect(page.locator('main h1')).toBeVisible();
+       await healthy(page, locale);
+       if (path === '/product') await page.screenshot({ path: test.info().outputPath(`product-${locale}-${width}.png`) });
+-      if (width > 1400) {
++      if (width >= 768) {
+         const nav = await page.locator('.lp-nav').boundingBox(), brand = await page.locator('.lp-header > .lp-brand').boundingBox(), actions = await page.locator('.lp-header-actions').boundingBox();
+         expect(Math.abs(nav.x + nav.width / 2 - width / 2)).toBeLessThan(1);
+-        expect(nav.x).toBeGreaterThan(brand.x + brand.width + 8);
+-        expect(nav.x + nav.width).toBeLessThan(actions.x + 1);
++        await expect(page.locator(".lp-menu-toggle")).toBeHidden();
++        if (width >= 1024) {
++          expect(nav.x).toBeGreaterThan(brand.x + brand.width + 8);
++          expect(nav.x + nav.width).toBeLessThan(actions.x + 1);
++        } else {
++          expect(nav.y).toBeGreaterThanOrEqual(Math.max(brand.y + brand.height, actions.y + actions.height));
++        }
+       } else {
+         const toggle = page.locator('.lp-menu-toggle');
+         await toggle.click(); await expect(page.locator('.lp-nav')).toBeVisible();
+@@ -44,7 +49,7 @@ for (const locale of ['en', 'zh-CN']) for (const width of [390, 1440]) {
+   test(`workspace routes and all provider identifiers ${locale} ${width}`, async ({ browser }) => {
+     const context = await browser.newContext({ locale, viewport: { width, height: 960 }, colorScheme: 'light', reducedMotion: 'reduce' });
+     const state = await isolate(context), page = await context.newPage();
+-    for (const view of ['overview', 'plan', 'matters', 'contacts', 'shared', 'maintenance', 'access', 'activity', 'settings', 'more', 'guides']) {
++    for (const view of ['overview', 'matters', 'contacts', 'shared', 'maintenance', 'access', 'activity', 'settings', 'more', 'guides']) {
+       await page.goto(APP + '/?view=' + view); await expect(page.locator('.account-summary')).toContainText('owner@example.test');
+       await healthy(page, locale);
+     }
+diff --git a/apps/web/src/AccountIdentity.jsx b/apps/web/src/AccountIdentity.jsx
+index 72df2ac87..0564bc273 100644
+--- a/apps/web/src/AccountIdentity.jsx
++++ b/apps/web/src/AccountIdentity.jsx
+@@ -4,6 +4,21 @@ import { useI18n } from "./i18n/I18nProvider.jsx";
+ import { LanguageControl } from "./i18n/LanguageControl.jsx";
+ import "./account-identity.css";
+ 
++function sameAccount(actual, expected) {
++  return typeof actual === "string" && typeof expected === "string"
++    && actual.toLowerCase() === expected.toLowerCase();
++}
++
++function displayedAccount(identity, plannerPublicId) {
++  const account = identity.value?.account;
++  return !identity.loading && !identity.failed && sameAccount(account?.publicId, plannerPublicId) ? account : null;
++}
++
++function displayedEmail(identity, account) {
++  return identity.value?.emailStatus === "available" && typeof account?.verifiedEmail === "string"
++    ? account.verifiedEmail.trim() : null;
++}
++
+ export function useAccountIdentity(apiClient, plannerPublicId) {
+   const [result, setResult] = useState(null), [revision, setRevision] = useState(0);
+   useEffect(() => {
+@@ -11,38 +26,42 @@ export function useAccountIdentity(apiClient, plannerPublicId) {
+     setResult(null);
+     if (!plannerPublicId) return () => { active = false; };
+     apiClient.getAccountIdentity().then(value => {
+-      if (active && value.account.publicId === plannerPublicId) setResult({ owner: plannerPublicId, value });
++      if (!active) return;
++      setResult(sameAccount(value?.account?.publicId, plannerPublicId)
++        ? { owner: plannerPublicId, client: apiClient, revision, value }
++        : { owner: plannerPublicId, client: apiClient, revision, error: true });
+     }).catch(() => {
+-      if (active) setResult({ owner: plannerPublicId, error: true });
++      if (active) setResult({ owner: plannerPublicId, client: apiClient, revision, error: true });
+     });
+     return () => { active = false; };
+   }, [apiClient, plannerPublicId, revision]);
+   // Even the render before effect cleanup cannot show the previous account.
+-  const current = result?.owner === plannerPublicId ? result : null;
++  const current = result?.owner === plannerPublicId && result?.client === apiClient && result?.revision === revision ? result : null;
+   return { value: current?.value ?? null, failed: current?.error === true, loading: Boolean(plannerPublicId && !current), retry: () => setRevision(value => value + 1) };
+ }
+ 
+ export function AccountSummary({ identity, plannerPublicId, onOpen }) {
+   const { t } = useI18n();
+-  const account = identity.value?.account;
++  const account = displayedAccount(identity, plannerPublicId);
++  const email = displayedEmail(identity, account);
+   return <button type="button" className="account-summary" onClick={onOpen} aria-label={t("workspace.identity.open")}>
+     <UserCircle size={26} aria-hidden="true"/>
+-    <span><small>{t("workspace.identity.signedInAs")}</small><strong>{account?.verifiedEmail || account?.displayName || t("workspace.identity.shortId", { id: plannerPublicId.slice(0, 8) })}</strong></span>
++    <span><small>{t("workspace.identity.signedInAs")}</small><strong>{email || account?.displayName || t("workspace.identity.shortId", { id: plannerPublicId.slice(0, 8) })}</strong></span>
+   </button>;
+ }
+ 
+ export function AccountIdentityPanel({ identity, plannerPublicId }) {
+   const { t } = useI18n();
+-  const account = identity.value?.account;
++  const account = displayedAccount(identity, plannerPublicId);
++  const email = displayedEmail(identity, account);
+   return <section className="account-identity-panel" aria-labelledby="current-account-title" aria-busy={identity.loading}>
+     <h3 id="current-account-title">{t("workspace.identity.current")}</h3>
+-    {identity.loading && <p role="status">{t("workspace.identity.loading")}</p>}
+     <dl>
+       {account?.displayName && <><dt>{t("workspace.identity.name")}</dt><dd>{account.displayName}</dd></>}
+-      <dt>{t("workspace.identity.email")}</dt><dd>{account?.verifiedEmail || t(identity.value?.emailStatus === "not_provided" ? "workspace.identity.noEmail" : "workspace.identity.unavailable")}</dd>
++      <dt>{t("workspace.identity.email")}</dt><dd role={identity.loading ? "status" : undefined}>{identity.loading ? t("workspace.identity.loading") : email || t(account && identity.value?.emailStatus === "not_provided" ? "workspace.identity.noEmail" : "workspace.identity.unavailable")}</dd>
+       <dt>{t("workspace.identity.id")}</dt><dd className="account-id">{plannerPublicId}</dd>
+     </dl>
+-    {(identity.failed || identity.value?.emailStatus === "unavailable") && <button type="button" className="text-button" onClick={identity.retry}>{t("workspace.identity.retry")}</button>}
++    {!identity.loading && (identity.failed || identity.value?.emailStatus === "unavailable") && <button type="button" className="text-button" onClick={identity.retry}>{t("workspace.identity.retry")}</button>}
+     <div className="account-language"><span>{t("workspace.identity.language")}</span><LanguageControl /></div>
+   </section>;
+ }
+diff --git a/apps/web/src/App.jsx b/apps/web/src/App.jsx
+index 8c6b5df62..04bf6f462 100644
+--- a/apps/web/src/App.jsx
++++ b/apps/web/src/App.jsx
+@@ -1,5 +1,5 @@
+ import { AccountIdentityPanel, AccountSummary, useAccountIdentity } from "./AccountIdentity.jsx";
+-import { planProgress } from "./planProgress.js";
++import { PlanAccessPreview } from "./PlanAccessPreview.jsx";
+ import { useI18n } from "./i18n/I18nProvider.jsx";
+ import { LanguageControl } from "./i18n/LanguageControl.jsx";
+ import { ReauthenticationPrompt } from "./ReauthenticationPrompt.jsx";
+@@ -11,7 +11,7 @@ import { AuthenticatedOverview, FolioArtwork, InviteAction } from "./SharingMoti
+ import { MatterForm } from "./MatterForm.jsx";
+ import { toMatterDraft, matterPayload, matterValidation, matterDraftChanged } from "./matterForm.js";
+ import { clearMatterDraft, clearMatchingMatterDraft, readMatterDraft, writeMatterDraft, matterStatusLabel } from "./matterDraftStorage.js";
+-import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
++import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+ import {
+   AddressBook,
+   ArrowRight,
+@@ -39,12 +39,9 @@ import {
+   X,
+ } from "@phosphor-icons/react";
+ import { ApiClientError, api } from "./api.js";
+-import { TestBillingControls } from "./TestBillingControls.jsx";
+-import { ProductionBillingControls } from "./ProductionBillingControls.jsx";
+ import { getTrustedContactEvidence } from "./contactEvidence.js";
+ import { StartHerePanel } from "./StartHerePanel.jsx";
+ import { AccountDataPanel } from "./AccountDataPanel.jsx";
+-import { SurfaceIcon } from "./SurfaceMotion.jsx";
+ import { AccountDeletionStatus } from "./AccountDeletionStatus.jsx";
+ import { ContactEditorPanel } from "./ContactEditorPanel.jsx";
+ import { useConfirmation } from "./ConfirmationDialog.jsx";
+@@ -61,8 +58,6 @@ import { requestedMatterCategory } from "./publicIntent.js";
+ import { FirstUseGuide, FirstUseStarter } from "./FirstUsePanel.jsx";
+ import { firstUseStates, normalizeFirstUse, shouldShowFirstUsePanel } from "./firstUse.js";
+ import {
+-  commercialFeatureLabel,
+-  commercialPlanLabel,
+   unavailableCommercialStatus,
+ } from "./commercialAccess.js";
+ import {
+@@ -78,7 +73,6 @@ import {
+ 
+ const navigation = [
+   { id: "overview", icon: House },
+-  { id: "plan", icon: ClipboardText },
+   { id: "matters", icon: AddressBook },
+   { id: "contacts", icon: UserCircle },
+   { id: "shared", icon: UserCircle },
+@@ -98,7 +92,6 @@ const mobileNavigationIcons = {
+ 
+ const mobileMoreDestinationIcons = {
+   access: CreditCard,
+-  plan: ClipboardText,
+   contacts: UserCircle,
+   shared: UserCircle,
+   maintenance: ClipboardText,
+@@ -148,53 +141,6 @@ function SectionLabel({ children }) {
+   return <p className="section-label">{children}</p>;
+ }
+ 
+-function ProgressSummary({ count, total = 5 }) {
+-  const { t, formatNumber } = useI18n();
+-  return (
+-    <section className="progress-section" aria-labelledby="progress-heading">
+-      <SectionLabel>{t("workspace.progress.label")}</SectionLabel>
+-      <h2 id="progress-heading">{t("workspace.progress.count", { count: formatNumber(count), total: formatNumber(total) })}</h2>
+-      <div className="progress-track" aria-label={t("workspace.progress.completed", { count: formatNumber(count), total: formatNumber(total) })} role="img">
+-        {Array.from({ length: total }, (_, segment) => (
+-          <span key={segment} className={segment < count ? "is-complete" : ""} />
+-        ))}
+-      </div>
+-    </section>
+-  );
+-}
+-
+-function CommercialFeatureList({ features, planned = false }) {
+-  const { t } = useI18n();
+-  return <ul className={`commercial-feature-list${planned ? " is-planned" : ""}`}>{features.map((feature) => <li key={feature}>{!planned && <CheckCircle size={18} weight="fill" aria-hidden="true" />}<span>{commercialFeatureLabel(feature, t)}</span></li>)}</ul>;
+-}
+-
+-function PlanAccessPreview({ commerce, onAccessChanged, returnedFromCheckout }) {
+-  const { t, formatMoney } = useI18n();
+-  if (!commerce.available) return <section className="current-access-card"><CreditCard size={36} aria-hidden="true" /><h2>{t("workspace.access.unavailable")}</h2><p>{t("workspace.access.coreAvailable")}</p></section>;
+-  const annualOffer = commerce.offers.find(({ billingInterval }) => billingInterval === "annual");
+-  return <div className="plan-access-preview">
+-    <section className="current-access-card" aria-labelledby="current-access-title">
+-      <div><SurfaceIcon icon={CreditCard} emblem /></div><div><SectionLabel>{t("workspace.access.current")}</SectionLabel><h2 id="current-access-title">{commercialPlanLabel(commerce, t)}</h2></div>
+-      <details className="task-details"><summary>{t("workspace.access.freeIncluded")}</summary><CommercialFeatureList features={commerce.freeFeatures} /></details>
+-    </section>
+-    {commerce.validationOnly && <TestBillingControls commerce={commerce} onAccessChanged={onAccessChanged} />}
+-    {!commerce.validationOnly && <ProductionBillingControls commerce={commerce} onAccessChanged={onAccessChanged} returnedFromCheckout={returnedFromCheckout} />}
+-    <details className="task-details access-future plan-disclosure"><summary><SurfaceIcon icon={AddressBook}/><span>{commerce.billingOpen || commerce.currentAccess?.planCode === "family" ? t("workspace.access.familyIncluded") : t("workspace.access.familyFuture")}</span><CaretRight size={17} className="disclosure-chevron" aria-hidden="true"/></summary>
+-      {annualOffer && !commerce.billingOpen && commerce.currentAccess?.planCode !== "family" && <p className="access-plan-price"><strong>{formatOffer(annualOffer, t, formatMoney)}</strong></p>}
+-      <CommercialFeatureList features={commerce.familyFeatures} planned />
+-      {commerce.futureFeatures?.length > 0 && <details className="task-details"><summary>{t("workspace.access.roadmap")}</summary><CommercialFeatureList features={commerce.futureFeatures} planned /></details>}
+-      {!commerce.billingOpen && <p>{t("workspace.access.newClosed")}</p>}
+-    </details>
+-    <details className="task-details plan-disclosure"><summary><SurfaceIcon icon={Shield}/><span>{t("workspace.access.afterFamily")}</span><CaretRight size={17} className="disclosure-chevron" aria-hidden="true"/></summary><p>{t("workspace.access.afterFamilyDetails")}</p><p>{t("workspace.access.disclosureBoundary")}</p></details>
+-  </div>;
+-}
+-
+-function formatOffer(offer, t, formatMoney) {
+-  return t(offer.billingInterval === "annual" ? "workspace.price.annual" : "workspace.price.monthly", {
+-    price: formatMoney(offer.amountMinor, offer.currencyCode, offer.minorUnitExponent),
+-  });
+-}
+-
+ function MatterRow({ matter, onOpen }) {
+   const { t } = useI18n();
+   const added = matter.status === "added";
+@@ -411,8 +357,6 @@ export function App() {
+     if (session && plan) document.title = `${t(`workspace.nav.${activeNav}`)} · Rillora`;
+   }, [session, plan, activeNav, t]);
+ 
+-  const progress = useMemo(() => planProgress(matters), [matters]);
+-  const { completed } = progress;
+   const currentMatter = drawer?.type === "matter" ? matters.find((matter) => matter.id === drawer.id) : null;
+   const currentProviderGuide = drawer?.type === "provider-guide"
+     ? getOfficialProviderGuide(drawer.providerKey)
+@@ -640,13 +584,6 @@ export function App() {
+     }
+   }
+ 
+-  function openNextMatter() {
+-    const { action } = progress;
+-    if (action.kind === "review") openMatter(action.matter, true);
+-    else if (action.kind === "add") openNewMatter();
+-    else setActiveNav("matters");
+-  }
+-
+   async function archiveCurrentMatter() {
+     if (busy || drawer?.type !== "matter" || !currentMatter) return;
+     const archiveMessageKey = matterDraftChanged(drawer) ? "workspace.matter.archiveUnsavedMessage" : "workspace.matter.archiveMessage";
+@@ -807,23 +744,6 @@ export function App() {
+           {(matterQuery || matterFilter !== "all") && <button type="button" className="text-button" onClick={() => { setMatterQuery(""); setMatterFilter("all"); }}>{t("workspace.matters.clear")}</button>}
+         </>}
+ 
+-        {activeNav === "plan" && <div className="plan-card">
+-          <ProgressSummary count={completed} total={progress.total} />
+-          <button className="primary-button" onClick={openNextMatter}>
+-            {progress.action.kind === "review"
+-              ? t("workspace.plan.reviewMatter", { name: progress.action.matter.label })
+-              : t(progress.action.kind === "view" ? "workspace.plan.viewMap"
+-                : matters.length ? "workspace.plan.addAnother" : "workspace.plan.firstMatter")}
+-            <ArrowRight size={20} />
+-          </button>
+-          <details className="task-details"><summary>{t("workspace.plan.progressDetails")}</summary>
+-            <p>{t("workspace.plan.goalExplanation")}</p>
+-            <ul>{matters.map(matter => <li key={matter.id}>
+-              <button className="text-button" onClick={() => openMatter(matter, true)}>{matter.label} · {matterStatusLabel(matter, t)}</button>
+-            </li>)}</ul>
+-          </details>
+-          <button className="secondary-button" onClick={() => setDrawer({ type: "start-here" })}>{t("workspace.plan.reviewStart")} <FileText size={20} /></button>
+-        </div>}
+         {activeNav === "contacts" && <PeoplePanel contacts={contacts} matterContext={matters.find(item => item.id === sharingMatterId)} onReturnToMatter={() => { if ((window.history.state?.rillora?.index ?? 0) > 0) window.history.back(); else { const item = matters.find(item => item.id === sharingMatterId); setActiveNav("matters"); if (item) openMatter(item); } }} apiClient={api} refreshVersion={sharingRefreshVersion} onAdd={() => setDrawer({ type: "contact" })} onEdit={(person) => setDrawer({ type: "contact", contactId: person.publicId })} onShare={(person) => setDrawer({ type: "contact-sharing", contactId: person.publicId })} onIncoming={() => setActiveNav("shared")} />}
+         {activeNav === "shared" && <SharedWithMePanel apiClient={api} />}
+         {activeNav === "maintenance" && <Suspense fallback={<p role="status">{t("workspace.reviews.loading")}</p>}><FamilyMaintenancePanel apiClient={api} onChanged={() => void loadWorkspace()} onManageSharing={() => setActiveNav("contacts")} onDirtyChange={setPanelHasChanges} onBusyChange={setPanelBusy} /></Suspense>}
+@@ -850,7 +770,7 @@ export function App() {
+         </div>}
+         {activeNav === "settings" && <AccountIdentityPanel identity={accountIdentity} plannerPublicId={session.plannerPublicId}/>}
+         {activeNav === "settings" && <AccountDataPanel apiClient={api} onChanged={() => void loadWorkspace()} onDeletionRequested={accountDeletionRequested}/>}
+-        {activeNav === "settings" && <div className="plan-card settings-card"><button className="secondary-button" type="button" onClick={() => setActiveNav("access")}><CreditCard size={20} /> {t("workspace.settings.reviewAccess")}</button>{session?.authenticationMode === "session" && <><button className="secondary-button settings-sign-out" disabled={busy} onClick={() => void signOut()}><SignOut size={20} /> {busy ? t("workspace.settings.signingOut") : t("workspace.settings.signOut")}</button><button className="secondary-button settings-sign-out" disabled={busy} onClick={() => void signOutAllDevices()}><SignOut size={20} /> {t("workspace.settings.signOutAll")}</button><p className="drawer-intro">{t("workspace.settings.sessionScope")}</p></>}</div>}
++        {activeNav === "settings" && <div className="plan-card settings-card"><button className="secondary-button" type="button" onClick={() => setActiveNav("access")}><CreditCard size={20} /> {t("workspace.settings.reviewAccess")}</button><button className="secondary-button" type="button" onClick={() => setDrawer({ type: "start-here" })}><FileText size={20} /> {t("workspace.plan.reviewStart")}</button>{session?.authenticationMode === "session" && <><button className="secondary-button settings-sign-out" disabled={busy} onClick={() => void signOut()}><SignOut size={20} /> {busy ? t("workspace.settings.signingOut") : t("workspace.settings.signOut")}</button><button className="secondary-button settings-sign-out" disabled={busy} onClick={() => void signOutAllDevices()}><SignOut size={20} /> {t("workspace.settings.signOutAll")}</button><p className="drawer-intro">{t("workspace.settings.sessionScope")}</p></>}</div>}
+         {activeNav === "more" && <InviteAction onInvite={() => setDrawer({ type: "contact" })} />}
+         {activeNav === "more" && <nav className="mobile-more-menu" aria-label={t("workspace.nav.moreDestinations")}>{mobileMoreDestinations.map(({ id, icon: Icon }) => <button type="button" key={id} onClick={() => setActiveNav(id)}><Icon size={22} aria-hidden="true" /><span><strong>{t(`workspace.nav.${id}`)}</strong><small>{t(`workspace.navDetail.${id}`)}</small></span><CaretRight size={18} aria-hidden="true" /></button>)}</nav>}
+       </section>
+@@ -901,7 +821,7 @@ export function App() {
+       </aside>
+ 
+       <main className="main-content" tabIndex={-1}>
+-        <div className="workspace-chrome"><AccountSummary identity={accountIdentity} plannerPublicId={session.plannerPublicId} onOpen={() => setActiveNav("settings")} />{session?.authenticationMode === "development" && <p className="development-notice">{t("workspace.workspace.testData")}</p>}<LanguageControl /><AppAppearanceControl /></div>
++        <div className={`workspace-chrome${activeNav === "settings" ? " is-settings" : ""}`}><AccountSummary identity={accountIdentity} plannerPublicId={session.plannerPublicId} onOpen={() => setActiveNav("settings")} />{session?.authenticationMode === "development" && <p className="development-notice">{t("workspace.workspace.testData")}</p>}{activeNav !== "settings" && <LanguageControl />}<AppAppearanceControl /></div>
+         {recoverableDraft && !drawer && <section className="draft-recovery" aria-label={t("workspace.draft.label")}>
+           <div><strong>{t("workspace.draft.continue")}</strong><p>{recoverableDraft.title || t("workspace.matter.new")}</p></div>
+           <button className="secondary-button" onClick={() => void resumeDraft()}>{t("workspace.draft.resume")}</button>
+diff --git a/apps/web/src/PlanAccessPreview.jsx b/apps/web/src/PlanAccessPreview.jsx
+new file mode 100644
+index 000000000..8f083dbb0
+--- /dev/null
++++ b/apps/web/src/PlanAccessPreview.jsx
+@@ -0,0 +1,48 @@
++import { AddressBook, CaretRight, CheckCircle, CreditCard, Shield } from "@phosphor-icons/react";
++import { useI18n } from "./i18n/I18nProvider.jsx";
++import { commercialFeatureLabel, commercialPlanLabel } from "./commercialAccess.js";
++import { webAnnualOffer } from "./productionBilling.js";
++import { ProductionBillingControls } from "./ProductionBillingControls.jsx";
++import { TestBillingControls } from "./TestBillingControls.jsx";
++import { SurfaceIcon } from "./SurfaceMotion.jsx";
++import "./plan-access.css";
++
++function FeatureList({ features, included = true }) {
++  const { t } = useI18n();
++  return <ul className="commercial-feature-list">{features.map(feature => <li key={feature}>
++    {included ? <CheckCircle size={20} weight="fill" aria-hidden="true" /> : <span className="family-feature-bullet" aria-hidden="true">•</span>}<span>{commercialFeatureLabel(feature, t)}</span>
++  </li>)}</ul>;
++}
++
++export function PlanAccessPreview({ commerce, onAccessChanged, returnedFromCheckout }) {
++  const { t, formatMoney } = useI18n();
++  if (!commerce.available) return <section className="current-access-card"><CreditCard size={36} aria-hidden="true" />
++    <h2>{t("workspace.access.unavailable")}</h2><p>{t("workspace.access.coreAvailable")}</p></section>;
++  // A historical annual offer must never be advertised as today's price.
++  const offer = commerce.offers.find(item => item.priceCode === webAnnualOffer.priceCode && item.billingInterval === "annual");
++  return <div className="plan-access-preview">
++    <p className="current-access-status"><span>{t("workspace.access.current")}</span><strong>{commercialPlanLabel(commerce, t)}</strong></p>
++    <section className="access-plan-card is-family family-plan-feature" aria-labelledby="family-plan-title">
++      <div className="family-plan-heading"><SurfaceIcon icon={AddressBook} emblem /><div>
++        <h2 id="family-plan-title">{t("workspace.plan.family")}</h2><p>{t("workspace.access.familyLead")}</p>
++      </div></div>
++      <div className="family-plan-price">
++        {offer ? <p className="access-plan-price"><strong>{t("workspace.price.annual", { price: formatMoney(offer.amountMinor, offer.currencyCode, offer.minorUnitExponent) })}</strong></p>
++          : <p>{t("workspace.access.priceUnavailable")}</p>}
++        {offer && <small>{t("workspace.access.webPrice")}</small>}
++      </div>
++      {commerce.familyFeatures.length > 0 && <p className="family-plan-included">{t("workspace.access.familyPlus")}</p>}
++      <FeatureList features={commerce.familyFeatures} included={false} />
++      {!commerce.billingOpen && <p className="family-plan-availability">{t("workspace.access.newClosed")}</p>}
++      {commerce.validationOnly
++        ? <TestBillingControls commerce={commerce} onAccessChanged={onAccessChanged} />
++        : <ProductionBillingControls commerce={commerce} onAccessChanged={onAccessChanged} returnedFromCheckout={returnedFromCheckout} embedded />}
++    </section>
++    <details className="task-details plan-disclosure"><summary><SurfaceIcon icon={CreditCard}/><span>{t("workspace.access.freeIncluded")}</span><CaretRight size={17} className="disclosure-chevron" aria-hidden="true"/></summary>
++      <FeatureList features={commerce.freeFeatures} />
++    </details>
++    <details className="task-details plan-disclosure"><summary><SurfaceIcon icon={Shield}/><span>{t("workspace.access.afterFamily")}</span><CaretRight size={17} className="disclosure-chevron" aria-hidden="true"/></summary>
++      <p>{t("workspace.access.afterFamilyDetails")}</p><p>{t("workspace.access.disclosureBoundary")}</p>
++    </details>
++  </div>;
++}
+diff --git a/apps/web/src/ProductionBillingControls.jsx b/apps/web/src/ProductionBillingControls.jsx
+index 003a93d43..d87b66ce2 100644
+--- a/apps/web/src/ProductionBillingControls.jsx
++++ b/apps/web/src/ProductionBillingControls.jsx
+@@ -5,7 +5,7 @@ import { api } from './api.js';
+ import { publicRoutes } from './publicRoutes.js';
+ import { productionBillingDestination, productionBillingStatus, purchaseProof, purchaseQuote, webAnnualOffer } from './productionBilling.js';
+ 
+-export function ProductionBillingControls({ commerce, onAccessChanged, returnedFromCheckout = false, apiClient = api }) {
++export function ProductionBillingControls({ commerce, onAccessChanged, returnedFromCheckout = false, apiClient = api, embedded = false }) {
+   const { t, formatDate, formatMoney, errorMessage } = useI18n();
+   const [status, setStatus] = useState(null);
+   const [quote, setQuote] = useState(null);
+@@ -40,11 +40,11 @@ export function ProductionBillingControls({ commerce, onAccessChanged, returnedF
+   const annualAvailable = commerce.billingOpen && commerce.offers.some(offer => offer.priceCode === webAnnualOffer.priceCode && offer.purchasable);
+   const annualPrice = t("workspace.price.annual", { price: formatMoney(webAnnualOffer.amountMinor, webAnnualOffer.currency, 2) });
+   return <section className="task-details production-billing-controls" aria-label={t("workspace.billing.subscription")}>
+-    <h2>{sub ? billingStateLabel(sub.state, t) : t("workspace.billing.family")}</h2>
++    {(sub || !embedded) && <h2>{sub ? billingStateLabel(sub.state, t) : t("workspace.billing.family")}</h2>}
+     {sub?.currentPeriodEndsAt && <p>{t(sub.cancelAtPeriodEnd ? "workspace.billing.paidEnds" : active ? "workspace.billing.periodEnds" : "workspace.billing.periodEnded", { date: formatDate(sub.currentPeriodEndsAt) })}</p>}
+     {returnedFromCheckout && status?.checkoutPending && !active && <p role="status">{t("workspace.billing.confirmationPending")}</p>}
+     {error && <p role="alert">{errorMessage(error, "workspace.billing.errorOperation")}</p>}{message && <p role="status">{t(message)}</p>}
+-    {!active && annualAvailable && !quote && <><p className="access-plan-price"><strong>{annualPrice}</strong></p>
++    {!active && annualAvailable && !quote && <>{!embedded && <p className="access-plan-price"><strong>{annualPrice}</strong></p>}
+       <button className="primary-button" disabled={busy || !status} onClick={() => run(async () => {
+         const route = await apiClient.resolvePurchaseRoute({ clientSurface: 'web', serviceMarketCode: commerce.serviceMarketCode, intent: 'plan_access' });
+         if (route.reason !== 'available' || route.purchaseRoute !== 'web_direct') throw new Error('A new subscription is not available. Refresh access or manage your existing subscription.');
+diff --git a/apps/web/src/TestBillingControls.jsx b/apps/web/src/TestBillingControls.jsx
+index a0181c5e9..85fd253e6 100644
+--- a/apps/web/src/TestBillingControls.jsx
++++ b/apps/web/src/TestBillingControls.jsx
+@@ -44,7 +44,7 @@ export function TestBillingControls({ commerce, onAccessChanged }) {
+   const offer = commerce.offers.find(item => item.billingInterval === period);
+   return <details className="task-details test-billing-controls" open>
+     <summary>{t("workspace.testBilling.title")}</summary>
+-    {error && <p role="alert">{errorMessage(error, "workspace.testBilling.error")}</p>}
++    {error && <p role="alert">{error?.status === 404 ? t("workspace.testBilling.unavailable") : errorMessage(error, "workspace.testBilling.error")}</p>}
+     {message && <p role="status">{t(message)}</p>}
+     {subscription && <p>{billingStateLabel(subscription.cancelAtPeriodEnd ? "cancel_at_period_end" : subscription.state, t)}
+       {subscription.currentPeriodEndsAt && <> · {t("workspace.billing.periodEnds", { date: formatDate(subscription.currentPeriodEndsAt) })}</>}</p>}
+diff --git a/apps/web/src/account-identity.css b/apps/web/src/account-identity.css
+index 7df2d306b..4b22197db 100644
+--- a/apps/web/src/account-identity.css
++++ b/apps/web/src/account-identity.css
+@@ -20,3 +20,7 @@
+ }
+ 
+ .account-summary:focus-visible { outline: 2px solid var(--sage); outline-offset: 4px; }
++
++@media (max-width: 600px) {
++  .workspace-chrome.is-settings .account-summary { flex: 1 1 0; }
++}
+diff --git a/apps/web/src/api.js b/apps/web/src/api.js
+index b4a39f110..cc1ff859d 100644
+--- a/apps/web/src/api.js
++++ b/apps/web/src/api.js
+@@ -174,10 +174,10 @@ export function createApiClient({
+       }
+       bindWorkspace({ plannerPublicId: value?.account?.publicId });
+       if (typeof value.account.displayName !== "string" || !["available", "not_provided", "unavailable"].includes(value.emailStatus)
+-        || (value.emailStatus === "available" && (typeof value.account.verifiedEmail !== "string" || !value.account.verifiedEmail))) {
++        || (value.emailStatus === "available" && (typeof value.account.verifiedEmail !== "string" || !value.account.verifiedEmail.trim()))) {
+         throw new ApiClientError(502, "invalid_identity", "The account identity could not be verified.");
+       }
+-      return { ...value, account: { ...value.account, verifiedEmail: value.emailStatus === "available" ? value.account.verifiedEmail : null } };
++      return { ...value, account: { ...value.account, verifiedEmail: value.emailStatus === "available" ? value.account.verifiedEmail.trim() : null } };
+     },
+     getAccountProfile: () => request("/account/profile"),
+     requestAccountDeletion: (receipt, acknowledgesBilling = false) => request("/account/delete", {method:"POST",body:{confirmation:"DELETE",receipt,acknowledgesSavedCopies:true,acknowledgesBilling}}),
+diff --git a/apps/web/src/i18n/LanguageControl.jsx b/apps/web/src/i18n/LanguageControl.jsx
+index 0565162d9..b8ba26a09 100644
+--- a/apps/web/src/i18n/LanguageControl.jsx
++++ b/apps/web/src/i18n/LanguageControl.jsx
+@@ -3,12 +3,13 @@ import { Translate } from "@phosphor-icons/react";
+ import { useI18n } from "./I18nProvider.jsx";
+ import "./i18n.css";
+ 
+-export function LanguageControl({ className = "" }) {
++export function LanguageControl({ className = "", compact = false }) {
+   const id = useId();
+   const { locale, setLocale, t, persistenceAvailable } = useI18n();
+-  return <div className={`language-control ${className}`}>
++  return <div className={`language-control ${className}${compact ? " language-control-compact" : ""}`}>
+     <label htmlFor={id} className="sr-only">{t("common.language.label")}</label>
+     <Translate size={19} aria-hidden="true" />
++    {compact && <span className="language-control-current" aria-hidden="true">{locale === "zh-CN" ? "中" : "EN"}</span>}
+     <select id={id} value={locale} onChange={(event) => setLocale(event.target.value)}
+       aria-describedby={persistenceAvailable ? undefined : `${id}-status`}>
+       <option value="en" lang="en">English</option>
+diff --git a/apps/web/src/i18n/i18n.css b/apps/web/src/i18n/i18n.css
+index 4017701f4..b472d4dc9 100644
+--- a/apps/web/src/i18n/i18n.css
++++ b/apps/web/src/i18n/i18n.css
+@@ -10,3 +10,9 @@ html[lang="zh-CN"] :is(button,summary,.field-label,.navigation-label) { overflow
+ html[lang="zh-CN"] .section-label { letter-spacing:.06em; }
+ html[lang="zh-CN"] [lang="en"] { line-break:auto; }
+ @media (max-width:400px) { .language-control { gap:3px; } .language-control > svg { display:none; } .language-control select { font-size:13px; padding-left:6px; padding-right:18px; } }
++
++/* Compact presentation retains the native select and full language names. */
++.language-control-compact { position:relative; min-height:44px; width:64px; justify-content:center; gap:5px; }
++.language-control-compact select { position:absolute; inset:0; width:100%; height:100%; opacity:0; }
++.language-control-compact:focus-within { outline:2px solid currentColor; outline-offset:3px; border-radius:6px; }
++.language-control-current { font-size:13px; font-weight:500; pointer-events:none; }
+diff --git a/apps/web/src/i18n/messages/public.js b/apps/web/src/i18n/messages/public.js
+index 151687e9a..c250d2d35 100644
+--- a/apps/web/src/i18n/messages/public.js
++++ b/apps/web/src/i18n/messages/public.js
+@@ -176,6 +176,7 @@ export const en = {
+   "public.price.export": "Export and privacy controls",
+   "public.price.notOpen": "Paid subscriptions are not open yet.",
+   "public.price.note": "Both plans include core privacy and export controls. Receiving an invitation does not require a paid plan.",
++  "public.price.appleNote": "Apple in-app prices may differ. The final amount is shown before you confirm your purchase with Apple.",
+   "public.price.terms": "Subscription terms",
+   "public.legal.title": "Legal information.",
+   "public.legal.label": "Legal information",
+@@ -453,6 +454,7 @@ export const zhCN = {
+   "public.price.export": "导出与隐私控制",
+   "public.price.notOpen": "付费订阅尚未开放。",
+   "public.price.note": "两种套餐均包含核心隐私与导出功能。接收他人邀请和查看共享内容，无需付费。",
++  "public.price.appleNote": "通过 Apple App 内购买的价格可能不同，最终金额以 Apple 购买确认页面为准。",
+   "public.price.terms": "订阅条款（英文正式文本）",
+   "public.legal.title": "法律信息。",
+   "public.legal.label": "法律信息",
+diff --git a/apps/web/src/i18n/messages/workspace.js b/apps/web/src/i18n/messages/workspace.js
+index d62c5740c..08663a4e9 100644
+--- a/apps/web/src/i18n/messages/workspace.js
++++ b/apps/web/src/i18n/messages/workspace.js
+@@ -29,7 +29,7 @@ export const en = {
+   "workspace.nav.activity": "Activity",
+   "workspace.nav.settings": "Settings",
+   "workspace.nav.more": "More",
+-  "workspace.navDetail.access": "Current access and future Family capabilities",
++  "workspace.navDetail.access": "Current access and Family features",
+   "workspace.navDetail.plan": "Progress, roles and directions exports",
+   "workspace.navDetail.contacts": "People, roles and invitation evidence",
+   "workspace.navDetail.shared": "Read-only items from people you know",
+@@ -72,8 +72,11 @@ export const en = {
+   "workspace.access.unavailable": "Temporarily unavailable",
+   "workspace.access.coreAvailable": "Core planning remains available.",
+   "workspace.access.current": "Current access",
++  "workspace.access.familyLead": "Keep your shared information up to date",
++  "workspace.access.familyPlus": "Family features",
++  "workspace.access.priceUnavailable": "Current Web price is unavailable. Please check again later.",
++  "workspace.access.webPrice": "Web subscription",
+   "workspace.access.freeIncluded": "Included with Free",
+-  "workspace.access.roadmap": "Later roadmap · not included yet",
+   "workspace.access.newClosed": "New subscriptions are not available.",
+   "workspace.access.afterFamily": "Access when Family ends",
+   "workspace.access.afterFamilyDetails": "You keep your own records and exports. Free includes one live recipient. Extra recipients retain only their permitted paid-period copy, without later updates.",
+@@ -270,6 +273,7 @@ export const en = {
+   "workspace.billing.errorOperation": "The subscription action could not be completed. Refresh access and try again.",
+   "workspace.testBilling.acknowledgeAnnual": "I understand this test subscription renews yearly until canceled. No real payment will be taken.",
+   "workspace.testBilling.acknowledgeMonthly": "I understand this test subscription renews monthly until canceled. No real payment will be taken.",
++  "workspace.testBilling.unavailable": "Stripe test payments are not available in this environment. No test payment can be started here.",
+   "workspace.testBilling.error": "Test billing could not be checked or updated. Refresh access and try again.",
+   "workspace.testBilling.title": "Test billing · No real charge",
+   "workspace.testBilling.subscription": "Test subscription",
+@@ -311,7 +315,7 @@ export const zhCN = {
+   "workspace.nav.activity": "动态",
+   "workspace.nav.settings": "设置",
+   "workspace.nav.more": "更多",
+-  "workspace.navDetail.access": "当前权限及未来家庭版功能",
++  "workspace.navDetail.access": "当前权限和家庭版功能",
+   "workspace.navDetail.plan": "查看进度、角色记录与导出指引",
+   "workspace.navDetail.contacts": "联系人、角色和邀请记录",
+   "workspace.navDetail.shared": "他人与你共享的只读事项",
+@@ -354,8 +358,11 @@ export const zhCN = {
+   "workspace.access.unavailable": "暂时无法使用",
+   "workspace.access.coreAvailable": "核心规划功能仍可使用。",
+   "workspace.access.current": "当前权限",
++  "workspace.access.familyLead": "让共享的信息保持更新",
++  "workspace.access.familyPlus": "家庭版功能",
++  "workspace.access.priceUnavailable": "暂时无法获取当前网页订阅价格，请稍后重试。",
++  "workspace.access.webPrice": "网页订阅",
+   "workspace.access.freeIncluded": "免费版包含的功能",
+-  "workspace.access.roadmap": "后续规划 · 暂未包含",
+   "workspace.access.newClosed": "暂不开放新订阅。",
+   "workspace.access.afterFamily": "家庭版到期后",
+   "workspace.access.afterFamilyDetails": "你仍可保留自己的记录和导出文件。免费版包含一位可接收实时更新的接收人。其他接收人仅保留获准的付费期间副本，不再接收后续更新。",
+@@ -549,6 +556,7 @@ export const zhCN = {
+   "workspace.billing.errorOperation": "无法完成订阅操作。请刷新权限后重试。",
+   "workspace.testBilling.acknowledgeAnnual": "我理解此测试订阅会每年续订，直至取消；不会产生真实扣款。",
+   "workspace.testBilling.acknowledgeMonthly": "我理解此测试订阅会每月续订，直至取消；不会产生真实扣款。",
++  "workspace.testBilling.unavailable": "当前环境未提供 Stripe 测试付款，无法在这里发起测试订单。",
+   "workspace.testBilling.error": "无法检查或更新测试计费。请刷新权限后重试。",
+   "workspace.testBilling.title": "测试计费 · 不会真实扣款",
+   "workspace.testBilling.subscription": "测试订阅",
+diff --git a/apps/web/src/landing/LandingChrome.jsx b/apps/web/src/landing/LandingChrome.jsx
+index 10fae81b6..14524548d 100644
+--- a/apps/web/src/landing/LandingChrome.jsx
++++ b/apps/web/src/landing/LandingChrome.jsx
+@@ -96,7 +96,7 @@ export function LandingHeader({ path = "/" }) {
+       </nav>
+       <div className="lp-header-actions">
+       <PreviewAccountLink />
+-      <LanguageControl className="lp-language" />
++      <LanguageControl className="lp-language" compact />
+       <AppearanceControl
+         open={panel === "appearance"}
+         onOpenChange={(value) => setPanel(value ? "appearance" : null)}
+diff --git a/apps/web/src/landing/PlanSection.jsx b/apps/web/src/landing/PlanSection.jsx
+index 5171a80f3..fe1b2ed1a 100644
+--- a/apps/web/src/landing/PlanSection.jsx
++++ b/apps/web/src/landing/PlanSection.jsx
+@@ -63,6 +63,7 @@ export function PlanSection() {
+             </tr>
+           </tbody>
+         </table>
++        <p className="lp-channel-price-note">{t("public.price.appleNote")}</p>
+         <div className="lp-plan-actions">
+           <p>{t("public.price.notOpen")}</p>
+           <AppearanceLink className="lp-text-link" href={publicEntry.accountURL}>{t("public.auth.try")}<ArrowRight aria-hidden="true" size={20} />
+diff --git a/apps/web/src/landing/landing-base.css b/apps/web/src/landing/landing-base.css
+index e970b9615..1b13e9261 100644
+--- a/apps/web/src/landing/landing-base.css
++++ b/apps/web/src/landing/landing-base.css
+@@ -50,72 +50,15 @@
+ .lp-skip:focus {
+   top: 16px;
+ }
+-.lp-header {
+-  height: 108px;
+-  display: grid;
+-  grid-template-columns: 1fr auto 1fr;
+-  align-items: center;
+-  justify-content: space-between;
+-  gap: 32px;
+-  position: relative;
+-  z-index: 2;
+-  border-bottom: 1px solid var(--lp-rule);
+-}
+-.lp-brand {
+-  display: inline-flex;
+-  flex: none;
+-}
+-.lp-brand img {
+-  width: 185px;
+-  height: auto;
+-  display: block;
+-}
+-.lp-nav {
+-  display: flex;
+-  gap: 42px;
+-  margin: 0;
+-  font-size: 15px;
+-}
+-.lp-nav a {
+-  padding: 15px 0;
+-}
+-.lp-nav a:hover,
+ .lp-footer a:hover {
+   text-decoration: underline;
+   text-underline-offset: 5px;
+ }
+-.lp-sign-in {
+-  display: inline-flex;
+-  align-items: center;
+-  justify-content: center;
+-  gap: 12px;
+-  min-height: 52px;
+-  padding: 12px 22px;
+-  border-radius: 40px;
+-  background: var(--lp-action);
+-  color: var(--lp-action-ink) !important;
+-  font:
+-    500 15px/1.2 Inter,
+-    Arial,
+-    sans-serif;
+-  text-decoration: none;
+-}
+-.lp-header > .lp-sign-in {
+-  justify-self: end;
+-}
+-.lp-preview-label {
+-  font-size: 10px;
+-  letter-spacing: 0.04em;
+-  padding-right: 11px;
+-  border-right: 1px solid var(--lp-border);
+-}
+-.lp-sign-in svg,
+ .lp-button svg,
+ .lp-text-link svg {
+   transition: transform 0.25s ease;
+   flex: none;
+ }
+-.lp-sign-in:hover svg,
+ .lp-button:hover svg,
+ .lp-text-link:hover svg {
+   transform: translateX(4px);
+@@ -123,8 +66,6 @@
+ .lp-hero {
+   position: relative;
+   min-height: 820px;
+-  margin-top: -108px;
+-  padding-top: 108px;
+ }
+ .lp-hero-photo {
+   position: absolute;
+diff --git a/apps/web/src/landing/landing-header.css b/apps/web/src/landing/landing-header.css
+index 0df2c8445..8444d197d 100644
+--- a/apps/web/src/landing/landing-header.css
++++ b/apps/web/src/landing/landing-header.css
+@@ -1,27 +1,80 @@
+-/* Equal outside tracks put the navigation on the viewport center, independent
+-   of the unequal logo and account/language controls. Collapse before collision. */
++/* The public header's single layout contract. Equal side tracks center the
++   desktop links on the viewport, regardless of unequal brand/action widths.
++   Compact language first; tablet links get their own row, mobile a disclosure. */
++.lp-page { --lp-header-height: 108px; }
+ .lp-header {
++  height: var(--lp-header-height);
++  display: grid;
+   grid-template-columns: minmax(0, 1fr) max-content minmax(0, 1fr);
+-  grid-template-rows: auto;
++  align-items: center;
+   gap: 24px;
+-  height: 108px;
++  position: relative;
++  z-index: 2;
++  border-bottom: 1px solid var(--lp-rule);
++}
++.lp-brand { display: inline-flex; flex: none; }
++.lp-brand picture { display: block; }
++.lp-brand img { width: 185px; height: auto; display: block; }
++.lp-header > .lp-brand {
++  grid-column: 1; grid-row: 1; justify-self: start;
++  min-height: 44px; align-items: center;
++}
++.lp-nav {
++  grid-column: 2; grid-row: 1; justify-self: center;
++  display: flex; gap: 24px; margin: 0; font-size: 15px;
++  white-space: nowrap;
++}
++.lp-nav a { padding: 15px 0; }
++.lp-nav a:hover { text-decoration: underline; text-underline-offset: 5px; }
++.lp-nav a[aria-current="page"] { border-bottom: 2px solid var(--lp-action); }
++.lp-menu-toggle {
++  display: none; background: none; color: var(--lp-ink);
++  min-width: 44px; min-height: 44px; padding: 10px; border-radius: 50%;
+ }
+-.lp-header > .lp-brand { grid-column: 1; grid-row: 1; justify-self: start; }
+-.lp-header > .lp-nav { grid-column: 2; grid-row: 1; justify-self: center; }
+-.lp-header > .lp-menu-toggle { display: none; }
+ .lp-header-actions {
+   grid-column: 3; grid-row: 1;
+   display: flex; align-items: center; justify-content: flex-end;
+-  gap: 14px; min-width: 0;
++  gap: 12px; min-width: 0;
+ }
+ .lp-header-actions > * { flex-shrink: 0; }
+-.lp-header-actions .lp-sign-in { white-space: nowrap; }
+ .lp-header-actions .lp-appearance { margin: 0; }
+-@media (max-width: 1400px) {
+-  .lp-header { grid-template-columns: minmax(0, 1fr) auto auto; height: 88px; gap: 16px; }
+-  .lp-header > .lp-menu-toggle { display: inline-grid; place-items: center; grid-column: 2; grid-row: 1; }
+-  .lp-header > .lp-nav { display: none; }
+-  .lp-header > .lp-nav.is-open {
++.lp-sign-in {
++  display: inline-flex; align-items: center; justify-content: center;
++  gap: 12px; min-height: 52px; padding: 12px 22px;
++  border-radius: 40px; background: var(--lp-action);
++  color: var(--lp-action-ink) !important;
++  font: 500 15px/1.2 Inter, Arial, sans-serif;
++  text-decoration: none; white-space: nowrap;
++}
++.lp-preview-label {
++  font-size: 10px; letter-spacing: 0.04em;
++  padding-right: 11px; border-right: 1px solid var(--lp-border);
++}
++.lp-sign-in svg { transition: transform 0.25s ease; flex: none; }
++.lp-sign-in:hover svg { transform: translateX(4px); }
++.lp-header .language-control { font-size: 14px; }
++.lp-hero { margin-top: calc(-1 * var(--lp-header-height)); padding-top: var(--lp-header-height); }
++@media (max-width: 1280px) {
++  .lp-header { gap: 16px; }
++  .lp-header .lp-brand img { width: 150px; }
++  .lp-nav { gap: 18px; font-size: 14px; }
++  .lp-header-actions { gap: 8px; }
++  .lp-sign-in { font-size: 14px; padding-inline: 14px; gap: 8px; }
++  .lp-preview-label { padding-right: 8px; }
++  .lp-sign-in > svg { display: none; }
++}
++@media (min-width: 768px) and (max-width: 1023px) {
++  .lp-page { --lp-header-height: 132px; }
++  .lp-header { grid-template-columns: 1fr auto; grid-template-rows: 76px 55px; row-gap: 0; }
++  .lp-header-actions { grid-column: 2; }
++  .lp-nav { grid-column: 1 / -1; grid-row: 2; gap: 32px; font-size: 15px; }
++}
++@media (max-width: 767px) {
++  .lp-page { --lp-header-height: 88px; }
++  .lp-header { grid-template-columns: minmax(0, 1fr) auto auto; gap: 12px; }
++  .lp-menu-toggle { display: inline-grid; place-items: center; grid-column: 2; grid-row: 1; }
++  .lp-nav { display: none; }
++  .lp-nav.is-open {
+     display: flex; position: absolute; z-index: 10;
+     grid-column: 1 / -1; grid-row: auto;
+     top: calc(100% - 1px); left: 0; right: 0;
+@@ -29,19 +82,17 @@
+     background: var(--lp-paper); border: 1px solid var(--lp-rule);
+     border-radius: 0 0 12px 12px; padding: 12px 20px;
+     box-shadow: 0 14px 22px #00000014;
+-    max-height: calc(100dvh - 150px); overflow-y: auto;
+-    justify-self: stretch;
++    max-height: calc(100dvh - var(--lp-header-height) - 24px);
++    overflow-y: auto; justify-self: stretch;
+   }
+-  .lp-header > .lp-nav a { font-size: 16px; padding: 16px 0; }
+-  .lp-hero { margin-top: -88px; padding-top: 88px; }
++  .lp-nav a { font-size: 16px; padding: 16px 0; }
+ }
+ @media (max-width: 600px) {
+-  .lp-header { grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: 44px 52px; height: 124px; padding-block: 12px; gap: 4px 12px; }
+-  .lp-header > .lp-brand { grid-column: 1; grid-row: 1; }
+-  .lp-header > .lp-menu-toggle { grid-column: 2; grid-row: 1; }
++  .lp-page { --lp-header-height: 124px; }
++  .lp-header { grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: 44px 52px; padding-block: 12px; gap: 4px 12px; }
++  .lp-header .lp-brand img { width: 126px; }
++  .lp-menu-toggle { grid-column: 2; grid-row: 1; }
+   .lp-header-actions { grid-column: 1 / -1; grid-row: 2; justify-content: space-between; gap: 8px; }
+-  .lp-header-actions .lp-sign-in { font-size: 13px; padding-inline: 12px; gap: 8px; }
+-  .lp-header-actions .lp-preview-label { padding-right: 8px; }
+-  .lp-header-actions .language-control > svg { display: none; }
+-  .lp-hero { margin-top: -124px; padding-top: 124px; }
++  .lp-sign-in { min-height: 46px; font-size: 13px; padding-inline: 12px; gap: 8px; }
++  .lp-brand img { width: 126px; }
+ }
+diff --git a/apps/web/src/landing/landing-i18n.css b/apps/web/src/landing/landing-i18n.css
+index 729a778f7..d957b0347 100644
+--- a/apps/web/src/landing/landing-i18n.css
++++ b/apps/web/src/landing/landing-i18n.css
+@@ -1,11 +1,4 @@
+-/* Language is an additional display control. Keep appearance at the far right. */
+-.lp-header {
+-  grid-template-columns: auto minmax(0, 1fr) auto auto auto;
+-  gap: 20px;
+-}
+-.lp-header > .lp-language { grid-column: 4; }
+-.lp-header > .lp-appearance { grid-column: 5; }
+-.lp-header .language-control { font-size: 14px; }
++/* Content localization; header geometry belongs to landing-header.css. */
+ .lp-hero h1,
+ .lp-hero-copy > p,
+ .lp-closing h2,
+@@ -27,39 +20,11 @@ html[lang="zh-CN"] .lp-hero h1 { font-size: clamp(48px, 5.7vw, 88px); }
+ html[lang="zh-CN"] .lp-hero-copy > p { letter-spacing: 0; max-width: 26em; }
+ html[lang="zh-CN"] .lp-page-intro h1 { line-height: 1.35; }
+ html[lang="zh-CN"] .lp-document-links strong { font-family: inherit; font-size: 22px; }
+-html[lang="zh-CN"] .lp-page .lp-sign-in { font-family: inherit; }
+-@media (min-width: 1001px) and (max-width: 1200px) {
+-  .lp-header { gap: 14px; }
+-  .lp-nav { gap: 18px; }
+-  .lp-header .lp-brand img { width: 160px; }
+-  .lp-header .lp-sign-in { padding-inline: 16px; }
+-}
+-@media (max-width: 1000px) {
+-  .lp-header { grid-template-columns: minmax(0, 1fr) auto auto auto auto; gap: 8px; }
+-  .lp-header > .lp-menu-toggle { grid-column: 2; }
+-  .lp-header > .lp-sign-in { grid-column: 3; }
+-  .lp-header > .lp-language { grid-column: 4; }
+-  .lp-header > .lp-appearance { grid-column: 5; }
+-}
+ @media (max-width: 600px) {
+-  .lp-header {
+-    grid-template-columns: minmax(0, 1fr) auto auto;
+-    grid-template-rows: 44px 52px;
+-    height: 124px;
+-    padding-block: 12px;
+-    gap: 4px 12px;
+-  }
+-  .lp-header > .lp-brand { grid-column: 1 / 3; grid-row: 1; }
+-  .lp-header > .lp-menu-toggle { grid-column: 3; grid-row: 1; }
+-  .lp-header > .lp-sign-in { grid-column: 1; grid-row: 2; justify-self: start; }
+-  .lp-header > .lp-language { grid-column: 2; grid-row: 2; }
+-  .lp-header > .lp-appearance { grid-column: 3; grid-row: 2; }
+-  .lp-hero { margin-top: -124px; padding-top: 124px; }
+   html[lang="zh-CN"] .lp-hero h1 { font-size: clamp(42px, 11vw, 60px); }
+   html[lang="zh-CN"] .lp-page-intro h1 { font-size: 38px; }
+   html[lang="zh-CN"] .lp-situation-choices { flex-wrap: wrap; }
+   .lp-plan-comparison th > strong { font-size: clamp(15px, 4.6vw, 22px); }
+-  .lp-language > svg { display: none; }
+ }
+ 
+ @media (max-width: 440px) {
+diff --git a/apps/web/src/landing/landing-pages.css b/apps/web/src/landing/landing-pages.css
+index bb8378de0..c42aafa7e 100644
+--- a/apps/web/src/landing/landing-pages.css
++++ b/apps/web/src/landing/landing-pages.css
+@@ -1,21 +1,3 @@
+-.lp-brand picture {
+-  display: block;
+-}
+-.lp-nav {
+-  gap: 30px;
+-}
+-.lp-nav a[aria-current="page"] {
+-  border-bottom: 2px solid var(--lp-action);
+-}
+-.lp-menu-toggle {
+-  display: none;
+-  background: none;
+-  color: var(--lp-ink);
+-  min-width: 44px;
+-  min-height: 44px;
+-  padding: 10px;
+-  border-radius: 50%;
+-}
+ .lp-hero {
+   min-height: 760px;
+ }
+@@ -267,45 +249,6 @@
+   }
+ }
+ @media (max-width: 900px) {
+-  .lp-header {
+-    grid-template-columns: 1fr auto auto;
+-    gap: 12px;
+-    height: 88px;
+-  }
+-  .lp-header > .lp-sign-in {
+-    grid-column: 3;
+-  }
+-  .lp-menu-toggle {
+-    display: inline-grid;
+-    place-items: center;
+-    grid-column: 2;
+-  }
+-  .lp-nav {
+-    display: none;
+-  }
+-  .lp-nav.is-open {
+-    display: flex;
+-    position: absolute;
+-    z-index: 10;
+-    top: calc(100% - 1px);
+-    left: 0;
+-    right: 0;
+-    flex-direction: column;
+-    gap: 0;
+-    background: var(--lp-paper);
+-    border: 1px solid var(--lp-rule);
+-    border-radius: 0 0 12px 12px;
+-    padding: 12px 20px;
+-    box-shadow: 0 14px 22px #00000014;
+-  }
+-  .lp-nav a {
+-    font-size: 16px;
+-    padding: 16px 0;
+-  }
+-  .lp-hero {
+-    margin-top: -88px;
+-    padding-top: 88px;
+-  }
+   .lp-page-intro {
+     padding-block: 45px 36px;
+   }
+@@ -348,24 +291,6 @@
+   }
+ }
+ @media (max-width: 600px) {
+-  .lp-header {
+-    gap: 8px;
+-  }
+-  .lp-brand img {
+-    width: 120px;
+-  }
+-  .lp-sign-in {
+-    padding: 10px 13px;
+-    font-size: 13px;
+-    gap: 8px;
+-  }
+-  .lp-sign-in > svg {
+-    display: none;
+-  }
+-  .lp-preview-label {
+-    font-size: 9px;
+-    padding-right: 8px;
+-  }
+   .lp-destinations,
+   .lp-invitation-columns,
+   .lp-notice-overview {
+@@ -400,21 +325,6 @@
+     font-size: 16px;
+   }
+ }
+-@media (max-width: 360px) {
+-  .lp-brand img {
+-    width: 100px;
+-  }
+-  .lp-sign-in {
+-    padding-inline: 10px;
+-    gap: 6px;
+-  }
+-  .lp-preview-label {
+-    padding-right: 6px;
+-  }
+-  .lp-menu-toggle {
+-    padding: 10px 8px;
+-  }
+-}
+ 
+ .lp-product-page .lp-section h2,
+ .lp-security-page .lp-section h2 {
+@@ -439,83 +349,5 @@
+   max-width: 780px;
+   color: var(--lp-muted);
+ }
+-@media (min-width: 1001px) {
+-  .lp-header {
+-    gap: 24px;
+-  }
+-  .lp-nav {
+-    gap: 24px;
+-  }
+-}
+-.lp-header {
+-  grid-template-columns: auto minmax(0, 1fr) auto auto;
+-}
+-.lp-nav {
+-  justify-self: center;
+-}
+-.lp-header > .lp-appearance {
+-  grid-column: 4;
+-}
+-@media (max-width: 1000px) {
+-  .lp-header {
+-    grid-template-columns: minmax(0, 1fr) auto auto auto;
+-    gap: 8px;
+-    height: 88px;
+-  }
+-  .lp-header > .lp-sign-in {
+-    grid-column: 3;
+-  }
+-  .lp-menu-toggle {
+-    display: inline-grid;
+-    place-items: center;
+-    grid-column: 2;
+-  }
+-  .lp-nav {
+-    display: none;
+-  }
+-  .lp-nav.is-open {
+-    display: flex;
+-    position: absolute;
+-    z-index: 10;
+-    top: calc(100% - 1px);
+-    left: 0;
+-    right: 0;
+-    flex-direction: column;
+-    gap: 0;
+-    background: var(--lp-paper);
+-    border: 1px solid var(--lp-rule);
+-    border-radius: 0 0 12px 12px;
+-    padding: 12px 20px;
+-    box-shadow: 0 14px 22px #00000014;
+-    max-height: calc(100dvh - 110px);
+-    overflow-y: auto;
+-  }
+-  .lp-nav > a {
+-    font-size: 16px;
+-    padding: 16px 0;
+-  }
+-  .lp-hero {
+-    margin-top: -88px;
+-    padding-top: 88px;
+-  }
+-}
+-@media (max-width: 360px) {
+-  .lp-header {
+-    width: calc(100% - 24px);
+-    gap: 4px;
+-  }
+-  .lp-header .lp-brand img {
+-    width: 88px;
+-  }
+-}
+ 
+-.lp-header .lp-brand {
+-  min-height: 44px;
+-  align-items: center;
+-}
+-@media (max-width: 360px) {
+-  .lp-header .lp-sign-in {
+-    font-size: 12px;
+-    padding-inline: 9px;
+-  }
+-}
++.lp-plan-comparison .lp-channel-price-note { margin-top: 16px; color: var(--lp-muted); font-size: 13px; line-height: 1.6; max-width: 680px; }
+diff --git a/apps/web/src/landing/landing-responsive.css b/apps/web/src/landing/landing-responsive.css
+index de69420c8..7628300e4 100644
+--- a/apps/web/src/landing/landing-responsive.css
++++ b/apps/web/src/landing/landing-responsive.css
+@@ -13,9 +13,6 @@
+   .lp-container {
+     width: calc(100% - 80px);
+   }
+-  .lp-nav {
+-    gap: 28px;
+-  }
+   .lp-hero-actions {
+     gap: 17px;
+   }
+@@ -64,12 +61,7 @@
+   }
+ }
+ @media (min-width: 801px) and (max-height: 800px) {
+-  .lp-header {
+-    height: 86px;
+-  }
+   .lp-hero {
+-    margin-top: -86px;
+-    padding-top: 86px;
+     min-height: 720px;
+   }
+   .lp-hero-content {
+@@ -95,32 +87,9 @@
+   .lp-container {
+     width: calc(100% - 48px);
+   }
+-  .lp-header {
+-    height: 88px;
+-    grid-template-columns: 1fr auto;
+-    gap: 18px;
+-  }
+-  .lp-brand img {
+-    width: 150px;
+-  }
+-  .lp-nav {
+-    display: none;
+-  }
+-  .lp-sign-in {
+-    min-height: 46px;
+-    padding: 10px 15px;
+-    gap: 9px;
+-    font-size: 13px;
+-  }
+-  .lp-preview-label {
+-    font-size: 10px;
+-    padding-right: 9px;
+-  }
+   .lp-hero {
+     display: flex;
+     flex-direction: column;
+-    margin-top: -88px;
+-    padding-top: 88px;
+     min-height: 0;
+   }
+   .lp-hero-photo {
+@@ -328,19 +297,6 @@
+   .lp-container {
+     width: calc(100% - 40px);
+   }
+-  .lp-brand img {
+-    width: 126px;
+-  }
+-  .lp-header {
+-    gap: 10px;
+-  }
+-  .lp-sign-in {
+-    padding: 10px 13px;
+-    gap: 8px;
+-  }
+-  .lp-sign-in svg {
+-    width: 16px;
+-  }
+   .lp-hero-copy {
+     padding-top: 37px;
+     width: calc(100% - 40px);
+diff --git a/apps/web/src/mobileNavigation.js b/apps/web/src/mobileNavigation.js
+index 89d784dd7..3279172a2 100644
+--- a/apps/web/src/mobileNavigation.js
++++ b/apps/web/src/mobileNavigation.js
+@@ -5,8 +5,7 @@ export const mobilePrimaryNavigation = Object.freeze([
+ ]);
+ 
+ export const mobileMoreDestinationDefinitions = Object.freeze([
+-  Object.freeze({ id: "access", label: "Plan & access", detail: "Current access and future Family capabilities" }),
+-  Object.freeze({ id: "plan", label: "My plan", detail: "Progress, roles and Start Here" }),
++  Object.freeze({ id: "access", label: "Plan & access", detail: "Current access and Family features" }),
+   Object.freeze({ id: "contacts", label: "Trusted contacts", detail: "People, roles and invitation evidence" }),
+   Object.freeze({ id: "shared", label: "Shared with me", detail: "Read-only items from people you know" }),
+   Object.freeze({ id: "maintenance", label: "Shared reviews", detail: "Check directions and review suggested updates" }),
+diff --git a/apps/web/src/plan-access.css b/apps/web/src/plan-access.css
+new file mode 100644
+index 000000000..d786bef47
+--- /dev/null
++++ b/apps/web/src/plan-access.css
+@@ -0,0 +1,27 @@
++.plan-access-preview .current-access-status {
++  display: flex; flex-wrap: wrap; gap: 6px 10px; margin: 0;
++  color: var(--muted); font-size: 14px; line-height: 1.5;
++}
++.current-access-status strong { color: var(--body); font-weight: 500; }
++.plan-access-preview .family-plan-feature { padding: clamp(22px, 4vw, 38px); }
++.family-plan-heading { display: flex; align-items: center; gap: 20px; }
++.family-plan-heading > div { min-width: 0; }
++.family-plan-heading h2 { font-size: clamp(28px, 3.2vw, 40px); line-height: 1.25; }
++.family-plan-heading p { color: var(--body); margin: 10px 0 0; line-height: 1.5; }
++.family-plan-price { margin: 26px 0; }
++.family-plan-price .access-plan-price { font-size: clamp(26px, 3vw, 36px); line-height: 1.3; overflow-wrap: anywhere; }
++.family-plan-price small { display: block; margin-top: 8px; color: var(--muted); font-size: 13px; }
++.family-plan-included { margin: 0; color: var(--body); font-size: 15px; }
++.family-plan-feature .commercial-feature-list { margin-top: 14px; }
++.family-plan-availability { color: var(--muted); font-size: 14px; margin: 24px 0 0; }
++.family-plan-feature > .production-billing-controls { padding: 24px 0 0; margin: 24px 0 0; border: 0; border-top: 1px solid var(--card-border); }
++.family-plan-feature > .production-billing-controls h2 { font-size: 20px; }
++@media (max-width: 600px) {
++  .family-plan-heading { gap: 12px; align-items: flex-start; }
++  .family-plan-heading .task-emblem { width: 48px; height: 48px; border-radius: 14px; }
++  .family-plan-heading h2 { font-size: 26px; }
++  .family-plan-heading p { font-size: 14px; }
++}
++
++/* Card padding reduces the available width below the app's global button minimum. */
++.family-plan-feature :is(.primary-button, .secondary-button) { min-width: 0; max-width: 100%; }
+diff --git a/apps/web/src/workspaceNavigation.js b/apps/web/src/workspaceNavigation.js
+index aac02e1fe..91a1ac910 100644
+--- a/apps/web/src/workspaceNavigation.js
++++ b/apps/web/src/workspaceNavigation.js
+@@ -2,7 +2,7 @@ import { preserveTransientLocale } from "./i18n/localeStore.js";
+ import { useEffect, useRef } from "react";
+ import { requestedGuideKey } from './guideAccess.js';
+ 
+-const pages = new Set(["overview", "plan", "matters", "contacts", "shared", "maintenance", "guides", "access", "activity", "settings", "more"]);
++const pages = new Set(["overview", "matters", "contacts", "shared", "maintenance", "guides", "access", "activity", "settings", "more"]);
+ const categories = new Set(["account", "document", "device", "financial_asset", "debt", "subscription", "crypto_asset"]);
+ const tasks = new Set(["matter", "matter-create", "contact", "contact-sharing", "start-here", "provider-guide", "settings", "safety", "first-use-guide", "role-policy"]);
+ const uuid = /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i;
+diff --git a/apps/web/tests/account-identity.test.mjs b/apps/web/tests/account-identity.test.mjs
+new file mode 100644
+index 000000000..413543b5f
+--- /dev/null
++++ b/apps/web/tests/account-identity.test.mjs
+@@ -0,0 +1,50 @@
++import { build } from 'esbuild';
++import test from 'node:test';
++import { mkdtemp, rm } from 'node:fs/promises';
++import { tmpdir } from 'node:os';
++import { join } from 'node:path';
++import { fileURLToPath } from 'node:url';
++import { createRequire } from 'node:module';
++import assert from 'node:assert/strict';
++const root = fileURLToPath(new URL('..', import.meta.url));
++
++test('account presentation uses current authoritative email and separates pending from unavailable', async () => {
++  const temporary = await mkdtemp(join(tmpdir(), 'rillora-identity-render-'));
++  try {
++    const bundle = join(temporary, 'render.cjs');
++    await build({ stdin: { contents: `
++import React from 'react';
++import { renderToStaticMarkup } from 'react-dom/server';
++import { I18nProvider } from './src/i18n/I18nProvider.jsx';
++import { createLocaleStore } from './src/i18n/localeStore.js';
++import { mergeCatalogs } from './src/i18n/core.js';
++import * as workspace from './src/i18n/messages/workspace.js';
++import * as common from './src/i18n/messages/common.js';
++import { AccountIdentityPanel, AccountSummary } from './src/AccountIdentity.jsx';
++export function render(identity, plannerPublicId, locale) {
++ return renderToStaticMarkup(<I18nProvider catalogs={mergeCatalogs(common,workspace)} locale={locale} store={createLocaleStore()}><AccountSummary identity={identity} plannerPublicId={plannerPublicId}/><AccountIdentityPanel identity={identity} plannerPublicId={plannerPublicId}/></I18nProvider>);
++}
++`, resolveDir: root, loader: 'jsx' }, bundle: true, platform: 'node', format: 'cjs', outfile: bundle, jsx: 'automatic', loader: { '.css': 'empty' } });
++    const { render } = createRequire(import.meta.url)(bundle);
++    const id = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa';
++    const value = { account: { publicId: id.toUpperCase(), displayName: 'Current owner', verifiedEmail: 'owner@example.test' }, emailStatus: 'available' };
++    for (const locale of ['en', 'zh-CN']) {
++      const loaded = render({ value, loading: false }, id, locale);
++      assert.ok(loaded.includes('owner@example.test'));
++      const pending = render({ value, loading: true }, id, locale);
++      assert.ok(pending.includes('role="status"'));
++      assert.ok(!pending.includes('owner@example.test'));
++      assert.ok(!pending.includes('Email is unavailable'));
++      assert.ok(!pending.includes('暂时无法显示邮箱'));
++      for (const emailStatus of ['not_provided', 'unavailable']) {
++        const absent = render({ value: { ...value, emailStatus }, loading: false }, id, locale);
++        assert.ok(!absent.includes('owner@example.test'));
++      }
++      const mismatch = render({ value, loading: false }, 'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb', locale);
++      assert.ok(!mismatch.includes('owner@example.test'));
++      assert.ok(!mismatch.includes('Current owner'));
++      const failed = render({ value, failed: true, loading: false }, id, locale);
++      assert.ok(!failed.includes('owner@example.test'));
++    }
++  } finally { await rm(temporary, { recursive: true, force: true }); }
++});
+diff --git a/apps/web/tests/api-client.test.mjs b/apps/web/tests/api-client.test.mjs
+index 1e174ee0e..b75bdfd96 100644
+--- a/apps/web/tests/api-client.test.mjs
++++ b/apps/web/tests/api-client.test.mjs
+@@ -628,3 +628,14 @@ test('a private401 invalidates displayed identity but a public sign-in failure d
+     await assert.rejects(client.startAuthentication({}));assert.equal(expired,1);
+   }finally{if(prior===undefined)delete globalThis.window;else globalThis.window=prior;}
+ });
++
++test('identity preserves current verified email across UUID casing and rejects whitespace-only email', async () => {
++  const publicId = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa';
++  const client = createApiClient({ fetchImpl: async url => Response.json(url.endsWith('/session')
++    ? { plannerPublicId: publicId }
++    : { account: { publicId: publicId.toUpperCase(), displayName: 'Current', verifiedEmail: ' owner@example.test ' }, emailStatus: 'available' }) });
++  await client.getSession();
++  assert.equal((await client.getAccountIdentity()).account.verifiedEmail, 'owner@example.test');
++  const invalid = createApiClient({ fetchImpl: async () => Response.json({ account: { publicId, displayName: 'Current', verifiedEmail: '  ' }, emailStatus: 'available' }) });
++  await assert.rejects(invalid.getAccountIdentity(), error => error.code === 'invalid_identity');
++});
+diff --git a/apps/web/tests/landing-header.test.mjs b/apps/web/tests/landing-header.test.mjs
+new file mode 100644
+index 000000000..0beca51f0
+--- /dev/null
++++ b/apps/web/tests/landing-header.test.mjs
+@@ -0,0 +1,33 @@
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import { readFile } from 'node:fs/promises';
++import postcss from 'postcss';
++import { en, zhCN } from '../src/i18n/messages/public.js';
++const source = relative => readFile(new URL(relative, import.meta.url), 'utf8');
++
++test('landing header layout has one owner, no historical competing selectors', async () => {
++  for (const file of ['landing-base.css', 'landing-responsive.css', 'landing-pages.css', 'landing-i18n.css']) {
++    const css = postcss.parse(await source(`../src/landing/${file}`));
++    css.walkRules(rule => assert.doesNotMatch(rule.selector, /\.lp-(?:header|nav|menu-toggle)(?![\w-])/, `${file}: ${rule.selector}`));
++  }
++  const header = await source('../src/landing/landing-header.css');
++  assert.match(header, /grid-template-columns: minmax\(0, 1fr\) max-content minmax\(0, 1fr\)/);
++  assert.match(header, /@media \(max-width: 767px\)/);
++  assert.doesNotMatch(header, /max-width: 1400px/);
++  const component = await source('../src/landing/LandingChrome.jsx');
++  assert.match(component, /LanguageControl className="lp-language" compact/);
++  assert.match(component, /aria-expanded=\{open\}/);
++  assert.match(component, /aria-controls="lp-navigation"/);
++});
++
++test('public Apple channel note is bilingual and has no invented quotation', async () => {
++  for (const catalog of [en, zhCN]) {
++    assert.match(catalog['public.price.appleNote'], /Apple/);
++    assert.doesNotMatch(catalog['public.price.appleNote'], /\d/);
++  }
++  assert.match(en['public.price.appleNote'], /final amount.*confirm/);
++  assert.match(zhCN['public.price.appleNote'], /最终金额.*购买确认/);
++  const pricing = await source('../src/landing/PlanSection.jsx');
++  assert.match(pricing, /lp-channel-price-note.*public\.price\.appleNote/);
++  assert.match(pricing, /formatMoney\(catalog\.annual\.amountMinor, catalog\.currency\)/);
++});
+diff --git a/apps/web/tests/mobile-navigation.test.mjs b/apps/web/tests/mobile-navigation.test.mjs
+index 2d1d17455..40f894e7a 100644
+--- a/apps/web/tests/mobile-navigation.test.mjs
++++ b/apps/web/tests/mobile-navigation.test.mjs
+@@ -16,7 +16,7 @@ test("mobile keeps three primary destinations", () => {
+ test("desktop-only destinations remain reachable through More", () => {
+   assert.deepEqual(
+     mobileMoreDestinationDefinitions.map(({ id }) => id),
+-    ["access", "plan", "contacts", "shared", "maintenance", "guides", "activity", "settings"],
++    ["access", "contacts", "shared", "maintenance", "guides", "activity", "settings"],
+   );
+ 
+   for (const { id } of mobileMoreDestinationDefinitions) {
+diff --git a/apps/web/tests/plan-access-render.test.mjs b/apps/web/tests/plan-access-render.test.mjs
+new file mode 100644
+index 000000000..f173e6899
+--- /dev/null
++++ b/apps/web/tests/plan-access-render.test.mjs
+@@ -0,0 +1,44 @@
++import { build } from 'esbuild';
++import test from 'node:test';
++import { mkdtemp, rm } from 'node:fs/promises';
++import { tmpdir } from 'node:os';
++import { join } from 'node:path';
++import { fileURLToPath } from 'node:url';
++import { createRequire } from 'node:module';
++import assert from 'node:assert/strict';
++
++test('actual Family component shows factual product features without promising planned access', async () => {
++  const temporary = await mkdtemp(join(tmpdir(), 'rillora-plan-render-'));
++  try {
++    const bundle = join(temporary, 'render.cjs');
++    await build({ stdin: { contents: `
++import React from 'react';
++import { renderToStaticMarkup } from 'react-dom/server';
++import { I18nProvider } from './src/i18n/I18nProvider.jsx';
++import { createLocaleStore } from './src/i18n/localeStore.js';
++import { appCatalogs } from './src/i18n/appCatalogs.js';
++import { PlanAccessPreview } from './src/PlanAccessPreview.jsx';
++import { normalizeCommercialStatus } from './src/commercialAccess.js';
++const boundaries = { serverAuthoritative:true, providerCallbackGrantsAccess:false, clientPurchaseResultGrantsAccess:false, billingStateCanTriggerClaim:false, billingStateCanTriggerDisclosure:false, storefrontPersistedToCustomerProfile:false, oneActiveRenewalProviderPerHouseholdPlan:true };
++export function render(locale, plan='free', price=true) {
++const commerce = normalizeCommercialStatus({ contractVersion:'commerce-v1', billingOpen:false, serviceMarketCode:'GLOBAL_US', currentAccess:{planCode:plan}, boundaries,
++ plans:[{planCode:'free',capabilities:[{code:'matter_map_core',enforcementMode:'included'}]}, {planCode:'family',capabilities:[
++  {code:'family_maintenance',enforcementMode:'planned',availability:'planned'},
++  {code:'trusted_people_multiple',enforcementMode:'planned',availability:'planned'},
++  {code:'adaptive_reviews',enforcementMode:'planned',availability:'planned'}]}],
++ offers: price ? [{priceCode:'family_usd_annual_v4',amountMinor:8899,minorUnitExponent:2,currencyCode:'USD',billingInterval:'annual',purchasable:false}] : [],
++});
++return renderToStaticMarkup(<I18nProvider catalogs={appCatalogs} locale={locale} store={createLocaleStore()}><PlanAccessPreview commerce={commerce} onAccessChanged={()=>{}}/></I18nProvider>);
++}`, resolveDir: fileURLToPath(new URL('..', import.meta.url)), loader: 'jsx' }, bundle: true, platform: 'node', format: 'cjs', outfile: bundle, jsx: 'automatic', loader: { '.css': 'empty' }, define: { 'import.meta.env': '{}' } });
++    const { render } = createRequire(import.meta.url)(bundle);
++    for (const locale of ['en', 'zh-CN']) for (const plan of ['free', 'family']) {
++      const html = render(locale, plan);
++      assert.match(html, /family-plan-feature/); assert.match(html, /88\.99/);
++      assert.equal((html.match(/family-feature-bullet/g) ?? []).length, 2);
++      assert.doesNotMatch(html, /Later roadmap|后续规划|Adaptive review reminders|自适应复核提醒|Everything in Free, plus/);
++      assert.match(html, locale === 'en' ? /New subscriptions are not available/ : /暂不开放新订阅/);
++      assert.doesNotMatch(html, /workspace\.[a-z]+\./);
++      assert.doesNotMatch(render(locale, plan, false), /88\.99/);
++    }
++  } finally { await rm(temporary, { recursive: true, force: true }); }
++});
+diff --git a/apps/web/tests/workspace-navigation.test.mjs b/apps/web/tests/workspace-navigation.test.mjs
+index f5b445283..9fcd94d85 100644
+--- a/apps/web/tests/workspace-navigation.test.mjs
++++ b/apps/web/tests/workspace-navigation.test.mjs
+@@ -5,7 +5,7 @@ import { readWorkspaceRoute, workspaceURL, drawerRoute } from "../src/workspaceN
+ test("restores existing root destinations, filters and selected matter", () => {
+   const route = readWorkspaceRoute("/?view=matters&q=Bank&filter=review&task=matter&matter=11111111-1111-4111-8111-111111111111");
+   assert.deepEqual(readWorkspaceRoute(workspaceURL(route)), route);
+-  for (const view of ["settings", "more", "plan", "contacts", "maintenance", "guides", "access", "activity"]) assert.equal(readWorkspaceRoute(`/?view=${view}`).view, view);
++  for (const view of ["settings", "more", "contacts", "maintenance", "guides", "access", "activity"]) assert.equal(readWorkspaceRoute(`/?view=${view}`).view, view);
+ });
+ test("unknown tasks and invalid identifiers cannot become arbitrary navigation", () => {
+   const route = readWorkspaceRoute("/?view=https://example.test&task=delete-account&matter=not-an-id&filter=hidden");
+@@ -41,3 +41,8 @@ test('every catalog guide survives drawer navigation, reload and Back round trip
+   }
+   assert.equal(readWorkspaceRoute('/?view=guides&task=provider-guide&provider=unknown-provider').providerKey, null);
+ });
++
++test("retired My plan links safely return to Overview without hiding billing", () => {
++  assert.equal(readWorkspaceRoute("/?view=plan").view, "overview");
++  assert.equal(readWorkspaceRoute("/account/billing").view, "access");
++});
+diff --git a/docs/web-plan-layout-20261008.md b/docs/web-plan-layout-20261008.md
+new file mode 100644
+index 000000000..91d932a04
+--- /dev/null
++++ b/docs/web-plan-layout-20261008.md
+@@ -0,0 +1,92 @@
++# Web navigation, settings and Family plan corrections
++
++Status: IMPLEMENTED; SOURCE CI AND 43 BROWSER SCENARIOS PASS; NOT MERGED OR DEPLOYED
++Updated: 2026-10-08 UTC
++
++## Request and source boundary
++
++The owner reported desktop navigation becoming a dropdown, missing Apple-price
++clarification, duplicate language selectors, unavailable Web email, redundant My plan
++navigation, and an oversized Free presentation hiding Family benefits.
++Three supplied screenshots were materialized and their actual pixels inspected.
++This branch starts from operator a49f3f95, preserving existing purchase, entitlement,
++authentication, legal consent and billing management behavior. The guide translation
++branch remains independent; neither branch is merged or deployed by this work.
++
++## Implementation
++
++- Center horizontal public navigation at desktop widths, compact the language control,
++  retain a horizontal tablet row and accessible small-screen menu
++- Clarify in English and Chinese that Apple subscription pricing may differ and the
++  final Apple purchase screen controls that amount; no Apple amount is invented
++- Keep one language selector on Settings; remove My plan from desktop/mobile navigation
++  and redirect old plan URLs to Overview; retain billing and saved-copy entry points
++- Present current Free status quietly and Family benefits/current server Web annual
++  price prominently. Family features use neutral product bullets, not granted-rights
++  checkmarks, because catalog activation and actual account entitlement are distinct.
++  Keep closed sales, subscribed management, expiry information,
++  consent and checkout safeguards. Do not display roadmap features
++- Accept UUID casing consistently with native identity handling, distinguish loading
++  from absent email, terminate mismatched responses, and discard stale client/retry data
++
++## Email diagnosis boundary
++
++Both clients use the same authenticated account/identity API and exact-subject verified
++provider email. The older-server profile fallback has no email. Deployment records say
++Preview frontend was updated without replacing its staging API/config, while native
++uses production. This is a plausible cause of the supplied screen, not a verified
++runtime diagnosis. The owner confirmed app.staging.rillora.xyz; the cloud browser
++was signed out there, so its authenticated identity/commerce responses remain
++unobserved. No fabricated
++email, cross-account cache, origin switch, permission expansion or provider change was
++made. A source/client improvement cannot prove the deployed session now displays email.
++
++## Verification and actual visual review
++
++Internal/public builds and 180 non-legal Node/API/SSR tests pass; seven legal-fixture checks pass separately. Browser regressions cover
++bilingual responsive geometry, settings uniqueness, identity loading/retry/races,
++Family/free/expired/missing-price states, consent reset, keyboard and history.
++Local Chromium cannot start because its sandbox socket operation returns EPERM;
++therefore local build/static checks are not visual evidence. The independent GitHub
++runner supplied the actual browser results below.
++
++Initial candidate20b2898 passed all three source CI jobs and41/41 browser scenarios.
++Actual screenshot inspection then found a320px button extending outside its Family
++card, which a document-width assertion had missed. The candidate was corrected and
++card-bound assertions added. Neutral Family product bullets replace an over-strong
++included-rights assertion. Final browser rerun also covers the retained Stripe TEST
++entry when ordinary sales are closed and an honest unavailable-environment error
++when the TEST API is absent; no payment request is sent by these checks. No native runtime,
++real login, purchase, deployment or end-user acceptance is claimed.
++
++### Final implementation evidence
++
++Implementation commit: [d90f9db1bba8b1b8c1e2275a6d72a3db0ef9e4a8](https://github.com/tantalum666/rillora/commit/d90f9db1bba8b1b8c1e2275a6d72a3db0ef9e4a8)
++
++- [Source verification](https://github.com/tantalum666/rillora/actions/runs/37716051505): source/publication guards, API/database tests, and Web/infrastructure all pass
++- [Browser verification](https://github.com/tantalum666/rillora/actions/runs/37716051477):43 passed,0 failed,0 skipped,0 flaky
++- All33 intended published files match exact remote Git blob hashes
++- Browser artifact SHA256:48ec66e2e679cebb776d19eebf47e0f9a9fc988c9cb641ed7bfb0b2c6595e409
++- EN/ZH public navigation checks span13 widths from320 through1920, including breakpoint edges; seven public routes use a separate seven-width matrix
++- Workspace visual/interaction checks span320/390/768/1280/1920, both languages, light/dark examples, free/subscribed/expired/missing-price states, close/back, keyboard, consent reset and retained TEST gates
++- Actual inspected pixels:14 initial public/header/price/zoom-equivalent screenshots, followed by final320px English Family,390px Chinese Settings,768/1920 Chinese Family, English subscribed management and Chinese Stripe TEST entry
++- The512×384 case is narrow-viewport reflow equivalent to a1024px desktop at200%; it is not an actual browser-zoom or native-device test. Its menu screenshot is intentionally scrolled to Support
++
++Synthetic fixture email and billing status only prove client behavior. They do not
++prove real provider email, a user's payment, deployed entitlement, TEST eligibility or
++production launch. The final TEST404 scenario shows a clear environment-unavailable
++message and disabled action; no real checkout request was sent.
++
++## Integration handoff
++
++Apply this narrow Web branch alongside the independent guide and external-link safety
++fixes, preserving each side. Before claiming the reported email problem fixed in
++production, verify the actual Web host reaches the intended matching identity API.
++No shared historical document or private test log was republished by this task.
++
++Potential shared integration files are apps/web/e2e/ux.spec.mjs and
++.github/workflows/web-ux-browser.yml; combine the independent guide assertions and
++branch trigger with these changes rather than replacing either side wholesale.
++The current operator handoff, decision history and journey were deliberately left
++untouched; this focused report records this task's scope, review correction, evidence
++and remaining runtime diagnosis without republishing historical/private material.
