@@ -121,6 +121,43 @@ final class RilloraLocalizationUITests: XCTestCase {
         }
     }
 
+    func testGuideColdAndWarmNavigationKeepsHeaderBelowBar() throws {
+        let app = try fixtureApp()
+        defer { app.terminate() }
+        nativeTab(app, title: copy("Profile", "个人中心"), symbol: "person.crop.circle").tap()
+        let entry = element(app, "official-setup.open")
+        reveal(entry, in: app); entry.tap()
+        XCTAssertTrue(element(app, "official-setup.search").waitForExistence(timeout: 5))
+        for pass in 0..<3 {
+            let search = app.textFields["official-setup.search"]
+            search.tap()
+            search.typeText("Coinbase")
+            let row = element(app, "official-guide.coinbase")
+            XCTAssertTrue(row.waitForExistence(timeout: 3)); row.tap()
+            let header = element(app, "official-guide.header.coinbase")
+            XCTAssertTrue(header.waitForExistence(timeout: 3))
+            // First observable frame, without a settling sleep. Runtime evidence
+            // must still include the captured transition for sub-frame clipping.
+            XCTAssertGreaterThanOrEqual(header.frame.height, 56)
+            XCTAssertGreaterThanOrEqual(header.frame.minY, app.navigationBars.firstMatch.frame.maxY)
+            XCTAssertFalse(element(app, "official-setup.search").exists)
+            let step = element(app, "official-guide.step.coinbase")
+            XCTAssertTrue(step.exists)
+            if copy("en", "zh") == "zh" { XCTAssertTrue(step.label.contains("Coinbase")); XCTAssertFalse(step.label.hasPrefix("The claimant")) }
+            capture("guide-first-visible-frame-\(pass)")
+            app.navigationBars.buttons.firstMatch.tap()
+            XCTAssertTrue(search.waitForExistence(timeout: 3))
+            search.tap()
+            let existing = search.value as? String ?? ""
+            search.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: existing.count))
+            search.typeText("GitHub")
+            XCTAssertTrue(element(app, "official-guide.github").waitForExistence(timeout: 3))
+            XCTAssertFalse(app.descendants(matching: .any).matching(NSPredicate(format: "label == %@", copy("Reviewed in Rillora", "已在 Rillora 中复核"))).firstMatch.exists)
+            search.tap()
+            search.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: 6))
+        }
+    }
+
     func testLocalizedMatterFiltersUseActualCategoriesAndTranslatedSearch() async throws {
         let app = try fixtureApp()
         defer { app.terminate() }

@@ -88,6 +88,43 @@
         ],
         "exactProviderTerms": [],
         "suppresses": []
+      },
+      "translations": {
+        "zh-Hans": {
+          "summary": "遗产联系人、数据访问与账号关闭",
+          "prepareSteps": [
+            "打开“设置”→ 你的姓名 →“登录与安全性”→“遗产联系人”。",
+            "添加联系人，然后分享或打印对方的访问密钥。",
+            "确认对方已收到密钥，并在遗产相关文件中记下密钥的存放位置。"
+          ],
+          "laterSteps": [
+            "查找遗产联系人访问密钥。如果找到了，通过下方官方链接打开 Apple 数字遗产页面。",
+            "提供访问密钥和死亡证明，或所在地区认可的同等证明，并按 Apple 的要求完成文件审核。",
+            "如果没有访问密钥，使用 Apple 面向家属的申请途径，查看所在国家或地区的法律文件要求。",
+            "按照 Apple 批准的途径访问数据或删除账号。抹掉设备前，先考虑这是否会导致所需数据丢失。"
+          ],
+          "usuallyRequested": [
+            "遗产联系人访问密钥（如有）",
+            "死亡证明或所在地区认可的同等证明",
+            "Apple 要求的法律授权证明或法院文件（如适用）"
+          ],
+          "boundary": "遗产联系人无法访问钥匙串密码、通行密钥、付款信息和已购买的媒体内容。其他访问申请取决于当地的文件要求，提交申请不保证获批。",
+          "links": [
+            {
+              "title": "设置遗产联系人",
+              "detail": "官方指南"
+            },
+            {
+              "title": "发起遗产联系人访问申请",
+              "detail": "官方指南"
+            },
+            {
+              "title": "没有访问密钥，或需要关闭账号？",
+              "detail": "官方指南"
+            }
+          ],
+          "sourceDigest": "ce44ac4212456e5213eb050c49a48993728f0ae8896a116def109d28d0aa4558"
+        }
       }
     },
     {
@@ -150,6 +187,43 @@
         ],
         "exactProviderTerms": [],
         "suppresses": []
+      },
+      "translations": {
+        "zh-Hans": {
+          "summary": "闲置账号管理工具与家属申请",
+          "prepareSteps": [
+            "登录你自己的 Google 账号，打开“闲置账号管理工具”。",
+            "设置账号闲置多久后启动计划，选择最多 10 位联系人，并指定每人可接收的数据。",
+            "选择是否在之后删除账号，并及时更新联系人的联系方式。"
+          ],
+          "laterSteps": [
+            "打开 Google 的已故用户申请表，选择关闭账号、申请资金或获取账号内容。",
+            "如果需要账号内容，请先申请获取。关闭账号后，便无法再申请获取其中的内容。",
+            "按照所选表单的要求准备文件及译文。申请数据前，先阅读在何种条件下需要提供法院命令；Google 会逐案审核。"
+          ],
+          "usuallyRequested": [
+            "已故用户的账号标识和去世日期",
+            "申请人的联系方式及政府签发的身份证件",
+            "死亡证明；如有要求，还需提供经认证及公证的英文译文",
+            "若数据申请获批且服务方为 Google LLC，需按 Google 的指引取得美国法院命令"
+          ],
+          "boundary": "账号闲置不等于已经去世。Google 不会提供密码，每项已故用户申请都须经过审核。",
+          "links": [
+            {
+              "title": "打开闲置账号管理工具",
+              "detail": "官方指南"
+            },
+            {
+              "title": "了解闲置账号管理工具的运作方式",
+              "detail": "官方指南"
+            },
+            {
+              "title": "发起已故用户账号申请",
+              "detail": "官方指南"
+            }
+          ],
+          "sourceDigest": "ded8765a1180a3865abfda030781a0a9d73330a961b03145a2d6094150c7dff7"
+        }
       }
     },
     {
@@ -197,6 +271,31 @@
         ],
         "exactProviderTerms": [],
         "suppresses": []
+      },
+      "translations": {
+        "zh-Hans": {
+          "summary": "Outlook 和 OneDrive 的访问要求取决于地区和法律。",
+          "prepareSteps": [
+            "记下账号标识和账单的查找信息；Microsoft 未公布面向个人用户的遗产联系人设置。"
+          ],
+          "laterSteps": [
+            "查看 Microsoft 针对账号所在地区的已故用户账号处理说明。",
+            "在许多地区，获取账号内容通常需要法院命令；中国和德国另有已公布的处理途径。"
+          ],
+          "usuallyRequested": [
+            "账号标识",
+            "死亡证明",
+            "法院命令或所在地区要求的授权文件"
+          ],
+          "boundary": "提交申请不保证能获得账号内容。不同地区的要求可能有明显差异。",
+          "links": [
+            {
+              "title": "阅读 Microsoft 已故用户账号处理流程",
+              "detail": "官方指南"
+            }
+          ],
+          "sourceDigest": "a2c32ac5bd398a0593ea133215c86cacd63d2b35cabff1184ac9a560c207ecc5"
+        }
       }
     },
     {
@@ -239,6 +338,32 @@
         ],
         "exactProviderTerms": [],
         "suppresses": []
+      },
+      "translations": {
+        "zh-Hans": {
+          "summary": "申请访问已故用户的文件",
+          "prepareSteps": [
+            "记下账号邮箱，以及本地同步的 Dropbox 文件夹位置（如有）。"
+          ],
+          "laterSteps": [
+            "在法律允许的情况下，先检查本地 Dropbox 文件夹中是否已有副本；否则向 Dropbox 申请访问。",
+            "提交支持工单，提供已故用户的姓名和邮箱、你的联系方式、与对方的关系、政府签发的身份证件，以及 Dropbox 要求的法院命令。",
+            "等待 Dropbox 审核，不要假定提交申请后就能获得访问权限。"
+          ],
+          "usuallyRequested": [
+            "已故用户的姓名和账号邮箱",
+            "申请人的联系方式、与已故用户的关系及政府签发的身份证件",
+            "符合 Dropbox 所列要求的法院命令"
+          ],
+          "boundary": "Dropbox 要求提供去世证明材料及合法访问资格证明。提供文件不保证能够获得访问权限。",
+          "links": [
+            {
+              "title": "Dropbox 已故用户账号处理说明",
+              "detail": "官方指南"
+            }
+          ],
+          "sourceDigest": "93f80548091bbef874c091f3f203c7307e6a567d64195a8c809c4230d2ef04c3"
+        }
       }
     },
     {
@@ -288,6 +413,36 @@
         ],
         "exactProviderTerms": [],
         "suppresses": []
+      },
+      "translations": {
+        "zh-Hans": {
+          "summary": "按地区申请关闭账号、取消扣费或获取内容",
+          "prepareSteps": [
+            "记下 Yahoo ID 和账号所在地区。在你仍有权保存时，保存重要资料。"
+          ],
+          "laterSteps": [
+            "提交任何资料前，先选择适用于账号所在地区的 Yahoo 官方页面。",
+            "对于美国账号，选择关闭账号、取消扣费或申请获取内容；每种申请都有各自的表单和要求。",
+            "美国以外的账号须按照所在地区的指引处理。全球帮助页面要求提供关闭申请信、遗嘱执行人或遗产代表的任命文件，以及死亡证明。"
+          ],
+          "usuallyRequested": [
+            "Yahoo ID 和账号所在地区",
+            "死亡证明",
+            "遗嘱执行人的任命文件；美国账号的内容申请还需要身份证件及符合要求的美国法院命令"
+          ],
+          "boundary": "Yahoo 不会提供密码。账号处理和内容访问规则因地区而异；美国表单不接受非美国账号的申请。",
+          "links": [
+            {
+              "title": "Yahoo 美国账号处理选项",
+              "detail": "官方指南"
+            },
+            {
+              "title": "Yahoo 全球处理指引",
+              "detail": "官方指南"
+            }
+          ],
+          "sourceDigest": "0068205fc64a422224e7e18b53e62728c7a53b854c5de5400624d13f24d2a793"
+        }
       }
     },
     {
@@ -339,6 +494,37 @@
         ],
         "exactProviderTerms": [],
         "suppresses": []
+      },
+      "translations": {
+        "zh-Hans": {
+          "summary": "纪念账号联系人、设为纪念账号或删除",
+          "prepareSteps": [
+            "打开 Facebook“设置”→“账号中心”。根据所用版本，选择“管理账号”或“个人主页和个人详细信息”。",
+            "打开“账号所有权和控制”→“纪念账号设置”，选择你的主要个人主页。设置纪念账号联系人，或选择在去世后删除账号。",
+            "选择一位 Facebook 好友，决定是否允许对方下载你分享的内容，然后保存。Facebook 要求你年满 18 岁才能设置纪念账号联系人。"
+          ],
+          "laterSteps": [
+            "通过 Facebook 的已故用户账号帮助页面，申请设为纪念账号或删除账号。",
+            "申请删除时，按要求提供去世证明材料，以及亲属关系或遗产处理权限证明。不要以已故用户的身份登录。"
+          ],
+          "usuallyRequested": [
+            "个人主页链接",
+            "去世证明材料",
+            "申请删除时所需的亲属关系或遗产处理权限证明"
+          ],
+          "boundary": "纪念账号联系人不能登录账号或读取私信。设为纪念账号和删除账号都不会转移账号所有权。",
+          "links": [
+            {
+              "title": "设置 Facebook 纪念账号联系人",
+              "detail": "官方指南"
+            },
+            {
+              "title": "处理已故用户的 Facebook 账号",
+              "detail": "官方指南"
+            }
+          ],
+          "sourceDigest": "63f1b139f4db93574951db6227a0cde27cb7e5f9f268f43982fb72fd511a4ed6"
+        }
       }
     },
     {
@@ -392,6 +578,39 @@
         ],
         "exactProviderTerms": [],
         "suppresses": []
+      },
+      "translations": {
+        "zh-Hans": {
+          "summary": "设为纪念账号或删除账号",
+          "prepareSteps": [
+            "记下个人主页链接，以及你希望账号被设为纪念账号还是删除。"
+          ],
+          "laterSteps": [
+            "打开 Instagram 的已故用户账号指引，选择设为纪念账号或删除账号。",
+            "提交所需的去世证明材料；申请删除还须由有权处理的家属或代表提出。"
+          ],
+          "usuallyRequested": [
+            "个人主页链接",
+            "去世证明材料",
+            "申请删除时所需的亲属关系或遗产处理权限证明"
+          ],
+          "boundary": "Instagram 不会提供他人的登录凭据，也没有 Facebook 式的纪念账号联系人设置。",
+          "links": [
+            {
+              "title": "Instagram 已故用户账号处理说明",
+              "detail": "官方指南"
+            },
+            {
+              "title": "申请设为纪念账号",
+              "detail": "Instagram 官方表单"
+            },
+            {
+              "title": "申请删除账号",
+              "detail": "Instagram 官方表单"
+            }
+          ],
+          "sourceDigest": "99dd7b1046f565c0586d86bba466be971ea2d98f55dbb76181ec6bfba4c83382"
+        }
       }
     },
     {
@@ -433,6 +652,31 @@
         ],
         "exactProviderTerms": [],
         "suppresses": []
+      },
+      "translations": {
+        "zh-Hans": {
+          "summary": "设为纪念账号，或由有权处理的人申请关闭。",
+          "prepareSteps": [
+            "记下个人主页链接、账号邮箱，以及希望设为纪念账号还是关闭账号。"
+          ],
+          "laterSteps": [
+            "报告用户已去世，以申请设为纪念账号；如有合法权限，也可申请关闭账号。",
+            "提供个人主页链接、你与已故用户的关系及去世信息。申请关闭时，还须提供 LinkedIn 接受的、任命遗产代表的法院文件。"
+          ],
+          "usuallyRequested": [
+            "个人主页链接和邮箱",
+            "讣告或去世信息",
+            "关闭账号所需的、由法院出具的遗产处理权限证明"
+          ],
+          "boundary": "LinkedIn 不会提供用户名或密码。账号设为纪念账号后，将无法再登录访问。",
+          "links": [
+            {
+              "title": "设为纪念账号或关闭账号",
+              "detail": "官方指南"
+            }
+          ],
+          "sourceDigest": "7c7a7a9925ce08bc12fbed6f465addf5c2f1979c4e989a28f75c22d1694b97f7"
+        }
       }
     },
     {
@@ -484,6 +728,35 @@
           "X"
         ],
         "suppresses": []
+      },
+      "translations": {
+        "zh-Hans": {
+          "summary": "遗产代表或近亲属可申请停用账号。",
+          "prepareSteps": [
+            "记下账号用户名、个人主页链接和处理意愿；不要以他人将能获得账号访问权限为前提作安排。"
+          ],
+          "laterSteps": [
+            "向 X 提交账号移除申请，然后按照收到的邮件指引提供身份证明和死亡证明。"
+          ],
+          "usuallyRequested": [
+            "账号用户名",
+            "申请人的身份证件",
+            "死亡证明",
+            "遗产处理权限证明或经核实的亲属关系"
+          ],
+          "boundary": "X 公布的途径用于停用账号，不会向他人提供账号访问权限。",
+          "links": [
+            {
+              "title": "就已故用户账号联系 X",
+              "detail": "官方指南"
+            },
+            {
+              "title": "打开账号停用申请表",
+              "detail": "请分别选择去世或失能对应的选项"
+            }
+          ],
+          "sourceDigest": "3e0eda43b57de999b66a0d5511ec0976be29713a9870d1bc2292b7e43f1a1798"
+        }
       }
     },
     {
@@ -529,6 +802,35 @@
         ],
         "exactProviderTerms": [],
         "suppresses": []
+      },
+      "translations": {
+        "zh-Hans": {
+          "summary": "遗嘱执行人可申请关闭账户并处理余额。",
+          "prepareSteps": [
+            "记下主要邮箱，以及账户所属的 PayPal 国家和具体服务主体，不要保存支付凭据。"
+          ],
+          "laterSteps": [
+            "确认账户所属的 PayPal 国家和服务主体。下方美国指引适用于有权处理遗产的遗嘱执行人或遗产管理人。",
+            "按照所在地区的官方提交说明，提供账户邮箱、死亡证明、申请人身份证件及遗产处理权限证明。美国流程还要求提供遗产的 W-9 表格。",
+            "请 PayPal 审核关闭账户的申请，以及获准使用的余额发放方式。不要更改账户所有权，也不要以已故用户的身份登录。"
+          ],
+          "usuallyRequested": [
+            "PayPal 主要邮箱及账户所属国家和服务主体",
+            "申请人的联系方式及关闭账户申请",
+            "死亡证明和申请人的带照片身份证件",
+            "遗嘱或遗产处理人员的任命文件",
+            "美国流程所需的遗产 W-9 表格",
+            "所在地区的余额处理指引"
+          ],
+          "boundary": "所需材料及余额处理方式因 PayPal 服务主体和国家而异。不要冒充账户持有人。",
+          "links": [
+            {
+              "title": "PayPal 美国账户关闭说明",
+              "detail": "官方指南"
+            }
+          ],
+          "sourceDigest": "8a93182955720f6dbfc2ff206049a4d19191753eb92602407ca201847c8bd546"
+        }
       }
     },
     {
@@ -575,6 +877,37 @@
         ],
         "exactProviderTerms": [],
         "suppresses": []
+      },
+      "translations": {
+        "zh-Hans": {
+          "summary": "通过遗产执行人服务申请；个人账户不支持指定受益人。",
+          "prepareSteps": [
+            "记下账户邮箱，并在遗产文件中安排托管资产的处理；不要保存密码、双重验证信息或钱包助记词。"
+          ],
+          "laterSteps": [
+            "申请人使用自己的 Coinbase 账户，打开“遗产执行人服务”（Executor Services）。",
+            "按 Coinbase 的要求上传死亡证明、遗嘱认证文件、身份证件及已签署的资产转移指示。",
+            "填写遗产执行人服务表单，生成验证码，并按照官方验证指引操作，以获得该申请的支持。"
+          ],
+          "usuallyRequested": [
+            "死亡证明",
+            "遗嘱认证文件或遗产处理人员的任命文件",
+            "申请人的身份证件",
+            "已签署的资产转移指示"
+          ],
+          "boundary": "资产归属由遗产文件或适用的继承法决定；Coinbase 负责审核并转移由其托管的资产。",
+          "links": [
+            {
+              "title": "申请处理已故用户的 Coinbase 账户",
+              "detail": "官方指南"
+            },
+            {
+              "title": "打开遗产执行人服务",
+              "detail": "按照 Coinbase 的要求使用自己的账户并完成验证"
+            }
+          ],
+          "sourceDigest": "5ab3a4b9d16ff7e8bdb272ba735caf1dce8eb90d2e09ee0e99fba72a4498cf1b"
+        }
       }
     },
     {
@@ -626,6 +959,37 @@
         ],
         "exactProviderTerms": [],
         "suppresses": []
+      },
+      "translations": {
+        "zh-Hans": {
+          "summary": "遗产继承与遗产继承申诉",
+          "prepareSteps": [
+            "记下账户所属的具体币安服务主体，以及账户邮箱、电话号码或币安 ID。",
+            "确保能够找到托管情况及遗产相关文件。不要记录密码、双重验证密钥或钱包助记词。"
+          ],
+          "laterSteps": [
+            "使用你自己的币安账户，打开“客服”→“自助服务”→“查看全部”→“账号”→“遗产继承”。",
+            "通过已故用户的邮箱、电话号码或币安 ID 识别其账户，并提交表单要求的合法有效继承文件。",
+            "等待币安审核，并按照获批的受益人或受托人资产转移流程操作。如果是 Binance.US 账户，请使用其单独的指南。"
+          ],
+          "usuallyRequested": [
+            "你自己的币安账户",
+            "已故用户的邮箱、电话号码或币安 ID",
+            "对应服务主体要求的合法有效继承文件"
+          ],
+          "boundary": "这是由币安审核的身后申请，不是预先指定遗产联系人的设置，也不代表可以使用他人的登录凭据。不同服务主体及当地法律的要求各不相同。",
+          "links": [
+            {
+              "title": "打开遗产继承申诉",
+              "detail": "官方指南"
+            },
+            {
+              "title": "阅读官方遗产继承步骤",
+              "detail": "官方指南"
+            }
+          ],
+          "sourceDigest": "435a663c8a6e17f1f576f6290f243da103fbbc7e3828e3207b1ee5bd25539d81"
+        }
       }
     },
     {
@@ -673,6 +1037,33 @@
         "suppresses": [
           "binance"
         ]
+      },
+      "translations": {
+        "zh-Hans": {
+          "summary": "美国平台托管资产的继承申请",
+          "prepareSteps": [
+            "明确记下这是 Binance.US 账户，并记录不含敏感凭据的账户查找信息及遗产文件存放位置。"
+          ],
+          "laterSteps": [
+            "打开 Binance.US 的已故用户处理说明，并联系其支持团队。",
+            "通过官方支持渠道提供所要求的自拍视频、死亡证明、申请人身份证件，以及遗嘱或遗嘱认证文件。",
+            "按照支持团队审核后的资产转移指引操作。不要为该账户使用 Binance.com 的表单。"
+          ],
+          "usuallyRequested": [
+            "说明希望如何转移资产的自拍视频",
+            "死亡证明",
+            "申请人的政府签发身份证件或护照",
+            "遗嘱和／或遗嘱认证文件、遗产处理人员的任命文件"
+          ],
+          "boundary": "这份材料清单仅适用于 Binance.US，不能用于恢复自托管钱包，也不能仅凭这些材料确立继承权。",
+          "links": [
+            {
+              "title": "Binance.US 所需材料",
+              "detail": "官方指南"
+            }
+          ],
+          "sourceDigest": "2e11518c62adca2793de4273cb44fc706cc3657d3fbaec2b28ab8ecc54729fa6"
+        }
       }
     },
     {
@@ -720,6 +1111,36 @@
         ],
         "exactProviderTerms": [],
         "suppresses": []
+      },
+      "translations": {
+        "zh-Hans": {
+          "summary": "在需要他人接手前，先邀请仓库继任者。",
+          "prepareSteps": [
+            "打开“Settings（设置）”›“Account（账号）”›“Successor settings（继任者设置）”。",
+            "邀请另一位 GitHub 用户，并确认对方已接受邀请。"
+          ],
+          "laterSteps": [
+            "由继任者或有权处理的人联系 GitHub 支持，说明希望进行的操作。",
+            "提供用户名、与已故用户的关系，以及 GitHub 要求的身份证明、去世证明或授权文件。"
+          ],
+          "usuallyRequested": [
+            "GitHub 用户名",
+            "死亡证明或讣告",
+            "身份及处理权限证明"
+          ],
+          "boundary": "继任者不能以原用户的身份登录，只能在 GitHub 规定的范围内管理该用户拥有的公开仓库。",
+          "links": [
+            {
+              "title": "邀请账号继任者",
+              "detail": "官方指南"
+            },
+            {
+              "title": "阅读已故用户政策",
+              "detail": "官方指南"
+            }
+          ],
+          "sourceDigest": "cb3b98accaf49840417cbcbca476a9c517a682e2de180ee5e254bee372db8f04"
+        }
       }
     },
     {
@@ -782,6 +1203,44 @@
         ],
         "exactProviderTerms": [],
         "suppresses": []
+      },
+      "translations": {
+        "zh-Hans": {
+          "summary": "紧急访问与家庭账号恢复",
+          "prepareSteps": [
+            "使用 Bitwarden 时，先确认是否符合 Premium 或付费组织的使用资格，选择查看或接管权限及等待时间，再邀请同一 Bitwarden 服务器上的联系人。对方接受后，你还须确认。",
+            "使用 1Password Families 时，增设一位家庭组织者，保存应急包（Emergency Kit），并生成恢复代码。"
+          ],
+          "laterSteps": [
+            "已获确认的 Bitwarden 联系人使用自己的账号申请紧急访问。申请获批或设定的等待时间结束后才能访问；这不确立继承权。",
+            "使用 1Password 时，按家庭事先作出的合法安排处理。家庭组织者发起的恢复仍需该成员完成邮箱相关步骤，并非已故用户账号转移服务。"
+          ],
+          "usuallyRequested": [
+            "已接受邀请的联系人或家庭组织者",
+            "服务方提供的恢复资料",
+            "协助者在该服务方的账号"
+          ],
+          "boundary": "紧急访问可能让对方读取密码库中高度敏感的数据，但不会赋予法律上的处理权限。不要在 Rillora 中保存密码库主密码、Secret Key 或恢复代码。",
+          "links": [
+            {
+              "title": "设置 Bitwarden 紧急访问",
+              "detail": "官方准备说明"
+            },
+            {
+              "title": "申请 Bitwarden 紧急访问",
+              "detail": "适用于已设置的可信紧急联系人"
+            },
+            {
+              "title": "1Password 家庭恢复计划",
+              "detail": "官方指南"
+            },
+            {
+              "title": "1Password 恢复要求",
+              "detail": "官方账号恢复限制"
+            }
+          ],
+          "sourceDigest": "3b6404a954e4639d42837b18527ace56b4313c51d8b9d193e863df0a70d2c792"
+        }
       }
     },
     {
@@ -834,6 +1293,36 @@
         ],
         "exactProviderTerms": [],
         "suppresses": []
+      },
+      "translations": {
+        "zh-Hans": {
+          "summary": "取消订阅或关闭账号",
+          "prepareSteps": [
+            "记下 Adobe ID 邮箱和仍在生效的订阅；将所需文件保存在你有权存放的位置。"
+          ],
+          "laterSteps": [
+            "打开 Adobe 官方说明，再进入其隐私咨询表单，并验证你自己的联系邮箱。",
+            "选择因他人去世而提出的申请，输入对方的 Adobe ID，并提供所要求的法律文件。",
+            "以获授权代表的身份提交申请，并保留 Adobe 的回复。"
+          ],
+          "usuallyRequested": [
+            "账号持有人的 Adobe ID 邮箱",
+            "申请人的姓名、国家和邮箱",
+            "按要求提供的死亡证明及授权文件"
+          ],
+          "boundary": "这条途径用于关闭账号或取消订阅，不保证能够转移 Adobe 账号、软件许可或云端文件。",
+          "links": [
+            {
+              "title": "Adobe 账号关闭与订阅取消说明",
+              "detail": "官方指南"
+            },
+            {
+              "title": "打开 Adobe 隐私咨询表单",
+              "detail": "官方申请人验证表单"
+            }
+          ],
+          "sourceDigest": "efed28aa0a3f5a0febbc220610f9182998e5e40f7ea25e7e96d775a8bb61d75b"
+        }
       }
     },
     {
@@ -876,6 +1365,31 @@
         ],
         "exactProviderTerms": [],
         "suppresses": []
+      },
+      "translations": {
+        "zh-Hans": {
+          "summary": "取消已故会员的订阅",
+          "prepareSteps": [
+            "记下账号邮箱或电话号码，以及订阅的扣费渠道。"
+          ],
+          "laterSteps": [
+            "打开 Netflix 的已故会员帮助页面，使用无法访问账号时的支持途径。",
+            "提供账号邮箱或电话号码以联系 Netflix。所需账单信息只通过 Netflix 官方支持渠道提供。",
+            "申请取消订阅，并保留取消确认。不要索取或使用已故用户的密码。"
+          ],
+          "usuallyRequested": [
+            "账号邮箱或电话号码",
+            "Netflix 直接要求提供的账单信息"
+          ],
+          "boundary": "这是取消订阅的途径，不是账号继承。不要在 Rillora 中保存支付凭据。",
+          "links": [
+            {
+              "title": "取消已故 Netflix 会员的订阅",
+              "detail": "官方指南"
+            }
+          ],
+          "sourceDigest": "d55b5687f04d18dd2be9c248e488ca77549670b2d4f4d0b48b97aed7669f00b7"
+        }
       }
     },
     {
@@ -922,6 +1436,34 @@
         ],
         "exactProviderTerms": [],
         "suppresses": []
+      },
+      "translations": {
+        "zh-Hans": {
+          "summary": "账号及游戏转移限制",
+          "prepareSteps": [
+            "记下 Steam 个人资料页面或账号的查找信息。不要把游戏库视为可以自动转移的账号。"
+          ],
+          "laterSteps": [
+            "阅读《Steam 订户协议》中的账号转移限制。",
+            "向 Steam 支持咨询遗产可采用的合法处理方式及所需文件；不要分享已故用户的登录凭据。"
+          ],
+          "usuallyRequested": [
+            "Steam 账号或个人资料页面的查找信息",
+            "申请人的联系方式，以及 Steam 明确要求的文件"
+          ],
+          "boundary": "Steam 账号和订阅仅供个人使用，除非 Valve 另行允许，通常不可转移。本指南不宣称存在专门的遗产转移流程。",
+          "links": [
+            {
+              "title": "Steam 账号转移条款",
+              "detail": "官方指南"
+            },
+            {
+              "title": "咨询 Steam 支持",
+              "detail": "官方指南"
+            }
+          ],
+          "sourceDigest": "af51ed2040b423e3077fbfefe8f0ee0629fb1f5a0601c6d7182261b6ab197177"
+        }
       }
     }
   ]
