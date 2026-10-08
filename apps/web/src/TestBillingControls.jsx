@@ -44,7 +44,7 @@ export function TestBillingControls({ commerce, onAccessChanged }) {
   const offer = commerce.offers.find(item => item.billingInterval === period);
   return <details className="task-details test-billing-controls" open>
     <summary>{t("workspace.testBilling.title")}</summary>
-    {error && <p role="alert">{errorMessage(error, "workspace.testBilling.error")}</p>}
+    {error && <p role="alert">{error?.status === 404 ? t("workspace.testBilling.unavailable") : errorMessage(error, "workspace.testBilling.error")}</p>}
     {message && <p role="status">{t(message)}</p>}
     {subscription && <p>{billingStateLabel(subscription.cancelAtPeriodEnd ? "cancel_at_period_end" : subscription.state, t)}
       {subscription.currentPeriodEndsAt && <> · {t("workspace.billing.periodEnds", { date: formatDate(subscription.currentPeriodEndsAt) })}</>}</p>}

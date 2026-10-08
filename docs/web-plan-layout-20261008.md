@@ -22,7 +22,9 @@ branch remains independent; neither branch is merged or deployed by this work.
 - Keep one language selector on Settings; remove My plan from desktop/mobile navigation
   and redirect old plan URLs to Overview; retain billing and saved-copy entry points
 - Present current Free status quietly and Family benefits/current server Web annual
-  price prominently. Keep closed sales, subscribed management, expiry information,
+  price prominently. Family features use neutral product bullets, not granted-rights
+  checkmarks, because catalog activation and actual account entitlement are distinct.
+  Keep closed sales, subscribed management, expiry information,
   consent and checkout safeguards. Do not display roadmap features
 - Accept UUID casing consistently with native identity handling, distinguish loading
   from absent email, terminate mismatched responses, and discard stale client/retry data
@@ -39,12 +41,20 @@ made. A source/client improvement cannot prove the deployed session now displays
 
 ## Verification in progress
 
-Internal build and 179 non-legal Node/API/SSR tests pass. Browser regressions cover
+Internal/public builds and 180 non-legal Node/API/SSR tests pass; seven legal-fixture checks pass separately. Browser regressions cover
 bilingual responsive geometry, settings uniqueness, identity loading/retry/races,
 Family/free/expired/missing-price states, consent reset, keyboard and history.
 Local Chromium cannot start because its sandbox socket operation returns EPERM;
 therefore local build/static checks are not visual evidence. Exact GitHub runner
-results and inspected screenshots will be added after they finish. No native runtime,
+results and inspected screenshots will be added after they finish.
+
+Initial candidate20b2898 passed all three source CI jobs and41/41 browser scenarios.
+Actual screenshot inspection then found a320px button extending outside its Family
+card, which a document-width assertion had missed. The candidate was corrected and
+card-bound assertions added. Neutral Family product bullets replace an over-strong
+included-rights assertion. Final browser rerun also covers the retained Stripe TEST
+entry when ordinary sales are closed and an honest unavailable-environment error
+when the TEST API is absent; no payment request is sent by these checks. No native runtime,
 real login, purchase, deployment or end-user acceptance is claimed.
 
 ## Integration handoff

@@ -821,7 +821,7 @@ export function App() {
       </aside>
 
       <main className="main-content" tabIndex={-1}>
-        <div className="workspace-chrome"><AccountSummary identity={accountIdentity} plannerPublicId={session.plannerPublicId} onOpen={() => setActiveNav("settings")} />{session?.authenticationMode === "development" && <p className="development-notice">{t("workspace.workspace.testData")}</p>}{activeNav !== "settings" && <LanguageControl />}<AppAppearanceControl /></div>
+        <div className={`workspace-chrome${activeNav === "settings" ? " is-settings" : ""}`}><AccountSummary identity={accountIdentity} plannerPublicId={session.plannerPublicId} onOpen={() => setActiveNav("settings")} />{session?.authenticationMode === "development" && <p className="development-notice">{t("workspace.workspace.testData")}</p>}{activeNav !== "settings" && <LanguageControl />}<AppAppearanceControl /></div>
         {recoverableDraft && !drawer && <section className="draft-recovery" aria-label={t("workspace.draft.label")}>
           <div><strong>{t("workspace.draft.continue")}</strong><p>{recoverableDraft.title || t("workspace.matter.new")}</p></div>
           <button className="secondary-button" onClick={() => void resumeDraft()}>{t("workspace.draft.resume")}</button>

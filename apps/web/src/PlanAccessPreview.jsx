@@ -7,10 +7,10 @@ import { TestBillingControls } from "./TestBillingControls.jsx";
 import { SurfaceIcon } from "./SurfaceMotion.jsx";
 import "./plan-access.css";
 
-function FeatureList({ features }) {
+function FeatureList({ features, included = true }) {
   const { t } = useI18n();
   return <ul className="commercial-feature-list">{features.map(feature => <li key={feature}>
-    <CheckCircle size={20} weight="fill" aria-hidden="true" /><span>{commercialFeatureLabel(feature, t)}</span>
+    {included ? <CheckCircle size={20} weight="fill" aria-hidden="true" /> : <span className="family-feature-bullet" aria-hidden="true">•</span>}<span>{commercialFeatureLabel(feature, t)}</span>
   </li>)}</ul>;
 }
 
@@ -31,8 +31,8 @@ export function PlanAccessPreview({ commerce, onAccessChanged, returnedFromCheck
           : <p>{t("workspace.access.priceUnavailable")}</p>}
         {offer && <small>{t("workspace.access.webPrice")}</small>}
       </div>
-      <p className="family-plan-included">{t("workspace.access.familyPlus")}</p>
-      <FeatureList features={commerce.familyFeatures} />
+      {commerce.familyFeatures.length > 0 && <p className="family-plan-included">{t("workspace.access.familyPlus")}</p>}
+      <FeatureList features={commerce.familyFeatures} included={false} />
       {!commerce.billingOpen && <p className="family-plan-availability">{t("workspace.access.newClosed")}</p>}
       {commerce.validationOnly
         ? <TestBillingControls commerce={commerce} onAccessChanged={onAccessChanged} />

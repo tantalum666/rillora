@@ -22,3 +22,6 @@
   .family-plan-heading h2 { font-size: 26px; }
   .family-plan-heading p { font-size: 14px; }
 }
+
+/* Card padding reduces the available width below the app's global button minimum. */
+.family-plan-feature :is(.primary-button, .secondary-button) { min-width: 0; max-width: 100%; }
