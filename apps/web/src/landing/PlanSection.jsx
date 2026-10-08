@@ -63,6 +63,7 @@ export function PlanSection() {
             </tr>
           </tbody>
         </table>
+        <p className="lp-channel-price-note">{t("public.price.appleNote")}</p>
         <div className="lp-plan-actions">
           <p>{t("public.price.notOpen")}</p>
           <AppearanceLink className="lp-text-link" href={publicEntry.accountURL}>{t("public.auth.try")}<ArrowRight aria-hidden="true" size={20} />

@@ -5,7 +5,7 @@ import { api } from './api.js';
 import { publicRoutes } from './publicRoutes.js';
 import { productionBillingDestination, productionBillingStatus, purchaseProof, purchaseQuote, webAnnualOffer } from './productionBilling.js';
 
-export function ProductionBillingControls({ commerce, onAccessChanged, returnedFromCheckout = false, apiClient = api }) {
+export function ProductionBillingControls({ commerce, onAccessChanged, returnedFromCheckout = false, apiClient = api, embedded = false }) {
   const { t, formatDate, formatMoney, errorMessage } = useI18n();
   const [status, setStatus] = useState(null);
   const [quote, setQuote] = useState(null);
@@ -40,11 +40,11 @@ export function ProductionBillingControls({ commerce, onAccessChanged, returnedF
   const annualAvailable = commerce.billingOpen && commerce.offers.some(offer => offer.priceCode === webAnnualOffer.priceCode && offer.purchasable);
   const annualPrice = t("workspace.price.annual", { price: formatMoney(webAnnualOffer.amountMinor, webAnnualOffer.currency, 2) });
   return <section className="task-details production-billing-controls" aria-label={t("workspace.billing.subscription")}>
-    <h2>{sub ? billingStateLabel(sub.state, t) : t("workspace.billing.family")}</h2>
+    {(sub || !embedded) && <h2>{sub ? billingStateLabel(sub.state, t) : t("workspace.billing.family")}</h2>}
     {sub?.currentPeriodEndsAt && <p>{t(sub.cancelAtPeriodEnd ? "workspace.billing.paidEnds" : active ? "workspace.billing.periodEnds" : "workspace.billing.periodEnded", { date: formatDate(sub.currentPeriodEndsAt) })}</p>}
     {returnedFromCheckout && status?.checkoutPending && !active && <p role="status">{t("workspace.billing.confirmationPending")}</p>}
     {error && <p role="alert">{errorMessage(error, "workspace.billing.errorOperation")}</p>}{message && <p role="status">{t(message)}</p>}
-    {!active && annualAvailable && !quote && <><p className="access-plan-price"><strong>{annualPrice}</strong></p>
+    {!active && annualAvailable && !quote && <>{!embedded && <p className="access-plan-price"><strong>{annualPrice}</strong></p>}
       <button className="primary-button" disabled={busy || !status} onClick={() => run(async () => {
         const route = await apiClient.resolvePurchaseRoute({ clientSurface: 'web', serviceMarketCode: commerce.serviceMarketCode, intent: 'plan_access' });
         if (route.reason !== 'available' || route.purchaseRoute !== 'web_direct') throw new Error('A new subscription is not available. Refresh access or manage your existing subscription.');

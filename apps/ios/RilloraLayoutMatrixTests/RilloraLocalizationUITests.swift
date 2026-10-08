@@ -56,6 +56,10 @@ final class RilloraLocalizationUITests: XCTestCase {
         if !systemLanguage {
             app.launchArguments = ["-AppleLanguages", isChinese ? "(zh-Hans)" : "(en)", "-AppleLocale", isChinese ? "zh_CN" : "en_US"]
         }
+        if let appearance = ProcessInfo.processInfo.environment["RILLORA_UI_QA_APPEARANCE"],
+           ["light", "dark"].contains(appearance) {
+            app.launchArguments += ["-rillora.appearance.v1", appearance]
+        }
         app.launchEnvironment = ["RILLORA_API_BASE_URL": base,
                                  "RILLORA_DEV_PLANNER_ID": "11111111-1111-4111-8111-111111111111",
                                  "RILLORA_CUSTOMER_ACCESS_ENABLED": "YES"]
@@ -117,8 +121,89 @@ final class RilloraLocalizationUITests: XCTestCase {
             XCTAssertFalse(app.switches[copy("I reviewed this guide", "我已阅读此指南")].exists)
             XCTAssertFalse(app.staticTexts[copy("I reviewed this guide", "我已阅读此指南")].exists)
             XCTAssertEqual(app.switches.count, 0, "Reading a guide must not ask for an acknowledgement")
+            if part == "details" {
+                let boundary = element(app, "official-guide.boundary.apple")
+                reveal(boundary, in: app, towardStart: true)
+                XCTAssertEqual(app.descendants(matching: .any).matching(identifier: "official-guide.boundary.apple").count, 1)
+                XCTAssertTrue(boundary.label.contains(copy("Legacy Contact excludes Keychain passwords", "遗产联系人无法访问钥匙串密码")))
+            }
             capture("localized-guide-\(part)-links-without-acknowledgement")
         }
+    }
+
+    func testGuideColdAndWarmNavigationKeepsHeaderBelowBar() throws {
+        let app = try fixtureApp()
+        defer { app.terminate() }
+        nativeTab(app, title: copy("Profile", "个人中心"), symbol: "person.crop.circle").tap()
+        let entry = element(app, "official-setup.open")
+        reveal(entry, in: app); entry.tap()
+        capture("guide-directory-first-frame")
+        let directoryTree = XCTAttachment(string: app.debugDescription)
+        directoryTree.name = "guide-directory-accessibility"
+        directoryTree.lifetime = .keepAlways
+        add(directoryTree)
+        XCTAssertTrue(element(app, "official-setup.search").waitForExistence(timeout: 5))
+        for pass in 0..<3 {
+            let search = app.textFields["official-setup.search"]
+            if pass == 0 {
+                // A plain TextField's AX frame follows its text, not its padded hit shape.
+                // Exercise the lower edge of the44pt touch target before typing.
+                search.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
+                    .withOffset(CGVector(dx: 0, dy: 20)).tap()
+                XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 3))
+            } else { search.tap() }
+            search.typeText("Coinbase")
+            let row = element(app, "official-guide.coinbase")
+            XCTAssertTrue(row.waitForExistence(timeout: 3)); row.tap()
+            let header = element(app, "official-guide.header.coinbase")
+            XCTAssertTrue(header.waitForExistence(timeout: 3))
+            // First observable frame, without a settling sleep. Runtime evidence
+            // must still include the captured transition for sub-frame clipping.
+            XCTAssertGreaterThanOrEqual(header.frame.height, 56)
+            XCTAssertGreaterThanOrEqual(header.frame.minY, app.navigationBars.firstMatch.frame.maxY)
+            XCTAssertFalse(element(app, "official-setup.search").exists)
+            let step = element(app, "official-guide.step.coinbase")
+            XCTAssertTrue(step.exists)
+            if copy("en", "zh") == "zh" { XCTAssertTrue(step.label.contains("Coinbase")); XCTAssertFalse(step.label.hasPrefix("The claimant")) }
+            capture("guide-first-visible-frame-\(pass)")
+            app.navigationBars.buttons.firstMatch.tap()
+            XCTAssertTrue(search.waitForExistence(timeout: 3))
+            search.tap()
+            let existing = search.value as? String ?? ""
+            search.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: existing.count))
+            search.typeText("GitHub")
+            XCTAssertTrue(element(app, "official-guide.github").waitForExistence(timeout: 3))
+            XCTAssertFalse(app.descendants(matching: .any).matching(NSPredicate(format: "label == %@", copy("Reviewed in Rillora", "已在 Rillora 中复核"))).firstMatch.exists)
+            search.tap()
+            search.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: 6))
+        }
+    }
+
+    func testLargeTextGuideFromMatterSheetPreservesDraftAndBoundary() throws {
+        let app = try fixtureApp(largeText: true)
+        defer { app.terminate() }
+        nativeTab(app, title: copy("Matters", "事项"), symbol: "list.bullet.rectangle").tap()
+        element(app, "matter.add").tap()
+        let title = app.textFields["matter.edit.title"]
+        reveal(title, in: app)
+        title.tap(); title.typeText("Coinbase draft QA")
+        title.typeText(XCUIKeyboardKey.return.rawValue)
+        let guide = element(app, "matter.guide.coinbase")
+        reveal(guide, in: app); guide.tap()
+        let header = element(app, "official-guide.header.coinbase")
+        XCTAssertTrue(header.waitForExistence(timeout: 5))
+        XCTAssertGreaterThanOrEqual(header.frame.minY, app.navigationBars["Coinbase"].frame.maxY)
+        capture("guide-sheet-large-text-first-frame")
+        let documents = element(app, "official-guide.part.coinbase.details")
+        reveal(documents, in: app); documents.tap()
+        let boundary = element(app, "official-guide.boundary.coinbase")
+        reveal(boundary, in: app)
+        XCTAssertEqual(app.descendants(matching: .any).matching(identifier: "official-guide.boundary.coinbase").count, 1)
+        XCTAssertTrue(boundary.label.contains(copy("Estate documents", "资产归属")))
+        capture("guide-sheet-large-text-boundary")
+        app.navigationBars.buttons[copy("Close", "关闭")].tap()
+        reveal(title, in: app, towardStart: true)
+        XCTAssertEqual(title.value as? String, "Coinbase draft QA")
     }
 
     func testLocalizedMatterFiltersUseActualCategoriesAndTranslatedSearch() async throws {

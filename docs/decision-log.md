@@ -3315,3 +3315,14 @@ local correction/tests and actual restoration remain separate evidence.
   unchanged categories/search,44pt targets and selected accessibility traits. This is a reversible
   scoped implementation, not Owner approval of a new global visual system.
 - Does not imply: changing category meaning, stored matters, plan prices, billing or TestFlight policy.
+
+## 2026-10-08 — Follow up Dot work and execute the legal hostname cutover
+
+- Status: LOCKED
+- Scope: review, directly fix and merge the newly delivered Dot branches; complete the legal hosting continuation.
+- Decision: after Agent identified the documented DNS deferral, Owner explicitly states “不是暂缓，是由你来执行”.
+  Agent now executes the Rillora legal CNAME step using existing GoDaddy/Cloudflare access, preserving content and TTL.
+- Supersedes: the earlier hosting handoff's pause on the Mac/GoDaddy step. No renewed approval is needed for this
+  concrete cutover; only actual provider-required authentication or higher-priority tool conditions can require Owner.
+- Boundaries: no mail/other-host DNS change, secret export, repeat same-version deployment, TestFlight distribution,
+  account deletion, live billing activation or FanPass operation. DNS application and actual TLS/page acceptance remain distinct.

@@ -8,7 +8,7 @@ import { createRequire } from 'node:module';
 import assert from 'node:assert/strict';
 const root = fileURLToPath(new URL('..', import.meta.url));
 
-test('actual form and guide components render both languages without changing source content', async () => {
+test('actual form and guide components render both languages while preserving user content', async () => {
 const temporary = await mkdtemp(join(tmpdir(), 'rillora-forms-render-'));
 const bundle = join(temporary, 'render.cjs');
 try {
@@ -39,7 +39,7 @@ const Components={
 export function render(name,locale){return renderToStaticMarkup(<I18nProvider catalogs={catalogs} locale={locale} store={createLocaleStore()}>{Components[name]}</I18nProvider>);}
 `,resolveDir:root,loader:'jsx'},bundle:true,platform:'node',format:'cjs',outfile:bundle,jsx:'automatic',loader:{'.css':'empty','.svg':'dataurl','.png':'dataurl'},plugins:[{name:'url-assets',setup(build){build.onResolve({filter:/\?url$/},args=>({path:args.path,namespace:'asset-url'}));build.onLoad({filter:/.*/,namespace:'asset-url'},()=>({contents:'export default "/test-asset";',loader:'js'}));}}]});
 const {render}=createRequire(import.meta.url)(bundle);
-const cases={matter:['保存事项','名称','请选择交易所或链上钱包。','USER CONTENT 原文','UNCHANGED NOTE'],starter:['开始使用','继续引导'],guide:['主要原因','跳过此问题'],safety:['可以记录','没有回应绝不会触发自动披露。'],provider:['提前准备','上一步','lang="en"','Open Settings'],directory:['搜索平台','云服务与邮箱','lang="en"','Legacy Contact']};
+const cases={matter:['保存事项','名称','请选择交易所或链上钱包。','USER CONTENT 原文','UNCHANGED NOTE'],starter:['开始使用','继续引导'],guide:['主要原因','跳过此问题'],safety:['可以记录','没有回应绝不会触发自动披露。'],provider:['提前准备','上一步','lang="zh-Hans"','设置'],directory:['搜索平台','云服务与邮箱','lang="zh-Hans"','遗产联系人']};
 for(const [name,expected] of Object.entries(cases)){
  const html=render(name,'zh-CN');
  for(const text of expected) assert.ok(html.includes(text),name+': '+text);

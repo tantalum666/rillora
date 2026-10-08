@@ -10,3 +10,9 @@ html[lang="zh-CN"] :is(button,summary,.field-label,.navigation-label) { overflow
 html[lang="zh-CN"] .section-label { letter-spacing:.06em; }
 html[lang="zh-CN"] [lang="en"] { line-break:auto; }
 @media (max-width:400px) { .language-control { gap:3px; } .language-control > svg { display:none; } .language-control select { font-size:13px; padding-left:6px; padding-right:18px; } }
+
+/* Compact presentation retains the native select and full language names. */
+.language-control-compact { position:relative; min-height:44px; width:64px; justify-content:center; gap:5px; }
+.language-control-compact select { position:absolute; inset:0; width:100%; height:100%; opacity:0; }
+.language-control-compact:focus-within { outline:2px solid currentColor; outline-offset:3px; border-radius:6px; }
+.language-control-current { font-size:13px; font-weight:500; pointer-events:none; }

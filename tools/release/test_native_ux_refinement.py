@@ -13,14 +13,16 @@ APP = IOS / 'Rillora'
 class NativeUXRefinementTests(unittest.TestCase):
     def test_bundled_guides_do_not_flash_unrelated_loading_row(self):
         source = (APP / 'Features/OfficialSetup/OfficialSetupView.swift').read_text()
-        state = source[source.index('private var reviewStatus:'):source.index('private func guideRow')]
-        loading = state[state.index('case .idle, .loading:'):state.index('case .failed')]
-        self.assertIn('EmptyView()', loading)
-        self.assertNotIn('ProgressView', loading)
+        for removed in ['setupStore', 'reviewStatusIcon', 'checkmark.circle.fill', '.searchable(', '.task {', '.refreshable']:
+            self.assertNotIn(removed, source)
+        self.assertIn('.safeAreaInset(edge: .top, spacing: 0)', source)
+        self.assertIn('official-setup.search', source)
+        self.assertNotIn('LazyVStack', source)
         self.assertNotIn('Loading your review status', source)
-        self.assertIn('case .failed(let message', state)
-        self.assertIn('await setupStore.reload()', state)
         self.assertIn('Guides unavailable', source)
+        # Existing records and mutation semantics stay in their own backend/store.
+        store = (APP / 'Features/OfficialSetup/OfficialSetupStore.swift').read_text()
+        self.assertIn('func setCompleted(', store)
 
     def test_guides_keep_official_actions_without_duplicate_raw_links_or_acknowledgement(self):
         source = (APP / 'Features/OfficialSetup/OfficialSetupView.swift').read_text()

@@ -1,5 +1,5 @@
 import { AccountIdentityPanel, AccountSummary, useAccountIdentity } from "./AccountIdentity.jsx";
-import { planProgress } from "./planProgress.js";
+import { PlanAccessPreview } from "./PlanAccessPreview.jsx";
 import { useI18n } from "./i18n/I18nProvider.jsx";
 import { LanguageControl } from "./i18n/LanguageControl.jsx";
 import { ReauthenticationPrompt } from "./ReauthenticationPrompt.jsx";
@@ -11,7 +11,7 @@ import { AuthenticatedOverview, FolioArtwork, InviteAction } from "./SharingMoti
 import { MatterForm } from "./MatterForm.jsx";
 import { toMatterDraft, matterPayload, matterValidation, matterDraftChanged } from "./matterForm.js";
 import { clearMatterDraft, clearMatchingMatterDraft, readMatterDraft, writeMatterDraft, matterStatusLabel } from "./matterDraftStorage.js";
-import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   AddressBook,
   ArrowRight,
@@ -39,12 +39,9 @@ import {
   X,
 } from "@phosphor-icons/react";
 import { ApiClientError, api } from "./api.js";
-import { TestBillingControls } from "./TestBillingControls.jsx";
-import { ProductionBillingControls } from "./ProductionBillingControls.jsx";
 import { getTrustedContactEvidence } from "./contactEvidence.js";
 import { StartHerePanel } from "./StartHerePanel.jsx";
 import { AccountDataPanel } from "./AccountDataPanel.jsx";
-import { SurfaceIcon } from "./SurfaceMotion.jsx";
 import { AccountDeletionStatus } from "./AccountDeletionStatus.jsx";
 import { ContactEditorPanel } from "./ContactEditorPanel.jsx";
 import { useConfirmation } from "./ConfirmationDialog.jsx";
@@ -61,8 +58,6 @@ import { requestedMatterCategory } from "./publicIntent.js";
 import { FirstUseGuide, FirstUseStarter } from "./FirstUsePanel.jsx";
 import { firstUseStates, normalizeFirstUse, shouldShowFirstUsePanel } from "./firstUse.js";
 import {
-  commercialFeatureLabel,
-  commercialPlanLabel,
   unavailableCommercialStatus,
 } from "./commercialAccess.js";
 import {
@@ -78,7 +73,6 @@ import {
 
 const navigation = [
   { id: "overview", icon: House },
-  { id: "plan", icon: ClipboardText },
   { id: "matters", icon: AddressBook },
   { id: "contacts", icon: UserCircle },
   { id: "shared", icon: UserCircle },
@@ -98,7 +92,6 @@ const mobileNavigationIcons = {
 
 const mobileMoreDestinationIcons = {
   access: CreditCard,
-  plan: ClipboardText,
   contacts: UserCircle,
   shared: UserCircle,
   maintenance: ClipboardText,
@@ -146,53 +139,6 @@ function MatterIcon({ matter }) {
 
 function SectionLabel({ children }) {
   return <p className="section-label">{children}</p>;
-}
-
-function ProgressSummary({ count, total = 5 }) {
-  const { t, formatNumber } = useI18n();
-  return (
-    <section className="progress-section" aria-labelledby="progress-heading">
-      <SectionLabel>{t("workspace.progress.label")}</SectionLabel>
-      <h2 id="progress-heading">{t("workspace.progress.count", { count: formatNumber(count), total: formatNumber(total) })}</h2>
-      <div className="progress-track" aria-label={t("workspace.progress.completed", { count: formatNumber(count), total: formatNumber(total) })} role="img">
-        {Array.from({ length: total }, (_, segment) => (
-          <span key={segment} className={segment < count ? "is-complete" : ""} />
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function CommercialFeatureList({ features, planned = false }) {
-  const { t } = useI18n();
-  return <ul className={`commercial-feature-list${planned ? " is-planned" : ""}`}>{features.map((feature) => <li key={feature}>{!planned && <CheckCircle size={18} weight="fill" aria-hidden="true" />}<span>{commercialFeatureLabel(feature, t)}</span></li>)}</ul>;
-}
-
-function PlanAccessPreview({ commerce, onAccessChanged, returnedFromCheckout }) {
-  const { t, formatMoney } = useI18n();
-  if (!commerce.available) return <section className="current-access-card"><CreditCard size={36} aria-hidden="true" /><h2>{t("workspace.access.unavailable")}</h2><p>{t("workspace.access.coreAvailable")}</p></section>;
-  const annualOffer = commerce.offers.find(({ billingInterval }) => billingInterval === "annual");
-  return <div className="plan-access-preview">
-    <section className="current-access-card" aria-labelledby="current-access-title">
-      <div><SurfaceIcon icon={CreditCard} emblem /></div><div><SectionLabel>{t("workspace.access.current")}</SectionLabel><h2 id="current-access-title">{commercialPlanLabel(commerce, t)}</h2></div>
-      <details className="task-details"><summary>{t("workspace.access.freeIncluded")}</summary><CommercialFeatureList features={commerce.freeFeatures} /></details>
-    </section>
-    {commerce.validationOnly && <TestBillingControls commerce={commerce} onAccessChanged={onAccessChanged} />}
-    {!commerce.validationOnly && <ProductionBillingControls commerce={commerce} onAccessChanged={onAccessChanged} returnedFromCheckout={returnedFromCheckout} />}
-    <details className="task-details access-future plan-disclosure"><summary><SurfaceIcon icon={AddressBook}/><span>{commerce.billingOpen || commerce.currentAccess?.planCode === "family" ? t("workspace.access.familyIncluded") : t("workspace.access.familyFuture")}</span><CaretRight size={17} className="disclosure-chevron" aria-hidden="true"/></summary>
-      {annualOffer && !commerce.billingOpen && commerce.currentAccess?.planCode !== "family" && <p className="access-plan-price"><strong>{formatOffer(annualOffer, t, formatMoney)}</strong></p>}
-      <CommercialFeatureList features={commerce.familyFeatures} planned />
-      {commerce.futureFeatures?.length > 0 && <details className="task-details"><summary>{t("workspace.access.roadmap")}</summary><CommercialFeatureList features={commerce.futureFeatures} planned /></details>}
-      {!commerce.billingOpen && <p>{t("workspace.access.newClosed")}</p>}
-    </details>
-    <details className="task-details plan-disclosure"><summary><SurfaceIcon icon={Shield}/><span>{t("workspace.access.afterFamily")}</span><CaretRight size={17} className="disclosure-chevron" aria-hidden="true"/></summary><p>{t("workspace.access.afterFamilyDetails")}</p><p>{t("workspace.access.disclosureBoundary")}</p></details>
-  </div>;
-}
-
-function formatOffer(offer, t, formatMoney) {
-  return t(offer.billingInterval === "annual" ? "workspace.price.annual" : "workspace.price.monthly", {
-    price: formatMoney(offer.amountMinor, offer.currencyCode, offer.minorUnitExponent),
-  });
 }
 
 function MatterRow({ matter, onOpen }) {
@@ -411,8 +357,6 @@ export function App() {
     if (session && plan) document.title = `${t(`workspace.nav.${activeNav}`)} · Rillora`;
   }, [session, plan, activeNav, t]);
 
-  const progress = useMemo(() => planProgress(matters), [matters]);
-  const { completed } = progress;
   const currentMatter = drawer?.type === "matter" ? matters.find((matter) => matter.id === drawer.id) : null;
   const currentProviderGuide = drawer?.type === "provider-guide"
     ? getOfficialProviderGuide(drawer.providerKey)
@@ -640,13 +584,6 @@ export function App() {
     }
   }
 
-  function openNextMatter() {
-    const { action } = progress;
-    if (action.kind === "review") openMatter(action.matter, true);
-    else if (action.kind === "add") openNewMatter();
-    else setActiveNav("matters");
-  }
-
   async function archiveCurrentMatter() {
     if (busy || drawer?.type !== "matter" || !currentMatter) return;
     const archiveMessageKey = matterDraftChanged(drawer) ? "workspace.matter.archiveUnsavedMessage" : "workspace.matter.archiveMessage";
@@ -807,23 +744,6 @@ export function App() {
           {(matterQuery || matterFilter !== "all") && <button type="button" className="text-button" onClick={() => { setMatterQuery(""); setMatterFilter("all"); }}>{t("workspace.matters.clear")}</button>}
         </>}
 
-        {activeNav === "plan" && <div className="plan-card">
-          <ProgressSummary count={completed} total={progress.total} />
-          <button className="primary-button" onClick={openNextMatter}>
-            {progress.action.kind === "review"
-              ? t("workspace.plan.reviewMatter", { name: progress.action.matter.label })
-              : t(progress.action.kind === "view" ? "workspace.plan.viewMap"
-                : matters.length ? "workspace.plan.addAnother" : "workspace.plan.firstMatter")}
-            <ArrowRight size={20} />
-          </button>
-          <details className="task-details"><summary>{t("workspace.plan.progressDetails")}</summary>
-            <p>{t("workspace.plan.goalExplanation")}</p>
-            <ul>{matters.map(matter => <li key={matter.id}>
-              <button className="text-button" onClick={() => openMatter(matter, true)}>{matter.label} · {matterStatusLabel(matter, t)}</button>
-            </li>)}</ul>
-          </details>
-          <button className="secondary-button" onClick={() => setDrawer({ type: "start-here" })}>{t("workspace.plan.reviewStart")} <FileText size={20} /></button>
-        </div>}
         {activeNav === "contacts" && <PeoplePanel contacts={contacts} matterContext={matters.find(item => item.id === sharingMatterId)} onReturnToMatter={() => { if ((window.history.state?.rillora?.index ?? 0) > 0) window.history.back(); else { const item = matters.find(item => item.id === sharingMatterId); setActiveNav("matters"); if (item) openMatter(item); } }} apiClient={api} refreshVersion={sharingRefreshVersion} onAdd={() => setDrawer({ type: "contact" })} onEdit={(person) => setDrawer({ type: "contact", contactId: person.publicId })} onShare={(person) => setDrawer({ type: "contact-sharing", contactId: person.publicId })} onIncoming={() => setActiveNav("shared")} />}
         {activeNav === "shared" && <SharedWithMePanel apiClient={api} />}
         {activeNav === "maintenance" && <Suspense fallback={<p role="status">{t("workspace.reviews.loading")}</p>}><FamilyMaintenancePanel apiClient={api} onChanged={() => void loadWorkspace()} onManageSharing={() => setActiveNav("contacts")} onDirtyChange={setPanelHasChanges} onBusyChange={setPanelBusy} /></Suspense>}
@@ -850,7 +770,7 @@ export function App() {
         </div>}
         {activeNav === "settings" && <AccountIdentityPanel identity={accountIdentity} plannerPublicId={session.plannerPublicId}/>}
         {activeNav === "settings" && <AccountDataPanel apiClient={api} onChanged={() => void loadWorkspace()} onDeletionRequested={accountDeletionRequested}/>}
-        {activeNav === "settings" && <div className="plan-card settings-card"><button className="secondary-button" type="button" onClick={() => setActiveNav("access")}><CreditCard size={20} /> {t("workspace.settings.reviewAccess")}</button>{session?.authenticationMode === "session" && <><button className="secondary-button settings-sign-out" disabled={busy} onClick={() => void signOut()}><SignOut size={20} /> {busy ? t("workspace.settings.signingOut") : t("workspace.settings.signOut")}</button><button className="secondary-button settings-sign-out" disabled={busy} onClick={() => void signOutAllDevices()}><SignOut size={20} /> {t("workspace.settings.signOutAll")}</button><p className="drawer-intro">{t("workspace.settings.sessionScope")}</p></>}</div>}
+        {activeNav === "settings" && <div className="plan-card settings-card"><button className="secondary-button" type="button" onClick={() => setActiveNav("access")}><CreditCard size={20} /> {t("workspace.settings.reviewAccess")}</button><button className="secondary-button" type="button" onClick={() => setDrawer({ type: "start-here" })}><FileText size={20} /> {t("workspace.plan.reviewStart")}</button>{session?.authenticationMode === "session" && <><button className="secondary-button settings-sign-out" disabled={busy} onClick={() => void signOut()}><SignOut size={20} /> {busy ? t("workspace.settings.signingOut") : t("workspace.settings.signOut")}</button><button className="secondary-button settings-sign-out" disabled={busy} onClick={() => void signOutAllDevices()}><SignOut size={20} /> {t("workspace.settings.signOutAll")}</button><p className="drawer-intro">{t("workspace.settings.sessionScope")}</p></>}</div>}
         {activeNav === "more" && <InviteAction onInvite={() => setDrawer({ type: "contact" })} />}
         {activeNav === "more" && <nav className="mobile-more-menu" aria-label={t("workspace.nav.moreDestinations")}>{mobileMoreDestinations.map(({ id, icon: Icon }) => <button type="button" key={id} onClick={() => setActiveNav(id)}><Icon size={22} aria-hidden="true" /><span><strong>{t(`workspace.nav.${id}`)}</strong><small>{t(`workspace.navDetail.${id}`)}</small></span><CaretRight size={18} aria-hidden="true" /></button>)}</nav>}
       </section>
@@ -901,7 +821,7 @@ export function App() {
       </aside>
 
       <main className="main-content" tabIndex={-1}>
-        <div className="workspace-chrome"><AccountSummary identity={accountIdentity} plannerPublicId={session.plannerPublicId} onOpen={() => setActiveNav("settings")} />{session?.authenticationMode === "development" && <p className="development-notice">{t("workspace.workspace.testData")}</p>}<LanguageControl /><AppAppearanceControl /></div>
+        <div className={`workspace-chrome${activeNav === "settings" ? " is-settings" : ""}`}><AccountSummary identity={accountIdentity} plannerPublicId={session.plannerPublicId} onOpen={() => setActiveNav("settings")} />{session?.authenticationMode === "development" && <p className="development-notice">{t("workspace.workspace.testData")}</p>}{activeNav !== "settings" && <LanguageControl />}<AppAppearanceControl /></div>
         {recoverableDraft && !drawer && <section className="draft-recovery" aria-label={t("workspace.draft.label")}>
           <div><strong>{t("workspace.draft.continue")}</strong><p>{recoverableDraft.title || t("workspace.matter.new")}</p></div>
           <button className="secondary-button" onClick={() => void resumeDraft()}>{t("workspace.draft.resume")}</button>

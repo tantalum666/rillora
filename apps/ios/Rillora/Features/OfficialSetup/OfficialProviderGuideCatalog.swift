@@ -39,6 +39,23 @@ struct OfficialProviderGuide: Identifiable, Equatable, Decodable, Sendable {
     let links: [OfficialProviderLink]
     let lastReviewed: String
     let matterMatch: ProviderMatterMatch
+    let translations: ProviderGuideTranslations?
+
+    /// Locale overlays only change authored prose, never routing, source provenance,
+    /// matching, or provider state. Incomplete overlays fall back as one whole guide.
+    func localized(localeIdentifier: String = Bundle.main.preferredLocalizations.first ?? "en") -> Self {
+        let language = localeIdentifier.replacingOccurrences(of: "_", with: "-").lowercased()
+        guard (language == "zh" || language.hasPrefix("zh-")),
+              let translation = translations?.values["zh-Hans"], translation.isComplete(for: self) else { return self }
+        return Self(id: id, name: name, systemImage: systemImage, kind: kind, group: group,
+                    aliases: aliases, summary: translation.summary,
+                    prepareSteps: translation.prepareSteps, laterSteps: translation.laterSteps,
+                    usuallyRequested: translation.usuallyRequested, boundary: translation.boundary,
+                    links: zip(links, translation.links).map { source, text in
+                        OfficialProviderLink(title: text.title, detail: text.detail,
+                                             urlString: source.urlString, phase: source.phase)
+                    }, lastReviewed: lastReviewed, matterMatch: matterMatch, translations: nil)
+    }
 
     var supportsSelfReportedCheck: Bool { OfficialProviderGuideCatalog.selfReportedProviderKeys.contains(id) }
     var initialPart: String { kind == .estateRequest ? "later" : "now" }
@@ -50,6 +67,34 @@ struct OfficialProviderGuide: Identifiable, Equatable, Decodable, Sendable {
         let phase = part == "now" ? "prepare" : "afterDeath"
         let matching = links.filter { $0.phase == phase || $0.phase == "both" }
         return matching.isEmpty ? links : matching
+    }
+}
+
+/// Invalid optional translations must never make the reviewed English catalog unreadable.
+struct ProviderGuideTranslations: Equatable, Decodable, Sendable {
+    let values: [String: ProviderGuideTranslation]
+    init(from decoder: any Decoder) throws {
+        values = (try? decoder.singleValueContainer().decode([String: ProviderGuideTranslation].self)) ?? [:]
+    }
+}
+
+struct ProviderGuideTranslation: Equatable, Decodable, Sendable {
+    struct LinkText: Equatable, Decodable, Sendable { let title: String; let detail: String }
+    let summary: String
+    let prepareSteps: [String]
+    let laterSteps: [String]
+    let usuallyRequested: [String]
+    let boundary: String
+    let links: [LinkText]
+
+    func isComplete(for source: OfficialProviderGuide) -> Bool {
+        let texts = [summary, boundary] + prepareSteps + laterSteps + usuallyRequested
+            + links.flatMap { [$0.title, $0.detail] }
+        return prepareSteps.count == source.prepareSteps.count
+            && laterSteps.count == source.laterSteps.count
+            && usuallyRequested.count == source.usuallyRequested.count
+            && links.count == source.links.count
+            && texts.allSatisfy { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
     }
 }
 
@@ -133,3 +178,4 @@ enum OfficialProviderGuideCatalog {
         return text.range(of: pattern, options: .regularExpression) != nil
     }
 }
+
