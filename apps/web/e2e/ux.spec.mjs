@@ -65,6 +65,7 @@ for (const locale of ['en', 'zh-CN']) for (const width of [390, 1440]) {
       const contentLanguage = locale === 'zh-CN' ? 'zh-Hans' : 'en';
       await expect(reader.locator('.guide-current-step')).toHaveAttribute('lang', contentLanguage);
       const firstStep = await reader.locator('.guide-current-step').innerText();
+      if (key === 'coinbase') await page.screenshot({ path: test.info().outputPath(`coinbase-body-${locale}-${width}.png`) });
       if (locale === 'zh-CN') expect(firstStep).toMatch(/\p{Script=Han}/u);
       await expect(reader).not.toContainText('Guide content is in English');
       for (const tab of await reader.locator('.panel-tabs button').all()) {
@@ -130,6 +131,8 @@ test('failed logos retain distinct local fallbacks without remote icon services'
   const state = await isolate(context, { expectedImageFailure: true }), page = await context.newPage();
   await context.route(/\/(?:github-invertocat-white|x-logo-white|instagram-glyph-white|facebook-primary|dropbox-glyph|coinbase-logo-white)[^/]*\.(?:svg|png)/, route => route.abort());
   await page.goto(APP + '/?view=guides');
+  // Wait for the asynchronously restored workspace, not just the HTML navigation.
+  await expect(page.locator('.guide-row')).toHaveCount(18);
   // Small SVGs may be inlined by Vite: dispatching the native error event covers
   // that same React failure path without adding a runtime asset override.
   await page.locator('.provider-mark img').evaluateAll(images => images.forEach(image => image.dispatchEvent(new Event('error'))));
