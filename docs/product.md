@@ -9,6 +9,10 @@ Last updated: 2026-10-09 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
 
+## 2026-10-09 Owner要求直装、付款复核与完整单一语言
+
+当前继续[付款与双语专项](payment-recheck-20261009.md)：集中直装原iPhone，重新核对Web/iOS购买退款及权益；中文和英文各自完整，去掉并排翻译、中文参考及英文优先提示。后者取代旧的英文同意/中文参考展示约束；保留历史法律接受与收据、真实数据、价格和FanPass。Stripe TEST/Apple Sandbox，暂停零碎TestFlight。
+
 ## 2026-10-09 Owner要求直接继续Stripe Live配置
 
 Owner明确商业登记可按实际开业期限办理，要求直接配置。已核对IRD规则，取消把BR先办妥作为全部技术配置的先决条件，继续复用已批准的Rillora Live资料/密钥。[当前Live配置合同](live-configuration-20261009.md)取代刚才等待经营资料才开始任何配置的下一步。现已接通商品/目录、门户、受限密钥及API17真实Live通知；未知税务保持显式未配置，实际客户开放/交易结果分别验证。

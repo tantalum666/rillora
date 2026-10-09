@@ -181,7 +181,7 @@ export class StripeProductionAdapter {
     const price=[this.currentPrice,...this.config.historicalPrices].find(p=>p.priceCode===snapshot.priceCode);
     if(!price)throw new Error('Recovery price binding is unavailable');
     if(!['active','cancel_at_period_end','grace'].includes(snapshot.state))return {snapshot,
-      financial:{override:null,resolvedDispute:false,chargeReference:null},price,product:this.config.familyProductId};
+      financial:{override:null,resolvedRefund:false,resolvedDispute:false,chargeReference:null},price,product:this.config.familyProductId};
     if(!snapshot.providerInvoiceReference)throw new Error('Recovery requires current invoice evidence');
     const financial=await readStripeRecoveryFinancialState(this.sdk,snapshot.providerInvoiceReference,input.expectedStripeCustomerReference,true);
     const current=await this.retrieveAuthoritativeSubscription(input);

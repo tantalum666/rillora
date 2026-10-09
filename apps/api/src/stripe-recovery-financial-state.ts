@@ -42,5 +42,6 @@ export async function readStripeRecoveryFinancialState(sdk:StripeSdkPort,invoice
  const blocked=disputes.data.some(d=>!['won','prevented','warning_closed'].includes(d.status));
  const fullyRefunded=refunded===charge.amount;
  return {override:fullyRefunded?'refunded' as const:blocked?'revoked' as const:null,
+  resolvedRefund:!fullyRefunded&&refunds.data.some(r=>r.status==='failed'||r.status==='canceled'),
   resolvedDispute:disputes.data.length>0&&!blocked,chargeReference:charge.id};
 }

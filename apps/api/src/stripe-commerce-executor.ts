@@ -380,8 +380,8 @@ export class StripeCommerceExecutor {
   async loadProductionStatus(plannerId: string): Promise<unknown> {
     if (this.providerEnvironment !== "production") throw new Error("Production billing status requires a production executor");
     return withCommercePlannerDatabase(this.pool, plannerId, async client => {
-      const subscription = await client.query<{ state: string; current_period_ends_at: Date | null; cancel_at_period_end: boolean }>(
-        `select state,current_period_ends_at,cancel_at_period_end from app.commerce_subscriptions
+      const subscription = await client.query<{ state: string; current_period_ends_at: Date | null; cancel_at_period_end: boolean; renewal_is_possible: boolean | null }>(
+        `select state,current_period_ends_at,cancel_at_period_end,renewal_is_possible from app.commerce_subscriptions
          where planner_id=app.current_planner_id() and renewal_provider='stripe' and provider_environment='production'
          order by created_at desc,id desc limit 1`);
       const flags = await client.query<{ can_manage: boolean; checkout_pending: boolean }>(`select
@@ -393,7 +393,7 @@ export class StripeCommerceExecutor {
       return { contractVersion: 'commerce-stripe-production-v1', testOnly: false,
         canManage: flags.rows[0]?.can_manage === true, checkoutPending: flags.rows[0]?.checkout_pending === true,
         subscription: row ? { state: row.state, currentPeriodEndsAt: row.current_period_ends_at?.toISOString() ?? null,
-          cancelAtPeriodEnd: row.cancel_at_period_end } : null };
+          cancelAtPeriodEnd: row.cancel_at_period_end, renewalIsPossible: row.renewal_is_possible } : null };
     });
   }
 
@@ -412,8 +412,9 @@ export class StripeCommerceExecutor {
           state: string;
           current_period_ends_at: Date | null;
           cancel_at_period_end: boolean;
+          renewal_is_possible: boolean | null;
         }>(
-          `select public_id, state, current_period_ends_at, cancel_at_period_end
+          `select public_id, state, current_period_ends_at, cancel_at_period_end, renewal_is_possible
            from app.commerce_subscriptions
            where planner_id = app.current_planner_id()
              and renewal_provider = 'stripe'
@@ -461,6 +462,7 @@ export class StripeCommerceExecutor {
           state: row.state,
           currentPeriodEndsAt: row.current_period_ends_at?.toISOString() ?? null,
           cancelAtPeriodEnd: row.cancel_at_period_end,
+          renewalIsPossible: row.renewal_is_possible,
         })),
         events: events.rows.map((row) => ({
           publicId: row.public_id,
@@ -970,7 +972,11 @@ async function applyAuthoritativeSnapshot(
   if (prior?.provider_invoice_reference === snapshot.providerInvoiceReference && prior?.financial_state_override) {
     const disputeResolved = prior.financial_state_override === "revoked" && matchingAdjustment
       && signal.signalType === "dispute_changed" && financialResolution?.authoritativeStateOverride === null;
-    if (!disputeResolved) financialOverride = prior.financial_state_override === "refunded" ? "refunded" : financialOverride ?? prior.financial_state_override;
+    const refundReversed = prior.financial_state_override === "refunded" && matchingAdjustment
+      && signal.signalType === "refund_changed" && financialResolution?.refundReversed === true;
+    if (!disputeResolved && !refundReversed) {
+      financialOverride = prior.financial_state_override === "refunded" ? "refunded" : financialOverride ?? prior.financial_state_override;
+    }
   }
   if (financialOverride) snapshot = Object.freeze({ ...snapshot, state: financialOverride, cancelAtPeriodEnd: false });
   const subscriptionId = await recordSubscriptionObservation(client, context, signal, snapshot,

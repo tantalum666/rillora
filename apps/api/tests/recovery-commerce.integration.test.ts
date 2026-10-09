@@ -81,6 +81,20 @@ describe.sequential('Current provider reconciliation in an isolated restored dat
   await expect(reconcileRecoveryCommerce(pool,[{...event,facts:{}}],generation,async()=>observation())).rejects.toThrow();
   await expect(reconcileRecoveryCommerce(pool,[{...event,facts:{...event.facts,manualAccess:true}}],generation,async()=>observation())).rejects.toThrow();
  });
+ it.each([false,true])('clears a restored refund override only with verified refund reversal: %s',async resolved=>{
+  await withCommercePlannerDatabase(pool,owner,async c=>{
+   await c.query("select set_config('app.recovery_replay','true',true)");
+   await c.query("update app.commerce_subscriptions set state='refunded',financial_state_override='refunded' where id=$1",[subscription]);
+   await c.query('select app.apply_verified_subscription_entitlements($1)',[subscription]);
+  });
+  const current=await observation('active');
+  expect(await reconcileRecoveryCommerce(pool,[event],generation,async()=>({...current,refundResolved:resolved})))
+   .toMatchObject({reconciledOwners:1,providerReads:1,customerTrafficEnabled:false});
+  const final=(await pool.query('select state,financial_state_override from app.commerce_subscriptions where id=$1',[subscription])).rows[0];
+  expect(final).toMatchObject(resolved?{state:'active',financial_state_override:null}:{state:'refunded',financial_state_override:'refunded'});
+  const grants=(await pool.query('select count(*)::int n from app.commerce_entitlement_grants where revoked_at is null')).rows[0].n;
+  expect(grants).toBe(resolved?2:0);
+ });
  it('restores a provider-owned subscription absent from the old snapshot while keeping the same existing owner and customer binding',async()=>{
   const c=await pool.connect();try{await c.query('begin');await c.query("select set_config('app.recovery_replay','true',true)");
    await c.query('delete from app.commerce_accounts where public_id=$1',[account]);await c.query('commit');}finally{c.release();}

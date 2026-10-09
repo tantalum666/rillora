@@ -80,7 +80,7 @@ async function commitObservation(client:PoolClient,context:{commerceAccountId:st
   where planner_id=app.current_planner_id() and renewal_provider=$1 and provider_environment=$2 and provider_subscription_reference=$3`,
   [s.provider,s.providerEnvironment,s.providerSubscriptionReference])).rows[0];
  if(s.provider==='stripe'&&prior?.provider_invoice_reference===s.providerInvoiceReference){
-  if(prior.financial_state_override==='refunded')override='refunded';
+  if(prior.financial_state_override==='refunded'&&observation.refundResolved!==true)override='refunded';
   if(prior.financial_state_override==='revoked'&&!observation.disputeResolved)override??='revoked';
   if(override)s={...s,state:override,cancelAtPeriodEnd:false};
  }

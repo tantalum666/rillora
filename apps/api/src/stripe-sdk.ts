@@ -51,6 +51,8 @@ export type StripeFinancialSignalResolution = Readonly<{
   providerTransactionReference: string;
   providerRefundReference: string | null;
   authoritativeStateOverride: "refunded" | "revoked" | null;
+  /** Complete current-invoice evidence confirms an earlier refund no longer settled. */
+  refundReversed?: boolean;
 }>;
 
 export function createStripeSdkPort(apiKey: string, environment: "test" | "production"): StripeSdkPort {

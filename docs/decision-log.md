@@ -3355,3 +3355,19 @@ local correction/tests and actual restoration remain separate evidence.
 - Decision: withdraw the earlier Agent-created prelaunch real-money purchase/refund prerequisite. Reuse completed Sandbox lifecycle evidence and verify actual Live configuration, signatures and access boundaries. Observe legitimate customer payments/refunds when they occur; do not create merchant self-payments or artificial transactions for testing.
 - Does not imply: production checkout/tax readiness is complete, any Live money has moved, refunds are automatic/free, or Owner has instructed a charge/refund now.
 - Implementation impact: documentation/register/handoff only; no source, credentials, provider state, prices or real data changed.
+
+
+## 2026-10-09 — Owner requests consolidated phone delivery and another payment review
+
+- Status: LOCKED within current launch work.
+- Owner explicitly requests installing the fixed version on the original phone and rechecking Web/iOS purchase/refund flows because money handling matters.
+- This authorizes a fresh scoped review/test cycle; prior evidence remains dated and is not relabelled as new. Use Stripe TEST/Apple Sandbox, no artificial real-card Live charges.
+- Agent operational choice: renew only the existing three review identities and original Sandbox qualification to2026-10-11T14:00Z, preserving genuine consent and ordinary customer closure. Direct1.0(12) is a new development artifact; no incremental TestFlight.
+
+## 2026-10-09 — Owner requires complete selected-language presentation
+
+- Status: LOCKED for Web/iOS and their payment/consent/legal presentation.
+- Decision: selected Chinese displays Chinese; selected English displays English. Remove bilingual duplicate explanations, Chinese-reference wording and English-prevails presentation, including English-labelled legal links. Keep proper service names and user/provider-supplied original data where translation would alter identity or evidence.
+- Supersedes: earlier English-only consent with Chinese reference and language-boundary disclaimers for these controlled surfaces.
+- Does not imply: changing prices, bank details, jurisdiction facts or previously accepted receipts. Any actual document/consent version change must preserve historical evidence and be implemented consistently rather than silently changing a stored acceptance.
+- Evidence: Owner's current explicit instruction; implementation/validation recorded in the current payment recheck contract.

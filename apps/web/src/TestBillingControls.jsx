@@ -1,7 +1,7 @@
 import { useI18n } from "./i18n/I18nProvider.jsx";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { api } from "./api.js";
-import { billingStateLabel, testBillingDestination } from "./commercialAccess.js";
+import { billingStateLabel, testBillingDestination, subscriptionPreventsNewCheckout } from "./commercialAccess.js";
 
 // Visible only to explicitly enrolled, expiring test accounts. Ordinary purchase
 // routing remains closed; a provider return URL never changes access locally.
@@ -14,6 +14,7 @@ export function TestBillingControls({ commerce, onAccessChanged }) {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const requestVersion = useRef(0);
+  const locked = useRef(false);
   const checkoutKey = useRef(crypto.randomUUID());
   const refresh = useCallback(async () => {
     const version = ++requestVersion.current;
@@ -33,13 +34,14 @@ export function TestBillingControls({ commerce, onAccessChanged }) {
   }, [commerce.serviceMarketCode, onAccessChanged]);
   useEffect(() => { void refresh(); return () => { ++requestVersion.current; }; }, [refresh]);
   const run = async (operation) => {
-    if (busy) return;
+    if (locked.current) return;
+    locked.current = true;
     setBusy(true); setError(""); setMessage("");
     try { await operation(); } catch (failure) { setError(failure); }
-    finally { setBusy(false); }
+    finally { locked.current = false; setBusy(false); }
   };
   const pending = status?.orders.some(order => ["created", "pending"].includes(order.status));
-  const subscribed = status?.subscriptions.some(subscription => ["active", "cancel_at_period_end", "grace", "past_due", "refunded", "revoked"].includes(subscription.state));
+  const subscribed = status?.subscriptions.some(subscriptionPreventsNewCheckout);
   const subscription = status?.subscriptions[0];
   const offer = commerce.offers.find(item => item.billingInterval === period);
   return <details className="task-details test-billing-controls" open>

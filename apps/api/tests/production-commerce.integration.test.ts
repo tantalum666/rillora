@@ -41,6 +41,7 @@ let invoiceReference = 'in_local_fixture', refundInvoiceReference = 'in_local_fi
 const currentState: { value: 'active' | 'cancel_at_period_end' | 'expired_read_only'; mayRenew: boolean | null } = { value: 'active', mayRenew: null };
 const checkoutCall = vi.fn<StripeCommerceProvider['createHostedSubscriptionCheckout']>(async input => {
   captured = input; return { sessionId: 'cs_live_local_fixture', url: 'https://checkout.stripe.com/c/pay/cs_live_local_fixture', expiresAt: null };
+
 });
 const readyCall = vi.fn(async () => {});
 const provider: StripeCommerceProvider = {
@@ -227,6 +228,9 @@ describe('production commerce ledger with a synthetic provider only', () => {
     await postCheckout(consent,'production-after-fully-ended-006').expect(201);
     expect((await pool.query("select state,renewal_is_possible,grace_ends_at from app.commerce_subscriptions where provider_subscription_reference='sub_local_fixture'")).rows[0])
       .toMatchObject({state:'expired_read_only',renewal_is_possible:false,grace_ends_at:null});
+    const status = await request(app).get('/api/v1/commerce/stripe/status')
+      .set('x-dev-planner-id', plannerPublicId).expect(200);
+    expect(status.body.subscription).toMatchObject({ state: 'expired_read_only', renewalIsPossible: false });
   });
 
   it('owns subscription reads through commit and retries concurrent cancellation without resurrecting access', async () => {
@@ -307,6 +311,65 @@ describe('production commerce ledger with a synthetic provider only', () => {
     const calls = retrieveDispute.mock.calls.length;
     await expect(receive('evt_dispute_won')).resolves.toMatchObject({ status: 'duplicate' });
     expect(retrieveDispute).toHaveBeenCalledTimes(calls);
+  });
+
+  it('restores the paid period when a previously succeeded current-invoice refund later fails', async () => {
+    // Stripe's asynchronous refund-failure test card first reports succeeded,
+    // then refund.failed. The money is still paid when the refund is reversed.
+    currentState.value = 'active'; currentState.mayRenew = true;
+    invoiceReference = 'in_async_refund_failure';
+    await executor.acceptWebhook(Buffer.from(JSON.stringify({ id: 'evt_before_async_refund' })), 'fixture');
+    let refundStatus: NonNullable<Stripe.Refund['status']> = 'succeeded';
+    const sdk = {
+      retrieveRefund: async () => ({ id: 're_async_fixture', charge: 'ch_async_fixture',
+        payment_intent: 'pi_async_fixture', amount: 8899, currency: 'usd', status: refundStatus }),
+      retrieveCharge: async () => ({ id: 'ch_async_fixture', livemode: true,
+        customer: 'cus_local_fixture', payment_intent: 'pi_async_fixture', amount: 8899,
+        paid: true, captured: true, status: 'succeeded', currency: 'usd', disputed: false,
+        amount_refunded: refundStatus === 'succeeded' ? 8899 : 0,
+        refunded: refundStatus === 'succeeded' }),
+      listInvoicePaymentsByInvoice: async () => ({ has_more: false, data: [{
+        livemode: true, invoice: invoiceReference, status: 'paid', amount_paid: 8899, currency: 'usd',
+        payment: { type: 'charge', charge: 'ch_async_fixture' },
+      }] }),
+      listRefundsByCharge: async () => ({ has_more: false, data: [{ id: 're_async_fixture',
+        charge: 'ch_async_fixture', amount: 8899, currency: 'usd', status: refundStatus }] }),
+      listChargesByPaymentIntent: async () => { throw new Error('Direct Charge invoice does not require another lookup'); },
+      listDisputesByCharge: async () => ({ has_more: false, data: [] }),
+      listInvoicePaymentsByPaymentIntent: async () => ({ has_more: false,
+        data: [{ livemode: true, invoice: invoiceReference }] }),
+      retrieveInvoice: async () => ({ id: invoiceReference, livemode: true, customer: 'cus_local_fixture',
+        status: 'paid', amount_paid: 8899, currency: 'usd',
+        parent: { subscription_details: { subscription: 'sub_local_fixture' } } }),
+    } as unknown as StripeSdkPort;
+    const refundProvider: StripeCommerceProvider = {
+      ...provider,
+      verifyWebhook(body, signature) {
+        return { ...provider.verifyWebhook(body, signature),
+          sourceEventType: refundStatus === 'failed' ? 'refund.failed' : 'refund.created',
+          signalType: 'refund_changed', providerTransactionReference: null,
+          providerRefundReference: 're_async_fixture' };
+      },
+      resolveFinancialSignal: signal => resolveStripeFinancialSignal(sdk, signal, 'production'),
+    };
+    const refunds = new StripeCommerceExecutor(pool, productionExecutionConfig(billing), refundProvider);
+    const receive = (id: string) => refunds.acceptWebhook(Buffer.from(JSON.stringify({ id })), 'fixture');
+    const subscription = async () => (await pool.query(
+      "select state,financial_state_override from app.commerce_subscriptions where provider_subscription_reference='sub_local_fixture'"
+    )).rows[0];
+
+    await receive('evt_async_refund_initial_success');
+    expect(await subscription()).toMatchObject({ state: 'refunded', financial_state_override: 'refunded' });
+    expect((await pool.query('select count(*)::int as count from app.commerce_entitlement_grants where revoked_at is null')).rows[0].count).toBe(0);
+    await executor.acceptWebhook(Buffer.from(JSON.stringify({ id: 'evt_stale_paid_after_refund' })), 'fixture');
+    expect(await subscription()).toMatchObject({ state: 'refunded', financial_state_override: 'refunded' });
+
+    refundStatus = 'failed';
+    await receive('evt_async_refund_later_failed');
+    expect(await subscription()).toMatchObject({ state: 'active', financial_state_override: null });
+    expect((await pool.query('select count(*)::int as count from app.commerce_entitlement_grants where revoked_at is null')).rows[0].count).toBeGreaterThan(0);
+    await expect(receive('evt_async_refund_later_failed')).resolves.toMatchObject({ status: 'duplicate' });
+    expect(await subscription()).toMatchObject({ state: 'active', financial_state_override: null });
   });
 
 });

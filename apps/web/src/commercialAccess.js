@@ -182,3 +182,14 @@ export function billingStateLabel(state, t) {
   if (!t) return typeof state === "string" ? state.replaceAll("_", " ") : "Family subscription";
   return t(billingStates.has(state) ? `workspace.billing.state.${state}` : "workspace.billing.subscription");
 }
+
+// Refunded/revoked records are history, not proof that renewal has stopped.
+// A new checkout is offered only when the server has confirmed termination;
+// the purchase route still rechecks all providers before creating an order.
+export function subscriptionPreventsNewCheckout(subscription) {
+  if (!subscription) return false;
+  if (["expired_read_only", "refunded", "revoked"].includes(subscription.state)) {
+    return subscription.renewalIsPossible !== false;
+  }
+  return true;
+}

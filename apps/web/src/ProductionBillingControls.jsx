@@ -1,6 +1,6 @@
 import { useI18n } from "./i18n/I18nProvider.jsx";
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { billingStateLabel } from "./commercialAccess.js";
+import { billingStateLabel, subscriptionPreventsNewCheckout } from "./commercialAccess.js";
 import { api } from './api.js';
 import { publicRoutes } from './publicRoutes.js';
 import { productionBillingDestination, productionBillingStatus, purchaseProof, purchaseQuote, webAnnualOffer } from './productionBilling.js';
@@ -37,6 +37,7 @@ export function ProductionBillingControls({ commerce, onAccessChanged, returnedF
   if (!status && !error) return null;
   const sub = status?.subscription;
   const active = commerce.currentAccess?.planCode === 'family';
+  const subscriptionBlocksCheckout = subscriptionPreventsNewCheckout(sub);
   const annualAvailable = commerce.billingOpen && commerce.offers.some(offer => offer.priceCode === webAnnualOffer.priceCode && offer.purchasable);
   const annualPrice = t("workspace.price.annual", { price: formatMoney(webAnnualOffer.amountMinor, webAnnualOffer.currency, 2) });
   return <section className="task-details production-billing-controls" aria-label={t("workspace.billing.subscription")}>
@@ -44,13 +45,13 @@ export function ProductionBillingControls({ commerce, onAccessChanged, returnedF
     {sub?.currentPeriodEndsAt && <p>{t(sub.cancelAtPeriodEnd ? "workspace.billing.paidEnds" : active ? "workspace.billing.periodEnds" : "workspace.billing.periodEnded", { date: formatDate(sub.currentPeriodEndsAt) })}</p>}
     {returnedFromCheckout && status?.checkoutPending && !active && <p role="status">{t("workspace.billing.confirmationPending")}</p>}
     {error && <p role="alert">{errorMessage(error, "workspace.billing.errorOperation")}</p>}{message && <p role="status">{t(message)}</p>}
-    {!active && annualAvailable && !quote && <>{!embedded && <p className="access-plan-price"><strong>{annualPrice}</strong></p>}
+    {!active && !subscriptionBlocksCheckout && annualAvailable && !quote && <>{!embedded && <p className="access-plan-price"><strong>{annualPrice}</strong></p>}
       <button className="primary-button" disabled={busy || !status} onClick={() => run(async () => {
         const route = await apiClient.resolvePurchaseRoute({ clientSurface: 'web', serviceMarketCode: commerce.serviceMarketCode, intent: 'plan_access' });
         if (route.reason !== 'available' || route.purchaseRoute !== 'web_direct') throw new Error('A new subscription is not available. Refresh access or manage your existing subscription.');
         setQuote(purchaseQuote(await apiClient.getProductionPurchaseQuote())); setAccepted(false);
       })}>{status?.checkoutPending ? t("workspace.billing.continueCheckout") : t("workspace.billing.reviewAnnual")}</button></>}
-    {quote && !active && annualAvailable && <form onSubmit={event => { event.preventDefault(); void run(async () => {
+    {quote && !active && !subscriptionBlocksCheckout && annualAvailable && <form onSubmit={event => { event.preventDefault(); void run(async () => {
       const result = await apiClient.startProductionCheckout(purchaseProof(quote, accepted), checkoutKey.current);
       window.location.assign(productionBillingDestination(result, 'checkout'));
     }); }}>
