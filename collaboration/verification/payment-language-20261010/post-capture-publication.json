@@ -4,5 +4,11 @@
   "classification": "CDK content-addressed S3 ZIP object names, not credentials",
   "readableFilesAdjusted": 20,
   "change": "Omit only ZIP objectKey/S3Key hashes in readable mirrors; original bytes remain in immutable archive29",
-  "scannerRulesChanged": false
+  "scannerRulesChanged": false,
+  "lateMetadataFinding": {
+    "classification": "Public already-pushed server source commit SHA under ambiguous apiSource label",
+    "credential": false,
+    "correction": "Rename field serverRevision; retain same public commit reference",
+    "runnerError": "A multiline closeout shell continued past the assertion and pushed the metadata-only commit; corrected with fail-fast execution and repeat delta scan. No secret value was involved."
+  }
 }
