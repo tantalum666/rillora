@@ -68,9 +68,9 @@ const provider: StripeCommerceProvider = {
     providerInvoiceReference: invoiceReference, source: 'stripe_api' }),
 };
 let pool: DatabasePool, app: ReturnType<typeof createApp>, executor: StripeCommerceExecutor;
-const postCheckout = (proof: unknown = consent, key = 'production-fixture-idempotency-001') => request(app)
+const postCheckout = (proof: unknown = consent, key = 'production-fixture-idempotency-001', locale?: 'en' | 'zh-CN') => request(app)
   .post('/api/v1/commerce/stripe/checkout').set('x-dev-planner-id', plannerPublicId).set('idempotency-key', key)
-  .send({ billingPeriod: 'annual', purchaseConsent: proof });
+  .send({ billingPeriod: 'annual', purchaseConsent: proof, ...(locale ? { locale } : {}) });
 
 describe('production commerce ledger with a synthetic provider only', () => {
   beforeAll(async () => {
@@ -138,13 +138,15 @@ describe('production commerce ledger with a synthetic provider only', () => {
       select id,'stripe','production',$1,'active',$2,$3 from app.commerce_prices where price_code='family_usd_annual_v4'
       on conflict(provider_code,provider_environment,external_product_reference) do update set status='active'`,[billing.annualPriceId,billing.expectedAccountId,billing.familyProductId]);
     checkoutCall.mockImplementationOnce(async input => { captured = input; throw new Error('synthetic ambiguous provider transport failure'); });
-    await postCheckout().expect(500);
+    await postCheckout(consent, 'production-fixture-idempotency-001', 'zh-CN').expect(500);
     // A subscription event may learn the new Customer before the lost response
     // is retried. Preserve the first request's absence of a pre-existing Customer.
     await pool.query("insert into app.commerce_provider_customers(planner_id,commerce_account_id,provider_code,provider_environment,provider_customer_reference,status) select planner_id,id,'stripe','production','cus_local_fixture','active' from app.commerce_accounts where public_id=$1",[captured.commerceAccountReference]);
-    const result = await postCheckout().expect(201);
+    const result = await postCheckout(consent, 'production-fixture-idempotency-001', 'en').expect(201);
     expect(checkoutCall.mock.calls[0]![0]).toEqual(checkoutCall.mock.calls[1]![0]);
     expect(checkoutCall.mock.calls[1]![0].existingStripeCustomerReference).toBeUndefined();
+    expect(checkoutCall.mock.calls[1]![0].locale).toBe('zh-CN');
+    expect((await pool.query('select stripe_checkout_locale from app.commerce_payment_attempts')).rows[0].stripe_checkout_locale).toBe('zh-CN');
     expect(result.body.checkout.testOnly).toBe(false); expect(result.body.boundaries.callbackGrantsAccess).toBe(false);
     const retry = await postCheckout().expect(201); expect(retry.body.checkout.orderReference).toBe(result.body.checkout.orderReference);
     expect(checkoutCall).toHaveBeenCalledTimes(2);

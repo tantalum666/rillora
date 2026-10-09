@@ -228,15 +228,15 @@ export function createApiClient({
     getTestBillingStatus: () => request("/commerce/test/status"),
     getProductionBillingStatus: () => request("/commerce/stripe/status"),
     getProductionPurchaseQuote: () => request("/commerce/stripe/quote"),
-    startProductionCheckout: (purchaseConsent, idempotencyKey) => request("/commerce/stripe/checkout", {
-      method: "POST", headers: { "idempotency-key": idempotencyKey }, body: { billingPeriod: "annual", purchaseConsent },
+    startProductionCheckout: (purchaseConsent, idempotencyKey, locale) => request("/commerce/stripe/checkout", {
+      method: "POST", headers: { "idempotency-key": idempotencyKey }, body: { billingPeriod: "annual", purchaseConsent, ...(locale ? { locale } : {}) },
     }),
-    openProductionBillingPortal: () => request("/commerce/stripe/portal", { method: "POST", body: {} }),
+    openProductionBillingPortal: (locale) => request("/commerce/stripe/portal", { method: "POST", body: locale ? { locale } : {} }),
     cancelProductionCheckout: () => request("/commerce/stripe/checkout/cancel", { method: "POST", body: {} }),
-    startTestCheckout: (billingPeriod, idempotencyKey) => request("/commerce/test/checkout", {
-      method: "POST", headers: { "idempotency-key": idempotencyKey }, body: { billingPeriod },
+    startTestCheckout: (billingPeriod, idempotencyKey, locale) => request("/commerce/test/checkout", {
+      method: "POST", headers: { "idempotency-key": idempotencyKey }, body: { billingPeriod, ...(locale ? { locale } : {}) },
     }),
-    openTestBillingPortal: () => request("/commerce/test/portal", { method: "POST", body: {} }),
+    openTestBillingPortal: (locale) => request("/commerce/test/portal", { method: "POST", body: locale ? { locale } : {} }),
     cancelTestCheckout: () => request("/commerce/test/checkout/cancel", { method: "POST", body: {} }),
     updatePlan: (input) => request("/plan", {
       method: "PATCH",
@@ -300,12 +300,13 @@ export function createApiClient({
       method: "POST",
       body: recipientConnectionPublicId ? { recipientConnectionPublicId } : {},
     }),
-    createPrintableStartHere: (previewPublicId) => request("/exports/start-here/printable", {
+    createPrintableStartHere: (previewPublicId, locale) => request("/exports/start-here/printable", {
       method: "POST",
       body: {
         previewPublicId,
         acknowledgesPlaintext: true,
         acknowledgesNoRevocation: true,
+        ...(locale ? { locale } : {}),
       },
       responseKind: "printable-start-here",
     }),

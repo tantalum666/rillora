@@ -61,13 +61,13 @@ test("display locale never converts or changes the locked Web annual price and p
   assert.doesNotMatch(pricing, /CNY|exchangeRate|conversion/i);
 });
 
-test("legal references identify English originals while consent and licence bodies stay original", async () => {
-  for (const key of ["terms", "privacy", "subscriptions", "refunds", "acceptable", "cookies", "notice"]) assert.match(chinese(`public.legal.${key}`), /英文正式文本/);
+test("legal references follow the selected language while third-party licence originals remain intact", async () => {
+  for (const key of ["terms", "privacy", "subscriptions", "refunds", "acceptable", "cookies", "notice"]) assert.doesNotMatch(chinese(`public.legal.${key}`), /英文|参考/);
   const account = await source("PublicExperience.jsx");
-  assert.match(account, /<span lang="en">I agree to the <a href=\{publicRoutes\.terms\} target="_blank" rel="noreferrer">Terms<\/a>, acknowledge the <a href=\{publicRoutes\.privacy\} target="_blank" rel="noreferrer">Privacy Policy<\/a>, and consent to electronic records\.<\/span>/);
+  assert.match(account, /<RegistrationConsentText \/>/);
   assert.match(account, /useState\(false\)/);
   assert.match(account, /disabled=\{!hasAccepted \|\| Boolean\(workingIntent\)\}/);
-  assert.match(account, /locale === "zh-CN".*public\.account\.consentTranslation/);
+  assert.doesNotMatch(account, /consentTranslation/);
   const legal = await source("landing/LegalInformation.jsx");
   assert.match(legal, /className="lp-license-text" lang="en"/);
   assert.match(legal, /<p key=\{index\}>\{paragraph\}<\/p>/);

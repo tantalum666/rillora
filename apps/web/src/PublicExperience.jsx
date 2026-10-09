@@ -10,6 +10,7 @@ import {
 } from "@phosphor-icons/react";
 import { api } from "./api.js";
 import { LegalDocumentPage } from "./LegalDocumentPage.jsx";
+import { RegistrationConsentText } from "./LegalConsentText.jsx";
 import { SavedCopyReader } from "./SavedCopyReader.jsx";
 import "./interaction-refinement.css";
 import { LEGAL_CONTRACT } from "./legalContract.js";
@@ -118,7 +119,7 @@ export function PublicExperience({ sessionStatus, onRetry }) {
           onBack={() => navigate(publicRoutes.home)}
         />
       ) : ["privacy", "terms", "subscriptions", "refunds", "acceptableUse", "cookies", "legalNotice"].includes(view) ? (
-        <div lang="en"><LegalDocumentPage documentKey={view} onBack={() => navigate(publicRoutes.home)} /></div>
+        <LegalDocumentPage documentKey={view} onBack={() => navigate(publicRoutes.home)} />
       ) : null}
 
       {showCookieNotice && (
@@ -219,12 +220,10 @@ function AccountPage({ sessionStatus, onRetry, onBack }) {
                   <input
                     type="checkbox"
                     checked={hasAccepted}
-                    aria-describedby={locale === "zh-CN" ? "account-consent-translation" : undefined}
                     onChange={(event) => setHasAccepted(event.target.checked)}
                   />
-                  <span lang="en">I agree to the <a href={publicRoutes.terms} target="_blank" rel="noreferrer">Terms</a>, acknowledge the <a href={publicRoutes.privacy} target="_blank" rel="noreferrer">Privacy Policy</a>, and consent to electronic records.</span>
+                  <RegistrationConsentText />
                 </label>
-                {locale === "zh-CN" && <p id="account-consent-translation" className="account-consent-translation">{t("public.account.consentTranslation")}</p>}
               </div>
             </div>
             {errorMessage && <p className="account-status is-error" role="alert">{localizeError(errorMessage, "public.account.launchFailed")}</p>}

@@ -52,6 +52,8 @@ export default {
     if (!["GET", "HEAD"].includes(request.method)) return notFound();
     if (url.pathname === "/") {
       const location = new URL("/terms", url);
+      const language = url.searchParams.get("lang");
+      if (language === "en" || language === "zh-CN") location.searchParams.set("lang", language);
       return secured(Response.redirect(location, 308), "/");
     }
 

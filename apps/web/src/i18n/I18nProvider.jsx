@@ -13,10 +13,15 @@ const makeValue = (locale, catalogs, store, persistenceAvailable, localePreferen
     errorMessage: (error, fallbackKey) => errorMessage(error, t, fallbackKey),
   };
 };
-// Legal-only publication has no provider: it remains English, without reading storage.
+// Non-interactive renderers have a safe default; interactive surfaces provide their locale.
 const I18nContext = createContext(makeValue("en", defaultCatalogs, null, false));
 
-export function I18nProvider({ children, catalogs = defaultCatalogs, store = getBrowserLocaleStore(), locale: controlledLocale }) {
+export function I18nProvider(props) {
+  return <I18nStoreProvider {...props} store={props.store ?? getBrowserLocaleStore()} />;
+}
+
+/** Explicit stores let legal-only pages avoid importing any browser persistence path. */
+export function I18nStoreProvider({ children, catalogs = defaultCatalogs, store, locale: controlledLocale }) {
   const snapshot = useSyncExternalStore(store.subscribe, store.getSnapshot, store.getSnapshot);
   const locale = controlledLocale ?? snapshot.locale;
   const value = useMemo(() => makeValue(locale, catalogs, store, snapshot.persistenceAvailable, snapshot.preference), [locale, catalogs, store, snapshot.persistenceAvailable, snapshot.preference]);

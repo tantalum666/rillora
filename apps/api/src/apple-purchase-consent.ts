@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto';
 import { z } from 'zod';
 import { currentLegalContract } from './legal-contract.js';
 
-export const applePurchaseTerms = Object.freeze({ version: 'family-annual-apple-20260926-1',
+export const applePurchaseTerms = Object.freeze({ version: 'family-annual-apple-20261009-1',
   termsVersion: currentLegalContract.termsVersion, subscriptionTermsVersion: 'subscriptions-2026-08-27-1',
   refundPolicyVersion: 'refunds-2026-08-27-1', legalBundleSha256: currentLegalContract.bundleSha256,
 });

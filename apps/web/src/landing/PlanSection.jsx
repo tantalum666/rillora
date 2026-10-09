@@ -7,7 +7,7 @@ import catalog from "../../../../config/product-catalog.json" with { type: "json
 
 
 export function PlanSection() {
-  const { t, formatMoney } = useI18n();
+  const { t, locale, formatMoney } = useI18n();
   const annualPrice = formatMoney(catalog.annual.amountMinor, catalog.currency);
   return (
     <main id="lp-main" className="lp-page-content lp-pricing lp-container">
@@ -73,7 +73,7 @@ export function PlanSection() {
       <p className="lp-pricing-note">{t("public.price.note")}</p>
       <a
         className="lp-text-link"
-        href={`https://legal.rillora.xyz${publicRoutes.subscriptions}`}
+        href={`https://legal.rillora.xyz${publicRoutes.subscriptions}?lang=${locale}`}
       >{t("public.price.terms")}<ArrowRight size={20} aria-hidden="true" />
       </a>
     </main>

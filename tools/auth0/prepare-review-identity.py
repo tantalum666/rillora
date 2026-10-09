@@ -91,7 +91,9 @@ def main():
     original=api('get',f"actions/actions/{original['id']}")
     form=re.search(r'const FORM_ID = "(ap_[A-Za-z0-9]+)";',original.get('deployed_version',{}).get('code',''))
     if not form:raise RuntimeError('Cannot identify the already deployed legal Form')
-    code=(ROOT/'infra/auth0/hosted-consent/production-review-action.cjs').read_text().replace('__REVIEW_IDENTITY_DIGEST__',saved['identityDigest']).replace('__REVIEW_EXPIRES_AT__',saved['expiresAt']).replace('__RILLORA_FORM_ID__',form.group(1))
+    form_zh=re.search(r'const FORM_ZH_ID = \"(ap_[A-Za-z0-9]+)\";',original.get('deployed_version',{}).get('code',''))
+    if not form_zh:raise RuntimeError('Deploy the reviewed bilingual hosted forms first')
+    code=(ROOT/'infra/auth0/hosted-consent/production-review-action.cjs').read_text().replace('__REVIEW_IDENTITY_DIGEST__',saved['identityDigest']).replace('__REVIEW_EXPIRES_AT__',saved['expiresAt']).replace('__RILLORA_FORM_ID__',form.group(1)).replace('__RILLORA_FORM_ZH_ID__',form_zh.group(1))
     target=[a for a in actions['actions'] if a['name']==ACTION]
     if len(target)>1:raise RuntimeError('Ambiguous review Action')
     prior=bindings()

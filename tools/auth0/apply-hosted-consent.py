@@ -16,6 +16,7 @@ import time
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE = ROOT / "infra/auth0/hosted-consent"
 FORM_NAME = "Rillora account acknowledgement"
+FORM_ZH_NAME = "Rillora account acknowledgement — 简体中文"
 ACTION_NAME = "Rillora hosted legal acceptance"
 
 
@@ -79,6 +80,7 @@ def main():
     if not re.fullmatch(r"[A-Za-z0-9_-]{16,80}", client_id):
         raise RuntimeError("Use a built iOS Info.plist with resolved configuration.")
     desired_form = json.loads((SOURCE / "form.json").read_text())
+    desired_form_zh = json.loads((SOURCE / "form.zh-CN.json").read_text())
     template = (SOURCE / "post-login-action.cjs").read_text()
     test = subprocess.run(["node", "--test", str(SOURCE / "post-login-action.test.cjs")], capture_output=True, text=True)
     if test.returncode:
@@ -97,6 +99,7 @@ def main():
     if actions.get("total", len(action_items)) != len(action_items):
         raise RuntimeError("Action list was incomplete.")
     form = one_named(forms, FORM_NAME)
+    form_zh = one_named(forms, FORM_ZH_NAME)
     action = one_named(action_items, ACTION_NAME)
     original_bindings = bindings()
     form_before = api("get", f"forms/{form['id']}") if form else None
@@ -108,6 +111,7 @@ def main():
     save(args.output / "bindings-before.json", binding_summary(original_bindings))
     save(args.output / "plan.json", {
         "form": "update" if form else "create", "action": "update" if action else "create",
+        "chinese_form": "update" if form_zh else "create",
         "scope": "existing Rillora iOS client only", "preserve_binding_order": True,
         "creates_credentials": False, "persists_user_metadata": False,
     })
@@ -127,7 +131,21 @@ def main():
         raise RuntimeError("Form readback did not match; nothing was bound.")
     save(args.output / "form-after.json", {k: actual_form[k] for k in desired_form})
 
-    code = template.replace("__RILLORA_IOS_CLIENT_ID__", client_id).replace("__RILLORA_FORM_ID__", form_id)
+    if form_zh:
+        before_zh = api("get", f"forms/{form_zh['id']}")
+        save(args.output / "form-zh-before.json", {k: before_zh[k] for k in desired_form_zh if k in before_zh})
+        form_zh = api("patch", f"forms/{form_zh['id']}", desired_form_zh)
+    else:
+        form_zh = api("post", "forms", desired_form_zh)
+    form_zh_id = form_zh["id"]
+    if not re.fullmatch(r"ap_[A-Za-z0-9]+", form_zh_id):
+        raise RuntimeError("Unexpected Chinese form identifier; nothing was bound.")
+    actual_zh = api("get", f"forms/{form_zh_id}")
+    if not subset(desired_form_zh, actual_zh):
+        raise RuntimeError("Chinese form readback did not match; nothing was bound.")
+    save(args.output / "form-zh-after.json", {k: actual_zh[k] for k in desired_form_zh})
+
+    code = template.replace("__RILLORA_IOS_CLIENT_ID__", client_id).replace("__RILLORA_FORM_ID__", form_id).replace("__RILLORA_FORM_ZH_ID__", form_zh_id)
     desired_action = {"name": ACTION_NAME, "runtime": "node22", "supported_triggers": [{"id": "post-login", "version": "v3"}], "code": code}
     if action:
         save(args.output / "action-before.json", {k: action_before[k] for k in desired_action if k in action_before})
@@ -157,7 +175,7 @@ def main():
     if [x["action"]["id"] for x in final] != expected_ids:
         raise RuntimeError("Final binding order requires review.")
     save(args.output / "bindings-after.json", binding_summary(final))
-    save(args.output / "deployment.json", {"form_id": form_id, "action_id": action_id, "applied": True, "readback_matches": True, "live_user_flow_verified": False})
+    save(args.output / "deployment.json", {"form_id": form_id, "form_zh_id": form_zh_id, "action_id": action_id, "applied": True, "readback_matches": True, "live_user_flow_verified": False})
     print("Hosted-consent resources applied and read back. Live user-flow verification is still required.")
 
 

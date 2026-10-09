@@ -107,15 +107,15 @@ export function LandingHeader({ path = "/" }) {
 }
 
 export function LandingFooter() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   return (
     <footer className="lp-footer lp-container">
       <div className="lp-footer-row">
         <LandingBrand />
         <nav aria-label={t("public.nav.legalLabel")}>
           <a href={preserveTransientLocale("/support")}>{t("public.nav.support")}</a>
-          <a href="https://legal.rillora.xyz/privacy">{t("public.nav.privacy")}</a>
-          <a href="https://legal.rillora.xyz/terms">{t("public.nav.terms")}</a>
+          <a href={`https://legal.rillora.xyz/privacy?lang=${locale}`}>{t("public.nav.privacy")}</a>
+          <a href={`https://legal.rillora.xyz/terms?lang=${locale}`}>{t("public.nav.terms")}</a>
           <a href={preserveTransientLocale("/legal")}>{t("public.nav.legal")}</a>
         </nav>
       </div>

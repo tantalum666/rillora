@@ -36,6 +36,8 @@ targets:
     sources:
       - path: ../../config/provider-guides.json
         buildPhase: resources
+      - path: ../../config/disclosure-copy.json
+        buildPhase: resources
       - path: Rillora
       - path: StoreKit/Rillora.storekit
         buildPhase: resources

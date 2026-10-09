@@ -1,7 +1,7 @@
 # October9直装、付款专项复核与完整双语
 
-Status: IN PROGRESS — PHONE12 INSTALLED; REFUND FAILURE FIXED IN SOURCE, NOT YET DEPLOYED; LANGUAGE CLEANUP ADDED
-Last updated: 2026-10-09 (Asia/Hong_Kong)
+Status: IN PROGRESS — PHONE12 INSTALLED; FINANCIAL FIX DEPLOYED; COORDINATED LANGUAGE DELIVERY PENDING
+Last updated: 2026-10-10 (Asia/Hong_Kong)
 
 Owner要求先把修复版本直装原手机，再细查Web/iOS付款、退款等流程；随后要求中文/英文界面各自完整，移除中英并排、中文参考和英文优先提示。这取代旧的保留英文同意文案/仅给中文参考的展示决定；价格、真实数据、FanPass及暂停零碎TestFlight保持。
 
@@ -25,4 +25,16 @@ QA：output/qa/rillora-payment-recheck-20261009；原生包：output/release/ril
 
 原生英文目标下44通过/1既有StoreKitTest平台跳过。此前中文模拟器中的英文片段断言失败已保留，属于测试语言前提，不能写成17个付款逻辑故障；双语界面仍需本轮实际检查。Owner报告新手机包无需点击恢复已显示订阅；这不单独证明本轮Restore通过或新购发生，正在读回原订阅。
 
-上述修复尚未部署；后续CI、线上状态和真实TEST结果单独记录。完整双语/法律同意展示尚未实施。
+上述修复615bf1322已推送且GitHub CI108成功；Preview/production两次冻结模板更新均UPDATE_COMPLETE并与实际模板一致。运行任务健康、最新前端字节和新的真实TEST检查分别记录，不能由CloudFormation状态代替。
+
+## October10进行中的语言交付
+
+七份法律文件、60节的中英文渲染已核对相同结构；删除英文优先/中文参考展示，保持原真实经营资料、价格、历史收据。准备terms-2026-10-09-1、registration-clickwrap-2026-10-09-1及同一新bundle摘要；尚未发布前不能称为当前已接受条款。原Privacy实质政策版本保持。完整法律构建已通过八项检查，包含根路径语言保留。
+
+Web和原生将所选语言传给Auth0、法律链接、打印指引；共享预演词汇来自同一固定目录，不翻译私人输入。Stripe结账/门户传入en或zh，新94迁移将首次请求语言固定在付款尝试中，防止模糊重试因切换语言改变幂等载荷。历史NULL保持原请求。94尚未部署，必须先维护任务更新/执行并核验迁移，再发布API及客户端。
+
+API全套441项中439通过，新增TEST适配器的两项夹具缺少响应导致失败；补齐合成响应后该16项文件全部通过。此前433全套通过为更早源码检查点。Web189通过，法律7通过；已验证14法律页面/60节和两种同意句的SSR。不把源码渲染测试称为上线浏览器或真机结果。
+
+Auth0原会话可用；租户目前只启用en。中文同意表单、两条Action的按语言路由及错误文案已准备，保留三身份/期限/绑定。旧Universal Login外壳模板API实际402，控制台主题可编辑但未找到免费模板替换入口；这是套餐能力限制，不能伪装成登录过期，也不擅自升级或切换Classic。
+
+Owner手机12自动显示已订阅：实际服务器读取原storekit/sandbox订阅、HKD888/HKG及Oct9新的CLIENT_SIGNED_TRANSACTION；无本轮新订单。已有订阅自动同步属于预期结果，本次未要求再次购买，也未取得新的Restore点击或退款结果。

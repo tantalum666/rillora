@@ -39,7 +39,7 @@ struct AccountDeletionView: View {
             if let error { Section { Label(error, systemImage: "exclamationmark.circle").foregroundStyle(RilloraTheme.clay) } }
             Section {
                 Button(String(localized: "Delete account"), role: .destructive) { confirm = true }
-                    .disabled(busy || reference == nil || word != "DELETE" || !savedCopies || (needsBilling && !billing))
+                    .disabled(busy || reference == nil || word != String(localized: "DELETE") || !savedCopies || (needsBilling && !billing))
                     .accessibilityIdentifier("account-delete.submit")
                 if busy { ProgressView(String(localized: "Requesting deletion…")) }
             }

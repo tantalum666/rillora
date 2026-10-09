@@ -231,6 +231,7 @@ const fakeIdentityProvider: IdentityProvider = {
     const url = new URL("https://identity.example/authorize");
     url.searchParams.set("state", transaction.state);
     if (intent?.screenHint) url.searchParams.set("screen_hint", intent.screenHint);
+    if (intent?.uiLocales) url.searchParams.set("ui_locales", intent.uiLocales);
     return url;
   },
   async exchangeAuthorizationCode() {
@@ -322,6 +323,15 @@ describe.sequential("Continuity API", () => {
       .expect(200);
     expect(signedIn.body).toEqual({ authenticated: true });
   });
+
+  it.each([['/?lang=zh-CN', 'zh-CN'], ['/?lang=en&langHint=zh-CN', 'en'], ['/?langHint=zh-CN', 'zh-CN'], ['/?lang=untrusted', 'en']])(
+    "carries the selected language from %s to hosted authentication", async (returnTo, locale) => {
+      const login = await request(app).post('/auth/start').send({ intent: 'signin', returnTo, legalAcceptance }).expect(201);
+      const authorization = new URL(login.body.authorizationUrl);
+      expect(authorization.searchParams.get('ui_locales')).toBe(locale);
+      expect(authorization.searchParams.get('state')).toMatch(/^[A-Za-z0-9_-]{43,128}$/);
+    },
+  );
 
   it("exchanges an OIDC Code + PKCE transaction for an opaque local session", async () => {
     const agent = request.agent(app);
@@ -2374,6 +2384,23 @@ describe.sequential("Continuity API", () => {
     expect(printable.text).toContain("Provider recovery page");
     expect(printable.text).toContain("Rillora cannot revoke that copy");
     expect(printable.text).not.toContain(excludedAccountHint);
+
+    const chinese = await asDevelopmentPlanner(
+      request(app).post("/v1/exports/start-here/printable").send({
+        previewPublicId: preview.body.export.publicId,
+        acknowledgesPlaintext: true,
+        acknowledgesNoRevocation: true,
+        locale: "zh-CN",
+      }),
+    ).expect(201);
+    expect(chinese.text).toContain("Rillora");
+    expect(chinese.text).toContain("指引");
+    expect(chinese.text).toContain("无法撤回");
+    expect(chinese.text).toContain("Printable account One line only");
+    expect(chinese.text).toContain("Example Provider");
+    expect(chinese.text).not.toContain("Rillora cannot revoke that copy");
+    expect(chinese.text).not.toContain(excludedAccountHint);
+    expect(chinese.headers["x-rillora-server-copy-retained"]).toBe("false");
 
     const stored = await pool.query<{
       format: string;

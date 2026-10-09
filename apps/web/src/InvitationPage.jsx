@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Envelope, LinkSimple } from "@phosphor-icons/react";
 import { ConnectionVisual } from "./SharingMotion.jsx";
 import { LEGAL_CONTRACT } from "./legalContract.js";
+import { RegistrationConsentText } from "./LegalConsentText.jsx";
 import { invitationTokenFromUrl } from "./sharing.js";
 import "./sharing.css";
 
@@ -114,7 +115,7 @@ export function InvitationPage({ apiClient }) {
             : session ? <>
               <button className="primary-button" disabled={!acceptedLegal || busy} onClick={() => void signIn("signup")}>{t("forms.invitation.create")}<ArrowRight size={20} /></button>
               <button className="secondary-button" disabled={!acceptedLegal || busy} onClick={() => void signIn("signin")}>{t("forms.invitation.signIn")}</button>
-              <div className="account-consent"><label><input type="checkbox" checked={acceptedLegal} onChange={(event) => setAcceptedLegal(event.target.checked)} /><span lang="en">I agree to the <a href="https://legal.rillora.xyz/terms" target="_blank" rel="noreferrer">Terms</a>, acknowledge the <a href="https://legal.rillora.xyz/privacy" target="_blank" rel="noreferrer">Privacy Policy</a>, and consent to electronic records.</span></label>{locale === "zh-CN" && <p lang="zh-CN">{t("forms.invitation.consentReference")}</p>}</div>
+              <div className="account-consent"><label><input type="checkbox" checked={acceptedLegal} onChange={(event) => setAcceptedLegal(event.target.checked)} /><RegistrationConsentText external /></label></div>
             </>
               : <button className="secondary-button" onClick={() => void load()}>{t("forms.invitation.retryAccount")}</button>}
           {initialToken.current && <a className="invitation-open-app" href={`rillora://invite#invitation=${initialToken.current}`}>{t("forms.invitation.openApp")}</a>}

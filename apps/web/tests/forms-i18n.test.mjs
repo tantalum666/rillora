@@ -92,12 +92,12 @@ test("first-use helper keeps paused/resumed semantics across locales", () => {
   assert.equal(guideActionLabel({ firstUseState: "available", firstUseStep: 0 }, chinese), "可选引导");
 });
 
-test("invitation consent retains exact English proof and explicit acceptance gates", async () => {
+test("invitation consent uses selected-language copy with explicit acceptance gates", async () => {
   const invitation = await source("InvitationPage.jsx");
   assert.match(invitation, /useState\(false\)/);
   assert.match(invitation, /if \(!acceptedLegal \|\| busy \|\| !invitation\) return/);
   assert.equal((invitation.match(/disabled=\{!acceptedLegal \|\| busy\}/g) ?? []).length, 2);
-  assert.match(invitation, /<span lang="en">I agree to the <a href="https:\/\/legal\.rillora\.xyz\/terms" target="_blank" rel="noreferrer">Terms<\/a>, acknowledge the <a href="https:\/\/legal\.rillora\.xyz\/privacy" target="_blank" rel="noreferrer">Privacy Policy<\/a>, and consent to electronic records\.<\/span>/);
+  assert.match(invitation, /<RegistrationConsentText external \/>/);
   assert.match(invitation, /legalAcceptance: \{ \.\.\.LEGAL_CONTRACT, acceptedTerms: true, acknowledgedPrivacy: true, acceptedElectronicRecords: true \}/);
   assert.match(invitation, /accepted: true/);
   assert.match(invitation, /<LanguageControl \/>/);

@@ -12,7 +12,7 @@ import {
 } from "./startHereCrypto.js";
 
 export function StartHerePanel({ apiClient, onGenerated, onBusyChange, onExitWarning }) {
-  const { t, formatDate, errorMessage: translateError } = useI18n();
+  const { t, locale, formatDate, errorMessage: translateError } = useI18n();
   const [preview, setPreview] = useState(null);
   const [audience, setAudience] = useState("");
   const [recipientId, setRecipientId] = useState("");
@@ -182,7 +182,7 @@ export function StartHerePanel({ apiClient, onGenerated, onBusyChange, onExitWar
     setBusyAction("printable");
     setError("");
     try {
-      const result = await apiClient.createPrintableStartHere(preview.export.publicId);
+      const result = await apiClient.createPrintableStartHere(preview.export.publicId, locale);
       downloadArtifact(result.blob, result.filename);
       setArtifact(result);
       await onGenerated?.({ key: "sharing.copy.printNotice" });
@@ -231,7 +231,7 @@ export function StartHerePanel({ apiClient, onGenerated, onBusyChange, onExitWar
       <button className="primary-button drawer-primary" onClick={() => setStep("save")}>{t("sharing.copy.continue")} <ArrowIcon /></button>
     </>}
     {step === "save" && format === "printable" && <>
-      <h3>{t("sharing.copy.printableGuide")}</h3><p className="matter-form-hint">{t("sharing.copy.artifactLanguage")}</p>
+      <h3>{t("sharing.copy.printableGuide")}</h3>
       {!artifact && <div className="start-here-acknowledgements">
         <label><input type="checkbox" checked={acknowledgesPlaintext} onChange={(event) => setAcknowledgesPlaintext(event.target.checked)} /><span>{t("sharing.copy.plaintextAck")}</span></label>
         <label><input type="checkbox" checked={acknowledgesNoRevocation} onChange={(event) => setAcknowledgesNoRevocation(event.target.checked)} /><span>{t("sharing.copy.irrevocableAck")}</span></label>

@@ -282,7 +282,8 @@ final class Auth0NativeAuthenticationService: NativeAuthenticating {
 
     nonisolated static func authorizationParameters(
         for intent: NativeAuthenticationIntent,
-        loginHint: String? = nil
+        loginHint: String? = nil,
+        localeIdentifier: String = Bundle.main.preferredLocalizations.first ?? "en"
     ) -> [String: String] {
         var parameters: [String: String] = switch intent {
         case .signIn:
@@ -296,6 +297,7 @@ final class Auth0NativeAuthenticationService: NativeAuthenticating {
         }
         if parameters["max_age"] == nil { parameters["max_age"] = "86400" }
         parameters["rillora_auth_ui"] = "single-hosted-v1"
+        parameters["ui_locales"] = localeIdentifier.hasPrefix("zh") ? "zh-CN" : "en"
         if let loginHint = loginHint?.trimmingCharacters(in: .whitespacesAndNewlines),
            !loginHint.isEmpty {
             parameters["login_hint"] = loginHint

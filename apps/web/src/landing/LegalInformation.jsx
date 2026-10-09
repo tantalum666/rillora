@@ -1,4 +1,5 @@
 import { useI18n } from "../i18n/I18nProvider.jsx";
+import { preserveTransientLocale } from "../i18n/localeStore.js";
 import { WebsiteAppearanceDisclosure } from "../WebsiteAppearanceDisclosure.jsx";
 import { publicRoutes } from "../publicRoutes.js";
 import { ArrowRight, DownloadSimple } from "@phosphor-icons/react";
@@ -39,7 +40,7 @@ const documents = [
   ],
 ];
 export function LegalInformation() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   return (
     <main id="lp-main" className="lp-page-content lp-legal-index lp-container">
       <header className="lp-page-intro">
@@ -48,7 +49,7 @@ export function LegalInformation() {
       </header>
       <nav className="lp-document-links" aria-label={t("public.legal.label")}>
         {documents.map(([labelKey, detailKey, path]) => (
-          <a key={path} href={`https://legal.rillora.xyz${path}`}>
+          <a key={path} href={`https://legal.rillora.xyz${path}?lang=${locale}`}>
             <span>
               <strong>{t(labelKey)}</strong>
               <small>{t(detailKey)}</small>
@@ -56,7 +57,7 @@ export function LegalInformation() {
             <ArrowRight size={22} aria-hidden="true" />
           </a>
         ))}
-        <a href="/legal/licenses">
+        <a href={preserveTransientLocale("/legal/licenses")}>
           <span>
             <strong>{t("public.legal.thirdParty")}</strong>
             <small>{t("public.legal.thirdPartyDetail")}</small>
@@ -72,7 +73,7 @@ export function ThirdPartyNotices() {
   const { t } = useI18n();
   return (
     <main id="lp-main" className="lp-page-content lp-notices lp-container">
-      <a className="lp-text-link" href="/legal">{t("public.legal.label")}</a>
+      <a className="lp-text-link" href={preserveTransientLocale("/legal")}>{t("public.legal.label")}</a>
       <header className="lp-page-intro">
         <h1>{t("public.legal.thirdPartyTitle")}</h1>
         <p>{t("public.legal.thirdPartyDescription")}</p>

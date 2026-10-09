@@ -10,6 +10,7 @@ import { createDeletionReference, saveDeletionReference } from "./accountDeletio
 
 export function AccountDataPanel({ apiClient, onChanged, onDeletionRequested }) {
   const { t, errorMessage } = useI18n();
+  const expectedDeleteWord = t("sharing.account.deleteWord");
   const [profile,setProfile]=useState(null),[archives,setArchives]=useState([]),[section,setSection]=useState(""),[busy,setBusy]=useState(false),[error,setError]=useState(""),[message,setMessage]=useState("");
   const {confirm,confirmation}=useConfirmation();
   const [deleteWord,setDeleteWord]=useState(""),[savedCopies,setSavedCopies]=useState(false),[billing,setBilling]=useState(false),[reference,setReference]=useState(null);
@@ -21,7 +22,7 @@ export function AccountDataPanel({ apiClient, onChanged, onDeletionRequested }) 
   async function backup(){if(!await confirm({titleKey:"sharing.account.backupTitle",messageKey:"sharing.account.backupBody",confirmLabelKey:"sharing.account.downloadMap",cancelLabelKey:"sharing.common.cancel"}))return;await run(async()=>{downloadMapBackup(await apiClient.exportMapBackup());setMessage("sharing.account.backupReady");});}
   async function restore(backup){if(!await confirm({titleKey:"sharing.account.importTitle",messageKey:"sharing.account.importBody",params:{count:backup.matters.length,name:profile?.displayName??t("sharing.account.yourAccount")},confirmLabelKey:"sharing.account.importRecords",cancelLabelKey:"sharing.common.cancel"}))return;await run(async()=>{const result=await apiClient.importMapBackup(backup);setMessage({key:"sharing.account.imported",params:{count:result.matterCount}});await onChanged?.();});}
   async function removeAccount(){
-    if(deleteWord!=="DELETE"||!savedCopies||(needsBilling&&!billing)||!reference||busy||!profile)return;
+    if(deleteWord!==expectedDeleteWord||!savedCopies||(needsBilling&&!billing)||!reference||busy||!profile)return;
     if(!await confirm({titleKey:"sharing.account.deleteTitle",messageKey:"sharing.account.deleteBody",confirmLabelKey:"sharing.account.delete",cancelLabelKey:"sharing.account.keep"}))return;
     setBusy(true);setError("");
     try{await apiClient.requestAccountDeletion(reference.receipt,billing);onDeletionRequested(reference);}
@@ -42,7 +43,7 @@ export function AccountDataPanel({ apiClient, onChanged, onDeletionRequested }) 
       {needsBilling&&<><label><input type="checkbox" checked={billing} onChange={e=>setBilling(e.target.checked)}/>{t("sharing.account.billingAck")}</label>{profile.billing?.providers?.some(p=>["apple","storekit"].includes(p))&&<a href="https://apps.apple.com/account/subscriptions" target="_blank" rel="noreferrer">{t("sharing.account.appleSubscriptions")}</a>}</>}
       <label className="field-label">{t("sharing.account.typeDelete")}<input aria-label={t("sharing.account.typeDelete")} value={deleteWord} autoComplete="off" onChange={e=>setDeleteWord(e.target.value)}/></label>
       {reference&&<button className="secondary-button" onClick={()=>saveDeletionReference(reference)}>{t("sharing.account.saveReference")}</button>}
-      <button className="primary-button" disabled={busy||deleteWord!=="DELETE"||!savedCopies||(needsBilling&&!billing)} onClick={()=>void removeAccount()}>{busy?t("sharing.account.deleting"):t("sharing.account.delete")}</button>
+      <button className="primary-button" disabled={busy||deleteWord!==expectedDeleteWord||!savedCopies||(needsBilling&&!billing)} onClick={()=>void removeAccount()}>{busy?t("sharing.account.deleting"):t("sharing.account.delete")}</button>
     </section>}
   </section>;
 }

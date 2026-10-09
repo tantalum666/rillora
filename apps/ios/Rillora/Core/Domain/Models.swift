@@ -1069,6 +1069,7 @@ struct StartHerePrintableRequest: Encodable, Equatable, Sendable {
     let previewPublicId: String
     let acknowledgesPlaintext: Bool
     let acknowledgesNoRevocation: Bool
+    var locale: String = L10n.isSimplifiedChinese(bundle: .main) ? "zh-CN" : "en"
 }
 
 struct StartHerePrintableArtifact: Equatable, Sendable {

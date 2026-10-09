@@ -6,7 +6,7 @@ import { billingStateLabel, testBillingDestination, subscriptionPreventsNewCheck
 // Visible only to explicitly enrolled, expiring test accounts. Ordinary purchase
 // routing remains closed; a provider return URL never changes access locally.
 export function TestBillingControls({ commerce, onAccessChanged }) {
-  const { t, formatDate, formatMoney, errorMessage } = useI18n();
+  const { t, locale, formatDate, formatMoney, errorMessage } = useI18n();
   const [status, setStatus] = useState(null);
   const [period, setPeriod] = useState("annual");
   const [acknowledged, setAcknowledged] = useState(false);
@@ -53,6 +53,7 @@ export function TestBillingControls({ commerce, onAccessChanged }) {
         ? "workspace.billing.paidEnds"
         : subscription.state === "expired_read_only" ? "workspace.billing.periodEnded" : "workspace.billing.periodEnds",
       { date: formatDate(subscription.currentPeriodEndsAt) })}</>}</p>}
+    {subscription && ["refunded", "revoked"].includes(subscription.state) && subscription.renewalIsPossible !== false && <p>{t("workspace.billing.checkRenewalAfterRefund")}</p>}
     {!subscribed && <>
       <fieldset disabled={busy || !status}><legend>{t("workspace.testBilling.subscription")}</legend>
         {commerce.offers.map(item => <label key={item.priceCode}><input type="radio" name="test-billing-period"
@@ -62,13 +63,13 @@ export function TestBillingControls({ commerce, onAccessChanged }) {
       <label><input type="checkbox" checked={acknowledged} disabled={busy || !status} onChange={event => setAcknowledged(event.target.checked)} />
         {t(period === "annual" ? "workspace.testBilling.acknowledgeAnnual" : "workspace.testBilling.acknowledgeMonthly")}</label>
       <button className="primary-button" disabled={busy || !status || !acknowledged || !offer} onClick={() => run(async () => {
-        const result = await api.startTestCheckout(period, checkoutKey.current);
+        const result = await api.startTestCheckout(period, checkoutKey.current, locale);
         window.location.assign(testBillingDestination(result, "checkout"));
       })}>{busy ? t("workspace.testBilling.working") : pending ? t("workspace.testBilling.continue") : t("workspace.testBilling.open")}</button>
     </>}
     <div className="drawer-actions">
       {status?.subscriptions.length > 0 && <button className="secondary-button" disabled={busy} onClick={() => run(async () => {
-        window.location.assign(testBillingDestination(await api.openTestBillingPortal(), "portal"));
+        window.location.assign(testBillingDestination(await api.openTestBillingPortal(locale), "portal"));
       })}>{t("workspace.testBilling.manage")}</button>}
       {pending && <button className="secondary-button" disabled={busy} onClick={() => run(async () => {
         await api.cancelTestCheckout(); checkoutKey.current = crypto.randomUUID(); setAcknowledged(false);

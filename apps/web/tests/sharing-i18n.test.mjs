@@ -81,9 +81,9 @@ test("translation retains deletion confirmation, local key protection and export
   const deletion = readFileSync(new URL("../src/AccountDataPanel.jsx", import.meta.url), "utf8");
   const exportPanel = readFileSync(new URL("../src/StartHerePanel.jsx", import.meta.url), "utf8");
   const reader = readFileSync(new URL("../src/SavedCopyReader.jsx", import.meta.url), "utf8");
-  assert.match(deletion, /deleteWord!=="DELETE"/);
-  assert.equal(zh("sharing.account.typeDelete"), "输入 DELETE 以确认");
-  assert.match(exportPanel, /sharing\.copy\.artifactLanguage/);
+  assert.match(deletion, /deleteWord!==expectedDeleteWord/);
+  assert.equal(zh("sharing.account.typeDelete"), "输入“删除”以确认");
+  assert.match(exportPanel, /createPrintableStartHere\(preview\.export\.publicId, locale\)/);
   assert.match(exportPanel, /sharing\.copy\.exitWarning/);
   assert.match(exportPanel, /beforeunload/);
   assert.match(reader, /\{copy\.text\}/);

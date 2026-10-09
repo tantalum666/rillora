@@ -1,5 +1,6 @@
-import { sharingMessage, sharedFieldLabels } from "./sharing.js";
+import { sharingMessage, sharedFieldLabels, sharedFieldValue, sharedCategoryLabel } from "./sharing.js";
 import { useI18n } from "./i18n/I18nProvider.jsx";
+import { disclosureStateLabel, disclosureStageLabel, disclosureReasonLabel } from './disclosurePresentation.js';
 import { useEffect, useLayoutEffect, useState } from "react";
 import {
   ArrowRight,
@@ -36,7 +37,7 @@ const actionLabels = {
 };
 
 export function DisclosureRehearsalPanel({ apiClient, onChanged, onBusyChange }) {
-  const { t, formatDate, errorMessage } = useI18n();
+  const { t, locale, formatDate, errorMessage } = useI18n();
   const [lifeEvent, setLifeEvent] = useState("death");
   const [rehearsal, setRehearsal] = useState(null);
   const [loadingHistory, setLoadingHistory] = useState(true);
@@ -121,7 +122,7 @@ export function DisclosureRehearsalPanel({ apiClient, onChanged, onBusyChange })
 
   return (
     <div className="disclosure-rehearsal">
-      <div className="rehearsal-current-state"><Eye size={46} aria-hidden="true" /><h3 lang="en">{rehearsal.stateLabel}</h3><span>{t("sharing.rehearsal.eventSimulation", { event: eventLabel })}</span><p className="rehearsal-caption">{t("sharing.rehearsal.sourceLanguage")}</p></div>
+      <div className="rehearsal-current-state"><Eye size={46} aria-hidden="true" /><h3>{disclosureStateLabel(rehearsal.state, locale)}</h3><span>{t("sharing.rehearsal.eventSimulation", { event: eventLabel })}</span></div>
       {!rehearsal.snapshotFresh && (
         <div className="rehearsal-stale" role="alert">
           <WarningCircle size={20} weight="fill" />
@@ -156,13 +157,13 @@ export function DisclosureRehearsalPanel({ apiClient, onChanged, onBusyChange })
             return (
               <li key={state.key} className={current ? "is-current" : complete ? "is-complete" : ""} aria-current={current ? "step" : undefined}>
                 {complete ? <CheckCircle size={18} weight="fill" /> : <Circle size={18} />}
-                <span lang="en">{state.label}</span>
+                <span>{disclosureStateLabel(state.key, locale)}</span>
               </li>
             );
           })}
         </ol>
         {!rehearsal.stateSequence.some((state) => state.key === rehearsal.state) && (
-          <p className="rehearsal-exception"><WarningCircle size={18} /> {t("sharing.rehearsal.currentState")} <span lang="en">{rehearsal.stateLabel}</span></p>
+          <p className="rehearsal-exception"><WarningCircle size={18} /> {t("sharing.rehearsal.currentState")} <span>{disclosureStateLabel(rehearsal.state, locale)}</span></p>
         )}
         {rehearsal.coolingOffEndsAt && !rehearsal.coolingOffSimulatedAt && (
           <p className="rehearsal-caption">{t("sharing.rehearsal.holdEnd", { date: formatDate(rehearsal.coolingOffEndsAt, { dateStyle: "medium", timeStyle: "short" }) })}</p>
@@ -185,11 +186,11 @@ export function DisclosureRehearsalPanel({ apiClient, onChanged, onBusyChange })
 }
 
 function RolePreview({ view }) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   return (
     <details className={`role-preview ${view.eligibleForProjectedPreview ? "is-eligible" : ""}`}>
-      <summary><strong>{roleLabels[view.role] ? t(roleLabels[view.role]) : view.role}</strong><span lang="en">{view.previewStage}</span></summary>
-      <p lang="en">{view.reason}</p>
+      <summary><strong>{roleLabels[view.role] ? t(roleLabels[view.role]) : view.role}</strong><span>{disclosureStageLabel(view.previewStage, locale)}</span></summary>
+      <p>{disclosureReasonLabel(view.reason, locale)}</p>
       {view.assignedPeople.length > 0 && (
         <p className="role-people">{view.assignedPeople.map((person) => `${person.displayName} · ${evidenceLabel(person.invitationEvidence, t)}`).join(", ")}</p>
       )}
@@ -201,7 +202,7 @@ function RolePreview({ view }) {
       {view.matters.map((matter, index) => (
         <dl className="role-matter" key={`${view.role}-${index}`}>
           {Object.entries(matter).map(([key, value]) => value ? (
-            <div key={key}><dt>{fieldLabel(key, t)}</dt><dd>{value}</dd></div>
+            <div key={key}><dt>{fieldLabel(key, t)}</dt><dd>{key === "category" ? sharedCategoryLabel(value, t) : sharedFieldValue(key, value, t)}</dd></div>
           ) : null)}
         </dl>
       ))}
@@ -233,5 +234,6 @@ function fieldLabel(value, t) {
   if (Object.hasOwn(sharedFieldLabels, leaf)) return t(`sharing.field.${leaf}`);
   if (leaf === "title") return t("sharing.rehearsal.titleField");
   if (leaf === "category") return t("forms.category");
+  if (["displayName", "timeZone", "matterCount"].includes(leaf)) return t(`sharing.rehearsal.field.${leaf}`);
   return leaf.replace(/([a-z])([A-Z])/g, "$1 $2").replace(/^./, (character) => character.toUpperCase());
 }

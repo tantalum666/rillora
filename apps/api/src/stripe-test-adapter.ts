@@ -9,6 +9,7 @@ import { createHash } from "node:crypto";
 import Stripe from "stripe";
 import { ApiError } from "./errors.js";
 import { resolveStripeFinancialSignal } from "./stripe-financial-resolution.js";
+import type { BillingDisplayLocale } from './stripe-sdk.js';
 import type { StripeTestConfig } from "./config.js";
 import type {
   AuthoritativeSubscriptionSnapshot,
@@ -113,6 +114,7 @@ export class StripeTestAdapter {
     existingStripeCustomerReference?: string;
     orderReference?: string;
     paymentAttemptReference?: string;
+    locale?: BillingDisplayLocale;
   }): Promise<StripeCheckoutResult> {
     assertCommerceReference(input.commerceAccountReference);
     assertIdempotencyKey(input.idempotencyKey);
@@ -151,6 +153,7 @@ export class StripeTestAdapter {
       payment_method_collection: "always",
       metadata,
       subscription_data: { metadata },
+      ...(input.locale ? { locale: input.locale === 'zh-CN' ? 'zh' as const : 'en' as const } : {}),
       ...(input.existingStripeCustomerReference
         ? { customer: input.existingStripeCustomerReference }
         : {}),
@@ -175,11 +178,13 @@ export class StripeTestAdapter {
 
   async createCustomerPortal(input: {
     stripeCustomerReference: string;
+    locale?: BillingDisplayLocale;
   }): Promise<StripePortalResult> {
     assertStripeObjectId(input.stripeCustomerReference, "cus_");
     const session = await this.stripe.createPortalSession({
       customer: input.stripeCustomerReference,
       return_url: this.config.portalReturnUrl,
+      ...(input.locale ? { locale: input.locale === 'zh-CN' ? 'zh' as const : 'en' as const } : {}),
     });
     if (session.livemode) {
       throw new Error("The Stripe test adapter received a live-mode Portal Session");

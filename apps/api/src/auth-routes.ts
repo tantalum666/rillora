@@ -162,6 +162,8 @@ export function createAuthRouter(
       const parsed = authStartSchema.parse(request.body);
       const acceptance = parseLegalAcceptance(parsed.legalAcceptance);
       const returnTo = normalizeReturnPath(parsed.returnTo);
+      const display = new URL(returnTo, "https://rillora.invalid").searchParams;
+      const uiLocales = (display.get("lang") ?? display.get("langHint")) === "zh-CN" ? "zh-CN" as const : "en" as const;
       const screenHint = parsed.intent === "signup" ? "signup" : undefined;
       const transactionToken = randomOpaqueToken();
       const transaction: IdentityTransaction = {
@@ -203,7 +205,7 @@ export function createAuthRouter(
       });
       const authorizationUrl = await provider.createAuthorizationUrl(
         transaction,
-        { ...(screenHint ? { screenHint } : {}), ...(parsed.selectAccount ? { prompt: "login" as const } : {}) },
+        { ...(screenHint ? { screenHint } : {}), ...(parsed.selectAccount ? { prompt: "login" as const } : {}), uiLocales },
       );
       response.status(201).json({ authorizationUrl: authorizationUrl.href });
     }),

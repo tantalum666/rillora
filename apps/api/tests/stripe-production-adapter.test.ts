@@ -41,6 +41,16 @@ const checkoutInput = { commerceAccountReference: 'account-fixture-001', billing
   idempotencyKey: 'server-owned-order-fixture-001', orderReference: 'order-fixture-001', paymentAttemptReference: 'attempt-fixture-001' };
 
 describe('production Stripe boundary without live network access', () => {
+  it.each([['en', 'en'], ['zh-CN', 'zh']] as const)('keeps %s through Checkout and Portal without changing the offer', async (locale, stripeLocale) => {
+    const checkout = vi.fn(sdk().createCheckoutSession);
+    const portal = vi.fn(sdk().createPortalSession);
+    const adapter = new StripeProductionAdapter(config, sdk({ createCheckoutSession: checkout, createPortalSession: portal }), () => now);
+    await adapter.createHostedSubscriptionCheckout({ ...checkoutInput, locale });
+    await adapter.createCustomerPortal({ stripeCustomerReference: 'cus_fixture', locale });
+    expect(checkout.mock.calls[0]![0]).toMatchObject({ locale: stripeLocale,
+      line_items: [{ price: config.annualPriceId, quantity: 1 }], adaptive_pricing: { enabled: false } });
+    expect(portal.mock.calls[0]![0]).toMatchObject({ locale: stripeLocale, customer: 'cus_fixture', configuration: config.portalConfigurationId });
+  });
   it('refuses wrong-account/test credentials and non-production return destinations', () => {
     for (const mutation of [{ apiKey: 'rk_test_fixture' }, { expectedAccountId: 'acct_other' },
       { checkoutCancelUrl: 'https://app.staging.rillora.xyz/account' }, { portalReturnUrl: 'https://user:password@app.rillora.xyz/account' }]) {

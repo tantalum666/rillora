@@ -105,9 +105,9 @@ test('all static workspace message references resolve in both locales', async ()
   }
 });
 
-test('production purchase acceptance retains its versioned English text and unchecked state', async () => {
+test('production purchase acceptance uses selected-language copy and retains unchecked state', async () => {
   const source = await readFile(new URL('../src/ProductionBillingControls.jsx', import.meta.url), 'utf8');
-  assert.ok(source.includes('<span lang="en">I agree to the <a href={publicRoutes.subscriptions} target="_blank" rel="noopener noreferrer">Subscription Terms</a> and <a href={publicRoutes.refunds} target="_blank" rel="noopener noreferrer">Refund Policy</a>, including yearly renewal and cancellation.</span>'));
+  assert.match(source, /<SubscriptionConsentText \/>/);
   assert.match(source, /\[accepted, setAccepted\] = useState\(false\)/);
   assert.match(source, /purchaseProof\(quote, accepted\)/);
   assert.match(source, /commerce\.billingOpen && commerce\.offers\.some/);

@@ -11,7 +11,7 @@ final class SharingLocalizationTests: XCTestCase {
             "Details": "详细资料",
             "Revoke trusted-contact role": "撤销可信联系人角色",
             "The encrypted package failed its local offline-recovery test.": "加密包未通过本地离线恢复测试。",
-            "The server-generated guide and recovery-file warnings remain in English. Your saved content is unchanged.": "服务器生成的指引和恢复文件警告仍为英文。你保存的内容保持原样。",
+
         ] {
             XCTAssertEqual(bundle.localizedString(forKey: key, value: nil, table: "Localizable"), expected)
         }

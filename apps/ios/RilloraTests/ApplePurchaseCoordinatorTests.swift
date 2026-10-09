@@ -444,7 +444,7 @@ private actor ApplePurchaseServiceSpy: ApplePurchaseServing {
             priceCode: "family_fixture", productId: RilloraStoreKitCatalog.familyAnnualProductID,
             serviceMarketCode: serviceMarket, storefrontCountryCode: storefront, currency: "USD",
             amountMinor: amount / 10, minorUnitExponent: 2, priceMilliunits: amount, billingPeriod: "annual"),
-            purchaseTerms: ApplePurchaseTerms(version: "family-annual-apple-20260926-1",
+            purchaseTerms: ApplePurchaseTerms(version: "family-annual-apple-20261009-1",
                 termsVersion: LegalAcceptanceProof.current.termsVersion, subscriptionTermsVersion: "subscriptions-2026-08-27-1",
                 refundPolicyVersion: "refunds-2026-08-27-1", legalBundleSha256: LegalAcceptanceProof.current.bundleSha256),
             requiresFreshEvaluation: true, environment: environment, validationOnly: environment == .sandbox)

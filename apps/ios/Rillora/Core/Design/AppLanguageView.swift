@@ -26,9 +26,6 @@ struct AppLanguageView: View {
             } footer: {
                 Text("If Language is not shown, add English or Simplified Chinese under Settings > General > Language & Region first.")
             }
-            Section {
-                Text("App language does not change your service region, currency, sharing permissions or saved information. Hosted sign-in, official guides, legal documents and generated files may remain in English.")
-            }
         }
         .rilloraStructuredList()
         .rilloraFocusedTask()

@@ -86,9 +86,7 @@ struct DisclosureRehearsalView: View {
                     .frame(width: 76, height: 76)
                     .background(RilloraTheme.sageSoft, in: Circle())
                     .accessibilityHidden(true)
-                Text(String(localized: "Server-generated rehearsal labels and explanations remain in English."))
-                    .font(.subheadline).foregroundStyle(RilloraTheme.muted)
-                Text(rehearsal.stateLabel)
+                Text(DisclosurePresentation.state(rehearsal.state))
                     .font(.title3.weight(.semibold))
                     .foregroundStyle(RilloraTheme.ink)
                     .multilineTextAlignment(.center)
@@ -130,7 +128,7 @@ struct DisclosureRehearsalView: View {
                 let completed = Set(rehearsal.completedCheckpoints.map(\.code))
                 ForEach(rehearsal.stateSequence) { step in
                     let isCurrent = rehearsal.state == step.key
-                    Label(step.label, systemImage: completed.contains(step.key) ? "checkmark.circle.fill" : "circle")
+                    Label(DisclosurePresentation.state(step.key), systemImage: completed.contains(step.key) ? "checkmark.circle.fill" : "circle")
                         .font(.subheadline)
                         .foregroundStyle(isCurrent ? RilloraTheme.tabSelection : RilloraTheme.body)
                         .accessibilityValue(isCurrent ? String(localized: "Current step") : completed.contains(step.key) ? String(localized: "Simulated") : String(localized: "Not reached"))
@@ -179,8 +177,8 @@ private struct DisclosureRolePreviewSection: View {
     var body: some View {
         Section {
             DisclosureGroup {
-            LabeledContent(String(localized: "Preview stage"), value: view.previewStage.capitalized)
-            Text(view.reason)
+            LabeledContent(String(localized: "Preview stage"), value: DisclosurePresentation.stage(view.previewStage))
+            Text(DisclosurePresentation.reason(view.reason))
                 .font(.subheadline)
                 .foregroundStyle(RilloraTheme.body)
 
@@ -210,7 +208,7 @@ private struct DisclosureRolePreviewSection: View {
                 HStack {
                     Text(roleTitle).fontWeight(.semibold)
                     Spacer()
-                    Text(view.previewStage.replacingOccurrences(of: "_", with: " ").capitalized)
+                    Text(DisclosurePresentation.stage(view.previewStage))
                         .font(.footnote).foregroundStyle(RilloraTheme.muted)
                 }
                 .frame(minHeight: 44)

@@ -1,9 +1,17 @@
 # Web 中英双语界面与维护合同
 
-Status: BILINGUAL BROWSER ACCEPTANCE AND RESTRICTED WEB/WWW DEPLOYMENT VERIFIED
-Last updated: 2026-10-06 (Asia/Hong_Kong)
+Status: SELECTED-LANGUAGE EXPANSION VERIFIED LOCALLY; COORDINATED DEPLOYMENT IN PROGRESS
+Last updated: 2026-10-10 (Asia/Hong_Kong)
 
-## October6 当前验收与部署
+## October9–10 当前单一语言合同
+
+Owner要求选中文全部使用中文，选英文全部使用英文，取消并排翻译、中文参考及英文优先提示。这取代下方October5/6历史检查点中的英文-only法律/同意/导出限制。现已准备完整法律正文、同意句、Auth0语言、Stripe结账/门户、打印指引和共享预演；保留真实输入、身份名称、不可改写的许可证原文、机器格式及历史收据。
+
+官网、App、法律页链接保持所选语言；Auth0传入固定ui_locales枚举，Stripe映射到en/zh，不改变市场、价格或权限。法律入口使用无存储的URL语言选择，仍不访问账号/API/分析；法律包只带必要common文案，不引入营销目录。新付款尝试把首次语言固定在94迁移列中；模糊重试继续原始请求，历史NULL保持未指定语言。
+
+本轮Web189、法律8、14页SSR及同意/词汇检查通过；原生53、API新增语言场景有独立结果。源码通过不代表四站部署或真实手机检查完成。[执行状态与证据](payment-recheck-20261009.md)。
+
+## HISTORICAL — October6 验收与部署
 
 中英文计划进度、准确的下一事项/准备状态焦点、恢复为私有草稿的活动记录均已通过真实浏览器合成数据验收。中文完整地图备份实际保存并重新打开，5 条事项和多行 Notes 原文保持；文件为 3,879 字节。Web 165 项和独立法律构建 7 项通过。
 
@@ -42,7 +50,7 @@ Owner要求「还有rillora要做一个中文的语言界面，你直接做吧�
 
 当前五个词典共 **1,274 对消息**：common 38、public 274、workspace 257、forms 232、sharing 473。官网只载入 common/public，共312条；不打包私有指南正文、App、API客户端或私有词典。
 
-## 必须保留的语言边界
+## HISTORICAL — October5语言边界（被上方当前合同取代的限制不再执行）
 
 - Name＝名称；Directions＝查找指引；Details＝详细资料；Matter＝事项；Asset Map＝事项地图；Trusted Contact＝可信联系人；Recipient＝接收人
 - 正式法律正文、法律版本/digest与英文同意句原样保留。中文同意辅助说明明确是参考；英文正文通过外层 `lang="en"` 标记，未改受摘要约束的模块

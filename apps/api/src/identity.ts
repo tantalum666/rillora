@@ -13,6 +13,7 @@ export type AuthorizationIntent = {
   screenHint?: "signup";
   prompt?: "login";
   maxAge?: number;
+  uiLocales?: "en" | "zh-CN";
 };
 
 export type ExternalIdentity = {
@@ -144,6 +145,7 @@ export function createOidcIdentityProvider(config: OidcConfig): IdentityProvider
         max_age: String(intent?.maxAge ?? 86_400),
         ...(intent?.screenHint ? { screen_hint: intent.screenHint } : {}),
         ...(intent?.prompt ? { prompt: intent.prompt } : {}),
+        ...(intent?.uiLocales ? { ui_locales: intent.uiLocales } : {}),
       });
     },
 

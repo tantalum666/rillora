@@ -1,10 +1,12 @@
 # 简体中文文案口径与审校记录
 
-Status: REVIEWED AND IMPLEMENTED; LOCAL VALIDATION; NOT DEPLOYED
-Last updated: 2026-10-05 (Asia/Hong_Kong)
+Status: CURRENT SELECTED-LANGUAGE RULE ACTIVE; HISTORICAL COPY REVIEW RETAINED
+Last updated: 2026-10-10 (Asia/Hong_Kong)
 Authority: 当前中文界面写作与术语维护；不改变产品能力、法律文本或发布资格。
 
 Owner在Dot整合进行中明确要求“中文版的那些文字和文案你要仔细斟酌一下”。本轮将中文作为面向用户的产品文案审校，而不只检查翻译键是否齐全。具体用词由Agent在现有范围内确定，不冒称Owner逐句批准。
+
+October9最新要求：中文/英文各自完整，不使用中英并排、“中文参考”或“以英文为准”。此要求取代下方历史审校范围中的英文法律/同意/服务端可读文件保留显示限制；新的法律版本、同意证明、第三方平台可控语言与发布需同步实现。真实用户输入、服务品牌、币种代码、机器格式和原始第三方许可证仍保持原样。当前实施及未完成项见[专项合同](payment-recheck-20261009.md)。
 
 ## 写作口径
 

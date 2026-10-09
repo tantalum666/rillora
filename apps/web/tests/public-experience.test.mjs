@@ -65,7 +65,7 @@ test("public legal routes and registration clickwrap remain visible without fals
   assert.equal(en["public.nav.terms"], "Terms");
   assert.match(legalDocumentSource, /Privacy Policy/);
   assert.match(legalDocumentSource, /Terms of Service/);
-  assert.match(legalDocumentSource, /<dd>Effective<\/dd>/);
+  assert.match(legalDocumentSource, /chinese \? "已生效" : "Effective"/);
   assert.doesNotMatch(legalDocumentSource, /closed.testing|not yet a production|publication candidate|release.blocked|preview-\d/i);
   assert.match(legalDocumentSource, /does not sell personal information/i);
   assert.match(legalDocumentSource, /does not provide a live claim/i);

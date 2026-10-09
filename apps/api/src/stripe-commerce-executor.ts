@@ -19,6 +19,7 @@ import {
 } from "./db.js";
 import { ApiError } from "./errors.js";
 import { stripeFamilyPriceCode } from "./stripe-test-adapter.js";
+import type { BillingDisplayLocale } from './stripe-sdk.js';
 import type {
   StripeBillingPeriod,
   StripeCheckoutResult,
@@ -40,8 +41,9 @@ export type StripeCommerceProvider = Readonly<{
     existingStripeCustomerReference?: string;
     orderReference?: string;
     paymentAttemptReference?: string;
+    locale?: BillingDisplayLocale;
   }): Promise<StripeCheckoutResult>;
-  createCustomerPortal(input: { stripeCustomerReference: string }): Promise<StripePortalResult>;
+  createCustomerPortal(input: { stripeCustomerReference: string; locale?: BillingDisplayLocale }): Promise<StripePortalResult>;
   resolveFinancialSignal?(signal: Pick<
     NormalizedProviderSignal,
     "signalType" | "providerTransactionReference" | "providerRefundReference"
@@ -60,6 +62,7 @@ type CheckoutReservation = Readonly<{
   providerIdempotencyKey: string;
   existingStripeCustomerReference: string | null;
   existingCheckoutReference: string | null;
+  locale: BillingDisplayLocale | null;
 }>;
 
 type InboxReservation = Readonly<{
@@ -81,6 +84,7 @@ export class StripeCommerceExecutor {
     billingPeriod: StripeBillingPeriod;
     idempotencySeed: string;
     purchaseConsent?: PurchaseConsent;
+    locale?: BillingDisplayLocale;
   }): Promise<StripeCheckoutResult & {
     orderReference: string;
     paymentAttemptReference: string;
@@ -109,6 +113,7 @@ export class StripeCommerceExecutor {
         this.config,
         this.provider,
         input.purchaseConsent,
+        input.locale,
       ),
     );
 
@@ -120,6 +125,7 @@ export class StripeCommerceExecutor {
       idempotencyKey: reservation.providerIdempotencyKey,
       orderReference: reservation.orderReference,
       paymentAttemptReference: reservation.paymentAttemptReference,
+      ...(reservation.locale ? { locale: reservation.locale } : {}),
       ...(reservation.existingStripeCustomerReference
         ? { existingStripeCustomerReference: reservation.existingStripeCustomerReference }
         : {}),
@@ -159,7 +165,7 @@ export class StripeCommerceExecutor {
     });
   }
 
-  async createPortal(plannerId: string): Promise<StripePortalResult & { testOnly: boolean }> {
+  async createPortal(plannerId: string, locale?: BillingDisplayLocale): Promise<StripePortalResult & { testOnly: boolean }> {
     const customerReference = await withCommercePlannerDatabase(
       this.pool,
       plannerId,
@@ -190,6 +196,7 @@ export class StripeCommerceExecutor {
     return Object.freeze({
       ...(await this.provider.createCustomerPortal({
         stripeCustomerReference: customerReference,
+        ...(locale ? { locale } : {}),
       })),
       testOnly: this.providerEnvironment === "test",
     });
@@ -528,6 +535,7 @@ async function reserveCheckout(
   config: StripeExecutionConfig,
   provider: StripeCommerceProvider,
   purchaseConsent?: PurchaseConsent,
+  locale?: BillingDisplayLocale,
 ): Promise<CheckoutReservation> {
   const environment = stripeExecutionEnvironment(config);
   await client.query("select pg_advisory_xact_lock(hashtextextended('checkout:' || app.current_planner_id()::text,0))");
@@ -610,11 +618,12 @@ async function reserveCheckout(
     provider_payment_reference: string | null;
     attempt_status?: string;
     order_status?: string;
+    stripe_checkout_locale: BillingDisplayLocale | null;
   }>(
     `select order_row.public_id::text as order_public_id,
             attempt.public_id::text as attempt_public_id,
             order_row.price_id::text,attempt.idempotency_key,attempt.provider_payment_reference,
-            attempt.status as attempt_status,order_row.status as order_status
+            attempt.status as attempt_status,order_row.status as order_status,attempt.stripe_checkout_locale
      from app.commerce_payment_attempts attempt
      join app.commerce_orders order_row
        on order_row.id = attempt.order_id and order_row.planner_id = attempt.planner_id
@@ -656,8 +665,8 @@ async function reserveCheckout(
       await client.query(`insert into app.commerce_subscription_state_history(planner_id,subscription_id,from_state,to_state,reason_code,occurred_at)
         values(app.current_planner_id(),$1,$2,'expired_read_only','stripe_api_checkout_preflight',$3)`,[sub.id,sub.state,current.observedAt]);
     }
-    const pending = await client.query<{ order_public_id: string; attempt_public_id: string; price_id: string; idempotency_key: string; provider_payment_reference: string | null }>(
-      `select o.public_id as order_public_id,p.public_id as attempt_public_id,o.price_id::text,p.idempotency_key,p.provider_payment_reference
+    const pending = await client.query<{ order_public_id: string; attempt_public_id: string; price_id: string; idempotency_key: string; provider_payment_reference: string | null; stripe_checkout_locale: BillingDisplayLocale | null }>(
+      `select o.public_id as order_public_id,p.public_id as attempt_public_id,o.price_id::text,p.idempotency_key,p.provider_payment_reference,p.stripe_checkout_locale
        from app.commerce_payment_attempts p join app.commerce_orders o on o.id=p.order_id
        where o.commerce_account_id=$1 and p.provider_code='stripe' and p.provider_environment='${environment}'
          and p.status in ('created','submitted') and o.status in ('created','pending') order by p.id desc limit 1`,[accountRow.id]);
@@ -692,11 +701,11 @@ async function reserveCheckout(
     const attempt = await client.query<{ public_id: string }>(
       `insert into app.commerce_payment_attempts (
          planner_id, order_id, provider_code, provider_environment,
-         idempotency_key, status, amount_minor, currency_code
+         idempotency_key, status, amount_minor, currency_code, stripe_checkout_locale
        ) values (
-         app.current_planner_id(), $1, 'stripe', '${environment}', $2, 'created', $3, $4
+         app.current_planner_id(), $1, 'stripe', '${environment}', $2, 'created', $3, $4, $5
        ) returning public_id::text`,
-      [order.rows[0]!.id, idempotencyKey, catalogRow.amount_minor, catalogRow.currency_code],
+      [order.rows[0]!.id, idempotencyKey, catalogRow.amount_minor, catalogRow.currency_code, locale ?? null],
     );
     orderReference = order.rows[0]!.public_id;
     paymentAttemptReference = attempt.rows[0]!.public_id;
@@ -716,7 +725,7 @@ async function reserveCheckout(
        and provider_code = 'stripe'
        and provider_environment = '${environment}'
        and status = 'active'
-       and ('${environment}'<>'production' or created_at <= (select created_at from app.commerce_orders where public_id=$2::uuid))
+       and created_at <= (select created_at from app.commerce_orders where public_id=$2::uuid)
      limit 1`,
     [accountRow.id, orderReference],
   );
@@ -727,6 +736,7 @@ async function reserveCheckout(
     providerIdempotencyKey: existing.rows[0]?.idempotency_key ?? idempotencyKey,
     existingStripeCustomerReference: customer.rows[0]?.provider_customer_reference ?? null,
     existingCheckoutReference: existing.rows[0]?.provider_payment_reference ?? null,
+    locale: existing.rows[0] ? existing.rows[0].stripe_checkout_locale : locale ?? null,
   });
 }
 

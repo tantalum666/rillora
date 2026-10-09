@@ -1,5 +1,8 @@
 // Interface copy only. Saved data, wire enums, and exported artifacts remain unchanged.
 export const en = {
+  "sharing.rehearsal.field.displayName": "Planner name",
+  "sharing.rehearsal.field.timeZone": "Time zone",
+  "sharing.rehearsal.field.matterCount": "Matter count",
   "sharing.common.retry": "Retry",
   "sharing.common.tryAgain": "Try again",
   "sharing.common.cancel": "Cancel",
@@ -190,6 +193,7 @@ export const en = {
   "sharing.account.copiesAck": "I understand copies already saved or shared cannot be removed.",
   "sharing.account.billingAck": "I understand deleting the account does not cancel provider billing.",
   "sharing.account.appleSubscriptions": "Manage Apple subscriptions",
+  "sharing.account.deleteWord": "DELETE",
   "sharing.account.typeDelete": "Type DELETE to confirm",
   "sharing.account.saveReference": "Save deletion reference",
   "sharing.account.deleting": "Requesting deletion…",
@@ -310,7 +314,6 @@ export const en = {
   "sharing.copy.peopleCount": "Contact names included · {count}",
   "sharing.copy.expiry": "Expires {date}. Refresh after changing your map.",
   "sharing.copy.soon": "soon",
-  "sharing.copy.artifactLanguage": "The downloaded guide is generated in English. Your saved content is kept as written.",
   "sharing.account.importBody": "Import {count} matters into {name}? Existing records are never replaced. Sharing and invitations stay off.",
   "sharing.account.yourAccount": "your account",
   "sharing.account.imported": "{count} matters imported. Choose sharing separately.",
@@ -467,7 +470,6 @@ export const en = {
   "sharing.rehearsal.views": "Projected role views",
   "sharing.rehearsal.allowedFields": "Allowed fields",
   "sharing.rehearsal.eventSimulation": "{event} · simulation only",
-  "sharing.rehearsal.sourceLanguage": "Server-authored diagnostic status and policy explanations are shown in English.",
   "sharing.rehearsal.currentState": "Current state:",
   "sharing.rehearsal.holdEnd": "Illustrative hold ends {date}. It will not elapse automatically in this rehearsal.",
   "sharing.rehearsal.recordedEvidence": "recorded invitation evidence",
@@ -490,6 +492,9 @@ export const en = {
 };
 
 export const zhCN = {
+  "sharing.rehearsal.field.displayName": "规划者姓名",
+  "sharing.rehearsal.field.timeZone": "时区",
+  "sharing.rehearsal.field.matterCount": "事项数量",
   "sharing.common.retry": "重试",
   "sharing.common.tryAgain": "重试",
   "sharing.common.cancel": "取消",
@@ -680,7 +685,8 @@ export const zhCN = {
   "sharing.account.copiesAck": "我理解，已经保存或分享出去的副本无法远程收回。",
   "sharing.account.billingAck": "我理解，删除 Rillora 账号不会自动取消 Apple 或付款平台上的订阅。",
   "sharing.account.appleSubscriptions": "管理 Apple 订阅",
-  "sharing.account.typeDelete": "输入 DELETE 以确认",
+  "sharing.account.deleteWord": "删除",
+  "sharing.account.typeDelete": "输入“删除”以确认",
   "sharing.account.saveReference": "保存删除查询凭据",
   "sharing.account.deleting": "正在请求删除…",
   "sharing.delete.home": "Rillora 首页",
@@ -794,7 +800,6 @@ export const zhCN = {
   "sharing.copy.peopleCount": "包含的联系人姓名 · {count}",
   "sharing.copy.expiry": "{date}到期。更改事项地图后，请刷新预览。",
   "sharing.copy.soon": "即将",
-  "sharing.copy.artifactLanguage": "生成的指引标题和说明为英文；你填写的内容会保留原文。",
   "sharing.account.importBody": "将 {count} 个事项导入{name}？现有记录不会被替换，共享和邀请仍保持关闭。",
   "sharing.account.yourAccount": "你的账号",
   "sharing.account.imported": "已导入 {count} 个事项，请单独选择共享设置。",
@@ -945,7 +950,6 @@ export const zhCN = {
   "sharing.rehearsal.views": "各角色在演练中可见的内容",
   "sharing.rehearsal.allowedFields": "允许的字段",
   "sharing.rehearsal.eventSimulation": "{event} · 仅模拟",
-  "sharing.rehearsal.sourceLanguage": "服务器生成的诊断状态和规则说明保留英文。",
   "sharing.rehearsal.currentState": "当前状态：",
   "sharing.rehearsal.holdEnd": "示例等待期结束时间为{date}。本次演练不会自动结束等待期。",
   "sharing.rehearsal.recordedEvidence": "已记录的邀请凭据",

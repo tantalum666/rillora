@@ -59,7 +59,7 @@ export function ControlSection() {
             </div>
           </div>
         </div>
-        <a className="lp-section-next" href="https://legal.rillora.xyz/privacy">{t("public.control.privacy")}<ArrowRight size={20} aria-hidden="true" />
+        <a className="lp-section-next" href={`https://legal.rillora.xyz/privacy?lang=${locale}`}>{t("public.control.privacy")}<ArrowRight size={20} aria-hidden="true" />
         </a>
       </div>
     </section>

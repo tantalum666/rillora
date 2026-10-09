@@ -27,6 +27,19 @@ const config = Object.freeze({
 } satisfies StripeTestConfig);
 
 describe("official Stripe test adapter", () => {
+  it.each([['en', 'en'], ['zh-CN', 'zh']] as const)('keeps %s through test Checkout and Portal', async (locale, stripeLocale) => {
+    const checkout = vi.fn(async (_params: Stripe.Checkout.SessionCreateParams) => checkoutSession());
+    const portal = vi.fn(async (_params: Stripe.BillingPortal.SessionCreateParams) => ({
+      id: 'bps_test_language', livemode: false, url: 'https://billing.stripe.com/p/session/test_language',
+    }) as Stripe.BillingPortal.Session);
+    const adapter = new StripeTestAdapter(config, fakeStripePort({ createCheckoutSession: checkout, createPortalSession: portal }), () => now);
+    await adapter.createHostedSubscriptionCheckout({ commerceAccountReference: 'commerce-account-global-001',
+      billingPeriod: 'annual', idempotencyKey: 'selected-language-fixture-001', locale });
+    await adapter.createCustomerPortal({ stripeCustomerReference: 'cus_rillora_test_001', locale });
+    expect(checkout.mock.calls[0]![0]).toMatchObject({ locale: stripeLocale,
+      line_items: [{ price: config.familyPriceIds.annual, quantity: 1 }], adaptive_pricing: { enabled: false } });
+    expect(portal.mock.calls[0]![0]).toMatchObject({ locale: stripeLocale, customer: 'cus_rillora_test_001' });
+  });
   it("uses Web88.99 v4 for new annual checkout and rejects a v4 monthly purchase", async () => {
     const current = { ...config, familyPlanVersion: 2, familyPriceVersion: 4,
       familyPriceIds: { annual: "price_new_annual_v4", monthly: "price_1UHMlhCxTlowhyiGvBEPdb4x" } };

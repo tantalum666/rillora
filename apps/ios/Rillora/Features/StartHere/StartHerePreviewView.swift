@@ -143,8 +143,6 @@ struct StartHerePreviewView: View {
                 .disabled(audienceChoice.isEmpty || (audienceChoice == "recipient" && recipientConnectionID.isEmpty))
                 .accessibilityIdentifier("start-here.preview")
                 RilloraInfoDisclosure(String(localized: "Before you export")) {
-                    Text(String(localized: "The server-generated guide and recovery-file warnings remain in English. Your saved content is unchanged."))
-                        .font(.subheadline).foregroundStyle(RilloraTheme.body)
                     Text(String(localized: "Only you see this preview. No file is created or shared."))
                         .font(.subheadline).foregroundStyle(RilloraTheme.body)
                     RilloraFactStrip([
@@ -270,8 +268,6 @@ struct StartHerePreviewView: View {
             } else {
                 if exportFormat == .printable {
                     Section(String(localized: "Printable guide")) {
-                        Text(String(localized: "The server-generated guide and recovery-file warnings remain in English. Your saved content is unchanged."))
-                            .font(.subheadline).foregroundStyle(RilloraTheme.muted)
                         if case .loaded = previewStore.printableState {} else {
                             Toggle(String(localized: "I reviewed the guide and understand this file is plaintext."), isOn: $acknowledgesPlaintext)
                                 .accessibilityIdentifier("start-here.ack.plaintext")

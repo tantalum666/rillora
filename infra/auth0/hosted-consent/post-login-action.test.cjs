@@ -7,11 +7,12 @@ const path = require("node:path");
 const form = JSON.parse(fs.readFileSync(path.join(__dirname, "form.json"), "utf8"));
 const source = fs.readFileSync(path.join(__dirname, "post-login-action.cjs"), "utf8")
   .replaceAll("__RILLORA_IOS_CLIENT_ID__", "test-native-client")
-  .replaceAll("__RILLORA_FORM_ID__", "ap_testconsentform");
+  .replaceAll("__RILLORA_FORM_ID__", "ap_testconsentform")
+  .replaceAll("__RILLORA_FORM_ZH_ID__", "ap_testchineseform");
 const context = { exports: {} };
 vm.runInNewContext(source, context);
 const action = context.exports;
-const bundle = "3eb7d7bf4d3c420c49946dbfcd322293136cce556407339dc0cafa0aa5f30602";
+const bundle = source.match(/bundleSha256: "([a-f0-9]{64})"/)[1];
 
 function fixture() {
   const calls = { render: [], denied: [], claims: [] };
@@ -109,4 +110,15 @@ test("form contains only one required legal field and the ordinary continue acti
   assert.ok(field.config.text.includes("https://legal.rillora.xyz/terms"));
   assert.ok(field.config.text.includes("https://legal.rillora.xyz/privacy"));
   assert.equal(form.ending.resume_flow, true);
+});
+
+test('Chinese form has the same required acceptance and produces the same versioned proof',async()=>{
+ const zh=JSON.parse(fs.readFileSync(path.join(__dirname,'form.zh-CN.json'),'utf8'));
+ const field=zh.nodes[0].config.components.find(c=>c.type==='LEGAL');
+ assert.equal(field.required,true);assert.equal(field.id,'rillora_legal_accepted');
+ assert.match(field.config.text,/我同意/);assert.doesNotMatch(field.config.text,/I agree|English|英文|参考/);
+ const f=fixture();f.event.transaction={locale:'zh-CN'};
+ await action.onExecutePostLogin(f.event,f.api);assert.equal(f.calls.render[0][0],'ap_testchineseform');
+ assert.equal(f.calls.render[0][1].fields.rillora_legal_accepted,false);
+ f.event.prompt.id='ap_testchineseform';await action.onContinuePostLogin(f.event,f.api);assert.equal(f.calls.claims.length,1);
 });

@@ -628,8 +628,8 @@ actor APIClient: OverviewServing, PlanEditing, MatterEditing, TrustedContactEdit
             options: .regularExpression
         ) != nil,
               let text = String(data: result.data, encoding: .utf8),
-              text.hasPrefix("RILLORA — START HERE\n"),
-              text.contains("Rillora cannot revoke that copy") else {
+              text.hasPrefix(request.locale == "zh-CN" ? "RILLORA — 查找指引\n" : "RILLORA — START HERE\n"),
+              text.contains(request.locale == "zh-CN" ? "Rillora 无法撤回该副本" : "Rillora cannot revoke that copy") else {
             throw RilloraAPIError.invalidPayload(
                 "The printable guide content did not preserve its safety boundary."
             )

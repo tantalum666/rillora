@@ -42,7 +42,7 @@ struct ApplePurchaseTerms: Codable, Equatable, Sendable {
     let refundPolicyVersion: String
     let legalBundleSha256: String
     var isCurrent: Bool {
-        version == "family-annual-apple-20260926-1"
+        version == "family-annual-apple-20261009-1"
             && termsVersion == LegalAcceptanceProof.current.termsVersion
             && legalBundleSha256 == LegalAcceptanceProof.current.bundleSha256
             && subscriptionTermsVersion == "subscriptions-2026-08-27-1"

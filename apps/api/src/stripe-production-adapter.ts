@@ -3,7 +3,7 @@ import { createHash } from 'node:crypto';
 import type Stripe from 'stripe';
 import { ApiError } from './errors.js';
 import type { AuthoritativeSubscriptionSnapshot, NormalizedProviderSignal } from './commerce-provider-contract.js';
-import { createStripeSdkPort, type StripeSdkPort, type StripeCheckoutResult, type StripePortalResult } from './stripe-sdk.js';
+import { createStripeSdkPort, type StripeSdkPort, type StripeCheckoutResult, type StripePortalResult, type BillingDisplayLocale } from './stripe-sdk.js';
 import { assertCommerceReference, assertIdempotencyKey, assertStripeHostedUrl, assertStripeObjectId,
   epochSecondsToIso, stripeCommerceAccountReference, stripeCustomerReference, stripeHasScheduledCancellation,
   stripeIntegrationIdentifier, stripeMetadataValue, stripeObjectReference, stripeRefundReference,
@@ -87,7 +87,7 @@ export class StripeProductionAdapter {
   }
 
   async createHostedSubscriptionCheckout(input: { commerceAccountReference: string; billingPeriod: 'annual' | 'monthly';
-    idempotencyKey: string; existingStripeCustomerReference?: string; orderReference?: string; paymentAttemptReference?: string }): Promise<StripeCheckoutResult> {
+    idempotencyKey: string; existingStripeCustomerReference?: string; orderReference?: string; paymentAttemptReference?: string; locale?: BillingDisplayLocale }): Promise<StripeCheckoutResult> {
     assertCommerceReference(input.commerceAccountReference); assertIdempotencyKey(input.idempotencyKey);
     if (!input.orderReference || !input.paymentAttemptReference) throw new Error('Production checkout requires a durable order and attempt');
     assertCommerceReference(input.orderReference); assertCommerceReference(input.paymentAttemptReference);
@@ -104,6 +104,7 @@ export class StripeProductionAdapter {
       allow_promotion_codes: false, automatic_tax: { enabled: automatic }, adaptive_pricing: { enabled: false },
       billing_address_collection: automatic && input.existingStripeCustomerReference ? 'required' : 'auto',
       payment_method_collection: 'always', metadata, subscription_data: { metadata },
+      ...(input.locale ? { locale: input.locale === 'zh-CN' ? 'zh' as const : 'en' as const } : {}),
       ...(input.existingStripeCustomerReference ? { customer: input.existingStripeCustomerReference,
         ...(automatic ? { customer_update: { address: 'auto' as const } } : {}) } : {}),
     }, { idempotencyKey: input.idempotencyKey });
@@ -114,10 +115,11 @@ export class StripeProductionAdapter {
     return { sessionId: session.id, url: session.url, expiresAt: session.expires_at ? epochSecondsToIso(session.expires_at) : null };
   }
 
-  async createCustomerPortal(input: { stripeCustomerReference: string }): Promise<StripePortalResult> {
+  async createCustomerPortal(input: { stripeCustomerReference: string; locale?: BillingDisplayLocale }): Promise<StripePortalResult> {
     assertStripeObjectId(input.stripeCustomerReference, 'cus_');
     const session = await this.sdk.createPortalSession({ customer: input.stripeCustomerReference,
-      configuration: this.config.portalConfigurationId, return_url: this.config.portalReturnUrl });
+      configuration: this.config.portalConfigurationId, return_url: this.config.portalReturnUrl,
+      ...(input.locale ? { locale: input.locale === 'zh-CN' ? 'zh' as const : 'en' as const } : {}) });
     this.requireLive(session.livemode); assertStripeHostedUrl(session.url, 'billing.stripe.com');
     return { sessionId: session.id, url: session.url };
   }

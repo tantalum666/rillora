@@ -1,5 +1,6 @@
 // Workspace presentation only. Stored records, API enum values and legal contracts stay unchanged.
 export const en = {
+  "workspace.billing.checkRenewalAfterRefund": "A refund or payment dispute does not automatically cancel the subscription. Check renewal in Stripe.",
   "workspace.identity.open": "View current account",
   "workspace.identity.signedInAs": "Signed in as",
   "workspace.identity.shortId": "Account {id}",
@@ -287,6 +288,7 @@ export const en = {
 };
 
 export const zhCN = {
+  "workspace.billing.checkRenewalAfterRefund": "退款或付款争议不会自动取消订阅，请前往 Stripe 核对续订状态。",
   "workspace.identity.open": "查看当前账号",
   "workspace.identity.signedInAs": "当前登录",
   "workspace.identity.shortId": "账号 {id}",

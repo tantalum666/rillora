@@ -4,10 +4,18 @@ Role: public legal-page drafting and release gate
 Authority scope: Web Privacy Policy, Terms of Service, required factual inputs and publication status  
 Superseded by: applicable law, platform requirements, approved operator details and reviewed final legal text  
 Do not use for: personal legal advice, proof of global compliance, or permission to publish  
-Status: OWNER-APPROVED FORMAL ENGLISH RELEASE TEXT PUBLIC AT `LEGAL.RILLORA.XYZ`; CURRENT PUBLICATION IN HANDOFF; PRIOR ACCESS／DOMAIN／TLS／SEVEN-ROUTE EVIDENCE REMAINS DATED; GOOGLE OAUTH BRANDING SAVED UNDER `EXTERNAL / TESTING`; PRODUCT PRODUCTION／MARKET／BILLING GATES REMAIN OPEN WORK
-Last updated: 2026-09-30 (align September29 Sites10 receipt; no new publication or legal-body change)
+Status: OWNER-REQUESTED COMPLETE CHINESE/ENGLISH TEXT PREPARED; COORDINATED PUBLICATION IN PROGRESS
+Last updated: 2026-10-10 (Asia/Hong_Kong)
 
-## Current publication — Sites version10
+## Current language update and hosting
+
+The October8 Cloudflare Pages deployment replaced the legal hostname's Sites routing; it is the current host, not Sites10. Its seven-route/TLS/DNS evidence is retained in [the cutover record](dot-integration-20261008.md).
+
+Owner now explicitly requires full selected-language text and removal of English-prevails/reference framing. Seven Chinese documents match all60 English sections; translated wording does not create new product capabilities or change operator facts. Terms changes to terms-2026-10-09-1 and clickwrap to registration-clickwrap-2026-10-09-1; the unchanged substantive Privacy policy keeps privacy-2026-09-15-1. The prepared bilingual body hash is515e02711d81fd8e7574b993b590914737731109fbd3035a68bd2a21e8cf2124. Earlier accepted receipts remain immutable.
+
+Publication, API contract, both hosted Actions and clients must move together. Source checks and8 legal artifact checks pass; this paragraph does not claim the new version is published or accepted. The legal site stores no language preference: links carry onlyen/zh-CN, and the root preserves only that allowed enum. Required third-party licence originals remain separate. [Current execution and provider limits](payment-recheck-20261009.md).
+
+## HISTORICAL — Sites version10
 
 The September29 UI audit extended the appearance disclosure to both the public
 website and Web workspace. Sites10 succeeded from source

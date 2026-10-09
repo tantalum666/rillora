@@ -7,10 +7,10 @@ final class AccountLocalizationTests: XCTestCase {
         let bundle = try localizedBundle("zh-Hans")
         for (key, expected) in [
             "Plan & access": "套餐与权限",
-            "Type DELETE to confirm": "输入 DELETE 以确认",
+            "Type DELETE to confirm": "输入“删除”以确认",
             "Restore purchases": "恢复购买",
             "The secure session store is unavailable.": "暂时无法安全保存登录状态，请重试。",
-            "Subscription consent is shown in English. The English text is authoritative.": "订阅同意内容以英文显示，并以英文原文为准。",
+            "DELETE": "删除",
         ] {
             XCTAssertEqual(bundle.localizedString(forKey: key, value: nil, table: "Localizable"), expected)
         }

@@ -1,6 +1,7 @@
 import Stripe from "stripe";
 
 export const STRIPE_API_VERSION = "2026-08-26.dahlia" as const;
+export type BillingDisplayLocale = "en" | "zh-CN";
 
 export type StripeSdkPort = Readonly<{
   retrieveAccountStatus?(): Promise<{ id: string; chargesEnabled: boolean; payoutsEnabled: boolean }>;
