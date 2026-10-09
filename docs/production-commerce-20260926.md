@@ -10,6 +10,8 @@ Owner directs Live setup without waiting for BR completion; the prior blanket ga
 
 Notifications can be enabled separately from new checkout in the existing restricted review runtime. Tax mode not_configured expresses pending facts without inventing an assessment; quote/checkout and purchase routing stay closed, while signature processing and owned management remain separate. Ordinary customer opening, actual tax treatment and real-money lifecycle remain unverified. The full current cloud TEST lifecycle is [separately proven](stripe-cloud-acceptance-20261009.md).
 
+October9 testing-boundary correction: Stripe's [official testing rules](https://docs.stripe.com/testing) prohibit testing live mode with real payment details. The earlier Agent requirement for a prelaunch real-money payment/refund test is withdrawn. Preserve Sandbox lifecycle proof and verify Live configuration/security/nonfinancial delivery; observe legitimate customer transactions when they occur. Do not require merchant self-payments or manufactured transactions to clear a release gate. No real-money lifecycle is retrospectively claimed passed.
+
 ## October6 Live merchant and configuration readback
 
 Owner approved reuse of X identity/banking, personally submitted Stripe's final form and

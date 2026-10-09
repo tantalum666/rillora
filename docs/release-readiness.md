@@ -21,7 +21,7 @@ Last updated: 2026-10-09 (Asia/Hong_Kong)
 
 | # | 真正剩余的工作 | 完成判据与边界 |
 | --- | --- | --- |
-| 1 | 正式Web开售配置与真钱验收 | 按实际首发地区补齐税务方案/所需真实资料、价格税处理与购买路由，再受控验证Live支付、取消/退款、回调及双端权益。当前Tax Settings缺head_office，tax mode为not_configured，正式报价/Checkout关闭；TEST通过和非资金Live通知不等于真钱生命周期通过。BR办妥不再是全部技术配置的前置门，不臆造免代收结论。 |
+| 1 | 正式Web开售配置与生产验收 | 按实际首发地区补齐税务方案/所需真实资料、价格税处理与购买路由，核对生产配置、访问边界与签名通知。已有TEST付款/退款/权益闭环保留。Stripe禁止用真实支付资料在Live模式测试，不要求Owner自付自退或制造交易才能上线；真实客户交易发生后再核对实际资金/回调/权益。当前Tax Settings缺head_office，tax mode为not_configured，正式报价/Checkout关闭；尚无真钱交易是证据边界，不是必须先制造一笔交易的门。BR办妥不再是全部技术配置的前置门，不臆造免代收结论。 |
 | 2 | 原生最终汇总版及Apple剩余验收 | 后续Dot指南/搜索修正已合并但尚未装到原手机，先集中直装。实际核对已订阅/未订阅页面的权益、币种/金额、恰当主操作，既有购买恢复的服务器状态与跨端权益，以及续订/退款/到期处理。保留已成功购买和Owner恢复反馈，不要求为了这份清单再买一次。真机VoiceOver和法律链接随最终受影响路径补齐；不恢复Large text控件。 |
 | 3 | 最终产物、权限与恢复后计费对账 | 对最终交付版本补受影响的双端路径、权限负向检查及回滚/发布配置复核；保留已有全库审查、CI、RDS/KMS恢复和保留清理证据。用实际provider状态补齐恢复后退款/到期不复活权益的核验，不重跑无变化的全套工程。 |
 | 4 | App Store最终候选、送审与审核 | 集中修正稳定后准备新的最终构建，核对截图与真实界面、隐私/年龄/联系信息、市场/价格及审核账号访问，选入草稿并提交App Review；通过后手动发布。当前商店草稿最后确认选用9，TestFlight11与手机同号直装包不是相同产物；未提审。六张设计图和已确认的加密声明不从头重做。 |
@@ -36,6 +36,10 @@ SES不再是Resend路线的前置，SBP只有既有申请回执、无15%生效�
 [Live配置](live-configuration-20261009.md)、[当前手机与恢复反馈](matter-category-refinement-20261008.md)、
 [后续Dot增量](dot-integration-20261008.md)。[机器登记](../config/release-gates.json)同步事实与来源，
 不把多个聚合门都标成verified来生成完成百分比。唯一执行顺序继续以[handoff](handoff.md)为准。
+
+October9退款问题后的纠正：上一条把“受控真钱付款/退款”列为上线前必做验收不当，按
+[Stripe官方测试规则](https://docs.stripe.com/testing)撤回。真正的客户付款可以按实际退款需求原路退回，
+不会自动退款，原交易处理费不退；参见[退款说明](https://docs.stripe.com/refunds)。不把真钱观察冒充已经完成，也不因此要求人为交易。
 
 ## HISTORICAL checkpoints — all following observations retain their original dates
 

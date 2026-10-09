@@ -3346,3 +3346,12 @@ local correction/tests and actual restoration remain separate evidence.
 - Official IRD supports the stated timeframe for sole proprietorship/partnership and other specified business forms; incorporated companies use separate procedures. Do not invent commencement date, filed registration, tax exemption, headquarters or declarations.
 - Reuse the already approved Rillora Live account/catalog/Portal/webhook/scoped runtime credentials. Preserve TEST/Live separation, data, price, FanPass and provider-specific human steps. Actual customer opening/real charges remain independently evidenced actions.
 - [Current work and evidence](live-configuration-20261009.md).
+
+## 2026-10-09 — Correct the Agent-created Live payment testing prerequisite
+
+- Status: LOCKED by applicable provider testing rules, not a new Owner payment authorization.
+- Scope: Stripe release validation after Owner asks whether a real payment is returned or remains in Stripe.
+- Evidence: [Stripe testing](https://docs.stripe.com/testing) prohibits testing live mode using real payment details; [refunds](https://docs.stripe.com/refunds) describes explicit original-method refunds and retained processing fees.
+- Decision: withdraw the earlier Agent-created prelaunch real-money purchase/refund prerequisite. Reuse completed Sandbox lifecycle evidence and verify actual Live configuration, signatures and access boundaries. Observe legitimate customer payments/refunds when they occur; do not create merchant self-payments or artificial transactions for testing.
+- Does not imply: production checkout/tax readiness is complete, any Live money has moved, refunds are automatic/free, or Owner has instructed a charge/refund now.
+- Implementation impact: documentation/register/handoff only; no source, credentials, provider state, prices or real data changed.

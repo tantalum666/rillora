@@ -101,9 +101,10 @@
         "docs/release-12-stripe-20261005.md",
         "collaboration/verification/release-12-stripe-20261006/closeout.json",
         "docs/stripe-cloud-acceptance-20261009.md",
-        "docs/live-configuration-20261009.md"
+        "docs/live-configuration-20261009.md",
+        "docs/release-readiness.md"
       ],
-      "next": "October9 actual authenticated cloud TEST USD88.99 annual lifecycle passed, including decline/cancel/return, paid Family, Portal cancel/resume, duplicate handling, full refund and termination. Live product/annual price/default, Portal, original restricted key and exact AWS grant are configured; API17 and18-event Live webhook are enabled. Genuine Live configuration event signature verified, ignored safely, zero Live orders/subscriptions. Tax not_configured and new Checkout/customer sales remain closed. Complete truthful tax/market/new-purchase configuration, then independently validate real-money purchase/lifecycle and cross-client entitlements; do not repeat TEST."
+      "next": "October9 actual authenticated cloud TEST USD88.99 annual lifecycle passed, including decline/cancel/return, paid Family, Portal cancel/resume, duplicate handling, full refund and termination. Live product/annual price/default, Portal, original restricted key and exact AWS grant are configured; API17 and18-event Live webhook are enabled. Genuine Live configuration event signature verified, ignored safely, zero Live orders/subscriptions. Tax not_configured and new Checkout/customer sales remain closed. Complete truthful tax/market/new-purchase configuration and production configuration/security/nonfinancial notification acceptance; retain completed TEST lifecycle evidence. Stripe prohibits testing Live mode with real payment details: do not require merchant self-payments or manufactured payments/refunds before launch. Independently observe legitimate customer money/entitlement results when they occur; zero Live orders is an evidence boundary, not a requirement to manufacture one."
     },
     {
       "id": "merchant-market",
