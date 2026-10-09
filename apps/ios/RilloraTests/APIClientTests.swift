@@ -108,7 +108,7 @@ final class APIClientTests: XCTestCase {
         )
         XCTAssertEqual(
             acceptance["bundleSha256"] as? String,
-            "515e02711d81fd8e7574b993b590914737731109fbd3035a68bd2a21e8cf2124"
+            "c983dc26bb372fba66b8df467d6e4c0ea1d85a2f4d94d86104b4bffa8d7f3ddb"
         )
         XCTAssertEqual(acceptance["acceptedTerms"] as? Bool, true)
         XCTAssertEqual(acceptance["acknowledgedPrivacy"] as? Bool, true)

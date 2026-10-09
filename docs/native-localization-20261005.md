@@ -1,7 +1,13 @@
 # 原生 iOS 中英双语界面与维护合同
 
-Status: REVIEWED AND MERGED; AFFECTED LOCAL/CI VALIDATION PASSED; NOT DEPLOYED
-Last updated: 2026-10-07 (Asia/Hong_Kong)
+Status: COMPLETE SELECTED-LANGUAGE PRESENTATION PREPARED; CONSOLIDATED DIRECT DELIVERY PENDING
+Last updated: 2026-10-10 (Asia/Hong_Kong)
+
+## October9–10 当前单一语言合同
+
+Owner要求中文/英文各自完整，取代下方旧的英文同意、诊断和导出提示边界。原生托管登录参数、法律链接、可读指引导出、删除确认词及共享预演按App所选语言显示。共享预演采用与Web同一JSON词汇目录，只映射固定状态，保留原始用户输入和数据格式；未知诊断使用本地化通用说明。
+
+账户条款和购买证明与Web/API同步新版本，历史接受不改写；Apple价格仍来自实际商品与服务器核验，不按语言换汇。53项相关原生验证通过；新的集中直装和真机结果仍需另行记录。手机12属于之前已交付源码，Owner无需Restore已看到订阅；这既不是新购买，也不是本轮Restore点击证明。[执行记录](payment-recheck-20261009.md)。
 
 ## October7 local integration follow-up
 
@@ -74,7 +80,7 @@ Apple 依据：[逐应用语言与系统入口](https://developer.apple.com/vide
 
 共享术语：Matter＝事项，Asset Map＝事项地图，Name＝名称，Directions＝查找指引，Details＝详细资料，Trusted Contact＝可信联系人，Recipient＝接收人。这里的共享与披露不表示外部账号访问、法定权限或所有权转移。
 
-## 保留边界
+## HISTORICAL — 初版保留边界（与上方最新合同冲突的展示限制已取代）
 
 - Auth0 托管登录、事务邮件及外部页面保持其服务自身的语言配置；此分支不修改 provider
 - 官方指南正文与复核日期未重译/重审，界面显示英文正文边界；官方外链使用站点自己的语言

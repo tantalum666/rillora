@@ -11,7 +11,7 @@ const CURRENT = Object.freeze({
   termsVersion: "terms-2026-10-09-1",
   privacyVersion: "privacy-2026-09-15-1",
   consentTextVersion: "registration-clickwrap-2026-10-09-1",
-  bundleSha256: "515e02711d81fd8e7574b993b590914737731109fbd3035a68bd2a21e8cf2124",
+  bundleSha256: "c983dc26bb372fba66b8df467d6e4c0ea1d85a2f4d94d86104b4bffa8d7f3ddb",
   acceptedTerms: true,
   acknowledgedPrivacy: true,
   acceptedElectronicRecords: true,
