@@ -1,0 +1,18 @@
+{
+  "at": "2026-10-09T06:55:38.879059+00:00",
+  "source": "987327d37d639379b0914073427c04d83b7ccf68",
+  "changedPaths": [
+    "/Outputs/RuntimeStripeNotificationsSecretArn8A76E8A3",
+    "/Resources/MigrationTask69EAEF9D/Properties/ContainerDefinitions/0/Image/Fn::Sub",
+    "/Resources/RecoveryTaskD940248B/Properties/ContainerDefinitions/0/Image/Fn::Sub",
+    "/Resources/RuntimeApiTaskCF645D67/Properties/ContainerDefinitions/0/Environment",
+    "/Resources/RuntimeApiTaskCF645D67/Properties/ContainerDefinitions/0/Image/Fn::Sub",
+    "/Resources/RuntimeApiTaskTaskRoleDefaultPolicy59BF15A6/Properties/PolicyDocument/Statement"
+  ],
+  "exactSecretReadGrantOnly": true,
+  "originalRuntimeSettingsAndReviewParametersPreserved": true,
+  "taskImagesChanged": 3,
+  "migrationsRun": false,
+  "resourceCount": 79,
+  "customerCheckoutEnabled": false
+}

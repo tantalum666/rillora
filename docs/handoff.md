@@ -1,32 +1,31 @@
 # Rillora 当前交接
 
-Status: CLOUD STRIPE TEST COMPLETE / LIVE CONFIGURATION IN PROGRESS
+Status: CLOUD TEST COMPLETE / LIVE NOTIFICATIONS AND CATALOG CONNECTED / CUSTOMER CHECKOUT CLOSED
 Last updated: 2026-10-09 (Asia/Hong_Kong)
 
-## 当前任务与已完成
+## 当前完成结果
 
-Owner已完成原Preview登录并要求继续。早上Web/API/回调修复、完整Markdown阅读及archive26全部沿用。
+Owner已完成Preview登录，云端TEST验收通过；随后明确“BR不急、你直接配置”，已按实际登记期限纠正过度前置，完成Rillora Live技术接入。完整Markdown阅读、旧验证及原件归档沿用。
 
-- 真实Preview显示原Gmail与1条原事项，邮箱404/会话401门解除；USD88.99年价与Stripe沙盒US$88.99一致。
-- 云端TEST已完成取消/同笔继续、官方拒付、官方成功、返回登录态/Family5、门户期末取消/恢复、重复回调、全额退款和终止；一张新发票/一订单/一付款尝试。
-- provider全额退款8899USD成功，订阅canceled/无自动续订；原事项保留。当前Preview已回Free TEST，退款及管理历史保留。
-- 独立只读云端复核8精确事件均验签/applied/无残留error。部分有重试，不宣称首投零失败。没有Live交易。
-- 源码35515ef3f修正TEST可用性和过期/退款日期提示：22相关测试/build/scan通过，CI37890571237三任务通过。仅Preview静态资源更新，86/86线上文件匹配，中文实际页面通过。
-- AWS CLI真实过期后复用原浏览器会话恢复，实际STS通过，无需Owner重复MFA。临时计费读回/CI标签已清理，保留实际结果页。
+- 原Gmail/1事项真实读回；USD88.99 TEST取消返回/复用、拒付/成功、门户取消恢复、去重、全额退款与终止通过。一新订单/一付款尝试，原数据保留，现为Free TEST。
+- Preview文案35515ef3f/CI37890571237三任务/22相关测试通过，只更新Preview前端，86线上文件匹配。archive27已推送a738b61a0并独立新下载解密验证142路径/142对象；旧1–26不重下。
+- Live原商户HK/individual收款提现可用、无due身份资料；原商品/8899USD年价active/default关联，SaaS分类txcd_10103000。原门户可管理发票/付款资料/期末取消。
+- 原受限key/HMAC复用，精确保险库版本晋为AWSCURRENT，原版本保留；只给生产API增加该secret读取。源码987327d37/CI37894861343三任务、36API/9infra通过。
+- 生产API17现1HEALTHY/COMPLETED，79资源只有已审核差异；schema93不重迁。真实Live配置事件验签有效、安全ignored，0资金账本事件；原回调现enabled/18类付款事件。
+- 精确Live价格生产绑定已准备。市场销售、新购及生产权益开关保持原状态；Live订单/订阅0。完整新证据archive28已本地核验232路径/228对象，正在推送及独立远端读回。
 
-## 证据边界与待本人信息
+## 证据边界
 
-[云端TEST合同](stripe-cloud-acceptance-20261009.md)及output/qa/rillora-stripe-cloud-checkout-20261009。
-本轮archive27已本地核验142路径/142对象，正在完成推送及独立远端读回；旧1–26不重下。当前分支codex/matter-category-bar-20261008。
-原Preview TEST资格仍到香港October11 04:28，不延期；早上清理/当前退款均只影响TEST账单。
+[云端TEST](stripe-cloud-acceptance-20261009.md)、[Live配置](live-configuration-20261009.md)及各自output/qa目录。
+当前分支codex/matter-category-bar-20261008。Preview API40/schema93保持；其他Web域沿用早上部署，不重复发布。
+原3正式审核身份期限香港October9 04:00已过且未延期；Preview资格仍到October11 04:28。原生仍35f37e1b2本地1.0(11)，零碎TestFlight暂停。
 
-正式Live收费未开放。Owner已回复“你直接配置”，取代先等BR资料才继续的门。IRD确认相关业务的开业后一月登记期限；Live账户当前收款/提现可用且requirements空，Tax settings pending/head_office缺失。按[最新Live配置合同](live-configuration-20261009.md)继续，不伪造未确认事实。
-正式API仍16/schema0093，Preview API40/schema93保持；www/正式Web仍沿用早上发布结果，不重复部署。
-三正式审核身份原期限香港October9 04:00已过，本轮未延长。原生仍35f37e1b2本地1.0(11)，暂停零碎TestFlight。
-价格、真实数据、FanPass和独立删除账号保留决定有效。
+技术接入不再等待BR先办妥；IRD相关期限按真实开业日起算。未确认开业日期或代办登记。
+Tax Settings实际pending/head_office缺失；税务mode为not_configured、Price税处理未设，不伪造assessment或全球免税。普通客户访问/真实新购尚未开放，非资金Live事件不证明真钱购买生命周期。
+AWS原浏览器已恢复CLI，无重复OwnerMFA；CDK本机DNS轮询失败已用独立读回确认部署成功，未重复部署。403是旧审核门，不是要求重新登录。
 
 ## 唯一下一步
 
-继续接通已批准的Rillora Live商品/价格、门户、签名回调和生产运行配置；先读当前Live合同与生产config/secret边界，明确通知接入和新购开放，完成针对性验证及实际云端读回。不要再把BR先办妥当技术配置阻塞，亦不重复TEST或本人登录。
+进入正式开售的客户访问、税务策略与真实购买验收阶段：沿用现成Live接入，完成该阶段真实必要配置后再开放新购；不重做TEST，不把BR完成当通用技术前提，也不把未配置的税务改写成已审核免代收。
 
-[上一交接](handoff-history-20261009-before-cloud-checkout.md)为HISTORICAL。
+[上一交接](handoff-history-20261009-before-live-closeout.md)为HISTORICAL。价格、真实数据、FanPass及独立删除账号保留决定继续有效。

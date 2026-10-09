@@ -1,11 +1,15 @@
 # Rillora 真机验收与发布配置
 
 Status: IN PROGRESS — Owner 已恢复真机与配置工作
-Last updated: 2026-10-08 (Asia/Hong_Kong)
+Last updated: 2026-10-09 (Asia/Hong_Kong)
 
 后续部署已在[October7发布记录](dot-rollout-20261007.md)完成；下文API14/构建8保留为其
 各自检查点。当前API16、原三身份期限至10月9日04:00香港时间，9已上传待Apple登录读回。
 真实HKD888购买、尚未完成的购后恢复及商业事实边界继续有效。
+
+## October9 Stripe configuration continuation
+
+Owner says to configure directly and not wait for BR completion. Existing Live catalog/key/portal/webhook are reused; API17and genuine signed Live notification verification are complete. See[the current contract](live-configuration-20261009.md); older inactive/uninstalled/wait-for-registration descriptions below are historical. No new phone installation or TestFlight distribution occurs in this continuation.
 
 ## October8 current native delivery
 

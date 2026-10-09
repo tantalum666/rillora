@@ -1,0 +1,63 @@
+{
+  "at": "2026-10-09T07:09:40.113954+00:00",
+  "source": "987327d37d639379b0914073427c04d83b7ccf68",
+  "stackStatus": "UPDATE_COMPLETE",
+  "actualTemplateMatches": true,
+  "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRuntimeApiTask93405B31:17",
+  "previousTaskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRuntimeApiTask93405B31:16",
+  "health": "HEALTHY",
+  "running": 1,
+  "rollout": "COMPLETED",
+  "image": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1:675aa7b6a94f316df23a7d37df737ad68bd7ebb75f00596950c3230005f7d83f",
+  "imageDigest": "sha256:8ace6714bb3c56e323924287a486ea815c3c5cc00a8f76982d0e8c0539ffe157",
+  "originalSettingsAndReviewWindowUnchanged": true,
+  "reviewIdentityCount": 3,
+  "newCheckoutEnabled": false,
+  "migrationsRun": false,
+  "schemaFloor": 93,
+  "httpChecks": [
+    {
+      "method": "GET",
+      "path": "/health/live",
+      "surface": "direct_api",
+      "status": 200,
+      "body": {
+        "status": "ok"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/health/ready",
+      "surface": "direct_api",
+      "status": 200,
+      "body": {
+        "status": "ready"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/commerce/stripe/webhook",
+      "surface": "formal_web",
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "stripe_signature_required",
+          "message": "Stripe webhook signature is required."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/commerce/stripe/quote",
+      "surface": "formal_web",
+      "status": 403,
+      "body": {
+        "error": {
+          "code": "service_not_open",
+          "message": "Account access is not open."
+        }
+      }
+    }
+  ],
+  "localCdkPollingDnsFailureRecoveredByReadback": true
+}

@@ -1,8 +1,14 @@
 # Production annual commerce preparation
 
 Role: focused ordinary Web purchase, consent and provider-isolation contract
-Status: TEST LIFECYCLE VERIFIED; LIVE MERCHANT ENABLED; LIVE CATALOG/PORTAL PREPARED; CUSTOMER BILLING CLOSED
-Last updated: 2026-10-06 (Asia/Hong_Kong)
+Status: CLOUD TEST PASSED; LIVE CATALOG/PORTAL/PRODUCTION NOTIFICATIONS CONNECTED; CUSTOMER BILLING CLOSED
+Last updated: 2026-10-09 (Asia/Hong_Kong)
+
+## October9 current configuration
+
+Owner directs Live setup without waiting for BR completion; the prior blanket gate is superseded. Actual Product/Price/default and production catalog binding are configured, existing scoped key/HMAC bundle is installed, API17and the18-event Live endpoint are operating. A genuine signed Live configuration event is independently verified without a payment. [Current Live contract](live-configuration-20261009.md) is the authority; October6 sections below are dated prior checkpoints.
+
+Notifications can be enabled separately from new checkout in the existing restricted review runtime. Tax mode not_configured expresses pending facts without inventing an assessment; quote/checkout and purchase routing stay closed, while signature processing and owned management remain separate. Ordinary customer opening, actual tax treatment and real-money lifecycle remain unverified. The full current cloud TEST lifecycle is [separately proven](stripe-cloud-acceptance-20261009.md).
 
 ## October6 Live merchant and configuration readback
 
@@ -74,7 +80,7 @@ Stripe SDK22.6.2 pins API2026-08-26.dahlia; this version was checked against the
 A strict versioned secret schema loads AWSCURRENT from only the named Rillora
 production billing secret in Frankfurt. Secret bytes are not returned in parser
 errors, committed or supplied as plaintext runtime environment variables. The
-actual secret and production task permission are **not installed** yet. The
+October9notification configuration and exact production task read grant are installed. The
 ordinary runtime flag requires the reviewed production origin, encrypted content,
 recovery journal and internalTLS; development/test/closed-runtime flags cannot be
 combined with it. A closed production build and server stay independently closed.
@@ -87,10 +93,10 @@ recorded tax code, exact annualUSD Price of8899cents, licensed/per-unit, explici
 behavior, one item and quantity one. No new monthly purchase, trial, promotion
 code, adaptive pricing or client-supplied price/provider identity is accepted.
 
-Tax remains a factual launch gate. Configuration requires a recorded assessment
+New checkout retains its tax-readiness gate. A purchase-enabled configuration requires a recorded assessment
 and confirmed product code; automatic tax additionally rechecks the specified
 active registrations. An explicit reviewed-no-collection decision is a separate
-mode, never an automatic inference from missing registration. No tax registration,
+mode, never an automatic inference from missing registration. The explicit not_configured mode permits signed notifications and owned management, while quote/checkout and new-purchase routing stay closed. No tax registration,
 filing, merchant verification or tax assessment was performed in this increment.
 
 ## Customer flow and durable purchase proof
@@ -136,9 +142,9 @@ and12 internal retries; it never stores/replays raw webhook bodies. Per-process
 runs do not overlap, duplicate ledger application is suppressed, and generic
 counts/errors omit customer content. Exhausted/unmapped items require operational
 review; final alert wiring and post-restore provider-wide reconciliation remain
-release work. This worker is source/local tested, not currently running in AWS.
+release work. The bounded retry timer is now deployed with the October9notification runtime; real failed-payment/recovery behavior is not established by the non-financial Live probe.
 
-## Evidence, rollout and remaining gates
+## HISTORICAL — September26 evidence and initial remaining gates
 
 Local:233API tests, typecheck/build;89Web source tests plus7legal fixture tests;
 39infra tests and21release guards. The initial all-Web invocation used the product

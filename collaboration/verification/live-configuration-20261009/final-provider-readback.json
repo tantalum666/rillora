@@ -1,0 +1,29 @@
+{
+  "checkedAt": "2026-10-09T10:27:15.271Z",
+  "id": "we_1UNY1yCxTlowhyiGTpwy62qY",
+  "status": "enabled",
+  "url": "https://app.rillora.xyz/api/commerce/stripe/webhook",
+  "apiVersion": "2026-08-26.dahlia",
+  "livemode": true,
+  "description": "Rillora production billing notifications. Customer checkout is controlled separately in Rillora.",
+  "enabledEvents": [
+    "checkout.session.completed",
+    "checkout.session.async_payment_succeeded",
+    "checkout.session.async_payment_failed",
+    "customer.subscription.created",
+    "customer.subscription.updated",
+    "customer.subscription.deleted",
+    "invoice.paid",
+    "invoice.payment_succeeded",
+    "invoice.payment_failed",
+    "refund.created",
+    "refund.updated",
+    "refund.failed",
+    "charge.refunded",
+    "charge.dispute.created",
+    "charge.dispute.updated",
+    "charge.dispute.closed",
+    "charge.dispute.funds_withdrawn",
+    "charge.dispute.funds_reinstated"
+  ]
+}

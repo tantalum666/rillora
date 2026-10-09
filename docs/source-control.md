@@ -415,3 +415,11 @@ Archive26was then freshly downloaded and decrypted at fd17f52ea37bf4f3be31f35085
 [Archive27](../collaboration/verification/stripe-cloud-20261009/README.md) preserves142eligible paths/142objects in7,760,821encrypted bytes. Real Preview TEST lifecycle/provider/server evidence, successful and corrected failed probes, narrow UI tests/CI/deployment and the complete Preview build are included. Actual private auth/provider bodies/capability URLs/identity/full personal UI and reproducible vendor/asset caches are excluded; earlier1–26unchanged. Local authenticated decryption and exact catalog checks pass; remote readback follows separately.
 
 Source35515ef3f/CI37890571237 is deployed only to Preview,86live files matching. Current original-account cloud TEST flow passes and is refunded/terminated; Live remains closed pending actual business facts. Publication does not activate billing or repeat phone/TestFlight delivery.
+
+
+Archive27remote readback is complete at a738b61a0d0d018ecb77f923ed3f33f569528360:142objects/142paths verify against GitHub-read metadata and a fresh isolated LFS download. [Receipt](../collaboration/verification/stripe-cloud-20261009/remote-readback.json). Owner then authorized the separate Live configuration work; no TEST archive is resealed for that continuation.
+
+
+## October9 Live configuration addendum
+
+[Archive28](../collaboration/verification/live-configuration-20261009/README.md) preserves232eligible paths/228objects in297,714encrypted bytes. Source987327d37/CI37894861343is deployed as productionAPI17; real signed Live configuration notification, exact catalog binding and scoped vault/IAM/runtime differences are recorded. Local authenticated archive verification passes. Secrets/auth/full private provider/runtime payloads and reproducible caches remain excluded. Source, schema, deployment, notification transport and actual money are separate evidence; no customer-sale activation or repeated old test occurs. Earlier1–27remain immutable; fresh remote proof follows independently.

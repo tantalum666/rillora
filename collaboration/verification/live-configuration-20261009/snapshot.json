@@ -1,0 +1,47 @@
+{
+  "capturedFrom": "2026-10-09T10:12:32.759259+00:00",
+  "capturedThrough": "2026-10-09T10:12:33.055532+00:00",
+  "workFiles": 232,
+  "uniqueRawObjects": 228,
+  "workBytes": 1728394,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-028.tar.zst.age",
+      "sha256": "3a9ddcbf337fcf2b9ac589b6147c54424bfd287dbc219530dd3e5598f97e0826",
+      "bytes": 297714,
+      "plainBytes": 1728350,
+      "uniqueObjects": 228
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/live-configuration-20261009/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": "output/qa/rillora-live-configuration-20261009/publication",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    },
+    {
+      "path": "output/qa/rillora-live-configuration-20261009/vendor-docs",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    },
+    {
+      "path": "output/qa/rillora-live-configuration-20261009/cdk-candidate/asset.2819175352ad1ce0dae768e83fc328fb70fb5f10b4a8ff0ccbcb791f02b0716d",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-live-configuration-20261009/cdk-candidate/asset.675aa7b6a94f316df23a7d37df737ad68bd7ebb75f00596950c3230005f7d83f",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": ".local-secrets/stripe-cloud-checkout-20261009",
+      "reason": "authentication_full_provider_objects_hosted_capability_urls_private_identity_and_full_personal_UI_not_archived"
+    },
+    {
+      "path": ".local-secrets/live-configuration-20261009",
+      "reason": "actual_credentials_vault_payloads_full_private_provider_and_runtime_objects_exact_overrides_and_authentication_not_archived"
+    }
+  ],
+  "selection": "All eligible new Live configuration QA, exact provider/catalog summaries, staged/promoted vault metadata without secret bytes, initial failed/passed type and source checks, CFN/IAM/image/HTTP/read-only signature evidence, guarded catalog binding, operational helpers and local compiled API output. Archives1-27 unchanged. Authentication, full private cloud/provider objects, vault bytes and vendor/expanded asset caches excluded.",
+  "boundary": "Source987327d37/CI37894861343 deployed as productionAPI17; actual Live configuration event signature verified, normal18event endpoint enabled. No customer checkout activation, tax fact invention, Live money, migration, new phone/TestFlight or FanPass change. Final remote receipts follow frozen capture."
+}

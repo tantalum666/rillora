@@ -1,0 +1,242 @@
+{
+  "scanner": "gitleaks",
+  "version": "8.30.1",
+  "rawFindingCount": 29,
+  "reviewedNonSecrets": [
+    {
+      "rule": "generic-api-key",
+      "path": "apps/api/tests/apple-production-verification.test.ts",
+      "startLine": 7,
+      "endLine": 7,
+      "sourceSpanSha256": "cf31a4f46604f16e19283e4d12e3a3b7c3cd3d742409e8e09e17ddd236740af4",
+      "reason": "Synthetic appAccountToken UUID used for case-canonicalization unit tests; not an authentication credential or real customer identifier."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/api/tests/commerce-provider-adapters.test.ts",
+      "startLine": 20,
+      "endLine": 20,
+      "sourceSpanSha256": "c9d0a05fe6f9b85891ee4510d2a773738e7795af24fe1425e8199c9ba9f343a1",
+      "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/api/tests/config.test.ts",
+      "startLine": 55,
+      "endLine": 55,
+      "sourceSpanSha256": "d6b607ccafdf3a9d857731f25beb6c872342cc92badaa692a9c5045b7a6e053e",
+      "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/api/tests/config.test.ts",
+      "startLine": 62,
+      "endLine": 62,
+      "sourceSpanSha256": "d6b607ccafdf3a9d857731f25beb6c872342cc92badaa692a9c5045b7a6e053e",
+      "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/api/tests/config.test.ts",
+      "startLine": 76,
+      "endLine": 76,
+      "sourceSpanSha256": "a656ab665aa591639a047a2e4b63cf07ecbfb55fd72463c8bc375a06bb3e5704",
+      "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/api/tests/config.test.ts",
+      "startLine": 77,
+      "endLine": 77,
+      "sourceSpanSha256": "816665691498bb57827957537e3eec6781a98e4c7a6cef5ec2e16fc27b9e5bde",
+      "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/api/tests/config.test.ts",
+      "startLine": 100,
+      "endLine": 100,
+      "sourceSpanSha256": "52881282593bc88cb8e5d18a5117b08390fed2224a0eaf44913bc22f6ae1721c",
+      "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/api/tests/config.test.ts",
+      "startLine": 104,
+      "endLine": 104,
+      "sourceSpanSha256": "cdc98f9d44acf3bd4db7cd1cdb1855ef297f6bc80656a880fa93f2f09343756a",
+      "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/api/tests/config.test.ts",
+      "startLine": 144,
+      "endLine": 144,
+      "sourceSpanSha256": "a656ab665aa591639a047a2e4b63cf07ecbfb55fd72463c8bc375a06bb3e5704",
+      "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/api/tests/config.test.ts",
+      "startLine": 145,
+      "endLine": 145,
+      "sourceSpanSha256": "816665691498bb57827957537e3eec6781a98e4c7a6cef5ec2e16fc27b9e5bde",
+      "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/api/tests/stripe-test-adapter.test.ts",
+      "startLine": 14,
+      "endLine": 14,
+      "sourceSpanSha256": "61c055569c898fb7cf2ed0fd6b6f2dc34540acc2d251c9b56ceb457543a2cd0b",
+      "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/api/tests/stripe-test-adapter.test.ts",
+      "startLine": 36,
+      "endLine": 36,
+      "sourceSpanSha256": "3bb1fdb73b658bf09aeca4d126a6e41d5dd64eeb782884e0d91571547915ee71",
+      "reason": "Fixed idempotency-key string in a synthetic price-v4 test; no authentication capability or real account secret."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/api/tests/stripe-test-adapter.test.ts",
+      "startLine": 61,
+      "endLine": 61,
+      "sourceSpanSha256": "b92144ecd3bf8487f54e16d850c8d0dcf2174abc68eacfa992fa1626e087afbb",
+      "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/api/tests/stripe-test-adapter.test.ts",
+      "startLine": 70,
+      "endLine": 70,
+      "sourceSpanSha256": "83506ceedc161224946187efce800dccc3291b89496ea4924a3c52d2a7676d68",
+      "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/api/tests/stripe-test-adapter.test.ts",
+      "startLine": 106,
+      "endLine": 106,
+      "sourceSpanSha256": "0ad9f2078dfe4d8301e88be7b1c330340c3f0be7b37de119e1397c65d86dc7e8",
+      "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/api/tests/stripe-test-adapter.test.ts",
+      "startLine": 255,
+      "endLine": 255,
+      "sourceSpanSha256": "d02373759be8c4995727dae55f5eaa18b52bbb265db284f491ad47349c043cf1",
+      "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/ios/RilloraTests/StartHereEncryptionServiceTests.swift",
+      "startLine": 171,
+      "endLine": 171,
+      "sourceSpanSha256": "01a8ad16ed86676d58e652dc48227a1e1fbe06a725ede91abae49956de868d10",
+      "reason": "Fixed cross-platform cryptography fixture with synthetic UUIDs and no service/account authority."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/ios/RilloraTests/StartHereEncryptionServiceTests.swift",
+      "startLine": 171,
+      "endLine": 171,
+      "sourceSpanSha256": "01a8ad16ed86676d58e652dc48227a1e1fbe06a725ede91abae49956de868d10",
+      "reason": "Fixed cross-platform cryptography fixture with synthetic UUIDs and no service/account authority."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/ios/RilloraTests/StartHereEncryptionServiceTests.swift",
+      "startLine": 171,
+      "endLine": 171,
+      "sourceSpanSha256": "01a8ad16ed86676d58e652dc48227a1e1fbe06a725ede91abae49956de868d10",
+      "reason": "Fixed cross-platform cryptography fixture with synthetic UUIDs and no service/account authority."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/ios/project.yml",
+      "startLine": 112,
+      "endLine": 112,
+      "sourceSpanSha256": "c9c9eb8a723073eae64c80690be13fc7c0919031fdb81d83a953ee5a247256b4",
+      "reason": "Native public Auth0 client identifier, included in distributed app configuration."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/ios/project.yml",
+      "startLine": 128,
+      "endLine": 128,
+      "sourceSpanSha256": "5ac97cca4bf92df008a80d90fabca84d976bccc691219fdbb0bbc591b963b6ae",
+      "reason": "Prepared native public Auth0 production client identifier, verified against the approved public connection contract; not a client secret."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/ios/Rillora.xcodeproj/project.pbxproj",
+      "startLine": 1342,
+      "endLine": 1342,
+      "sourceSpanSha256": "5de471a1bd1102dd7f3284468f430bc8b8c0d137dcaef7c8aa9d27cc17aae11e",
+      "reason": "Native public Auth0 client identifier, byte-matched to the already reviewed project.yml value; shared generated Xcode project, not a client secret."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/ios/Rillora.xcodeproj/project.pbxproj",
+      "startLine": 1596,
+      "endLine": 1596,
+      "sourceSpanSha256": "84b43e023d7ae444915797275d0661dbab0b68c1f6201663e2cd623b995b19ab",
+      "reason": "Native public Auth0 client identifier, byte-matched to the already reviewed project.yml value; shared generated Xcode project, not a client secret."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/api/tests/api.integration.test.ts",
+      "startLine": 38,
+      "endLine": 38,
+      "sourceSpanSha256": "9b8610a8597e13738ddcbeb6b93b3dce20af0f7d6c6d37b36f495a5d05bdb517",
+      "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "apps/api/tests/api.integration.test.ts",
+      "startLine": 39,
+      "endLine": 39,
+      "sourceSpanSha256": "b6ef5fadf3c058bd5c2c75618b65fb5caaa9bce465863517302539fbd8ac2016",
+      "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "infra/aws/bootstrap/standalone-account-identity.yml",
+      "startLine": 97,
+      "endLine": 97,
+      "sourceSpanSha256": "f37c6801ebec2908722e06b6b39c2847b22b5d9506e85824cfb15a3b7aafdf3c",
+      "reason": "Public EC_prime256v1 algorithm name in an IAM condition."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "tools/auth0/install-production-identity-services.py",
+      "startLine": 17,
+      "endLine": 17,
+      "sourceSpanSha256": "9f84da61720e169364da6e3313bb69b1a02e8773c56b3f66850f2527997d9d12",
+      "reason": "Public Auth0 production M2M client identifier, verified against provider client/grant readback; not a client secret or bearer token."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "tools/auth0/install-production-identity-services.py",
+      "startLine": 18,
+      "endLine": 18,
+      "sourceSpanSha256": "bcba003aa57db2f4f2c680db106d8c3f5779d2645a5038baf7394406df3fe088",
+      "reason": "Public Auth0 production M2M client identifier, verified against provider client/grant readback; not a client secret or bearer token."
+    }
+  ],
+  "unreviewedFindings": [
+    {
+      "rule": "private-key",
+      "path": "apps/api/src/config.ts",
+      "startLine": 560,
+      "endLine": 561,
+      "sourceSpanSha256": "0044f85e45c176a37090d99f293a425401e334fa110648bd52724eca7f12ebaf"
+    }
+  ],
+  "passed": false,
+  "boundary": "A scoped source scan; not proof of absence of every possible secret or personal datum."
+}

@@ -1,7 +1,15 @@
 # Rillora Stripe Live配置接续
 
-Status: IN PROGRESS — OWNER AUTHORIZES CONFIGURATION WITHOUT WAITING FOR BR COMPLETION
+Status: LIVE NOTIFICATIONS/CATALOG/VAULT CONNECTED AND VERIFIED — CUSTOMER CHECKOUT REMAINS CLOSED
 Last updated: 2026-10-09 (Asia/Hong_Kong)
+
+## 当前实际结果
+
+- 原Rillora Live商户可收款/提现且没有待补身份资料；原Family商品和USD88.99年价现active并默认关联，个人SaaS税分类txcd_10103000。原Portal已核对，支持期末取消/付款资料/发票，不换套餐。
+- 复用原受限key/签名密钥，严格not_configured税务结构已经安装。API17已部署为1HEALTHY/COMPLETED，79资源保持、原身份期限保持，无新数据库迁移。
+- Live webhook现enabled、保留原18事件。一次Stripe真实product.updated配置事件已成功投递；生产库独立确认签名有效、ignored/无错误、0资金账本事件。没有创建Live订单或订阅。
+- 正式价格绑定已在生产库准备。新购报价/Checkout开关、市场销售/生产权益标志保持关闭，价格内部状态和税务配置保持未配置；不能称普通用户已可付款。
+- 36API/9infra/CI37894861343三任务通过。所有新配置、源代码、部署和验签证据按archive28保存；前一TEST包archive27已从GitHub新下载解密通过。
 
 ## 最新Owner指令与纠正
 
@@ -28,6 +36,16 @@ QA位于output/qa/rillora-live-configuration-20261009，原始个人/provider/�
 ## 实施检查点
 
 已实现独立ALLOW_STRIPE_PRODUCTION_NOTIFICATIONS：只在原受限生产review边界接收Live签名通知，保留原身份/期限；完整新购开关仍独立。未配置税务使用显式not_configured结构，不伪装assessmentReference；新购报价/创建和路由均关闭，已购管理/取消与验签继续可用。
-36项API边界/账本测试、9项infra测试及两端typecheck/build通过；首次类型检查暴露测试夹具的联合类型未收窄，已修正并保留失败日志。秘密扫描只移动原有相同两行PEM标记检查的行号，原digest/例外总数不变，29已审核/0未知。
+36项API边界/账本测试、9项infra测试及API typecheck/build及infra typecheck通过；首次类型检查暴露测试夹具的联合类型未收窄，已修正并保留失败日志。秘密扫描只移动原有相同两行PEM标记检查的行号，原digest/例外总数不变，29已审核/0未知。
 实际Live Product和8899年度Price现active，原Price成为default_price，商品类别按官方消费者SaaS定义设txcd_10103000；金额/币种/年期不变。tax_behavior暂保留unspecified，未推断税务或锁死含税/未税选择。已有门户active，支持期末取消、付款信息和发票，无换套餐或暂停。Live订阅实际0条。
 这些provider配置和本地代码尚不等于生产API已接通；接下来完成准确secret、IAM/镜像最小差异、真实Live通知验签及远端保存。
+
+
+生产发布进行中：987327d37的CI37894861343三任务成功。新通知配置已复用旧密钥、SDK核验，并由AWSPENDING晋为AWSCURRENT，原PREPARED版本保留。CloudFormation差异仅3镜像、API2环境字段、精确secret2读取动作和一个ARN输出，79资源保持。云端已开始滚动；本机CDK轮询曾遇到cloudformation域名ENOTFOUND，先独立核对实际完成状态，不重复部署。Live回调仍暂禁用，待新服务验证后启用。
+
+
+## 完成与下一步边界
+
+上方“实施方向/发布进行中”是本轮过程记录，当前结果以本节和顶部为准。CDK本机DNS轮询错误后只做独立读取，确认UPDATE_COMPLETE；未重发部署。真实HTTP健康200、无签名回调400、旧审核门403分别验证。正式回调只开放付款相关18事件，临时product.updated已移除。
+
+技术接入已经完成，BR未完成不再是它的前置门。对外开售仍是单独步骤：当前Tax Settings缺head_office、没有税务评估/登记事实，不凭Owner的配置指令填入虚构地址/号码或全球免税结论。后续按实际公开发布范围完成新购/税务策略配置及真实客户购买验收；这与已通过的TEST和非资金Live通知验证分开。

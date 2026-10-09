@@ -1,0 +1,21 @@
+{
+  "readOnly": true,
+  "tlsVerified": true,
+  "event": {
+    "provider_code": "stripe",
+    "provider_environment": "production",
+    "provider_event_reference": "evt_1UOXyTCxTlowhyiGh0Vge3ks",
+    "event_type": "product.updated",
+    "signature_verified": true,
+    "processing_status": "ignored",
+    "last_error_code": null,
+    "attempt_count": 0,
+    "processed_at": "2026-10-09T07:12:14.467Z",
+    "digest_bytes": 32
+  },
+  "counts": {
+    "live_stripe_orders": 0,
+    "live_stripe_subscriptions": 0,
+    "probe_financial_ledger_events": 0
+  }
+}

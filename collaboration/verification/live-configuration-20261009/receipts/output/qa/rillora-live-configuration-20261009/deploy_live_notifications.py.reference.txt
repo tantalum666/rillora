@@ -1,0 +1,74 @@
+"""Promote the validated existing-key bundle and deploy the reviewed production delta."""
+from pathlib import Path
+import copy,datetime,json,os,subprocess
+ROOT=Path(__file__).resolve().parents[3]
+QA=ROOT/'output/qa/rillora-live-configuration-20261009'
+PRIVATE=ROOT/'.local-secrets/live-configuration-20261009'
+secret=json.loads((QA/'staged-secret-version.json').read_text())
+before=json.loads((PRIVATE/'production-template-before.json').read_text())
+assembly=QA/'cdk-candidate';after=json.loads((assembly/'RilloraProduction.template.json').read_text())
+paths=json.loads((QA/'candidate-cloud-diff.json').read_text())['changedPaths']
+api='RuntimeApiTaskCF645D67';policy='RuntimeApiTaskTaskRoleDefaultPolicy59BF15A6'
+tasks=['MigrationTask69EAEF9D','RecoveryTaskD940248B',api]
+expected=['/Outputs/RuntimeStripeNotificationsSecretArn8A76E8A3',
+ '/Resources/'+api+'/Properties/ContainerDefinitions/0/Environment',
+ '/Resources/'+policy+'/Properties/PolicyDocument/Statement',
+ *['/Resources/'+k+'/Properties/ContainerDefinitions/0/Image/Fn::Sub' for k in tasks]]
+assert sorted(paths)==sorted(expected) and len(before['Resources'])==len(after['Resources'])==79
+for name in tasks:
+ old=copy.deepcopy(before['Resources'][name]);new=copy.deepcopy(after['Resources'][name])
+ a=old['Properties']['ContainerDefinitions'][0];b=new['Properties']['ContainerDefinitions'][0]
+ a.pop('Image');b.pop('Image')
+ if name==api:
+  old_env={x['Name']:x['Value'] for x in a.pop('Environment')};new_env={x['Name']:x['Value'] for x in b.pop('Environment')}
+  assert new_env.pop('ALLOW_STRIPE_PRODUCTION_NOTIFICATIONS')=='true'
+  assert new_env.pop('STRIPE_PRODUCTION_SECRET_ARN')==secret['secretArn']
+  assert old_env==new_env and new_env['PRODUCTION_RUNTIME_MODE']=='review' and new_env['ALLOW_STRIPE_PRODUCTION_INTEGRATION']=='false'
+ assert old==new
+def permissions(document):
+ result=set()
+ for s in document['Resources'][policy]['Properties']['PolicyDocument']['Statement']:
+  actions=s['Action'] if isinstance(s['Action'],list) else [s['Action']]
+  resources=s['Resource'] if isinstance(s['Resource'],list) else [s['Resource']]
+  for action in actions:
+   for resource in resources:result.add((s['Effect'],action,json.dumps(resource,sort_keys=True),json.dumps(s.get('Condition'),sort_keys=True)))
+ return result
+old_permissions=permissions(before);new_permissions=permissions(after)
+assert not old_permissions-new_permissions
+assert new_permissions-old_permissions=={('Allow',a,json.dumps(secret['secretArn']),'null') for a in ['secretsmanager:GetSecretValue','secretsmanager:DescribeSecret']}
+assert after['Outputs']['RuntimeStripeNotificationsSecretArn8A76E8A3']['Value']==secret['secretArn']
+assert before.get('Parameters')==after.get('Parameters')
+def aws(args,profile='rillora-cdk-session'):
+ return json.loads(subprocess.check_output(['aws',*args,'--profile',profile,'--region','eu-central-1','--output','json']))
+current=aws(['cloudformation','get-template','--stack-name','RilloraProduction'],'rillora-cdk-deploy')['TemplateBody']
+current=json.loads(current) if isinstance(current,str) else current
+assert current==before,'Cloud state changed after review; do not overwrite it'
+review={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'source':'987327d37d639379b0914073427c04d83b7ccf68',
+ 'changedPaths':paths,'exactSecretReadGrantOnly':True,'originalRuntimeSettingsAndReviewParametersPreserved':True,
+ 'taskImagesChanged':3,'migrationsRun':False,'resourceCount':79,'customerCheckoutEnabled':False}
+(QA/'reviewed-production-delta.json').write_text(json.dumps(review,indent=2)+'\n')
+promotion=QA/'secret-promotion.json'
+if not promotion.exists():
+ meta=aws(['secretsmanager','describe-secret','--secret-id',secret['secretArn']])
+ assert not meta.get('KmsKeyId'),'Review a custom encryption key before proceeding'
+ assert 'AWSCURRENT' in meta['VersionIdsToStages'][secret['previousVersion']]
+ candidate=aws(['secretsmanager','get-secret-value','--secret-id',secret['secretArn'],'--version-id',secret['candidateVersion']])
+ assert candidate['SecretString']==(PRIVATE/'stripe-billing-notifications.json').read_text()
+ aws(['secretsmanager','update-secret-version-stage','--secret-id',secret['secretArn'],'--version-stage','AWSCURRENT',
+  '--move-to-version-id',secret['candidateVersion'],'--remove-from-version-id',secret['previousVersion']])
+ actual=aws(['secretsmanager','get-secret-value','--secret-id',secret['secretArn'],'--version-stage','AWSCURRENT'])
+ assert actual['VersionId']==secret['candidateVersion'] and actual['SecretString']==candidate['SecretString']
+ promotion.write_text(json.dumps({'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'previousVersion':secret['previousVersion'],
+  'currentVersion':secret['candidateVersion'],'protectedBytesMatch':True,'originalVersionRetained':True},indent=2)+'\n')
+print(json.dumps(review),flush=True)
+with (QA/'production-deploy.log').open('w') as log:
+ subprocess.run(['npx','cdk','deploy','RilloraProduction','--app',str(assembly),'--profile','rillora-cdk-session',
+  '--require-approval','never','--previous-parameters','true','--outputs-file',str(QA/'production-deployment-outputs.json')],
+  cwd=ROOT/'infra/aws',env=dict(os.environ,CDK_DOCKER=str(ROOT/'output/qa/rillora-web-rollout-20261009/cdk-docker-buildx.sh')),
+  stdout=log,stderr=subprocess.STDOUT,check=True)
+actual=aws(['cloudformation','get-template','--stack-name','RilloraProduction'],'rillora-cdk-deploy')['TemplateBody']
+actual=json.loads(actual) if isinstance(actual,str) else actual
+status=aws(['cloudformation','describe-stacks','--stack-name','RilloraProduction'],'rillora-cdk-deploy')['Stacks'][0]['StackStatus']
+assert actual==after and status=='UPDATE_COMPLETE'
+review.update(completedAt=datetime.datetime.now(datetime.timezone.utc).isoformat(),stackStatus=status,actualTemplateMatches=True)
+(QA/'production-deployment-complete.json').write_text(json.dumps(review,indent=2)+'\n');print('Production notification runtime deployed.',flush=True)
