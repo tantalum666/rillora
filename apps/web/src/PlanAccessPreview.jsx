@@ -33,7 +33,7 @@ export function PlanAccessPreview({ commerce, onAccessChanged, returnedFromCheck
       </div>
       {commerce.familyFeatures.length > 0 && <p className="family-plan-included">{t("workspace.access.familyPlus")}</p>}
       <FeatureList features={commerce.familyFeatures} included={false} />
-      {!commerce.billingOpen && <p className="family-plan-availability">{t("workspace.access.newClosed")}</p>}
+      {!commerce.billingOpen && <p className="family-plan-availability">{t(commerce.validationOnly ? "workspace.testBilling.liveClosed" : "workspace.access.newClosed")}</p>}
       {commerce.validationOnly
         ? <TestBillingControls commerce={commerce} onAccessChanged={onAccessChanged} />
         : <ProductionBillingControls commerce={commerce} onAccessChanged={onAccessChanged} returnedFromCheckout={returnedFromCheckout} embedded />}

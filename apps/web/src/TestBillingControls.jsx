@@ -47,7 +47,10 @@ export function TestBillingControls({ commerce, onAccessChanged }) {
     {error && <p role="alert">{error?.status === 404 ? t("workspace.testBilling.unavailable") : errorMessage(error, "workspace.testBilling.error")}</p>}
     {message && <p role="status">{t(message)}</p>}
     {subscription && <p>{billingStateLabel(subscription.cancelAtPeriodEnd ? "cancel_at_period_end" : subscription.state, t)}
-      {subscription.currentPeriodEndsAt && <> · {t("workspace.billing.periodEnds", { date: formatDate(subscription.currentPeriodEndsAt) })}</>}</p>}
+      {subscription.currentPeriodEndsAt && !["refunded", "revoked"].includes(subscription.state) && <> · {t(subscription.cancelAtPeriodEnd
+        ? "workspace.billing.paidEnds"
+        : subscription.state === "expired_read_only" ? "workspace.billing.periodEnded" : "workspace.billing.periodEnds",
+      { date: formatDate(subscription.currentPeriodEndsAt) })}</>}</p>}
     {!subscribed && <>
       <fieldset disabled={busy || !status}><legend>{t("workspace.testBilling.subscription")}</legend>
         {commerce.offers.map(item => <label key={item.priceCode}><input type="radio" name="test-billing-period"
