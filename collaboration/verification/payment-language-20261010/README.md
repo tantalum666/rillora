@@ -1,6 +1,6 @@
 # October10 — consolidated phone, payment and selected-language delivery
 
-Status: DELIVERY AND TEST BOUNDARIES VERIFIED / ARCHIVE29 LOCALLY VERIFIED; REMOTE CHECK NEXT
+Status: DELIVERY AND TEST BOUNDARIES VERIFIED / ARCHIVE29 LOCALLY AND REMOTELY VERIFIED
 Updated: 2026-10-10 Asia/Hong_Kong
 
 Owner confirms development13 is subscribed, displays HKD888 and has no mixed English. The original phone/data remain; no TestFlight distribution. API21/43 are healthy on f7592a3; both schema94 inventories match. Four Web/legal surfaces and two hosted-consent Forms/Actions are deployed and read back.
@@ -12,3 +12,7 @@ Auth0 legacy desktop shell retains three English lines because template API402 a
 [Current contract](../../../docs/payment-recheck-20261009.md), [handoff](../../../docs/handoff.md). The new catalog/snapshot and local/remote verification receipts are added after frozen capture. Archives1–28 are immutable. Credentials, real provider objects, exact device/session data and reproducible caches are excluded; reviewed compiled legal/Web bodies are encrypted-only exceptions, not credential exports.
 
 Archive29 contains2,658eligible paths/1,130unique raw objects in61,653,260encrypted bytes. Independent local age decryption and full object/catalog checks pass. [Catalog](catalog.json), [capture and exclusions](snapshot.json), [local verification](archive-verification.json). Screenshots/signatures/private legal build bodies remain encrypted-only; compiled artifact exceptions are exact reviewed directories. Final scan/remote receipts follow capture without resealing.
+
+Fresh GitHub verification at d15cbd59cf7e74f611f6b4ea42ffc20081604847 downloaded only archive29 into a new LFS store. All1,130objects/2,658paths decrypted and matched GitHub-read metadata. [Remote receipt](remote-readback.json), [final current state](current-state.json), [publication validation](validation.json). No prior archive download, deployment or transaction was repeated.
+
+[CI113](ci113.json) for the archive commit completed successfully in2m14s: all3jobs,447API tests and55infrastructure tests pass. Final receipt-only commit does not alter application/runtime binaries.

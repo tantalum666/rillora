@@ -1,6 +1,6 @@
 # Rillora — Git / Dot 协作入口
 
-October10当前：[手机13、双语与付款专项](verification/payment-language-20261010/README.md)已实际交付。API21/43/schema94、四Web/法律站、两同意表单上线；Owner确认手机已订阅/HKD888/无混排。三笔新Stripe TEST退款边界及34验签事件通过，测试订阅均结束，原事项保留。Auth0桌面旧英文外壳受402/工单权限限制，社区草稿未发；当前唯一下一步见handoff。下列旧状态均为有日期的历史检查点。
+October10当前：[手机13、双语与付款专项](verification/payment-language-20261010/README.md)已实际交付。API21/43/schema94、四Web/法律站、两同意表单上线；Owner确认手机已订阅/HKD888/无混排。三笔新Stripe TEST退款边界及34验签事件通过，测试订阅均结束，原事项保留。archive29追加2,658路径/1,130对象，61,653,260加密字节，本地及GitHub独立新下载解密均通过（d15cbd59c）。Auth0桌面旧英文外壳受402/工单权限限制，社区草稿未发；当前唯一下一步见handoff。下列旧状态均为有日期的历史检查点。
 
 October9状态复核：[当前五组发布剩余工作](../docs/release-readiness.md#october1-remaining-work-inventory)
 与机器登记已按最新TEST/Live/手机证据纠正；本轮只有文档/登记更新，无新部署或交易。
