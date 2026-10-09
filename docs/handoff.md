@@ -12,7 +12,7 @@ Owner已完成Preview登录，云端TEST验收通过；随后明确“BR不急�
 - Live原商户HK/individual收款提现可用、无due身份资料；原商品/8899USD年价active/default关联，SaaS分类txcd_10103000。原门户可管理发票/付款资料/期末取消。
 - 原受限key/HMAC复用，精确保险库版本晋为AWSCURRENT，原版本保留；只给生产API增加该secret读取。源码987327d37/CI37894861343三任务、36API/9infra通过。
 - 生产API17现1HEALTHY/COMPLETED，79资源只有已审核差异；schema93不重迁。真实Live配置事件验签有效、安全ignored，0资金账本事件；原回调现enabled/18类付款事件。
-- 精确Live价格生产绑定已准备。市场销售、新购及生产权益开关保持原状态；Live订单/订阅0。完整新证据archive28已本地核验232路径/228对象，正在推送及独立远端读回。
+- 精确Live价格生产绑定已准备。市场销售、新购及生产权益开关保持原状态；Live订单/订阅0。完整新证据[archive28](../collaboration/verification/live-configuration-20261009/README.md)已推送bed2405af并独立GitHub下载/解密核验232路径/228对象通过。
 
 ## 证据边界
 

@@ -423,3 +423,6 @@ Archive27remote readback is complete at a738b61a0d0d018ecb77f923ed3f33f569528360
 ## October9 Live configuration addendum
 
 [Archive28](../collaboration/verification/live-configuration-20261009/README.md) preserves232eligible paths/228objects in297,714encrypted bytes. Source987327d37/CI37894861343is deployed as productionAPI17; real signed Live configuration notification, exact catalog binding and scoped vault/IAM/runtime differences are recorded. Local authenticated archive verification passes. Secrets/auth/full private provider/runtime payloads and reproducible caches remain excluded. Source, schema, deployment, notification transport and actual money are separate evidence; no customer-sale activation or repeated old test occurs. Earlier1–27remain immutable; fresh remote proof follows independently.
+
+
+Archive28remote proof completed at bed2405af92b384c4ca3aafb7afe19f65bab0b74: all228objects/232paths match a fresh separate LFS download and GitHub-read metadata. [Receipt](../collaboration/verification/live-configuration-20261009/remote-readback.json). Final receipts/description cleanup and removal of the no-longer-pending vault stage are separately recorded; no credentials, deployment or price amount changed.

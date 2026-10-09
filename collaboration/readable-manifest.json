@@ -2,8 +2,8 @@
   "files": [
     {
       "path": "collaboration/README.md",
-      "bytes": 16454,
-      "sha256": "218b0da1e0faa54a248c1c8d8e91162de8ecad26c8b7ac5c7af14adbe34fc82c"
+      "bytes": 16469,
+      "sha256": "0936f2766540df89c5a0988b77c602a232ac694ab9cddd756699c61af053d16a"
     },
     {
       "path": "collaboration/catalog/files-001.json",
@@ -48942,8 +48942,8 @@
     },
     {
       "path": "collaboration/verification/live-configuration-20261009/README.md",
-      "bytes": 2222,
-      "sha256": "1e420e507d6536e39de4d1f5e6175027f50ac951fa42bc35525e1ee716e1adf6"
+      "bytes": 2677,
+      "sha256": "c707cbf274564c2a71a002014a1344a7cf766b7a8665b01d00a50978f75d1aeb"
     },
     {
       "path": "collaboration/verification/live-configuration-20261009/archive-verification.json",
@@ -48956,6 +48956,11 @@
       "sha256": "abf4bc4b6e8e60f984c23e34ebaae9472d189db937952d95cdb15ae8b50d2656"
     },
     {
+      "path": "collaboration/verification/live-configuration-20261009/closeout.json",
+      "bytes": 574,
+      "sha256": "5cd0dd0089cd31acfae5b3035796392a8a811728ce838a23719999843212b70b"
+    },
+    {
       "path": "collaboration/verification/live-configuration-20261009/final-provider-readback.json",
       "bytes": 946,
       "sha256": "a153989c96d92516fb8167f0806b9bbc73b656536b027aa8df766276706f3bb2"
@@ -48964,6 +48969,11 @@
       "path": "collaboration/verification/live-configuration-20261009/final-vault-stages.json",
       "bytes": 281,
       "sha256": "0b0c567b4f2e898c42b692686b185597e5518ed7ca1166b7bc9d70874d30ad59"
+    },
+    {
+      "path": "collaboration/verification/live-configuration-20261009/fresh-lfs-fetch.log.reference.txt",
+      "bytes": 60,
+      "sha256": "3fc7ee72b3a21211af152880ae85a36f6a8f46781c55cf0e9a06d02f364c6196"
     },
     {
       "path": "collaboration/verification/live-configuration-20261009/gui-readback-boundary.json",
@@ -49241,9 +49251,19 @@
       "sha256": "0c303c29516c089c6425cf15a82cabc238a6a1bdff5fb4dae5372e13e89329dd"
     },
     {
+      "path": "collaboration/verification/live-configuration-20261009/remote-readback.json",
+      "bytes": 807,
+      "sha256": "85678542ebd165f3bfd10b8e4c2560de030b45fc54dce6af10ad40e7b3ab866e"
+    },
+    {
       "path": "collaboration/verification/live-configuration-20261009/snapshot.json",
       "bytes": 2482,
       "sha256": "ca60e02fa69f963a5d4ef806fdb8e06d95fb73a48e1c2326c5e1a308cc1907e3"
+    },
+    {
+      "path": "collaboration/verification/live-configuration-20261009/staged-readable-coverage.json",
+      "bytes": 104,
+      "sha256": "cf67735eec232ef38c021064721f7f98ff4b65852063dc2c9ffbbc0447913281"
     },
     {
       "path": "collaboration/verification/local-archive-verification.json",
@@ -55881,6 +55901,6 @@
       "sha256": "fa9f06467d74b9f074969cddab0e882a0ca1463c84d4a5ffafd2d401d619518b"
     }
   ],
-  "fileCount": 11176,
-  "totalBytes": 343943399
+  "fileCount": 11180,
+  "totalBytes": 343945414
 }

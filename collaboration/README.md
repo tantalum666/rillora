@@ -2,7 +2,7 @@
 
 October9当前：按Owner“直接配置”接通Rillora Live目录/门户/受限密钥/生产通知。987327d37的CI三任务、36API/9infra通过；API17健康，真实Live配置事件已验签，回调正常18事件enabled。
 新购/普通客户开放仍关闭，税务明确未配置；BR不再作为技术配置前提。
-[archive28](verification/live-configuration-20261009/README.md)新增232路径/228对象、297,714加密字节，本机核验通过，远端读回正在完成。
+[archive28](verification/live-configuration-20261009/README.md)新增232路径/228对象、297,714加密字节，本机及GitHub独立新下载解密均通过（bed2405af）。
 
 October9下午TEST检查点：Owner原Preview登录后，实际云端USD88.99Stripe TEST全流程通过，完成全额退款及订阅终止，原1事项保留。
 35515ef3f修正两处TEST文案，22相关检查/CI37890571237三任务通过；只更新Preview，86线上文件匹配。
