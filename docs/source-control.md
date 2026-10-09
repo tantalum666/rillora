@@ -408,3 +408,10 @@ Current source8b1f91798and preceding CA repair6219c8296each have three successfu
 
 
 Archive26was then freshly downloaded and decrypted at fd17f52ea37bf4f3be31f350850b39012d7dfe18; all289objects/422paths agree with remotely read catalog metadata. [Remote receipt](../collaboration/verification/web-stripe-20261009/remote-readback.json). Global readable scanning passed with zero unreviewed findings after46public CDK/Git content-hash fields were omitted only from readable mirrors; encrypted originals remain exact, and no scan rule was changed. Final receipt updates add metadata only, not another deployment or payment.
+
+
+## October9 afternoon real cloud Stripe TEST addendum
+
+[Archive27](../collaboration/verification/stripe-cloud-20261009/README.md) preserves142eligible paths/142objects in7,760,821encrypted bytes. Real Preview TEST lifecycle/provider/server evidence, successful and corrected failed probes, narrow UI tests/CI/deployment and the complete Preview build are included. Actual private auth/provider bodies/capability URLs/identity/full personal UI and reproducible vendor/asset caches are excluded; earlier1–26unchanged. Local authenticated decryption and exact catalog checks pass; remote readback follows separately.
+
+Source35515ef3f/CI37890571237 is deployed only to Preview,86live files matching. Current original-account cloud TEST flow passes and is refunded/terminated; Live remains closed pending actual business facts. Publication does not activate billing or repeat phone/TestFlight delivery.

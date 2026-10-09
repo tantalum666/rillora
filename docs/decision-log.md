@@ -3336,3 +3336,13 @@ local correction/tests and actual restoration remain separate evidence.
 - Agent operational choices: apply only pending Preview migrations, retain the approved pinned CA bytes for reproducible images, retain nonlocal signed TEST events as needs_mapping, cancel the exact obsolete TEST monthly subscription and close its expired/unpaid reservation, then grant only the already observed Preview owner48hours of TEST checkout.
 - These choices do not change USD88.99/Apple119.99, historical paid records, ordinary/live billing, market eligibility, user consent, production review expiry, TestFlight pause or FanPass. Preview login is handed back only after actual401.
 - Evidence: [Web deployment](web-rollout-20261009.md) and [Stripe repair/remaining acceptance](stripe-webhook-20261009.md).
+
+
+## 2026-10-09 — Owner directs Live configuration without waiting for BR completion
+
+- Status: LOCKED within Rillora configuration/release preparation.
+- Owner explicitly says the registration is not urgent, refers to the one-month-after-commencement rule, and instructs Agent to configure directly.
+- Supersedes: treating completed BR or an unanswered general business-information question as a blocker to all further technical configuration.
+- Official IRD supports the stated timeframe for sole proprietorship/partnership and other specified business forms; incorporated companies use separate procedures. Do not invent commencement date, filed registration, tax exemption, headquarters or declarations.
+- Reuse the already approved Rillora Live account/catalog/Portal/webhook/scoped runtime credentials. Preserve TEST/Live separation, data, price, FanPass and provider-specific human steps. Actual customer opening/real charges remain independently evidenced actions.
+- [Current work and evidence](live-configuration-20261009.md).

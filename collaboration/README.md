@@ -1,6 +1,11 @@
 # Rillora — Git / Dot 协作入口
 
-October9当前：三套Web已实际部署并逐文件核对，Preview已补齐API40/schema93；www真实响应式导航通过。
+October9下午当前：Owner原Preview登录后，实际云端USD88.99Stripe TEST全流程通过，完成全额退款及订阅终止，原1事项保留。
+35515ef3f修正两处TEST文案，22相关检查/CI37890571237三任务通过；只更新Preview，86线上文件匹配。
+[archive27](verification/stripe-cloud-20261009/README.md)新增142路径/142对象、7,760,821加密字节，本地核验通过，远端读回正在执行。
+Owner随后明确直接继续Live配置，当前接续见docs/live-configuration-20261009.md；不再把BR先办妥作为技术配置阻塞，也不重做已过的Preview/付款验收。
+
+October9早上检查点：三套Web已实际部署并逐文件核对，Preview已补齐API40/schema93；www真实响应式导航通过。
 Stripe TEST500修复源码8b1f91798/CI三任务通过，真实8事件重发后未送达数0，独立云端inbox核验通过。
 旧TEST月订阅已取消/事件applied，原Preview测试资格就绪；本人登录后的当前年付结账仍待验收，Live未开。
 [新增archive26](verification/web-stripe-20261009/README.md)保留422路径/289对象、34,932,485加密字节，本机与GitHub独立新下载解密均通过（fd17f52ea）。

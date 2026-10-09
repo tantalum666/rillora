@@ -1,0 +1,39 @@
+{
+  "capturedFrom": "2026-10-09T06:07:05.318148+00:00",
+  "capturedThrough": "2026-10-09T06:07:05.593570+00:00",
+  "workFiles": 142,
+  "uniqueRawObjects": 142,
+  "workBytes": 9243821,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-027.tar.zst.age",
+      "sha256": "940c176c563a646e23702724d7ee62642153d370e8d18faef7c857e4860eccd4",
+      "bytes": 7760821,
+      "plainBytes": 9243821,
+      "uniqueObjects": 142
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/stripe-cloud-20261009/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": "output/qa/rillora-stripe-cloud-checkout-20261009/publication",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    },
+    {
+      "path": "output/qa/rillora-stripe-cloud-checkout-20261009/vendor-docs",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    },
+    {
+      "path": "output/qa/rillora-stripe-cloud-checkout-20261009/cdk-RilloraStaging/asset.06b35d1e5f0159ac5d1b83414553ae366324684471a441f87a4a5af7c7f0a635",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": ".local-secrets/stripe-cloud-checkout-20261009",
+      "reason": "authentication_full_provider_objects_hosted_capability_urls_private_identity_and_full_personal_UI_not_archived"
+    }
+  ],
+  "selection": "All eligible real Preview/hosted Stripe TEST lifecycle QA, actual server/provider status summaries, signed inbox readback, narrow UI regression/build/CI/deployment/live-file evidence, safe screenshots, operational helpers and full Preview build. Archives1-26 unchanged; authentication/provider capability URLs/private identity/raw provider payloads/expanded assets/vendor caches excluded.",
+  "boundary": "TEST flow complete with full refund/termination; original account and matter retained. Source35515ef3f Preview UI deployed with86live files matching. API40/schema93, productionAPI16, WWW/formal clients, native/TestFlight and Live sales unchanged. Owner business facts are the next gate. Final publication/remote receipts follow frozen capture."
+}

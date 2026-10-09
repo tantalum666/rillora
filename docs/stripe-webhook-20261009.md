@@ -1,7 +1,12 @@
 # Stripe TEST回调修复与当前Web购买入口
 
-Status: WEBHOOK DELIVERY REPAIRED AND DEPLOYED; OWNER TEST ELIGIBILITY READY; HOSTED WEB FLOW PENDING LOGIN
+Status: WEBHOOK REPAIRED; AFTERNOON CLOUD TEST LIFECYCLE PASSED
 Last updated: 2026-10-09 (Asia/Hong_Kong)
+
+## October9下午接续
+
+Owner本人登录后，真实Preview托管年付闭环已通过，并完成全额TEST退款/终止。原事项保留，两处TEST文案已修正并实际发布。
+[当前完整结果](stripe-cloud-acceptance-20261009.md)取代本文早上的待登录门；原回调修复、旧月订阅清理和48小时资格证据不重做。
 
 ## Gmail与provider实际证据
 
@@ -29,7 +34,7 @@ Dot保留了TEST和production两个控件分支。普通销售原本关闭，Own
 
 [October6原验收](release-12-stripe-20261005.md)实际完成USD88.99 TEST拒付/成功、返回、取消/恢复、退款/终止与去重，但使用本地隔离身份/同意和CLI relay，不能证明当前Auth0会话或云端直连。本轮不能说从没测过，也不能拿旧结果替代当前验收。
 
-当前Preview会话实际401，已停原account页等待Owner亲自确认并登录。之后检查邮箱/原事项、真实TEST按钮、USD88.99托管Checkout、返回登录态/签名回调/Family投影和管理路径。不通过维护脚本伪造真实用户会话或本人购买接受。
+早上检查点的Preview会话实际401，因此当时等待Owner本人登录。该门已由下午本人登录解除，邮箱/原事项与完整云端TEST链路已独立通过，见上方当前结果；没有通过维护脚本伪造真实用户会话或本人同意。
 
 Live运行接入、市场/经营与税务事实仍未完成；本轮只动TEST。已准备的Live商户/受限密钥、商品与回调草稿不是正式购买入口已开通，更不能把TEST成功称为真钱收款完成。
 

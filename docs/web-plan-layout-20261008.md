@@ -1,11 +1,11 @@
 # Web navigation, settings and Family plan corrections
 
-Status: MERGED AND WEB DEPLOYED; AUTHENTICATED IDENTITY/TEST CHECKOUT ACCEPTANCE PENDING
+Status: MERGED AND WEB DEPLOYED; ORIGINAL PREVIEW IDENTITY AND CLOUD TEST CHECKOUT VERIFIED
 Updated: 2026-10-09 (Asia/Hong_Kong; integration closeout)
 
 
 October9当前：三套Web已实际部署，Preview API/schema也已补齐。www实际导航通过；
-Preview旧会话已观察到导航/设置/权益/指南修正，随后真实401，邮箱与TEST购买仍待Owner原账号登录。
+Preview旧会话已观察到导航/设置/权益/指南修正；随后401由Owner本人登录解除，邮箱和云端TEST闭环已在[October9验收](stripe-cloud-acceptance-20261009.md)通过。
 [部署证据](web-rollout-20261009.md)和[Stripe入口/回调](stripe-webhook-20261009.md)拥有当前状态。
 下文独立分支验证与未部署描述是带日期的原交付检查点，不能再当作当前门。
 

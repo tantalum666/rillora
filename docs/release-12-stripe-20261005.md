@@ -5,8 +5,8 @@ Last updated: 2026-10-09 (Asia/Hong_Kong)
 
 ## October9接续
 
-旧USD88.99测试是下述本地隔离闭环。当前云端告警已修复并真实投递，原Preview测试资格已准备；
-本人登录后的真实云端年付仍未验收。以[当前Stripe合同](stripe-webhook-20261009.md)为准，不重复或扩大旧证据。
+旧USD88.99测试是下述本地隔离闭环。October9另完成当前云端告警修复，并在Owner实际Preview登录后完成
+[云端年付TEST闭环](stripe-cloud-acceptance-20261009.md)。两次环境和身份/同意证据分开，不能当作Live真钱收款。
 
 ## October6 retained result
 

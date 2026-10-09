@@ -9,6 +9,16 @@ Last updated: 2026-10-09 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
 
+## 2026-10-09 Owner要求直接继续Stripe Live配置
+
+Owner明确商业登记可按实际开业期限办理，要求直接配置。已核对IRD规则，取消把BR先办妥作为全部技术配置的先决条件，继续复用已批准的Rillora Live资料/密钥。[当前Live配置合同](live-configuration-20261009.md)取代刚才等待经营资料才开始任何配置的下一步。未知事实不编造，实际客户开放/交易结果分别验证。
+
+## 2026-10-09 真实Preview的Stripe TEST闭环通过
+
+Owner完成原账号登录后，已在真实Preview/Stripe托管TEST完成USD88.99年付、取消返回、拒付、成功返回、门户取消/恢复、去重、全额退款和终止。原账号/事项保留；新文案修正只发布Preview。
+[云端验收合同](stripe-cloud-acceptance-20261009.md)取代早上“等待Preview登录/当前托管测试未完成”的状态。
+这是TEST工程证据；正式Live配置仍需要真实经营/税务事实，不推导市场付款或销售开放。
+
 ## 2026-10-09 以实际Web部署和Stripe云端回调补齐验收
 
 Owner指出www/Preview仍有旧问题，并要求随后读取Gmail的Stripe告警、检查Web购买入口。

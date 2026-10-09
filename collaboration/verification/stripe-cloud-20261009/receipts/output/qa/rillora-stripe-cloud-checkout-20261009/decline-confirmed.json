@@ -1,0 +1,16 @@
+{
+  "at": "2026-10-09T05:35:53.254286+00:00",
+  "providerMessage": "Official decline card rejected in hosted Checkout",
+  "serverRequests": {
+    "/api/v1/commerce/test/status": 200,
+    "/api/v1/commerce/status": 200
+  },
+  "currentOrderStatus": "pending",
+  "plan": "free",
+  "trustedPersonAllowance": 1,
+  "liveSalesEnabled": false,
+  "testOnly": true,
+  "validationOnly": true,
+  "historicalExpiredSubscriptions": 2,
+  "sameCheckoutUsedForRetry": true
+}

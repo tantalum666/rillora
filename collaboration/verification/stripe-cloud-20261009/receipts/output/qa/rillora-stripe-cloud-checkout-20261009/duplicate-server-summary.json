@@ -1,0 +1,181 @@
+{
+  "at": "2026-10-09T05:44:12.681Z",
+  "phase": "duplicate",
+  "testOnly": true,
+  "validationOnly": true,
+  "salesEnabled": false,
+  "plan": "family",
+  "subscription": {
+    "publicId": "8f6f356d-4c66-423f-89e7-d7fbd2b6abe0",
+    "planCode": "family",
+    "planVersion": 2,
+    "renewalProvider": "stripe",
+    "state": "active",
+    "currentPeriodEndsAt": "2027-10-09T05:35:24.000Z",
+    "cancelAtPeriodEnd": false
+  },
+  "managementDestination": "rillora_billing_portal",
+  "entitlements": [
+    {
+      "code": "account_deletion",
+      "allowance": null,
+      "source": "free_baseline"
+    },
+    {
+      "code": "data_export",
+      "allowance": null,
+      "source": "free_baseline"
+    },
+    {
+      "code": "desired_outcomes_basic",
+      "allowance": null,
+      "source": "free_baseline"
+    },
+    {
+      "code": "family_maintenance",
+      "allowance": null,
+      "source": "subscription"
+    },
+    {
+      "code": "matter_map_core",
+      "allowance": null,
+      "source": "free_baseline"
+    },
+    {
+      "code": "official_setup_guides",
+      "allowance": null,
+      "source": "free_baseline"
+    },
+    {
+      "code": "recipient_basic_access",
+      "allowance": null,
+      "source": "free_baseline"
+    },
+    {
+      "code": "rehearsal_basic",
+      "allowance": null,
+      "source": "free_baseline"
+    },
+    {
+      "code": "security_controls",
+      "allowance": null,
+      "source": "free_baseline"
+    },
+    {
+      "code": "start_here_export",
+      "allowance": null,
+      "source": "free_baseline"
+    },
+    {
+      "code": "trusted_people_multiple",
+      "allowance": 5,
+      "source": "subscription"
+    },
+    {
+      "code": "trusted_person_basic",
+      "allowance": 1,
+      "source": "free_baseline"
+    }
+  ],
+  "latestOrder": {
+    "publicId": "ad10d231-998c-4be3-97f7-ad3a9251f745",
+    "status": "paid_reconciled",
+    "createdAt": "2026-10-09T05:28:50.717Z"
+  },
+  "subscriptions": [
+    {
+      "publicId": "8f6f356d-4c66-423f-89e7-d7fbd2b6abe0",
+      "state": "active",
+      "currentPeriodEndsAt": "2027-10-09T05:35:24.000Z",
+      "cancelAtPeriodEnd": false
+    },
+    {
+      "publicId": "94fc0708-51aa-4370-977f-2f06dc2b521e",
+      "state": "expired_read_only",
+      "currentPeriodEndsAt": "2026-10-08T20:24:51.000Z",
+      "cancelAtPeriodEnd": false
+    },
+    {
+      "publicId": "deba71ed-0fd0-4282-96fa-279e31b6e163",
+      "state": "expired_read_only",
+      "currentPeriodEndsAt": "2026-09-19T19:24:27.000Z",
+      "cancelAtPeriodEnd": false
+    }
+  ],
+  "newEvents": [
+    {
+      "publicId": "dfd6677f-6d1b-4e4a-a6e9-06780610de8c",
+      "eventType": "customer.subscription.updated",
+      "processingStatus": "applied"
+    },
+    {
+      "publicId": "eb81cbcc-29a2-41ee-a66f-fb4c59fbeb00",
+      "eventType": "customer.subscription.updated",
+      "processingStatus": "applied"
+    },
+    {
+      "publicId": "20ab7a6b-d70a-4724-8ff4-b96afe12af1a",
+      "eventType": "invoice.payment_succeeded",
+      "processingStatus": "applied"
+    },
+    {
+      "publicId": "5946226b-3503-4677-8450-ec1782158778",
+      "eventType": "checkout.session.completed",
+      "processingStatus": "applied"
+    },
+    {
+      "publicId": "8ce0a091-b005-4882-9863-088b751fc5bf",
+      "eventType": "customer.subscription.created",
+      "processingStatus": "applied"
+    },
+    {
+      "publicId": "973dbb74-96be-48af-832c-d2be714781fd",
+      "eventType": "invoice.paid",
+      "processingStatus": "applied"
+    }
+  ],
+  "newReconciliations": [
+    {
+      "publicId": "78cd5ebe-d5e8-47e7-b3d0-b49d52b1fc59",
+      "directive": "grant",
+      "targetState": "active",
+      "reasonCode": "authoritative_access_bearing_state",
+      "entitlementMutationApplied": true
+    },
+    {
+      "publicId": "87f0a7d5-e359-4fd8-9b54-b4d52dc025b0",
+      "directive": "grant",
+      "targetState": "cancel_at_period_end",
+      "reasonCode": "authoritative_access_bearing_state",
+      "entitlementMutationApplied": true
+    },
+    {
+      "publicId": "f52984f6-95a5-4d29-897e-94f2fe67fd60",
+      "directive": "grant",
+      "targetState": "active",
+      "reasonCode": "authoritative_access_bearing_state",
+      "entitlementMutationApplied": true
+    },
+    {
+      "publicId": "5be3b7c5-339d-4c9d-86b0-7ddb85f89d69",
+      "directive": "grant",
+      "targetState": "active",
+      "reasonCode": "authoritative_access_bearing_state",
+      "entitlementMutationApplied": true
+    },
+    {
+      "publicId": "62fcd5cf-5575-461d-98ae-c947fe862ba2",
+      "directive": "grant",
+      "targetState": "active",
+      "reasonCode": "authoritative_access_bearing_state",
+      "entitlementMutationApplied": true
+    },
+    {
+      "publicId": "c3d9ea7c-95be-4617-b841-60ba5bf089ca",
+      "directive": "grant",
+      "targetState": "active",
+      "reasonCode": "authoritative_access_bearing_state",
+      "entitlementMutationApplied": true
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # Web实际部署与Preview版本补齐
 
-Status: DEPLOYED; PUBLIC NAVIGATION VERIFIED; AUTHENTICATED PREVIEW ACCEPTANCE PENDING OWNER LOGIN
+Status: DEPLOYED; PUBLIC NAVIGATION AND ORIGINAL PREVIEW IDENTITY VERIFIED; CLOUD TEST PASSED
 Last updated: 2026-10-09 (Asia/Hong_Kong)
 
 ## 任务与实际缺口
@@ -27,9 +27,9 @@ AWS远程CA包从108增加到111根，导致原固定digest的构建下载失败
 
 Agent初始资产辅助脚本误选AMD64，两次失败候选从未部署；活动基础设施本来已正确指定ARM64，不能把此操作错误算作Dot代码缺陷。官方Homebrew buildx仅通过本轮CDK_DOCKER包装器使用，未重设全局Docker配置或清理其他项目。
 
-## 尚未证明
+## 后续本人登录已解除的旧门与保留边界
 
-Preview旧API实测account/identity404，更新后代码/镜像已对齐；但原浏览器会话长时间空闲后真实401，数据库无可用浏览器会话。已让Owner在原账号页亲自确认并登录，不能代造本人同意、借用别的账号或把身份邮箱显示写成已通过。原账号active且1条事项保留；新登录后邮箱、套餐按钮与托管结账仍待本人登录。
+Preview旧API实测account/identity404，更新后代码/镜像已对齐；但原浏览器会话长时间空闲后真实401，数据库无可用浏览器会话。当时已让Owner亲自确认并登录；下午Owner完成后，原邮箱、1条事项、真实TEST按钮和云端年付闭环均已核验，见[当前结果](stripe-cloud-acceptance-20261009.md)。没有代造本人同意或切换账号。
 
 原三正式审核身份期限仍2026-10-08T20:00:00Z（香港October9 04:00），本轮未延长，当前时间已过此门。Preview测试资格独立，不扩展正式访问。手机仍为源码35f37e1b2的本地1.0(11)，未重复安装或分发TestFlight。
 
