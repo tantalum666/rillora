@@ -3,6 +3,7 @@ import type { NormalizedProviderSignal } from './commerce-provider-contract.js';
 import type { StripeSdkPort, StripeFinancialSignalResolution } from './stripe-sdk.js';
 import { assertStripeObjectId, stripeObjectReference, stringWithPrefix } from './stripe-provider-shared.js';
 import { readStripeRecoveryFinancialState } from './stripe-recovery-financial-state.js';
+import { readStripeRefundEvidence } from './stripe-refund-evidence.js';
 
 export async function resolveStripeFinancialSignal(
   sdk: StripeSdkPort,
@@ -44,8 +45,9 @@ export async function resolveStripeFinancialSignal(
   if (!subscriptionId || !customerId) throw new Error('Subscription and Customer references are required');
   assertStripeObjectId(subscriptionId, 'sub_'); assertStripeObjectId(customerId, 'cus_');
   if (stripeObjectReference(charge.customer) && stripeObjectReference(charge.customer) !== customerId) throw new Error('Charge and Invoice Customer references do not match');
-  const fullRefund = signal.signalType === 'refund_changed' && (refund === null || refund.status === 'succeeded')
+  const fullRefundCandidate = signal.signalType === 'refund_changed' && (refund === null || refund.status === 'succeeded')
     && (charge.refunded || charge.amount_refunded >= charge.amount);
+  const fullRefund = fullRefundCandidate && (await readStripeRefundEvidence(sdk, charge)).fullyRefunded;
   const revoked = dispute !== null && !['won', 'prevented', 'warning_closed'].includes(dispute.status);
   let authoritativeStateOverride: StripeFinancialSignalResolution['authoritativeStateOverride'] =
     fullRefund ? 'refunded' : revoked ? 'revoked' : null;

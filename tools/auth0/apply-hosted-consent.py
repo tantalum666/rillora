@@ -15,7 +15,7 @@ import time
 
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE = ROOT / "infra/auth0/hosted-consent"
-FORM_NAME = "Rillora account acknowledgement"
+FORM_NAME = "Rillora account acknowledgement — English"
 FORM_ZH_NAME = "Rillora account acknowledgement — 简体中文"
 ACTION_NAME = "Rillora hosted legal acceptance"
 

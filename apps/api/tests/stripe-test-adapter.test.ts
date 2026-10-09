@@ -316,9 +316,13 @@ describe("official Stripe test adapter", () => {
         amount: 999,
         amount_refunded: 999,
         refunded: true,
+        currency: 'usd',
         customer: "cus_rillora_test_001",
         payment_intent: "pi_rillora_test_001",
       }) as Stripe.Charge,
+      listRefundsByCharge: async () => ({ has_more: false, data: [
+        { id: 're_rillora_test_001', charge: 'ch_rillora_test_001', amount: 999, currency: 'usd', status: 'succeeded' },
+      ] }) as Stripe.ApiList<Stripe.Refund>,
       listInvoicePaymentsByPaymentIntent: async () => ({
         object: "list",
         has_more: false,

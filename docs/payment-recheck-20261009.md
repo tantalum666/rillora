@@ -1,6 +1,6 @@
 # October9直装、付款专项复核与完整双语
 
-Status: IN PROGRESS — PHONE12 INSTALLED; FINANCIAL FIX DEPLOYED; COORDINATED LANGUAGE DELIVERY PENDING
+Status: IN PROGRESS — PHONE13 ACCEPTED; COORDINATED LANGUAGE DEPLOYED; REAL ASYNC REFUND TEST RUNNING
 Last updated: 2026-10-10 (Asia/Hong_Kong)
 
 Owner要求先把修复版本直装原手机，再细查Web/iOS付款、退款等流程；随后要求中文/英文界面各自完整，移除中英并排、中文参考和英文优先提示。这取代旧的保留英文同意文案/仅给中文参考的展示决定；价格、真实数据、FanPass及暂停零碎TestFlight保持。
@@ -27,7 +27,7 @@ QA：output/qa/rillora-payment-recheck-20261009；原生包：output/release/ril
 
 上述修复615bf1322已推送且GitHub CI108成功；Preview/production两次冻结模板更新均UPDATE_COMPLETE并与实际模板一致。运行任务健康、最新前端字节和新的真实TEST检查分别记录，不能由CloudFormation状态代替。
 
-## October10进行中的语言交付
+## HISTORICAL — October10语言交付前的准备
 
 七份法律文件、60节的中英文渲染已核对相同结构；删除英文优先/中文参考展示，保持原真实经营资料、价格、历史收据。准备terms-2026-10-09-1、registration-clickwrap-2026-10-09-1及同一新bundle摘要；尚未发布前不能称为当前已接受条款。原Privacy实质政策版本保持。完整法律构建已通过八项检查，包含根路径语言保留。
 
@@ -38,3 +38,25 @@ API全套441项中439通过，新增TEST适配器的两项夹具缺少响应导�
 Auth0原会话可用；租户目前只启用en。中文同意表单、两条Action的按语言路由及错误文案已准备，保留三身份/期限/绑定。旧Universal Login外壳模板API实际402，控制台主题可编辑但未找到免费模板替换入口；这是套餐能力限制，不能伪装成登录过期，也不擅自升级或切换Classic。
 
 Owner手机12自动显示已订阅：实际服务器读取原storekit/sandbox订阅、HKD888/HKG及Oct9新的CLIENT_SIGNED_TRANSACTION；无本轮新订单。已有订阅自动同步属于预期结果，本次未要求再次购买，也未取得新的Restore点击或退款结果。
+
+## October10实际交付与本轮付款进度
+
+最终法律正文摘要为c983dc26bb372fba66b8df467d6e4c0ea1d85a2f4d94d86104b4bffa8d7f3ddb；eaf68c0a7的CI111三个任务成功，441API及55infra通过。先更新维护镜像、逐库执行94及校验全部94摘要，再发布API20/Preview42；两者1/1健康，角色/网络/秘密/审核范围保持。正式/Preview/官网86/86/31文件独立逐字节匹配。Cloudflare法律部署e99e137f-d469-4452-b796-4844ee38fb8d实际成功；50HTTP检查、18资源字节、14中英文页面渲染与60节对应通过。
+
+原生development13原位安装、独立版本读回和前台启动通过，签名/原设备/生产连接/Keychain/资源共14检查通过。原生英文53及最终中文12通过。Owner当场反馈“套餐是已经订阅，价格是港币888，没有夹杂英文了”，与签名Apple Sandbox记录一致；不新增Apple付款/Restore证据，不分发TestFlight。
+
+Auth0通过原已登录Dashboard导入配对的English/简体中文同意表单，CLI只做可用读回/已有Action权限；原表单未变作为回退。两条Action新证明和en/zh-CN、中文重复注册提示已读回，未扩权限/身份或代造同意。旧模板API402导致桌面外壳3句英文仍未改；这与CLI缺少update:forms是两个不同问题。实际中文widget正常，旧外壳截图已保存。
+
+Owner当场确认新版条款，Agent按具体授权勾选并复用原Google登录，真实Preview仍为原1事项。新中文Stripe结账实际发现固定英文产品说明；TEST/Live目录仅把显示名改为Rillora、移除固定英文描述，默认价格、税务代码、账单名称及关闭销售保持。应用中家庭版名称与功能照所选语言显示；历史发票原文不重写。
+
+本轮实际已完成：取消未付款结账、官方0002拒付中文提示、官方5126测试卡成功USD88.99年付、云端Family、中文Portal到期取消且保留本期权益、英文Portal恢复续订。平台用cancel_at表示计划取消，不能只读cancel_at_period_end字段；应用正确显示对应状态。已对该唯一新TEST付款发起全额退款，初始succeeded、UI Free/已退款且提示续订不会自动取消。后续failed与权益恢复正在观察，未重复退款、未清理这条仍用于验收的订阅。普通客户/Live付款保持关闭。
+
+部分操作工具与夹具的失败另留记录：首轮新增用例缺响应、原生金标旧参数、扫描白名单行号迁移、生产维护容器名称校验、浏览器点击超时及法律构建未加载受保护配置。均与产品缺陷分开，不把后续成功倒写成首次通过。
+
+October10后续实际结果：官方5126退款从succeeded变为failed，原因expired_or_canceled_card；对应已付Charge的amount_refunded归零、refunded=false。实际Preview点击刷新后从Free恢复Family，原2027年10月10日已付截止保留。此次只提交一次TEST退款；不是第二次购买或真钱退款。回调/数据库独立记录、后续部分/待处理退款和测试订阅清理继续。
+
+## 待处理退款的新发现与修复准备
+
+第一条5126测试订阅在上述恢复验证后已按精确ID取消，不生成最终账单或按比例项目，应用回落Free且允许新购。第二条独立TEST订单使用官方7726卡，英文结账成功USD88.99；只对该付款提交一次USD10部分退款。Provider实际返回pending，同时Charge.amount_refunded已经增加至1000，并发出charge.refunded事件。这证明不能把Charge累计金额直接当作成功退款金额。
+
+补充的18项回归在旧代码上12过/6失败，覆盖两种环境下全额pending、成功部分加pending余款、退款列表不完整。新共享退款证据读取器仅累加succeeded，普通回调与备份恢复共用同一库存校验；恢复的严格保守边界继续保留。修复后70项相关API/恢复测试和类型检查通过，尚待此次服务器镜像部署。第二张测试单的剩余USD78.99退款尚未提交，留待新镜像上实际验证全额pending保持权益、全部成功后再回落Free。新修复不需迁移、前端重新发布或手机重装。

@@ -12,10 +12,13 @@ function fixture(environment: 'test' | 'production') {
     disputeStatus: null as Stripe.Dispute.Status | null,
     incompleteRefundList: false,
     chargeLive: live,
+    pendingCountsInCharge: false,
+    refundAmount: 8899,
+    remainingPending: false,
   };
   const refund = () => ({ id: 're_reversal_fixture', charge: 'ch_reversal_fixture',
-    payment_intent: 'pi_reversal_fixture', amount: 8899, currency: 'usd', status: state.refundStatus });
-  const fullyRefunded = () => state.refundStatus === 'succeeded' || state.anotherCompletedRefund;
+    payment_intent: 'pi_reversal_fixture', amount: state.refundAmount, currency: 'usd', status: state.refundStatus });
+  const fullyRefunded = () => state.refundStatus === 'succeeded' || state.anotherCompletedRefund || state.pendingCountsInCharge;
   const charge = () => ({ id: 'ch_reversal_fixture', livemode: state.chargeLive,
     customer: 'cus_reversal_fixture', payment_intent: 'pi_reversal_fixture',
     paid: true, captured: true, status: 'succeeded', currency: 'usd', amount: 8899,
@@ -34,17 +37,36 @@ function fixture(environment: 'test' | 'production') {
     listChargesByPaymentIntent: async () => ({ has_more: false, data: [charge()] }),
     listRefundsByCharge: async () => ({ has_more: state.incompleteRefundList,
       data: [refund(), ...(state.anotherCompletedRefund
-        ? [{ ...refund(), id: 're_other_completed_fixture', status: 'succeeded' }] : [])] }),
+        ? [{ ...refund(), id: 're_other_completed_fixture', status: 'succeeded' }] : []),
+        ...(state.remainingPending ? [{ ...refund(), id: 're_pending_remainder', status: 'pending', amount: 7899 }] : [])] }),
     listDisputesByCharge: async () => ({ has_more: false, data: state.disputeStatus === null ? []
       : [{ id: 'du_reversal_fixture', charge: 'ch_reversal_fixture', livemode: live, status: state.disputeStatus }] }),
   } as unknown as StripeSdkPort;
-  return { state, recovery: () => readStripeRecoveryFinancialState(sdk, 'in_reversal_fixture', 'cus_reversal_fixture', live),
+  return { state, readCharge: () => resolveStripeFinancialSignal(sdk,
+    { signalType: 'refund_changed', providerTransactionReference: 'ch_reversal_fixture', providerRefundReference: null }, environment),
+    recovery: () => readStripeRecoveryFinancialState(sdk, 'in_reversal_fixture', 'cus_reversal_fixture', live),
     read: () => resolveStripeFinancialSignal(sdk,
     { signalType: 'refund_changed', providerTransactionReference: null,
       providerRefundReference: 're_reversal_fixture' }, environment) };
 }
 
 describe.each(['test', 'production'] as const)('authoritative refund reversal in %s', environment => {
+  it('does not treat Stripe pending amounts in a charge.refunded signal as completed refunds', async () => {
+    const f = fixture(environment); f.state.refundStatus = 'pending'; f.state.pendingCountsInCharge = true;
+    await expect(f.readCharge()).resolves.toMatchObject({ authoritativeStateOverride: null });
+    f.state.refundStatus = 'succeeded';
+    await expect(f.readCharge()).resolves.toMatchObject({ authoritativeStateOverride: 'refunded' });
+  });
+
+  it('does not combine a succeeded partial refund with a pending remainder into a completed full refund', async () => {
+    const f = fixture(environment); f.state.refundStatus = 'succeeded'; f.state.refundAmount = 1000; f.state.remainingPending = true;
+    await expect(f.read()).resolves.toMatchObject({ authoritativeStateOverride: null });
+  });
+
+  it('does not confirm a full refund from an incomplete refund inventory', async () => {
+    const f = fixture(environment); f.state.refundStatus = 'succeeded'; f.state.incompleteRefundList = true;
+    await expect(f.readCharge()).rejects.toThrow('refund inventory');
+  });
   it.each(['failed', 'canceled'] as const)('confirms %s only from complete paid-invoice evidence', async status => {
     const f = fixture(environment); f.state.refundStatus = status;
     await expect(f.read()).resolves.toMatchObject({ authoritativeStateOverride: null, refundReversed: true });
