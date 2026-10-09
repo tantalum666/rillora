@@ -1,5 +1,9 @@
 # Rillora — Git / Dot 协作入口
 
+October9状态复核：[当前五组发布剩余工作](../docs/release-readiness.md#october1-remaining-work-inventory)
+与机器登记已按最新TEST/Live/手机证据纠正；本轮只有文档/登记更新，无新部署或交易。
+[状态复核回执](verification/release-status-20261009/README.md)。继续当前handoff的唯一下一步。
+
 October9当前：按Owner“直接配置”接通Rillora Live目录/门户/受限密钥/生产通知。987327d37的CI三任务、36API/9infra通过；API17健康，真实Live配置事件已验签，回调正常18事件enabled。
 新购/普通客户开放仍关闭，税务明确未配置；BR不再作为技术配置前提。
 [archive28](verification/live-configuration-20261009/README.md)新增232路径/228对象、297,714加密字节，本机及GitHub独立新下载解密均通过（bed2405af）。
@@ -91,7 +95,7 @@ output/、qa/等忽略规则挡住的设计、发布材料、验证记录和历�
 
 September30保存时的发布事实（历史）：Dot报告的13项问题已修复且API／Web／WWW已部署，随后受限真实验收与Apple证书检查修复也已部署。Apple官方TEST成功；QQ真实收件、原生登录、密码重置／重新登录及共享字段边界已经确认；撤销和真实购买恢复继续，Owner再次暂缓真机。重复注册提示已在Owner完成Auth0本人登录后保存到线上并读回一致。现有UI、完整03品牌、Free1／Family5、Web88.99年付与Apple待定渠道价、
 真实数据和FanPass继续保留。Resend已接通并通过官方投递／失败模拟，SES批准不再阻塞当前发信路线。本人验证、真实交易、SBP有效费率和最终上架仍分开验收。
-[当前七组剩余工作](../docs/release-readiness.md#october1-remaining-work-inventory)归并重复依赖；旧快照的日期和数量保持原样。
+[当前五组剩余工作](../docs/release-readiness.md#october1-remaining-work-inventory)归并重复依赖；旧快照的日期和数量保持原样。
 
 ## 包含什么
 

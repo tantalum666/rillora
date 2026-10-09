@@ -2,7 +2,44 @@
 
 Role: current launch scope, remaining work and release evidence contract  
 Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; ORDINARY CUSTOMER ACCESS AND SALES CLOSED
-Last updated: 2026-10-08 (Asia/Hong_Kong)
+Last updated: 2026-10-09 (Asia/Hong_Kong)
+
+## October9 current launch inventory
+
+本轮仅核对当前源码、交接与已有验收回执；没有再次登录provider、部署、购买或执行产品回归。
+下方历史检查点中的“当前”“未安装”“未接入”等只描述各自日期，不作为新待办。
+完整产品范围仍为Web与原生iOS、Free1/Family5；WebUSD88.99/年、Apple美国USD119.99/年已锁定。
+
+已完成且不重开的工作：三套Web已发布并核对线上字节/受影响界面；Preview API40/schema93；
+真实云端Stripe TEST年付、拒付、取消返回、门户取消/恢复、去重、全额退款及终止；正式Stripe商户、
+商品/年价、门户、受限密钥、API17与18类Live回调接通，真实Live配置事件验签通过。
+原生真实Sandbox HKD888购买已有签名/服务器证据，Owner后来确认恢复后显示家庭版；
+当前手机为源码35f37e1b2的直装1.0(11)。两种Apple结果不能混成同一次独立验签。
+真实登录/恢复/邮件、核心共享/撤销/导出导入、备份恢复/告警、设计商店图及已确认加密声明均保留原证据。
+
+<a id="october1-remaining-work-inventory"></a>
+
+| # | 真正剩余的工作 | 完成判据与边界 |
+| --- | --- | --- |
+| 1 | 正式Web开售配置与真钱验收 | 按实际首发地区补齐税务方案/所需真实资料、价格税处理与购买路由，再受控验证Live支付、取消/退款、回调及双端权益。当前Tax Settings缺head_office，tax mode为not_configured，正式报价/Checkout关闭；TEST通过和非资金Live通知不等于真钱生命周期通过。BR办妥不再是全部技术配置的前置门，不臆造免代收结论。 |
+| 2 | 原生最终汇总版及Apple剩余验收 | 后续Dot指南/搜索修正已合并但尚未装到原手机，先集中直装。实际核对已订阅/未订阅页面的权益、币种/金额、恰当主操作，既有购买恢复的服务器状态与跨端权益，以及续订/退款/到期处理。保留已成功购买和Owner恢复反馈，不要求为了这份清单再买一次。真机VoiceOver和法律链接随最终受影响路径补齐；不恢复Large text控件。 |
+| 3 | 最终产物、权限与恢复后计费对账 | 对最终交付版本补受影响的双端路径、权限负向检查及回滚/发布配置复核；保留已有全库审查、CI、RDS/KMS恢复和保留清理证据。用实际provider状态补齐恢复后退款/到期不复活权益的核验，不重跑无变化的全套工程。 |
+| 4 | App Store最终候选、送审与审核 | 集中修正稳定后准备新的最终构建，核对截图与真实界面、隐私/年龄/联系信息、市场/价格及审核账号访问，选入草稿并提交App Review；通过后手动发布。当前商店草稿最后确认选用9，TestFlight11与手机同号直装包不是相同产物；未提审。六张设计图和已确认的加密声明不从头重做。 |
+| 5 | 正式客户与身份环境切换 | 原三审核身份期限香港October9 04:00已过；后续验收/送审先恢复适用审核访问。正式开放时完成旧Preview身份能力/凭据退役、旧令牌的实际有效期加容差与拒绝检查，切换官网入口并验证普通客户注册/登录/付费。原24小时旧Management令牌寿命是身份切换条件，不是普通客户限时服务，也不是从现在起的上线倒计时。 |
+
+独立删除验收仍按Owner“保留，暂不删除”执行，不能勾为通过，也不能擅自启动删除。
+这项缺口在最终发布判断中须明确保留/解决，不通过更改登记状态隐藏。外部两个TestFlight邀请仍暂缓。
+SES不再是Resend路线的前置，SBP只有既有申请回执、无15%生效证明；既定Apple价格不因此重新待定，
+也不把等待优惠批准新增为发布硬门。没有全新功能或大范围UI重做列入此清单。
+
+证据入口：[实际Web发布](web-rollout-20261009.md)、[云端TEST](stripe-cloud-acceptance-20261009.md)、
+[Live配置](live-configuration-20261009.md)、[当前手机与恢复反馈](matter-category-refinement-20261008.md)、
+[后续Dot增量](dot-integration-20261008.md)。[机器登记](../config/release-gates.json)同步事实与来源，
+不把多个聚合门都标成verified来生成完成百分比。唯一执行顺序继续以[handoff](handoff.md)为准。
+
+## HISTORICAL checkpoints — all following observations retain their original dates
+
+以下完整保留过去工作及当时未完成项；上方October9清单与当前handoff取代其中被后续结果解决的待办。
 
 ## October8 current native delivery
 
@@ -177,9 +214,9 @@ artifact and reads actual Apple results; it repeats no unchanged product suite,
 cloud deployment, Apple TEST notification or SES application. SES is no longer a
 required approval for the Owner-selected sender.
 
-<a id="october1-remaining-work-inventory"></a>
 
-## October6 remaining-work inventory
+
+## HISTORICAL — October6 remaining-work inventory
 
 The12register gates are grouped into seven current work packages below. Two register gates
 are verified; the remaining states are deliberately unchanged. This is not a completion

@@ -28,4 +28,8 @@ AWS原浏览器已恢复CLI，无重复OwnerMFA；CDK本机DNS轮询失败已用
 
 进入正式开售的客户访问、税务策略与真实购买验收阶段：沿用现成Live接入，完成该阶段真实必要配置后再开放新购；不重做TEST，不把BR完成当通用技术前提，也不把未配置的税务改写成已审核免代收。
 
+October9状态复核已同步[当前五组发布剩余工作](release-readiness.md#october1-remaining-work-inventory)和机器登记：
+后续Dot原生修正尚未直装，最终候选/送审/客户切换未完成；保留Owner已恢复Family的反馈和独立删除暂缓。
+这次只纠正文档漂移，没有新增provider查询、部署、认证或产品验收；原唯一下一步保持。
+
 [上一交接](handoff-history-20261009-before-live-closeout.md)为HISTORICAL。价格、真实数据、FanPass及独立删除账号保留决定继续有效。
