@@ -60,6 +60,26 @@ describe('Closed production data and recovery foundation',()=>{
 });
 
 describe('Optional closed production HTTPS runtime',()=>{
+ it('reuses only the named Live notification secret while retaining review and disabled purchases',()=>{
+  const arn='arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/stripe-billing-ABC123';
+  const props={env:{account:'133857166372',region:'eu-central-1'},runtimeEnabled:true,runtimeDesiredCount:1 as const,reviewPrepared:true,reviewEnabled:true,stripeNotificationsSecretArn:arn};
+  const t=Template.fromStack(new RilloraProductionStack(new App(),'Production',props));
+  const task=(Object.values(t.findResources('AWS::ECS::TaskDefinition')) as any[]).find(t=>t.Properties.ContainerDefinitions.some((c:any)=>c.Name==='Api'))!;
+  const api=task.Properties.ContainerDefinitions.find((c:any)=>c.Name==='Api');
+  const env=Object.fromEntries(api.Environment.map((e:any)=>[e.Name,e.Value]));
+  expect(env).toMatchObject({PRODUCTION_RUNTIME_MODE:'review',ALLOW_STRIPE_PRODUCTION_NOTIFICATIONS:'true',STRIPE_PRODUCTION_SECRET_ARN:arn,
+    ALLOW_STRIPE_PRODUCTION_INTEGRATION:'false',ALLOW_STRIPE_TEST_INTEGRATION:'false',ALLOW_APPLE_REVIEW_INTEGRATION:'true'});
+  expect(env.PRODUCTION_REVIEW_IDENTITY_SHA256.Ref).toBeDefined();expect(env.PRODUCTION_REVIEW_EXPIRES_AT.Ref).toBeDefined();
+  const policies=Object.values(t.findResources('AWS::IAM::Policy')) as any[];
+  const grants=policies.filter(p=>p.Properties.PolicyDocument.Statement.some((s:any)=>JSON.stringify(s.Resource).includes(arn)));
+  expect(grants).toHaveLength(1);
+  expect(grants[0].Properties.Roles).toEqual([{Ref:task.Properties.TaskRoleArn['Fn::GetAtt'][0]}]);
+  const statement=grants[0].Properties.PolicyDocument.Statement.find((s:any)=>JSON.stringify(s.Resource).includes(arn));
+  expect(statement.Action).toEqual(['secretsmanager:GetSecretValue','secretsmanager:DescribeSecret']);
+  expect(JSON.stringify(t.findResources('AWS::SecretsManager::Secret'))).not.toContain('stripe-billing');
+  expect(()=>new RilloraProductionStack(new App(),'Wrong',{...props,stripeNotificationsSecretArn:arn.replace('rillora/production','fanpass')})).toThrow();
+  expect(()=>new RilloraProductionStack(new App(),'Closed',{...props,reviewEnabled:false})).toThrow();
+ });
  it('prepares isolated vault resources while retaining closed runtime and the old immutable API image',()=>{
   const t=Template.fromStack(new RilloraProductionStack(new App(),'Production',{env:{account:'133857166372',region:'eu-central-1'},
    runtimeEnabled:true,runtimeDesiredCount:1,reviewPrepared:true,runtimeImageTag:'a'.repeat(64)}));

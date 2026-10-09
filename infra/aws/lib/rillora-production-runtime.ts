@@ -13,6 +13,7 @@ interface Props {
  reviewPrepared?:boolean; reviewEnabled?:boolean;
  retentionEnabled?:boolean;
  identityServicesEnabled?:boolean;
+ stripeNotificationsSecretArn?:string;
  recoveryTask?:ecs.FargateTaskDefinition;
 }
 
@@ -88,6 +89,12 @@ export class RilloraProductionRuntime extends Construct {
     reviewSecrets.OIDC_CLIENT_SECRET=ecs.Secret.fromSecretsManager(web,'client_secret');
     apple.grantRead(task.taskRole);
    }
+  }
+  if(p.stripeNotificationsSecretArn){
+   const stripe=secrets.Secret.fromSecretCompleteArn(this,'StripeNotificationsSecret',p.stripeNotificationsSecretArn);
+   stripe.grantRead(task.taskRole);
+   Object.assign(reviewEnvironment,{ALLOW_STRIPE_PRODUCTION_NOTIFICATIONS:'true',STRIPE_PRODUCTION_SECRET_ARN:p.stripeNotificationsSecretArn});
+   new CfnOutput(this,'StripeNotificationsSecretArn',{value:p.stripeNotificationsSecretArn});
   }
   const linux=new ecs.LinuxParameters(this,'Linux');linux.dropCapabilities(ecs.Capability.ALL);
   const container=task.addContainer('Api',{

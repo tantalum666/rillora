@@ -104,6 +104,7 @@ if (productionWebSelected) {
     reviewPrepared:reviewFlag('productionReviewPrepared'),reviewEnabled:reviewFlag('productionReviewEnabled'),
     retentionEnabled:reviewFlag('productionRetentionEnabled'),
     identityServicesEnabled:reviewFlag('productionIdentityServicesEnabled'),
+    stripeNotificationsSecretArn:app.node.tryGetContext('productionStripeNotificationsSecretArn'),
     runtimeImageTag:app.node.tryGetContext('productionRuntimeImageTag'),
   });
 } else if(preflightSelected){

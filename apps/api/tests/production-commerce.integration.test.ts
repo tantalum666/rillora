@@ -12,7 +12,7 @@ import { productionExecutionConfig } from '../src/stripe-execution-config.js';
 import type { StripeProductionConfig } from '../src/stripe-production-adapter.js';
 import { currentLegalContract } from '../src/legal-contract.js';
 import { purchaseConsentContract } from '../src/purchase-consent.js';
-import type Stripe from 'stripe';
+import Stripe from 'stripe';
 import type { StripeSdkPort } from '../src/stripe-sdk.js';
 import { resolveStripeFinancialSignal } from '../src/stripe-financial-resolution.js';
 
@@ -33,6 +33,7 @@ const config: AppConfig = {
   sessionTtlMinutes: 480, sessionIdleMinutes: 30, authTransactionTtlSeconds: 600, dataRegion: 'eu-central-1',
   oidc: null, nativeOidc: null, stripeTest: null, appleSandbox: null,
   stripeProductionSecretArn: 'arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/stripe-billing-FIXTUR',
+  stripeProductionCheckoutEnabled: true,
 };
 const consent = { ...purchaseConsentContract, acceptedSubscriptionTerms: true, acceptedAnnualRenewal: true, acknowledgedCancellation: true };
 let captured: Parameters<StripeCommerceProvider['createHostedSubscriptionCheckout']>[0];
@@ -86,6 +87,27 @@ describe('production commerce ledger with a synthetic provider only', () => {
     app = createApp(pool, config, { stripeProductionConfig: billing, stripeExecutor: executor });
   });
   afterAll(async () => { await pool?.end(); });
+
+  it('accepts signed notification-only traffic without exposing quotes, purchases or bypassing authentication',async()=>{
+    const pending={...billing,tax:{mode:'not_configured' as const,productTaxCode:'txcd_fixture'}};
+    const receiver=createApp(pool,{...config,stripeProductionCheckoutEnabled:false},{stripeProductionConfig:pending});
+    await request(receiver).get('/api/v1/commerce/stripe/status').expect(401);
+    await request(receiver).get('/api/v1/commerce/stripe/status').set('x-dev-planner-id',plannerPublicId).expect(200);
+    await request(receiver).get('/api/v1/commerce/stripe/quote').set('x-dev-planner-id',plannerPublicId).expect(503);
+    await request(receiver).post('/api/v1/commerce/stripe/checkout').set('x-dev-planner-id',plannerPublicId)
+      .set('idempotency-key','notifications-cannot-purchase-001').send({billingPeriod:'annual',purchaseConsent:consent}).expect(503);
+    const body=JSON.stringify({id:'evt_notifications_only_fixture',object:'event',type:'product.updated',created:Math.floor(Date.now()/1000),livemode:true,
+      data:{object:{id:billing.familyProductId,object:'product'}}});
+    const signature=Stripe.webhooks.generateTestHeaderString({payload:body,secret:billing.webhookSecret});
+    const result=await request(receiver).post('/commerce/stripe/webhook').set('content-type','application/json').set('stripe-signature',signature).send(body).expect(200);
+    expect(result.body).toMatchObject({received:true,status:'ignored',testOnly:false});
+    await request(receiver).post('/commerce/stripe/webhook').set('content-type','application/json').set('stripe-signature',signature).send(body+' ').expect(400);
+    const testBody=body.replace('"livemode":true','"livemode":false');
+    const testSignature=Stripe.webhooks.generateTestHeaderString({payload:testBody,secret:billing.webhookSecret});
+    await request(receiver).post('/commerce/stripe/webhook').set('content-type','application/json').set('stripe-signature',testSignature).send(testBody).expect(400);
+    expect((await pool.query('select count(*)::int as count from app.commerce_orders')).rows[0].count).toBe(0);
+    expect(checkoutCall).not.toHaveBeenCalled();
+  });
 
   it('requires authentication and separate exact purchase consent; registration consent is insufficient', async () => {
     await request(app).get('/api/v1/commerce/stripe/quote').expect(401);

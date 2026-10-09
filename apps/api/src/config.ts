@@ -45,6 +45,7 @@ const configSchema = z
     ALLOW_SYNTHETIC_RECIPIENT_REHEARSAL: booleanFromString,
     ALLOW_STRIPE_TEST_INTEGRATION: booleanFromString,
     ALLOW_STRIPE_PRODUCTION_INTEGRATION: booleanFromString,
+    ALLOW_STRIPE_PRODUCTION_NOTIFICATIONS: booleanFromString,
     STRIPE_PRODUCTION_SECRET_ARN: z.string().regex(stripeProductionSecretArnPattern).optional(),
     STRIPE_TEST_STAGING_MODE: booleanFromString,
     ALLOW_APPLE_SANDBOX_INTEGRATION: booleanFromString,
@@ -136,6 +137,7 @@ export type AppConfig = {
   appleReview?: { secretArn:string;rootCertificateDirectory:string } | null;
   appleProduction?: { secretArn: string; rootCertificateDirectory: string } | null;
   stripeProductionSecretArn?: string | null;
+  stripeProductionCheckoutEnabled?: boolean;
   productionRuntimeClosed?: boolean;
   productionReviewAccess?: { identityDigests: readonly string[]; expiresAt: number } | null;
   allowRetentionWorker?: boolean;
@@ -296,18 +298,20 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
     || !parsed.API_TLS_CERTIFICATE_ARN || parsed.API_TLS_SERVER_NAME !== "origin.production.rillora.xyz"
     || parsed.DATA_REGION !== "eu-central-1" || parsed.ALLOW_STRIPE_TEST_INTEGRATION
     || parsed.ALLOW_APPLE_SANDBOX_INTEGRATION || parsed.ALLOW_FAMILY_MAINTENANCE_PREVIEW
-    || parsed.ALLOW_STRIPE_PRODUCTION_INTEGRATION || parsed.ALLOW_APPLE_PRODUCTION_INTEGRATION || parsed.ALLOW_APPLE_REVIEW_INTEGRATION)) {
+    || parsed.ALLOW_STRIPE_PRODUCTION_INTEGRATION || parsed.ALLOW_STRIPE_PRODUCTION_NOTIFICATIONS
+    || parsed.ALLOW_APPLE_PRODUCTION_INTEGRATION || parsed.ALLOW_APPLE_REVIEW_INTEGRATION)) {
     throw new Error("Closed production requires encrypted content, its independent recovery journal and verified TLS; test features stay disabled");
   }
   if (parsed.NODE_ENV === "production" && parsed.ALLOW_DEV_AUTH) {
     throw new Error("ALLOW_DEV_AUTH must never be enabled in production");
   }
-  if ((parsed.ALLOW_STRIPE_PRODUCTION_INTEGRATION || parsed.ALLOW_APPLE_PRODUCTION_INTEGRATION || parsed.ALLOW_APPLE_REVIEW_INTEGRATION) && (
+  if ((parsed.ALLOW_STRIPE_PRODUCTION_INTEGRATION || parsed.ALLOW_STRIPE_PRODUCTION_NOTIFICATIONS
+    || parsed.ALLOW_APPLE_PRODUCTION_INTEGRATION || parsed.ALLOW_APPLE_REVIEW_INTEGRATION) && (
     parsed.NODE_ENV !== 'production' || productionRuntimeClosed || parsed.ALLOW_DEV_AUTH
     || parsed.ALLOW_STRIPE_TEST_INTEGRATION || parsed.ALLOW_APPLE_SANDBOX_INTEGRATION
     || parsed.ALLOW_SYNTHETIC_RECIPIENT_REHEARSAL || parsed.ALLOW_FAMILY_MAINTENANCE_PREVIEW
     || parsed.WEB_APP_ORIGIN !== 'https://app.rillora.xyz'
-    || (parsed.ALLOW_STRIPE_PRODUCTION_INTEGRATION && !parsed.STRIPE_PRODUCTION_SECRET_ARN)
+    || ((parsed.ALLOW_STRIPE_PRODUCTION_INTEGRATION || parsed.ALLOW_STRIPE_PRODUCTION_NOTIFICATIONS) && !parsed.STRIPE_PRODUCTION_SECRET_ARN)
     || (parsed.ALLOW_APPLE_PRODUCTION_INTEGRATION && (!parsed.APPLE_PRODUCTION_SECRET_ARN
       || !parsed.APPLE_ROOT_CERTIFICATE_DIRECTORY || parsed.APPLE_IAP_PRIVATE_KEY || parsed.APPLE_IAP_KEY_ID || parsed.APPLE_IAP_ISSUER_ID))
     || (parsed.ALLOW_APPLE_REVIEW_INTEGRATION && (!parsed.APPLE_REVIEW_SECRET_ARN
@@ -604,7 +608,9 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
     appleProduction: parsed.ALLOW_APPLE_PRODUCTION_INTEGRATION ? {
       secretArn: parsed.APPLE_PRODUCTION_SECRET_ARN!, rootCertificateDirectory: parsed.APPLE_ROOT_CERTIFICATE_DIRECTORY!,
     } : null,
-    stripeProductionSecretArn: parsed.ALLOW_STRIPE_PRODUCTION_INTEGRATION ? parsed.STRIPE_PRODUCTION_SECRET_ARN! : null,
+    stripeProductionSecretArn: parsed.ALLOW_STRIPE_PRODUCTION_INTEGRATION || parsed.ALLOW_STRIPE_PRODUCTION_NOTIFICATIONS
+      ? parsed.STRIPE_PRODUCTION_SECRET_ARN! : null,
+    stripeProductionCheckoutEnabled: parsed.ALLOW_STRIPE_PRODUCTION_INTEGRATION,
     apiTls: parsed.API_TLS_CERTIFICATE_ARN ? {
       certificateArn: parsed.API_TLS_CERTIFICATE_ARN, serverName: parsed.API_TLS_SERVER_NAME!, region: parsed.DATA_REGION,
     } : null,

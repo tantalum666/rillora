@@ -41,4 +41,30 @@ describe('production purchase configuration fails closed',()=>{
     expect(()=>loadConfig({...base,NODE_ENV:'production',PRODUCTION_RUNTIME_MODE:'closed'})).toThrow('Closed production requires');
     expect(loadConfig({...base,ALLOW_STRIPE_PRODUCTION_INTEGRATION:'false'}).stripeProductionSecretArn).toBeNull();
   });
+  it('records pending tax configuration explicitly instead of inventing an assessment',()=>{
+    const pending={...secret,tax:{mode:'not_configured',productTaxCode:'txcd_fixture'}};
+    expect(parseStripeProductionSecret(JSON.stringify(pending)).tax).toEqual(pending.tax);
+    expect(()=>parseStripeProductionSecret(JSON.stringify({...pending,tax:{...pending.tax,assessmentReference:'pretend-review'}}))).toThrow('reviewed schema');
+    expect(()=>parseStripeProductionSecret(JSON.stringify({...pending,tax:{...pending.tax,activeRegistrationIds:['taxreg_fixture']}}))).toThrow('reviewed schema');
+  });
+  it('allows only signed Live notifications inside the existing restricted review boundary',()=>{
+    const env={DATABASE_URL:'postgresql://127.0.0.1/local_fixture',NODE_ENV:'production',DATABASE_SSL_MODE:'verify-full',DATABASE_SSL_CA_PATH:'/tmp/fixture-ca.pem',
+      PRODUCTION_RUNTIME_MODE:'review',PRODUCTION_REVIEW_IDENTITY_SHA256:'a'.repeat(64),PRODUCTION_REVIEW_EXPIRES_AT:'2026-12-01T00:00:00Z',
+      ALLOW_APPLE_REVIEW_INTEGRATION:'true',APPLE_REVIEW_SECRET_ARN:'arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/apple-review-ABC123',APPLE_ROOT_CERTIFICATE_DIRECTORY:'/app/certificates/apple',
+      ALLOW_STRIPE_PRODUCTION_NOTIFICATIONS:'true',STRIPE_PRODUCTION_SECRET_ARN:'arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/stripe-billing-ABC123',
+      WEB_APP_ORIGIN:'https://app.rillora.xyz',OIDC_ISSUER_URL:'https://login.rillora.xyz',OIDC_CLIENT_ID:'EcevpyKt1GELKwkLnVU3aCbh3Ix2SJhz',
+      OIDC_CLIENT_SECRET:'synthetic-oidc-secret-never-usable',OIDC_REDIRECT_URI:'https://app.rillora.xyz/api/auth/callback',
+      NATIVE_OIDC_CLIENT_ID:'POpNKTqlr6dHbJZLWPWxhyjg5qPtdrm4',OIDC_API_AUDIENCE:'urn:rillora:production:api',
+      CONTENT_PROTECTION_MODE:'encrypted',CONTENT_KEY_NAMESPACE:'rillora-production',
+      CONTENT_KMS_KEY_ARN:'arn:aws:kms:eu-central-1:133857166372:key/11111111-1111-4111-8111-111111111111',
+      RECOVERY_JOURNAL_TABLE:'production-fixture',RECOVERY_ENVIRONMENT:'production',
+      API_TLS_CERTIFICATE_ARN:'arn:aws:acm:eu-central-1:133857166372:certificate/11111111-1111-4111-8111-111111111111',API_TLS_SERVER_NAME:'origin.production.rillora.xyz'};
+    const loaded=loadConfig(env);
+    expect(loaded.stripeProductionSecretArn).toBe(env.STRIPE_PRODUCTION_SECRET_ARN);
+    expect(loaded.stripeProductionCheckoutEnabled).toBe(false);
+    expect(loaded.productionReviewAccess?.identityDigests).toEqual(['a'.repeat(64)]);
+    for(const patch of [{NODE_ENV:'development'},{PRODUCTION_RUNTIME_MODE:'closed'},{ALLOW_STRIPE_PRODUCTION_INTEGRATION:'true'},
+      {ALLOW_STRIPE_TEST_INTEGRATION:'true'},{ALLOW_DEV_AUTH:'true'},{STRIPE_PRODUCTION_SECRET_ARN:undefined},
+      {WEB_APP_ORIGIN:'https://app.staging.rillora.xyz'},{CONTENT_PROTECTION_MODE:'off'}])expect(()=>loadConfig({...env,...patch})).toThrow();
+  });
 });

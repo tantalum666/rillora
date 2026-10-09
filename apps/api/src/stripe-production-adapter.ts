@@ -15,12 +15,15 @@ export type StripeProductionPriceBinding = Readonly<{
   id: string; priceCode: string; amountMinor: number; currency: 'usd';
   interval: 'year' | 'month'; planVersion: number;
 }>;
+export type StripeProductionTaxConfig =
+  | Readonly<{ mode: 'not_configured'; productTaxCode: string }>
+  | Readonly<{ mode: 'automatic' | 'reviewed_no_collection'; assessmentReference: string;
+      productTaxCode: string; activeRegistrationIds: readonly string[] }>;
 export type StripeProductionConfig = Readonly<{
   apiKey: string; webhookSecret: string; expectedAccountId: string; familyProductId: string;
   annualPriceId: string; historicalPrices: readonly StripeProductionPriceBinding[];
   checkoutSuccessUrl: string; checkoutCancelUrl: string; portalReturnUrl: string; portalConfigurationId: string;
-  tax: Readonly<{ mode: 'automatic' | 'reviewed_no_collection'; assessmentReference: string;
-    productTaxCode: string; activeRegistrationIds: readonly string[] }>;
+  tax: StripeProductionTaxConfig;
 }>;
 
 /** Production-only provider boundary; market/consent/ledger checks remain in the executor. */
@@ -36,8 +39,9 @@ export class StripeProductionAdapter {
       const url = new URL(raw);
       if (url.origin !== 'https://app.rillora.xyz' || url.username || url.password || url.hash) throw new Error('Production billing return URL must remain on the reviewed origin');
     }
-    if (!['automatic', 'reviewed_no_collection'].includes(config.tax.mode)
-      || !config.tax.assessmentReference.trim() || !config.tax.productTaxCode.startsWith('txcd_')) throw new Error('Production billing needs a recorded tax assessment and confirmed product tax code');
+    if (!['not_configured', 'automatic', 'reviewed_no_collection'].includes(config.tax.mode)
+      || !config.tax.productTaxCode.startsWith('txcd_')
+      || (config.tax.mode !== 'not_configured' && !config.tax.assessmentReference.trim())) throw new Error('Production billing needs explicit tax configuration and a confirmed product tax code');
     if (config.tax.mode === 'automatic' && config.tax.activeRegistrationIds.length === 0) throw new Error('Automatic tax requires confirmed active registration references');
   }
 
@@ -66,6 +70,7 @@ export class StripeProductionAdapter {
 
   async assertCheckoutReady(period: 'annual' | 'monthly'): Promise<void> {
     if (period !== 'annual') throw new ApiError(409, 'billing_period_unavailable', 'Rillora Family is available as an annual subscription.');
+    if (this.config.tax.mode === 'not_configured') throw new ApiError(503, 'checkout_setup_unavailable', 'Checkout is not available yet.');
     if (!this.sdk.retrieveAccountStatus || !this.sdk.retrieveProduct) throw new Error('Production provider readiness checks are unavailable');
     const account = await this.sdk.retrieveAccountStatus();
     if (account.id !== this.config.expectedAccountId || !account.chargesEnabled || !account.payoutsEnabled) throw new ApiError(503, 'checkout_setup_unavailable', 'Checkout is not available yet.');

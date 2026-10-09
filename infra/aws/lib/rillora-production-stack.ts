@@ -13,6 +13,7 @@ export interface ProductionStackProps extends StackProps {
  reviewPrepared?:boolean; reviewEnabled?:boolean; runtimeImageTag?:string;
  retentionEnabled?:boolean;
  identityServicesEnabled?:boolean;
+ stripeNotificationsSecretArn?:string;
 }
 
 /** An isolated production data foundation. It exposes no customer HTTP service. */
@@ -24,6 +25,8 @@ export class RilloraProductionStack extends Stack {
   if(props.reviewEnabled&&!props.reviewPrepared)throw new Error('Prepare review secrets before enabling review');
   if(props.identityServicesEnabled&&!props.reviewEnabled)throw new Error('Identity services require the prepared restricted production runtime');
   if(props.retentionEnabled&&!props.reviewEnabled)throw new Error('Retention requires an operational restricted production runtime');
+  if(props.stripeNotificationsSecretArn&&(!props.reviewEnabled
+   || !/^arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora\/production\/stripe-billing-[A-Za-z0-9]{6}$/.test(props.stripeNotificationsSecretArn)))throw new Error('Stripe notification preparation requires restricted review and the exact production billing secret');
   if(props.runtimeImageTag&&!/^[a-f0-9]{64}$/.test(props.runtimeImageTag))throw new Error('Only an immutable production asset image tag may be retained');
   if(props.reviewEnabled&&props.runtimeImageTag)throw new Error('Review activation must use the newly verified API image');
   Tags.of(this).add('Project','Rillora');Tags.of(this).add('Environment','Production');
@@ -143,6 +146,7 @@ export class RilloraProductionStack extends Stack {
     repositoryArn:`arn:${Aws.PARTITION}:ecr:eu-central-1:${Aws.ACCOUNT_ID}:repository/cdk-hnb659fds-container-assets-${Aws.ACCOUNT_ID}-eu-central-1`,
     repositoryName:`cdk-hnb659fds-container-assets-${Aws.ACCOUNT_ID}-eu-central-1`}),props.runtimeImageTag):image,
    operator,environment,reviewPrepared:props.reviewPrepared,reviewEnabled:props.reviewEnabled,retentionEnabled:props.retentionEnabled,identityServicesEnabled:props.identityServicesEnabled,recoveryTask:recovery,
+   stripeNotificationsSecretArn:props.stripeNotificationsSecretArn,
    desiredCount:props.runtimeDesiredCount??0,
   });
   const outputs={ProductionVpcId:vpc.vpcId,DatabaseSecurityGroupId:databaseNetwork.securityGroupId,

@@ -127,6 +127,9 @@ export function createApp(
       )
     : null);
   if (stripeExecutor && stripeExecutor.providerEnvironment !== (config.stripeProductionSecretArn ? 'production' : 'test')) throw new Error('Stripe executor environment mismatch');
+  const stripeCheckoutEnabled = stripeExecutor?.providerEnvironment === 'production'
+    && config.stripeProductionCheckoutEnabled === true
+    && dependencies.stripeProductionConfig?.tax.mode !== 'not_configured';
   const appleVerifier = config.appleSandbox
     ? dependencies.appleSignedDataVerifier
       ?? createRilloraAppleSandboxVerifier({
@@ -227,7 +230,7 @@ export function createApp(
   plannerApi.use("/sharing", createSharingRouter(pool, config, emailVerification));
   plannerApi.use("/maintenance", createFamilyMaintenanceRouter(pool, config));
   if (stripeExecutor?.providerEnvironment === 'production') {
-    plannerApi.use('/commerce/stripe', createStripeProductionCommerceRouter(stripeExecutor));
+    plannerApi.use('/commerce/stripe', createStripeProductionCommerceRouter(stripeExecutor, { checkoutEnabled: stripeCheckoutEnabled }));
   } else if (stripeExecutor) {
     plannerApi.use(
       "/commerce/test",
@@ -243,7 +246,7 @@ export function createApp(
   if(appleReviewIntake) plannerApi.use('/commerce/storekit/review',createAppleProductionRouter(appleReviewIntake,new ApplePurchasePreflight(pool,appleReviewContext)));
   if (appleProductionIntake) plannerApi.use('/commerce/storekit/production', createAppleProductionRouter(appleProductionIntake,new ApplePurchasePreflight(pool)));
   plannerApi.use("/commerce", createCommerceRouter(pool,
-    new Set([...(stripeExecutor?.providerEnvironment === 'production' ? ['stripe'] : []),...(appleProductionIntake ? ['storekit'] : [])])));
+    new Set([...(stripeCheckoutEnabled ? ['stripe'] : []),...(appleProductionIntake ? ['storekit'] : [])])));
   plannerApi.use("/account", createAccountIdentityRouter(pool, emailVerifier));
   plannerApi.use("/account", createAccountDataRouter(pool, config));
   plannerApi.use("/account", createAccountDeletionRouter(pool, accountDeletion, config));

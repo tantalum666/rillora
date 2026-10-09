@@ -23,3 +23,11 @@ Rillora Live账户countryHK/business_typeindividual；charges_enabled/payouts_en
 对尚未评估的税务保持明确未配置状态，不能伪造reviewed_no_collection、税务登记号、总部地址或个人声明。商品税分类按实际消费者SaaS用途核实。准备税务资料、技术接入和开放普通客户是分别记录的结果；Owner最新授权允许继续配置，不把缺少BR文件作为技术配置前提。
 
 QA位于output/qa/rillora-live-configuration-20261009，原始个人/provider/凭据仅在.local-secrets/live-configuration-20261009。已完成TEST证据在[云端验收](stripe-cloud-acceptance-20261009.md)，不重复付款/退款。
+
+
+## 实施检查点
+
+已实现独立ALLOW_STRIPE_PRODUCTION_NOTIFICATIONS：只在原受限生产review边界接收Live签名通知，保留原身份/期限；完整新购开关仍独立。未配置税务使用显式not_configured结构，不伪装assessmentReference；新购报价/创建和路由均关闭，已购管理/取消与验签继续可用。
+36项API边界/账本测试、9项infra测试及两端typecheck/build通过；首次类型检查暴露测试夹具的联合类型未收窄，已修正并保留失败日志。秘密扫描只移动原有相同两行PEM标记检查的行号，原digest/例外总数不变，29已审核/0未知。
+实际Live Product和8899年度Price现active，原Price成为default_price，商品类别按官方消费者SaaS定义设txcd_10103000；金额/币种/年期不变。tax_behavior暂保留unspecified，未推断税务或锁死含税/未税选择。已有门户active，支持期末取消、付款信息和发票，无换套餐或暂停。Live订阅实际0条。
+这些provider配置和本地代码尚不等于生产API已接通；接下来完成准确secret、IAM/镜像最小差异、真实Live通知验签及远端保存。
