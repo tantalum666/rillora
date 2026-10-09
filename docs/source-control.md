@@ -1,6 +1,6 @@
 # Source control, complete work preservation and release rollback
 
-Last updated: 2026-10-09 (Asia/Hong_Kong)
+Last updated: 2026-10-10 (Asia/Hong_Kong)
 
 The private remote is [tantalum666/rillora](https://github.com/tantalum666/rillora).
 Owner explicitly requested **all Rillora work** for Git and Dot collaboration on
@@ -426,3 +426,7 @@ Archive27remote readback is complete at a738b61a0d0d018ecb77f923ed3f33f569528360
 
 
 Archive28remote proof completed at bed2405af92b384c4ca3aafb7afe19f65bab0b74: all228objects/232paths match a fresh separate LFS download and GitHub-read metadata. [Receipt](../collaboration/verification/live-configuration-20261009/remote-readback.json). Final receipts/description cleanup and removal of the no-longer-pending vault stage are separately recorded; no credentials, deployment or price amount changed.
+
+## October10 payment and selected-language addendum
+
+[Archive29](../collaboration/verification/payment-language-20261010/README.md) preserves2,658eligible new paths/1,130objects in61,653,260encrypted bytes. It includes development12/13 signed builds, xcarchives/xcresults, original failures and passes, exact-source runtime/migration/front-end/Cloudflare/Forms results, safe financial summaries and operational helpers. Local decryption/catalog verification passes; remote verification is recorded separately in the addendum. Five named compiled Web/legal candidate directories are reviewed encrypted-only private-folder exceptions; real credentials, authenticated state, provider financial objects and device identifiers remain excluded. Archives1–28 are unchanged. Late publication/remote receipts are normal Git metadata after capture, not silently resealed originals.

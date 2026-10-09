@@ -1,0 +1,103 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "\n🧪 Test\n\nDiscovered 53 test(s):\n   RilloraTests/APIClientTests/testAppleReviewTransportUsesItsOwnRouteAndRejectsProductionAcknowledgement\n   RilloraTests/APIClientTests/testAppleSignInFeatureGateDefaultsClosed\n   RilloraTests/APIClientTests/testAppleSignInFeatureGateRequiresExplicitEnablement\n   RilloraTests/APIClientTests/testAuthenticationFailureIsPreservedForTheUI\n   RilloraTests/APIClientTests/testCommerceContractRejectsClientGrantedAccessBoundary\n   RilloraTests/APIClientTests/testCommerceStatusAndPurchaseRouteUseServerAuthoritativeContracts\n   (...and 47 more)\n\nErrors (1):\n\n  ✗ missing argument for parameter 'bundle' in call\n    let language = L10n.isSimplifiedChinese() ? \"zh-CN\" : \"en\"\n    ^\n    bundle: <#Bundle#>\n    /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/APIClientTests.swift:78\n\n❌ Test failed. (⏱️ 6.2s)\n  └ Files:\n     └── ~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-10-09T16-04-21-771Z_pid69719_ced68f2a.log — Build Logs\n"
+    }
+  ],
+  "structuredContent": {
+    "schema": "xcodebuildmcp.output.test-result",
+    "schemaVersion": "3",
+    "didError": true,
+    "error": "Tests failed",
+    "data": {
+      "summary": {
+        "status": "FAILED",
+        "durationMs": 6244,
+        "target": "simulator"
+      },
+      "artifacts": {
+        "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-10-09T16-04-21-771Z_pid69719_ced68f2a.log"
+      },
+      "tests": {
+        "selected": [
+          "RilloraTests/APIClientTests/testAppleReviewTransportUsesItsOwnRouteAndRejectsProductionAcknowledgement",
+          "RilloraTests/APIClientTests/testAppleSignInFeatureGateDefaultsClosed",
+          "RilloraTests/APIClientTests/testAppleSignInFeatureGateRequiresExplicitEnablement",
+          "RilloraTests/APIClientTests/testAuthenticationFailureIsPreservedForTheUI",
+          "RilloraTests/APIClientTests/testCommerceContractRejectsClientGrantedAccessBoundary",
+          "RilloraTests/APIClientTests/testCommerceStatusAndPurchaseRouteUseServerAuthoritativeContracts",
+          "RilloraTests/APIClientTests/testCreateAndArchiveMatterUseTheSharedMutationContract",
+          "RilloraTests/APIClientTests/testCreateAndRevokeTrustedContactUseExplicitEvidenceContract",
+          "RilloraTests/APIClientTests/testCreatePrintableStartHereRejectsRetainedServerCopyClaim",
+          "RilloraTests/APIClientTests/testCreatePrintableStartHereValidatesHeadersAndSendsAcknowledgements",
+          "RilloraTests/APIClientTests/testDisclosureRehearsalFailsClosedOnReleaseOrForbiddenPreviewFields",
+          "RilloraTests/APIClientTests/testDisclosureRehearsalUsesVersionedSimulationOnlyMutations",
+          "RilloraTests/APIClientTests/testEmailVerificationKeepsTheNativeSessionAndSendsNoClientIdentityClaim",
+          "RilloraTests/APIClientTests/testEmailVerificationRejectsUnprovenProviderState",
+          "RilloraTests/APIClientTests/testEncryptedStartHerePreparationAndFinalizePreserveClientKeyBoundary",
+          "RilloraTests/APIClientTests/testFetchAndUpdateOfficialSetupUseSelfReportedContract",
+          "RilloraTests/APIClientTests/testFetchAndUpdatePlanMotivationUseLatestOptimisticVersion",
+          "RilloraTests/APIClientTests/testFetchOverviewUsesDevelopmentIdentityAndDecodesSharedContract",
+          "RilloraTests/APIClientTests/testFetchOverviewUsesKeychainBackedBearerWhenDevelopmentIdentityIsDisabled",
+          "RilloraTests/APIClientTests/testLegalLinksUseThePublicCustomDomain",
+          "RilloraTests/APIClientTests/testLocalSessionPresenceUsesOnlyExplicitDevelopmentOrStoredBearerState",
+          "RilloraTests/APIClientTests/testMatterVersionConflictIsPreservedForRecoveryUI",
+          "RilloraTests/APIClientTests/testNativeAuthenticationIntentKeepsEmailAndGoogleRoutesDistinct",
+          "RilloraTests/APIClientTests/testNativeGoogleRequiresBothOAuthClientIdentifiersBeforeEnablement",
+          "RilloraTests/APIClientTests/testNativePasskeyRequiresExplicitEnablement",
+          "RilloraTests/APIClientTests/testNativeSessionExchangeCarriesTheExactAffirmativeLegalProof",
+          "RilloraTests/APIClientTests/testOfficialSetupRejectsEvidenceThatIsNotSelfReported",
+          "RilloraTests/APIClientTests/testOverviewLoadsThe51stMatterAndRejectsRepeatedCursors",
+          "RilloraTests/APIClientTests/testRoleAssignmentFailsClosedOnAuthorityOrUnexpectedSecretField",
+          "RilloraTests/APIClientTests/testRoleAssignmentListPreservesScopeAndNoAuthorityBoundary",
+          "RilloraTests/APIClientTests/testRoleAssignmentRequestsAreVersionedAndExplicitlyRecordOnly",
+          "RilloraTests/APIClientTests/testRunSimulationRejectsAnyOperativeResponse",
+          "RilloraTests/APIClientTests/testRunSimulationSendsOneDistinctLifeEventAndDecodesSafeResult",
+          "RilloraTests/APIClientTests/testSensitiveActionRequestsFreshAuthenticationAndCarriesSignedIdentityProof",
+          "RilloraTests/APIClientTests/testSharingRolloutFallbackDoesNotSwallowAuthenticationFailure",
+          "RilloraTests/APIClientTests/testStartHereDecodesNoFilePreviewAndSendsEmptyJSONBody",
+          "RilloraTests/APIClientTests/testStartHereRejectsAResponseThatClaimsAnEncryptedPackage",
+          "RilloraTests/APIClientTests/testStoreKitSandboxTransactionRejectsEntitlementMutationBoundary",
+          "RilloraTests/APIClientTests/testStoreKitSandboxTransactionUsesServerAuthoritativeFinishContract",
+          "RilloraTests/APIClientTests/testSyntheticRecipientAcceptanceAndEnrollmentUseIsolatedMemorySession",
+          "RilloraTests/APIClientTests/testUpdateMatterSendsOptimisticVersionAndExplicitNulls",
+          "RilloraTests/APIClientTests/testValidationReceiptCannotClaimChangedAccessBeforeAuthoritativeAcknowledgement",
+          "RilloraTests/AccountLocalizationTests/testEnglishAccountResourcesRemainAvailable",
+          "RilloraTests/AccountLocalizationTests/testFormattingPreservesPrivateTitleAndPercentSigns",
+          "RilloraTests/AccountLocalizationTests/testImportedMatterPluralUsesTheSelectedResourceBundle",
+          "RilloraTests/AccountLocalizationTests/testProviderPriceAndCurrencyRemainUnmodified",
+          "RilloraTests/AccountLocalizationTests/testSimplifiedChineseAccountAndPurchaseResources",
+          "RilloraTests/SelectedLanguageTests/testHostedAuthenticationUsesAppLanguageWithoutChangingIdentityIntent",
+          "RilloraTests/SelectedLanguageTests/testSharedDisclosureResourceCoversBothLanguagesAndDoesNotEchoUnknownText",
+          "RilloraTests/SharingLocalizationTests/testLocalizationDoesNotChangeSharingWireValuesOrScope",
+          "RilloraTests/SharingLocalizationTests/testPrivateTitleIsPreservedWithoutBeingUsedAsAFormatKey",
+          "RilloraTests/SharingLocalizationTests/testReviewRequestAndExportCountsUsePluralResources",
+          "RilloraTests/SharingLocalizationTests/testSimplifiedChineseSharingTermsAndSafetyMessages"
+        ],
+        "discovered": {
+          "total": 53,
+          "items": [
+            "RilloraTests/APIClientTests/testAppleReviewTransportUsesItsOwnRouteAndRejectsProductionAcknowledgement",
+            "RilloraTests/APIClientTests/testAppleSignInFeatureGateDefaultsClosed",
+            "RilloraTests/APIClientTests/testAppleSignInFeatureGateRequiresExplicitEnablement",
+            "RilloraTests/APIClientTests/testAuthenticationFailureIsPreservedForTheUI",
+            "RilloraTests/APIClientTests/testCommerceContractRejectsClientGrantedAccessBoundary",
+            "RilloraTests/APIClientTests/testCommerceStatusAndPurchaseRouteUseServerAuthoritativeContracts"
+          ]
+        }
+      },
+      "diagnostics": {
+        "warnings": [],
+        "errors": [
+          {
+            "message": "missing argument for parameter 'bundle' in call\nlet language = L10n.isSimplifiedChinese() ? \"zh-CN\" : \"en\"\n^\nbundle: <#Bundle#>",
+            "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/APIClientTests.swift:78"
+          }
+        ],
+        "testFailures": []
+      }
+    }
+  },
+  "isError": true
+}

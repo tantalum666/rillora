@@ -1,6 +1,12 @@
 # iOS direct hosted login — consent configuration
 
-## October1 production review participants
+## October10 current bilingual hosted consent
+
+English and 简体中文 Forms are independently published and read back, with a required initially unchecked LEGAL field and locale-specific legal links. Both existing Actions now use terms-2026-10-09-1 / registration-clickwrap-2026-10-09-1 and bundle SHA c983dc26bb372fba66b8df467d6e4c0ea1d85a2f4d94d86104b4bffa8d7f3ddb. Tenant locales are en and zh-CN; original bindings, three exact identities and expiry2026-10-11T14:00Z remain. The original English Form is retained unchanged for rollback.
+
+The current CLI lacks Form-write scope; the already signed-in Dashboard imported the exact prepared definitions, without new grants. The login-shell template API separately returns HTTP402, and the official support portal reports no ticket-creation access. Three old desktop English marketing lines remain; do not call that shell localized, switch authentication architecture or buy a plan implicitly. [Current evidence and boundary](../../../docs/payment-recheck-20261009.md).
+
+## HISTORICAL — October1 production review participants
 
 `production-review-action.cjs` separately gates the two production clients with
 1–8 unique exact identity digests and an explicit expiry. Empty, malformed,

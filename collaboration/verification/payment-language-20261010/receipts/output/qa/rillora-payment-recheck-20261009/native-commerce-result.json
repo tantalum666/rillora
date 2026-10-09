@@ -1,0 +1,472 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "\n🧪 Test\n\nDiscovered 45 test(s):\n   RilloraTests/ApplePurchaseCoordinatorTests/testAccountChangeBeforeServerReceiptReturnsCannotFinishForTheNewSession\n   RilloraTests/ApplePurchaseCoordinatorTests/testAccountChangeDuringAppRefreshDiscardsResultAndPreventsDuplicatePrompts\n   RilloraTests/ApplePurchaseCoordinatorTests/testAccountChangeDuringPreparationCannotOpenAnotherOwnersPaymentSheet\n   RilloraTests/ApplePurchaseCoordinatorTests/testButtonCannotAcceptAQuoteThatChangedBeforeItsTaskStarts\n   RilloraTests/ApplePurchaseCoordinatorTests/testCanceledAppAuthenticationStaysQuietAndCanBeRetried\n   RilloraTests/ApplePurchaseCoordinatorTests/testCatalogPriceRemainsVisibleWhenServerDisallowsNewPurchase\n   (...and 39 more)\n\nTest Failures (17):\n\n  ✗ ApplePurchaseCoordinatorTests / testButtonCannotAcceptAQuoteThatChangedBeforeItsTaskStarts: XCTAssertTrue failed\n    /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:105\n\n  ✗ ApplePurchaseCoordinatorTests / testChangedApplePriceAfterPreparationClosesOldOrderWithoutReceiptIntake: XCTAssertTrue failed\n    /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:156\n\n  ✗ ApplePurchaseCoordinatorTests / testChangedPriceRequiresAnotherPurchaseButtonTap: XCTAssertTrue failed\n    /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:93\n\n  ✗ ApplePurchaseCoordinatorTests / testChangedQuoteReturnsTheNewPriceForFreshConsent: XCTAssertTrue failed\n    /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:176\n\n  ✗ ApplePurchaseCoordinatorTests / testForeignOwnerAndSandboxNeverReachProductionReceiptIntake: XCTAssertTrue failed\n    /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:225\n\n  ✗ ApplePurchaseCoordinatorTests / testForeignOwnerAndSandboxNeverReachProductionReceiptIntake: XCTAssertTrue failed\n    /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:231\n\n  ✗ ApplePurchaseCoordinatorTests / testHistoryOutageIsNotPresentedAsHavingNoPurchases: XCTAssertTrue failed\n    /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:185\n\n  ✗ ApplePurchaseCoordinatorTests / testOnlyCommittedServerStateCanFinishThenRestoreRetries: XCTAssertTrue failed\n    /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:195\n\n  ✗ ApplePurchaseCoordinatorTests / testReviewBuildRejectsAProductionTransactionAndUnknownAppReceiptCannotPurchase: XCTAssertTrue failed\n    /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:318\n\n  ✗ CommerceStoreTests / testLocalStoreKitPurchaseFinishesOnlyAfterMatchingVerifiedEvidence: XCTAssertEqual failed: (\"Optional(\"StoreKit 已验证本地交易。普通 Rillora 权益未改变。\")\") is not equal to (\"Optional(\"StoreKit verified the local transaction. It changed no ordinary Rillora entitlement.\")\")\n    /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/CommerceStoreTests.swift:118\n\n  ✗ CommerceStoreTests / testLocalStoreKitPurchaseRejectsWrongAccountTokenWithoutFinishing: XCTAssertEqual failed: (\"Optional(\"本地交易与 Rillora 账号、商品目录、环境或商店地区不匹配。交易未结束。\")\") is not equal to (\"Optional(\"The local transaction did not match the Rillora account, catalog, environment, or storefront. It was not finished.\")\")\n    /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/CommerceStoreTests.swift:148\n\n  ✗ CommerceStoreTests / testRetiredMonthlyProductCannotStartANewPurchase: XCTAssertEqual failed: (\"Optional(\"所选本地 StoreKit 商品不可用。\")\") is not equal to (\"Optional(\"The selected local StoreKit product is not available.\")\")\n    /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/CommerceStoreTests.swift:45\n\n  ✗ CommerceStoreTests / testSandboxCatalogRejectsXcodeLocalSubscriptionGroup: XCTAssertEqual failed: (\"Optional(\"App Store 沙盒商品目录不完整或属于其他订阅组。购买仍不可用。\")\") is not equal to (\"Optional(\"The App Store Sandbox catalog is incomplete or belongs to another subscription group. Purchases remain unavailable.\")\")\n    /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/CommerceStoreTests.swift:515\n\n  ✗ CommerceStoreTests / testSandboxPurchaseFinishesOnlyAfterDurableServerAuthorization: XCTAssertEqual failed: (\"Optional(\"Apple 和 Rillora 服务器已验证沙盒订阅。持久保存确认后，交易已结束；普通访问权限仍为免费版。\")\") is not equal to (\"Optional(\"Apple and the Rillora server verified the Sandbox subscription. The transaction was finished after durable acknowledgement; ordinary access remains Free.\")\")\n    /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/CommerceStoreTests.swift:452\n\n  ✗ CommerceStoreTests / testSandboxPurchaseRemainsUnfinishedWhileAuthoritativeSnapshotIsPending: XCTAssertEqual failed: (\"Optional(\"Apple 已验证沙盒交易，但仍在等待权威服务器快照。交易尚未结束。\")\") is not equal to (\"Optional(\"Apple verified the Sandbox transaction, but the authoritative server snapshot is still pending. The transaction remains unfinished.\")\")\n    /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/CommerceStoreTests.swift:494\n\n  ✗ CommerceStoreTests / testSubscriptionStatusUpdateRefreshesLifecycleWithoutFinishingOrGrantingAccess: XCTAssertEqual failed: (\"Optional(\"本地订阅状态：正在重试扣款。普通 Rillora 访问权限未改变。\")\") is not equal to (\"Optional(\"Local subscription state: billing retry. Ordinary Rillora access is unchanged.\")\")\n    /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/CommerceStoreTests.swift:332\n\n  ✗ CommerceStoreTests / testUnverifiedLocalStoreKitPurchaseNeverFinishes: XCTAssertEqual failed: (\"Optional(\"StoreKit 返回了一笔未经验证的购买。该购买未被记录或结束。\")\") is not equal to (\"Optional(\"StoreKit returned an unverified purchase. It was not recorded or finished.\")\")\n    /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/CommerceStoreTests.swift:177\n\n❌ 16 tests failed, 28 passed, 1 skipped (⏱️ 43.8s)\n  └ Files:\n     ├── ~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/\n     │   ├── logs/test_sim_2026-10-09T13-52-33-862Z_pid69719_930d9977.log — Build Logs\n     │   └── test-products/test_sim_2026-10-09T13-52-33-862Z_pid69719_7885ba90.xctestproducts — Test Products\n     └── output/qa/rillora-payment-recheck-20261009/native-commerce.xcresult — Result Bundle\n"
+    }
+  ],
+  "structuredContent": {
+    "schema": "xcodebuildmcp.output.test-result",
+    "schemaVersion": "3",
+    "didError": true,
+    "error": "Tests failed",
+    "data": {
+      "summary": {
+        "status": "FAILED",
+        "durationMs": 43798,
+        "counts": {
+          "passed": 28,
+          "failed": 16,
+          "skipped": 1
+        },
+        "target": "simulator"
+      },
+      "artifacts": {
+        "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-10-09T13-52-33-862Z_pid69719_930d9977.log",
+        "xcresultPath": "output/qa/rillora-payment-recheck-20261009/native-commerce.xcresult",
+        "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-09T13-52-33-862Z_pid69719_7885ba90.xctestproducts"
+      },
+      "tests": {
+        "selected": [
+          "RilloraTests/ApplePurchaseCoordinatorTests/testAccountChangeBeforeServerReceiptReturnsCannotFinishForTheNewSession",
+          "RilloraTests/ApplePurchaseCoordinatorTests/testAccountChangeDuringAppRefreshDiscardsResultAndPreventsDuplicatePrompts",
+          "RilloraTests/ApplePurchaseCoordinatorTests/testAccountChangeDuringPreparationCannotOpenAnotherOwnersPaymentSheet",
+          "RilloraTests/ApplePurchaseCoordinatorTests/testButtonCannotAcceptAQuoteThatChangedBeforeItsTaskStarts",
+          "RilloraTests/ApplePurchaseCoordinatorTests/testCanceledAppAuthenticationStaysQuietAndCanBeRetried",
+          "RilloraTests/ApplePurchaseCoordinatorTests/testCatalogPriceRemainsVisibleWhenServerDisallowsNewPurchase",
+          "RilloraTests/ApplePurchaseCoordinatorTests/testChangedApplePriceAfterPreparationClosesOldOrderWithoutReceiptIntake",
+          "RilloraTests/ApplePurchaseCoordinatorTests/testChangedPriceRequiresAnotherPurchaseButtonTap",
+          "RilloraTests/ApplePurchaseCoordinatorTests/testChangedQuoteReturnsTheNewPriceForFreshConsent",
+          "RilloraTests/ApplePurchaseCoordinatorTests/testForeignOwnerAndSandboxNeverReachProductionReceiptIntake",
+          "RilloraTests/ApplePurchaseCoordinatorTests/testHistoryOutageIsNotPresentedAsHavingNoPurchases",
+          "RilloraTests/ApplePurchaseCoordinatorTests/testInconsistentFinishResponseIsRejectedEvenByInjectedService",
+          "RilloraTests/ApplePurchaseCoordinatorTests/testMissingAppReceiptIsRefreshedOnlyAfterExplicitRestore",
+          "RilloraTests/ApplePurchaseCoordinatorTests/testMissingHistoryUsesExplicitSyncThenServerVerification",
+          "RilloraTests/ApplePurchaseCoordinatorTests/testOlderCatalogResponseCannotReplaceNewerDisplayedQuote",
+          "RilloraTests/ApplePurchaseCoordinatorTests/testOnlyCommittedServerStateCanFinishThenRestoreRetries",
+          "RilloraTests/ApplePurchaseCoordinatorTests/testOpeningPageAndMissingDisplayedQuoteCannotPurchase",
+          "RilloraTests/ApplePurchaseCoordinatorTests/testOwnedVerifiedHistoryRestoresWithoutForcingSystemAuthentication",
+          "RilloraTests/ApplePurchaseCoordinatorTests/testPartialHistoryIsNotReportedAsCompletelyRestored",
+          "RilloraTests/ApplePurchaseCoordinatorTests/testPendingAndCanceledOutcomesArePreservedWithoutFinishing",
+          "RilloraTests/ApplePurchaseCoordinatorTests/testRestoresHistoricalMonthlyFromSignedStorefrontAfterCountryChange",
+          "RilloraTests/ApplePurchaseCoordinatorTests/testReviewBuildRejectsAProductionTransactionAndUnknownAppReceiptCannotPurchase",
+          "RilloraTests/ApplePurchaseCoordinatorTests/testReviewPurchaseUsesSandboxContractAndNeverFinishesOnProductionAcknowledgement",
+          "RilloraTests/ApplePurchaseCoordinatorTests/testStoreKitPriceMismatchCannotShowOrStartAnOffer",
+          "RilloraTests/ApplePurchaseCoordinatorTests/testStoreKitReceivesTheExactDisplayedMoneyAndCurrency",
+          "RilloraTests/ApplePurchaseCoordinatorTests/testUnverifiedRefreshedAppCannotReachPurchaseOrReceiptIntake",
+          "RilloraTests/AppleStoreKitClientTests/testLoadsExactLocalFamilyCatalogAndReturnsVerifiedBoundPurchase",
+          "RilloraTests/CommerceStoreTests/testCancelledPreviousAccountStartCannotResetNewPurchaseCoordinator",
+          "RilloraTests/CommerceStoreTests/testLocalStoreKitPurchaseFinishesOnlyAfterMatchingVerifiedEvidence",
+          "RilloraTests/CommerceStoreTests/testLocalStoreKitPurchaseRejectsWrongAccountTokenWithoutFinishing",
+          "RilloraTests/CommerceStoreTests/testLocalSubscriptionLifecycleStatesNeverMutateServerAccess",
+          "RilloraTests/CommerceStoreTests/testMatchingTransactionUpdateIsRecordedAndFinishedWithoutChangingAccess",
+          "RilloraTests/CommerceStoreTests/testMissingStorefrontFailsClosedWithoutCallingPurchaseRoute",
+          "RilloraTests/CommerceStoreTests/testRefreshRoutesWithCurrentStorefrontAndReevaluatesOnChange",
+          "RilloraTests/CommerceStoreTests/testRestoreHistoricalMonthlyPurchaseStillRefreshesLocalEvidence",
+          "RilloraTests/CommerceStoreTests/testRestoreIgnoresEntitlementBoundToAnotherRilloraAccount",
+          "RilloraTests/CommerceStoreTests/testRetiredMonthlyProductCannotStartANewPurchase",
+          "RilloraTests/CommerceStoreTests/testSandboxCatalogDiagnosticLoadsWithoutAPrivateCommerceSession",
+          "RilloraTests/CommerceStoreTests/testSandboxCatalogLoadsAppStoreGroupWithoutOpeningPurchasePath",
+          "RilloraTests/CommerceStoreTests/testSandboxCatalogRejectsXcodeLocalSubscriptionGroup",
+          "RilloraTests/CommerceStoreTests/testSandboxPurchaseFinishesOnlyAfterDurableServerAuthorization",
+          "RilloraTests/CommerceStoreTests/testSandboxPurchaseRemainsUnfinishedWhileAuthoritativeSnapshotIsPending",
+          "RilloraTests/CommerceStoreTests/testSubscriptionStatusOutsideLocalAccountIsIgnored",
+          "RilloraTests/CommerceStoreTests/testSubscriptionStatusUpdateRefreshesLifecycleWithoutFinishingOrGrantingAccess",
+          "RilloraTests/CommerceStoreTests/testUnverifiedLocalStoreKitPurchaseNeverFinishes"
+        ],
+        "discovered": {
+          "total": 45,
+          "items": [
+            "RilloraTests/ApplePurchaseCoordinatorTests/testAccountChangeBeforeServerReceiptReturnsCannotFinishForTheNewSession",
+            "RilloraTests/ApplePurchaseCoordinatorTests/testAccountChangeDuringAppRefreshDiscardsResultAndPreventsDuplicatePrompts",
+            "RilloraTests/ApplePurchaseCoordinatorTests/testAccountChangeDuringPreparationCannotOpenAnotherOwnersPaymentSheet",
+            "RilloraTests/ApplePurchaseCoordinatorTests/testButtonCannotAcceptAQuoteThatChangedBeforeItsTaskStarts",
+            "RilloraTests/ApplePurchaseCoordinatorTests/testCanceledAppAuthenticationStaysQuietAndCanBeRetried",
+            "RilloraTests/ApplePurchaseCoordinatorTests/testCatalogPriceRemainsVisibleWhenServerDisallowsNewPurchase"
+          ]
+        }
+      },
+      "diagnostics": {
+        "warnings": [],
+        "errors": [],
+        "testFailures": [
+          {
+            "suite": "ApplePurchaseCoordinatorTests",
+            "test": "testButtonCannotAcceptAQuoteThatChangedBeforeItsTaskStarts",
+            "message": "XCTAssertTrue failed",
+            "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:105"
+          },
+          {
+            "suite": "ApplePurchaseCoordinatorTests",
+            "test": "testChangedApplePriceAfterPreparationClosesOldOrderWithoutReceiptIntake",
+            "message": "XCTAssertTrue failed",
+            "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:156"
+          },
+          {
+            "suite": "ApplePurchaseCoordinatorTests",
+            "test": "testChangedPriceRequiresAnotherPurchaseButtonTap",
+            "message": "XCTAssertTrue failed",
+            "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:93"
+          },
+          {
+            "suite": "ApplePurchaseCoordinatorTests",
+            "test": "testChangedQuoteReturnsTheNewPriceForFreshConsent",
+            "message": "XCTAssertTrue failed",
+            "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:176"
+          },
+          {
+            "suite": "ApplePurchaseCoordinatorTests",
+            "test": "testForeignOwnerAndSandboxNeverReachProductionReceiptIntake",
+            "message": "XCTAssertTrue failed",
+            "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:225"
+          },
+          {
+            "suite": "ApplePurchaseCoordinatorTests",
+            "test": "testForeignOwnerAndSandboxNeverReachProductionReceiptIntake",
+            "message": "XCTAssertTrue failed",
+            "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:231"
+          },
+          {
+            "suite": "ApplePurchaseCoordinatorTests",
+            "test": "testHistoryOutageIsNotPresentedAsHavingNoPurchases",
+            "message": "XCTAssertTrue failed",
+            "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:185"
+          },
+          {
+            "suite": "ApplePurchaseCoordinatorTests",
+            "test": "testOnlyCommittedServerStateCanFinishThenRestoreRetries",
+            "message": "XCTAssertTrue failed",
+            "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:195"
+          },
+          {
+            "suite": "ApplePurchaseCoordinatorTests",
+            "test": "testReviewBuildRejectsAProductionTransactionAndUnknownAppReceiptCannotPurchase",
+            "message": "XCTAssertTrue failed",
+            "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:318"
+          },
+          {
+            "suite": "CommerceStoreTests",
+            "test": "testLocalStoreKitPurchaseFinishesOnlyAfterMatchingVerifiedEvidence",
+            "message": "XCTAssertEqual failed: (\"Optional(\"StoreKit 已验证本地交易。普通 Rillora 权益未改变。\")\") is not equal to (\"Optional(\"StoreKit verified the local transaction. It changed no ordinary Rillora entitlement.\")\")",
+            "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/CommerceStoreTests.swift:118"
+          },
+          {
+            "suite": "CommerceStoreTests",
+            "test": "testLocalStoreKitPurchaseRejectsWrongAccountTokenWithoutFinishing",
+            "message": "XCTAssertEqual failed: (\"Optional(\"本地交易与 Rillora 账号、商品目录、环境或商店地区不匹配。交易未结束。\")\") is not equal to (\"Optional(\"The local transaction did not match the Rillora account, catalog, environment, or storefront. It was not finished.\")\")",
+            "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/CommerceStoreTests.swift:148"
+          },
+          {
+            "suite": "CommerceStoreTests",
+            "test": "testRetiredMonthlyProductCannotStartANewPurchase",
+            "message": "XCTAssertEqual failed: (\"Optional(\"所选本地 StoreKit 商品不可用。\")\") is not equal to (\"Optional(\"The selected local StoreKit product is not available.\")\")",
+            "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/CommerceStoreTests.swift:45"
+          },
+          {
+            "suite": "CommerceStoreTests",
+            "test": "testSandboxCatalogRejectsXcodeLocalSubscriptionGroup",
+            "message": "XCTAssertEqual failed: (\"Optional(\"App Store 沙盒商品目录不完整或属于其他订阅组。购买仍不可用。\")\") is not equal to (\"Optional(\"The App Store Sandbox catalog is incomplete or belongs to another subscription group. Purchases remain unavailable.\")\")",
+            "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/CommerceStoreTests.swift:515"
+          },
+          {
+            "suite": "CommerceStoreTests",
+            "test": "testSandboxPurchaseFinishesOnlyAfterDurableServerAuthorization",
+            "message": "XCTAssertEqual failed: (\"Optional(\"Apple 和 Rillora 服务器已验证沙盒订阅。持久保存确认后，交易已结束；普通访问权限仍为免费版。\")\") is not equal to (\"Optional(\"Apple and the Rillora server verified the Sandbox subscription. The transaction was finished after durable acknowledgement; ordinary access remains Free.\")\")",
+            "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/CommerceStoreTests.swift:452"
+          },
+          {
+            "suite": "CommerceStoreTests",
+            "test": "testSandboxPurchaseRemainsUnfinishedWhileAuthoritativeSnapshotIsPending",
+            "message": "XCTAssertEqual failed: (\"Optional(\"Apple 已验证沙盒交易，但仍在等待权威服务器快照。交易尚未结束。\")\") is not equal to (\"Optional(\"Apple verified the Sandbox transaction, but the authoritative server snapshot is still pending. The transaction remains unfinished.\")\")",
+            "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/CommerceStoreTests.swift:494"
+          },
+          {
+            "suite": "CommerceStoreTests",
+            "test": "testSubscriptionStatusUpdateRefreshesLifecycleWithoutFinishingOrGrantingAccess",
+            "message": "XCTAssertEqual failed: (\"Optional(\"本地订阅状态：正在重试扣款。普通 Rillora 访问权限未改变。\")\") is not equal to (\"Optional(\"Local subscription state: billing retry. Ordinary Rillora access is unchanged.\")\")",
+            "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/CommerceStoreTests.swift:332"
+          },
+          {
+            "suite": "CommerceStoreTests",
+            "test": "testUnverifiedLocalStoreKitPurchaseNeverFinishes",
+            "message": "XCTAssertEqual failed: (\"Optional(\"StoreKit 返回了一笔未经验证的购买。该购买未被记录或结束。\")\") is not equal to (\"Optional(\"StoreKit returned an unverified purchase. It was not recorded or finished.\")\")",
+            "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/CommerceStoreTests.swift:177"
+          }
+        ]
+      },
+      "testCases": [
+        {
+          "suite": "ApplePurchaseCoordinatorTests",
+          "test": "testAccountChangeBeforeServerReceiptReturnsCannotFinishForTheNewSession",
+          "status": "passed",
+          "durationMs": 8
+        },
+        {
+          "suite": "ApplePurchaseCoordinatorTests",
+          "test": "testAccountChangeDuringAppRefreshDiscardsResultAndPreventsDuplicatePrompts",
+          "status": "passed",
+          "durationMs": 2
+        },
+        {
+          "suite": "ApplePurchaseCoordinatorTests",
+          "test": "testAccountChangeDuringPreparationCannotOpenAnotherOwnersPaymentSheet",
+          "status": "passed",
+          "durationMs": 2
+        },
+        {
+          "suite": "ApplePurchaseCoordinatorTests",
+          "test": "testButtonCannotAcceptAQuoteThatChangedBeforeItsTaskStarts",
+          "status": "failed",
+          "durationMs": 297
+        },
+        {
+          "suite": "ApplePurchaseCoordinatorTests",
+          "test": "testCanceledAppAuthenticationStaysQuietAndCanBeRetried",
+          "status": "passed",
+          "durationMs": 20
+        },
+        {
+          "suite": "ApplePurchaseCoordinatorTests",
+          "test": "testCatalogPriceRemainsVisibleWhenServerDisallowsNewPurchase",
+          "status": "passed",
+          "durationMs": 5
+        },
+        {
+          "suite": "ApplePurchaseCoordinatorTests",
+          "test": "testChangedApplePriceAfterPreparationClosesOldOrderWithoutReceiptIntake",
+          "status": "failed",
+          "durationMs": 3
+        },
+        {
+          "suite": "ApplePurchaseCoordinatorTests",
+          "test": "testChangedPriceRequiresAnotherPurchaseButtonTap",
+          "status": "failed",
+          "durationMs": 2
+        },
+        {
+          "suite": "ApplePurchaseCoordinatorTests",
+          "test": "testChangedQuoteReturnsTheNewPriceForFreshConsent",
+          "status": "failed",
+          "durationMs": 3
+        },
+        {
+          "suite": "ApplePurchaseCoordinatorTests",
+          "test": "testForeignOwnerAndSandboxNeverReachProductionReceiptIntake",
+          "status": "failed",
+          "durationMs": 4
+        },
+        {
+          "suite": "ApplePurchaseCoordinatorTests",
+          "test": "testHistoryOutageIsNotPresentedAsHavingNoPurchases",
+          "status": "failed",
+          "durationMs": 1
+        },
+        {
+          "suite": "ApplePurchaseCoordinatorTests",
+          "test": "testInconsistentFinishResponseIsRejectedEvenByInjectedService",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "ApplePurchaseCoordinatorTests",
+          "test": "testMissingAppReceiptIsRefreshedOnlyAfterExplicitRestore",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "ApplePurchaseCoordinatorTests",
+          "test": "testMissingHistoryUsesExplicitSyncThenServerVerification",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "ApplePurchaseCoordinatorTests",
+          "test": "testOlderCatalogResponseCannotReplaceNewerDisplayedQuote",
+          "status": "passed",
+          "durationMs": 2
+        },
+        {
+          "suite": "ApplePurchaseCoordinatorTests",
+          "test": "testOnlyCommittedServerStateCanFinishThenRestoreRetries",
+          "status": "failed",
+          "durationMs": 2
+        },
+        {
+          "suite": "ApplePurchaseCoordinatorTests",
+          "test": "testOpeningPageAndMissingDisplayedQuoteCannotPurchase",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "ApplePurchaseCoordinatorTests",
+          "test": "testOwnedVerifiedHistoryRestoresWithoutForcingSystemAuthentication",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "ApplePurchaseCoordinatorTests",
+          "test": "testPartialHistoryIsNotReportedAsCompletelyRestored",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "ApplePurchaseCoordinatorTests",
+          "test": "testPendingAndCanceledOutcomesArePreservedWithoutFinishing",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "ApplePurchaseCoordinatorTests",
+          "test": "testRestoresHistoricalMonthlyFromSignedStorefrontAfterCountryChange",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "ApplePurchaseCoordinatorTests",
+          "test": "testReviewBuildRejectsAProductionTransactionAndUnknownAppReceiptCannotPurchase",
+          "status": "failed",
+          "durationMs": 2
+        },
+        {
+          "suite": "ApplePurchaseCoordinatorTests",
+          "test": "testReviewPurchaseUsesSandboxContractAndNeverFinishesOnProductionAcknowledgement",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "ApplePurchaseCoordinatorTests",
+          "test": "testStoreKitPriceMismatchCannotShowOrStartAnOffer",
+          "status": "passed",
+          "durationMs": 3
+        },
+        {
+          "suite": "ApplePurchaseCoordinatorTests",
+          "test": "testStoreKitReceivesTheExactDisplayedMoneyAndCurrency",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "ApplePurchaseCoordinatorTests",
+          "test": "testUnverifiedRefreshedAppCannotReachPurchaseOrReceiptIntake",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "AppleStoreKitClientTests",
+          "test": "testLoadsExactLocalFamilyCatalogAndReturnsVerifiedBoundPurchase",
+          "status": "skipped",
+          "durationMs": 9
+        },
+        {
+          "suite": "CommerceStoreTests",
+          "test": "testCancelledPreviousAccountStartCannotResetNewPurchaseCoordinator",
+          "status": "passed",
+          "durationMs": 5
+        },
+        {
+          "suite": "CommerceStoreTests",
+          "test": "testLocalStoreKitPurchaseFinishesOnlyAfterMatchingVerifiedEvidence",
+          "status": "failed",
+          "durationMs": 8
+        },
+        {
+          "suite": "CommerceStoreTests",
+          "test": "testLocalStoreKitPurchaseRejectsWrongAccountTokenWithoutFinishing",
+          "status": "failed",
+          "durationMs": 3
+        },
+        {
+          "suite": "CommerceStoreTests",
+          "test": "testLocalSubscriptionLifecycleStatesNeverMutateServerAccess",
+          "status": "passed",
+          "durationMs": 3
+        },
+        {
+          "suite": "CommerceStoreTests",
+          "test": "testMatchingTransactionUpdateIsRecordedAndFinishedWithoutChangingAccess",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "CommerceStoreTests",
+          "test": "testMissingStorefrontFailsClosedWithoutCallingPurchaseRoute",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "CommerceStoreTests",
+          "test": "testRefreshRoutesWithCurrentStorefrontAndReevaluatesOnChange",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "CommerceStoreTests",
+          "test": "testRestoreHistoricalMonthlyPurchaseStillRefreshesLocalEvidence",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "CommerceStoreTests",
+          "test": "testRestoreIgnoresEntitlementBoundToAnotherRilloraAccount",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "CommerceStoreTests",
+          "test": "testRetiredMonthlyProductCannotStartANewPurchase",
+          "status": "failed",
+          "durationMs": 2
+        },
+        {
+          "suite": "CommerceStoreTests",
+          "test": "testSandboxCatalogDiagnosticLoadsWithoutAPrivateCommerceSession",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "CommerceStoreTests",
+          "test": "testSandboxCatalogLoadsAppStoreGroupWithoutOpeningPurchasePath",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "CommerceStoreTests",
+          "test": "testSandboxCatalogRejectsXcodeLocalSubscriptionGroup",
+          "status": "failed",
+          "durationMs": 2
+        },
+        {
+          "suite": "CommerceStoreTests",
+          "test": "testSandboxPurchaseFinishesOnlyAfterDurableServerAuthorization",
+          "status": "failed",
+          "durationMs": 1
+        },
+        {
+          "suite": "CommerceStoreTests",
+          "test": "testSandboxPurchaseRemainsUnfinishedWhileAuthoritativeSnapshotIsPending",
+          "status": "failed",
+          "durationMs": 2
+        },
+        {
+          "suite": "CommerceStoreTests",
+          "test": "testSubscriptionStatusOutsideLocalAccountIsIgnored",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "CommerceStoreTests",
+          "test": "testSubscriptionStatusUpdateRefreshesLifecycleWithoutFinishingOrGrantingAccess",
+          "status": "failed",
+          "durationMs": 4
+        },
+        {
+          "suite": "CommerceStoreTests",
+          "test": "testUnverifiedLocalStoreKitPurchaseNeverFinishes",
+          "status": "failed",
+          "durationMs": 1
+        }
+      ]
+    }
+  },
+  "isError": true
+}

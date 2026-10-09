@@ -1,0 +1,20 @@
+"""Deploy one already-reviewed frozen assembly; preserve runtime parameters and all credentials."""
+from pathlib import Path
+import datetime,json,os,subprocess,sys
+ROOT=Path.cwd();QA=ROOT/'output/qa/rillora-payment-recheck-20261009';P=ROOT/'.local-secrets/payment-recheck-20261009'
+name=sys.argv[1];assert name in ['RilloraStaging','RilloraProduction'];receipt=QA/(name+'-pending-complete.json');assert not receipt.exists()
+ci=json.loads((QA/'pending-ci.json').read_text());assert ci['conclusion']=='success' and ci['source']=='f7592a3f79394c0c17cf67ffc896b71225b7c06b'
+assembly=QA/('pending-'+name);new=json.loads((assembly/(name+'.template.json')).read_text());before=json.loads((P/(name+'-pending-before.json')).read_text())
+def cloud(command):
+ r=subprocess.run(['aws','cloudformation',command,'--stack-name',name,'--profile','rillora-cdk-deploy','--region','eu-central-1','--output','json'],capture_output=True,text=True,timeout=50)
+ if r.returncode:raise RuntimeError('Cloud read failed; private response suppressed')
+ return json.loads(r.stdout)
+actual=cloud('get-template')['TemplateBody'];actual=json.loads(actual) if isinstance(actual,str) else actual;assert actual==before, 'Cloud changed after preparation; inspect rather than overwrite'
+assert cloud('describe-stacks')['Stacks'][0]['StackStatus']=='UPDATE_COMPLETE'
+with (QA/(name+'-pending-deploy.log')).open('w') as log:
+ result=subprocess.run(['npx','cdk','deploy',name,'--app',str(assembly),'--profile','rillora-cdk-session','--require-approval','never','--previous-parameters','true','--outputs-file',str(QA/(name+'-pending-outputs.json'))],cwd=ROOT/'infra/aws',env=dict(os.environ,CDK_DOCKER=str(ROOT/'output/qa/rillora-web-rollout-20261009/cdk-docker-buildx.sh')),stdout=log,stderr=subprocess.STDOUT)
+print(json.dumps({'stack':name,'localCommandExit':result.returncode,'independentReadbackRequired':True}),flush=True)
+status=cloud('describe-stacks')['Stacks'][0]['StackStatus'];actual=cloud('get-template')['TemplateBody'];actual=json.loads(actual) if isinstance(actual,str) else actual
+assert status=='UPDATE_COMPLETE' and actual==new
+report=json.loads((QA/(name+'-pending-reviewed-delta.json')).read_text());report.update(deployed=True,completedAt=datetime.datetime.now(datetime.timezone.utc).isoformat(),stackStatus=status,actualTemplateMatches=True)
+receipt.write_text(json.dumps(report,indent=2)+'\n');print(json.dumps({'stack':name,'status':status,'actualTemplateMatches':True}),flush=True)

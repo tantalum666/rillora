@@ -1,0 +1,16 @@
+from pathlib import Path
+import concurrent.futures,datetime,hashlib,json,urllib.request
+R=Path.cwd();Q=R/'output/qa/rillora-payment-recheck-20261009';build=json.loads((Q/'locale-build-inputs-v2.json').read_text())
+origins={'preview':'https://app.staging.rillora.xyz','production':'https://app.rillora.xyz','www':'https://www.rillora.xyz'}
+for surface,base in origins.items():
+ completed=Q/('locale-'+surface+'-live-assets.json')
+ if completed.exists() and json.loads(completed.read_text()).get('allMatch'):continue
+ expected=build['web'][surface]['files']
+ marker={'production':'production-build.json','www':'public-build.json'}.get(surface)
+ if marker:expected=json.loads((R/build['web'][surface]['directory']/marker).read_text())['files']
+ def get(kv):
+  path,sha=kv;url=base+('/' if path=='index.html' else '/'+path)
+  with urllib.request.urlopen(urllib.request.Request(url,headers={'Cache-Control':'no-cache'}),timeout=30) as response:
+   data=response.read();actual=hashlib.sha256(data).hexdigest();return {'path':path,'status':response.status,'sha256':actual,'match':sha==actual}
+ with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:rows=list(pool.map(get,expected.items()))
+ result={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'origin':base,'source':build['source'],'files':len(rows),'allMatch':all(x['match'] for x in rows),'results':rows};(Q/('locale-'+surface+'-live-assets.json')).write_text(json.dumps(result,indent=2)+'\n');assert result['allMatch'],surface;print(json.dumps({'surface':surface,'files':len(rows),'allMatch':True}),flush=True)

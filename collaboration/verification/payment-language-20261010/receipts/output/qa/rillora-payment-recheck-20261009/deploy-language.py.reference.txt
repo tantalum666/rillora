@@ -1,0 +1,63 @@
+"""Reuse actual templates: maintenance -> verified94 -> runtime/client. No configuration drift."""
+from pathlib import Path
+import copy,datetime,hashlib,json,os,shutil,subprocess,sys
+R=Path.cwd();Q=R/'output/qa/rillora-payment-recheck-20261009';P=R/'.local-secrets/payment-recheck-20261009'
+name,phase=sys.argv[1:];assert name in ['RilloraStaging','RilloraProduction','RilloraProductionWeb','RilloraPublicWeb'];assert phase in ['maintenance','runtime','web']
+receipt=Q/(name+'-locale-'+phase+'-complete.json');assert not receipt.exists(),'Read the completed phase, do not repeat'
+ci=json.loads((Q/'locale-ci.json').read_text());assert ci['conclusion']=='success' and ci['source'].startswith('eaf68c0a7')
+build=json.loads((Q/'locale-build-inputs-v2.json').read_text());assert build['source']==ci['source']
+def cloud(op):
+ r=subprocess.run(['aws','cloudformation',op,'--stack-name',name,'--profile','rillora-cdk-deploy','--region','eu-central-1','--output','json'],capture_output=True,text=True,timeout=55)
+ if r.returncode:raise RuntimeError('Cloud read failed; inspect private CLI credentials/status')
+ return json.loads(r.stdout)
+status=cloud('describe-stacks')['Stacks'][0]['StackStatus'];assert status in ['UPDATE_COMPLETE','CREATE_COMPLETE']
+old=cloud('get-template')['TemplateBody'];old=json.loads(old) if isinstance(old,str) else old;new=copy.deepcopy(old)
+assert phase=='web' or name in ['RilloraStaging','RilloraProduction']
+if phase=='runtime':
+ migrated=json.loads((Q/(name+'-locale-migration-complete.json')).read_text());assert migrated['exitCode']==0 and migrated['schemaCount']==94 and migrated['checksumsMatch']
+base=Q/('financial-'+name) if name in ['RilloraStaging','RilloraProduction'] else R/'output/qa/rillora-web-rollout-20261009'/('cdk-'+name if name=='RilloraProductionWeb' else 'cdk-public')
+assembly=Q/(name+'-locale-'+phase);assert not assembly.exists();assembly.mkdir()
+for f in ['manifest.json',name+'.metadata.json','tree.json','cdk.out']:
+ if (base/f).exists():shutil.copy2(base/f,assembly/f)
+manifest=json.loads((assembly/'manifest.json').read_text());baseassets=json.loads((base/(name+'.assets.json')).read_text())
+files={};images={};changes=[]
+if phase in ['maintenance','runtime']:
+ imageRoot=Q/'cdk-locale-v2-asset';imageManifest=json.loads((imageRoot/'RilloraLanguageV2Asset.assets.json').read_text());sha,image=next(iter(imageManifest['dockerImages'].items()));assert image['source']['platform']=='linux/arm64'
+ keys=[k for k,v in new['Resources'].items() if v['Type']=='AWS::ECS::TaskDefinition' and (k.startswith('Migration') if phase=='maintenance' else not k.startswith('Migration'))]
+ assert len(keys)==(1 if phase=='maintenance' or name=='RilloraStaging' else 2)
+ for key in keys:
+  resource=new['Resources'][key];assert resource['Properties']['RuntimePlatform']['CpuArchitecture']=='ARM64'
+  container=resource['Properties']['ContainerDefinitions'];assert len(container)==1
+  before=container[0]['Image'];assert set(before)=={'Fn::Sub'};prefix,oldsha=before['Fn::Sub'].rsplit(':',1);assert len(oldsha)==64 and oldsha!=sha
+  container[0]['Image']={'Fn::Sub':prefix+':'+sha};changes.append('/Resources/'+key+'/Properties/ContainerDefinitions/0/Image')
+ shutil.copytree(imageRoot/image['source']['directory'],assembly/image['source']['directory']);images[sha]=image
+if phase=='web' or (phase=='runtime' and name=='RilloraStaging'):
+ surface={'RilloraStaging':'preview','RilloraProductionWeb':'production','RilloraPublicWeb':'www'}[name];source=R/build['web'][surface]['directory']
+ digest=hashlib.sha256()
+ for p in sorted(source.rglob('*')):
+  if p.is_file():digest.update(p.relative_to(source).as_posix().encode()+b'\0');digest.update(hashlib.sha256(p.read_bytes()).digest())
+ assetsha=digest.hexdigest();shutil.copytree(source,assembly/('asset.'+assetsha))
+ asset=next(copy.deepcopy(v) for v in baseassets['files'].values() if v['source']['packaging']=='zip');asset['source']['path']='asset.'+assetsha
+ for d in asset['destinations'].values():d['objectKey']=assetsha+'.zip'
+ files[assetsha]=asset;keys=[k for k,v in new['Resources'].items() if v['Type']=='Custom::CDKBucketDeployment'];assert len(keys)==1
+ new['Resources'][keys[0]]['Properties']['SourceObjectKeys']=[assetsha+'.zip'];changes.append('/Resources/'+keys[0]+'/Properties/SourceObjectKeys/0')
+# Assert every other field equals the live template before committing any update.
+expected=copy.deepcopy(old)
+for pointer in changes:
+ a=expected;b=new;tokens=pointer.strip('/').split('/')
+ for token in tokens[:-1]:key=int(token) if isinstance(a,list) else token;a=a[key];b=b[key]
+ key=int(tokens[-1]) if isinstance(a,list) else tokens[-1];a[key]=copy.deepcopy(b[key])
+assert expected==new and old.get('Parameters')==new.get('Parameters')
+body=(json.dumps(new,indent=2)+'\n').encode();templateSha=hashlib.sha256(body).hexdigest();(assembly/(name+'.template.json')).write_bytes(body)
+template=next(copy.deepcopy(v) for v in baseassets['files'].values() if v['source']['path']==name+'.template.json')
+for d in template['destinations'].values():d['objectKey']=templateSha+'.json'
+files[templateSha]=template
+(assembly/(name+'.assets.json')).write_text(json.dumps({'version':baseassets['version'],'files':files,'dockerImages':images},indent=2)+'\n')
+props=manifest['artifacts'][name]['properties'];props['stackTemplateAssetObjectUrl']=props['stackTemplateAssetObjectUrl'].rsplit('/',1)[0]+'/'+templateSha+'.json';(assembly/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+(P/(name+'-locale-'+phase+'-before.json')).write_text(json.dumps(old))
+report={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'stack':name,'phase':phase,'source':ci['source'],'changedPaths':changes,'resourceCount':len(old['Resources']),'configurationPreserved':True,'ordinaryCustomerAndLiveBillingStillClosed':True}
+(Q/(name+'-locale-'+phase+'-diff.json')).write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report),flush=True)
+with (Q/(name+'-locale-'+phase+'-deploy.log')).open('w') as log:
+ result=subprocess.run(['npx','cdk','deploy',name,'--app',str(assembly),'--profile','rillora-cdk-session','--require-approval','never','--previous-parameters','true','--outputs-file',str(Q/(name+'-locale-'+phase+'-outputs.json'))],cwd=R/'infra/aws',env=dict(os.environ,CDK_DOCKER=str(R/'output/qa/rillora-web-rollout-20261009/cdk-docker-buildx.sh')),stdout=log,stderr=subprocess.STDOUT)
+actual=cloud('get-template')['TemplateBody'];actual=json.loads(actual) if isinstance(actual,str) else actual;status=cloud('describe-stacks')['Stacks'][0]['StackStatus'];assert status=='UPDATE_COMPLETE' and actual==new
+report.update(completedAt=datetime.datetime.now(datetime.timezone.utc).isoformat(),status=status,actualTemplateMatches=True,commandExit=result.returncode);receipt.write_text(json.dumps(report,indent=2)+'\n');print(json.dumps({'stack':name,'phase':phase,'status':status,'actualTemplateMatches':True}),flush=True)

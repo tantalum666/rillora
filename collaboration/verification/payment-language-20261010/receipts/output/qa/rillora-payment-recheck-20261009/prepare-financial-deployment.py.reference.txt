@@ -1,0 +1,52 @@
+"""Prepare image-only production and image/client-only staging deltas from actual templates."""
+from pathlib import Path
+import copy,datetime,hashlib,json,shutil,subprocess
+ROOT=Path.cwd();QA=ROOT/'output/qa/rillora-payment-recheck-20261009';PRIVATE=ROOT/'.local-secrets/payment-recheck-20261009'
+asset_root=QA/'cdk-financial-asset';image_manifest=json.loads((asset_root/'RilloraFinancialAsset.assets.json').read_text())
+image_hash,image_asset=next(iter(image_manifest['dockerImages'].items()))
+assert image_asset['source']['platform']=='linux/arm64'
+def cloud(stack,command):
+ r=subprocess.run(['aws','cloudformation',command,'--stack-name',stack,'--profile','rillora-cdk-deploy','--region','eu-central-1','--output','json'],capture_output=True,text=True,timeout=55)
+ if r.returncode:raise RuntimeError('Actual cloud read failed; do not prepare replacement')
+ return json.loads(r.stdout)
+for stack_name,base in [('RilloraStaging',ROOT/'output/qa/rillora-stripe-cloud-checkout-20261009/cdk-RilloraStaging'),('RilloraProduction',ROOT/'output/qa/rillora-live-configuration-20261009/cdk-candidate')]:
+ stack=cloud(stack_name,'describe-stacks')['Stacks'][0];assert stack['StackStatus']=='UPDATE_COMPLETE'
+ old=cloud(stack_name,'get-template')['TemplateBody'];old=json.loads(old) if isinstance(old,str) else old
+ (PRIVATE/(stack_name+'-financial-before.json')).write_text(json.dumps(old));new=copy.deepcopy(old)
+ assembly=QA/('financial-'+stack_name);assert not assembly.exists();assembly.mkdir()
+ for name in ['manifest.json',stack_name+'.metadata.json','tree.json','cdk.out']:
+  if (base/name).exists():shutil.copy2(base/name,assembly/name)
+ manifest=json.loads((assembly/'manifest.json').read_text());old_assets=json.loads((base/(stack_name+'.assets.json')).read_text())
+ template_asset=next(copy.deepcopy(a) for a in old_assets['files'].values() if a['source']['path']==stack_name+'.template.json')
+ changed=[];expected=copy.deepcopy(old)
+ task_keys=[k for k,v in new['Resources'].items() if v['Type']=='AWS::ECS::TaskDefinition']
+ assert len(task_keys)==(2 if stack_name=='RilloraStaging' else 3)
+ for k in task_keys:
+  resource=new['Resources'][k];assert resource['Properties']['RuntimePlatform']['CpuArchitecture']=='ARM64'
+  containers=resource['Properties']['ContainerDefinitions'];assert len(containers)==1
+  old_image=containers[0]['Image'];assert set(old_image)=={'Fn::Sub'}
+  prefix,old_hash=old_image['Fn::Sub'].rsplit(':',1);assert len(old_hash)==64 and old_hash!=image_hash
+  containers[0]['Image']={'Fn::Sub':prefix+':'+image_hash};expected['Resources'][k]['Properties']['ContainerDefinitions'][0]['Image']=containers[0]['Image']
+  changed.append('/Resources/'+k+'/Properties/ContainerDefinitions/0/Image')
+ files={}
+ if stack_name=='RilloraStaging':
+  client=ROOT/'output/release/rillora-payment-recheck-20261009/financial-preview-client';paths=sorted(p for p in client.rglob('*') if p.is_file());assert len(paths)==86
+  digest=hashlib.sha256()
+  for p in paths:digest.update(p.relative_to(client).as_posix().encode()+b'\0');digest.update(hashlib.sha256(p.read_bytes()).digest())
+  sha=digest.hexdigest();shutil.copytree(client,assembly/('asset.'+sha))
+  front=next(copy.deepcopy(a) for a in old_assets['files'].values() if a['source']['packaging']=='zip');front['source']['path']='asset.'+sha
+  for dest in front['destinations'].values():dest['objectKey']=sha+'.zip'
+  files[sha]=front;deployments=[k for k,v in new['Resources'].items() if v['Type']=='Custom::CDKBucketDeployment'];assert len(deployments)==1
+  key=deployments[0];new['Resources'][key]['Properties']['SourceObjectKeys']=[sha+'.zip'];expected['Resources'][key]['Properties']['SourceObjectKeys']=[sha+'.zip']
+  changed.append('/Resources/'+key+'/Properties/SourceObjectKeys/0')
+ assert new==expected and new.get('Parameters')==old.get('Parameters')
+ template=(json.dumps(new,indent=2)+'\n').encode();template_hash=hashlib.sha256(template).hexdigest();(assembly/(stack_name+'.template.json')).write_bytes(template)
+ for dest in template_asset['destinations'].values():dest['objectKey']=template_hash+'.json'
+ files[template_hash]=template_asset
+ shutil.copytree(asset_root/image_asset['source']['directory'],assembly/image_asset['source']['directory'])
+ assets={'version':image_manifest['version'],'files':files,'dockerImages':{image_hash:image_asset}}
+ (assembly/(stack_name+'.assets.json')).write_text(json.dumps(assets,indent=2)+'\n')
+ properties=manifest['artifacts'][stack_name]['properties'];properties['stackTemplateAssetObjectUrl']=properties['stackTemplateAssetObjectUrl'].rsplit('/',1)[0]+'/'+template_hash+'.json'
+ (assembly/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+ report={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'source':'615bf1322b7f792ef533b0a91b6f2e7eae99cf98','stack':stack_name,'changedPaths':changed,'resourceCount':len(old['Resources']),'imageAsset':image_hash,'reviewIdentityExpiryPermissionsSecretsNetworkAndOtherConfigurationPreserved':True,'schema':93,'migrationsRun':False,'newCheckoutEnabled':False,'deployed':False}
+ (QA/(stack_name+'-financial-reviewed-delta.json')).write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report),flush=True)

@@ -1,0 +1,103 @@
+{
+  "capturedFrom": "2026-10-09T19:37:41.587623+00:00",
+  "capturedThrough": "2026-10-09T19:37:45.220142+00:00",
+  "workFiles": 2658,
+  "uniqueRawObjects": 1130,
+  "workBytes": 181049586,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-029.tar.zst.age",
+      "sha256": "2879e6a748efd1f858d033dd34e39ad99fb979d71ce52ffd46c16b8e3324da00",
+      "bytes": 61653260,
+      "plainBytes": 154699418,
+      "uniqueObjects": 1130
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/payment-language-20261010/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": "output/qa/rillora-payment-recheck-20261009/inspection13",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    },
+    {
+      "path": "output/qa/rillora-payment-recheck-20261009/publication",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    },
+    {
+      "path": "output/qa/rillora-payment-recheck-20261009/inspection",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    },
+    {
+      "path": "output/qa/rillora-payment-recheck-20261009/pending-RilloraStaging/asset.d075426673fad825fcd70df5a95d1c348748ce166fb84eda339e2447e5c00a59",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-payment-recheck-20261009/RilloraStaging-locale-maintenance/asset.929a75e1b7d725935ff7153d779fe2bcf3f5dac3d8348bb015b12fe68979c818",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-payment-recheck-20261009/financial-RilloraStaging/asset.2e164e206958c490bd6921e89f0eaa39bb62520c72e8438ce5b70ef9ab3ca5af",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-payment-recheck-20261009/financial-RilloraStaging/asset.33bf84ef66834a5c902cb59086a54741f3efac266778853dd192a780a2abdc57",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-payment-recheck-20261009/RilloraPublicWeb-locale-web/asset.f05a1ba88aed32c96f7bc909afa453d52493cd23c0513ac8104cba05a28d17de",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-payment-recheck-20261009/RilloraProduction-locale-maintenance/asset.929a75e1b7d725935ff7153d779fe2bcf3f5dac3d8348bb015b12fe68979c818",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-payment-recheck-20261009/cdk-locale-v2-asset/asset.929a75e1b7d725935ff7153d779fe2bcf3f5dac3d8348bb015b12fe68979c818",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-payment-recheck-20261009/RilloraProductionWeb-locale-web/asset.a7636581e4697d3d36f9c035ce3b6dbbcd5ff05c2d877933202f68572b87aea9",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-payment-recheck-20261009/financial-RilloraProduction/asset.33bf84ef66834a5c902cb59086a54741f3efac266778853dd192a780a2abdc57",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-payment-recheck-20261009/cdk-financial-asset/asset.33bf84ef66834a5c902cb59086a54741f3efac266778853dd192a780a2abdc57",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-payment-recheck-20261009/cdk-pending-asset/asset.d075426673fad825fcd70df5a95d1c348748ce166fb84eda339e2447e5c00a59",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-payment-recheck-20261009/RilloraStaging-locale-runtime/asset.929a75e1b7d725935ff7153d779fe2bcf3f5dac3d8348bb015b12fe68979c818",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-payment-recheck-20261009/RilloraStaging-locale-runtime/asset.201c0f1df877b614efe797a8fb0c4262c8faa1196846b0313aa609c562941fc4",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-payment-recheck-20261009/cdk-locale-asset/asset.21d2ada94b3506ea5d283e8779518fda69308818c479ebb53ff298084d49297d",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-payment-recheck-20261009/RilloraProduction-locale-runtime/asset.929a75e1b7d725935ff7153d779fe2bcf3f5dac3d8348bb015b12fe68979c818",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-payment-recheck-20261009/pending-RilloraProduction/asset.d075426673fad825fcd70df5a95d1c348748ce166fb84eda339e2447e5c00a59",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": ".local-secrets/payment-recheck-20261009",
+      "reason": "credentials_auth_sessions_actual_provider_objects_device_ids_excluded_except_five_explicit_reviewed_compiled_artifact_directories"
+    }
+  ],
+  "selection": "All eligible current QA and Release outputs including direct12/13 signed IPA and xcarchives, original failed/passed logs and xcresults, migrations/runtime/Web/Cloudflare/Auth0 summaries, actual screenshot evidence, operational helpers and frozen source. The five explicitly reviewed compiled legal/Web artifact directories are encrypted-only exceptions to private-folder exclusion; actual auth/config/credentials/provider bodies/device inventories stay excluded. Archives1-28 unchanged.",
+  "boundary": "Phone13 Owner accepted; Web/legal/Actions and schema94 deployed; final API21/43 f7592a3 healthy. New actual TEST asynchronous refund, pending/success/partial, duplicate and cleanup evidence is separate from retained Apple Sandbox results. No Live test charge, customer opening or TestFlight distribution. Auth0 old desktop shell remains blocked by HTTP402 and ticket access; community draft unsent. Later closeout/remote receipts follow frozen capture."
+}

@@ -1,13 +1,13 @@
 # 原生 iOS 中英双语界面与维护合同
 
-Status: COMPLETE SELECTED-LANGUAGE PRESENTATION PREPARED; CONSOLIDATED DIRECT DELIVERY PENDING
+Status: DIRECT13 INSTALLED AND OWNER CONFIRMED CHINESE PLAN / HKD888
 Last updated: 2026-10-10 (Asia/Hong_Kong)
 
 ## October9–10 当前单一语言合同
 
 Owner要求中文/英文各自完整，取代下方旧的英文同意、诊断和导出提示边界。原生托管登录参数、法律链接、可读指引导出、删除确认词及共享预演按App所选语言显示。共享预演采用与Web同一JSON词汇目录，只映射固定状态，保留原始用户输入和数据格式；未知诊断使用本地化通用说明。
 
-账户条款和购买证明与Web/API同步新版本，历史接受不改写；Apple价格仍来自实际商品与服务器核验，不按语言换汇。53项相关原生验证通过；新的集中直装和真机结果仍需另行记录。手机12属于之前已交付源码，Owner无需Restore已看到订阅；这既不是新购买，也不是本轮Restore点击证明。[执行记录](payment-recheck-20261009.md)。
+账户条款和购买证明与Web/API同步新版本，历史接受不改写；Apple价格仍来自实际商品与服务器核验，不按语言换汇。英文53项与最终中文12项验证通过；development1.0(13)已通过14项签名/配置检查，原位安装、独立版本读回及启动完成。Owner确认已订阅、港币888、页面不再夹杂英文。本轮未重新购买或点击Restore，既有订阅自动同步与新交易证据严格分开；未分发TestFlight。[执行记录](payment-recheck-20261009.md)。
 
 ## October7 local integration follow-up
 

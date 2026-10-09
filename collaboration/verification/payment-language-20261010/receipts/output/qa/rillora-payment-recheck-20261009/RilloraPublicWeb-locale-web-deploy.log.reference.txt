@@ -1,0 +1,33 @@
+
+✨  Synthesis time: 0.23s
+
+RilloraPublicWeb: start: Building Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Code
+RilloraPublicWeb: success: Built Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Code
+RilloraPublicWeb: start: Building RilloraPublicWeb Template
+RilloraPublicWeb: success: Built RilloraPublicWeb Template
+RilloraPublicWeb: start: Publishing RilloraPublicWeb Template (133857166372-eu-central-1-ef6e9992)
+RilloraPublicWeb: start: Publishing Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Code (133857166372-eu-central-1-1f0c1b13)
+RilloraPublicWeb: success: Published RilloraPublicWeb Template (133857166372-eu-central-1-ef6e9992)
+RilloraPublicWeb: success: Published Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Code (133857166372-eu-central-1-1f0c1b13)
+RilloraPublicWeb: creating CloudFormation changeset...
+RilloraPublicWeb: deploying... [1/1]
+RilloraPublicWeb | 0/3 | 12:44:17 AM | UPDATE_IN_PROGRESS      | AWS::CloudFormation::Stack             | RilloraPublicWeb User Initiated
+RilloraPublicWeb | 0/3 | 12:44:19 AM | UPDATE_IN_PROGRESS      | Custom::CDKBucketDeployment            | PublicDeployment/CustomResource/Default (PublicDeploymentCustomResource947B276F) 
+RilloraPublicWeb | 1/3 | 12:45:40 AM | UPDATE_COMPLETE         | Custom::CDKBucketDeployment            | PublicDeployment/CustomResource/Default (PublicDeploymentCustomResource947B276F) 
+RilloraPublicWeb | 2/3 | 12:45:41 AM | UPDATE_COMPLETE_CLEANUP | AWS::CloudFormation::Stack             | RilloraPublicWeb 
+RilloraPublicWeb | 3/3 | 12:45:42 AM | UPDATE_COMPLETE         | AWS::CloudFormation::Stack             | RilloraPublicWeb 
+
+✅  RilloraPublicWeb
+
+✨  Deployment time: 98.09s
+
+Outputs:
+RilloraPublicWeb.BucketName = rillorapublicweb-publicassetsacf28b1b-2lrttva1bc8p
+RilloraPublicWeb.DistributionDomain = d1zq6qpnicab3e.cloudfront.net
+RilloraPublicWeb.DistributionId = E1H3EWWIZNTZDO
+RilloraPublicWeb.PublicUrl = https://www.rillora.xyz
+Stack ARN:
+arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraPublicWeb/8b064b60-b7c2-11f1-8199-0ac9000d7ba3
+
+✨  Total time: 128.91s
+

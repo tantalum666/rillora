@@ -1,0 +1,25 @@
+{
+  "source": "cfccbd3d4359579932278fd297b3369461936f76",
+  "startedAt": "2026-10-09T13:42:42.216896+00:00",
+  "tests": [
+    "tests/apple-commerce.integration.test.ts",
+    "tests/apple-price-bindings.test.ts",
+    "tests/apple-production-intake.integration.test.ts",
+    "tests/apple-production-runtime.test.ts",
+    "tests/apple-production-server-api.test.ts",
+    "tests/apple-production-verification.test.ts",
+    "tests/apple-purchase-preflight.integration.test.ts",
+    "tests/apple-review.integration.test.ts",
+    "tests/apple-storekit-adapter.test.ts",
+    "tests/apple-storekit-server-api.test.ts",
+    "tests/apple-verification-retry.test.ts",
+    "tests/commerce-provider-adapters.test.ts",
+    "tests/production-commerce.integration.test.ts",
+    "tests/production-purchase-contract.test.ts",
+    "tests/recovery-commerce.integration.test.ts",
+    "tests/stripe-production-adapter.test.ts",
+    "tests/stripe-recovery-financial-state.test.ts",
+    "tests/stripe-test-adapter.test.ts"
+  ],
+  "databaseBoundary": "Existing dedicated loopback fixture guard; no provider credentials passed"
+}

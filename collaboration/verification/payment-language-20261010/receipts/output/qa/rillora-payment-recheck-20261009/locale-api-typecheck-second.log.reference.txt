@@ -1,0 +1,12 @@
+
+> continuity-api@0.1.0 typecheck
+> tsc -p tsconfig.json --noEmit
+
+src/stripe-commerce-routes.ts(54,54): error TS2379: Argument of type '{ plannerId: string; billingPeriod: "annual" | "monthly"; idempotencySeed: string; locale: "en" | "zh-CN" | undefined; }' is not assignable to parameter of type '{ plannerId: string; billingPeriod: StripeBillingPeriod; idempotencySeed: string; purchaseConsent?: { version: "family-annual-web-20261009-1"; provider: "stripe"; ... 10 more ...; acknowledgedCancellation: true; }; locale?: BillingDisplayLocale; }' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the types of the target's properties.
+  Types of property 'locale' are incompatible.
+    Type '"en" | "zh-CN" | undefined' is not assignable to type 'BillingDisplayLocale'.
+      Type 'undefined' is not assignable to type 'BillingDisplayLocale'.
+src/stripe-production-routes.ts(25,50): error TS2379: Argument of type '{ plannerId: string; billingPeriod: "annual"; idempotencySeed: string; purchaseConsent: { version: "family-annual-web-20261009-1"; provider: "stripe"; priceCode: "family_usd_annual_v4"; ... 9 more ...; acknowledgedCancellation: true; }; locale: "en" | ... 1 more ... | undefined; }' is not assignable to parameter of type '{ plannerId: string; billingPeriod: StripeBillingPeriod; idempotencySeed: string; purchaseConsent?: { version: "family-annual-web-20261009-1"; provider: "stripe"; ... 10 more ...; acknowledgedCancellation: true; }; locale?: BillingDisplayLocale; }' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the types of the target's properties.
+  Types of property 'locale' are incompatible.
+    Type '"en" | "zh-CN" | undefined' is not assignable to type 'BillingDisplayLocale'.
+      Type 'undefined' is not assignable to type 'BillingDisplayLocale'.

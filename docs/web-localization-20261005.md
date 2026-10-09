@@ -1,15 +1,15 @@
 # Web 中英双语界面与维护合同
 
-Status: SELECTED-LANGUAGE EXPANSION VERIFIED LOCALLY; COORDINATED DEPLOYMENT IN PROGRESS
+Status: FOUR WEB SURFACES DEPLOYED; AUTH0 LEGACY DESKTOP SHELL REMAINS BLOCKED
 Last updated: 2026-10-10 (Asia/Hong_Kong)
 
 ## October9–10 当前单一语言合同
 
-Owner要求选中文全部使用中文，选英文全部使用英文，取消并排翻译、中文参考及英文优先提示。这取代下方October5/6历史检查点中的英文-only法律/同意/导出限制。现已准备完整法律正文、同意句、Auth0语言、Stripe结账/门户、打印指引和共享预演；保留真实输入、身份名称、不可改写的许可证原文、机器格式及历史收据。
+Owner要求选中文全部使用中文，选英文全部使用英文，取消并排翻译、中文参考及英文优先提示。这取代下方October5/6历史检查点中的英文-only法律/同意/导出限制。现已发布完整法律正文、同意句、Auth0语言、Stripe结账/门户、打印指引和共享预演；保留真实输入、身份名称、不可改写的许可证原文、机器格式及历史收据。
 
 官网、App、法律页链接保持所选语言；Auth0传入固定ui_locales枚举，Stripe映射到en/zh，不改变市场、价格或权限。法律入口使用无存储的URL语言选择，仍不访问账号/API/分析；法律包只带必要common文案，不引入营销目录。新付款尝试把首次语言固定在94迁移列中；模糊重试继续原始请求，历史NULL保持未指定语言。
 
-本轮Web189、法律8、14页SSR及同意/词汇检查通过；原生53、API新增语言场景有独立结果。源码通过不代表四站部署或真实手机检查完成。[执行状态与证据](payment-recheck-20261009.md)。
+本轮Web189、法律8、14页SSR及同意/词汇检查通过；原生53、API新增语言场景有独立结果。四站已部署并独立核验：应用/Preview/官网共203公开文件匹配，法律50HTTP/18资源/14实际双语页面通过。手机13已由Owner确认订阅/港币888且没有混排。Auth0两个同意表单及语言配置已发布，桌面旧外壳的3句英文仍受模板API402限制；官方支持入口也实际拒绝创建工单，不能宣称所有第三方页面全部完成。[执行状态与证据](payment-recheck-20261009.md)。
 
 ## HISTORICAL — October6 验收与部署
 

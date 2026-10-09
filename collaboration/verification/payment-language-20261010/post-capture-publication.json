@@ -1,0 +1,8 @@
+{
+  "at": "2026-10-09T19:40:26.817646+00:00",
+  "reviewedFindings": 40,
+  "classification": "CDK content-addressed S3 ZIP object names, not credentials",
+  "readableFilesAdjusted": 20,
+  "change": "Omit only ZIP objectKey/S3Key hashes in readable mirrors; original bytes remain in immutable archive29",
+  "scannerRulesChanged": false
+}

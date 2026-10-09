@@ -1,0 +1,137 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "\n🧪 Test\n\nDiscovered 12 test(s):\n   RilloraTests/APIClientTests/testNativeSessionExchangeCarriesTheExactAffirmativeLegalProof\n   RilloraTests/AccountLocalizationTests/testEnglishAccountResourcesRemainAvailable\n   RilloraTests/AccountLocalizationTests/testFormattingPreservesPrivateTitleAndPercentSigns\n   RilloraTests/AccountLocalizationTests/testImportedMatterPluralUsesTheSelectedResourceBundle\n   RilloraTests/AccountLocalizationTests/testProviderPriceAndCurrencyRemainUnmodified\n   RilloraTests/AccountLocalizationTests/testSimplifiedChineseAccountAndPurchaseResources\n   (...and 6 more)\n\n✅ 12 tests passed, 0 failed, 0 skipped (⏱️ 24.4s)\n  └ Files:\n     ├── ~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/\n     │   ├── logs/test_sim_2026-10-09T16-28-46-673Z_pid69719_954357f5.log — Build Logs\n     │   └── test-products/test_sim_2026-10-09T16-28-46-674Z_pid69719_8e7ffb2c.xctestproducts — Test Products\n     └── output/qa/rillora-payment-recheck-20261009/native-selected-language-zh-final.xcresult — Result Bundle\n"
+    }
+  ],
+  "structuredContent": {
+    "schema": "xcodebuildmcp.output.test-result",
+    "schemaVersion": "3",
+    "didError": false,
+    "error": null,
+    "data": {
+      "summary": {
+        "status": "SUCCEEDED",
+        "durationMs": 24433,
+        "counts": {
+          "passed": 12,
+          "failed": 0,
+          "skipped": 0
+        },
+        "target": "simulator"
+      },
+      "artifacts": {
+        "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-10-09T16-28-46-673Z_pid69719_954357f5.log",
+        "xcresultPath": "output/qa/rillora-payment-recheck-20261009/native-selected-language-zh-final.xcresult",
+        "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-09T16-28-46-674Z_pid69719_8e7ffb2c.xctestproducts"
+      },
+      "tests": {
+        "selected": [
+          "RilloraTests/APIClientTests/testNativeSessionExchangeCarriesTheExactAffirmativeLegalProof",
+          "RilloraTests/AccountLocalizationTests/testEnglishAccountResourcesRemainAvailable",
+          "RilloraTests/AccountLocalizationTests/testFormattingPreservesPrivateTitleAndPercentSigns",
+          "RilloraTests/AccountLocalizationTests/testImportedMatterPluralUsesTheSelectedResourceBundle",
+          "RilloraTests/AccountLocalizationTests/testProviderPriceAndCurrencyRemainUnmodified",
+          "RilloraTests/AccountLocalizationTests/testSimplifiedChineseAccountAndPurchaseResources",
+          "RilloraTests/SelectedLanguageTests/testHostedAuthenticationUsesAppLanguageWithoutChangingIdentityIntent",
+          "RilloraTests/SelectedLanguageTests/testSharedDisclosureResourceCoversBothLanguagesAndDoesNotEchoUnknownText",
+          "RilloraTests/SharingLocalizationTests/testLocalizationDoesNotChangeSharingWireValuesOrScope",
+          "RilloraTests/SharingLocalizationTests/testPrivateTitleIsPreservedWithoutBeingUsedAsAFormatKey",
+          "RilloraTests/SharingLocalizationTests/testReviewRequestAndExportCountsUsePluralResources",
+          "RilloraTests/SharingLocalizationTests/testSimplifiedChineseSharingTermsAndSafetyMessages"
+        ],
+        "discovered": {
+          "total": 12,
+          "items": [
+            "RilloraTests/APIClientTests/testNativeSessionExchangeCarriesTheExactAffirmativeLegalProof",
+            "RilloraTests/AccountLocalizationTests/testEnglishAccountResourcesRemainAvailable",
+            "RilloraTests/AccountLocalizationTests/testFormattingPreservesPrivateTitleAndPercentSigns",
+            "RilloraTests/AccountLocalizationTests/testImportedMatterPluralUsesTheSelectedResourceBundle",
+            "RilloraTests/AccountLocalizationTests/testProviderPriceAndCurrencyRemainUnmodified",
+            "RilloraTests/AccountLocalizationTests/testSimplifiedChineseAccountAndPurchaseResources"
+          ]
+        }
+      },
+      "diagnostics": {
+        "warnings": [],
+        "errors": [],
+        "testFailures": []
+      },
+      "testCases": [
+        {
+          "suite": "APIClientTests",
+          "test": "testNativeSessionExchangeCarriesTheExactAffirmativeLegalProof",
+          "status": "passed",
+          "durationMs": 6
+        },
+        {
+          "suite": "AccountLocalizationTests",
+          "test": "testEnglishAccountResourcesRemainAvailable",
+          "status": "passed",
+          "durationMs": 2
+        },
+        {
+          "suite": "AccountLocalizationTests",
+          "test": "testFormattingPreservesPrivateTitleAndPercentSigns",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "AccountLocalizationTests",
+          "test": "testImportedMatterPluralUsesTheSelectedResourceBundle",
+          "status": "passed",
+          "durationMs": 3
+        },
+        {
+          "suite": "AccountLocalizationTests",
+          "test": "testProviderPriceAndCurrencyRemainUnmodified",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "AccountLocalizationTests",
+          "test": "testSimplifiedChineseAccountAndPurchaseResources",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "SelectedLanguageTests",
+          "test": "testHostedAuthenticationUsesAppLanguageWithoutChangingIdentityIntent",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "SelectedLanguageTests",
+          "test": "testSharedDisclosureResourceCoversBothLanguagesAndDoesNotEchoUnknownText",
+          "status": "passed",
+          "durationMs": 3
+        },
+        {
+          "suite": "SharingLocalizationTests",
+          "test": "testLocalizationDoesNotChangeSharingWireValuesOrScope",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "SharingLocalizationTests",
+          "test": "testPrivateTitleIsPreservedWithoutBeingUsedAsAFormatKey",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "SharingLocalizationTests",
+          "test": "testReviewRequestAndExportCountsUsePluralResources",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "SharingLocalizationTests",
+          "test": "testSimplifiedChineseSharingTermsAndSafetyMessages",
+          "status": "passed",
+          "durationMs": 1
+        }
+      ]
+    }
+  }
+}

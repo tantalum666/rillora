@@ -1,0 +1,41 @@
+from pathlib import Path
+import datetime,json,subprocess,sys,uuid
+R=Path.cwd();Q=R/'output/qa/rillora-payment-recheck-20261009';P=R/'.local-secrets/payment-recheck-20261009';name,phase=sys.argv[1:];assert name in ['RilloraStaging','RilloraProduction'];assert phase in ['start','read']
+profile='rillora-staging-operator' if name=='RilloraStaging' else 'rillora-production-operator'
+def aws(args,p=profile):
+ r=subprocess.run(['aws',*args,'--profile',p,'--region','eu-central-1','--output','json'],capture_output=True,text=True,timeout=55)
+ if r.returncode:raise RuntimeError('Scoped cloud task operation failed; inspect authentication/permissions')
+ return json.loads(r.stdout)
+receipt=Q/(name+'-locale-migration-task.json')
+if phase=='read':
+ saved=json.loads(receipt.read_text());task=aws(['ecs','describe-tasks','--cluster',saved['cluster'],'--tasks',saved['taskArn']])['tasks'][0]
+ if task['lastStatus']!='STOPPED':print(json.dumps({'stack':name,'status':task['lastStatus']}));sys.exit(0)
+ assert task['containers'][0]['exitCode']==0,'Migration task failed; do not update API'
+ logs=aws(['logs','get-log-events','--log-group-name',saved['logGroup'],'--log-stream-name',saved['logStream'],'--start-from-head'])['events'];lines=[x['message'] for x in logs]
+ (P/(name+'-locale-migration-logs.json')).write_text(json.dumps(lines))
+ report=next(json.loads(line) for line in lines if '"localeMigrationSucceeded":true' in line)
+ assert report['schemaCount']==94 and report['checksumsMatch'] and report['onlyOnePendingMigration']
+ report.update(stack=name,exitCode=0,at=datetime.datetime.now(datetime.timezone.utc).isoformat());(Q/(name+'-locale-migration-complete.json')).write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report));sys.exit(0)
+assert not receipt.exists(),'Use the existing task receipt'
+ready=json.loads((Q/(name+'-locale-maintenance-complete.json')).read_text());assert ready['status']=='UPDATE_COMPLETE' and ready['actualTemplateMatches']
+stack=aws(['cloudformation','describe-stacks','--stack-name',name],'rillora-cdk-deploy')['Stacks'][0];assert stack['StackStatus']=='UPDATE_COMPLETE';out={x['OutputKey']:x['OutputValue'] for x in stack['Outputs']}
+resources=aws(['cloudformation','describe-stack-resources','--stack-name',name],'rillora-cdk-deploy')['StackResources'];db=next(x['PhysicalResourceId'] for x in resources if x['ResourceType']=='AWS::RDS::DBInstance')
+backup=aws(['rds','describe-db-instances','--db-instance-identifier',db],'rillora-cdk-session')['DBInstances'][0]
+assert backup['DBInstanceStatus']=='available' and backup['StorageEncrypted'] and backup['BackupRetentionPeriod']>=1
+assert datetime.datetime.now(datetime.timezone.utc)-datetime.datetime.fromisoformat(backup['LatestRestorableTime'].replace('Z','+00:00'))<datetime.timedelta(minutes=25)
+definition=out['MigrationTaskDefinitionArn'];taskDefinition=aws(['ecs','describe-task-definition','--task-definition',definition],'rillora-cdk-session')['taskDefinition'];container=taskDefinition['containerDefinitions'][0];containerName='Migration' if name=='RilloraStaging' else 'Maintenance';assert container['name']==containerName
+expected=next(iter(json.loads((Q/'cdk-locale-v2-asset/RilloraLanguageV2Asset.assets.json').read_text())['dockerImages']));assert container['image'].endswith(':'+expected)
+script="""import pg from 'pg';import {spawnSync} from 'node:child_process';import {readFile,readdir} from 'node:fs/promises';import {createHash} from 'node:crypto';import {loadDatabaseConfig} from './dist/config.js';import {databaseConnectionOptions} from './dist/db.js';
+const cfg=loadDatabaseConfig();if(cfg.sslMode!=='verify-full'||process.env.ROTATE_RUNTIME_DATABASE_PASSWORD==='true')throw new Error('unexpected_migration_configuration');
+const before=new pg.Client({...databaseConnectionOptions(cfg),application_name:'rillora-locale-preflight'});await before.connect();const count=Number((await before.query('select count(*) from app.schema_migrations')).rows[0].count);await before.end();if(count!==93)throw new Error('unexpected_previous_schema');
+const child=spawnSync(process.execPath,['dist/migrate.js'],{stdio:'inherit'});if(child.error||child.status!==0)process.exit(child.status||2);
+const c=new pg.Client({...databaseConnectionOptions(cfg),application_name:'rillora-locale-verification'});await c.connect();try{await c.query('begin read only');const tls=(await c.query('select ssl from pg_stat_ssl where pid=pg_backend_pid()')).rows[0]?.ssl;const rows=(await c.query('select name,checksum from app.schema_migrations order by name')).rows;const files=(await readdir('migrations')).filter(n=>/^\\d+_[a-z0-9_]+\\.sql$/.test(n)).sort();if(!tls||rows.length!==94||files.length!==94)throw new Error('unexpected_schema_or_tls');const map=new Map(rows.map(r=>[r.name,r.checksum]));for(const f of files)if(map.get(f)!==createHash('sha256').update(await readFile('migrations/'+f)).digest('hex'))throw new Error('migration_checksum_mismatch');await c.query('commit');console.log(JSON.stringify({localeMigrationSucceeded:true,schemaCount:94,checksumsMatch:true,tls:true,onlyOnePendingMigration:true,runtimeCredentialsChanged:false}));}finally{await c.end();}
+"""
+cluster=out.get('ClusterName') or next(x['PhysicalResourceId'] for x in resources if x['ResourceType']=='AWS::ECS::Cluster')
+network={'subnets':out['PublicSubnetIds' if name=='RilloraStaging' else 'MaintenanceSubnetIds'].split(','),'securityGroups':[out['TaskSecurityGroupId' if name=='RilloraStaging' else 'MigrationSecurityGroupId']],'assignPublicIp':'ENABLED'}
+request={'cluster':cluster,'taskDefinition':definition,'launchType':'FARGATE','clientToken':uuid.uuid4().hex,'networkConfiguration':{'awsvpcConfiguration':network},'overrides':{'containerOverrides':[{'name':containerName,'command':['node','--input-type=module','-e',script]}]}}
+path=P/(name+'-locale-migration-request.json')
+if path.exists():request=json.loads(path.read_text())
+else:path.write_text(json.dumps(request));path.chmod(0o600)
+result=aws(['ecs','run-task','--cli-input-json','file://'+str(path)]);assert not result.get('failures') and len(result['tasks'])==1;arn=result['tasks'][0]['taskArn'];log=container['logConfiguration']['options']
+report={'stack':name,'startedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'taskArn':arn,'cluster':cluster,'logGroup':log['awslogs-group'],'logStream':log['awslogs-stream-prefix']+'/'+containerName+'/'+arn.rsplit('/',1)[-1],'fromSchema':93,'toSchema':94,'backupLatestRestorableTime':backup['LatestRestorableTime'],'newSnapshotCreated':False};receipt.write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))

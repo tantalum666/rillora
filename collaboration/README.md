@@ -1,5 +1,7 @@
 # Rillora — Git / Dot 协作入口
 
+October10当前：[手机13、双语与付款专项](verification/payment-language-20261010/README.md)已实际交付。API21/43/schema94、四Web/法律站、两同意表单上线；Owner确认手机已订阅/HKD888/无混排。三笔新Stripe TEST退款边界及34验签事件通过，测试订阅均结束，原事项保留。Auth0桌面旧英文外壳受402/工单权限限制，社区草稿未发；当前唯一下一步见handoff。下列旧状态均为有日期的历史检查点。
+
 October9状态复核：[当前五组发布剩余工作](../docs/release-readiness.md#october1-remaining-work-inventory)
 与机器登记已按最新TEST/Live/手机证据纠正；本轮只有文档/登记更新，无新部署或交易。
 [状态复核回执](verification/release-status-20261009/README.md)。继续当前handoff的唯一下一步。
@@ -61,7 +63,7 @@ HKD888购买已验签；简洁购买页构建8已分发原内部组并选入未�
 677对象，本地与GitHub独立新下载后的解密核验均通过。Stripe Live凭据已保护保存、运行计费尚未接通。
 
 
-Updated: 2026-10-09 (Asia/Hong_Kong)
+Updated: 2026-10-10 (Asia/Hong_Kong)
 
 October6保留检查点：`codex/release-12-stripe-20261005`源码10194de6a/CI58通过；双语多设备/大字号/系统语言、共享/文件与88.99StripeWeb TEST闭环完成。API14及Web/WWW已部署；新1.0(5)已上传处理为准备提交，说明回读一致，群组/独立测试员0。[新增完整保存包](verification/release-12-stripe-20261006/README.md)的raw-work-019包含9,769路径/1,541对象，本地及GitHub新下载原件均已解密核验通过，归档提交557af9f11/CI59成功。旧归档/真实数据/FanPass保留，真人/真机/live/最终审核门仍分开。
 

@@ -4,16 +4,16 @@ Role: public legal-page drafting and release gate
 Authority scope: Web Privacy Policy, Terms of Service, required factual inputs and publication status  
 Superseded by: applicable law, platform requirements, approved operator details and reviewed final legal text  
 Do not use for: personal legal advice, proof of global compliance, or permission to publish  
-Status: OWNER-REQUESTED COMPLETE CHINESE/ENGLISH TEXT PREPARED; COORDINATED PUBLICATION IN PROGRESS
+Status: COMPLETE CHINESE/ENGLISH TEXT PUBLISHED AND BROWSER VERIFIED
 Last updated: 2026-10-10 (Asia/Hong_Kong)
 
 ## Current language update and hosting
 
 The October8 Cloudflare Pages deployment replaced the legal hostname's Sites routing; it is the current host, not Sites10. Its seven-route/TLS/DNS evidence is retained in [the cutover record](dot-integration-20261008.md).
 
-Owner now explicitly requires full selected-language text and removal of English-prevails/reference framing. Seven Chinese documents match all60 English sections; translated wording does not create new product capabilities or change operator facts. Terms changes to terms-2026-10-09-1 and clickwrap to registration-clickwrap-2026-10-09-1; the unchanged substantive Privacy policy keeps privacy-2026-09-15-1. The prepared bilingual body hash isc983dc26bb372fba66b8df467d6e4c0ea1d85a2f4d94d86104b4bffa8d7f3ddb. Earlier accepted receipts remain immutable.
+Owner now explicitly requires full selected-language text and removal of English-prevails/reference framing. Seven Chinese documents match all60 English sections; translated wording does not create new product capabilities or change operator facts. Terms changes to terms-2026-10-09-1 and clickwrap to registration-clickwrap-2026-10-09-1; the unchanged substantive Privacy policy keeps privacy-2026-09-15-1. The published bilingual body hash isc983dc26bb372fba66b8df467d6e4c0ea1d85a2f4d94d86104b4bffa8d7f3ddb. Earlier accepted receipts remain immutable.
 
-Publication, API contract, both hosted Actions and clients must move together. Source checks and8 legal artifact checks pass; this paragraph does not claim the new version is published or accepted. The legal site stores no language preference: links carry onlyen/zh-CN, and the root preserves only that allowed enum. Required third-party licence originals remain separate. [Current execution and provider limits](payment-recheck-20261009.md).
+Coordinated publication completed on October10: Cloudflare deployment e99e137f-d469-4452-b796-4844ee38fb8d, API/schema94, both hosted Actions and Web/native13 agree on the contract. Eight legal artifact checks,50 live HTTP checks,18 exact resources and14 actual bilingual document pages pass. Owner explicitly accepted these current terms for Preview and authorized the continuing Google login; historical receipts were not rewritten. The legal site stores no language preference: links carry onlyen/zh-CN, and the root preserves only that allowed enum. Required third-party licence originals remain separate. [Current execution and provider limits](payment-recheck-20261009.md).
 
 ## HISTORICAL — Sites version10
 

@@ -1,0 +1,40 @@
+{
+  "version": "54.0.0",
+  "files": {
+    "9a90676d5aea0b6f8a2e83a30bd5829c9f0aae0f083305c1bfd483118e87dc14": {
+      "displayName": "RilloraProduction Template",
+      "source": {
+        "path": "RilloraProduction.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "current_account-eu-central-1-3ac796d3": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-eu-central-1",
+          "objectKey": "9a90676d5aea0b6f8a2e83a30bd5829c9f0aae0f083305c1bfd483118e87dc14.json",
+          "region": "eu-central-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-eu-central-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {
+    "929a75e1b7d725935ff7153d779fe2bcf3f5dac3d8348bb015b12fe68979c818": {
+      "displayName": "Image",
+      "source": {
+        "directory": "asset.929a75e1b7d725935ff7153d779fe2bcf3f5dac3d8348bb015b12fe68979c818",
+        "dockerBuildArgs": {
+          "RDS_CA_BUNDLE_SHA256": "e5bb2084ccf45087bda1c9bffdea0eb15ee67f0b91646106e466714f9de3c7e3"
+        },
+        "platform": "linux/arm64"
+      },
+      "destinations": {
+        "133857166372-eu-central-1-bf458544": {
+          "repositoryName": "cdk-hnb659fds-container-assets-133857166372-eu-central-1",
+          "imageTag": "929a75e1b7d725935ff7153d779fe2bcf3f5dac3d8348bb015b12fe68979c818",
+          "region": "eu-central-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::133857166372:role/cdk-hnb659fds-image-publishing-role-133857166372-eu-central-1"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "status": 200,
+  "id": "e99e137f-d469-4452-b796-4844ee38fb8d",
+  "commit": "eaf68c0a714f74c59c42d304ba19ba121fabce26",
+  "url": "https://e99e137f.rillora-legal-pages.pages.dev",
+  "domains": [
+    "rillora-legal-pages.pages.dev",
+    "legal.rillora.xyz"
+  ],
+  "stage": {
+    "name": "deploy",
+    "started_on": null,
+    "ended_on": "2026-10-09T16:31:02.844886Z",
+    "status": "success"
+  },
+  "configuration": {
+    "preview": {
+      "env_vars": null,
+      "fail_open": false,
+      "always_use_latest_compatibility_date": false,
+      "compatibility_date": "2026-10-08",
+      "compatibility_flags": [],
+      "build_image_major_version": 3,
+      "usage_model": "standard"
+    },
+    "production": {
+      "env_vars": null,
+      "fail_open": false,
+      "always_use_latest_compatibility_date": false,
+      "compatibility_date": "2026-10-08",
+      "compatibility_flags": [],
+      "build_image_major_version": 3,
+      "usage_model": "standard"
+    }
+  }
+}

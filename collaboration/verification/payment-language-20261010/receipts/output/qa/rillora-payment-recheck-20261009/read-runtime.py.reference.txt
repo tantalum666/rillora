@@ -1,0 +1,19 @@
+from pathlib import Path
+import datetime,json,subprocess,sys
+R=Path.cwd();Q=R/'output/qa/rillora-payment-recheck-20261009';phase=sys.argv[1];assert phase in ['financial','locale']
+asset='33bf84ef66834a5c902cb59086a54741f3efac266778853dd192a780a2abdc57' if phase=='financial' else next(iter(json.loads((Q/'cdk-locale-v2-asset/RilloraLanguageV2Asset.assets.json').read_text())['dockerImages']))
+def aws(args,profile='rillora-cdk-session'):
+ r=subprocess.run(['aws',*args,'--profile',profile,'--region','eu-central-1','--output','json'],capture_output=True,text=True,timeout=55)
+ if r.returncode:raise RuntimeError('Read-only cloud request failed')
+ return json.loads(r.stdout)
+results=[]
+for stack in ['RilloraStaging','RilloraProduction']:
+ s=aws(['cloudformation','describe-stacks','--stack-name',stack],'rillora-cdk-deploy')['Stacks'][0];assert s['StackStatus']=='UPDATE_COMPLETE';out={x['OutputKey']:x['OutputValue'] for x in s['Outputs']}
+ resources=aws(['cloudformation','describe-stack-resources','--stack-name',stack],'rillora-cdk-deploy')['StackResources'];resource=next(r for r in resources if r['ResourceType']=='AWS::ECS::Service')
+ cluster=out.get('ClusterName') or next(r['PhysicalResourceId'] for r in resources if r['ResourceType']=='AWS::ECS::Cluster')
+ service=aws(['ecs','describe-services','--cluster',cluster,'--services',resource['PhysicalResourceId']])['services'][0]
+ assert service['desiredCount']==service['runningCount']==1 and service['pendingCount']==0 and len(service['deployments'])==1 and service['deployments'][0]['rolloutState']=='COMPLETED'
+ arns=aws(['ecs','list-tasks','--cluster',cluster,'--service-name',service['serviceName'],'--desired-status','RUNNING'])['taskArns'];assert len(arns)==1
+ task=aws(['ecs','describe-tasks','--cluster',cluster,'--tasks',arns[0]])['tasks'][0];assert task['healthStatus']=='HEALTHY' and task['containers'][0]['image'].endswith(':'+asset)
+ results.append({'stack':stack,'desired':1,'running':1,'health':'HEALTHY','rollout':'COMPLETED','taskDefinition':service['taskDefinition'].rsplit('/',1)[-1],'imageAsset':asset,'imageDigest':task['containers'][0]['imageDigest']})
+result={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'phase':phase,'services':results};(Q/(phase+'-runtime-readback.json')).write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))

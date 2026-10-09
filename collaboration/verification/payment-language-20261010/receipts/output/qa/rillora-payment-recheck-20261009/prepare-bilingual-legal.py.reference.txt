@@ -1,0 +1,60 @@
+"""Create authored Chinese sections with the same document/section identity; no runtime translation."""
+from pathlib import Path
+import re,json,html
+root=Path.cwd();p=root/'apps/web/src/LegalDocumentPage.jsx';source=p.read_text();md=(root/'docs/legal-candidate-zh.md').read_text()
+names=['privacy','terms','subscription','refund','acceptableUse','cookie','legalNotice']
+headings=['一、隐私政策','二、服务条款','三、订阅条款','四、退款与取消政策','五、可接受使用政策','六、Cookie与类似存储技术通知','七、法律声明']
+replacements={'active systems':'使用中的系统','access token／refresh token':'访问令牌或刷新令牌','opt-out preference signal':'退出偏好信号','live claim':'正式申领','Direct Web':'网页直接订阅','rehearsal-only':'仅供演练','simulation':'模拟','unavailable':'尚不可用','planned':'计划提供','localStorage':'本地存储','callback':'回调','provider':'服务提供商','Provider':'服务提供商','session':'会话','subject':'身份主题','active':'有效','Free':'免费版','Family':'家庭版','Legal hold':'法律保全','chargeback':'拒付','offer':'报价','claim':'请求','cap':'责任上限','grace':'宽限','past-due':'逾期','idle':'无操作','notice':'提示','banner':'提示栏','schema':'数据结构','notes':'备注','labels':'标签','files':'文件','ciphertext':'密文','Web':'网页','Global':'全球版'}
+def clean(text):
+ for a,b in replacements.items():text=re.sub(r'(?<![A-Za-z_])'+re.escape(a)+r'(?![A-Za-z_])',b,text)
+ text=text.replace('Got it／知道了','知道了').replace('“Got it”','“知道了”').replace('（A）US$100','（A）100 美元').replace('事务地图','事项地图').replace('私人事务地图','私人事项地图').replace('私人地图','私人事项地图').replace('数字事务连续性','数字遗产的后续衔接').replace('数字遗产与事务连续性规划','数字遗产与事项交接规划').replace('数字遗产和事务连续性整理','数字遗产与事项交接整理').replace('低基数','取值范围有限的').replace('账户','账号')
+ text=re.sub(r'(?<=[\u3400-\u9fff])(Rillora|Auth0|Google|Apple|Stripe|Cookie|App Store)',r' \1',text)
+ text=re.sub(r'(Rillora|Auth0|Google|Apple|Stripe|Cookie|App Store)(?=[\u3400-\u9fff])',r'\1 ',text)
+ return text
+substitutions={'[运营者英文法定姓名]':'{legalOperator.name}','[运营者所在国家／地区]':'{legalOperatorCountryZH}','[可公开服务地址]':'{legalOperator.address}','support@rillora.xyz':'{legalOperator.supportEmail}','privacy@rillora.xyz':'{legalOperator.privacyEmail}','security@rillora.xyz':'{legalOperator.securityEmail}'}
+def inline(text):
+ text=clean(text);text=text.replace('`','');parts=re.split(r'(\*\*.*?\*\*)',text)
+ text=''.join('<strong>'+html.escape(x[2:-2],quote=False)+'</strong>' if x.startswith('**') else html.escape(x,quote=False) for x in parts)
+ for a,b in substitutions.items():text=text.replace(a,b)
+ return text
+arrays=[];counts={}
+for i,(name,title) in enumerate(zip(names,headings)):
+ start=md.index('# '+title)+len('# '+title);end=md.find('\n# ',start);block=md[start:end if end!=-1 else len(md)]
+ sections=re.split(r'^## ',block,flags=re.M)[1:]
+ en_block=re.search(r'const '+name+r'Sections = \[(.*?)\n\];',source,re.S).group(1);ids=re.findall(r'id: "([^"]+)"',en_block)
+ assert len(sections)==len(ids),(name,len(sections),len(ids))
+ rows=[]
+ for sid,section in zip(ids,sections):
+  heading,body=section.split('\n',1);body=body.split('\n---')[0].strip()
+  if sid=='general':
+   heading='20. 一般条款';body=re.sub(r'中文或其他翻译.*$', '适用法律要求且不得免除的当地语言要求或解释规则继续适用。',body,flags=re.S)
+  if name=='privacy' and sid=='rights':
+   body=body.replace('请通过`privacy@rillora.xyz`提交请求；','你可在“我的数据”导出私人地图或申请删除账号，也可通过`privacy@rillora.xyz`提交请求；')
+  if name=='privacy' and sid=='cookies':
+   body=body.replace('认证、session连续性、防请求伪造及记住','认证、session连续性、防请求伪造、恢复你主动编辑但尚未完成的事项草稿、查询删除请求进度，以及记住')
+  if name=='cookie' and sid=='cookie-necessary':
+   body=body.replace('防伪Cookie，以及','防伪Cookie、当前标签页的草稿恢复与删除查询凭据，以及')
+  if name=='cookie' and sid=='cookie-details':
+   at=body.index('- `rillora.cookie-notice`');body=body[:at]+'''- `rillora.matter-draft.v1`：会话存储，限定于已核验的同一账号，只包含当前浏览器标签页中一个未完成的事项表单。仅在确认同一账号后提供恢复，24小时后到期，并在保存、明确放弃或退出登录时清除。关闭标签页或清除浏览器存储会移除草稿；部分浏览器可能恢复之前的标签页会话。
+- `rillora.deletion-reference.v1`：会话存储，保存随机生成、仅用于查询删除请求进度的凭据。它不能登录或读取私人事项地图。请保留可下载的查询凭据，以便之后在其他标签页或设备上查询。删除进行期间及完成后30天内可以查询公开进度。
+'''+body[at:]
+  if name=='cookie' and sid=='cookie-choice':
+   body=body.replace('session和notice偏好功能','session、用户主动请求的草稿恢复、删除进度及notice偏好功能')
+  if name=='cookie' and sid=='cookie-controls':
+   body=body.replace('你可通过浏览器清除Cookie或localStorage。','你可通过浏览器清除Cookie、会话存储或localStorage。清除草稿存储会删除尚未完成的文字；清除删除查询凭据会移除当前设备上的副本，如需之后查询，请保留下载的凭据。')
+  paragraphs=[]
+  for b in re.split(r'\n\s*\n',body):
+   b=b.strip()
+   if not b or b=='---':continue
+   if b.startswith('### '):
+    lines=b.splitlines();paragraphs.append('<h3>'+inline(lines[0][4:])+'</h3>')
+    if len(lines)>1:paragraphs.append('<p>'+inline(' '.join(lines[1:]))+'</p>')
+   elif b.startswith('- '):paragraphs.append('<ul>'+''.join('<li>'+inline(line[2:])+'</li>' for line in b.splitlines() if line.startswith('- '))+'</ul>')
+   else:paragraphs.append('<p>'+inline(' '.join(b.splitlines()))+'</p>')
+  rows.append('  { id: '+json.dumps(sid)+', title: '+json.dumps(clean(heading),ensure_ascii=False)+', content: <>\n    '+'\n    '.join(paragraphs)+'\n  </> },')
+ arrays.append('const '+name+'SectionsZH = [\n'+'\n'.join(rows)+'\n];');counts[name]=len(rows)
+anchor='const documents = {';assert source.count(anchor)==1
+source=source.replace(anchor,'const legalOperatorCountryZH = /^(?:Hong Kong|HK|Hong Kong SAR)$/i.test(legalOperator.country) ? "香港" : legalOperator.country;\n\n'+'\n\n'.join(arrays)+'\n\n'+anchor)
+source=source.replace('Any Chinese or other translation made available for review or convenience is not a separate contract. The published English version controls to the extent permitted by applicable law; a mandatory local-language or interpretation rule continues to apply where it cannot be waived.','Mandatory local-language or interpretation rules continue to apply where they cannot be waived.')
+p.write_text(source)
+print(json.dumps({'authoredChineseSectionCounts':counts,'englishHierarchyRemoved':True,'noPersonalValuesAdded':True},ensure_ascii=False))

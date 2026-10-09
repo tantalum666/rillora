@@ -1,0 +1,81 @@
+{
+  "version": "3.0.0",
+  "form": {
+    "name": "Rillora account acknowledgement — 简体中文",
+    "languages": {
+      "primary": "zh-CN",
+      "default": "zh-CN"
+    },
+    "start": {
+      "nextNode": "account_acknowledgement",
+      "coordinates": {
+        "x": -200,
+        "y": 0
+      },
+      "hiddenFields": []
+    },
+    "nodes": [
+      {
+        "id": "account_acknowledgement",
+        "type": "STEP",
+        "config": {
+          "components": [
+            {
+              "id": "account_terms_title",
+              "category": "BLOCK",
+              "type": "RICH_TEXT",
+              "config": {
+                "content": "<h1>账号条款</h1>"
+              }
+            },
+            {
+              "id": "rillora_legal_accepted",
+              "category": "FIELD",
+              "type": "LEGAL",
+              "required": true,
+              "config": {
+                "text": "我同意<a href=\"https://legal.rillora.xyz/terms?lang=zh-CN\" target=\"_blank\" rel=\"noopener noreferrer\">《服务条款》</a>，知悉<a href=\"https://legal.rillora.xyz/privacy?lang=zh-CN\" target=\"_blank\" rel=\"noopener noreferrer\">《隐私政策》</a>，并同意使用电子记录。"
+              }
+            },
+            {
+              "id": "continue_button",
+              "category": "BLOCK",
+              "type": "NEXT_BUTTON",
+              "config": {
+                "text": "继续"
+              }
+            }
+          ],
+          "nextNode": "$ending"
+        },
+        "coordinates": {
+          "x": 100,
+          "y": 0
+        }
+      }
+    ],
+    "ending": {
+      "resumeFlow": true,
+      "coordinates": {
+        "x": 500,
+        "y": 0
+      },
+      "afterSubmit": {
+        "email": null,
+        "flowId": null
+      }
+    },
+    "style": {
+      "css": "/* Form-local overrides; keep legal links in the sentence despite template action sizing. */\n.af-form { background: transparent !important; color: #dad8cf; }\nh1 { margin: 0 0 24px !important; color: #f1ece2; font: 600 24px/1.25 -apple-system, BlinkMacSystemFont, sans-serif !important; }\nlabel, p { margin: 0 !important; padding: 0 !important; font-size: 14px !important; line-height: 1.5 !important; background: transparent !important; }\ninput[type=checkbox] { width: 18px !important; height: 18px !important; margin-top: 2px !important; align-self: flex-start; accent-color: #bfd79a; }\na[href^=\"https://legal.rillora.xyz/terms\"], a[href^=\"https://legal.rillora.xyz/privacy\"] { display: inline !important; min-height: 0 !important; padding: 0 !important; color: #dad8cf !important; font-size: inherit !important; line-height: inherit !important; text-decoration: underline !important; text-underline-offset: 2px; }\nbutton, .af-button { align-items: center !important; justify-content: center !important; width: 100%; min-height: 48px !important; border: 0; border-radius: 10px; background: #cb704c; color: #171c1c; font: 600 16px/1.4 -apple-system, BlinkMacSystemFont, sans-serif !important; text-align: center !important; }\nbutton:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid #bfd79a; outline-offset: 3px; }\nlabel { color: #b8bab2; }\n[role=alert] { background: #352722 !important; border-color: #804535 !important; color: #ffb5a5 !important; }\n[role=alert] p, [role=alert] span { color: inherit !important; }\n/* Inner layout containers do not introduce a light notification surface. */\nform div, .af-form div, div:has(> p) { background-color: transparent !important; }\n",
+      "theme": "ROUND",
+      "version": "MODERN"
+    },
+    "messages": {
+      "custom": {},
+      "errors": {}
+    },
+    "translations": {}
+  },
+  "flows": {},
+  "connections": {}
+}

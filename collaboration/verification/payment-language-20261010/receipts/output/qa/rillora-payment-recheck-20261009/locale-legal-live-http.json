@@ -1,0 +1,261 @@
+{
+  "at": "2026-10-09T16:35:54.900Z",
+  "origin": "https://legal.rillora.xyz",
+  "allPassed": true,
+  "checks": 50,
+  "assetsMatched": 18,
+  "source": "eaf68c0a714f74c59c42d304ba19ba121fabce26",
+  "workerSha256": "1c1aed0e0943aa342723e9dd53ff0f2395f3d230e5ed2ebb2eb601b177a68d85",
+  "results": [
+    {
+      "path": "/privacy?lang=zh-CN",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/privacy?lang=en",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/privacy",
+      "method": "HEAD",
+      "status": 200
+    },
+    {
+      "path": "/privacy",
+      "method": "POST",
+      "status": 404
+    },
+    {
+      "path": "/terms?lang=zh-CN",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/terms?lang=en",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/terms",
+      "method": "HEAD",
+      "status": 200
+    },
+    {
+      "path": "/terms",
+      "method": "POST",
+      "status": 404
+    },
+    {
+      "path": "/subscription-terms?lang=zh-CN",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/subscription-terms?lang=en",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/subscription-terms",
+      "method": "HEAD",
+      "status": 200
+    },
+    {
+      "path": "/subscription-terms",
+      "method": "POST",
+      "status": 404
+    },
+    {
+      "path": "/refund-policy?lang=zh-CN",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/refund-policy?lang=en",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/refund-policy",
+      "method": "HEAD",
+      "status": 200
+    },
+    {
+      "path": "/refund-policy",
+      "method": "POST",
+      "status": 404
+    },
+    {
+      "path": "/acceptable-use?lang=zh-CN",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/acceptable-use?lang=en",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/acceptable-use",
+      "method": "HEAD",
+      "status": 200
+    },
+    {
+      "path": "/acceptable-use",
+      "method": "POST",
+      "status": 404
+    },
+    {
+      "path": "/cookies?lang=zh-CN",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/cookies?lang=en",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/cookies",
+      "method": "HEAD",
+      "status": 200
+    },
+    {
+      "path": "/cookies",
+      "method": "POST",
+      "status": 404
+    },
+    {
+      "path": "/legal?lang=zh-CN",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/legal?lang=en",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/legal",
+      "method": "HEAD",
+      "status": 200
+    },
+    {
+      "path": "/legal",
+      "method": "POST",
+      "status": 404
+    },
+    {
+      "path": "/account",
+      "method": "GET",
+      "status": 404
+    },
+    {
+      "path": "/api/auth/session-status",
+      "method": "GET",
+      "status": 404
+    },
+    {
+      "path": "/unknown",
+      "method": "GET",
+      "status": 404
+    },
+    {
+      "path": "/?lang=zh-CN&discard=1",
+      "method": "GET",
+      "status": 308
+    },
+    {
+      "path": "/assets/apple-touch-icon-BnycESAq.png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/favicon-32-BmTNsIid.png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/favicon-n-8qLNzh.svg",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/font-licenses-zRG9uVbj.txt",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/inter-latin-400-normal-C38fXH4l.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/inter-latin-400-normal-CyCys3Eg.woff",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/inter-latin-500-normal-BL9OpVg8.woff",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/inter-latin-500-normal-Cerq10X2.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/inter-latin-600-normal-CiBQ2DWP.woff",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/inter-latin-600-normal-LgqL8muc.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/legal-B4CVfbo_.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/legal-CPjsLad8.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/lockup-primary-Ce07KTUs.svg",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/lockup-reversed-Bw_tOiWn.svg",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/source-serif-4-latin-500-normal-CUHe9xxf.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/source-serif-4-latin-500-normal-DVVamBqs.woff",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/source-serif-4-latin-600-normal-DMD1h6_f.woff",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/source-serif-4-latin-600-normal-DouSKlru.woff2",
+      "method": "GET",
+      "status": 200
+    }
+  ]
+}

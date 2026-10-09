@@ -1,0 +1,69 @@
+{
+  "changes": [
+    {
+      "path": "apps/api/tests/stripe-test-adapter.test.ts",
+      "oldLine": 36,
+      "newLine": 49,
+      "unchangedSpanHash": "3bb1fdb73b658bf09aeca4d126a6e41d5dd64eeb782884e0d91571547915ee71",
+      "reason": "Fixed idempotency-key string in a synthetic price-v4 test; no authentication capability or real account secret."
+    },
+    {
+      "path": "apps/api/tests/stripe-test-adapter.test.ts",
+      "oldLine": 61,
+      "newLine": 74,
+      "unchangedSpanHash": "b92144ecd3bf8487f54e16d850c8d0dcf2174abc68eacfa992fa1626e087afbb",
+      "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
+    },
+    {
+      "path": "apps/api/tests/stripe-test-adapter.test.ts",
+      "oldLine": 70,
+      "newLine": 83,
+      "unchangedSpanHash": "83506ceedc161224946187efce800dccc3291b89496ea4924a3c52d2a7676d68",
+      "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
+    },
+    {
+      "path": "apps/api/tests/stripe-test-adapter.test.ts",
+      "oldLine": 106,
+      "newLine": 119,
+      "unchangedSpanHash": "0ad9f2078dfe4d8301e88be7b1c330340c3f0be7b37de119e1397c65d86dc7e8",
+      "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
+    },
+    {
+      "path": "apps/api/tests/stripe-test-adapter.test.ts",
+      "oldLine": 255,
+      "newLine": 268,
+      "unchangedSpanHash": "d02373759be8c4995727dae55f5eaa18b52bbb265db284f491ad47349c043cf1",
+      "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
+    },
+    {
+      "path": "apps/ios/project.yml",
+      "oldLine": 112,
+      "newLine": 114,
+      "unchangedSpanHash": "c9c9eb8a723073eae64c80690be13fc7c0919031fdb81d83a953ee5a247256b4",
+      "reason": "Native public Auth0 client identifier, included in distributed app configuration."
+    },
+    {
+      "path": "apps/ios/project.yml",
+      "oldLine": 128,
+      "newLine": 130,
+      "unchangedSpanHash": "5ac97cca4bf92df008a80d90fabca84d976bccc691219fdbb0bbc591b963b6ae",
+      "reason": "Prepared native public Auth0 production client identifier, verified against the approved public connection contract; not a client secret."
+    },
+    {
+      "path": "apps/ios/Rillora.xcodeproj/project.pbxproj",
+      "oldLine": 1342,
+      "newLine": 1356,
+      "unchangedSpanHash": "5de471a1bd1102dd7f3284468f430bc8b8c0d137dcaef7c8aa9d27cc17aae11e",
+      "reason": "Native public Auth0 client identifier, byte-matched to the already reviewed project.yml value; shared generated Xcode project, not a client secret."
+    },
+    {
+      "path": "apps/ios/Rillora.xcodeproj/project.pbxproj",
+      "oldLine": 1596,
+      "newLine": 1610,
+      "unchangedSpanHash": "84b43e023d7ae444915797275d0661dbab0b68c1f6201663e2cd623b995b19ab",
+      "reason": "Native public Auth0 client identifier, byte-matched to the already reviewed project.yml value; shared generated Xcode project, not a client secret."
+    }
+  ],
+  "newExceptions": 0,
+  "scannerRulesChanged": false
+}

@@ -1,0 +1,16 @@
+{
+  "at": "2026-10-09T18:42:34.493506+00:00",
+  "phase": "pending",
+  "services": [
+    {
+      "stack": "RilloraStaging",
+      "desired": 1,
+      "running": 1,
+      "health": "HEALTHY",
+      "rollout": "COMPLETED",
+      "taskDefinition": "RilloraStagingApiTaskDefinitionF6347BA4:43",
+      "imageAsset": "d075426673fad825fcd70df5a95d1c348748ce166fb84eda339e2447e5c00a59",
+      "imageDigest": "sha256:16ba48156dc8764035ec491682f72d715ecd3405840ed07fe738cad91f9e8717"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"success\": true,\n  \"status\": 200,\n  \"errors\": [],\n  \"deployment\": {\n    \"id\": \"e99e137f-d469-4452-b796-4844ee38fb8d\",\n    \"url\": \"https://e99e137f.rillora-legal-pages.pages.dev\",\n    \"environment\": \"production\",\n    \"latest_stage\": {\n      \"name\": \"queued\",\n      \"started_on\": null,\n      \"ended_on\": null,\n      \"status\": \"idle\"\n    },\n    \"deployment_trigger\": {\n      \"type\": \"ad_hoc\",\n      \"metadata\": {\n        \"branch\": \"main\",\n        \"commit_hash\": \"eaf68c0a714f74c59c42d304ba19ba121fabce26\",\n        \"commit_message\": \"Publish complete Chinese and English Rillora legal pages\",\n        \"commit_dirty\": false\n      }\n    }\n  }\n}"
+    }
+  ]
+}

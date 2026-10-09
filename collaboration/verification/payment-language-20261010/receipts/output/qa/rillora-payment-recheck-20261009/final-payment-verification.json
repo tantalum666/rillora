@@ -1,0 +1,35 @@
+{
+  "checkedAt": "2026-10-09T19:36:43.502962+00:00",
+  "passed": true,
+  "readOnly": true,
+  "tlsVerified": true,
+  "exactTestOrders": 3,
+  "amountMinorEach": 8899,
+  "currency": "USD",
+  "oneAttemptPerOrder": true,
+  "signedAppliedEvents": 34,
+  "unresolvedEvents": 0,
+  "eventTypes": {
+    "customer.subscription.created": 3,
+    "checkout.session.completed": 3,
+    "invoice.paid": 3,
+    "invoice.payment_succeeded": 3,
+    "customer.subscription.updated": 3,
+    "charge.refunded": 4,
+    "refund.created": 4,
+    "refund.updated": 7,
+    "refund.failed": 1,
+    "customer.subscription.deleted": 3
+  },
+  "reconciliationRows": 34,
+  "pendingFullRefundPreservesActive": true,
+  "pendingEventBeforeProviderSuccess": true,
+  "duplicateHasOneReconciliation": true,
+  "allThreeTestSubscriptionsCannotRenew": true,
+  "activeOriginalMatters": 1,
+  "realMoneyMoved": false,
+  "limitations": [
+    "No new Apple purchase, refund or Restore tap this round",
+    "No Live test transaction or ordinary-customer activation"
+  ]
+}
