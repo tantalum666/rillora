@@ -1,0 +1,113 @@
+import {readFileSync,writeFileSync} from 'node:fs';
+import {fileURLToPath} from 'node:url';
+import {execFileSync} from 'node:child_process';
+import {createHash,randomBytes,randomUUID} from 'node:crypto';
+import pg from '../../../apps/api/node_modules/pg/lib/index.js';
+import {loadConfig} from '../../../apps/api/src/config.ts';
+import {createPool,withCommercePlannerDatabase} from '../../../apps/api/src/db.ts';
+import {runMigrations} from '../../../apps/api/src/migrate.ts';
+import {seedDevelopmentFixture,developmentPlannerPublicId} from '../../../apps/api/src/seed-dev.ts';
+import {configureRecoveryPool,type RecoveryControl} from '../../../apps/api/src/recovery-journal.ts';
+import {replayRecoveryControls} from '../../../apps/api/src/recovery-replay.ts';
+import {reconcileRecoveryCommerce} from '../../../apps/api/src/recovery-commerce.ts';
+import {assertDedicatedTestDatabase,dedicatedTestDatabaseUrl} from '../../../apps/api/tests/dedicated-test-database.ts';
+import {cases,readCurrent,readCalls,verifyAccount} from './provider-reader.mts';
+
+process.env.NODE_ENV='test';
+const root=fileURLToPath(new URL('../../../',import.meta.url));
+const secret=root+'.local-secrets/recovery-financial-20261010/';
+const output=root+'output/qa/rillora-recovery-financial-20261010/';
+const names=['rillora_provider_recovery_source_test','rillora_provider_recovery_restore_test'];
+const urls=names.map(name=>dedicatedTestDatabaseUrl('postgresql://127.0.0.1/'+name,name));
+const adminUrl=new URL(urls[0]!);adminUrl.pathname='/postgres';
+const role='continuity_provider_recovery_test',password=randomBytes(32).toString('hex');
+let source:ReturnType<typeof createPool>|undefined,restored:pg.Pool|undefined,stage='initialize';
+function check(ok:unknown,message:string):asserts ok{if(!ok)throw Error(message);}
+const results:unknown[]=[];
+try{
+ await verifyAccount();
+ const admin=new pg.Client({connectionString:adminUrl.href});await admin.connect();
+ try{
+  for(const name of names){
+   const existing=await admin.query('select shobj_description(oid,\'pg_database\') as marker from pg_database where datname=$1',[name]);
+   if(!existing.rowCount){await admin.query(`create database ${name}`);await admin.query(`comment on database ${name} is 'rillora-disposable-test:${name}'`);}
+   else check(existing.rows[0].marker==='rillora-disposable-test:'+name,'unowned_database_refused');
+  }
+ }finally{await admin.end();}
+ for(let i=0;i<names.length;i++)await assertDedicatedTestDatabase(urls[i]!,names[i]!);
+ await runMigrations(urls[0]!);
+ source=createPool(loadConfig({NODE_ENV:'test',DATABASE_URL:urls[0]}));
+ const quoted=(await source.query('select quote_ident($1) as name,quote_literal($2) as password',[role,password])).rows[0];
+ if(!(await source.query('select 1 from pg_roles where rolname=$1',[role])).rowCount)await source.query(`create role ${quoted.name} login nosuperuser inherit nobypassrls password ${quoted.password}`);
+ else await source.query(`alter role ${quoted.name} password ${quoted.password}`);
+ await source.query(`grant continuity_recovery_service,continuity_commerce,continuity_content_service,continuity_app,continuity_auth to ${quoted.name}`);
+ for(let index=0;index<cases.length;index++){
+  stage=cases[index]!.name!;const item=cases[index]!,cs=item.checkout,old=item.subscription,period=old.items.data[0];
+  await restored?.end();restored=undefined;
+  await source.query('update app.recovery_policy set enforced=false');
+  await source.query('truncate app.planners,app.recovery_controls cascade');
+  await seedDevelopmentFixture(source);
+  const owner=(await source.query('select id::text from app.planners where public_id=$1',[developmentPlannerPublicId])).rows[0].id;
+  const generation=(await source.query('select generation from app.recovery_policy')).rows[0].generation;
+  const account=cs.metadata.rillora_commerce_account_reference;
+  await source.query("update app.commerce_prices set status='test_only' where price_code='family_usd_annual_v4'");
+  await source.query(`insert into app.commerce_accounts(public_id,planner_id,plan_id,operating_plane_code,service_market_code,status)
+   select $1,$2,id,'global','GLOBAL_US','active' from app.plans where planner_id=$2`,[account,owner]);
+  await source.query(`insert into app.commerce_validation_accounts(planner_id,expires_at,reason) values($1,now()+interval '2 hours','Isolated provider-backed restore acceptance')`,[owner]);
+  await source.query(`insert into app.commerce_storefront_products(price_id,provider_code,provider_environment,external_product_reference,provider_account_reference,external_parent_product_reference,status)
+   select id,'stripe','test',$1,'acct_1U6B2RCxTlowhyiG',$2,'test_only' from app.commerce_prices where price_code='family_usd_annual_v4'
+   on conflict(provider_code,provider_environment,external_product_reference) do update set provider_account_reference=excluded.provider_account_reference,external_parent_product_reference=excluded.external_parent_product_reference,status='test_only'`,[period.price.id,period.price.product]);
+  await source.query(`insert into app.commerce_provider_customers(planner_id,commerce_account_id,provider_code,provider_environment,provider_customer_reference,status)
+   select $1,id,'stripe','test',$2,'active' from app.commerce_accounts where public_id=$3`,[owner,cs.customer,account]);
+  const subscription=(await source.query(`insert into app.commerce_subscriptions(planner_id,commerce_account_id,plan_version_id,plan_code,price_id,acquisition_type,renewal_provider,provider_environment,provider_subscription_reference,state,current_period_starts_at,current_period_ends_at,provider_observed_at,provider_invoice_reference,renewal_is_possible)
+   select $1,a.id,p.plan_version_id,'family',p.id,'purchased','stripe','test',$2,'active',to_timestamp($3),to_timestamp($4),to_timestamp($5),$6,true
+   from app.commerce_accounts a cross join app.commerce_prices p where a.public_id=$7 and p.price_code='family_usd_annual_v4' returning id::text`,
+   [owner,old.id,period.current_period_start,period.current_period_end,old.created,typeof old.latest_invoice==='string'?old.latest_invoice:old.latest_invoice.id,account])).rows[0].id;
+  await withCommercePlannerDatabase(source,owner,c=>c.query('select app.apply_verified_subscription_entitlements($1)',[subscription]));
+  const originalGrants=(await source.query('select count(*)::int n from app.commerce_entitlement_grants where revoked_at is null')).rows[0].n;
+  check(originalGrants===2,'original_paid_test_grants_required');
+  const matters=(await source.query('select public_id,title from app.matter_items order by id')).rows;
+  const privateFingerprint=createHash('sha256').update(JSON.stringify(matters)).digest('hex');
+  const journal=new Map<string,RecoveryControl>();configureRecoveryPool(source,{async publish(event){journal.set(event.key,structuredClone(event));}});
+  await source.query('update app.recovery_policy set enforced=true');
+  const dump=secret+`stripe-baseline-${index}.dump`;execFileSync('pg_dump',['--format=custom','--dbname',urls[0]!,'--file',dump]);
+  const latest=await readCurrent(index);
+  await withCommercePlannerDatabase(source,owner,async c=>{
+   await c.query('update app.commerce_subscriptions set state=$2,financial_state_override=$3,provider_observed_at=$4,renewal_is_possible=false where id=$1',
+    [subscription,latest.snapshot.state,latest.financialOverride,latest.snapshot.observedAt]);
+   await c.query('select app.apply_verified_subscription_entitlements($1)',[subscription]);
+  });
+  const event=journal.get('unreconciled_access:'+developmentPlannerPublicId);check(event,'current_control_required');
+  execFileSync('pg_restore',['--clean','--if-exists','--dbname',urls[1]!,dump],{stdio:'pipe'});
+  const restoreUrl=new URL(urls[1]!);restoreUrl.username=role;restoreUrl.password=password;restored=new pg.Pool({connectionString:restoreUrl.href});
+  const privilege=(await restored.query('select rolsuper,rolbypassrls from pg_roles where rolname=session_user')).rows[0];check(privilege.rolsuper===false&&privilege.rolbypassrls===false,'constrained_recovery_login_required');
+  check((await restored.query('select count(*)::int n from app.commerce_entitlement_grants where revoked_at is null')).rows[0].n===2,'old_grants_must_really_be_restored');
+  let privacyBlocked=false;try{await replayRecoveryControls(restored,[event],generation);}catch{privacyBlocked=true;}check(privacyBlocked,'commerce_hold_required');
+  let rejected=0;
+  for(const fault of ['unavailable','wrong_owner','stale'] as const){
+   try{await reconcileRecoveryCommerce(restored,[event],generation,async()=>{
+    if(fault==='unavailable')throw Error('controlled_provider_unavailable');
+    return {...latest,snapshot:{...latest.snapshot,...(fault==='wrong_owner'?{commerceAccountReference:randomUUID()}:{observedAt:'2000-01-01T00:00:00Z'})}};
+   });}catch{rejected++;}
+   check((await restored.query('select count(*)::int n from app.recovery_controls')).rows[0].n===0,'fault_must_not_advance_checkpoint');
+  }
+  check(rejected===3,'negative_controls_required');
+  let reads=0;const result=await reconcileRecoveryCommerce(restored,[event],generation,async(ref,planner)=>{
+   check(ref.reference===old.id&&ref.environment==='test'&&planner===developmentPlannerPublicId,'exact_recovery_request_required');reads++;return readCurrent(index);
+  });
+  const final=(await restored.query('select state,renewal_is_possible from app.commerce_subscriptions where id=$1',[subscription])).rows[0];
+  const grants=(await restored.query('select count(*)::int n from app.commerce_entitlement_grants where revoked_at is null')).rows[0].n;
+  check(grants===0&&final.renewal_is_possible===false&&['refunded','expired_read_only'].includes(final.state),'ended_or_refunded_access_must_not_revive');
+  check(createHash('sha256').update(JSON.stringify((await restored.query('select public_id,title from app.matter_items order by id')).rows)).digest('hex')===privateFingerprint,'private_map_changed');
+  const duplicate=await reconcileRecoveryCommerce(restored,[event],generation,async()=>{reads++;return readCurrent(index);});check(reads===1&&duplicate.reconciledOwners===0,'duplicate_reconciliation');
+  await replayRecoveryControls(restored,[event],generation);
+  const evidence=await withCommercePlannerDatabase(restored,owner,async c=>(await c.query("select signature_verified,event_type from app.commerce_provider_events where event_type='recovery_current_provider_state'")).rows);
+  check(evidence.length===1&&evidence[0].signature_verified===false,'must_not_fabricate_webhook');
+  results.push({case:item.name,realProviderEnvironment:'test',historicalBaseline:'Reconstructed from previously captured paid Checkout; actual local pg_dump/pg_restore, not a cloud source snapshot',restoredActiveGrants:2,finalActiveGrants:grants,state:final.state,negativeCasesRejected:rejected,unprivilegedRecoveryLogin:true,mapUnchanged:true,reconciliation:result,idempotent:true,providerReadNotForgedWebhook:true});
+ }
+ writeFileSync(output+'local-provider-restore.json',JSON.stringify({at:new Date().toISOString(),passed:true,results,readCalls,providerMutations:0,sourceCloudChanged:false},null,2)+'\n');
+ console.log(JSON.stringify({passed:true,cases:results.length,providerMutations:0}));
+}catch(error){
+ const e=error as Error&{code?:string};writeFileSync(secret+'local-provider-restore-error.json',JSON.stringify({stage,name:e.name,code:e.code,message:e.message,stack:e.stack}),{mode:0o600});
+ console.error(JSON.stringify({passed:false,stage,name:e.name,code:e.code??'guard_or_harness'}));process.exitCode=1;
+}finally{await restored?.end();await source?.end();}

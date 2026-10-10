@@ -1,0 +1,9 @@
+const path = require('node:path');
+const root = process.cwd();
+const cdk = require(path.join(root, 'infra/aws/node_modules/aws-cdk-lib'));
+const ecr = require(path.join(root, 'infra/aws/node_modules/aws-cdk-lib/aws-ecr-assets'));
+const app = new cdk.App({ outdir: path.join(root, 'output/qa/rillora-recovery-financial-20261010/cdk-maintenance-asset') });
+const stack = new cdk.Stack(app, 'RilloraRecoveryAsset', { env: { account: '133857166372', region: 'eu-central-1' } });
+new ecr.DockerImageAsset(stack, 'Image', { directory: path.join(root, 'output/release/rillora-recovery-financial-20261010/maintenance-api-source'), platform: ecr.Platform.LINUX_ARM64,
+  buildArgs: { RDS_CA_BUNDLE_SHA256: 'e5bb2084ccf45087bda1c9bffdea0eb15ee67f0b91646106e466714f9de3c7e3' } });
+app.synth();

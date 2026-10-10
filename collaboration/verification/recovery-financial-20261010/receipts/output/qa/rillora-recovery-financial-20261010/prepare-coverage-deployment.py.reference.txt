@@ -1,0 +1,27 @@
+"""Change only maintenance image references; public API remains on its checked image."""
+from pathlib import Path
+import copy,datetime,hashlib,json,shutil,subprocess
+R=Path.cwd();Q=R/'output/qa/rillora-recovery-financial-20261010';P=R/'.local-secrets/recovery-financial-20261010'
+base=Q/'maintenance-assembly';dest=Q/'coverage-assembly';assert not dest.exists()
+source=json.loads((Q/'coverage-frozen-source.json').read_text())['source'];assert source.startswith('cb6fd6133')
+assetsRoot=Q/'cdk-coverage-asset';manifestImage=json.loads((assetsRoot/'RilloraCoverageAsset.assets.json').read_text());imageHash,image=next(iter(manifestImage['dockerImages'].items()))
+def cloud(op):return json.loads(subprocess.check_output(['aws','cloudformation',op,'--stack-name','RilloraProduction','--profile','rillora-cdk-deploy','--region','eu-central-1','--output','json']))
+assert cloud('describe-stacks')['Stacks'][0]['StackStatus']=='UPDATE_COMPLETE'
+old=cloud('get-template')['TemplateBody'];old=json.loads(old) if isinstance(old,str) else old;new=copy.deepcopy(old);changed=[]
+for key,value in new['Resources'].items():
+ if value['Type']=='AWS::ECS::TaskDefinition' and value['Properties']['ContainerDefinitions'][0]['Name']=='Maintenance':
+  container=value['Properties']['ContainerDefinitions'][0];before=container['Image'];assert set(before)=={'Fn::Sub'};prefix,prior=before['Fn::Sub'].rsplit(':',1);assert len(prior)==64 and prior!=imageHash
+  container['Image']={'Fn::Sub':prefix+':'+imageHash};changed.append(key)
+assert len(changed)==2 and set(k for k in new['Resources'] if new['Resources'][k]!=old['Resources'][k])==set(changed)
+assert all(new[k]==old[k] for k in new if k!='Resources')
+dest.mkdir()
+for name in ['manifest.json','RilloraProduction.metadata.json','tree.json','cdk.out']:
+ if (base/name).exists():shutil.copy2(base/name,dest/name)
+m=json.loads((dest/'manifest.json').read_text());a=json.loads((base/'RilloraProduction.assets.json').read_text());template=next(copy.deepcopy(v) for v in a['files'].values() if v['source']['path']=='RilloraProduction.template.json')
+body=(json.dumps(new,indent=2)+'\n').encode();sha=hashlib.sha256(body).hexdigest();(dest/'RilloraProduction.template.json').write_bytes(body)
+for d in template['destinations'].values():d['objectKey']=sha+'.json'
+shutil.copytree(assetsRoot/image['source']['directory'],dest/image['source']['directory']);(dest/'RilloraProduction.assets.json').write_text(json.dumps({'version':manifestImage['version'],'files':{sha:template},'dockerImages':{imageHash:image}},indent=2)+'\n')
+props=m['artifacts']['RilloraProduction']['properties'];props['stackTemplateAssetObjectUrl']=props['stackTemplateAssetObjectUrl'].rsplit('/',1)[0]+'/'+sha+'.json';(dest/'manifest.json').write_text(json.dumps(m,indent=2)+'\n')
+path=P/'coverage-before.json';path.write_text(json.dumps(old));path.chmod(0o600)
+report={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'source':source,'imageAsset':imageHash,'changedResources':changed,'runtimeApiImageAndServiceUnchanged':True,'schema':94,'permissionsAndSalesFlagsUnchanged':True}
+(Q/'coverage-reviewed-delta.json').write_text(json.dumps(report,indent=2)+'\n');print(report)

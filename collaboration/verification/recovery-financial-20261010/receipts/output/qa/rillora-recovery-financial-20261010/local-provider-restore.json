@@ -1,0 +1,71 @@
+{
+  "at": "2026-10-10T11:43:44.362Z",
+  "passed": true,
+  "results": [
+    {
+      "case": "failed-refund-then-ended",
+      "realProviderEnvironment": "test",
+      "historicalBaseline": "Reconstructed from previously captured paid Checkout; actual local pg_dump/pg_restore, not a cloud source snapshot",
+      "restoredActiveGrants": 2,
+      "finalActiveGrants": 0,
+      "state": "expired_read_only",
+      "negativeCasesRejected": 3,
+      "unprivilegedRecoveryLogin": true,
+      "mapUnchanged": true,
+      "reconciliation": {
+        "reconciledOwners": 1,
+        "providerReads": 1,
+        "customerTrafficEnabled": false
+      },
+      "idempotent": true,
+      "providerReadNotForgedWebhook": true
+    },
+    {
+      "case": "partial-plus-full-refund-ended",
+      "realProviderEnvironment": "test",
+      "historicalBaseline": "Reconstructed from previously captured paid Checkout; actual local pg_dump/pg_restore, not a cloud source snapshot",
+      "restoredActiveGrants": 2,
+      "finalActiveGrants": 0,
+      "state": "refunded",
+      "negativeCasesRejected": 3,
+      "unprivilegedRecoveryLogin": true,
+      "mapUnchanged": true,
+      "reconciliation": {
+        "reconciledOwners": 1,
+        "providerReads": 1,
+        "customerTrafficEnabled": false
+      },
+      "idempotent": true,
+      "providerReadNotForgedWebhook": true
+    },
+    {
+      "case": "full-refund-ended",
+      "realProviderEnvironment": "test",
+      "historicalBaseline": "Reconstructed from previously captured paid Checkout; actual local pg_dump/pg_restore, not a cloud source snapshot",
+      "restoredActiveGrants": 2,
+      "finalActiveGrants": 0,
+      "state": "refunded",
+      "negativeCasesRejected": 3,
+      "unprivilegedRecoveryLogin": true,
+      "mapUnchanged": true,
+      "reconciliation": {
+        "reconciledOwners": 1,
+        "providerReads": 1,
+        "customerTrafficEnabled": false
+      },
+      "idempotent": true,
+      "providerReadNotForgedWebhook": true
+    }
+  ],
+  "readCalls": {
+    "retrieveAccountStatus": 1,
+    "retrieveSubscription": 12,
+    "retrieveInvoice": 6,
+    "listInvoicePaymentsByInvoice": 6,
+    "listChargesByPaymentIntent": 6,
+    "listRefundsByCharge": 6,
+    "listDisputesByCharge": 6
+  },
+  "providerMutations": 0,
+  "sourceCloudChanged": false
+}

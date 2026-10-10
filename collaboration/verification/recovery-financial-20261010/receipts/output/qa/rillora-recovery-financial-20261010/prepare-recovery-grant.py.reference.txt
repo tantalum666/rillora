@@ -1,0 +1,35 @@
+"""Prepare an exact two-resource recovery configuration delta from actual CFN."""
+from pathlib import Path
+import copy,datetime,hashlib,json,shutil,subprocess
+ROOT=Path.cwd();Q=ROOT/'output/qa/rillora-recovery-financial-20261010';P=ROOT/'.local-secrets/recovery-financial-20261010'
+base=ROOT/'output/qa/rillora-payment-recheck-20261009/pending-RilloraProduction';target=Q/'recovery-grant-assembly'
+assert not target.exists()
+def aws(operation):
+ return json.loads(subprocess.check_output(['aws','cloudformation',operation,'--stack-name','RilloraProduction','--profile','rillora-cdk-deploy','--region','eu-central-1','--output','json']))
+stack=aws('describe-stacks')['Stacks'][0];assert stack['StackStatus']=='UPDATE_COMPLETE'
+old=aws('get-template')['TemplateBody'];old=json.loads(old) if isinstance(old,str) else old
+new=copy.deepcopy(old);resources=new['Resources'];tasks={k:v for k,v in resources.items() if v['Type']=='AWS::ECS::TaskDefinition'};assert len(tasks)==3
+api_key=next(k for k,v in tasks.items() if v['Properties']['ContainerDefinitions'][0]['Name']=='Api')
+rec_key=next(k for k,v in tasks.items() if not any(e['Name']=='DATABASE_HOST' for e in v['Properties']['ContainerDefinitions'][0]['Environment']))
+api=tasks[api_key]['Properties'];rec=tasks[rec_key]['Properties'];api_env={e['Name']:e['Value'] for e in api['ContainerDefinitions'][0]['Environment']}
+arn=api_env['STRIPE_PRODUCTION_SECRET_ARN'];assert arn.startswith('arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/stripe-billing-')
+env=rec['ContainerDefinitions'][0]['Environment'];assert not any(e['Name']=='STRIPE_PRODUCTION_SECRET_ARN' for e in env)
+env.append({'Name':'STRIPE_PRODUCTION_SECRET_ARN','Value':arn})
+rec_role=rec['TaskRoleArn']['Fn::GetAtt'][0]
+policies={k:v for k,v in resources.items() if v['Type']=='AWS::IAM::Policy'}
+policy_key=next(k for k,v in policies.items() if v['Properties']['Roles']==[{'Ref':rec_role}])
+grants=policies[policy_key]['Properties']['PolicyDocument']['Statement'];assert not any(arn in json.dumps(s) for s in grants)
+grants.append({'Action':['secretsmanager:GetSecretValue','secretsmanager:DescribeSecret'],'Resource':arn,'Effect':'Allow'})
+changed=[k for k in resources if resources[k]!=old['Resources'][k]];assert set(changed)=={rec_key,policy_key}
+assert new.keys()==old.keys() and all(new[k]==old[k] for k in new if k!='Resources')
+target.mkdir();
+for name in ['manifest.json','RilloraProduction.metadata.json','tree.json','cdk.out']:
+ if (base/name).exists():shutil.copy2(base/name,target/name)
+manifest=json.loads((target/'manifest.json').read_text());old_assets=json.loads((base/'RilloraProduction.assets.json').read_text());asset=next(copy.deepcopy(v) for v in old_assets['files'].values() if v['source']['path']=='RilloraProduction.template.json')
+body=(json.dumps(new,indent=2)+'\n').encode();sha=hashlib.sha256(body).hexdigest();(target/'RilloraProduction.template.json').write_bytes(body)
+for d in asset['destinations'].values():d['objectKey']=sha+'.json'
+(target/'RilloraProduction.assets.json').write_text(json.dumps({'version':old_assets['version'],'files':{sha:asset},'dockerImages':{}},indent=2)+'\n')
+props=manifest['artifacts']['RilloraProduction']['properties'];props['stackTemplateAssetObjectUrl']=props['stackTemplateAssetObjectUrl'].rsplit('/',1)[0]+'/'+sha+'.json';(target/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+path=P/'recovery-grant-before.json';path.write_text(json.dumps(old));path.chmod(0o600)
+receipt={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'source':'580f7e1b3','changedResources':changed,'changedScope':['Recovery task exact existing Stripe secret ARN','Recovery role exact GetSecretValue/DescribeSecret'],'resourceCount':len(resources),'runtimeServiceAndImagesUnchanged':True,'identityScopeExpiryAndSalesFlagsUnchanged':True,'databaseAndNetworkUnchanged':True,'newStripeKeyOrProviderPermissions':False,'deployed':False}
+(Q/'recovery-grant-reviewed-delta.json').write_text(json.dumps(receipt,indent=2)+'\n');print(json.dumps(receipt))

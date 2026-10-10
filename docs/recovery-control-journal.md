@@ -1,15 +1,21 @@
 # Recovery control journal and quarantine
 
 Role: engineering contract for restoring encrypted Rillora data safely
-Status: SCOPED CLOUD RESTORE BASELINE RETAINED; HOLDS/COMMERCE REPLAY IMPLEMENTED; REAL TRANSACTION ACCEPTANCE OPEN
-Last updated: 2026-10-03 (Asia/Shanghai)
+Status: CURRENT SCOPED CLOUD/PROVIDER RESTORE ACCEPTANCE VERIFIED
+Last updated: 2026-10-10 (Asia/Hong_Kong)
 
 The production foundation is separate from staging. Customer traffic remains
 closed while the [production/recovery gate](production-recovery-20260923.md)
 is validated. Git source history, database snapshots and control-state recovery
 are distinct evidence.
 
-## October3 deployed permission history and hold serialization
+## October10 current inventory and financial evidence
+
+[Item3 acceptance](recovery-financial-acceptance-20261010.md) supplements the retained baseline with real provider evidence. A backup's copied recovery checkpoint cannot suppress a new provider read. Reuse requires dedicated recovery observations after this verified source freeze, no older than five minutes or in the future, bound to the current subscription and exact control revision. Forced owner policies use an explicit transaction-local owner context; missing independent inventory fails closed before reconciliation.
+
+The final read-only coverage guard was cloud-tested with complete/missing inventory and wrong generation after its deployment. The full earlier c6125d988 cloud reconciliation is a separately dated execution, not re-labelled as that final run. Three Stripe TEST-backed local restores revoke old paid grants correctly; actual Apple Sandbox cloud restoration retains legitimate current Family. Source service and exact templates resumed, and owned temporary resources are absent. No new Live payment, customer activation, automatic failover, client Restore tap or deletion of the Owner-retained account is claimed.
+
+## HISTORICAL — October3 deployed permission history and hold serialization
 
 0092/0093 are now applied to production schema0093. All93checksums match; existing91
 migration bytes and eight private table fingerprints are unchanged. Actual constrained
@@ -35,7 +41,7 @@ current source freeze. Old freeze evidence cannot be renewed by retrying the CLI
 The cloud's idempotency retention may be as short as task lifetime plus1hour;
 [official ECS contract](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_Idempotency.html).
 Actual local PostgreSQL backup/replay and mocked AWS positive/negative checks pass.
-These migrations/tool repairs remain undeployed; earlier real cloud drills are retained
+At the initial strict-review checkpoint these migrations/tool repairs were undeployed; the later deployment above supersedes that status. Earlier real cloud drills are retained
 with their original scope. [Strict review](code-review-20261002.md).
 
 ## September30 holds and commerce reconciliation

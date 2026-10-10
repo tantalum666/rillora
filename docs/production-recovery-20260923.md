@@ -2,9 +2,17 @@
 
 Role: current execution contract for the Owner's production/recovery request  
 Status: PRIVATE SOURCE/CI, PRODUCTION DATA AND SCOPED CLOUD RESTORE VERIFIED
-Last updated: 2026-09-30 (Asia/Hong_Kong)
+Last updated: 2026-10-10 (Asia/Hong_Kong)
 
-## September30 current recovery operations
+## October10 current financial recovery acceptance
+
+Release item3 is verified for the current artifact/configuration. [Current acceptance](recovery-financial-acceptance-20261010.md) records the actual production RDS snapshot/isolated clone, fresh signed Apple Sandbox reconciliation, preserved legitimate access, source API21 resume and exact clone/snapshot deletion. Three existing real Stripe TEST records separately back local pg_dump/restore acceptance; TEST is never relabelled Live. Provider absence, stale/future proof, wrong ownership/generation and missing inventory keep recovery isolated.
+
+Four repairs include exact existing Stripe configuration access for the recovery task, forced-RLS owner context, rejecting copied source checkpoints as fresh verification, and requiring independent billing inventory coverage. Final maintenance sourcecb6fd6133/CI121 is deployed. Normal API remainsf7592a3/API21; schema94 and review/customer boundaries are unchanged.
+
+The current minimum compatible normal billing image isf7592a3; the recovery/maintenance minimum iscb6fd6133. Both supersede the older floor below for these runtime paths. Keep schema94/current encryption and journal formats. No customer traffic is switched by the drill; full historical accounting or identities absent after a snapshot still require explicit recovery.
+
+## HISTORICAL — September30 recovery operations
 
 Bounded retention, independent hold reasons and the exact90day manual-snapshot
 retirement worker are deployed; no manual snapshot has yet been deleted. Recovery

@@ -2,8 +2,8 @@
   "files": [
     {
       "path": "collaboration/README.md",
-      "bytes": 17439,
-      "sha256": "2ebff2b5bde452d288b9e1294c8ea36d41283752b56f0b7798903a4b7bd0c987"
+      "bytes": 17882,
+      "sha256": "79fd2cb9d768563c013c7cfb19daf0de0577836125d9d86bd876096467b0eace"
     },
     {
       "path": "collaboration/catalog/files-001.json",
@@ -51926,6 +51926,716 @@
       "sha256": "684099b27db9da338125b880762e2df59f34c400e92973b692207d4e221a64dc"
     },
     {
+      "path": "collaboration/verification/recovery-financial-20261010/README.md",
+      "bytes": 2796,
+      "sha256": "8f4f496ab53f5a2f9f344d6b64ddaf3e07c7bc5d315bb2dcb594f8d8d446c525"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/archive-verification.json",
+      "bytes": 113,
+      "sha256": "7cba5762e252ca7f90ecc3f4737acb00ee8df9255ff53953a168b999382e29bc"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/catalog.json",
+      "bytes": 204239,
+      "sha256": "b2a47016158ac8c7083bf897ca2978d94ec51f7b6313cfe480e77167fb3e54d0"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/current-state.json",
+      "bytes": 3311,
+      "sha256": "e46ead512f6ac8fc9c1713859c26f46c0602f8b933b5e009dc5d8432df3e1eb3"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/publication-corrections.json",
+      "bytes": 300,
+      "sha256": "2f4b6a6d4e71fac2d2a37672db1e862cfcb5561b6ca1ea676e9adad0d776065e"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/publication-retry.json",
+      "bytes": 307,
+      "sha256": "e0f1685b87f93820c0ccfd71609ccf9114f04dd520388fd5a4fe9c8a9a10f283"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/acceptance-summary.json",
+      "bytes": 3225,
+      "sha256": "7950b4e59ff58c0db794de384f3f680a7b2c00e80b5a0608ee47ae51b1fa1814"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/api-typecheck.log.reference.txt",
+      "bytes": 67,
+      "sha256": "ffc0928b3027e2dcfe907b380649612c90925a72ad06bea654c9e72e4e139d1b"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/cdk-coverage-asset/RilloraCoverageAsset.assets.json",
+      "bytes": 1589,
+      "sha256": "e65b62652616fc8ba813ee9305f71d9e8c0525b04201254514289e8573593021"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/cdk-coverage-asset/RilloraCoverageAsset.metadata.json",
+      "bytes": 927,
+      "sha256": "2efb81abb4d538055b7661807a5941a5a566b2825cb7454acd1cb742325b8706"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/cdk-coverage-asset/RilloraCoverageAsset.template.json",
+      "bytes": 770,
+      "sha256": "21fbb51d7b23f6a6c262b46a9caee79d744a3ac019fd45422d988b96d44b2a22"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/cdk-coverage-asset/manifest.json",
+      "bytes": 27232,
+      "sha256": "69dfa660e2378a23feec07b00501f8b46fafb7cd78c4b767d48d57895272351e"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/cdk-coverage-asset/tree.json",
+      "bytes": 1189,
+      "sha256": "758c397b31204f34586812e478c7af2dceb4f5f11716f20c0a01757acc0918e0"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/cdk-coverage-asset/validation-report.json",
+      "bytes": 933,
+      "sha256": "5d8386199a99c31f115180c34fa6b2468842771acbf3642b25ca36a01f1e781e"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/cdk-maintenance-asset/RilloraRecoveryAsset.assets.json",
+      "bytes": 1589,
+      "sha256": "7c902e34011139156deaf0e1e2e1913d0a6249a1f41be52e671ba8dca94e1684"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/cdk-maintenance-asset/RilloraRecoveryAsset.metadata.json",
+      "bytes": 930,
+      "sha256": "48d370e7e7201dd5f8da36778e6ac62e2fb0db5f5e49268c505e1294336660b5"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/cdk-maintenance-asset/RilloraRecoveryAsset.template.json",
+      "bytes": 770,
+      "sha256": "21fbb51d7b23f6a6c262b46a9caee79d744a3ac019fd45422d988b96d44b2a22"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/cdk-maintenance-asset/manifest.json",
+      "bytes": 27232,
+      "sha256": "d3526214e14e619965839844cca45fbd65d26df71024fc8a2862d74c3fb8dd7e"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/cdk-maintenance-asset/tree.json",
+      "bytes": 1189,
+      "sha256": "b249e81e59a26731683acbade0cdd37c59870b263ef1a6f117e29bcc9acc1f14"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/cdk-maintenance-asset/validation-report.json",
+      "bytes": 936,
+      "sha256": "cae2e9e4a906eb52533e6be9d6ac76a5d2d9b80d46000c9c7b81bbff591f9dba"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/cleanup-owned-resources.py.reference.txt",
+      "bytes": 1744,
+      "sha256": "503baa822c859d998bc5ff2df395dbf9d5a311c3838cc85a6d64ee571da53d54"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/cleanup-verification.json",
+      "bytes": 287,
+      "sha256": "37611a4b02c05b2311159d92e6b1296072cbd1efa94044df57766745418850c1"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/cleanup.log.reference.txt",
+      "bytes": 307,
+      "sha256": "5ffda7a20f733b0124709b958a8e68da901432cf84902b51abf457bd1fd7a71e"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/clone-final-audit-task.json",
+      "bytes": 393,
+      "sha256": "18a50760d354bea399c2f93dab8764c0b9d996b4275ba7ef160f518bb9ee8e74"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/clone-final-audit.json",
+      "bytes": 616,
+      "sha256": "8cdadc74814190975bcb3b06f389379e5fb5f26765cf73530c8d478625186c25"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/clone-preflight-task.json",
+      "bytes": 393,
+      "sha256": "34cfe1b41bc170c1b33dd7a6d66ae3bb96ada17ad3848c52b47750f827bccb2f"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/clone-preflight.json",
+      "bytes": 694,
+      "sha256": "92aea1f5c998519b233e65b7ef45ba73ee0990ba1ce05c7d32ca69559c91d1ae"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/clone-provider-read-task.json",
+      "bytes": 393,
+      "sha256": "068cbe23ec97bce6da3ec922be8d3ef82e1bcfa1ec2efc7ba5a15029766e2d94"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/clone-provider-read.json",
+      "bytes": 441,
+      "sha256": "e1706b9e942d0f418b0d88a561675cda27201f71d647a54302f2e85ff18cdb58"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/cloud-reconciliation.json",
+      "bytes": 1421,
+      "sha256": "74a68b911ad1d9e0468658a6897af96cdae0b1bbf35fefd77feb56a77a08b07c"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/copied-checkpoint-red.json",
+      "bytes": 5803,
+      "sha256": "f9d9e521337122a9ae462ddb1a0bc0f266d3a4e6c9c394f030314764e317e937"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/copied-checkpoint-red.log.reference.txt",
+      "bytes": 333,
+      "sha256": "482117ef88d4f88045758ea97b3d49983567f1a04b3663e71bf680fcb626a275"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/coverage-assembly/RilloraProduction.assets.json",
+      "bytes": 1602,
+      "sha256": "42eb26f8b98b4c830c26a66d6ccf29cf08e71cbd94cd0697d82b00f4f4b95ae6"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/coverage-assembly/RilloraProduction.metadata.json",
+      "bytes": 65448,
+      "sha256": "17b390f83e79ab6c4a59b4d68c7372778222874817fa26a543bafd3a9eb46968"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/coverage-assembly/RilloraProduction.template.json",
+      "bytes": 116336,
+      "sha256": "5bc11bcaf72c58295beca41a47b8f84d6395ca0072ca1ce900f6a6b2b702b193"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/coverage-assembly/manifest.json",
+      "bytes": 27381,
+      "sha256": "d9277e54c5102effcd3b40e4b89ae4d84fa9d0014372bc2a667e958ab88668f6"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/coverage-assembly/tree.json",
+      "bytes": 90712,
+      "sha256": "19e80d1fd01a0ca3b6f9bfc8bcb2b6ca803175b062c65180a074053195a6798a"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/coverage-asset.log.reference.txt",
+      "bytes": 563,
+      "sha256": "3bccde59870c0442da898aba3b1a6503c13d818591eb66f07b53601addb33735"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/coverage-ci.json",
+      "bytes": 227,
+      "sha256": "2bb33c89fcee389f22e2d8ee78247da18b64d8d433199f818758c2fc9a9107b5"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/coverage-cloud-result.json",
+      "bytes": 331,
+      "sha256": "5ce211219c2cfe6d5c2ef63cf06c12d72fdfbb406addebad9bc67ec77ce1bbf2"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/coverage-cloud-task.json",
+      "bytes": 393,
+      "sha256": "1940d56987d90f719e3c2c030d0ff21aa9eea113ba8a2248767b7ebba2f1f416"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/coverage-deploy.log.reference.txt",
+      "bytes": 16275,
+      "sha256": "7626d981a3e620511d32a4996e420e548529de637dc1bb7a6c9fce0b0a5c929c"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/coverage-deployed.json",
+      "bytes": 539,
+      "sha256": "9b3fdce3ff507cfe894295d31ce3845d08e7bae8078ccbd1e9457bffda2bbd27"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/coverage-final.json",
+      "bytes": 10780,
+      "sha256": "a53c51d5342e409f40221bc9cc327c6ad5676bcbbd3d2d29a6dc5ffc963bdfb8"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/coverage-final.log.reference.txt",
+      "bytes": 462,
+      "sha256": "a7e2e96c36f6d6979dcc31ce80798edb6b05dc93942b3f00cb1805c1ed823566"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/coverage-frozen-source.json",
+      "bytes": 173,
+      "sha256": "42c9383b01d67591fe1dee938f7890cc6ccb77019223197f7dcc4f307ecc2676"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/coverage-reviewed-delta.json",
+      "bytes": 379,
+      "sha256": "cf77ff443fbaadd4a3848e861d2e9ba890ecb215f485fbbd827e2fa1bfd39191"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/coverage-source-scan.json",
+      "bytes": 10712,
+      "sha256": "df19cca9c4e8757b601da24932559d95f7035749acbc1688b5f5431bf850d24f"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/coverage-source.json",
+      "bytes": 245703,
+      "sha256": "d5cb3e5dcbcc7ce2b237c172d401ae5b92a478226ec4de00719cb604e9e37e03"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/coverage-typecheck.log.reference.txt",
+      "bytes": 67,
+      "sha256": "ffc0928b3027e2dcfe907b380649612c90925a72ad06bea654c9e72e4e139d1b"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/deploy-coverage.py.reference.txt",
+      "bytes": 2056,
+      "sha256": "5046b9c0ba0bd4e625ea6288d3fbf96710b9558634cf2321a0e769ffadf17d8f"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/deploy-maintenance.py.reference.txt",
+      "bytes": 2077,
+      "sha256": "7d2b29dd5e7377ba81153518d2721a0613787e736c967b086fd8b6e0fad82632"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/deploy-recovery-grant.py.reference.txt",
+      "bytes": 1982,
+      "sha256": "9c3e99d561d260caa963f83db36221fe170dca95b61802a9adbb76b8c8845529"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/final-code-scan.json",
+      "bytes": 10712,
+      "sha256": "f47a1bf9eeeb4a5a67ccdedaea8dd6be8f9a742011c8670b28f24f000465da1c"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/final-code-source.json",
+      "bytes": 245703,
+      "sha256": "d3b81abb3fbd7ae8520b86d2d3ed2cfb3a0211f25c9ff54bce77adc37770cbcb"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/infra-typecheck.log.reference.txt",
+      "bytes": 79,
+      "sha256": "aeaff1549226583b50aacc6bdea8a2f40bc1facfda6870b68f2a3c3633ed3be5"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/inventory-gap-red.json",
+      "bytes": 6646,
+      "sha256": "fe9d70a495772b82b91bd875658040ffc145784e60cbc046872f943a04581526"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/inventory-gap-red.log.reference.txt",
+      "bytes": 325,
+      "sha256": "a6eadd4d1287f87b73774ce22fffbbbcdd2e09ff1fc93d10fadc239fcc2603a9"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/isolation-result.json",
+      "bytes": 606,
+      "sha256": "25b0592fb8463f0e5d2434c51600084af0214eaacaf1eaefd33e50f7543f4278"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/isolation-start.log.reference.txt",
+      "bytes": 186,
+      "sha256": "885a7c6b66128dd4b72d2c988fc20c6ebcd500e0d08ec0c660f65e7f24b4427a"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/local-provider-restore.json",
+      "bytes": 2303,
+      "sha256": "9c6de82a2f8ce1864f4cc7e50b51b320890412ee53d90e71a40193be9239a711"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/local-provider-restore.log.reference.txt",
+      "bytes": 93,
+      "sha256": "b546d7028e52912d24f1c0d46477f90d9b81b9ba1f11fbd420170edd8317b588"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/local-provider-restore.mts.reference.txt",
+      "bytes": 11621,
+      "sha256": "6ca6bae28a36645d8b9f7821aacdd8210159e034c97eacb262b5098602122f45"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/local-provider-restore2.log.reference.txt",
+      "bytes": 93,
+      "sha256": "b546d7028e52912d24f1c0d46477f90d9b81b9ba1f11fbd420170edd8317b588"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/local-provider-restore3.log.reference.txt",
+      "bytes": 93,
+      "sha256": "b546d7028e52912d24f1c0d46477f90d9b81b9ba1f11fbd420170edd8317b588"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/local-provider-restore4.log.reference.txt",
+      "bytes": 48,
+      "sha256": "7e3016a05851853c9468e1d325acd817e3da141bd9ac899a4ba14ee4a4ede37c"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/maintenance-assembly/RilloraProduction.assets.json",
+      "bytes": 1602,
+      "sha256": "01e1cd2187afd6e62161a6e4223948c50d2845c32433248c8d9d5010129d48c6"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/maintenance-assembly/RilloraProduction.metadata.json",
+      "bytes": 65448,
+      "sha256": "17b390f83e79ab6c4a59b4d68c7372778222874817fa26a543bafd3a9eb46968"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/maintenance-assembly/RilloraProduction.template.json",
+      "bytes": 116336,
+      "sha256": "7a121097fe5f7e2b50e5c201a6a0d3c991f7ab3d2afb18e0e15eaff5446416d3"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/maintenance-assembly/manifest.json",
+      "bytes": 27381,
+      "sha256": "fe73ccdad8907c8b1da2806a2951a4b98fef940e6c0d8f997b3f0689d202278e"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/maintenance-assembly/tree.json",
+      "bytes": 90712,
+      "sha256": "19e80d1fd01a0ca3b6f9bfc8bcb2b6ca803175b062c65180a074053195a6798a"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/maintenance-asset.log.reference.txt",
+      "bytes": 569,
+      "sha256": "cacf36ec1b3a3b1b282d9a4743a4068ba5ac1868df9d09912b180257472c71fa"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/maintenance-ci.json",
+      "bytes": 227,
+      "sha256": "bf441802ec2b6a98dfb8875d6902e42362baae92ff58e3d70567f1f70f5dcb0d"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/maintenance-deploy.log.reference.txt",
+      "bytes": 16050,
+      "sha256": "49af71a0727080d8036ae07d1bf2006b7601981856a6511bb4c7b8d9af9fe438"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/maintenance-deployed.json",
+      "bytes": 554,
+      "sha256": "14a70bb20bb3b4337b6fb563f3a51f29c669ab6f3e7b79fbdcd0a45b771ce67f"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/maintenance-frozen-source.json",
+      "bytes": 38462,
+      "sha256": "f3947740eff5116747c09bd81addba8a1be6603197bb0ddec9a02beeab7b58e0"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/maintenance-reviewed-delta.json",
+      "bytes": 394,
+      "sha256": "d398838fbe6a14147429cdc69c7d9827b5993d73bb89e1e37026c2c71b8f05d5"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/prepare-coverage-asset.cjs.reference.txt",
+      "bytes": 776,
+      "sha256": "f4ebae1291267dc24eb85b8e432bc361c8d347d2d82cb1bba3cd867cb45ba5b8"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/prepare-coverage-deployment.py.reference.txt",
+      "bytes": 3183,
+      "sha256": "97e80fd2d1f834847f71c37a7c3fb19e9f1bc51120dc2843d27b6057113d572c"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/prepare-maintenance-asset.cjs.reference.txt",
+      "bytes": 782,
+      "sha256": "54ff370febe4772a2f2b997abfa2eaeb90d689eda602d5ce8bc7e33a6424ada9"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/prepare-recovery-grant.py.reference.txt",
+      "bytes": 4057,
+      "sha256": "e1232b96bcc1421adad2099ab65a0a0f39dfd26fd11340de88d669fdaa5b7b01"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/preserve_work.py.reference.txt",
+      "bytes": 8965,
+      "sha256": "de1824ef59e468dbb60bb8d8f6084033b6fdeb0682eacfa3585373e8afc96da2"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/provider-probe-error.json",
+      "bytes": 53,
+      "sha256": "b677b5ac59220e334cd99dec4270f3227dddb1ab9e063940179ac8a18ca0a7b3"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/provider-probe.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/provider-probe2-error.json",
+      "bytes": 440,
+      "sha256": "d767d5264a1d048986e25c0a9e55ccb5c8f7c697c2b14d4c942d7f547fe4ee29"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/provider-probe2.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/provider-probe3-error.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/provider-probe3.json",
+      "bytes": 592,
+      "sha256": "6df6cdebe93df5c0ded647ecef38fc7b068040e4397054e2550a08129ddd5a73"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/provider-reader.mts.reference.txt",
+      "bytes": 5128,
+      "sha256": "172c521f7e39c86ac8e1109aca9ba615b67bc9bbaee8c6716ec09077c9a8f579"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/reading.json",
+      "bytes": 1830,
+      "sha256": "d04cfde362f86e62705780a8b675bb9cb0b386b232fe7e99b38a5290d0956989"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/reconcile-start.log.reference.txt",
+      "bytes": 195,
+      "sha256": "490a3959d0faf7bd98ea1f8ceb6401a70172cb752a13dd51e3dca03f21d9e63c"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/recovery-boundary-final.json",
+      "bytes": 11284,
+      "sha256": "9675e543fe6e60efd4f66fdd0bc684388c8ba6f9576b8470d78d917a17d1a65e"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/recovery-boundary-final.log.reference.txt",
+      "bytes": 480,
+      "sha256": "1b8a9f9f634304d6a312027f2b5f8a12f33580571f71ba0d9546cde7d90e9d88"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/recovery-boundary-final2.json",
+      "bytes": 11734,
+      "sha256": "a8d7400dc69235a1c8d888bc314119e6b92279bbe222fbfe5c1c353b35a9660a"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/recovery-boundary-final2.log.reference.txt",
+      "bytes": 482,
+      "sha256": "301f858fe37d3c7333380b33e9f4d020a7e6bfc0073138ee7241e342576d7fad"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/recovery-boundary-final3.json",
+      "bytes": 10332,
+      "sha256": "945658cf181a1e8f4b8bd94ba3883e3a43ebed49a60cb37d5dccf90b31947f33"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/recovery-boundary-final3.log.reference.txt",
+      "bytes": 482,
+      "sha256": "c3c56f44f71be05fa08b144522846f52bc55ecd78219ca8faaea56e3d2ea04e7"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/recovery-boundary-green.json",
+      "bytes": 9835,
+      "sha256": "22b4bebd85ff9d48f26586fb330b59f3cc622926a5bb450766f5d30c7215a0cd"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/recovery-boundary-green.log.reference.txt",
+      "bytes": 480,
+      "sha256": "ca95bd37583b11d003db0cda2503dd384d639c03e9a87a1944557a8957a3a8c2"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/recovery-boundary-red.json",
+      "bytes": 6782,
+      "sha256": "50eb59cfe79a63aaabce776b2a4a28f9b326c59546ba659858d644db25c244ad"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/recovery-boundary-red.log.reference.txt",
+      "bytes": 333,
+      "sha256": "10206e012a7c5323931995131e109d7549d8ef88a69285eb007f351a6f790cf9"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/recovery-grant-assembly/RilloraProduction.assets.json",
+      "bytes": 752,
+      "sha256": "10509cd10ea43437de8d7b2a8d13c04ed11fedd291ae9ab8ef13f500c5df063b"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/recovery-grant-assembly/RilloraProduction.metadata.json",
+      "bytes": 65448,
+      "sha256": "17b390f83e79ab6c4a59b4d68c7372778222874817fa26a543bafd3a9eb46968"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/recovery-grant-assembly/RilloraProduction.template.json",
+      "bytes": 116336,
+      "sha256": "76bd6527901e16806c9b2797dcc22038574d7bbfbdd648f2515da05f9b5e9dbc"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/recovery-grant-assembly/manifest.json",
+      "bytes": 27381,
+      "sha256": "0c384fa25dce13d21af7267406ce5d9d525b7859875fcb81999cd2d1de325237"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/recovery-grant-assembly/tree.json",
+      "bytes": 90712,
+      "sha256": "19e80d1fd01a0ca3b6f9bfc8bcb2b6ca803175b062c65180a074053195a6798a"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/recovery-grant-ci.json",
+      "bytes": 213,
+      "sha256": "71739907bff99ee4747bee51084db71ab342ebe9ce2155464266b4fe13f8015a"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/recovery-grant-deploy.log.reference.txt",
+      "bytes": 6036,
+      "sha256": "e32b19ea9fcbb787db46f7b877c5fb53891ba8fabedca477bd8f098cf184201e"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/recovery-grant-deployed.json",
+      "bytes": 677,
+      "sha256": "5595e8821573698f9c6934b0bdf178c57fd2ad76cb7f437411d45b9d8b6232fb"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/recovery-grant-green.json",
+      "bytes": 4265,
+      "sha256": "284afe2c1528ab9601780aee70bc7cd2a1233a39732173ea05a6e6ef680a9ff9"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/recovery-grant-green.log.reference.txt",
+      "bytes": 392,
+      "sha256": "71a1f39cf60af3ce5b5268956e0f578c6ffcf72cc05cbdfe8809c58bf59781d9"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/recovery-grant-red.json",
+      "bytes": 5694,
+      "sha256": "9614fd35e36c5f1318abcfa660edd0dc71bb94b56814126a8186c981c13958d2"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/recovery-grant-red.log.reference.txt",
+      "bytes": 388,
+      "sha256": "e7cdf6ae5e38e07b1a99ff4bb43bb50b613e61af9098196e201816b99a5675c9"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/recovery-grant-reviewed-delta.json",
+      "bytes": 538,
+      "sha256": "3cc0cae318651178d77e2d689d1ae370a2ba5fd7c368a2c94ea625968bd36ed5"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/run-clone-final-audit.py.reference.txt",
+      "bytes": 3912,
+      "sha256": "27236255091692faea54ea73472a723f3b1ff36fe02dc33e27722d54aac4c1cf"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/run-clone-preflight.py.reference.txt",
+      "bytes": 4211,
+      "sha256": "c6b31770f87d9577661a0cc36c239b3c5870580a00d5e58d35ff1a8e4a57d940"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/run-clone-provider-read.py.reference.txt",
+      "bytes": 3508,
+      "sha256": "bdff4b244199d811f3db0fdfec01086e607b4cc69a6e56fda48b9eee5b605bc7"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/run-cloud-reconciliation.py.reference.txt",
+      "bytes": 5143,
+      "sha256": "c3954df2be2bbaebb324f61d9b4c0fd9bb79829873e314d2eaeb38fa07fb2916"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/run-coverage-cloud.py.reference.txt",
+      "bytes": 3284,
+      "sha256": "2c664dd8f5b7fbab316c3368fcf043ac6af8520909c464f2182a561c5bb0beae"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/source-candidate.json",
+      "bytes": 245703,
+      "sha256": "e5dbc59fddc4528575fe6847fd071a16712bac4d4a2dc1adf25fb91b19839249"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/source-freeze-assembly/RilloraProduction.assets.json",
+      "bytes": 752,
+      "sha256": "d4e8550606495936b131b01d545a29be8e79af9b996f6fbb78033f21acf74b2c"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/source-freeze-assembly/RilloraProduction.metadata.json",
+      "bytes": 65448,
+      "sha256": "17b390f83e79ab6c4a59b4d68c7372778222874817fa26a543bafd3a9eb46968"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/source-freeze-assembly/RilloraProduction.template.json",
+      "bytes": 116336,
+      "sha256": "8acb36e1115ed7c53e2035474f6460b552cc5919a13c403889338d189fe0e471"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/source-freeze-assembly/manifest.json",
+      "bytes": 27381,
+      "sha256": "60ec6aeb0e101dbc18200d264390e4dfe548699a7a7a2d0e348d040647bf32e0"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/source-freeze-assembly/tree.json",
+      "bytes": 90712,
+      "sha256": "19e80d1fd01a0ca3b6f9bfc8bcb2b6ca803175b062c65180a074053195a6798a"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/source-freeze-deploy.log.reference.txt",
+      "bytes": 4787,
+      "sha256": "63af5e63a2806a8c7efb0aafb032313165033f5dee2a8de7b5869efed00a9fa6"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/source-http-restored.json",
+      "bytes": 387,
+      "sha256": "791d10e4678c8abfbcccb88c6cd3ce5f81b84482c7f1255bd8861b5ca7fb4469"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/source-pause-reviewed-delta.json",
+      "bytes": 253,
+      "sha256": "059ac44bc585450df2f4d9670c5078d85accc5eb4b2cbb0a2e0a92bf44730d10"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/source-resume-assembly/RilloraProduction.assets.json",
+      "bytes": 752,
+      "sha256": "05f61c89f7e30df4a19d41afd19fbdee9717cfbebce467d44016667609890cf8"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/source-resume-assembly/RilloraProduction.metadata.json",
+      "bytes": 65448,
+      "sha256": "17b390f83e79ab6c4a59b4d68c7372778222874817fa26a543bafd3a9eb46968"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/source-resume-assembly/RilloraProduction.template.json",
+      "bytes": 116336,
+      "sha256": "7a121097fe5f7e2b50e5c201a6a0d3c991f7ab3d2afb18e0e15eaff5446416d3"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/source-resume-assembly/manifest.json",
+      "bytes": 27381,
+      "sha256": "fe73ccdad8907c8b1da2806a2951a4b98fef940e6c0d8f997b3f0689d202278e"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/source-resume-assembly/tree.json",
+      "bytes": 90712,
+      "sha256": "19e80d1fd01a0ca3b6f9bfc8bcb2b6ca803175b062c65180a074053195a6798a"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/source-resume-deploy.log.reference.txt",
+      "bytes": 4457,
+      "sha256": "e5bf78dbf08360b0dc2efd75b78e7429757d1659419925bf04a2cf8d181270fe"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/source-runtime-resumed.json",
+      "bytes": 488,
+      "sha256": "e925fcf1d324e0454dc8932b1f08efed639e596a0c88c8df29dc02dd235493b0"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/source-scan.json",
+      "bytes": 10712,
+      "sha256": "b8f839e4e46cececd1d7475fe91bee27e68f20e512681d3059eec9dc5a2a2ec0"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/verify_remote.py.reference.txt",
+      "bytes": 3251,
+      "sha256": "1dad72e79c7014a3471cfa9201923902b1379664d0490c105da2cb577c83777f"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/qa/rillora-recovery-financial-20261010/work-state.json",
+      "bytes": 3662,
+      "sha256": "e70c9e99d2e8191b20f0a7e9b8c3b44d73d145858b6f2426946ccd1a4f5729bc"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/release/rillora-recovery-financial-20261010/coverage-api-source/certificates/rds/README.md.reference.txt",
+      "bytes": 1624,
+      "sha256": "5b8b545581e47c63c1b61ed15bcac50a52a1c4fa272ee687afc660af53c9dfa7"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/receipts/output/release/rillora-recovery-financial-20261010/maintenance-api-source/certificates/rds/README.md.reference.txt",
+      "bytes": 1624,
+      "sha256": "5b8b545581e47c63c1b61ed15bcac50a52a1c4fa272ee687afc660af53c9dfa7"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/snapshot.json",
+      "bytes": 2610,
+      "sha256": "9240602c656c25a927dacdbe7a9ea16c1efdf77c8cfcb7eda2d9266c4f02ad03"
+    },
+    {
+      "path": "collaboration/verification/recovery-financial-20261010/validation.json",
+      "bytes": 571,
+      "sha256": "ec5ee7b294320c199cca35805f89eca1a04538f097a57b7e0bbf02d798e0b499"
+    },
+    {
       "path": "collaboration/verification/redact_scan_findings.py.reference.txt",
       "bytes": 3710,
       "sha256": "60ee5d45f4a0a4927bf2a1ba6855bd726f06d8c1a22a28eed8b2098e71a82357"
@@ -57551,6 +58261,6 @@
       "sha256": "fa9f06467d74b9f074969cddab0e882a0ca1463c84d4a5ffafd2d401d619518b"
     }
   ],
-  "fileCount": 11510,
-  "totalBytes": 354316904
+  "fileCount": 11652,
+  "totalBytes": 357138759
 }

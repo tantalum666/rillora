@@ -1,0 +1,61 @@
+"""Bounded source quiescence with guaranteed resume attempt; never promotes clone."""
+from pathlib import Path
+import datetime,json,subprocess,time
+ROOT=Path.cwd();Q=ROOT/'output/qa/rillora-recovery-financial-20261010';P=ROOT/'.local-secrets/recovery-financial-20261010'
+state=P/'cloud-drill.json';receipt=Q/'cloud-reconciliation.json';assert not receipt.exists()
+assert json.loads((Q/'maintenance-deployed.json').read_text())['deployed']
+original=json.loads((P/'source-before-freeze.json').read_text());frozen=json.loads((Q/'source-freeze-assembly/RilloraProduction.template.json').read_text())
+def now():return datetime.datetime.now(datetime.timezone.utc).isoformat()
+def aws(args,profile='rillora-production-operator'):
+ return json.loads(subprocess.check_output(['aws',*args,'--profile',profile,'--region','eu-central-1','--output','json']))
+def template():
+ b=aws(['cloudformation','get-template','--stack-name','RilloraProduction'],'rillora-cdk-deploy')['TemplateBody'];return json.loads(b) if isinstance(b,str) else b
+def outputs():
+ s=aws(['cloudformation','describe-stacks','--stack-name','RilloraProduction'])['Stacks'][0];assert s['StackStatus']=='UPDATE_COMPLETE';return {x['OutputKey']:x['OutputValue'] for x in s['Outputs']}
+def service(o):
+ name=next(v for k,v in o.items() if k.startswith('RuntimeApiServiceName'))
+ r=aws(['ecs','describe-services','--cluster',o['ClusterName'],'--services',name]);assert not r.get('failures') and len(r['services'])==1;return r['services'][0]
+def deploy(phase):
+ with (Q/('source-'+phase+'-deploy.log')).open('w') as log:
+  r=subprocess.run(['npx','cdk','deploy','RilloraProduction','--app',str(Q/('source-'+phase+'-assembly')),'--profile','rillora-cdk-session','--require-approval','never','--previous-parameters','true','--outputs-file',str(P/('source-'+phase+'-outputs.json'))],cwd=ROOT/'infra/aws',stdout=log,stderr=subprocess.STDOUT)
+ return r.returncode
+report={'startedAt':now(),'sourcePaused':False,'sourceResumed':False,'customerTrafficEnabled':False,'clonePromoted':False,'passed':False}
+def save():receipt.write_text(json.dumps(report,indent=2)+'\n')
+o=outputs();before=service(o);assert template()==original and before['desiredCount']==1 and before['runningCount']==1 and before['pendingCount']==0
+report['originalTaskDefinition']=before['taskDefinition'];save();attempted=False
+try:
+ attempted=True;report['freezeRequestedAt']=now();save();deploy('freeze');o=outputs();s=service(o)
+ assert template()==frozen and s['desiredCount']==0 and s['runningCount']==0 and s['pendingCount']==0
+ report.update(sourcePaused=True,sourceFreezeVerifiedAt=now());save();print('Source quiesced; starting guarded clone reconciliation',flush=True)
+ with (Q/'reconcile-start.log').open('w') as log:
+  subprocess.run(['python3','tools/release/run_recovery_task.py','reconcile-commerce','--state',str(state)],cwd=ROOT,stdout=log,stderr=subprocess.STDOUT,check=True)
+ task=json.loads(state.read_text())['maintenanceTasks']['reconcile-commerce']['arn'];report['recoveryTask']=task;save()
+ deadline=time.monotonic()+300
+ while time.monotonic()<deadline:
+  t=aws(['ecs','describe-tasks','--cluster',o['ClusterName'],'--tasks',task]);assert not t.get('failures') and len(t['tasks'])==1
+  t=t['tasks'][0]
+  if t['lastStatus']=='STOPPED':
+   report['taskExitCode']=t['containers'][0].get('exitCode');report['imageDigest']=t['containers'][0].get('imageDigest');break
+  time.sleep(10)
+ else:
+  aws(['ecs','stop-task','--cluster',o['ClusterName'],'--task',task,'--reason','Bounded recovery acceptance timeout; keep clone isolated'])
+  raise RuntimeError('recovery_deadline_exceeded')
+ logs=aws(['logs','get-log-events','--log-group-name',o['MaintenanceLogGroup'],'--log-stream-name','recovery/Maintenance/'+task.rsplit('/',1)[-1],'--start-from-head'])
+ raw=P/'cloud-reconciliation-logs.json';raw.write_text(json.dumps(logs));raw.chmod(0o600)
+ results=[]
+ for row in logs['events']:
+  try: results.append(json.loads(row['message']))
+  except ValueError: pass
+ report['result']=next((v for v in results if v.get('currentJournalStableAtCheck')),None)
+ assert report['taskExitCode']==0 and report['result'] and report['result']['commerce']['providerReads']>=1
+ report['passed']=True;report['reconciliationCompletedAt']=now();save();print('Cloud current-provider reconciliation passed',flush=True)
+except Exception as error:
+ report['failureType']=type(error).__name__;save();print('Reconciliation stopped; clone remains isolated and source will resume',flush=True)
+finally:
+ if attempted:
+  actual=template();assert actual in [original,frozen], 'Unexpected concurrent template change; inspect before overwrite'
+  if actual==frozen:report['resumeRequestedAt']=now();save();deploy('resume')
+  o=outputs();s=service(o);assert template()==original and s['desiredCount']==1 and s['runningCount']==1 and s['pendingCount']==0
+  assert s['taskDefinition']==report['originalTaskDefinition']
+  report.update(sourceResumed=True,sourceResumeVerifiedAt=now(),sourceTemplateRestoredExactly=True);save();print('Original source service restored with the same task definition',flush=True)
+if not report['passed']:raise SystemExit(2)

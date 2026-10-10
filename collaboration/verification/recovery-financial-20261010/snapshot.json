@@ -1,0 +1,47 @@
+{
+  "capturedFrom": "2026-10-10T13:06:03.580542+00:00",
+  "capturedThrough": "2026-10-10T13:06:04.414728+00:00",
+  "workFiles": 653,
+  "uniqueRawObjects": 376,
+  "workBytes": 6795303,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-030.tar.zst.age",
+      "sha256": "ee209f58220e7677b88f2bf5e6bfb85ebb023d8b119d34f586ec2508ca8cf552",
+      "bytes": 595640,
+      "plainBytes": 3961659,
+      "uniqueObjects": 376
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/recovery-financial-20261010/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": "output/qa/rillora-recovery-financial-20261010/publication",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    },
+    {
+      "path": "output/qa/rillora-recovery-financial-20261010/cdk-maintenance-asset/asset.9c8efdcdd7a3a028fd2a6819105adcdfa2c00d8efe368cefd97e3677fd7948c3",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-recovery-financial-20261010/coverage-assembly/asset.9f8e0bf48bd7961afa5aab35557fbc605aa210049689c9afb5f27471c6a538b9",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-recovery-financial-20261010/maintenance-assembly/asset.9c8efdcdd7a3a028fd2a6819105adcdfa2c00d8efe368cefd97e3677fd7948c3",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-recovery-financial-20261010/cdk-coverage-asset/asset.9f8e0bf48bd7961afa5aab35557fbc605aa210049689c9afb5f27471c6a538b9",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": ".local-secrets/payment-recheck-20261009",
+      "reason": "credentials_auth_sessions_actual_provider_objects_device_ids_excluded_with_no_private_directory_exceptions"
+    }
+  ],
+  "selection": "All eligible new recovery QA and frozen maintenance sources: red/green tests, actual read-only Stripe probe and local database restore evidence, CFN task/IAM and image changes, isolated cloud restore/reconciliation/isolation/cleanup summaries, operational helpers, and original failed harness attempts. Credential stores, DB dumps, raw provider objects, transient callbacks, expanded deployment assets and reproducible caches are excluded. Archives1-29 are unchanged.",
+  "boundary": "Release item3 only. Actual Stripe TEST-backed local restore and real production snapshot/Apple Sandbox reconciliation are separately scoped; no Live test transaction, customer activation, native install or TestFlight. Source service resumed exactly after a bounded pause; final remote/metadata receipts follow immutable capture."
+}

@@ -1,0 +1,18 @@
+{
+  "at": "2026-10-10T11:24:57.060128+00:00",
+  "source": "580f7e1b3",
+  "changedResources": [
+    "RecoveryTaskTaskRoleDefaultPolicy6EC2C93F",
+    "RecoveryTaskD940248B"
+  ],
+  "changedScope": [
+    "Recovery task exact existing Stripe secret ARN",
+    "Recovery role exact GetSecretValue/DescribeSecret"
+  ],
+  "resourceCount": 79,
+  "runtimeServiceAndImagesUnchanged": true,
+  "identityScopeExpiryAndSalesFlagsUnchanged": true,
+  "databaseAndNetworkUnchanged": true,
+  "newStripeKeyOrProviderPermissions": false,
+  "deployed": false
+}

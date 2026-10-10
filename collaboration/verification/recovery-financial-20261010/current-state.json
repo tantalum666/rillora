@@ -1,0 +1,66 @@
+{
+  "at": "2026-10-10T12:58:02.054645+00:00",
+  "releaseItem": 3,
+  "status": "complete_for_current_release_scope",
+  "fixes": [
+    "Existing Stripe configuration missing from isolated recovery task",
+    "Source backup checkpoints incorrectly skipped fresh provider reads",
+    "Owner context missing before forced-RLS plan lookup",
+    "Missing independent billing inventory incorrectly returned a no-op success"
+  ],
+  "targetedTests": 23,
+  "ci": {
+    "119": 38048167184,
+    "120": 38049578787,
+    "121": 38052707280
+  },
+  "finalSource": "cb6fd6133a3ff81199e1827c9ca85d8d8352c178",
+  "runtimeAPI": {
+    "revision": 21,
+    "imageAsset": "d075426673fad825fcd70df5a95d1c348748ce166fb84eda339e2447e5c00a59",
+    "imageDigest": "sha256:16ba48156dc8764035ec491682f72d715ecd3405840ed07fe738cad91f9e8717",
+    "health": "HEALTHY",
+    "httpLiveness": 200,
+    "httpReadiness": 200
+  },
+  "recoveryImage": {
+    "asset": "9f8e0bf48bd7961afa5aab35557fbc605aa210049689c9afb5f27471c6a538b9",
+    "digest": "sha256:cf539ab4247dc6fb37a64da261e34f5b761c7f15810557b91e6dece0d0fd2fd5"
+  },
+  "schema": 94,
+  "actualStripeEvidence": "Three real TEST subscriptions, read-only official SDK, reconstructed historical baselines and actual local pg_dump/restore:2old grants each become0;9fault injections rejected;idempotent;no forged signed webhook",
+  "actualCloudEvidence": "Real private production RDS snapshot/clone;full c6125d988 reconciliation under verified source quiescence reads1current signed Apple Sandbox state;legitimate Family retained;3planners2matters2active grants. Final cb6fd6133 adds a stricter read-only coverage precondition; actual cloud positive/missing-inventory/wrong-generation checks passed without a second pause.",
+  "permissionEvidence": "Original database connection blocked;KMS GenerateDataKey and journal PutItem denied. Existing exact Stripe secret read succeeds;provider permissions unchanged.",
+  "cleanup": {
+    "at": "2026-10-10T12:54:32.848904+00:00",
+    "onlyOwnedRunResourcesRemoved": true,
+    "cloneAbsent": true,
+    "temporarySnapshotAbsent": true,
+    "sourceAvailable": true,
+    "sourcePrivateEncryptedAndProtected": true,
+    "sourceBackupRetentionDays": 7,
+    "customerTrafficChanged": false
+  },
+  "limits": [
+    "No Live test payment or new provider transaction",
+    "No new native installation, client Restore tap or TestFlight",
+    "No clone promotion or ordinary customer activation",
+    "Specific Owner-deferred account deletion and external invites retained",
+    "Post-snapshot missing identities/catalogs and full historical accounting still require explicit recovery; no automatic lossless failover claim"
+  ],
+  "rollBackFloor": {
+    "recoveryMaintenance": "cb6fd6133a3ff81199e1827c9ca85d8d8352c178 or a reviewed later compatible build",
+    "schema": 94,
+    "trafficSwitch": "Never point the source API at an unverified old clone",
+    "runtimeMinimumRevision": "f7592a3f79394c0c17cf67ffc896b71225b7c06b or a reviewed later compatible build"
+  },
+  "next": "Prepare remaining item2 native/Apple acceptance as a consolidated plan; keep current subscription and defer incremental TestFlight",
+  "archive": {
+    "number": 30,
+    "paths": 653,
+    "objects": 376,
+    "bytes": 595640,
+    "localVerified": true,
+    "freshRemoteVerified": false
+  }
+}

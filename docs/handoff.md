@@ -1,33 +1,32 @@
 # Rillora 当前交接
 
-Status: RELEASE ITEM3 IN PROGRESS / ISOLATED RECOVERY AND FINAL FINANCIAL ACCEPTANCE
+Status: RELEASE ITEM3 COMPLETE / SOURCE HEALTHY / OWNED RECOVERY RESOURCES REMOVED
 Last updated: 2026-10-10 (Asia/Hong_Kong)
 
-## 当前任务
+## 当前任务结果
 
-Owner现明确“把3做了”：完成最终安全与恢复后计费验收。当前合同：[第3项执行](recovery-financial-acceptance-20261010.md)；已完成的[付款与双语专项](payment-recheck-20261009.md)沿用。价格、真实数据、FanPass、暂停零碎TestFlight及保留独立删除账号继续有效。
+Owner明确“把3做了”。[恢复/权限验收](recovery-financial-acceptance-20261010.md)现已完成当前范围，补齐真实provider状态与恢复旧数据后的权益核验。价格、真实数据、FanPass、免费Auth0、Stripe Tax暂后及暂停零碎TestFlight保持。
 
 ## 已完成
 
-- 手机development1.0(13)，源码eaf68c0a7：14签名/配置检查、原位安装、独立版本读回和启动通过；Owner确认已订阅、港币888、没有夹杂英文。没有新Apple购买/退款/Restore点击，既有Sandbox签名HKD888/HKG、续订及客户端同步记录另有读回。
-- 两库schema94完整校验；最终production API21/Preview43均1/1健康，运行f7592a3相同不可变镜像。三套Web203公开文件匹配，Cloudflare法律18资源/50HTTP/14实际双语页面通过；新法律版本、两Auth0同意表单/Actions与客户端一致。Owner已当场确认新条款并完成原Google Preview登录。
-- 退款失败后未恢复权益、pending累计金额被误当成功退款、已结束历史退款永久挡新购均已修复。共享证据读取器覆盖普通回调及备份恢复，70相关回归通过；源码CI112成功，归档提交CI113三任务/447API/55infra也已通过。各早期完整检查有独立源码/时间，未当作当次重跑。
-- 新实际Stripe TEST覆盖取消/拒付/年付、中文Portal取消及英文恢复、部分退款、全额pending保持Family、成功后Free、先成功后failed恢复Family、重复回调duplicate。独立只读DB核对三笔USD88.99各一付款尝试、34验签事件applied/无错误、三个测试订阅均不能续订，原事项1条。精确provider对象在.local-secrets受保护保存。
-- TEST/Live产品仅显示名改Rillora并清空固定英文说明；价格、税务代码、账单名称不变。正式收费/普通客户仍关闭，没有真实卡Live测试。原三审核身份和原Sandbox资格只限期至2026-10-11T14:00Z。
+- 四处恢复缺口已修：隔离任务缺Stripe读取配置；旧备份检查点错误跳过最新provider；强制RLS下先查计划却缺主人上下文；缺失独立计费inventory仍返回成功。源代码580f7e1/c6125d9/cb6fd61，CI119–121均成功，最终23项聚焦检查通过。
+- 三笔既有真实Stripe TEST订单，只读官方SDK核对；以先前已付Checkout构造隔离历史基线并实际pg_dump/pg_restore。每笔2条旧有效权益正确归零，合成事项不变，9个故障注入拒绝；幂等、API读取不伪造签名webhook通过。没有新增支付、退款或取消操作。
+- 真实生产RDS快照/私有克隆完成c6125d9云端重放：先验证源服务静止，读取1个当前已验签Apple Sandbox状态，合法Family保留。3账号/2事项/2有效权益；最后cb6fd61只读coverage正/负校验另在同一克隆通过，没有第二次停服。
+- 恢复角色对源库连接、KMS生成密钥及journal写入均实际被拒绝；只增加指定现有Stripe配置的AWS读取，未新建/扩权Stripe密钥。原源模板/API21/镜像f759恢复一致，1/1 HEALTHY，两个实际健康端点200。
+- 本轮克隆及临时手动快照均独立读回absent；源库available/private/encrypted/deletion-protected、7天备份保持。维护/恢复最终镜像源cb6fd61，digest cf539ab4247dc6fb37a64da261e34f5b761c7f15810557b91e6dece0d0fd2fd5；schema94。普通API不可退回f759之前，恢复任务不可退回cb6fd61之前。
+- 此前手机development13/eaf68c0已原位安装、14签名/配置检查与Owner“已订阅/港币888/无混排”确认；三Web203文件、法律14双语页面、两同意表单/Actions、API21/Preview43及34Stripe验签回调证据沿用。没有新原生安装或TestFlight。
 
-## 证据边界与阻塞
+## 边界与仍待发布的工作
 
-Auth0桌面旧登录外壳仍有3句英文；模板API实际HTTP402，官方工单页明确没有创建权限。中文widget与两个同意表单已生效，不能把外壳也写成完成。免费社区技术提问已准备，不含租户/个人资料，已请求Owner明确外发授权；未发帖、未购买套餐或切换Classic。
+完整云端命令是c6125d9；最终cb6fd61的附加覆盖前置条件另有真实云端只读验证。Stripe用TEST，Apple用既有Sandbox；没有Live测试交易、客户端新Restore点击、恢复库推广或普通客户开放。缺失身份/目录及完整历史账务仍需明确恢复，不承诺自动无损切换。
 
-Owner随后重申Auth0免费优先并询问Stripe失败邮件。Gmail最新信确为本轮官方5126 TEST退款失败用例，精确编号/TEST状态已与Stripe只读核对，失败事件未送达数0；更早一封是已修复的旧TEST回调告警。本次没有新付款/退款/部署或提醒设置更改，也不把提问当作付费或外发批准。
+[发布清单](release-readiness.md)第3项已完成，第1/2/4/5项独立。后续商店最终包和客户配置的新变更需随各自步骤验收。Owner要求保留的特定删除账号及外部邀请暂缓保持。
 
-[发布登记](release-readiness.md)与机器登记已纠正手机/版本/期限；税务与首发市场事实、普通客户身份切换、恢复后的最终provider对账、余下真机路径及统一商店候选/App Review仍各自独立。独立删除按Owner保留，外部两个邀请保持暂缓。
-
-Owner最新要求Stripe Tax先放着：已确认正式账户收款/提现可用，将自动计税作为暂后可选服务，不作为支付账户开通或其他发布工作的前置。当前应用not_configured策略/开售开关仍未改变，实际税务义务不推定豁免。见[Live最新边界](live-configuration-20261009.md)。
+Stripe账户收款/提现已启用，Stripe Tax自动计税暂后，不能捏造免税评估；Rillora正式结账仍未打开。Auth0桌面旧外壳3句英文的免费处理仍在外部能力边界，社区草稿未获外发授权。原三审核身份/Sandbox资格期限保持2026-10-11T14:00Z，不把额度/期限变化当登录失效。
 
 ## 唯一下一步
 
-执行已批准第3项：先发布已复现并修正的恢复任务Stripe配置缺口，随后完成隔离恢复库的当前provider金融对账及最终权限/回滚核验；临时快照/恢复实例按唯一run续接，不另开重复资源。保持源数据及平台交易不变，只有目标就绪后才短暂冻结源API，验证后恢复原服务。其余发布项和Auth0社区外发不在这一步擅自执行。
+准备第2项剩余原生/Apple验收的集中操作清单，复用手机13和既有订阅，不要求重复已成功的购买；先完成无需Owner操作的核对，再将确需本人手机交互的具体一步交回。继续暂停零碎TestFlight，不能因为本轮通过就开放普通客户或提交未核对的商店包。
 
-本轮2,658路径/1,130对象已进入archive29，并在d15cbd59c完成GitHub独立新下载和解密核验。原件及脱敏交接由[追加保存包](../collaboration/verification/payment-language-20261010/README.md)登记，Git原件远端验证以该包最终回执为准。
-[此前进度](handoff-history-20261010-before-payment-closeout.md)及[更早交接](handoff-history-20261009-before-payment-recheck.md)均为HISTORICAL。
+本轮QA为output/qa/rillora-recovery-financial-20261010；[新增保存包](../collaboration/verification/recovery-financial-20261010/README.md)登记archive30及后续远端读回。凭据/原数据库与provider对象仍仅在受保护目录。
+[此前进行中交接](handoff-history-20261010-before-recovery-closeout.md)为HISTORICAL；归档和旧验证不重做。

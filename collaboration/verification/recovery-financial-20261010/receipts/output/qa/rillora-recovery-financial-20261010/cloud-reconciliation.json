@@ -1,0 +1,36 @@
+{
+  "startedAt": "2026-10-10T12:05:21.482047+00:00",
+  "sourcePaused": true,
+  "sourceResumed": true,
+  "customerTrafficEnabled": false,
+  "clonePromoted": false,
+  "passed": true,
+  "originalTaskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRuntimeApiTask93405B31:21",
+  "freezeRequestedAt": "2026-10-10T12:05:27.203414+00:00",
+  "sourceFreezeVerifiedAt": "2026-10-10T12:07:18.890045+00:00",
+  "recoveryTask": "arn:aws:ecs:eu-central-1:133857166372:task/RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm/07a2857f563a44e6bd9a6dfd47fc3951",
+  "taskExitCode": 0,
+  "imageDigest": "sha256:c3f3237bfd5e24130ceadef30604ecb2a8635eb9c2ef83338189f56dccbc35a1",
+  "result": {
+    "privacy": {
+      "applied": 0,
+      "sessionsInvalidated": 0
+    },
+    "commerce": {
+      "reconciledOwners": 1,
+      "providerReads": 1,
+      "customerTrafficEnabled": false
+    },
+    "final": {
+      "applied": 0,
+      "sessionsInvalidated": 0
+    },
+    "currentJournalStableAtCheck": true,
+    "customerTrafficEnabled": false,
+    "boundary": "Current access reconciliation only; missing identities/catalogs and full historical accounting need explicit recovery."
+  },
+  "reconciliationCompletedAt": "2026-10-10T12:08:21.398857+00:00",
+  "resumeRequestedAt": "2026-10-10T12:08:23.505913+00:00",
+  "sourceResumeVerifiedAt": "2026-10-10T12:10:53.855255+00:00",
+  "sourceTemplateRestoredExactly": true
+}

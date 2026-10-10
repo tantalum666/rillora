@@ -1,0 +1,32 @@
+{
+  "readOnly": true,
+  "verifiedTLS": true,
+  "generationMatched": true,
+  "existingStripeCredentialRead": true,
+  "stripeLiveAccountMatched": true,
+  "stripeChargesEnabled": true,
+  "counts": {
+    "planners": 3,
+    "matters": 2,
+    "sessions": 0
+  },
+  "journalEvents": 14,
+  "financialEntries": [
+    {
+      "ownerExists": true,
+      "ownerStatus": "active",
+      "version": 1,
+      "manualAccess": false,
+      "subscriptions": [
+        {
+          "provider": "storekit",
+          "environment": "sandbox",
+          "acquisition": "purchased"
+        }
+      ],
+      "copiedCheckpointCurrent": true
+    }
+  ],
+  "sourceServicePaused": false,
+  "customerTrafficEnabled": false
+}

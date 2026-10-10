@@ -183,7 +183,7 @@
     },
     {
       "id": "backup-retention",
-      "status": "in_progress",
+      "status": "verified",
       "required": true,
       "title": "Restore and deletion/retention operations",
       "evidence": [
@@ -203,13 +203,16 @@
         "docs/live-configuration-20261009.md",
         "docs/release-readiness.md",
         "docs/payment-recheck-20261009.md",
-        "output/qa/rillora-payment-recheck-20261009/final-payment-verification.json"
+        "output/qa/rillora-payment-recheck-20261009/final-payment-verification.json",
+        "docs/recovery-financial-acceptance-20261010.md",
+        "output/qa/rillora-recovery-financial-20261010/acceptance-summary.json",
+        "output/qa/rillora-recovery-financial-20261010/cleanup-verification.json"
       ],
-      "next": "Prior schema93 RDS/KMS quarantine restore/deletion-retention evidence retained; runtime now schema94. Shared refund proof and recovery regression fixes pass focused tests including failed-refund reversal/pending accounting. Actual new cloud TEST state is verified; this does not itself constitute a new quarantined restore using those final provider states. Keep final recovery reconciliation gate explicit; no repeat unchanged base restore."
+      "next": "Current scoped restore/retention acceptance completed: real production snapshot and isolated clone, current signed Apple Sandbox reconciliation, real Stripe TEST-backed local restores, fresh-proof/coverage/forced-RLS guards and original-network/KMS/journal denial checks. Source service resumed; exact temporary clone/snapshot absent; source encrypted/private/protected with7day backups. Missing post-snapshot identity/catalog/full historical accounting still requires explicit recovery; no automatic promotion or lossless failover promise. Owner-retained account deletion is a separate deferred identity acceptance."
     },
     {
       "id": "release-security",
-      "status": "in_progress",
+      "status": "verified",
       "required": true,
       "title": "Release artifact and security acceptance",
       "evidence": [
@@ -237,9 +240,12 @@
         "docs/web-rollout-20261009.md",
         "docs/live-configuration-20261009.md",
         "docs/payment-recheck-20261009.md",
-        "output/qa/rillora-payment-recheck-20261009/final-payment-verification.json"
+        "output/qa/rillora-payment-recheck-20261009/final-payment-verification.json",
+        "docs/recovery-financial-acceptance-20261010.md",
+        "output/qa/rillora-recovery-financial-20261010/acceptance-summary.json",
+        "output/qa/rillora-recovery-financial-20261010/cleanup-verification.json"
       ],
-      "next": "Final deployed API f7592a3 CI112 success and70focused regressions; preceding exact bilingual eaf68c0a7 CI111/441API/55infra,189Web, legal checks and native53English/12Chinese retained. Development13 passed14signing/config checks and actual install. Final customer cutover and store artifact permissions/negative/rollback gates remain; no unchanged full-suite rerun."
+      "next": "Current release item3 scope verified: normal API f7592a3/API21 unchanged and healthy, development13 signing evidence retained, recovery cb6fd6133/CI121 and23targeted checks, actual constrained-role/cloud isolation and scoped provider recovery proof complete. These are the minimum compatible rollback floors with schema94. Future final App Store artifact signing is checked under apple-submission; future customer/identity opening under production-runtime/identity. Revalidate affected boundaries after new changes; do not treat this as already approving unbuilt future artifacts."
     },
     {
       "id": "apple-submission",

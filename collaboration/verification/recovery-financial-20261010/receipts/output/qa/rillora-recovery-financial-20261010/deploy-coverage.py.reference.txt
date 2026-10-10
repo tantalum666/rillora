@@ -1,0 +1,17 @@
+"""Deploy the reviewed recovery-only assembly, then verify exact CFN readback."""
+from pathlib import Path
+import datetime,json,subprocess,os
+ROOT=Path.cwd();Q=ROOT/'output/qa/rillora-recovery-financial-20261010';P=ROOT/'.local-secrets/recovery-financial-20261010'
+ci=json.loads((Q/'coverage-ci.json').read_text());assert ci['source'].startswith('cb6fd6133') and ci['conclusion']=='success'
+receipt=Q/'coverage-deployed.json';assert not receipt.exists()
+assembly=Q/'coverage-assembly';new=json.loads((assembly/'RilloraProduction.template.json').read_text());old=json.loads((P/'coverage-before.json').read_text())
+def cloud(op):
+ return json.loads(subprocess.check_output(['aws','cloudformation',op,'--stack-name','RilloraProduction','--profile','rillora-cdk-deploy','--region','eu-central-1','--output','json']))
+actual=cloud('get-template')['TemplateBody'];actual=json.loads(actual) if isinstance(actual,str) else actual
+assert actual==old and cloud('describe-stacks')['Stacks'][0]['StackStatus']=='UPDATE_COMPLETE'
+with (Q/'coverage-deploy.log').open('w') as log:
+ r=subprocess.run(['npx','cdk','deploy','RilloraProduction','--app',str(assembly),'--profile','rillora-cdk-session','--require-approval','never','--previous-parameters','true','--outputs-file',str(P/'coverage-deploy-outputs.json')],cwd=ROOT/'infra/aws',env=dict(os.environ,CDK_DOCKER=str(ROOT/'output/qa/rillora-web-rollout-20261009/cdk-docker-buildx.sh')),stdout=log,stderr=subprocess.STDOUT)
+status=cloud('describe-stacks')['Stacks'][0]['StackStatus'];actual=cloud('get-template')['TemplateBody'];actual=json.loads(actual) if isinstance(actual,str) else actual
+assert status=='UPDATE_COMPLETE' and actual==new
+d=json.loads((Q/'coverage-reviewed-delta.json').read_text());d.update(deployed=True,completedAt=datetime.datetime.now(datetime.timezone.utc).isoformat(),actualTemplateMatches=True,stackStatus=status,localExit=r.returncode)
+receipt.write_text(json.dumps(d,indent=2)+'\n');print(json.dumps({'deployed':True,'resourcesChanged':len(d['changedResources']),'runtimeUnchanged':True}))
