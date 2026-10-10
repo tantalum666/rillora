@@ -12,6 +12,8 @@ October10的[付款与完整双语交付](payment-recheck-20261009.md)更新了�
 
 Auth0两种同意表单已上线，旧桌面外壳3句英文仍因HTTP402未改；官方工单权限不足，社区问题草稿待明确外发授权。这是当前完整双语剩余项。
 
+October10再次状态复核：只读Stripe Live Tax settings仍pending，missing_fields仅head_office；不等于商户未开户，也不推导必须预先取得所有税区登记。当前原生13实物包的本地发布形状/配置检查无新阻塞，但不是App Store分发产物或审核通过证明。Auth0旧外壳作为免费优先的并行收尾，不作为其他发布准备的唯一前置依赖；Agent下一执行优先收束无需Owner操作的恢复后计费对账。已完成结果沿用原时间，不重做交易、部署、安装或本人认证。详见[本次核对](../collaboration/verification/release-status-20261010/verification.json)。
+
 <a id="october1-remaining-work-inventory"></a>
 
 | # | 真正剩余的工作 | 完成判据与边界 |
@@ -38,7 +40,7 @@ October9退款问题后的纠正：上一条把“受控真钱付款/退款”�
 
 ## HISTORICAL checkpoints — all following observations retain their original dates
 
-以下完整保留过去工作及当时未完成项；上方October9清单与当前handoff取代其中被后续结果解决的待办。
+以下完整保留过去工作及当时未完成项；上方October10清单与当前handoff取代其中被后续结果解决的待办。
 
 ## October8 current native delivery
 

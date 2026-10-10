@@ -25,7 +25,7 @@ Owner随后重申Auth0免费优先并询问Stripe失败邮件。Gmail最新信�
 
 ## 唯一下一步
 
-沿用Owner再次明确的免费优先，处理Auth0旧英文外壳的受支持免费恢复路径；公开社区草稿仍待明确外发授权，不擅自发帖或升级套餐。在此之外沿用本轮手机/双语部署/付款已通过证据，下一发布工作从release-readiness真实剩余项接续，不重复安装、迁移、付款或登录。
+先完成[发布清单第3项](release-readiness.md#october1-remaining-work-inventory)中无需Owner操作的最终恢复后计费对账，沿用已有基础恢复/付款证据，重点证明恢复旧数据不会复活已退款或到期权益。此排序是Agent的执行选择；Auth0旧英文外壳保持免费优先、并行查受支持路径，社区草稿仍未获外发授权，不作为其他准备的唯一前置依赖。不重复已验证安装、迁移、付款或本人认证，也不因此恢复零碎TestFlight。
 
 本轮2,658路径/1,130对象已进入archive29，并在d15cbd59c完成GitHub独立新下载和解密核验。原件及脱敏交接由[追加保存包](../collaboration/verification/payment-language-20261010/README.md)登记，Git原件远端验证以该包最终回执为准。
 [此前进度](handoff-history-20261010-before-payment-closeout.md)及[更早交接](handoff-history-20261009-before-payment-recheck.md)均为HISTORICAL。
