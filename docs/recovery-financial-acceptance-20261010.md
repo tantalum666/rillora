@@ -18,6 +18,12 @@ Owner明确“把3做了”，对应发布清单的最终产物、权限和恢�
 
 修复只让既有隔离恢复任务读取指定的现有Rillora billing secret（GetSecretValue/DescribeSecret），不新建Stripe密钥、扩Stripe权限、开启购买或扩大网络。恢复命令只执行provider读取；原有数据库隔离、KMS decrypt-only及journal read-only约束保持。代码/本地验证不等于已部署，实际变更集与运行读取继续独立核验。
 
+此配置修复580f7e1b3/CI119已通过并部署，实际仅2资源改变、79资源保持，正式API/镜像/网络不变。隔离库的只读预检查已确认TLS、generation及原Stripe凭据读取；3账号/2事项、14条journal，其中1条Apple Sandbox订阅标记与恢复库检查点完全相同。
+
+这进一步复现了旧对账标记导致跳过provider重查的缺陷；另一个真实受限角色试验发现先JOIN plans却未建立owner上下文，强制RLS会隐藏计划。三个新增红例失败后修复：先在隔离管理员范围解析主人，再设置事务级owner上下文；只复用本次冻结后、五分钟内且未超前、与当前订阅一致的专用恢复核验记录，普通备份检查点不算核验。相关22项通过，包含真实受限非superuser/non-bypass-RLS账号及过期/未来记录拒绝；云端运行新恢复代码仍待最终镜像更新。
+
+三笔原Stripe TEST订单已用现有受限测试密钥重新只读核对，并完成真实本地pg_dump/pg_restore：以先前已付Checkout重建隔离基线，恢复出的每笔2条有效权益，在读取当前真实provider状态后都变为0；结果分别为已结束/已退款/已退款。每笔错账户、过期、provider不可用共3个故障注入拒绝，重复对账不新增读取/权益，原合成事项不变，API读取明确记录signature_verified=false。此为真实provider支撑的本地数据库恢复，不冒称原始云端Stripe库快照，未制造新交易或修改Stripe状态。
+
 ## 操作与保留边界
 
 AWS旧CLI会话实际过期后，通过原浏览器会话恢复成功，没有要求Owner重复认证。已经按既有guarded driver登记唯一恢复run并创建标记的临时快照；只向对应rillora-recovery目标恢复，不覆盖原库。

@@ -1,5 +1,6 @@
 import { assertDedicatedTestDatabase, dedicatedTestDatabaseUrl } from './dedicated-test-database.js';
-import {randomUUID} from 'node:crypto';
+import {randomBytes,randomUUID} from 'node:crypto';
+import pg from 'pg';
 import {beforeAll,beforeEach,afterAll,describe,it,expect,vi} from 'vitest';
 import {loadConfig} from '../src/config.js';
 import {createPool,withCommercePlannerDatabase} from '../src/db.js';
@@ -80,6 +81,44 @@ describe.sequential('Current provider reconciliation in an isolated restored dat
   }
   await expect(reconcileRecoveryCommerce(pool,[{...event,facts:{}}],generation,async()=>observation())).rejects.toThrow();
   await expect(reconcileRecoveryCommerce(pool,[{...event,facts:{...event.facts,manualAccess:true}}],generation,async()=>observation())).rejects.toThrow();
+ });
+ it('does not treat a checkpoint copied from the source backup as current provider verification',async()=>{
+  await pool.query(`insert into app.recovery_controls(entity_key,kind,entity_public_id,revision,published)
+   values($1,'unreconciled_access',$2,$3,true)`,[event.key,event.id,event.revision]);
+  const reader=vi.fn(async()=>observation('refunded'));
+  expect(await reconcileRecoveryCommerce(pool,[event],generation,reader)).toMatchObject({reconciledOwners:1,providerReads:1});
+  expect(reader).toHaveBeenCalledOnce();
+  expect((await pool.query('select count(*)::int n from app.commerce_entitlement_grants where revoked_at is null')).rows[0].n).toBe(0);
+ });
+ it.each(['-6 minutes','6 minutes'])('does not reuse out-of-window recovery observations when a current provider read fails: %s',async offset=>{
+  await reconcileRecoveryCommerce(pool,[event],generation,async()=>observation('refunded'));
+  const c=await pool.connect();try{
+   await c.query('begin');
+   await c.query("select set_config('app.recovery_replay','true',true)");
+   const old=(await c.query('update app.commerce_reconciliation_runs set provider_observed_at=now()+$1::interval returning provider_observed_at',[offset])).rows[0].provider_observed_at;
+   await c.query('update app.commerce_subscriptions set provider_observed_at=$1',[old]);
+   await c.query('commit');
+  }finally{c.release();}
+  const reader=vi.fn(async()=>{throw Error('provider unavailable');});
+  await expect(reconcileRecoveryCommerce(pool,[event],generation,reader)).rejects.toThrow('provider unavailable');
+  expect(reader).toHaveBeenCalledOnce();
+ });
+ it('reconciles under a non-superuser recovery login that obeys forced owner policies',async()=>{
+  const role='continuity_commerce_recovery_test',password=randomBytes(32).toString('hex');
+  const quoted=(await pool.query('select quote_ident($1) as name,quote_literal($2) as password',[role,password])).rows[0];
+  if(!(await pool.query('select 1 from pg_roles where rolname=$1',[role])).rowCount)
+   await pool.query(`create role ${quoted.name} login nosuperuser inherit nobypassrls password ${quoted.password}`);
+  else await pool.query(`alter role ${quoted.name} password ${quoted.password}`);
+  await pool.query(`grant continuity_recovery_service,continuity_commerce,continuity_content_service,continuity_app,continuity_auth to ${quoted.name}`);
+  const connection=new URL(url);connection.username=role;connection.password=password;
+  const recovery=new pg.Pool({connectionString:connection.href});
+  try{
+   expect((await recovery.query('select rolsuper,rolbypassrls from pg_roles where rolname=session_user')).rows[0])
+    .toEqual({rolsuper:false,rolbypassrls:false});
+   expect(await reconcileRecoveryCommerce(recovery,[event],generation,async()=>observation('refunded')))
+    .toMatchObject({reconciledOwners:1,providerReads:1});
+   expect((await pool.query('select count(*)::int n from app.commerce_entitlement_grants where revoked_at is null')).rows[0].n).toBe(0);
+  }finally{await recovery.end();}
  });
  it.each([false,true])('clears a restored refund override only with verified refund reversal: %s',async resolved=>{
   await withCommercePlannerDatabase(pool,owner,async c=>{
