@@ -28,5 +28,5 @@ Stripe账户收款/提现已启用，Stripe Tax自动计税暂后，不能捏造
 
 准备第2项剩余原生/Apple验收的集中操作清单，复用手机13和既有订阅，不要求重复已成功的购买；先完成无需Owner操作的核对，再将确需本人手机交互的具体一步交回。继续暂停零碎TestFlight，不能因为本轮通过就开放普通客户或提交未核对的商店包。
 
-本轮QA为output/qa/rillora-recovery-financial-20261010；[新增保存包](../collaboration/verification/recovery-financial-20261010/README.md)登记archive30及后续远端读回。凭据/原数据库与provider对象仍仅在受保护目录。
+本轮QA为output/qa/rillora-recovery-financial-20261010；[新增保存包](../collaboration/verification/recovery-financial-20261010/README.md)登记archive30：653路径/376对象、595,640加密字节，在99c2537f4完成GitHub独立新下载与解密核验。凭据/原数据库与provider对象仍仅在受保护目录。
 [此前进行中交接](handoff-history-20261010-before-recovery-closeout.md)为HISTORICAL；归档和旧验证不重做。

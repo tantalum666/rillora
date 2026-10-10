@@ -1,6 +1,6 @@
 # Release item3 — financial recovery and permission acceptance
 
-Status: SCOPED ACCEPTANCE COMPLETE / ARCHIVE30 LOCALLY VERIFIED
+Status: SCOPED ACCEPTANCE COMPLETE / ARCHIVE30 LOCALLY AND REMOTELY VERIFIED
 Updated: 2026-10-10 Asia/Hong_Kong
 
 Four demonstrated recovery defects were fixed: missing exact Stripe configuration access, source checkpoints skipping current provider reads, forced-RLS owner context, and absent independent billing inventory returning success. Sources580f7e1/c6125d9/cb6fd61 and CI119–121 passed; final23targeted checks passed.
@@ -14,3 +14,5 @@ The exact owned clone and temporary snapshot are absent; original production rem
 [Current contract](../../../docs/recovery-financial-acceptance-20261010.md), [handoff](../../../docs/handoff.md). Final store artifacts and customer/identity opening stay under their own gates. Full historical accounting or identities/catalog absent from a snapshot require explicit recovery, not automatic lossless failover. Private DB backups/provider bodies/auth credentials are excluded; eligible QA/helpers/frozen maintenance sources will be appended in archive30 without resealing1–29. Final publication/remote receipts follow capture.
 
 Archive30 contains653eligible paths/376objects in595,640encrypted bytes; local decryption and catalog checks passed. [Capture/exclusions](snapshot.json), [catalog](catalog.json), [local cryptographic verification](archive-verification.json), [current scoped outcome](current-state.json), [publication validation](validation.json). Seven non-secret source-hash/CDK-object-key heuristic matches were clarified only in readable mirrors; original bytes and scanner rules remain unchanged. Remote proof follows capture.
+
+Independent GitHub readback at99c2537f4ba59aae112127ddf03260dd01a5c932 freshly downloaded archive30only and decrypted/verified all376objects/653paths against remote metadata. [Remote receipt](remote-readback.json). Earlier archives were not downloaded again. The final current-state/remote receipt changes are post-capture metadata, not new deployment or another restore.

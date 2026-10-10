@@ -436,3 +436,5 @@ Archive29 was independently downloaded from GitHub at d15cbd59cf7e74f611f6b4ea42
 ## October10 release item3 recovery addendum
 
 [Archive30](../collaboration/verification/recovery-financial-20261010/README.md) preserves653eligible new paths/376unique raw objects in595,640encrypted bytes. It includes failed/passed recovery checks, immutable maintenance source candidates, actual cloud task/template/deployment/reconciliation/isolation/cleanup receipts and bounded operational helpers. Local decryption/catalog verification passed. Real database dumps, credential/auth material and raw provider objects remain protected and excluded; original1–29archives are unchanged. Final publication and independent remote verification receipts follow frozen capture without resealing.
+
+Archive30was freshly downloaded and decrypted at remote99c2537f4ba59aae112127ddf03260dd01a5c932; all376objects/653paths matched GitHub metadata. See its remote-readback receipt. Final metadata was appended after capture without resealing.
