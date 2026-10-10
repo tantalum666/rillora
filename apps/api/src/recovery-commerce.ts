@@ -9,6 +9,28 @@ import {recordSubscriptionObservation,persistReconciliation} from './commerce-su
 import {resolveAppleReceiptPrice,persistAppleReceipt} from './apple-production-receipts.js';
 import {appleProductionContext,appleReviewContext} from './apple-execution-context.js';
 
+/** Missing external markers are not evidence that restored billing is safe.
+ * This read-only check can also be run before quiescing the source service. */
+export async function assertRecoveryCommerceCoverage(pool:DatabasePool,controls:RecoveryControl[],generation:string){
+ if(process.env.NODE_ENV!=='test'){
+  const ssl=pool.options.ssl;validateRecoveryHost(pool.options.host??'',typeof ssl==='object'&&ssl.rejectUnauthorized===true);
+ }
+ const covered=new Set(controls.map(parseRecoveryControl).filter(e=>e.kind==='unreconciled_access').map(e=>e.id));
+ const client=await pool.connect();
+ try{
+  await client.query('begin read only');
+  if(!(await client.query("select pg_has_role(session_user,'continuity_recovery_service','member') as allowed")).rows[0]?.allowed)throw Error('Recovery administrator is required');
+  if((await client.query('select generation from app.recovery_policy where singleton')).rows[0]?.generation!==generation)throw Error('Recovery generation mismatch');
+  const owners=(await client.query(`select p.public_id from app.planners p where p.status='active' and (
+   exists(select 1 from app.commerce_subscriptions s where s.planner_id=p.id)
+   or exists(select 1 from app.commerce_entitlement_grants g where g.planner_id=p.id and g.revoked_at is null
+    and (g.expires_at is null or g.expires_at>statement_timestamp()))) limit 101`)).rows;
+  if(owners.length>100)throw Error('Commerce recovery needs bounded offline batches');
+  if(owners.some(owner=>!covered.has(owner.public_id)))throw Error('Restored billing owner is missing from the independent recovery inventory');
+  await client.query('commit');
+ }catch(error){await client.query('rollback');throw error;}finally{client.release();}
+}
+
 /** Only a quarantined administrator may refresh current provider facts. The
  * current journal inventory is mandatory; old empty markers never auto-clear. */
 export async function reconcileRecoveryCommerce(pool:DatabasePool,controls:RecoveryControl[],generation:string,reader:RecoveryProviderReader){
@@ -20,6 +42,7 @@ export async function reconcileRecoveryCommerce(pool:DatabasePool,controls:Recov
  const observationFloor=new Date(Math.max(now-5*60_000,Number.isFinite(frozen)?frozen:0)).toISOString();
  const events=controls.map(parseRecoveryControl).filter(e=>e.kind==='unreconciled_access');
  if(events.length>100)throw Error('Commerce recovery needs bounded offline batches');
+ await assertRecoveryCommerceCoverage(pool,events,generation);
  let reconciled=0,providerReads=0;
  for(const event of events){
   const client=await pool.connect();

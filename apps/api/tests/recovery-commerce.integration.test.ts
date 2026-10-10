@@ -90,6 +90,12 @@ describe.sequential('Current provider reconciliation in an isolated restored dat
   expect(reader).toHaveBeenCalledOnce();
   expect((await pool.query('select count(*)::int n from app.commerce_entitlement_grants where revoked_at is null')).rows[0].n).toBe(0);
  });
+ it('rejects missing independent inventory instead of silently skipping restored paid access',async()=>{
+  const reader=vi.fn(async()=>observation('refunded'));
+  await expect(reconcileRecoveryCommerce(pool,[],generation,reader)).rejects.toThrow('inventory');
+  expect(reader).not.toHaveBeenCalled();
+  expect((await pool.query('select count(*)::int n from app.commerce_entitlement_grants where revoked_at is null')).rows[0].n).toBe(2);
+ });
  it.each(['-6 minutes','6 minutes'])('does not reuse out-of-window recovery observations when a current provider read fails: %s',async offset=>{
   await reconcileRecoveryCommerce(pool,[event],generation,async()=>observation('refunded'));
   const c=await pool.connect();try{
