@@ -19,11 +19,13 @@ Owner要求集中直装并严查付款退款，中文/英文各自完整。当�
 
 Auth0桌面旧登录外壳仍有3句英文；模板API实际HTTP402，官方工单页明确没有创建权限。中文widget与两个同意表单已生效，不能把外壳也写成完成。免费社区技术提问已准备，不含租户/个人资料，已请求Owner明确外发授权；未发帖、未购买套餐或切换Classic。
 
+Owner随后重申Auth0免费优先并询问Stripe失败邮件。Gmail最新信确为本轮官方5126 TEST退款失败用例，精确编号/TEST状态已与Stripe只读核对，失败事件未送达数0；更早一封是已修复的旧TEST回调告警。本次没有新付款/退款/部署或提醒设置更改，也不把提问当作付费或外发批准。
+
 [发布登记](release-readiness.md)与机器登记已纠正手机/版本/期限；税务与首发市场事实、普通客户身份切换、恢复后的最终provider对账、余下真机路径及统一商店候选/App Review仍各自独立。独立删除按Owner保留，外部两个邀请保持暂缓。
 
 ## 唯一下一步
 
-按Owner对已准备Auth0社区草稿的回复，处理旧英文外壳的受支持免费恢复路径；没有回复不擅自发帖或升级套餐。在此之外沿用本轮手机/双语部署/付款已通过证据，下一发布工作从release-readiness真实剩余项接续，不重复安装、迁移、付款或登录。
+沿用Owner再次明确的免费优先，处理Auth0旧英文外壳的受支持免费恢复路径；公开社区草稿仍待明确外发授权，不擅自发帖或升级套餐。在此之外沿用本轮手机/双语部署/付款已通过证据，下一发布工作从release-readiness真实剩余项接续，不重复安装、迁移、付款或登录。
 
 本轮2,658路径/1,130对象已进入archive29，并在d15cbd59c完成GitHub独立新下载和解密核验。原件及脱敏交接由[追加保存包](../collaboration/verification/payment-language-20261010/README.md)登记，Git原件远端验证以该包最终回执为准。
 [此前进度](handoff-history-20261010-before-payment-closeout.md)及[更早交接](handoff-history-20261009-before-payment-recheck.md)均为HISTORICAL。
