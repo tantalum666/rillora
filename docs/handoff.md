@@ -1,11 +1,11 @@
 # Rillora 当前交接
 
-Status: PHONE13 OWNER ACCEPTED / FOUR WEB SURFACES AND API21-43 DEPLOYED / STRIPE TEST PAYMENT REFUND VERIFIED / AUTH0 SHELL PROVIDER BLOCKED
+Status: RELEASE ITEM3 IN PROGRESS / ISOLATED RECOVERY AND FINAL FINANCIAL ACCEPTANCE
 Last updated: 2026-10-10 (Asia/Hong_Kong)
 
 ## 当前任务
 
-Owner要求集中直装并严查付款退款，中文/英文各自完整。当前合同：[付款与双语专项](payment-recheck-20261009.md)。价格、真实数据、FanPass、暂停零碎TestFlight及保留独立删除账号继续有效。
+Owner现明确“把3做了”：完成最终安全与恢复后计费验收。当前合同：[第3项执行](recovery-financial-acceptance-20261010.md)；已完成的[付款与双语专项](payment-recheck-20261009.md)沿用。价格、真实数据、FanPass、暂停零碎TestFlight及保留独立删除账号继续有效。
 
 ## 已完成
 
@@ -27,7 +27,7 @@ Owner最新要求Stripe Tax先放着：已确认正式账户收款/提现可用�
 
 ## 唯一下一步
 
-先完成[发布清单第3项](release-readiness.md#october1-remaining-work-inventory)中无需Owner操作的最终恢复后计费对账，沿用已有基础恢复/付款证据，重点证明恢复旧数据不会复活已退款或到期权益。此排序是Agent的执行选择；Auth0旧英文外壳保持免费优先、并行查受支持路径，社区草稿仍未获外发授权，不作为其他准备的唯一前置依赖。不重复已验证安装、迁移、付款或本人认证，也不因此恢复零碎TestFlight。
+执行已批准第3项：先发布已复现并修正的恢复任务Stripe配置缺口，随后完成隔离恢复库的当前provider金融对账及最终权限/回滚核验；临时快照/恢复实例按唯一run续接，不另开重复资源。保持源数据及平台交易不变，只有目标就绪后才短暂冻结源API，验证后恢复原服务。其余发布项和Auth0社区外发不在这一步擅自执行。
 
 本轮2,658路径/1,130对象已进入archive29，并在d15cbd59c完成GitHub独立新下载和解密核验。原件及脱敏交接由[追加保存包](../collaboration/verification/payment-language-20261010/README.md)登记，Git原件远端验证以该包最终回执为准。
 [此前进度](handoff-history-20261010-before-payment-closeout.md)及[更早交接](handoff-history-20261009-before-payment-recheck.md)均为HISTORICAL。

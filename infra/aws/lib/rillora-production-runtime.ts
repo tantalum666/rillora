@@ -93,6 +93,10 @@ export class RilloraProductionRuntime extends Construct {
   if(p.stripeNotificationsSecretArn){
    const stripe=secrets.Secret.fromSecretCompleteArn(this,'StripeNotificationsSecret',p.stripeNotificationsSecretArn);
    stripe.grantRead(task.taskRole);
+   if(p.recoveryTask){
+    stripe.grantRead(p.recoveryTask.taskRole);
+    p.recoveryTask.defaultContainer!.addEnvironment('STRIPE_PRODUCTION_SECRET_ARN',p.stripeNotificationsSecretArn);
+   }
    Object.assign(reviewEnvironment,{ALLOW_STRIPE_PRODUCTION_NOTIFICATIONS:'true',STRIPE_PRODUCTION_SECRET_ARN:p.stripeNotificationsSecretArn});
    new CfnOutput(this,'StripeNotificationsSecretArn',{value:p.stripeNotificationsSecretArn});
   }

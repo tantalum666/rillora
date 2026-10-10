@@ -60,7 +60,7 @@ describe('Closed production data and recovery foundation',()=>{
 });
 
 describe('Optional closed production HTTPS runtime',()=>{
- it('reuses only the named Live notification secret while retaining review and disabled purchases',()=>{
+ it('shares only the exact existing billing configuration with the isolated recovery reader and leaves purchases closed',()=>{
   const arn='arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/stripe-billing-ABC123';
   const props={env:{account:'133857166372',region:'eu-central-1'},runtimeEnabled:true,runtimeDesiredCount:1 as const,reviewPrepared:true,reviewEnabled:true,stripeNotificationsSecretArn:arn};
   const t=Template.fromStack(new RilloraProductionStack(new App(),'Production',props));
@@ -72,10 +72,21 @@ describe('Optional closed production HTTPS runtime',()=>{
   expect(env.PRODUCTION_REVIEW_IDENTITY_SHA256.Ref).toBeDefined();expect(env.PRODUCTION_REVIEW_EXPIRES_AT.Ref).toBeDefined();
   const policies=Object.values(t.findResources('AWS::IAM::Policy')) as any[];
   const grants=policies.filter(p=>p.Properties.PolicyDocument.Statement.some((s:any)=>JSON.stringify(s.Resource).includes(arn)));
-  expect(grants).toHaveLength(1);
-  expect(grants[0].Properties.Roles).toEqual([{Ref:task.Properties.TaskRoleArn['Fn::GetAtt'][0]}]);
-  const statement=grants[0].Properties.PolicyDocument.Statement.find((s:any)=>JSON.stringify(s.Resource).includes(arn));
-  expect(statement.Action).toEqual(['secretsmanager:GetSecretValue','secretsmanager:DescribeSecret']);
+  const recovery=(Object.values(t.findResources('AWS::ECS::TaskDefinition')) as any[])
+   .find(t=>!t.Properties.ContainerDefinitions[0].Environment.some((e:any)=>e.Name==='DATABASE_HOST'))!;
+  expect(grants).toHaveLength(2);
+  expect(grants.flatMap(p=>p.Properties.Roles.map((r:any)=>r.Ref)).sort())
+   .toEqual([task,recovery].map(t=>t.Properties.TaskRoleArn['Fn::GetAtt'][0]).sort());
+  for(const grant of grants){
+   const statement=grant.Properties.PolicyDocument.Statement.find((s:any)=>JSON.stringify(s.Resource).includes(arn));
+   expect(statement.Action).toEqual(['secretsmanager:GetSecretValue','secretsmanager:DescribeSecret']);
+   expect(statement.Resource).toBe(arn);
+  }
+  const recoveryEnv=Object.fromEntries(recovery.Properties.ContainerDefinitions[0].Environment.map((e:any)=>[e.Name,e.Value]));
+  expect(recoveryEnv.STRIPE_PRODUCTION_SECRET_ARN).toBe(arn);
+  expect(recoveryEnv.DATABASE_HOST).toBeUndefined();
+  expect(recoveryEnv.ALLOW_STRIPE_PRODUCTION_INTEGRATION).toBeUndefined();
+  expect(recoveryEnv.ALLOW_STRIPE_PRODUCTION_NOTIFICATIONS).toBeUndefined();
   expect(JSON.stringify(t.findResources('AWS::SecretsManager::Secret'))).not.toContain('stripe-billing');
   expect(()=>new RilloraProductionStack(new App(),'Wrong',{...props,stripeNotificationsSecretArn:arn.replace('rillora/production','fanpass')})).toThrow();
   expect(()=>new RilloraProductionStack(new App(),'Closed',{...props,reviewEnabled:false})).toThrow();

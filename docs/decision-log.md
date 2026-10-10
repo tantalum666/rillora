@@ -3379,3 +3379,9 @@ local correction/tests and actual restoration remain separate evidence.
 - Official Checkout creation documents automatic_tax as optional. Supersedes treating Tax Settings pending/head_office missing as a Stripe-imposed universal prerequisite for charging or for all launch work.
 - Rillora's independent new-sales switches and current explicit tax-strategy guard still exist. A deferred automation setup is not a fabricated reviewed_no_collection assessment, a checkout deployment, customer activation or payment instruction.
 - Preserve pricing, provider/account boundaries and remaining release work. Current execution continues independent financial recovery acceptance; do not re-create credentials/catalog or repeat purchases.
+
+## 2026-10-10 — Owner selects final safety and post-restore billing acceptance
+
+- Owner explicitly selects release item3: final artifacts, permission boundaries, rollback configuration and financial reconciliation after restoring old data.
+- Reuse previous foundation/release evidence; execute needed isolated verification and directly fix demonstrated gaps. A scoped disposable recovery target and temporary verified source quiescence are implementation choices within this work, not customer cutover.
+- Preserve real source data, pricing, FanPass, existing subscriptions, deferred Stripe Tax automation and incremental TestFlight pause. No artificial Live payment, account deletion or public support post follows.
