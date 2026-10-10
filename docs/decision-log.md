@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-09 (Asia/Hong_Kong)
+Last updated: 2026-10-10 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -3371,3 +3371,11 @@ local correction/tests and actual restoration remain separate evidence.
 - Supersedes: earlier English-only consent with Chinese reference and language-boundary disclaimers for these controlled surfaces.
 - Does not imply: changing prices, bank details, jurisdiction facts or previously accepted receipts. Any actual document/consent version change must preserve historical evidence and be implemented consistently rather than silently changing a stored acceptance.
 - Evidence: Owner's current explicit instruction; implementation/validation recorded in the current payment recheck contract.
+
+## 2026-10-10 — Defer optional Stripe Tax automation; distinguish processor capability
+
+- Owner asks to leave Stripe tax configuration for later and points out that payments are already enabled. Treat this as a deferral of the Stripe Tax automation service, not a waiver of actual tax obligations.
+- Fresh Rillora Live readback confirms charges_enabled/payouts_enabled/details_submitted true, card_payments active, no currently_due/past_due fields and no disabled_reason.
+- Official Checkout creation documents automatic_tax as optional. Supersedes treating Tax Settings pending/head_office missing as a Stripe-imposed universal prerequisite for charging or for all launch work.
+- Rillora's independent new-sales switches and current explicit tax-strategy guard still exist. A deferred automation setup is not a fabricated reviewed_no_collection assessment, a checkout deployment, customer activation or payment instruction.
+- Preserve pricing, provider/account boundaries and remaining release work. Current execution continues independent financial recovery acceptance; do not re-create credentials/catalog or repeat purchases.

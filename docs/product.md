@@ -5,9 +5,13 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-10-09 (Asia/Hong_Kong)
+Last updated: 2026-10-10 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-10-10 Owner要求暂后配置Stripe Tax
+
+Owner指出Stripe已经能收款，询问税务功能是否可以先放着。按此优先暂后Stripe Tax自动计税配置，不把该可选服务的pending状态当作支付账户不能收款或必须先启用它才能上线。当前正式账户收款/提现active已经重新只读核对；Rillora本身的开售开关和明确计费策略仍需单独完成。这个方向不等于任何地区免税，也不授权捏造评估/登记事实或制造真钱测试。[当前Live配置边界](live-configuration-20261009.md)。
 
 ## 2026-10-09 Owner要求直装、付款复核与完整单一语言
 

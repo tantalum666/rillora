@@ -23,6 +23,8 @@ Owner随后重申Auth0免费优先并询问Stripe失败邮件。Gmail最新信�
 
 [发布登记](release-readiness.md)与机器登记已纠正手机/版本/期限；税务与首发市场事实、普通客户身份切换、恢复后的最终provider对账、余下真机路径及统一商店候选/App Review仍各自独立。独立删除按Owner保留，外部两个邀请保持暂缓。
 
+Owner最新要求Stripe Tax先放着：已确认正式账户收款/提现可用，将自动计税作为暂后可选服务，不作为支付账户开通或其他发布工作的前置。当前应用not_configured策略/开售开关仍未改变，实际税务义务不推定豁免。见[Live最新边界](live-configuration-20261009.md)。
+
 ## 唯一下一步
 
 先完成[发布清单第3项](release-readiness.md#october1-remaining-work-inventory)中无需Owner操作的最终恢复后计费对账，沿用已有基础恢复/付款证据，重点证明恢复旧数据不会复活已退款或到期权益。此排序是Agent的执行选择；Auth0旧英文外壳保持免费优先、并行查受支持路径，社区草稿仍未获外发授权，不作为其他准备的唯一前置依赖。不重复已验证安装、迁移、付款或本人认证，也不因此恢复零碎TestFlight。

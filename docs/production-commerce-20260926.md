@@ -2,9 +2,13 @@
 
 Role: focused ordinary Web purchase, consent and provider-isolation contract
 Status: CLOUD TEST PASSED; LIVE CATALOG/PORTAL/PRODUCTION NOTIFICATIONS CONNECTED; CUSTOMER BILLING CLOSED
-Last updated: 2026-10-09 (Asia/Hong_Kong)
+Last updated: 2026-10-10 (Asia/Hong_Kong)
 
-## October9 current configuration
+## October10 optional Stripe Tax deferral
+
+Owner prioritizes deferring the Stripe Tax automation setup. The processor account freshly confirms charge/payout capability; automatic_tax is optional in Checkout. Stripe Tax activation is not a universal launch prerequisite. The current application still rejects not_configured for new checkout and only checks provider Tax readiness in automatic mode. Preserve the actual source/runtime boundary until an explicit valid non-automated billing policy is implemented/configured; do not fabricate a reviewed_no_collection assessment or call ordinary customer checkout open. [Current decision and evidence](live-configuration-20261009.md).
+
+## October9 configuration checkpoint
 
 Owner directs Live setup without waiting for BR completion; the prior blanket gate is superseded. Actual Product/Price/default and production catalog binding are configured, existing scoped key/HMAC bundle is installed, API17and the18-event Live endpoint are operating. A genuine signed Live configuration event is independently verified without a payment. [Current Live contract](live-configuration-20261009.md) is the authority; October6 sections below are dated prior checkpoints.
 

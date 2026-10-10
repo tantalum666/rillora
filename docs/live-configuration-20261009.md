@@ -1,9 +1,17 @@
 # Rillora Stripe Live配置接续
 
 Status: LIVE NOTIFICATIONS/CATALOG/VAULT CONNECTED AND VERIFIED — CUSTOMER CHECKOUT REMAINS CLOSED
-Last updated: 2026-10-09 (Asia/Hong_Kong)
+Last updated: 2026-10-10 (Asia/Hong_Kong)
 
-## 当前实际结果
+## October10 Stripe Tax暂后与实际收款能力
+
+Owner要求Stripe税务功能先放着，已按Stripe Tax自动计税服务暂后处理。刚只读核对正式Rillora账户：charges_enabled/payouts_enabled/details_submitted均true，card_payments active，currently_due/past_due空、disabled_reason为null。Stripe官方Checkout创建API把automatic_tax标为optional；Tax Settings pending/head_office缺失不阻止这个账户本身的收款能力。
+
+这纠正此前把可选自动计税配置和支付账户开通混为一个上线前置项的表述。Rillora当前仍由自身发布开关、市场路由及not_configured策略阻止新购；本次只修正优先级/登记，未改源码、运行秘密或开售开关。正式结账可采用不启用Stripe Tax的合法计费方案，但不能把“暂后工具配置”写成全球免税或已经有reviewed_no_collection评估。
+
+依据：[Checkout创建API](https://docs.stripe.com/api/checkout/sessions/create)、[Checkout功能](https://stripe.com/payments/checkout)、[Stripe Tax说明](https://docs.stripe.com/tax)。本轮[脱敏账户/源码核对](../collaboration/verification/stripe-tax-deferral-20261010/verification.json)与原付款证明分开。实际税务义务依经营地和销售情况判断；本次没有作出具体法律/税务结论。
+
+## HISTORICAL — October9接通结果
 
 - 原Rillora Live商户可收款/提现且没有待补身份资料；原Family商品和USD88.99年价现active并默认关联，个人SaaS税分类txcd_10103000。原Portal已核对，支持期末取消/付款资料/发票，不换套餐。
 - 复用原受限key/签名密钥，严格not_configured税务结构已经安装。API17已部署为1HEALTHY/COMPLETED，79资源保持、原身份期限保持，无新数据库迁移。
@@ -18,7 +26,7 @@ Last updated: 2026-10-09 (Asia/Hong_Kong)
 税务局[实际登记说明](https://www.ird.gov.hk/eng/tax/bre_abr.htm)明确独资/合伙等业务通常在开始经营后一个月内申请；有限公司另走一站式登记。Agent此前一概要求先完成BR过严。
 这没有把未知开业日期、已经登记、全球税务豁免或新平台声明写成事实。
 
-## 当前独立读回
+## HISTORICAL — October9独立读回
 
 Rillora Live账户countryHK/business_typeindividual；charges_enabled/payouts_enabled/details_submitted为true，card_payments active，currently_due/past_due/pending_verification空。Stripe Tax settings实际pending，缺head_office；没有把它写成会自动完成。CLI当前选择TEST，--live请求被明确要求切换，不是登录失效；Live MCP可用。
 

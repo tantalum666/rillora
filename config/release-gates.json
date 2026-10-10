@@ -108,9 +108,10 @@
         "docs/live-configuration-20261009.md",
         "docs/release-readiness.md",
         "docs/payment-recheck-20261009.md",
-        "output/qa/rillora-payment-recheck-20261009/final-payment-verification.json"
+        "output/qa/rillora-payment-recheck-20261009/final-payment-verification.json",
+        "collaboration/verification/stripe-tax-deferral-20261010/verification.json"
       ],
-      "next": "October10 fresh cloud TEST cycle passed cancel, decline, paid Family, Chinese Portal cancel/English resume, partial/pending/successful/full-then-failed refunds, duplicate replay and cleanup: three exact8899USD orders/one attempt each,34signed applied events/no errors; no TEST subscription can renew. Live catalog display is language-neutral Rillora; prices/key/webhook unchanged. API21 includes pending/failed refund corrections. Tax not_configured and ordinary sales closed; finish truthful market/tax/purchase configuration. No real-card Live testing or manufactured self-payment."
+      "next": "October10 fresh cloud TEST cycle passed cancel, decline, paid Family, Chinese Portal cancel/English resume, partial/pending/successful/full-then-failed refunds, duplicate replay and cleanup: three exact8899USD orders/one attempt each,34signed applied events/no errors; no TEST subscription can renew. Live catalog display is language-neutral Rillora; prices/key/webhook unchanged. API21 includes pending/failed refund corrections. Tax not_configured and ordinary sales closed; finish truthful market/tax/purchase configuration. No real-card Live testing or manufactured self-payment. Owner October10 defers Stripe Tax automation. Fresh Live account can charge/pay out; Tax Settings pending is not a processor payment block. Finish explicit application-side non-automated billing strategy and sales configuration without inferring exemption or inventing reviewed_no_collection. This note does not change the current runtime guard."
     },
     {
       "id": "merchant-market",
@@ -122,9 +123,10 @@
         "docs/release-12-stripe-20261005.md",
         "collaboration/verification/release-12-stripe-20261006/closeout.json",
         "docs/live-configuration-20261009.md",
-        "docs/decision-log.md"
+        "docs/decision-log.md",
+        "collaboration/verification/stripe-tax-deferral-20261010/verification.json"
       ],
-      "next": "Owner approved reuse of X identity/banking for Rillora, personally submitted Stripe onboarding and authorized scoped Live access. Actual Rillora HK individual account charges/payouts enabled and no due identity requirements. Owner directs continued configuration without requiring BR completion first. Actual launch markets, headquarters/tax facts and collection/price-tax treatment still need resolution; current Tax Settings pending/head_office absent, tax mode not_configured. No invented registration, assessment or blanket no-collection conclusion. Apple USA119.99 and Web88.99 annual prices are settled; SBP15% is not independently approved/effective evidence and is not a newly added launch blocker."
+      "next": "Owner approved reuse of X identity/banking for Rillora, personally submitted Stripe onboarding and authorized scoped Live access. Actual Rillora HK individual account charges/payouts enabled and no due identity requirements. Owner directs continued configuration without requiring BR completion first. Actual launch markets, headquarters/tax facts and collection/price-tax treatment still need resolution; current Tax Settings pending/head_office absent, tax mode not_configured. No invented registration, assessment or blanket no-collection conclusion. Apple USA119.99 and Web88.99 annual prices are settled; SBP15% is not independently approved/effective evidence and is not a newly added launch blocker. Stripe Tax automation setup is deferred by Owner; do not require this optional provider service to be active as a universal launch prerequisite. Actual obligations remain independent of provider feature choice."
     },
     {
       "id": "apple-transactions",
@@ -370,6 +372,7 @@
     "Bank integrations",
     "Enterprise multi-tenancy",
     "Full online E2EE (Owner deferred)",
-    "SOC2 certification as a self-imposed first-release requirement"
+    "SOC2 certification as a self-imposed first-release requirement",
+    "Enabling the optional Stripe Tax automation service; actual tax obligations remain separate"
   ]
 }
