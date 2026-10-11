@@ -2,7 +2,7 @@
 
 Last updated: 2026-10-11 (Asia/Hong_Kong)
 
-## October11 audit repair — approved and locally verified
+## October11 audit repair — pushed, CI passed and archive remotely verified
 
 The [current remediation](security-findings-remediation-20261011.md) is isolated at
 `codex/security-findings-20261011`, based on647317834. Its source snapshot includes
@@ -14,9 +14,16 @@ CODEOWNERS and workflow code are not proof that GitHub required checks are enabl
 Owner explicitly approved the precise moved-constant/two-synthetic-crypto-fixture
 registry update; source scan32matched/0unknown and API495/495/typecheck/build pass.
 The [new addendum](../collaboration/verification/security-remediation-20261011/README.md)
-preserves2,430paths/1,389objects in locally decrypted/verified archive31. Remote
-publication, CI and fresh download results are separate receipts recorded after
-they occur. Existing1–30archives and prior receipts remain unchanged.
+preserves2,430paths/1,389objects in archive31. Source/archive commit
+`076bd5a8b86632b0dad134a6b39ce566d8eda5ba` is pushed to the named private branch;
+[CI124](https://github.com/tantalum666/rillora/actions/runs/38134460959) passes all
+three jobs. A fresh separate LFS download and authenticated decryption verified
+all1,389objects/2,430paths against metadata read at that immutable remote commit.
+[CI receipt](../collaboration/verification/security-remediation-20261011/ci-readback.json)
+and [remote receipt](../collaboration/verification/security-remediation-20261011/remote-readback.json)
+record those separate outcomes. Existing1–30archives and prior receipts remain
+unchanged. Post-capture completion receipts are ordinary reviewed Git metadata;
+they do not reseal archives, move main, repeat product tests or deploy the source.
 
 The private remote is [tantalum666/rillora](https://github.com/tantalum666/rillora).
 Owner explicitly requested **all Rillora work** for Git and Dot collaboration on

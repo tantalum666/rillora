@@ -1,6 +1,6 @@
 # Rillora 审计发现修复记录 — 2026-10-11
 
-Status: SOURCE VERIFIED / OWNER APPROVALS APPLIED / GIT PRESERVATION IN PROGRESS / NOT DEPLOYED
+Status: SOURCE PUSHED / CI124 PASSED / ARCHIVE31 REMOTELY VERIFIED / NOT DEPLOYED
 Last updated: 2026-10-11 (Asia/Hong_Kong)
 
 Owner 最新指令是修复 Rillora 各份审计报告的问题，取代本次报告范围此前的“只报告、不修复”。此前深度扫描没有重新启动，原报告及基线不改写。此文是修复记录，不是新的完整安全扫描或上线证书。
@@ -89,4 +89,33 @@ Owner 最新指令是修复 Rillora 各份审计报告的问题，取代本次�
 
 既有1—94迁移字节保持；95—99仅在具名本地测试库应用，尚未上云。HTTPS原生登录需新App、AASA与现有Auth0客户端回调协调切换；不得只删除旧回调后让手机13失去登录。维护 broker/IAM 和受信任基线工作流也需要各自部署／GitHub保护验证。旧报表、设备和真实支付的证据保留其原日期，本轮不重跑已完成的实机购买或发起外部认证。
 
-唯一下一步见[当前交接](handoff.md)：完成本轮Git与新增证据包的保存／远端核验；本次授权明确保持线上原状。源码验证不能替代HTTPS回调、IAM、真实设备和后续联动发布，也不应被表述为全部架构风险已消除。
+## Git交付与可复核证据
+
+源码和原件归档已推送至私有仓库分支
+[`codex/security-findings-20261011`](https://github.com/tantalum666/rillora/tree/codex/security-findings-20261011)，
+实施提交为[`076bd5a8b86632b0dad134a6b39ce566d8eda5ba`](https://github.com/tantalum666/rillora/commit/076bd5a8b86632b0dad134a6b39ce566d8eda5ba)。
+[CI124](https://github.com/tantalum666/rillora/actions/runs/38134460959)的API、Web／基础设施、源码发布检查三任务全部成功。
+最终收尾提交只补文档和回执，沿用这份实施提交的CI证据，不冒称又运行一次产品测试。
+
+[新增保存包](../collaboration/verification/security-remediation-20261011/README.md)保留2,430条路径、
+1,389个独立原件，密文6,289,927字节。独立缓存从GitHub重新下载archive31，并按该提交远端读回的
+清单逐对象解密核验通过；旧1—30归档及原报告保持原样。扫描读取失败的CLI响应是权限范围403，
+已有GitHub连接和浏览器可继续读取，因此没有要求重新登录。
+
+## 后续联动发布顺序（尚未执行）
+
+以下只记录从已验源码继续的实施顺序，本轮不改变线上状态：
+
+1. 固定上述源码及迁移校验和，准备匹配的API、Web和原生候选；核对回滚兼容，不把旧schema94
+   运行状态误写成95—99已上线。
+2. 在现有身份配置中增加并核对HTTPS回调、Auth0签名同意Action及AASA；保留旧手机13需要的
+   入口直到迁移完成，先验证所有权和精确路由，再交付要求iOS17.4的新客户端。
+3. 按受限review模式联动发布迁移95—99和API／Web，核对Cookie切换、近期认证、邀请／导出以及
+   Apple旧意图和恢复兼容；不切live、不打开新销售或测试入口。
+4. 部署固定维护broker及相应IAM，再撤去被取代的人类RunTask／PassRole通路；分别验证允许的维护
+   操作及原始命令／跨运行清理／保留解除／生产告警修改的拒绝结果。
+5. 核对GitHub所需检查的实际保护配置；在同一候选完成受限环境及原手机的认证／共享／购买恢复
+   回归后，才记录相应部署与设备结果。继续暂停零碎TestFlight，不制造真钱交易或重复已完成购买。
+
+唯一下一步见[当前交接](handoff.md)。Owner明确要求线上保持原状，执行上述发布需后续恢复部署任务；
+当前源码、CI与Git保存已完成。第31—35组的额外隔离与元数据风险仍按上表保留，未宣称全部架构风险消除。

@@ -1,6 +1,6 @@
 # Rillora — Git / Dot 协作入口
 
-October11当前任务是[多份安全报告的修复](../docs/security-findings-remediation-20261011.md)，分支codex/security-findings-20261011。Owner已明确批准两项源码／登记操作；API495项、源扫描及原生287项／1既有跳过通过，一次独立复核的4处回归已补修。新[archive31](verification/security-remediation-20261011/README.md)保存2,430路径／1,389对象并本地解密核验；Git、CI和远端读回正在继续。线上按本次指令保持原状，沿用[当前handoff](../docs/handoff.md)，不恢复下方旧发布下一步。
+October11当前任务是[多份安全报告的修复](../docs/security-findings-remediation-20261011.md)，分支codex/security-findings-20261011。Owner已明确批准两项源码／登记操作；API495项、源扫描及原生287项／1既有跳过通过，一次独立复核的4处回归已补修。源码及新[archive31](verification/security-remediation-20261011/README.md)已推送到076bd5a；[CI124](https://github.com/tantalum666/rillora/actions/runs/38134460959)三任务成功，2,430路径／1,389对象已从GitHub独立新下载并解密核验。后续提交只补文档／回执，不改已通过CI的运行代码。线上按本次指令保持原状，沿用[当前handoff](../docs/handoff.md)，不恢复下方旧发布下一步。
 
 October10当前第3项：[恢复/权限验收](verification/recovery-financial-20261010/README.md)完成当前范围；4处缺口已修、23聚焦检查/CI119–121通过，真实TEST支撑的本地恢复与生产快照/Apple Sandbox云端对账分别通过。原API21/镜像恢复健康，克隆及临时快照已清理。archive30的653路径/376对象已在99c2537f4从GitHub独立新下载解密通过。后续第1/2/4/5项和Owner暂缓决定独立，唯一下一步见handoff；下列先前交付段落保留其日期。
 
@@ -67,7 +67,7 @@ HKD888购买已验签；简洁购买页构建8已分发原内部组并选入未�
 677对象，本地与GitHub独立新下载后的解密核验均通过。Stripe Live凭据已保护保存、运行计费尚未接通。
 
 
-Updated: 2026-10-10 (Asia/Hong_Kong)
+Updated: 2026-10-11 (Asia/Hong_Kong)
 
 October6保留检查点：`codex/release-12-stripe-20261005`源码10194de6a/CI58通过；双语多设备/大字号/系统语言、共享/文件与88.99StripeWeb TEST闭环完成。API14及Web/WWW已部署；新1.0(5)已上传处理为准备提交，说明回读一致，群组/独立测试员0。[新增完整保存包](verification/release-12-stripe-20261006/README.md)的raw-work-019包含9,769路径/1,541对象，本地及GitHub新下载原件均已解密核验通过，归档提交557af9f11/CI59成功。旧归档/真实数据/FanPass保留，真人/真机/live/最终审核门仍分开。
 

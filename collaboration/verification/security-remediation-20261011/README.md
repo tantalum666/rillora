@@ -1,6 +1,6 @@
 # October11 security remediation preservation
 
-Status: LOCAL SOURCE/ARCHIVE VERIFIED; REMOTE PUBLICATION PENDING
+Status: SOURCE PUSHED; CI124 PASSED; ARCHIVE31 REMOTELY VERIFIED; NOT DEPLOYED
 Last updated: 2026-10-11 (Asia/Hong_Kong)
 
 Owner requested fixes for the recent Rillora audit exports and then explicitly
@@ -35,5 +35,14 @@ collaboration guards9. Some focused subsets overlap. Source scan has32matched
 findings/0unknown under the exact Owner-approved registry. No real payment,
 refund, provider change, phone installation, TestFlight or deployment occurred.
 
-Git/CI and a fresh remote archive download/decryption will be recorded separately
-after publication. Local verification is not that remote result.
+Source/archive commit `076bd5a8b86632b0dad134a6b39ce566d8eda5ba` was pushed to
+`codex/security-findings-20261011` in the existing private repository.
+[CI124](https://github.com/tantalum666/rillora/actions/runs/38134460959) completed
+successfully for api, web-and-infrastructure and source; [CI receipt](ci-readback.json)
+retains the latest job states and the browser-observed immutable commit association.
+
+The [remote receipt](remote-readback.json) records a fresh separate LFS download
+of archive31 only, comparison with remote snapshot/catalog bytes at076bd5a, and
+authenticated decryption of all1,389objects/2,430paths. Earlier archives were not
+downloaded again. Final documentation/receipts are saved directly after capture
+without modifying the sealed originals or claiming another product test run.

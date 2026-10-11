@@ -1,0 +1,38 @@
+# Rillora 当前交接
+
+Status: SECURITY SOURCE PUSHED / CI124 PASSED / ARCHIVE31 REMOTELY VERIFIED / ONLINE UNCHANGED
+Last updated: 2026-10-11 (Asia/Hong_Kong)
+
+## 当前任务
+
+Owner已要求修复最近各份Rillora审计报告，并明确批准显式live源码模式和精确测试夹具登记。
+两项原审批阻塞均已解除，源码修复、验证和Git保存已完成，线上按本次要求保持原状。
+
+工程在已附加工作树`/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app`，
+分支`codex/security-findings-20261011`；源码／archive31提交
+`076bd5a8b86632b0dad134a6b39ce566d8eda5ba`。
+主检出仍在`codex/security-audit-daybreak-20261010`的647317834基线，仅此接续入口变化；
+不要在旧源码重复修复，也不要误用它部署新补丁。
+
+## 已完成与证据边界
+
+73条报告记录逐一归并35组；一次独立调查及一次候选复核的4处回归已补修。
+API495/495、typecheck/build、原生287通过／1既有跳过、Web191、infra56及聚焦工具验证通过。
+源扫描32匹配／0未知；[CI124](https://github.com/tantalum666/rillora/actions/runs/38134460959)三任务成功。
+archive31的2,430路径／1,389原件已从GitHub独立新下载并解密核验。
+
+完整处理及后续顺序见
+[工作树当前交接](/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/docs/handoff.md)和
+[修复记录](/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/docs/security-findings-remediation-20261011.md)。
+任意运行时SQL、全服务控制、同用户凭据和确定性元数据等前提仍按原信任合同保留；不是零漏洞结论。
+
+没有新部署、云端／provider变更、实际资金操作、手机安装／TestFlight、删除保留账号或FanPass变更；
+原扫描未重启或改写。95—99迁移、HTTPS回调／AASA、Action及broker／IAM仍待后续联动发布验证。
+
+## 唯一下一步
+
+本轮源码任务已完成。待Owner恢复部署任务时，从上述已验证分支按已备顺序继续受限联动发布；
+在此之前保持线上原状。无需重复这两项确认、已完成测试、购买、归档下载或本人登录。
+
+[上一交接](handoff-history-20261011-before-security-remediation.md)为HISTORICAL。
+当次QA在关联工作树的`output/qa/rillora-security-remediation-20261011/`。
