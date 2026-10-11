@@ -1,10 +1,11 @@
 import { Construct } from 'constructs';
 import { allowAppleCertificateStatusChecks } from './apple-certificate-egress.js';
+import {RilloraRuntimeBoundaryKeys,RilloraIdentityDeletionWorker} from './rillora-runtime-boundaries.js';
 import { CfnOutput, CfnParameter, Duration, RemovalPolicy, aws_ec2 as ec2, aws_ecs as ecs,
  aws_iam as iam, aws_logs as logs, aws_kms as kms, aws_dynamodb as dynamodb,
  aws_rds as rds, aws_secretsmanager as secrets, aws_certificatemanager as acm,
  aws_servicediscovery as discovery, aws_apigatewayv2 as gateway,
- aws_apigatewayv2_integrations as integrations } from 'aws-cdk-lib';
+ aws_apigatewayv2_integrations as integrations,aws_lambda as lambda } from 'aws-cdk-lib';
 
 interface Props {
  vpc:ec2.Vpc; cluster:ecs.Cluster; database:rds.DatabaseInstance; databaseNetwork:ec2.SecurityGroup;
@@ -15,11 +16,14 @@ interface Props {
  identityServicesEnabled?:boolean;
  stripeNotificationsSecretArn?:string;
  recoveryTask?:ecs.FargateTaskDefinition;
+ boundaryKeys:RilloraRuntimeBoundaryKeys;
+ journalBroker:lambda.IFunction;
 }
 
 /** Closed production transport. Adding it never opens identity or customer data. */
 export class RilloraProductionRuntime extends Construct {
  readonly apiService:ecs.FargateService;
+ readonly sourceWriterServices:ecs.FargateService[];
  constructor(scope:Construct,id:string,p:Props){
   super(scope,id);
   const hostname='origin.production.rillora.xyz';
@@ -44,6 +48,7 @@ export class RilloraProductionRuntime extends Construct {
    runtimePlatform:{cpuArchitecture:ecs.CpuArchitecture.ARM64,operatingSystemFamily:ecs.OperatingSystemFamily.LINUX}});
   const reviewEnvironment:Record<string,string>={};
   const reviewSecrets:Record<string,ecs.Secret>={};
+  const deletionSecrets:Record<string,ecs.Secret>={};
   if(p.reviewPrepared){
    const apple=new secrets.Secret(this,'AppleReviewSecret',{secretName:'rillora/production/apple-review',
     description:'Sandbox IAP configuration for explicitly enrolled release-review identities only'});
@@ -66,7 +71,7 @@ export class RilloraProductionRuntime extends Construct {
     new CfnOutput(this,`${id}ServiceSecretArn`,{value:secret.secretArn});
     if(p.identityServicesEnabled){
      for(const [key,field] of [['DOMAIN','domain'],['CLIENT_ID','client_id'],['CLIENT_SECRET','client_secret']]){
-      reviewSecrets[`${prefix}_${key}`]=ecs.Secret.fromSecretsManager(secret,field);
+      (prefix==='AUTH0_DELETION'?deletionSecrets:reviewSecrets)[`${prefix}_${key}`]=ecs.Secret.fromSecretsManager(secret,field);
      }
     }
    }
@@ -111,8 +116,10 @@ export class RilloraProductionRuntime extends Construct {
     ALLOW_DEV_AUTH:'false',ALLOW_SYNTHETIC_RECIPIENT_REHEARSAL:'false',ALLOW_STRIPE_TEST_INTEGRATION:'false',
     ALLOW_APPLE_SANDBOX_INTEGRATION:'false',ALLOW_FAMILY_MAINTENANCE_PREVIEW:'false',
     ALLOW_APPLE_PRODUCTION_INTEGRATION:'false',ALLOW_STRIPE_PRODUCTION_INTEGRATION:'false',
-    ALLOW_RETENTION_WORKER:p.retentionEnabled?'true':'false',...reviewEnvironment},
-   secrets:{DATABASE_USER:ecs.Secret.fromSecretsManager(p.credential,'username'),DATABASE_PASSWORD:ecs.Secret.fromSecretsManager(p.credential,'password'),...reviewSecrets},
+    ALLOW_RETENTION_WORKER:p.retentionEnabled?'true':'false',
+    ...(p.identityServicesEnabled?{DELETION_WORKER_ENABLED:'true',DELETION_PROOF_KMS_KEY_ARN:p.boundaryKeys.proof.keyArn}:{}),...reviewEnvironment},
+   secrets:{DATABASE_USER:ecs.Secret.fromSecretsManager(p.credential,'username'),DATABASE_PASSWORD:ecs.Secret.fromSecretsManager(p.credential,'password'),
+    ...p.boundaryKeys.apiSecrets(),...reviewSecrets},
    logging:ecs.LogDrivers.awsLogs({logGroup:apiLogs,streamPrefix:'api'}),
    healthCheck:{command:['CMD','node','dist/healthcheck.js'],interval:Duration.seconds(30),timeout:Duration.seconds(5),retries:3,startPeriod:Duration.seconds(45)},
   });
@@ -121,7 +128,17 @@ export class RilloraProductionRuntime extends Construct {
   task.taskRole.addToPrincipalPolicy(new iam.PolicyStatement({actions:['kms:GenerateDataKey','kms:Decrypt'],resources:[p.key.keyArn],
    conditions:{StringEquals:{'kms:EncryptionContext:rillora_application':'content-v1','kms:EncryptionContext:rillora_environment':'rillora-production'},
     Null:{'kms:EncryptionContext:owner_id':'false','kms:EncryptionContext:key_id':'false'}}}));
-  task.taskRole.addToPrincipalPolicy(new iam.PolicyStatement({actions:['dynamodb:GetItem','dynamodb:PutItem'],resources:[p.journal.tableArn]}));
+  p.journalBroker.grantInvoke(task.taskRole);
+  let deletionWorker:RilloraIdentityDeletionWorker|undefined;
+  if(p.identityServicesEnabled){
+   p.boundaryKeys.allowProof(task.taskRole,'production','kms:GenerateDataKey');
+   deletionWorker=new RilloraIdentityDeletionWorker(this,'IdentityWorker',{environment:'production',vpc:p.vpc,cluster:p.cluster,
+    databaseNetwork:p.databaseNetwork,keys:p.boundaryKeys,image:p.image,desiredCount:p.desiredCount,
+    databaseEnvironment:{...p.environment,DATABASE_HOST:p.database.instanceEndpoint.hostname},
+    providerEnvironment:{},providerSecrets:deletionSecrets,
+    issuers:[reviewEnvironment.OIDC_ISSUER_URL!],clients:[reviewEnvironment.OIDC_CLIENT_ID!,reviewEnvironment.NATIVE_OIDC_CLIENT_ID!],
+    broker:p.journalBroker});
+  }
   const link=new gateway.VpcLink(this,'VpcLink',{vpc:p.vpc,subnets:{subnetType:ec2.SubnetType.PRIVATE_ISOLATED},securityGroups:[ingress]});
   const api=new gateway.HttpApi(this,'HttpApi',{apiName:'rillora-production-closed',
    description:'Production transport acceptance only; customer routes remain closed',
@@ -140,8 +157,9 @@ export class RilloraProductionRuntime extends Construct {
   service.associateCloudMapService({service:serviceDiscovery,container,containerPort:8443});
   service.node.addDependency(link);
   this.apiService=service;
+  this.sourceWriterServices=[service,...(deletionWorker?[deletionWorker.service]:[])];
   p.operator.addToPolicy(new iam.PolicyStatement({actions:['acm:DescribeCertificate'],resources:[certificate.certificateArn]}));
-  p.operator.addToPolicy(new iam.PolicyStatement({actions:['ecs:DescribeServices'],resources:[service.serviceArn]}));
+  p.operator.addToPolicy(new iam.PolicyStatement({actions:['ecs:DescribeServices'],resources:this.sourceWriterServices.map(s=>s.serviceArn)}));
   p.operator.addToPolicy(new iam.PolicyStatement({actions:['ec2:DescribeNetworkInterfaces'],resources:['*'],conditions:{StringEquals:{'aws:RequestedRegion':'eu-central-1'}}}));
   p.operator.addToPolicy(new iam.PolicyStatement({actions:['logs:DescribeLogStreams','logs:GetLogEvents','logs:FilterLogEvents'],resources:[apiLogs.logGroupArn,`${apiLogs.logGroupArn}:*`,gatewayLogs.logGroupArn,`${gatewayLogs.logGroupArn}:*`]}));
   for(const [name,value] of Object.entries({ApiUrl:api.apiEndpoint,CertificateArn:certificate.certificateArn,TlsServerName:hostname,

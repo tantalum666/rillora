@@ -1,5 +1,8 @@
 import { createHash, timingSafeEqual } from 'node:crypto';
 import { isDeepStrictEqual } from 'node:util';
+import { readFileSync } from 'node:fs';
+
+const migrationCommand=JSON.parse(readFileSync(new URL('./production-migration.json',import.meta.url),'utf8'));
 
 const assert=(condition,reason)=>{if(!condition)throw new Error(`Maintenance request refused: ${reason}`);};
 const hash=value=>createHash('sha256').update(value).digest('hex');
@@ -81,7 +84,7 @@ export async function executeMaintenance(input,call,config,clock=Date.now){
   const values={};for(const pair of container.environment){exact(pair,['name','value']);assert(typeof pair.name==='string'&&typeof pair.value==='string'&&!(pair.name in values),'environment');values[pair.name]=pair.value;}
   assert(values.RECOVERY_RUN===id.run,'task run identity');
   const command=container.command;let operation;
-  if(JSON.stringify(command)===JSON.stringify(['/bin/sh','-c','node dist/migrate.js && node dist/bootstrap-runtime.js && node dist/migrate-private-content.js --enforce']))operation='migrate';
+  if(isDeepStrictEqual(command,migrationCommand))operation='migrate';
   else if(command.length===3&&command[0]==='node'&&command[1]==='dist/recovery-admin.js'
     &&['initialize','seed','after-snapshot','restore','cleanup-fixtures'].includes(command[2]))operation=command[2];
   else if(JSON.stringify(command)===JSON.stringify(['node','dist/recovery-commerce-admin.js']))operation='reconcile-commerce';
@@ -101,8 +104,14 @@ export async function executeMaintenance(input,call,config,clock=Date.now){
   }
   if(operation==='isolation'){assert(values.RECOVERY_SOURCE_HOST===config.sourceHost,'source host');allowed.push('RECOVERY_SOURCE_HOST');}
   if(operation==='reconcile-commerce'){
-    assert(config.sourceService,'source service');const service=await call('ecs','service',{cluster:config.cluster,service:config.sourceService});
-    assert(service?.desiredCount===0&&service.runningCount===0&&service.pendingCount===0,'source writers are not frozen');
+    const sources=config.sourceServices;
+    assert(Array.isArray(sources)&&sources.length>0&&sources.length<=10
+      &&sources.every(s=>typeof s==='string'&&s.length>0)&&new Set(sources).size===sources.length,'source services');
+    for(const name of sources){
+      const service=await call('ecs','service',{cluster:config.cluster,service:name});
+      assert(service?.serviceName===name&&service.desiredCount===0&&service.runningCount===0&&service.pendingCount===0,
+        'source writers are not frozen');
+    }
     const frozen=Date.parse(values.RECOVERY_SOURCE_FROZEN_AT);
     assert(Number.isFinite(frozen)&&clock()>=frozen&&clock()-frozen<8*60_000,'fresh source-freeze evidence');allowed.push('RECOVERY_SOURCE_FROZEN_AT');
   }

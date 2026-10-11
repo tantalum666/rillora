@@ -17,6 +17,9 @@ import stat
 import subprocess
 
 ROOT = Path(__file__).resolve().parents[2]
+import sys
+sys.path.insert(0,str(ROOT/'tools/security'))
+from credential_store import CredentialStore
 SERVICES_ID = "com.rillora.auth"
 OLD_KEY_ID = "9H3JRBA558"
 APPLE_TEAM = "8L99CFNK24"
@@ -44,7 +47,7 @@ def main():
     ignored = subprocess.run(["git", "check-ignore", "--quiet", str(key_file.relative_to(ROOT))], cwd=ROOT, capture_output=True)
     if ignored.returncode:
         raise RuntimeError("The private key path must be excluded from Git before use.")
-    key = key_file.read_bytes()
+    key = CredentialStore(ROOT).read(key_file)
     if len(key) > 16384 or not key.startswith(b"-----BEGIN PRIVATE KEY-----"):
         raise RuntimeError("Expected the Apple PKCS8 private key file.")
     public = subprocess.run(["openssl", "pkey", "-pubout", "-outform", "DER"], input=key, capture_output=True, timeout=10)

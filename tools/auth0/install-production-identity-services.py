@@ -9,16 +9,19 @@ import os
 from pathlib import Path
 import re
 import subprocess
-import tempfile
 import uuid
 
 ROOT=Path(__file__).resolve().parents[2]
+import sys
+sys.path.insert(0,str(ROOT/'tools/security'))
+from credential_store import read_secret_json, run_with_private_json
 DIRECTORY=ROOT/'.local-secrets/production-identity-services'
 SERVICES=[('deletion','account-deletion','RuntimeAccountDeletionServiceSecretArn','TrmdYLDKuqOxF6MhRz2YvXzZhbVvIQo0'),
           ('verification','email-verification','RuntimeEmailVerificationServiceSecretArn','dFELApIxWsoJbsSm9ScWTRTy4NtlcglP')]
 
-def aws(args,profile='rillora-production-operator'):
-    result=subprocess.run(['aws',*args,'--profile',profile,'--region','eu-central-1','--output','json'],text=True,capture_output=True,timeout=60)
+def aws(args,profile='rillora-production-operator',private_body=None):
+    command=['aws',*args,'--profile',profile,'--region','eu-central-1','--output','json']
+    result=run_with_private_json(command,private_body) if private_body is not None else subprocess.run(command,text=True,capture_output=True,timeout=60)
     if result.returncode:raise RuntimeError('AWS installation operation failed; credential/provider body suppressed')
     return json.loads(result.stdout) if result.stdout.strip() else {}
 
@@ -33,7 +36,7 @@ def main():
     for key,name,prefix,expected in SERVICES:
         source=DIRECTORY/(key+'.json')
         if source.stat().st_mode&0o077 or DIRECTORY.stat().st_mode&0o077:raise RuntimeError('Credential storage must remain owner-only')
-        value=json.loads(source.read_text())
+        value=read_secret_json(source,root=ROOT)
         if value['client_id']!=expected or value['domain']!='rillora-dev.eu.auth0.com' or not value['client_secret']:raise RuntimeError('Unexpected service identity')
         arn=next(v for k,v in outputs.items() if k.startswith(prefix))
         if not re.fullmatch(r'arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/'+name+r'-[A-Za-z0-9]{6}',arn):raise RuntimeError('Unexpected vault ARN')
@@ -43,9 +46,7 @@ def main():
             after=aws(['secretsmanager','describe-secret','--secret-id',arn])
             if 'AWSCURRENT' not in after['VersionIdsToStages'].get(previous['versionId'],[]):raise RuntimeError('Existing receipt differs from current vault version')
             continue
-        with tempfile.NamedTemporaryFile(mode='w',dir=DIRECTORY,prefix='vault-',delete=True) as body:
-            json.dump({'SecretId':arn,'SecretString':json.dumps(value),'ClientRequestToken':str(uuid.uuid4())},body);body.flush()
-            result=aws(['secretsmanager','put-secret-value','--cli-input-json','file://'+body.name])
+        result=aws(['secretsmanager','put-secret-value'],private_body={'SecretId':arn,'SecretString':json.dumps(value),'ClientRequestToken':str(uuid.uuid4())})
         after=aws(['secretsmanager','describe-secret','--secret-id',arn])
         if 'AWSCURRENT' not in after['VersionIdsToStages'].get(result['VersionId'],[]):raise RuntimeError('Vault version does not match the write receipt')
         report['records'].append({'service':key,'clientId':expected,'arn':arn,'versionId':result['VersionId'],'currentVersionReadback':True})

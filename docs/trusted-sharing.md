@@ -6,6 +6,8 @@ Authority: Owner explicitly requests A -> B/C invitations, authenticated accepta
 
 ## October11 local invitation repair
 
+The [remaining-five repair](security-remaining-five-20261011.md) removes globally comparable email SHA values from active sessions and replaces connection matching with a secret HMAC scoped to the owner. Migration0101 and the controlled backfill convert the previous32-byte digest without recovering the raw email, preserve accepted relationships and same-owner duplicate detection, and refuse a mismatched key. Current verified-email proof is transient during acceptance; normal production cannot fall back to the old global digest. A pending expired token still produces the established expiry error; an already bound recipient may repeat acceptance idempotently without reopening public metadata. Masks, relationship metadata and old backups remain personal information, not anonymous/E2EE data. These compatibility tests pass locally; no existing cloud invitation was migrated or resent.
+
 The [current security candidate](security-findings-remediation-20261011.md) checks recent authentication and current provider-verified email when accepting an invitation. Cached proof is cleared on change, revocation or provider failure. Public lookup exposes metadata only while the invitation is pending and unexpired; an accepted recipient uses the authenticated shared list. Native links accept exact owned HTTPS origins, with AASA deployment still separate. Production handoff cookies are host-bound. Failed native sign-out cannot continue into another-account login, and the invitation view keeps the failure visible. These changes do not create legal authority, extra sharing places or automated release.
 
 ## October3 strict-review implementation boundary

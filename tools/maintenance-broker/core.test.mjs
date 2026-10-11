@@ -1,31 +1,36 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
+import {spawnSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
 import {executeMaintenance} from './core.mjs';
 
 const config={environment:'production',source:'rillora-production',sourceHost:'production.internal',cluster:'rillora',
   migrationTask:'migration-reviewed:1',recoveryTask:'recovery-reviewed:1',subnets:['owned-subnet'],migrationSecurityGroup:'sg-migrate',
   recoveryTaskSecurityGroup:'sg-recovery-task',recoveryDatabaseSecurityGroup:'sg-quarantine',sourceDatabaseSecurityGroup:'sg-live',
-  vpc:'owned-vpc',subnetGroup:'private-subnets',parameterGroup:'verified-tls',sourceService:'rillora-api'};
+  vpc:'owned-vpc',subnetGroup:'private-subnets',parameterGroup:'verified-tls',sourceServices:['rillora-api','rillora-deletion']};
 const run='abcdef0123456789',runToken='x'.repeat(43);
 const ownerTags=[['Project','Rillora'],['Environment','RecoveryDrill'],['RecoveryRun',run],
   ['RecoveryAuthorization',createHash('sha256').update(runToken).digest('hex')]].map(([Key,Value])=>({Key,Value}));
 function fixture(){
-  const writes=[];
+  const writes=[],serviceReads=[],serviceStates={};
   const snapshot={DBSnapshotIdentifier:`rillora-production-recovery-${run}`,DBInstanceIdentifier:'rillora-production',Encrypted:true,
     Status:'available',SnapshotCreateTime:new Date().toISOString(),TagList:ownerTags};
   let database=null;
   const call=async(service,operation,input)=>{
     if(operation==='snapshot')return snapshot;
     if(operation==='database')return database;
-    if(operation==='service')return {desiredCount:0,runningCount:0,pendingCount:0};
+    if(operation==='service'){
+      serviceReads.push(input.service);
+      return {serviceName:input.service,desiredCount:0,runningCount:0,pendingCount:0,...serviceStates[input.service]};
+    }
     writes.push({service,operation,input});return {tasks:[{taskArn:'fixture-task'}]};
   };
-  return {call,writes,snapshot,setDatabase:value=>{database=value;}};
+  return {call,writes,snapshot,serviceReads,serviceStates,setDatabase:value=>{database=value;}};
 }
 function task(){return {cluster:config.cluster,taskDefinition:config.migrationTask,launchType:'FARGATE',clientToken:'a'.repeat(32),
   networkConfiguration:{awsvpcConfiguration:{subnets:config.subnets,securityGroups:[config.migrationSecurityGroup],assignPublicIp:'ENABLED'}},
-  overrides:{containerOverrides:[{name:'Maintenance',command:['/bin/sh','-c','node dist/migrate.js && node dist/bootstrap-runtime.js && node dist/migrate-private-content.js --enforce'],
+  overrides:{containerOverrides:[{name:'Maintenance',command:['/bin/sh','-c','node dist/migrate.js && node dist/bootstrap-runtime.js && node dist/migrate-private-content.js --enforce && node dist/migrate-email-matches.js'],
     environment:[{name:'RECOVERY_RUN',value:run}]}]}};}
 
 test('allows a fixed migration but rejects raw command, role, secret and network overrides before RunTask',async()=>{
@@ -57,4 +62,57 @@ test('staging accepts only its default reviewed migration',async()=>{
   await executeMaintenance({operation:'migrate',clientToken:'b'.repeat(32)},f.call,staging);
   assert.equal(f.writes[0].input.overrides,undefined);
   await assert.rejects(executeMaintenance({operation:'migrate',clientToken:'b'.repeat(32),command:'arbitrary'},fixture().call,staging));
+});
+
+test('the actual Python migration caller produces a request accepted by the real broker',async()=>{
+  const result=spawnSync('python3',['-c',`
+import json,sys
+from datetime import timedelta
+sys.path.insert(0,sys.argv[1])
+from test_recovery_task_retry import RecoveryTaskRetryTests,Provider
+case=RecoveryTaskRetryTests(); state=case.fixture(timedelta(minutes=1)); state['maintenanceTasks']={}
+provider=Provider(); case.invoke(state,provider)
+print(json.dumps(provider.writes[0]))
+`,fileURLToPath(new URL('../release/',import.meta.url))],{encoding:'utf8'});
+  assert.equal(result.status,0,result.stderr);
+  const request=JSON.parse(result.stdout),f=fixture();
+  const callerConfig={...config,cluster:'fixture-cluster',migrationTask:'migration:1',subnets:['subnet-fixture'],migrationSecurityGroup:'sg-migration'};
+  await executeMaintenance({operation:'task',run,runToken,request},f.call,callerConfig);
+  assert.equal(f.writes.length,1);
+  assert.match(request.overrides.containerOverrides[0].command[2],/migrate-email-matches\.js$/);
+});
+
+function recoveryRequest(f){
+  f.setDatabase({DBInstanceIdentifier:`rillora-recovery-${run}`,DBInstanceStatus:'available',PubliclyAccessible:false,
+    StorageEncrypted:true,DBSubnetGroup:{VpcId:config.vpc},VpcSecurityGroups:[{VpcSecurityGroupId:config.recoveryDatabaseSecurityGroup}],
+    Endpoint:{Address:'clone.internal'},TagList:ownerTags});
+  const request=task();request.taskDefinition=config.recoveryTask;
+  request.networkConfiguration.awsvpcConfiguration.securityGroups=[config.recoveryTaskSecurityGroup];
+  const container=request.overrides.containerOverrides[0];
+  container.command=['node','dist/recovery-commerce-admin.js'];
+  container.environment.push({name:'DATABASE_HOST',value:'clone.internal'},
+    {name:'RECOVERY_SNAPSHOT_TIME',value:f.snapshot.SnapshotCreateTime},
+    {name:'RECOVERY_SOURCE_FROZEN_AT',value:new Date().toISOString()});
+  return request;
+}
+
+test('recovery refuses any active source writer, including a deletion-only worker',async()=>{
+  for(const name of config.sourceServices){
+    for(const count of ['desiredCount','runningCount','pendingCount']){
+      const f=fixture();f.serviceStates[name]={[count]:1};
+      await assert.rejects(executeMaintenance({operation:'task',run,runToken,request:recoveryRequest(f)},f.call,config),/source writers/);
+      assert.equal(f.writes.length,0);
+    }
+  }
+  const good=fixture();
+  await executeMaintenance({operation:'task',run,runToken,request:recoveryRequest(good)},good.call,config);
+  assert.deepEqual(good.serviceReads,config.sourceServices);assert.equal(good.writes.length,1);
+});
+
+test('recovery fails closed without a complete valid source service configuration',async()=>{
+  for(const sourceServices of [undefined,[],['rillora-api','rillora-api']]){
+    const f=fixture();
+    await assert.rejects(executeMaintenance({operation:'task',run,runToken,request:recoveryRequest(f)},f.call,{...config,sourceServices}),/source services/);
+    assert.equal(f.writes.length,0);
+  }
 });

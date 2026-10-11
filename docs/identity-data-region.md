@@ -5,7 +5,13 @@ Authority scope: provider boundary, login protocol, recovery baseline and first 
 Superseded by: later reviewed decision recorded in `docs/decision-log.md`  
 Do not use for: claiming production identity, completed recovery assurance, legal residency compliance or production deployment  
 Status: AUTH0 EU / SYNTHETIC AWS FRANKFURT ACTIVE; IOS DIRECT HOSTED LOGIN SINCE SEPTEMBER 6; HOSTED APPLE CONFIGURATION RESTORED SEPTEMBER 9; INVITATIONS DEPLOYED SEPTEMBER 10; OWNER-CONTROLLED B ACCEPTANCE OBSERVED; PRODUCTION RECOVERY / RELEASE GATES OPEN  
-Last updated: 2026-09-17 (real B checkpoint and deployed same-session proof refresh)  
+Last updated: 2026-10-11 (source-only identity deletion proof; prior provider evidence retained)
+
+## October11 isolated deletion identity proof — not deployed
+
+[The remaining-five implementation](security-remaining-five-20261011.md) removes the tenant-wide Auth0 deletion credential from HTTP. A verified recent ID token can be sealed using a dedicated KMS context bound to environment and the server-generated session ID; only the separate deletion worker can decrypt it. The worker independently validates signature, issuer, client, subject and freshness at the original deletion request. This is additional short-lived server-side identity proof, distinct from the normal opaque Rillora session; access/refresh tokens remain transient.
+
+The recent proof window is10minutes. Session updates immediately clear revoked/expired proof and a bounded250-row sweep runs every60seconds while enabled; cleanup latency is not an immediate-erasure guarantee. A queued authorized deletion copies the required proof until completion, then clears it. Existing sessions without proof use the existing reauthentication flow before deletion mutates anything. Migration refuses unresolved old identity-bearing deletion jobs. Local tests and least-privilege infrastructure synthesis pass; actual KMS, Auth0 worker isolation and existing local credential migration have not been enabled in this task. The historical provider journeys below are not new tests.
 
 ## September17 recipient identity checkpoint
 

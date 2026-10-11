@@ -20,6 +20,8 @@ export type AuthorizationIntent = {
 };
 
 export type ExternalIdentity = {
+  /** Verified ID-token bytes are sealed for the isolated deletion worker, never logged or stored raw. */
+  signedIdentityToken?: string;
   issuer: string;
   subject: string;
   displayName: string;
@@ -114,6 +116,7 @@ export function createNativeOidcIdentityVerifier(
         authenticatedAt,
         authenticationMethods,
         legalAcceptance,
+        ...(idToken ? {signedIdentityToken:idToken} : {}),
         ...(verifiedEmail ? { verifiedEmail } : {}),
       };
     },
@@ -186,6 +189,7 @@ export function createOidcIdentityProvider(config: OidcConfig): IdentityProvider
         locale,
         authenticatedAt,
         authenticationMethods,
+        ...(tokens.id_token ? {signedIdentityToken:tokens.id_token} : {}),
         ...(claims.email_verified === true && typeof claims.email === "string" && claims.email.length <= 254 ? { verifiedEmail: claims.email } : {}),
       };
     },

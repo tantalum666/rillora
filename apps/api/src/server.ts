@@ -1,7 +1,7 @@
 import { createServer } from "node:http";
 import { createApp } from "./app.js";
 import { loadConfig } from "./config.js";
-import { createPool, sweepContentOrphans } from "./db.js";
+import { createPool, sweepContentOrphans,withAuthDatabase } from "./db.js";
 import { deletionProcessor } from "./account-deletion.js";
 import { createManagedTlsServer } from "./managed-tls.js";
 import { loadStripeProductionSecret } from './stripe-production-secret.js';
@@ -46,11 +46,14 @@ const appleTimers = [appleProductionIntake,appleReviewIntake].flatMap(intake=>{
   },30_000);
   timer.unref();return [timer];
 });
-const deletionTimer = setInterval(() => {
-  if (!config.productionRuntimeClosed) void accountDeletionProcessor.process().catch(() => { process.stderr.write("Account deletion worker will retry.\n"); });
-}, 30_000);
-deletionTimer.unref();
 const stopRetention=config.allowRetentionWorker?startRetentionWorker(pool):null;
+let proofSweepRunning=false;
+const proofTimer=config.deletionWorkerEnabled?setInterval(()=>{
+  if(proofSweepRunning)return;proofSweepRunning=true;
+  void withAuthDatabase(pool,c=>c.query('select app.sweep_deletion_identity_proofs()'))
+    .catch(()=>process.stderr.write('Expired identity proof cleanup will retry.\n')).finally(()=>{proofSweepRunning=false;});
+},60000):null;
+proofTimer?.unref();
 let contentSweepRunning=false;
 const contentTimer=config.contentProtection?.mode==="encrypted"?setInterval(()=>{
   if(contentSweepRunning)return;
@@ -81,12 +84,12 @@ let shuttingDown = false;
 async function shutdown(signal: string): Promise<void> {
   if (shuttingDown) return;
   shuttingDown = true;
-  clearInterval(deletionTimer);
   stopRetention?.();
   if (commerceTimer) clearInterval(commerceTimer);
   appleTimers.forEach(clearInterval);
   managedTls?.close();
   if(contentTimer)clearInterval(contentTimer);
+  if(proofTimer)clearInterval(proofTimer);
   process.stdout.write(`Received ${signal}; shutting down.\n`);
   server.close(async () => {
     await pool.end();

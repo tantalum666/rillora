@@ -22,11 +22,14 @@ class Provider:
     def __init__(self):
         self.writes = []
         self.writer_count = 0
+        self.worker_count = 0
+        self.service_reads = []
         self.snapshot_source = 'rillora-production'
         self.outputs = {'ProductionTrafficReady': 'false', 'ClusterName': 'fixture-cluster',
             'MigrationTaskDefinitionArn': 'migration:1', 'RecoveryTaskDefinitionArn': 'recovery:1',
             'MaintenanceSubnetIds': 'subnet-fixture', 'MigrationSecurityGroupId': 'sg-migration',
             'RecoverySecurityGroupId': 'sg-recovery', 'RuntimeApiServiceName': 'fixture-api',
+            'RecoverySourceServiceNames': json.dumps(['fixture-api', 'fixture-deletion']),
             'MaintenanceBrokerFunctionName': 'fixture-broker'}
 
     def invoke_broker(self, name, request):
@@ -46,7 +49,10 @@ class Provider:
             self.writes.append(payload)
             return {'tasks': [{'taskArn': 'fixture-task', 'lastStatus': 'PENDING'}]}
         if operation == 'describe-services':
-            return {'services': [{'desiredCount': self.writer_count, 'runningCount': self.writer_count, 'pendingCount': 0}]}
+            self.service_reads.append(payload['services'])
+            return {'services': [{'serviceName': name, 'desiredCount': count, 'runningCount': count, 'pendingCount': 0}
+                for name, count in [('fixture-api', self.writer_count), ('fixture-deletion', self.worker_count)]
+                if name in payload['services']]}
         raise AssertionError((service, operation))
 
     def database(self, name):
@@ -73,7 +79,7 @@ class RecoveryTaskRetryTests(unittest.TestCase):
             'clientToken': token, 'networkConfiguration': {'awsvpcConfiguration': {
                 'subnets': ['subnet-fixture'], 'securityGroups': ['sg-migration'], 'assignPublicIp': 'ENABLED'}},
             'overrides': {'containerOverrides': [{'name': 'Maintenance',
-                'command': ['/bin/sh', '-c', 'node dist/migrate.js && node dist/bootstrap-runtime.js && node dist/migrate-private-content.js --enforce'],
+                'command': runner.MIGRATION_COMMAND.copy(),
                 'environment': [{'name': 'RECOVERY_RUN', 'value': run}]}]}}
         if operation != 'migrate':
             request['taskDefinition'] = 'recovery:1'
@@ -126,6 +132,27 @@ class RecoveryTaskRetryTests(unittest.TestCase):
         updated = self.invoke(state, provider)
         self.assertEqual(provider.writes, [state['maintenanceTasks']['migrate']['request']])
         self.assertEqual(updated['maintenanceTasks']['migrate']['arn'], 'fixture-task')
+
+    def test_legacy_uncertain_migration_is_not_silently_upgraded(self):
+        state = self.fixture(timedelta(minutes=1)); provider = Provider()
+        state['maintenanceTasks']['migrate']['request']['overrides']['containerOverrides'][0]['command'][-1] = \
+            'node dist/migrate.js && node dist/bootstrap-runtime.js && node dist/migrate-private-content.js --enforce'
+        with self.assertRaisesRegex(ValueError, 'saved request no longer matches'):
+            self.invoke(state, provider)
+        self.assertEqual(provider.writes, [])
+
+    def test_deletion_worker_must_also_be_frozen(self):
+        provider = Provider(); provider.worker_count = 1
+        with self.assertRaisesRegex(ValueError, 'source writers'):
+            self.invoke(self.fixture(timedelta(minutes=1), 'reconcile-commerce'), provider, 'reconcile-commerce')
+        self.assertEqual(provider.writes, [])
+        self.assertEqual(provider.service_reads, [['fixture-api', 'fixture-deletion']])
+
+    def test_missing_source_writer_inventory_is_refused(self):
+        provider = Provider(); del provider.outputs['RecoverySourceServiceNames']
+        with self.assertRaisesRegex(ValueError, 'exact production source services'):
+            self.invoke(self.fixture(timedelta(minutes=1), 'reconcile-commerce'), provider, 'reconcile-commerce')
+        self.assertEqual(provider.writes, [])
 
     def test_known_task_is_not_reissued_without_a_verified_failure(self):
         state = self.fixture(timedelta(days=2)); provider = Provider()

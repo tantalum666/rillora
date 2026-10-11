@@ -51,7 +51,7 @@ describe.sequential("Email verification without another sign-in", () => {
     verified=true;
     await attempt().expect(200);
     const row=(await pool.query("select token_hash,legal_acceptance_id,verified_email_hash from app.auth_sessions where public_id=$1",[recipient.session])).rows[0];
-    expect(row.token_hash).toEqual(hash(recipient.token));expect(row.legal_acceptance_id).toBe(recipient.acceptance);expect(row.verified_email_hash).not.toBeNull();
+    expect(row.token_hash).toEqual(hash(recipient.token));expect(row.legal_acceptance_id).toBe(recipient.acceptance);expect(row.verified_email_hash).toBeNull();
     expect((await request(app).get("/v1/sharing/shared-with-me").set(recipient.headers).expect(200)).body.connections).toHaveLength(1);
   });
   it("requires CSRF and refuses caller-selected identity or email fields",async()=>{

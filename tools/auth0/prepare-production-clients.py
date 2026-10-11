@@ -8,6 +8,9 @@ import subprocess
 from urllib.parse import urlencode
 
 ROOT = Path(__file__).resolve().parents[2]
+import sys
+sys.path.insert(0,str(ROOT/'tools/security'))
+from credential_store import CredentialStore, read_secret_json, write_secret_json
 DOMAIN = 'rillora-dev.eu.auth0.com'
 SECRET = ROOT / '.local-secrets/production-identity/web-client.json'
 NATIVE_CALLBACK = 'https://login.rillora.xyz/ios/com.rillora.ios/callback'
@@ -111,21 +114,21 @@ def main():
         else:
             if kind == 'web' and SECRET.exists():
                 raise RuntimeError('An unmatched protected credential exists; review before creating a client.')
+            if kind == 'web':
+                CredentialStore(ROOT).ensure_ready()
             created = api('post', 'clients', desired)
             identifier = created['client_id']
             if kind == 'web':
                 SECRET.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
                 os.chmod(SECRET.parent, 0o700)
-                with os.fdopen(os.open(SECRET, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600), 'w') as file:
-                    json.dump({'domain': DOMAIN, 'client_id': identifier,
-                               'client_secret': created['client_secret']}, file)
+                write_secret_json(SECRET,{'domain':DOMAIN,'client_id':identifier,'client_secret':created['client_secret']},root=ROOT)
         fields = ','.join([*desired, 'client_id'])
         current = api('get', f'clients/{identifier}?fields={fields}&include_fields=true')
         match(current, desired)
         if kind == 'web':
             if not SECRET.exists() or SECRET.stat().st_mode & 0o077:
                 raise RuntimeError('Web credential needs protected recovery; never auto-rotate or duplicate.')
-            stored = json.loads(SECRET.read_text())
+            stored = read_secret_json(SECRET,root=ROOT)
             if stored['client_id'] != identifier or stored['domain'] != DOMAIN:
                 raise RuntimeError('Protected credential does not match.')
         # Some Auth0 tenant defaults automatically bind new clients. Remove only

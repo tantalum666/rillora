@@ -11,7 +11,7 @@ import { requireCsrf } from "./auth.js";
 import type { AppConfig } from "./config.js";
 import { withAuthDatabase, withPlannerDatabase, withPlannerSnapshotDatabase, type DatabasePool } from "./db.js";
 import { ApiError, asyncHandler } from "./errors.js";
-import { maskedEmail, verifiedEmailDigest } from "./sharing-identity.js";
+import { maskedEmail, verifiedEmailDigest, scopedEmailDigest, emailMatchKey } from "./sharing-identity.js";
 
 const tokenSchema = z.string().regex(/^[A-Za-z0-9_-]{43}$/);
 const idSchema = z.uuid().transform((value) => value.toLowerCase());
@@ -253,9 +253,9 @@ export function createSharingRouter(pool: DatabasePool, config: AppConfig, email
       const existing = await client.query("select id from app.sharing_connections where person_id = $1 and planner_id = app.current_planner_id() and status <> 'revoked'", [person.rows[0].id]);
       if (existing.rowCount) throw new ApiError(409, "connection_exists", "This person already has an invitation or connection. Reload to manage it.");
       const result = await client.query<{ id: string; public_id: string }>(`insert into app.sharing_connections(
-        planner_id, person_id, recipient_email_hash, recipient_email_label, invitation_token_hash, invitation_expires_at)
-        values(app.current_planner_id(), $1, $2, $3, $4, now() + interval '7 days') returning id::text, public_id`,
-      [person.rows[0].id, verifiedEmailDigest(input.email), maskedEmail(input.email), digest(token)]);
+        planner_id, person_id, recipient_email_hash, recipient_email_label, invitation_token_hash, invitation_expires_at,recipient_email_hash_version)
+        values(app.current_planner_id(), $1, $2, $3, $4, now() + interval '7 days',2) returning id::text, public_id`,
+      [person.rows[0].id, scopedEmailDigest(verifiedEmailDigest(input.email),request.auth.plannerPublicId,emailMatchKey(config)), maskedEmail(input.email), digest(token)]);
       const row = result.rows[0]!; await replaceGrants(client, row.id, input.grants);
       await audit(client, "sharing.invitation_created", row.public_id, { matterCount: input.grants.length, linkGenerated: true, deliveryConfirmed: false });
       return presentMutation(client, row.public_id);
@@ -289,7 +289,7 @@ export function createSharingRouter(pool: DatabasePool, config: AppConfig, email
         invitation_expires_at = now() + interval '7 days', live_entitlement_id = $6, version = version + 1, updated_at = now(),
         recipient_email_hash = coalesce($4, recipient_email_hash), recipient_email_label = coalesce($5, recipient_email_label)
         where public_id = $1 and planner_id = app.current_planner_id() and version = $2 and status = 'pending' returning id::text`,
-      [id, input.expectedVersion, digest(token), input.email ? verifiedEmailDigest(input.email) : null, input.email ? maskedEmail(input.email) : null, reserved]);
+      [id, input.expectedVersion, digest(token), input.email ? scopedEmailDigest(verifiedEmailDigest(input.email),request.auth.plannerPublicId,emailMatchKey(config)) : null, input.email ? maskedEmail(input.email) : null, reserved]);
       if (!result.rowCount) throw new ApiError(409, "sharing_changed", "This invitation changed or was already accepted. Reload to continue.");
       if (input.grants) await replaceGrants(client, result.rows[0]!.id, input.grants);
       await audit(client, "sharing.invitation_regenerated", id, { deliveryConfirmed: false });
@@ -313,13 +313,16 @@ export function createSharingRouter(pool: DatabasePool, config: AppConfig, email
   router.post("/invitations/accept", recentAuthenticationRequired(config), requireCsrf, verificationLimiter, asyncHandler(async (request, response) => {
     const input = acceptSchema.parse(request.body);
     const hash = input.invitationToken ? digest(input.invitationToken) : await handoffHash(pool, request, input.invitationPublicId!, config);
-    if (emailVerification) await emailVerification.refresh(request.auth, true);
+    if (emailVerification && request.auth.mode !== 'development') await emailVerification.refresh(request.auth, true);
     else if (config.nodeEnv === 'production') {
       throw new ApiError(503, 'email_verification_unavailable', 'Email verification could not be checked. Keep this invitation open and try again.');
     }
     const result = await withPlannerDatabase(pool, request.auth.plannerId, async (client) => {
+      const owner=(await client.query<{owner:string|null}>('select app.invitation_email_scope($1) as owner',[hash])).rows[0]?.owner;
+      if (!owner) return {error:'invitation_unavailable'};
+      const match=request.auth.verifiedEmailHash ? scopedEmailDigest(request.auth.verifiedEmailHash,owner,emailMatchKey(config)) : null;
       const row = await client.query<{ result: { error?: string; publicId?: string; status?: string } }>(
-        "select app.accept_sharing_invitation($1, $2) as result", [hash, request.auth.verifiedEmailHash ?? null]);
+        "select app.accept_sharing_invitation($1, $2) as result", [hash, match]);
       return row.rows[0]!.result;
     });
     const messages: Record<string, string> = {

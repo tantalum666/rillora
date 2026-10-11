@@ -134,6 +134,10 @@ export type AppleSandboxConfig = {
 };
 
 export type AppConfig = {
+  databaseAuthorityKey?: string | null;
+  emailMatchKey?: string | null;
+  deletionWorkerEnabled?: boolean;
+  deletionProof?: {keyArn:string;namespace:string;region:string} | null;
   appleReview?: { secretArn:string;rootCertificateDirectory:string } | null;
   appleProduction?: { secretArn: string; rootCertificateDirectory: string } | null;
   stripeProductionSecretArn?: string | null;
@@ -373,6 +377,7 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
   }
   const deletionValues = [parsed.AUTH0_DELETION_DOMAIN, parsed.AUTH0_DELETION_CLIENT_ID, parsed.AUTH0_DELETION_CLIENT_SECRET];
   const hasDeletion = deletionValues.some(value => value !== undefined);
+  if (hasDeletion && parsed.NODE_ENV === 'production') throw new Error('Auth0 deletion credentials belong only to the isolated worker');
   if (hasDeletion && (deletionValues.some(value => value === undefined) || !parsed.OIDC_ISSUER_URL?.startsWith("https://"))) {
     throw new Error("Account deletion requires its complete Auth0 service configuration and HTTPS OIDC issuer");
   }
@@ -630,6 +635,13 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
 
   return {
     productionRuntimeClosed,
+    databaseAuthorityKey: env.DATABASE_AUTHORITY_KEY ?? null,
+    emailMatchKey: env.EMAIL_MATCH_KEY ?? null,
+    deletionWorkerEnabled: env.DELETION_WORKER_ENABLED === 'true',
+    deletionProof: env.DELETION_PROOF_KMS_KEY_ARN ? {
+      keyArn: z.string().regex(/^arn:aws:kms:[a-z0-9-]+:\d{12}:key\/[a-f0-9-]{36}$/).parse(env.DELETION_PROOF_KMS_KEY_ARN),
+      namespace: parsed.CONTENT_KEY_NAMESPACE ?? 'development', region: parsed.DATA_REGION,
+    } : null,
     allowRetentionWorker: parsed.ALLOW_RETENTION_WORKER,
     requireRecentAuthentication: parsed.NODE_ENV === 'production' || parsed.REQUIRE_RECENT_AUTHENTICATION,
     productionReviewAccess: productionReviewMode ? {

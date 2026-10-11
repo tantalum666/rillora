@@ -1,12 +1,20 @@
 # Digital Legacy Repository Threat Model
 
-Last updated: 2026-10-11 (audit remediation candidate; historical review scopes retained)
+Last updated: 2026-10-11 (remaining five boundaries locally verified; online unchanged)
+
+## October11 remaining five boundaries — source and local evidence
+
+[Groups31–35](docs/security-remaining-five-20261011.md) now add connection/transaction/role/owner-bound database authority, forced RLS and narrow definer owners; an independently attested journal writer; an isolated deletion worker validating sealed provider-signed recent identity; owner-scoped keyed email matching; and user-presence Secure Enclave storage for the named operator tools. API519/519, infra58/58 and the scoped operational checks pass locally. This supersedes treating those five groups as classification-only. The prior journal classification was too narrow: SQL alone could forge its unsigned publication acknowledgement, and that path is now denied to actual runtime logins.
+
+The signing application, privileged migrations and approved use of an unlocked host remain trust roots. Bound authority contains stolen SQL credentials and altered tenant/role/transaction context; it is not a guarantee against all injection inside an already authorized purpose or complete API RCE. The deletion worker cannot erase an arbitrary Auth0 user without independently verified proof; compromise of a currently authenticated legitimate user's flow remains separate. ID tokens used for deletion proof are sealed, session-bound and short-lived, with bounded cleanup and retention only for an outstanding authorized deletion job. Provider access/refresh tokens are not persisted.
+
+Ordinary HTTP execution cannot read deletion credentials, decrypt identity proofs or directly write the journal. Every source writer, including the deletion worker, must be stopped before financial recovery. Named local credential readers refuse legacy plaintext until explicit migration and verify the Rillora-signed helper; old files/backups have not been migrated or erased in this task. Applied1–99migration bytes and original scan exports stay unchanged;0100–0103 are local-only. No deployment, credential rotation, new scan or independent certification is implied.
 
 ## October11 report-driven remediation
 
 The [current repair record](docs/security-findings-remediation-20261011.md) maps73exported findings to35boundaries and records a separate investigator/candidate review. The new source protects freshness, signed consent, invitation metadata, ownership correlation, package commitments, bounded work, recovery holds and privileged maintenance. Owner explicitly approved the protected production-mode and exact fixture-registry changes;495API cases and the source scan pass. Local verification is not a deployment or a new successful full scan, and Owner requires the online configuration to remain unchanged in this turn.
 
-Calibration does not expand the claimed security model: the application is trusted to decrypt and to select session-derived tenant context. Arbitrary SQL as its credential, complete API RCE and same-user access to protected operational files are different prerequisites from an ordinary authenticated planner or a database-only reader. Containment improvements for those stronger compromises and deterministic metadata correlation remain explicit limitations; they are not marked fixed by unrelated route changes. Existing1–94migration bytes and original scan exports are retained.
+Calibration does not expand the claimed security model: the application is trusted to decrypt and to select session-derived tenant context. Arbitrary SQL as its credential, complete API RCE and same-user access to protected operational files are different prerequisites from an ordinary authenticated planner or a database-only reader. The preceding495-case checkpoint did not address those five boundaries; the newer section above records their targeted containment and exact limits. Existing1–94migration bytes and original scan exports are retained.
 
 ## October8 dependency follow-up
 

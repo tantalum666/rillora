@@ -1,0 +1,36 @@
+{
+  "recordedAt": "2026-10-11T14:12:22.927159+00:00",
+  "mode": "same-workflow-continuation-and-compaction-recovery",
+  "priorFullReading": "output/qa/rillora-security-remediation-20261011/reading.json",
+  "priorCloseoutReading": "output/qa/rillora-security-remediation-20261011/reading-closeout.json",
+  "newWholeRepositoryReadClaimed": false,
+  "basis": "Existing full-read chain reused. Current source and focused documents were re-read before edits; original scan exports and historical evidence are data, not instructions.",
+  "bodyRanges": {
+    "AGENTS.md": "full current protocol",
+    "docs/product.md": "current October11 instruction and locked decisions / Authority Map; earlier full read retained",
+    "docs/handoff.md": "full current and primary pointer",
+    "docs/decision-log.md": "latest entries including exact two approvals and remaining-five instruction",
+    "docs/security-findings-remediation-20261011.md": "full 35-group map and prior closeout",
+    "docs/security-remaining-five-20261011.md": "full authoring and revisions",
+    "SECURITY.md": "current trust-boundary sections; prior full read retained",
+    "docs/backend.md": "current status and October11 implementation; new section fully reviewed",
+    "docs/trusted-sharing.md": "current invitation contract and updated keyed-match compatibility",
+    "docs/recovery-control-journal.md": "commit, replay, freeze and October10 evidence plus new attestation contract",
+    "docs/identity-data-region.md": "identity boundary and new sealed-proof scope / retention",
+    "docs/source-control.md": "current complete-preservation contract; prior full-body closeout read retained",
+    "collaboration/README.md": "current cooperation entry and preservation instructions; prior full read retained",
+    "docs/journey/PROJECT_JOURNEY.md": "latest continuation and authored addition",
+    "tools/security/README.md": "full new tool contract"
+  },
+  "excluded": [
+    "dependencies, compiler caches and generated products",
+    "generated output evidence",
+    "collaboration evidence/catalog/archive generated copies",
+    "third-party packages; old reference instruction copies"
+  ],
+  "notExcluded": [
+    "active nested AGENTS.md",
+    "project-owned specs and historical docs Markdown"
+  ],
+  "boundary": "A reading range records body coverage, not a filename/hash substitute. No new full read or repeat provider authentication is claimed."
+}

@@ -1,0 +1,90 @@
+"""Additive remaining-five preservation. No provider calls or old archive changes."""
+from pathlib import Path
+import datetime,hashlib,json,os,re,shutil,subprocess,sys,tempfile,uuid
+ROOT=Path('/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app')
+PRIMARY=Path('/Users/tantalum/Documents/电子遗嘱app')
+TEMP=Path('/private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e')
+PERSIST=Path('/Users/tantalum/.codex/state/plugins/codex-security/scans/-app/artifacts-525a0c93b7f59f820eedceb469751c489326de4e2e19960e442fe844614ce16a/artifacts/remediation/rillora-remaining-five-20261011')
+STAGE=TEMP/'remaining-five-publication-stage'
+PREFIX='output/qa/rillora-security-remaining-five-20261011'
+DEST=STAGE/'collaboration/verification/security-remaining-five-20261011'
+KEY=PRIMARY/'.local-secrets/collaboration-git/identity.txt'
+sys.path.insert(0,str(ROOT/'tools/collaboration'))
+import build_snapshot as snapshot
+from snapshot_policy import directory_exclusion,file_exclusion,readable_text
+from verify_archives import verify
+if STAGE.exists():raise RuntimeError('Preservation stage already exists; reuse its immutable result')
+if KEY.stat().st_mode&0o077:raise RuntimeError('Expected existing owner-only archive identity')
+prior=[int(p.name.split('-')[2].split('.')[0]) for p in (ROOT/'collaboration/archives').glob('raw-work-*.tar.zst.age')]
+assert sorted(prior)==list(range(1,32)), 'Unexpected existing additive archive set'
+assert not (ROOT/'collaboration/archives/raw-work-032.tar.zst.age').exists()
+DEST.mkdir(parents=True);(STAGE/'collaboration/archives').mkdir(parents=True)
+frozen=TEMP/'remaining-five-publication-frozen';frozen.mkdir(mode=0o700,exist_ok=True)
+snapshot.ROOT=STAGE;snapshot.DEST=STAGE/'collaboration'
+files={};excluded=[]
+def add(source,logical):
+    if source.is_symlink():raise RuntimeError('No symlink evidence input')
+    if logical in files and files[logical]!=source:raise RuntimeError('Duplicate logical evidence path')
+    files[logical]=source
+def tree(source,prefix):
+    if not source.exists():return
+    for parent,dirs,names in os.walk(source):
+        parent=Path(parent)
+        for d in list(dirs):
+            rel=prefix+'/'+str((parent/d).relative_to(source))
+            reason=directory_exclusion(rel)
+            if (parent/d).is_symlink():reason='machine_specific_link'
+            if reason:dirs.remove(d);excluded.append({'path':rel,'reason':reason})
+        for name in names:
+            p=parent/name;rel=prefix+'/'+str(p.relative_to(source))
+            reason=file_exclusion(rel)
+            if reason:excluded.append({'path':rel,'reason':reason})
+            else:add(p,rel)
+for p in TEMP.iterdir():
+    if p.is_file() and p.name.startswith('remaining-five-') and p.suffix in {'.log','.json','.patch','.md'}:
+        add(p,PREFIX+'/execution/'+p.name)
+tree(PERSIST,PREFIX+'/security-artifacts')
+for p in (TEMP/'artifacts/remediation').iterdir():
+    if p.is_file() and ('remaining-five' in p.name):add(p,PREFIX+'/helpers/'+p.name)
+tree(ROOT/'output/qa/rillora-security-remaining-five-20261011',PREFIX+'/checkpoint')
+tree(TEMP/'remaining-five-workspace/apps/api/dist',PREFIX+'/compiled-api')
+excluded += [
+ {'path':'remaining-five-workspace except selected compiled API','reason':'duplicate source/dependency workspace; current source is normal Git'},
+ {'path':'native probe binaries and compiler/module caches','reason':'unsigned reproducible compiler products; Swift source, exact synthetic results and failure logs preserved'},
+ {'path':'earlier task TEMP files and archives1–31','reason':'already preserved; do not duplicate or reseal old evidence'},
+ {'path':'original scan state and source snapshots','reason':'externally managed originals retained in place; derived group mapping and evidence preserved separately'},
+ {'path':'.local-secrets and provider/database/browser state','reason':'excluded; existing age identity is only passed to local encryption/verification'}
+]
+publicIDs=['[PUBLIC_CLIENT_IDENTIFIER]','[PUBLIC_CLIENT_IDENTIFIER]','[PUBLIC_CLIENT_IDENTIFIER]']
+objects={};records=[];started=datetime.datetime.now(datetime.timezone.utc).isoformat()
+for logical,source in sorted(files.items()):
+    saved,digest=snapshot.freeze_file(source,frozen);data=saved.read_bytes()
+    obj=objects.setdefault(digest,{'id':uuid.uuid4().hex,'sha256':digest,'bytes':len(data),'source':str(saved),'paths':[]})
+    obj['paths'].append(logical)
+    record={'sourcePath':logical,'originalLocalPath':str(source),'bytes':len(data),'rawObject':obj['id'],'rawArchive':'collaboration/archives/raw-work-032.tar.zst.age'}
+    rawOnly=('/compiled-' in logical or '.xcresult/' in logical or source.suffix=='.patch' or source.name=='synthetic-web-crypto-fixture.json')
+    if readable_text(logical) and not rawOnly:
+        try:text=data.decode('utf-8')
+        except UnicodeDecodeError:text=None
+        if text is not None:
+            text,changed=snapshot.redact(text,set())
+            for value in publicIDs:text=text.replace(value,'[PUBLIC_CLIENT_IDENTIFIER]')
+            text=re.sub(r'\b(?:rk|sk)_(?:test|live)_[A-Za-z0-9_]+','[REDACTED_PROVIDER_KEY]',text)
+            text=re.sub(r'\bwhsec_[A-Za-z0-9_]+','[REDACTED_WEBHOOK_KEY]',text)
+            target=DEST/'receipts'/Path(logical).relative_to(PREFIX)
+            target=Path(str(target)+'.reference.txt');target.parent.mkdir(parents=True,exist_ok=True);target.write_text(text)
+            record.update(readablePath=str(target.relative_to(STAGE)),privacyRedactions=text.encode()!=data)
+    records.append(record)
+recipient=subprocess.check_output(['age-keygen','-y',str(KEY)],text=True).strip()
+archive=snapshot.seal_chunk(32,list(objects.values()),recipient)
+catalog=DEST/'catalog.json';catalog.write_text(json.dumps(records,ensure_ascii=False,indent=2)+'\n')
+capture={'capturedFrom':started,'capturedThrough':datetime.datetime.now(datetime.timezone.utc).isoformat(),
+ 'workFiles':len(records),'uniqueRawObjects':len(objects),'workBytes':sum(r['bytes'] for r in records),
+ 'archives':[archive],'catalogFiles':[str(catalog.relative_to(STAGE))],'excluded':excluded,
+ 'selection':'New remaining-five evidence only: exact failed/passed logs, one candidate review and final diff, unchanged migration evidence, synthetic hardware probes, disposable DB reset guards, compiled API and focused QA. Current source and specs are normal Git.',
+ 'boundary':'Local source/synthetic verification and Git preservation only. No deployment, provider mutation, real money, phone installation or TestFlight. Archives1–31 unchanged. Raw compiler caches, credentials and original external scan state excluded.'}
+(DEST/'snapshot.json').write_text(json.dumps(capture,ensure_ascii=False,indent=2)+'\n')
+(STAGE/'collaboration/snapshot.json').write_text(json.dumps(capture))
+result=verify(STAGE,KEY)
+(DEST/'archive-verification.json').write_text(json.dumps(result,indent=2)+'\n')
+print(json.dumps({'files':len(records),'objects':len(objects),'archiveBytes':archive['bytes'],'verified':result['passed']}))

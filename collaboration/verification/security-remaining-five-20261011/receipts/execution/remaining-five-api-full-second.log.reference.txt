@@ -1,0 +1,62 @@
+
+> continuity-api@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/apps/api
+
+ ❯ tests/sharing.integration.test.ts (12 tests | 2 failed) 1312ms
+     × requires cookie CSRF, a verified invited email and explicit acceptance 68ms
+     × invalidates old links, rejects expired links and atomically consumes concurrent acceptance 75ms
+Managed TLS certificate renewed.
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/sharing.integration.test.ts > Account-bound directed sharing > requires cookie CSRF, a verified invited email and explicit acceptance
+AssertionError: expected 403 to be 200 // Object.is equality
+
+- Expected
++ Received
+
+- 200
++ 403
+
+ ❯ tests/sharing.integration.test.ts:124:43
+    122|     await request(app).post("/v1/sharing/invitations/accept").set(as(B…
+    123|     expect((await accept(invite)).status).toBe(200);
+    124|     expect((await accept(invite)).status).toBe(200);
+       |                                           ^
+    125|     expect((await accept(invite, C)).status).toBe(403);
+    126|     const items = (await shared()).items.filter((item: { connectionPub…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/sharing.integration.test.ts > Account-bound directed sharing > invalidates old links, rejects expired links and atomically consumes concurrent acceptance
+AssertionError: expected [ 200, 403, 403 ] to deeply equal [ 200, 200, 403 ]
+
+- Expected
++ Received
+
+  [
+    200,
+-   200,
++   403,
+    403,
+  ]
+
+ ❯ tests/sharing.integration.test.ts:193:52
+    191|     const fresh = { token: new URLSearchParams(new URL(changed.body.in…
+    192|     const results = await Promise.all([accept(fresh), accept(fresh), a…
+    193|     expect(results.map((result) => result.status)).toEqual([200, 200, …
+       |                                                    ^
+    194|     const audit = await pool.query("select count(*)::int as count from…
+    195|     expect(audit.rows[0].count).toBe(1);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 57 passed (58)
+      Tests  2 failed | 515 passed (517)
+   Start at  20:55:37
+   Duration  43.13s (transform 679ms, setup 1.47s, import 9.08s, tests 26.18s, environment 3ms)
+

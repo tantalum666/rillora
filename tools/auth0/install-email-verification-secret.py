@@ -3,13 +3,16 @@
 import json
 from pathlib import Path
 import subprocess
-import tempfile
 
 ROOT = Path(__file__).resolve().parents[2]
+import sys
+sys.path.insert(0,str(ROOT/'tools/security'))
+from credential_store import read_secret_json, run_with_private_json
 ACCOUNT = '133857166372'
 
-def aws(profile, *args):
-    result = subprocess.run(['aws','--profile',profile,'--region','eu-central-1',*args,'--output','json'],text=True,capture_output=True)
+def aws(profile, *args, private_body=None):
+    command=['aws','--profile',profile,'--region','eu-central-1',*args,'--output','json']
+    result=run_with_private_json(command,private_body) if private_body is not None else subprocess.run(command,text=True,capture_output=True)
     if result.returncode:
         raise RuntimeError('AWS operation failed or session expired; credential/provider output suppressed.')
     return json.loads(result.stdout) if result.stdout.strip() else {}
@@ -26,12 +29,10 @@ def main():
     source=ROOT/'.local-secrets/email-verification/auth0-management.json'
     if source.stat().st_mode & 0o077:
         raise RuntimeError('Protected credential must be mode0600')
-    client=json.loads(source.read_text())
+    client=read_secret_json(source,root=ROOT)
     if client['client_id']!='85FI2tG6AtD7pvzxrxVOIeVqhDPhrANc' or client['domain']!='rillora-dev.eu.auth0.com':
         raise RuntimeError('Unexpected service client')
-    with tempfile.NamedTemporaryFile(mode='w',prefix='rillora-email-proof-',delete=True) as body:
-        json.dump({'SecretId':arn,'SecretString':client['client_secret']},body);body.flush()
-        aws('rillora-staging-operator','secretsmanager','put-secret-value','--cli-input-json','file://'+body.name)
+    aws('rillora-staging-operator','secretsmanager','put-secret-value',private_body={'SecretId':arn,'SecretString':client['client_secret']})
     print('Dedicated read-only email verification credential installed; no secret readback.')
 
 if __name__=='__main__': main()

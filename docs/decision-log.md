@@ -3400,3 +3400,10 @@ local correction/tests and actual restoration remain separate evidence.
 - This authorizes applying those exact source/test changes; the prior automatic-review approval blockers are resolved. The current proposal's28entries are verified against their exact byte hashes, with mechanical line relocation only where the approved code moves an unchanged span.
 - No live runtime mode, customer opening, payment, provider setting, installation or deployment is authorized by this source-only confirmation. Preserve the online state explicitly.
 - Applied result: API495/495/typecheck/build and source scan32reviewed matches/0unknown. Continue Git preservation under the existing all-work authorization; do not request these two confirmations again.
+
+## 2026-10-11 — Owner requests code and tests for remaining groups31–35
+
+- Owner explicitly asks to fix all five remaining groups, complete code/tests first, keep online unchanged, then push the complete result to GitHub.
+- Supersedes the prior task boundary that only classified these stronger-compromise and metadata risks. Preserve their original report evidence and identify exact containment rather than promising protection from all host/API compromise.
+- Continue from b6f5b8c97 in the same attached security worktree. Necessary database authority, journal attestation, deletion-worker isolation, owner-scoped email matching and protected local-credential tooling are in scope.
+- No deployment, existing credential movement/rotation/deletion, real-account deletion, purchase/refund, phone/TestFlight delivery or restart of the paused scan follows from this source/test instruction.

@@ -8,6 +8,7 @@ import re
 import uuid
 from recovery_drill import Aws,ACCOUNT,validate_state,validate_target,validate_snapshot,require,save
 
+MIGRATION_COMMAND = json.loads((Path(__file__).resolve().parents[1] / 'maintenance-broker/production-migration.json').read_text())
 
 def recorded_time(value, label):
     require(isinstance(value, str), label + ' is missing or invalid')
@@ -116,12 +117,15 @@ def main():
         environment += [{'name':'DATABASE_HOST','value':target['Endpoint']['Address']},
                         {'name':'RECOVERY_SNAPSHOT_TIME','value':snapshot['SnapshotCreateTime']}]
     if args.operation=='reconcile-commerce':
-        services=[value for key,value in out.items() if key.startswith('RuntimeApiServiceName')]
-        require(len(services)==1,'Expected exact production source service')
+        services=json.loads(out.get('RecoverySourceServiceNames','[]'))
+        require(isinstance(services,list) and 0<len(services)<=10
+                and all(isinstance(name,str) and name for name in services)
+                and len(set(services))==len(services),'Expected exact production source services')
         source=aws.call('ecs','describe-services',{'cluster':out['ClusterName'],'services':services})
-        require(not source.get('failures') and len(source.get('services',[]))==1,'Source service state unavailable')
-        source=source['services'][0]
-        require(source['desiredCount']==0 and source['runningCount']==0 and source['pendingCount']==0,
+        rows=source.get('services',[])
+        require(not source.get('failures') and len(rows)==len(services)
+                and {row.get('serviceName') for row in rows}==set(services),'Source service state unavailable')
+        require(all(row.get('desiredCount')==0 and row.get('runningCount')==0 and row.get('pendingCount')==0 for row in rows),
                 'Stop and verify source writers before provider recovery; this tool never stops them automatically')
         environment.append({'name':'RECOVERY_SOURCE_FROZEN_AT','value':original_freeze(pending_request) if pending_request is not None else datetime.now(timezone.utc).isoformat()})
     if args.operation=='after-snapshot':
@@ -134,7 +138,7 @@ def main():
         environment.append({'name':'RECOVERY_SOURCE_HOST','value':out['DatabaseHost']})
         command=['node','--input-type=module','-e',Path(__file__).with_name('probe_recovery_isolation.mjs').read_text()]
     if args.operation=='migrate':
-        command=['/bin/sh','-c','node dist/migrate.js && node dist/bootstrap-runtime.js && node dist/migrate-private-content.js --enforce']
+        command=MIGRATION_COMMAND
     token=pending_request['clientToken'] if pending_request is not None else uuid.uuid4().hex
     # Save the idempotency token before the request; an uncertain invocation is
     # investigated by this token, never retried as a second unrecorded mutation.

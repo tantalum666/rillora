@@ -1,6 +1,7 @@
 import { createReauthenticationRouter, completeReauthentication, failReauthentication, type ReauthenticationTransaction } from "./reauthentication.js";
 import { fetchInitialOverview } from "./overview.js";
-import { createHash, randomBytes } from "node:crypto";
+import { createHash, randomBytes, randomUUID } from "node:crypto";
+import { sealSessionDeletionProof } from './identity-deletion-proof.js';
 import { Router as createRouter, type CookieOptions, type Router } from "express";
 import rateLimit from "express-rate-limit";
 import * as oidc from "openid-client";
@@ -17,7 +18,6 @@ import type {
   NativeIdentityVerifier,
 } from "./identity.js";
 import { createNativeOidcIdentityVerifier, createOidcIdentityProvider } from "./identity.js";
-import { verifiedEmailDigest } from "./sharing-identity.js";
 import { sessionCookieName } from "./auth.js";
 import { reviewAccessOpen, reviewIdentityAllowed } from './production-review-access.js';
 import { createRateLimitKeyGenerator } from "./rate-limit-key.js";
@@ -383,6 +383,8 @@ async function issueSession(
   }
   const sessionToken = randomOpaqueToken();
   const csrfToken = randomOpaqueToken();
+  const sessionPublicId = randomUUID();
+  const deletionProof = await sealSessionDeletionProof(config,identity,sessionPublicId);
   const accountIds = await withAuthDatabase(pool, async (client) => {
     const deletion = await client.query<{ pending: boolean }>("select app.identity_deletion_pending($1,$2) as pending", [identity.issuer, identity.subject]);
     if (deletion.rows[0]?.pending) throw new ApiError(409, "account_deletion_pending", "Account deletion is in progress. Use your deletion reference to check its status.");
@@ -433,10 +435,10 @@ async function issueSession(
       `insert into app.auth_sessions (
          planner_id, identity_account_id, token_hash, csrf_token_hash,
          authenticated_at, authentication_methods, credential_kind,
-         legal_acceptance_id, last_seen_at, expires_at, verified_email_hash
+         legal_acceptance_id, last_seen_at, expires_at, verified_email_hash,public_id,deletion_identity_proof
        ) values (
          $1, $2, $3, $4, $5, $6::text[], $7, $8, now(),
-         now() + make_interval(mins => $9), $10
+         now() + make_interval(mins => $9), $10,$11,$12::jsonb
        )`,
       [
         account.planner_id,
@@ -448,7 +450,8 @@ async function issueSession(
         credentialKind,
         legalAcceptanceId,
         config.sessionTtlMinutes,
-        identity.verifiedEmail ? verifiedEmailDigest(identity.verifiedEmail) : null,
+        null, // No global email match value is retained with sessions.
+        sessionPublicId, deletionProof ? JSON.stringify(deletionProof) : null,
       ],
     );
     await client.query(

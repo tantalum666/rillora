@@ -10,6 +10,7 @@ import {allowAppleCertificateStatusChecks} from './apple-certificate-egress.js';
 import {RilloraMaintenanceBroker} from './rillora-maintenance-broker.js';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
+import {RilloraRuntimeBoundaryKeys,RilloraRecoveryAttestationBroker} from './rillora-runtime-boundaries.js';
 
 export interface ProductionStackProps extends StackProps {
  runtimeEnabled?:boolean; runtimeDesiredCount?:0|1;
@@ -87,6 +88,8 @@ export class RilloraProductionStack extends Stack {
    deletionProtection:true,removalPolicy:RemovalPolicy.RETAIN,
   });
   journal.node.addDependency(database);
+  const boundaryKeys=new RilloraRuntimeBoundaryKeys(this,'RuntimeBoundaries','production');
+  const journalBroker=new RilloraRecoveryAttestationBroker(this,'RecoveryAttestation',journal);
   const cluster=new ecs.Cluster(this,'Cluster',{vpc,containerInsightsV2:ecs.ContainerInsights.ENABLED});
   const directory=dirname(fileURLToPath(import.meta.url));
   const image=ecs.ContainerImage.fromAsset(resolve(directory,'../../../apps/api'),{
@@ -97,22 +100,25 @@ export class RilloraProductionStack extends Stack {
   const environment={NODE_ENV:'production',DATA_REGION:'eu-central-1',DATABASE_PORT:'5432',DATABASE_NAME:'rillora',
    DATABASE_SSL_MODE:'verify-full',DATABASE_SSL_CA_PATH:'/app/certs/rds-global-bundle.pem',
    CONTENT_PROTECTION_MODE:'encrypted',CONTENT_KMS_KEY_ARN:contentKey.keyArn,CONTENT_KEY_NAMESPACE:'rillora-production',
-   RECOVERY_JOURNAL_TABLE:journal.tableName,RECOVERY_ENVIRONMENT:'production'};
+   RECOVERY_JOURNAL_TABLE:journal.tableName,RECOVERY_ENVIRONMENT:'production',
+   RECOVERY_JOURNAL_BROKER_ARN:journalBroker.function.functionArn};
   const task=(label:string,recovery:boolean)=>{
    const definition=new ecs.FargateTaskDefinition(this,label,{cpu:256,memoryLimitMiB:512,
     runtimePlatform:{cpuArchitecture:ecs.CpuArchitecture.ARM64,operatingSystemFamily:ecs.OperatingSystemFamily.LINUX}});
    definition.addContainer('Maintenance',{image,
     command:recovery?['node','-e',"process.stderr.write('Explicit isolated recovery operation is required\\n');process.exit(1)"]:
-     ['/bin/sh','-c','node dist/migrate.js && node dist/bootstrap-runtime.js && node dist/migrate-private-content.js --enforce'],
+     JSON.parse(readFileSync(resolve(directory,'../../../tools/maintenance-broker/production-migration.json'),'utf8')) as string[],
     environment:{...environment,...(recovery?{}:{DATABASE_HOST:database.instanceEndpoint.hostname})},
     secrets:{DATABASE_USER:ecs.Secret.fromSecretsManager(database.secret!,'username'),DATABASE_PASSWORD:ecs.Secret.fromSecretsManager(database.secret!,'password'),
-     ...(!recovery?{RUNTIME_DATABASE_USER:ecs.Secret.fromSecretsManager(runtimeCredential,'username'),RUNTIME_DATABASE_PASSWORD:ecs.Secret.fromSecretsManager(runtimeCredential,'password')}:{})},
+     ...(!recovery?{RUNTIME_DATABASE_USER:ecs.Secret.fromSecretsManager(runtimeCredential,'username'),RUNTIME_DATABASE_PASSWORD:ecs.Secret.fromSecretsManager(runtimeCredential,'password'),
+      ...boundaryKeys.migrationSecrets(),RECOVERY_ATTESTATION_KEY:ecs.Secret.fromSecretsManager(journalBroker.authority)}:{})},
     logging:ecs.LogDrivers.awsLogs({logGroup,streamPrefix:recovery?'recovery':'migration'}),
    });
    definition.taskRole.addToPrincipalPolicy(new iam.PolicyStatement({actions:recovery?['kms:Decrypt']:['kms:GenerateDataKey','kms:Decrypt'],resources:[contentKey.keyArn],
     conditions:{StringEquals:{'kms:EncryptionContext:rillora_application':'content-v1','kms:EncryptionContext:rillora_environment':'rillora-production'},
      Null:{'kms:EncryptionContext:owner_id':'false','kms:EncryptionContext:key_id':'false'}}}));
    definition.taskRole.addToPrincipalPolicy(new iam.PolicyStatement({actions:recovery?['dynamodb:GetItem','dynamodb:Query','dynamodb:Scan']:['dynamodb:GetItem','dynamodb:PutItem','dynamodb:Query','dynamodb:Scan'],resources:[journal.tableArn]}));
+   if(!recovery)journalBroker.function.grantInvoke(definition.taskRole);
    return definition;
   };
   const migration=task('MigrationTask',false),recovery=task('RecoveryTask',true);
@@ -146,7 +152,7 @@ export class RilloraProductionStack extends Stack {
   operator.addToPolicy(new iam.PolicyStatement({actions:['cloudformation:DescribeStacks'],resources:[this.stackId]}));
   operator.addToPolicy(new iam.PolicyStatement({actions:['kms:DescribeKey','kms:GetKeyRotationStatus'],resources:[contentKey.keyArn]}));
   const runtime=props.runtimeEnabled?new RilloraProductionRuntime(this,'Runtime',{
-   vpc,cluster,database,databaseNetwork,credential:runtimeCredential,key:contentKey,journal,
+   vpc,cluster,database,databaseNetwork,credential:runtimeCredential,key:contentKey,journal,boundaryKeys,journalBroker:journalBroker.function,
    image:props.runtimeImageTag?ecs.ContainerImage.fromEcrRepository(ecrRepository.Repository.fromRepositoryAttributes(this,'ExistingAssetRepository',{
     repositoryArn:`arn:${Aws.PARTITION}:ecr:eu-central-1:${Aws.ACCOUNT_ID}:repository/cdk-hnb659fds-container-assets-${Aws.ACCOUNT_ID}-eu-central-1`,
     repositoryName:`cdk-hnb659fds-container-assets-${Aws.ACCOUNT_ID}-eu-central-1`}),props.runtimeImageTag):image,
@@ -154,17 +160,18 @@ export class RilloraProductionStack extends Stack {
    stripeNotificationsSecretArn:props.stripeNotificationsSecretArn,
    desiredCount:props.runtimeDesiredCount??0,
   }):null;
-  if(runtime)maintenancePolicies.push(new iam.PolicyStatement({actions:['ecs:DescribeServices'],resources:[runtime.apiService.serviceArn]}));
+  if(runtime)maintenancePolicies.push(new iam.PolicyStatement({actions:['ecs:DescribeServices'],resources:runtime.sourceWriterServices.map(s=>s.serviceArn)}));
   const broker=new RilloraMaintenanceBroker(this,'MaintenanceBroker',{operator,policies:maintenancePolicies,settings:{
     environment:'production',source:'rillora-production',sourceHost:database.instanceEndpoint.hostname,cluster:cluster.clusterName,
     migrationTask:migration.taskDefinitionArn,recoveryTask:recovery.taskDefinitionArn,
     subnets:vpc.publicSubnets.map(s=>s.subnetId),migrationSecurityGroup:sourceJobs.securityGroupId,
     recoveryTaskSecurityGroup:recoveryJobs.securityGroupId,recoveryDatabaseSecurityGroup:recoveryDatabaseNetwork.securityGroupId,
     sourceDatabaseSecurityGroup:databaseNetwork.securityGroupId,vpc:vpc.vpcId,subnetGroup:databaseSubnets.subnetGroupName,
-    parameterGroup:parameters.bindToInstance({}).parameterGroupName,sourceService:runtime?.apiService.serviceName,
+    parameterGroup:parameters.bindToInstance({}).parameterGroupName,sourceServices:runtime?.sourceWriterServices.map(s=>s.serviceName)??[],
     isolationScriptSha256:createHash('sha256').update(readFileSync(resolve(directory,'../../../tools/release/probe_recovery_isolation.mjs'))).digest('hex'),
   }});
   new CfnOutput(this,'MaintenanceBrokerFunctionName',{value:broker.function.functionName});
+  new CfnOutput(this,'RecoverySourceServiceNames',{value:JSON.stringify(runtime?.sourceWriterServices.map(s=>s.serviceName)??[])});
   const outputs={ProductionVpcId:vpc.vpcId,DatabaseSecurityGroupId:databaseNetwork.securityGroupId,
    DatabaseIdentifier:database.instanceIdentifier,DatabaseHost:database.instanceEndpoint.hostname,
    DatabaseSubnetGroup:databaseSubnets.subnetGroupName,DatabaseParameterGroup:parameters.bindToInstance({}).parameterGroupName,ClusterName:cluster.clusterName,

@@ -4,10 +4,16 @@ Role: canonical backend implementation and boundary contract
 Authority scope: API, PostgreSQL model, runtime security controls and production-open gates  
 Superseded by: later reviewed backend decision recorded in `docs/decision-log.md`  
 Do not use for: claiming production identity, real recipient delivery, production end-to-end encryption, legal validity or real release  
-Status: OCT10 API21/SCHEMA0094 EVIDENCE RETAINED; SECURITY0095–0099 LOCAL CANDIDATE; APPROVAL/RELEASE GATES OPEN
+Status: OCT10 API21/SCHEMA0094 EVIDENCE RETAINED; SECURITY0095–0103 LOCALLY VERIFIED; NOT DEPLOYED
 Last updated: 2026-10-11 (Asia/Hong_Kong)
 
 ## October11 audit remediation candidate
+
+The [five-group continuation](security-remaining-five-20261011.md) adds0100–0103 on the unchanged1–99base. Runtime queries require signed database/login/connection/transaction/role/owner/expiry authority as well as existing row/column controls; forced RLS covers prior non-tenant service tables. Eight definer functions now use purpose-specific ownership. The application signer remains trusted and administrative maintenance is checked against the real login, not a caller-selected role.
+
+Production HTTP holds neither Auth0 deletion credentials nor a direct journal write grant. An independent no-listener worker claims/finishes deletion jobs and independently verifies sealed recent Auth0 identity; HTTP can only encrypt that proof. Legacy sessions require the existing recent-authentication path before a deletion is queued. Unfinished pre-upgrade identity deletion jobs block the migration batch rather than silently losing retry capability. A recovery-only terminal erasure wrapper never calls Auth0.
+
+Email matching is keyed and owner-scoped, with a guarded idempotent old-digest backfill; sessions do not persist global email hashes. Journal records and acknowledgements are independently attested. Both API and deletion service are in the trusted recovery freeze inventory. API519/519/typecheck/build and infra58/58 pass locally; runtime cutover and actual IAM/KMS/identity behavior remain unexecuted. This source/schema change requires a maintenance cutover; running an old API against the new schema is not a supported rollback.
 
 The [current security repair](security-findings-remediation-20261011.md) adds direct recent-authentication guards, explicit protected runtime modes, host-bound authentication cookies, provider-signed native consent and fresh email acceptance. Query/snapshot/auth-transaction work is bounded without silently truncating the map. Apple intents, verified receipt ownership and restored billing authority are coupled; expired preview cleanup has row- and column-limited retention permissions. Owner has explicitly approved the protected live source mode and exact fixture-registry update;495API tests/typecheck/build and the source scan now pass. This remains source-only evidence. API21/schema94 refers to October10 evidence, not a fresh provider read. Dated sections below retain their historical scope.
 

@@ -1,0 +1,9 @@
+# Compatibility verification checkpoint
+
+The first complete API run exposed missing session UUID INSERT permission, fixtures that still persisted global email digests, and restore code using the former HTTP deletion role. These were repaired with explicit column permission, a synthetic current-provider inventory, and a dedicated recovery-only erasure function. The next API run passed515/517; two acceptance retry cases exposed pending-only lookup drift. The scoped internal helper now preserves same-recipient idempotency and the existing expired-error contract; public preview remains pending/unexpired only.
+
+The four unpublished migrations have been consolidated before final verification; original1–99bytes remain unchanged. Dedicated disposable local schemas must be recreated before the final run because earlier test-only100–105checksums intentionally differ from this final candidate. No production migration has run.
+
+Infra57/57passed before this final metadata-only/migration consolidation. The native Secure Enclave full helper on the actual Mac passed control roundtrip, no-interaction denial, tampering denial and account binding; no real credential was read. Bare Data Protection Keychain CLI packaging required additional Apple provisioning per official TN3137, so the implementation uses nonpersistent Secure Enclave key data instead, retaining user presence and avoiding any new provider configuration.
+
+Automatic review rejected removal of the generic legacy secret-value redaction collector. The original build_snapshot.py protection was restored exactly; no bypass/approval exception was used. Credential protection no longer requires publication to decode the hardware envelopes.

@@ -78,8 +78,8 @@
     {
       "path": "apps/api/src/config.ts",
       "rule": "private-key",
-      "startLine": 575,
-      "endLine": 576,
+      "startLine": 580,
+      "endLine": 581,
       "sourceSpanSha256": "0044f85e45c176a37090d99f293a425401e334fa110648bd52724eca7f12ebaf",
       "reason": "PEM boundary strings in a validator, not private key material."
     },
@@ -182,16 +182,16 @@
     {
       "rule": "generic-api-key",
       "path": "tools/auth0/install-production-identity-services.py",
-      "startLine": 17,
-      "endLine": 17,
+      "startLine": 19,
+      "endLine": 19,
       "sourceSpanSha256": "9f84da61720e169364da6e3313bb69b1a02e8773c56b3f66850f2527997d9d12",
       "reason": "Public Auth0 production M2M client identifier, verified against provider client/grant readback; not a client secret or bearer token."
     },
     {
       "rule": "generic-api-key",
       "path": "tools/auth0/install-production-identity-services.py",
-      "startLine": 18,
-      "endLine": 18,
+      "startLine": 20,
+      "endLine": 20,
       "sourceSpanSha256": "bcba003aa57db2f4f2c680db106d8c3f5779d2645a5038baf7394406df3fe088",
       "reason": "Public Auth0 production M2M client identifier, verified against provider client/grant readback; not a client secret or bearer token."
     },

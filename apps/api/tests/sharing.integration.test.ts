@@ -8,7 +8,8 @@ import { createPool, withPlannerDatabase, type DatabasePool } from "../src/db.js
 import { runMigrations } from "../src/migrate.js";
 import { seedDevelopmentFixture, developmentPlannerPublicId as A } from "../src/seed-dev.js";
 import { currentLegalContract } from "../src/legal-contract.js";
-import { verifiedEmailDigest } from "../src/sharing-identity.js";
+import {EmailIdentityFixture} from './email-identity-fixture.js';
+const emailIdentityVerifier=new EmailIdentityFixture();
 
 const databaseUrl = dedicatedTestDatabaseUrl("postgresql:///continuity_sharing_test", "continuity_sharing_test");
 const config = loadConfig({ NODE_ENV: "test", DATABASE_URL: databaseUrl, ALLOW_DEV_AUTH: "true", CORS_ORIGINS: "http://localhost:4191" });
@@ -23,6 +24,7 @@ let family: string; let friend: string; let secret: string; let never: string;
 let ownerId: string;
 
 async function actor(name: string, email?: string) {
+  emailIdentityVerifier.register('https://identity.example',`sharing|${name}`,email??null);
   const result = await pool.query<{ planner_id: string; planner_public_id: string; identity_account_id: string }>(
     "select * from app.provision_oidc_planner($1, $2, $3, 'en', 'UTC')", ["https://identity.example", `sharing|${name}`, name]);
   const row = result.rows[0]!; const token = name[0]!.repeat(43);
@@ -36,7 +38,7 @@ async function actor(name: string, email?: string) {
     select $1, $2, id, $8, $9, now() + interval '1 hour', $10 from acceptance`,
   [row.planner_id, row.identity_account_id, currentLegalContract.termsVersion, currentLegalContract.privacyVersion,
     currentLegalContract.consentTextVersion, Buffer.from(currentLegalContract.bundleSha256, "hex"),
-    sha(`https://identity.example\u001fsharing|${name}`), sha(token), sha(csrf), email ? verifiedEmailDigest(email) : null]);
+    sha(`https://identity.example\u001fsharing|${name}`), sha(token), sha(csrf), null]);
   return { id: String(row.planner_id), publicId: row.planner_public_id, token };
 }
 const as = (who: typeof B) => ({ cookie: `continuity_session=${who.token}`, "x-csrf-token": csrf, "x-rillora-planner": who.publicId });
@@ -63,7 +65,7 @@ describe.sequential("Account-bound directed sharing", () => {
     await assertDedicatedTestDatabase(databaseUrl, 'continuity_sharing_test');
     await runMigrations(databaseUrl); pool = createPool(config);
     await pool.query("truncate app.planners restart identity cascade");
-    await seedDevelopmentFixture(pool); app = createApp(pool, config);
+    await seedDevelopmentFixture(pool); app = createApp(pool, config,{emailIdentityVerifier});
     B = await actor("B", "b@example.test"); C = await actor("C", "c@example.test"); U = await actor("Unverified");
     ownerId = String((await pool.query("select id from app.planners where public_id = $1", [A])).rows[0].id);
     async function matter(title: string, outcome = "notify") {

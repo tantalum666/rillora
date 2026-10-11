@@ -8,7 +8,8 @@ import { createPool, withCommercePlannerDatabase, withPlannerDatabase, type Data
 import { runMigrations } from "../src/migrate.js";
 import { seedDevelopmentFixture, developmentPlannerPublicId } from "../src/seed-dev.js";
 import { currentLegalContract } from "../src/legal-contract.js";
-import { verifiedEmailDigest } from "../src/sharing-identity.js";
+import {EmailIdentityFixture} from './email-identity-fixture.js';
+const emailIdentityVerifier=new EmailIdentityFixture();
 
 import {assertDedicatedTestDatabase,dedicatedTestDatabaseUrl} from './dedicated-test-database.js';
 const databaseUrl = dedicatedTestDatabaseUrl("postgresql:///continuity_commercial_sharing_test","continuity_commercial_sharing_test");
@@ -26,6 +27,7 @@ async function invite(email: string, p?: string) {
 }
 async function recipient(email: string) {
   const actor = (await pool.query("select * from app.provision_oidc_planner($1,$2,$3,'en','UTC')", ["https://qa.example.test", `lifecycle|${++serial}`, "Recipient"])).rows[0];
+  emailIdentityVerifier.register('https://qa.example.test',`lifecycle|${serial}`,email);
   const token = randomBytes(32).toString("base64url"), csrf = randomBytes(32).toString("base64url");
   await pool.query(`with legal as (insert into app.legal_acceptances(planner_id,identity_account_id,terms_version,privacy_version,
     consent_text_version,legal_bundle_sha256,accepted_terms,acknowledged_privacy,accepted_electronic_records,client_surface,identity_reference_sha256)
@@ -33,7 +35,7 @@ async function recipient(email: string) {
     insert into app.auth_sessions(planner_id,identity_account_id,legal_acceptance_id,token_hash,csrf_token_hash,expires_at,verified_email_hash)
     select $1,$2,id,$8,$9,now()+interval '1 hour',$10 from legal`,
   [actor.planner_id, actor.identity_account_id, currentLegalContract.termsVersion, currentLegalContract.privacyVersion,
-    currentLegalContract.consentTextVersion, Buffer.from(currentLegalContract.bundleSha256, "hex"), digest(`qa-${serial}`), digest(token), digest(csrf), verifiedEmailDigest(email)]);
+    currentLegalContract.consentTextVersion, Buffer.from(currentLegalContract.bundleSha256, "hex"), digest(`qa-${serial}`), digest(token), digest(csrf), null]);
   return { cookie: `continuity_session=${token}`, "x-csrf-token": csrf, "x-rillora-planner": actor.planner_public_id };
 }
 async function accept(result: Response, actor: Record<string, string>) {
@@ -67,7 +69,7 @@ async function scope(publicId: string, level: string | null) {
 }
 
 describe.sequential("Commercial sharing: quotas, paid cutoff and restrictive permissions", () => {
-  beforeAll(async () => { await assertDedicatedTestDatabase(databaseUrl,'continuity_commercial_sharing_test'); await runMigrations(databaseUrl); pool = createPool(config); app = createApp(pool, config); });
+  beforeAll(async () => { await assertDedicatedTestDatabase(databaseUrl,'continuity_commercial_sharing_test'); await runMigrations(databaseUrl); pool = createPool(config); app = createApp(pool, config,{emailIdentityVerifier}); });
   beforeEach(async () => {
     await pool.query("truncate app.planners restart identity cascade");
     await pool.query("update app.commerce_runtime_policy set sharing_limits_enabled=true");

@@ -13,7 +13,7 @@ describe('Closed production data and recovery foundation',()=>{
   for(const action of ['ecs:RunTask','iam:PassRole','rds:CreateDBSnapshot','rds:RestoreDBInstanceFromDBSnapshot',
     'rds:DeleteDBInstance','rds:DeleteDBSnapshot','rds:AddTagsToResource'])expect(actions).not.toContain(action);
   expect(actions).toContain('lambda:InvokeFunction');
-  const broker=(Object.values(t.findResources('AWS::Lambda::Function')) as any[]).find(f=>f.Properties.Handler==='handler.handler')!;
+  const broker=(Object.values(t.findResources('AWS::Lambda::Function')) as any[]).find(f=>f.Properties.Environment?.Variables?.BROKER_SETTINGS)!;
   const brokerRole=broker.Properties.Role['Fn::GetAtt'][0];
   const brokerActions=(Object.values(t.findResources('AWS::IAM::Policy')) as any[])
     .filter(p=>p.Properties.Roles?.some((r:any)=>r.Ref===brokerRole)).flatMap(p=>p.Properties.PolicyDocument.Statement)
@@ -113,7 +113,7 @@ describe('Optional closed production HTTPS runtime',()=>{
   t.hasResourceProperties('AWS::SecretsManager::Secret',{Name:'rillora/production/apple-review'});
   t.hasResourceProperties('AWS::SecretsManager::Secret',{Name:'rillora/production/web-oidc'});
   const api=(Object.values(t.findResources('AWS::ECS::TaskDefinition')) as any[]).flatMap(t=>t.Properties.ContainerDefinitions).find(c=>c.Name==='Api');
-  expect(api.Secrets).toHaveLength(2);
+  expect(api.Secrets.map((s:any)=>s.Name).sort()).toEqual(['DATABASE_AUTHORITY_KEY','DATABASE_PASSWORD','DATABASE_USER','EMAIL_MATCH_KEY']);
   expect(api.Environment).toContainEqual({Name:'PRODUCTION_RUNTIME_MODE',Value:'closed'});
   expect(api.Environment.some((e:any)=>e.Name==='APPLE_REVIEW_SECRET_ARN')).toBe(false);
  });
@@ -126,7 +126,7 @@ describe('Optional closed production HTTPS runtime',()=>{
   expect(env.ALLOW_RETENTION_WORKER).toBe('true');
   expect(env.PRODUCTION_REVIEW_IDENTITY_SHA256.Ref).toBeDefined();expect(env.PRODUCTION_REVIEW_EXPIRES_AT.Ref).toBeDefined();
   for(const name of ['ALLOW_DEV_AUTH','ALLOW_APPLE_PRODUCTION_INTEGRATION','ALLOW_STRIPE_PRODUCTION_INTEGRATION','ALLOW_APPLE_SANDBOX_INTEGRATION'])expect(env[name]).toBe('false');
-  expect(api.Secrets).toHaveLength(3);t.hasOutput('ProductionTrafficReady',{Value:'false'});
+  expect(api.Secrets.map((s:any)=>s.Name).sort()).toEqual(['DATABASE_AUTHORITY_KEY','DATABASE_PASSWORD','DATABASE_USER','EMAIL_MATCH_KEY','OIDC_CLIENT_SECRET']);t.hasOutput('ProductionTrafficReady',{Value:'false'});
   const ocspRules=Object.values(t.findResources('AWS::EC2::SecurityGroup')).flatMap((g:any)=>g.Properties.SecurityGroupEgress??[]).filter((r:any)=>r.FromPort===80);
   expect(ocspRules).toHaveLength(2);
   expect(ocspRules.every((r:any)=>r.ToPort===80&&r.IpProtocol==='tcp'&&r.CidrIp==='17.0.0.0/8')).toBe(true);
@@ -139,9 +139,12 @@ describe('Optional closed production HTTPS runtime',()=>{
   t.hasResourceProperties('AWS::SecretsManager::Secret',{Name:'rillora/production/account-deletion'});
   t.hasResourceProperties('AWS::SecretsManager::Secret',{Name:'rillora/production/email-verification'});
   const api=(Object.values(t.findResources('AWS::ECS::TaskDefinition')) as any[]).flatMap(t=>t.Properties.ContainerDefinitions).find(c=>c.Name==='Api');
-  expect(api.Secrets).toHaveLength(9);
-  for(const prefix of ['AUTH0_DELETION','AUTH0_EMAIL_VERIFICATION']){
-    for(const field of ['DOMAIN','CLIENT_ID','CLIENT_SECRET']) expect(api.Secrets.find((s:any)=>s.Name===`${prefix}_${field}`)).toBeDefined();
+  expect(api.Secrets).toHaveLength(8);
+  const worker=(Object.values(t.findResources('AWS::ECS::TaskDefinition')) as any[]).flatMap(t=>t.Properties.ContainerDefinitions).find(c=>c.Name==='IdentityDeletion');
+  for(const field of ['DOMAIN','CLIENT_ID','CLIENT_SECRET']){
+    expect(api.Secrets.find((s:any)=>s.Name===`AUTH0_EMAIL_VERIFICATION_${field}`)).toBeDefined();
+    expect(api.Secrets.find((s:any)=>s.Name===`AUTH0_DELETION_${field}`)).toBeUndefined();
+    expect(worker.Secrets.find((s:any)=>s.Name===`AUTH0_DELETION_${field}`)).toBeDefined();
   }
   expect(JSON.stringify(api.Secrets)).not.toContain('staging');
  });
@@ -160,7 +163,7 @@ describe('Optional closed production HTTPS runtime',()=>{
   expect(httpRules).toHaveLength(0);
   expect(env.ALLOW_DEV_AUTH).toBe('false');expect(env.ALLOW_STRIPE_TEST_INTEGRATION).toBe('false');
   expect(api.ReadonlyRootFilesystem).toBe(true);expect(api.LinuxParameters.Capabilities.Drop).toContain('ALL');
-  expect(api.Secrets).toHaveLength(2);expect(JSON.stringify(api.Secrets)).not.toContain('DatabaseSecret');
+  expect(api.Secrets.map((s:any)=>s.Name).sort()).toEqual(['DATABASE_AUTHORITY_KEY','DATABASE_PASSWORD','DATABASE_USER','EMAIL_MATCH_KEY']);expect(JSON.stringify(api.Secrets)).not.toContain('DatabaseSecret');
   const incoming=Object.values(t.findResources('AWS::EC2::SecurityGroupIngress')) as any[];
   expect(incoming.every(x=>!x.Properties.CidrIp)).toBe(true);
   const tlsRules=incoming.filter(x=>x.Properties.FromPort===8443);expect(tlsRules).toHaveLength(1);

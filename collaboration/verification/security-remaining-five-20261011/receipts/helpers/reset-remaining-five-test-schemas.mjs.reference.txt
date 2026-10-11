@@ -1,0 +1,16 @@
+import pg from '/private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/apps/api/node_modules/pg/lib/index.js';
+import {readFileSync} from 'node:fs';
+const workflow=readFileSync('/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/.github/workflows/verify.yml','utf8');
+const names=workflow.match(/for database in ([^;]+); do/)[1].split(/\s+/);
+if(names.length!==25||!names.every(n=>/^(?:continuity|rillora)_[a-z0-9_]+_test$/.test(n)||n==='continuity_test'))throw Error('Unexpected fixture inventory');
+for(const name of names){
+ const client=new pg.Client({host:'127.0.0.1',port:5432,user:'tantalum',database:name});
+ await client.connect();
+ try{
+  const row=(await client.query("select current_database() as db,session_user as actor,inet_server_addr()='127.0.0.1'::inet as local")).rows[0];
+  if(row.db!==name||row.actor!=='tantalum'||row.local!==true)throw Error('Unsafe fixture connection');
+  await client.query('drop schema if exists app cascade');
+  await client.query('drop schema if exists rillora_guard cascade');
+ }finally{await client.end();}
+}
+process.stdout.write(JSON.stringify({resetDisposableSchemas:names.length,host:'127.0.0.1',realDataTouched:false})+'\n');

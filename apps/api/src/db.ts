@@ -3,6 +3,8 @@ import pg, { type PoolClient, type QueryResult, type QueryResultRow } from "pg";
 import type { AppConfig, DatabaseConfig } from "./config.js";
 import { contentClient, KmsContentKeyProvider, type ContentKeyProvider, type ContentProtectionConfig } from "./private-content.js";
 import { configureRecoveryPool, publishRecoveryTransaction, recoveryPublisherFromEnvironment } from './recovery-journal.js';
+import { bindDatabaseAuthority, configureDatabaseAuthority } from './database-authority.js';
+import { emailMatchKey } from './sharing-identity.js';
 
 const { Pool } = pg;
 
@@ -52,6 +54,10 @@ export function createPool(config: AppConfig, testContentProvider?: ContentKeyPr
   });
   configureContentPool(pool,config.contentProtection ?? null,config.allowFamilyMaintenancePreview ?? false,
     testContentProvider ?? (config.contentProtection ? new KmsContentKeyProvider(config.contentProtection) : null));
+  if (config.nodeEnv === 'production' && !config.databaseAuthorityKey) throw new Error('Production requires database transaction authority');
+  if (config.nodeEnv === 'production') emailMatchKey(config);
+  if (config.deletionWorkerEnabled && !config.deletionProof) throw new Error('Isolated deletion requires protected provider identity proofs');
+  configureDatabaseAuthority(pool, config.databaseAuthorityKey ?? null);
   if(config.nodeEnv==='production'){
     const journal=recoveryPublisherFromEnvironment();if(journal)configureRecoveryPool(pool,journal);
   }
@@ -70,11 +76,13 @@ async function inRoleTransaction<T>(
   role: "continuity_app" | "continuity_auth" | "continuity_rehearsal" | "continuity_commerce",
   operation: (client: PoolClient) => Promise<T>,
   repeatableSnapshot = false,
+  plannerId: string | null = null,
 ): Promise<T> {
   const client = await pool.connect();
   try {
     await client.query(repeatableSnapshot ? "begin isolation level repeatable read" : "begin");
     await client.query(`set local role ${role}`);
+    await bindDatabaseAuthority(pool, client, role, plannerId);
     const result = await operation(client);
     await publishRecoveryTransaction(pool,client);
     await client.query("commit");
@@ -137,6 +145,7 @@ export function withRecipientRehearsalDatabase<T>(
       "select set_config('app.current_rehearsal_id', $1, true), set_config('app.current_planner_id', $2, true)",
       [row.id, row.planner_id],
     );
+    await bindDatabaseAuthority(pool, client, 'continuity_rehearsal', row.planner_id);
     return operation(client, {
       id: row.id,
       publicId: row.public_id,
@@ -154,6 +163,15 @@ export function withAuthDatabase<T>(
   return inRoleTransaction(pool, "continuity_auth", operation);
 }
 
+export async function withDeletionWorkerDatabase<T>(pool:DatabasePool,operation:(client:PoolClient)=>Promise<T>):Promise<T>{
+  const client=await pool.connect();
+  try{
+    await client.query('begin');await client.query('set local role continuity_deletion_worker');
+    const result=await operation(client);
+    await publishRecoveryTransaction(pool,client);await client.query('commit');return result;
+  }catch(error){await client.query('rollback');throw error;}finally{client.release();}
+}
+
 export function withPlannerDatabase<T>(
   pool: DatabasePool,
   plannerId: string,
@@ -162,14 +180,14 @@ export function withPlannerDatabase<T>(
   return inRoleTransaction(pool, "continuity_app", async (client) => {
     await client.query("select set_config('app.current_planner_id', $1, true)", [plannerId]);
     return protectedPlannerOperation(pool,client,operation);
-  });
+  }, false, plannerId);
 }
 
 export function withPlannerSnapshotDatabase<T>(pool: DatabasePool, plannerId: string, operation: (client: PoolClient) => Promise<T>): Promise<T> {
   return inRoleTransaction(pool, "continuity_app", async client => {
     await client.query("select set_config('app.current_planner_id', $1, true)", [plannerId]);
     return protectedPlannerOperation(pool,client,operation);
-  }, true);
+  }, true, plannerId);
 }
 
 export async function withContentMigrationDatabase<T>(pool:DatabasePool,plannerId:string,
@@ -200,7 +218,7 @@ export function withCommercePlannerDatabase<T>(
   return inRoleTransaction(pool, "continuity_commerce", async (client) => {
     await client.query("select set_config('app.current_planner_id', $1, true)", [plannerId]);
     return operation(client);
-  });
+  }, false, plannerId);
 }
 
 export function withCommerceAccountDatabase<T>(
@@ -225,6 +243,7 @@ export function withCommerceAccountDatabase<T>(
     const row = context.rows[0];
     if (!row) return null;
     await client.query("select set_config('app.current_planner_id', $1, true)", [row.planner_id]);
+    await bindDatabaseAuthority(pool, client, 'continuity_commerce', row.planner_id);
     return operation(client, {
       commerceAccountId: row.commerce_account_id,
       plannerId: row.planner_id,

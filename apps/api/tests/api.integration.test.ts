@@ -2763,7 +2763,8 @@ describe.sequential("Continuity API", () => {
     const contact = (await asDevelopmentPlanner(request(app).post("/v1/trusted-contacts").send({ displayName: "Signup recipient" })).expect(201)).body.trustedContact;
     const invitation = (await asDevelopmentPlanner(request(app).post("/v1/sharing/connections").send({ personPublicId: contact.publicId, email: "signup@example.test", grants: [] })).expect(201)).body;
     const token = new URLSearchParams(new URL(invitation.invitationUrl).hash.slice(1)).get("invitation")!;
-    const signedUpApp = createApp(pool, config, { appleSignedDataVerifier: fakeAppleVerifier, stripeProvider: fakeStripeProvider, nativeIdentityVerifier: fakeNativeIdentityVerifier, identityProvider: {
+    const signedUpApp = createApp(pool, config, { appleSignedDataVerifier: fakeAppleVerifier, stripeProvider: fakeStripeProvider, nativeIdentityVerifier: fakeNativeIdentityVerifier,
+      emailIdentityVerifier:{async verifiedEmail(identity){return identity.issuer==='https://identity.example'&&identity.subject==='auth0|new-invitation-recipient'?'signup@example.test':null;}}, identityProvider: {
       ...fakeIdentityProvider,
       async exchangeAuthorizationCode() {
         return { issuer: "https://identity.example", subject: "auth0|new-invitation-recipient", displayName: "New recipient", locale: "en", authenticatedAt: new Date(), authenticationMethods: ["pwd"], verifiedEmail: "signup@example.test" };

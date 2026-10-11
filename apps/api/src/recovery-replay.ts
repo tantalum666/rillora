@@ -85,11 +85,8 @@ export async function replayRecoveryControls(pool:Pool,events:RecoveryControl[],
        // The durable terminal deletion proves the source already completed its
        // identity cleanup. Preserve snapshot financial records via the existing
        // erasure function, rather than raw-cascading that retention away.
-       await client.query("update app.account_deletions set lease_until=null,next_attempt_at=now() where public_id=$1",[job]);
-       await client.query('set local role continuity_auth');
-       const claimed=(await client.query('select app.claim_account_deletion($1) as job',[job])).rows[0].job;
-       if(!claimed)throw new Error('Restored deletion job could not be reclaimed');
-       const finished=(await client.query('select app.finish_account_deletion($1,$2,true) as finished',[job,claimed.leaseToken])).rows[0].finished;
+       await client.query('set local role continuity_recovery_service');
+       const finished=(await client.query('select app.recover_completed_account_deletion($1) as finished',[job])).rows[0].finished;
        if(!finished)throw new Error('Restored account erasure did not complete');
        await client.query('reset role');
       }

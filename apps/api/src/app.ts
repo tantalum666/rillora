@@ -14,7 +14,8 @@ import { ApiError, errorHandler, notFoundHandler } from "./errors.js";
 import { createApiRouter } from "./routes.js";
 import { createAccountDataRouter, mapBackupMaxBytes } from "./account-data-routes.js";
 import { createAccountIdentityRouter } from "./account-identity.js";
-import { createAccountDeletionRouter, createPublicAccountDeletionRouter, deletionProcessor, type AccountIdentityDeleting, type AccountDeletionProcessor } from "./account-deletion.js";
+import { createAccountDeletionRouter, createPublicAccountDeletionRouter, deletionProcessor, type AccountIdentityDeleting, type AccountDeletionHandling } from "./account-deletion.js";
+import {checkEmailMatchReadiness} from './email-match-readiness.js';
 import { createDisclosureRehearsalRouter } from "./disclosure-rehearsal-routes.js";
 import { createCommerceRouter } from "./commerce-routes.js";
 import { createFamilyMaintenanceRouter } from "./family-maintenance-routes.js";
@@ -60,7 +61,7 @@ export type AppDependencies = AuthDependencies & {
   transportReady?: () => boolean;
   emailIdentityVerifier?: EmailIdentityVerifying;
   accountIdentityDeleter?: AccountIdentityDeleting;
-  accountDeletionProcessor?: AccountDeletionProcessor;
+  accountDeletionProcessor?: AccountDeletionHandling;
   stripeProvider?: StripeCommerceProvider;
   stripeExecutor?: StripeCommerceExecutor;
   stripeProductionConfig?: StripeProductionConfig;
@@ -91,6 +92,7 @@ export function createApp(
       await pool.query("select 1");
       await checkContentKeys(pool);
       await checkRecoveryJournal(pool);
+      if(config.nodeEnv==='production')await checkEmailMatchReadiness(pool,config);
       response.json({ status: "ready" });
     } catch {
       response.status(503).json({ status: "not_ready" });

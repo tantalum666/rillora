@@ -29,6 +29,7 @@ import * as s3 from "aws-cdk-lib/aws-s3";
 import * as s3deploy from "aws-cdk-lib/aws-s3-deployment";
 import type { Construct } from "constructs";
 import { RilloraMaintenanceBroker } from './rillora-maintenance-broker.js';
+import {RilloraRuntimeBoundaryKeys,RilloraIdentityDeletionWorker} from './rillora-runtime-boundaries.js';
 
 export type RilloraStagingStackProps = StackProps & {
   desiredCount: number;
@@ -320,6 +321,7 @@ export class RilloraStagingStack extends Stack {
       CONTENT_KMS_KEY_ARN: contentKey.keyArn,
       CONTENT_KEY_NAMESPACE: "rillora-staging",
     };
+    const boundaryKeys=new RilloraRuntimeBoundaryKeys(this,'RuntimeBoundaries','staging');
     const allowContentKeys = (role: iam.IRole) => role.addToPrincipalPolicy(new iam.PolicyStatement({
       sid: "UseOnlyStagingContentKeys",
       actions: ["kms:GenerateDataKey", "kms:Decrypt"],
@@ -371,10 +373,7 @@ export class RilloraStagingStack extends Stack {
           AUTH0_EMAIL_VERIFICATION_DOMAIN: verificationDomain.valueAsString,
           AUTH0_EMAIL_VERIFICATION_CLIENT_ID: verificationClientId.valueAsString,
         } : {}),
-        ...(props.accountDeletionEnabled ? {
-          AUTH0_DELETION_DOMAIN: deletionDomain.valueAsString,
-          AUTH0_DELETION_CLIENT_ID: deletionClientId.valueAsString,
-        } : {}),
+        ...(props.accountDeletionEnabled ? {DELETION_WORKER_ENABLED:'true',DELETION_PROOF_KMS_KEY_ARN:boundaryKeys.proof.keyArn} : {}),
         OIDC_REDIRECT_URI: webOidcRedirectUri.valueAsString,
         WEB_APP_ORIGIN: webCorsOrigin.valueAsString,
         NATIVE_OIDC_CLIENT_ID: nativeOidcClientId.valueAsString,
@@ -408,12 +407,10 @@ export class RilloraStagingStack extends Stack {
       secrets: {
         DATABASE_USER: ecs.Secret.fromSecretsManager(runtimeDatabaseSecret, "username"),
         DATABASE_PASSWORD: ecs.Secret.fromSecretsManager(runtimeDatabaseSecret, "password"),
+        ...boundaryKeys.apiSecrets(),
         OIDC_CLIENT_SECRET: ecs.Secret.fromSecretsManager(webOidcClientSecret),
         ...(props.emailVerificationEnabled ? {
           AUTH0_EMAIL_VERIFICATION_CLIENT_SECRET: ecs.Secret.fromSecretsManager(emailVerificationSecret),
-        } : {}),
-        ...(props.accountDeletionEnabled ? {
-          AUTH0_DELETION_CLIENT_SECRET: ecs.Secret.fromSecretsManager(accountDeletionSecret),
         } : {}),
         ...(props.stripeTestIntegrationEnabled
           ? {
@@ -477,6 +474,15 @@ export class RilloraStagingStack extends Stack {
       containerPort: apiContainerPort,
     });
     service.node.addDependency(database);
+    if(props.accountDeletionEnabled){
+      boundaryKeys.allowProof(taskDefinition.taskRole,'staging','kms:GenerateDataKey');
+      new RilloraIdentityDeletionWorker(this,'IdentityWorker',{environment:'staging',vpc,cluster,
+        databaseNetwork:databaseSecurityGroup,databaseEnvironment:sharedEnvironment,keys:boundaryKeys,image,
+        providerEnvironment:{AUTH0_DELETION_DOMAIN:deletionDomain.valueAsString,AUTH0_DELETION_CLIENT_ID:deletionClientId.valueAsString},
+        providerSecrets:{AUTH0_DELETION_CLIENT_SECRET:ecs.Secret.fromSecretsManager(accountDeletionSecret)},
+        issuers:[oidcIssuer.valueAsString],clients:[webOidcClientId.valueAsString,nativeOidcClientId.valueAsString],
+        desiredCount:props.desiredCount>0?1:0});
+    }
 
     const migrationLogGroup = new logs.LogGroup(this, "MigrationLogGroup", {
       retention: logs.RetentionDays.ONE_MONTH,
@@ -495,7 +501,7 @@ export class RilloraStagingStack extends Stack {
     if (props.contentMigrationEnabled) allowContentKeys(migrationTaskDefinition.taskRole);
     migrationTaskDefinition.addContainer("Migration", {
       image,
-      command: ["/bin/sh", "-c", "node dist/migrate.js && node dist/bootstrap-runtime.js"],
+      command: ["/bin/sh", "-c", "node dist/migrate.js && node dist/bootstrap-runtime.js && node dist/migrate-email-matches.js"],
       logging: ecs.LogDrivers.awsLogs({ logGroup: migrationLogGroup, streamPrefix: "migration" }),
       environment: {
         ...sharedEnvironment,
@@ -506,6 +512,7 @@ export class RilloraStagingStack extends Stack {
         DATABASE_PASSWORD: ecs.Secret.fromSecretsManager(database.secret, "password"),
         RUNTIME_DATABASE_USER: ecs.Secret.fromSecretsManager(runtimeDatabaseSecret, "username"),
         RUNTIME_DATABASE_PASSWORD: ecs.Secret.fromSecretsManager(runtimeDatabaseSecret, "password"),
+        ...boundaryKeys.migrationSecrets(),
       },
     });
 

@@ -1,13 +1,21 @@
 # Recovery control journal and quarantine
 
 Role: engineering contract for restoring encrypted Rillora data safely
-Status: CURRENT SCOPED CLOUD/PROVIDER RESTORE ACCEPTANCE VERIFIED
-Last updated: 2026-10-10 (Asia/Hong_Kong)
+Status: OCT10 CLOUD EVIDENCE RETAINED; OCT11 ATTESTED JOURNAL LOCALLY VERIFIED; ONLINE UNCHANGED
+Last updated: 2026-10-11 (Asia/Hong_Kong)
 
 The production foundation is separate from staging. Customer traffic remains
 closed while the [production/recovery gate](production-recovery-20260923.md)
 is validated. Git source history, database snapshots and control-state recovery
 are distinct evidence.
+
+## October11 attestation and source-writer isolation — not deployed
+
+[The remaining-five source repair](security-remaining-five-20261011.md) closes the old SQL-only unsigned publication acknowledgement as well as HTTP's direct Dynamo write permission. The database attests only captured current-transaction control metadata; a separate Lambda validates generation, exact canonical payload and monotonic revision, then returns a receipt bound to that same record. The SQL commit guard accepts only that receipt for an ordinary runtime login. NULL, forged, changed-payload and cross-transaction receipts fail. The signing secret belongs to the protected database service and the independent writer, not HTTP or deletion-worker configuration.
+
+Privileged initial migration/backfill still has explicit administrative journal authority. It cannot be inferred by SET ROLE from a normal runtime login. The independent deletion worker remains a source writer and must be frozen together with API: trusted stack output, broker settings and exact DescribeServices permissions now enumerate both. Either service's nonzero desired/running/pending count refuses reconciliation; missing inventory fails closed. The driver does not stop either service automatically or refresh an old uncertain request's freeze timestamp.
+
+The shared production migration command performs migrate, runtime bootstrap, private-content enforcement and scoped-email backfill. Old uncertain commands are not silently upgraded. All changes are source/local-test evidence; the October10 provider/cloud receipts below continue to describe the deployed older protocol. A future upgrade needs an explicit maintenance cutover and old deletion-job preflight, not an online rolling mixture of both schemas.
 
 ## October10 current inventory and financial evidence
 
@@ -75,8 +83,9 @@ RDS/application encryption still has its own scope; this is not E2EE.
 ## Commit and failure boundary
 
 Restrictive database changes create a transaction-local control record. Before
-commit, the API publishes its final minimal state to DynamoDB and marks the
-record published. A deferred SQL constraint rejects unjournaled commits when
+commit, the API forwards the final minimal state to the independently attested broker and submits
+its verified receipt to mark the record published (the October10 deployed baseline wrote directly).
+A deferred SQL constraint rejects unjournaled commits when
 enforcement is on. Missing publishers and publication failures therefore cannot
 silently save an unprotected restriction. Temporary failures return503 and leave
 the original database transaction rolled back. Source readiness also verifies

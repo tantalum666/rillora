@@ -13,6 +13,7 @@ import { authenticationIsRecent } from './recent-authentication.js';
 import type { PoolClient } from 'pg';
 import { reviewAccessOpen } from './production-review-access.js';
 import { admitAuthenticationTransaction, authenticationBusy } from './auth-transaction-budget.js';
+import { sealSessionDeletionProof } from './identity-deletion-proof.js';
 
 const digest = (value: string) => createHash('sha256').update(value).digest();
 const opaque = () => randomBytes(32).toString('base64url');
@@ -26,8 +27,9 @@ export type ReauthenticationTransaction = {
 async function refreshSession(client: PoolClient, config: AppConfig, publicId: string,
   identity: ExternalIdentity, tokenHash?: Buffer): Promise<void> {
   if (!reviewAccessOpen(config) || !authenticationIsRecent(identity.authenticatedAt)) throw invalid();
+  const deletionProof=await sealSessionDeletionProof(config,identity,publicId);
   const result = await client.query(`update app.auth_sessions s
-    set authenticated_at=$2, authentication_methods=$3::text[]
+    set authenticated_at=$2, authentication_methods=$3::text[],deletion_identity_proof=$11::jsonb
     from app.legal_acceptances a, app.planners p
     where s.public_id=$1 and s.revoked_at is null and s.expires_at>now()
       and (s.last_seen_at is null or s.last_seen_at>now()-make_interval(mins=>$4))
@@ -41,7 +43,7 @@ async function refreshSession(client: PoolClient, config: AppConfig, publicId: s
     config.sessionIdleMinutes, digest(`${identity.issuer}\u001f${identity.subject}`),
     currentLegalContract.termsVersion, currentLegalContract.privacyVersion,
     Buffer.from(currentLegalContract.bundleSha256,'hex'), tokenHash ?? null,
-    config.productionReviewAccess?.identityDigests ?? null]);
+    config.productionReviewAccess?.identityDigests ?? null,deletionProof?JSON.stringify(deletionProof):null]);
   if (result.rowCount !== 1) throw invalid();
 }
 
