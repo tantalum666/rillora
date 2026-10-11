@@ -2,7 +2,7 @@
 
 Last updated: 2026-10-11 (Asia/Hong_Kong)
 
-## October11 remaining-five continuation — code/tests and new preservation
+## October11 remaining-five continuation — pushed and independently verified
 
 Owner extends the same branch fromb6f5b8c97 to groups31–35, with online unchanged.
 The [new scoped repair](security-remaining-five-20261011.md) passesAPI519/519 and
@@ -11,7 +11,9 @@ infra58/58 plus the focused operational/hardware checks. Its new
 contains249paths/232objects/345,291encrypted bytes, locally decrypted and verified.
 Archives1–31 and earlier receipts are unchanged. Current code/specs are normal Git;
 the new exact logs, failed attempts, candidate review, helpers and compiled API are
-preserved with explicit exclusions. Remote/CI receipts follow the capture separately.
+preserved with explicit exclusions. Source/archive74a9c66ac is pushed; CI125 succeeds
+and independent fresh LFS download/decryption verifies all232objects/249paths against
+GitHub metadata at that immutable commit. Remote/CI receipts follow the capture separately.
 This continuation does not deploy the changes or migrate existing real credentials.
 
 ## October11 audit repair — pushed, CI passed and archive remotely verified

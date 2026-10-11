@@ -1,6 +1,6 @@
 # Rillora — Git / Dot 协作入口
 
-October11续修：[剩余第31—35组](../docs/security-remaining-five-20261011.md)已完成源码和本地验证，延续分支codex/security-findings-20261011。API519项、infra58项及运维／凭据检查通过；独立复核的迁移命令、删除worker停写两处回归已修。[新增archive32](verification/security-remaining-five-20261011/README.md)保留249路径／232原件，本机解密核验通过，Git／CI／远端核验正在收尾。线上和真实凭据按Owner要求保持原状；下方archive31段是上一轮检查点，不取代[当前handoff](../docs/handoff.md)。
+October11续修：[剩余第31—35组](../docs/security-remaining-five-20261011.md)已完成并推送到同一分支codex/security-findings-20261011的74a9c66ac。API519项、infra58项及运维／凭据检查通过；独立复核的迁移命令、删除worker停写两处回归已修。[CI125](https://github.com/tantalum666/rillora/actions/runs/38146452345)三任务通过，[新增archive32](verification/security-remaining-five-20261011/README.md)的249路径／232原件已从GitHub独立新下载并解密核验。最终收尾只补文档／回执。线上和真实凭据按Owner要求保持原状；下方archive31段是上一轮检查点，不取代[当前handoff](../docs/handoff.md)。
 
 October11当前任务是[多份安全报告的修复](../docs/security-findings-remediation-20261011.md)，分支codex/security-findings-20261011。Owner已明确批准两项源码／登记操作；API495项、源扫描及原生287项／1既有跳过通过，一次独立复核的4处回归已补修。源码及新[archive31](verification/security-remediation-20261011/README.md)已推送到076bd5a；[CI124](https://github.com/tantalum666/rillora/actions/runs/38134460959)三任务成功，2,430路径／1,389对象已从GitHub独立新下载并解密核验。后续提交只补文档／回执，不改已通过CI的运行代码。线上按本次指令保持原状，沿用[当前handoff](../docs/handoff.md)，不恢复下方旧发布下一步。
 

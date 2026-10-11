@@ -1,6 +1,6 @@
 # Rillora 审计发现修复记录 — 2026-10-11
 
-Status: GROUPS1–30 PUSHED / GROUPS31–35 SOURCE AND LOCAL TESTS COMPLETE / NEW GIT PRESERVATION IN PROGRESS / NOT DEPLOYED
+Status: ALL35 GROUPS HAVE SCOPED SOURCE RESULTS / CI125 PASSED / ARCHIVE32 REMOTELY VERIFIED / NOT DEPLOYED
 Last updated: 2026-10-11 (Asia/Hong_Kong)
 
 Owner 最新指令是修复 Rillora 各份审计报告的问题，取代本次报告范围此前的“只报告、不修复”。此前深度扫描没有重新启动，原报告及基线不改写。此文是修复记录，不是新的完整安全扫描或上线证书。
@@ -118,6 +118,6 @@ Owner 最新指令是修复 Rillora 各份审计报告的问题，取代本次�
    回归后，才记录相应部署与设备结果。继续暂停零碎TestFlight，不制造真钱交易或重复已完成购买。
 
 唯一下一步见[当前交接](handoff.md)。Owner明确要求线上保持原状，执行上述发布需后续恢复部署任务；
-第1—30组源码、CI与Git保存已完成；第31—35组新增本地API519／infra58等通过，Git增量继续收尾。
+第1—30组源码、CI与Git保存已完成；第31—35组新增本地API519／infra58等通过，并已交付74a9c66ac、CI125与archive32远端解密核验。
 后续发布必须同时采用[新的维护／迁移顺序](security-remaining-five-20261011.md)，不能只执行旧95—99计划；
 完整API／OS失陷、旧备份和真实启用仍有明确边界，未宣称全部架构风险消除。

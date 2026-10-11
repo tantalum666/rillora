@@ -1,6 +1,6 @@
 # Rillora 第31—35组安全边界修复
 
-Status: SOURCE AND LOCAL TESTS COMPLETE / GIT PRESERVATION IN PROGRESS / NOT DEPLOYED
+Status: SOURCE PUSHED / CI125 PASSED / ARCHIVE32 REMOTELY VERIFIED / NOT DEPLOYED
 Last updated: 2026-10-11 (Asia/Hong_Kong)
 
 Owner明确要求继续修复剩余五组，先完成代码和测试，再一起推GitHub，线上保持原状。
@@ -81,3 +81,13 @@ API最初全量失败、历史邀请兼容修正、旧Keychain原型和前两次
 
 结果是这五组具体路径的源码修复与本地验证，不是线上隔离生效、全进程失陷防御、旧副本擦除或新的全面审计结论。
 Git与证据保存状态见[当前交接](handoff.md)和[当次QA](../output/qa/rillora-security-remaining-five-20261011/README.md)。
+
+## Git交付完成
+
+全部源码、测试和新增证据已推送至私有分支
+[`codex/security-findings-20261011`](https://github.com/tantalum666/rillora/tree/codex/security-findings-20261011)，
+实施提交[`74a9c66ac50cb8f5f68afe7c3d673c9d2f742897`](https://github.com/tantalum666/rillora/commit/74a9c66ac50cb8f5f68afe7c3d673c9d2f742897)。
+[CI125](https://github.com/tantalum666/rillora/actions/runs/38146452345)三个任务全部成功；CI另运行Web检查，
+不冒称本机或iOS新增验收。归档32从独立空缓存重新下载，232原件／249路径全部匹配该不可变提交的
+远端清单。[新增保存包及回执](../collaboration/verification/security-remaining-five-20261011/README.md)。
+最终回执提交只更新文档／元数据，原件不重封、旧档案不重下；线上与真实凭据仍保持原状。

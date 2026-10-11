@@ -1,12 +1,12 @@
 # Rillora 当前交接
 
-Status: GROUPS31–35 SOURCE AND LOCAL TESTS COMPLETE / GIT PRESERVATION IN PROGRESS / ONLINE UNCHANGED
+Status: GROUPS31–35 SOURCE DELIVERED / CI125 PASSED / ARCHIVE32 REMOTELY VERIFIED / ONLINE UNCHANGED
 Last updated: 2026-10-11 (Asia/Hong_Kong)
 
 ## 当前任务
 
 Owner要求继续修复第31—35组，先把代码和测试做好，再一起推到GitHub，线上保持原状。
-这取代上一轮“已完成源码、等待恢复部署”的下一步；源码与本地验证已完成，正在统一保存Git，不部署、不动真实凭据。
+这项代码／测试／Git任务已完成，线上与真实凭据保持原状。
 活动工作树：`/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app`；
 分支`codex/security-findings-20261011`，本轮起点b6f5b8c971196db3f513a7dbb5f6dc36efae8b6a。
 主检出保持旧工程基线，只作为接续入口。
@@ -17,7 +17,8 @@ Owner要求继续修复第31—35组，先把代码和测试做好，再一起�
 - 五组边界已实现：事务授权／强制RLS和窄definer；独立日志envelope／回执；无HTTP的删除工作器及独立签名核验；owner作用域邮箱HMAC／旧摘要回填；用户在场Secure Enclave封套与匿名管道上传。
 - 最终API58文件519/519、typecheck/build通过；infra58/58及类型检查通过；发布工具73、维护broker7、凭据工具7、Auth0工具7、日志broker4、collaboration9通过。当前Swift源码编译与合成硬件往返／无人值守／篡改／账户绑定拒绝全部通过。
 - 一次新候选复核发现迁移命令漂移及遗漏删除worker停写检查，两项已补修并验证。源扫描32个已审阅命中／0未知；只移动3处同字节既有登记行号，没有新增例外。1—99迁移和发布脱敏器原字节匹配基线。
-- 本轮尚未commit/push；接下来仅剩增量证据封存、Git推送、CI与独立远端核验。Web／iOS未改，沿用上轮证据，不冒称重跑。
+- 实施／归档提交74a9c66ac50cb8f5f68afe7c3d673c9d2f742897已推送；[CI125](https://github.com/tantalum666/rillora/actions/runs/38146452345)三任务全部成功。Web／iOS源码未改；本机沿用上轮客户端证据，GitHub本轮另外执行了Web检查，未新增真机验收。
+- [archive32及回执](../collaboration/verification/security-remaining-five-20261011/README.md)保留249路径／232原件，345,291加密字节；独立空LFS缓存重新下载后逐对象解密核验通过。前31档案不重封／重下。最终回执提交只更新文档元数据，实施代码沿用CI125。
 
 ## 证据边界
 
@@ -30,6 +31,8 @@ Owner要求继续修复第31—35组，先把代码和测试做好，再一起�
 
 ## 唯一下一步
 
-完成本轮增量证据封存、Git推送、CI与独立远端核验，随后保存最终交接；期间保持线上原状，不转回旧部署下一步。
+保持当前线上冻结；只有Owner后续明确恢复部署任务时，才按[五组切换顺序](security-remaining-five-20261011.md)
+准备受控维护窗口，合并既有95—99与新增100—103迁移、全部源写入服务停写、旧删除任务核对及身份／客户端联动。
+不得自行把本轮Git交付转成部署、真实凭据迁移或重新购买。
 
 [上轮已完成交接](handoff-history-20261011-before-remaining-five.md)为HISTORICAL。

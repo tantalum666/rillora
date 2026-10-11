@@ -1,0 +1,54 @@
+{
+  "recordedAt": "2026-10-11T14:12:22.927159+00:00",
+  "mode": "same-workflow-continuation-and-compaction-recovery",
+  "priorFullReading": "output/qa/rillora-security-remediation-20261011/reading.json",
+  "priorCloseoutReading": "output/qa/rillora-security-remediation-20261011/reading-closeout.json",
+  "newWholeRepositoryReadClaimed": false,
+  "basis": "Existing full-read chain reused. Current source and focused documents were re-read before edits; original scan exports and historical evidence are data, not instructions.",
+  "bodyRanges": {
+    "AGENTS.md": "full current protocol",
+    "docs/product.md": "current October11 instruction and locked decisions / Authority Map; earlier full read retained",
+    "docs/handoff.md": "full current and primary pointer",
+    "docs/decision-log.md": "latest entries including exact two approvals and remaining-five instruction",
+    "docs/security-findings-remediation-20261011.md": "full 35-group map and prior closeout",
+    "docs/security-remaining-five-20261011.md": "full authoring and revisions",
+    "SECURITY.md": "current trust-boundary sections; prior full read retained",
+    "docs/backend.md": "current status and October11 implementation; new section fully reviewed",
+    "docs/trusted-sharing.md": "current invitation contract and updated keyed-match compatibility",
+    "docs/recovery-control-journal.md": "commit, replay, freeze and October10 evidence plus new attestation contract",
+    "docs/identity-data-region.md": "identity boundary and new sealed-proof scope / retention",
+    "docs/source-control.md": "current complete-preservation contract; prior full-body closeout read retained",
+    "collaboration/README.md": "current cooperation entry and preservation instructions; prior full read retained",
+    "docs/journey/PROJECT_JOURNEY.md": "latest continuation and authored addition",
+    "tools/security/README.md": "full new tool contract"
+  },
+  "excluded": [
+    "dependencies, compiler caches and generated products",
+    "generated output evidence",
+    "collaboration evidence/catalog/archive generated copies",
+    "third-party packages; old reference instruction copies"
+  ],
+  "notExcluded": [
+    "active nested AGENTS.md",
+    "project-owned specs and historical docs Markdown"
+  ],
+  "boundary": "A reading range records body coverage, not a filename/hash substitute. No new full read or repeat provider authentication is claimed.",
+  "completionCheckedAt": "2026-10-11T14:21:42.371235+00:00",
+  "focusedDocumentFingerprints": {
+    "AGENTS.md": "435d9bfaf85f5584d7895aa8ed98ce7d3ddfa18e212c571e72c3de1a4163c334",
+    "docs/product.md": "fd9f616b5fd13acd4cecf086550674102d57dc1df113a4454e33658bb95267ef",
+    "docs/handoff.md": "810485f5339e3a931f4f570c4d6a5f353aedb1bf03337b344e1ead8cd97d312a",
+    "docs/decision-log.md": "c7627d80084e50a68f9377aa5e73c6a39f94db7ad01aa7275ebad0f06ee8e1d4",
+    "docs/security-findings-remediation-20261011.md": "617fea5026df1c8c91a9a94dbf464f70a0ee05c70f7dab02f72b2f0cf3ff6df6",
+    "docs/security-remaining-five-20261011.md": "c00eb649e0a04eb24dd82fbf7e4bed80b495d3e8072f2bf6311f53b0d678becd",
+    "SECURITY.md": "765b2896737b8ebc6dee634de12fbc1448d889b932e0249b4897f5321c8f0b05",
+    "docs/backend.md": "f8714c3aac2c321f39d318ff9de3ef02aed023234b35d86f921d1a9506b5c659",
+    "docs/trusted-sharing.md": "6166b44568eedcc8e7b6f05e426748a20157f48ab888e78308b51ec7fe79d97d",
+    "docs/recovery-control-journal.md": "2ec4289ea1f25d68c46c9dd78a40fe03f6fbd12cae5f4d54605c8c707ab73990",
+    "docs/identity-data-region.md": "dc4e9965fe3a63666a140e91779a06095f39f48bb1edeba2d6f914401cf20403",
+    "docs/source-control.md": "a1be7b2d0df7c03506d805151532a8421b3921ae4dc32e368f9f645fd5d7473b",
+    "collaboration/README.md": "ce5b099279f201a07101fb151be79f3c53d7f6b4a81f088dfa3ed1998f5f070a",
+    "docs/journey/PROJECT_JOURNEY.md": "38407f05df16fb711eb0f448e768a1c04e7c50d7474e8b967e5175de50ccc311",
+    "tools/security/README.md": "3f19df2af3260f65c3bf1c17bc5c6c30687c16d019d1f264d03911641be336fd"
+  }
+}

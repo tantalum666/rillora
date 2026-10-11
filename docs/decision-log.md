@@ -3407,3 +3407,5 @@ local correction/tests and actual restoration remain separate evidence.
 - Supersedes the prior task boundary that only classified these stronger-compromise and metadata risks. Preserve their original report evidence and identify exact containment rather than promising protection from all host/API compromise.
 - Continue from b6f5b8c97 in the same attached security worktree. Necessary database authority, journal attestation, deletion-worker isolation, owner-scoped email matching and protected local-credential tooling are in scope.
 - No deployment, existing credential movement/rotation/deletion, real-account deletion, purchase/refund, phone/TestFlight delivery or restart of the paused scan follows from this source/test instruction.
+
+- Implementation result: groups31–35 have scoped code/local validation, source74a9c66ac, CI125 success and archive32 remote authenticated readback. The unchanged exact scan spans only move3line positions under the existing approval. Implementation choices and preservation receipts introduce no new price, market or deployment approval.
