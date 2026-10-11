@@ -92,10 +92,12 @@ test("other applications are not changed by this iOS migration", async () => {
   assert.equal(f.calls.render.length + f.calls.denied.length + f.calls.claims.length, 0);
 });
 
-test("existing iOS versions are not given an extra hosted consent step", async () => {
+test("native clients cannot suppress hosted proof by omitting the UI hint", async () => {
   const f = fixture(); delete f.event.request;
   await action.onExecutePostLogin(f.event, f.api);
-  assert.equal(f.calls.render.length + f.calls.denied.length + f.calls.claims.length, 0);
+  assert.equal(f.calls.render.length, 1);
+  assert.equal(f.calls.claims.length, 0);
+  assert.equal(f.calls.render[0][1].fields.rillora_legal_accepted, false);
 });
 
 test("form contains only one required legal field and the ordinary continue action", () => {

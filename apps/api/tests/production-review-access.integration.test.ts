@@ -15,8 +15,8 @@ const base=loadConfig({NODE_ENV:'test',DATABASE_URL:databaseUrl,CORS_ORIGINS:'ht
  WEB_APP_ORIGIN:'http://localhost:4173',OIDC_ISSUER_URL:'https://identity.example',OIDC_CLIENT_ID:'fixture-web',
  OIDC_CLIENT_SECRET:'synthetic-fixture-credential-only',OIDC_REDIRECT_URI:'http://localhost:4173/auth/callback',
  NATIVE_OIDC_CLIENT_ID:'fixture-native',OIDC_API_AUDIENCE:'urn:fixture:review'});
-const acceptance={...currentLegalContract,acceptedTerms:true,acknowledgedPrivacy:true,acceptedElectronicRecords:true};
-const identity=(subject:string):ExternalIdentity=>({issuer:'https://identity.example',subject,displayName:'Synthetic review',locale:'en',authenticatedAt:new Date(),authenticationMethods:['pwd']});
+const acceptance={...currentLegalContract,acceptedTerms:true,acknowledgedPrivacy:true,acceptedElectronicRecords:true} as const;
+const identity=(subject:string):ExternalIdentity=>({issuer:'https://identity.example',subject,displayName:'Synthetic review',locale:'en',authenticatedAt:new Date(),authenticationMethods:['pwd'],legalAcceptance:acceptance});
 let pool:DatabasePool;
 const allowed=identity(`auth0|review-${randomUUID()}`),other=identity(`auth0|other-${randomUUID()}`);
 const digest=reviewIdentityDigest(allowed.issuer,allowed.subject);

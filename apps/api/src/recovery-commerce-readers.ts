@@ -27,7 +27,7 @@ export function createRecoveryProviderReader(pool:DatabasePool,config:{appleProd
     return new AppleProductionSnapshotAdapter(new AppleProductionServerApi(credentials,undefined,context),verifier,await loadAppleProductionPriceBindings(pool,context));
    })());
    const snapshot=await (await apples.get(ref.environment)!).retrieveAuthoritativeSubscription({anyTransactionId:ref.reference,
-    providerSubscriptionReference:ref.reference,expectedAppAccountToken:owner,expectedCommerceAccountReference:ref.account});
+    providerSubscriptionReference:ref.reference,expectedAppAccountToken:ref.appAccountToken??owner,expectedCommerceAccountReference:ref.account});
    return {snapshot,apple:snapshot};
   }
   if(ref.provider==='stripe'&&ref.environment==='production'&&ref.customer){

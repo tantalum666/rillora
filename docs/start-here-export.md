@@ -5,7 +5,11 @@ Authority scope: included fields, disclosure boundary, cryptographic format, fil
 Superseded by: a later reviewed decision recorded in `docs/decision-log.md`  
 Do not use for: claiming legal authority, real recipient identity/acceptance/delivery, post-download revocation, production release or universal legal validity  
 Status: CONTROLLED PRODUCTION COPY/RECOVERY/IMPORT VERIFIED; THIRD-PARTY FILE DELIVERY NOT VERIFIED
-Last updated: 2026-10-05 (Asia/Hong_Kong)
+Last updated: 2026-10-11 (Asia/Hong_Kong)
+
+## October11 local security candidate
+
+The [current audit repair](security-findings-remediation-20261011.md) verifies the recovered package against its original commitment on both clients, using the established v1 field order and optional-null semantics. Unknown fields and non-boolean boundary values cannot disappear through typed decoding. Full-map exports add a content-free audit record; finalization requires recent authentication. File imports use bounded background reads, and aggregate export/rehearsal work refuses oversize requests without truncation. Only expired, non-encrypted preview metadata is eligible for the new bounded retention path; ready ciphertext and financial/legal evidence are unchanged. These are local candidate changes, with previous real copy/recovery evidence remaining dated separately.
 
 ## October5 actual empty-map import and Web reauthentication
 

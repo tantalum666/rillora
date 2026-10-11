@@ -1,0 +1,7 @@
+# 待批准的显式生产模式修复
+
+当前补丁已禁止省略 PRODUCTION_RUNTIME_MODE，避免配置遗漏使普通客户入口隐式开放。原始源码存在正式客户路径，但 closed/review/staging 三个模式均不能表达它。建议增加明确的 live 枚举，同时仅接受：NODE_ENV=production、Frankfurt、app.rillora.xyz、login.rillora.xyz、现有正式 Web/iOS client ID、production API audience 和精确 callback；要求完整 client secret；拒绝开发认证、演练、Stripe TEST、Apple Sandbox/review 和维护预览。现有内容加密、独立恢复日志、数据库 verify-full、API TLS 约束继续强制，近期认证不可关闭。支付开关保持独立、默认关闭。
+
+本变更只修改 config.ts 与相应测试。IaC 仍只配置 closed/review/staging，不部署、不切换线上模式、不开放正式收款、不影响 FanPass。新增 runtime-mode.test.ts 提供 23 个缺失/替换边界的负例及一个合法控制；当前合法控制因枚举拒绝而失败。
+
+自动审批两次拒绝新增 live 枚举，最后要求 Owner 针对这项具体源码配置能力批准。尚未应用该枚举或 live 分支；其余修复继续。

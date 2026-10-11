@@ -88,7 +88,8 @@ export async function reconcileRecoveryCommerce(pool:DatabasePool,controls:Recov
      ||s.commerceAccountReference!==ref.account||s.planCode!=='family'||!s.priceCode||!Number.isFinite(at)
      ||!Number.isFinite(Date.parse(event.recordedAt))||at<Date.parse(event.recordedAt)||Math.abs(Date.now()-at)>5*60_000
      ||s.source!==(s.provider==='stripe'?'stripe_api':'app_store_server_api_signed_status'))throw Error('Recovery observation scope or freshness mismatch');
-    if(s.provider==='storekit'&&(!observation.apple||observation.apple.receipt.originalTransactionId!==ref.reference))throw Error('Verified Apple receipt required');
+    if(s.provider==='storekit'&&(!observation.apple||observation.apple.receipt.originalTransactionId!==ref.reference
+     ||(observation.apple.receipt.appAccountToken??event.id).toLowerCase()!==(ref.appAccountToken??event.id).toLowerCase()))throw Error('Verified Apple receipt with the exact recovered owner token required');
     if(s.provider==='stripe'&&(!Object.hasOwn(observation,'financialOverride')||typeof observation.disputeResolved!=='boolean'
      ||!observation.stripePrice||!observation.stripeProduct||s.providerCustomerReference!==ref.customer))throw Error('Current Stripe financial verification is required');
     observations.push(observation);

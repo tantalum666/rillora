@@ -51,8 +51,9 @@ export function createRoleAssignmentRouter(pool: DatabasePool): Router {
            where ra.planner_id = app.current_planner_id()
              and ra.status <> 'revoked'
              and p.status not in ('revoked', 'archived')
-           order by ra.id`,
+           order by ra.id limit 1001`,
         );
+        if (result.rows.length > 1000) throw new ApiError(413, 'operation_size_limit', 'This collection is too large for one request. No records were omitted.');
         return result.rows.sort((a,b)=>a.display_name.localeCompare(b.display_name)
           || a.role.localeCompare(b.role) || (a.matter_title??'').localeCompare(b.matter_title??''));
       });

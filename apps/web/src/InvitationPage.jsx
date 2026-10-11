@@ -118,7 +118,7 @@ export function InvitationPage({ apiClient }) {
               <div className="account-consent"><label><input type="checkbox" checked={acceptedLegal} onChange={(event) => setAcceptedLegal(event.target.checked)} /><RegistrationConsentText external /></label></div>
             </>
               : <button className="secondary-button" onClick={() => void load()}>{t("forms.invitation.retryAccount")}</button>}
-          {initialToken.current && <a className="invitation-open-app" href={`rillora://invite#invitation=${initialToken.current}`}>{t("forms.invitation.openApp")}</a>}
+          {initialToken.current && <a className="invitation-open-app" href={`${window.location.origin}/invite#invitation=${initialToken.current}`}>{t("forms.invitation.openApp")}</a>}
         </>}
     </>}
     {!loading && !invitation && <form onSubmit={(event) => { event.preventDefault(); const token = invitationTokenFromUrl(link); if (token) { initialToken.current = token; void load(token); } else setError({ messageKey: "forms.invitation.error.completeLink" }); }}><p className="invitation-scope-note">{t("forms.invitation.paste")}</p><label className="field-label">{t("forms.invitation.link")}<input type="text" autoComplete="off" value={link} onChange={(event) => setLink(event.target.value)} /></label><button className="primary-button" disabled={!link.trim()}><LinkSimple size={20} />{t("forms.invitation.continue")}</button></form>}

@@ -1,5 +1,4 @@
-# syntax=docker/dockerfile:1.7
-FROM node:22.22.3-bookworm-slim AS build
+FROM node:22.22.3-bookworm-slim@sha256:e21fc383b50d5347dc7a9f1cae45b8f4e2f0d39f7ade28e4eef7d2934522b752 AS build
 
 WORKDIR /app
 COPY package.json package-lock.json ./
@@ -11,7 +10,7 @@ COPY migrations ./migrations
 COPY certificates ./certificates
 RUN npm run build && npm prune --omit=dev
 
-FROM node:22.22.3-bookworm-slim AS runtime
+FROM node:22.22.3-bookworm-slim@sha256:e21fc383b50d5347dc7a9f1cae45b8f4e2f0d39f7ade28e4eef7d2934522b752 AS runtime
 
 ARG RDS_CA_BUNDLE_SHA256=e5bb2084ccf45087bda1c9bffdea0eb15ee67f0b91646106e466714f9de3c7e3
 ENV NODE_ENV=production \

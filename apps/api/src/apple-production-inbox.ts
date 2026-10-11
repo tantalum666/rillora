@@ -28,9 +28,8 @@ export class AppleProductionInbox {
     if (signal.provider !== 'storekit' || signal.providerEnvironment !== this.context.environment
       || !signal.signatureVerified || signal.verificationMode !== 'apple_server_library_x5c') throw new Error('Unverified Apple delivery');
     return withCommerceInboxDatabase(this.pool, async client => {
-      const owner = await findOwner(client, signal, this.context);
-      if (authenticated && (!owner || owner.plannerId !== authenticated.plannerId
-        || signal.accountBindingReference !== authenticated.plannerPublicId.toLowerCase())) {
+      const owner = await findApplePurchaseOwner(client, signal, this.context);
+      if (authenticated && (!owner || owner.plannerId !== authenticated.plannerId)) {
         throw new ApiError(409, 'apple_account_not_bound', 'This purchase is not bound to your current Rillora account.');
       }
       if (owner) await bindObjects(client, signal, owner.commerceAccountReference, this.context);
@@ -90,8 +89,8 @@ export class AppleProductionInbox {
 
   async bindClaim(job: AppleDelivery): Promise<AppleDelivery | null> {
     return withCommerceInboxDatabase(this.pool, async client => {
+      const owner = await findApplePurchaseOwner(client, job.signal, this.context);
       await requireAppleLease(client, job, this.context);
-      const owner = await findOwner(client, job.signal, this.context);
       if (!owner) return null;
       if (job.accountReference && job.accountReference !== owner.commerceAccountReference) throw new Error('Apple delivery owner changed');
       await bindObjects(client, job.signal, owner.commerceAccountReference, this.context);
@@ -132,11 +131,19 @@ export async function requireAppleLease(client: PoolClient, job: AppleDelivery, 
   [job.publicId, job.leaseToken, context.environment])).rowCount) throw new Error('Apple delivery lease expired');
 }
 
-async function findOwner(client: PoolClient, signal: AppleProductionSignal, context: AppleExecutionContext): Promise<Owner | null> {
+export async function findApplePurchaseOwner(client: PoolClient, signal: AppleProductionSignal, context: AppleExecutionContext): Promise<Owner | null> {
   if (!signal.accountBindingReference) return null;
-  const rows = (await client.query<{ planner_id: string; commerce_account_reference: string }>(
-    'select planner_id::text,commerce_account_reference::text from app.resolve_apple_transaction_account($1::uuid,$2)',
-    [signal.accountBindingReference,context.environment])).rows;
+  await client.query("set local lock_timeout = '250ms'");
+  let rows: Array<{planner_id:string;commerce_account_reference:string}>;
+  try { rows = (await client.query<{ planner_id: string; commerce_account_reference: string }>(
+    'select planner_id::text,commerce_account_reference::text from app.resolve_apple_purchase_owner($1::uuid,$2,$3,$4::jsonb)',
+    [signal.accountBindingReference,context.environment,signal.providerSubscriptionReference,signal.receipt])).rows; }
+  catch(error) {
+    if (error && typeof error === 'object' && 'code' in error && error.code === '55P03') {
+      throw new ApiError(503,'apple_reconciliation_busy','This purchase is being checked. Try again shortly.');
+    }
+    throw error;
+  }
   if (rows.length !== 1) return null;
   return { plannerId: rows[0]!.planner_id, commerceAccountReference: rows[0]!.commerce_account_reference };
 }

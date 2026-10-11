@@ -19,6 +19,7 @@ final class ApplePurchaseCoordinator {
     private let storefront: any CommerceStorefrontProviding
     private let serviceMarket: String
     private var owner: UUID?
+    private var ownedAppAccountTokens: Set<UUID> = []
     private var revision = 0
     private var quoteRevision = 0
     private var processing: [UInt64: Int] = [:]
@@ -31,6 +32,7 @@ final class ApplePurchaseCoordinator {
     func start(owner: UUID) async {
         reset()
         self.owner = owner
+        ownedAppAccountTokens = [owner] // Previously bound UUID-era purchases.
         let generation = revision
         let verifiedEnvironment = await client.verifiedAppEnvironment()
         guard generation == revision, !Task.isCancelled else { return }
@@ -44,8 +46,15 @@ final class ApplePurchaseCoordinator {
     func reset() {
         revision += 1; quoteRevision += 1
         owner = nil; quote = nil; product = nil; catalogProduct = nil; pending = nil
+        ownedAppAccountTokens = []
         isLoadingQuote = false
         busy = false; message = nil; processing = [:]; environment = nil
+    }
+
+    private func rememberOwnedTokens(_ tokens: [UUID]?) throws {
+        guard let tokens else { return } // Compatibility with the legacy UUID-era API.
+        guard tokens.count <= 1000 else { throw RilloraAPIError.invalidResponse }
+        ownedAppAccountTokens.formUnion(tokens)
     }
 
     func refreshQuote() async {
@@ -76,6 +85,7 @@ final class ApplePurchaseCoordinator {
             let existing = try? await service.pendingApplePurchase(environment: environment)
             guard generation == revision, request == quoteRevision else { return }
             pending = existing?.purchase
+            try rememberOwnedTokens(existing?.appAccountTokens)
             guard let country = await storefront.currentCountryCode() else { return }
             let response = try await service.fetchAppleQuote(serviceMarket: serviceMarket, storefront: country, environment: environment)
             guard generation == revision, request == quoteRevision, !Task.isCancelled, response.isValid(for: environment),
@@ -109,10 +119,11 @@ final class ApplePurchaseCoordinator {
             let preparation = ApplePurchasePreparation(quote: current.quote,
                 consent: ApplePurchaseConsent(terms: current.purchaseTerms, accepted: true), expectedAppAccountToken: owner)
             let prepared = try await service.prepareApplePurchase(preparation, nonce: pending?.nonce ?? UUID(), environment: environment)
-            guard generation == revision, prepared.isValid(for: environment), prepared.appAccountToken == owner else { return }
+            guard generation == revision, owner == self.owner, prepared.isValid(for: environment) else { return }
+            ownedAppAccountTokens.insert(prepared.appAccountToken)
             let started = try await service.changeApplePurchase(prepared.orderReference, action: "start", environment: environment)
             guard generation == revision, started.state == "started", !Task.isCancelled else { return }
-            let outcome = try await client.purchase(productID: current.quote.productId, appAccountToken: owner,
+            let outcome = try await client.purchase(productID: current.quote.productId, appAccountToken: prepared.appAccountToken,
                 expectedStorefrontCountryCode: current.quote.storefrontCountryCode, expectedProduct: quotedProduct)
             guard generation == revision else { return }
             switch outcome {
@@ -158,12 +169,6 @@ final class ApplePurchaseCoordinator {
             var entitlements = await client.currentEntitlements(identifiers: RilloraStoreKitCatalog.familyProductIDs)
             var statuses = await client.subscriptionStatuses(identifiers: RilloraStoreKitCatalog.familyProductIDs)
             guard generation == revision, owner == self.owner, !Task.isCancelled else { return }
-            let ownedHistory = (entitlements.transactions + statuses.statuses.map(\.transaction)).filter {
-                $0.appAccountToken == owner && !$0.isXcodeEnvironment
-                    && $0.subscriptionGroupID == RilloraStoreKitCatalog.appStoreFamilySubscriptionGroupID
-                    && RilloraStoreKitCatalog.familyProductIDs.contains($0.productID)
-                    && ApplePurchaseEnvironment(rawValue: $0.environment.lowercased()) != nil
-            }
             if environment == nil {
                 await refreshQuote()
                 guard generation == revision, owner == self.owner, !Task.isCancelled else { return }
@@ -179,6 +184,15 @@ final class ApplePurchaseCoordinator {
                 if synchronize { message = String(localized: "Apple purchases are temporarily unavailable. Please try again.") }
                 return
             }
+            let purchaseState = try await service.pendingApplePurchase(environment: environment)
+            guard generation == revision, owner == self.owner, !Task.isCancelled else { return }
+            try rememberOwnedTokens(purchaseState.appAccountTokens)
+            let ownedHistory = (entitlements.transactions + statuses.statuses.map(\.transaction)).filter {
+                $0.appAccountToken.map(ownedAppAccountTokens.contains) == true && !$0.isXcodeEnvironment
+                    && $0.subscriptionGroupID == RilloraStoreKitCatalog.appStoreFamilySubscriptionGroupID
+                    && RilloraStoreKitCatalog.familyProductIDs.contains($0.productID)
+                    && environment.matches(transaction: $0)
+            }
             if synchronize && ownedHistory.isEmpty {
                 try await client.sync()
                 entitlements = await client.currentEntitlements(identifiers: RilloraStoreKitCatalog.familyProductIDs)
@@ -190,7 +204,7 @@ final class ApplePurchaseCoordinator {
             var owned = 0
             for evidence in entitlements.transactions + statuses.statuses.map(\.transaction) where ids.insert(evidence.transactionID).inserted {
                 guard generation == revision else { return }
-                if evidence.appAccountToken == owner { owned += 1; await accept(evidence, generation: generation) }
+                if evidence.appAccountToken.map(ownedAppAccountTokens.contains) == true { owned += 1; await accept(evidence, generation: generation) }
             }
             guard generation == revision, owner == self.owner, !Task.isCancelled else { return }
             if synchronize && !complete { message = String(localized: "Apple purchase history could not be fully checked. Try again shortly.") }
@@ -215,11 +229,11 @@ final class ApplePurchaseCoordinator {
 
     private func accept(_ evidence: StoreKitTransactionEvidence, generation: Int) async {
         guard let environment else { return }
-        if generation == revision, evidence.appAccountToken == owner, !environment.matches(transaction: evidence) {
+        if generation == revision, evidence.appAccountToken.map(ownedAppAccountTokens.contains) == true, !environment.matches(transaction: evidence) {
             message = String(localized: "This purchase belongs to a different Apple environment."); return
         }
         guard generation == revision, processing[evidence.transactionID] != generation,
-              let owner, evidence.appAccountToken == owner,
+              let owner, evidence.appAccountToken.map(ownedAppAccountTokens.contains) == true,
               evidence.subscriptionGroupID == RilloraStoreKitCatalog.appStoreFamilySubscriptionGroupID,
               RilloraStoreKitCatalog.familyProductIDs.contains(evidence.productID), !evidence.isXcodeEnvironment,
               environment.matches(transaction: evidence) else { return }

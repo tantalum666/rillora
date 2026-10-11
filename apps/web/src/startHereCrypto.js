@@ -4,6 +4,7 @@ import {
   DhkemP256HkdfSha256,
   HkdfSha256,
 } from "@hpke/core";
+import { committedStartHereJSON } from './startHereCommitment.js';
 
 export const encryptedStartHereContract = Object.freeze({
   cryptoVersion: "rillora-hpke-v1",
@@ -28,6 +29,7 @@ export async function createEncryptedStartHere({ preview, preparation, cryptoImp
   if (!cryptoImpl?.subtle || typeof cryptoImpl.getRandomValues !== "function") {
     throw new Error("Web Cryptography is unavailable in this secure context.");
   }
+  await verifyPackageCommitment(preview.package, preparation.package.sourceCommitment, cryptoImpl);
 
   const suite = createHpkeSuite();
   const aad = associatedData(preparation.package);
@@ -247,7 +249,13 @@ async function decryptPayload(artifact, contentKeyBytes, aad, cryptoImpl) {
   ) {
     throw new Error("The decrypted payload did not preserve the Start Here boundary.");
   }
+  await verifyPackageCommitment(payload.package, artifact.sourceCommitment, cryptoImpl);
   return payload;
+}
+
+async function verifyPackageCommitment(packageValue, commitment, cryptoImpl) {
+  const actual = toBase64Url(new Uint8Array(await cryptoImpl.subtle.digest('SHA-256', encoder.encode(committedStartHereJSON(packageValue)))));
+  if (actual !== commitment) throw new Error('The decrypted package does not match the reviewed contents.');
 }
 
 async function wrapContentKey(suite, publicKey, contentKeyBytes, info, aad) {

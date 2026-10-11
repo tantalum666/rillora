@@ -1,5 +1,9 @@
 function handler(event) {
   var request = event.request;
+  if (request.uri === '/.well-known/apple-app-site-association' && (request.method === 'GET' || request.method === 'HEAD')) {
+    return { statusCode: 200, headers: { 'content-type': { value: 'application/json' }, 'cache-control': { value: 'public, max-age=3600' } },
+      body: request.method === 'HEAD' ? '' : '{"applinks":{"apps":[],"details":[{"appID":"8L99CFNK24.com.rillora.ios","paths":["/invite","/invite/*"]}]}}' };
+  }
   if (request.uri.indexOf('/api/') === 0) {
     // The API supports unprefixed routes; keep API errors out of the SPA cache.
     request.uri = request.uri.slice(4);

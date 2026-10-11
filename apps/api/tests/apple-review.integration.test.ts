@@ -26,15 +26,20 @@ const consent={...applePurchaseTerms,acceptedSubscriptionTerms:true,acceptedAnnu
 async function prepare() {
   return purchases.prepare({plannerId,plannerPublicId,nonce:randomUUID(),quote:(await purchases.quote(plannerId,selection)).quote,consent});
 }
-async function fixture() {
+async function fixture(prepared?: Awaited<ReturnType<typeof prepare>>) {
   const now=Date.now()-100;
   const tx:JWSTransactionDecodedPayload={environment:Environment.SANDBOX,bundleId:identity.bundleId,
     subscriptionGroupIdentifier:identity.subscriptionGroupId,productId:identity.annualProductId,storefront:'USA',
     type:Type.AUTO_RENEWABLE_SUBSCRIPTION,quantity:1,inAppOwnershipType:InAppOwnershipType.PURCHASED,
-    originalTransactionId:'900000000001',transactionId:'900000000001',appAccountToken:plannerPublicId,
+    originalTransactionId:'900000000001',transactionId:'900000000001',appAccountToken:prepared?.appAccountToken??plannerPublicId,
     purchaseDate:now,expiresDate:now+3600000,signedDate:now,currency:'USD',price:99990};
   const renewal:JWSRenewalInfoDecodedPayload={environment:Environment.SANDBOX,originalTransactionId:tx.originalTransactionId!,
-    productId:tx.productId!,autoRenewProductId:tx.productId!,autoRenewStatus:1,appAccountToken:plannerPublicId,signedDate:now};
+    productId:tx.productId!,autoRenewProductId:tx.productId!,autoRenewStatus:1,appAccountToken:tx.appAccountToken!,signedDate:now};
+  // Existing subscribers restore their immutable historical link; a new purchase
+  // must instead carry the one-time server-prepared token.
+  if (!prepared) await pool.query(`insert into app.commerce_provider_object_links
+    (provider_code,provider_environment,provider_object_type,provider_object_reference,commerce_account_reference)
+    values('storekit','sandbox','original_transaction',$1,$2)`,[tx.originalTransactionId,account]);
   const item={status:Status.ACTIVE,originalTransactionId:tx.originalTransactionId!,signedTransactionInfo:'status.tx',signedRenewalInfo:'status.renewal'};
   const source={verifyAndDecodeTransaction:async()=>structuredClone(tx),verifyAndDecodeRenewalInfo:async()=>structuredClone(renewal),
     verifyAndDecodeNotification:async()=>({notificationUUID:randomUUID(),notificationType:'DID_RENEW',signedDate:now,
@@ -100,7 +105,7 @@ describe('enrolled Apple review purchases share the strict lifecycle without pro
     expect((await pool.query("select amount_minor::int from app.commerce_prices where price_code='family_usd_annual_v4'")).rows[0].amount_minor).toBe(8899);
   });
   it('atomically reconciles the prepared test purchase; a duplicate restore re-fetches a later refund',async()=>{
-    const order=await prepare();const f=await fixture();
+    const order=await prepare();const f=await fixture(order);
     await purchases.transition({plannerId,orderReference:order.orderReference,action:'start'});
     expect(await f.intake.acceptClientTransaction(f.input)).toMatchObject({finishAuthorized:true});
     expect((await pool.query('select provider_environment,status from app.commerce_orders')).rows).toEqual([{provider_environment:'sandbox',status:'paid_reconciled'}]);

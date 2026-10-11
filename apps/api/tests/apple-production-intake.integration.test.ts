@@ -1,6 +1,7 @@
 import { assertDedicatedTestDatabase, dedicatedTestDatabaseUrl } from './dedicated-test-database.js';
 import pg from 'pg';
 import { randomUUID, createHash } from 'node:crypto';
+import { readFile } from 'node:fs/promises';
 import { beforeAll, beforeEach, afterAll, describe, expect, it, vi } from 'vitest';
 import { Environment, InAppOwnershipType, Status, Type, VerificationException, VerificationStatus, type JWSTransactionDecodedPayload,
   type JWSRenewalInfoDecodedPayload, type ResponseBodyV2DecodedPayload } from '@apple/app-store-server-library';
@@ -17,6 +18,8 @@ import request from './http-fixture.js';
 import { currentLegalContract } from '../src/legal-contract.js';
 import { ApplePurchasePreflight } from '../src/apple-purchase-preflight.js';
 import { applePurchaseTerms } from '../src/apple-purchase-consent.js';
+import { configureRecoveryPool, type RecoveryControl } from '../src/recovery-journal.js';
+import { reconcileRecoveryCommerce } from '../src/recovery-commerce.js';
 
 // Fixed disposable local database; no Owner/provider data or configurable cloud target.
 const databaseUrl = dedicatedTestDatabaseUrl('postgresql://127.0.0.1:5432/continuity_apple_delivery_test', 'continuity_apple_delivery_test');
@@ -34,7 +37,7 @@ async function addOwner(): Promise<Owner> {
   return { plannerId: p.id, plannerPublicId: p.public_id, account: a.public_id };
 }
 
-async function harness(subject = owner) {
+async function harness(subject = owner, alreadyBound = true) {
   const now = Date.now() - 1000;
   const tx: JWSTransactionDecodedPayload = {
     environment: Environment.PRODUCTION, bundleId: identity.bundleId,
@@ -48,6 +51,9 @@ async function harness(subject = owner) {
   const renewal: JWSRenewalInfoDecodedPayload = { environment: Environment.PRODUCTION,
     originalTransactionId: tx.originalTransactionId!, productId: tx.productId!, autoRenewProductId: tx.productId!,
     autoRenewStatus: 1, appAccountToken: subject.plannerPublicId, signedDate: now };
+  if (alreadyBound) await pool.query(`insert into app.commerce_provider_object_links
+    (provider_code,provider_environment,provider_object_type,provider_object_reference,commerce_account_reference)
+    values('storekit','production','original_transaction',$1,$2) on conflict do nothing`,[tx.originalTransactionId,subject.account]);
   const transactions = new Map<string, JWSTransactionDecodedPayload>([['client.signed.fixture', structuredClone(tx)]]);
   const renewals = new Map<string, JWSRenewalInfoDecodedPayload>();
   const notifications = new Map<string, ResponseBodyV2DecodedPayload>();
@@ -142,6 +148,105 @@ describe('production Apple durable intake (decoded Apple fixtures + real isolate
   });
   afterAll(async () => { await pool?.end(); });
 
+  it('does not create first ownership from a signed public planner UUID without a purchase intent', async () => {
+    const f = await harness(owner,false);
+    await expect(f.intake.acceptClientTransaction(f.input)).rejects.toMatchObject({code:'apple_account_not_bound'});
+    expect(await f.intake.acceptNotification(f.notice())).toMatchObject({status:'needs_mapping'});
+    expect((await pool.query('select * from app.commerce_provider_object_links')).rows).toEqual([]);
+    expect((await pool.query('select * from app.commerce_entitlement_grants')).rows).toEqual([]);
+  });
+  it.each(['started','pending'])('migrates only existing %s intents to the former planner token without enabling new unprepared purchases',async state=>{
+    const {intent,service}=await preparePurchase();
+    await service.transition({plannerId:owner.plannerId,orderReference:intent.orderReference,action:'start'});
+    if(state==='pending')await service.transition({plannerId:owner.plannerId,orderReference:intent.orderReference,action:'pending'});
+    const c=await pool.connect();
+    try {
+      await c.query('begin');
+      // Recreate these tables' pre-0096 shape within a disposable transaction,
+      // then execute the actual new migration bytes rather than a copied fix.
+      await c.query(`drop function app.resolve_apple_purchase_owner(uuid,text,text,jsonb);
+        drop trigger minimize_closed_apple_receipts on app.closed_account_payment_records;
+        drop function app.minimize_closed_apple_receipts();
+        drop policy recovery_apple_purchase_metadata on app.commerce_apple_purchase_sessions;
+        alter table app.commerce_apple_purchase_sessions drop column app_account_token,drop column original_transaction_reference,
+          drop column legacy_planner_token,drop column started_at;
+        alter table app.commerce_apple_transaction_receipts drop column app_account_token`);
+      await c.query(await readFile(new URL('../migrations/0096_apple_purchase_owner_binding.sql',import.meta.url),'utf8'));
+      const receipt={originalTransactionId:'700000000011',productId:identity.annualProductId,storefront:'USA',currency:'USD',
+        priceMilliunits:99990,purchasedAt:new Date().toISOString()};
+      const resolve=(original:string)=>c.query('select * from app.resolve_apple_purchase_owner($1,\'production\',$2,$3::jsonb)',
+        [owner.plannerPublicId,original,JSON.stringify({...receipt,originalTransactionId:original})]);
+      expect((await resolve(receipt.originalTransactionId)).rows[0]?.planner_id).toBe(owner.plannerId);
+      expect((await resolve('700000000012')).rowCount).toBe(0);
+    } finally {await c.query('rollback');c.release();}
+  });
+  it('restores new-token ownership from a pre-purchase snapshot and still processes a later refund',async()=>{
+    const {intent,service}=await preparePurchase();
+    await service.transition({plannerId:owner.plannerId,orderReference:intent.orderReference,action:'start'});
+    const f=await harness(owner,false);f.tx.appAccountToken=intent.appAccountToken;f.renewal.appAccountToken=intent.appAccountToken;
+    f.tx.purchaseDate=Date.now();f.tx.signedDate=f.tx.purchaseDate;f.tx.expiresDate=f.tx.purchaseDate+365*day;
+    f.renewal.signedDate=f.tx.purchaseDate;f.transactions.set('client.signed.fixture',structuredClone(f.tx));f.publish();
+    const journal=new Map<string,RecoveryControl>();configureRecoveryPool(pool,{async publish(e){journal.set(e.key,e);}});
+    await pool.query('update app.recovery_policy set enforced=true');
+    try {
+      expect(await f.intake.acceptClientTransaction(f.input)).toMatchObject({finishAuthorized:true});
+      const control=journal.get(`unreconciled_access:${owner.plannerPublicId}`)!;
+      expect(control.facts.subscriptions).toEqual([expect.objectContaining({appAccountToken:intent.appAccountToken})]);
+      const generation=(await pool.query('select generation from app.recovery_policy')).rows[0].generation;
+      // An isolated snapshot predating the purchase keeps the owner/plan, but
+      // has none of its later order, consent, subscription, receipt or binding.
+      const c=await pool.connect();
+      try {
+        await c.query('begin');await c.query("select set_config('app.recovery_replay','true',true)");
+        await c.query('delete from app.commerce_provider_event_inbox where commerce_account_reference=$1',[owner.account]);
+        await c.query('delete from app.commerce_provider_object_links where commerce_account_reference=$1',[owner.account]);
+        await c.query('delete from app.commerce_accounts where planner_id=$1',[owner.plannerId]);
+        await c.query('delete from app.recovery_controls');await c.query('commit');
+      } catch(error){await c.query('rollback');throw error;} finally {c.release();}
+      const read=async()=>{
+        const snapshot=await f.snapshot.retrieveAuthoritativeSubscription({anyTransactionId:f.tx.transactionId!,
+          providerSubscriptionReference:f.tx.originalTransactionId!,expectedAppAccountToken:intent.appAccountToken,
+          expectedCommerceAccountReference:owner.account});return {snapshot,apple:snapshot};
+      };
+      expect(await reconcileRecoveryCommerce(pool,[control],generation,read)).toMatchObject({reconciledOwners:1});
+      expect((await service.current(owner.plannerId)).appAccountTokens).toContain(intent.appAccountToken);
+      expect((await pool.query('select * from app.commerce_apple_purchase_sessions')).rowCount).toBe(0);
+      f.item.status=Status.REVOKED;f.tx.revocationDate=Date.now();f.tx.signedDate=Date.now();f.renewal.signedDate=Date.now();f.publish();
+      await f.intake.acceptNotification(f.notice('REFUND'));
+      expect(await f.intake.retryPending()).toMatchObject({applied:1});
+      expect((await pool.query('select count(*)::int n from app.commerce_entitlement_grants where revoked_at is null')).rows[0].n).toBe(0);
+    } finally {await pool.query('update app.recovery_policy set enforced=false');}
+  });
+
+  it('binds a new signed purchase once to its exact server-issued consent intent, including a notification-first delivery', async () => {
+    const {intent,service}=await preparePurchase();
+    await service.transition({plannerId:owner.plannerId,orderReference:intent.orderReference,action:'start'});
+    const f=await harness(owner,false);
+    f.tx.appAccountToken=intent.appAccountToken;f.renewal.appAccountToken=intent.appAccountToken;
+    f.tx.purchaseDate=Date.now();f.tx.signedDate=f.tx.purchaseDate;f.tx.expiresDate=f.tx.purchaseDate+365*day;
+    f.renewal.signedDate=f.tx.purchaseDate;f.transactions.set('client.signed.fixture',structuredClone(f.tx));f.publish();
+    expect(await f.intake.acceptNotification(f.notice())).toMatchObject({status:'needs_authoritative_snapshot'});
+    expect(await f.intake.retryPending()).toMatchObject({applied:1});
+    expect(await f.intake.acceptClientTransaction(f.input)).toMatchObject({finishAuthorized:true});
+    expect((await state()).grants).toBe(2);
+    f.tx.originalTransactionId='700000000009';f.tx.transactionId='700000000009';
+    f.transactions.set('client.signed.fixture',structuredClone(f.tx));
+    await expect(f.intake.acceptClientTransaction(f.input)).rejects.toMatchObject({code:'apple_account_not_bound'});
+    expect((await pool.query('select count(*)::int n from app.commerce_subscriptions')).rows[0].n).toBe(1);
+  });
+
+  it('keeps a newer signed refund retryable while the status endpoint still reports the pre-refund state', async () => {
+    const f=await harness();await f.intake.acceptClientTransaction(f.input);
+    const cached=structuredClone(await f.api.getAllSubscriptionStatuses());
+    f.tx.revocationDate=f.now;f.tx.signedDate=f.now+20;f.renewal.signedDate=f.now+20;f.item.status=Status.REVOKED;f.publish();
+    await f.intake.acceptNotification(f.notice('REFUND'));
+    f.api.getAllSubscriptionStatuses.mockResolvedValueOnce(cached);
+    expect(await f.intake.retryPending()).toMatchObject({applied:0,pending:1});
+    expect((await state()).grants).toBe(2);
+    await due();expect(await f.intake.retryPending()).toMatchObject({applied:1,pending:0});
+    expect((await state()).grants).toBe(0);
+  });
+
   it('commits one immutable receipt, current status and grants before authorizing finish', async () => {
     const f = await harness();
     expect(await f.intake.acceptClientTransaction(f.input)).toMatchObject({ status: 'applied', finishAuthorized: true });
@@ -184,9 +289,9 @@ describe('production Apple durable intake (decoded Apple fixtures + real isolate
   it('never trusts a receipt from another authenticated account or overwrites a known original owner', async () => {
     const f = await harness(); await f.intake.acceptClientTransaction(f.input);
     const other = await addOwner();
-    await expect(f.intake.acceptClientTransaction({ ...f.input, ...other })).rejects.toMatchObject({ status: 400 });
+    await expect(f.intake.acceptClientTransaction({ ...f.input, ...other })).rejects.toMatchObject({ status: 409 });
     const foreign = await harness(other);
-    await expect(foreign.intake.acceptClientTransaction(foreign.input)).rejects.toMatchObject({ code: 'apple_purchase_owner_conflict' });
+    await expect(foreign.intake.acceptClientTransaction(foreign.input)).rejects.toMatchObject({ code: 'apple_account_not_bound' });
     expect((await withCommercePlannerDatabase(pool, other.plannerId, c => c.query('select * from app.commerce_apple_transaction_receipts'))).rows).toEqual([]);
     expect(await state()).toMatchObject({ receipts: 1, grants: 2 });
   });
@@ -300,12 +405,13 @@ describe('production Apple durable intake (decoded Apple fixtures + real isolate
   it('reconciles a prepared purchase and retains its exact consent with paid financial records on erasure',async()=>{
     const {intent,service}=await preparePurchase();
     await service.transition({plannerId:owner.plannerId,orderReference:intent.orderReference,action:'start'});
-    const f=await harness();
+    const f=await harness(owner,false);
+    f.tx.appAccountToken=intent.appAccountToken;f.renewal.appAccountToken=intent.appAccountToken;
     f.tx.purchaseDate=Date.now();f.tx.signedDate=f.tx.purchaseDate;f.tx.expiresDate=f.tx.purchaseDate+365*day;
     f.renewal.signedDate=f.tx.purchaseDate;f.transactions.set('client.signed.fixture',structuredClone(f.tx));f.publish();
     expect(await f.intake.acceptClientTransaction(f.input)).toMatchObject({finishAuthorized:true});
     expect((await pool.query('select status from app.commerce_orders')).rows).toEqual([{status:'paid_reconciled'}]);
-    expect(await service.current(owner.plannerId)).toEqual({purchase:null});
+    expect(await service.current(owner.plannerId)).toEqual({purchase:null,appAccountTokens:[intent.appAccountToken]});
     const job=await withPlannerDatabase(pool,owner.plannerId,async c=>(await c.query('select app.request_account_deletion($1) as id',[Buffer.alloc(32,7)])).rows[0].id);
     const lease=(await pool.query('select app.claim_account_deletion($1) as job',[job])).rows[0].job;
     expect((await pool.query('select app.finish_account_deletion($1,$2,true) as done',[job,lease.leaseToken])).rows[0].done).toBe(true);
@@ -313,6 +419,21 @@ describe('production Apple durable intake (decoded Apple fixtures + real isolate
     expect(records.purchaseConsents).toEqual([expect.objectContaining({order_public_id:intent.orderReference,amount_minor:9999,
       consent_version:applePurchaseTerms.version})]);
     expect(JSON.stringify(records.purchaseConsents)).not.toMatch(/planner_id|identity|signedTransaction/);
+    expect(JSON.stringify(records.appleReceipts)).not.toContain('app_account_token');
+  });
+  it('accepts a genuinely delayed started purchase but rejects a new purchase long after its intent was canceled',async()=>{
+    const {intent,service}=await preparePurchase();
+    await service.transition({plannerId:owner.plannerId,orderReference:intent.orderReference,action:'start'});
+    await pool.query("update app.commerce_apple_purchase_sessions set created_at=now()-interval '2 days',updated_at=now()-interval '2 days'");
+    const f=await harness(owner,false);f.tx.appAccountToken=intent.appAccountToken;f.renewal.appAccountToken=intent.appAccountToken;
+    f.tx.purchaseDate=Date.now();f.tx.signedDate=f.tx.purchaseDate;f.tx.expiresDate=f.tx.purchaseDate+365*day;
+    f.renewal.signedDate=f.tx.purchaseDate;f.transactions.set('client.signed.fixture',structuredClone(f.tx));f.publish();
+    await pool.query("update app.commerce_apple_purchase_sessions set state='closed',updated_at=now()-interval '1 hour'");
+    await expect(f.intake.acceptClientTransaction(f.input)).rejects.toMatchObject({code:'apple_account_not_bound'});
+    // Model the alternative uninterrupted started state, not a client transition.
+    await pool.query("update app.commerce_apple_purchase_sessions set state='started',updated_at=now()-interval '2 days'");
+    expect(await f.intake.acceptClientTransaction(f.input)).toMatchObject({finishAuthorized:true});
+    expect((await pool.query('select status from app.commerce_orders where public_id=$1',[intent.orderReference])).rows[0].status).toBe('paid_reconciled');
   });
 
   it('restores an older paid receipt without inventing a second paid order',async()=>{

@@ -55,7 +55,7 @@ struct InvitationAcceptView: View {
                         }.buttonStyle(RilloraPrimaryActionButtonStyle()).disabled(working || authenticationStore.isWorking)
                             .accessibilityIdentifier("invitation.accept")
                         if signedIn {
-                            Button(String(localized: "Use another account")) { Task { await authenticationStore.signOut(); _ = await authenticationStore.signIn() } }
+                            Button(String(localized: "Use another account")) { Task { await authenticationStore.useAnotherAccount() } }
                                 .frame(maxWidth: .infinity, minHeight: 44).disabled(working || authenticationStore.isWorking)
                         } else {
                             Button(String(localized: "Already have an account? Sign in")) { Task { _ = await authenticationStore.signIn() } }
@@ -74,7 +74,7 @@ struct InvitationAcceptView: View {
                     }.buttonStyle(RilloraPrimaryActionButtonStyle()).disabled(working || link.isEmpty)
                         .accessibilityIdentifier("invitation.resolve")
                 }
-                if let error { Text(error).foregroundStyle(RilloraTheme.clay).font(.subheadline).accessibilityIdentifier("invitation.error") }
+                if let message = error ?? authenticationStore.errorMessage { Text(message).foregroundStyle(RilloraTheme.clay).font(.subheadline).accessibilityIdentifier("invitation.error") }
             }.padding(24)
         }.background(RilloraTheme.canvas).rilloraFocusedTask()
             .navigationTitle(String(localized: "Received invitation")).navigationBarTitleDisplayMode(.inline)

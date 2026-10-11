@@ -1,0 +1,38 @@
+# Historical independent candidate review — 2026-10-11
+
+Reviewed candidate SHA256: 398cbaa8582a15c95ae55c39e71c6d62d88cc9f2ffa23abdb29cb926f0988afd
+Repository baseline: 647317834bd785ace1499e251f0e501530163239
+Reviewer: /root/security_candidate_reviewer
+Scope: one fresh read-only bypass/regression review; no edits, delegation, scan, credentials or provider access.
+Status: four findings confirmed by parent and addressed in the subsequent candidate. This is a record of the reviewed earlier patch, not a claim these remain open in the latest candidate.
+
+## Independent findings
+
+1. Medium — Recovery restored an Apple subscription without restoring its new token binding. The reader verified ref.appAccountToken, but recovery commit recreated subscription/receipt/original_transaction link without a resolver-accepted token. A snapshot predating preparation lacked commerce_apple_purchase_sessions, so later notifications/restores failed ownership resolution and current() omitted the token. Verify by restoring an existing owner from before first purchase, reconciling current signed state, then applying a valid renewal/refund and reading current tokens.
+   Evidence at the reviewed candidate: recovery-commerce-readers.ts:29; recovery-commerce.ts:102,167; migrations/0096_apple_purchase_owner_binding.sql:24; apple-purchase-preflight.ts:21.
+
+2. Medium — Migration0096 stranded pre-existing started/pending purchases. Old clients used the planner UUID, while the new column default assigned random tokens to every existing intent; the legacy resolver only accepted originals already linked. Verify by applying the real migration to started and pending pre-cutover intents with consent and no original link, then delivering a valid first signed transaction.
+   Evidence at the reviewed candidate: migration0096:2,24,39; apple-production-inbox.ts:31.
+
+3. Medium — “Use another account” unconditionally continued after AuthenticationStore.signOut() swallowed failure into UI state and returnedVoid. The next signIn() cleared the error and could replace the only retryable bearer while failed remote revocation left it active. Verify a transient logout500 blocks hosted sign-in and retains the token/error, then a successful retry permits switching.
+   Evidence at the reviewed candidate: AuthenticationStore.swift:197,139; InvitationAcceptView.swift:58; NativeAuthenticationService.swift:280.
+
+4. Medium — The independent publication guard omitted collaboration/* while the separate evidence scan remained PR-head controlled. A new readable credential-bearing file plus a head-side verifier change bypassed the base-owned source guard. Verify with a disposable synthetic canary and a malicious head verifier; trusted-base code must still reject the readable file.
+   Evidence at the reviewed candidate: tracked_source.py:11; prepare_repository.py:28; source-publication-guard.yml:34; verify_publication.py:75; CODEOWNERS:1.
+
+## Coverage and calibration
+
+The reviewer traced changed authentication/freshness, cookie consumers, email acceptance, Apple ownership/intake/reconciliation/native token paths, commitments/import bounds, snapshot/query limits, Stripe serialization, retention/replay, broker command/environment/network validation, IAM and both publication paths. No further concrete bypass was reported in those inspected paths.
+
+Arbitrary SQL as the trusted runtime is not the database-only reader threat; no lower-trust route to arbitrary SQL was demonstrated by those reports. Full API RCE already crosses the application trust boundary, although independent Auth0 deletion and recovery-journal authority may warrant distinct containment. Same-user access to0700/0600operational credentials does not itself prove exposure. Email hashes are acknowledged personal metadata outside protected-body encryption. These risks were not marked fixed by unrelated endpoint changes.
+
+The claimed final Forwarded entry still needs deployed-ingress evidence; HTTPS native callbacks/AASA need provider/device evidence. The suspected duplicate-key Foundation parser discrepancy was not reproduced by the parent’s synthetic probe: both selected the same value, so it was excluded from confirmed findings.
+
+## Subsequent resolutions and evidence
+
+- Verified receipt metadata now preserves active ownership tokens, current() includes them, and recovery checks the exact token. The journal retains it; deleted-account financial records omit it. The pre-purchase-snapshot/refund regression passes.
+- The actual migration preserves only pre-cutover intents through a legacy marker and started timestamp; new intents default to the random-token path. Real migration execution for started and pending fixtures passes.
+- signOut() returns a result; useAnotherAccount() stops on failure; the invitation displays that error. Positive/negative store and token-store tests pass.
+- The base-owned workflow invokes base-owned readable publication verification; both scanners refuse head config/ignore/inline suppression. A malicious-head-verifier canary is rejected.
+- Latest targeted evidence:60Apple/recovery cases,45native account/purchase cases,9collaboration cases; latest complete native run287passed/1existing skip.
+- No second review-agent cycle was run. The remaining explicit live-mode and fixture-registry approval gates are recorded in work-state.json.

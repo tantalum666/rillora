@@ -1,0 +1,40 @@
+name: Guard source publication
+
+# Read-only metadata/scanning. Never execute code, actions, dependency scripts,
+# or shell commands from the pull-request head in pull_request_target context.
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+permissions:
+  contents: read
+
+jobs:
+  trusted-source-guard:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Read protected-base scanner and exception authority
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: policy
+          persist-credentials: false
+      - name: Materialize candidate source without executing it
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: candidate
+          persist-credentials: false
+      - name: Install pinned scanner
+        run: |
+          curl --fail --location --retry 3 --output "$RUNNER_TEMP/gitleaks.tar.gz" https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz
+          echo "551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb  $RUNNER_TEMP/gitleaks.tar.gz" | sha256sum --check --strict
+          tar -xzf "$RUNNER_TEMP/gitleaks.tar.gz" -C "$RUNNER_TEMP" gitleaks
+          sudo install "$RUNNER_TEMP/gitleaks" /usr/local/bin/gitleaks
+      - name: Scan with base-owned policy only
+        env:
+          TRUSTED_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          python3 policy/tools/release/prepare_repository.py --repository "$GITHUB_WORKSPACE/candidate" --report "$RUNNER_TEMP/candidate-inventory.json"
+          python3 policy/tools/release/scan_repository.py --source "$GITHUB_WORKSPACE/candidate/.local/github-preflight/source" --exception-base-ref "$TRUSTED_BASE_SHA" --report "$RUNNER_TEMP/source-scan.json"
+          python3 policy/tools/collaboration/verify_publication.py --root "$GITHUB_WORKSPACE/candidate" --scan --report "$RUNNER_TEMP/publication-scan.json"

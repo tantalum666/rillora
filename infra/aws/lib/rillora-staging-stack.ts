@@ -28,6 +28,7 @@ import * as servicediscovery from "aws-cdk-lib/aws-servicediscovery";
 import * as s3 from "aws-cdk-lib/aws-s3";
 import * as s3deploy from "aws-cdk-lib/aws-s3-deployment";
 import type { Construct } from "constructs";
+import { RilloraMaintenanceBroker } from './rillora-maintenance-broker.js';
 
 export type RilloraStagingStackProps = StackProps & {
   desiredCount: number;
@@ -362,6 +363,8 @@ export class RilloraStagingStack extends Stack {
         ALLOW_SYNTHETIC_RECIPIENT_REHEARSAL: "false",
         DATABASE_POOL_MAX: "5",
         TRUST_PROXY_HOPS: "1",
+        PRODUCTION_RUNTIME_MODE: "staging",
+        REQUIRE_RECENT_AUTHENTICATION: "true",
         OIDC_ISSUER_URL: oidcIssuer.valueAsString,
         OIDC_CLIENT_ID: webOidcClientId.valueAsString,
         ...(props.emailVerificationEnabled ? {
@@ -506,7 +509,8 @@ export class RilloraStagingStack extends Stack {
       },
     });
 
-    stagingOperatorRole.addToPolicy(
+    const stagingMaintenancePolicies: iam.PolicyStatement[] = [];
+    stagingMaintenancePolicies.push(
       new iam.PolicyStatement({
         sid: "RunOnlyTheStagingMigrationTask",
         actions: ["ecs:RunTask"],
@@ -534,7 +538,7 @@ export class RilloraStagingStack extends Stack {
         resources: [stripeTestApiKeySecret.secretArn, stripeTestWebhookSecret.secretArn],
       }),
     );
-    stagingOperatorRole.addToPolicy(
+    stagingMaintenancePolicies.push(
       new iam.PolicyStatement({
         sid: "PassOnlyTheMigrationTaskRoles",
         actions: ["iam:PassRole"],
@@ -545,6 +549,12 @@ export class RilloraStagingStack extends Stack {
         conditions: { StringEquals: { "iam:PassedToService": "ecs-tasks.amazonaws.com" } },
       }),
     );
+    const maintenanceBroker = new RilloraMaintenanceBroker(this,'MaintenanceBroker',{
+      operator:stagingOperatorRole,policies:stagingMaintenancePolicies,
+      settings:{environment:'staging',cluster:cluster.clusterName,migrationTask:migrationTaskDefinition.taskDefinitionArn,
+        subnets:vpc.publicSubnets.map(subnet=>subnet.subnetId),migrationSecurityGroup:taskSecurityGroup.securityGroupId},
+    });
+    new CfnOutput(this,'MaintenanceBrokerFunctionName',{value:maintenanceBroker.function.functionName});
     stagingOperatorRole.addToPolicy(
       new iam.PolicyStatement({
         sid: "ObserveAndStopStagingTasks",
@@ -708,6 +718,10 @@ export class RilloraStagingStack extends Stack {
       runtime: cloudfront.FunctionRuntime.JS_2_0,
       code: cloudfront.FunctionCode.fromInline(`function handler(event) {
   var request = event.request;
+  if (request.uri === '/.well-known/apple-app-site-association' && (request.method === 'GET' || request.method === 'HEAD')) {
+    return { statusCode: 200, headers: { 'content-type': { value: 'application/json' }, 'cache-control': { value: 'public, max-age=3600' } },
+      body: request.method === 'HEAD' ? '' : '{"applinks":{"apps":[],"details":[{"appID":"8L99CFNK24.com.rillora.ios","paths":["/invite","/invite/*"]}]}}' };
+  }
   var uri = request.uri;
   if (uri.endsWith('/')) {
     request.uri = uri + 'index.html';

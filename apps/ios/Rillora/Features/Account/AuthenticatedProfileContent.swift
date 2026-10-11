@@ -175,7 +175,9 @@ struct AuthenticatedProfileContent: View {
             }
             .disabled(authenticationStore.isWorking)
             .accessibilityIdentifier("account.sign-out")
-
+            if let message = authenticationStore.errorMessage {
+                Text(message).foregroundStyle(RilloraTheme.clay).accessibilityIdentifier("account.sign-out-error")
+            }
         } header: {
             ProfileSectionHeader(String(localized: "Sessions"))
         }

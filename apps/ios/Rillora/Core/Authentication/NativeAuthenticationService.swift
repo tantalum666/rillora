@@ -22,7 +22,7 @@ protocol NativeAuthenticating: PasswordResetRequesting {
     func signInWithGoogle(legalAcceptance: LegalAcceptanceProof) async throws
     func signInWithPasskey(legalAcceptance: LegalAcceptanceProof) async throws
     func takeInitialOverview() -> OverviewSnapshot?
-    func signOut() async
+    func signOut() async throws
     func clearLocalSession() async
     func signOutAll() async throws
 }
@@ -31,7 +31,7 @@ extension NativeAuthenticating {
     var canResetPassword: Bool { false }
     func requestPasswordReset(email: String) async throws { throw PasswordResetError.unavailable }
 
-    func clearLocalSession() async { await signOut() }
+    func clearLocalSession() async { try? await signOut() }
     func takeInitialOverview() -> OverviewSnapshot? { nil }
 }
 
@@ -124,6 +124,7 @@ final class Auth0NativeAuthenticationService: NativeAuthenticating {
     ) async throws {
         let credentials = try await Auth0
             .webAuth(clientId: configuration.clientID, domain: configuration.domain)
+            .useHTTPS()
             .audience(configuration.audience)
             .scope("openid profile email session:create")
             .parameters(Self.authorizationParameters(for: intent, loginHint: loginHint))
@@ -305,12 +306,15 @@ final class Auth0NativeAuthenticationService: NativeAuthenticating {
         return parameters
     }
 
-    func signOut() async {
+    func signOut() async throws {
         initialOverview = nil
-        try? await revokeSession(allDevices: false)
-        try? await tokenStore.delete()
+        // A failed remote revocation is not a successful sign-out. Keep the
+        // retry path, and never reload a bearer whose local removal failed.
+        try await revokeSession(allDevices: false)
+        try await tokenStore.delete()
         try? await Auth0
             .webAuth(clientId: configuration.clientID, domain: configuration.domain)
+            .useHTTPS()
             .logout()
     }
 
@@ -324,6 +328,7 @@ final class Auth0NativeAuthenticationService: NativeAuthenticating {
         try await tokenStore.delete()
         try? await Auth0
             .webAuth(clientId: configuration.clientID, domain: configuration.domain)
+            .useHTTPS()
             .logout()
     }
 
@@ -335,7 +340,8 @@ final class Auth0NativeAuthenticationService: NativeAuthenticating {
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         let (_, response) = try await session.data(for: request)
-        guard let http = response as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {
+        guard let http = response as? HTTPURLResponse,
+              (200..<300).contains(http.statusCode) || http.statusCode == 401 else {
             throw NativeAuthenticationError.sessionRevocationRejected
         }
     }

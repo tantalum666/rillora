@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-10 (Asia/Hong_Kong)
+Last updated: 2026-10-11 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -3385,3 +3385,18 @@ local correction/tests and actual restoration remain separate evidence.
 - Owner explicitly selects release item3: final artifacts, permission boundaries, rollback configuration and financial reconciliation after restoring old data.
 - Reuse previous foundation/release evidence; execute needed isolated verification and directly fix demonstrated gaps. A scoped disposable recovery target and temporary verified source quiescence are implementation choices within this work, not customer cutover.
 - Preserve real source data, pricing, FanPass, existing subscriptions, deferred Stripe Tax automation and incremental TestFlight pause. No artificial Live payment, account deletion or public support post follows.
+
+## 2026-10-11 — Owner selects remediation of the recent Rillora audit reports
+
+- Owner explicitly asks to fix the recent findings and clarifies that this means Rillora audit reports, not Codex/Daybreak tooling.
+- Supersedes the report-only restriction for these reported application findings and the old release-item2 next step. The paused deep scan is not resumed, and original export provenance is retained.
+- Agent choices: isolated branch at647317834, deduplicate73records into35boundaries, targeted fixes, synthetic/local verification, one fresh read-only investigator and one fresh read-only candidate reviewer. No pricing, data, ordinary sales, real payment, device installation or TestFlight change follows.
+- The candidate adds bounded work, explicit protected configuration and purpose-limited operations. Source/test changes and deployed results remain separate. Runtime-compromise and metadata risks are calibrated against existing trust contracts, not claimed fixed by unrelated endpoint repairs.
+- Automatic approval review specifically requires Owner confirmation for the explicit live configuration capability and the exact test-fixture scan registry update. These two drafts are pending, not new Owner approvals and not a revocation of the existing project authorization. See[the repair record](security-findings-remediation-20261011.md).
+
+## 2026-10-11 — Owner approves both precise security source operations
+
+- Owner answers “批准这项源码修复，线上保持原状” for the explicit live configuration branch, and “批准这些精确的测试夹具登记” for the reviewed scan registry proposal.
+- This authorizes applying those exact source/test changes; the prior automatic-review approval blockers are resolved. The current proposal's28entries are verified against their exact byte hashes, with mechanical line relocation only where the approved code moves an unchanged span.
+- No live runtime mode, customer opening, payment, provider setting, installation or deployment is authorized by this source-only confirmation. Preserve the online state explicitly.
+- Applied result: API495/495/typecheck/build and source scan32reviewed matches/0unknown. Continue Git preservation under the existing all-work authorization; do not request these two confirmations again.

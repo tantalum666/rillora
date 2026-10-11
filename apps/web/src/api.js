@@ -473,14 +473,17 @@ function containsForbiddenDisclosureKey(value) {
   ));
 }
 
-function readCsrfCookie() {
+export function readCsrfCookie() {
   if (typeof document === "undefined") return null;
-  const prefix = "continuity_csrf=";
-  const cookie = document.cookie
+  const local = typeof window !== 'undefined' && ['localhost','127.0.0.1','[::1]'].includes(window.location.hostname);
+  const prefix = local ? 'continuity_csrf=' : '__Host-continuity_csrf=';
+  const cookies = document.cookie
     .split(";")
     .map((value) => value.trim())
-    .find((value) => value.startsWith(prefix));
-  return cookie ? decodeURIComponent(cookie.slice(prefix.length)) : null;
+    .filter((value) => value.startsWith(prefix));
+  if (cookies.length !== 1) return null;
+  try { return decodeURIComponent(cookies[0].slice(prefix.length)); }
+  catch { return null; }
 }
 
 const viteEnvironment = import.meta.env ?? {};

@@ -194,15 +194,28 @@ final class AuthenticationStore: PasswordResetRequesting {
         return false
     }
 
-    func signOut() async {
-        guard !isWorking else { return }
+    @discardableResult
+    func signOut() async -> Bool {
+        guard !isWorking else { return false }
         isWorking = true
         errorMessage = nil
-        await service.signOut()
-        commerceStore?.reset()
-        overviewStore.reset()
-        await overviewStore.reload()
-        isWorking = false
+        defer { isWorking = false }
+        do {
+            try await service.signOut()
+            commerceStore?.reset()
+            overviewStore.reset()
+            await overviewStore.reload()
+            return true
+        } catch {
+            errorMessage = Self.displayMessage(for: error, fallback: String(localized: "Could not sign out. Please try again."))
+            return false
+        }
+    }
+
+    @discardableResult
+    func useAnotherAccount() async -> Bool {
+        guard await signOut() else { return false }
+        return await signIn()
     }
 
     func endSessionAfterDeletion(_ reference: AccountDeletionReference) async {

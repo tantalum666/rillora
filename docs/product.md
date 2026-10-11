@@ -5,9 +5,13 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-10-10 (Asia/Hong_Kong)
+Last updated: 2026-10-11 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-10-11 Owner要求修复各份Rillora审计报告
+
+Owner明确修复最近各份Rillora审计报告中的问题，取代本轮此前只生成报告的范围；不重启暂停的深度扫描。当前以647317834为基线，在独立工作树逐项核对和修复73条导出记录，归并35组。[当前修复合同](security-findings-remediation-20261011.md)区分源码候选、局部／全量回归、原报告前提和未部署边界。现有UI、真实数据、Free1/Family5、Web88.99／Apple119.99、FanPass及暂停零碎TestFlight保持。自动审批提出的两项具体确认不等于Owner撤回项目默认授权。
 
 ## 2026-10-10 Owner选择第3项恢复与权限验收
 

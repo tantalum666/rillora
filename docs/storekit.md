@@ -4,8 +4,12 @@ Role: StoreKit 2 client, local Xcode testing, Apple sandbox and server-verificat
 Authority scope: Rillora Family StoreKit product identifiers, purchase/restore lifecycle, transaction evidence, App Store server boundary and phased verification  
 Superseded by: newer Apple platform rules, verified App Store Connect state, a later Owner decision, or stricter payment/security evidence  
 Do not use for: proof of App Store approval, accepted Paid Apps Agreement, banking/tax completion, live IAP products, production entitlement or a real charge  
-Status: SHARED PRODUCTION/REVIEW FLOW LOCALLY VERIFIED; REAL PROVIDER AND CLOUD ACCEPTANCE OPEN
-Last updated: 2026-10-07 (Asia/Hong_Kong)
+Status: EXISTING SANDBOX EVIDENCE RETAINED; NEW OWNERSHIP/RECOVERY CANDIDATE LOCALLY VERIFIED; ROLLOUT OPEN
+Last updated: 2026-10-11 (Asia/Hong_Kong)
+
+## October11 ownership and recovery repair
+
+New purchases use a random server-created intent token rather than treating the public planner UUID as first-purchase authority. Only pre-cutover existing intents retain the legacy token path. A started/pending payment remains reconcilable after a delay; pending cannot regress to a new purchase. Verified receipts retain the current token so a snapshot predating preparation can recover ownership and still process later refunds/revocations. Financial retention after account deletion omits that correlation. [The scoped repair](security-findings-remediation-20261011.md) records60local Apple/recovery cases and the separate native checks. It does not replace the Owner's real Sandbox/HKD888 evidence, change119.99US pricing, install a phone build or reopen TestFlight distribution.
 
 ## October7 current physical purchase and simplified paywall
 

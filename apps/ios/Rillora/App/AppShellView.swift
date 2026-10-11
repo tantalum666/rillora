@@ -164,6 +164,9 @@ struct AppShellView: View {
         .onOpenURL { url in
             if let token = ReceivedInvitation.token(from: url.absoluteString) { queueInvitation(token) }
         }
+        .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { activity in
+            if let url = activity.webpageURL, let token = ReceivedInvitation.token(from: url.absoluteString) { queueInvitation(token) }
+        }
         .onChange(of: authenticationStore.isWorking) { _, working in if !working { presentQueuedInvitation() } }
         .onChange(of: activePlannerID) { _, next in
             guard let next else {

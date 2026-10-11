@@ -251,6 +251,7 @@ const fakeNativeIdentityVerifier: NativeIdentityVerifier = {
     return {
       issuer: "https://identity.example",
       subject: "auth0|native-integration-test-planner",
+      legalAcceptance,
       displayName: "Native Test Planner",
       locale: "en",
       authenticatedAt: new Date("2026-08-09T00:00:00.000Z"),

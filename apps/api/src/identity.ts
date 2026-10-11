@@ -2,6 +2,9 @@ import { createHash, timingSafeEqual } from "node:crypto";
 import * as oidc from "openid-client";
 import { createRemoteJWKSet, jwtVerify } from "jose";
 import type { NativeOidcConfig, OidcConfig } from "./config.js";
+import { parseLegalAcceptance, type LegalAcceptance } from './legal-contract.js';
+
+export const hostedLegalAcceptanceClaim = 'https://rillora.xyz/legal-acceptance';
 
 export type IdentityTransaction = {
   state: string;
@@ -24,6 +27,8 @@ export type ExternalIdentity = {
   authenticatedAt: Date | null;
   authenticationMethods: string[];
   verifiedEmail?: string;
+  /** Present only after verifying the provider-signed native access-token claim. */
+  legalAcceptance?: LegalAcceptance;
 };
 
 export interface IdentityProvider {
@@ -65,6 +70,7 @@ export function createNativeOidcIdentityVerifier(
       if (!payload.sub || typeof payload.iat !== "number") {
         throw new Error("The access token does not contain a valid subject");
       }
+      const legalAcceptance = parseLegalAcceptance(payload[hostedLegalAcceptanceClaim]);
       const rawMethods = payload.amr;
       const authenticationMethods = Array.isArray(rawMethods)
         ? rawMethods.filter((value): value is string => typeof value === "string").slice(0, 10)
@@ -107,6 +113,7 @@ export function createNativeOidcIdentityVerifier(
         locale: "en",
         authenticatedAt,
         authenticationMethods,
+        legalAcceptance,
         ...(verifiedEmail ? { verifiedEmail } : {}),
       };
     },

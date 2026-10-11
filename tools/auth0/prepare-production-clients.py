@@ -10,7 +10,7 @@ from urllib.parse import urlencode
 ROOT = Path(__file__).resolve().parents[2]
 DOMAIN = 'rillora-dev.eu.auth0.com'
 SECRET = ROOT / '.local-secrets/production-identity/web-client.json'
-NATIVE_CALLBACK = 'com.rillora.ios://login.rillora.xyz/ios/com.rillora.ios/callback'
+NATIVE_CALLBACK = 'https://login.rillora.xyz/ios/com.rillora.ios/callback'
 CLIENTS = {
     'web': {'name': 'Rillora Production Web', 'app_type': 'regular_web',
             'callbacks': ['https://app.rillora.xyz/api/auth/callback'],
@@ -19,6 +19,7 @@ CLIENTS = {
             'token_endpoint_auth_method': 'client_secret_post'},
     'ios': {'name': 'Rillora Production iOS', 'app_type': 'native',
             'callbacks': [NATIVE_CALLBACK], 'allowed_logout_urls': [NATIVE_CALLBACK],
+            'mobile': {'ios': {'team_id': '8L99CFNK24', 'app_bundle_identifier': 'com.rillora.ios'}},
             'token_endpoint_auth_method': 'none'},
 }
 COMMON = {'grant_types': ['authorization_code'], 'oidc_conformant': True,

@@ -24,11 +24,10 @@ export class AppleProductionIntake {
   async acceptClientTransaction(input: { plannerId: string; plannerPublicId: string; signedTransaction: string }): Promise<IntakeResult> {
     await withCommercePlannerDatabase(this.pool, input.plannerId, client => requireAppleReviewEnrollment(client, this.context));
     let signal: AppleProductionSignal;
-    try { signal = await this.verifier.verifyClientTransaction({ signedTransaction: input.signedTransaction,
-      expectedAppAccountToken: input.plannerPublicId }); }
+    try { signal = await this.verifier.verifyClientTransaction({ signedTransaction: input.signedTransaction }); }
     catch (error) { throw verificationFailure(error, 'transaction'); }
     if (!signal.receipt || !signal.providerSubscriptionReference || !signal.providerTransactionReference
-      || signal.accountBindingReference !== input.plannerPublicId.toLowerCase()) {
+      || !signal.accountBindingReference) {
       throw new ApiError(400, 'apple_transaction_rejected', 'The Apple-signed transaction is missing its account binding.');
     }
     const reservation = await this.inbox.receive(signal, input);

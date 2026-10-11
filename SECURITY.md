@@ -1,6 +1,12 @@
 # Digital Legacy Repository Threat Model
 
-Last updated: 2026-10-08 (targeted dependency follow-up; historical review scopes retained)
+Last updated: 2026-10-11 (audit remediation candidate; historical review scopes retained)
+
+## October11 report-driven remediation
+
+The [current repair record](docs/security-findings-remediation-20261011.md) maps73exported findings to35boundaries and records a separate investigator/candidate review. The new source protects freshness, signed consent, invitation metadata, ownership correlation, package commitments, bounded work, recovery holds and privileged maintenance. Owner explicitly approved the protected production-mode and exact fixture-registry changes;495API cases and the source scan pass. Local verification is not a deployment or a new successful full scan, and Owner requires the online configuration to remain unchanged in this turn.
+
+Calibration does not expand the claimed security model: the application is trusted to decrypt and to select session-derived tenant context. Arbitrary SQL as its credential, complete API RCE and same-user access to protected operational files are different prerequisites from an ordinary authenticated planner or a database-only reader. Containment improvements for those stronger compromises and deterministic metadata correlation remain explicit limitations; they are not marked fixed by unrelated route changes. Existing1–94migration bytes and original scan exports are retained.
 
 ## October8 dependency follow-up
 

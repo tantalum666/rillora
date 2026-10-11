@@ -1,0 +1,5 @@
+import Foundation
+struct Item: Decodable { let title: String }
+let data = Data(#"{"title":"substituted","title":"reviewed"}"#.utf8)
+print((try JSONSerialization.jsonObject(with:data) as! [String:String])["title"]!)
+print(try JSONDecoder().decode(Item.self,from:data).title)

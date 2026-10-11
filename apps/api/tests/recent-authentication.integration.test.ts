@@ -16,10 +16,10 @@ const config=loadConfig({NODE_ENV:'test',DATABASE_URL:url,REQUIRE_RECENT_AUTHENT
   OIDC_ISSUER_URL:'https://identity.example',OIDC_CLIENT_ID:'fixture-web',
   OIDC_CLIENT_SECRET:'synthetic-test-credential-only',OIDC_REDIRECT_URI:'http://localhost:4173/auth/callback',
   NATIVE_OIDC_CLIENT_ID:'fixture-native',OIDC_API_AUDIENCE:'urn:fixture:recent-auth'});
-const acceptance={...currentLegalContract,acceptedTerms:true,acknowledgedPrivacy:true,acceptedElectronicRecords:true};
+const acceptance={...currentLegalContract,acceptedTerms:true,acknowledgedPrivacy:true,acceptedElectronicRecords:true} as const;
 let pool:DatabasePool;
 function fixture(authenticatedAt:Date|null=null) {
-  const owner:ExternalIdentity={issuer:'https://identity.example',subject:`auth0|${randomUUID()}`,displayName:'Synthetic planner',locale:'en',authenticatedAt,authenticationMethods:['pwd']};
+  const owner:ExternalIdentity={issuer:'https://identity.example',subject:`auth0|${randomUUID()}`,displayName:'Synthetic planner',locale:'en',authenticatedAt,authenticationMethods:['pwd'],legalAcceptance:acceptance};
   let who=owner;let intent:AuthorizationIntent|undefined;
   const app=createApp(pool,config,{
     nativeIdentityVerifier:{async verifyAccessToken(){return who;}},
@@ -52,7 +52,7 @@ describe.sequential('Recent identity authentication without replaying the sensit
     for(const time of [null,new Date(Date.now()-11*60_000)]) {
       const f=fixture(time),token=await native(f),headers={Authorization:`Bearer ${token}`};
       await request(f.app).get('/v1/overview').set(headers).expect(200);
-      for(const path of ['/account/map/export','/account/map/import','/account/delete','/exports/start-here/printable','/exports/start-here/encrypted/prepare','/sharing/connections']) {
+      for(const path of ['/account/map/export','/account/map/import','/account/delete','/exports/start-here/printable','/exports/start-here/encrypted/prepare',`/exports/start-here/encrypted/${randomUUID()}/finalize`,'/sharing/connections','/sharing/invitations/accept']) {
         const response=await request(f.app).post(`/v1${path}`).set(headers).send({}).expect(403);
         expect(response.body.error.code).toBe('reauthentication_required');
       }
@@ -61,7 +61,7 @@ describe.sequential('Recent identity authentication without replaying the sensit
   });
   it('guards the actual handlers under both prefixes, case variants and trailing slashes', async () => {
     const paths = ['/account/map/export', '/account/map/import', '/account/delete',
-      '/exports/start-here/printable', '/exports/start-here/encrypted/prepare', '/sharing/connections',
+      '/exports/start-here/printable', '/exports/start-here/encrypted/prepare', `/exports/start-here/encrypted/${randomUUID()}/finalize`, '/sharing/connections', '/sharing/invitations/accept',
       `/sharing/connections/${randomUUID()}/link`, `/sharing/connections/${randomUUID()}/live`];
     for (const time of [null, new Date(Date.now() - 11 * 60_000), new Date()]) {
       const f = fixture(time), token = await native(f);

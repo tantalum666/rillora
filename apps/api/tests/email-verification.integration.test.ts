@@ -60,6 +60,27 @@ describe.sequential("Email verification without another sign-in", () => {
     await request(app).post("/v1/sharing/email-verification").set(recipient.headers).send({subject:"someone-else",email:"recipient@example.test",verified:true}).expect(400);
     await request(app).post("/v1/sharing/email-verification").send({}).expect(401);
   });
+  it("rechecks cached email at acceptance and clears stale proof on change, revocation and outage",async()=>{
+    const recipient=await actor('native_bearer');
+    const contact=(await request(app).post('/v1/trusted-contacts').set(owner).send({displayName:'Current proof fixture'}).expect(201)).body.trustedContact.publicId;
+    const invite=(await request(app).post('/v1/sharing/connections').set(owner).send({personPublicId:contact,email:'cached@example.test',grants:[]}).expect(201)).body;
+    const invitationToken=new URLSearchParams(new URL(invite.invitationUrl).hash.slice(1)).get('invitation');
+    const accept=()=>request(app).post('/v1/sharing/invitations/accept').set(recipient.headers).send({invitationToken,accepted:true});
+    for (const next of ['changed@example.test',null,'outage'] as const) {
+      proof=async()=> 'cached@example.test';
+      await pool.query('update app.auth_sessions set verified_email_hash=null where public_id=$1',[recipient.session]);
+      await request(app).post('/v1/sharing/email-verification').set(recipient.headers).send({}).expect(200);
+      proof=async()=> {if(next==='outage') throw Error('synthetic outage');return next;};
+      const failed=await accept().expect(next==='outage'?503:403);
+      expect(failed.body.error.code).toBe(next==='outage'?'email_verification_unavailable':next?'invitation_account_mismatch':'verified_email_required');
+      if (!next || next==='outage') expect((await pool.query('select verified_email_hash from app.auth_sessions where public_id=$1',[recipient.session])).rows[0].verified_email_hash).toBeNull();
+    }
+    proof=async()=> 'cached@example.test';await accept().expect(200);
+    const terminal=await request(app).post('/sharing/invitations/resolve').send({invitationToken}).expect(404);
+    expect(terminal.headers['set-cookie']).toBeUndefined();
+    expect(JSON.stringify(terminal.body)).not.toContain('Current proof fixture');
+    expect((await request(app).get('/v1/sharing/shared-with-me').set(recipient.headers).expect(200)).body.connections).toHaveLength(1);
+  });
   it("supports the same native bearer session and leaves it usable on provider outage",async()=>{
     const recipient=await actor("native_bearer"); proof=async()=>{throw Error("provider unavailable");};
     await request(app).post("/v1/sharing/email-verification").set(recipient.headers).send({}).expect(503);

@@ -2,6 +2,25 @@ import XCTest
 @testable import Rillora
 
 final class ProductionConnectionTests: XCTestCase {
+    @MainActor
+    func testSignOutReportsRemoteAndKeychainFailuresWithoutFalseSuccess() async throws {
+        let sessionConfig = URLSessionConfiguration.ephemeral
+        sessionConfig.protocolClasses = [LogoutURLProtocol.self]
+        let session = URLSession(configuration: sessionConfig)
+        defer { session.invalidateAndCancel(); LogoutURLProtocol.probe.reset() }
+        for status in [500, 401, 204] {
+            LogoutURLProtocol.probe.reset(status: status)
+            let tokens = FailingLogoutTokenStore()
+            let service = Auth0NativeAuthenticationService(configuration: try XCTUnwrap(configuration().nativeAuthentication),
+                tokenStore: tokens, session: session)
+            do { try await service.signOut(); XCTFail("An incomplete sign-out must throw") }
+            catch { /* Expected: preserve the explicit failure instead of reopening the old session. */ }
+            let attempts = await tokens.deleteAttempts
+            XCTAssertEqual(attempts, status == 500 ? 0 : 1)
+            let token = try await tokens.read()
+            XCTAssertNotNil(token)
+        }
+    }
     private func configuration(base: String = "https://app.rillora.xyz/api/v1",
                                client: String = "POpNKTqlr6dHbJZLWPWxhyjg5qPtdrm4",
                                audience: String = "urn:rillora:production:api",
@@ -80,7 +99,9 @@ final class ProductionConnectionTests: XCTestCase {
 private final class LogoutProbe: @unchecked Sendable {
     private let lock = NSLock()
     private var values: [String] = []
-    func reset() { lock.withLock { values = [] } }
+    private var status = 204
+    func reset(status: Int = 204) { lock.withLock { values = []; self.status = status } }
+    func responseStatus() -> Int { lock.withLock { status } }
     func record(_ path: String) { lock.withLock { values.append(path) } }
     func paths() -> [String] { lock.withLock { values } }
 }
@@ -94,9 +115,16 @@ private final class LogoutURLProtocol: URLProtocol, @unchecked Sendable {
         let valid = request.url?.host == "app.rillora.xyz" && request.httpMethod == "POST"
             && request.value(forHTTPHeaderField: "Authorization") == "Bearer " + String(repeating: "t", count: 43)
             && ["/api/v1/auth/logout", "/api/v1/auth/logout-all"].contains(path)
-        let response = HTTPURLResponse(url: request.url!, statusCode: valid ? 204 : 404, httpVersion: "HTTP/1.1", headerFields: nil)!
+        let response = HTTPURLResponse(url: request.url!, statusCode: valid ? Self.probe.responseStatus() : 404, httpVersion: "HTTP/1.1", headerFields: nil)!
         client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
         client?.urlProtocolDidFinishLoading(self)
     }
     override func stopLoading() {}
+}
+
+private actor FailingLogoutTokenStore: SessionTokenStore {
+    private(set) var deleteAttempts = 0
+    func read() async throws -> String? { String(repeating: "t", count: 43) }
+    func save(_ token: String) async throws {}
+    func delete() async throws { deleteAttempts += 1; throw SessionTokenStoreError.keychain(-1) }
 }

@@ -26,7 +26,15 @@ class Provider:
         self.outputs = {'ProductionTrafficReady': 'false', 'ClusterName': 'fixture-cluster',
             'MigrationTaskDefinitionArn': 'migration:1', 'RecoveryTaskDefinitionArn': 'recovery:1',
             'MaintenanceSubnetIds': 'subnet-fixture', 'MigrationSecurityGroupId': 'sg-migration',
-            'RecoverySecurityGroupId': 'sg-recovery', 'RuntimeApiServiceName': 'fixture-api'}
+            'RecoverySecurityGroupId': 'sg-recovery', 'RuntimeApiServiceName': 'fixture-api',
+            'MaintenanceBrokerFunctionName': 'fixture-broker'}
+
+    def invoke_broker(self, name, request):
+        assert name == 'fixture-broker'
+        assert request['runToken'] == 'r' * 43
+        assert request['operation'] == 'task'
+        self.writes.append(request['request'])
+        return {'tasks': [{'taskArn': 'fixture-task', 'lastStatus': 'PENDING'}]}
 
     def call(self, service, operation, payload=None):
         if operation == 'get-caller-identity':
@@ -77,13 +85,14 @@ class RecoveryTaskRetryTests(unittest.TestCase):
             if operation == 'reconcile-commerce':
                 container['environment'].append({'name': 'RECOVERY_SOURCE_FROZEN_AT', 'value': (NOW - timedelta(minutes=2)).isoformat()})
         return {'schemaVersion': 1, 'region': 'eu-central-1', 'account': runner.ACCOUNT,
-            'source': 'rillora-production', 'run': run, 'target': 'rillora-recovery-' + run,
+            'source': 'rillora-production', 'run': run, 'runToken': 'r' * 43, 'target': 'rillora-recovery-' + run,
             'snapshot': 'rillora-production-recovery-' + run, 'vpc': 'vpc-fixture', 'recoverySecurityGroup': 'sg-recovery-db',
             'maintenanceTasks': {operation: {'clientToken': token, 'requestedAt': (NOW - age).isoformat(), 'request': request}}}
 
     def invoke(self, state, provider, operation='migrate'):
         with tempfile.TemporaryDirectory() as temporary:
-            path = Path(temporary) / 'state.json'; path.write_text(json.dumps(state))
+            protected = Path(temporary) / '.local-secrets'; protected.mkdir(mode=0o700)
+            path = protected / 'state.json'; path.write_text(json.dumps(state)); path.chmod(0o600)
             with patch.object(runner, 'Aws', return_value=provider), patch.object(runner, 'datetime', Clock), \
                  patch('sys.argv', ['fixture', operation, '--state', str(path)]), contextlib.redirect_stdout(io.StringIO()):
                 runner.main()

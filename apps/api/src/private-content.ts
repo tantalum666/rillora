@@ -117,12 +117,15 @@ const sessions = new WeakMap<PoolClient, ContentSession>();
 export class ContentSession {
   private readonly keys = new Map<string, Buffer>();
   private wrote = false;
+  private readonly deadline = Date.now() + 10_000;
+  private decodedBytes = 0;
   constructor(private readonly raw: RawQuery, private readonly config: ContentProtectionConfig | null,
     private readonly provider: ContentKeyProvider | null, private readonly reviewPreview: boolean) {}
 
   private async openKey(key: StoredKey): Promise<Buffer> {
     if (!this.config || !this.provider || key.namespace !== this.config.namespace) throw unavailable();
     const existing = this.keys.get(key.id); if (existing) return existing;
+    if (Date.now() > this.deadline) throw unavailable();
     const plaintext = await this.provider.unwrap(bytes(key.wrappedKey), key.wrappingKeyRef, key);
     if (plaintext.length !== 32) { plaintext.fill(0); throw unavailable(); }
     this.keys.set(key.id, plaintext); return plaintext;
@@ -188,11 +191,15 @@ export class ContentSession {
       if(content.values.length!==ids.size || new Set(content.values.map(v=>v.id)).size!==ids.size)throw unavailable();
       const keys=new Map(content.keys.map(k=>[k.id,k])); const opened=new Map<string,string>();
       for(const value of content.values){
+        if (Date.now() > this.deadline) throw unavailable();
         if(!ids.has(value.id))throw unavailable();
         const key=keys.get(value.keyId); if(!key || key.owner!==value.owner)throw unavailable();
         const decipher=createDecipheriv("aes-256-gcm",await this.openKey(key),bytes(value.nonce,12),{authTagLength:16});
         decipher.setAAD(aad(value,key.namespace));decipher.setAuthTag(bytes(value.tag,16));
-        const plaintext=Buffer.concat([decipher.update(bytes(value.ciphertext)),decipher.final()]);
+        const ciphertext=bytes(value.ciphertext);
+        this.decodedBytes+=ciphertext.length;
+        if(this.decodedBytes>8*1024*1024)throw unavailable();
+        const plaintext=Buffer.concat([decipher.update(ciphertext),decipher.final()]);
         try { opened.set(value.id,new TextDecoder("utf-8",{fatal:true}).decode(plaintext)); }
         finally { plaintext.fill(0); }
       }
@@ -245,6 +252,7 @@ export async function protectMatterInput<T extends {title?:string|undefined;inst
 }
 
 export async function protectSnapshot<T>(client:PoolClient,publicId:string,snapshot:T,knownStoredReferences?:ReadonlySet<string>):Promise<T>{
+  validateSnapshotBudget(snapshot);
   let count=0;const entries:Record<string,string>={};const markers=new WeakMap<object,string>();
   const collect=(value:unknown):unknown=>{
     if(Array.isArray(value))return value.map(collect);
@@ -266,4 +274,25 @@ export async function protectSnapshot<T>(client:PoolClient,publicId:string,snaps
     }return value;
   };
   return finish(marked) as T;
+}
+
+/** Reject excessive work before allocating ciphertext or touching KMS/storage. */
+export function validateSnapshotBudget(value: unknown): void {
+  const oversized = () => new ApiError(413,'operation_size_limit','This collection is too large for one request. No records were omitted.');
+  const pending: Array<{value:unknown;depth:number}> = [{value,depth:0}];
+  let nodes=0, bytes=0;
+  while(pending.length){
+    const current=pending.pop()!;
+    if(++nodes>20_000 || current.depth>32) throw oversized();
+    if(typeof current.value==='string') bytes+=Buffer.byteLength(current.value,'utf8');
+    else if(current.value && typeof current.value==='object') {
+      for(const [key,child] of Object.entries(current.value)) {
+        bytes+=Buffer.byteLength(key,'utf8');
+        pending.push({value:child,depth:current.depth+1});
+        if(pending.length>20_000) throw oversized();
+      }
+    }
+    if(bytes>2*1024*1024) throw oversized();
+  }
+  if(Buffer.byteLength(JSON.stringify(value),'utf8')>2*1024*1024) throw oversized();
 }

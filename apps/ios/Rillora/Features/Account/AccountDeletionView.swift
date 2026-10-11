@@ -103,14 +103,14 @@ struct AccountDeletionStatusView: View {
         .rilloraStructuredList().rilloraFocusedTask().navigationTitle(String(localized: "Deletion status")).navigationBarTitleDisplayMode(.inline)
         .task { await refresh() }
         .fileImporter(isPresented: $chooseFile, allowedContentTypes: [.json]) { result in
+          Task {
             do {
-                let url = try result.get(), access = url.startAccessingSecurityScopedResource()
-                defer { if access { url.stopAccessingSecurityScopedResource() } }
-                guard (try url.resourceValues(forKeys: [.fileSizeKey]).fileSize ?? 0) <= 8192 else { throw RilloraAPIError.invalidResponse }
-                let value = try JSONDecoder().decode(AccountDeletionReference.self, from: Data(contentsOf: url))
+                let data = try await BoundedDocumentReader.read(result.get(), maximumBytes: 8192)
+                let value = try JSONDecoder().decode(AccountDeletionReference.self, from: data)
                 guard value.isValid else { throw RilloraAPIError.invalidResponse }
                 reference = value; status = nil; Task { await refresh() }
             } catch let error as NSError where error.code == NSUserCancelledError {} catch { self.error = String(localized: "Choose a saved Rillora deletion reference.") }
+          }
         }
     }
     private func refresh() async {

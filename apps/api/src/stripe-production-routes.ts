@@ -5,10 +5,12 @@ import { ApiError, asyncHandler } from './errors.js';
 import { stripeTestIdempotencyKeySchema, billingPortalRequestSchema } from './domain.js';
 import { purchaseConsentContract, purchaseConsentSchema } from './purchase-consent.js';
 import type { StripeCommerceExecutor } from './stripe-commerce-executor.js';
+import type { AppConfig } from './config.js';
+import { recentAuthenticationRequired } from './recent-authentication.js';
 
 const checkoutInput = z.object({ billingPeriod: z.literal('annual'), purchaseConsent: purchaseConsentSchema, locale: z.enum(['en', 'zh-CN']).optional() }).strict();
 
-export function createStripeProductionCommerceRouter(executor: StripeCommerceExecutor, options: { checkoutEnabled: boolean }): ExpressRouter {
+export function createStripeProductionCommerceRouter(executor: StripeCommerceExecutor, options: { checkoutEnabled: boolean }, config: AppConfig): ExpressRouter {
   if (executor.providerEnvironment !== 'production') throw new Error('Production billing requires a production executor');
   const router = Router();
   router.get('/status', asyncHandler(async (request, response) => {
@@ -19,7 +21,7 @@ export function createStripeProductionCommerceRouter(executor: StripeCommerceExe
     response.json({ contractVersion: 'commerce-stripe-production-v1', purchaseConsent: purchaseConsentContract,
       requiresFreshEvaluation: true, applicableTaxShownAtCheckout: true });
   });
-  router.post('/checkout', requireCsrf, asyncHandler(async (request, response) => {
+  router.post('/checkout', recentAuthenticationRequired(config), requireCsrf, asyncHandler(async (request, response) => {
     if (!options.checkoutEnabled) throw new ApiError(503, 'checkout_setup_unavailable', 'Checkout is not available yet.');
     const input = checkoutInput.parse(request.body);
     const result = await executor.createCheckout({ plannerId: request.auth.plannerId, billingPeriod: input.billingPeriod,
@@ -28,11 +30,11 @@ export function createStripeProductionCommerceRouter(executor: StripeCommerceExe
     response.status(201).json({ contractVersion: 'commerce-stripe-production-v1', checkout: result,
       boundaries: { testOnly: false, callbackGrantsAccess: false, providerSnapshotRequired: true } });
   }));
-  router.post('/portal', requireCsrf, asyncHandler(async (request, response) => {
+  router.post('/portal', recentAuthenticationRequired(config), requireCsrf, asyncHandler(async (request, response) => {
     const { locale } = billingPortalRequestSchema.parse(request.body ?? {});
     response.status(201).json({ contractVersion: 'commerce-stripe-production-v1', portal: await executor.createPortal(request.auth.plannerId, locale) });
   }));
-  router.post('/checkout/cancel', requireCsrf, asyncHandler(async (request, response) => {
+  router.post('/checkout/cancel', recentAuthenticationRequired(config), requireCsrf, asyncHandler(async (request, response) => {
     await executor.cancelPendingCheckout(request.auth.plannerId); response.json({ canceled: true });
   }));
   return router;

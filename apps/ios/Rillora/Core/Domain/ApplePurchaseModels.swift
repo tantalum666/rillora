@@ -97,7 +97,10 @@ struct ApplePendingPurchase: Decodable, Equatable, Sendable {
     let nonce: UUID
     let state: String
 }
-struct ApplePendingPurchaseResponse: Decodable, Sendable { let purchase: ApplePendingPurchase? }
+struct ApplePendingPurchaseResponse: Decodable, Sendable {
+    let purchase: ApplePendingPurchase?
+    var appAccountTokens: [UUID]? = nil
+}
 struct ApplePurchaseTransition: Codable, Sendable { let action: String }
 struct ApplePurchaseState: Decodable, Sendable { let state: String }
 struct AppleTransactionRequest: Encodable, Sendable { let signedTransaction: String }

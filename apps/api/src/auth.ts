@@ -1,5 +1,5 @@
 import { createHash, timingSafeEqual } from "node:crypto";
-import { parseCookie } from "cookie";
+import { readSecurityCookie, securityCookieName } from './security-cookies.js';
 import type { RequestHandler } from "express";
 import { z } from "zod";
 import type { AppConfig } from "./config.js";
@@ -91,8 +91,7 @@ export function authenticate(pool: DatabasePool, config: AppConfig): RequestHand
         token = match[1];
         credentialKind = "native_bearer";
       } else {
-        const cookies = parseCookie(request.get("cookie") ?? "");
-        token = cookies[sessionCookieName];
+        token = readSecurityCookie(request.get('cookie'), securityCookieName(config, sessionCookieName));
         credentialKind = "browser_cookie";
       }
       if (!token || !isPlausibleOpaqueToken(token)) {

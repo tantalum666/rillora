@@ -62,10 +62,13 @@ export async function replayRecoveryControls(pool:Pool,events:RecoveryControl[],
   for(const event of pending){
    const facts=event.facts;
    if(event.kind==='retention_hold'){
+    // Publication precedes the source SQL commit. An external release can
+    // survive a rolled-back transaction, so it cannot loosen a restored hold.
+    // Releasing recovered holds requires a fresh administrative decision.
     await client.query(`insert into app.retention_holds(public_id,category,record_id,reason_code,released_at)
-     values($1,$2,$3,$4,case when $5 then null else now() end)
-     on conflict(category,record_id,reason_code) do update set public_id=excluded.public_id,released_at=excluded.released_at`,
-     [event.id,facts.category,facts.recordId,facts.reason,facts.active]);
+     values($1,$2,$3,$4,null)
+     on conflict(category,record_id,reason_code) do update set public_id=excluded.public_id,released_at=null`,
+     [event.id,facts.category,facts.recordId,facts.reason]);
    }else if(event.kind==='account'){
     const planner=(await client.query('select id::text,status from app.planners where public_id=$1',[event.id])).rows[0];
     if(planner){

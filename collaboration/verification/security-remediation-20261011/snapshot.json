@@ -1,0 +1,43 @@
+{
+  "capturedFrom": "2026-10-11T10:52:28.379800+00:00",
+  "capturedThrough": "2026-10-11T10:52:30.293031+00:00",
+  "workFiles": 2430,
+  "uniqueRawObjects": 1389,
+  "workBytes": 15788242,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-031.tar.zst.age",
+      "sha256": "5b7138b00eb51efe1e23f7f594ed85e32ebc2bbb1903c1255a5017686f1bc869",
+      "bytes": 6289927,
+      "plainBytes": 14428090,
+      "uniqueObjects": 1389
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/security-remediation-20261011/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": "test-workspace except selected compiled API/Web",
+      "reason": "duplicate source/dependency workspace; current source is normal Git"
+    },
+    {
+      "path": "ios-derived and swift-probe-cache",
+      "reason": "reproducible SDK/compiler caches"
+    },
+    {
+      "path": "XcodeBuildMCP/test-products",
+      "reason": "unsigned reproducible test compiler products; exact logs and result bundles preserved"
+    },
+    {
+      "path": "original scan state and source snapshots",
+      "reason": "externally managed originals retained in place; derived finding IDs/input digests preserved without copying credential-bearing state"
+    },
+    {
+      "path": ".local-secrets and provider/database/browser state",
+      "reason": "excluded; existing age identity is only passed to local encryption/verification"
+    }
+  ],
+  "selection": "New security repair evidence only: exact logs including failures, finding index and report provenance, candidate patches, approved source-mode/fixture decisions, synthetic helper inputs, compiled API/Web, and exact native result bundles.",
+  "boundary": "Local source/synthetic verification and Git preservation only. No deployment, provider mutation, real money, phone installation or TestFlight. Archives1–30 unchanged. Raw compiler caches, credentials and original external scan state excluded."
+}

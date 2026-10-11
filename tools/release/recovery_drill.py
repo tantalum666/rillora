@@ -8,6 +8,10 @@ from pathlib import Path
 import re
 import subprocess
 import uuid
+import secrets
+import tempfile
+
+ROOT = Path(__file__).resolve().parents[2]
 
 REGION = 'eu-central-1'
 SOURCE = 'rillora-production'
@@ -45,6 +49,18 @@ def validate_state(state):
     require(re.fullmatch(r'[a-f0-9]{16}', state['run']) is not None, 'Invalid run identifier')
     require(state['target'] == 'rillora-recovery-' + state['run'], 'Unexpected recovery target')
     require(state['snapshot'] == 'rillora-production-recovery-' + state['run'], 'Unexpected snapshot')
+
+
+def validate_trusted_network(state, outputs):
+    """Manifest values are receipts, never authority to select a restore network."""
+    for field, output in {'vpc': 'ProductionVpcId', 'subnetGroup': 'DatabaseSubnetGroup',
+                          'parameterGroup': 'DatabaseParameterGroup',
+                          'recoverySecurityGroup': 'RecoveryDatabaseSecurityGroupId',
+                          'sourceHost': 'DatabaseHost'}.items():
+        require(bool(outputs.get(output)) and state.get(field) == outputs[output],
+                'Drill manifest disagrees with trusted stack output: ' + field)
+    require(outputs['RecoveryDatabaseSecurityGroupId'] != outputs.get('DatabaseSecurityGroupId'),
+            'Quarantine and production security groups must differ')
 
 
 def validate_owned(resource, state):
@@ -110,8 +126,25 @@ class Aws:
         result = self.call('rds', 'describe-db-snapshots', {'DBSnapshotIdentifier': name}, 'DBSnapshotNotFound')
         return result['DBSnapshots'][0] if result else None
 
+    def invoke_broker(self, function, payload):
+        # The run capability is sent on stdin, never in process arguments/logs.
+        with tempfile.TemporaryDirectory(prefix='rillora-maintenance-response-') as temp:
+            result_path = Path(temp) / 'response.json'
+            result = subprocess.run(['aws', '--profile', self.profile, '--region', REGION, '--output', 'json',
+                                     'lambda', 'invoke', '--function-name', function,
+                                     '--payload', 'fileb:///dev/stdin', str(result_path)],
+                                    input=json.dumps(payload), text=True, capture_output=True, timeout=90)
+            if result.returncode:
+                raise RuntimeError('Maintenance broker invocation failed; provider body suppressed')
+            metadata = json.loads(result.stdout)
+            if metadata.get('FunctionError') or metadata.get('StatusCode') != 200:
+                raise RuntimeError('Maintenance broker rejected the request; inspect its sanitized logs')
+            return json.loads(result_path.read_text())
+
 
 def save(path, state):
+    if state.get('runToken'):
+        require('.local-secrets' in path.resolve().parts, 'Recovery capability requires a protected .local-secrets manifest')
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix('.tmp')
     fd = os.open(temporary, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
@@ -142,7 +175,7 @@ def main():
         validate_source(database)
         run = uuid.uuid4().hex[:16]
         state = {'schemaVersion': 1, 'createdAt': now(), 'account': ACCOUNT, 'region': REGION,
-                 'source': SOURCE, 'run': run, 'target': 'rillora-recovery-' + run,
+                 'source': SOURCE, 'run': run, 'runToken': secrets.token_urlsafe(32), 'target': 'rillora-recovery-' + run,
                  'snapshot': 'rillora-production-recovery-' + run, 'stage': 'planned',
                  'vpc': outputs['ProductionVpcId'], 'subnetGroup': outputs['DatabaseSubnetGroup'],
                  'parameterGroup': outputs['DatabaseParameterGroup'],
@@ -152,6 +185,16 @@ def main():
     else:
         state = json.loads(args.state.read_text())
         validate_state(state)
+        stack = aws.call('cloudformation', 'describe-stacks', {'StackName': 'RilloraProduction'})['Stacks'][0]
+        require(stack['StackStatus'] in ['CREATE_COMPLETE', 'UPDATE_COMPLETE'], 'Production foundation is not stable')
+        outputs = {v['OutputKey']: v['OutputValue'] for v in stack['Outputs']}
+        validate_trusted_network(state, outputs)
+        if args.operation != 'status':
+            require('.local-secrets' in args.state.resolve().parts and re.fullmatch(r'[A-Za-z0-9_-]{43}', state.get('runToken', '')) is not None,
+                    'Use a new capability-bearing protected drill manifest; legacy runs require independent review')
+        def broker(operation):
+            return aws.invoke_broker(outputs['MaintenanceBrokerFunctionName'],
+                                     {'operation': operation, 'run': state['run'], 'runToken': state['runToken']})
         snapshot = aws.snapshot(state['snapshot'])
         database = aws.database(state['target'])
         state['snapshotStatus'] = snapshot['Status'] if snapshot else 'absent'
@@ -168,32 +211,22 @@ def main():
                 # Persist exact names before a remote write so an interrupted call is resumable.
                 state.update(stage='snapshot_requested', snapshotRequestedAt=now())
                 save(args.state, state)
-                snapshot = aws.call('rds', 'create-db-snapshot', {'DBInstanceIdentifier': SOURCE,
-                    'DBSnapshotIdentifier': state['snapshot'], 'Tags': drill_tags(state)})['DBSnapshot']
+                snapshot = broker('snapshot')['snapshot']
             state['snapshotStatus'] = snapshot['Status']
         elif args.operation == 'restore':
             require(snapshot is not None and snapshot['Status'] == 'available', 'Snapshot is not available')
             if not database:
                 state.update(stage='restore_requested', restoreRequestedAt=now())
                 save(args.state, state)
-                database = aws.call('rds', 'restore-db-instance-from-db-snapshot', restore_request(state))['DBInstance']
+                database = broker('restore')['database']
             state['targetStatus'] = database['DBInstanceStatus']
         elif args.operation == 'cleanup':
-            # Removing an owned disposable clone is separate from deleting its source/snapshot.
-            if database:
-                if database['DBInstanceStatus'] != 'deleting':
-                    require(database['DeletionProtection'] is False, 'Protected target requires manual review')
-                    result = aws.call('rds', 'delete-db-instance', {'DBInstanceIdentifier': state['target'],
-                                     'SkipFinalSnapshot': True, 'DeleteAutomatedBackups': True})
-                    state['targetStatus'] = result.get('DBInstance', {}).get('DBInstanceStatus', 'deletion_requested')
-                state['stage'] = 'cleanup_waiting_for_target_removal'
-            elif snapshot:
-                if snapshot['Status'] != 'deleting':
-                    result = aws.call('rds', 'delete-db-snapshot', {'DBSnapshotIdentifier': state['snapshot']})
-                    state['snapshotStatus'] = result.get('DBSnapshot', {}).get('Status', 'deletion_requested')
-                state['stage'] = 'cleanup_waiting_for_snapshot_removal'
-            else:
-                state.update(stage='cleaned', cleanupVerifiedAt=now())
+            result = broker('cleanup')
+            state['stage'] = result['stage']
+            if state['stage'] == 'cleaned': state['cleanupVerifiedAt'] = now()
+            save(args.state, state)
+            print(json.dumps({'stage': state['stage'], 'acceptancePassed': False}))
+            return
         else:
             state['snapshotStatus'] = snapshot['Status'] if snapshot else 'absent'
             state['targetStatus'] = database['DBInstanceStatus'] if database else 'absent'

@@ -1,6 +1,7 @@
 import { appendPlannerAudit as appendAudit } from "./planner-audit.js";
 import { loadReadiness } from "./readiness.js";
 import { recentAuthenticationRequired } from "./recent-authentication.js";
+import { admitPlannerSnapshot } from './snapshot-work-budget.js';
 import { getPlan, mapPlan, mapMatter, mapMatterInput, mapContact, selectTrustedContacts, type PlanRow, type MatterRow, type ContactRow } from "./planner-records.js";
 import { fetchInitialOverview } from "./overview.js";
 import { createHash, ECDH, timingSafeEqual, randomUUID } from "node:crypto";
@@ -10,6 +11,7 @@ import { Router as createRouter } from "express";
 import type { PoolClient } from "pg";
 import { z } from "zod";
 import { requireCsrf, sessionCookieName } from "./auth.js";
+import { securityCookieName } from './security-cookies.js';
 import { csrfCookieName } from "./auth-routes.js";
 import type { AppConfig } from "./config.js";
 import type { DatabasePool } from "./db.js";
@@ -182,13 +184,13 @@ export function createApiRouter(pool: DatabasePool, config: AppConfig): Router {
           );
         });
       }
-      response.clearCookie(sessionCookieName, {
+      response.clearCookie(securityCookieName(config, sessionCookieName), {
         httpOnly: true,
         secure: config.nodeEnv === "production",
         sameSite: "lax",
         path: "/",
       });
-      response.clearCookie(csrfCookieName, {
+      response.clearCookie(securityCookieName(config, csrfCookieName), {
         secure: config.nodeEnv === "production",
         sameSite: "lax",
         path: "/",
@@ -219,13 +221,13 @@ export function createApiRouter(pool: DatabasePool, config: AppConfig): Router {
         return result.rowCount ?? 0;
       });
 
-      response.clearCookie(sessionCookieName, {
+      response.clearCookie(securityCookieName(config, sessionCookieName), {
         httpOnly: true,
         secure: config.nodeEnv === "production",
         sameSite: "lax",
         path: "/",
       });
-      response.clearCookie(csrfCookieName, {
+      response.clearCookie(securityCookieName(config, csrfCookieName), {
         secure: config.nodeEnv === "production",
         sameSite: "lax",
         path: "/",
@@ -839,6 +841,12 @@ export function createApiRouter(pool: DatabasePool, config: AppConfig): Router {
     asyncHandler(async (request, response) => {
       const input = z.object({ recipientConnectionPublicId: publicIdSchema.nullable().optional() }).strict().parse(request.body ?? {});
       const preview = await withPlannerDatabase(pool, request.auth.plannerId, async (client) => {
+        await admitPlannerSnapshot(client);
+        const pending = (await client.query<{ count: number }>(`select count(*)::int as count from (
+          select 1 from app.export_packages where planner_id=app.current_planner_id()
+            and format='start_here_json' and status='previewed' and expires_at>statement_timestamp() limit 100
+        ) active_previews`)).rows[0]!.count;
+        if (pending >= 100) throw new ApiError(429, 'snapshot_busy', 'There are too many current export previews. Try again shortly.');
         const packageSnapshot = await collectStartHerePackage(client, input.recipientConnectionPublicId ?? null);
         const snapshotCommitment = startHereSnapshotCommitment(packageSnapshot);
         const record = await client.query<{
@@ -982,7 +990,7 @@ export function createApiRouter(pool: DatabasePool, config: AppConfig): Router {
 
   router.post(
     "/exports/start-here/encrypted/:publicId/finalize",
-    requireCsrf,
+    recentAuthenticationRequired(config), requireCsrf,
     asyncHandler(async (request, response) => {
       const packagePublicId = publicIdSchema.parse(request.params.publicId);
       const input = finalizeEncryptedStartHereSchema.parse(request.body);
@@ -1455,6 +1463,7 @@ function decodeP256PublicKey(value: string, field: string): Buffer {
 }
 
 export async function collectStartHerePackage(client: PoolClient, connectionPublicId: string | null = null): Promise<StartHerePackageSnapshot> {
+  await admitPlannerSnapshot(client);
   const planner = await client.query<{
     display_name: string;
     locale: string;
@@ -1513,7 +1522,7 @@ export async function collectStartHerePackage(client: PoolClient, connectionPubl
      where m.planner_id = app.current_planner_id() and m.archived_at is null
        and m.desired_outcome <> 'never_disclose'
        and ($1::uuid is null or g.id is not null)
-     order by m.id`, [connectionPublicId],
+     order by m.id limit 501`, [connectionPublicId],
   );
   }
   const contacts = connectionPublicId ? { rows: [] } : await client.query<{
@@ -1528,9 +1537,12 @@ export async function collectStartHerePackage(client: PoolClient, connectionPubl
        and exists (select 1 from app.role_assignments ra
          where ra.person_id=p.id and ra.planner_id=p.planner_id
            and ra.role='trusted_contact' and ra.status <> 'revoked')
-     order by p.id`,
+     order by p.id limit 201`,
   );
 
+  if (matters.rows.length > 500 || contacts.rows.length > 200) {
+    throw new ApiError(413, 'operation_size_limit', 'This collection is too large for one request. No records were omitted.');
+  }
   return {
     schemaVersion: "start-here-v1",
     audience,

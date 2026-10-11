@@ -154,9 +154,11 @@ struct SavedCopyReaderView: View {
         .rilloraStructuredList().rilloraFocusedTask().navigationTitle(String(localized: "Open saved copy"))
         .navigationBarTitleDisplayMode(.inline).accessibilityIdentifier("saved-copy.view")
         .fileImporter(isPresented: $chooseFile, allowedContentTypes: [.json, .plainText]) { result in
-            do { let url = try result.get(); try open(url) }
-            catch let error as NSError where error.code == NSUserCancelledError {}
-            catch { self.error = error.localizedDescription }
+            Task {
+                do { let url = try result.get(); try await open(url) }
+                catch let error as NSError where error.code == NSUserCancelledError {}
+                catch { self.error = error.localizedDescription }
+            }
         }
         .confirmationDialog(String(localized: "Import these private records?"), isPresented: $confirmImport, titleVisibility: .visible) {
             Button(String(localized: "Import map")) { Task { await importCopy() } }
@@ -169,11 +171,12 @@ struct SavedCopyReaderView: View {
     private func detailName(_ key: String) -> String {
         ["cryptoCustody":String(localized: "Held in"), "network":String(localized: "Network"), "walletAddress":String(localized: "Public wallet address"), "walletLabel":String(localized: "Wallet app or device"), "assetSymbol":String(localized: "Asset or token"), "deviceModel":String(localized: "Model"), "documentType":String(localized: "Document type"), "assetType":String(localized: "Asset type"), "debtType":String(localized: "Debt type"), "billingCycle":String(localized: "Billing cycle"), "renewalDate":String(localized: "Renewal date")][key] ?? key
     }
-    private func open(_ url: URL) throws {
-        let access = url.startAccessingSecurityScopedResource(); defer { if access { url.stopAccessingSecurityScopedResource() } }
-        let size = try url.resourceValues(forKeys: [.fileSizeKey]).fileSize ?? 0
-        guard size <= (recoveryFile ? 16_384 : 2 * 1024 * 1024) else { throw RilloraAPIError.invalidPayload(String(localized: "The selected file is too large.")) }
-        let data = try Data(contentsOf: url); error = nil; message = nil
+    private func open(_ url: URL) async throws {
+        guard !busy else { return }
+        busy = true
+        defer { busy = false }
+        let data = try await BoundedDocumentReader.read(url, maximumBytes: recoveryFile ? 16_384 : 2 * 1024 * 1024)
+        error = nil; message = nil
         if recoveryFile, case .encrypted(let artifact) = content {
             do {
                 let key = try JSONDecoder().decode(StartHereRecoveryKit.self, from: data)

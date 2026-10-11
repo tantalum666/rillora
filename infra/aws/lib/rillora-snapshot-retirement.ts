@@ -42,7 +42,7 @@ export class RilloraSnapshotRetirement extends Construct {
    new iam.PolicyStatement({actions:['rds:AddTagsToResource'],resources:[snapshot.arn],conditions:{
     'ForAllValues:StringEquals':{'aws:TagKeys':['RilloraRetirementManaged','RilloraRetireAfter','RilloraLegalHold']},
     StringEqualsIfExists:{'aws:RequestTag/RilloraRetirementManaged':'true','aws:RequestTag/RilloraRetireAfter':snapshot.retireAfter,
-     'aws:RequestTag/RilloraLegalHold':['true','false']}}}),
+     'aws:RequestTag/RilloraLegalHold':'true'}}}),
   ]});
   new CfnOutput(this,'FunctionName',{value:worker.functionName});
   new CfnOutput(this,'LogGroupName',{value:logGroup.logGroupName});

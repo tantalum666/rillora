@@ -25,7 +25,7 @@ export const recoveryCommerceInventorySchema=z.object({version:z.literal(1),manu
  subscriptions:z.array(z.object({provider:z.enum(['stripe','storekit','paddle','wechat','alipay','unionpay','local_web']),
   environment:z.enum(['production','sandbox','test','internal']),reference:z.string().min(1).max(255).nullable(),
   account:z.uuid(),customer:z.string().max(255).nullable(),market:z.string().max(40),plane:z.string().max(40),
-  acquisition:z.enum(['purchased','preview','migration','support_override'])}).strict()).max(100)}).strict();
+  acquisition:z.enum(['purchased','preview','migration','support_override']),appAccountToken:z.uuid().nullable().optional()}).strict()).max(100)}).strict();
 export type RecoverySubscriptionReference=z.infer<typeof recoveryCommerceInventorySchema>['subscriptions'][number];
 const factsByKind={
  account:z.union([deleted,z.object({status:z.enum(['active','locked','deletion_pending','closed'])}).strict()]),

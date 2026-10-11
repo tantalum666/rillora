@@ -8,12 +8,16 @@ import json
 import os
 import shutil
 import subprocess
+from tracked_source import tracked_source_paths
 
-ROOT = Path(__file__).resolve().parents[2]
-DEST = ROOT / ".local/github-preflight/source"
 parser = argparse.ArgumentParser(description=__doc__)
-parser.add_argument('--report', type=Path, default=ROOT / 'output/qa/repository-candidate.json')
-REPORT = parser.parse_args().report
+parser.add_argument('--repository', type=Path, default=Path(__file__).resolve().parents[2],
+                    help='Source tree to inspect; no code from it is executed')
+parser.add_argument('--report', type=Path)
+args = parser.parse_args()
+ROOT = args.repository.resolve()
+DEST = ROOT / ".local/github-preflight/source"
+REPORT = args.report or ROOT / 'output/qa/repository-candidate.json'
 SKIP = {".git", "node_modules", ".build", ".swiftpm", "SourcePackages", "checkouts",
         "vendor", "dist", "dist-public", "dist-production", "build", "output", ".local-secrets", ".local", ".secrets",
         ".playwright-cli", ".playwright-mcp", ".xcodebuildmcp-deriveddata", "__pycache__"}
@@ -42,7 +46,7 @@ ignored = subprocess.run(["git", "check-ignore", "--no-index", "-z", "--stdin"],
 if ignored.returncode not in (0, 1):
     raise SystemExit("Git ignore evaluation failed; no snapshot created")
 omitted = set(ignored.stdout.decode().strip("\0").split("\0"))
-selected = sorted(set(paths) - omitted)
+selected = sorted((set(paths) - omitted) | tracked_source_paths(ROOT))
 DEST.mkdir(parents=True, exist_ok=True)
 # Only remove stale files inside this tool-owned generated source snapshot.
 for prior in DEST.rglob("*"):

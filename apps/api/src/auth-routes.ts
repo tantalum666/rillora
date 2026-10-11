@@ -4,7 +4,7 @@ import { createHash, randomBytes } from "node:crypto";
 import { Router as createRouter, type CookieOptions, type Router } from "express";
 import rateLimit from "express-rate-limit";
 import * as oidc from "openid-client";
-import { parseCookie } from "cookie";
+import { readSecurityCookie, securityCookieName } from './security-cookies.js';
 import { z } from "zod";
 import type { AppConfig } from "./config.js";
 import type { DatabasePool } from "./db.js";
@@ -21,6 +21,7 @@ import { verifiedEmailDigest } from "./sharing-identity.js";
 import { sessionCookieName } from "./auth.js";
 import { reviewAccessOpen, reviewIdentityAllowed } from './production-review-access.js';
 import { createRateLimitKeyGenerator } from "./rate-limit-key.js";
+import { admitAuthenticationTransaction, authenticationBusy } from './auth-transaction-budget.js';
 import {
   currentLegalContract,
   legalBundleDigest,
@@ -99,7 +100,7 @@ export function createAuthRouter(
   router.get(
     "/session-status",
     asyncHandler(async (request, response) => {
-      const sessionToken = parseCookie(request.get("cookie") ?? "")[sessionCookieName] ?? "";
+      const sessionToken = readSecurityCookie(request.get('cookie'), securityCookieName(config, sessionCookieName)) ?? '';
       if (!isPlausibleOpaqueToken(sessionToken) || !reviewAccessOpen(config)) {
         response.json({ authenticated: false });
         return;
@@ -172,7 +173,8 @@ export function createAuthRouter(
         codeVerifier: oidc.randomPKCECodeVerifier(),
       };
 
-      await withAuthDatabase(pool, async (client) => {
+      const admitted = await withAuthDatabase(pool, async (client) => {
+        if (!await admitAuthenticationTransaction(client)) return false;
         await client.query(
           `insert into app.auth_transactions (
              token_hash, state_hash, code_verifier, nonce, return_to, expires_at,
@@ -196,9 +198,13 @@ export function createAuthRouter(
             legalBundleDigest(acceptance),
           ],
         );
+        return true;
       });
+      // Commit bounded cleanup even when capacity is full; rejecting inside
+      // that transaction would roll cleanup back and strand a legacy backlog.
+      if (!admitted) throw authenticationBusy();
 
-      response.cookie(transactionCookieName, transactionToken, {
+      response.cookie(securityCookieName(config, transactionCookieName), transactionToken, {
         ...baseCookieOptions(config),
         httpOnly: true,
         maxAge: config.authTransactionTtlSeconds * 1_000,
@@ -219,7 +225,7 @@ export function createAuthRouter(
         throw new ApiError(503, "identity_not_configured", "Sign in is not configured.");
       }
       if (typeof request.query.error === "string") {
-        const token = parseCookie(request.get("cookie") ?? "")[transactionCookieName] ?? "";
+        const token = readSecurityCookie(request.get('cookie'), securityCookieName(config, transactionCookieName)) ?? '';
         const state = typeof request.query.state === "string" ? request.query.state : "";
         if (isPlausibleOpaqueToken(token) && isPlausibleOpaqueToken(state)) {
           const cancelled = await consumeTransaction(pool, token, state);
@@ -230,7 +236,7 @@ export function createAuthRouter(
       }
       const state = typeof request.query.state === "string" ? request.query.state : "";
       const code = typeof request.query.code === "string" ? request.query.code : "";
-      const transactionToken = parseCookie(request.get("cookie") ?? "")[transactionCookieName] ?? "";
+      const transactionToken = readSecurityCookie(request.get('cookie'), securityCookieName(config, transactionCookieName)) ?? '';
       if (!isPlausibleOpaqueToken(transactionToken) || !isPlausibleOpaqueToken(state) || !code) {
         clearTransactionCookie(response, config);
         throw new ApiError(401, "identity_transaction_invalid", "Sign in could not be verified.");
@@ -274,12 +280,12 @@ export function createAuthRouter(
         "web",
       );
 
-      response.cookie(sessionCookieName, session.sessionToken, {
+      response.cookie(securityCookieName(config, sessionCookieName), session.sessionToken, {
         ...baseCookieOptions(config),
         httpOnly: true,
         maxAge: config.sessionTtlMinutes * 60 * 1_000,
       });
-      response.cookie(csrfCookieName, session.csrfToken, {
+      response.cookie(securityCookieName(config, csrfCookieName), session.csrfToken, {
         ...baseCookieOptions(config),
         httpOnly: false,
         maxAge: config.sessionTtlMinutes * 60 * 1_000,
@@ -309,7 +315,10 @@ export function createAuthRouter(
       } catch {
         throw new ApiError(401, "identity_token_invalid", "Sign in could not be verified.");
       }
-      const acceptance = parseLegalAcceptance(request.body?.legalAcceptance);
+      // The body is only a compatibility check. Consent authority comes from
+      // the verified provider proof, never caller-supplied affirmative values.
+      parseLegalAcceptance(request.body?.legalAcceptance);
+      const acceptance = parseLegalAcceptance(identity.legalAcceptance);
       const session = await issueSession(
         pool,
         config,
@@ -512,7 +521,7 @@ function baseCookieOptions(config: AppConfig): CookieOptions {
 }
 
 function clearTransactionCookie(response: import("express").Response, config: AppConfig): void {
-  response.clearCookie(transactionCookieName, {
+  response.clearCookie(securityCookieName(config, transactionCookieName), {
     ...baseCookieOptions(config),
     httpOnly: true,
   });

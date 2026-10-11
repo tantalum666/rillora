@@ -19,9 +19,8 @@ const CURRENT = Object.freeze({
 
 exports.onExecutePostLogin = async (event, api) => {
   if (event.client.client_id !== IOS_CLIENT_ID) return;
-  // Existing app versions retain their native affirmative-consent contract.
-  // Only the new direct-hosted entry opts into this migration.
-  if (event.request?.query?.rillora_auth_ui !== "single-hosted-v1") return;
+  // This native client issues session:create tokens. Every interactive login
+  // must obtain the signed proof; a caller-controlled query flag cannot opt out.
   const formId = isChinese(event) ? FORM_ZH_ID : FORM_ID;
   if (!/^ap_[A-Za-z0-9]+$/.test(formId)) {
     api.access.deny(isChinese(event) ? "账号条款暂时不可用，请稍后重试。" : "Account acknowledgement is not configured.");

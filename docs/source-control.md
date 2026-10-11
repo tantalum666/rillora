@@ -1,6 +1,22 @@
 # Source control, complete work preservation and release rollback
 
-Last updated: 2026-10-10 (Asia/Hong_Kong)
+Last updated: 2026-10-11 (Asia/Hong_Kong)
+
+## October11 audit repair — approved and locally verified
+
+The [current remediation](security-findings-remediation-20261011.md) is isolated at
+`codex/security-findings-20261011`, based on647317834. Its source snapshot includes
+tracked files even when ignored; PR publication must use base-owned scanner code,
+rules and exceptions for both application source and readable collaboration data.
+Candidate gitleaks config/ignore/allow comments do not supply approval authority.
+CODEOWNERS and workflow code are not proof that GitHub required checks are enabled.
+
+Owner explicitly approved the precise moved-constant/two-synthetic-crypto-fixture
+registry update; source scan32matched/0unknown and API495/495/typecheck/build pass.
+The [new addendum](../collaboration/verification/security-remediation-20261011/README.md)
+preserves2,430paths/1,389objects in locally decrypted/verified archive31. Remote
+publication, CI and fresh download results are separate receipts recorded after
+they occur. Existing1–30archives and prior receipts remain unchanged.
 
 The private remote is [tantalum666/rillora](https://github.com/tantalum666/rillora).
 Owner explicitly requested **all Rillora work** for Git and Dot collaboration on

@@ -5,6 +5,18 @@ const baseEnvironment = {
   DATABASE_URL: "postgresql:///continuity_test",
 };
 
+const protectedStaging = {
+  PRODUCTION_RUNTIME_MODE: 'staging', CONTENT_PROTECTION_MODE: 'encrypted',
+  CONTENT_KEY_NAMESPACE: 'rillora-staging',
+  CONTENT_KMS_KEY_ARN: 'arn:aws:kms:eu-central-1:111111111111:key/11111111-1111-4111-8111-111111111111',
+};
+const protectedClosed = {
+  ...protectedStaging, PRODUCTION_RUNTIME_MODE:'closed', CONTENT_KEY_NAMESPACE:'rillora-production',
+  RECOVERY_JOURNAL_TABLE:'fixture-recovery',RECOVERY_ENVIRONMENT:'production',
+  API_TLS_CERTIFICATE_ARN:'arn:aws:acm:eu-central-1:111111111111:certificate/11111111-1111-4111-8111-111111111111',
+  API_TLS_SERVER_NAME:'origin.production.rillora.xyz',
+};
+
 describe("API configuration", () => {
   it("requires an exact regional KMS key and a complete content-encryption configuration", () => {
     const environment={CONTENT_PROTECTION_MODE:"encrypted",CONTENT_KEY_NAMESPACE:"rillora-staging",DATA_REGION:"eu-central-1",
@@ -127,6 +139,7 @@ describe("API configuration", () => {
 
   it("allows the exact Rillora Stripe test catalog only in explicit production-shaped staging", () => {
     const staging = {
+      ...protectedStaging,
       ...baseEnvironment,
       NODE_ENV: "production",
       DATABASE_SSL_MODE: "verify-full",
@@ -220,6 +233,10 @@ describe("API configuration", () => {
 
   it("allows Apple Sandbox intake in production-shaped staging only with packaged roots", () => {
     const staging = {
+      ...protectedStaging,
+      WEB_APP_ORIGIN: 'https://app.staging.rillora.xyz',
+      OIDC_CLIENT_ID:'fixture-web',OIDC_CLIENT_SECRET:'fixture-client-secret-only',
+      OIDC_REDIRECT_URI:'https://app.staging.rillora.xyz/api/auth/callback',
       ...baseEnvironment,
       NODE_ENV: "production",
       DATABASE_SSL_MODE: "verify-full",
@@ -285,6 +302,7 @@ describe("API configuration", () => {
 
   it("accepts a same-origin HTTPS callback for production", () => {
     const config = loadConfig({
+      ...protectedClosed,
       ...baseEnvironment,
       NODE_ENV: "production",
       DATABASE_SSL_MODE: "verify-full",
@@ -302,6 +320,7 @@ describe("API configuration", () => {
 
   it("allows a separate HTTPS API callback origin for the authenticated Web", () => {
     const config = loadConfig({
+      ...protectedStaging,
       ...baseEnvironment,
       NODE_ENV: "production",
       DATABASE_SSL_MODE: "verify-full",
@@ -318,6 +337,7 @@ describe("API configuration", () => {
 
   it("accepts production native identity with component database credentials", () => {
     const config = loadConfig({
+      ...protectedClosed,
       NODE_ENV: "production",
       HOST: "0.0.0.0",
       DATABASE_HOST: "database.internal",

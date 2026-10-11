@@ -76,7 +76,10 @@ describe('ordinary Apple purchase preflight with a local, synthetic catalog',()=
     await expect(purchases.prepare({...prepared,consent:{...consent,acceptedAnnualRenewal:false} as unknown as typeof consent})).rejects.toThrow();
     expect((await pool.query('select * from app.commerce_orders')).rows).toEqual([]);
     const result=await purchases.prepare(prepared);
-    expect(result).toMatchObject({state:'prepared',appAccountToken:plannerPublicId,grantsAccess:false});
+    expect(result).toMatchObject({state:'prepared',grantsAccess:false});
+    expect(result.appAccountToken).toMatch(/^[a-f0-9-]{36}$/);
+    expect(result.appAccountToken).not.toBe(plannerPublicId);
+    expect((await purchases.prepare(prepared)).appAccountToken).toBe(result.appAccountToken);
     expect((await pool.query('select amount_minor::int,consent_version from app.commerce_purchase_consents')).rows).toEqual([{amount_minor:9999,consent_version:applePurchaseTerms.version}]);
     expect((await pool.query('select * from app.commerce_entitlement_grants')).rows).toEqual([]);
   });

@@ -92,6 +92,11 @@ def main():
         print(json.dumps(report))
         return
     pending_request = None
+    require('.local-secrets' in args.state.resolve().parts and re.fullmatch(r'[A-Za-z0-9_-]{43}',state.get('runToken','')) is not None,
+            'Maintenance writes require the protected per-run capability')
+    def run_task(payload):
+        return aws.invoke_broker(out['MaintenanceBrokerFunctionName'],{'operation':'task','run':state['run'],
+                                 'runToken':state['runToken'],'request':payload})
     if args.operation in tasks:
         prior=tasks[args.operation]
         if 'arn' not in prior:
@@ -141,14 +146,14 @@ def main():
         'overrides':{'containerOverrides':[{'name':'Maintenance','command':command,'environment':environment}]}}
     if pending_request is not None:
         require(pending_request == payload, 'The saved request no longer matches the current scoped operation; investigate it')
-        response=aws.call('ecs','run-task',pending_request)
+        response=run_task(pending_request)
         require(not response.get('failures') and len(response.get('tasks',[]))==1,'Saved request did not resolve to one task')
         prior['arn']=response['tasks'][0]['taskArn'];save(args.state,state)
         print(json.dumps({'phase':args.operation,'taskArn':prior['arn'],'reconciledSameRequest':True}))
         return
     tasks[args.operation]={'clientToken':token,'requestedAt':datetime.now(timezone.utc).isoformat(),'request':payload}
     save(args.state,state)
-    response=aws.call('ecs','run-task',payload)
+    response=run_task(payload)
     require(not response.get('failures') and len(response.get('tasks',[]))==1,'Maintenance task was not started')
     task=response['tasks'][0];tasks[args.operation]['arn']=task['taskArn'];save(args.state,state)
     print(json.dumps({'phase':args.operation,'taskArn':task['taskArn'],'status':task['lastStatus']}))

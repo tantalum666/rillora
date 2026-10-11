@@ -1,7 +1,7 @@
 import { recentAuthenticationRequired } from "./recent-authentication.js";
 import { expandsSharing, requireRecentAuthentication } from "./recent-authentication.js";
 import { createHash, randomBytes } from "node:crypto";
-import { parseCookie } from "cookie";
+import { readSecurityCookie, securityCookieName } from './security-cookies.js';
 import { Router, type Request } from "express";
 import rateLimit from "express-rate-limit";
 import type { SessionEmailVerification } from "./email-verification.js";
@@ -9,7 +9,7 @@ import type { PoolClient } from "pg";
 import { z } from "zod";
 import { requireCsrf } from "./auth.js";
 import type { AppConfig } from "./config.js";
-import { withAuthDatabase, withPlannerDatabase, type DatabasePool } from "./db.js";
+import { withAuthDatabase, withPlannerDatabase, withPlannerSnapshotDatabase, type DatabasePool } from "./db.js";
 import { ApiError, asyncHandler } from "./errors.js";
 import { maskedEmail, verifiedEmailDigest } from "./sharing-identity.js";
 
@@ -26,7 +26,7 @@ const updateSchema = z.object({ expectedVersion: versionSchema, grants: grantsSc
 const linkSchema = z.object({ expectedVersion: versionSchema, email: z.email().max(254).optional(), grants: grantsSchema.optional() }).strict();
 const acceptSchema = z.object({ accepted: z.literal(true), invitationToken: tokenSchema.optional(), invitationPublicId: idSchema.optional() })
   .strict().refine((value) => Boolean(value.invitationToken) !== Boolean(value.invitationPublicId));
-const handoffCookie = (id: string) => `rillora_invite_${id.replaceAll("-", "")}`;
+const handoffCookie = (config: AppConfig, id: string) => securityCookieName(config, `rillora_invite_${id.replaceAll("-", "")}`);
 const digest = (value: string) => createHash("sha256").update(value, "utf8").digest();
 
 type Grant = z.infer<typeof grantSchema>;
@@ -102,8 +102,13 @@ function invitationUrl(config: AppConfig, token: string): string {
 async function preview(pool: DatabasePool, hash: Buffer): Promise<InvitationPreview> {
   return withAuthDatabase(pool, async (client) => {
     const result = await client.query<{ invitation: InvitationPreview | null }>("select app.sharing_invitation_preview($1) as invitation", [hash]);
-    if (!result.rows[0]?.invitation) throw new ApiError(404, "invitation_unavailable", "This invitation is not available. Ask for a new link.");
-    return result.rows[0].invitation;
+    const invitation = result.rows[0]?.invitation;
+    if (!invitation || invitation.status !== 'pending'
+      || !Number.isFinite(Date.parse(invitation.expiresAt ?? ''))
+      || Date.parse(invitation.expiresAt ?? '') <= Date.now()) {
+      throw new ApiError(404, "invitation_unavailable", "This invitation is not available. Ask for a new link.");
+    }
+    return invitation;
   });
 }
 
@@ -111,8 +116,8 @@ function cookieOptions(config: AppConfig) {
   return { httpOnly: true, secure: config.nodeEnv === "production", sameSite: "lax" as const, path: "/" };
 }
 
-async function handoffHash(pool: DatabasePool, request: Request, invitationId: string): Promise<Buffer> {
-  const token = parseCookie(request.get("cookie") ?? "")[handoffCookie(invitationId)];
+async function handoffHash(pool: DatabasePool, request: Request, invitationId: string, config: AppConfig): Promise<Buffer> {
+  const token = readSecurityCookie(request.get('cookie'),handoffCookie(config, invitationId));
   if (!token || !tokenSchema.safeParse(token).success) throw new ApiError(404, "invitation_unavailable", "Open the original invitation link again.");
   return withAuthDatabase(pool, async (client) => {
     const result = await client.query<{ invitation_token_hash: Buffer }>(
@@ -129,20 +134,20 @@ export function createPublicSharingRouter(pool: DatabasePool, config: AppConfig)
   router.post("/invitations/resolve", asyncHandler(async (request, response) => {
     const input = z.object({ invitationToken: tokenSchema }).strict().parse(request.body);
     const hash = digest(input.invitationToken); const invitation = await preview(pool, hash);
-    if (invitation.status === "pending" || invitation.status === "accepted") {
+    if (invitation.status === "pending") {
       const handoff = randomBytes(32).toString("base64url");
       await withAuthDatabase(pool, async (client) => {
         await client.query("delete from app.sharing_handoffs where expires_at <= now()");
         await client.query(`insert into app.sharing_handoffs(token_hash, invitation_token_hash, connection_public_id, expires_at)
           values($1, $2, $3, now() + interval '1 hour')`, [digest(handoff), hash, invitation.publicId]);
       });
-      response.cookie(handoffCookie(invitation.publicId), handoff, { ...cookieOptions(config), maxAge: 3_600_000 });
+      response.cookie(handoffCookie(config, invitation.publicId), handoff, { ...cookieOptions(config), maxAge: 3_600_000 });
     }
     response.json({ invitation });
   }));
   router.get("/invitations/:publicId", asyncHandler(async (request, response) => {
     const id = idSchema.parse(request.params.publicId);
-    response.json({ invitation: await preview(pool, await handoffHash(pool, request, id)) });
+    response.json({ invitation: await preview(pool, await handoffHash(pool, request, id, config)) });
   }));
   return router;
 }
@@ -305,10 +310,13 @@ export function createSharingRouter(pool: DatabasePool, config: AppConfig, email
     }); response.json(connection);
   }));
 
-  router.post("/invitations/accept", requireCsrf, verificationLimiter, asyncHandler(async (request, response) => {
+  router.post("/invitations/accept", recentAuthenticationRequired(config), requireCsrf, verificationLimiter, asyncHandler(async (request, response) => {
     const input = acceptSchema.parse(request.body);
-    const hash = input.invitationToken ? digest(input.invitationToken) : await handoffHash(pool, request, input.invitationPublicId!);
-    if (!request.auth.verifiedEmailHash && emailVerification) await emailVerification.refresh(request.auth);
+    const hash = input.invitationToken ? digest(input.invitationToken) : await handoffHash(pool, request, input.invitationPublicId!, config);
+    if (emailVerification) await emailVerification.refresh(request.auth, true);
+    else if (config.nodeEnv === 'production') {
+      throw new ApiError(503, 'email_verification_unavailable', 'Email verification could not be checked. Keep this invitation open and try again.');
+    }
     const result = await withPlannerDatabase(pool, request.auth.plannerId, async (client) => {
       const row = await client.query<{ result: { error?: string; publicId?: string; status?: string } }>(
         "select app.accept_sharing_invitation($1, $2) as result", [hash, request.auth.verifiedEmailHash ?? null]);
@@ -323,12 +331,16 @@ export function createSharingRouter(pool: DatabasePool, config: AppConfig, email
       sharing_updates_paused: "The sender needs to resume this invitation or choose it as their included connection. Your account is ready.",
     };
     if (result.error) throw new ApiError(403, result.error, messages[result.error] ?? "This invitation could not be accepted.");
-    if (result.publicId) response.clearCookie(handoffCookie(result.publicId), cookieOptions(config));
+    if (result.publicId) response.clearCookie(handoffCookie(config, result.publicId), cookieOptions(config));
     response.json({ connection: result, readOnly: true, purpose: "planner_directed" });
   }));
 
   router.get("/shared-with-me", asyncHandler(async (request, response) => {
-    const result = await withPlannerDatabase(pool, request.auth.plannerId, async (client) => {
+    const result = await withPlannerSnapshotDatabase(pool, request.auth.plannerId, async (client) => {
+      await client.query("set local statement_timeout = '5s'");
+      if (!(await client.query('select app.recipient_sharing_work_is_bounded() as allowed')).rows[0]?.allowed) {
+        throw new ApiError(413,'operation_size_limit','This collection is too large for one request. No records were omitted.');
+      }
       const row = await client.query<{ connections: unknown[]; items: unknown[] }>(
         "select app.recipient_sharing_connections() as connections, app.recipient_shared_items() as items");
       return row.rows[0]!;

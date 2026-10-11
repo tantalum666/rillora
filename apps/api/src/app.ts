@@ -230,7 +230,7 @@ export function createApp(
   plannerApi.use("/sharing", createSharingRouter(pool, config, emailVerification));
   plannerApi.use("/maintenance", createFamilyMaintenanceRouter(pool, config));
   if (stripeExecutor?.providerEnvironment === 'production') {
-    plannerApi.use('/commerce/stripe', createStripeProductionCommerceRouter(stripeExecutor, { checkoutEnabled: stripeCheckoutEnabled }));
+    plannerApi.use('/commerce/stripe', createStripeProductionCommerceRouter(stripeExecutor, { checkoutEnabled: stripeCheckoutEnabled }, config));
   } else if (stripeExecutor) {
     plannerApi.use(
       "/commerce/test",
@@ -243,8 +243,8 @@ export function createApp(
       createStoreKitSandboxRouter(storeKitSandboxIntake),
     );
   }
-  if(appleReviewIntake) plannerApi.use('/commerce/storekit/review',createAppleProductionRouter(appleReviewIntake,new ApplePurchasePreflight(pool,appleReviewContext)));
-  if (appleProductionIntake) plannerApi.use('/commerce/storekit/production', createAppleProductionRouter(appleProductionIntake,new ApplePurchasePreflight(pool)));
+  if(appleReviewIntake) plannerApi.use('/commerce/storekit/review',createAppleProductionRouter(appleReviewIntake,new ApplePurchasePreflight(pool,appleReviewContext),config));
+  if (appleProductionIntake) plannerApi.use('/commerce/storekit/production', createAppleProductionRouter(appleProductionIntake,new ApplePurchasePreflight(pool),config));
   plannerApi.use("/commerce", createCommerceRouter(pool,
     new Set([...(stripeCheckoutEnabled ? ['stripe'] : []),...(appleProductionIntake ? ['storekit'] : [])])));
   plannerApi.use("/account", createAccountIdentityRouter(pool, emailVerifier));

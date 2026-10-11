@@ -3,6 +3,23 @@ import XCTest
 
 @MainActor
 final class OverviewStoreTests: XCTestCase {
+    func testAccountSwitchWaitsForSuccessfulSignOutAndKeepsFailureVisible() async {
+        let overview = OverviewStore(service: SignedOutOverviewService())
+        overview.acceptAuthenticatedSnapshot(.testFixture)
+        let identity = PreparedNativeIdentity()
+        identity.signOutFails = true
+        let auth = AuthenticationStore(service: identity, overviewStore: overview)
+        let first = await auth.useAnotherAccount()
+        XCTAssertFalse(first)
+        XCTAssertEqual(identity.signIns, 0)
+        XCTAssertNotNil(auth.errorMessage)
+        XCTAssertEqual(overview.state, .loaded(.testFixture))
+        identity.signOutFails = false
+        let retried = await auth.useAnotherAccount()
+        XCTAssertTrue(retried)
+        XCTAssertEqual(identity.signIns, 1)
+        XCTAssertNil(auth.errorMessage)
+    }
     func testVerifiedLoginSnapshotEntersAppWithoutAnotherOverviewRequest() async {
         let service = SignedOutOverviewService()
         let overview = OverviewStore(service: service)
@@ -273,16 +290,18 @@ extension OverviewSnapshot {
 
 @MainActor
 private final class PreparedNativeIdentity: NativeAuthenticating {
+    var signOutFails = false
+    var signIns = 0
     let isConfigured = true
     let canSignInWithApple = false
     let canSignInWithGoogle = false
     let canSignInWithPasskey = false
     private var snapshot: OverviewSnapshot? = .testFixture
     func takeInitialOverview() -> OverviewSnapshot? { defer { snapshot = nil }; return snapshot }
-    func signIn(intent: NativeAuthenticationIntent, loginHint: String?) async throws {}
+    func signIn(intent: NativeAuthenticationIntent, loginHint: String?) async throws { signIns += 1 }
     func signInWithApple(authorizationCode: String, fullName: PersonNameComponents?, legalAcceptance: LegalAcceptanceProof) async throws {}
     func signInWithGoogle(legalAcceptance: LegalAcceptanceProof) async throws {}
     func signInWithPasskey(legalAcceptance: LegalAcceptanceProof) async throws {}
-    func signOut() async {}
+    func signOut() async throws { if signOutFails { throw NativeAuthenticationError.sessionRevocationRejected } }
     func signOutAll() async throws {}
 }

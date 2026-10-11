@@ -290,6 +290,9 @@ struct CryptoKitStartHereEncryptionService: StartHereEncrypting {
             using: contentKey,
             authenticating: associatedData
         )
+        guard let raw = try JSONSerialization.jsonObject(with: plaintext) as? [String: Any],
+              let committedPackage = raw["package"] else { throw StartHereEncryptionError.invalidRecoveredPayload }
+        try StartHereCommitment.verify(package: committedPackage, expected: artifact.sourceCommitment)
         let payload = try decoder().decode(EncryptedStartHerePayload.self, from: plaintext)
         guard payload.schemaVersion == Self.payloadSchemaVersion,
               payload.packagePublicId == artifact.packagePublicId,

@@ -19,6 +19,7 @@ interface Props {
 
 /** Closed production transport. Adding it never opens identity or customer data. */
 export class RilloraProductionRuntime extends Construct {
+ readonly apiService:ecs.FargateService;
  constructor(scope:Construct,id:string,p:Props){
   super(scope,id);
   const hostname='origin.production.rillora.xyz';
@@ -138,6 +139,7 @@ export class RilloraProductionRuntime extends Construct {
   });
   service.associateCloudMapService({service:serviceDiscovery,container,containerPort:8443});
   service.node.addDependency(link);
+  this.apiService=service;
   p.operator.addToPolicy(new iam.PolicyStatement({actions:['acm:DescribeCertificate'],resources:[certificate.certificateArn]}));
   p.operator.addToPolicy(new iam.PolicyStatement({actions:['ecs:DescribeServices'],resources:[service.serviceArn]}));
   p.operator.addToPolicy(new iam.PolicyStatement({actions:['ec2:DescribeNetworkInterfaces'],resources:['*'],conditions:{StringEquals:{'aws:RequestedRegion':'eu-central-1'}}}));

@@ -32,11 +32,11 @@ export async function persistAppleReceipt(client: PoolClient, subscriptionId: st
   const price = await resolveAppleReceiptPrice(client, receipt, context);
   await client.query(`insert into app.commerce_apple_transaction_receipts(planner_id,subscription_id,binding_code,
       provider_environment,original_transaction_reference,transaction_reference,price_milliunits,
-      currency_code,purchased_at,paid_through,signed_at,proof_sha256)
-    values(app.current_planner_id(),$1,$2,$11,$3,$4,$5,$6,$7,$8,$9,$10)
+      currency_code,purchased_at,paid_through,signed_at,proof_sha256,app_account_token)
+    values(app.current_planner_id(),$1,$2,$11,$3,$4,$5,$6,$7,$8,$9,$10,$12)
     on conflict(provider_environment,transaction_reference) do nothing`, [subscriptionId, price.binding_code,
     receipt.originalTransactionId, receipt.transactionId, receipt.priceMilliunits, receipt.currency,
-    receipt.purchasedAt, receipt.paidThrough, receipt.signedAt, Buffer.from(receipt.proofSha256, 'base64url'), context.environment]);
+    receipt.purchasedAt, receipt.paidThrough, receipt.signedAt, Buffer.from(receipt.proofSha256, 'base64url'), context.environment,receipt.appAccountToken]);
   // Apple can re-sign the same financial transaction after a refund or restore.
   // Keep its first proof, but never silently accept changed owner/amount/purchase facts.
   // expiresDate may legitimately change on a signed renewal extension. The current
@@ -45,7 +45,7 @@ export async function persistAppleReceipt(client: PoolClient, subscriptionId: st
     where planner_id=app.current_planner_id() and subscription_id=$1 and binding_code=$2
       and provider_environment=$8 and original_transaction_reference=$3
       and transaction_reference=$4 and price_milliunits=$5 and currency_code=$6
-      and purchased_at=$7`, [subscriptionId, price.binding_code, receipt.originalTransactionId,
-    receipt.transactionId, receipt.priceMilliunits, receipt.currency, receipt.purchasedAt, context.environment])).rowCount;
+      and purchased_at=$7 and (app_account_token is null or app_account_token=$9::uuid)`, [subscriptionId, price.binding_code, receipt.originalTransactionId,
+    receipt.transactionId, receipt.priceMilliunits, receipt.currency, receipt.purchasedAt, context.environment,receipt.appAccountToken])).rowCount;
   if (!match) throw new Error('Apple immutable receipt conflicts with verified financial facts');
 }

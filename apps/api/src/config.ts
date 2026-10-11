@@ -20,7 +20,7 @@ const configSchema = z
     NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
     HOST: z.string().min(1).max(255).default("127.0.0.1"),
     PORT: z.coerce.number().int().min(1).max(65_535).default(4180),
-    PRODUCTION_RUNTIME_MODE: z.enum(["closed", "review"]).optional(),
+    PRODUCTION_RUNTIME_MODE: z.enum(["closed", "review", "staging", "live"]).optional(),
     PRODUCTION_REVIEW_IDENTITY_SHA256: z.string().regex(/^[a-f0-9]{64}(,[a-f0-9]{64}){0,7}$/).optional(),
     PRODUCTION_REVIEW_EXPIRES_AT: z.iso.datetime().optional(),
     ALLOW_RETENTION_WORKER: booleanFromString,
@@ -57,7 +57,7 @@ const configSchema = z
     APPLE_SANDBOX_STAGING_MODE: booleanFromString,
     DATABASE_POOL_MAX: z.coerce.number().int().min(1).max(50).default(10),
     DATABASE_CONNECTION_TIMEOUT_MS: z.coerce.number().int().min(1_000).max(120_000).default(5_000),
-    TRUST_PROXY_HOPS: z.coerce.number().int().min(0).max(10).default(0),
+    TRUST_PROXY_HOPS: z.coerce.number().int().min(0).max(1).default(0),
     SESSION_TTL_MINUTES: z.coerce.number().int().min(15).max(1_440).default(480),
     SESSION_IDLE_MINUTES: z.coerce.number().int().min(5).max(240).default(30),
     AUTH_TRANSACTION_TTL_SECONDS: z.coerce.number().int().min(120).max(900).default(600),
@@ -268,6 +268,21 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
   const productionRuntimeClosed = parsed.PRODUCTION_RUNTIME_MODE === "closed";
   const productionReviewMode = parsed.PRODUCTION_RUNTIME_MODE === 'review';
   const reviewExpiresAt = Date.parse(parsed.PRODUCTION_REVIEW_EXPIRES_AT ?? '');
+  // An omitted mode must never choose the customer path. Deliberate activation
+  // requires the exact production identity boundary; IaC still uses closed/review.
+  if (parsed.PRODUCTION_RUNTIME_MODE === 'live' && (
+    parsed.NODE_ENV !== 'production' || parsed.WEB_APP_ORIGIN !== 'https://app.rillora.xyz'
+    || parsed.DATA_REGION !== 'eu-central-1'
+    || parsed.OIDC_ISSUER_URL !== 'https://login.rillora.xyz'
+    || parsed.OIDC_CLIENT_ID !== 'EcevpyKt1GELKwkLnVU3aCbh3Ix2SJhz'
+    || !parsed.OIDC_CLIENT_SECRET
+    || parsed.NATIVE_OIDC_CLIENT_ID !== 'POpNKTqlr6dHbJZLWPWxhyjg5qPtdrm4'
+    || parsed.OIDC_API_AUDIENCE !== 'urn:rillora:production:api'
+    || parsed.OIDC_REDIRECT_URI !== 'https://app.rillora.xyz/api/auth/callback'
+    || parsed.ALLOW_DEV_AUTH || parsed.ALLOW_SYNTHETIC_RECIPIENT_REHEARSAL
+    || parsed.ALLOW_STRIPE_TEST_INTEGRATION || parsed.ALLOW_APPLE_SANDBOX_INTEGRATION
+    || parsed.ALLOW_APPLE_REVIEW_INTEGRATION || parsed.ALLOW_FAMILY_MAINTENANCE_PREVIEW
+  )) throw new Error('Explicit live mode requires the exact production identity boundary and no test surfaces');
   if (productionReviewMode && (!parsed.ALLOW_APPLE_REVIEW_INTEGRATION
     || parsed.ALLOW_APPLE_PRODUCTION_INTEGRATION || parsed.ALLOW_STRIPE_PRODUCTION_INTEGRATION
     || !parsed.PRODUCTION_REVIEW_IDENTITY_SHA256 || !Number.isFinite(reviewExpiresAt)
@@ -591,6 +606,23 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
     };
   }
 
+  if (parsed.NODE_ENV === 'production') {
+    if (!parsed.PRODUCTION_RUNTIME_MODE) throw new Error('Production runtime mode must be explicit; customer access never opens by omission');
+    if (parsed.CONTENT_PROTECTION_MODE !== 'encrypted') throw new Error('Production-shaped account services require encrypted private content');
+    if (parsed.PRODUCTION_RUNTIME_MODE === 'staging') {
+      if (parsed.WEB_APP_ORIGIN !== 'https://app.staging.rillora.xyz'
+        || parsed.CONTENT_KEY_NAMESPACE !== 'rillora-staging' || parsed.DATA_REGION !== 'eu-central-1'
+        || parsed.ALLOW_STRIPE_PRODUCTION_INTEGRATION || parsed.ALLOW_STRIPE_PRODUCTION_NOTIFICATIONS
+        || parsed.ALLOW_APPLE_PRODUCTION_INTEGRATION || parsed.ALLOW_APPLE_REVIEW_INTEGRATION) {
+        throw new Error('Staging mode is restricted to the encrypted Rillora synthetic staging environment');
+      }
+    } else if (!parsed.RECOVERY_JOURNAL_TABLE || parsed.RECOVERY_ENVIRONMENT !== 'production'
+      || parsed.CONTENT_KEY_NAMESPACE !== 'rillora-production' || !parsed.API_TLS_CERTIFICATE_ARN
+      || parsed.API_TLS_SERVER_NAME !== 'origin.production.rillora.xyz') {
+      throw new Error('Production requires its independent recovery journal, content encryption and verified TLS');
+    }
+  }
+
   const origins = parsed.CORS_ORIGINS.split(",")
     .map((origin) => origin.trim())
     .filter(Boolean)
@@ -599,7 +631,7 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
   return {
     productionRuntimeClosed,
     allowRetentionWorker: parsed.ALLOW_RETENTION_WORKER,
-    requireRecentAuthentication: productionReviewMode || parsed.REQUIRE_RECENT_AUTHENTICATION,
+    requireRecentAuthentication: parsed.NODE_ENV === 'production' || parsed.REQUIRE_RECENT_AUTHENTICATION,
     productionReviewAccess: productionReviewMode ? {
       identityDigests: parsed.PRODUCTION_REVIEW_IDENTITY_SHA256!.split(','), expiresAt: reviewExpiresAt,
     } : null,

@@ -1,0 +1,18 @@
+# Rillora 安全发现修复 QA — 2026-10-11
+
+状态：两项Owner明确批准已应用；API全量与源扫描通过。Git保存进行中，未部署。
+
+- 工作树：/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app
+- 分支：codex/security-findings-20261011；基线647317834bd785ace1499e251f0e501530163239。
+- 修改规范：docs/product.md、docs/backend.md、docs/storekit.md、docs/start-here-export.md、docs/trusted-sharing.md、SECURITY.md、docs/source-control.md及新的docs/security-findings-remediation-20261011.md。
+- 决策：已追加docs/decision-log.md的October11条目，因为Owner将本轮报告工作改为修复，并明确是Rillora报告；不是新定价／架构／发布批准。
+- 交接：docs/handoff.md只有一个活动下一步；旧交接已存docs/handoff-history-20261011-before-security-remediation.md并标HISTORICAL。docs/journey/PROJECT_JOURNEY.md已追加本轮过程、独立复核回归及未完成项。
+- 检查：批准后API全量54文件495项、typecheck/build全通过；源扫描32匹配／0未知。原生最后全量287通过／1既有跳过。Web191、infra56、发布工具70、Auth0工具7／Action14、broker4、collaboration9通过。聚焦结果互相重叠。
+- 安全输入：两份本地导出共73条已逐一映射35组。旧报告／工作台完成状态不改写。未启动新scan。
+- 独立候选复核：一次、4项确认问题；Apple迁移／恢复、账户切换和可读证据扫描已修并验证。重复JSON解析差异的纯合成探针没有复现。
+- 原始日志、输入摘要、分组findingId、补丁和两个待批准草稿保存在Codex Security独立集合下的artifacts/remediation/rillora-20261011。应用源码与验证产物分开；没有写入凭据。
+- 来源与权限边界：未部署、未操作真实钱款、未安装手机／分发TestFlight、未删除Owner保留账号；未改FanPass。
+- Git：正在保存和推送；两项审批已解除，28条已批准的精确扫描登记逐字节核对后应用。未通过改变扫描规则放行任何额外内容；独立远端证据待实际读回。
+
+独立证据目录：
+/Users/tantalum/.codex/state/plugins/codex-security/scans/-app/artifacts-525a0c93b7f59f820eedceb469751c489326de4e2e19960e442fe844614ce16a/artifacts/remediation/rillora-20261011/

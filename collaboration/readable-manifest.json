@@ -2,8 +2,8 @@
   "files": [
     {
       "path": "collaboration/README.md",
-      "bytes": 17967,
-      "sha256": "12180fe94fda81692ba24683bab6a65d05e189872950fc2b51ed09d8d02ef9a5"
+      "bytes": 18548,
+      "sha256": "9350ac0d2014360bda5203b2f6d753a153f44656c73dbc3c8fef771a8290af46"
     },
     {
       "path": "collaboration/catalog/files-001.json",
@@ -45022,8 +45022,8 @@
     },
     {
       "path": "collaboration/verification/README.md",
-      "bytes": 2567,
-      "sha256": "96598a366479be2e83267ac8d1935bb90b2d0ed538b6e51e25d73c3c43dbe6c7"
+      "bytes": 2815,
+      "sha256": "6e328d3165df6e5e9ac06c01c88c2997fcb66edad69002c0f46609e9f51fe8ff"
     },
     {
       "path": "collaboration/verification/append-reviewed-builds.py.reference.txt",
@@ -55821,6 +55821,391 @@
       "sha256": "850faf982462c9a8861ac1bdd3561bf70880503c8e4349b45157d24076750a1b"
     },
     {
+      "path": "collaboration/verification/security-remediation-20261011/README.md",
+      "bytes": 2412,
+      "sha256": "7b40491cd9cdadf42f15d9746708da287bdde00b7a7250a9f6b23c8e5b9f2622"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/archive-verification.json",
+      "bytes": 115,
+      "sha256": "43a07b4d60178904a6b1b61e2fdd88305d0fad96d4d9642972b88841cc963557"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/catalog.json",
+      "bytes": 1578188,
+      "sha256": "207c546a57b4d534203863a218c81623da1c8e3b63fb7d52477f085fcbef0ae1"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/checkpoint/README.md.reference.txt",
+      "bytes": 2344,
+      "sha256": "7d11990eccf37ddb131522e9bc9f82ce30db61e4f1700726377a52ad8318ae71"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/checkpoint/markdown-links.json.reference.txt",
+      "bytes": 347,
+      "sha256": "821ca0da939f38d8d2e6be2655e4552099867baf1f8b2f284b12dd7bf162f1f6"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/checkpoint/reading.json.reference.txt",
+      "bytes": 50273,
+      "sha256": "8caf66757744fc399241b631f2b272a834f6e199b51cc75a4d834f906de6757a"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/execution/api-all-4.log.reference.txt",
+      "bytes": 19493,
+      "sha256": "9a423073709f24b1f6d2366715141460d168d3a30fb7fcefe8f416cfabc2a243"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/execution/api-all-5.log.reference.txt",
+      "bytes": 3490,
+      "sha256": "e8dd523fc25bdf4783783b75797e4272c291b0b16678d53110d7a6b6cbb5a07c"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/execution/api-all.log.reference.txt",
+      "bytes": 9075,
+      "sha256": "a3290a5f974c99351594c1acae040366eb093de5b4e16dc9022672311af9a043"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/execution/api-approved-final.log.reference.txt",
+      "bytes": 441,
+      "sha256": "1be190cefeccffd6e78f459db0521b052dfc19ea1a9f8ef02adc58caa0a61694"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/execution/api-boundaries.log.reference.txt",
+      "bytes": 358,
+      "sha256": "67a9b65b9233e459a161be3cfdbbcb848a35e9530bbdb7115f57f9de01fc7dae"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/execution/api-final-pending-approval.log.reference.txt",
+      "bytes": 3490,
+      "sha256": "fc4b7b59cbfefca051cbbd340f9dad2aeac28925b1a9f6b129779e9415042466"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/execution/api-focused-3.log.reference.txt",
+      "bytes": 360,
+      "sha256": "3a36298409391aea850bdc019a9e9f754e956e78b18926ea364ea9bf367291fd"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/execution/apple-review-fixes-2.log.reference.txt",
+      "bytes": 360,
+      "sha256": "2919edb4380ff8de3bfab5b9c5417b87065fe11e9b54e25626e2bd2d1199d40b"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/execution/apple-review-fixes.log.reference.txt",
+      "bytes": 5807,
+      "sha256": "ded821b2ffe1de8d4a74f606d822196c140fc245e496434b038a9d4ef27ed0ad"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/execution/auth0-actions-2.log.reference.txt",
+      "bytes": 3088,
+      "sha256": "37653471be7dd42c033469bccb7c9990bdbc13a5323ad435774531380bd51700"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/execution/auth0-actions.log.reference.txt",
+      "bytes": 3935,
+      "sha256": "2f67fb072f201cdbd895ce5ff70a96dbbf2c894850bea6d68bce46e1597ca0d7"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/execution/auth0-tools.log.reference.txt",
+      "bytes": 103,
+      "sha256": "566ca632b24d49368bd3fb840ba005cc8100c273a8bc312fd2f9401fd16a1e32"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/execution/fix-status-latest.md.reference.txt",
+      "bytes": 13098,
+      "sha256": "ebc0ce48e16a6ac1b332e77e60f191383c02910d31f51d6cf941ad533b2e2454"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/execution/infra-all-2.log.reference.txt",
+      "bytes": 470,
+      "sha256": "c5136f2fe3cda16a8f7377dd933b9b870652c30b6faacb7facad950bb57052d0"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/execution/infra-all-3.log.reference.txt",
+      "bytes": 470,
+      "sha256": "50b0efe3e5b61e8338db1a79d128e95bcee469abefe744039879ad48d392bbdb"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/execution/infra-all.log.reference.txt",
+      "bytes": 18236,
+      "sha256": "4104b67f8805f709d1676b3fc5789f1fdb98a9feadbb31a4950d0455f708b7e4"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/execution/markdown-links.json.reference.txt",
+      "bytes": 347,
+      "sha256": "821ca0da939f38d8d2e6be2655e4552099867baf1f8b2f284b12dd7bf162f1f6"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/execution/reading.json.reference.txt",
+      "bytes": 50273,
+      "sha256": "8caf66757744fc399241b631f2b272a834f6e199b51cc75a4d834f906de6757a"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/execution/release-all-2.log.reference.txt",
+      "bytes": 168,
+      "sha256": "c48ab595852858e2f0770e58d43e1da4e3506ec0b02199738eb3857396dda205"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/execution/release-all-3.log.reference.txt",
+      "bytes": 169,
+      "sha256": "ccbe445c788a5261e4add788a73cd27989f7061419576d62b369e6d3c246e4d5"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/execution/release-all.log.reference.txt",
+      "bytes": 15891,
+      "sha256": "54ec00c7b32e858669a33c603733229d3d4ed54068da8c06eaf3ad45e11b6f57"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/execution/runtime-mode-pending-final.log.reference.txt",
+      "bytes": 2502,
+      "sha256": "39973d4d06d6a8a12b195e2f0fe9725be6826931de67dc814108c7338c629601"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/execution/source-inventory-2.json.reference.txt",
+      "bytes": 157157,
+      "sha256": "a853cab60379c956c9a2d90d4155254366fa53a69643514f7473cc9b7929ab70"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/execution/source-inventory-approved.json.reference.txt",
+      "bytes": 158942,
+      "sha256": "f3f2570d07cfd54dc97827c7d36179bd13ce43ce0d1ec96f6fcd8c49aaca06df"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/execution/source-inventory-final.json.reference.txt",
+      "bytes": 158941,
+      "sha256": "a044e7f9535daa223ca65624c7fa2faa8c7e7c5be71538b8bca27baf9b046aca"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/execution/source-inventory.json.reference.txt",
+      "bytes": 156976,
+      "sha256": "8462dc3121b9dfb09d39d4265a3f29fe0956b5ada14f38b94f5a594c676628d4"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/execution/source-scan-2.json.reference.txt",
+      "bytes": 9985,
+      "sha256": "68c86d55892ee0cfdc02db6bafdc357dd61fb27a109d2627228e5a79c6a908d3"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/execution/source-scan-approved.json.reference.txt",
+      "bytes": 12464,
+      "sha256": "03183f15afd8731889bd0f8ba22232f1a5173b8e6b365097ea390aa22ac65671"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/execution/source-scan-final.json.reference.txt",
+      "bytes": 9985,
+      "sha256": "c61415d7c3031f4016ec281b1f45d697c45af0f612b0e995b3581e945718a24e"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/execution/source-scan.json.reference.txt",
+      "bytes": 9985,
+      "sha256": "31f1b0a0eed59316a5bfb66e063a37a80302848ae775dbc9a7412b99180de731"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/execution/web-all.log.reference.txt",
+      "bytes": 41779,
+      "sha256": "d23037f750cb9b413b8b5ac59dd06ba139cc392415360f3d1f3bb85dabb508df"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/helpers/duplicate-key-probe.swift.reference.txt",
+      "bytes": 274,
+      "sha256": "1c1ef34968641262ac340eb5c3d4ec199698cb930f793eb9b37fbc70690c9044"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/helpers/generate-crypto-fixture.mjs.reference.txt",
+      "bytes": 1665,
+      "sha256": "3b5e28fd7a539c7f2cc68f2b0e04d6d24c056bf63b1bb58d9a0d302b84aaa59b"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/helpers/preserve-security-work.py.reference.txt",
+      "bytes": 7328,
+      "sha256": "4bf53e0067f3f1fab857a1a4c2771c4de83732b1ff1cfe29290ce8579c66e788"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/ios/logs/test_sim_2026-10-11T08-32-26-181Z_pid33101_bbeab032.log.reference.txt",
+      "bytes": 2448150,
+      "sha256": "852b5dead7127bb2c87abca8067763f43600ce6ad69a34a099fe76c9379ac809"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/ios/logs/test_sim_2026-10-11T08-37-14-428Z_pid33101_53d4dddf.log.reference.txt",
+      "bytes": 428076,
+      "sha256": "fb692cef73006bbeab1380b5fbcd1a69ddae44617f031a48ee62a8ac26c8744b"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/ios/logs/test_sim_2026-10-11T08-43-34-846Z_pid33101_2541d2aa.log.reference.txt",
+      "bytes": 167965,
+      "sha256": "46595fdb6186ea5ceb399c3fc05078fa02fae37543d84c66c404e805635cc1ae"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/ios/logs/test_sim_2026-10-11T08-52-46-871Z_pid33101_5daf055c.log.reference.txt",
+      "bytes": 211492,
+      "sha256": "6c6f4935ff396a34726760709efc1bc89a7318516e55391d7946a5b3b6a8ec4c"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/ios/logs/test_sim_2026-10-11T09-17-30-337Z_pid33101_0f697f7c.log.reference.txt",
+      "bytes": 190774,
+      "sha256": "324f1c36c8d16dd14c2cf6039055e52ca6cebe12e8550b64f584b0e9a00119d2"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/ios/logs/test_sim_2026-10-11T09-25-36-301Z_pid33101_34c898e3.log.reference.txt",
+      "bytes": 95280,
+      "sha256": "efff8fcbb83a252887770faa28e263eaffaf77441c748b3c73e986fd7ba5e9eb"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/security-artifacts/candidate-review.md.reference.txt",
+      "bytes": 5362,
+      "sha256": "a509cb32bd39a061d76b1c6fed8c62693ff34ec25ee796fb43260a94762b936d"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/security-artifacts/checks/api-all-5.log.reference.txt",
+      "bytes": 3490,
+      "sha256": "e8dd523fc25bdf4783783b75797e4272c291b0b16678d53110d7a6b6cbb5a07c"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/security-artifacts/checks/api-approved-final.log.reference.txt",
+      "bytes": 441,
+      "sha256": "1be190cefeccffd6e78f459db0521b052dfc19ea1a9f8ef02adc58caa0a61694"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/security-artifacts/checks/api-boundaries.log.reference.txt",
+      "bytes": 358,
+      "sha256": "67a9b65b9233e459a161be3cfdbbcb848a35e9530bbdb7115f57f9de01fc7dae"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/security-artifacts/checks/api-final-pending-approval.log.reference.txt",
+      "bytes": 3490,
+      "sha256": "fc4b7b59cbfefca051cbbd340f9dad2aeac28925b1a9f6b129779e9415042466"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/security-artifacts/checks/api-focused-3.log.reference.txt",
+      "bytes": 360,
+      "sha256": "3a36298409391aea850bdc019a9e9f754e956e78b18926ea364ea9bf367291fd"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/security-artifacts/checks/apple-review-fixes-2.log.reference.txt",
+      "bytes": 360,
+      "sha256": "2919edb4380ff8de3bfab5b9c5417b87065fe11e9b54e25626e2bd2d1199d40b"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/security-artifacts/checks/auth0-actions-2.log.reference.txt",
+      "bytes": 3088,
+      "sha256": "37653471be7dd42c033469bccb7c9990bdbc13a5323ad435774531380bd51700"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/security-artifacts/checks/auth0-tools.log.reference.txt",
+      "bytes": 103,
+      "sha256": "566ca632b24d49368bd3fb840ba005cc8100c273a8bc312fd2f9401fd16a1e32"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/security-artifacts/checks/infra-all-3.log.reference.txt",
+      "bytes": 470,
+      "sha256": "50b0efe3e5b61e8338db1a79d128e95bcee469abefe744039879ad48d392bbdb"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/security-artifacts/checks/ios-final.json.reference.txt",
+      "bytes": 55425,
+      "sha256": "83921be8c6789830de16ca86364aace0276eb565c29cabd7eaa558770b6fdaf4"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/security-artifacts/checks/ios-review-fixes.json.reference.txt",
+      "bytes": 15448,
+      "sha256": "b0e902101734e5d5a2ed0cfb52a2f3f08b273a22a48414b6d259d7fa38856cc6"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/security-artifacts/checks/markdown-links.json.reference.txt",
+      "bytes": 347,
+      "sha256": "821ca0da939f38d8d2e6be2655e4552099867baf1f8b2f284b12dd7bf162f1f6"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/security-artifacts/checks/release-all-3.log.reference.txt",
+      "bytes": 169,
+      "sha256": "ccbe445c788a5261e4add788a73cd27989f7061419576d62b369e6d3c246e4d5"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/security-artifacts/checks/runtime-mode-pending-final.log.reference.txt",
+      "bytes": 2502,
+      "sha256": "39973d4d06d6a8a12b195e2f0fe9725be6826931de67dc814108c7338c629601"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/security-artifacts/checks/source-inventory-2.json.reference.txt",
+      "bytes": 157157,
+      "sha256": "a853cab60379c956c9a2d90d4155254366fa53a69643514f7473cc9b7929ab70"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/security-artifacts/checks/source-inventory-approved.json.reference.txt",
+      "bytes": 158942,
+      "sha256": "f3f2570d07cfd54dc97827c7d36179bd13ce43ce0d1ec96f6fcd8c49aaca06df"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/security-artifacts/checks/source-inventory-final.json.reference.txt",
+      "bytes": 158941,
+      "sha256": "a044e7f9535daa223ca65624c7fa2faa8c7e7c5be71538b8bca27baf9b046aca"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/security-artifacts/checks/source-scan-2.json.reference.txt",
+      "bytes": 9985,
+      "sha256": "68c86d55892ee0cfdc02db6bafdc357dd61fb27a109d2627228e5a79c6a908d3"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/security-artifacts/checks/source-scan-approved.json.reference.txt",
+      "bytes": 12464,
+      "sha256": "03183f15afd8731889bd0f8ba22232f1a5173b8e6b365097ea390aa22ac65671"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/security-artifacts/checks/source-scan-final.json.reference.txt",
+      "bytes": 9985,
+      "sha256": "c61415d7c3031f4016ec281b1f45d697c45af0f612b0e995b3581e945718a24e"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/security-artifacts/checks/web-all.log.reference.txt",
+      "bytes": 41779,
+      "sha256": "d23037f750cb9b413b8b5ac59dd06ba139cc392415360f3d1f3bb85dabb508df"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/security-artifacts/explicit-production-mode-proposal.md.reference.txt",
+      "bytes": 1206,
+      "sha256": "21e96b4be42e456db2045c11ddef72a0688b8cb26d57f88d26eb8d8a4e6e9b2b"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/security-artifacts/finding-index.json.reference.txt",
+      "bytes": 20983,
+      "sha256": "0027604f6c9ac03f104dd10840522864c6c7973a0ad8fffdd8d53f3872b01a08"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/security-artifacts/fix-status.md.reference.txt",
+      "bytes": 13098,
+      "sha256": "ebc0ce48e16a6ac1b332e77e60f191383c02910d31f51d6cf941ad533b2e2454"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/security-artifacts/owner-approvals.json.reference.txt",
+      "bytes": 662,
+      "sha256": "b59f64afc6f1d56b031820b3068ccf89154770a924562701d73587d1e0509393"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/security-artifacts/proposed-scan-exceptions.json.reference.txt",
+      "bytes": 10412,
+      "sha256": "a7008344753349f060348261fb09342bd8849476414d1eb751d82dcbc88c9176"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/security-artifacts/qa-checkpoint.md.reference.txt",
+      "bytes": 2296,
+      "sha256": "6e7d2a7fa8d2db7bb18943ac7b8f88d58958f1ed2bb66420433b4793a631bc4e"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/security-artifacts/reading.json.reference.txt",
+      "bytes": 50273,
+      "sha256": "8caf66757744fc399241b631f2b272a834f6e199b51cc75a4d834f906de6757a"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/receipts/security-artifacts/work-state.json.reference.txt",
+      "bytes": 1249,
+      "sha256": "f295823b565b3e6cbe1cc74e8b3674fcb7ae3ab238ef1700afcd6b0795d35ade"
+    },
+    {
+      "path": "collaboration/verification/security-remediation-20261011/snapshot.json",
+      "bytes": 1933,
+      "sha256": "758d7726e67f029f15e4e6a93402041800bc68a2b42611fb20a022b79490de47"
+    },
+    {
       "path": "collaboration/verification/source-scan-final.json",
       "bytes": 10712,
       "sha256": "fed30615ae7228027cfcf1a2c0f840640c34149c6a8b412e5d8392b7848f2f05"
@@ -58266,6 +58651,6 @@
       "sha256": "fa9f06467d74b9f074969cddab0e882a0ca1463c84d4a5ffafd2d401d619518b"
     }
   ],
-  "fileCount": 11653,
-  "totalBytes": 357140164
+  "fileCount": 11730,
+  "totalBytes": 363936292
 }

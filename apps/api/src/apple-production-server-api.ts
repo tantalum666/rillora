@@ -115,7 +115,7 @@ export class AppleProductionSnapshotAdapter {
       renewalIsPossible: access.state !== 'revoked' && transaction.isUpgraded !== true
         && (renewal.autoRenewStatus === AutoRenewStatus.ON || renewal.isInBillingRetryPeriod === true),
       transactionSignedAt: iso(transactionSignedAt), renewalSignedAt: iso(renewalSignedAt),
-      receipt: appleReceiptEvidence(transaction, selected.signedTransactionInfo),
+      receipt: appleReceiptEvidence(transaction, selected.signedTransactionInfo, transaction.appAccountToken??renewal.appAccountToken),
       source: 'app_store_server_api_signed_status',
     });
   }

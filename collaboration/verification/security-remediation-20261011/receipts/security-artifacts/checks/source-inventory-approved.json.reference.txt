@@ -1,0 +1,4428 @@
+{
+  "preparedAt": "2026-10-11T10:39:09.311480+00:00",
+  "destination": "/private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/.local/github-preflight/source",
+  "files": [
+    {
+      "path": ".github/CODEOWNERS",
+      "bytes": 449,
+      "sha256": "7fceb3e98f05d88e656b4d95abf62137c9d457e4783d0ffb51900b5958b21fc1"
+    },
+    {
+      "path": ".github/workflows/source-publication-guard.yml",
+      "bytes": 2107,
+      "sha256": "bf77e3221bd11fb10b9fb4555530b9083609742e92a9e29dd1447ed248f5a9b1"
+    },
+    {
+      "path": ".github/workflows/verify.yml",
+      "bytes": 6634,
+      "sha256": "3091d7f5b71b6edb7869154ad14b4a85a943a3df1e74579693b6db720c49d801"
+    },
+    {
+      "path": ".github/workflows/web-ux-browser.yml",
+      "bytes": 1654,
+      "sha256": "c6a04bb38dbf635fe1c17270dfb92f572e4b3acc06a58694275824d5f33348c1"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 1123,
+      "sha256": "3d28ba81163c83876479a8103db99ba85cc8ae2b958ad10451182c7957e2f86f"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 7030,
+      "sha256": "435d9bfaf85f5584d7895aa8ed98ce7d3ddfa18e212c571e72c3de1a4163c334"
+    },
+    {
+      "path": "SECURITY.md",
+      "bytes": 40222,
+      "sha256": "6db357323fafff6ddfb5b571df28d0c436eb966a368409356e06db2d86da7b21"
+    },
+    {
+      "path": "apps/api/.dockerignore",
+      "bytes": 44,
+      "sha256": "e3da49a38969194fc9bf49a05b9a4821e558c05177112e5bc766a3c39b2a1871"
+    },
+    {
+      "path": "apps/api/.env.example",
+      "bytes": 3454,
+      "sha256": "c6013fec73f24bdfd79e38767943cb7ba7899f545a4981b83d9114922f489278"
+    },
+    {
+      "path": "apps/api/.gitignore",
+      "bytes": 35,
+      "sha256": "56ba0501c8d41bb289aadd625f5f4005e5e3348670230ddcae4be1115755b0a0"
+    },
+    {
+      "path": "apps/api/Dockerfile",
+      "bytes": 1517,
+      "sha256": "5337e977973717674363f3e9c8d602982f7d37a29f659e996b4a549e0699dcd4"
+    },
+    {
+      "path": "apps/api/certificates/apple/AppleIncRootCertificate.cer",
+      "bytes": 1215,
+      "sha256": "b0b1730ecbc7ff4505142c49f1295e6eda6bcaed7e2c68c5be91b5a11001f024"
+    },
+    {
+      "path": "apps/api/certificates/apple/AppleRootCA-G2.cer",
+      "bytes": 1430,
+      "sha256": "c2b9b042dd57830e7d117dac55ac8ae19407d38e41d88f3215bc3a890444a050"
+    },
+    {
+      "path": "apps/api/certificates/apple/AppleRootCA-G3.cer",
+      "bytes": 583,
+      "sha256": "63343abfb89a6a03ebb57e9b3f5fa7be7c4f5c756f3017b3a8c488c3653e9179"
+    },
+    {
+      "path": "apps/api/certificates/rds/README.md",
+      "bytes": 1624,
+      "sha256": "5b8b545581e47c63c1b61ed15bcac50a52a1c4fa272ee687afc660af53c9dfa7"
+    },
+    {
+      "path": "apps/api/certificates/rds/global-bundle.pem",
+      "bytes": 165408,
+      "sha256": "e5bb2084ccf45087bda1c9bffdea0eb15ee67f0b91646106e466714f9de3c7e3"
+    },
+    {
+      "path": "apps/api/migrations/0001_initial.sql",
+      "bytes": 18208,
+      "sha256": "306bc5404b2748f832287e2c2ba7d0f4f63b222a7951d4f0adb8260bc53bf473"
+    },
+    {
+      "path": "apps/api/migrations/0002_auth_planner_policy.sql",
+      "bytes": 456,
+      "sha256": "821dc790f79f0eadde8560a6daa1d8e7b449af5aa3f03cd41ecc5ca2ab6def2f"
+    },
+    {
+      "path": "apps/api/migrations/0003_runtime_least_privilege.sql",
+      "bytes": 800,
+      "sha256": "74e635106047198699fa959ceaa361918313fe4110a987a129ef92e9a02702ee"
+    },
+    {
+      "path": "apps/api/migrations/0004_auth_column_privileges.sql",
+      "bytes": 254,
+      "sha256": "7008b59bbaeb05cbd8384aae022f3b51a603c3a087ebf8b31973a05884154c4c"
+    },
+    {
+      "path": "apps/api/migrations/0005_oidc_identity_sessions.sql",
+      "bytes": 5037,
+      "sha256": "f2646d955b5450e5c60a902c6078116033bd405b33b85c51dfe6e281146e2650"
+    },
+    {
+      "path": "apps/api/migrations/0006_tighten_auth_privileges.sql",
+      "bytes": 554,
+      "sha256": "f441e43be7c2757bfc51837d09b7e26c8809d97125fc62ac50bcb6e5933a55e5"
+    },
+    {
+      "path": "apps/api/migrations/0007_limit_auth_transaction_reads.sql",
+      "bytes": 219,
+      "sha256": "22b3f679550b22bb73056719f324ec2be12309ed82dcdb7210b82c25e0280363"
+    },
+    {
+      "path": "apps/api/migrations/0008_trusted_contact_revocation.sql",
+      "bytes": 149,
+      "sha256": "5cd1c0582f44bb866ea97b0a5b24922cf346306159128314c4db582a3549642e"
+    },
+    {
+      "path": "apps/api/migrations/0009_native_bearer_sessions.sql",
+      "bytes": 363,
+      "sha256": "2233057f826ffbdfacbfd49b2cb4ac695d7667e254cb99658561cd418b76c641"
+    },
+    {
+      "path": "apps/api/migrations/0010_printable_start_here.sql",
+      "bytes": 241,
+      "sha256": "42c9c1b580dfd92d71c854d72799bed25398d7ea08f49f16d6a4e786654437b6"
+    },
+    {
+      "path": "apps/api/migrations/0011_start_here_preview_commitment.sql",
+      "bytes": 291,
+      "sha256": "d9b3c6b71c22fb6350d9726eb965af90c06c86346c337c881d724f89bbe73017"
+    },
+    {
+      "path": "apps/api/migrations/0012_encrypted_start_here.sql",
+      "bytes": 6224,
+      "sha256": "35d19b6b10df3153b43c9899e76d14b6ebdf0050e951e2061bd6e1d0bb56be01"
+    },
+    {
+      "path": "apps/api/migrations/0013_recipient_rehearsals.sql",
+      "bytes": 7307,
+      "sha256": "a394e9e7a9dd4680c56fcfdcd7c50ff7e1e7320f5f9deff271c34a437a4f0666"
+    },
+    {
+      "path": "apps/api/migrations/0014_recipient_rehearsal_acceptance_read.sql",
+      "bytes": 510,
+      "sha256": "7e64b237d113047998dd6f24b3b68bb9e5c36f3b43eb7f617443bb5f1b77b192"
+    },
+    {
+      "path": "apps/api/migrations/0015_recipient_rehearsal_planner_context.sql",
+      "bytes": 247,
+      "sha256": "f2ea9044660094cf446adcede2ab28484cbdc6318d0a786d4f58c8a47f8e99f2"
+    },
+    {
+      "path": "apps/api/migrations/0016_recipient_rehearsal_integrity.sql",
+      "bytes": 609,
+      "sha256": "1b5aa6b0ffe8222b0e2d64db6b86a28a24dd17dddcf769ec3a3377227d19e69d"
+    },
+    {
+      "path": "apps/api/migrations/0017_disclosure_rehearsals.sql",
+      "bytes": 3634,
+      "sha256": "f112e3beb58a542e29cfb0c0efeebb998b4556a52b8db0d0b5cd2c6461839c21"
+    },
+    {
+      "path": "apps/api/migrations/0018_role_assignment_policy_editor.sql",
+      "bytes": 719,
+      "sha256": "82bb71b18a56dacb3f71029d4e05e98bb38a41db1e802506a25f64e910612b12"
+    },
+    {
+      "path": "apps/api/migrations/0019_active_role_assignment_uniqueness.sql",
+      "bytes": 226,
+      "sha256": "9468325b742166d354763c3b63debb19e7f0cfd1b74e6106d8127b327b780ae7"
+    },
+    {
+      "path": "apps/api/migrations/0020_privacy_filtered_product_events.sql",
+      "bytes": 3319,
+      "sha256": "9ab5627106fba93058e1ca374ac553ca1eae10a6b7ae42779f3a94b7f277e117"
+    },
+    {
+      "path": "apps/api/migrations/0021_nonblocking_first_use.sql",
+      "bytes": 876,
+      "sha256": "137d9211a3667625895c43600f6c4d0f4d1de511d47bb3576a28a837da1cf592"
+    },
+    {
+      "path": "apps/api/migrations/0022_provider_neutral_commerce.sql",
+      "bytes": 39338,
+      "sha256": "11e7a5499e4991ab880041223a10d8a26bf004f9f7adce7e3d84676f3ca100e3"
+    },
+    {
+      "path": "apps/api/migrations/0023_commerce_currency_precision.sql",
+      "bytes": 406,
+      "sha256": "0ee0e9514ea24ebe5febbc8fe7a4626b626cd861b8e51c5bc6c31dcfaef7b42d"
+    },
+    {
+      "path": "apps/api/migrations/0024_commerce_cross_record_integrity.sql",
+      "bytes": 2926,
+      "sha256": "8bedd0adb0011994881537fd39d4dadc1da00b747c50d9e3d65ae95c89a3c56d"
+    },
+    {
+      "path": "apps/api/migrations/0025_stripe_test_catalog_binding.sql",
+      "bytes": 2386,
+      "sha256": "4fe5d284a24309a706d6c63c09c607c1ed94667f3ac79f6686337b7dcf4582b5"
+    },
+    {
+      "path": "apps/api/migrations/0026_stripe_test_executor.sql",
+      "bytes": 11586,
+      "sha256": "49911f8cc5f320d1fac58f3983abc3f1baac36db3d7f46c6d81938f60c7a59e3"
+    },
+    {
+      "path": "apps/api/migrations/0027_storekit_local_test_catalog.sql",
+      "bytes": 1125,
+      "sha256": "3a7d1bc4410220102ec9c6489aa2edf88f45252075ec4364d63c89e4bc9d02e9"
+    },
+    {
+      "path": "apps/api/migrations/0028_storekit_sandbox_intake.sql",
+      "bytes": 1318,
+      "sha256": "bd1119e7eb039f473ed7c91e1497768dc6c4e92c71fb3660a2b857be698a18ed"
+    },
+    {
+      "path": "apps/api/migrations/0029_storekit_notification_binding.sql",
+      "bytes": 752,
+      "sha256": "004d3132d9d9da80a05cd4d21d473f167a361f2a0495e651a2ff0f6cdbe1fe5e"
+    },
+    {
+      "path": "apps/api/migrations/0030_storekit_sandbox_catalog_binding.sql",
+      "bytes": 1086,
+      "sha256": "08c59f34c99eccb9634e47e60636205d0d85e9db9dc3aea628492509ff182e08"
+    },
+    {
+      "path": "apps/api/migrations/0031_versioned_legal_acceptance.sql",
+      "bytes": 4082,
+      "sha256": "065d09753f05231a025c6877e75056fc5d77b8afdc8f08488070e52514c30989"
+    },
+    {
+      "path": "apps/api/migrations/0032_auth_sessions_require_legal_acceptance.sql",
+      "bytes": 419,
+      "sha256": "6b7b19838d288792168b4dbab5215ac01919a57ada019a637ae8ab0aead8b5b4"
+    },
+    {
+      "path": "apps/api/migrations/0033_minimize_retained_legal_identity.sql",
+      "bytes": 1091,
+      "sha256": "0eb7415fd2167bc1b08e346511f17fa3cd1dd5c36b683c58680a6af5ee6fab16"
+    },
+    {
+      "path": "apps/api/migrations/0034_legal_acceptance_per_client_surface.sql",
+      "bytes": 285,
+      "sha256": "798884760198af985c0ae4e36c1448af6aeffe999ba2b010b733d4bd282b43df"
+    },
+    {
+      "path": "apps/api/migrations/0035_account_bound_sharing.sql",
+      "bytes": 12642,
+      "sha256": "ebfe2feb7879e4f1021d8203d4f68bdaa86595726b1da8dce26a4ac988af0e20"
+    },
+    {
+      "path": "apps/api/migrations/0036_private_matter_clears_sharing.sql",
+      "bytes": 1608,
+      "sha256": "80a9013ad717e2b8e329b7b65d7a1e74815bf128039497feb89debccf8d6c861"
+    },
+    {
+      "path": "apps/api/migrations/0037_family_maintenance.sql",
+      "bytes": 13795,
+      "sha256": "4c9213f39c61bcf2de9c08c149c3cebdb45ae3954fbb310eea09839568d0645e"
+    },
+    {
+      "path": "apps/api/migrations/0038_family_review_serialization.sql",
+      "bytes": 5097,
+      "sha256": "8fa16b736efcf1d6557fef8d69a5a85bc907ce7a44ec49b246c456f26db46908"
+    },
+    {
+      "path": "apps/api/migrations/0039_family_owner_history_retention.sql",
+      "bytes": 1190,
+      "sha256": "7451be948b87af75d911da588ff169aad03bf36b4c49ed6dae83cfb3c37161b6"
+    },
+    {
+      "path": "apps/api/migrations/0040_owner_selected_family_prices.sql",
+      "bytes": 684,
+      "sha256": "64818e66dcd1955fc5bfa78a4b748bdd7e7901e2d3b9b7045c2cb278b35bd37a"
+    },
+    {
+      "path": "apps/api/migrations/0041_matter_category_details.sql",
+      "bytes": 2233,
+      "sha256": "cbdb2715d68e472f6c3fd8a6237f077c85330b3b7d74886e3a8f2871cd412b6f"
+    },
+    {
+      "path": "apps/api/migrations/0042_shared_detail_allowlist.sql",
+      "bytes": 2361,
+      "sha256": "93bc2725ce395ef3f4db7191b2bfb6d95538ba6298bea8a04d8893f8ae1a9146"
+    },
+    {
+      "path": "apps/api/migrations/0043_export_audience.sql",
+      "bytes": 246,
+      "sha256": "042cde4137693d16c642c4469b25583f2cae46adeed25e482c50023cbd2b467f"
+    },
+    {
+      "path": "apps/api/migrations/0044_map_import_receipts.sql",
+      "bytes": 710,
+      "sha256": "cc243f2bf32a5f4276e9b4f1979d1de6bf63302854ef6c8c6e42183b79975ab8"
+    },
+    {
+      "path": "apps/api/migrations/0045_self_service_account_deletion.sql",
+      "bytes": 9508,
+      "sha256": "988bb8bb525753730f453a48117f205124ba3db4bdd351ff5ba862b6882ce4ec"
+    },
+    {
+      "path": "apps/api/migrations/0046_matter_create_receipts.sql",
+      "bytes": 723,
+      "sha256": "ffc89107326a820d6477863720d9abcfc89f8f6afb779c5faa1048d1e81a2218"
+    },
+    {
+      "path": "apps/api/migrations/0047_map_import_setup_permissions.sql",
+      "bytes": 377,
+      "sha256": "bdc478478f04d9e9a304ed0dc9dff3a0d1cd95aa351180f47a312141286dca81"
+    },
+    {
+      "path": "apps/api/migrations/0048_sharing_commercial_lifecycle.sql",
+      "bytes": 20889,
+      "sha256": "12e1003458296c4f5ef83362b642311a6e48c7be3f3bc97108149a36234900ec"
+    },
+    {
+      "path": "apps/api/migrations/0049_verified_entitlement_application.sql",
+      "bytes": 9484,
+      "sha256": "c978a572d03da58bb1f710ed3d5fdfb59711d23d73906d239f39f09ea3c54aa3"
+    },
+    {
+      "path": "apps/api/migrations/0050_review_scope_revocation.sql",
+      "bytes": 5222,
+      "sha256": "f7e9de4db0517b25f8c7dbc61d5a80fe38c6722440088d8b35903ed1d67416f7"
+    },
+    {
+      "path": "apps/api/migrations/0051_sharing_replacement_and_access_clock.sql",
+      "bytes": 3191,
+      "sha256": "51ef98389919ff9d44ee64b3f20d998099f88fba17400ae39fee1272949a093c"
+    },
+    {
+      "path": "apps/api/migrations/0052_paid_snapshot_capture_boundaries.sql",
+      "bytes": 4315,
+      "sha256": "2d90d76771f5e85ca684ed0bfa6584c765362b03ee62703d7be315577bea53ae"
+    },
+    {
+      "path": "apps/api/migrations/0053_retroactive_cutoff_safety.sql",
+      "bytes": 881,
+      "sha256": "c51ff42aa99dd79b50feae6aa8aa6eda694d9b80adf2067ff696d7389a583713"
+    },
+    {
+      "path": "apps/api/migrations/0054_saved_copy_owner_preview.sql",
+      "bytes": 1549,
+      "sha256": "0ab1af41cbfeb75f3a2457c7fe37ada0071812218e2d814c363b3e0881fafef2"
+    },
+    {
+      "path": "apps/api/migrations/0055_validation_receipt_contract.sql",
+      "bytes": 4942,
+      "sha256": "14c83fe457fcc52d041eb63697a2c23230dcf050dbfb82b55400ed12db864a14"
+    },
+    {
+      "path": "apps/api/migrations/0056_commerce_account_access_guard.sql",
+      "bytes": 1811,
+      "sha256": "a820210aeac626d1f4b0e886c8b5ce41cf17f378cf5b84dc2e34cd2948ddee4b"
+    },
+    {
+      "path": "apps/api/migrations/0057_sharing_activation_rate_limit.sql",
+      "bytes": 4525,
+      "sha256": "74087f86dec9be3a92413f6ad518c37bf71926ad985ed0ba74ea1abfa8c293ac"
+    },
+    {
+      "path": "apps/api/migrations/0058_invoice_bound_financial_state.sql",
+      "bytes": 370,
+      "sha256": "5cb282c7b81c19af51b725818ffdcdc281a9beb32092913ce8d831d90b01b1f3"
+    },
+    {
+      "path": "apps/api/migrations/0059_current_stripe_test_prices.sql",
+      "bytes": 744,
+      "sha256": "4ba0cbb4168877acc4eb709595a2e0a596aaa6b1c9aa605865ac037362988cd4"
+    },
+    {
+      "path": "apps/api/migrations/0060_session_email_verification.sql",
+      "bytes": 352,
+      "sha256": "518f1463a420a6f5275392ba6330632b4398d3346556d9850c531758bf4d6f2c"
+    },
+    {
+      "path": "apps/api/migrations/0061_owner_selected_88_80_prices.sql",
+      "bytes": 827,
+      "sha256": "38679cbeb1a6de494dd287868a16b4981a3ba458a0443befa88f09e4e1bfe579"
+    },
+    {
+      "path": "apps/api/migrations/0062_current_stripe_v3_test_prices.sql",
+      "bytes": 725,
+      "sha256": "87c33cdeed33e2d5fb0cebf4c9ffd1b036a84d9a9de59a9a118f21515fe15965"
+    },
+    {
+      "path": "apps/api/migrations/0063_retire_new_monthly_offers.sql",
+      "bytes": 461,
+      "sha256": "0578c2ba9ee86a925895d47d4f2761a3315d10b896d85cb2eec65ed94cdf7b2e"
+    },
+    {
+      "path": "apps/api/migrations/0064_private_content_envelopes.sql",
+      "bytes": 20587,
+      "sha256": "f5d4da9a83c9e4b71d6745a1a5901c6f22adb3b0ba87683423833f111645a8ee"
+    },
+    {
+      "path": "apps/api/migrations/0065_content_maintenance.sql",
+      "bytes": 4331,
+      "sha256": "05972573d9d9c6d0b1c92a2b612499447cd06456a5f4c7d3a5e825529d8cb928"
+    },
+    {
+      "path": "apps/api/migrations/0066_content_migration_representation.sql",
+      "bytes": 1243,
+      "sha256": "f8321ca44578ef4d71d33950130b09efad4a62addc66a7733d597f878906cd1f"
+    },
+    {
+      "path": "apps/api/migrations/0067_content_migration_grant_lookup.sql",
+      "bytes": 324,
+      "sha256": "36dc0f93c26090e81347f320a9b2e8ef0cf609701c21aed7d4cfb8b4b0d8e16b"
+    },
+    {
+      "path": "apps/api/migrations/0068_recovery_control_journal.sql",
+      "bytes": 9593,
+      "sha256": "3ce96cd9646715ee03cf2b75fe10e8a3ff6048122265dc2d40d8eb637c3e2cfd"
+    },
+    {
+      "path": "apps/api/migrations/0069_recovery_status_reader.sql",
+      "bytes": 642,
+      "sha256": "d76958cc68eba16b74348025bffcf54127b929cdb029d4e240e3630b2c9af6f7"
+    },
+    {
+      "path": "apps/api/migrations/0070_recovery_replay_privileges.sql",
+      "bytes": 732,
+      "sha256": "64ced0d351c09b246ef2d1ec686b3368f8eff7d6291d4d080cc3ff4395bc22b4"
+    },
+    {
+      "path": "apps/api/migrations/0071_purchase_consent_receipts.sql",
+      "bytes": 2011,
+      "sha256": "5701d95709ebe99ef225b639bee86facc046f46e80bfc1d8aba35e06d4cd57a0"
+    },
+    {
+      "path": "apps/api/migrations/0072_production_commerce_policy_read.sql",
+      "bytes": 131,
+      "sha256": "3478ed79fb320f0fecae341598872fa555e9fd2fe770e45628386ab085d1ae47"
+    },
+    {
+      "path": "apps/api/migrations/0073_stripe_inbox_retry_context.sql",
+      "bytes": 620,
+      "sha256": "591a2644b0f160c4c5efe1a6a4e426432c4b03237abf2dafd6a00c80b9949b72"
+    },
+    {
+      "path": "apps/api/migrations/0074_owner_selected_web_88_99.sql",
+      "bytes": 745,
+      "sha256": "e971bf53df2801b5bb7d0e4105a59d46fb0cadac8666a9271613e641b93229e5"
+    },
+    {
+      "path": "apps/api/migrations/0075_web_v4_stripe_test_binding.sql",
+      "bytes": 517,
+      "sha256": "9785db4aa6070f0de324a248ca8c7702747d3d24d25a04781dd891b82341f5cd"
+    },
+    {
+      "path": "apps/api/migrations/0076_provider_grace_access_clock.sql",
+      "bytes": 8542,
+      "sha256": "42dd0448af4e024bf608470b23b12364768e6508b4e7ba353f365b3b6696baae"
+    },
+    {
+      "path": "apps/api/migrations/0077_apple_versioned_prices_and_receipts.sql",
+      "bytes": 6645,
+      "sha256": "8973facb9d81f3dc8b3151064923422c2e5c008c80f61a3dff1f44d438414cdf"
+    },
+    {
+      "path": "apps/api/migrations/0078_verified_subscription_price_refresh.sql",
+      "bytes": 337,
+      "sha256": "9151f3217ee6360cc8deddf608335a375c3018099765ba0b81e510177f549fdf"
+    },
+    {
+      "path": "apps/api/migrations/0079_absolute_provider_grace_windows.sql",
+      "bytes": 969,
+      "sha256": "c60cd291b4b4106ff87d4a642b82fb21ba753373975cb810545b840236312547"
+    },
+    {
+      "path": "apps/api/migrations/0080_apple_production_delivery.sql",
+      "bytes": 3299,
+      "sha256": "763ddeb90d82b765ffa67cf297cb819467b81698aaf8055306f08c20ac3b5463"
+    },
+    {
+      "path": "apps/api/migrations/0081_provider_observation_reconciliation.sql",
+      "bytes": 763,
+      "sha256": "e33f14a274dfa5dc7ece4e0e047be0b9b1f4effa9ce9bd87fe4cb04940bdd472"
+    },
+    {
+      "path": "apps/api/migrations/0082_reconciliation_restore_index_name.sql",
+      "bytes": 263,
+      "sha256": "c40c61bbf34853423e2660c49c7c81f5e81ad57b5e37d7f29b59653ed1762393"
+    },
+    {
+      "path": "apps/api/migrations/0083_apple_purchase_preflight.sql",
+      "bytes": 2074,
+      "sha256": "a3c159ece4081325937fddc995353ea72f31c67c2ae33d49555867174b407741"
+    },
+    {
+      "path": "apps/api/migrations/0084_purchase_consent_financial_retention.sql",
+      "bytes": 3509,
+      "sha256": "ee3404175cc62ddee0f7e9b00d5fbdbb89c3ed8200a2225785da7a928ffaea08"
+    },
+    {
+      "path": "apps/api/migrations/0085_active_purchase_owner.sql",
+      "bytes": 718,
+      "sha256": "c744f74d320632f2d36ad4fdf5f46a40b47b966128644d03e605adc0f0c0bdeb"
+    },
+    {
+      "path": "apps/api/migrations/0086_apple_review_environment.sql",
+      "bytes": 3830,
+      "sha256": "916415e8e73afca495c2bf06a1c5202c659e9c325ac0686d5cd82252a8f5d0b1"
+    },
+    {
+      "path": "apps/api/migrations/0087_bounded_retention.sql",
+      "bytes": 11409,
+      "sha256": "913ab2db9c1d59b655caf6b5897ac4aa6afb660b03f3d7b59b1b62ca8ccc0af2"
+    },
+    {
+      "path": "apps/api/migrations/0088_independent_retention_hold_reasons.sql",
+      "bytes": 238,
+      "sha256": "b0750af38f6f603c3d7b600dc4e124d1238d021e56ed2f1c0dbf6ad34dad89a0"
+    },
+    {
+      "path": "apps/api/migrations/0089_recovery_commerce_inventory.sql",
+      "bytes": 4418,
+      "sha256": "ed9090682d297803299a06d3bab0d59e07ab4ba129a17280d2c49e8bdb85fdad"
+    },
+    {
+      "path": "apps/api/migrations/0090_recent_authentication.sql",
+      "bytes": 773,
+      "sha256": "72bff15225ae18e4e46c431df8ff94ee4348b5430a8ab2e27e81b7e76eb6ec56"
+    },
+    {
+      "path": "apps/api/migrations/0091_reauthentication_failure_status.sql",
+      "bytes": 179,
+      "sha256": "c5705cb0c968aabfe674c0c5f3cbbe0d7181ec18b3c50eb9e225415c7833dd97"
+    },
+    {
+      "path": "apps/api/migrations/0092_recovery_permission_history.sql",
+      "bytes": 4766,
+      "sha256": "43f3d4ec209118698e19335266187e1f96923640ddd5807df8b59d1fd9563b37"
+    },
+    {
+      "path": "apps/api/migrations/0093_retention_hold_serialization.sql",
+      "bytes": 5622,
+      "sha256": "c3d9fdcd9653a5af4bb971d76ef85418018b9d5e09b5cbd2f828b50584a984a9"
+    },
+    {
+      "path": "apps/api/migrations/0094_stripe_checkout_locale.sql",
+      "bytes": 369,
+      "sha256": "b4318a94c673b063631b56c53488256e55945aec66327197f66a34d271061598"
+    },
+    {
+      "path": "apps/api/migrations/0095_auth_transaction_capacity.sql",
+      "bytes": 982,
+      "sha256": "21b196e0588aeb11293e6209d23c3028da5ca43af6c4d83036b78a53d24ea3bc"
+    },
+    {
+      "path": "apps/api/migrations/0096_apple_purchase_owner_binding.sql",
+      "bytes": 6270,
+      "sha256": "166e6747fe2f6ff3b598985e4cad769cfdc447272921e7e877719748acb60621"
+    },
+    {
+      "path": "apps/api/migrations/0097_recovery_apple_binding_inventory.sql",
+      "bytes": 5302,
+      "sha256": "82b8ec1300fe9412b2de9d91b2594783cdcf93dc1ce0270f58196e97f4fe6906"
+    },
+    {
+      "path": "apps/api/migrations/0098_bounded_public_and_recipient_sharing.sql",
+      "bytes": 2588,
+      "sha256": "62de498eb0ad258c36005fb38cb72b89c5df874bcda47dc933c5d10600fb01fb"
+    },
+    {
+      "path": "apps/api/migrations/0099_expired_preview_retention.sql",
+      "bytes": 1994,
+      "sha256": "03268e033b8c1637c43ea293f6173c22a64428eba47827f0a8c778e87ed2c037"
+    },
+    {
+      "path": "apps/api/package-lock.json",
+      "bytes": 158315,
+      "sha256": "e61f767b851a474b452f1731becdf9d7ad3efc039b4823e128b96b7da29db53d"
+    },
+    {
+      "path": "apps/api/package.json",
+      "bytes": 1500,
+      "sha256": "c2a1264104329485231e4c3b3ceca170cc7899b08fd9cb1dce9695d5c059bbdf"
+    },
+    {
+      "path": "apps/api/src/account-billing.ts",
+      "bytes": 874,
+      "sha256": "f80dc30ee6a991dd38d1b26b0f1997c023fc3cac6814f9870ecce793fe65f923"
+    },
+    {
+      "path": "apps/api/src/account-data-routes.ts",
+      "bytes": 16129,
+      "sha256": "4e4168dc565cbe4e425c2a2c32b7c7bc2b06b8fca40864168bf86eeec11f250d"
+    },
+    {
+      "path": "apps/api/src/account-deletion.ts",
+      "bytes": 7171,
+      "sha256": "29e90dddd95d27647a4b2e63f8a98d21d80a2c09714c66633835e336af0ec18c"
+    },
+    {
+      "path": "apps/api/src/account-identity.ts",
+      "bytes": 3231,
+      "sha256": "08c63d673e51ee90557efaefd2d7d7c8dd51299c3c8878cda59f63ab19e23d91"
+    },
+    {
+      "path": "apps/api/src/app.ts",
+      "bytes": 13647,
+      "sha256": "99a8d56091eaa97f806a26488a1dbc9e7967f5cbfdef58c742c29b40ddf0e858"
+    },
+    {
+      "path": "apps/api/src/apple-execution-context.ts",
+      "bytes": 1776,
+      "sha256": "a8d70f4ef6e716f09bb2bc48fd2a4dbb172921f0fc83cb36770c5505ff2c6a45"
+    },
+    {
+      "path": "apps/api/src/apple-price-bindings.ts",
+      "bytes": 2700,
+      "sha256": "cb54bd11f549075c9c55e9690322e370017c8e2459e1c8197238dd09c5681190"
+    },
+    {
+      "path": "apps/api/src/apple-price-catalog.ts",
+      "bytes": 2693,
+      "sha256": "efe12db7ecc1914bf2da61a11d32fc496d3e3ca4e212b596c097eaf09d68f2c6"
+    },
+    {
+      "path": "apps/api/src/apple-production-evidence.ts",
+      "bytes": 2090,
+      "sha256": "d4d4e6fdfe2c7cbea33f3e624787410b417a15b777208844d4cdc7cf782fb92d"
+    },
+    {
+      "path": "apps/api/src/apple-production-inbox.ts",
+      "bytes": 13418,
+      "sha256": "b88f124b3cffac2bb842e75e69cf47c7992adc7cdae76f444d9401c4586e65db"
+    },
+    {
+      "path": "apps/api/src/apple-production-intake.ts",
+      "bytes": 5797,
+      "sha256": "bd8e7ee2e52b7d203e187d412f9fccc79aa72a5af1ee18b8b58baa88a0bad0f1"
+    },
+    {
+      "path": "apps/api/src/apple-production-ledger.ts",
+      "bytes": 10296,
+      "sha256": "d7f94858a61d6210cb6dad22d480d78a523c97c319874e4ddc21045dcb5adfcd"
+    },
+    {
+      "path": "apps/api/src/apple-production-metrics.ts",
+      "bytes": 866,
+      "sha256": "23cc0cdfa4164816b5bf93d71af30fb4ca6bb53e08202842bef2f5240cc681a6"
+    },
+    {
+      "path": "apps/api/src/apple-production-receipts.ts",
+      "bytes": 4101,
+      "sha256": "287dfe3bb5b174b6bfbbc94948866ceee64410b8f8664e061dfdea2dc77b9c84"
+    },
+    {
+      "path": "apps/api/src/apple-production-routes.ts",
+      "bytes": 3527,
+      "sha256": "d741710eb99f467267b7ce6e6d26072a7eb1ae46750957336f175247abbf5a86"
+    },
+    {
+      "path": "apps/api/src/apple-production-runtime.ts",
+      "bytes": 1847,
+      "sha256": "15303f44e469bab2f9bff9907b41a5d68c14b9bce0c0a110c17d399d5564d665"
+    },
+    {
+      "path": "apps/api/src/apple-production-secret.ts",
+      "bytes": 2522,
+      "sha256": "2471314247f7ff905a3bc206429f13d2c84cc969ff3174139b1b4012497fa224"
+    },
+    {
+      "path": "apps/api/src/apple-production-server-api.ts",
+      "bytes": 10400,
+      "sha256": "4e26d37c4b0e344f5b2a6cf161e08ba247057dd3de53156bb2be113d96157103"
+    },
+    {
+      "path": "apps/api/src/apple-production-verification.ts",
+      "bytes": 11125,
+      "sha256": "40f4d90f9235d56243b71f1f4fff109d029e854ac232d3aaad124e2d23267802"
+    },
+    {
+      "path": "apps/api/src/apple-purchase-catalog.ts",
+      "bytes": 5324,
+      "sha256": "3359b350a0c0e33f081431bd76b2e0e79c7a5434e71ae359102edc3dea69a67f"
+    },
+    {
+      "path": "apps/api/src/apple-purchase-consent.ts",
+      "bytes": 1990,
+      "sha256": "259b48e510fe3a8f141a42c21550c490b5d9e3beeb644e7c7f863388b6869025"
+    },
+    {
+      "path": "apps/api/src/apple-purchase-preflight.ts",
+      "bytes": 11674,
+      "sha256": "876525839a0c4a55bb11f41fa956fea92d1e5f0e9153806c419c73f738d860fd"
+    },
+    {
+      "path": "apps/api/src/apple-review-catalog.ts",
+      "bytes": 3213,
+      "sha256": "4e3e0aa0d2d240b6695c7057700b6e0f569f096a0a524edebe46f41c9348b0da"
+    },
+    {
+      "path": "apps/api/src/apple-storekit-adapter.ts",
+      "bytes": 14532,
+      "sha256": "9026835578e684dfa3984c02b3c651983faac3b6ec4e73708827af564db393b2"
+    },
+    {
+      "path": "apps/api/src/apple-storekit-server-api.ts",
+      "bytes": 6790,
+      "sha256": "edbe3c5a9aa187ac693e5b80b9343a323eda1b9c6ecfa5d8d6121e4885e9d109"
+    },
+    {
+      "path": "apps/api/src/auth-routes.ts",
+      "bytes": 21621,
+      "sha256": "871c18ce7033de15a86927564bca39aa2bedf5e2a5c6f55a1ef5dbc582fb245d"
+    },
+    {
+      "path": "apps/api/src/auth-transaction-budget.ts",
+      "bytes": 471,
+      "sha256": "fe5add49771b06d0b2ae3e6e047aafbb3abc58e401665f11dad3d53b0e8fcafe"
+    },
+    {
+      "path": "apps/api/src/auth.ts",
+      "bytes": 7929,
+      "sha256": "d7643e7eafb22022746dca9704a05326ab841340292b1cccca5e607a277de00b"
+    },
+    {
+      "path": "apps/api/src/bootstrap-runtime.ts",
+      "bytes": 5395,
+      "sha256": "aee6c9be5678e766097115c8cdca32defe77701d2c772f019222e32a0905adfb"
+    },
+    {
+      "path": "apps/api/src/commerce-provider-contract.ts",
+      "bytes": 2738,
+      "sha256": "3dcfc2aac17068c7040675b712a7d7d7919071b9fc118082a9277b23fe8f0b4b"
+    },
+    {
+      "path": "apps/api/src/commerce-purchase-conflicts.ts",
+      "bytes": 3631,
+      "sha256": "44cf26b8bf3841f7ecbaca2a8d4bf0f5cc6c6046ebc3e38404a8a2665d5f4260"
+    },
+    {
+      "path": "apps/api/src/commerce-reconciliation.ts",
+      "bytes": 9956,
+      "sha256": "6958846a7be00f687fded3fd41a0789a75a841e0ed675bfccac4991a36eb4ef2"
+    },
+    {
+      "path": "apps/api/src/commerce-routes.ts",
+      "bytes": 19251,
+      "sha256": "d67cbc944ddca251bd07574d790899b632ce6cc296a9187367eeb9a8812442c3"
+    },
+    {
+      "path": "apps/api/src/commerce-subscription-ledger.ts",
+      "bytes": 5732,
+      "sha256": "b45d1bf17164c7bc2ef00bf52133abc1304dd31f439ed94d1ba5b269dc6c2f8b"
+    },
+    {
+      "path": "apps/api/src/commerce-synthetic-adapters.ts",
+      "bytes": 11370,
+      "sha256": "eaa4ca6cde50e7a120226780882a02bccc369acbbe37b7b523b84ecac50f3723"
+    },
+    {
+      "path": "apps/api/src/config.ts",
+      "bytes": 33481,
+      "sha256": "313f374b66a419827f13b7fe4678fa4cde70e1bccab2682b47061e65b1698370"
+    },
+    {
+      "path": "apps/api/src/db.ts",
+      "bytes": 10059,
+      "sha256": "f91358672a80249b514de512ba282a848638ba425a26396b705482d698c7d08e"
+    },
+    {
+      "path": "apps/api/src/disclosure-policy.ts",
+      "bytes": 452,
+      "sha256": "53c5046836e387d4df405f6d3af8551aca331a97c15480a5bdb734bc6d1ed85b"
+    },
+    {
+      "path": "apps/api/src/disclosure-rehearsal-routes.ts",
+      "bytes": 25516,
+      "sha256": "de3d4277d436dfb49e7c98d089da42692883d374b745c2ea5914b4341de8636a"
+    },
+    {
+      "path": "apps/api/src/domain.ts",
+      "bytes": 11373,
+      "sha256": "439100987555b5952b01e47d3e88ffbfbb035301750521ab7c916f4367124565"
+    },
+    {
+      "path": "apps/api/src/email-verification.ts",
+      "bytes": 5813,
+      "sha256": "6e8c50cf6078f20bb0f8d9d03fcd1913372ceacce854b03307074cfb0bdf2184"
+    },
+    {
+      "path": "apps/api/src/errors.ts",
+      "bytes": 3361,
+      "sha256": "6c85f378855c610095a22ea74b11ff7fa069fb5ea3f91b078aa37aad01095e56"
+    },
+    {
+      "path": "apps/api/src/express.d.ts",
+      "bytes": 461,
+      "sha256": "69e43b206b87370b4230b4d25f684f306895daa07355cff144849663fd9d360e"
+    },
+    {
+      "path": "apps/api/src/family-maintenance-routes.ts",
+      "bytes": 21680,
+      "sha256": "ac1f521a63aabf832ad00d0475ff46583674de369dd2d43f89baa47422a5ee02"
+    },
+    {
+      "path": "apps/api/src/healthcheck.ts",
+      "bytes": 682,
+      "sha256": "59bde10dcd68d440716b0e1ec41831d136a938587e5993d436aacee31db7252a"
+    },
+    {
+      "path": "apps/api/src/identity.ts",
+      "bytes": 7807,
+      "sha256": "077522ff353c5f4cfe3f836b5a24937de261bee15e4b5566f7e6a6e493b95309"
+    },
+    {
+      "path": "apps/api/src/legal-contract.ts",
+      "bytes": 1056,
+      "sha256": "d537a219cb325bcfb793e6d595b6e21485e50e9e827da4a42492d36d7f07cee6"
+    },
+    {
+      "path": "apps/api/src/managed-tls.ts",
+      "bytes": 4296,
+      "sha256": "25c49b02a532985e16f3fba7b68e97a101b718c66b9be6400ec59ae17575be90"
+    },
+    {
+      "path": "apps/api/src/matter-details.ts",
+      "bytes": 2931,
+      "sha256": "da5c0d166e12628f540eae707e8a843e42d009fc15e634a0c2cf9b4ef0ca18a9"
+    },
+    {
+      "path": "apps/api/src/migrate-private-content.ts",
+      "bytes": 13044,
+      "sha256": "09ca0c627ddd075ac6212d9e3d22f74977cfda062fd8eeade69e9bb0c25d907b"
+    },
+    {
+      "path": "apps/api/src/migrate.ts",
+      "bytes": 2799,
+      "sha256": "1ae76730bccac8aa54026a83a197d3df9eb0733a3263049c3bf0aacda9196af5"
+    },
+    {
+      "path": "apps/api/src/migration-sql.ts",
+      "bytes": 2886,
+      "sha256": "5933c5673aabd8b5b015ab0179187c60f1533ea085cf6b91b9d7b5df655bd34c"
+    },
+    {
+      "path": "apps/api/src/overview.ts",
+      "bytes": 1241,
+      "sha256": "77a8ec9b0a7f10bb7cd7afc2a849605c4dc0ef3016f121ca99e42a3cfcc6bf00"
+    },
+    {
+      "path": "apps/api/src/planner-audit.ts",
+      "bytes": 621,
+      "sha256": "de8fb53928e4c29ff69ab0df8ca5ac7d1cdb11c1bf6050dc491207bb4fae1a82"
+    },
+    {
+      "path": "apps/api/src/planner-records.ts",
+      "bytes": 4855,
+      "sha256": "5f1d2d5dfac17a2739aff4894458a6c009b7724dfe9a0647eab4f54670e98279"
+    },
+    {
+      "path": "apps/api/src/private-content.ts",
+      "bytes": 17579,
+      "sha256": "2caf22721b0efe5ccba817392fb113fc9b8d88e37ea30d49ea9e9e67df90679d"
+    },
+    {
+      "path": "apps/api/src/product-events.ts",
+      "bytes": 1938,
+      "sha256": "029d85213937652f0248b1d4f3131d1b282cf80fd2a6930277ea9fbc70b97568"
+    },
+    {
+      "path": "apps/api/src/production-review-access.ts",
+      "bytes": 842,
+      "sha256": "e5270e3d7f01e058d61289404015f9faa3091de3aa55127544eb02010e747847"
+    },
+    {
+      "path": "apps/api/src/purchase-consent.ts",
+      "bytes": 1776,
+      "sha256": "da50f543175319d8134687d57c407867523a05ee0f4fd7b1e33fb53d6895bf73"
+    },
+    {
+      "path": "apps/api/src/rate-limit-key.ts",
+      "bytes": 1857,
+      "sha256": "737fd8f74e0f5f0f72989691cb10142ce01e39715fd000ee6eff12bc2717c3db"
+    },
+    {
+      "path": "apps/api/src/readiness.ts",
+      "bytes": 1762,
+      "sha256": "4af9aeba78cf87af7fdc77d0eac0dd212cbdbd8864805c9e9887a331da73cc8f"
+    },
+    {
+      "path": "apps/api/src/reauthentication.ts",
+      "bytes": 7814,
+      "sha256": "630205b4b56b86b38f8bea38b10340bfb8ebe4a03d617a8ab7d04051b54b604e"
+    },
+    {
+      "path": "apps/api/src/recent-authentication.ts",
+      "bytes": 1572,
+      "sha256": "4f34ff58f931df26a8f28f893659f5c40278bce56d87d0df7ac5ee855ccb7f9a"
+    },
+    {
+      "path": "apps/api/src/recipient-rehearsal-routes.ts",
+      "bytes": 32177,
+      "sha256": "837b2d85ad447791fc049a514bb6f5efd134f55d5968a9d5a1aa2ffe87581563"
+    },
+    {
+      "path": "apps/api/src/recovery-admin.ts",
+      "bytes": 16553,
+      "sha256": "bd14973b2d5122e9955688772e761eb4cb9a38098c1bac6ae218f503b86a5cd8"
+    },
+    {
+      "path": "apps/api/src/recovery-commerce-admin.ts",
+      "bytes": 3365,
+      "sha256": "2fbe4fb89ea1bdb902b3042337bcc16debbd6bc529d4b561efbe0f9d4f173c25"
+    },
+    {
+      "path": "apps/api/src/recovery-commerce-readers.ts",
+      "bytes": 3941,
+      "sha256": "35176d99cdfb77e9c2388800ce19d1a26f98a88995c64d6929f1fb60c1988f92"
+    },
+    {
+      "path": "apps/api/src/recovery-commerce.ts",
+      "bytes": 18228,
+      "sha256": "43b8aa34cc3a6a581c5179ac9bf40fa38de083536dffb883cbd051ca883c441b"
+    },
+    {
+      "path": "apps/api/src/recovery-journal.ts",
+      "bytes": 7183,
+      "sha256": "f5ca93d8f90b0c2257dae53c5ecb11e8951f81d1e5c68a2249661ef17c6ed064"
+    },
+    {
+      "path": "apps/api/src/recovery-replay.ts",
+      "bytes": 13004,
+      "sha256": "96566de893bfbf466b251119ef02b2375bfe54b8b8b98722f2c1b69cc82fef59"
+    },
+    {
+      "path": "apps/api/src/retention-admin.ts",
+      "bytes": 1437,
+      "sha256": "7bafec84a12f9155af4504c44b00249d298552c7fe3924d2cd3241a643ffbc74"
+    },
+    {
+      "path": "apps/api/src/retention-holds.ts",
+      "bytes": 2227,
+      "sha256": "5d9a3252e75947ee8b1978024e8a801bc99086fdafd91f0705671d9781874678"
+    },
+    {
+      "path": "apps/api/src/retention.ts",
+      "bytes": 1584,
+      "sha256": "0a487819390b173486bd3818c41ba6a7d38dc7d0868ff6e2e4409526fbf5753b"
+    },
+    {
+      "path": "apps/api/src/role-assignment-routes.ts",
+      "bytes": 14097,
+      "sha256": "8ee7ab8039da3b233f4601c6f967a00db25f6214be4b5b85d5ea38a235208b95"
+    },
+    {
+      "path": "apps/api/src/routes.ts",
+      "bytes": 75128,
+      "sha256": "2eabebc2ee65ebb67053be7a2a3d3ca4627ea9e367c9e38718a31117c002e8f4"
+    },
+    {
+      "path": "apps/api/src/security-cookies.ts",
+      "bytes": 709,
+      "sha256": "a9b84820d8812a3a71ed64cef5313995fee228cc15adc8fa05cb37660ed34477"
+    },
+    {
+      "path": "apps/api/src/security.ts",
+      "bytes": 3425,
+      "sha256": "f2ee0f6d791a6cf3753aed57c66938fe184bac8037f72c2b8b6fc7026b091a65"
+    },
+    {
+      "path": "apps/api/src/seed-dev.ts",
+      "bytes": 5427,
+      "sha256": "3620bea71e40004065349c5158166b5af6c43bc623c03c18a6599b4be81cf2f9"
+    },
+    {
+      "path": "apps/api/src/server.ts",
+      "bytes": 4914,
+      "sha256": "f1b307ca6a75f6ad0c6696068458c414cce5f9d6e5cf91e285bcfc555751f2ce"
+    },
+    {
+      "path": "apps/api/src/sharing-identity.ts",
+      "bytes": 402,
+      "sha256": "60629b9991f099404ba41fb0185d273f7cb8640d3f27cca8d7ff8f957f7b0439"
+    },
+    {
+      "path": "apps/api/src/sharing-routes.ts",
+      "bytes": 25626,
+      "sha256": "92244b71edd0f5944f23823fc4f446cde123f339f2fed7693933974f549a8c11"
+    },
+    {
+      "path": "apps/api/src/snapshot-work-budget.ts",
+      "bytes": 604,
+      "sha256": "f839210a767dc1de925d758b603d4c9bdf14912a0a7434d5264febada51eb841"
+    },
+    {
+      "path": "apps/api/src/storekit-sandbox-intake.ts",
+      "bytes": 19805,
+      "sha256": "62196953d1656297b01fdc27c259e6c618bb75b9ac7e3cbb0ac02d9226247fef"
+    },
+    {
+      "path": "apps/api/src/storekit-sandbox-routes.ts",
+      "bytes": 2553,
+      "sha256": "dd2df7c00e2958723533703b204670816b15a783b0689ace1b7a5ef26749d493"
+    },
+    {
+      "path": "apps/api/src/stripe-commerce-executor.ts",
+      "bytes": 60437,
+      "sha256": "4865d7fa2b66bf1c81c56526f56b701803c761519242d4fa161606e744aba103"
+    },
+    {
+      "path": "apps/api/src/stripe-commerce-routes.ts",
+      "bytes": 3595,
+      "sha256": "689fb411c15ec13b59ba1cf334239ce0f5453d5c61aa4b10f59a496a34fc19fc"
+    },
+    {
+      "path": "apps/api/src/stripe-execution-config.ts",
+      "bytes": 1579,
+      "sha256": "7e759eeaddf5cc9b47e4ac692fbb1a964ee844714cfa1fe8bd790b20f1371899"
+    },
+    {
+      "path": "apps/api/src/stripe-financial-resolution.ts",
+      "bytes": 5024,
+      "sha256": "0d499992d9d188d37bad1cc94395c89670281278819a390369d34d57cbdc1adf"
+    },
+    {
+      "path": "apps/api/src/stripe-production-adapter.ts",
+      "bytes": 18061,
+      "sha256": "63347ccfb52db6428e40fd492634c8329bf0952c8b5c3a496f95adc5f02f39d5"
+    },
+    {
+      "path": "apps/api/src/stripe-production-routes.ts",
+      "bytes": 3000,
+      "sha256": "1706c006444d6808615990a7496b614d4df95252fd571430cde6c92949f3139c"
+    },
+    {
+      "path": "apps/api/src/stripe-production-secret.ts",
+      "bytes": 3483,
+      "sha256": "a43ce75718fd3b418fe170fa9907bbdccb2837e4022db09c4684b2cf0c565ed9"
+    },
+    {
+      "path": "apps/api/src/stripe-provider-shared.ts",
+      "bytes": 7329,
+      "sha256": "6e8c3c695832cfb8c8b07592109f5fcd55175bcc18054d0a38c3b4bb92cc8ba2"
+    },
+    {
+      "path": "apps/api/src/stripe-recovery-financial-state.ts",
+      "bytes": 3897,
+      "sha256": "e5a5ab03e10efe0ac863d692c49ec681fad0aa569669dfaf0c852592835910df"
+    },
+    {
+      "path": "apps/api/src/stripe-refund-evidence.ts",
+      "bytes": 1706,
+      "sha256": "5c6bbb9981d5bf1a6dc351f1376c42d6cd2cc1280b6e40ec1bd4ae3eb2e34e68"
+    },
+    {
+      "path": "apps/api/src/stripe-sdk.ts",
+      "bytes": 5279,
+      "sha256": "b11d4fa3a7b008b809224e35521b35af8062fc68960b3153a00b9a1e23a64130"
+    },
+    {
+      "path": "apps/api/src/stripe-test-adapter.ts",
+      "bytes": 17712,
+      "sha256": "d63e63a6a8e91617e6d203131536c4eab0aa65f6748b5340e73a2a8fb38b9697"
+    },
+    {
+      "path": "apps/api/tests/account-identity.test.ts",
+      "bytes": 4236,
+      "sha256": "9ee6779703f85e696d4f0dc4173c91f100e5a6385c369c0f5095983e9baaf96d"
+    },
+    {
+      "path": "apps/api/tests/api.integration.test.ts",
+      "bytes": 123586,
+      "sha256": "c63901c5cd6abc686b4dd81826de1cf134cd35dfae6cde19d6921ef362d74372"
+    },
+    {
+      "path": "apps/api/tests/apple-commerce.integration.test.ts",
+      "bytes": 13068,
+      "sha256": "118391998e40725ab583d5decc1b520a6d00d4a751ce963b8430407765d9fb26"
+    },
+    {
+      "path": "apps/api/tests/apple-price-bindings.test.ts",
+      "bytes": 1972,
+      "sha256": "874a2e91284bbc52f165e1a33fcaa85d14c49553392dd5ad4172c3cdf87ef2ea"
+    },
+    {
+      "path": "apps/api/tests/apple-production-intake.integration.test.ts",
+      "bytes": 40095,
+      "sha256": "d40ad8139c3b05219f6229a12577feb3cf202712f22fadf7b4cdddb24cd9208a"
+    },
+    {
+      "path": "apps/api/tests/apple-production-runtime.test.ts",
+      "bytes": 8810,
+      "sha256": "280aa08a1cde2dba784d1357e4d47e1c22992e97de25c684db8e5e6a63260882"
+    },
+    {
+      "path": "apps/api/tests/apple-production-server-api.test.ts",
+      "bytes": 14060,
+      "sha256": "a2e2cbe10382865f4f15c47b891ce3c475706ac4aa3c25e9902c95451554c8ab"
+    },
+    {
+      "path": "apps/api/tests/apple-production-verification.test.ts",
+      "bytes": 6325,
+      "sha256": "9224997dad3c160bd3e2592a5e4fbf229cff0845bfb341b3c798b6db69b7dbf8"
+    },
+    {
+      "path": "apps/api/tests/apple-purchase-preflight.integration.test.ts",
+      "bytes": 13119,
+      "sha256": "e7882a9b7cfc7b47c23f0a2a9a2619d58e999a62e2fd70fe9481500346f24732"
+    },
+    {
+      "path": "apps/api/tests/apple-review.integration.test.ts",
+      "bytes": 18930,
+      "sha256": "2a0f923df9a5d474d62e644be80aabc1e7a17ecf7878bac2714e4b3971e6f9fc"
+    },
+    {
+      "path": "apps/api/tests/apple-storekit-adapter.test.ts",
+      "bytes": 7122,
+      "sha256": "33bab7e006a6e20366754edde0ad866c726a3442f174cbfe832b4fb302028542"
+    },
+    {
+      "path": "apps/api/tests/apple-storekit-server-api.test.ts",
+      "bytes": 5432,
+      "sha256": "4fc4742aad530ed975ab517f52a7bc7d062d186e90d4ea43a5755d79c6459f61"
+    },
+    {
+      "path": "apps/api/tests/apple-verification-retry.test.ts",
+      "bytes": 1424,
+      "sha256": "6d53a2a361005c44440eb6bf8ad44e754250243b42290889fb2d10bcc661b145"
+    },
+    {
+      "path": "apps/api/tests/bootstrap-runtime.test.ts",
+      "bytes": 4531,
+      "sha256": "a2b6784e64f490e2b2faae483fefd82bf8de649fb565e371904dfb6bdea0e9cf"
+    },
+    {
+      "path": "apps/api/tests/commerce-freshness.test.ts",
+      "bytes": 2757,
+      "sha256": "0b51e4c18e52cb7e39fa631883e598fa5685f20f7d3b58f43432a6de50b081af"
+    },
+    {
+      "path": "apps/api/tests/commerce-provider-adapters.test.ts",
+      "bytes": 18114,
+      "sha256": "1a944a4e0211ed0173add15af69fdfd11abe3a6d90bb295c450316935e7b3b9f"
+    },
+    {
+      "path": "apps/api/tests/config.test.ts",
+      "bytes": 16931,
+      "sha256": "ce5ad895b40da29bb8ebfb3f48d1e100240c87251291031cd492c24bb0462bd7"
+    },
+    {
+      "path": "apps/api/tests/content-test-keys.ts",
+      "bytes": 1533,
+      "sha256": "2405602cf9ab285f60a5581be693cacdbf04deda9fe415f99fb305bd5a168879"
+    },
+    {
+      "path": "apps/api/tests/database-tls-config.test.ts",
+      "bytes": 1300,
+      "sha256": "8f2528b8265dfc0fe1cf2409c758a622e95378a7505824e764182d130dc0e233"
+    },
+    {
+      "path": "apps/api/tests/dedicated-test-database.test.ts",
+      "bytes": 2822,
+      "sha256": "19481ff4e80db01cc77b6ef863c6774493395a8528ecf4afcf9b6f4927de8a07"
+    },
+    {
+      "path": "apps/api/tests/dedicated-test-database.ts",
+      "bytes": 2290,
+      "sha256": "ce4d830713e83865ca65d38d95ce5becc16d73145c32c91aba0f16b04a003689"
+    },
+    {
+      "path": "apps/api/tests/email-verification.integration.test.ts",
+      "bytes": 11326,
+      "sha256": "0688253a961a9953c11b7f3f175b6a54465bd47fc3347d4e0d69d60986bdaef0"
+    },
+    {
+      "path": "apps/api/tests/email-verification.test.ts",
+      "bytes": 3171,
+      "sha256": "595869db1d8d50bfe81bfb479c503a515d79ce01aa06d4c59fecc74fac354c74"
+    },
+    {
+      "path": "apps/api/tests/family-maintenance.integration.test.ts",
+      "bytes": 18889,
+      "sha256": "1c00cfc49c54812aa6fb3193366eb61952c873cbd77d294e1cc7056095416e91"
+    },
+    {
+      "path": "apps/api/tests/http-fixture.ts",
+      "bytes": 1213,
+      "sha256": "3a39b12aabfb9bcb4fc36ed26c5892b3e38fe8ee01e8f30bcf87c278870f07fe"
+    },
+    {
+      "path": "apps/api/tests/http-test-isolation.ts",
+      "bytes": 493,
+      "sha256": "01030b08285404a59d9dcf5b3971b5b80701678973c78cfc59574c0219bf4946"
+    },
+    {
+      "path": "apps/api/tests/identity-discovery.test.ts",
+      "bytes": 2043,
+      "sha256": "ac544251a1d1303ea5ded6ac184defb2a7de3d366a70d16e077fc6f328864f97"
+    },
+    {
+      "path": "apps/api/tests/identity-proof.test.ts",
+      "bytes": 3733,
+      "sha256": "11941183fccd479f4f91c12a6c298e214221b1c7638dc189b5ed75e557f6c084"
+    },
+    {
+      "path": "apps/api/tests/legal-contract.test.ts",
+      "bytes": 1621,
+      "sha256": "377cdb1b409f417827b736e855a130a47a536b4553616d86471c0368879b5bbc"
+    },
+    {
+      "path": "apps/api/tests/managed-tls.test.ts",
+      "bytes": 4289,
+      "sha256": "dab0e948180175961ded73ba2251705971ac36f13c8e2087a2c5018097d0393e"
+    },
+    {
+      "path": "apps/api/tests/matter-details.integration.test.ts",
+      "bytes": 7053,
+      "sha256": "1b4c223bfc42b1e61645d68baa91203649e8425d55b12a9e7ef0dbd10ed24841"
+    },
+    {
+      "path": "apps/api/tests/migration-atomicity.test.ts",
+      "bytes": 4191,
+      "sha256": "9b3df10c97c0e6999917ff1f201aa2b998d55c2a964fdce8d330686b6c9a0b05"
+    },
+    {
+      "path": "apps/api/tests/migration-sql.test.ts",
+      "bytes": 1280,
+      "sha256": "63de21a9bffc2fb599cf8dbb957e3e8eb96844d99ab9ddfaa888c7e35c23cd7c"
+    },
+    {
+      "path": "apps/api/tests/native-ui-fixture.ts",
+      "bytes": 3863,
+      "sha256": "cf697d5991708672124e9ef050484641051d0b95a745f9eac59dae32d6d79b6d"
+    },
+    {
+      "path": "apps/api/tests/p1-repair.integration.test.ts",
+      "bytes": 24277,
+      "sha256": "f0e63440519dd3d43a1e6925ca9649eadb481e944904b614e1ccd2bad58587a2"
+    },
+    {
+      "path": "apps/api/tests/private-content-kms.test.ts",
+      "bytes": 3005,
+      "sha256": "ba2ad2653ece4f2ed9f26498508c2d6914a334d5a1baa9281ed13a67775e27cb"
+    },
+    {
+      "path": "apps/api/tests/private-content-migration.integration.test.ts",
+      "bytes": 11031,
+      "sha256": "12f87665a60fbbe4b317d718d15cfadf1307e82248258b3aae57c5ed279773c0"
+    },
+    {
+      "path": "apps/api/tests/private-content.integration.test.ts",
+      "bytes": 14234,
+      "sha256": "791b1c88c3f22abd2ef388d5acd6e5174b8699ca278f91e02ede1026926de6e6"
+    },
+    {
+      "path": "apps/api/tests/production-closed.test.ts",
+      "bytes": 2976,
+      "sha256": "604f3f4999b64e88911cfe5a4974a43b8085f44abf03def9546a082719b86395"
+    },
+    {
+      "path": "apps/api/tests/production-commerce.integration.test.ts",
+      "bytes": 33186,
+      "sha256": "0048eb5e98ecc52729a0f4af9de44a5493348d7b6bcd8f2e5000c0d3dc34a050"
+    },
+    {
+      "path": "apps/api/tests/production-purchase-contract.test.ts",
+      "bytes": 7271,
+      "sha256": "9bcca91477586e9bc7f4516a109a431aabb4cc925bb2a47b03e30a6645d5e956"
+    },
+    {
+      "path": "apps/api/tests/production-review-access.integration.test.ts",
+      "bytes": 5078,
+      "sha256": "0ab388ea40be85e8dce86b036778052c163e4a799d39ced1a4ff963b7386f8ca"
+    },
+    {
+      "path": "apps/api/tests/rate-limit-key.test.ts",
+      "bytes": 2006,
+      "sha256": "be3473d6a3e8235057e9780acd95b6c0829cb3f71e9f5d63d7cb22bb4ba2f61d"
+    },
+    {
+      "path": "apps/api/tests/recent-authentication.integration.test.ts",
+      "bytes": 15558,
+      "sha256": "5919c10dd4c2f18f5a1ffd39838daa179e6b8072f0a795c2404a75cf0c8bc955"
+    },
+    {
+      "path": "apps/api/tests/recovery-commerce.integration.test.ts",
+      "bytes": 14473,
+      "sha256": "d11e4223ab607d723868f7fa0dbb6eac4e0434e32d4b5c0ff400a876b2bd9e33"
+    },
+    {
+      "path": "apps/api/tests/recovery-journal.integration.test.ts",
+      "bytes": 12682,
+      "sha256": "758159e04d9fc9ba32f5158f83bba5a9f87d0cc0e280697c8e673c04553b58e9"
+    },
+    {
+      "path": "apps/api/tests/recovery-permission-history.integration.test.ts",
+      "bytes": 9600,
+      "sha256": "29db2e694d41980360ad9b0123c8f350540be9ab8bbd32c6b3d52cff19583039"
+    },
+    {
+      "path": "apps/api/tests/request-logging.test.ts",
+      "bytes": 1675,
+      "sha256": "657654ecb584335fde585ac6d46a9144999848c4794a8abe7efc3deb1b073eee"
+    },
+    {
+      "path": "apps/api/tests/retention.integration.test.ts",
+      "bytes": 18323,
+      "sha256": "86ae0a6cb9f6b442d0f9d9a3e27079b0bc3e35553796b5137b6ddc9ff2ae6260"
+    },
+    {
+      "path": "apps/api/tests/runtime-mode.test.ts",
+      "bytes": 2849,
+      "sha256": "029c853abfe0b03606644793907f1f9f6f78ac11cde175c0d85e0eada28c4f1f"
+    },
+    {
+      "path": "apps/api/tests/security-cookies.test.ts",
+      "bytes": 1100,
+      "sha256": "296973c71b1c8dab583d4e02a996d265710b9178218e5598c4ccecb46a12b73b"
+    },
+    {
+      "path": "apps/api/tests/security-cors.test.ts",
+      "bytes": 1634,
+      "sha256": "a9479fbc7b5f64c0a9415b8e995338a8de579e1479c4ff26b4e77c7d98d3dbe0"
+    },
+    {
+      "path": "apps/api/tests/security-remediation.integration.test.ts",
+      "bytes": 5041,
+      "sha256": "0589bc081ad8c65f7541dc79b1ed63cf26cec27ed1efe445204cfa83e93f4615"
+    },
+    {
+      "path": "apps/api/tests/sharing-lifecycle.integration.test.ts",
+      "bytes": 21402,
+      "sha256": "9ebc72442f3e07355e4410e9d597b1eee4170879e2e11f16ba339f8b84daedf8"
+    },
+    {
+      "path": "apps/api/tests/sharing.integration.test.ts",
+      "bytes": 18449,
+      "sha256": "661802e4fc7f39d18f3bb2b2dd8340f11052931e25b3d8c636e2b76f2b78b622"
+    },
+    {
+      "path": "apps/api/tests/stripe-production-adapter.test.ts",
+      "bytes": 14629,
+      "sha256": "34539dce354c33540a59fcbe6d2b93929467c87b14942abd6bd8be9f691ff0b7"
+    },
+    {
+      "path": "apps/api/tests/stripe-recovery-financial-state.test.ts",
+      "bytes": 3373,
+      "sha256": "012492f7b97d14072e9b7f14e3b4c7e5a22bbe9e9a6e44eedc4e4d2df1655443"
+    },
+    {
+      "path": "apps/api/tests/stripe-refund-reversal.test.ts",
+      "bytes": 6341,
+      "sha256": "d20ca9fc6b27a2f2d1e51e76843f1ec8161209367a59dd32d745606d6620f826"
+    },
+    {
+      "path": "apps/api/tests/stripe-test-adapter.test.ts",
+      "bytes": 29364,
+      "sha256": "809701c297b1676b66616b45d445aa114662f628489b03bb5a76338acb50afa8"
+    },
+    {
+      "path": "apps/api/tests/stripe-web-ui-fixture.ts",
+      "bytes": 9308,
+      "sha256": "d4a9d95d0d35bcace640b63247c82660e7c32c839b6cd495a51a88afdcf69c02"
+    },
+    {
+      "path": "apps/api/tsconfig.build.json",
+      "bytes": 217,
+      "sha256": "03e9590cc841d8bacd57da3b6e1886ec9bc3074e64c89d85756b010a99246117"
+    },
+    {
+      "path": "apps/api/tsconfig.json",
+      "bytes": 477,
+      "sha256": "c589058cd684f68cb9acd45ab338b47a55348a3236539a83d8c08706e252c436"
+    },
+    {
+      "path": "apps/api/vitest.config.ts",
+      "bytes": 249,
+      "sha256": "609c71de8dd52ce469e267c24df88e151649ee24bdbdc15789e078f39c0800c5"
+    },
+    {
+      "path": "apps/ios-prototype/.gitignore",
+      "bytes": 53,
+      "sha256": "463b5f9362420aaa6bbf70c200b7cef361af47f34e60e6767851406f3091a39a"
+    },
+    {
+      "path": "apps/ios-prototype/.openai/hosting.json",
+      "bytes": 31,
+      "sha256": "d532abb65cf9ae20634b464d954cb4a08a0de9f3cd3cdf7f9c3ec8948826d947"
+    },
+    {
+      "path": "apps/ios-prototype/AGENTS.md",
+      "bytes": 11230,
+      "sha256": "1f12a8b98431ef4c543ba11b15d10bf4241291a20213b97dcc1556e3bbfd00cb"
+    },
+    {
+      "path": "apps/ios-prototype/index.html",
+      "bytes": 380,
+      "sha256": "03dd2a38ad6bd4f7025080ebaee99106b57b62dc8416b6ef9a415196e093d4ee"
+    },
+    {
+      "path": "apps/ios-prototype/mobile-runtime.lock.json",
+      "bytes": 2800,
+      "sha256": "5cb2bb674f177ddb95721c7254fc4f2d79e5510829aa2a996ea31c56c5b66a24"
+    },
+    {
+      "path": "apps/ios-prototype/package-lock.json",
+      "bytes": 77809,
+      "sha256": "6bbce8823798b106889c98a66d61757b27a2e272baa139aa80020ef2ef118ff9"
+    },
+    {
+      "path": "apps/ios-prototype/package.json",
+      "bytes": 1105,
+      "sha256": "db868d26cb39b3578b2e711bbcd1612890d6312cacb777c27300676208e3959c"
+    },
+    {
+      "path": "apps/ios-prototype/playwright.config.ts",
+      "bytes": 539,
+      "sha256": "a75849b516724e663b31107209177f5372afd8aa76e6e6375dc24e839d4af3b5"
+    },
+    {
+      "path": "apps/ios-prototype/public/assets/android/Keyboard.png",
+      "bytes": 42695,
+      "sha256": "6085e50be17ca2705b4351283187be2c5b01b58262c70b90d74b3376efb4adfe"
+    },
+    {
+      "path": "apps/ios-prototype/public/assets/android/Pixel10.png",
+      "bytes": 214337,
+      "sha256": "a87c1250ba20756f5d020b5351a7ae71d663dcfc64aca3a1cd56452e8a05233e"
+    },
+    {
+      "path": "apps/ios-prototype/public/assets/android/navigation-bar.svg",
+      "bytes": 542,
+      "sha256": "077a782a3b6c2915fc518dfb4bba825c8c5861b2572f9522a7024902b9cb2850"
+    },
+    {
+      "path": "apps/ios-prototype/public/assets/iphone/Bezel.png",
+      "bytes": 353980,
+      "sha256": "ee2514d74d2f75f3541405fa2f20811f159879a66586778cfd8c9c84c44959df"
+    },
+    {
+      "path": "apps/ios-prototype/public/assets/iphone/Keyboard.png",
+      "bytes": 53341,
+      "sha256": "292e2d83d69adaeb663d6a840ce8db8d0a5257710b472c20713e03f56b08ea88"
+    },
+    {
+      "path": "apps/ios-prototype/public/assets/status/ios-status-icons.svg",
+      "bytes": 2765,
+      "sha256": "40e218b274d0973d519b50f42884e6e05ef0f2b6a0e46e102fda54218784466d"
+    },
+    {
+      "path": "apps/ios-prototype/public/assets/status/status-icons.svg",
+      "bytes": 824,
+      "sha256": "1a8bd4207cf34532ae514bdcdca693acc9a2b8ebc9d3182dc163c3e9ddcc4823"
+    },
+    {
+      "path": "apps/ios-prototype/public/favicon.svg",
+      "bytes": 1017,
+      "sha256": "900d5b173603512a32291e4694ee9ff35a86b0771113a0aa9d2297529c870232"
+    },
+    {
+      "path": "apps/ios-prototype/scripts/check-mobile-runtime.mjs",
+      "bytes": 1212,
+      "sha256": "ee85738cc2ef889c0b457d8ccac61e017b8c5d16f393e766ec9fb7d11c9aff7f"
+    },
+    {
+      "path": "apps/ios-prototype/scripts/prepare-sites-build.mjs",
+      "bytes": 910,
+      "sha256": "b6a6adaa4fab3234676116dd1c9cb6611275ab9d92dd26f5bf402393e3744bf6"
+    },
+    {
+      "path": "apps/ios-prototype/scripts/update-mobile-runtime-lock.mjs",
+      "bytes": 1732,
+      "sha256": "b4e1aa41133f19ba8bb32685b3ec05798b1ceabaf72c328419d545aa60fe1f0b"
+    },
+    {
+      "path": "apps/ios-prototype/src/App.tsx",
+      "bytes": 191,
+      "sha256": "7054b4e14304ab33153d3a2e860aa43d2a4f69e8a69630b4a37a2cbcd4ad2f16"
+    },
+    {
+      "path": "apps/ios-prototype/src/Prototype.tsx",
+      "bytes": 11038,
+      "sha256": "e5eb4f12ec0bce7572c5f5bf4c348afb9c35900727cc5a32d46d8732d03e226d"
+    },
+    {
+      "path": "apps/ios-prototype/src/main.tsx",
+      "bytes": 307,
+      "sha256": "01b7049715148ab645637905ccbbc91fc3f87659198a309541c2d1f03bb537d0"
+    },
+    {
+      "path": "apps/ios-prototype/src/mobile/BottomSheet.tsx",
+      "bytes": 4316,
+      "sha256": "f9c376dc78b8b5feb1c8752aa23414993ab66013d11e81b2ebb8342c570032ac"
+    },
+    {
+      "path": "apps/ios-prototype/src/mobile/COMPONENTS.md",
+      "bytes": 1982,
+      "sha256": "678379569b09d9ab789d96e8030a0eebb6606b880d8ad5b74de513f8a7b2787b"
+    },
+    {
+      "path": "apps/ios-prototype/src/mobile/Carousel.tsx",
+      "bytes": 10348,
+      "sha256": "e0e5e61bd40829ea1651c38a2470c7a09e405b2aa027db4d589593c1479221b6"
+    },
+    {
+      "path": "apps/ios-prototype/src/mobile/Device.tsx",
+      "bytes": 3537,
+      "sha256": "867de9c65220f2ac7202f895d2b10a64c747f211a4b22cd8f81a1a1d66e52fc2"
+    },
+    {
+      "path": "apps/ios-prototype/src/mobile/FlowStack.tsx",
+      "bytes": 7244,
+      "sha256": "1e85744c5f1c1138dd5e8b7b27fbb6c05139d5aac93d94c45084a018eddd4ebc"
+    },
+    {
+      "path": "apps/ios-prototype/src/mobile/Keyboard.tsx",
+      "bytes": 6831,
+      "sha256": "862587264375499846385ce817ea1b813db8f118140cdb6da163f989a6946cac"
+    },
+    {
+      "path": "apps/ios-prototype/src/mobile/MobileCursor.tsx",
+      "bytes": 2171,
+      "sha256": "be2353205e05d823bc23ecae88179d712781ee9ede8fa317057c194c7c23ee7d"
+    },
+    {
+      "path": "apps/ios-prototype/src/mobile/MobileRuntime.tsx",
+      "bytes": 1338,
+      "sha256": "1ffe80a9582460005d66f10fc73deaff08b81431785a506887cc0d8320be747f"
+    },
+    {
+      "path": "apps/ios-prototype/src/mobile/MobileScroll.tsx",
+      "bytes": 14325,
+      "sha256": "ea3e3691f587ea13753162b9e64c1981263e5b9beddebea21a6a1551dce76430"
+    },
+    {
+      "path": "apps/ios-prototype/src/mobile/PhoneFrame.tsx",
+      "bytes": 4448,
+      "sha256": "73015590b468acbb4b58e3f6fe5eef99c5f68f67722caffd8f00d271ba00a91d"
+    },
+    {
+      "path": "apps/ios-prototype/src/mobile/assets.ts",
+      "bytes": 232,
+      "sha256": "d40cb8e5390fd2b54618266e7694e40349006dfe480f65d60559316ca8c9c234"
+    },
+    {
+      "path": "apps/ios-prototype/src/mobile/components.tsx",
+      "bytes": 2691,
+      "sha256": "20b02f6c6de4cfd08aa6a49bf9bc261c0ea000864b37e1001afdcd892afe4bc8"
+    },
+    {
+      "path": "apps/ios-prototype/src/mobile/geometry.ts",
+      "bytes": 1244,
+      "sha256": "f1382e5d6cc9adfd7ac142304f2f9a5a2330db1d74b3f0848adbaf311676bf16"
+    },
+    {
+      "path": "apps/ios-prototype/src/mobile/index.ts",
+      "bytes": 802,
+      "sha256": "ee69d9341571db5dee84dd2d7452a62eef09085a84a85f198a3edc48047e0412"
+    },
+    {
+      "path": "apps/ios-prototype/src/prototype.css",
+      "bytes": 7962,
+      "sha256": "558082bf3062ae9cf77039e42c2be0ef1979f2e07e87c7312fa30497f69148a2"
+    },
+    {
+      "path": "apps/ios-prototype/src/styles.css",
+      "bytes": 14264,
+      "sha256": "844c67b27cf5e38ba395153145d058c929c6479199d245cd046f3646badd719d"
+    },
+    {
+      "path": "apps/ios-prototype/src/vite-env.d.ts",
+      "bytes": 38,
+      "sha256": "65996936fbb042915f7b74a200fcdde7e410f32a669b1ab9597cfaa4b0faddb5"
+    },
+    {
+      "path": "apps/ios-prototype/tests/mobile-runtime.spec.ts",
+      "bytes": 12236,
+      "sha256": "e26b43750914094bfed1b738d7f968ffa952febf1e44cf12f8b758868a6c4e30"
+    },
+    {
+      "path": "apps/ios-prototype/tests/navigation.spec.ts",
+      "bytes": 958,
+      "sha256": "48a20037879bf6c6120978aa16eb1d715d12c16d6cd8c67ceb46d9dd9d34a56a"
+    },
+    {
+      "path": "apps/ios-prototype/tests/runtime-fixture.css",
+      "bytes": 1249,
+      "sha256": "2445079492e348809e9ab48a016e1ab40e99026d6853c0fe036e34cfd062cbff"
+    },
+    {
+      "path": "apps/ios-prototype/tests/runtime-fixture.html",
+      "bytes": 334,
+      "sha256": "5d76636ac5d6a7ba916ada52e8b5cd9d9311887cbb2e17c73c10560091a26bb5"
+    },
+    {
+      "path": "apps/ios-prototype/tests/runtime-fixture.tsx",
+      "bytes": 4156,
+      "sha256": "5151193645265a13e8e1aea05264d089512312ac85f67b0fc35d7f956b0d26ed"
+    },
+    {
+      "path": "apps/ios-prototype/tests/sites-worker.test.mjs",
+      "bytes": 2219,
+      "sha256": "96af7b48906c6460c793356d7b6952f7d5026dbf5a502bec0d9297ff04201c26"
+    },
+    {
+      "path": "apps/ios-prototype/tsconfig.json",
+      "bytes": 527,
+      "sha256": "83efc1798334967d5a907f26b8cba31fa213f16b5ac0ed5c02fd38e7cf0ceb66"
+    },
+    {
+      "path": "apps/ios-prototype/vite.config.ts",
+      "bytes": 255,
+      "sha256": "da36eba05b845c3b0d69d823a515f6f7d9612992126ed2fe32c2809815ec73ba"
+    },
+    {
+      "path": "apps/ios-prototype/worker/index.js",
+      "bytes": 483,
+      "sha256": "2dd0615a445143933d88d4271f54f5d63ee951421fcd08c5a7617bb09c564389"
+    },
+    {
+      "path": "apps/ios/.gitignore",
+      "bytes": 181,
+      "sha256": "bb1f5229db3b89782e04c0ea964d9b44b8b941ddd19866f0cd78e4630297e2bc"
+    },
+    {
+      "path": "apps/ios/Rillora.xcodeproj/project.pbxproj",
+      "bytes": 131535,
+      "sha256": "f3c374eee1b49fbec7f8003fcc7f220d168c6627e2e96d885699f5ad3054dc07"
+    },
+    {
+      "path": "apps/ios/Rillora.xcodeproj/project.xcworkspace/contents.xcworkspacedata",
+      "bytes": 135,
+      "sha256": "7f3b00b5c3fdb45242d7b87e1e5c4e25d1fa8129a16c94295ecc4e8ea2235c5f"
+    },
+    {
+      "path": "apps/ios/Rillora.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+      "bytes": 3626,
+      "sha256": "fd8dab864fb7175dd7cb874b3483827dee526bfae5c84fb943b8fe4c6837c1f3"
+    },
+    {
+      "path": "apps/ios/Rillora.xcodeproj/xcshareddata/xcschemes/Rillora.xcscheme",
+      "bytes": 4545,
+      "sha256": "53707c7cefce5cd77bcaa68b6bc11208f65c57f637202cbf8e57733a3d6a965d"
+    },
+    {
+      "path": "apps/ios/Rillora.xcodeproj/xcshareddata/xcschemes/RilloraComponentPreview.xcscheme",
+      "bytes": 3474,
+      "sha256": "936149e998647a109143cc317aa7e5210b321b8c265ba7350ce403830621947d"
+    },
+    {
+      "path": "apps/ios/Rillora.xcodeproj/xcshareddata/xcschemes/RilloraLayoutMatrix.xcscheme",
+      "bytes": 4441,
+      "sha256": "a34d748a316ac4ab3f22189482c8b4735dde8288cdf71f48797d485ff1c93971"
+    },
+    {
+      "path": "apps/ios/Rillora.xcodeproj/xcshareddata/xcschemes/RilloraStoreKitLocal.xcscheme",
+      "bytes": 5464,
+      "sha256": "d3a1f4a2665540a24bee312f637b4158c150496c689093391c883da3554932dd"
+    },
+    {
+      "path": "apps/ios/Rillora.xcodeproj/xcshareddata/xcschemes/RilloraStoreKitSandboxCatalog.xcscheme",
+      "bytes": 4955,
+      "sha256": "df04d7094597b4bed31f041727eb288919f741ecfcd75173b5342fed41f3e0dc"
+    },
+    {
+      "path": "apps/ios/Rillora.xcodeproj/xcshareddata/xcschemes/RilloraStoreKitSandboxPurchase.xcscheme",
+      "bytes": 5332,
+      "sha256": "73f3b0f8d9d4e80cc95ec2655bf125b9c049bd4c393ecad0fbd1a3610dc5e376"
+    },
+    {
+      "path": "apps/ios/Rillora/App/AppDependencies.swift",
+      "bytes": 7090,
+      "sha256": "1077418c8df747936fe57ed88870b0d0007226c1c1cc55e827a45e4cfad97bcb"
+    },
+    {
+      "path": "apps/ios/Rillora/App/AppShellView.swift",
+      "bytes": 15701,
+      "sha256": "658c0286eb660749523cfed8090f326d9387eca527d2af581e146b89357ab7e8"
+    },
+    {
+      "path": "apps/ios/Rillora/App/AppTab.swift",
+      "bytes": 560,
+      "sha256": "ecc1d36f2d4ee881d27d6ab82901b821257ba19dc4133eabc7c93be9936c80e3"
+    },
+    {
+      "path": "apps/ios/Rillora/App/RilloraApp.swift",
+      "bytes": 4498,
+      "sha256": "27354c66dbf152b0ca6ea73fa377b24d0130e7f093ec06a07c853d7e9d62eaed"
+    },
+    {
+      "path": "apps/ios/Rillora/App/UITestPresentationFixtures.swift",
+      "bytes": 996,
+      "sha256": "4a8100fc12f901f0534bcac83ae302b18abff69dc71a12f50df64d54b2efae01"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/API/APIClient.swift",
+      "bytes": 56665,
+      "sha256": "c3ff0717b7332322bc9d42ded07f72a68b9fa5a00505d79615d65bed159ae47f"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/API/APIConfiguration.swift",
+      "bytes": 10975,
+      "sha256": "f095ffba036c8acdcb9b5e9999b46e16c001354dc328f98b4b835b021592519d"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/API/HTTPTransport.swift",
+      "bytes": 1145,
+      "sha256": "c2802be384bdd3e853bf65552d5a4c7329dc2f1bc2425524f76dacf451dfbfd5"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/API/RilloraAPIError.swift",
+      "bytes": 1348,
+      "sha256": "c0fa0bc1641a25070e89edf3301fb60c01ca03a23a51eee5244813ea5b63dfb7"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Authentication/AuthenticationStore.swift",
+      "bytes": 8291,
+      "sha256": "97c76001c89f3c9a4d90cad6b9048975c624dd91d5ab582c1e19e6584ee9f647"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Authentication/HostedLegalAcceptanceProof.swift",
+      "bytes": 2153,
+      "sha256": "bb389c03684786bd1125e489128c397dd779a8e0b8eed66d509a21192d103ba6"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Authentication/LegalConsentContract.swift",
+      "bytes": 1276,
+      "sha256": "935b6e1f64967f7d0b627cc1115239e6facbc4c33017a51e2d08db9c10bafe71"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Authentication/NativeAuthenticationCallback.swift",
+      "bytes": 629,
+      "sha256": "b0f5fe26d4abbac03aeb5b4333f163ee9827c840b3c662c2d784646405e09e76"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Authentication/NativeAuthenticationService.swift",
+      "bytes": 23254,
+      "sha256": "0c11dd4b990698d91fe571b324b15d7d22834fc546824ee9382ac277c63e6477"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Authentication/NativeReauthenticationPrompt.swift",
+      "bytes": 3086,
+      "sha256": "0080fb75342505c72d08961878d64a3b98f6301f4f766904038a4c1527aaa98e"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Authentication/PasswordResetStore.swift",
+      "bytes": 4858,
+      "sha256": "06aebd34b40d741ed9f1efc0743f956a84a7b961e7e41bd55abaa5cb8e7ed5d6"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Authentication/SessionStorageNamespace.swift",
+      "bytes": 884,
+      "sha256": "e9f026f50481d94498cc87f6f1207554c91814dc30a87194c9077420c4e9da0f"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Authentication/SessionTokenStore.swift",
+      "bytes": 3077,
+      "sha256": "310ca9762610ea44a46c2df5b9f70c4508934ee14e07d2fd8b01398ce4553029"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Commerce/ApplePurchaseCoordinator.swift",
+      "bytes": 16303,
+      "sha256": "114aa00d5b8715604f3287d782e76c9a0986b3585adb1feee483578a795c7722"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Commerce/ApplePurchaseServing.swift",
+      "bytes": 1756,
+      "sha256": "923f03772815327ce33558085816ae5db4db477e7c1be976b479fe1eb0c2cbf0"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Commerce/CommerceStore.swift",
+      "bytes": 25844,
+      "sha256": "66a4397a9ee769982e3ffa17af7345e40cb2ac19a1320a61377564763cb65d5e"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Commerce/CommerceStorefrontProvider.swift",
+      "bytes": 1059,
+      "sha256": "26674346420b8f1eef811a4a052c75f398a5cf242711af119a777f37c6b840c4"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Commerce/RilloraStoreKitCatalog.swift",
+      "bytes": 1511,
+      "sha256": "4bfed2625fd1b3d4d7658efbb96ab59eb0acc5f4a9716d3d48e4df113cf588b9"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Commerce/StoreKitClient.swift",
+      "bytes": 21758,
+      "sha256": "0e90555c6fe1fc56a8025dfc3334a1843c990ca3abf7a6fae83deabaa38960d6"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Design/AppAppearance.swift",
+      "bytes": 2239,
+      "sha256": "28d8054cc43247dba40b5eee463d75531857d16c481acb79d9ceee04b6b28289"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Design/AppLanguageView.swift",
+      "bytes": 2325,
+      "sha256": "7a27fc429d70c000ccc64da37b03d9b42ac3b1d3bd4b142562c35cd539b8e668"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Design/DisclosurePresentation.swift",
+      "bytes": 1754,
+      "sha256": "2815be060914413b205d6ab496a04c297a4d3f5535bb97fa4b9ed48c1ca30cc6"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Design/L10n.swift",
+      "bytes": 3271,
+      "sha256": "c65e99fcdcfc2f152b2fcc3a1bcf1e9eb6bd11830692b9d99f3c374287d9dea1"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Design/RilloraBrand.swift",
+      "bytes": 593,
+      "sha256": "6bb3ab733fee55f593fee0bd0862b9ada30e1b8cf6ecdc8a693c60be0101c4e9"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Design/RilloraInteractionComponents.swift",
+      "bytes": 21036,
+      "sha256": "8eec4cf07daf4731445398f30ee4f2d6857c9b9358a89c8e8215ecd1fabefa87"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Design/RilloraLibraryEffects.swift",
+      "bytes": 2646,
+      "sha256": "2447fef108c98b5654b4bd351c588e4bb61b561adaf011ee4938d016b1780273"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Design/RilloraSharingMotion.swift",
+      "bytes": 6181,
+      "sha256": "f09871b957ea6d0d9c0021bddf3a6ab8bb61011ebacc861d9b1118cb243f2fce"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Design/RilloraSurfaceMotion.swift",
+      "bytes": 4183,
+      "sha256": "ad154bf727b16b05729814d64d4ab0b90ef9f75171693e8fc025d2780ddd7431"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Design/RilloraTheme.swift",
+      "bytes": 16507,
+      "sha256": "0674f58d126fc45f9e6da1335504999e9f3a3b4b665eaa4d7f841aa8287de9b2"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Domain/AccountDataModels.swift",
+      "bytes": 5755,
+      "sha256": "c03e27a6b9271e4a5f0a943cce639d48150640d7f22400486581be3e98348afa"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Domain/AccountIdentityModels.swift",
+      "bytes": 1237,
+      "sha256": "7d65ddb01d7d5c09999064cae014ccabbb2a0c802008b99d515827c855fcd743"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Domain/ApplePurchaseModels.swift",
+      "bytes": 5848,
+      "sha256": "eef203c6debbe4317ad6bbfed8cf7f74718867638707ceb40b1e9410bfb19f77"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Domain/BoundedDocumentReader.swift",
+      "bytes": 1627,
+      "sha256": "efe4ea9c625006aa86031cdb5c5b2cb36210b1566d2ebe5395753ef6494fa8a2"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Domain/CommerceModels.swift",
+      "bytes": 6232,
+      "sha256": "29586cab1656877755b94ea75b610cc94c5b856936d5b2d28aed5762abbd1873"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Domain/FamilyMaintenanceModels.swift",
+      "bytes": 8233,
+      "sha256": "add10023e03fc34dbda1cd68300b338af48cda7cdb0ec763071f546113145a40"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Domain/MatterDetailFields.swift",
+      "bytes": 5544,
+      "sha256": "a3745ea29484a8b8432785d2e6ee82c0087514fa9117d32abd358313951eb2c7"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Domain/Models.swift",
+      "bytes": 44559,
+      "sha256": "7722a4b7aeaf0b5942f84449593cdbb92679733895a28c2ba3772a91b8720949"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Domain/SharingModels.swift",
+      "bytes": 12566,
+      "sha256": "0887f4f1593cf98c19efe3d4d7245b37b989d85635cfe8154f29361d0abe4e01"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/AccountDataView.swift",
+      "bytes": 13460,
+      "sha256": "e7ba0ee1e7d8237e8314430c5613eae47d0dffd90f14ba9f856f9210f6698289"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/AccountDeletionView.swift",
+      "bytes": 8370,
+      "sha256": "6f64a0925f79d76322b3a4fc363ba92f3302b494bee826952642096bf010902f"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/AccountIdentityStore.swift",
+      "bytes": 2314,
+      "sha256": "82873a22ab76111482702c63d75a8918998ed20024110962644bf2fa816402f1"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/AccountIdentityView.swift",
+      "bytes": 3732,
+      "sha256": "2ae9a2cb8f87f7e16610a01108f9f6374873c5492b7eff7eed2ba59f0c671a92"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/AccountView.swift",
+      "bytes": 5437,
+      "sha256": "01f21efe852df796ee4f568995f141c6bb8da543eebf81212cc59e2a2433db46"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/AppPreferencesView.swift",
+      "bytes": 2046,
+      "sha256": "c9428dfb4b2f33abadbd2853848c6d3acc7b4f12fccd16a72d54569f491bfb0f"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/ApplePurchaseEntryView.swift",
+      "bytes": 1615,
+      "sha256": "07c300a3eed2c6efdd215ab634af77d788d3cf0bcdcbeb7120269c86ea0da454"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/ApplePurchaseSection.swift",
+      "bytes": 5602,
+      "sha256": "3f23e7d43b061532f87b8d59798bb11bde8191c58f9c5c14b708d236c4c7c470"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/AuthenticatedProfileContent.swift",
+      "bytes": 9804,
+      "sha256": "f3810795a5f8f15404d932446a42027175360a2278a680f99f9d999ed86b5c38"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/PasswordResetView.swift",
+      "bytes": 3928,
+      "sha256": "890e7ebef764a8431c01f91a72e9479badeb4e48d025797817a58b5998f2ada5"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/PlanAccessView.swift",
+      "bytes": 18985,
+      "sha256": "712d33c854383f409da5e44a1dd42d63d88d968114f9549d6b8e7fb4c6483ed7"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/ProfileDashboardComponents.swift",
+      "bytes": 8886,
+      "sha256": "f74de1ccaf6be5de76c89e0ab833cd017a4d265d0d4b5c6ab81228014dffe300"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/ProfileSupportViews.swift",
+      "bytes": 7085,
+      "sha256": "ff59ab61671fa14b3b97165691112efe3e1c7b6da639cde3f192e33a58b0df09"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/StoreKitSandboxCatalogView.swift",
+      "bytes": 6080,
+      "sha256": "85a7aa0653ec7afdcc64b4254944cdc670811ad9f4fcb040399d890291b7f464"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Contacts/ContactSharingStore.swift",
+      "bytes": 7513,
+      "sha256": "946e48e02bf00344dc54367313afab7914849f2d6b00d201dd22d67b23e05ef9"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Contacts/ContactSharingView.swift",
+      "bytes": 20143,
+      "sha256": "ee0e4c00548dedf1ba55b35327241d0445afd40068959b9a6fe0d1cd4f79ee77"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Contacts/InvitationAcceptView.swift",
+      "bytes": 10163,
+      "sha256": "f98eb5f651c307990e772f261d58704ad0a7d27f89ea51e40283601df4ccc10e"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Contacts/MatterPeopleSection.swift",
+      "bytes": 3852,
+      "sha256": "4acac927c5a611f62a55fb32acf11ae8aff52cdbf1a1957582c032dd628e855a"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Contacts/SharedAccessStore.swift",
+      "bytes": 1401,
+      "sha256": "c8754e67f46bc72bcccb60ed408760b481fa9355ecd65c8e930aacb8284419d1"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Contacts/SharedWithMeView.swift",
+      "bytes": 10646,
+      "sha256": "80f6598f57ca1d056d8fe7f169e7f8ad746096dbd09b689b74211bbcbccbc8e2"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Contacts/SharingPreviewContent.swift",
+      "bytes": 2462,
+      "sha256": "3f776083d8689d225542fae292c7139b91522fdf05d81e2739805725c0b45520"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Contacts/TrustedContactEditorStore.swift",
+      "bytes": 7286,
+      "sha256": "3bbcf5b8057844a8f5c83b100107b58c9cca6e0fbc8c0b1a46632498a133b7e3"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Contacts/TrustedContactEditorView.swift",
+      "bytes": 11065,
+      "sha256": "3895c8c2ef6863df1893403f793806cb5a12ffed9a23cfd29a540a67369fa309"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/FirstUse/FirstUseGuideStore.swift",
+      "bytes": 2535,
+      "sha256": "11821f132b84c898f1ad42d5c609558e1e42ccaa8535dbd37b2a3f2a4efb2fba"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/FirstUse/FirstUseViews.swift",
+      "bytes": 5457,
+      "sha256": "90873048a984e1eb9b4a9131b986b08595477f0885afef8127eb0594b2b959cc"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Maintenance/FamilyMaintenanceStore.swift",
+      "bytes": 1953,
+      "sha256": "87833d423eb5356c5522808723f411f91e71ac4a8c75acff758f9468d21da4e5"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Maintenance/FamilyMaintenanceView.swift",
+      "bytes": 13944,
+      "sha256": "aaba973f2383feeb5205d9225bc050ae170f518716983be469025bdbb431cd16"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Maintenance/FamilyReviewSheetView.swift",
+      "bytes": 15332,
+      "sha256": "534fed10af436eb2a7f75e0b32ff0d5fee83407b8a470fb09884e6937f4c7f02"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Matters/MatterEditorStore.swift",
+      "bytes": 9908,
+      "sha256": "6021f5ed304a3b80cfd136a77d33e5589a108fbc0449dd144dffd0116186001f"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Matters/MatterEditorView.swift",
+      "bytes": 15414,
+      "sha256": "d4468b352b16d6530cc124ddfe45a8f195cf47942134172b28db5904f6145279"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Matters/MatterListPresentation.swift",
+      "bytes": 3192,
+      "sha256": "b9cc55a2acf309ee53209c4d41d8240a556774a8dd53ed358157dd7b35dbe421"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Matters/MattersView.swift",
+      "bytes": 9155,
+      "sha256": "4500661a1072158f83b8982a01f86c0ac2331976791f119c545c3879caaade9b"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/OfficialSetup/MatterAccountGuides.swift",
+      "bytes": 2195,
+      "sha256": "afb415314b1a9db243d3b611bf68f55626b7714e913a97d6790eb2a1d82ef66b"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/OfficialSetup/OfficialProviderGuideCatalog.swift",
+      "bytes": 8779,
+      "sha256": "42149e9002fc50f8cdba7b3afee66b1925d4b74a1bd9b68f5e50e0295232fb10"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/OfficialSetup/OfficialSetupStore.swift",
+      "bytes": 3581,
+      "sha256": "1fd10b5b31c7e0f83438739565ce1f8b94010a3eca6894efb1df4e798681bbc6"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/OfficialSetup/OfficialSetupView.swift",
+      "bytes": 15750,
+      "sha256": "ea72e08b89ca4a460bcd1ec3fbd03cd089dd560ffb5cde75269052e327edd49d"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Overview/ContinuityExplorer.swift",
+      "bytes": 8957,
+      "sha256": "2cd7f16d343944764d1ef3bd73a5409b588aaea0bab47db35c1d0205fec7c635"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Overview/OverviewDashboardComponents.swift",
+      "bytes": 11841,
+      "sha256": "84691ac05bcff098a8cc55b581bd8ec0e6bb4e096c188b615805699489fe1be4"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Overview/OverviewStateViews.swift",
+      "bytes": 2721,
+      "sha256": "577606799503fb1e56b593538c842dfcfc1c127a06aab4badab90a68c0a56a4f"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Overview/OverviewStore.swift",
+      "bytes": 7296,
+      "sha256": "a3ca4e2c986405e947f90cdcf39200a86c11cd2d5323fd5ff1a126de203049de"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Overview/OverviewView.swift",
+      "bytes": 13629,
+      "sha256": "f34e86e86f4105698d9855ce7e76741702a585134974987bcf5708d4a8e6f3f9"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Overview/PreviewFixtures.swift",
+      "bytes": 3339,
+      "sha256": "ea629ca262990eca0cd390c181f692232ccdec95a89e94a3b2e39ab12e6860d1"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Overview/PublicHomeAppearance.swift",
+      "bytes": 886,
+      "sha256": "9ef97d3f61bb948388ea4ee0482dcb7da737a5631c65532b49d9e9e4c17b3545"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Overview/PublicHomeSharingDemo.swift",
+      "bytes": 7077,
+      "sha256": "415e20e4c5db117dcd5e90fc1f9e4bc0a8ec049a8242161492cb4715a179b514"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Overview/PublicHomeView.swift",
+      "bytes": 7537,
+      "sha256": "1e3c01717e5852b287b7f6b7ae3db69273e1d9b72bac7037c63cce2446479881"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Overview/SignedOutExperienceViews.swift",
+      "bytes": 8666,
+      "sha256": "70c3ee8316c69b40a0a48c7cbdbd8d00770a2ff876b7ed5f0e75a567fc2693ba"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Plan/PlanMotivationStore.swift",
+      "bytes": 2700,
+      "sha256": "088a1c83fabbfc25c5fb10f0476a704b01c78cb82da72d23a2a00bfe31d42295"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Plan/PlanMotivationView.swift",
+      "bytes": 4231,
+      "sha256": "7ff2a5fce221830d5920d061dba90305b3f9615c8d05b9489216b8037a0bf6fc"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Roles/RoleAssignmentPolicyStore.swift",
+      "bytes": 5403,
+      "sha256": "bfc86e95327d4f2271bd2db94ab68487bc45371c2f8b3ff7104ddabd4df46666"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Roles/RoleAssignmentPolicyView.swift",
+      "bytes": 13563,
+      "sha256": "f2cf3fe7005f2f3c9a0ed472c422b6fe6fa12410569f4d3a8de9904b893568ea"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Simulation/DisclosureRehearsalStore.swift",
+      "bytes": 2455,
+      "sha256": "a135f034811405b711316cab0f2967848aa7fafa4e2f3486cb85c62f21638b5c"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Simulation/DisclosureRehearsalView.swift",
+      "bytes": 12443,
+      "sha256": "8c1916eb79358cdeea9ea2c207c01ca1b0f9396a060ba9b1731d7a7860b2d0e0"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Simulation/SimulationStore.swift",
+      "bytes": 1936,
+      "sha256": "cad0a8acf06475773970cb44e151450c5f2a6d23a3fa4a740b413536cd72a324"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Simulation/SimulationView.swift",
+      "bytes": 5953,
+      "sha256": "24a14b7ed597b2d832f9c3658827b92b7d3df2e0705b539810ea914200ab3852"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/StartHere/RecipientRehearsalStore.swift",
+      "bytes": 5102,
+      "sha256": "d3877d5ae54b70db58fc6ffcd2b8283c4791b775823d4c93ebf1234c0e67a569"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/StartHere/StartHereCommitment.swift",
+      "bytes": 4676,
+      "sha256": "ce8ee12f24dfbea1a76ce4eb3f0c5ccae4e33ba57a1a8abcd064f0795cc5229c"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/StartHere/StartHereEncryptionService.swift",
+      "bytes": 17344,
+      "sha256": "bd7ab7a63a4c0f94e62fb565603002be7fdd5fca89b61295fc671714b004e330"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/StartHere/StartHerePreviewStore.swift",
+      "bytes": 5044,
+      "sha256": "4148479f84fbad898936cf594f6e2af1bb9d4b63e6f8095b1417ba4e0a0228ad"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/StartHere/StartHerePreviewView.swift",
+      "bytes": 32466,
+      "sha256": "0ea6722dbcc004263daf889a78d5f266e7bcf14b6806f58c44583c86e28b7eb4"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png",
+      "bytes": 52357,
+      "sha256": "2d11af0fb45b3e337e2c8cd1d50b16632cf4f15df4df2113eb0b7b091c63d0c9"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/AppIcon.appiconset/Contents.json",
+      "bytes": 208,
+      "sha256": "3c6addf3f20972a12a0c33e6f6fe9e0857a0bdb512dce5d59f4bd007b236c157"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/CoinbaseLogo.imageset/Contents.json",
+      "bytes": 230,
+      "sha256": "17959d64fb36eb6c9ddd33f81fc46dca8403893b4e929e0971237b553cb711d3"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/CoinbaseLogo.imageset/coinbase-logo-white.svg",
+      "bytes": 661,
+      "sha256": "06d71cb6d9a5b5e9b57301f073bc6bff7bb614ebaee7082f5e6892d52b70c593"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/Contents.json",
+      "bytes": 63,
+      "sha256": "0fd49ba3c3585c709678e0046a821c3c60685ec7063720d30d3a3448be3a208b"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/ContinuityGuide.imageset/Contents.json",
+      "bytes": 149,
+      "sha256": "34ba847afaed12449db7371987c87530692cd53f6e539573c50f2f241c2ec835"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/ContinuityGuide.imageset/guide.png",
+      "bytes": 904558,
+      "sha256": "6593625754d3f73c4aea39ba0a7f3bef7fde2b5b7dfa726437d67a46ea2585c2"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/ContinuityMap.imageset/Contents.json",
+      "bytes": 158,
+      "sha256": "5dd9c0be2ae7ecca7deaa38f6c9286c67f118904ee78b8dcc9fe49def1f2a39b"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/ContinuityMap.imageset/continuity-map.png",
+      "bytes": 895907,
+      "sha256": "fcab47eaf74ffd7ef78928f0c967bfa597d302b7ecc47d74bbda2b44dd7fec09"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/DropboxGlyph.imageset/Contents.json",
+      "bytes": 224,
+      "sha256": "8d9e668809a663e6c308c2e8bb5f26fc66f7082f60b2a9ef11680e9b4b0c7fbd"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/DropboxGlyph.imageset/dropbox-glyph.svg",
+      "bytes": 553,
+      "sha256": "c2175e421fbe504b015a2d66c822b529d5eed0cfd76408755b3f0f6dcf1b44e1"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/FacebookLogo.imageset/Contents.json",
+      "bytes": 180,
+      "sha256": "21d37bdc77984ee36f3e05166029221d58402b99aa5163686a95a2f91ae9432c"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/FacebookLogo.imageset/facebook-primary.png",
+      "bytes": 54771,
+      "sha256": "2adfd474d91fd20c51084309ed000c1ae6cc7f5f70af14d375930f5a71301308"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/GitHubInvertocat.imageset/Contents.json",
+      "bytes": 242,
+      "sha256": "2190e987a513a14f887dc79661fe80b183f453adc0f7ed7e9934f778dec400c5"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/GitHubInvertocat.imageset/github-invertocat-white.svg",
+      "bytes": 1559,
+      "sha256": "ccd84c89b1056345608fc3489357f8acc7397e49a3cdc2d418b6c8016911d47b"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/GoogleGLogo.imageset/Contents.json",
+      "bytes": 397,
+      "sha256": "e2acd94cbae20e9d9f1098e654f836fe0e39733454f723e02d092bcc06158ff4"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/GoogleGLogo.imageset/google-g-logo.png",
+      "bytes": 1995,
+      "sha256": "c26fcccaa60b1f048eef6c6824f10cd8889eb0a61941e7462031ca979657f6c5"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/GoogleGLogo.imageset/[REDACTED_EMAIL]",
+      "bytes": 3562,
+      "sha256": "19a1f74bde2c1ee5b2606300814aee26b6789ab016b811322aaa151a61da2882"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/GoogleGLogo.imageset/[REDACTED_EMAIL]",
+      "bytes": 5671,
+      "sha256": "dae3e3f8dc6652c01c0ff030d249c4fb77ade372bd70b8d8ca0aa642d7064329"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/InstagramGlyph.imageset/Contents.json",
+      "bytes": 232,
+      "sha256": "f3fc7b3be163712bc676520351fd9fe43379898f5cd8b747039a33078295bff5"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/InstagramGlyph.imageset/instagram-glyph-white.svg",
+      "bytes": 1819,
+      "sha256": "3347813e9e8f082cdf48495818bd370ccff94b687efb8aa1c8a7b36cfcfb8291"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/LaunchBackground.colorset/Contents.json",
+      "bytes": 259,
+      "sha256": "2547262587176d5d3a67f315caef6314f853524df7fb375f55490b1355f601a2"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/PublicHomeHero.imageset/Contents.json",
+      "bytes": 335,
+      "sha256": "575d84fc24e369eb2bfc2c0408bd76454c1d2a44f922125f1a2848a2efd994d2"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/PublicHomeHero.imageset/dark.jpg",
+      "bytes": 273952,
+      "sha256": "c4930d686fd5d6d19ca7596b85af2753a8ee27d9c5d239b9af4db0cc182b080a"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/PublicHomeHero.imageset/light.jpg",
+      "bytes": 319766,
+      "sha256": "7cb10aad337b5dd8b80c2c78269462439ce821b57a01c3d16c354663c5339516"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/RilloraBrandCompact.imageset/Contents.json",
+      "bytes": 277,
+      "sha256": "dbf7f4dafa73da6de38f395dbfcb91764f8edbdf6aa205b39f856728f5d84685"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/RilloraBrandCompact.imageset/lockup-small-reversed.svg",
+      "bytes": 8674,
+      "sha256": "c4a633b53deee79482429ffcf0eae67eba1d0cce85c9263cc69c1511fc36e48a"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/RilloraBrandLockup.imageset/Contents.json",
+      "bytes": 271,
+      "sha256": "5b78f6f685bb6d3728ff736f2c04d867c057d626a35a85a52d3b6497a257cb1a"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/RilloraBrandLockup.imageset/lockup-reversed.svg",
+      "bytes": 8839,
+      "sha256": "b4dc6b2fccbab27b29f341425e0059b219af4a968ecafe21535815b2839522cd"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/RilloraFolio.imageset/Contents.json",
+      "bytes": 156,
+      "sha256": "d1d9c20509ba06a67dae7355823252a2cd0ca25afa72c697e258aa9b2228cd4b"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/RilloraFolio.imageset/rillora-folio.jpg",
+      "bytes": 87765,
+      "sha256": "536cf7e6658ce0be63fd74964f51c66870c6d39b0b9f7223343c3a8cd21f9901"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/RilloraFolioCutout.imageset/Contents.json",
+      "bytes": 156,
+      "sha256": "e0a268e7f1719c774dd92308118f36f6bd9e652a34cfa2fab5e5a9e6798a8c76"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/RilloraFolioCutout.imageset/folio-cutout.png",
+      "bytes": 572254,
+      "sha256": "62b6769b48f66e315ecd47587b7b5aa584daf312100aeeec5d6a4f8a978bedf3"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/XLogo.imageset/Contents.json",
+      "bytes": 184,
+      "sha256": "f9879fb3eb44a86caf7dcd93aa917d95212c1f0e32a7a6b003ac9166eb67c2f3"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/XLogo.imageset/x-logo-white.png",
+      "bytes": 103016,
+      "sha256": "432bdd47255b48366843ec21d209e774f93b807e1fd0894fc983aad0dc7bd03b"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/DesignCredits.txt",
+      "bytes": 31240,
+      "sha256": "4c86745fcce33c456cd1b13c95fa8982f77e91bfccd977f525cb7e517c72cd48"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Fonts/GoogleSans-SemiBold.ttf",
+      "bytes": 1906192,
+      "sha256": "3f9e55d5a74e96e8d6c047a2b8ecc0993fb7ad65986aa8a6a6284715a8a9e909"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Info.plist",
+      "bytes": 3737,
+      "sha256": "355a4aaf0a5395115e30b57dbeae2d9939fad2fe47ac7a91cd8d30dfd19f5bf7"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Localizable.xcstrings",
+      "bytes": 471578,
+      "sha256": "552392c021fbe930e89f4019f7a5ff02db34064459febd74b35f8f4b31ae459d"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/PrivacyInfo.xcprivacy",
+      "bytes": 608,
+      "sha256": "03e0fa61628dea9b9b45dba38ca4103cfc643156c342f9253e9f86ea3a06b48d"
+    },
+    {
+      "path": "apps/ios/Rillora/Rillora.entitlements",
+      "bytes": 542,
+      "sha256": "6e86179984a92e43fa7e35553e9d1029a8f859f038210a6977201cd33928dd17"
+    },
+    {
+      "path": "apps/ios/RilloraComponentPreview/ApplePurchaseLayoutPreview.swift",
+      "bytes": 6750,
+      "sha256": "50ef07bfd0b2c522709acfd5a87a16bcaa473cf3a78793c50f17bed9fef6b8f7"
+    },
+    {
+      "path": "apps/ios/RilloraComponentPreview/Info.plist",
+      "bytes": 1301,
+      "sha256": "72433d55f2c1a0af10b1654d85d234b5335cb4ebcd93676f3815824481d4d19f"
+    },
+    {
+      "path": "apps/ios/RilloraComponentPreview/RilloraComponentPreviewApp.swift",
+      "bytes": 8229,
+      "sha256": "3b517c6b2215e1ace05f853e5c6b1316ccd75c88060a2f3cf9fc97644083ce9b"
+    },
+    {
+      "path": "apps/ios/RilloraLayoutMatrixTests/RilloraJourneyAuditTests.swift",
+      "bytes": 5905,
+      "sha256": "ece53acb9da9919d95e9c4462da41924de3cbeb6bc5da7265adca2ce65f32425"
+    },
+    {
+      "path": "apps/ios/RilloraLayoutMatrixTests/RilloraLayoutMatrixTests.swift",
+      "bytes": 64602,
+      "sha256": "c914d2c15ce0acda6955ab5d4931527bba427e0945d82dfc0503f5164120ccaf"
+    },
+    {
+      "path": "apps/ios/RilloraLayoutMatrixTests/RilloraLocalizationUITests.swift",
+      "bytes": 30865,
+      "sha256": "e09697f3784fadd01df7083013e16527e0d46977a4227adbd37c9a84f37e1cf9"
+    },
+    {
+      "path": "apps/ios/RilloraTests/APIClientTests.swift",
+      "bytes": 82886,
+      "sha256": "87f2fe345e47c48ea5fa5d9b806a2fac3110859050eabe03ceed8a63bd459c32"
+    },
+    {
+      "path": "apps/ios/RilloraTests/AccountDataTests.swift",
+      "bytes": 2633,
+      "sha256": "7223e46ac11a519a2f6b7fd6265ed70be97d3309a9c1135c1c2fcf4a937d1fb7"
+    },
+    {
+      "path": "apps/ios/RilloraTests/AccountIdentityTests.swift",
+      "bytes": 16162,
+      "sha256": "357ad84d3baf469f1c6b593a928c3ca6d8676362a0b9a32356c6ae3430c20e3f"
+    },
+    {
+      "path": "apps/ios/RilloraTests/AccountLocalizationTests.swift",
+      "bytes": 3142,
+      "sha256": "5a2ccc9acce898b1a69a91d228e374ad74202de28a075dde8676838086d05182"
+    },
+    {
+      "path": "apps/ios/RilloraTests/AppAppearanceTests.swift",
+      "bytes": 2819,
+      "sha256": "7a1f3aafbd655b68874dbe9a02a282ed761763b9e0a96a19395ae5079f8f16cb"
+    },
+    {
+      "path": "apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift",
+      "bytes": 29941,
+      "sha256": "f39d053db8de631e8cafea9a0c11a39df1a98533a7bd02543dd55451bce8f4af"
+    },
+    {
+      "path": "apps/ios/RilloraTests/AppleStoreKitClientTests.swift",
+      "bytes": 4661,
+      "sha256": "ed01125bf845ab32b23788b5d5566b5ca322fc1d39bdbc95e744c675b83ea7e4"
+    },
+    {
+      "path": "apps/ios/RilloraTests/CommerceStoreTests.swift",
+      "bytes": 35012,
+      "sha256": "aaa83beaac1fc0da797b71c81114ecaa3208987bdaadc59e756921496b705669"
+    },
+    {
+      "path": "apps/ios/RilloraTests/ContactSharingStoreTests.swift",
+      "bytes": 3447,
+      "sha256": "252335d37f753b80117c5acb783296213d354547a61b7e8603c0252ca46877e2"
+    },
+    {
+      "path": "apps/ios/RilloraTests/CoreLocalizationTests.swift",
+      "bytes": 3665,
+      "sha256": "5d75aa5bef9004f0ce9d64a84199facba43963d3c94f731d488bf7b4acf6821b"
+    },
+    {
+      "path": "apps/ios/RilloraTests/DisclosureRehearsalStoreTests.swift",
+      "bytes": 9343,
+      "sha256": "78af1b4fcfd68ae528a6dec4532248c245e7be1e0a0b2cc7178f0eba1c34eed8"
+    },
+    {
+      "path": "apps/ios/RilloraTests/FamilyMaintenanceTests.swift",
+      "bytes": 4479,
+      "sha256": "95611c0edc2172666f41a25ad1e348a897ab1568177a64fe5b15905bd7fdce19"
+    },
+    {
+      "path": "apps/ios/RilloraTests/FirstUseGuideStoreTests.swift",
+      "bytes": 4513,
+      "sha256": "767f6af557fe7fee9af65d56962650307c72b8fddfaa2232f012e70e89a17166"
+    },
+    {
+      "path": "apps/ios/RilloraTests/Fixtures/provider-guide-match-cases.json",
+      "bytes": 3184,
+      "sha256": "18d16f460238285aff242c2207d2ff2c5425ce4db2e9fdcaddb08c5daafeb828"
+    },
+    {
+      "path": "apps/ios/RilloraTests/HostedLegalAcceptanceProofTests.swift",
+      "bytes": 2831,
+      "sha256": "94e9b1cc7dd7e88e330773309310b9ac0b90bb9a0d4f0f4110544af5cf96f808"
+    },
+    {
+      "path": "apps/ios/RilloraTests/LocalizationTests.swift",
+      "bytes": 3079,
+      "sha256": "0a4300f142eea1f80da7e0b1fd5efd66b5216db815d950c10ccbaa4f6a8c0c13"
+    },
+    {
+      "path": "apps/ios/RilloraTests/MatterEditorStoreTests.swift",
+      "bytes": 12841,
+      "sha256": "eefa485c098cd6e9ec28aa84b4e5aeaf7f82bbbb597c50a12d9f90fd659163b4"
+    },
+    {
+      "path": "apps/ios/RilloraTests/MatterListPresentationTests.swift",
+      "bytes": 8917,
+      "sha256": "bf0e05809fa597ee1b470afa646e5418f7e0ee826b121ef4b8c92b6c80771d63"
+    },
+    {
+      "path": "apps/ios/RilloraTests/NativeAuthenticationCallbackTests.swift",
+      "bytes": 1680,
+      "sha256": "755cfd27c3bfbe8f4d90908fbc45dd20a140a3473671e9f17b03c66a77df85b1"
+    },
+    {
+      "path": "apps/ios/RilloraTests/OfficialProviderGuideCatalogTests.swift",
+      "bytes": 6787,
+      "sha256": "be8603cbf32d073c036067fce1aa179b3c0d867044f0c457916d0be7fed03b5d"
+    },
+    {
+      "path": "apps/ios/RilloraTests/OfficialSetupStoreTests.swift",
+      "bytes": 5387,
+      "sha256": "50b7e12caeb8360eb55838ff561e2a69ffd28f59a748f59c06ca90fa93ee8045"
+    },
+    {
+      "path": "apps/ios/RilloraTests/OverviewStoreTests.swift",
+      "bytes": 11119,
+      "sha256": "30d21b1f6253f61f6c39d70b9f026b72da180dcce45903ec7c617bd4028ae43f"
+    },
+    {
+      "path": "apps/ios/RilloraTests/PasswordResetTests.swift",
+      "bytes": 24186,
+      "sha256": "ae4ebfff66624893e75115e54c2cb5f1961faf1ab5a847dd219b22951e316acb"
+    },
+    {
+      "path": "apps/ios/RilloraTests/PlanMotivationStoreTests.swift",
+      "bytes": 4884,
+      "sha256": "4d2d69c0efc934c6b4cff00ef00dee0d44a8ee6300108642bf077b6c941bf344"
+    },
+    {
+      "path": "apps/ios/RilloraTests/ProductionConnectionTests.swift",
+      "bytes": 7647,
+      "sha256": "3429c99a9d8561350e03385e29c432355ab464cbe72b8f5bbc8baaabfc3df76d"
+    },
+    {
+      "path": "apps/ios/RilloraTests/RoleAssignmentPolicyStoreTests.swift",
+      "bytes": 10599,
+      "sha256": "46de1dcc042d64690c2b30ba88d5bee238d3f224afde6ea08d7ddf3d3fd9147b"
+    },
+    {
+      "path": "apps/ios/RilloraTests/SelectedLanguageTests.swift",
+      "bytes": 1182,
+      "sha256": "8eed793252fd13af955dc5dde91d9f1e35dc103a4bb29a7488c0d450b8ba18ca"
+    },
+    {
+      "path": "apps/ios/RilloraTests/SharedAccessStoreTests.swift",
+      "bytes": 5547,
+      "sha256": "7fd3f95393e8d02233eb21dc3ea243b0611a584d4abf13e92ede069674dc2654"
+    },
+    {
+      "path": "apps/ios/RilloraTests/SharingLocalizationTests.swift",
+      "bytes": 3154,
+      "sha256": "19d8c9f5258ffa31a954e29ae9f450c0e3b3e1916daffe0403f18c9567689a81"
+    },
+    {
+      "path": "apps/ios/RilloraTests/SharingPreviewTests.swift",
+      "bytes": 1838,
+      "sha256": "2e27ce3c18fa22ce84784e00f7dc963e97ea7814a3ec7501bd267d633e9d11b5"
+    },
+    {
+      "path": "apps/ios/RilloraTests/SharingTests.swift",
+      "bytes": 4442,
+      "sha256": "e7344983930da791e0166dd3edb229d9931c72959ee19bb45e8918838084c7ae"
+    },
+    {
+      "path": "apps/ios/RilloraTests/SimulationStoreTests.swift",
+      "bytes": 3683,
+      "sha256": "cee4ef2549d3a2017eb9331e45961aba43386eb518da5c9ced14e7ae7c445d8e"
+    },
+    {
+      "path": "apps/ios/RilloraTests/StartHereEncryptionServiceTests.swift",
+      "bytes": 15847,
+      "sha256": "ddb038f3f01ed1eca09e8d70492669e655eecb1ed1fa8d3724a18765037604eb"
+    },
+    {
+      "path": "apps/ios/RilloraTests/StartHerePreviewStoreTests.swift",
+      "bytes": 13210,
+      "sha256": "991efb3ddf3fb7c06ee87be5d37ba43fb276da7886deda5355d86911cd3f553b"
+    },
+    {
+      "path": "apps/ios/RilloraTests/TrustedContactEditorStoreTests.swift",
+      "bytes": 9573,
+      "sha256": "b5fbea51aff1464ad80832f1aa711ae335828ce6efefcf1d9624543f14532788"
+    },
+    {
+      "path": "apps/ios/StoreKit/Rillora.storekit",
+      "bytes": 3991,
+      "sha256": "2373f01e0457b2803359d9ee55c817bdecb04c8fd82ccc6d05ea47c884c53438"
+    },
+    {
+      "path": "apps/ios/project.yml",
+      "bytes": 10219,
+      "sha256": "046a5070e08da85506ca7da695771bb495f20edec84b61c2eb97083c5389f6fe"
+    },
+    {
+      "path": "apps/web/.env.example",
+      "bytes": 388,
+      "sha256": "bbb0c59ed9e7bd413dd126c522462917c742cd51f30640d2285975a1a57e0039"
+    },
+    {
+      "path": "apps/web/.gitignore",
+      "bytes": 88,
+      "sha256": "9b7b4c1e386a11817bbc125d594912ace203d6c36ba05c7b138f45e274164339"
+    },
+    {
+      "path": "apps/web/.openai/hosting.json",
+      "bytes": 91,
+      "sha256": "1ee63eeaaef3841c68fa8b76a152e8fb73996a0bc49b8a2a6794edbe06efc3dd"
+    },
+    {
+      "path": "apps/web/AGENTS.md",
+      "bytes": 11323,
+      "sha256": "b1b799cbc9c2049f099c873e2c8cc9a0d0956f7c17713c608be8358296445827"
+    },
+    {
+      "path": "apps/web/e2e/account-identity.spec.mjs",
+      "bytes": 6220,
+      "sha256": "1421b3ce48d93eaf837ea1ec3757bea10ecfccc9ef97d995f8e5b3633b989932"
+    },
+    {
+      "path": "apps/web/e2e/fixtures.mjs",
+      "bytes": 5223,
+      "sha256": "f24e7a0f3a610f039429a5b6fa675d1afaa8af12c77190efb9d5b343f320a91c"
+    },
+    {
+      "path": "apps/web/e2e/landing-header.spec.mjs",
+      "bytes": 4684,
+      "sha256": "f3ee32a38c4e468429aee551e5473a7236c0d4349084eb39ca8b3e5c6d2ef89d"
+    },
+    {
+      "path": "apps/web/e2e/plan-access.spec.mjs",
+      "bytes": 10715,
+      "sha256": "ffd247c52b3239f2b50f5d23eb0979775b95770c885d4b7117ff8d4d48552611"
+    },
+    {
+      "path": "apps/web/e2e/ux.spec.mjs",
+      "bytes": 16667,
+      "sha256": "0f573e9ecb961b644965350513fbe8abea32afce2a130bd71b54012f9381083e"
+    },
+    {
+      "path": "apps/web/index.html",
+      "bytes": 802,
+      "sha256": "a086506d6591d9fec2e7c69427bb8872b98c797f6f3b487114c8f7916b629641"
+    },
+    {
+      "path": "apps/web/legal.html",
+      "bytes": 1028,
+      "sha256": "29a2050f8906a5d534f73d97d95751f127aa08bae3cb445823c3b4730f37e07c"
+    },
+    {
+      "path": "apps/web/package-lock.json",
+      "bytes": 84383,
+      "sha256": "17dfb92afaa420428c8ff05840b6cbd71368b63c739bde72a3a018f81b824ad0"
+    },
+    {
+      "path": "apps/web/package.json",
+      "bytes": 1944,
+      "sha256": "9b3185bfed7ef0e39193d557e5b6a18229db05c0f2ed4e1d0119e052399912f9"
+    },
+    {
+      "path": "apps/web/playwright.config.mjs",
+      "bytes": 837,
+      "sha256": "3350e4159441eafa2041f221583c29688675f3f8fdb8cfe9f0b7f9b25c81d333"
+    },
+    {
+      "path": "apps/web/public.html",
+      "bytes": 1169,
+      "sha256": "4cce33ff9af78e1e82776a94f2854317e453237a47e0fdbb3f8fe567e4c53a3b"
+    },
+    {
+      "path": "apps/web/scripts/appearance-bootstrap.mjs",
+      "bytes": 818,
+      "sha256": "c65f8dc06cd5277cbae66529dd96cf51931571f6e095278f50376f7448e91eaa"
+    },
+    {
+      "path": "apps/web/scripts/prepare-legal-sites-build.mjs",
+      "bytes": 1401,
+      "sha256": "96447439d05b805ecc497b95d3e11b211415c35a4402f51a6123dd4c73e1f8b1"
+    },
+    {
+      "path": "apps/web/scripts/prepare-production-build.mjs",
+      "bytes": 2301,
+      "sha256": "765cf36ea9a65abc81e3c5ad4a3b85659926e73220701daad9f23a004760ecde"
+    },
+    {
+      "path": "apps/web/scripts/prepare-public-build.mjs",
+      "bytes": 1806,
+      "sha256": "75862a8b178ed1d62483f0141eb3f8a977985d88021976d0aa0f148760d2849b"
+    },
+    {
+      "path": "apps/web/scripts/prepare-sites-build.mjs",
+      "bytes": 1041,
+      "sha256": "8a7b043c5b5b3d4e7e77c11c267afe0a5c872e0a2483eedd5d99ba17653b9115"
+    },
+    {
+      "path": "apps/web/scripts/preview-public.mjs",
+      "bytes": 1623,
+      "sha256": "b6db20c134b01ba3de9fde4f97edff143a54547b9e8da7c30afcdf483646d63f"
+    },
+    {
+      "path": "apps/web/scripts/validate-legal-release.mjs",
+      "bytes": 1149,
+      "sha256": "dd371250be0475c26a07be2e59c88b3a017384cec924ec1b030c8943d224a623"
+    },
+    {
+      "path": "apps/web/src/AccountDataPanel.jsx",
+      "bytes": 7086,
+      "sha256": "449198ebb485435ad139494bae0225df110d48219a14d88035b9c2496865f7f1"
+    },
+    {
+      "path": "apps/web/src/AccountDeletionStatus.jsx",
+      "bytes": 2984,
+      "sha256": "a4e2cf0a9716f030f5d9c3071487c60893b70e0d6b257cadb4cf3c5b5235a005"
+    },
+    {
+      "path": "apps/web/src/AccountIdentity.jsx",
+      "bytes": 3832,
+      "sha256": "427c59e451763d0ff3637ef21005a2ebc3a1c36006f6623556cf4500bfa1421b"
+    },
+    {
+      "path": "apps/web/src/App.jsx",
+      "bytes": 54091,
+      "sha256": "14d2fd094e86f46afa2cf8c6988795ae4ab6e9b6c10d7b03f487c53c71a7bc3d"
+    },
+    {
+      "path": "apps/web/src/AppearanceControl.jsx",
+      "bytes": 4123,
+      "sha256": "2052dd9715fa86fe7ca12e19ddd92fc6d78be491c0297029b8f14b436cb24ad9"
+    },
+    {
+      "path": "apps/web/src/ConfirmationDialog.jsx",
+      "bytes": 2524,
+      "sha256": "82ff40ede81351a8f3c8636664266020413be5ead2c548f70e19052c69099130"
+    },
+    {
+      "path": "apps/web/src/ContactEditorPanel.jsx",
+      "bytes": 3321,
+      "sha256": "ed42cf0348664b08f3d3da843d8e8c29fa4991a6c50d53fd22f40754f9be7b71"
+    },
+    {
+      "path": "apps/web/src/ContinuityExplorer.jsx",
+      "bytes": 4974,
+      "sha256": "f2b6ebb7a5149136dc9157ffea11fd0e18e1bfca9f90adcf547ed30463c78f49"
+    },
+    {
+      "path": "apps/web/src/DisclosureRehearsalPanel.jsx",
+      "bytes": 10587,
+      "sha256": "8503e3a1457e997a3710d013dd37050b571824caf8c28f896a411def62c20468"
+    },
+    {
+      "path": "apps/web/src/FamilyMaintenancePanel.jsx",
+      "bytes": 23184,
+      "sha256": "8911c21c73da5293e4e5447bd36bf83553d835b3502bfa4f022cc2f001b8667a"
+    },
+    {
+      "path": "apps/web/src/FirstUsePanel.jsx",
+      "bytes": 4570,
+      "sha256": "d3553cb2252d70fb4b881ba0231b3d460622f8faf8bc5aca8a85e4daef400af4"
+    },
+    {
+      "path": "apps/web/src/InvitationPage.jsx",
+      "bytes": 9196,
+      "sha256": "a9dd08072bfe453e779c47b67c149de9f68b5d505b8ba8228897177ac4761d5f"
+    },
+    {
+      "path": "apps/web/src/LegalConsentText.jsx",
+      "bytes": 1352,
+      "sha256": "bf8751bb8469378fa894d3a5aa26e8f5ad53df94e59e65181da7db253f1cd94a"
+    },
+    {
+      "path": "apps/web/src/LegalDocumentPage.jsx",
+      "bytes": 85362,
+      "sha256": "c983dc26bb372fba66b8df467d6e4c0ea1d85a2f4d94d86104b4bffa8d7f3ddb"
+    },
+    {
+      "path": "apps/web/src/LegalPublicationApp.jsx",
+      "bytes": 4059,
+      "sha256": "2787c624e5f4466c172c028c9249fc1e158914da8961e862811d4b7fe4a4db1d"
+    },
+    {
+      "path": "apps/web/src/MatterAccountGuides.jsx",
+      "bytes": 1038,
+      "sha256": "09356cd69cecf46f04604e9bbf43fd1a7c297d094cde0fe7e2fca8e6665df101"
+    },
+    {
+      "path": "apps/web/src/MatterForm.jsx",
+      "bytes": 9125,
+      "sha256": "7eb677ff1562fd060247801f720e8f5f35be46a4ba22e2edcc5e547aaa0bf600"
+    },
+    {
+      "path": "apps/web/src/PlanAccessPreview.jsx",
+      "bytes": 3649,
+      "sha256": "3b3a0b4d92382af725b7af47761bf4308172f3118cc5931a60217a6e53c4d7fe"
+    },
+    {
+      "path": "apps/web/src/PlatformGuides.jsx",
+      "bytes": 3799,
+      "sha256": "6b1fd015b99d625832d406866bc164bc65bb877b889a9838b6ff62b44b716472"
+    },
+    {
+      "path": "apps/web/src/ProductionBillingControls.jsx",
+      "bytes": 6243,
+      "sha256": "564169a2c16616821e712e3708bc4b9982dcfc6b2d8bedf63c166aa2eed260f8"
+    },
+    {
+      "path": "apps/web/src/ProviderMark.jsx",
+      "bytes": 2037,
+      "sha256": "b40159cd87b55d818968751b2421339728ebe0aedb2760ceaeb953d30b80ff27"
+    },
+    {
+      "path": "apps/web/src/PublicExperience.jsx",
+      "bytes": 10969,
+      "sha256": "b268c32fa12a6debdd8328bfc1a815dcad221d55b9e99352f5dba5ce6a09a1eb"
+    },
+    {
+      "path": "apps/web/src/PublicHome.jsx",
+      "bytes": 2093,
+      "sha256": "539402d1932eadad5d7b96043f6c4a4e1d86668fcce16983036cc425ef5f1f3e"
+    },
+    {
+      "path": "apps/web/src/PublicWebsite.jsx",
+      "bytes": 3541,
+      "sha256": "f7d738d747c11623dc6e2b2561c9f5e6061d37b5a39523cfc5a34180cc760698"
+    },
+    {
+      "path": "apps/web/src/ReauthenticationPrompt.jsx",
+      "bytes": 3833,
+      "sha256": "5eec4b34824c2118c36a68a50eb13daf52089d415d38a7c3cb7dbced173b723d"
+    },
+    {
+      "path": "apps/web/src/RilloraBrand.jsx",
+      "bytes": 902,
+      "sha256": "7e62f8ed02650d9f91e5c9b1fcf3560b6e497615cb8803ee9211d1e1573b6ca5"
+    },
+    {
+      "path": "apps/web/src/RoleAssignmentPolicyPanel.jsx",
+      "bytes": 12555,
+      "sha256": "9dfa963d450b2951a4309c74908432f114952f8d80157894b33967a4ddb89ff3"
+    },
+    {
+      "path": "apps/web/src/SavedCopyReader.jsx",
+      "bytes": 4492,
+      "sha256": "11ebb7ed97833b39bed800a1eb58950232e4a519bd3baa1b42b70010d0e31c72"
+    },
+    {
+      "path": "apps/web/src/SharingMotion.jsx",
+      "bytes": 5134,
+      "sha256": "77a2a85587b3184fb63de5da3da83f29e421ef1f83f35cd8056dfe7604bab724"
+    },
+    {
+      "path": "apps/web/src/SharingPanels.jsx",
+      "bytes": 27437,
+      "sha256": "7a345c4f55e3697b06fc0f2e42f13102437742248999f14bd7c76ed3f42208db"
+    },
+    {
+      "path": "apps/web/src/StartHerePanel.jsx",
+      "bytes": 21116,
+      "sha256": "2c90b8ac2ea28f296f86dfe34c4d05ba1ae1bf3e4c34e6f6db651c3a78c902fc"
+    },
+    {
+      "path": "apps/web/src/SurfaceMotion.jsx",
+      "bytes": 229,
+      "sha256": "5271c7dacbc5fa81f46a884134fb8f54344d3d0476379ef4fb49d59cfb3b41ba"
+    },
+    {
+      "path": "apps/web/src/TaskPanels.jsx",
+      "bytes": 5053,
+      "sha256": "0b193c6e4b7bb1c4c049675ee86e42c4a8f153f6cb5cf5bdec0a8bb54d96df64"
+    },
+    {
+      "path": "apps/web/src/TestBillingControls.jsx",
+      "bytes": 5740,
+      "sha256": "781299b039a9eda69cf63a3115ee7233bd0d222e0386a360256bdc2712b3b092"
+    },
+    {
+      "path": "apps/web/src/WebsiteAppearanceDisclosure.jsx",
+      "bytes": 1424,
+      "sha256": "0c807faf7bf15b09107372351e7d91a59d5106e0e2d297131e87a144a0e17d41"
+    },
+    {
+      "path": "apps/web/src/account-identity.css",
+      "bytes": 1849,
+      "sha256": "cbef61cafcb92b2bc9c5106d3d9012b85b0a5feed5f70059ad6e9818b6cd500e"
+    },
+    {
+      "path": "apps/web/src/accountDeletionClient.js",
+      "bytes": 1263,
+      "sha256": "2b013aaca74af34a4a28fd9f16eb7008c2573cfb56e4842c5669e22acc5d0c02"
+    },
+    {
+      "path": "apps/web/src/api.js",
+      "bytes": 24397,
+      "sha256": "93c8979fac5f466dc3343b15c6b3a1201ca0d69f41ab9b806d15bac6e58b9db8"
+    },
+    {
+      "path": "apps/web/src/appearance-control.css",
+      "bytes": 1542,
+      "sha256": "c364226c9919f941ca22ced5028b989d8509519b7a18e8d356e53d5fe5ada408"
+    },
+    {
+      "path": "apps/web/src/appearance.css",
+      "bytes": 1857,
+      "sha256": "90dcb65a9ff917b5fc6fcaf0128bf527def1eae014f57fb53fffb261376309bc"
+    },
+    {
+      "path": "apps/web/src/appearanceLink.js",
+      "bytes": 405,
+      "sha256": "e01cf362f7df412b72ebcb8a990d5f010aa5b852d3555efc254e2f1007789afb"
+    },
+    {
+      "path": "apps/web/src/assets/brand/apple-touch-icon.png",
+      "bytes": 11926,
+      "sha256": "88f40317e67e83684951834fc8e3325461f12169d57a318b1740bb1e87b3bf7c"
+    },
+    {
+      "path": "apps/web/src/assets/brand/favicon-32.png",
+      "bytes": 1378,
+      "sha256": "92a5298863ceaf794d12911c8202e20cffacdd0dfd5139a3cb79cc4c8928fb30"
+    },
+    {
+      "path": "apps/web/src/assets/brand/favicon.svg",
+      "bytes": 1017,
+      "sha256": "900d5b173603512a32291e4694ee9ff35a86b0771113a0aa9d2297529c870232"
+    },
+    {
+      "path": "apps/web/src/assets/brand/lockup-primary.svg",
+      "bytes": 8839,
+      "sha256": "ceef0847bf1b2d6fa0f70a34ac5acb82419d197c1c32aedefaf45aa7298d845b"
+    },
+    {
+      "path": "apps/web/src/assets/brand/lockup-reversed.svg",
+      "bytes": 8839,
+      "sha256": "b4dc6b2fccbab27b29f341425e0059b219af4a968ecafe21535815b2839522cd"
+    },
+    {
+      "path": "apps/web/src/assets/brand/lockup-small-reversed.svg",
+      "bytes": 8674,
+      "sha256": "c4a633b53deee79482429ffcf0eae67eba1d0cce85c9263cc69c1511fc36e48a"
+    },
+    {
+      "path": "apps/web/src/assets/brand/symbol-paper.svg",
+      "bytes": 944,
+      "sha256": "e73395b5a9c6a7de9d8420f1b713ac4567212a7d2bde05e3b6aa8d444b4a5229"
+    },
+    {
+      "path": "apps/web/src/assets/continuity-guide.png",
+      "bytes": 904558,
+      "sha256": "6593625754d3f73c4aea39ba0a7f3bef7fde2b5b7dfa726437d67a46ea2585c2"
+    },
+    {
+      "path": "apps/web/src/assets/continuity-map.png",
+      "bytes": 895907,
+      "sha256": "fcab47eaf74ffd7ef78928f0c967bfa597d302b7ecc47d74bbda2b44dd7fec09"
+    },
+    {
+      "path": "apps/web/src/assets/design-credits.txt",
+      "bytes": 36605,
+      "sha256": "b21a7d812f161d56ec35c735edc2672019844733ff2be2477f213d2488c97d3d"
+    },
+    {
+      "path": "apps/web/src/assets/font-licenses.txt",
+      "bytes": 13637,
+      "sha256": "0a052ef87eb735102a3755a5b2c531222391c0bed85f74b06c0099474a62f4bf"
+    },
+    {
+      "path": "apps/web/src/assets/illustrations/rillora-folio-cutout.png",
+      "bytes": 572254,
+      "sha256": "62b6769b48f66e315ecd47587b7b5aa584daf312100aeeec5d6a4f8a978bedf3"
+    },
+    {
+      "path": "apps/web/src/assets/illustrations/rillora-folio.jpg",
+      "bytes": 87765,
+      "sha256": "536cf7e6658ce0be63fd74964f51c66870c6d39b0b9f7223343c3a8cd21f9901"
+    },
+    {
+      "path": "apps/web/src/assets/landing/folio-paper.webp",
+      "bytes": 126798,
+      "sha256": "29820967785f071f767cad19606e7afafe3bfdeacd196b11da9155d4fa9003d0"
+    },
+    {
+      "path": "apps/web/src/assets/landing/folio-transparent.webp",
+      "bytes": 220194,
+      "sha256": "5a8fdb298fdf0fc42945d47f3df0364bf02e9b14f77f15e0f8dee1fa7f8c8598"
+    },
+    {
+      "path": "apps/web/src/assets/landing/guidance-map.webp",
+      "bytes": 53256,
+      "sha256": "886fb76d8cba08cd64c9853e2754436dcf79b8b887389170538e56e3bbdb5ebe"
+    },
+    {
+      "path": "apps/web/src/assets/landing/hero-dark.webp",
+      "bytes": 114636,
+      "sha256": "cd5b1706b8f9e743004c4553ec15a5c1b1d53e0cacab5e6ff5a2fa5fd2f4def2"
+    },
+    {
+      "path": "apps/web/src/assets/landing/hero-still-life.webp",
+      "bytes": 151192,
+      "sha256": "96153ef313af33bdcce4f80d66732729195c8292870e2d2b317f319fbef367e0"
+    },
+    {
+      "path": "apps/web/src/assets/landing/rillora-sharing-example.txt",
+      "bytes": 896,
+      "sha256": "0d73678ccf2efb50a2124adb0fa6058999d3a76778d354959b816b831e03e87c"
+    },
+    {
+      "path": "apps/web/src/assets/landing/sharing-folio.webp",
+      "bytes": 94178,
+      "sha256": "76fdb1a3018978319e7ab9ac34da44198d29fcd320fadc140b501fb39936581c"
+    },
+    {
+      "path": "apps/web/src/assets/official-brands/coinbase-logo-white.svg",
+      "bytes": 661,
+      "sha256": "06d71cb6d9a5b5e9b57301f073bc6bff7bb614ebaee7082f5e6892d52b70c593"
+    },
+    {
+      "path": "apps/web/src/assets/official-brands/dropbox-glyph.svg",
+      "bytes": 553,
+      "sha256": "c2175e421fbe504b015a2d66c822b529d5eed0cfd76408755b3f0f6dcf1b44e1"
+    },
+    {
+      "path": "apps/web/src/assets/official-brands/facebook-primary.png",
+      "bytes": 54771,
+      "sha256": "2adfd474d91fd20c51084309ed000c1ae6cc7f5f70af14d375930f5a71301308"
+    },
+    {
+      "path": "apps/web/src/assets/official-brands/github-invertocat-white.svg",
+      "bytes": 1559,
+      "sha256": "ccd84c89b1056345608fc3489357f8acc7397e49a3cdc2d418b6c8016911d47b"
+    },
+    {
+      "path": "apps/web/src/assets/official-brands/instagram-glyph-white.svg",
+      "bytes": 1819,
+      "sha256": "3347813e9e8f082cdf48495818bd370ccff94b687efb8aa1c8a7b36cfcfb8291"
+    },
+    {
+      "path": "apps/web/src/assets/official-brands/x-logo-white.png",
+      "bytes": 103016,
+      "sha256": "432bdd47255b48366843ec21d209e774f93b807e1fd0894fc983aad0dc7bd03b"
+    },
+    {
+      "path": "apps/web/src/authenticated-motion.css",
+      "bytes": 6859,
+      "sha256": "c00560a9f48b8d35d0b169ecb38e37794dfe1822d73ebfff94cbc3261bbe6019"
+    },
+    {
+      "path": "apps/web/src/brand.css",
+      "bytes": 504,
+      "sha256": "8d93ebd189cc6d0898d19905c63a223502f4291624407d1b53f2fc627260b5b2"
+    },
+    {
+      "path": "apps/web/src/commercialAccess.js",
+      "bytes": 8706,
+      "sha256": "fda4b2a63a9f91675434aa3588ac0296247dbc3a64bd6e4d57f24575247d1672"
+    },
+    {
+      "path": "apps/web/src/contactEvidence.js",
+      "bytes": 1179,
+      "sha256": "23dc583b72e612fd9ab0ad0f1b8fef5b111ec4fb9ac91a0dadc1ee3af8bb9ba9"
+    },
+    {
+      "path": "apps/web/src/continuity-explorer.css",
+      "bytes": 7027,
+      "sha256": "a155826969d8dc0b66254f24bc9cde85992eb005d72d2b8ba241625b7ed56730"
+    },
+    {
+      "path": "apps/web/src/disclosurePresentation.js",
+      "bytes": 692,
+      "sha256": "bf905e45eb185eb6e6af92ecb542544e2b5caea4d5cf7c0d3850eb724cab6924"
+    },
+    {
+      "path": "apps/web/src/family-maintenance.css",
+      "bytes": 7374,
+      "sha256": "cf4584246bdb6fdcd21c18c365049966bd3f2c2d722e5dcab4af7ddc1baa3306"
+    },
+    {
+      "path": "apps/web/src/familyMaintenance.js",
+      "bytes": 3121,
+      "sha256": "52fc439a293fa536f662020fe2020a1f6b2cab86d1a62848ca3486f3b9031195"
+    },
+    {
+      "path": "apps/web/src/firstUse.js",
+      "bytes": 1086,
+      "sha256": "b132b2c741e19434fb306306df4cbb4eea6d6250d1bf3a31c29ab58e0cb406b2"
+    },
+    {
+      "path": "apps/web/src/guideAccess.js",
+      "bytes": 869,
+      "sha256": "033797b2bc0daa69aa5327a3b2bb936fbad28051b121fc07201fee88245469b5"
+    },
+    {
+      "path": "apps/web/src/guideIdentifiers.js",
+      "bytes": 408,
+      "sha256": "31ecdd109764117d0be50d77dd3bdfea3551f445a068a22b285969a4e9e66f30"
+    },
+    {
+      "path": "apps/web/src/i18n/I18nProvider.jsx",
+      "bytes": 1850,
+      "sha256": "81d2544289badcf392dab98e014221ffbc67915f26b88830850d41f6dc1a96be"
+    },
+    {
+      "path": "apps/web/src/i18n/LanguageControl.jsx",
+      "bytes": 1199,
+      "sha256": "95c9774da7700d1b694ff9002e77e39cb729d2d354b016599255715592b7d06f"
+    },
+    {
+      "path": "apps/web/src/i18n/appCatalogs.js",
+      "bytes": 391,
+      "sha256": "df9e01240e4a2fc094c06a995f484fcd7ea936a4c6a8e77248df81c5a123217e"
+    },
+    {
+      "path": "apps/web/src/i18n/core.js",
+      "bytes": 5095,
+      "sha256": "ddb7b71d903b362d1714dccb1dfa7c5084a8b278ea89b4225824de4da7b44633"
+    },
+    {
+      "path": "apps/web/src/i18n/errors.js",
+      "bytes": 1257,
+      "sha256": "c2d9a6a624061e39f5d6a7bdd68ac1264c96d2989de2b099231be83876644ee3"
+    },
+    {
+      "path": "apps/web/src/i18n/i18n.css",
+      "bytes": 1828,
+      "sha256": "f565d43b6cb6381e51275e4b8224ca49453fb18d57ecaf81a3a93e957e59e970"
+    },
+    {
+      "path": "apps/web/src/i18n/localeStore.js",
+      "bytes": 5996,
+      "sha256": "ad4af8ba24df7b83b7d6fe406d97b4653e81a0ed85bb03e44c45f27c96b76d96"
+    },
+    {
+      "path": "apps/web/src/i18n/messages/common.js",
+      "bytes": 9782,
+      "sha256": "d53684269bd1c470740c2adcefaa130084ddb61c9402eca951ffdef649597fa2"
+    },
+    {
+      "path": "apps/web/src/i18n/messages/forms.js",
+      "bytes": 25673,
+      "sha256": "9cde48a94d76d1f857a34da540ed8b4fcb66702727f7fd610be10b8b58dfef2f"
+    },
+    {
+      "path": "apps/web/src/i18n/messages/public.js",
+      "bytes": 37262,
+      "sha256": "887e75f0ff801bfc911835560888c0e409a26d7bcc98f61fab3a782177c1f683"
+    },
+    {
+      "path": "apps/web/src/i18n/messages/sharing.js",
+      "bytes": 60325,
+      "sha256": "ab46a68d2af0a3a167f43a1915a8553023b056eab0817ef41fb70bd5c94a8318"
+    },
+    {
+      "path": "apps/web/src/i18n/messages/workspace.js",
+      "bytes": 37405,
+      "sha256": "e2802eadd0e4d29cf44e87addc610949ffa5e539a3fc4037bf7b883017a890a3"
+    },
+    {
+      "path": "apps/web/src/i18n/publicCatalogs.js",
+      "bytes": 289,
+      "sha256": "51dfb2f5f1a8988dee0783fe2f31c26eb1afd7c0d1add54fa6cb2af0c9f3328d"
+    },
+    {
+      "path": "apps/web/src/interaction-refinement.css",
+      "bytes": 13657,
+      "sha256": "3a2cae2aadeabe9d274b7335f98b9d280d4ea38c5f3a2b4bbfb2a59b8a1257ee"
+    },
+    {
+      "path": "apps/web/src/landing/AppearanceControl.jsx",
+      "bytes": 98,
+      "sha256": "4533f458842edc1be9afc5e6c035a91009bae2229b076cef2d1880b872c0fddb"
+    },
+    {
+      "path": "apps/web/src/landing/ControlSection.jsx",
+      "bytes": 2368,
+      "sha256": "21437db8e46872acc3a95364d53d243eb9bcb9f4410f2e9c5c86e537e1e4eea1"
+    },
+    {
+      "path": "apps/web/src/landing/ExampleMatter.jsx",
+      "bytes": 1712,
+      "sha256": "4fa381114a10853cf989858b02297fa8cf8449b55064503598733f9e4c0ad97f"
+    },
+    {
+      "path": "apps/web/src/landing/LandingChrome.jsx",
+      "bytes": 4116,
+      "sha256": "a1aed36fe472522fec98f9344767abe69fd22ed5e8fcdda8577482ac15b03f49"
+    },
+    {
+      "path": "apps/web/src/landing/LandingFAQ.jsx",
+      "bytes": 1310,
+      "sha256": "d54771583a3fd827554765891420e419cbd9e5e3c19474e2d8cc13a68528151e"
+    },
+    {
+      "path": "apps/web/src/landing/LandingMotion.jsx",
+      "bytes": 475,
+      "sha256": "bf2d8c43807b0d2582d3b2fae17c5874c064ef01df7f136bb8ae2ada24a7893f"
+    },
+    {
+      "path": "apps/web/src/landing/LandingPage.jsx",
+      "bytes": 3014,
+      "sha256": "07dc41c97b3e94443cc685ab5bbd3b25c45146a5a88d1c738f11f00227d2a2f6"
+    },
+    {
+      "path": "apps/web/src/landing/LegalInformation.jsx",
+      "bytes": 3621,
+      "sha256": "7949e7b8982ca917fff1639f76e4eca099af2b7368b0995f8a92650af853f4b4"
+    },
+    {
+      "path": "apps/web/src/landing/LifeSituations.jsx",
+      "bytes": 2915,
+      "sha256": "defe5d81b2c924f391fe99ef794ac2548a3127c2e540514a820eb6b967373545"
+    },
+    {
+      "path": "apps/web/src/landing/MatterDemo.jsx",
+      "bytes": 3714,
+      "sha256": "91d566f35519c67e85974a9264cbd49b9db9706c518ece8fa6f26b4b6943c215"
+    },
+    {
+      "path": "apps/web/src/landing/PlanSection.jsx",
+      "bytes": 3216,
+      "sha256": "0fc18c1281f55cb160294e5f63010bd1ae9196d8f9d58ad6533027dd12da3ef3"
+    },
+    {
+      "path": "apps/web/src/landing/ProductPages.jsx",
+      "bytes": 3813,
+      "sha256": "58c794e9da116e9a9bf6681c9968dba38d02f96de30d87b3f50265ccfdf088f8"
+    },
+    {
+      "path": "apps/web/src/landing/PublicFragmentNavigation.jsx",
+      "bytes": 1206,
+      "sha256": "16ba4cb5a51110ef5d3221f7f8114a8e36c895f01155634b48503bf0f07c472a"
+    },
+    {
+      "path": "apps/web/src/landing/SharingDemo.jsx",
+      "bytes": 4309,
+      "sha256": "0c908c611cd6f64e06cd8e14787d73db50592d6a73e563e5ab2c5d4d9a1a5b5d"
+    },
+    {
+      "path": "apps/web/src/landing/landing-base.css",
+      "bytes": 2438,
+      "sha256": "d58c8fdef835ec4533d6cbff4609518dbfac129101a7849b785b6c4594251513"
+    },
+    {
+      "path": "apps/web/src/landing/landing-details.css",
+      "bytes": 2435,
+      "sha256": "03a8d8d92a99050557c7a9b3bb10d287d86d0565babb40123467a07c014c0f6e"
+    },
+    {
+      "path": "apps/web/src/landing/landing-header.css",
+      "bytes": 4175,
+      "sha256": "5e2c66e369ab230fa263904a704acc396ccb0e526bada7b0d169a942ab7eb612"
+    },
+    {
+      "path": "apps/web/src/landing/landing-i18n.css",
+      "bytes": 1302,
+      "sha256": "78d7eae51e63b17f089ce38b9d48d962fd0d654239fb44360537af91870c131b"
+    },
+    {
+      "path": "apps/web/src/landing/landing-pages.css",
+      "bytes": 6436,
+      "sha256": "8246cbc9d4bc6ed1fada4125ba6dadda6d281799329205a9f3d3b1ff1f8c2a13"
+    },
+    {
+      "path": "apps/web/src/landing/landing-responsive.css",
+      "bytes": 7141,
+      "sha256": "8e9927d735c5a81943aedea07e5cb526be1c857248ca6ae9fd7d38799ca0c388"
+    },
+    {
+      "path": "apps/web/src/landing/landing-sharing.css",
+      "bytes": 4469,
+      "sha256": "915d60bd8f56f4417986d8c70f6dc775144216694c0f962b6a374fa40a5c41b3"
+    },
+    {
+      "path": "apps/web/src/landing/landing-story.css",
+      "bytes": 7797,
+      "sha256": "5f7b7c482c87c3ee852e83de162887fda78260365e33b28074596dfb4c81f6e7"
+    },
+    {
+      "path": "apps/web/src/landing/landing-theme.css",
+      "bytes": 1177,
+      "sha256": "7eb06473196bdb67fe69b95529da2ea165be48282f99a1b3387a05ce3c2c804a"
+    },
+    {
+      "path": "apps/web/src/landing/landing.css",
+      "bytes": 288,
+      "sha256": "1469402d778a7a07f5f10c071c8c4c43a26cd866e45bb7b052a261483a161063"
+    },
+    {
+      "path": "apps/web/src/landing/landingModel.js",
+      "bytes": 1061,
+      "sha256": "7f3292ccc77c5fe23f8e25ad5b2fc733f83325e2f77b56ab9a76176b2610f182"
+    },
+    {
+      "path": "apps/web/src/landing/matterExamples.js",
+      "bytes": 1698,
+      "sha256": "03d7322c57b7c7e8f139c96094e350d7062644c421aafa1e518ed652c49854cb"
+    },
+    {
+      "path": "apps/web/src/landing/public-shell-i18n.css",
+      "bytes": 542,
+      "sha256": "fe6632d27aaa20dab65c308d7927b450291279b7b804a4f3683b45b5846abb43"
+    },
+    {
+      "path": "apps/web/src/landing/rillora-sharing-example-zh-CN.txt",
+      "bytes": 822,
+      "sha256": "e6d33eacf343da930a26ab73de304c18719a37468102c672dd2b61e80abef317"
+    },
+    {
+      "path": "apps/web/src/legal-main.jsx",
+      "bytes": 1027,
+      "sha256": "f1894d095262e958533676eebbcb8161b86326924f314881637df717a581f4e6"
+    },
+    {
+      "path": "apps/web/src/legalContract.js",
+      "bytes": 275,
+      "sha256": "12a7443796885e0fd843c2b826189d2511891a24eb544b7d788be4cf4a09a5d7"
+    },
+    {
+      "path": "apps/web/src/main.jsx",
+      "bytes": 747,
+      "sha256": "2c1a7ed672c00a7178337b44f070574082e86f0216d2b4624a1a817ebe9957ec"
+    },
+    {
+      "path": "apps/web/src/matterDraftStorage.js",
+      "bytes": 4329,
+      "sha256": "f60872595fe5b2375e4ca4e6261ba8a793b3a823ad79d3b05e84f5e8cba948ce"
+    },
+    {
+      "path": "apps/web/src/matterForm.js",
+      "bytes": 6959,
+      "sha256": "a2f28d43c6389a5324671201481022612a268e55865a599b84b53d8876be0154"
+    },
+    {
+      "path": "apps/web/src/mobileNavigation.js",
+      "bytes": 1325,
+      "sha256": "3ef7c8cb4d9c487949ebde690ccfd036ee8553d0ac9b3700dd7cabe251ea9789"
+    },
+    {
+      "path": "apps/web/src/officialProviderGuides.js",
+      "bytes": 4657,
+      "sha256": "323f80cf58f690410fbc7668abf03f707a14efe7e73e4715f4130a6bb33ba2f5"
+    },
+    {
+      "path": "apps/web/src/plan-access.css",
+      "bytes": 1767,
+      "sha256": "e6c98ec3550167bc9caf907ecde572f21ff6a62293e1b0a862f607f323e0d13e"
+    },
+    {
+      "path": "apps/web/src/planProgress.js",
+      "bytes": 632,
+      "sha256": "1ff6b8aff346ded7a5ff0678e4817175612936e1eb9909b35b5467511dcf3307"
+    },
+    {
+      "path": "apps/web/src/platform-guides.css",
+      "bytes": 4352,
+      "sha256": "baedc9a4e8ed5d3217a47c6bb32654c98ed8e0c9ddc3033869c65a2a7e20d555"
+    },
+    {
+      "path": "apps/web/src/productionBilling.js",
+      "bytes": 3014,
+      "sha256": "ae5d12dbedacb3805a7df7c1eca1e580534a3429e20fdca86d3faa8a51d8a054"
+    },
+    {
+      "path": "apps/web/src/providerMarkModel.js",
+      "bytes": 1244,
+      "sha256": "e4ab01c3c4006843b4a2610e18ccbb05fd232771433052858b427ab03f91f7ce"
+    },
+    {
+      "path": "apps/web/src/public-experience.css",
+      "bytes": 35268,
+      "sha256": "ce2f805b1e7c99b81231846b9f248b6ea8461e2388646e093f661ba2d0d6a9c0"
+    },
+    {
+      "path": "apps/web/src/public-main.jsx",
+      "bytes": 887,
+      "sha256": "b2f9a7e600b4889d9da3dccaaee03442fdbc0c44bd1e0f370c2d537d99ecd15a"
+    },
+    {
+      "path": "apps/web/src/public-website.css",
+      "bytes": 625,
+      "sha256": "ef8a61f4b99c6894aa7226f6c3a455dbe368d087618aa6e874cfd8064b716eda"
+    },
+    {
+      "path": "apps/web/src/publicEntry.js",
+      "bytes": 695,
+      "sha256": "8b30d17c418f2a1f4b47b0879d4964a02e212011d4b9d07576ad08e136c12a71"
+    },
+    {
+      "path": "apps/web/src/publicIntent.js",
+      "bytes": 1185,
+      "sha256": "907f359eecd39fc18b6242a5a61350236324edb9ddd191ea9b895f5a83e90434"
+    },
+    {
+      "path": "apps/web/src/publicRoutes.js",
+      "bytes": 1261,
+      "sha256": "66032369387079a25fbe2e8217002ad1dfa08016663846c67420fb68d4c9fdf5"
+    },
+    {
+      "path": "apps/web/src/savedCopy.js",
+      "bytes": 3288,
+      "sha256": "992cc372b0c0ed14e146be5e26eaca6dde9aefab7311ae355df4461844c21319"
+    },
+    {
+      "path": "apps/web/src/sharing.css",
+      "bytes": 6387,
+      "sha256": "bbb530dcc8abfb764ff472b1243ba9fa585f3cd09dd70edee542e3db5d60a2dd"
+    },
+    {
+      "path": "apps/web/src/sharing.js",
+      "bytes": 6681,
+      "sha256": "f4d75bc4b75964fcd7207a590335970d8cc9bc8dbe8348982d07a2892b6a7507"
+    },
+    {
+      "path": "apps/web/src/startHereCommitment.js",
+      "bytes": 2653,
+      "sha256": "f830bb86c4f10c55fe754548dc7af5d1dacc4be9038c94120256bc50e2ff38d0"
+    },
+    {
+      "path": "apps/web/src/startHereCrypto.js",
+      "bytes": 13637,
+      "sha256": "2cab1ed67c83a3fc2171b03e348ffc101c23082a6c32e13664eeafd38873f02e"
+    },
+    {
+      "path": "apps/web/src/styles.css",
+      "bytes": 32681,
+      "sha256": "819a16b46117240258b3a43937843ed7079a679767ecc1a9a2f8b070b8aab5d2"
+    },
+    {
+      "path": "apps/web/src/surface-motion.css",
+      "bytes": 5982,
+      "sha256": "0187f2d4fdc7f8c650b1a08f47d09bd5007642bd44376ed16574b81200b087c5"
+    },
+    {
+      "path": "apps/web/src/websiteAppearance.js",
+      "bytes": 3221,
+      "sha256": "6822b10cf95984558eeccacb46b00f26cbab7862e6a3f44c335ecf8c24d2b508"
+    },
+    {
+      "path": "apps/web/src/workspaceNavigation.js",
+      "bytes": 8985,
+      "sha256": "8488bc37a8efec4dee67b9bd40d6a520d346fe4bb84e21328c3144beeda5adc6"
+    },
+    {
+      "path": "apps/web/tests/account-identity.test.mjs",
+      "bytes": 3044,
+      "sha256": "ee25648c696e3d39c03ef3c684bf1d119362195e90e4b903fe1461227c367149"
+    },
+    {
+      "path": "apps/web/tests/api-client.test.mjs",
+      "bytes": 26747,
+      "sha256": "c3fedfef50d6cabe8022e8a303dbc2dd0de99ab39c7705defe4a975394dbd3bd"
+    },
+    {
+      "path": "apps/web/tests/appearance-contrast.test.mjs",
+      "bytes": 1232,
+      "sha256": "60ce3ab92b74fa0bfe1f807a7e92862a30d983dadb28fa3288cca8cfe533f8ec"
+    },
+    {
+      "path": "apps/web/tests/commercial-access.test.mjs",
+      "bytes": 6513,
+      "sha256": "df2cae8041d1fcdcd21749fad08b72567863491ec4e27b3e9b86e7f1cb07c0ea"
+    },
+    {
+      "path": "apps/web/tests/contact-evidence.test.mjs",
+      "bytes": 1375,
+      "sha256": "1b9b343c37519f9854a5b29a018af1e31cbf20503d8a56e74e844513f80e0c56"
+    },
+    {
+      "path": "apps/web/tests/external-url-hygiene.test.mjs",
+      "bytes": 4678,
+      "sha256": "28b536091d9afc98a7a39a2ba905647d92daf903b4f4537255b1450ed0957b75"
+    },
+    {
+      "path": "apps/web/tests/family-maintenance.test.mjs",
+      "bytes": 2902,
+      "sha256": "b54d61ea082539f94f9959b2a00f28fc979915244f4e3eb86efd6d203c8996c8"
+    },
+    {
+      "path": "apps/web/tests/first-use.test.mjs",
+      "bytes": 1255,
+      "sha256": "10726e3b727d3924b608fde5f3d969c54391d317fd76662586c97e5062f123a1"
+    },
+    {
+      "path": "apps/web/tests/forms-i18n-render.test.mjs",
+      "bytes": 3363,
+      "sha256": "d639b0ff6fd2951e4501630dd489ef03f060a9e6e57f7c821fbd521f3b58558e"
+    },
+    {
+      "path": "apps/web/tests/forms-i18n.test.mjs",
+      "bytes": 6819,
+      "sha256": "7ba948690f571a02e346eaa56f6841ae988ac0c637e8cacde410e970423d18ee"
+    },
+    {
+      "path": "apps/web/tests/i18n-catalogs.test.mjs",
+      "bytes": 2337,
+      "sha256": "c635659d50ada8d80f44efb3c65748840d7ebfc49a53a1667f6d87d6b02b05d5"
+    },
+    {
+      "path": "apps/web/tests/i18n-core.test.mjs",
+      "bytes": 10097,
+      "sha256": "e4bed6a937c341d5da249e62275f14a51310d2652045baac7744ffe87006990e"
+    },
+    {
+      "path": "apps/web/tests/landing-header.test.mjs",
+      "bytes": 1888,
+      "sha256": "95f54f992fffab9bab0015bec3af856f4c6c0698cedffdf49c8dc4d0c60ebbe4"
+    },
+    {
+      "path": "apps/web/tests/landing-model.test.mjs",
+      "bytes": 969,
+      "sha256": "7bb3ea2e4f433c21dc7d65acdbbca74e92a352326afeab65a37e0a7abf339da4"
+    },
+    {
+      "path": "apps/web/tests/legal-sites-worker.test.mjs",
+      "bytes": 6127,
+      "sha256": "1f334b7ff5ccf52c047495851a9fa7e1223d2d6f790778d564e288f54c2c77da"
+    },
+    {
+      "path": "apps/web/tests/matter-draft-storage.test.mjs",
+      "bytes": 4083,
+      "sha256": "0c1a2ca7697e846e218d85bf0d37ddd161c4baaba737294f85816af778e469f8"
+    },
+    {
+      "path": "apps/web/tests/matter-form.test.mjs",
+      "bytes": 3028,
+      "sha256": "4d8d9e1d91b3f2419c1631fcaa3a2139a0abf747a5debc6bcad07d16994b8a1e"
+    },
+    {
+      "path": "apps/web/tests/mobile-navigation.test.mjs",
+      "bytes": 873,
+      "sha256": "c5bf08a327d312853d44d737d24eb5e67c405f326b52c3d2e03009ae2ad8e63a"
+    },
+    {
+      "path": "apps/web/tests/official-provider-guides.test.mjs",
+      "bytes": 6150,
+      "sha256": "d7f0b0a3404de1cb4b18762debc25fafff1db0e8d786e886d5ee05aaba79686f"
+    },
+    {
+      "path": "apps/web/tests/plan-access-render.test.mjs",
+      "bytes": 3258,
+      "sha256": "b3b5c798b4d0adbe354ad4dd1e9b19f138c5fa1a527cf1299b1f9b53fa2f72bd"
+    },
+    {
+      "path": "apps/web/tests/plan-progress.test.mjs",
+      "bytes": 1056,
+      "sha256": "58ab5292d1ecf6d9e2e3f8e29f61b00e1586c911f1cf6e3372ae55e841846eb9"
+    },
+    {
+      "path": "apps/web/tests/production-billing.test.mjs",
+      "bytes": 4059,
+      "sha256": "327cf3db9be56e9d679e4368f4f1867e6f23d930d83f14bc3c2452dc8376c536"
+    },
+    {
+      "path": "apps/web/tests/production-build-mode.test.mjs",
+      "bytes": 1121,
+      "sha256": "7c094db8cf31afbbf7d0e511da009010b6d1faa0fe5f1a44f17d03190bdd0971"
+    },
+    {
+      "path": "apps/web/tests/production-router.test.mjs",
+      "bytes": 2574,
+      "sha256": "a4b9a6c56df14b0f6cf2ab708a2ee5099722e72a9342dc7823bf33a9f8deae97"
+    },
+    {
+      "path": "apps/web/tests/provider-mark.test.mjs",
+      "bytes": 1305,
+      "sha256": "6ca8494fe30158ef0917e41d1778a690e4f3a9b70a5e32d231b52342e7528e14"
+    },
+    {
+      "path": "apps/web/tests/public-experience.test.mjs",
+      "bytes": 6382,
+      "sha256": "3c5025e2c64141238b15b86a155ec0d4786ccd56a50f81ea9c1920bd16591b35"
+    },
+    {
+      "path": "apps/web/tests/public-i18n.test.mjs",
+      "bytes": 5661,
+      "sha256": "ce3663b7ea1f9fd02ba3a93398073216a720562430f4e08517385e23bce5cb6b"
+    },
+    {
+      "path": "apps/web/tests/public-intent.test.mjs",
+      "bytes": 2666,
+      "sha256": "935e2509a0877bb397ce6969c908583f5fcf2aef2e774a542e11fb67b22f9dcd"
+    },
+    {
+      "path": "apps/web/tests/public-website.test.mjs",
+      "bytes": 4183,
+      "sha256": "28977cc7a15ac320eb0c162cf379f0cf3d9819cb83e3b195c72fd39a0bc9e5ec"
+    },
+    {
+      "path": "apps/web/tests/saved-copy.test.mjs",
+      "bytes": 3356,
+      "sha256": "95d4b217bded5b13e21a9a7c72fff2b3c26699a51ea6851d9bffcb4ea1e643d8"
+    },
+    {
+      "path": "apps/web/tests/selected-language-render.test.mjs",
+      "bytes": 4144,
+      "sha256": "076527dfff55e3be31ca3798c1bad6084ebad2bd1f9caf2e44e6587a5cd33e34"
+    },
+    {
+      "path": "apps/web/tests/sharing-i18n.test.mjs",
+      "bytes": 6146,
+      "sha256": "c66578e4472c86f24e5e2d66198c6241f73896f990fb2dd1a3888833465ce76b"
+    },
+    {
+      "path": "apps/web/tests/sharing-preview.test.mjs",
+      "bytes": 1936,
+      "sha256": "5cc75d014444b7a238d92aafba6ff9abf0a3007107e0c2cd199c6607c5b4c27c"
+    },
+    {
+      "path": "apps/web/tests/sharing.test.mjs",
+      "bytes": 2179,
+      "sha256": "2e318f9312ebca6e649e5732d60958ffc5e706635c66e478ab4966efeb01a250"
+    },
+    {
+      "path": "apps/web/tests/sites-worker.test.mjs",
+      "bytes": 2643,
+      "sha256": "29035c66c460ce7a780652036b98c5b22f4c45c7f639a79e627afd2227e97557"
+    },
+    {
+      "path": "apps/web/tests/start-here-commitment.test.mjs",
+      "bytes": 1720,
+      "sha256": "c2dbe45e63c430646a92f8fba5e6e45503a39c9a2595ff245e35d1a867762db3"
+    },
+    {
+      "path": "apps/web/tests/start-here-crypto.test.mjs",
+      "bytes": 6929,
+      "sha256": "a7036ecdffe7ef32a47206c54dd9cf901fe9a55534ec9a6bb1e887a660cd50eb"
+    },
+    {
+      "path": "apps/web/tests/website-appearance.test.mjs",
+      "bytes": 5131,
+      "sha256": "b1b5954de4771b00f875a28bb8bbc7dfea88540e5f20f3c703cca16846eba78d"
+    },
+    {
+      "path": "apps/web/tests/workspace-i18n.test.mjs",
+      "bytes": 7488,
+      "sha256": "b4ad7e4530d9afcbaa02faa6f7c2625ae2b6fbf1090a8ec02702bb69e0955467"
+    },
+    {
+      "path": "apps/web/tests/workspace-navigation.test.mjs",
+      "bytes": 3050,
+      "sha256": "ffeed4940a530aabc9e640518933090dc8eb3abf6b44340a5499e0511a5f7a31"
+    },
+    {
+      "path": "apps/web/vite.config.mjs",
+      "bytes": 1448,
+      "sha256": "b6e2d345b5e5755419413f5d6ed2e7a65e4d60e9df9eba15c1ad382c280ce007"
+    },
+    {
+      "path": "apps/web/worker/index.js",
+      "bytes": 483,
+      "sha256": "2dd0615a445143933d88d4271f54f5d63ee951421fcd08c5a7617bb09c564389"
+    },
+    {
+      "path": "apps/web/worker/legal-index.js",
+      "bytes": 2349,
+      "sha256": "a6aeffd1ffedc02ae910a2c2cf9adcdad9b878a5143edb58cac897e8b10ed409"
+    },
+    {
+      "path": "apps/web/worker/production-router.js",
+      "bytes": 1685,
+      "sha256": "2fc11d997066741baaa55910d0380e011e9d3e4fec77c6cd0fedd44ef6500630"
+    },
+    {
+      "path": "apps/web/worker/public-router.js",
+      "bytes": 2197,
+      "sha256": "13a0acba07418132087ecbaef5fa691c300995ef221018bff9a8e222d641ab49"
+    },
+    {
+      "path": "config/app-store-listing.en-US.json",
+      "bytes": 3789,
+      "sha256": "59c359c295233f47e4e40fe47eab655c63f1be5c743f9612ea83165749738d6e"
+    },
+    {
+      "path": "config/automation-registry.json",
+      "bytes": 6150,
+      "sha256": "1d45559124a5901eb994182323fcdef27e9fbb98c2b18372e3c1c904b45c95eb"
+    },
+    {
+      "path": "config/brand.json",
+      "bytes": 1032,
+      "sha256": "cb9bcf57347b76f3ff7fdefaef16bc97b6327f91e0ff20ad937a3cd83f82c917"
+    },
+    {
+      "path": "config/content-program.json",
+      "bytes": 2581,
+      "sha256": "f68e4c6ecde04f5bcf036cb0b1872afd090b59ad753ea7eab6832efb95f807e3"
+    },
+    {
+      "path": "config/disclosure-copy.json",
+      "bytes": 4627,
+      "sha256": "d1c82f69cef4570aba2e35c03f62cfc1be6dd208e9b548f6c6258eb16f5abb6e"
+    },
+    {
+      "path": "config/manual-snapshot-retention.json",
+      "bytes": 441,
+      "sha256": "c86dc0769198fbdbbb476a73f635c96613c7088a4392b1b6ee6e3beef77f7a3e"
+    },
+    {
+      "path": "config/operations-targets.json",
+      "bytes": 3327,
+      "sha256": "ff971e047d6776b56aa617a23d0d03bfcfbc28415af9a33763ea34c48d813064"
+    },
+    {
+      "path": "config/product-catalog.json",
+      "bytes": 1191,
+      "sha256": "6481391c74e08c9e2e8a31c4e33a7f4db93d442bb7b6edd1c952d367decae509"
+    },
+    {
+      "path": "config/production-connections.json",
+      "bytes": 554,
+      "sha256": "3baefe229ed0bc827a6b23062fccee2c220843b6869095a5b5ea263e17a7fdce"
+    },
+    {
+      "path": "config/provider-guides.json",
+      "bytes": 61304,
+      "sha256": "50fd0a45442140aaef228ac5dc73b36ddf7f0a331e84e10123ff551f78cb513f"
+    },
+    {
+      "path": "config/public-entry.json",
+      "bytes": 186,
+      "sha256": "5b7d62cc1ac06e493bfec5140f3531eae420843e216168b63837238b85b73e5a"
+    },
+    {
+      "path": "config/purchase-consent.json",
+      "bytes": 677,
+      "sha256": "f81bd5d0963c0c9d649e9ecd379dd331ffdaf6cd69d7b2f153a81dc53246de76"
+    },
+    {
+      "path": "config/release-gates.json",
+      "bytes": 25347,
+      "sha256": "bc0b5c536d6f22de9d591d8e7eebf08443cf7e5fc14487c15a453454ab3e6701"
+    },
+    {
+      "path": "config/repository-scan-exceptions.json",
+      "bytes": 10537,
+      "sha256": "4e64ccc445ec5797ae7482a97c59a52dd2619941a6f41a17e6d8ecad8a6e44d0"
+    },
+    {
+      "path": "config/service-registry.json",
+      "bytes": 8846,
+      "sha256": "47aa0c75f998a584ba6638a1b5bf7b0fda44bcabb21b5a39bb963a1cf9a09c09"
+    },
+    {
+      "path": "docs/backend.md",
+      "bytes": 56618,
+      "sha256": "6952be6a123b8bd8f88d91a3ff2f8fb50adc35a3b53765943b617f7a273bcd98"
+    },
+    {
+      "path": "docs/decision-log.md",
+      "bytes": 508977,
+      "sha256": "73fec3c489a627ec6b451f4855bbfa93f7b0b16914f6e7304526cc452ca0e00c"
+    },
+    {
+      "path": "docs/handoff-history-20261011-before-security-remediation.md",
+      "bytes": 4147,
+      "sha256": "c14461c38f3a7d991aec90837f025fc7d7056819b9f2abd890e530f0a7ba5083"
+    },
+    {
+      "path": "docs/handoff.md",
+      "bytes": 3359,
+      "sha256": "6e187034226b0c15df24c17c6d79be6f5f2b53fd81672c260c096f47886dbd99"
+    },
+    {
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "bytes": 588220,
+      "sha256": "3cf547810ff2c099a028297170ac5d0ab604ca5baa77c01dfb00f74f09ac31e1"
+    },
+    {
+      "path": "docs/product.md",
+      "bytes": 87686,
+      "sha256": "a35bda357dc55fc28a37b856197367a49fece67d31d2c28d40e2098ab1801ec4"
+    },
+    {
+      "path": "docs/security-findings-remediation-20261011.md",
+      "bytes": 13098,
+      "sha256": "ebc0ce48e16a6ac1b332e77e60f191383c02910d31f51d6cf941ad533b2e2454"
+    },
+    {
+      "path": "docs/source-control.md",
+      "bytes": 34428,
+      "sha256": "b05b85e94f7416e887aa6fb3f68b3008355621e968c9336f2d069c4c0325c327"
+    },
+    {
+      "path": "docs/start-here-export.md",
+      "bytes": 20875,
+      "sha256": "ccfd9fbcb8ed31a5664e38286b0cff5d92344948724c9841fef90d39c7a542e9"
+    },
+    {
+      "path": "docs/storekit.md",
+      "bytes": 43875,
+      "sha256": "9658d2f11cc1c7462f7ea64b79a2407d04c9fce7daeb22de983df68720279705"
+    },
+    {
+      "path": "docs/trusted-sharing.md",
+      "bytes": 14874,
+      "sha256": "1299e9518316974ffad44f184e12c880e1ba486c2bd2d2e5ed9cdb6b1ca7c2dc"
+    },
+    {
+      "path": "infra/auth0/README.md",
+      "bytes": 21294,
+      "sha256": "aacfa1a8ce765cb1d88968901df37166a8eef769549f0350c93d4d28b80c1690"
+    },
+    {
+      "path": "infra/auth0/hosted-consent/README.md",
+      "bytes": 7879,
+      "sha256": "7da3566965665720cd49ab49e9f64e70f0ef01fccf318bc790c3dff0b06deff7"
+    },
+    {
+      "path": "infra/auth0/hosted-consent/form.json",
+      "bytes": 3096,
+      "sha256": "bda81ef49958bae9051edb2b5d6fd9573b26fedd2dc82cf6f01f538f46c6b44a"
+    },
+    {
+      "path": "infra/auth0/hosted-consent/form.zh-CN.json",
+      "bytes": 3109,
+      "sha256": "f55721c3dfc2339522cb343b4458ee9dbb5a09268f7882b26a5bd8c78eceeefd"
+    },
+    {
+      "path": "infra/auth0/hosted-consent/post-login-action.cjs",
+      "bytes": 2325,
+      "sha256": "ab7ea36230f00d6556e9280146bfbd43c2224607a9a466f69504f837cd596cd3"
+    },
+    {
+      "path": "infra/auth0/hosted-consent/post-login-action.test.cjs",
+      "bytes": 5765,
+      "sha256": "06cedcb054c3f0290c9e967186cee8ee0719247a4cddb247e3d2d8cec909ae37"
+    },
+    {
+      "path": "infra/auth0/hosted-consent/production-review-action.cjs",
+      "bytes": 2813,
+      "sha256": "16166e2684f0c4f62c2c7740041e8076d0969b124a7b93d912cda2b8f93c7cb5"
+    },
+    {
+      "path": "infra/auth0/hosted-consent/production-review-action.test.cjs",
+      "bytes": 4598,
+      "sha256": "17dc4469622e03f8a0d4295f57adfeaf2a964642e577ad4e415698970b985838"
+    },
+    {
+      "path": "infra/auth0/universal-login/branding.json",
+      "bytes": 157,
+      "sha256": "b2ba7f3b1512041040dad6ece8850dc1b3e8a08ec27fa4a8654c7fb95627e6c0"
+    },
+    {
+      "path": "infra/auth0/universal-login/custom-text/login-id.en.json",
+      "bytes": 233,
+      "sha256": "cb58f18027c7143ee61c2fe7dad43c6799133dfc94c44988cf9e8489a6fbfe6f"
+    },
+    {
+      "path": "infra/auth0/universal-login/custom-text/login-password.en.json",
+      "bytes": 379,
+      "sha256": "88efb35e97e7324f439c3818931282c7f0f48adfd0d4813b31f3936221382bd8"
+    },
+    {
+      "path": "infra/auth0/universal-login/custom-text/reset-password.en.json",
+      "bytes": 598,
+      "sha256": "8f42566e1077769656a4b2b221ad1c3d63c8d658479fcf4e34bb154f03c3dbe6"
+    },
+    {
+      "path": "infra/auth0/universal-login/custom-text/signup-id.en.json",
+      "bytes": 291,
+      "sha256": "00182aa53478e3d4c2d52775d5c0824587f6e0f0728f93b2f759663d9e3b5d0f"
+    },
+    {
+      "path": "infra/auth0/universal-login/custom-text/signup-password.en.json",
+      "bytes": 622,
+      "sha256": "4b6de22c6e36514239aa39cf66d10681d775425a00c0e8c1b64e567d16d54d5a"
+    },
+    {
+      "path": "infra/auth0/universal-login/custom-text/signup-password.zh-CN.json",
+      "bytes": 593,
+      "sha256": "1a2c28c24d9f3a6a36c578655f5735b547175c3adcd0e91a79409debacfb38bc"
+    },
+    {
+      "path": "infra/auth0/universal-login/page-template.liquid",
+      "bytes": 6872,
+      "sha256": "b4bf13f4bf58029cfd5d220499b761614742493c203c8ced2c0392e41ce9fca5"
+    },
+    {
+      "path": "infra/auth0/universal-login/preview.html",
+      "bytes": 6137,
+      "sha256": "5e7de454d494aa683c9bcf690662b4ee0cb120e75d80944294535667e5c14c26"
+    },
+    {
+      "path": "infra/auth0/universal-login/theme.json",
+      "bytes": 1879,
+      "sha256": "36ef2a08834aae5c100da7bc8922ee7680c3eb0b54ea6c7c357cc359c898f11c"
+    },
+    {
+      "path": "infra/aws/.gitignore",
+      "bytes": 40,
+      "sha256": "9d0dcc1383814c3aa6060e5d11dd936bbf6de085f45fc98c91be7c9f38a51c2a"
+    },
+    {
+      "path": "infra/aws/README.md",
+      "bytes": 30237,
+      "sha256": "947d6b8d648e6c030503ee6e41c4e3cd7c92bdbbdc15d9d33d7943f4a686884c"
+    },
+    {
+      "path": "infra/aws/bin/rillora.ts",
+      "bytes": 10998,
+      "sha256": "2b48320dd0a38b759c91afd45aec8d6410dda3cc78ec321805d3647a0559a27b"
+    },
+    {
+      "path": "infra/aws/bootstrap/standalone-account-identity.yml",
+      "bytes": 4609,
+      "sha256": "108c4afdc00fe95963c8be3b7195feda67cb1cc1aff8a4e9ab76577faf446976"
+    },
+    {
+      "path": "infra/aws/cdk.context.json",
+      "bytes": 137,
+      "sha256": "0ede2baf7316828df7ac7446f7b3c627de709c6b173aaec6d7394b888d337c33"
+    },
+    {
+      "path": "infra/aws/cdk.json",
+      "bytes": 87,
+      "sha256": "af1f5f560709418885207fd5b788128be5af2855bbde5704b7b535550e870c34"
+    },
+    {
+      "path": "infra/aws/lib/apple-certificate-egress.ts",
+      "bytes": 382,
+      "sha256": "61aa63759a425e459be871e76381a8eff47ef5280a5c5efb4fe34b4420b111af"
+    },
+    {
+      "path": "infra/aws/lib/client-artifact-files.ts",
+      "bytes": 2151,
+      "sha256": "3617ef7bf1d2f7a11dcd0ea019bf2f88f14f350de2a216da449f853cbbfc6336"
+    },
+    {
+      "path": "infra/aws/lib/rillora-mail-stack.ts",
+      "bytes": 3362,
+      "sha256": "4e0729413923f605d6251f35a2da310c966e93968f212ba840f74c79330ebaa1"
+    },
+    {
+      "path": "infra/aws/lib/rillora-maintenance-broker.ts",
+      "bytes": 1435,
+      "sha256": "9d44faa7d18d37f48e168d2259c700a00ef6bff5cd821a097a0cbdab61703bf8"
+    },
+    {
+      "path": "infra/aws/lib/rillora-operations-stack.ts",
+      "bytes": 9872,
+      "sha256": "3f92ae5aa71e8440809fde02760dd8b27bbb7161359232911dfb4d8a4bac4ef9"
+    },
+    {
+      "path": "infra/aws/lib/rillora-production-preflight-stack.ts",
+      "bytes": 1803,
+      "sha256": "50c8b621e3200fe774dc55ee30fbdca11c31449f6aad567721d94433314280f7"
+    },
+    {
+      "path": "infra/aws/lib/rillora-production-runtime.ts",
+      "bytes": 11928,
+      "sha256": "3dfc498168dee4ec2f382d2e92c773ec955320ee65c5eebe3b4695162ffd8413"
+    },
+    {
+      "path": "infra/aws/lib/rillora-production-stack.ts",
+      "bytes": 17309,
+      "sha256": "7a8df442e1a011d62732a830bc45ee66c112c989fc1d6a5f13ff4603eeb8117e"
+    },
+    {
+      "path": "infra/aws/lib/rillora-production-web-stack.ts",
+      "bytes": 7525,
+      "sha256": "f37accd1b031bfe073373a31d768ecbaec86b343db780b618477daad949da662"
+    },
+    {
+      "path": "infra/aws/lib/rillora-public-web-stack.ts",
+      "bytes": 5644,
+      "sha256": "05bc6002228ff5a31b8625fcf7772e5394bc996576764b8b2c3efc15206f24e8"
+    },
+    {
+      "path": "infra/aws/lib/rillora-snapshot-retirement.ts",
+      "bytes": 4438,
+      "sha256": "e52865cf749ca82421ba25f7b23b81a3fdd663a8aa11874073e363585ca44c59"
+    },
+    {
+      "path": "infra/aws/lib/rillora-staging-stack.ts",
+      "bytes": 35190,
+      "sha256": "3a58033f75348ee9798432b748d2dc1552e8e429d113e638affc7dfa153eeee2"
+    },
+    {
+      "path": "infra/aws/package-lock.json",
+      "bytes": 63888,
+      "sha256": "9d00e8b07296fc5d1689519c7b6073b200a00baf3fef02a3bad49de6987d7a01"
+    },
+    {
+      "path": "infra/aws/package.json",
+      "bytes": 575,
+      "sha256": "fe4bb7bb867ef248ddabb8db6d0af3bab59c610b1c6b8a3d9725c065e811f707"
+    },
+    {
+      "path": "infra/aws/scripts/content-rollout.py",
+      "bytes": 2525,
+      "sha256": "4146de3f5805889e558a27a56f146828513e72df8caa460d0d1c7c7170bca2b1"
+    },
+    {
+      "path": "infra/aws/test/rillora-mail-stack.test.ts",
+      "bytes": 2571,
+      "sha256": "aa270d6a03fbba3e9d249583d8ecc3566d510d95d20e880b8ce4cf24dc186ad8"
+    },
+    {
+      "path": "infra/aws/test/rillora-operations-stack.test.ts",
+      "bytes": 9221,
+      "sha256": "3ff6ed3b957fb353a06215645d308cb73681286c65302464f39719c02a69b448"
+    },
+    {
+      "path": "infra/aws/test/rillora-production-preflight-stack.test.ts",
+      "bytes": 1261,
+      "sha256": "0deb1d85b31fb02959a97b5ce5b235e5c504353ccf3623636adea83f5fb42d42"
+    },
+    {
+      "path": "infra/aws/test/rillora-production-stack.test.ts",
+      "bytes": 15058,
+      "sha256": "1433f5f725cf7c853ce5a160fd09747078415405ff238d8fa3f15de2bfd00ddf"
+    },
+    {
+      "path": "infra/aws/test/rillora-production-web-stack.test.ts",
+      "bytes": 6301,
+      "sha256": "925c8e18bc70cc94de1b7641bee613eb245bc86dddca95ae7f5d5a2940da8379"
+    },
+    {
+      "path": "infra/aws/test/rillora-public-web-stack.test.ts",
+      "bytes": 7129,
+      "sha256": "05ed6bcfe26af797fc5e2e80d96138fe9b16576c69b7b1f15365b7df169c633f"
+    },
+    {
+      "path": "infra/aws/test/rillora-staging-stack.test.ts",
+      "bytes": 15560,
+      "sha256": "2325c3f6c8f6d9c967527bfdcab945c7634c6fd7f67eb0e268c8f6fb9c8c5f41"
+    },
+    {
+      "path": "infra/aws/tsconfig.json",
+      "bytes": 367,
+      "sha256": "4ede8679202c6707e48222efb36d2a8794d7821086eb1432ec70831f8ccad44c"
+    },
+    {
+      "path": "tools/auth0/apply-apple-hosted.py",
+      "bytes": 6127,
+      "sha256": "591aa6c1e359930a60ed930e03aa1670a80951d87083b1b866fa24b1170bf027"
+    },
+    {
+      "path": "tools/auth0/apply-custom-text.sh",
+      "bytes": 2255,
+      "sha256": "e9dee2fae12f48b2deed974f33b0911afd62611758e42b6c29b0c55ca14e2b3e"
+    },
+    {
+      "path": "tools/auth0/apply-hosted-consent.py",
+      "bytes": 9916,
+      "sha256": "c2a44e9ef2300c816f537b2b14f0d2f2899ad9c84621b0b39a407cc791a75bcd"
+    },
+    {
+      "path": "tools/auth0/apply-selected-brand.py",
+      "bytes": 4351,
+      "sha256": "c4d910c02402ba03ca330f76be0a241dc132c228514e32f97b80d57d398d9511"
+    },
+    {
+      "path": "tools/auth0/apply-universal-login.sh",
+      "bytes": 4884,
+      "sha256": "b4ab5ba36ee1b4d32dd121580b1f48c3a071b2ea82bcb40c930c607fab0fc7e3"
+    },
+    {
+      "path": "tools/auth0/install-deletion-secret.py",
+      "bytes": 2580,
+      "sha256": "eabe56995ca49df387fdcece48dfd0bcf5f098ffa2314f5257ae149dec469896"
+    },
+    {
+      "path": "tools/auth0/install-email-verification-secret.py",
+      "bytes": 2334,
+      "sha256": "3785d71c558316f0f98c52a01808a4a3f73ebc6e9f179d8c37794f59e5d76684"
+    },
+    {
+      "path": "tools/auth0/install-production-identity-services.py",
+      "bytes": 4209,
+      "sha256": "b2a3b1679bbb1d407b4ba7ce3a0482eb240cccf83e1ccb696ab3607e23d928e8"
+    },
+    {
+      "path": "tools/auth0/native_https_callbacks.py",
+      "bytes": 3097,
+      "sha256": "a8bc9ed9b6dc2af6a83e0d903d265da98b224f70b674a752f81d8494c901d534"
+    },
+    {
+      "path": "tools/auth0/prepare-production-clients.py",
+      "bytes": 8533,
+      "sha256": "dfb881c6f348e4424b4aca7f24d1b39ac83201d0355af4e37548560b0cbe75ba"
+    },
+    {
+      "path": "tools/auth0/prepare-production-identity-services.py",
+      "bytes": 3850,
+      "sha256": "3599686de9746adbbe18246b579f8467beb7baa958de37a84e20b788d456ba9a"
+    },
+    {
+      "path": "tools/auth0/prepare-review-identity.py",
+      "bytes": 8973,
+      "sha256": "ed9afca4e3279d5461858ceb462946d21103e0ad7b2ff7104a54a56392c72187"
+    },
+    {
+      "path": "tools/auth0/provision-email-verification.py",
+      "bytes": 3211,
+      "sha256": "983054078cb0bd3acf7948be9ca7dc7104b5b37cc71c5df05832d6c91340af3a"
+    },
+    {
+      "path": "tools/auth0/test_native_https_callbacks.py",
+      "bytes": 1914,
+      "sha256": "8ebde923c99a5ebca05299fa513d3e2312d330f078afd06cc5a221cb25b9f72d"
+    },
+    {
+      "path": "tools/auth0/test_preparation_guards.py",
+      "bytes": 6711,
+      "sha256": "9c95951c09d3e531cd8d9408b2816a19fc702755660ef1d867b52ba577e9f072"
+    },
+    {
+      "path": "tools/collaboration/build_snapshot.py",
+      "bytes": 16281,
+      "sha256": "60067797993d7cc25c8dd599350d1c275bb285d27874fbac2825ba4df9ef9ba6"
+    },
+    {
+      "path": "tools/collaboration/resolve_evidence.py",
+      "bytes": 754,
+      "sha256": "b393f3baebecae623c428bf6a3024649b34b3b266c4e528e45cfc31818f6317c"
+    },
+    {
+      "path": "tools/collaboration/snapshot_policy.py",
+      "bytes": 3611,
+      "sha256": "e8af606005336a0973a5d2a84bf41128670cb6ec57bcc3f220408dcd73721ae4"
+    },
+    {
+      "path": "tools/collaboration/test_snapshot.py",
+      "bytes": 4478,
+      "sha256": "63e817c6e24dfbb898fe8bfd4df5027c65084f3515d8428f0ff2d817f665554e"
+    },
+    {
+      "path": "tools/collaboration/verify_archives.py",
+      "bytes": 6463,
+      "sha256": "803f24c639c9f84e662bd64823e9f878f30508ca42aeee5ffe17edb8851a83e4"
+    },
+    {
+      "path": "tools/collaboration/verify_publication.py",
+      "bytes": 5642,
+      "sha256": "2b3ce0c608716e196727ca9e93859d603c1d549e794cdd8ddcf06be27603ec14"
+    },
+    {
+      "path": "tools/commerce/activate-sharing.sql",
+      "bytes": 1813,
+      "sha256": "3167bb20d9cf3f14dee2b5a37561748d86234b970c58864b5524fbf0206e8944"
+    },
+    {
+      "path": "tools/godaddy/README.md",
+      "bytes": 6786,
+      "sha256": "baf95bdc5f81673ca57ad0565421c0bd59b6c61d8ce8c130ae358580cb1910a6"
+    },
+    {
+      "path": "tools/godaddy/rillora_dns.py",
+      "bytes": 11199,
+      "sha256": "215790bdc8b45d297bd22c980a83c0397b68af0240c1138f52a4e0df06365505"
+    },
+    {
+      "path": "tools/godaddy/test_rillora_dns.py",
+      "bytes": 6182,
+      "sha256": "f48e08d3daa652c2a70dc6777609674eb510d223a013f6e3abc09c667f5a0380"
+    },
+    {
+      "path": "tools/legal/configure-release.sh",
+      "bytes": 1989,
+      "sha256": "439b4f06cf098d7db2edb5517b0e0676b5b8a4d7761f4185b0856a4801ac2d43"
+    },
+    {
+      "path": "tools/legal/package-cloudflare-pages.mjs",
+      "bytes": 3164,
+      "sha256": "46719b05c6dfde112339ace5a97ea11a80253a4bcf380da2f0022210825fea5d"
+    },
+    {
+      "path": "tools/legal/package-legal-sites.sh",
+      "bytes": 1438,
+      "sha256": "047c517bd46e49116e01305d385eb2c880719e63ebeefa339586a0e4e5294fa5"
+    },
+    {
+      "path": "tools/legal/run-legal-sites-build.sh",
+      "bytes": 594,
+      "sha256": "eb30697607f045e5636ed9d3aede5d87a0f8f3a87ddf87dd20f8c4385064728c"
+    },
+    {
+      "path": "tools/legal/run-release-build.sh",
+      "bytes": 596,
+      "sha256": "0e9b068487f211a1a3246e21c0799aaac1c40624e411bbba05bd10974477ab62"
+    },
+    {
+      "path": "tools/logo/audit-dual-embrace-gate2.cjs",
+      "bytes": 5259,
+      "sha256": "78c3dfbbe5685856eab290e490240adac7d10615ed2d89f5e4814845bc4cc297"
+    },
+    {
+      "path": "tools/logo/build-rillora-identity-20260919.cjs",
+      "bytes": 8014,
+      "sha256": "d6419724d2f178d529e23a51d73794da0c886d430269dc83554f9bcd27c3647c"
+    },
+    {
+      "path": "tools/logo/build-rillora-legacy-imprint-20260919.cjs",
+      "bytes": 9015,
+      "sha256": "0d22b02848451568b16af59c4d5df2bb9bafc36360e234f3a4f73ba9f2ac1388"
+    },
+    {
+      "path": "tools/logo/build-rillora-open-folio-20260919.cjs",
+      "bytes": 9062,
+      "sha256": "4708103b20c4b2651d0285e324e44f50a226319a70dd68307d6dba177af2c0bf"
+    },
+    {
+      "path": "tools/logo/export-approved-favicons.cjs",
+      "bytes": 2386,
+      "sha256": "e7084a340f2d067eaa624f2c7d30b9b5a9754498049b5b05059d19f11fc0eeb2"
+    },
+    {
+      "path": "tools/logo/generate-dual-embrace-gate2.cjs",
+      "bytes": 14184,
+      "sha256": "4a36ebd2b86a218eafc06125efe42f64643862b22c184be051b292b3a3c0bc07"
+    },
+    {
+      "path": "tools/maintenance-broker/core.mjs",
+      "bytes": 9081,
+      "sha256": "2a881dc0b085547448a8dd3b40d79458250f5bca929765c42d16cb4ae2dd2ed5"
+    },
+    {
+      "path": "tools/maintenance-broker/core.test.mjs",
+      "bytes": 4402,
+      "sha256": "98ebd0639c11890e8730d57528eeb19eaec2fab496e447d9e65d58b52f6bc904"
+    },
+    {
+      "path": "tools/maintenance-broker/handler.mjs",
+      "bytes": 2419,
+      "sha256": "bf3d4839294d55620abb84445079fb121b44dfc242b18a0039ae199247b9aa8c"
+    },
+    {
+      "path": "tools/maintenance-broker/package.json",
+      "bytes": 136,
+      "sha256": "2daa0ab02a1d45ed142ea2f0304f8fce17241ae8e705ffe3512801067fbc325b"
+    },
+    {
+      "path": "tools/ops/handler.mjs",
+      "bytes": 563,
+      "sha256": "b5cd0f2a1d7e1e05c3010594153f65ca468c90fbb3b24fa4235fb7efacf22b57"
+    },
+    {
+      "path": "tools/ops/health-check.mjs",
+      "bytes": 6330,
+      "sha256": "53b6fb63e3d080188a70a14239318d2422a56a7b0e84ba732b2380f8c646fe50"
+    },
+    {
+      "path": "tools/ops/health-check.test.mjs",
+      "bytes": 4437,
+      "sha256": "a9cc97f8be836ba9899692e2f7a495d9a0ec058c5087ae0759a2ce5d2f8ee338"
+    },
+    {
+      "path": "tools/ops/run-checks.mjs",
+      "bytes": 568,
+      "sha256": "b16498a3e1d85a03ca1e2cba8509b979f01f2ce4ee9f4c043b8a19f86e098762"
+    },
+    {
+      "path": "tools/release/build-web-production.sh",
+      "bytes": 749,
+      "sha256": "faa8ef9e3656ae57497369ac31351c267e674d2ec4eda791006a301a1cfbdd81"
+    },
+    {
+      "path": "tools/release/check_mail_readiness.py",
+      "bytes": 7268,
+      "sha256": "1dcb5c264ffb06086293629535ce4738835acb49732a413ed45350888a6d3622"
+    },
+    {
+      "path": "tools/release/create_source_baseline.py",
+      "bytes": 3724,
+      "sha256": "bf03030c36b0b011461ff9c90339eb5a976b3b8ffe7bf4488f94350e7eeba87a"
+    },
+    {
+      "path": "tools/release/install-review-secrets.py",
+      "bytes": 4910,
+      "sha256": "2e3b1ebf6965a9e69d81e9857259d20ff6545491d68f32a2d190c3d63500077a"
+    },
+    {
+      "path": "tools/release/preflight.py",
+      "bytes": 7306,
+      "sha256": "2619d7d19d0d340c93e241ccd49bed283b932b3d49f4d56bbfacbe85d761ea35"
+    },
+    {
+      "path": "tools/release/prepare_repository.py",
+      "bytes": 3747,
+      "sha256": "4dd7267a11afb25981e4c0cfb6119e67ac1b664c7163d7868dd3e83bf3dcf36f"
+    },
+    {
+      "path": "tools/release/probe_recovery_isolation.mjs",
+      "bytes": 2501,
+      "sha256": "9010a9132add81fa20625f170958a50f7ecfe01c141530dc00853c8b1e1ef08a"
+    },
+    {
+      "path": "tools/release/recovery_drill.py",
+      "bytes": 13140,
+      "sha256": "47a501b221435fe5bb80a789e397f78947dc10d16fb9de80cde0cfd6e6b09171"
+    },
+    {
+      "path": "tools/release/run_recovery_task.py",
+      "bytes": 10962,
+      "sha256": "4ca9d86b4934b16531311808cd822114ce9302949c050e508ab9a77c1c086bf7"
+    },
+    {
+      "path": "tools/release/run_staging_migration.py",
+      "bytes": 1207,
+      "sha256": "bba22a83d8457722ea1ada3dff3303abdd0028fe442ffccca7b184e255763f38"
+    },
+    {
+      "path": "tools/release/scan_repository.py",
+      "bytes": 4819,
+      "sha256": "3c1451eb51ebe058f244abc997126d13c5d8fa7a5bd03df4b85793f99b897316"
+    },
+    {
+      "path": "tools/release/test_mail_readiness.py",
+      "bytes": 5726,
+      "sha256": "9cfde3241bb079a410f4c6688126d74a06e9d045e35fd4838a9fbd8064d8756a"
+    },
+    {
+      "path": "tools/release/test_matrix_isolation.py",
+      "bytes": 3403,
+      "sha256": "30b90e28b536ae253109e9091322ddd612d98db67eba1dd0838b87b92502259f"
+    },
+    {
+      "path": "tools/release/test_native_localization.py",
+      "bytes": 8459,
+      "sha256": "f5f99e4726f28be321615333a1bd9fdd421ec4f9aec3758a223e7be48927cdd6"
+    },
+    {
+      "path": "tools/release/test_native_matter_navigation.py",
+      "bytes": 3784,
+      "sha256": "3b6cd2975e83aac8df8f268696069d7340aaafe1373a74ef0e48e3a59cd01b15"
+    },
+    {
+      "path": "tools/release/test_native_password_reset.py",
+      "bytes": 8065,
+      "sha256": "9d915f03742a5e24078883c4acfeaf2efbed5b73f5c242858dfa3880c8a32510"
+    },
+    {
+      "path": "tools/release/test_native_ui_contract.py",
+      "bytes": 1357,
+      "sha256": "a7bd20784ebef404cdb2ff287e2ac8322603f74bed262728b48dccd339950574"
+    },
+    {
+      "path": "tools/release/test_native_ux_refinement.py",
+      "bytes": 8745,
+      "sha256": "4db95df5b610850515d8d8f056200217d466c852c5ee4e57a3eae61c8a29a7ee"
+    },
+    {
+      "path": "tools/release/test_preflight.py",
+      "bytes": 5004,
+      "sha256": "562875d1ba3c23e7f9ee296f2a5c096075979d400eceecd98cb89eb6d7f571c4"
+    },
+    {
+      "path": "tools/release/test_recovery_drill.py",
+      "bytes": 5193,
+      "sha256": "e40a0a81671007b48743a7b9240885fb762276bd3f2ff5d5df804c6c4984f8e8"
+    },
+    {
+      "path": "tools/release/test_recovery_task_retry.py",
+      "bytes": 9835,
+      "sha256": "47b72915b5a573bc7d32eee4106decb46c4a558cbdca2781c8244febb81885dd"
+    },
+    {
+      "path": "tools/release/test_repository_scan.py",
+      "bytes": 2585,
+      "sha256": "1bfea16dd14ce15b8008b407e02e157c287d1f5b2a0033dc705d1757d37236d4"
+    },
+    {
+      "path": "tools/release/test_tracked_source.py",
+      "bytes": 2206,
+      "sha256": "d894f3d010c4a16e93c431ade465ca08a6809833bc06ba50e10fc097b8e75738"
+    },
+    {
+      "path": "tools/release/tracked_source.py",
+      "bytes": 1108,
+      "sha256": "f33f13c5ae1c0e4d479a827ef9887f842f406eac046a1f58c4005d57d48aad5a"
+    },
+    {
+      "path": "tools/resend/README.md",
+      "bytes": 3401,
+      "sha256": "c804b566e200e54c6f0a54cdda3d1b532a593c5e0ae56043a8c4feb512ee4c8f"
+    },
+    {
+      "path": "tools/run-ios-layout-matrix.sh",
+      "bytes": 7558,
+      "sha256": "671eba9dbad2c335eff4f1993212b7f4677d8a72751179323c4a53bd864d4cdb"
+    },
+    {
+      "path": "tools/snapshot-retention/handler.mjs",
+      "bytes": 1632,
+      "sha256": "0d3b12af8fa5157d0c981ea70807ffb6a0eadf0ab612fd9808c631f9071b59e4"
+    },
+    {
+      "path": "tools/snapshot-retention/package-lock.json",
+      "bytes": 15326,
+      "sha256": "59551f5b662e6de03109812ddf738001eb77c3d6362227a7c29a81933024793b"
+    },
+    {
+      "path": "tools/snapshot-retention/package.json",
+      "bytes": 220,
+      "sha256": "3652c523f985e6e2d38020af578d73b098115c28f2e0fb2a4d4c7937d2caffdf"
+    },
+    {
+      "path": "tools/snapshot-retention/retention.mjs",
+      "bytes": 3876,
+      "sha256": "0712d7a2d8b9532ab6476f98bebaa3ca5e3f94ad423613b05389b88f89a92512"
+    },
+    {
+      "path": "tools/snapshot-retention/retention.test.mjs",
+      "bytes": 4344,
+      "sha256": "10c58b6b4dffd9abee4bc286681dabb8a3f5fea6c618334138b04c1fbe3ebc03"
+    },
+    {
+      "path": "tools/storekit/run-local-sandbox-api.sh",
+      "bytes": 1617,
+      "sha256": "568f128c1b3d863dfb3885ffb1d76abc031810cb4bd4a72afc8928e5468636a3"
+    }
+  ],
+  "fileCount": 883,
+  "totalBytes": 17207061,
+  "nestedRepositoriesPreserved": [],
+  "excludedSymlinks": [],
+  "committed": false,
+  "uploaded": false,
+  "boundary": "Snapshot requires secret/privacy review before any Git or remote operation."
+}

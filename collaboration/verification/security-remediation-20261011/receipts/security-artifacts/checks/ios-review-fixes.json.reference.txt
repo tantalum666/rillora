@@ -1,0 +1,360 @@
+{
+  "schema": "xcodebuildmcp.output.test-result",
+  "schemaVersion": "3",
+  "didError": false,
+  "error": null,
+  "data": {
+    "summary": {
+      "status": "SUCCEEDED",
+      "durationMs": 34050,
+      "counts": {
+        "passed": 45,
+        "failed": 0,
+        "skipped": 0
+      },
+      "target": "simulator"
+    },
+    "artifacts": {
+      "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-10-11T09-17-30-337Z_pid33101_0f697f7c.log",
+      "xcresultPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/result-bundles/test_sim_2026-10-11T09-17-30-337Z_pid33101_4666033b.xcresult",
+      "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-11T09-17-30-337Z_pid33101_f5af983d.xctestproducts"
+    },
+    "tests": {
+      "selected": [
+        "RilloraTests/ApplePurchaseCoordinatorTests/testAccountChangeBeforeServerReceiptReturnsCannotFinishForTheNewSession",
+        "RilloraTests/ApplePurchaseCoordinatorTests/testAccountChangeDuringAppRefreshDiscardsResultAndPreventsDuplicatePrompts",
+        "RilloraTests/ApplePurchaseCoordinatorTests/testAccountChangeDuringPreparationCannotOpenAnotherOwnersPaymentSheet",
+        "RilloraTests/ApplePurchaseCoordinatorTests/testButtonCannotAcceptAQuoteThatChangedBeforeItsTaskStarts",
+        "RilloraTests/ApplePurchaseCoordinatorTests/testCanceledAppAuthenticationStaysQuietAndCanBeRetried",
+        "RilloraTests/ApplePurchaseCoordinatorTests/testCatalogPriceRemainsVisibleWhenServerDisallowsNewPurchase",
+        "RilloraTests/ApplePurchaseCoordinatorTests/testChangedApplePriceAfterPreparationClosesOldOrderWithoutReceiptIntake",
+        "RilloraTests/ApplePurchaseCoordinatorTests/testChangedPriceRequiresAnotherPurchaseButtonTap",
+        "RilloraTests/ApplePurchaseCoordinatorTests/testChangedQuoteReturnsTheNewPriceForFreshConsent",
+        "RilloraTests/ApplePurchaseCoordinatorTests/testForeignOwnerAndSandboxNeverReachProductionReceiptIntake",
+        "RilloraTests/ApplePurchaseCoordinatorTests/testHistoryOutageIsNotPresentedAsHavingNoPurchases",
+        "RilloraTests/ApplePurchaseCoordinatorTests/testInconsistentFinishResponseIsRejectedEvenByInjectedService",
+        "RilloraTests/ApplePurchaseCoordinatorTests/testMissingAppReceiptIsRefreshedOnlyAfterExplicitRestore",
+        "RilloraTests/ApplePurchaseCoordinatorTests/testMissingHistoryUsesExplicitSyncThenServerVerification",
+        "RilloraTests/ApplePurchaseCoordinatorTests/testOlderCatalogResponseCannotReplaceNewerDisplayedQuote",
+        "RilloraTests/ApplePurchaseCoordinatorTests/testOnlyCommittedServerStateCanFinishThenRestoreRetries",
+        "RilloraTests/ApplePurchaseCoordinatorTests/testOpeningPageAndMissingDisplayedQuoteCannotPurchase",
+        "RilloraTests/ApplePurchaseCoordinatorTests/testOwnedVerifiedHistoryRestoresWithoutForcingSystemAuthentication",
+        "RilloraTests/ApplePurchaseCoordinatorTests/testPartialHistoryIsNotReportedAsCompletelyRestored",
+        "RilloraTests/ApplePurchaseCoordinatorTests/testPendingAndCanceledOutcomesArePreservedWithoutFinishing",
+        "RilloraTests/ApplePurchaseCoordinatorTests/testPurchaseUsesServerIntentTokenAndRestoreRecoversThatOwnedTokenWithoutANewOrder",
+        "RilloraTests/ApplePurchaseCoordinatorTests/testRestoresHistoricalMonthlyFromSignedStorefrontAfterCountryChange",
+        "RilloraTests/ApplePurchaseCoordinatorTests/testReviewBuildRejectsAProductionTransactionAndUnknownAppReceiptCannotPurchase",
+        "RilloraTests/ApplePurchaseCoordinatorTests/testReviewPurchaseUsesSandboxContractAndNeverFinishesOnProductionAcknowledgement",
+        "RilloraTests/ApplePurchaseCoordinatorTests/testStoreKitPriceMismatchCannotShowOrStartAnOffer",
+        "RilloraTests/ApplePurchaseCoordinatorTests/testStoreKitReceivesTheExactDisplayedMoneyAndCurrency",
+        "RilloraTests/ApplePurchaseCoordinatorTests/testUnverifiedRefreshedAppCannotReachPurchaseOrReceiptIntake",
+        "RilloraTests/OverviewStoreTests/testAccountSwitchWaitsForSuccessfulSignOutAndKeepsFailureVisible",
+        "RilloraTests/OverviewStoreTests/testAuthenticationFailureBecomesSignedOutInsteadOfAnErrorWall",
+        "RilloraTests/OverviewStoreTests/testCancelledLoadRestoresItsPreviousState",
+        "RilloraTests/OverviewStoreTests/testExpiredSessionDiscardsPreviouslyLoadedPrivateMap",
+        "RilloraTests/OverviewStoreTests/testFailedRefreshKeepsLoadedMapAndRetryClearsNotice",
+        "RilloraTests/OverviewStoreTests/testMutationReconciliationDoesNotKeepAnExpiredSession",
+        "RilloraTests/OverviewStoreTests/testOldSessionRefreshCannotClearTheNewSession",
+        "RilloraTests/OverviewStoreTests/testOlderRefreshCannotOverwriteAConfirmedSave",
+        "RilloraTests/OverviewStoreTests/testReloadPublishesLoadedSnapshot",
+        "RilloraTests/OverviewStoreTests/testReloadPublishesSafeFailureState",
+        "RilloraTests/OverviewStoreTests/testReloadPublishesSignedOutWithoutFetchingPrivateOverview",
+        "RilloraTests/OverviewStoreTests/testVerifiedLoginSnapshotEntersAppWithoutAnotherOverviewRequest",
+        "RilloraTests/ProductionConnectionTests/testBothNativeRevocationsUseTheProductionProxyAndRequireServerSuccess",
+        "RilloraTests/ProductionConnectionTests/testClosedServiceDoesNotOpenHostedAuthentication",
+        "RilloraTests/ProductionConnectionTests/testPreparedProductionConnectionIsValidButDoesNotOpenAccounts",
+        "RilloraTests/ProductionConnectionTests/testProductionRejectsTestIdentityUnsafeOriginsAndDevelopmentIdentity",
+        "RilloraTests/ProductionConnectionTests/testSessionAndDeletionProofNamespacesCannotCrossOrigins",
+        "RilloraTests/ProductionConnectionTests/testSignOutReportsRemoteAndKeychainFailuresWithoutFalseSuccess"
+      ],
+      "discovered": {
+        "total": 45,
+        "items": [
+          "RilloraTests/ApplePurchaseCoordinatorTests/testAccountChangeBeforeServerReceiptReturnsCannotFinishForTheNewSession",
+          "RilloraTests/ApplePurchaseCoordinatorTests/testAccountChangeDuringAppRefreshDiscardsResultAndPreventsDuplicatePrompts",
+          "RilloraTests/ApplePurchaseCoordinatorTests/testAccountChangeDuringPreparationCannotOpenAnotherOwnersPaymentSheet",
+          "RilloraTests/ApplePurchaseCoordinatorTests/testButtonCannotAcceptAQuoteThatChangedBeforeItsTaskStarts",
+          "RilloraTests/ApplePurchaseCoordinatorTests/testCanceledAppAuthenticationStaysQuietAndCanBeRetried",
+          "RilloraTests/ApplePurchaseCoordinatorTests/testCatalogPriceRemainsVisibleWhenServerDisallowsNewPurchase"
+        ]
+      }
+    },
+    "diagnostics": {
+      "warnings": [],
+      "errors": [],
+      "testFailures": []
+    },
+    "testCases": [
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testAccountChangeBeforeServerReceiptReturnsCannotFinishForTheNewSession",
+        "status": "passed",
+        "durationMs": 20
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testAccountChangeDuringAppRefreshDiscardsResultAndPreventsDuplicatePrompts",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testAccountChangeDuringPreparationCannotOpenAnotherOwnersPaymentSheet",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testButtonCannotAcceptAQuoteThatChangedBeforeItsTaskStarts",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testCanceledAppAuthenticationStaysQuietAndCanBeRetried",
+        "status": "passed",
+        "durationMs": 19
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testCatalogPriceRemainsVisibleWhenServerDisallowsNewPurchase",
+        "status": "passed",
+        "durationMs": 6
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testChangedApplePriceAfterPreparationClosesOldOrderWithoutReceiptIntake",
+        "status": "passed",
+        "durationMs": 3
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testChangedPriceRequiresAnotherPurchaseButtonTap",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testChangedQuoteReturnsTheNewPriceForFreshConsent",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testForeignOwnerAndSandboxNeverReachProductionReceiptIntake",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testHistoryOutageIsNotPresentedAsHavingNoPurchases",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testInconsistentFinishResponseIsRejectedEvenByInjectedService",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testMissingAppReceiptIsRefreshedOnlyAfterExplicitRestore",
+        "status": "passed",
+        "durationMs": 3
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testMissingHistoryUsesExplicitSyncThenServerVerification",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testOlderCatalogResponseCannotReplaceNewerDisplayedQuote",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testOnlyCommittedServerStateCanFinishThenRestoreRetries",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testOpeningPageAndMissingDisplayedQuoteCannotPurchase",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testOwnedVerifiedHistoryRestoresWithoutForcingSystemAuthentication",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testPartialHistoryIsNotReportedAsCompletelyRestored",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testPendingAndCanceledOutcomesArePreservedWithoutFinishing",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testPurchaseUsesServerIntentTokenAndRestoreRecoversThatOwnedTokenWithoutANewOrder",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testRestoresHistoricalMonthlyFromSignedStorefrontAfterCountryChange",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testReviewBuildRejectsAProductionTransactionAndUnknownAppReceiptCannotPurchase",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testReviewPurchaseUsesSandboxContractAndNeverFinishesOnProductionAcknowledgement",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testStoreKitPriceMismatchCannotShowOrStartAnOffer",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testStoreKitReceivesTheExactDisplayedMoneyAndCurrency",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testUnverifiedRefreshedAppCannotReachPurchaseOrReceiptIntake",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "OverviewStoreTests",
+        "test": "testAccountSwitchWaitsForSuccessfulSignOutAndKeepsFailureVisible",
+        "status": "passed",
+        "durationMs": 4
+      },
+      {
+        "suite": "OverviewStoreTests",
+        "test": "testAuthenticationFailureBecomesSignedOutInsteadOfAnErrorWall",
+        "status": "passed",
+        "durationMs": 3
+      },
+      {
+        "suite": "OverviewStoreTests",
+        "test": "testCancelledLoadRestoresItsPreviousState",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "OverviewStoreTests",
+        "test": "testExpiredSessionDiscardsPreviouslyLoadedPrivateMap",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "OverviewStoreTests",
+        "test": "testFailedRefreshKeepsLoadedMapAndRetryClearsNotice",
+        "status": "passed",
+        "durationMs": 3
+      },
+      {
+        "suite": "OverviewStoreTests",
+        "test": "testMutationReconciliationDoesNotKeepAnExpiredSession",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "OverviewStoreTests",
+        "test": "testOlderRefreshCannotOverwriteAConfirmedSave",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "OverviewStoreTests",
+        "test": "testOldSessionRefreshCannotClearTheNewSession",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "OverviewStoreTests",
+        "test": "testReloadPublishesLoadedSnapshot",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "OverviewStoreTests",
+        "test": "testReloadPublishesSafeFailureState",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "OverviewStoreTests",
+        "test": "testReloadPublishesSignedOutWithoutFetchingPrivateOverview",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "OverviewStoreTests",
+        "test": "testVerifiedLoginSnapshotEntersAppWithoutAnotherOverviewRequest",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "ProductionConnectionTests",
+        "test": "testBothNativeRevocationsUseTheProductionProxyAndRequireServerSuccess",
+        "status": "passed",
+        "durationMs": 55
+      },
+      {
+        "suite": "ProductionConnectionTests",
+        "test": "testClosedServiceDoesNotOpenHostedAuthentication",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "ProductionConnectionTests",
+        "test": "testPreparedProductionConnectionIsValidButDoesNotOpenAccounts",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "ProductionConnectionTests",
+        "test": "testProductionRejectsTestIdentityUnsafeOriginsAndDevelopmentIdentity",
+        "status": "passed",
+        "durationMs": 3
+      },
+      {
+        "suite": "ProductionConnectionTests",
+        "test": "testSessionAndDeletionProofNamespacesCannotCrossOrigins",
+        "status": "passed",
+        "durationMs": 4
+      },
+      {
+        "suite": "ProductionConnectionTests",
+        "test": "testSignOutReportsRemoteAndKeychainFailuresWithoutFalseSuccess",
+        "status": "passed",
+        "durationMs": 6
+      }
+    ]
+  }
+}

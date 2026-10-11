@@ -2,6 +2,19 @@ import XCTest
 @testable import Rillora
 
 final class AccountDataTests: XCTestCase {
+    func testBoundedFileReadRejectsActualBytesBeforeDecoding() throws {
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let file = directory.appendingPathComponent("synthetic.json")
+        for limit in [8192,16_384,2*1024*1024] {
+            let exact = Data(repeating:65,count:limit)
+            try exact.write(to:file)
+            XCTAssertEqual(try BoundedDocumentReader.readBounded(file,maximumBytes:limit),exact)
+            try Data(repeating:65,count:limit+1).write(to:file)
+            XCTAssertThrowsError(try BoundedDocumentReader.readBounded(file,maximumBytes:limit))
+        }
+    }
     func testBillingAcknowledgementIncludesPendingPurchaseAndDecodesOlderProfiles() throws {
         for (fields, expected) in [
             (#""hasSubscription":false,"hasPendingPurchase":true"#, true),

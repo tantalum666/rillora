@@ -7,10 +7,11 @@ import { appleDeliveryMetrics } from '../src/apple-production-metrics.js';
 
 const secretArn = 'arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/apple-iap-ABC123';
 const environment = () => ({
-  NODE_ENV: 'production', DATABASE_URL: 'postgresql://127.0.0.1/local_fixture',
+  NODE_ENV: 'production', PRODUCTION_RUNTIME_MODE: 'live', DATABASE_URL: 'postgresql://127.0.0.1/local_fixture',
   DATABASE_SSL_MODE: 'verify-full', DATABASE_SSL_CA_PATH: 'fixture-ca.pem',
-  WEB_APP_ORIGIN: 'https://app.rillora.xyz', OIDC_ISSUER_URL: 'https://identity.example',
-  OIDC_CLIENT_ID: 'fixture', OIDC_CLIENT_SECRET: 'synthetic-configuration-not-a-live-secret',
+  WEB_APP_ORIGIN: 'https://app.rillora.xyz', OIDC_ISSUER_URL: 'https://login.rillora.xyz',
+  OIDC_CLIENT_ID: 'EcevpyKt1GELKwkLnVU3aCbh3Ix2SJhz', OIDC_CLIENT_SECRET: 'synthetic-configuration-not-a-live-secret',
+  NATIVE_OIDC_CLIENT_ID:'POpNKTqlr6dHbJZLWPWxhyjg5qPtdrm4',OIDC_API_AUDIENCE:'urn:rillora:production:api',
   OIDC_REDIRECT_URI: 'https://app.rillora.xyz/api/auth/callback',
   CONTENT_PROTECTION_MODE: 'encrypted', CONTENT_KEY_NAMESPACE: 'rillora-production',
   CONTENT_KMS_KEY_ARN: `arn:aws:kms:eu-central-1:133857166372:key/${randomUUID()}`,
@@ -71,7 +72,11 @@ describe('Apple production runtime boundaries', () => {
   it('pins review to its named Sandbox secret and the same real authentication/encryption boundary',()=>{
     const reviewArn=secretArn.replace('apple-iap','apple-review');
     const valid={...environment(),ALLOW_APPLE_PRODUCTION_INTEGRATION:'false',APPLE_PRODUCTION_SECRET_ARN:undefined,
-      ALLOW_APPLE_REVIEW_INTEGRATION:'true',APPLE_REVIEW_SECRET_ARN:reviewArn};
+      ALLOW_APPLE_REVIEW_INTEGRATION:'true',APPLE_REVIEW_SECRET_ARN:reviewArn,
+      PRODUCTION_RUNTIME_MODE:'review',PRODUCTION_REVIEW_IDENTITY_SHA256:'a'.repeat(64),
+      PRODUCTION_REVIEW_EXPIRES_AT:'2026-10-07T00:00:00Z',OIDC_ISSUER_URL:'https://login.rillora.xyz',
+      OIDC_CLIENT_ID:'EcevpyKt1GELKwkLnVU3aCbh3Ix2SJhz',NATIVE_OIDC_CLIENT_ID:'POpNKTqlr6dHbJZLWPWxhyjg5qPtdrm4',
+      OIDC_API_AUDIENCE:'urn:rillora:production:api'};
     expect(loadConfig(valid)).toMatchObject({appleProduction:null,appleReview:{secretArn:reviewArn},appleSandbox:null});
     for(const patch of [{ALLOW_DEV_AUTH:'true'},{NODE_ENV:'test'},{PRODUCTION_RUNTIME_MODE:'closed'},
       {APPLE_REVIEW_SECRET_ARN:secretArn},{APPLE_REVIEW_SECRET_ARN:undefined},{ALLOW_APPLE_SANDBOX_INTEGRATION:'true'},

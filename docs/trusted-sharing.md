@@ -1,8 +1,12 @@
 # Account-bound invitations and directed sharing
 
 Status: SHARING CONTRACT RETAINED; ACTUAL NATIVE-TO-WEB SCOPE AND REVOCATION VERIFIED
-Last updated: 2026-10-04 (Asia/Hong_Kong)
+Last updated: 2026-10-11 (Asia/Hong_Kong)
 Authority: Owner explicitly requests A -> B/C invitations, authenticated acceptance and per-person/per-matter access.
+
+## October11 local invitation repair
+
+The [current security candidate](security-findings-remediation-20261011.md) checks recent authentication and current provider-verified email when accepting an invitation. Cached proof is cleared on change, revocation or provider failure. Public lookup exposes metadata only while the invitation is pending and unexpired; an accepted recipient uses the authenticated shared list. Native links accept exact owned HTTPS origins, with AASA deployment still separate. Production handoff cookies are host-bound. Failed native sign-out cannot continue into another-account login, and the invitation view keeps the failure visible. These changes do not create legal authority, extra sharing places or automated release.
 
 ## October3 strict-review implementation boundary
 

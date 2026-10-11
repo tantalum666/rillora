@@ -1,0 +1,191 @@
+.........................................................FFEFF....
+======================================================================
+ERROR: test_recent_identical_request_reconciles_the_same_token (test_recovery_task_retry.RecoveryTaskRetryTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/tools/release/test_recovery_task_retry.py", line 117, in test_recent_identical_request_reconciles_the_same_token
+    updated = self.invoke(state, provider)
+  File "/private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/tools/release/test_recovery_task_retry.py", line 89, in invoke
+    runner.main()
+  File "/private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/tools/release/run_recovery_task.py", line 95, in main
+    require('.local-secrets' in args.state.resolve().parts and re.fullmatch(r'[A-Za-z0-9_-]{43}',state.get('runToken','')) is not None,
+  File "/private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/tools/release/recovery_drill.py", line 27, in require
+    raise ValueError(message)
+ValueError: Maintenance writes require the protected per-run capability
+
+======================================================================
+ERROR: test_recent_restore_and_commerce_retries_keep_exact_verified_inputs (test_recovery_task_retry.RecoveryTaskRetryTests) (operation='restore')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/tools/release/test_recovery_task_retry.py", line 144, in test_recent_restore_and_commerce_retries_keep_exact_verified_inputs
+    updated = self.invoke(state, provider, operation)
+  File "/private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/tools/release/test_recovery_task_retry.py", line 89, in invoke
+    runner.main()
+  File "/private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/tools/release/run_recovery_task.py", line 95, in main
+    require('.local-secrets' in args.state.resolve().parts and re.fullmatch(r'[A-Za-z0-9_-]{43}',state.get('runToken','')) is not None,
+  File "/private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/tools/release/recovery_drill.py", line 27, in require
+    raise ValueError(message)
+ValueError: Maintenance writes require the protected per-run capability
+
+======================================================================
+ERROR: test_recent_restore_and_commerce_retries_keep_exact_verified_inputs (test_recovery_task_retry.RecoveryTaskRetryTests) (operation='reconcile-commerce')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/tools/release/test_recovery_task_retry.py", line 144, in test_recent_restore_and_commerce_retries_keep_exact_verified_inputs
+    updated = self.invoke(state, provider, operation)
+  File "/private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/tools/release/test_recovery_task_retry.py", line 89, in invoke
+    runner.main()
+  File "/private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/tools/release/run_recovery_task.py", line 95, in main
+    require('.local-secrets' in args.state.resolve().parts and re.fullmatch(r'[A-Za-z0-9_-]{43}',state.get('runToken','')) is not None,
+  File "/private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/tools/release/recovery_drill.py", line 27, in require
+    raise ValueError(message)
+ValueError: Maintenance writes require the protected per-run capability
+
+======================================================================
+FAIL: test_expired_freeze_evidence_cannot_start_an_uncertain_commerce_task (test_recovery_task_retry.RecoveryTaskRetryTests)
+----------------------------------------------------------------------
+ValueError: Maintenance writes require the protected per-run capability
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/tools/release/test_recovery_task_retry.py", line 153, in test_expired_freeze_evidence_cannot_start_an_uncertain_commerce_task
+    self.invoke(state, provider, 'reconcile-commerce')
+AssertionError: "source-freeze evidence expired" does not match "Maintenance writes require the protected per-run capability"
+
+======================================================================
+FAIL: test_known_task_is_not_reissued_without_a_verified_failure (test_recovery_task_retry.RecoveryTaskRetryTests)
+----------------------------------------------------------------------
+ValueError: Maintenance writes require the protected per-run capability
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/tools/release/test_recovery_task_retry.py", line 125, in test_known_task_is_not_reissued_without_a_verified_failure
+    self.invoke(state, provider)
+AssertionError: "already recorded" does not match "Maintenance writes require the protected per-run capability"
+
+======================================================================
+FAIL: test_old_future_or_missing_invocation_time_cannot_reissue_a_task (test_recovery_task_retry.RecoveryTaskRetryTests) (age=datetime.timedelta(days=2))
+----------------------------------------------------------------------
+ValueError: Maintenance writes require the protected per-run capability
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/tools/release/test_recovery_task_retry.py", line 99, in test_old_future_or_missing_invocation_time_cannot_reissue_a_task
+    self.invoke(state, provider)
+AssertionError: "idempotency|invocation time" does not match "Maintenance writes require the protected per-run capability"
+
+======================================================================
+FAIL: test_old_future_or_missing_invocation_time_cannot_reissue_a_task (test_recovery_task_retry.RecoveryTaskRetryTests) (age=datetime.timedelta(seconds=7200))
+----------------------------------------------------------------------
+ValueError: Maintenance writes require the protected per-run capability
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/tools/release/test_recovery_task_retry.py", line 99, in test_old_future_or_missing_invocation_time_cannot_reissue_a_task
+    self.invoke(state, provider)
+AssertionError: "idempotency|invocation time" does not match "Maintenance writes require the protected per-run capability"
+
+======================================================================
+FAIL: test_old_future_or_missing_invocation_time_cannot_reissue_a_task (test_recovery_task_retry.RecoveryTaskRetryTests) (age=datetime.timedelta(seconds=3300))
+----------------------------------------------------------------------
+ValueError: Maintenance writes require the protected per-run capability
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/tools/release/test_recovery_task_retry.py", line 99, in test_old_future_or_missing_invocation_time_cannot_reissue_a_task
+    self.invoke(state, provider)
+AssertionError: "idempotency|invocation time" does not match "Maintenance writes require the protected per-run capability"
+
+======================================================================
+FAIL: test_old_future_or_missing_invocation_time_cannot_reissue_a_task (test_recovery_task_retry.RecoveryTaskRetryTests) (age=datetime.timedelta(days=-1, seconds=86340))
+----------------------------------------------------------------------
+ValueError: Maintenance writes require the protected per-run capability
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/tools/release/test_recovery_task_retry.py", line 99, in test_old_future_or_missing_invocation_time_cannot_reissue_a_task
+    self.invoke(state, provider)
+AssertionError: "idempotency|invocation time" does not match "Maintenance writes require the protected per-run capability"
+
+======================================================================
+FAIL: test_old_future_or_missing_invocation_time_cannot_reissue_a_task (test_recovery_task_retry.RecoveryTaskRetryTests) (age=None)
+----------------------------------------------------------------------
+ValueError: Maintenance writes require the protected per-run capability
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/tools/release/test_recovery_task_retry.py", line 99, in test_old_future_or_missing_invocation_time_cannot_reissue_a_task
+    self.invoke(state, provider)
+AssertionError: "idempotency|invocation time" does not match "Maintenance writes require the protected per-run capability"
+
+======================================================================
+FAIL: test_recent_retry_cannot_change_saved_scope_or_lose_its_token (test_recovery_task_retry.RecoveryTaskRetryTests) (mutation='cluster')
+----------------------------------------------------------------------
+ValueError: Maintenance writes require the protected per-run capability
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/tools/release/test_recovery_task_retry.py", line 112, in test_recent_retry_cannot_change_saved_scope_or_lose_its_token
+    self.invoke(state, provider)
+AssertionError: "saved request" does not match "Maintenance writes require the protected per-run capability"
+
+======================================================================
+FAIL: test_recent_retry_cannot_change_saved_scope_or_lose_its_token (test_recovery_task_retry.RecoveryTaskRetryTests) (mutation='token')
+----------------------------------------------------------------------
+ValueError: Maintenance writes require the protected per-run capability
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/tools/release/test_recovery_task_retry.py", line 112, in test_recent_retry_cannot_change_saved_scope_or_lose_its_token
+    self.invoke(state, provider)
+AssertionError: "saved request" does not match "Maintenance writes require the protected per-run capability"
+
+======================================================================
+FAIL: test_recent_retry_cannot_change_saved_scope_or_lose_its_token (test_recovery_task_retry.RecoveryTaskRetryTests) (mutation='command')
+----------------------------------------------------------------------
+ValueError: Maintenance writes require the protected per-run capability
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/tools/release/test_recovery_task_retry.py", line 112, in test_recent_retry_cannot_change_saved_scope_or_lose_its_token
+    self.invoke(state, provider)
+AssertionError: "saved request" does not match "Maintenance writes require the protected per-run capability"
+
+======================================================================
+FAIL: test_uncertain_commerce_request_rechecks_current_source_writers (test_recovery_task_retry.RecoveryTaskRetryTests)
+----------------------------------------------------------------------
+ValueError: Maintenance writes require the protected per-run capability
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/tools/release/test_recovery_task_retry.py", line 131, in test_uncertain_commerce_request_rechecks_current_source_writers
+    self.invoke(self.fixture(timedelta(minutes=1), 'reconcile-commerce'), provider, 'reconcile-commerce')
+AssertionError: "source writers" does not match "Maintenance writes require the protected per-run capability"
+
+======================================================================
+FAIL: test_uncertain_restore_rechecks_snapshot_identity (test_recovery_task_retry.RecoveryTaskRetryTests)
+----------------------------------------------------------------------
+ValueError: Maintenance writes require the protected per-run capability
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/tools/release/test_recovery_task_retry.py", line 137, in test_uncertain_restore_rechecks_snapshot_identity
+    self.invoke(self.fixture(timedelta(minutes=1), 'restore'), provider, 'restore')
+AssertionError: "another source" does not match "Maintenance writes require the protected per-run capability"
+
+----------------------------------------------------------------------
+Ran 69 tests in 9.486s
+
+FAILED (failures=12, errors=3)

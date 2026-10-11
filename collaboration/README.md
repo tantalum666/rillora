@@ -1,5 +1,7 @@
 # Rillora — Git / Dot 协作入口
 
+October11当前任务是[多份安全报告的修复](../docs/security-findings-remediation-20261011.md)，分支codex/security-findings-20261011。Owner已明确批准两项源码／登记操作；API495项、源扫描及原生287项／1既有跳过通过，一次独立复核的4处回归已补修。新[archive31](verification/security-remediation-20261011/README.md)保存2,430路径／1,389对象并本地解密核验；Git、CI和远端读回正在继续。线上按本次指令保持原状，沿用[当前handoff](../docs/handoff.md)，不恢复下方旧发布下一步。
+
 October10当前第3项：[恢复/权限验收](verification/recovery-financial-20261010/README.md)完成当前范围；4处缺口已修、23聚焦检查/CI119–121通过，真实TEST支撑的本地恢复与生产快照/Apple Sandbox云端对账分别通过。原API21/镜像恢复健康，克隆及临时快照已清理。archive30的653路径/376对象已在99c2537f4从GitHub独立新下载解密通过。后续第1/2/4/5项和Owner暂缓决定独立，唯一下一步见handoff；下列先前交付段落保留其日期。
 
 October10当前：[手机13、双语与付款专项](verification/payment-language-20261010/README.md)已实际交付。API21/43/schema94、四Web/法律站、两同意表单上线；Owner确认手机已订阅/HKD888/无混排。三笔新Stripe TEST退款边界及34验签事件通过，测试订阅均结束，原事项保留。archive29追加2,658路径/1,130对象，61,653,260加密字节，本地及GitHub独立新下载解密均通过（d15cbd59c）。Auth0桌面旧英文外壳受402/工单权限限制，社区草稿未发；当前唯一下一步见handoff。下列旧状态均为有日期的历史检查点。

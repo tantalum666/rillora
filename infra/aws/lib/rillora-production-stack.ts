@@ -7,6 +7,9 @@ import {ArnFormat,Aws,CfnOutput,Duration,RemovalPolicy,Stack,Tags,type StackProp
 import type {Construct} from 'constructs';
 import {RilloraProductionRuntime} from './rillora-production-runtime.js';
 import {allowAppleCertificateStatusChecks} from './apple-certificate-egress.js';
+import {RilloraMaintenanceBroker} from './rillora-maintenance-broker.js';
+import {readFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
 
 export interface ProductionStackProps extends StackProps {
  runtimeEnabled?:boolean; runtimeDesiredCount?:0|1;
@@ -119,28 +122,30 @@ export class RilloraProductionStack extends Stack {
   // A separate managed policy avoids the IAM user's aggregate2KiB inline limit.
   // Its scope stays one MFA-gated role; no other project role is added.
   new iam.ManagedPolicy(this,'AssumeProductionOperator',{users:[user],statements:[new iam.PolicyStatement({actions:['sts:AssumeRole'],resources:[operator.roleArn],conditions:{Bool:{'aws:MultiFactorAuthPresent':'true'}}})]});
-  operator.addToPolicy(new iam.PolicyStatement({actions:['ecs:RunTask'],resources:[migration.taskDefinitionArn,recovery.taskDefinitionArn],conditions:{ArnEquals:{'ecs:cluster':cluster.clusterArn}}}));
-  operator.addToPolicy(new iam.PolicyStatement({actions:['iam:PassRole'],resources:[migration.taskRole.roleArn,migration.executionRole!.roleArn,recovery.taskRole.roleArn,recovery.executionRole!.roleArn],conditions:{StringEquals:{'iam:PassedToService':'ecs-tasks.amazonaws.com'}}}));
+  const maintenancePolicies:iam.PolicyStatement[]=[];
+  maintenancePolicies.push(new iam.PolicyStatement({actions:['ecs:RunTask'],resources:[migration.taskDefinitionArn,recovery.taskDefinitionArn],conditions:{ArnEquals:{'ecs:cluster':cluster.clusterArn}}}));
+  maintenancePolicies.push(new iam.PolicyStatement({actions:['iam:PassRole'],resources:[migration.taskRole.roleArn,migration.executionRole!.roleArn,recovery.taskRole.roleArn,recovery.executionRole!.roleArn],conditions:{StringEquals:{'iam:PassedToService':'ecs-tasks.amazonaws.com'}}}));
   operator.addToPolicy(new iam.PolicyStatement({actions:['ecs:DescribeTasks','ecs:StopTask'],resources:['*'],conditions:{ArnEquals:{'ecs:cluster':cluster.clusterArn}}}));
   operator.addToPolicy(new iam.PolicyStatement({actions:['ecs:DescribeTaskDefinition','rds:DescribeDBInstances','rds:DescribeDBSnapshots'],resources:['*'],conditions:{StringEquals:{'aws:RequestedRegion':'eu-central-1'}}}));
   operator.addToPolicy(new iam.PolicyStatement({actions:['logs:GetLogEvents','logs:DescribeLogStreams'],resources:[logGroup.logGroupArn,`${logGroup.logGroupArn}:*`]}));
   const snapshotArn=this.formatArn({service:'rds',resource:'snapshot',resourceName:'rillora-production-recovery-*',arnFormat:ArnFormat.COLON_RESOURCE_NAME});
   const restoredArn=this.formatArn({service:'rds',resource:'db',resourceName:'rillora-recovery-*',arnFormat:ArnFormat.COLON_RESOURCE_NAME});
-  operator.addToPolicy(new iam.PolicyStatement({actions:['rds:CreateDBSnapshot'],resources:[database.instanceArn,snapshotArn]}));
+  maintenancePolicies.push(new iam.PolicyStatement({actions:['rds:CreateDBSnapshot'],resources:[database.instanceArn,snapshotArn]}));
   const rdsArn=(kind:string,name:string)=>this.formatArn({service:'rds',resource:kind,resourceName:name,arnFormat:ArnFormat.COLON_RESOURCE_NAME});
   // RDS authorizes the parameter/option/subnet groups as well as the snapshot.
   // Do not compensate for a missing dependency with a resource:* restore grant.
-  operator.addToPolicy(new iam.PolicyStatement({actions:['rds:RestoreDBInstanceFromDBSnapshot'],resources:[snapshotArn,
+  maintenancePolicies.push(new iam.PolicyStatement({actions:['rds:RestoreDBInstanceFromDBSnapshot'],resources:[snapshotArn,
    rdsArn('pg',parameters.bindToInstance({}).parameterGroupName),rdsArn('subgrp',databaseSubnets.subnetGroupName),rdsArn('og','default:postgres-16')]}));
-  operator.addToPolicy(new iam.PolicyStatement({actions:['rds:RestoreDBInstanceFromDBSnapshot'],resources:[restoredArn],
+  maintenancePolicies.push(new iam.PolicyStatement({actions:['rds:RestoreDBInstanceFromDBSnapshot'],resources:[restoredArn],
    conditions:{StringEquals:{'aws:RequestTag/Project':'Rillora','aws:RequestTag/Environment':'RecoveryDrill','rds:DatabaseClass':'db.t4g.micro'},
     Bool:{'rds:PubliclyAccessible':'false'}}}));
-  operator.addToPolicy(new iam.PolicyStatement({actions:['rds:AddTagsToResource'],resources:[snapshotArn,restoredArn]}));
-  operator.addToPolicy(new iam.PolicyStatement({actions:['rds:DeleteDBInstance'],resources:[restoredArn],conditions:{StringEquals:{'aws:ResourceTag/Environment':'RecoveryDrill'}}}));
-  operator.addToPolicy(new iam.PolicyStatement({actions:['rds:DeleteDBSnapshot'],resources:[snapshotArn],conditions:{StringEquals:{'aws:ResourceTag/Environment':'RecoveryDrill'}}}));
+  maintenancePolicies.push(new iam.PolicyStatement({actions:['rds:AddTagsToResource','rds:ListTagsForResource'],resources:[snapshotArn,restoredArn]}));
+  maintenancePolicies.push(new iam.PolicyStatement({actions:['rds:DescribeDBInstances','rds:DescribeDBSnapshots'],resources:['*'],conditions:{StringEquals:{'aws:RequestedRegion':'eu-central-1'}}}));
+  maintenancePolicies.push(new iam.PolicyStatement({actions:['rds:DeleteDBInstance'],resources:[restoredArn],conditions:{StringEquals:{'aws:ResourceTag/Environment':'RecoveryDrill','aws:ResourceTag/Project':'Rillora'}}}));
+  maintenancePolicies.push(new iam.PolicyStatement({actions:['rds:DeleteDBSnapshot'],resources:[snapshotArn],conditions:{StringEquals:{'aws:ResourceTag/Environment':'RecoveryDrill','aws:ResourceTag/Project':'Rillora'}}}));
   operator.addToPolicy(new iam.PolicyStatement({actions:['cloudformation:DescribeStacks'],resources:[this.stackId]}));
   operator.addToPolicy(new iam.PolicyStatement({actions:['kms:DescribeKey','kms:GetKeyRotationStatus'],resources:[contentKey.keyArn]}));
-  if(props.runtimeEnabled)new RilloraProductionRuntime(this,'Runtime',{
+  const runtime=props.runtimeEnabled?new RilloraProductionRuntime(this,'Runtime',{
    vpc,cluster,database,databaseNetwork,credential:runtimeCredential,key:contentKey,journal,
    image:props.runtimeImageTag?ecs.ContainerImage.fromEcrRepository(ecrRepository.Repository.fromRepositoryAttributes(this,'ExistingAssetRepository',{
     repositoryArn:`arn:${Aws.PARTITION}:ecr:eu-central-1:${Aws.ACCOUNT_ID}:repository/cdk-hnb659fds-container-assets-${Aws.ACCOUNT_ID}-eu-central-1`,
@@ -148,7 +153,18 @@ export class RilloraProductionStack extends Stack {
    operator,environment,reviewPrepared:props.reviewPrepared,reviewEnabled:props.reviewEnabled,retentionEnabled:props.retentionEnabled,identityServicesEnabled:props.identityServicesEnabled,recoveryTask:recovery,
    stripeNotificationsSecretArn:props.stripeNotificationsSecretArn,
    desiredCount:props.runtimeDesiredCount??0,
-  });
+  }):null;
+  if(runtime)maintenancePolicies.push(new iam.PolicyStatement({actions:['ecs:DescribeServices'],resources:[runtime.apiService.serviceArn]}));
+  const broker=new RilloraMaintenanceBroker(this,'MaintenanceBroker',{operator,policies:maintenancePolicies,settings:{
+    environment:'production',source:'rillora-production',sourceHost:database.instanceEndpoint.hostname,cluster:cluster.clusterName,
+    migrationTask:migration.taskDefinitionArn,recoveryTask:recovery.taskDefinitionArn,
+    subnets:vpc.publicSubnets.map(s=>s.subnetId),migrationSecurityGroup:sourceJobs.securityGroupId,
+    recoveryTaskSecurityGroup:recoveryJobs.securityGroupId,recoveryDatabaseSecurityGroup:recoveryDatabaseNetwork.securityGroupId,
+    sourceDatabaseSecurityGroup:databaseNetwork.securityGroupId,vpc:vpc.vpcId,subnetGroup:databaseSubnets.subnetGroupName,
+    parameterGroup:parameters.bindToInstance({}).parameterGroupName,sourceService:runtime?.apiService.serviceName,
+    isolationScriptSha256:createHash('sha256').update(readFileSync(resolve(directory,'../../../tools/release/probe_recovery_isolation.mjs'))).digest('hex'),
+  }});
+  new CfnOutput(this,'MaintenanceBrokerFunctionName',{value:broker.function.functionName});
   const outputs={ProductionVpcId:vpc.vpcId,DatabaseSecurityGroupId:databaseNetwork.securityGroupId,
    DatabaseIdentifier:database.instanceIdentifier,DatabaseHost:database.instanceEndpoint.hostname,
    DatabaseSubnetGroup:databaseSubnets.subnetGroupName,DatabaseParameterGroup:parameters.bindToInstance({}).parameterGroupName,ClusterName:cluster.clusterName,

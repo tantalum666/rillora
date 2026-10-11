@@ -204,7 +204,7 @@ export class StripeCommerceExecutor {
   async cancelPendingCheckout(plannerId: string): Promise<void> {
     if (!this.provider.expireHostedCheckout) throw new ApiError(503, "checkout_cancel_unavailable", "Checkout could not be canceled. Try again.");
     await withCommercePlannerDatabase(this.pool, plannerId, async client => {
-      await client.query("select pg_advisory_xact_lock(hashtextextended('checkout:' || app.current_planner_id()::text,0))");
+      await acquireCheckoutLock(client);
       const pending = await client.query<{ id: string; order_id: string; provider_payment_reference: string | null; account_reference: string }>(`select p.id::text,p.order_id::text,p.provider_payment_reference,a.public_id as account_reference
         from app.commerce_payment_attempts p join app.commerce_orders o on o.id=p.order_id
         join app.commerce_accounts a on a.id=o.commerce_account_id
@@ -538,7 +538,7 @@ async function reserveCheckout(
   locale?: BillingDisplayLocale,
 ): Promise<CheckoutReservation> {
   const environment = stripeExecutionEnvironment(config);
-  await client.query("select pg_advisory_xact_lock(hashtextextended('checkout:' || app.current_planner_id()::text,0))");
+  await acquireCheckoutLock(client);
   if (environment === "production") {
     await assertProductionSalesReady(client);
     await assertNoForeignPurchase(client,'stripe');
@@ -867,6 +867,16 @@ async function acquireStripeObservation(client: PoolClient, environment: string,
     [`stripe-observation:${environment}:${subscription}`],
   );
   if (!locked.rows[0]?.acquired) throw new ApiError(503, 'subscription_observation_busy', 'Subscription reconciliation will retry.');
+  await client.query("set local idle_in_transaction_session_timeout = '120s'");
+}
+
+async function acquireCheckoutLock(client: PoolClient): Promise<void> {
+  const result = await client.query<{ acquired: boolean }>(
+    "select pg_try_advisory_xact_lock(hashtextextended('checkout:' || app.current_planner_id()::text,0)) as acquired",
+  );
+  // Never occupy the shared pool waiting behind another planner request that
+  // may be doing provider I/O. Keep the existing read-to-commit serialization.
+  if (!result.rows[0]?.acquired) throw new ApiError(409, 'checkout_preparing', 'Checkout is still preparing. Try again shortly.');
   await client.query("set local idle_in_transaction_session_timeout = '120s'");
 }
 

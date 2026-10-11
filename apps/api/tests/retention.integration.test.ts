@@ -47,7 +47,7 @@ describe.sequential('Purpose-specific bounded retention',()=>{
  });
  afterAll(async()=>{await pool.end();});
  it('removes only due metadata and preserves active accounts, linked receipts, fresh records and held evidence',async()=>{
-  expect(await runRetentionBatch(pool)).toEqual({sessions:1,authTransactions:1,sharingHandoffs:1,productEvents:1,auditEvents:1,legalAcceptances:1,closedPayments:1,deletionReceipts:1,releasedHolds:0});
+  expect(await runRetentionBatch(pool)).toMatchObject({sessions:1,authTransactions:1,sharingHandoffs:1,productEvents:1,auditEvents:1,legalAcceptances:1,closedPayments:1,deletionReceipts:1,releasedHolds:0});
   expect((await pool.query('select count(*)::int n from app.planners')).rows[0].n).toBe(1);
   expect((await pool.query('select count(*)::int n from app.plans')).rows[0].n).toBe(1);
   expect((await pool.query('select count(*)::int n from app.legal_acceptances')).rows[0].n).toBe(3);
@@ -59,6 +59,24 @@ describe.sequential('Purpose-specific bounded retention',()=>{
   expect((await runRetentionBatch(pool,2)).productEvents).toBe(2);
   expect((await runRetentionBatch(pool,2)).productEvents).toBe(1);
   expect((await runRetentionBatch(pool,2)).productEvents).toBe(0);
+ });
+ it('expires only bounded preview metadata, without permission to read encrypted copies or delete current exports',async()=>{
+  await pool.query(`insert into app.export_packages(planner_id,plan_id,format,status,expires_at)
+    select $1,id,'start_here_json','previewed',now()-interval '1 minute' from app.plans where planner_id=$1
+    union all select $1,id,'start_here_json','previewed',now()-interval '1 minute' from app.plans where planner_id=$1
+    union all select $1,id,'start_here_json','previewed',now()+interval '1 hour' from app.plans where planner_id=$1
+    union all select $1,id,'start_here_text','ready',null from app.plans where planner_id=$1`,[owner]);
+  const c=await pool.connect();
+  try {
+   await c.query('begin');await c.query('set local role continuity_retention_service');
+   expect((await c.query("delete from app.export_packages where status='ready' returning id")).rowCount).toBe(0);
+   expect((await c.query('select id from app.export_packages')).rowCount).toBe(2);
+   await expect(c.query('select content_ciphertext from app.export_packages')).rejects.toThrow();
+  } finally {await c.query('rollback');c.release();}
+  expect((await runRetentionBatch(pool,1)).expiredPreviews).toBe(1);
+  expect((await runRetentionBatch(pool,1)).expiredPreviews).toBe(1);
+  expect((await runRetentionBatch(pool,1)).expiredPreviews).toBe(0);
+  expect((await pool.query('select status from app.export_packages order by id')).rows).toEqual([{status:'previewed'},{status:'ready'}]);
  });
  it('purges held evidence only after explicit administrative release, without granting hold edits to runtime roles',async()=>{
   const c=await pool.connect();
@@ -101,6 +119,21 @@ describe.sequential('Purpose-specific bounded retention',()=>{
   await publisher.publish(event);expect(sent[0].Item.expiresAt).toBeUndefined();
   await publisher.publish({...event,revision:'2',facts:{...event.facts,active:false}});expect(Number(sent[1].Item.expiresAt.N)).toBeGreaterThan(Date.now()/1000+89*86400);
   expect(()=>parseRecoveryControl({...event,facts:{...event.facts,privateCaseNotes:'must not enter the journal'}})).toThrow();
+ });
+ it('does not replay an external release that survived a rolled-back source transaction',async()=>{
+  const record=await event('100 days','-10 days');const emitted:RecoveryControl[]=[];
+  configureRecoveryPool(pool,{async publish(e){emitted.push(e);}});
+  await setRetentionHold(pool,{category:'product_event',recordId:record,reason:'security_incident',active:true});
+  configureRecoveryPool(pool,{async publish(e){emitted.push(e);throw Error('synthetic failure after external publication');}});
+  await expect(setRetentionHold(pool,{category:'product_event',recordId:record,reason:'security_incident',active:false})).rejects.toThrow();
+  expect(emitted.at(-1)?.facts.active).toBe(false);
+  expect((await pool.query('select released_at from app.retention_holds where record_id=$1',[record])).rows[0].released_at).toBeNull();
+  await replayRecoveryControls(pool,emitted);
+  expect((await pool.query('select released_at from app.retention_holds where record_id=$1',[record])).rows[0].released_at).toBeNull();
+  expect((await runRetentionBatch(pool)).productEvents).toBe(0);
+  configureRecoveryPool(pool,{async publish(){}});
+  await setRetentionHold(pool,{category:'product_event',recordId:record,reason:'security_incident',active:false});
+  expect((await runRetentionBatch(pool)).productEvents).toBe(1);
  });
  it('does not release a legal hold when a separate security hold ends',async()=>{
   const record=await event('100 days','-10 days');

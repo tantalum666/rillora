@@ -157,7 +157,10 @@ struct ReceivedInvitation: Identifiable {
     let token: String?
     let id = UUID()
     static func token(from value: String) -> String? {
-        guard let url = URLComponents(string: value), ["https", "http", "rillora"].contains(url.scheme?.lowercased() ?? ""),
+        guard let url = URLComponents(string: value), url.scheme?.lowercased() == "https",
+              ["app.rillora.xyz", "app.staging.rillora.xyz"].contains(url.host?.lowercased() ?? ""),
+              url.user == nil, url.password == nil, url.port == nil,
+              url.path == "/invite" || url.path.hasPrefix("/invite/"),
               let fragment = url.fragment, let token = URLComponents(string: "?\(fragment)")?.queryItems?.first(where: { $0.name == "invitation" })?.value,
               token.range(of: "^[A-Za-z0-9_-]{43}$", options: .regularExpression) != nil else { return nil }
         return token

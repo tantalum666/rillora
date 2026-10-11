@@ -1,69 +1,69 @@
 {
   "schemaVersion": 1,
-  "reviewedAt": "2026-10-07",
-  "boundary": "Only exact unchanged source spans are approved. New or changed findings still block upload.",
+  "reviewedAt": "2026-10-11",
+  "boundary": "Only exact reviewed source spans are approved. Owner explicitly approved the October11 line updates and two synthetic crypto fixtures. New or changed findings still block upload.",
   "findings": [
     {
       "path": "apps/api/tests/config.test.ts",
       "rule": "generic-api-key",
-      "startLine": 55,
-      "endLine": 55,
+      "startLine": 67,
+      "endLine": 67,
       "sourceSpanSha256": "d6b607ccafdf3a9d857731f25beb6c872342cc92badaa692a9c5045b7a6e053e",
       "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
     },
     {
       "path": "apps/api/tests/config.test.ts",
       "rule": "generic-api-key",
-      "startLine": 62,
-      "endLine": 62,
+      "startLine": 74,
+      "endLine": 74,
       "sourceSpanSha256": "d6b607ccafdf3a9d857731f25beb6c872342cc92badaa692a9c5045b7a6e053e",
       "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
     },
     {
       "path": "apps/api/tests/config.test.ts",
       "rule": "generic-api-key",
-      "startLine": 76,
-      "endLine": 76,
+      "startLine": 88,
+      "endLine": 88,
       "sourceSpanSha256": "a656ab665aa591639a047a2e4b63cf07ecbfb55fd72463c8bc375a06bb3e5704",
       "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
     },
     {
       "path": "apps/api/tests/config.test.ts",
       "rule": "generic-api-key",
-      "startLine": 77,
-      "endLine": 77,
+      "startLine": 89,
+      "endLine": 89,
       "sourceSpanSha256": "816665691498bb57827957537e3eec6781a98e4c7a6cef5ec2e16fc27b9e5bde",
       "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
     },
     {
       "path": "apps/api/tests/config.test.ts",
       "rule": "generic-api-key",
-      "startLine": 100,
-      "endLine": 100,
+      "startLine": 112,
+      "endLine": 112,
       "sourceSpanSha256": "52881282593bc88cb8e5d18a5117b08390fed2224a0eaf44913bc22f6ae1721c",
       "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
     },
     {
       "path": "apps/api/tests/config.test.ts",
       "rule": "generic-api-key",
-      "startLine": 104,
-      "endLine": 104,
+      "startLine": 116,
+      "endLine": 116,
       "sourceSpanSha256": "cdc98f9d44acf3bd4db7cd1cdb1855ef297f6bc80656a880fa93f2f09343756a",
       "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
     },
     {
       "path": "apps/api/tests/config.test.ts",
       "rule": "generic-api-key",
-      "startLine": 144,
-      "endLine": 144,
+      "startLine": 157,
+      "endLine": 157,
       "sourceSpanSha256": "a656ab665aa591639a047a2e4b63cf07ecbfb55fd72463c8bc375a06bb3e5704",
       "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
     },
     {
       "path": "apps/api/tests/config.test.ts",
       "rule": "generic-api-key",
-      "startLine": 145,
-      "endLine": 145,
+      "startLine": 158,
+      "endLine": 158,
       "sourceSpanSha256": "816665691498bb57827957537e3eec6781a98e4c7a6cef5ec2e16fc27b9e5bde",
       "reason": "Synthetic test secret or request-id constant; reviewed source contains fixture-only inputs."
     },
@@ -78,8 +78,8 @@
     {
       "path": "apps/api/src/config.ts",
       "rule": "private-key",
-      "startLine": 560,
-      "endLine": 561,
+      "startLine": 575,
+      "endLine": 576,
       "sourceSpanSha256": "0044f85e45c176a37090d99f293a425401e334fa110648bd52724eca7f12ebaf",
       "reason": "PEM boundary strings in a validator, not private key material."
     },
@@ -130,14 +130,6 @@
       "endLine": 114,
       "sourceSpanSha256": "c9c9eb8a723073eae64c80690be13fc7c0919031fdb81d83a953ee5a247256b4",
       "reason": "Native public Auth0 client identifier, included in distributed app configuration."
-    },
-    {
-      "path": "apps/ios/RilloraTests/StartHereEncryptionServiceTests.swift",
-      "rule": "generic-api-key",
-      "startLine": 171,
-      "endLine": 171,
-      "sourceSpanSha256": "01a8ad16ed86676d58e652dc48227a1e1fbe06a725ede91abae49956de868d10",
-      "reason": "Fixed cross-platform cryptography fixture with synthetic UUIDs and no service/account authority."
     },
     {
       "path": "infra/aws/bootstrap/standalone-account-identity.yml",
@@ -206,18 +198,34 @@
     {
       "rule": "generic-api-key",
       "path": "apps/ios/Rillora.xcodeproj/project.pbxproj",
-      "startLine": 1356,
-      "endLine": 1356,
+      "startLine": 1368,
+      "endLine": 1368,
       "sourceSpanSha256": "5de471a1bd1102dd7f3284468f430bc8b8c0d137dcaef7c8aa9d27cc17aae11e",
       "reason": "Native public Auth0 client identifier, byte-matched to the already reviewed project.yml value; shared generated Xcode project, not a client secret."
     },
     {
       "rule": "generic-api-key",
       "path": "apps/ios/Rillora.xcodeproj/project.pbxproj",
-      "startLine": 1610,
-      "endLine": 1610,
+      "startLine": 1622,
+      "endLine": 1622,
       "sourceSpanSha256": "84b43e023d7ae444915797275d0661dbab0b68c1f6201663e2cd623b995b19ab",
       "reason": "Native public Auth0 client identifier, byte-matched to the already reviewed project.yml value; shared generated Xcode project, not a client secret."
+    },
+    {
+      "path": "apps/ios/RilloraTests/StartHereEncryptionServiceTests.swift",
+      "rule": "generic-api-key",
+      "startLine": 185,
+      "endLine": 185,
+      "sourceSpanSha256": "e2196dac3a1f811423626e52114cf911ec08079897d44b84355774c26f303d56",
+      "reason": "Synthetic Web/CryptoKit interoperability fixture (valid or deliberately invalid commitment); random test-only keys, no provider or account authority. Owner explicitly approved on 2026-10-11."
+    },
+    {
+      "path": "apps/ios/RilloraTests/StartHereEncryptionServiceTests.swift",
+      "rule": "generic-api-key",
+      "startLine": 186,
+      "endLine": 186,
+      "sourceSpanSha256": "d01e5c3749e46284f1e0b4776cc99aba1337139aa848b410b5dffa2a11c43259",
+      "reason": "Synthetic Web/CryptoKit interoperability fixture (valid or deliberately invalid commitment); random test-only keys, no provider or account authority. Owner explicitly approved on 2026-10-11."
     }
   ]
 }

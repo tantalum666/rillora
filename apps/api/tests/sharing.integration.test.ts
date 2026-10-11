@@ -194,6 +194,8 @@ describe.sequential("Account-bound directed sharing", () => {
     const expired = await invitation();
     await pool.query("update app.sharing_connections set invitation_expires_at = now() - interval '1 second' where public_id = $1", [expired.publicId]);
     expect((await accept(expired)).body.error.code).toBe("invitation_expired");
+    const hidden = await request(app).post('/sharing/invitations/resolve').send({invitationToken:expired.token}).expect(404);
+    expect(hidden.headers['set-cookie']).toBeUndefined();
   });
 
   it("rejects never-disclose/foreign scope and stops access when a person is revoked", async () => {

@@ -4,6 +4,22 @@ import {describe,it,expect} from 'vitest';
 import {RilloraProductionStack} from '../lib/rillora-production-stack.js';
 function template(){return Template.fromStack(new RilloraProductionStack(new App(),'Production',{env:{account:'111111111111',region:'eu-central-1'}}));}
 describe('Closed production data and recovery foundation',()=>{
+ it('keeps privileged task execution and recovery writes behind the fixed broker rather than the human operator',()=>{
+  const t=template(),roles=t.findResources('AWS::IAM::Role');
+  const operator=Object.entries(roles).find(([,r]:any)=>r.Properties.RoleName==='rillora-production-operator')![0];
+  const human=(Object.values(t.findResources('AWS::IAM::Policy')) as any[])
+    .filter(p=>p.Properties.Roles?.some((r:any)=>r.Ref===operator)).flatMap(p=>p.Properties.PolicyDocument.Statement);
+  const actions=human.flatMap(s=>typeof s.Action==='string'?[s.Action]:s.Action);
+  for(const action of ['ecs:RunTask','iam:PassRole','rds:CreateDBSnapshot','rds:RestoreDBInstanceFromDBSnapshot',
+    'rds:DeleteDBInstance','rds:DeleteDBSnapshot','rds:AddTagsToResource'])expect(actions).not.toContain(action);
+  expect(actions).toContain('lambda:InvokeFunction');
+  const broker=(Object.values(t.findResources('AWS::Lambda::Function')) as any[]).find(f=>f.Properties.Handler==='handler.handler')!;
+  const brokerRole=broker.Properties.Role['Fn::GetAtt'][0];
+  const brokerActions=(Object.values(t.findResources('AWS::IAM::Policy')) as any[])
+    .filter(p=>p.Properties.Roles?.some((r:any)=>r.Ref===brokerRole)).flatMap(p=>p.Properties.PolicyDocument.Statement)
+    .flatMap(s=>typeof s.Action==='string'?[s.Action]:s.Action);
+  expect(brokerActions).toContain('ecs:RunTask');expect(brokerActions).toContain('iam:PassRole');
+ });
  it('requires seven-day encrypted private storage and keeps customer traffic closed',()=>{
   const t=template();
   t.hasResourceProperties('AWS::RDS::DBInstance',{DBInstanceIdentifier:'rillora-production',DBInstanceClass:'db.t4g.micro',

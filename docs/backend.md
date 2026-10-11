@@ -4,8 +4,12 @@ Role: canonical backend implementation and boundary contract
 Authority scope: API, PostgreSQL model, runtime security controls and production-open gates  
 Superseded by: later reviewed backend decision recorded in `docs/decision-log.md`  
 Do not use for: claiming production identity, real recipient delivery, production end-to-end encryption, legal validity or real release  
-Status: RESTRICTED PRODUCTION API10/SCHEMA0091 RETAINED; STRICT-REVIEW0092/0093 LOCAL; RELEASE GATES OPEN
-Last updated: 2026-10-03 (Asia/Shanghai)
+Status: OCT10 API21/SCHEMA0094 EVIDENCE RETAINED; SECURITY0095–0099 LOCAL CANDIDATE; APPROVAL/RELEASE GATES OPEN
+Last updated: 2026-10-11 (Asia/Hong_Kong)
+
+## October11 audit remediation candidate
+
+The [current security repair](security-findings-remediation-20261011.md) adds direct recent-authentication guards, explicit protected runtime modes, host-bound authentication cookies, provider-signed native consent and fresh email acceptance. Query/snapshot/auth-transaction work is bounded without silently truncating the map. Apple intents, verified receipt ownership and restored billing authority are coupled; expired preview cleanup has row- and column-limited retention permissions. Owner has explicitly approved the protected live source mode and exact fixture-registry update;495API tests/typecheck/build and the source scan now pass. This remains source-only evidence. API21/schema94 refers to October10 evidence, not a fresh provider read. Dated sections below retain their historical scope.
 
 ## October3 strict-review implementation boundary
 
