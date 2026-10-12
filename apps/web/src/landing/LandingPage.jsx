@@ -75,7 +75,7 @@ export function LandingPage() {
           </h2>
           <p>{t("public.home.closingDescription")}</p>
         </div>
-        <AppearanceLink className="lp-button" href={publicEntry.accountURL}>{t("public.auth.explore")}<ArrowRight size={22} aria-hidden="true" />
+        <AppearanceLink className="lp-button" href={publicEntry.accountURL}>{t(publicEntry.preview ? "public.auth.explore" : "public.auth.openMap")}<ArrowRight size={22} aria-hidden="true" />
         </AppearanceLink>
       </section>
     </main>

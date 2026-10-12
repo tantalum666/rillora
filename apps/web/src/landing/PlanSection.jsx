@@ -16,7 +16,7 @@ export function PlanSection() {
         <p>{t("public.price.intro")}</p>
       </header>
       <section className="lp-plan-comparison" aria-label={t("public.price.label")}>
-        <p>{t("public.price.preview")}</p>
+        <p>{t(publicEntry.preview ? "public.price.preview" : "public.price.available")}</p>
         <table>
           <caption className="sr-only">{t("public.price.caption")}</caption>
           <thead>
@@ -65,8 +65,8 @@ export function PlanSection() {
         </table>
         <p className="lp-channel-price-note">{t("public.price.appleNote")}</p>
         <div className="lp-plan-actions">
-          <p>{t("public.price.notOpen")}</p>
-          <AppearanceLink className="lp-text-link" href={publicEntry.accountURL}>{t("public.auth.try")}<ArrowRight aria-hidden="true" size={20} />
+          <p>{t(publicEntry.preview ? "public.price.notOpen" : "public.price.subscribeHint")}</p>
+          <AppearanceLink className="lp-text-link" href={publicEntry.accountURL}>{t(publicEntry.preview ? "public.auth.try" : "public.auth.signin")}<ArrowRight aria-hidden="true" size={20} />
           </AppearanceLink>
         </div>
       </section>
