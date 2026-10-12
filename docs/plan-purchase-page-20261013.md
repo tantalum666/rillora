@@ -1,6 +1,6 @@
 # 套餐与权限：家庭版权益、年价与一个订阅操作
 
-Status: BOTH WEB CLIENTS DEPLOYED / SOURCE CI PASSED / REAL ACCOUNT UI READBACK PENDING / NO TESTFLIGHT
+Status: BOTH WEB CLIENTS DEPLOYED / SOURCE CI PASSED / REAL ACCOUNT BILINGUAL UI VERIFIED / NO TESTFLIGHT
 Last updated: 2026-10-13 (Asia/Hong_Kong)
 
 ## 当前合同
@@ -40,6 +40,10 @@ QA：`output/qa/rillora-plan-purchase-page-20261012/`（开始于October12，跨
 
 先Preview后正式Web完成UPDATE_COMPLETE；两栈各仅一个Custom::CDKBucketDeployment的SourceObjectKeys修改，99／13个资源均保留，全部参数相同。Preview86、正式86个线上文件全部与候选字节匹配。API、数据库、WWW、手机14、价格、收费开关与真实数据未变。
 
-正式Chrome原页面出现账号更换保护，正常重新载入后显示未登录；账号页条款未选、登录按钮禁用。已请Owner恢复原账号，尚无完成回复。本轮没有代填法律同意或制造登录态。因此线上字节交付已证实，真实账号新版UI尚待读回。隔离截图明确标注为测试数据，不能冒充实际用户结果。
+此前正式Chrome原会话失效，Owner随后完成要求的真实登录。October13香港00:53已在原Google账号看到原1事项，并直接打开已部署套餐页：三项权益、USD88.99／年及唯一“订阅家庭版”按钮；旧免费状态、折叠块、复选框与常驻刷新均为0。按钮实际禁用且说明暂未开放新订阅，与保留的销售设置一致。英文界面及两个法律链接的语言参数也已读回，最后恢复中文。此结果是实际正式账号UI；没有点击购买或修改数据。
 
 [新增archive35](../collaboration/verification/plan-purchase-page-20261012/README.md)保存256路径／164对象／35,554,938加密字节，本地认证解密通过；先前1—34未重做。它包含本轮失败／通过日志、截图、发布脚本、精确资源差异及两份最终Web产物。真实凭据、认证界面／会话、provider原文留在保护目录，不进入Git。在不可变提交4ef71b47f5，从GitHub独立新下载唯一的archive35并解密，全部164对象／256路径与远端元数据一致。最终回执普通入Git，不递归封存。
+
+## 登录后真实验收补记
+
+[真实UI回执](../collaboration/verification/plan-purchase-page-20261012/postcapture/production-ui-readback.json)、[中文实图](../collaboration/verification/plan-purchase-page-20261012/screenshots/production-plan-zh.png)及[英文实图](../collaboration/verification/plan-purchase-page-20261012/screenshots/production-plan-en.png)以普通Git保留，截图在采集时排除邮箱标题栏，未保存认证信息。此前隔离截图仍保留其测试含义。当前部署与真实页面两项均已完成，不重做构建、CI、部署、购买或archive35。原生真实剩余验收仍按Owner先前暂后选择处理。

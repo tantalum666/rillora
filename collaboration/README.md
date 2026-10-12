@@ -1,6 +1,6 @@
 # Rillora — Git / Dot 协作入口
 
-October13套餐页已按Owner要求简化为家庭版权益、年价、单订阅／管理操作。源码759c00112／CI133通过，Preview和正式Web172文件匹配；普通收费不变，真实账号UI读回因当前退出登录仍待Owner。[archive35](verification/plan-purchase-page-20261012/README.md)新增256路径／164对象／35,554,938密文字节并通过本地及4ef71b47f5的GitHub独立新下载认证解密；旧1—34未重做。具体范围和远端回执见链接，当前下一步仍只看handoff。
+October13套餐页已按Owner要求简化为家庭版权益、年价、单订阅／管理操作。源码759c00112／CI133通过，Preview和正式Web172文件匹配；普通收费不变，Owner完成登录后真实账号中英文套餐页已读回通过，实际截图／回执另以普通Git保存。[archive35](verification/plan-purchase-page-20261012/README.md)新增256路径／164对象／35,554,938密文字节并通过本地及4ef71b47f5的GitHub独立新下载认证解密；旧1—34未重做。具体范围和远端回执见链接，当前下一步仍只看handoff。
 
 
 October12原生／跨端续接：[当前验收](../docs/native-cross-platform-acceptance-20261012.md)按Owner要求暂后本轮手机操作，已完成独立Web检查及两处实际修复／部署，172资源匹配；d9825b616／CI131三任务通过。新的[archive34](verification/native-cross-platform-20261012/README.md)保存262路径／172对象，37,927,569加密字节，本地及5a42e7f8c的独立GitHub新下载解密均通过，最终回执直接入Git。旧1—33与所有已过金融／原生证据不重复；当前有效Apple对照、未订阅真机、VoiceOver与原生法律入口仍未冒领通过。

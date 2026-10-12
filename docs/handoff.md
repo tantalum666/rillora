@@ -1,25 +1,24 @@
 # Rillora 当前交接
 
-Status: COMPACT PLAN DEPLOYED TO BOTH WEBS / CI133 PASSED / REAL ACCOUNT UI LOGIN PENDING / NO TESTFLIGHT
+Status: COMPACT PLAN DEPLOYED AND REAL WEB UI VERIFIED / REMAINING PHONE ACCEPTANCE OWNER-DEFERRED / NO TESTFLIGHT
 Last updated: 2026-10-13 (Asia/Hong_Kong)
 
 ## 当前任务
 
-Owner要求套餐与权限只展示付费权益、价格和订阅按钮；前轮仅去重提示不足。按[本轮合同](plan-purchase-page-20261013.md)已完成Web整体简化并部署，原活动分支codex/security-findings-20261011保持；[旧交接](handoff-history-20261013-before-plan-purchase-page.md)为HISTORICAL。
+Owner要求套餐与权限只展示付费权益、价格和订阅主按钮；Web改版、两套部署及登录后正式页面读回均已完成。[本轮合同](plan-purchase-page-20261013.md)记录准确范围；[此前等待登录的交接](handoff-history-20261013-before-real-plan-ui-readback.md)为HISTORICAL。活动分支仍是codex/security-findings-20261011。
 
 ## 已完成
 
-- 单家庭版卡、三项实际权益、明确币种年价及一个订阅／原渠道管理主操作。移除免费状态、折叠块、常驻刷新及额外勾选步骤；真实失败才提供重试。显式点击才记录当次报价与条款接受，重复点击、旧报价、错误渠道／模式均拦截。
-- 20项针对性Node、23个隔离Chrome场景最终通过；CI132唯一旧checkbox源码断言已由真实渲染／行为覆盖替代。最终源码759c00112／CI133三个任务成功。两套已构建Web运行代码与最终源码相同，未重复构建。
-- Preview先、正式Web后均UPDATE_COMPLETE，各只改一个静态包资源，所有参数及其他资源保持；86+86线上文件字节匹配。未改API、数据库、WWW、手机14、价格或收费开关，未发TestFlight。
-- 新archive35已在4ef71b47f5通过GitHub独立新下载及认证解密，256路径／164对象完整；源码／规范／可分享原件均已推送当前分支，旧1—34未重下。最终回执另以普通元数据保存。
+- 简洁家庭版卡、三项权益、USD88.99／年、唯一订阅／原渠道管理主操作；去掉免费徽章、折叠块、常驻刷新和额外勾选。点击订阅才验证并接受当次报价，重复点击／旧报价／错误模式及原续订provider限制保留。
+- 源码759c00112／CI133通过，20项针对性Node及23个隔离浏览器场景保留原结果；两套Web各只换一个静态包，172线上文件一致，所有参数保留。archive35已在4ef71b47f5通过独立GitHub新下载认证，旧1—34未重下。
+- Owner已恢复正式Web登录。本轮实际看到原Google账号及原1事项；中文与英文新版套餐页均为三权益、明确USD88.99年价和一个禁用订阅按钮，暂未开放说明与现有收费设置一致；旧免费状态／折叠块／复选框均消失。法律链接语言正确，最后恢复中文。真实截图排除私人标题栏，安全原件及回执普通入Git。
 
-## 证据边界与当前待办
+## 边界与待验项
 
-正式Chrome原会话已实际失效；正常重新载入后停在未登录账号页。已请Owner用原Google账号恢复，暂无完成回复，未代填账户法律同意。部署／文件证据和隔离截图已具备，真实账号新版UI尚未读回。
+这次只补真实Web页面验收，未再构建、部署、交易、重购、恢复、改价或发TestFlight。当前Web未订阅画面不能证明Apple实际退款／到期或当前有效订阅双端一致。API、数据库、手机14和FanPass保持原状。
 
-普通新购仍关闭，订阅主按钮可见但禁用；当前价格／真实财务及共享数据／FanPass保留，没有新支付、退款、取消或重购。原生Release源码已核对符合简洁购买结构，本轮没有重建或真机结果。原先手机14首页／原事项及历史金融验收沿用；真机未订阅、VoiceOver、原生法律往返和当前有效Apple跨端对照仍依Owner选择暂后。
+Owner先前表示手机本人验证暂不方便；剩余原机未订阅分支、VoiceOver、原生法律往返及当前有效Apple权益跨端对照仍待手机可操作。既有原机14首页／原事项、付款／恢复／退款和共享导出证据沿用其日期，不重做。
 
 ## 唯一下一步
 
-Owner恢复已打开的正式Web账号会话后，直接读取已部署的套餐页并补这一个真实UI回执，再回到原先暂后的剩余真机验收。不重建／重部署相同产物，不重购／恢复购买或发TestFlight，不重复已完成检查或已授权操作确认。
+Owner方便原手机操作后，复用原1.0(14)及已保留的正式Web会话，先核对原Sandbox资格／现有Apple订阅，再一次补齐剩余真机与跨端验收。此前不再要求本轮Web登录，不重装、不重新购买／恢复、不重复已过测试；只有实际系统本人验证需要交回相应步骤。

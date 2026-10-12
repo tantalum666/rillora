@@ -9,7 +9,7 @@ Last updated: 2026-10-13 (Asia/Hong_Kong)
 
 ## October13 compact paid-plan page
 
-Both consumer surfaces follow benefits, channel-specific annual price and one primary subscribe/manage action. Web now removes the Free status/accordions and the extra consent form; its explicit button click records only the displayed, freshly revalidated offer. Native Release already uses ApplePurchaseSection; it is read, not rebuilt or newly device-verified here. [Exact scope and tests](plan-purchase-page-20261013.md).
+Both consumer surfaces follow benefits, channel-specific annual price and one primary subscribe/manage action. Web now removes the Free status/accordions and the extra consent form; its explicit button click records only the displayed, freshly revalidated offer. The real production owner session now confirms the compact page in both languages, with the disabled subscribe action matching the retained closed-sales setting. Native Release already uses ApplePurchaseSection; it is read, not rebuilt or newly device-verified here. [Exact scope and tests](plan-purchase-page-20261013.md).
 
 ## October12 remaining cross-platform acceptance
 
