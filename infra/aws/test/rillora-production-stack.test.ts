@@ -96,6 +96,9 @@ describe('Optional closed production HTTPS runtime',()=>{
    const subnets=Object.values(t.findResources('AWS::EC2::Subnet')) as any[];
    expect(subnets).toHaveLength(4);
    for(const subnet of subnets)expect(subnet.Properties.AvailabilityZone).toEqual({'Fn::Select':[expect.any(Number),{'Fn::GetAZs':''}]});
+   const certificateChecks=Object.values(t.findResources('AWS::EC2::SecurityGroup')).flatMap((g:any)=>g.Properties.SecurityGroupEgress??[]).filter((r:any)=>r.FromPort===80);
+   expect(certificateChecks).toHaveLength(1);
+   expect(certificateChecks[0]).toMatchObject({ToPort:80,IpProtocol:'tcp',CidrIp:'17.0.0.0/8'});
    t.hasResourceProperties('AWS::SecretsManager::Secret',{Name:'rillora/production/apple-review'});
    t.hasOutput('ProductionTrafficReady',{Value:'true'});
    expect(t.toJSON().Parameters?.ReviewIdentityDigests).toBeUndefined();

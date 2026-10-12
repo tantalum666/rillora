@@ -52,7 +52,9 @@ export class RilloraProductionStack extends Stack {
   const recoveryJobs=new ec2.SecurityGroup(this,'RecoveryNetwork',{vpc,allowAllOutbound:false,
    description:'No inbound listener; isolated restore probes cannot connect to live data'});
   for(const group of [sourceJobs,recoveryJobs])group.addEgressRule(ec2.Peer.ipv4('0.0.0.0/0'),ec2.Port.tcp(443),'AWS HTTPS APIs and image/log delivery');
-  if(props.reviewEnabled)allowAppleCertificateStatusChecks(recoveryJobs);
+  // Recovery retains read access to historical Apple review receipts after
+  // customer activation; preserve its existing certificate verification path.
+  if(props.reviewPrepared)allowAppleCertificateStatusChecks(recoveryJobs);
   const databaseNetwork=new ec2.SecurityGroup(this,'DatabaseNetwork',{vpc,allowAllOutbound:false});
   databaseNetwork.addIngressRule(sourceJobs,ec2.Port.tcp(5432),'Only production migration jobs at this closed foundation stage');
   sourceJobs.addEgressRule(databaseNetwork,ec2.Port.tcp(5432),'Verified TLS to the production database');
