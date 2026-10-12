@@ -75,6 +75,11 @@ export function PublicExperience({ sessionStatus, onRetry }) {
 
   function navigate(path) {
     const next = requestedPublicView(path);
+    // Re-enter the app shell so a read-only entry can recover its existing session.
+    if (!["home", "account"].includes(view) && ["home", "account"].includes(next)) {
+      window.location.assign(preserveTransientLocale(path));
+      return;
+    }
     if (view === "home" && next !== "home") homeScroll.current = window.scrollY;
     if (next === "home") setHasVisitedHome(true);
     if (window.location.pathname !== path) window.history.pushState({}, "", preserveTransientLocale(path));
