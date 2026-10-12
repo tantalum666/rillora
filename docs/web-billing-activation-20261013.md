@@ -33,8 +33,10 @@ Auth0当前Management API令牌寿命只读确认86400秒。已签发access toke
 
 发布过程中首次变更集因子网表达式漂移被拒绝且未执行；显式保留旧可用区表达式后通过。官网动态规则引用只允许指向未替换Function ARN且分发模板其余字节一致。失败的CLI stdin秘密提交、元数据删除与旧连接字段读取均不冒领成功；实际替代操作和读回分别保存。没有重做旧支付／退款／恢复／手机验收，没有TestFlight。
 
-本轮QA为output/qa/rillora-web-billing-activation-20261013；源码／规范普通入Git，实际凭据、Auth0主体和完整供应商响应保留在受保护目录。新增归档与实际远端认证回执见[本轮保存记录](../collaboration/verification/web-billing-activation-20261013/README.md)。完整Markdown阅读沿用同一工作流账本，只补当前变更和恢复所需正文。
+本轮QA为output/qa/rillora-web-billing-activation-20261013；源码／规范普通入Git，实际凭据、Auth0主体和完整供应商响应保留在受保护目录。新增archive36保存540路径／486对象／36,394,455密文字节，并在e29d417b6完成本地及GitHub独立新下载认证；最终元数据不递归封存。归档与实际远端认证回执见[本轮保存记录](../collaboration/verification/web-billing-activation-20261013/README.md)。完整Markdown阅读沿用同一工作流账本，只补当前变更和恢复所需正文。
 
 ## 唯一执行门
 
 香港2026-10-14 04:21之后，确认4旧客户端仍不能签发、原生产客户端正常、旧令牌有效期已过；恢复已准备的正式同意Action并通过新指纹启用原Web销售路线，再核对正式页面。直接复用已部署API25、现有商品／价格及既有支付证明，不重复后台部署、本人认证或交易。官网文案切到实际开放状态，原机和App Store／TestFlight继续独立。
+
+Git补充：空index.lock在.git指针已排除后再次出现，不能把指针修正声称为彻底解决锁根因。只在确认空文件、超过120秒、无git进程／无打开句柄且inode未变后移除该旧锁；索引、工作文件和历史未删改，复发根因未确认。该记录属于本机保存过程，不是线上产品缺陷或重新审批门。

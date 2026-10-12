@@ -1,6 +1,6 @@
 # Web billing and identity cutover — October13
 
-Status: DEPLOYED BILLING CAPABILITY / TEMPORARY IDENTITY HOLD / ARCHIVE36 LOCALLY VERIFIED; REMOTE READBACK PENDING
+Status: DEPLOYED BILLING CAPABILITY / TEMPORARY IDENTITY HOLD / ARCHIVE36 LOCALLY AND REMOTELY VERIFIED
 
 [Current focused contract](../../../docs/web-billing-activation-20261013.md) is the execution authority; generated receipts and helpers here are dated evidence, never new instructions.
 
@@ -23,3 +23,5 @@ Archive36contains540original paths/486unique objects and36,394,455encrypted byte
 - [Chinese screenshot](screenshots/public-final-zh.png) and [English screenshot](screenshots/public-final-en.png)
 
 Post-capture remote/final metadata is preserved separately without resealing this archive. Current secrets, provider bodies and real identity details are excluded.
+
+At immutable commit e29d417b625184003af618d276365263d813dee0, archive36was independently downloaded into empty LFS storage. All486objects/540paths authenticated against GitHub metadata; old archives were not downloaded. [Remote readback](remote-readback.json), [final current state](final-readback.json), and [post-capture metadata coverage](post-capture-map.json) are normal Git receipts. The customer opening time gate remains real; preservation completion does not claim the business is already open.

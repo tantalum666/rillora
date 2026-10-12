@@ -6,7 +6,7 @@ Last updated: 2026-10-13 (Asia/Hong_Kong)
 
 The[Web billing work](web-billing-activation-20261013.md)delivers explicit disabled tax automation/API25and final client/public files while preserving a real identity-token time gate. Sourcef87ac62c9/CI141passes; all117finalHTTPS files and bilingual public presentation match. Four old Preview issuers are disabled; new sales and ordinary access remain held until Hong KongOctober14 04:21plus the required denial readback.
 
-[Archive36](../collaboration/verification/web-billing-activation-20261013/README.md)additively preserves540paths/486objects/36,394,455encrypted bytes, including failed attempts and sequential source/provider/deployment evidence. Local authenticated verification passes; remote readback follows separately. Prior1–35are immutable and are not downloaded again. Actual credentials/provider identity responses remain excluded. Source/specs remain ordinary Git; no TestFlight or artificial financial transaction follows.
+[Archive36](../collaboration/verification/web-billing-activation-20261013/README.md)additively preserves540paths/486objects/36,394,455encrypted bytes, including failed attempts and sequential source/provider/deployment evidence. Local authenticated verification and a fresh separate GitHub download at e29d417b6both pass all486objects/540paths. Final metadata follows without resealing. Prior1–35are immutable and are not downloaded again. Actual credentials/provider identity responses remain excluded. Source/specs remain ordinary Git; no TestFlight or artificial financial transaction follows.
 
 ## October13 compact plan page delivery
 
