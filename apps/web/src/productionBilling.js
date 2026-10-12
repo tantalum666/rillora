@@ -4,6 +4,12 @@ import contract from '../../../config/purchase-consent.json' with { type: 'json'
 export const webAnnualOffer = Object.freeze({priceCode:contract.priceCode,amountMinor:contract.amountMinor,currency:contract.currency,billingPeriod:contract.billingPeriod});
 export const webAnnualPriceLabel = 'US' + formatMoneyMinor(contract.amountMinor, contract.currency, 2) + '/year';
 
+export function currentWebAnnualOffer(offers) {
+  return offers.find(offer => offer.priceCode === contract.priceCode && offer.billingInterval === 'annual'
+    && offer.amountMinor === contract.amountMinor && offer.currencyCode === contract.currency
+    && offer.minorUnitExponent === 2) ?? null;
+}
+
 const contractKeys = ['version', 'provider', 'priceCode', 'amountMinor', 'currency', 'billingPeriod', 'termsVersion', 'subscriptionTermsVersion', 'refundPolicyVersion', 'legalBundleSha256'];
 export function purchaseQuote(payload) {
   if (payload?.contractVersion !== 'commerce-stripe-production-v1' || payload.requiresFreshEvaluation !== true

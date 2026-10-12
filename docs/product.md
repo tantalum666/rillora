@@ -5,9 +5,13 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-10-12 (Asia/Hong_Kong)
+Last updated: 2026-10-13 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-10-13 Owner再次明确简洁套餐页
+
+Owner要求套餐与权限只展示付费版权益、价格和订阅按钮。此要求纠正前轮仅去重提示的不足，去掉Web免费状态／两组折叠块／常驻刷新与重复订阅确认步骤；已订阅只管理原渠道。[本轮合同](plan-purchase-page-20261013.md)保持真实年价、单续订provider、接受记录和普通收费开关，未发TestFlight。
 
 ## 2026-10-12 继续原生和跨端验收
 

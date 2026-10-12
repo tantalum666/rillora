@@ -5,7 +5,11 @@ Authority scope: Web/iOS responsibilities, shared state and first validation rel
 Superseded by: later explicit platform decision  
 Do not use for: final framework choice or visual tokens  
 Status: CORE PARITY CONTRACT ACTIVE; CURRENT RUNTIME AND RELEASE GATES IN HANDOFF
-Last updated: 2026-10-12 (Asia/Hong_Kong)
+Last updated: 2026-10-13 (Asia/Hong_Kong)
+
+## October13 compact paid-plan page
+
+Both consumer surfaces follow benefits, channel-specific annual price and one primary subscribe/manage action. Web now removes the Free status/accordions and the extra consent form; its explicit button click records only the displayed, freshly revalidated offer. Native Release already uses ApplePurchaseSection; it is read, not rebuilt or newly device-verified here. [Exact scope and tests](plan-purchase-page-20261013.md).
 
 ## October12 remaining cross-platform acceptance
 

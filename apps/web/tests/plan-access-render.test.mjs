@@ -34,9 +34,17 @@ return renderToStaticMarkup(<I18nProvider catalogs={appCatalogs} locale={locale}
     for (const locale of ['en', 'zh-CN']) for (const plan of ['free', 'family']) {
       const html = render(locale, plan);
       assert.match(html, /family-plan-feature/); assert.match(html, /88\.99/);
-      assert.equal((html.match(/family-feature-bullet/g) ?? []).length, 2);
+      assert.equal((html.match(/<li>/g) ?? []).length, 3);
+      assert.equal((html.match(/class="primary-button"/g) ?? []).length, 1);
+      assert.doesNotMatch(html, /current-access-status|plan-disclosure|type="checkbox"|<form/);
       assert.doesNotMatch(html, /Later roadmap|后续规划|Adaptive review reminders|自适应复核提醒|Everything in Free, plus/);
-      assert.match(html, locale === 'en' ? /New subscriptions are not available/ : /暂不开放新订阅/);
+      if (plan === 'free') {
+        assert.match(html, locale === 'en' ? /Subscribe to Family/ : /订阅家庭版/);
+        assert.match(html, locale === 'en' ? /New subscriptions are not available/ : /暂未开放新订阅/);
+      } else {
+        assert.match(html, locale === 'en' ? /Subscribed/ : /已订阅/);
+        assert.doesNotMatch(html, /New subscriptions are not available|暂未开放新订阅/);
+      }
       assert.doesNotMatch(html, /workspace\.[a-z]+\./);
       assert.doesNotMatch(render(locale, plan, false), /88\.99/);
     }

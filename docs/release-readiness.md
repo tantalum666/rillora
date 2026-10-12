@@ -2,7 +2,11 @@
 
 Role: current launch scope, remaining work and release evidence contract  
 Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; ORDINARY CUSTOMER ACCESS AND SALES CLOSED
-Last updated: 2026-10-12 (Asia/Hong_Kong)
+Last updated: 2026-10-13 (Asia/Hong_Kong)
+
+## October13套餐页纠正
+
+Owner再次指出页面没有按要求精简。现已完成家庭版权益／年价／单订阅主操作，移除免费状态、折叠块和独立二次勾选；13项Node及23个隔离浏览器场景通过，两套Web构建通过。实际部署／线上结果在[当前合同](plan-purchase-page-20261013.md)更新；API／价格／开售开关／真实数据／手机14保持。
 
 ## October12原生／跨端验收续接
 

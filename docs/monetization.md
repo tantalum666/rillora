@@ -5,8 +5,12 @@ Authority scope: free/paid boundary, launch offer, future tier architecture, bil
 Superseded by: later Owner decision recorded in `docs/decision-log.md`  
 Do not use for: proof of willingness to pay, legal/tax advice, current implementation, App Store approval or payment-provider selection  
 Status: FREE / SINGLE ANNUAL FAMILY; WEB88.99 LOCKED; APPLE DIFFERENTIATED; NEW MONTHLY RETIRED; FREE1 / FAMILY5 AND HISTORICAL RECEIPTS PRESERVED; ORDINARY SALES CLOSED
-Last updated: 2026-09-29 (Free export recommendation; no entitlement or price change)
+Last updated: 2026-10-13 (Asia/Hong_Kong)
 
+
+## October13 current consumer purchase presentation
+
+Owner reiterates paid benefits, visible annual price/currency and one subscribe button, superseding Web Free/status/disclosure accordions and a separate checkbox step. Click-based acceptance remains independent of registration and tied to the current price/legal bundle; existing renewals route to their original provider. Current WebUSD88.99 and AppleUSUSD119.99/channel-local StoreKit prices remain locked. A visible disabled button while ordinary sales are closed does not activate charging. [Current implementation/evidence](plan-purchase-page-20261013.md).
 
 ## September26 current Web quote
 

@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-12 (Asia/Hong_Kong)
+Last updated: 2026-10-13 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -3430,3 +3430,10 @@ local correction/tests and actual restoration remain separate evidence.
 - Owner explicitly requests only remaining acceptance, reusing completed evidence, continuing independent work and keeping TestFlight paused.
 - After actual Mac authentication was required for iPhone Mirroring, Owner defers the phone step for this turn and asks to complete other checks. Owner separately restores the real production Web login. Neither action authorizes a new purchase, account deletion, hidden consent or claims of current physical-device verification.
 - The scoped correction removes a duplicated Web availability sentence; it preserves existing prices, data, sales controls and every server permission. This is an Agent implementation choice within the ongoing acceptance scope, not a new commercial or security-policy decision.
+
+## 2026-10-13 — Owner reiterates benefits, annual price and one subscription button
+
+- Owner explicitly rejects the incomplete Plan & access correction and asks for the paid plan, its price and a subscribe button. This supersedes Web's Free badge, included/expiry accordions, persistent refresh action and separate subscription-checkbox review step. Permanent Free capabilities themselves are unchanged.
+- Agent implements one paid-plan card and explicit-click acceptance beside renewal/cancellation/legal disclosures. The freshly checked immutable quote, idempotency, server-authoritative access and original renewal-provider management remain mandatory. No acceptance occurs on render or load.
+- This does not authorize ordinary sales activation, a price change, invented tax facts, new provider transactions, subscription resets, native reinstall or TestFlight. Current native Release already has the approved consumer presentation; Owner's deferred phone verification remains separate.
+- [Implementation and exact scoped evidence](plan-purchase-page-20261013.md).

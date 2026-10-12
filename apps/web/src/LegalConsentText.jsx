@@ -16,11 +16,11 @@ export function RegistrationConsentText({ external = false }) {
   </span>;
 }
 
-export function SubscriptionConsentText() {
+export function SubscriptionConsentText({ bySubscribing = false }) {
   const { locale, t } = useI18n();
   return <span lang={locale}>
-    {t("common.consent.agree")}<a href={legalDocumentHref("subscriptions", locale)} target="_blank" rel="noopener noreferrer">{t("common.consent.subscriptions")}</a>
+    {t(bySubscribing ? "common.consent.bySubscribing" : "common.consent.agree")}<a href={legalDocumentHref("subscriptions", locale)} target="_blank" rel="noopener noreferrer">{t("common.consent.subscriptions")}</a>
     {t("common.consent.and")}<a href={legalDocumentHref("refunds", locale)} target="_blank" rel="noopener noreferrer">{t("common.consent.refunds")}</a>
-    {t("common.consent.yearlyRenewal")}
+    {t(bySubscribing ? "common.consent.sentenceEnd" : "common.consent.yearlyRenewal")}
   </span>;
 }

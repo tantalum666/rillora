@@ -1,78 +1,74 @@
 import { useI18n } from "./i18n/I18nProvider.jsx";
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { billingStateLabel, subscriptionPreventsNewCheckout } from "./commercialAccess.js";
+import { subscriptionPreventsNewCheckout } from "./commercialAccess.js";
 import { api } from './api.js';
 import { SubscriptionConsentText } from './LegalConsentText.jsx';
-import { productionBillingDestination, productionBillingStatus, purchaseProof, purchaseQuote, webAnnualOffer } from './productionBilling.js';
+import { currentWebAnnualOffer, productionBillingDestination, productionBillingStatus, purchaseProof, purchaseQuote } from './productionBilling.js';
 
-export function ProductionBillingControls({ commerce, onAccessChanged, returnedFromCheckout = false, apiClient = api, embedded = false }) {
-  const { t, locale, formatDate, formatMoney, errorMessage } = useI18n();
-  const [status, setStatus] = useState(null);
-  const [quote, setQuote] = useState(null);
-  const [accepted, setAccepted] = useState(false);
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState('');
-  const [message, setMessage] = useState('');
+export function ProductionBillingControls({ commerce, onAccessChanged, returnedFromCheckout = false, apiClient = api }) {
+  const { t, locale, formatDate, errorMessage } = useI18n();
+  const [status, setStatus] = useState(null), [busy, setBusy] = useState(false), [error, setError] = useState(null);
   const requestVersion = useRef(0), checkoutKey = useRef(crypto.randomUUID()), locked = useRef(false);
+  const appleManaged = commerce.currentAccess?.managementDestination === 'app_store_subscriptions';
   const refresh = useCallback(async () => {
     const version = ++requestVersion.current;
+    if (appleManaged) { setStatus(null); setError(null); return; }
     try {
       const billing = productionBillingStatus(await apiClient.getProductionBillingStatus());
       const access = await apiClient.getCommerceStatus(commerce.serviceMarketCode);
       if (version !== requestVersion.current) return;
-      setStatus(billing); setError(''); onAccessChanged(access);
+      setStatus(billing); setError(null); onAccessChanged(access);
     } catch (failure) {
       if (version !== requestVersion.current) return;
-      if (failure.status === 404) { setStatus(null); return; }
-      setError(failure);
+      setStatus(null); setError(failure.status === 404 ? null : failure);
     }
-  }, [apiClient, commerce.serviceMarketCode, onAccessChanged]);
+  }, [apiClient, appleManaged, commerce.serviceMarketCode, onAccessChanged]);
   useEffect(() => { void refresh(); return () => { ++requestVersion.current; }; }, [refresh]);
   const run = async operation => {
     if (locked.current) return;
-    locked.current = true; setBusy(true); setError(''); setMessage('');
-    try { await operation(); } catch (failure) { setError(failure); }
+    const version = requestVersion.current;
+    locked.current = true; setBusy(true); setError(null);
+    try { await operation(() => version === requestVersion.current); }
+    catch (failure) { if (version === requestVersion.current) setError(failure); }
     finally { locked.current = false; setBusy(false); }
   };
-  if (!status && !error) return null;
-  const sub = status?.subscription;
   const active = commerce.currentAccess?.planCode === 'family';
-  const subscriptionBlocksCheckout = subscriptionPreventsNewCheckout(sub);
-  const annualAvailable = commerce.billingOpen && commerce.offers.some(offer => offer.priceCode === webAnnualOffer.priceCode && offer.purchasable);
-  const annualPrice = t("workspace.price.annual", { price: formatMoney(webAnnualOffer.amountMinor, webAnnualOffer.currency, 2) });
-  return <section className="task-details production-billing-controls" aria-label={t("workspace.billing.subscription")}>
-    {(sub || !embedded) && <h2>{sub ? billingStateLabel(sub.state, t) : t("workspace.billing.family")}</h2>}
-    {sub?.currentPeriodEndsAt && !['refunded', 'revoked'].includes(sub.state) && <p>{t(sub.cancelAtPeriodEnd ? "workspace.billing.paidEnds" : active ? "workspace.billing.periodEnds" : "workspace.billing.periodEnded", { date: formatDate(sub.currentPeriodEndsAt) })}</p>}
-    {sub && ['refunded', 'revoked'].includes(sub.state) && sub.renewalIsPossible !== false && <p>{t("workspace.billing.checkRenewalAfterRefund")}</p>}
+  const sub = status?.subscription ?? commerce.currentAccess?.subscription;
+  const managesExisting = active || appleManaged || subscriptionPreventsNewCheckout(sub);
+  const offer = currentWebAnnualOffer(commerce.offers);
+  const canSubscribe = commerce.billingOpen && offer?.purchasable === true && status !== null;
+  const subscribe = () => run(async isCurrent => {
+    const route = await apiClient.resolvePurchaseRoute({ clientSurface: 'web', serviceMarketCode: commerce.serviceMarketCode, intent: 'plan_access' });
+    if (!isCurrent()) return;
+    if (route.reason !== 'available' || route.purchaseRoute !== 'web_direct') throw new Error('A new subscription is not available. Refresh access or manage your existing subscription.');
+    const quote = purchaseQuote(await apiClient.getProductionPurchaseQuote());
+    if (!isCurrent()) return;
+    if (!offer || quote.amountMinor !== offer.amountMinor || quote.currency !== offer.currencyCode) throw new Error('The subscription terms changed. Reload before continuing.');
+    // Only this click accepts the visible annual offer beside the renewal and legal text.
+    const result = await apiClient.startProductionCheckout(purchaseProof(quote, true), checkoutKey.current, locale);
+    if (isCurrent()) window.location.assign(productionBillingDestination(result, 'checkout'));
+  });
+  const manage = () => run(async isCurrent => {
+    const result = await apiClient.openProductionBillingPortal(locale);
+    if (isCurrent()) window.location.assign(productionBillingDestination(result, 'portal'));
+  });
+  return <div className="production-billing-controls plan-purchase-actions">
+    {appleManaged ? <a className="primary-button" href="https://apps.apple.com/account/subscriptions">{t("workspace.billing.manageApple")}</a>
+      : managesExisting ? <button className="primary-button" disabled={busy || !status?.canManage} onClick={manage}>
+        {t(busy ? "workspace.billing.checking" : status?.canManage ? "workspace.billing.manage" : "workspace.billing.subscribed")}</button>
+      : <button className="primary-button" disabled={busy || !canSubscribe} onClick={subscribe}>
+        {t(busy ? "workspace.billing.checking" : status?.checkoutPending ? "workspace.billing.continueCheckout" : "workspace.billing.subscribe")}</button>}
+    {!managesExisting && <div className="billing-disclosure">
+      {!commerce.billingOpen && <p>{t("workspace.billing.newClosed")}</p>}
+      <p>{t("workspace.billing.renewalShort")}</p><p><SubscriptionConsentText bySubscribing /></p>
+    </div>}
+    {sub?.currentPeriodEndsAt && !['refunded', 'revoked'].includes(sub.state) && <p className="billing-disclosure">{t(sub.cancelAtPeriodEnd ? "workspace.billing.paidEnds" : active ? "workspace.billing.periodEnds" : "workspace.billing.periodEnded", { date: formatDate(sub.currentPeriodEndsAt) })}</p>}
+    {sub && ['refunded', 'revoked'].includes(sub.state) && sub.renewalIsPossible !== false && <p className="billing-disclosure">{t("workspace.billing.checkRenewalAfterRefund")}</p>}
     {returnedFromCheckout && status?.checkoutPending && !active && <p role="status">{t("workspace.billing.confirmationPending")}</p>}
-    {error && <p role="alert">{errorMessage(error, "workspace.billing.errorOperation")}</p>}{message && <p role="status">{t(message)}</p>}
-    {!active && !subscriptionBlocksCheckout && annualAvailable && !quote && <>{!embedded && <p className="access-plan-price"><strong>{annualPrice}</strong></p>}
-      <button className="primary-button" disabled={busy || !status} onClick={() => run(async () => {
-        const route = await apiClient.resolvePurchaseRoute({ clientSurface: 'web', serviceMarketCode: commerce.serviceMarketCode, intent: 'plan_access' });
-        if (route.reason !== 'available' || route.purchaseRoute !== 'web_direct') throw new Error('A new subscription is not available. Refresh access or manage your existing subscription.');
-        setQuote(purchaseQuote(await apiClient.getProductionPurchaseQuote())); setAccepted(false);
-      })}>{status?.checkoutPending ? t("workspace.billing.continueCheckout") : t("workspace.billing.reviewAnnual")}</button></>}
-    {quote && !active && !subscriptionBlocksCheckout && annualAvailable && <form onSubmit={event => { event.preventDefault(); void run(async () => {
-      const result = await apiClient.startProductionCheckout(purchaseProof(quote, accepted), checkoutKey.current, locale);
-      window.location.assign(productionBillingDestination(result, 'checkout'));
-    }); }}>
-      <p className="access-plan-price"><strong>{annualPrice}</strong></p>
-      <p>{t("workspace.billing.renewal")}</p>
-      <label><input type="checkbox" checked={accepted} disabled={busy} onChange={event => setAccepted(event.target.checked)} />
-        <SubscriptionConsentText /></label>
-      <button className="primary-button" type="submit" disabled={!accepted || busy}>{t("workspace.billing.secureCheckout")}</button>
-      <button className="text-button" type="button" disabled={busy} onClick={() => { setQuote(null); setAccepted(false); }}>{t("workspace.billing.back")}</button>
-    </form>}
-    {!active && !annualAvailable && (!embedded || commerce.billingOpen) && <p>{t("workspace.billing.newClosed")}</p>}
-    <div className="drawer-actions">
-      {status?.canManage && <button className="secondary-button" disabled={busy} onClick={() => run(async () => {
-        window.location.assign(productionBillingDestination(await apiClient.openProductionBillingPortal(locale), 'portal'));
-      })}>{t("workspace.billing.manage")}</button>}
-      {status?.checkoutPending && <button className="secondary-button" disabled={busy} onClick={() => run(async () => {
-        await apiClient.cancelProductionCheckout(); checkoutKey.current = crypto.randomUUID(); setQuote(null); setAccepted(false);
-        await refresh(); setMessage("workspace.billing.checkoutClosed");
-      })}>{t("workspace.billing.closeCheckout")}</button>}
-      <button className="secondary-button" disabled={busy} onClick={() => run(refresh)}>{busy ? t("workspace.billing.checking") : t("workspace.billing.refresh")}</button>
-    </div>
-  </section>;
+    {error && <p role="alert">{errorMessage(error, "workspace.billing.errorOperation")} <button className="text-button" disabled={busy} onClick={() => run(refresh)}>{t("workspace.billing.refresh")}</button></p>}
+    {status?.canManage && !managesExisting && <button className="text-button" disabled={busy} onClick={manage}>{t("workspace.billing.manage")}</button>}
+    {status?.checkoutPending && <button className="text-button" disabled={busy} onClick={() => run(async () => {
+      await apiClient.cancelProductionCheckout(); checkoutKey.current = crypto.randomUUID(); await refresh();
+    })}>{t("workspace.billing.closeCheckout")}</button>}
+  </div>;
 }
