@@ -1,6 +1,6 @@
 # 原生与跨端剩余验收 — 2026-10-12
 
-Status: INDEPENDENT WEB ACCEPTANCE AND FIXES DEPLOYED / PHYSICAL PHONE OWNER-DEFERRED / GIT CLOSEOUT
+Status: INDEPENDENT WEB ACCEPTANCE AND FIXES DEPLOYED / PHYSICAL PHONE OWNER-DEFERRED / REMOTE PRESERVATION VERIFIED
 Last updated: 2026-10-12 (Asia/Hong_Kong)
 
 Owner要求继续完成剩余原生和跨端验收，已验证的不重复，能自主完成的直接做，不发TestFlight。镜像实际停在Mac本人验证后，Owner选择本轮暂不方便、先检查其他部分；正式Web由Owner重新登录原Google账号。此选择不撤回已完成的手机14登录／原事项确认，也不是永久取消真机验收。
@@ -28,7 +28,7 @@ Owner要求继续完成剩余原生和跨端验收，已验证的不重复，能
 
 正式站实际从隐私页返回已直接恢复同一个Google账号和原1事项，不经登录或手动刷新；语言仍中文。新的5项浏览器测试与12项相关Node检查有独立日志，不把旧金融全生命周期、模拟器或手机结果称作当次重跑。只读补充报价探针被浏览器客户端拦截、未取得服务器响应，未把该结果当作API权限证明。
 
-Git保存采用本次新增archive34，沿用旧1—33；远端原件核验与最终回执另行记录，不递归封存。证据入口在`collaboration/verification/native-cross-platform-20261012`。
+Git保存采用本次新增archive34，沿用旧1—33；在5a42e7f8c从独立空LFS缓存新下载并认证解密全部172对象／262路径；最终回执直接入Git，不递归封存。证据入口在`collaboration/verification/native-cross-platform-20261012`。
 
 ## 仍不能替代的证据
 
