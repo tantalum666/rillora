@@ -97,5 +97,21 @@
       ]
     ]
   },
-  "boundary": "Prior full-body reading retained. Focused current authority and changed/new material re-read; no new complete repository audit or test claim."
+  "boundary": "Prior full-body reading retained. Focused current authority and changed/new material re-read; no new complete repository audit or test claim.",
+  "postCaptureAddendum": {
+    "at": "2026-10-12T13:30:43.364424+00:00",
+    "filesReadBeforeChanges": [
+      "tools/release/test_repository_scan.py",
+      "tools/release/scan_repository.py",
+      ".github/workflows/verify.yml",
+      ".github/workflows/source-publication-guard.yml"
+    ],
+    "authoredAndReviewed": [
+      "postcapture archive verifier",
+      "CI129 receipt",
+      "final metadata generator and canonical document deltas"
+    ],
+    "scannerPolicySource": "https://github.com/gitleaks/gitleaks/blob/v8.30.1/config/gitleaks.toml",
+    "reason": "CI128 exposed nondeterministic synthetic test data; all scanner rules and exception registrations remain unchanged."
+  }
 }

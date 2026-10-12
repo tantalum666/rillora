@@ -1,6 +1,6 @@
 # Rillora 安全修复切换 — 2026-10-12
 
-Status: CLOUD / HTTPS NATIVE / NAMED LOCAL CREDENTIAL DEPLOYMENT VERIFIED; GIT EVIDENCE CLOSEOUT IN PROGRESS
+Status: CLOUD / HTTPS NATIVE / NAMED LOCAL CREDENTIAL DEPLOYMENT AND REMOTE GIT PRESERVATION VERIFIED
 Last updated: 2026-10-12 (Asia/Hong_Kong)
 
 Owner授权部署全部安全修复，按已有顺序切换，保持数据、定价和收费开关，先不发TestFlight，并多次重申默认最高授权。此合同取代此前源码阶段的线上冻结门；部署和市场开售仍分开。
@@ -61,6 +61,6 @@ GitHubCLI保护读取403是token范围，不是登录失效。已用有效浏览
 
 先前用户默认FullAccess与旧执行轮次沙箱不一致，已在下一轮实际变为danger-full-access／network enabled／approval never；未修改自身安全控件或继续发起终端提权。
 
-archive33已在d33e0b31f推送，独立空LFS缓存新下载并解密验证全部536对象／665路径；旧1—32归档未重下。CI128的发布扫描负例使用随机hex，某些样本会落入扫描器启发式忽略范围，导致测试偶发失败；本机复现低于固定3.5熵门槛的一例后，改为稳定合成摘要，73项工具测试通过。远端当次随机字节未记录，不伪称重建了它的精确忽略原因；扫描规则、例外登记及拒绝断言均未改。该变更只有测试夹具，不改变部署源码或需要重新部署。最终修正CI／回执收尾见handoff。
+archive33已在d33e0b31f推送，独立空LFS缓存新下载并解密验证全部536对象／665路径；旧1—32归档未重下。CI128的发布扫描负例使用随机hex，某些样本会落入扫描器启发式忽略范围，导致测试偶发失败；本机复现低于固定3.5熵门槛的一例后，改为稳定合成摘要，73项工具测试通过。远端当次随机字节未记录，不伪称重建了它的精确忽略原因；扫描规则、例外登记及拒绝断言均未改。该变更只有测试夹具，不改变部署源码或需要重新部署。测试修正5adf61570已推送，[CI129](https://github.com/tantalum666/rillora/actions/runs/38255443360)的source、api、web-and-infrastructure三任务全部通过。失败CI128、修正、本地73项结果和独立远端归档回执保存在[本次证据入口](../collaboration/verification/security-rollout-20261012/README.md)；最终文档回执沿同一分支保存，不递归重封归档。
 
 原始provider、认证、数据库指纹／日志及设备信息留在`.local-secrets/security-rollout-20261011`，不入可读Git；脱敏QA与签名产物按既有合同分层保存。后续正式开售、统一商店候选／送审和实际市场结果仍是独立任务；本批不发TestFlight、不制造支付或删除保留账号。

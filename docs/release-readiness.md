@@ -8,7 +8,7 @@ Last updated: 2026-10-12 (Asia/Hong_Kong)
 
 [整批安全修复](security-rollout-20261012.md)已完成两库103迁移、五个云端栈、203个Web文件核验及原机1.0(14)直装。Owner确认登录和原事项，HTTPS回调已切换，9份指定本机凭据已加密读回。API23／Preview44及隔离worker运行正常；API23仅续原3审核身份到香港October14 20:01，普通客户／收费仍关闭，价格与既有财务记录保留。没有新TestFlight或支付／退款／删除验收。
 
-本机部署工具两处兼容问题另修于042f4e100，CI127三任务通过；本次证据Git收尾见handoff。GitHub当前私有仓库页面明确不强制保护规则，不能把CI通过写成服务器强制检查已启用。此前付款与Apple证据继续保留原日期；下方October10技术版本是历史检查点。
+本机部署工具两处兼容问题另修于042f4e100，CI127三任务通过；archive33已在d33e0b31f独立远端解密核验；发布测试样本稳定性修正5adf61570／CI129三任务通过，当前剩余发布步骤见handoff。GitHub当前私有仓库页面明确不强制保护规则，不能把CI通过写成服务器强制检查已启用。此前付款与Apple证据继续保留原日期；下方October10技术版本是历史检查点。
 
 ## October10 current launch inventory
 

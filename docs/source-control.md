@@ -6,7 +6,7 @@ Last updated: 2026-10-12 (Asia/Hong_Kong)
 
 The[coordinated deployment](security-rollout-20261012.md) completed both schemas103, five stacks,203Web artifact checks, direct phone14and the named local credential migration. Cloud/native source isbfe9baaf5/CI126; local compatibility repairs042f4e100/CI127are already pushed and verified. The main checkout was fast-forwarded without discarding history; the old handoff has a named local stash and preserved QA copy.
 
-[New archive33](../collaboration/verification/security-rollout-20261012/README.md)contains665paths/536objects/55,781,041encrypted bytes and passes local authenticated decryption. Exact exclusions keep credentials, provider objects, real database data and device inventory outside publication. Prior1–32are not re-created or re-downloaded. The new evidence commit, CI and independent fresh remote download are the current closeout step; source/QA success is not a remote-preservation receipt.
+[New archive33](../collaboration/verification/security-rollout-20261012/README.md)contains665paths/536objects/55,781,041encrypted bytes and passes local authenticated decryption. Exact exclusions keep credentials, provider objects, real database data and device inventory outside publication. Prior1–32are not re-created or re-downloaded. Archive commitd33e0b31f has been independently downloaded into empty LFS storage and all536objects/665paths authenticated against immutable GitHub metadata. The publication test's intermittent random fixture was repaired in5adf61570 without changing scanner policy; CI129passes all three jobs. Final receipts follow as ordinary reviewed Git metadata, not another archive or deployment.
 
 ## October11 remaining-five continuation — pushed and independently verified
 

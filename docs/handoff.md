@@ -1,12 +1,12 @@
 # Rillora 当前交接
 
-Status: SECURITY DEPLOYMENT AND NATIVE ACCEPTANCE VERIFIED / GIT EVIDENCE CLOSEOUT IN PROGRESS / NO TESTFLIGHT
+Status: SECURITY BATCH DEPLOYED, VERIFIED AND REMOTELY PRESERVED / NO TESTFLIGHT
 Last updated: 2026-10-12 (Asia/Hong_Kong)
 
 ## 当前任务
 
-按Owner授权部署整批安全修复，保持真实数据、定价和收费开关，先不发TestFlight。云端／原生／本机指定凭据已完成，当前只收尾本次证据的Git保存。活动工作树仍为`/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app`，分支`codex/security-findings-20261011`。
-主项目目录已从647317834快速前进到042f4e100，同一历史保留；旧交接以具名stash及QA副本保存。不要再使用“主检出仍是旧工程”的历史指令。
+按Owner授权部署整批安全修复，保持真实数据、定价和收费开关，先不发TestFlight。云端／原生／本机指定凭据、Git归档及独立远端核验全部完成。活动工作树仍为`/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app`，分支`codex/security-findings-20261011`。
+主项目目录沿同一历史快速前进同步本轮实现与收尾文档；旧交接以具名stash及QA副本保存。不要再使用“主检出仍是旧工程”的历史指令。
 
 ## 已完成
 
@@ -19,6 +19,8 @@ Last updated: 2026-10-12 (Asia/Hong_Kong)
 - 正式签名助手在两个本机检出安装并验证；本人非秘密硬件验证通过，主目录9份指定Auth0／Apple文件均已加密并逐份本人验证读回一致。无provider密钥轮换、无归档身份迁移，不声称旧副本／备份擦除。
 - 当前实际执行环境为Full Access／approval never；没有再发起终端提权。先前会话权限不一致已经解除。
 
+- Git闭环：新增archive33在d33e0b31f推送，独立空LFS缓存新下载并解密核验全部536对象／665路径，旧1—32不重下。发布测试随机样本偶发漏识别已改为固定合成摘要，73项本地工具测试、源扫描32已审阅／0未知及可读资料扫描通过；5adf61570的[CI129](https://github.com/tantalum666/rillora/actions/runs/38255443360)三任务全部成功。失败CI128与修正证据保留，未放宽规则／例外或改动运行代码。[最终证据入口](../collaboration/verification/security-rollout-20261012/README.md)。
+
 ## 边界与保留项
 
 普通客户与正式收费仍关闭；未发起购买／退款、未删除保留账号、未更改FanPass、未发TestFlight、未重启深度扫描。保留此前付款／退款及旧归档的准确日期，不冒充本次重跑。
@@ -29,6 +31,6 @@ GitHub现有私有仓库页面明确显示经典保护和规则集均不强制�
 
 ## 唯一下一步
 
-archive33已在d33e0b31f推送，665路径／536对象从独立空LFS缓存下载并解密核验通过；旧归档未重下。CI128发现发布扫描负例随机样本偶发不命中，已改固定合成样本，原扫描器／规则／例外与拒绝断言不变，73项发布工具测试通过。只完成该测试修正的Git／CI与最终回执、主检出同步；不重复迁移、部署、本人认证或购买。云端／原生仍是bfe9baaf5，本机凭据实施仍是042f4e100／CI127。
+回到[正式发布清单第2项](release-readiness.md#october1-remaining-work-inventory)，补齐最终受影响路径的原生／跨端验收：未订阅真机分支、现有Apple订阅与Web权益对应、退款／到期证据及VoiceOver／法律链接。复用已完成的签名购买、恢复和退款证据，不为凑验收重新购买；继续集中直装，不发TestFlight，不改变正式开售开关。本批安全部署没有遗留的迁移、安装、凭据或Git执行步骤。
 
 [前一进行中交接](handoff-history-20261012-before-security-closeout.md)及[部署前交接](handoff-history-20261012-before-security-rollout.md)均为HISTORICAL。

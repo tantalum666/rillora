@@ -74,7 +74,7 @@ Deployment exposed and fixed a `codesign -R` literal-expression syntax error in 
 and reads. The helper is now formally signed and installed in the active worktree; its real
 signature requirement passes, a wrong helper identifier is rejected, and the fixed hardware
 denial controls pass. The same verified helper is installed in the main checkout, whose source
-was fast-forwarded to042f4e100. Nine supported credential files in that canonical checkout
+was fast-forwarded through the042f4e100implementation; later test/evidence commits do not change this installed helper. Nine supported credential files in that canonical checkout
 were encrypted, read back with user presence and atomically replaced onOctober12. No cloud
 key or permission was changed, and the collaboration archive identity was not migrated. The design
 contains unattended file theft; it does not defeat a fully controlled OS

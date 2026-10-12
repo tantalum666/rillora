@@ -1,0 +1,111 @@
+"""Close deployment records only after exact remote CI and archive receipts pass."""
+from pathlib import Path
+import datetime
+import json
+import shutil
+import subprocess
+
+ROOT = Path(__file__).resolve().parents[3]
+QA = ROOT / 'output/qa/rillora-security-rollout-20261011'
+DEST = ROOT / 'collaboration/verification/security-rollout-20261012'
+ci = json.loads((DEST / 'ci-readback.json').read_text())
+remote = json.loads((DEST / 'remote-readback.json').read_text())
+assert ci['commit'] == '5adf615701fa369630e3b0ddc9dd8aadf8cb37bb'
+assert ci['allJobsPassed'] and len(ci['jobs']) == 3
+assert all(job['conclusion'] == 'success' and job['status'] == 'completed' for job in ci['jobs'])
+assert remote['remoteCommit'] == 'd33e0b31f77ae00d5979213816dfa9a4383a8e32'
+assert remote['verification']['passed'] and remote['verification']['verifiedObjects'] == 536
+assert remote['verification']['coveredWorkFiles'] == 665
+assert subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip() == ci['commit']
+assert subprocess.run(['git', 'diff', '--quiet', 'bfe9baaf520e051e70081daf7ed459f0926264b4', 'HEAD', '--', 'apps', 'infra', 'config'], cwd=ROOT).returncode == 0
+
+def replace(path, old, new):
+    target = ROOT / path
+    text = target.read_text()
+    assert old in text, path
+    target.write_text(text.replace(old, new, 1))
+
+replace('docs/handoff.md',
+        'Status: SECURITY DEPLOYMENT AND NATIVE ACCEPTANCE VERIFIED / GIT EVIDENCE CLOSEOUT IN PROGRESS / NO TESTFLIGHT',
+        'Status: SECURITY BATCH DEPLOYED, VERIFIED AND REMOTELY PRESERVED / NO TESTFLIGHT')
+replace('docs/handoff.md',
+        '云端／原生／本机指定凭据已完成，当前只收尾本次证据的Git保存。',
+        '云端／原生／本机指定凭据、Git归档及独立远端核验全部完成。')
+replace('docs/handoff.md',
+        '主项目目录已从647317834快速前进到042f4e100，同一历史保留；旧交接以具名stash及QA副本保存。',
+        '主项目目录沿同一历史快速前进同步本轮实现与收尾文档；旧交接以具名stash及QA副本保存。')
+handoff = ROOT / 'docs/handoff.md'
+body = handoff.read_text()
+marker = '## 边界与保留项'
+body = body.replace(marker,
+    '- Git闭环：新增archive33在d33e0b31f推送，独立空LFS缓存新下载并解密核验全部536对象／665路径，旧1—32不重下。发布测试随机样本偶发漏识别已改为固定合成摘要，73项本地工具测试、源扫描32已审阅／0未知及可读资料扫描通过；5adf61570的[CI129](https://github.com/tantalum666/rillora/actions/runs/38255443360)三任务全部成功。失败CI128与修正证据保留，未放宽规则／例外或改动运行代码。[最终证据入口](../collaboration/verification/security-rollout-20261012/README.md)。\n\n' + marker, 1)
+start = body.index('## 唯一下一步\n')
+end = body.index('\n[前一进行中交接]', start)
+body = body[:start] + '''## 唯一下一步
+
+回到[正式发布清单第2项](release-readiness.md#october1-remaining-work-inventory)，补齐最终受影响路径的原生／跨端验收：未订阅真机分支、现有Apple订阅与Web权益对应、退款／到期证据及VoiceOver／法律链接。复用已完成的签名购买、恢复和退款证据，不为凑验收重新购买；继续集中直装，不发TestFlight，不改变正式开售开关。本批安全部署没有遗留的迁移、安装、凭据或Git执行步骤。
+''' + body[end:]
+handoff.write_text(body)
+replace('docs/security-rollout-20261012.md',
+        'Status: CLOUD / HTTPS NATIVE / NAMED LOCAL CREDENTIAL DEPLOYMENT VERIFIED; GIT EVIDENCE CLOSEOUT IN PROGRESS',
+        'Status: CLOUD / HTTPS NATIVE / NAMED LOCAL CREDENTIAL DEPLOYMENT AND REMOTE GIT PRESERVATION VERIFIED')
+replace('docs/security-rollout-20261012.md',
+        '最终修正CI／回执收尾见handoff。',
+        '测试修正5adf61570已推送，[CI129](https://github.com/tantalum666/rillora/actions/runs/38255443360)的source、api、web-and-infrastructure三任务全部通过。失败CI128、修正、本地73项结果和独立远端归档回执保存在[本次证据入口](../collaboration/verification/security-rollout-20261012/README.md)；最终文档回执沿同一分支保存，不递归重封归档。')
+replace('docs/source-control.md',
+        'The new evidence commit, CI and independent fresh remote download are the current closeout step; source/QA success is not a remote-preservation receipt.',
+        'Archive commitd33e0b31f has been independently downloaded into empty LFS storage and all536objects/665paths authenticated against immutable GitHub metadata. The publication test\'s intermittent random fixture was repaired in5adf61570 without changing scanner policy; CI129passes all three jobs. Final receipts follow as ordinary reviewed Git metadata, not another archive or deployment.')
+replace('collaboration/README.md',
+        '本地解密通过；推送／独立远端核验继续收尾。',
+        '本地及d33e0b31f的独立GitHub新下载解密均通过。发布测试样本稳定性修正5adf61570／CI129三任务通过，失败过程保留；最终回执直接入Git，不递归封存。')
+replace('docs/product.md',
+        '本次新增证据保存进度仍以handoff为准。',
+        '新增archive33已从GitHub独立下载并解密核验，发布测试样本稳定性修正5adf61570／CI129通过；最终证据与剩余发布步骤以handoff为准。')
+replace('docs/release-readiness.md',
+        '本次证据Git收尾见handoff。',
+        'archive33已在d33e0b31f独立远端解密核验；发布测试样本稳定性修正5adf61570／CI129三任务通过，当前剩余发布步骤见handoff。')
+replace('tools/security/README.md',
+        'was fast-forwarded to042f4e100.',
+        'was fast-forwarded through the042f4e100implementation; later test/evidence commits do not change this installed helper.')
+replace('collaboration/verification/security-rollout-20261012/README.md',
+        'All73local release-tool tests pass; final corrected CI is tracked separately.',
+        'All73local release-tool tests pass; corrected commit5adf61570 has [CI129](https://github.com/tantalum666/rillora/actions/runs/38255443360)success in all three jobs. [CI readback](ci-readback.json) and [closeout](closeout.json) are post-capture ordinary Git receipts. Runtime source remains identical to deployedbfe9baaf5.')
+journey = ROOT / 'docs/journey/PROJECT_JOURNEY.md'
+journey.write_text(journey.read_text() + '''
+## 2026-10-12 — 安全部署与全部新增证据的Git闭环完成
+
+- 目标：完成已授权安全切换的最后保存步骤，避免把本地部署或上传成功当作远端恢复证明。
+- 尝试：只封存archive33，复用旧1—32；扫描可读副本，推送d33e0b31f，按不可变GitHub清单从空LFS缓存新下载并认证解密。
+- 判断变化：79个扫描提示经逐项核对是78个CDK产物哈希文件名及1个源码编号，可读副本省略这些重复值，密文原件及扫描规则未改。CI128另暴露随机合成hex有时不命中启发式规则；复现同类低熵样本后采用固定摘要，保留拒绝断言与失败日志，不靠反复重跑变绿，也不宣称取得当次未记录的随机字节。
+- 结果：665路径／536原件／55,781,041加密字节远端完全匹配；测试修正5adf61570通过73项发布工具、本地源／可读扫描及CI129三任务。两库103、68表×2原业务字段、五栈、203线上文件、手机14首页／原事项、HTTPS回调和9份具名本机凭据结果均分层保留。最终回执只改文档／元数据，主目录沿相同历史同步，不重复部署或封存。
+- 未完成项：本批部署和Git保存无剩余执行步骤。现有GitHub私有方案不强制分支保护，未采购或迁移组织；正式发布清单的剩余原生／Apple验收、普通客户／收费切换和商店最终候选仍分别开放，TestFlight继续暂停。无需重做旧交易、本人验证或删除保留账号。
+''')
+now = datetime.datetime.now(datetime.timezone.utc).isoformat()
+closure = {
+    'preparedAt': now, 'deploymentSource': 'bfe9baaf520e051e70081daf7ed459f0926264b4',
+    'operatorToolSource': '042f4e1005f8754abfd21d48d3d4c7b9ea198166',
+    'archiveCommit': remote['remoteCommit'], 'verifiedSourceCommit': ci['commit'],
+    'ciRunId': ci['runId'], 'ciRunNumber': ci['runNumber'], 'allCiJobsPassed': True,
+    'archiveRemoteAuthenticated': True, 'archivedPaths': 665, 'archivedUniqueObjects': 536,
+    'cloudStacksVerified': 5, 'schemaMigrationsVerifiedPerDatabase': 103,
+    'originalBusinessTableFingerprintsMatchedPerDatabase': 68, 'webFilesMatched': 203,
+    'nativeVersion': '1.0(14)', 'ownerConfirmedHomeAndOriginalMatters': True,
+    'namedLocalCredentialFilesMigrated': 9, 'reviewIdentityCountUnchanged': 3,
+    'reviewExpiresAt': '2026-10-14T12:01:00Z', 'ordinarySalesEnabled': False,
+    'testFlightDistributed': False, 'fanPassChanged': False,
+    'githubBranchProtectionEnforced': False,
+    'newOwnerDecisionRequired': False,
+    'decisionLogReason': 'Existing October12 deployment and bounded review-window decisions already record authority; fixture determinism and evidence closeout add no new product, price or permission decision.',
+    'handoff': 'docs/handoff.md', 'journey': 'docs/journey/PROJECT_JOURNEY.md',
+    'focusedContract': 'docs/security-rollout-20261012.md',
+    'boundary': 'Final metadata follows already-pushed source/archive evidence; no repeated runtime deployment, native build, migration, purchase/refund, authentication or recursive archive.'
+}
+(DEST / 'closeout.json').write_text(json.dumps(closure, indent=2) + '\n')
+for name in ['final-source-equality.json', 'fixture-fix-source-scan.json']:
+    shutil.copyfile(QA / name, DEST / 'postcapture' / name)
+shutil.copyfile(Path(__file__), DEST / 'postcapture/finalize-rollout-records.py.reference.txt')
+state = json.loads((QA / 'current-work-state.json').read_text())
+state.update({'at': now, 'phase': 'final-metadata-prepared', 'archiveRemotelyVerified': True,
+              'ci129AllJobsPassed': True, 'remainingIndependentWork': 'Final metadata scan/push and primary checkout fast-forward only'})
+(QA / 'current-work-state.json').write_text(json.dumps(state, indent=2) + '\n')
+print(json.dumps({'metadataPrepared': True, 'ciPassed': True, 'archiveVerified': True}))
