@@ -5,10 +5,11 @@ import { resolve, relative } from 'node:path';
 import { runInNewContext } from 'node:vm';
 
 const review = process.argv.includes('--review');
-if (process.argv.slice(2).some(value => value !== '--review')) throw new Error('Unknown production artifact mode');
-const root = resolve(review ? 'dist-production-review' : 'dist-production');
+const live = process.argv.includes('--live');
+if ((review && live) || process.argv.slice(2).some(value => !['--review','--live'].includes(value))) throw new Error('Unknown or conflicting production artifact mode');
+const root = resolve(live ? 'dist-production-live' : review ? 'dist-production-review' : 'dist-production');
 const connections = JSON.parse(await readFile('../../config/production-connections.json', 'utf8'));
-if (connections.customerAccess !== 'closed') throw new Error('Only a closed production candidate is supported');
+if (!['closed','live'].includes(connections.customerAccess) || (live && connections.customerAccess !== 'live')) throw new Error('Live publishing requires explicit production activation');
 await writeAppearanceBootstrap(root);
 const files = {};
 async function visit(directory) {
@@ -27,11 +28,11 @@ for (const asset of Object.keys(files).filter(name => name !== 'index.html')) {
 }
 if (!files['index.html']) throw new Error('Missing production HTML');
 await writeFile(resolve(root, 'production-build.json'), JSON.stringify({
-  version: 1, surface: 'production-client', customerAccess: 'closed',
+  version: 1, surface: 'production-client', customerAccess: live ? 'live' : 'closed',
   ...(review ? { reviewAccess: 'identity-allowlist' } : {}),
-  publicationCandidate: process.env.RILLORA_CLOSED_CLIENT_CANDIDATE === '1',
+  publicationCandidate: process.env.RILLORA_CLIENT_PUBLICATION_CANDIDATE === '1' || process.env.RILLORA_CLOSED_CLIENT_CANDIDATE === '1',
   webOrigin: connections.webOrigin, apiBaseURL: connections.apiBaseURL,
   connectionsSha256: createHash('sha256').update(await readFile('../../config/production-connections.json')).digest('hex'),
   files,
 }, null, 2) + '\n');
-console.log(`Prepared ${review ? 'restricted-review' : 'closed'} production client artifact; public customer access remains closed.`);
+console.log(`Prepared ${live ? 'live' : review ? 'restricted-review' : 'closed'} production client artifact; server admission and billing remain authoritative.`);

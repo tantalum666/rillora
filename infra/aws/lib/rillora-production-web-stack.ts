@@ -13,10 +13,11 @@ const contractBytes = readFileSync(resolve(root, 'config/production-connections.
 export const productionConnections = JSON.parse(contractBytes.toString());
 export const PRODUCTION_WEB_CSP = "default-src 'self'; base-uri 'self'; connect-src 'self'; font-src 'self'; form-action 'self' https://login.rillora.xyz; frame-ancestors 'none'; img-src 'self' data:; object-src 'none'; script-src 'self'; style-src 'self'";
 
-export function verifyProductionClientArtifact(directory: string, reviewEnabled = false): void {
+export function verifyProductionClientArtifact(directory: string, reviewEnabled = false, liveEnabled = false): void {
   const manifest = readVerifiedClientArtifact(directory, 'production-build.json');
-  if (productionConnections.schemaVersion !== 1 || productionConnections.customerAccess !== 'closed'
-    || manifest.version !== 1 || manifest.surface !== 'production-client' || manifest.customerAccess !== 'closed'
+  if ((reviewEnabled && liveEnabled) || productionConnections.schemaVersion !== 1 || !['closed','live'].includes(productionConnections.customerAccess)
+    || (liveEnabled && productionConnections.customerAccess !== 'live')
+    || manifest.version !== 1 || manifest.surface !== 'production-client' || manifest.customerAccess !== (liveEnabled ? 'live' : 'closed')
     || manifest.publicationCandidate !== true
     || (reviewEnabled ? manifest.reviewAccess !== 'identity-allowlist' : manifest.reviewAccess !== undefined)
     || manifest.webOrigin !== productionConnections.webOrigin || manifest.apiBaseURL !== productionConnections.apiBaseURL
@@ -27,13 +28,13 @@ export function verifyProductionClientArtifact(directory: string, reviewEnabled 
 
 /** Same-origin client delivery only. Existing API/customer activation is untouched. */
 export class RilloraProductionWebStack extends Stack {
-  constructor(scope: Construct, id: string, props: StackProps & { certificateArn: string; assetDirectory?: string; reviewEnabled?: boolean }) {
+  constructor(scope: Construct, id: string, props: StackProps & { certificateArn: string; assetDirectory?: string; reviewEnabled?: boolean; liveEnabled?: boolean }) {
     super(scope, id, props);
     if (props.env?.region !== 'eu-central-1') throw new Error('Production origin storage remains in Frankfurt');
     if (!/^arn:aws:acm:us-east-1:\d{12}:certificate\/[0-9a-f-]+$/.test(props.certificateArn)
       || props.certificateArn.split(':')[4] !== props.env.account) throw new Error('Use the reviewed same-account CloudFront certificate');
-    const directory = props.assetDirectory ?? resolve(root, props.reviewEnabled ? 'apps/web/dist-production-review' : 'apps/web/dist-production');
-    verifyProductionClientArtifact(directory, props.reviewEnabled);
+    const directory = props.assetDirectory ?? resolve(root, props.liveEnabled ? 'apps/web/dist-production-live' : props.reviewEnabled ? 'apps/web/dist-production-review' : 'apps/web/dist-production');
+    verifyProductionClientArtifact(directory, props.reviewEnabled, props.liveEnabled);
     Tags.of(this).add('Project', 'Rillora'); Tags.of(this).add('Environment', 'Production');
     const assets = new s3.Bucket(this, 'Assets', {
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL, enforceSSL: true,
@@ -58,7 +59,7 @@ export class RilloraProductionWebStack extends Stack {
     });
     const association = [{ eventType: cloudfront.FunctionEventType.VIEWER_REQUEST, function: router }];
     const distribution = new cloudfront.Distribution(this, 'Client', {
-      comment: props.reviewEnabled
+      comment: props.liveEnabled ? 'Rillora production Web client; server-owned customer access and subscriptions' : props.reviewEnabled
         ? 'Rillora restricted review client; server identity allowlist required, public customers closed'
         : 'Rillora production client candidate; server and client account access closed',
       domainNames: [new URL(productionConnections.webOrigin).hostname],
@@ -101,7 +102,7 @@ export class RilloraProductionWebStack extends Stack {
     new CfnOutput(this, 'DistributionId', { value: distribution.distributionId });
     new CfnOutput(this, 'DistributionDomain', { value: distribution.distributionDomainName });
     new CfnOutput(this, 'BucketName', { value: assets.bucketName });
-    new CfnOutput(this, 'CustomerAccess', { value: 'closed' });
+    new CfnOutput(this, 'CustomerAccess', { value: props.liveEnabled ? 'live' : 'closed' });
     if (props.reviewEnabled) new CfnOutput(this, 'ReviewAccess', { value: 'identity-allowlist' });
   }
 }

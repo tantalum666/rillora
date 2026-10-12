@@ -19,7 +19,7 @@ ROOT = args.repository.resolve()
 DEST = ROOT / ".local/github-preflight/source"
 REPORT = args.report or ROOT / 'output/qa/repository-candidate.json'
 SKIP = {".git", "node_modules", ".build", ".swiftpm", "SourcePackages", "checkouts",
-        "vendor", "dist", "dist-public", "dist-production", "build", "output", ".local-secrets", ".local", ".secrets",
+        "vendor", "dist", "dist-public", "dist-production", "dist-production-review", "dist-production-live", "build", "output", ".local-secrets", ".local", ".secrets",
         ".playwright-cli", ".playwright-mcp", ".xcodebuildmcp-deriveddata", "__pycache__"}
 
 paths, nested, symlinks = [], [], []

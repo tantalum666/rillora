@@ -11,6 +11,7 @@
     "build:public": "vite build --mode public && node scripts/prepare-public-build.mjs",
     "build:production-closed": "node scripts/validate-legal-release.mjs && vite build --mode production-closed && node scripts/prepare-production-build.mjs",
     "build:production-review": "node scripts/validate-legal-release.mjs && vite build --mode production-review && node scripts/prepare-production-build.mjs --review",
+    "build:production-live": "node scripts/validate-legal-release.mjs && vite build --mode production-live && node scripts/prepare-production-build.mjs --live",
     "preview": "vite preview",
     "test:api-client": "node --test tests/api-client.test.mjs",
     "test:first-use": "node --test tests/first-use.test.mjs",
