@@ -102,6 +102,7 @@ if (productionWebSelected) {
     description:"Closed Rillora production data foundation and isolated recovery; no public traffic or billing",
     runtimeEnabled:runtime===true||runtime==='true',runtimeDesiredCount:runtimeDesiredCount as 0|1,
     reviewPrepared:reviewFlag('productionReviewPrepared'),reviewEnabled:reviewFlag('productionReviewEnabled'),
+    liveEnabled:reviewFlag('productionLiveEnabled'),stripeCheckoutEnabled:reviewFlag('productionStripeCheckoutEnabled'),
     retentionEnabled:reviewFlag('productionRetentionEnabled'),
     identityServicesEnabled:reviewFlag('productionIdentityServicesEnabled'),
     stripeNotificationsSecretArn:app.node.tryGetContext('productionStripeNotificationsSecretArn'),

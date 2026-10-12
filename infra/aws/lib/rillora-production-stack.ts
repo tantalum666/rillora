@@ -15,6 +15,7 @@ import {RilloraRuntimeBoundaryKeys,RilloraRecoveryAttestationBroker} from './ril
 export interface ProductionStackProps extends StackProps {
  runtimeEnabled?:boolean; runtimeDesiredCount?:0|1;
  reviewPrepared?:boolean; reviewEnabled?:boolean; runtimeImageTag?:string;
+ liveEnabled?:boolean; stripeCheckoutEnabled?:boolean;
  retentionEnabled?:boolean;
  identityServicesEnabled?:boolean;
  stripeNotificationsSecretArn?:string;
@@ -25,14 +26,19 @@ export class RilloraProductionStack extends Stack {
  constructor(scope:Construct,id:string,props:ProductionStackProps){
   super(scope,id,props);
   if(props.env?.region!=='eu-central-1')throw new Error('Production data stays in the reviewed Frankfurt region');
-  if((props.reviewPrepared||props.reviewEnabled||props.runtimeImageTag)&&!props.runtimeEnabled)throw new Error('Review preparation requires the existing production runtime');
-  if(props.reviewEnabled&&!props.reviewPrepared)throw new Error('Prepare review secrets before enabling review');
-  if(props.identityServicesEnabled&&!props.reviewEnabled)throw new Error('Identity services require the prepared restricted production runtime');
-  if(props.retentionEnabled&&!props.reviewEnabled)throw new Error('Retention requires an operational restricted production runtime');
-  if(props.stripeNotificationsSecretArn&&(!props.reviewEnabled
+  const activeRuntime=props.reviewEnabled||props.liveEnabled;
+  if((props.reviewPrepared||activeRuntime||props.runtimeImageTag)&&!props.runtimeEnabled)throw new Error('Preparation requires the existing production runtime');
+  if(props.reviewEnabled&&props.liveEnabled)throw new Error('Review and live modes are mutually exclusive');
+  if(props.liveEnabled&&props.env?.account!=='133857166372')throw new Error('Live mode is restricted to the existing Rillora production account');
+  if(activeRuntime&&!props.reviewPrepared)throw new Error('Prepare existing identity secrets before activating the runtime');
+  if(props.liveEnabled&&(!props.identityServicesEnabled||!props.retentionEnabled||!props.stripeNotificationsSecretArn))throw new Error('Live requires identity services, retention and verified billing notifications');
+  if(props.stripeCheckoutEnabled&&!props.liveEnabled)throw new Error('Production Checkout requires explicit live mode');
+  if(props.identityServicesEnabled&&!activeRuntime)throw new Error('Identity services require a prepared active production runtime');
+  if(props.retentionEnabled&&!activeRuntime)throw new Error('Retention requires an operational production runtime');
+  if(props.stripeNotificationsSecretArn&&(!activeRuntime
    || !/^arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora\/production\/stripe-billing-[A-Za-z0-9]{6}$/.test(props.stripeNotificationsSecretArn)))throw new Error('Stripe notification preparation requires restricted review and the exact production billing secret');
   if(props.runtimeImageTag&&!/^[a-f0-9]{64}$/.test(props.runtimeImageTag))throw new Error('Only an immutable production asset image tag may be retained');
-  if(props.reviewEnabled&&props.runtimeImageTag)throw new Error('Review activation must use the newly verified API image');
+  if(activeRuntime&&props.runtimeImageTag)throw new Error('Runtime activation must use the newly verified API image');
   Tags.of(this).add('Project','Rillora');Tags.of(this).add('Environment','Production');
   Tags.of(this).add('CostCenter','Rillora');
   const vpc=new ec2.Vpc(this,'Vpc',{ipAddresses:ec2.IpAddresses.cidr('10.43.0.0/16'),maxAzs:2,natGateways:0,
@@ -156,13 +162,14 @@ export class RilloraProductionStack extends Stack {
    image:props.runtimeImageTag?ecs.ContainerImage.fromEcrRepository(ecrRepository.Repository.fromRepositoryAttributes(this,'ExistingAssetRepository',{
     repositoryArn:`arn:${Aws.PARTITION}:ecr:eu-central-1:${Aws.ACCOUNT_ID}:repository/cdk-hnb659fds-container-assets-${Aws.ACCOUNT_ID}-eu-central-1`,
     repositoryName:`cdk-hnb659fds-container-assets-${Aws.ACCOUNT_ID}-eu-central-1`}),props.runtimeImageTag):image,
-   operator,environment,reviewPrepared:props.reviewPrepared,reviewEnabled:props.reviewEnabled,retentionEnabled:props.retentionEnabled,identityServicesEnabled:props.identityServicesEnabled,recoveryTask:recovery,
+   operator,environment,reviewPrepared:props.reviewPrepared,reviewEnabled:props.reviewEnabled,liveEnabled:props.liveEnabled,stripeCheckoutEnabled:props.stripeCheckoutEnabled,retentionEnabled:props.retentionEnabled,identityServicesEnabled:props.identityServicesEnabled,recoveryTask:recovery,
    stripeNotificationsSecretArn:props.stripeNotificationsSecretArn,
    desiredCount:props.runtimeDesiredCount??0,
   }):null;
   if(runtime)maintenancePolicies.push(new iam.PolicyStatement({actions:['ecs:DescribeServices'],resources:runtime.sourceWriterServices.map(s=>s.serviceArn)}));
   const broker=new RilloraMaintenanceBroker(this,'MaintenanceBroker',{operator,policies:maintenancePolicies,settings:{
     environment:'production',source:'rillora-production',sourceHost:database.instanceEndpoint.hostname,cluster:cluster.clusterName,
+    productionRuntimeMode:props.liveEnabled?'live':props.reviewEnabled?'review':'closed',
     migrationTask:migration.taskDefinitionArn,recoveryTask:recovery.taskDefinitionArn,
     subnets:vpc.publicSubnets.map(s=>s.subnetId),migrationSecurityGroup:sourceJobs.securityGroupId,
     recoveryTaskSecurityGroup:recoveryJobs.securityGroupId,recoveryDatabaseSecurityGroup:recoveryDatabaseNetwork.securityGroupId,
@@ -181,7 +188,7 @@ export class RilloraProductionStack extends Stack {
    RecoverySecurityGroupId:recoveryJobs.securityGroupId,RecoveryDatabaseSecurityGroupId:recoveryDatabaseNetwork.securityGroupId,
    MigrationTaskDefinitionArn:migration.taskDefinitionArn,RecoveryTaskDefinitionArn:recovery.taskDefinitionArn,
    MaintenanceLogGroup:logGroup.logGroupName,ContentKeyArn:contentKey.keyArn,RecoveryJournalTable:journal.tableName,
-   OperatorRoleArn:operator.roleArn,ProductionTrafficReady:'false',BackupRetentionDays:'7'};
+   OperatorRoleArn:operator.roleArn,ProductionTrafficReady:props.liveEnabled?'true':'false',BackupRetentionDays:'7'};
   for(const [name,value] of Object.entries(outputs))new CfnOutput(this,name,{value});
  }
 }

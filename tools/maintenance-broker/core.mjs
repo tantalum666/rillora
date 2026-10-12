@@ -92,6 +92,8 @@ export async function executeMaintenance(input,call,config,clock=Date.now){
   else if(command.length===3&&command[0]==='node'&&command[1]==='dist/recovery-admin.js'
     &&['initialize','seed','after-snapshot','restore','cleanup-fixtures'].includes(command[2]))operation=command[2];
   else if(JSON.stringify(command)===JSON.stringify(['node','dist/recovery-commerce-admin.js']))operation='reconcile-commerce';
+  else if(command.length===3&&command[0]==='node'&&command[1]==='dist/configure-production-web-billing.js'
+    &&['inspect','activate','close-new-sales'].includes(command[2]))operation='billing-'+command[2];
   else if(command.length===4&&command[0]==='node'&&command[1]==='--input-type=module'&&command[2]==='-e'
     &&typeof command[3]==='string'&&hash(command[3])===config.isolationScriptSha256)operation='isolation';
   else if(command.length===4&&command[0]==='node'&&command[1]==='--input-type=module'&&command[2]==='-e'
@@ -100,6 +102,11 @@ export async function executeMaintenance(input,call,config,clock=Date.now){
   const recovery=['restore','reconcile-commerce','isolation'].includes(operation);
   assert(request.taskDefinition===(recovery?config.recoveryTask:config.migrationTask),'exact task definition');
   const allowed=['RECOVERY_RUN'];
+  if(operation==='billing-activate')assert(config.productionRuntimeMode==='live','billing activation requires explicit live runtime');
+  if(['billing-activate','billing-close-new-sales'].includes(operation)){
+    assert(/^[a-f0-9]{64}$/.test(values.RILLORA_BILLING_EXPECTED_SNAPSHOT??''),'fresh billing catalog fingerprint');
+    allowed.push('RILLORA_BILLING_EXPECTED_SNAPSHOT');
+  }
   if(['restore','reconcile-commerce','after-snapshot','cleanup-fixtures','isolation'].includes(operation)){
     const snapshot=await snapshotFor(call,id,input,config);assert(snapshot?.Status==='available','owned available snapshot');
     if(['restore','reconcile-commerce'].includes(operation)){

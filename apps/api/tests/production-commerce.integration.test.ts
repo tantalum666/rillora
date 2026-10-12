@@ -118,6 +118,18 @@ describe('production commerce ledger with a synthetic provider only', () => {
     await postCheckout({ ...consent, acceptedAnnualRenewal: false }).expect(400);
     expect(checkoutCall).not.toHaveBeenCalled();
   });
+  it('explicitly disabled automatic tax opens quotes but never bypasses the runtime or catalog sales gates',async()=>{
+    const noTax={...billing,tax:{mode:'disabled' as const,productTaxCode:billing.tax.productTaxCode}};
+    const closed=createApp(pool,{...config,stripeProductionCheckoutEnabled:false},{stripeProductionConfig:noTax,stripeExecutor:executor});
+    const ready=createApp(pool,config,{stripeProductionConfig:noTax,stripeExecutor:executor});
+    await request(closed).get('/api/v1/commerce/stripe/quote').set('x-dev-planner-id',plannerPublicId).expect(503);
+    const quote=await request(ready).get('/api/v1/commerce/stripe/quote').set('x-dev-planner-id',plannerPublicId).expect(200);
+    expect(quote.body.purchaseConsent).toMatchObject({amountMinor:8899,currency:'USD',billingPeriod:'annual'});
+    const blocked=await request(ready).post('/api/v1/commerce/stripe/checkout').set('x-dev-planner-id',plannerPublicId)
+      .set('idempotency-key','explicit-no-tax-still-closed').send({billingPeriod:'annual',purchaseConsent:consent}).expect(409);
+    expect(blocked.body.error.code).toBe('billing_closed');expect(checkoutCall).not.toHaveBeenCalled();
+    expect((await pool.query('select count(*)::int as n from app.commerce_orders')).rows[0].n).toBe(0);
+  });
   it('keeps new sales closed before any provider call or order creation', async () => {
     const result = await postCheckout().expect(409); expect(result.body.error.code).toBe('billing_closed');
     expect(readyCall).not.toHaveBeenCalled(); expect(checkoutCall).not.toHaveBeenCalled();

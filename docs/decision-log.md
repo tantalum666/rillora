@@ -3437,3 +3437,9 @@ local correction/tests and actual restoration remain separate evidence.
 - Agent implements one paid-plan card and explicit-click acceptance beside renewal/cancellation/legal disclosures. The freshly checked immutable quote, idempotency, server-authoritative access and original renewal-provider management remain mandatory. No acceptance occurs on render or load.
 - This does not authorize ordinary sales activation, a price change, invented tax facts, new provider transactions, subscription resets, native reinstall or TestFlight. Current native Release already has the approved consumer presentation; Owner's deferred phone verification remains separate.
 - [Implementation and exact scoped evidence](plan-purchase-page-20261013.md).
+
+## 2026-10-13 — Owner removes tax strategy as the Web subscription prerequisite
+
+- Owner explicitly says “忽略掉计税策略” after the application-side sales blockers are explained. Stripe Tax remains disabled; do not require tax-policy setup or registrations before continuing this Web subscription work.
+- Agent implementation choice: explicit disabled mode, automatic_tax false, current annual8899USD unchanged. This is not a fabricated reviewed_no_collection assessment or a declaration of tax exemption. Existing merchant/environment/price/idempotency/consent/signature and single-renewal-provider checks stay in force.
+- Continue the concrete live runtime and catalog/sales/entitlement delivery work. Source readiness, actual provider settings, customer entry, financial behavior and TestFlight remain distinct; no TestFlight or artificial Live transaction follows. [Current implementation](web-billing-activation-20261013.md).

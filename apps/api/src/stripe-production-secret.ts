@@ -19,7 +19,8 @@ const schema = z.object({
     planVersion: z.number().int().positive() }).strict()).max(30),
   checkoutSuccessUrl: returnURL, checkoutCancelUrl: returnURL, portalReturnUrl: returnURL, portalConfigurationId: providerID('bpc_'),
   tax: z.discriminatedUnion('mode', [
-    z.object({ mode: z.literal('not_configured'), productTaxCode: providerID('txcd_') }).strict(),
+    // Disabled is an explicit operating choice, not a tax exemption or assessment.
+    z.object({ mode: z.enum(['not_configured', 'disabled']), productTaxCode: providerID('txcd_') }).strict(),
     z.object({ mode: z.enum(['automatic', 'reviewed_no_collection']), assessmentReference: z.string().trim().min(8).max(200),
       productTaxCode: providerID('txcd_'), activeRegistrationIds: z.array(providerID('taxreg_')).max(100) }).strict(),
   ]),

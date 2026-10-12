@@ -1,7 +1,23 @@
 # Rillora Stripe Live配置接续
 
 Status: LIVE NOTIFICATIONS/CATALOG/VAULT CONNECTED AND VERIFIED — CUSTOMER CHECKOUT REMAINS CLOSED
-Last updated: 2026-10-10 (Asia/Hong_Kong)
+Last updated: 2026-10-13 (Asia/Hong_Kong)
+
+## October13 Owner移除计税策略阻塞
+
+Owner随后明确“忽略掉计税策略”，取代下方状态解释中继续等待税价策略的前置条件。按[当前实施](web-billing-activation-20261013.md)加入显式disabled模式，automatic_tax=false，保留现有8899USD年价与provider原始税行为；不生成assessmentReference、登记号或免税声明。此处是明确操作选择，缺省not_configured仍不被静默解释为允许收费。正式运行／销售及权益切换分别记录。
+
+## October13 当前为什么还不能订阅
+
+Owner询问Stripe已配置为何正式按钮仍关闭。香港October13 01:07重新只读核验：原Rillora Live账户可收款／提现，正式Family商品和USD88.99年价均active；金额／币种／年期正确。无需重复开户、建商品／价格或做真钱自付测试。[本次证据](../collaboration/verification/billing-opening-status-20261013/README.md)。
+
+实际API23仍为review，正式Stripe通知true、正式Checkout false，审核身份期限仍为October14 20:01。服务器现有计费secret的tax.mode仍是not_configured；Stripe价格tax_behavior为unspecified。Tax Settings pending且0条有效税区记录，与“可收款／提现”同时成立，不能混成Stripe账户收款受阻。
+
+未完成的是Rillora应用侧的正式开售切换：当前IaC只生成closed／review，需要把已存在的受保护live源码模式接到明确生产部署流程；协调普通账号入口、计费路由、当前价格绑定与正式权益执行开关；按已暂后Stripe Tax自动化的方向，落实销售范围和真实税价处理，不能继续留not_configured，也不能伪造reviewed_no_collection。现有源码还核对市场／运营主体／价格／路由active及production_entitlements_enabled；本次没有重查每一行生产数据库，也没有改动它们。
+
+Stripe Checkout官方将[automatic_tax列为optional](https://docs.stripe.com/api/checkout/sessions/create)。因此不应再把购买Stripe Tax服务、重新身份审核、未拿到一笔真实收入或重复此前TEST测试列为这次开售的前置项。剩余工作应按生产客户入口、真实计费策略、销售及权益联动、发布后无扣款核对分别交付。真机VoiceOver和新TestFlight分发不构成Stripe处理Web付款的前置条件；iOS实际发布仍保留独立证据。
+
+本次是状态说明和只读调查，没有打开收费、变更数据／税务声明或新增权限。插件／本机操作CLI认证不可用后，复用已授权的运行时受限连接完成读取；未要求Owner再登录，密钥未打印或落盘。
 
 ## October10 Stripe Tax暂后与实际收款能力
 

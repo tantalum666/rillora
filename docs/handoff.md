@@ -1,9 +1,13 @@
 # Rillora 当前交接
 
-Status: COMPACT PLAN DEPLOYED AND REAL WEB UI VERIFIED / REMAINING PHONE ACCEPTANCE OWNER-DEFERRED / NO TESTFLIGHT
+Status: WEB BILLING ACTIVATION SOURCE IN PROGRESS / TAX AUTOMATION DISABLED BY OWNER / NOT DEPLOYED / NO TESTFLIGHT
 Last updated: 2026-10-13 (Asia/Hong_Kong)
 
 ## 当前任务
+
+Owner最新明确忽略计税策略；按[本轮激活合同](web-billing-activation-20261013.md)补显式不自动计税路径与正式Web发布配置，不再把税务设置或虚构评估留作阻塞。19项Stripe／11项infra及两侧typecheck通过，源码尚未提交或部署。
+
+Owner最新询问正式订阅仍关闭的原因及还差什么；本轮只读核对已完成，当前焦点转为明确Web开售收尾，不能把待验手机项目混成Stripe收款的前置条件。[上一交接](handoff-history-20261013-before-billing-opening-status.md)为HISTORICAL。
 
 Owner要求套餐与权限只展示付费权益、价格和订阅主按钮；Web改版、两套部署及登录后正式页面读回均已完成。[本轮合同](plan-purchase-page-20261013.md)记录准确范围；[此前等待登录的交接](handoff-history-20261013-before-real-plan-ui-readback.md)为HISTORICAL。活动分支仍是codex/security-findings-20261011。
 
@@ -15,10 +19,12 @@ Owner要求套餐与权限只展示付费权益、价格和订阅主按钮；Web
 
 ## 边界与待验项
 
+Owner随后问为何Stripe已配置仍不能购买。October13已只读确认Live账户和商品／年价有效；API23仍review、正式Checkout false，应用tax.mode未配置。[最新开售差距](live-configuration-20261009.md#october13-当前为什么还不能订阅)单独记录，不能再把Stripe Tax服务pending解释为商户不能收款。此状态询问没有触发收费、价格或权限变更；原先手机暂后安排保持。
+
 这次只补真实Web页面验收，未再构建、部署、交易、重购、恢复、改价或发TestFlight。当前Web未订阅画面不能证明Apple实际退款／到期或当前有效订阅双端一致。API、数据库、手机14和FanPass保持原状。
 
 Owner先前表示手机本人验证暂不方便；剩余原机未订阅分支、VoiceOver、原生法律往返及当前有效Apple权益跨端对照仍待手机可操作。既有原机14首页／原事项、付款／恢复／退款和共享导出证据沿用其日期，不重做。
 
 ## 唯一下一步
 
-Owner方便原手机操作后，复用原1.0(14)及已保留的正式Web会话，先核对原Sandbox资格／现有Apple订阅，再一次补齐剩余真机与跨端验收。此前不再要求本轮Web登录，不重装、不重新购买／恢复、不重复已过测试；只有实际系统本人验证需要交回相应步骤。
+从未提交候选继续完成Web正式订阅的路由／目录启用及部署验证：补受限、可核对的目录操作和Auth0审核入口切换，完成必要回归／源码检查与CI后按保留数据的顺序交付。tax.mode=disabled保持USD88.99，不再等待计税策略；当前线上尚未更改。旧支付、退款、归档和手机验收不重复，不发TestFlight。

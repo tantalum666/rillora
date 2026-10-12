@@ -16,7 +16,7 @@ export type StripeProductionPriceBinding = Readonly<{
   interval: 'year' | 'month'; planVersion: number;
 }>;
 export type StripeProductionTaxConfig =
-  | Readonly<{ mode: 'not_configured'; productTaxCode: string }>
+  | Readonly<{ mode: 'not_configured' | 'disabled'; productTaxCode: string }>
   | Readonly<{ mode: 'automatic' | 'reviewed_no_collection'; assessmentReference: string;
       productTaxCode: string; activeRegistrationIds: readonly string[] }>;
 export type StripeProductionConfig = Readonly<{
@@ -39,9 +39,10 @@ export class StripeProductionAdapter {
       const url = new URL(raw);
       if (url.origin !== 'https://app.rillora.xyz' || url.username || url.password || url.hash) throw new Error('Production billing return URL must remain on the reviewed origin');
     }
-    if (!['not_configured', 'automatic', 'reviewed_no_collection'].includes(config.tax.mode)
+    if (!['not_configured', 'disabled', 'automatic', 'reviewed_no_collection'].includes(config.tax.mode)
       || !config.tax.productTaxCode.startsWith('txcd_')
-      || (config.tax.mode !== 'not_configured' && !config.tax.assessmentReference.trim())) throw new Error('Production billing needs explicit tax configuration and a confirmed product tax code');
+      || (['automatic', 'reviewed_no_collection'].includes(config.tax.mode)
+        && (!('assessmentReference' in config.tax) || !config.tax.assessmentReference.trim()))) throw new Error('Production billing needs explicit tax configuration and a confirmed product tax code');
     if (config.tax.mode === 'automatic' && config.tax.activeRegistrationIds.length === 0) throw new Error('Automatic tax requires confirmed active registration references');
   }
 
@@ -200,7 +201,7 @@ export class StripeProductionAdapter {
     if (price.id !== binding.id || (newPurchase && !price.active) || stripeObjectReference(price.product) !== this.config.familyProductId
       || price.currency !== binding.currency || price.unit_amount !== binding.amountMinor
       || price.billing_scheme !== 'per_unit' || price.transform_quantity !== null || price.recurring?.usage_type !== 'licensed'
-      || (newPurchase && !['exclusive', 'inclusive'].includes(price.tax_behavior ?? ''))
+      || (newPurchase && !['exclusive', 'inclusive', ...(this.config.tax.mode === 'disabled' ? ['unspecified'] : [])].includes(price.tax_behavior ?? ''))
       || price.recurring?.interval !== binding.interval || price.recurring.interval_count !== 1) throw new Error('Provider price differs from the exact Rillora offer');
   }
 }

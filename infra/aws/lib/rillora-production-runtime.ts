@@ -12,6 +12,7 @@ interface Props {
  credential:secrets.Secret; key:kms.Key; journal:dynamodb.Table; image:ecs.ContainerImage;
  operator:iam.Role; environment:Record<string,string>; desiredCount:0|1;
  reviewPrepared?:boolean; reviewEnabled?:boolean;
+ liveEnabled?:boolean; stripeCheckoutEnabled?:boolean;
  retentionEnabled?:boolean;
  identityServicesEnabled?:boolean;
  stripeNotificationsSecretArn?:string;
@@ -81,6 +82,13 @@ export class RilloraProductionRuntime extends Construct {
     p.recoveryTask.defaultContainer!.addEnvironment('APPLE_REVIEW_SECRET_ARN',apple.secretArn);
     p.recoveryTask.defaultContainer!.addEnvironment('APPLE_ROOT_CERTIFICATE_DIRECTORY','/app/certificates/apple');
    }
+   if(p.reviewEnabled||p.liveEnabled){
+    Object.assign(reviewEnvironment,{PRODUCTION_RUNTIME_MODE:p.liveEnabled?'live':'review',
+     WEB_APP_ORIGIN:'https://app.rillora.xyz',OIDC_ISSUER_URL:'https://login.rillora.xyz',
+     OIDC_CLIENT_ID:'EcevpyKt1GELKwkLnVU3aCbh3Ix2SJhz',OIDC_REDIRECT_URI:'https://app.rillora.xyz/api/auth/callback',
+     NATIVE_OIDC_CLIENT_ID:'POpNKTqlr6dHbJZLWPWxhyjg5qPtdrm4',OIDC_API_AUDIENCE:'urn:rillora:production:api'});
+    reviewSecrets.OIDC_CLIENT_SECRET=ecs.Secret.fromSecretsManager(web,'client_secret');
+   }
    if(p.reviewEnabled){
     const identities=new CfnParameter(this,'ReviewIdentityDigests',{type:'String',noEcho:true,
      allowedPattern:'[a-f0-9]{64}(,[a-f0-9]{64}){0,7}',description:'Exact issuer/subject SHA256 values of prepared synthetic review identities'});
@@ -88,11 +96,7 @@ export class RilloraProductionRuntime extends Construct {
      allowedPattern:'[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z',description:'Explicit UTC review access expiry; enforced on every authenticated request'});
     Object.assign(reviewEnvironment,{PRODUCTION_RUNTIME_MODE:'review',ALLOW_APPLE_REVIEW_INTEGRATION:'true',
      APPLE_REVIEW_SECRET_ARN:apple.secretArn,APPLE_ROOT_CERTIFICATE_DIRECTORY:'/app/certificates/apple',
-     PRODUCTION_REVIEW_IDENTITY_SHA256:identities.valueAsString,PRODUCTION_REVIEW_EXPIRES_AT:expiry.valueAsString,
-     WEB_APP_ORIGIN:'https://app.rillora.xyz',OIDC_ISSUER_URL:'https://login.rillora.xyz',
-     OIDC_CLIENT_ID:'EcevpyKt1GELKwkLnVU3aCbh3Ix2SJhz',OIDC_REDIRECT_URI:'https://app.rillora.xyz/api/auth/callback',
-     NATIVE_OIDC_CLIENT_ID:'POpNKTqlr6dHbJZLWPWxhyjg5qPtdrm4',OIDC_API_AUDIENCE:'urn:rillora:production:api'});
-    reviewSecrets.OIDC_CLIENT_SECRET=ecs.Secret.fromSecretsManager(web,'client_secret');
+     PRODUCTION_REVIEW_IDENTITY_SHA256:identities.valueAsString,PRODUCTION_REVIEW_EXPIRES_AT:expiry.valueAsString});
     apple.grantRead(task.taskRole);
    }
   }
@@ -115,7 +119,7 @@ export class RilloraProductionRuntime extends Construct {
     TRUST_PROXY_HOPS:'1',CORS_ORIGINS:'https://app.rillora.xyz',
     ALLOW_DEV_AUTH:'false',ALLOW_SYNTHETIC_RECIPIENT_REHEARSAL:'false',ALLOW_STRIPE_TEST_INTEGRATION:'false',
     ALLOW_APPLE_SANDBOX_INTEGRATION:'false',ALLOW_FAMILY_MAINTENANCE_PREVIEW:'false',
-    ALLOW_APPLE_PRODUCTION_INTEGRATION:'false',ALLOW_STRIPE_PRODUCTION_INTEGRATION:'false',
+    ALLOW_APPLE_PRODUCTION_INTEGRATION:'false',ALLOW_STRIPE_PRODUCTION_INTEGRATION:p.liveEnabled&&p.stripeCheckoutEnabled?'true':'false',
     ALLOW_RETENTION_WORKER:p.retentionEnabled?'true':'false',
     ...(p.identityServicesEnabled?{DELETION_WORKER_ENABLED:'true',DELETION_PROOF_KMS_KEY_ARN:p.boundaryKeys.proof.keyArn}:{}),...reviewEnvironment},
    secrets:{DATABASE_USER:ecs.Secret.fromSecretsManager(p.credential,'username'),DATABASE_PASSWORD:ecs.Secret.fromSecretsManager(p.credential,'password'),
@@ -165,6 +169,6 @@ export class RilloraProductionRuntime extends Construct {
    ...(deletionWorker?[deletionWorker.logGroup.logGroupArn,`${deletionWorker.logGroup.logGroupArn}:*`]:[])]}));
   for(const [name,value] of Object.entries({ApiUrl:api.apiEndpoint,CertificateArn:certificate.certificateArn,TlsServerName:hostname,
    ApiTaskDefinitionArn:task.taskDefinitionArn,ApiServiceName:service.serviceName,ApiSecurityGroupId:network.securityGroupId,
-   ApiLogGroup:apiLogs.logGroupName,GatewayLogGroup:gatewayLogs.logGroupName,CustomerAccess:'closed',ReviewAccess:p.reviewEnabled?'identity-allowlist':'disabled'}))new CfnOutput(this,name,{value});
+   ApiLogGroup:apiLogs.logGroupName,GatewayLogGroup:gatewayLogs.logGroupName,CustomerAccess:p.liveEnabled?'live':'closed',ReviewAccess:p.reviewEnabled?'identity-allowlist':'disabled'}))new CfnOutput(this,name,{value});
  }
 }

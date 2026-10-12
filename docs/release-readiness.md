@@ -4,6 +4,14 @@ Role: current launch scope, remaining work and release evidence contract
 Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; ORDINARY CUSTOMER ACCESS AND SALES CLOSED
 Last updated: 2026-10-13 (Asia/Hong_Kong)
 
+## October13正式Web订阅推进
+
+Owner已明确忽略计税策略，因此Stripe Tax、登记和计税策略不再阻止本次Web订阅工作。当前候选完成显式不自动计税、独立live／Checkout配置、带目录指纹的限定启用／停止新购操作；局部Stripe、账本路由、目录与部署配置检查通过。源码尚未部署，真实用户付款未发生，不将候选完成写成开售。见[当前合同](web-billing-activation-20261013.md)。
+
+## October13正式Web订阅未开放的实际原因
+
+最新只读核对确认Stripe Live收款／提现、正式Family商品和USD88.99年价均有效。Rillora API23仍运行review，正式回调已开、正式Checkout未开，应用税务策略为not_configured。待做的是应用正式客户模式、真实计费／销售范围配置及目录／路由／正式权益联动，并非重建Stripe接入或重复测试。[当前说明与证据](live-configuration-20261009.md#october13-当前为什么还不能订阅)。可选Stripe Tax自动化继续暂后，不能捏造免税评估；本轮没有执行任何开售／收费变更。
+
 ## October13套餐页纠正
 
 Owner再次指出页面没有按要求精简。现已完成家庭版权益／年价／单订阅主操作，移除免费状态、折叠块和独立二次勾选；20项针对性Node及23个隔离浏览器场景通过，759c00112／CI133成功。Preview和正式Web各仅更换一个静态包，172线上文件匹配；Owner恢复真实账号后，中英文新版UI也已读回通过，最后恢复中文；原1事项仍在。详见[当前合同](plan-purchase-page-20261013.md)；API／价格／开售开关／真实数据／手机14保持。

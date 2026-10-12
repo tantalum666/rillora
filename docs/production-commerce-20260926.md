@@ -2,7 +2,11 @@
 
 Role: focused ordinary Web purchase, consent and provider-isolation contract
 Status: CLOUD TEST PASSED; LIVE CATALOG/PORTAL/PRODUCTION NOTIFICATIONS CONNECTED; CUSTOMER BILLING CLOSED
-Last updated: 2026-10-10 (Asia/Hong_Kong)
+Last updated: 2026-10-13 (Asia/Hong_Kong)
+
+## October13 Owner移除计税策略阻塞
+
+Owner随后明确“忽略掉计税策略”，取代下方状态解释中继续等待税价策略的前置条件。按[当前实施](web-billing-activation-20261013.md)加入显式disabled模式，automatic_tax=false，保留现有8899USD年价与provider原始税行为；不生成assessmentReference、登记号或免税声明。此处是明确操作选择，缺省not_configured仍不被静默解释为允许收费。正式运行／销售及权益切换分别记录。
 
 ## October10 optional Stripe Tax deferral
 

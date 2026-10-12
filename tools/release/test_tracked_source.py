@@ -42,4 +42,17 @@ class TrackedSourceTests(unittest.TestCase):
             self.assertEqual(len(scan.load_exceptions(root)),1)
             with self.assertRaises(ValueError):scan.load_exceptions(root,'HEAD:other',root)
 
+    def test_worktree_git_pointer_never_enters_the_generated_source_snapshot(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory)/'repository';self.repository(root)
+            (root/'main.txt').write_text('source fixture\n');self.git(root,'add','.');self.git(root,'commit','-qm','fixture')
+            worktree=Path(directory)/'worktree';self.git(root,'worktree','add','--detach',str(worktree),'HEAD')
+            self.assertTrue((worktree/'.git').is_file())
+            report=Path(directory)/'report.json'
+            subprocess.run(['python3',str(Path(__file__).with_name('prepare_repository.py')),'--repository',str(worktree),'--report',str(report)],check=True,capture_output=True)
+            snapshot=worktree/'.local/github-preflight/source'
+            self.assertFalse((snapshot/'.git').exists())
+            self.assertNotIn('.git',[entry['path'] for entry in json.loads(report.read_text())['files']])
+            self.assertEqual((snapshot/'main.txt').read_text(),'source fixture\n')
+
 if __name__=='__main__':unittest.main()

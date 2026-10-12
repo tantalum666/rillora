@@ -3,6 +3,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { StripeProductionAdapter, type StripeProductionConfig } from '../src/stripe-production-adapter.js';
 import type { StripeSdkPort } from '../src/stripe-sdk.js';
 import { stripeSubscriptionReference } from '../src/stripe-provider-shared.js';
+import { parseStripeProductionSecret } from '../src/stripe-production-secret.js';
 
 const now = new Date('2026-09-25T00:00:00.000Z');
 const config = {
@@ -76,6 +77,25 @@ describe('production Stripe boundary without live network access', () => {
     const adapter=new StripeProductionAdapter(pending,sdk({createCheckoutSession:create,retrieveAccountStatus:account}));
     await expect(adapter.createHostedSubscriptionCheckout(checkoutInput)).rejects.toMatchObject({status:503,code:'checkout_setup_unavailable'});
     expect(create).not.toHaveBeenCalled();expect(account).not.toHaveBeenCalled();
+  });
+  it('explicitly disables automatic tax without inventing an assessment or changing the annual amount',async()=>{
+    const disabled={...config,tax:{mode:'disabled' as const,productTaxCode:config.tax.productTaxCode}};
+    const parsed=parseStripeProductionSecret(JSON.stringify({schemaVersion:1,environment:'production',...disabled}));
+    expect(parsed.tax).toEqual(disabled.tax);
+    const tax=vi.fn(async()=>{throw new Error('Automatic tax was not requested');});
+    const create=vi.fn(sdk().createCheckoutSession);
+    const provider=sdk({retrieveTaxReadiness:tax,retrievePrice:async()=>({...price(),tax_behavior:'unspecified'}),createCheckoutSession:create});
+    await new StripeProductionAdapter(parsed,provider).createHostedSubscriptionCheckout(checkoutInput);
+    expect(tax).not.toHaveBeenCalled();
+    expect(create.mock.calls[0]![0]).toMatchObject({automatic_tax:{enabled:false},line_items:[{price:config.annualPriceId,quantity:1}]});
+    expect(create.mock.calls[0]![0]).not.toHaveProperty('subscription_data.default_tax_rates');
+    expect(()=>parseStripeProductionSecret(JSON.stringify({schemaVersion:1,environment:'production',...disabled,tax:{...disabled.tax,assessmentReference:'not-a-real-assessment'}}))).toThrow();
+    for(const changed of [{unit_amount:6800},{livemode:false},{currency:'hkd'}]){
+      const rejectCreate=vi.fn(sdk().createCheckoutSession);
+      const adapter=new StripeProductionAdapter(disabled,sdk({retrievePrice:async()=>({...price(),...changed}),createCheckoutSession:rejectCreate}));
+      await expect(adapter.createHostedSubscriptionCheckout(checkoutInput)).rejects.toThrow();
+      expect(rejectCreate).not.toHaveBeenCalled();
+    }
   });
   it('blocks unready merchants, other accounts and altered price before checkout creation', async () => {
     for (const overrides of [

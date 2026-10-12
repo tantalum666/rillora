@@ -76,6 +76,32 @@ describe('Closed production data and recovery foundation',()=>{
 });
 
 describe('Optional closed production HTTPS runtime',()=>{
+ it('activates live identity independently of Checkout without any review or test purchase surface',()=>{
+  const props={env:{account:'133857166372',region:'eu-central-1'},runtimeEnabled:true,runtimeDesiredCount:1 as const,
+   reviewPrepared:true,liveEnabled:true,identityServicesEnabled:true,retentionEnabled:true,
+   stripeNotificationsSecretArn:'arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/stripe-billing-ABC123'};
+  for(const enabled of [false,true]){
+   const t=Template.fromStack(new RilloraProductionStack(new App(),'Production',{...props,stripeCheckoutEnabled:enabled}));
+   const api=(Object.values(t.findResources('AWS::ECS::TaskDefinition')) as any[]).flatMap(t=>t.Properties.ContainerDefinitions).find(c=>c.Name==='Api');
+   const env=Object.fromEntries(api.Environment.map((e:any)=>[e.Name,e.Value]));
+   expect(env).toMatchObject({PRODUCTION_RUNTIME_MODE:'live',ALLOW_STRIPE_PRODUCTION_INTEGRATION:String(enabled),
+    ALLOW_STRIPE_PRODUCTION_NOTIFICATIONS:'true',ALLOW_STRIPE_TEST_INTEGRATION:'false',ALLOW_APPLE_SANDBOX_INTEGRATION:'false',
+    ALLOW_APPLE_PRODUCTION_INTEGRATION:'false',CONTENT_PROTECTION_MODE:'encrypted',RECOVERY_ENVIRONMENT:'production',
+    OIDC_ISSUER_URL:'https://login.rillora.xyz',WEB_APP_ORIGIN:'https://app.rillora.xyz'});
+   for(const name of ['PRODUCTION_REVIEW_IDENTITY_SHA256','PRODUCTION_REVIEW_EXPIRES_AT','APPLE_REVIEW_SECRET_ARN','ALLOW_APPLE_REVIEW_INTEGRATION'])expect(env[name]).toBeUndefined();
+   expect(api.Secrets.some((s:any)=>s.Name==='OIDC_CLIENT_SECRET')).toBe(true);
+   expect(api.Secrets.some((s:any)=>s.Name.startsWith('AUTH0_DELETION'))).toBe(false);
+   expect(api.ReadonlyRootFilesystem).toBe(true);
+   t.hasResourceProperties('AWS::RDS::DBInstance',{StorageEncrypted:true,PubliclyAccessible:false,DeletionProtection:true,BackupRetentionPeriod:7});
+   t.hasResourceProperties('AWS::SecretsManager::Secret',{Name:'rillora/production/apple-review'});
+   t.hasOutput('ProductionTrafficReady',{Value:'true'});
+   expect(t.toJSON().Parameters?.ReviewIdentityDigests).toBeUndefined();
+  }
+  for(const override of [{reviewEnabled:true},{reviewPrepared:false},{identityServicesEnabled:false},{retentionEnabled:false},
+    {stripeNotificationsSecretArn:undefined},{env:{account:'111111111111',region:'eu-central-1'}},{liveEnabled:false,stripeCheckoutEnabled:true}]){
+   expect(()=>new RilloraProductionStack(new App(),'Invalid',{...props,...override})).toThrow();
+  }
+ });
  it('shares only the exact existing billing configuration with the isolated recovery reader and leaves purchases closed',()=>{
   const arn='arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/stripe-billing-ABC123';
   const props={env:{account:'133857166372',region:'eu-central-1'},runtimeEnabled:true,runtimeDesiredCount:1 as const,reviewPrepared:true,reviewEnabled:true,stripeNotificationsSecretArn:arn};

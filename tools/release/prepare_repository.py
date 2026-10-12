@@ -35,6 +35,10 @@ for base, dirs, files in os.walk(ROOT):
                and not name.startswith(("cdk.out", ".derived-data", "DerivedData"))
                and not name.endswith((".xcresult", ".xcarchive", ".dSYM"))]
     for name in files:
+        # In managed worktrees .git is a pointer file, not a directory. Copying
+        # it would let tools in the snapshot attach to the real repository.
+        if name == '.git':
+            continue
         path = parent / name
         if path.is_symlink():
             symlinks.append(str(path.relative_to(ROOT)))

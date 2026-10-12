@@ -64,6 +64,25 @@ test('staging accepts only its default reviewed migration',async()=>{
   assert.equal(f.writes[0].input.overrides,undefined);
   await assert.rejects(executeMaintenance({operation:'migrate',clientToken:'b'.repeat(32),command:'arbitrary'},fixture().call,staging));
 });
+test('fixed billing operations retain the source scope, inspected-state precondition and explicit live gate',async()=>{
+ for(const operation of ['inspect','activate','close-new-sales']){
+  const request=task(),container=request.overrides.containerOverrides[0];
+  container.command=['node','dist/configure-production-web-billing.js',operation];
+  if(operation!=='inspect')container.environment.push({name:'RILLORA_BILLING_EXPECTED_SNAPSHOT',value:'a'.repeat(64)});
+  const settings={...config,productionRuntimeMode:'live'},good=fixture();
+  await executeMaintenance({operation:'task',run,runToken,request},good.call,settings);assert.equal(good.writes.length,1);
+  for(const mutate of [r=>r.overrides.containerOverrides[0].command[2]='arbitrary',
+    r=>r.overrides.containerOverrides[0].environment.push({name:'DATABASE_HOST',value:'different.internal'})]){
+   const changed=structuredClone(request),bad=fixture();mutate(changed);
+   await assert.rejects(executeMaintenance({operation:'task',run,runToken,request:changed},bad.call,settings));assert.equal(bad.writes.length,0);
+  }
+  if(operation!=='inspect'){
+   const missing=structuredClone(request);missing.overrides.containerOverrides[0].environment.pop();
+   await assert.rejects(executeMaintenance({operation:'task',run,runToken,request:missing},fixture().call,settings));
+  }
+  if(operation==='activate')await assert.rejects(executeMaintenance({operation:'task',run,runToken,request},fixture().call,{...config,productionRuntimeMode:'review'}),/explicit live/);
+ }
+});
 
 test('the actual Python migration caller produces a request accepted by the real broker',async()=>{
   const result=spawnSync('python3',['-c',`
