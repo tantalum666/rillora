@@ -1,37 +1,64 @@
-# Rillora 安全修复切换 — 2026-10-11/12
+# Rillora 安全修复切换 — 2026-10-12
 
-Status: PREPARING / NO SERVICE STOP OR DEPLOYMENT YET
+Status: CLOUD / HTTPS NATIVE / NAMED LOCAL CREDENTIAL DEPLOYMENT VERIFIED; GIT EVIDENCE CLOSEOUT IN PROGRESS
 Last updated: 2026-10-12 (Asia/Hong_Kong)
 
-Owner要求开始部署整批安全修复，按已记录顺序切换，保持现有数据、定价和收费开关不变，先不发TestFlight；并再次明确本项目默认最高授权，不重复询问已授权操作。
-这取代前一交接中的线上冻结任务边界。源码入口仍为已附加工作树`codex/security-findings-20261011`，
-基线3a9f6a289，实施74a9c66ac／CI125及前30组修复一并纳入。
+Owner授权部署全部安全修复，按已有顺序切换，保持数据、定价和收费开关，先不发TestFlight，并多次重申默认最高授权。此合同取代此前源码阶段的线上冻结门；部署和市场开售仍分开。
 
-## 已核对与范围
+## 源码与实际交付
 
-- 初次云端只读基线：production API21、Preview API43，同镜像d0754266…，两个服务均1/1、COMPLETED；五个相关栈均UPDATE_COMPLETE。正式Stripe／Apple收费关闭、正式通知开启，审核模式保持；Preview原TEST模式保持。
-- 当前代码、519项API／58项infra及CI125不重复全量审查；只补部署兼容、实际资源、权限、数据与端点证据。
-- AWS与Auth0会话均出现实际过期，按原账户恢复。跨夜后AWS再度过期，已复用浏览器会话刷新，无新增权限；Auth0续期请求与原保存scope相同。认证结果以CLI/API读回为准。
-- 已安装锁定构建依赖并启动已有Colima实例；未清理其他容器、镜像或FanPass。尚未执行停服务、数据库迁移、CFN部署、实际删除或交易。
+云端及原生实施源为bfe9baaf520e051e70081daf7ed459f0926264b4／CI126。它纳入前30组与74a9c66ac的后5组，并补固定只读探针、旧回调兼容和新worker只读观察权限。本轮没有重复本机519项API全量；沿用已完成结果，GitHubCI另有实际运行。
 
-## 切换次序
+实际安装发现两处本机工具兼容问题，已在042f4e1005f8754abfd21d48d3d4c7b9ea198166修复、推送并通过CI127。它只改变运维凭据工具／测试／说明，API、Web及iOS源码字节不变，不触发同一应用重建或再部署。
 
-1. 保存当前模板、参数、镜像、所有源写入服务与收费开关；完成旧删除任务、现有迁移摘要和数据指纹预检查。所有准备完成前保持服务运行。
-2. 准备精确构建／变更集、受限维护与日志broker、独立worker及独立环境密钥。保留现有数据库、内容KMS、付款配置、NoEcho参数和旧手机仍需的回调。
-3. 先在Preview按维护窗口停写，保存一致基线／备份，执行95—103及引导、内容校验、邮箱回填；读回数据和权限，再恢复原desiredCount。生产采用同样的分步门，不在两个环境同时开始不可回退的schema切换。
-4. 新API／Web／Auth0 Action／HTTPS关联分别核验。旧原生回调须采用有界兼容切换，不能在新客户端尚未交付时直接退役旧入口；当前不上传或分发TestFlight。
-5. 核验新旧字段转换之外的原有内容、账务、权益、价格与开关保持；核对新权限隔离、日志回执、删除队列与健康。原像不能直接回滚到已改变权限／邮箱摘要的schema。
-6. 本机凭据工具安装与具名迁移单独记录本人在场门；不能把云端部署当作旧明文和备份已擦除。旧归档身份不迁移，不制造真实购买／退款。
+## 受控数据库切换
 
-## 当前下一门
+| 项目 | Preview | Production |
+| --- | --- | --- |
+| 原始运行基线 | API43、schema94 | API21、schema94 |
+| 停写 | API与新worker的desired/running/pending均0 | 同左 |
+| 一致基线 | 94摘要、68表指纹、未决身份删除0 | 同左 |
+| 加密快照 | available，源／创建回执／归属匹配 | available，源／运行能力标签匹配 |
+| 迁移 | 一次95—103、权限引导、加密核验与邮箱回填，退出0 | 同左 |
+| 迁移后核验 | 103摘要匹配；68表原业务字段指纹相同 | 同左，另验证独立日志broker拒绝伪造envelope |
+| 恢复 | 恢复模板UPDATE_COMPLETE且完全匹配 | 同左 |
 
-准备已完成：broker8、Auth0工具8、发布工具73及infra59／类型通过，源扫描32匹配／0未知。固定探针拆成数据和权限两份，分别小于ECS overrides8192限制；任意改字节均拒绝。Preview运维补自身stack输出读取，两环境补新worker状态／日志读取，均不增加秘密读取或任意RunTask权限。
+指纹比对只排除明确迁移的表示字段／维护元数据，未用删表、重建真实数据或放宽检查掩盖差异。真实记录、原交易／账务、角色与内容保持；旧session全局邮箱摘要按设计移除，owner范围摘要回填。
 
-实际两库均为schema94且摘要与源码匹配，旧9类服务角色属性安全、未决身份删除0、内容加密强制开启；每库68表指纹已保护保存。初次权限查询失败发生在任务创建前，随后改用已有部署读取角色；未把权限403误报成登录过期。两个只读任务均退出0。
+Preview首次带标签快照请求因无AddTagsToResource而未创建；确认不存在后，用已有较窄无标签创建权限完成，并保存认证创建回执作为归属证据。没有为标签扩大IAM。Production通过固定broker创建带能力证明的备份；两份快照继续保留，不在验收后擅自删除。
 
-已生成并冻结Preview和production的停写／恢复模板，分别81→99及79→101资源；没有旧资源删除，原RDS、内容KMS、既有Secret、VPC／子网及journal字节不变，原收费／审核参数保留。Preview停写模板暂保留原Web及router，恢复时再更新匹配前端。当前没有开售／商店提交或云端切换成功的声明。
+原RDS、VPC／子网、内容KMS、既有Secrets及恢复journal资源未被替换。停写／恢复模板分别81→99与79→101资源，增加隔离边界；旧ECS任务定义的正常版本替换不是数据库替换。升级后的权限／邮箱schema不能只回滚旧应用镜像。
 
-下一门是提交兼容补丁并取得CI，再顺序执行Preview受控停写、冻结基线／备份、迁移、核验和恢复，随后处理production。
-原始配置、认证及私密基线仅放`.local-secrets/security-rollout-20261011`；脱敏QA放`output/qa/rillora-security-rollout-20261011`。
+## 运行时与Web读回
 
-独立worker没有TaskDefinition容器健康检查，后续记录其实际RUNNING、数据库连接／任务与日志结果，不把UNKNOWN写成HEALTHY；Docker镜像的检查不会自动成为ECS检查。[AWS定义](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_HealthCheck.html)。
+- RilloraStaging、RilloraProduction、RilloraProductionWeb、RilloraPublicWeb、RilloraOperations五栈均UPDATE_COMPLETE，与审阅模板匹配。
+- PreviewAPI44与productionAPI22、新独立worker各1个RUNNING；API容器HEALTHY。worker没有容器健康检查，准确记录UNKNOWN与实际稳定运行／无启动或重试错误，不能改称HEALTHY。[AWS健康检查定义](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_HealthCheck.html)。
+- 四个后切换任务均实测镜像digest`sha256:75fa633d5d30cc4b74a0c9de5cfec9c187d2eab4f118f3b8b7842cb0214fc734`。后续API23只是审核到期参数更新，镜像、其他环境字段、secret引用相同。
+- APIlive／ready均200；Preview未认证会话401／no-store。Production原审核期过期时准确返回403 service_not_open，不能把它误报成启动崩溃；续期后未认证会话401／no-store。
+- Preview86、正式Web86、官网31，共203个静态文件逐一SHA256匹配。两个应用域的邀请AASA及Auth0关联端点无重定向200、应用标识和精确路径匹配。
+- 两个环境直接RunTask实际AccessDenied；固定broker拒绝未审阅的无害命令，production拒绝用错误能力凭据读取本次既有快照。未用破坏性删除或外发SNS消息来测试拒绝。
+- 恢复检查允许的CFN Conditional变化严格限于具名前端上传SourceObjectKeys及明确的派生引用；目的bucket、数据资源和来源绑定保护不变。Ops收紧快照legal-hold解除、生产告警改态与SNS伪造发布权限，模板精确读回。未取得人类IAM全局ListRolePolicies权限，也没有把该403当作会话过期。
+
+## 原生HTTPS与到期问题
+
+原机development1.0(14)直接安装成功，版本独立读回；签名、原Keychain／应用标识、生产连接、设备授权、HTTPSassociated domains和双语等13检查通过。未卸载、换Apple账户或发送TestFlight。
+
+初次启动被iOS锁屏阻止。Owner解锁后进程启动成功，但反馈App内服务未开放。真实原因是原3身份审核期已于2026-10-11T14:00Z结束。Agent按既有验收授权只续原3身份48小时，到香港2026-10-14 20:01，API23与现有Auth0Action分别读回一致；费用开关、身份范围、表单、绑定顺序和其他参数不变。
+
+Owner确认进入首页且原事项仍在，Auth0同一原生client在12:14Z记录成功登录、表单提交和授权码交换。随后两个客户端均退休旧私有协议回调，仅保留`https://login.rillora.xyz/ios/com.rillora.ios/callback`。HTTPS证据来自已签名安装源码的useHTTPS、关联文件和精确allowlist；provider日志独立证明登录／换码，并未记录redirectURI。生产有本次真实原生结果，Preview共用该实现及关联配置，未虚构第二次真实登录。
+
+## 本机凭据保护
+
+实际签名安装暴露codesign -R将表达式当文件名的问题，已在安装和读取两处补字面表达式前缀。实际AWSCLI2.36.20又证明整包cli-input-json会重复读管道；现仅支持既有SecretsManager put-secret-value的SecretId、SecretString及可选ClientRequestToken，用独立匿名管道送入普通字符串选项，stdin关闭，凭据不进argv或临时JSON文件。原始CR在执行前拒绝，当前多行密钥按JSON转义后保持原字节；调试、参数覆盖及其他字段／操作拒绝。
+
+本机9项测试含实际AWSCLI到本机回环HTTP接收器，长Unicode及转义换行匹配；8项Auth0工具、源扫描32已审阅／0未知通过。正式签名需求正例、错误identifier拒绝及SecureEnclave合成／篡改／无人值守拒绝通过；Owner完成非秘密本人验证。
+
+主检出已快速前进至042f4e100，原具名交接stash与QA副本保留，两个检出均安装相同签名助手。主目录9份支持的Auth0／Apple文件已逐份加密、本人验证读回后原位替换；失败保护和每份恢复记录保留。没有provider轮换、共享账号权限调整、归档age身份迁移或FanPass变更。它不能证明其他旧副本／备份已擦除，也不防御本人授权使用期间整个OS失陷。
+
+## 真实平台限制与收尾
+
+GitHubCLI保护读取403是token范围，不是登录失效。已用有效浏览器读取：经典保护和规则集都未配置，两个界面明确当前私有仓库方案不会强制执行。未购买套餐、迁移组织、添加token范围或创建徒有配置的规则。CI及部署脚本检查不冒充GitHub服务器强制保护。
+
+先前用户默认FullAccess与旧执行轮次沙箱不一致，已在下一轮实际变为danger-full-access／network enabled／approval never；未修改自身安全控件或继续发起终端提权。
+
+当前剩余仅新archive33／Git／独立远端解密保存闭环。原始provider、认证、数据库指纹／日志及设备信息留在`.local-secrets/security-rollout-20261011`，不入可读Git；脱敏QA与签名产物按既有合同分层保存。后续正式开售、统一商店候选／送审和实际市场结果仍是独立任务；本批不发TestFlight、不制造支付或删除保留账号。

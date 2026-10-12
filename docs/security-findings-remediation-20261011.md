@@ -1,7 +1,9 @@
 # Rillora 审计发现修复记录 — 2026-10-11
 
-Status: ALL35 GROUPS HAVE SCOPED SOURCE RESULTS / CI125 PASSED / ARCHIVE32 REMOTELY VERIFIED / NOT DEPLOYED
-Last updated: 2026-10-11 (Asia/Hong_Kong)
+Status: ALL35 GROUPS HAVE SCOPED SOURCE RESULTS / OCTOBER12 DEPLOYMENT RECORDED SEPARATELY
+Last updated: 2026-10-12 (Asia/Hong_Kong)
+
+后续状态（2026-10-12）：[实际部署合同](security-rollout-20261012.md)记录已完成的云端／原生／本机具名凭据切换，以及当前GitHub私有方案不强制分支保护的限制。以下是有日期的源码修复检查点，旧“未部署／线上保持原状”不再是执行指令；原报告与测试分母不改写。
 
 Owner 最新指令是修复 Rillora 各份审计报告的问题，取代本次报告范围此前的“只报告、不修复”。此前深度扫描没有重新启动，原报告及基线不改写。此文是修复记录，不是新的完整安全扫描或上线证书。
 

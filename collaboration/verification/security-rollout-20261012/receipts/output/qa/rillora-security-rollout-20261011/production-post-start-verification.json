@@ -1,0 +1,76 @@
+{
+  "at": "2026-10-12T08:50:43.112048+00:00",
+  "environment": "production",
+  "readOnly": true,
+  "services": [
+    {
+      "kind": "worker",
+      "desired": 1,
+      "running": 1,
+      "rollout": "COMPLETED",
+      "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRuntimeIdentityWorkerTaskCE49E148:1",
+      "taskArn": "arn:aws:ecs:eu-central-1:133857166372:task/RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm/bc410ed37326401488715d5ab56b70c9",
+      "image": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1:34a35de0a94dd4c68addf83ab29e9eba027a14c81bbeb68c97d3ffda1e69a77f",
+      "taskHealth": "UNKNOWN",
+      "startedAt": "2026-10-12T16:42:19.895000+08:00",
+      "logEventsRead": 0,
+      "startupOrRetryErrors": 0
+    },
+    {
+      "kind": "api",
+      "desired": 1,
+      "running": 1,
+      "rollout": "COMPLETED",
+      "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRuntimeApiTask93405B31:22",
+      "taskArn": "arn:aws:ecs:eu-central-1:133857166372:task/RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm/e2293ea2dbe247688b483d1bfef6aada",
+      "image": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1:34a35de0a94dd4c68addf83ab29e9eba027a14c81bbeb68c97d3ffda1e69a77f",
+      "taskHealth": "HEALTHY",
+      "startedAt": "2026-10-12T16:42:22.792000+08:00",
+      "logEventsRead": 45,
+      "startupOrRetryErrors": 0
+    }
+  ],
+  "http": [
+    {
+      "url": "https://j749rhzub7.execute-api.eu-central-1.amazonaws.com/health/live",
+      "status": 200,
+      "sha256": "a29ee2b15c494311c52521766e44af56a3ad2248e7a8ab465e5206463c13d288"
+    },
+    {
+      "url": "https://j749rhzub7.execute-api.eu-central-1.amazonaws.com/health/ready",
+      "status": 200,
+      "sha256": "31bf75f4c0a97cc1f7b60df824fa390b3be9ba014f29b63c87c698ba63d9a9fd"
+    },
+    {
+      "url": "https://j749rhzub7.execute-api.eu-central-1.amazonaws.com/v1/session",
+      "status": 403,
+      "sha256": "3a799eb6215ddc1da6a61796ec2c1b3418fa6db7522d27d775efd9be12175ead"
+    },
+    {
+      "url": "https://app.rillora.xyz/",
+      "status": 200,
+      "sha256": "9e3d799267d953cbea889e3553ec80e5aaa5454eb402b3dd3219db5efe3da052"
+    },
+    {
+      "url": "https://app.rillora.xyz/api/v1/session",
+      "status": 403,
+      "sha256": "3a799eb6215ddc1da6a61796ec2c1b3418fa6db7522d27d775efd9be12175ead"
+    }
+  ],
+  "passed": true,
+  "preservedFlags": {
+    "ALLOW_FAMILY_MAINTENANCE_PREVIEW": "false",
+    "ALLOW_STRIPE_PRODUCTION_INTEGRATION": "false",
+    "ALLOW_APPLE_SANDBOX_INTEGRATION": "false",
+    "ALLOW_SYNTHETIC_RECIPIENT_REHEARSAL": "false",
+    "ALLOW_APPLE_PRODUCTION_INTEGRATION": "false",
+    "ALLOW_STRIPE_PRODUCTION_NOTIFICATIONS": "true",
+    "ALLOW_DEV_AUTH": "false",
+    "PRODUCTION_RUNTIME_MODE": "review",
+    "ALLOW_STRIPE_TEST_INTEGRATION": "false",
+    "ALLOW_APPLE_REVIEW_INTEGRATION": "true",
+    "CONTENT_PROTECTION_MODE": "encrypted",
+    "ALLOW_RETENTION_WORKER": "true"
+  },
+  "originalReviewWindowExpired": true
+}

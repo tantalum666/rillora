@@ -1,0 +1,20 @@
+{
+  "stack": "RilloraProductionWeb",
+  "changed": [
+    {
+      "id": "Routes4F6D566C",
+      "type": "AWS::CloudFront::Function",
+      "changedProperties": [
+        "FunctionCode"
+      ]
+    },
+    {
+      "id": "[PUBLIC_IDENTIFIER_OMITTED]",
+      "type": "Custom::CDKBucketDeployment",
+      "changedProperties": [
+        "SourceObjectKeys"
+      ]
+    }
+  ],
+  "added": []
+}

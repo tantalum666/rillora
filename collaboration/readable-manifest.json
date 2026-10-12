@@ -2,8 +2,8 @@
   "files": [
     {
       "path": "collaboration/README.md",
-      "bytes": 19415,
-      "sha256": "ce5b099279f201a07101fb151be79f3c53d7f6b4a81f088dfa3ed1998f5f070a"
+      "bytes": 20095,
+      "sha256": "31a47faab65aebbf410a5487cd1713e885b30bdadd3ab1b76fc3fe6a835cf5a5"
     },
     {
       "path": "collaboration/catalog/files-001.json",
@@ -56591,6 +56591,806 @@
       "sha256": "8029a868e2c1d0127d8b4c3d8f75925a0c3d08f0b8fb7ac974ca448d020bd7f6"
     },
     {
+      "path": "collaboration/verification/security-rollout-20261012/README.md",
+      "bytes": 1785,
+      "sha256": "0f6f16488fca228c29430a4ed5837922cba7633886a016ad9a732c0f10e13e20"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/archive-verification.json",
+      "bytes": 113,
+      "sha256": "51decd61c73859bce3f4997c96c304f8110f772e917a63485a1590c94a0ef9a7"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/catalog.json",
+      "bytes": 192989,
+      "sha256": "b6e33cfecc74c9c066e91a867ad84fec88ebc51ca0e59dc57b4e6da790cc0095"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/postcapture/prepush-state.json",
+      "bytes": 1188,
+      "sha256": "7db14d3e608d7d11c93cafa3da0f9fa3d48c79b998ec0049cd28f52988304b17"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/postcapture/readable-scan-checkpoint.json",
+      "bytes": 221,
+      "sha256": "db1bdb811adcdbde8f78d2e699364c5c0909206b799f0f7fc1a885c6e15814f2"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/postcapture/reading-continuation.json",
+      "bytes": 1637,
+      "sha256": "e4237be34121ffc95f38019a3d206a118fb8aa9febc5e94e3e59613cde07b154"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/postcapture/redact-publication-artifact-identifiers.py.reference.txt",
+      "bytes": 3739,
+      "sha256": "9722bffb599aa1d3e639fdfebf138c9158707d5238c8de2f4b03ce1490e1a060"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/postcapture/scheduled-public-health.json",
+      "bytes": 266,
+      "sha256": "83653e8e857e196366d8e2b4fdbe2f8224eee034f1e0b938e4b54391166c7ab2"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/postcapture/source-scan.json",
+      "bytes": 12478,
+      "sha256": "0abacf7ae8590308d7816531fdc14255a30bc04de92f17599f77b40d3d60e259"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/readable-redaction-review.json",
+      "bytes": 32017,
+      "sha256": "ad5a4f04d6f1f6317f3a30fa4ff9113c605941e3fb3be1b2226f737573c6750e"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/README.md.reference.txt",
+      "bytes": 2720,
+      "sha256": "350cc59c3acbff2d4b254e9106195a51b3cc7879932d6d835a4e767b01f50922"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/RilloraOperations-assembly/RilloraOperations.assets.json",
+      "bytes": 2073,
+      "sha256": "5e372fbef86d94bc27f13cd16e5d60ec3afa7b05048295e416f057784dac72d5"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/RilloraOperations-assembly/RilloraOperations.metadata.json",
+      "bytes": 28481,
+      "sha256": "4416035dc233e9081b77886263760f3a3216c1e4d210f0773024791209658d7a"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/RilloraOperations-assembly/RilloraOperations.template.json",
+      "bytes": 39877,
+      "sha256": "5919bbe664b5016f9c6542a74b55992f8fa43c0c6d3c2b78008221a5ec9a01a9"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/RilloraOperations-assembly/manifest.json",
+      "bytes": 27203,
+      "sha256": "0435b259715ff183cb06f861a5f5ec2a9a929fd92509001bc57003d15767dc6e"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/RilloraOperations-assembly/tree.json",
+      "bytes": 43082,
+      "sha256": "97a1cf25b31629c283ec7056c014c142166cd440a4d25ece8c34e0d5c3aae0c7"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/RilloraOperations-assembly/validation-report.json",
+      "bytes": 80,
+      "sha256": "ba990d19514a4d3818b0d9e46e6662257238d206389b9aa4ada378f1d1fb00c6"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/RilloraOperations-deployed.json",
+      "bytes": 137,
+      "sha256": "80efae5d510b073ee3d4ed93798140cea5305a7303de719b14f2689996df432b"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/RilloraOperations-prepare.log.reference.txt",
+      "bytes": 2084,
+      "sha256": "e8daededdc9c0f298fa374aed19bf30fc18003c356c795ee4835dbfb559b15aa"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/RilloraOperations-review.json",
+      "bytes": 813,
+      "sha256": "f4741b865c2e185ff77d01c06bb1ade51dea583f157fc7d7b6eb364c45abea52"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/RilloraOperations-synth.log.reference.txt",
+      "bytes": 35730,
+      "sha256": "bc44cac63be84e2e74a0652761bdfe25c9f458a8bd3f11aee2d57d3fe48eeafa"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/RilloraProductionWeb-assembly/RilloraProductionWeb.assets.json",
+      "bytes": 2793,
+      "sha256": "d476ad4c4e0d1003bf6c4a7e82c4e71e2bed3301f809cdac8586c435bbd844b6"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/RilloraProductionWeb-assembly/RilloraProductionWeb.metadata.json",
+      "bytes": 11941,
+      "sha256": "335c47db4802881224dff7de64bba6727a933dd7861c5ce7b428d00ad0d081ac"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/RilloraProductionWeb-assembly/RilloraProductionWeb.template.json",
+      "bytes": 20067,
+      "sha256": "a1842bc4714faf48846a87b142d08931429cb2867af847868b59097c8ce8ed8c"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/RilloraProductionWeb-assembly/manifest.json",
+      "bytes": 27326,
+      "sha256": "fe2876f9341a9a724ea35d91a585bcf80c357e65e11134b3af2fda3c22d3e68e"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/RilloraProductionWeb-assembly/tree.json",
+      "bytes": 20603,
+      "sha256": "36a6c82fc56580034677a5fd8c43a8f8487f68df96796431f22413bf5b7b8712"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/RilloraProductionWeb-assembly/validation-report.json",
+      "bytes": 80,
+      "sha256": "ba990d19514a4d3818b0d9e46e6662257238d206389b9aa4ada378f1d1fb00c6"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/RilloraProductionWeb-deployed.json",
+      "bytes": 140,
+      "sha256": "b5ab5918df66809eed57a5bfba2f1abb29bf2018d48e0bf5cb433fcb2d1631dc"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/RilloraProductionWeb-prepare.log.reference.txt",
+      "bytes": 1579,
+      "sha256": "c69ba91a1a1a26f1ff8a0f49af5ba515d28f320bb411fbef0783f94ac0ee5251"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/RilloraProductionWeb-review.json",
+      "bytes": 383,
+      "sha256": "09b4e440e85472f790c82ce69cc98c4b8ef591b2b45d959d1cec1427678b5275"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/RilloraProductionWeb-synth.log.reference.txt",
+      "bytes": 17651,
+      "sha256": "020acc1eb589865595cff5c64b05ee7ff99c13ec04a501d3a11e4e44322921e3"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/RilloraPublicWeb-assembly/RilloraPublicWeb.assets.json",
+      "bytes": 2797,
+      "sha256": "5452a1afb1acb852e5f714a0fe7976a2ff36ea364b81fa8ed3cfac6b8bd3b33b"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/RilloraPublicWeb-assembly/RilloraPublicWeb.metadata.json",
+      "bytes": 10143,
+      "sha256": "9471780a152ea5e6f72226c027cf447e866b4ab3c22a462e9192f4cc99657fad"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/RilloraPublicWeb-assembly/RilloraPublicWeb.template.json",
+      "bytes": 17250,
+      "sha256": "0bf62bdbab9a678caa7d7b0dc9692321beb316e2f988cebf9b5cf93ae7f17425"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/RilloraPublicWeb-assembly/manifest.json",
+      "bytes": 27297,
+      "sha256": "12539210de1bfad96c7f3c414025278bc2e134f6653b646977309d731530aabe"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/RilloraPublicWeb-assembly/tree.json",
+      "bytes": 18133,
+      "sha256": "a99981b7d2feb158d8cf49f420b063a70ff8cb01bbf1e783f5b779a6cb7ea058"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/RilloraPublicWeb-assembly/validation-report.json",
+      "bytes": 80,
+      "sha256": "ba990d19514a4d3818b0d9e46e6662257238d206389b9aa4ada378f1d1fb00c6"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/RilloraPublicWeb-deployed.json",
+      "bytes": 136,
+      "sha256": "f9ae10bb52540667fbba57c814da6a6d0fc2cbf65ebc2519e071e1ad723daad3"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/RilloraPublicWeb-prepare.log.reference.txt",
+      "bytes": 1421,
+      "sha256": "c5a6feaee533ce99bb8af7dff9d8a07647067df8ca8a1abcf2c7c98060505833"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/RilloraPublicWeb-review.json",
+      "bytes": 244,
+      "sha256": "262dc64de65b5e6892b7d636b2f36a4d4218f216d67c1cd34be26a345561ed85"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/RilloraPublicWeb-synth.log.reference.txt",
+      "bytes": 15565,
+      "sha256": "f37d9acb9a9612015217860ec782709837f44d5aabd92e2b34ae3cf244c8ef55"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/api-build.log.reference.txt",
+      "bytes": 60,
+      "sha256": "6a2d325dc658f145fe3d54ca9206a225c434e593b1d03759b009ee116385d3c0"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/api-container-build.log.reference.txt",
+      "bytes": 3749,
+      "sha256": "a31bdcde274223d47afec1cdc91bafb5d8900493cdbe606a79596b66bbbb27ed"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/apply-auth0-security.py.reference.txt",
+      "bytes": 4109,
+      "sha256": "347405dd481ca6686d6dfd98b8d7c01d2f31b3b6ace6e3060729b4c15b175f59"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/apps-api-dependencies.log.reference.txt",
+      "bytes": 219,
+      "sha256": "1595852b3ae322a8b8986fb6ab10fd156280ee0dc2ea592b2ff1389f8984cf1c"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/apps-web-dependencies.log.reference.txt",
+      "bytes": 143,
+      "sha256": "840d28b32364288c072979266d9675d3ab4e66992916476fc0330f06a6949029"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/auth0-association-readback.json",
+      "bytes": 420,
+      "sha256": "d6f97f860252f8816e32f88bfd358d172398689c92fd1b02cdc8443b0fcaba2a"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/auth0-baseline.json",
+      "bytes": 1195,
+      "sha256": "da1f83c6093200d3568ede04cf39ed49a8dd511409c1c754d86be21235969e4c"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/auth0-security-applied.json",
+      "bytes": 2603,
+      "sha256": "42dadd4e7c1ec9e24ffdbdddf7644afeaeff3a59ce8986addc32e4901b04b582"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/build-candidates.py.reference.txt",
+      "bytes": 1833,
+      "sha256": "4c2a76231d73ab8c64bec2ed0831ad8200ae85601f539153d4d0789eed840db4"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/candidate-builds.json",
+      "bytes": 534,
+      "sha256": "1d91074f3fe28257a4cb08577bc81bc0b6b55c0be7ff6839c264c705ab16ae63"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/candidate-synthesis.json",
+      "bytes": 403,
+      "sha256": "4bef787b9624eb575e81af813d5a2cbe7c1e2503197f98d4cd44c0eb000bf5e3"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/checkpoint-validation.json",
+      "bytes": 744,
+      "sha256": "b8299b12eda728860c5a1f261367cb09b1f9607b4436808844ec238bc347e76b"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/ci-readback.json",
+      "bytes": 601,
+      "sha256": "53071d887e5f719189af2bd4145f4545a14b363f8cffe55c486175473ecc9ce8"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/cloud-baseline.json",
+      "bytes": 3885,
+      "sha256": "6a23bd364f63d24b23887f8d1d6e0d3596c86d1fcc5ee4089a004cdab2d90537"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/credential-helper-build-fixed.log.reference.txt",
+      "bytes": 194,
+      "sha256": "8b9152b5dbca7b4c511edc0affd0078665f5c76015a0ea80abf7310bd8ee1df7"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/credential-helper-build.log.reference.txt",
+      "bytes": 1278,
+      "sha256": "405d92dc4a8127bee01e0c60afe9ed3c1d9cb616f595f0c3ebaa3810ad5bc62d"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/credential-helper-deployment-defect.json",
+      "bytes": 962,
+      "sha256": "7f0b3d9cb25819b02f2da6222fd12f8c8c0518644bdf95a52132532a59bf2446"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/credential-helper-real-validation.json",
+      "bytes": 601,
+      "sha256": "3b4d795712e4511fea720ffd27d989e609eb462ead67228c33828240c0e659b0"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/credential-presence-probe.json",
+      "bytes": 118,
+      "sha256": "ad87d735066c7ef6db6cebc8ce1488c2dd14b6c4701177340497158f9ebe70a5"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/credential-tests-final.log.reference.txt",
+      "bytes": 1176,
+      "sha256": "3a5fcd58c2d0501281f7a09cea8525905d1a89774eeef7d98f168fc85d589468"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/current-work-state.json",
+      "bytes": 1082,
+      "sha256": "8c4ab3d5e569d6a35e88e566f63ec31defb913b997b242b6d8663fb10f278c62"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/cutover-auxiliary.py.reference.txt",
+      "bytes": 8172,
+      "sha256": "74ff8b6e4b0721b43dda6d02d8ffd3ca5d51d4737d863c38c8afc125f2da7157"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/cutover-backup.py.reference.txt",
+      "bytes": 6823,
+      "sha256": "1183700c30814a8a1f4a5436a4b140afc71bb05ef392ce2e61d18fc029bc61d8"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/cutover-changeset.py.reference.txt",
+      "bytes": 6617,
+      "sha256": "64a9a748fe8b3f90e44f27fae5f1d405efde81adca6eedba1f4d1b7028537361"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/cutover-task.py.reference.txt",
+      "bytes": 7547,
+      "sha256": "495b7306441030212ad7adbb019b6a269acec622b35333f6ce62d38c516bee90"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/direct14-device-version.json",
+      "bytes": 175,
+      "sha256": "510609f0c12f1bf91f093def4dd8511c5bbf8d01afcffb7b4a81e80acde4e196"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/direct14-verification.json",
+      "bytes": 893,
+      "sha256": "5562578971740b433d31e8430d5073c7d604ad6459e1d12b81ef321c900e0e9c"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/freeze-candidates.py.reference.txt",
+      "bytes": 4547,
+      "sha256": "69e4d9703ea74c2662f09896510b944dc90f5a0bc9316e3745475a3558f12e9d"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/github-protection-readback.json",
+      "bytes": 705,
+      "sha256": "5e7f02b11a95b9b90d9509f4027e03c6c9dd91bccf4bf7a5f1db74b769dd07b8"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/helper-ci-readback.json",
+      "bytes": 514,
+      "sha256": "587085ad012ccbcd6e71b533045370c8ecacd4f9b012af99066368f53ad0110e"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/helper-source-manifest.json",
+      "bytes": 257694,
+      "sha256": "475a6bd6e7f7648d0265e3354e2278dcda5ae94d9887078a124af1383cc5c424"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/helper-source-scan.json",
+      "bytes": 12464,
+      "sha256": "1d1eace303fbf975194b24f21a1f5b694a77682979727765321cf79cd6dc8925"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/infra-aws-dependencies.log.reference.txt",
+      "bytes": 222,
+      "sha256": "a3d1b49a8ff96a7efbbf1d2bb6a051a36fb1b16de82b56099904cddd3286cf5c"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/infra-regression.log.reference.txt",
+      "bytes": 384,
+      "sha256": "c2856e580649638bb5e407a1b5fb945cbaca8bcf605c299cb3ec2eccbf6e80f1"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/infra-typecheck.log.reference.txt",
+      "bytes": 79,
+      "sha256": "aeaff1549226583b50aacc6bdea8a2f40bc1facfda6870b68f2a3c3633ed3be5"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/local-credential-migration-summary.json",
+      "bytes": 248,
+      "sha256": "28c90af8143ef69b69d65402d84b5796a4f02637a723196b7de051cfde9642c1"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/native-https-cutover-verification.json",
+      "bytes": 976,
+      "sha256": "74cd6b7607fb8120577d6f6b9625ae25395b8346ad944dbbb561559d51f36491"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/native14-login-observation.json",
+      "bytes": 435,
+      "sha256": "3522d93803486fa6b43349a36b508a87857873e73d77d9eb1b497fb8b353cdba"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/negative-maintenance-access.py.reference.txt",
+      "bytes": 4896,
+      "sha256": "5e1ba1736b268e57df11d682602884bba43183b787af15d393d779a627e8f85e"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/observed-runtime-image-digests.json",
+      "bytes": 1423,
+      "sha256": "9f51187962e17f506ae3002b180f3d402f759f9a916f96b8485ff80cf84d671d"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/permissions-diagnostic.json",
+      "bytes": 1350,
+      "sha256": "de9e08d16cd23e6822675eea5f16ead817b76382c47a9b45d954915ec6ba2e64"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/post-start-verify.py.reference.txt",
+      "bytes": 6442,
+      "sha256": "720df0758992b4eb6d6bffbe868c76d6cf3bd0394ec238e557adc63423cc1064"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/pre-cutover-checkpoint.json",
+      "bytes": 465,
+      "sha256": "41fd7772ab417498652c5f58b4dd4fb9f48da2be461119896a93d2e9f486609a"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/preserve-work.py.reference.txt",
+      "bytes": 6932,
+      "sha256": "252e8cec2b56cd9ef12e1d51a883336e44578959fbf2c2a0417a1981fb6ce930"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/preview-browser-observation.json",
+      "bytes": 360,
+      "sha256": "34181e9b8181c3537bc264df408160939dfaca0ed58105b9e528386a31f6d9a7"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/preview-build.log.reference.txt",
+      "bytes": 11965,
+      "sha256": "f0b9136f76042214f355171de3aad764174c4aaa6d6e2df4cd23b8b111d7a222"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/primary-before-source-sync/handoff-history-20261011-before-security-remediation.md.reference.txt",
+      "bytes": 4147,
+      "sha256": "c14461c38f3a7d991aec90837f025fc7d7056819b9f2abd890e530f0a7ba5083"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/primary-before-source-sync/handoff.md.reference.txt",
+      "bytes": 2086,
+      "sha256": "a161ca2421bd407efc1afa5d39238b5e559f6fd59edec1595fec41d50fe397d2"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/primary-source-sync.json",
+      "bytes": 385,
+      "sha256": "146cb944a2297a70ca0df5ad32b963ac8d08c86dd8369e75a5afdbddceb3ae08"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/production-audit-after-task-result.json",
+      "bytes": 355,
+      "sha256": "633186d6c83e999b62f101d2ea57ba81590cf15b620d9386407247e472da25c4"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/production-audit-before-task-result.json",
+      "bytes": 244,
+      "sha256": "ad14933e704d596e65406149a2dd209af992ad6f539042622519e4b6d807d8a7"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/production-authority-task-result.json",
+      "bytes": 387,
+      "sha256": "66e25f86b8b30afa933a655c56bb6c0109be5fd866aa186d08f068af5d795e04"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/production-backup-verified.json",
+      "bytes": 211,
+      "sha256": "d0a7234a480715259c963e38ae1110f04e5bac35a43f3fe20b14c28f90a2ecae"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/production-initial-audit-result.json",
+      "bytes": 238,
+      "sha256": "edcd13a3c657ccf57a2de132437fb2eaab4f616debae5c4cd3e52006b8334046"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/production-migrate-task-result.json",
+      "bytes": 96,
+      "sha256": "3fc77d6a64604aa785fc133616d9957011950a6d8ead1b6db4dde0b4dfcd5a66"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/production-migration-acceptance.json",
+      "bytes": 584,
+      "sha256": "3dd27dd32e41520720ad963ae6d98788c54f03464af4ea35124c1c58b2f4f8fa"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/production-negative-maintenance-access.json",
+      "bytes": 286,
+      "sha256": "3ed70012bbd239c52182272eb12ea834de64fb2c3b6b2b0c372547a2c4ced65e"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/production-post-start-verification.json",
+      "bytes": 3127,
+      "sha256": "1bfcc3a1571bceae66e057644072acaaadad69293c3c2bf4bb10869dd82ad01d"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/production-review-renewal-verification.json",
+      "bytes": 442,
+      "sha256": "1eb0e1854c64b55ace271db345b13ec265bbf4b5364da2e108d4c55058d6ee66"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/production-running-assembly/RilloraProduction.assets.json",
+      "bytes": 3757,
+      "sha256": "fc3937a4fdab966ca64ed4b18c0f64576f594d6939b11b64cd5527cb47a2cfa2"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/production-running-assembly/RilloraProduction.metadata.json",
+      "bytes": 96028,
+      "sha256": "1fb1a8981eaf545f8b54e6d8599a365f6b8119988b91d874c8873b28b015a0c9"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/production-running-assembly/RilloraProduction.template.json",
+      "bytes": 159448,
+      "sha256": "d1647bfae176081d52115b49594fdee08d52ca79a23732ff5df6d2ed250ea88f"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/production-running-assembly/manifest.json",
+      "bytes": 27376,
+      "sha256": "c68a25f66b2f03c3a07cdf769d00f92637a9d0c2a4e42c48fa544800650cc1b9"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/production-running-assembly/tree.json",
+      "bytes": 122510,
+      "sha256": "7e1fe1165eb1590d01295bb3467db5b9dc10a5789341bdadc4400e3c4666f103"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/production-running-assembly/validation-report.json",
+      "bytes": 80,
+      "sha256": "ba990d19514a4d3818b0d9e46e6662257238d206389b9aa4ada378f1d1fb00c6"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/production-running-deployed.json",
+      "bytes": 165,
+      "sha256": "7e00b4243f233bd8c99ae69150278414d6865e5f491f152ecfe2610a426bc806"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/production-running-prepare.log.reference.txt",
+      "bytes": 4940,
+      "sha256": "637d81f71b161eda4ba36864ee805ce228e83a5adc877bed03bc61d150a87915"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/production-stopped-assembly/RilloraProduction.assets.json",
+      "bytes": 3757,
+      "sha256": "93573b3168f09bad7fcf0a3299f6a04ae69fa22e634573425c819c641030d0f4"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/production-stopped-assembly/RilloraProduction.metadata.json",
+      "bytes": 96028,
+      "sha256": "1fb1a8981eaf545f8b54e6d8599a365f6b8119988b91d874c8873b28b015a0c9"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/production-stopped-assembly/RilloraProduction.template.json",
+      "bytes": 159448,
+      "sha256": "cd9607ac333a9935cfa5574507741d464e730bc6f4b1eb0bd1b1a663b58f3b34"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/production-stopped-assembly/manifest.json",
+      "bytes": 27376,
+      "sha256": "61258bfd2d5c7a38f034719bf867be3ceb104b196157fcb46d003cd89649b0d4"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/production-stopped-assembly/tree.json",
+      "bytes": 122510,
+      "sha256": "7e1fe1165eb1590d01295bb3467db5b9dc10a5789341bdadc4400e3c4666f103"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/production-stopped-assembly/validation-report.json",
+      "bytes": 80,
+      "sha256": "ba990d19514a4d3818b0d9e46e6662257238d206389b9aa4ada378f1d1fb00c6"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/production-stopped-deployed.json",
+      "bytes": 165,
+      "sha256": "72cef6cbdb2e3e4e9cc238a218ab29136bc61042f85d367bf70dc6a5bbcabee7"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/production-stopped-prepare.log.reference.txt",
+      "bytes": 5008,
+      "sha256": "8fddeb9aae2cd009a246bcbb83c15b4b32fe4cdcbfd81b29b3a3703ff7ab0a3e"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/production-synth.log.reference.txt",
+      "bytes": 107411,
+      "sha256": "26f53f12e3525d5b2c057329ec0159386f01d8921dc61cf872fa2f8873180575"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/production-web-build.log.reference.txt",
+      "bytes": 12959,
+      "sha256": "787a3a27e838a1792f41e600557b22c8be6274257a283ea25301ec1a63eb5db9"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/progress-20261012-preview.json",
+      "bytes": 2359,
+      "sha256": "b94d6677bf415a058af3be038605147a765d257b3611e26a1ddd36f57630463f"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/public-artifact-verification.json",
+      "bytes": 46691,
+      "sha256": "5d45bd52b15b622c56ed9586c64d266fd44d43225756dbdbff16734db8f7c1ab"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/public-web-build.log.reference.txt",
+      "bytes": 2808,
+      "sha256": "e3b874ac3627c386e1e716c5c2c77de40f64b79d73b06eafa631c1a80a6eaef6"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/read-auth0-baseline.py.reference.txt",
+      "bytes": 1864,
+      "sha256": "8e7790e698939913124ef767be171f0258afedb7fc2a7d3e8759d6966fab17e7"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/read-cloud-baseline.py.reference.txt",
+      "bytes": 3431,
+      "sha256": "aece944d330776dc111372eb8d88dc1c0f37742aaf8cd917f3f89ba14ec39f37"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/reading-closeout.json",
+      "bytes": 2582,
+      "sha256": "19e599688d825186e847db12274617ff370e626be425199c9aff286b8a02ce00"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/reading.json",
+      "bytes": 1914,
+      "sha256": "3334ddc2e412e5008bee6b44390af268e6974ab85445c1d98760ab30b9815862"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/renew-review-window.py.reference.txt",
+      "bytes": 9461,
+      "sha256": "304ea098b4abef41f8d3c6aeffd865222dfd479fc363bbb9d30be2f22fdf1ee9"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/review-renewal-public-http.json",
+      "bytes": 531,
+      "sha256": "480af8b81ad3cdf751ec07c11a55f876db1d346fbafb42e5ecb166c13f5536f9"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/reviewed-cutover-templates.json",
+      "bytes": 1084,
+      "sha256": "f08d4322babfc6fc7c5bb6f3dfe09846916a35dc5a87205251f414c3888fc16e"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/run-initial-audit.py.reference.txt",
+      "bytes": 5554,
+      "sha256": "faf75b772757287cd336452333d3d7a82c4fbf36662877f1416de7f0a5d1d92f"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/source-manifest.json",
+      "bytes": 257693,
+      "sha256": "b7dca9bbd86dd865cbc5186bfe3f95f3ebfc9b15bd8fb1ee67c1e6286952a29d"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/source-scan.json",
+      "bytes": 12464,
+      "sha256": "28c81fc80c362854a178968213d5b05b68edaebcb07ace969e7944b251266b78"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/staging-audit-after-task-result.json",
+      "bytes": 352,
+      "sha256": "d5e04314a3ac5236538fffb64935b130dfe71fe2d91ca8617476b5a2984f544e"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/staging-audit-before-task-result.json",
+      "bytes": 241,
+      "sha256": "5328e061c8cfa1ad9c2497323ca1add496d4d0b42c5b2258879b98f27a1aedd6"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/staging-authority-task-result.json",
+      "bytes": 343,
+      "sha256": "4c8b6d43883b6d4a2b8f47cf1cc320aaefb271349f249f0589c53d68d0d2a325"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/staging-backup-verified.json",
+      "bytes": 208,
+      "sha256": "fa3f9d5c267c67b5e41170af4fee830e72291790f77102be0c0abc649bc20cf8"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/staging-initial-audit-result.json",
+      "bytes": 235,
+      "sha256": "b0ba07caf0f298a73aedac0e2d77393ebe62b23ce0193bb18667ef22d7116127"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/staging-migrate-task-result.json",
+      "bytes": 93,
+      "sha256": "49d35cb05eade89b0d6bf65254dfa9931622b9c8f80faf1ec53585739a9b1746"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/staging-migration-acceptance.json",
+      "bytes": 540,
+      "sha256": "0c04f56db99164b6dd9c2535ab7dfad3597bec9027e719c1816abc1f997fe133"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/staging-negative-maintenance-access.json",
+      "bytes": 234,
+      "sha256": "60696e7a1908179441acf3e27712fc91682c9715bc617d715fc4b927f99e8b49"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/staging-post-start-verification.json",
+      "bytes": 2802,
+      "sha256": "4457a970278f52b9b3f3059c626f7b11d46601531c0aae5f926069ec59a8bc77"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/staging-running-assembly/RilloraStaging.assets.json",
+      "bytes": 5755,
+      "sha256": "5acba5e51eb02db15d89fd8e559fbcb5894d293c811491f23e1e8be6c10390a8"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/staging-running-assembly/RilloraStaging.metadata.json",
+      "bytes": 79785,
+      "sha256": "a05c86f1e5640251963aa53dde914e2cad9a2ba724a590ca81238ba70b5fe386"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/staging-running-assembly/RilloraStaging.template.json",
+      "bytes": 123991,
+      "sha256": "16ffcda20f5ff707401ed7d667717464add7e95d26552e4c33f4967afcc1d28f"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/staging-running-assembly/manifest.json",
+      "bytes": 27180,
+      "sha256": "dfd53bf4433e01fe81529e54b834c26cc045784210f2e4829ced5cfbfac53374"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/staging-running-assembly/tree.json",
+      "bytes": 104512,
+      "sha256": "d02bcc789be15f9629e7161ec50789c1823f9c4cddfef47c5054b1e5fb3630ce"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/staging-running-assembly/validation-report.json",
+      "bytes": 80,
+      "sha256": "ba990d19514a4d3818b0d9e46e6662257238d206389b9aa4ada378f1d1fb00c6"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/staging-running-deployed.json",
+      "bytes": 162,
+      "sha256": "a0198914e1a3d161ee935342aaea4818b43fb697670500ccbeb50af843c3ae05"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/staging-running-prepare.log.reference.txt",
+      "bytes": 2984,
+      "sha256": "12767ebae95a6dcab9417bd184083f0613a3efe19686858f995f3861f5a134e4"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/staging-stopped-assembly/RilloraStaging.assets.json",
+      "bytes": 5755,
+      "sha256": "35b74f76c1c306f96e6796ee5b75a9b31226d1016e9ddb03437d33c1dd596606"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/staging-stopped-assembly/RilloraStaging.metadata.json",
+      "bytes": 79785,
+      "sha256": "a05c86f1e5640251963aa53dde914e2cad9a2ba724a590ca81238ba70b5fe386"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/staging-stopped-assembly/RilloraStaging.template.json",
+      "bytes": 123541,
+      "sha256": "e3d87d51b0a13e9879450e1762e2286ab50847acfa16d53a8fc07f61431b3538"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/staging-stopped-assembly/manifest.json",
+      "bytes": 27180,
+      "sha256": "8bf45163c15741a0117aa160ec2be6211c14dc99dd797ec711c99e29dbaa6a32"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/staging-stopped-assembly/tree.json",
+      "bytes": 104512,
+      "sha256": "d02bcc789be15f9629e7161ec50789c1823f9c4cddfef47c5054b1e5fb3630ce"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/staging-stopped-assembly/validation-report.json",
+      "bytes": 80,
+      "sha256": "ba990d19514a4d3818b0d9e46e6662257238d206389b9aa4ada378f1d1fb00c6"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/staging-stopped-deployed.json",
+      "bytes": 162,
+      "sha256": "f82dc4aec4e38821cd35afa033d46b170af183f78ed79e9fb3c9d3dcbe6dd19c"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/staging-stopped-prepare.log.reference.txt",
+      "bytes": 12277,
+      "sha256": "7f8ced0bfb4d630d4a151e7368f73bf40b33f4abb7b1cca77c1e2fb7e291b161"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/staging-synth.log.reference.txt",
+      "bytes": 86987,
+      "sha256": "48337d916b581929d28d1ca7788ca6842cfdaed1b9c45b47bfc4dfece07ec413"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/synthesize-candidates.py.reference.txt",
+      "bytes": 2417,
+      "sha256": "33003da67463bbec5189df19d284fecf68c9a6e28381c0193204b0792efdad25"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/verify-public-artifacts.py.reference.txt",
+      "bytes": 2850,
+      "sha256": "7fe06930ab5b419ec9bb11840703534603a327f1a5ea314a32dc136edec6d3f2"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/snapshot.json",
+      "bytes": 7997,
+      "sha256": "72c01956b2bf3ea6dd4cbaf74376d9bd4ca5a72c4e7c7d0c5490104feadc04f5"
+    },
+    {
       "path": "collaboration/verification/source-scan-final.json",
       "bytes": 10712,
       "sha256": "fed30615ae7228027cfcf1a2c0f840640c34149c6a8b412e5d8392b7848f2f05"
@@ -59036,6 +59836,6 @@
       "sha256": "fa9f06467d74b9f074969cddab0e882a0ca1463c84d4a5ffafd2d401d619518b"
     }
   ],
-  "fileCount": 11807,
-  "totalBytes": 364810179
+  "fileCount": 11967,
+  "totalBytes": 367916548
 }

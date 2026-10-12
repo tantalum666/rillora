@@ -1,0 +1,88 @@
+"""Deploy only the reviewed Web/operations stacks after the API cutover."""
+from pathlib import Path
+import argparse,datetime,hashlib,json,os,subprocess,sys,uuid
+ROOT=Path(__file__).resolve().parents[3];Q=ROOT/'output/qa/rillora-security-rollout-20261011';P=ROOT/'.local-secrets/security-rollout-20261011'
+sys.path.insert(0,str(ROOT/'tools/release'))
+from recovery_drill import Aws
+parser=argparse.ArgumentParser();parser.add_argument('operation',choices=['prepare','execute','status']);parser.add_argument('stack',choices=['RilloraProductionWeb','RilloraPublicWeb','RilloraOperations']);args=parser.parse_args()
+name=args.stack;reader=Aws('rillora-cdk-deploy');assembly=Q/(name+'-assembly');path=assembly/(name+'.template.json')
+before=json.loads((P/(name+'-before-template.json')).read_text());wanted=json.loads(path.read_text())
+allowed={'RilloraProductionWeb':{'Routes4F6D566C':{'FunctionCode'},'[PUBLIC_IDENTIFIER_OMITTED]':{'SourceObjectKeys'}},
+ 'RilloraPublicWeb':{'PublicDeploymentCustomResource947B276F':{'SourceObjectKeys'}},
+ 'RilloraOperations':{'HealthCheckA1C381C7':{'Code'},'AlertsPolicy425C338D':{'PolicyDocument'},'[PUBLIC_IDENTIFIER_OMITTED]':{'Code'},'SnapshotRetirementRunbook91A9EB67':{'PolicyDocument'},'OperationsRunbook277D4959':{'PolicyDocument'}}}[name]
+assert set(before['Resources'])==set(wanted['Resources'])
+for logical,old in before['Resources'].items():
+ new=wanted['Resources'][logical]
+ if old!=new:
+  assert logical in allowed and old['Type']==new['Type']
+  assert {k:v for k,v in old.items() if k not in ['Properties','Metadata']}=={k:v for k,v in new.items() if k not in ['Properties','Metadata']}
+  if old.get('Metadata')!=new.get('Metadata'):
+   assert new['Type']=='AWS::Lambda::Function' and allowed[logical]=={'Code'}
+   assert {k:v for k,v in old['Metadata'].items() if k!='aws:asset:path'}=={k:v for k,v in new['Metadata'].items() if k!='aws:asset:path'}
+   asset=new['Metadata']['aws:asset:path'];assert asset.startswith('asset.') and len(asset)==70
+   assert (assembly/asset).is_dir(),'Referenced Lambda asset is missing'
+  changed={k for k in set(old.get('Properties',{}))|set(new.get('Properties',{})) if old.get('Properties',{}).get(k)!=new.get('Properties',{}).get(k)}
+  assert changed<=allowed[logical]
+ci=json.loads((Q/'ci-readback.json').read_text());assert ci['conclusion']=='success' and len(ci['jobs'])==3
+if args.operation!='status':
+ assert subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()==ci['source']
+ assert subprocess.run(['git','diff','--quiet','HEAD','--','apps','infra','tools','config','.github'],cwd=ROOT).returncode==0
+def save(path,value):path.write_text(json.dumps(value,indent=2)+'\n');path.chmod(0o600)
+def template():
+ v=reader.call('cloudformation','get-template',{'StackName':name})['TemplateBody'];return json.loads(v) if isinstance(v,str) else v
+def changeset():
+ state=json.loads((P/(name+'-changeset.json')).read_text());assert state['templateSha256']==hashlib.sha256(path.read_bytes()).hexdigest()
+ result=reader.call('cloudformation','describe-change-set',{'StackName':name,'ChangeSetName':state['id']})
+ assert result['Status']=='CREATE_COMPLETE'
+ for item in result['Changes']:
+  c=item['ResourceChange'];assert c['Action']=='Modify'
+  dependent_router=(name=='RilloraProductionWeb' and c['LogicalResourceId']=='Client4A7F64DF'
+   and c['ResourceType']=='AWS::CloudFront::Distribution' and c.get('Replacement')=='False'
+   and before['Resources']['Client4A7F64DF']==wanted['Resources']['Client4A7F64DF']
+   and bool(c.get('Details')) and all(d.get('Evaluation')=='Dynamic' and d.get('ChangeSource')=='ResourceAttribute'
+    and d.get('CausingEntity')=='Routes4F6D566C.FunctionARN' and d.get('Target',{}).get('Name')=='DistributionConfig' for d in c['Details']))
+  operations_dependencies={
+   'FailedDeliveriesPolicyBAFAE301':('AWS::SQS::QueuePolicy','False',{('PolicyDocument','QuarterHourly4AE380E3.Arn')}),
+   'QuarterHourly4AE380E3':('AWS::Events::Rule','False',{('Targets','HealthCheckA1C381C7.Arn')}),
+   'QuarterHourlyAllowEventRuleRilloraOperationsHealthCheckD0D9D8C5337B971B':('AWS::Lambda::Permission','Conditional',{('SourceArn','QuarterHourly4AE380E3.Arn'),('FunctionName','HealthCheckA1C381C7.Arn')}),
+   'SnapshotRetirementScheduleFB86796D':('AWS::Events::Rule','False',{('Targets','[PUBLIC_IDENTIFIER_OMITTED].Arn')}),
+   'SnapshotRetirementScheduleAllowEventRuleRilloraOperationsSnapshotRetirementWorker57A82C08BAB494FE':('AWS::Lambda::Permission','Conditional',{('SourceArn','SnapshotRetirementScheduleFB86796D.Arn'),('FunctionName','[PUBLIC_IDENTIFIER_OMITTED].Arn')})}
+  dependent_operations=False
+  if name=='RilloraOperations' and c['LogicalResourceId'] in operations_dependencies:
+   expectedType,expectedReplacement,expectedDetails=operations_dependencies[c['LogicalResourceId']]
+   dependent_operations=(c['ResourceType']==expectedType and c.get('Replacement')==expectedReplacement
+    and before['Resources'][c['LogicalResourceId']]==wanted['Resources'][c['LogicalResourceId']]
+    and {(d.get('Target',{}).get('Name'),d.get('CausingEntity')) for d in c.get('Details',[])}==expectedDetails
+    and all(d.get('Evaluation')=='Dynamic' and d.get('ChangeSource')=='ResourceAttribute' for d in c['Details']))
+  assert c['LogicalResourceId'] in allowed or dependent_router or dependent_operations
+  if c.get('Replacement') not in [None,'False',False]:
+   if not dependent_operations:
+    assert c['ResourceType']=='Custom::CDKBucketDeployment' and c['Replacement']=='Conditional'
+    assert c.get('Details') and all(d['Target'].get('Name')=='SourceObjectKeys' for d in c['Details'])
+ return state,result
+stack=reader.call('cloudformation','describe-stacks',{'StackName':name})['Stacks'][0]
+if args.operation=='prepare':
+ assert stack['StackStatus']=='UPDATE_COMPLETE' and template()==before
+ assert not (P/(name+'-changeset.json')).exists(),'Already prepared; inspect existing state'
+ changeName='rillora-security-'+ci['source'][:9]+'-'+name.lower()
+ command=['npx','cdk','deploy',name,'--app',str(assembly),'--exclusively','--profile','rillora-cdk-session','--require-approval','never','--previous-parameters','true','--method','prepare-change-set','--change-set-name',changeName,'--outputs-file',str(P/(name+'-outputs.json'))]
+ for param in stack.get('Parameters',[]):
+  if param['ParameterKey']!='BootstrapVersion' and param.get('ParameterValue')!='****':command+=['--parameters',param['ParameterKey']+'='+param['ParameterValue']]
+ with (Q/(name+'-prepare.log')).open('w') as log:r=subprocess.run(command,cwd=ROOT/'infra/aws',stdout=log,stderr=subprocess.STDOUT)
+ assert r.returncode==0,'Preparation incomplete; inspect rather than blind retry'
+ result=reader.call('cloudformation','describe-change-set',{'StackName':name,'ChangeSetName':changeName})
+ save(P/(name+'-changeset.json'),{'id':result['ChangeSetId'],'templateSha256':hashlib.sha256(path.read_bytes()).hexdigest(),'source':ci['source']})
+ state,result=changeset();assert result['ExecutionStatus']=='AVAILABLE';save(P/(name+'-changeset-details.json'),result)
+ print(json.dumps({'stack':name,'prepared':True,'changes':len(result['Changes']),'executed':False}))
+elif args.operation=='execute':
+ for environment in ['staging','production']:assert json.loads((Q/(environment+'-post-start-verification.json')).read_text())['passed']
+ assert stack['StackStatus']=='UPDATE_COMPLETE' and template()==before
+ state,result=changeset();assert result['ExecutionStatus']=='AVAILABLE'
+ marker=P/(name+'-execute-request.json');assert not marker.exists(),'Execution already attempted; use status'
+ request={'StackName':name,'ChangeSetName':state['id'],'ClientRequestToken':'rillora-'+uuid.uuid4().hex};save(marker,request)
+ reader.call('cloudformation','execute-change-set',request);print(json.dumps({'stack':name,'executionRequested':True,'completed':False}))
+else:
+ report={'stack':name,'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'status':stack['StackStatus'],'templateMatched':False}
+ if stack['StackStatus']=='UPDATE_COMPLETE':report['templateMatched']=template()==wanted
+ if report['templateMatched']:save(Q/(name+'-deployed.json'),report)
+ print(json.dumps(report))

@@ -1,0 +1,87 @@
+"""Renew only the existing three production review identities for48hours; preserve closed sales."""
+from pathlib import Path
+import argparse,datetime,hashlib,json,re,subprocess,sys,time,uuid
+from zoneinfo import ZoneInfo
+ROOT=Path(__file__).resolve().parents[3];P=ROOT/'.local-secrets/security-rollout-20261011';Q=ROOT/'output/qa/rillora-security-rollout-20261011'
+sys.path.insert(0,str(ROOT/'tools/release'));from recovery_drill import Aws
+sys.path.insert(0,str(ROOT/'tools/auth0'));import native_https_callbacks as native
+parser=argparse.ArgumentParser();parser.add_argument('operation',choices=['prepare','execute','status','auth0']);args=parser.parse_args()
+reader=Aws('rillora-cdk-deploy');operator=Aws('rillora-production-operator');name='RilloraProduction';path=P/'production-review-renewal.json'
+actionId='53601883-484d-4bec-8a56-cb8329ea5dd7'
+def save(path,value):path.write_text(json.dumps(value,indent=2)+'\n');path.chmod(0o600)
+def constant(code,key):
+ match=re.search(r'^const '+key+r" = (['\"])(.*?)\1",code,re.M);assert match;return match.group(2)
+def template():
+ v=reader.call('cloudformation','get-template',{'StackName':name})['TemplateBody'];return json.loads(v) if isinstance(v,str) else v
+stack=reader.call('cloudformation','describe-stacks',{'StackName':name})['Stacks'][0]
+if args.operation=='prepare':
+ assert not path.exists(),'Renewal already planned; resume its recorded request'
+ assert stack['StackStatus']=='UPDATE_COMPLETE'
+ current=template();expected=json.loads((Q/'production-running-assembly/RilloraProduction.template.json').read_text());assert current==expected
+ assert subprocess.run(['git','diff','--quiet','bfe9baaf520e051e70081daf7ed459f0926264b4','--','apps/api','infra/aws','infra/auth0','config/production-connections.json'],cwd=ROOT).returncode==0
+ report=json.loads((Q/'production-post-start-verification.json').read_text());assert report['passed'] and report['originalReviewWindowExpired']
+ definition=next(x['taskDefinition'] for x in report['services'] if x['kind']=='api')
+ td=operator.call('ecs','describe-task-definition',{'taskDefinition':definition})['taskDefinition'];env={e['name']:e['value'] for c in td['containerDefinitions'] for e in c.get('environment',[])}
+ old=env['PRODUCTION_REVIEW_EXPIRES_AT'];identities=env['PRODUCTION_REVIEW_IDENTITY_SHA256'];assert len(identities.split(','))==3
+ action=native.api('get','actions/actions/'+actionId);assert action['code']==action['deployed_version']['code']
+ assert constant(action['code'],'IDENTITY_DIGESTS')==identities and constant(action['code'],'EXPIRES_AT')==old
+ save(P/'review-renewal-auth0-before.json',action);save(P/'review-renewal-api-before.json',td)
+ now=datetime.datetime.now(datetime.timezone.utc);expiry=(now+datetime.timedelta(hours=48)).replace(second=0,microsecond=0)
+ new=expiry.isoformat().replace('+00:00','Z');assert datetime.datetime.fromisoformat(old.replace('Z','+00:00'))<now
+ parameters=[{'ParameterKey':p['ParameterKey'],'ParameterValue':new} if p['ParameterKey']=='RuntimeReviewExpiresAtF4A0DBEC' else {'ParameterKey':p['ParameterKey'],'UsePreviousValue':True} for p in stack['Parameters']]
+ request={'StackName':name,'UsePreviousTemplate':True,'ChangeSetType':'UPDATE','ChangeSetName':'rillora-review-renewal-20261012-'+uuid.uuid4().hex[:8],'ClientToken':uuid.uuid4().hex,'Parameters':parameters,'Capabilities':stack['Capabilities'],'Description':'Renew the same three Rillora review identities for48hours; no new sales or customer opening'}
+ state={'at':now.isoformat(),'previousExpiry':old,'expiresAt':new,'expiresAtHongKong':expiry.astimezone(ZoneInfo('Asia/Hong_Kong')).isoformat(),'identityCount':3,'request':request,'executed':False,'apiVerified':False,'auth0Verified':False};save(path,state)
+ result=reader.call('cloudformation','create-change-set',request);state['changeSetId']=result['Id'];save(path,state)
+ print(json.dumps({'planned':True,'expiresAt':new,'expiresAtHongKong':state['expiresAtHongKong'],'identityCount':3,'salesSwitchesChanged':False}))
+elif args.operation=='execute':
+ state=json.loads(path.read_text());assert not state['executed'] and stack['StackStatus']=='UPDATE_COMPLETE'
+ assert template()==json.loads((Q/'production-running-assembly/RilloraProduction.template.json').read_text())
+ result=reader.call('cloudformation','describe-change-set',{'StackName':name,'ChangeSetName':state['changeSetId']});assert result['Status']=='CREATE_COMPLETE' and result['ExecutionStatus']=='AVAILABLE'
+ for row in result['Changes']:
+  c=row['ResourceChange'];assert c['Action']=='Modify'
+  dependencies={'MaintenanceBrokerFunctionC542279B':('AWS::Lambda::Function','Environment','RuntimeService1702E585.Name'),
+   'OperatorDefaultPolicyA84BD3A6':('AWS::IAM::Policy','PolicyDocument','MaintenanceBrokerFunctionC542279B.Arn')}
+  dependent=False
+  if c['LogicalResourceId'] in dependencies:
+   resourceType,propertyName,source=dependencies[c['LogicalResourceId']]
+   dependent=(c['ResourceType']==resourceType and c['Replacement']=='False' and bool(c.get('Details'))
+    and all(d.get('Evaluation')=='Dynamic' and d.get('ChangeSource')=='ResourceAttribute' and d.get('CausingEntity')==source
+     and d.get('Target',{}).get('Name')==propertyName for d in c['Details']))
+  assert dependent or (c['LogicalResourceId']=='RuntimeApiTaskCF645D67' and c['ResourceType']=='AWS::ECS::TaskDefinition') or (c['LogicalResourceId']=='RuntimeService1702E585' and c['ResourceType']=='AWS::ECS::Service' and c['Replacement']=='False')
+ save(P/'review-renewal-changeset-details.json',result)
+ state['executed']=True;state['executeToken']=uuid.uuid4().hex;save(path,state)
+ reader.call('cloudformation','execute-change-set',{'StackName':name,'ChangeSetName':state['changeSetId'],'ClientRequestToken':state['executeToken']})
+ print(json.dumps({'executionRequested':True,'completed':False}))
+elif args.operation=='status':
+ state=json.loads(path.read_text());result={'stackStatus':stack['StackStatus'],'apiVerified':False}
+ if state['executed'] and stack['StackStatus']=='UPDATE_COMPLETE':
+  assert template()==json.loads((Q/'production-running-assembly/RilloraProduction.template.json').read_text())
+  params={p['ParameterKey']:p['ParameterValue'] for p in stack['Parameters']};assert params['RuntimeReviewExpiresAtF4A0DBEC']==state['expiresAt']
+  o={x['OutputKey']:x['OutputValue'] for x in stack['Outputs']};previous=json.loads((P/'production-post-start-services.json').read_text())
+  names=[s['serviceName'] for s in previous['services']];services=operator.call('ecs','describe-services',{'cluster':o['ClusterName'],'services':names})
+  assert not services.get('failures') and all(s['runningCount']==s['desiredCount']==1 and s['pendingCount']==0 and len(s['deployments'])==1 and s['deployments'][0]['rolloutState']=='COMPLETED' for s in services['services'])
+  service=next(s for s in services['services'] if s['serviceName'].startswith('RilloraProduction-RuntimeService'))
+  td=operator.call('ecs','describe-task-definition',{'taskDefinition':service['taskDefinition']})['taskDefinition'];old=json.loads((P/'review-renewal-api-before.json').read_text())
+  a=td['containerDefinitions'];b=old['containerDefinitions'];assert len(a)==len(b)==1
+  before={x['name']:x['value'] for x in b[0]['environment']};after={x['name']:x['value'] for x in a[0]['environment']}
+  assert {k:v for k,v in before.items() if k!='PRODUCTION_REVIEW_EXPIRES_AT'}=={k:v for k,v in after.items() if k!='PRODUCTION_REVIEW_EXPIRES_AT'}
+  assert after['PRODUCTION_REVIEW_EXPIRES_AT']==state['expiresAt'] and a[0]['image']==b[0]['image'] and a[0].get('secrets')==b[0].get('secrets')
+  state['apiVerified']=True;state['apiTaskDefinition']=service['taskDefinition'];save(path,state);save(P/'review-renewal-api-after.json',td);result['apiVerified']=True
+ print(json.dumps(result))
+else:
+ state=json.loads(path.read_text());assert state['apiVerified']
+ before=json.loads((P/'review-renewal-auth0-before.json').read_text());prior=before['deployed_version']['code'];new=prior.replace("const EXPIRES_AT = '"+state['previousExpiry']+"';","const EXPIRES_AT = '"+state['expiresAt']+"';")
+ assert new!=prior and new.replace(state['expiresAt'],state['previousExpiry'])==prior
+ action=native.api('get','actions/actions/'+actionId);assert action['code'] in [prior,new] and action['deployed_version']['code'] in [prior,new]
+ if action['deployed_version']['code']!=new:
+  native.api('patch','actions/actions/'+actionId,{'code':new});native.api('post','actions/actions/'+actionId+'/deploy')
+  for _ in range(20):
+   action=native.api('get','actions/actions/'+actionId)
+   if action.get('status')=='built' and action['deployed_version']['code']==new:break
+   time.sleep(.5)
+ assert action['code']==action['deployed_version']['code']==new
+ bindings=native.api('get','actions/triggers/post-login/bindings?per_page=100');original=json.loads((P/'auth0-bindings-before.json').read_text())
+ assert [(x['id'],x['action']['id']) for x in bindings['bindings']]==[(x['id'],x['action']['id']) for x in original['bindings']]
+ save(P/'review-renewal-auth0-after.json',action);state['auth0Verified']=True;save(path,state)
+ report={k:state[k] for k in ['expiresAt','expiresAtHongKong','identityCount','apiVerified','auth0Verified','apiTaskDefinition']};report.update({'passed':True,'onlyExistingIdentitiesRenewed':True,'salesSwitchesChanged':False,'accountDataChanged':False,'bindingOrderChanged':False})
+ save(Q/'production-review-renewal-verification.json',report);print(json.dumps(report))

@@ -1,46 +1,34 @@
 # Rillora 当前交接
 
-Status: SECURITY ROLLOUT PREPARING / EXISTING SERVICES RUNNING / NO TESTFLIGHT
+Status: SECURITY DEPLOYMENT AND NATIVE ACCEPTANCE VERIFIED / GIT EVIDENCE CLOSEOUT IN PROGRESS / NO TESTFLIGHT
 Last updated: 2026-10-12 (Asia/Hong_Kong)
 
 ## 当前任务
 
-Owner要求开始部署整批安全修复，按已有切换顺序，保留数据、价格和收费开关，先不发TestFlight；并重申默认最高授权。
-旧源码任务已完成，新部署任务正在准备，尚未停止服务或迁移数据库。详见[当前切换合同](security-rollout-20261012.md)。
-活动工作树：`/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app`；
-分支`codex/security-findings-20261011`，部署起点3a9f6a289d89d8a938a3f4cc6198d23e6609f8a6。
-主检出保持旧工程基线，只作为接续入口。
+按Owner授权部署整批安全修复，保持真实数据、定价和收费开关，先不发TestFlight。云端／原生／本机指定凭据已完成，当前只收尾本次证据的Git保存。活动工作树仍为`/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app`，分支`codex/security-findings-20261011`。
+主项目目录已从647317834快速前进到042f4e100，同一历史保留；旧交接以具名stash及QA副本保存。不要再使用“主检出仍是旧工程”的历史指令。
 
-## 当前部署进度
+## 已完成
 
-- 原AWS MFA已恢复；跨夜过期后又复用浏览器会话续期，无需再次MFA。Auth0确认CLI过期后也已完成同scope续期，实际生产客户端回调已读回。
-- 云端初次基线：production API21／Preview43，均为1/1、COMPLETED，正式购买关闭／通知开启、review不变；五个相关栈均UPDATE_COMPLETE。原始模板／参数保存于本工作树`.local-secrets/security-rollout-20261011`。
-- 构建依赖与现有Colima已就绪，API镜像及Preview／正式Web／官网候选构建通过；没有清理其他项目。补齐两个固定只读核验脚本、旧原生回调兼容选项，以及运维读取新worker状态／日志和Preview自身stack输出的最小权限。
-- 新维护broker8项、Auth0工具8项、发布工具73项、infra59项／类型检查通过；源扫描32匹配／0未知。API源码仍与CI125一致，不重新声称本轮运行519项。
-- 两个环境的实际只读任务都已STOPPED/exit0：94迁移摘要匹配源码、9类现有服务角色安全、未决身份删除0、内容强制加密、68表指纹保存。原始日志／指纹仅存受保护目录。
-- 停写／恢复模板已冻结：Preview81→99资源、production79→101资源；无旧资源删除，原数据库／内容KMS／既有秘密／VPC子网／journal不变，收费／审核参数不变。停写阶段各2个服务为0；Preview新前端留到恢复阶段。当前尚未部署。
+- 云端源码bfe9baaf5／CI126：Preview与production先停写、冻结数据和可用加密备份，再各执行一次95—103及引导／回填；103迁移摘要全部匹配，除声明的表示变更外，每库68表原业务字段指纹一致，未决删除0。数据库越权、无签名租户、篡改主人及伪造日志回执被拒绝，合法签名主人读取通过。
+- 五个栈全部UPDATE_COMPLETE并匹配候选：Staging、Production、ProductionWeb、PublicWeb、Operations。Preview API44／production API22及独立worker均1/1稳定；API HEALTHY、worker RUNNING／UNKNOWN，日志无启动／重试错误。四个原运行任务实测同一镜像digest75fa633d…fc734。
+- 三套Web共203文件逐个匹配，应用／Preview邀请AASA与Auth0关联端点通过；固定维护broker与IAM实际拒绝人类直接RunTask、未审阅命令及错误备份能力凭据。
+- 原iPhone已原位安装并读回1.0(14)，13项签名／同Keychain／生产连接／精确设备／双语检查通过。初次启动因锁屏受阻；Owner解锁后进程启动成功。随后“服务未开放”确认为旧审核期已过，不是安装或数据丢失。
+- 为本次验收仅将原3个身份续期48小时，到香港2026-10-14 20:01；API23与Auth0期限一致，镜像、其余环境／秘密和全部收费开关不变。Owner已重新进入首页并确认原事项仍在；Auth0记录成功登录及授权码交换。新客户端交付后，两个原生客户端都已移除旧私有协议回调，仅保留HTTPS。生产有本次真实原生结果；Preview未虚构另一场真实登录。
+- 本机助手实际安装发现并修复codesign表达式格式与AWS CLI重复读取整包JSON管道两处问题。上传现在限于具名Secret字段的独立匿名管道，拒绝原始CR和调试／覆盖参数；9项（含真实CLI到本地回环）、8项Auth0工具及源扫描32匹配／0未知通过。042f4e100已推送，[CI127](https://github.com/tantalum666/rillora/actions/runs/38245830482)三任务成功。
+- 正式签名助手在两个本机检出安装并验证；本人非秘密硬件验证通过，主目录9份指定Auth0／Apple文件均已加密并逐份本人验证读回一致。无provider密钥轮换、无归档身份迁移，不声称旧副本／备份擦除。
+- 当前实际执行环境为Full Access／approval never；没有再发起终端提权。先前会话权限不一致已经解除。
 
-## 既有源码修复证据
+## 边界与保留项
 
-- 一次新的只读边界调查已完成。补确认：运行时SQL能伪造旧日志发布确认，8个运行时可达definer继承管理员所有权；不能只把这些归因于完整API控制。
-- 五组边界已实现：事务授权／强制RLS和窄definer；独立日志envelope／回执；无HTTP的删除工作器及独立签名核验；owner作用域邮箱HMAC／旧摘要回填；用户在场Secure Enclave封套与匿名管道上传。
-- 最终API58文件519/519、typecheck/build通过；infra58/58及类型检查通过；发布工具73、维护broker7、凭据工具7、Auth0工具7、日志broker4、collaboration9通过。当前Swift源码编译与合成硬件往返／无人值守／篡改／账户绑定拒绝全部通过。
-- 一次新候选复核发现迁移命令漂移及遗漏删除worker停写检查，两项已补修并验证。源扫描32个已审阅命中／0未知；只移动3处同字节既有登记行号，没有新增例外。1—99迁移和发布脱敏器原字节匹配基线。
-- 实施／归档提交74a9c66ac50cb8f5f68afe7c3d673c9d2f742897已推送；[CI125](https://github.com/tantalum666/rillora/actions/runs/38146452345)三任务全部成功。Web／iOS源码未改；本机沿用上轮客户端证据，GitHub本轮另外执行了Web检查，未新增真机验收。
-- [archive32及回执](../collaboration/verification/security-remaining-five-20261011/README.md)保留249路径／232原件，345,291加密字节；独立空LFS缓存重新下载后逐对象解密核验通过。前31档案不重封／重下。最终回执提交只更新文档元数据，实施代码沿用CI125。
+普通客户与正式收费仍关闭；未发起购买／退款、未删除保留账号、未更改FanPass、未发TestFlight、未重启深度扫描。保留此前付款／退款及旧归档的准确日期，不冒充本次重跑。
 
-## 证据边界
+GitHub现有私有仓库页面明确显示经典保护和规则集均不强制执行，当前也未配置；这是实际平台限制。没有购买套餐、迁移组织、创建虚假有效规则或新增token权限。CI通过和本次部署检查不等于GitHub服务器已强制保护。
 
-上一轮076bd5a／CI124／archive31已完成，保留其日期与范围，不重跑旧购买或重新下载旧档案。
-源码阶段1—99迁移原字节保持，新迁移只进入专用本地测试库。新部署阶段已执行两次云端只读任务并恢复既有登录，尚未部署、迁移、修改provider设置、真实凭据、
-资金、手机、TestFlight、保留账号或FanPass。原深度扫描继续停止；不改原报告状态。
-
-源码隔离并不意味着所有API／OS完全失陷风险消失。新的存储工具也不证明旧明文副本或备份已迁走。
-精确合同见[剩余五组实施记录](security-remaining-five-20261011.md)。
+源码和部署只关闭列明路径，不承诺抵抗完整API／OS失陷。当前真实手机结果是登录与原事项读取，不新增付款／退款／删除通过结论。详见[切换与证据合同](security-rollout-20261012.md)。
 
 ## 唯一下一步
 
-提交并取得部署兼容补丁的CI结果，然后按[当前切换顺序](security-rollout-20261012.md)先Preview执行冻结模板、核验2个服务停写、取得冻结数据基线及备份，再迁移95—103／核验／恢复；通过后才切production。
-当前已获部署授权，不再要求Owner重复批准；不改变收费开关、不发TestFlight或制造购买。
+archive33已封存665路径／536对象，本地解密与可读资料扫描通过。现在只完成Git推送／CI及独立远端下载解密核验；不重复任何迁移、部署、本人认证或购买。当前源码最新042f4e100／CI127，当前QA和文档尚待本次增量Git闭环。
 
-[部署前交接](handoff-history-20261012-before-security-rollout.md)及[上轮已完成交接](handoff-history-20261011-before-remaining-five.md)为HISTORICAL。
+[前一进行中交接](handoff-history-20261012-before-security-closeout.md)及[部署前交接](handoff-history-20261012-before-security-rollout.md)均为HISTORICAL。

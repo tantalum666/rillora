@@ -1,0 +1,62 @@
+WARNING minHealthyPercent has not been configured so the default value of 50% is used. The number of running tasks will decrease below the desired count during deployments etc. See https://github.com/aws/aws-cdk/issues/31705 (Construct Annotations)
+   RilloraProduction/Runtime/IdentityWorker/Service
+   Acknowledge with 'Construct-Annotations::@aws-cdk/aws-ecs:minHealthyPercent'
+
+✨  Synthesis time: 0.25s
+
+RilloraProduction: start: Building RecoveryAttestation/Writer/Code
+RilloraProduction: success: Built RecoveryAttestation/Writer/Code
+RilloraProduction: start: Building RilloraProduction Template
+RilloraProduction: success: Built RilloraProduction Template
+RilloraProduction: start: Publishing RilloraProduction Template (current_account-eu-central-1-63b641e8)
+RilloraProduction: start: Publishing RecoveryAttestation/Writer/Code (current_account-eu-central-1-f0ef142c)
+RilloraProduction: success: Published RecoveryAttestation/Writer/Code (current_account-eu-central-1-f0ef142c)
+RilloraProduction: success: Published RilloraProduction Template (current_account-eu-central-1-63b641e8)
+RilloraProduction: creating CloudFormation changeset...
+Changeset arn:aws:cloudformation:eu-central-1:133857166372:changeSet/rillora-security-bfe9baaf5-production-stopped/e07b7f47-83b6-4432-b62c-73ac3ab4d77d created and waiting in review for manual execution (--no-execute)
+RilloraProduction: deploying... [1/1]
+
+✅  RilloraProduction
+
+✨  Deployment time: 0s
+
+Outputs:
+RilloraProduction.BackupRetentionDays = 7
+RilloraProduction.ClusterName = RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm
+RilloraProduction.ContentKeyArn = arn:aws:kms:eu-central-1:133857166372:key/0f60cf8f-25b6-4e8e-94c5-03fc127a5b72
+RilloraProduction.DatabaseHost = rillora-production.cxcqa2usex01.eu-central-1.rds.amazonaws.com
+RilloraProduction.DatabaseIdentifier = rillora-production
+RilloraProduction.DatabaseParameterGroup = rilloraproduction-postgresparameters8ea48b37-aidag1ktlvb3
+RilloraProduction.DatabaseSecurityGroupId = sg-0176b4c45717eb1b7
+RilloraProduction.DatabaseSubnetGroup = rilloraproduction-databasesubnets-grsk2po0xunc
+RilloraProduction.MaintenanceLogGroup = RilloraProduction-MaintenanceLogs61C6A99C-2niRZtkO9Ivq
+RilloraProduction.MaintenanceSubnetIds = subnet-070c4a18e68f26f1d,subnet-0d218a58218e10e36
+RilloraProduction.MigrationSecurityGroupId = sg-0bdbb583c7d22b27a
+RilloraProduction.MigrationTaskDefinitionArn = arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionMigrationTask3A96A2B6:19
+RilloraProduction.OperatorRoleArn = arn:aws:iam::133857166372:role/rillora/rillora-production-operator
+RilloraProduction.ProductionTrafficReady = false
+RilloraProduction.ProductionVpcId = vpc-07e1ea12ac1185897
+RilloraProduction.RecoveryDatabaseSecurityGroupId = sg-0a2749f1ef2b22600
+RilloraProduction.RecoveryJournalTable = RilloraProduction-RecoveryJournal06BB91CD-1EBHY2PWCGS9F
+RilloraProduction.RecoverySecurityGroupId = sg-09cdb1445e4e84d7e
+RilloraProduction.RecoveryTaskDefinitionArn = arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRecoveryTask4FA4E62D:20
+RilloraProduction.RuntimeAccountDeletionServiceSecretArn4C39EFED = arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/account-deletion-SM6pTi
+RilloraProduction.RuntimeApiLogGroup3DA7AF21 = RilloraProduction-RuntimeApiLogs69C9F62B-I6Cv6Kkh8WhY
+RilloraProduction.RuntimeApiSecurityGroupIdDEAE6BF4 = sg-014722f6f6b5b18ff
+RilloraProduction.RuntimeApiServiceNameF8B88348 = RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL
+RilloraProduction.RuntimeApiTaskDefinitionArn02DA653E = arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRuntimeApiTask93405B31:21
+RilloraProduction.RuntimeApiUrl28EC49BD = https://j749rhzub7.execute-api.eu-central-1.amazonaws.com
+RilloraProduction.RuntimeAppleReviewSecretArn1673390A = arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/apple-review-CtmNG4
+RilloraProduction.RuntimeCertificateArnBB7EAC67 = arn:aws:acm:eu-central-1:133857166372:certificate/8435fada-00ca-4c0e-880b-ff26e0fb6191
+RilloraProduction.RuntimeCustomerAccess0D914672 = closed
+RilloraProduction.RuntimeEmailVerificationServiceSecretArn7E08F4A1 = arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/email-verification-k3bQtl
+RilloraProduction.RuntimeGatewayLogGroup40748EB6 = RilloraProduction-RuntimeGatewayLogs879CA399-e6fvu3hZcaiq
+RilloraProduction.RuntimeReviewAccess8016FD90 = identity-allowlist
+RilloraProduction.RuntimeStripeNotificationsSecretArn8A76E8A3 = arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/stripe-billing-TEpYNp
+RilloraProduction.RuntimeTlsServerName02234589 = origin.production.rillora.xyz
+RilloraProduction.RuntimeWebOidcSecretArn7F992744 = arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/web-oidc-nccEvI
+Stack ARN:
+arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraProduction/60c3f040-b74b-11f1-9fc1-027c8dcc491b
+
+✨  Total time: 36.41s
+

@@ -1,0 +1,51 @@
+{
+  "version": "54.0.0",
+  "files": {
+    "6f4db048e75080e5203db9a34d5a34c25ce5adb184c4b3349f5249d2224d8f37": {
+      "displayName": "HealthCheck/Code",
+      "source": {
+        "path": "asset.6f4db048e75080e5203db9a34d5a34c25ce5adb184c4b3349f5249d2224d8f37",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "133857166372-eu-central-1-fe6165be": {
+          "bucketName": "cdk-hnb659fds-assets-133857166372-eu-central-1",
+          "objectKey": "[BUILD_ARTIFACT_DIGEST_OMITTED].zip",
+          "region": "eu-central-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::133857166372:role/cdk-hnb659fds-file-publishing-role-133857166372-eu-central-1"
+        }
+      }
+    },
+    "a5aca65de30bea1816f1207ad3ca7bd6bc22f94db7ceafd7296bae45d03b1414": {
+      "displayName": "SnapshotRetirement/Worker/Code",
+      "source": {
+        "path": "asset.a5aca65de30bea1816f1207ad3ca7bd6bc22f94db7ceafd7296bae45d03b1414",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "133857166372-eu-central-1-e541f63f": {
+          "bucketName": "cdk-hnb659fds-assets-133857166372-eu-central-1",
+          "objectKey": "[BUILD_ARTIFACT_DIGEST_OMITTED].zip",
+          "region": "eu-central-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::133857166372:role/cdk-hnb659fds-file-publishing-role-133857166372-eu-central-1"
+        }
+      }
+    },
+    "0ff2d18643cdc9763f6b3b6db17301a88499fb8da5e9382d69a947d812a51105": {
+      "displayName": "RilloraOperations Template",
+      "source": {
+        "path": "RilloraOperations.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "133857166372-eu-central-1-8ebd8146": {
+          "bucketName": "cdk-hnb659fds-assets-133857166372-eu-central-1",
+          "objectKey": "0ff2d18643cdc9763f6b3b6db17301a88499fb8da5e9382d69a947d812a51105.json",
+          "region": "eu-central-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::133857166372:role/cdk-hnb659fds-file-publishing-role-133857166372-eu-central-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

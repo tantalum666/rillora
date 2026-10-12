@@ -1,0 +1,41 @@
+{
+  "readOnly": true,
+  "clients": [
+    {
+      "environment": "staging",
+      "name": "Rillora iOS",
+      "callbacks": [
+        "com.rillora.ios://rillora-dev.eu.auth0.com/ios/com.rillora.ios/callback",
+        "com.rillora.ios://login.rillora.xyz/ios/com.rillora.ios/callback"
+      ],
+      "mobileAssociationPrepared": true
+    },
+    {
+      "environment": "production",
+      "name": "Rillora Production iOS",
+      "callbacks": [
+        "com.rillora.ios://login.rillora.xyz/ios/com.rillora.ios/callback"
+      ],
+      "mobileAssociationPrepared": false
+    }
+  ],
+  "actions": [
+    {
+      "id": "5ee3533f-ab0c-4830-9c70-a55a817eeb69",
+      "name": "Rillora hosted legal acceptance",
+      "runtime": "node22",
+      "status": "built",
+      "hasSecrets": false,
+      "deployedCodeSha256": "52966d15dbf2a31fe9baa22329594f10513dd31190eaca17715554f35a761f09"
+    },
+    {
+      "id": "53601883-484d-4bec-8a56-cb8329ea5dd7",
+      "name": "Rillora production review access",
+      "runtime": "node22",
+      "status": "built",
+      "hasSecrets": false,
+      "deployedCodeSha256": "f26b407c4bf4f3e3b7fb65dd792e3cdb66a844f4c10cf2e4b3ed944ace15fd01"
+    }
+  ],
+  "bindingCount": 2
+}

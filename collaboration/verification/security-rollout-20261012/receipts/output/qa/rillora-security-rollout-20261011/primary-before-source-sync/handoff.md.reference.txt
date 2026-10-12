@@ -1,0 +1,17 @@
+# Rillora 当前交接
+
+Status: PREVIEW SCHEMA103 AND RUNNING STACK DEPLOYED / PRODUCTION UNCHANGED / NO TESTFLIGHT
+Last updated: 2026-10-12 (Asia/Hong_Kong)
+
+Owner现已要求部署全部安全修复，按已记录切换顺序，保留数据、价格与收费开关，不发TestFlight，并重申默认最高授权。
+当前工程仅在已附加工作树的`codex/security-findings-20261011`，起点b6f5b8c97。
+主检出工程仍为647317834，不能拿这里的旧源码部署，也不要重新开始相同修复。
+
+剩余五组已经完成代码／测试并统一推送到74a9c66ac，API519项／infra58项及[CI125](https://github.com/tantalum666/rillora/actions/runs/38146452345)通过；新archive32的232原件／249路径已从GitHub独立新下载解密核验。
+唯一下一步：按[活动工作树交接](/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/docs/handoff.md)
+核对当前聊天实际执行权限，验证已恢复Preview的HTTP／API／独立worker，随后继续production受控切换；不重复已完成的Preview停写、迁移和恢复，也不恢复旧等待部署授权门。
+[本轮实施记录](/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/docs/security-remaining-five-20261011.md)
+区分代码、本地回归与未执行的线上／真实凭据迁移。
+
+本轮兼容源码bfe9baaf5／CI126已推送并通过。Preview加密备份available，103迁移与68表原业务指纹／权限核验通过；2026-10-12T08:06:48Z恢复栈UPDATE_COMPLETE并完全匹配候选。Auth0兼容回调／Action已保存，正式环境仍未切换。没有真实付款／退款、手机／TestFlight、保留账号删除或FanPass变更；原扫描未重启。
+用户默认配置已为danger-full-access且项目trusted，但当前运行轮次实际仍workspace-write／网络受限，重复审批来自该不一致；不新增项目批准门，后续核对实际权限再继续。恢复后端点／任务／日志、正式部署、原生联动与本机凭据迁移、当前新增QA的Git保存仍未完成。

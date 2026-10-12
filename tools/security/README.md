@@ -1,6 +1,6 @@
 # Rillora operator credential protection
 
-Status: SIGNED HELPER INSTALLED AND VERIFIED / REAL CLI LOOPBACK PASSED / REAL MIGRATION NOT RUN
+Status: SIGNED HELPER VERIFIED / REAL CLI LOOPBACK PASSED / NINE CANONICAL CREDENTIAL FILES MIGRATED
 Last updated: 2026-10-12 (Asia/Hong_Kong)
 
 This tool protects the named Auth0 and Apple operational files used by the updated repository helpers.
@@ -73,7 +73,10 @@ human authentication is invented; the protected negative control uses the real a
 Deployment exposed and fixed a `codesign -R` literal-expression syntax error in both installation
 and reads. The helper is now formally signed and installed in the active worktree; its real
 signature requirement passes, a wrong helper identifier is rejected, and the fixed hardware
-denial controls pass. Real user-confirmed credential migration has not run. The design
+denial controls pass. The same verified helper is installed in the main checkout, whose source
+was fast-forwarded to042f4e100. Nine supported credential files in that canonical checkout
+were encrypted, read back with user presence and atomically replaced onOctober12. No cloud
+key or permission was changed, and the collaboration archive identity was not migrated. The design
 contains unattended file theft; it does not defeat a fully controlled OS
 during an authorized use, prove old disk blocks/backups erased, or establish provider rotation.
 [Task evidence and remaining gates](../../docs/security-remaining-five-20261011.md).

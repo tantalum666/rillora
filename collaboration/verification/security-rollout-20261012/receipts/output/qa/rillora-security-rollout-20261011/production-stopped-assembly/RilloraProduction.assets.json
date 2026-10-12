@@ -1,0 +1,85 @@
+{
+  "version": "54.0.0",
+  "files": {
+    "2819175352ad1ce0dae768e83fc328fb70fb5f10b4a8ff0ccbcb791f02b0716d": {
+      "displayName": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code",
+      "source": {
+        "path": "asset.2819175352ad1ce0dae768e83fc328fb70fb5f10b4a8ff0ccbcb791f02b0716d",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "current_account-eu-central-1-850c9926": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-eu-central-1",
+          "objectKey": "[BUILD_ARTIFACT_DIGEST_OMITTED].zip",
+          "region": "eu-central-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-eu-central-1"
+        }
+      }
+    },
+    "08a83eb2484e253052c375e1fac3cdfb02a705eb0511341de44bdc47c63cfd22": {
+      "displayName": "RecoveryAttestation/Writer/Code",
+      "source": {
+        "path": "asset.08a83eb2484e253052c375e1fac3cdfb02a705eb0511341de44bdc47c63cfd22",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "current_account-eu-central-1-f0ef142c": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-eu-central-1",
+          "objectKey": "[BUILD_ARTIFACT_DIGEST_OMITTED].zip",
+          "region": "eu-central-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-eu-central-1"
+        }
+      }
+    },
+    "67fe236f0f26fc31e16451792eeb80eb2b397fc520b999ddcc08027a72fff3bf": {
+      "displayName": "MaintenanceBroker/Function/Code",
+      "source": {
+        "path": "asset.67fe236f0f26fc31e16451792eeb80eb2b397fc520b999ddcc08027a72fff3bf",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "current_account-eu-central-1-f1949dee": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-eu-central-1",
+          "objectKey": "[BUILD_ARTIFACT_DIGEST_OMITTED].zip",
+          "region": "eu-central-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-eu-central-1"
+        }
+      }
+    },
+    "8b400389b2b9ef4f51b60ba138843ae0f28577bcc2736b88a7c89f11f467eafd": {
+      "displayName": "RilloraProduction Template",
+      "source": {
+        "path": "RilloraProduction.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "current_account-eu-central-1-63b641e8": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-eu-central-1",
+          "objectKey": "8b400389b2b9ef4f51b60ba138843ae0f28577bcc2736b88a7c89f11f467eafd.json",
+          "region": "eu-central-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-eu-central-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {
+    "34a35de0a94dd4c68addf83ab29e9eba027a14c81bbeb68c97d3ffda1e69a77f": {
+      "displayName": "MigrationTask/Maintenance/AssetImage",
+      "source": {
+        "directory": "asset.34a35de0a94dd4c68addf83ab29e9eba027a14c81bbeb68c97d3ffda1e69a77f",
+        "dockerBuildArgs": {
+          "RDS_CA_BUNDLE_SHA256": "e5bb2084ccf45087bda1c9bffdea0eb15ee67f0b91646106e466714f9de3c7e3"
+        },
+        "platform": "linux/arm64"
+      },
+      "destinations": {
+        "current_account-eu-central-1-0eeafdee": {
+          "repositoryName": "cdk-hnb659fds-container-assets-${AWS::AccountId}-eu-central-1",
+          "imageTag": "34a35de0a94dd4c68addf83ab29e9eba027a14c81bbeb68c97d3ffda1e69a77f",
+          "region": "eu-central-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-image-publishing-role-${AWS::AccountId}-eu-central-1"
+        }
+      }
+    }
+  }
+}

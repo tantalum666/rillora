@@ -1,0 +1,31 @@
+"""Read back every deployed Web artifact and the two HTTPS invitation associations."""
+from pathlib import Path
+from concurrent.futures import ThreadPoolExecutor
+import datetime,hashlib,json,urllib.request,urllib.error
+ROOT=Path(__file__).resolve().parents[3];Q=ROOT/'output/qa/rillora-security-rollout-20261011'
+class Direct(urllib.request.HTTPRedirectHandler):
+ def redirect_request(self,*args,**kwargs):return None
+def get(url):
+ request=urllib.request.Request(url,headers={'Accept-Encoding':'identity','Cache-Control':'no-cache','User-Agent':'Rillora-authorized-release-verification/1.0'})
+ with urllib.request.build_opener(Direct()).open(request,timeout=25) as r:return r.status,{k.lower():v for k,v in r.headers.items()},r.read()
+results=[]
+for name,origin,directory,manifest in [('staging','https://app.staging.rillora.xyz','apps/web/dist/client',None),('production','https://app.rillora.xyz','apps/web/dist-production-review','production-build.json'),('public','https://www.rillora.xyz','apps/web/dist-public','public-build.json')]:
+ folder=ROOT/directory
+ expected=json.loads((folder/manifest).read_text())['files'] if manifest else {p.relative_to(folder).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in folder.rglob('*') if p.is_file()}
+ def verify(item):
+  path,digest=item;assert '..' not in Path(path).parts
+  url=origin+('/' if path=='index.html' else '/'+path)
+  try:
+   status,headers,body=get(url);actual=hashlib.sha256(body).hexdigest()
+   return {'path':path,'status':status,'sha256':actual,'matched':status==200 and actual==digest}
+  except Exception as error:return {'path':path,'matched':False,'errorType':type(error).__name__}
+ with ThreadPoolExecutor(max_workers=6) as pool:files=list(pool.map(verify,expected.items()))
+ result={'surface':name,'origin':origin,'files':files,'matched':all(x['matched'] for x in files)}
+ if name!='public':
+  status,headers,body=get(origin+'/.well-known/apple-app-site-association');value=json.loads(body)
+  expectedAssociation={'applinks':{'apps':[],'details':[{'appID':'8L99CFNK24.com.rillora.ios','paths':['/invite','/invite/*']}]}}
+  result['invitationAssociationMatched']=status==200 and value==expectedAssociation and 'application/json' in headers.get('content-type','')
+  result['matched']=result['matched'] and result['invitationAssociationMatched']
+ results.append(result);print(json.dumps({'surface':name,'files':len(files),'matched':result['matched'],'failed':[x for x in files if not x['matched']]}),flush=True)
+report={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'results':results,'passed':all(x['matched'] for x in results),'filesChecked':sum(len(x['files']) for x in results),'readOnly':True}
+(Q/'public-artifact-verification.json').write_text(json.dumps(report,indent=2)+'\n');assert report['passed'],'Public artifacts or association mismatched'

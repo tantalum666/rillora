@@ -1,6 +1,12 @@
 # Source control, complete work preservation and release rollback
 
-Last updated: 2026-10-11 (Asia/Hong_Kong)
+Last updated: 2026-10-12 (Asia/Hong_Kong)
+
+## October12 security rollout — new evidence preservation
+
+The[coordinated deployment](security-rollout-20261012.md) completed both schemas103, five stacks,203Web artifact checks, direct phone14and the named local credential migration. Cloud/native source isbfe9baaf5/CI126; local compatibility repairs042f4e100/CI127are already pushed and verified. The main checkout was fast-forwarded without discarding history; the old handoff has a named local stash and preserved QA copy.
+
+[New archive33](../collaboration/verification/security-rollout-20261012/README.md)contains665paths/536objects/55,781,041encrypted bytes and passes local authenticated decryption. Exact exclusions keep credentials, provider objects, real database data and device inventory outside publication. Prior1–32are not re-created or re-downloaded. The new evidence commit, CI and independent fresh remote download are the current closeout step; source/QA success is not a remote-preservation receipt.
 
 ## October11 remaining-five continuation — pushed and independently verified
 

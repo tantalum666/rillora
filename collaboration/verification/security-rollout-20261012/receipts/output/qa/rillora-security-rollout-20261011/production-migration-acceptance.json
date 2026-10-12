@@ -1,0 +1,20 @@
+{
+  "at": "2026-10-12T08:39:20.519925+00:00",
+  "environment": "production",
+  "passed": true,
+  "migrations": 103,
+  "allChecksumsMatch": true,
+  "originalBusinessDataFingerprintsMatch": true,
+  "comparedTables": 68,
+  "expectedRepresentationChangesOnly": true,
+  "authorityChecks": {
+    "sqlCannotReadAuthority": true,
+    "sqlCannotAcknowledgeJournal": true,
+    "unsignedTenantSelectionDenied": true,
+    "signedOwnerReadWorks": true,
+    "changedOwnerDenied": true,
+    "forgedJournalEnvelopeDenied": true
+  },
+  "billingSwitchesChanged": false,
+  "realAccountDeleted": false
+}

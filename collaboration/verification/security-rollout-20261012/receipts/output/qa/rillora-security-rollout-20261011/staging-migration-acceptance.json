@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-12T07:55:17.716559+00:00",
+  "environment": "staging",
+  "passed": true,
+  "migrations": 103,
+  "allChecksumsMatch": true,
+  "originalBusinessDataFingerprintsMatch": true,
+  "comparedTables": 68,
+  "expectedRepresentationChangesOnly": true,
+  "authorityChecks": {
+    "sqlCannotReadAuthority": true,
+    "sqlCannotAcknowledgeJournal": true,
+    "unsignedTenantSelectionDenied": true,
+    "signedOwnerReadWorks": true,
+    "changedOwnerDenied": true
+  },
+  "billingSwitchesChanged": false,
+  "realAccountDeleted": false
+}

@@ -1,0 +1,24 @@
+"""Read only exact native clients and Rillora Post Login action baselines; no user profiles."""
+from pathlib import Path
+import hashlib,json,sys
+ROOT=Path(__file__).resolve().parents[3];P=ROOT/'.local-secrets/security-rollout-20261011';Q=ROOT/'output/qa/rillora-security-rollout-20261011'
+sys.path.insert(0,str(ROOT/'tools/auth0'))
+import native_https_callbacks as native
+def save(name,value):
+ p=P/name;assert not p.exists(),'Auth0 baseline already saved'
+ p.write_text(json.dumps(value,indent=2)+'\n');p.chmod(0o600)
+clients=[]
+for env,cid in native.CLIENTS.items():
+ v=native.api('get','clients/'+cid+'?fields='+native.FIELDS+'&include_fields=true')
+ native.desired(v,cid,True);save('auth0-'+env+'-native-before.json',v)
+ clients.append({'environment':env,'name':v.get('name'),'callbacks':v['callbacks'],'mobileAssociationPrepared':bool(v.get('mobile'))})
+response=native.api('get','actions/actions?per_page=100');actions=response.get('actions',[]);assert response.get('total',len(actions))==len(actions)
+bindings=native.api('get','actions/triggers/post-login/bindings?per_page=100');assert bindings.get('total',len(bindings.get('bindings',[])))==len(bindings.get('bindings',[]))
+save('auth0-bindings-before.json',bindings)
+rows=[]
+for item in actions:
+ if not item.get('name','').startswith('Rillora'):continue
+ v=native.api('get','actions/actions/'+item['id']);save('auth0-action-'+item['id']+'-before.json',v)
+ rows.append({'id':item['id'],'name':item['name'],'runtime':v.get('runtime'),'status':v.get('status'),'hasSecrets':bool(v.get('secrets')),'deployedCodeSha256':hashlib.sha256(v.get('deployed_version',{}).get('code','').encode()).hexdigest()})
+summary={'readOnly':True,'clients':clients,'actions':rows,'bindingCount':len(bindings.get('bindings',[]))}
+(Q/'auth0-baseline.json').write_text(json.dumps(summary,indent=2)+'\n');print(json.dumps(summary))

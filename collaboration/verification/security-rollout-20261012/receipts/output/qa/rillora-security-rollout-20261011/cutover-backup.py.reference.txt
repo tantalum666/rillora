@@ -1,0 +1,67 @@
+"""Create/check only the cutover's encrypted backup after all source writers stop."""
+from pathlib import Path
+import argparse,datetime,json,subprocess,sys,uuid
+ROOT=Path(__file__).resolve().parents[3];P=ROOT/'.local-secrets/security-rollout-20261011';Q=ROOT/'output/qa/rillora-security-rollout-20261011'
+sys.path.insert(0,str(ROOT/'tools/release'))
+from recovery_drill import Aws
+parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('operation',choices=['prepare','make','make-untagged','check']);parser.add_argument('environment',choices=['staging','production']);args=parser.parse_args()
+name='RilloraStaging' if args.environment=='staging' else 'RilloraProduction'
+operator=Aws('rillora-'+args.environment+'-operator');reader=Aws('rillora-cdk-deploy')
+def save(path,data):path.write_text(json.dumps(data,indent=2)+'\n');path.chmod(0o600)
+if args.operation=='prepare':
+ assert args.environment=='production'
+ path=P/'production-cutover-state.json'
+ if not path.exists():subprocess.run(['python3',str(ROOT/'tools/release/recovery_drill.py'),'plan','--state',str(path)],cwd=ROOT,check=True)
+ print(json.dumps({'environment':'production','capabilityPlanPrepared':True,'resourcesCreated':False}));raise SystemExit()
+stack=operator.call('cloudformation','describe-stacks',{'StackName':name})['Stacks'][0];assert stack['StackStatus']=='UPDATE_COMPLETE'
+o={x['OutputKey']:x['OutputValue'] for x in stack['Outputs']}
+resources=reader.call('cloudformation','describe-stack-resources',{'StackName':name})['StackResources']
+database=next(x['PhysicalResourceId'] for x in resources if x['ResourceType']=='AWS::RDS::DBInstance')
+recordPath=P/(args.environment+'-backup.json')
+if args.operation in ['make','make-untagged']:
+ names=[x['PhysicalResourceId'] for x in resources if x['ResourceType']=='AWS::ECS::Service']
+ rows=operator.call('ecs','describe-services',{'cluster':o['ClusterName'],'services':names})
+ assert not rows.get('failures') and len(rows['services'])==2 and all(s['desiredCount']==s['runningCount']==s['pendingCount']==0 for s in rows['services'])
+ before=json.loads((P/(args.environment+'-audit-before-result.json')).read_text());assert before['pendingIdentityDeletions']==0 and len(before['migrations'])==94
+ if args.operation=='make-untagged':
+  assert args.environment=='staging' and recordPath.exists()
+  state=json.loads(recordPath.read_text());assert state['database']==database and not state.get('creationResponseSaved')
+  assert operator.snapshot(state['snapshot']) is None,'Snapshot already exists; do not repeat creation'
+  identity=operator.call('sts','get-caller-identity',{});assert identity['Account']=='133857166372' and ':assumed-role/rillora-staging-operator/' in identity['Arn']
+  save(P/'staging-backup-original-tagged-request.json',state)
+  state.update({'initialTaggedRequestDenied':True,'ownershipEvidence':'authenticated-create-response','creatorRoleArn':identity['Arn'],'retryRequestedAt':datetime.datetime.now(datetime.timezone.utc).isoformat()});save(recordPath,state)
+  created=operator.call('rds','create-db-snapshot',{'DBSnapshotIdentifier':state['snapshot'],'DBInstanceIdentifier':database})['DBSnapshot']
+  assert created['DBSnapshotIdentifier']==state['snapshot'] and created['DBInstanceIdentifier']==database and created['Encrypted'] is True
+  assert created['DBSnapshotArn']=='arn:aws:rds:eu-central-1:133857166372:snapshot:'+state['snapshot']
+  save(P/'staging-backup-create-response.json',created);state['creationResponseSaved']=True;save(recordPath,state)
+  print(json.dumps({'environment':'staging','backupRequested':True,'taggingPermissionExpanded':False,'[PUBLIC_IDENTIFIER_OMITTED]':True,'available':False}));raise SystemExit()
+ assert not recordPath.exists(),'Backup already requested; use check'
+ if args.environment=='production':
+  state=json.loads((P/'production-cutover-state.json').read_text());snapshot=state['snapshot']
+  save(recordPath,{'snapshot':snapshot,'database':database,'requestedAt':datetime.datetime.now(datetime.timezone.utc).isoformat()})
+  operator.invoke_broker(o['MaintenanceBrokerFunctionName'],{'operation':'snapshot','run':state['run'],'runToken':state['runToken']})
+ else:
+  run=uuid.uuid4().hex[:16];snapshot='rillora-content-encryption-security-20261012-'+run
+  save(recordPath,{'snapshot':snapshot,'database':database,'run':run,'requestedAt':datetime.datetime.now(datetime.timezone.utc).isoformat()})
+  operator.call('rds','create-db-snapshot',{'DBSnapshotIdentifier':snapshot,'DBInstanceIdentifier':database,'Tags':[{'Key':'Project','Value':'Rillora'},{'Key':'Environment','Value':'Staging'},{'Key':'Purpose','Value':'SecurityRollout'},{'Key':'SecurityRun','Value':run}]})
+ print(json.dumps({'environment':args.environment,'backupRequested':True,'available':False}))
+else:
+ state=json.loads(recordPath.read_text());result=operator.call('rds','describe-db-snapshots',{'DBSnapshotIdentifier':state['snapshot']})['DBSnapshots'][0]
+ assert result['DBSnapshotIdentifier']==state['snapshot'] and result['DBInstanceIdentifier']==database==state['database'] and result['Encrypted'] is True
+ tags={x['Key']:x['Value'] for x in result.get('TagList',[])}
+ if args.environment=='staging' and state.get('ownershipEvidence')=='authenticated-create-response':
+  assert state['creationResponseSaved'] and ':assumed-role/rillora-staging-operator/' in state['creatorRoleArn']
+  created=json.loads((P/'staging-backup-create-response.json').read_text())
+  assert created['DBSnapshotArn']==result['DBSnapshotArn']=='arn:aws:rds:eu-central-1:133857166372:snapshot:'+state['snapshot']
+  assert created['DBInstanceIdentifier']==database and created['Encrypted'] is True
+  if result.get('SnapshotCreateTime'):
+   assert datetime.datetime.fromisoformat(result['SnapshotCreateTime'].replace('Z','+00:00'))>=datetime.datetime.fromisoformat(state['retryRequestedAt'])-datetime.timedelta(minutes=1)
+  else:assert result['Status']!='available','Available snapshot lacks its creation time'
+ elif args.environment=='staging':assert tags.get('Project')=='Rillora' and tags.get('SecurityRun')==state['run'] and tags.get('Purpose')=='SecurityRollout'
+ else:
+  import hashlib
+  plan=json.loads((P/'production-cutover-state.json').read_text());assert tags.get('Project')=='Rillora' and tags.get('RecoveryRun')==plan['run'] and tags.get('RecoveryAuthorization')==hashlib.sha256(plan['runToken'].encode()).hexdigest()
+ save(P/(args.environment+'-backup-readback.json'),result)
+ report={'environment':args.environment,'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'available':result['Status']=='available','encrypted':True,'sourceMatched':True,'ownershipMatched':True,'restoredOrPromoted':False}
+ if report['available']:(Q/(args.environment+'-backup-verified.json')).write_text(json.dumps(report,indent=2)+'\n')
+ print(json.dumps(report))

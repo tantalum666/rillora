@@ -1,7 +1,9 @@
 # Rillora 第31—35组安全边界修复
 
-Status: SOURCE PUSHED / CI125 PASSED / ARCHIVE32 REMOTELY VERIFIED / NOT DEPLOYED
-Last updated: 2026-10-11 (Asia/Hong_Kong)
+Status: OCTOBER11 SOURCE CHECKPOINT PRESERVED / OCTOBER12 DEPLOYMENT RECORDED SEPARATELY
+Last updated: 2026-10-12 (Asia/Hong_Kong)
+
+后续状态（2026-10-12）：Owner已授权并完成[实际安全切换](security-rollout-20261012.md)，含两库103、隔离运行时／worker／日志broker及9份具名本机凭据迁移。以下保留October11源码阶段的原日期、测试分母和当时未部署边界，不再作为线上冻结指令；当前唯一下一步见handoff。
 
 Owner明确要求继续修复剩余五组，先完成代码和测试，再一起推GitHub，线上保持原状。
 起点为b6f5b8c97，沿用[原报告映射](security-findings-remediation-20261011.md)的findingId和原始出处；

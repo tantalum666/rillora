@@ -1,0 +1,49 @@
+"""Non-destructive provider checks: denied raw ECS, unreviewed harmless command, wrong snapshot capability."""
+from pathlib import Path
+import argparse,copy,datetime,json,subprocess,sys,uuid
+ROOT=Path(__file__).resolve().parents[3];Q=ROOT/'output/qa/rillora-security-rollout-20261011';P=ROOT/'.local-secrets/security-rollout-20261011'
+sys.path.insert(0,str(ROOT/'tools/release'))
+from recovery_drill import Aws
+sys.path.insert(0,str(ROOT/'tools/security'))
+from credential_store import run_with_private_json
+parser=argparse.ArgumentParser();parser.add_argument('environment',choices=['staging','production']);args=parser.parse_args();env=args.environment
+name='RilloraStaging' if env=='staging' else 'RilloraProduction';profile='rillora-'+env+'-operator';reader=Aws('rillora-cdk-deploy');operator=Aws(profile)
+stack=reader.call('cloudformation','describe-stacks',{'StackName':name})['Stacks'][0];assert stack['StackStatus']=='UPDATE_COMPLETE'
+o={x['OutputKey']:x['OutputValue'] for x in stack['Outputs']};script=(ROOT/'tools/release/probe_security_rollout.mjs').read_text()
+def save(path,value):path.write_text(json.dumps(value,indent=2)+'\n');path.chmod(0o600)
+if env=='production':
+ request=copy.deepcopy(json.loads((P/'production-audit-before-task.json').read_text())['payload']['request']);plan=json.loads((P/'production-cutover-state.json').read_text())
+else:
+ request={'cluster':o['ClusterName'],'taskDefinition':o['MigrationTaskDefinitionArn'],'launchType':'FARGATE','networkConfiguration':{'awsvpcConfiguration':{'subnets':o['PublicSubnetIds'].split(','),'securityGroups':[o['TaskSecurityGroupId']],'assignPublicIp':'ENABLED'}},'overrides':{'containerOverrides':[{'name':'Migration','command':['node','--input-type=module','-e',script],'environment':[{'name':'RILLORA_DEPLOYMENT_AUDIT_ENVIRONMENT','value':'staging'}]}]}}
+request['clientToken']=uuid.uuid4().hex
+# This denied RunTask control contains only the committed read-only probe and
+# public resource/run identifiers; no credential or capability is in request.
+# Real credential uploads must use protected transport, never this control path.
+raw=subprocess.run(['aws','ecs','run-task','--profile',profile,'--region','eu-central-1','--output','json','--cli-input-json',json.dumps(request)],capture_output=True,text=True,timeout=60)
+save(P/(env+'-negative-raw-ecs.json'),{'exitCode':raw.returncode,'stdout':raw.stdout,'stderr':raw.stderr})
+denied=raw.returncode!=0 and 'AccessDenied' in raw.stderr and 'ecs:RunTask' in raw.stderr
+if raw.returncode==0:
+ unexpected=json.loads(raw.stdout)
+ for task in unexpected.get('tasks',[]):operator.call('ecs','stop-task',{'cluster':o['ClusterName'],'task':task['taskArn'],'reason':'Stop unexpected read-only verification task'})
+assert denied,'Raw ECS was not rejected by the expected IAM action boundary'
+def refused(label,payload,reason):
+ out=P/(env+'-'+label+'-response.json')
+ response=subprocess.run(['aws','lambda','invoke','--profile',profile,'--region','eu-central-1','--function-name',o['MaintenanceBrokerFunctionName'],'--payload','fileb:///dev/stdin',str(out)],input=json.dumps(payload),capture_output=True,text=True,timeout=90)
+ assert response.returncode==0,'Broker invocation itself failed'
+ out.chmod(0o600);metadata=json.loads(response.stdout);body=json.loads(out.read_text())
+ if not metadata.get('FunctionError'):
+  for task in body.get('tasks',[]):operator.call('ecs','stop-task',{'cluster':o['ClusterName'],'task':task['taskArn'],'reason':'Stop unexpected harmless verification command'})
+ assert metadata.get('FunctionError') and body.get('errorMessage')=='Maintenance request refused: '+reason,'Unexpected broker result'
+ return True
+harmless='console.log("unreviewed harmless verification command")'
+if env=='staging':payload={'operation':'audit','clientToken':uuid.uuid4().hex,'script':harmless};reason='fixed read-only audit'
+else:
+ request['clientToken']=uuid.uuid4().hex;request['overrides']['containerOverrides'][0]['command']=['node','--input-type=module','-e',harmless]
+ payload={'operation':'task','run':plan['run'],'runToken':plan['runToken'],'request':request};reason='fixed reviewed command'
+result={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'environment':env,'rawRunTaskDenied':denied,'unreviewedHarmlessCommandDenied':refused('negative-command',payload,reason),'realDataMutationAttempted':False,'externalMessageSent':False}
+if env=='production':
+ assert json.loads((Q/'production-backup-verified.json').read_text())['available']
+ existing=operator.snapshot(plan['snapshot']);assert existing and existing['Status']=='available'
+ wrong='0'*43;assert wrong!=plan['runToken']
+ result['wrongExistingSnapshotCapabilityDenied']=refused('negative-capability',{'operation':'snapshot','run':plan['run'],'runToken':wrong},'resource ownership')
+result['passed']=True;save(Q/(env+'-negative-maintenance-access.json'),result);print(json.dumps(result))

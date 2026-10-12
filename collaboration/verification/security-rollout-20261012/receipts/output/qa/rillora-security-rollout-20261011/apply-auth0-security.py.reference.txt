@@ -1,0 +1,52 @@
+"""Apply only checked Rillora native callback additions and the exact signed-consent Actions."""
+from pathlib import Path
+import hashlib,json,re,sys,time
+ROOT=Path(__file__).resolve().parents[3];P=ROOT/'.local-secrets/security-rollout-20261011';Q=ROOT/'output/qa/rillora-security-rollout-20261011'
+sys.path.insert(0,str(ROOT/'tools/auth0'));import native_https_callbacks as native
+assert json.loads((Q/'ci-readback.json').read_text())['conclusion']=='success'
+def save(name,value):
+ p=P/name;p.write_text(json.dumps(value,indent=2)+'\n');p.chmod(0o600)
+def constant(code,name):
+ match=re.search(r"^const "+name+r" = ([\"'])(.*?)\1",code,re.M);assert match,'Expected deployed constant missing'
+ return match.group(2)
+bindings=native.api('get','actions/triggers/post-login/bindings?per_page=100')
+baseline=json.loads((P/'auth0-bindings-before.json').read_text())
+def binding_ids(v):return [(x['id'],x['action']['id']) for x in v['bindings']]
+assert binding_ids(bindings)==binding_ids(baseline)
+result={'nativeClients':[],'actions':[],'bindingOrderPreserved':False,'formsOrTermsChanged':False,'reviewExpiryChanged':False,'nativeLoginVerified':False}
+for env,cid in native.CLIENTS.items():
+ before=json.loads((P/('auth0-'+env+'-native-before.json')).read_text());expected=native.desired(before,cid,True)
+ current=native.api('get','clients/'+cid+'?fields='+native.FIELDS+'&include_fields=true')
+ assert all(current.get(k)==before.get(k) or current.get(k)==v for k,v in expected.items()),'Unexpected native configuration change'
+ changed=native.configure(env,True,retain_legacy=True);save('auth0-'+env+'-native-after.json',native.api('get','clients/'+cid+'?fields='+native.FIELDS+'&include_fields=true'))
+ result['nativeClients'].append(changed)
+for path in sorted(P.glob('auth0-action-*-before.json')):
+ before=json.loads(path.read_text());identifier=before['id'];current=native.api('get','actions/actions/'+identifier)
+ assert not before.get('secrets') and not current.get('secrets')
+ prior=before['deployed_version']['code'];name=before['name']
+ if name=='Rillora hosted legal acceptance':
+  code=(ROOT/'infra/auth0/hosted-consent/post-login-action.cjs').read_text()
+  for marker,key in [('__RILLORA_IOS_CLIENT_ID__','IOS_CLIENT_ID'),('__RILLORA_FORM_ID__','FORM_ID'),('__RILLORA_FORM_ZH_ID__','FORM_ZH_ID')]:code=code.replace(marker,constant(prior,key))
+  assert constant(prior,'IOS_CLIENT_ID')==native.CLIENTS['staging']
+ elif name=='Rillora production review access':
+  code=(ROOT/'infra/auth0/hosted-consent/production-review-action.cjs').read_text()
+  for marker,key in [('__REVIEW_IDENTITY_DIGEST__','IDENTITY_DIGESTS'),('__REVIEW_EXPIRES_AT__','EXPIRES_AT'),('__RILLORA_FORM_ID__','FORM'),('__RILLORA_FORM_ZH_ID__','FORM_ZH')]:code=code.replace(marker,constant(prior,key))
+  assert constant(prior,'IOS')==native.CLIENTS['production']
+ else:raise RuntimeError('Unexpected Rillora Action')
+ assert '__RILLORA_' not in code and '__REVIEW_' not in code
+ assert current.get('code') in [prior,code] and current.get('deployed_version',{}).get('code') in [prior,code],'Action changed after baseline'
+ changed=current['deployed_version']['code']!=code
+ if changed:
+  native.api('patch','actions/actions/'+identifier,{'code':code})
+  native.api('post','actions/actions/'+identifier+'/deploy')
+  for _ in range(20):
+   current=native.api('get','actions/actions/'+identifier)
+   if current.get('status')=='built' and current.get('deployed_version',{}).get('code')==code:break
+   time.sleep(.5)
+  else:raise RuntimeError('Action not ready; do not claim completion')
+ assert current['code']==code and current['deployed_version']['code']==code
+ save('auth0-action-'+identifier+'-after.json',current)
+ result['actions'].append({'name':name,'id':identifier,'changed':changed,'deployedCodeMatches':True,'sha256':hashlib.sha256(code.encode()).hexdigest()})
+final=native.api('get','actions/triggers/post-login/bindings?per_page=100');assert binding_ids(final)==binding_ids(baseline)
+result['bindingOrderPreserved']=True
+(Q/'auth0-security-applied.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))

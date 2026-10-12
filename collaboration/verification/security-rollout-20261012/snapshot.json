@@ -1,0 +1,147 @@
+{
+  "capturedFrom": "2026-10-12T12:54:36.840937+00:00",
+  "capturedThrough": "2026-10-12T12:54:38.303387+00:00",
+  "workFiles": 665,
+  "uniqueRawObjects": 536,
+  "workBytes": 173098045,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-033.tar.zst.age",
+      "sha256": "8de1244794f60ca4fa9b2a23fa6556762c3e6201e43747aee1bb9ee7ed20ec96",
+      "bytes": 55781041,
+      "plainBytes": 101625079,
+      "uniqueObjects": 536
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/security-rollout-20261012/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": ".local-secrets",
+      "reason": "actual_credentials_encrypted_credential_references_auth_sessions_provider_bodies_real_database_fingerprints_backups_and_device_inventory"
+    },
+    {
+      "path": ".local/bin",
+      "reason": "machine_local_signed_operator_binary_not_a_portable_credential_store"
+    },
+    {
+      "path": "old_archives_001_to_032",
+      "reason": "immutable_prior_evidence_not_recaptured_or_downloaded"
+    },
+    {
+      "path": "output/qa/rillora-security-rollout-20261011/direct14-inspection",
+      "reason": "reproducible_capture_or_extracted_signed_ipa_copy"
+    },
+    {
+      "path": "output/qa/rillora-security-rollout-20261011/publication",
+      "reason": "reproducible_capture_or_extracted_signed_ipa_copy"
+    },
+    {
+      "path": "output/qa/rillora-security-rollout-20261011/staging-stopped-assembly/asset.67fe236f0f26fc31e16451792eeb80eb2b397fc520b999ddcc08027a72fff3bf",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-security-rollout-20261011/staging-stopped-assembly/asset.faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-security-rollout-20261011/staging-stopped-assembly/asset.97e9ebf0b174a5c8f7faa505739022b7f509edddffcab9211dcd08b759944c4f",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-security-rollout-20261011/staging-stopped-assembly/asset.2819175352ad1ce0dae768e83fc328fb70fb5f10b4a8ff0ccbcb791f02b0716d",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-security-rollout-20261011/staging-stopped-assembly/asset.a04c803b15da020c8381b41db9cb975d006069a2ad5ade5c84fa5d4ad8050347",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-security-rollout-20261011/staging-stopped-assembly/asset.34a35de0a94dd4c68addf83ab29e9eba027a14c81bbeb68c97d3ffda1e69a77f",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-security-rollout-20261011/production-running-assembly/asset.08a83eb2484e253052c375e1fac3cdfb02a705eb0511341de44bdc47c63cfd22",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-security-rollout-20261011/production-running-assembly/asset.67fe236f0f26fc31e16451792eeb80eb2b397fc520b999ddcc08027a72fff3bf",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-security-rollout-20261011/production-running-assembly/asset.2819175352ad1ce0dae768e83fc328fb70fb5f10b4a8ff0ccbcb791f02b0716d",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-security-rollout-20261011/production-running-assembly/asset.34a35de0a94dd4c68addf83ab29e9eba027a14c81bbeb68c97d3ffda1e69a77f",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-security-rollout-20261011/RilloraOperations-assembly/asset.a5aca65de30bea1816f1207ad3ca7bd6bc22f94db7ceafd7296bae45d03b1414",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-security-rollout-20261011/RilloraOperations-assembly/asset.6f4db048e75080e5203db9a34d5a34c25ce5adb184c4b3349f5249d2224d8f37",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-security-rollout-20261011/production-stopped-assembly/asset.08a83eb2484e253052c375e1fac3cdfb02a705eb0511341de44bdc47c63cfd22",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-security-rollout-20261011/production-stopped-assembly/asset.67fe236f0f26fc31e16451792eeb80eb2b397fc520b999ddcc08027a72fff3bf",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-security-rollout-20261011/production-stopped-assembly/asset.2819175352ad1ce0dae768e83fc328fb70fb5f10b4a8ff0ccbcb791f02b0716d",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-security-rollout-20261011/production-stopped-assembly/asset.34a35de0a94dd4c68addf83ab29e9eba027a14c81bbeb68c97d3ffda1e69a77f",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-security-rollout-20261011/staging-running-assembly/asset.67fe236f0f26fc31e16451792eeb80eb2b397fc520b999ddcc08027a72fff3bf",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-security-rollout-20261011/staging-running-assembly/asset.faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-security-rollout-20261011/staging-running-assembly/asset.97e9ebf0b174a5c8f7faa505739022b7f509edddffcab9211dcd08b759944c4f",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-security-rollout-20261011/staging-running-assembly/asset.2819175352ad1ce0dae768e83fc328fb70fb5f10b4a8ff0ccbcb791f02b0716d",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-security-rollout-20261011/staging-running-assembly/asset.a04c803b15da020c8381b41db9cb975d006069a2ad5ade5c84fa5d4ad8050347",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-security-rollout-20261011/staging-running-assembly/asset.34a35de0a94dd4c68addf83ab29e9eba027a14c81bbeb68c97d3ffda1e69a77f",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-security-rollout-20261011/RilloraProductionWeb-assembly/asset.97e9ebf0b174a5c8f7faa505739022b7f509edddffcab9211dcd08b759944c4f",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-security-rollout-20261011/RilloraProductionWeb-assembly/asset.1db79b2c44d2c001f3c50e56a011fff771ef6385154c20b88ef02841c9eb4d51",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-security-rollout-20261011/RilloraPublicWeb-assembly/asset.f6f4297078b5a446b177fb3b26d4d8cf6997372809c4631003bbbe30e87f90a8",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-security-rollout-20261011/RilloraPublicWeb-assembly/asset.97e9ebf0b174a5c8f7faa505739022b7f509edddffcab9211dcd08b759944c4f",
+      "reason": "expanded_deployment_asset_copy"
+    }
+  ],
+  "selection": "Available deployment QA and failed/successful logs, fixed one-off runners, exact CFN assemblies excluding expanded assets, final Web/API builds, signed native14 IPA/xcarchive and local helper validation receipts. Source/specs remain normal Git. Actual credentials, encrypted credential references, provider bodies, real database data/fingerprints, device inventory and authentication state are excluded. Prior archives are unchanged.",
+  "boundary": "Both schemas103 and five stacks deployed; original data fingerprints matched, runtime/provider refusals verified,203 Web files matched; phone14 and original matters Owner-confirmed, Auth0 HTTPS-only callbacks applied,9 canonical local credentials encrypted/readback-verified. Same3review identities renewed48hours; ordinary sales closed. GitHub current private plan does not enforce branch protection. Final remote/CI receipts follow this frozen capture."
+}

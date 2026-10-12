@@ -1,0 +1,66 @@
+"""Post-capture readable-only cleanup; ciphertext and scanner policy stay unchanged."""
+from pathlib import Path
+import collections
+import datetime
+import hashlib
+import json
+import re
+import subprocess
+
+ROOT = Path(__file__).resolve().parents[3]
+QA = ROOT / 'output/qa/rillora-security-rollout-20261011'
+DEST = ROOT / 'collaboration/verification/security-rollout-20261012'
+ARCHIVE = ROOT / 'collaboration/archives/raw-work-033.tar.zst.age'
+before_archive = hashlib.sha256(ARCHIVE.read_bytes()).hexdigest()
+snapshot = json.loads((DEST / 'snapshot.json').read_text())
+assert before_archive == snapshot['archives'][0]['sha256']
+findings = json.loads((QA / 'new-readable-scan-findings.json').read_text())
+assert len(findings) == 79
+asset = re.compile(r'(?P<prefix>"?(?:objectKey|S3Key|s3Key)"?\s*:\s*"?)(?P<digest>[a-f0-9]{64})(?P<suffix>\.zip)')
+revision = re.compile(r'(?P<prefix>"apiSourceUnchangedSince"\s*:\s*")(?P<digest>[a-f0-9]{40})(?P<suffix>")')
+classified = []
+for finding in findings:
+    path = Path(finding['File'])
+    assert path.is_relative_to(DEST / 'receipts')
+    assert finding['RuleID'] == 'generic-api-key'
+    line = path.read_text().splitlines()[finding['StartLine'] - 1]
+    start, end = finding['StartColumn'] - 1, finding['EndColumn']
+    overlap = [match for match in asset.finditer(line) if match.start() < end and match.end() > start]
+    category = 'CDK artifact digest filename'
+    if not overlap:
+        overlap = [match for match in revision.finditer(line) if match.start() < end and match.end() > start]
+        assert len(overlap) == 1
+        subprocess.run(['git', 'cat-file', '-e', overlap[0]['digest'] + '^{commit}'], cwd=ROOT, check=True)
+        category = 'Existing Git source revision'
+    assert len(overlap) == 1
+    classified.append({'path': path.relative_to(ROOT).as_posix(), 'line': finding['StartLine'], 'category': category})
+assert collections.Counter(row['category'] for row in classified) == {
+    'CDK artifact digest filename': 78, 'Existing Git source revision': 1}
+changed = []
+for path in sorted({Path(finding['File']) for finding in findings}):
+    old = path.read_text()
+    updated, artifact_count = asset.subn(lambda m: m['prefix'] + '[BUILD_ARTIFACT_DIGEST_OMITTED]' + m['suffix'], old)
+    updated, revision_count = revision.subn(lambda m: m['prefix'] + '[SOURCE_REVISION_OMITTED]' + m['suffix'], updated)
+    assert updated != old
+    path.write_text(updated)
+    changed.append({'path': path.relative_to(ROOT).as_posix(), 'artifactFilenamesOmitted': artifact_count,
+                    'sourceRevisionsOmitted': revision_count,
+                    'beforeSha256': hashlib.sha256(old.encode()).hexdigest(),
+                    'afterSha256': hashlib.sha256(updated.encode()).hexdigest()})
+catalog_path = DEST / 'catalog.json'
+catalog = json.loads(catalog_path.read_text())
+changed_paths = {row['path'] for row in changed}
+for row in catalog:
+    if row.get('readablePath') in changed_paths:
+        row['privacyRedactions'] = True
+catalog_path.write_text(json.dumps(catalog, ensure_ascii=False, indent=2) + '\n')
+assert hashlib.sha256(ARCHIVE.read_bytes()).hexdigest() == before_archive
+receipt = {
+    'completedAt': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+    'scope': 'Post-capture readable mirrors only; exact source remains in immutable encrypted archive33.',
+    'reviewedFindings': classified, 'changedFiles': changed,
+    'scannerRulesChanged': False, 'scannerExceptionsAdded': False,
+    'archiveUnchanged': True, 'archiveSha256': before_archive,
+}
+(DEST / 'readable-redaction-review.json').write_text(json.dumps(receipt, indent=2) + '\n')
+print(json.dumps({'reviewed': len(classified), 'changedFiles': len(changed), 'archiveUnchanged': True}))

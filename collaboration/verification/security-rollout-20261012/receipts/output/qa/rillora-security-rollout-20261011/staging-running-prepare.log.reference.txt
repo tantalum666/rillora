@@ -1,0 +1,42 @@
+WARNING minHealthyPercent has not been configured so the default value of 50% is used. The number of running tasks will decrease below the desired count during deployments etc. See https://github.com/aws/aws-cdk/issues/31705 (Construct Annotations)
+   RilloraStaging/IdentityWorker/Service
+   Acknowledge with 'Construct-Annotations::@aws-cdk/aws-ecs:minHealthyPercent'
+
+✨  Synthesis time: 0.25s
+
+RilloraStaging: start: Building RilloraStaging Template
+RilloraStaging: success: Built RilloraStaging Template
+RilloraStaging: start: Publishing RilloraStaging Template (133857166372-eu-central-1-bd04cc15)
+RilloraStaging: success: Published RilloraStaging Template (133857166372-eu-central-1-bd04cc15)
+RilloraStaging: creating CloudFormation changeset...
+Changeset arn:aws:cloudformation:eu-central-1:133857166372:changeSet/rillora-security-bfe9baaf5-staging-running/d403e13c-fd84-42a0-a1c8-8cf73a4eda1a created and waiting in review for manual execution (--no-execute)
+RilloraStaging: deploying... [1/1]
+
+✅  RilloraStaging
+
+✨  Deployment time: 0s
+
+Outputs:
+RilloraStaging.AccountDeletionClientSecretArn = arn:aws:secretsmanager:eu-central-1:133857166372:secret:AccountDeletionClientSecret-TwZNALLyb7Rn-p2D5qD
+RilloraStaging.ApiEndpoint = https://l1g8350qw0.execute-api.eu-central-1.amazonaws.com
+RilloraStaging.ClusterName = RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5
+RilloraStaging.ContentMigrationEnabled = false
+RilloraStaging.ContentProtectionMode = encrypted
+RilloraStaging.[PUBLIC_IDENTIFIER_OMITTED] = arn:aws:secretsmanager:eu-central-1:133857166372:secret:EmailVerificationClientSecr-rUwJxh95pBti-KF2wjA
+RilloraStaging.MaintenanceBrokerFunctionName = RilloraStaging-MaintenanceBrokerFunctionC542279B-R2heNaovkRXC
+RilloraStaging.MigrationTaskDefinitionArn = arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingMigrationTaskDefinitionD83F7D18:37
+RilloraStaging.PrivateContentKeyArn = arn:aws:kms:eu-central-1:133857166372:key/f1fead4c-dcbf-49e6-9b24-eb23c65831f6
+RilloraStaging.PublicSubnetIds = subnet-0344e3c6bae4e3731,subnet-0610e7921274f95bd
+RilloraStaging.ServiceDesiredCount = 0
+RilloraStaging.StagingOperatorRoleArn = arn:aws:iam::133857166372:role/rillora/rillora-staging-operator
+RilloraStaging.StripeTestApiKeySecretArn = arn:aws:secretsmanager:eu-central-1:133857166372:secret:StripeTestSecret04351D5D-RYsCQzd9tQVc-pzQZlf
+RilloraStaging.StripeTestWebhookSecretArn = arn:aws:secretsmanager:eu-central-1:133857166372:secret:StripeTestWebhookSecret27AD-DjIcVJgvFIix-BNvgFG
+RilloraStaging.TaskSecurityGroupId = sg-062c63db94ecf2e16
+RilloraStaging.WebDistributionDomainName = d1ee12jk5j6ple.cloudfront.net
+RilloraStaging.WebOidcClientSecretArn = arn:aws:secretsmanager:eu-central-1:133857166372:secret:WebOidcClientSecret8C81BEC4-R2rkmUprqisV-VWDgAO
+RilloraStaging.WebUrl = https://app.staging.rillora.xyz
+Stack ARN:
+arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraStaging/9ac743f0-9626-11f1-ab93-061da92ba319
+
+✨  Total time: 35.72s
+

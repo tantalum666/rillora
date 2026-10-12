@@ -1,0 +1,16 @@
+{
+  "environment": "production",
+  "phase": "authority",
+  "status": "STOPPED",
+  "exitCode": 0,
+  "passed": true,
+  "hardenedSchema": true,
+  "checks": {
+    "sqlCannotReadAuthority": true,
+    "sqlCannotAcknowledgeJournal": true,
+    "unsignedTenantSelectionDenied": true,
+    "signedOwnerReadWorks": true,
+    "changedOwnerDenied": true,
+    "forgedJournalEnvelopeDenied": true
+  }
+}

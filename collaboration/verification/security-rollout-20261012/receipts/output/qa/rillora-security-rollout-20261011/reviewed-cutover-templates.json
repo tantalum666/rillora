@@ -1,0 +1,31 @@
+{
+  "at": "2026-10-12T05:36:44.880822+00:00",
+  "environments": [
+    {
+      "environment": "staging",
+      "oldResources": 81,
+      "newResources": 99,
+      "protectedResourcesUnchanged": true,
+      "salesFlagsUnchanged": true,
+      "reviewParametersUnchanged": true,
+      "stoppedWriters": 2,
+      "stoppedTemplateSha256": "34c438803db7fd1fd040e4d10aaac4dc5965efba96e02227a889033598f8e116",
+      "runningTemplateSha256": "6d639d1652595b02e0550391dc2d743bb18c9a601a32a6e4e5f2c84ebc6c4aab",
+      "frontendHeldUntilResume": true,
+      "deployed": false
+    },
+    {
+      "environment": "production",
+      "oldResources": 79,
+      "newResources": 101,
+      "protectedResourcesUnchanged": true,
+      "salesFlagsUnchanged": true,
+      "reviewParametersUnchanged": true,
+      "stoppedWriters": 2,
+      "stoppedTemplateSha256": "8b400389b2b9ef4f51b60ba138843ae0f28577bcc2736b88a7c89f11f467eafd",
+      "runningTemplateSha256": "0a0c9b33916698b455064833ca1546c087e6d7dfb6479465ad318de2ac51e93b",
+      "frontendHeldUntilResume": false,
+      "deployed": false
+    }
+  ]
+}

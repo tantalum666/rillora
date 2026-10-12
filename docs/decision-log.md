@@ -3416,3 +3416,11 @@ local correction/tests and actual restoration remain separate evidence.
 - Supersedes the source-only online-freeze instruction for this deployment task, not the closed customer/billing boundary or retained-account decision. Necessary scoped resource/key provisioning, compatible migrations, broker/worker isolation and validation are authorized; no new purchase/refund or blanket deletion follows.
 - Owner reiterates maximum default project authorization. Do not repeat already-covered confirmations; only actual provider-required personal interaction or higher-priority tool rules can require handoff.
 - Reuse74a9c66ac/CI125 and prior reading/evidence. Exact deployed state, new compatibility fixes and actual data/permission results must be recorded separately in the rollout contract.
+
+## 2026-10-12 — Restore the existing review window for actual native acceptance
+
+- Owner reported that the newly installed14could not enter the home screen, then clarified that the App showed service-not-open/login failure. The exact original review expiry, not installation or data loss, caused the server403.
+- Within the already authorized release acceptance, Agent renewed only the same3identity digests for48hours, to2026-10-14T12:01Z (Hong Kong20:01). API and Auth0 were read back separately; all other API environment fields, secrets, image, binding order and sales switches were preserved. No new identities or ordinary customer access were added.
+- Owner then confirmed entering the home screen and seeing original matters; the matching native client has fresh provider login/code-exchange records. HTTPS-only callback retirement followed delivery of signed14and association verification.
+- Owner completed the actual macOS nonsecret user-presence probe; all9supported local credential files were then encrypted and individually readback-verified. Provider keys, permissions, archive identity and FanPass were not changed. This is an operational follow-through under existing authorization, not a new pricing, purchase, market-opening or TestFlight decision.
+- GitHub current private-repository rules are not enforced on the present plan. No paid plan or organization transfer was authorized or performed; manual/source CI evidence does not substitute for that platform control.

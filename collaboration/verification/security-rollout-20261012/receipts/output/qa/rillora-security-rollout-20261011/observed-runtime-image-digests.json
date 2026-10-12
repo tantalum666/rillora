@@ -1,0 +1,38 @@
+{
+  "at": "2026-10-12T12:30:47.541093+00:00",
+  "tasks": [
+    {
+      "environment": "staging",
+      "kind": "api",
+      "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingApiTaskDefinitionF6347BA4:44",
+      "digests": [
+        "sha256:75fa633d5d30cc4b74a0c9de5cfec9c187d2eab4f118f3b8b7842cb0214fc734"
+      ]
+    },
+    {
+      "environment": "staging",
+      "kind": "worker",
+      "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingIdentityWorkerTaskE9CF37C5:1",
+      "digests": [
+        "sha256:75fa633d5d30cc4b74a0c9de5cfec9c187d2eab4f118f3b8b7842cb0214fc734"
+      ]
+    },
+    {
+      "environment": "production",
+      "kind": "api",
+      "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRuntimeApiTask93405B31:22",
+      "digests": [
+        "sha256:75fa633d5d30cc4b74a0c9de5cfec9c187d2eab4f118f3b8b7842cb0214fc734"
+      ]
+    },
+    {
+      "environment": "production",
+      "kind": "worker",
+      "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRuntimeIdentityWorkerTaskCE49E148:1",
+      "digests": [
+        "sha256:75fa633d5d30cc4b74a0c9de5cfec9c187d2eab4f118f3b8b7842cb0214fc734"
+      ]
+    }
+  ],
+  "scope": "Actual post-cutover API22/Preview44 and worker task image digests, before the parameter-only production review expiry renewal."
+}

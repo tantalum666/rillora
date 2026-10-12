@@ -1,0 +1,24 @@
+{
+  "recordedAt": "2026-10-12T08:07:17Z",
+  "mode": "same-workflow-continuation-and-compaction-recovery",
+  "priorFullReading": "output/qa/rillora-security-remediation-20261011/reading.json",
+  "priorFocusedReading": "output/qa/rillora-security-remaining-five-20261011/reading-closeout.json",
+  "newWholeRepositoryReadClaimed": false,
+  "inventoryBasis": "Reuse the inherited project-owned Markdown inventory and full-body reading chain; focused changes are recorded below. Fingerprints are not body-reading evidence.",
+  "bodyRanges": {
+    "AGENTS.md": "1-84",
+    "docs/product.md": "1-190 and 364-510; prior full read retained; truncated current excerpts supplemented",
+    "docs/handoff.md": "complete current body before each edit",
+    "docs/decision-log.md": "1-45 and latest decisions at the end; prior full read retained",
+    "docs/journey/PROJECT_JOURNEY.md": "latest 50 lines and this appended entry; prior full read retained",
+    "docs/security-rollout-20261012.md": "complete current body",
+    "docs/security-remaining-five-20261011.md": "1-93",
+    "tools/security/README.md": "1-66",
+    "infra/aws/README.md": "1-398 before compaction, retained from this workflow",
+    "docs/source-control.md": "prior complete reading retained; no new source-preservation procedure claimed",
+    "collaboration/README.md": "prior complete reading retained"
+  },
+  "excluded": ["dependencies", "caches", "build artifacts", "third-party packages", "generated output evidence", "collaboration/evidence generated copies", "collaboration/catalog generated indexes", "collaboration/archives ciphertext"],
+  "notExcluded": ["project-owned specifications", "nested AGENTS.md", "docs historical Markdown"],
+  "boundary": "No restart of repository audit, completed tests, migration, deployment or personal authentication is authorized merely by compaction. Earlier historical reports are evidence, not instructions."
+}
