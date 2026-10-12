@@ -1,0 +1,404 @@
+﻿2026-10-12T13:16:34.5796954Z Current runner version: '2.337.0'
+2026-10-12T13:16:34.5853990Z ##[group]Runner Image Provisioner
+2026-10-12T13:16:34.5855334Z Hosted Compute Agent
+2026-10-12T13:16:34.5856301Z Version: 20261002.596
+2026-10-12T13:16:34.5857463Z Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+2026-10-12T13:16:34.5858654Z Build Date: 2026-10-02T22:28:27Z
+2026-10-12T13:16:34.5860177Z Worker ID: {82b22b29-62f2-4117-b782-edcfa6f29805}
+2026-10-12T13:16:34.5861398Z Region: eastus
+2026-10-12T13:16:34.5862383Z Cloud: Azure
+2026-10-12T13:16:34.5863260Z ##[endgroup]
+2026-10-12T13:16:34.5866037Z ##[group]Operating System
+2026-10-12T13:16:34.5867190Z Ubuntu
+2026-10-12T13:16:34.5868005Z 24.04.5
+2026-10-12T13:16:34.5868950Z LTS
+2026-10-12T13:16:34.5870264Z ##[endgroup]
+2026-10-12T13:16:34.5871148Z ##[group]Runner Image
+2026-10-12T13:16:34.5872306Z Image: ubuntu-24.04
+2026-10-12T13:16:34.5873249Z Version: 20261004.327.1
+2026-10-12T13:16:34.5875846Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261004.327/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-12T13:16:34.5878599Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261004.327
+2026-10-12T13:16:34.5880642Z ##[endgroup]
+2026-10-12T13:16:34.5882373Z ##[group]GITHUB_TOKEN Permissions
+2026-10-12T13:16:34.5885623Z Contents: read
+2026-10-12T13:16:34.5886663Z Metadata: read
+2026-10-12T13:16:34.5887751Z ##[endgroup]
+2026-10-12T13:16:34.5891137Z Secret source: Actions
+2026-10-12T13:16:34.5892693Z Cache mode: write
+2026-10-12T13:16:34.5894197Z Prepare workflow directory
+2026-10-12T13:16:34.6384847Z Prepare all required actions
+2026-10-12T13:16:34.6458904Z Getting action download info
+2026-10-12T13:16:34.8457510Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-10-12T13:16:34.9743721Z Download action repository 'actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97' (SHA:5fda3b95a4ea91299a34e894583c3862153e4b97)
+2026-10-12T13:16:35.2104401Z Complete job name: source
+2026-10-12T13:16:35.2887920Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+2026-10-12T13:16:35.2889033Z with:
+2026-10-12T13:16:35.2889497Z   persist-credentials: false
+2026-10-12T13:16:35.2890243Z   fetch-depth: 0
+2026-10-12T13:16:35.2890725Z   repository: tantalum666/rillora
+2026-10-12T13:16:35.2894627Z   token: ***
+2026-10-12T13:16:35.2895074Z   ssh-strict: true
+2026-10-12T13:16:35.2895525Z   ssh-user: git
+2026-10-12T13:16:35.2895962Z   clean: true
+2026-10-12T13:16:35.2896433Z   sparse-checkout-cone-mode: true
+2026-10-12T13:16:35.2896969Z   fetch-tags: false
+2026-10-12T13:16:35.2897432Z   show-progress: true
+2026-10-12T13:16:35.2897883Z   lfs: false
+2026-10-12T13:16:35.2898298Z   submodules: false
+2026-10-12T13:16:35.2898758Z   set-safe-directory: true
+2026-10-12T13:16:35.2899279Z   allow-unsafe-pr-checkout: false
+2026-10-12T13:16:35.2900391Z ##[endgroup]
+2026-10-12T13:16:35.4148584Z Syncing repository: tantalum666/rillora
+2026-10-12T13:16:35.4152402Z ##[group]Getting Git version info
+2026-10-12T13:16:35.4154095Z Working directory is '/home/runner/work/rillora/rillora'
+2026-10-12T13:16:35.4156388Z [command]/usr/bin/git version
+2026-10-12T13:16:35.4157773Z git version 2.55.0
+2026-10-12T13:16:35.4161768Z ##[endgroup]
+2026-10-12T13:16:35.4217201Z Temporarily overriding HOME='/home/runner/work/_temp/5fa9894f-034a-4df8-a973-e75cf42f103d' before making global git config changes
+2026-10-12T13:16:35.4230968Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-12T13:16:35.4293525Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/rillora/rillora
+2026-10-12T13:16:35.4322027Z Deleting the contents of '/home/runner/work/rillora/rillora'
+2026-10-12T13:16:35.4324555Z ##[group]Determining repository object format
+2026-10-12T13:16:35.4328719Z ##[endgroup]
+2026-10-12T13:16:35.4331496Z ##[group]Initializing the repository
+2026-10-12T13:16:35.4334326Z [command]/usr/bin/git init /home/runner/work/rillora/rillora
+2026-10-12T13:16:35.4438793Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-12T13:16:35.4441264Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-12T13:16:35.4472144Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-12T13:16:35.4473319Z hint: call:
+2026-10-12T13:16:35.4475700Z hint:
+2026-10-12T13:16:35.4476839Z hint: 	git config --global init.defaultBranch <name>
+2026-10-12T13:16:35.4478279Z hint:
+2026-10-12T13:16:35.4481694Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-12T13:16:35.4489365Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-12T13:16:35.4505505Z hint:
+2026-10-12T13:16:35.4515858Z hint: 	git branch -m <name>
+2026-10-12T13:16:35.4517105Z hint:
+2026-10-12T13:16:35.4518857Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-12T13:16:35.4523312Z Initialized empty Git repository in /home/runner/work/rillora/rillora/.git/
+2026-10-12T13:16:35.4526341Z [command]/usr/bin/git remote add origin https://github.com/tantalum666/rillora
+2026-10-12T13:16:35.4529028Z ##[endgroup]
+2026-10-12T13:16:35.4530748Z ##[group]Disabling automatic garbage collection
+2026-10-12T13:16:35.4531862Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-12T13:16:35.4631116Z ##[endgroup]
+2026-10-12T13:16:35.4639357Z ##[group]Setting up auth
+2026-10-12T13:16:35.4651246Z Removing SSH command configuration
+2026-10-12T13:16:35.4653001Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-12T13:16:35.4659091Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-12T13:16:35.5325008Z Removing HTTP extra header
+2026-10-12T13:16:35.5326594Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-12T13:16:35.5331895Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-12T13:16:35.6396668Z Removing includeIf entries pointing to credentials config files
+2026-10-12T13:16:35.6399999Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-12T13:16:35.6403671Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-12T13:16:35.6410175Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-71676bbb-88bb-41e7-b275-0740ae8f0a79.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-12T13:16:35.6415843Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/rillora/rillora/.git.path /home/runner/work/_temp/git-credentials-71676bbb-88bb-41e7-b275-0740ae8f0a79.config
+2026-10-12T13:16:35.6426877Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/rillora/rillora/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-71676bbb-88bb-41e7-b275-0740ae8f0a79.config
+2026-10-12T13:16:35.6438755Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-71676bbb-88bb-41e7-b275-0740ae8f0a79.config
+2026-10-12T13:16:35.6480088Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-71676bbb-88bb-41e7-b275-0740ae8f0a79.config
+2026-10-12T13:16:35.6519066Z ##[endgroup]
+2026-10-12T13:16:35.6521312Z ##[group]Fetching the repository
+2026-10-12T13:16:35.6527613Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+2026-10-12T13:16:40.7012659Z From https://github.com/tantalum666/rillora
+2026-10-12T13:16:40.7015887Z  * [new branch]      codex/account-identity-20261006 -> origin/codex/account-identity-20261006
+2026-10-12T13:16:40.7019466Z  * [new branch]      codex/ai-mcp-plan-20261005  -> origin/codex/ai-mcp-plan-20261005
+2026-10-12T13:16:40.7023115Z  * [new branch]      codex/apple-plan-restore-20261007 -> origin/codex/apple-plan-restore-20261007
+2026-10-12T13:16:40.7026274Z  * [new branch]      codex/chinese-ios-20261005  -> origin/codex/chinese-ios-20261005
+2026-10-12T13:16:40.7029251Z  * [new branch]      codex/chinese-web-20261005  -> origin/codex/chinese-web-20261005
+2026-10-12T13:16:40.7033647Z  * [new branch]      codex/cloudflare-hosting-handoff-20261008 -> origin/codex/cloudflare-hosting-handoff-20261008
+2026-10-12T13:16:40.7037609Z  * [new branch]      codex/device-config-20261006 -> origin/codex/device-config-20261006
+2026-10-12T13:16:40.7041339Z  * [new branch]      codex/dot-integration-20261005 -> origin/codex/dot-integration-20261005
+2026-10-12T13:16:40.7044934Z  * [new branch]      codex/dot-integration-20261007 -> origin/codex/dot-integration-20261007
+2026-10-12T13:16:40.7049022Z  * [new branch]      codex/dot-integration-20261008 -> origin/codex/dot-integration-20261008
+2026-10-12T13:16:40.7053179Z  * [new branch]      codex/dot-rollout-20261007  -> origin/codex/dot-rollout-20261007
+2026-10-12T13:16:40.7057359Z  * [new branch]      codex/external-link-hygiene-20261007 -> origin/codex/external-link-hygiene-20261007
+2026-10-12T13:16:40.7062475Z  * [new branch]      codex/guide-layout-locale-20261008 -> origin/codex/guide-layout-locale-20261008
+2026-10-12T13:16:40.7067384Z  * [new branch]      codex/ios-ux-refinement-20261006 -> origin/codex/ios-ux-refinement-20261006
+2026-10-12T13:16:40.7072708Z  * [new branch]      codex/matter-category-bar-20261008 -> origin/codex/matter-category-bar-20261008
+2026-10-12T13:16:40.7077728Z  * [new branch]      codex/release-12-stripe-20261005 -> origin/codex/release-12-stripe-20261005
+2026-10-12T13:16:40.7083054Z  * [new branch]      codex/security-findings-20261011 -> origin/codex/security-findings-20261011
+2026-10-12T13:16:40.7087593Z  * [new branch]      codex/strict-review-20261002 -> origin/codex/strict-review-20261002
+2026-10-12T13:16:40.7092461Z  * [new branch]      codex/web-plan-layout-20261008 -> origin/codex/web-plan-layout-20261008
+2026-10-12T13:16:40.7096916Z  * [new branch]      codex/web-ux-acceptance-20261005 -> origin/codex/web-ux-acceptance-20261005
+2026-10-12T13:16:40.7101671Z  * [new branch]      codex/web-ux-refinement-20261006 -> origin/codex/web-ux-refinement-20261006
+2026-10-12T13:16:40.7105906Z  * [new branch]      main                        -> origin/main
+2026-10-12T13:16:40.7110104Z  * [new tag]         archive/legal-site-source-20260930 -> archive/legal-site-source-20260930
+2026-10-12T13:16:40.7114541Z  * [new tag]         archive/web-legacy-20260930 -> archive/web-legacy-20260930
+2026-10-12T13:16:40.7119010Z  * [new tag]         checkpoint/production-data-20260923 -> checkpoint/production-data-20260923
+2026-10-12T13:16:40.7128018Z [command]/usr/bin/git branch --list --remote origin/codex/security-findings-20261011
+2026-10-12T13:16:40.7132495Z   origin/codex/security-findings-20261011
+2026-10-12T13:16:40.7139003Z [command]/usr/bin/git rev-parse refs/remotes/origin/codex/security-findings-20261011
+2026-10-12T13:16:40.7143240Z d33e0b31f77ae00d5979213816dfa9a4383a8e32
+2026-10-12T13:16:40.7149543Z ##[endgroup]
+2026-10-12T13:16:40.7153374Z ##[group]Determining the checkout info
+2026-10-12T13:16:40.7157641Z ##[endgroup]
+2026-10-12T13:16:40.7160144Z [command]/usr/bin/git sparse-checkout disable
+2026-10-12T13:16:40.7202461Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-12T13:16:40.7245592Z ##[group]Checking out the ref
+2026-10-12T13:16:40.7251021Z [command]/usr/bin/git checkout --progress --force -B codex/security-findings-20261011 refs/remotes/origin/codex/security-findings-20261011
+2026-10-12T13:16:41.7444623Z Updating files:  63% (8546/13413)
+2026-10-12T13:16:41.7563158Z Updating files:  64% (8585/13413)
+2026-10-12T13:16:41.7673081Z Updating files:  65% (8719/13413)
+2026-10-12T13:16:41.7975496Z Updating files:  66% (8853/13413)
+2026-10-12T13:16:41.8095282Z Updating files:  67% (8987/13413)
+2026-10-12T13:16:41.8184304Z Updating files:  68% (9121/13413)
+2026-10-12T13:16:41.8297684Z Updating files:  69% (9255/13413)
+2026-10-12T13:16:41.8384987Z Updating files:  70% (9390/13413)
+2026-10-12T13:16:41.8451653Z Updating files:  71% (9524/13413)
+2026-10-12T13:16:41.8533547Z Updating files:  72% (9658/13413)
+2026-10-12T13:16:41.8788591Z Updating files:  73% (9792/13413)
+2026-10-12T13:16:41.9746388Z Updating files:  74% (9926/13413)
+2026-10-12T13:16:41.9985022Z Updating files:  75% (10060/13413)
+2026-10-12T13:16:42.0128386Z Updating files:  76% (10194/13413)
+2026-10-12T13:16:42.0360776Z Updating files:  77% (10329/13413)
+2026-10-12T13:16:42.0699164Z Updating files:  78% (10463/13413)
+2026-10-12T13:16:42.0848727Z Updating files:  79% (10597/13413)
+2026-10-12T13:16:42.1058125Z Updating files:  80% (10731/13413)
+2026-10-12T13:16:42.1311387Z Updating files:  81% (10865/13413)
+2026-10-12T13:16:42.1461902Z Updating files:  82% (10999/13413)
+2026-10-12T13:16:42.1632392Z Updating files:  83% (11133/13413)
+2026-10-12T13:16:42.1784721Z Updating files:  84% (11267/13413)
+2026-10-12T13:16:42.1860729Z Updating files:  85% (11402/13413)
+2026-10-12T13:16:42.2000335Z Updating files:  86% (11536/13413)
+2026-10-12T13:16:42.2167168Z Updating files:  87% (11670/13413)
+2026-10-12T13:16:42.2290293Z Updating files:  88% (11804/13413)
+2026-10-12T13:16:42.2432514Z Updating files:  89% (11938/13413)
+2026-10-12T13:16:42.2560637Z Updating files:  90% (12072/13413)
+2026-10-12T13:16:42.2714172Z Updating files:  91% (12206/13413)
+2026-10-12T13:16:42.2818515Z Updating files:  92% (12340/13413)
+2026-10-12T13:16:42.2960564Z Updating files:  93% (12475/13413)
+2026-10-12T13:16:42.3080438Z Updating files:  94% (12609/13413)
+2026-10-12T13:16:42.3192379Z Updating files:  95% (12743/13413)
+2026-10-12T13:16:42.3333822Z Updating files:  96% (12877/13413)
+2026-10-12T13:16:42.3512432Z Updating files:  97% (13011/13413)
+2026-10-12T13:16:42.3673333Z Updating files:  98% (13145/13413)
+2026-10-12T13:16:42.3766252Z Updating files:  99% (13279/13413)
+2026-10-12T13:16:42.3767986Z Updating files: 100% (13413/13413)
+2026-10-12T13:16:42.3768742Z Updating files: 100% (13413/13413), done.
+2026-10-12T13:16:42.3941191Z Switched to a new branch 'codex/security-findings-20261011'
+2026-10-12T13:16:42.3947164Z branch 'codex/security-findings-20261011' set up to track 'origin/codex/security-findings-20261011'.
+2026-10-12T13:16:42.4873153Z ##[endgroup]
+2026-10-12T13:16:42.4945354Z [command]/usr/bin/git log -1 --format=%H
+2026-10-12T13:16:42.4968918Z d33e0b31f77ae00d5979213816dfa9a4383a8e32
+2026-10-12T13:16:42.4982375Z ##[group]Removing auth
+2026-10-12T13:16:42.4982992Z Removing SSH command configuration
+2026-10-12T13:16:42.4984351Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-12T13:16:42.5031417Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-12T13:16:42.5282242Z Removing HTTP extra header
+2026-10-12T13:16:42.5286963Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-12T13:16:42.5326444Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-12T13:16:42.5582354Z Removing includeIf entries pointing to credentials config files
+2026-10-12T13:16:42.5585789Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-12T13:16:42.5618194Z includeif.gitdir:/home/runner/work/rillora/rillora/.git.path
+2026-10-12T13:16:42.5620360Z includeif.gitdir:/home/runner/work/rillora/rillora/.git/worktrees/*.path
+2026-10-12T13:16:42.5621542Z includeif.gitdir:/github/workspace/.git.path
+2026-10-12T13:16:42.5625490Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-12T13:16:42.5631017Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/rillora/rillora/.git.path
+2026-10-12T13:16:42.5661420Z /home/runner/work/_temp/git-credentials-71676bbb-88bb-41e7-b275-0740ae8f0a79.config
+2026-10-12T13:16:42.5675376Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/rillora/rillora/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-71676bbb\-88bb\-41e7\-b275\-0740ae8f0a79\.config
+2026-10-12T13:16:42.5730183Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/rillora/rillora/.git/worktrees/*.path
+2026-10-12T13:16:42.5764668Z /home/runner/work/_temp/git-credentials-71676bbb-88bb-41e7-b275-0740ae8f0a79.config
+2026-10-12T13:16:42.5777444Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/rillora/rillora/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-71676bbb\-88bb\-41e7\-b275\-0740ae8f0a79\.config
+2026-10-12T13:16:42.5830493Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-10-12T13:16:42.5865578Z /github/runner_temp/git-credentials-71676bbb-88bb-41e7-b275-0740ae8f0a79.config
+2026-10-12T13:16:42.5875679Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-71676bbb\-88bb\-41e7\-b275\-0740ae8f0a79\.config
+2026-10-12T13:16:42.5916502Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-12T13:16:42.5944119Z /github/runner_temp/git-credentials-71676bbb-88bb-41e7-b275-0740ae8f0a79.config
+2026-10-12T13:16:42.5954983Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-71676bbb\-88bb\-41e7\-b275\-0740ae8f0a79\.config
+2026-10-12T13:16:42.5996909Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-12T13:16:42.6253244Z Removing credentials config '/home/runner/work/_temp/git-credentials-71676bbb-88bb-41e7-b275-0740ae8f0a79.config'
+2026-10-12T13:16:42.6263949Z ##[endgroup]
+2026-10-12T13:16:42.6594399Z ##[group]Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+2026-10-12T13:16:42.6595108Z with:
+2026-10-12T13:16:42.6595454Z   python-version: 3.12
+2026-10-12T13:16:42.6595863Z   check-latest: false
+2026-10-12T13:16:42.6600333Z   token: ***
+2026-10-12T13:16:42.6600591Z   update-environment: true
+2026-10-12T13:16:42.6600846Z   allow-prereleases: false
+2026-10-12T13:16:42.6601080Z   freethreaded: false
+2026-10-12T13:16:42.6601305Z ##[endgroup]
+2026-10-12T13:16:42.7886379Z ##[group]Installed versions
+2026-10-12T13:16:42.7983342Z Successfully set up CPython (3.12.15)
+2026-10-12T13:16:42.8000898Z ##[endgroup]
+2026-10-12T13:16:42.8202020Z ##[group]Run sudo apt-get update
+2026-10-12T13:16:42.8202554Z [36;1msudo apt-get update[0m
+2026-10-12T13:16:42.8203193Z [36;1msudo apt-get install --yes jq ripgrep zsh libdigest-sha-perl[0m
+2026-10-12T13:16:42.8565023Z shell: /usr/bin/bash -e {0}
+2026-10-12T13:16:42.8565323Z env:
+2026-10-12T13:16:42.8565609Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-12T13:16:42.8566075Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-12T13:16:42.8566520Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-12T13:16:42.8566916Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-12T13:16:42.8567319Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-12T13:16:42.8567714Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-12T13:16:42.8568052Z ##[endgroup]
+2026-10-12T13:16:42.9770434Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-10-12T13:16:43.0173138Z Get:6 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+2026-10-12T13:16:43.0314238Z Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+2026-10-12T13:16:43.0325789Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+2026-10-12T13:16:43.0431184Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+2026-10-12T13:16:43.0510775Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+2026-10-12T13:16:43.1838798Z Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [549 kB]
+2026-10-12T13:16:43.2161847Z Get:8 https://packages.microsoft.com/ubuntu/24.04/prod noble/main armhf Packages [12.3 kB]
+2026-10-12T13:16:43.2195354Z Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main all Packages [640 B]
+2026-10-12T13:16:43.2277247Z Get:10 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [492 kB]
+2026-10-12T13:16:43.3791284Z Get:11 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1375 kB]
+2026-10-12T13:16:43.3950924Z Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [306 kB]
+2026-10-12T13:16:43.4010860Z Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1702 kB]
+2026-10-12T13:16:43.4228351Z Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [342 kB]
+2026-10-12T13:16:43.4280756Z Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1765 kB]
+2026-10-12T13:16:43.4480895Z Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [402 kB]
+2026-10-12T13:16:43.4525405Z Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [50.7 kB]
+2026-10-12T13:16:43.4550642Z Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse Translation-en [14.0 kB]
+2026-10-12T13:16:43.5951221Z Get:19 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [1121 kB]
+2026-10-12T13:16:43.6050997Z Get:20 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [228 kB]
+2026-10-12T13:16:43.6611994Z Get:21 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1220 kB]
+2026-10-12T13:16:43.6735254Z Get:22 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [245 kB]
+2026-10-12T13:16:43.6781450Z Get:23 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1674 kB]
+2026-10-12T13:16:43.6981324Z Get:24 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [383 kB]
+2026-10-12T13:16:43.7031402Z Get:25 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [45.4 kB]
+2026-10-12T13:16:43.7052560Z Get:26 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse Translation-en [12.1 kB]
+2026-10-12T13:16:46.5231109Z Fetched 12.3 MB in 2s (7440 kB/s)
+2026-10-12T13:16:47.3631556Z Reading package lists...
+2026-10-12T13:16:47.3947594Z Reading package lists...
+2026-10-12T13:16:47.5915174Z Building dependency tree...
+2026-10-12T13:16:47.5923830Z Reading state information...
+2026-10-12T13:16:47.7260845Z jq is already the newest version (1.7.1-3ubuntu0.24.04.2).
+2026-10-12T13:16:47.7261615Z Suggested packages:
+2026-10-12T13:16:47.7262149Z   zsh-doc
+2026-10-12T13:16:47.7411503Z The following NEW packages will be installed:
+2026-10-12T13:16:47.7416559Z   libdigest-sha-perl ripgrep zsh zsh-common
+2026-10-12T13:16:47.7586168Z 0 upgraded, 4 newly installed, 0 to remove and 23 not upgraded.
+2026-10-12T13:16:47.7587137Z Need to get 6580 kB of archives.
+2026-10-12T13:16:47.7587987Z After this operation, 24.6 MB of additional disk space will be used.
+2026-10-12T13:16:47.7588923Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-10-12T13:16:47.9561184Z Get:2 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libdigest-sha-perl amd64 6.04-1build3 [43.6 kB]
+2026-10-12T13:16:48.2240917Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 ripgrep amd64 14.1.0-1 [1551 kB]
+2026-10-12T13:16:48.7802948Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 zsh-common all 5.9-6ubuntu2 [4173 kB]
+2026-10-12T13:16:49.0537696Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 zsh amd64 5.9-6ubuntu2 [812 kB]
+2026-10-12T13:16:49.3110874Z Fetched 6580 kB in 1s (5003 kB/s)
+2026-10-12T13:16:49.3342570Z Selecting previously unselected package libdigest-sha-perl.
+2026-10-12T13:16:49.3620017Z (Reading database ... 
+2026-10-12T13:16:49.3620451Z (Reading database ... 5%
+2026-10-12T13:16:49.3621010Z (Reading database ... 10%
+2026-10-12T13:16:49.3621330Z (Reading database ... 15%
+2026-10-12T13:16:49.3621677Z (Reading database ... 20%
+2026-10-12T13:16:49.3622230Z (Reading database ... 25%
+2026-10-12T13:16:49.3622788Z (Reading database ... 30%
+2026-10-12T13:16:49.3623197Z (Reading database ... 35%
+2026-10-12T13:16:49.3623584Z (Reading database ... 40%
+2026-10-12T13:16:49.3623851Z (Reading database ... 45%
+2026-10-12T13:16:49.3624111Z (Reading database ... 50%
+2026-10-12T13:16:49.3671434Z (Reading database ... 55%
+2026-10-12T13:16:49.4698269Z (Reading database ... 60%
+2026-10-12T13:16:49.6861571Z (Reading database ... 65%
+2026-10-12T13:16:49.8842449Z (Reading database ... 70%
+2026-10-12T13:16:50.0683914Z (Reading database ... 75%
+2026-10-12T13:16:50.2326163Z (Reading database ... 80%
+2026-10-12T13:16:50.3708600Z (Reading database ... 85%
+2026-10-12T13:16:50.4857683Z (Reading database ... 90%
+2026-10-12T13:16:50.6405216Z (Reading database ... 95%
+2026-10-12T13:16:50.6420413Z (Reading database ... 100%
+2026-10-12T13:16:50.6421291Z (Reading database ... 203191 files and directories currently installed.)
+2026-10-12T13:16:50.6452974Z Preparing to unpack .../libdigest-sha-perl_6.04-1build3_amd64.deb ...
+2026-10-12T13:16:50.6679528Z Adding 'diversion of /usr/bin/shasum to /usr/bin/shasum.bundled by libdigest-sha-perl'
+2026-10-12T13:16:50.6813418Z Adding 'diversion of /usr/share/man/man1/shasum.1.gz to /usr/share/man/man1/shasum.bundled.1.gz by libdigest-sha-perl'
+2026-10-12T13:16:50.6859980Z Unpacking libdigest-sha-perl (6.04-1build3) ...
+2026-10-12T13:16:50.7101735Z Selecting previously unselected package ripgrep.
+2026-10-12T13:16:50.7226995Z Preparing to unpack .../ripgrep_14.1.0-1_amd64.deb ...
+2026-10-12T13:16:50.7233982Z Unpacking ripgrep (14.1.0-1) ...
+2026-10-12T13:16:50.7700576Z Selecting previously unselected package zsh-common.
+2026-10-12T13:16:50.7824735Z Preparing to unpack .../zsh-common_5.9-6ubuntu2_all.deb ...
+2026-10-12T13:16:50.7890819Z Unpacking zsh-common (5.9-6ubuntu2) ...
+2026-10-12T13:16:51.0891037Z Selecting previously unselected package zsh.
+2026-10-12T13:16:51.1021104Z Preparing to unpack .../zsh_5.9-6ubuntu2_amd64.deb ...
+2026-10-12T13:16:51.1085540Z Unpacking zsh (5.9-6ubuntu2) ...
+2026-10-12T13:16:51.1658412Z Setting up libdigest-sha-perl (6.04-1build3) ...
+2026-10-12T13:16:51.1686544Z Setting up zsh-common (5.9-6ubuntu2) ...
+2026-10-12T13:16:51.1862408Z Setting up ripgrep (14.1.0-1) ...
+2026-10-12T13:16:51.1881115Z Setting up zsh (5.9-6ubuntu2) ...
+2026-10-12T13:16:51.1980253Z Processing triggers for debianutils (5.17build1) ...
+2026-10-12T13:16:51.2760173Z Processing triggers for man-db (2.12.0-4build2) ...
+2026-10-12T13:16:51.2781485Z Not building database; man-db/auto-update is not 'true'.
+2026-10-12T13:16:53.7461302Z 
+2026-10-12T13:16:53.7462001Z Running kernel seems to be up-to-date.
+2026-10-12T13:16:53.7462579Z 
+2026-10-12T13:16:53.7462928Z No services need to be restarted.
+2026-10-12T13:16:53.7463446Z 
+2026-10-12T13:16:53.7463789Z No containers need to be restarted.
+2026-10-12T13:16:53.7464281Z 
+2026-10-12T13:16:53.7464691Z No user sessions are running outdated binaries.
+2026-10-12T13:16:53.7465212Z 
+2026-10-12T13:16:53.7465688Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-10-12T13:16:54.5804142Z ##[group]Run curl --fail --location --retry 3 --output "$RUNNER_TEMP/gitleaks.tar.gz" https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz
+2026-10-12T13:16:54.5805463Z [36;1mcurl --fail --location --retry 3 --output "$RUNNER_TEMP/gitleaks.tar.gz" https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz[0m
+2026-10-12T13:16:54.5806739Z [36;1mecho "551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb  $RUNNER_TEMP/gitleaks.tar.gz" | sha256sum --check --strict[0m
+2026-10-12T13:16:54.5807472Z [36;1mtar -xzf "$RUNNER_TEMP/gitleaks.tar.gz" -C "$RUNNER_TEMP" gitleaks[0m
+2026-10-12T13:16:54.5807947Z [36;1msudo install "$RUNNER_TEMP/gitleaks" /usr/local/bin/gitleaks[0m
+2026-10-12T13:16:54.5874038Z shell: /usr/bin/bash -e {0}
+2026-10-12T13:16:54.5874319Z env:
+2026-10-12T13:16:54.5874606Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-12T13:16:54.5875094Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-12T13:16:54.5875569Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-12T13:16:54.5875965Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-12T13:16:54.5876362Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-12T13:16:54.5876761Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-12T13:16:54.5877088Z ##[endgroup]
+2026-10-12T13:16:54.6014987Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+2026-10-12T13:16:54.6018293Z                                  Dload  Upload   Total   Spent    Left  Speed
+2026-10-12T13:16:54.6018768Z 
+2026-10-12T13:16:54.6353543Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-10-12T13:16:54.6354500Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-10-12T13:16:54.6916970Z 
+2026-10-12T13:16:54.6917624Z 100 8037k  100 8037k    0     0  86.6M      0 --:--:-- --:--:-- --:--:-- 86.6M
+2026-10-12T13:16:54.7024126Z /home/runner/work/_temp/gitleaks.tar.gz: OK
+2026-10-12T13:16:54.8815390Z ##[group]Run python3 -m unittest discover -s tools/release -p 'test_*.py'
+2026-10-12T13:16:54.8815945Z [36;1mpython3 -m unittest discover -s tools/release -p 'test_*.py'[0m
+2026-10-12T13:16:54.8816422Z [36;1mpython3 -m unittest discover -s tools/godaddy -p 'test_*.py'[0m
+2026-10-12T13:16:54.8816876Z [36;1mpython3 -m unittest discover -s tools/auth0 -p 'test_*.py'[0m
+2026-10-12T13:16:54.8817361Z [36;1mpython3 -m unittest discover -s tools/collaboration -p 'test_*.py'[0m
+2026-10-12T13:16:54.8817794Z [36;1mpython3 tools/release/prepare_repository.py[0m
+2026-10-12T13:16:54.8818193Z [36;1mpython3 -m unittest discover -s tools/security -p 'test_*.py'[0m
+2026-10-12T13:16:54.8818704Z [36;1mpython3 -m unittest discover -s infra/aws/recovery-journal-broker -p 'test_*.py'[0m
+2026-10-12T13:16:54.8819286Z [36;1mpython3 tools/release/scan_repository.py --report output/ci/source-scan.json[0m
+2026-10-12T13:16:54.8820345Z [36;1mpython3 tools/collaboration/verify_publication.py --scan --report output/ci/work-publication.json[0m
+2026-10-12T13:16:54.8886642Z shell: /usr/bin/bash -e {0}
+2026-10-12T13:16:54.8886894Z env:
+2026-10-12T13:16:54.8887158Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-12T13:16:54.8887617Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-12T13:16:54.8888080Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-12T13:16:54.8888464Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-12T13:16:54.8888855Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-12T13:16:54.8889251Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-12T13:16:54.8889582Z ##[endgroup]
+2026-10-12T13:17:01.3727203Z ....................................................................F....
+2026-10-12T13:17:01.3728265Z ======================================================================
+2026-10-12T13:17:01.3730668Z FAIL: test_candidate_scanner_configuration_and_inline_allow_cannot_suppress_new_findings (test_repository_scan.SourceScanBoundaryTests.test_candidate_scanner_configuration_and_inline_allow_cannot_suppress_new_findings)
+2026-10-12T13:17:01.3732659Z ----------------------------------------------------------------------
+2026-10-12T13:17:01.3741246Z Traceback (most recent call last):
+2026-10-12T13:17:01.3748886Z   File "/home/runner/work/rillora/rillora/tools/release/test_repository_scan.py", line 25, in test_candidate_scanner_configuration_and_inline_allow_cannot_suppress_new_findings
+2026-10-12T13:17:01.3751022Z     self.assertEqual(result.returncode,1,result.stderr)
+2026-10-12T13:17:01.3751709Z AssertionError: 0 != 1 : 
+2026-10-12T13:17:01.3752125Z 
+2026-10-12T13:17:01.3752565Z ----------------------------------------------------------------------
+2026-10-12T13:17:01.3753268Z Ran 73 tests in 6.041s
+2026-10-12T13:17:01.3753637Z 
+2026-10-12T13:17:01.3753929Z FAILED (failures=1)
+2026-10-12T13:17:01.3927682Z ##[error]Process completed with exit code 1.
+2026-10-12T13:17:01.4073784Z Post job cleanup.
+2026-10-12T13:17:01.5020395Z [command]/usr/bin/git version
+2026-10-12T13:17:01.5071174Z git version 2.55.0
+2026-10-12T13:17:01.5150800Z Temporarily overriding HOME='/home/runner/work/_temp/07a7b55e-89b2-4793-9e6d-6c7e664a8602' before making global git config changes
+2026-10-12T13:17:01.5161068Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-12T13:17:01.5162393Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/rillora/rillora
+2026-10-12T13:17:01.5222513Z Removing SSH command configuration
+2026-10-12T13:17:01.5223446Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-12T13:17:01.5274583Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-12T13:17:01.5625335Z Removing HTTP extra header
+2026-10-12T13:17:01.5626425Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-12T13:17:01.5703449Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-12T13:17:01.6083228Z Removing includeIf entries pointing to credentials config files
+2026-10-12T13:17:01.6100744Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-12T13:17:01.6105867Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-12T13:17:01.6743112Z Cleaning up orphan processes
+

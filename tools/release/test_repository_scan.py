@@ -2,7 +2,6 @@ import hashlib
 import importlib.util
 import tempfile
 import json
-import secrets
 import subprocess
 import sys
 import unittest
@@ -17,8 +16,11 @@ class SourceScanBoundaryTests(unittest.TestCase):
             root=Path(d);(root/'config').mkdir()
             (root/'config/repository-scan-exceptions.json').write_text('{"findings":[]}')
             (root/'.gitleaks.toml').write_text('[allowlist]\ndescription="candidate bypass"\npaths=[".*"]\n')
-            # Random local-only test text with no provider/account authority.
-            (root/'candidate.py').write_text('api_key = "' + secrets.token_hex(22) + '" # gitleaks:allow\n')
+            # Deterministic local-only text, with no provider/account authority.
+            # Random hex can fall below the scanner's entropy threshold or hit
+            # its stopwords, making this policy-bypass assertion intermittent.
+            value=hashlib.sha256(b'rillora-publication-guard-local-negative-control').hexdigest()
+            (root/'candidate.py').write_text('api_key = "' + value + '" # gitleaks:allow\n')
             report=root/'scan.json'
             result=subprocess.run([sys.executable,str(Path(__file__).with_name('scan_repository.py')),
                 '--source',str(root),'--report',str(report)],capture_output=True,text=True)

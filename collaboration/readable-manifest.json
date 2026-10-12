@@ -56592,8 +56592,8 @@
     },
     {
       "path": "collaboration/verification/security-rollout-20261012/README.md",
-      "bytes": 1785,
-      "sha256": "0f6f16488fca228c29430a4ed5837922cba7633886a016ad9a732c0f10e13e20"
+      "bytes": 2477,
+      "sha256": "b9a15feb32fe4013c8b0c7182668b7d10057dca3b9922b645ce5920c5b13f989"
     },
     {
       "path": "collaboration/verification/security-rollout-20261012/archive-verification.json",
@@ -56604,6 +56604,11 @@
       "path": "collaboration/verification/security-rollout-20261012/catalog.json",
       "bytes": 192989,
       "sha256": "b6e33cfecc74c9c066e91a867ad84fec88ebc51ca0e59dc57b4e6da790cc0095"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/postcapture/ci128-source-failure.log.reference.txt",
+      "bytes": 35375,
+      "sha256": "935dac86d1e85cd3c8717d8caf782028abf31e832891e6eb15c83e6d39157689"
     },
     {
       "path": "collaboration/verification/security-rollout-20261012/postcapture/prepush-state.json",
@@ -56626,6 +56631,16 @@
       "sha256": "9722bffb599aa1d3e639fdfebf138c9158707d5238c8de2f4b03ce1490e1a060"
     },
     {
+      "path": "collaboration/verification/security-rollout-20261012/postcapture/scanner-fixture-reproduction.json",
+      "bytes": 736,
+      "sha256": "fb0c82f9c855d8c31390d7932ccb8864da0e4b7cd66be1bb18cf7c624571dbcd"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/postcapture/scanner-fixture-tests.log.reference.txt",
+      "bytes": 172,
+      "sha256": "f5a7bdfdc745237018a0e65a179adc1bb65096eb2a4b1ff68436b98fb697e388"
+    },
+    {
       "path": "collaboration/verification/security-rollout-20261012/postcapture/scheduled-public-health.json",
       "bytes": 266,
       "sha256": "83653e8e857e196366d8e2b4fdbe2f8224eee034f1e0b938e4b54391166c7ab2"
@@ -56634,6 +56649,11 @@
       "path": "collaboration/verification/security-rollout-20261012/postcapture/source-scan.json",
       "bytes": 12478,
       "sha256": "0abacf7ae8590308d7816531fdc14255a30bc04de92f17599f77b40d3d60e259"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/postcapture/verify-remote-archive.py.reference.txt",
+      "bytes": 4108,
+      "sha256": "e21d7536e7afccadcd1cc24dcabca5b68267304ffe8d7c37c45e75e165562930"
     },
     {
       "path": "collaboration/verification/security-rollout-20261012/readable-redaction-review.json",
@@ -57384,6 +57404,11 @@
       "path": "collaboration/verification/security-rollout-20261012/receipts/output/qa/rillora-security-rollout-20261011/verify-public-artifacts.py.reference.txt",
       "bytes": 2850,
       "sha256": "7fe06930ab5b419ec9bb11840703534603a327f1a5ea314a32dc136edec6d3f2"
+    },
+    {
+      "path": "collaboration/verification/security-rollout-20261012/remote-readback.json",
+      "bytes": 909,
+      "sha256": "37c16e30bb0aea0194a269bbe7319b57fcb1e9458a0c60a4fd02c050ac45dc29"
     },
     {
       "path": "collaboration/verification/security-rollout-20261012/snapshot.json",
@@ -59836,6 +59861,6 @@
       "sha256": "fa9f06467d74b9f074969cddab0e882a0ca1463c84d4a5ffafd2d401d619518b"
     }
   ],
-  "fileCount": 11967,
-  "totalBytes": 367916548
+  "fileCount": 11972,
+  "totalBytes": 367958540
 }
