@@ -2,12 +2,16 @@ import base64
 import contextlib
 import io
 import json
+import http.server
 import os
 from pathlib import Path
+import shutil
 import subprocess
 import sys
 import tempfile
+import threading
 import unittest
+import uuid
 from unittest.mock import patch
 from credential_store import CredentialStore, run_with_private_json
 from migrate_local_credential import migrate
@@ -101,22 +105,79 @@ class ProtectedCredentialStore(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             self.store.read(link)
     def test_secret_json_crosses_only_anonymous_pipe_not_argv_stdin_or_disk(self):
-        script = self.root / "receiver.py"
-        script.write_text("""import json,os,sys
-path=sys.argv[sys.argv.index('--cli-input-json')+1]
-assert path.startswith('file:///dev/fd/')
-with open(path.removeprefix('file://')) as source: body=json.load(source)
+        script = self.root / "aws"
+        script.write_text("#!" + sys.executable + "\n" + """import json,os,sys
+body={}
+for option in ['--secret-id','--secret-string','--client-request-token']:
+ path=sys.argv[sys.argv.index(option)+1]
+ assert path.startswith('file:///dev/fd/')
+ with open(path.removeprefix('file://')) as source: body[option]=source.read()
 assert sys.stdin.read()==''
-assert body['value'] not in ' '.join(sys.argv)
-print(json.dumps({'received':len(body['value']),'files':sorted(os.listdir(os.path.dirname(__file__)))}))
+assert body['--secret-string'] not in ' '.join(sys.argv)
+print(json.dumps({'received':len(body['--secret-string']),'files':sorted(os.listdir(os.path.dirname(__file__)))}))
 """)
+        script.chmod(0o700)
         value = "synthetic bounded transfer " * 2000
-        result = run_with_private_json([sys.executable, str(script)], {"value": value}, timeout=10)
+        body = {"SecretId": "synthetic-local-only", "SecretString": value,
+                "ClientRequestToken": str(uuid.uuid4())}
+        result = run_with_private_json([str(script), "secretsmanager", "put-secret-value"], body, timeout=10)
         self.assertEqual(result.returncode, 0)
         receipt = json.loads(result.stdout)
         self.assertEqual(receipt["received"], len(value))
-        self.assertEqual(receipt["files"], ["receiver.py"])
+        self.assertEqual(receipt["files"], ["aws"])
         self.assertNotIn(value, result.stdout + result.stderr)
+
+    def test_private_upload_rejects_unsupported_fields_debug_and_overrides_before_execution(self):
+        command = ["aws", "secretsmanager", "put-secret-value"]
+        body = {"SecretId": "synthetic-local-only", "SecretString": "synthetic value"}
+        with patch("credential_store.subprocess.Popen") as start:
+            for candidate, payload in [
+                (command, {**body, "SecretBinary": "unsupported"}),
+                (command, {**body, "SecretString": 1}),
+                (command, {**body, "SecretString": "synthetic\r\nvalue"}),
+                (command, {**body, "SecretString": "x" * 131073}),
+                (command + ["--debug"], body),
+                (command + ["--secret-string=override"], body),
+                (["aws", "secretsmanager", "get-secret-value"], body),
+            ]:
+                with self.assertRaises(RuntimeError):
+                    run_with_private_json(candidate, payload)
+            start.assert_not_called()
+
+    @unittest.skipUnless(shutil.which("aws"), "AWS CLI is needed for the loopback parser regression")
+    def test_actual_aws_cli_preserves_private_fields_at_loopback_endpoint(self):
+        received = []
+        body = {"SecretId": "arn:aws:secretsmanager:eu-central-1:133857166372:secret:synthetic-local-only",
+                "SecretString": json.dumps({"marker": "file:///never-read",
+                                             "value": "中文 / café / 😀\r\n" * 700}, ensure_ascii=False),
+                "ClientRequestToken": str(uuid.uuid4())}
+        class Handler(http.server.BaseHTTPRequestHandler):
+            def do_POST(self):
+                received.append(json.loads(self.rfile.read(int(self.headers["Content-Length"]))))
+                response = json.dumps({"ARN": body["SecretId"], "Name": "synthetic-local-only",
+                                       "VersionId": body["ClientRequestToken"]}).encode()
+                self.send_response(200)
+                self.send_header("Content-Type", "application/x-amz-json-1.1")
+                self.send_header("Content-Length", str(len(response)))
+                self.end_headers()
+                self.wfile.write(response)
+            def log_message(self, *_):
+                pass
+        server = http.server.ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        try:
+            command = [shutil.which("aws"), "secretsmanager", "put-secret-value", "--no-sign-request",
+                       "--region", "eu-central-1", "--endpoint-url", f"http://127.0.0.1:{server.server_port}",
+                       "--output", "json", "--no-cli-pager"]
+            result = run_with_private_json(command, body, timeout=20)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertTrue(received == [body], "The CLI changed private input bytes")
+            self.assertNotIn(body["SecretString"], result.stdout + result.stderr)
+        finally:
+            server.shutdown()
+            server.server_close()
+            thread.join(timeout=2)
 
 
 if __name__ == "__main__":

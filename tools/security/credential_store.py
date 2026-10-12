@@ -27,7 +27,7 @@ class CredentialStore:
         info = self.helper.stat()
         if info.st_uid != os.getuid() or info.st_mode & 0o022:
             raise RuntimeError("Credential helper ownership is unsafe")
-        checked = subprocess.run(["codesign", "--verify", "--strict", "-R", REQUIREMENT, str(self.helper)], capture_output=True)
+        checked = subprocess.run(["codesign", "--verify", "--strict", "-R", "=" + REQUIREMENT, str(self.helper)], capture_output=True)
         if checked.returncode:
             raise RuntimeError("Credential helper signature does not match Rillora")
         result = subprocess.run([str(self.helper)], input=json.dumps(body).encode(), capture_output=True, timeout=120)
@@ -148,29 +148,57 @@ def write_secret_json(path, value, root=ROOT, replace=False):
 
 
 def run_with_private_json(command, body, timeout=60):
-    """A separate inherited pipe avoids disk and credential-process stdin theft."""
-    payload = json.dumps(body).encode()
-    if len(payload) > 131072:
-        raise RuntimeError("Protected provider input is too large")
-    read_fd, write_fd = os.pipe()
+    """Send the existing Secrets Manager upload fields through anonymous pipes.
+
+    AWS CLI can load --cli-input-json files more than once, consuming a pipe
+    before parsing it. Ordinary string options are loaded once. Keep this
+    transport limited to the exact put-secret-value fields used by callers.
+    """
+    options = {"SecretId": "--secret-id", "SecretString": "--secret-string",
+               "ClientRequestToken": "--client-request-token"}
+    if (not isinstance(body, dict) or not {"SecretId", "SecretString"} <= body.keys()
+            or not body.keys() <= options.keys()
+            or any(not isinstance(value, str) or not value or "\r" in value for value in body.values())
+            or len(json.dumps(body, ensure_ascii=False).encode()) > 131072):
+        # The CLI's text loader normalizes raw CRLF. Current installers encode
+        # multiline credentials inside JSON; refuse raw CR instead of changing it.
+        raise RuntimeError("Unsupported protected Secrets Manager input")
+    if (not command or Path(command[0]).name != "aws"
+            or not any(command[i:i + 2] == ["secretsmanager", "put-secret-value"] for i in range(len(command) - 1))
+            or any(arg.split("=", 1)[0] in {*options.values(), "--cli-input-json", "--cli-input-yaml", "--debug"} for arg in command)):
+        raise RuntimeError("Unsupported protected Secrets Manager command")
+    read_fds, write_fds, transfers, writers = [], [], [], []
     process = None
     failures = []
     try:
-        process = subprocess.Popen([*command, "--cli-input-json", f"file:///dev/fd/{read_fd}"],
-            stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=subprocess.PIPE, pass_fds=(read_fd,))
-        os.close(read_fd)
-        read_fd = -1
-        def send():
+        arguments = []
+        for field, value in body.items():
+            read_fd, write_fd = os.pipe()
+            read_fds.append(read_fd)
+            write_fds.append(write_fd)
+            transfers.append((write_fd, value.encode()))
+            arguments.extend([options[field], f"file:///dev/fd/{read_fd}"])
+        process = subprocess.Popen([*command, *arguments], stdin=subprocess.DEVNULL,
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE, pass_fds=tuple(read_fds),
+            env={**os.environ, "AWS_CLI_FILE_ENCODING": "UTF-8"})
+        for fd in read_fds:
+            os.close(fd)
+        read_fds.clear()
+        def send(fd, payload):
             try:
-                with os.fdopen(write_fd, "wb") as pipe:
+                with os.fdopen(fd, "wb") as pipe:
                     pipe.write(payload)
             except OSError:
                 failures.append(True)
-        writer = threading.Thread(target=send, daemon=True)
-        writer.start()
+        for fd, payload in transfers:
+            writer = threading.Thread(target=send, args=(fd, payload), daemon=True)
+            writer.start()
+            writers.append(writer)
+            write_fds.remove(fd)
         stdout, stderr = process.communicate(timeout=timeout)
-        writer.join(timeout=1)
-        if writer.is_alive() or failures:
+        for writer in writers:
+            writer.join(timeout=1)
+        if any(writer.is_alive() for writer in writers) or failures:
             raise RuntimeError("Protected provider input transfer failed")
         return subprocess.CompletedProcess(command, process.returncode, stdout.decode(), stderr.decode())
     except (OSError, subprocess.TimeoutExpired):
@@ -179,6 +207,5 @@ def run_with_private_json(command, body, timeout=60):
             process.communicate()
         raise RuntimeError("Protected provider operation failed; input/output suppressed") from None
     finally:
-        if read_fd >= 0:
-            os.close(read_fd)
-            os.close(write_fd)
+        for fd in read_fds + write_fds:
+            os.close(fd)

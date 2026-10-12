@@ -20,7 +20,7 @@ def main():
                         "-module-cache-path", str(Path(folder) / "modules"), "-framework", "Security", "-framework", "LocalAuthentication", "-framework", "CryptoKit"], check=True)
         subprocess.run(["codesign", "--force", "--options", "runtime", "--identifier", "xyz.rillora.operator-vault",
                         "--sign", args.identity, str(binary)], check=True)
-        subprocess.run(["codesign", "--verify", "--strict", "-R", REQUIREMENT, str(binary)], check=True)
+        subprocess.run(["codesign", "--verify", "--strict", "-R", "=" + REQUIREMENT, str(binary)], check=True)
         binary.chmod(0o700)
         temporary = output.with_name(output.name + ".new")
         with binary.open("rb") as source, temporary.open("wb") as destination:
