@@ -1,6 +1,6 @@
 import {dirname,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {ArnFormat,Aws,CfnOutput,Duration,RemovalPolicy,Stack,Tags,type StackProps,
+import {ArnFormat,Aws,CfnOutput,Duration,Fn,RemovalPolicy,Stack,Tags,type StackProps,
  aws_ec2 as ec2,aws_ecs as ecs,aws_ecr_assets as ecr,aws_iam as iam,
  aws_kms as kms,aws_logs as logs,aws_rds as rds,aws_secretsmanager as secrets,
  aws_dynamodb as dynamodb, aws_ecr as ecrRepository} from 'aws-cdk-lib';
@@ -41,7 +41,10 @@ export class RilloraProductionStack extends Stack {
   if(activeRuntime&&props.runtimeImageTag)throw new Error('Runtime activation must use the newly verified API image');
   Tags.of(this).add('Project','Rillora');Tags.of(this).add('Environment','Production');
   Tags.of(this).add('CostCenter','Rillora');
-  const vpc=new ec2.Vpc(this,'Vpc',{ipAddresses:ec2.IpAddresses.cidr('10.43.0.0/16'),maxAzs:2,natGateways:0,
+  // Preserve the existing subnet AZ expressions when credentials bind this
+  // previously environment-agnostic stack to its account during synthesis.
+  const vpc=new ec2.Vpc(this,'Vpc',{ipAddresses:ec2.IpAddresses.cidr('10.43.0.0/16'),
+   availabilityZones:[Fn.select(0,Fn.getAzs()),Fn.select(1,Fn.getAzs())],natGateways:0,
    subnetConfiguration:[{name:'maintenance',subnetType:ec2.SubnetType.PUBLIC,cidrMask:24},
     {name:'data',subnetType:ec2.SubnetType.PRIVATE_ISOLATED,cidrMask:24}]});
   const sourceJobs=new ec2.SecurityGroup(this,'MigrationNetwork',{vpc,allowAllOutbound:false,

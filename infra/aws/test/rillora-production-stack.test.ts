@@ -93,6 +93,9 @@ describe('Optional closed production HTTPS runtime',()=>{
    expect(api.Secrets.some((s:any)=>s.Name.startsWith('AUTH0_DELETION'))).toBe(false);
    expect(api.ReadonlyRootFilesystem).toBe(true);
    t.hasResourceProperties('AWS::RDS::DBInstance',{StorageEncrypted:true,PubliclyAccessible:false,DeletionProtection:true,BackupRetentionPeriod:7});
+   const subnets=Object.values(t.findResources('AWS::EC2::Subnet')) as any[];
+   expect(subnets).toHaveLength(4);
+   for(const subnet of subnets)expect(subnet.Properties.AvailabilityZone).toEqual({'Fn::Select':[expect.any(Number),{'Fn::GetAZs':''}]});
    t.hasResourceProperties('AWS::SecretsManager::Secret',{Name:'rillora/production/apple-review'});
    t.hasOutput('ProductionTrafficReady',{Value:'true'});
    expect(t.toJSON().Parameters?.ReviewIdentityDigests).toBeUndefined();
