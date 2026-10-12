@@ -1,5 +1,8 @@
 # Rillora — Git / Dot 协作入口
 
+October13套餐页已按Owner要求简化为家庭版权益、年价、单订阅／管理操作。源码759c00112／CI133通过，Preview和正式Web172文件匹配；普通收费不变，真实账号UI读回因当前退出登录仍待Owner。[archive35](verification/plan-purchase-page-20261012/README.md)新增256路径／164对象／35,554,938密文字节并通过本地认证解密；旧1—34未重做。具体范围和随后独立远端回执见链接，当前下一步仍只看handoff。
+
+
 October12原生／跨端续接：[当前验收](../docs/native-cross-platform-acceptance-20261012.md)按Owner要求暂后本轮手机操作，已完成独立Web检查及两处实际修复／部署，172资源匹配；d9825b616／CI131三任务通过。新的[archive34](verification/native-cross-platform-20261012/README.md)保存262路径／172对象，37,927,569加密字节，本地及5a42e7f8c的独立GitHub新下载解密均通过，最终回执直接入Git。旧1—33与所有已过金融／原生证据不重复；当前有效Apple对照、未订阅真机、VoiceOver与原生法律入口仍未冒领通过。
 
 October12：[整批安全切换](../docs/security-rollout-20261012.md)已完成两库103、五云端栈、203文件、手机14真实登录／原事项与9份本机凭据加密。云端bfe9baaf5／CI126，本机工具042f4e100／CI127通过。原三身份只续期48小时，价格／收费开关保留，未发TestFlight；GitHub当前私有方案不强制保护是明确保留项。[新增archive33](verification/security-rollout-20261012/README.md)已封存665路径／536对象，55,781,041密文字节，本地及d33e0b31f的独立GitHub新下载解密均通过。发布测试样本稳定性修正5adf61570／CI129三任务通过，失败过程保留；最终回执直接入Git，不递归封存。后续只看[当前handoff](../docs/handoff.md)，下方旧线上冻结段落属于有日期的检查点。
@@ -73,7 +76,7 @@ HKD888购买已验签；简洁购买页构建8已分发原内部组并选入未�
 677对象，本地与GitHub独立新下载后的解密核验均通过。Stripe Live凭据已保护保存、运行计费尚未接通。
 
 
-Updated: 2026-10-12 (Asia/Hong_Kong)
+Updated: 2026-10-13 (Asia/Hong_Kong)
 
 October6保留检查点：`codex/release-12-stripe-20261005`源码10194de6a/CI58通过；双语多设备/大字号/系统语言、共享/文件与88.99StripeWeb TEST闭环完成。API14及Web/WWW已部署；新1.0(5)已上传处理为准备提交，说明回读一致，群组/独立测试员0。[新增完整保存包](verification/release-12-stripe-20261006/README.md)的raw-work-019包含9,769路径/1,541对象，本地及GitHub新下载原件均已解密核验通过，归档提交557af9f11/CI59成功。旧归档/真实数据/FanPass保留，真人/真机/live/最终审核门仍分开。
 

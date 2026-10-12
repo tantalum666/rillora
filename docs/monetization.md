@@ -10,7 +10,7 @@ Last updated: 2026-10-13 (Asia/Hong_Kong)
 
 ## October13 current consumer purchase presentation
 
-Owner reiterates paid benefits, visible annual price/currency and one subscribe button, superseding Web Free/status/disclosure accordions and a separate checkbox step. Click-based acceptance remains independent of registration and tied to the current price/legal bundle; existing renewals route to their original provider. Current WebUSD88.99 and AppleUSUSD119.99/channel-local StoreKit prices remain locked. A visible disabled button while ordinary sales are closed does not activate charging. [Current implementation/evidence](plan-purchase-page-20261013.md).
+Owner reiterates paid benefits, visible annual price/currency and one subscribe button, superseding Web Free/status/disclosure accordions and a separate checkbox step. Click-based acceptance remains independent of registration and tied to the current price/legal bundle; existing renewals route to their original provider. Current WebUSD88.99 and Apple US$119.99/channel-local StoreKit prices remain locked. A visible disabled button while ordinary sales are closed does not activate charging. [Current implementation/evidence](plan-purchase-page-20261013.md).
 
 ## September26 current Web quote
 

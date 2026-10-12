@@ -1,0 +1,35 @@
+{
+  "at": "2026-10-12T16:16:01.553177+00:00",
+  "passed": true,
+  "stacks": [
+    {
+      "stack": "RilloraStaging",
+      "resourcesRetained": 99,
+      "changes": [
+        {
+          "logicalId": "WebDeploymentCustomResource08EEC474",
+          "type": "Custom::CDKBucketDeployment",
+          "properties": [
+            "SourceObjectKeys"
+          ]
+        }
+      ],
+      "runtimeDatabaseIdentityPriceAndSalesConfigurationUnchanged": true
+    },
+    {
+      "stack": "RilloraProductionWeb",
+      "resourcesRetained": 13,
+      "changes": [
+        {
+          "logicalId": "[PUBLIC_IDENTIFIER_OMITTED]",
+          "type": "Custom::CDKBucketDeployment",
+          "properties": [
+            "SourceObjectKeys"
+          ]
+        }
+      ],
+      "runtimeDatabaseIdentityPriceAndSalesConfigurationUnchanged": true
+    }
+  ],
+  "deployed": false
+}

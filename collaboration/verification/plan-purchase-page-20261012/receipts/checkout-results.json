@@ -1,0 +1,162 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node@22/22.22.3/bin/node",
+      "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/node_modules/.bin/playwright",
+      "test",
+      "--config",
+      "output/qa/rillora-plan-purchase-page-20261012/plan-playwright.config.mjs",
+      "--grep",
+      "One explicit click"
+    ],
+    "configFile": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/output/qa/rillora-plan-purchase-page-20261012/plan-playwright.config.mjs",
+    "rootDir": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/output/qa/rillora-plan-purchase-page-20261012/checkout-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "plan-access.spec.mjs"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/output/qa/rillora-plan-purchase-page-20261012/checkout-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 2,
+    "webServer": {
+      "command": "npm run dev -- --host 127.0.0.1 --port 4174 --strictPort",
+      "cwd": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web",
+      "url": "http://127.0.0.1:4174",
+      "reuseExistingServer": false
+    }
+  },
+  "suites": [
+    {
+      "title": "plan-access.spec.mjs",
+      "file": "plan-access.spec.mjs",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "One explicit click accepts the displayed annual offer and creates one checkout en",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2187,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T16:11:12.477Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-e31c2264521cecb06bf3",
+          "file": "plan-access.spec.mjs",
+          "line": 70,
+          "column": 3
+        },
+        {
+          "title": "One explicit click accepts the displayed annual offer and creates one checkout zh-CN",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2189,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T16:11:15.260Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-1c83501c5dc27886b1e8",
+          "file": "plan-access.spec.mjs",
+          "line": 70,
+          "column": 3
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-12T16:11:11.137Z",
+    "duration": 6583.2609999999995,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

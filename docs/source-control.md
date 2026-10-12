@@ -1,6 +1,10 @@
 # Source control, complete work preservation and release rollback
 
-Last updated: 2026-10-12 (Asia/Hong_Kong)
+Last updated: 2026-10-13 (Asia/Hong_Kong)
+
+## October13 compact plan page delivery
+
+[The corrected purchase page](plan-purchase-page-20261013.md) is deployed to both Web clients from runtime-equivalent759c00112/CI133;172files match. [Archive35](../collaboration/verification/plan-purchase-page-20261012/README.md) adds256paths/164objects/35,554,938encrypted bytes and passes local authenticated decryption. Earlier1–34remain immutable; new failure logs, render checks, final Web builds and rollout receipts are included. Actual credentials/provider bodies/authentication state remain excluded. Real-account UI acceptance is separately pending the Owner's actual Web login. Remote readback/final receipts follow this capture as normal metadata, without another code test/build/deploy cycle.
 
 ## October12 native/cross-platform continuation
 

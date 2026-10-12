@@ -1,0 +1,944 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node@22/22.22.3/bin/node",
+      "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/node_modules/.bin/playwright",
+      "test",
+      "--config",
+      "../../output/qa/rillora-plan-purchase-page-20261012/plan-playwright.config.mjs"
+    ],
+    "configFile": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/output/qa/rillora-plan-purchase-page-20261012/plan-playwright.config.mjs",
+    "rootDir": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/output/qa/rillora-plan-purchase-page-20261012/browser-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "plan-access.spec.mjs"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/output/qa/rillora-plan-purchase-page-20261012/browser-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 2,
+    "webServer": {
+      "command": "npm run dev -- --host 127.0.0.1 --port 4174 --strictPort",
+      "cwd": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web",
+      "url": "http://127.0.0.1:4174",
+      "reuseExistingServer": false
+    }
+  },
+  "suites": [
+    {
+      "title": "plan-access.spec.mjs",
+      "file": "plan-access.spec.mjs",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "One paid plan, price and subscribe action en 320",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1923,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T16:09:48.887Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-53e24efa7a24461bd462",
+          "file": "plan-access.spec.mjs",
+          "line": 40,
+          "column": 3
+        },
+        {
+          "title": "One paid plan, price and subscribe action en 390",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1436,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T16:09:51.531Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-8b229b2c14f93e0b7ade",
+          "file": "plan-access.spec.mjs",
+          "line": 40,
+          "column": 3
+        },
+        {
+          "title": "One paid plan, price and subscribe action en 768",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1435,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T16:09:52.972Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-0db55139bae205980a7e",
+          "file": "plan-access.spec.mjs",
+          "line": 40,
+          "column": 3
+        },
+        {
+          "title": "One paid plan, price and subscribe action en 1280",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1445,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T16:09:54.413Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-9314717157528d3c686c",
+          "file": "plan-access.spec.mjs",
+          "line": 40,
+          "column": 3
+        },
+        {
+          "title": "One paid plan, price and subscribe action en 1920",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1428,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T16:09:55.863Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-55ed8d6b5f06a2ceb2e6",
+          "file": "plan-access.spec.mjs",
+          "line": 40,
+          "column": 3
+        },
+        {
+          "title": "One paid plan, price and subscribe action zh-CN 320",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1443,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T16:09:57.299Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-336656c8f436f91100a3",
+          "file": "plan-access.spec.mjs",
+          "line": 40,
+          "column": 3
+        },
+        {
+          "title": "One paid plan, price and subscribe action zh-CN 390",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1386,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T16:09:58.751Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-f71e7ce71e7f0ddf8ccb",
+          "file": "plan-access.spec.mjs",
+          "line": 40,
+          "column": 3
+        },
+        {
+          "title": "One paid plan, price and subscribe action zh-CN 768",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1441,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T16:10:00.144Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-04c4aaa5e9119ab7ed66",
+          "file": "plan-access.spec.mjs",
+          "line": 40,
+          "column": 3
+        },
+        {
+          "title": "One paid plan, price and subscribe action zh-CN 1280",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1436,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T16:10:01.591Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-aa40790bed4ab74962e1",
+          "file": "plan-access.spec.mjs",
+          "line": 40,
+          "column": 3
+        },
+        {
+          "title": "One paid plan, price and subscribe action zh-CN 1920",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1435,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T16:10:03.036Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-cabdfdbced16c826f7ec",
+          "file": "plan-access.spec.mjs",
+          "line": 40,
+          "column": 3
+        },
+        {
+          "title": "Closed sales still show the paid offer and disabled subscribe en",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1328,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T16:10:04.479Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-578299ac259b5accb4ba",
+          "file": "plan-access.spec.mjs",
+          "line": 61,
+          "column": 3
+        },
+        {
+          "title": "One explicit click accepts the displayed annual offer and creates one checkout en",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1819,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatchObject\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n\u001b[32m- Expected  - 4\u001b[39m\n\u001b[31m+ Received  + 0\u001b[39m\n\n\u001b[33m@@ -6,18 +6,14 @@\u001b[39m\n\u001b[2m      \"acceptedSubscriptionTerms\": true,\u001b[22m\n\u001b[2m      \"acknowledgedCancellation\": true,\u001b[22m\n\u001b[2m      \"amountMinor\": 8899,\u001b[22m\n\u001b[2m      \"billingPeriod\": \"annual\",\u001b[22m\n\u001b[2m      \"currency\": \"USD\",\u001b[22m\n\u001b[32m-     \"label\": \"I agree to the Subscription Terms and Refund Policy, and a yearly subscription that renews automatically until I cancel.\",\u001b[39m\n\u001b[2m      \"legalBundleSha256\": \"c983dc26bb372fba66b8df467d6e4c0ea1d85a2f4d94d86104b4bffa8d7f3ddb\",\u001b[22m\n\u001b[32m-     \"planCode\": \"family\",\u001b[39m\n\u001b[32m-     \"planVersion\": 2,\u001b[39m\n\u001b[2m      \"priceCode\": \"family_usd_annual_v4\",\u001b[22m\n\u001b[2m      \"provider\": \"stripe\",\u001b[22m\n\u001b[2m      \"refundPolicyVersion\": \"refunds-2026-08-27-1\",\u001b[22m\n\u001b[2m      \"subscriptionTermsVersion\": \"subscriptions-2026-08-27-1\",\u001b[22m\n\u001b[32m-     \"taxNotice\": \"Any applicable tax is shown at checkout before payment.\",\u001b[39m\n\u001b[2m      \"termsVersion\": \"terms-2026-10-09-1\",\u001b[22m\n\u001b[2m      \"version\": \"family-annual-web-20261009-1\",\u001b[22m\n\u001b[2m    },\u001b[22m\n\u001b[2m  }\u001b[22m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatchObject\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n\u001b[32m- Expected  - 4\u001b[39m\n\u001b[31m+ Received  + 0\u001b[39m\n\n\u001b[33m@@ -6,18 +6,14 @@\u001b[39m\n\u001b[2m      \"acceptedSubscriptionTerms\": true,\u001b[22m\n\u001b[2m      \"acknowledgedCancellation\": true,\u001b[22m\n\u001b[2m      \"amountMinor\": 8899,\u001b[22m\n\u001b[2m      \"billingPeriod\": \"annual\",\u001b[22m\n\u001b[2m      \"currency\": \"USD\",\u001b[22m\n\u001b[32m-     \"label\": \"I agree to the Subscription Terms and Refund Policy, and a yearly subscription that renews automatically until I cancel.\",\u001b[39m\n\u001b[2m      \"legalBundleSha256\": \"c983dc26bb372fba66b8df467d6e4c0ea1d85a2f4d94d86104b4bffa8d7f3ddb\",\u001b[22m\n\u001b[32m-     \"planCode\": \"family\",\u001b[39m\n\u001b[32m-     \"planVersion\": 2,\u001b[39m\n\u001b[2m      \"priceCode\": \"family_usd_annual_v4\",\u001b[22m\n\u001b[2m      \"provider\": \"stripe\",\u001b[22m\n\u001b[2m      \"refundPolicyVersion\": \"refunds-2026-08-27-1\",\u001b[22m\n\u001b[2m      \"subscriptionTermsVersion\": \"subscriptions-2026-08-27-1\",\u001b[22m\n\u001b[32m-     \"taxNotice\": \"Any applicable tax is shown at checkout before payment.\",\u001b[39m\n\u001b[2m      \"termsVersion\": \"terms-2026-10-09-1\",\u001b[22m\n\u001b[2m      \"version\": \"family-annual-web-20261009-1\",\u001b[22m\n\u001b[2m    },\u001b[22m\n\u001b[2m  }\u001b[22m\n    at /Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e/plan-access.spec.mjs:80:30",
+                    "location": {
+                      "file": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e/plan-access.spec.mjs",
+                      "column": 30,
+                      "line": 80
+                    },
+                    "snippet": "  78 |     const checkout = state.writes.filter(x => x.path.endsWith('/stripe/checkout'));\n  79 |     expect(checkout).toHaveLength(1); expect(checkout[0].retryKey).toBeTruthy();\n> 80 |     expect(checkout[0].body).toMatchObject({ billingPeriod: 'annual', locale, purchaseConsent: { ...contract, acceptedSubscriptionTerms: true, acceptedAnnualRenewal: true, acknowledgedCancellation: true } });\n     |                              ^\n  81 |     state.releaseCheckout(); await expect(page).toHaveURL('https://checkout.stripe.com/isolated-fixture');\n  82 |     expect(state.writes.map(x => x.path)).toEqual(['/api/v1/commerce/purchase-route', '/api/v1/commerce/stripe/checkout']); clean(state); await context.close();\n  83 |   });"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e/plan-access.spec.mjs",
+                        "column": 30,
+                        "line": 80
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatchObject\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n\u001b[32m- Expected  - 4\u001b[39m\n\u001b[31m+ Received  + 0\u001b[39m\n\n\u001b[33m@@ -6,18 +6,14 @@\u001b[39m\n\u001b[2m      \"acceptedSubscriptionTerms\": true,\u001b[22m\n\u001b[2m      \"acknowledgedCancellation\": true,\u001b[22m\n\u001b[2m      \"amountMinor\": 8899,\u001b[22m\n\u001b[2m      \"billingPeriod\": \"annual\",\u001b[22m\n\u001b[2m      \"currency\": \"USD\",\u001b[22m\n\u001b[32m-     \"label\": \"I agree to the Subscription Terms and Refund Policy, and a yearly subscription that renews automatically until I cancel.\",\u001b[39m\n\u001b[2m      \"legalBundleSha256\": \"c983dc26bb372fba66b8df467d6e4c0ea1d85a2f4d94d86104b4bffa8d7f3ddb\",\u001b[22m\n\u001b[32m-     \"planCode\": \"family\",\u001b[39m\n\u001b[32m-     \"planVersion\": 2,\u001b[39m\n\u001b[2m      \"priceCode\": \"family_usd_annual_v4\",\u001b[22m\n\u001b[2m      \"provider\": \"stripe\",\u001b[22m\n\u001b[2m      \"refundPolicyVersion\": \"refunds-2026-08-27-1\",\u001b[22m\n\u001b[2m      \"subscriptionTermsVersion\": \"subscriptions-2026-08-27-1\",\u001b[22m\n\u001b[32m-     \"taxNotice\": \"Any applicable tax is shown at checkout before payment.\",\u001b[39m\n\u001b[2m      \"termsVersion\": \"terms-2026-10-09-1\",\u001b[22m\n\u001b[2m      \"version\": \"family-annual-web-20261009-1\",\u001b[22m\n\u001b[2m    },\u001b[22m\n\u001b[2m  }\u001b[22m\n\n  78 |     const checkout = state.writes.filter(x => x.path.endsWith('/stripe/checkout'));\n  79 |     expect(checkout).toHaveLength(1); expect(checkout[0].retryKey).toBeTruthy();\n> 80 |     expect(checkout[0].body).toMatchObject({ billingPeriod: 'annual', locale, purchaseConsent: { ...contract, acceptedSubscriptionTerms: true, acceptedAnnualRenewal: true, acknowledgedCancellation: true } });\n     |                              ^\n  81 |     state.releaseCheckout(); await expect(page).toHaveURL('https://checkout.stripe.com/isolated-fixture');\n  82 |     expect(state.writes.map(x => x.path)).toEqual(['/api/v1/commerce/purchase-route', '/api/v1/commerce/stripe/checkout']); clean(state); await context.close();\n  83 |   });\n    at /Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e/plan-access.spec.mjs:80:30"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T16:10:05.813Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/output/qa/rillora-plan-purchase-page-20261012/browser-results/plan-access-One-explicit-c-35883-and-creates-one-checkout-en/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/output/qa/rillora-plan-purchase-page-20261012/browser-results/plan-access-One-explicit-c-35883-and-creates-one-checkout-en/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e/plan-access.spec.mjs",
+                    "column": 30,
+                    "line": 80
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-e31c2264521cecb06bf3",
+          "file": "plan-access.spec.mjs",
+          "line": 70,
+          "column": 3
+        },
+        {
+          "title": "Existing Stripe and Apple subscriptions retain the correct management destination en",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3115,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T16:10:08.286Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-2807c49dcb05de6d37ff",
+          "file": "plan-access.spec.mjs",
+          "line": 84,
+          "column": 3
+        },
+        {
+          "title": "Enrolled TEST uses the same single annual action without charging en",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2969,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T16:10:11.740Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-09970c4f763aafe33351",
+          "file": "plan-access.spec.mjs",
+          "line": 98,
+          "column": 3
+        },
+        {
+          "title": "Closed sales still show the paid offer and disabled subscribe zh-CN",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1348,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T16:10:14.715Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-29208c5343b37e2fba8a",
+          "file": "plan-access.spec.mjs",
+          "line": 61,
+          "column": 3
+        },
+        {
+          "title": "One explicit click accepts the displayed annual offer and creates one checkout zh-CN",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1707,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatchObject\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n\u001b[32m- Expected  - 4\u001b[39m\n\u001b[31m+ Received  + 0\u001b[39m\n\n\u001b[33m@@ -6,18 +6,14 @@\u001b[39m\n\u001b[2m      \"acceptedSubscriptionTerms\": true,\u001b[22m\n\u001b[2m      \"acknowledgedCancellation\": true,\u001b[22m\n\u001b[2m      \"amountMinor\": 8899,\u001b[22m\n\u001b[2m      \"billingPeriod\": \"annual\",\u001b[22m\n\u001b[2m      \"currency\": \"USD\",\u001b[22m\n\u001b[32m-     \"label\": \"I agree to the Subscription Terms and Refund Policy, and a yearly subscription that renews automatically until I cancel.\",\u001b[39m\n\u001b[2m      \"legalBundleSha256\": \"c983dc26bb372fba66b8df467d6e4c0ea1d85a2f4d94d86104b4bffa8d7f3ddb\",\u001b[22m\n\u001b[32m-     \"planCode\": \"family\",\u001b[39m\n\u001b[32m-     \"planVersion\": 2,\u001b[39m\n\u001b[2m      \"priceCode\": \"family_usd_annual_v4\",\u001b[22m\n\u001b[2m      \"provider\": \"stripe\",\u001b[22m\n\u001b[2m      \"refundPolicyVersion\": \"refunds-2026-08-27-1\",\u001b[22m\n\u001b[2m      \"subscriptionTermsVersion\": \"subscriptions-2026-08-27-1\",\u001b[22m\n\u001b[32m-     \"taxNotice\": \"Any applicable tax is shown at checkout before payment.\",\u001b[39m\n\u001b[2m      \"termsVersion\": \"terms-2026-10-09-1\",\u001b[22m\n\u001b[2m      \"version\": \"family-annual-web-20261009-1\",\u001b[22m\n\u001b[2m    },\u001b[22m\n\u001b[2m  }\u001b[22m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatchObject\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n\u001b[32m- Expected  - 4\u001b[39m\n\u001b[31m+ Received  + 0\u001b[39m\n\n\u001b[33m@@ -6,18 +6,14 @@\u001b[39m\n\u001b[2m      \"acceptedSubscriptionTerms\": true,\u001b[22m\n\u001b[2m      \"acknowledgedCancellation\": true,\u001b[22m\n\u001b[2m      \"amountMinor\": 8899,\u001b[22m\n\u001b[2m      \"billingPeriod\": \"annual\",\u001b[22m\n\u001b[2m      \"currency\": \"USD\",\u001b[22m\n\u001b[32m-     \"label\": \"I agree to the Subscription Terms and Refund Policy, and a yearly subscription that renews automatically until I cancel.\",\u001b[39m\n\u001b[2m      \"legalBundleSha256\": \"c983dc26bb372fba66b8df467d6e4c0ea1d85a2f4d94d86104b4bffa8d7f3ddb\",\u001b[22m\n\u001b[32m-     \"planCode\": \"family\",\u001b[39m\n\u001b[32m-     \"planVersion\": 2,\u001b[39m\n\u001b[2m      \"priceCode\": \"family_usd_annual_v4\",\u001b[22m\n\u001b[2m      \"provider\": \"stripe\",\u001b[22m\n\u001b[2m      \"refundPolicyVersion\": \"refunds-2026-08-27-1\",\u001b[22m\n\u001b[2m      \"subscriptionTermsVersion\": \"subscriptions-2026-08-27-1\",\u001b[22m\n\u001b[32m-     \"taxNotice\": \"Any applicable tax is shown at checkout before payment.\",\u001b[39m\n\u001b[2m      \"termsVersion\": \"terms-2026-10-09-1\",\u001b[22m\n\u001b[2m      \"version\": \"family-annual-web-20261009-1\",\u001b[22m\n\u001b[2m    },\u001b[22m\n\u001b[2m  }\u001b[22m\n    at /Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e/plan-access.spec.mjs:80:30",
+                    "location": {
+                      "file": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e/plan-access.spec.mjs",
+                      "column": 30,
+                      "line": 80
+                    },
+                    "snippet": "  78 |     const checkout = state.writes.filter(x => x.path.endsWith('/stripe/checkout'));\n  79 |     expect(checkout).toHaveLength(1); expect(checkout[0].retryKey).toBeTruthy();\n> 80 |     expect(checkout[0].body).toMatchObject({ billingPeriod: 'annual', locale, purchaseConsent: { ...contract, acceptedSubscriptionTerms: true, acceptedAnnualRenewal: true, acknowledgedCancellation: true } });\n     |                              ^\n  81 |     state.releaseCheckout(); await expect(page).toHaveURL('https://checkout.stripe.com/isolated-fixture');\n  82 |     expect(state.writes.map(x => x.path)).toEqual(['/api/v1/commerce/purchase-route', '/api/v1/commerce/stripe/checkout']); clean(state); await context.close();\n  83 |   });"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e/plan-access.spec.mjs",
+                        "column": 30,
+                        "line": 80
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatchObject\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n\u001b[32m- Expected  - 4\u001b[39m\n\u001b[31m+ Received  + 0\u001b[39m\n\n\u001b[33m@@ -6,18 +6,14 @@\u001b[39m\n\u001b[2m      \"acceptedSubscriptionTerms\": true,\u001b[22m\n\u001b[2m      \"acknowledgedCancellation\": true,\u001b[22m\n\u001b[2m      \"amountMinor\": 8899,\u001b[22m\n\u001b[2m      \"billingPeriod\": \"annual\",\u001b[22m\n\u001b[2m      \"currency\": \"USD\",\u001b[22m\n\u001b[32m-     \"label\": \"I agree to the Subscription Terms and Refund Policy, and a yearly subscription that renews automatically until I cancel.\",\u001b[39m\n\u001b[2m      \"legalBundleSha256\": \"c983dc26bb372fba66b8df467d6e4c0ea1d85a2f4d94d86104b4bffa8d7f3ddb\",\u001b[22m\n\u001b[32m-     \"planCode\": \"family\",\u001b[39m\n\u001b[32m-     \"planVersion\": 2,\u001b[39m\n\u001b[2m      \"priceCode\": \"family_usd_annual_v4\",\u001b[22m\n\u001b[2m      \"provider\": \"stripe\",\u001b[22m\n\u001b[2m      \"refundPolicyVersion\": \"refunds-2026-08-27-1\",\u001b[22m\n\u001b[2m      \"subscriptionTermsVersion\": \"subscriptions-2026-08-27-1\",\u001b[22m\n\u001b[32m-     \"taxNotice\": \"Any applicable tax is shown at checkout before payment.\",\u001b[39m\n\u001b[2m      \"termsVersion\": \"terms-2026-10-09-1\",\u001b[22m\n\u001b[2m      \"version\": \"family-annual-web-20261009-1\",\u001b[22m\n\u001b[2m    },\u001b[22m\n\u001b[2m  }\u001b[22m\n\n  78 |     const checkout = state.writes.filter(x => x.path.endsWith('/stripe/checkout'));\n  79 |     expect(checkout).toHaveLength(1); expect(checkout[0].retryKey).toBeTruthy();\n> 80 |     expect(checkout[0].body).toMatchObject({ billingPeriod: 'annual', locale, purchaseConsent: { ...contract, acceptedSubscriptionTerms: true, acceptedAnnualRenewal: true, acknowledgedCancellation: true } });\n     |                              ^\n  81 |     state.releaseCheckout(); await expect(page).toHaveURL('https://checkout.stripe.com/isolated-fixture');\n  82 |     expect(state.writes.map(x => x.path)).toEqual(['/api/v1/commerce/purchase-route', '/api/v1/commerce/stripe/checkout']); clean(state); await context.close();\n  83 |   });\n    at /Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e/plan-access.spec.mjs:80:30"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T16:10:16.071Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/output/qa/rillora-plan-purchase-page-20261012/browser-results/plan-access-One-explicit-c-0a962--creates-one-checkout-zh-CN/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/output/qa/rillora-plan-purchase-page-20261012/browser-results/plan-access-One-explicit-c-0a962--creates-one-checkout-zh-CN/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e/plan-access.spec.mjs",
+                    "column": 30,
+                    "line": 80
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-1c83501c5dc27886b1e8",
+          "file": "plan-access.spec.mjs",
+          "line": 70,
+          "column": 3
+        },
+        {
+          "title": "Existing Stripe and Apple subscriptions retain the correct management destination zh-CN",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3086,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T16:10:18.388Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-b928ce427d032caed409",
+          "file": "plan-access.spec.mjs",
+          "line": 84,
+          "column": 3
+        },
+        {
+          "title": "Enrolled TEST uses the same single annual action without charging zh-CN",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2959,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T16:10:21.800Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-638f81a5a7e5c33a2f76",
+          "file": "plan-access.spec.mjs",
+          "line": 98,
+          "column": 3
+        },
+        {
+          "title": "Checkout stops on an unverified route, quote or response {\"quoteChange\":{\"amountMinor\":6800}}",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1703,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T16:10:24.765Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-da4e728e800fb58fb61c",
+          "file": "plan-access.spec.mjs",
+          "line": 117,
+          "column": 3
+        },
+        {
+          "title": "Checkout stops on an unverified route, quote or response {\"quoteChange\":{\"termsVersion\":\"old\"}}",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1812,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T16:10:26.474Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-5ef7607b5a30ab4b85e4",
+          "file": "plan-access.spec.mjs",
+          "line": 117,
+          "column": 3
+        },
+        {
+          "title": "Checkout stops on an unverified route, quote or response {\"routeBlocked\":true}",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1690,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T16:10:28.294Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-7d24e150422048e8a674",
+          "file": "plan-access.spec.mjs",
+          "line": 117,
+          "column": 3
+        },
+        {
+          "title": "Checkout stops on an unverified route, quote or response {\"wrongProviderMode\":true}",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1799,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T16:10:29.996Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-2bf3e129c469f2c73956",
+          "file": "plan-access.spec.mjs",
+          "line": 117,
+          "column": 3
+        },
+        {
+          "title": "Old prices and continuing renewal never enable a duplicate checkout",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3575,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T16:10:31.803Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-f5a5d9ffd0f4d2b400d0",
+          "file": "plan-access.spec.mjs",
+          "line": 126,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-12T16:09:47.951Z",
+    "duration": 47678.851,
+    "expected": 21,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

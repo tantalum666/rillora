@@ -1,0 +1,8 @@
+import { defineConfig } from "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/node_modules/@playwright/test/index.mjs";
+export default defineConfig({
+ testDir: "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e", testMatch: 'plan-access.spec.mjs',
+ outputDir: "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/output/qa/rillora-plan-purchase-page-20261012/checkout-results", workers: 2, retries: 0, timeout: 30000,
+ reporter: [['list'], ['json', { outputFile: "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/output/qa/rillora-plan-purchase-page-20261012/checkout-results.json" }]],
+ use: { browserName: 'chromium', channel: 'chrome', trace: 'retain-on-failure' },
+ webServer: { command: 'npm run dev -- --host 127.0.0.1 --port 4174 --strictPort', cwd: "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web", url: 'http://127.0.0.1:4174', reuseExistingServer: false }
+});

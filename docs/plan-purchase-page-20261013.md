@@ -1,6 +1,6 @@
 # 套餐与权限：家庭版权益、年价与一个订阅操作
 
-Status: IMPLEMENTED / SCOPED CHECKS PASSED / WEB DEPLOYMENT PENDING
+Status: BOTH WEB CLIENTS DEPLOYED / SOURCE CI PASSED / REAL ACCOUNT UI READBACK PENDING / NO TESTFLIGHT
 Last updated: 2026-10-13 (Asia/Hong_Kong)
 
 ## 当前合同
@@ -26,10 +26,20 @@ WebUSD88.99／年、Apple美国USD119.99及此前手机实际HKD888证据保持�
 - 13项Node检查通过，覆盖实际双语渲染、当前报价匹配、接受记录、跳转及财务边界。首轮1项失败来自中文旧断言“暂不开放”与现有“暂未开放”不同，修正断言后通过。
 - 23个隔离Chrome场景最终通过：首轮21通过；2个结账断言错误要求发送仅展示用的label／taxNotice／plan元数据，改为准确的既有收据字段后，这2个场景单独通过。其余21个未重复运行。所有provider地址均拦截为本地夹具，没有外部交易。
 - 中英文320／390／768／1280／1920宽度、亮／暗色的完整渲染已检查；390暗色及1280亮色截图已人工查看，没有水平溢出。加载不会提交接受，连续点击只创建一次结账；旧价格／条款／受阻路由／错误模式跳转均被拒绝，历史可能续订仍指向管理。
-- 两个Web发布构建通过，法律输入保持。云端旧会话确实过期后，Owner完成原AWS账号MFA；只恢复原权限。实际发布／线上读回及Git归档回执后续记录，不能把本地构建写成已部署。
+- 两个Web发布构建通过，法律输入保持。云端旧会话确实过期后，Owner完成原AWS账号MFA；只恢复原权限。实际静态部署／文件读回结果见下节；真实账号UI验收独立记录。
 
 QA：`output/qa/rillora-plan-purchase-page-20261012/`（开始于October12，跨午夜完成）。本轮沿用原完整阅读记录，只补当前规范／变更文件，未重做全库审计或原生／金融验收。旧交接见[历史记录](handoff-history-20261013-before-plan-purchase-page.md)。
 
 ## CI中发现的旧UI断言
 
 源码ed1ac1ef0的CI132在191个Web测试通过后，唯一失败是旧本地化检查硬编码要求组件必须包含未选中的checkbox状态；这与Owner最新要求直接冲突。删除该实现镜像断言，由本轮实际双语SSR及点击／不点击／双击／过期报价浏览器测试覆盖真实行为；保留7项本地化合同测试并单独运行。生产代码／已构建文件无变化，不重复构建。CI通过前只准备静态资源变更集，没有执行切换。
+
+## 实际交付与当前边界
+
+最终源码759c00112651089e60cb88faad78b98bbe484a83／[CI133](https://github.com/tantalum666/rillora/actions/runs/38276829336)三个任务成功。后续提交只更换过时测试断言和文档，运行源码／配置／基础设施与已构建ed1ac逐字一致，没有重建同一Web产物。
+
+先Preview后正式Web完成UPDATE_COMPLETE；两栈各仅一个Custom::CDKBucketDeployment的SourceObjectKeys修改，99／13个资源均保留，全部参数相同。Preview86、正式86个线上文件全部与候选字节匹配。API、数据库、WWW、手机14、价格、收费开关与真实数据未变。
+
+正式Chrome原页面出现账号更换保护，正常重新载入后显示未登录；账号页条款未选、登录按钮禁用。已请Owner恢复原账号，尚无完成回复。本轮没有代填法律同意或制造登录态。因此线上字节交付已证实，真实账号新版UI尚待读回。隔离截图明确标注为测试数据，不能冒充实际用户结果。
+
+[新增archive35](../collaboration/verification/plan-purchase-page-20261012/README.md)保存256路径／164对象／35,554,938加密字节，本地认证解密通过；先前1—34未重做。它包含本轮失败／通过日志、截图、发布脚本、精确资源差异及两份最终Web产物。真实凭据、认证界面／会话、provider原文留在保护目录，不进入Git。远端新下载及最终回执另记，不递归封存。
