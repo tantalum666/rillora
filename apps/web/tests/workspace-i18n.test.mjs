@@ -105,10 +105,5 @@ test('all static workspace message references resolve in both locales', async ()
   }
 });
 
-test('production purchase acceptance uses selected-language copy and retains unchecked state', async () => {
-  const source = await readFile(new URL('../src/ProductionBillingControls.jsx', import.meta.url), 'utf8');
-  assert.match(source, /<SubscriptionConsentText \/>/);
-  assert.match(source, /\[accepted, setAccepted\] = useState\(false\)/);
-  assert.match(source, /purchaseProof\(quote, accepted\)/);
-  assert.match(source, /commerce\.billingOpen && commerce\.offers\.some/);
-});
+// Selected-language disclosure and explicit-click acceptance are exercised against
+// the rendered plan in plan-access-render.test.mjs and e2e/plan-access.spec.mjs.
