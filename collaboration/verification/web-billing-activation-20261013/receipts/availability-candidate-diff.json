@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "stacks": [
+    {
+      "stack": "RilloraPublicWeb",
+      "changes": [
+        {
+          "logicalId": "PublicDeploymentCustomResource947B276F",
+          "property": "SourceObjectKeys"
+        }
+      ],
+      "sameOriginsCertificatesCacheSecurityPolicies": true
+    },
+    {
+      "stack": "RilloraProductionWeb",
+      "changes": [
+        {
+          "logicalId": "[PUBLIC_IDENTIFIER_OMITTED]",
+          "property": "SourceObjectKeys"
+        }
+      ],
+      "sameOriginsCertificatesCacheSecurityPolicies": true
+    }
+  ]
+}

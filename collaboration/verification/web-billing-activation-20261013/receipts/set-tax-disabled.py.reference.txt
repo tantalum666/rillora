@@ -1,0 +1,32 @@
+from pathlib import Path
+import sys,json,subprocess,uuid,datetime
+w=Path(__file__).resolve().parents[3];q=Path(__file__).resolve().parent;p=w/'.local-secrets/web-billing-activation-20261013'
+sys.path.insert(0,str(w/'tools/release'));from recovery_drill import Aws
+assert json.loads((q/'compatible-deployed.json').read_text())['templateMatches']
+assert json.loads((q/'ci136-readback.json').read_text())['allJobsPassed']
+aws=Aws('rillora-operator');before_stack=json.loads((p/'live-before-stack.json').read_text());out={x['OutputKey']:x['OutputValue'] for x in before_stack['Outputs']};arn=out['RuntimeStripeNotificationsSecretArn8A76E8A3']
+marker=p/'disabled-tax-version.json';assert not marker.exists(),'Inspect the saved secret version rather than repeat this change'
+before=aws.call('secretsmanager','get-secret-value',{'SecretId':arn,'VersionStage':'AWSCURRENT'});value=json.loads(before['SecretString'])
+assert value['expectedAccountId']=='acct_1U6B2RCxTlowhyiG' and value['environment']=='production' and value['tax']['mode']=='not_configured'
+new={**value,'tax':{'mode':'disabled','productTaxCode':value['tax']['productTaxCode']}}
+assert {k:v for k,v in new.items() if k!='tax'}=={k:v for k,v in value.items() if k!='tax'}
+code="""import fs from 'node:fs';import {parseStripeProductionSecret} from './dist/stripe-production-secret.js';import {StripeProductionAdapter} from './dist/stripe-production-adapter.js';
+const c=parseStripeProductionSecret(fs.readFileSync(0,'utf8'));if(c.tax.mode!=='disabled')throw Error('Wrong mode');
+await new StripeProductionAdapter(c).assertCheckoutReady('annual');console.log(JSON.stringify({ready:true,annualAmountMinor:8899,currency:'USD',automaticTax:false}));"""
+check=subprocess.run(['node','--input-type=module','-e',code],input=json.dumps(new),cwd=w/'apps/api',capture_output=True,text=True)
+assert check.returncode==0,'Provider readiness check failed; raw provider body suppressed'
+ready=json.loads(check.stdout);assert ready['ready']
+version=uuid.uuid4().hex
+state={'secretArn':arn,'previousVersion':before['VersionId'],'newVersion':version,'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'status':'requested'}
+marker.write_text(json.dumps(state));marker.chmod(0o600)
+request={'SecretId':arn,'ClientRequestToken':version,'SecretString':json.dumps(new),'VersionStages':['AWSCURRENT']}
+# Credential-bearing JSON goes through a pipe, never argv, a log or a plaintext file.
+result=subprocess.run(['aws','--profile','rillora-operator','--region','eu-central-1','secretsmanager','put-secret-value','--cli-input-json','file:///dev/stdin','--output','json'],input=json.dumps(request),capture_output=True,text=True)
+assert result.returncode==0,'Inspect the saved version after an uncertain vault write; raw body suppressed'
+after=aws.call('secretsmanager','get-secret-value',{'SecretId':arn,'VersionStage':'AWSCURRENT'})
+assert after['VersionId']==version and json.loads(after['SecretString'])==new
+state['status']='verified';marker.write_text(json.dumps(state));marker.chmod(0o600)
+report={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'readBackMatched':True,'changedFields':['tax.mode'],
+ 'mode':'disabled','automaticTax':False,'sameCredentialsPricesProductPortalAndReturnUrls':True,'taxAssessmentOrRegistrationInvented':False,
+ 'providerReadyWithoutTaxAutomation':ready,'credentialsSavedOrPrinted':False,'createdPayments':False,'applicationRestartPending':True}
+(q/'disabled-tax-configured.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))

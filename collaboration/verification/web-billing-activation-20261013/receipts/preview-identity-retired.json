@@ -1,0 +1,31 @@
+{
+  "at": "2026-10-12T20:15:46.299059+00:00",
+  "ordinaryCustomerEntryHeld": true,
+  "retiredClientCount": 4,
+  "retiredServiceIssuers": 2,
+  "[PUBLIC_IDENTIFIER_OMITTED]": true,
+  "historicalConnectionMetadataRetainedInert": true,
+  "productionClientGrantsUnchanged": true,
+  "productionClientConnectionBindingsPreserved": true,
+  "negativeTokenRequests": [
+    {
+      "clientId": "[PUBLIC_IDENTIFIER_OMITTED]",
+      "status": 403,
+      "error": "unauthorized_client",
+      "tokenIssued": false
+    },
+    {
+      "clientId": "[PUBLIC_IDENTIFIER_OMITTED]",
+      "status": 403,
+      "error": "unauthorized_client",
+      "tokenIssued": false
+    }
+  ],
+  "credentialsSavedOrPrinted": false,
+  "accountsOrMapsDeleted": false,
+  "maxHistoricalTokenLifetimeSeconds": 86400,
+  "clockToleranceSeconds": 300,
+  "earliestCustomerActivationAt": "2026-10-13T20:20:46.299059+00:00",
+  "negativeSearchResultsAreNotProofOfTokenExpiry": true,
+  "next": "After this absolute deadline, verify retired access remains denied and restore the already prepared production-only consent Action and Web sales route. No repeated backend build, TestFlight or payment."
+}

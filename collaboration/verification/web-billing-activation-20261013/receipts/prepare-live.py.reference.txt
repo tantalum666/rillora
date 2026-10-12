@@ -1,0 +1,27 @@
+from pathlib import Path
+import json,subprocess,sys,datetime
+w=Path(__file__).resolve().parents[3];q=Path(__file__).resolve().parent;p=w/'.local-secrets/web-billing-activation-20261013'
+sys.path.insert(0,str(w/'tools/release'));from recovery_drill import Aws
+aws=Aws('rillora-cdk-deploy');stack=aws.call('cloudformation','describe-stacks',{'StackName':'RilloraProduction'})['Stacks'][0]
+assert stack['StackStatus']=='UPDATE_COMPLETE'
+raw=aws.call('cloudformation','get-template',{'StackName':'RilloraProduction'})['TemplateBody'];before=json.loads(raw) if isinstance(raw,str) else raw
+assert before==json.loads((q/'compatible-review-assembly/RilloraProduction.template.json').read_text())
+for name,value in [('live-before-stack.json',stack),('live-before-template.json',before)]:
+ path=p/name;assert not path.exists();path.write_text(json.dumps(value));path.chmod(0o600)
+out={x['OutputKey']:x['OutputValue'] for x in stack['Outputs']};arn=out['RuntimeStripeNotificationsSecretArn8A76E8A3']
+context={'productionFoundationOnly':'true','productionRuntimeEnabled':'true','productionRuntimeDesiredCount':'1',
+ 'productionReviewPrepared':'true','productionReviewEnabled':'false','productionLiveEnabled':'true','productionStripeCheckoutEnabled':'true',
+ 'productionRetentionEnabled':'true','productionIdentityServicesEnabled':'true','productionStripeNotificationsSecretArn':arn}
+assembly=q/'live-assembly';assert not assembly.exists()
+command=['npx','cdk','synth','RilloraProduction','--exclusively','--no-lookups','--profile','rillora-cdk-session','--output',str(assembly)]
+for key,value in context.items():command+=['-c',key+'='+value]
+with (q/'live-synth.log').open('w') as log:result=subprocess.run(command,cwd=w/'infra/aws',stdout=log,stderr=subprocess.STDOUT)
+assert result.returncode==0
+candidate=json.loads((assembly/'RilloraProduction.template.json').read_text());assert set(candidate['Resources'])==set(before['Resources'])
+changes=[]
+for name,old in before['Resources'].items():
+ new=candidate['Resources'][name]
+ if old==new:continue
+ assert name in ['RuntimeApiTaskCF645D67','RuntimeApiTaskTaskRoleDefaultPolicy238F6449','RuntimeApiNetworkDC70C81A','MaintenanceBrokerFunctionC542279B'], 'Review unexpected live resource: '+name
+ changes.append({'logicalId':name,'type':old['Type'],'changedProperties':[k for k in set(old.get('Properties',{}))|set(new.get('Properties',{})) if old.get('Properties',{}).get(k)!=new.get('Properties',{}).get(k)]})
+(q/'live-initial-diff.json').write_text(json.dumps({'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'changes':changes,'deployed':False},indent=2)+'\n');print(json.dumps(changes))

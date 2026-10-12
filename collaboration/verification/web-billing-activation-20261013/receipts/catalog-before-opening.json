@@ -1,0 +1,215 @@
+{
+  "at": "2026-10-12T18:50:37.423657+00:00",
+  "label": "before-opening",
+  "operation": "inspect",
+  "status": "STOPPED",
+  "exitCode": 0,
+  "result": {
+    "operation": "inspect",
+    "before": {
+      "data": {
+        "price": {
+          "id": "9",
+          "price_code": "family_usd_annual_v4",
+          "plan_version_id": "6",
+          "operator_code": "global_operator_pending",
+          "service_market_code": "GLOBAL_US",
+          "amount_minor": "8899",
+          "currency_code": "USD",
+          "billing_interval": "annual",
+          "tax_behavior": "not_configured",
+          "status": "disabled_hypothesis",
+          "purchase_channel": "web",
+          "minor_unit_exponent": 2,
+          "effective_from": null,
+          "effective_to": null
+        },
+        "plan": {
+          "id": "6",
+          "plan_code": "family",
+          "version": 2,
+          "status": "active",
+          "effective_from": null,
+          "effective_to": null
+        },
+        "route": {
+          "id": "1",
+          "policy_code": "global_us_web_stripe_v1",
+          "version": 1,
+          "market_policy_id": "1",
+          "storefront_policy_id": "1",
+          "provider_code": "stripe",
+          "purchase_route": "web_direct",
+          "enabled": false,
+          "status": "configured_disabled",
+          "effective_from": null,
+          "effective_to": null
+        },
+        "market": {
+          "id": "1",
+          "service_market_code": "GLOBAL_US",
+          "operating_plane_code": "global",
+          "operator_code": "global_operator_pending",
+          "sales_enabled": false,
+          "status": "configured_disabled",
+          "effective_from": null,
+          "effective_to": null
+        },
+        "storefront": {
+          "id": "1",
+          "client_surface": "web",
+          "planned_route": "web_direct",
+          "status": "configured_disabled",
+          "effective_from": null,
+          "effective_to": null
+        },
+        "operator": {
+          "code": "global_operator_pending",
+          "operating_plane_code": "global",
+          "party_type": "individual",
+          "status": "pending",
+          "effective_from": null,
+          "effective_to": null
+        },
+        "plane": {
+          "code": "global",
+          "data_region_code": "eu-central-1",
+          "status": "configured_disabled"
+        },
+        "binding": {
+          "id": "14",
+          "provider_account_reference": "acct_1U6B2RCxTlowhyiG",
+          "external_product_reference": "price_1UNXyZCxTlowhyiGJB6HlBR5",
+          "external_parent_product_reference": "prod_rillora_family_v2_live",
+          "status": "active",
+          "effective_from": "2026-10-09T07:30:56.779Z",
+          "effective_to": null
+        },
+        "capabilities": [
+          {
+            "plan_version_id": "6",
+            "capability_code": "family_maintenance",
+            "allowance": null,
+            "enforcement_mode": "included"
+          },
+          {
+            "plan_version_id": "6",
+            "capability_code": "trusted_people_multiple",
+            "allowance": 5,
+            "enforcement_mode": "included"
+          }
+        ],
+        "runtime": {
+          "production_entitlements_enabled": false,
+          "sharing_limits_enabled": false
+        }
+      },
+      "sha256": "47b31e53b906db30a40bccf69a47e6e1e1e28211da566ba03ebf2a6baf9e5dad"
+    },
+    "after": {
+      "data": {
+        "price": {
+          "id": "9",
+          "price_code": "family_usd_annual_v4",
+          "plan_version_id": "6",
+          "operator_code": "global_operator_pending",
+          "service_market_code": "GLOBAL_US",
+          "amount_minor": "8899",
+          "currency_code": "USD",
+          "billing_interval": "annual",
+          "tax_behavior": "not_configured",
+          "status": "disabled_hypothesis",
+          "purchase_channel": "web",
+          "minor_unit_exponent": 2,
+          "effective_from": null,
+          "effective_to": null
+        },
+        "plan": {
+          "id": "6",
+          "plan_code": "family",
+          "version": 2,
+          "status": "active",
+          "effective_from": null,
+          "effective_to": null
+        },
+        "route": {
+          "id": "1",
+          "policy_code": "global_us_web_stripe_v1",
+          "version": 1,
+          "market_policy_id": "1",
+          "storefront_policy_id": "1",
+          "provider_code": "stripe",
+          "purchase_route": "web_direct",
+          "enabled": false,
+          "status": "configured_disabled",
+          "effective_from": null,
+          "effective_to": null
+        },
+        "market": {
+          "id": "1",
+          "service_market_code": "GLOBAL_US",
+          "operating_plane_code": "global",
+          "operator_code": "global_operator_pending",
+          "sales_enabled": false,
+          "status": "configured_disabled",
+          "effective_from": null,
+          "effective_to": null
+        },
+        "storefront": {
+          "id": "1",
+          "client_surface": "web",
+          "planned_route": "web_direct",
+          "status": "configured_disabled",
+          "effective_from": null,
+          "effective_to": null
+        },
+        "operator": {
+          "code": "global_operator_pending",
+          "operating_plane_code": "global",
+          "party_type": "individual",
+          "status": "pending",
+          "effective_from": null,
+          "effective_to": null
+        },
+        "plane": {
+          "code": "global",
+          "data_region_code": "eu-central-1",
+          "status": "configured_disabled"
+        },
+        "binding": {
+          "id": "14",
+          "provider_account_reference": "acct_1U6B2RCxTlowhyiG",
+          "external_product_reference": "price_1UNXyZCxTlowhyiGJB6HlBR5",
+          "external_parent_product_reference": "prod_rillora_family_v2_live",
+          "status": "active",
+          "effective_from": "2026-10-09T07:30:56.779Z",
+          "effective_to": null
+        },
+        "capabilities": [
+          {
+            "plan_version_id": "6",
+            "capability_code": "family_maintenance",
+            "allowance": null,
+            "enforcement_mode": "included"
+          },
+          {
+            "plan_version_id": "6",
+            "capability_code": "trusted_people_multiple",
+            "allowance": 5,
+            "enforcement_mode": "included"
+          }
+        ],
+        "runtime": {
+          "production_entitlements_enabled": false,
+          "sharing_limits_enabled": false
+        }
+      },
+      "sha256": "47b31e53b906db30a40bccf69a47e6e1e1e28211da566ba03ebf2a6baf9e5dad"
+    },
+    "userRecordsModified": false,
+    "pricesChanged": false,
+    "historicalAccessRevoked": false,
+    "taxExemptionClaimed": false
+  },
+  "passed": true
+}

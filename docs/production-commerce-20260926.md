@@ -1,8 +1,12 @@
 # Production annual commerce preparation
 
 Role: focused ordinary Web purchase, consent and provider-isolation contract
-Status: CLOUD TEST PASSED; LIVE CATALOG/PORTAL/PRODUCTION NOTIFICATIONS CONNECTED; CUSTOMER BILLING CLOSED
+Status: LIVE BILLING ENGINE DEPLOYED; AUTOMATIC TAX DISABLED; NEW SALES HELD FOR IDENTITY TOKEN EXPIRY
 Last updated: 2026-10-13 (Asia/Hong_Kong)
+
+## October13实际Web计费交付
+
+Owner移除计税策略前置后，tax.mode=disabled实际安装，原商品／USD88.99／年价不变，API25live与目录／权益准备完成。当前新购因既有身份切换要求暂闭：4旧Preview客户端停止签发、两项旧服务实测403，等旧令牌至香港October14 04:21之后再开放。此门与Stripe Tax无关，未制造Live付款。[当前结果](web-billing-activation-20261013.md)。
 
 ## October13 Owner移除计税策略阻塞
 

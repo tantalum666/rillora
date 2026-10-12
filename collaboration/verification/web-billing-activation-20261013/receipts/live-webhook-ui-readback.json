@@ -1,0 +1,33 @@
+{
+  "checkedAt": "2026-10-12T19:41:07.031Z",
+  "source": "existing authenticated Stripe Dashboard, Rillora live context",
+  "active": true,
+  "events": [
+    "charge.dispute.closed",
+    "charge.dispute.created",
+    "charge.dispute.funds_reinstated",
+    "charge.dispute.funds_withdrawn",
+    "charge.dispute.updated",
+    "charge.refunded",
+    "checkout.session.async_payment_failed",
+    "checkout.session.async_payment_succeeded",
+    "checkout.session.completed",
+    "customer.subscription.created",
+    "customer.subscription.deleted",
+    "customer.subscription.updated",
+    "invoice.paid",
+    "invoice.payment_failed",
+    "invoice.payment_succeeded",
+    "refund.created",
+    "refund.failed",
+    "refund.updated"
+  ],
+  "urlMatches": true,
+  "versionMatches": true,
+  "visibleWindow": "this week",
+  "visibleDeliveryCount": 1,
+  "visibleFailures": 0,
+  "previousConfigurationDeliveryNotNewPayment": true,
+  "signingSecretNotRevealed": true,
+  "readOnly": true
+}

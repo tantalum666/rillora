@@ -1,0 +1,26 @@
+{
+  "at": "2026-10-12T20:21:39.568730+00:00",
+  "attempts": [
+    {
+      "step": "Retire historical Auth0 grant row through no-input CLI",
+      "result": "Failed before completion; --force required for delete command. No user or map deletion attempted."
+    },
+    {
+      "step": "Explicit historical grant metadata deletion",
+      "result": "Provider request did not complete; exact cause not established. Grant metadata retained; do not claim removed."
+    },
+    {
+      "step": "Read connections fields=id,name,enabled_clients",
+      "result": "HTTP400 invalid_query_string; enabled_clients is not accepted. No connections modified."
+    },
+    {
+      "step": "Retirement alternative",
+      "result": "Four clients grant_types empty; existing two service credentials both receive403 unauthorized_client with no token."
+    },
+    {
+      "step": "First public preview hold local test",
+      "result": "Guard rejected preview=true with production origin. Guard now permits restricted production mode while still rejecting non-allowlisted origins and a live staging configuration;2targeted tests andCI140pass."
+    }
+  ],
+  "boundary": "Observed errors and bounded alternative only; no new permissions, user deletion, or invented token expiry proof."
+}

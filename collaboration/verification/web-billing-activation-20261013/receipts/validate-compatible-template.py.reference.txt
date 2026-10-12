@@ -1,0 +1,65 @@
+from pathlib import Path
+import json,datetime
+w=Path(__file__).resolve().parents[3];q=Path(__file__).resolve().parent;p=w/'.local-secrets/web-billing-activation-20261013'
+a=json.loads((p/'RilloraProduction-before-template.json').read_text());b=json.loads((q/'compatible-review-assembly/RilloraProduction.template.json').read_text())
+zones=json.loads((q/'existing-subnet-zones.json').read_text());indices={}
+for name,zone in zones.items():
+ index=a['Resources'][name]['Properties']['AvailabilityZone']['Fn::Select'][0]
+ assert b['Resources'][name]['Properties']['AvailabilityZone']==a['Resources'][name]['Properties']['AvailabilityZone'],'Existing subnet AZ expression must be preserved'
+ assert index not in indices or indices[index]==zone;indices[index]=zone
+assert set(indices)=={0,1}
+def normalize(v):
+ if isinstance(v,list):return [normalize(x) for x in v]
+ if not isinstance(v,dict):return v
+ if list(v)==['Ref'] and v['Ref'] in ['AWS::AccountId','AWS::Region','AWS::Partition']:
+  return {'AWS::AccountId':'133857166372','AWS::Region':'eu-central-1','AWS::Partition':'aws'}[v['Ref']]
+ if list(v)==['Fn::GetAZs'] and v['Fn::GetAZs']=='':return [indices[0],indices[1]]
+ if list(v)==['Fn::Select']:
+  index,arr=normalize(v['Fn::Select'])
+  if isinstance(arr,list):return arr[int(index)]
+ if list(v)==['Fn::Sub'] and isinstance(v['Fn::Sub'],str):
+  text=v['Fn::Sub']
+  for key,value in [('AWS::AccountId','133857166372'),('AWS::Region','eu-central-1'),('AWS::Partition','aws')]:text=text.replace('${'+key+'}',value)
+  if '${' not in text:return text
+ if list(v)==['Fn::Join']:
+  sep,parts=normalize(v['Fn::Join']);merged=[]
+  if all(isinstance(x,str) for x in parts):return sep.join(parts)
+  if sep=='':
+   for item in parts:
+    if isinstance(item,str) and merged and isinstance(merged[-1],str):merged[-1]+=item
+    else:merged.append(item)
+   return {'Fn::Join':['',merged]}
+ return {k:sorted(normalize(value),key=lambda x:x['Name']) if k in ['Environment','Secrets'] and isinstance(value,list) else normalize(value) for k,value in v.items()}
+def remove_new_mode(v):
+ if isinstance(v,str):return v.replace('"productionRuntimeMode":"review",','')
+ if isinstance(v,list):return [remove_new_mode(x) for x in v]
+ if isinstance(v,dict):return {k:remove_new_mode(x) for k,x in v.items()}
+ return v
+before,after=normalize(a),normalize(b)
+assert {k:v for k,v in before.items() if k!='Resources'}=={k:v for k,v in after.items() if k!='Resources'}
+assert set(before['Resources'])==set(after['Resources'])
+changes=[];binding_only=[]
+for name,old in before['Resources'].items():
+ new=after['Resources'][name]
+ if old==new:
+  if a['Resources'][name]!=b['Resources'][name]:binding_only.append(name)
+  continue
+ expected=json.loads(json.dumps(old))
+ if old['Type']=='AWS::ECS::TaskDefinition':
+  for i,c in enumerate(new['Properties']['ContainerDefinitions']):expected['Properties']['ContainerDefinitions'][i]['Image']=c['Image']
+  allowed=['ContainerDefinitions.Image']
+ elif name=='MaintenanceBrokerFunctionC542279B':
+  expected['Properties']['Code']=new['Properties']['Code'];assert remove_new_mode(new['Properties']['Environment'])==old['Properties']['Environment']
+  expected['Properties']['Environment']=new['Properties']['Environment']
+  assert new['Metadata']['aws:asset:path']=='asset.'+new['Properties']['Code']['S3Key'].removesuffix('.zip')
+  expected['Metadata']['aws:asset:path']=new['Metadata']['aws:asset:path']
+  allowed=['Code','Environment.productionRuntimeMode','Metadata.assetPath']
+ else:raise AssertionError('Unexpected effective resource change: '+name)
+ assert expected==new,'Unexpected effective properties: '+name
+ changes.append({'logicalId':name,'type':old['Type'],'allowedProperties':allowed})
+assert len(changes)==5
+report={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'phase':'compatible-review','allResourceIdentitiesPreserved':True,
+ 'resourceCount':len(before['Resources']),'effectiveChanges':changes,'environmentBindingOnly':binding_only,
+ 'actualSubnetZonesVerified':zones,'iamKmsNetworkAndDataSemanticsUnchanged':True,'passed':True,'deployed':False,
+ 'changeSetGate':'No database/network/secret/key/service replacements may execute; task-definition revisions are the only allowed replacements.'}
+(q/'compatible-review-diff.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))

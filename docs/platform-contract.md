@@ -7,6 +7,10 @@ Do not use for: final framework choice or visual tokens
 Status: CORE PARITY CONTRACT ACTIVE; CURRENT RUNTIME AND RELEASE GATES IN HANDOFF
 Last updated: 2026-10-13 (Asia/Hong_Kong)
 
+## October13 Web billing capability and identity hold
+
+The Web billing engine is now live-capable with explicit disabled tax automation, currentUSD88.99annual price and production entitlements. Actual new sales and ordinary identity entry remain held until the old Preview Management tokens expire (earliest Hong KongOctober14 04:21). Existing native14and Apple evidence are not reinstalled or rerun; do not infer iOS release from Web configuration. Website destination and customer availability are separate: the real production URL must not show the test-app/sample-data disclaimer. [Exact deployment and remaining time gate](web-billing-activation-20261013.md).
+
 ## October13 compact paid-plan page
 
 Both consumer surfaces follow benefits, channel-specific annual price and one primary subscribe/manage action. Web now removes the Free status/accordions and the extra consent form; its explicit button click records only the displayed, freshly revalidated offer. The real production owner session now confirms the compact page in both languages, with the disabled subscribe action matching the retained closed-sales setting. Native Release already uses ApplePurchaseSection; it is read, not rebuilt or newly device-verified here. [Exact scope and tests](plan-purchase-page-20261013.md).

@@ -1,0 +1,32 @@
+from pathlib import Path
+import sys,json,subprocess,datetime
+w=Path(__file__).resolve().parents[3];q=Path(__file__).resolve().parent;p=w/'.local-secrets/web-billing-activation-20261013'
+sys.path.insert(0,str(w/'tools/release'));from recovery_drill import Aws
+aws=Aws('rillora-operator');state=json.loads((p/'disabled-tax-version.json').read_text());current=aws.call('secretsmanager','get-secret-value',{'SecretId':state['secretArn'],'VersionStage':'AWSCURRENT'})
+assert current['VersionId']==state['previousVersion']
+old=json.loads(current['SecretString']);assert old['tax']['mode']=='not_configured'
+new={**old,'tax':{'mode':'disabled','productTaxCode':old['tax']['productTaxCode']}}
+actual=json.loads((q/'catalog-before-opening.json').read_text())['result']['after']['data']
+assert actual['binding']['provider_account_reference']==new['expectedAccountId'] and actual['binding']['external_product_reference']==new['annualPriceId'] and actual['binding']['external_parent_product_reference']==new['familyProductId']
+creds=subprocess.run(['aws','configure','export-credentials','--profile','rillora-operator','--format','process'],capture_output=True,text=True)
+assert creds.returncode==0,'Credential export unavailable; body suppressed'
+payload={'credentials':json.loads(creds.stdout),'arn':state['secretArn'],'version':state['newVersion'],'candidate':new}
+code="""
+import fs from 'node:fs';import {SecretsManagerClient,PutSecretValueCommand} from '@aws-sdk/client-secrets-manager';
+import {parseStripeProductionSecret} from './dist/stripe-production-secret.js';import {StripeProductionAdapter} from './dist/stripe-production-adapter.js';
+const p=JSON.parse(fs.readFileSync(0,'utf8'));const c=parseStripeProductionSecret(JSON.stringify(p.candidate));
+await new StripeProductionAdapter(c).assertCheckoutReady('annual');
+const client=new SecretsManagerClient({region:'eu-central-1',credentials:{accessKeyId:p.credentials.AccessKeyId,secretAccessKey:p.credentials.SecretAccessKey,sessionToken:p.credentials.SessionToken}});
+try{const r=await client.send(new PutSecretValueCommand({SecretId:p.arn,ClientRequestToken:p.version,SecretString:JSON.stringify(p.candidate),VersionStages:['AWSCURRENT']}));
+console.log(JSON.stringify({version:r.VersionId,ready:true}));}catch(error){console.log(JSON.stringify({failed:true,type:error.name}));process.exitCode=1;}finally{client.destroy();}
+"""
+r=subprocess.run(['node','--input-type=module','-e',code],input=json.dumps(payload),capture_output=True,text=True,cwd=w/'apps/api')
+if r.returncode:
+ print(r.stdout if r.stdout.strip().startswith('{') else 'Vault update failed; raw body suppressed');raise SystemExit(1)
+answer=json.loads(r.stdout);assert answer['version']==state['newVersion']
+after=aws.call('secretsmanager','get-secret-value',{'SecretId':state['secretArn'],'VersionStage':'AWSCURRENT'});assert after['VersionId']==state['newVersion'] and json.loads(after['SecretString'])==new
+state['status']='verified';f=p/'disabled-tax-version.json';f.write_text(json.dumps(state));f.chmod(0o600)
+report={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'readBackMatched':True,'changedFields':['tax.mode'],'mode':'disabled','automaticTax':False,
+ 'sameCredentialsPricesProductPortalAndReturnUrls':True,'catalogBindingMatchesRuntime':True,'providerReadyWithoutTaxAutomation':True,'taxAssessmentOrRegistrationInvented':False,
+ 'credentialsSavedOrPrinted':False,'createdPayments':False,'applicationRestartPending':True,'cliStdinAttempt':'Local parameter parser rejected before service write; same version token completed through SDK in memory.'}
+(q/'disabled-tax-configured.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))

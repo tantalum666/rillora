@@ -2,9 +2,13 @@
 
 Role: focused release integration and evidence boundary
 
-Status: RESEND DOMAIN AND AUTH0 TRANSPORT VERIFIED; REAL SIGN-IN/RECOVERY ACCEPTANCE OPEN
+Status: RESEND RETAINED / OLD PREVIEW ISSUERS DISABLED / TOKEN EXPIRY WINDOW BEFORE CUSTOMERS
 
-Last updated: 2026-10-01 (Asia/Shanghai)
+Last updated: 2026-10-13 (Asia/Hong_Kong)
+
+## October13正式身份切换实际进度
+
+4个旧Preview客户端已通过清空grant_types停止新令牌，两项旧M2M凭据实际请求均403 unauthorized_client；生产客户端／服务权限／条款表单保持，用户与真实地图没有删除。CLI未完成旧grant记录删除，历史grant／连接元数据保留为不可签发令牌的状态，不扩大权限来清理元数据。旧enabled_clients字段读取400，未据此改动连接。当前Management token寿命86400秒已复核，不能即刻撤销旧token；保留300秒容差，最早香港October14 04:21再开放普通客户。现恢复原三人审核Action、暂闭新购；空日志不代替到期证据。后续开发采用本地隔离身份，不再请求Owner登录已退役Preview。[本轮完整结果](web-billing-activation-20261013.md)。
 
 ## October1 current mail provider — Resend installed
 

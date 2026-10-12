@@ -1,0 +1,40 @@
+from pathlib import Path
+import json,datetime
+w=Path(__file__).resolve().parents[3];q=Path(__file__).resolve().parent;p=w/'.local-secrets/web-billing-activation-20261013'
+a=json.loads((p/'live-before-template.json').read_text());b=json.loads((q/'live-assembly/RilloraProduction.template.json').read_text());assert set(a['Resources'])==set(b['Resources'])
+expected=json.loads(json.dumps(a));rs=expected['Resources'];actual=b['Resources'];changes=[]
+key='RuntimeApiTaskCF645D67';old=rs[key]['Properties']['ContainerDefinitions'][0];new=actual[key]['Properties']['ContainerDefinitions'][0]
+aenv={x['Name']:x['Value'] for x in old['Environment']};benv={x['Name']:x['Value'] for x in new['Environment']}
+removed={'ALLOW_APPLE_REVIEW_INTEGRATION','APPLE_REVIEW_SECRET_ARN','APPLE_ROOT_CERTIFICATE_DIRECTORY','PRODUCTION_REVIEW_IDENTITY_SHA256','PRODUCTION_REVIEW_EXPIRES_AT'}
+assert set(aenv)-set(benv)==removed and not(set(benv)-set(aenv))
+assert {k:(aenv[k],benv[k]) for k in benv if aenv[k]!=benv[k]}=={'PRODUCTION_RUNTIME_MODE':('review','live'),'ALLOW_STRIPE_PRODUCTION_INTEGRATION':('false','true')}
+old['Environment']=new['Environment'];assert rs[key]==actual[key];changes.append(key)
+key='RuntimeApiNetwork3B2CC8BA';rules=rs[key]['Properties']['SecurityGroupEgress'];removed_rules=[x for x in rules if x.get('FromPort')==80]
+assert len(removed_rules)==1 and removed_rules[0]['ToPort']==80 and removed_rules[0]['CidrIp']=='17.0.0.0/8'
+rs[key]['Properties']['SecurityGroupEgress']=[x for x in rules if x not in removed_rules];assert rs[key]==actual[key];changes.append(key)
+key='RuntimeApiTaskTaskRoleDefaultPolicy59BF15A6';policy=rs[key]['Properties']['PolicyDocument'];statements=[];removed_secret=False
+for row in policy['Statement']:
+ if set(row['Action'] if isinstance(row['Action'],list) else [row['Action']])=={'secretsmanager:GetSecretValue','secretsmanager:DescribeSecret'}:
+  resources=row['Resource'] if isinstance(row['Resource'],list) else [row['Resource']]
+  if aenv['APPLE_REVIEW_SECRET_ARN'] in resources:
+   resources=[r for r in resources if r!=aenv['APPLE_REVIEW_SECRET_ARN']];removed_secret=True
+   if not resources:continue
+   row['Resource']=resources[0] if len(resources)==1 else resources
+ statements.append(row)
+assert removed_secret;policy['Statement']=statements;assert rs[key]==actual[key];changes.append(key)
+def replace_mode(v):
+ if isinstance(v,str):return v.replace('"productionRuntimeMode":"review"','"productionRuntimeMode":"live"')
+ if isinstance(v,list):return [replace_mode(x) for x in v]
+ if isinstance(v,dict):return {k:replace_mode(x) for k,x in v.items()}
+ return v
+key='MaintenanceBrokerFunctionC542279B';rs[key]['Properties']['Environment']=replace_mode(rs[key]['Properties']['Environment']);assert rs[key]==actual[key];changes.append(key)
+key='CDKMetadata';assert set(rs[key]['Properties'])==set(actual[key]['Properties'])=={'Analytics'};rs[key]['Properties']['Analytics']=actual[key]['Properties']['Analytics'];changes.append(key)
+assert set(a['Parameters'])-set(b['Parameters'])=={'RuntimeReviewIdentityDigests0273C88C','RuntimeReviewExpiresAtF4A0DBEC'}
+expected['Parameters']={'BootstrapVersion':a['Parameters']['BootstrapVersion']}
+output_changes={'ProductionTrafficReady':'true','RuntimeCustomerAccess0D914672':'live','RuntimeReviewAccess8016FD90':'disabled'}
+for name,value in output_changes.items():expected['Outputs'][name]['Value']=value
+assert expected==b,'Unexpected live template changes'
+report={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'passed':True,'source':'474702c06c00eadf1054910cc603fd0b81d8b506','resourcesRetained':len(rs),'changedResourceIds':changes,
+ 'scope':'Live production identity and Stripe Checkout; drop API-only Apple review access while retaining historical recovery checks; fixed broker live gate; metadata only',
+ 'databaseNetworkKeysSecretsPricesAndUserDataUnchanged':True,'runtimeImageUnchanged':True,'nativeAndWebClientIdsUnchanged':True,'deployed':False}
+(q/'live-reviewed-diff.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))

@@ -1,0 +1,66 @@
+{
+  "at": "2026-10-12T18:32:30.543097+00:00",
+  "phase": "compatible-review",
+  "allResourceIdentitiesPreserved": true,
+  "resourceCount": 101,
+  "effectiveChanges": [
+    {
+      "logicalId": "MigrationTask69EAEF9D",
+      "type": "AWS::ECS::TaskDefinition",
+      "allowedProperties": [
+        "ContainerDefinitions.Image"
+      ]
+    },
+    {
+      "logicalId": "RecoveryTaskD940248B",
+      "type": "AWS::ECS::TaskDefinition",
+      "allowedProperties": [
+        "ContainerDefinitions.Image"
+      ]
+    },
+    {
+      "logicalId": "RuntimeApiTaskCF645D67",
+      "type": "AWS::ECS::TaskDefinition",
+      "allowedProperties": [
+        "ContainerDefinitions.Image"
+      ]
+    },
+    {
+      "logicalId": "RuntimeIdentityWorkerTask676ED9B0",
+      "type": "AWS::ECS::TaskDefinition",
+      "allowedProperties": [
+        "ContainerDefinitions.Image"
+      ]
+    },
+    {
+      "logicalId": "MaintenanceBrokerFunctionC542279B",
+      "type": "AWS::Lambda::Function",
+      "allowedProperties": [
+        "Code",
+        "Environment.productionRuntimeMode",
+        "Metadata.assetPath"
+      ]
+    }
+  ],
+  "environmentBindingOnly": [
+    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A",
+    "ContentKey78A057A4",
+    "RuntimeBoundariesIdentityProof5984CACD",
+    "RecoveryAttestationWriterED563758",
+    "MigrationTaskExecutionRoleDefaultPolicy91A4C2FE",
+    "RecoveryTaskExecutionRoleDefaultPolicyAB82B7C9",
+    "RuntimeApiTaskExecutionRoleDefaultPolicy98299827",
+    "RuntimeIdentityWorkerTaskExecutionRoleDefaultPolicyC12D3C8B",
+    "MaintenanceBrokerFunctionServiceRoleDefaultPolicy7B959001"
+  ],
+  "actualSubnetZonesVerified": {
+    "VpcdataSubnet1SubnetE2B009FB": "eu-central-1a",
+    "VpcdataSubnet2SubnetAD08DFFF": "eu-central-1b",
+    "VpcmaintenanceSubnet1SubnetB36026C0": "eu-central-1a",
+    "VpcmaintenanceSubnet2Subnet5D5D514C": "eu-central-1b"
+  },
+  "iamKmsNetworkAndDataSemanticsUnchanged": true,
+  "passed": true,
+  "deployed": false,
+  "changeSetGate": "No database/network/secret/key/service replacements may execute; task-definition revisions are the only allowed replacements."
+}

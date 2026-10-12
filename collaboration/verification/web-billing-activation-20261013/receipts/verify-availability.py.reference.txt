@@ -1,0 +1,29 @@
+"""Compare new public HTTPS asset bytes with the exact delivered build manifests."""
+from pathlib import Path
+import concurrent.futures,datetime,hashlib,json,urllib.error,urllib.request
+ROOT=Path(__file__).resolve().parents[3]
+QA=ROOT/'output/qa/rillora-web-billing-activation-20261013'
+for stack in ['RilloraProductionWeb','RilloraPublicWeb']:
+    r=json.loads((QA/(stack+'-availability-deployed.json')).read_text())
+    assert r['templateMatched'] and r['allParametersUnchanged']
+def get_file(entry):
+    origin,name,digest=entry
+    request=urllib.request.Request(origin+('/' if name=='index.html' else '/'+name),headers={'Cache-Control':'no-cache'})
+    try:
+        with urllib.request.urlopen(request,timeout=35) as response:
+            content=response.read();actual=hashlib.sha256(content).hexdigest()
+            return {'origin':origin,'path':name,'status':response.status,'matches':actual==digest,'sha256':actual}
+    except Exception as error:return {'origin':origin,'path':name,'matches':False,'error':type(error).__name__}
+entries=[]
+for origin,manifest in [('https://app.rillora.xyz','apps/web/dist-production-live/production-build.json'),('https://www.rillora.xyz','apps/web/dist-public/public-build.json')]:
+    data=json.loads((ROOT/manifest).read_text());entries.extend((origin,name,digest)for name,digest in data['files'].items())
+with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:results=list(pool.map(get_file,entries))
+class NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self,request,fp,code,msg,headers,newurl):return None
+url='https://www.rillora.xyz/guides?service=apple&lang=zh-CN&unrelated=synthetic-fixture'
+try:urllib.request.build_opener(NoRedirect).open(url,timeout=35);raise AssertionError('Expected guide redirect')
+except urllib.error.HTTPError as response:
+    location=response.headers.get('Location');redirect={'status':response.code,'location':location,'passed':response.code==302 and location=='https://app.rillora.xyz/account?next=guides&service=apple&lang=zh-CN'}
+report={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'source':'f87ac62c90a016174a2a7994ee1006d50c879296','checked':len(results),'matched':sum(r['matches'] for r in results),'files':results,'guideRedirect':redirect,'passed':all(r['matches']for r in results)and redirect['passed'],'privateApisOrPurchaseActionsCalled':False}
+(QA/'availability-web-artifacts.json').write_text(json.dumps(report,indent=2)+'\n')
+print(json.dumps({k:v for k,v in report.items()if k!='files'}));assert report['passed']

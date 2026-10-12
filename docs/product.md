@@ -11,7 +11,7 @@ Last updated: 2026-10-13 (Asia/Hong_Kong)
 
 ## 2026-10-13 Owner移除计税策略前置条件
 
-Owner明确“忽略掉计税策略”。本次Web正式订阅收尾采用显式不自动计税，Stripe Tax保持关闭，不再等待税务登记或虚构免税评估；USD88.99与既有支付安全边界保持。[当前收尾合同](web-billing-activation-20261013.md)区分源码／切换／客户开售，未发TestFlight。
+Owner明确“忽略掉计税策略”。本次Web正式订阅收尾采用显式不自动计税，Stripe Tax保持关闭，不再等待税务登记或虚构免税评估；USD88.99与既有支付安全边界保持。[当前收尾合同](web-billing-activation-20261013.md)记录API25和disabled模式实际交付，以及旧Preview令牌至香港October14 04:21的独立安全窗口；普通新购在该窗口内关闭，未发TestFlight。
 
 ## 2026-10-13 Owner再次明确简洁套餐页
 

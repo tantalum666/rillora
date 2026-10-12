@@ -1,13 +1,19 @@
 # Rillora Stripe Live配置接续
 
-Status: LIVE NOTIFICATIONS/CATALOG/VAULT CONNECTED AND VERIFIED — CUSTOMER CHECKOUT REMAINS CLOSED
+Status: LIVE BILLING CONFIGURED / AUTOMATIC TAX DISABLED / CUSTOMER SALES HELD FOR IDENTITY TOKEN EXPIRY
 Last updated: 2026-10-13 (Asia/Hong_Kong)
+
+## October13实际部署与身份有效期收尾
+
+显式disabled计税模式、API25／StripeLive引擎及原8899USD目录已交付。旧Preview的4客户端已停止签发，两项M2M实测403；已恢复原审核入口并停止新购，等待旧Management token寿命加容差，到香港October14 04:21后完成最后开放。计税策略不再是阻塞；不是等待新的授权。详细结果／纠正／证据见[当前合同](web-billing-activation-20261013.md)。
 
 ## October13 Owner移除计税策略阻塞
 
 Owner随后明确“忽略掉计税策略”，取代下方状态解释中继续等待税价策略的前置条件。按[当前实施](web-billing-activation-20261013.md)加入显式disabled模式，automatic_tax=false，保留现有8899USD年价与provider原始税行为；不生成assessmentReference、登记号或免税声明。此处是明确操作选择，缺省not_configured仍不被静默解释为允许收费。正式运行／销售及权益切换分别记录。
 
 ## October13 当前为什么还不能订阅
+
+HISTORICAL — 01:07只读检查点；后续实际交付和身份窗口以上方当前结果为准。
 
 Owner询问Stripe已配置为何正式按钮仍关闭。香港October13 01:07重新只读核验：原Rillora Live账户可收款／提现，正式Family商品和USD88.99年价均active；金额／币种／年期正确。无需重复开户、建商品／价格或做真钱自付测试。[本次证据](../collaboration/verification/billing-opening-status-20261013/README.md)。
 

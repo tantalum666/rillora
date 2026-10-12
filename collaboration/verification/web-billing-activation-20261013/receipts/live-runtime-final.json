@@ -1,0 +1,26 @@
+{
+  "at": "2026-10-12T19:43:53.479329+00:00",
+  "runtimeMode": "live",
+  "taskRevision": 25,
+  "stripeNewCheckoutEnabled": true,
+  "signedNotificationsEnabled": true,
+  "reviewExpiryAndIdentityRestrictionRemoved": true,
+  "http": [
+    {
+      "path": "/api/health/ready",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/commerce/stripe/webhook",
+      "method": "POST",
+      "status": 400
+    },
+    {
+      "path": "/api/v1/commerce/stripe/quote",
+      "method": "GET",
+      "status": 401
+    }
+  ],
+  "paymentsCreated": false
+}

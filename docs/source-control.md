@@ -2,6 +2,12 @@
 
 Last updated: 2026-10-13 (Asia/Hong_Kong)
 
+## October13 explicit Web billing and identity cutover
+
+The[Web billing work](web-billing-activation-20261013.md)delivers explicit disabled tax automation/API25and final client/public files while preserving a real identity-token time gate. Sourcef87ac62c9/CI141passes; all117finalHTTPS files and bilingual public presentation match. Four old Preview issuers are disabled; new sales and ordinary access remain held until Hong KongOctober14 04:21plus the required denial readback.
+
+[Archive36](../collaboration/verification/web-billing-activation-20261013/README.md)additively preserves540paths/486objects/36,394,455encrypted bytes, including failed attempts and sequential source/provider/deployment evidence. Local authenticated verification passes; remote readback follows separately. Prior1–35are immutable and are not downloaded again. Actual credentials/provider identity responses remain excluded. Source/specs remain ordinary Git; no TestFlight or artificial financial transaction follows.
+
 ## October13 compact plan page delivery
 
 [The corrected purchase page](plan-purchase-page-20261013.md) is deployed to both Web clients from runtime-equivalent759c00112/CI133;172files match. [Archive35](../collaboration/verification/plan-purchase-page-20261012/README.md) adds256paths/164objects/35,554,938encrypted bytes and passes local authenticated decryption. Earlier1–34remain immutable; new failure logs, render checks, final Web builds and rollout receipts are included. Actual credentials/provider bodies/authentication state remain excluded. The Owner subsequently completed login; the actual production bilingual UI readback and two screenshots with the personal header excluded are preserved as normal Git post-capture receipts, without a new archive. At archive commit4ef71b47f5, only archive35was freshly downloaded to empty LFS storage and all164objects/256paths authenticated against immutable GitHub metadata. Final receipts are normal metadata, without another code test/build/deploy cycle.

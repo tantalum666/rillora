@@ -1,0 +1,92 @@
+"""Deliver the checked live client and public entry without other resource drift."""
+from pathlib import Path
+import argparse,datetime,hashlib,json,subprocess,sys,uuid
+ROOT=Path(__file__).resolve().parents[3]
+QA=ROOT/'output/qa/rillora-web-billing-activation-20261013'
+PRIVATE=ROOT/'.local-secrets/web-billing-activation-20261013'
+SOURCE='8d28dc298f8922030beb60d80f5f1a38d6edf5df'
+sys.path.insert(0,str(ROOT/'tools/release'))
+from recovery_drill import Aws
+parser=argparse.ArgumentParser()
+parser.add_argument('operation',choices=['prepare','execute','status'])
+parser.add_argument('stack',choices=['RilloraProductionWeb','RilloraPublicWeb'])
+args=parser.parse_args();name=args.stack
+reader=Aws('rillora-cdk-deploy')
+assembly=QA/('live-client-assembly' if name=='RilloraProductionWeb' else 'public-assembly')
+path=assembly/(name+'.template.json')
+before=json.loads((PRIVATE/(name+'-before-template.json')).read_text())
+wanted=json.loads(path.read_text());reference=json.loads(json.dumps(before))
+asset='[PUBLIC_IDENTIFIER_OMITTED]' if name=='RilloraProductionWeb' else 'PublicDeploymentCustomResource947B276F'
+reference['Resources'][asset]['Properties']['SourceObjectKeys']=wanted['Resources'][asset]['Properties']['SourceObjectKeys']
+allowed={asset:('Custom::CDKBucketDeployment','SourceObjectKeys')}
+if name=='RilloraProductionWeb':
+    logical='Client4A7F64DF';allowed[logical]=('AWS::CloudFront::Distribution','DistributionConfig')
+    reference['Resources'][logical]['Properties']['DistributionConfig']['Comment']=wanted['Resources'][logical]['Properties']['DistributionConfig']['Comment']
+    assert reference['Outputs'].pop('ReviewAccess')['Value']=='identity-allowlist'
+    reference['Outputs']['CustomerAccess']['Value']='live'
+else:
+    logical='PublicRoutesC0C4D2B4';allowed[logical]=('AWS::CloudFront::Function','FunctionCode')
+    reference['Resources'][logical]['Properties']['FunctionCode']=reference['Resources'][logical]['Properties']['FunctionCode'].replace('https://app.staging.rillora.xyz/account','https://app.rillora.xyz/account')
+assert reference==wanted,'Unapproved resource drift'
+assert len([k for k in before['Resources'] if before['Resources'][k]!=wanted['Resources'][k]])==2
+if args.operation!='status':
+    assert subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()==SOURCE
+    assert subprocess.run(['git','diff','--quiet','HEAD','--','apps','infra','tools','config','.github'],cwd=ROOT).returncode==0
+def save(path,value):
+    path.write_text(json.dumps(value,indent=2)+'\n');path.chmod(0o600)
+def actual_template():
+    data=reader.call('cloudformation','get-template',{'StackName':name})['TemplateBody']
+    return json.loads(data) if isinstance(data,str) else data
+def checked_change():
+    state=json.loads((PRIVATE/(name+'-changeset.json')).read_text())
+    assert state['templateSha256']==hashlib.sha256(path.read_bytes()).hexdigest() and state['source']==SOURCE
+    change=reader.call('cloudformation','describe-change-set',{'StackName':name,'ChangeSetName':state['id']})
+    assert change['Status']=='CREATE_COMPLETE' and len(change['Changes'])==(3 if name=='RilloraPublicWeb' else 2)
+    seen=set()
+    for item in change['Changes']:
+        r=item['ResourceChange'];logical=r['LogicalResourceId'];seen.add(logical)
+        if name=='RilloraPublicWeb' and logical=='Website32962D0B':
+            assert before['Resources'][logical]==wanted['Resources'][logical]
+            assert r['Action']=='Modify' and r['ResourceType']=='AWS::CloudFront::Distribution' and r['Replacement']=='False'
+            assert r.get('Details') and all(d['Target'].get('Name')=='DistributionConfig' and d['Target']['RequiresRecreation']=='Never' and d['Evaluation']=='Dynamic' and d['ChangeSource']=='ResourceAttribute' and d['CausingEntity']=='PublicRoutesC0C4D2B4.FunctionARN' for d in r['Details'])
+            continue
+        assert logical in allowed and r['Action']=='Modify' and r['ResourceType']==allowed[logical][0]
+        assert r.get('Replacement') in (['False','Conditional'] if logical==asset else ['False'])
+        assert r.get('Details') and all(d['Target'].get('Name')==allowed[logical][1] for d in r['Details'])
+    assert seen==set(allowed)|({'Website32962D0B'} if name=='RilloraPublicWeb' else set())
+    return state,change
+stack=reader.call('cloudformation','describe-stacks',{'StackName':name})['Stacks'][0]
+if args.operation=='prepare':
+    assert stack['StackStatus']=='UPDATE_COMPLETE' and actual_template()==before
+    state_path=PRIVATE/(name+'-changeset.json');assert not state_path.exists()
+    change_name='rillora-web-live-'+SOURCE[:9]+'-'+name.lower()
+    command=['npx','cdk','deploy',name,'--app',str(assembly),'--exclusively','--profile','rillora-cdk-session',
+      '--require-approval','never','--previous-parameters','true','--method','prepare-change-set','--change-set-name',change_name,
+      '--outputs-file',str(PRIVATE/(name+'-outputs.json'))]
+    for p in stack.get('Parameters',[]):
+        if p['ParameterKey']!='BootstrapVersion' and p.get('ParameterValue')!='****':command+=['--parameters',p['ParameterKey']+'='+p['ParameterValue']]
+    with (QA/(name+'-prepare.log')).open('w') as log:
+        result=subprocess.run(command,cwd=ROOT/'infra/aws',stdout=log,stderr=subprocess.STDOUT)
+    assert result.returncode==0,'Inspect preparation before retry'
+    details=reader.call('cloudformation','describe-change-set',{'StackName':name,'ChangeSetName':change_name})
+    save(state_path,{'id':details['ChangeSetId'],'templateSha256':hashlib.sha256(path.read_bytes()).hexdigest(),'source':SOURCE})
+    _,change=checked_change();assert change['ExecutionStatus']=='AVAILABLE';save(PRIVATE/(name+'-changeset-details.json'),change)
+    print(json.dumps({'stack':name,'prepared':True,'onlyCheckedFrontendChanges':True,'executed':False}))
+elif args.operation=='execute':
+    ci=json.loads((QA/'ci139-readback.json').read_text());assert ci['source']==SOURCE and ci['conclusion']=='success' and len(ci['jobs'])==3 and all(j['conclusion']=='success' for j in ci['jobs'])
+    progress=json.loads((QA/'progress.json').read_text())
+    assert progress['liveRuntimeDeployed'] and progress['catalogActivationVerified'] and progress['auth0ProductionCustomerEntryChanged']
+    assert stack['StackStatus']=='UPDATE_COMPLETE' and actual_template()==before
+    state,change=checked_change();assert change['ExecutionStatus']=='AVAILABLE'
+    marker=PRIVATE/(name+'-execute-request.json');assert not marker.exists(),'Inspect status after an attempted execution'
+    request={'StackName':name,'ChangeSetName':state['id'],'ClientRequestToken':'rillora-'+uuid.uuid4().hex}
+    save(marker,request);reader.call('cloudformation','execute-change-set',request)
+    print(json.dumps({'stack':name,'executionRequested':True,'finished':False}))
+else:
+    report={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'stack':name,'status':stack['StackStatus'],
+      'templateMatched':stack['StackStatus']=='UPDATE_COMPLETE' and actual_template()==wanted,'source':SOURCE}
+    if report['templateMatched']:
+        old_parameters=json.loads((PRIVATE/(name+'-before-stack.json')).read_text()).get('Parameters',[])
+        assert {x['ParameterKey']:x.get('ParameterValue') for x in old_parameters}=={x['ParameterKey']:x.get('ParameterValue') for x in stack.get('Parameters',[])}
+        report['allParametersUnchanged']=True;save(QA/(name+'-deployed.json'),report)
+    print(json.dumps(report))

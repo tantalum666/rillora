@@ -1,0 +1,39 @@
+from pathlib import Path
+import json,subprocess,re,datetime
+w=Path(__file__).resolve().parents[3];q=Path(__file__).resolve().parent;p=w/'.local-secrets/web-billing-activation-20261013'
+before=json.loads((p/'RilloraProduction-before-stack.json').read_text());outputs={x['OutputKey']:x['OutputValue'] for x in before['Outputs']}
+arn=outputs['RuntimeStripeNotificationsSecretArn8A76E8A3']
+assert re.fullmatch(r'arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/stripe-billing-[A-Za-z0-9]{6}',arn)
+contexts={'productionFoundationOnly':'true','productionRuntimeEnabled':'true','productionRuntimeDesiredCount':'1','productionReviewPrepared':'true',
+ 'productionReviewEnabled':'true','productionRetentionEnabled':'true','productionIdentityServicesEnabled':'true','productionStripeNotificationsSecretArn':arn}
+assembly=q/'compatible-review-assembly';assert not assembly.exists()
+command=['npx','cdk','synth','RilloraProduction','--exclusively','--no-lookups','--profile','rillora-cdk-session','--output',str(assembly)]
+for key,value in contexts.items():command+=['-c',key+'='+value]
+with (q/'compatible-review-synth.log').open('w') as log:result=subprocess.run(command,cwd=w/'infra/aws',stdout=log,stderr=subprocess.STDOUT)
+assert result.returncode==0
+old=json.loads((p/'RilloraProduction-before-template.json').read_text());new=json.loads((assembly/'RilloraProduction.template.json').read_text())
+assert old.keys()==new.keys();assert {k:v for k,v in old.items() if k!='Resources'}=={k:v for k,v in new.items() if k!='Resources'}
+assert set(old['Resources'])==set(new['Resources'])
+changes=[]
+for name,a in old['Resources'].items():
+ b=new['Resources'][name]
+ if a==b:continue
+ assert a['Type']==b['Type'] and a['Type'] in ['AWS::ECS::TaskDefinition','AWS::Lambda::Function']
+ assert {k:v for k,v in a.items() if k!='Properties'}=={k:v for k,v in b.items() if k!='Properties'}
+ if a['Type']=='AWS::ECS::TaskDefinition':
+  permitted=json.loads(json.dumps(a))
+  for i,container in enumerate(b['Properties']['ContainerDefinitions']):permitted['Properties']['ContainerDefinitions'][i]['Image']=container['Image']
+  assert permitted==b,'Non-image task change: '+name
+ else:
+  permitted=json.loads(json.dumps(a));permitted['Properties']['Code']=b['Properties']['Code']
+  # Environment must differ only by the new explicit review-mode metadata in the fixed broker.
+  if permitted['Properties'].get('Environment')!=b['Properties'].get('Environment'):
+   aa=json.dumps(permitted['Properties']['Environment'],sort_keys=True,separators=(',',':'))
+   bb=json.dumps(b['Properties']['Environment'],sort_keys=True,separators=(',',':'))
+   assert bb.replace('\\"productionRuntimeMode\\":\\"review\\",','')==aa,'Unexpected broker environment change'
+   permitted['Properties']['Environment']=b['Properties']['Environment']
+  assert permitted==b,'Unexpected Lambda change'
+ changes.append({'logicalId':name,'type':a['Type']})
+assert len(changes)>=4
+report={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'phase':'compatible-review','allResourceIdentitiesPreserved':True,'changes':changes,'allOtherTemplateFieldsUnchanged':True,'deployed':False}
+(q/'compatible-review-diff.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))
