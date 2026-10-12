@@ -56,6 +56,7 @@ export class RilloraRecoveryAttestationBroker extends Construct {
 
 export class RilloraIdentityDeletionWorker extends Construct {
   readonly service:ecs.FargateService;
+  readonly logGroup:logs.LogGroup;
   constructor(scope:Construct,id:string,p:{environment:'production'|'staging';vpc:ec2.IVpc;cluster:ecs.ICluster;
     databaseNetwork:ec2.ISecurityGroup;databaseEnvironment:Record<string,string>;keys:RilloraRuntimeBoundaryKeys;
     image:ecs.ContainerImage;providerEnvironment:Record<string,string>;providerSecrets:Record<string,ecs.Secret>;
@@ -68,6 +69,7 @@ export class RilloraIdentityDeletionWorker extends Construct {
     const task=new ecs.FargateTaskDefinition(this,'Task',{cpu:256,memoryLimitMiB:512,
       runtimePlatform:{cpuArchitecture:ecs.CpuArchitecture.ARM64,operatingSystemFamily:ecs.OperatingSystemFamily.LINUX}});
     const linux=new ecs.LinuxParameters(this,'Linux');linux.dropCapabilities(ecs.Capability.ALL);
+    this.logGroup=new logs.LogGroup(this,'Logs',{retention:logs.RetentionDays.ONE_MONTH,removalPolicy:RemovalPolicy.RETAIN});
     task.addContainer('IdentityDeletion',{image:p.image,command:['node','dist/account-deletion-worker.js'],
       readonlyRootFilesystem:true,linuxParameters:linux,
       environment:{...p.databaseEnvironment,...p.providerEnvironment,NODE_ENV:'production',
@@ -76,7 +78,7 @@ export class RilloraIdentityDeletionWorker extends Construct {
         ...(p.broker?{RECOVERY_JOURNAL_BROKER_ARN:p.broker.functionArn}:{})},
       secrets:{DATABASE_USER:ecs.Secret.fromSecretsManager(p.keys.worker,'username'),
         DATABASE_PASSWORD:ecs.Secret.fromSecretsManager(p.keys.worker,'password'),...p.providerSecrets},
-      logging:ecs.LogDrivers.awsLogs({logGroup:new logs.LogGroup(this,'Logs',{retention:logs.RetentionDays.ONE_MONTH,removalPolicy:RemovalPolicy.RETAIN}),streamPrefix:'identity-deletion'})});
+      logging:ecs.LogDrivers.awsLogs({logGroup:this.logGroup,streamPrefix:'identity-deletion'})});
     p.keys.allowProof(task.taskRole,p.environment,'kms:Decrypt');
     p.broker?.grantInvoke(task.taskRole);
     this.service=new ecs.FargateService(this,'Service',{cluster:p.cluster,taskDefinition:task,desiredCount:p.desiredCount,

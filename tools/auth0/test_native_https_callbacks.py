@@ -26,4 +26,19 @@ class NativeHTTPSCallbacks(unittest.TestCase):
             with self.subTest(change=change),self.assertRaises(ValueError):
                 callbacks.desired({**self.current(),**change},callbacks.CLIENTS['production'])
 
+    def test_compatible_rollout_preserves_existing_legacy_until_explicit_retirement(self):
+        state=self.current();legacy=state['callbacks'].copy();writes=[]
+        def provider(method,path,body=None):
+            if method=='patch':writes.append(copy.deepcopy(body));state.update(body);return {}
+            return copy.deepcopy(state)
+        result=callbacks.configure('production',True,provider,retain_legacy=True)
+        self.assertTrue(result['legacyCallbacksRetained'])
+        self.assertEqual(set(state['callbacks']),set(legacy+[callbacks.CALLBACK]))
+        self.assertFalse(callbacks.configure('production',True,provider,retain_legacy=True)['changed'])
+        self.assertEqual(len(writes),1)
+        callbacks.configure('production',True,provider)
+        self.assertEqual(state['callbacks'],[callbacks.CALLBACK])
+        with self.assertRaises(ValueError):
+            callbacks.desired({**self.current(),'callbacks':['https://unknown.example/callback']},callbacks.CLIENTS['production'],True)
+
 if __name__=='__main__':unittest.main()

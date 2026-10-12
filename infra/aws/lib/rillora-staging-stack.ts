@@ -1,5 +1,7 @@
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import {readFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
 import {
   Aws,
   ArnFormat,
@@ -474,9 +476,10 @@ export class RilloraStagingStack extends Stack {
       containerPort: apiContainerPort,
     });
     service.node.addDependency(database);
+    let identityWorker:RilloraIdentityDeletionWorker|undefined;
     if(props.accountDeletionEnabled){
       boundaryKeys.allowProof(taskDefinition.taskRole,'staging','kms:GenerateDataKey');
-      new RilloraIdentityDeletionWorker(this,'IdentityWorker',{environment:'staging',vpc,cluster,
+      identityWorker=new RilloraIdentityDeletionWorker(this,'IdentityWorker',{environment:'staging',vpc,cluster,
         databaseNetwork:databaseSecurityGroup,databaseEnvironment:sharedEnvironment,keys:boundaryKeys,image,
         providerEnvironment:{AUTH0_DELETION_DOMAIN:deletionDomain.valueAsString,AUTH0_DELETION_CLIENT_ID:deletionClientId.valueAsString},
         providerSecrets:{AUTH0_DELETION_CLIENT_SECRET:ecs.Secret.fromSecretsManager(accountDeletionSecret)},
@@ -559,9 +562,14 @@ export class RilloraStagingStack extends Stack {
     const maintenanceBroker = new RilloraMaintenanceBroker(this,'MaintenanceBroker',{
       operator:stagingOperatorRole,policies:stagingMaintenancePolicies,
       settings:{environment:'staging',cluster:cluster.clusterName,migrationTask:migrationTaskDefinition.taskDefinitionArn,
-        subnets:vpc.publicSubnets.map(subnet=>subnet.subnetId),migrationSecurityGroup:taskSecurityGroup.securityGroupId},
+        subnets:vpc.publicSubnets.map(subnet=>subnet.subnetId),migrationSecurityGroup:taskSecurityGroup.securityGroupId,
+        securityAuditScriptSha256:createHash('sha256').update(readFileSync(resolve(dirname(fileURLToPath(import.meta.url)),'../../../tools/release/probe_security_rollout.mjs'))).digest('hex'),
+        securityAuthorityScriptSha256:createHash('sha256').update(readFileSync(resolve(dirname(fileURLToPath(import.meta.url)),'../../../tools/release/probe_security_authority.mjs'))).digest('hex')},
     });
     new CfnOutput(this,'MaintenanceBrokerFunctionName',{value:maintenanceBroker.function.functionName});
+    stagingOperatorRole.addToPolicy(new iam.PolicyStatement({
+      sid:'ReadOwnMaintenanceOutputs',actions:['cloudformation:DescribeStacks'],resources:[this.stackId],
+    }));
     stagingOperatorRole.addToPolicy(
       new iam.PolicyStatement({
         sid: "ObserveAndStopStagingTasks",
@@ -587,7 +595,7 @@ export class RilloraStagingStack extends Stack {
       new iam.PolicyStatement({
         sid: "InspectStagingService",
         actions: ["ecs:DescribeClusters", "ecs:DescribeServices"],
-        resources: [cluster.clusterArn, service.serviceArn],
+        resources: [cluster.clusterArn, service.serviceArn,...(identityWorker?[identityWorker.service.serviceArn]:[])],
       }),
     );
     // These APIs do not support resource-level IAM authorization. Keep them
@@ -608,6 +616,7 @@ export class RilloraStagingStack extends Stack {
           `${migrationLogGroup.logGroupArn}:*`,
           apiLogGroup.logGroupArn,
           `${apiLogGroup.logGroupArn}:*`,
+          ...(identityWorker?[identityWorker.logGroup.logGroupArn,`${identityWorker.logGroup.logGroupArn}:*`]:[]),
         ],
       }),
     );

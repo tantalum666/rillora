@@ -38,9 +38,13 @@ async function snapshotFor(call,id,input,config){
 export async function executeMaintenance(input,call,config,clock=Date.now){
   assert(Buffer.byteLength(JSON.stringify(input))<=64*1024,'request size');
   if(config.environment==='staging'){
-    exact(input,['operation','clientToken']);
-    assert(input.operation==='migrate'&&/^[a-f0-9]{32}$/.test(input.clientToken??''),'staging operation');
+    const audit=input.operation==='audit';
+    exact(input,audit?['operation','clientToken','script']:['operation','clientToken']);
+    assert((input.operation==='migrate'||audit)&&/^[a-f0-9]{32}$/.test(input.clientToken??''),'staging operation');
+    if(audit)assert(typeof input.script==='string'&&[config.securityAuditScriptSha256,config.securityAuthorityScriptSha256].includes(hash(input.script)),'fixed read-only audit');
     return call('ecs','run',{cluster:config.cluster,taskDefinition:config.migrationTask,launchType:'FARGATE',clientToken:input.clientToken,
+      ...(audit?{overrides:{containerOverrides:[{name:'Migration',command:['node','--input-type=module','-e',input.script],
+        environment:[{name:'RILLORA_DEPLOYMENT_AUDIT_ENVIRONMENT',value:'staging'}]}]}}:{}),
       networkConfiguration:{awsvpcConfiguration:{subnets:config.subnets,securityGroups:[config.migrationSecurityGroup],assignPublicIp:'ENABLED'}}});
   }
   exact(input,['operation','run','runToken','request']);
@@ -90,6 +94,8 @@ export async function executeMaintenance(input,call,config,clock=Date.now){
   else if(JSON.stringify(command)===JSON.stringify(['node','dist/recovery-commerce-admin.js']))operation='reconcile-commerce';
   else if(command.length===4&&command[0]==='node'&&command[1]==='--input-type=module'&&command[2]==='-e'
     &&typeof command[3]==='string'&&hash(command[3])===config.isolationScriptSha256)operation='isolation';
+  else if(command.length===4&&command[0]==='node'&&command[1]==='--input-type=module'&&command[2]==='-e'
+    &&typeof command[3]==='string'&&[config.securityAuditScriptSha256,config.securityAuthorityScriptSha256].includes(hash(command[3])))operation='audit';
   assert(operation,'fixed reviewed command');
   const recovery=['restore','reconcile-commerce','isolation'].includes(operation);
   assert(request.taskDefinition===(recovery?config.recoveryTask:config.migrationTask),'exact task definition');

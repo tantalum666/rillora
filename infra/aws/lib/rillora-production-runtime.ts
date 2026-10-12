@@ -161,7 +161,8 @@ export class RilloraProductionRuntime extends Construct {
   p.operator.addToPolicy(new iam.PolicyStatement({actions:['acm:DescribeCertificate'],resources:[certificate.certificateArn]}));
   p.operator.addToPolicy(new iam.PolicyStatement({actions:['ecs:DescribeServices'],resources:this.sourceWriterServices.map(s=>s.serviceArn)}));
   p.operator.addToPolicy(new iam.PolicyStatement({actions:['ec2:DescribeNetworkInterfaces'],resources:['*'],conditions:{StringEquals:{'aws:RequestedRegion':'eu-central-1'}}}));
-  p.operator.addToPolicy(new iam.PolicyStatement({actions:['logs:DescribeLogStreams','logs:GetLogEvents','logs:FilterLogEvents'],resources:[apiLogs.logGroupArn,`${apiLogs.logGroupArn}:*`,gatewayLogs.logGroupArn,`${gatewayLogs.logGroupArn}:*`]}));
+  p.operator.addToPolicy(new iam.PolicyStatement({actions:['logs:DescribeLogStreams','logs:GetLogEvents','logs:FilterLogEvents'],resources:[apiLogs.logGroupArn,`${apiLogs.logGroupArn}:*`,gatewayLogs.logGroupArn,`${gatewayLogs.logGroupArn}:*`,
+   ...(deletionWorker?[deletionWorker.logGroup.logGroupArn,`${deletionWorker.logGroup.logGroupArn}:*`]:[])]}));
   for(const [name,value] of Object.entries({ApiUrl:api.apiEndpoint,CertificateArn:certificate.certificateArn,TlsServerName:hostname,
    ApiTaskDefinitionArn:task.taskDefinitionArn,ApiServiceName:service.serviceName,ApiSecurityGroupId:network.securityGroupId,
    ApiLogGroup:apiLogs.logGroupName,GatewayLogGroup:gatewayLogs.logGroupName,CustomerAccess:'closed',ReviewAccess:p.reviewEnabled?'identity-allowlist':'disabled'}))new CfnOutput(this,name,{value});

@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-11 (Asia/Hong_Kong)
+Last updated: 2026-10-12 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -3409,3 +3409,10 @@ local correction/tests and actual restoration remain separate evidence.
 - No deployment, existing credential movement/rotation/deletion, real-account deletion, purchase/refund, phone/TestFlight delivery or restart of the paused scan follows from this source/test instruction.
 
 - Implementation result: groups31–35 have scoped code/local validation, source74a9c66ac, CI125 success and archive32 remote authenticated readback. The unchanged exact scan spans only move3line positions under the existing approval. Implementation choices and preservation receipts introduce no new price, market or deployment approval.
+
+## 2026-10-12 — Owner starts the coordinated security rollout
+
+- Owner explicitly requests deploying this security batch in the documented cutover order, preserving existing data, pricing and sales switches, with no TestFlight distribution.
+- Supersedes the source-only online-freeze instruction for this deployment task, not the closed customer/billing boundary or retained-account decision. Necessary scoped resource/key provisioning, compatible migrations, broker/worker isolation and validation are authorized; no new purchase/refund or blanket deletion follows.
+- Owner reiterates maximum default project authorization. Do not repeat already-covered confirmations; only actual provider-required personal interaction or higher-priority tool rules can require handoff.
+- Reuse74a9c66ac/CI125 and prior reading/evidence. Exact deployed state, new compatibility fixes and actual data/permission results must be recorded separately in the rollout contract.

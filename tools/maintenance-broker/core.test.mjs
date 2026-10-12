@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
+import {readFileSync} from 'node:fs';
 import {executeMaintenance} from './core.mjs';
 
 const config={environment:'production',source:'rillora-production',sourceHost:'production.internal',cluster:'rillora',
@@ -114,5 +115,25 @@ test('recovery fails closed without a complete valid source service configuratio
     const f=fixture();
     await assert.rejects(executeMaintenance({operation:'task',run,runToken,request:recoveryRequest(f)},f.call,{...config,sourceServices}),/source services/);
     assert.equal(f.writes.length,0);
+  }
+});
+
+test('only exact stack-reviewed read-only audit bytes run in either environment',async()=>{
+  const scripts=['probe_security_rollout.mjs','probe_security_authority.mjs'].map(name=>readFileSync(new URL('../release/'+name,import.meta.url),'utf8'));
+  const audited={...config,securityAuditScriptSha256:createHash('sha256').update(scripts[0]).digest('hex'),
+    securityAuthorityScriptSha256:createHash('sha256').update(scripts[1]).digest('hex')};
+  for(const script of scripts){
+  for(const environment of ['production','staging']){
+    const good=fixture(),settings={...audited,environment};
+    const request=task();request.overrides.containerOverrides[0].command=['node','--input-type=module','-e',script];
+    const input=environment==='staging'?{operation:'audit',clientToken:'c'.repeat(32),script}:{operation:'task',run,runToken,request};
+    await executeMaintenance(input,good.call,settings);assert.equal(good.writes.length,1);
+    assert.ok(Buffer.byteLength(JSON.stringify(good.writes[0].input.overrides))<=8192,'ECS container overrides must stay bounded');
+    for(const text of [script+'\nprocess.exit(0)', 'console.log(process.env)']){
+      const bad=structuredClone(input),f=fixture();
+      if(environment==='staging')bad.script=text;else bad.request.overrides.containerOverrides[0].command[3]=text;
+      await assert.rejects(executeMaintenance(bad,f.call,settings));assert.equal(f.writes.length,0);
+    }
+  }
   }
 });

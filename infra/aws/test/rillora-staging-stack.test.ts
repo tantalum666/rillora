@@ -68,6 +68,9 @@ describe("Rillora staging infrastructure", () => {
     expect(snapshot.Resource).toHaveLength(2);
     expect(JSON.stringify(snapshot.Resource)).toContain(":snapshot:rillora-content-encryption-*");
     expect(snapshot.Resource).not.toContain("*");
+    const outputs=statements.find(statement=>statement.Sid==='ReadOwnMaintenanceOutputs');
+    expect(outputs.Action).toBe('cloudformation:DescribeStacks');
+    expect(outputs.Resource).toEqual({Ref:'AWS::StackId'});
   });
   it("isolates the read-only verification secret and injects it only after activation", () => {
     for (const enabled of [false, true]) {

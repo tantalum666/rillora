@@ -5,11 +5,13 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-10-11 (Asia/Hong_Kong)
+Last updated: 2026-10-12 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
 
 ## 2026-10-11 Owner要求修复各份Rillora审计报告
+
+Owner随后明确开始部署这批修复，按已写切换顺序，保持现有数据、定价和收费开关，不发TestFlight，并重申默认最高授权。当前执行[安全修复切换](security-rollout-20261012.md)，取代以下源码阶段的“线上保持原状”执行门；不把部署授权当作部署完成或开售授权。
 
 Owner随后明确要求继续修复第31—35组，先完成代码和测试，再一起推送GitHub，线上保持原状。
 这取代“剩余五组只校准并保留”的本轮实施范围，不恢复部署、真实凭据迁移、购买或深度扫描。

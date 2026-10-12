@@ -2,8 +2,26 @@ import {App} from 'aws-cdk-lib';
 import {Template} from 'aws-cdk-lib/assertions';
 import {describe,it,expect} from 'vitest';
 import {RilloraProductionStack} from '../lib/rillora-production-stack.js';
+import {RilloraStagingStack} from '../lib/rillora-staging-stack.js';
 
 describe('independent security service permissions',()=>{
+ it('lets each existing operator observe its new worker without gaining secrets or raw task execution',()=>{
+  const env={account:'133857166372',region:'eu-central-1'};
+  const cases=[['production',new RilloraProductionStack(new App(),'Production',{env,runtimeEnabled:true,runtimeDesiredCount:1,reviewPrepared:true,reviewEnabled:true,identityServicesEnabled:true})],
+    ['staging',new RilloraStagingStack(new App(),'Staging',{env,desiredCount:1,accountDeletionEnabled:true})]] as const;
+  for(const [name,stack] of cases){
+    const t=Template.fromStack(stack);
+    const operator=Object.entries(t.findResources('AWS::IAM::Role')).find(([,r]:any)=>r.Properties.RoleName===`rillora-${name}-operator`)![0];
+    const statements=(Object.values(t.findResources('AWS::IAM::Policy')) as any[]).filter(p=>p.Properties.Roles?.some((r:any)=>r.Ref===operator)).flatMap(p=>p.Properties.PolicyDocument.Statement);
+    const includes=(s:any,action:string)=>[s.Action].flat().includes(action);
+    const services=statements.filter(s=>includes(s,'ecs:DescribeServices')).flatMap(s=>[s.Resource].flat());
+    for(const id of Object.keys(t.findResources('AWS::ECS::Service')))expect(services).toContainEqual({Ref:id});
+    const workerLog=Object.keys(t.findResources('AWS::Logs::LogGroup')).find(id=>id.includes('IdentityWorkerLogs'))!;
+    expect(workerLog).toBeDefined();
+    expect(JSON.stringify(statements.filter(s=>includes(s,'logs:GetLogEvents')))).toContain(workerLog);
+    for(const action of ['secretsmanager:GetSecretValue','ecs:RunTask','iam:PassRole'])expect(statements.some(s=>includes(s,action))).toBe(false);
+  }
+ });
  it('includes every writer in the recovery freeze inventory and exact describe grants',()=>{
   const t=Template.fromStack(new RilloraProductionStack(new App(),'Production',{env:{account:'133857166372',region:'eu-central-1'},
     runtimeEnabled:true,runtimeDesiredCount:1,reviewPrepared:true,reviewEnabled:true,identityServicesEnabled:true}));

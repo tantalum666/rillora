@@ -169,6 +169,8 @@ export class RilloraProductionStack extends Stack {
     sourceDatabaseSecurityGroup:databaseNetwork.securityGroupId,vpc:vpc.vpcId,subnetGroup:databaseSubnets.subnetGroupName,
     parameterGroup:parameters.bindToInstance({}).parameterGroupName,sourceServices:runtime?.sourceWriterServices.map(s=>s.serviceName)??[],
     isolationScriptSha256:createHash('sha256').update(readFileSync(resolve(directory,'../../../tools/release/probe_recovery_isolation.mjs'))).digest('hex'),
+    securityAuditScriptSha256:createHash('sha256').update(readFileSync(resolve(directory,'../../../tools/release/probe_security_rollout.mjs'))).digest('hex'),
+    securityAuthorityScriptSha256:createHash('sha256').update(readFileSync(resolve(directory,'../../../tools/release/probe_security_authority.mjs'))).digest('hex'),
   }});
   new CfnOutput(this,'MaintenanceBrokerFunctionName',{value:broker.function.functionName});
   new CfnOutput(this,'RecoverySourceServiceNames',{value:JSON.stringify(runtime?.sourceWriterServices.map(s=>s.serviceName)??[])});

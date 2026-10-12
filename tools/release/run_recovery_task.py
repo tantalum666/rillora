@@ -54,7 +54,7 @@ def original_freeze(request):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('operation',choices=['migrate','initialize','seed','after-snapshot','restore','reconcile-commerce','isolation','cleanup-fixtures','check'])
+    parser.add_argument('operation',choices=['migrate','audit','audit-authority','initialize','seed','after-snapshot','restore','reconcile-commerce','isolation','cleanup-fixtures','check'])
     parser.add_argument('--state',type=Path,required=True)
     parser.add_argument('--profile',default='rillora-production-operator')
     parser.add_argument('--phase',help='Existing phase to inspect with check')
@@ -139,6 +139,9 @@ def main():
         command=['node','--input-type=module','-e',Path(__file__).with_name('probe_recovery_isolation.mjs').read_text()]
     if args.operation=='migrate':
         command=MIGRATION_COMMAND
+    if args.operation in ['audit','audit-authority']:
+        name='probe_security_rollout.mjs' if args.operation=='audit' else 'probe_security_authority.mjs'
+        command=['node','--input-type=module','-e',Path(__file__).with_name(name).read_text()]
     token=pending_request['clientToken'] if pending_request is not None else uuid.uuid4().hex
     # Save the idempotency token before the request; an uncertain invocation is
     # investigated by this token, never retried as a second unrecorded mutation.
