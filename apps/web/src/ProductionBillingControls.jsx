@@ -63,7 +63,7 @@ export function ProductionBillingControls({ commerce, onAccessChanged, returnedF
       <button className="primary-button" type="submit" disabled={!accepted || busy}>{t("workspace.billing.secureCheckout")}</button>
       <button className="text-button" type="button" disabled={busy} onClick={() => { setQuote(null); setAccepted(false); }}>{t("workspace.billing.back")}</button>
     </form>}
-    {!active && !annualAvailable && <p>{t("workspace.billing.newClosed")}</p>}
+    {!active && !annualAvailable && (!embedded || commerce.billingOpen) && <p>{t("workspace.billing.newClosed")}</p>}
     <div className="drawer-actions">
       {status?.canManage && <button className="secondary-button" disabled={busy} onClick={() => run(async () => {
         window.location.assign(productionBillingDestination(await apiClient.openProductionBillingPortal(locale), 'portal'));

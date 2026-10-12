@@ -3424,3 +3424,9 @@ local correction/tests and actual restoration remain separate evidence.
 - Owner then confirmed entering the home screen and seeing original matters; the matching native client has fresh provider login/code-exchange records. HTTPS-only callback retirement followed delivery of signed14and association verification.
 - Owner completed the actual macOS nonsecret user-presence probe; all9supported local credential files were then encrypted and individually readback-verified. Provider keys, permissions, archive identity and FanPass were not changed. This is an operational follow-through under existing authorization, not a new pricing, purchase, market-opening or TestFlight decision.
 - GitHub current private-repository rules are not enforced on the present plan. No paid plan or organization transfer was authorized or performed; manual/source CI evidence does not substitute for that platform control.
+
+## 2026-10-12 — Owner resumes remaining native and cross-platform acceptance
+
+- Owner explicitly requests only remaining acceptance, reusing completed evidence, continuing independent work and keeping TestFlight paused.
+- After actual Mac authentication was required for iPhone Mirroring, Owner defers the phone step for this turn and asks to complete other checks. Owner separately restores the real production Web login. Neither action authorizes a new purchase, account deletion, hidden consent or claims of current physical-device verification.
+- The scoped correction removes a duplicated Web availability sentence; it preserves existing prices, data, sales controls and every server permission. This is an Agent implementation choice within the ongoing acceptance scope, not a new commercial or security-policy decision.
