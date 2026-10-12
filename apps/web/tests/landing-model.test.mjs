@@ -17,7 +17,8 @@ test("recipient demonstration omits unshared matters instead of exposing locked 
 });
 
 test("public routes retain the production destination during its identity cutover hold", () => {
-  assert.equal(publicEntry.preview, true);
+  assert.equal(publicEntry.preview, false);
+  assert.equal(publicEntry.customerAccess, "review");
   assert.equal(
     publicEntry.accountURL,
     "https://app.rillora.xyz/account",

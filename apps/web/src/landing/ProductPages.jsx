@@ -99,7 +99,7 @@ export function SupportPage() {
             ...landingQuestions,
             {
               titleKey: "public.faq.preview.title",
-              answerKey: publicEntry.preview ? "public.faq.preview.answer" : "public.faq.available.answer",
+              answerKey: publicEntry.preview ? "public.faq.preview.answer" : publicEntry.customerAccess === "live" ? "public.faq.available.answer" : "public.faq.restricted.answer",
             },
           ]}
         />

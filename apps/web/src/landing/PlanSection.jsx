@@ -9,6 +9,7 @@ import catalog from "../../../../config/product-catalog.json" with { type: "json
 export function PlanSection() {
   const { t, locale, formatMoney } = useI18n();
   const annualPrice = formatMoney(catalog.annual.amountMinor, catalog.currency);
+  const subscriptionsOpen = publicEntry.customerAccess === "live";
   return (
     <main id="lp-main" className="lp-page-content lp-pricing lp-container">
       <header className="lp-page-intro">
@@ -16,7 +17,7 @@ export function PlanSection() {
         <p>{t("public.price.intro")}</p>
       </header>
       <section className="lp-plan-comparison" aria-label={t("public.price.label")}>
-        <p>{t(publicEntry.preview ? "public.price.preview" : "public.price.available")}</p>
+        <p>{t(publicEntry.preview ? "public.price.preview" : subscriptionsOpen ? "public.price.available" : "public.price.restricted")}</p>
         <table>
           <caption className="sr-only">{t("public.price.caption")}</caption>
           <thead>
@@ -65,7 +66,7 @@ export function PlanSection() {
         </table>
         <p className="lp-channel-price-note">{t("public.price.appleNote")}</p>
         <div className="lp-plan-actions">
-          <p>{t(publicEntry.preview ? "public.price.notOpen" : "public.price.subscribeHint")}</p>
+          <p>{t(subscriptionsOpen ? "public.price.subscribeHint" : "public.price.notOpen")}</p>
           <AppearanceLink className="lp-text-link" href={publicEntry.accountURL}>{t(publicEntry.preview ? "public.auth.try" : "public.auth.signin")}<ArrowRight aria-hidden="true" size={20} />
           </AppearanceLink>
         </div>
