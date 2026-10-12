@@ -1,5 +1,7 @@
 # Rillora — Git / Dot 协作入口
 
+October12原生／跨端续接：[当前验收](../docs/native-cross-platform-acceptance-20261012.md)按Owner要求暂后本轮手机操作，已完成独立Web检查及两处实际修复／部署，172资源匹配；d9825b616／CI131三任务通过。新的[archive34](verification/native-cross-platform-20261012/README.md)保存262路径／172对象，37,927,569加密字节，本地解密通过；远端核验仍单独收尾。旧1—33与所有已过金融／原生证据不重复；当前有效Apple对照、未订阅真机、VoiceOver与原生法律入口仍未冒领通过。
+
 October12：[整批安全切换](../docs/security-rollout-20261012.md)已完成两库103、五云端栈、203文件、手机14真实登录／原事项与9份本机凭据加密。云端bfe9baaf5／CI126，本机工具042f4e100／CI127通过。原三身份只续期48小时，价格／收费开关保留，未发TestFlight；GitHub当前私有方案不强制保护是明确保留项。[新增archive33](verification/security-rollout-20261012/README.md)已封存665路径／536对象，55,781,041密文字节，本地及d33e0b31f的独立GitHub新下载解密均通过。发布测试样本稳定性修正5adf61570／CI129三任务通过，失败过程保留；最终回执直接入Git，不递归封存。后续只看[当前handoff](../docs/handoff.md)，下方旧线上冻结段落属于有日期的检查点。
 
 October11续修：[剩余第31—35组](../docs/security-remaining-five-20261011.md)已完成并推送到同一分支codex/security-findings-20261011的74a9c66ac。API519项、infra58项及运维／凭据检查通过；独立复核的迁移命令、删除worker停写两处回归已修。[CI125](https://github.com/tantalum666/rillora/actions/runs/38146452345)三任务通过，[新增archive32](verification/security-remaining-five-20261011/README.md)的249路径／232原件已从GitHub独立新下载并解密核验。最终收尾只补文档／回执。线上和真实凭据按Owner要求保持原状；下方archive31段是上一轮检查点，不取代[当前handoff](../docs/handoff.md)。

@@ -4,6 +4,12 @@ Role: current launch scope, remaining work and release evidence contract
 Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; ORDINARY CUSTOMER ACCESS AND SALES CLOSED
 Last updated: 2026-10-12 (Asia/Hong_Kong)
 
+## October12原生／跨端验收续接
+
+Owner本轮暂后手机本人验证，独立Web检查已完成。两处实际问题已修并发布：关闭订阅提示重复、法律页返回后误停访客首页。d9825b616／CI131、新浏览器5项由4红转全绿及12项相关检查通过；正式／Preview共172文件匹配，真实账号法律页返回及中英文显示通过。原事项／价格／销售开关保持，手机14和API没有重新构建／部署。
+
+当前Web没有生效Sandbox资格，不能把Free与旧手机Family结果直接比较或勾过实际Apple退款／到期。第2项剩余真机VoiceOver、原生法律入口、未订阅分支和当前有效订阅跨端对照仍待手机可操作；已过项目沿用。详见[本轮合同](native-cross-platform-acceptance-20261012.md)。
+
 ## October12安全部署后的当前状态
 
 [整批安全修复](security-rollout-20261012.md)已完成两库103迁移、五个云端栈、203个Web文件核验及原机1.0(14)直装。Owner确认登录和原事项，HTTPS回调已切换，9份指定本机凭据已加密读回。API23／Preview44及隔离worker运行正常；API23仅续原3审核身份到香港October14 20:01，普通客户／收费仍关闭，价格与既有财务记录保留。没有新TestFlight或支付／退款／删除验收。

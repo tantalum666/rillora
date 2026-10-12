@@ -4,8 +4,12 @@ Role: StoreKit 2 client, local Xcode testing, Apple sandbox and server-verificat
 Authority scope: Rillora Family StoreKit product identifiers, purchase/restore lifecycle, transaction evidence, App Store server boundary and phased verification  
 Superseded by: newer Apple platform rules, verified App Store Connect state, a later Owner decision, or stricter payment/security evidence  
 Do not use for: proof of App Store approval, accepted Paid Apps Agreement, banking/tax completion, live IAP products, production entitlement or a real charge  
-Status: EXISTING SANDBOX EVIDENCE RETAINED; NEW OWNERSHIP/RECOVERY CANDIDATE LOCALLY VERIFIED; ROLLOUT OPEN
-Last updated: 2026-10-11 (Asia/Hong_Kong)
+Status: SECURITY CANDIDATE DEPLOYED; EXISTING SANDBOX EVIDENCE RETAINED; REMAINING PHYSICAL ACCEPTANCE OPEN
+Last updated: 2026-10-12 (Asia/Hong_Kong)
+
+## October12 delivery and evidence boundary
+
+The security implementation is deployed throughbfe9baaf5, both schemas103, and direct phone14. Owner confirms native login and original matters; this does not add a new purchase or restore. Current Web reports Free and no effective validationOnly, consistent with the prior sandbox-enrollment deadline. It is not a fresh provider expiry/refund result. Reuse the actual purchase/renewal/restoration record; remaining current physical and active-entitlement comparison is scoped in [the acceptance continuation](native-cross-platform-acceptance-20261012.md). No TestFlight or ordinary sales activation occurred.
 
 ## October11 ownership and recovery repair
 

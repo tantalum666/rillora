@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-10",
+  "updatedAt": "2026-10-12",
   "release": "Rillora Global 1.0",
   "scope": "Web and native iOS; existing Free and Family only",
   "gates": [
@@ -38,9 +38,11 @@
         "docs/live-configuration-20261009.md",
         "docs/web-rollout-20261009.md",
         "docs/payment-recheck-20261009.md",
-        "output/qa/rillora-payment-recheck-20261009/final-payment-verification.json"
+        "output/qa/rillora-payment-recheck-20261009/final-payment-verification.json",
+        "docs/security-rollout-20261012.md",
+        "docs/native-cross-platform-acceptance-20261012.md"
       ],
-      "next": "Production API21 and Preview API43 are healthy with exact f7592a3 image; both schema94 inventories match. Four Web/legal surfaces delivered. Same three review identities expire2026-10-11T14:00Z; ordinary customers and sales stay closed. Continue controlled final customer cutover; do not repeat these migrations/deployments."
+      "next": "Security rollout is deployed: production API23, Preview44, both schemas103; original three review identities until2026-10-14T12:01Z, ordinary sales/customers closed. October12 subsequent Web-only fixes changed one static asset per stack;172files matched, runtime parameters unchanged. Do not repeat migrations or backend deployment; controlled customer cutover remains separate."
     },
     {
       "id": "production-identity",
@@ -156,9 +158,11 @@
         "docs/matter-category-refinement-20261008.md",
         "docs/direct-device-iteration-20261008.md",
         "docs/payment-recheck-20261009.md",
-        "output/qa/rillora-payment-recheck-20261009/final-payment-verification.json"
+        "output/qa/rillora-payment-recheck-20261009/final-payment-verification.json",
+        "docs/security-rollout-20261012.md",
+        "docs/native-cross-platform-acceptance-20261012.md"
       ],
-      "next": "Retain signed actual HKG/HKD888 Sandbox purchase, renewal/client intake and Owner restoration result. This round independently reread original subscription and signed HKD888, installed development13; Owner confirms subscribed/HKD888/no mixed English. No new Apple purchase, refund or Restore tap; retain remaining actual refund/expiry/cross-client and final artifact checks without repeating a successful purchase."
+      "next": "Retain actual signed HKG/HKD888 purchase/renewal, Owner restoration and phone13 price/language evidence. Phone14 home/original matters confirmed after security delivery. Current real Web is Free with no effective validationOnly; the old sandbox-enrollment deadline does not prove the Apple provider subscription expired or refunded. Current active-entitlement cross-client comparison and remaining actual refund/expiry evidence remain open; phone operation deferred by Owner this turn. No new purchase, restore or refund."
     },
     {
       "id": "operations",
@@ -243,9 +247,11 @@
         "output/qa/rillora-payment-recheck-20261009/final-payment-verification.json",
         "docs/recovery-financial-acceptance-20261010.md",
         "output/qa/rillora-recovery-financial-20261010/acceptance-summary.json",
-        "output/qa/rillora-recovery-financial-20261010/cleanup-verification.json"
+        "output/qa/rillora-recovery-financial-20261010/cleanup-verification.json",
+        "docs/security-rollout-20261012.md",
+        "docs/native-cross-platform-acceptance-20261012.md"
       ],
-      "next": "Current release item3 scope verified: normal API f7592a3/API21 unchanged and healthy, development13 signing evidence retained, recovery cb6fd6133/CI121 and23targeted checks, actual constrained-role/cloud isolation and scoped provider recovery proof complete. These are the minimum compatible rollback floors with schema94. Future final App Store artifact signing is checked under apple-submission; future customer/identity opening under production-runtime/identity. Revalidate affected boundaries after new changes; do not treat this as already approving unbuilt future artifacts."
+      "next": "Current scoped recovery/item3 evidence retained; later security batch bfe9baaf5 is deployed with schemas103 and phone14. API/Web/native rollback must respect the newer authority/email schema, not only the old94 floor. Both data migrations/fingerprints and permission controls verified separately. GitHub current private plan does not enforce branch protection; CI is not proof of that control. Final App Store and customer opening remain separate gates."
     },
     {
       "id": "apple-submission",
@@ -271,9 +277,11 @@
         "docs/matter-category-refinement-20261008.md",
         "docs/release-readiness.md",
         "docs/payment-recheck-20261009.md",
-        "output/qa/rillora-payment-recheck-20261009/final-payment-verification.json"
+        "output/qa/rillora-payment-recheck-20261009/final-payment-verification.json",
+        "docs/security-rollout-20261012.md",
+        "docs/native-cross-platform-acceptance-20261012.md"
       ],
-      "next": "Store draft9 and retained TestFlight11 are older distinct artifacts. Current phone development13/eaf68c0a7 is installed and accepted for subscribed/HKD888/Chinese display, not TestFlight or a new App Review build. Keep per-fix distribution paused; consolidate final candidate/screenshots/privacy/age/contact/markets/prices/reviewer access, then App Review and manual release. External invitations remain deferred."
+      "next": "Store draft9 and retained TestFlight11 remain older distinct artifacts. Current direct phone14 is delivered and Owner-confirmed for login/original matters; prior phone13 subscribed/HKD888/bilingual result stays dated. No new TestFlight or submission. Consolidated final candidate, remaining physical checks, store metadata/reviewer access and App Review stay separate."
     },
     {
       "id": "physical-device",
@@ -290,9 +298,11 @@
         "docs/matter-category-refinement-20261008.md",
         "docs/dot-integration-20261008.md",
         "docs/payment-recheck-20261009.md",
-        "output/qa/rillora-payment-recheck-20261009/final-payment-verification.json"
+        "output/qa/rillora-payment-recheck-20261009/final-payment-verification.json",
+        "docs/security-rollout-20261012.md",
+        "docs/native-cross-platform-acceptance-20261012.md"
       ],
-      "next": "Development13/eaf68c0a7 installed in place;14signature/config checks, independent version readback and launch passed. Owner confirms subscribed/HKD888/no mixed English, original data kept. Existing-subscription auto-sync is expected, not another purchase/Restore. Remaining final actual VoiceOver, legal-navigation and no-subscription device branch stay separate. Do not reinstall, repurchase or resume per-fix TestFlight."
+      "next": "Direct1.0(14) installed, Owner confirms home/original matters; signing/keychain/HTTPS evidence retained. In the October12 continuation, Mac authentication for iPhone Mirroring was actually required and Owner deferred phone operation. Physical unsubscribed flow, VoiceOver and native legal navigation remain unverified today. Current Web observations and local browser fixtures do not substitute for them."
     },
     {
       "id": "public-surface",
@@ -321,9 +331,11 @@
         "docs/stripe-cloud-acceptance-20261009.md",
         "docs/dot-integration-20261008.md",
         "docs/payment-recheck-20261009.md",
-        "output/qa/rillora-payment-recheck-20261009/final-payment-verification.json"
+        "output/qa/rillora-payment-recheck-20261009/final-payment-verification.json",
+        "docs/security-rollout-20261012.md",
+        "docs/native-cross-platform-acceptance-20261012.md"
       ],
-      "next": "October10 WWW31/formal86/Preview86 exact live assets; legal Cloudflare50HTTP/18resource/14bilingual page checks passed. Locale retained across links; current terms published/Owner accepted; bilingual hosted Forms applied. Auth0 desktop shell remains provider-blocked. Controlled production customer-entry routing is still pending; no repeat static deployment."
+      "next": "October12 changed only formal and Preview app assets for two observed UI/navigation bugs;172files matched and real logged-in legal return plus bilingual single closed notice passed. WWW and legal publication retain their earlier independent evidence, not repeated deployments. Auth0 legacy desktop shell and final customer-entry routing retain their known separate limits."
     },
     {
       "id": "review-remediation",

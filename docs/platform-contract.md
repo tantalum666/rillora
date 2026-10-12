@@ -5,7 +5,11 @@ Authority scope: Web/iOS responsibilities, shared state and first validation rel
 Superseded by: later explicit platform decision  
 Do not use for: final framework choice or visual tokens  
 Status: CORE PARITY CONTRACT ACTIVE; CURRENT RUNTIME AND RELEASE GATES IN HANDOFF
-Last updated: 2026-10-07 (Asia/Hong_Kong)
+Last updated: 2026-10-12 (Asia/Hong_Kong)
+
+## October12 remaining cross-platform acceptance
+
+Existing real core, signed Apple and Stripe TEST evidence keeps its original date. Current Web acceptance confirms the original account/data, the closed Free branch, both languages and keyboard disclosure. Leaving a public read-only document now re-enters normal session checking; legal-to-legal browsing still fetches no private map. Both Web artifacts are deployed and independently matched. Phone14's earlier home/data confirmation is retained; physical VoiceOver, native legal navigation, unsubscribed device state and a contemporaneous active Apple entitlement comparison remain Owner-deferred for this turn. [Exact scope](native-cross-platform-acceptance-20261012.md).
 
 ## October7 account identity and owner organization
 

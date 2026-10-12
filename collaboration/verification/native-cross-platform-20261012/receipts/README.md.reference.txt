@@ -1,0 +1,7 @@
+# October12 independent native/cross-platform acceptance
+
+Both Web fixes deployed at d9825b616 / CI131. Two stacks each changed one static asset only, parameters retained;172resource hashes match. Real Web same account/original matter, Chinese/English closed Free branch, keyboard disclosure and repaired legal return are verified. Five new browser regressions:4failed/1passed before;5passed after. Twelve focused Node checks pass. Initial missing Playwright binary is separately recorded; installed Chrome ran isolated synthetic tests.
+
+No new phone operation, purchase/refund/restore, backend rebuild/migration or TestFlight. Owner deferred actual Mac/iPhone Mirroring authentication. Web validationOnly is false, matching the earlier expired test-enrollment boundary, but not a new Apple provider expiry/refund observation. Preserve the actual old financial/core evidence. Direct supplemental API navigation was browser-client blocked and supplied no server result; it is not a permission proof.
+
+Specs changed: native-cross-platform acceptance, platform contract, StoreKit current status, release readiness, product routing, machine release-gates inventory, handoff and journey. The October12 decision entry records the new task and Owner's phone deferral; targeted bug repair and preservation need no new commercial/security decision. Private identity/system screenshots are excluded. Archive34 and final Git receipts follow separately; old1–33remain immutable.

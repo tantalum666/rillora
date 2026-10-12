@@ -1,0 +1,27 @@
+"""Read back only a changed Web artifact; do not repeat native/provider acceptance."""
+from pathlib import Path
+from concurrent.futures import ThreadPoolExecutor
+import argparse,datetime,hashlib,json,urllib.request
+ROOT=Path(__file__).resolve().parents[3];QA=ROOT/'output/qa/rillora-native-cross-platform-20261012'
+parser=argparse.ArgumentParser();parser.add_argument('environment',choices=['staging','production']);args=parser.parse_args()
+name=args.environment
+origin='https://app.staging.rillora.xyz' if name=='staging' else 'https://app.rillora.xyz'
+folder=ROOT/('apps/web/dist/client' if name=='staging' else 'apps/web/dist-production-review')
+output=QA/(name+'-web-artifacts.json');assert not output.exists(),'Reuse completed verification'
+expected=json.loads((folder/'production-build.json').read_text())['files'] if name=='production' else {p.relative_to(folder).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in folder.rglob('*') if p.is_file()}
+class Direct(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self,*args,**kwargs):return None
+def verify(item):
+    path,digest=item;assert '..' not in Path(path).parts
+    url=origin+('/' if path=='index.html' else '/'+path)
+    try:
+        request=urllib.request.Request(url,headers={'Accept-Encoding':'identity','Cache-Control':'no-cache','User-Agent':'Rillora-authorized-release-verification/1.0'})
+        with urllib.request.build_opener(Direct()).open(request,timeout=25) as response:
+            actual=hashlib.sha256(response.read()).hexdigest()
+            return {'path':path,'status':response.status,'sha256':actual,'matched':response.status==200 and actual==digest}
+    except Exception as error:return {'path':path,'matched':False,'errorType':type(error).__name__}
+with ThreadPoolExecutor(max_workers=6) as pool:results=list(pool.map(verify,expected.items()))
+report={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'environment':name,'origin':origin,'readOnly':True,'filesChecked':len(results),'results':results,'passed':all(x['matched'] for x in results)}
+output.write_text(json.dumps(report,indent=2)+'\n')
+print(json.dumps({'environment':name,'files':len(results),'passed':report['passed'],'failed':[x for x in results if not x['matched']]}))
+assert report['passed']

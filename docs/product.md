@@ -9,6 +9,10 @@ Last updated: 2026-10-12 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
 
+## 2026-10-12 继续原生和跨端验收
+
+Owner要求只补剩余验收，已验证的不重复，能自主完成的直接做，暂停TestFlight。Owner随后暂后本轮手机本人验证、完成正式Web登录；[本轮验收](native-cross-platform-acceptance-20261012.md)记录真实Web结果、两处最小修正／部署与待补真机证据。当前Free及过期Sandbox资格不能冒充Apple实际退款／到期或有效订阅的双端一致。
+
 ## 2026-10-11 Owner要求修复各份Rillora审计报告
 
 Owner随后明确开始部署这批修复，按已写切换顺序，保持现有数据、定价和收费开关，不发TestFlight，并重申默认最高授权。当前执行[安全修复切换](security-rollout-20261012.md)，取代以下源码阶段的“线上保持原状”执行门；不把部署授权当作部署完成或开售授权。

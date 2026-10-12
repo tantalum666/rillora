@@ -2,6 +2,10 @@
 
 Last updated: 2026-10-12 (Asia/Hong_Kong)
 
+## October12 native/cross-platform continuation
+
+The [acceptance continuation](native-cross-platform-acceptance-20261012.md) preserves completed core/financial/native evidence and honors the Owner's current phone deferral. Two observed Web bugs are fixed in d9825b616/CI131 and deployed with172artifact matches; only static frontend assets changed. [Archive34](../collaboration/verification/native-cross-platform-20261012/README.md)adds262paths/172objects/37,927,569encrypted bytes and passes local authenticated verification. Exact new regression failures/successes, scoped runners and final Web builds are preserved; actual credentials and authentication/system screenshots stay excluded. Existing1–33are immutable. Remote download and final receipts remain distinct from local capture.
+
 ## October12 security rollout — new evidence preservation
 
 The[coordinated deployment](security-rollout-20261012.md) completed both schemas103, five stacks,203Web artifact checks, direct phone14and the named local credential migration. Cloud/native source isbfe9baaf5/CI126; local compatibility repairs042f4e100/CI127are already pushed and verified. The main checkout was fast-forwarded without discarding history; the old handoff has a named local stash and preserved QA copy.
