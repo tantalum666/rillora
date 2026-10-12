@@ -34,7 +34,7 @@ function handler(event) {
       request.querystring &&
       request.querystring.service &&
       request.querystring.service.value;
-    var target = "https://app.staging.rillora.xyz/account?next=guides";
+    var target = "https://app.rillora.xyz/account?next=guides";
     if (providers.indexOf(service) !== -1) target += "&service=" + service;
     // Display language only; all other untrusted query values remain discarded.
     var language = request.querystring && request.querystring.lang && request.querystring.lang.value;
