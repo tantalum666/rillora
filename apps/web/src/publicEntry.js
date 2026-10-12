@@ -9,7 +9,8 @@ if (
   !allowedOrigins.has(entry.appOrigin) ||
   entry.accountPath !== "/account" ||
   entry.invitationPath !== "/invite" ||
-  entry.preview !== (entry.appOrigin === "https://app.staging.rillora.xyz")
+  typeof entry.preview !== "boolean" ||
+  (entry.appOrigin === "https://app.staging.rillora.xyz" && !entry.preview)
 ) {
   throw new Error("Invalid public account destination");
 }
