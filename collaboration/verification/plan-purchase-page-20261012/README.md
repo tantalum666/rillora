@@ -1,6 +1,6 @@
 # October13 compact Family plan page — additive evidence
 
-Status: LOCAL ARCHIVE VERIFIED / REMOTE READBACK NEXT
+Status: LOCAL AND FRESH GITHUB ARCHIVE VERIFIED / BOTH WEB DEPLOYMENTS VERIFIED / REAL ACCOUNT UI PENDING
 
 Owner's paid-benefits/price/subscribe correction is implemented and deployed to Preview and production Web. Runtime-equivalent source759c00112 passes [CI133](https://github.com/tantalum666/rillora/actions/runs/38276829336). Each stack changed one static asset package, retaining every other resource and parameter;86+86files match. No native/backend/payment/price/sales/TestFlight mutation follows.
 
@@ -8,4 +8,4 @@ The new `raw-work-035.tar.zst.age` captures256paths/164unique objects/35,554,938
 
 [Chinese mobile preview](screenshots/isolated-plan-zh-mobile.png), [Chinese desktop preview](screenshots/isolated-plan-zh-desktop.png), [English desktop preview](screenshots/isolated-plan-en-desktop.png) are isolated test accounts, not actual customer sessions. Real production browser is signed out; the Owner's requested login is pending. Deployment hashes are real; authenticated UI acceptance remains separate.
 
-Remote immutable-commit metadata and a fresh download of only archive35will be authenticated before final preservation completion. Final metadata does not trigger another archive or deployment.
+At immutable archive commit4ef71b47f5e1755ff7ebe52c7c08b845afe0a399, [remote metadata and a fresh download](remote-readback.json) of only archive35 authenticated all164objects/256paths. Old1–34were not downloaded again. Final metadata does not trigger another archive or deployment.
