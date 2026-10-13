@@ -94,9 +94,10 @@
         "docs/web-billing-activation-20261013.md",
         "collaboration/verification/web-billing-activation-20261013/README.md",
         "docs/final-readiness-20261013.md",
-        "docs/app-store-preflight-20261013.md"
+        "docs/app-store-preflight-20261013.md",
+        "docs/provider-diagnostics-20261013.md"
       ],
-      "next": "Four old Preview issuers and the measured token deadline remain retired/held as recorded. Existing production Google and Apple connections are now explicitly bound to both production clients; previous Apple bindings and signing key remain. Customer-visible client names are Rillora. Fresh real native14 and Web owner login succeeded under the same current consent; Apple hosted button is observed, not a new Apple identity callback. The pre-existing Free402 desktop template issue remains. Owner-authorized public Auth0 question has been received and is pending moderator approval; no public URL or answer yet."
+      "next": "Four old Preview issuers and the measured token deadline remain retired/held as recorded. Existing production Google and Apple connections are now explicitly bound to both production clients; previous Apple bindings and signing key remain. Customer-visible client names are Rillora. Fresh real native14 and Web owner login succeeded under the same current consent; Apple hosted button is observed, not a new Apple identity callback. The pre-existing Free402 desktop template issue remains. Owner-authorized public Auth0 question has been received and is pending moderator approval; no public URL or answer yet. Current Chinese preview still has three English shell phrases and an English region label. Restore the standard Free-supported shell without changing accounts/connections/consent. Official staff provides a support escalation path, but no Message control is exposed and no private ticket has been created. The local legacy-template tool now refuses all writes when template backup fails;7mocked checks pass, not a live page fix."
     },
     {
       "id": "production-billing",
@@ -176,9 +177,10 @@
         "docs/security-rollout-20261012.md",
         "docs/native-cross-platform-acceptance-20261012.md",
         "docs/final-readiness-20261013.md",
-        "docs/app-store-preflight-20261013.md"
+        "docs/app-store-preflight-20261013.md",
+        "docs/provider-diagnostics-20261013.md"
       ],
-      "next": "Actual HKG/HKD888 purchase/renewal and prior Owner restoration remain dated. Current real phone14 and the same-account production Web now both display Apple test Family access and manage the original provider; no new purchase or restore. Independent Apple review/production runtime and official Sandbox TEST are deployed/verified. Production same-JWT authentication and a later Production-only read still401; ordinary Apple new sales remain closed. Do not claim new actual refunds or live customer transactions. Apple Developer Support private case102995248851 received; no technical response yet."
+      "next": "Retain dated actual HKD888 purchase/renewal/restore and current native14/Web test entitlement agreement. Apple staff confirms Production API access requires a production release, matching the current unreleased-app401; do not demand Production200before submission or fall back generically to Sandbox. After dedicated-reviewer/device acceptance, submit through the separate bounded Sandbox context; after approval configure streamlined purchasing and manually release; then verify Production authorization, notification and reconciliation before enabling the two ordinary Apple new-sale routes. Original case102995248851 received a closure request; Closed is not confirmed."
     },
     {
       "id": "operations",
@@ -301,9 +303,10 @@
         "docs/security-rollout-20261012.md",
         "docs/native-cross-platform-acceptance-20261012.md",
         "docs/final-readiness-20261013.md",
-        "docs/app-store-preflight-20261013.md"
+        "docs/app-store-preflight-20261013.md",
+        "docs/provider-diagnostics-20261013.md"
       ],
-      "next": "Native14 archive export/upload and English6/Chinese4 store materials are saved. Privacy13,18+age,contact/protected reviewer credentials,free download,USA/HKGand annual/group metadata are configured. The3-item packet was prematurely submitted in the UI sequence then explicitly withdrawn; readback isRemoved/DeveloperRejected, not Apple rejection. Complete dedicated reviewer first login and remaining device acceptance before resubmission; manual release and noTestFlightremain."
+      "next": "Native14 archive export/upload and English6/Chinese4 store materials are saved. Privacy13,18+age,contact/protected reviewer credentials,free download,USA/HKGand annual/group metadata are configured. The3-item packet was prematurely submitted in the UI sequence then explicitly withdrawn; readback isRemoved/DeveloperRejected, not Apple rejection. Complete dedicated reviewer first login and remaining device acceptance before resubmission; manual release and noTestFlightremain. Production401 before first release is not an additional submission prerequisite; actual Production verification belongs after release and before ordinary Apple new sales, with strict independent Sandbox review retained."
     },
     {
       "id": "physical-device",

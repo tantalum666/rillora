@@ -2,8 +2,25 @@
 
 This directory is the versioned source for Rillora's hosted authentication
 appearance. Auth0 continues to own credentials, password recovery, passkey,
-social-login and challenge handling. Rillora owns the surrounding visual shell,
-theme tokens and approved prompt copy.
+social-login and challenge handling. Rillora maintains supported theme tokens
+and prompt copy; the retained custom-shell candidate is not deployable on the
+current Free plan.
+
+## October13 current Free-plan maintenance boundary
+
+The live Chinese prompt is localized, but its legacy desktop shell still has
+three English phrases and an English region label. The local bilingual Liquid
+file is not a deployed fix. Restore the standard New Universal Login shell by a
+supported provider path while retaining basic branding, localized prompts,
+connections, users, callbacks and consent handling. The public question remains
+pending; an official Community Engineer documents a support-ticket escalation
+path, but this account currently exposes no Message control. No reset occurred.
+[Diagnosis and completion criteria](../../docs/provider-diagnostics-20261013.md).
+
+The old full-template script is not the Free-plan maintenance entry point. It now
+stops before any theme/template write when template backup cannot be read,
+including402/403/404/503. A removed template must not be recreated by that script.
+Seven intercepted-provider tests pass; live login/configuration is unchanged.
 
 ## October1 native Resend provider — current
 
@@ -253,7 +270,12 @@ would require Prompt Customization and a Pre User Registration Action; social
 signup and returning-user re-consent require a fail-closed Post Login／Rillora
 checkpoint design before external apply.
 
-## Safe apply sequence
+## Historical full-template apply sequence — unavailable on current Free plan
+
+Retained for provenance, not the current deployment path. Do not run this sequence
+for ordinary branding/copy maintenance. A template read failure now stops all
+writes; the current Free402requires supported provider assistance. Do not repeat
+the template update separately to bypass this check.
 
 1. Authenticate the official Auth0 CLI as the Owner/operator. Never place a
    password, MFA code or Management API token in this repository.
@@ -263,7 +285,7 @@ checkpoint design before external apply.
    theme, it updates that exact id; if Auth0 returns `theme_not_found`, it
    records the absence and creates the tenant's first theme. It then applies
    the Liquid template and requires both resources to read back.
-5. Pipe the Liquid source to `auth0 universal-login templates update --force`.
+5. The script already performs the Liquid update; do not repeat it separately.
 6. Run `tools/auth0/apply-custom-text.sh`. It reads every current English prompt
    dictionary before replacing it, then requires an exact Management API
    readback for each versioned file.
@@ -273,17 +295,17 @@ checkpoint design before external apply.
 8. Check signup, login, password recovery, Google, passkey/challenge, cancel and
    callback behavior before calling the change verified.
 
-Rollback uses the readback captured in step 3. Deleting the custom page template
-returns the tenant to the Auth0-hosted default shell; restoring the previous
-theme JSON returns the widget styling.
+Where the plan and API permit it, rollback uses the captured readback. Removing
+only the custom page template returns to the hosted default shell; this is not
+evidence that Free exposes that operation. Existing themes and prompt text are
+separate resources and must be preserved for the current standard-shell target.
 
-The template uses an empty data-URI favicon until the final Rillora identity is
-approved. This avoids a misleading improvised icon and a repeated missing
-`/favicon.ico` request. It also raises inline Auth0 account-switch and recovery
+The retained template source references the approved favicon and lockup; its
+deployment remains blocked as described above. It also raises inline Auth0 account-switch and recovery
 actions to a 44px minimum through semantic `a` and `button` selectors; Auth0
 private generated class names remain untouched.
 
-## Current development-tenant state
+## Historical August development-tenant checkpoint
 
 - Theme id: `GpJAJlTXdfUIS8CxG2bjw5EnI3NZEceJ` (`Rillora Graphite`).
 - Theme/template final readback:

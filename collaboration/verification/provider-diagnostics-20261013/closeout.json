@@ -1,0 +1,42 @@
+{
+  "completedAt": "2026-10-13T15:59:44.129259+00:00",
+  "sourceBase": "567542203fe03e6ab74555cf630446f0f7914079",
+  "scope": "provider diagnosis, release-order correction, narrow Auth0 configuration-tool guard",
+  "focusedSpecs": [
+    "docs/provider-diagnostics-20261013.md",
+    "infra/auth0/README.md",
+    "docs/storekit.md",
+    "docs/app-store-preflight-20261013.md",
+    "docs/final-readiness-20261013.md",
+    "docs/release-readiness.md",
+    "config/release-gates.json"
+  ],
+  "decisionLog": "docs/decision-log.md",
+  "decisionReason": "New Apple staff evidence supersedes pre-submission Production200 gate; Owner permits original-case closure and asks for reliable Free login maintenance. Record the source/config boundary without changing runtime.",
+  "handoff": "docs/handoff.md",
+  "journey": "docs/journey/PROJECT_JOURNEY.md",
+  "tests": {
+    "newLocalMethods": 7,
+    "newTemplateFailureCombinations": 8,
+    "allProviderCallsMocked": true
+  },
+  "sourceScan": {
+    "baseOwnedExceptions": true,
+    "reviewedNonSecrets": 32,
+    "unknown": 0
+  },
+  "markdown": {
+    "links": 677,
+    "historicalCatalogResolved": 144,
+    "missing": 0,
+    "initialResolverFailureRetained": true
+  },
+  "appleCase": "closure request received; Closed not observed",
+  "auth0LiveFixComplete": false,
+  "cloudDeployments": 0,
+  "payments": 0,
+  "TestFlightDistributions": 0,
+  "privateExclusion": "Authenticated support screenshot is in .local-secrets/provider-diagnostics-20261013; no credential/auth flow URL stored in readable evidence.",
+  "preservation": "All newly saved eligible text/JSON is copied exactly; generated .local/github-preflight source is reproducible and excluded. Prior archives1-38unchanged.",
+  "publication": "commit/push/readback follows; not yet claimed"
+}

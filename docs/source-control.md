@@ -2,6 +2,10 @@
 
 Last updated: 2026-10-13 (Asia/Hong_Kong)
 
+## October13 provider diagnosis and login configuration guard
+
+[Current diagnosis](provider-diagnostics-20261013.md) corrects the prerelease Apple401gate and preserves the still-open Free-template issue. A narrow Auth0 tooling guard plus7intercepted-provider checks are new; no live configuration or runtime is redeployed. [Readable receipts](../collaboration/verification/provider-diagnostics-20261013/README.md) contain the public-source summaries, original-case closure message and sanitized browser outcomes. Authenticated support screenshots stay excluded in protected storage. Earlier archives1–38are unchanged; small nonprivate text/JSON artifacts are preserved directly, without a redundant encrypted archive.
+
 ## October13 legal-page notice removal
 
 The[small legal-shell correction](legal-page-layout-20261013.md) is deployed from78f262a3a/CI148to the existing Cloudflare Pages project. Only the two duplicated top notices are removed; accepted bodies and all other runtimes remain. [Archive38](../collaboration/verification/legal-layout-20261013/README.md) preserves64paths/62objects/1,156,789encrypted bytes and passes local authentication. The unshipped foldout, final build, live evidence and failures are retained; the exact public-operator builds are sealed only. Credentials and reproducible transport encoding are excluded. At6c073f70b, a fresh independent GitHub download authenticated all62objects/64paths against immutable metadata; prior1–37were not downloaded again. Final receipts are normal Git metadata without resealing or redeployment.

@@ -1,9 +1,11 @@
 # Rillora 当前交接
 
-Status: LEGAL NOTICE BOXES REMOVED AND DEPLOYED / PREVIOUS RELEASE GATES RETAINED
+Status: APPLE PRERELEASE GATE CORRECTED / CLOSURE REQUEST RECEIVED / AUTH0 SHELL OPEN / WEB TOKEN WINDOW RETAINED
 Last updated: 2026-10-13 (Asia/Hong_Kong)
 
 ## 当前任务
+
+Owner最新询问Auth0登录页稳定性及Apple401／工单关闭；[本轮诊断](provider-diagnostics-20261013.md)记录正式中文页实际残留、免费支持边界和已修复的配置工具停止条件。没有修改线上登录或收费配置。
 
 Owner要求推进到正式上线状态，沿用[当前收尾](final-readiness-20261013.md)和[商店预检](app-store-preflight-20261013.md)。活动工作树/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app，分支codex/security-findings-20261011；本轮QA是output/qa/rillora-final-readiness-20261013。旧20ec61222交接保留为[HISTORICAL](handoff-history-20261013-before-final-readiness.md)。
 
@@ -24,10 +26,10 @@ Owner最新反馈确认原生Terms和Privacy均能打开，要求删除隐私页
 
 Web普通客户／新购仍不能早于2026-10-13T20:20:46Z，按香港October14 04:21执行原令牌寿命加容差及fresh拒绝复核。计税策略不再阻塞；USD88.99及既有税自动化关闭保持。
 
-Apple官方Sandbox TEST成功；相同JWT Sandbox200／Production401，后续Production-only仍401，未确认原因。两条Apple新购路由独立关闭，不能随Web开售打开。现有14已含PurchaseIntent，Apple要求构建获批后才可关闭简化购买；无重复原生实现或新测试版。
+Apple官方员工说明正式发布前Production API不开放；当前未发布及同JWT Sandbox200／Production401符合这一限制。Production成功不再作为提审前置条件；原生／专用审核账号验收后走独立Sandbox送审，获批后关闭简化购买，手动发布后核验Production授权／通知／对账，再开放两条Apple新购。具体解锁时刻与发布后结果仍须实测，不能无条件401回退Sandbox。Owner已恢复实际过期的Developer登录，原工单102995248851收到关闭请求；没有Closed状态，不再等待该答复作为提审门。
 
-Auth0桌面旧外壳3句英文仍为原有Free402限制，社区已收件；未升级或改Classic。剩余未订阅真机、VoiceOver、原生法律往返及审核账号实际首次登录未冒领通过。Owner随后明确镜像已解锁，已连接并只启动原Rillora，原账号保持；但工具点按／滚动／拖动／输入无实际页面变化，重绑／居中／缩放未解决。Owner已回复两条法律链接都能打开；返回原账号未在自由文本中明确确认，不再把打开检查写成待回复，也不重复要求登录。原真实数据／定价／历史交易／保留删除账号和FanPass不变。
+Auth0中文正式页本轮仍见旧外壳3句英文及英文辅助区域名；本地翻译未部署。免费标准外壳恢复尚未完成，社区1篇pending，官方支持群组暂无可用私信入口；没有新支持单或付费／Classic切换。旧模板脚本已修为读不到模板就全程不写，7项模拟provider检查通过。剩余未订阅真机、VoiceOver、原生法律往返及审核账号实际首次登录未冒领通过。Owner随后明确镜像已解锁，已连接并只启动原Rillora，原账号保持；但工具点按／滚动／拖动／输入无实际页面变化，重绑／居中／缩放未解决。Owner已回复两条法律链接都能打开；返回原账号未在自由文本中明确确认，不再把打开检查写成待回复，也不重复要求登录。原真实数据／定价／历史交易／保留删除账号和FanPass不变。
 
 ## 唯一下一步
 
-本次法律页修正和Git保存均完成：archive38在6c073f70b的独立远端回读通过，64路径／62对象匹配。下一步在香港October14 04:21后执行既定旧身份拒绝复核，通过后完成Web普通访问／新订阅开放与实际页面读回。Apple正式新购仍独立关闭，平台回复及剩余原生／专用审核账号验收分别保持；不重做本次静态站发布或已通过项目。
+本次法律页修正和Git保存均完成：archive38在6c073f70b的独立远端回读通过，64路径／62对象匹配。下一步在香港October14 04:21后执行既定旧身份拒绝复核，通过后完成Web普通访问／新订阅开放与实际页面读回。Apple正式新购仍独立关闭，按发布后核验顺序推进；Auth0标准外壳恢复及剩余原生／专用审核账号验收分别保持；不重做本次静态站发布或已通过项目。

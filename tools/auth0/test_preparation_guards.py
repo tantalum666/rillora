@@ -111,7 +111,7 @@ class PreparationGuards(unittest.TestCase):
                 main(module, '--apply', '--output', str(Path(temporary) / 'receipt.json'))
         self.assertTrue(all(method == 'get' for method in calls))
 
-    def run_theme_fixture(self, first_read_status):
+    def run_theme_fixture(self, first_read_status, template_read_status=''):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
             cli = root / 'auth0'
@@ -121,8 +121,17 @@ args = sys.argv[1:]
 with open(os.environ['RILLORA_AUTH0_FIXTURE_LOG'], 'a') as log:
     log.write(json.dumps(args[:3]) + '\\n')
 if args[:3] == ['api', 'get', 'branding/themes/default'] and len(open(os.environ['RILLORA_AUTH0_FIXTURE_LOG']).readlines()) == 1:
-    print(os.environ['RILLORA_AUTH0_FIXTURE_FIRST_READ_STATUS'], file=sys.stderr)
-    raise SystemExit(1)
+    status = os.environ['RILLORA_AUTH0_FIXTURE_FIRST_READ_STATUS']
+    if status:
+        print(status, file=sys.stderr)
+        raise SystemExit(1)
+    print(json.dumps({'themeId': 'a' * 32}))
+    raise SystemExit(0)
+if args[:3] == ['api', 'get', 'branding/templates/universal-login']:
+    status = os.environ['RILLORA_AUTH0_FIXTURE_TEMPLATE_READ_STATUS']
+    if status:
+        print(status, file=sys.stderr)
+        raise SystemExit(1)
 if args[:2] == ['api', 'post']:
     print(json.dumps({'themeId': 'a' * 32}))
 else:
@@ -133,7 +142,8 @@ else:
             result = subprocess.run(['bash', str(HERE / 'apply-universal-login.sh'), str(root / 'evidence')],
                 env={**os.environ, 'PATH': str(root) + os.pathsep + os.environ['PATH'],
                     'RILLORA_AUTH0_FIXTURE_LOG': str(log),
-                    'RILLORA_AUTH0_FIXTURE_FIRST_READ_STATUS': first_read_status},
+                    'RILLORA_AUTH0_FIXTURE_FIRST_READ_STATUS': first_read_status,
+                    'RILLORA_AUTH0_FIXTURE_TEMPLATE_READ_STATUS': template_read_status},
                 text=True, capture_output=True, timeout=15)
             self.assertTrue(log.exists(), result.stderr)
             calls = [json.loads(line) for line in log.read_text().splitlines()]
@@ -149,6 +159,18 @@ else:
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn(['api', 'post', 'branding/themes'], calls)
         self.assertIn(['universal-login', 'templates', 'update'], calls)
+
+    def test_unreadable_or_removed_template_stops_before_all_remote_writes(self):
+        for theme_status in ['', '404 Not Found']:
+            for template_status in ['402 Payment Required', '403 Forbidden',
+                                    '404 Not Found', '503 Service Unavailable']:
+                with self.subTest(theme=theme_status, template=template_status):
+                    result, calls = self.run_theme_fixture(theme_status, template_status)
+                    self.assertNotEqual(result.returncode, 0)
+                    self.assertIn('no remote write was attempted', result.stderr)
+                    self.assertTrue(all(row[:2] == ['api', 'get'] or
+                                        row[:2] == ['universal-login', 'show']
+                                        for row in calls), calls)
 
 
 if __name__ == '__main__':

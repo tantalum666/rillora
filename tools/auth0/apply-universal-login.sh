@@ -76,6 +76,11 @@ else
     --arg reason "$(tr '\n' ' ' < "$EVIDENCE_DIR/page-template-before-error.txt")" \
     '{status: $status, reason: $reason}' \
     > "$EVIDENCE_DIR/page-template-before.json"
+  # A locked or unavailable template cannot be backed up or safely replaced.
+  # This also preserves the default shell after a provider-assisted reset (404).
+  # Stop before changing the theme, rather than leaving a partial application.
+  echo "Unable to read the existing page template; no remote write was attempted. Keep the standard login shell and use supported scoped branding/text operations." >&2
+  exit 1
 fi
 
 if [[ "$HAD_THEME" == true ]]; then

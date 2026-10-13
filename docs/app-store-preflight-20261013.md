@@ -52,13 +52,13 @@ iOS没有广告SDK／IDFA、位置权限、通讯录批量读取或照片／录�
 
 ## 尚未关闭的门
 
-- Apple Production API同一有效JWT仍返回401，Sandbox200及TEST送达成功不代替它；新购路由独立保持关闭。
+- [Apple官方发布前限制的解释](provider-diagnostics-20261013.md)与当前401一致；不再把Production200当作送审条件。完成剩余审核验收后走独立Sandbox，发布后完成Production授权／通知／对账核验，再开放两条新购；当前路由仍关闭。
 - Apple拒绝关闭简化购买，明确要求最新**已批准**构建含StoreKit接口。现有14已实现PurchaseIntent.intents，批准后、手动发布前续办，不重复实现或上传新版本。
 - 过早提交已经主动撤回；当前没有活动审核。审核账号的实际登录、余下原生法律往返／辅助技术和未订阅真机分支仍独立记录，完成后再重提。
 - Auth0桌面旧外壳3句英文为October9已记录的Free模板402限制，本轮确认仍在，不能冒称新发现或擅自付费／切Classic。
 
 ## 已发送的官方询问
 
-Owner明确“两份都发送”，并另确认社区首次注册条款。Apple Developer Support的私密API／密钥询问已收件，案例102995248851，等待答复；仅发送已审阅的App标识、请求编号与技术现象，没有密钥、JWT、密码、用户资料或附件。Auth0官方社区已收到原公开草稿，Get Help／universal-login分类，显示1篇等待管理员批准；尚无公开帖子URL或官方技术答复。社区账号沿原Auth0身份，无付费升级、Classic切换或重复提交。
+Owner明确“两份都发送”，并另确认社区首次注册条款。Apple Developer Support的私密API／密钥询问已收件，案例102995248851；找到官方发布前解释后，Owner允许结束跟进，同一案例已收件关闭请求，但页面未显示Closed；仅发送已审阅的App标识、请求编号与技术现象，没有密钥、JWT、密码、用户资料或附件。Auth0官方社区已收到原公开草稿，Get Help／universal-login分类，显示1篇等待管理员批准；尚无公开帖子URL或官方技术答复。社区账号沿原Auth0身份，无付费升级、Classic切换或重复提交。
 
 QA：output/qa/rillora-final-readiness-20261013。账号、凭据、完整个人UI与联系资料保留在.local-secrets/final-readiness-20261013。正式商店发布、付费客户开放与这些草稿／配置证据分别计数。

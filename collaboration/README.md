@@ -1,5 +1,7 @@
 # Rillora — Git / Dot 协作入口
 
+October13[平台原因与登录维护](../docs/provider-diagnostics-20261013.md)：Apple员工明确发布前Production API限制，已纠正提审／开售顺序，原工单关闭请求收件但未显示Closed。Auth0旧英文外壳仍在；配置脚本新增模板不可读即停止的保护，7项模拟检查通过。[本轮可读回执](verification/provider-diagnostics-20261013/README.md)直接入Git，无线上配置、价格或运行部署变更，旧1—38归档不重封。
+
 October13[法律页精简](../docs/legal-page-layout-20261013.md)：Owner选择直接删除两块重复外观／语言说明，不增加折叠。78f262a3a／CI148及真实Cloudflare部署、50HTTPS／18资源与线上中英文／两宽度回读通过，法律正文不变。[archive38](verification/legal-layout-20261013/README.md)新增64路径／62对象／1,156,789密文字节，本地及6c073f70b的GitHub独立新下载认证均通过；前1—37不重做，无原生／其他运行面部署或TestFlight。
 
 October13[集中收尾](../docs/final-readiness-20261013.md)：eb2b3c4d2／CI145通过，Apple独立运行／有限审核／独立停售及四项告警已兼容部署，当前手机14与Web测试家庭版对应；双语10图、隐私／联系资料／专用审核凭据保存。三项App Review过早提交已说明并主动撤回，当前没有活动审核；Apple支持工单收件、Auth0问题待管理员批准。[新增archive37](verification/final-readiness-20261013/README.md)保存568路径／530对象／37,831,161密文字节，本地及cba5b92bb的GitHub独立新下载认证均通过；旧1—36不重做，未分发TestFlight。Owner随后恢复镜像，现有App已打开，但工具输入未生效；当前下一步只看handoff。
