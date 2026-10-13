@@ -5,7 +5,7 @@ Authority scope: Rillora Family StoreKit product identifiers, purchase/restore l
 Superseded by: newer Apple platform rules, verified App Store Connect state, a later Owner decision, or stricter payment/security evidence  
 Do not use for: proof of App Store approval, accepted Paid Apps Agreement, banking/tax completion, live IAP products, production entitlement or a real charge  
 Status: SEPARATE RUNTIMES DEPLOYED; PRERELEASE401 EXPLAINED; PRODUCTION CHECK AFTER RELEASE BEFORE SALES; PHONE14 AND WEB TEST ENTITLEMENT MATCH
-Last updated: 2026-10-13 (Asia/Hong_Kong)
+Last updated: 2026-10-14 (Asia/Hong_Kong)
 
 ## October13 current release preparation
 

@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-13 (Asia/Hong_Kong)
+Last updated: 2026-10-14 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 

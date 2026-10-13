@@ -1,11 +1,11 @@
 # Rillora 当前交接
 
 Status: APPLE PRERELEASE GATE CORRECTED / CLOSURE REQUEST RECEIVED / AUTH0 SHELL OPEN / WEB TOKEN WINDOW RETAINED
-Last updated: 2026-10-13 (Asia/Hong_Kong)
+Last updated: 2026-10-14 (Asia/Hong_Kong)
 
 ## 当前任务
 
-Owner最新询问Auth0登录页稳定性及Apple401／工单关闭；[本轮诊断](provider-diagnostics-20261013.md)记录正式中文页实际残留、免费支持边界和已修复的配置工具停止条件。没有修改线上登录或收费配置。
+Owner最新询问Auth0登录页稳定性及Apple401／工单关闭；[本轮诊断](provider-diagnostics-20261013.md)记录正式中文页实际残留、免费支持边界和已修复的配置工具停止条件。没有修改线上登录或收费配置。工具修正与报告86fc7cf5e已推送，CI151三个任务成功，原项目目录已快进同步；[Git回执](../collaboration/verification/provider-diagnostics-20261013/git-readback.json)。
 
 Owner要求推进到正式上线状态，沿用[当前收尾](final-readiness-20261013.md)和[商店预检](app-store-preflight-20261013.md)。活动工作树/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app，分支codex/security-findings-20261011；本轮QA是output/qa/rillora-final-readiness-20261013。旧20ec61222交接保留为[HISTORICAL](handoff-history-20261013-before-final-readiness.md)。
 

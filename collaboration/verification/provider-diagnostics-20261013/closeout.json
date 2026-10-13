@@ -1,5 +1,5 @@
 {
-  "completedAt": "2026-10-13T15:59:44.129259+00:00",
+  "completedAt": "2026-10-13T16:08:12.547989+00:00",
   "sourceBase": "567542203fe03e6ab74555cf630446f0f7914079",
   "scope": "provider diagnosis, release-order correction, narrow Auth0 configuration-tool guard",
   "focusedSpecs": [
@@ -38,5 +38,10 @@
   "TestFlightDistributions": 0,
   "privateExclusion": "Authenticated support screenshot is in .local-secrets/provider-diagnostics-20261013; no credential/auth flow URL stored in readable evidence.",
   "preservation": "All newly saved eligible text/JSON is copied exactly; generated .local/github-preflight source is reproducible and excluded. Prior archives1-38unchanged.",
-  "publication": "commit/push/readback follows; not yet claimed"
+  "publication": "Source86fc7cf5e pushed and independently read from GitHub; CI151all3jobs passed; primary checkout fast-forwarded. Final metadata only follows.",
+  "readableScan": {
+    "initialFull": "passed,0unknown,12331readable files",
+    "subsequentReceiptScope": "new evidence directory separately scanned after adding scan receipt;0findings",
+    "finalManifest": "12332files verified before source commit"
+  }
 }

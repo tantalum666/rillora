@@ -1,7 +1,7 @@
 # 正式上线收尾 — 2026-10-13
 
 Status: APPLE AND OPERATIONS DEPLOYED / SUPPORT REQUESTS SENT / REVIEW WITHDRAWN / WEB TOKEN WINDOW RETAINED
-Last updated: 2026-10-13 (Asia/Hong_Kong)
+Last updated: 2026-10-14 (Asia/Hong_Kong)
 
 Owner要求进入收尾，把所有内容推进到可正式上线状态。此指令取代“只等Web身份窗口”的单项下一步，继续其余可自主完成的原生、Apple后台、商店材料与发布检查；已完成的支付／退款、代码审计、安全迁移和部署不重复。保留现有UI、Free1／Family5、WebUSD88.99与AppleUSAUSD119.99、真实数据和FanPass，沿用计税策略不再阻塞的决定。此前不分发TestFlight的具体要求仍保持，本轮先集中准备最终商店候选。
 

@@ -1,0 +1,33 @@
+{
+  "verifiedAt": "2026-10-13T16:08:12.547989+00:00",
+  "sourceCommit": "86fc7cf5e26a2efda569abb38bc265657b6c474b",
+  "remoteRef": "refs/heads/codex/security-findings-20261011",
+  "remoteReadbackMatches": true,
+  "ci": {
+    "runID": 38427363560,
+    "runNumber": 151,
+    "url": "https://github.com/tantalum666/rillora/actions/runs/38427363560",
+    "jobs": {
+      "api": "success",
+      "source": "success",
+      "web-and-infrastructure": "success"
+    }
+  },
+  "primaryCheckoutFastForwarded": true,
+  "originalPrimaryBranchRetained": true,
+  "priorStashRetained": true,
+  "runtimeChanged": false,
+  "lockRecovery": {
+    "observedInitialGitFailure": "existing index.lock",
+    "regularFile": true,
+    "bytes": 0,
+    "ageSecondsAtFirstCheck": 192,
+    "sameOwner": true,
+    "openHandles": 0,
+    "gitProcessNamesPresent": false,
+    "inodeRechecked": true,
+    "exactStaleLockRemoved": true,
+    "rootCauseClaimed": false
+  },
+  "boundary": "Remote receipt applies to implementation86fc7cf5e; final receipt-only commit follows without rerunning runtime deployments or tests."
+}

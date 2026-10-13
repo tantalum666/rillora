@@ -1,7 +1,7 @@
 # App Store 上线材料与当前证据 — 2026-10-13
 
 Status: METADATA SAVED / PRIVACY PUBLISHED / BUILD14 SUBMISSION WITHDRAWN / MANUAL RELEASE RETAINED
-Last updated: 2026-10-13 (Asia/Hong_Kong)
+Last updated: 2026-10-14 (Asia/Hong_Kong)
 
 本文件记录Apple实际草稿与填写依据，不把保存元数据、构建上传或Sandbox购买视为App Review批准或正式开售。当前执行仍由[最终收尾](final-readiness-20261013.md)与[交接](handoff.md)路由。
 

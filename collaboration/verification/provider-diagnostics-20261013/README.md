@@ -8,3 +8,5 @@
 - [Reading continuation](reading.json): focused ranges and retained full baseline, not a new full-repository read claim.
 
 QA source: output/qa/rillora-provider-diagnostics-20261013. Authenticated Apple screenshot is deliberately excluded under the existing private-provider-UI rule. No runtime build/deployment, transaction, user reset, paid upgrade or TestFlight distribution occurred. Ordinary current source, documents and these safe original text/JSON bytes are preserved in Git. Subsequent validation/publication receipts are appended normally without recursive archival.
+
+[Git readback](git-readback.json): implementation86fc7cf5e is pushed and independently read back; [CI151](https://github.com/tantalum666/rillora/actions/runs/38427363560) succeeds in all3jobs. Primary checkout is fast-forwarded without changing its branch or old stash. Final receipt-only changes do not claim another runtime verification.
