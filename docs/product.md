@@ -9,6 +9,10 @@ Last updated: 2026-10-13 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
 
+## 2026-10-13 最终发布收尾
+
+Owner要求把所有工作推进到可以正式上线的状态。继续[最终收尾](final-readiness-20261013.md)，利用既有Web身份等待窗口完成原生／Apple配置／商店材料与剩余验证；已通过项目沿用，不恢复零碎TestFlight分发，不改价格、真实数据、UI或FanPass。正式开售、Apple审核和真实设备证据各自按结果记录。
+
 ## 2026-10-13 Owner移除计税策略前置条件
 
 Owner明确“忽略掉计税策略”。本次Web正式订阅收尾采用显式不自动计税，Stripe Tax保持关闭，不再等待税务登记或虚构免税评估；USD88.99与既有支付安全边界保持。[当前收尾合同](web-billing-activation-20261013.md)记录API25和disabled模式实际交付，以及旧Preview令牌至香港October14 04:21的独立安全窗口；普通新购在该窗口内关闭，未发TestFlight。

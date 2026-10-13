@@ -84,6 +84,34 @@ test('fixed billing operations retain the source scope, inspected-state precondi
  }
 });
 
+test('Apple configuration permits only fixed operations, reviewed fingerprints and finite existing-review scopes',async()=>{
+ const now=Date.now(),expiry=new Date(now+86400_000).toISOString(),settings={...config,productionRuntimeMode:'live'};
+ for(const operation of ['inspect','prepare','renew-review']){
+  const request=task(),container=request.overrides.containerOverrides[0];
+  container.command=['node','dist/configure-production-apple.js',operation];
+  if(operation!=='inspect')container.environment.push({name:'RILLORA_APPLE_EXPECTED_SNAPSHOT',value:'b'.repeat(64)});
+  if(operation==='renew-review')container.environment.push({name:'APPLE_REVIEW_IDENTITY_SHA256',value:'c'.repeat(64)},
+   {name:'APPLE_REVIEW_EXPIRES_AT',value:expiry});
+  const f=fixture();await executeMaintenance({operation:'task',run,runToken,request},f.call,settings,()=>now);
+  assert.equal(f.writes.length,1);
+  for(const mutate of [r=>r.overrides.containerOverrides[0].command[2]='activate-everywhere',
+    r=>r.overrides.containerOverrides[0].environment.push({name:'DATABASE_HOST',value:'unreviewed.internal'})]){
+   const changed=structuredClone(request),bad=fixture();mutate(changed);
+   await assert.rejects(executeMaintenance({operation:'task',run,runToken,request:changed},bad.call,settings,()=>now));
+   assert.equal(bad.writes.length,0);
+  }
+  if(operation!=='inspect'){
+   await assert.rejects(executeMaintenance({operation:'task',run,runToken,request},fixture().call,{...settings,productionRuntimeMode:'review'},()=>now));
+   const missing=structuredClone(request);missing.overrides.containerOverrides[0].environment.splice(1,1);
+   await assert.rejects(executeMaintenance({operation:'task',run,runToken,request:missing},fixture().call,settings,()=>now));
+  }
+  if(operation==='renew-review')for(const changedExpiry of [new Date(now-1).toISOString(),new Date(now+32*86400_000).toISOString()]){
+   const changed=structuredClone(request);changed.overrides.containerOverrides[0].environment.at(-1).value=changedExpiry;
+   await assert.rejects(executeMaintenance({operation:'task',run,runToken,request:changed},fixture().call,settings,()=>now));
+  }
+ }
+});
+
 test('the actual Python migration caller produces a request accepted by the real broker',async()=>{
   const result=spawnSync('python3',['-c',`
 import json,sys

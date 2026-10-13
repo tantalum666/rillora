@@ -3,6 +3,7 @@ import type { AppleProductionIntake } from './apple-production-intake.js';
 import { createAppleProductionNotificationHandler, createAppleProductionRouter } from './apple-production-routes.js';
 import { appleReviewContext, appleProductionContext } from './apple-execution-context.js';
 import { ApplePurchasePreflight } from './apple-purchase-preflight.js';
+import { appleReviewAccessRequired } from './apple-review-access.js';
 import { authenticate, requireWorkspaceIdentity } from "./auth.js";
 import { Auth0EmailIdentityVerifier, SessionEmailVerification, type EmailIdentityVerifying } from "./email-verification.js";
 import type { AppConfig } from "./config.js";
@@ -245,7 +246,8 @@ export function createApp(
       createStoreKitSandboxRouter(storeKitSandboxIntake),
     );
   }
-  if(appleReviewIntake) plannerApi.use('/commerce/storekit/review',createAppleProductionRouter(appleReviewIntake,new ApplePurchasePreflight(pool,appleReviewContext),config));
+  if(appleReviewIntake) plannerApi.use('/commerce/storekit/review',appleReviewAccessRequired(pool,config),
+    createAppleProductionRouter(appleReviewIntake,new ApplePurchasePreflight(pool,appleReviewContext),config));
   if (appleProductionIntake) plannerApi.use('/commerce/storekit/production', createAppleProductionRouter(appleProductionIntake,new ApplePurchasePreflight(pool),config));
   plannerApi.use("/commerce", createCommerceRouter(pool,
     new Set([...(stripeCheckoutEnabled ? ['stripe'] : []),...(appleProductionIntake ? ['storekit'] : [])])));

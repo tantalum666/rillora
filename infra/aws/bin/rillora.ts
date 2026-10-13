@@ -106,6 +106,8 @@ if (productionWebSelected) {
     runtimeEnabled:runtime===true||runtime==='true',runtimeDesiredCount:runtimeDesiredCount as 0|1,
     reviewPrepared:reviewFlag('productionReviewPrepared'),reviewEnabled:reviewFlag('productionReviewEnabled'),
     liveEnabled:reviewFlag('productionLiveEnabled'),stripeCheckoutEnabled:reviewFlag('productionStripeCheckoutEnabled'),
+    appleProductionPrepared:reviewFlag('productionApplePrepared'),appleProductionEnabled:reviewFlag('productionAppleEnabled'),
+    appleReviewEnabled:reviewFlag('productionAppleReviewEnabled'),
     retentionEnabled:reviewFlag('productionRetentionEnabled'),
     identityServicesEnabled:reviewFlag('productionIdentityServicesEnabled'),
     stripeNotificationsSecretArn:app.node.tryGetContext('productionStripeNotificationsSecretArn'),

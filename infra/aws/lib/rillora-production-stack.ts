@@ -16,6 +16,7 @@ export interface ProductionStackProps extends StackProps {
  runtimeEnabled?:boolean; runtimeDesiredCount?:0|1;
  reviewPrepared?:boolean; reviewEnabled?:boolean; runtimeImageTag?:string;
  liveEnabled?:boolean; stripeCheckoutEnabled?:boolean;
+ appleProductionPrepared?:boolean; appleProductionEnabled?:boolean; appleReviewEnabled?:boolean;
  retentionEnabled?:boolean;
  identityServicesEnabled?:boolean;
  stripeNotificationsSecretArn?:string;
@@ -33,6 +34,9 @@ export class RilloraProductionStack extends Stack {
   if(activeRuntime&&!props.reviewPrepared)throw new Error('Prepare existing identity secrets before activating the runtime');
   if(props.liveEnabled&&(!props.identityServicesEnabled||!props.retentionEnabled||!props.stripeNotificationsSecretArn))throw new Error('Live requires identity services, retention and verified billing notifications');
   if(props.stripeCheckoutEnabled&&!props.liveEnabled)throw new Error('Production Checkout requires explicit live mode');
+  if(props.appleProductionPrepared&&(!props.runtimeEnabled||props.env?.account!=='133857166372'))throw new Error('Apple preparation requires the existing Rillora production runtime');
+  if(props.appleProductionEnabled&&(!props.appleProductionPrepared||!props.liveEnabled))throw new Error('Apple production requires its prepared vault and explicit live mode');
+  if(props.appleReviewEnabled&&!props.liveEnabled)throw new Error('Independent Apple review access requires explicit live mode');
   if(props.identityServicesEnabled&&!activeRuntime)throw new Error('Identity services require a prepared active production runtime');
   if(props.retentionEnabled&&!activeRuntime)throw new Error('Retention requires an operational production runtime');
   if(props.stripeNotificationsSecretArn&&(!activeRuntime
@@ -169,6 +173,7 @@ export class RilloraProductionStack extends Stack {
     repositoryName:`cdk-hnb659fds-container-assets-${Aws.ACCOUNT_ID}-eu-central-1`}),props.runtimeImageTag):image,
    operator,environment,reviewPrepared:props.reviewPrepared,reviewEnabled:props.reviewEnabled,liveEnabled:props.liveEnabled,stripeCheckoutEnabled:props.stripeCheckoutEnabled,retentionEnabled:props.retentionEnabled,identityServicesEnabled:props.identityServicesEnabled,recoveryTask:recovery,
    stripeNotificationsSecretArn:props.stripeNotificationsSecretArn,
+   appleProductionPrepared:props.appleProductionPrepared,appleProductionEnabled:props.appleProductionEnabled,appleReviewEnabled:props.appleReviewEnabled,
    desiredCount:props.runtimeDesiredCount??0,
   }):null;
   if(runtime)maintenancePolicies.push(new iam.PolicyStatement({actions:['ecs:DescribeServices'],resources:runtime.sourceWriterServices.map(s=>s.serviceArn)}));

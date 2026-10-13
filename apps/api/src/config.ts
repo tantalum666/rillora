@@ -51,6 +51,8 @@ const configSchema = z
     ALLOW_APPLE_SANDBOX_INTEGRATION: booleanFromString,
     ALLOW_APPLE_PRODUCTION_INTEGRATION: booleanFromString,
     ALLOW_APPLE_REVIEW_INTEGRATION: booleanFromString,
+    APPLE_REVIEW_IDENTITY_SHA256: z.string().regex(/^[a-f0-9]{64}(,[a-f0-9]{64}){0,7}$/).optional(),
+    APPLE_REVIEW_EXPIRES_AT: z.iso.datetime().optional(),
     APPLE_REVIEW_SECRET_ARN:z.string().regex(appleReviewSecretArnPattern).optional(),
     APPLE_PRODUCTION_SECRET_ARN: z.string().regex(appleProductionSecretArnPattern).optional(),
     ALLOW_FAMILY_MAINTENANCE_PREVIEW: booleanFromString,
@@ -144,6 +146,7 @@ export type AppConfig = {
   stripeProductionCheckoutEnabled?: boolean;
   productionRuntimeClosed?: boolean;
   productionReviewAccess?: { identityDigests: readonly string[]; expiresAt: number } | null;
+  appleReviewAccess?: { identityDigests: readonly string[]; expiresAt: number } | null;
   allowRetentionWorker?: boolean;
   requireRecentAuthentication?: boolean;
   apiTls?: { certificateArn: string; serverName: string; region: string } | null;
@@ -272,6 +275,15 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
   const productionRuntimeClosed = parsed.PRODUCTION_RUNTIME_MODE === "closed";
   const productionReviewMode = parsed.PRODUCTION_RUNTIME_MODE === 'review';
   const reviewExpiresAt = Date.parse(parsed.PRODUCTION_REVIEW_EXPIRES_AT ?? '');
+  const appleReviewExpiresAt = Date.parse(parsed.APPLE_REVIEW_EXPIRES_AT ?? '');
+  const liveAppleReview = parsed.PRODUCTION_RUNTIME_MODE === 'live' && parsed.ALLOW_APPLE_REVIEW_INTEGRATION;
+  if (liveAppleReview && (!parsed.APPLE_REVIEW_IDENTITY_SHA256 || !Number.isFinite(appleReviewExpiresAt)
+    || appleReviewExpiresAt > Date.now() + 31 * 86_400_000)) {
+    throw new Error('Live App Review requires explicit identities and an expiry within 31 days');
+  }
+  if (!liveAppleReview && (parsed.APPLE_REVIEW_IDENTITY_SHA256 || parsed.APPLE_REVIEW_EXPIRES_AT)) {
+    throw new Error('Apple review access restrictions require its explicit live review context');
+  }
   // An omitted mode must never choose the customer path. Deliberate activation
   // requires the exact production identity boundary; IaC still uses closed/review.
   if (parsed.PRODUCTION_RUNTIME_MODE === 'live' && (
@@ -285,8 +297,8 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
     || parsed.OIDC_REDIRECT_URI !== 'https://app.rillora.xyz/api/auth/callback'
     || parsed.ALLOW_DEV_AUTH || parsed.ALLOW_SYNTHETIC_RECIPIENT_REHEARSAL
     || parsed.ALLOW_STRIPE_TEST_INTEGRATION || parsed.ALLOW_APPLE_SANDBOX_INTEGRATION
-    || parsed.ALLOW_APPLE_REVIEW_INTEGRATION || parsed.ALLOW_FAMILY_MAINTENANCE_PREVIEW
-  )) throw new Error('Explicit live mode requires the exact production identity boundary and no test surfaces');
+    || parsed.ALLOW_FAMILY_MAINTENANCE_PREVIEW
+  )) throw new Error('Explicit live mode requires the exact production identity boundary and no diagnostic test surfaces');
   if (productionReviewMode && (!parsed.ALLOW_APPLE_REVIEW_INTEGRATION
     || parsed.ALLOW_APPLE_PRODUCTION_INTEGRATION || parsed.ALLOW_STRIPE_PRODUCTION_INTEGRATION
     || !parsed.PRODUCTION_REVIEW_IDENTITY_SHA256 || !Number.isFinite(reviewExpiresAt)
@@ -646,6 +658,11 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
     requireRecentAuthentication: parsed.NODE_ENV === 'production' || parsed.REQUIRE_RECENT_AUTHENTICATION,
     productionReviewAccess: productionReviewMode ? {
       identityDigests: parsed.PRODUCTION_REVIEW_IDENTITY_SHA256!.split(','), expiresAt: reviewExpiresAt,
+    } : null,
+    // Expiration closes only reviewer purchase routes. Ordinary customer
+    // authentication and signed notification reconciliation remain available.
+    appleReviewAccess: liveAppleReview ? {
+      identityDigests: parsed.APPLE_REVIEW_IDENTITY_SHA256!.split(','), expiresAt: appleReviewExpiresAt,
     } : null,
     appleReview: parsed.ALLOW_APPLE_REVIEW_INTEGRATION ? {secretArn:parsed.APPLE_REVIEW_SECRET_ARN!,
       rootCertificateDirectory:parsed.APPLE_ROOT_CERTIFICATE_DIRECTORY!} : null,

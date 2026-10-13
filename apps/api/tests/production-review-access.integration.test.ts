@@ -9,6 +9,9 @@ import { runMigrations } from '../src/migrate.js';
 import { reviewIdentityDigest } from '../src/production-review-access.js';
 import { currentLegalContract } from '../src/legal-contract.js';
 import type { ExternalIdentity, IdentityProvider } from '../src/identity.js';
+import { appleReviewContext } from '../src/apple-execution-context.js';
+import type { AppleProductionIntake } from '../src/apple-production-intake.js';
+import { appleReviewAccessRequired } from '../src/apple-review-access.js';
 
 const databaseUrl = dedicatedTestDatabaseUrl('postgresql:///rillora_review_access_test', 'rillora_review_access_test');
 const base=loadConfig({NODE_ENV:'test',DATABASE_URL:databaseUrl,CORS_ORIGINS:'http://localhost:4173',
@@ -35,6 +38,24 @@ async function web(target:ReturnType<typeof app>,expected=303){
  const result=await request(target).get(`/auth/callback?state=${state}&code=synthetic`).set('Cookie',start.headers['set-cookie']!).expect(expected);
  return result;
 }
+function ordinaryAppWithReview(who:ExternalIdentity, hashes=[digest], expiresAt=Date.now()+60_000) {
+ const calls={transactions:0,notifications:0};
+ const identityProvider:IdentityProvider={
+  async createAuthorizationUrl(transaction){const url=new URL('https://identity.example/authorize');url.searchParams.set('state',transaction.state);return url;},
+  async exchangeAuthorizationCode(){return who;},
+ };
+ // Only the provider boundary is stubbed here. Session issuance, legal-receipt
+ // identity binding and both route aliases use the real database/authenticator.
+ const intake={context:appleReviewContext,
+  async acceptClientTransaction(){calls.transactions++;return {finishAuthorized:false};},
+  async acceptNotification(){calls.notifications++;return {received:true};},
+ } as unknown as AppleProductionIntake;
+ const target=createApp(pool,{...base,
+  appleReview:{secretArn:'fixture-only',rootCertificateDirectory:'/fixture-only'},
+  appleReviewAccess:{identityDigests:hashes,expiresAt}},
+  {identityProvider,nativeIdentityVerifier:{async verifyAccessToken(){return who;}},appleReviewIntake:intake});
+ return {target,calls};
+}
 describe.sequential('Production review identity restriction',()=>{
  beforeAll(async()=>{await assertDedicatedTestDatabase(databaseUrl, 'rillora_review_access_test');
     await runMigrations(databaseUrl);pool=createPool(base);});
@@ -60,5 +81,46 @@ describe.sequential('Production review identity restriction',()=>{
   const expired=app(allowed,[digest],Date.now()-1);
   expect((await request(expired).get('/auth/session-status').set('Cookie',cookie).expect(200)).body.authenticated).toBe(false);
   await request(expired).post('/auth/start').send({intent:'signin',legalAcceptance:acceptance}).expect(503);
+ });
+ it('keeps ordinary identities signed in while denying every reviewer purchase route',async()=>{
+  const {target,calls}=ordinaryAppWithReview(other);const signedIn=await native(target);
+  expect(signedIn.status).toBe(201);const authorization=`Bearer ${signedIn.body.sessionToken}`;
+  await request(target).get('/v1/session').set('Authorization',authorization).expect(200);
+  for(const prefix of ['/v1','/api/v1']){
+   for(const path of ['/quote','/purchases/current']){
+    const response=await request(target).get(prefix+'/commerce/storekit/review'+path).set('Authorization',authorization);
+    expect(response.status).toBe(403);expect(response.body.error.code).toBe('apple_review_not_enrolled');
+   }
+   for(const path of ['/prepare','/purchases/'+randomUUID(),'/transactions']){
+    const response=await request(target).post(prefix+'/commerce/storekit/review'+path).set('Authorization',authorization).send({});
+    expect(response.status).toBe(403);expect(response.body.error.code).toBe('apple_review_not_enrolled');
+   }
+  }
+  expect(calls.transactions).toBe(0);
+  await request(target).get('/v1/session').set('Authorization',authorization).expect(200);
+ });
+ it('admits only the configured reviewer to the provider boundary',async()=>{
+  const {target,calls}=ordinaryAppWithReview(allowed);const signedIn=await native(target);
+  await request(target).post('/v1/commerce/storekit/review/transactions')
+   .set('Authorization',`Bearer ${signedIn.body.sessionToken}`).send({signedTransaction:'synthetic-provider-proof'}).expect(202);
+  expect(calls.transactions).toBe(1);
+ });
+ it('expires reviewer access without denying ordinary account access or stopping notification processing',async()=>{
+  const {target,calls}=ordinaryAppWithReview(allowed,[digest],Date.now()-1);const signedIn=await native(target);
+  expect(signedIn.status).toBe(201);const authorization=`Bearer ${signedIn.body.sessionToken}`;
+  await request(target).get('/v1/session').set('Authorization',authorization).expect(200);
+  await request(target).post('/v1/commerce/storekit/review/transactions')
+   .set('Authorization',authorization).send({signedTransaction:'synthetic-provider-proof'}).expect(403);
+  expect(calls.transactions).toBe(0);
+  await request(target).post('/commerce/storekit/review/notifications').send({signedPayload:'synthetic-provider-proof'}).expect(200);
+  expect(calls.notifications).toBe(1);
+ });
+ it('applies the same reviewer isolation to browser sessions without signing them out',async()=>{
+  const {target}=ordinaryAppWithReview(other);const result=await web(target);const cookie=result.headers['set-cookie']!;
+  await request(target).get('/api/v1/commerce/storekit/review/purchases/current').set('Cookie',cookie).expect(403);
+  expect((await request(target).get('/auth/session-status').set('Cookie',cookie).expect(200)).body.authenticated).toBe(true);
+ });
+ it('refuses an unscoped production reviewer middleware at startup',()=>{
+  expect(()=>appleReviewAccessRequired(pool,{...base,nodeEnv:'production'})).toThrow('scoped identity window');
  });
 });

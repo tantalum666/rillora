@@ -13,6 +13,7 @@ interface Props {
  operator:iam.Role; environment:Record<string,string>; desiredCount:0|1;
  reviewPrepared?:boolean; reviewEnabled?:boolean;
  liveEnabled?:boolean; stripeCheckoutEnabled?:boolean;
+ appleProductionPrepared?:boolean; appleProductionEnabled?:boolean; appleReviewEnabled?:boolean;
  retentionEnabled?:boolean;
  identityServicesEnabled?:boolean;
  stripeNotificationsSecretArn?:string;
@@ -39,7 +40,7 @@ export class RilloraProductionRuntime extends Construct {
   network.addIngressRule(ingress,ec2.Port.tcp(8443),'Verified TLS from the exact private VPC Link');
   ingress.addEgressRule(network,ec2.Port.tcp(8443),'Production HTTPS only');
   network.addEgressRule(ec2.Peer.ipv4('0.0.0.0/0'),ec2.Port.tcp(443),'Outbound AWS and identity HTTPS');
-  if(p.reviewEnabled)allowAppleCertificateStatusChecks(network);
+  if(p.reviewEnabled||p.appleReviewEnabled||p.appleProductionEnabled)allowAppleCertificateStatusChecks(network);
   network.addEgressRule(p.databaseNetwork,ec2.Port.tcp(5432),'Verified TLS to private production PostgreSQL');
   p.databaseNetwork.addIngressRule(network,ec2.Port.tcp(5432),'Only the production runtime login');
   const namespace=new discovery.PrivateDnsNamespace(this,'Namespace',{vpc:p.vpc,name:'production.rillora.internal'});
@@ -98,6 +99,34 @@ export class RilloraProductionRuntime extends Construct {
      APPLE_REVIEW_SECRET_ARN:apple.secretArn,APPLE_ROOT_CERTIFICATE_DIRECTORY:'/app/certificates/apple',
      PRODUCTION_REVIEW_IDENTITY_SHA256:identities.valueAsString,PRODUCTION_REVIEW_EXPIRES_AT:expiry.valueAsString});
     apple.grantRead(task.taskRole);
+   }
+   if(p.appleReviewEnabled){
+    const identities=new CfnParameter(this,'AppleReviewIdentityDigests',{type:'String',noEcho:true,
+     allowedPattern:'[a-f0-9]{64}(,[a-f0-9]{64}){0,7}',description:'Exact existing identities permitted to use Sandbox purchase routes; no ordinary customer restriction'});
+    const expiry=new CfnParameter(this,'AppleReviewExpiresAt',{type:'String',
+     allowedPattern:'[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z',description:'UTC Sandbox access expiry; API enforces a maximum 31-day window'});
+    Object.assign(reviewEnvironment,{ALLOW_APPLE_REVIEW_INTEGRATION:'true',APPLE_REVIEW_SECRET_ARN:apple.secretArn,
+     APPLE_ROOT_CERTIFICATE_DIRECTORY:'/app/certificates/apple',APPLE_REVIEW_IDENTITY_SHA256:identities.valueAsString,
+     APPLE_REVIEW_EXPIRES_AT:expiry.valueAsString});
+    apple.grantRead(task.taskRole);
+   }
+  }
+  if(p.appleProductionPrepared){
+   const apple=new secrets.Secret(this,'AppleProductionSecret',{secretName:'rillora/production/apple-iap',
+    description:'Rillora App Store Production verification context; independently configured from Sandbox review'});
+   apple.applyRemovalPolicy(RemovalPolicy.RETAIN);
+   p.operator.addToPolicy(new iam.PolicyStatement({actions:['secretsmanager:DescribeSecret','secretsmanager:PutSecretValue'],resources:[apple.secretArn]}));
+   new CfnOutput(this,'AppleProductionSecretArn',{value:apple.secretArn});
+   // Preparation creates only the vault. Do not load its generated placeholder.
+   if(p.appleProductionEnabled){
+    apple.grantRead(task.taskRole);
+    Object.assign(reviewEnvironment,{ALLOW_APPLE_PRODUCTION_INTEGRATION:'true',APPLE_PRODUCTION_SECRET_ARN:apple.secretArn,
+     APPLE_ROOT_CERTIFICATE_DIRECTORY:'/app/certificates/apple'});
+    if(p.recoveryTask){
+     apple.grantRead(p.recoveryTask.taskRole);
+     p.recoveryTask.defaultContainer!.addEnvironment('APPLE_PRODUCTION_SECRET_ARN',apple.secretArn);
+     p.recoveryTask.defaultContainer!.addEnvironment('APPLE_ROOT_CERTIFICATE_DIRECTORY','/app/certificates/apple');
+    }
    }
   }
   if(p.stripeNotificationsSecretArn){
