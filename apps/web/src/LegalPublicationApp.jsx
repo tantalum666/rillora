@@ -1,4 +1,3 @@
-import { WebsiteAppearanceDisclosure } from "./WebsiteAppearanceDisclosure.jsx";
 import { RilloraBrand } from "./RilloraBrand.jsx";
 import { useEffect } from "react";
 import { LegalDocumentPage } from "./LegalDocumentPage.jsx";
@@ -70,8 +69,6 @@ export function LegalPublicationApp() {
         </nav>
         <LanguageControl compact showPersistenceStatus={false} />
       </header>
-
-      {["privacy", "cookies"].includes(documentKey) && <WebsiteAppearanceDisclosure compact legalPublication />}
 
       <LegalDocumentPage
         documentKey={documentKey}

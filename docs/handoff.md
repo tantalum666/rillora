@@ -1,11 +1,13 @@
 # Rillora 当前交接
 
-Status: PROVIDER REQUESTS RECEIVED / REVIEW WITHDRAWN / ARCHIVE37 REMOTELY VERIFIED / MIRROR INPUT NOT EFFECTIVE
+Status: LEGAL-PAGE NOTICE REMOVAL VALIDATED / LEGAL DEPLOYMENT PENDING / PREVIOUS RELEASE GATES RETAINED
 Last updated: 2026-10-13 (Asia/Hong_Kong)
 
 ## 当前任务
 
 Owner要求推进到正式上线状态，沿用[当前收尾](final-readiness-20261013.md)和[商店预检](app-store-preflight-20261013.md)。活动工作树/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app，分支codex/security-findings-20261011；本轮QA是output/qa/rillora-final-readiness-20261013。旧20ec61222交接保留为[HISTORICAL](handoff-history-20261013-before-final-readiness.md)。
+
+Owner最新反馈已确认原生Terms和Privacy均能打开，要求删去隐私页顶部外观／语言重复说明；按[精简合同](legal-page-layout-20261013.md)执行，QA补充为output/qa/rillora-legal-layout-20261013。最终候选只删壳层插入点，不加折叠；191Web／8法律产物通过，发布待接续。
 
 ## 已完成
 
@@ -24,8 +26,8 @@ Web普通客户／新购仍不能早于2026-10-13T20:20:46Z，按香港October14
 
 Apple官方Sandbox TEST成功；相同JWT Sandbox200／Production401，后续Production-only仍401，未确认原因。两条Apple新购路由独立关闭，不能随Web开售打开。现有14已含PurchaseIntent，Apple要求构建获批后才可关闭简化购买；无重复原生实现或新测试版。
 
-Auth0桌面旧外壳3句英文仍为原有Free402限制，社区已收件；未升级或改Classic。剩余未订阅真机、VoiceOver、原生法律往返及审核账号实际首次登录未冒领通过。Owner随后明确镜像已解锁，已连接并只启动原Rillora，原账号保持；但工具点按／滚动／拖动／输入无实际页面变化，重绑／居中／缩放未解决。已请Owner在镜像或手机完成两条法律链接并返回的实际操作，回复待收；不是登录失效或仍由Owner暂后。原真实数据／定价／历史交易／保留删除账号和FanPass不变。
+Auth0桌面旧外壳3句英文仍为原有Free402限制，社区已收件；未升级或改Classic。剩余未订阅真机、VoiceOver、原生法律往返及审核账号实际首次登录未冒领通过。Owner随后明确镜像已解锁，已连接并只启动原Rillora，原账号保持；但工具点按／滚动／拖动／输入无实际页面变化，重绑／居中／缩放未解决。Owner已回复两条法律链接都能打开；返回原账号未在自由文本中明确确认，不再把打开检查写成待回复，也不重复要求登录。原真实数据／定价／历史交易／保留删除账号和FanPass不变。
 
 ## 唯一下一步
 
-接收并核对当前原生法律链接／返回的实际操作结果，继续仅剩的设备和专用审核账号验收；工具输入无效时不把模拟器结果冒充真机。Web在香港October14 04:21之后按既定身份拒绝复核完成最后开放，无需再等税务配置或重复批准。Apple正式新购独立保持关闭，官方回复和重新提审分别推进，不重跑旧迁移、金融周期、原生构建或本人认证。
+完成已验证的法律页重复说明删除，只发布现有legal.rillora.xyz并核对中英文／移动端与精确产物，然后保存新增Git证据。Web身份时间门、Apple正式API支持回复及剩余原生／专用审核账号验收各自保持，不重跑已完成项目。
