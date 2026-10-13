@@ -128,6 +128,21 @@ test('new review enrollment cannot exceed the identity set or deadline deployed 
  }
 });
 
+test('reviewer provisioning binds the one database subject to its already deployed digest',async()=>{
+ const now=Date.now(),subject='auth0|'+'5'.repeat(24),digest=createHash('sha256').update('https://login.rillora.xyz\u001f'+subject).digest('hex');
+ const expiry=new Date(now+86400_000).toISOString(),request=task(),container=request.overrides.containerOverrides[0];
+ container.command=['node','dist/configure-production-apple.js','provision-reviewer'];
+ container.environment.push({name:'RILLORA_APPLE_EXPECTED_SNAPSHOT',value:'b'.repeat(64)},
+  {name:'APPLE_REVIEW_IDENTITY_SHA256',value:digest},{name:'APPLE_REVIEW_EXPIRES_AT',value:expiry},
+  {name:'RILLORA_APPLE_REVIEW_SUBJECT',value:subject});
+ const settings={...config,productionRuntimeMode:'live',appleReviewScope:{identityDigests:digest,expiresAt:expiry}};
+ const good=fixture();await executeMaintenance({operation:'task',run,runToken,request},good.call,settings,()=>now);assert.equal(good.writes.length,1);
+ for(const wrong of ['auth0|'+'6'.repeat(24),'google-oauth2|'+'5'.repeat(24)]){
+  const changed=structuredClone(request),bad=fixture();changed.overrides.containerOverrides[0].environment.at(-1).value=wrong;
+  await assert.rejects(executeMaintenance({operation:'task',run,runToken,request:changed},bad.call,settings,()=>now));assert.equal(bad.writes.length,0);
+ }
+});
+
 test('the actual Python migration caller produces a request accepted by the real broker',async()=>{
   const result=spawnSync('python3',['-c',`
 import json,sys

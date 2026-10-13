@@ -6,8 +6,9 @@ import { loadDatabaseConfig } from './config.js';
 import { databaseConnectionOptions } from './db.js';
 
 type Client = Pick<PoolClient, 'query'>;
-type Operation = 'inspect' | 'prepare' | 'renew-review' | 'enroll-review';
-const requireFact = (condition: unknown, message: string): void => { if (!condition) throw new Error(message); };
+type Operation = 'inspect' | 'prepare' | 'renew-review' | 'enroll-review' | 'provision-reviewer';
+class AppleConfigurationError extends Error {}
+const requireFact = (condition: unknown, message: string): void => { if (!condition) throw new AppleConfigurationError(message); };
 const offers = [
   { country: 'USA', currency: 'USD', minor: '11999' },
   { country: 'HKG', currency: 'HKD', minor: '88800' },
@@ -38,8 +39,9 @@ async function readCatalog(client: Client) {
 
 /** Add separate production policy rows; never rewrite Sandbox history or enable a market. */
 export async function configureProductionApple(client: Client, operation: Operation,
-  options: { expected?: string | undefined; reviewDigests?: string[] | undefined; reviewExpiresAt?: string | undefined } = {}) {
-  requireFact(['inspect', 'prepare', 'renew-review', 'enroll-review'].includes(operation), 'Unknown Apple configuration operation');
+  options: { expected?: string | undefined; reviewDigests?: string[] | undefined; reviewExpiresAt?: string | undefined;
+    reviewerSubject?: string | undefined } = {}) {
+  requireFact(['inspect', 'prepare', 'renew-review', 'enroll-review', 'provision-reviewer'].includes(operation), 'Unknown Apple configuration operation');
   if (operation !== 'inspect') requireFact(/^[a-f0-9]{64}$/.test(options.expected ?? ''), 'Fresh catalog fingerprint required');
   await client.query(operation === 'inspect' ? 'begin isolation level repeatable read read only' : 'begin isolation level serializable');
   try {
@@ -118,11 +120,23 @@ export async function configureProductionApple(client: Client, operation: Operat
       requireFact(products.length === 1 && products[0].price_id === usaPrice.id && products[0].status === 'active'
         && products[0].storefront_country_code === null && products[0].external_parent_product_reference === '22325627'
         && products[0].provider_account_reference === 'com.rillora.ios' && products[0].effective_to === null, 'Conflicting prepared product');
-    } else if (operation === 'renew-review' || operation === 'enroll-review') {
+    } else if (operation === 'renew-review' || operation === 'enroll-review' || operation === 'provision-reviewer') {
       const digests = options.reviewDigests ?? [], expiry = Date.parse(options.reviewExpiresAt ?? '');
       requireFact(digests.length > 0 && digests.length <= 3 && new Set(digests).size === digests.length
         && digests.every(value => /^[a-f0-9]{64}$/.test(value)), 'Exact original review identity digests required');
       requireFact(Number.isFinite(expiry) && expiry > Date.now() && expiry <= Date.now() + 31 * 86400_000, 'Review expiry must be within 31 days');
+      if (operation === 'provision-reviewer') {
+        const subject = options.reviewerSubject ?? '', issuer = 'https://login.rillora.xyz';
+        requireFact(digests.length === 1 && /^auth0\|[a-f0-9]{24}$/.test(subject)
+          && createHash('sha256').update(`${issuer}\u001f${subject}`).digest('hex') === digests[0], 'Exact deployed database reviewer identity required');
+        const existing = (await client.query(`select p.display_name,p.status from app.identity_accounts i join app.planners p on p.id=i.planner_id
+          where i.issuer=$1 and i.subject=$2`, [issuer, subject])).rows;
+        requireFact(existing.length === 0 || (existing.length === 1 && existing[0].display_name === 'Rillora App Review'
+          && existing[0].status === 'active'), 'Existing personal account cannot be repurposed as a reviewer');
+        // Reuse ordinary provisioning. This creates no Auth0 user, login session,
+        // legal acceptance, private matter, order or subscription.
+        if (!existing.length) await client.query("select * from app.provision_oidc_planner($1,$2,'Rillora App Review','en','UTC')", [issuer, subject]);
+      }
       for (const digest of digests) {
         const accounts = operation === 'renew-review'
           ? d.review.filter(r => r.identity_digest === digest && r.status === 'active')
@@ -153,7 +167,8 @@ export async function configureProductionApple(client: Client, operation: Operat
       }
     }
     await client.query('commit');
-    return { operation, before, after, marketSalesChanged: false, userContentChanged: false, historicalPaymentsChanged: false };
+    return { operation, before, after, marketSalesChanged: false, userContentChanged: false, historicalPaymentsChanged: false,
+      syntheticReviewerProvisioningRequested: operation === 'provision-reviewer' };
   } catch (error) { await client.query('rollback'); throw error; }
 }
 
@@ -170,9 +185,11 @@ async function main() {
     console.log(JSON.stringify(await configureProductionApple(client, process.argv[2] as Operation, {
       expected: process.env.RILLORA_APPLE_EXPECTED_SNAPSHOT, reviewDigests: process.env.APPLE_REVIEW_IDENTITY_SHA256?.split(','),
       reviewExpiresAt: process.env.APPLE_REVIEW_EXPIRES_AT,
+      reviewerSubject: process.env.RILLORA_APPLE_REVIEW_SUBJECT,
     })));
   } finally { await client.end(); }
 }
 if (resolve(process.argv[1] ?? '') === fileURLToPath(import.meta.url)) {
-  main().catch(() => { console.error(JSON.stringify({ appleConfigurationFailed: true, privateValuesSuppressed: true })); process.exitCode = 1; });
+  main().catch(error => { console.error(JSON.stringify({ appleConfigurationFailed: true, privateValuesSuppressed: true,
+    reason: error instanceof AppleConfigurationError ? error.message : 'Protected database operation failed' })); process.exitCode = 1; });
 }

@@ -21,6 +21,7 @@ describe('bounded Apple release configuration in an isolated database', () => {
     } finally { await admin.end(); }
     await assertDedicatedTestDatabase(url, name); await runMigrations(url);
     client = new pg.Client({ connectionString: url }); await client.connect();
+    await client.query('delete from app.planners where id in(select planner_id from app.identity_accounts where subject=$1)', ['auth0|' + '5'.repeat(24)]);
     // Reset only this named disposable fixture database; never select a cloud host.
     await client.query("delete from app.commerce_storefront_products where provider_code='storekit' and provider_environment='production'");
     await client.query("delete from app.commerce_purchase_route_policies where policy_code like '%_storekit_20261013'");
@@ -118,5 +119,27 @@ describe('bounded Apple release configuration in an isolated database', () => {
       reviewDigests: ['0'.repeat(64)], reviewExpiresAt: expiry })).rejects.toThrow('existing active review identity');
     expect((await configureProductionApple(client, 'inspect')).after.sha256).toBe(before.after.sha256);
     expect((await client.query('select count(*)::int as n from app.commerce_orders')).rows[0].n).toBe(0);
+  });
+  it('preprovisions only the scoped synthetic reviewer without accepting terms or creating a login session', async () => {
+    const subject = 'auth0|' + '5'.repeat(24), issuer = 'https://login.rillora.xyz';
+    const options = { reviewDigests: [reviewIdentityDigest(issuer, subject)], reviewerSubject: subject,
+      reviewExpiresAt: new Date(Date.now() + 86400_000).toISOString() };
+    const before = await configureProductionApple(client, 'inspect');
+    await expect(configureProductionApple(client, 'provision-reviewer', { ...options, expected: before.after.sha256,
+      reviewerSubject: 'auth0|' + '6'.repeat(24) })).rejects.toThrow('Exact deployed');
+    const result = await configureProductionApple(client, 'provision-reviewer', { ...options, expected: before.after.sha256 });
+    expect(result.after.data.review.length).toBe(before.after.data.review.length + 1);
+    expect(result.after.data.markets).toEqual(before.after.data.markets);
+    const identity = (await client.query('select p.id,p.display_name from app.identity_accounts i join app.planners p on p.id=i.planner_id where i.issuer=$1 and i.subject=$2', [issuer, subject])).rows[0];
+    expect(identity.display_name).toBe('Rillora App Review');
+    expect((await client.query('select count(*)::int as n from app.plans where planner_id=$1', [identity.id])).rows[0].n).toBe(1);
+    for (const table of ['auth_sessions', 'legal_acceptances', 'commerce_orders', 'matter_items']) {
+      expect((await client.query(`select count(*)::int as n from app.${table}`)).rows[0].n).toBe(0);
+    }
+    const repeated = await configureProductionApple(client, 'provision-reviewer', { ...options, expected: result.after.sha256 });
+    expect(repeated.after.sha256).toBe(result.after.sha256);
+    await client.query("update app.planners set display_name='Personal fixture' where id=$1", [identity.id]);
+    const personal = await configureProductionApple(client, 'inspect');
+    await expect(configureProductionApple(client, 'provision-reviewer', { ...options, expected: personal.after.sha256 })).rejects.toThrow('cannot be repurposed');
   });
 });

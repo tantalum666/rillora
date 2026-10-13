@@ -33,6 +33,10 @@ Owner先暂后镜像验证，随后明确“iphone镜像解锁了，你可以使
 
 实际目录只有原个人测试账户已登记，专门的旧Apple reviewer仍未登记。因此补精确栈范围约束的enroll-review，不能用任意hash增加测试访问；本地增补6项目录、4项IaC及11项broker通过后单独CI。原生14于香港15:41完成Apple上传，未分发、未提审；内部群组已读回为手动分发。年付与群组简体中文显示资料已保存并读回。
 
+383669b75／CI143三任务通过，正式及审核Apple运行配置已UPDATE_COMPLETE，模板匹配且保留原数据资源。正式通知URL已保存为app.rillora.xyz下的production/notifications，原review/notifications保留。官方Sandbox TEST回执SUCCESS；Production请求返回401，仍在核对，不能冒称正式通知通过。登录页两个内部应用名称已通过原Auth0权限更新为Rillora，计划／回调／授权字段不变；真实新登录画面尚未重测。
+
+审核登记首次失败后，重新只读指纹与失败前完全一致。Auth0确认这个既有example.test审核身份从未登录，故应用中尚无对应资料；未验证邮箱状态保留，不能编造收信或邮件验证。补provision-reviewer仅允许栈内既定的一位数据库身份，复用现有provision_oidc_planner创建空白审核资料／指引和到期登记；不创建Auth0账号、登录会话、条款接受、事项或订单，已有个人账户不得改作审核账号。7项隔离数据库及12项broker检查通过，等待新CI及兼容交付。
+
 ## 执行顺序
 
 1. 补齐Apple实际配置、具名到期审核通道和必要反向测试；准备精确、保留数据的云端差异。
