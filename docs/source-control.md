@@ -4,7 +4,7 @@ Last updated: 2026-10-13 (Asia/Hong_Kong)
 
 ## October13 legal-page notice removal
 
-The[small legal-shell correction](legal-page-layout-20261013.md) is deployed from78f262a3a/CI148to the existing Cloudflare Pages project. Only the two duplicated top notices are removed; accepted bodies and all other runtimes remain. [Archive38](../collaboration/verification/legal-layout-20261013/README.md) preserves64paths/62objects/1,156,789encrypted bytes and passes local authentication. The unshipped foldout, final build, live evidence and failures are retained; the exact public-operator builds are sealed only. Credentials and reproducible transport encoding are excluded. Prior1–37stay unchanged; independent remote readback is the final preservation step.
+The[small legal-shell correction](legal-page-layout-20261013.md) is deployed from78f262a3a/CI148to the existing Cloudflare Pages project. Only the two duplicated top notices are removed; accepted bodies and all other runtimes remain. [Archive38](../collaboration/verification/legal-layout-20261013/README.md) preserves64paths/62objects/1,156,789encrypted bytes and passes local authentication. The unshipped foldout, final build, live evidence and failures are retained; the exact public-operator builds are sealed only. Credentials and reproducible transport encoding are excluded. At6c073f70b, a fresh independent GitHub download authenticated all62objects/64paths against immutable metadata; prior1–37were not downloaded again. Final receipts are normal Git metadata without resealing or redeployment.
 
 ## October13 consolidated final readiness
 

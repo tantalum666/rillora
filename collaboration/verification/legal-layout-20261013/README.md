@@ -1,6 +1,6 @@
 # Legal-page notice removal — 2026-10-13
 
-Status: DEPLOYED / LOCAL ARCHIVE VERIFIED / REMOTE READBACK PENDING
+Status: DEPLOYED / LOCAL AND FRESH REMOTE ARCHIVE VERIFIED
 
 Owner selected removal of the two appearance/language boxes above Privacy, superseding
 an unshipped footer-foldout candidate. The final source deletes only the publication-shell
@@ -30,3 +30,9 @@ The Owner's native reply confirms that both legal links open. It does not indepe
 prove returning to the same account, VoiceOver, a purchase or release. Existing release
 gates remain in [handoff](../../../docs/handoff.md). Late remote receipts are ordinary
 metadata without resealing this archive.
+
+At6c073f70b82d1b58c264d0a601b31bcc84319bbd, immutable GitHub metadata and a fresh
+download into empty LFS storage authenticated all62objects/64paths. The
+[remote receipt](remote-readback.json) records this independently of deployment.
+Old archives were not re-downloaded. Final documentation/receipt changes do not
+change the deployed application artifact or require another deployment.
