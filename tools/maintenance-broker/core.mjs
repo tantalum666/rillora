@@ -95,7 +95,7 @@ export async function executeMaintenance(input,call,config,clock=Date.now){
   else if(command.length===3&&command[0]==='node'&&command[1]==='dist/configure-production-web-billing.js'
     &&['inspect','activate','close-new-sales'].includes(command[2]))operation='billing-'+command[2];
   else if(command.length===3&&command[0]==='node'&&command[1]==='dist/configure-production-apple.js'
-    &&['inspect','prepare','renew-review'].includes(command[2]))operation='apple-'+command[2];
+    &&['inspect','prepare','renew-review','enroll-review'].includes(command[2]))operation='apple-'+command[2];
   else if(command.length===4&&command[0]==='node'&&command[1]==='--input-type=module'&&command[2]==='-e'
     &&typeof command[3]==='string'&&hash(command[3])===config.isolationScriptSha256)operation='isolation';
   else if(command.length===4&&command[0]==='node'&&command[1]==='--input-type=module'&&command[2]==='-e'
@@ -109,16 +109,22 @@ export async function executeMaintenance(input,call,config,clock=Date.now){
     assert(/^[a-f0-9]{64}$/.test(values.RILLORA_BILLING_EXPECTED_SNAPSHOT??''),'fresh billing catalog fingerprint');
     allowed.push('RILLORA_BILLING_EXPECTED_SNAPSHOT');
   }
-  if(['apple-prepare','apple-renew-review'].includes(operation)){
+  if(['apple-prepare','apple-renew-review','apple-enroll-review'].includes(operation)){
     assert(config.productionRuntimeMode==='live','Apple release configuration requires explicit live runtime');
     assert(/^[a-f0-9]{64}$/.test(values.RILLORA_APPLE_EXPECTED_SNAPSHOT??''),'fresh Apple catalog fingerprint');
     allowed.push('RILLORA_APPLE_EXPECTED_SNAPSHOT');
   }
-  if(operation==='apple-renew-review'){
+  if(['apple-renew-review','apple-enroll-review'].includes(operation)){
     assert(/^[a-f0-9]{64}(,[a-f0-9]{64}){0,2}$/.test(values.APPLE_REVIEW_IDENTITY_SHA256??''),'exact existing review identities');
     const expiry=Date.parse(values.APPLE_REVIEW_EXPIRES_AT??'');
     assert(Number.isFinite(expiry)&&expiry>clock()&&expiry<=clock()+31*86400_000,'bounded review expiry');
     allowed.push('APPLE_REVIEW_IDENTITY_SHA256','APPLE_REVIEW_EXPIRES_AT');
+    if(operation==='apple-enroll-review'){
+      const scope=config.appleReviewScope;
+      assert(typeof scope?.identityDigests==='string'&&/^[a-f0-9]{64}(,[a-f0-9]{64}){0,7}$/.test(scope.identityDigests)
+        &&values.APPLE_REVIEW_IDENTITY_SHA256.split(',').every(d=>scope.identityDigests.split(',').includes(d))
+        &&expiry<=Date.parse(scope.expiresAt),'stack-selected reviewer scope');
+    }
   }
   if(['restore','reconcile-commerce','after-snapshot','cleanup-fixtures','isolation'].includes(operation)){
     const snapshot=await snapshotFor(call,id,input,config);assert(snapshot?.Status==='available','owned available snapshot');

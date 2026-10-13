@@ -112,6 +112,22 @@ test('Apple configuration permits only fixed operations, reviewed fingerprints a
  }
 });
 
+test('new review enrollment cannot exceed the identity set or deadline deployed in the stack',async()=>{
+ const now=Date.now(),digest='d'.repeat(64),expiry=new Date(now+86400_000).toISOString();
+ const request=task(),container=request.overrides.containerOverrides[0];
+ container.command=['node','dist/configure-production-apple.js','enroll-review'];
+ container.environment.push({name:'RILLORA_APPLE_EXPECTED_SNAPSHOT',value:'b'.repeat(64)},
+  {name:'APPLE_REVIEW_IDENTITY_SHA256',value:digest},{name:'APPLE_REVIEW_EXPIRES_AT',value:expiry});
+ const settings={...config,productionRuntimeMode:'live',appleReviewScope:{identityDigests:digest,expiresAt:expiry}};
+ const good=fixture();await executeMaintenance({operation:'task',run,runToken,request},good.call,settings,()=>now);
+ assert.equal(good.writes.length,1);
+ for(const scope of [undefined,{identityDigests:'e'.repeat(64),expiresAt:expiry},
+  {identityDigests:digest,expiresAt:new Date(now+1000).toISOString()}]){
+  const bad=fixture();await assert.rejects(executeMaintenance({operation:'task',run,runToken,request},bad.call,
+   {...settings,appleReviewScope:scope},()=>now),/stack-selected reviewer/);assert.equal(bad.writes.length,0);
+ }
+});
+
 test('the actual Python migration caller produces a request accepted by the real broker',async()=>{
   const result=spawnSync('python3',['-c',`
 import json,sys

@@ -72,6 +72,11 @@ describe('Independent Production and scoped Sandbox Apple release contexts', () 
     expect(params[api.APPLE_REVIEW_IDENTITY_SHA256.Ref].Default).toBeUndefined();
     expect(params[api.APPLE_REVIEW_EXPIRES_AT.Ref].Default).toBeUndefined();
     expect(api.APPLE_REVIEW_SECRET_ARN).not.toEqual(api.APPLE_PRODUCTION_SECRET_ARN);
+    const broker = Object.values(t.findResources('AWS::Lambda::Function')).find((f: any) => f.Properties.Environment?.Variables?.BROKER_SETTINGS) as any;
+    const settings = JSON.stringify(broker.Properties.Environment.Variables.BROKER_SETTINGS);
+    expect(settings).toContain('appleReviewScope');
+    expect(settings).toContain(api.APPLE_REVIEW_IDENTITY_SHA256.Ref);
+    expect(settings).toContain(api.APPLE_REVIEW_EXPIRES_AT.Ref);
   });
 
   it('rejects implicit activation and any different account before synthesis', () => {

@@ -180,6 +180,7 @@ export class RilloraProductionStack extends Stack {
   const broker=new RilloraMaintenanceBroker(this,'MaintenanceBroker',{operator,policies:maintenancePolicies,settings:{
     environment:'production',source:'rillora-production',sourceHost:database.instanceEndpoint.hostname,cluster:cluster.clusterName,
     productionRuntimeMode:props.liveEnabled?'live':props.reviewEnabled?'review':'closed',
+    ...(runtime?.appleReviewScope?{appleReviewScope:runtime.appleReviewScope}:{}),
     migrationTask:migration.taskDefinitionArn,recoveryTask:recovery.taskDefinitionArn,
     subnets:vpc.publicSubnets.map(s=>s.subnetId),migrationSecurityGroup:sourceJobs.securityGroupId,
     recoveryTaskSecurityGroup:recoveryJobs.securityGroupId,recoveryDatabaseSecurityGroup:recoveryDatabaseNetwork.securityGroupId,

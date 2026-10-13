@@ -6,7 +6,7 @@ import { loadDatabaseConfig } from './config.js';
 import { databaseConnectionOptions } from './db.js';
 
 type Client = Pick<PoolClient, 'query'>;
-type Operation = 'inspect' | 'prepare' | 'renew-review';
+type Operation = 'inspect' | 'prepare' | 'renew-review' | 'enroll-review';
 const requireFact = (condition: unknown, message: string): void => { if (!condition) throw new Error(message); };
 const offers = [
   { country: 'USA', currency: 'USD', minor: '11999' },
@@ -39,7 +39,7 @@ async function readCatalog(client: Client) {
 /** Add separate production policy rows; never rewrite Sandbox history or enable a market. */
 export async function configureProductionApple(client: Client, operation: Operation,
   options: { expected?: string | undefined; reviewDigests?: string[] | undefined; reviewExpiresAt?: string | undefined } = {}) {
-  requireFact(['inspect', 'prepare', 'renew-review'].includes(operation), 'Unknown Apple configuration operation');
+  requireFact(['inspect', 'prepare', 'renew-review', 'enroll-review'].includes(operation), 'Unknown Apple configuration operation');
   if (operation !== 'inspect') requireFact(/^[a-f0-9]{64}$/.test(options.expected ?? ''), 'Fresh catalog fingerprint required');
   await client.query(operation === 'inspect' ? 'begin isolation level repeatable read read only' : 'begin isolation level serializable');
   try {
@@ -118,19 +118,30 @@ export async function configureProductionApple(client: Client, operation: Operat
       requireFact(products.length === 1 && products[0].price_id === usaPrice.id && products[0].status === 'active'
         && products[0].storefront_country_code === null && products[0].external_parent_product_reference === '22325627'
         && products[0].provider_account_reference === 'com.rillora.ios' && products[0].effective_to === null, 'Conflicting prepared product');
-    } else if (operation === 'renew-review') {
+    } else if (operation === 'renew-review' || operation === 'enroll-review') {
       const digests = options.reviewDigests ?? [], expiry = Date.parse(options.reviewExpiresAt ?? '');
       requireFact(digests.length > 0 && digests.length <= 3 && new Set(digests).size === digests.length
         && digests.every(value => /^[a-f0-9]{64}$/.test(value)), 'Exact original review identity digests required');
       requireFact(Number.isFinite(expiry) && expiry > Date.now() && expiry <= Date.now() + 31 * 86400_000, 'Review expiry must be within 31 days');
       for (const digest of digests) {
-        const accounts = d.review.filter(r => r.identity_digest === digest && r.status === 'active');
-        requireFact(accounts.length === 1, 'Only an existing enrolled review identity can be renewed');
+        const accounts = operation === 'renew-review'
+          ? d.review.filter(r => r.identity_digest === digest && r.status === 'active')
+          : (await client.query(`select p.id::text as planner_id from app.planners p join app.identity_accounts i on i.planner_id=p.id
+            where p.status='active' and encode(sha256(convert_to(i.issuer||chr(31)||i.subject,'UTF8')),'hex')=$1`, [digest])).rows;
+        requireFact(accounts.length === 1, 'Only an existing active review identity can be configured');
         const id = accounts[0].planner_id;
         const live = await client.query(`select exists(select 1 from app.commerce_orders where planner_id=$1 and provider_environment='production')
           or exists(select 1 from app.commerce_subscriptions where planner_id=$1 and provider_environment='production') as present`, [id]);
         requireFact(!live.rows[0]?.present, 'Real customer accounts cannot become review accounts');
-        await client.query('update app.commerce_validation_accounts set expires_at=$2 where planner_id=$1', [id, options.reviewExpiresAt]);
+        if (operation === 'renew-review') {
+          await client.query('update app.commerce_validation_accounts set expires_at=$2 where planner_id=$1', [id, options.reviewExpiresAt]);
+        } else {
+          // The fixed maintenance broker requires this digest and deadline to be
+          // inside the stack's deployed review scope before it can run this command.
+          await client.query(`insert into app.commerce_validation_accounts(planner_id,expires_at,reason)
+            values($1,$2,'Apple release review; exact deployed identity scope')
+            on conflict(planner_id) do update set expires_at=excluded.expires_at`, [id, options.reviewExpiresAt]);
+        }
       }
     }
     const after = operation === 'inspect' ? before : await readCatalog(client);

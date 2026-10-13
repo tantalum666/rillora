@@ -26,6 +26,7 @@ interface Props {
 export class RilloraProductionRuntime extends Construct {
  readonly apiService:ecs.FargateService;
  readonly sourceWriterServices:ecs.FargateService[];
+ readonly appleReviewScope?:{identityDigests:string;expiresAt:string};
  constructor(scope:Construct,id:string,p:Props){
   super(scope,id);
   const hostname='origin.production.rillora.xyz';
@@ -105,6 +106,7 @@ export class RilloraProductionRuntime extends Construct {
      allowedPattern:'[a-f0-9]{64}(,[a-f0-9]{64}){0,7}',description:'Exact existing identities permitted to use Sandbox purchase routes; no ordinary customer restriction'});
     const expiry=new CfnParameter(this,'AppleReviewExpiresAt',{type:'String',
      allowedPattern:'[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z',description:'UTC Sandbox access expiry; API enforces a maximum 31-day window'});
+    this.appleReviewScope={identityDigests:identities.valueAsString,expiresAt:expiry.valueAsString};
     Object.assign(reviewEnvironment,{ALLOW_APPLE_REVIEW_INTEGRATION:'true',APPLE_REVIEW_SECRET_ARN:apple.secretArn,
      APPLE_ROOT_CERTIFICATE_DIRECTORY:'/app/certificates/apple',APPLE_REVIEW_IDENTITY_SHA256:identities.valueAsString,
      APPLE_REVIEW_EXPIRES_AT:expiry.valueAsString});

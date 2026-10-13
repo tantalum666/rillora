@@ -103,4 +103,20 @@ describe('bounded Apple release configuration in an isolated database', () => {
     expect(result.after.data.prices).toEqual(before.after.data.prices);
     expect(result.after.data.routes).toEqual(before.after.data.routes);
   });
+  it('enrolls a pre-existing active reviewer without creating an identity, order or customer content', async () => {
+    const p = (await client.query("insert into app.planners(display_name) values('Apple configuration fixture') returning id")).rows[0];
+    const subject = 'dedicated-apple-review-fixture';
+    await client.query("insert into app.identity_accounts(planner_id,issuer,subject) values($1,'https://identity.example.test',$2)", [p.id, subject]);
+    const fresh = await configureProductionApple(client, 'inspect'), expiry = new Date(Date.now() + 86400_000).toISOString();
+    const result = await configureProductionApple(client, 'enroll-review', { expected: fresh.after.sha256,
+      reviewDigests: [reviewIdentityDigest('https://identity.example.test', subject)], reviewExpiresAt: expiry });
+    expect(result.after.data.review.length).toBe(fresh.after.data.review.length + 1);
+    expect(result.after.data.markets).toEqual(fresh.after.data.markets);
+    expect(result.after.data.prices).toEqual(fresh.after.data.prices);
+    const before = await configureProductionApple(client, 'inspect');
+    await expect(configureProductionApple(client, 'enroll-review', { expected: before.after.sha256,
+      reviewDigests: ['0'.repeat(64)], reviewExpiresAt: expiry })).rejects.toThrow('existing active review identity');
+    expect((await configureProductionApple(client, 'inspect')).after.sha256).toBe(before.after.sha256);
+    expect((await client.query('select count(*)::int as n from app.commerce_orders')).rows[0].n).toBe(0);
+  });
 });
