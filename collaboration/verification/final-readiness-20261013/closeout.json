@@ -5,19 +5,36 @@
     "objects": 530,
     "bytes": 37831161,
     "locallyVerified": true,
-    "remoteVerified": false
+    "remoteVerified": true,
+    "remoteCommit": "cba5b92bb2a41d46d9d06fda066175117a680a20"
   },
   "postCaptureReports": [
     "publication-verification.json",
     "source-scan-final.json",
     "markdown-check-final.json",
     "markdown-check-worktree-only-initial.json",
-    "post-withdrawal-retention.json"
+    "post-withdrawal-retention.json",
+    "remote-readback.json",
+    "native-final-deferral.json",
+    "git-empty-lock-recovery.json",
+    "ci146-readback.json"
   ],
   "sourceCi145Retained": true,
   "runtimeTestsRepeated": false,
-  "phoneMirrorResume": "Mac user-presence prompt actually observed; request pending",
+  "phoneMirrorResume": "Owner resumed; real mirror connected and original app launched, but injected input does not change the phone UI. Specific manual legal-return request pending.",
   "supportRequests": "Apple received; Auth0 received pending moderator approval",
   "appReview": "premature submission withdrawn and material/manual mode retained",
-  "boundary": "Late completion metadata is ordinary Git; archive37 remains immutable."
+  "boundary": "Late completion metadata is ordinary Git; archive37 remains immutable.",
+  "updatedAt": "2026-10-13T13:41:56.167330+00:00",
+  "evidenceCi": {
+    "number": 146,
+    "commit": "cba5b92bb2a41d46d9d06fda066175117a680a20",
+    "allThreeJobsPassed": true
+  },
+  "remaining": [
+    "Web identity deadline and negative checks after2026-10-13T20:20:46Z",
+    "Remaining physical checks; mirror input issue, not ongoing Owner deferral",
+    "Dedicated reviewer first login before App Review resubmission",
+    "Apple Production401 and Auth0 Free-template402 official responses"
+  ]
 }

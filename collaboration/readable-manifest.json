@@ -2,8 +2,8 @@
   "files": [
     {
       "path": "collaboration/README.md",
-      "bytes": 22710,
-      "sha256": "0e8b7c01158ed33774c9e016e7224b3d49d701ad85eb4592a41cd266cbd396b5"
+      "bytes": 22796,
+      "sha256": "3dc2052492b8dc1ae0d9f063db0bf913319d5b33406d5b6fdf4328ee7b9e4ff2"
     },
     {
       "path": "collaboration/catalog/files-001.json",
@@ -48752,8 +48752,8 @@
     },
     {
       "path": "collaboration/verification/final-readiness-20261013/README.md",
-      "bytes": 3360,
-      "sha256": "e8d648a38e00cf06872d5e26fb3442cbbc625c332f2dccd0f28af6ce2f5aa460"
+      "bytes": 4548,
+      "sha256": "a4ab12ccf5a0ad44dee547b2555f1e04c6fc17bf99d12175dd2a2d0a5e24d3d5"
     },
     {
       "path": "collaboration/verification/final-readiness-20261013/archive-verification.json",
@@ -48766,9 +48766,19 @@
       "sha256": "789fe0adbb28b3108fa6a9747f39808ee0c9fa2bf35d21e5bfe5457961ac7056"
     },
     {
+      "path": "collaboration/verification/final-readiness-20261013/ci146-readback.json",
+      "bytes": 916,
+      "sha256": "4010ed8e8d2ebae56f40f2e5ac48179dab180f74f84cb173550e801cb2b65740"
+    },
+    {
       "path": "collaboration/verification/final-readiness-20261013/closeout.json",
-      "bytes": 812,
-      "sha256": "ab392835a9deb0fcc27d54b033a55335c49b5359fa654c130bf41ef1ba18755e"
+      "bytes": 1600,
+      "sha256": "14b9f218054b5a8e0310fe1e576dd1e4710b8238290ad79071c9b64be5160152"
+    },
+    {
+      "path": "collaboration/verification/final-readiness-20261013/git-empty-lock-recovery.json",
+      "bytes": 261,
+      "sha256": "ef5c1386a1ccc4d7f1ad1144cf9f0d469672b9db539e283f8e43f7308e9494f9"
     },
     {
       "path": "collaboration/verification/final-readiness-20261013/markdown-check-final.json",
@@ -48779,6 +48789,21 @@
       "path": "collaboration/verification/final-readiness-20261013/markdown-check-worktree-only-initial.json",
       "bytes": 18465,
       "sha256": "68653c76080861e35c387e5684bdd5e633020062d4d24a18b2c348399659f1bb"
+    },
+    {
+      "path": "collaboration/verification/final-readiness-20261013/native-final-deferral.json",
+      "bytes": 273,
+      "sha256": "0a79ffde98968b04b73d711966d04d5b8c97aa408022b384f6e80d8884acfa91"
+    },
+    {
+      "path": "collaboration/verification/final-readiness-20261013/native-mirror-input-boundary.json",
+      "bytes": 787,
+      "sha256": "8f0a99c5ba92f1da5bd0b38828339211a2c2d99f6d7fa0d7f5da89bb36f792f3"
+    },
+    {
+      "path": "collaboration/verification/final-readiness-20261013/native-resume-launch-receipt.json",
+      "bytes": 199,
+      "sha256": "0aaa72596eea9794c865c80a52b19bbc17e1b0c01839f6d3d83f0a8ed81ad965"
     },
     {
       "path": "collaboration/verification/final-readiness-20261013/post-withdrawal-retention.json",
@@ -49239,6 +49264,11 @@
       "path": "collaboration/verification/final-readiness-20261013/receipts/verify-remote-archive.py.reference.txt",
       "bytes": 4149,
       "sha256": "7d7826c25d7937946b80ff0076c588b39816ba0b50b0c56b108571b45c203bd9"
+    },
+    {
+      "path": "collaboration/verification/final-readiness-20261013/remote-readback.json",
+      "bytes": 908,
+      "sha256": "b86b7e2a2cb06937bcf7c8b1783c27ed73484abf3fb2b72813f046ccf372ceb6"
     },
     {
       "path": "collaboration/verification/final-readiness-20261013/screenshots/en-US-ipad-series-preview.jpg",
@@ -61421,6 +61451,6 @@
       "sha256": "fa9f06467d74b9f074969cddab0e882a0ca1463c84d4a5ffafd2d401d619518b"
     }
   ],
-  "fileCount": 12284,
-  "totalBytes": 371241306
+  "fileCount": 12290,
+  "totalBytes": 371246712
 }

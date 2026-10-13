@@ -6,7 +6,7 @@ Last updated: 2026-10-13 (Asia/Hong_Kong)
 
 [Final readiness](final-readiness-20261013.md) delivers independent Apple runtime/review access and monitoring at eb2b3c4d2/CI145, preserves current phone14/Web test entitlement evidence, and saves bilingual store material plus authorized support receipts. A premature three-item App Review submission was explicitly withdrawn, not concealed as a draft-only operation. Web's measured identity deadline and the remaining provider/device/reviewer gates stay separate; no TestFlight distribution or new transaction follows.
 
-[Archive37](../collaboration/verification/final-readiness-20261013/README.md) additively preserves568paths/530objects/37,831,161encrypted bytes and passes local authenticated verification. It includes the exact new success/failure logs, signed store IPA, editable bilingual materials and compiled API. Prior1–36remain unchanged; private credentials/provider identity responses and reproducible caches are excluded. Remote fresh-download verification remains pending until its separate receipt is saved.
+[Archive37](../collaboration/verification/final-readiness-20261013/README.md) additively preserves568paths/530objects/37,831,161encrypted bytes and passes local authenticated verification. It includes the exact new success/failure logs, signed store IPA, editable bilingual materials and compiled API. Prior1–36remain unchanged; private credentials/provider identity responses and reproducible caches are excluded. At cba5b92bb, immutable GitHub metadata and a fresh download into empty LFS storage authenticated all530objects/568paths. Final receipts remain normal Git metadata, without resealing or repeating prior downloads/deployments.
 
 ## October13 explicit Web billing and identity cutover
 

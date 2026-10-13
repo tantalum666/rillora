@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-10-13T13:42:53.676Z",
+  "runNumber": 146,
+  "runId": 38406644344,
+  "url": "https://github.com/tantalum666/rillora/actions/runs/38406644344",
+  "headSha": "cba5b92bb2a41d46d9d06fda066175117a680a20",
+  "status": "completed",
+  "conclusion": "success",
+  "allJobsPassed": true,
+  "jobs": [
+    {
+      "id": 115327881209,
+      "name": "api",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 115327881431,
+      "name": "web-and-infrastructure",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 115327881454,
+      "name": "source",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "boundary": "Automatically triggered by the evidence publication commit; source/runtime CI145 and actual deployments retain their own receipts. No cloud deployment, native install or financial transaction in this CI."
+}

@@ -1,6 +1,6 @@
 # Consolidated final readiness — 2026-10-13
 
-Status: LOCAL CAPTURE VERIFIED / REMOTE READBACK PENDING
+Status: LOCAL AND FRESH REMOTE CAPTURE VERIFIED / PROVIDER AND PERSONAL GATES RETAINED
 
 This additive checkpoint preserves the source/runtime, Apple store materials, scoped
 native acceptance and provider follow-ups described in the [current contract](../../../docs/final-readiness-20261013.md).
@@ -43,6 +43,22 @@ The original [approved message bodies](receipts/provider-followup-drafts.md.refe
 [review correction](receipts/apple-review-withdrawn.json) and
 [post-withdrawal retention](post-withdrawal-retention.json) distinguish these outcomes.
 Late receipts and remote verification are ordinary Git metadata, without resealing archive37.
+
+At commit cba5b92bb2a41d46d9d06fda066175117a680a20, immutable GitHub metadata was
+read and the one new LFS object was downloaded into empty separate storage. All530
+objects/568paths authenticated successfully; [remote receipt](remote-readback.json).
+No prior archive was downloaded again. [Current closeout](closeout.json) supersedes
+the earlier frozen in-progress receipts. Owner temporarily deferred phone work, then
+unlocked mirroring and resumed it. The original app launches and is visible, but
+tool-generated input does not change its phone UI; [current boundary](native-mirror-input-boundary.json).
+The specific manual legal-link/return operation is awaiting the Owner's result.
+
+The archive/source publication at cba5b92bb passes all three automatically triggered
+[CI146 jobs](https://github.com/tantalum666/rillora/actions/runs/38406644344);
+[receipt](ci146-readback.json). The final follow-up changes only documentation,
+readable receipts, readiness records and their manifest, with no runtime/price or sealed
+artifact changes. Its publication coverage and secret scan are checked locally;
+product tests and deployments are not manually repeated.
 
 Normal source/specs remain in their original paths. Restore sealed originals using
 [the existing recovery procedure](../../../docs/source-control.md#clone-inspect-and-recover).
