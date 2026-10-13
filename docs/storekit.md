@@ -4,8 +4,14 @@ Role: StoreKit 2 client, local Xcode testing, Apple sandbox and server-verificat
 Authority scope: Rillora Family StoreKit product identifiers, purchase/restore lifecycle, transaction evidence, App Store server boundary and phased verification  
 Superseded by: newer Apple platform rules, verified App Store Connect state, a later Owner decision, or stricter payment/security evidence  
 Do not use for: proof of App Store approval, accepted Paid Apps Agreement, banking/tax completion, live IAP products, production entitlement or a real charge  
-Status: SECURITY CANDIDATE DEPLOYED; EXISTING SANDBOX EVIDENCE RETAINED; REMAINING PHYSICAL ACCEPTANCE OPEN
-Last updated: 2026-10-12 (Asia/Hong_Kong)
+Status: INDEPENDENT PRODUCTION AND REVIEW RUNTIMES DEPLOYED; PRODUCTION AUTH401 HELD; PHONE14 AND WEB TEST ENTITLEMENT MATCH
+Last updated: 2026-10-13 (Asia/Hong_Kong)
+
+## October13 current release preparation
+
+Sourceeb2b3c4d2/CI145is compatibly deployed after the independent Apple contexts and bounded reviewer preparation. Production and review use separate existing-key vault configurations, signatures, routes and finite reviewer access. The owner and dedicated synthetic reviewer have existing-only enrollment throughOctober27; no identity consent or financial result is fabricated by provisioning. The official Sandbox TEST succeeded; the same verified JWT getsSandbox200/Production401, and a later Production-only read still401. Keep the two new Production Apple routes disabled independently of the Web market, preserve existing entitlements, and do not rotate valid keys speculatively.
+
+Four production worker alarms now supplement the unchanged Sandbox alarms; all readOKand the updated cloud health probe succeeds. Native14and the current Web show the same owner's Apple test Family access, withHKD888on the phone and management of the original channel on both. No new purchase/restore/refund was executed. App/annualSKUdrafts now selectUSA/HKGonly; historical prices and other Sandbox evidence remain dated. Annual review material, build14/manual release, Owner-confirmed privacy and protected reviewer credential delivery are recorded in[App Store preparation](app-store-preflight-20261013.md). No TestFlight distribution occurred. The three-item App Review packet was prematurely submitted during UI preflight and then explicitly withdrawn; readback confirms Removed/Developer Rejected, not an Apple rejection. Complete the dedicated reviewer/device acceptance before resubmission. Apple private support case102995248851 is awaiting an answer on Production401.
 
 ## October12 delivery and evidence boundary
 

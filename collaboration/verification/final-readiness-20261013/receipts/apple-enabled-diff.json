@@ -1,0 +1,48 @@
+{
+  "at": "2026-10-13T07:56:41.471132+00:00",
+  "source": "383669b75a96e9266e20dd3e562cf17a22d33a1d",
+  "changes": [
+    {
+      "logicalId": "MigrationTask69EAEF9D",
+      "type": "AWS::ECS::TaskDefinition"
+    },
+    {
+      "logicalId": "RecoveryTaskTaskRoleDefaultPolicy6EC2C93F",
+      "type": "AWS::IAM::Policy"
+    },
+    {
+      "logicalId": "RecoveryTaskD940248B",
+      "type": "AWS::ECS::TaskDefinition"
+    },
+    {
+      "logicalId": "RuntimeApiNetwork3B2CC8BA",
+      "type": "AWS::EC2::SecurityGroup"
+    },
+    {
+      "logicalId": "RuntimeApiTaskTaskRoleDefaultPolicy59BF15A6",
+      "type": "AWS::IAM::Policy"
+    },
+    {
+      "logicalId": "RuntimeApiTaskCF645D67",
+      "type": "AWS::ECS::TaskDefinition"
+    },
+    {
+      "logicalId": "RuntimeIdentityWorkerTask676ED9B0",
+      "type": "AWS::ECS::TaskDefinition"
+    },
+    {
+      "logicalId": "MaintenanceBrokerFunctionC542279B",
+      "type": "AWS::Lambda::Function"
+    },
+    {
+      "logicalId": "CDKMetadata",
+      "type": "AWS::CDK::Metadata"
+    }
+  ],
+  "reviewScopeExpiresAt": "2026-10-27T12:00:00Z",
+  "sameThreeOriginalIdentities": true,
+  "sameDataResources": true,
+  "billingAndNonAppleEnvironmentUnchanged": true,
+  "passed": true,
+  "deployed": false
+}

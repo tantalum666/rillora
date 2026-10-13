@@ -1,0 +1,56 @@
+from pathlib import Path
+import argparse,json,subprocess,sys,datetime,uuid
+w=Path(__file__).resolve().parents[3];q=Path(__file__).resolve().parent;p=w/'.local-secrets/final-readiness-20261013'
+sys.path.insert(0,str(w/'tools/release'));from recovery_drill import Aws
+SOURCE='eb2b3c4d290c05c1533510f9ef101b1efdbc58cf';name='RilloraProduction';assembly=q/'apple-sales-hold-assembly'
+parser=argparse.ArgumentParser();parser.add_argument('operation',choices=['prepare','execute','status']);args=parser.parse_args()
+review=json.loads((q/'apple-sales-hold-diff.json').read_text());assert review['runtimeEnvironmentAndSalesUnchanged']
+before=json.loads((p/'apple-sales-hold-before-template.json').read_text());wanted=json.loads((assembly/(name+'.template.json')).read_text());aws=Aws('rillora-cdk-deploy')
+def save(file,data):file.write_text(json.dumps(data,indent=2)+'\n');file.chmod(0o600)
+def template():
+ value=aws.call('cloudformation','get-template',{'StackName':name})['TemplateBody'];return json.loads(value) if isinstance(value,str) else value
+def change():
+ record=json.loads((p/'apple-sales-hold-changeset.json').read_text());d=aws.call('cloudformation','describe-change-set',{'StackName':name,'ChangeSetName':record['id']})
+ assert d['Status']=='CREATE_COMPLETE' and d['Changes']
+ dependent={'MaintenanceBrokerFunctionServiceRoleDefaultPolicy7B959001','RuntimeIdentityWorkerServiceD8B21381','RuntimeService1702E585','OperatorDefaultPolicyA84BD3A6'}
+ permitted={x['logicalId'] for x in review['changes']}|{'CDKMetadata'}|dependent
+ for row in d['Changes']:
+  c=row['ResourceChange'];assert c['LogicalResourceId'] in permitted
+  if c['LogicalResourceId'] in dependent:
+   assert before['Resources'][c['LogicalResourceId']]==wanted['Resources'][c['LogicalResourceId']]
+   assert c.get('Details') and all((x['ChangeSource']=='ResourceReference' and x['CausingEntity'] in
+    ['MigrationTask69EAEF9D','RecoveryTaskD940248B','RuntimeIdentityWorkerTask676ED9B0','RuntimeApiTaskCF645D67']) or (x['ChangeSource']=='ResourceAttribute' and x['CausingEntity']=='MaintenanceBrokerFunctionC542279B.Arn') for x in c['Details'])
+  if c['Action']=='Add':assert c['LogicalResourceId']=='RuntimeAppleProductionSecret494B0EFB' and c['ResourceType']=='AWS::SecretsManager::Secret'
+  else:
+   assert c['Action']=='Modify'
+   if c['ResourceType']=='AWS::ECS::TaskDefinition':assert c['LogicalResourceId'] in ['MigrationTask69EAEF9D','RecoveryTaskD940248B','RuntimeApiTaskCF645D67','RuntimeIdentityWorkerTask676ED9B0']
+   else:assert c.get('Replacement')=='False','Unexpected replacement: '+c['LogicalResourceId']
+ return record,d
+stack=aws.call('cloudformation','describe-stacks',{'StackName':name})['Stacks'][0]
+if args.operation!='status':
+ assert subprocess.check_output(['git','rev-parse','HEAD'],cwd=w,text=True).strip()==SOURCE
+ assert subprocess.run(['git','diff','--quiet','HEAD','--','apps','infra','tools','config','.github'],cwd=w).returncode==0
+ assert stack['StackStatus']=='UPDATE_COMPLETE' and template()==before
+if args.operation=='prepare':
+ assert not (p/'apple-sales-hold-changeset.json').exists()
+ label='rillora-apple-sales-hold-'+SOURCE[:9]
+ command=['npx','cdk','deploy',name,'--app',str(assembly),'--exclusively','--profile','rillora-cdk-session','--require-approval','never',
+  '--previous-parameters','true','--method','prepare-change-set','--change-set-name',label,'--outputs-file',str(p/'apple-sales-hold-outputs.json')]
+ with (q/'apple-sales-hold-deploy.log').open('w') as log:r=subprocess.run(command,cwd=w/'infra/aws',stdout=log,stderr=subprocess.STDOUT)
+ assert r.returncode==0,'Inspect preparation before retry'
+ d=aws.call('cloudformation','describe-change-set',{'StackName':name,'ChangeSetName':label});save(p/'apple-sales-hold-changeset.json',{'id':d['ChangeSetId'],'source':SOURCE})
+ _,d=change();save(p/'apple-sales-hold-changeset-details.json',d)
+ print(json.dumps({'prepared':True,'resourceChanges':len(d['Changes']),'executed':False}))
+elif args.operation=='execute':
+ ci=json.loads((q/'ci145-readback.json').read_text());assert ci['commit']==SOURCE and ci['allJobsPassed']
+ record,d=change();assert d['ExecutionStatus']=='AVAILABLE'
+ marker=p/'apple-sales-hold-execution.json';assert not marker.exists()
+ request={'StackName':name,'ChangeSetName':record['id'],'ClientRequestToken':'rillora-'+uuid.uuid4().hex};save(marker,request)
+ aws.call('cloudformation','execute-change-set',request);print(json.dumps({'executed':True,'complete':False}))
+else:
+ complete=stack['StackStatus']=='UPDATE_COMPLETE' and template()==wanted
+ report={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'source':SOURCE,'phase':'apple-sales-hold','status':stack['StackStatus'],'templateMatches':complete}
+ if complete:
+  old=json.loads((p/'apple-sales-hold-before-stack.json').read_text());assert old['Parameters']==stack['Parameters'];report['parametersUnchanged']=True
+  save(q/'apple-sales-hold-deployed.json',report)
+ print(json.dumps(report))

@@ -1,0 +1,45 @@
+import { execFileSync } from 'node:child_process';
+import { readFile, writeFile, stat } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
+import { AppStoreServerAPIClient, Environment } from '../../../apps/api/node_modules/@apple/app-store-server-library/dist/index.js';
+
+const [operation, environment] = process.argv.slice(2);
+if (!['request','status'].includes(operation) || !['production','sandbox'].includes(environment)) throw Error('Invalid bounded probe');
+const root = new URL('../../../', import.meta.url);
+const privateFile = new URL(`.local-secrets/final-readiness-20261013/apple-notification-${environment}.json`, root);
+const publicFile = new URL(`apple-notification-${environment}.json`, import.meta.url);
+const api = (service, command, args = []) => JSON.parse(execFileSync('aws', [service, command, ...args,
+  '--profile','rillora-operator','--region','eu-central-1','--output','json'], { encoding:'utf8', timeout:45000, stdio:['ignore','pipe','pipe'] }));
+if (api('sts','get-caller-identity').Account !== '133857166372') throw Error('Wrong account');
+const name = `rillora/production/${environment === 'production' ? 'apple-iap' : 'apple-review'}`;
+const credentials = JSON.parse(api('secretsmanager','get-secret-value',['--secret-id',name,'--version-stage','AWSCURRENT']).SecretString);
+if (credentials.environment !== environment || credentials.bundleId !== 'com.rillora.ios') throw Error('Wrong Apple context');
+const client = new AppStoreServerAPIClient(credentials.privateKey, credentials.keyId, credentials.issuerId, credentials.bundleId,
+  environment === 'production' ? Environment.PRODUCTION : Environment.SANDBOX);
+let receipt;
+if (operation === 'request') {
+  try { await stat(privateFile); throw Error('Existing request must be read back, never repeated'); } catch (e) { if(e.code !== 'ENOENT') throw e; }
+  receipt = { at:new Date().toISOString(), environment, operation:'official_TEST_notification', actualPurchase:false, status:'started' };
+  await writeFile(privateFile, JSON.stringify(receipt), { mode:0o600, flag:'wx' });
+  try {
+    const result = await client.requestTestNotification();
+    if (!result.testNotificationToken) throw Error('Missing notification token');
+    receipt = { ...receipt, status:'requested', token:result.testNotificationToken };
+    await writeFile(privateFile, JSON.stringify(receipt), { mode:0o600 });
+    console.log(JSON.stringify({ environment, requested:true, actualPurchase:false }));
+  } catch (e) {
+    receipt.status = 'failed'; receipt.httpStatus = e.httpStatusCode ?? null; receipt.apiError = e.apiError ?? null;
+    await writeFile(privateFile, JSON.stringify(receipt), { mode:0o600 });
+    console.log(JSON.stringify({ environment, requested:false, httpStatus:receipt.httpStatus, apiError:receipt.apiError }));
+    process.exitCode = 1;
+  }
+} else {
+  receipt = JSON.parse(await readFile(privateFile,'utf8'));
+  if (receipt.status !== 'requested' || typeof receipt.token !== 'string') throw Error('No confirmed request to inspect');
+  const response = await client.getTestNotificationStatus(receipt.token);
+  await writeFile(new URL(`.local-secrets/final-readiness-20261013/apple-notification-${environment}-status.json`,root),JSON.stringify(response),{mode:0o600});
+  const attempts = (response.sendAttempts ?? []).map(a => ({ attemptDate:a.attemptDate, result:a.sendAttemptResult }));
+  const report = { at:new Date().toISOString(), environment, actualPurchase:false, officialTest:true,
+    signedPayloadPresent:typeof response.signedPayload === 'string', attempts, delivered:attempts.some(a => a.result === 'SUCCESS') };
+  await writeFile(publicFile,JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
+}

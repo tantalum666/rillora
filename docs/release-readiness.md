@@ -1,8 +1,16 @@
 # Rillora 1.0 正式发布准备
 
 Role: current launch scope, remaining work and release evidence contract  
-Status: WEB BILLING DEPLOYED; ORDINARY CUSTOMER ACCESS AND SALES HELD FOR RETIRED IDENTITY TOKEN EXPIRY
+Status: APPLE RUNTIME AND STORE14 MATERIAL PREPARED; WEB TOKEN WINDOW AND PROVIDER/REMAINING NATIVE GATES OPEN
 Last updated: 2026-10-13 (Asia/Hong_Kong)
+
+## October13集中收尾增补
+
+[本轮收尾](final-readiness-20261013.md)已推进Apple独立运行／审核账号、正式监控与商店14候选；eb2b3c4d2／CI145三任务通过、兼容部署模板匹配，未再迁移数据库或分发TestFlight。两条Apple正式新购路由独立关闭，保护后续Web开售；原价格、Web／市场开关、数据与历史付款保持。Sandbox官方TEST成功，Production API401仍未解决。
+
+[商店材料](app-store-preflight-20261013.md)保存了14／手动发布、联系人及Owner明确授权的专用审核凭据、中文图文、Owner确认发布的13类隐私标签、18+分级、免费下载安装与USA/HKG草稿范围。旧月付原已0地区，无重复改动。英文仍是主语言，当前事项／首页素材及英文6图／中文4图均已保存回读。App14、年付与群组三项在预检操作序列中于香港21:18过早进入等待审核，已主动撤回并重载确认为“已移除”；版本“被开发者拒绝”不是Apple驳回。当前没有活动审核、批准或正式发布。
+
+真实手机14已完成本次同意和原Google登录；当前测试家庭版／HKD888与同账号正式Web的Apple测试订阅对应，原1事项保留，无新购买或恢复。未订阅真机、VoiceOver和原生法律往返仍开放；镜像后续进程已关闭。Auth0旧桌面3句英文仍是原有Free402限制，不能冒称新问题或擅自付费。Apple支持工单102995248851已收件；Auth0社区帖子已收件待管理员批准。Web身份窗口仍最早香港October14 04:21；以下旧日状态保留各自日期。
 
 ## October13正式Web订阅当前状态
 
@@ -28,6 +36,8 @@ Owner本轮暂后手机本人验证，独立Web检查已完成。两处实际问
 
 ## Current remaining launch inventory — updated October13
 
+上方October13集中收尾及下表是当前状态。下列October10付款复核段落保留当日技术版本，不应继续把API21／schema94／手机13、旧商店9或尚未授权社区外发当作现状。
+
 October10的[付款与完整双语交付](payment-recheck-20261009.md)更新了下列实际证据，不重开旧工作。Web/原生Free1与Family5、WebUSD88.99年付和Apple美国USD119.99保持。
 
 当前API21/Preview43健康，两库schema94；官网/应用/Preview203公开文件及法律14实际中英文页面核验完成。手机13已原位安装并由Owner确认已订阅、HKD888、无混排；没有新TestFlight。新云端Stripe TEST进一步验证全额pending不撤权益、成功撤销、异步失败恢复、部分退款、重复回调，三订单各一尝试、34验签事件已应用且无错误，三条测试订阅结束，原事项保留。原Live通知/目录/受限密钥及既有Apple签名购买/恢复反馈保留；没有真钱测试。
@@ -45,9 +55,9 @@ Owner要求暂后税务功能。正式账户当前可收款/提现，Stripe Chec
 | # | 真正剩余的工作 | 完成判据与边界 |
 | --- | --- | --- |
 | 1 | Web正式订阅最后开放 | 计费配置已完成：API25、disabled自动计税、8899USD价格和18事件回调；不再等待计税策略。旧Preview4客户端已停止签发，2M2M实测403；最早香港October14 04:21后复核到期边界，恢复正式Action／新购路线与公开文案。已有TEST付款／退款保留，不制造Live自付。 |
-| 2 | 原生最终汇总版及Apple剩余验收 | 手机14已原位交付并由Owner确认登录／原事项；手机13时的已订阅/港币888/中文显示及签名购买／恢复证据保留原日期。剩余未订阅真机分支、实际跨端权益及退款/到期证据独立核验。保留已成功购买和Owner恢复反馈，不要求为了这份清单再买一次。真机VoiceOver和法律链接随最终受影响路径补齐；不恢复Large text控件。 |
+| 2 | 原生最终汇总版及Apple剩余验收 | 手机14当前Google登录／同意／原事项通过；HKD888测试家庭版与正式Web同账号权益对应，无再次购买／恢复。剩余未订阅真机、VoiceOver和原生法律往返；实际退款／到期证据保持原日期和范围，不为清单再买一次。Apple Production401仍待工单答复，新购独立关闭。 |
 | 3 | **本轮已完成：当前产物、权限与恢复后计费对账** | 4处恢复缺口修复，23项聚焦回归及CI121通过；3笔真实Stripe TEST支撑的本地恢复、真实生产快照/Apple Sandbox云端对账、权限拒绝、原服务恢复和临时资源清理均有独立证据。当前代码/镜像回滚底线已记录。后续第4/5项的新产物和客户开放变更各自再验收，不重复本轮。 |
-| 4 | App Store最终候选、送审与审核 | 集中修正稳定后准备新的最终构建，核对截图与真实界面、隐私/年龄/联系信息、市场/价格及审核账号访问，选入草稿并提交App Review；通过后手动发布。当前商店草稿最后确认选用9，TestFlight11与手机同号直装包不是相同产物；未提审。六张设计图和已确认的加密声明不从头重做。 |
+| 4 | App Store最终候选、送审与审核 | 原生14复用归档商店导出／上传／处理通过，10张双语设计图、13类隐私、18+、联系人／专用凭据、USA/HKG及年付材料保存。三项过早提交已撤回，材料保留；须补专用审核账号实际首次登录与剩余设备验收后重提，通过后手动发布。没有新TestFlight，不重编译相同源码。 |
 | 5 | 正式客户与身份切换 | 与第1项共用一个真实时间门，不重复计为另一份待批准任务。原审核Action暂保留3身份；旧客户端grant_types为空，旧管理服务不能签发，等待已签发最长86400秒加300秒容差。生产账号／地图保留，旧Preview不再用于真实身份验收；到期后负向检查通过再放开。 |
 
 独立删除验收仍按Owner“保留，暂不删除”执行，不能勾为通过，也不能擅自启动删除。

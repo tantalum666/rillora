@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-13T11:46:10.673Z",
+  "readOnly": true,
+  "sameJwtForBothRequests": false,
+  "reason": "Production-only recheck after saved provider metadata and propagation interval",
+  "officialLibraryUsed": true,
+  "signatureSelfCheck": true,
+  "tokenLifetimeSeconds": 300,
+  "bundleMatches": true,
+  "credentialsPrintedOrSaved": false,
+  "actualPurchase": false,
+  "observations": [
+    {
+      "environment": "production",
+      "status": 401,
+      "serverDate": "Tue, 13 Oct 2026 11:46:10 GMT",
+      "requestId": "TDMQCBY52JIPCI3FHO2R3NMGAQ",
+      "serverClockSkewSeconds": -1,
+      "apiError": null
+    }
+  ]
+}

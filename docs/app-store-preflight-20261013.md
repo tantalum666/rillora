@@ -1,0 +1,62 @@
+# App Store 上线材料与当前证据 — 2026-10-13
+
+Status: METADATA SAVED / PRIVACY PUBLISHED / BUILD14 SUBMISSION WITHDRAWN / MANUAL RELEASE RETAINED
+Last updated: 2026-10-13 (Asia/Hong_Kong)
+
+本文件记录Apple实际草稿与填写依据，不把保存元数据、构建上传或Sandbox购买视为App Review批准或正式开售。当前执行仍由[最终收尾](final-readiness-20261013.md)与[交接](handoff.md)路由。
+
+## 双语材料
+
+英语（美国）保持主语言，英文名称、副标题、介绍和关键词保留，4张iPhone／2张iPad设计图已保存回读。其中事项／首页四张UI原图更新为October13当前代码；分享／导出两张保留September30的实际来源日期。新简体中文版本已保存描述、关键词、推广文案、支持／营销链接、名称和副标题；独立2张iPhone／2张iPad中文设计图已上传成功。图片使用隔离合成资料，没有把真实家庭事项作为宣传素材，保留可编辑SVG、未修改的UI原图和字体来源。
+
+Apple按商店地区、设备语言、已提供的本地化和主语言选择显示内容，不代替开发者翻译文字或图片。美国支持英文及简／繁中文等；香港表列繁体中文和英国英语，不能将简体中文材料自动等同香港中文展示。App内部语言是另一套配置。本轮没有改变英文主语言，也没有宣布App支持尚未实现的其他语言。[本地化规则](https://developer.apple.com/help/app-store-connect/manage-app-information/localize-app-information)、[地区语言表](https://developer.apple.com/help/app-store-connect/reference/app-information/app-store-localizations)。
+
+## 版本与审核资料
+
+原生14复用既有已验证archive完成商店签名导出、上传并处理成功，选入1.0手动发布。没有再次编译原生或分发TestFlight。Owner提供的审核联系号码已按指定目的填入Apple并重新打开确认；准确号码不进入可读Git。审核联系人和公共support邮箱已保存；专用合成审核凭据经Owner明确授权从受保护存储仅在内存取用，保存到Apple后重新打开确认，临时变量已清除。该账号实际首次登录仍待验收。
+
+年龄问卷按当前功能填写：有限具名共享不作公共内容动态／广泛用户内容分发；亲友复核反馈属于直接沟通；没有无限网页浏览、广告、医疗建议、色情、暴力或赌博。身后事务的复杂现实主题按偶尔成人主题披露。Apple计算9+后，根据现行条款至少18岁的要求提高至18+；旧系统对应17+，Apple自行提供地区换算。年龄保证机制没有实施，未谎称具有年龄验证。第三方内容选择有相应使用依据，沿用[既有素材记录](asset-licenses.md)与[受限用途评估](provider-mark-usage.md)，不扩展为全世界版权／商标清查结论。
+
+旧月付SKU实际销售地区已为0，故未重复停售、删除或改动历史商品。年费USA119.99USD／HKG888HKD及其既有Sandbox对应保持。
+
+## 提交预检与撤回纠正
+
+版权子对话框完成后，父页面未保存，首次添加App预检因此失败；补父页面保存并重载回读后，App14进入可供审核草稿。年订阅加入同一草稿后，Apple提示必须包含订阅群组；随后补入既有Rillora Family群组。
+
+香港October13 21:18，浏览器操作序列实际使App14、年订阅及群组三项进入等待审核，早于计划中的最终验收。Agent当场说明并主动取消，重新加载确认提交d7a09a69-8b76-4b37-9a95-c0e169ed4039为“已移除”、版本为“被开发者拒绝”。这是开发者撤回，不是Apple审核驳回；不能再写成本轮从未提交，也不能把旧两项草稿截图作为当前状态。操作触发原因尚未确证，不归咎Apple平台。现有素材保留，须完成专用账号／剩余设备验收后再准备正式重提，未公开发布或分发TestFlight。
+
+## App 隐私披露依据
+
+Owner当场确认后，13类隐私答复已发布，Apple显示具名发布记录。全部按与账号关联披露；没有广告或跨应用广告追踪。不存在因内容加密就填成不收集、将固定进度事件当匿名、或把IP大致位置当手机GPS的情况。
+
+| Apple类别 | 实际处理依据 | 用途 |
+| --- | --- | --- |
+| 姓名、电子邮件地址 | 认证与账号展示、邀请匹配；哈希邮箱仍属于邮箱数据 | App功能 |
+| 其他财务信息 | 用户录入资产／债务存在性、价值区间、机构、账户提示及公开钱包定位 | App功能 |
+| 粗略位置 | Auth0成功登录日志确含由IP推导的位置；本轮仅保存字段存在性，不保存IP或坐标 | 安全与认证的App功能 |
+| 联系人 | 手动录入的亲友姓名、关系与共享关联，非读取系统通讯录 | App功能 |
+| 电子邮件或短信 | 具名协作中的文字反馈、修改建议与关联参与人；不是读取个人邮箱 | App功能 |
+| 客户支持 | 用户主动发出的支持请求 | App功能 |
+| 其他用户内容 | 私密事项、查找指引、偏好及共享内容 | App功能 |
+| 用户ID | Auth0 issuer/subject与Rillora账户关联标识 | App功能 |
+| 购买历史 | Apple／Stripe订阅、订单和服务端核验账本 | App功能 |
+| 产品交互 | 8种固定服务器进度事件，仍含planner关联 | 第一方分析 |
+| 其他诊断数据 | 最小请求状态／延迟、认证和服务可靠性诊断 | App功能、分析 |
+| 其他数据类型 | IP、客户端类别、必要同意与会话安全元数据 | App功能 |
+
+iOS没有广告SDK／IDFA、位置权限、通讯录批量读取或照片／录音上传。Face ID／Touch ID只经系统验证，不向Rillora传输生物特征。完整付款凭据在Apple或Stripe托管界面处理；应用的资产提示仍按其他财务信息披露。没有将任意自由文本中理论上可能出现的所有数据种类自动声明为当前功能主动收集。
+
+本轮直接读取的源码包括PrivacyInfo.xcprivacy、matter-details.ts、TrustedContactEditorStore.swift、domain.ts、product-events.ts、security.ts和当前双语LegalDocumentPage.jsx；Auth0实际成功登录元数据另有只含字段名／布尔值的证据。苹果的[数据类型与收集定义](https://developer.apple.com/app-store/app-privacy-details/)是填写依据；没有改变后台的数据处理行为或创建新分析服务。
+
+## 尚未关闭的门
+
+- Apple Production API同一有效JWT仍返回401，Sandbox200及TEST送达成功不代替它；新购路由独立保持关闭。
+- Apple拒绝关闭简化购买，明确要求最新**已批准**构建含StoreKit接口。现有14已实现PurchaseIntent.intents，批准后、手动发布前续办，不重复实现或上传新版本。
+- 过早提交已经主动撤回；当前没有活动审核。审核账号的实际登录、余下原生法律往返／辅助技术和未订阅真机分支仍独立记录，完成后再重提。
+- Auth0桌面旧外壳3句英文为October9已记录的Free模板402限制，本轮确认仍在，不能冒称新发现或擅自付费／切Classic。
+
+## 已发送的官方询问
+
+Owner明确“两份都发送”，并另确认社区首次注册条款。Apple Developer Support的私密API／密钥询问已收件，案例102995248851，等待答复；仅发送已审阅的App标识、请求编号与技术现象，没有密钥、JWT、密码、用户资料或附件。Auth0官方社区已收到原公开草稿，Get Help／universal-login分类，显示1篇等待管理员批准；尚无公开帖子URL或官方技术答复。社区账号沿原Auth0身份，无付费升级、Classic切换或重复提交。
+
+QA：output/qa/rillora-final-readiness-20261013。账号、凭据、完整个人UI与联系资料保留在.local-secrets/final-readiness-20261013。正式商店发布、付费客户开放与这些草稿／配置证据分别计数。

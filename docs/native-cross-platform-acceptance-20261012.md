@@ -1,7 +1,13 @@
 # 原生与跨端剩余验收 — 2026-10-12
 
-Status: INDEPENDENT WEB ACCEPTANCE AND FIXES DEPLOYED / PHYSICAL PHONE OWNER-DEFERRED / REMOTE PRESERVATION VERIFIED
-Last updated: 2026-10-12 (Asia/Hong_Kong)
+Status: CURRENT PHONE14 LOGIN AND APPLE PLAN MATCH WEB / REMAINING NATIVE LEGAL AND ACCESSIBILITY CHECKS OPEN
+Last updated: 2026-10-13 (Asia/Hong_Kong)
+
+## October13当前增补
+
+Owner恢复镜像并当场确认当前账号条款后，已复用原Google身份完成真实手机登录和同意提交，返回原1事项。手机14实际显示家庭版、已订阅、HKD HK$888.00／年、Apple测试购买不会扣款，主操作为管理Apple订阅；没有再次点购买或恢复。正式Web同一账号也显示家庭版、Apple测试订阅及管理原渠道入口；USD88.99是明确标注的Web渠道报价，没有第二条新购按钮。本轮关闭的是当前有效测试权益的双端UI对应门，不据此新增实际退款／到期证明。详见[本轮收尾](final-readiness-20261013.md)。
+
+镜像捕捉间歇失败，后续进程实际已关闭；未把未订阅真机、VoiceOver朗读或原生法律往返冒领通过。以下October12的Free／Owner暂后结论只代表当日，不再作为今天的当前权益状态。
 
 Owner要求继续完成剩余原生和跨端验收，已验证的不重复，能自主完成的直接做，不发TestFlight。镜像实际停在Mac本人验证后，Owner选择本轮暂不方便、先检查其他部分；正式Web由Owner重新登录原Google账号。此选择不撤回已完成的手机14登录／原事项确认，也不是永久取消真机验收。
 
@@ -32,8 +38,8 @@ Git保存采用本次新增archive34，沿用旧1—33；在5a42e7f8c从独立�
 
 ## 仍不能替代的证据
 
-- 原机未订阅分支、VoiceOver朗读／焦点、从原生打开法律页需要实际手机操作。Owner本轮已暂后，不用模拟器冒充真机。
-- 当前有效Apple权益在两端的对应，需要原Sandbox资格及同一次真实订阅状态；不放宽受限RunTask、不修改已付记录来制造通过结果。
+- 原机未订阅分支、VoiceOver朗读／焦点、从原生打开法律页仍需实际手机操作。October13已恢复过镜像，后续工具捕捉失败及进程退出，不能继续写成Owner仍暂后。
+- October13已补当前有效Apple测试权益的双端UI对应，见顶部；这不代替新的provider退款／到期证据，也没有修改已付记录来制造结果。
 - Apple退款／撤销／到期的源码、既有本地测试和真实签名事件分别记账。不能用Stripe结果或本地合成回调声称已取得新的Apple实际退款。
 
 QA：`output/qa/rillora-native-cross-platform-20261012`；含账号／系统验证的截图及原始provider资料仅留`.local-secrets/native-cross-platform-20261012`，不入可读Git。沿用同一发布工作流的完整Markdown阅读记录，只补新增／变化文件和聚焦正文。

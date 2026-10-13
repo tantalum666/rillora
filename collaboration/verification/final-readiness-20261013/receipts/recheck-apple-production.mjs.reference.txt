@@ -1,0 +1,35 @@
+import {execFileSync} from 'node:child_process';
+import {writeFile} from 'node:fs/promises';
+import {createRequire} from 'node:module';
+import {createPublicKey} from 'node:crypto';
+import {AppStoreServerAPIClient,Environment} from '../../../apps/api/node_modules/@apple/app-store-server-library/dist/index.js';
+const require=createRequire(new URL('../../../apps/api/package.json',import.meta.url));
+const jwt=require('jsonwebtoken');
+const aws=(...args)=>JSON.parse(execFileSync('aws',[...args,'--profile','rillora-operator','--region','eu-central-1','--output','json'],{encoding:'utf8',timeout:45000,stdio:['ignore','pipe','pipe']}));
+if(aws('sts','get-caller-identity').Account!=='133857166372')throw Error('Wrong account');
+const c=JSON.parse(aws('secretsmanager','get-secret-value','--secret-id','rillora/production/apple-iap','--version-stage','AWSCURRENT').SecretString);
+if(c.environment!=='production'||c.bundleId!=='com.rillora.ios')throw Error('Wrong application');
+const observations=[];
+class ObservedClient extends AppStoreServerAPIClient{
+ async makeFetchRequest(path,query,method,body,headers){
+  if(path!=='/inApps/v1/notifications/history'||method!=='POST')throw Error('Only bounded notification history read is permitted');
+  const response=await super.makeFetchRequest(path,query,method,body,headers);
+  observations.push({environment:this.urlBase.includes('sandbox')?'sandbox':'production',status:response.status,
+   serverDate:response.headers.get('date'),requestId:response.headers.get('x-apple-request-id')??response.headers.get('x-apple-jingle-correlation-key'),
+   serverClockSkewSeconds:Math.round((Date.parse(response.headers.get('date'))-Date.now())/1000)});
+  return response;
+ }
+}
+const clients=[Environment.PRODUCTION].map(e=>new ObservedClient(c.privateKey,c.keyId,c.issuerId,c.bundleId,e));
+const token=clients[0].createBearerToken();
+const claims=jwt.verify(token,createPublicKey(c.privateKey),{algorithms:['ES256'],issuer:c.issuerId,audience:'appstoreconnect-v1'});
+if(claims.bid!=='com.rillora.ios'||claims.exp-claims.iat>3600)throw Error('Unexpected token claims');
+const endDate=Date.now(),startDate=endDate-10*60_000;
+for(const client of clients){
+ client.createBearerToken=()=>token;
+ try{const response=await client.getNotificationHistory(null,{startDate,endDate,onlyFailures:false});observations.at(-1).recordCount=response.notificationHistory?.length??0;}
+ catch(error){if(!observations.length||observations.at(-1).status!==error.httpStatusCode)throw error;observations.at(-1).apiError=error.apiError??null;}
+}
+const report={at:new Date().toISOString(),readOnly:true,sameJwtForBothRequests:false,reason:"Production-only recheck after saved provider metadata and propagation interval",officialLibraryUsed:true,signatureSelfCheck:true,
+ tokenLifetimeSeconds:claims.exp-claims.iat,bundleMatches:true,credentialsPrintedOrSaved:false,actualPurchase:false,observations};
+await writeFile(new URL('apple-production-postconfiguration-check.json',import.meta.url),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));

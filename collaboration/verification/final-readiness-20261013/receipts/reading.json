@@ -1,0 +1,53 @@
+{
+  "at": "2026-10-13T05:53:53.152121+00:00",
+  "mode": "same-release-workflow-focused-continuation",
+  "baseline": "output/qa/rillora-web-billing-activation-20261013/reading.json",
+  "fullNewProjectReadClaimed": false,
+  "readInFull": [
+    "AGENTS.md",
+    "docs/handoff.md",
+    "docs/native-cross-platform-acceptance-20261012.md",
+    "docs/direct-device-iteration-20261008.md",
+    "apps/api/src/apple-production-routes.ts",
+    "apps/api/src/apple-execution-context.ts",
+    "apps/api/src/apple-production-runtime.ts",
+    "apps/api/src/apple-production-secret.ts",
+    "apps/api/src/production-review-access.ts",
+    "infra/aws/lib/rillora-production-runtime.ts",
+    "infra/aws/lib/rillora-production-stack.ts",
+    "tools/maintenance-broker/core.mjs",
+    "apps/api/src/configure-production-web-billing.ts",
+    "apps/api/src/apple-purchase-catalog.ts",
+    "apps/api/src/apple-review-catalog.ts",
+    "apps/api/src/apple-price-catalog.ts"
+  ],
+  "focusedRanges": {
+    "docs/product.md": "1-193 and382-549 current/locked/authority recovery; full historical baseline retained; truncated combined read is not a new full read",
+    "docs/decision-log.md": "3434-end",
+    "docs/apple-review-validation-20260929.md": "1-120 then121-end; truncated historical parts retained from baseline",
+    "docs/storekit.md": "1-85 current",
+    "apps/api/src/config.ts": "260-352 production runtime guards",
+    "apps/api/src/auth.ts": "78-155 session identity provenance",
+    "infra/aws/bin/rillora.ts": "70-175",
+    "AGENTS.md": "1-end, same-workflow recovery",
+    "docs/handoff.md": "1-end before closeout",
+    "docs/final-readiness-20261013.md": "1-end",
+    "docs/app-store-preflight-20261013.md": "1-end",
+    "collaboration/README.md": "1-end",
+    "docs/source-control.md": "1-81,98-230; prior full-read retained",
+    "docs/release-readiness.md": "1-120 current",
+    "docs/native-cross-platform-acceptance-20261012.md": "1-end",
+    "docs/journey/PROJECT_JOURNEY.md": "last75lines"
+  },
+  "newAuthAndPhoneRequests": false,
+  "preservedConstraints": [
+    "no TestFlight distribution",
+    "no artificial Live payment",
+    "tax automation disabled",
+    "Web88.99 and Apple119.99 unchanged",
+    "all original data and FanPass preserved"
+  ],
+  "resumedAt": "2026-10-13T07:25:34.352188+00:00",
+  "ownerMirrorResumed": true,
+  "focusedRecoveryAt": "2026-10-13T13:28:06.333171+00:00"
+}

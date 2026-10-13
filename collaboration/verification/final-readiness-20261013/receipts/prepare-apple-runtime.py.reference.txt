@@ -1,0 +1,59 @@
+from pathlib import Path
+import json,subprocess,sys,datetime,re
+w=Path(__file__).resolve().parents[3];q=Path(__file__).resolve().parent;p=w/'.local-secrets/final-readiness-20261013'
+sys.path.insert(0,str(w/'tools/release'));from recovery_drill import Aws
+aws=Aws('rillora-cdk-deploy')
+stack=aws.call('cloudformation','describe-stacks',{'StackName':'RilloraProduction'})['Stacks'][0]
+assert stack['StackStatus']=='UPDATE_COMPLETE'
+raw=aws.call('cloudformation','get-template',{'StackName':'RilloraProduction'})['TemplateBody']
+before=json.loads(raw) if isinstance(raw,str) else raw
+for name,value in [('apple-before-stack.json',stack),('apple-before-template.json',before)]:
+ path=p/name
+ if path.exists():assert json.loads(path.read_text())==value
+ else:path.write_text(json.dumps(value));path.chmod(0o600)
+out={x['OutputKey']:x['OutputValue'] for x in stack['Outputs']};arn=out['RuntimeStripeNotificationsSecretArn8A76E8A3']
+assert re.fullmatch(r'arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/stripe-billing-[A-Za-z0-9]{6}',arn)
+contexts={'productionFoundationOnly':'true','productionRuntimeEnabled':'true','productionRuntimeDesiredCount':'1',
+ 'productionReviewPrepared':'true','productionReviewEnabled':'false','productionLiveEnabled':'true','productionStripeCheckoutEnabled':'true',
+ 'productionRetentionEnabled':'true','productionIdentityServicesEnabled':'true','productionStripeNotificationsSecretArn':arn,
+ 'productionApplePrepared':'true','productionAppleEnabled':'false','productionAppleReviewEnabled':'false'}
+assembly=q/'apple-prepared-assembly'
+command=['npx','cdk','synth','RilloraProduction','--exclusively','--no-lookups','--profile','rillora-cdk-session','--output',str(assembly)]
+for key,value in contexts.items():command+=['-c',key+'='+value]
+if not (assembly/'RilloraProduction.template.json').exists():
+ with (q/'apple-prepared-synth.log').open('w') as log:r=subprocess.run(command,cwd=w/'infra/aws',stdout=log,stderr=subprocess.STDOUT)
+ assert r.returncode==0
+candidate=json.loads((assembly/'RilloraProduction.template.json').read_text())
+assert set(before['Resources']) <= set(candidate['Resources'])
+changes=[]
+for name,new in candidate['Resources'].items():
+ old=before['Resources'].get(name)
+ if old==new:continue
+ if old is None:
+  assert new['Type']=='AWS::SecretsManager::Secret' and new['Properties']['Name']=='rillora/production/apple-iap'
+  assert new['DeletionPolicy']=='Retain' and new['UpdateReplacePolicy']=='Retain'
+ else:
+  assert old['Type']==new['Type'] and old['Type'] in ['AWS::ECS::TaskDefinition','AWS::Lambda::Function','AWS::IAM::Policy']
+  if old['Type']=='AWS::ECS::TaskDefinition':
+   expected=json.loads(json.dumps(old))
+   for i,c in enumerate(new['Properties']['ContainerDefinitions']):expected['Properties']['ContainerDefinitions'][i]['Image']=c['Image']
+   assert expected==new,'Unexpected runtime/config change during preparation: '+name
+  elif old['Type']=='AWS::Lambda::Function':
+   expected=json.loads(json.dumps(old));expected['Properties']['Code']=new['Properties']['Code']
+   old_asset=old.get('Metadata',{}).get('aws:asset:path');new_asset=new.get('Metadata',{}).get('aws:asset:path')
+   if old_asset!=new_asset:
+    assert new_asset=='asset.'+new['Properties']['Code']['S3Key'].removesuffix('.zip')
+    expected['Metadata']['aws:asset:path']=new_asset
+   assert expected==new,'Unexpected broker configuration change: '+name
+  else:
+   assert 'OperatorDefaultPolicy' in name
+   a=old['Properties']['PolicyDocument']['Statement'];b=new['Properties']['PolicyDocument']['Statement']
+   assert all(s in b for s in a)
+   extra=[s for s in b if s not in a];assert len(extra)==1
+   assert extra[0]['Action']==['secretsmanager:DescribeSecret','secretsmanager:PutSecretValue']
+   assert 'AppleProductionSecret' in json.dumps(extra[0]['Resource'])
+ changes.append({'logicalId':name,'type':new['Type'],'added':old is None})
+result={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'phase':'apple-prepared',
+ 'allExistingResourceIdentitiesPreserved':True,'onlyImagesBrokerCodeAndNewVaultProvisioning':True,
+ 'runtimeEnvironmentAndSalesUnchanged':True,'changes':changes,'deployed':False}
+(q/'apple-prepared-diff.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))

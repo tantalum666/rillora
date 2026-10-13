@@ -1,0 +1,23 @@
+from pathlib import Path
+import json,subprocess,sys,datetime
+w=Path(__file__).resolve().parents[3];q=Path(__file__).resolve().parent;p=w/'.local-secrets/final-readiness-20261013'
+sys.path.insert(0,str(w/'tools/release'));from recovery_drill import Aws
+stack=Aws('rillora-cdk-deploy').call('cloudformation','describe-stacks',{'StackName':'RilloraOperations'})['Stacks'][0]
+assert stack['StackStatus']=='UPDATE_COMPLETE';out={r['OutputKey']:r['OutputValue'] for r in stack['Outputs']}
+path=q/'final-cloud-health-response.json';reused=path.exists()
+if not reused:
+ result=subprocess.run(['aws','lambda','invoke','--profile','rillora-staging-operator','--region','eu-central-1','--function-name',out['CheckerFunctionName'],
+  '--cli-binary-format','raw-in-base64-out','--payload',json.dumps({'job':'public-health-v1'}),str(path)],capture_output=True,text=True,timeout=45)
+ assert result.returncode==0,'Inspect credentials or invocation scope; provider body suppressed'
+ receipt=json.loads(result.stdout);assert not receipt.get('FunctionError')
+ (q/'final-cloud-health-invocation.json').write_text(json.dumps(receipt,indent=2)+'\n')
+response=json.loads(path.read_text())
+resources=Aws('rillora-cdk-deploy').call('cloudformation','describe-stack-resources',{'StackName':'RilloraOperations'})['StackResources']
+names=[r['PhysicalResourceId'] for r in resources if r['LogicalResourceId'].startswith('AppleDelivery') and r['ResourceType']=='AWS::CloudWatch::Alarm'];assert len(names)==4
+ops=Aws('rillora-staging-operator');alarms=ops.call('cloudwatch','describe-alarms',{'AlarmNames':names})['MetricAlarms']
+assert len(alarms)==4 and all(a['ActionsEnabled'] and a['Dimensions']==[{'Name':'Environment','Value':'production'},{'Name':'Provider','Value':'storekit'}] for a in alarms)
+assert all(out['AlertTopicArn'] in a['AlarmActions'] and out['AlertTopicArn'] in a['OKActions'] for a in alarms)
+report={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'earlierCloudResponseReused':reused,'response':response,
+ 'appleAlarms':[{'name':a['AlarmName'],'state':a['StateValue'],'metric':a['MetricName'],'actionsEnabled':a['ActionsEnabled']} for a in alarms],
+ 'exactExistingAlertTopic':True,'allFourProductionAlarmsPresent':True}
+(q/'final-operations-verification.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))

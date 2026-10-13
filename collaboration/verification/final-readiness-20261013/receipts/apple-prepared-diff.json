@@ -1,0 +1,45 @@
+{
+  "at": "2026-10-13T07:28:35.470773+00:00",
+  "phase": "apple-prepared",
+  "allExistingResourceIdentitiesPreserved": true,
+  "onlyImagesBrokerCodeAndNewVaultProvisioning": true,
+  "runtimeEnvironmentAndSalesUnchanged": true,
+  "changes": [
+    {
+      "logicalId": "MigrationTask69EAEF9D",
+      "type": "AWS::ECS::TaskDefinition",
+      "added": false
+    },
+    {
+      "logicalId": "RecoveryTaskD940248B",
+      "type": "AWS::ECS::TaskDefinition",
+      "added": false
+    },
+    {
+      "logicalId": "OperatorDefaultPolicyA84BD3A6",
+      "type": "AWS::IAM::Policy",
+      "added": false
+    },
+    {
+      "logicalId": "RuntimeApiTaskCF645D67",
+      "type": "AWS::ECS::TaskDefinition",
+      "added": false
+    },
+    {
+      "logicalId": "RuntimeAppleProductionSecret494B0EFB",
+      "type": "AWS::SecretsManager::Secret",
+      "added": true
+    },
+    {
+      "logicalId": "RuntimeIdentityWorkerTask676ED9B0",
+      "type": "AWS::ECS::TaskDefinition",
+      "added": false
+    },
+    {
+      "logicalId": "MaintenanceBrokerFunctionC542279B",
+      "type": "AWS::Lambda::Function",
+      "added": false
+    }
+  ],
+  "deployed": false
+}

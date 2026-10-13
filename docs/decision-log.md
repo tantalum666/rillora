@@ -3459,3 +3459,16 @@ local correction/tests and actual restoration remain separate evidence.
 - During this continuation, iPhone Mirroring actually required Mac user presence. Owner replied “现在不方便，先做其他工作”; defer that physical step for this turn and continue independent release work without another identical request. Existing14evidence remains valid at its original scope.
 
 - Owner subsequently confirms iPhone Mirroring is unlocked and available, superseding that temporary deferral. The original Google identity is reused; actual legal acceptance remains subject to the tool's action-time confirmation. Apple preparation covers the existing verified USA/HKG annual prices; the old nine-territory draft is not automatic sales approval and AUS retains its test evidence.
+
+
+## 2026-10-13 — Owner confirms current consent and formal store disclosures
+
+- Owner confirms the current native account Terms/Privacy/electronic-record action and later restores the actual Mac mirroring lock. The original Google account returns to its existing map; no new purchase or restoration is inferred.
+- Owner supplies the exact App Review contact phone for Apple; it is saved for that purpose and excluded from readable Git. Owner separately confirms publishing the concrete13-type privacy answers, and explicitly authorizes sending only the existing dedicated synthetic reviewer username/password to the App Store review form. Those actions are saved and independently re-opened; no personal account password is disclosed.
+- Agent implementation choice: Production Apple USA/HKGnew-sale routes are independently held while Production authorization returns401, preserving all Web prices/routes, markets, review enrollments and historical financial data. SuccessfulSandboxTESTdoes not waive the Production gate. Four production worker alarms and strict401health checks are deployed under existing scope.
+- English(U.S.) stays the primary store localization; separate Chinese copy/designs are added and current English Matters/home captures replace outdated imagery. App download price isfree, preparedApp/annualavailability isUSA/HKGonly, automatic territory expansion and unverifiedMac/Visionopt-ins are off. Existing18+service terms determine the age override. No TestFlight distribution or automatic release is authorized by these configuration changes.
+
+## 2026-10-13 — Owner authorizes the two provider follow-ups
+
+- Owner explicitly approves sending both reviewed drafts: a public Auth0 Community Free-template reset question and a private Apple Developer Support Production401 inquiry. Owner separately confirms the actual first-time community account Terms/Privacy/guidelines. Apple case102995248851 is received; Auth0 confirms one pending moderator-approved post. No paid plan, credential disclosure, Classic switch or duplicate question follows.
+- During store completeness preflight, the App14/annual/group packet entered actual waiting-for-review before intended final acceptance. Agent disclosed the premature state and withdrew it, preserving materials. Reload confirmsRemoved/DeveloperRejected, not an Apple review rejection. This is a corrective implementation action under the existing readiness scope; remaining dedicated-reviewer/device evidence is not waived and manual release/noTestFlightremain.

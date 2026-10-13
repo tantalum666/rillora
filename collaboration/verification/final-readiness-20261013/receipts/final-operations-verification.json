@@ -1,0 +1,36 @@
+{
+  "at": "2026-10-13T11:28:45.904705+00:00",
+  "earlierCloudResponseReused": true,
+  "response": {
+    "ok": true,
+    "failed": 0
+  },
+  "appleAlarms": [
+    {
+      "name": "RilloraOperations-AppleDeliveryFailedCA8C5623-Umyybe8ByGuu",
+      "state": "OK",
+      "metric": "Failed",
+      "actionsEnabled": true
+    },
+    {
+      "name": "RilloraOperations-AppleDeliveryHeartbeat5929C3C2-iSuX8599HJuA",
+      "state": "OK",
+      "metric": "Heartbeat",
+      "actionsEnabled": true
+    },
+    {
+      "name": "RilloraOperations-AppleDeliveryOldestPendingSecondsD003E47C-YS9FgVxDKRk8",
+      "state": "OK",
+      "metric": "OldestPendingSeconds",
+      "actionsEnabled": true
+    },
+    {
+      "name": "RilloraOperations-AppleDeliveryWorkerErrors2A0C947F-pKm0tPLbQhHP",
+      "state": "OK",
+      "metric": "WorkerErrors",
+      "actionsEnabled": true
+    }
+  ],
+  "exactExistingAlertTopic": true,
+  "allFourProductionAlarmsPresent": true
+}
