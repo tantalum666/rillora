@@ -1,5 +1,7 @@
 # Rillora — Git / Dot 协作入口
 
+October13[法律页精简](../docs/legal-page-layout-20261013.md)：Owner选择直接删除两块重复外观／语言说明，不增加折叠。78f262a3a／CI148及真实Cloudflare部署、50HTTPS／18资源与线上中英文／两宽度回读通过，法律正文不变。[archive38](verification/legal-layout-20261013/README.md)新增64路径／62对象／1,156,789密文字节，本地认证通过，远端回读另记；前1—37不重做，无原生／其他运行面部署或TestFlight。
+
 October13[集中收尾](../docs/final-readiness-20261013.md)：eb2b3c4d2／CI145通过，Apple独立运行／有限审核／独立停售及四项告警已兼容部署，当前手机14与Web测试家庭版对应；双语10图、隐私／联系资料／专用审核凭据保存。三项App Review过早提交已说明并主动撤回，当前没有活动审核；Apple支持工单收件、Auth0问题待管理员批准。[新增archive37](verification/final-readiness-20261013/README.md)保存568路径／530对象／37,831,161密文字节，本地及cba5b92bb的GitHub独立新下载认证均通过；旧1—36不重做，未分发TestFlight。Owner随后恢复镜像，现有App已打开，但工具输入未生效；当前下一步只看handoff。
 
 October13[显式Web计费与身份切换](../docs/web-billing-activation-20261013.md)：API25和disabled自动计税已部署，f87ac62c9／CI141及最终117文件、真实官网双语回读通过。旧Preview4客户端停发、2M2M实际403，普通访问／新购等香港October14 04:21旧令牌窗口后再做最后开放；不再等待税务策略。[archive36](verification/web-billing-activation-20261013/README.md)新增540路径／486对象／36,394,455密文字节，本地及e29d417b6的GitHub独立新下载解密均通过，最终回执普通入Git。旧1—35保持，无新支付／删除／TestFlight。

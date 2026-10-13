@@ -1,0 +1,82 @@
+"""Preserve only the new acceptance evidence and final Web builds in archive38."""
+from pathlib import Path
+import datetime,json,os,re,shlex,subprocess,sys,tempfile,uuid
+ROOT=Path(__file__).resolve().parents[3];PRIMARY=Path('/Users/tantalum/Documents/电子遗嘱app')
+sys.path.insert(0,str(ROOT/'tools/collaboration'))
+import build_snapshot as snapshot
+from snapshot_policy import directory_exclusion,file_exclusion,readable_text
+from verify_archives import verify
+QA=ROOT/'output/qa/rillora-legal-layout-20261013'
+DEST=ROOT/'collaboration/verification/legal-layout-20261013'
+ARCHIVE=ROOT/'collaboration/archives/raw-work-038.tar.zst.age'
+assert not ARCHIVE.exists(),'Never reseal an existing archive'
+assert json.loads((QA/'ci148.json').read_text())['allJobsPassed']
+assert json.loads((QA/'deployment-complete.json').read_text())['status']=='success'
+assert json.loads((QA/'live-http.json').read_text())['allPassed']
+roots=[QA,ROOT/'apps/web/dist',ROOT/'.local-secrets/legal-layout-20261013/pages',ROOT/'.local-secrets/legal-layout-20261013/pages-final']
+DEST.mkdir(parents=True,exist_ok=True);cache=QA/'publication/frozen';cache.mkdir(parents=True,exist_ok=True,mode=0o700)
+files=[];excluded=[{'path':'.local-secrets','reason':'credentials_and_other_private_data_excluded; exact_reviewed_publication_builds_are_sealed_exceptions'},
+                  {'path':'old_archives_001_to_037','reason':'immutable_previous_evidence_not_recaptured_or_downloaded'}]
+for source in roots:
+    for base,dirs,names in os.walk(source):
+        parent=Path(base)
+        for name in list(dirs):
+            path=parent/name;rel=path.relative_to(ROOT).as_posix();reason=directory_exclusion(rel)
+            if name=='publication':reason='reproducible_capture_and_download_cache'
+            if name=='media-derived-data':reason='reproducible_media_simulator_build_and_dependency_cache'
+            if name.startswith('asset.'):reason='expanded_cdk_asset_duplicate_of_source_or_built_web'
+            if path.is_symlink():reason='machine_specific_symbolic_link'
+            if reason:dirs.remove(name);excluded.append({'path':rel,'reason':reason})
+        for name in names:
+            path=parent/name;rel=path.relative_to(ROOT).as_posix();reason=file_exclusion(rel)
+            if name in ['_worker.js','asset-manifest.json'] and source.name in ['pages','pages-final']:reason=None
+            if name=='worker-upload.b64':reason='reproducible_transport_encoding'
+            if path.is_symlink():reason='machine_specific_symbolic_link'
+            if reason:excluded.append({'path':rel,'reason':reason})
+            else:files.append((rel,path))
+assert len(files)==len({name for name,_ in files})
+values=snapshot.sensitive_values();snapshot.ROOT=PRIMARY
+try:values|=snapshot.sensitive_values()
+finally:snapshot.ROOT=ROOT
+snapshot.IDENTITY=PRIMARY/'.local-secrets/collaboration-git/identity.txt'
+assert snapshot.IDENTITY.stat().st_mode&0o077==0
+legal=set()
+for line in (PRIMARY/'.local-secrets/legal/release.env').read_text().splitlines():
+    line=line.strip().removeprefix('export ').strip()
+    if line.startswith(('VITE_LEGAL_OPERATOR_NAME=','VITE_LEGAL_SERVICE_ADDRESS=')):legal.update(shlex.split(line.partition('=')[2])[:1])
+needles={value.encode() for value in values-legal if len(value)>=16}
+objects={};records=[];started=datetime.datetime.now(datetime.timezone.utc).isoformat()
+for name,path in sorted(files):
+    frozen,digest=snapshot.freeze_file(path,cache);data=frozen.read_bytes()
+    assert not any(value in data for value in needles),'Private capability match; do not publish: '+name
+    blob=objects.setdefault(digest,{'id':uuid.uuid4().hex,'sha256':digest,'bytes':len(data),'source':str(frozen),'paths':[]});blob['paths'].append(name)
+    row={'sourcePath':name,'bytes':len(data),'rawObject':blob['id'],'rawArchive':ARCHIVE.relative_to(ROOT).as_posix()}
+    # Exact CDK assemblies, traces, logs and built assets stay sealed. Small
+    # top-level sanitized receipts/runners are directly readable for reviewers.
+    if path.parent==QA and readable_text(name) and path.suffix in ['.json','.md','.py','.mjs'] and 'inventory' not in path.name:
+        text=data.decode('utf-8');text,changed=snapshot.redact(text,values)
+        text=re.sub(r'\b[A-Za-z0-9]{32}\b',lambda m:m.group(0) if re.fullmatch('[a-f0-9]{32}',m.group(0)) else '[PUBLIC_IDENTIFIER_OMITTED]',text)
+        suffix='.reference.txt' if path.suffix in ['.md','.py','.mjs'] else ''
+        target=DEST/'receipts'/(path.name+suffix);target.parent.mkdir(exist_ok=True);target.write_text(text)
+        row.update({'readablePath':target.relative_to(ROOT).as_posix(),'privacyRedactions':bool(changed) or text.encode()!=data})
+    elif path.parent==QA and path.name in ['before-privacy-mobile.png','live-privacy-mobile.png','live-privacy-desktop.png']:
+        target=DEST/'screenshots'/path.name;target.parent.mkdir(exist_ok=True);target.write_bytes(data)
+        row['previewPath']=target.relative_to(ROOT).as_posix()
+    records.append(row)
+recipient=subprocess.check_output(['age-keygen','-y',str(snapshot.IDENTITY)],text=True).strip()
+archive=snapshot.seal_chunk(38,list(objects.values()),recipient)
+catalog=DEST/'catalog.json';catalog.write_text(json.dumps(records,ensure_ascii=False,indent=2)+'\n')
+summary={'capturedFrom':started,'capturedThrough':datetime.datetime.now(datetime.timezone.utc).isoformat(),
+ 'workFiles':len(records),'uniqueRawObjects':len(objects),'workBytes':sum(row['bytes'] for row in records),
+ 'archives':[archive],'catalogFiles':[catalog.relative_to(ROOT).as_posix()],'excluded':excluded,
+ 'selection':'New legal-layout QA, initial unshipped foldout candidate and final removal evidence, exact final dist plus two reviewed self-contained Pages packages. Existing public operator values are sealed only; source/docs stay normal Git.',
+ 'boundary':'Owner selected removal, not foldout. Existing legal bodies/versions unchanged. Only the existing legal Pages project deployed from78f262a3a/CI148.191Web and8legal checks,126package and50liveHTTP checks plus18exact assets. Native links opening is Owner evidence; return/VoiceOver not claimed. No other cloud plane, pricing, financial action, account consent, native build or TestFlight. Prior1-37immutable. Late receipts stay ordinary Git.'}
+
+(DEST/'snapshot.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
+with tempfile.TemporaryDirectory(prefix='rillora-billing-verify-') as temporary:
+    stage=Path(temporary);(stage/'collaboration').mkdir();(stage/'collaboration/snapshot.json').write_text(json.dumps(summary))
+    for name in [archive['path'],*summary['catalogFiles']]:
+        target=stage/name;target.parent.mkdir(parents=True,exist_ok=True);os.link(ROOT/name,target)
+    result=verify(stage,snapshot.IDENTITY)
+(DEST/'archive-verification.json').write_text(json.dumps(result,indent=2)+'\n')
+print(json.dumps({'paths':len(records),'objects':len(objects),'archiveBytes':archive['bytes'],'locallyVerified':result['passed']}))

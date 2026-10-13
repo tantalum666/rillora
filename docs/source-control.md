@@ -2,6 +2,10 @@
 
 Last updated: 2026-10-13 (Asia/Hong_Kong)
 
+## October13 legal-page notice removal
+
+The[small legal-shell correction](legal-page-layout-20261013.md) is deployed from78f262a3a/CI148to the existing Cloudflare Pages project. Only the two duplicated top notices are removed; accepted bodies and all other runtimes remain. [Archive38](../collaboration/verification/legal-layout-20261013/README.md) preserves64paths/62objects/1,156,789encrypted bytes and passes local authentication. The unshipped foldout, final build, live evidence and failures are retained; the exact public-operator builds are sealed only. Credentials and reproducible transport encoding are excluded. Prior1–37stay unchanged; independent remote readback is the final preservation step.
+
 ## October13 consolidated final readiness
 
 [Final readiness](final-readiness-20261013.md) delivers independent Apple runtime/review access and monitoring at eb2b3c4d2/CI145, preserves current phone14/Web test entitlement evidence, and saves bilingual store material plus authorized support receipts. A premature three-item App Review submission was explicitly withdrawn, not concealed as a draft-only operation. Web's measured identity deadline and the remaining provider/device/reviewer gates stay separate; no TestFlight distribution or new transaction follows.

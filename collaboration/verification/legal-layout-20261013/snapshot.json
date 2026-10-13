@@ -1,0 +1,39 @@
+{
+  "capturedFrom": "2026-10-13T14:56:09.846573+00:00",
+  "capturedThrough": "2026-10-13T14:56:10.038477+00:00",
+  "workFiles": 64,
+  "uniqueRawObjects": 62,
+  "workBytes": 3227443,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-038.tar.zst.age",
+      "sha256": "506a433807d7c745a7ee0e0b38c40c6a925ec6378082e810a207295d87f1a204",
+      "bytes": 1156789,
+      "plainBytes": 3153595,
+      "uniqueObjects": 62
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/legal-layout-20261013/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": ".local-secrets",
+      "reason": "credentials_and_other_private_data_excluded; exact_reviewed_publication_builds_are_sealed_exceptions"
+    },
+    {
+      "path": "old_archives_001_to_037",
+      "reason": "immutable_previous_evidence_not_recaptured_or_downloaded"
+    },
+    {
+      "path": "output/qa/rillora-legal-layout-20261013/publication",
+      "reason": "reproducible_capture_and_download_cache"
+    },
+    {
+      "path": ".local-secrets/legal-layout-20261013/pages-final/worker-upload.b64",
+      "reason": "reproducible_transport_encoding"
+    }
+  ],
+  "selection": "New legal-layout QA, initial unshipped foldout candidate and final removal evidence, exact final dist plus two reviewed self-contained Pages packages. Existing public operator values are sealed only; source/docs stay normal Git.",
+  "boundary": "Owner selected removal, not foldout. Existing legal bodies/versions unchanged. Only the existing legal Pages project deployed from78f262a3a/CI148.191Web and8legal checks,126package and50liveHTTP checks plus18exact assets. Native links opening is Owner evidence; return/VoiceOver not claimed. No other cloud plane, pricing, financial action, account consent, native build or TestFlight. Prior1-37immutable. Late receipts stay ordinary Git."
+}

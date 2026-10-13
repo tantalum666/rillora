@@ -1,6 +1,6 @@
 # 法律页顶部说明精简 — 2026-10-13
 
-Status: FINAL REMOVAL CANDIDATE / DEPLOYMENT PENDING
+Status: DEPLOYED AND VERIFIED / LEGAL BODIES UNCHANGED
 Last updated: 2026-10-13 (Asia/Hong_Kong)
 
 Owner确认手机中的服务条款和隐私政策均能打开，随后指出隐私页上方的两块文字影响阅读。此回复关闭两条真实入口的打开检查；自由文本没有明确说明返回同一账号，不能补写该项已经通过。
@@ -15,10 +15,12 @@ Owner确认手机中的服务条款和隐私政策均能打开，随后指出隐
 
 活动源码只删除LegalPublicationApp.jsx中的组件导入及顶部插入点。LegalDocumentPage.jsx、legalContract.js、接受版本与正文摘要不变，无新CSS、设置或账户同意。未发布折叠候选及其失败／成功检查作为有日期的参考保留，不覆盖最终证据。
 
-最终候选通过191项既有Web检查、8项法律产物检查，以及合法发布构建／18资源Pages打包。独立中英文／移动和桌面渲染与正式发布回读仍待本轮接续。构建复用原先明确批准的六项发布字段，受保护保存且不输出值；没有要求重新登录。
+最终候选通过191项既有Web检查、8项法律产物检查，以及合法发布构建／18资源Pages打包。126项自包含包检查和50项真实HTTPS检查通过，18资源摘要全部匹配。正式浏览器390×844与1440×900通过，无溢出；Privacy双语正文与变更前一致，Cookies两块说明和折叠均为0，语言与法律导航、打印入口保留。浏览器告警只有MetaMask扩展来源，没有Rillora错误。构建复用原先明确批准的六项发布字段，受保护保存且不输出值；没有要求重新登录。
 
 ## 发布与边界
 
 只更新现有Cloudflare Pages项目rillora-legal-pages和legal.rillora.xyz；既有main为其生产分支，项目／域名／权限不变。API、数据库、原生包、App／官网构建、订阅价格和收费设置不因这次法律壳层修正部署。TestFlight继续不分发，正式Web身份时间门仍按原合同。
+
+源码78f262a3a／CI148三个任务全部通过。Cloudflare实际生产部署e2d5857d-3bbf-441d-8d36-2b809a1b3271成功，canonical/latest及源码一致；服务端接收前又核对worker SHA256为c81f9a3a30f150c711c64c7ddc44e4525e88aaf0bcd2a70f3d33b495c4169906，避免提交错误构建。当前真正线上页面已回读，不把本地候选当作发布完成。
 
 QA：output/qa/rillora-legal-layout-20261013。实际发布产物含既有公开运营者字段，留在受保护构建目录，后续仅用密文原件保存；凭据不进入Git。最终状态和唯一下一步见[当前交接](handoff.md)。

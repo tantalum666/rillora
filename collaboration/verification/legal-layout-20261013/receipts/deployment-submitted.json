@@ -1,0 +1,27 @@
+{
+  "success": true,
+  "status": 200,
+  "errors": [],
+  "workerHashMatched": true,
+  "previousDeployment": "e99e137f-d469-4452-b796-4844ee38fb8d",
+  "deployment": {
+    "id": "e2d5857d-3bbf-441d-8d36-2b809a1b3271",
+    "url": "https://e2d5857d.rillora-legal-pages.pages.dev",
+    "environment": "production",
+    "stage": {
+      "name": "queued",
+      "started_on": null,
+      "ended_on": null,
+      "status": "idle"
+    },
+    "trigger": {
+      "type": "ad_hoc",
+      "metadata": {
+        "branch": "main",
+        "commit_hash": "78f262a3aadf624297953f6ad972a9e5e8a2d10b",
+        "commit_message": "Remove duplicate appearance and language notices from legal pages",
+        "commit_dirty": false
+      }
+    }
+  }
+}

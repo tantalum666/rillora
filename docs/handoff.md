@@ -1,13 +1,13 @@
 # Rillora 当前交接
 
-Status: LEGAL-PAGE NOTICE REMOVAL VALIDATED / LEGAL DEPLOYMENT PENDING / PREVIOUS RELEASE GATES RETAINED
+Status: LEGAL NOTICE BOXES REMOVED AND DEPLOYED / PREVIOUS RELEASE GATES RETAINED
 Last updated: 2026-10-13 (Asia/Hong_Kong)
 
 ## 当前任务
 
 Owner要求推进到正式上线状态，沿用[当前收尾](final-readiness-20261013.md)和[商店预检](app-store-preflight-20261013.md)。活动工作树/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app，分支codex/security-findings-20261011；本轮QA是output/qa/rillora-final-readiness-20261013。旧20ec61222交接保留为[HISTORICAL](handoff-history-20261013-before-final-readiness.md)。
 
-Owner最新反馈已确认原生Terms和Privacy均能打开，要求删去隐私页顶部外观／语言重复说明；按[精简合同](legal-page-layout-20261013.md)执行，QA补充为output/qa/rillora-legal-layout-20261013。最终候选只删壳层插入点，不加折叠；191Web／8法律产物通过，发布待接续。
+Owner最新反馈确认原生Terms和Privacy均能打开，要求删除隐私页顶部外观／语言重复说明；[本轮修正](legal-page-layout-20261013.md)已只删壳层插入点并发布，不加折叠。78f262a3a／CI148通过，Cloudflare e2d5857d为当前成功生产版本；191Web／8法律产物／126包检查／50HTTPS及18资源、线上中英文移动／桌面通过。正文、版本及同意摘要不变，QA为output/qa/rillora-legal-layout-20261013。
 
 ## 已完成
 
@@ -30,4 +30,4 @@ Auth0桌面旧外壳3句英文仍为原有Free402限制，社区已收件；未�
 
 ## 唯一下一步
 
-完成已验证的法律页重复说明删除，只发布现有legal.rillora.xyz并核对中英文／移动端与精确产物，然后保存新增Git证据。Web身份时间门、Apple正式API支持回复及剩余原生／专用审核账号验收各自保持，不重跑已完成项目。
+完成本次小范围新增证据的Git保存与独立回读，然后按香港October14 04:21身份时间门完成Web最后开放；Apple正式API支持回复及剩余原生／专用审核账号验收各自保持，不重跑已完成项目。

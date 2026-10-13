@@ -5,7 +5,13 @@ Authority scope: Web Privacy Policy, Terms of Service, required factual inputs a
 Superseded by: applicable law, platform requirements, approved operator details and reviewed final legal text  
 Do not use for: personal legal advice, proof of global compliance, or permission to publish  
 Status: COMPLETE CHINESE/ENGLISH TEXT PUBLISHED AND BROWSER VERIFIED
-Last updated: 2026-10-10 (Asia/Hong_Kong)
+Last updated: 2026-10-13 (Asia/Hong_Kong)
+
+## October13 publication-shell notice removal
+
+Owner rejects the two appearance/language update boxes above Privacy/Cookies and selects removal rather than a replacement foldout. Only the LegalPublicationApp shell import/insertion is deleted; all seven accepted bodies, versions and the c983dc26 legal digest stay unchanged. Existing preference/storage facts remain on the website legal-information page. This is a presentation change, not a new agreement or data-processing policy.
+
+Source78f262a3a/CI148passes all three jobs. The existing rillora-legal-pages project now has successful production deployment e2d5857d-3bbf-441d-8d36-2b809a1b3271.191existing Web checks,8legal artifact checks,126self-contained package checks and50live HTTP checks pass; all18assets match. Actual390px/1440pxPrivacy, English/Chinese body comparison and language/legal navigation pass, with zero notice boxes or added foldouts. Only extension-origin console warnings were observed. No API/native/client-consent rollout or TestFlight follows. [Focused result](legal-page-layout-20261013.md).
 
 ## Current language update and hosting
 

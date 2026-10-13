@@ -1,0 +1,39 @@
+{
+  "at": "2026-10-13T14:56:09.449326+00:00",
+  "source": "78f262a3aadf624297953f6ad972a9e5e8a2d10b",
+  "ci148AllThreePassed": true,
+  "deployedTo": "https://legal.rillora.xyz",
+  "deployment": "e2d5857d-3bbf-441d-8d36-2b809a1b3271",
+  "legalBodyAndVersionUnchanged": true,
+  "webTests": 191,
+  "legalArtifactTests": 8,
+  "packageChecks": 126,
+  "liveHttpChecks": 50,
+  "exactLiveAssets": 18,
+  "noticesAndReplacementFoldout": 0,
+  "actualViewports": [
+    [
+      390,
+      844
+    ],
+    [
+      1440,
+      900
+    ]
+  ],
+  "localPreviewStopped": true,
+  "specs": [
+    "docs/legal-page-layout-20261013.md",
+    "docs/public-legal-pages.md",
+    "docs/native-cross-platform-acceptance-20261012.md",
+    "docs/release-readiness.md",
+    "apps/web/AGENTS.md"
+  ],
+  "decisionReason": "Owner explicitly selected removal rather than the unshipped foldout",
+  "decisionLog": "docs/decision-log.md",
+  "journey": "docs/journey/PROJECT_JOURNEY.md",
+  "handoff": "docs/handoff.md",
+  "[PUBLIC_IDENTIFIER_OMITTED]": true,
+  "noNewTestFlight": true,
+  "archive38": "pending"
+}
