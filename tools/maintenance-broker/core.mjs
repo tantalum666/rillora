@@ -95,7 +95,7 @@ export async function executeMaintenance(input,call,config,clock=Date.now){
   else if(command.length===3&&command[0]==='node'&&command[1]==='dist/configure-production-web-billing.js'
     &&['inspect','activate','close-new-sales'].includes(command[2]))operation='billing-'+command[2];
   else if(command.length===3&&command[0]==='node'&&command[1]==='dist/configure-production-apple.js'
-    &&['inspect','prepare','renew-review','enroll-review','provision-reviewer'].includes(command[2]))operation='apple-'+command[2];
+    &&['inspect','prepare','close-new-sales','renew-review','enroll-review','provision-reviewer'].includes(command[2]))operation='apple-'+command[2];
   else if(command.length===4&&command[0]==='node'&&command[1]==='--input-type=module'&&command[2]==='-e'
     &&typeof command[3]==='string'&&hash(command[3])===config.isolationScriptSha256)operation='isolation';
   else if(command.length===4&&command[0]==='node'&&command[1]==='--input-type=module'&&command[2]==='-e'
@@ -109,8 +109,8 @@ export async function executeMaintenance(input,call,config,clock=Date.now){
     assert(/^[a-f0-9]{64}$/.test(values.RILLORA_BILLING_EXPECTED_SNAPSHOT??''),'fresh billing catalog fingerprint');
     allowed.push('RILLORA_BILLING_EXPECTED_SNAPSHOT');
   }
-  if(['apple-prepare','apple-renew-review','apple-enroll-review','apple-provision-reviewer'].includes(operation)){
-    assert(config.productionRuntimeMode==='live','Apple release configuration requires explicit live runtime');
+  if(['apple-prepare','apple-close-new-sales','apple-renew-review','apple-enroll-review','apple-provision-reviewer'].includes(operation)){
+    if(operation!=='apple-close-new-sales')assert(config.productionRuntimeMode==='live','Apple release configuration requires explicit live runtime');
     assert(/^[a-f0-9]{64}$/.test(values.RILLORA_APPLE_EXPECTED_SNAPSHOT??''),'fresh Apple catalog fingerprint');
     allowed.push('RILLORA_APPLE_EXPECTED_SNAPSHOT');
   }

@@ -70,19 +70,35 @@ describe('bounded Apple release configuration in an isolated database', () => {
     const repeated = await configureProductionApple(client, 'prepare', { expected: result.after.sha256 });
     expect(repeated.after.sha256).toBe(result.after.sha256);
   });
-  it('quotes both storefronts only after the separate market activation, without matching test or old external routes', async () => {
+  it('quotes both storefronts only after separate market and Apple route activation, without matching test or old external routes', async () => {
     await client.query('begin');
     try {
       await client.query("update app.commerce_operating_planes set status='active' where code='global'");
       await client.query("update app.commerce_operators set status='active' where operating_plane_code='global'");
       await client.query("update app.commerce_market_policies set status='active',sales_enabled=true where service_market_code='GLOBAL_US'");
       await client.query('update app.commerce_runtime_policy set production_entitlements_enabled=true where singleton');
+      await expect(loadApplePurchaseQuote(client as unknown as pg.PoolClient, { serviceMarketCode: 'GLOBAL_US', storefrontCountryCode: 'USA' })).rejects.toMatchObject({ code: 'apple_purchase_unavailable' });
+      await client.query("update app.commerce_purchase_route_policies set enabled=true where policy_code in('global_us_ios_usa_storekit_20261013','global_us_ios_hkg_storekit_20261013') and version=1");
       for (const [country, currency, minor] of [['USA', 'USD', 11999], ['HKG', 'HKD', 88800]] as const) {
         const result = await loadApplePurchaseQuote(client as unknown as pg.PoolClient, { serviceMarketCode: 'GLOBAL_US', storefrontCountryCode: country });
         expect(result.quote).toMatchObject({ amountMinor: minor, currency, priceMilliunits: minor * 10, billingPeriod: 'annual' });
       }
       await expect(loadApplePurchaseQuote(client as unknown as pg.PoolClient, { serviceMarketCode: 'GLOBAL_US', storefrontCountryCode: 'AUS' })).rejects.toMatchObject({ code: 'apple_purchase_unavailable' });
     } finally { await client.query('rollback'); }
+  });
+  it('closes only the two prepared Production Apple routes while retaining Web, review access and all prices', async () => {
+    const codes = ['global_us_ios_usa_storekit_20261013', 'global_us_ios_hkg_storekit_20261013'];
+    await client.query('update app.commerce_purchase_route_policies set enabled=true where policy_code=any($1::text[]) and version=1', [codes]);
+    const before = await configureProductionApple(client, 'inspect');
+    await expect(configureProductionApple(client, 'close-new-sales', { expected: '0'.repeat(64) })).rejects.toThrow('changed after inspection');
+    const result = await configureProductionApple(client, 'close-new-sales', { expected: before.after.sha256 });
+    expect(result.after.data).toEqual({ ...before.after.data,
+      routes: before.after.data.routes.map(r => codes.includes(r.policy_code) && r.version === 1 ? { ...r, enabled: false } : r),
+    });
+    const repeated = await configureProductionApple(client, 'close-new-sales', { expected: result.after.sha256 });
+    expect(repeated.after.sha256).toBe(result.after.sha256);
+    const preparedAgain = await configureProductionApple(client, 'prepare', { expected: repeated.after.sha256 });
+    expect(preparedAgain.after.sha256).toBe(result.after.sha256);
   });
   it('rejects conflicting current amounts atomically instead of overwriting an existing price', async () => {
     await client.query("update app.commerce_prices set amount_minor=12000 where price_code='family_apple_usd_11999_20261013'");

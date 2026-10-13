@@ -93,6 +93,24 @@ class PreparationGuards(unittest.TestCase):
                     main(module, '--apply', '--output', str(Path(temporary) / 'receipt.json'))
             self.assertEqual(writes, [])
 
+    def test_renamed_customer_facing_clients_cannot_be_recreated(self):
+        module = load('prepare-production-clients')
+        calls = []
+        def api(method, resource, body=None):
+            calls.append(method)
+            if method != 'get': raise AssertionError('Provider mutation is forbidden')
+            if resource.startswith('clients?'):
+                return [{'client_id': 'retained-production-fixture', 'name': 'Rillora',
+                         'app_type': 'native', 'client_metadata': {'environment': 'production'}}]
+            if resource.startswith('resource-servers?'): return []
+            if resource.startswith('connections?'): return [{'id': 'fixture-connection', 'name': 'apple', 'strategy': 'apple'}]
+            if resource.startswith('connections/'): return {'clients': [{'client_id': 'retained-production-fixture'}]}
+            raise AssertionError(resource)
+        with tempfile.TemporaryDirectory() as temporary, patch.object(module, 'api', api):
+            with self.assertRaisesRegex(RuntimeError, 'Existing production client.*active connection'):
+                main(module, '--apply', '--output', str(Path(temporary) / 'receipt.json'))
+        self.assertTrue(all(method == 'get' for method in calls))
+
     def run_theme_fixture(self, first_read_status):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)

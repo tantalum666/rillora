@@ -79,7 +79,7 @@ def main():
     parser.add_argument('--apply', action='store_true')
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
-    clients = api('get', 'clients?fields=client_id,name,app_type&include_fields=true&per_page=100')
+    clients = api('get', 'clients?fields=client_id,name,app_type,client_metadata&include_fields=true&per_page=100')
     if len(clients) >= 100:
         raise RuntimeError('Client inventory must be complete.')
     servers = api('get', 'resource-servers?per_page=100')
@@ -103,6 +103,10 @@ def main():
         return
     existing_production = [existing['client_id'] for spec in CLIENTS.values()
                            if (existing := exact(clients, spec['name']))]
+    # Customer-facing names may change after activation. They are not resource
+    # identities and must never make an active production client look missing.
+    existing_production.extend(c['client_id'] for c in clients
+                               if c.get('client_metadata', {}).get('environment') == 'production')
     if any(identifier in bindings for identifier in existing_production for bindings in before.values()):
         raise RuntimeError('Existing production client has active connection bindings; preparation cannot disable an activated client')
     production = []

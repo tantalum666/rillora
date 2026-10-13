@@ -6,7 +6,7 @@ import { loadDatabaseConfig } from './config.js';
 import { databaseConnectionOptions } from './db.js';
 
 type Client = Pick<PoolClient, 'query'>;
-type Operation = 'inspect' | 'prepare' | 'renew-review' | 'enroll-review' | 'provision-reviewer';
+type Operation = 'inspect' | 'prepare' | 'close-new-sales' | 'renew-review' | 'enroll-review' | 'provision-reviewer';
 class AppleConfigurationError extends Error {}
 const requireFact = (condition: unknown, message: string): void => { if (!condition) throw new AppleConfigurationError(message); };
 const offers = [
@@ -41,7 +41,7 @@ async function readCatalog(client: Client) {
 export async function configureProductionApple(client: Client, operation: Operation,
   options: { expected?: string | undefined; reviewDigests?: string[] | undefined; reviewExpiresAt?: string | undefined;
     reviewerSubject?: string | undefined } = {}) {
-  requireFact(['inspect', 'prepare', 'renew-review', 'enroll-review', 'provision-reviewer'].includes(operation), 'Unknown Apple configuration operation');
+  requireFact(['inspect', 'prepare', 'close-new-sales', 'renew-review', 'enroll-review', 'provision-reviewer'].includes(operation), 'Unknown Apple configuration operation');
   if (operation !== 'inspect') requireFact(/^[a-f0-9]{64}$/.test(options.expected ?? ''), 'Fresh catalog fingerprint required');
   await client.query(operation === 'inspect' ? 'begin isolation level repeatable read read only' : 'begin isolation level serializable');
   try {
@@ -97,7 +97,7 @@ export async function configureProductionApple(client: Client, operation: Operat
           && storefront.status === 'active' && storefront.effective_to === null, 'Conflicting prepared storefront');
         await client.query(`insert into app.commerce_purchase_route_policies(policy_code,version,market_policy_id,
           storefront_policy_id,purchase_route,provider_code,enabled,status,effective_from)
-          values($1,1,$2,$3,'apple_storekit','storekit',true,'active',now()) on conflict(policy_code,version) do nothing`,
+          values($1,1,$2,$3,'apple_storekit','storekit',false,'active',now()) on conflict(policy_code,version) do nothing`,
           [routeCode, market.id, storefront.id]);
         const bindings = (await client.query('select * from app.commerce_apple_price_bindings where binding_code=$1', [bindingCode])).rows;
         requireFact(bindings.length === 1 && bindings[0].price_id === price.id && bindings[0].provider_environment === 'production'
@@ -106,7 +106,7 @@ export async function configureProductionApple(client: Client, operation: Operat
         const routes = (await client.query('select * from app.commerce_purchase_route_policies where policy_code=$1 and version=1', [routeCode])).rows;
         requireFact(routes.length === 1 && routes[0].market_policy_id === market.id && routes[0].storefront_policy_id === storefront.id
           && routes[0].provider_code === 'storekit' && routes[0].purchase_route === 'apple_storekit'
-          && routes[0].enabled === true && routes[0].status === 'active' && routes[0].effective_to === null, 'Conflicting prepared route');
+          && typeof routes[0].enabled === 'boolean' && routes[0].status === 'active' && routes[0].effective_to === null, 'Conflicting prepared route');
       }
       // One merchandising SKU serves versioned storefront price bindings. It is
       // separate from the historical Sandbox SKU and does not price transactions.
@@ -120,6 +120,12 @@ export async function configureProductionApple(client: Client, operation: Operat
       requireFact(products.length === 1 && products[0].price_id === usaPrice.id && products[0].status === 'active'
         && products[0].storefront_country_code === null && products[0].external_parent_product_reference === '22325627'
         && products[0].provider_account_reference === 'com.rillora.ios' && products[0].effective_to === null, 'Conflicting prepared product');
+    } else if (operation === 'close-new-sales') {
+      const codes = offers.map(o => `global_us_ios_${o.country.toLowerCase()}_storekit_${policy}`);
+      const routes = d.routes.filter(r => codes.includes(r.policy_code) && r.version === 1);
+      requireFact(routes.length === 2 && routes.every(r => r.provider_code === 'storekit' && r.purchase_route === 'apple_storekit'
+        && r.status === 'active'), 'Only the prepared Production Apple routes can be closed');
+      await client.query('update app.commerce_purchase_route_policies set enabled=false where id=any($1::bigint[])', [routes.map(r => r.id)]);
     } else if (operation === 'renew-review' || operation === 'enroll-review' || operation === 'provision-reviewer') {
       const digests = options.reviewDigests ?? [], expiry = Date.parse(options.reviewExpiresAt ?? '');
       requireFact(digests.length > 0 && digests.length <= 3 && new Set(digests).size === digests.length

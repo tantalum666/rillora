@@ -86,7 +86,7 @@ test('fixed billing operations retain the source scope, inspected-state precondi
 
 test('Apple configuration permits only fixed operations, reviewed fingerprints and finite existing-review scopes',async()=>{
  const now=Date.now(),expiry=new Date(now+86400_000).toISOString(),settings={...config,productionRuntimeMode:'live'};
- for(const operation of ['inspect','prepare','renew-review']){
+ for(const operation of ['inspect','prepare','close-new-sales','renew-review']){
   const request=task(),container=request.overrides.containerOverrides[0];
   container.command=['node','dist/configure-production-apple.js',operation];
   if(operation!=='inspect')container.environment.push({name:'RILLORA_APPLE_EXPECTED_SNAPSHOT',value:'b'.repeat(64)});
@@ -101,7 +101,10 @@ test('Apple configuration permits only fixed operations, reviewed fingerprints a
    assert.equal(bad.writes.length,0);
   }
   if(operation!=='inspect'){
-   await assert.rejects(executeMaintenance({operation:'task',run,runToken,request},fixture().call,{...settings,productionRuntimeMode:'review'},()=>now));
+   if(operation==='close-new-sales'){
+    const closed=fixture();await executeMaintenance({operation:'task',run,runToken,request},closed.call,{...settings,productionRuntimeMode:'review'},()=>now);
+    assert.equal(closed.writes.length,1);
+   }else await assert.rejects(executeMaintenance({operation:'task',run,runToken,request},fixture().call,{...settings,productionRuntimeMode:'review'},()=>now));
    const missing=structuredClone(request);missing.overrides.containerOverrides[0].environment.splice(1,1);
    await assert.rejects(executeMaintenance({operation:'task',run,runToken,request:missing},fixture().call,settings,()=>now));
   }
