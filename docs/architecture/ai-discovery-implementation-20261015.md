@@ -61,4 +61,4 @@ OpenAI等平台配置依据本轮已读取官方正文；公开JSON Schema地址
 
 新功能仍未部署，没有新测试交易、真实用户数据披露、App Store构建替换或TestFlight分发。后续需在与当前审核服务分开的候选环境完成真实OAuth和至少两家实际客户端验收，再独立发布官网／MCP与申请目录。
 
-Git交付：源码及archive40已推送15770aa4d；三份关键源码远端字节匹配，新增归档从GitHub独立下载后507对象／1,057路径全部认证。既有1—39不重复下载。远端CI因本机令牌缺少读取权限且GitHub浏览器连接关闭而尚未读回，不能写成通过；最后状态回执普通Git补交。[远端证据](../../collaboration/verification/ai-implementation-20261015/remote-readback.json)。
+Git交付：源码及archive40已推送15770aa4d；三份关键源码远端字节匹配，新增归档从GitHub独立下载后507对象／1,057路径全部认证。既有1—39不重复下载。交付时CI读取受限，随后[October16续验](ai-integration-acceptance-20261016.md)通过恢复的GitHub连接器读回CI158／159均成功，并新增当前Codex兼容包与两客户端本地连接证据。[原远端归档证据](../../collaboration/verification/ai-implementation-20261015/remote-readback.json)保持不变。

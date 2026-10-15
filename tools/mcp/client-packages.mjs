@@ -25,8 +25,8 @@ export function clientPackages(input) {
   const json = value => JSON.stringify(value, null, 2) + '\n';
   const server = url.href;
   const ids = input.clientIds;
-  if (ids.openai) {
-    files['openai/plugin.json'] = json({ $schema: 'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json',
+  if (ids.openai || ids.codex) {
+    const manifest = { $schema: 'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json',
       name: 'rillora', version: '0.1.0', description: 'Read explicitly selected Rillora matters and check missing common information.',
       author: { name: 'Rillora', email: 'support@rillora.xyz', url: 'https://www.rillora.xyz' }, homepage: 'https://www.rillora.xyz',
       keywords: ['digital legacy', 'digital affairs', 'family planning'],
@@ -35,10 +35,20 @@ export function clientPackages(input) {
         developerName: 'Rillora', category: 'Productivity', capabilities: ['Read'], websiteURL: 'https://www.rillora.xyz',
         privacyPolicyURL: 'https://legal.rillora.xyz/privacy', termsOfServiceURL: 'https://legal.rillora.xyz/terms',
         composerIcon: './assets/icon.png', logo: './assets/icon.png',
-        defaultPrompt: ['Review the matters I selected in Rillora.', 'Check missing common information in my selected Rillora matters.'] } } } });
-    files['openai/mcp.json'] = json({ $schema: 'https://agent-plugins.org/schemas/1.0.0/mcp.schema.json',
-      mcpServers: { rillora: { type: 'streamable-http', url: server,
-        extensions: { 'com.openai': { auth: { type: 'oauth', client: { mode: 'provided', clientId: ids.openai, tokenEndpointAuthMethod: 'none' }, baseScopes: scopes } } } } } });
+        defaultPrompt: ['Review the matters I selected in Rillora.', 'Check missing common information in my selected Rillora matters.'] } } } };
+    if (ids.codex) {
+      // Current Codex accepts OAuth in the compatibility format. A portable
+      // manifest's mcp.json takes precedence and cannot be mixed into this folder.
+      files['codex-plugin/.codex-plugin/plugin.json'] = json({ name: manifest.name, version: manifest.version,
+        description: manifest.description, interface: manifest.extensions['com.openai'].interface, mcpServers: './.mcp.json' });
+      files['codex-plugin/.mcp.json'] = json({ mcpServers: { rillora: { type: 'http', url: server, oauth: { clientId: ids.codex } } } });
+    }
+    if (ids.openai) {
+      files['openai/plugin.json'] = json(manifest);
+      files['openai/mcp.json'] = json({ $schema: 'https://agent-plugins.org/schemas/1.0.0/mcp.schema.json',
+        mcpServers: { rillora: { type: 'streamable-http', url: server,
+          extensions: { 'com.openai': { auth: { type: 'oauth', client: { mode: 'provided', clientId: ids.openai, tokenEndpointAuthMethod: 'none' }, baseScopes: scopes } } } } } });
+    }
   }
   if (ids.codex) files['codex/setup.sh'] = `#!/bin/sh\nset -eu\ncodex mcp add rillora --url ${quote(server)} --oauth-client-id ${quote(ids.codex)} --oauth-resource ${quote(server)}\n`;
   if (ids['claude-code']) files['claude-code/mcp.json'] = json({ mcpServers: { rillora: { type: 'http', url: server,
@@ -48,6 +58,8 @@ export function clientPackages(input) {
     oauth: { enabled: true, clientId: ids['gemini-cli'], scopes } } } });
   files['readiness.json'] = json({ status: input.example ? 'EXAMPLE_ONLY_NOT_INSTALLABLE' : 'CONFIGURATION_GENERATED_NOT_CONNECTED',
     serverUrl: server, clients: Object.keys(ids), tools, scopes, credentialsIncluded: false,
+    packaging: { openai: 'Documented portable OAuth extension; host support must be verified',
+      codexPlugin: 'Separate compatibility package with pre-registered OAuth; no portable root manifest' },
     pending: ['Exact OAuth callbacks and Auth0 resource compatibility verified', 'Dedicated audience and each registered client verified',
       'User selected scope and real OAuth connection acceptance', 'Provider-specific directory submission and approval where required'] });
   return files;
@@ -62,9 +74,10 @@ async function main() {
   const out = resolve(values.out);
   await mkdir(out); // Refuse to overwrite an existing package or installed configuration.
   for (const [path, body] of Object.entries(files)) { await mkdir(dirname(resolve(out, path)), { recursive: true }); await writeFile(resolve(out, path), body); }
-  if (files['openai/plugin.json']) {
-    await mkdir(resolve(out, 'openai/assets'));
-    await copyFile(new URL('../../apps/web/src/assets/brand/apple-touch-icon.png', import.meta.url), resolve(out, 'openai/assets/icon.png'));
+  for (const directory of ['openai', 'codex-plugin']) {
+    if (!Object.keys(files).some(path => path.startsWith(directory + '/'))) continue;
+    await mkdir(resolve(out, directory, 'assets'));
+    await copyFile(new URL('../../apps/web/src/assets/brand/apple-touch-icon.png', import.meta.url), resolve(out, directory, 'assets/icon.png'));
   }
   process.stdout.write(JSON.stringify({ files: Object.keys(files).length, credentialsIncluded: false, installed: false, submitted: false }) + '\n');
 }

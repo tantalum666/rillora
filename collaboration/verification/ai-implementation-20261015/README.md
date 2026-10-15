@@ -18,3 +18,5 @@ Status: SOURCE AND ARCHIVE PUSHED / LOCAL VERIFIED / REMOTE CI NOT YET READABLE
 浏览器截图：[英文资料页](screenshots/learning-en-1440.png)、[中文资料页](screenshots/learning-zh-CN-390.png)、[英文选择授权](screenshots/ai-consent-en.png)、[中文选择授权](screenshots/ai-consent-zh-CN.png)。截图均为公开页面或合成测试内容，不是真实个人资料。
 
 [源码提交15770aa4d](https://github.com/tantalum666/rillora/commit/15770aa4de8813520c5dad2254a4158b11536381)已推送指定下一版分支；[三份关键文件远端回读](receipts/remote-source-readback.json)逐字节一致。[检查状态回执](receipts/github-check-status.json)明确不可读：当前令牌拒绝Actions／check状态，IAB和Chrome均遇到GitHub连接关闭。本地检查通过不能代替远端CI；未修改凭据权限或要求重复登录。最后文档／状态回执作为后续普通Git提交保存，不重封archive40。
+
+后续状态：这份首次发布记录中的CI读取限制已由[October16续验](../ai-acceptance-20261016/README.md)关闭，CI158／159均成功。此处原始失败回执不改写；archive40不重封或重复下载。

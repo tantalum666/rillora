@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-16",
+  "mode": "continuation of existing next-version workflow",
+  "baseline": "48ee3ad719e03d5905e4e10f7490b8b2b40cfdae",
+  "retainedFullRead": "collaboration/verification/ai-implementation-20261015/reading.json",
+  "currentReads": {
+    "AGENTS.md": "full",
+    "docs/product.md": "1-20; same locked sections retained from preceding continuation",
+    "docs/handoff.md": "full",
+    "docs/decision-log.md": "latest 15 lines",
+    "docs/architecture/ai-discovery-implementation-20261015.md": "full",
+    "integrations/ai/README.md": "full including new acceptance section",
+    "tools/security/README.md": "full",
+    "tools/auth0/prepare-production-clients.py": "full",
+    "infra/aws/bin/rillora.ts": "full",
+    "infra/aws/lib/rillora-staging-stack.ts": "1-135; read only candidate routing investigation",
+    "docs/architecture/ai-integration-acceptance-20261016.md": "newly authored full",
+    "tools/mcp/client-packages.mjs": "full before and after narrow compatibility change",
+    "tools/mcp/client-packages.test.mjs": "full",
+    "apps/api/tests/mcp.integration.test.ts": "1-165 for reusing isolated fixture pattern"
+  },
+  "scope": "Retry remote CI, then isolated OAuth/client readiness without changing App14 or production runtime, prices, sales and data",
+  "exclusions": [
+    "dependencies",
+    "caches",
+    "generated output",
+    "collaboration evidence copies and encrypted archives"
+  ],
+  "noRepeatedBaselineTests": true,
+  "completedAt": "2026-10-15T19:02:05.503260+00:00"
+}

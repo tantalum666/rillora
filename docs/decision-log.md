@@ -3520,3 +3520,10 @@ local correction/tests and actual restoration remain separate evidence.
 - Agent chooses a narrow first integration: two read-only tools, up to20 selected matters,7-day scoped grants, ordinary selected-field updates readable, and permanent removal when made private/archived. Replacement needs fresh explicit consent and version checks. No generic REST bridge, model call, write/payment/export/release tools or first-party credential reuse.
 - Both runtime and UI flags default off. Isolated protocol/consent/recovery tests and five generated platform configurations are source evidence; independent provider OAuth/client acceptance, directory review and deployment remain required. CurrentApp14, production data, prices, sales controls and FanPass stay unchanged; noTestFlight.
 - Full regression identified the deletion worker's omitted journal permission after the new formatter. Append-only0105preserves the prior exact permission and closes the old formatter entry; no broad grant, checksum bypass or real database mutation. [Implementation and evidence](architecture/ai-discovery-implementation-20261015.md).
+
+
+## 2026-10-16 — Isolate current Codex packaging from the newer portable OAuth format
+
+- Continuing Owner-authorized cross-platform acceptance, the actual current Codex parser rejects portable server.extensions and silently omits the server after parsing the manifest. The official OpenAI guide still documents that OAuth extension location.
+- Preserve the documented portable package for compatible directory hosts and generate a separate current-Codex compatibility package; do not delete authentication, invent a successful universal-schema result, upgrade the user's desktop app or change global plugin configuration. Both outputs share the existing service and metadata.
+- Real local Codex/Gemini client discovery uses only signed synthetic identities. It does not close provider OAuth, model tool-selection, marketplace review or public deployment. Current review/runtime/data/prices remain unchanged; no new product or pricing decision is introduced.

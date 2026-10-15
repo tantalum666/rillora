@@ -28,6 +28,7 @@ node --test tools/mcp/client-packages.test.mjs
 | 交付 | 用途 | 实际接入仍需完成 |
 | --- | --- | --- |
 | OpenAI portable plugin.json／mcp.json | ChatGPT／Codex 共用插件包，明确 OAuth provided client 与只读能力 | 真实 HTTPS 地址、平台注册连接、回调核对、用户 OAuth 和目录审核；不伪造 plugin_asdk_app ID |
+| codex-plugin 兼容包 | 当前Codex的 `.codex-plugin/plugin.json` 与 `.mcp.json`，保留固定OAuth客户端 | 已在0.162.0-alpha.17.2真实解析器识别服务；真实OAuth仍待验。不要把portable根manifest／mcp.json混进这个目录，否则其优先级会覆盖兼容配置 |
 | Codex setup.sh | 使用本机已核对的 mcp add／oauth-client-id／oauth-resource 参数 | 核对 CLI 选用的完整回调后注册，再用 mcp login；生成文件不自动执行 |
 | Claude Code mcp.json | HTTP、固定 clientId 和最小 scopes | 使用本机版本实际回调；需要时指定已登记 callbackPort，不能使用通配回调 |
 | Cursor mcp.json | HTTP 与固定 CLIENT_ID／scopes | 按使用的 Desktop／Web 入口分别登记其官方回调 |
@@ -50,6 +51,12 @@ node --test tools/mcp/client-packages.test.mjs
 7. 在每个实际客户端验证连接、工具选择、拒绝越权、普通更新可读、不披露／归档后不复活、撤销、到期与网络失败。生产部署、目录提交、批准、发现与真实增长分别记账。
 
 本轮本地协议测试没有替代真实 Auth0 回调或所有 AI 产品验收；没有创建新账号／凭据、发邀请、购买服务、开启生产 MCP 或分发 TestFlight。
+
+## October16 客户端验收补充
+
+源码CI158和收尾CI159已由GitHub连接器读回，三任务均成功，旧的CI读取阻塞已关闭。[本轮续验](../../docs/architecture/ai-integration-acceptance-20261016.md)发现官方通用MCP JSON Schema与OpenAI文档的OAuth扩展存在差异；本机Codex确实忽略portable server.extensions，故新增单独兼容包，保留原目录格式而不删认证字段。最终兼容包已被真实解析器识别为一个Rillora服务，未安装或启用。
+
+Codex和Gemini CLI0.64.0都已连接本机Rillora接口；Codex读取两工具目录，Gemini报告Connected。使用本地生成的签名合成身份，属于传输／工具发现验证，不是Auth0或消费聊天产品端到端通过。Gemini配置在独立临时profile中，仅信任该合成fixture，完成后清理；未改变用户全局配置、调用模型或泄露真实事项。真实OAuth、工具选择和每个平台目录继续单独验收。
 
 ## 官方资料
 

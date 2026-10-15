@@ -1,6 +1,6 @@
 # Rillora 当前交接
 
-Status: NEXT-VERSION SOURCE PUSHED / REMOTE ARCHIVE VERIFIED / CI READBACK BLOCKED / CURRENT REVIEW PRESERVED
+Status: NEXT-VERSION CI158/159 VERIFIED / TWO LOCAL CLIENTS VERIFIED / AUTH0 LOGIN PENDING / CURRENT REVIEW PRESERVED
 Last updated: 2026-10-16 (Asia/Hong_Kong)
 
 ## 当前任务
@@ -22,10 +22,14 @@ Owner明确按[跨平台方案](architecture/ai-discovery-vnext-20261015.md)实�
 
 [本轮QA](../collaboration/verification/ai-implementation-20261015/README.md)区分源码、本地合成检查、真实平台连接、目录、部署、搜索引用及增长。官网/API/Auth0/云端数据库均未变；没有真实事项发给AI，没有创建新凭据、花模型额度、金融交易或TestFlight。WebUSD88.99、AppleUSD119.99／HKD888、数据、收费开关和FanPass保持。
 
-远端CI目前未读回：本机令牌对Actions／check状态返回403，IAB与Chrome访问GitHub均连接关闭。这不是CI失败或登录失效证明，不要求Owner重新登录；本地测试／源代码／加密归档远端核验各自已经完成。
+October16续验：GitHub连接器恢复可用，已读回源码15770aa4d的CI158、收尾48ee3ad71的CI159，两个运行的source／api／web-and-infrastructure三任务全部成功。此前CLI权限与浏览器连接限制保留为历史失败，不再是当前门。本轮不重跑已通过的本地套件或archive40。
+
+AWS与Auth0CLI本次只读请求均证明确实过期。AWS已复用原密码／本人验证恢复，并通过原账户STS与只读栈清单；没有部署。Auth0首次设备流返回Invalid network change，新设备流已正常进入原邮箱登录页，Owner要求重新拉起后已打开并保留，等待本人完成；不把该恢复扩大为全租户配置变更。当前增量记录在 output/qa/rillora-ai-acceptance-20261016。
+
+[October16续验](architecture/ai-integration-acceptance-20261016.md)另发现当前Codex会忽略portable包的OAuth扩展，已添加并真实解析验证独立兼容包。Codex和Gemini CLI都连到本机真实Rillora接口，前者读取两工具目录，后者Connected；仅合成签名身份，没有真实Auth0／模型调用。临时身份、角色和Gemini独立profile已清理。等待期间Auth0设备码实际到期，收尾重新拉起一次，不重复AWS登录或既有测试。
 
 当前Apple审核独立等待，沿用手动发布及获批后Production核验再开放Apple普通新购的顺序。Auth0外壳按Owner指令暂缓；Owner已停止真机检查，不重新要求参与。原件保存只新增本轮证据，旧1—39不重封、不重复下载。
 
 ## 唯一下一步
 
-读回15770aa4d对应的GitHub CI结果，目前只读权限与浏览器连接受限；通过后按已写次序在隔离候选环境完成真实OAuth及至少两家实际AI客户端验收。不重复本地已通过检查、旧归档或本人认证，不改当前在审服务。
+完成当前有效Auth0设备登录后，先只读核对resource兼容配置及已有客户端，再准备独立OAuth验收环境。已通过的CI、兼容包解析和本地两客户端连接不重做；当前审核服务不变，真实OAuth、对话工具调用、目录批准和部署仍分别验收。

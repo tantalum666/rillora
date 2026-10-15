@@ -11,7 +11,7 @@ Last updated: 2026-10-16 (Asia/Hong_Kong)
 
 ## 2026-10-15 审核期间启动跨平台 AI 下一版本方向
 
-Owner 要求当前 Apple 审核继续，新功能放到下一版本，并明确按方案实施及推Git；AI目标覆盖各平台。当前以[跨平台方案](architecture/ai-discovery-vnext-20261015.md)区分公开搜索推荐、目录分发和连接后的受权操作。[本地实施候选](architecture/ai-discovery-implementation-20261015.md)现包含20页双语HTML、两个只读MCP工具、选定范围授权和五种客户端配置。尚未部署、真实连接或上架，不能保证自动推荐；旧提案更宽范围仍未全部实现。在审构建、生产数据、定价与收费状态保持。
+Owner 要求当前 Apple 审核继续，新功能放到下一版本，并明确按方案实施及推Git；AI目标覆盖各平台。当前以[跨平台方案](architecture/ai-discovery-vnext-20261015.md)区分公开搜索推荐、目录分发和连接后的受权操作。[实施候选](architecture/ai-discovery-implementation-20261015.md)包含20页双语HTML、两个只读MCP工具、选定范围授权和多平台配置。[October16续验](architecture/ai-integration-acceptance-20261016.md)补齐CI158／159、当前Codex兼容包和两家实际客户端的本地传输／发现；真实OAuth／目录／部署仍未完成，不能保证自动推荐。在审构建、生产数据、定价与收费状态保持。
 
 ## 2026-10-15 Web正式开放与Owner停止真机验证
 

@@ -7,7 +7,7 @@ const input = { serverUrl: 'https://mcp.example.test/mcp', example: true, client
 } };
 test('five platform configurations share the resource and least-privilege OAuth scopes without credentials', () => {
   const files = clientPackages(input);
-  assert.equal(Object.keys(files).length, 7);
+  assert.equal(Object.keys(files).length, 9);
   for (const [name, body] of Object.entries(files)) {
     if (!name.endsWith('plugin.json')) assert.ok(body.includes(input.serverUrl));
     assert.doesNotMatch(body, /clientSecret|CLIENT_SECRET|Bearer |bearer_token|approval_policy|sandbox_mode/);
@@ -16,6 +16,11 @@ test('five platform configurations share the resource and least-privilege OAuth 
   assert.equal(remote.type, 'streamable-http');
   assert.deepEqual(remote.extensions['com.openai'].auth.baseScopes, ['matters:read:summary', 'readiness:read:scoped']);
   assert.equal(JSON.parse(files['openai/plugin.json']).extensions['com.openai'].interface.capabilities[0], 'Read');
+  const compatibility = JSON.parse(files['codex-plugin/.codex-plugin/plugin.json']);
+  assert.equal(compatibility.mcpServers, './.mcp.json');
+  assert.equal(JSON.parse(files['codex-plugin/.mcp.json']).mcpServers.rillora.oauth.clientId, input.clientIds.codex);
+  assert.ok(!Object.hasOwn(files, 'codex-plugin/plugin.json'));
+  assert.ok(!Object.hasOwn(files, 'codex-plugin/mcp.json'));
   assert.equal(JSON.parse(files['readiness.json']).status, 'EXAMPLE_ONLY_NOT_INSTALLABLE');
 });
 test('rejects non-owned targets, credentials, query-bearing endpoints and duplicate registrations', () => {

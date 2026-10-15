@@ -1,0 +1,62 @@
+{
+  "readAt": "2026-10-15T18:27:25.269Z",
+  "source": "existing GitHub connector; no expanded CLI scope",
+  "runs": [
+    {
+      "id": 38768668766,
+      "number": 159,
+      "head": "48ee3ad719e03d5905e4e10f7490b8b2b40cfdae",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/tantalum666/rillora/actions/runs/38768668766",
+      "jobs": [
+        {
+          "name": "api",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/tantalum666/rillora/actions/runs/38768668766/job/116538451012"
+        },
+        {
+          "name": "web-and-infrastructure",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/tantalum666/rillora/actions/runs/38768668766/job/116538451153"
+        },
+        {
+          "name": "source",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/tantalum666/rillora/actions/runs/38768668766/job/116538451220"
+        }
+      ]
+    },
+    {
+      "id": 38768101244,
+      "number": 158,
+      "head": "15770aa4de8813520c5dad2254a4158b11536381",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/tantalum666/rillora/actions/runs/38768101244",
+      "jobs": [
+        {
+          "name": "source",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/tantalum666/rillora/actions/runs/38768101244/job/116536500741"
+        },
+        {
+          "name": "api",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/tantalum666/rillora/actions/runs/38768101244/job/116536501226"
+        },
+        {
+          "name": "web-and-infrastructure",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/tantalum666/rillora/actions/runs/38768101244/job/116536501307"
+        }
+      ]
+    }
+  ]
+}
