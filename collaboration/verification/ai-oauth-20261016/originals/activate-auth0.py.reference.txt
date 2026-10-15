@@ -1,0 +1,30 @@
+"""Activate only the purpose-tagged temporary client using the real client's exact callback."""
+from pathlib import Path
+from urllib.parse import urlsplit
+import importlib.util,json,hashlib
+ROOT=Path(__file__).resolve().parents[3]
+spec=importlib.util.spec_from_file_location('existing_auth0_helpers',ROOT/'tools/auth0/prepare-production-clients.py');h=importlib.util.module_from_spec(spec);spec.loader.exec_module(h)
+qa=ROOT/'output/qa/rillora-ai-oauth-20261016';private=ROOT/'.local-secrets/ai-oauth-20261016'
+state=json.loads((private/'registration.json').read_text());request=json.loads((qa/'codex-authorization-request.json').read_text())
+assert state['purpose']=='mcp-synthetic-acceptance-20261016' and state['name']=='Rillora MCP Acceptance - Codex'
+assert request['authorizationOrigin']=='https://login.rillora.xyz' and request['resource']==state['resource'] and request['pkce']=='S256' and request['publicClientMatches'] and not request['clientSecretPresent']
+assert sorted(request['scopes'])==['matters:read:summary','readiness:read:scoped']
+callback=request['redirectUri'];u=urlsplit(callback)
+assert u.scheme=='http' and u.hostname=='127.0.0.1' and u.port==58432 and u.path.startswith('/callback/') and not u.query and not u.fragment
+cid=state['clientId'];fields='client_id,name,app_type,grant_types,callbacks,client_metadata,token_endpoint_auth_method,oidc_conformant,is_first_party,jwt_configuration,global'
+clients=h.api('get','clients?fields='+fields+'&include_fields=true&per_page=100');assert len(clients)<100
+current=h.exact(clients,cid,'client_id');assert current['client_metadata']['purpose']==state['purpose'] and current['grant_types']==['authorization_code'] and current['token_endpoint_auth_method']=='none' and current['callbacks'] in [[],[callback]]
+connections=h.api('get','connections?fields=id,name,strategy&include_fields=true&per_page=100');assert len(connections)<100
+google=h.exact(connections,'google-oauth2','strategy');assert google
+before={c['id']:h.connection_clients(c['id']) for c in connections}
+old_clients=[v for v in clients if v['client_id']!=cid];settings=h.api('get','tenants/settings')
+h.api('patch','clients/'+cid,{'callbacks':[callback]})
+if cid not in before[google['id']]:h.api('patch','connections/'+google['id']+'/clients',[{'client_id':cid,'status':True}])
+after={c['id']:h.connection_clients(c['id']) for c in connections}
+assert all(sorted(x for x in before[k] if x!=cid)==sorted(x for x in v if x!=cid) for k,v in after.items())
+assert [k for k,v in after.items() if cid in v]==[google['id']]
+new_clients=h.api('get','clients?fields='+fields+'&include_fields=true&per_page=100');assert old_clients==[v for v in new_clients if v['client_id']!=cid]
+assert h.exact(new_clients,cid,'client_id')['callbacks']==[callback] and settings==h.api('get','tenants/settings')
+state.update(activated=True,callback=callback,connectionId=google['id']);(private/'registration.json').write_text(json.dumps(state,indent=2)+'\n');(private/'registration.json').chmod(0o600)
+result={'activated':True,'name':state['name'],'callback':callback,'onlyGoogleConnectionEnabled':True,'existingClientAndConnectionBindingsUnchanged':True,'tenantSettingsUnchanged':True,'productionRuntimeUnchanged':True,'clientSecretRequired':False}
+(qa/'auth0-activation-result.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))

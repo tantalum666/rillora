@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-16",
+  "mode": "continuation; retained complete project-owned Markdown reading",
+  "baseline": "11b62244eb0ae48120a98768a23eb11f72e1552b",
+  "retainedFullRead": "collaboration/verification/ai-implementation-20261015/reading.json",
+  "precedingRead": "collaboration/verification/ai-acceptance-20261016/reading.json",
+  "currentReads": {
+    "AGENTS.md": "full; current user-supplied entry point also retained",
+    "docs/product.md": "1-120 current product and decision routing; older locked body retained from original full read",
+    "docs/handoff.md": "full",
+    "docs/decision-log.md": "latest October15-16 relevant entries; historical tail from earlier full reading retained",
+    "docs/journey/PROJECT_JOURNEY.md": "header1-35 and latest30lines",
+    "docs/architecture/ai-discovery-vnext-20261015.md": "85-end; other ranges retained",
+    "docs/architecture/ai-discovery-implementation-20261015.md": "full",
+    "docs/architecture/ai-integration-acceptance-20261016.md": "full",
+    "integrations/ai/README.md": "full",
+    "collaboration/verification/ai-acceptance-20261016/README.md": "full",
+    "tools/security/README.md": "full",
+    "tools/auth0/prepare-production-clients.py": "1-100; remaining from preceding full read",
+    "apps/api/src/mcp/identity.ts": "full",
+    "apps/api/src/mcp/integration.ts": "full",
+    "apps/api/src/mcp/service.ts": "1-100; read-only harness reuse",
+    "apps/api/tests/dedicated-test-database.ts": "full",
+    "apps/api/tests/content-test-keys.ts": "full",
+    "apps/api/tests/mcp.integration.test.ts": "1-100; earlier complete applicable ranges retained",
+    "tools/mcp/client-packages.mjs": "full"
+  },
+  "excluded": [
+    "dependencies and generated schema copies",
+    "caches and generated QA output",
+    "collaboration/evidence copies and encrypted archives"
+  ],
+  "truncationHandling": "AGENTS and handoff fully returned; product focused current1-120 separately reread. Historical product/decision text inherited from original complete-read record, not claimed as newly reread. Auth0 tooling-cli omitted260-298 supplemented.",
+  "completedAt": "2026-10-15T20:28:00.383081+00:00",
+  "noBaselineTestRepetition": true
+}

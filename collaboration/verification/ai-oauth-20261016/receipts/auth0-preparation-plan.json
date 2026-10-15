@@ -1,0 +1,47 @@
+{
+  "applied": false,
+  "resource": {
+    "name": "Rillora MCP local acceptance",
+    "identifier": "http://127.0.0.1:58431/mcp",
+    "signing_alg": "RS256",
+    "token_lifetime": 900,
+    "token_lifetime_for_web": 900,
+    "allow_offline_access": false,
+    "skip_consent_for_verifiable_first_party_clients": false,
+    "scopes": [
+      {
+        "value": "matters:read:summary",
+        "description": "Read selected synthetic acceptance matters"
+      },
+      {
+        "value": "readiness:read:scoped",
+        "description": "Check common missing fields in selected synthetic matters"
+      }
+    ]
+  },
+  "client": {
+    "name": "Rillora MCP Acceptance - Codex",
+    "app_type": "native",
+    "oidc_conformant": true,
+    "is_first_party": false,
+    "token_endpoint_auth_method": "none",
+    "grant_types": [
+      "authorization_code"
+    ],
+    "callbacks": [],
+    "client_metadata": {
+      "environment": "isolated-acceptance",
+      "purpose": "mcp-synthetic-acceptance-20261016"
+    },
+    "jwt_configuration": {
+      "alg": "RS256",
+      "lifetime_in_seconds": 900
+    }
+  },
+  "nonGlobalApplications": 9,
+  "existingOrdinaryClientsWillNotChange": true,
+  "callbacksRemainEmpty": true,
+  "existingConnectionsWillBeDisabledForOnlyTheNewClient": true,
+  "productionChanged": false,
+  "planUpgrade": false
+}

@@ -1,0 +1,33 @@
+{
+  "observedAt": "2026-10-15T20:24:50.553341+00:00",
+  "managementSessionValid": true,
+  "directThirdPartyConnectionBinding": {
+    "status": 400,
+    "reason": "Only first party clients can be enabled for a connection",
+    "existingBindingsChanged": false
+  },
+  "domainConnectionReadback": {
+    "allExistingConnectionsDomainLevel": false,
+    "existingConnectionsChanged": false
+  },
+  "isolatedSyntheticConnectionCreate": {
+    "result": "denied_before_creation",
+    "missingScope": "create:connections",
+    "providerUserCreated": false,
+    "connectionCreated": false
+  },
+  "additionalPermissionFlow": {
+    "result": "browser_session_not_found",
+    "existingCliSessionRevoked": false
+  },
+  "codexActualAuthorizationRequest": {
+    "resourceMatched": true,
+    "S256": true,
+    "clientSecret": false,
+    "scopeCount": 2,
+    "callbackCaptured": true
+  },
+  "realOAuthCompleted": false,
+  "activeMcpListener": false,
+  "newInactiveProviderResourceAndClientRetained": true
+}

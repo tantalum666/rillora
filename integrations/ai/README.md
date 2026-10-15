@@ -3,7 +3,7 @@
 Status: NEXT-VERSION SOURCE CANDIDATE — NOT DEPLOYED / NOT LISTED
 Last updated: 2026-10-16 (Asia/Hong_Kong)
 
-本目录提供下一版本的接入材料。当前 App1.0(14) 审核、生产 API／数据库、价格、收费和 Auth0 配置保持原状。示例文件不代表已注册 OAuth 客户端、已有公网 MCP 服务或已通过目录审核。
+本目录提供下一版本的接入材料。当前 App1.0(14) 审核、生产 API／数据库、价格、收费和既有 Auth0 登录配置保持原状；隔离测试注册的当前状态见下方补充。示例文件不代表已注册 OAuth 客户端、已有公网 MCP 服务或已通过目录审核。
 
 ## 实现与边界
 
@@ -45,12 +45,13 @@ node --test tools/mcp/client-packages.test.mjs
 1. 保留当前在审环境。先在独立候选环境验证新 broker、迁移0104—0105、API与Web，沿用现有加密／签名事务／TLS／恢复要求。0105保留独立删除worker原有日志权限；两份迁移必须作为同一批完成后再验收服务。
 2. 先交付兼容新 ai_connection 事件的恢复日志 broker，再迁移数据库，再部署 API；首次保持 ALLOW_MCP_INTEGRATION=false 与 Web 开关关闭。旧版本不能替代新增授权后的恢复处理器。
 3. 为 MCP 单独注册 Auth0 API，identifier 精确等于 HTTPS MCP URL，RS256；access token 最大寿命3600秒。每个平台独立 OAuth client，授权码＋PKCE，首批使用无 secret 的 public client；回调使用实际完整地址，不开 M2M，不复用退役或第一方客户端。
-4. 只读核对 Auth0 Resource Parameter Compatibility Profile。官方明确 MCP 的 resource 参数需要该兼容设置才能映射到正确 audience；不能修改原 native audience 或 tenant default audience 来绕过。此轮未修改租户标志。[Auth0 官方说明](https://support.auth0.com/center/s/article/mcp-audience-error-with-auth0)。
-5. 配置 MCP_RESOURCE_URL 和 MCP_CLIENTS_JSON。每项含 key、name、clientId、privacyUrl，最多16项；scope 只选已实现的两项。只有在独立环境核对成功后才打开 ALLOW_MCP_INTEGRATION=true，并以 VITE_RILLORA_AI_CONNECTIONS=true 构建同一候选 Web。
-6. 先在 Rillora 选择范围并保存授权，再在 AI 端 OAuth 连接。新授权要求新签发的 token；撤销即时阻止新请求，不能撤回已送到 AI 的副本。真实用户接受与本地合成测试分别记录。
-7. 在每个实际客户端验证连接、工具选择、拒绝越权、普通更新可读、不披露／归档后不复活、撤销、到期与网络失败。生产部署、目录提交、批准、发现与真实增长分别记账。
+4. 第三方应用须使用域级登录连接，并取得仅针对目的API、subject_type=user与精确scope的client grant；不能绑定普通连接、改成第一方、开放全部第三方默认授权或误用M2M grant。隔离验收优先独立合成连接，保持正式连接不动；连接管理权限不足时单独补齐，不将其误报成会话过期。
+5. 只读核对 Auth0 Resource Parameter Compatibility Profile。官方明确 MCP 的 resource 参数需要该兼容设置才能映射到正确 audience；不能修改原 native audience 或 tenant default audience 来绕过。此轮未修改租户标志。[Auth0 官方说明](https://support.auth0.com/center/s/article/mcp-audience-error-with-auth0)。
+6. 配置 MCP_RESOURCE_URL 和 MCP_CLIENTS_JSON。每项含 key、name、clientId、privacyUrl，最多16项；scope 只选已实现的两项。只有在独立环境核对成功后才打开 ALLOW_MCP_INTEGRATION=true，并以 VITE_RILLORA_AI_CONNECTIONS=true 构建同一候选 Web。
+7. 先在 Rillora 选择范围并保存授权，再在 AI 端 OAuth 连接。新授权要求新签发的 token；撤销即时阻止新请求，不能撤回已送到 AI 的副本。真实用户接受与本地合成测试分别记录。
+8. 在每个实际客户端验证连接、工具选择、拒绝越权、普通更新可读、不披露／归档后不复活、撤销、到期与网络失败。生产部署、目录提交、批准、发现与真实增长分别记账。
 
-本轮本地协议测试没有替代真实 Auth0 回调或所有 AI 产品验收；没有创建新账号／凭据、发邀请、购买服务、开启生产 MCP 或分发 TestFlight。
+既有本地协议测试没有替代真实Auth0回调或所有AI产品验收。October16新增临时公共客户端／独立API，真实OAuth仍待隔离连接权限；未创建新用户、发邀请、购买服务、开启生产MCP或分发TestFlight。
 
 ## October16 客户端验收补充
 
@@ -67,3 +68,5 @@ Codex和Gemini CLI0.64.0都已连接本机Rillora接口；Codex读取两工具�
 - [Gemini CLI MCP](https://geminicli.com/docs/tools/mcp-server/)
 - [MCP SDK 2026-07-28 与 legacy 兼容](https://ts.sdk.modelcontextprotocol.io/v2/migration/support-2026-07-28)
 - [当前跨平台方案](../../docs/architecture/ai-discovery-vnext-20261015.md)
+
+October16真实OAuth续接：管理登录已恢复，resource兼容已存在；Codex已实际生成准确回调／S256／两scope请求。第三方连接规则要求独立合成域级连接，当前CLI缺create:connections；未改正式连接。追加create／delete connections授权等待Owner完成。专用临时客户端／API已注册不代表已连接，详见[当前续验](../../docs/architecture/ai-integration-acceptance-20261016.md)。

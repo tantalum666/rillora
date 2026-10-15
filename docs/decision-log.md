@@ -3527,3 +3527,11 @@ local correction/tests and actual restoration remain separate evidence.
 - Continuing Owner-authorized cross-platform acceptance, the actual current Codex parser rejects portable server.extensions and silently omits the server after parsing the manifest. The official OpenAI guide still documents that OAuth extension location.
 - Preserve the documented portable package for compatible directory hosts and generate a separate current-Codex compatibility package; do not delete authentication, invent a successful universal-schema result, upgrade the user's desktop app or change global plugin configuration. Both outputs share the existing service and metadata.
 - Real local Codex/Gemini client discovery uses only signed synthetic identities. It does not close provider OAuth, model tool-selection, marketplace review or public deployment. Current review/runtime/data/prices remain unchanged; no new product or pricing decision is introduced.
+
+
+## 2026-10-16 — Keep real OAuth acceptance separate from production login connections
+
+- Auth0 administrative login is actually restored. Resource compatibility was already enabled; no tenant-wide toggle is changed. Prepare a purpose-tagged temporary public third-party client and dedicated900-second API within the existing free application limit.
+- The real provider rejects per-client binding for a third-party application. Keep its third-party classification and all existing production connections unchanged; choose an isolated synthetic domain-level database connection and explicit user-delegated API grant for acceptance. This is an Agent implementation choice within the authorized next-version test scope, not permission to expose production identities or upgrade a plan.
+- Creation is blocked before mutation because the current CLI lackscreate:connections. Request onlycreate:connections anddelete:connections for that isolated lifecycle; browser action-time confirmation remains pending. Do not describe this as expired login or approved new scope.
+- The actual Codex authorization request proves matchingresource, exact callback andS256, not successful OAuth or tool execution. Stop and clean the local fixture while waiting; retain the inactive tagged registrations for continuation and eventual scoped cleanup. [Evidence](architecture/ai-integration-acceptance-20261016.md).

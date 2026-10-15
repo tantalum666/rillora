@@ -1,0 +1,54 @@
+"""Prepare one inactive, purpose-tagged public OAuth client; preserve all existing identities."""
+from pathlib import Path
+import argparse,importlib.util,json,hashlib,os,subprocess
+ROOT=Path(__file__).resolve().parents[3]
+spec=importlib.util.spec_from_file_location('existing_auth0_helpers',ROOT/'tools/auth0/prepare-production-clients.py');helpers=importlib.util.module_from_spec(spec);spec.loader.exec_module(helpers)
+api=helpers.api
+QA=ROOT/'output/qa/rillora-ai-oauth-20261016';PRIVATE=ROOT/'.local-secrets/ai-oauth-20261016';PRIVATE.mkdir(parents=True,exist_ok=True,mode=0o700)
+NAME='Rillora MCP Acceptance - Codex';RESOURCE='http://127.0.0.1:58431/mcp';PURPOSE='mcp-synthetic-acceptance-20261016'
+CLIENT={'name':NAME,'app_type':'native','oidc_conformant':True,'is_first_party':False,'token_endpoint_auth_method':'none','grant_types':['authorization_code'],'callbacks':[],
+ 'client_metadata':{'environment':'isolated-acceptance','purpose':PURPOSE},'jwt_configuration':{'alg':'RS256','lifetime_in_seconds':900}}
+SERVER={'name':'Rillora MCP local acceptance','identifier':RESOURCE,'signing_alg':'RS256','token_lifetime':900,'token_lifetime_for_web':900,'allow_offline_access':False,
+ 'skip_consent_for_verifiable_first_party_clients':False,'scopes':[{'value':'matters:read:summary','description':'Read selected synthetic acceptance matters'},{'value':'readiness:read:scoped','description':'Check common missing fields in selected synthetic matters'}]}
+FIELDS='client_id,name,app_type,grant_types,callbacks,client_metadata,token_endpoint_auth_method,oidc_conformant,is_first_party,jwt_configuration,global'
+def save(path,value):
+ path.write_text(json.dumps(value,indent=2)+'\n');path.chmod(0o600)
+def signature(value):return hashlib.sha256(json.dumps(value,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+def existing_resources(values):
+ return sorted([{k:v.get(k) for k in ['id','name','identifier','signing_alg','token_lifetime','token_lifetime_for_web','allow_offline_access','scopes']}for v in values if v['identifier']!=RESOURCE],key=lambda v:v['id'])
+def clients_without(values,identifier):return sorted([v for v in values if v['client_id']!=identifier],key=lambda v:v['client_id'])
+p=argparse.ArgumentParser();p.add_argument('--apply',action='store_true');args=p.parse_args()
+settings=api('get','tenants/settings');assert settings['resource_parameter_profile']=='compatibility'
+clients=api('get','clients?fields='+FIELDS+'&include_fields=true&per_page=100');assert len(clients)<100
+connections=api('get','connections?fields=id,name,strategy&include_fields=true&per_page=100');assert len(connections)<100
+before_bindings={c['id']:helpers.connection_clients(c['id']) for c in connections}
+servers=api('get','resource-servers?per_page=100');assert len(servers)<100
+existing=helpers.exact(clients,NAME)
+if existing:helpers.match(existing,CLIENT)
+report={'applied':False,'resource':SERVER,'client':CLIENT,'nonGlobalApplications':sum(not c.get('global',False)for c in clients),
+ 'existingOrdinaryClientsWillNotChange':True,'callbacksRemainEmpty':True,'existingConnectionsWillBeDisabledForOnlyTheNewClient':True,'productionChanged':False,'planUpgrade':False}
+(QA/'auth0-preparation-plan.json').write_text(json.dumps(report,indent=2)+'\n')
+if not args.apply:print(json.dumps({'planned':True,'existingClient':bool(existing),'ordinaryApplications':report['nonGlobalApplications'],'resource':RESOURCE}));raise SystemExit()
+if existing is None and report['nonGlobalApplications']>=10:raise RuntimeError('No free application slot; no existing application is deleted or reused')
+# Store only public registration metadata, never the unused secret included by provider create responses.
+identifier=existing['client_id'] if existing else api('post','clients',CLIENT)['client_id']
+state={'purpose':PURPOSE,'resource':RESOURCE,'clientId':identifier,'name':NAME,'activated':False}
+save(PRIVATE/'registration.json',state)
+for connection in connections:
+ if identifier in helpers.connection_clients(connection['id']):api('patch','connections/'+connection['id']+'/clients',[{'client_id':identifier,'status':False}])
+old_server=helpers.exact(servers,RESOURCE,'identifier')
+if old_server:helpers.match(old_server,SERVER)
+server_id=old_server['id'] if old_server else api('post','resource-servers',SERVER)['id']
+state['resourceServerId']=server_id;save(PRIVATE/'registration.json',state)
+current=api('get','clients/'+identifier+'?fields='+FIELDS+'&include_fields=true');helpers.match(current,CLIENT)
+current_server=api('get','resource-servers/'+server_id);helpers.match(current_server,SERVER)
+after_clients=api('get','clients?fields='+FIELDS+'&include_fields=true&per_page=100')
+after_bindings={c['id']:helpers.connection_clients(c['id'])for c in connections}
+assert all(identifier not in v for v in after_bindings.values())
+expected_bindings={k:sorted(x for x in v if x!=identifier)for k,v in before_bindings.items()};assert expected_bindings==after_bindings
+assert clients_without(clients,identifier)==clients_without(after_clients,identifier)
+after_servers=api('get','resource-servers?per_page=100');assert existing_resources(servers)==existing_resources(after_servers)
+after_settings=api('get','tenants/settings');assert settings==after_settings
+report.update(applied=True,verified=True,existingClientHash=signature(clients_without(clients,identifier)),existingResourcesHash=signature(existing_resources(servers)),existingBindingsHash=signature(expected_bindings),existingTenantSettingsUnchanged=True,newClientHasNoEnabledConnection=True,newClientHasNoCallbacks=True)
+(QA/'auth0-preparation-result.json').write_text(json.dumps(report,indent=2)+'\n')
+print(json.dumps({'applied':True,'verified':True,'ordinaryApplications':len([c for c in after_clients if not c.get('global',False)]),'existingClientsAndApisUnchanged':True,'existingBindingsUnchanged':True,'tenantSettingsUnchanged':True,'newClientInactive':True}))

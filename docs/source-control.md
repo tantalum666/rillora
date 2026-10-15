@@ -2,6 +2,10 @@
 
 Last updated: 2026-10-16 (Asia/Hong_Kong)
 
+## October16 real OAuth preparation
+
+[New scoped evidence](../collaboration/verification/ai-oauth-20261016/README.md) preserves reviewed nonsecret JSON and exact runner text directly in Git, with a per-file hash catalog. Login screenshots, capability URLs, raw provider/private identity data and upstream schema caches are excluded. No new publishable binary requires a repeated sealed archive; archives1–41 remain untouched. Management logins and the exact Codex authorization request are verified, but connection-management permission and real token/read/revoke acceptance remain pending. No production or review deployment follows.
+
 ## October15–16 next-version public discovery and scoped MCP
 
 [October16 acceptance](architecture/ai-integration-acceptance-20261016.md) closes the earlier CI visibility gap through the existing connector: CI158/159 and all jobs succeed. It adds a real-parser-tested current-Codex compatibility package and actual Codex/Gemini loopback discovery, with external OAuth still pending. [New acceptance evidence](../collaboration/verification/ai-acceptance-20261016/README.md) preserves only this continuation; source and provider/runtime state remain distinct.
