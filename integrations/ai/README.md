@@ -1,7 +1,7 @@
 # Rillora 跨平台 AI 接入包
 
 Status: NEXT-VERSION SOURCE CANDIDATE — NOT DEPLOYED / NOT LISTED
-Last updated: 2026-10-15 (Asia/Hong_Kong)
+Last updated: 2026-10-16 (Asia/Hong_Kong)
 
 本目录提供下一版本的接入材料。当前 App1.0(14) 审核、生产 API／数据库、价格、收费和 Auth0 配置保持原状。示例文件不代表已注册 OAuth 客户端、已有公网 MCP 服务或已通过目录审核。
 

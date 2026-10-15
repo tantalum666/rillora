@@ -2,7 +2,7 @@
   "checkedAt": "2026-10-15T16:08:23.550628+00:00",
   "branch": "codex/ai-discovery-vnext-20261015",
   "baseline": "70f43c88a17ba5760280f972e1d01962ce56d7bc",
-  "status": "LOCAL_CANDIDATE_VERIFIED_PUBLICATION_IN_PROGRESS",
+  "status": "GIT_PUSHED_LOCAL_VERIFIED_REMOTE_CI_READBACK_BLOCKED",
   "productionChanged": false,
   "currentReviewChanged": false,
   "dataPricesSalesFlagsChanged": false,
@@ -98,7 +98,7 @@
     "Default-off Vite build removes optional AI chunks while non-Vite static rendering stays supported"
   ],
   "providerSchemaOnlineValidation": "Public schema downloads failed with network URLError; no online schema acceptance claimed",
-  "next": "Finish source/evidence Git publication, then isolated real OAuth and two actual clients; no changes to current review services.",
+  "next": "Read current remote CI when accessible, then isolated OAuth and two actual clients; no current review runtime changes.",
   "defaultWebBuild": {
     "passed": true,
     "aiComponentChunks": [],
@@ -107,5 +107,19 @@
     "deployed": false,
     "artifact": "default-web-verified",
     "gate": "Direct Vite flag substitution with a safe non-Vite guard; no optional AI component chunks"
+  },
+  "sourceCommit": "15770aa4de8813520c5dad2254a4158b11536381",
+  "remoteArchive": {
+    "passed": true,
+    "objects": 507,
+    "paths": 1057,
+    "newDownload": true,
+    "oldArchivesRedownloaded": false
+  },
+  "remoteCi": {
+    "result": "UNVERIFIED",
+    "restAndGraphql": "current token denies Actions/checks read",
+    "browser": "GitHub ERR_CONNECTION_CLOSED",
+    "noLoginExpiryInferred": true
   }
 }

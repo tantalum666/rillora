@@ -1,6 +1,6 @@
 # 下一版本官网发现与受限 AI 接入：实施记录
 
-Status: LOCAL SOURCE CANDIDATE VERIFIED / NOT DEPLOYED OR CONNECTED
+Status: SOURCE CANDIDATE PUSHED / LOCAL VERIFIED / NOT DEPLOYED OR CONNECTED
 Last updated: 2026-10-16 (Asia/Hong_Kong)
 Branch: codex/ai-discovery-vnext-20261015
 Source baseline: 70f43c88a17ba5760280f972e1d01962ce56d7bc
@@ -60,3 +60,5 @@ OpenAI等平台配置依据本轮已读取官方正文；公开JSON Schema地址
 测试都在本地或隔离合成数据库中进行。最初将法律包测试错误地针对普通Web产物执行产生3项失败；依仓库CI顺序独立构建法律夹具后全部通过，没有修改法律测试来掩盖错误。缺失的Playwright浏览器缓存改用已安装Chrome；没有改变依赖或要求本人重新登录。
 
 新功能仍未部署，没有新测试交易、真实用户数据披露、App Store构建替换或TestFlight分发。后续需在与当前审核服务分开的候选环境完成真实OAuth和至少两家实际客户端验收，再独立发布官网／MCP与申请目录。
+
+Git交付：源码及archive40已推送15770aa4d；三份关键源码远端字节匹配，新增归档从GitHub独立下载后507对象／1,057路径全部认证。既有1—39不重复下载。远端CI因本机令牌缺少读取权限且GitHub浏览器连接关闭而尚未读回，不能写成通过；最后状态回执普通Git补交。[远端证据](../../collaboration/verification/ai-implementation-20261015/remote-readback.json)。

@@ -4,7 +4,7 @@ Last updated: 2026-10-16 (Asia/Hong_Kong)
 
 ## October15–16 next-version public discovery and scoped MCP
 
-[The source candidate](architecture/ai-discovery-implementation-20261015.md) is isolated on codex/ai-discovery-vnext-20261015. Public prerendering, delegated selected-matter access and platform package generation are locally verified; current review/production services remain unchanged. [Readable results](../collaboration/verification/ai-implementation-20261015/README.md) separate source tests from real OAuth, indexing and directory publication. New raw evidence/build preservation and immutable remote receipts are recorded there; earlier1–39remain unchanged. No deployment or new TestFlight follows from a Git push.
+[The source candidate](architecture/ai-discovery-implementation-20261015.md) is isolated on codex/ai-discovery-vnext-20261015. Public prerendering, delegated selected-matter access and platform package generation are locally verified; current review/production services remain unchanged. [Readable results](../collaboration/verification/ai-implementation-20261015/README.md) separate source tests from real OAuth, indexing and directory publication. Archive40preserves1,057paths/507objects/8,802,787ciphertext bytes. Source15770aa4dand three remote byte comparisons pass; a fresh independent GitHub LFS download authenticates all507objects. Remote CI remains unreadable because the current token denies checks/Actions and browsers report connection closed; no success is inferred. Final ordinary metadata follows without resealing; earlier1–39remain unchanged. No deployment or new TestFlight follows from a Git push.
 
 ## October15 Apple review and Web activation
 
