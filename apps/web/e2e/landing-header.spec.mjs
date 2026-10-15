@@ -28,9 +28,9 @@ for (const locale of ['en', 'zh-CN']) {
       await expect(page.locator('.lp-channel-price-note')).not.toContainText(/\d/);
       await noHeaderCollisions(page);
       const language = page.locator('.lp-language select');
-      await expect(language).toHaveAccessibleName('Language / 语言');
-      await expect(language.locator('option[value="zh-CN"]')).toHaveText('简体中文');
-      await expect(language.locator('option[value="en"]')).toHaveText('English');
+      await expect(language).toHaveAccessibleName(locale === 'en' ? 'Language' : '语言');
+      await expect(language.locator('option[value="zh-CN"]')).toHaveText(locale === 'en' ? 'Simplified Chinese' : '简体中文');
+      await expect(language.locator('option[value="en"]')).toHaveText(locale === 'en' ? 'English' : '英语');
       await language.focus(); await expect(language).toBeFocused();
       if (width >= 768) {
         await expect(page.locator('.lp-menu-toggle')).toBeHidden();

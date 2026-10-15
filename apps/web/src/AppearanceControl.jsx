@@ -13,14 +13,16 @@ export function AppearanceLink({ href, ...props }) {
 }
 
 export function useWebsiteAppearance() {
-  const store = window.rilloraWebsiteAppearance;
-  return useSyncExternalStore(store.subscribe, store.getSnapshot);
+  const store = typeof window === "undefined" ? serverAppearance : window.rilloraWebsiteAppearance;
+  return useSyncExternalStore(store.subscribe, store.getSnapshot, serverAppearance.getSnapshot);
 }
+const serverAppearanceSnapshot = Object.freeze({ preference: "system", resolved: "light", persistenceAvailable: true });
+const serverAppearance = { subscribe: () => () => {}, getSnapshot: () => serverAppearanceSnapshot };
 export function ThemePicture({ light, dark, className, ...imageProps }) {
-  const { resolved } = useWebsiteAppearance();
+  const { resolved, preference } = useWebsiteAppearance();
   return (
     <picture className={className}>
-      <source media={resolved === "dark" ? "all" : "not all"} srcSet={dark} />
+      <source media={preference === "system" ? "(prefers-color-scheme: dark)" : resolved === "dark" ? "all" : "not all"} srcSet={dark} />
       <img src={light} {...imageProps} />
     </picture>
   );

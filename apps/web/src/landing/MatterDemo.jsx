@@ -1,3 +1,4 @@
+import { PublicLink } from "../PublicLink.jsx";
 import { useI18n } from "../i18n/I18nProvider.jsx";
 import { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
@@ -17,9 +18,11 @@ export function MatterDemo() {
   const { t } = useI18n();
   const [selected, setSelected] = useState(0);
   const reduce = useReducedMotion();
+  const [interacted, setInteracted] = useState(false);
   const item = matterExamples[selected];
   const Icon = icons[item.icon];
   function select(index) {
+    setInteracted(true);
     setSelected(index);
   }
   return (
@@ -75,8 +78,8 @@ export function MatterDemo() {
           <div className="lp-matter-sheet" aria-live="polite">
             <motion.div
               key={item.id}
-              initial={reduce ? false : { opacity: 0, y: 10, rotate: 0.4 }}
-              animate={{ opacity: 1, y: 0, rotate: 0 }}
+              initial={!interacted || reduce ? false : { opacity: 0, y: 10, rotate: 0.4 }}
+              animate={interacted ? { opacity: 1, y: 0, rotate: 0 } : undefined}
               transition={{ duration: reduce ? 0 : 0.35 }}
             >
               <div className="lp-matter-sheet-heading">
@@ -103,9 +106,9 @@ export function MatterDemo() {
             </motion.div>
           </div>
         </div>
-        <a className="lp-section-next" href="/#people">{t("public.matter.next")}{" "}
+        <PublicLink className="lp-section-next" href="/#people">{t("public.matter.next")}{" "}
           <ArrowRight aria-hidden="true" size={20} />
-        </a>
+        </PublicLink>
       </div>
     </section>
   );

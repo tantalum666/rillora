@@ -22,7 +22,7 @@ export function I18nProvider(props) {
 
 /** Explicit stores let legal-only pages avoid importing any browser persistence path. */
 export function I18nStoreProvider({ children, catalogs = defaultCatalogs, store, locale: controlledLocale }) {
-  const snapshot = useSyncExternalStore(store.subscribe, store.getSnapshot, store.getSnapshot);
+  const snapshot = useSyncExternalStore(store.subscribe, store.getSnapshot, store.getServerSnapshot ?? store.getSnapshot);
   const locale = controlledLocale ?? snapshot.locale;
   const value = useMemo(() => makeValue(locale, catalogs, store, snapshot.persistenceAvailable, snapshot.preference), [locale, catalogs, store, snapshot.persistenceAvailable, snapshot.preference]);
   useEffect(() => { if (typeof document !== "undefined") document.documentElement.lang = locale; }, [locale]);

@@ -1,27 +1,28 @@
 # Rillora 当前交接
 
-Status: AI NEXT-VERSION PLAN / WEB LIVE / APPLE WAITING FOR REVIEW / NO NEW RUNTIME
-Last updated: 2026-10-15 (Asia/Hong_Kong)
+Status: NEXT-VERSION SOURCE VERIFIED / GIT PUBLICATION IN PROGRESS / CURRENT APP REVIEW PRESERVED
+Last updated: 2026-10-16 (Asia/Hong_Kong)
 
 ## 当前任务
 
-Owner 要求审核期间继续开发，新能力放入下一版本，并让各主要 AI 更容易发现、推荐和使用 Rillora；不能只考虑两家。执行[跨平台 AI 发现与使用方案](architecture/ai-discovery-vnext-20261015.md)。当前交付是研究／方案与公开只读检查，尚未实现 MCP 或新的官网运行代码。
+Owner明确按[跨平台方案](architecture/ai-discovery-vnext-20261015.md)实施，先官网GEO／SEO，再MCP及各平台接入；新功能放下一版本，不影响现有审核，完成后推GitHub。[实际实施记录](architecture/ai-discovery-implementation-20261015.md)和[平台包](../integrations/ai/README.md)是当前工程入口，旧研究不再是“未开始实现”。
 
-下一版本工作位于原项目目录 /Users/tantalum/Documents/电子遗嘱app，分支 codex/ai-discovery-vnext-20261015，起点 fec1ad3bcd97984768eed8b2fd95a86ac4f01f35。发布工作树 /Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app 和原发布分支保持。旧交接已存为 [HISTORICAL](handoff-history-20261015-before-ai-vnext.md)。本轮 QA 为 output/qa/rillora-ai-discovery-20261015，可读原件见[验证记录](../collaboration/verification/ai-discovery-20261015/README.md)。
+工作目录 /Users/tantalum/Documents/电子遗嘱app，分支 codex/ai-discovery-vnext-20261015，本轮源码基线70f43c88a17ba5760280f972e1d01962ce56d7bc。发布工作树 /Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app 保持fec1ad3b；不合并main或替换审核构建。此前交接为[HISTORICAL](handoff-history-20261015-before-ai-vnext.md)。
 
 ## 已完成
 
-- 完整复用旧 385 行 AI/MCP 提案，核对跨平台官方接入、搜索发现及目录差异；补足 Gemini、Perplexity、Copilot、Grok、开发者客户端和其他消费 AI 的评估范围。
-- 公开官网四次匿名 GET 显示：原始 HTML 没有正文，首页／中文价格同一壳层，robots／sitemap 为 404；这些是待改进项，不是完全未索引或所有 AI 无法读取的证明。
-- 建立下一版阶段及 14 组双语评估问题（28 个语言变体）；尚未运行模型测评、建立真实连接或提交目录。
-- 先前发布完成证据保留：Web 源码 40c76496f／CI153、117 资源线上一致；普通 Web 年付已开放。Apple 提交 6537a10c-38f2-425e-8b8e-c76e5fa730b1 的 App1.0(14)／年订阅／群组于香港 October15 09:49 等待审核。archive39 已独立远端认证，收尾 fec1ad3bc／CI155 通过；本轮不重做。
+- 官网本地候选：20页独立中英文HTML、两篇双语文章、canonical／hreflang／结构化页面资料／robots／sitemap；无JS可读，既有主题／导航与私有指南边界保持。54资源上传指纹通过，尚未部署。
+- 最小MCP：选定事项摘要、通用缺项两个只读工具，独立OAuth audience/client/scope，最多20事项／7天授权；替换／撤销、私有与归档永久移除、恢复失效。UI与runtime默认关闭，0104—0105只在本地合成测试库运行。
+- API560、Web194、法律8、公开聚焦20、infra66、broker5、平台配置2通过；公开浏览器7／导航2／AI授权2通过。全量测试发现的删除worker日志权限回归已精确修复并复验。
+- OpenAI、Codex、Claude Code、Cursor、Gemini CLI配置生成器完成；其他AI消费与企业入口继续列入独立验收。示例没有真实地址／凭据，不代表已连接／上架。
+- 上轮发布证据沿用：40c76496f／CI153、117资源线上一致、普通Web年付开放；App1.0(14)／年订阅／群组三项于香港October15 09:49提交6537a10c-38f2-425e-8b8e-c76e5fa730b1等待审核。archive39及fec1ad3bc／CI155保留，本轮不重做。
 
 ## 证据边界与外部等待
 
-平台支持 MCP 不等于 Rillora 已兼容；源码方案、目录批准、发布、搜索引用和增长分别验收。本轮未部署、未读取真实事项给 AI、未创建凭据、未花模型 API 额度。既有 USD88.99 Web 年费、Apple USD119.99／HKD888、数据、收费开关和 FanPass 保持。
+[本轮QA](../collaboration/verification/ai-implementation-20261015/README.md)区分源码、本地合成检查、真实平台连接、目录、部署、搜索引用及增长。官网/API/Auth0/云端数据库均未变；没有真实事项发给AI，没有创建新凭据、花模型额度、金融交易或TestFlight。WebUSD88.99、AppleUSD119.99／HKD888、数据、收费开关和FanPass保持。
 
-Apple 当前审核独立等待，手动发布保持。若收到具体反馈，按原[提审合同](app-review-preflight-20261014.md)处理；获批后处理简化购买、手动发布，再验 Production 授权／通知／对账后开放两条 Apple 普通新购。Sandbox 审核登记当前至 October27，实际延后时仅维护原范围。Auth0 外壳继续暂缓；Owner 已停止余下真机检查，不重新要求参与；不发 TestFlight。
+当前Apple审核独立等待，沿用手动发布及获批后Production核验再开放Apple普通新购的顺序。Auth0外壳按Owner指令暂缓；Owner已停止真机检查，不重新要求参与。原件保存只新增本轮证据，旧1—39不重封、不重复下载。
 
 ## 唯一下一步
 
-在下一版分支实施 D0 公开官网候选：预渲染真实正文、逐页双语元数据、可达 robots／sitemap，并验证现有视觉及平台指南登录边界。先形成可审查候选，再独立安排发布；不更换正在审核的 App14 或部署未验收 MCP。
+完成本批源码／文档／证据的GitHub推送、远端回读和CI结果核对。随后以隔离候选环境完成真实OAuth及至少两家实际AI客户端验收；不改当前在审服务，不把本地协议测试当作全平台已经上线。

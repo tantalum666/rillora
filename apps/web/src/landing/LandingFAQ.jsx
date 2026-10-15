@@ -1,5 +1,5 @@
 import { useI18n } from "../i18n/I18nProvider.jsx";
-import * as Accordion from "@radix-ui/react-accordion";
+import { useId } from "react";
 import { Plus } from "@phosphor-icons/react";
 
 export const landingQuestions = [
@@ -27,25 +27,12 @@ export const landingQuestions = [
 
 export function QuestionList({ questions = landingQuestions }) {
   const { t } = useI18n();
-  return (
-    <Accordion.Root type="single" collapsible className="lp-faq">
-      {questions.map((item, index) => (
-        <Accordion.Item
-          className="lp-faq-item"
-          value={`question-${index}`}
-          key={item.titleKey}
-        >
-          <Accordion.Header>
-            <Accordion.Trigger>
-              {t(item.titleKey)}
-              <Plus size={22} aria-hidden="true" />
-            </Accordion.Trigger>
-          </Accordion.Header>
-          <Accordion.Content>
-            <p>{t(item.answerKey)}</p>
-          </Accordion.Content>
-        </Accordion.Item>
-      ))}
-    </Accordion.Root>
-  );
+  const group = useId();
+  // Native disclosure keeps the same interaction available before JavaScript loads.
+  return <div className="lp-faq">
+    {questions.map(item => <details className="lp-faq-item" name={group} key={item.titleKey}>
+      <summary>{t(item.titleKey)}<Plus size={22} aria-hidden="true" /></summary>
+      <p>{t(item.answerKey)}</p>
+    </details>)}
+  </div>;
 }

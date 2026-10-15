@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { UserCircle } from "@phosphor-icons/react";
 import { useI18n } from "./i18n/I18nProvider.jsx";
 import { LanguageControl } from "./i18n/LanguageControl.jsx";
 import "./account-identity.css";
+const AiConnectionsPanel = typeof import.meta.env !== 'undefined' && import.meta.env.VITE_RILLORA_AI_CONNECTIONS === 'true'
+  ? lazy(() => import('./AiConnectionsPanel.jsx')) : null;
 
 function sameAccount(actual, expected) {
   return typeof actual === "string" && typeof expected === "string"
@@ -54,7 +56,7 @@ export function AccountIdentityPanel({ identity, plannerPublicId }) {
   const { t } = useI18n();
   const account = displayedAccount(identity, plannerPublicId);
   const email = displayedEmail(identity, account);
-  return <section className="account-identity-panel" aria-labelledby="current-account-title" aria-busy={identity.loading}>
+  return <><section className="account-identity-panel" aria-labelledby="current-account-title" aria-busy={identity.loading}>
     <h3 id="current-account-title">{t("workspace.identity.current")}</h3>
     <dl>
       {account?.displayName && <><dt>{t("workspace.identity.name")}</dt><dd>{account.displayName}</dd></>}
@@ -63,5 +65,5 @@ export function AccountIdentityPanel({ identity, plannerPublicId }) {
     </dl>
     {!identity.loading && (identity.failed || identity.value?.emailStatus === "unavailable") && <button type="button" className="text-button" onClick={identity.retry}>{t("workspace.identity.retry")}</button>}
     <div className="account-language"><span>{t("workspace.identity.language")}</span><LanguageControl /></div>
-  </section>;
+  </section>{AiConnectionsPanel && account && <Suspense fallback={null}><AiConnectionsPanel key={plannerPublicId} plannerPublicId={plannerPublicId} /></Suspense>}</>;
 }

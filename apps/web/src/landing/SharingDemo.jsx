@@ -1,3 +1,4 @@
+import { PublicLink } from "../PublicLink.jsx";
 import { useI18n } from "../i18n/I18nProvider.jsx";
 import { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
@@ -12,6 +13,7 @@ export function SharingDemo() {
   const { t } = useI18n();
   const [personId, setPersonId] = useState("mum");
   const reduce = useReducedMotion();
+  const [interacted, setInteracted] = useState(false);
   const person = demoPeople.find((item) => item.id === personId);
   const matters = sharedDemoMatters(personId);
   return (
@@ -51,8 +53,8 @@ export function SharingDemo() {
                   ? "M330 245 C430 245 425 130 535 130 S610 225 690 225"
                   : "M330 245 C430 245 425 345 535 345 S610 225 690 225"
               }
-              initial={reduce ? false : { pathLength: 0 }}
-              animate={{ pathLength: 1 }}
+              initial={!interacted || reduce ? false : { pathLength: 0 }}
+              animate={interacted ? { pathLength: 1 } : undefined}
               transition={{ duration: reduce ? 0 : 0.8, ease: "easeOut" }}
             />
           </svg>
@@ -67,7 +69,7 @@ export function SharingDemo() {
                 type="button"
                 aria-pressed={personId === item.id}
                 className="lp-person"
-                onClick={() => setPersonId(item.id)}
+                onClick={() => { setInteracted(true); setPersonId(item.id); }}
               >
                 <span className="lp-person-avatar">
                   {Array.from(t(item.nameKey))[0]}
@@ -91,8 +93,8 @@ export function SharingDemo() {
             <motion.div
               key={personId}
               className="lp-shared-rows"
-              initial={reduce ? false : { opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={!interacted || reduce ? false : { opacity: 0, y: 8 }}
+              animate={interacted ? { opacity: 1, y: 0 } : undefined}
               transition={{ duration: reduce ? 0 : 0.18 }}
             >
               {matters.map((item) => (
@@ -104,8 +106,8 @@ export function SharingDemo() {
             </motion.div>
           </div>
         </div>
-        <a className="lp-section-next" href="/product#sharing">{t("public.sharing.invitationHow")}<ArrowRight size={20} aria-hidden="true" />
-        </a>
+        <PublicLink className="lp-section-next" href="/product#sharing">{t("public.sharing.invitationHow")}<ArrowRight size={20} aria-hidden="true" />
+        </PublicLink>
       </div>
     </section>
   );

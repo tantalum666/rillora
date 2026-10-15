@@ -1,3 +1,4 @@
+import { PublicLink } from "../PublicLink.jsx";
 import { useI18n } from "../i18n/I18nProvider.jsx";
 import { AppearanceLink } from "../AppearanceControl.jsx";
 import { ArrowRight } from "@phosphor-icons/react";
@@ -31,8 +32,8 @@ export function LandingPage() {
               {t("public.home.heroDescription")}
             </p>
             <div className="lp-hero-actions">
-              <a className="lp-button" href="/product">{t("public.home.exploreProduct")}<ArrowRight size={22} aria-hidden="true" />
-              </a>
+              <PublicLink className="lp-button" href="/product">{t("public.home.exploreProduct")}<ArrowRight size={22} aria-hidden="true" />
+              </PublicLink>
               <AppearanceLink
                 className="lp-invitation-link"
                 href={publicEntry.invitationURL}
@@ -47,22 +48,22 @@ export function LandingPage() {
         aria-label={t("public.home.exploreLabel")}
       >
         <Reveal>
-          <a href="/product">
+          <PublicLink href="/product">
             <span>{t("public.home.productEyebrow")}</span>
             <h2>{t("public.home.productTitle")}</h2>
             <p>{t("public.home.productDescription")}</p>
             <span className="lp-text-link">{t("public.home.exploreProduct")}<ArrowRight size={20} aria-hidden="true" />
             </span>
-          </a>
+          </PublicLink>
         </Reveal>
         <Reveal>
-          <a href="/security">
+          <PublicLink href="/security">
             <span>{t("public.home.securityEyebrow")}</span>
             <h2>{t("public.home.securityTitle")}</h2>
             <p>{t("public.home.securityDescription")}</p>
             <span className="lp-text-link">{t("public.home.securityLink")}<ArrowRight size={20} aria-hidden="true" />
             </span>
-          </a>
+          </PublicLink>
         </Reveal>
       </section>
       <section

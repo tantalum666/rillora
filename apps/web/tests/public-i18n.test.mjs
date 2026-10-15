@@ -1,13 +1,15 @@
 import assert from "node:assert/strict";
 import { readFile, readdir } from "node:fs/promises";
 import test from "node:test";
-import { en, zhCN } from "../src/i18n/messages/public.js";
+import * as messages from "../src/i18n/messages/public.js";
+import * as discovery from "../src/i18n/messages/publicDiscovery.js";
 import { createTranslator, createFormatters, mergeCatalogs, validateCatalogs } from "../src/i18n/core.js";
 import { demoPeople, sharedDemoMatters } from "../src/landing/landingModel.js";
 import { matterExamples } from "../src/landing/matterExamples.js";
 import catalog from "../../../config/product-catalog.json" with { type: "json" };
 
-const catalogs = mergeCatalogs({ en, zhCN });
+const catalogs = mergeCatalogs(messages, discovery);
+const { en, "zh-CN": zhCN } = catalogs;
 const english = createTranslator("en", catalogs);
 const chinese = createTranslator("zh-CN", catalogs);
 const source = async (file) => readFile(new URL(`../src/${file}`, import.meta.url), "utf8");

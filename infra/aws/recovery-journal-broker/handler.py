@@ -9,7 +9,7 @@ import boto3
 
 UUID = re.compile(r"^[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$")
 SEQUENCE = re.compile(r"^[1-9][0-9]{0,18}$")
-KINDS = {"account", "connection", "matter", "person", "free_slot", "unreconciled_access", "retention_hold"}
+KINDS = {"account", "connection", "matter", "person", "free_slot", "unreconciled_access", "retention_hold", "ai_connection"}
 
 
 def verify_envelope(envelope, key):
@@ -33,6 +33,8 @@ def verify_envelope(envelope, key):
             or not isinstance(event["revision"], str) or not SEQUENCE.fullmatch(event["revision"])
             or not isinstance(event["facts"], dict)):
         raise ValueError("Invalid captured journal record")
+    if event["kind"] == "ai_connection" and (set(event["facts"]) != {"revokeOnRestore"} or event["facts"]["revokeOnRestore"] is not True):
+        raise ValueError("AI recovery records must only revoke access")
     return event
 
 

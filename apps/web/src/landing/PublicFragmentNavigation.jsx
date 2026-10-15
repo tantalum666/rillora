@@ -1,4 +1,5 @@
 import { useLayoutEffect } from "react";
+import { publicPath, publicRoute } from "../publicSeo.js";
 
 const movedHomeSections = {
   "#how-it-works": "/product#how-it-works",
@@ -15,14 +16,15 @@ const sectionIds = new Set([
   "appearance",
 ]);
 
-// Mount inside the page's Suspense boundary, after its lazy content exists.
-// Native fragment scrolling can run before that content is in the document.
+// Mount after the selected page module is loaded. Old bookmarks keep their locale.
 export function PublicFragmentNavigation() {
   useLayoutEffect(() => {
     function followFragment() {
       const { pathname, hash } = window.location;
-      if (pathname === "/" && movedHomeSections[hash]) {
-        window.location.replace(movedHomeSections[hash]);
+      const { path, locale } = publicRoute(pathname);
+      if (path === "/" && movedHomeSections[hash]) {
+        const target = movedHomeSections[hash];
+        window.location.replace(target === "/guides" && locale ? `${target}?lang=${locale}` : publicPath(target, locale));
         return;
       }
       const id = hash.slice(1);

@@ -2,7 +2,11 @@
 
 Role: scoped public website design/interaction contract
 Status: THIRD ITERATION IMPLEMENTED; PUBLICATION AND EXACT SOURCE CHECKS IN HANDOFF
-Last updated: 2026-09-29 (Asia/Hong_Kong)
+Last updated: 2026-10-16 (Asia/Hong_Kong)
+
+## October15–16 next-version discovery candidate
+
+The [verified source candidate](architecture/ai-discovery-implementation-20261015.md) adds20 prerendered bilingual pages, canonical language paths, metadata, discovery files and two public educational articles. Existing theme/navigation and authenticated provider guides remain. Native FAQ and visible initial content work without JavaScript; no inline execution or relaxed CSP is introduced. This candidate is not deployed. The Preview-only and sales-closed descriptions below are the historical September29 checkpoint; current production activation is recorded in handoff.
 
 ## Latest Owner direction
 

@@ -2,8 +2,8 @@
 
 Role: next-version product and distribution plan
 Authority scope: public discovery, cross-platform integration priorities and measurable acceptance
-Status: RESEARCH COMPLETE / IMPLEMENTATION PROPOSED / NO RUNTIME OR DIRECTORY RELEASE
-Last updated: 2026-10-15 (Asia/Hong_Kong)
+Status: PUBLIC WEB AND SCOPED MCP SOURCE CANDIDATE VERIFIED / NO RUNTIME OR DIRECTORY RELEASE
+Last updated: 2026-10-16 (Asia/Hong_Kong)
 Source baseline: fec1ad3bcd97984768eed8b2fd95a86ac4f01f35
 Working branch: codex/ai-discovery-vnext-20261015
 
@@ -11,7 +11,7 @@ Working branch: codex/ai-discovery-vnext-20261015
 
 Owner 要求在当前 Apple 审核期间继续开发，新增能力放入下一版本，不打断现有审核；目标是让用户在 Codex、ChatGPT、Claude 以及其他 AI 中谈到数字遗产时，更容易发现、推荐和使用 Rillora。Owner 随后明确不能只考虑两家 AI。
 
-本轮完成官方机制研究、公开官网只读检查和可执行方案。下文实施顺序、首批工具及验收指标是 Agent 建议；它们不是已上线功能、已取得平台批准或增长结果。沿用 [原 AI/MCP 安全与工程方案](ai-mcp-plan-20261005.md)，补足其中尚未展开的跨平台发现与分发部分。
+Owner 随后明确按本方案实施并推 GitHub。现已完成官网候选、最小只读 MCP、独立选择授权与平台配置生成器，具体范围与验证见[实施记录](ai-discovery-implementation-20261015.md)。下文规划中尚未实施的工具、真实连接、目录批准及增长指标保持独立，不据此宣称已上线。沿用[原 AI/MCP 安全与工程方案](ai-mcp-plan-20261005.md)的边界。
 
 App 1.0(14) 的既有审核、手动发布和审核账号服务继续保留；新分支不替换构建、不分发 TestFlight。既有生产身份、真实数据、定价、收费开关和 FanPass 不在本轮修改范围。Apple 后续发布次序仍见 [提审记录](../app-review-preflight-20261014.md)。
 
@@ -104,10 +104,10 @@ D0、D1 可在独立官网候选进行；I0、I1 使用隔离环境，不触及�
 
 不设无依据的“30 天必被推荐”或“覆盖所有 AI”承诺。发布完成、索引完成、模型引用和真实业务增长是四种不同结果。
 
-## 9. 本轮结果与下一步
+## 9. 当前结果与下一步
 
-已完成：复用原 385 行 AI/MCP 提案、核对跨平台官方路径、检查当前公开站点、整理阶段及双语评估种子、更新权威路由／决策／交接／旅程。官方 OpenAI Docs MCP 本次返回 HTTP403 challenge，随后经公开官方网页完成实际正文核对，没有要求 Owner 登录。
+研究阶段已完成：复用原385行提案、核对官方路径、检查公开站点、建立双语评估种子。官方OpenAI Docs MCP返回403后使用公开官方正文，无需Owner登录。随后按Owner明确指令实施20页公开HTML、两篇双语文章、两个只读工具、最多20事项的7天授权、撤销／恢复边界，以及五种客户端配置包；源代码和本地检查详见实施记录。
 
-未完成：上述任何新运行代码、MCP 服务、真实连接、目录提交、搜索平台验证、公开内容发布或推荐效果实测。没有改变在审构建或生产状态。
+未完成：新候选部署、真实Auth0／平台连接、目录提交、搜索平台验证、公开内容发布及推荐效果实测。没有改变在审构建或生产状态；I1的真实两客户端验收不由本地协议测试替代。
 
-唯一下一步：在本分支实施 D0 公开官网候选，优先解决原始 HTML 正文、双语页面元数据和真实可达的 robots／sitemap；验证现有视觉与指南登录边界后，再推进 D1 与 I0。
+后续顺序：完成当前源码／证据的Git交付后，在与在审服务分开的候选环境完成OAuth及两家实际客户端验收；当前唯一执行步骤以[handoff](../handoff.md)为准。

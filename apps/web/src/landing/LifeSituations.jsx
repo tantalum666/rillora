@@ -40,6 +40,7 @@ export function LifeSituations() {
   const { t } = useI18n();
   const [active, setActive] = useState(2);
   const reduce = useReducedMotion();
+  const [interacted, setInteracted] = useState(false);
   const item = situations[active];
   const Icon = item.icon;
   return (
@@ -62,7 +63,7 @@ export function LifeSituations() {
               key={situation.id}
               type="button"
               aria-pressed={index === active}
-              onClick={() => setActive(index)}
+              onClick={() => { setInteracted(true); setActive(index); }}
             >
               {t(situation.labelKey)}
             </button>
@@ -73,8 +74,8 @@ export function LifeSituations() {
             className="lp-life-copy"
             key={item.id}
             aria-live="polite"
-            initial={reduce ? false : { opacity: 0, x: -8 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={!interacted || reduce ? false : { opacity: 0, x: -8 }}
+            animate={interacted ? { opacity: 1, x: 0 } : undefined}
             transition={{ duration: reduce ? 0 : 0.25 }}
           >
             <h3>{t(item.titleKey)}</h3>

@@ -1,7 +1,11 @@
 # Web 中英双语界面与维护合同
 
 Status: FOUR WEB SURFACES DEPLOYED; AUTH0 LEGACY DESKTOP SHELL REMAINS BLOCKED
-Last updated: 2026-10-10 (Asia/Hong_Kong)
+Last updated: 2026-10-16 (Asia/Hong_Kong)
+
+## October15–16 下一版公开语言地址与AI授权
+
+[实施候选](architecture/ai-discovery-implementation-20261015.md)为官网提供 `/en/…` 与 `/zh-CN/…` 固定语言正文、元数据和对应关系。公开规范URL的语言优先于存储；旧无语言路径保留偏好／浏览器兼容跳转。App语言选择逻辑保持，不把公开路由规则套用到私人事项或邀请。两篇公开文章及AI选择授权文案各有完整中英文；真实用户事项名称与品牌名不翻译。默认关闭的AI授权面板已在EN1440／ZH390验证，当前生产未改；Auth0旧外壳仍按Owner指令暂缓。
 
 ## October9–10 当前单一语言合同
 

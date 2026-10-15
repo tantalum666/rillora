@@ -11,6 +11,7 @@ import { productionExecutionConfig } from './stripe-execution-config.js';
 import { createAppleProductionIntake, createAppleReviewIntake } from './apple-production-runtime.js';
 import { appleDeliveryMetrics } from './apple-production-metrics.js';
 import { startRetentionWorker } from './retention.js';
+import { mcpFromEnvironment } from './mcp/integration.js';
 
 const config = loadConfig();
 const pool = createPool(config);
@@ -20,7 +21,9 @@ const stripeProductionConfig = config.stripeProductionSecretArn ? await loadStri
 const stripeExecutor = stripeProductionConfig ? new StripeCommerceExecutor(pool, productionExecutionConfig(stripeProductionConfig), new StripeProductionAdapter(stripeProductionConfig)) : undefined;
 const appleProductionIntake = config.appleProduction ? await createAppleProductionIntake(pool, config.appleProduction) : undefined;
 const appleReviewIntake = config.appleReview ? await createAppleReviewIntake(pool, config.appleReview) : undefined;
+const mcp = mcpFromEnvironment(pool, config);
 const app = createApp(pool, config, { accountDeletionProcessor, transportReady: () => transportReady(),
+  ...(mcp ? { mcp } : {}),
   ...(appleReviewIntake ? {appleReviewIntake} : {}),
   ...(appleProductionIntake ? { appleProductionIntake } : {}),
   ...(stripeProductionConfig && stripeExecutor ? { stripeProductionConfig, stripeExecutor } : {}) });

@@ -1,60 +1,41 @@
 import { withLocale } from "./i18n/localeStore.js";
 import { useI18n } from "./i18n/I18nProvider.jsx";
-import { lazy, Suspense, useEffect } from "react";
+import { useEffect } from "react";
 import { MotionConfig } from "motion/react";
 import { LandingPage } from "./landing/LandingPage.jsx";
 import { LandingHeader, LandingFooter } from "./landing/LandingChrome.jsx";
 import { publicEntry } from "./publicEntry.js";
 import { requestedGuideKey } from "./guideAccess.js";
 import { PublicFragmentNavigation } from "./landing/PublicFragmentNavigation.jsx";
+import { publicPages, publicRoute } from "./publicSeo.js";
 import "./landing/landing.css";
 
-const ProductPage = lazy(() =>
-  import("./landing/ProductPages.jsx").then((m) => ({
-    default: m.ProductPage,
-  })),
-);
-const SecurityPage = lazy(() =>
-  import("./landing/ProductPages.jsx").then((m) => ({
-    default: m.SecurityPage,
-  })),
-);
-const SupportPage = lazy(() =>
-  import("./landing/ProductPages.jsx").then((m) => ({
-    default: m.SupportPage,
-  })),
-);
-const PricingPage = lazy(() =>
-  import("./landing/PlanSection.jsx").then((m) => ({ default: m.PlanSection })),
-);
-const LegalInformation = lazy(() =>
-  import("./landing/LegalInformation.jsx").then((m) => ({
-    default: m.LegalInformation,
-  })),
-);
-const ThirdPartyNotices = lazy(() =>
-  import("./landing/LegalInformation.jsx").then((m) => ({
-    default: m.ThirdPartyNotices,
-  })),
-);
-const pages = {
-  "/": [LandingPage, "public.title.home"],
-  "/product": [ProductPage, "public.title.product"],
-  "/security": [SecurityPage, "public.title.security"],
-  "/pricing": [PricingPage, "public.title.pricing"],
-  "/support": [SupportPage, "public.title.support"],
-  "/legal": [LegalInformation, "public.title.legal"],
-  "/legal/licenses": [ThirdPartyNotices, "public.title.notices"],
+const loaders = {
+  "/": async () => LandingPage,
+  "/product": () => import("./landing/ProductPages.jsx").then(m => m.ProductPage),
+  "/security": () => import("./landing/ProductPages.jsx").then(m => m.SecurityPage),
+  "/support": () => import("./landing/ProductPages.jsx").then(m => m.SupportPage),
+  "/pricing": () => import("./landing/PlanSection.jsx").then(m => m.PlanSection),
+  "/legal": () => import("./landing/LegalInformation.jsx").then(m => m.LegalInformation),
+  "/legal/licenses": () => import("./landing/LegalInformation.jsx").then(m => m.ThirdPartyNotices),
+  "/learn": () => import("./landing/LearningPage.jsx").then(m => m.default),
+  "/learn/digital-legacy-checklist": () => import("./landing/LearningPage.jsx").then(m => m.default),
+  "/learn/password-manager-and-digital-legacy": () => import("./landing/LearningPage.jsx").then(m => m.default),
 };
 
+// Resolve a route before rendering on both server and client; keep subpage bundles separate.
+export async function loadPublicPage(path) {
+  return Object.hasOwn(loaders, path) ? loaders[path]() : null;
+}
+
 /** Marketing and public information only. No account data or tracking; only explicit language and appearance preferences are stored. */
-export function PublicWebsite() {
+export function PublicWebsite({ Page, pathname = window.location.pathname, search = window.location.search }) {
   const { t, localePreference, locale } = useI18n();
-  const path = window.location.pathname.replace(/\/+$/, "") || "/";
+  const { path } = publicRoute(pathname);
   const guides = path === "/guides";
-  const guide = requestedGuideKey(window.location.search);
+  const guide = requestedGuideKey(search);
   const guideTarget = withLocale(`${publicEntry.accountURL}?next=guides${guide ? `&service=${encodeURIComponent(guide)}` : ""}`, localePreference, locale);
-  const [Page, titleKey] = pages[path] ?? [null, "public.title.notFound"];
+  const titleKey = publicPages[path]?.title ?? "public.title.notFound";
   useEffect(() => {
     document.title = t(titleKey);
     if (guides) window.location.replace(guideTarget);
@@ -64,19 +45,8 @@ export function PublicWebsite() {
       <div className="lp-page">
         <a className="lp-skip" href="#lp-main">{t("public.navigation.skip")}</a>
         <LandingHeader path={path} />
-        <Suspense
-          fallback={
-            <main
-              id="lp-main"
-              className="lp-page-content lp-container"
-              aria-busy="true"
-            >
-              <p role="status">{t("public.navigation.loading")}</p>
-            </main>
-          }
-        >
           {Page ? (
-            <Page />
+            <Page path={path} />
           ) : (
             <main id="lp-main" className="lp-page-content lp-container">
               <h1>{guides ? t("public.navigation.guides") : t("public.navigation.notFound")}</h1>
@@ -86,7 +56,6 @@ export function PublicWebsite() {
             </main>
           )}
           <PublicFragmentNavigation />
-        </Suspense>
         <LandingFooter />
       </div>
     </MotionConfig>

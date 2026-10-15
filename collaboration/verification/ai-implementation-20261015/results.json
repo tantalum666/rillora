@@ -1,0 +1,111 @@
+{
+  "checkedAt": "2026-10-15T16:08:23.550628+00:00",
+  "branch": "codex/ai-discovery-vnext-20261015",
+  "baseline": "70f43c88a17ba5760280f972e1d01962ce56d7bc",
+  "status": "LOCAL_CANDIDATE_VERIFIED_PUBLICATION_IN_PROGRESS",
+  "productionChanged": false,
+  "currentReviewChanged": false,
+  "dataPricesSalesFlagsChanged": false,
+  "testFlightDistributed": false,
+  "realProviderConnections": 0,
+  "directorySubmissions": 0,
+  "searchIndexOrRecommendationMeasurement": false,
+  "tests": {
+    "api": {
+      "files": 62,
+      "passed": 560,
+      "failed": 0,
+      "log": "api-full-tests-final.log"
+    },
+    "recoveryAndMcpFocused": {
+      "passed": 25,
+      "log": "recovery-mcp-recheck.log"
+    },
+    "web": {
+      "passed": 194,
+      "log": "web-tests-ci-order.log"
+    },
+    "legal": {
+      "passed": 8,
+      "log": "legal-fixture-tests.log"
+    },
+    "publicFocused": {
+      "passed": 20,
+      "log": "public-tests-corrected.log"
+    },
+    "publicDiscoveryBrowser": {
+      "passed": 7,
+      "log": "public-browser-chrome.log",
+      "note": "two stale label expectations corrected in separate header run"
+    },
+    "publicHeaderBrowser": {
+      "passed": 2,
+      "log": "public-browser-header.log"
+    },
+    "aiConsentBrowser": {
+      "passed": 2,
+      "log": "ai-browser-source-final.log"
+    },
+    "infrastructure": {
+      "passed": 66,
+      "log": "infra-tests.log"
+    },
+    "broker": {
+      "passed": 5,
+      "log": "broker-tests.log"
+    },
+    "platformPackages": {
+      "passed": 2,
+      "log": "client-package-tests.log"
+    },
+    "publicationGuards": {
+      "passed": 83,
+      "log": "publication-guard-tests.log"
+    }
+  },
+  "publicArtifact": {
+    "verifiedFiles": 54,
+    "pages": 20,
+    "locales": [
+      "en",
+      "zh-CN"
+    ],
+    "newArticles": 2,
+    "deployed": false
+  },
+  "mcp": {
+    "tools": [
+      "list_selected_matters",
+      "get_preparation_gaps"
+    ],
+    "maxMatters": 20,
+    "grantDays": 7,
+    "tokenLifetimeMaxSeconds": 3600,
+    "migrations": [
+      "0104",
+      "0105"
+    ],
+    "defaultEnabled": false,
+    "firstPartyCredentialsAccepted": false
+  },
+  "fixesDuringValidation": [
+    "Static renderer eliminates blocked inline streaming scripts without weakening CSP",
+    "Restore/deletion worker grant preserved in migration0105",
+    "Signing-key outage is not reported as expired user authentication",
+    "Real HTTP adapter forwards parsed request body",
+    "Ordinary selected-field updates stay readable, privacy/archival removal never revives",
+    "Legal fixture tests run after correct isolated build; failed out-of-order attempt retained",
+    "Default-off Vite build removes optional AI chunks while non-Vite static rendering stays supported"
+  ],
+  "providerSchemaOnlineValidation": "Public schema downloads failed with network URLError; no online schema acceptance claimed",
+  "next": "Finish source/evidence Git publication, then isolated real OAuth and two actual clients; no changes to current review services.",
+  "defaultWebBuild": {
+    "passed": true,
+    "aiComponentChunks": [],
+    "featureFlagProvided": false,
+    "files": 85,
+    "deployed": false,
+    "artifact": "default-web-verified",
+    "gate": "Direct Vite flag substitution with a safe non-Vite guard; no optional AI component chunks"
+  }
+}

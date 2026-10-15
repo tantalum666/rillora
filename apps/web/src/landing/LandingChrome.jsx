@@ -1,4 +1,4 @@
-import { preserveTransientLocale } from "../i18n/localeStore.js";
+import { PublicLink } from "../PublicLink.jsx";
 import { LanguageControl } from "../i18n/LanguageControl.jsx";
 import { useI18n } from "../i18n/I18nProvider.jsx";
 import { AppearanceLink } from "../AppearanceControl.jsx";
@@ -8,11 +8,12 @@ import logo from "../assets/brand/lockup-primary.svg";
 import reversedLogo from "../assets/brand/lockup-reversed.svg";
 import { AppearanceControl, ThemePicture } from "./AppearanceControl.jsx";
 import { publicEntry } from "../publicEntry.js";
+import { publicPath } from "../publicSeo.js";
 
 export function LandingBrand() {
   const { t } = useI18n();
   return (
-    <a className="lp-brand" href={preserveTransientLocale("/")} aria-label={t("public.nav.homeLabel")}>
+    <PublicLink className="lp-brand" href={"/"} aria-label={t("public.nav.homeLabel")}>
       <ThemePicture
         light={logo}
         dark={reversedLogo}
@@ -20,7 +21,7 @@ export function LandingBrand() {
         height="208"
         alt="Rillora"
       />
-    </a>
+    </PublicLink>
   );
 }
 
@@ -51,7 +52,7 @@ const destinations = [
   ["/support", "public.nav.support"],
 ];
 export function LandingHeader({ path = "/" }) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const [panel, setPanel] = useState(null);
   const open = panel === "navigation";
   return (
@@ -85,19 +86,20 @@ export function LandingHeader({ path = "/" }) {
         aria-label={t("public.nav.publicLabel")}
       >
         {destinations.map(([href, labelKey]) => (
-          <a
-            href={preserveTransientLocale(href)}
+          <PublicLink
+            href={href}
             key={href}
             aria-current={path === href ? "page" : undefined}
           >
             {t(labelKey)}
-          </a>
+          </PublicLink>
         ))}
       </nav>
       <div className="lp-header-actions">
       <PreviewAccountLink />
       <LanguageControl className="lp-language" compact />
       <AppearanceControl
+        informationURL={publicPath("/legal#appearance", locale)}
         open={panel === "appearance"}
         onOpenChange={(value) => setPanel(value ? "appearance" : null)}
       />
@@ -113,10 +115,11 @@ export function LandingFooter() {
       <div className="lp-footer-row">
         <LandingBrand />
         <nav aria-label={t("public.nav.legalLabel")}>
-          <a href={preserveTransientLocale("/support")}>{t("public.nav.support")}</a>
-          <a href={`https://legal.rillora.xyz/privacy?lang=${locale}`}>{t("public.nav.privacy")}</a>
-          <a href={`https://legal.rillora.xyz/terms?lang=${locale}`}>{t("public.nav.terms")}</a>
-          <a href={preserveTransientLocale("/legal")}>{t("public.nav.legal")}</a>
+          <PublicLink href="/learn">{t("public.learn.link")}</PublicLink>
+          <PublicLink href={"/support"}>{t("public.nav.support")}</PublicLink>
+          <PublicLink href={`https://legal.rillora.xyz/privacy?lang=${locale}`}>{t("public.nav.privacy")}</PublicLink>
+          <PublicLink href={`https://legal.rillora.xyz/terms?lang=${locale}`}>{t("public.nav.terms")}</PublicLink>
+          <PublicLink href={"/legal"}>{t("public.nav.legal")}</PublicLink>
         </nav>
       </div>
       <div className="lp-footer-notes">

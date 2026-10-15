@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-15 (Asia/Hong_Kong)
+Last updated: 2026-10-16 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -3511,3 +3511,12 @@ local correction/tests and actual restoration remain separate evidence.
 - [Current plan](architecture/ai-discovery-vnext-20261015.md) distinguishes public discovery, platform-directory distribution and authenticated tools. The earlier MCP proposal supplies permission boundaries; it is not an implemented service.
 - Agent recommendation: public-site discovery foundation first, a shared narrowly scoped read-only MCP next, then independently verified platform adapters/listings. This sequence and tool design are recommendations, not an assertion that Owner individually approved every future feature or provider grant.
 - Official research and four anonymous website reads are complete. New implementation, real AI connections, directory submissions and recommendation/conversion measurements remain unperformed. No guaranteed automatic recommendation or global compatibility claim.
+
+
+## 2026-10-16 — Owner authorizes next-version discovery and scoped MCP implementation
+
+- Owner explicitly directs implementation of the plan: public GEO/SEO first, MCP and multiple AI clients next, next-version delivery without disrupting current review, then GitHub publication. This supersedes the earlier documentation-only stage; it does not make undeployed work a customer feature.
+- Agent implements20 prerendered language pages and two original bilingual articles, retaining public/private boundaries and existing UI. Search indexing and AI recommendation measurements remain unperformed.
+- Agent chooses a narrow first integration: two read-only tools, up to20 selected matters,7-day scoped grants, ordinary selected-field updates readable, and permanent removal when made private/archived. Replacement needs fresh explicit consent and version checks. No generic REST bridge, model call, write/payment/export/release tools or first-party credential reuse.
+- Both runtime and UI flags default off. Isolated protocol/consent/recovery tests and five generated platform configurations are source evidence; independent provider OAuth/client acceptance, directory review and deployment remain required. CurrentApp14, production data, prices, sales controls and FanPass stay unchanged; noTestFlight.
+- Full regression identified the deletion worker's omitted journal permission after the new formatter. Append-only0105preserves the prior exact permission and closes the old formatter entry; no broad grant, checksum bypass or real database mutation. [Implementation and evidence](architecture/ai-discovery-implementation-20261015.md).

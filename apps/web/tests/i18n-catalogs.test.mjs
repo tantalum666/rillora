@@ -26,12 +26,15 @@ test('all application and public messages have complete, parameter-compatible bi
 test('literal translation references and stored local-message keys resolve in both languages',async()=>{
   const missing=[];
   for(const [url,source] of await sources()) {
+    const relative = url.pathname.split('/src/')[1];
+    const catalog = relative.startsWith('landing/') || ['PublicWebsite.jsx', 'publicSeo.js'].includes(relative)
+      ? publicCatalogs : appCatalogs;
     for(const match of source.matchAll(/["']((?:common|forms|public|workspace|sharing)\.[A-Za-z0-9_.-]+)["']/g)) {
       // Runtime code uses some namespace prefixes when constructing an enum key.
       if(match[1].endsWith('.')) continue;
       // Audit action enums are API data, not message IDs. The view prefixes workspace.audit.
       if(/^sharing\.(invitation_created|invitation_regenerated|invitation_accepted|scope_updated|connection_revoked)$/.test(match[1])) continue;
-      if(!Object.hasOwn(appCatalogs.en,match[1])) missing.push(`${url.pathname.split('/src/')[1]}: ${match[1]}`);
+      if(!Object.hasOwn(catalog.en,match[1])) missing.push(`${relative}: ${match[1]}`);
     }
   }
   assert.deepEqual(missing,[]);

@@ -1,4 +1,5 @@
 import express, { type Express, type RequestHandler } from "express";
+import type { McpIntegration } from './mcp/integration.js';
 import type { AppleProductionIntake } from './apple-production-intake.js';
 import { createAppleProductionNotificationHandler, createAppleProductionRouter } from './apple-production-routes.js';
 import { appleReviewContext, appleProductionContext } from './apple-execution-context.js';
@@ -57,6 +58,7 @@ import {
 } from "./storekit-sandbox-routes.js";
 
 export type AppDependencies = AuthDependencies & {
+  mcp?: McpIntegration;
   appleReviewIntake?: AppleProductionIntake;
   appleProductionIntake?: AppleProductionIntake;
   transportReady?: () => boolean;
@@ -93,6 +95,7 @@ export function createApp(
       await pool.query("select 1");
       await checkContentKeys(pool);
       await checkRecoveryJournal(pool);
+      await dependencies.mcp?.checkReady();
       if(config.nodeEnv==='production')await checkEmailMatchReadiness(pool,config);
       response.json({ status: "ready" });
     } catch {
@@ -110,6 +113,8 @@ export function createApp(
     app.use(errorHandler);
     return app;
   }
+
+  dependencies.mcp?.mountPublic(app);
 
   if (config.stripeProductionSecretArn && (!dependencies.stripeProductionConfig || config.stripeTest)) throw new Error('Production billing requires isolated loaded credentials');
   if (Boolean(config.appleProduction) !== Boolean(dependencies.appleProductionIntake)
@@ -252,6 +257,7 @@ export function createApp(
   plannerApi.use("/commerce", createCommerceRouter(pool,
     new Set([...(stripeCheckoutEnabled ? ['stripe'] : []),...(appleProductionIntake ? ['storekit'] : [])])));
   plannerApi.use("/account", createAccountIdentityRouter(pool, emailVerifier));
+  if (dependencies.mcp) plannerApi.use('/account/ai-connections', dependencies.mcp.connections);
   plannerApi.use("/account", createAccountDataRouter(pool, config));
   plannerApi.use("/account", createAccountDeletionRouter(pool, accountDeletion, config));
   plannerApi.use(createApiRouter(pool, config));

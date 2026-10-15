@@ -6,6 +6,7 @@ import { App } from 'aws-cdk-lib';
 import { Match, Template } from 'aws-cdk-lib/assertions';
 import { describe, expect, it } from 'vitest';
 import { PUBLIC_CSP, RilloraPublicWebStack } from '../lib/rillora-public-web-stack.js';
+import { readVerifiedClientArtifact } from '../lib/client-artifact-files.js';
 
 const certificateArn = 'arn:aws:acm:us-east-1:111111111111:certificate/11111111-1111-4111-8111-111111111111';
 function fixture(mutated = false) {
@@ -21,6 +22,30 @@ function fixture(mutated = false) {
   return directory;
 }
 describe('Public information hosting', () => {
+  it('permits the complete public language matrix while rejecting private paths and wrong canonical hosts', () => {
+    const directory = fixture();
+    try {
+      const markerPath = join(directory, 'public-build.json'), marker = JSON.parse(readFileSync(markerPath, 'utf8'));
+      const pages = ['index', 'product', 'security', 'pricing', 'support', 'legal', 'legal/licenses', 'learn',
+        'learn/digital-legacy-checklist', 'learn/password-manager-and-digital-legacy'];
+      marker.pages = [];
+      for (const locale of ['en', 'zh-CN']) for (const page of pages) {
+        const file = `pages/${locale}/${page}.html`, path = `/${locale}/${page === 'index' ? '' : page}`;
+        mkdirSync(join(directory, file, '..'), { recursive: true }); writeFileSync(join(directory, file), `<h1>${locale}</h1>`);
+        marker.files[file] = createHash('sha256').update(readFileSync(join(directory, file))).digest('hex');
+        marker.pages.push({ path, file, locale, canonical: `https://www.rillora.xyz${path}` });
+      }
+      for (const file of ['robots.txt', 'sitemap.xml']) { writeFileSync(join(directory, file), 'public fixture'); marker.files[file] = createHash('sha256').update('public fixture').digest('hex'); }
+      writeFileSync(markerPath, JSON.stringify(marker));
+      expect(() => readVerifiedClientArtifact(directory, 'public-build.json')).not.toThrow();
+      marker.pages[0].canonical = 'https://app.rillora.xyz/account'; writeFileSync(markerPath, JSON.stringify(marker));
+      expect(() => readVerifiedClientArtifact(directory, 'public-build.json')).toThrow('public page');
+      marker.pages[0].canonical = 'https://www.rillora.xyz/en/';
+      writeFileSync(join(directory, 'pages/en/account.html'), 'private'); marker.files['pages/en/account.html'] = createHash('sha256').update('private').digest('hex');
+      writeFileSync(markerPath, JSON.stringify(marker));
+      expect(() => readVerifiedClientArtifact(directory, 'public-build.json')).toThrow('Unexpected client');
+    } finally { rmSync(directory, { recursive: true }); }
+  });
   it.each(['changed', 'extra', 'missing', 'symlink', 'unmanifested'])('rejects %s public assets after packaging', mutation => {
     const assetDirectory = fixture();
     try {

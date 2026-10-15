@@ -59,9 +59,12 @@ export async function replayRecoveryControls(pool:Pool,events:RecoveryControl[],
   // traffic, not silently reset to the values in an old backup.
   if(pending.some(e=>e.kind==='unreconciled_access'))throw new Error('Post-snapshot entitlement changes require provider reconciliation');
   let applied=0;
+  const hasAiConnections=Boolean((await client.query("select to_regclass('app.ai_connections') as table_name")).rows[0]?.table_name);
   for(const event of pending){
    const facts=event.facts;
-   if(event.kind==='retention_hold'){
+   if(event.kind==='ai_connection'){
+    if(hasAiConnections)await client.query('update app.ai_connections set revoked_at=coalesce(revoked_at,now()),version=version+1 where public_id=$1',[event.id]);
+   }else if(event.kind==='retention_hold'){
     // Publication precedes the source SQL commit. An external release can
     // survive a rolled-back transaction, so it cannot loosen a restored hold.
     // Releasing recovered holds requires a fresh administrative decision.
@@ -145,6 +148,9 @@ export async function replayRecoveryControls(pool:Pool,events:RecoveryControl[],
    applied++;
   }
   const invalidated=await client.query('delete from app.auth_sessions');
+  // External OAuth tokens are not part of this database. Require fresh explicit
+  // grants after a restore, even when an old access token is still valid.
+  if(hasAiConnections)await client.query('update app.ai_connections set revoked_at=now(),version=version+1 where revoked_at is null');
   await client.query('delete from app.auth_transactions');
   await client.query('delete from app.sharing_handoffs');
   await client.query("update app.recipient_rehearsals set status='revoked',revoked_at=coalesce(revoked_at,now()) where status<>'revoked'");

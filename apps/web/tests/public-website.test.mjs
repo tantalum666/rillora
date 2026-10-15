@@ -32,7 +32,7 @@ test("public routing serves only public pages and fixed asset paths", () => {
     "/legal/licenses",
     "/legal/licenses/",
   ])
-    assert.equal(request(path).uri, "/index.html");
+    assert.equal(request(path).uri, `/pages/en${path.replace(/\/+$/, "") || "/index"}.html`);
   assert.equal(request("/assets/logo-123.svg").uri, "/assets/logo-123.svg");
   for (const extension of ["jpg", "jpeg", "webp"]) {
     const uri = `/assets/folio-fixture.${extension}`;

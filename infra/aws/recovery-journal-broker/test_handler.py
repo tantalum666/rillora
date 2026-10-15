@@ -70,6 +70,18 @@ class JournalProof(unittest.TestCase):
         with self.assertRaises(ValueError):
             broker.publish(self.db, "fixture", self.envelope(), self.key)
         self.assertEqual(self.db.writes, 0)
+    def test_ai_records_allow_only_revocation_metadata(self):
+        for facts, accepted in [({"revokeOnRestore": True}, True), ({"revokeOnRestore": 1}, False),
+                                ({"revokeOnRestore": False}, False), ({"revokeOnRestore": True, "title": "private"}, False)]:
+            envelope = self.envelope()
+            event = json.loads(envelope["event"])
+            event.update(key="ai_connection:" + ENTITY, kind="ai_connection", facts=facts)
+            envelope["event"] = json.dumps(event, sort_keys=True)
+            envelope["signature"] = hmac.new(self.key.encode(), f'rillora-journal-event-v1|{GENERATION}|200|{envelope["event"]}'.encode(), hashlib.sha256).hexdigest()
+            if accepted:
+                self.assertEqual(broker.verify_envelope(envelope, self.key)["facts"], facts)
+            else:
+                with self.assertRaises(ValueError): broker.verify_envelope(envelope, self.key)
 
 
 if __name__ == "__main__":

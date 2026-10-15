@@ -1,5 +1,5 @@
+import { PublicLink } from "../PublicLink.jsx";
 import { useI18n } from "../i18n/I18nProvider.jsx";
-import { preserveTransientLocale } from "../i18n/localeStore.js";
 import { WebsiteAppearanceDisclosure } from "../WebsiteAppearanceDisclosure.jsx";
 import { publicRoutes } from "../publicRoutes.js";
 import { ArrowRight, DownloadSimple } from "@phosphor-icons/react";
@@ -49,21 +49,21 @@ export function LegalInformation() {
       </header>
       <nav className="lp-document-links" aria-label={t("public.legal.label")}>
         {documents.map(([labelKey, detailKey, path]) => (
-          <a key={path} href={`https://legal.rillora.xyz${path}?lang=${locale}`}>
+          <PublicLink key={path} href={`https://legal.rillora.xyz${path}?lang=${locale}`}>
             <span>
               <strong>{t(labelKey)}</strong>
               <small>{t(detailKey)}</small>
             </span>
             <ArrowRight size={22} aria-hidden="true" />
-          </a>
+          </PublicLink>
         ))}
-        <a href={preserveTransientLocale("/legal/licenses")}>
+        <PublicLink href={"/legal/licenses"}>
           <span>
             <strong>{t("public.legal.thirdParty")}</strong>
             <small>{t("public.legal.thirdPartyDetail")}</small>
           </span>
           <ArrowRight size={22} aria-hidden="true" />
-        </a>
+        </PublicLink>
       </nav>
       <WebsiteAppearanceDisclosure />
     </main>
@@ -73,7 +73,7 @@ export function ThirdPartyNotices() {
   const { t } = useI18n();
   return (
     <main id="lp-main" className="lp-page-content lp-notices lp-container">
-      <a className="lp-text-link" href={preserveTransientLocale("/legal")}>{t("public.legal.label")}</a>
+      <PublicLink className="lp-text-link" href={"/legal"}>{t("public.legal.label")}</PublicLink>
       <header className="lp-page-intro">
         <h1>{t("public.legal.thirdPartyTitle")}</h1>
         <p>{t("public.legal.thirdPartyDescription")}</p>
@@ -99,12 +99,12 @@ export function ThirdPartyNotices() {
             ))}
         </div>
       </details>
-      <a
+      <PublicLink
         className="lp-text-link lp-notices-download"
         download="rillora-third-party-notices.txt"
         href={noticesFile}
       >
-        <DownloadSimple size={20} aria-hidden="true" />{t("public.legal.download")}</a>
+        <DownloadSimple size={20} aria-hidden="true" />{t("public.legal.download")}</PublicLink>
     </main>
   );
 }

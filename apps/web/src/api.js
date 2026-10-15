@@ -147,6 +147,10 @@ export function createApiClient({
   }
 
   return {
+    getAiConnections: () => request('/account/ai-connections'),
+    getAiSelectableMatters: cursor => request(`/account/ai-connections/selectable${cursor ? `?cursor=${encodeURIComponent(cursor)}` : ''}`),
+    authorizeAiConnection: input => request('/account/ai-connections', { method: 'POST', body: input }),
+    revokeAiConnection: (publicId, expectedVersion) => request(`/account/ai-connections/${encodeURIComponent(publicId)}`, { method: 'DELETE', body: { expectedVersion } }),
     getMatter: id => request(`/matters/${encodeURIComponent(id)}`),
     getCreatedMatter: (requestId) => request(`/matters/creation/${encodeURIComponent(requestId)}`),
     archiveMatter: (id, expectedVersion) => request(`/matters/${encodeURIComponent(id)}`, {method:"DELETE",headers:{"if-match":String(expectedVersion)}}),

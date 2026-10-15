@@ -1,6 +1,6 @@
 # Rillora — Git / Dot 协作入口
 
-October15下一版本：[跨平台 AI 发现与使用方案](../docs/architecture/ai-discovery-vnext-20261015.md)已在独立分支 codex/ai-discovery-vnext-20261015 开始研究与准备。覆盖公开搜索、平台目录及受权 MCP；本轮只有方案、公开站点检查和双语评估种子，[可读记录](verification/ai-discovery-20261015/README.md)直接保存 Git。当前 App14 审核与生产状态保持，下一步以 handoff 为准；尚未实现或上架 AI 功能。
+October15–16下一版本：[跨平台方案](../docs/architecture/ai-discovery-vnext-20261015.md)已按Owner指令推进到[本地实施候选](../docs/architecture/ai-discovery-implementation-20261015.md)，包含20页双语官网、最小只读MCP、明确选择／撤销授权和五种平台配置。独立分支codex/ai-discovery-vnext-20261015；[实施证据](verification/ai-implementation-20261015/README.md)与[先前研究](verification/ai-discovery-20261015/README.md)分开保存。当前App14审核、生产服务／数据／价格保持；尚未部署、真实OAuth连接或目录上架，唯一下一步见handoff。
 
 October15[提审复核与Web开放](../docs/app-review-preflight-20261014.md)：专用账号双端及跨端读写通过，40c76496f／CI153和117线上资源一致，正式Web原路线开放。Apple三项提交6537a10c-38f2-425e-8b8e-c76e5fa730b1等待审核，手动发布／无TestFlight；Owner取消余下真机。新增[archive39及回执](verification/app-review-20261015/README.md)的316路径／276对象已在3113de7a7完成GitHub独立下载与认证，CI154通过；旧1—38不重做。
 

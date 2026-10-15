@@ -9,7 +9,11 @@ function handler(event) {
       },
     };
   }
-  if (request.uri === "/guides" || request.uri === "/guides/") {
+  var localeMatch = /^\/(en|zh-CN)(\/|$)/.exec(request.uri);
+  var locale = localeMatch ? localeMatch[1] : "en";
+  var uri = localeMatch ? request.uri.slice(locale.length + 1) || "/" : request.uri;
+  var path = uri.replace(/\/+$/, "") || "/";
+  if (path === "/guides") {
     var providers = [
       "apple",
       "google",
@@ -43,6 +47,7 @@ function handler(event) {
       var languageHint = request.querystring && request.querystring.langHint && request.querystring.langHint.value;
       if (languageHint === "en" || languageHint === "zh-CN") target += "&langHint=" + languageHint;
     }
+    if (!language && !languageHint && localeMatch) target += "&langHint=" + locale;
     return {
       statusCode: 302,
       headers: {
@@ -51,26 +56,20 @@ function handler(event) {
       },
     };
   }
-  if (
-    [
-      "/",
-      "/product",
-      "/product/",
-      "/security",
-      "/security/",
-      "/pricing",
-      "/pricing/",
-      "/support",
-      "/support/",
-      "/legal",
-      "/legal/",
-      "/legal/licenses",
-      "/legal/licenses/",
-    ].indexOf(request.uri) !== -1
-  ) {
-    request.uri = "/index.html";
+  var pages = ["/", "/product", "/security", "/pricing", "/support", "/legal", "/legal/licenses",
+    "/learn", "/learn/digital-legacy-checklist", "/learn/password-manager-and-digital-legacy"];
+  if (pages.indexOf(path) !== -1) {
+    var requestedLanguage = request.querystring && request.querystring.lang && request.querystring.lang.value;
+    if (requestedLanguage === "en" || requestedLanguage === "zh-CN") {
+      var destination = "/" + requestedLanguage + (path === "/" ? "/" : path);
+      var appearance = request.querystring && request.querystring.appearance && request.querystring.appearance.value;
+      if (["system", "light", "dark"].indexOf(appearance) !== -1) destination += "?appearance=" + appearance;
+      return { statusCode: 302, headers: { location: { value: destination }, "cache-control": { value: "no-store" } } };
+    }
+    request.uri = "/pages/" + locale + (path === "/" ? "/index" : path) + ".html";
     return request;
   }
+  if (request.uri === "/robots.txt" || request.uri === "/sitemap.xml") return request;
   if (
     /^\/assets\/[A-Za-z0-9_-]+\.(js|css|png|jpe?g|webp|svg|woff|woff2|txt)$/.test(
       request.uri,
