@@ -3,12 +3,14 @@
 Role: future integration architecture proposal and implementation handoff  
 Authority scope: AI-facing API boundaries, phased work packages and acceptance criteria  
 Status: PROPOSAL / DOCUMENTATION ONLY — NOT IMPLEMENTED  
-Last updated: 2026-10-05 (Asia/Hong_Kong)  
+Last updated: 2026-10-15 (Asia/Hong_Kong; current-direction pointer only; original technical proposal remains dated October5)
 Official-source check: original sources 2026-10-04 UTC; MCP Events addendum 2026-10-05 UTC / Asia/Hong_Kong  
 Source baseline: `2cc95f77c1279bdad43547b7e58a8faca9da7a93` on `codex/strict-review-20261002`  
 Delivery branch: `codex/ai-mcp-plan-20261005`
 
 ## 0. 接手结论与本次授权
+
+**2026-10-15 当前方向：** Owner 现要求审核期间推进下一版本，并覆盖其他 AI。先读[跨平台 AI 发现与使用方案](ai-discovery-vnext-20261015.md)，其中补充 GEO、官网实际缺口、多平台机制和独立分发顺序。下文原授权／源码映射／官方规则为 October5 的历史提案检查点，未因此变成运行实现；本文件中的私密数据、授权与确认边界继续适用，具体平台规则实施前复核。
 
 **能做，也值得预留。建议先建立可复用、带权限的领域接口，再接 MCP，私测成熟后再申请公开目录。AI 集成不新增当前首发阻塞项。**
 

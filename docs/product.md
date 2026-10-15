@@ -9,6 +9,10 @@ Last updated: 2026-10-15 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
 
+## 2026-10-15 审核期间启动跨平台 AI 下一版本方向
+
+Owner 要求当前 Apple 审核继续，新功能放到下一版本；AI 目标覆盖 ChatGPT／Codex、Claude 及其他平台，不能只针对两家。当前以[跨平台发现与使用方案](architecture/ai-discovery-vnext-20261015.md)区分公开搜索推荐、目录分发和连接后的受权操作。旧 AI/MCP 文档继续提供安全与接口提案；这些能力尚未实现，不能宣称已兼容、已上架或保证自动推荐。现有在审构建、生产数据、定价与收费状态保持。
+
 ## 2026-10-15 Web正式开放与Owner停止真机验证
 
 旧身份窗口已过并重新取得拒绝证据，正式Web访问／新购已按原授权开启，价格与关闭自动计税保持；两条Apple新购仍独立关闭。审核账号双端登录及合成资料读写已验证。Owner明确“真机不用验证了”，余下真机检查不再作为本轮待办，不冒称通过；已确认的法律往返保留。[当前结果与边界](app-review-preflight-20261014.md)。
@@ -508,7 +512,7 @@ Owner于2026-09-09明确：“本项目全部默认授权与确认”。当前�
 
 | Task | Read next | Role |
 | --- | --- | --- |
-| 未来 AI 接口、MCP 或 OpenAI Plugin 目录 | `docs/architecture/ai-mcp-plan-20261005.md` | 文档提案与实施交接；未实现，不新增当前首发门 |
+| 跨平台 AI 发现、GEO、推荐、插件／MCP 下一版本 | `docs/architecture/ai-discovery-vnext-20261015.md` → `docs/architecture/ai-mcp-plan-20261005.md` | 当前研究与实施顺序；安全／接口提案；未实现，不打断现有审核 |
 | 真实双端核心流程的剩余验收 | `docs/real-core-acceptance-20261004.md` | 当前会话、共享／撤销、导出／恢复、近期认证及删除的实际结果 |
 | 本轮审查修复部署、新iOS构建与加密声明 | `docs/review-rollout-20261003.md` | API11/schema0093与新构建3的实际结果；真实验收与公开发布仍分开 |
 | 严格全项目代码审查、当前缺陷与直接修复 | `docs/code-review-20261002.md` | 当前逐文件覆盖、复现与验证；与历史Dot报告和实际部署分开 |

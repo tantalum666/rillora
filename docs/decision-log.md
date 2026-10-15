@@ -3503,3 +3503,11 @@ local correction/tests and actual restoration remain separate evidence.
 - Review notes now explain the optional passkey prompt and the synthetic example. Continue the three-item Apple submission after these checks, retain manual release and the post-release Production gate. This is not a guarantee of Apple approval.
 
 - After the final3-item validation, the preparedApp14/annual/group packet is intentionally submitted under the continuing release authorization. Apple receipt6537a10c-38f2-425e-8b8e-c76e5fa730b1shows all threeWaiting for Review atHong KongOctober15 09:49. This supersedes the earlier withdrawn packet as current review state; manual release remains and no monthly product is submitted.
+
+## 2026-10-15 — Owner starts cross-platform AI work for the next version
+
+- Owner asks to continue development while Apple review runs, put new capabilities in a subsequent version, and improve Rillora discovery/recommendation/use across AI products. The follow-up explicitly extends scope beyond two providers.
+- Preserve the submitted App14, existing production dependencies/data/prices/sales flags, manual release and no TestFlight. New work is isolated on codex/ai-discovery-vnext-20261015 from fec1ad3bc; the release worktree remains available.
+- [Current plan](architecture/ai-discovery-vnext-20261015.md) distinguishes public discovery, platform-directory distribution and authenticated tools. The earlier MCP proposal supplies permission boundaries; it is not an implemented service.
+- Agent recommendation: public-site discovery foundation first, a shared narrowly scoped read-only MCP next, then independently verified platform adapters/listings. This sequence and tool design are recommendations, not an assertion that Owner individually approved every future feature or provider grant.
+- Official research and four anonymous website reads are complete. New implementation, real AI connections, directory submissions and recommendation/conversion measurements remain unperformed. No guaranteed automatic recommendation or global compatibility claim.

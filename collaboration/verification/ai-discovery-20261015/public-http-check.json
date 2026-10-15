@@ -1,0 +1,49 @@
+{
+  "recordedAt": "2026-10-15T11:05:30.882456+08:00",
+  "checkedDate": "2026-10-15 Asia/Hong_Kong",
+  "method": "four anonymous urllib HTTP GET requests, no cookies or authenticated content",
+  "sourceBaseline": "fec1ad3bcd97984768eed8b2fd95a86ac4f01f35",
+  "results": [
+    {
+      "url": "https://www.rillora.xyz/",
+      "status": 200,
+      "contentType": "text/html",
+      "bytes": 1334,
+      "sha256": "f3af472ea15ff982808618a60f05de9c161ccb68613aa71713e115f65f53953c",
+      "title": "Rillora — Make the important things clear",
+      "emptyRoot": true,
+      "canonical": false,
+      "hreflang": false,
+      "jsonLd": false,
+      "xRobotsTag": null
+    },
+    {
+      "url": "https://www.rillora.xyz/pricing?lang=zh-CN",
+      "status": 200,
+      "contentType": "text/html",
+      "bytes": 1334,
+      "sha256": "f3af472ea15ff982808618a60f05de9c161ccb68613aa71713e115f65f53953c",
+      "title": "Rillora — Make the important things clear",
+      "emptyRoot": true,
+      "canonical": false,
+      "hreflang": false,
+      "jsonLd": false,
+      "xRobotsTag": null
+    },
+    {
+      "url": "https://www.rillora.xyz/robots.txt",
+      "status": 404
+    },
+    {
+      "url": "https://www.rillora.xyz/sitemap.xml",
+      "status": 404
+    }
+  ],
+  "limits": [
+    "Absence of robots.txt is not a crawl ban.",
+    "A sitemap is helpful but not a universal indexing prerequisite.",
+    "Raw HTML check does not prove rendered UI failure or inability of every crawler to render JavaScript.",
+    "No Search Console/Bing authenticated property or model recommendation measurement performed.",
+    "All requests were public read-only checks; no deployment occurred."
+  ]
+}
