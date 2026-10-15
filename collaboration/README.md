@@ -1,6 +1,6 @@
 # Rillora — Git / Dot 协作入口
 
-October15[提审复核与Web开放](../docs/app-review-preflight-20261014.md)：专用账号双端及跨端读写通过，40c76496f／CI153和117线上资源一致，正式Web原路线开放。Apple三项提交6537a10c-38f2-425e-8b8e-c76e5fa730b1等待审核，手动发布／无TestFlight；Owner取消余下真机。新增[archive39及回执](verification/app-review-20261015/README.md)单独保存，旧1—38不重做。
+October15[提审复核与Web开放](../docs/app-review-preflight-20261014.md)：专用账号双端及跨端读写通过，40c76496f／CI153和117线上资源一致，正式Web原路线开放。Apple三项提交6537a10c-38f2-425e-8b8e-c76e5fa730b1等待审核，手动发布／无TestFlight；Owner取消余下真机。新增[archive39及回执](verification/app-review-20261015/README.md)的316路径／276对象已在3113de7a7完成GitHub独立下载与认证，CI154通过；旧1—38不重做。
 
 October13[平台原因与登录维护](../docs/provider-diagnostics-20261013.md)：Apple员工明确发布前Production API限制，已纠正提审／开售顺序，原工单关闭请求收件但未显示Closed。Auth0旧英文外壳仍在；配置脚本新增模板不可读即停止的保护，7项模拟检查通过。[本轮可读回执](verification/provider-diagnostics-20261013/README.md)直接入Git，无线上配置、价格或运行部署变更，旧1—38归档不重封。
 

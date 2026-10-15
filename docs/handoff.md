@@ -1,6 +1,6 @@
 # Rillora 当前交接
 
-Status: WEB LIVE / REVIEWER VERIFIED / APPLE WAITING FOR REVIEW / NO TESTFLIGHT
+Status: WEB LIVE / APPLE WAITING FOR REVIEW / GIT REMOTE VERIFIED / NO TESTFLIGHT
 Last updated: 2026-10-15 (Asia/Hong_Kong)
 
 ## 当前任务
@@ -20,10 +20,12 @@ Last updated: 2026-10-15 (Asia/Hong_Kong)
 
 - Apple于香港October15 09:49接收提交6537a10c-38f2-425e-8b8e-c76e5fa730b1，App1.0(14)、年订阅及群组三项均等待审核；旧月订阅未加入，手动发布保持。
 
+- 新archive39在3113de7a7已推送并从GitHub独立下载，276对象／316路径全部认证；CI154三任务成功。晚到回执为普通Git元数据，不重封归档。
+
 ## 证据边界
 
 Web配置已开放，不代表新增了真钱交易或市场收入；金融测试保留既有日期。原生模拟器不替代真实StoreKit购买，剩余未订阅真机／VoiceOver已由Owner取消，不能标成通过。Auth0旧外壳仅暂缓，不声称已修复。已保留的删除验收账号不删除。Apple仍由正式审核决定是否通过，不能保证首次获批。
 
 ## 唯一下一步
 
-完成本轮新增原件归档和Git远端核验后，按Apple审核结果续接：获批后先处理简化购买，再手动发布并验证Production，最后启用Apple普通新购。当前已在等待审核，不重复提交或分发TestFlight；真机取消及Auth0外壳暂缓不重新打开。
+按Apple审核结果续接：若有具体反馈，处理该问题；获批后先处理简化购买，再手动发布并验证Production授权／通知／对账，最后启用Apple普通新购。审核Sandbox登记当前至October27，若审核实际延后则在原范围内维护，不能放宽普通客户测试权限。当前已在等待审核，不重复提交或分发TestFlight；真机取消及Auth0外壳暂缓不重新打开。

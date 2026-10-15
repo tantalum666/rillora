@@ -514,4 +514,4 @@ Archive29 was independently downloaded from GitHub at d15cbd59cf7e74f611f6b4ea42
 
 Archive30was freshly downloaded and decrypted at remote99c2537f4ba59aae112127ddf03260dd01a5c932; all376objects/653paths matched GitHub metadata. See its remote-readback receipt. Final metadata was appended after capture without resealing.
 
-本轮新增archive39已完成本地认证：316路径／276对象／23,202,691密文字节；独立远端核验另记，不重做旧1—38。
+本轮新增archive39已完成本地认证：316路径／276对象／23,202,691密文字节；3113de7a7的GitHub独立新下载认证276对象／316路径通过，CI154三任务成功；不重做旧1—38。
