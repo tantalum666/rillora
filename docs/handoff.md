@@ -11,7 +11,7 @@ Owner要求先完成官网GEO／SEO，再推进MCP与各平台接入；新功能
 
 - [官网与MCP实现](architecture/ai-discovery-implementation-20261015.md)：20页双语公开HTML、两篇文章、两只读工具、选定范围／7天授权／即时撤销／恢复失效。两个开关默认关闭；既有560等本地结果不重跑。
 - [平台接入续验](architecture/ai-integration-acceptance-20261016.md)：当前Codex兼容包已实际解析为一个服务；Codex／Gemini实际本机连接通过，原结果使用合成签名身份，不能冒充Auth0或模型选工具。archive40／41已各自独立从GitHub下载认证。
-- 最新已推送11b62244e的CI161成功；源码436af7a07的CI160及前CI158／159保留，无需重跑。
+- 既有11b62244e的CI161成功；源码436af7a07的CI160及前CI158／159保留。本轮文档／脚本回执08ef68cf4已推送，远端32文件Git对象指纹匹配；CI162回读时运行中，最后回执普通Git补交。
 - AWS管理登录已恢复；Owner随后完成Auth0登录，租户设置／客户端／资源三个真实GET均成功。旧验证码／会话错误已关闭，不再要求重复登录。
 - 真实OAuth准备：Auth0原本已启用resource参数compatibility；新建一个目的限定公共native客户端和一个loopback测试API，900秒、RS256、两只读scope、不开refresh／M2M。现有客户端、API、连接绑定和租户设置逐项保持。
 - Codex实际生成匹配resource、两scope、S256且无client secret的授权请求，准确回调已登记。独立本地加密合成库和仅loopback MCP监听已启动验证准备，随后清理到0规划者／0临时角色并停服务；未交换Auth0 token或调用模型。

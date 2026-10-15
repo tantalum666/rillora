@@ -20,3 +20,5 @@ Last updated: 2026-10-16 (Asia/Hong_Kong)
 [文档链接核对](receipts/markdown-links.json)及[新增可读材料扫描](receipts/readable-scan.json)通过；[收尾范围](results.json)记录更新的规范、决策、交接与旅程。
 
 当前唯一下一步见[handoff](../../../docs/handoff.md)：完成已准备的create／delete connections追加授权，再继续隔离真实OAuth。追加权限未确认前不继续依赖操作。
+
+已推送[08ef68cf4](https://github.com/tantalum666/rillora/commit/08ef68cf40275a2f00ebf208d4b82cb3b0eb1847)，[远端回读](remote-readback.json)核对分支与32个变更文件Git对象指纹一致。CI162在此回读时运行中，不能引用CI161替代；最后回执普通Git补交。
