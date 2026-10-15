@@ -10,7 +10,7 @@ Owner要求继续尝试补齐与验收，并明确重新打开AWS／Auth0登录�
 
 - GitHub连接器恢复后，源码CI158与收尾CI159均读回completed/success；各自三个任务全部通过。旧CLI令牌的Actions权限不扩大，没有重新申请GitHub授权。
 - AWS只读STS原先明确过期；随后旧密码及本人MFA恢复，原部署角色／账户读回通过。只读栈清单确认当前没有另建AI候选栈，生产与既有Preview未修改。
-- Auth0旧CLI明确过期。首次设备登录报Invalid network change；新设备流正常进入原邮箱登录页，但未完成时设备码已到期。收尾时重新打开有效设备流，等待本人完成。未改租户、API或客户端。
+- Auth0旧CLI明确过期。首次设备登录报Invalid network change；新设备流正常进入原邮箱登录页，但未完成时设备码已到期。收尾已重新打开有效设备流并置前；实际显示安全挑战加载失败300030，需要本人刷新／完成验证后继续登录。未改租户、API或客户端。
 - 已重新取得Agent Plugins公开schema，并对照OpenAI官方OAuth扩展正文。基础mcp.schema不允许server.extensions，而OpenAI官方示例要求该位置声明OAuth。须分别验证基础结构和OpenAI扩展／实际客户端，不能删掉认证字段只为让通用schema通过。
 
 ## 实际发现与修正
@@ -28,3 +28,5 @@ Gemini最初按预期拒绝未信任目录；随后使用独立临时profile，�
 本机原先只有Codex CLI；本轮把Gemini CLI0.64.0和Ajv8.20.0安装在Git忽略的独立工具目录，未安装到全局。没有Claude／Cursor桌面端。新的云端服务器、真实Auth0回调、目录申请及公开发布均未完成；原先560等本地结果只引用既有检查点，未重复本地全量测试。
 
 当次证据：output/qa/rillora-ai-acceptance-20261016。本人登录过程与任何credential／activation URL均保存在忽略的受保护目录，不进入可读Git。当前无新产品或定价决定；执行步骤以[handoff](../handoff.md)为准。
+
+交付：源码436af7a07／CI160通过；archive41为87路径／66对象，独立GitHub下载完整认证通过。最后回执普通Git保存，不重封旧档案。

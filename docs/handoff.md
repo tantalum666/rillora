@@ -1,6 +1,6 @@
 # Rillora 当前交接
 
-Status: NEXT-VERSION CI158/159 VERIFIED / TWO LOCAL CLIENTS VERIFIED / AUTH0 LOGIN PENDING / CURRENT REVIEW PRESERVED
+Status: NEXT-VERSION CI158/159 VERIFIED / TWO LOCAL CLIENTS VERIFIED / CI160 VERIFIED / AUTH0 CHALLENGE PENDING / CURRENT REVIEW PRESERVED
 Last updated: 2026-10-16 (Asia/Hong_Kong)
 
 ## 当前任务
@@ -26,10 +26,12 @@ October16续验：GitHub连接器恢复可用，已读回源码15770aa4d的CI158
 
 AWS与Auth0CLI本次只读请求均证明确实过期。AWS已复用原密码／本人验证恢复，并通过原账户STS与只读栈清单；没有部署。Auth0首次设备流返回Invalid network change，新设备流已正常进入原邮箱登录页，Owner要求重新拉起后已打开并保留，等待本人完成；不把该恢复扩大为全租户配置变更。当前增量记录在 output/qa/rillora-ai-acceptance-20261016。
 
-[October16续验](architecture/ai-integration-acceptance-20261016.md)另发现当前Codex会忽略portable包的OAuth扩展，已添加并真实解析验证独立兼容包。Codex和Gemini CLI都连到本机真实Rillora接口，前者读取两工具目录，后者Connected；仅合成签名身份，没有真实Auth0／模型调用。临时身份、角色和Gemini独立profile已清理。等待期间Auth0设备码实际到期，收尾重新拉起一次，不重复AWS登录或既有测试。
+[October16续验](architecture/ai-integration-acceptance-20261016.md)另发现当前Codex会忽略portable包的OAuth扩展，已添加并真实解析验证独立兼容包。Codex和Gemini CLI都连到本机真实Rillora接口，前者读取两工具目录，后者Connected；仅合成签名身份，没有真实Auth0／模型调用。临时身份、角色和Gemini独立profile已清理。等待期间Auth0设备码实际到期，收尾已新建有效流程并把Chrome登录窗口置前；当前页面明确提示安全挑战加载失败300030，需要Owner手动刷新／完成验证后继续原邮箱密码登录，不重复AWS登录或既有测试。
 
 当前Apple审核独立等待，沿用手动发布及获批后Production核验再开放Apple普通新购的顺序。Auth0外壳按Owner指令暂缓；Owner已停止真机检查，不重新要求参与。原件保存只新增本轮证据，旧1—39不重封、不重复下载。
 
+本轮兼容修正及archive41已推送436af7a07／CI160成功，独立GitHub新下载认证66对象／87路径通过；旧1—40不重做。最终状态回执普通Git补交。
+
 ## 唯一下一步
 
-完成当前有效Auth0设备登录后，先只读核对resource兼容配置及已有客户端，再准备独立OAuth验收环境。已通过的CI、兼容包解析和本地两客户端连接不重做；当前审核服务不变，真实OAuth、对话工具调用、目录批准和部署仍分别验收。
+Owner在已置前的Auth0页面完成实际安全挑战与原邮箱登录后，先只读核对resource兼容配置及已有客户端，再准备独立OAuth验收环境。已通过的CI、兼容包解析和本地两客户端连接不重做；当前审核服务不变，真实OAuth、对话工具调用、目录批准和部署仍分别验收。
