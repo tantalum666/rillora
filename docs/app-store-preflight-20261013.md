@@ -1,9 +1,16 @@
 # App Store 上线材料与当前证据 — 2026-10-13
 
-Status: METADATA SAVED / PRIVACY PUBLISHED / BUILD14 SUBMISSION WITHDRAWN / MANUAL RELEASE RETAINED
-Last updated: 2026-10-14 (Asia/Hong_Kong)
+Status: MATERIAL RECHECKED / DEDICATED REVIEWER VERIFIED / BUILD14 MANUAL RELEASE RETAINED
+Last updated: 2026-10-15 (Asia/Hong_Kong)
 
 本文件记录Apple实际草稿与填写依据，不把保存元数据、构建上传或Sandbox购买视为App Review批准或正式开售。当前执行仍由[最终收尾](final-readiness-20261013.md)与[交接](handoff.md)路由。
+
+
+Apple最终回执：香港October15 09:49，提交6537a10c-38f2-425e-8b8e-c76e5fa730b1中的App1.0(14)、年订阅、群组三项均等待审核。手动发布保持，未分发TestFlight，尚未获批或公开上架。
+
+## October15复核增补
+
+[当前提审复核](app-review-preflight-20261014.md)已核对实际材料、地区／价格／协议和专用审核账号；原密码在Web与原生验证有效，保留一条无个人数据的示例并完成跨端读写。年费双语描述及审核说明已保存回读；Owner确认真机法律返回并取消余下真机验证。以下“审核账号首次登录待验收”及真机待办均为October13历史状态；先前主动撤回仍如实保留。
 
 ## 双语材料
 

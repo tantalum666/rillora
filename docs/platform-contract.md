@@ -5,7 +5,11 @@ Authority scope: Web/iOS responsibilities, shared state and first validation rel
 Superseded by: later explicit platform decision  
 Do not use for: final framework choice or visual tokens  
 Status: CORE PARITY CONTRACT ACTIVE; CURRENT RUNTIME AND RELEASE GATES IN HANDOFF
-Last updated: 2026-10-13 (Asia/Hong_Kong)
+Last updated: 2026-10-15 (Asia/Hong_Kong)
+
+## October15 Web activation and scoped native closeout
+
+The original token window is closed by fresh negative evidence. Ordinary Web admission and the existing Web sales route are live, while Apple Production routes remain independently held. The dedicated reviewer completed Web/native authentication and a synthetic cross-platform write/read round trip. Owner explicitly confirmed physical legal return to the same account/data, then stopped further physical testing; remaining unsubscribed-device and VoiceOver observations are not claimed as passed. [Current scope](app-review-preflight-20261014.md). All following dated holds and deferrals retain their original scope.
 
 ## October13 Web billing capability and identity hold
 

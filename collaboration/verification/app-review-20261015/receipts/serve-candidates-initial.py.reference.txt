@@ -1,0 +1,50 @@
+"""Loopback-only rendering of saved candidates. No production API proxy."""
+from functools import partial
+from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+from pathlib import Path
+from urllib.parse import urlsplit
+import json
+import signal
+import threading
+
+ROOT = Path(__file__).resolve().parents[3]
+PRIVATE = ROOT / '.local-secrets/app-review-20261014'
+
+class CandidateHandler(SimpleHTTPRequestHandler):
+    def do_GET(self):
+        parsed = urlsplit(self.path)
+        if parsed.path.startswith('/api/'):
+            status = 401 if parsed.path == '/api/v1/session' else 404
+            body = json.dumps({'error': {'code': 'authentication_required' if status == 401 else 'candidate_preview_only', 'message': 'Local unsigned candidate preview.'}}).encode()
+            self.send_response(status)
+            self.send_header('Content-Type', 'application/json')
+            self.send_header('Cache-Control', 'no-store')
+            self.end_headers()
+            self.wfile.write(body)
+            return
+        if not Path(self.translate_path(self.path)).is_file() and not parsed.path.startswith('/assets/'):
+            self.path = '/index.html'
+        super().do_GET()
+
+    def do_POST(self):
+        self.send_error(405, 'Candidate preview does not accept writes')
+
+    def log_message(self, *_):
+        pass
+
+servers = []
+try:
+    for port, directory in [(3284, 'public-live'), (3285, 'production-live')]:
+        artifact = PRIVATE / directory
+        assert (artifact / 'index.html').is_file()
+        server = ThreadingHTTPServer(('127.0.0.1', port), partial(CandidateHandler, directory=str(artifact)))
+        servers.append(server)
+        threading.Thread(target=server.serve_forever, daemon=True).start()
+    print('Candidate previews:127.0.0.1:3284(public),3285(app); API uses an unsigned local401 fixture.', flush=True)
+    signal.pause()
+except KeyboardInterrupt:
+    pass
+finally:
+    for server in servers:
+        server.shutdown()
+        server.server_close()

@@ -5,9 +5,17 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-10-14 (Asia/Hong_Kong)
+Last updated: 2026-10-15 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-10-15 Web正式开放与Owner停止真机验证
+
+旧身份窗口已过并重新取得拒绝证据，正式Web访问／新购已按原授权开启，价格与关闭自动计税保持；两条Apple新购仍独立关闭。审核账号双端登录及合成资料读写已验证。Owner明确“真机不用验证了”，余下真机检查不再作为本轮待办，不冒称通过；已确认的法律往返保留。[当前结果与边界](app-review-preflight-20261014.md)。
+
+## 2026-10-14 Owner暂缓Auth0外壳，优先Apple提审复核
+
+Owner认为当前Auth0页面问题可暂缓，要求再次严格核对Apple提审资料并继续其余上线工作。[当前提审复核](app-review-preflight-20261014.md)取代只处理Auth0文案的优先级；保留真实认证、旧身份令牌安全窗口、价格／数据／FanPass和TestFlight暂停。不得保证首次审核必过，也不得把过期／不可用的审核账号当作已填资料通过。
 
 ## 2026-10-13 法律页重复说明删除
 

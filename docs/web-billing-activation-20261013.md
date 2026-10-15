@@ -1,9 +1,13 @@
 # Web正式订阅收尾：关闭自动计税，完成身份隔离窗口
 
-Status: BILLING RUNTIME DEPLOYED / TAX AUTOMATION DISABLED / CUSTOMER SALES HELD FOR OLD TOKEN EXPIRY / NO TESTFLIGHT
-Last updated: 2026-10-13 (Asia/Hong_Kong)
+Status: WEB LIVE / TAX AUTOMATION DISABLED / IDENTITY WINDOW CLOSED / NO TESTFLIGHT
+Last updated: 2026-10-15 (Asia/Hong_Kong)
 
 Owner在询问Stripe已配置为何不能订阅后明确“忽略掉计税策略”。本轮不再等待Stripe Tax设置、登记或计税策略；不虚构免税评估、登记号或reviewed_no_collection。Web继续USD88.99／年，Free1／Family5和Apple既定价格不变。
+
+## October15正式开放已完成
+
+既定等待期限已过；4旧客户端及2旧M2M的403已重新确认，正式同意Action已恢复。40c76496f／CI153两套前端只改静态资源，117线上文件一致。固定目录事务只打开原Web路线和市场销售标志；USD88.99／关闭自动计税保持，两条AppleProduction新购独立关闭。真实官网中英文入口已读回，未制造真钱交易。[当前完整结果](app-review-preflight-20261014.md)。下方October13等待描述为保留的历史过程，不再是活动下一步。
 
 ## 当前实际状态
 
@@ -35,7 +39,7 @@ Auth0当前Management API令牌寿命只读确认86400秒。已签发access toke
 
 本轮QA为output/qa/rillora-web-billing-activation-20261013；源码／规范普通入Git，实际凭据、Auth0主体和完整供应商响应保留在受保护目录。新增archive36保存540路径／486对象／36,394,455密文字节，并在e29d417b6完成本地及GitHub独立新下载认证；最终元数据不递归封存。归档与实际远端认证回执见[本轮保存记录](../collaboration/verification/web-billing-activation-20261013/README.md)。完整Markdown阅读沿用同一工作流账本，只补当前变更和恢复所需正文。
 
-## 唯一执行门
+## HISTORICAL：October13执行门（已于October15完成）
 
 香港2026-10-14 04:21之后，确认4旧客户端仍不能签发、原生产客户端正常、旧令牌有效期已过；恢复已准备的正式同意Action并通过新指纹启用原Web销售路线，再核对正式页面。直接复用已部署API25、现有商品／价格及既有支付证明，不重复后台部署、本人认证或交易。官网文案切到实际开放状态，原机和App Store／TestFlight继续独立。
 

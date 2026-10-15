@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-14 (Asia/Hong_Kong)
+Last updated: 2026-10-15 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -3488,3 +3488,18 @@ local correction/tests and actual restoration remain separate evidence.
 - Retain standard New Universal Login plus Free-supported branding and localized prompts as the maintainable target. The old locked shell is still live, and the public question is still pending. The documented official support escalation exists, but the current account exposes no Message control; no new private support message is claimed.
 - Fix the legacy full-template script to stop before remote writes when the existing template cannot be read, including a404after removal. Seven intercepted-provider checks pass. No live tenant/runtime/price change occurs.
 - After Owner restores the actually expired Apple Developer session, send a closure request in existing case102995248851. Apple acknowledges receipt in that case, but does not display Closed. No duplicate case or new TestFlight distribution follows. [Current evidence](provider-diagnostics-20261013.md).
+
+## 2026-10-14 — Owner defers Auth0 shell and prioritizes complete App Review preflight
+
+- Owner explicitly defers the current Auth0 outer-shell language/cosmetic issue and asks for a thorough second review of Apple submission material plus remaining independent launch work. This is a deferral, not a passed localization result or permission to alter authentication safeguards.
+- Reuse completed native14, financial, security and cloud evidence. Inspect actual Apple metadata and a usable dedicated reviewer path, correct real discrepancies, and keep manual release/no TestFlight. Do not guarantee Apple's review outcome or create redundant tests/support cases.
+- The previously measured Web identity-token deadline remains binding; complete independent preparation while it has not elapsed. [Current scope](app-review-preflight-20261014.md).
+
+## 2026-10-15 — Owner ends physical-device checks; complete independent launch work
+
+- Owner explicitly says “真机不用验证了”. Stop further physical-device verification. The prior explicit confirmation that legal navigation returns to the original account and matter is retained. Remaining unsubscribed-device and VoiceOver results are not fabricated or kept as a fresh participation requirement.
+- The dedicated synthetic reviewer has separately completed Web and native authentication under the current terms confirmation, then a Web-create / iOS-edit / fresh-Web-read round trip. One clearly labelled nonpersonal example remains for App Review. Passwords are unchanged; input-tool failures and simulator/store-binary evidence remain distinct.
+- Under the existing launch authorization, the expired identity window is closed by fresh four-client readback and two403denials. The prepared production consent Action is restored; only the original Web route and market sales flags are opened. Current USD88.99, disabled automatic tax and the separately closed Apple Production routes remain. No real payment or new TestFlight occurs.
+- Review notes now explain the optional passkey prompt and the synthetic example. Continue the three-item Apple submission after these checks, retain manual release and the post-release Production gate. This is not a guarantee of Apple approval.
+
+- After the final3-item validation, the preparedApp14/annual/group packet is intentionally submitted under the continuing release authorization. Apple receipt6537a10c-38f2-425e-8b8e-c76e5fa730b1shows all threeWaiting for Review atHong KongOctober15 09:49. This supersedes the earlier withdrawn packet as current review state; manual release remains and no monthly product is submitted.

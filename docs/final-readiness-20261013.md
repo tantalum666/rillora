@@ -1,9 +1,16 @@
 # 正式上线收尾 — 2026-10-13
 
-Status: APPLE AND OPERATIONS DEPLOYED / SUPPORT REQUESTS SENT / REVIEW WITHDRAWN / WEB TOKEN WINDOW RETAINED
-Last updated: 2026-10-14 (Asia/Hong_Kong)
+Status: WEB LIVE / APPLE WAITING FOR REVIEW / PHYSICAL CHECKS OWNER-CANCELLED
+Last updated: 2026-10-15 (Asia/Hong_Kong)
 
 Owner要求进入收尾，把所有内容推进到可正式上线状态。此指令取代“只等Web身份窗口”的单项下一步，继续其余可自主完成的原生、Apple后台、商店材料与发布检查；已完成的支付／退款、代码审计、安全迁移和部署不重复。保留现有UI、Free1／Family5、WebUSD88.99与AppleUSAUSD119.99、真实数据和FanPass，沿用计税策略不再阻塞的决定。此前不分发TestFlight的具体要求仍保持，本轮先集中准备最终商店候选。
+
+
+Apple最终回执：香港October15 09:49，提交6537a10c-38f2-425e-8b8e-c76e5fa730b1中的App1.0(14)、年订阅、群组三项均等待审核。手动发布保持，未分发TestFlight，尚未获批或公开上架。
+
+## October15当前增补
+
+[提审复核与Web开放](app-review-preflight-20261014.md)已完成原审核密码与双端合成资料验收、商店材料复核和117个线上资源匹配。旧身份时间门已关闭，Web正式新购开启；Apple两条新购仍独立关闭，当前API／数据／价格不变。Owner确认真机法律页返回原账号／事项，随后明确“真机不用验证了”，因此停止余下真机工作；Auth0外壳按Owner暂缓。以下旧待办保留原日期，不取代本轮交接。
 
 ## 不重新打开的证据
 
@@ -73,7 +80,7 @@ Owner随后明确镜像已解锁，取代暂后。实时画面和原App启动成
 
 [October13平台诊断](provider-diagnostics-20261013.md)找到Apple员工关于发布前Production API禁用的明确说明，与既有同JWT对照一致。不要把Production200排在提审之前：剩余审核／设备验收后使用独立Sandbox送审，获批后处理简化购买，手动发布后验证Production，再单独启用Apple新购。具体解锁时刻不从普通论坛回复推断，不新增401通用回退。原工单关闭请求已收到，非Closed证明。Auth0中文页旧英文外壳仍未清除，7项配置工具检查通过不代表线上已修复；免费标准页面恢复和支持渠道另按诊断文档推进。
 
-### 保留的工作顺序
+### HISTORICAL：October13工作顺序
 
 1. 补齐Apple实际配置、具名到期审核通道和必要反向测试；准备精确、保留数据的云端差异。
 2. 复用原生14的已验证源码／归档准备商店导出，核对真实商店材料与剩余设备行为；不再依赖旧Preview登录。

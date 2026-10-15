@@ -1,5 +1,7 @@
 # Rillora — Git / Dot 协作入口
 
+October15[提审复核与Web开放](../docs/app-review-preflight-20261014.md)：专用账号双端及跨端读写通过，40c76496f／CI153和117线上资源一致，正式Web原路线开放。Apple三项提交6537a10c-38f2-425e-8b8e-c76e5fa730b1等待审核，手动发布／无TestFlight；Owner取消余下真机。新增[archive39及回执](verification/app-review-20261015/README.md)单独保存，旧1—38不重做。
+
 October13[平台原因与登录维护](../docs/provider-diagnostics-20261013.md)：Apple员工明确发布前Production API限制，已纠正提审／开售顺序，原工单关闭请求收件但未显示Closed。Auth0旧英文外壳仍在；配置脚本新增模板不可读即停止的保护，7项模拟检查通过。[本轮可读回执](verification/provider-diagnostics-20261013/README.md)直接入Git，无线上配置、价格或运行部署变更，旧1—38归档不重封。
 
 October13[法律页精简](../docs/legal-page-layout-20261013.md)：Owner选择直接删除两块重复外观／语言说明，不增加折叠。78f262a3a／CI148及真实Cloudflare部署、50HTTPS／18资源与线上中英文／两宽度回读通过，法律正文不变。[archive38](verification/legal-layout-20261013/README.md)新增64路径／62对象／1,156,789密文字节，本地及6c073f70b的GitHub独立新下载认证均通过；前1—37不重做，无原生／其他运行面部署或TestFlight。
@@ -84,7 +86,7 @@ HKD888购买已验签；简洁购买页构建8已分发原内部组并选入未�
 677对象，本地与GitHub独立新下载后的解密核验均通过。Stripe Live凭据已保护保存、运行计费尚未接通。
 
 
-Updated: 2026-10-13 (Asia/Hong_Kong)
+Updated: 2026-10-15 (Asia/Hong_Kong)
 
 October6保留检查点：`codex/release-12-stripe-20261005`源码10194de6a/CI58通过；双语多设备/大字号/系统语言、共享/文件与88.99StripeWeb TEST闭环完成。API14及Web/WWW已部署；新1.0(5)已上传处理为准备提交，说明回读一致，群组/独立测试员0。[新增完整保存包](verification/release-12-stripe-20261006/README.md)的raw-work-019包含9,769路径/1,541对象，本地及GitHub新下载原件均已解密核验通过，归档提交557af9f11/CI59成功。旧归档/真实数据/FanPass保留，真人/真机/live/最终审核门仍分开。
 

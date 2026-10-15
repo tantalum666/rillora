@@ -1,0 +1,95 @@
+{
+  "at": "2026-10-15T00:52:55.123139+00:00",
+  "stacks": [
+    {
+      "stack": "RilloraPublicWeb",
+      "status": "UPDATE_COMPLETE",
+      "resourceCount": 12,
+      "templateBytes": 13313,
+      "roleArn": "arn:aws:iam::133857166372:role/cdk-hnb659fds-cfn-exec-role-133857166372-eu-central-1",
+      "deployments": [
+        {
+          "id": "PublicDeploymentCustomResource947B276F",
+          "properties": {
+            "ServiceToken": {
+              "Fn::GetAtt": [
+                "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536",
+                "Arn"
+              ]
+            },
+            "SourceBucketNames": [
+              "cdk-hnb659fds-assets-133857166372-eu-central-1"
+            ],
+            "SourceObjectKeys": [
+              "67d2c15f4715c4aacf450db485fea3ba3a7f55a4031ac6abb8d30da2578fd756.zip"
+            ],
+            "DestinationBucketName": {
+              "Ref": "PublicAssetsACF28B1B"
+            },
+            "WaitForDistributionInvalidation": true,
+            "Prune": false,
+            "SystemMetadata": {
+              "cache-control": "public,max-age=300,must-revalidate"
+            },
+            "DistributionId": {
+              "Ref": "Website32962D0B"
+            },
+            "DistributionPaths": [
+              "/*"
+            ],
+            "OutputObjectKeys": true
+          }
+        }
+      ]
+    },
+    {
+      "stack": "RilloraProductionWeb",
+      "status": "UPDATE_COMPLETE",
+      "resourceCount": 13,
+      "templateBytes": 14989,
+      "roleArn": "arn:aws:iam::133857166372:role/cdk-hnb659fds-cfn-exec-role-133857166372-eu-central-1",
+      "deployments": [
+        {
+          "id": "[PUBLIC_IDENTIFIER_OMITTED]",
+          "properties": {
+            "ServiceToken": {
+              "Fn::GetAtt": [
+                "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536",
+                "Arn"
+              ]
+            },
+            "SourceBucketNames": [
+              "cdk-hnb659fds-assets-133857166372-eu-central-1"
+            ],
+            "SourceObjectKeys": [
+              "e2c51fa7a5dec1b68e27843648c0c1450dbeb5314279acba484d74135aa3dd37.zip"
+            ],
+            "DestinationBucketName": {
+              "Ref": "Assets9A31D427"
+            },
+            "WaitForDistributionInvalidation": true,
+            "Prune": true,
+            "SystemMetadata": {
+              "cache-control": "public,max-age=300,must-revalidate"
+            },
+            "DistributionId": {
+              "Ref": "Client4A7F64DF"
+            },
+            "DistributionPaths": [
+              "/*"
+            ],
+            "OutputObjectKeys": true
+          }
+        }
+      ]
+    },
+    {
+      "stack": "RilloraProduction",
+      "status": "UPDATE_COMPLETE",
+      "resourceCount": 102,
+      "templateBytes": 89592,
+      "roleArn": "arn:aws:iam::133857166372:role/cdk-hnb659fds-cfn-exec-role-133857166372-eu-central-1",
+      "deployments": []
+    }
+  ]
+}

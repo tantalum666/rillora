@@ -1,6 +1,10 @@
 # Source control, complete work preservation and release rollback
 
-Last updated: 2026-10-14 (Asia/Hong_Kong)
+Last updated: 2026-10-15 (Asia/Hong_Kong)
+
+## October15 Apple review and Web activation
+
+[Current closeout](app-review-preflight-20261014.md) verifies the dedicated reviewer, opens Web after the measured identity window and submits the App14/annual/group packet while retaining manual release. [New archive39](../collaboration/verification/app-review-20261015/README.md) preserves only new eligible originals, including the exact Release simulator app and reviewed frontend artifacts; previous1–38remain immutable. Credentials/authentication/private provider bodies stay excluded. Archive and remote results are recorded separately.
 
 ## October13 provider diagnosis and login configuration guard
 
@@ -509,3 +513,5 @@ Archive29 was independently downloaded from GitHub at d15cbd59cf7e74f611f6b4ea42
 [Archive30](../collaboration/verification/recovery-financial-20261010/README.md) preserves653eligible new paths/376unique raw objects in595,640encrypted bytes. It includes failed/passed recovery checks, immutable maintenance source candidates, actual cloud task/template/deployment/reconciliation/isolation/cleanup receipts and bounded operational helpers. Local decryption/catalog verification passed. Real database dumps, credential/auth material and raw provider objects remain protected and excluded; original1–29archives are unchanged. Final publication and independent remote verification receipts follow frozen capture without resealing.
 
 Archive30was freshly downloaded and decrypted at remote99c2537f4ba59aae112127ddf03260dd01a5c932; all376objects/653paths matched GitHub metadata. See its remote-readback receipt. Final metadata was appended after capture without resealing.
+
+本轮新增archive39已完成本地认证：316路径／276对象／23,202,691密文字节；独立远端核验另记，不重做旧1—38。

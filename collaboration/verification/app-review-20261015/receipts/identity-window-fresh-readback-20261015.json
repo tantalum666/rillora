@@ -1,0 +1,32 @@
+{
+  "at": "2026-10-15T00:48:28.469814+00:00",
+  "deadline": "2026-10-13T20:20:46.299059+00:00",
+  "deadlineElapsed": true,
+  "disabledOldClients": 4,
+  "freshOldM2MDenials": [
+    {
+      "status": 403,
+      "error": "unauthorized_client",
+      "tokenIssued": false
+    },
+    {
+      "status": 403,
+      "error": "unauthorized_client",
+      "tokenIssued": false
+    }
+  ],
+  "productionClientFlows": [
+    {
+      "appType": "regular_web",
+      "codeFlowEnabled": true
+    },
+    {
+      "appType": "native",
+      "codeFlowEnabled": true
+    }
+  ],
+  "[PUBLIC_IDENTIFIER_OMITTED]": true,
+  "preparedLiveActionMatchesCurrentSource": true,
+  "credentialsPrintedOrPersisted": false,
+  "mutation": false
+}

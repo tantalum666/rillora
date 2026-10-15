@@ -1,0 +1,30 @@
+{
+  "at": "2026-10-13T17:25:00.801309+00:00",
+  "baseSource": "2bad532ebc85d671e1004406dcfda7bd8fc56c4b",
+  "sourceChange": "public-entry.customerAccess review->live; decisionDate updated; current contract expectation adjusted",
+  "targetedChecksPassed": true,
+  "artifacts": [
+    {
+      "surface": "production-live",
+      "files": 86,
+      "sourceOutput": "dist-production-live",
+      "protectedCandidate": ".local-secrets/app-review-20261014/production-live",
+      "customerAccess": "live",
+      "serverAdmissionStillAuthoritative": true
+    },
+    {
+      "surface": "public-live",
+      "files": 31,
+      "sourceOutput": "dist-public",
+      "protectedCandidate": ".local-secrets/app-review-20261014/public-live",
+      "customerAccess": null,
+      "serverAdmissionStillAuthoritative": true
+    }
+  ],
+  "cloudChanged": false,
+  "deployed": false,
+  "ordinarySalesOpened": false,
+  "earliestCutoverUTC": "2026-10-13T20:21:00Z",
+  "mustRecheckRetiredIssuersAfterDeadline": true,
+  "preserved": "API, data,119.99/888/88.99, Apple new-sale hold, current phone14, noTestFlight"
+}

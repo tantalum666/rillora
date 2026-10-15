@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-15T01:43:13.330366+00:00",
+  "mutations": false,
+  "stripeReadbackError": "Existing Rillora Stripe CLI request failed; private output suppressed",
+  "http": [
+    {
+      "path": "/api/health/live",
+      "status": 200
+    },
+    {
+      "path": "/api/health/ready",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/session",
+      "status": 401
+    }
+  ]
+}

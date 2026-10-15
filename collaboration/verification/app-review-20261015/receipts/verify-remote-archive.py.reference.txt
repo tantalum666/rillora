@@ -1,0 +1,79 @@
+"""Download only new archive39 to empty LFS storage and authenticate every object."""
+from pathlib import Path
+import argparse
+import base64
+import datetime
+import hashlib
+import json
+import os
+import re
+import subprocess
+import sys
+import tempfile
+
+ROOT = Path(__file__).resolve().parents[3]
+QA = ROOT / 'output/qa/rillora-app-review-20261014'
+DEST = ROOT / 'collaboration/verification/app-review-20261015'
+IDENTITY = Path('/Users/tantalum/Documents/电子遗嘱app/.local-secrets/collaboration-git/identity.txt')
+sys.path.insert(0, str(ROOT / 'tools/collaboration'))
+from verify_archives import verify
+
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('commit')
+args = parser.parse_args()
+assert re.fullmatch('[a-f0-9]{40}', args.commit)
+remote = subprocess.check_output(['git', 'ls-remote', '--heads', 'origin', 'codex/security-findings-20261011'], cwd=ROOT, text=True)
+assert remote.split()[0] == args.commit
+assert IDENTITY.is_file() and not IDENTITY.stat().st_mode & 0o077
+
+def read_remote(path):
+    raw = subprocess.check_output(['gh', 'api', 'repos/tantalum666/rillora/contents/' + path + '?ref=' + args.commit], cwd=ROOT)
+    response = json.loads(raw)
+    assert response['type'] == 'file' and response['path'] == path and response['encoding'] == 'base64'
+    data = base64.b64decode(response['content'])
+    assert len(data) == response['size']
+    assert hashlib.sha1(b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest() == response['sha']
+    return data
+
+summary_bytes = read_remote('collaboration/verification/app-review-20261015/snapshot.json')
+summary = json.loads(summary_bytes)
+assert len(summary['archives']) == 1 and len(summary['catalogFiles']) == 1
+archive = summary['archives'][0]
+assert archive['path'] == 'collaboration/archives/raw-work-039.tar.zst.age'
+local = json.loads((DEST / 'snapshot.json').read_text())
+assert summary == local, 'Remote manifest must exactly match the locally verified new capture'
+catalog_path = summary['catalogFiles'][0]
+assert catalog_path == 'collaboration/verification/app-review-20261015/catalog.json'
+catalog_bytes = read_remote(catalog_path)
+store = Path(tempfile.mkdtemp(prefix='fresh-remote-lfs-', dir=QA / 'publication'))
+assert list(store.iterdir()) == []
+with (QA / 'remote-lfs-fetch.log').open('wb') as output:
+    subprocess.run(['git', '-c', 'http.version=HTTP/1.1', '-c', 'lfs.storage=' + str(store), 'lfs', 'fetch',
+                    '--include=' + archive['path'], '--exclude=', 'origin', args.commit], cwd=ROOT,
+                   stdout=output, stderr=subprocess.STDOUT, check=True)
+objects = [path for path in (store / 'objects').rglob('*') if path.is_file()]
+assert len(objects) == 1
+download = objects[0]
+assert download.name == archive['sha256'] and download.stat().st_size == archive['bytes']
+assert hashlib.sha256(download.read_bytes()).hexdigest() == archive['sha256']
+stage = store / 'verification-root'
+(stage / 'collaboration').mkdir(parents=True)
+(stage / 'collaboration/snapshot.json').write_bytes(summary_bytes)
+target = stage / catalog_path
+target.parent.mkdir(parents=True)
+target.write_bytes(catalog_bytes)
+target = stage / archive['path']
+target.parent.mkdir(parents=True)
+os.link(download, target)
+result = verify(stage, IDENTITY)
+receipt = {
+    'checkedAt': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+    'remoteCommit': args.commit, 'remoteBranchMatched': True,
+    'metadataReadAtImmutableCommit': True, 'metadataGitBlobDigestsMatched': True,
+    'freshSeparateLfsStorage': True, 'previousArchivesDownloadedAgain': False,
+    'downloadedArchiveCount': len(objects), 'archive': archive, 'verification': result,
+    'boundary': 'Remote Git/LFS preservation only. Existing deployment/native/user evidence remains separately dated; no repeated migration, deployment, transaction or authentication.',
+}
+(DEST / 'remote-readback.json').write_text(json.dumps(receipt, indent=2) + '\n')
+(QA / 'remote-archive-storage.json').write_text(json.dumps({'path': str(store), 'commit': args.commit}, indent=2) + '\n')
+print(json.dumps({'commit': args.commit, 'bytes': archive['bytes'], **result}))

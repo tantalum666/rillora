@@ -1,7 +1,11 @@
 # 原生与跨端剩余验收 — 2026-10-12
 
-Status: CURRENT PHONE14 LOGIN AND APPLE PLAN MATCH WEB / REMAINING NATIVE LEGAL AND ACCESSIBILITY CHECKS OPEN
-Last updated: 2026-10-13 (Asia/Hong_Kong)
+Status: REVIEWER CROSS-PLATFORM VERIFIED / OWNER CONFIRMED LEGAL RETURN / FURTHER PHYSICAL TESTS CANCELLED
+Last updated: 2026-10-15 (Asia/Hong_Kong)
+
+## October15本轮收尾
+
+专用合成审核账号完成Web／原生登录、Web新建1示例／iOS修改／Web重新读取，见[完整证据](app-review-preflight-20261014.md)。这是同源码Release模拟器验收，不是新增商店包或真机购买。原机实际退出后，复用原Google与Owner当场条款确认返回原事项；Owner明确确认法律页面返回后仍是原账号和事项。随后Owner明确“真机不用验证了”，余下未订阅真机／VoiceOver听觉检查停止，不再请求参与，也不记作通过。
 
 ## October13当前增补
 

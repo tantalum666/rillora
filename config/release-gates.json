@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-14",
+  "updatedAt": "2026-10-15",
   "release": "Rillora Global 1.0",
   "scope": "Web and native iOS; existing Free and Family only",
   "gates": [
     {
       "id": "production-runtime",
-      "status": "in_progress",
+      "status": "verified",
       "required": true,
       "title": "Separate production runtime and data",
       "evidence": [
@@ -44,13 +44,14 @@
         "docs/web-billing-activation-20261013.md",
         "collaboration/verification/web-billing-activation-20261013/README.md",
         "docs/final-readiness-20261013.md",
-        "docs/app-store-preflight-20261013.md"
+        "docs/app-store-preflight-20261013.md",
+        "docs/app-review-preflight-20261014.md"
       ],
-      "next": "eb2b3c4d2/CI145 is compatibly deployed with separate Production Apple and finite review contexts; no schema103 migration or original data-resource change. Stripe no-automatic-tax configuration remains. Ordinary Web access/new sales still waits until2026-10-13T20:20:46Z plus fresh denial readback; no backend redeployment is needed solely for the prepared Web route."
+      "next": "The unchanged protected API/schema remains; October15 completes the existing Web admission/catalog/static cutover after fresh old-token denial evidence. Both frontend stacks preserve all other resources/parameters,117HTTPS files match40c76496f/CI153. No new API or DB deployment."
     },
     {
       "id": "production-identity",
-      "status": "in_progress",
+      "status": "verified",
       "required": true,
       "title": "Production identity and recovery",
       "evidence": [
@@ -95,13 +96,14 @@
         "collaboration/verification/web-billing-activation-20261013/README.md",
         "docs/final-readiness-20261013.md",
         "docs/app-store-preflight-20261013.md",
-        "docs/provider-diagnostics-20261013.md"
+        "docs/provider-diagnostics-20261013.md",
+        "docs/app-review-preflight-20261014.md"
       ],
-      "next": "Four old Preview issuers and the measured token deadline remain retired/held as recorded. Existing production Google and Apple connections are now explicitly bound to both production clients; previous Apple bindings and signing key remain. Customer-visible client names are Rillora. Fresh real native14 and Web owner login succeeded under the same current consent; Apple hosted button is observed, not a new Apple identity callback. The pre-existing Free402 desktop template issue remains. Owner-authorized public Auth0 question has been received and is pending moderator approval; no public URL or answer yet. Current Chinese preview still has three English shell phrases and an English region label. Restore the standard Free-supported shell without changing accounts/connections/consent. Official staff provides a support escalation path, but no Message control is exposed and no private ticket has been created. The local legacy-template tool now refuses all writes when template backup fails;7mocked checks pass, not a live page fix."
+      "next": "Four old Preview issuers remain disabled and twoM2Mrequests still403after the measured deadline. Current source-matching production consent Action is deployed with unchanged otherAction/order and mandatory native current consent. Dedicated reviewer Web/native login and original Google phone login succeed. Owner-deferred Auth0 outer-shell cosmetics remain unresolved but are not this identity safety gate."
     },
     {
       "id": "production-billing",
-      "status": "in_progress",
+      "status": "verified",
       "required": true,
       "title": "Ordinary customer purchase lifecycle",
       "evidence": [
@@ -124,13 +126,14 @@
         "docs/web-billing-activation-20261013.md",
         "collaboration/verification/web-billing-activation-20261013/README.md",
         "docs/final-readiness-20261013.md",
-        "docs/app-store-preflight-20261013.md"
+        "docs/app-store-preflight-20261013.md",
+        "docs/app-review-preflight-20261014.md"
       ],
-      "next": "Existing Stripe Live annualUSD88.99, explicit disabled tax automation and18-event webhook remain. Web route/market stays held solely for the measured identity window. New Apple USA/HKG routes are separately disabled so future Web activation cannot open unverified Apple Production purchases. Original prices, review accounts, market flags and historical financial rows are unchanged. Reuse dated financial test/refund evidence; no artificial Live payment."
+      "next": "Original Web route/market opened after fresh provider readiness and catalog fingerprint;USD88.99annual,disabledautomaticTax,existing signed callback/test-refund evidence retained. No new self-payment or customer revenue claim. Two Apple Production routes stay independently closed; Apple lifecycle is separately gated."
     },
     {
       "id": "merchant-market",
-      "status": "in_progress",
+      "status": "verified",
       "required": true,
       "title": "Merchant and ready-market facts",
       "evidence": [
@@ -141,9 +144,10 @@
         "docs/decision-log.md",
         "collaboration/verification/stripe-tax-deferral-20261010/verification.json",
         "docs/web-billing-activation-20261013.md",
-        "collaboration/verification/web-billing-activation-20261013/README.md"
+        "collaboration/verification/web-billing-activation-20261013/README.md",
+        "docs/app-review-preflight-20261014.md"
       ],
-      "next": "Rillora Live merchant charges/payouts and the existing Family annual8899USD price are active. Owner explicitly removes tax strategy as this Web opening prerequisite; tax automation is disabled, no exemption/assessment/registration is invented. GLOBAL_US Web route is prepared; its temporary closure is solely the retained identity-token window. Do not widen geographic routes or Apple availability from this result; actual optional tax registrations and Apple market/review work remain separate."
+      "next": "Rillora Live account/product/price readiness passes. Owner removed tax strategy as the opening prerequisite; explicit disabled tax automation retained without invented tax exemption. Only the existing GLOBAL_US Web route is opened, with no new regions or Apple availability."
     },
     {
       "id": "apple-transactions",
@@ -178,9 +182,10 @@
         "docs/native-cross-platform-acceptance-20261012.md",
         "docs/final-readiness-20261013.md",
         "docs/app-store-preflight-20261013.md",
-        "docs/provider-diagnostics-20261013.md"
+        "docs/provider-diagnostics-20261013.md",
+        "docs/app-review-preflight-20261014.md"
       ],
-      "next": "Retain dated actual HKD888 purchase/renewal/restore and current native14/Web test entitlement agreement. Apple staff confirms Production API access requires a production release, matching the current unreleased-app401; do not demand Production200before submission or fall back generically to Sandbox. After dedicated-reviewer/device acceptance, submit through the separate bounded Sandbox context; after approval configure streamlined purchasing and manually release; then verify Production authorization, notification and reconciliation before enabling the two ordinary Apple new-sale routes. Original case102995248851 received a closure request; Closed is not confirmed."
+      "next": "Retain actualHKD888Sandboxpurchase/restore and native14evidence. Dedicated reviewer remains enrolled throughOctober27. Apple prereleaseProduction401is not a presubmission blocker. After approval configure streamlined purchasing, manually release, then verify Productionauthorization/notifications/reconciliation before enabling two new-sale routes. No generic401fallback."
     },
     {
       "id": "operations",
@@ -271,9 +276,10 @@
         "docs/security-rollout-20261012.md",
         "docs/native-cross-platform-acceptance-20261012.md",
         "docs/web-billing-activation-20261013.md",
-        "collaboration/verification/web-billing-activation-20261013/README.md"
+        "collaboration/verification/web-billing-activation-20261013/README.md",
+        "docs/app-review-preflight-20261014.md"
       ],
-      "next": "The security rollout schema103/bfe9baaf5 and recovery/permission evidence are retained. This later live-billing deployment preserved exact subnet AZ expressions after rejecting the first unsafe changeset. Old Preview identity issuance is now disabled with two actual403results; wait the existing86400second lifetime plus300second tolerance before ordinary customers. GitHub current private-plan required checks remain unenforced; source CI is separate evidence. No blanket data deletion or new financial test."
+      "next": "Retain schema103/security/recovery evidence. October15fresh verification closes the expired86400+300second Preview token window;fourissuersstaydisabled/two403. No auth/certification bypass. GitHub private-plan enforced checks remain unavailable; current source CI153passes."
     },
     {
       "id": "apple-submission",
@@ -304,13 +310,14 @@
         "docs/native-cross-platform-acceptance-20261012.md",
         "docs/final-readiness-20261013.md",
         "docs/app-store-preflight-20261013.md",
-        "docs/provider-diagnostics-20261013.md"
+        "docs/provider-diagnostics-20261013.md",
+        "docs/app-review-preflight-20261014.md"
       ],
-      "next": "Native14 archive export/upload and English6/Chinese4 store materials are saved. Privacy13,18+age,contact/protected reviewer credentials,free download,USA/HKGand annual/group metadata are configured. The3-item packet was prematurely submitted in the UI sequence then explicitly withdrawn; readback isRemoved/DeveloperRejected, not Apple rejection. Complete dedicated reviewer first login and remaining device acceptance before resubmission; manual release and noTestFlightremain. Production401 before first release is not an additional submission prerequisite; actual Production verification belongs after release and before ordinary Apple new sales, with strict independent Sandbox review retained."
+      "next": "Apple accepted submission6537a10c-38f2-425e-8b8e-c76e5fa730b1atHong Kong2026-10-15 09:49. App1.0(14),FamilyannualandgroupallWaitingforReview. DedicatedreviewerWeb/nativeandroundtrippassed;Ownercancelledfurtherphysicaltesting. No monthlyproductorTestFlight. AwaitAppleoutcome;manualreleaseandpost-releaseProductionverificationremain."
     },
     {
       "id": "physical-device",
-      "status": "in_progress",
+      "status": "owner_deferred",
       "required": true,
       "title": "Physical-device acceptance",
       "evidence": [
@@ -327,13 +334,14 @@
         "docs/security-rollout-20261012.md",
         "docs/native-cross-platform-acceptance-20261012.md",
         "docs/final-readiness-20261013.md",
-        "docs/app-store-preflight-20261013.md"
+        "docs/app-store-preflight-20261013.md",
+        "docs/app-review-preflight-20261014.md"
       ],
-      "next": "Current phone1.0(14) Google login/current terms/original matter succeeded after Owner confirmation. Family test/HKD888/manage-Apple matches same-account Web. Owner resumed mirroring after a temporary deferral; original app launch succeeds, but tool-generated click/scroll/drag/keyboard events do not change phone UI despite readable frames. Owner now confirms both native Terms and Privacy links open; return to the same account was not explicitly stated. The resulting legal-page notice layout feedback is handled separately. Physical unsubscribed,VoiceOver and dedicated reviewer acceptance remain open. No reinstall,new purchase,restore or deleted real data."
+      "next": "Owner explicitly says no further physical-device verification onOctober15. Stop and do not request it again. Original phone14account/matter and HKD888test-plan evidence retained; Owner explicitly confirms legal return preserves account/data. Unsubscribed-device/VoiceOver tests are cancelled, not passed. Dedicated reviewer simulator round trip is separate."
     },
     {
       "id": "public-surface",
-      "status": "in_progress",
+      "status": "verified",
       "required": true,
       "title": "Public product and support entry",
       "evidence": [
@@ -362,9 +370,10 @@
         "docs/security-rollout-20261012.md",
         "docs/native-cross-platform-acceptance-20261012.md",
         "docs/web-billing-activation-20261013.md",
-        "collaboration/verification/web-billing-activation-20261013/README.md"
+        "collaboration/verification/web-billing-activation-20261013/README.md",
+        "docs/app-review-preflight-20261014.md"
       ],
-      "next": "Final production App/public website delivery fromf87ac62c9/CI141changes one asset per stack with all parameters retained;117HTTPS files and actual Chinese/English public pricing/support copy match. Destination is the production app, customerAccess remainsreview, and test-app/sample-data claims are absent. Actual ordinary sales stay held until the identity-token deadline; previous signed-in compact-plan evidence keeps its own date."
+      "next": "October15production App/public website deployed from40c76496f/CI153;onlyoneexistingstaticassetperstack,allotherresources/parametersunchanged.117HTTPShashesmatchandactualZH/ENpricing/entryreadbackpasses. CustomerAccesslive now matches actual ordinary Web admission/new-sales state."
     },
     {
       "id": "review-remediation",
@@ -420,6 +429,7 @@
     "Enterprise multi-tenancy",
     "Full online E2EE (Owner deferred)",
     "SOC2 certification as a self-imposed first-release requirement",
-    "Enabling the optional Stripe Tax automation service; actual tax obligations remain separate"
+    "Enabling the optional Stripe Tax automation service; actual tax obligations remain separate",
+    "Owner-deferred Auth0 outer-shell cosmetic/localization work (October14)"
   ]
 }

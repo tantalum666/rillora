@@ -1,9 +1,13 @@
 # Auth0 登录页稳定性与 Apple 发布前 API — 2026-10-13
 
-Status: AUTH0 LIVE SHELL STILL OPEN / CONFIGURATION GUARD FIXED / APPLE PRERELEASE EXPLANATION FOUND / CASE CLOSURE REQUEST RECEIVED
-Last updated: 2026-10-14 (Asia/Hong_Kong)
+Status: AUTH0 SHELL OWNER-DEFERRED / LOGIN ACTION LIVE / APPLE PRERELEASE EXPLANATION RETAINED
+Last updated: 2026-10-15 (Asia/Hong_Kong)
 
 本轮继续同一上线工作流，回答Owner关于当前登录页、后续稳定性和Apple401原因的问题。保留全部既有验证、用户数据、价格、收费开关及TestFlight暂停；不重新进行支付、部署或全库审计。
+
+## October15当前范围
+
+Owner明确暂缓旧外壳，不再作为本轮发布阻塞，也不声称已修复。旧身份等待已到期并重新取得拒绝证据；已准备的正式同意Action恢复，正常登录、当前条款与隔离要求保持，未改模板、套餐、连接或密码。专用审核账号双端成功、原Google真机同次网络重试成功见[本轮结果](app-review-preflight-20261014.md)。原Apple工单关闭请求沿用，不重复发送或要求答复。
 
 ## Auth0 当前实际问题
 
