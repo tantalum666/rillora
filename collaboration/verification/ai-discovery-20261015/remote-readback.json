@@ -1,0 +1,45 @@
+{
+  "at": "2026-10-15T03:12:36.947154+00:00",
+  "branch": "codex/ai-discovery-vnext-20261015",
+  "commit": "10c2db1800368bfafac68ecd020d07c04729ec3d",
+  "remoteBranchMatches": true,
+  "changedFiles": [
+    "collaboration/README.md",
+    "collaboration/readable-manifest.json",
+    "collaboration/verification/ai-discovery-20261015/README.md",
+    "collaboration/verification/ai-discovery-20261015/doc-validation.json",
+    "collaboration/verification/ai-discovery-20261015/evaluation-seed.json",
+    "collaboration/verification/ai-discovery-20261015/public-http-check.json",
+    "collaboration/verification/ai-discovery-20261015/reading.json",
+    "collaboration/verification/ai-discovery-20261015/validation.json",
+    "docs/architecture/ai-discovery-vnext-20261015.md",
+    "docs/architecture/ai-mcp-plan-20261005.md",
+    "docs/decision-log.md",
+    "docs/handoff-history-20261015-before-ai-vnext.md",
+    "docs/handoff.md",
+    "docs/journey/PROJECT_JOURNEY.md",
+    "docs/product.md"
+  ],
+  "keyFileReadback": [
+    {
+      "path": "docs/architecture/ai-discovery-vnext-20261015.md",
+      "gitBlob": "34d879af560cffe867444e670761c94e45cf9cd9",
+      "sha256": "c93cfd905ae42a3061e7dcd97c56db55c9ab7c152b9cdbb587a6b0dce0e3f587",
+      "downloadedBytesMatch": true
+    },
+    {
+      "path": "docs/handoff.md",
+      "gitBlob": "a7beff4c6f0c2dee08800f385eff81cab5b0538d",
+      "sha256": "f55aadb67374072968d404d42c7a13139bdc4b5ad04957753e045bb302c6cf60",
+      "downloadedBytesMatch": true
+    },
+    {
+      "path": "collaboration/verification/ai-discovery-20261015/evaluation-seed.json",
+      "gitBlob": "0160181fd2bdd5f29df209026c1268a999d17df8",
+      "sha256": "84591da73d80c700e6d364fecf00b23aff507e79f1010ddf49f36e590b5180c8",
+      "downloadedBytesMatch": true
+    }
+  ],
+  "deployed": false,
+  "currentReviewUnchanged": true
+}
