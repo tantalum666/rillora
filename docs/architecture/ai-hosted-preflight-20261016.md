@@ -1,6 +1,6 @@
 # 下一版本 MCP 托管验收前置核对
 
-Status: READ-ONLY PREFLIGHT / REOPENED AUTH0 DASHBOARD PASSWORD STEP PENDING / NO NEW HOSTED RUNTIME
+Status: TEAMS RESTORED / FREE TENANT LIMIT CONFIRMED / SUPERSEDED BY COMPLETED TEMPORARY HTTPS ACCEPTANCE
 Last updated: 2026-10-16 (Asia/Hong_Kong)
 
 接续[官网已发布与搜索提交](public-discovery-rollout-20261016.md)后的唯一下一步：独立HTTPS环境中完成Web选择授权、实际AI连接读取与撤销。沿用[已通过的两客户端OAuth](ai-oauth-validation-20261016.md)，不把它重复安排为新工作，也不动当前App14审核环境。
@@ -26,3 +26,6 @@ Owner随后要求“重新打开一下”。旧验证标签已经不在当前浏
 ## 证据
 
 当轮 output/qa/rillora-ai-hosted-preflight-20261016 的只读容量与页面状态为新证据；没有新产品测试、OAuth重跑、模型调用、数据库迁移、运行部署或TestFlight。公开的精简回执随本轮Git收尾保存，原始管理响应和登录截图留在受保护目录。当前只有准备结果，不是已建候选。
+
+
+随后Owner完成登录，实际Dashboard／Teams恢复；Teams Free/$0明确1租户上限。Default App只读复核后已完成可逆的合成Web用途及清理；仅保留明确声明的认证方法空值规范化。当前安排见[临时HTTPS验收](ai-https-acceptance-20261016.md)，上文等待登录不再是当前门。

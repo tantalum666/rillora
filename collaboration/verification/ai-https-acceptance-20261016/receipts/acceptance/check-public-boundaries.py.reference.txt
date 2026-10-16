@@ -1,0 +1,63 @@
+"""Anonymous HTTPS transport and rejection checks; never supplies a real identity."""
+from pathlib import Path
+import datetime
+import json
+import urllib.error
+import urllib.request
+
+ROOT = Path(__file__).resolve().parents[3]
+QA = Path(__file__).resolve().parent
+origin = json.loads((ROOT / '.local-secrets/ai-https-20261016/registration.json').read_text())['origin']
+checks = []
+
+def check(path, expected, *, data=None, headers=None):
+    request = urllib.request.Request(origin + path, data=data,
+        headers={'user-agent': 'Rillora-synthetic-acceptance/1.0', **(headers or {})})
+    try:
+        response = urllib.request.urlopen(request, timeout=25)
+    except urllib.error.HTTPError as error:
+        response = error
+    with response:
+        body = response.read()
+        status = response.status
+        result = {'path': path, 'status': status, 'expected': expected,
+                  'setsCookie': bool(response.headers.get('set-cookie')),
+                  'contentType': response.headers.get('content-type'),
+                  'passed': status in expected}
+        if path == '/api/mcp/resource-metadata':
+            value = json.loads(body)
+            result['resourceMatched'] = value['resource'] == origin + '/api/mcp'
+            result['issuerMatched'] = value['authorization_servers'] == ['https://login.rillora.xyz/']
+            result['passed'] = result['passed'] and result['resourceMatched'] and result['issuerMatched']
+        if path == '/api/mcp':
+            result['challengeUsesExactHttpsMetadata'] = origin + '/api/mcp/resource-metadata' in response.headers.get('www-authenticate', '')
+            result['passed'] = result['passed'] and result['challengeUsesExactHttpsMetadata']
+        if path == '/':
+            result['noindex'] = b'noindex, nofollow, noarchive' in body
+            result['cspPresent'] = bool(response.headers.get('content-security-policy'))
+            result['referrerPolicy'] = response.headers.get('referrer-policy')
+            result['passed'] = result['passed'] and result['noindex'] and result['cspPresent'] and result['referrerPolicy'] == 'no-referrer'
+        if path == '/robots.txt':
+            result['originPolicyRetained'] = body.endswith(b'User-agent: *\nDisallow: /\n')
+            result['providerManagedPrefix'] = b'BEGIN Cloudflare Managed content' in body
+            result['allCrawlersBlockedClaimed'] = False
+            result['passed'] = result['passed'] and result['originPolicyRetained']
+        checks.append(result)
+
+check('/', [200])
+check('/robots.txt', [200])
+check('/health/ready', [200])
+check('/api/auth/session-status', [200])
+check('/api/mcp/resource-metadata', [200])
+check('/api/v1/session', [401])
+check('/api/v1/account/ai-connections', [401])
+check('/api/v1/session', [401], headers={'x-dev-planner-id': '00000000-0000-4000-8000-000000000000'})
+check('/api/mcp', [401], data=b'{}', headers={'content-type': 'application/json'})
+check('/api/mcp', [401], data=b'{}', headers={'content-type': 'application/json', 'authorization': 'Bearer invalid'})
+check('/.local-secrets/registration.json', [403, 404])
+result = {'checkedAt': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'origin': origin,
+          'transport': 'Actual public HTTPS with normal certificate validation', 'checks': checks,
+          'passed': all(x['passed'] and not x['setsCookie'] for x in checks), 'credentialsSent': False}
+(QA / 'public-transport-boundaries.json').write_text(json.dumps(result, indent=2) + '\n')
+print(json.dumps({'passed': result['passed'], 'checks': len(checks)}))
+assert result['passed']

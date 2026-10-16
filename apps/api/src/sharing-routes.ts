@@ -1,7 +1,7 @@
 import { recentAuthenticationRequired } from "./recent-authentication.js";
 import { expandsSharing, requireRecentAuthentication } from "./recent-authentication.js";
 import { createHash, randomBytes } from "node:crypto";
-import { readSecurityCookie, securityCookieName } from './security-cookies.js';
+import { readSecurityCookie, securityCookieName, usesSecureCookies } from './security-cookies.js';
 import { Router, type Request } from "express";
 import rateLimit from "express-rate-limit";
 import type { SessionEmailVerification } from "./email-verification.js";
@@ -113,7 +113,7 @@ async function preview(pool: DatabasePool, hash: Buffer): Promise<InvitationPrev
 }
 
 function cookieOptions(config: AppConfig) {
-  return { httpOnly: true, secure: config.nodeEnv === "production", sameSite: "lax" as const, path: "/" };
+  return { httpOnly: true, secure: usesSecureCookies(config), sameSite: "lax" as const, path: "/" };
 }
 
 async function handoffHash(pool: DatabasePool, request: Request, invitationId: string, config: AppConfig): Promise<Buffer> {

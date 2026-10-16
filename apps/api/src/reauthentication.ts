@@ -1,6 +1,6 @@
 import { createHash, randomBytes } from 'node:crypto';
 import { Router, type Request } from 'express';
-import { readSecurityCookie, securityCookieName } from './security-cookies.js';
+import { readSecurityCookie, securityCookieName, usesSecureCookies } from './security-cookies.js';
 import * as oidc from 'openid-client';
 import { z } from 'zod';
 import { authenticate, requireCsrf, sessionCookieName } from './auth.js';
@@ -73,7 +73,7 @@ export function createReauthenticationRouter(pool: DatabasePool, config: AppConf
     if (!result) throw authenticationBusy();
     if (result.rowCount !== 1) throw invalid();
     const url=await provider.createAuthorizationUrl(transaction,{prompt:'login',maxAge:0});
-    response.cookie(securityCookieName(config, 'continuity_auth_tx'),cookieToken,{httpOnly:true,secure:config.nodeEnv==='production',
+    response.cookie(securityCookieName(config, 'continuity_auth_tx'),cookieToken,{httpOnly:true,secure:usesSecureCookies(config),
       sameSite:'lax',path:'/',maxAge:config.authTransactionTtlSeconds*1_000});
     // The poll capability is separate from the HTTP-only OAuth/PKCE transaction cookie.
     response.status(201).json({authorizationUrl:url.href,pollToken,expiresIn:config.authTransactionTtlSeconds});

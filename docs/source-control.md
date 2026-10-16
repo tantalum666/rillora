@@ -3,6 +3,10 @@
 Last updated: 2026-10-16 (Asia/Hong_Kong)
 
 
+## October16 temporary HTTPS acceptance and source corrections
+
+[The completed synthetic flow](architecture/ai-https-acceptance-20261016.md) adds actual browser selection, independent Codex OAuth, selected-only HTTPS reads, immediate same-token revocation and exact scoped cleanup. Source changes correct restricted-role readiness and HTTPS cookie naming/security; production, review and pricing stay unchanged. [The new addendum](../collaboration/verification/ai-https-acceptance-20261016/README.md) preserves only this continuation, including failed attempts and sealed candidate artifacts. The initial Default App authentication-method normalization is declared; no secret-byte equality is inferred from absence of rotation. Archives1–43and prior results stay immutable; capture, remote authentication and CI are recorded separately.
+
 ## October16 public GEO deployment and search ownership
 
 [The independent public rollout](architecture/public-discovery-rollout-20261016.md)

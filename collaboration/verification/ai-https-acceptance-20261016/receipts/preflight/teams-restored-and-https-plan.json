@@ -1,0 +1,32 @@
+{
+  "checkedAt": "2026-10-16T13:53:48.969453+00:00",
+  "dashboardRestored": true,
+  "teamsRestored": true,
+  "networkTransientRecovered": true,
+  "actualPlan": "Free",
+  "currentMonthlyPriceUsd": 0,
+  "tenantLimitReached": true,
+  "existingTenantCount": 1,
+  "defaultAppConfigurationChanged": false,
+  "productionChanged": false,
+  "cookieSourceTypecheckPassed": true,
+  "focusedRegression": {
+    "files": 4,
+    "tests": 41,
+    "passed": true
+  },
+  "cloudflaredInstalledVersion": "2026.10.0",
+  "tunnelStarted": false,
+  "retainedFullMarkdownRead": "collaboration/verification/ai-implementation-20261015/reading.json",
+  "currentReadRanges": {
+    "docs/handoff.md": "full",
+    "docs/architecture/ai-hosted-preflight-20261016.md": "full",
+    "apps/api/src/security-cookies.ts": "full",
+    "apps/api/src/auth-routes.ts": "full in ranges1-150,150-240,240-540",
+    "apps/api/src/reauthentication.ts": "full",
+    "apps/api/src/routes.ts": "cookie issuance/clearing and imports1-260; unrelated matter handlers untouched",
+    "apps/api/src/sharing-routes.ts": "full with truncated160-225 reread",
+    "apps/api/tests/recent-authentication.integration.test.ts": "full"
+  },
+  "newSpec": "docs/architecture/ai-https-acceptance-20261016.md"
+}

@@ -1,31 +1,28 @@
 # Rillora 当前交接
 
-Status: PUBLIC GEO LIVE / BING SITEMAP20 SUCCESS / CI167 AND REMOTE ARCHIVE PASSED / AUTH0 BROWSER REENTRY PENDING
+Status: PUBLIC GEO LIVE / SYNTHETIC HTTPS MCP FLOW PASSED AND CLEANED / NEW EVIDENCE READY FOR GIT
 Last updated: 2026-10-16 (Asia/Hong_Kong)
 
 ## 当前任务
 
-Owner要求先完成官网GEO／SEO，再推进MCP和各平台接入，新功能留给下一版并推GitHub，保留App1.0(14)审核。当前目录 /Users/tantalum/Documents/电子遗嘱app，分支 codex/ai-discovery-vnext-20261015；发布工作树仍为fec1ad3b。此前交接移入[历史记录](handoff-history-20261016-before-public-discovery-closeout.md)，不恢复旧授权／部署门。
+Owner要求先官网GEO／SEO，再MCP和多平台接入，新功能放下一版并推GitHub，不影响App1.0(14)审核。当前目录 /Users/tantalum/Documents/电子遗嘱app，分支codex/ai-discovery-vnext-20261015；发布工作树保留fec1ad3bc。前轮交接见[历史](handoff-history-20261016-before-https-candidate.md)，不恢复旧授权／验证门。
 
 ## 已完成
 
-- [官网独立发布](architecture/public-discovery-rollout-20261016.md)已完成两阶段切换。第一阶段51资源到位，原首页和LIVE路由不变；第二阶段最终模板、53公开HTTP文件及根index／marker均匹配，20双语页面的正文／语言／canonical／hreflang／结构化数据通过。Chrome实际英文到中文文章切换通过。
-- Google新增rillora.xyz域资源并完成所有权验证；站点地图提交一次、持久保存。实际Google即时提取测试于页面显示October16 20:13:07成功；常规站点地图报告仍无法抓取／0已发现，不能记为索引完成。
-- Owner明确同意原Google姓名／头像／邮箱用于bing.com登录；新的同范围回调成功。Bing手动DNS验证通过，地图仅提交一次；收尾重新加载后已为Success，实际发现20网址，0错误／警告。地图解析成功不等于20页都已编入索引。无Google站点数据导入或DNS账号委托。
-- DNS只新增Google TXT及Bing独立CNAME，34→35→36；每次所有旧记录完整保留，两权威和两公共DNS确认。验证记录需保留，邮箱／www／FanPass保持。
-- [真实OAuth与撤销](architecture/ai-oauth-validation-20261016.md)已通过并清理：Codex实际app-server及Gemini原版OAuth函数＋实际CLI连接；签名／issuer／audience／client／scope、仅选定事项读取、同一未过期token撤销拒绝均通过。原9普通应用／3API／3连接和完整租户设置一致。
-- 重复resource参数已修正，源码653093e62／CI165三任务成功，archive42的38对象／44路径已从GitHub独立下载认证。既有560等本地检查不重跑。
+- [独立官网](architecture/public-discovery-rollout-20261016.md)：源码653093e62／CI165，20双语页面／54文件实际交付，两阶段切换和浏览器语言切换已验。Google与Bing所有权及各一次地图提交完成；Google即时提取成功、常规报告最后仍失败／0已发现；Bing已Success／发现20网址／0错误警告。两条DNS新增，所有旧记录保持。收录和AI推荐未证明。
+- [既有两客户端OAuth](architecture/ai-oauth-validation-20261016.md)：Codex实际app-server与Gemini原版OAuth＋CLI连接、选定读取、同一有效token撤销通过，原临时资源清理。该证据不重跑、不冒充消费端或模型主动选工具。
+- [新增临时HTTPS闭环](architecture/ai-https-acceptance-20261016.md)：Owner已确认合成账号法律接受。实际Web登录／只选1事项保存→Codex真实OAuth／两个工具发现→同一公网HTTPS选定读取→Web撤销／同一仍余819秒token双工具拒绝→Web退出通过。11匿名公网检查、类型／19MCP／42API／27Web检查及源扫描32登记／0未知通过。
+- 实际发现并修复MCP就绪检查的受限角色错误和HTTPS Cookie安全标志／前缀不一致，未绕过CSRF或扩大数据库权限。前三轮失败、临时前端法律字段补齐及最终成功分别留证。
+- 新Auth0账号／合成连接／AI客户端／API、临时runtime角色、测试数据、Codex临时登录及隧道已回收；3端口关闭、规划者／临时角色0，其余应用／原连接绑定／完整租户设置匹配。Free/$0保持，无新租户或付费。
 
 ## 证据与边界
 
-官网当轮原件 output/qa/rillora-public-discovery-rollout-20261016；[新增可读材料与archive43](../collaboration/verification/public-discovery-rollout-20261016/README.md)保存226路径／118对象／1,646,127密文字节，本地及f91a4ba61的GitHub独立新下载认证全部通过，CI166三任务成功，旧archive1—42保持。凭据、认证URL、原始DNS／提供方对象和账号页面排除；公开内容、去掉账号区域的结果图和无凭据日志可复核。最终回执普通Git补交，不重封或部署。
+[新保存包](../collaboration/verification/ai-https-acceptance-20261016/README.md)只收本次HTTPS／前置新证据。此前archive42、43的独立GitHub下载认证及CI165–168成功保持，不重封、不重复下载。源码最新已推检查点仍为3e34dc7ef／CI168；新archive44已封存344路径／174对象／4,375,200密文字节并通过本地认证；637文档链接和12,664当时可读文件扫描通过。本轮源码／原件／文档接着一起推送，远端及CI独立读回。
 
-Google常规地图报告收尾刷新仍无法抓取；Bing地图已解析，页面索引与实际AI提及尚未证明。模型选工具、消费端／目录也未验。两家OAuth是本机服务与实际提供方／客户端的协议证据，不是公网托管产品闭环。MCP runtime和UI默认仍关。96743dd36已推送、11个远端Git对象一致，CI167成功；晚到Bing结果另以普通Git保存，不改已封存原件。
+未使用的Default App保留一项声明差异：token_endpoint_auth_method由原未设置变为显式client_secret_post，因Auth0拒绝原空值还原而未追加凭据管理权限。最终还原到此已声明基线，原名／空回调／grant／JWT／绑定恢复。没有轮换密钥；早期secretUnchanged字段仅表示无密钥变更操作，非前后字节比较。
 
-只有独立www公开栈更新；生产API／数据库、真实数据、WebUSD88.99及AppleUSD119.99／HKD888、收费开关、FanPass和在审App14未变。无TestFlight；Owner取消真机及暂缓Auth0外壳继续保持。AWS已复用原控制台自动续期，Auth0追加授权已实际完成，不重复要求登录。
-
-[托管前置核对](architecture/ai-hosted-preflight-20261016.md)：Auth0管理API成功；9普通应用，Free上限10，独立Web＋AI至少需要2个登记。正在核对独立开发租户，未删除／重用旧客户端或升级。Teams单独安全验证未完成后Owner要求重开，旧标签已不在；新打开的Dashboard确实要求原账号密码，已填原邮箱并保留。CLI仍有效，不把这次浏览器入口验证说成CLI过期。
+临时HTTPS已关闭，MCP正式runtime／UI仍默认关闭。长期托管、云端KMS／TLS／恢复日志、自然语言选工具、其他消费端／目录和实际推荐效果未冒领。仅用独立合成数据，生产API／数据库、Gmail／QQ数据、WebUSD88.99、AppleUSD119.99／HKD888、收费开关、FanPass和在审App14保持。无TestFlight；Owner取消真机及暂缓Auth0外壳保持。登录和本次法律确认已有效完成，不再次请求。
 
 ## 唯一下一步
 
-Owner完成已重新打开的Auth0 Dashboard密码／安全验证后，继续Teams并核对独立EU开发租户的免费条件，推进隔离HTTPS候选中的Web选择授权→MCP读取／撤销闭环。Google常规地图另待处理，不反复提交；Bing地图Success20、本地矩阵、两家OAuth和官网部署不重做。
+完成本轮新原件与源码的GitHub保存／CI及远端认证后，确定可长期维持的独立身份容量与托管方案，再补模型／各消费端验收；不把已关闭的临时Default App及隧道当作正式多平台服务。

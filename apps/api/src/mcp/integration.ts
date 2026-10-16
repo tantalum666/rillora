@@ -3,7 +3,7 @@ import { createMcpHandler, McpServer, requireBearerAuth, requireScopes, type Aut
 import { toNodeHandler } from '@modelcontextprotocol/node';
 import { z } from 'zod';
 import type { AppConfig } from '../config.js';
-import type { DatabasePool } from '../db.js';
+import { withAuthDatabase, type DatabasePool } from '../db.js';
 import { requireCsrf } from '../auth.js';
 import { recentAuthenticationRequired } from '../recent-authentication.js';
 import { preventCaching } from '../security.js';
@@ -94,8 +94,9 @@ export class McpIntegration {
   }
 
   async checkReady() {
-    if (!(await this.pool.query(`select to_regclass('app.ai_connection_matters') is not null
-      and has_function_privilege('continuity_deletion_worker','app.recovery_pending()','EXECUTE') as ready`)).rows[0]?.ready) {
+    const result = await withAuthDatabase(this.pool, client => client.query(`select to_regclass('app.ai_connection_matters') is not null
+      and has_function_privilege('continuity_deletion_worker','app.recovery_pending()','EXECUTE') as ready`));
+    if (!result.rows[0]?.ready) {
       throw new Error('MCP requires the selected-connection migration');
     }
   }

@@ -11,7 +11,7 @@ Last updated: 2026-10-16 (Asia/Hong_Kong)
 
 ## 2026-10-15 审核期间启动跨平台 AI 下一版本方向
 
-Owner 要求当前 Apple 审核继续，新功能放到下一版本，并明确按方案实施及推Git；AI目标覆盖各平台。当前以[跨平台方案](architecture/ai-discovery-vnext-20261015.md)区分公开搜索推荐、目录分发和连接后的受权操作。[实施候选](architecture/ai-discovery-implementation-20261015.md)包含20页双语HTML、两个只读MCP工具、选定范围授权和多平台配置。[两家真实OAuth与撤销](architecture/ai-oauth-validation-20261016.md)已通过并清理临时资源；[官网独立部署](architecture/public-discovery-rollout-20261016.md)已完成20页／54文件的实际交付，Google和Bing所有权验证及站点地图提交完成。Google实际即时抓取成功，但常规报告仍未读取；Bing已成功解析20个地图网址，索引和推荐效果尚未证明。公网MCP、托管选择闭环、模型选工具及目录仍独立待验。正式登录配置不变。在审构建、生产数据、定价与收费状态保持。
+Owner 要求当前 Apple 审核继续，新功能放到下一版本，并明确按方案实施及推Git；AI目标覆盖各平台。当前以[跨平台方案](architecture/ai-discovery-vnext-20261015.md)区分公开搜索推荐、目录分发和连接后的受权操作。[实施候选](architecture/ai-discovery-implementation-20261015.md)包含20页双语HTML、两个只读MCP工具、选定范围授权和多平台配置。[两家真实OAuth与撤销](architecture/ai-oauth-validation-20261016.md)已通过并清理临时资源；[官网独立部署](architecture/public-discovery-rollout-20261016.md)已完成20页／54文件的实际交付，Google和Bing所有权验证及站点地图提交完成。Google实际即时抓取成功，但常规报告仍未读取；Bing已成功解析20个地图网址，索引和推荐效果尚未证明。[临时公网HTTPS验收](architecture/ai-https-acceptance-20261016.md)又补齐浏览器选择、真实Codex OAuth、限定读取及同一未过期令牌撤销，临时资源已清理；长期托管、模型选工具及目录仍独立待验。正式登录配置不变；未使用的Default App仅有已声明的认证方法规范化。在审构建、生产数据、定价与收费状态保持。
 
 ## 2026-10-15 Web正式开放与Owner停止真机验证
 

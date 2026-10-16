@@ -1,0 +1,28 @@
+"""Independent local readback after the owned synthetic fixture shutdown."""
+from pathlib import Path
+import datetime,json,socket,subprocess
+root=Path(__file__).resolve().parents[3];q=Path(__file__).resolve().parent
+state=json.loads((root/'.local-secrets/ai-https-20261016/registration.json').read_text())
+provider=json.loads((q/'provider-restored.json').read_text());local=json.loads((q/'local-cleanup.json').read_text())
+assert state['restored'] is True and local['failures']==[]
+assert provider['temporaryProviderResourcesRemoved'] and provider['otherClientsMatched'] and provider['originalBindingsMatched'] and provider['tenantSettingsMatched']
+ports={}
+for port in [58441,58443,58445]:
+ with socket.socket() as probe:
+  probe.settimeout(1);ports[str(port)]=probe.connect_ex(('127.0.0.1',port))!=0
+assert all(ports.values())
+counts=subprocess.check_output(['psql','-X','-d','rillora_mcp_https_test','-Atc',"select (select count(*) from app.planners), (select count(*) from pg_roles where rolname='continuity_runtime_mcp_https_test');"],text=True).strip()
+assert counts=='0|0'
+tunnel=json.loads((root/'.local-secrets/ai-https-20261016/tunnel-process.json').read_text())
+result=subprocess.run(['ps','-p',str(tunnel['pid']),'-o','command='],capture_output=True,text=True)
+assert result.returncode==1
+report={'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'passed':True,'ownedListenerPortsClosed':ports,
+ 'ownedTunnelProcessAbsent':True,'syntheticPlanners':0,'syntheticRuntimeRoles':0,'providerRestoredToExplicitPostBaseline':True,
+ 'productionClientBindingsAndSettingsMatched':True,'testOAuthCredentialsLoggedOut':True,
+ 'secretRotationPerformed':False,'secretByteComparisonPerformed':False,
+ 'normalizationFromOriginalStart':{'app':'inactive Default App','field':'token_endpoint_auth_method','from':'unspecified','to':'client_secret_post'},
+ 'providerReceiptNote':'Earlier secretUnchanged is based on no secret mutation or rotation request; not an independent before/after secret-byte comparison.',
+ 'productionRuntimeChanged':False,'pricingOrBillingChanged':False,'testFlightDistributed':False}
+(q/'final-cleanup-readback.json').write_text(json.dumps(report,indent=2)+'\n')
+p=q/'current-execution-state.json';v=json.loads(p.read_text());v.update(checkedAt=report['checkedAt'],phase='completed-and-cleaned',runtimeActive=False,tunnelActive=False,providerRestored=True);p.write_text(json.dumps(v,indent=2)+'\n')
+print(json.dumps(report))

@@ -1,0 +1,172 @@
+TAP version 13
+# Subtest: HTTPS CSRF uses only host-bound cookies, including local previews
+ok 1 - HTTPS CSRF uses only host-bound cookies, including local previews
+  ---
+  duration_ms: 1.2125
+  type: 'test'
+  ...
+# Subtest: sharing rollout compatibility only treats an absent endpoint as unavailable controls
+ok 2 - sharing rollout compatibility only treats an absent endpoint as unavailable controls
+  ---
+  duration_ms: 25.425417
+  type: 'test'
+  ...
+# Subtest: public browsing stays separate from explicit account and identity entry points
+ok 3 - public browsing stays separate from explicit account and identity entry points
+  ---
+  duration_ms: 0.126375
+  type: 'test'
+  ...
+# Subtest: authentication starts only through an explicit legal-acceptance POST
+ok 4 - authentication starts only through an explicit legal-acceptance POST
+  ---
+  duration_ms: 0.383292
+  type: 'test'
+  ...
+# Subtest: API client uses credentials and the development identity only when configured
+ok 5 - API client uses credentials and the development identity only when configured
+  ---
+  duration_ms: 0.276833
+  type: 'test'
+  ...
+# Subtest: commercial reads and route evaluation use the authenticated shared API
+ok 6 - commercial reads and route evaluation use the authenticated shared API
+  ---
+  duration_ms: 0.602375
+  type: 'test'
+  ...
+# Subtest: public session detection uses a non-error status endpoint before private workspace loading
+ok 7 - public session detection uses a non-error status endpoint before private workspace loading
+  ---
+  duration_ms: 0.284458
+  type: 'test'
+  ...
+# Subtest: API client binds state changes to the CSRF cookie token
+ok 8 - API client binds state changes to the CSRF cookie token
+  ---
+  duration_ms: 0.323
+  type: 'test'
+  ...
+# Subtest: first-use progress and the first matter use the shared authenticated API
+ok 9 - first-use progress and the first matter use the shared authenticated API
+  ---
+  duration_ms: 1.499542
+  type: 'test'
+  ...
+# Subtest: API client returns bounded server errors without exposing response internals
+ok 10 - API client returns bounded server errors without exposing response internals
+  ---
+  duration_ms: 0.521583
+  type: 'test'
+  ...
+# Subtest: API client sends a CSRF-bound all-session revocation request
+ok 11 - API client sends a CSRF-bound all-session revocation request
+  ---
+  duration_ms: 0.248
+  type: 'test'
+  ...
+# Subtest: API client validates and returns the minimum-disclosure printable artifact
+ok 12 - API client validates and returns the minimum-disclosure printable artifact
+  ---
+  duration_ms: 0.80625
+  type: 'test'
+  ...
+# Subtest: API client rejects a printable response that claims a retained server copy
+ok 13 - API client rejects a printable response that claims a retained server copy
+  ---
+  duration_ms: 0.168167
+  type: 'test'
+  ...
+# Subtest: a delayed printable body cannot escape after the workspace account changed
+ok 14 - a delayed printable body cannot escape after the workspace account changed
+  ---
+  duration_ms: 0.343125
+  type: 'test'
+  ...
+# Subtest: synthetic recipient capabilities stay in request bodies and the isolated authorization header
+ok 15 - synthetic recipient capabilities stay in request bodies and the isolated authorization header
+  ---
+  duration_ms: 0.216959
+  type: 'test'
+  ...
+# Subtest: disclosure rehearsal mutations are CSRF-bound, versioned, and explicitly simulation-only
+ok 16 - disclosure rehearsal mutations are CSRF-bound, versioned, and explicitly simulation-only
+  ---
+  duration_ms: 0.322958
+  type: 'test'
+  ...
+# Subtest: disclosure rehearsal responses fail closed if release or high-risk fields appear
+ok 17 - disclosure rehearsal responses fail closed if release or high-risk fields appear
+  ---
+  duration_ms: 0.267625
+  type: 'test'
+  ...
+# Subtest: role assignment mutations stay versioned, explicit, and record-only
+ok 18 - role assignment mutations stay versioned, explicit, and record-only
+  ---
+  duration_ms: 0.737
+  type: 'test'
+  ...
+# Subtest: role assignment responses fail closed on unsafe authority or secret fields
+ok 19 - role assignment responses fail closed on unsafe authority or secret fields
+  ---
+  duration_ms: 0.3855
+  type: 'test'
+  ...
+# Subtest: workspace pins the verified account across pagination and later writes despite a changed CSRF cookie
+ok 20 - workspace pins the verified account across pagination and later writes despite a changed CSRF cookie
+  ---
+  duration_ms: 0.513834
+  type: 'test'
+  ...
+# Subtest: missing original draft records can be checked by ID without discarding archived or failed results
+ok 21 - missing original draft records can be checked by ID without discarding archived or failed results
+  ---
+  duration_ms: 0.403958
+  type: 'test'
+  ...
+# Subtest: pagination fails visibly instead of silently truncating or looping on a repeated cursor
+ok 22 - pagination fails visibly instead of silently truncating or looping on a repeated cursor
+  ---
+  duration_ms: 0.151125
+  type: 'test'
+  ...
+# Subtest: every API operation used by a rendered Web consumer exists on the client contract
+ok 23 - every API operation used by a rendered Web consumer exists on the client contract
+  ---
+  duration_ms: 28.382667
+  type: 'test'
+  ...
+# Subtest: current account identity is bound to the active planner and degrades only for an older server
+ok 24 - current account identity is bound to the active planner and degrades only for an older server
+  ---
+  duration_ms: 0.595292
+  type: 'test'
+  ...
+# Subtest: identity outages never become a stale fallback email or silently select another endpoint
+ok 25 - identity outages never become a stale fallback email or silently select another endpoint
+  ---
+  duration_ms: 0.145291
+  type: 'test'
+  ...
+# Subtest: a private401 invalidates displayed identity but a public sign-in failure does not
+ok 26 - a private401 invalidates displayed identity but a public sign-in failure does not
+  ---
+  duration_ms: 0.26325
+  type: 'test'
+  ...
+# Subtest: identity preserves current verified email across UUID casing and rejects whitespace-only email
+ok 27 - identity preserves current verified email across UUID casing and rejects whitespace-only email
+  ---
+  duration_ms: 0.177875
+  type: 'test'
+  ...
+1..27
+# tests 27
+# suites 0
+# pass 27
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 179.739125

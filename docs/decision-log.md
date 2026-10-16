@@ -3550,3 +3550,22 @@ local correction/tests and actual restoration remain separate evidence.
 - Choose manual DNS ownership verification through the already authorized Rillora-only GoDaddy wrapper. Add exactly one Google TXT and one isolated Bing CNAME; preserve every pre-existing record and keep these ongoing ownership proofs.
 - Owner explicitly confirms sharing the original Google account's name, photo and email with bing.com for webmaster login. This applies to that exact recipient/scope, not GSC-data import, DNS-account delegation, advertising, analytics or a new paid service. No duplicate confirmation after a failed old callback is required when the same approved flow is renewed.
 - Record website publication, ownership, submission, actual live fetch, indexing and model recommendation separately. Google live fetch succeeds but its regular report remains unable to read; Bing is processing. No new product/pricing/legal decision or automatic-recommendation promise is introduced.
+
+## 2026-10-16 — Isolated HTTPS acceptance within the existing free plan
+
+- Owner completes the reopened browser login; both Dashboard and Teams are verified. Teams confirms Free/$0 and its one-tenant limit. No paid upgrade or new tenant is selected.
+- Agent chooses temporary HTTPS acceptance using a synthetic local environment and plans reversible use of the inactive Default App as the first-party Web client. It is not an AI client; AI still gets an independent third-party registration. Existing production and retired clients stay unchanged. Mutation and restoration must be independently verified; an audit alone does not prove completion or historical non-use.
+- Secure-cookie behavior now also follows a configured HTTPS preview origin, keeping production protections and HTTP local behavior. This is a next-version source change, not a production deployment. The temporary tunnel is development evidence, not a hosted-product or production-security equivalence claim.
+
+## 2026-10-16 — Record legacy default-client normalization during safe cleanup
+
+- The first temporary HTTPS startup exposes an actual MCP readiness query using the base NOINHERIT connection. Fix it through the existing scoped auth transaction; retain base permissions and add a real database regression.
+- Auth0 rejects restoring the Default App's previously unspecified authentication-method field as null; the paired modern-field request requires additional credential-management scope. Agent does not broaden management access. Restore name, empty callbacks, grant list, JWT lifetime and old binding, while retaining explicit client_secret_post. This is a declared configuration normalization for the unused default app, not exact prior-metadata restoration; production applications and the secret remain unchanged.
+- All newly created provider resources and local synthetic records from that attempt are removed; retry from the explicit normalized baseline. Preserve failure evidence and correct the driver's masked exit status instead of recording the failed startup as passed.
+
+## 2026-10-16 — Owner confirms synthetic legal consent; complete public HTTPS scope acceptance
+
+- Owner explicitly confirms the current synthetic account's Terms, Privacy and electronic-record acceptance and continued selection/revocation test. The same approved purpose and unchanged legal text carry through the corrected fixture; do not re-request this consent or administrative login. No personal Gmail/QQ data is used.
+- Real HTTPS saving reveals that Secure alone is insufficient: non-production cookies used plain names while remote Web requires __Host. Align name and Secure behavior for configured HTTPS and keep unprefixed CSRF limited to HTTP loopback; retain the original production boundary and reject duplicate/legacy cookies. This is an implementation correction, not relaxed CSRF policy.
+- Browser selection, independent Codex OAuth, two selected-only reads and same-token revocation pass. The token remains valid819seconds at rejection. Log out the synthetic sessions and remove the scoped provider/local resources. The earlier Default App authentication normalization remains explicitly declared; no key rotation, production deployment or paid upgrade is performed.
+- Temporary HTTPS is development acceptance, not long-term hosting or model-selected tool/consumer-directory completion. Continue sustainable isolated identity/hosting design before public multi-platform distribution. [Evidence and limitations](architecture/ai-https-acceptance-20261016.md).

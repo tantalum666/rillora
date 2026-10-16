@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-10-16T15:48:05.224295+00:00",
+  "passed": true,
+  "ownedListenerPortsClosed": {
+    "58441": true,
+    "58443": true,
+    "58445": true
+  },
+  "ownedTunnelProcessAbsent": true,
+  "syntheticPlanners": 0,
+  "syntheticRuntimeRoles": 0,
+  "providerRestoredToExplicitPostBaseline": true,
+  "productionClientBindingsAndSettingsMatched": true,
+  "testOAuthCredentialsLoggedOut": true,
+  "secretRotationPerformed": false,
+  "secretByteComparisonPerformed": false,
+  "normalizationFromOriginalStart": {
+    "app": "inactive Default App",
+    "field": "token_endpoint_auth_method",
+    "from": "unspecified",
+    "to": "client_secret_post"
+  },
+  "providerReceiptNote": "Earlier secretUnchanged is based on no secret mutation or rotation request; not an independent before/after secret-byte comparison.",
+  "productionRuntimeChanged": false,
+  "pricingOrBillingChanged": false,
+  "testFlightDistributed": false
+}

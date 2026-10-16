@@ -5,7 +5,7 @@ import { sealSessionDeletionProof } from './identity-deletion-proof.js';
 import { Router as createRouter, type CookieOptions, type Router } from "express";
 import rateLimit from "express-rate-limit";
 import * as oidc from "openid-client";
-import { readSecurityCookie, securityCookieName } from './security-cookies.js';
+import { readSecurityCookie, securityCookieName, usesSecureCookies } from './security-cookies.js';
 import { z } from "zod";
 import type { AppConfig } from "./config.js";
 import type { DatabasePool } from "./db.js";
@@ -517,7 +517,7 @@ function isPlausibleOpaqueToken(value: string): boolean {
 
 function baseCookieOptions(config: AppConfig): CookieOptions {
   return {
-    secure: config.nodeEnv === "production",
+    secure: usesSecureCookies(config),
     sameSite: "lax",
     path: "/",
   };

@@ -11,7 +11,7 @@ import { Router as createRouter } from "express";
 import type { PoolClient } from "pg";
 import { z } from "zod";
 import { requireCsrf, sessionCookieName } from "./auth.js";
-import { securityCookieName } from './security-cookies.js';
+import { securityCookieName, usesSecureCookies } from './security-cookies.js';
 import { csrfCookieName } from "./auth-routes.js";
 import type { AppConfig } from "./config.js";
 import type { DatabasePool } from "./db.js";
@@ -186,12 +186,12 @@ export function createApiRouter(pool: DatabasePool, config: AppConfig): Router {
       }
       response.clearCookie(securityCookieName(config, sessionCookieName), {
         httpOnly: true,
-        secure: config.nodeEnv === "production",
+        secure: usesSecureCookies(config),
         sameSite: "lax",
         path: "/",
       });
       response.clearCookie(securityCookieName(config, csrfCookieName), {
-        secure: config.nodeEnv === "production",
+        secure: usesSecureCookies(config),
         sameSite: "lax",
         path: "/",
       });
@@ -223,12 +223,12 @@ export function createApiRouter(pool: DatabasePool, config: AppConfig): Router {
 
       response.clearCookie(securityCookieName(config, sessionCookieName), {
         httpOnly: true,
-        secure: config.nodeEnv === "production",
+        secure: usesSecureCookies(config),
         sameSite: "lax",
         path: "/",
       });
       response.clearCookie(securityCookieName(config, csrfCookieName), {
-        secure: config.nodeEnv === "production",
+        secure: usesSecureCookies(config),
         sameSite: "lax",
         path: "/",
       });

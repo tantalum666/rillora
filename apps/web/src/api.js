@@ -479,7 +479,8 @@ function containsForbiddenDisclosureKey(value) {
 
 export function readCsrfCookie() {
   if (typeof document === "undefined") return null;
-  const local = typeof window !== 'undefined' && ['localhost','127.0.0.1','[::1]'].includes(window.location.hostname);
+  const local = typeof window !== 'undefined' && window.location.protocol === 'http:'
+    && ['localhost','127.0.0.1','[::1]'].includes(window.location.hostname);
   const prefix = local ? 'continuity_csrf=' : '__Host-continuity_csrf=';
   const cookies = document.cookie
     .split(";")

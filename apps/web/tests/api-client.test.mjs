@@ -3,8 +3,33 @@ import test from "node:test";
 import {
   ApiClientError,
   createApiClient,
+  readCsrfCookie,
 } from "../src/api.js";
 import { publicRoutes, resolvePublicView } from "../src/publicRoutes.js";
+
+test("HTTPS CSRF uses only host-bound cookies, including local previews", () => {
+  const previousWindow = Object.getOwnPropertyDescriptor(globalThis, 'window');
+  const previousDocument = Object.getOwnPropertyDescriptor(globalThis, 'document');
+  try {
+    const cookie = 'continuity_csrf=legacy; __Host-continuity_csrf=host-bound';
+    Object.defineProperty(globalThis, 'document', { configurable: true, value: { cookie } });
+    for (const [hostname, protocol, expected] of [
+      ['localhost', 'http:', 'legacy'], ['127.0.0.1', 'http:', 'legacy'],
+      ['[::1]', 'http:', 'legacy'], ['localhost', 'https:', 'host-bound'],
+      ['acceptance.example.test', 'https:', 'host-bound'], ['app.rillora.xyz', 'https:', 'host-bound'],
+    ]) {
+      Object.defineProperty(globalThis, 'window', { configurable: true, value: { location: { hostname, protocol } } });
+      assert.equal(readCsrfCookie(), expected);
+    }
+    document.cookie = 'continuity_csrf=legacy';
+    assert.equal(readCsrfCookie(), null);
+    document.cookie = '__Host-continuity_csrf=first; __Host-continuity_csrf=second';
+    assert.equal(readCsrfCookie(), null);
+  } finally {
+    if (previousWindow) Object.defineProperty(globalThis, 'window', previousWindow); else delete globalThis.window;
+    if (previousDocument) Object.defineProperty(globalThis, 'document', previousDocument); else delete globalThis.document;
+  }
+});
 
 test("sharing rollout compatibility only treats an absent endpoint as unavailable controls", async () => {
   const client = status => createApiClient({ fetchImpl: async () => new Response(JSON.stringify({error:{code:status===404?"not_found":"authentication_required",message:"Unavailable"}}), {status,headers:{"content-type":"application/json"}}) });

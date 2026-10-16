@@ -88,6 +88,13 @@ describe.sequential('selected AI access in an isolated signed PostgreSQL fixture
   });
   afterAll(async () => { await pool?.end(); if (admin) { await admin.query('update app.recovery_policy set enforced=false'); await admin.query(`drop role if exists ${role}`); await admin.end(); } });
 
+  it('checks readiness through a scoped role without granting the base runtime schema access', async () => {
+    const permissions = async () => (await pool.query(`select current_user as role,
+      has_schema_privilege(current_user,'app','USAGE') as app_usage`)).rows[0];
+    expect(await permissions()).toEqual({ role, app_usage: false });
+    await mcp.checkReady();
+    expect(await permissions()).toEqual({ role, app_usage: false });
+  });
   it('does not enable MCP from omitted configuration or reuse first-party identity grants', () => {
     const config = loadConfig({ NODE_ENV: 'test', DATABASE_URL: url, ALLOW_DEV_AUTH: 'true' });
     expect(loadMcpConfig({}, config)).toBeNull();

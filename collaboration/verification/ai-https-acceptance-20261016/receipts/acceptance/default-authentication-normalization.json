@@ -1,0 +1,16 @@
+{
+  "recordedAt": "2026-10-16T14:31:24.834261+00:00",
+  "scope": "Only the original inactive Default App",
+  "reason": "Auth0 rejects restoration of legacy unspecified method; adding modern authentication field additionally requires unavailable credential-management scope",
+  "chosenOutcome": "Restore original name, empty callbacks, grant list, JWT lifetime and connection binding; retain explicit client_secret_post verification",
+  "clientIdRotated": false,
+  "clientSecretRotated": false,
+  "newAdministrativeScopeRequested": false,
+  "paidPlanChanged": false,
+  "productionClientsChanged": false,
+  "exactPriorDefaultAuthenticationMetadataRestorationClaimed": false,
+  "evidence": [
+    "web-patch-readback.json",
+    "legacy-null-restore-attempt.json"
+  ]
+}

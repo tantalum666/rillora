@@ -1,0 +1,24 @@
+{
+  "source": "Recorded tool responses; reconstructed summary, not original overwritten log bytes",
+  "initialCookieTypecheck": {
+    "passed": false,
+    "diagnostic": "TS2741 missing oidc in two existing security-cookie test call sites",
+    "resolution": "Shared CookieConfig accepts optional oidc; production fallback remains secure"
+  },
+  "initialCookieTestInvocation": {
+    "matchedFiles": 2,
+    "passedTests": 25,
+    "reason": "Two requested test names did not exist",
+    "finalCorrectedInvocation": {
+      "files": 4,
+      "tests": 42,
+      "passed": true
+    }
+  },
+  "browserRevokeWait": {
+    "expectedPhraseNotPresent": true,
+    "actualVisiblePhrase": "通过此授权发起的新请求已被阻止。",
+    "revokeMutationRepeated": false
+  },
+  "robotsExactBytesFailure": "Cloudflare prepends managed robots; origin policy retained, HTML noindex separately checked, no claim that robots blocks all crawlers"
+}

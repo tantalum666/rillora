@@ -1,0 +1,35 @@
+"""Register only the exact callback emitted by the actual scoped Codex login request."""
+from pathlib import Path
+from urllib.parse import urlsplit
+import datetime
+import importlib.util
+import json
+
+ROOT = Path(__file__).resolve().parents[3]
+QA = Path(__file__).resolve().parent
+PRIVATE = ROOT / '.local-secrets/ai-https-20261016'
+spec = importlib.util.spec_from_file_location('auth_helpers', ROOT / 'tools/auth0/prepare-production-clients.py')
+h = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(h)
+state = json.loads((PRIVATE / 'registration.json').read_text())
+request = json.loads((QA / 'codex-authorization-request.json').read_text())
+assert state['purpose'] == 'mcp-https-synthetic-20261016' and not state['restored']
+assert request['authorizationOrigin'] == 'https://login.rillora.xyz'
+assert request['resource'] == state['resource'] and request['resourceCount'] == 1 and request['pkce'] == 'S256'
+assert sorted(request['scopes']) == ['matters:read:summary', 'readiness:read:scoped']
+callback = request['redirectUri']
+u = urlsplit(callback)
+assert u.scheme == 'http' and u.hostname == '127.0.0.1' and u.port == 58443
+assert u.path.startswith('/callback/') and not u.query and not u.fragment and not u.username
+client = h.api('get', 'clients/' + state['clientId'] + '?fields=client_metadata,callbacks,is_first_party,grant_types,token_endpoint_auth_method&include_fields=true')
+assert client['client_metadata']['purpose'] == state['purpose'] and client['is_first_party'] is False
+assert client['grant_types'] == ['authorization_code'] and client['token_endpoint_auth_method'] == 'none'
+assert client['callbacks'] in [[], [callback]]
+h.api('patch', 'clients/' + state['clientId'], {'callbacks': [callback]})
+assert h.api('get', 'clients/' + state['clientId'] + '?fields=callbacks&include_fields=true')['callbacks'] == [callback]
+state['aiCallback'] = callback
+(PRIVATE / 'registration.json').write_text(json.dumps(state, indent=2) + '\n')
+receipt = {'checkedAt': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'actualClientCallbackRegistered': True,
+           'exactCallback': callback, 'thirdPartyPublicClient': True, 'scopeCount': 2, 'pkce': 'S256', 'productionClientChanged': False}
+(QA / 'codex-callback-registered.json').write_text(json.dumps(receipt, indent=2) + '\n')
+print(json.dumps(receipt))
