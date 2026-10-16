@@ -1,0 +1,22 @@
+TAP version 13
+# Subtest: five platform configurations share the resource and least-privilege OAuth scopes without credentials
+ok 1 - five platform configurations share the resource and least-privilege OAuth scopes without credentials
+  ---
+  duration_ms: 2.168167
+  type: 'test'
+  ...
+# Subtest: rejects non-owned targets, credentials, query-bearing endpoints and duplicate registrations
+ok 2 - rejects non-owned targets, credentials, query-bearing endpoints and duplicate registrations
+  ---
+  duration_ms: 0.370708
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 84.860958
