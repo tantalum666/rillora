@@ -15,6 +15,10 @@ Last updated: 2026-10-16 (Asia/Hong_Kong)
 
 [新增archive43](snapshot.json)保存226路径／118对象，1,646,127密文字节；[本地完整认证](archive-verification.json)通过，[目录](catalog.json)定位精确原件。公共部署产物、HTTP／S3字节、裁去账号区域的结果图及失败／成功日志保留；凭据、登录URL、原始DNS管理对象、账号页和第三方缓存明确排除。旧archive1—42不重封、不重下。后续独立远端下载回执直接补交，不递归归档。
 
+f91a4ba61570ad5779e0af5179c8e50da90e08d2已推送：[CI166](ci-readback.json)三任务全部成功；[独立远端下载](remote-readback.json)在空LFS存储只取得archive43，118对象／226路径完整认证通过。后续普通Git元数据不触发新的官网部署。
+
+同轮继续[托管前置核对](../../../docs/architecture/ai-hosted-preflight-20261016.md)：原Auth0管理仍有效，9普通应用需考虑Free10实体上限；独立Teams安全验证待本人完成，未新建租户／扩大套餐／重用退役客户端。该只读材料在[后续容量回执](receipts/hosted-identity-capacity.json)中单独保存，不回写成归档冻结前已完成的托管验收。
+
 只更新既有RilloraPublicWeb栈和两条所有权DNS证明。App14、正式API／数据库、数据、价格／收费和FanPass保持，未发TestFlight。无GSC数据导入、DNS账号委托、广告、Clarity或新增跟踪。MCP的本机真实OAuth与公网托管闭环继续分别记账。
 
 ![Bing已保存地图，等待处理](images/bing-sitemap-submitted.png)

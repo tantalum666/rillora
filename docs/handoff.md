@@ -1,6 +1,6 @@
 # Rillora 当前交接
 
-Status: PUBLIC GEO LIVE / GOOGLE AND BING OWNERSHIP AND SUBMISSION COMPLETE / HOSTED MCP NEXT
+Status: PUBLIC GEO LIVE / GOOGLE AND BING SUBMITTED / CI166 AND REMOTE ARCHIVE PASSED / HOSTED MCP TEAMS VERIFICATION PENDING
 Last updated: 2026-10-16 (Asia/Hong_Kong)
 
 ## 当前任务
@@ -18,12 +18,14 @@ Owner要求先完成官网GEO／SEO，再推进MCP和各平台接入，新功能
 
 ## 证据与边界
 
-官网当轮原件 output/qa/rillora-public-discovery-rollout-20261016；[新增可读材料与archive43](../collaboration/verification/public-discovery-rollout-20261016/README.md)保存226路径／118对象／1,646,127密文字节，本地认证通过，旧archive1—42保持。凭据、认证URL、原始DNS／提供方对象和账号页面排除；公开内容、去掉账号区域的结果图和无凭据日志可复核。最终Git／CI／新增归档远端回执另附，不以本机保存冒称推送。
+官网当轮原件 output/qa/rillora-public-discovery-rollout-20261016；[新增可读材料与archive43](../collaboration/verification/public-discovery-rollout-20261016/README.md)保存226路径／118对象／1,646,127密文字节，本地及f91a4ba61的GitHub独立新下载认证全部通过，CI166三任务成功，旧archive1—42保持。凭据、认证URL、原始DNS／提供方对象和账号页面排除；公开内容、去掉账号区域的结果图和无凭据日志可复核。最终回执普通Git补交，不重封或部署。
 
 Google常规地图处理与Bing抓取／索引尚未完成，暂不认定错误原因；实际AI提及、模型选工具、消费端／目录也未验。两家OAuth是本机服务与实际提供方／客户端的协议证据，不是公网托管产品闭环。MCP runtime和UI默认仍关。
 
 只有独立www公开栈更新；生产API／数据库、真实数据、WebUSD88.99及AppleUSD119.99／HKD888、收费开关、FanPass和在审App14未变。无TestFlight；Owner取消真机及暂缓Auth0外壳继续保持。AWS已复用原控制台自动续期，Auth0追加授权已实际完成，不重复要求登录。
 
+[托管前置核对](architecture/ai-hosted-preflight-20261016.md)：原Auth0管理API／Dashboard仍有效；9普通应用，Free上限10，独立Web＋AI至少需要2个登记。正在核对独立开发租户，未删除／重用旧客户端或升级。新进入的Auth0 Teams单独安全验证尚未完成，已保留页面交Owner本人处理；这不是原管理会话过期。
+
 ## 唯一下一步
 
-在本轮Git保存完成后推进隔离HTTPS候选中的Web选择授权→MCP读取／撤销闭环，先核对独立部署及免费Auth0容量，再按同一服务逐平台验收。接续时读回Google常规地图与Bing处理结果；不反复提交，不重做已过的OAuth、本地矩阵、官网部署或当前审核。
+Owner完成已打开的Auth0 Teams安全验证后，读回独立EU开发租户的免费条件，推进隔离HTTPS候选中的Web选择授权→MCP读取／撤销闭环。接续时读回Google常规地图与Bing处理结果；不反复提交，不重做已过的OAuth、本地矩阵、官网部署或当前审核。

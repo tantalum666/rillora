@@ -14,6 +14,9 @@ Provider credentials, authentication URLs, raw DNS objects and account screens a
 Public website delivery, indexing, scoped local OAuth, hosted MCP and App14 review remain
 separate results. Source/CI165 and archive42 remote verification are already complete;
 the new publication and independent archive receipt are recorded in this rollout's addendum.
+Commitf91a4ba61/CI166passes all three jobs; archive43's118objects/226paths are independently
+downloaded from GitHub into empty LFS storage and authenticated. Final ordinary metadata
+also records the read-only hosted-identity capacity check; no new tenant or runtime is created.
 
 ## October16 successful provider OAuth and scoped revocation
 
