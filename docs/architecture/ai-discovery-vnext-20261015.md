@@ -110,6 +110,6 @@ D0、D1 可在独立官网候选进行；I0、I1 使用隔离环境，不触及�
 
 随后真实Auth0／Codex及Gemini CLI验收通过，选定事项读取与同一未过期令牌的撤销拒绝均通过；临时资源全部清理。653093e62／CI165三任务成功，archive42独立GitHub下载认证完成，具体边界见[OAuth记录](ai-oauth-validation-20261016.md)。没有自然语言模型调用或消费端等价证明。
 
-[公开官网两阶段交付](public-discovery-rollout-20261016.md)完成：20双语页面及54文件实际匹配、浏览器语言切换正常；Google和Bing的所有权及站点地图提交完成。Google实际即时提取成功但常规地图报告仍失败／0已发现，Bing地图处理中；未证明收录或AI推荐。只更新独立www栈，不改变App14、生产API／数据库、定价／收费或FanPass。
+[公开官网两阶段交付](public-discovery-rollout-20261016.md)完成：20双语页面及54文件实际匹配、浏览器语言切换正常；Google和Bing的所有权及站点地图提交完成。Google实际即时提取成功但常规地图报告仍失败／0已发现，Bing地图已Success并解析20网址；未证明全部页面收录或AI推荐。只更新独立www栈，不改变App14、生产API／数据库、定价／收费或FanPass。
 
 未完成：公网HTTPS MCP候选及托管Web选择闭环、模型实际选工具、其他消费端／目录、索引与推荐效果。继续按[handoff](../handoff.md)唯一下一步推进，不重做已通过的本地矩阵、两客户端OAuth或官网部署。

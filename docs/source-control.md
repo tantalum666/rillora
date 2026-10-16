@@ -8,7 +8,8 @@ Last updated: 2026-10-16 (Asia/Hong_Kong)
 [The independent public rollout](architecture/public-discovery-rollout-20261016.md)
 deploys source653093e62/CI165 through two verified phases to the existing www stack.
 Google and Bing ownership and one sitemap submission each are complete; Google live
-fetch succeeds while its regular report still cannot read the map, and Bing is processing.
+fetch succeeds while its regular report still cannot read the map. Bing's later fresh
+readback is Success with20URLs discovered; this is sitemap parsing, not full page indexing.
 Only new eligible release/readback evidence is preserved; earlier archives1–42 remain.
 Provider credentials, authentication URLs, raw DNS objects and account screens are excluded.
 Public website delivery, indexing, scoped local OAuth, hosted MCP and App14 review remain

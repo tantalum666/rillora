@@ -41,7 +41,7 @@ Bing首次基本资料授权已由Owner当场明确确认：仅原Google账号�
 
 手动添加https://www.rillora.xyz/，沿用既有GoDaddy CLI只新增Bing指定的一个独立CNAME。记录35变36，所有旧记录完整保留，两权威及两公共DNS均确认。Bing验证后进入该站点专用后台；关闭验证面板时其前端removeEventListener异常造成空白，重新加载原站点后台后恢复。没有修改用户浏览器扩展或站点代码来掩盖提供方错误。
 
-Bing站点地图只提交一次，页面实际保存1条、状态Processing，0报告错误／警告、0已发现，尚非抓取或索引完成。没有导入Google Search Console数据、委托GoDaddy账号管理、启用Microsoft Clarity、广告或付费功能。两条搜索验证DNS记录是持续所有权证明，应保留，不按临时测试记录删除。
+Bing站点地图只提交一次，首次实际保存1条、状态Processing。收尾重新加载后已更新为Success，上次抓取October16，实际发现20网址，0错误／警告。该结果证明站点地图读取／解析成功，不能扩大为全部页面已索引或AI已引用。Google同次重新加载仍显示无法抓取／0已发现。没有导入Google Search Console数据、委托GoDaddy账号管理、启用Microsoft Clarity、广告或付费功能。两条搜索验证DNS记录是持续所有权证明，应保留，不按临时测试记录删除。
 
 新官网公开不代表MCP已开放、搜索引擎已收录、AI已推荐、目录获批或App审核通过；原生构建、用户账户和收费配置均不在本次发布范围。
 
@@ -49,4 +49,4 @@ Bing站点地图只提交一次，页面实际保存1条、状态Processing，0�
 
 本轮[新增保存包](../../collaboration/verification/public-discovery-rollout-20261016/README.md)的archive43保存226路径／118对象／1,646,127密文字节，本地认证通过，旧archive1—42不重封、不重下。认证URL、原始DNS管理对象、账号页面、私密标识及凭据不发布；公开页面、裁去账号区域的结果图、无凭据部署日志和精确产物单独记录。最终Git、CI和新增归档的独立远端认证结果在收尾回执中记录。
 
-f91a4ba61已推送，CI166三任务成功，archive43从GitHub独立新下载并完成118对象／226路径认证。最终回执直接补交，无重复部署。接续[独立HTTPS候选前置核对](ai-hosted-preflight-20261016.md)，消费端／目录和模型实际选工具仍逐平台验收；Google常规站点地图报告与Bing处理结果在下一次工作时读回，不以反复提交代替等待处理。
+f91a4ba61已推送，CI166三任务成功，archive43从GitHub独立新下载并完成118对象／226路径认证。元数据96743dd36的11个远端对象相同、CI167成功。晚到Bing成功回执／截图直接补交，无重复归档或部署。接续[独立HTTPS候选前置核对](ai-hosted-preflight-20261016.md)，消费端／目录和模型实际选工具仍逐平台验收；Google常规地图报告及后续实际索引另行取证，不重复提交已成功的Bing地图。
