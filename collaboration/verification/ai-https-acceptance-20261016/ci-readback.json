@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-10-16T15:58:49.914Z",
+  "sourceCommit": "7902622f2a8f065e8266fb88cd2dd68f9c50c72c",
+  "runId": 38927866979,
+  "runNumber": 169,
+  "url": "https://github.com/tantalum666/rillora/actions/runs/38927866979",
+  "status": "completed",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "name": "api",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "source",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "web-and-infrastructure",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "boundary": "Actual GitHub CI; no deployment. Later receipt-only commits retain identical runtime source."
+}

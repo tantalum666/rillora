@@ -1,6 +1,6 @@
 # Rillora 当前交接
 
-Status: PUBLIC GEO LIVE / SYNTHETIC HTTPS MCP FLOW PASSED AND CLEANED / NEW EVIDENCE READY FOR GIT
+Status: PUBLIC GEO LIVE / SYNTHETIC HTTPS MCP FLOW PASSED AND CLEANED / SOURCE7902622 / CI169 PASSED / ARCHIVE44 REMOTELY VERIFIED
 Last updated: 2026-10-16 (Asia/Hong_Kong)
 
 ## 当前任务
@@ -17,7 +17,7 @@ Owner要求先官网GEO／SEO，再MCP和多平台接入，新功能放下一版
 
 ## 证据与边界
 
-[新保存包](../collaboration/verification/ai-https-acceptance-20261016/README.md)只收本次HTTPS／前置新证据。此前archive42、43的独立GitHub下载认证及CI165–168成功保持，不重封、不重复下载。源码最新已推检查点仍为3e34dc7ef／CI168；新archive44已封存344路径／174对象／4,375,200密文字节并通过本地认证；637文档链接和12,664当时可读文件扫描通过。本轮源码／原件／文档接着一起推送，远端及CI独立读回。
+[新保存包](../collaboration/verification/ai-https-acceptance-20261016/README.md)只收本次HTTPS／前置新证据。源码与archive44已推送7902622f2，CI169的API／source／Web-infrastructure三任务成功；新增344路径／174对象／4,375,200密文字节已从GitHub独立新下载并认证通过。此前archive1—43和CI168等证据保持，不重封、不重复下载。637文档链接、12,664当时可读文件秘密扫描及随后完整清单核对通过；最后回执以普通Git补交，不改运行源码。
 
 未使用的Default App保留一项声明差异：token_endpoint_auth_method由原未设置变为显式client_secret_post，因Auth0拒绝原空值还原而未追加凭据管理权限。最终还原到此已声明基线，原名／空回调／grant／JWT／绑定恢复。没有轮换密钥；早期secretUnchanged字段仅表示无密钥变更操作，非前后字节比较。
 
@@ -25,4 +25,4 @@ Owner要求先官网GEO／SEO，再MCP和多平台接入，新功能放下一版
 
 ## 唯一下一步
 
-完成本轮新原件与源码的GitHub保存／CI及远端认证后，确定可长期维持的独立身份容量与托管方案，再补模型／各消费端验收；不把已关闭的临时Default App及隧道当作正式多平台服务。
+确定可长期维持的独立身份容量与托管方案，再补模型／各消费端验收；不把已关闭的临时Default App及隧道当作正式多平台服务。

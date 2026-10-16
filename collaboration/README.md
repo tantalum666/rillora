@@ -1,6 +1,6 @@
 # Rillora — Git / Dot 协作入口
 
-October16最新：[临时HTTPS完整闭环](../docs/architecture/ai-https-acceptance-20261016.md)已完成真实Web合成选择、Codex OAuth／工具发现、限定读取及同一有效token撤销，临时资源已回收。受限数据库就绪检查及HTTPS Cookie前缀／安全标志问题已修；无生产或审核部署。Default App认证方法空值规范化明确保留，其他应用／绑定／租户设置匹配。新增[保存包](verification/ai-https-acceptance-20261016/README.md)仅追加本轮，当前下一步看handoff。
+October16最新：[临时HTTPS完整闭环](../docs/architecture/ai-https-acceptance-20261016.md)已完成真实Web合成选择、Codex OAuth／工具发现、限定读取及同一有效token撤销，临时资源已回收。受限数据库就绪检查及HTTPS Cookie前缀／安全标志问题已修；无生产或审核部署。Default App认证方法空值规范化明确保留，其他应用／绑定／租户设置匹配。新增[archive44保存包](verification/ai-https-acceptance-20261016/README.md)仅追加本轮344路径／174对象；7902622f2／CI169三任务通过，远端独立新下载认证成功。当前下一步看handoff。
 
 
 October16官网现况：[独立GEO发布](../docs/architecture/public-discovery-rollout-20261016.md)已按两阶段完成，20页／54文件实际匹配，生产API／数据及App14保持。Google和Bing所有权／地图提交完成；Google即时提取成功但常规报告仍失败，Bing已成功解析20个地图网址，索引／AI推荐尚未证明。源码653093e62／CI165及archive42独立远端认证通过。本轮仅追加新部署／站长平台证据；下方较早“未部署／未验证OAuth”均为其当时检查点，当前下一步只看handoff。

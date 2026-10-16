@@ -17,4 +17,4 @@ Archive44 contains344original paths /174deduplicated objects /4,375,200encrypted
 - [Final local cleanup and provider restoration boundary](receipts/acceptance/final-cleanup-readback.json)
 - [Capture catalog](catalog.json), [snapshot](snapshot.json), [local archive authentication](archive-verification.json)
 
-Remote Git/LFS authentication and CI are recorded only after actual publication. They do not trigger a production deployment or a repeated payment/device test.
+Source/archive7902622f2 is pushed. [CI169](https://github.com/tantalum666/rillora/actions/runs/38927866979) passes all three jobs. [Independent remote readback](remote-readback.json) downloaded only archive44 into empty LFS storage and authenticated all174objects/344paths against immutable GitHub metadata. [CI receipt](ci-readback.json) and final completion metadata follow as ordinary Git files without resealing or deploying.
