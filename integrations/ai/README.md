@@ -28,8 +28,8 @@ node --test tools/mcp/client-packages.test.mjs
 | 交付 | 用途 | 实际接入仍需完成 |
 | --- | --- | --- |
 | OpenAI portable plugin.json／mcp.json | ChatGPT／Codex 共用插件包，明确 OAuth provided client 与只读能力 | 真实 HTTPS 地址、平台注册连接、回调核对、用户 OAuth 和目录审核；不伪造 plugin_asdk_app ID |
-| codex-plugin 兼容包 | 当前Codex的 `.codex-plugin/plugin.json` 与 `.mcp.json`，保留固定OAuth客户端 | 已在0.162.0-alpha.17.2真实解析器识别服务；真实OAuth仍待验。不要把portable根manifest／mcp.json混进这个目录，否则其优先级会覆盖兼容配置 |
-| Codex setup.sh | 使用本机已核对的 mcp add／oauth-client-id／oauth-resource 参数 | 核对 CLI 选用的完整回调后注册，再用 mcp login；生成文件不自动执行 |
+| codex-plugin 兼容包 | 当前Codex的 `.codex-plugin/plugin.json` 与 `.mcp.json`，保留固定OAuth客户端 | 已在0.162.0-alpha.17.2真实解析器识别服务；真实OAuth已验证；公网候选及模型对话待验。不要把portable根manifest／mcp.json混进这个目录，否则其优先级会覆盖兼容配置 |
+| Codex setup.sh | 使用本机已核对的 mcp add／oauth-client-id参数；resource由受保护资源元数据发现 | 核对 CLI 选用的完整回调后注册，再用 mcp login；生成文件不自动执行 |
 | Claude Code mcp.json | HTTP、固定 clientId 和最小 scopes | 使用本机版本实际回调；需要时指定已登记 callbackPort，不能使用通配回调 |
 | Cursor mcp.json | HTTP 与固定 CLIENT_ID／scopes | 按使用的 Desktop／Web 入口分别登记其官方回调 |
 | Gemini CLI settings.json | Streamable HTTP 与已登记 OAuth clientId | 使用实际 redirectUri；通过发现校验 issuer，不关闭不匹配检查 |
@@ -51,7 +51,7 @@ node --test tools/mcp/client-packages.test.mjs
 7. 先在 Rillora 选择范围并保存授权，再在 AI 端 OAuth 连接。新授权要求新签发的 token；撤销即时阻止新请求，不能撤回已送到 AI 的副本。真实用户接受与本地合成测试分别记录。
 8. 在每个实际客户端验证连接、工具选择、拒绝越权、普通更新可读、不披露／归档后不复活、撤销、到期与网络失败。生产部署、目录提交、批准、发现与真实增长分别记账。
 
-既有本地协议测试没有替代真实Auth0回调或所有AI产品验收。October16新增临时公共客户端／独立API，真实OAuth仍待隔离连接权限；未创建新用户、发邀请、购买服务、开启生产MCP或分发TestFlight。
+既有本地协议测试没有替代真实Auth0回调或所有AI产品验收。October16已用独立合成账号完成两家真实OAuth与撤销验收并清理所有临时资源；未发邀请、购买服务、开启生产MCP或分发TestFlight。
 
 ## October16 客户端验收补充
 
@@ -69,4 +69,4 @@ Codex和Gemini CLI0.64.0都已连接本机Rillora接口；Codex读取两工具�
 - [MCP SDK 2026-07-28 与 legacy 兼容](https://ts.sdk.modelcontextprotocol.io/v2/migration/support-2026-07-28)
 - [当前跨平台方案](../../docs/architecture/ai-discovery-vnext-20261015.md)
 
-October16真实OAuth续接：管理登录已恢复，resource兼容已存在；Codex已实际生成准确回调／S256／两scope请求。第三方连接规则要求独立合成域级连接，当前CLI缺create:connections；未改正式连接。追加create／delete connections授权等待Owner完成。专用临时客户端／API已注册不代表已连接，详见[当前续验](../../docs/architecture/ai-integration-acceptance-20261016.md)。
+October16[真实OAuth与撤销](../../docs/architecture/ai-oauth-validation-20261016.md)已补齐：Codex实际app-server、Gemini原版OAuth函数＋实际CLI，都用独立合成身份连接；真实签名与范围读取通过，撤销后同一令牌拒绝。Codex设置不再额外提供oauth-resource，避免与发现重复。临时资源已清理，原正式配置不变；公网候选、模型选工具和消费端／目录仍独立待验。

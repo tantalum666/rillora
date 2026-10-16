@@ -1,5 +1,7 @@
 # Rillora — Git / Dot 协作入口
 
+October16最新：[真实OAuth与撤销](../docs/architecture/ai-oauth-validation-20261016.md)完成Codex／Gemini实际身份与客户端接入，修正重复resource；全部临时提供方／本机资源已清理，正式配置指纹一致。下方较早待Auth0授权描述为历史；当前下一步仅看handoff。
+
 October16续验：[CI158／159已读回成功](verification/ai-acceptance-20261016/README.md)，旧CI可见性阻塞关闭。新增当前Codex兼容包，真实解析器确认一个服务；Codex／Gemini均连接本机Rillora接口，只有合成签名身份和工具发现证据。Auth0与AWS管理登录均已恢复；真实OAuth已准备专用注册／回调，待补独立合成连接的create／delete权限，没有部署，审核／数据／价格保持；[当前合同](../docs/architecture/ai-integration-acceptance-20261016.md)。
 
 October15–16下一版本：[跨平台方案](../docs/architecture/ai-discovery-vnext-20261015.md)已按Owner指令推进到[本地实施候选](../docs/architecture/ai-discovery-implementation-20261015.md)，包含20页双语官网、最小只读MCP、明确选择／撤销授权和五种平台配置。独立分支codex/ai-discovery-vnext-20261015，源码15770aa4d已推送；archive40独立远端下载认证507对象／1,057路径通过；当时远端CI读取受限，已由上方October16续验关闭。[实施证据](verification/ai-implementation-20261015/README.md)与[先前研究](verification/ai-discovery-20261015/README.md)分开保存。当前App14审核、生产服务／数据／价格保持；尚未部署、真实OAuth连接或目录上架，唯一下一步见handoff。

@@ -1,0 +1,51 @@
+{
+  "completedAt": "2026-10-16T08:24:35.795490+00:00",
+  "codex": {
+    "clientVersion": "0.162.0-alpha.17.2",
+    "authorizationDriver": "actual Codex app-server mcpServer/oauth/login",
+    "actualAuthenticatedDiscovery": true,
+    "tokenSignatureIssuerAudienceClientScopes": true,
+    "selectedOnlyRead": true,
+    "unselectedAndNotesAbsent": true,
+    "sameUnexpiredTokenDeniedAfterRevocation": true
+  },
+  "gemini": {
+    "clientVersion": "0.64.0",
+    "authorizationDriver": "Unmodified exported Gemini CLI OAuth discovery, PKCE, state/issuer callback and token exchange functions; browser navigation via CUA",
+    "actualCliMcpListConnected": true,
+    "tokenSignatureIssuerAudienceClientScopes": true,
+    "selectedOnlyRead": true,
+    "unselectedAndNotesAbsent": true,
+    "sameUnexpiredTokenDeniedAfterRevocation": true
+  },
+  "toolInvocationDriver": "Official MCP SDK using each credential already presented by the actual installed client; no language-model tool selection",
+  "syntheticIdentitiesOnly": true,
+  "realCustomerDataRead": false,
+  "modelInvoked": false,
+  "modelSpend": false,
+  "providerCleanup": {
+    "checkedAt": "2026-10-16T08:16:54.759434+00:00",
+    "temporaryCodexClientRemovedPreviously": true,
+    "temporaryGeminiClientAndGrantsRemoved": true,
+    "syntheticUserRemoved": true,
+    "syntheticDomainConnectionRemoved": true,
+    "temporaryApiRemoved": true,
+    "existingClientHashesMatched": true,
+    "existingApiHashesMatched": true,
+    "existingConnectionBindingsMatched": true,
+    "existingConnectionsRemainNonDomain": true,
+    "ordinaryApplications": 9,
+    "tenantSettingsMatched": true,
+    "tenantChangedKeys": [],
+    "productionChanged": false
+  },
+  "sourceFix": "Remove redundant Codex --oauth-resource override; protected-resource discovery still supplies the canonical resource exactly once",
+  "separatePending": [
+    "Hosted HTTPS candidate",
+    "User-facing hosted selection-to-AI flow",
+    "Natural-language model tool selection",
+    "Consumer chat apps and directories",
+    "Public website deployment and search indexing"
+  ],
+  "originalTestsRepeated": false
+}

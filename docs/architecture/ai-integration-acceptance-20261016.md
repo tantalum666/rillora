@@ -1,8 +1,10 @@
 # 下一版本 AI 接入续验
 
-Status: CI AND LOCAL CLIENTS VERIFIED / AUTH0 RESTORED / REAL OAUTH CONNECTION PERMISSION PENDING
+Status: HISTORICAL PREPARATION CHECKPOINT / SUPERSEDED BY REAL OAUTH VALIDATION
 Last updated: 2026-10-16 (Asia/Hong_Kong)
 Source baseline: 48ee3ad719e03d5905e4e10f7490b8b2b40cfdae
+
+本文件保留早期准备与失败过程。随后[真实OAuth及撤销验收](ai-oauth-validation-20261016.md)已通过，并完成全部临时资源清理；下方待权限／待OAuth描述不再是当前下一步。
 
 Owner要求继续尝试补齐与验收，并明确重新打开AWS／Auth0登录页面。沿用[上一批实施](ai-discovery-implementation-20261015.md)及完整阅读／本地／归档证据，不重复已完成检查，不改App14、价格、数据或收费状态。
 

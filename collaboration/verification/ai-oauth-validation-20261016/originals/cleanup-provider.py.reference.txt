@@ -1,0 +1,41 @@
+"""Remove only the exact purpose-tagged resources created by this OAuth acceptance."""
+from pathlib import Path
+from urllib.parse import quote
+import importlib.util,json,subprocess,hashlib,datetime
+ROOT=Path(__file__).resolve().parents[3];qa=ROOT/'output/qa/rillora-ai-oauth-20261016';private=ROOT/'.local-secrets/ai-oauth-20261016'
+spec=importlib.util.spec_from_file_location('h',ROOT/'tools/auth0/prepare-production-clients.py');h=importlib.util.module_from_spec(spec);spec.loader.exec_module(h)
+s=json.loads((private/'registration.json').read_text());assert s['purpose']=='mcp-synthetic-acceptance-20261016' and s['clientKey']=='gemini-cli'
+assert json.loads((qa/'gemini/after-revoke-tool-results.json').read_text())['summary']['isError']
+assert json.loads((qa/'gemini/local-cleanup.json').read_text())['syntheticPlannersRemaining']==0
+assert json.loads((qa/'gemini/credential-cleanup.json').read_text())['scopedCredentialRemoved']
+client=h.api('get','clients/'+s['clientId']+'?fields=name,client_metadata,is_first_party&include_fields=true');assert client['name']=='Rillora MCP Acceptance - Gemini CLI' and client['client_metadata']['purpose']==s['purpose'] and client['is_first_party'] is False
+connection=h.api('get','connections/'+s['syntheticConnectionId']);assert connection['name']=='rillora-mcp-synthetic-20261016' and connection['metadata']['purpose']==s['purpose'] and h.connection_clients(s['syntheticConnectionId'])==[]
+user=h.api('get','users/'+quote(s['syntheticUserId'],safe=''));assert user['email']=='rillora-mcp-acceptance-20261016@example.test' and user['app_metadata']['purpose']==s['purpose']
+assert len(user['identities'])==1 and user['identities'][0]['connection']==connection['name']
+resource=h.api('get','resource-servers/'+s['resourceServerId']);assert resource['name']=='Rillora MCP local acceptance' and resource['identifier']=='http://127.0.0.1:58431/mcp'
+def delete(path):
+ r=subprocess.run(['auth0','api','delete',path,'--force','--tenant','rillora-dev.eu.auth0.com','--no-input'],capture_output=True,text=True,timeout=45)
+ if r.returncode:
+  (private/'provider-cleanup-error.log').write_text(r.stdout+r.stderr);(private/'provider-cleanup-error.log').chmod(0o600)
+  raise RuntimeError('Scoped cleanup failed; private diagnostic saved')
+delete('clients/'+s['clientId']);assert h.api('get','client-grants?client_id='+s['clientId'])==[]
+delete('users/'+quote(s['syntheticUserId'],safe=''))
+delete('connections/'+s['syntheticConnectionId'])
+delete('resource-servers/'+s['resourceServerId'])
+fields='client_id,name,app_type,grant_types,callbacks,client_metadata,token_endpoint_auth_method,oidc_conformant,is_first_party,jwt_configuration,global'
+clients=h.api('get','clients?fields='+fields+'&include_fields=true&per_page=100');assert len(clients)<100
+connections=h.api('get','connections?per_page=100');assert len(connections)==3
+resources=h.api('get','resource-servers?per_page=100');assert len(resources)==3
+baseline=json.loads((qa/'auth0-preparation-result.json').read_text())
+def digest(v):return hashlib.sha256(json.dumps(v,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+assert digest(sorted(clients,key=lambda v:v['client_id']))==baseline['existingClientHash']
+projection=sorted([{k:v.get(k) for k in ['id','name','identifier','signing_alg','token_lifetime','token_lifetime_for_web','allow_offline_access','scopes']}for v in resources],key=lambda v:v['id']);assert digest(projection)==baseline['existingResourcesHash']
+bindings={c['id']:h.connection_clients(c['id'])for c in connections};assert digest(bindings)==baseline['existingBindingsHash']
+assert not any(c.get('is_domain_connection',False)for c in connections)
+assert h.api('get','users-by-email?email='+quote('rillora-mcp-acceptance-20261016@example.test',safe=''))==[]
+settings=h.api('get','tenants/settings');original_settings=json.loads((ROOT/'.local-secrets/ai-acceptance-20261016/settings-verified.json').read_text())
+settings_match=settings==original_settings
+result={'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'temporaryCodexClientRemovedPreviously':True,'temporaryGeminiClientAndGrantsRemoved':True,'syntheticUserRemoved':True,'syntheticDomainConnectionRemoved':True,'temporaryApiRemoved':True,'existingClientHashesMatched':True,'existingApiHashesMatched':True,'existingConnectionBindingsMatched':True,'existingConnectionsRemainNonDomain':True,'ordinaryApplications':sum(not c.get('global',False)for c in clients),'tenantSettingsMatched':settings_match,'tenantChangedKeys':sorted(k for k in set(settings)|set(original_settings) if settings.get(k)!=original_settings.get(k)) if not settings_match else [],'productionChanged':False}
+(qa/'provider-cleanup.json').write_text(json.dumps(result,indent=2)+'\n')
+s.update(activated=False,cleanupComplete=True);(private/'registration.json').write_text(json.dumps(s,indent=2)+'\n');(private/'registration.json').chmod(0o600)
+print(json.dumps(result))

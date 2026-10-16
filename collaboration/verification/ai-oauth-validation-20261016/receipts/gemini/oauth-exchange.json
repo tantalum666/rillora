@@ -1,0 +1,12 @@
+{
+  "realAuthorizationCodeExchange": true,
+  "vendorPkceAndCallbackValidation": true,
+  "encryptedTemporaryCredentialStore": true,
+  "noRefreshToken": true,
+  "expiresIn": 900,
+  "scopes": [
+    "matters:read:summary",
+    "readiness:read:scoped"
+  ],
+  "modelInvoked": false
+}

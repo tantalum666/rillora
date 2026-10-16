@@ -2,6 +2,10 @@
 
 Last updated: 2026-10-16 (Asia/Hong_Kong)
 
+## October16 successful provider OAuth and scoped revocation
+
+[The new validation](architecture/ai-oauth-validation-20261016.md) verifies real Auth0 flows and actual Codex/Gemini connections, then scoped reads and same-token revocation. The generated Codex setup omits a duplicate resource parameter found by the live provider. All temporary provider/local resources are removed and original configuration hashes match. [New evidence](../collaboration/verification/ai-oauth-validation-20261016/README.md) adds only changed/new safe originals; prior1–41archives and the earlier direct text capture remain. CI163 application jobs passed but the readable manifest omitted new files; regenerate the complete real-file manifest, keep guards enabled, then verify the new source commit independently.
+
 ## October16 real OAuth preparation
 
 [New scoped evidence](../collaboration/verification/ai-oauth-20261016/README.md) preserves reviewed nonsecret JSON and exact runner text directly in Git, with a per-file hash catalog. Login screenshots, capability URLs, raw provider/private identity data and upstream schema caches are excluded. No new publishable binary requires a repeated sealed archive; archives1–41 remain untouched. Management logins and the exact Codex authorization request are verified, but connection-management permission and real token/read/revoke acceptance remain pending. No production or review deployment follows.

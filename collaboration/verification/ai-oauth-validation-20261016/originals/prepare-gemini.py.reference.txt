@@ -1,0 +1,40 @@
+"""Reclaim only our temporary Codex client and register an independent Gemini client."""
+from pathlib import Path
+import importlib.util,json,subprocess,shutil
+ROOT=Path(__file__).resolve().parents[3];qa=ROOT/'output/qa/rillora-ai-oauth-20261016';private=ROOT/'.local-secrets/ai-oauth-20261016'
+spec=importlib.util.spec_from_file_location('h',ROOT/'tools/auth0/prepare-production-clients.py');h=importlib.util.module_from_spec(spec);spec.loader.exec_module(h)
+state=json.loads((private/'registration.json').read_text());assert state['purpose']=='mcp-synthetic-acceptance-20261016'
+assert state['name']=='Rillora MCP Acceptance - Codex'
+for name in ['before-revoke-tool-results.json','after-revoke-tool-results.json','codex-authenticated-discovery.json','verified-token-boundaries.json','local-cleanup.json','codex-authorization-request.json','fixture-boundaries.json']:
+ (qa/'codex').mkdir(exist_ok=True);shutil.copy2(qa/name,qa/'codex'/name)
+assert json.loads((qa/'after-revoke-tool-results.json').read_text())['summary']['isError']
+assert json.loads((qa/'local-cleanup.json').read_text())['syntheticPlannersRemaining']==0
+old=h.api('get','clients/'+state['clientId']+'?fields=client_id,name,client_metadata,is_first_party&include_fields=true')
+assert old['name']==state['name'] and old['client_metadata']['purpose']==state['purpose'] and old['is_first_party'] is False
+fields='client_id,name,app_type,grant_types,callbacks,client_metadata,token_endpoint_auth_method,oidc_conformant,is_first_party,jwt_configuration,global'
+before=h.api('get','clients?fields='+fields+'&include_fields=true&per_page=100');assert len(before)<100
+original=sorted([v for v in before if v['client_id']!=state['clientId']],key=lambda v:v['client_id'])
+grants=h.api('get','client-grants?client_id='+state['clientId']);assert len(grants)==1 and grants[0]['id']==state['clientGrantId'] and grants[0]['subject_type']=='user' and grants[0]['audience']==state['resource']
+def delete(path):
+ r=subprocess.run(['auth0','api','delete',path,'--force','--tenant','rillora-dev.eu.auth0.com','--no-input'],capture_output=True,text=True,timeout=45)
+ if r.returncode:
+  (private/'scoped-client-cleanup-error.log').write_text(r.stdout+r.stderr);(private/'scoped-client-cleanup-error.log').chmod(0o600)
+  raise RuntimeError('Scoped client cleanup failed; private diagnostic saved')
+(private/'codex-registration-completed.json').write_text(json.dumps(state,indent=2)+'\n');(private/'codex-registration-completed.json').chmod(0o600)
+# The client is a disposable resource owned by this workflow. Auth0 removes its
+# client grants when deleting it; no extra client-grant management scope is needed.
+delete('clients/'+state['clientId'])
+assert h.api('get','client-grants?client_id='+state['clientId'])==[]
+remaining=h.api('get','clients?fields='+fields+'&include_fields=true&per_page=100');assert sorted(remaining,key=lambda v:v['client_id'])==original
+new={'name':'Rillora MCP Acceptance - Gemini CLI','app_type':'native','oidc_conformant':True,'is_first_party':False,'token_endpoint_auth_method':'none','grant_types':['authorization_code'],'callbacks':['http://localhost:58433/oauth/callback'],'client_metadata':{'environment':'isolated-acceptance','purpose':state['purpose']},'jwt_configuration':{'alg':'RS256','lifetime_in_seconds':900}}
+client=h.api('post','clients',new);h.match(client,new)
+state.update(clientId=client['client_id'],name=new['name'],clientKey='gemini-cli',callback=new['callbacks'][0],previousCodexClientRetired=True)
+state.pop('clientGrantId',None)
+def save():
+ (private/'registration.json').write_text(json.dumps(state,indent=2)+'\n');(private/'registration.json').chmod(0o600)
+save()
+grant=h.api('post','client-grants',{'client_id':state['clientId'],'audience':state['resource'],'scope':['matters:read:summary','readiness:read:scoped'],'subject_type':'user'})
+state['clientGrantId']=grant['id'];save()
+after=h.api('get','clients?fields='+fields+'&include_fields=true&per_page=100');assert sorted([v for v in after if v['client_id']!=state['clientId']],key=lambda v:v['client_id'])==original
+result={'previousTemporaryCodexClientAndApiGrantRemoved':True,'existingNineOrdinaryApplicationsUnchanged':True,'newGeminiPublicClient':True,'callback':state['callback'],'independentClientId':True,'userGrantOnly':True,'productionChanged':False}
+(qa/'gemini-preparation.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))

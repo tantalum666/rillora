@@ -1,0 +1,61 @@
+// Calls the installed Gemini CLI's exported OAuth implementation, then the real CLI.
+// Browser navigation stays in CUA; no model sign-in, model request, or patched vendor code.
+import { readFile, writeFile, mkdir, rm } from 'node:fs/promises';
+import { spawn } from 'node:child_process';
+import { resolve } from 'node:path';
+const root=process.cwd(), privateDir=resolve(root,'.local-secrets/ai-oauth-20261016');
+const profile=resolve(privateDir,'gemini-profile'), work=resolve(privateDir,'gemini-work');
+const qa=resolve(root,'output/qa/rillora-ai-oauth-20261016/gemini');
+const registration=JSON.parse(await readFile(resolve(privateDir,'registration.json'),'utf8'));
+if(registration.purpose!=='mcp-synthetic-acceptance-20261016'||registration.clientKey!=='gemini-cli')throw Error('Incorrect synthetic client');
+const serverName='rillora_oauth_acceptance_gemini_20261016';
+process.env.GEMINI_CLI_HOME=profile;
+process.env.GEMINI_FORCE_ENCRYPTED_FILE_STORAGE='true';
+process.env.GEMINI_FORCE_FILE_STORAGE='true';
+const vendor=await import('../../../.local/ai-client-tools/node_modules/@google/gemini-cli/bundle/chunk-NR7L3FXV.js');
+const {MCPOAuthProvider,MCPOAuthTokenStorage,generatePKCEParams,startCallbackServer,buildAuthorizationUrl,exchangeCodeForToken,validateOAuthEndpointUrl}=vendor;
+const storage=new MCPOAuthTokenStorage();
+if(process.argv.includes('--cleanup')){
+ await storage.deleteCredentials(serverName);
+ const stillPresent=Boolean(await storage.getCredentials(serverName));if(stillPresent)throw Error('Scoped Gemini credential cleanup failed');
+ await rm(profile,{recursive:true,force:true});await rm(work,{recursive:true,force:true});
+ await writeFile(resolve(qa,'credential-cleanup.json'),JSON.stringify({scopedCredentialRemoved:true,isolatedProfileRemoved:true,globalSettingsModified:false},null,2)+'\n');
+ console.log(JSON.stringify({geminiCleanup:true}));process.exit(0);
+}
+await mkdir(resolve(profile,'.gemini'),{recursive:true,mode:0o700});await mkdir(resolve(work,'.gemini'),{recursive:true,mode:0o700});await mkdir(qa,{recursive:true});
+const oauth={enabled:true,clientId:registration.clientId,redirectUri:registration.callback,scopes:['matters:read:summary','readiness:read:scoped']};
+await writeFile(resolve(work,'.gemini/settings.json'),JSON.stringify({mcpServers:{[serverName]:{httpUrl:registration.resource,trust:false,timeout:15000,oauth}},telemetry:{enabled:false}}),{mode:0o600});
+await writeFile(resolve(profile,'.gemini/trustedFolders.json'),JSON.stringify({[work]:'TRUST_FOLDER'}),{mode:0o600});
+const provider=new MCPOAuthProvider(storage);
+// Match authenticate(): consume the protected-resource challenge before fallback discovery.
+const challenge=await fetch(registration.resource,{method:'HEAD',headers:{Accept:'application/json'}});
+const header=challenge.headers.get('www-authenticate');
+const discovered=(header?await vendor.OAuthUtils.discoverOAuthFromWWWAuthenticate(header,registration.resource):null)
+ ?? await provider.discoverOAuthFromMCPServer(registration.resource);
+if(!discovered||discovered.issuer!=='https://login.rillora.xyz/')throw Error('Unexpected OAuth discovery issuer');
+await validateOAuthEndpointUrl(discovered.authorizationUrl,{allowLoopback:false});
+await validateOAuthEndpointUrl(discovered.tokenUrl,{allowLoopback:false});
+const flow={...oauth,authorizationUrl:discovered.authorizationUrl,tokenUrl:discovered.tokenUrl};
+const pkce=generatePKCEParams();
+const callback=startCallbackServer(pkce.state,58433,discovered.issuer,discovered.authorizationResponseIssParameterSupported??Boolean(discovered.issuer));
+const port=await callback.port;
+const resource=provider.buildResourceParam(registration.resource);
+const authorizationUrl=buildAuthorizationUrl(flow,pkce,port,resource),u=new URL(authorizationUrl);
+if(u.origin!=='https://login.rillora.xyz'||u.searchParams.getAll('resource').length!==1||u.searchParams.get('resource')!==registration.resource||u.searchParams.get('redirect_uri')!==registration.callback||u.searchParams.get('code_challenge_method')!=='S256')throw Error('Unexpected Gemini OAuth request');
+await writeFile(resolve(privateDir,'gemini-login-url.txt'),authorizationUrl,{mode:0o600});
+await writeFile(resolve(qa,'authorization-request.json'),JSON.stringify({actualVendor:'@google/gemini-cli 0.64.0 exported OAuth functions',resourceParameterCount:1,resourceMatched:true,callback:registration.callback,pkce:'S256',discoveredIssuer:discovered.issuer,issuerFlag:discovered.authorizationResponseIssParameterSupported,modelInvoked:false},null,2)+'\n');
+console.log(JSON.stringify({authorizationReady:true,callbackPort:port,browserNavigation:'CUA required'}));
+const {code}=await callback.response;
+const response=await exchangeCodeForToken(flow,code,pkce.codeVerifier,port,resource);
+if(!response.access_token||response.refresh_token)throw Error('Unexpected token response');
+const token={accessToken:response.access_token,tokenType:response.token_type||'Bearer',scope:response.scope,expiresAt:Date.now()+response.expires_in*1000};
+await storage.saveToken(serverName,token,registration.clientId,discovered.tokenUrl,registration.resource);
+const stored=await storage.getCredentials(serverName);if(stored?.token?.accessToken!==token.accessToken)throw Error('Gemini token readback failed');
+await writeFile(resolve(qa,'oauth-exchange.json'),JSON.stringify({realAuthorizationCodeExchange:true,vendorPkceAndCallbackValidation:true,encryptedTemporaryCredentialStore:true,noRefreshToken:true,expiresIn:response.expires_in,scopes:response.scope?.split(' '),modelInvoked:false},null,2)+'\n');
+const child=spawn(resolve(root,'.local/ai-client-tools/node_modules/.bin/gemini'),['mcp','list'],{cwd:work,env:{...process.env},stdio:['ignore','pipe','pipe']});let output='';child.stdout.on('data',d=>output+=d);child.stderr.on('data',d=>output+=d);const timeout=setTimeout(()=>child.kill(),45000);const exit=await new Promise(r=>child.on('close',r));clearTimeout(timeout);
+if(output.includes(token.accessToken))throw Error('Credential unexpectedly echoed by CLI');
+await writeFile(resolve(privateDir,'gemini-cli-discovery.log'),output,{mode:0o600});
+const connected=output.split(/\r?\n/).some(line=>line.includes(serverName+':')&&line.endsWith(' - Connected'));
+const result={actualCli:true,version:'0.64.0',exitCode:exit,connected,realOAuth:true,googleModelLoginUsed:false,modelInvoked:false};
+await writeFile(resolve(qa,'client-discovery.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));
+if(exit!==0||!connected)throw Error('Real Gemini CLI did not connect');

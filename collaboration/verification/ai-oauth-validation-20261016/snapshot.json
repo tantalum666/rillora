@@ -1,0 +1,119 @@
+{
+  "capturedFrom": "2026-10-16T08:36:49.823526+00:00",
+  "capturedThrough": "2026-10-16T08:36:49.901953+00:00",
+  "workFiles": 44,
+  "uniqueRawObjects": 38,
+  "workBytes": 410584,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-042.tar.zst.age",
+      "sha256": "1fc121fc798263ea8d180f1e786ae368e3779c32e675678e15137d45f402f9ee",
+      "bytes": 119709,
+      "plainBytes": 401900,
+      "uniqueObjects": 38
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/ai-oauth-validation-20261016/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": ".local-secrets",
+      "reason": "provider data, credentials, capability URLs and identity records never published"
+    },
+    {
+      "path": "archives001-041",
+      "reason": "immutable prior captures; neither recaptured nor downloaded"
+    },
+    {
+      "path": "output/qa/rillora-ai-oauth-20261016/publication",
+      "reason": "capture and fresh-download cache"
+    },
+    {
+      "path": "output/qa/rillora-ai-oauth-20261016/CreateUserRequestContent.json",
+      "reason": "reproducible upstream Auth0 schema cache"
+    },
+    {
+      "path": "output/qa/rillora-ai-oauth-20261016/fixture-boundaries.json",
+      "reason": "unchanged exact original already preserved in previous normal Git capture"
+    },
+    {
+      "path": "output/qa/rillora-ai-oauth-20261016/source-scan.json",
+      "reason": "unchanged exact original already preserved in previous normal Git capture"
+    },
+    {
+      "path": "output/qa/rillora-ai-oauth-20261016/continuation-status.json",
+      "reason": "unchanged exact original already preserved in previous normal Git capture"
+    },
+    {
+      "path": "output/qa/rillora-ai-oauth-20261016/ci161.json",
+      "reason": "unchanged exact original already preserved in previous normal Git capture"
+    },
+    {
+      "path": "output/qa/rillora-ai-oauth-20261016/CreateConnectionRequestContent.json",
+      "reason": "reproducible upstream Auth0 schema cache"
+    },
+    {
+      "path": "output/qa/rillora-ai-oauth-20261016/activate-auth0.py",
+      "reason": "unchanged exact original already preserved in previous normal Git capture"
+    },
+    {
+      "path": "output/qa/rillora-ai-oauth-20261016/prepare-auth0.py",
+      "reason": "unchanged exact original already preserved in previous normal Git capture"
+    },
+    {
+      "path": "output/qa/rillora-ai-oauth-20261016/reading.json",
+      "reason": "unchanged exact original already preserved in previous normal Git capture"
+    },
+    {
+      "path": "output/qa/rillora-ai-oauth-20261016/prepare-synthetic-identity.py",
+      "reason": "unchanged exact original already preserved in previous normal Git capture"
+    },
+    {
+      "path": "output/qa/rillora-ai-oauth-20261016/authorization-server-discovery.json",
+      "reason": "unchanged exact original already preserved in previous normal Git capture"
+    },
+    {
+      "path": "output/qa/rillora-ai-oauth-20261016/auth0-permission-reopened-3.png",
+      "reason": "authentication page screenshot not published"
+    },
+    {
+      "path": "output/qa/rillora-ai-oauth-20261016/local-cleanup.json",
+      "reason": "unchanged exact original already preserved in previous normal Git capture"
+    },
+    {
+      "path": "output/qa/rillora-ai-oauth-20261016/domain-connection-readback.json",
+      "reason": "unchanged exact original already preserved in previous normal Git capture"
+    },
+    {
+      "path": "output/qa/rillora-ai-oauth-20261016/source-preparation.json",
+      "reason": "unchanged exact original already preserved in previous normal Git capture"
+    },
+    {
+      "path": "output/qa/rillora-ai-oauth-20261016/auth0-preparation-plan.json",
+      "reason": "unchanged exact original already preserved in previous normal Git capture"
+    },
+    {
+      "path": "output/qa/rillora-ai-oauth-20261016/script-syntax.json",
+      "reason": "unchanged exact original already preserved in previous normal Git capture"
+    },
+    {
+      "path": "output/qa/rillora-ai-oauth-20261016/auth0-permission-handoff.png",
+      "reason": "authentication page screenshot not published"
+    },
+    {
+      "path": "output/qa/rillora-ai-oauth-20261016/CreateClientGrantRequestContent.json",
+      "reason": "reproducible upstream Auth0 schema cache"
+    },
+    {
+      "path": "output/qa/rillora-ai-oauth-20261016/provider-final-readback.json",
+      "reason": "unchanged exact original already preserved in previous normal Git capture"
+    },
+    {
+      "path": "output/qa/rillora-ai-oauth-20261016/auth0-preparation-result.json",
+      "reason": "unchanged exact original already preserved in previous normal Git capture"
+    }
+  ],
+  "selection": "Only new/changed real OAuth evidence, corrected test drivers, safe callback screenshots, failed CI log and exact source publication checks. Prior direct originals and archive1-41 retained without duplication.",
+  "boundary": "Actual Auth0 and installed-client/protocol evidence; no model selection, hosted MCP, customer data, provider production changes, public deployment or TestFlight. AWS restored only."
+}

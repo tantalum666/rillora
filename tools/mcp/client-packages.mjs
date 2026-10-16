@@ -50,7 +50,9 @@ export function clientPackages(input) {
           extensions: { 'com.openai': { auth: { type: 'oauth', client: { mode: 'provided', clientId: ids.openai, tokenEndpointAuthMethod: 'none' }, baseScopes: scopes } } } } } });
     }
   }
-  if (ids.codex) files['codex/setup.sh'] = `#!/bin/sh\nset -eu\ncodex mcp add rillora --url ${quote(server)} --oauth-client-id ${quote(ids.codex)} --oauth-resource ${quote(server)}\n`;
+  // Rillora advertises its canonical resource in protected-resource metadata.
+  // An extra override makes current Codex send resource twice, which Auth0 rejects.
+  if (ids.codex) files['codex/setup.sh'] = `#!/bin/sh\nset -eu\ncodex mcp add rillora --url ${quote(server)} --oauth-client-id ${quote(ids.codex)}\n`;
   if (ids['claude-code']) files['claude-code/mcp.json'] = json({ mcpServers: { rillora: { type: 'http', url: server,
     oauth: { clientId: ids['claude-code'], scopes: scopes.join(' ') } } } });
   if (ids.cursor) files['cursor/mcp.json'] = json({ mcpServers: { rillora: { url: server, auth: { CLIENT_ID: ids.cursor, scopes } } } });

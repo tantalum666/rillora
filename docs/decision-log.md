@@ -3535,3 +3535,11 @@ local correction/tests and actual restoration remain separate evidence.
 - The real provider rejects per-client binding for a third-party application. Keep its third-party classification and all existing production connections unchanged; choose an isolated synthetic domain-level database connection and explicit user-delegated API grant for acceptance. This is an Agent implementation choice within the authorized next-version test scope, not permission to expose production identities or upgrade a plan.
 - Creation is blocked before mutation because the current CLI lackscreate:connections. Request onlycreate:connections anddelete:connections for that isolated lifecycle; browser action-time confirmation remains pending. Do not describe this as expired login or approved new scope.
 - The actual Codex authorization request proves matchingresource, exact callback andS256, not successful OAuth or tool execution. Stop and clean the local fixture while waiting; retain the inactive tagged registrations for continuation and eventual scoped cleanup. [Evidence](architecture/ai-integration-acceptance-20261016.md).
+
+
+## 2026-10-16 — Correct duplicate OAuth resource and complete two-client provider acceptance
+
+- Owner completes the specifically requested connection-management authorization. Use a separate signup-disabled synthetic connection and account, sequential temporary third-party public clients, and explicit user grants; retain all existing production connections and the free plan.
+- Actual Codex sendsresource twice when the generated override duplicates discovered metadata. Remove only that override; keep exact resource, issuer, client, PKCE and server audience validation. The corrected real provider flow succeeds.
+- Gemini uses its unchanged exported OAuth implementation followed by actual CLI discovery. Both client-presented credentials pass scoped protocol reads and same-token revocation checks. No model or consumer-chat equivalence is claimed.
+- Delete only this workflow's temporary provider resources, then confirm original client/resource/binding hashes and full tenant settings are unchanged. No new product, pricing, legal or deployment permission is inferred. [Current evidence](architecture/ai-oauth-validation-20261016.md).

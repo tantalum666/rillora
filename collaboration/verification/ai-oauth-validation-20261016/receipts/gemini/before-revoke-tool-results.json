@@ -1,0 +1,45 @@
+{
+  "summary": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"matters\":[{\"publicId\":\"fd69cabf-e327-4b8f-8cba-3ffee47aa743\",\"title\":\"Synthetic selected matter\",\"category\":\"account\",\"status\":\"draft\"}]}"
+      }
+    ],
+    "structuredContent": {
+      "matters": [
+        {
+          "publicId": "fd69cabf-e327-4b8f-8cba-3ffee47aa743",
+          "title": "Synthetic selected matter",
+          "category": "account",
+          "status": "draft"
+        }
+      ]
+    }
+  },
+  "gaps": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"matters\":[{\"publicId\":\"fd69cabf-e327-4b8f-8cba-3ffee47aa743\",\"missingFields\":[\"intended_outcome\"]}],\"assessment\":\"selected_common_fields_only\",\"notAssessed\":[\"category_specific_details\",\"legal_authority\",\"recipient_readiness\"]}"
+      }
+    ],
+    "structuredContent": {
+      "matters": [
+        {
+          "publicId": "fd69cabf-e327-4b8f-8cba-3ffee47aa743",
+          "missingFields": [
+            "intended_outcome"
+          ]
+        }
+      ],
+      "assessment": "selected_common_fields_only",
+      "notAssessed": [
+        "category_specific_details",
+        "legal_authority",
+        "recipient_readiness"
+      ]
+    }
+  },
+  "client": "Official MCP SDK using the token presented by the actual installed client; no model selection"
+}
