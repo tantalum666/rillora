@@ -1,0 +1,22 @@
+{
+  "stack": "RilloraPublicWeb",
+  "target": "https://www.rillora.xyz",
+  "synthSucceeded": true,
+  "readVerifiedExistingArtifact": true,
+  "accountMatched": true,
+  "certificateReused": true,
+  "changedResources": [
+    {
+      "logicalId": "PublicDeploymentCustomResource947B276F",
+      "type": "Custom::CDKBucketDeployment",
+      "operation": "modify"
+    },
+    {
+      "logicalId": "PublicRoutesC0C4D2B4",
+      "type": "AWS::CloudFront::Function",
+      "operation": "modify"
+    }
+  ],
+  "cloudDeployed": false,
+  "mcpEnabled": false
+}

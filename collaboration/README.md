@@ -1,5 +1,8 @@
 # Rillora — Git / Dot 协作入口
 
+
+October16官网现况：[独立GEO发布](../docs/architecture/public-discovery-rollout-20261016.md)已按两阶段完成，20页／54文件实际匹配，生产API／数据及App14保持。Google和Bing所有权／地图提交完成；Google即时提取成功但常规报告仍失败，Bing处理中，索引／AI推荐尚未证明。源码653093e62／CI165及archive42独立远端认证通过。本轮仅追加新部署／站长平台证据；下方较早“未部署／未验证OAuth”均为其当时检查点，当前下一步只看handoff。
+
 October16最新：[真实OAuth与撤销](../docs/architecture/ai-oauth-validation-20261016.md)完成Codex／Gemini实际身份与客户端接入，修正重复resource；全部临时提供方／本机资源已清理，正式配置指纹一致。下方较早待Auth0授权描述为历史；当前下一步仅看handoff。
 
 October16续验：[CI158／159已读回成功](verification/ai-acceptance-20261016/README.md)，旧CI可见性阻塞关闭。新增当前Codex兼容包，真实解析器确认一个服务；Codex／Gemini均连接本机Rillora接口，只有合成签名身份和工具发现证据。Auth0与AWS管理登录均已恢复；真实OAuth已准备专用注册／回调，待补独立合成连接的create／delete权限，没有部署，审核／数据／价格保持；[当前合同](../docs/architecture/ai-integration-acceptance-20261016.md)。

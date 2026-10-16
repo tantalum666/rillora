@@ -2,7 +2,7 @@
 
 Role: next-version product and distribution plan
 Authority scope: public discovery, cross-platform integration priorities and measurable acceptance
-Status: PUBLIC WEB AND SCOPED MCP SOURCE CANDIDATE VERIFIED / NO RUNTIME OR DIRECTORY RELEASE
+Status: PUBLIC GEO LIVE / TWO OAUTH CLIENTS VERIFIED / HOSTED MCP AND DIRECTORY PENDING
 Last updated: 2026-10-16 (Asia/Hong_Kong)
 Source baseline: fec1ad3bcd97984768eed8b2fd95a86ac4f01f35
 Working branch: codex/ai-discovery-vnext-20261015
@@ -25,7 +25,7 @@ App 1.0(14) 的既有审核、手动发布和审核账号服务继续保留；�
 
 推荐目标应是“在适合的需求中被准确发现，并在连接后可靠完成任务”。用户只是问通用知识时，应先回答知识；不为提高调用量强行读私密事项。
 
-## 3. 当前官网的实际缺口
+## 3. October15 改造前的官网缺口（历史基线）
 
 本轮仅对公开 www 域名做四个匿名 HTTP GET，并对照活动源码；[检查回执](../../collaboration/verification/ai-discovery-20261015/public-http-check.json)保存请求、结果和证据限制。
 
@@ -52,7 +52,7 @@ App 1.0(14) 的既有审核、手动发布和审核账号服务继续保留；�
 
 ## 5. 平台覆盖与当前证据
 
-以下为 2026-10-15 读取官方说明的结果，只证明平台提供相应机制。Rillora 在所有行都尚未完成真实连接或上架验收。各平台的地区、账号、工作区、套餐和客户端版本独立记录。
+以下机制来自2026-10-15读取的官方说明；平台资格不等于Rillora验收。October16已补Codex及Gemini CLI的真实OAuth／连接／协议撤销，见[实际范围](ai-oauth-validation-20261016.md)；消费产品、模型自动选工具和所有目录仍未通过。各平台的地区、账号、工作区、套餐和客户端版本独立记录。
 
 | 平台／入口 | 当前可用机制与建议 | 来源／限制 |
 | --- | --- | --- |
@@ -78,7 +78,7 @@ App 1.0(14) 的既有审核、手动发布和审核账号服务继续保留；�
 - 暂不加入 Events、复杂聊天 UI、整库检索、自动分享／删除／导出、支付／退款和身后资料释放。先交付一个完整且有实际价值的闭环。
 - AI 同意与普通登录／共享同意分开；仅披露选定数据，按连接可撤销。第一版不返回原始 Notes、秘密、恢复钥匙、完整备份或联系人邮箱。
 - 工具说明应准确写清“何时用、何时不该用”，测试直接点名、没有点名但意图适合、以及不应该调用的请求。[OpenAI metadata 官方指引](https://developers.openai.com/plugins/guides/optimize-metadata)。
-- 外部 AI 已负责自然语言推理，纯 MCP 服务无需再转调一个自有大模型。服务器、身份与日志仍有成本；本轮没有购买服务、使用模型 API 额度或创建连接凭据。
+- 外部 AI 已负责自然语言推理，纯 MCP 服务无需再转调一个自有大模型。服务器、身份与日志仍有成本；后续OAuth验收创建过专用临时客户端／合成身份，已清理，未调用付费模型。原研究阶段没有创建凭据，不能用该历史状态覆盖后续实际验收。
 
 ## 7. 可独立交付的顺序
 
@@ -108,6 +108,8 @@ D0、D1 可在独立官网候选进行；I0、I1 使用隔离环境，不触及�
 
 研究阶段已完成：复用原385行提案、核对官方路径、检查公开站点、建立双语评估种子。官方OpenAI Docs MCP返回403后使用公开官方正文，无需Owner登录。随后按Owner明确指令实施20页公开HTML、两篇双语文章、两个只读工具、最多20事项的7天授权、撤销／恢复边界，以及五种客户端配置包；源代码和本地检查详见实施记录。
 
-未完成：新候选部署、真实Auth0／平台连接、目录提交、搜索平台验证、公开内容发布及推荐效果实测。没有改变在审构建或生产状态；I1的真实两客户端验收不由本地协议测试替代。
+随后真实Auth0／Codex及Gemini CLI验收通过，选定事项读取与同一未过期令牌的撤销拒绝均通过；临时资源全部清理。653093e62／CI165三任务成功，archive42独立GitHub下载认证完成，具体边界见[OAuth记录](ai-oauth-validation-20261016.md)。没有自然语言模型调用或消费端等价证明。
 
-源码／证据已推送15770aa4d，新增归档已独立远端认证；[October16续验](ai-integration-acceptance-20261016.md)已读回CI158／159成功，并补当前Codex兼容包及Codex／Gemini本地连接。接续独立OAuth与实际对话工具验收；当前唯一执行步骤以[handoff](../handoff.md)为准。
+[公开官网两阶段交付](public-discovery-rollout-20261016.md)完成：20双语页面及54文件实际匹配、浏览器语言切换正常；Google和Bing的所有权及站点地图提交完成。Google实际即时提取成功但常规地图报告仍失败／0已发现，Bing地图处理中；未证明收录或AI推荐。只更新独立www栈，不改变App14、生产API／数据库、定价／收费或FanPass。
+
+未完成：公网HTTPS MCP候选及托管Web选择闭环、模型实际选工具、其他消费端／目录、索引与推荐效果。继续按[handoff](../handoff.md)唯一下一步推进，不重做已通过的本地矩阵、两客户端OAuth或官网部署。

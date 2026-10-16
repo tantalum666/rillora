@@ -1,0 +1,24 @@
+{
+  "checkedAt": "2026-10-16T09:17:08.728310+00:00",
+  "status": "CREATE_COMPLETE",
+  "changes": [
+    {
+      "logicalId": "PublicDeploymentCustomResource947B276F",
+      "type": "Custom::CDKBucketDeployment",
+      "replacement": "Conditional"
+    },
+    {
+      "logicalId": "PublicRoutesC0C4D2B4",
+      "type": "AWS::CloudFront::Function",
+      "replacement": "False"
+    },
+    {
+      "logicalId": "Website32962D0B",
+      "type": "AWS::CloudFront::Distribution",
+      "replacement": "False"
+    }
+  ],
+  "existingAssetPackageUnchanged": true,
+  "onlyEnablePreparedRouterAndRemoveTemporaryFilters": true,
+  "realAwsResourceReplacement": false
+}

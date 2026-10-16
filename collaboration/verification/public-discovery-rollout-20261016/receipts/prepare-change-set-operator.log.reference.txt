@@ -1,0 +1,29 @@
+
+✨  Synthesis time: 2.28s
+
+RilloraPublicWeb: start: Building PublicDeployment/Asset1
+RilloraPublicWeb: success: Built PublicDeployment/Asset1
+RilloraPublicWeb: start: Building RilloraPublicWeb Template
+RilloraPublicWeb: success: Built RilloraPublicWeb Template
+RilloraPublicWeb: start: Publishing PublicDeployment/Asset1 (133857166372-eu-central-1-6dbd7c6b)
+RilloraPublicWeb: start: Publishing RilloraPublicWeb Template (133857166372-eu-central-1-64040821)
+RilloraPublicWeb: success: Published RilloraPublicWeb Template (133857166372-eu-central-1-64040821)
+RilloraPublicWeb: success: Published PublicDeployment/Asset1 (133857166372-eu-central-1-6dbd7c6b)
+RilloraPublicWeb: creating CloudFormation changeset...
+Changeset arn:aws:cloudformation:eu-central-1:133857166372:changeSet/rillora-geo-653093e62/6ca93426-59ee-4468-ba8a-aa42ad958fa9 created and waiting in review for manual execution (--no-execute)
+RilloraPublicWeb: deploying... [1/1]
+
+✅  RilloraPublicWeb
+
+✨  Deployment time: 0s
+
+Outputs:
+RilloraPublicWeb.BucketName = rillorapublicweb-publicassetsacf28b1b-2lrttva1bc8p
+RilloraPublicWeb.DistributionDomain = d1zq6qpnicab3e.cloudfront.net
+RilloraPublicWeb.DistributionId = E1H3EWWIZNTZDO
+RilloraPublicWeb.PublicUrl = https://www.rillora.xyz
+Stack ARN:
+arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraPublicWeb/8b064b60-b7c2-11f1-8199-0ac9000d7ba3
+
+✨  Total time: 55.01s
+

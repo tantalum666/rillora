@@ -3543,3 +3543,10 @@ local correction/tests and actual restoration remain separate evidence.
 - Actual Codex sendsresource twice when the generated override duplicates discovered metadata. Remove only that override; keep exact resource, issuer, client, PKCE and server audience validation. The corrected real provider flow succeeds.
 - Gemini uses its unchanged exported OAuth implementation followed by actual CLI discovery. Both client-presented credentials pass scoped protocol reads and same-token revocation checks. No model or consumer-chat equivalence is claimed.
 - Delete only this workflow's temporary provider resources, then confirm original client/resource/binding hashes and full tenant settings are unchanged. No new product, pricing, legal or deployment permission is inferred. [Current evidence](architecture/ai-oauth-validation-20261016.md).
+
+## 2026-10-16 — Public GEO delivery and minimal search-provider access
+
+- Agent continues the existing public-discovery goal with two-phase deployment of the independently hosted www site: stage assets/pages and DEVELOPMENT first, then publish the complete source template only after actual byte checks. No new App/API/data/billing or TestFlight change is inferred.
+- Choose manual DNS ownership verification through the already authorized Rillora-only GoDaddy wrapper. Add exactly one Google TXT and one isolated Bing CNAME; preserve every pre-existing record and keep these ongoing ownership proofs.
+- Owner explicitly confirms sharing the original Google account's name, photo and email with bing.com for webmaster login. This applies to that exact recipient/scope, not GSC-data import, DNS-account delegation, advertising, analytics or a new paid service. No duplicate confirmation after a failed old callback is required when the same approved flow is renewed.
+- Record website publication, ownership, submission, actual live fetch, indexing and model recommendation separately. Google live fetch succeeds but its regular report remains unable to read; Bing is processing. No new product/pricing/legal decision or automatic-recommendation promise is introduced.

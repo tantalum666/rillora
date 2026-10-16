@@ -2,6 +2,19 @@
 
 Last updated: 2026-10-16 (Asia/Hong_Kong)
 
+
+## October16 public GEO deployment and search ownership
+
+[The independent public rollout](architecture/public-discovery-rollout-20261016.md)
+deploys source653093e62/CI165 through two verified phases to the existing www stack.
+Google and Bing ownership and one sitemap submission each are complete; Google live
+fetch succeeds while its regular report still cannot read the map, and Bing is processing.
+Only new eligible release/readback evidence is preserved; earlier archives1–42 remain.
+Provider credentials, authentication URLs, raw DNS objects and account screens are excluded.
+Public website delivery, indexing, scoped local OAuth, hosted MCP and App14 review remain
+separate results. Source/CI165 and archive42 remote verification are already complete;
+the new publication and independent archive receipt are recorded in this rollout's addendum.
+
 ## October16 successful provider OAuth and scoped revocation
 
 [The new validation](architecture/ai-oauth-validation-20261016.md) verifies real Auth0 flows and actual Codex/Gemini connections, then scoped reads and same-token revocation. The generated Codex setup omits a duplicate resource parameter found by the live provider. All temporary provider/local resources are removed and original configuration hashes match. [New evidence](../collaboration/verification/ai-oauth-validation-20261016/README.md) adds only changed/new safe originals; prior1–41archives and the earlier direct text capture remain. CI163 application jobs passed but the readable manifest omitted new files; regenerate the complete real-file manifest, keep guards enabled, then verify the new source commit independently.

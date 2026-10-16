@@ -1,0 +1,67 @@
+from pathlib import Path
+from html.parser import HTMLParser
+from urllib.parse import urlsplit
+import concurrent.futures,datetime,hashlib,json,subprocess,urllib.request,urllib.error
+ROOT=Path(__file__).resolve().parents[3];QA=Path(__file__).resolve().parent;PRIVATE=ROOT/'.local-secrets/ai-oauth-20261016';ARTIFACT=ROOT/'apps/web/dist-public'
+class Metadata(HTMLParser):
+ def __init__(self):super().__init__();self.lang=None;self.canonical=None;self.alternates={};self.schema_count=0
+ def handle_starttag(self,tag,attrs):
+  a=dict(attrs)
+  if tag=='html':self.lang=a.get('lang')
+  if tag=='link' and a.get('rel')=='canonical':self.canonical=a.get('href')
+  if tag=='link' and a.get('rel')=='alternate':self.alternates[a.get('hreflang')]=a.get('href')
+  if tag=='script' and a.get('type')=='application/ld+json':self.schema_count+=1
+class NoRedirect(urllib.request.HTTPRedirectHandler):
+ def redirect_request(self,*args,**kwargs):return None
+def aws(args,profile='rillora-cdk-deploy'):
+ return json.loads(subprocess.check_output(['aws',*args,'--profile',profile,'--region','eu-central-1','--output','json'],text=True))
+stack=aws(['cloudformation','describe-stacks','--stack-name','RilloraPublicWeb'])['Stacks'][0];assert stack['StackStatus']=='UPDATE_COMPLETE'
+expected=json.loads((QA/'cdk.out/RilloraPublicWeb.template.json').read_text());actual=aws(['cloudformation','get-template','--stack-name','RilloraPublicWeb','--template-stage','Original'])['TemplateBody'];actual=json.loads(actual)if isinstance(actual,str)else actual;assert actual==expected,'Final cloud template differs from exact source candidate'
+before=json.loads((PRIVATE/'public-web-stack-before.json').read_text())['Stacks'][0];assert stack['Outputs']==before['Outputs'],'Stable site resources changed'
+fn=next(v['Properties']for v in expected['Resources'].values()if v['Type']=='AWS::CloudFront::Function')
+subprocess.run(['aws','cloudfront','get-function','--name',fn['Name'],'--stage','LIVE','--profile','rillora-operator',str(QA/'function-live-final.js')],capture_output=True,text=True,check=True)
+assert(QA/'function-live-final.js').read_text()==fn['FunctionCode']
+marker=json.loads((ARTIFACT/'public-build.json').read_text());files=marker['files'];assert len(files)==54
+requests=[]
+for path,digest in files.items():
+ if path=='index.html':continue
+ route='/'+path
+ if path.startswith('pages/'):
+  locale,relative=path[len('pages/'):].split('/',1)
+  route='/'+locale+('/' if relative=='index.html'else '/'+relative.removesuffix('.html'))
+ requests.append((path,'https://www.rillora.xyz'+route,digest))
+expected_csp="default-src 'none'; base-uri 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'"
+def check(item):
+ path,url,digest=item
+ with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'Rillora-release-verification/1.0'}),timeout=30)as response:
+  data=response.read();headers={k.lower():v for k,v in response.headers.items()};status=response.status
+ assert status==200 and hashlib.sha256(data).hexdigest()==digest,path
+ assert headers.get('content-security-policy')==expected_csp and headers.get('x-content-type-options')=='nosniff',path
+ assert 'set-cookie' not in headers,path
+ row={'path':path,'url':url,'sha256Matched':True,'status':status,'cspPreserved':True,'noCookie':True,'contentType':headers.get('content-type')}
+ if path.startswith('pages/'):
+  locale=path.split('/')[1];m=Metadata();m.feed(data.decode('utf8'));assert m.lang==locale and m.canonical==url and set(m.alternates)=={'en','zh-CN','x-default'} and m.schema_count>=1,path
+  row.update(locale=locale,canonical=m.canonical,hreflangVerified=True,structuredDataPresent=True)
+ if path.endswith('.js'):assert 'javascript' in row['contentType'],path
+ if path.endswith('.css'):assert row['contentType'].startswith('text/css'),path
+ out=QA/'http-readback'/path;out.parent.mkdir(parents=True,exist_ok=True);out.write_bytes(data)
+ return row
+with concurrent.futures.ThreadPoolExecutor(max_workers=6)as pool:checked=list(pool.map(check,requests))
+assert sum('locale'in r for r in checked)==20
+bucket=next(v['OutputValue']for v in stack['Outputs']if v['OutputKey']=='BucketName')
+for path in ['index.html','public-build.json']:
+ dest=QA/'root-object-readback'/path;dest.parent.mkdir(parents=True,exist_ok=True)
+ subprocess.run(['aws','s3api','get-object','--bucket',bucket,'--key',path,'--profile','rillora-operator','--region','eu-central-1',str(dest)],capture_output=True,text=True,check=True)
+ assert dest.read_bytes()==(ARTIFACT/path).read_bytes(),path
+opener=urllib.request.build_opener(NoRedirect);boundaries=[]
+for path,expected_status in [('/account',404),('/api/health',404),('/mcp',404),('/guides?service=apple&lang=zh-CN',302),('/pricing?lang=zh-CN',302)]:
+ try:response=opener.open('https://www.rillora.xyz'+path,timeout=25)
+ except urllib.error.HTTPError as error:response=error
+ with response:status=response.code;location=response.headers.get('Location');response.read()
+ assert status==expected_status,(path,status)
+ if path.startswith('/guides'):assert location=='https://app.rillora.xyz/account?next=guides&service=apple&lang=zh-CN'
+ if path.startswith('/pricing'):assert location=='/zh-CN/pricing'
+ boundaries.append({'path':path,'status':status,'location':location})
+with urllib.request.urlopen('https://www.rillora.xyz/',timeout=25)as response:assert hashlib.sha256(response.read()).hexdigest()==files['pages/en/index.html']
+receipt={'verifiedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'stackStatus':stack['StackStatus'],'exactSourceTemplateMatched':True,'distributionBucketAndUrlUnchanged':True,'liveFunctionMatched':True,'artifactFiles':54,'httpObjectsVerified':len(checked),'localizedPagesVerified':20,'unroutedRootIndexAndMarkerVerifiedInS3':True,'publicRootMatchesEnglishPage':True,'files':checked,'boundaries':boundaries,'customerApiOrMcpEnabled':False,'browserVisualStillSeparate':True}
+(QA/'live-verification.json').write_text(json.dumps(receipt,indent=2)+'\n');print(json.dumps({k:v for k,v in receipt.items()if k not in ['files','boundaries']}))

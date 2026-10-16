@@ -1,6 +1,6 @@
 # October16 真实OAuth与撤销验收
 
-Status: TWO CLIENTS VALIDATED / TEMPORARY RESOURCES CLEANED / SOURCE DELIVERY IN PROGRESS
+Status: TWO CLIENTS VALIDATED / TEMPORARY RESOURCES CLEANED / CI165 AND REMOTE ARCHIVE VERIFIED
 Last updated: 2026-10-16 (Asia/Hong_Kong)
 
 [验收合同](../../../docs/architecture/ai-oauth-validation-20261016.md)记录实际范围。Owner完成追加连接权限后，Codex与Gemini使用独立合成账号和不同客户端完成真实Auth0授权；既有正式连接未变。
@@ -15,8 +15,10 @@ Last updated: 2026-10-16 (Asia/Hong_Kong)
 
 [源码配置检查](receipts/client-package-regression.log)2项通过。此轮原件只新增或更新此前未保存的材料；旧archive1—41和上一轮普通Git原件保持。登录URL、code、token、密码、原始管理对象和认证页面截图排除；完成回调截图已人工核对，仅含完成文字。新的原件归档／本地及独立远端校验另附回执。
 
-当前仍未完成：公网HTTPS候选、托管Web选择授权到AI、模型自动选工具、消费端／目录、官网部署及搜索索引。当前App14、正式服务／数据／价格／收费／FanPass保持，无TestFlight。
+此OAuth检查点之后，[官网已独立部署并完成搜索所有权／提交](../../../docs/architecture/public-discovery-rollout-20261016.md)。公网HTTPS候选、托管Web选择授权到AI、模型自动选工具、消费端／目录及索引仍未完成。当前App14、正式API／数据／价格／收费／FanPass保持，无TestFlight。
 
 本轮新增[archive42](snapshot.json)保存44路径／38对象／119,709密文字节，[本地完整认证](archive-verification.json)通过；[目录](catalog.json)可定位原件。旧1—41及上一轮已保存文本不重封、不重下。最终Git／CI／远端回执在冻结之后普通补交。
 
 完整可读清单已补齐：[发布检查](receipts/completion-publication-check.json)覆盖12,513文件，扫描0未知；[Markdown检查](receipts/completion-markdown-links.json)621链接通过。此回执加入后再次刷新清单，既有规则及例外不变。
+
+源码653093e62的[CI165](https://github.com/tantalum666/rillora/actions/runs/38875872837)三任务通过；[独立远端下载与认证](remote-readback.json)确认新增archive42全部38对象／44路径，不重下旧档案。

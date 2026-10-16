@@ -11,7 +11,7 @@ Last updated: 2026-10-16 (Asia/Hong_Kong)
 
 ## 2026-10-15 审核期间启动跨平台 AI 下一版本方向
 
-Owner 要求当前 Apple 审核继续，新功能放到下一版本，并明确按方案实施及推Git；AI目标覆盖各平台。当前以[跨平台方案](architecture/ai-discovery-vnext-20261015.md)区分公开搜索推荐、目录分发和连接后的受权操作。[实施候选](architecture/ai-discovery-implementation-20261015.md)包含20页双语HTML、两个只读MCP工具、选定范围授权和多平台配置。[October16续验](architecture/ai-integration-acceptance-20261016.md)补齐CI158／159、当前Codex兼容包和两家实际客户端的本地传输／发现；随后[两家真实OAuth与撤销](architecture/ai-oauth-validation-20261016.md)已通过并清理临时资源；公网候选、模型选工具、目录／部署仍未完成，不能保证自动推荐。正式登录配置不变。在审构建、生产数据、定价与收费状态保持。
+Owner 要求当前 Apple 审核继续，新功能放到下一版本，并明确按方案实施及推Git；AI目标覆盖各平台。当前以[跨平台方案](architecture/ai-discovery-vnext-20261015.md)区分公开搜索推荐、目录分发和连接后的受权操作。[实施候选](architecture/ai-discovery-implementation-20261015.md)包含20页双语HTML、两个只读MCP工具、选定范围授权和多平台配置。[两家真实OAuth与撤销](architecture/ai-oauth-validation-20261016.md)已通过并清理临时资源；[官网独立部署](architecture/public-discovery-rollout-20261016.md)已完成20页／54文件的实际交付，Google和Bing所有权验证及站点地图提交完成。Google实际即时抓取成功，但常规报告仍未读取；Bing处理中，索引和推荐效果尚未证明。公网MCP、托管选择闭环、模型选工具及目录仍独立待验。正式登录配置不变。在审构建、生产数据、定价与收费状态保持。
 
 ## 2026-10-15 Web正式开放与Owner停止真机验证
 
@@ -512,7 +512,7 @@ Owner于2026-09-09明确：“本项目全部默认授权与确认”。当前�
 
 | Task | Read next | Role |
 | --- | --- | --- |
-| 跨平台 AI 发现、GEO、推荐、插件／MCP 下一版本 | `docs/architecture/ai-discovery-vnext-20261015.md` → `docs/architecture/ai-discovery-implementation-20261015.md` → `integrations/ai/README.md` | 当前本地候选、权限边界和平台接入；部署／真实OAuth／目录独立，不打断现有审核 |
+| 跨平台 AI 发现、GEO、推荐、插件／MCP 下一版本 | `docs/architecture/ai-discovery-vnext-20261015.md` → `docs/architecture/public-discovery-rollout-20261016.md` → `docs/architecture/ai-oauth-validation-20261016.md` → `integrations/ai/README.md` | 公开官网已交付；搜索索引、MCP托管闭环、模型与目录分别取证，不打断现有审核 |
 | 真实双端核心流程的剩余验收 | `docs/real-core-acceptance-20261004.md` | 当前会话、共享／撤销、导出／恢复、近期认证及删除的实际结果 |
 | 本轮审查修复部署、新iOS构建与加密声明 | `docs/review-rollout-20261003.md` | API11/schema0093与新构建3的实际结果；真实验收与公开发布仍分开 |
 | 严格全项目代码审查、当前缺陷与直接修复 | `docs/code-review-20261002.md` | 当前逐文件覆盖、复现与验证；与历史Dot报告和实际部署分开 |

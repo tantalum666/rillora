@@ -1,0 +1,89 @@
+{
+  "events": [
+    {
+      "Timestamp": "2026-10-16T09:19:17.634000+00:00",
+      "LogicalResourceId": "RilloraPublicWeb",
+      "ResourceType": "AWS::CloudFormation::Stack",
+      "ResourceStatus": "UPDATE_COMPLETE"
+    },
+    {
+      "Timestamp": "2026-10-16T09:19:16.973000+00:00",
+      "LogicalResourceId": "RilloraPublicWeb",
+      "ResourceType": "AWS::CloudFormation::Stack",
+      "ResourceStatus": "UPDATE_COMPLETE_CLEANUP_IN_PROGRESS"
+    },
+    {
+      "Timestamp": "2026-10-16T09:19:15.553000+00:00",
+      "LogicalResourceId": "PublicDeploymentCustomResource947B276F",
+      "ResourceType": "Custom::CDKBucketDeployment",
+      "ResourceStatus": "UPDATE_COMPLETE"
+    },
+    {
+      "Timestamp": "2026-10-16T09:17:55.274000+00:00",
+      "LogicalResourceId": "PublicDeploymentCustomResource947B276F",
+      "ResourceType": "Custom::CDKBucketDeployment",
+      "ResourceStatus": "UPDATE_IN_PROGRESS"
+    },
+    {
+      "Timestamp": "2026-10-16T09:17:52.740000+00:00",
+      "LogicalResourceId": "PublicRoutesC0C4D2B4",
+      "ResourceType": "AWS::CloudFront::Function",
+      "ResourceStatus": "UPDATE_COMPLETE"
+    },
+    {
+      "Timestamp": "2026-10-16T09:17:13.933000+00:00",
+      "LogicalResourceId": "PublicRoutesC0C4D2B4",
+      "ResourceType": "AWS::CloudFront::Function",
+      "ResourceStatus": "UPDATE_IN_PROGRESS"
+    },
+    {
+      "Timestamp": "2026-10-16T09:17:11.383000+00:00",
+      "LogicalResourceId": "RilloraPublicWeb",
+      "ResourceType": "AWS::CloudFormation::Stack",
+      "ResourceStatus": "UPDATE_IN_PROGRESS"
+    },
+    {
+      "Timestamp": "2026-10-16T09:06:05.015000+00:00",
+      "LogicalResourceId": "RilloraPublicWeb",
+      "ResourceType": "AWS::CloudFormation::Stack",
+      "ResourceStatus": "UPDATE_COMPLETE"
+    },
+    {
+      "Timestamp": "2026-10-16T09:06:04.368000+00:00",
+      "LogicalResourceId": "RilloraPublicWeb",
+      "ResourceType": "AWS::CloudFormation::Stack",
+      "ResourceStatus": "UPDATE_COMPLETE_CLEANUP_IN_PROGRESS"
+    },
+    {
+      "Timestamp": "2026-10-16T09:06:02.699000+00:00",
+      "LogicalResourceId": "PublicDeploymentCustomResource947B276F",
+      "ResourceType": "Custom::CDKBucketDeployment",
+      "ResourceStatus": "UPDATE_COMPLETE"
+    },
+    {
+      "Timestamp": "2026-10-16T09:04:33.061000+00:00",
+      "LogicalResourceId": "PublicDeploymentCustomResource947B276F",
+      "ResourceType": "Custom::CDKBucketDeployment",
+      "ResourceStatus": "UPDATE_IN_PROGRESS"
+    },
+    {
+      "Timestamp": "2026-10-16T09:04:30.508000+00:00",
+      "LogicalResourceId": "PublicRoutesC0C4D2B4",
+      "ResourceType": "AWS::CloudFront::Function",
+      "ResourceStatus": "UPDATE_COMPLETE"
+    },
+    {
+      "Timestamp": "2026-10-16T09:04:26.223000+00:00",
+      "LogicalResourceId": "PublicRoutesC0C4D2B4",
+      "ResourceType": "AWS::CloudFront::Function",
+      "ResourceStatus": "UPDATE_IN_PROGRESS"
+    },
+    {
+      "Timestamp": "2026-10-16T09:04:23.461000+00:00",
+      "LogicalResourceId": "RilloraPublicWeb",
+      "ResourceType": "AWS::CloudFormation::Stack",
+      "ResourceStatus": "UPDATE_IN_PROGRESS"
+    }
+  ],
+  "scopedStack": "RilloraPublicWeb"
+}

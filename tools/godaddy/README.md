@@ -1,8 +1,8 @@
 # Rillora DNS command line
 
-Status: OFFICIAL CLI REUSED; RESEND DNS VERIFIED; LEGACY WWW LIMITATION RETAINED
+Status: OFFICIAL CLI REUSED; RESEND AND SEARCH VERIFICATION DNS VERIFIED; LEGACY WWW LIMITATION RETAINED
 
-Last updated: 2026-10-03 (Asia/Shanghai)
+Last updated: 2026-10-16 (Asia/Shanghai)
 
 The Owner explicitly requested GoDaddy CLI setup. The official `gddy`0.2.20
 Apple Silicon binary is installed at `~/.local/bin/gddy` from the public
@@ -16,6 +16,17 @@ macOS keyring storage, with no PAT in environment variables or repository.
 The browser callback later showed connection-refused after the local listener
 ended, but CLI status and actual API calls independently prove authentication
 succeeded. Do not repeatedly log in because of that spent callback page.
+
+## October16 Google and Bing site ownership
+
+Reused the existing keyring and unchanged project wrapper. Added one Google TXT
+and then one isolated Bing CNAME:34→35→36records. Each actual API readback
+preserved every previous record, including other root TXT records; two authoritative
+and two public DNS resolvers confirmed each addition. Both webmaster dashboards
+accepted ownership, and each received the same public sitemap once. The verification
+records remain for continuing ownership. No DNS-account delegation, GSC-data import,
+mail/WWW/nameserver/FanPass change, new credential or test rerun occurred.
+[Deployment and search evidence](../../docs/architecture/public-discovery-rollout-20261016.md).
 
 ## October3 strict-review implementation boundary
 
