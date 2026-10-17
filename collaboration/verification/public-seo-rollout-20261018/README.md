@@ -45,4 +45,12 @@ by the separate sitemap processor or inclusion of all pages in search results.
 
 Archive47 contains **220 paths / 111 unique objects / 1,306,039 encrypted bytes**.
 Local authenticated decryption and catalog verification pass. No earlier archive was
-resealed. The final readable-publication scan and independent GitHub download follow.
+resealed. The final readable-publication scan and independent GitHub results are below.
+
+Publication commit `437ff70f3667d290a8e21016f25222058378fbba` is pushed.
+[CI177](https://github.com/tantalum666/rillora/actions/runs/39059513891) passes API,
+source and Web/infrastructure. [Exact CI receipt](receipts/post-capture/publication-ci.json).
+[Fresh remote verification](remote-readback.json) authenticates all 111 objects / 220
+paths from one newly downloaded archive, using empty independent LFS storage. The
+complete readable publication scan reports zero unreviewed findings. Final receipts
+are ordinary Git metadata; no archive is resealed and no deployment is repeated.

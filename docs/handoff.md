@@ -21,7 +21,9 @@ Google接受新版地图；代表新文章实际测试可编入索引、页面�
 
 本次只更新公开官网。生产API／数据库、真实数据、价格、收费、FanPass、App14与TestFlight未因本轮改变。实际收录、AI引用、模型自动选工具、消费端目录和普通客户MCP启用各自待独立证据；不要求Owner为Claude新注册。
 
-QA在output/qa/rillora-public-seo-rollout-20261018；[新发布交付](../collaboration/verification/public-seo-rollout-20261018/README.md)只保存新archive47与安全回执，旧1—46不重新封存或下载。后台截图与一次性授权值保留在受保护区域，排除Git。最终Git／远端回执另在本轮交付追加。
+QA在output/qa/rillora-public-seo-rollout-20261018；[新发布交付](../collaboration/verification/public-seo-rollout-20261018/README.md)只保存新archive47与安全回执，旧1—46不重新封存或下载。后台截图与一次性授权值保留在受保护区域，排除Git。最终Git／远端回执见本轮交付记录。
+
+发布记录与archive47已推437ff70f3，CI177三任务全部通过。该新归档已从GitHub独立下载并解密核验111对象／220路径／1,306,039字节通过；完整可读发布扫描0未审发现。最后回执用普通Git追加，不重封归档或部署。
 
 ## 唯一下一步
 

@@ -8,6 +8,8 @@ Last updated: 2026-10-18 (Asia/Hong_Kong)
 
 Initial source/archive commit6b7c041b2 and CI174 remain a dated candidate checkpoint. [Archive46](../collaboration/verification/ai-seo-20261018/README.md) has95paths/94objects/1,239,639bytes and was independently downloaded/decrypted. It is not resealed; the later navigation correction, actual public rollout and new archive47 receive their own receipts. No App Review, production API/data/billing or TestFlight change follows from this public release.
 
+Publication commit `437ff70f3` / CI177 passes all three jobs. Archive47 contains 220 paths / 111 objects / 1,306,039 encrypted bytes and passes an independent fresh GitHub/LFS download and authenticated verification. Final receipts are ordinary Git metadata; earlier captures, native/payment checks and deployment are not repeated.
+
 
 ## October17 isolated free hosting and additional clients
 
