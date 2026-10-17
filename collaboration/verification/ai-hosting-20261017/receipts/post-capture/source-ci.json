@@ -1,0 +1,31 @@
+{
+  "runId": 39030172126,
+  "runNumber": 172,
+  "headSha": "da394a1ac8c7c5057bb54a9db0507f75988047b5",
+  "url": "https://github.com/tantalum666/rillora/actions/runs/39030172126",
+  "jobs": [
+    {
+      "name": "api",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-10-17T11:49:45Z",
+      "completedAt": "2026-10-17T11:52:36Z"
+    },
+    {
+      "name": "web-and-infrastructure",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-10-17T11:49:45Z",
+      "completedAt": "2026-10-17T11:51:54Z"
+    },
+    {
+      "name": "source",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-10-17T11:49:45Z",
+      "completedAt": "2026-10-17T11:51:14Z"
+    }
+  ],
+  "passed": true,
+  "boundary": "Full source/API/Web/infrastructure/candidate CI for the corrected workflow. Hosted OAuth and independent remote archive verification are separate receipts."
+}

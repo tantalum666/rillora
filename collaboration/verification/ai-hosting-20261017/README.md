@@ -1,6 +1,6 @@
 # October17: isolated free hosting and additional AI clients
 
-Status: SOURCE AND REMOTE ARCHIVE VERIFIED / FINAL CI CONFIGURATION CHECK IN PROGRESS
+Status: HOSTED SYNTHETIC ACCEPTANCE, SOURCE CI AND REMOTE ARCHIVE VERIFIED
 Last updated: 2026-10-17 (Asia/Hong_Kong)
 
 [Scope and actual runtime evidence](../../../docs/architecture/ai-hosting-20261017.md) distinguish the
@@ -35,3 +35,10 @@ from one newly downloaded archive. CI171's source check passes, while its new ca
 step fails: the Web job omitted installation of the shared API dependency tree. The
 workflow now installs those dependencies before candidate verification; final CI is tracked
 separately. No runtime redeployment or repeated provider acceptance follows this CI fix.
+
+The correction is pushed at `da394a1ac8c7c5057bb54a9db0507f75988047b5`.
+[CI172](https://github.com/tantalum666/rillora/actions/runs/39030172126) passes all three
+jobs, including the new isolated candidate check. [Exact CI receipt](receipts/post-capture/source-ci.json).
+The prior failure is retained; final metadata adds this outcome without resealing archive45
+or repeating production/native/provider acceptance. The old probe route independently
+returns404. Current hosted application bytes match the separately downloaded Worker module.

@@ -1,6 +1,6 @@
 # Rillora 当前交接
 
-Status: SOURCE AND REMOTE ARCHIVE SAVED / FINAL CI CONFIGURATION CHECK IN PROGRESS
+Status: FREE SYNTHETIC HOSTING / TWO CLIENTS / SOURCE CI / REMOTE ARCHIVE VERIFIED
 Last updated: 2026-10-17 (Asia/Hong_Kong)
 
 ## 当前任务
@@ -17,10 +17,10 @@ Auth0原9应用及旧绑定／租户设置保持，新增一个候选上游登�
 
 ## 验证与边界
 
-当次API相关回归28项、迁移词法／所有权16项、候选边界2项、接入包4项、API／候选typecheck、Worker干构建及实际公网10项边界检查通过。不同阶段的旧5项探针／新2项候选检查分别记录，不重复合计。当前源码扫描通过，32条原已核对非秘密、0条未审项。archive45已本地认证133路径／117对象／1,528,372密文字节；新增归档与GitHub实证见[本轮保存](../collaboration/verification/ai-hosting-20261017/README.md)，源码与archive45已推8233d8691，独立远端下载认证通过；CI171新增候选检查暴露Web任务缺少共享API依赖，已补安装步骤，最终CI待读回。
+当次API相关回归28项、迁移词法／所有权16项、候选边界2项、接入包4项、API／候选typecheck、Worker干构建及实际公网10项边界检查通过。不同阶段的旧5项探针／新2项候选检查分别记录，不重复合计。当前源码扫描通过，32条原已核对非秘密、0条未审项。archive45已本地认证133路径／117对象／1,528,372密文字节；新增归档与GitHub实证见[本轮保存](../collaboration/verification/ai-hosting-20261017/README.md)，源码与archive45已推8233d8691，独立远端下载认证通过；CI171新增候选检查暴露Web任务缺少共享API依赖，已在da394a1ac补安装步骤，CI172三任务全部通过。最终收尾只追加普通Git回执，不重复部署或原业务验收。
 
 这是仅含合成资料的独立候选。Worker包装密钥不等价于生产KMS／独立强制恢复日志／客户开放。生产API和数据库、Gmail／QQ事项、定价、收费开关、FanPass、App14审核和TestFlight保持；尚未把候选连接到真实客户数据。凭据在既有Secure Enclave封装及提供方秘密存储；.local-secrets、原登录URL、CLI令牌和完整私人回执不入Git。
 
 ## 唯一下一步
 
-完成CI安装依赖修正及本轮收尾提交的GitHub核验；其后在具备相应账号或模型配置时推进未验平台及目录，保留当前合成候选和在审发布面隔离。
+补齐Qwen Code原版交互授权：当前隔离profile缺少可用模型配置，CLI明确不允许进入交互授权。取得适用于Rillora的配置后，只补这个未验步骤；Claude官网不要求Owner另行注册，当前合成候选与App14发布面继续隔离。
