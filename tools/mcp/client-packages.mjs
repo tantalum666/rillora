@@ -7,15 +7,17 @@ const scopes = ['matters:read:summary', 'readiness:read:scoped'];
 const tools = ['list_selected_matters', 'get_preparation_gaps'];
 const quote = value => "'" + value.replaceAll("'", "'\\''") + "'";
 const ownedHosts = new Set(['app.staging.rillora.xyz', 'app.rillora.xyz', 'mcp.staging.rillora.xyz', 'mcp.rillora.xyz']);
-const supportedClients = new Set(['openai', 'codex', 'claude-code', 'cursor', 'gemini-cli']);
+const candidateHost = 'rillora-ai-candidate.rillora-candidate.workers.dev';
+const supportedClients = new Set(['openai', 'codex', 'claude', 'claude-code', 'cursor', 'gemini-cli', 'qwen-code']);
 
 /** Generate reviewable files only. Never edits installed clients or handles secrets. */
 export function clientPackages(input) {
-  if (!input || Object.keys(input).some(key => !['serverUrl', 'clientIds', 'example'].includes(key))) throw new Error('Unexpected package input');
+  if (!input || Object.keys(input).some(key => !['serverUrl', 'clientIds', 'example', 'candidate'].includes(key))) throw new Error('Unexpected package input');
   let url;
   try { url = new URL(input.serverUrl); } catch { throw new Error('Invalid canonical MCP endpoint'); }
   if (url.protocol !== 'https:' || url.username || url.password || url.search || url.hash || !['/mcp', '/api/mcp'].includes(url.pathname)
-    || !(ownedHosts.has(url.hostname) || (input.example === true && url.hostname === 'mcp.example.test'))) throw new Error('Use a canonical Rillora HTTPS MCP endpoint');
+    || !(ownedHosts.has(url.hostname) || (input.example === true && url.hostname === 'mcp.example.test')
+      || (input.candidate === true && url.hostname === candidateHost))) throw new Error('Use a canonical Rillora HTTPS MCP endpoint');
   if (!input.clientIds || typeof input.clientIds !== 'object' || Array.isArray(input.clientIds) || !Object.keys(input.clientIds).length) throw new Error('Registered public client IDs are required');
   for (const [name, id] of Object.entries(input.clientIds)) {
     if (!supportedClients.has(name) || typeof id !== 'string' || !/^[A-Za-z0-9_-]{8,128}$/.test(id) || /^(sk_|rk_|eyJ)/.test(id)) throw new Error('Invalid public client registration');
@@ -55,14 +57,22 @@ export function clientPackages(input) {
   if (ids.codex) files['codex/setup.sh'] = `#!/bin/sh\nset -eu\ncodex mcp add rillora --url ${quote(server)} --oauth-client-id ${quote(ids.codex)}\n`;
   if (ids['claude-code']) files['claude-code/mcp.json'] = json({ mcpServers: { rillora: { type: 'http', url: server,
     oauth: { clientId: ids['claude-code'], scopes: scopes.join(' ') } } } });
+  if (ids.claude) files['claude/connection-details.json'] = json({ purpose: 'Manual entry in Claude custom connector settings; not a client configuration schema',
+    displayName: input.candidate ? 'Rillora synthetic candidate' : 'Rillora', serverUrl: server, clientId: ids.claude });
   if (ids.cursor) files['cursor/mcp.json'] = json({ mcpServers: { rillora: { url: server, auth: { CLIENT_ID: ids.cursor, scopes } } } });
   if (ids['gemini-cli']) files['gemini-cli/settings.json'] = json({ mcpServers: { rillora: { httpUrl: server, trust: false,
     oauth: { enabled: true, clientId: ids['gemini-cli'], scopes } } } });
-  files['readiness.json'] = json({ status: input.example ? 'EXAMPLE_ONLY_NOT_INSTALLABLE' : 'CONFIGURATION_GENERATED_NOT_CONNECTED',
+  if (ids['qwen-code']) {
+    files['qwen-code/settings.json'] = json({ mcpServers: { rillora: { httpUrl: server, trust: false,
+      oauth: { enabled: true, clientId: ids['qwen-code'], scopes, redirectUri: 'http://localhost:7777/oauth/callback' } } } });
+    files['qwen-code/credential-storage.txt'] = 'Before connecting '+server+', set QWEN_CODE_FORCE_ENCRYPTED_FILE_STORAGE=true for the Qwen Code process. Keep existing user settings; merge only this Rillora entry. This file does not enable or install anything.\n';
+  }
+  files['readiness.json'] = json({ status: input.example ? 'EXAMPLE_ONLY_NOT_INSTALLABLE'
+    : input.candidate ? 'SYNTHETIC_CANDIDATE_NOT_CUSTOMER_READY' : 'CONFIGURATION_GENERATED_NOT_CONNECTED',
     serverUrl: server, clients: Object.keys(ids), tools, scopes, credentialsIncluded: false,
     packaging: { openai: 'Documented portable OAuth extension; host support must be verified',
       codexPlugin: 'Separate compatibility package with pre-registered OAuth; no portable root manifest' },
-    pending: ['Exact OAuth callbacks and Auth0 resource compatibility verified', 'Dedicated audience and each registered client verified',
+    pending: ['Exact OAuth callbacks and authorization-server resource compatibility verified', 'Dedicated audience and each registered client verified',
       'User selected scope and real OAuth connection acceptance', 'Provider-specific directory submission and approval where required'] });
   return files;
 }

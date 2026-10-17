@@ -2,7 +2,15 @@ import { createRemoteJWKSet, jwtVerify, type JWTVerifyGetKey } from 'jose';
 import { OAuthError, OAuthErrorCode, type AuthInfo } from '@modelcontextprotocol/server';
 import type { McpConfig } from './config.js';
 
-export type McpActor = { issuer: string; subject: string; clientId: string; issuedAt: number; scopes: string[] };
+export type McpActor = {
+  issuer: string;
+  subject: string;
+  clientId: string;
+  issuedAt: number;
+  scopes: string[];
+  // A broker can pin a token to one consent record, including across refreshes.
+  boundConnectionPublicId?: string;
+};
 class InvalidMcpToken extends Error {}
 
 export function createMcpTokenVerifier(config: McpConfig,

@@ -32,3 +32,19 @@ test('rejects non-owned targets, credentials, query-bearing endpoints and duplic
   assert.throws(() => clientPackages({ ...input, clientIds: { ...input.clientIds, cursor: input.clientIds.codex } }));
   assert.throws(() => clientPackages({ ...input, clientIds: { codex: 'a\"; do-something' } }));
 });
+test('only the exact managed candidate host is allowed with an explicit synthetic marker', () => {
+  const candidate = { serverUrl: 'https://rillora-ai-candidate.rillora-candidate.workers.dev/mcp',
+    candidate: true, clientIds: { claude: 'synthetic-claude-web', cursor: 'synthetic-cursor' } };
+  const files = clientPackages(candidate);
+  assert.equal(JSON.parse(files['readiness.json']).status, 'SYNTHETIC_CANDIDATE_NOT_CUSTOMER_READY');
+  assert.match(JSON.parse(files['claude/connection-details.json']).purpose, /Manual entry/);
+  assert.throws(() => clientPackages({ ...candidate, candidate: false }));
+  assert.throws(() => clientPackages({ ...candidate, serverUrl: 'https://different.rillora-candidate.workers.dev/mcp' }));
+});
+test('Qwen uses documented HTTP OAuth fields and explicitly requires encrypted credential storage', () => {
+  const files=clientPackages({...input,clientIds:{'qwen-code':'synthetic-qwen-client'}});
+  const config=JSON.parse(files['qwen-code/settings.json']).mcpServers.rillora;
+  assert.equal(config.trust,false);assert.equal(config.oauth.redirectUri,'http://localhost:7777/oauth/callback');
+  assert.deepEqual(config.oauth.scopes,['matters:read:summary','readiness:read:scoped']);
+  assert.match(files['qwen-code/credential-storage.txt'],/QWEN_CODE_FORCE_ENCRYPTED_FILE_STORAGE=true/);
+});

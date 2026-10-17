@@ -1,0 +1,25 @@
+import { timingSafeEqual } from 'node:crypto';
+const upstream = 'https://br-shiny-darkness-b9bgwknr-rilloraai.compute.c-7.eu-central-1.aws.neon.tech/capabilities';
+
+/** Operator-only deployment check, not a customer MCP endpoint. */
+export async function probe(request, env, fetchImpl = fetch) {
+  const secret = env.PROBE_SECRET;
+  if (typeof secret !== 'string' || secret.length < 32) return new Response('Unavailable', {status:503});
+  const actual = Buffer.from(request.headers.get('x-probe-secret') ?? '');
+  const expected = Buffer.from(secret);
+  if (actual.length !== expected.length || !timingSafeEqual(actual, expected)) {
+    return new Response('Unauthorized', {status:401,headers:{'cache-control':'no-store'}});
+  }
+  const incoming = new URL(request.url);
+  if (request.method !== 'POST' || incoming.pathname !== '/capabilities' || incoming.search) return new Response(null,{status:404});
+  try {
+    const response = await fetchImpl(upstream, {method:'POST',redirect:'manual',
+      headers:{'content-type':'application/json','x-probe-secret':secret},body:'{}',signal:AbortSignal.timeout(20000)});
+    return new Response(response.body,{status:response.status,headers:{
+      'content-type':response.headers.get('content-type')??'application/octet-stream',
+      'cache-control':'no-store','x-rillora-candidate-gateway':'1'}});
+  } catch {
+    return new Response('Upstream unavailable',{status:502,headers:{'cache-control':'no-store'}});
+  }
+}
+export default {fetch(request, env) { return probe(request, env); }};

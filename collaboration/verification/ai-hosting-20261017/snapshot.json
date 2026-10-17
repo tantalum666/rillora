@@ -1,0 +1,64 @@
+{
+  "capturedFrom": "2026-10-17T11:41:36.700587+00:00",
+  "capturedThrough": "2026-10-17T11:41:36.978834+00:00",
+  "workFiles": 133,
+  "uniqueRawObjects": 117,
+  "workBytes": 10518325,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-045.tar.zst.age",
+      "sha256": "5b87308570ec022875397470bae569ff2ae5be41e43d012988697f59f300bc2b",
+      "bytes": 1528372,
+      "plainBytes": 9947618,
+      "uniqueObjects": 117
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/ai-hosting-20261017/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": ".local-secrets",
+      "reason": "credentials, auth URLs/codes, client token caches, private provider metadata and operator account screenshots"
+    },
+    {
+      "path": "archives001-044",
+      "reason": "immutable earlier captures; not resealed or downloaded"
+    },
+    {
+      "path": "provider databases",
+      "reason": "no raw database copy; synthetic aggregate readbacks only"
+    },
+    {
+      "path": "output/qa/rillora-ai-hosting-20261017/vendor-cursor",
+      "reason": "reproducible upstream dependency, source cache or publication cache"
+    },
+    {
+      "path": "output/qa/rillora-ai-hosting-20261017/publication",
+      "reason": "reproducible upstream dependency, source cache or publication cache"
+    },
+    {
+      "path": "output/qa/rillora-ai-hosting-20261017/vendor-types",
+      "reason": "reproducible upstream dependency, source cache or publication cache"
+    },
+    {
+      "path": "output/qa/rillora-ai-hosting-20261017/vendor-references",
+      "reason": "reproducible upstream dependency, source cache or publication cache"
+    },
+    {
+      "path": "output/qa/rillora-ai-hosting-20261017/browser-transfer-public.pem",
+      "reason": "reproducible transport/vendor installer or ephemeral public transfer key"
+    },
+    {
+      "path": "output/qa/rillora-ai-hosting-20261017/cursor-install-official.sh",
+      "reason": "reproducible transport/vendor installer or ephemeral public transfer key"
+    },
+    {
+      "path": "output/qa/rillora-ai-hosting-20261017/worker-bundle/upload.gz.b64",
+      "reason": "reproducible transport/vendor installer or ephemeral public transfer key"
+    }
+  ],
+  "exactCurrentSecretMatches": 0,
+  "selection": "New isolated hosting original evidence, failures, migration plans, source scans, targeted tests, safe browser results and exact deployed Worker artifacts.",
+  "boundary": "Synthetic hosted service and actual Claude Code/Cursor OAuth/read/refresh/revoke; not production KMS/recovery, customer enablement, Qwen OAuth, consumer accounts, model usage or directory approval."
+}

@@ -2,8 +2,8 @@
   "files": [
     {
       "path": "collaboration/README.md",
-      "bytes": 27174,
-      "sha256": "cfe6a472f11ff4aae56e28e43f55fef8f856fec4057d197582b732d6ee5dee00"
+      "bytes": 27669,
+      "sha256": "7f6e5dd90d255b2f0417f490c69dac91505dc5593071ca8ff4e694b51548c1d2"
     },
     {
       "path": "collaboration/catalog/files-001.json",
@@ -45151,6 +45151,461 @@
       "sha256": "957f5994177c0602ce9688d4bc8e44a83a9034bacfd473614424805f2483d8eb"
     },
     {
+      "path": "collaboration/verification/ai-hosting-20261017/README.md",
+      "bytes": 2081,
+      "sha256": "8c9be38b0d49bf523dd26d321b31a194dac07f357f225abca96a0d92a43adbc4"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/archive-verification.json",
+      "bytes": 113,
+      "sha256": "6f9a8213aef00d4b3d2a4677bd6cd1b97679c94ae83e68c75f713169d011209c"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/catalog.json",
+      "bytes": 41502,
+      "sha256": "6caaae6a04156778ced69aec31a08303eff7fd51c33ca1e60ca70befb097099c"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/images/claude-active-connection.png",
+      "bytes": 18923,
+      "sha256": "4a614559389740becb41d9a1533151e1c94110895b24e48c04b7b76a42d7cb4d"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/images/connections-revoked.png",
+      "bytes": 13700,
+      "sha256": "887278258a19dfbe41411cba0b6b348e610fc1ca0fb7b4749a3c3f978f0ecf28"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/api-typecheck-final.log.reference.txt",
+      "bytes": 67,
+      "sha256": "ffc0928b3027e2dcfe907b380649612c90925a72ad06bea654c9e72e4e139d1b"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/api-typecheck-server-extract.log.reference.txt",
+      "bytes": 67,
+      "sha256": "ffc0928b3027e2dcfe907b380649612c90925a72ad06bea654c9e72e4e139d1b"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/api-typecheck.log.reference.txt",
+      "bytes": 67,
+      "sha256": "ffc0928b3027e2dcfe907b380649612c90925a72ad06bea654c9e72e4e139d1b"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/auth0-candidate-preflight.py.reference.txt",
+      "bytes": 1545,
+      "sha256": "c45875ec31e16d160e258dced9235c20313a5daf26eca7b5e296993dcf84f469"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/auth0-capacity-preflight.json",
+      "bytes": 280,
+      "sha256": "abbef3e9c3edfc3a45b5dd0c070f294b00907784eba9319a50cadad68403ef99"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/auth0-final-guard.py.reference.txt",
+      "bytes": 1413,
+      "sha256": "506df5f77fe8e5a45d1b400fb25b56d940020e56e0a85c5a97a88ff60b060071"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/auth0-final-readback.json",
+      "bytes": 234,
+      "sha256": "48a53a8cd85fe69dde5931259311c88f5a825bef9bb984eb6a5d0c14977dbd38"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/auth0-provision-readback.json",
+      "bytes": 291,
+      "sha256": "c3b7a8962ad463aee1350dc3e50f9858933ef17b5fd1e359126ad8ec1a250848"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/bound-consent-tests.log.reference.txt",
+      "bytes": 238,
+      "sha256": "aedcdb7840354e536948019907bc454de190c669c000f53c4fd769a451673e0a"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/browser-cleanup-readback.json",
+      "bytes": 176,
+      "sha256": "d5f81a1dba670bf485bec2910171aa5a90e6c97c372e66ab5d60240ece35f39f"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/browser-origin-diagnostic.json",
+      "bytes": 432,
+      "sha256": "7f99771fed7f759c2f80b5bf418fa3382b284bfcc7e4b230b18281d40d2c509a"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/candidate-boundary-tests-final.log.reference.txt",
+      "bytes": 655,
+      "sha256": "299c469417e40e233f15f079a95a2fa77cb2b813bd24ecfc4789b9e2e998fb48"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/candidate-boundary-tests.log.reference.txt",
+      "bytes": 1403,
+      "sha256": "007e7e5ebc85dd5375360020fbb59931d88dca92e9525726bfb7327e59c289bb"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/candidate-install.log.reference.txt",
+      "bytes": 140,
+      "sha256": "4e0d10d1786197525e9406397f50357b064cf0ad6078a34a81ef97e031fc4279"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/candidate-typecheck.log.reference.txt",
+      "bytes": 64,
+      "sha256": "a006dcbb26bfcdc527df69a9408dba630e31b182d5812c03ba5dea1e33c4602e"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/candidate-types-install.log.reference.txt",
+      "bytes": 139,
+      "sha256": "36ffc53ffeefadbb6a1585f8a7718bddedd5b1d65bf6cd25ca315185adcd0d8a"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/capability-probe-results.json",
+      "bytes": 458,
+      "sha256": "71be685d8b0e62a714cc997771af719d115bb897820440b693ce72181c6ad17e"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/check-consent-redirect.py.reference.txt",
+      "bytes": 1656,
+      "sha256": "0ed30f689d95d547cbae4404647d9bf9834cfd8ac66aff2fabf0646554fbddd4"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/check-hosted-boundaries.py.reference.txt",
+      "bytes": 2368,
+      "sha256": "203326d908f448fddbf671771d966f12cfe4f04e43c5244649b5ff7265e38acc"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/claude-add.log.reference.txt",
+      "bytes": 248,
+      "sha256": "edc9dc2332de710c531f9c3eaa93bf55373841284f9e48dd545347d5d704530a"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/claude-connected.log.reference.txt",
+      "bytes": 304,
+      "sha256": "2e5cc7cbf28b97de1d760c1a51cbe19148e965553643eeb627c244b1b61b2cb5"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/claude-logout.log.reference.txt",
+      "bytes": 99,
+      "sha256": "dafa813114744d0722063500a087fec8bea66a19963eb53a5e9c4f8a7a8b67e9"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/claude-mcp-help.log.reference.txt",
+      "bytes": 2474,
+      "sha256": "7119050de7984dc9d616f6b632fa3ee7fef92667eb5298ba57c73051e59cad46"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/claude-oauth-readback.json",
+      "bytes": 386,
+      "sha256": "d1ac58f6d65e94b0c583d0f67e7397370a35b68224edf68e11514e22e0c58670"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/claude-revocation-read.json",
+      "bytes": 224,
+      "sha256": "d9fba930a2f8cccfae8a68086890aac727a600698cfb06194bc89065b4ca2cd6"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/claude-selected-read.json",
+      "bytes": 873,
+      "sha256": "4ffc3f3ccd838202f8f0e899d7e67de1df3cb25d3919c18fda57c985f7ff6ca4"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/client-package-tests.log.reference.txt",
+      "bytes": 1130,
+      "sha256": "4d7d334b141c6d2c41bff40390ae571b84cb0db5031c1bf76dbeabe2bee6c2f6"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/cloudflare-preparation.json",
+      "bytes": 593,
+      "sha256": "e2b4a5ebb93634cdf1446a51b7f50f970cab99f31f264abe8479a54127d67996"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/completion.json",
+      "bytes": 1455,
+      "sha256": "ad0db79001383bfb0149bfb1cc638ba3258accd5399d8a4e875c245b60f180b8"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/consent-redirect-diagnostic.json",
+      "bytes": 119,
+      "sha256": "e37c576125088666fdcb871e3f44228568254e89a3416973186ced4fda2ae0fa"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/core-regression-final.log.reference.txt",
+      "bytes": 238,
+      "sha256": "ff870fdc41921bfe62c2f7b2020c67833ac7d0d859750c7b3070cc91e2dd263c"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/cursor-help.log.reference.txt",
+      "bytes": 5991,
+      "sha256": "c24026e17118188478fcb47ed8113fa842f93df2043da5116660a368d3dc64b0"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/cursor-oauth-readback.json",
+      "bytes": 434,
+      "sha256": "f49f01febde647479bf294d4c1d3d65945c314e0c3075ac24b3da6203c0aa333"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/cursor-revocation-read.json",
+      "bytes": 221,
+      "sha256": "a0b65a4e918263c803bf397eb747ab44e02cf44eedd63b704a0308104a05d2ae"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/cursor-selected-read.json",
+      "bytes": 882,
+      "sha256": "41adffbaf98e6057075da07f8c18fedd0f1a7371d88dbdcf4e2230afba48a148"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/cursor-tools.log.reference.txt",
+      "bytes": 76,
+      "sha256": "584224b03b33ff4092450c20edd166c5ca77c4a3bbbefeb3b9624ed1655367ca"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/database-final-readback.json",
+      "bytes": 236,
+      "sha256": "d22311dfdae4da2eaa38a86b7e144389cdd16ffdaf7b296bcdb0b137d2a254db"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/deployment-progress-final.json",
+      "bytes": 999,
+      "sha256": "9a12d204021bab554d8fc5ee646d0f44beedd2ddba3cee4e036addce0c9013dd"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/deployment-progress.json",
+      "bytes": 611,
+      "sha256": "7020681edab6f35e77221d889f11ae461e49a3d3985bce4aabfe301784509d38"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/edge-anonymous-body.txt.reference.txt",
+      "bytes": 12,
+      "sha256": "d089c8a9fc28e4e50223eb38c9409e362521be9380a37341304fbac7a4cd9e5f"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/edge-anonymous-headers.txt.reference.txt",
+      "bytes": 602,
+      "sha256": "161e5beb6039f210f5414daf8c58aa8067a5e8fe4c4e850a3d1bf56cf6b6360c"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/edge-probe-after-adapter-fix.json",
+      "bytes": 239,
+      "sha256": "4eeda0258bb899fd102301de79cd137d36b4eb8b9fc9b70c833ef157a65f6109"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/edge-probe-results.json",
+      "bytes": 141,
+      "sha256": "415bb27ab9fb6b92aa728d8ec2f9f5d0527703fe84872792a3b681863b04f2fb"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/edge-probe-tests.log.reference.txt",
+      "bytes": 871,
+      "sha256": "ea7ccdcc487b15c2ccced62e0e5513e54435b970c9c19c99cbca581de3f4c3fb"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/edge-protected-body.txt.reference.txt",
+      "bytes": 118,
+      "sha256": "58bf2215b395dcac74c009aa98701854e43cbe54a1cd3a95fee6a647ca9910d4"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/edge-protected-headers.txt.reference.txt",
+      "bytes": 601,
+      "sha256": "0505973d58860b277e772d3d1a838a4c40957acf18097af7ccdf835629d20875"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/free-project-preparation.json",
+      "bytes": 420,
+      "sha256": "995d9f67881824cbc755cbf5f73653925ca8d7d9ae54d10fb92c646d0b711023"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/hosted-boundary-readback.json",
+      "bytes": 1308,
+      "sha256": "3d559220e44b81df81b27f13d54004afef84bcebc846b5b734c75f98cd8a405b"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/hosting-preflight.json",
+      "bytes": 585,
+      "sha256": "f8262d783dcd050f0ef8950bc02bf81a4dfd7ba401902e40fcb5a6dde38d678c"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/idle-compute-readback.json",
+      "bytes": 244,
+      "sha256": "461361c60b8a8dc0ebdb0f2a398f7a303f25356f35d188086a96f29099e6ba18"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/mcp-candidate-install.log.reference.txt",
+      "bytes": 139,
+      "sha256": "239ef075960fc05986f2acd95f5673be82d1b68020ab8a9c995e52c322ff5837"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/migration-readback.json",
+      "bytes": 563,
+      "sha256": "1ee7f39a91471a8eaf32117197fadae5f12128c0d32c420a3a85b32e77d6da77"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/migration-statement-tests-final.log.reference.txt",
+      "bytes": 225,
+      "sha256": "da077d0bee4b7977e599a6bb1a7dd199d77509db4c892bfaacc0bb5671eb0f39"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/migration-statement-tests-scoped.log.reference.txt",
+      "bytes": 234,
+      "sha256": "5bd47457f19df8af90bb534642db363e434710cfb72b76bb501ae9194a46570a"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/migration-statement-tests.log.reference.txt",
+      "bytes": 234,
+      "sha256": "6f7540f2051fbecdcb586d3d781e8d935d1c534fb05263fffd836bebf066ec92"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/neon-tls-chain-openssl3.log.reference.txt",
+      "bytes": 7321,
+      "sha256": "522940a72939a10c74fd4efc0a427ac35089b55b0412f3c6a31f624bf7f8507f"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/neon-tls-chain.log.reference.txt",
+      "bytes": 4586,
+      "sha256": "2c08d42777cf1e4cc1767cf8a007685b3aa8345b48f765f40d43c06c1323c013"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/neon-tls-readback.json",
+      "bytes": 349,
+      "sha256": "ee642500bc792b1b28a95952d8109c24762baf3a637cb1cdef9f9658008e6124"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/operator-final-readback.json",
+      "bytes": 301,
+      "sha256": "f052ed4b435f51954f5c91971081f79d670c8941b76723261215098b3fe85449"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/operator-session.py.reference.txt",
+      "bytes": 931,
+      "sha256": "f4ff8d94a5c1274b53803dba5468f5d1329bb597dac61969c4c0a9fda25a3781"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/prepare-migrations.mts.reference.txt",
+      "bytes": 2406,
+      "sha256": "c22d8b316e6043704893ddd6bdcccfd3c96fbaac8ab6926687ce89a6685869cb"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/preserve-hosting.py.reference.txt",
+      "bytes": 5423,
+      "sha256": "a5458c37d250370f72ef124549552def810321fb204c886c161a02346ddd1913"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/probe-http-body.txt.reference.txt",
+      "bytes": 118,
+      "sha256": "58bf2215b395dcac74c009aa98701854e43cbe54a1cd3a95fee6a647ca9910d4"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/probe-http-headers.txt.reference.txt",
+      "bytes": 118,
+      "sha256": "9235aa48b5ee1b2d3f6faaf0a0bbcfe43e9a95d5cafd873b9bbce95b545b4e6e"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/protect-candidate-credentials.py.reference.txt",
+      "bytes": 385,
+      "sha256": "0701941794c4128097ea2287a51ce0c22b6c8f91b71944f3be05cf82ecc44a4f"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/provision-candidate-auth0.py.reference.txt",
+      "bytes": 3382,
+      "sha256": "c13ed7cf6e9772ff7aab061a949e542d431e0f6a4975f329ae47adbe81fe5fc0"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/qwen-mcp-help.log.reference.txt",
+      "bytes": 380,
+      "sha256": "a93174d9bf0b6e40ce16acddee6c0477b1e9e84756a631417e524998e35fd6cd"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/qwen-readback.json",
+      "bytes": 566,
+      "sha256": "1cf95535f1f8f141f59af137119f245c069b11297a8fa21887ccc8edfa1a779f"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/qwen-reconnect-help.log.reference.txt",
+      "bytes": 317,
+      "sha256": "7648286b12e69163810bcc957369113e666d7cf83d440c71313c84335880f607"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/reading.json",
+      "bytes": 1710,
+      "sha256": "28e3c4fd3472418f0c92409eae46ebd61747d91f3086a55ab8b6345be3793b1c"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/retired-probes/capability-probe.mjs.reference.txt",
+      "bytes": 2574,
+      "sha256": "289294ff6b1fb3b0e4d195ed520b8adb809c06a0656a9fb209f02196da6c943a"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/retired-probes/edge-probe.mjs.reference.txt",
+      "bytes": 1530,
+      "sha256": "ecb6a122c0836753c72ab81fe592e335f27276dc0856c5fc2108467a20441a5a"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/retired-probes/edge-probe.test.mjs.reference.txt",
+      "bytes": 2338,
+      "sha256": "765f94d782456929bf889318a8aafb0fa29f7cf295e7a4ed2b251e322fd1cb72"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/run-edge-probe.py.reference.txt",
+      "bytes": 1162,
+      "sha256": "77d4d59133758ab12c64857d3105633c8b4f94ce2dff78ddb042ed4f1565dcad"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/seal-browser-transfer.mjs.reference.txt",
+      "bytes": 657,
+      "sha256": "5d7b059d7463c75bd798603f35ca40e3d2056db24a399a0c83ca4c186490807b"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/source-preparation-final.json",
+      "bytes": 272968,
+      "sha256": "256d89bdc65c18b0d75cf2d61ed1c435a5b732d0afa8f1614d406b84e8a6a33c"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/source-preparation.json",
+      "bytes": 272790,
+      "sha256": "43ff13d5ef54c09748d1d7723dab25db83e530d502acb954515c13d5fc715d28"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/source-scan-final.json",
+      "bytes": 12464,
+      "sha256": "592c68ac12b47a474935cfedef4bf0fc209ce870e13a6792b579f50a2506c0c4"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/source-scan.json",
+      "bytes": 12729,
+      "sha256": "bc8f8ab44b97325fb374daa1782ad8241a196bed2f69d0c3a450647aa14f8185"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/verify-claude-scoped.mts.reference.txt",
+      "bytes": 4138,
+      "sha256": "9874f7bb69fbcba3fa782ad5482a487954871e2e3328fb1f0a48a3c4e39cfd79"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/verify-cursor-scoped.mts.reference.txt",
+      "bytes": 3956,
+      "sha256": "6462cd8abfa5b4a5adcf36891ab1156a0d825c83d3956c6391b7f21c86ea3907"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/worker-build-final.log.reference.txt",
+      "bytes": 631,
+      "sha256": "d5139f83c6d5bcd488a58ac4561e863e0638151533dc3e7f00fe2e9a884110e3"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/worker-build.log.reference.txt",
+      "bytes": 684,
+      "sha256": "8ec66da44ba2643bee14491eb0a3512a8800ec8790bf713ce97113e9605e6f1e"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/worker-source-readback.json",
+      "bytes": 271,
+      "sha256": "ddbcb073bb3e689d07ad44ecc5960003c1f248a31baaa29ec1266c0a044e978d"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/receipts/wrangler-auth-status.log.reference.txt",
+      "bytes": 283,
+      "sha256": "26135a220687809b52dda382310482aa5173346f9da173e3f6e6c79bdc23f3ce"
+    },
+    {
+      "path": "collaboration/verification/ai-hosting-20261017/snapshot.json",
+      "bytes": 2630,
+      "sha256": "67675a11d71ed2abf8ba3332d422f27b9911f9900e9fc0264729367c1edab98e"
+    },
+    {
       "path": "collaboration/verification/ai-https-acceptance-20261016/README.md",
       "bytes": 3273,
       "sha256": "0fb8c90c0992658ca4911e84b3f68da0c1c5bd61e5a856dc516bb0dd7235f7f3"
@@ -63361,6 +63816,6 @@
       "sha256": "fa9f06467d74b9f074969cddab0e882a0ca1463c84d4a5ffafd2d401d619518b"
     }
   ],
-  "fileCount": 12672,
-  "totalBytes": 376388127
+  "fileCount": 12763,
+  "totalBytes": 377120861
 }

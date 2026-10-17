@@ -1,0 +1,67 @@
+{
+  "checkedAt": "2026-10-17T11:32:19.027187+00:00",
+  "scope": "New isolated hosted candidate only; no credential or account mutation",
+  "checks": [
+    {
+      "check": "oauth metadata",
+      "expected": 200,
+      "actual": 200,
+      "passed": true
+    },
+    {
+      "check": "protected metadata",
+      "expected": 200,
+      "actual": 200,
+      "passed": true
+    },
+    {
+      "check": "anonymous MCP",
+      "expected": 401,
+      "actual": 401,
+      "passed": true
+    },
+    {
+      "check": "invalid token",
+      "expected": 401,
+      "actual": 401,
+      "passed": true
+    },
+    {
+      "check": "foreign browser origin",
+      "expected": 403,
+      "actual": 403,
+      "passed": true
+    },
+    {
+      "check": "null form origin",
+      "expected": 403,
+      "actual": 403,
+      "passed": true
+    },
+    {
+      "check": "operator denied",
+      "expected": 401,
+      "actual": 401,
+      "passed": true
+    },
+    {
+      "check": "malformed operator credential",
+      "expected": 401,
+      "actual": 401,
+      "passed": true
+    },
+    {
+      "check": "DCR absent",
+      "expected": 404,
+      "actual": 404,
+      "passed": true
+    },
+    {
+      "check": "invalid client",
+      "expected": 400,
+      "actual": 400,
+      "passed": true
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-10-17T07:31:27.021355+00:00",
+  "project": "rillora-ai-candidate",
+  "plan": "Free",
+  "region": "aws-eu-central-1",
+  "functionDeployment": {
+    "version": 1,
+    "reportedState": "completed"
+  },
+  "publicHttp": {
+    "anonymous": 403,
+    "authorizedProbe": 403,
+    "server": "awselb/2.0",
+    "reachedApplicationProven": false
+  },
+  "applicationLogs": "Only initial provider invoke begin/end at deployment; later external probes not present",
+  "protectedOriginSecretStoredLocally": true,
+  "databaseMigrated": false,
+  "realDataTransferred": false,
+  "productionChanged": false
+}

@@ -52,7 +52,7 @@ export class KmsContentKeyProvider implements ContentKeyProvider {
     let opened: Buffer | undefined;
     try {
       opened = await this.unwrap(generated.wrapped, generated.wrappingKeyRef, context);
-      if (!timingSafeEqual(generated.plaintext, opened)) throw unavailable();
+      if (!opened || !timingSafeEqual(generated.plaintext, opened)) throw unavailable();
     } finally { generated.plaintext.fill(0); opened?.fill(0); }
   }
   async generate(context: ContentKeyContext) {

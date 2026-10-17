@@ -1,10 +1,10 @@
 import { createHash, createHmac, randomBytes } from "node:crypto";
 import type { AppConfig } from './config.js';
 
-const ephemeralTestKey = randomBytes(48).toString('base64url');
+let ephemeralTestKey: string | undefined;
 
 export function emailMatchKey(config: Pick<AppConfig, 'nodeEnv' | 'emailMatchKey'>): string {
-  const key = config.emailMatchKey ?? (config.nodeEnv === 'test' ? ephemeralTestKey : null);
+  const key = config.emailMatchKey ?? (config.nodeEnv === 'test' ? (ephemeralTestKey ??= randomBytes(48).toString('base64url')) : null);
   if (!key || !/^[A-Za-z0-9_-]{48,128}$/.test(key)) throw new Error('Email matching requires protected key configuration');
   return key;
 }

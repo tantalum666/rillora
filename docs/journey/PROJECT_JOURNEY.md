@@ -1,6 +1,6 @@
 # Digital Legacy Ongoing Project Journey
 
-Last updated: 2026-10-16 (Asia/Hong_Kong)
+Last updated: 2026-10-17 (Asia/Hong_Kong)
 
 ## 记录范围
 
@@ -4015,3 +4015,19 @@ October16再次打开授权：Owner要求重开；旧追加流程已退出并报
 - 未完成项：长期身份容量／隔离托管、模型实际选工具、消费端和目录、索引／推荐效果。本轮源码及新成功／失败原件保存到Git，旧矩阵／部署／归档不重做；App14、生产数据／定价／收费、FanPass和TestFlight保持。
 
 同轮保存完成：源码／archive44提交7902622f2已推送，CI169的API、source、Web-infrastructure三任务成功。新增344路径／174对象／4,375,200密文字节在独立空LFS目录从GitHub取回并认证通过；原件与失败证据均保留，旧1—43不重做。最终收尾仅补普通Git回执和当前交接，不改运行源码或部署。
+
+## 2026-10-17 — 免费长期候选托管准备
+
+- 目标：继续长期隔离托管和新AI入口，不重做旧验收，不打断App14。
+- 尝试：核对Neon／Cloudflare Free、Auth0容量和各平台官方方式；创建空Neon候选及operator-only探针，再通过Cloudflare验证外部路径。
+- 判断变化：免费参数不能显式覆盖固定休眠／CPU限制；保留默认值后成功创建。Neon实际自动休眠，但函数公网仍为平台前置403，部署Completed不能算服务可用。Cloudflare官方独立OAuth服务提供了减少Auth0应用数量的可行架构，仍需实现和验证。
+- 结果：独立资源与配额就绪，Cloudflare匿名401及probe3项检查通过；未迁移数据、未改变生产或Auth0配置。
+- 未完成项：Cloudflare运行器／独立OAuth、Neon受限角色接线、其他AI真实验收及新Git保存。具体资源和阻塞见当前handoff，不恢复旧登录／测试门。
+
+## 2026-10-17 — 免费长期候选与两端真实OAuth闭环
+
+- 目标：继续长期托管与更多AI客户端，不重复旧验证、不影响审核并保存到GitHub。
+- 尝试：创建Neon Free隔离空库，核对休眠；Functions入口403未进入应用，于是使用Cloudflare Worker／Hyperdrive。105原迁移在单事务执行，候选专用适配处理预处理语句及owner权限，原校验和不变。
+- 判断变化：Auth0 Free名额不能支持每个下游均建应用，采用一个新上游应用和官方Cloudflare OAuth授权层；各平台clientId与数据库范围仍独立。Chrome表单因no-referrer导致Origin:null而被拒，修正来源策略并保留CSRF。Owner没有Claude账号，停止该消费入口、不要求新注册。
+- 结果：受限数据库实际连通，两条加密合成事项；原版Claude Code与Cursor实际授权、工具目录、限定读取、刷新及浏览器撤销通过，撤销时有效令牌尚余608／814秒。前置失败保留、旧探针关闭、新候选长期保留。当前生产、数据、价格、App14和TestFlight不变。
+- 未完成：普通客户的完整加密／恢复托管路径、模型实际选工具、消费平台账号或平台目录及推荐效果尚未证明；其他客户端依证据逐端补齐。Git及归档远端结果在当次可读回执中单列，不能由本段推导。

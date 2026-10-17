@@ -5,9 +5,13 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-10-16 (Asia/Hong_Kong)
+Last updated: 2026-10-17 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-10-17 免费隔离托管及新增客户端
+
+Owner要求继续长期托管和其他AI平台，尽量免费且不影响审核。[独立合成候选](architecture/ai-hosting-20261017.md)已运行于Cloudflare／Neon Free，原版Claude Code及Cursor完成真实OAuth、选定读取、刷新与撤销。Auth0仅新增一个候选登录应用，下游客户端各自独立；旧应用和生产不变。Owner没有Claude官网账号，不要求注册或升级。候选、客户开放、模型选工具和目录审核仍是不同证据。
 
 ## 2026-10-15 审核期间启动跨平台 AI 下一版本方向
 

@@ -170,6 +170,19 @@ describe.sequential('selected AI access in an isolated signed PostgreSQL fixture
       await expect(sdk.callTool({ name: 'export_everything', arguments: {} })).rejects.toThrow();
     } finally { await sdk.close(); }
   });
+  it('keeps a broker token bound to its original consent even after a new grant and later token issuance', async () => {
+    const first = await authorize();
+    const service = new SelectedAiService(pool, loadConfig({ NODE_ENV: 'test', DATABASE_URL: url }), mcpConfig);
+    const actor = { issuer: mcpConfig.issuer.replace(/\/$/, ''), subject: 'synthetic-owner',
+      clientId: mcpConfig.clients[0]!.clientId, scopes: [...MCP_SCOPES], issuedAt: Math.ceil(Date.now() / 1000),
+      boundConnectionPublicId: first.publicId };
+    expect((await service.read(actor, 'summary')).matters).toHaveLength(1);
+    await service.revoke(owner.id, first.publicId, first.version);
+    const second = await authorize();
+    const refreshed = { ...actor, issuedAt: Math.ceil(Date.now() / 1000) };
+    await expect(service.read(refreshed, 'summary')).rejects.toThrow('Review and authorize');
+    expect((await service.read({ ...refreshed, boundConnectionPublicId: second.publicId }, 'summary')).matters).toHaveLength(1);
+  });
   it('keeps grants isolated by account and OAuth client', async () => {
     await authorize();
     for (const patch of [{ sub: 'synthetic-other' }, { azp: mcpConfig.clients[1]!.clientId }]) {

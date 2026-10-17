@@ -1,0 +1,43 @@
+import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
+import { resolve } from 'node:path';
+import { writeFileSync } from 'node:fs';
+import { createInterface } from 'node:readline';
+import { Client, StreamableHTTPClientTransport } from '../../../apps/api/node_modules/@modelcontextprotocol/client/dist/index.mjs';
+
+const root=resolve(import.meta.dirname,'../../..'), resource='https://rillora-ai-candidate.rillora-candidate.workers.dev/mcp';
+const profile=root+'/.local-secrets/ai-hosting-20261017/claude-profile';
+const suffix=createHash('sha256').update(profile).digest('hex').slice(0,8);
+if(suffix!=='63728caf')throw Error('Unexpected profile');
+const credentials=JSON.parse(execFileSync('security',['find-generic-password','-s','Claude Code-credentials-'+suffix,'-w'],{encoding:'utf8'}));
+const entries=Object.values(credentials.mcpOAuth??{}) as any[];
+if(entries.length!==1 || entries[0].serverUrl!==resource || entries[0].clientId!=='FasKCOkle5eu2EVw')throw Error('Unexpected client credential');
+const token=entries[0];
+const connect=async(access:string)=>{const sdk=new Client({name:'rillora-claude-token-acceptance',version:'1.0.0'},
+ {versionNegotiation:{mode:'legacy'}});await sdk.connect(new StreamableHTTPClientTransport(new URL(resource),{requestInit:{headers:{authorization:'Bearer '+access}}}));return sdk;};
+const refresh=async(value:string)=>{
+ const response=await fetch(new URL('/oauth/token',resource),{method:'POST',headers:{'content-type':'application/x-www-form-urlencoded'},
+  body:new URLSearchParams({grant_type:'refresh_token',client_id:token.clientId,refresh_token:value,resource})});
+ return {status:response.status,body:await response.json() as any};
+};
+const sdk=await connect(token.accessToken);
+const listing=await sdk.listTools(), summary=await sdk.callTool({name:'list_selected_matters',arguments:{}}), gaps=await sdk.callTool({name:'get_preparation_gaps',arguments:{}});
+if(summary.isError || gaps.isError || JSON.stringify(summary).includes('Unselected') || JSON.stringify(summary).includes('Private synthetic'))throw Error('Selected projection failed');
+if((summary.structuredContent as any)?.matters?.length!==1)throw Error('Wrong selection');
+const refreshed=await refresh(token.refreshToken);
+if(refreshed.status!==200 || !refreshed.body.access_token || !refreshed.body.refresh_token || refreshed.body.expires_in!==900)throw Error('Refresh failed');
+const newer=await connect(refreshed.body.access_token);
+const before={checkedAt:new Date().toISOString(),source:'Actual Claude Code 2.1.302 OAuth credential, read only from isolated profile keychain',
+  tools:listing.tools.map(t=>t.name),summary:summary.structuredContent,gaps:gaps.structuredContent,refreshStatus:refreshed.status,
+  refreshAccessLifetime:refreshed.body.expires_in,passed:true};
+writeFileSync(resolve(import.meta.dirname,'claude-selected-read.json'),JSON.stringify(before,null,2)+'\n');console.log(JSON.stringify(before));
+console.log('WAITING_FOR_BROWSER_REVOCATION');
+const input=createInterface({input:process.stdin});await new Promise<void>((resolve,reject)=>{input.once('line',line=>line==='verify-after'?resolve():reject(Error('Unexpected stage')));});input.close();
+const priorResult=await sdk.callTool({name:'list_selected_matters',arguments:{}}),freshResult=await newer.callTool({name:'list_selected_matters',arguments:{}});
+const refreshAfter=await refresh(refreshed.body.refresh_token);
+const remaining=Math.floor((token.expiresAt-Date.now())/1000);
+const after={checkedAt:new Date().toISOString(),originalTokenRemainingSeconds:remaining,originalReadDenied:priorResult.isError===true,
+ refreshedReadDenied:freshResult.isError===true,refreshStatus:refreshAfter.status,refreshError:refreshAfter.body.error,
+ passed:remaining>0 && priorResult.isError===true && freshResult.isError===true && refreshAfter.status===400 && refreshAfter.body.error==='invalid_grant'};
+writeFileSync(resolve(import.meta.dirname,'claude-revocation-read.json'),JSON.stringify(after,null,2)+'\n');console.log(JSON.stringify(after));
+await sdk.close();await newer.close();if(!after.passed)process.exitCode=1;

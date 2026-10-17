@@ -1,0 +1,29 @@
+{
+  "status": "SYNTHETIC_CANDIDATE_NOT_CUSTOMER_READY",
+  "serverUrl": "https://rillora-ai-candidate.rillora-candidate.workers.dev/mcp",
+  "clients": [
+    "claude",
+    "claude-code",
+    "cursor",
+    "qwen-code"
+  ],
+  "tools": [
+    "list_selected_matters",
+    "get_preparation_gaps"
+  ],
+  "scopes": [
+    "matters:read:summary",
+    "readiness:read:scoped"
+  ],
+  "credentialsIncluded": false,
+  "packaging": {
+    "openai": "Documented portable OAuth extension; host support must be verified",
+    "codexPlugin": "Separate compatibility package with pre-registered OAuth; no portable root manifest"
+  },
+  "pending": [
+    "Exact OAuth callbacks and authorization-server resource compatibility verified",
+    "Dedicated audience and each registered client verified",
+    "User selected scope and real OAuth connection acceptance",
+    "Provider-specific directory submission and approval where required"
+  ]
+}

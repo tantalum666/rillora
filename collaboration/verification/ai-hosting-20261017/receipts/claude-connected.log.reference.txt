@@ -1,0 +1,8 @@
+rillora-candidate:
+  Scope: User config (available in all your projects)
+  Status: ✔ Connected
+  Type: http
+  URL: https://rillora-ai-candidate.rillora-candidate.workers.dev/mcp
+  OAuth: client_id configured, callback_port 18372
+
+To remove this server, run: claude mcp remove rillora-candidate -s user

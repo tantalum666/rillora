@@ -1,9 +1,15 @@
 # Rillora 跨平台 AI 接入包
 
-Status: NEXT-VERSION SOURCE CANDIDATE — NOT DEPLOYED / NOT LISTED
-Last updated: 2026-10-16 (Asia/Hong_Kong)
+Status: ISOLATED SYNTHETIC HOSTING LIVE — NOT CUSTOMER READY / NOT LISTED
+Last updated: 2026-10-17 (Asia/Hong_Kong)
 
 本目录提供下一版本的接入材料。当前 App1.0(14) 审核、生产 API／数据库、价格、收费和既有 Auth0 登录配置保持原状；隔离测试注册的当前状态见下方补充。示例文件不代表已注册 OAuth 客户端、已有公网 MCP 服务或已通过目录审核。
+
+## October17 长期合成候选
+
+[当前托管和验收](../../docs/architecture/ai-hosting-20261017.md)新增Cloudflare／Neon Free独立候选。真实Claude Code与Cursor授权、读取和撤销通过，未调用付费模型。下方原Auth0直连步骤保留为生产路线合同，不能套作候选的已部署配置。候选使用Cloudflare官方OAuth授权层、一个独立Auth0上游应用、各平台独立clientId；只含合成资料，不能作为普通客户入口或生产恢复能力证明。
+
+[真实公开登记](candidate-client-ids.json)和[生成的接入材料](hosted-candidate/readiness.json)包含Claude、Claude Code、Cursor、Qwen Code，不含秘密。只合并对应条目，不覆盖用户配置；Qwen必须按随附说明打开加密凭据存储。Owner没有Claude官网账号，官网连接没有执行，也不要求注册。代码客户端接通并不代表同品牌消费端或模型会主动推荐产品。
 
 ## 实现与边界
 

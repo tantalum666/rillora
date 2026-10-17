@@ -1,0 +1,48 @@
+{
+  "scope": "Long-term free synthetic hosting and additional AI clients",
+  "specificationsChanged": [
+    "docs/architecture/ai-hosting-20261017.md",
+    "infra/ai-candidate/README.md",
+    "integrations/ai/README.md",
+    "docs/product.md",
+    "docs/source-control.md"
+  ],
+  "decisionLog": "docs/decision-log.md: October17 hosting and consumer-account decisions",
+  "handoff": "docs/handoff.md",
+  "journey": "docs/journey/PROJECT_JOURNEY.md: October17 hosting closeout",
+  "checks": {
+    "apiRegression": 28,
+    "migrationLexer": 16,
+    "candidateBoundary": 2,
+    "clientPackaging": 4,
+    "hostedNegativeAndDiscovery": 10,
+    "apiTypecheck": true,
+    "candidateTypecheck": true,
+    "workerDryBuild": true,
+    "sameRemoteWorkerBytes": true,
+    "actualClaudeCodeReadRefreshRevoke": true,
+    "actualCursorReadRefreshRevoke": true,
+    "sourceScanUnreviewed": 0
+  },
+  "notRepeated": [
+    "prior Google/Bing submission",
+    "prior public website deployment",
+    "old Codex/Gemini matrix",
+    "production migration",
+    "Apple review/TestFlight/native tests",
+    "archives1-44"
+  ],
+  "notClaimed": [
+    "customer-ready hosting",
+    "production KMS/recovery equivalence",
+    "Claude consumer connection",
+    "Qwen OAuth acceptance",
+    "model-selected tools",
+    "directory listing",
+    "automatic recommendations"
+  ],
+  "newLegalOrPricingDecision": false,
+  "paidUpgrade": false,
+  "realDataUsed": false,
+  "modelApiCalls": 0
+}

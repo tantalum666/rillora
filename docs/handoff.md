@@ -1,28 +1,26 @@
 # Rillora 当前交接
 
-Status: PUBLIC GEO LIVE / SYNTHETIC HTTPS MCP FLOW PASSED AND CLEANED / SOURCE7902622 / CI169 PASSED / ARCHIVE44 REMOTELY VERIFIED
-Last updated: 2026-10-16 (Asia/Hong_Kong)
+Status: FREE SYNTHETIC HOSTING AND TWO NEW CLIENTS VERIFIED / GIT CLOSEOUT IN PROGRESS
+Last updated: 2026-10-17 (Asia/Hong_Kong)
 
 ## 当前任务
 
-Owner要求先官网GEO／SEO，再MCP和多平台接入，新功能放下一版并推GitHub，不影响App1.0(14)审核。当前目录 /Users/tantalum/Documents/电子遗嘱app，分支codex/ai-discovery-vnext-20261015；发布工作树保留fec1ad3bc。前轮交接见[历史](handoff-history-20261016-before-https-candidate.md)，不恢复旧授权／验证门。
+Owner要求继续长期托管与其他AI接入，尽量免费，不重复已验项，不影响审核并推GitHub；随后说明没有Claude账号，不要求注册。继续codex/ai-discovery-vnext-20261015。上一交接见[历史](handoff-history-20261017-before-hosting.md)。官网／Google／Bing、旧Codex／Gemini、临时HTTPS及archive44证据保留，CI169／170已成功，不重跑旧矩阵。
 
-## 已完成
+## 本轮结果
 
-- [独立官网](architecture/public-discovery-rollout-20261016.md)：源码653093e62／CI165，20双语页面／54文件实际交付，两阶段切换和浏览器语言切换已验。Google与Bing所有权及各一次地图提交完成；Google即时提取成功、常规报告最后仍失败／0已发现；Bing已Success／发现20网址／0错误警告。两条DNS新增，所有旧记录保持。收录和AI推荐未证明。
-- [既有两客户端OAuth](architecture/ai-oauth-validation-20261016.md)：Codex实际app-server与Gemini原版OAuth＋CLI连接、选定读取、同一有效token撤销通过，原临时资源清理。该证据不重跑、不冒充消费端或模型主动选工具。
-- [新增临时HTTPS闭环](architecture/ai-https-acceptance-20261016.md)：Owner已确认合成账号法律接受。实际Web登录／只选1事项保存→Codex真实OAuth／两个工具发现→同一公网HTTPS选定读取→Web撤销／同一仍余819秒token双工具拒绝→Web退出通过。11匿名公网检查、类型／19MCP／42API／27Web检查及源扫描32登记／0未知通过。
-- 实际发现并修复MCP就绪检查的受限角色错误和HTTPS Cookie安全标志／前缀不一致，未绕过CSRF或扩大数据库权限。前三轮失败、临时前端法律字段补齐及最终成功分别留证。
-- 新Auth0账号／合成连接／AI客户端／API、临时runtime角色、测试数据、Codex临时登录及隧道已回收；3端口关闭、规划者／临时角色0，其余应用／原连接绑定／完整租户设置匹配。Free/$0保持，无新租户或付费。
+[长期候选合同](architecture/ai-hosting-20261017.md)和[运行包](../infra/ai-candidate/README.md)记录Cloudflare Workers／Neon Free实际交付。独立空库105迁移、受限角色、Hyperdrive来源verify-full／禁用查询缓存、EU OAuth KV、独立secret和两条加密合成事项均已验证。候选长期保留在rillora-ai-candidate.rillora-candidate.workers.dev；不是临时隧道。原Functions入口403没有冒领成功，两个旧探针已关闭或改为无数据库的关闭处理器。
 
-## 证据与边界
+Auth0原9应用及旧绑定／租户设置保持，新增一个候选上游登录应用填满Free10名额；Cloudflare的Claude、Claude Code、Cursor、Qwen Code有不同clientId。原版Claude Code2.1.302和CursorCLI2026.10.16-e3cb207真实OAuth、实际工具发现、限定读取／刷新及浏览器撤销通过；撤销时有效令牌尚余608／814秒，旧令牌与刷新均拒绝。已退出Claude测试连接并移除Cursor隔离fixture失效令牌，用户全局MCP未覆盖。
 
-[新保存包](../collaboration/verification/ai-https-acceptance-20261016/README.md)只收本次HTTPS／前置新证据。源码与archive44已推送7902622f2，CI169的API／source／Web-infrastructure三任务成功；新增344路径／174对象／4,375,200密文字节已从GitHub独立新下载并认证通过。此前archive1—43和CI168等证据保持，不重封、不重复下载。637文档链接、12,664当时可读文件秘密扫描及随后完整清单核对通过；最后回执以普通Git补交，不改运行源码。
+[接入材料](../integrations/ai/hosted-candidate/readiness.json)只含公开clientId。Claude官网没有用户账号，未创建或接通。QwenCode0.25.2原版CLI识别配置，但重连缺少令牌，交互端明确要求先配置模型provider；未借用其他项目密钥，未执行模型调用。不能将上述代码客户端结果写成消费平台、模型选工具、目录上架或自动推荐证明。
 
-未使用的Default App保留一项声明差异：token_endpoint_auth_method由原未设置变为显式client_secret_post，因Auth0拒绝原空值还原而未追加凭据管理权限。最终还原到此已声明基线，原名／空回调／grant／JWT／绑定恢复。没有轮换密钥；早期secretUnchanged字段仅表示无密钥变更操作，非前后字节比较。
+## 验证与边界
 
-临时HTTPS已关闭，MCP正式runtime／UI仍默认关闭。长期托管、云端KMS／TLS／恢复日志、自然语言选工具、其他消费端／目录和实际推荐效果未冒领。仅用独立合成数据，生产API／数据库、Gmail／QQ数据、WebUSD88.99、AppleUSD119.99／HKD888、收费开关、FanPass和在审App14保持。无TestFlight；Owner取消真机及暂缓Auth0外壳保持。登录和本次法律确认已有效完成，不再次请求。
+当次API相关回归28项、迁移词法／所有权16项、候选边界2项、接入包4项、API／候选typecheck、Worker干构建及实际公网10项边界检查通过。不同阶段的旧5项探针／新2项候选检查分别记录，不重复合计。当前源码扫描通过，32条原已核对非秘密、0条未审项。archive45已本地认证133路径／117对象／1,528,372密文字节；新增归档与GitHub实证见[本轮保存](../collaboration/verification/ai-hosting-20261017/README.md)，收尾前不得冒称已推。
+
+这是仅含合成资料的独立候选。Worker包装密钥不等价于生产KMS／独立强制恢复日志／客户开放。生产API和数据库、Gmail／QQ事项、定价、收费开关、FanPass、App14审核和TestFlight保持；尚未把候选连接到真实客户数据。凭据在既有Secure Enclave封装及提供方秘密存储；.local-secrets、原登录URL、CLI令牌和完整私人回执不入Git。
 
 ## 唯一下一步
 
-确定可长期维持的独立身份容量与托管方案，再补模型／各消费端验收；不把已关闭的临时Default App及隧道当作正式多平台服务。
+完成本轮新增源码／证据的GitHub推送、CI和archive45独立远端验证；随后仅在具备相应账号或模型配置时推进未验平台及目录，保留当前合成候选和在审发布面隔离。

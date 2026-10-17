@@ -1,5 +1,8 @@
 # Rillora — Git / Dot 协作入口
 
+October17当前：[免费长期合成候选](../docs/architecture/ai-hosting-20261017.md)及Claude Code／Cursor实际OAuth、限定读取、刷新、撤销通过。Auth0原配置保持，新增独立上游应用和下游client；Qwen实际交互端需要模型配置，Claude官网因Owner无账号未接通。[本轮保存](verification/ai-hosting-20261017/README.md)只补新工作；下方旧“长期托管待办”是历史。当前生产、App14、价格、数据和TestFlight不变。
+
+
 October16最新：[临时HTTPS完整闭环](../docs/architecture/ai-https-acceptance-20261016.md)已完成真实Web合成选择、Codex OAuth／工具发现、限定读取及同一有效token撤销，临时资源已回收。受限数据库就绪检查及HTTPS Cookie前缀／安全标志问题已修；无生产或审核部署。Default App认证方法空值规范化明确保留，其他应用／绑定／租户设置匹配。新增[archive44保存包](verification/ai-https-acceptance-20261016/README.md)仅追加本轮344路径／174对象；7902622f2／CI169三任务通过，远端独立新下载认证成功。当前下一步看handoff。
 
 
@@ -97,7 +100,7 @@ HKD888购买已验签；简洁购买页构建8已分发原内部组并选入未�
 677对象，本地与GitHub独立新下载后的解密核验均通过。Stripe Live凭据已保护保存、运行计费尚未接通。
 
 
-Updated: 2026-10-16 (Asia/Hong_Kong)
+Updated: 2026-10-17 (Asia/Hong_Kong)
 
 October6保留检查点：`codex/release-12-stripe-20261005`源码10194de6a/CI58通过；双语多设备/大字号/系统语言、共享/文件与88.99StripeWeb TEST闭环完成。API14及Web/WWW已部署；新1.0(5)已上传处理为准备提交，说明回读一致，群组/独立测试员0。[新增完整保存包](verification/release-12-stripe-20261006/README.md)的raw-work-019包含9,769路径/1,541对象，本地及GitHub新下载原件均已解密核验通过，归档提交557af9f11/CI59成功。旧归档/真实数据/FanPass保留，真人/真机/live/最终审核门仍分开。
 

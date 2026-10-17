@@ -1,0 +1,12 @@
+import sys,json,subprocess
+origin='https://rillora-ai-candidate.rillora-candidate.workers.dev'
+for line in sys.stdin:
+ try:
+  value=json.loads(line)
+  if value.get('stop'):break
+  assert value['path'] in ['/operator/status','/operator/clients','/operator/seed-matters']
+  config='url = '+json.dumps(origin+value['path'])+'\nheader = '+json.dumps('Authorization: Bearer '+value['secret'])+'\nheader = "Content-Type: application/json"\ndata = '+json.dumps(json.dumps(value.get('body',{})))+'\n'
+  response=subprocess.run(['curl','--silent','--show-error','--max-time','35','--request','POST','--write-out','\n%{http_code}','--config','-'],input=config,text=True,capture_output=True)
+  body,_,status=response.stdout.rpartition('\n')
+  print(json.dumps({'status':status,'exit':response.returncode,'body':body,'error':response.stderr}),flush=True)
+ except Exception as error:print(json.dumps({'error':type(error).__name__}),flush=True)

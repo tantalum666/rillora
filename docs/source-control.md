@@ -1,7 +1,11 @@
 # Source control, complete work preservation and release rollback
 
-Last updated: 2026-10-16 (Asia/Hong_Kong)
+Last updated: 2026-10-17 (Asia/Hong_Kong)
 
+
+## October17 isolated free hosting and additional clients
+
+[The new hosted candidate](architecture/ai-hosting-20261017.md) uses separate Cloudflare/Neon Free resources and synthetic data. Actual Claude Code/Cursor OAuth, selected-only reads, refresh and immediate browser revocation pass; Qwen's original interactive client still needs a model-provider configuration. Owner has no Claude consumer account. [This addendum](../collaboration/verification/ai-hosting-20261017/README.md) preserves only new source, safe original evidence and the exact Worker artifact. Existing review/production/data/prices stay unchanged; no paid model call or TestFlight occurs. Archive45 and independent remote verification follow the immutable-capture process; archives1–44 are not repeated.
 
 ## October16 temporary HTTPS acceptance and source corrections
 

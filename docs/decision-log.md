@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-16 (Asia/Hong_Kong)
+Last updated: 2026-10-17 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -3569,3 +3569,15 @@ local correction/tests and actual restoration remain separate evidence.
 - Real HTTPS saving reveals that Secure alone is insufficient: non-production cookies used plain names while remote Web requires __Host. Align name and Secure behavior for configured HTTPS and keep unprefixed CSRF limited to HTTP loopback; retain the original production boundary and reject duplicate/legacy cookies. This is an implementation correction, not relaxed CSRF policy.
 - Browser selection, independent Codex OAuth, two selected-only reads and same-token revocation pass. The token remains valid819seconds at rejection. Log out the synthetic sessions and remove the scoped provider/local resources. The earlier Default App authentication normalization remains explicitly declared; no key rotation, production deployment or paid upgrade is performed.
 - Temporary HTTPS is development acceptance, not long-term hosting or model-selected tool/consumer-directory completion. Continue sustainable isolated identity/hosting design before public multi-platform distribution. [Evidence and limitations](architecture/ai-https-acceptance-20261016.md).
+
+## 2026-10-17 — Continue long-term hosting and additional AI clients on free resources
+
+- Owner explicitly requests long-term hosting and additional AI-platform work, preferring Free, preserving current review and existing successful evidence, and publishing to GitHub.
+- Agent creates a separate empty Neon Free project in Frankfurt with low quotas. This does not migrate production records or activate a new customer database. Actual idle suspension is confirmed. Functions reports deployment completion but public ingress returns an upstream403; do not label it usable.
+- Agent selects the official Cloudflare OAuth Provider for isolated candidate authorization, with one Auth0 upstream sign-in app and separate downstream client grants. This preserves client separation while avoiding destructive retirement or paid Auth0 expansion solely for capacity. Implementation and real acceptance remain required; existing production authentication is untouched.
+
+## 2026-10-17 — Keep consumer accounts optional and preserve independent downstream grants
+
+- Owner states they have no Claude account. Do not create an account, require a paid plan or claim Claude consumer acceptance. Actual Claude Code and Cursor CLI OAuth can be validated independently without an Anthropic or Cursor model session.
+- Retain one Auth0 upstream application and independent Cloudflare client registrations. Candidate-only wrapping keys, synthetic legal fixtures and disabled recovery publication are explicitly not production KMS/recovery or customer-readiness equivalence. Production and App14 remain untouched.
+- Real browser evidence identifies no-referrer → Origin:null on native forms. Use same-origin for HTML and redirects, keep null origins rejected, and allow only verified form redirect origins. Both clients pass selected-only reads and same-token/refresh rejection after browser revocation. No model request, paid upgrade, directory submission or recommendation promise follows.

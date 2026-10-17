@@ -147,6 +147,9 @@ jobs:
         run: node --test tools/ops/health-check.test.mjs
       - name: Verify AI client package generation without credentials or installation
         run: node --test tools/mcp/client-packages.test.mjs
+      - name: Verify isolated AI candidate without provider credentials
+        working-directory: infra/ai-candidate
+        run: npm ci --ignore-scripts && npm run typecheck && npm test && npm run build
       - name: Verify constrained maintenance broker
         run: node --check tools/maintenance-broker/handler.mjs && node --test tools/maintenance-broker/core.test.mjs
       - name: Verify restricted review identity action

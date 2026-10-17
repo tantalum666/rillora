@@ -1,7 +1,7 @@
 // Migrations run inside the runner's single transaction. Older immutable files
 // have an outer BEGIN/COMMIT pair; remove only that pair at execution time, never
 // from the bytes used to calculate their recorded checksum.
-export function migrationTransactionBody(sql: string): string {
+function migrationStatements(sql: string) {
   const statements: { start: number; end: number; command: string }[] = [];
   let start = 0, visible = "", index = 0;
   const finish = (end: number) => {
@@ -58,5 +58,22 @@ export function migrationTransactionBody(sql: string): string {
       throw new Error("Migration transaction control must be owned by the runner");
     }
   }
+  return { statements, body, wrapped };
+}
+
+export function migrationTransactionBody(sql: string): string {
+  const { statements, wrapped } = migrationStatements(sql);
   return wrapped ? sql.slice(statements[0]!.end, statements.at(-1)!.start) : sql;
+}
+
+/** Prepared-statement transports still execute every statement in one caller-owned transaction. */
+export function migrationTransactionStatements(sql: string): string[] {
+  return migrationStatements(sql).body.map(statement => sql.slice(statement.start, statement.end));
+}
+
+/** Identify only explicit transfers to Rillora service roles, never quoted SQL text. */
+export function migrationOwnershipRole(sql: string): string | null {
+  const statements = migrationStatements(sql).body;
+  if (statements.length !== 1) return null;
+  return /^alter (?:function|procedure|table|sequence|type|view) app\.[\s\S]+ owner to (continuity_[a-z_]+)$/.exec(statements[0]!.command)?.[1] ?? null;
 }

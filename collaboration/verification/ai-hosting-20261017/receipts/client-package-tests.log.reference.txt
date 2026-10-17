@@ -1,0 +1,34 @@
+TAP version 13
+# Subtest: five platform configurations share the resource and least-privilege OAuth scopes without credentials
+ok 1 - five platform configurations share the resource and least-privilege OAuth scopes without credentials
+  ---
+  duration_ms: 1.602209
+  type: 'test'
+  ...
+# Subtest: rejects non-owned targets, credentials, query-bearing endpoints and duplicate registrations
+ok 2 - rejects non-owned targets, credentials, query-bearing endpoints and duplicate registrations
+  ---
+  duration_ms: 0.194125
+  type: 'test'
+  ...
+# Subtest: only the exact managed candidate host is allowed with an explicit synthetic marker
+ok 3 - only the exact managed candidate host is allowed with an explicit synthetic marker
+  ---
+  duration_ms: 0.239709
+  type: 'test'
+  ...
+# Subtest: Qwen uses documented HTTP OAuth fields and explicitly requires encrypted credential storage
+ok 4 - Qwen uses documented HTTP OAuth fields and explicitly requires encrypted credential storage
+  ---
+  duration_ms: 0.078375
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 83.252958

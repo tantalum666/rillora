@@ -1,0 +1,39 @@
+// Authenticated deployment-fit probe. No account data, mutations or client tokens.
+import { timingSafeEqual } from 'node:crypto';
+import { createServer } from 'node:http';
+import pg from '../../apps/api/node_modules/pg/lib/index.js';
+
+const expected = Buffer.from(process.env.PROBE_SECRET ?? '');
+if (expected.length < 32) throw new Error('PROBE_SECRET must be configured');
+const connection = new URL(process.env.DATABASE_URL_UNPOOLED ?? '');
+if (!connection.hostname.endsWith('.neon.tech') || connection.pathname !== '/rillora_ai_candidate') {
+  throw new Error('Probe is restricted to its new Neon candidate database');
+}
+// Always verify certificates; do not let URL flags override the explicit TLS policy.
+for (const name of ['sslmode', 'sslcert', 'sslkey', 'sslrootcert', 'ssl', 'channel_binding']) connection.searchParams.delete(name);
+const pool = new pg.Pool({connectionString: connection.href, ssl:{rejectUnauthorized:true}, max:1, idleTimeoutMillis:5000});
+pool.on('error', () => {});
+export default {
+  async fetch(request) {
+    const provided = Buffer.from(request.headers.get('x-probe-secret') ?? '');
+    if (provided.length !== expected.length || !timingSafeEqual(provided,expected)) {
+      return new Response('Unauthorized',{status:401,headers:{'cache-control':'no-store'}});
+    }
+    if (request.method !== 'POST' || new URL(request.url).pathname !== '/capabilities') return new Response(null,{status:404});
+    const db = await pool.query(`select current_user as role, current_database() as database,
+      (select rolcreaterole from pg_roles where rolname=current_user) as create_role,
+      (select rolbypassrls from pg_roles where rolname=current_user) as bypass_rls,
+      (select count(*)::int from pg_tables where schemaname='app') as app_tables,
+      exists(select 1 from pg_available_extensions where name='pgcrypto') as pgcrypto_available`);
+    const server=createServer((_request,response)=>response.end('candidate-loopback-ok'));
+    let loopback=false;
+    try {
+      await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve);});
+      server.unref();
+      const response=await fetch(`http://127.0.0.1:${server.address().port}/`);
+      loopback=await response.text()==='candidate-loopback-ok';
+    } finally {if(server.listening)await new Promise(resolve=>server.close(resolve));}
+    return Response.json({node:process.versions.node,sql:db.rows[0],localNodeHttpAdapterAvailable:loopback,
+      mutationsPerformed:false,realDataUsed:false},{headers:{'cache-control':'no-store'}});
+  },
+};

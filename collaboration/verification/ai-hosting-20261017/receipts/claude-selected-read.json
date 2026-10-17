@@ -1,0 +1,37 @@
+{
+  "checkedAt": "2026-10-17T11:14:56.768Z",
+  "source": "Actual Claude Code 2.1.302 OAuth credential, read only from isolated profile keychain",
+  "tools": [
+    "list_selected_matters",
+    "get_preparation_gaps"
+  ],
+  "summary": {
+    "matters": [
+      {
+        "publicId": "81665b73-b6d5-4a26-bda6-b5a62374e2ca",
+        "title": "Selected synthetic digital account",
+        "category": "account",
+        "status": "draft"
+      }
+    ]
+  },
+  "gaps": {
+    "matters": [
+      {
+        "publicId": "81665b73-b6d5-4a26-bda6-b5a62374e2ca",
+        "missingFields": [
+          "intended_outcome"
+        ]
+      }
+    ],
+    "assessment": "selected_common_fields_only",
+    "notAssessed": [
+      "category_specific_details",
+      "legal_authority",
+      "recipient_readiness"
+    ]
+  },
+  "refreshStatus": 200,
+  "refreshAccessLifetime": 900,
+  "passed": true
+}

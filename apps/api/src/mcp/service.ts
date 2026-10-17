@@ -134,8 +134,10 @@ export class SelectedAiService {
       if (!(await client.query("select 1 from app.planners where id=app.current_planner_id() and status='active'")).rowCount) throw unavailable();
       const connection = (await client.query<Connection>(`select id::text,public_id,scopes,selected_count,token_valid_after::text
         from app.ai_connections where planner_id=app.current_planner_id() and client_id=$1 and revoked_at is null
-        and expires_at>clock_timestamp() and consent_version=$2 and legal_bundle_sha256=$3 for share`,
-      [actor.clientId, AI_CONSENT_VERSION, Buffer.from(currentLegalContract.bundleSha256, 'hex')])).rows[0];
+        and expires_at>clock_timestamp() and consent_version=$2 and legal_bundle_sha256=$3
+        and ($4::uuid is null or public_id=$4) for share`,
+      [actor.clientId, AI_CONSENT_VERSION, Buffer.from(currentLegalContract.bundleSha256, 'hex'),
+        actor.boundConnectionPublicId ?? null])).rows[0];
       if (!connection || !connection.scopes.includes(required) || actor.issuedAt < Number(connection.token_valid_after)) throw unavailable();
       // No Notes, typed details, account hints, values, contacts or full-plan counts are read.
       const projection = operation === 'summary' ? 'm.title,m.category,m.status'
