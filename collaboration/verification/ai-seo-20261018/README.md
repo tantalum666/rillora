@@ -1,6 +1,6 @@
 # October18: Qwen completion and public SEO/GEO expansion
 
-Status: LOCAL CONTENT VERIFIED / AWS MFA PENDING / PUBLICATION RECEIPTS FOLLOW
+Status: SOURCE CI AND REMOTE ARCHIVE VERIFIED / PUBLIC DEPLOYMENT AWAITS AWS MFA
 Last updated: 2026-10-18 (Asia/Hong_Kong)
 
 [Current scope and evidence](../../../docs/architecture/ai-seo-20261018.md) distinguish the
@@ -37,3 +37,11 @@ provider credential. Only safe, explicitly selected workflow evidence was captur
 Publication scanning identified seven generated S3 object-key filenames as generic API keys.
 The three redundant generated-template/log mirrors were removed; their exact originals
 remain in archive46. No secret-scan rule, baseline or exception was changed.
+
+Source/archive commit `6b7c041b2e96e31f5a8ff08dab22f84103116348` is pushed.
+[CI174](https://github.com/tantalum666/rillora/actions/runs/39054345915) passes all three
+jobs: API, source and Web/infrastructure. [Exact CI receipt](receipts/post-capture/source-ci.json).
+[Independent remote readback](remote-readback.json) verifies all 94 objects / 95 paths
+from one freshly downloaded archive. Existing archives were not downloaded again.
+These results prove source delivery and preservation; the public-site deployment still
+waits for the already opened AWS MFA step. Final metadata is an ordinary Git addendum.

@@ -6,6 +6,8 @@ Last updated: 2026-10-18 (Asia/Hong_Kong)
 
 [This continuation](architecture/ai-seo-20261018.md) closes Qwen's original OAuth/CLI and scoped revocation gap without a model account. Four original bilingual articles, navigation and structured discovery metadata build into 28 public pages; targeted checks pass. AWS's actual expired session is at MFA, so this candidate is not yet live. [New evidence only](../collaboration/verification/ai-seo-20261018/README.md) is preserved in archive46; earlier archives and runtime acceptance are not repeated. The current gate is the public-site switch, not a fresh Qwen/model registration or App Review action.
 
+Source/archive commit 6b7c041b2 is pushed; CI174 passes API, source and Web/infrastructure. Archive46 has 95 paths / 94 objects / 1,239,639 bytes and passes a fresh independent GitHub download/decryption. Final metadata follows as ordinary Git; the new website has not been deployed while MFA is pending.
+
 
 ## October17 isolated free hosting and additional clients
 

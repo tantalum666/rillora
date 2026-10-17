@@ -15,7 +15,9 @@ Qwen Code0.25.2的原版OAuth组件可独立调用，不必先配置付费模型
 
 本轮4篇原创双语内容、主导航学习入口、文章与层级元数据、准确日期、来源及相关链接已完成；共6篇文章／28页／62文件。public构建、26项Web检查、10项官网栈测试、infra类型检查及浏览器重点流程通过，390px布局无横向溢出；触摸模拟输入的工具超时不算产品验收通过。源码保持UI风格，不公开私有平台指南正文。QA在output/qa/rillora-ai-seo-20261018，完整阅读链沿用。[聚焦记录](architecture/ai-seo-20261018.md)。
 
-AWS CLI已实际过期，原rillora-operator密码已复用，Chrome只停在MFA，Owner问题已挂起；Auth0管理不需要重登。新官网未部署、搜索平台未重复提交。两阶段准备只更改现有官网上传／路由，暂存必须保留原20页并只新增资源和8页。Qwen alias凭据与合成会话均已清理。Git保存结果另在本轮可读回执追加。
+AWS CLI已实际过期，原rillora-operator密码已复用，Chrome只停在MFA，Owner问题已挂起；Auth0管理不需要重登。新官网未部署、搜索平台未重复提交。两阶段准备只更改现有官网上传／路由，暂存必须保留原20页并只新增资源和8页。Qwen alias凭据与合成会话均已清理。Git保存结果见下方回执。
+
+源码与archive46已推6b7c041b2；CI174的API、source、Web／infra三任务全部通过。新归档从GitHub独立下载并解密核验94对象／95路径通过，旧1—45未重做。[Git与CI回执](../collaboration/verification/ai-seo-20261018/README.md)。收尾仅补普通Git记录，不重新构建或部署。
 
 ## 唯一下一步
 
