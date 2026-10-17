@@ -1,0 +1,33 @@
+{
+  "runId": 39029863034,
+  "number": 171,
+  "sourceCommit": "8233d8691e62328e872ade72234e9d53685d5fd8",
+  "observedJobs": [
+    {
+      "id": 117387989187,
+      "name": "api",
+      "status": "in_progress",
+      "conclusion": null,
+      "failedSteps": []
+    },
+    {
+      "id": 117387989328,
+      "name": "source",
+      "status": "completed",
+      "conclusion": "success",
+      "failedSteps": []
+    },
+    {
+      "id": 117387989393,
+      "name": "web-and-infrastructure",
+      "status": "completed",
+      "conclusion": "failure",
+      "failedSteps": [
+        "Verify isolated AI candidate without provider credentials"
+      ]
+    }
+  ],
+  "identifiedConfigurationGap": "The web-and-infrastructure job installs web and infra dependencies but not the shared apps/api dependency tree imported by the new candidate package.",
+  "correction": "Install apps/api dependencies within that job before the candidate typecheck/tests/dry build.",
+  "runtimeReDeployed": false
+}

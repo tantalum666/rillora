@@ -1,6 +1,6 @@
 # October17: isolated free hosting and additional AI clients
 
-Status: SOURCE AND LOCAL ARCHIVE VERIFIED / GITHUB DELIVERY IN PROGRESS
+Status: SOURCE AND REMOTE ARCHIVE VERIFIED / FINAL CI CONFIGURATION CHECK IN PROGRESS
 Last updated: 2026-10-17 (Asia/Hong_Kong)
 
 [Scope and actual runtime evidence](../../../docs/architecture/ai-hosting-20261017.md) distinguish the
@@ -28,3 +28,10 @@ The exact deployed Worker module was independently read from Cloudflare and matc
 built SHA-256. Ten public-boundary checks pass. Existing production and review resources
 remain independent. Final publication and fresh GitHub/LFS receipts follow this frozen capture
 as ordinary Git metadata; no earlier archive is downloaded again.
+
+Source/archive commit `8233d8691e62328e872ade72234e9d53685d5fd8` is pushed.
+[Fresh remote verification](remote-readback.json) authenticates all117 objects/133 paths
+from one newly downloaded archive. CI171's source check passes, while its new candidate
+step fails: the Web job omitted installation of the shared API dependency tree. The
+workflow now installs those dependencies before candidate verification; final CI is tracked
+separately. No runtime redeployment or repeated provider acceptance follows this CI fix.

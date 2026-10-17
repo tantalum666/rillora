@@ -1,0 +1,23 @@
+{
+  "runId": 39029863034,
+  "number": 171,
+  "headSha": "8233d8691e62328e872ade72234e9d53685d5fd8",
+  "jobs": [
+    {
+      "name": "api",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "source",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "web-and-infrastructure",
+      "status": "completed",
+      "conclusion": "failure"
+    }
+  ],
+  "nextChange": "Install shared API dependencies before the new candidate job checks; no application/runtime change."
+}
