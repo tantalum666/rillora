@@ -1,0 +1,63 @@
+"""Seal only October18 public rollout evidence. No credentials or earlier archives are read."""
+from pathlib import Path
+import datetime, json, os, re, shutil, subprocess, sys, tempfile, uuid
+ROOT=Path(__file__).resolve().parents[3];QA=Path(__file__).resolve().parent
+DEST=ROOT/'collaboration/verification/public-seo-rollout-20261018';ARCHIVE=ROOT/'collaboration/archives/raw-work-047.tar.zst.age'
+sys.path.insert(0,str(ROOT/'tools/collaboration'))
+import build_snapshot as snapshot
+from snapshot_policy import directory_exclusion,file_exclusion
+from verify_archives import verify
+assert not ARCHIVE.exists(), 'Never reseal previous work'
+for name in ['source-scan-final.json','header-placement.json','stage-verified.json','new-routes-ready.json','live-verification.json','source-ci.json','markdown-links.json']:
+    assert json.loads((QA/name).read_text())['passed'],name
+assert json.loads((QA/'live-verification.json').read_text())['exactSourceTemplateMatched']
+search=json.loads((QA/'search-readback.json').read_text())
+assert search['google']['manualIndexRequestAcknowledged'] and search['bing']['status']=='Success' and search['bing']['urlsDiscovered']==28
+cache=QA/'publication/frozen';cache.mkdir(parents=True,mode=0o700,exist_ok=True)
+excluded=[{'path':'.local-secrets','reason':'credentials, auth URLs, token stores, AWS account and MFA screens'},
+          {'path':'archives001-046','reason':'previous immutable captures; not resealed or downloaded'}]
+selected=[]
+for base,dirs,names in os.walk(QA):
+    parent=Path(base)
+    for name in list(dirs):
+        path=parent/name;rel=path.relative_to(ROOT).as_posix();reason=directory_exclusion(rel)
+        if name in {'publication','cdk.out'}:reason='capture cache or expanded deployment dependencies; exact public artifact and template copied separately'
+        if reason or path.is_symlink():dirs.remove(name);excluded.append({'path':rel,'reason':reason or 'symlink'})
+    for name in names:
+        path=parent/name;rel=path.relative_to(ROOT).as_posix();reason=file_exclusion(rel)
+        if name=='qwen-browser-public.pem':reason='ephemeral browser transfer public key'
+        if reason or path.is_symlink():excluded.append({'path':rel,'reason':reason or 'symlink'})
+        else:selected.append((rel,path))
+credential_patterns=[rb'-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----',rb'\b(?:AKIA|ASIA)[A-Z0-9]{16}\b',
+                     rb'\b(?:sk_live_|rk_live_|sk_test_)[A-Za-z0-9]{20,}\b',rb'\beyJ[A-Za-z0-9_-]{15,}\.[A-Za-z0-9_-]{15,}\.[A-Za-z0-9_-]{15,}\b']
+objects={};records=[];started=datetime.datetime.now(datetime.timezone.utc).isoformat()
+for rel,path in sorted(selected):
+    frozen,digest=snapshot.freeze_file(path,cache);data=frozen.read_bytes()
+    assert not any(re.search(pattern,data) for pattern in credential_patterns),'Credential pattern in '+rel
+    blob=objects.setdefault(digest,{'id':uuid.uuid4().hex,'sha256':digest,'bytes':len(data),'source':str(frozen),'paths':[]});blob['paths'].append(rel)
+    record={'sourcePath':rel,'bytes':len(data),'rawObject':blob['id'],'rawArchive':ARCHIVE.relative_to(ROOT).as_posix()}
+    relative=path.relative_to(QA)
+    if path.suffix in {'.json','.py','.mjs','.mts','.log','.txt'} and relative.parts[0] not in {'public-artifact','stage-object-readback','http-readback','stage-root-readback','root-object-readback'} and not path.name.endswith('-template.json') and not path.name.startswith('public-synth') and not path.name.endswith('change-set-complete.json'):
+        suffix='.reference.txt' if path.suffix in {'.py','.mjs','.mts','.log','.txt'} else ''
+        target=DEST/'receipts'/(str(relative)+suffix);target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(frozen,target);record['readablePath']=target.relative_to(ROOT).as_posix()
+    elif path.name in {'live-home-zh.png','live-resources-footer.png'}:
+        target=DEST/'images'/path.name;target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(frozen,target);record['previewPath']=target.relative_to(ROOT).as_posix()
+    records.append(record)
+identity=ROOT/'.local-secrets/collaboration-git/identity.txt';assert identity.stat().st_mode&0o077==0
+recipient=subprocess.check_output(['age-keygen','-y',str(identity)],text=True).strip()
+archive=snapshot.seal_chunk(47,list(objects.values()),recipient)
+catalog=DEST/'catalog.json';catalog.write_text(json.dumps(records,ensure_ascii=False,indent=2)+'\n')
+summary={'capturedFrom':started,'capturedThrough':datetime.datetime.now(datetime.timezone.utc).isoformat(),'workFiles':len(records),
+         'uniqueRawObjects':len(objects),'workBytes':sum(r['bytes'] for r in records),'archives':[archive],
+         'catalogFiles':[catalog.relative_to(ROOT).as_posix()],'excluded':excluded,
+         'credentialPatternMatches':0,'sourceSecretScan':'passed; 32 existing reviewed nonsecrets, zero unreviewed',
+         'selection':'New public rollout, corrected navigation, exact public artifact, online integrity, source/tests, safe browser results and search-provider receipts.',
+         'boundary':'Public website delivery only. Production API, customer data, prices, billing, App14 and TestFlight are unchanged. Search submission and parsing do not prove indexing or AI recommendations.'}
+(DEST/'snapshot.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
+with tempfile.TemporaryDirectory(prefix='rillora-seo-archive-') as temporary:
+    stage=Path(temporary);(stage/'collaboration').mkdir();(stage/'collaboration/snapshot.json').write_text(json.dumps(summary))
+    for name in [archive['path'],*summary['catalogFiles']]:
+        target=stage/name;target.parent.mkdir(parents=True,exist_ok=True);os.link(ROOT/name,target)
+    result=verify(stage,identity)
+(DEST/'archive-verification.json').write_text(json.dumps(result,indent=2)+'\n')
+print(json.dumps({'paths':len(records),'objects':len(objects),'encryptedBytes':archive['bytes'],'locallyVerified':result['passed']}))

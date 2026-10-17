@@ -4,9 +4,9 @@ Last updated: 2026-10-18 (Asia/Hong_Kong)
 
 ## October18 Qwen continuation and public content
 
-[This continuation](architecture/ai-seo-20261018.md) closes Qwen's original OAuth/CLI and scoped revocation gap without a model account. Four original bilingual articles, navigation and structured discovery metadata build into 28 public pages; targeted checks pass. AWS's actual expired session is at MFA, so this candidate is not yet live. [New evidence only](../collaboration/verification/ai-seo-20261018/README.md) is preserved in archive46; earlier archives and runtime acceptance are not repeated. The current gate is the public-site switch, not a fresh Qwen/model registration or App Review action.
+[This continuation](architecture/ai-seo-20261018.md) closes Qwen's original OAuth/CLI and scoped revocation gap without a model account. The public website is now live with 28 localized pages, six bilingual articles and verified discovery metadata. Owner rejected the primary-navigation Resources entry; corrected source58780f79b / CI176 keeps it in the footer. [New deployment evidence](../collaboration/verification/public-seo-rollout-20261018/README.md) is preserved separately in archive47. Google accepts the map and a representative article's crawl request; Bing parses28URLs. Indexing and AI recommendations are not inferred.
 
-Source/archive commit 6b7c041b2 is pushed; CI174 passes API, source and Web/infrastructure. Archive46 has 95 paths / 94 objects / 1,239,639 bytes and passes a fresh independent GitHub download/decryption. Final metadata follows as ordinary Git; the new website has not been deployed while MFA is pending.
+Initial source/archive commit6b7c041b2 and CI174 remain a dated candidate checkpoint. [Archive46](../collaboration/verification/ai-seo-20261018/README.md) has95paths/94objects/1,239,639bytes and was independently downloaded/decrypted. It is not resealed; the later navigation correction, actual public rollout and new archive47 receive their own receipts. No App Review, production API/data/billing or TestFlight change follows from this public release.
 
 
 ## October17 isolated free hosting and additional clients

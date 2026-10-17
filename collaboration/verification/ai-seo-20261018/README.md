@@ -1,7 +1,11 @@
 # October18: Qwen completion and public SEO/GEO expansion
 
-Status: SOURCE CI AND REMOTE ARCHIVE VERIFIED / PUBLIC DEPLOYMENT AWAITS AWS MFA
+Status: HISTORICAL CANDIDATE / SOURCE CI AND REMOTE ARCHIVE VERIFIED
 Last updated: 2026-10-18 (Asia/Hong_Kong)
+
+This is the earlier candidate capture. The later navigation correction and actual
+[public deployment](../public-seo-rollout-20261018/README.md) supersede its pending-MFA
+status; the original archive and dated results remain unchanged.
 
 [Current scope and evidence](../../../docs/architecture/ai-seo-20261018.md) distinguish the
 Qwen original OAuth component plus actual CLI reconnect/list, selected-only reads, refresh
