@@ -3591,3 +3591,12 @@ local correction/tests and actual restoration remain separate evidence.
 - Supersedes: treating a Qwen model-provider configuration as mandatory for protocol/CLI acceptance. It remains necessary for the separate interactive model experience where applicable.
 - Does not imply: a live website update while AWS MFA is pending, a consumer-platform connection, model-selected tool usage, indexing, AI citations, customer MCP enablement or any change to App14 review.
 - Implementation impact: preserve current production data, prices, billing, FanPass and TestFlight. The staged website upload must include only assets and eight new page objects; existing pages remain unchanged until the complete routing/content switch. [Current evidence](architecture/ai-seo-20261018.md).
+
+## 2026-10-18 — Keep educational resources out of primary navigation
+
+- Status: LOCKED
+- Scope: public website navigation on desktop and mobile.
+- Decision: Owner says placing 整理方法 in the main navigation is too prominent and not useful. Remove that destination; retain the footer entry and relevant article links so the published resources remain discoverable.
+- Evidence: Owner feedback during the public-site rollout, before the final switch.
+- Supersedes: this workflow's earlier decision to promote Resources into the primary navigation. It does not cancel the original bilingual articles or SEO/GEO work.
+- Implementation impact: update the candidate header and rebuild its public artifact before publishing. Retain the original live pages while the corrected assets are staged; do not publish the rejected header variant.

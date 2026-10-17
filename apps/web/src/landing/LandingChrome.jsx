@@ -48,7 +48,6 @@ const destinations = [
   ["/", "public.nav.home"],
   ["/product", "public.nav.product"],
   ["/security", "public.nav.security"],
-  ["/learn", "public.nav.learn"],
   ["/pricing", "public.nav.pricing"],
   ["/support", "public.nav.support"],
 ];

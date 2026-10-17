@@ -1,6 +1,5 @@
 // Original educational copy; provider-specific statements link to official sources.
 export const en = {
-  "public.nav.learn": "Resources",
   "public.learn.breadcrumb": "Page location",
   "public.learn.contents": "On this page",
   "public.learn.questions": "Common questions",
@@ -74,7 +73,6 @@ export const en = {
 };
 
 export const zhCN = {
-  "public.nav.learn": "整理方法",
   "public.learn.breadcrumb": "当前位置",
   "public.learn.contents": "本文内容",
   "public.learn.questions": "常见问题",
