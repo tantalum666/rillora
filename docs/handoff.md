@@ -1,30 +1,28 @@
 # Rillora 当前交接
 
-Status: PUBLIC SEO-GEO LIVE / PRIMARY NAVIGATION CORRECTED / SEARCH QUEUED
+Status: MARKETING AUDIT AND MATERIALS READY / CUSTOMER MCP GAPS EXPLICIT
 Last updated: 2026-10-18 (Asia/Hong_Kong)
 
 ## 当前任务与最新决定
 
-Owner要求补齐AI接入、加强SEO／GEO，并在发布前明确否决把“整理方法”放进主导航。正式官网现保留首页、产品、安全、价格、帮助；文章入口只在页脚与相关内容中。此决定已写入apps/web/AGENTS.md及decision-log。[发布前交接](handoff-history-20261018-before-publication.md)与[更早交接](handoff-history-20261018-before-seo.md)均为历史。
+Owner要求在官网当前工作完成后，全面复核SEO／GEO、MCP／插件和其他AI范围，进入营销阶段，并准备最低成本获客与App Store关键词策略。当前活动依据为[复核](marketing/readiness-audit-20261018.md)、[执行计划](marketing/acquisition-plan-20261018.md)与[素材](marketing/campaign-kit-20261018.md)。[上一交接](handoff-history-20261018-before-marketing.md)为HISTORICAL。
 
 ## 已完成
 
-Qwen原版OAuth／CLI、限定读取、刷新和有效令牌撤销沿用本轮既有通过结果，凭据已清理；没有模型调用或Claude官网账号。初始源码／archive46的6b7c041b2、CI174与独立远端94对象／95路径验证保持，不重复。
+官网原发布58780f79b／CI176、archive47与CI177保持：28语言页、6篇双语文章、62文件实际匹配，主导航5项，整理方法只在页脚／相关内容。没有重做官网部署或OAuth／付款／真机验证。
 
-Owner完成AWS MFA后已续回原CLI；无需再登录。初次回传格式／长行问题已修正并复用同一浏览器身份。导航修正源码58780f79b已推，CI176三任务全部通过。原阶段暂存与修正暂存均核对原20页不变；扩展路由发布后8个新URL匹配修正HTML，随后完成最终模板切换。
+本轮核对当前全部公开教育文案、元数据／路由、客户端生成器／登记及提供方规则。Google地图实际仍无法读取／0已发现，上次读取显示October18；生成式搜索设置实际“包含”，robots均有效。Bing28URL成功沿用同日回执。原生Node匿名MCP401、两种发现200；Python403／Cloudflare1010差异单列，没有降低保护。
 
-RilloraPublicWeb实际UPDATE_COMPLETE，部署模板／LIVE函数匹配源码，分发／桶／上传资源身份保持。正式HTTPS61对象、S3 root／清单核对通过，共62份清单文件／28个语言页面。真实Chrome确认主导航5项、页脚进入6篇文章。[结果与边界](architecture/ai-seo-20261018.md)。
+修正OpenAI插件简介36字符超过30上限，5项针对性检查通过；当前托管6份文本包与生成器一致。App Store本地配置按October15已收件证据纠正旧“撤回”状态并保留历史，没有改Apple后台。下一版双语ASO／8条渠道链接／空结果模板／5正3负审核草稿已准备，字段检查通过；8份中英文渠道稿、20—30秒演示和截图故事可用于首轮执行。
 
-Google接受新版地图；代表新文章实际测试可编入索引、页面层级有效，且确认加入优先抓取队列。常规地图总表提交后仍显示无法抓取／0，不能冒称Google整图已解析。地图文件本身的Google实时测试也通过，单网址访问与地图处理状态仍分开记录。Bing已实际Success、28URL、0错误／警告。没有反复提交同一地图或文章。
+## 边界与未完成
 
-## 证据边界与保存
+当前长期合成候选登记Claude、Claude Code、Cursor、Qwen Code；后3种协议已过。Codex／Gemini此前通过的是已清理临时环境，当前长期host没有其登记。Owner无Claude账号，不要求注册／升级。客户KMS／恢复／同意／运营、下游OIDC UserInfo、模型实际任务、消费端接入与目录未完成，不能宣传所有AI已可用。
 
-本次只更新公开官网。生产API／数据库、真实数据、价格、收费、FanPass、App14与TestFlight未因本轮改变。实际收录、AI引用、模型自动选工具、消费端目录和普通客户MCP启用各自待独立证据；不要求Owner为Claude新注册。
+没有实际营销曝光／引用／付费队列与CAC数据；Google地图根因未知，实时抓取成功不覆盖地图失败。ASO是下一版本草稿，未替换当前审核；没有新广告支出、外联、群发、追踪SDK或TestFlight。生产API／数据、定价、收费和FanPass保持。
 
-QA在output/qa/rillora-public-seo-rollout-20261018；[新发布交付](../collaboration/verification/public-seo-rollout-20261018/README.md)只保存新archive47与安全回执，旧1—46不重新封存或下载。后台截图与一次性授权值保留在受保护区域，排除Git。最终Git／远端回执见本轮交付记录。
-
-发布记录与archive47已推437ff70f3，CI177三任务全部通过。该新归档已从GitHub独立下载并解密核验111对象／220路径／1,306,039字节通过；完整可读发布扫描0未审发现。最后回执用普通Git追加，不重封归档或部署。
+新工作保存于output/qa/rillora-marketing-readiness-20261018及[可读交付](../collaboration/verification/marketing-readiness-20261018/README.md)。仅新增小型安全文本／JSON／脚本，直接Git保存，旧1—47归档不重封。Git／CI回执在交付记录更新。
 
 ## 唯一下一步
 
-平台处理后，核对Google新版地图及代表文章的实际索引结果，并依据具体错误处理；Bing的28URL解析已完成，不重新提交或发布。搜索流量和AI引用需真实数据，不能用提交成功代替。不要重跑已完成的Qwen、部署、付款或真机检查。
+按已准备素材启动首轮10人自愿Web体验，先确定Owner已有且允许推广的一个英文／一个中文渠道与具体外发范围，再按每周最多2条执行并记录有用共享地图。未取得具体渠道发布指示前，素材保持草稿；不以增加长尾AI客户端或反复发布官网代替获客。Google具体抓取错误与客户MCP缺口保留在复核清单中，按证据处理。

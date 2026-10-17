@@ -1,0 +1,9 @@
+{
+  "command": "node --test tools/mcp/client-packages.test.mjs",
+  "observedResult": {
+    "tests": 5,
+    "pass": 5,
+    "fail": 0
+  },
+  "change": "Provider 30-character metadata limit regression; no runtime deployment or repeated OAuth acceptance"
+}

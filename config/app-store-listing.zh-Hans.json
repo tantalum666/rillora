@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-13",
+  "updatedAt": "2026-10-18",
   "locale": "zh-Hans",
   "appId": "6803957639",
   "bundleId": "com.rillora.ios",
-  "status": "metadata_and_designed_screenshots_retained_after_developer_withdrawal",
+  "status": "waiting_for_review_last_verified_20261015",
   "name": "Rillora",
   "subtitle": "把重要的事，提前交代清楚",
   "primaryCategory": "PRODUCTIVITY",
@@ -30,6 +30,16 @@
     "savedReadbackEvidence": "collaboration/verification/final-readiness-20261013/receipts/apple-bilingual-assets-saved.json"
   },
   "reviewSubmission": {
+    "state": "waiting_for_review",
+    "id": "6537a10c-38f2-425e-8b8e-c76e5fa730b1",
+    "build": "14",
+    "observedAt": "2026-10-15T09:49:00+08:00",
+    "evidence": "docs/app-review-preflight-20261014.md",
+    "appleRejection": false,
+    "publiclyReleased": false,
+    "note": "Historical provider readback; no fresh Apple status check or metadata submission on October18."
+  },
+  "previousReviewSubmission": {
     "state": "developer_withdrawn",
     "id": "d7a09a69-8b76-4b37-9a95-c0e169ed4039",
     "build": "14",

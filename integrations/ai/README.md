@@ -5,6 +5,10 @@ Last updated: 2026-10-18 (Asia/Hong_Kong)
 
 本目录提供下一版本的接入材料。当前 App1.0(14) 审核、生产 API／数据库、价格、收费和既有 Auth0 登录配置保持原状；隔离测试注册的当前状态见下方补充。示例文件不代表已注册 OAuth 客户端、已有公网 MCP 服务或已通过目录审核。
 
+## October18 营销与可运行性复核
+
+[本轮全平台矩阵](../../docs/marketing/readiness-audit-20261018.md)区分当前长期登记与已清理的临时证据。原生Node即时读取资源／授权发现200，匿名MCP401；Python路径403／1010不冒充整体停机。OpenAI简介36字符超限已修为23字符并通过5项生成器检查。当前候选不具备下游OIDC UserInfo／email能力及正式客户部署，未提交目录；[5正／3负审核测试和字段草稿](submission-draft-20261018.json)尚未执行于消费端。生成包的pending字段是通用待验条件，不是已验证客户端的最新状态；实际完成只看有日期的证据。
+
 ## October17 长期合成候选
 
 October18补充：[Qwen Code0.25.2原版OAuth及CLI验收](../../docs/architecture/ai-seo-20261018.md)已完成，实际reconnect／list、选定读取、原版刷新与浏览器撤销通过。没有配置模型provider或发起模型调用；不能据此声称模型交互UI、千问消费端或模型自动选择工具通过。测试alias凭据已移除，合成浏览器会话已退出。

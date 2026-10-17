@@ -48,3 +48,19 @@ test('Qwen uses documented HTTP OAuth fields and explicitly requires encrypted c
   assert.deepEqual(config.oauth.scopes,['matters:read:summary','readiness:read:scoped']);
   assert.match(files['qwen-code/credential-storage.txt'],/QWEN_CODE_FORCE_ENCRYPTED_FILE_STORAGE=true/);
 });
+
+test('directory metadata fits the provider submission limits in both package formats', () => {
+  const files = clientPackages(input);
+  const portable = JSON.parse(files['openai/plugin.json']).extensions['com.openai'].interface;
+  const compatibility = JSON.parse(files['codex-plugin/.codex-plugin/plugin.json']).interface;
+  for (const metadata of [portable, compatibility]) {
+    for (const field of ['displayName', 'shortDescription']) {
+      assert.ok([...metadata[field]].length <= 30, `${field} exceeds directory limit`);
+      assert.doesNotMatch(metadata[field], /[\r\n]/);
+    }
+    assert.ok([...metadata.longDescription].length <= 4000);
+    assert.ok(metadata.defaultPrompt.length <= 3);
+    assert.equal(new Set(metadata.defaultPrompt).size, metadata.defaultPrompt.length);
+    for (const prompt of metadata.defaultPrompt) assert.ok([...prompt].length <= 128);
+  }
+});

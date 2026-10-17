@@ -1,0 +1,39 @@
+{
+  "at": "2026-10-17T19:03:02.596Z",
+  "client": "native Node fetch; no cookie, bearer or model request",
+  "results": [
+    {
+      "path": "/mcp",
+      "status": 401,
+      "headers": {
+        "www-authenticate": "Bearer realm=\"OAuth\", resource_metadata=\"https://rillora-ai-candidate.rillora-candidate.workers.dev/.well-known/oauth-protected-resource/mcp\", scope=\"matters:read:summary\"",
+        "content-type": null,
+        "cache-control": "no-store",
+        "x-robots-tag": "noindex, nofollow"
+      },
+      "body": ""
+    },
+    {
+      "path": "/.well-known/oauth-protected-resource/mcp",
+      "status": 200,
+      "headers": {
+        "www-authenticate": null,
+        "content-type": "application/json",
+        "cache-control": "no-store",
+        "x-robots-tag": "noindex, nofollow"
+      },
+      "body": "{\"resource\":\"https://rillora-ai-candidate.rillora-candidate.workers.dev/mcp\",\"authorization_servers\":[\"https://rillora-ai-candidate.rillora-candidate.workers.dev\"],\"scopes_supported\":[\"matters:read:summary\"],\"bearer_methods_supported\":[\"header\"],\"resource_name\":\"Rillora synthetic selected matters\"}"
+    },
+    {
+      "path": "/.well-known/oauth-authorization-server",
+      "status": 200,
+      "headers": {
+        "www-authenticate": null,
+        "content-type": "application/json",
+        "cache-control": "no-store",
+        "x-robots-tag": "noindex, nofollow"
+      },
+      "body": "{\"issuer\":\"https://rillora-ai-candidate.rillora-candidate.workers.dev\",\"authorization_endpoint\":\"https://rillora-ai-candidate.rillora-candidate.workers.dev/authorize\",\"token_endpoint\":\"https://rillora-ai-candidate.rillora-candidate.workers.dev/oauth/token\",\"protected_resources\":[\"https://rillora-ai-candidate.rillora-candidate.workers.dev/mcp\"],\"scopes_supported\":[\"matters:read:summary\",\"readiness:read:scoped\"],\"response_types_supported\":[\"code\"],\"response_modes_supported\":[\"query\"],\"grant_types_supported\":[\"authorization_code\",\"refresh_token\"],\"token_endpoint_auth_methods_supported\":[\"client_secret_basic\",\"client_secret_post\",\"none\"],\"revocation_endpoint\":\"https://rillora-ai-candidate.rillora-candidate.workers.dev/oauth/token\",\"code_challenge_methods_supported\":[\"S256\"],\"authorization_response_iss_parameter_supported\":true,\"client_id_metadata_document_supported\":false}"
+    }
+  ]
+}

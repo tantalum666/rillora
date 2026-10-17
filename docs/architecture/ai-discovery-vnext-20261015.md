@@ -2,10 +2,14 @@
 
 Role: next-version product and distribution plan
 Authority scope: public discovery, cross-platform integration priorities and measurable acceptance
-Status: PUBLIC GEO LIVE / TWO OAUTH CLIENTS VERIFIED / HOSTED MCP AND DIRECTORY PENDING
-Last updated: 2026-10-16 (Asia/Hong_Kong)
+Status: PUBLIC GEO LIVE / SYNTHETIC MCP HOSTED / CUSTOMER INTEGRATION AND DIRECTORY PENDING
+Last updated: 2026-10-18 (Asia/Hong_Kong)
 Source baseline: fec1ad3bcd97984768eed8b2fd95a86ac4f01f35
 Working branch: codex/ai-discovery-vnext-20261015
+
+## October18 当前营销复核
+
+[完整复核](../marketing/readiness-audit-20261018.md)与[获客计划](../marketing/acquisition-plan-20261018.md)为当前状态入口。官网28语言页／6篇双语文章已发布；长期合成候选及Claude Code、Cursor、Qwen Code协议闭环通过。Codex／Gemini此前通过的是已清理的临时环境，不能声称当前长期host已注册。Google地图失败尚未关闭，生成式搜索实际设置为包含。下方October15—16的计划与检查点保留日期；客户MCP、模型任务、目录及增长仍待独立证据。
 
 ## 1. Owner 方向与交付边界
 
@@ -112,4 +116,4 @@ D0、D1 可在独立官网候选进行；I0、I1 使用隔离环境，不触及�
 
 [公开官网两阶段交付](public-discovery-rollout-20261016.md)完成：20双语页面及54文件实际匹配、浏览器语言切换正常；Google和Bing的所有权及站点地图提交完成。Google实际即时提取成功但常规地图报告仍失败／0已发现，Bing地图已Success并解析20网址；未证明全部页面收录或AI推荐。只更新独立www栈，不改变App14、生产API／数据库、定价／收费或FanPass。
 
-[临时HTTPS闭环](ai-https-acceptance-20261016.md)已补齐合成Web选择、Codex真实OAuth、两个工具限定读取及同一未过期token撤销；资源已清理，Cookie与受限数据库就绪检查的实际问题已修。未完成：长期隔离托管、模型实际选工具、其他消费端／目录、索引与推荐效果。继续按[handoff](../handoff.md)唯一下一步推进，不重做已通过的本地矩阵、两客户端OAuth或官网部署。
+[临时HTTPS闭环](ai-https-acceptance-20261016.md)已补齐合成Web选择、Codex真实OAuth、两个工具限定读取及同一未过期token撤销；资源已清理，Cookie与受限数据库就绪检查的实际问题已修。该October16时点未完成长期隔离托管；October17—18已完成合成长期候选。当前仍未完成客户环境、模型实际选工具、其他消费端／目录、索引与推荐效果。继续按[handoff](../handoff.md)唯一下一步推进，不重做已通过的本地矩阵、两客户端OAuth或官网部署。

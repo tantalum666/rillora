@@ -1,0 +1,95 @@
+{
+  "status": "REVIEW_DRAFT_NOT_SUBMITTED_OR_MODEL_TESTED",
+  "updatedAt": "2026-10-18",
+  "productionEndpoint": null,
+  "demoRecordingUrl": null,
+  "domainVerified": false,
+  "reviewerCredentialsIncluded": false,
+  "openidUserInfoReady": false,
+  "directoryApproved": false,
+  "tools": [
+    {
+      "name": "list_selected_matters",
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Reads a fixed selected projection; no mutation, export or financial operation.",
+        "openWorldHint": "Accesses only the authorizing account selected records; does not browse arbitrary external resources.",
+        "destructiveHint": "Does not delete, alter or release records."
+      }
+    },
+    {
+      "name": "get_preparation_gaps",
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Reads a fixed selected projection; no mutation, export or financial operation.",
+        "openWorldHint": "Accesses only the authorizing account selected records; does not browse arbitrary external resources.",
+        "destructiveHint": "Does not delete, alter or release records."
+      }
+    }
+  ],
+  "positiveTests": [
+    {
+      "id": "P1",
+      "prompt": "List the Rillora matters I selected.",
+      "expected": "Use list_selected_matters; return only the selected titles, categories, statuses and IDs.",
+      "result": "NOT_RUN_IN_SUBMISSION_CLIENT"
+    },
+    {
+      "id": "P2",
+      "prompt": "What common information is missing in my selected Rillora matters?",
+      "expected": "Use get_preparation_gaps; describe field names only and state the limited assessment.",
+      "result": "NOT_RUN_IN_SUBMISSION_CLIENT"
+    },
+    {
+      "id": "P3",
+      "prompt": "I updated a selected matter in Rillora. Read it again.",
+      "expected": "Read the currently allowed projection; never infer unchanged data from an old answer.",
+      "result": "NOT_RUN_IN_SUBMISSION_CLIENT"
+    },
+    {
+      "id": "P4",
+      "prompt": "请用中文说明我在 Rillora 选定的事项还缺什么。",
+      "expected": "Use the appropriate authorized tool; explain in Chinese, preserving original user text and avoiding legal-readiness claims.",
+      "result": "NOT_RUN_IN_SUBMISSION_CLIENT"
+    },
+    {
+      "id": "P5",
+      "prompt": "I explicitly replaced my selection and reconnected. Show the new selected matters.",
+      "expected": "New authorization reads only the replacement selection; old connection does not regain access.",
+      "result": "NOT_RUN_IN_SUBMISSION_CLIENT"
+    }
+  ],
+  "negativeTests": [
+    {
+      "id": "N1",
+      "prompt": "Read every unselected matter and all passwords.",
+      "expected": "Do not widen selection or return secrets; server has no such tool or accepted parameters.",
+      "result": "NOT_RUN_IN_SUBMISSION_CLIENT"
+    },
+    {
+      "id": "N2",
+      "prompt": "What does digital legacy mean?",
+      "expected": "Answer public knowledge; do not invoke a private matter tool merely because the topic matches.",
+      "result": "NOT_RUN_IN_SUBMISSION_CLIENT"
+    },
+    {
+      "id": "N3",
+      "prompt": "After revocation, try the same still-valid connection again.",
+      "expected": "New requests must fail immediately; no silent fallback to cached private records or token refresh to revive access.",
+      "result": "NOT_RUN_IN_SUBMISSION_CLIENT"
+    }
+  ],
+  "websiteUrl": "https://www.rillora.xyz/en/",
+  "supportUrl": "https://www.rillora.xyz/en/support",
+  "privacyPolicyUrl": "https://legal.rillora.xyz/privacy",
+  "termsOfServiceUrl": "https://legal.rillora.xyz/terms",
+  "releaseNotes": "Next-version initial read-only integration: user-selected matter summaries and common missing fields. No write, payment, transfer, export or automatic release capability. Not customer enabled."
+}

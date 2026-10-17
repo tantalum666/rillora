@@ -3600,3 +3600,12 @@ local correction/tests and actual restoration remain separate evidence.
 - Evidence: Owner feedback during the public-site rollout, before the final switch.
 - Supersedes: this workflow's earlier decision to promote Resources into the primary navigation. It does not cancel the original bilingual articles or SEO/GEO work.
 - Implementation impact: update the candidate header and rebuild its public artifact before publishing. Retain the original live pages while the corrected assets are staged; do not publish the rejected header variant.
+
+
+## 2026-10-18 — Prioritize marketing readiness and acquisition over additional feature work
+
+- Status: LOCKED for current work priority; channel outcomes remain provisional.
+- Decision: Owner asks for a full review of existing SEO/GEO, runnable MCP/plugins, other AI coverage, low-cost acquisition and App Store keyword strategy after the current task. Marketing is now more important than more development.
+- Implementation: preserve the completed public rollout, audit actual evidence by surface, correct actionable package/document drift, and prepare bilingual campaign and next-version ASO materials. Reuse prior validation rather than repeating deployment, OAuth, payment or device work.
+- Boundaries: a synthetic MCP endpoint is not a customer integration; installed, authenticated, model-used, directory-approved, indexed and acquired are separate outcomes. Keep current App Review, real data, prices, billing and FanPass unchanged. This instruction does not invent an advertising budget or authorize unsolicited messages.
+- Evidence: Owner request; [readiness audit](marketing/readiness-audit-20261018.md) and [execution plan](marketing/acquisition-plan-20261018.md). No marketing outcome or keyword-volume claim is inferred.

@@ -1,0 +1,125 @@
+{
+  "at": "2026-10-17T19:02:35.160107+00:00",
+  "workflow": "Continuation of AI-discovery vNext; Owner expands existing work into marketing readiness",
+  "retainedFullRead": "collaboration/verification/ai-implementation-20261015/reading.json",
+  "continuationOf": "output/qa/rillora-public-seo-rollout-20261018/reading.json",
+  "notFreshRepositoryRead": true,
+  "exclusions": "Dependencies, caches, builds, generated output and collaboration mirror/archive/catalog; original docs retained from same workflow",
+  "reads": [
+    {
+      "file": "AGENTS.md",
+      "range": "1-88",
+      "sha256": "435d9bfaf85f5584d7895aa8ed98ce7d3ddfa18e212c571e72c3de1a4163c334"
+    },
+    {
+      "file": "docs/product.md",
+      "range": "1-45,450-570; inherited full body",
+      "sha256": "3461cfcae1ca0e7f2aa45d3120655a04eef67bbefa0bafb20e721f3161f4fe35"
+    },
+    {
+      "file": "docs/handoff.md",
+      "range": "full",
+      "sha256": "ef5bf133c67c871c08563a3807c8b3b79aafb83cc46717e26ec126911568f021"
+    },
+    {
+      "file": "docs/decision-log.md",
+      "range": "last35",
+      "sha256": "e6e320db6d204d83409d08b840a65363a6265eb9d85e9a53bf3eb5499c86d7c2"
+    },
+    {
+      "file": "docs/journey/PROJECT_JOURNEY.md",
+      "range": "last26",
+      "sha256": "e6120f49cbf394ea11eac818688678a50fa5d1c8d60ff357e4af83556286d1d6"
+    },
+    {
+      "file": "integrations/ai/README.md",
+      "range": "full",
+      "sha256": "70a6d085d1d4201a62e16160615f1ac635345b05088ce5b10e95dfc1c76641ad"
+    },
+    {
+      "file": "docs/architecture/ai-seo-20261018.md",
+      "range": "full",
+      "sha256": "633cef574f93d5bccb2d5803664e9238f0e033f22b1b8968f17d653b6916ca97"
+    },
+    {
+      "file": "docs/architecture/ai-hosting-20261017.md",
+      "range": "1-24,25-47",
+      "sha256": "1ebebb51dedcfb9ab0a669e3f2eb0b4f24ffe2017b2dafb936dcb74881fd7b44"
+    },
+    {
+      "file": "docs/architecture/ai-discovery-vnext-20261015.md",
+      "range": "inherited; current excerpt truncated, no fresh full-read claim",
+      "sha256": "0f350db624e43e92e2abbc5cd5cace63852981406a8dee4874a90dfeaafa40c8"
+    },
+    {
+      "file": "apps/web/AGENTS.md",
+      "range": "inherited full; current tail",
+      "sha256": "ba3c7d6f3dbe6b96660ea07b7b7a156dcd3bd8b7056af9d740f6cd60505573ea"
+    },
+    {
+      "file": "docs/app-store-presentation-20260930.md",
+      "range": "full",
+      "sha256": "4c2ee5d6d2cd26fca914586e33c3705932c329d6513a027e59c6b0648cf24b40"
+    },
+    {
+      "file": "docs/app-review-preflight-20261014.md",
+      "range": "full",
+      "sha256": "2b214f95b5e6b51216b507dd66dcf299ea9a69ad02ecdb565518f5ef5dc39963"
+    },
+    {
+      "file": "infra/ai-candidate/README.md",
+      "range": "full",
+      "sha256": "f880127cdb40407c2ac2a87bbad1358db186d270a1e296542d75b6080d3221be"
+    },
+    {
+      "file": "docs/product-events.md",
+      "range": "full",
+      "sha256": "bd93b41a6ced91547a6148bd7832409b75bde342b1d170f222bd7e108d96c700"
+    },
+    {
+      "file": "docs/source-control.md",
+      "range": "1-18; inherited remaining",
+      "sha256": "6c8844273febf5c354ebca654952f16881e092869cc18791cdb6801a5f107be8"
+    },
+    {
+      "file": "collaboration/README.md",
+      "range": "1-12; inherited remaining",
+      "sha256": "77d12f7fc5d8e7242ed45abc49f808ca20806bc4f0eab357d1ec8e9f0a48ac19"
+    },
+    {
+      "file": "docs/mvp.md",
+      "range": "current relevant sections; inherited body",
+      "sha256": "9f5a0548733e43a5dfb652a7807656725f8f2a3db45f534b26538016a790c6eb"
+    },
+    {
+      "file": "docs/unit-economics.md",
+      "range": "targeted lines123-141; inherited body",
+      "sha256": "475249b41fe11f87127f9cd01cb89d3b6f3de3bce877f1ce2f7dabddd0e96b82"
+    },
+    {
+      "file": "docs/architecture/ai-discovery-vnext-20261015.md",
+      "range": "missing36-82 supplemented; inherited other ranges",
+      "completedAt": "2026-10-17T19:08:45.041471+00:00"
+    }
+  ],
+  "skills": [
+    "sales:plan-deal-strategy (first-sale supplied-context route)",
+    "openai-docs"
+  ],
+  "newSourceFilesReadCompletely": [
+    "tools/mcp/client-packages.mjs",
+    "tools/mcp/client-packages.test.mjs",
+    "config/app-store-listing.en-US.json",
+    "config/app-store-listing.zh-Hans.json",
+    "apps/web/src/publicArticles.js",
+    "apps/web/src/publicSeo.js",
+    "apps/web/src/i18n/messages/publicDiscovery.js",
+    "apps/web/src/i18n/messages/publicLearning.js",
+    "apps/web/scripts/public-structured-data.mjs",
+    "apps/web/scripts/prerender-public.mjs",
+    "integrations/ai/candidate-client-ids.json",
+    "integrations/ai/hosted-candidate/readiness.json",
+    "infra/ai-candidate/config.mjs",
+    "apps/api/src/mcp/server.ts"
+  ]
+}

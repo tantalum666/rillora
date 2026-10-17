@@ -1,5 +1,7 @@
 # Rillora — Git / Dot 协作入口
 
+October18营销复核：[SEO／GEO、MCP和平台矩阵](../docs/marketing/readiness-audit-20261018.md)及[四周获客计划](../docs/marketing/acquisition-plan-20261018.md)已准备，OpenAI简介限制／商店旧状态已纠正；客户MCP和实际增长不冒充完成。[新回执](verification/marketing-readiness-20261018/README.md)以小型可读文件直接Git保存，旧1—47不重封。当前下一步只看handoff。
+
 October18当前：[Qwen续验与官网SEO／GEO](../docs/architecture/ai-seo-20261018.md)已完成；正式www共28个双语页面／6篇文章。Owner否决主导航中的整理方法，已用58780f79b／CI176修正并发布，入口仅留页脚／相关阅读。62份产物实际核对，Google接受地图及代表文章抓取请求，Bing成功解析28URL；不冒称已收录或AI推荐。[本次发布保存](verification/public-seo-rollout-20261018/README.md)追加archive47，[初始候选archive46](verification/ai-seo-20261018/README.md)保持。下方数量和待MFA描述均为当时检查点；当前下一步只看handoff，生产API与App14不变。
 
 October17当前：[免费长期合成候选](../docs/architecture/ai-hosting-20261017.md)及Claude Code／Cursor实际OAuth、限定读取、刷新、撤销通过。Auth0原配置保持，新增独立上游应用和下游client；Qwen实际交互端需要模型配置，Claude官网因Owner无账号未接通。[本轮保存](verification/ai-hosting-20261017/README.md)只补新工作；下方旧“长期托管待办”是历史。当前生产、App14、价格、数据和TestFlight不变。

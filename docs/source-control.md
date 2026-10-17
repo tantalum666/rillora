@@ -2,6 +2,10 @@
 
 Last updated: 2026-10-18 (Asia/Hong_Kong)
 
+## October18 marketing readiness
+
+[Full discovery/integration audit and acquisition plan](marketing/readiness-audit-20261018.md) reuses existing runtime evidence, corrects plugin metadata limits and dated store status, and prepares next-version ASO/campaign materials. [New readable receipts](../collaboration/verification/marketing-readiness-20261018/README.md) preserve only small safe text/JSON/helpers directly; archives1–47 remain unchanged. No deployment, client installation, outreach or ad spend occurs.
+
 ## October18 Qwen continuation and public content
 
 [This continuation](architecture/ai-seo-20261018.md) closes Qwen's original OAuth/CLI and scoped revocation gap without a model account. The public website is now live with 28 localized pages, six bilingual articles and verified discovery metadata. Owner rejected the primary-navigation Resources entry; corrected source58780f79b / CI176 keeps it in the footer. [New deployment evidence](../collaboration/verification/public-seo-rollout-20261018/README.md) is preserved separately in archive47. Google accepts the map and a representative article's crawl request; Bing parses28URLs. Indexing and AI recommendations are not inferred.

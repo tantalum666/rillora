@@ -9,6 +9,10 @@ Last updated: 2026-10-18 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
 
+## 2026-10-18 营销优先与发现能力复核
+
+Owner要求完成当前工作后，全面复核已做SEO／GEO与MCP／插件，补其他AI范围，并计划最低成本获客及App Store关键词。当前转向[营销复核](marketing/readiness-audit-20261018.md)及[四周执行计划](marketing/acquisition-plan-20261018.md)，沿用已有验证，不扩做无需求功能。官网已发布；客户MCP、模型任务、目录及营销结果各自独立。ASO只保存下一版草稿，不改在审资料；已有定价、数据、收费及FanPass保持，外发和投放不能由草稿状态冒充完成。
+
 ## 2026-10-18 补齐客户端并深化公开搜索内容
 
 Owner要求先补齐，再认真推进SEO／GEO。[本轮工作](architecture/ai-seo-20261018.md)关闭Qwen原版OAuth／CLI与有效令牌撤销缺口；4篇新增原创双语指南、页脚入口、文章层级与真实日期元数据已独立发布到www，共28个双语规范网址。实际模板和62份产物核对通过；Bing解析28网址，Google接受地图且代表文章实际抓取通过／进入优先队列。公开内容与隔离MCP、模型工具选择、实际收录和推荐分别验证，不影响App14审核。
@@ -522,6 +526,7 @@ Owner于2026-09-09明确：“本项目全部默认授权与确认”。当前�
 
 | Task | Read next | Role |
 | --- | --- | --- |
+| 营销获客、SEO／GEO复核、平台覆盖和App Store ASO | `docs/marketing/readiness-audit-20261018.md` → `docs/marketing/acquisition-plan-20261018.md` → `docs/marketing/campaign-kit-20261018.md` | 已有能力、真实增长、草稿及未接入平台分开；不改在审版本 |
 | 跨平台 AI 发现、GEO、推荐、插件／MCP 下一版本 | `docs/architecture/ai-discovery-vnext-20261015.md` → `docs/architecture/public-discovery-rollout-20261016.md` → `docs/architecture/ai-oauth-validation-20261016.md` → `integrations/ai/README.md` | 公开官网已交付；搜索索引、MCP托管闭环、模型与目录分别取证，不打断现有审核 |
 | 真实双端核心流程的剩余验收 | `docs/real-core-acceptance-20261004.md` | 当前会话、共享／撤销、导出／恢复、近期认证及删除的实际结果 |
 | 本轮审查修复部署、新iOS构建与加密声明 | `docs/review-rollout-20261003.md` | API11/schema0093与新构建3的实际结果；真实验收与公开发布仍分开 |
