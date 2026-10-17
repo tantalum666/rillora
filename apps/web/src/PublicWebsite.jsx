@@ -8,6 +8,7 @@ import { publicEntry } from "./publicEntry.js";
 import { requestedGuideKey } from "./guideAccess.js";
 import { PublicFragmentNavigation } from "./landing/PublicFragmentNavigation.jsx";
 import { publicPages, publicRoute } from "./publicSeo.js";
+import { publicArticles } from "./publicArticles.js";
 import "./landing/landing.css";
 
 const loaders = {
@@ -19,12 +20,11 @@ const loaders = {
   "/legal": () => import("./landing/LegalInformation.jsx").then(m => m.LegalInformation),
   "/legal/licenses": () => import("./landing/LegalInformation.jsx").then(m => m.ThirdPartyNotices),
   "/learn": () => import("./landing/LearningPage.jsx").then(m => m.default),
-  "/learn/digital-legacy-checklist": () => import("./landing/LearningPage.jsx").then(m => m.default),
-  "/learn/password-manager-and-digital-legacy": () => import("./landing/LearningPage.jsx").then(m => m.default),
 };
 
 // Resolve a route before rendering on both server and client; keep subpage bundles separate.
 export async function loadPublicPage(path) {
+  if (Object.hasOwn(publicArticles, path)) return loaders['/learn']();
   return Object.hasOwn(loaders, path) ? loaders[path]() : null;
 }
 

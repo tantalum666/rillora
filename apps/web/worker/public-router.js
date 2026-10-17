@@ -57,7 +57,9 @@ function handler(event) {
     };
   }
   var pages = ["/", "/product", "/security", "/pricing", "/support", "/legal", "/legal/licenses",
-    "/learn", "/learn/digital-legacy-checklist", "/learn/password-manager-and-digital-legacy"];
+    "/learn", "/learn/digital-legacy-checklist", "/learn/password-manager-and-digital-legacy",
+    "/learn/what-is-digital-legacy", "/learn/share-digital-legacy-safely",
+    "/learn/apple-google-legacy-settings", "/learn/choose-a-digital-legacy-tool"];
   if (pages.indexOf(path) !== -1) {
     var requestedLanguage = request.querystring && request.querystring.lang && request.querystring.lang.value;
     if (requestedLanguage === "en" || requestedLanguage === "zh-CN") {

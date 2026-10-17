@@ -27,7 +27,9 @@ describe('Public information hosting', () => {
     try {
       const markerPath = join(directory, 'public-build.json'), marker = JSON.parse(readFileSync(markerPath, 'utf8'));
       const pages = ['index', 'product', 'security', 'pricing', 'support', 'legal', 'legal/licenses', 'learn',
-        'learn/digital-legacy-checklist', 'learn/password-manager-and-digital-legacy'];
+        'learn/digital-legacy-checklist', 'learn/password-manager-and-digital-legacy',
+        'learn/what-is-digital-legacy', 'learn/share-digital-legacy-safely',
+        'learn/apple-google-legacy-settings', 'learn/choose-a-digital-legacy-tool'];
       marker.pages = [];
       for (const locale of ['en', 'zh-CN']) for (const page of pages) {
         const file = `pages/${locale}/${page}.html`, path = `/${locale}/${page === 'index' ? '' : page}`;

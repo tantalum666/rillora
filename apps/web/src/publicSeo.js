@@ -12,6 +12,10 @@ export const publicPages = {
   "/learn": { title: "public.learn.title", description: "public.seo.learn" },
   "/learn/digital-legacy-checklist": { title: "public.learn.checklist.title", description: "public.learn.checklist.description" },
   "/learn/password-manager-and-digital-legacy": { title: "public.learn.passwords.title", description: "public.learn.passwords.description" },
+  "/learn/what-is-digital-legacy": { title: "public.learn.overview.title", description: "public.learn.overview.description" },
+  "/learn/share-digital-legacy-safely": { title: "public.learn.sharing.title", description: "public.learn.sharing.description" },
+  "/learn/apple-google-legacy-settings": { title: "public.learn.providers.title", description: "public.learn.providers.description" },
+  "/learn/choose-a-digital-legacy-tool": { title: "public.learn.choosing.title", description: "public.learn.choosing.description" },
 };
 
 export function publicRoute(pathname = "/") {

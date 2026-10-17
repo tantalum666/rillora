@@ -14,7 +14,9 @@ export function readVerifiedClientArtifact(directory: string, manifestName: 'pro
   const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
   const publicDocuments = new Set<string>();
   const publicPages = ['index', 'product', 'security', 'pricing', 'support', 'legal', 'legal/licenses',
-    'learn', 'learn/digital-legacy-checklist', 'learn/password-manager-and-digital-legacy'];
+    'learn', 'learn/digital-legacy-checklist', 'learn/password-manager-and-digital-legacy',
+    'learn/what-is-digital-legacy', 'learn/share-digital-legacy-safely',
+    'learn/apple-google-legacy-settings', 'learn/choose-a-digital-legacy-tool'];
   if (manifest.pages !== undefined) {
     if (manifestName !== 'public-build.json' || !Array.isArray(manifest.pages) || manifest.pages.length !== publicPages.length * 2) {
       throw new Error('Only the complete public page matrix is allowed');

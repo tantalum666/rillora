@@ -1,0 +1,41 @@
+{
+  "verifiedAt": "2026-10-17T17:27:45.738071+00:00",
+  "publicBuild": {
+    "passed": true,
+    "localizedPages": 28,
+    "articlesPerLanguage": 6,
+    "manifestFiles": 62
+  },
+  "nodePublicChecks": {
+    "passed": 26,
+    "failed": 0
+  },
+  "infrastructurePublicStackTests": {
+    "passed": 10,
+    "failed": 0
+  },
+  "infrastructureTypecheck": "passed",
+  "browser": {
+    "desktopLanguageSwitchAndFragment": true,
+    "contentsAnchor": true,
+    "nativeFaqExpansion": true,
+    "relatedArticleNavigation": true,
+    "resourcesPrimaryNavigation": true,
+    "responsiveLayout": {
+      "viewport": 390,
+      "scrollWidth": 390,
+      "mainWidth": 350,
+      "horizontalOverflow": false
+    },
+    "mobileTouchMenu": "not asserted: browser debugger input dispatch timed out while DevTools emulation was active; ordinary desktop input resumed after closing DevTools",
+    "applicationConsoleErrorsObserved": 0,
+    "extensionWarningsExcluded": true
+  },
+  "qwenCleanup": {
+    "browserSignedOut": true,
+    "sdkAliasCredentialDeleted": true,
+    "inMemorySyntheticCredentialCleared": true
+  },
+  "cloudDeployment": "pending AWS MFA; no public switch performed",
+  "sourceScope": "public website and exact route/artifact matrix; no application runtime change"
+}

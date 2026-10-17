@@ -1,11 +1,13 @@
 # Rillora 跨平台 AI 接入包
 
 Status: ISOLATED SYNTHETIC HOSTING LIVE — NOT CUSTOMER READY / NOT LISTED
-Last updated: 2026-10-17 (Asia/Hong_Kong)
+Last updated: 2026-10-18 (Asia/Hong_Kong)
 
 本目录提供下一版本的接入材料。当前 App1.0(14) 审核、生产 API／数据库、价格、收费和既有 Auth0 登录配置保持原状；隔离测试注册的当前状态见下方补充。示例文件不代表已注册 OAuth 客户端、已有公网 MCP 服务或已通过目录审核。
 
 ## October17 长期合成候选
+
+October18补充：[Qwen Code0.25.2原版OAuth及CLI验收](../../docs/architecture/ai-seo-20261018.md)已完成，实际reconnect／list、选定读取、原版刷新与浏览器撤销通过。没有配置模型provider或发起模型调用；不能据此声称模型交互UI、千问消费端或模型自动选择工具通过。测试alias凭据已移除，合成浏览器会话已退出。
 
 [当前托管和验收](../../docs/architecture/ai-hosting-20261017.md)新增Cloudflare／Neon Free独立候选。真实Claude Code与Cursor授权、读取和撤销通过，未调用付费模型。下方原Auth0直连步骤保留为生产路线合同，不能套作候选的已部署配置。候选使用Cloudflare官方OAuth授权层、一个独立Auth0上游应用、各平台独立clientId；只含合成资料，不能作为普通客户入口或生产恢复能力证明。
 

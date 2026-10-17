@@ -1,0 +1,10 @@
+from pathlib import Path
+import sys,json,subprocess
+root=Path(__file__).resolve().parents[3];sys.path.insert(0,str(root/'tools/security'))
+from credential_store import read_secret_json
+print('Requesting protected synthetic-account access.',flush=True)
+value=read_secret_json(root/'.local-secrets/ai-hosting-20261017/candidate-vault.json',root=root)['auth0']
+private=root/'.local-secrets/ai-seo-20261018';private.mkdir(mode=0o700,exist_ok=True)
+script="""const fs=require('node:fs'),crypto=require('node:crypto');let b='';process.stdin.on('data',x=>b+=x);process.stdin.on('end',()=>{const encrypted=crypto.publicEncrypt({key:fs.readFileSync('output/qa/rillora-ai-seo-20261018/qwen-browser-public.pem'),padding:crypto.constants.RSA_PKCS1_OAEP_PADDING,oaepHash:'sha256'},Buffer.from(b));fs.writeFileSync('.local-secrets/ai-seo-20261018/browser-login.bin',encrypted,{mode:0o600,flag:'wx'});});"""
+subprocess.run(['node','-e',script],input=json.dumps({'username':value['username'],'password':value['password']}).encode(),cwd=root,check=True)
+print('Synthetic login encrypted for this browser session; no plaintext file created.',flush=True)

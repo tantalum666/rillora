@@ -1,6 +1,10 @@
 # Source control, complete work preservation and release rollback
 
-Last updated: 2026-10-17 (Asia/Hong_Kong)
+Last updated: 2026-10-18 (Asia/Hong_Kong)
+
+## October18 Qwen continuation and public content
+
+[This continuation](architecture/ai-seo-20261018.md) closes Qwen's original OAuth/CLI and scoped revocation gap without a model account. Four original bilingual articles, navigation and structured discovery metadata build into 28 public pages; targeted checks pass. AWS's actual expired session is at MFA, so this candidate is not yet live. [New evidence only](../collaboration/verification/ai-seo-20261018/README.md) is preserved in archive46; earlier archives and runtime acceptance are not repeated. The current gate is the public-site switch, not a fresh Qwen/model registration or App Review action.
 
 
 ## October17 isolated free hosting and additional clients

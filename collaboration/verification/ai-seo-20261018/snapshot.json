@@ -1,0 +1,45 @@
+{
+  "capturedFrom": "2026-10-17T17:30:44.116160+00:00",
+  "capturedThrough": "2026-10-17T17:30:44.452829+00:00",
+  "workFiles": 95,
+  "uniqueRawObjects": 94,
+  "workBytes": 2511774,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-046.tar.zst.age",
+      "sha256": "996764d527570e1a8c20ddea87e586478431326af70f90ddd228766bb2aef1c4",
+      "bytes": 1239639,
+      "plainBytes": 2495221,
+      "uniqueObjects": 94
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/ai-seo-20261018/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": ".local-secrets",
+      "reason": "credentials, auth URLs, token stores, AWS account and MFA screens"
+    },
+    {
+      "path": "archives001-045",
+      "reason": "previous immutable captures; not resealed or downloaded"
+    },
+    {
+      "path": "output/qa/rillora-ai-seo-20261018/publication",
+      "reason": "capture cache or expanded deployment dependencies; exact public artifact and template copied separately"
+    },
+    {
+      "path": "output/qa/rillora-ai-seo-20261018/cdk.out",
+      "reason": "capture cache or expanded deployment dependencies; exact public artifact and template copied separately"
+    },
+    {
+      "path": "output/qa/rillora-ai-seo-20261018/qwen-browser-public.pem",
+      "reason": "ephemeral browser transfer public key"
+    }
+  ],
+  "credentialPatternMatches": 0,
+  "sourceSecretScan": "passed; 32 existing reviewed nonsecrets, zero unreviewed",
+  "selection": "New Qwen read/refresh/revoke, public candidate bytes, source/tests, browser results, search baseline and scoped pending rollout scripts.",
+  "boundary": "No model call, consumer account, new site deployment, indexing or recommendation result. AWS MFA pending at capture."
+}

@@ -1,5 +1,7 @@
 # Rillora — Git / Dot 协作入口
 
+October18当前：[Qwen原版OAuth／CLI和有效令牌撤销已补齐](../docs/architecture/ai-seo-20261018.md)，无需先配置模型；四篇新原创双语指南与SEO元数据已构建为28页，本地检查通过，AWS实际续期停MFA，尚未发布新版官网。[本轮保存](verification/ai-seo-20261018/README.md)只追加新工作及archive46。下方Qwen／官网数量是历史检查点；当前唯一下一步看handoff，生产与App14不变。
+
 October17当前：[免费长期合成候选](../docs/architecture/ai-hosting-20261017.md)及Claude Code／Cursor实际OAuth、限定读取、刷新、撤销通过。Auth0原配置保持，新增独立上游应用和下游client；Qwen实际交互端需要模型配置，Claude官网因Owner无账号未接通。[本轮保存](verification/ai-hosting-20261017/README.md)只补新工作；下方旧“长期托管待办”是历史。当前生产、App14、价格、数据和TestFlight不变。
 
 

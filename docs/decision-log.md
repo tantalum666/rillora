@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-17 (Asia/Hong_Kong)
+Last updated: 2026-10-18 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -3581,3 +3581,13 @@ local correction/tests and actual restoration remain separate evidence.
 - Owner states they have no Claude account. Do not create an account, require a paid plan or claim Claude consumer acceptance. Actual Claude Code and Cursor CLI OAuth can be validated independently without an Anthropic or Cursor model session.
 - Retain one Auth0 upstream application and independent Cloudflare client registrations. Candidate-only wrapping keys, synthetic legal fixtures and disabled recovery publication are explicitly not production KMS/recovery or customer-readiness equivalence. Production and App14 remain untouched.
 - Real browser evidence identifies no-referrer → Origin:null on native forms. Use same-origin for HTML and redirects, keep null origins rejected, and allow only verified form redirect origins. Both clients pass selected-only reads and same-token/refresh rejection after browser revocation. No model request, paid upgrade, directory submission or recommendation promise follows.
+
+## 2026-10-18 — Complete remaining client evidence and deepen public SEO/GEO
+
+- Status: LOCKED
+- Scope: next-version AI candidate and existing independent public website.
+- Decision: Owner asks to complete the remaining work first and explicitly emphasizes meaningful SEO/GEO work. Reuse the unmodified Qwen OAuth component and actual CLI without inventing a model credential or purchasing a model plan. Add four distinct original bilingual educational articles, navigation and accurate discovery metadata.
+- Evidence: Owner instruction; actual Qwen OAuth/CLI/read/refresh/revoke receipts, 822 seconds remaining at rejection; public build, 26 public checks, 10 infrastructure tests and scoped browser results.
+- Supersedes: treating a Qwen model-provider configuration as mandatory for protocol/CLI acceptance. It remains necessary for the separate interactive model experience where applicable.
+- Does not imply: a live website update while AWS MFA is pending, a consumer-platform connection, model-selected tool usage, indexing, AI citations, customer MCP enablement or any change to App14 review.
+- Implementation impact: preserve current production data, prices, billing, FanPass and TestFlight. The staged website upload must include only assets and eight new page objects; existing pages remain unchanged until the complete routing/content switch. [Current evidence](architecture/ai-seo-20261018.md).

@@ -1,26 +1,24 @@
 # Rillora 当前交接
 
-Status: FREE SYNTHETIC HOSTING / TWO CLIENTS / SOURCE CI / REMOTE ARCHIVE VERIFIED
-Last updated: 2026-10-17 (Asia/Hong_Kong)
+Status: QWEN OAUTH AND CLI VERIFIED / SEO-GEO CANDIDATE READY / AWS MFA PENDING
+Last updated: 2026-10-18 (Asia/Hong_Kong)
 
 ## 当前任务
 
-Owner要求继续长期托管与其他AI接入，尽量免费，不重复已验项，不影响审核并推GitHub；随后说明没有Claude账号，不要求注册。继续codex/ai-discovery-vnext-20261015。上一交接见[历史](handoff-history-20261017-before-hosting.md)。官网／Google／Bing、旧Codex／Gemini、临时HTTPS及archive44证据保留，CI169／170已成功，不重跑旧矩阵。
+Owner要求先补齐AI接入，再继续实际SEO／GEO工作。仍在codex/ai-discovery-vnext-20261015，基线6641df8b7／CI173。既有托管、两客户端和archive45证据沿用；App14、生产账户／数据库、价格、收费、FanPass及TestFlight保持。[上一交接](handoff-history-20261018-before-seo.md)仅供历史查阅。
 
-## 本轮结果
+## 本轮进展
 
-[长期候选合同](architecture/ai-hosting-20261017.md)和[运行包](../infra/ai-candidate/README.md)记录Cloudflare Workers／Neon Free实际交付。独立空库105迁移、受限角色、Hyperdrive来源verify-full／禁用查询缓存、EU OAuth KV、独立secret和两条加密合成事项均已验证。候选长期保留在rillora-ai-candidate.rillora-candidate.workers.dev；不是临时隧道。原Functions入口403没有冒领成功，两个旧探针已关闭或改为无数据库的关闭处理器。
+Qwen Code0.25.2的原版OAuth组件可独立调用，不必先配置付费模型。已复用独立client和合成身份，使用未修改的原版PKCE、callback、token交换及加密存储，再执行真实CLI reconnect与list，均成功。两工具限定读取、原版刷新、浏览器撤销后的旧／新token及再次刷新拒绝通过，刷新访问期仍剩822秒。该alias凭据已移除；模型交互UI、模型主动选工具和目录审核仍未验证。Claude官网不要求Owner注册。
 
-Auth0原9应用及旧绑定／租户设置保持，新增一个候选上游登录应用填满Free10名额；Cloudflare的Claude、Claude Code、Cursor、Qwen Code有不同clientId。原版Claude Code2.1.302和CursorCLI2026.10.16-e3cb207真实OAuth、实际工具发现、限定读取／刷新及浏览器撤销通过；撤销时有效令牌尚余608／814秒，旧令牌与刷新均拒绝。已退出Claude测试连接并移除Cursor隔离fixture失效令牌，用户全局MCP未覆盖。
+官网当前20个双语规范网址中，只有2篇公开文章。Google后台刷新仍报原sitemap无法读取／0已发现；Bing地图成功解析20网址，其AI报告截止October15、早于October16发布，不能据此评价发布后效果。普通HTTPS与真实Chrome可读，搜索工具读取失败没有归因为站点封禁。
 
-[接入材料](../integrations/ai/hosted-candidate/readiness.json)只含公开clientId。Claude官网没有用户账号，未创建或接通。QwenCode0.25.2原版CLI识别配置，但重连缺少令牌，交互端明确要求先配置模型provider；未借用其他项目密钥，未执行模型调用。不能将上述代码客户端结果写成消费平台、模型选工具、目录上架或自动推荐证明。
+本轮4篇原创双语内容、主导航学习入口、文章与层级元数据、准确日期、来源及相关链接已完成；共6篇文章／28页／62文件。public构建、26项Web检查、10项官网栈测试、infra类型检查及浏览器重点流程通过，390px布局无横向溢出；触摸模拟输入的工具超时不算产品验收通过。源码保持UI风格，不公开私有平台指南正文。QA在output/qa/rillora-ai-seo-20261018，完整阅读链沿用。[聚焦记录](architecture/ai-seo-20261018.md)。
 
-## 验证与边界
-
-当次API相关回归28项、迁移词法／所有权16项、候选边界2项、接入包4项、API／候选typecheck、Worker干构建及实际公网10项边界检查通过。不同阶段的旧5项探针／新2项候选检查分别记录，不重复合计。当前源码扫描通过，32条原已核对非秘密、0条未审项。archive45已本地认证133路径／117对象／1,528,372密文字节；新增归档与GitHub实证见[本轮保存](../collaboration/verification/ai-hosting-20261017/README.md)，源码与archive45已推8233d8691，独立远端下载认证通过；CI171新增候选检查暴露Web任务缺少共享API依赖，已在da394a1ac补安装步骤，CI172三任务全部通过。最终收尾只追加普通Git回执，不重复部署或原业务验收。
-
-这是仅含合成资料的独立候选。Worker包装密钥不等价于生产KMS／独立强制恢复日志／客户开放。生产API和数据库、Gmail／QQ事项、定价、收费开关、FanPass、App14审核和TestFlight保持；尚未把候选连接到真实客户数据。凭据在既有Secure Enclave封装及提供方秘密存储；.local-secrets、原登录URL、CLI令牌和完整私人回执不入Git。
+AWS CLI已实际过期，原rillora-operator密码已复用，Chrome只停在MFA，Owner问题已挂起；Auth0管理不需要重登。新官网未部署、搜索平台未重复提交。两阶段准备只更改现有官网上传／路由，暂存必须保留原20页并只新增资源和8页。Qwen alias凭据与合成会话均已清理。Git保存结果另在本轮可读回执追加。
 
 ## 唯一下一步
 
-补齐Qwen Code原版交互授权：当前隔离profile缺少可用模型配置，CLI明确不允许进入交互授权。取得适用于Rillora的配置后，只补这个未验步骤；Claude官网不要求Owner另行注册，当前合成候选与App14发布面继续隔离。
+Owner完成已打开AWS页的MFA后，读回续期，执行output/qa/rillora-ai-seo-20261018/public-rollout.py的plan→prepare-stage→execute-stage→check-stage→prepare-live→execute-live；每次execute后等实际UPDATE_COMPLETE，再做精确HTTP／模板验证及搜索回执，追加Git保存。不要重复Qwen、已通过测试、旧归档或本人确认，不将提交回执宣称为收录、引用或客户MCP开放。
+
+如果实际发布日跨天，先把四篇新稿的发布／修改日期改为实际发布日并重建对应官网产物；旧两篇的October16日期保持。公开候选的计划日期不等于实际发布证明。

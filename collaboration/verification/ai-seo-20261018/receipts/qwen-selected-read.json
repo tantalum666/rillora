@@ -1,0 +1,31 @@
+{
+  "summary": {
+    "matters": [
+      {
+        "publicId": "81665b73-b6d5-4a26-bda6-b5a62374e2ca",
+        "title": "Selected synthetic digital account",
+        "category": "account",
+        "status": "draft"
+      }
+    ]
+  },
+  "gaps": {
+    "matters": [
+      {
+        "publicId": "81665b73-b6d5-4a26-bda6-b5a62374e2ca",
+        "missingFields": [
+          "intended_outcome"
+        ]
+      }
+    ],
+    "assessment": "selected_common_fields_only",
+    "notAssessed": [
+      "category_specific_details",
+      "legal_authority",
+      "recipient_readiness"
+    ]
+  },
+  "originalQwenRefreshPassed": true,
+  "accessTokenTtl": 900,
+  "passed": true
+}

@@ -5,9 +5,13 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-10-17 (Asia/Hong_Kong)
+Last updated: 2026-10-18 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-10-18 补齐客户端并深化公开搜索内容
+
+Owner要求先补齐，再认真推进SEO／GEO。[本轮工作](architecture/ai-seo-20261018.md)关闭Qwen原版OAuth／CLI与有效令牌撤销缺口；补4篇原创双语指南、主导航入口、文章层级与真实日期元数据，构建为28个双语规范网址。公开内容与隔离MCP、模型工具选择、搜索收录和推荐分别验证；上线只使用既有独立www栈，不影响App14审核。当前部署与搜索回执以该聚焦记录和handoff为准，不从构建成功推导已经发布。
 
 ## 2026-10-17 免费隔离托管及新增客户端
 

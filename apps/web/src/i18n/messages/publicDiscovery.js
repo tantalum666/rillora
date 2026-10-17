@@ -1,5 +1,7 @@
+import { en as learningEn, zhCN as learningZhCN } from './publicLearning.js';
 // Original public education and product facts. No private platform-guide bodies.
 export const en = {
+  ...learningEn,
   "public.seo.homeTitle": "Rillora — A private map for your digital legacy",
   "public.seo.home": "Organise your digital legacy with Rillora: map important accounts, documents and next steps, and choose what to share with people you trust. No passwords or seed phrases.",
   "public.seo.product": "See how Rillora organises digital matters, document locations and wishes into a private map, with selected information shared through a secure Web entry.",
@@ -8,13 +10,13 @@ export const en = {
   "public.seo.support": "Find Rillora support, privacy and security contacts, answers about shared information, and practical digital legacy planning resources.",
   "public.seo.legal": "Read Rillora service terms, privacy and subscription policies, website preferences and third-party licence notices.",
   "public.seo.notices": "Read the third-party software, font and design licence notices included with Rillora.",
-  "public.seo.learn": "Practical digital legacy resources: build a useful inventory for family and understand how a map of digital affairs works alongside a password manager.",
+  "public.seo.learn": "Understand digital legacy planning, build a useful family inventory, share selected information safely, compare tools and review Apple and Google account arrangements.",
   "public.learn.title": "Digital legacy resources — Rillora",
   "public.learn.heading": "Make a useful starting point",
   "public.learn.intro": "Start with what someone would need to find, understand and check. You can build a useful map without collecting your secrets in one place.",
   "public.learn.link": "Digital legacy resources",
   "public.learn.back": "All resources",
-  "public.learn.byline": "Written by Rillora · Updated 15 October 2026",
+  "public.learn.byline": "Written by Rillora · Updated {date}",
   "public.learn.product": "Explore the Rillora map",
   "public.learn.security": "Understand sharing and security",
   "public.learn.checklist.title": "A practical digital legacy checklist — Rillora",
@@ -42,6 +44,7 @@ export const en = {
 };
 
 export const zhCN = {
+  ...learningZhCN,
   "public.seo.homeTitle": "Rillora — 私密的数字遗产事项地图",
   "public.seo.home": "用 Rillora 整理数字遗产与重要事务：记录账号、文件位置和下一步，并选择与信任的人共享哪些资料。不保存密码或助记词。",
   "public.seo.product": "了解 Rillora 如何把数字事务、文件位置与处理意愿整理成私密事项地图，并让接收人通过安全的网页入口查看选定资料。",
@@ -50,13 +53,13 @@ export const zhCN = {
   "public.seo.support": "查找 Rillora 的支持、隐私与安全联系入口，了解共享资料的常见问题和数字遗产整理方法。",
   "public.seo.legal": "查看 Rillora 服务条款、隐私与订阅政策、网站偏好设置说明及第三方许可。",
   "public.seo.notices": "查看 Rillora 使用的软件、字体与设计素材的第三方许可声明。",
-  "public.seo.learn": "实用的数字遗产整理方法：为家人准备可用的事务清单，了解事项地图与密码管理器各自的用途。",
+  "public.seo.learn": "了解数字遗产，准备家人能用的事务清单，安全地共享选定资料，比较整理工具，并核对苹果与谷歌的账号安排。",
   "public.learn.title": "数字遗产整理方法 — Rillora",
   "public.learn.heading": "让关心你的人知道从哪里开始",
   "public.learn.intro": "先想清楚对方需要找到什么、理解什么、核对什么。整理一份有用的事项地图，不需要把所有秘密集中存放。",
   "public.learn.link": "数字遗产整理方法",
   "public.learn.back": "全部整理方法",
-  "public.learn.byline": "Rillora 编写 · 更新于 2026 年 10 月 15 日",
+  "public.learn.byline": "Rillora 编写 · 更新于 {date}",
   "public.learn.product": "了解 Rillora 事项地图",
   "public.learn.security": "了解共享与安全边界",
   "public.learn.checklist.title": "给家人准备一份实用的数字遗产清单 — Rillora",

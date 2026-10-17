@@ -1,7 +1,9 @@
 # 下一版本：长期隔离托管与其他 AI 平台
 
 Status: ISOLATED FREE HOSTING LIVE / CLAUDE CODE AND CURSOR OAUTH + SCOPED REVOCATION PASSED
-Last updated: 2026-10-17 (Asia/Hong_Kong)
+Last updated: 2026-10-18 (Asia/Hong_Kong)
+
+October18续验：[Qwen原版OAuth组件及真实CLI已通过](ai-seo-20261018.md)，无模型调用；原版刷新、选定读取和有效令牌撤销通过。下方矩阵保留October17检查点，Qwen的协议／CLI缺口已由该续验关闭，模型交互UI及消费端结果仍未证明。
 
 Owner要求继续长期托管与其他平台接入，尽量免费，不重复已验项目，不影响App14审核，并推GitHub。沿用[上轮HTTPS闭环](ai-https-acceptance-20261016.md)及CI169／170，未重做已完成的官网发布、站长平台提交、旧Codex／Gemini协议矩阵或Apple操作。Owner本轮说明没有Claude账号，因此不要求注册，不把Claude官网算作接入成功。
 
@@ -23,7 +25,7 @@ Neon Functions最初显示Completed，但公网入口在应用执行前返回403
 
 实际Chrome验收发现no-referrer使原生POST发出Origin:null；服务器正确403拒绝，Chrome显示ERR_BLOCKED_BY_CLIENT。改为HTML／跳转采用same-origin，其他响应保持no-referrer，保留严格CSRF而不是放行null。表单跳转仅允许固定Auth0及经过OAuth验证的回调origin。另修复Worker全局随机数初始化限制：仅测试邮件键改为首次需要时生成，生产显式密钥要求不变。
 
-## 新增客户端证据
+## October17 新增客户端证据（日期化检查点）
 
 | 客户端 | 当次实证 | 明确保留的边界 |
 | --- | --- | --- |

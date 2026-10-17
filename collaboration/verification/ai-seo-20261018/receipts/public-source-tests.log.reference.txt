@@ -1,0 +1,76 @@
+TAP version 13
+# Subtest: every public semantic message has complete English and Chinese forms and matching interpolation
+ok 1 - every public semantic message has complete English and Chinese forms and matching interpolation
+  ---
+  duration_ms: 3.097084
+  type: 'test'
+  ...
+# Subtest: all public UI and example-data message references resolve in both languages
+ok 2 - all public UI and example-data message references resolve in both languages
+  ---
+  duration_ms: 17.38225
+  type: 'test'
+  ...
+# Subtest: demonstration content is translated before rendering without widening recipient visibility
+ok 3 - demonstration content is translated before rendering without widening recipient visibility
+  ---
+  duration_ms: 0.465375
+  type: 'test'
+  ...
+# Subtest: shared-count grammar and name interpolation form complete locale-specific sentences
+ok 4 - shared-count grammar and name interpolation form complete locale-specific sentences
+  ---
+  duration_ms: 0.9125
+  type: 'test'
+  ...
+# Subtest: display locale never converts or changes the locked Web annual price and plan limits
+ok 5 - display locale never converts or changes the locked Web annual price and plan limits
+  ---
+  duration_ms: 1.515875
+  type: 'test'
+  ...
+# Subtest: legal references follow the selected language while third-party licence originals remain intact
+ok 6 - legal references follow the selected language while third-party licence originals remain intact
+  ---
+  duration_ms: 0.52475
+  type: 'test'
+  ...
+# Subtest: both public headers keep language selection before the far-right appearance control
+ok 7 - both public headers keep language selection before the far-right appearance control
+  ---
+  duration_ms: 0.630916
+  type: 'test'
+  ...
+# Subtest: Chinese sample download stays synthetic and separate from real export contracts
+ok 8 - Chinese sample download stays synthetic and separate from real export contracts
+  ---
+  duration_ms: 1.119541
+  type: 'test'
+  ...
+# Subtest: public discovery metadata and original education are complete in both languages
+ok 9 - public discovery metadata and original education are complete in both languages
+  ---
+  duration_ms: 14.651209
+  type: 'test'
+  ...
+# Subtest: canonical language links preserve fragments without rewriting external or private destinations
+ok 10 - canonical language links preserve fragments without rewriting external or private destinations
+  ---
+  duration_ms: 0.550041
+  type: 'test'
+  ...
+# Subtest: edge chooses locale-specific cache objects and preserves old public and guide bookmarks
+ok 11 - edge chooses locale-specific cache objects and preserves old public and guide bookmarks
+  ---
+  duration_ms: 0.838833
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 136.428292
