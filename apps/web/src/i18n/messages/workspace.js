@@ -12,7 +12,7 @@ export const en = {
   "workspace.identity.unavailable": "Email is unavailable. Use the account ID below to identify this account.",
   "workspace.identity.id": "Rillora account ID",
   "workspace.identity.retry": "Check account details again",
-  "workspace.identity.language": "Language / 语言",
+  "workspace.identity.language": "Language",
 
   "workspace.plan.reviewMatter": "Review directions: {name}",
   "workspace.plan.addAnother": "Add another matter",
@@ -308,7 +308,7 @@ export const zhCN = {
   "workspace.identity.unavailable": "暂时无法显示邮箱，可通过下方账号编号核对当前账号。",
   "workspace.identity.id": "Rillora 账号编号",
   "workspace.identity.retry": "重新核对账号信息",
-  "workspace.identity.language": "语言 / Language",
+  "workspace.identity.language": "语言",
 
   "workspace.plan.reviewMatter": "核对指引：{name}",
   "workspace.plan.addAnother": "再添加一个事项",

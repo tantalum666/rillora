@@ -1,0 +1,29 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "xyz.rillora/rillora",
+  "title": "Rillora",
+  "description": "Read selected digital-legacy matters and check missing information. OAuth and item consent required.",
+  "version": "0.1.0",
+  "websiteUrl": "https://app.rillora.xyz/account?next=ai-connect",
+  "icons": [
+    {
+      "src": "https://www.rillora.xyz/favicon.png",
+      "mimeType": "image/png"
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://app.rillora.xyz/api/mcp"
+    }
+  ],
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "installationGuide": "https://app.rillora.xyz/integrations/rillora-ai-v1.zip",
+      "authentication": "Pre-registered public OAuth clients; use the matching client ID in the installation guide. Dynamic client registration is not enabled.",
+      "access": "Only explicitly selected matter summaries and optional common missing-field names; access can be revoked in Rillora.",
+      "supportedConfigurations": ["Codex", "ChatGPT", "Claude", "Claude Code", "Cursor", "Gemini CLI", "Qwen Code"],
+      "consumerAcceptance": "Codex authorization, model tool calls and revocation verified against the production endpoint. Other consumer products and their directory approvals are tracked separately."
+    }
+  }
+}
