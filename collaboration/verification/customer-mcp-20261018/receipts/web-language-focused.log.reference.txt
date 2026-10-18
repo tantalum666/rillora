@@ -1,0 +1,49 @@
+TAP version 13
+# ▲ [WARNING] "import.meta" is not available with the "cjs" output format and will be empty [empty-import-meta]
+#     src/AccountIdentity.jsx:6:34:
+#       6 │ ...iConnectionsPanel = typeof import.meta.env !== 'undefined' && im...
+#         ╵                               ~~~~~~~~~~~
+#   You need to set the output format to "esm" for "import.meta" to work correctly.
+# ▲ [WARNING] "import.meta" is not available with the "cjs" output format and will be empty [empty-import-meta]
+#     src/AccountIdentity.jsx:6:69:
+#       6 │ ...eta.env !== 'undefined' && import.meta.env.VITE_RILLORA_AI_CONNE...
+#         ╵                               ~~~~~~~~~~~
+#   You need to set the output format to "esm" for "import.meta" to work correctly.
+# ▲ [WARNING] "import.meta" is not available with the "cjs" output format and will be empty [empty-import-meta]
+#     src/api.js:497:24:
+#       497 │ const viteEnvironment = import.meta.env ?? {};
+#           ╵                         ~~~~~~~~~~~
+#   You need to set the output format to "esm" for "import.meta" to work correctly.
+# Subtest: account presentation uses current authoritative email and separates pending from unavailable
+ok 1 - account presentation uses current authoritative email and separates pending from unavailable
+  ---
+  duration_ms: 338.234708
+  type: 'test'
+  ...
+# Subtest: all application and public messages have complete, parameter-compatible bilingual catalogs
+ok 2 - all application and public messages have complete, parameter-compatible bilingual catalogs
+  ---
+  duration_ms: 5.942875
+  type: 'test'
+  ...
+# Subtest: literal translation references and stored local-message keys resolve in both languages
+ok 3 - literal translation references and stored local-message keys resolve in both languages
+  ---
+  duration_ms: 29.606708
+  type: 'test'
+  ...
+# Subtest: catalog lookup preserves arbitrary user text literally as interpolation data
+ok 4 - catalog lookup preserves arbitrary user text literally as interpolation data
+  ---
+  duration_ms: 37.477125
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 435.890708

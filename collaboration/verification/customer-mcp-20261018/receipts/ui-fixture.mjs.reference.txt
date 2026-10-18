@@ -1,0 +1,30 @@
+import {build} from '../../../apps/web/node_modules/esbuild/lib/main.js';
+import {createServer} from 'node:http';
+import {readFile,writeFile} from 'node:fs/promises';
+import {resolve} from 'node:path';
+const root=process.cwd(),qa=resolve('output/qa/rillora-customer-mcp-20261018');
+await build({stdin:{loader:'jsx',resolveDir:resolve('apps/web'),contents:`
+ import React from 'react';import {createRoot} from 'react-dom/client';
+ import AiConnectionsPanel from './src/AiConnectionsPanel.jsx';
+ import {I18nProvider} from './src/i18n/I18nProvider.jsx';import {appCatalogs} from './src/i18n/appCatalogs.js';
+ import {LanguageControl} from './src/i18n/LanguageControl.jsx';import './src/styles.css';
+ const pending=new URLSearchParams(location.search).has('pending');let connections=[];
+ const clients=[{key:'codex',name:'Codex',clientId:'rillora-codex-v1',privacyUrl:'https://openai.com/policies/privacy-policy/'},
+ {key:'openai',name:'ChatGPT',clientId:'rillora-openai-v1',privacyUrl:'https://openai.com/policies/privacy-policy/'}];
+ const apiClient={getAiConnections:async()=>({customerOAuth:true,clients,connections,serverUrl:'https://app.rillora.xyz/api/mcp',
+ consentVersion:'ai-selected-read-2026-10-15-1',identityDisclosureVersion:'ai-verified-email-2026-10-18-1'}),
+ getAiSelectableMatters:async()=>({matters:[{publicId:'11111111-1111-4111-8111-111111111111',title:'Synthetic record A',version:1},
+ {publicId:'22222222-2222-4222-8222-222222222222',title:'Synthetic record B',version:1}],nextCursor:null}),
+ getAiOAuthInteraction:async()=>({pending:pending?{uid:'synthetic-interaction-for-ui-only',clientKey:'openai',
+ scopes:['matters:read:summary','readiness:read:scoped'],shareVerifiedEmail:true}:null}),
+ completeAiOAuth:async input=>{if(!input.selection.acknowledgedDisclosure)throw Error('Missing explicit consent');
+ connections=[{publicId:'33333333-3333-4333-8333-333333333333',clientKey:'openai',version:1,status:'active',selectedCount:input.selection.matters.length,expiresAt:new Date(Date.now()+86400000).toISOString()}];return{};},
+ revokeAiConnection:async()=>{connections=[];return{revoked:true};}};
+ createRoot(document.getElementById('root')).render(<I18nProvider catalogs={appCatalogs}><main style={{maxWidth:760,margin:'32px auto',padding:24}}>
+ <LanguageControl/><AiConnectionsPanel plannerPublicId="aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa" apiClient={apiClient}/></main></I18nProvider>);
+ `},bundle:true,format:'esm',platform:'browser',jsx:'automatic',outfile:resolve(qa,'ui-fixture.js'),define:{'import.meta.env':'{}'}});
+const html='<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Rillora synthetic customer UI acceptance</title><link rel="stylesheet" href="/ui-fixture.css"></head><body><div id="root"></div><script type="module" src="/ui-fixture.js"></script></body></html>';
+createServer(async(req,res)=>{const path=new URL(req.url,'http://127.0.0.1').pathname;
+ if(path==='/'){res.setHeader('content-type','text/html;charset=utf-8');res.end(html);return;}
+ if(['/ui-fixture.js','/ui-fixture.css'].includes(path)){res.setHeader('content-type',path.endsWith('.js')?'text/javascript':'text/css');res.end(await readFile(resolve(qa,path.slice(1))));return;}
+ res.writeHead(404).end();}).listen(4187,'127.0.0.1',()=>console.log('Synthetic UI fixture: http://127.0.0.1:4187/'));

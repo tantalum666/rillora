@@ -1,9 +1,11 @@
 # Rillora 营销准备复核：SEO、GEO、MCP 与插件
 
-Status: AUDITED / PUBLIC DISCOVERY LIVE / CUSTOMER MCP NOT READY
+Status: HISTORICAL AUDIT / SUPERSEDED BY OCTOBER18 CUSTOMER DELIVERY
 Last updated: 2026-10-18 (Asia/Hong_Kong)
 
 Owner要求先完成已有工作，再完整复核已做SEO／GEO、MCP及各AI入口，转向低成本获客。这里是可宣传范围和缺口清单；不是流量、收入或目录通过证明。当前审核、正式API／数据、价格、收费、FanPass和TestFlight保持。
+
+**当前状态入口：**下文保留October18较早时点的完整复核，不能作为部署后的现状。后续[正式MCP交付](../architecture/customer-mcp-20261018.md)已完成7客户端登记、客户授权入口、Codex实际模型调用／撤销和官方Registry active；[Google地图](../architecture/google-sitemap-20261018.md)已成功解析两种语言共28网址。下文“客户未就绪／Google无法读取／未登记Codex”等为已被取代的历史发现。消费端目录批准、文章收录、AI推荐和获客效果仍未由这些技术结果证明。
 
 ## 结论
 

@@ -1,0 +1,24 @@
+WARNING minHealthyPercent has not been configured so the default value of 50% is used. The number of running tasks will decrease below the desired count during deployments etc. See https://github.com/aws/aws-cdk/issues/31705 (Construct Annotations)
+   RilloraProduction/Runtime/IdentityWorker/Service
+   Acknowledge with 'Construct-Annotations::@aws-cdk/aws-ecs:minHealthyPercent'
+
+✨  Synthesis time: 5.89s
+
+current credentials could not be used to assume 'arn:aws:iam::133857166372:role/cdk-hnb659fds-file-publishing-role-133857166372-eu-central-1', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::133857166372:role/cdk-hnb659fds-file-publishing-role-133857166372-eu-central-1', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::133857166372:role/cdk-hnb659fds-file-publishing-role-133857166372-eu-central-1', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::133857166372:role/cdk-hnb659fds-file-publishing-role-133857166372-eu-central-1', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::133857166372:role/cdk-hnb659fds-image-publishing-role-133857166372-eu-central-1', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::133857166372:role/cdk-hnb659fds-deploy-role-133857166372-eu-central-1', but are for the right account. Proceeding anyway.
+RilloraProduction: start: Building RecoveryAttestation/Writer/Code
+RilloraProduction: success: Built RecoveryAttestation/Writer/Code
+RilloraProduction: start: Building RilloraProduction Template
+RilloraProduction: success: Built RilloraProduction Template
+RilloraProduction: start: Building MigrationTask/Maintenance/AssetImage
+RilloraProduction: start: Publishing RecoveryAttestation/Writer/Code (133857166372-eu-central-1-4313f74b)
+RilloraProduction: fail: User: arn:aws:sts::133857166372:assumed-role/cdk-hnb659fds-deploy-role-133857166372-eu-central-1/rillora-cdk-deploy is not authorized to perform: ecr:DescribeRepositories on resource: arn:aws:ecr:eu-central-1:133857166372:repository/cdk-hnb659fds-container-assets-133857166372-eu-central-1 because no identity-based policy allows the ecr:DescribeRepositories action
+RilloraProduction: start: Publishing RilloraProduction Template (133857166372-eu-central-1-38f7f3b1)
+RilloraProduction: fail: User: arn:aws:sts::133857166372:assumed-role/cdk-hnb659fds-deploy-role-133857166372-eu-central-1/rillora-cdk-deploy is not authorized to perform: s3:PutObject on resource: "arn:aws:s3:::cdk-hnb659fds-assets-133857166372-eu-central-1/f10b88ace5903c70801de4d1c1b6dec56b4590153b38da7aed636f7c73f324a5.zip" because no identity-based policy allows the s3:PutObject action
+RilloraProduction: fail: User: arn:aws:sts::133857166372:assumed-role/cdk-hnb659fds-deploy-role-133857166372-eu-central-1/rillora-cdk-deploy is not authorized to perform: s3:PutObject on resource: "arn:aws:s3:::cdk-hnb659fds-assets-133857166372-eu-central-1/f496507bd86e83cef8e3cc1dcb7d52c819ddee715e8d778c8fde1b989c9ee342.json" because no identity-based policy allows the s3:PutObject action
+Failed to publish asset RilloraProduction Template (133857166372-eu-central-1-38f7f3b1)
+

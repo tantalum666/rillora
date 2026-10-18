@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: five platform configurations share the resource and least-privilege OAuth scopes without credentials
+ok 1 - five platform configurations share the resource and least-privilege OAuth scopes without credentials
+  ---
+  duration_ms: 1.724167
+  type: 'test'
+  ...
+# Subtest: rejects non-owned targets, credentials, query-bearing endpoints and duplicate registrations
+ok 2 - rejects non-owned targets, credentials, query-bearing endpoints and duplicate registrations
+  ---
+  duration_ms: 0.195167
+  type: 'test'
+  ...
+# Subtest: only the exact managed candidate host is allowed with an explicit synthetic marker
+ok 3 - only the exact managed candidate host is allowed with an explicit synthetic marker
+  ---
+  duration_ms: 0.204166
+  type: 'test'
+  ...
+# Subtest: Qwen uses documented HTTP OAuth fields and explicitly requires encrypted credential storage
+ok 4 - Qwen uses documented HTTP OAuth fields and explicitly requires encrypted credential storage
+  ---
+  duration_ms: 0.082125
+  type: 'test'
+  ...
+# Subtest: directory metadata fits the provider submission limits in both package formats
+ok 5 - directory metadata fits the provider submission limits in both package formats
+  ---
+  duration_ms: 0.225166
+  type: 'test'
+  ...
+# Subtest: Codex plugin pins the documented stable issuer-bound callback without fixing an ephemeral port
+ok 6 - Codex plugin pins the documented stable issuer-bound callback without fixing an ephemeral port
+  ---
+  duration_ms: 0.075584
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 86.228041

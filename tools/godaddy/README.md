@@ -2,7 +2,7 @@
 
 Status: OFFICIAL CLI REUSED; RESEND AND SEARCH VERIFICATION DNS VERIFIED; LEGACY WWW LIMITATION RETAINED
 
-Last updated: 2026-10-16 (Asia/Shanghai)
+Last updated: 2026-10-18 (Asia/Shanghai)
 
 The Owner explicitly requested GoDaddy CLI setup. The official `gddy`0.2.20
 Apple Silicon binary is installed at `~/.local/bin/gddy` from the public
@@ -16,6 +16,17 @@ macOS keyring storage, with no PAT in environment variables or repository.
 The browser callback later showed connection-refused after the local listener
 ended, but CLI status and actual API calls independently prove authentication
 succeeded. Do not repeatedly log in because of that spent callback page.
+
+## October18 official MCP Registry proof
+
+Reused the same scoped wrapper and keyring session to add one root TXT public-key
+proof for the official MCP Registry. The complete36-record zone is preserved and
+the new count is37; both authoritative nameservers and two public resolvers read
+the exact proof. Registry publication and an independent public GET return active
+for xyz.rillora/rillora@0.1.0. This grants no runtime data access, changes no DNS
+delegation, and does not touch mail, WWW, FanPass or billing. The registry-only
+signing key is encrypted locally; no plaintext key or authentication token enters
+Git. [Current evidence](../../docs/architecture/customer-mcp-20261018.md).
 
 ## October16 Google and Bing site ownership
 

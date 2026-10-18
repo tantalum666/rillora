@@ -1,0 +1,33 @@
+import json,subprocess,sys,datetime
+from pathlib import Path
+QA=Path(__file__).resolve().parent;ROOT=QA.parents[2]
+D='DeploymentCustomResource47E8B2E6';F='Routes4F6D566C';W='Client4A7F64DF';name='rillora-customer-mcp-20261018-web'
+def read(p):return json.loads(p.read_text())
+def aws(args):
+ r=subprocess.run(['aws',*args,'--profile','rillora-cdk-deploy','--region','eu-central-1','--output','json'],capture_output=True,text=True);assert r.returncode==0;return json.loads(r.stdout) if r.stdout.strip() else {}
+def body(r):return json.loads(r['TemplateBody']) if isinstance(r['TemplateBody'],str) else r['TemplateBody']
+old=body(read(ROOT/'.local-secrets/mcp-customer-20261018/RilloraProductionWeb-get-template-before.json'))
+new=read(QA/'web-cdk/RilloraProductionWeb.template.json')
+assert old.keys()==new.keys() and all(old[k]==new[k] for k in old if k!='Resources')
+assert old['Resources'].keys()==new['Resources'].keys()
+assert {k for k in old['Resources'] if old['Resources'][k]!=new['Resources'][k]}=={D,F,W}
+a=old['Resources'][W]['Properties']['DistributionConfig'];b=new['Resources'][W]['Properties']['DistributionConfig']
+assert a.keys()==b.keys() and all(a[k]==b[k] for k in a if k!='CacheBehaviors')
+assert a['CacheBehaviors'][0]==b['CacheBehaviors'][0] and len(b['CacheBehaviors'])==4
+assert new['Resources'][D]['Properties']['Prune'] is False
+if sys.argv[1]=='execute':
+ assert read(QA/'hostfix-verified.json')['passed'] and read(QA/'web-source-ci.json')['passed']
+ cs=aws(['cloudformation','describe-change-set','--stack-name','RilloraProductionWeb','--change-set-name',name]);assert cs['Status']=='CREATE_COMPLETE' and cs['ExecutionStatus']=='AVAILABLE'
+ assert body(aws(['cloudformation','get-template','--stack-name','RilloraProductionWeb','--change-set-name',name]))==new
+ rows=[x['ResourceChange'] for x in cs['Changes']];assert {r['LogicalResourceId'] for r in rows}=={D,F,W}
+ assert all(r['Action']=='Modify' and r['Replacement']==('Conditional' if r['LogicalResourceId']==D else 'False') for r in rows)
+ (QA/'web-change-review.json').write_text(json.dumps({'passed':True,'changes':rows,'oldApiBehaviorPreserved':True,'exactNewDiscoveryRoutes':True,'oldAssetPruningDisabled':True},indent=2)+'\n')
+ aws(['cloudformation','execute-change-set','--stack-name','RilloraProductionWeb','--change-set-name',name]);print('Web deployment accepted; completion and HTTP readback remain')
+else:
+ stack=aws(['cloudformation','describe-stacks','--stack-name','RilloraProductionWeb'])['Stacks'][0];print(stack['StackStatus'])
+ if stack['StackStatus']!='UPDATE_COMPLETE':sys.exit(2)
+ assert body(aws(['cloudformation','get-template','--stack-name','RilloraProductionWeb']))==new
+ before=read(ROOT/'.local-secrets/mcp-customer-20261018/RilloraProductionWeb-describe-stacks-before.json')['Stacks'][0]
+ assert stack['Outputs']==before['Outputs']
+ (QA/'web-deployment-verified.json').write_text(json.dumps({'passed':True,'exactTemplate':True,'outputsUnchanged':True,'at':datetime.datetime.now(datetime.timezone.utc).isoformat()},indent=2)+'\n')
+ print('Web deployment verified; HTTP file integrity remains independent')

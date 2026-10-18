@@ -1,0 +1,136 @@
+{
+  "at": "2026-10-18T07:53:09.191Z",
+  "results": [
+    {
+      "name": "health",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "cache": "no-store",
+      "challenge": null,
+      "body": {
+        "status": "ready"
+      }
+    },
+    {
+      "name": "metadata",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "cache": "no-store",
+      "challenge": null,
+      "body": {
+        "resource": "https://app.rillora.xyz/api/mcp",
+        "authorization_servers": [
+          "https://app.rillora.xyz/api/ai/oauth"
+        ],
+        "scopes_supported": [
+          "matters:read:summary",
+          "readiness:read:scoped"
+        ],
+        "bearer_methods_supported": [
+          "header"
+        ],
+        "resource_name": "Rillora selected matters"
+      }
+    },
+    {
+      "name": "issuer",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "cache": "no-store",
+      "challenge": null,
+      "body": {
+        "authorization_endpoint": "https://j749rhzub7.execute-api.eu-central-1.amazonaws.com/ai/oauth/auth",
+        "claims_parameter_supported": false,
+        "claims_supported": [
+          "sub",
+          "email",
+          "email_verified",
+          "sid",
+          "auth_time",
+          "iss"
+        ],
+        "code_challenge_methods_supported": [
+          "S256"
+        ],
+        "grant_types_supported": [
+          "authorization_code",
+          "refresh_token"
+        ],
+        "issuer": "https://app.rillora.xyz/api/ai/oauth",
+        "jwks_uri": "https://j749rhzub7.execute-api.eu-central-1.amazonaws.com/ai/oauth/jwks",
+        "authorization_response_iss_parameter_supported": true,
+        "response_modes_supported": [
+          "form_post",
+          "fragment",
+          "query"
+        ],
+        "response_types_supported": [
+          "code"
+        ],
+        "scopes_supported": [
+          "openid",
+          "email"
+        ],
+        "subject_types_supported": [
+          "public"
+        ],
+        "token_endpoint_auth_methods_supported": [
+          "client_secret_basic",
+          "client_secret_jwt",
+          "client_secret_post",
+          "private_key_jwt",
+          "none"
+        ],
+        "token_endpoint_auth_signing_alg_values_supported": [
+          "HS256",
+          "RS256",
+          "PS256",
+          "ES256",
+          "Ed25519",
+          "EdDSA"
+        ],
+        "token_endpoint": "https://j749rhzub7.execute-api.eu-central-1.amazonaws.com/ai/oauth/token",
+        "id_token_signing_alg_values_supported": [
+          "RS256"
+        ],
+        "request_uri_parameter_supported": false,
+        "userinfo_endpoint": "https://j749rhzub7.execute-api.eu-central-1.amazonaws.com/ai/oauth/userinfo",
+        "revocation_endpoint": "https://j749rhzub7.execute-api.eu-central-1.amazonaws.com/ai/oauth/token/revocation",
+        "claim_types_supported": [
+          "normal"
+        ]
+      }
+    },
+    {
+      "name": "anonymous",
+      "status": 403,
+      "contentType": "application/json",
+      "cache": "no-store",
+      "challenge": null,
+      "body": {
+        "error": "request_origin_not_allowed"
+      }
+    },
+    {
+      "name": "unknown-token",
+      "status": 403,
+      "contentType": "application/json",
+      "cache": "no-store",
+      "challenge": null,
+      "body": {
+        "error": "request_origin_not_allowed"
+      }
+    },
+    {
+      "name": "userinfo-anonymous",
+      "status": 401,
+      "contentType": "application/json; charset=utf-8",
+      "cache": "no-store",
+      "challenge": "Bearer error=\"invalid_token\", error_description=\"Missing Authorization header\", scope=\"openid\", resource_metadata=\"https://app.rillora.xyz/api/mcp/resource-metadata\"",
+      "body": {
+        "error": "invalid_token",
+        "error_description": "Missing Authorization header"
+      }
+    }
+  ]
+}

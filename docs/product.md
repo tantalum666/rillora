@@ -11,7 +11,7 @@ Last updated: 2026-10-18 (Asia/Hong_Kong)
 
 ## 2026-10-18 普通用户正式AI接入
 
-Owner进一步要求解决Google地图并补齐MCP／插件，让普通用户真正使用，能自主推进的直接完成并推Git，同时不影响当前审核。[正式接入合同](architecture/customer-mcp-20261018.md)与[地图修复](architecture/google-sitemap-20261018.md)取代仅准备营销材料的当前下一步；保持原数据、价格、收费、原生审核与已有验证，客户可用、目录批准及营销效果仍分别证明。
+Owner进一步要求解决Google地图并补齐MCP／插件，让普通用户真正使用，能自主推进的直接完成并推Git，同时不影响当前审核。[正式接入合同](architecture/customer-mcp-20261018.md)与[地图修复](architecture/google-sitemap-20261018.md)取代仅准备营销材料的当前下一步。正式MCP与双语安装包已交付，Codex真实模型调用／撤销通过，官方Registry登记active，Google两语言地图共发现28URL；保持原数据、价格、收费、原生审核与已有验证。消费端商店批准、文章索引及营销效果仍分别证明。
 
 ## 2026-10-18 营销优先与发现能力复核
 

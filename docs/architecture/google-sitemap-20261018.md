@@ -1,6 +1,6 @@
 # Google 地图读取续修
 
-Status: DEPLOYED / GOOGLE INDEX PROCESSED / CHILD URL COUNT PENDING
+Status: DEPLOYED / GOOGLE BOTH LANGUAGE MAPS PROCESSED / 28 URLS DISCOVERED
 Last updated: 2026-10-18 (Asia/Hong_Kong)
 
 Owner要求继续解决Google地图，并推进正式用户MCP；本文件只记录独立官网修复。生产应用、在审构建及MCP交付另看[正式接入](customer-mcp-20261018.md)。
@@ -19,4 +19,6 @@ Owner要求继续解决Google地图，并推进正式用户MCP；本文件只记
 
 源码5c98e6c6b／CI181三任务通过。三阶段CloudFormation切换完成，最终模板、原分发／桶／上传资源身份，以及66份文件均核对一致；原28页面及脚本逐字保持。Python验收最初误用内部HTML对象名，随后遇到本机TLS EOF；修正后的原生Node工具通过规范URL核验全部66文件，证书验证保持。这些是验收工具／请求路径问题，没有据此反复部署。
 
-新索引在已验证的URL前缀属性中只提交一次。Google详情已明确显示“已成功处理站点地图索引”，上次读取October18；发现网址数仍为0，语言子地图及文章收录分别待核对。没有删除或反复提交旧平面地图。
+新索引在已验证的URL前缀属性中只提交一次。Google详情明确显示“已成功处理站点地图索引”，上次读取October18；索引自身的汇总计数仍为0。因索引详情没有展示子图回执，分别只提交一次英文与中文子图；随后两份详情都实际显示“已成功处理站点地图”，各发现14个网址、最后读取2026/10/18。两组互不重复，共28个语言规范网址。没有删除或重新提交旧平面地图，也没有因报告延迟再次部署。
+
+本轮关闭的是Google地图读取失败；发现网址不等于文章全部进入索引、获得排名或被AI引用。Bing此前Success／28网址／0错误证据沿用，不重复提交。实际浏览器回执、66文件线上校验及部署模板保存在本轮QA，收尾另存新增Git证据包。

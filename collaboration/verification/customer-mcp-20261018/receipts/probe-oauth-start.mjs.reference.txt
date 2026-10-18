@@ -1,0 +1,18 @@
+import {readFile,writeFile} from 'node:fs/promises';import {randomBytes,createHash} from 'node:crypto';
+const registry=JSON.parse(await readFile('apps/api/src/mcp/customer-clients.json','utf8'));
+const resource='https://app.rillora.xyz/api/mcp',issuer='https://app.rillora.xyz/api/ai/oauth';
+const results=[];
+for(const c of registry){
+ const verifier=randomBytes(32).toString('base64url');
+ const params=new URLSearchParams({client_id:c.clientId,redirect_uri:c.redirectUris[0],response_type:'code',
+ resource,scope:['matters:read:summary','readiness:read:scoped',...(c.identityScopes?['openid','email']:[])].join(' '),
+ state:randomBytes(18).toString('base64url'),code_challenge_method:'S256',code_challenge:createHash('sha256').update(verifier).digest('base64url')});
+ const r=await fetch(issuer+'/auth?'+params,{redirect:'manual',signal:AbortSignal.timeout(30000)});
+ const cookies=r.headers.getSetCookie();
+ const row={client:c.key,status:r.status,redirect:r.headers.get('location'),cookieCount:cookies.length,
+ allCookiesHttpOnlyAndSecure:cookies.length>0&&cookies.every(v=>/; httponly/i.test(v)&&/; secure/i.test(v)),
+ bodyConsumedForCleanup:true};await r.arrayBuffer();results.push(row);
+}
+const passed=results.every(r=>r.status===303&&r.redirect==='https://app.rillora.xyz/account?next=ai-connect'&&r.allCookiesHttpOnlyAndSecure);
+await writeFile('output/qa/rillora-customer-mcp-20261018/production-oauth-start.json',JSON.stringify({passed,at:new Date().toISOString(),scope:'Anonymous registered-client start only; no account login or matter access',results},null,2)+'\n');
+console.log(results);if(!passed)process.exitCode=1;

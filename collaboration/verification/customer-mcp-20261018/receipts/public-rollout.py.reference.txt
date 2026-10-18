@@ -1,0 +1,117 @@
+"""Only the validated additive public sitemap release. Three read-back phases."""
+from pathlib import Path
+import copy, datetime, hashlib, json, os, subprocess, sys, urllib.request, zipfile
+ROOT=Path(__file__).resolve().parents[3]
+QA=Path(__file__).resolve().parent
+PRIVATE=ROOT/'.local-secrets/mcp-customer-20261018'
+DIST=ROOT/'apps/web/dist-public'
+STACK='RilloraPublicWeb'
+D='PublicDeploymentCustomResource947B276F'; F='PublicRoutesC0C4D2B4'; W='Website32962D0B'
+def read(p): return json.loads(p.read_text())
+def save(p,v): p.write_text(json.dumps(v,indent=2)+'\n')
+def sha(b): return hashlib.sha256(b).hexdigest()
+def aws(args,profile='rillora-cdk-deploy',env=None):
+ c=['aws',*args,'--region','eu-central-1','--output','json']
+ if profile: c+=['--profile',profile]
+ r=subprocess.run(c,capture_output=True,text=True,env=env)
+ if r.returncode:
+  (PRIVATE/'public-aws-error.txt').write_text(r.stderr)
+  raise RuntimeError('AWS failed; private diagnostic saved')
+ return json.loads(r.stdout) if r.stdout.strip() else {}
+def body(v):
+ b=v['TemplateBody'];return json.loads(b) if isinstance(b,str) else b
+def template():return body(aws(['cloudformation','get-template','--stack-name',STACK,'--template-stage','Original']))
+def stack():return aws(['cloudformation','describe-stacks','--stack-name',STACK])['Stacks'][0]
+def fetch(p):
+ with urllib.request.urlopen('https://www.rillora.xyz/'+p,timeout=30) as r:return r.read()
+def diff(a,b):
+ assert a.keys()==b.keys() and all(a[k]==b[k] for k in a if k!='Resources')
+ assert a['Resources'].keys()==b['Resources'].keys()
+ return sorted(k for k in a['Resources'] if a['Resources'][k]!=b['Resources'][k])
+old=body(read(PRIVATE/'RilloraPublicWeb-get-template-before.json'))
+oldstack=read(PRIVATE/'RilloraPublicWeb-describe-stacks-before.json')['Stacks'][0]
+final=read(QA/'public-cdk/RilloraPublicWeb.template.json')
+marker=read(DIST/'public-build.json'); prior=read(QA/'public-build-before.json')
+assert diff(old,final)==sorted([D,F])
+for p,h in marker['files'].items():assert sha((DIST/p).read_bytes())==h,p
+added=sorted(set(marker['files'])-set(prior['files']))
+assert added==['favicon.png','sitemap-en.xml','sitemap-index.xml','sitemap-zh-CN.xml']
+assert [p for p,h in prior['files'].items() if marker['files'].get(p)!=h]==['robots.txt']
+action=sys.argv[1]
+if action=='prepare':
+ assert template()==old and stack()['StackStatus']=='UPDATE_COMPLETE'
+ oldrobots=fetch('robots.txt')
+ bucket=next(o['OutputValue'] for o in oldstack['Outputs'] if o['OutputKey']=='BucketName')
+ target=QA/'public-marker-before-bytes.json'
+ aws(['s3api','get-object','--bucket',bucket,'--key','public-build.json',str(target)],'rillora-operator')
+ oldmarker=target.read_bytes()
+ assert sha(oldrobots)==prior['files']['robots.txt'] and json.loads(oldmarker)==prior
+ assets=read(QA/'public-cdk/RilloraPublicWeb.assets.json')['files']
+ asset=next(v for v in assets.values() if v.get('displayName')=='PublicDeployment/Asset1')
+ dest=next(iter(asset['destinations'].values()))
+ bundles={}
+ for phase in ['stage','live']:
+  p=PRIVATE/('sitemap-'+phase+'.zip')
+  with zipfile.ZipFile(p,'w',zipfile.ZIP_DEFLATED) as z:
+   for name in sorted(marker['files']):z.writestr(name,oldrobots if phase=='stage' and name=='robots.txt' else (DIST/name).read_bytes())
+   z.writestr('public-build.json',oldmarker if phase=='stage' else (DIST/'public-build.json').read_bytes())
+  bundles[phase]=(p,sha(p.read_bytes())+'.zip' if phase=='stage' else dest['objectKey'])
+ creds=aws(['sts','assume-role','--role-arn',dest['assumeRoleArn'].replace('${AWS::Partition}','aws'),'--role-session-name','rillora-sitemap-20261018','--duration-seconds','900'],'rillora-operator')['Credentials']
+ env=os.environ.copy();env.pop('AWS_PROFILE',None);env.pop('AWS_DEFAULT_PROFILE',None)
+ env.update(AWS_ACCESS_KEY_ID=creds['AccessKeyId'],AWS_SECRET_ACCESS_KEY=creds['SecretAccessKey'],AWS_SESSION_TOKEN=creds['SessionToken'])
+ for p,key in bundles.values():aws(['s3api','put-object','--bucket',dest['bucketName'],'--key',key,'--body',str(p)],None,env)
+ creds.clear();env.clear()
+ stage=copy.deepcopy(old);stage['Resources'][D]['Properties']['SourceObjectKeys']=[bundles['stage'][1]]
+ router=copy.deepcopy(stage);router['Resources'][F]=final['Resources'][F]
+ for phase,t in [('stage',stage),('router',router),('live',final)]:save(QA/('public-'+phase+'-template.json'),t)
+ save(QA/'public-rollout-plan.json',{'addedFiles':added,'oldFilesUnchangedExceptRobots':61,'sourceCommit':'5c98e6c6b','scope':STACK})
+ print('Two verified payloads uploaded; phase templates saved')
+elif action.startswith('prepare-'):
+ phase=action[8:];assert phase in ['stage','router','live']
+ expected=old if phase=='stage' else read(QA/('public-'+('stage' if phase=='router' else 'router')+'-template.json'))
+ assert template()==expected and stack()['StackStatus']=='UPDATE_COMPLETE'
+ if phase!='stage':assert read(QA/('public-'+('stage' if phase=='router' else 'router')+'-verified.json'))['passed']
+ ref=aws(['cloudformation','create-change-set','--stack-name',STACK,'--change-set-name','rillora-sitemap-20261018-'+phase,'--change-set-type','UPDATE','--template-body','file://'+str(QA/('public-'+phase+'-template.json')),'--capabilities','CAPABILITY_IAM'])
+ save(QA/('public-'+phase+'-reference.json'),ref);print(phase+' change set prepared')
+elif action.startswith('execute-'):
+ phase=action[8:];ref=read(QA/('public-'+phase+'-reference.json'))
+ cs=aws(['cloudformation','describe-change-set','--stack-name',STACK,'--change-set-name',ref['Id']])
+ assert cs['Status']=='CREATE_COMPLETE' and cs['ExecutionStatus']=='AVAILABLE'
+ changes=[c['ResourceChange'] for c in cs['Changes']]
+ allowed={D} if phase in ['stage','live'] else {F,W}
+ assert {c['LogicalResourceId'] for c in changes}<=allowed
+ assert all(c['Action']=='Modify' and (c['Replacement']=='False' or (c['LogicalResourceId']==D and c['Replacement']=='Conditional')) for c in changes)
+ for c in changes:
+  if c['LogicalResourceId']==D:
+   assert all(d['Evaluation']=='Static' and d['ChangeSource']=='DirectModification' and d['Target']['Name']=='SourceObjectKeys' for d in c['Details'])
+   if not (QA/'public-upload-identity.json').exists():save(QA/'public-upload-identity.json',{'physicalId':c['PhysicalResourceId']})
+ if phase=='router':
+  for c in changes:
+   if c['LogicalResourceId']==W:assert all(d['ChangeSource']=='ResourceAttribute' and d['CausingEntity']==F+'.FunctionARN' for d in c['Details'])
+ save(QA/('public-'+phase+'-review.json'),{'changes':changes,'approvedScopeOnly':True})
+ aws(['cloudformation','execute-change-set','--stack-name',STACK,'--change-set-name',ref['Id']]);print(phase+' accepted; read completion separately')
+elif action.startswith('check-'):
+ phase=action[6:];s=stack();print(s['StackStatus'])
+ if s['StackStatus']!='UPDATE_COMPLETE':sys.exit(2)
+ assert template()==read(QA/('public-'+phase+'-template.json')) and s['Outputs']==oldstack['Outputs']
+ upload=aws(['cloudformation','describe-stack-resource','--stack-name',STACK,'--logical-resource-id',D])['StackResourceDetail']['PhysicalResourceId']
+ assert upload==read(QA/'public-upload-identity.json')['physicalId']
+ bucket=next(o['OutputValue'] for o in s['Outputs'] if o['OutputKey']=='BucketName')
+ target=QA/('public-'+phase+'-marker.json');aws(['s3api','get-object','--bucket',bucket,'--key','public-build.json',str(target)],'rillora-operator')
+ m=read(target);assert m==(marker if phase=='live' else prior)
+ paths=added if phase=='router' else (list(marker['files']) if phase=='live' else ['robots.txt','sitemap.xml'])
+ routes={page['file']:page['path'].lstrip('/') for page in marker['pages']};routes['index.html']=''
+ from concurrent.futures import ThreadPoolExecutor
+ def verify(p):
+  assert sha(fetch(routes.get(p,p)))==(marker if phase in ['router','live'] else prior)['files'][p],p
+ if phase=='live':
+  assert read(QA/'public-live-http.json')['passed'] and read(QA/'public-live-http.json')['files']==len(paths)
+ else:
+  with ThreadPoolExecutor(max_workers=6) as pool:list(pool.map(verify,paths))
+ if phase=='stage':
+  bucket=next(o['OutputValue'] for o in s['Outputs'] if o['OutputKey']=='BucketName')
+  for p in added:
+   target=QA/('staged-'+p);aws(['s3api','get-object','--bucket',bucket,'--key',p,str(target)],'rillora-operator');assert sha(target.read_bytes())==marker['files'][p]
+ save(QA/('public-'+phase+'-verified.json'),{'passed':True,'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'stackStatus':s['StackStatus'],'exactTemplate':True,'outputsUnchanged':True,'httpFilesChecked':len(paths),'addedObjectsVerified':len(added)})
+ print(phase+' verified')
+else:raise SystemExit('Unknown action')

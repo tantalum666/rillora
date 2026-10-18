@@ -3618,3 +3618,10 @@ local correction/tests and actual restoration remain separate evidence.
 - Supersedes: the previous marketing-materials-only next step and treating the synthetic candidate as the final hosting destination.
 - Implementation: reuse the production data/security boundaries and existing Rillora sign-in, add a separately authorized read-only integration, keep existing prices and billing, and leave the in-review native artifact unchanged. Provider directory approval is independent of a working customer endpoint.
 - Evidence: Owner instruction; [customer integration contract](architecture/customer-mcp-20261018.md).
+
+## 2026-10-18 — Accept only the selected synthetic production Codex test, then revoke
+
+- Owner confirms current Web legal acceptance and original Google login, then explicitly approves access by the real Codex client to Release acceptance 2026-10-01 only: titles/categories/statuses and generic missing-field checks, no email, notes or other matters, maximum seven days, immediately revoked after acceptance. A timed-out local callback can be restarted with the same scope without repeating this confirmation.
+- Actual production OAuth, model calls and immediate revocation pass. Remove the test alias credential only; retain the account, synthetic matter, existing client configuration and other projects. This does not authorize separate ChatGPT email disclosure or reuse of Apple review credentials for another provider.
+- Agent publishes public service metadata to the official MCP Registry within the already authorized distribution scope, using a single additive DNS proof and an encrypted registry-only signing key. No paid service, DNS delegation, broad runtime grant, arbitrary dynamic client registration or marketplace-approval claim is introduced.
+- The residual bilingual language label is corrected under the existing selected-language decision; it is not a new design or legal-contract decision. See [actual delivery and boundaries](architecture/customer-mcp-20261018.md).

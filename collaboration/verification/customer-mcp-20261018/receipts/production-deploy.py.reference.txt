@@ -1,0 +1,59 @@
+"""Execute only a reviewed customer-MCP phase, preserving existing application controls."""
+import json,subprocess,sys,datetime
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[3];QA=Path(__file__).resolve().parent;PRIVATE=ROOT/'.local-secrets/mcp-customer-20261018'
+def read(p):return json.loads(p.read_text())
+def save(p,v):p.write_text(json.dumps(v,indent=2)+'\n')
+def aws(args):
+ r=subprocess.run(['aws',*args,'--profile','rillora-cdk-deploy','--region','eu-central-1','--output','json'],capture_output=True,text=True)
+ if r.returncode:(PRIVATE/'deployment-error.txt').write_text(r.stderr);raise RuntimeError('AWS operation failed; private diagnostic saved')
+ return json.loads(r.stdout) if r.stdout.strip() else {}
+def body(r):return json.loads(r['TemplateBody']) if isinstance(r['TemplateBody'],str) else r['TemplateBody']
+phase=sys.argv[1];assert phase in ['prepare','enable']
+name='rillora-customer-mcp-20261018-'+phase
+candidate=read(QA/('production-cdk-'+phase)/'RilloraProduction.template.json')
+if sys.argv[2]=='execute':
+ assert read(QA/'production-source-ci.json')['passed']
+ assert read(QA/'production-audit-before.json')['passed']
+ assert read(QA/'production-backup.json')['status']=='available'
+ cs=aws(['cloudformation','describe-change-set','--stack-name','RilloraProduction','--change-set-name',name])
+ assert cs['Status']=='CREATE_COMPLETE' and cs['ExecutionStatus']=='AVAILABLE'
+ assert body(aws(['cloudformation','get-template','--stack-name','RilloraProduction','--change-set-name',name]))==candidate
+ current=body(aws(['cloudformation','get-template','--stack-name','RilloraProduction']))
+ original=body(read(PRIVATE/'RilloraProduction-get-template-before.json'))
+ assert all(current['Resources'][k]==candidate['Resources'][k] for k,r in current['Resources'].items()
+  if r['Type'].startswith(('AWS::RDS::','AWS::EC2::','AWS::KMS::')))
+ if phase=='prepare':
+  assert all(candidate['Resources'][k]==original['Resources'][k] for k in ['RuntimeApiTaskCF645D67','RuntimeIdentityWorkerTask676ED9B0'])
+ else:
+  assert read(QA/'production-audit-after.json')['passed']
+  comparison=read(QA/'production-migration-comparison.json');assert comparison['matchingOldTableFingerprints']==68 and not comparison['changedOldTables']
+  assert read(QA/'oauth-secret-installed.json')['installed']
+ rows=[r['ResourceChange'] for r in cs['Changes']]
+ added={k for k in candidate['Resources'] if k not in current['Resources']}
+ assert added==({'RuntimeCustomerMcpOAuthState3A8B178F','RuntimeCustomerMcpConfiguration020C980A'} if phase=='prepare' else set())
+ changed={k for k in current['Resources'] if candidate['Resources'][k]!=current['Resources'][k]}
+ for r in rows:
+  k=r['LogicalResourceId'];assert r['Action'] in ['Add','Modify']
+  assert r.get('Replacement') in [None,'False','Conditional','True']
+  if r.get('Replacement') in ['Conditional','True']:assert r['ResourceType']=='AWS::ECS::TaskDefinition'
+  if r.get('Replacement')=='True':assert phase=='enable' and k in ['RuntimeApiTaskCF645D67','RuntimeIdentityWorkerTask676ED9B0']
+  if k not in added|changed:
+   assert r.get('Details')
+   for d in r['Details']:
+    if d['Evaluation']=='Static':
+     expected={'RuntimeService1702E585':'RuntimeApiTaskCF645D67','RuntimeIdentityWorkerServiceD8B21381':'RuntimeIdentityWorkerTask676ED9B0'}
+     assert phase=='enable' and k in expected and d['ChangeSource']=='ResourceReference' and d['CausingEntity']==expected[k] and d['Target']['Name']=='TaskDefinition'
+    else:assert d['Evaluation']=='Dynamic' and d['ChangeSource'] in ['ResourceAttribute','ResourceReference']
+ save(QA/('production-'+phase+'-review.json'),{'passed':True,'changedSourceResources':sorted(changed),'newResources':sorted(added),'changes':rows,'originalDataNetworkAndKeyResourcesUnchanged':True})
+ aws(['cloudformation','execute-change-set','--stack-name','RilloraProduction','--change-set-name',name]);print(phase+' accepted; completion is separate')
+else:
+ s=aws(['cloudformation','describe-stacks','--stack-name','RilloraProduction'])['Stacks'][0];print(s['StackStatus'])
+ if s['StackStatus']!='UPDATE_COMPLETE':sys.exit(2)
+ assert body(aws(['cloudformation','get-template','--stack-name','RilloraProduction']))==candidate
+ old=read(PRIVATE/'RilloraProduction-describe-stacks-before.json')['Stacks'][0]
+ assert s['Parameters']==old['Parameters']
+ for k,r in body(read(PRIVATE/'RilloraProduction-get-template-before.json'))['Resources'].items():
+  if r['Type'].startswith(('AWS::RDS::','AWS::EC2::','AWS::KMS::')):assert candidate['Resources'][k]==r
+ save(QA/('production-'+('preparation' if phase=='prepare' else 'enabled')+'-verified.json'),{'passed':True,'status':s['StackStatus'],'parametersUnchanged':True,'exactTemplate':True,'at':datetime.datetime.now(datetime.timezone.utc).isoformat()})
+ print(phase+' template and original parameters verified')

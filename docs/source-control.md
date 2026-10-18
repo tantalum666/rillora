@@ -2,6 +2,10 @@
 
 Last updated: 2026-10-18 (Asia/Hong_Kong)
 
+## October18 ordinary-user MCP delivery
+
+[Production MCP and public registration](architecture/customer-mcp-20261018.md) and [Google sitemap recovery](architecture/google-sitemap-20261018.md) now have independent live receipts. Source commits through c6beccfde / CI185 cover the deployed API; 46d745bf4 / CI186 covers the isolated language-label correction and public Registry metadata. Seven-client configuration delivery, actual Codex model calls and revocation, preserved production data, Google language-map results and Registry publication are tracked separately. [New archive48](../collaboration/verification/customer-mcp-20261018/README.md) preserves439paths/318objects in5,390,797encrypted bytes and passes local authenticated verification. Remote verification follows separately; archives1–47 are not resealed or downloaded. Credentials, actual database backups and authenticated personal screenshots remain excluded.
+
 ## October18 marketing readiness
 
 [Full discovery/integration audit and acquisition plan](marketing/readiness-audit-20261018.md) reuses existing runtime evidence, corrects plugin metadata limits and dated store status, and prepares next-version ASO/campaign materials. [New readable receipts](../collaboration/verification/marketing-readiness-20261018/README.md) preserve only small safe text/JSON/helpers directly; archives1–47 remain unchanged. No deployment, client installation, outreach or ad spend occurs.

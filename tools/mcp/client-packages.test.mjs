@@ -17,6 +17,7 @@ test('five platform configurations share the resource and least-privilege OAuth 
   assert.deepEqual(remote.extensions['com.openai'].auth.baseScopes, ['openid', 'email', 'matters:read:summary', 'readiness:read:scoped']);
   assert.equal(JSON.parse(files['openai/plugin.json']).extensions['com.openai'].interface.capabilities[0], 'Read');
   const compatibility = JSON.parse(files['codex-plugin/.codex-plugin/plugin.json']);
+  assert.equal(compatibility.author.name, 'Rillora');
   assert.equal(compatibility.mcpServers, './.mcp.json');
   assert.equal(JSON.parse(files['codex-plugin/.mcp.json']).mcpServers.rillora.oauth.clientId, input.clientIds.codex);
   assert.ok(!Object.hasOwn(files, 'codex-plugin/plugin.json'));
@@ -54,6 +55,12 @@ test('directory metadata fits the provider submission limits in both package for
   const portable = JSON.parse(files['openai/plugin.json']).extensions['com.openai'].interface;
   const compatibility = JSON.parse(files['codex-plugin/.codex-plugin/plugin.json']).interface;
   for (const metadata of [portable, compatibility]) {
+    // Public MCP review requires four separate listing URLs; homepage is not a substitute.
+    for (const field of ['websiteURL', 'supportURL', 'privacyPolicyURL', 'termsOfServiceURL']) {
+      const url = new URL(metadata[field]);
+      assert.equal(url.protocol, 'https:');
+      assert.equal(url.username + url.password, '');
+    }
     for (const field of ['displayName', 'shortDescription']) {
       assert.ok([...metadata[field]].length <= 30, `${field} exceeds directory limit`);
       assert.doesNotMatch(metadata[field], /[\r\n]/);

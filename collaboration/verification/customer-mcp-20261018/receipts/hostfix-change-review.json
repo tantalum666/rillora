@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "changes": [
+    {
+      "Action": "Modify",
+      "LogicalResourceId": "RuntimeHttpApiDefaultRouteProductionHttpsE2AD3A33",
+      "PhysicalResourceId": "c89c6w1",
+      "ResourceType": "AWS::ApiGatewayV2::Integration",
+      "Replacement": "False",
+      "Scope": [
+        "Properties"
+      ],
+      "Details": [
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "RequestParameters",
+            "RequiresRecreation": "Never"
+          },
+          "Evaluation": "Static",
+          "ChangeSource": "DirectModification"
+        }
+      ]
+    }
+  ]
+}

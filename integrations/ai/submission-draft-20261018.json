@@ -1,11 +1,26 @@
 {
-  "status": "REVIEW_DRAFT_NOT_SUBMITTED_OR_MODEL_TESTED",
+  "status": "PRODUCTION_BACKEND_AND_CODEX_MODEL_VERIFIED_OPENAI_SUBMISSION_PENDING",
   "updatedAt": "2026-10-18",
-  "productionEndpoint": null,
+  "productionEndpoint": "https://app.rillora.xyz/api/mcp",
   "demoRecordingUrl": null,
   "domainVerified": false,
   "reviewerCredentialsIncluded": false,
-  "openidUserInfoReady": false,
+  "openidUserInfoReady": true,
+  "openidEvidenceBoundary": "Public metadata and actual HTTP integration tests pass; ChatGPT consumer consent and workspace checks are not yet accepted.",
+  "officialMcpRegistry": {
+    "name": "xyz.rillora/rillora",
+    "version": "0.1.0",
+    "status": "active",
+    "publicReadback": "https://registry.modelcontextprotocol.io/v0/servers/xyz.rillora%2Frillora/versions/latest"
+  },
+  "separateCodexAcceptance": {
+    "client": "0.163.0-alpha.10.2",
+    "productionOAuth": true,
+    "modelCalledBothTools": true,
+    "selectedSyntheticMatters": 1,
+    "immediateRevocationAndCredentialCleanup": true,
+    "doesNotReplaceOpenAiSubmissionClientTests": true
+  },
   "directoryApproved": false,
   "tools": [
     {
@@ -91,5 +106,5 @@
   "supportUrl": "https://www.rillora.xyz/en/support",
   "privacyPolicyUrl": "https://legal.rillora.xyz/privacy",
   "termsOfServiceUrl": "https://legal.rillora.xyz/terms",
-  "releaseNotes": "Next-version initial read-only integration: user-selected matter summaries and common missing fields. No write, payment, transfer, export or automatic release capability. Not customer enabled."
+  "releaseNotes": "Initial read-only integration: explicitly selected matter summaries and common missing fields. Production endpoint and installation files are public. No write, payment, transfer, export or automatic release capability. OpenAI directory submission and consumer acceptance remain separate from the verified Codex task."
 }

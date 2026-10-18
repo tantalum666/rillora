@@ -1,0 +1,63 @@
+{
+  "passed": true,
+  "at": "2026-10-18T07:58:30.455Z",
+  "scope": "Anonymous registered-client start only; no account login or matter access",
+  "results": [
+    {
+      "client": "openai",
+      "status": 303,
+      "redirect": "https://app.rillora.xyz/account?next=ai-connect",
+      "cookieCount": 4,
+      "allCookiesHttpOnlyAndSecure": true,
+      "bodyConsumedForCleanup": true
+    },
+    {
+      "client": "codex",
+      "status": 303,
+      "redirect": "https://app.rillora.xyz/account?next=ai-connect",
+      "cookieCount": 4,
+      "allCookiesHttpOnlyAndSecure": true,
+      "bodyConsumedForCleanup": true
+    },
+    {
+      "client": "claude",
+      "status": 303,
+      "redirect": "https://app.rillora.xyz/account?next=ai-connect",
+      "cookieCount": 4,
+      "allCookiesHttpOnlyAndSecure": true,
+      "bodyConsumedForCleanup": true
+    },
+    {
+      "client": "claude-code",
+      "status": 303,
+      "redirect": "https://app.rillora.xyz/account?next=ai-connect",
+      "cookieCount": 4,
+      "allCookiesHttpOnlyAndSecure": true,
+      "bodyConsumedForCleanup": true
+    },
+    {
+      "client": "cursor",
+      "status": 303,
+      "redirect": "https://app.rillora.xyz/account?next=ai-connect",
+      "cookieCount": 4,
+      "allCookiesHttpOnlyAndSecure": true,
+      "bodyConsumedForCleanup": true
+    },
+    {
+      "client": "gemini-cli",
+      "status": 303,
+      "redirect": "https://app.rillora.xyz/account?next=ai-connect",
+      "cookieCount": 4,
+      "allCookiesHttpOnlyAndSecure": true,
+      "bodyConsumedForCleanup": true
+    },
+    {
+      "client": "qwen-code",
+      "status": 303,
+      "redirect": "https://app.rillora.xyz/account?next=ai-connect",
+      "cookieCount": 4,
+      "allCookiesHttpOnlyAndSecure": true,
+      "bodyConsumedForCleanup": true
+    }
+  ]
+}

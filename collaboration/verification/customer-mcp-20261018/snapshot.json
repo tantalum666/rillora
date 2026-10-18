@@ -1,0 +1,77 @@
+{
+  "capturedFrom": "2026-10-18T09:43:28.588447+00:00",
+  "capturedThrough": "2026-10-18T09:43:29.693661+00:00",
+  "workFiles": 439,
+  "uniqueRawObjects": 318,
+  "workBytes": 16807887,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-048.tar.zst.age",
+      "sha256": "8ea7a99796c7fa32aaf9f998b0356548bf9fe2570f8343f81def3763a6837fa1",
+      "bytes": 5390797,
+      "plainBytes": 12489104,
+      "uniqueObjects": 318
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/customer-mcp-20261018/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": ".local-secrets",
+      "reason": "credentials, encrypted signing identity, OAuth URLs, personal browser screenshots and private provider readbacks"
+    },
+    {
+      "path": "archives001-047",
+      "reason": "previous immutable captures; not resealed or downloaded"
+    },
+    {
+      "path": "output/qa/rillora-customer-mcp-20261018/web-language-cdk",
+      "reason": "capture cache or expanded CDK dependency copies; exact templates/manifests/artifacts preserved separately"
+    },
+    {
+      "path": "output/qa/rillora-customer-mcp-20261018/production-cdk-canonical-api",
+      "reason": "capture cache or expanded CDK dependency copies; exact templates/manifests/artifacts preserved separately"
+    },
+    {
+      "path": "output/qa/rillora-customer-mcp-20261018/web-cdk",
+      "reason": "capture cache or expanded CDK dependency copies; exact templates/manifests/artifacts preserved separately"
+    },
+    {
+      "path": "output/qa/rillora-customer-mcp-20261018/publication",
+      "reason": "capture cache or expanded CDK dependency copies; exact templates/manifests/artifacts preserved separately"
+    },
+    {
+      "path": "output/qa/rillora-customer-mcp-20261018/production-cdk-canonical",
+      "reason": "capture cache or expanded CDK dependency copies; exact templates/manifests/artifacts preserved separately"
+    },
+    {
+      "path": "output/qa/rillora-customer-mcp-20261018/production-cdk-hostfix",
+      "reason": "capture cache or expanded CDK dependency copies; exact templates/manifests/artifacts preserved separately"
+    },
+    {
+      "path": "output/qa/rillora-customer-mcp-20261018/production-cdk-enable",
+      "reason": "capture cache or expanded CDK dependency copies; exact templates/manifests/artifacts preserved separately"
+    },
+    {
+      "path": "output/qa/rillora-customer-mcp-20261018/production-cdk-prepare",
+      "reason": "capture cache or expanded CDK dependency copies; exact templates/manifests/artifacts preserved separately"
+    },
+    {
+      "path": "output/qa/rillora-customer-mcp-20261018/public-cdk",
+      "reason": "capture cache or expanded CDK dependency copies; exact templates/manifests/artifacts preserved separately"
+    },
+    {
+      "path": "output/qa/rillora-customer-mcp-20261018/registry-validate.go.reference.txt",
+      "reason": "third-party reference source; exact URL and digest recorded instead"
+    },
+    {
+      "path": "output/qa/rillora-customer-mcp-20261018/registry-common.go.reference.txt",
+      "reason": "third-party reference source; exact URL and digest recorded instead"
+    }
+  ],
+  "credentialPatternMatches": 0,
+  "sourceSecretScan": "passed; 32 existing reviewed nonsecrets, zero unreviewed",
+  "selection": "New production migration/deployment, two exact Web artifacts, public artifact, client/model/revocation evidence, Google language-map readbacks and official Registry publication.",
+  "boundary": "Credentials, database backups and personal screenshots excluded. App14, prices, billing and FanPass unchanged. Marketplace approval, indexing and acquisition remain separate."
+}

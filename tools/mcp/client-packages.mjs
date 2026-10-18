@@ -35,6 +35,7 @@ export function clientPackages(input) {
       extensions: { 'com.openai': { interface: { displayName: 'Rillora', shortDescription: 'Review selected matters',
         longDescription: 'Read titles, categories and recorded statuses for the matters you explicitly authorize in Rillora. Check missing common fields. No notes, payments, transfers or automatic release. With your permission, a verified email supports account and workspace checks.',
         developerName: 'Rillora', category: 'Productivity', capabilities: ['Read'], websiteURL: 'https://www.rillora.xyz',
+        supportURL: 'https://www.rillora.xyz/en/support',
         privacyPolicyURL: 'https://legal.rillora.xyz/privacy', termsOfServiceURL: 'https://legal.rillora.xyz/terms',
         composerIcon: './assets/icon.png', logo: './assets/icon.png',
         defaultPrompt: ['Review the matters I selected in Rillora.', 'Check missing common information in my selected Rillora matters.'] } } } };
@@ -42,7 +43,8 @@ export function clientPackages(input) {
       // Current Codex accepts OAuth in the compatibility format. A portable
       // manifest's mcp.json takes precedence and cannot be mixed into this folder.
       files['codex-plugin/.codex-plugin/plugin.json'] = json({ name: manifest.name, version: manifest.version,
-        description: manifest.description, interface: manifest.extensions['com.openai'].interface, mcpServers: './.mcp.json' });
+        description: manifest.description, author: manifest.author,
+        interface: manifest.extensions['com.openai'].interface, mcpServers: './.mcp.json' });
       files['codex-plugin/.mcp.json'] = json({ mcpServers: { rillora: { type: 'http', url: server, oauth: { clientId: ids.codex, callbackUrl: 'http://127.0.0.1/callback' } } } });
     }
     if (ids.openai) {

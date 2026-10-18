@@ -1,0 +1,130 @@
+TAP version 13
+# Subtest: closed and restricted-review artifacts keep isolated outputs and pinned production routing
+ok 1 - closed and restricted-review artifacts keep isolated outputs and pinned production routing
+  ---
+  duration_ms: 1.062292
+  type: 'test'
+  ...
+# Subtest: API routes retain methods, cookies, auth and query while only the public prefix is removed
+ok 2 - API routes retain methods, cookies, auth and query while only the public prefix is removed
+  ---
+  duration_ms: 0.866583
+  type: 'test'
+  ...
+# Subtest: no API or unknown request falls back to a cached HTML response
+ok 3 - no API or unknown request falls back to a cached HTML response
+  ---
+  duration_ms: 0.36125
+  type: 'test'
+  ...
+# Subtest: real invitations survive initial fragment entry, auth return and reload with GET or HEAD
+ok 4 - real invitations survive initial fragment entry, auth return and reload with GET or HEAD
+  ---
+  duration_ms: 0.10075
+  type: 'test'
+  ...
+# Subtest: only exact MCP discovery routes reach the uncached API and reject mutation methods
+ok 5 - only exact MCP discovery routes reach the uncached API and reject mutation methods
+  ---
+  duration_ms: 0.089791
+  type: 'test'
+  ...
+# Subtest: a chosen matter category survives the account and callback routes
+ok 6 - a chosen matter category survives the account and callback routes
+  ---
+  duration_ms: 1.355916
+  type: 'test'
+  ...
+# Subtest: ordinary account entry does not create a deferred editor
+ok 7 - ordinary account entry does not create a deferred editor
+  ---
+  duration_ms: 0.132125
+  type: 'test'
+  ...
+# Subtest: AI connection returns to account settings without forwarding protocol secrets
+ok 8 - AI connection returns to account settings without forwarding protocol secrets
+  ---
+  duration_ms: 0.0595
+  type: 'test'
+  ...
+# Subtest: guide sign-in returns to the selected guide without private or external parameters
+ok 9 - guide sign-in returns to the selected guide without private or external parameters
+  ---
+  duration_ms: 0.097125
+  type: 'test'
+  ...
+# Subtest: a review link returns to the receiving inbox without carrying private identifiers
+ok 10 - a review link returns to the receiving inbox without carrying private identifiers
+  ---
+  duration_ms: 0.061167
+  type: 'test'
+  ...
+# Subtest: unknown categories and external targets cannot become a continuation
+ok 11 - unknown categories and external targets cannot become a continuation
+  ---
+  duration_ms: 0.098958
+  type: 'test'
+  ...
+# Subtest: all seven legal pages and both consent sentences render only the selected language
+ok 12 - all seven legal pages and both consent sentences render only the selected language
+  ---
+  duration_ms: 300.858417
+  type: 'test'
+  ...
+# Subtest: shared disclosure vocabulary localizes codes without using arbitrary server text as a translation key
+ok 13 - shared disclosure vocabulary localizes codes without using arbitrary server text as a translation key
+  ---
+  duration_ms: 0.219667
+  type: 'test'
+  ...
+# Subtest: workspace catalogs have complete keys, matching parameters and localized counts
+ok 14 - workspace catalogs have complete keys, matching parameters and localized counts
+  ---
+  duration_ms: 3.996125
+  type: 'test'
+  ...
+# Subtest: desktop and mobile route identities have render-time labels without translated URLs
+ok 15 - desktop and mobile route identities have render-time labels without translated URLs
+  ---
+  duration_ms: 1.056041
+  type: 'test'
+  ...
+# Subtest: localized matter and contact labels preserve evidence, statuses and legacy defaults
+ok 16 - localized matter and contact labels preserve evidence, statuses and legacy defaults
+  ---
+  duration_ms: 0.165666
+  type: 'test'
+  ...
+# Subtest: commercial rendering adapters localize known metadata without changing access or unknown values
+ok 17 - commercial rendering adapters localize known metadata without changing access or unknown values
+  ---
+  duration_ms: 0.112958
+  type: 'test'
+  ...
+# Subtest: annual USD 88.99 and historic currency amounts survive locale formatting unchanged
+ok 18 - annual USD 88.99 and historic currency amounts survive locale formatting unchanged
+  ---
+  duration_ms: 9.590625
+  type: 'test'
+  ...
+# Subtest: display localization never rewrites user names, record drafts or route filters
+ok 19 - display localization never rewrites user names, record drafts or route filters
+  ---
+  duration_ms: 0.580083
+  type: 'test'
+  ...
+# Subtest: all static workspace message references resolve in both locales
+ok 20 - all static workspace message references resolve in both locales
+  ---
+  duration_ms: 5.17625
+  type: 'test'
+  ...
+1..20
+# tests 20
+# suites 0
+# pass 20
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 403.768541

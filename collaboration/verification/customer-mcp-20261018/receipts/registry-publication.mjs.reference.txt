@@ -1,0 +1,53 @@
+// Official registry DNS authentication protocol, with the signing key kept out of argv/files.
+// Reference: modelcontextprotocol/registry cmd/publisher/auth/common.go, retrieved 2026-10-18.
+import {generateKeyPairSync,createPrivateKey,createPublicKey,sign} from 'node:crypto';
+import {readFile,writeFile,stat} from 'node:fs/promises';
+import {spawnSync} from 'node:child_process';
+import {resolve} from 'node:path';
+const root=resolve('.'),qa=resolve('output/qa/rillora-customer-mcp-20261018');
+const privateDir=resolve('.local-secrets/mcp-customer-20261018');
+const identity=resolve('.local-secrets/collaboration-git/identity.txt');
+const encrypted=resolve(privateDir,'registry-signing-key.age');
+const registry='https://registry.modelcontextprotocol.io',domain='rillora.xyz';
+function run(bin,args,input){const r=spawnSync(bin,args,{input,maxBuffer:32*1024*1024});if(r.status!==0)throw Error(bin+' failed; secret output withheld');return r.stdout;}
+async function jsonFile(path,value){await writeFile(path,JSON.stringify(value,null,2)+'\n');}
+const mode=process.argv[2];
+if(mode==='prepare'){
+ let exists=false;try{await stat(encrypted);exists=true}catch(e){if(e.code!=='ENOENT')throw e;}
+ if(exists)throw Error('Signing key already exists; do not rotate silently');
+ if((await stat(identity)).mode&0o077)throw Error('Identity permissions too broad');
+ const recipient=run('age-keygen',['-y',identity]).toString().trim();
+ const key=generateKeyPairSync('ed25519').privateKey;
+ const pem=key.export({type:'pkcs8',format:'pem'});
+ const cipher=run('age',['-r',recipient],pem);
+ await writeFile(encrypted,cipher,{mode:0o600,flag:'wx'});
+ const roundtrip=run('age',['-d','-i',identity,encrypted]);
+ if(!roundtrip.equals(Buffer.from(pem)))throw Error('Encrypted signing-key verification failed');
+ const publicBytes=createPublicKey(key).export({type:'spki',format:'der'}).subarray(-32);
+ const record='v=MCPv1; k=ed25519; p='+publicBytes.toString('base64');
+ await writeFile(resolve(qa,'registry-dns-public-record.txt'),record+'\n');
+ await jsonFile(resolve(qa,'registry-key-protection.json'),{passed:true,algorithm:'Ed25519',encryptedAtRest:true,plaintextKeyWritten:false,keyInArguments:false,recipient:'Existing Owner-only age identity; no identity exported',scope:'Only official MCP Registry namespace xyz.rillora/*'});
+ console.log('Registry-only key generated, encrypted and authenticated; public DNS proof ready.');
+}else if(mode==='publish'){
+ const schema=JSON.parse(await readFile(resolve(root,'integrations/ai/registry/server.json'),'utf8'));
+ if(schema.name!=='xyz.rillora/rillora'||schema.remotes.length!==1||schema.remotes[0].url!=='https://app.rillora.xyz/api/mcp')throw Error('Unexpected publication target');
+ const key=createPrivateKey(run('age',['-d','-i',identity,encrypted]));
+ const timestamp=new Date().toISOString().replace(/\.\d{3}Z$/,'Z');
+ const signed_timestamp=sign(null,Buffer.from(timestamp),key).toString('hex');
+ const auth=await fetch(registry+'/v0/auth/dns',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({domain,timestamp,signed_timestamp}),signal:AbortSignal.timeout(30000)});
+ const authText=await auth.text();
+ if(!auth.ok){await writeFile(resolve(privateDir,'registry-auth-failure.json'),authText,{mode:0o600});throw Error('Registry DNS authentication HTTP '+auth.status);}
+ const {registry_token}=JSON.parse(authText);if(typeof registry_token!=='string'||!registry_token)throw Error('Missing registry token');
+ const response=await fetch(registry+'/v0/publish',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+registry_token},body:JSON.stringify(schema),signal:AbortSignal.timeout(30000)});
+ const body=await response.json();
+ await jsonFile(resolve(qa,'registry-publish-result.json'),{status:response.status,at:new Date().toISOString(),response:body});
+ if(!response.ok)throw Error('Publish HTTP '+response.status+'; inspect receipt before retrying');
+ console.log(JSON.stringify({published:true,status:response.status,name:schema.name,version:schema.version,tokenPersisted:false}));
+}else if(mode==='readback'){
+ const response=await fetch(registry+'/v0/servers/'+encodeURIComponent('xyz.rillora/rillora')+'/versions/latest',{signal:AbortSignal.timeout(30000)});
+ const body=await response.json();
+ await jsonFile(resolve(qa,'registry-public-readback.json'),{status:response.status,at:new Date().toISOString(),response:body});
+ const entry=body.server?.name==='xyz.rillora/rillora'&&body.server?.version==='0.1.0'?body:null;
+ if(!response.ok||!entry||entry.server.remotes?.[0]?.url!=='https://app.rillora.xyz/api/mcp')throw Error('Exact published record not found');
+ console.log(JSON.stringify({passed:true,name:entry.server.name,version:entry.server.version,publiclyReadable:true}));
+}else throw Error('Use prepare, publish or readback');

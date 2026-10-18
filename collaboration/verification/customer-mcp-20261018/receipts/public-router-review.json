@@ -1,0 +1,48 @@
+{
+  "changes": [
+    {
+      "Action": "Modify",
+      "LogicalResourceId": "PublicRoutesC0C4D2B4",
+      "PhysicalResourceId": "arn:aws:cloudfront::133857166372:function/eu-central-1RilloraPublicWebPublicRoutes1C45F756",
+      "ResourceType": "AWS::CloudFront::Function",
+      "Replacement": "False",
+      "Scope": [
+        "Properties"
+      ],
+      "Details": [
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "FunctionCode",
+            "RequiresRecreation": "Never"
+          },
+          "Evaluation": "Static",
+          "ChangeSource": "DirectModification"
+        }
+      ]
+    },
+    {
+      "Action": "Modify",
+      "LogicalResourceId": "Website32962D0B",
+      "PhysicalResourceId": "E1H3EWWIZNTZDO",
+      "ResourceType": "AWS::CloudFront::Distribution",
+      "Replacement": "False",
+      "Scope": [
+        "Properties"
+      ],
+      "Details": [
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "DistributionConfig",
+            "RequiresRecreation": "Never"
+          },
+          "Evaluation": "Dynamic",
+          "ChangeSource": "ResourceAttribute",
+          "CausingEntity": "PublicRoutesC0C4D2B4.FunctionARN"
+        }
+      ]
+    }
+  ],
+  "approvedScopeOnly": true
+}

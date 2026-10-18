@@ -1,6 +1,6 @@
 # 正式用户 MCP 与 Google 地图续接
 
-Status: IMPLEMENTING — NOT YET CUSTOMER ENABLED
+Status: PRODUCTION ENABLED / REAL CODEX MODEL AND REVOCATION VERIFIED / REGISTRY ACTIVE
 Last updated: 2026-10-18 (Asia/Hong_Kong)
 
 Owner明确要求补齐Google地图及MCP／插件剩余接入，普通用户能真正使用，不停留在测试环境；能自主完成的直接做，保持当前审核，完成后推Git。这取代上一轮仅准备营销材料的下一步，不重做已通过的协议、支付、真机或官网发布。
@@ -32,11 +32,11 @@ AI连接有独立、明确、未预选的披露同意，说明字段、提供方
 QA及阅读链：output/qa/rillora-customer-mcp-20261018。AWS原会话实际过期后，Owner完成MFA，已续回操作员与部署角色；此后复用，不重复要求登录。
 
 
-## Implementation checkpoint
+## Historical implementation checkpoint — superseded by live acceptance below
 
 The standard provider and signed PostgreSQL flow pass 33 focused checks; the complete API suite passes 580 checks, infrastructure 68, and package generation 6. The live Web build includes a credential-free deterministic download and an explicit client-first authorization flow; existing closed/review builds keep AI disabled. These are implementation/build results, not production customer acceptance. The prepared change set holds the current API and identity-worker task images while adding only protocol storage, its protected configuration, the compatible journal writer and maintenance task image. Migration and enablement remain separate actions.
 
-## 生产准备与迁移检查点
+## 历史生产准备与迁移检查点
 
 源码aa1864fbd／CI182和静态包校验修正bbde68a2e／CI183均三任务通过。准备栈已部署，原API及身份删除worker镜像、既有参数保持；加密生产快照已可用。固定broker的迁移／核验任务exit0，schema103→106，原103份迁移校验和、68张表的行数／指纹及角色设置全部保持，仅新增3张空AI表。强制RLS与内容加密通过。专用签名／存储／Cookie密钥直接写入精确AWS秘密，未保存本地明文。API启用与Web发布仍需各自读回，不能以准备完成冒充客户可用。
 
@@ -47,3 +47,27 @@ The standard provider and signed PostgreSQL flow pass 33 focused checks; the com
 Host修正1b96a114f／CI184已部署并验收，实际MCP匿名／无效令牌401、非法Origin403；7个登记客户端的授权起点与安全Cookie也通过。Web已完成部署、89文件及下载包逐字核验、3条发现路由200且no-store。Owner已当场确认条款并成功复用原Google登录。
 
 真实Codex进一步发现授权服务器动态生成了内部Host和去掉/api后的端点，驱动拒绝继续，未发生资料授权。当前修正把oidc-provider的请求上下文固定为配置中的公开issuer，覆盖不可信转发头，并保留浏览器实际/api路径对应的Cookie匹配。新增真实HTTP代理模拟检查发现／回跳／换码，另验证公开JWKS的ID Token签名。只滚动替换API镜像，不重跑迁移、付款、原生或此前官网验收；正式客户端读取／撤销仍待此修正实际交付。
+
+## 当前实际交付与验收
+
+公开issuer修正c6beccfde／CI185已完成窄范围滚动部署；只替换API镜像，既有worker、维护任务及数据库不再变动。实际发现文件中的授权、换码、JWKS和UserInfo地址均指向app.rillora.xyz/api/ai/oauth，代理后的Host及路径不再泄漏为客户端端点。API和Web各自的部署完成、最终模板及线上HTTP均已核对；原89份Web文件、公开下载包和三条根发现路由匹配。
+
+Owner当场批准仅把合成事项Release acceptance 2026-10-01授权给真实Codex，读取名称／类别／状态并检查通用缺项，不提供邮箱／备注／其他事项，验收后立即撤销。第一次本机回调监听在等待确认时超时；相同范围续接无需重复批准。Codex0.163.0-alpha.10.2实际完成S256授权、工具发现和一次临时模型会话，模型调用两项只读工具，仅返回1条选定合成事项及intended_outcome缺项。原始字段值、其他事项、邮箱和备注均未返回。
+
+随后在正式Web撤销，页面读回“通过此授权发起的新请求已被阻止”。同一客户端重新启动、仍使用原凭据时，初始化被拒绝，authStatus变为notLoggedIn且工具列表为空。移除仅本次验收alias的凭据，未改变用户全局Codex配置或其他插件。当前没有为本轮保留有效AI访问授权。
+
+生产下载包包含7种独立客户端配置、中英文安装说明，以及独立Codex兼容插件与OpenAI便携包。当前Codex真实解析器从下载包正确识别Rillora服务；这是包解析证据，实际模型会话使用同一正式服务的CLI配置，不能称为公开商店安装。ChatGPT／Claude消费端、Cursor IDE及其余模型任务没有在本轮冒称通过；旧Claude Code／Cursor／Gemini／Qwen的隔离协议证据仍按原环境单独保存。Owner没有Claude官网账号，不要求新注册或付费升级。
+
+普通用户入口：[账号设置](https://app.rillora.xyz/account?next=ai-connect)、[公开下载](https://app.rillora.xyz/integrations/rillora-ai-v1.zip)。先由对应AI发起OAuth，再选择事项、明确同意；账号不需要加入旧审核白名单，也不需要访问私有Git或请求管理员生成令牌。配置和账号／地区／套餐资格不同，不宣传“所有AI都可直接安装”。
+
+## 官方MCP Registry
+
+已发布xyz.rillora/rillora@0.1.0，官方发布与独立公开GET均返回active。登记只包含品牌、正式资源地址、公开使用说明和权限边界；没有公开私有业务源码、身份、密码或事项。采用官方DNS签名认证，仅新增1条根TXT域名证明，原36条记录全部保持；两台权威DNS和两个公共解析器均读回。Ed25519私钥仅在内存生成，经既有Owner-only age身份加密并验证后保存；没有明文私钥文件／命令行参数，短期Registry令牌未持久化。
+
+[官方登记](https://registry.modelcontextprotocol.io/v0/servers/xyz.rillora%2Frillora/versions/latest)可被技术目录发现，但不等于ChatGPT／Claude商店批准、自动安装或模型推荐。官方文档的v0.1查询本次超时，实际官方publisher使用的v0接口成功；没有重复发布同一版本。登记源稿见[integrations/ai/registry/server.json](../../integrations/ai/registry/server.json)。
+
+## 验收边界和后续分发
+
+本轮沿用已过API580、infra68、配置6及UI20检查，公开issuer修正另有27项针对性代理／协议检查。没有把这些本地测试重复写为此次真实模型调用；部署、迁移数据保持、模型结果和撤销分别有回执。生产本轮未单独等待令牌到期触发刷新，刷新／重放等边界来自已过真实HTTP集成和先前独立候选检查，不冒称为新的生产到期实测。页面残留双语语言标签已按所选语言修正并独立发布：46d745bf4／CI186、4项聚焦检查、生产构建及89文件线上逐字核验通过；实际Chrome显示中文标签且混合语言标签为0。
+
+当前在审App14、TestFlight暂停、原事项、价格、收费开关、FanPass及原Auth0连接保持。当前正式用户MCP和官方Registry已开放；OpenAI目录仍须独立消费端验收、演示与提供方提交，Claude账号资格及其他消费端同样单独记录。不能复用Apple审核凭据给新的AI平台，也不能把Codex的无邮箱授权扩大为ChatGPT的邮箱披露。

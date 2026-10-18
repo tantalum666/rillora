@@ -1,0 +1,51 @@
+"""Capability-bound snapshot and fixed audit/migration operations on existing production."""
+import datetime,json,secrets,sys,uuid
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[3];QA=Path(__file__).resolve().parent
+sys.path.insert(0,str(ROOT/'tools/release'))
+from recovery_drill import Aws,save,validate_source
+aws=Aws('rillora-production-operator');private=ROOT/'.local-secrets/mcp-customer-20261018';path=private/'maintenance-state.json'
+identity=aws.call('sts','get-caller-identity');assert identity['Account']=='133857166372' and ':assumed-role/rillora-production-operator/' in identity['Arn']
+s=aws.call('cloudformation','describe-stacks',{'StackName':'RilloraProduction'})['Stacks'][0]
+assert s['StackStatus']=='UPDATE_COMPLETE';out={v['OutputKey']:v['OutputValue'] for v in s['Outputs']}
+assert out['RuntimeCustomerAccess0D914672']=='live'
+if path.exists():state=json.loads(path.read_text())
+else:
+ assert sys.argv[1]=='snapshot'
+ run=uuid.uuid4().hex[:16];state={'run':run,'runToken':secrets.token_urlsafe(32),'tasks':{},'snapshot':'rillora-production-recovery-'+run};save(path,state)
+phase=sys.argv[1]
+def invoke(payload):return aws.invoke_broker(out['MaintenanceBrokerFunctionName'],dict(payload,run=state['run'],runToken=state['runToken']))
+if phase=='snapshot':
+ validate_source(aws.database('rillora-production'))
+ response=invoke({'operation':'snapshot'});row=response['snapshot'];assert row['Encrypted'] and row['DBInstanceIdentifier']=='rillora-production'
+ state['snapshotStatus']=row['Status'];save(path,state)
+ print('Encrypted production snapshot:',row['Status'])
+elif phase=='snapshot-status':
+ row=aws.snapshot(state['snapshot']);assert row and row['Encrypted'];state['snapshotStatus']=row['Status'];save(path,state)
+ save(QA/'production-backup.json',{'snapshot':state['snapshot'],'status':row['Status'],'encrypted':True,'source':'rillora-production','restoreRehearsalRepeated':False})
+ print('Encrypted snapshot:',row['Status'])
+elif phase in ['audit-before','audit-after','migrate']:
+ assert phase not in state['tasks'],'Task already recorded; check it instead'
+ if phase=='migrate':assert state['snapshotStatus']=='available' and json.loads((QA/'production-preparation-verified.json').read_text())['passed']
+ command=json.loads((ROOT/'tools/maintenance-broker/production-migration.json').read_text()) if phase=='migrate' else ['node','--input-type=module','-e',(ROOT/'tools/release/probe_security_rollout.mjs').read_text()]
+ token=uuid.uuid4().hex
+ request={'cluster':out['ClusterName'],'taskDefinition':out['MigrationTaskDefinitionArn'],'launchType':'FARGATE','clientToken':token,
+ 'networkConfiguration':{'awsvpcConfiguration':{'subnets':out['MaintenanceSubnetIds'].split(','),'securityGroups':[out['MigrationSecurityGroupId']],'assignPublicIp':'ENABLED'}},
+ 'overrides':{'containerOverrides':[{'name':'Maintenance','command':command,'environment':[{'name':'RECOVERY_RUN','value':state['run']}]}]}}
+ state['tasks'][phase]={'request':request,'requestedAt':datetime.datetime.now(datetime.timezone.utc).isoformat()};save(path,state)
+ response=invoke({'operation':'task','request':request});assert not response.get('failures') and len(response.get('tasks',[]))==1
+ state['tasks'][phase]['arn']=response['tasks'][0]['taskArn'];save(path,state);print(phase+' accepted')
+elif phase=='check':
+ target=sys.argv[2];item=state['tasks'][target];assert item.get('arn'),'Uncertain invocation; reconcile client token before retry'
+ data=aws.call('ecs','describe-tasks',{'cluster':out['ClusterName'],'tasks':[item['arn']]});assert not data.get('failures')
+ task=data['tasks'][0];print(target,task['lastStatus'])
+ if task['lastStatus']=='STOPPED':
+  c=task['containers'][0];assert c.get('exitCode')==0,'Task failed; inspect private diagnostics'
+  log=aws.call('logs','get-log-events',{'logGroupName':out['MaintenanceLogGroup'],'logStreamName':'migration/Maintenance/'+item['arn'].rsplit('/',1)[1],'startFromHead':True})
+  messages=[e['message'] for e in log['events']];save(private/(target+'-log.json'),{'messages':messages})
+  report={'passed':True,'status':task['lastStatus'],'exitCode':c['exitCode'],'imageDigest':c.get('imageDigest'),'taskArn':item['arn']}
+  if target.startswith('audit'):
+   audit=next(json.loads(m) for m in messages if m.startswith('{') and 'fingerprints' in m)
+   save(private/(target+'-data.json'),audit);report.update(migrations=len(audit['migrations']),lastMigration=audit['migrations'][-1]['name'],tables=len(audit['fingerprints']),forcedRls=audit['everyApplicationTableForcedRls'],contentEncryption=audit['contentProtectionEnforced'])
+  save(QA/('production-'+target+'.json'),report);print(json.dumps(report))
+else:raise SystemExit('Unknown phase')

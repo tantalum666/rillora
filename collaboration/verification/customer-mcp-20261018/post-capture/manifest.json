@@ -1,0 +1,40 @@
+{
+  "scope": "Late non-secret package metadata and public ZIP only; archive48 unchanged",
+  "files": [
+    {
+      "source": "output/qa/rillora-customer-mcp-20261018/package-metadata-final.log",
+      "copy": "collaboration/verification/customer-mcp-20261018/post-capture/package-metadata-final.log.reference.txt",
+      "sha256": "dc827805b244dbb926a544beb70f67506895b6f680ed2573fa66a9b3b0b96425"
+    },
+    {
+      "source": "output/qa/rillora-customer-mcp-20261018/package-only-diff.json",
+      "copy": "collaboration/verification/customer-mcp-20261018/post-capture/package-only-diff.json",
+      "sha256": "319771ac1bb35d50c7bc614b89bee4875fafe3b74f081d1b240b0b722fdbc7ce"
+    },
+    {
+      "source": "output/qa/rillora-customer-mcp-20261018/package-metadata-diff.json",
+      "copy": "collaboration/verification/customer-mcp-20261018/post-capture/package-metadata-diff.json",
+      "sha256": "c0a97e6996b07a1b5c6804f60eca75a879d3a483a4a13e8958e9c58b60587e3b"
+    },
+    {
+      "source": "output/qa/rillora-customer-mcp-20261018/package-only-preparation-correction.json",
+      "copy": "collaboration/verification/customer-mcp-20261018/post-capture/package-only-preparation-correction.json",
+      "sha256": "d5f8bba8ec6fa769eb5f72844e0bf2e9860ee5ec38dbfa08aa80a19f8022a16b"
+    },
+    {
+      "source": "output/qa/rillora-customer-mcp-20261018/package-final-parser.json",
+      "copy": "collaboration/verification/customer-mcp-20261018/post-capture/package-final-parser.json",
+      "sha256": "0b640e1e7e5472f6dca27db9c1213fd328732e5f965b5985821688035ffdf54f"
+    },
+    {
+      "source": "output/qa/rillora-customer-mcp-20261018/rillora-openai-review-draft.zip",
+      "copy": "collaboration/verification/customer-mcp-20261018/post-capture/rillora-openai-review-draft.zip",
+      "sha256": "8decdbd0f2c71375b2bda0b781d8da2eeea57e32fce6b43b825ba39818111fbb"
+    },
+    {
+      "source": "apps/web/dist-production-live/integrations/rillora-ai-v1.zip",
+      "copy": "collaboration/verification/customer-mcp-20261018/post-capture/rillora-ai-v1.zip",
+      "sha256": "d1a004ba9eb746640e8d77947f1a898ae8dcf637e22df64ab112a79e262a1e3b"
+    }
+  ]
+}

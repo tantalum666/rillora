@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "changes": [
+    {
+      "Action": "Modify",
+      "LogicalResourceId": "DeploymentCustomResource47E8B2E6",
+      "PhysicalResourceId": "aws.cdk.s3deployment.e1af7cad-e60e-4fc9-a9f9-ced3a40aee47",
+      "ResourceType": "Custom::CDKBucketDeployment",
+      "Replacement": "Conditional",
+      "Scope": [
+        "Properties"
+      ],
+      "Details": [
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "SourceObjectKeys",
+            "RequiresRecreation": "Conditionally"
+          },
+          "Evaluation": "Static",
+          "ChangeSource": "DirectModification"
+        }
+      ]
+    }
+  ],
+  "scope": "Two localized language labels; existing assets retained; API, routes, storage identity and billing unchanged"
+}

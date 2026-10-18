@@ -1,15 +1,17 @@
 # Rillora 跨平台 AI 接入包
 
-Status: CUSTOMER PRODUCTION IMPLEMENTATION READY / DEPLOYMENT IN PROGRESS / NOT LISTED
+Status: CUSTOMER PRODUCTION LIVE / CODEX MODEL VERIFIED / OFFICIAL MCP REGISTRY ACTIVE
 Last updated: 2026-10-18 (Asia/Hong_Kong)
 
-本目录提供下一版本的接入材料。当前 App1.0(14) 审核、生产 API／数据库、价格、收费和既有 Auth0 登录配置保持原状；隔离测试注册的当前状态见下方补充。示例文件不代表已注册 OAuth 客户端、已有公网 MCP 服务或已通过目录审核。
+本目录提供独立于当前App1.0(14)审核的AI接入材料。正式API与Web已经开放选定事项的只读MCP；原数据、价格、收费及Auth0登录保持。示例与旧合成候选继续单独标记，不能替代正式客户配置。OpenAI／Claude商店批准不由官方MCP Registry登记推导。
 
 ## October18 ordinary-user production continuation
 
-The Owner now requests ordinary-user production delivery. [Current contract](../../docs/architecture/customer-mcp-20261018.md) supersedes the older direct-Auth0 deployment recipe below. The production path reuses Rillora sign-in and a dedicated standards-based OAuth issuer at `https://app.rillora.xyz/api/ai/oauth`, with the resource `https://app.rillora.xyz/api/mcp`. The [public registry](../../apps/api/src/mcp/customer-clients.json) has seven distinct client IDs. [English installation instructions](customer/README.en.md) and [Chinese instructions](customer/README.zh-CN.md) accompany a downloadable package generated during the live Web build. No endpoint is represented as deployed until its actual receipt is recorded.
+The [current contract](../../docs/architecture/customer-mcp-20261018.md) supersedes the historical direct-Auth0 recipe below. Production reuses Rillora sign-in, with issuer `https://app.rillora.xyz/api/ai/oauth` and resource `https://app.rillora.xyz/api/mcp`. Seven distinct [public client registrations](../../apps/api/src/mcp/customer-clients.json), [English instructions](customer/README.en.md), [Chinese instructions](customer/README.zh-CN.md) and a [public download](https://app.rillora.xyz/integrations/rillora-ai-v1.zip) are deployed. No private repository access or administrator-issued token is required.
 
-## October18 营销与可运行性复核
+Actual Codex0.163.0-alpha.10.2 completed production OAuth and a model task invoking both tools for one explicitly selected synthetic matter. Immediate browser revocation then blocked the same stored credentials; the test-only alias was logged out. The production plugin also passes the current parser; no public marketplace installation is claimed. [Official MCP Registry metadata](registry/server.json) is published as [xyz.rillora/rillora@0.1.0](https://registry.modelcontextprotocol.io/v0/servers/xyz.rillora%2Frillora/versions/latest), independently read back as active. Other provider directories and consumer-account acceptance remain separate.
+
+## HISTORICAL — October18 部署前营销与可运行性复核
 
 [本轮全平台矩阵](../../docs/marketing/readiness-audit-20261018.md)区分当前长期登记与已清理的临时证据。原生Node即时读取资源／授权发现200，匿名MCP401；Python路径403／1010不冒充整体停机。OpenAI简介36字符超限已修为23字符并通过5项生成器检查。当前候选不具备下游OIDC UserInfo／email能力及正式客户部署，未提交目录；[5正／3负审核测试和字段草稿](submission-draft-20261018.json)尚未执行于消费端。生成包的pending字段是通用待验条件，不是已验证客户端的最新状态；实际完成只看有日期的证据。
 
@@ -21,16 +23,16 @@ October18补充：[Qwen Code0.25.2原版OAuth及CLI验收](../../docs/architectu
 
 [真实公开登记](candidate-client-ids.json)和[生成的接入材料](hosted-candidate/readiness.json)包含Claude、Claude Code、Cursor、Qwen Code，不含秘密。只合并对应条目，不覆盖用户配置；Qwen必须按随附说明打开加密凭据存储。Owner没有Claude官网账号，官网连接没有执行，也不要求注册。代码客户端接通并不代表同品牌消费端或模型会主动推荐产品。
 
-## 实现与边界
+## 共享实现与边界
 
 - 服务端使用官方 MCP TypeScript SDK server/client 2.3.1、Node adapter 2.1.1；同时接受已验证的 2025 legacy 与 2026-07-28 请求。
 - 仅暴露 list_selected_matters 与 get_preparation_gaps 两个只读工具。无模型 API 调用、任意 URL／SQL、支付／退款、分享扩权、删除、完整导出或身后释放工具。
 - 用户先在下一版 Web 的账号页选择 AI 应用及最多20个事项，明确同意后建立7天授权。授权固定事项和字段，普通修改可继续读取；不披露／归档永久移除相关授权，不因改回公开状态而恢复。
 - 摘要仅含名称、类别、记录状态和事项ID；缺项仅检查适用的通用字段与处理意愿。原始备注、联系人、账号提示、价值和分类详情不发送给 AI。
-- 每次请求验证独立 OAuth audience、签名、issuer、client、scope 和有效期，再叠加当前账号、法律接受与数据库授权。不能把 Web Cookie 或原生 opaque Bearer 复制到 AI。
+- 正式访问令牌使用加密协议状态中的短期opaque凭据，每次验证resource、issuer、client、scope、有效期及撤销，再叠加当前账号、法律接受与数据库授权；签名ID Token用于独立OIDC需求。不能把Web Cookie或原生Bearer复制到AI。旧合成候选的签名token机制不等同于正式opaque实现。
 - 授权与撤销进入现有签名恢复日志；恢复数据库后所有外部 AI 授权失效，必须重新授权。账号删除通过外键清除授权，不保留可用连接。
 
-## 生成配置
+## 生成配置与历史验收对照
 
 以下命令只生成文件，不修改本机已安装客户端，不创建凭据，不提交目录：
 
@@ -44,7 +46,7 @@ node --test tools/mcp/client-packages.test.mjs
 | 交付 | 用途 | 实际接入仍需完成 |
 | --- | --- | --- |
 | OpenAI portable plugin.json／mcp.json | ChatGPT／Codex 共用插件包，明确 OAuth provided client 与只读能力 | 真实 HTTPS 地址、平台注册连接、回调核对、用户 OAuth 和目录审核；不伪造 plugin_asdk_app ID |
-| codex-plugin 兼容包 | 当前Codex的 `.codex-plugin/plugin.json` 与 `.mcp.json`，保留固定OAuth客户端 | 已在0.162.0-alpha.17.2真实解析器识别服务；真实OAuth已验证；公网候选及模型对话待验。不要把portable根manifest／mcp.json混进这个目录，否则其优先级会覆盖兼容配置 |
+| codex-plugin 兼容包 | 当前Codex的 `.codex-plugin/plugin.json` 与 `.mcp.json`，保留固定OAuth客户端 | 当前0.163.0-alpha.10.2从正式下载包识别服务；正式CLI模型调用与撤销另已通过。不要把portable根manifest／mcp.json混进这个目录，否则其优先级会覆盖兼容配置；公开商店安装仍独立 |
 | Codex setup.sh | 使用本机已核对的 mcp add／oauth-client-id参数；resource由受保护资源元数据发现 | 核对 CLI 选用的完整回调后注册，再用 mcp login；生成文件不自动执行 |
 | Claude Code mcp.json | HTTP、固定 clientId 和最小 scopes | 使用本机版本实际回调；需要时指定已登记 callbackPort，不能使用通配回调 |
 | Cursor mcp.json | HTTP 与固定 CLIENT_ID／scopes | 按使用的 Desktop／Web 入口分别登记其官方回调 |

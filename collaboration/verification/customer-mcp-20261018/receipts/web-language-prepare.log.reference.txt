@@ -1,0 +1,30 @@
+
+✨  Synthesis time: 0.01s
+
+RilloraProductionWeb: start: Building Deployment/Asset1
+RilloraProductionWeb: success: Built Deployment/Asset1
+RilloraProductionWeb: start: Building RilloraProductionWeb Template
+RilloraProductionWeb: success: Built RilloraProductionWeb Template
+RilloraProductionWeb: start: Publishing Deployment/Asset1 (133857166372-eu-central-1-c0f8ccca)
+RilloraProductionWeb: start: Publishing RilloraProductionWeb Template (133857166372-eu-central-1-208403dd)
+RilloraProductionWeb: success: Published RilloraProductionWeb Template (133857166372-eu-central-1-208403dd)
+RilloraProductionWeb: success: Published Deployment/Asset1 (133857166372-eu-central-1-c0f8ccca)
+RilloraProductionWeb: creating CloudFormation changeset...
+Changeset arn:aws:cloudformation:eu-central-1:133857166372:changeSet/rillora-customer-mcp-20261018-web-language/b94ffd34-a7ca-402f-bd47-d22dc9bbee33 created and waiting in review for manual execution (--no-execute)
+RilloraProductionWeb: deploying... [1/1]
+
+✅  RilloraProductionWeb
+
+✨  Deployment time: 0s
+
+Outputs:
+RilloraProductionWeb.BucketName = rilloraproductionweb-assets9a31d427-ltbwfplzu6ks
+RilloraProductionWeb.ClientUrl = https://app.rillora.xyz
+RilloraProductionWeb.CustomerAccess = live
+RilloraProductionWeb.DistributionDomain = d3mtr349015b96.cloudfront.net
+RilloraProductionWeb.DistributionId = E2D4X9TBTJK942
+Stack ARN:
+arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraProductionWeb/073e36f0-b8e7-11f1-8c86-06a768c8f0df
+
+✨  Total time: 48.02s
+
