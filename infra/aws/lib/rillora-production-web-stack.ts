@@ -13,10 +13,12 @@ const contractBytes = readFileSync(resolve(root, 'config/production-connections.
 export const productionConnections = JSON.parse(contractBytes.toString());
 export const PRODUCTION_WEB_CSP = "default-src 'self'; base-uri 'self'; connect-src 'self'; font-src 'self'; form-action 'self' https://login.rillora.xyz; frame-ancestors 'none'; img-src 'self' data:; object-src 'none'; script-src 'self'; style-src 'self'";
 
-export function verifyProductionClientArtifact(directory: string, reviewEnabled = false, liveEnabled = false): void {
+export function verifyProductionClientArtifact(directory: string, reviewEnabled = false, liveEnabled = false, customerMcpEnabled = false): void {
   const manifest = readVerifiedClientArtifact(directory, 'production-build.json');
   if ((reviewEnabled && liveEnabled) || productionConnections.schemaVersion !== 1 || !['closed','live'].includes(productionConnections.customerAccess)
     || (liveEnabled && productionConnections.customerAccess !== 'live')
+    || (customerMcpEnabled && (!liveEnabled || manifest.aiConnections !== true))
+    || (!customerMcpEnabled && manifest.aiConnections === true)
     || manifest.version !== 1 || manifest.surface !== 'production-client' || manifest.customerAccess !== (liveEnabled ? 'live' : 'closed')
     || manifest.publicationCandidate !== true
     || (reviewEnabled ? manifest.reviewAccess !== 'identity-allowlist' : manifest.reviewAccess !== undefined)
@@ -28,13 +30,13 @@ export function verifyProductionClientArtifact(directory: string, reviewEnabled 
 
 /** Same-origin client delivery only. Existing API/customer activation is untouched. */
 export class RilloraProductionWebStack extends Stack {
-  constructor(scope: Construct, id: string, props: StackProps & { certificateArn: string; assetDirectory?: string; reviewEnabled?: boolean; liveEnabled?: boolean }) {
+  constructor(scope: Construct, id: string, props: StackProps & { certificateArn: string; assetDirectory?: string; reviewEnabled?: boolean; liveEnabled?: boolean; customerMcpEnabled?: boolean }) {
     super(scope, id, props);
     if (props.env?.region !== 'eu-central-1') throw new Error('Production origin storage remains in Frankfurt');
     if (!/^arn:aws:acm:us-east-1:\d{12}:certificate\/[0-9a-f-]+$/.test(props.certificateArn)
       || props.certificateArn.split(':')[4] !== props.env.account) throw new Error('Use the reviewed same-account CloudFront certificate');
     const directory = props.assetDirectory ?? resolve(root, props.liveEnabled ? 'apps/web/dist-production-live' : props.reviewEnabled ? 'apps/web/dist-production-review' : 'apps/web/dist-production');
-    verifyProductionClientArtifact(directory, props.reviewEnabled, props.liveEnabled);
+    verifyProductionClientArtifact(directory, props.reviewEnabled, props.liveEnabled, props.customerMcpEnabled);
     Tags.of(this).add('Project', 'Rillora'); Tags.of(this).add('Environment', 'Production');
     const assets = new s3.Bucket(this, 'Assets', {
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL, enforceSSL: true,
@@ -58,6 +60,10 @@ export class RilloraProductionWebStack extends Stack {
       code: cloudfront.FunctionCode.fromFile({ filePath: resolve(root, 'apps/web/worker/production-router.js') }),
     });
     const association = [{ eventType: cloudfront.FunctionEventType.VIEWER_REQUEST, function: router }];
+    const apiOrigin = new origins.HttpOrigin(productionConnections.originApiDomain, {
+      protocolPolicy: cloudfront.OriginProtocolPolicy.HTTPS_ONLY,
+      originSslProtocols: [cloudfront.OriginSslPolicy.TLS_V1_2], readTimeout: Duration.seconds(30),
+    });
     const distribution = new cloudfront.Distribution(this, 'Client', {
       comment: props.liveEnabled ? 'Rillora production Web client; server-owned customer access and subscriptions' : props.reviewEnabled
         ? 'Rillora restricted review client; server identity allowlist required, public customers closed'
@@ -73,17 +79,18 @@ export class RilloraProductionWebStack extends Stack {
         cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED, compress: true,
         responseHeadersPolicy: headers, functionAssociations: association,
       },
-      additionalBehaviors: { '/api/*': {
-        origin: new origins.HttpOrigin(productionConnections.originApiDomain, {
-          protocolPolicy: cloudfront.OriginProtocolPolicy.HTTPS_ONLY,
-          originSslProtocols: [cloudfront.OriginSslPolicy.TLS_V1_2], readTimeout: Duration.seconds(30),
-        }),
+      additionalBehaviors: Object.fromEntries(['/api/*', ...(props.customerMcpEnabled ? [
+        '/.well-known/oauth-authorization-server/api/ai/oauth',
+        '/.well-known/openid-configuration/api/ai/oauth',
+        '/.well-known/oauth-protected-resource/api/mcp',
+      ] : [])].map(path => [path, {
+        origin: apiOrigin,
         viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.HTTPS_ONLY,
         allowedMethods: cloudfront.AllowedMethods.ALLOW_ALL,
         cachePolicy: cloudfront.CachePolicy.CACHING_DISABLED,
         originRequestPolicy: cloudfront.OriginRequestPolicy.ALL_VIEWER_EXCEPT_HOST_HEADER,
         responseHeadersPolicy: apiHeaders, functionAssociations: association, compress: true,
-      } },
+      }])),
       errorResponses: [400, 403, 404, 405, 414, 416, 500, 501, 502, 503, 504].map(httpStatus => ({ httpStatus, ttl: Duration.seconds(0) })),
     });
     const upload = new deployment.BucketDeployment(this, 'Deployment', {

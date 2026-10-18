@@ -1,6 +1,7 @@
 import { Construct } from 'constructs';
 import { allowAppleCertificateStatusChecks } from './apple-certificate-egress.js';
 import {RilloraRuntimeBoundaryKeys,RilloraIdentityDeletionWorker} from './rillora-runtime-boundaries.js';
+import {RilloraCustomerMcp} from './rillora-customer-mcp.js';
 import { CfnOutput, CfnParameter, Duration, RemovalPolicy, aws_ec2 as ec2, aws_ecs as ecs,
  aws_iam as iam, aws_logs as logs, aws_kms as kms, aws_dynamodb as dynamodb,
  aws_rds as rds, aws_secretsmanager as secrets, aws_certificatemanager as acm,
@@ -13,6 +14,7 @@ interface Props {
  operator:iam.Role; environment:Record<string,string>; desiredCount:0|1;
  reviewPrepared?:boolean; reviewEnabled?:boolean;
  liveEnabled?:boolean; stripeCheckoutEnabled?:boolean;
+ customerMcpPrepared?:boolean; customerMcpEnabled?:boolean;
  appleProductionPrepared?:boolean; appleProductionEnabled?:boolean; appleReviewEnabled?:boolean;
  retentionEnabled?:boolean;
  identityServicesEnabled?:boolean;
@@ -50,6 +52,8 @@ export class RilloraProductionRuntime extends Construct {
   const task=new ecs.FargateTaskDefinition(this,'ApiTask',{cpu:256,memoryLimitMiB:512,
    runtimePlatform:{cpuArchitecture:ecs.CpuArchitecture.ARM64,operatingSystemFamily:ecs.OperatingSystemFamily.LINUX}});
   const reviewEnvironment:Record<string,string>={};
+  const customerMcp=p.customerMcpPrepared?new RilloraCustomerMcp(this,'CustomerMcp',{
+    enabled:p.customerMcpEnabled===true,runtime:task.taskRole,operator:p.operator}):null;
   const reviewSecrets:Record<string,ecs.Secret>={};
   const deletionSecrets:Record<string,ecs.Secret>={};
   if(p.reviewPrepared){
@@ -151,7 +155,7 @@ export class RilloraProductionRuntime extends Construct {
     ALLOW_DEV_AUTH:'false',ALLOW_SYNTHETIC_RECIPIENT_REHEARSAL:'false',ALLOW_STRIPE_TEST_INTEGRATION:'false',
     ALLOW_APPLE_SANDBOX_INTEGRATION:'false',ALLOW_FAMILY_MAINTENANCE_PREVIEW:'false',
     ALLOW_APPLE_PRODUCTION_INTEGRATION:'false',ALLOW_STRIPE_PRODUCTION_INTEGRATION:p.liveEnabled&&p.stripeCheckoutEnabled?'true':'false',
-    ALLOW_RETENTION_WORKER:p.retentionEnabled?'true':'false',
+    ALLOW_RETENTION_WORKER:p.retentionEnabled?'true':'false',...customerMcp?.environment,
     ...(p.identityServicesEnabled?{DELETION_WORKER_ENABLED:'true',DELETION_PROOF_KMS_KEY_ARN:p.boundaryKeys.proof.keyArn}:{}),...reviewEnvironment},
    secrets:{DATABASE_USER:ecs.Secret.fromSecretsManager(p.credential,'username'),DATABASE_PASSWORD:ecs.Secret.fromSecretsManager(p.credential,'password'),
     ...p.boundaryKeys.apiSecrets(),...reviewSecrets},

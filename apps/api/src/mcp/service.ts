@@ -5,7 +5,7 @@ import { withAuthDatabase, withPlannerDatabase, type DatabasePool } from '../db.
 import { ApiError } from '../errors.js';
 import { currentLegalContract } from '../legal-contract.js';
 import { reviewIdentityAllowed, reviewIdentityDigest } from '../production-review-access.js';
-import { AI_CONSENT_VERSION, MCP_SCOPES, type McpConfig } from './config.js';
+import { AI_CONSENT_VERSION, AI_IDENTITY_DISCLOSURE_VERSION, MCP_SCOPES, type McpConfig } from './config.js';
 import type { McpActor } from './identity.js';
 
 const id = z.uuid().transform(value => value.toLowerCase());
@@ -17,6 +17,7 @@ export const connectionInput = z.object({
     .refine(items => items.includes('matters:read:summary') && new Set(items).size === items.length),
   consentVersion: z.literal(AI_CONSENT_VERSION),
   acknowledgedDisclosure: z.literal(true),
+  identityDisclosure: z.object({version:z.literal(AI_IDENTITY_DISCLOSURE_VERSION),acknowledged:z.literal(true)}).strict().optional(),
   replace: z.object({ publicId: id, expectedVersion: z.number().int().positive() }).strict().optional(),
 }).strict();
 export const revokeInput = z.object({ expectedVersion: z.number().int().positive() }).strict();
@@ -44,8 +45,8 @@ export class SelectedAiService {
           where g.connection_id=c.id and m.archived_at is null and m.desired_outcome<>'never_disclose' and m.version>=g.matter_version) as eligible_count
         from app.ai_connections c where c.planner_id=app.current_planner_id() and c.client_id=any($1::text[])
         and c.revoked_at is null order by c.id limit 17`, [this.config.clients.map(client => client.clientId)])).rows;
-      return { consentVersion: AI_CONSENT_VERSION, serverUrl: this.config.resourceUrl,
-        clients: this.config.clients.map(({ key, name, privacyUrl }) => ({ key, name, privacyUrl })),
+      return { consentVersion: AI_CONSENT_VERSION, identityDisclosureVersion:AI_IDENTITY_DISCLOSURE_VERSION, serverUrl: this.config.resourceUrl,
+        clients: this.config.clients.map(({ key, name, privacyUrl, clientId }) => ({ key, name, privacyUrl, clientId })),
         connections: rows.flatMap(row => {
           const target = this.config.clients.find(c => c.clientId === row.client_id);
           return target ? [{ publicId: row.public_id, clientKey: target.key, name: target.name, version: row.version,
@@ -72,6 +73,7 @@ export class SelectedAiService {
   async authorize(plannerId: string, input: z.infer<typeof connectionInput>) {
     const target = this.config.clients.find(client => client.key === input.clientKey);
     if (!target) throw unavailable();
+    if (input.identityDisclosure && target.verifiedEmailDisclosure !== true) throw unavailable();
     return withPlannerDatabase(this.pool, plannerId, async client => {
       await client.query("select pg_advisory_xact_lock(hashtextextended('ai:'||app.current_planner_id()::text||':'||$1,0))", [target.clientId]);
       const selected = (await client.query<Selection>(`select id::text,public_id,version from app.matter_items
@@ -96,6 +98,8 @@ export class SelectedAiService {
       await client.query(`insert into app.ai_connection_matters(connection_id,planner_id,matter_item_id,matter_version)
         select $1,app.current_planner_id(),item,version from unnest($2::bigint[],$3::integer[]) as selected(item,version)`,
       [created.id, selected.map(m => m.id), selected.map(m => m.version)]);
+      if (input.identityDisclosure) await client.query(`insert into app.ai_identity_disclosures(connection_id,planner_id,consent_version,fields)
+        values($1,app.current_planner_id(),$2,array['verified_email']::text[])`,[created.id,input.identityDisclosure.version]);
       await audit(client, 'ai.connection_authorized', created.public_id);
       return { connection: { publicId: created.public_id, version: created.version, expiresAt: created.expires_at }, reconnectRequired: true };
     });
@@ -126,8 +130,7 @@ export class SelectedAiService {
     return plannerId;
   }
 
-  async read(actor: McpActor, operation: 'summary' | 'gaps') {
-    const required = operation === 'summary' ? MCP_SCOPES[0] : MCP_SCOPES[1];
+  private async withConnection<T>(actor: McpActor, required: string, operation: (client: PoolClient, connection: Connection) => Promise<T>): Promise<T> {
     if (!actor.scopes.includes(required)) throw unavailable();
     const plannerId = await this.planner(actor);
     return withPlannerDatabase(this.pool, plannerId, async client => {
@@ -138,7 +141,29 @@ export class SelectedAiService {
         and ($4::uuid is null or public_id=$4) for share`,
       [actor.clientId, AI_CONSENT_VERSION, Buffer.from(currentLegalContract.bundleSha256, 'hex'),
         actor.boundConnectionPublicId ?? null])).rows[0];
-      if (!connection || !connection.scopes.includes(required) || actor.issuedAt < Number(connection.token_valid_after)) throw unavailable();
+      // Legacy provider tokens use the epoch guard. A broker pins the token to the exact newly created consent UUID,
+      // which also permits legitimate issuance in the same clock second without reviving a replaced connection.
+      if (!connection || !connection.scopes.includes(required)
+        || (!actor.boundConnectionPublicId && actor.issuedAt < Number(connection.token_valid_after))) throw unavailable();
+      return operation(client, connection);
+    });
+  }
+
+  async assertAccess(actor: McpActor): Promise<void> {
+    return this.withConnection(actor, MCP_SCOPES[0], async () => {});
+  }
+
+  async assertIdentityDisclosure(actor: McpActor): Promise<void> {
+    if (!this.config.clients.some(c=>c.clientId===actor.clientId && c.verifiedEmailDisclosure)) throw unavailable();
+    await this.withConnection(actor,MCP_SCOPES[0],async (client,connection)=>{
+      if (!(await client.query(`select 1 from app.ai_identity_disclosures where connection_id=$1
+        and planner_id=app.current_planner_id() and consent_version=$2 and fields=array['verified_email']::text[]`,
+      [connection.id,AI_IDENTITY_DISCLOSURE_VERSION])).rowCount) throw unavailable();
+    });
+  }
+
+  async read(actor: McpActor, operation: 'summary' | 'gaps') {
+    return this.withConnection(actor, operation === 'summary' ? MCP_SCOPES[0] : MCP_SCOPES[1], async (client, connection) => {
       // No Notes, typed details, account hints, values, contacts or full-plan counts are read.
       const projection = operation === 'summary' ? 'm.title,m.category,m.status'
         : 'm.category,m.institution_name,m.location_hint,m.desired_outcome';

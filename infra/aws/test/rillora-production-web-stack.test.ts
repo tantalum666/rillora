@@ -39,6 +39,26 @@ describe('Closed production client delivery', () => {
       for (const type of ['AWS::ECS::Service','AWS::RDS::DBInstance','AWS::SecretsManager::Secret']) t.resourceCountIs(type,0);
     } finally {rmSync(assetDirectory,{recursive:true});}
   });
+  it('requires an explicit matching customer MCP artifact and exact uncached discovery routes', () => {
+    const assetDirectory=fixture();
+    try {
+      const path=join(assetDirectory,'production-build.json'), manifest=JSON.parse(readFileSync(path,'utf8'));
+      manifest.customerAccess='live';manifest.aiConnections=true;writeFileSync(path,JSON.stringify(manifest));
+      expect(()=>verifyProductionClientArtifact(assetDirectory,false,true)).toThrow('access mode');
+      expect(()=>verifyProductionClientArtifact(assetDirectory,false,false,true)).toThrow('access mode');
+      const t=Template.fromStack(new RilloraProductionWebStack(new App(),'McpWebTest',{
+        env:{account:'111111111111',region:'eu-central-1'},certificateArn,assetDirectory,liveEnabled:true,customerMcpEnabled:true,
+      }));
+      const d=(Object.values(t.findResources('AWS::CloudFront::Distribution'))[0] as any).Properties.DistributionConfig;
+      expect(d.Origins).toHaveLength(2);
+      expect(d.CacheBehaviors.map((b:any)=>b.PathPattern)).toEqual(['/api/*',
+        '/.well-known/oauth-authorization-server/api/ai/oauth','/.well-known/openid-configuration/api/ai/oauth',
+        '/.well-known/oauth-protected-resource/api/mcp']);
+      expect(d.CacheBehaviors.every((b:any)=>b.CachePolicyId===cloudfront.CachePolicy.CACHING_DISABLED.cachePolicyId)).toBe(true);
+      manifest.aiConnections=false;writeFileSync(path,JSON.stringify(manifest));
+      expect(()=>verifyProductionClientArtifact(assetDirectory,false,true,true)).toThrow('access mode');
+    } finally {rmSync(assetDirectory,{recursive:true});}
+  });
   it('uses only private assets and the exact API; never creates or changes the database/runtime', () => {
     const assetDirectory = fixture();
     try {

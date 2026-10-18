@@ -14,7 +14,7 @@ test('five platform configurations share the resource and least-privilege OAuth 
   }
   const remote = JSON.parse(files['openai/mcp.json']).mcpServers.rillora;
   assert.equal(remote.type, 'streamable-http');
-  assert.deepEqual(remote.extensions['com.openai'].auth.baseScopes, ['matters:read:summary', 'readiness:read:scoped']);
+  assert.deepEqual(remote.extensions['com.openai'].auth.baseScopes, ['openid', 'email', 'matters:read:summary', 'readiness:read:scoped']);
   assert.equal(JSON.parse(files['openai/plugin.json']).extensions['com.openai'].interface.capabilities[0], 'Read');
   const compatibility = JSON.parse(files['codex-plugin/.codex-plugin/plugin.json']);
   assert.equal(compatibility.mcpServers, './.mcp.json');
@@ -63,4 +63,10 @@ test('directory metadata fits the provider submission limits in both package for
     assert.equal(new Set(metadata.defaultPrompt).size, metadata.defaultPrompt.length);
     for (const prompt of metadata.defaultPrompt) assert.ok([...prompt].length <= 128);
   }
+});
+
+
+test('Codex plugin pins the documented stable issuer-bound callback without fixing an ephemeral port',()=>{
+ const files=clientPackages({serverUrl:'https://app.rillora.xyz/api/mcp',clientIds:{codex:'rillora-codex-v1'}});
+ assert.deepEqual(JSON.parse(files['codex-plugin/.mcp.json']).mcpServers.rillora.oauth,{clientId:'rillora-codex-v1',callbackUrl:'http://127.0.0.1/callback'});
 });

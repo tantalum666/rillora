@@ -19,6 +19,10 @@ test("ordinary account entry does not create a deferred editor", () => {
   assert.equal(requestedMatterCategory("?state=cancelled"), null);
 });
 
+test('AI connection returns to account settings without forwarding protocol secrets', () => {
+  assert.equal(authenticationReturnPath('?next=ai-connect&code=secret&return_to=https://example.invalid'), '/?view=settings');
+});
+
 test('guide sign-in returns to the selected guide without private or external parameters', () => {
   assert.equal(authenticationReturnPath('?next=guides&service=binance&token=private&return_to=https://example.invalid'), '/?view=guides&task=provider-guide&provider=binance');
   assert.equal(authenticationReturnPath('?service=apple', '/guides'), '/?view=guides&task=provider-guide&provider=apple');

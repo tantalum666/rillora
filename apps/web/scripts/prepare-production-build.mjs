@@ -3,6 +3,7 @@ import { readFile, readdir, writeFile, lstat } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { resolve, relative } from 'node:path';
 import { runInNewContext } from 'node:vm';
+import { buildCustomerDownload } from '../../../tools/mcp/build-customer-download.mjs';
 
 const review = process.argv.includes('--review');
 const live = process.argv.includes('--live');
@@ -11,6 +12,7 @@ const root = resolve(live ? 'dist-production-live' : review ? 'dist-production-r
 const connections = JSON.parse(await readFile('../../config/production-connections.json', 'utf8'));
 if (!['closed','live'].includes(connections.customerAccess) || (live && connections.customerAccess !== 'live')) throw new Error('Live publishing requires explicit production activation');
 await writeAppearanceBootstrap(root);
+if (live) await buildCustomerDownload(resolve(root, 'integrations/rillora-ai-v1.zip'));
 const files = {};
 async function visit(directory) {
   for (const name of await readdir(directory)) {
@@ -29,6 +31,7 @@ for (const asset of Object.keys(files).filter(name => name !== 'index.html')) {
 if (!files['index.html']) throw new Error('Missing production HTML');
 await writeFile(resolve(root, 'production-build.json'), JSON.stringify({
   version: 1, surface: 'production-client', customerAccess: live ? 'live' : 'closed',
+  aiConnections: live,
   ...(review ? { reviewAccess: 'identity-allowlist' } : {}),
   publicationCandidate: process.env.RILLORA_CLIENT_PUBLICATION_CANDIDATE === '1' || process.env.RILLORA_CLOSED_CLIENT_CANDIDATE === '1',
   webOrigin: connections.webOrigin, apiBaseURL: connections.apiBaseURL,

@@ -148,6 +148,9 @@ export function createApiClient({
 
   return {
     getAiConnections: () => request('/account/ai-connections'),
+    getAiOAuthInteraction: () => request('/account/ai-connections/oauth'),
+    completeAiOAuth: input => request('/account/ai-connections/oauth/complete', {method:'POST',body:input}),
+    cancelAiOAuth: interactionUid => request('/account/ai-connections/oauth/cancel', {method:'POST',body:{interactionUid}}),
     getAiSelectableMatters: cursor => request(`/account/ai-connections/selectable${cursor ? `?cursor=${encodeURIComponent(cursor)}` : ''}`),
     authorizeAiConnection: input => request('/account/ai-connections', { method: 'POST', body: input }),
     revokeAiConnection: (publicId, expectedVersion) => request(`/account/ai-connections/${encodeURIComponent(publicId)}`, { method: 'DELETE', body: { expectedVersion } }),

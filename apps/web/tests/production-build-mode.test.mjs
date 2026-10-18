@@ -17,6 +17,8 @@ test('closed and restricted-review artifacts keep isolated outputs and pinned pr
   assert.equal(closed.define['import.meta.env.VITE_RILLORA_CUSTOMER_ACCESS'], JSON.stringify('closed'));
   assert.equal(review.define['import.meta.env.VITE_RILLORA_CUSTOMER_ACCESS'], JSON.stringify('restricted-review'));
   assert.equal(live.define['import.meta.env.VITE_RILLORA_CUSTOMER_ACCESS'], JSON.stringify('live'));
+  assert.equal(live.define['import.meta.env.VITE_RILLORA_AI_CONNECTIONS'], JSON.stringify('true'));
+  for (const value of [closed,review]) assert.equal(value.define['import.meta.env.VITE_RILLORA_AI_CONNECTIONS'], JSON.stringify('false'));
   const publicSite = config({ mode: 'public' });
   assert.equal(publicSite.define, undefined);
   assert.equal(publicSite.build.outDir, 'dist-public');

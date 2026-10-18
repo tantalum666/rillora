@@ -20,7 +20,7 @@ AI连接有独立、明确、未预选的披露同意，说明字段、提供方
 ## 切换顺序
 
 1. 核对现有生产配置／数据与可恢复备份；仅新增OAuth存储／受保护配置，MCP保持关闭。
-2. 先更新兼容ai_connection事件的独立恢复日志broker，再原子执行既有0104—0105迁移；不修改历史SQL校验和。当前迁移器本来就把所有待执行迁移放在同一事务，避免0104／0105之间暴露权限中间态。
+2. 先更新兼容ai_connection事件的独立恢复日志broker，再原子执行既有0104—0106迁移；不修改历史SQL校验和。当前迁移器本来就把所有待执行迁移放在同一事务，避免0104／0105之间暴露权限中间态。
 3. 生产API滚动替换，保留原服务、数据、价格、收费和Apple审核配置；旧任务在新任务健康前继续服务。
 4. 部署带正式AI入口的Web及精确发现路由，开放已登记客户端，保存普通用户可取得的配置／说明；不替换iOS构建。
 5. 使用明确合成资料完成正式地址上的真实授权、读取、拒绝越权、刷新、撤销及至少一个真实客户端任务。目录自身的审核／账号资格不能冒充完成。
@@ -30,3 +30,8 @@ AI连接有独立、明确、未预选的披露同意，说明字段、提供方
 本轮原始XML为28个唯一规范URL，每个有两种语言对应；正常及声明Googlebot的HTTP请求均200、字节一致。后者不是Google真实抓取证明。继续从已验证的GSC属性／具体抓取回执诊断，不关闭安全保护或反复重新部署。未出现平台成功回执前不写“已解决”。
 
 QA及阅读链：output/qa/rillora-customer-mcp-20261018。AWS原会话实际过期后，Owner完成MFA，已续回操作员与部署角色；此后复用，不重复要求登录。
+
+
+## Implementation checkpoint
+
+The standard provider and signed PostgreSQL flow pass 33 focused checks; the complete API suite passes 580 checks, infrastructure 68, and package generation 6. The live Web build includes a credential-free deterministic download and an explicit client-first authorization flow; existing closed/review builds keep AI disabled. These are implementation/build results, not production customer acceptance. The prepared change set holds the current API and identity-worker task images while adding only protocol storage, its protected configuration, the compatible journal writer and maintenance task image. Migration and enablement remain separate actions.

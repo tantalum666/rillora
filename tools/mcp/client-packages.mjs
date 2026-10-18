@@ -33,7 +33,7 @@ export function clientPackages(input) {
       author: { name: 'Rillora', email: 'support@rillora.xyz', url: 'https://www.rillora.xyz' }, homepage: 'https://www.rillora.xyz',
       keywords: ['digital legacy', 'digital affairs', 'family organization'],
       extensions: { 'com.openai': { interface: { displayName: 'Rillora', shortDescription: 'Review selected matters',
-        longDescription: 'Read titles, categories and recorded statuses for the matters you explicitly authorize in Rillora. Check missing common fields. No notes, payments, transfers or automatic release.',
+        longDescription: 'Read titles, categories and recorded statuses for the matters you explicitly authorize in Rillora. Check missing common fields. No notes, payments, transfers or automatic release. With your permission, a verified email supports account and workspace checks.',
         developerName: 'Rillora', category: 'Productivity', capabilities: ['Read'], websiteURL: 'https://www.rillora.xyz',
         privacyPolicyURL: 'https://legal.rillora.xyz/privacy', termsOfServiceURL: 'https://legal.rillora.xyz/terms',
         composerIcon: './assets/icon.png', logo: './assets/icon.png',
@@ -43,18 +43,19 @@ export function clientPackages(input) {
       // manifest's mcp.json takes precedence and cannot be mixed into this folder.
       files['codex-plugin/.codex-plugin/plugin.json'] = json({ name: manifest.name, version: manifest.version,
         description: manifest.description, interface: manifest.extensions['com.openai'].interface, mcpServers: './.mcp.json' });
-      files['codex-plugin/.mcp.json'] = json({ mcpServers: { rillora: { type: 'http', url: server, oauth: { clientId: ids.codex } } } });
+      files['codex-plugin/.mcp.json'] = json({ mcpServers: { rillora: { type: 'http', url: server, oauth: { clientId: ids.codex, callbackUrl: 'http://127.0.0.1/callback' } } } });
     }
     if (ids.openai) {
       files['openai/plugin.json'] = json(manifest);
       files['openai/mcp.json'] = json({ $schema: 'https://agent-plugins.org/schemas/1.0.0/mcp.schema.json',
         mcpServers: { rillora: { type: 'streamable-http', url: server,
-          extensions: { 'com.openai': { auth: { type: 'oauth', client: { mode: 'provided', clientId: ids.openai, tokenEndpointAuthMethod: 'none' }, baseScopes: scopes } } } } } });
+          extensions: { 'com.openai': { auth: { type: 'oauth', client: { mode: 'provided', clientId: ids.openai, tokenEndpointAuthMethod: 'none' }, baseScopes: ['openid', 'email', ...scopes] } } } } } });
     }
   }
+  // The issuer-bound response and explicit callbackUrl keep plugin and CLI callbacks aligned.
   // Rillora advertises its canonical resource in protected-resource metadata.
   // An extra override makes current Codex send resource twice, which Auth0 rejects.
-  if (ids.codex) files['codex/setup.sh'] = `#!/bin/sh\nset -eu\ncodex mcp add rillora --url ${quote(server)} --oauth-client-id ${quote(ids.codex)}\n`;
+  if (ids.codex) files['codex/setup.sh'] = `#!/bin/sh\nset -eu\nif codex mcp get rillora >/dev/null 2>&1; then\n  echo 'A Rillora entry already exists. Review it before making any change.' >&2\n  exit 1\nfi\ncodex mcp add rillora --url ${quote(server)} --oauth-client-id ${quote(ids.codex)}\n`;
   if (ids['claude-code']) files['claude-code/mcp.json'] = json({ mcpServers: { rillora: { type: 'http', url: server,
     oauth: { clientId: ids['claude-code'], scopes: scopes.join(' ') } } } });
   if (ids.claude) files['claude/connection-details.json'] = json({ purpose: 'Manual entry in Claude custom connector settings; not a client configuration schema',

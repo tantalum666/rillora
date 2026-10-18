@@ -16,6 +16,7 @@ export interface ProductionStackProps extends StackProps {
  runtimeEnabled?:boolean; runtimeDesiredCount?:0|1;
  reviewPrepared?:boolean; reviewEnabled?:boolean; runtimeImageTag?:string;
  liveEnabled?:boolean; stripeCheckoutEnabled?:boolean;
+ customerMcpPrepared?:boolean; customerMcpEnabled?:boolean;
  appleProductionPrepared?:boolean; appleProductionEnabled?:boolean; appleReviewEnabled?:boolean;
  retentionEnabled?:boolean;
  identityServicesEnabled?:boolean;
@@ -38,6 +39,8 @@ export class RilloraProductionStack extends Stack {
   if(props.appleProductionEnabled&&(!props.appleProductionPrepared||!props.liveEnabled))throw new Error('Apple production requires its prepared vault and explicit live mode');
   if(props.appleReviewEnabled&&!props.liveEnabled)throw new Error('Independent Apple review access requires explicit live mode');
   if(props.identityServicesEnabled&&!activeRuntime)throw new Error('Identity services require a prepared active production runtime');
+  if(props.customerMcpPrepared&&(!props.runtimeEnabled||props.env?.account!=='133857166372'))throw new Error('Customer MCP preparation is limited to the existing Rillora runtime');
+  if(props.customerMcpEnabled&&(!props.customerMcpPrepared||!props.liveEnabled))throw new Error('Customer MCP requires its prepared secret and ordinary-user live access');
   if(props.retentionEnabled&&!activeRuntime)throw new Error('Retention requires an operational production runtime');
   if(props.stripeNotificationsSecretArn&&(!activeRuntime
    || !/^arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora\/production\/stripe-billing-[A-Za-z0-9]{6}$/.test(props.stripeNotificationsSecretArn)))throw new Error('Stripe notification preparation requires restricted review and the exact production billing secret');
@@ -172,6 +175,7 @@ export class RilloraProductionStack extends Stack {
     repositoryArn:`arn:${Aws.PARTITION}:ecr:eu-central-1:${Aws.ACCOUNT_ID}:repository/cdk-hnb659fds-container-assets-${Aws.ACCOUNT_ID}-eu-central-1`,
     repositoryName:`cdk-hnb659fds-container-assets-${Aws.ACCOUNT_ID}-eu-central-1`}),props.runtimeImageTag):image,
    operator,environment,reviewPrepared:props.reviewPrepared,reviewEnabled:props.reviewEnabled,liveEnabled:props.liveEnabled,stripeCheckoutEnabled:props.stripeCheckoutEnabled,retentionEnabled:props.retentionEnabled,identityServicesEnabled:props.identityServicesEnabled,recoveryTask:recovery,
+   customerMcpPrepared:props.customerMcpPrepared,customerMcpEnabled:props.customerMcpEnabled,
    stripeNotificationsSecretArn:props.stripeNotificationsSecretArn,
    appleProductionPrepared:props.appleProductionPrepared,appleProductionEnabled:props.appleProductionEnabled,appleReviewEnabled:props.appleReviewEnabled,
    desiredCount:props.runtimeDesiredCount??0,

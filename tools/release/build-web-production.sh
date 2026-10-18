@@ -9,15 +9,16 @@ fi
 set -a
 source "$CONFIG_FILE"
 set +a
-export RILLORA_CLOSED_CLIENT_CANDIDATE=1
+export RILLORA_CLIENT_PUBLICATION_CANDIDATE=1
 BUILD_TARGET="build:production-closed"
 case "${1:-}" in
   "") ;;
   --review) BUILD_TARGET="build:production-review" ;;
-  *) echo "Usage: build-web-production.sh [--review]" >&2; exit 1 ;;
+  --live) BUILD_TARGET="build:production-live" ;;
+  *) echo "Usage: build-web-production.sh [--review|--live]" >&2; exit 1 ;;
 esac
 if [[ $# -gt 1 ]]; then
-  echo "Usage: build-web-production.sh [--review]" >&2
+  echo "Usage: build-web-production.sh [--review|--live]" >&2
   exit 1
 fi
 cd "$PROJECT_ROOT/apps/web"

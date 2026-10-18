@@ -76,6 +76,33 @@ describe('Closed production data and recovery foundation',()=>{
 });
 
 describe('Optional closed production HTTPS runtime',()=>{
+ it('prepares isolated OAuth storage before enabling least-privilege customer access',()=>{
+  const props={env:{account:'133857166372',region:'eu-central-1'},runtimeEnabled:true,runtimeDesiredCount:1 as const,
+   reviewPrepared:true,liveEnabled:true,identityServicesEnabled:true,retentionEnabled:true,customerMcpPrepared:true,
+   stripeNotificationsSecretArn:'arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/stripe-billing-ABC123'};
+  for(const enabled of [false,true]) {
+   const t=Template.fromStack(new RilloraProductionStack(new App(),'CustomerMcp',{...props,customerMcpEnabled:enabled}));
+   t.hasResourceProperties('AWS::DynamoDB::Table',{TableName:'rillora-production-mcp-oauth',BillingMode:'PAY_PER_REQUEST',
+    DeletionProtectionEnabled:true,TimeToLiveSpecification:{AttributeName:'expiresAt',Enabled:true}});
+   t.hasResourceProperties('AWS::SecretsManager::Secret',{Name:'rillora/production/ai-oauth'});
+   const api=(Object.values(t.findResources('AWS::ECS::TaskDefinition')) as any[]).flatMap(t=>t.Properties.ContainerDefinitions).find(c=>c.Name==='Api');
+   const env=Object.fromEntries(api.Environment.map((e:any)=>[e.Name,e.Value]));
+   expect(env.ALLOW_MCP_INTEGRATION).toBe(enabled?'true':undefined);
+   if(enabled) {
+    expect(env.MCP_RESOURCE_URL).toBe('https://app.rillora.xyz/api/mcp');
+    expect(JSON.parse(env.MCP_CLIENTS_JSON)).toHaveLength(7);
+    const grants=(Object.values(t.findResources('AWS::IAM::Policy')) as any[]).flatMap(p=>p.Properties.PolicyDocument.Statement)
+     .filter(s=>JSON.stringify(s.Resource).includes('CustomerMcpOAuthState') && s.Effect==='Allow');
+    expect(grants).toHaveLength(1);expect(grants[0].Action).not.toContain('dynamodb:Scan');
+    expect(grants[0].Condition['ForAllValues:StringLike']['dynamodb:LeadingKeys']).toContain('RevokedGrant:*');
+   }
+   expect(env.ALLOW_STRIPE_PRODUCTION_INTEGRATION).toBe('false');
+   expect(env.ALLOW_APPLE_PRODUCTION_INTEGRATION).toBe('false');
+  }
+  for(const override of [{customerMcpPrepared:false,customerMcpEnabled:true},{liveEnabled:false,customerMcpEnabled:true}])
+   expect(()=>new RilloraProductionStack(new App(),'InvalidMcp',{...props,...override})).toThrow();
+ });
+
  it('activates live identity independently of Checkout without any review or test purchase surface',()=>{
   const props={env:{account:'133857166372',region:'eu-central-1'},runtimeEnabled:true,runtimeDesiredCount:1 as const,
    reviewPrepared:true,liveEnabled:true,identityServicesEnabled:true,retentionEnabled:true,

@@ -1,9 +1,13 @@
 # Rillora 跨平台 AI 接入包
 
-Status: ISOLATED SYNTHETIC HOSTING LIVE — NOT CUSTOMER READY / NOT LISTED
+Status: CUSTOMER PRODUCTION IMPLEMENTATION READY / DEPLOYMENT IN PROGRESS / NOT LISTED
 Last updated: 2026-10-18 (Asia/Hong_Kong)
 
 本目录提供下一版本的接入材料。当前 App1.0(14) 审核、生产 API／数据库、价格、收费和既有 Auth0 登录配置保持原状；隔离测试注册的当前状态见下方补充。示例文件不代表已注册 OAuth 客户端、已有公网 MCP 服务或已通过目录审核。
+
+## October18 ordinary-user production continuation
+
+The Owner now requests ordinary-user production delivery. [Current contract](../../docs/architecture/customer-mcp-20261018.md) supersedes the older direct-Auth0 deployment recipe below. The production path reuses Rillora sign-in and a dedicated standards-based OAuth issuer at `https://app.rillora.xyz/api/ai/oauth`, with the resource `https://app.rillora.xyz/api/mcp`. The [public registry](../../apps/api/src/mcp/customer-clients.json) has seven distinct client IDs. [English installation instructions](customer/README.en.md) and [Chinese instructions](customer/README.zh-CN.md) accompany a downloadable package generated during the live Web build. No endpoint is represented as deployed until its actual receipt is recorded.
 
 ## October18 营销与可运行性复核
 
@@ -52,7 +56,7 @@ node --test tools/mcp/client-packages.test.mjs
 
 不要将生成片段直接覆盖现有全局配置；只合入 Rillora 条目，保留其他项目和 FanPass 的配置。未登记客户端默认拒绝，不能为让连接成功而关闭 client／audience 校验或接受整权会话。
 
-## 下一版启用顺序
+## HISTORICAL — earlier direct-Auth0 enablement recipe (superseded)
 
 1. 保留当前在审环境。先在独立候选环境验证新 broker、迁移0104—0105、API与Web，沿用现有加密／签名事务／TLS／恢复要求。0105保留独立删除worker原有日志权限；两份迁移必须作为同一批完成后再验收服务。
 2. 先交付兼容新 ai_connection 事件的恢复日志 broker，再迁移数据库，再部署 API；首次保持 ALLOW_MCP_INTEGRATION=false 与 Web 开关关闭。旧版本不能替代新增授权后的恢复处理器。

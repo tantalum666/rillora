@@ -7,6 +7,7 @@ export default defineConfig(({ mode }) => ({
   define: ['production-closed', 'production-review', 'production-live'].includes(mode) ? {
     'import.meta.env.VITE_API_BASE_URL': JSON.stringify('/api/v1'),
     'import.meta.env.VITE_RILLORA_CUSTOMER_ACCESS': JSON.stringify(mode === 'production-live' ? 'live' : mode === 'production-review' ? 'restricted-review' : 'closed'),
+    'import.meta.env.VITE_RILLORA_AI_CONNECTIONS': JSON.stringify(mode === 'production-live' ? 'true' : 'false'),
     'import.meta.env.VITE_RILLORA_SERVICE_MARKET_CODE': JSON.stringify('GLOBAL_US'),
   } : undefined,
   build: {

@@ -13,12 +13,13 @@ import { SelectedAiService, connectionInput, revokeInput } from './service.js';
 
 export { createSelectedMcpServer } from './server.js';
 import { createSelectedMcpServer } from './server.js';
+import { loadCustomerOAuth, type CustomerOAuth } from './customer-oauth.js';
 
 export class McpIntegration {
   readonly connections: Router;
   readonly fetch: (request: Request, options?: McpHandlerRequestOptions) => Promise<Response>;
   constructor(private pool: DatabasePool, app: AppConfig, readonly config: McpConfig,
-    verifier = createMcpTokenVerifier(config)) {
+    verifier = createMcpTokenVerifier(config), private oauth?: CustomerOAuth) {
     if (app.productionRuntimeClosed || app.productionReviewAccess) throw new Error('MCP cannot mount in a closed or review-only runtime');
     const service = new SelectedAiService(pool, app, config);
     const resource = new URL(config.resourceUrl);
@@ -43,10 +44,11 @@ export class McpIntegration {
       return response;
     };
     const router = Router();
+    if (oauth) router.use('/oauth', oauth.interactions);
     router.get('/selectable', asyncHandler(async (request, response) => {
       response.json(await service.selectable(request.auth.plannerId, request.query.cursor === undefined ? null : String(request.query.cursor)));
     }));
-    router.get('/', asyncHandler(async (request, response) => { response.json(await service.list(request.auth.plannerId)); }));
+    router.get('/', asyncHandler(async (request, response) => { response.json({...await service.list(request.auth.plannerId),customerOAuth:Boolean(oauth)}); }));
     router.post('/', requireCsrf, recentAuthenticationRequired(app), asyncHandler(async (request, response) => {
       response.status(201).json(await service.authorize(request.auth.plannerId, connectionInput.parse(request.body)));
     }));
@@ -59,7 +61,7 @@ export class McpIntegration {
   }
 
   async checkReady() {
-    const result = await withAuthDatabase(this.pool, client => client.query(`select to_regclass('app.ai_connection_matters') is not null
+    const result = await withAuthDatabase(this.pool, client => client.query(`select to_regclass('app.ai_connection_matters') is not null and to_regclass('app.ai_identity_disclosures') is not null
       and has_function_privilege('continuity_deletion_worker','app.recovery_pending()','EXECUTE') as ready`));
     if (!result.rows[0]?.ready) {
       throw new Error('MCP requires the selected-connection migration');
@@ -67,8 +69,9 @@ export class McpIntegration {
   }
 
   mountPublic(app: Express) {
+    this.oauth?.mountPublic(app);
     app.get(['/mcp/resource-metadata', '/api/mcp/resource-metadata'], preventCaching, (_request, response) => response.json({
-      resource: this.config.resourceUrl, authorization_servers: [this.config.issuer],
+      resource: this.config.resourceUrl, authorization_servers: [this.oauth?.issuer ?? this.config.issuer],
       scopes_supported: MCP_SCOPES, bearer_methods_supported: ['header'], resource_name: 'Rillora selected matters',
     }));
     const node = toNodeHandler({ fetch: this.fetch }, { maxRequestBodySize: 32768 });
@@ -79,7 +82,9 @@ export class McpIntegration {
   }
 }
 
-export function mcpFromEnvironment(pool: DatabasePool, app: AppConfig, env = process.env): McpIntegration | undefined {
+export async function mcpFromEnvironment(pool: DatabasePool, app: AppConfig, env = process.env): Promise<McpIntegration | undefined> {
   const config = loadMcpConfig(env, app);
-  return config ? new McpIntegration(pool, app, config) : undefined;
+  if (!config) return undefined;
+  const oauth = env.MCP_OAUTH_SECRET_ARN ? await loadCustomerOAuth(pool, app, config, env) : undefined;
+  return new McpIntegration(pool, app, config, oauth?.verifier, oauth);
 }
