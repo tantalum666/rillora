@@ -234,7 +234,18 @@ export class CustomerOAuth {
       if (auth.scopes.includes('email')) await this.service.assertIdentityDisclosure(this.actor(binding));
       response.json(identity);
     }));
-    router.use(this.provider.callback());
+    const canonical=new URL(this.issuer),callback=this.provider.callback();
+    router.use((request,response)=>{
+      // The edge removes /api and API Gateway supplies its own backend Host.
+      // oidc-provider derives discovery and resume URLs from the request context,
+      // so use only the configured public issuer, never caller-supplied forwarding headers.
+      request.headers.host=canonical.host;
+      request.headers['x-forwarded-host']=canonical.host;
+      request.headers['x-forwarded-proto']=canonical.protocol.slice(0,-1);
+      request.originalUrl=canonical.pathname+request.url;
+      request.baseUrl=canonical.pathname;
+      return callback(request,response);
+    });
     app.use(['/ai/oauth','/api/ai/oauth'],router);
   }
 }

@@ -1,7 +1,7 @@
 import pg from 'pg';
 import {createServer} from 'node:http';
 import {createHash,randomBytes} from 'node:crypto';
-import {generateKeyPair,exportJWK,decodeJwt} from 'jose';
+import {generateKeyPair,exportJWK,decodeJwt,createLocalJWKSet,jwtVerify} from 'jose';
 import supertest from 'supertest';
 import {Client,StreamableHTTPClientTransport} from '@modelcontextprotocol/client';
 import {beforeAll,beforeEach,afterAll,describe,it,expect} from 'vitest';
@@ -24,7 +24,14 @@ const hash=(value:string)=>createHash('sha256').update(value).digest();
 let admin:pg.Client,pool:pg.Pool,app:ReturnType<typeof createApp>,broker:CustomerOAuth,config:McpConfig;
 let owner:{id:string;public_id:string},selected:{publicId:string;version:number},hidden:typeof selected;
 let session:string,csrf:string,base:string;
-const server=createServer((req,res)=>app?app(req,res):res.writeHead(503).end());
+const server=createServer((req,res)=>{
+  // The browser still uses the public /api path for Cookie matching; only the
+  // edge-to-origin request loses that prefix and receives the backend Host.
+  if(req.url?.startsWith('/api/ai/oauth/')) {
+    req.url=req.url.slice(4);req.headers.host='origin.production.rillora.xyz';
+  }
+  return app?app(req,res):res.writeHead(503).end();
+});
 const prompts:unknown[]=[];
 let rows:ReturnType<typeof oauthStoreFixture>['rows'];
 let jwks:{keys:Record<string,unknown>[]};
@@ -52,6 +59,7 @@ async function connect(clientKey='codex') {
     ...(flow.client.identityScopes?{identityDisclosure:{version:AI_IDENTITY_DISCLOSURE_VERSION,acknowledged:true}}:{})};
   const accepted=await flow.agent.post('/v1/account/ai-connections/oauth/complete').set('cookie',cookie())
     .set('x-csrf-token',csrf).set('x-rillora-planner',owner.public_id).send({selection,interactionUid:pending.uid}).expect(200);
+  expect(accepted.body.redirectTo).toMatch(new RegExp('^'+base.replaceAll('.','\\.')+'/api/ai/oauth/'));
   const resumed=await flow.agent.get(accepted.body.redirectTo.replace(base,'')).expect(303);
   const callback=new URL(resumed.headers.location!);
   expect(callback.searchParams.get('state'),JSON.stringify(prompts)).toBe(flow.query.state);
@@ -115,6 +123,12 @@ describe.sequential('customer OAuth on the real protocol implementation and sign
     expect(discovery.body.issuer).toBe(broker.issuer);expect(discovery.body.authorization_response_iss_parameter_supported).toBe(true);
     expect(discovery.body.code_challenge_methods_supported).toEqual(['S256']);expect(discovery.body.registration_endpoint).toBeUndefined();
     expect(discovery.body.userinfo_endpoint).toBe(broker.issuer+'/userinfo');
+    for(const prefix of ['/api/ai/oauth','/ai/oauth']) {
+      const proxied=await supertest(base).get(prefix+'/.well-known/openid-configuration')
+        .set('host','origin.production.rillora.xyz').set('x-forwarded-host','untrusted.example.test').set('x-forwarded-proto','https').expect(200);
+      for(const [key,path] of Object.entries({authorization_endpoint:'/auth',token_endpoint:'/token',jwks_uri:'/jwks',userinfo_endpoint:'/userinfo'}))
+        expect(proxied.body[key]).toBe(broker.issuer+path);
+    }
   });
   it('rejects foreign redirect, missing PKCE and wrong resource before granting',async()=>{
     for(const patch of [{redirect_uri:'https://attacker.example/callback'},{resource:'https://attacker.example/mcp'},{code_challenge:''}]) {
@@ -138,6 +152,12 @@ describe.sequential('customer OAuth on the real protocol implementation and sign
     const info=await supertest(base).get('/api/ai/oauth/userinfo').set('authorization',`Bearer ${flow.access_token}`).expect(200);
     expect(info.body).toEqual({sub:owner.public_id,email:'reviewer@example.test',email_verified:true});
     expect(decodeJwt(flow.id_token).sub).toBe(info.body.sub);
+    const keys=(await supertest(base).get('/api/ai/oauth/jwks').expect(200)).body;
+    expect(keys.keys.every((key:Record<string,unknown>)=>!key.d&&!key.p&&!key.q)).toBe(true);
+    const verified=await jwtVerify(flow.id_token,createLocalJWKSet(keys),{
+      issuer:broker.issuer,audience:flow.client.clientId,algorithms:['RS256'],
+    });
+    expect(verified.payload.sub).toBe(info.body.sub);expect(verified.payload.nonce).toBe(flow.query.nonce);
     expect((await admin.query('select consent_version from app.ai_identity_disclosures')).rows).toEqual([{consent_version:AI_IDENTITY_DISCLOSURE_VERSION}]);
   });
   it('requires the exact interaction, CSRF and optional email disclosure without creating a grant',async()=>{

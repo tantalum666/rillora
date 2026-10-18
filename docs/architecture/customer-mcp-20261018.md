@@ -43,3 +43,7 @@ The standard provider and signed PostgreSQL flow pass 33 focused checks; the com
 正式浏览器实际已退出登录，当前条款／原Google账号登录确认已询问Owner；尚未选择真实资料。Auth0管理CLI另已过期，一次原会话续期被拒；客户接入复用既有Web登录，不依赖这次管理权限，不将其误报为生产运行阻塞。
 
 正式路由探测发现：健康、资源／授权发现200，但MCP因AWS代理转发后的Host被精确校验拒绝403，不能当作客户端可用。修正是在现有私有API Gateway集成中把后端Host固定为已验证的TLS名称，仅MCP启用时生效；保留应用的精确Host／Origin校验，不开放通配域、不信任任意转发头、不改TLS或数据库。依据[AWS请求参数映射](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-parameter-mapping.html)，该独立路由修正正在验收，Web入口继续等待其正式结果。
+
+Host修正1b96a114f／CI184已部署并验收，实际MCP匿名／无效令牌401、非法Origin403；7个登记客户端的授权起点与安全Cookie也通过。Web已完成部署、89文件及下载包逐字核验、3条发现路由200且no-store。Owner已当场确认条款并成功复用原Google登录。
+
+真实Codex进一步发现授权服务器动态生成了内部Host和去掉/api后的端点，驱动拒绝继续，未发生资料授权。当前修正把oidc-provider的请求上下文固定为配置中的公开issuer，覆盖不可信转发头，并保留浏览器实际/api路径对应的Cookie匹配。新增真实HTTP代理模拟检查发现／回跳／换码，另验证公开JWKS的ID Token签名。只滚动替换API镜像，不重跑迁移、付款、原生或此前官网验收；正式客户端读取／撤销仍待此修正实际交付。
