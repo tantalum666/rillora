@@ -35,3 +35,11 @@ QA及阅读链：output/qa/rillora-customer-mcp-20261018。AWS原会话实际过
 ## Implementation checkpoint
 
 The standard provider and signed PostgreSQL flow pass 33 focused checks; the complete API suite passes 580 checks, infrastructure 68, and package generation 6. The live Web build includes a credential-free deterministic download and an explicit client-first authorization flow; existing closed/review builds keep AI disabled. These are implementation/build results, not production customer acceptance. The prepared change set holds the current API and identity-worker task images while adding only protocol storage, its protected configuration, the compatible journal writer and maintenance task image. Migration and enablement remain separate actions.
+
+## 生产准备与迁移检查点
+
+源码aa1864fbd／CI182和静态包校验修正bbde68a2e／CI183均三任务通过。准备栈已部署，原API及身份删除worker镜像、既有参数保持；加密生产快照已可用。固定broker的迁移／核验任务exit0，schema103→106，原103份迁移校验和、68张表的行数／指纹及角色设置全部保持，仅新增3张空AI表。强制RLS与内容加密通过。专用签名／存储／Cookie密钥直接写入精确AWS秘密，未保存本地明文。API启用与Web发布仍需各自读回，不能以准备完成冒充客户可用。
+
+正式浏览器实际已退出登录，当前条款／原Google账号登录确认已询问Owner；尚未选择真实资料。Auth0管理CLI另已过期，一次原会话续期被拒；客户接入复用既有Web登录，不依赖这次管理权限，不将其误报为生产运行阻塞。
+
+正式路由探测发现：健康、资源／授权发现200，但MCP因AWS代理转发后的Host被精确校验拒绝403，不能当作客户端可用。修正是在现有私有API Gateway集成中把后端Host固定为已验证的TLS名称，仅MCP启用时生效；保留应用的精确Host／Origin校验，不开放通配域、不信任任意转发头、不改TLS或数据库。依据[AWS请求参数映射](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-parameter-mapping.html)，该独立路由修正正在验收，Web入口继续等待其正式结果。

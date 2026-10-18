@@ -1,6 +1,6 @@
 # Google 地图读取续修
 
-Status: CANDIDATE VALIDATED / PROVIDER READBACK PENDING
+Status: DEPLOYED / GOOGLE INDEX PROCESSED / CHILD URL COUNT PENDING
 Last updated: 2026-10-18 (Asia/Hong_Kong)
 
 Owner要求继续解决Google地图，并推进正式用户MCP；本文件只记录独立官网修复。生产应用、在审构建及MCP交付另看[正式接入](customer-mcp-20261018.md)。
@@ -14,3 +14,9 @@ Owner要求继续解决Google地图，并推进正式用户MCP；本文件只记
 发布采用已有独立www栈，先上传新增文件、保留旧robots与路由，再发布新增路由，最后切换robots及清单；数据桶和分发身份保持。Google只提交新的索引一次，分别检查索引及两个子地图；没有平台成功回执前不声称读取问题已解决，也不保证文章已索引。
 
 当前状态与原件位于output/qa/rillora-customer-mcp-20261018。新的成功／失败及实际部署状态在同一记录补充，旧归档不重复封存。
+
+## 实际交付检查点
+
+源码5c98e6c6b／CI181三任务通过。三阶段CloudFormation切换完成，最终模板、原分发／桶／上传资源身份，以及66份文件均核对一致；原28页面及脚本逐字保持。Python验收最初误用内部HTML对象名，随后遇到本机TLS EOF；修正后的原生Node工具通过规范URL核验全部66文件，证书验证保持。这些是验收工具／请求路径问题，没有据此反复部署。
+
+新索引在已验证的URL前缀属性中只提交一次。Google详情已明确显示“已成功处理站点地图索引”，上次读取October18；发现网址数仍为0，语言子地图及文章收录分别待核对。没有删除或反复提交旧平面地图。

@@ -181,7 +181,13 @@ export class RilloraProductionRuntime extends Construct {
   const link=new gateway.VpcLink(this,'VpcLink',{vpc:p.vpc,subnets:{subnetType:ec2.SubnetType.PRIVATE_ISOLATED},securityGroups:[ingress]});
   const api=new gateway.HttpApi(this,'HttpApi',{apiName:'rillora-production-closed',
    description:'Production transport acceptance only; customer routes remain closed',
-   defaultIntegration:new integrations.HttpServiceDiscoveryIntegration('ProductionHttps',serviceDiscovery,{vpcLink:link,secureServerName:hostname}),
+   defaultIntegration:new integrations.HttpServiceDiscoveryIntegration('ProductionHttps',serviceDiscovery,{
+    vpcLink:link,secureServerName:hostname,
+    // Pin the backend Host to its verified TLS identity instead of API Gateway's proxy host.
+    // MCP keeps its exact Host/Origin checks; no forwarded header or wildcard is trusted.
+    ...(p.customerMcpEnabled?{parameterMapping:new gateway.ParameterMapping()
+      .overwriteHeader('Host',gateway.MappingValue.custom(hostname))}:{}),
+   }),
   });
   const gatewayLogs=new logs.LogGroup(this,'GatewayLogs',{retention:logs.RetentionDays.ONE_MONTH,removalPolicy:RemovalPolicy.RETAIN});
   const stage=api.defaultStage!.node.defaultChild as gateway.CfnStage;

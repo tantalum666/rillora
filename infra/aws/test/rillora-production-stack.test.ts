@@ -89,6 +89,10 @@ describe('Optional closed production HTTPS runtime',()=>{
    const env=Object.fromEntries(api.Environment.map((e:any)=>[e.Name,e.Value]));
    expect(env.ALLOW_MCP_INTEGRATION).toBe(enabled?'true':undefined);
    if(enabled) {
+    t.hasResourceProperties('AWS::ApiGatewayV2::Integration',{
+     RequestParameters:{'overwrite:header.Host':'origin.production.rillora.xyz'},
+     TlsConfig:{ServerNameToVerify:'origin.production.rillora.xyz'},ConnectionType:'VPC_LINK',
+    });
     expect(env.MCP_RESOURCE_URL).toBe('https://app.rillora.xyz/api/mcp');
     expect(JSON.parse(env.MCP_CLIENTS_JSON)).toHaveLength(7);
     const grants=(Object.values(t.findResources('AWS::IAM::Policy')) as any[]).flatMap(p=>p.Properties.PolicyDocument.Statement)
