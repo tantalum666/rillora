@@ -95,7 +95,8 @@ export class RilloraProductionWebStack extends Stack {
     });
     const upload = new deployment.BucketDeployment(this, 'Deployment', {
       sources: [deployment.Source.asset(directory)], destinationBucket: assets,
-      distribution, distributionPaths: ['/*'], prune: true,
+      // Existing browser tabs may still request immutable chunks from the previous build.
+      distribution, distributionPaths: ['/*'], prune: !props.customerMcpEnabled,
       cacheControl: [deployment.CacheControl.fromString('public,max-age=300,must-revalidate')],
     });
     // CDK's deployment provider grants invalidations on *. Explicitly limit that

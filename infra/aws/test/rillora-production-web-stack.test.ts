@@ -43,7 +43,12 @@ describe('Closed production client delivery', () => {
     const assetDirectory=fixture();
     try {
       const path=join(assetDirectory,'production-build.json'), manifest=JSON.parse(readFileSync(path,'utf8'));
-      manifest.customerAccess='live';manifest.aiConnections=true;writeFileSync(path,JSON.stringify(manifest));
+      manifest.customerAccess='live';manifest.aiConnections=true;
+      mkdirSync(join(assetDirectory,'integrations'));
+      const download='synthetic download fixture';
+      writeFileSync(join(assetDirectory,'integrations/rillora-ai-v1.zip'),download);
+      manifest.files['integrations/rillora-ai-v1.zip']=createHash('sha256').update(download).digest('hex');
+      writeFileSync(path,JSON.stringify(manifest));
       expect(()=>verifyProductionClientArtifact(assetDirectory,false,true)).toThrow('access mode');
       expect(()=>verifyProductionClientArtifact(assetDirectory,false,false,true)).toThrow('access mode');
       const t=Template.fromStack(new RilloraProductionWebStack(new App(),'McpWebTest',{
@@ -55,7 +60,8 @@ describe('Closed production client delivery', () => {
         '/.well-known/oauth-authorization-server/api/ai/oauth','/.well-known/openid-configuration/api/ai/oauth',
         '/.well-known/oauth-protected-resource/api/mcp']);
       expect(d.CacheBehaviors.every((b:any)=>b.CachePolicyId===cloudfront.CachePolicy.CACHING_DISABLED.cachePolicyId)).toBe(true);
-      manifest.aiConnections=false;writeFileSync(path,JSON.stringify(manifest));
+      manifest.aiConnections=false;delete manifest.files['integrations/rillora-ai-v1.zip'];
+      rmSync(join(assetDirectory,'integrations/rillora-ai-v1.zip'));writeFileSync(path,JSON.stringify(manifest));
       expect(()=>verifyProductionClientArtifact(assetDirectory,false,true,true)).toThrow('access mode');
     } finally {rmSync(assetDirectory,{recursive:true});}
   });

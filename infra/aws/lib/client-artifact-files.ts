@@ -46,7 +46,9 @@ export function readVerifiedClientArtifact(directory: string, manifestName: 'pro
       if (!info.isFile()) throw new Error('Non-file artifact entry rejected');
       const key = relative(root, path);
       if (key === manifestName) continue;
-      if (key !== 'index.html' && !publicDocuments.has(key) && !/^assets\/[A-Za-z0-9_-]+\.(js|css|png|jpe?g|webp|svg|woff|woff2|txt)$/.test(key)) {
+      const customerDownload = manifestName === 'production-build.json' && manifest.aiConnections === true
+        && key === 'integrations/rillora-ai-v1.zip';
+      if (key !== 'index.html' && !customerDownload && !publicDocuments.has(key) && !/^assets\/[A-Za-z0-9_-]+\.(js|css|png|jpe?g|webp|svg|woff|woff2|txt)$/.test(key)) {
         throw new Error('Unexpected client artifact path');
       }
       observed.push(key);
@@ -56,6 +58,8 @@ export function readVerifiedClientArtifact(directory: string, manifestName: 'pro
     }
   }
   visit(root);
+  if (manifestName === 'production-build.json' && manifest.aiConnections === true
+    && !observed.includes('integrations/rillora-ai-v1.zip')) throw new Error('Customer MCP download is missing');
   if ([...publicDocuments].some(file => !observed.includes(file))) throw new Error('Public discovery artifact is incomplete');
   if (!observed.includes('index.html') || JSON.stringify(observed.sort()) !== JSON.stringify(Object.keys(files).sort())) {
     throw new Error('Client asset manifest is incomplete');
