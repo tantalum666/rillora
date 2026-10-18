@@ -71,7 +71,10 @@ function handler(event) {
     request.uri = "/pages/" + locale + (path === "/" ? "/index" : path) + ".html";
     return request;
   }
-  if (request.uri === "/robots.txt" || request.uri === "/sitemap.xml") return request;
+  if (request.uri === '/favicon.ico') return { statusCode: 302, headers: {
+    location: { value: '/favicon.png' }, 'cache-control': { value: 'public, max-age=3600' }
+  } };
+  if (["/robots.txt", "/sitemap.xml", "/sitemap-index.xml", "/sitemap-en.xml", "/sitemap-zh-CN.xml", "/favicon.png"].indexOf(request.uri) !== -1) return request;
   if (
     /^\/assets\/[A-Za-z0-9_-]+\.(js|css|png|jpe?g|webp|svg|woff|woff2|txt)$/.test(
       request.uri,

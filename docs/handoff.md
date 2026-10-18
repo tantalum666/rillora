@@ -1,30 +1,24 @@
 # Rillora 当前交接
 
-Status: MARKETING AUDIT AND MATERIALS READY / CUSTOMER MCP GAPS EXPLICIT
+Status: CUSTOMER MCP IMPLEMENTING / GOOGLE DISCOVERY REPAIR VALIDATED LOCALLY
 Last updated: 2026-10-18 (Asia/Hong_Kong)
 
-## 当前任务与最新决定
+## 当前任务
 
-Owner要求在官网当前工作完成后，全面复核SEO／GEO、MCP／插件和其他AI范围，进入营销阶段，并准备最低成本获客与App Store关键词策略。当前活动依据为[复核](marketing/readiness-audit-20261018.md)、[执行计划](marketing/acquisition-plan-20261018.md)与[素材](marketing/campaign-kit-20261018.md)。[上一交接](handoff-history-20261018-before-marketing.md)为HISTORICAL。
+Owner要求补齐Google地图及MCP／插件剩余接入，做到普通用户真正可用，不停留在测试环境；保持当前审核，完成后推Git。这取代[营销交接](handoff-history-20261018-before-customer-mcp.md)的下一步。沿用完整阅读链和已过验证，当前合同见[正式MCP](architecture/customer-mcp-20261018.md)和[地图修复](architecture/google-sitemap-20261018.md)。
 
-## 已完成
+## 已完成与正在执行
 
-官网原发布58780f79b／CI176、archive47与CI177保持：28语言页、6篇双语文章、62文件实际匹配，主导航5项，整理方法只在页脚／相关内容。没有重做官网部署或OAuth／付款／真机验证。
+AWS原会话确实过期；Owner已完成MFA，操作员和部署角色STS均有效，后续复用。三套现有栈均UPDATE_COMPLETE，原配置已受保护保存。
 
-本轮核对当前全部公开教育文案、元数据／路由、客户端生成器／登记及提供方规则。Google地图实际仍无法读取／0已发现，上次读取显示October18；生成式搜索设置实际“包含”，robots均有效。Bing28URL成功沿用同日回执。原生Node匿名MCP401、两种发现200；Python403／Cloudflare1010差异单列，没有降低保护。
+Google地图原始28URL／XML结构与HTTP200已核对；规范URL前缀属性通过既有DNS自动验证，但继承同一失败记录，未冒称解决。新地图索引／两个14URL语言子地图／稳定PNG及ICO跳转已构建；原62文件仅robots变化，其余61逐字保持，新增4文件。5项公开发现检查、10项官网栈检查通过；当前尚未发布本轮修复。
 
-修正OpenAI插件简介36字符超过30上限，5项针对性检查通过；当前托管6份文本包与生成器一致。App Store本地配置按October15已收件证据纠正旧“撤回”状态并保留历史，没有改Apple后台。下一版双语ASO／8条渠道链接／空结果模板／5正3负审核草稿已准备，字段检查通过；8份中英文渠道稿、20—30秒演示和截图故事可用于首轮执行。
+正式MCP选用现有AWS运行面、既有Rillora网页身份、标准oidc-provider及独立加密临时存储，保留内容KMS、RLS、签名恢复日志、具体事项选择与撤销。新增授权实现／单独邮箱披露回执正在完善；加密存储及既有MCP相关26检查通过，完整新协议闭环仍在修正，不能算正式可用。
 
-## 边界与未完成
+## 边界
 
-当前长期合成候选登记Claude、Claude Code、Cursor、Qwen Code；后3种协议已过。Codex／Gemini此前通过的是已清理临时环境，当前长期host没有其登记。Owner无Claude账号，不要求注册／升级。客户KMS／恢复／同意／运营、下游OIDC UserInfo、模型实际任务、消费端接入与目录未完成，不能宣传所有AI已可用。
-
-没有实际营销曝光／引用／付费队列与CAC数据；Google地图根因未知，实时抓取成功不覆盖地图失败。ASO是下一版本草稿，未替换当前审核；没有新广告支出、外联、群发、追踪SDK或TestFlight。生产API／数据、定价、收费和FanPass保持。
-
-新工作保存于output/qa/rillora-marketing-readiness-20261018及[可读交付](../collaboration/verification/marketing-readiness-20261018/README.md)。仅新增小型安全文本／JSON／脚本，直接Git保存，旧1—47归档不重封。Git／CI回执在交付记录保存。
-源码与材料fda980549已推送到codex/ai-discovery-vnext-20261015，CI179的source、api、web-and-infrastructure三项全部成功；GitHub读回复核报告、ASO草稿和插件生成器，与本地逐字一致。后续只保存此回执，不部署或重复验收。
-
+当前生产API／数据／价格／收费及在审App14没有被本轮修改。新功能尚未开放，未发TestFlight、未新建付费Auth0套餐或普通客户测试资料。原合成Cloudflare环境保持原样；不拿其既有验证代替新正式路径。目录提交、平台批准与实际模型使用各自取证。
 
 ## 唯一下一步
 
-按已准备素材启动首轮10人自愿Web体验，先确定Owner已有且允许推广的一个英文／一个中文渠道与具体外发范围，再按每周最多2条执行并记录有用共享地图。未取得具体渠道发布指示前，素材保持草稿；不以增加长尾AI客户端或反复发布官网代替获客。Google具体抓取错误与客户MCP缺口保留在复核清单中，按证据处理。
+完成独立官网修复的已验证切换并取得Google新索引回执，同时完成正式MCP的协议／数据库／恢复／Web验收后按合同顺序部署；不回到营销发帖或重复已过的旧验收。当前QA在output/qa/rillora-customer-mcp-20261018。

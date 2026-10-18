@@ -63,6 +63,18 @@ ${article ? `<meta property="article:published_time" content="${article.publishe
     return `<url><loc>${page.canonical}</loc>${article ? `<lastmod>${article.modified}</lastmod>` : ''}${PUBLIC_LOCALES.map(locale => `<xhtml:link rel="alternate" hreflang="${locale}" href="${PUBLIC_ORIGIN}${publicPath(page.path, locale)}"/>`).join("")}</url>`;
   }).join("\n")}\n</urlset>\n`;
   await writeFile("dist-public/sitemap.xml", sitemap);
-  await writeFile("dist-public/robots.txt", `User-agent: *\nAllow: /\nSitemap: ${PUBLIC_ORIGIN}/sitemap.xml\n`);
+  // Keep the original flat map for existing submissions. The index gives each language
+  // an independently fetchable, minimal XML document and a stable diagnostic address.
+  for (const locale of PUBLIC_LOCALES) {
+    const entries = pages.filter(page => page.locale === locale).map(page => {
+      const article = publicArticles[publicRoute(page.path).path];
+      return `<url><loc>${page.canonical}</loc>${article ? `<lastmod>${article.modified}</lastmod>` : ''}</url>`;
+    }).join("\n");
+    await writeFile(`dist-public/sitemap-${locale}.xml`, `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries}\n</urlset>\n`);
+  }
+  await writeFile('dist-public/sitemap-index.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${PUBLIC_LOCALES.map(locale => `<sitemap><loc>${PUBLIC_ORIGIN}/sitemap-${locale}.xml</loc></sitemap>`).join('\n')}\n</sitemapindex>\n`);
+  // Exact approved PNG bytes, without resizing or replacing the existing head icon.
+  await writeFile('dist-public/favicon.png', await readFile(resolve('dist-public', icon.slice(1))));
+  await writeFile("dist-public/robots.txt", `User-agent: *\nAllow: /\nSitemap: ${PUBLIC_ORIGIN}/sitemap-index.xml\n`);
   return { pages, index };
 }

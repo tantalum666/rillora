@@ -30,7 +30,7 @@ export function readVerifiedClientArtifact(directory: string, manifestName: 'pro
         || Object.keys(records[0]).sort().join(',') !== 'canonical,file,locale,path') throw new Error('Invalid public page declaration');
       publicDocuments.add(file);
     }
-    publicDocuments.add('robots.txt'); publicDocuments.add('sitemap.xml');
+    for (const file of ['robots.txt', 'sitemap.xml', 'sitemap-index.xml', 'sitemap-en.xml', 'sitemap-zh-CN.xml', 'favicon.png']) publicDocuments.add(file);
   }
   const files = manifest?.files;
   if (!files || typeof files !== 'object' || Array.isArray(files)

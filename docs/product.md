@@ -9,6 +9,10 @@ Last updated: 2026-10-18 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
 
+## 2026-10-18 普通用户正式AI接入
+
+Owner进一步要求解决Google地图并补齐MCP／插件，让普通用户真正使用，能自主推进的直接完成并推Git，同时不影响当前审核。[正式接入合同](architecture/customer-mcp-20261018.md)与[地图修复](architecture/google-sitemap-20261018.md)取代仅准备营销材料的当前下一步；保持原数据、价格、收费、原生审核与已有验证，客户可用、目录批准及营销效果仍分别证明。
+
 ## 2026-10-18 营销优先与发现能力复核
 
 Owner要求完成当前工作后，全面复核已做SEO／GEO与MCP／插件，补其他AI范围，并计划最低成本获客及App Store关键词。当前转向[营销复核](marketing/readiness-audit-20261018.md)及[四周执行计划](marketing/acquisition-plan-20261018.md)，沿用已有验证，不扩做无需求功能。官网已发布；客户MCP、模型任务、目录及营销结果各自独立。ASO只保存下一版草稿，不改在审资料；已有定价、数据、收费及FanPass保持，外发和投放不能由草稿状态冒充完成。

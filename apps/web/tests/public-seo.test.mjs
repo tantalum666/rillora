@@ -63,8 +63,10 @@ test('edge chooses locale-specific cache objects and preserves old public and gu
   assert.equal(request('/en/product', { lang: { value: 'zh-CN' }, appearance: { value: 'dark' } }).headers.location.value, '/zh-CN/product?appearance=dark');
   assert.equal(request('/product', { lang: { value: 'zh-CN&evil=1' } }).uri, '/pages/en/product.html');
   assert.equal(request('/zh-CN/guides', { service: { value: 'google' } }).headers.location.value, 'https://app.rillora.xyz/account?next=guides&service=google&langHint=zh-CN');
-  for (const file of ['/robots.txt', '/sitemap.xml']) assert.equal(request(file).uri, file);
+  for (const file of ['/robots.txt', '/sitemap.xml', '/sitemap-index.xml', '/sitemap-en.xml', '/sitemap-zh-CN.xml', '/favicon.png']) assert.equal(request(file).uri, file);
   for (const privatePath of ['/zh-CN/account', '/en/api/auth/start', '/pages/en/index.html', '/zh-CN/.env', '/en/../account', '/zh-CN/unknown']) assert.equal(request(privatePath).statusCode, 404);
+  assert.equal(request('/favicon.ico').headers.location.value, '/favicon.png');
+  assert.equal(request('/sitemap-private.xml').statusCode, 404);
   assert.equal(request('/zh-CN/product', {}, 'POST').statusCode, 405);
 });
 
@@ -104,6 +106,20 @@ if (process.env.RILLORA_TEST_PUBLIC_BUILD === '1') {
     assert.equal([...sitemap.matchAll(/<loc>/g)].length, Object.keys(publicPages).length * PUBLIC_LOCALES.length);
     assert.equal([...sitemap.matchAll(/<lastmod>/g)].length, Object.keys(publicArticles).length * PUBLIC_LOCALES.length);
     assert.doesNotMatch(sitemap, /\/guides|\/account|\/invite|\/api\//);
-    assert.match(await readFile(new URL('robots.txt', root), 'utf8'), /Sitemap: https:\/\/www\.rillora\.xyz\/sitemap\.xml/);
+    const splitURLs = [];
+    for (const locale of PUBLIC_LOCALES) {
+      const part = await readFile(new URL(`sitemap-${locale}.xml`, root), 'utf8');
+      const urls = [...part.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]);
+      assert.equal(urls.length, Object.keys(publicPages).length);
+      assert.ok(urls.every(url => url.startsWith(`${PUBLIC_ORIGIN}/${locale}/`)));
+      splitURLs.push(...urls);
+    }
+    assert.deepEqual(splitURLs.sort(), [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]).sort());
+    const index = await readFile(new URL('sitemap-index.xml', root), 'utf8');
+    assert.deepEqual([...index.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]), PUBLIC_LOCALES.map(locale => `${PUBLIC_ORIGIN}/sitemap-${locale}.xml`));
+    const icon = await readFile(new URL('favicon.png', root));
+    assert.deepEqual(icon, await readFile(new URL('../src/assets/brand/apple-touch-icon.png', import.meta.url)));
+
+    assert.match(await readFile(new URL('robots.txt', root), 'utf8'), /Sitemap: https:\/\/www\.rillora\.xyz\/sitemap-index\.xml/);
   });
 }

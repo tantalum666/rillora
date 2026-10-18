@@ -3609,3 +3609,12 @@ local correction/tests and actual restoration remain separate evidence.
 - Implementation: preserve the completed public rollout, audit actual evidence by surface, correct actionable package/document drift, and prepare bilingual campaign and next-version ASO materials. Reuse prior validation rather than repeating deployment, OAuth, payment or device work.
 - Boundaries: a synthetic MCP endpoint is not a customer integration; installed, authenticated, model-used, directory-approved, indexed and acquired are separate outcomes. Keep current App Review, real data, prices, billing and FanPass unchanged. This instruction does not invent an advertising budget or authorize unsolicited messages.
 - Evidence: Owner request; [readiness audit](marketing/readiness-audit-20261018.md) and [execution plan](marketing/acquisition-plan-20261018.md). No marketing outcome or keyword-volume claim is inferred.
+
+
+## 2026-10-18 — Deliver ordinary-user MCP rather than stopping at synthetic hosting
+
+- Status: LOCKED scope; execution outcomes remain unproven until read back.
+- Decision: Owner requests Google sitemap repair and remaining MCP/plugin integration through genuine ordinary-user availability, preserving current App Review and publishing completed work to GitHub.
+- Supersedes: the previous marketing-materials-only next step and treating the synthetic candidate as the final hosting destination.
+- Implementation: reuse the production data/security boundaries and existing Rillora sign-in, add a separately authorized read-only integration, keep existing prices and billing, and leave the in-review native artifact unchanged. Provider directory approval is independent of a working customer endpoint.
+- Evidence: Owner instruction; [customer integration contract](architecture/customer-mcp-20261018.md).

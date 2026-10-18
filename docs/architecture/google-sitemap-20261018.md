@@ -1,0 +1,16 @@
+# Google 地图读取续修
+
+Status: CANDIDATE VALIDATED / PROVIDER READBACK PENDING
+Last updated: 2026-10-18 (Asia/Hong_Kong)
+
+Owner要求继续解决Google地图，并推进正式用户MCP；本文件只记录独立官网修复。生产应用、在审构建及MCP交付另看[正式接入](customer-mcp-20261018.md)。
+
+原地图包含28个唯一规范网址、每网址两种语言对应，XML结构可解析；本轮正常HTTP和声明Googlebot的请求均200、7997字节。声明User-Agent不代表Google真实抓取。新建规范官网URL前缀属性后，由已有DNS自动验证所有权；它继承同一条“无法抓取／0”记录，因此属性范围本身未解决问题。没有反复删除／提交旧地图。
+
+修复候选保留原sitemap.xml，增加sitemap-index.xml及英文／中文各14网址的简洁子地图，让每种语言独立取得抓取回执；robots指向新索引。另补favicon.png，逐字复制已批准PNG，favicon.ico仅跳转该稳定文件；不重新设计图标，不把旧favicon404当作地图失败原因。
+
+本轮构建66份清单文件。原62份中只有robots.txt变化，28份页面、JS／CSS、原平面地图及其余资源逐字保持。5项公开发现／实际构建检查及10项官网基础设施检查通过。没有重跑旧视觉、购买或原生验收。
+
+发布采用已有独立www栈，先上传新增文件、保留旧robots与路由，再发布新增路由，最后切换robots及清单；数据桶和分发身份保持。Google只提交新的索引一次，分别检查索引及两个子地图；没有平台成功回执前不声称读取问题已解决，也不保证文章已索引。
+
+当前状态与原件位于output/qa/rillora-customer-mcp-20261018。新的成功／失败及实际部署状态在同一记录补充，旧归档不重复封存。

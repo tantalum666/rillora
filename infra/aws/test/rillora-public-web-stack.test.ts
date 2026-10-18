@@ -37,7 +37,7 @@ describe('Public information hosting', () => {
         marker.files[file] = createHash('sha256').update(readFileSync(join(directory, file))).digest('hex');
         marker.pages.push({ path, file, locale, canonical: `https://www.rillora.xyz${path}` });
       }
-      for (const file of ['robots.txt', 'sitemap.xml']) { writeFileSync(join(directory, file), 'public fixture'); marker.files[file] = createHash('sha256').update('public fixture').digest('hex'); }
+      for (const file of ['robots.txt', 'sitemap.xml', 'sitemap-index.xml', 'sitemap-en.xml', 'sitemap-zh-CN.xml', 'favicon.png']) { writeFileSync(join(directory, file), 'public fixture'); marker.files[file] = createHash('sha256').update('public fixture').digest('hex'); }
       writeFileSync(markerPath, JSON.stringify(marker));
       expect(() => readVerifiedClientArtifact(directory, 'public-build.json')).not.toThrow();
       marker.pages[0].canonical = 'https://app.rillora.xyz/account'; writeFileSync(markerPath, JSON.stringify(marker));
