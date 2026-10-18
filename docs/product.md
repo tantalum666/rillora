@@ -5,9 +5,13 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-10-18 (Asia/Hong_Kong)
+Last updated: 2026-10-19 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-10-18 营销邮箱准备
+
+Owner明确配置social@rillora.xyz和hello@rillora.xyz，使用现有Zoho邮箱的别名并验证外部收发，不另购邮箱。[当前结果](marketing/mail-aliases-20261018.md)已于October19完成两地址实际收／发验证，仍为1用户／1许可证；首封social临时拒收及独立复测成功分别记录。不注册营销平台、不群发、不改变Resend系统发信或当前审核。OpenAI开发者身份验证继续按Owner决定暂后。
 
 ## 2026-10-18 普通用户正式AI接入
 
@@ -530,6 +534,7 @@ Owner于2026-09-09明确：“本项目全部默认授权与确认”。当前�
 
 | Task | Read next | Role |
 | --- | --- | --- |
+| 品牌营销账号邮箱、公开联系邮箱与Zoho别名收发 | `docs/marketing/mail-aliases-20261018.md` | 同一现有邮箱、无额外购买；别名保存、外部收发及营销平台注册分开取证 |
 | 营销获客、SEO／GEO复核、平台覆盖和App Store ASO | `docs/marketing/readiness-audit-20261018.md` → `docs/marketing/acquisition-plan-20261018.md` → `docs/marketing/campaign-kit-20261018.md` | 已有能力、真实增长、草稿及未接入平台分开；不改在审版本 |
 | 跨平台 AI 发现、GEO、推荐、插件／MCP 下一版本 | `docs/architecture/ai-discovery-vnext-20261015.md` → `docs/architecture/public-discovery-rollout-20261016.md` → `docs/architecture/ai-oauth-validation-20261016.md` → `integrations/ai/README.md` | 公开官网已交付；搜索索引、MCP托管闭环、模型与目录分别取证，不打断现有审核 |
 | 真实双端核心流程的剩余验收 | `docs/real-core-acceptance-20261004.md` | 当前会话、共享／撤销、导出／恢复、近期认证及删除的实际结果 |

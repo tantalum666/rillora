@@ -1,7 +1,7 @@
 # Rillora：低成本获客执行计划
 
 Status: READY TO EXECUTE / NO OUTREACH OR AD SPEND STARTED
-Last updated: 2026-10-18 (Asia/Hong_Kong)
+Last updated: 2026-10-19 (Asia/Hong_Kong)
 
 这是Owner要求的营销阶段工作计划。事实来自[部署前复核](readiness-audit-20261018.md)、[后续正式MCP／Registry交付](../architecture/customer-mcp-20261018.md)、[Google地图结果](../architecture/google-sitemap-20261018.md)及产品合同；客群、渠道效果和时间分配是待验证假设。当前没有CRM机会、真实客户承诺、可计算CAC或完整营销归因基线，不为制定计划强行购买CRM或数据服务。
 
@@ -31,6 +31,8 @@ Last updated: 2026-10-18 (Asia/Hong_Kong)
 | 第4周 | 对比两渠道的有效任务与时间成本；停止没有有效尝试的渠道。完成首轮30—50人招募是否可行的判断 | 达到原MVP方向门槛才扩张。低样本不做“显著提升”或LTV推算；广告预算仍为0 |
 
 发布前先核对该账号和社区规则，文案明确开发者身份。英文可优先选允许相关讨论的家庭／跨国生活社区或Owner已有X／LinkedIn；中文优先Owner已有小红书／中文社群。只选两处执行，不同时铺十个平台。具体社区和接收人尚未指定，当前没有发送授权或已连接发布账号，故只准备成稿。
+
+营销邮箱现已准备：[social@用于品牌账号注册／验证，hello@用于公开联系](mail-aliases-20261018.md)，都进入原Zoho邮箱，外部收／发已实测，未增加付费用户。这不等于已经注册平台或获准外发；需要个人管理员身份的平台仍使用Owner真实身份管理品牌页面。
 
 [Reddit官方](https://support.reddithelp.com/hc/en-us/articles/28012014962580-How-do-I-keep-spam-out-of-my-community)要求遵守各社区的自我推广规则，不存在适用于所有社区的统一发广告配额。不要批量私信、复制评论或伪装普通用户推荐自己的产品。
 

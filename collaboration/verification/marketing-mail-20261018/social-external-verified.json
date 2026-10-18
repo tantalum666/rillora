@@ -1,0 +1,17 @@
+{
+  "alias": "social@rillora.xyz",
+  "testId": "RLM-20261019-SOCIAL-OUTBOUND",
+  "fromCorrect": true,
+  "recipientCorrect": true,
+  "subjectCorrect": true,
+  "bodyCorrect": true,
+  "inbox": true,
+  "spam": false,
+  "googleAuthentication": {
+    "spf": true,
+    "dkim": true,
+    "dmarc": true
+  },
+  "internalDate": "1792340868000",
+  "originalReplyQueue": "Original Oct18 reply remains separately tracked; this is one new outbound probe, not proof of that original message's delivery."
+}

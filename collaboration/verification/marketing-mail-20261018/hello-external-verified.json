@@ -1,0 +1,16 @@
+{
+  "alias": "hello@rillora.xyz",
+  "fromCorrect": true,
+  "recipientCorrect": true,
+  "subjectCorrect": true,
+  "bodyCorrect": true,
+  "inbox": true,
+  "spam": false,
+  "googleAuthentication": {
+    "spf": true,
+    "dkim": true,
+    "dmarc": true
+  },
+  "internalDate": "1792340084000",
+  "plainTextNormalization": "Zoho auto-links the address; canonical content verified against received HTML text."
+}

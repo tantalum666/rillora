@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-18 (Asia/Hong_Kong)
+Last updated: 2026-10-19 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -3625,3 +3625,17 @@ local correction/tests and actual restoration remain separate evidence.
 - Actual production OAuth, model calls and immediate revocation pass. Remove the test alias credential only; retain the account, synthetic matter, existing client configuration and other projects. This does not authorize separate ChatGPT email disclosure or reuse of Apple review credentials for another provider.
 - Agent publishes public service metadata to the official MCP Registry within the already authorized distribution scope, using a single additive DNS proof and an encrypted registry-only signing key. No paid service, DNS delegation, broad runtime grant, arbitrary dynamic client registration or marketplace-approval claim is introduced.
 - The residual bilingual language label is corrected under the existing selected-language decision; it is not a new design or legal-contract decision. See [actual delivery and boundaries](architecture/customer-mcp-20261018.md).
+
+## 2026-10-18 — Add marketing aliases without purchasing another mailbox
+
+- Owner explicitly requests social@rillora.xyz and hello@rillora.xyz as aliases of the existing Zoho mailbox, with actual send/receive verification and no additional mailbox purchase.
+- Reuse the current support mailbox and preserve its primary address, privacy/security aliases, user count, subscription and existing authentication. Do not create extra users, groups, forwarding, DNS changes or a new mail provider.
+- A bounded external rehearsal uses the already connected Owner Gmail: one test to each alias and a matching-alias reply, containing only test IDs and receipt text. This authorization does not extend to marketing campaigns or contacting prospective customers.
+- The current Zoho browser session is actually unauthenticated; request only the required original-account sign-in, not another approval for the already specified alias configuration. OpenAI publisher identity remains deferred at the Owner's request. [Scope and evidence](marketing/mail-aliases-20261018.md).
+
+## 2026-10-19 — Preserve the initial temporary SMTP failure and verify alias capability separately
+
+- Original Zoho login restored; both aliases are saved under the same licensed mailbox, with the primary and old aliases preserved. No paid user or forwarding/DNS change is introduced.
+- Both inbound tests pass. The hello reply reaches Gmail Inbox with SPF/DKIM/DMARC pass; the initial social reply receives Google's temporary4.3.0 and remains in Zoho's automatic retry queue.
+- Agent performs one additional, independently identified social outbound probe to the same Owner Gmail under the existing send/receive verification request. It reaches Inbox with correct sender/content and all three authentication passes. No third probe, manual duplicate of the original, queue cancellation or unsolicited outreach is performed.
+- Record the two aliases as send/receive verified while keeping the original delayed message explicitly unresolved; do not rewrite the initial failure as a clean first-attempt pass or promise universal future deliverability.

@@ -1,0 +1,28 @@
+{
+  "scope": "Two Gmail-to-alias messages and one matching-alias reply per message; no real product data or credentials",
+  "externalMailbox": "Existing connected Owner Gmail; address not copied to public evidence",
+  "existingSubjectsFound": 0,
+  "tests": [
+    {
+      "alias": "social@rillora.xyz",
+      "testId": "RLM-20261018-SOCIAL",
+      "subject": "RLM-20261018-SOCIAL - Rillora alias delivery check",
+      "expectedReply": "RLM-20261018-SOCIAL received via social@rillora.xyz."
+    },
+    {
+      "alias": "hello@rillora.xyz",
+      "testId": "RLM-20261018-HELLO",
+      "subject": "RLM-20261018-HELLO - Rillora alias delivery check",
+      "expectedReply": "RLM-20261018-HELLO received via hello@rillora.xyz."
+    }
+  ],
+  "acceptance": [
+    "Both aliases belong to the same existing mailbox",
+    "Primary address and old aliases preserved",
+    "Licensed mailbox count unchanged",
+    "Each inbound message actually visible in Zoho",
+    "Each reply uses the matching From alias",
+    "External Gmail receives each reply; folder/headers recorded"
+  ],
+  "noDnsOrResendChangePlanned": true
+}
