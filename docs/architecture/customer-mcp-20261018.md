@@ -71,3 +71,11 @@ Owner当场批准仅把合成事项Release acceptance 2026-10-01授权给真实C
 本轮沿用已过API580、infra68、配置6及UI20检查，公开issuer修正另有27项针对性代理／协议检查。没有把这些本地测试重复写为此次真实模型调用；部署、迁移数据保持、模型结果和撤销分别有回执。生产本轮未单独等待令牌到期触发刷新，刷新／重放等边界来自已过真实HTTP集成和先前独立候选检查，不冒称为新的生产到期实测。页面残留双语语言标签已按所选语言修正并独立发布：46d745bf4／CI186、4项聚焦检查、生产构建及89文件线上逐字核验通过；实际Chrome显示中文标签且混合语言标签为0。
 
 当前在审App14、TestFlight暂停、原事项、价格、收费开关、FanPass及原Auth0连接保持。当前正式用户MCP和官方Registry已开放；OpenAI目录仍须独立消费端验收、演示与提供方提交，Claude账号资格及其他消费端同样单独记录。不能复用Apple审核凭据给新的AI平台，也不能把Codex的无邮箱授权扩大为ChatGPT的邮箱披露。
+
+## OpenAI目录实际推进
+
+按[官方提交要求](https://developers.openai.com/plugins/deploy/submission)最终复核，补齐包中独立supportURL及Codex兼容manifest的author，6项配置检查和当前实际解析器通过。只改两个metadata文件，OAuth及其它配置不变；abcaf2af1／CI187三任务通过，正式下载更新已完成，公共ZIP和原首页实际字节匹配。重新prepare已准备的Web产物曾重复插入appearance bootstrap，执行前的字节差异检查阻止了它；原HTML已逐字恢复，最终仅ZIP不同，其他88文件保持，未部署错误候选。
+
+Owner已完成OpenAI Platform登录；实际Plugins上传入口要求先验证开发者身份，并在General展示Individual／Business两个Start。尚未选择／冒填法律身份或上传证件，也未充值／购买API。已准备仅包含公开metadata、配置、品牌图标及5正／3负预期测试草稿的ZIP；没有上传成功回执。Owner明确“稍后验证，先保存其他成果”，因此按其指示停在此门，不再要求同一项或替选法律身份。测试案例草稿不能冒称ChatGPT已通过，视频及专用审核账号仍按平台后续要求完成。
+
+Git保存独立完成：新增archive48已从GitHub新下载、解密并逐对象／路径认证，318对象／439路径匹配；晚到的无秘密包和回执正常追加，不重封先前归档。[可读交付与远端证据](../../collaboration/verification/customer-mcp-20261018/README.md)。

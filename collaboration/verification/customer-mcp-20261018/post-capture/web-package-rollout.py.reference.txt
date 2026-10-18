@@ -1,0 +1,29 @@
+from pathlib import Path
+import json,subprocess,sys,datetime
+QA=Path(__file__).resolve().parent
+NAME='rillora-customer-mcp-20261018-package';STACK='RilloraProductionWeb';RESOURCE='DeploymentCustomResource47E8B2E6'
+def aws(args):
+ r=subprocess.run(['aws',*args,'--profile','rillora-cdk-deploy','--region','eu-central-1','--output','json'],capture_output=True,text=True)
+ if r.returncode:raise RuntimeError('AWS operation failed; no private response printed')
+ return json.loads(r.stdout) if r.stdout.strip() else {}
+def body(x):return json.loads(x['TemplateBody']) if isinstance(x['TemplateBody'],str) else x['TemplateBody']
+old=json.loads((QA/'web-language-cdk/RilloraProductionWeb.template.json').read_text());new=json.loads((QA/'web-package-final-cdk/RilloraProductionWeb.template.json').read_text())
+assert old.keys()==new.keys() and all(old[k]==new[k] for k in old if k!='Resources')
+assert old['Resources'].keys()==new['Resources'].keys() and [k for k in old['Resources'] if old['Resources'][k]!=new['Resources'][k]]==[RESOURCE]
+mode=sys.argv[1]
+if mode in ['review','execute']:
+ assert body(aws(['cloudformation','get-template','--stack-name',STACK]))==old
+ cs=aws(['cloudformation','describe-change-set','--stack-name',STACK,'--change-set-name',NAME]);assert cs['Status']=='CREATE_COMPLETE' and cs['ExecutionStatus']=='AVAILABLE'
+ assert body(aws(['cloudformation','get-template','--stack-name',STACK,'--change-set-name',NAME]))==new
+ rows=[x['ResourceChange'] for x in cs['Changes']];assert len(rows)==1 and rows[0]['LogicalResourceId']==RESOURCE and rows[0]['Action']=='Modify' and rows[0]['Replacement'] in ['False','Conditional']
+ (QA/'web-package-change-review.json').write_text(json.dumps({'passed':True,'changes':rows,'scope':'Only public ZIP metadata: support URL and Codex author; other88files and API/routes/billing unchanged'},indent=2)+'\n')
+ if mode=='execute':
+  assert json.loads((QA/'package-source-ci.json').read_text())['passed']
+  aws(['cloudformation','execute-change-set','--stack-name',STACK,'--change-set-name',NAME]);print('Package metadata deployment started')
+ else:print('Exact single-resource change reviewed')
+elif mode=='verify':
+ stack=aws(['cloudformation','describe-stacks','--stack-name',STACK])['Stacks'][0];print(stack['StackStatus'])
+ if stack['StackStatus']!='UPDATE_COMPLETE':sys.exit(2)
+ assert body(aws(['cloudformation','get-template','--stack-name',STACK]))==new
+ (QA/'web-package-deployment-verified.json').write_text(json.dumps({'passed':True,'exactTemplate':True,'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'runtimeUnchanged':True},indent=2)+'\n')
+else:raise ValueError('review, execute or verify required')

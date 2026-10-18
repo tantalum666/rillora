@@ -1,6 +1,6 @@
 # Rillora 当前交接
 
-Status: CUSTOMER MCP LIVE / CODEX MODEL AND REVOCATION PASSED / GOOGLE 28 URLS / REGISTRY ACTIVE
+Status: CUSTOMER MCP LIVE / GOOGLE 28 URLS / REGISTRY ACTIVE / GIT VERIFIED / OPENAI IDENTITY DEFERRED
 Last updated: 2026-10-18 (Asia/Hong_Kong)
 
 ## 当前任务
@@ -21,10 +21,14 @@ Owner当场批准只授权合成事项Release acceptance 2026-10-01给Codex。�
 
 官方MCP Registry已发布xyz.rillora/rillora@0.1.0，独立公开GET为active。仅增加一条公开TXT证明，36条原DNS记录保持，四个解析器读回；签名key经Owner既有age身份加密验证，未在命令或文件中留下明文。语言标签修正46d745bf4／CI186已单独发布，实际89文件匹配，Chrome中文标签不再并排英文。构建与4项聚焦检查通过；原API、路由、桶、价格／收费不变。
 
+源码及新archive48已推abcaf2af1／CI187，三任务全部成功；GitHub独立下载、解密认证318对象／439路径通过。最后安装包补齐supportURL和Codex作者字段，6检查及当前解析器通过；正式ZIP与首页实读匹配，其它88文件沿用未变字节的已验收产物。后续收尾回执以普通Git追加，不重封归档或重复部署。
+
 ## 边界
+
+Owner已登录OpenAI插件后台；实际上传对话框要求先完成开发者身份验证。General页提供Individual／Business，Owner明确“稍后验证，先保存其他成果”，因此该入口由Owner暂后；尚未上传或提交插件，也未选择法律身份、填写证件或开通付费服务。公开草稿ZIP已准备，supportURL／Codex作者字段补齐并通过6项检查；下载更新与晚到回执在本轮QA单列。
 
 价格、收费、原事项、FanPass及在审App14保持，未发TestFlight；Owner此前取消的真机验收不恢复。合成Cloudflare环境未升级为客户环境。ChatGPT／Claude消费端及其余模型会话、各平台商店批准、搜索排名／获客未由Codex或Registry结果证明。Owner没有Claude官网账号，不要求注册／付费。Auth0管理CLI另已过期，不影响复用现有Web登录的客户运行。不得复用Apple审核密码给新AI平台，也不得扩大本轮无邮箱的Codex授权。
 
 ## 唯一下一步
 
-完成本轮新增证据包的GitHub独立下载／解密核验后，转入OpenAI消费端目录材料／演示与平台提交；不重做已过OAuth、Google、迁移、付款、原生或本人确认。本轮QA：output/qa/rillora-customer-mcp-20261018。其他平台按现有矩阵推进，不为覆盖率新增付费账号或假称商店批准。
+Owner准备好并完成OpenAI开发者身份验证后，继续上传现成草稿、处理真实平台扫描及其余审核材料。Owner已明确暂后此门，当前不要重复催办，也不重做已过OAuth、Google、迁移、付款、原生或本人确认。现成草稿与最终回执见[本轮交付](../collaboration/verification/customer-mcp-20261018/README.md)；其他平台保持已记录的账号／目录证据边界，不为覆盖率新增付费账号。
