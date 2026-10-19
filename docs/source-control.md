@@ -2,6 +2,10 @@
 
 Last updated: 2026-10-19 (Asia/Hong_Kong)
 
+## October19 social banners
+
+[The banner task](marketing/social-banner-20261019.md) adds final English/Chinese X-size PNGs, self-contained SVG compositions, original generated artwork, exact-copy exporters, licenses and a small upload ZIP. The Owner rejected the first abstract-paper treatment as insufficiently related to a book/notebook/map; it remains explicitly HISTORICAL inside the asset package. Current art uses an open folio and matters diagram, with no burned-in URL. All assets are non-secret and published directly through ordinary Git, with [safe validation receipts](../collaboration/verification/social-banner-20261019/README.md); no archive is resealed and no application or review artifact is deployed.
+
 ## October19 marketing mail aliases
 
 [The alias task](marketing/mail-aliases-20261018.md) creates social@ and hello@ under the existing Zoho support mailbox, with one user and one Mail Lite license retained. [Safe evidence](../collaboration/verification/marketing-mail-20261018/README.md) records two actual inbound messages and successful Gmail receipt/authentication for both sending identities. The initial social reply's temporary Google4.3.0 remains distinct from the successful independent probe; no false all-messages-delivered claim is made. Only small safe receipts and a reviewed alias-settings image are published directly. Authentication and raw personal mail screenshots remain protected locally; no new archive, mailbox purchase, DNS/Resend change or application deployment is needed.

@@ -34,6 +34,8 @@ Last updated: 2026-10-19 (Asia/Hong_Kong)
 
 营销邮箱现已准备：[social@用于品牌账号注册／验证，hello@用于公开联系](mail-aliases-20261018.md)，都进入原Zoho邮箱，外部收／发已实测，未增加付费用户。这不等于已经注册平台或获准外发；需要个人管理员身份的平台仍使用Owner真实身份管理品牌页面。
 
+[社交横幅](social-banner-20261019.md)现已补齐英文／简中X尺寸版本，采用打开的资料册与事项地图，主交付不把网址烧录进图片。官网链接使用目标平台支持的网站字段；其他平台需另核尺寸与规则。rilloraapp／getrillora等仅为命名建议，尚未登记为已选定或全平台可注册。
+
 [Reddit官方](https://support.reddithelp.com/hc/en-us/articles/28012014962580-How-do-I-keep-spam-out-of-my-community)要求遵守各社区的自我推广规则，不存在适用于所有社区的统一发广告配额。不要批量私信、复制评论或伪装普通用户推荐自己的产品。
 
 ## 渠道优先级与最低成本打法

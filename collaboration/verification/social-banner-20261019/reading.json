@@ -1,0 +1,73 @@
+{
+  "continuedFrom": "output/qa/rillora-marketing-mail-20261018/reading.json",
+  "retainedFullRead": "collaboration/verification/ai-implementation-20261015/reading.json",
+  "scope": "Same marketing workflow; new social banner asset, not application implementation. Reuse current reading chain rather than repeat full historical read.",
+  "bodyReads": {
+    "AGENTS.md": "full current",
+    "docs/product.md": "current task/brand/Authority Map and inherited full workflow; 180-214 and 490-520 reread to repair truncated outputs",
+    "docs/handoff.md": "full current 1-28",
+    "docs/logo-design-20260919.md": "full current 1-98; tail86-98 reread separately",
+    "assets/brand/rillora/README.md": "full current",
+    "config/brand.json": "full current in preceding same-workflow asset lookup",
+    "docs/marketing/acquisition-plan-20261018.md": "full current1-104",
+    "docs/marketing/campaign-kit-20261018.md": "full current",
+    "docs/decision-log.md": "header1-18 and latest32lines; inherited full remainder",
+    "docs/journey/PROJECT_JOURNEY.md": "header1-13 and latest22lines; inherited full remainder",
+    "docs/source-control.md": "current1-42; inherited full remainder",
+    "collaboration/README.md": "current1-52; inherited full remainder"
+  },
+  "completedAt": "2026-10-19T07:13:48.182527+00:00",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "435d9bfaf85f5584d7895aa8ed98ce7d3ddfa18e212c571e72c3de1a4163c334"
+    },
+    {
+      "path": "docs/product.md",
+      "sha256": "5d048d4fc3da7adcf52a6b6eef3dd9c0482780d2f0fd0d405c3633cbb25aac2f"
+    },
+    {
+      "path": "docs/handoff.md",
+      "sha256": "18bca5bddcbdab79e582db67047f88feff169db275c5dc73f2d2b4de439b9558"
+    },
+    {
+      "path": "docs/logo-design-20260919.md",
+      "sha256": "93e8112e4fa4bb9b4a6fd5b8cc660b5c0d74164e755684d18985680ff84523bc"
+    },
+    {
+      "path": "assets/brand/rillora/README.md",
+      "sha256": "315daf38d67b4ffb9f11402333adaee2f56515f89d14b4c8669da3743c756b89"
+    },
+    {
+      "path": "config/brand.json",
+      "sha256": "cb9bcf57347b76f3ff7fdefaef16bc97b6327f91e0ff20ad937a3cd83f82c917"
+    },
+    {
+      "path": "docs/marketing/acquisition-plan-20261018.md",
+      "sha256": "dd13ce9d5561b266c20da01d910295b2677848d3a9d0617e1d17f15bf27a144a"
+    },
+    {
+      "path": "docs/marketing/campaign-kit-20261018.md",
+      "sha256": "de59d0780992db592301174998eb3108a46cdf6914bc0a23606a05beaec9c99c"
+    },
+    {
+      "path": "docs/decision-log.md",
+      "sha256": "c991abee2a0914c14b83abca79dcbe13e9114441d90ac8334876cee22c6d208b"
+    },
+    {
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "sha256": "c0eee1427b3735cca3c97c608f27757bad4528a9e65247b503aa2fb053ae13e6"
+    },
+    {
+      "path": "docs/source-control.md",
+      "sha256": "526f4daaa974fca054375ea0595ae2c14913f3429cbc9968bbab4c190047f133"
+    },
+    {
+      "path": "collaboration/README.md",
+      "sha256": "8912215fa0975d9d533bc7eecc839a8315db9ce9e337ec3559ee93e13630523b"
+    }
+  ],
+  "excluded": "Generated QA, dependency/cache/build artifacts, private stores, generated collaboration evidence/catalog/archive copies",
+  "inventory": "inherited markdown inventory from marketing-mail-20261018; no dependency/build/evidence copies treated as current specifications",
+  "memory": "Focused memory query returned no relevant social banner entry; current repository and user instructions are authority."
+}

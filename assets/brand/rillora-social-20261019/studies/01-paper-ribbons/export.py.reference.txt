@@ -1,0 +1,138 @@
+#!/usr/bin/env python3
+"""Compose exact, outlined brand typography over one unchanged ImageGen plate.
+
+Run with fonttools[woff] and uharfbuzz; pass the official Noto Sans SC font path.
+This builds new SVG layouts, never rewrites the canonical brand or raster plate.
+"""
+import argparse
+import base64
+import hashlib
+import io
+import json
+from pathlib import Path
+import xml.etree.ElementTree as ET
+
+import uharfbuzz as hb
+from fontTools.pens.svgPathPen import SVGPathPen
+from fontTools.ttLib import TTFont
+from fontTools.varLib.instancer import instantiateVariableFont
+
+
+PACK = Path(__file__).resolve().parent.parent
+ROOT = PACK.parents[2]
+PAPER = '#F5F1E8'
+SECONDARY = '#D3DCD5'
+WIDTH, HEIGHT = 1500, 500
+
+
+def outline_font(path, weight=None):
+    font = TTFont(path)
+    if weight is not None and 'fvar' in font:
+        font = instantiateVariableFont(font, {'wght': weight}, inplace=False)
+    font.flavor = None
+    binary = io.BytesIO()
+    font.save(binary)
+    shaper = hb.Font(hb.Face(binary.getvalue()))
+    upem = font['head'].unitsPerEm
+    shaper.scale = (upem, upem)
+    return font, shaper, upem
+
+
+def text_paths(font_data, text, x, baseline, size, color=PAPER):
+    font, shaper, upem = font_data
+    buffer = hb.Buffer()
+    buffer.add_str(text)
+    buffer.guess_segment_properties()
+    hb.shape(shaper, buffer)
+    glyph_set = font.getGlyphSet()
+    glyph_order = font.getGlyphOrder()
+    scale = size / upem
+    cursor = 0
+    paths = []
+    for info, position in zip(buffer.glyph_infos, buffer.glyph_positions):
+        if info.codepoint == 0:
+            raise ValueError(f'Missing glyph in {text!r}')
+        pen = SVGPathPen(glyph_set)
+        glyph_set[glyph_order[info.codepoint]].draw(pen)
+        data = pen.getCommands()
+        if data:
+            transform = (f'translate({x + (cursor + position.x_offset) * scale:.5f} '
+                         f'{baseline - position.y_offset * scale:.5f}) '
+                         f'scale({scale:.7f} {-scale:.7f})')
+            paths.append(f'<path transform="{transform}" d="{data}"/>')
+        cursor += position.x_advance
+    width = cursor * scale
+    if x < 290 or x + width > 940 or baseline - size < 60 or baseline > 430:
+        raise ValueError(f'Text exceeds the planned safe rectangle: {text!r}, width={width}')
+    return f'<g fill="{color}" aria-label="{text}">{"".join(paths)}</g>', width
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--cjk-font', type=Path, required=True)
+    args = parser.parse_args()
+    fonts = ROOT / 'apps/web/node_modules/@fontsource'
+    serif = outline_font(fonts / 'source-serif-4/files/source-serif-4-latin-500-normal.woff2')
+    sans = outline_font(fonts / 'inter/files/inter-latin-400-normal.woff2')
+    chinese = outline_font(args.cjk_font, 450)
+    image_path = PACK / 'source/continuity-paper.png'
+    plate = base64.b64encode(image_path.read_bytes()).decode()
+    logo_path = ROOT / 'assets/brand/rillora/lockup-reversed.svg'
+    logo = ET.fromstring(logo_path.read_text())
+    logo.set('x', '300')
+    logo.set('y', '90')
+    logo.set('width', '236')
+    logo.set('height', str(236 * 208 / 870))
+    logo_markup = ET.tostring(logo, encoding='unicode')
+    variants = {
+        'en': [
+            (serif, 'Give someone you trust', 208, 48, PAPER),
+            (serif, 'a clear place to start.', 264, 48, PAPER),
+            (sans, 'Your digital life, organized.', 319, 23, SECONDARY),
+        ],
+        'zh-CN': [
+            (chinese, '让关心你的人，', 208, 46, PAPER),
+            (chinese, '知道从哪里开始。', 267, 46, PAPER),
+            (chinese, '整理重要资料，选择与谁共享。', 319, 23, SECONDARY),
+        ],
+    }
+    layouts = {}
+    for language, lines in variants.items():
+        pieces = [logo_markup]
+        measured = []
+        for font, text, baseline, size, color in lines:
+            outline, width = text_paths(font, text, 300, baseline, size, color)
+            pieces.append(outline)
+            measured.append({'text': text, 'x': 300, 'baseline': baseline,
+                             'fontSize': size, 'width': round(width, 3)})
+        outline, width = text_paths(sans, 'rillora.xyz', 300, 383, 19, SECONDARY)
+        pieces.append(outline)
+        measured.append({'text': 'rillora.xyz', 'x': 300, 'baseline': 383,
+                         'fontSize': 19, 'width': round(width, 3)})
+        title = 'Rillora social header — ' + language
+        svg = (f'<svg xmlns="http://www.w3.org/2000/svg" width="{WIDTH}" '
+               f'height="{HEIGHT}" viewBox="0 0 {WIDTH} {HEIGHT}" role="img">'
+               f'<title>{title}</title><rect width="1500" height="500" fill="#23473D"/>'
+               f'<image width="1500" height="500" href="data:image/png;base64,{plate}"/>'
+               f'{"".join(pieces)}</svg>')
+        (PACK / f'rillora-x-banner-{language}.svg').write_text(svg)
+        layouts[language] = measured
+    manifest = {
+        'date': '2026-10-19', 'status': 'DESIGNED / NOT UPLOADED TO SOCIAL PLATFORMS',
+        'canvas': {'width': WIDTH, 'height': HEIGHT},
+        'logoSource': str(logo_path.relative_to(ROOT)),
+        'logoSha256': hashlib.sha256(logo_path.read_bytes()).hexdigest(),
+        'plateSha256': hashlib.sha256(image_path.read_bytes()).hexdigest(),
+        'safeArea': {'x': 290, 'y': 60, 'right': 940, 'bottom': 430},
+        'avatarExclusion': {'x': 0, 'y': 300, 'right': 290, 'bottom': 500},
+        'layouts': layouts,
+        'fonts': ['Source Serif 4 500', 'Inter 400', 'Noto Sans SC 450'],
+        'fontStrategy': 'All visible copy outlined with HarfBuzz + fontTools; no font fallback.',
+        'claimBoundary': 'Brand visual and truthful organizing/shared-direction copy; no prices, App Store availability, E2EE, automatic inheritance or unconfirmed handle.',
+    }
+    (PACK / 'manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n')
+    print(json.dumps({'exported': list(layouts), 'size': [WIDTH, HEIGHT], 'safeAreaPassed': True}))
+
+
+if __name__ == '__main__':
+    main()

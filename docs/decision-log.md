@@ -3639,3 +3639,11 @@ local correction/tests and actual restoration remain separate evidence.
 - Both inbound tests pass. The hello reply reaches Gmail Inbox with SPF/DKIM/DMARC pass; the initial social reply receives Google's temporary4.3.0 and remains in Zoho's automatic retry queue.
 - Agent performs one additional, independently identified social outbound probe to the same Owner Gmail under the existing send/receive verification request. It reaches Inbox with correct sender/content and all three authentication passes. No third probe, manual duplicate of the original, queue cancellation or unsolicited outreach is performed.
 - Record the two aliases as send/receive verified while keeping the original delayed message explicitly unresolved; do not rewrite the initial failure as a clean first-attempt pass or promise universal future deliverability.
+
+## 2026-10-19 — Social banner brief and concrete folio correction
+
+- Status: LOCKED task scope; artwork is an Agent-delivered design, not a new Owner-selected brand identity.
+- Owner requests a social banner if none exists, then rejects the abstract paper-ribbon treatment as not resembling a book, notebook or map and asks about URLs/platform rules.
+- Replace the current banner visual with a recognizable open folio and simple matters diagram. Preserve the exact Legacy Imprint03 master, palette and separate English/Chinese presentation. Retain the first study as HISTORICAL.
+- Agent chooses URL-free main exports and platform-native website fields where supported. This is not a blanket platform-policy guarantee or an Owner ban on all future URLs. No handle is locked or registered.
+- Deliver images/source through Git under the standing all-work preservation instruction. No profile upload, marketing message, app/review change or new deployment is inferred. [Scope and evidence](marketing/social-banner-20261019.md).
