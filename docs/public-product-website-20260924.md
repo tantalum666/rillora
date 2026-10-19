@@ -2,9 +2,13 @@
 
 Role: public-entry implementation and publication boundary
 
-Status: DESIGNED PUBLIC LANDING WITH OWNER-SELECTED PREVIEW ACCOUNT GATEWAY
+Status: PUBLIC WEBSITE CONTRACT / CURRENT TRANSPORT AND DATED CONTENT EVIDENCE
 
-Last updated: 2026-10-03 (Asia/Shanghai)
+Last updated: 2026-10-19 (Asia/Shanghai)
+
+## October19 root transport compatibility diagnosis
+
+Owner reports a browser connection warning when entering from X. [Current diagnosis](marketing/x-link-diagnostics-20261019.md) confirms validTLS1.3 root forwarding to canonicalwww, validwwwTLS1.2/TLS1.3, and an actual current X click openingwww without a warning. Both observed GoDaddy root-forwarding addresses rejectTLS1.2. This narrows the historical client-specific difference but does not identify the exact earlier warning without its error code. No DNS, certificate policy, application code or profile save is changed. The current X destination directly usesHTTPSwww; provider reputation, TLS compatibility and original-device recovery remain distinct evidence.
 
 ## October3 strict-review implementation boundary
 

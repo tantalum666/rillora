@@ -1,0 +1,88 @@
+{
+  "date": "2026-10-19",
+  "observedPublicProfile": "https://x.com/rillora_xyz",
+  "xShortLink": {
+    "url": "https://t.co/RtzBIi5LKB",
+    "status": 301,
+    "location": "https://www.rillora.xyz/",
+    "observedAt": "2026-10-19T07:45:25.233Z"
+  },
+  "publicRequests": [
+    {
+      "url": "https://rillora.xyz/",
+      "status": 302,
+      "location": "https://www.rillora.xyz/",
+      "tls": "TLSv1.3",
+      "certificateAuthorized": true,
+      "certificateHost": "rillora.xyz",
+      "certificateIssuer": "GoDaddy TLS Intermediate CA DV - R1v1",
+      "certificateExpires": "2027-04-10T03:39:07Z"
+    },
+    {
+      "url": "http://rillora.xyz/",
+      "status": 302,
+      "location": "https://www.rillora.xyz/"
+    },
+    {
+      "url": "https://www.rillora.xyz/",
+      "status": 200,
+      "hsts": "max-age=31536000",
+      "tls": "TLSv1.3",
+      "certificateAuthorized": true,
+      "certificateHost": "www.rillora.xyz",
+      "certificateIssuer": "Amazon ECDSA 256 M01",
+      "certificateExpires": "2027-04-09T23:59:59Z"
+    },
+    {
+      "url": "http://www.rillora.xyz/",
+      "status": 301,
+      "location": "https://www.rillora.xyz/"
+    }
+  ],
+  "requestChecksAt": [
+    "2026-10-19T07:43:41.358Z",
+    "2026-10-19T07:45:25.233Z"
+  ],
+  "tls12": {
+    "checkedAt": "2026-10-19T07:49:30.830Z",
+    "rootErrors": [
+      {
+        "address": "15.197.225.128",
+        "servername": "rillora.xyz",
+        "error": "ERR_SSL_TLSV1_ALERT_PROTOCOL_VERSION"
+      },
+      {
+        "address": "3.33.251.168",
+        "servername": "rillora.xyz",
+        "error": "ERR_SSL_TLSV1_ALERT_PROTOCOL_VERSION"
+      }
+    ],
+    "wwwAuthorized": true,
+    "wwwProtocol": "TLSv1.2",
+    "certificateValidationDisabled": false
+  },
+  "browser": {
+    "actualClickFromXProfile": true,
+    "finalUrl": "https://www.rillora.xyz/en/",
+    "warningObserved": false,
+    "interstitialBypass": false,
+    "profileChangedByAgent": false,
+    "ownerEditFormPreserved": true
+  },
+  "googleSafeBrowsing": {
+    "query": "rillora.xyz",
+    "displayedStatus": "未发现不安全的内容",
+    "providerUpdatedAt": "2026-09-24",
+    "readOn": "2026-10-19",
+    "freshScanClaimed": false,
+    "screenshot": "google-safe-browsing.png"
+  },
+  "ownerReport": {
+    "type": "浏览器提示连接不安全／连接不私密",
+    "originalErrorCodeKnown": false,
+    "retestConfirmedAt": "2026-10-19T07:52:48.180388+00:00",
+    "retest": "Owner confirms: 现在可以正常打开"
+  },
+  "conclusion": "Current X entry is recovered: desktop click and Owner retest both open normally. Root forwarding TLS1.2 incompatibility remains a separate confirmed maintenance finding. Exact earlier error causation is not established without the original code.",
+  "actions": "Read-only diagnosis; no DNS, TLS policy, profile save, deployment, login change or provider appeal."
+}

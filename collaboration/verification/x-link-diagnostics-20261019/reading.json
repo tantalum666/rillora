@@ -1,0 +1,52 @@
+{
+  "continuedFrom": "output/qa/rillora-social-banner-20261019/reading.json",
+  "retainedFullRead": "collaboration/verification/ai-implementation-20261015/reading.json",
+  "scope": "Same marketing workflow: investigate the Owner-reported unsafe warning from X, using current public checks; no product source change before a reproduced cause.",
+  "bodyReads": {
+    "AGENTS.md": "full retained from same workflow",
+    "docs/product.md": "current1-76; remaining full workflow retained",
+    "docs/handoff.md": "full current",
+    "docs/decision-log.md": "latest13lines, retained full remainder",
+    "docs/journey/PROJECT_JOURNEY.md": "latest10lines, retained full remainder",
+    "docs/public-product-website-20260924.md": "full current",
+    "docs/architecture/public-discovery-rollout-20261016.md": "full current",
+    "tools/ops/health-check.mjs": "full current"
+  },
+  "completedAt": "2026-10-19T07:46:33.874002+00:00",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "435d9bfaf85f5584d7895aa8ed98ce7d3ddfa18e212c571e72c3de1a4163c334"
+    },
+    {
+      "path": "docs/product.md",
+      "sha256": "4f77671f7db1d63a2bf001ce7905c06907db7f7de48e22f68005237ff4cf279e"
+    },
+    {
+      "path": "docs/handoff.md",
+      "sha256": "35cd726c4a2efdbcf8add962f5b172a943270dd5a500a6ec86f5294e496dc13e"
+    },
+    {
+      "path": "docs/decision-log.md",
+      "sha256": "0ad843a5dc585a3aefa70792bf2ecd79831187089057b47d4b38ff90d2c9f50a"
+    },
+    {
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "sha256": "65f1f444d646f1b1671779d657f897b0cdcdfa8ae2a5f13662a702833c8f027c"
+    },
+    {
+      "path": "docs/public-product-website-20260924.md",
+      "sha256": "c2baeb803a2e31824866b4f83168c4b700d58b09d6a2a4dd089dca1aaf0aa8d4"
+    },
+    {
+      "path": "docs/architecture/public-discovery-rollout-20261016.md",
+      "sha256": "3cdf8115f216e9f8425bb62f4195441d9c680005a7b23bbf69694b560700cb35"
+    },
+    {
+      "path": "tools/ops/health-check.mjs",
+      "sha256": "53b6fb63e3d080188a70a14239318d2422a56a7b0e84ba732b2380f8c646fe50"
+    }
+  ],
+  "excluded": "dependency/cache/build/generated output and collaboration evidence/catalog/archive copies; retain prior full inventory",
+  "memory": "Search returned historical DNS/mail records only; current project documents and fresh network/browser observations are the evidence used."
+}
