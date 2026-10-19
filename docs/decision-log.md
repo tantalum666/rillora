@@ -3654,3 +3654,10 @@ local correction/tests and actual restoration remain separate evidence.
 - Owner explicitly requests an email or support case about Rillora's review exceeding48hours. This authorizes a factual status inquiry to Apple Developer/App Review support for the existing submission.
 - Agent uses the App Review Status email category after confirming the real waiting submission and the absence of a duplicate recent status case. Do not withdraw/resubmit, fabricate urgency, reopen the unrelatedAPI401case or disclose review passwords.
 - Apple accepts case103001356140. Existing build14, manual release, data, prices, sales and TestFlight remain unchanged. No recurring monitor is created. [Sent message and receipt](app-review-followup-20261019.md).
+
+## 2026-10-19 — Research platform-specific marketing and a bounded acquisition budget
+
+- Status: LOCKED research/save scope; platform priorities, budget allocations andCACthresholds arePROVISIONAL Agent recommendations.
+- Owner asks which platforms to register, how their rules/playbooks differ, and how200–500USD could acquire users with minimal waste. This asks for research and a durable plan, not an instruction to create accounts, disclose identities, buy ads or spend the full amount.
+- Record primary rules and uncertainties separately. Start with a50USDconditional experiment; keep remaining funds gated, count real net paid households and time, and do not import anecdotalCPC/CACor fictional conversions.
+- Existing publishing/ad controls stayfalse/0; current pricing, data, AppReview andFanPassstay unchanged. New platform-specific research supersedes the earlier generic channel suggestions where they conflict, but not the originalMVPmarket-validation targets. [Platform rules](marketing/platform-playbook-20261019.md), [budget](marketing/acquisition-budget-20261019.md).

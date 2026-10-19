@@ -2,6 +2,10 @@
 
 Last updated: 2026-10-19 (Asia/Hong_Kong)
 
+## October19 platform and acquisition-budget research
+
+[Platform playbook](marketing/platform-playbook-20261019.md) and [conditional200/500USD allocation](marketing/acquisition-budget-20261019.md) add official-rule research, a platform register, disabled planning JSON, an empty-results experiment template and [reproducible arithmetic/source receipts](../collaboration/verification/marketing-platforms-20261019/README.md). These are ordinary non-secret Git documents, not ad execution, account registration or observed market outcomes. Existing zero paid-ad/publishing flags, product pricing, in-reviewApp14 and runtime artifacts remain untouched; no old archive is resealed.
+
 ## October19 social banners
 
 [The banner task](marketing/social-banner-20261019.md) adds final English/Chinese X-size PNGs, self-contained SVG compositions, original generated artwork, exact-copy exporters, licenses and a small upload ZIP. The Owner rejected the first abstract-paper treatment as insufficiently related to a book/notebook/map; it remains explicitly HISTORICAL inside the asset package. Current art uses an open folio and matters diagram, with no burned-in URL. All assets are non-secret and published directly through ordinary Git, with [safe validation receipts](../collaboration/verification/social-banner-20261019/README.md); no archive is resealed and no application or review artifact is deployed.

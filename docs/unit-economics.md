@@ -1,8 +1,12 @@
 # Rillora 分阶段单位经济与毛利合同
 
 Role: current sector benchmark, stage economics and cost-allocation authority  
-Status: STAGED COST FOUNDATION; CURRENT WEB OFFER US$88.99 / YEAR ONLY; APPLE SEPARATE; SALES CLOSED
-Last updated: 2026-09-26 (Web quote update only; historical financial models retained)
+Status: HISTORICAL COST MODELS RETAINED; WEB US$88.99 / YEAR LIVE; APPLE NEW SALES SEPARATE
+Last updated: 2026-10-19 (marketing budget assumptions and status reconciliation; no full margin recalculation)
+
+## October19营销预算与当前状态
+
+Web已按October15实际交付开放，Apple新购与在审状态独立；原顶部SALES CLOSED不再代表当前Web。旧表格保留其日期／价格／用量假设，不作为今天的实际利润或CAC。[200／500美元获客方案](marketing/acquisition-budget-20261019.md)新增的是研究情景及首年贡献／净付费口径，实际广告开关仍为0，未批准或产生广告费用。扩量观察线是Agent建议，不修改商品价格、税务策略、平台费率或旧财务模型。
 
 ## September26 Web quote update, historical models retained
 

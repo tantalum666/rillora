@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "status": "research_proposal_not_authorized_for_spend",
+  "currency": "USD",
+  "createdOn": "2026-10-19",
+  "currentApprovedPaidAdBudgetUsd": 0,
+  "campaignsCreated": false,
+  "executionEnabled": false,
+  "newAccountsCreated": false,
+  "planningBasis": "One bounded first-acquisition experiment, not recurring monthly spend. Existing fixed infrastructure excluded; incremental marketing fees/taxes/FX included.",
+  "priceContext": {
+    "webAnnualUsd": 88.99,
+    "appleChannelSeparate": true,
+    "priceChanged": false
+  },
+  "recommendedFirstMediaTest": {
+    "platformCandidate": "Google Search",
+    "language": "en",
+    "marketCandidate": "US; confirm current service eligibility",
+    "mediaCapUsd": 50,
+    "durationDays": 7,
+    "budgetMode": "Campaign total budget, only if verified in actual account",
+    "trackingReady": false,
+    "keywordForecastObtained": false,
+    "paidLaunchAuthorized": false
+  },
+  "scenarios": [
+    {
+      "cashCeilingUsd": 200,
+      "allocations": [
+        {
+          "stage": "A",
+          "mediaUsd": 50
+        },
+        {
+          "stage": "B",
+          "mediaUsd": 50
+        },
+        {
+          "stage": "C",
+          "mediaUsd": 50
+        },
+        {
+          "stage": "reserve",
+          "uncommittedUsd": 50
+        }
+      ]
+    },
+    {
+      "cashCeilingUsd": 500,
+      "allocations": [
+        {
+          "stage": "A",
+          "mediaUsd": 50
+        },
+        {
+          "stage": "B",
+          "mediaUsd": 100
+        },
+        {
+          "stage": "C",
+          "mediaUsd": 250
+        },
+        {
+          "stage": "reserve",
+          "uncommittedUsd": 100
+        }
+      ]
+    }
+  ],
+  "rules": {
+    "perReleaseMediaUsdMax": 50,
+    "noForcedFullSpend": true,
+    "researchCurrencyNotBillingCurrencyGuarantee": true,
+    "excludeOwnerSyntheticReviewPayments": true,
+    "doNotCountRefundedHouseholds": true,
+    "reportWindowsDays": [
+      7,
+      14
+    ],
+    "scaleGateMinimumNetExternalPayers": 5,
+    "scaleGateComparableBatches": 2,
+    "proposedCashCacMaxUsd": 25,
+    "proposedFirstYearContributionFraction": 0.4,
+    "cacFormula": "Only if estimated first-year contribution is positive and inputs are grounded: min(25, 0.4 * contribution before acquisition); otherwise do not scale. All thresholds are proposals.",
+    "weeklyPublicPostLimitUnchanged": 2,
+    "noNewThirdPartyPixels": true,
+    "noAppReviewChange": true,
+    "positiveContributionRequiredBeforeScaling": true
+  }
+}

@@ -9,6 +9,10 @@ Last updated: 2026-10-19 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
 
+## 2026-10-19 平台营销与预算研究
+
+Owner要求研究营销平台、玩法／规则并记录200—500美元如何尽量有效获客。[平台手册](marketing/platform-playbook-20261019.md)和[分期预算](marketing/acquisition-budget-20261019.md)作为当前营销研究入口；账号结构、平台资格、内容建议和真实市场结果分开。金额是规划情景，不是开户、充值、投放、外发或跟踪授权；现有价格、审核、数据及FanPass保持。原已完成工作不重做。
+
 ## 2026-10-19 社交平台横幅
 
 Owner要求补做社交banner，随后指出抽象纸带不像书／记事本／地图，并询问网址规则。现交付[资料册与事项地图横幅](marketing/social-banner-20261019.md)：完整03Logo、中英文各自成稿、X尺寸PNG及排版源稿。主交付不带网址，具体平台使用支持的网站字段；不推断所有平台政策或尺寸已通过。初版保留为历史，不改品牌母版、产品UI或在审材料，营销handle仍待实际可用性与Owner选择。
@@ -538,6 +542,7 @@ Owner于2026-09-09明确：“本项目全部默认授权与确认”。当前�
 
 | Task | Read next | Role |
 | --- | --- | --- |
+| 营销平台注册、逐平台运营／广告规则与200—500美元预算 | `docs/marketing/platform-playbook-20261019.md` → `docs/marketing/acquisition-budget-20261019.md` | 官方规则、建议、实际账号资格、分期支出和市场结果分别记录；计划不是投放授权 |
 | 社交平台banner、品牌封面与上传素材 | `docs/marketing/social-banner-20261019.md` | 原03品牌、单语成稿、平台尺寸与网址规则分开；设计交付不等于上传 |
 | 品牌营销账号邮箱、公开联系邮箱与Zoho别名收发 | `docs/marketing/mail-aliases-20261018.md` | 同一现有邮箱、无额外购买；别名保存、外部收发及营销平台注册分开取证 |
 | 营销获客、SEO／GEO复核、平台覆盖和App Store ASO | `docs/marketing/readiness-audit-20261018.md` → `docs/marketing/acquisition-plan-20261018.md` → `docs/marketing/campaign-kit-20261018.md` | 已有能力、真实增长、草稿及未接入平台分开；不改在审版本 |

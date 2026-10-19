@@ -1,24 +1,24 @@
 # Rillora 当前交接
 
-Status: APPLE REVIEW STATUS CASE ACCEPTED / WAITING FOR APPLE REPLY
-Last updated: 2026-10-19 (Asia/Hong_Kong)
+Status: PLATFORM RULES AND200/500USD PLAN DOCUMENTED / NO ACCOUNTS OR ADS EXECUTED
+Last updated: 2026-10-19 (Asia/Shanghai)
 
-## 当前任务与结果
+## 当前任务与交付
 
-Owner明确要求写邮件或开工单询问App Store审核超过48小时的问题。已用现有有效Apple登录核对真实提交，再通过官方App Review → App Review Status → Email提交一次。Apple确认案例**103001356140**已收件，尚未回复。[当前合同与英文正文](app-review-followup-20261019.md)。
+Owner要求研究营销需要哪些平台、各自玩法／规则并记下来，以及200—500美元如何尽量有效获客。本轮完成[平台手册](marketing/platform-playbook-20261019.md)、[分期预算](marketing/acquisition-budget-20261019.md)、平台CSV登记、预算JSON和实测列留空的实验模板。32项官方来源与预算／CAC复算见[研究回执](../collaboration/verification/marketing-platforms-20261019/README.md)。
 
-## 已核实的审核状态
+## 判断与证据边界
 
-Rillora1.0(14)的当前提交6537a10c-38f2-425e-8b8e-c76e5fa730b1于香港October15 09:49送审；October19 16:02记录时约102.22小时，App、年订阅和订阅群组三项仍Waiting for Review。近期案例只有旧API／密钥问题，故本轮是新的审核状态查询，不重复同主题工单或重开旧401问题。
+建议持续经营X／Instagram；Facebook Page和YouTube提供品牌／演示入口；Reddit、LinkedIn、Product Hunt按真实身份与具体社区规则使用。小红书商业导流／第三方APP推广有限制，暂不按X的站外成交打法投钱；TikTok外链资格与预算门槛单独核对。Product Hunt使用个人Maker，不强求品牌账号全平台同构。
 
-查询请求确认队列是否正常、是否缺资料／需要开发者操作，并询问可提供的进度／预计时间。没有提交虚构加急理由、撤回／重提、换构建或修改商店资料。审核密码未复制到工单；姓名／Apple账户只由Apple既有表单预填，公开保存的[回执](../collaboration/verification/apple-review-followup-20261019/README.md)不含个人字段。收件不等于审核开始、获批或已有ETA。
+200／500是拟议一次性营销现金上限，媒体分别最多150／400，余下50／100保留费用缓冲或不花；第一笔媒体测试50，之后按实证分批。Google Search为待量价预测验证的首个候选，不是已证明最便宜。实际广告授权／配置仍0，publishEnabled仍false，每周公开成稿限制仍2；没有账户注册、填卡、充值、投放、外发或第三方像素。
 
-## 保留成果与边界
+现有UTM不等于注册／付款归因，真实CPC／词量／激活／付费率／退款／利润没有本轮实测；因此预算止损线和CAC观察线均为建议。首笔投放前须补可核对的来源→任务→净付款链路及小批真实任务，不能以平台点击数代替获客。旧单位经济顶部SALES CLOSED已纠正为Web已开放／Apple独立，历史金额与成本模型保留日期，未重新计算实际利润。
 
-[提审复核](app-review-preflight-20261014.md)的原验证继续有效；原生验证已按Owner取消，不重做。App14、手动发布、价格／收费／数据、TestFlight和FanPass保持。OpenAI开发者身份验证仍暂后。
+## 保留工作
 
-[上一X诊断交接](handoff-history-20261019-before-apple-review-followup.md)为HISTORICAL：当前https://www.rillora.xyz/入口已由Owner复测恢复，根域TLS1.2差异仅为独立维护记录。营销邮箱、横幅、正式MCP、Google28URL及Registry沿用已有证据，不因工单重验或部署。
+Apple审核状态询问已于October19得到案例103001356140，仍待提供方答复，不重复发送；[上一交接](handoff-history-20261019-before-marketing-platforms.md)为HISTORICAL。App14、手动发布、TestFlight暂停、真实数据／价格／收费和FanPass不变。X官网入口已恢复，邮箱别名、横幅、正式MCP与搜索地图等既有证据不重复；OpenAI本人验证仍暂后。
 
 ## 唯一下一步
 
-收到Apple针对103001356140的回复后，在同一案例内处理具体要求，并独立核对当前审核提交状态。本轮没有创建定时监控、自动催单或承诺后台持续轮询；不得重复开同主题工单或把48小时目标当作保证时限。
+按Owner后续具体执行指令，先完成X／Instagram重点渠道的资料与首条内容、对应场景入口和最小来源核对，使首轮自然获客／50美元实验可审阅；实际发布或付费仍须具体任务与账户条件满足。本轮研究结束，不自动开账号、投放或创建监控。
