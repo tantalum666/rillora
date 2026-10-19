@@ -1,0 +1,74 @@
+{
+  "checkedAt": "2026-10-19T19:27:43.216573+08:00",
+  "sources": [
+    {
+      "id": "healthkit-capability",
+      "url": "https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.healthkit",
+      "finding": "Standard Xcode capability, then user authorization; not special fall/crash approval."
+    },
+    {
+      "id": "authorization",
+      "url": "https://developer.apple.com/documentation/healthkit/authorizing-access-to-health-data",
+      "finding": "Per-type permissions, possible limited history and non-disclosure of read denial."
+    },
+    {
+      "id": "sync",
+      "url": "https://developer.apple.com/documentation/healthkit/about-the-healthkit-framework",
+      "finding": "Each supported device has a HealthKit store; system syncs data."
+    },
+    {
+      "id": "delivery",
+      "url": "https://developer.apple.com/documentation/healthkit/hkhealthstore/enablebackgrounddelivery(for:frequency:withcompletion:)",
+      "finding": "Maximum background frequency and watchOS budgets, not a guaranteed sensor-to-server stream."
+    },
+    {
+      "id": "heart-rate",
+      "url": "https://support.apple.com/en-ae/120277",
+      "finding": "Published2026-09-14: Series12/Ultra4 more frequent daytime sampling; user can disable, reliable measurements not universal."
+    },
+    {
+      "id": "current-agreement",
+      "url": "https://developer.apple.com/support/terms/apple-developer-program-license-agreement/",
+      "finding": "Current HealthKit/Motion purpose restriction; do not substitute old2015 PDF wording."
+    },
+    {
+      "id": "fall",
+      "url": "https://developer.apple.com/documentation/coremotion/cmfalldetectionmanager",
+      "finding": "Special entitlement and user authorization; official request link verified in Markdown."
+    },
+    {
+      "id": "fall-request",
+      "url": "https://developer.apple.com/contact/request/fall-detection-api",
+      "finding": "Anonymous request redirects to Apple login; form not inspected or submitted."
+    },
+    {
+      "id": "crash",
+      "url": "https://developer.apple.com/documentation/safetykit",
+      "finding": "Special severe-vehicular-crash entitlement, user authorization and official request link."
+    },
+    {
+      "id": "crash-request",
+      "url": "https://developer.apple.com/contact/request/vehicular-crash-events/",
+      "finding": "Anonymous request redirects to Apple login; form not inspected or submitted."
+    }
+  ],
+  "method": "Official public web sources; Apple docs Markdown fetched with normal HTTPS after web parser reported unsupported text/markdown. No authenticated account access.",
+  "scopeBoundary": {
+    "healthDataRead": false,
+    "entitlementApplicationSubmitted": false,
+    "appleCaseSent": false,
+    "watchTargetAdded": false,
+    "runtimeTestsRepeated": false,
+    "deployment": false,
+    "appReviewChanged": false
+  },
+  "limitations": [
+    "No public death/no-pulse endpoint found in reviewed materials; not an assertion about all private Apple capabilities.",
+    "No Apple individual eligibility answer or application approval.",
+    "August16 local SDK evidence retained, not rerun."
+  ],
+  "decisionLog": "No new Owner feature approval, rejection or supersession; no decision-log append. Existing product safety boundary retained.",
+  "changedFocus": "docs/apple-watch-death-signal-research.md",
+  "handoff": "docs/handoff.md",
+  "journey": "docs/journey/PROJECT_JOURNEY.md"
+}

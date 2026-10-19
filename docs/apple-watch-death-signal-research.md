@@ -5,11 +5,23 @@ Authority scope: Apple Watch / HealthKit capability, wearable-signal interpretat
 Superseded by: newer Apple platform rules, stricter applicable law, security evidence or explicit Owner decision  
 Do not use for: medical diagnosis, death certification, emergency response instructions or legal advice  
 Status: RESEARCH COMPLETE; NO MVP SCOPE EXPANSION  
-Last reviewed: 2026-08-16
+Last reviewed: 2026-10-19 (Asia/Shanghai)
+
+## 2026-10-19 — 心率读取与特殊权限申请复核
+
+Owner询问能否调用Apple Watch心率判断死亡、是否可以申请。本次是对2026-08-16研究的官方资料复核，不是健康数据接入或申请提交。以下补充取代旧文中对采样频率和权限取得方式的笼统表述；原有死亡事实、身份、合法权限与披露范围分离的边界不变。
+
+- **普通心率可以读取，但须符合用途要求。** HealthKit是标准开发能力：在Xcode启用capability、填写用途说明，再向每位用户请求所需类型的读取权限。普通心率不走跌倒／车祸的特殊资格申请；这不等于任何用途都获准。iPhone可读取已同步的Watch数据，不必为此先做Watch App，也不是Rillora服务器直接查询所有人的Apple健康云端。[标准能力](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.healthkit)、[用户授权](https://developer.apple.com/documentation/healthkit/authorizing-access-to-health-data)、[设备间同步](https://developer.apple.com/documentation/healthkit/about-the-healthkit-framework)。
+- **可申请的是具体安全事件能力。** 实时跌倒使用watchOS的Core Motion接口，须取得Apple特殊entitlement、用户授权及兼容设备；官方提供[Fall Detection申请入口](https://developer.apple.com/contact/request/fall-detection-api)。严重车祸由SafetyKit提供，可走iOS实现，官方提供[Vehicular Crash Event申请入口](https://developer.apple.com/contact/request/vehicular-crash-events/)。两入口在匿名检查中跳转Apple登录；未读取账号内表单、未提交或获批。申请入口由[CMFallDetectionManager](https://developer.apple.com/documentation/coremotion/cmfalldetectionmanager)及[SafetyKit](https://developer.apple.com/documentation/safetykit)正文链接确认。
+- **修正旧采样论据。** Apple于2026-09-14更新的[心率支持页](https://support.apple.com/en-ae/120277)说明Series12／Ultra4白天可每五秒测量一次，用户可关闭该设置；仍明确存在无法可靠取得读数和异常高低值。不能把旧款／旧设置的间歇采样推为所有现款限制。设备测量频率也不等于第三方App或服务器获得同频率、有时效保证的数据流；[后台投递](https://developer.apple.com/documentation/healthkit/hkhealthstore/enablebackgrounddelivery(for:frequency:withcompletion:))受系统调度和预算限制。
+- **无数据不代表无脉搏。** 当前HealthKit还允许只授权近期历史；拒绝读取与没有其他来源样本仍不能可靠区分。未佩戴、没电、接触不良、撤权、同步或后台延迟都有可能造成数据缺失，不能将其编码为0bpm、死亡或披露触发。此次查阅的公开接口未发现可申请的死亡确认／无脉搏事件；这是公开文档检索结论，不是对Apple所有内部能力的断言。
+- **Rillora真正的资格问题是用途。** 当前[Apple开发者许可协议](https://developer.apple.com/support/terms/apple-developer-program-license-agreement/)的“HealthKit APIs; Motion & Fitness APIs; Journaling Suggestions APIs”要求相关API用于健康、运动或健身，并在界面及营销文字中明确体现。当前条文约束的是实际用途，不能用2015旧PDF的“整个App必须主要用于健康”替代现行措辞。用户同意不能自动把身后资料释放变成允许的健康用途；对Rillora资格的担忧是结合条文的项目判断，尚无Apple个案答复。
+
+后续若另行推进，先如实说明Rillora的数字遗产定位、拟议的可选安全关怀用途、数据最小化及不触发披露的边界，向Apple确认适配，再决定是否申请实时跌倒能力。不能仅把死亡判定改名为健康关怀，也不能以特殊权限获批代替医学有效性或死亡事实核验。本次没有创建Watch target、改entitlements、读取用户健康数据、重跑设备验收或改动App14审核；[复核记录](../collaboration/verification/watch-feasibility-20261019/README.md)。
 
 ## Executive Conclusion
 
-Apple Watch可以向获准的App提供部分心率、跌倒和严重车祸事件，但不能向Rillora提供“用户已死亡”这一事实。当前公开API没有`death detected`、`no pulse`或“心跳停止”事件；没有新数据也不能区分未佩戴、没电、离线、设备更换、权限被拒、传感器失败、数据同步延迟与真正的医学事件。
+Apple Watch可以向获准的App提供部分心率、跌倒和严重车祸事件，但这些信号不能证明“用户已死亡”。本报告查阅的公开API未发现可申请的`death detected`、`no pulse`或“心跳停止”事件；没有新数据也不能区分未佩戴、没电、离线、设备更换、权限被拒、传感器失败、数据同步延迟与真正的医学事件。
 
 因此Rillora不应尝试“通过Apple Watch知道用户死亡”。可接受的系统只能把特定设备事件归类为`SafetySignal`，最多开启一条不披露资料的福利确认流程；死亡申请、死亡事实核验、申请人身份、合法角色与分阶段披露继续是独立流程。
 
@@ -33,11 +45,11 @@ Apple Watch可以向获准的App提供部分心率、跌倒和严重车祸事件
 
 | Question | Public capability | watchOS App required? | Practical latency / limitation | Suitable for proving death? |
 | --- | --- | --- | --- | --- |
-| 读取Apple Watch同步后的历史心率 | HealthKit授权后可查询心率样本 | 否；iPhone App可读已同步数据 | 后台读数间隔随活动变化；同步和后台投递无实时SLA | 否 |
+| 读取Apple Watch同步后的历史心率 | HealthKit授权后可查询心率样本 | 否；iPhone App可读已同步数据 | 采样依机型／设置；部分新款更密集，但同步和后台投递不等于实时生命体征流 | 否 |
 | 读取低心率／高心率／不规则节律事件 | HealthKit存在相关只读事件类型 | 读取已同步记录通常不需要 | 只在系统达到通知条件时产生；低电量模式、权限和设备状态会影响可用性 | 否 |
 | 读取历史跌倒计数 | HealthKit可查询`numberOfTimesFallen` | 否 | 可能延迟；只记录用户确认或系统升级处理的跌倒，用户驳回的事件不计入 | 否 |
 | 实时收到跌倒事件 | `CMFallDetectionManager` | **是**；公开SDK仅watchOS可用 | 需要Apple单独批准entitlement、用户授权和兼容设备；App只获短时后台处理机会 | 只能用于福利确认 |
-| 获取高频实时心率 | 活动中的`HKWorkoutSession`可提高心率采样频率 | **是** | 必须是真实、可见、可结束的Workout；耗电且不能伪装为全天死亡监控 | 否 |
+| 在Watch App中取得Workout期间心率 | 活动中的`HKWorkoutSession`可提高心率采样频率 | **是** | 这是Workout路径，不是所有现款测量能力的上限；必须是真实、可见、可结束的Workout，不能伪装为全天死亡监控 | 否 |
 | 收到严重车祸事件 | SafetyKit的Crash Detection事件 | iOS实现不要求Watch App；watchOS也有接口 | 需要专用entitlement、用户授权，且用户指定接收事件的App | 只能用于福利确认 |
 | 收到死亡／无脉搏事件 | 未发现公开Apple API | 不适用 | 缺失数据不是0 bpm，也不是死亡 | **不存在可用证明** |
 
@@ -51,7 +63,7 @@ HealthKit是用户iPhone和Apple Watch健康数据的中央存储接口。每台
 
 ### Apple Watch is not a continuous clinical monitor
 
-Apple说明，Workout期间会持续测量心率，Workout结束后还会继续约三分钟；其他时间的后台读数频率会随活动变化。贴合度、皮肤灌注、低温、纹身、运动方式和传感器接触都会影响读数，理想条件下也可能无法每次获得可靠样本。
+2026-08-16研究记录的Workout／非Workout采样描述是当时检查点。2026-10-19复核发现官方已为部分新款增加更频繁的日间测量说明，见上方补充；不得再笼统写所有Watch只有间歇后台采样。贴合度和传感器接触等因素仍会影响读数，官方明确即使理想条件也可能无法每次取得可靠样本。更密集的测量不等于经过验证的死亡判定能力。
 
 Apple Watch的光学心率传感器公开测量范围是30–210 bpm。这个事实本身已说明“没有样本”不能被解释为0 bpm；API交付的是测得的样本，而不是一个经过死亡鉴定的连续生命体征流。
 
@@ -193,7 +205,7 @@ retention_expires_at
 
 Apple要求App只在健康／健身功能确有需要时请求HealthKit，并说明具体用途；App Store规则限制健康数据用于广告、营销和数据挖掘。Apple还禁止App把操作系统或硬件的内置能力本身当作收费点。因此即使未来获得权限，Rillora可以收费的价值也应是长期计划整理、协作、审查和合规运营，而不是“读取Apple Fall Detection”。
 
-更根本的问题是用途匹配：以身后资料释放为核心的产品请求健康权限，会面对比普通健身App更高的App Review与信任门槛。当前没有证据证明Apple会为此批准HealthKit或Fall Detection entitlement。
+更根本的问题是用途匹配：以身后资料释放为核心的产品请求健康权限，会面对App Review与信任方面的疑问。这是项目风险判断，不是Apple已作出的拒绝；当前没有个案证据证明Rillora的拟议用途符合HealthKit要求或已获Fall Detection entitlement。
 
 ### Global legal boundary
 
@@ -304,7 +316,7 @@ Legal primary source used only for issue spotting:
 
 - [GDPR official text](https://eur-lex.europa.eu/eli/reg/2016/679/oj)
 
-Local SDK verification:
+Local SDK verification (2026-08-16 checkpoint; not rerun on 2026-10-19):
 
 - Xcode 26.5 `WatchOS26.5.sdk` public CoreMotion headers: `CMFallDetectionManager` is watchOS-only, requires an Apple entitlement and can relaunch a watchOS App in the background;
 - Xcode 26.5 `iPhoneOS26.5.sdk` public SafetyKit headers: crash event APIs are available on iOS and newer watchOS versions;

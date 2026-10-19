@@ -1,11 +1,13 @@
 # Rillora 当前交接
 
-Status: PLATFORM RULES AND200/500USD PLAN DOCUMENTED / NO ACCOUNTS OR ADS EXECUTED
+Status: MARKETING PLAN SAVED / WATCH FEASIBILITY REFRESHED / NO HEALTH INTEGRATION OR APPLICATION
 Last updated: 2026-10-19 (Asia/Shanghai)
 
 ## 当前任务与交付
 
 Owner要求研究营销需要哪些平台、各自玩法／规则并记下来，以及200—500美元如何尽量有效获客。本轮完成[平台手册](marketing/platform-playbook-20261019.md)、[分期预算](marketing/acquisition-budget-20261019.md)、平台CSV登记、预算JSON和实测列留空的实验模板。32项官方来源与预算／CAC复算见[研究回执](../collaboration/verification/marketing-platforms-20261019/README.md)。
+
+Owner随后追问Apple Watch心率能否判定死亡、能否申请。[原研究已补充October19复核](apple-watch-death-signal-research.md)：普通HealthKit读取、特殊跌倒／车祸申请、用户授权和具体用途资格分开；更新新款采样能力与现行开发者协议措辞。未申请、开发、收集健康数据或修改审核，原生检查未重跑。这是可行性答复，未替代既有营销目标。
 
 ## 判断与证据边界
 
@@ -18,6 +20,8 @@ Owner要求研究营销需要哪些平台、各自玩法／规则并记下来，
 ## 保留工作
 
 Apple审核状态询问已于October19得到案例103001356140，仍待提供方答复，不重复发送；[上一交接](handoff-history-20261019-before-marketing-platforms.md)为HISTORICAL。App14、手动发布、TestFlight暂停、真实数据／价格／收费和FanPass不变。X官网入口已恢复，邮箱别名、横幅、正式MCP与搜索地图等既有证据不重复；OpenAI本人验证仍暂后。
+
+健康数据缺失不能判死亡或释放资料；普通HealthKit能力可配置不等于Rillora用途已获Apple认可。新的特殊权限或用途询问尚无提交指令，不复用审核催询案例发送无关问题。
 
 ## 唯一下一步
 
