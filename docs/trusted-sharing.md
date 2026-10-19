@@ -1,8 +1,12 @@
 # Account-bound invitations and directed sharing
 
 Status: SHARING CONTRACT RETAINED; ACTUAL NATIVE-TO-WEB SCOPE AND REVOCATION VERIFIED
-Last updated: 2026-10-11 (Asia/Hong_Kong)
+Last updated: 2026-10-19 (Asia/Hong_Kong)
 Authority: Owner explicitly requests A -> B/C invitations, authenticated acceptance and per-person/per-matter access.
+
+## October19 future recipient notice — design only
+
+Owner now requires designated people to know an arrangement exists while its contents remain sealed during the planner's life. The [next-version design](conditional-disclosure-vnext-20261019.md) records a separate future-recipient relationship with no present Matter grants, titles or counts. It is not the existing Name level, an accepted live-sharing connection or an already delivered copy. Current sharing, recipient quotas, prices and APIs remain unchanged; no notice has been sent and no conditional release is implemented.
 
 ## October11 local invitation repair
 

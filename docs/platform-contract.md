@@ -5,7 +5,7 @@ Authority scope: Web/iOS responsibilities, shared state and first validation rel
 Superseded by: later explicit platform decision  
 Do not use for: final framework choice or visual tokens  
 Status: CORE PARITY CONTRACT ACTIVE; CURRENT RUNTIME AND RELEASE GATES IN HANDOFF
-Last updated: 2026-10-15 (Asia/Hong_Kong)
+Last updated: 2026-10-19 (Asia/Hong_Kong)
 
 ## October15 Web activation and scoped native closeout
 
@@ -182,12 +182,14 @@ watchOS不是当前P0平台，也不因Apple Watch研究自动进入MVP：
 
 - iPhone App经用户授权可读取已同步的部分HealthKit历史数据，这本身不要求Watch App，但同步和后台投递不能作为实时或完整保证；
 - 实时第三方Fall Detection需要独立watchOS App、Apple专用entitlement、用户授权和兼容设备；
-- 高采样心率依赖用户可见的真实Workout，不能以隐藏的全天Workout实现死亡监控；
+- 采样频率取决于机型、设置和使用场景，部分新款的测量能力已提高；不能以隐藏的全天Workout规避后台限制或实现死亡监控，设备采样也不等于第三方实时投递；
 - SafetyKit严重车祸事件可由获批iOS App接收，不以Watch App为必要条件；
 - 所有设备事件都只允许进入无披露的`SafetySignal / WelfareCheck`边界，不能进入死亡事实核验或claim/release状态机；
 - 在Owner另行批准、需求证据成立、平台权限获批、隐私／法律／安全审查和实体设备测试计划完成前，不创建Watch target、不增加HealthKit／Fall Detection／SafetyKit entitlement。
 
 证据、误报分析和分阶段建议见[`docs/apple-watch-death-signal-research.md`](apple-watch-death-signal-research.md)。
+
+October19下一版本[条件披露设计](conditional-disclosure-vnext-20261019.md)新增Owner要求：Web／iOS都区分现在共享、仅身后披露和待评估的独立失联条件；指定亲友可先知道安排存在，生前无内容读取权限。具体规则仍为设计，现有运行时、真实披露关闭状态与当前在审版本不变；无Watch用户也必须有完整的未来申请入口。
 
 ## P0 Parity Matrix
 
