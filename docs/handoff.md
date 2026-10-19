@@ -1,22 +1,24 @@
 # Rillora 当前交接
 
-Status: X WEBSITE ENTRY RECOVERED / OWNER RETEST PASSED / ROOT TLS1.2 GAP RECORDED
+Status: APPLE REVIEW STATUS CASE ACCEPTED / WAITING FOR APPLE REPLY
 Last updated: 2026-10-19 (Asia/Hong_Kong)
 
 ## 当前任务与结果
 
-Owner报告从X打开rillora.xyz出现浏览器连接不安全提示，现已完成[入口诊断](marketing/x-link-diagnostics-20261019.md)。当前X账号为rillora_xyz，已保存链接直接到https://www.rillora.xyz/；实际桌面点击正常，Owner也明确“现在可以正常打开”。没有由Agent代为保存资料、绕过警告或修改安全设置。
+Owner明确要求写邮件或开工单询问App Store审核超过48小时的问题。已用现有有效Apple登录核对真实提交，再通过官方App Review → App Review Status → Email提交一次。Apple确认案例**103001356140**已收件，尚未回复。[当前合同与英文正文](app-review-followup-20261019.md)。
 
-## 已完成与证据边界
+## 已核实的审核状态
 
-根域名TLS1.3证书验证和跳转通过；www的TLS1.2／TLS1.3、有效证书、HTTP到HTTPS与HSTS通过。两个GoDaddy根域名转发地址均拒绝TLS1.2，作为兼容性维护项保留；原警告没有错误代码，不能断言这是唯一根因。Google安全浏览显示无不安全内容，但提供方数据日期为September24，不称为当日新扫描或全面安全审计。
+Rillora1.0(14)的当前提交6537a10c-38f2-425e-8b8e-c76e5fa730b1于香港October15 09:49送审；October19 16:02记录时约102.22小时，App、年订阅和订阅群组三项仍Waiting for Review。近期案例只有旧API／密钥问题，故本轮是新的审核状态查询，不重复同主题工单或重开旧401问题。
 
-[公开回执](../collaboration/verification/x-link-diagnostics-20261019/README.md)和output/qa/rillora-x-link-diagnostics-20261019保留本次网络／浏览器／Owner复测结果。没有DNS、部署、证书轮换、应用代码或X申诉；既有正式服务和在审App14保持。
+查询请求确认队列是否正常、是否缺资料／需要开发者操作，并询问可提供的进度／预计时间。没有提交虚构加急理由、撤回／重提、换构建或修改商店资料。审核密码未复制到工单；姓名／Apple账户只由Apple既有表单预填，公开保存的[回执](../collaboration/verification/apple-review-followup-20261019/README.md)不含个人字段。收件不等于审核开始、获批或已有ETA。
 
-## 保留成果
+## 保留成果与边界
 
-[双语横幅](marketing/social-banner-20261019.md)完整素材已推19f220034并独立下载核对；[上一交接](handoff-history-20261019-before-x-link-diagnostics.md)为HISTORICAL。social@和hello@收／发、正式MCP、Google地图28URL、Registry及原生／付款等已有证据不重做；OpenAI身份验证仍按Owner决定暂后。真实数据、价格、收费、TestFlight及FanPass不变。
+[提审复核](app-review-preflight-20261014.md)的原验证继续有效；原生验证已按Owner取消，不重做。App14、手动发布、价格／收费／数据、TestFlight和FanPass保持。OpenAI开发者身份验证仍暂后。
+
+[上一X诊断交接](handoff-history-20261019-before-apple-review-followup.md)为HISTORICAL：当前https://www.rillora.xyz/入口已由Owner复测恢复，根域TLS1.2差异仅为独立维护记录。营销邮箱、横幅、正式MCP、Google28URL及Registry沿用已有证据，不因工单重验或部署。
 
 ## 唯一下一步
 
-继续Owner指定的下一项营销平台准备，所有对外可点击官网入口优先使用https://www.rillora.xyz/。当前X问题已由Owner复测关闭；根域TLS1.2兼容性仅保留为独立维护项，不擅自迁移DNS或恢复旧验证门。
+收到Apple针对103001356140的回复后，在同一案例内处理具体要求，并独立核对当前审核提交状态。本轮没有创建定时监控、自动催单或承诺后台持续轮询；不得重复开同主题工单或把48小时目标当作保证时限。

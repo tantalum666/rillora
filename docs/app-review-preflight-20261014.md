@@ -1,9 +1,13 @@
 # Apple 提审复核与 Web 正式开放 — 2026-10-14—15
 
 Status: REVIEWER VERIFIED / WEB LIVE / PHYSICAL CHECKS STOPPED BY OWNER / APPLE WAITING FOR REVIEW
-Last updated: 2026-10-15 (Asia/Hong_Kong)
+Last updated: 2026-10-19 (Asia/Hong_Kong)
 
 Owner先明确暂缓Auth0外层文案，要求严格复核Apple提审资料并推进其余上线工作；October15进一步明确“真机不用验证了”。后者终止余下真机验证，不再把未订阅真机或VoiceOver听觉检查列为本轮待办，也不把取消写成通过。真机法律往返已有Owner明确确认：返回后原账号与原事项都在。没有新TestFlight分发、真钱交易、账号删除或原机安装。
+
+## October19状态与支持查询
+
+同一提交仍为Waiting for Review，App1.0(14)、年订阅和群组三项均未开始审核。Owner明确要求询问进度后，已提交[官方状态查询工单103001356140](app-review-followup-20261019.md)，Apple页面确认收件。没有撤回／重提、变更构建或商店材料；下方材料／账号验证保留October14—15的原证据，本轮未重跑。支持收件不等于审核开始或获批。
 
 ## 已复核的 Apple 材料
 

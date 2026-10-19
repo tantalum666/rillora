@@ -3647,3 +3647,10 @@ local correction/tests and actual restoration remain separate evidence.
 - Replace the current banner visual with a recognizable open folio and simple matters diagram. Preserve the exact Legacy Imprint03 master, palette and separate English/Chinese presentation. Retain the first study as HISTORICAL.
 - Agent chooses URL-free main exports and platform-native website fields where supported. This is not a blanket platform-policy guarantee or an Owner ban on all future URLs. No handle is locked or registered.
 - Deliver images/source through Git under the standing all-work preservation instruction. No profile upload, marketing message, app/review change or new deployment is inferred. [Scope and evidence](marketing/social-banner-20261019.md).
+
+## 2026-10-19 — Contact Apple about the current review delay
+
+- Status: LOCKED one-off communication scope; review outcome remains Apple's decision.
+- Owner explicitly requests an email or support case about Rillora's review exceeding48hours. This authorizes a factual status inquiry to Apple Developer/App Review support for the existing submission.
+- Agent uses the App Review Status email category after confirming the real waiting submission and the absence of a duplicate recent status case. Do not withdraw/resubmit, fabricate urgency, reopen the unrelatedAPI401case or disclose review passwords.
+- Apple accepts case103001356140. Existing build14, manual release, data, prices, sales and TestFlight remain unchanged. No recurring monitor is created. [Sent message and receipt](app-review-followup-20261019.md).
