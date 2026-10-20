@@ -4,6 +4,10 @@ Status: AGENT PROPOSAL / NOT APPROVED / NO ENTITLEMENT OR PRICE CHANGE
 Last updated: 2026-10-20 (Asia/Shanghai)
 Authority scope: Owner本轮询问的建议与最新官方竞争资料；不是已批准的新套餐、已完成能力或付费意愿证据。
 
+## 同日竞品续轮后的优先级更新
+
+Owner要求进一步核对付费功能并寻找差异化。[完整续轮研究](competitor-paid-research-20261020.md)已发现家庭打包、留言、提醒、评分和解锁模拟均有先例。下文保留上一轮建议背景；当前Agent优先建议验证[接手路径检查](handoff-path-check-proposal-20261020.md)，双人套餐改为标准增强候选。免费1／Family5的新告知分层仍未批准，现有商业权益未变。
+
 ## 建议结论
 
 把“身后安排告知”放进家庭版的核心说明，但建议免费保留一位亲友的完整路径，家庭版最多五位。基础体验应能让人实际理解Rillora的区别；仅把一个通知动作全锁在付费墙后，未必能支持现有年费或带来低成本获客。

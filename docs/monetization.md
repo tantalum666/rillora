@@ -8,6 +8,10 @@ Status: FREE / SINGLE ANNUAL FAMILY; WEB88.99 / APPLE119.99 US LOCKED; FREE1 / F
 Last updated: 2026-10-20 (Asia/Shanghai)
 
 
+## October20 deeper competitor review — differentiation proposal
+
+Owner requests a second, detailed paid-feature review and a differentiated paid feature. [Research](competitor-paid-research-20261020.md) separates current plan evidence, older product generations and marketing-only claims. Family bundles remain a standard candidate; the proposed differentiator is [scenario-specific handoff-path checking](handoff-path-check-proposal-20261020.md), with explicit dependencies, gaps and change impact. This is an unimplemented recommendation, not a new entitlement or a claim of global exclusivity. Keep existing Free baseline, prices and purchased terms.
+
 ## October20 paid-value discussion — recommendation only
 
 Owner asks which additions could improve purchase motivation and whether the new future notice belongs in paid Family. [The proposal](family-value-proposal-20261020.md) recommends a complete Free1 notice experience, Family5 per planner and paid capabilities for two independent planners under one subscription, with an actionable handoff workflow and reliable optional notifications. These are Agent proposals; no new quota, second planner, capability version, paid promise or price has been approved or applied. The existing notice implementation remains default-off and unpriced.

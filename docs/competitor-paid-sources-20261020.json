@@ -1,0 +1,239 @@
+{
+  "checkedAt": "2026-10-20T13:09:28.719587+00:00",
+  "scope": "Public official pricing/help plus two rendered pricing pages. No paid accounts, purchases, credentials, customer records, unsolicited contact or runtime security audit.",
+  "sources": [
+    {
+      "id": "TW-PRICE",
+      "product": "Trustworthy",
+      "url": "https://www.trustworthy.com/pricing",
+      "surface": "public pricing",
+      "observation": "Silver 10 and Gold 20 USD per month billed annually; tiers distinguish household records, automation and storage."
+    },
+    {
+      "id": "TW-PLAN",
+      "product": "Trustworthy",
+      "url": "https://help.trustworthy.com/en/articles/11104129",
+      "surface": "official help",
+      "observation": "Free legacy collaborators; paid automation. Historical indexed AI quotas conflict with the current price page."
+    },
+    {
+      "id": "TW-LEGACY",
+      "product": "Trustworthy",
+      "url": "https://help.trustworthy.com/en/articles/11497025",
+      "surface": "official help",
+      "observation": "Legacy invitation/acceptance and annual reminder; later access uses identity and death-certificate verification."
+    },
+    {
+      "id": "TW-ACCESS",
+      "product": "Trustworthy",
+      "url": "https://help.trustworthy.com/en/articles/12394561",
+      "surface": "official help",
+      "observation": "Full collaborators can manage access and web billing; contacts/family records/collaborators are distinct units."
+    },
+    {
+      "id": "TW-AUTO",
+      "product": "Trustworthy",
+      "url": "https://www.trustworthy.com/faq",
+      "surface": "public FAQ",
+      "observation": "Document capture/extraction and smart reminders are offered; no authenticated functionality was tested."
+    },
+    {
+      "id": "EP-PRICE",
+      "product": "Everplans",
+      "url": "https://www.everplans.com/pricing",
+      "surface": "public pricing",
+      "observation": "Free up to3items; Premium99.99USD/year offers unlimited items and secure sharing."
+    },
+    {
+      "id": "EP-DEPUTY",
+      "product": "Everplans",
+      "url": "https://help.everplans.com/hc/en-us/articles/215665588-How-do-I-add-a-Deputy",
+      "surface": "official help",
+      "observation": "Deputies require Premium; per-item now/after-death/no-share controls. Web/mobile defaults differ in the documented instructions."
+    },
+    {
+      "id": "EP-DEATH",
+      "product": "Everplans",
+      "url": "https://help.everplans.com/hc/en-us/articles/360000704303-How-do-Deputies-access-the-after-death-sections-of-my-Everplan",
+      "surface": "official help",
+      "observation": "Deputy report plus owner email opportunity to block and selected waiting period; this is a vendor workflow, not medical proof."
+    },
+    {
+      "id": "GT-PRICE",
+      "product": "GoodTrust",
+      "url": "https://support.mygoodtrust.com/support/solutions/articles/66000513649-how-much-does-goodtrust-cost-",
+      "surface": "official help dated2025-07-18",
+      "observation": "Estate+149USDinitial year,39USD/year ongoing updates; up to4complimentary family accounts. Includes legal documents and vault."
+    },
+    {
+      "id": "PR-PRICE",
+      "product": "Prisidio",
+      "url": "https://www.prisidio.com/plans",
+      "surface": "public pricing",
+      "observation": "Starter45USD/year or4.99/month; Unlimited150USD/year or16/month. Core Co-Owner/Keyholder; higher tier reminders, related items and more collaboration."
+    },
+    {
+      "id": "PR-FEATURES",
+      "product": "Prisidio",
+      "url": "https://www.prisidio.com/how-it-works",
+      "surface": "public feature documentation",
+      "observation": "Related people/places/items, activity notifications and future Keyholder access are documented; linked items are not a unique Rillora idea."
+    },
+    {
+      "id": "DG-PRICE",
+      "product": "DGLegacy",
+      "url": "https://app.dglegacy.com/pricing",
+      "surface": "rendered Chrome public pricing; monthly then annual",
+      "observation": "Silverfree; Gold$9.99/month or$95.88/year; Platinum$12.99/month or displayed$124,70/year. Currency code/taxes/checkout not verified. Paid cards name monitoring, enhanced notifications and email validation; Platinum family account."
+    },
+    {
+      "id": "DG-WORKFLOW",
+      "product": "DGLegacy",
+      "url": "https://www.dglegacy.com/questions-and-answers/",
+      "surface": "official FAQ",
+      "observation": "Heartbeat and beneficiary notification are vendor claims. Public pricing describes a human phone check for enhanced service."
+    },
+    {
+      "id": "CL-PRICE",
+      "product": "Clocr",
+      "url": "https://clocr.com/pricing-details/",
+      "surface": "public pricing with ambiguity",
+      "observation": "Vault/emergency/digital-estate/time-capsule product lines; page displays475one-time but mixed columns/None cells do not support a clean current annual-feature comparison."
+    },
+    {
+      "id": "LW-PRICE",
+      "product": "LifeWyn",
+      "url": "https://www.lifewyn.com/pricing",
+      "surface": "rendered Chrome public pricing",
+      "observation": "Free10assets/3nominees/100MB; PremiumINR299monthly/2499yearly/9999one-time. Paid rules/workflows/messages/portal; GST added. Static fetch said no plans; rendered table supersedes that observation, not proof of fulfilled service."
+    },
+    {
+      "id": "LW-OLD",
+      "product": "LifeWyn",
+      "url": "https://www.lifewyn.com/register",
+      "surface": "indexed public landing snapshot",
+      "observation": "Older marketing showed20nominees/5GB and basic free rules, inconsistent with the current rendered pricing table; not used as current entitlement truth."
+    },
+    {
+      "id": "LW-TOOLS",
+      "product": "LifeWyn",
+      "url": "https://www.lifewyn.com/tools",
+      "surface": "public tools catalog",
+      "observation": "Free continuity, executor, nominee and founder-dependency self-assessment questionnaires already exist."
+    },
+    {
+      "id": "AY-FEATURES",
+      "product": "AfterYou",
+      "url": "https://afteryou.me/",
+      "surface": "public product page",
+      "observation": "Heartbeat, per-asset claim guidance, final messages and an AfterLife unlock simulation are advertised. Public fetched pricing remained loading; no current amount claimed."
+    },
+    {
+      "id": "SS-NEXT",
+      "product": "SecureSafe",
+      "url": "https://help.securesafe.com/securesafe-next-generation-pricing-plans",
+      "surface": "official help",
+      "observation": "Next Solo/Family and Pass/Files/Bundle packaging; Family includes up to6members with separate personal safes."
+    },
+    {
+      "id": "SS-MIGRATE",
+      "product": "SecureSafe",
+      "url": "https://help.securesafe.com/moving-from-securesafe-classic-to-securesafe-next",
+      "surface": "official help dated2026-10-06",
+      "observation": "Next still lacks data inheritance, Mail-In and audit trail according to this migration guide; old Classic inheritance must not be attributed to new plans."
+    },
+    {
+      "id": "SS-CLASSIC",
+      "product": "SecureSafe",
+      "url": "https://help.securesafe.com/digital-inheritance-assigning-data",
+      "surface": "official Classic help dated2024-04-09",
+      "observation": "Per-beneficiary file/password assignments and automatic assignment documented for the older generation."
+    },
+    {
+      "id": "BW-PRICE",
+      "product": "Bitwarden",
+      "url": "https://bitwarden.com/pricing/",
+      "surface": "public pricing",
+      "observation": "Premium19.80USD/year; Families47.88USD/year for6premium accounts; emergency access and reports."
+    },
+    {
+      "id": "BW-ACCESS",
+      "product": "Bitwarden",
+      "url": "https://bitwarden.com/help/emergency-access/",
+      "surface": "official help",
+      "observation": "Paid users designate emergency contacts; receiving contacts may be free. View/takeover and approval/wait workflows are not death determination."
+    },
+    {
+      "id": "1P-PRICE",
+      "product": "1Password",
+      "url": "https://1password.com/pricing/personal",
+      "surface": "public pricing",
+      "observation": "Families5users: regular5.99USD/month billed annually; current first-year promotion4.49. Do not mix promotional53.88annual with regular71.88."
+    },
+    {
+      "id": "1P-RECOVER",
+      "product": "1Password",
+      "url": "https://support.1password.com/family-recovery-plan/",
+      "surface": "official help dated2026-08-17",
+      "observation": "Second organizer and offline Emergency Kits/recovery codes address own-service single-point failures; no cross-provider graph engine is documented here."
+    },
+    {
+      "id": "APPLE",
+      "product": "Apple",
+      "url": "https://support.apple.com/en-us/102631",
+      "surface": "official support dated2026-09-14",
+      "observation": "Legacy Contact accesses selected Apple data after required proof; Keychain passwords/passkeys and purchased content excluded. Not universal account transfer."
+    },
+    {
+      "id": "GOOGLE",
+      "product": "Google",
+      "url": "https://support.google.com/accounts/answer/3036546?hl=en",
+      "surface": "official support",
+      "observation": "Inactive Account Manager may notify or share selected data with up to10contacts; setup itself does not notify contacts. Inactivity is a distinct mechanism."
+    },
+    {
+      "id": "NEAR-DEA",
+      "product": "Digital Estate Advisors",
+      "url": "https://digitalestateadvisors.com/services/",
+      "surface": "professional service page",
+      "observation": "Manual assessment of account/device/recovery dependencies and single-person business risks is already marketed."
+    },
+    {
+      "id": "NEAR-PULL",
+      "product": "Pullariani",
+      "url": "https://pullariani.com/",
+      "surface": "professional service page",
+      "observation": "Adviser-led access/control maps, dependency risk registers, recovery workflows and annual change review; closest service analogue, not an absence proof."
+    },
+    {
+      "id": "NEAR-WISE",
+      "product": "WiseTomorrow",
+      "url": "https://wisetomorrow.com/guides/digital-legacy-checklist",
+      "surface": "public first-party guide/tool",
+      "observation": "Free no-secret account inventory explicitly discusses email/phone/password-manager dependencies and safe retrieval rehearsal."
+    },
+    {
+      "id": "NEAR-SCORE",
+      "product": "Legacy Keeper",
+      "url": "https://blog.legacykeeper.app/2026/10/06/estate-planning-readiness-score-know-which-clients-need-you-next/",
+      "surface": "vendor product article",
+      "observation": "AI/document-based household readiness scoring is advertised; do not claim a score or missing-document analysis is novel."
+    }
+  ],
+  "noveltySearches": [
+    "digital legacy estate planning software dependency recovery",
+    "digital inheritance circular access",
+    "estate planning dependency graph",
+    "digital legacy dependency graph -software",
+    "digital legacy recovery simulation app",
+    "estate readiness score app",
+    "digital inheritance dependencies app",
+    "digital legacy change impact",
+    "digital legacy dry run",
+    "依赖 数字遗产 工具",
+    "site:help.trustworthy.com dependency OR recovery path OR simulation",
+    "site:help.everplans.com dependency OR lockout OR simulation",
+    "legacy planning simulate access app"
+  ],
+  "claimLimit": "No public documentation found for the complete proposed consumer self-service mechanism in the reviewed set. Adjacent professional services, linked-item products, scores and unlock simulations exist. This is not proof of global novelty, patent novelty or actual willingness to pay."
+}
