@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-20 (Asia/Shanghai)
+Last updated: 2026-10-21 (Asia/Shanghai)
 
 新条目使用以下模板：
 
@@ -3736,3 +3736,11 @@ local correction/tests and actual restoration remain separate evidence.
 - [The case](family-action-pack-example-20261020.md) distinguishes current planning/exports/guides, default-off existence notices, proposed materials/case coordination, and unimplemented fact verification/content delivery. Each provider still performs its own review; Rillora cannot guarantee external scope, approval, cancellation or refunds.
 - Agent narrows the commercial inference: a simple three-matter household does not establish a strong annual purchase reason. Existing recipient export and content-before-closure guidance must not be sold again as new features. A finite event-service period is discussed only as a hypothetical costing requirement, not an approved entitlement.
 - Preserve all prices, purchased terms, ordinary runtime, App Review, real data and FanPass. No real application, user test, disclosure, software implementation or provider change occurred.
+
+## 2026-10-21 — Retain the action-pack direction and consider further useful paid outcomes
+
+- Status: OWNER ACCEPTS RETAINING THE ACTION-PACK DIRECTION; research continues, no development.
+- Owner says “这个可以，先记下，然后再仔细想想还有什么” after the concrete family walkthrough. Record the direction as accepted for retention. The preceding no-development instruction remains; no quota, annual-value proof, twelve-month service term, pricing or operational release is inferred.
+- Agent compares [selected-file custody/delivery and original spoken instructions](paid-content-options-20261021.md). Both are new research candidates only; previous deferred attachments and media ideas are not represented as novel technology.
+- Public competitors already offer uploads, exports, video notes and voice/transcription. Potential Rillora value must be demonstrated in exact content selection, actual retrieval, user-confirmed instructions and scoped delivery, not a claim of global uniqueness.
+- No user files/recordings, model calls, new product tests, provider mutations, billing, deployment, App Review or FanPass work. Existing baseline security, exit rights and the map-not-password boundary remain intact.

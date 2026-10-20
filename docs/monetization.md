@@ -5,8 +5,12 @@ Authority scope: free/paid boundary, launch offer, future tier architecture, bil
 Superseded by: later Owner decision recorded in `docs/decision-log.md`  
 Do not use for: proof of willingness to pay, legal/tax advice, current implementation, App Store approval or payment-provider selection  
 Status: FREE / SINGLE ANNUAL FAMILY; WEB88.99 / APPLE119.99 US LOCKED; FREE1 / FAMILY5 RETAINED; NEW VALUE PROPOSALS UNAPPROVED; RUNTIME STATUS IN HANDOFF
-Last updated: 2026-10-20 (Asia/Shanghai)
+Last updated: 2026-10-21 (Asia/Shanghai)
 
+
+## October21 retained direction and content options — no commercial change
+
+Owner accepts retaining the family action-pack direction and asks to record it while exploring further options. [Current research](paid-content-options-20261021.md) considers selected-file custody/delivery and original spoken instructions. These remain unimplemented Agent candidates; attachments already require a separately evidenced capability version. Recording, storage and per-person sharing have competitors, and neither market uniqueness nor annual demand is proved. No quota, retention duration, service guarantee, tier or price changes; existing baseline safety and retrieval rights remain.
 
 ## October20 family walkthrough — annual value remains unproven
 

@@ -1,8 +1,12 @@
 # 虚构家庭流程推演：亲友办理包
 
-Status: ILLUSTRATIVE WALKTHROUGH / NO DEVELOPMENT / ANNUAL VALUE UNPROVEN
-Last updated: 2026-10-20 (Asia/Shanghai)
+Status: OWNER ACCEPTED AS A RETAINED PLANNING DIRECTION / NO DEVELOPMENT / ANNUAL VALUE UNPROVEN
+Last updated: 2026-10-21 (Asia/Shanghai)
 Authority scope: 回答Owner的具体家庭例子与增量价值问题；不是实际客户验收、付费决定、核验规则或服务承诺。
+
+## October21 Owner认可并要求记下
+
+Owner表示“这个可以，先记下，然后再仔细想想还有什么”。办理包据此作为认可、保留的规划方向记录，仍不开发。示例续办期、容量、定价和实际交付服务未获批准；下面对年费与现有能力的分析继续有效。[本轮其他候选](paid-content-options-20261021.md)仍是Agent建议。
 
 ## 先说判断
 

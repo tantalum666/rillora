@@ -5,9 +5,13 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-10-20 (Asia/Shanghai)
+Last updated: 2026-10-21 (Asia/Shanghai)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-10-21 保留办理包方向，继续比较实际内容交付
+
+Owner认可[亲友办理包案例](family-action-pack-example-20261020.md)，要求先记下并继续想其他功能；仍处于不开发的规划阶段。[本轮候选](paid-content-options-20261021.md)比较本人选定文件副本的保存／定向交付，以及与具体事项关联的原声交代。文件库、录音和转写已有竞品，未宣称独创或年费成立。只有办理包是Owner认可保留的方向，两项新候选、额度、服务期限与实现均未批准；当前审核、运行数据和价格保持。
 
 ## 2026-10-20 亲友办理包的具体家庭推演
 
