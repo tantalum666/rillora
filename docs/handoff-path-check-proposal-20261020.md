@@ -4,6 +4,8 @@ Status: SUPPORTING CAPABILITY CANDIDATE / STANDALONE PAID VALUE UNPROVEN / NOT I
 Last updated: 2026-10-20 (Asia/Shanghai)
 Authority scope: 本轮竞品研究后的具体产品候选；不改变现有权限、套餐或当前审核。
 
+Owner后续要求重新提出有实际付费价值的方案，并明确先不开发；当前比较见[付费结果方案](paid-value-options-20261020.md)。本文件继续是辅助候选的历史／边界记录，不是下一项默认开发任务。
+
 ## 同日澄清：官方身后申请本身就是一条路径
 
 Owner指出，家人可以拿死亡证明向平台人工申请，因此手机不可用未必构成问题。这是对必要性与表达的询问，不是Owner批准开发或明确否决整个候选。Agent承认此前例子没有充分展开官方替代渠道；将“优先做原型”的建议收窄为辅助规划候选，独立付费价值需要重新比较。

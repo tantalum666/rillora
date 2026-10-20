@@ -3720,3 +3720,11 @@ local correction/tests and actual restoration remain separate evidence.
 - Owner asks why a phone dependency matters if family can submit a death certificate to an official manual channel. Fresh Apple, Google and Microsoft guidance confirms such routes, with distinct evidence, regional rules, data scopes and review outcomes. Data disclosure is not automatically a right to continue using the original account.
 - The [candidate](handoff-path-check-proposal-20261020.md) must count applicable official routes; unavailable normal login is not a sufficient failure signal. Missing recorded conditions can be flagged for preparation, without guaranteeing approval or applying deceased-user procedures to incapacity/nonresponse.
 - Agent narrows the prior priority to a supporting planning candidate with unproven standalone paid value. Next comparison must show incremental outcomes over existing official guides/checklists before implementation. No code, entitlement, pricing, deployment or review change.
+
+## 2026-10-20 — Explain practical paid outcomes before developing new features
+
+- Status: LOCKED research-only scope; specific feature recommendation remains PROVISIONAL.
+- Owner explicitly asks for valuable paid functions addressing real problems and competitive differences, with a clear willingness-to-pay rationale before development. This supersedes any interpretation of earlier prototype suggestions as current implementation authorization.
+- [Current options](paid-value-options-20261020.md) prioritize comparing owner-intent-based recipient action materials and coordination, with bounded source-to-draft import as a supporting candidate; scoped family assistance remains segment-specific. Existing basic exports, guides, review tasks and safety cannot be resold under new names.
+- Public primary research supports problem hypotheses, while official free and paid competitors provide counterexamples. No global uniqueness, actual savings, conversion, annual demand or sustainable human-verification cost is claimed.
+- No new software, actual disclosure, real customer data processing, outreach, charging, entitlement, price, deployment, TestFlight or current-review change. Continue only to a reviewable plan; later delivery and genuine voluntary payment remain separate evidence.

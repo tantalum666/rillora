@@ -1,22 +1,22 @@
 # Rillora 当前交接
 
-Status: COMPETITOR RESEARCH COMPLETE / DIFFERENTIATOR VALUE REASSESSED / NO PRODUCT CHANGE
+Status: OUTCOME-BASED PAID OPTIONS READY / RESEARCH ONLY / DO NOT START DEVELOPMENT
 Last updated: 2026-10-20 (Asia/Shanghai)
 
 ## 当前任务与完成
 
-Owner要求再仔细研究竞品付费功能，决定可以怎样借鉴，并提出市场差异化功能。[续轮报告](competitor-paid-research-20261020.md)与[31份来源观察](competitor-paid-sources-20261020.json)完成；包括8个遗产／家庭资料产品、3类密码／文件服务、Apple／Google替代及近似专业服务。DGLegacy和LifeWyn另外读取公开渲染套餐，分别保留月／年费、币种及旧摘要差异；没有购买或登录竞品付费账号。
+Owner要求重新提出真正解决实际问题、能解释竞争差异和付费理由的功能，明确先不开发。[方案比较](paid-value-options-20261020.md)与[15项来源](paid-value-options-sources-20261020.json)完成，补了真实问题研究、免费地区办事服务、局部协作／文档提取与一次性替代。沿用前轮竞品观察，不重复登录或付费测试。
 
 ## 判断与候选
 
-双人家庭方案、身后开放、留言、提醒、准备度评分和解锁模拟都有先例。Agent曾优先建议验证[接手路径检查](handoff-path-check-proposal-20261020.md)。Owner随后询问死亡证明官方申请是否已有替代作用；复核Apple／Google／Microsoft后，明确官方渠道必须计入路径，资料申请不一定等于原账号使用权，手机不可用不能单独判定安排失败。该候选现收窄为辅助规划能力，独立付费价值尚未证明。专业人工依赖评估也已存在，不能宣称全球首创；Owner没有批准开发或明确否决该候选。
+Agent建议优先纸面比较“本人意愿对应的亲友办理资料与进度”，配套比较从指定资料生成待确认事项；受限亲友代整理只作特定客群候选。新价值必须超过现有免费指南／导出与家庭共同复核。免费批量通知、局部编辑、AI提取、逐项身后分享均已有先例，不声称全球独有，也不将三个候选全部排入开发。接手路径检查继续只作辅助。
 
 ## 证据与不变边界
 
-本轮只有研究／文档；未运行新产品测试、部署、发送外部消息、修改权益或收费。当前源码与告知默认关闭沿用b56c60369／CI208，前一轮建议文档2931ce307／CI209通过。已有价格、Free1／Family5、真实数据、FanPass和在审构建／材料保持。新建议不复活已移入内部QA的旧披露演练，不获得真实生命事件／第三方账号／内容放行权限。
+本轮只有研究／文档及来源展示，没有产品开发、访谈外发、收款、部署或在审资料修改。论文语料和厂商文档不能证明Rillora付费意愿；年度续订和核验／维护成本尚无测量。当前源码与默认关闭的告知沿用b56c60369／CI208；原价格、已购权益、真实数据和FanPass保持。
 
-[澄清前交接](handoff-history-20261020-before-official-route-clarification.md)和[前一轮交接](handoff-history-20261020-before-competitor-paid-research.md)均为HISTORICAL；[告知实施](future-recipient-notices-20261020.md)已完成，不能因本研究重做。HealthKit与真实身后交付仍是独立范围，没有新Apple回复／批准证据在本轮读取。
+[上一交接](handoff-history-20261020-before-paid-value-options.md)为HISTORICAL；[告知实施](future-recipient-notices-20261020.md)不能重做或冒充真正的身后内容交付。HealthKit、死亡事实／争议核验和定向交付仍各自独立，本轮没有新Apple答复证据。
 
 ## 唯一下一步
 
-重新比较候选付费能力相对现有官方申请渠道、Rillora指南和基础清单能增加的具体结果；不能因此前原型建议直接开发“接手路径检查”，也不能忽略官方替代路径制造需求。当前审核期间保持既有线上版本。
+先与Owner确定最值得进一步验证的用户任务，再按方案中的同一合成案例和现有年价比较候选与免费替代；尚不开发功能、创建付费承诺或向他人发送邀约。现有审核期间保持既有线上版本。

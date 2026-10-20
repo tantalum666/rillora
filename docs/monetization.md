@@ -8,6 +8,10 @@ Status: FREE / SINGLE ANNUAL FAMILY; WEB88.99 / APPLE119.99 US LOCKED; FREE1 / F
 Last updated: 2026-10-20 (Asia/Shanghai)
 
 
+## October20 outcome-based options — research only, no development
+
+Owner explicitly asks to clarify real problems, differentiation and why users would pay before development. [Current options](paid-value-options-20261020.md) compare owner-intent-based recipient action materials/workflow, bounded source-to-draft import, and scoped family-assisted planning. The first is the Agent's preferred concept to evaluate, not an approved product or entitlement. Free regional services and existing competitor capabilities remain explicit alternatives. Annual willingness to pay, delivery costs and superiority over current guides/export are unproven; existing prices and rights stay intact.
+
 ## October20 deeper competitor review — differentiation proposal
 
 Owner requests a second, detailed paid-feature review and a differentiated paid feature. [Research](competitor-paid-research-20261020.md) separates current plan evidence, older product generations and marketing-only claims. Family bundles remain a standard candidate; the proposed differentiator is [scenario-specific handoff-path checking](handoff-path-check-proposal-20261020.md), with explicit dependencies, gaps and change impact. This is an unimplemented recommendation, not a new entitlement or a claim of global exclusivity. Keep existing Free baseline, prices and purchased terms.
