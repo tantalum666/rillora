@@ -1,20 +1,20 @@
 # Rillora 当前交接
 
-Status: GIT INTEGRATION COMPLETE / PR3 AND PR4 MERGED / CURRENT REVIEW UNCHANGED
+Status: HEALTHKIT PREPARATION COMPLETE / APPLE CASE103002496561 SUBMITTED / PURPOSE RESPONSE PENDING
 Last updated: 2026-10-20 (Asia/Shanghai)
 
 ## 当前任务与完成
 
-Owner要求复核Dot的CI提醒并检查合并GitHub工作。[本轮已完成](git-integration-20261020.md)：26份新增验证文件补入总清单，PR4同步原已批准的精确扫描登记，PR3将整合历史合入main。另修复AI浏览器夹具服务未启动及站点地图旧断言，未改产品运行逻辑。AGENTS／source-control已要求在最后回执后核验完整清单并读回实际CI。
+Owner明确开始前述下一版本HealthKit准备，要求不影响当前审核。工作从main5e4d6d692建立codex/healthkit-preparation-20261020。[接入计划](healthkit-preparation-20261020.md)已明确仅心率只读、前台有界验证、本机处理、未知授权／数据质量边界、双语权限文案和后续验收情景，均未装入当前App。
 
-## 验证与合并证据
+[完整英文咨询](apple-healthkit-inquiry-20261020.md)已通过独立Apple开发技术邮件入口送达，案例103002496561。它如实询问A可选安全提醒、B健康关联条件访问、C独立死亡证据申请，而不是隐瞒B或将未回应当作死亡。现有Apple会话有效，无新的Owner登录步骤。原审核进度案例103001356140保持独立，未修改或重发。
 
-候选ecd13a75a的Verify source203及push202三任务成功，API580项通过；浏览器14共66项通过。完整发布校验覆盖13,107份可读文件，扫描0未知项。PR3主合并6b757b885与验证候选文件树完全一致，重新fetch核对24个远端分支tip均已包含于main，开放PR为0。本机当前在main。结果见[完成回执](../collaboration/verification/git-integration-20261020/completion.json)；随后文档／清单收尾的实际main提交与自动CI另由PR3及本机QA读回，不伪造自引用提交。
+## 证据边界
 
-## 保留边界
+[回执／截图／基线](../collaboration/verification/healthkit-prep-20261020/README.md)证明提交已受理，尚无Apple用途答复、entitlement批准或审核结论。所有原生源码、entitlements、Info.plist、项目及发布配置保持字节一致；无真实健康读取、特殊事件权限申请、Watch目标、实际通知／披露、部署、TestFlight或新的真机验收。当前价格／数据／收费、FanPass及Owner停止真机检查的决定保持。
 
-本轮没有部署、重新验证原生／付款、读取健康数据或通知亲友。App14审核、手动发布、TestFlight暂停、真实数据／价格／收费、FanPass及Owner停止真机检查的决定保持。Apple案例103001356140和OpenAI本人验证暂后保持。[上一交接](handoff-history-20261020-before-git-integration.md)与条件披露／营销材料作为已保存的后续工作，不重开旧验证门。
+前述Git整合已完成，[上一交接](handoff-history-20261020-before-healthkit-preparation.md)标为HISTORICAL；本轮新分支是新的下一版本准备，不把它误报成此前遗漏的旧工作。Git发布按最终完整manifest／扫描／实际CI逐项验证，不能以推送代替通过。
 
 ## 唯一下一步
 
-下一版本继续时从最新main建立工作分支，先细化[未来接收人、生前封存及条件密钥合同](conditional-disclosure-vnext-20261019.md)；具体时限、用途与真实放行仍未实现。当前Git修复／合并任务已关闭，不把这次整合当作健康接入或上线部署。
+取得Apple案例103002496561的答复后，按A／B／C允许用途确定首个实际接入范围；必要时沿同一案例澄清。当前准备与咨询已完成，不重复提交、不自动新增健康采集，也不改变现有App提交。没有创建后台跟踪或提醒自动化。

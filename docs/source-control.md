@@ -2,6 +2,10 @@
 
 Last updated: 2026-10-20 (Asia/Hong_Kong)
 
+## October20 HealthKit next-version preparation
+
+[The new preparation](healthkit-preparation-20261020.md) is isolated oncodex/healthkit-preparation-20261020frommain5e4d6d692. Only planning/copy documents and[the private Apple inquiry receipt](../collaboration/verification/healthkit-prep-20261020/README.md)are published: case103002496561, exact non-secret message, safe confirmation image, source/configuration hashes and reading record. No health data, credentials or personal form fields are copied. Current native/release files remain identical; no deployment or review-material change occurs. Regenerate the complete readable manifest after all receipts and verify actual CI.
+
 ## October19 platform and acquisition-budget research
 
 [Platform playbook](marketing/platform-playbook-20261019.md) and [conditional200/500USD allocation](marketing/acquisition-budget-20261019.md) add official-rule research, a platform register, disabled planning JSON, an empty-results experiment template and [reproducible arithmetic/source receipts](../collaboration/verification/marketing-platforms-20261019/README.md). These are ordinary non-secret Git documents, not ad execution, account registration or observed market outcomes. Existing zero paid-ad/publishing flags, product pricing, in-reviewApp14 and runtime artifacts remain untouched; no old archive is resealed.

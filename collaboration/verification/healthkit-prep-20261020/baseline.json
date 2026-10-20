@@ -1,0 +1,43 @@
+{
+  "baseline": "5e4d6d6920e4d38b842f94f35832022057c1c2e8",
+  "branch": "codex/healthkit-preparation-20261020",
+  "nativeTree": "2cf963db2bc3d8b6fcaedd09da65ae6b87206c69",
+  "files": [
+    {
+      "path": "apps/ios/project.yml",
+      "sha256": "046a5070e08da85506ca7da695771bb495f20edec84b61c2eb97083c5389f6fe"
+    },
+    {
+      "path": "apps/ios/Rillora/Rillora.entitlements",
+      "sha256": "6e86179984a92e43fa7e35553e9d1029a8f859f038210a6977201cd33928dd17"
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Info.plist",
+      "sha256": "355a4aaf0a5395115e30b57dbeae2d9939fad2fe47ac7a91cd8d30dfd19f5bf7"
+    },
+    {
+      "path": "apps/ios/Rillora.xcodeproj/project.pbxproj",
+      "sha256": "f3c374eee1b49fbec7f8003fcc7f220d168c6627e2e96d885699f5ad3054dc07"
+    },
+    {
+      "path": "config/release-gates.json",
+      "sha256": "dcdcbdad33f3042b54588b68b26c9697e242a2bbabf86bc0cdc3d30d0f8d8a0e"
+    },
+    {
+      "path": "config/production-connections.json",
+      "sha256": "2ff79fbd4e6c027bfc9a8f6057473f5149a676e8a4ab55f65533078cb879c3b4"
+    }
+  ],
+  "healthAccessScan": {
+    "scope": "apps/ios active tree",
+    "patterns": [
+      "HealthKit",
+      "HKHealthStore",
+      "healthkit",
+      "NSHealth",
+      "watchOS"
+    ],
+    "matches": []
+  },
+  "boundary": "Source/configuration baseline only; not a fresh App Store status or installed-build verification."
+}

@@ -3679,3 +3679,11 @@ local correction/tests and actual restoration remain separate evidence.
 - Repair the generated manifest and retain full scanners. Add the final-receipt regeneration/check step to the repository closeout protocol. Preserve history through[PR3](https://github.com/tantalum666/rillora/pull/3), check its actual CI, and verify merge ancestry/tree without deployments, TestFlight, changed prices, real-data operations or FanPass work.
 
 - Result: PR4merges88ea0be25after all3checks; PR3merges6b757b885after Verify source203and browser14pass (API580/browser66). Fresh main tree equals validated ecd13a75a and contains all24remote tips, openPRcount0. The initial no-runtime-change scope is preserved; only two browser-harness files required correction.
+
+## 2026-10-20 — Begin next-version HealthKit preparation without changing the current submission
+
+- Status: OWNER-DIRECTED preparation and private Apple purpose consultation; no health collection or platform approval implied.
+- Owner says“开始吧，但是不要影响当前审核”after the proposed minimum-data, permission-copy and Apple purpose inquiry plan. This authorizes completing that concrete preparation and submitting the described separate technical question; it is not a new health-data authorization from an end user or a request to change the submitted app.
+- Work starts oncodex/healthkit-preparation-20261020frommain5e4d6d692. The plan uses heart-rate-only, read-only, local/manual first-slice verification;24hours/200samples is an Agent-selected technical test bound, not a medical or disclosure threshold.
+- The inquiry truthfully presents A optional safety prompts, B possible health-derived nonresponse/conditional access, and C independent death-evidence access. Apple accepts separate case103002496561. Existing review case103001356140is not amended; no Fall/SafetyKit entitlement or App ID capability is requested.
+- Current native source/entitlements/plists/project and release configurations remain byte-identical. No real health samples, contacts, model calls, deployment, TestFlight or new native verification. [Preparation and receipt](healthkit-preparation-20261020.md).
