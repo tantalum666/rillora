@@ -66,6 +66,17 @@ test('old language links, discovery files and guide redirects use the packaged e
   expect(guide.status()).toBe(302);
   expect(guide.headers().location).toBe('https://app.rillora.xyz/account?next=guides&service=google&lang=zh-CN');
   expect((await request.get(PUBLIC + '/sitemap.xml')).headers()['content-type']).toContain('application/xml');
-  expect(await (await request.get(PUBLIC + '/robots.txt')).text()).toContain('Sitemap: https://www.rillora.xyz/sitemap.xml');
+  expect(await (await request.get(PUBLIC + '/robots.txt')).text()).toContain('Sitemap: https://www.rillora.xyz/sitemap-index.xml');
+  const index = await request.get(PUBLIC + '/sitemap-index.xml');
+  expect(index.status()).toBe(200);
+  expect(index.headers()['content-type']).toContain('application/xml');
+  const indexBody = await index.text();
+  for (const locale of ['en', 'zh-CN']) {
+    expect(indexBody).toContain(`<loc>https://www.rillora.xyz/sitemap-${locale}.xml</loc>`);
+    const sitemap = await request.get(PUBLIC + `/sitemap-${locale}.xml`);
+    expect(sitemap.status()).toBe(200);
+    expect(sitemap.headers()['content-type']).toContain('application/xml');
+    expect(await sitemap.text()).toContain(`<loc>https://www.rillora.xyz/${locale}/`);
+  }
   for (const path of ['/zh-CN/account', '/en/api/v1/overview', '/pages/en/index.html']) expect((await request.get(PUBLIC + path)).status()).toBe(404);
 });

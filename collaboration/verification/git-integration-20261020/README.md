@@ -7,3 +7,5 @@ Status: CANDIDATE / FINAL CI AND MERGE RECEIPTS FOLLOW SEPARATELY
 [Reading continuation](reading.json) retains the completed project Markdown chain. Full publication validation covers all readable files; prior encrypted archives are not resealed or represented as new plaintext verification. The existing local archives may be hashed by the verifier; CI can validate their LFS pointers.
 
 AGENTS and source-control now require manifest regeneration/verification after the last receipt and actual CI readback. No guard or fixture exception is weakened, no hook is installed and no runtime/native/payment/deployment test is claimed by this documentation change.
+
+The first PR check also exposes stale protected-base exact-span authority. [PR4 evidence](authority-sync.json) records its independently checked prerequisites and successful merge, without weakening the scanner. [Browser repair](browser-repair.json) records63pass/3fail followed by3targeted local passes. The English/Chinese screenshots contain synthetic account data only. Final integration CI and merge are still separate results.
