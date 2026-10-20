@@ -26,6 +26,15 @@ struct ContactSharingView: View {
     var body: some View {
         @Bindable var store = store
         RilloraForm {
+            if let futureService = sharingService as? any FutureNoticeServing, futureService.futureNoticesEnabled {
+                Section {
+                    NavigationLink {
+                        FutureNoticeView(contact: store.contact, service: futureService)
+                    } label: {
+                        Label(String(localized: "After-death arrangement"), systemImage: "lock.doc")
+                    }.disabled(store.isWorking || store.hasChanges).accessibilityIdentifier("future.open-owner")
+                }
+            }
             if !store.isConnected {
                 Section { InvitationStepRail(current: showLink ? 2 : 1) }.listRowBackground(Color.clear)
             }

@@ -47,6 +47,7 @@ import { ContactEditorPanel } from "./ContactEditorPanel.jsx";
 import { useConfirmation } from "./ConfirmationDialog.jsx";
 import { ContactSharingPanel, PeoplePanel, SharedWithMePanel } from "./SharingPanels.jsx";
 import { InvitationPage } from "./InvitationPage.jsx";
+import { FUTURE_NOTICES_ENABLED } from "./futureNoticeFeature.js";
 import { ProviderGuidePanel, SafetyPanel } from "./TaskPanels.jsx";
 import { PlatformGuideDirectory } from "./PlatformGuides.jsx";
 import "./interaction-refinement.css";
@@ -83,6 +84,8 @@ const navigation = [
 ];
 
 const FamilyMaintenancePanel = lazy(() => import("./FamilyMaintenancePanel.jsx").then((module) => ({ default: module.FamilyMaintenancePanel })));
+const FutureNoticePanel = FUTURE_NOTICES_ENABLED ? lazy(() => import("./FutureNoticePanels.jsx").then(module => ({ default: module.FutureNoticePanel }))) : null;
+const FutureInvitationPage = FUTURE_NOTICES_ENABLED ? lazy(() => import("./FutureInvitationPage.jsx")) : null;
 
 const mobileNavigationIcons = {
   overview: House,
@@ -222,7 +225,8 @@ export function App() {
     publicRoutes.cookies,
     publicRoutes.legalNotice,
   ].includes(initialPublicPath);
-  const startsOnInvitationRoute = /^\/invite(?:\/[a-f0-9-]{36})?\/?$/i.test(window.location.pathname);
+  const startsOnFutureInvitationRoute = /^\/future-invite(?:\/[a-f0-9-]{36})?\/?$/i.test(window.location.pathname);
+  const startsOnInvitationRoute = startsOnFutureInvitationRoute || /^\/invite(?:\/[a-f0-9-]{36})?\/?$/i.test(window.location.pathname);
   const initialRoute = useRef(readWorkspaceRoute(window.location.href)).current;
   const returnedFromCheckout = useRef(window.location.pathname === "/account/billing/complete").current;
   const [activeNav, setActiveNav] = useState(initialRoute.view);
@@ -744,7 +748,7 @@ export function App() {
           {(matterQuery || matterFilter !== "all") && <button type="button" className="text-button" onClick={() => { setMatterQuery(""); setMatterFilter("all"); }}>{t("workspace.matters.clear")}</button>}
         </>}
 
-        {activeNav === "contacts" && <PeoplePanel contacts={contacts} matterContext={matters.find(item => item.id === sharingMatterId)} onReturnToMatter={() => { if ((window.history.state?.rillora?.index ?? 0) > 0) window.history.back(); else { const item = matters.find(item => item.id === sharingMatterId); setActiveNav("matters"); if (item) openMatter(item); } }} apiClient={api} refreshVersion={sharingRefreshVersion} onAdd={() => setDrawer({ type: "contact" })} onEdit={(person) => setDrawer({ type: "contact", contactId: person.publicId })} onShare={(person) => setDrawer({ type: "contact-sharing", contactId: person.publicId })} onIncoming={() => setActiveNav("shared")} />}
+        {activeNav === "contacts" && <PeoplePanel contacts={contacts} matterContext={matters.find(item => item.id === sharingMatterId)} onReturnToMatter={() => { if ((window.history.state?.rillora?.index ?? 0) > 0) window.history.back(); else { const item = matters.find(item => item.id === sharingMatterId); setActiveNav("matters"); if (item) openMatter(item); } }} apiClient={api} refreshVersion={sharingRefreshVersion} onAdd={() => setDrawer({ type: "contact" })} onEdit={(person) => setDrawer({ type: "contact", contactId: person.publicId })} onShare={(person) => setDrawer({ type: "contact-sharing", contactId: person.publicId })} onIncoming={() => setActiveNav("shared")} onFutureNotice={FUTURE_NOTICES_ENABLED ? person => setDrawer({ type: "future-notice", id: person.publicId }) : undefined} />}
         {activeNav === "shared" && <SharedWithMePanel apiClient={api} />}
         {activeNav === "maintenance" && <Suspense fallback={<p role="status">{t("workspace.reviews.loading")}</p>}><FamilyMaintenancePanel apiClient={api} onChanged={() => void loadWorkspace()} onManageSharing={() => setActiveNav("contacts")} onDirtyChange={setPanelHasChanges} onBusyChange={setPanelBusy} /></Suspense>}
         {activeNav === "guides" && <PlatformGuideDirectory renderMark={(guide) => <ProviderMark providerKey={guide.key} label={guide.label}/>} onOpen={(guide) => setDrawer({ type: "provider-guide", providerKey: guide.key })}/>}
@@ -778,6 +782,9 @@ export function App() {
   }
 
   if (import.meta.env.VITE_RILLORA_CUSTOMER_ACCESS === "closed") return <PublicExperience sessionStatus="not_open" />;
+  if (startsOnFutureInvitationRoute) return FutureInvitationPage
+    ? <Suspense fallback={<p role="status">{t("future.loading")}</p>}><FutureInvitationPage apiClient={api}/></Suspense>
+    : <main className="invitation-page"><p>{t("future.unavailable")}</p><a href="/">{t("forms.invitation.backHome")}</a></main>;
   if (startsOnInvitationRoute) return <InvitationPage apiClient={api} />;
   if (deletionReference || window.location.pathname === "/account-deletion") return <AccountDeletionStatus apiClient={api} reference={deletionReference}/>;
 
@@ -915,6 +922,12 @@ export function App() {
       {sharingContact && <Drawer title={t("workspace.contact.shareWith", { name: sharingContact.displayName })} busy={panelBusy} onClose={closeDrawer}>
         <ContactSharingPanel key={sharingContact.publicId} contact={sharingContact} matters={matters} focusMatterId={sharingMatterId} apiClient={api} onDirtyChange={setPanelHasChanges} onBusyChange={setPanelBusy} onChanged={() => setSharingRefreshVersion((value) => value + 1)} />
       </Drawer>}
+      {FutureNoticePanel && drawer?.type === "future-notice" && contacts.find(person => person.publicId === drawer.id) &&
+        <Drawer title={t("future.title")} busy={panelBusy} onClose={closeDrawer}>
+          <Suspense fallback={<p role="status">{t("future.loading")}</p>}><FutureNoticePanel key={drawer.id}
+            contact={contacts.find(person => person.publicId === drawer.id)} apiClient={api}
+            onDirtyChange={setPanelHasChanges} onBusyChange={setPanelBusy}/></Suspense>
+        </Drawer>}
 
       {drawer?.type === "start-here" && (
         <Drawer title={t("workspace.start.title")} eyebrow={t("workspace.start.minimum")} busy={busy || panelBusy} error={activeDrawerError} onReload={drawer?.conflict ? () => void reloadCurrentDraft() : undefined} onClose={closeDrawer}>

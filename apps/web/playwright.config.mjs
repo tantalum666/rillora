@@ -10,5 +10,6 @@ export default defineConfig({
     { command: 'npm run build:public && node scripts/preview-public.mjs', url: 'http://127.0.0.1:4197', reuseExistingServer: !process.env.CI },
     // Keep the optional AI fixture separate from the default, AI-disabled build.
     { command: 'VITE_RILLORA_AI_CONNECTIONS=true npx vite build --mode internal --outDir dist/browser-ai && npx vite preview --host 127.0.0.1 --strictPort --port 4184 --outDir dist/browser-ai', url: 'http://127.0.0.1:4184', reuseExistingServer: !process.env.CI },
+    { command: 'VITE_RILLORA_FUTURE_NOTICES=true npx vite build --mode internal --outDir dist/browser-future && npx vite preview --host 127.0.0.1 --strictPort --port 4185 --outDir dist/browser-future', url: 'http://127.0.0.1:4185', reuseExistingServer: !process.env.CI },
   ],
 });

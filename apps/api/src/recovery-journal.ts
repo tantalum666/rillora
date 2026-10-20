@@ -4,7 +4,7 @@ import type { Pool, PoolClient } from 'pg';
 import { z } from 'zod';
 import { ApiError } from './errors.js';
 
-const eventSchema=z.object({key:z.string().min(1).max(100),kind:z.enum(['account','connection','matter','person','free_slot','unreconciled_access','retention_hold','ai_connection']),
+const eventSchema=z.object({key:z.string().min(1).max(100),kind:z.enum(['account','connection','matter','person','free_slot','unreconciled_access','retention_hold','ai_connection','future_notice']),
  id:z.uuid(),revision:z.string().regex(/^[1-9][0-9]{0,18}$/),recordedAt:z.string(),facts:z.record(z.string(),z.unknown())}).strict()
  .refine(e=>e.key===`${e.kind}:${e.id}`,'Invalid journal key');
 export type RecoveryControl=z.infer<typeof eventSchema>;
@@ -34,6 +34,7 @@ export const recoveryCommerceInventorySchema=z.object({version:z.literal(1),manu
   acquisition:z.enum(['purchased','preview','migration','support_override']),appAccountToken:z.uuid().nullable().optional()}).strict()).max(100)}).strict();
 export type RecoverySubscriptionReference=z.infer<typeof recoveryCommerceInventorySchema>['subscriptions'][number];
 const factsByKind={
+ future_notice:z.object({revokeOnRestore:z.literal(true)}).strict(),
  ai_connection:z.object({revokeOnRestore:z.literal(true)}).strict(),
  account:z.union([deleted,z.object({status:z.enum(['active','locked','deletion_pending','closed'])}).strict()]),
  connection:z.union([deleted,recoveryConnectionHistorySchema,z.object({...connectionBase,

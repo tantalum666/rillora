@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "reviewedAt": "2026-10-11",
-  "boundary": "Only exact reviewed source spans are approved. Owner explicitly approved the October11 line updates and two synthetic crypto fixtures. New or changed findings still block upload.",
+  "reviewedAt": "2026-10-20",
+  "boundary": "Only exact reviewed source spans are approved. Owner explicitly approved the October11 fixture set. October20 updates only four line positions for byte-identical previously reviewed public Auth0 client identifiers; no new secret value or scanner rule is allowed.",
   "findings": [
     {
       "path": "apps/api/tests/config.test.ts",
@@ -126,8 +126,8 @@
     {
       "path": "apps/ios/project.yml",
       "rule": "generic-api-key",
-      "startLine": 114,
-      "endLine": 114,
+      "startLine": 115,
+      "endLine": 115,
       "sourceSpanSha256": "c9c9eb8a723073eae64c80690be13fc7c0919031fdb81d83a953ee5a247256b4",
       "reason": "Native public Auth0 client identifier, included in distributed app configuration."
     },
@@ -158,8 +158,8 @@
     {
       "rule": "generic-api-key",
       "path": "apps/ios/project.yml",
-      "startLine": 130,
-      "endLine": 130,
+      "startLine": 131,
+      "endLine": 131,
       "sourceSpanSha256": "5ac97cca4bf92df008a80d90fabca84d976bccc691219fdbb0bbc591b963b6ae",
       "reason": "Prepared native public Auth0 production client identifier, verified against the approved public connection contract; not a client secret."
     },
@@ -198,16 +198,16 @@
     {
       "rule": "generic-api-key",
       "path": "apps/ios/Rillora.xcodeproj/project.pbxproj",
-      "startLine": 1368,
-      "endLine": 1368,
+      "startLine": 1394,
+      "endLine": 1394,
       "sourceSpanSha256": "5de471a1bd1102dd7f3284468f430bc8b8c0d137dcaef7c8aa9d27cc17aae11e",
       "reason": "Native public Auth0 client identifier, byte-matched to the already reviewed project.yml value; shared generated Xcode project, not a client secret."
     },
     {
       "rule": "generic-api-key",
       "path": "apps/ios/Rillora.xcodeproj/project.pbxproj",
-      "startLine": 1622,
-      "endLine": 1622,
+      "startLine": 1648,
+      "endLine": 1648,
       "sourceSpanSha256": "84b43e023d7ae444915797275d0661dbab0b68c1f6201663e2cd623b995b19ab",
       "reason": "Native public Auth0 client identifier, byte-matched to the already reviewed project.yml value; shared generated Xcode project, not a client secret."
     },

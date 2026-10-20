@@ -1,0 +1,36 @@
+{
+  "summary": {
+    "status": "SUCCEEDED",
+    "durationMs": 96407,
+    "counts": {
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0
+    },
+    "target": "simulator"
+  },
+  "artifacts": {
+    "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-10-20T09-26-45-157Z_pid19116_b2ac539e.log",
+    "xcresultPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/result-bundles/test_sim_2026-10-20T09-26-45-157Z_pid19116_699652b8.xcresult",
+    "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-20T09-26-45-157Z_pid19116_3f078d7c.xctestproducts"
+  },
+  "diagnostics": {
+    "warnings": [],
+    "errors": [],
+    "testFailures": []
+  },
+  "testCases": [
+    {
+      "suite": "FutureNoticeUITests",
+      "test": "testChineseOwnerAndRecipient",
+      "status": "passed",
+      "durationMs": 41295
+    },
+    {
+      "suite": "FutureNoticeUITests",
+      "test": "testEnglishOwnerAndRecipient",
+      "status": "passed",
+      "durationMs": 39469
+    }
+  ]
+}

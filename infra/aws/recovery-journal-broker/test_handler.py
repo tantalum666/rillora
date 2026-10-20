@@ -83,6 +83,20 @@ class JournalProof(unittest.TestCase):
             else:
                 with self.assertRaises(ValueError): broker.verify_envelope(envelope, self.key)
 
+    def test_future_notice_records_never_carry_identity_or_content(self):
+        for facts, accepted in [({"revokeOnRestore": True}, True), ({"revokeOnRestore": False}, False),
+                                ({"revokeOnRestore": True, "email": "synthetic@example.test"}, False),
+                                ({"revokeOnRestore": True, "matters": []}, False)]:
+            envelope = self.envelope()
+            event = json.loads(envelope["event"])
+            event.update(key="future_notice:" + ENTITY, kind="future_notice", facts=facts)
+            envelope["event"] = json.dumps(event, sort_keys=True)
+            envelope["signature"] = hmac.new(self.key.encode(), f'rillora-journal-event-v1|{GENERATION}|200|{envelope["event"]}'.encode(), hashlib.sha256).hexdigest()
+            if accepted:
+                self.assertEqual(broker.verify_envelope(envelope, self.key)["facts"], facts)
+            else:
+                with self.assertRaises(ValueError): broker.verify_envelope(envelope, self.key)
+
 
 if __name__ == "__main__":
     unittest.main()

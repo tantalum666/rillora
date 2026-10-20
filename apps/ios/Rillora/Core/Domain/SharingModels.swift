@@ -155,6 +155,7 @@ struct SharedWithMeEnvelope: Decodable, Sendable {
 }
 struct ReceivedInvitation: Identifiable {
     let token: String?
+    var isFuture = false
     let id = UUID()
     static func token(from value: String) -> String? {
         guard let url = URLComponents(string: value), url.scheme?.lowercased() == "https",

@@ -1,8 +1,12 @@
 # 下一版本：异常确认、条件披露与生前封存
 
-Status: OWNER REQUIREMENTS RECORDED / PROVISIONAL DESIGN / NOT IMPLEMENTED
-Last updated: 2026-10-19 (Asia/Shanghai)
+Status: CONDITIONAL RELEASE REMAINS DESIGN / NOTICE SLICE IMPLEMENTED BEHIND DEFAULT-OFF FLAGS
+Last updated: 2026-10-20 (Asia/Shanghai)
 Authority scope: Owner本轮产品澄清及下一版本候选规则；不证明Apple许可、医学判断、法律效力或真实披露可用。
+
+## October20实施范围更新
+
+Owner已明确开始不依赖Apple答复的[独立告知／知悉功能](future-recipient-notices-20261020.md)。它不创建事项授权或身后放行，本文件其余条件规则与密钥方案仍为候选设计。下面“本次仅设计／未执行”指October19研究检查点；当前告知实现和验证以新合同为准，当前审核不变。
 
 ## 本轮需求与决定边界
 

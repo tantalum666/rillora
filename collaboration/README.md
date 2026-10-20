@@ -1,8 +1,10 @@
 # Rillora — Git / Dot 协作入口
 
+October20当前任务：[独立身后安排告知](../docs/future-recipient-notices-20261020.md)在codex/future-recipient-notices-20261020实现，三端默认关闭、仅下一版本。HealthKit答复不再阻塞此项；本轮没有部署或修改在审构建。实现、测试、推送／CI与实际亲友送达分别记录，当前唯一下一步只看handoff。
+
 October20下一版本：[HealthKit准备与独立用途咨询](../docs/healthkit-preparation-20261020.md)已完成，Apple受理案例103002496561，尚无用途答复。分支codex/healthkit-preparation-20261020仅含方案、双语权限草稿和[安全回执](verification/healthkit-prep-20261020/README.md)，原生／发布配置未变；当前审核材料及旧进度工单不动。当前下一步只看handoff。
 
-October20：[总清单与主分支整合已完成](../docs/git-integration-20261020.md)。26份遗漏已补齐，精确登记同步PR4与主整合[PR3](https://github.com/tantalum666/rillora/pull/3)均已合并；主合并6b757b885与通过CI203／浏览器14的提交文件树一致，24个远端分支均包含于main，开放PR为0。API580／浏览器66通过；[完成回执](verification/git-integration-20261020/completion.json)。当前本机使用main，旧分支记录保留，未部署或改变审核。新增回执仍必须连同完整清单一起核验。
+October20：[总清单与主分支整合已完成](../docs/git-integration-20261020.md)。26份遗漏已补齐，精确登记同步PR4与主整合[PR3](https://github.com/tantalum666/rillora/pull/3)均已合并；主合并6b757b885与通过CI203／浏览器14的提交文件树一致，24个远端分支均包含于main，开放PR为0。API580／浏览器66通过；[完成回执](verification/git-integration-20261020/completion.json)。该整合检查点本机使用main，后续新功能以顶部及handoff分支为准，旧分支记录保留，未部署或改变审核。新增回执仍必须连同完整清单一起核验。
 
 October18营销复核：[SEO／GEO、MCP和平台矩阵](../docs/marketing/readiness-audit-20261018.md)及[四周获客计划](../docs/marketing/acquisition-plan-20261018.md)已准备，OpenAI简介限制／商店旧状态已纠正；客户MCP和实际增长不冒充完成。[新回执](verification/marketing-readiness-20261018/README.md)以小型可读文件直接Git保存，旧1—47不重封。当前下一步只看handoff。
 

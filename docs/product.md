@@ -5,9 +5,13 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-10-20 (Asia/Hong_Kong)
+Last updated: 2026-10-20 (Asia/Shanghai)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-10-20 独立身后安排告知进入下一版本实现
+
+Owner明确先完成不需要Apple答复的告知功能，指定亲友知道有数字遗产安排但生前看不到内容。[当前实施合同](future-recipient-notices-20261020.md)把知悉关系与现有共享grant彻底分开；双语Web／iOS同一状态和权限边界，默认关闭且仅本机合成验收。当前在审构建、真实数据／价格／收费及FanPass不变。后续死亡核验和内容交付没有因此自动开通。此项取代仅等待HealthKit答复的当前工作优先级。
 
 ## 2026-10-20 下一版本HealthKit准备与独立用途咨询
 

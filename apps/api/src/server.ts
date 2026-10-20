@@ -1,5 +1,6 @@
 import { createServer } from "node:http";
 import { createApp } from "./app.js";
+import { futureNoticesEnabled } from "./future-notice-routes.js";
 import { loadConfig } from "./config.js";
 import { createPool, sweepContentOrphans,withAuthDatabase } from "./db.js";
 import { deletionProcessor } from "./account-deletion.js";
@@ -23,6 +24,7 @@ const appleProductionIntake = config.appleProduction ? await createAppleProducti
 const appleReviewIntake = config.appleReview ? await createAppleReviewIntake(pool, config.appleReview) : undefined;
 const mcp = await mcpFromEnvironment(pool, config);
 const app = createApp(pool, config, { accountDeletionProcessor, transportReady: () => transportReady(),
+  futureNoticesEnabled: futureNoticesEnabled(),
   ...(mcp ? { mcp } : {}),
   ...(appleReviewIntake ? {appleReviewIntake} : {}),
   ...(appleProductionIntake ? { appleProductionIntake } : {}),

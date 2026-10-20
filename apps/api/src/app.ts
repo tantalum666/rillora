@@ -1,4 +1,5 @@
 import express, { type Express, type RequestHandler } from "express";
+import { createFutureNoticeRouter, createPublicFutureNoticeRouter } from "./future-notice-routes.js";
 import type { McpIntegration } from './mcp/integration.js';
 import type { AppleProductionIntake } from './apple-production-intake.js';
 import { createAppleProductionNotificationHandler, createAppleProductionRouter } from './apple-production-routes.js';
@@ -58,6 +59,7 @@ import {
 } from "./storekit-sandbox-routes.js";
 
 export type AppDependencies = AuthDependencies & {
+  futureNoticesEnabled?: boolean;
   mcp?: McpIntegration;
   appleReviewIntake?: AppleProductionIntake;
   appleProductionIntake?: AppleProductionIntake;
@@ -78,6 +80,9 @@ export function createApp(
   config: AppConfig,
   dependencies: AppDependencies = {},
 ): Express {
+  if (dependencies.futureNoticesEnabled && (config.productionRuntimeClosed || config.productionReviewAccess)) {
+    throw new Error("Future notices cannot be enabled in a closed or review-only runtime");
+  }
   const app = express();
   const emailVerifier = dependencies.emailIdentityVerifier
     ?? (config.emailVerification ? new Auth0EmailIdentityVerifier(config.emailVerification) : null);
@@ -96,6 +101,10 @@ export function createApp(
       await checkContentKeys(pool);
       await checkRecoveryJournal(pool);
       await dependencies.mcp?.checkReady();
+      if (dependencies.futureNoticesEnabled) {
+        const ready = await pool.query("select to_regclass('app.future_recipient_notices') is not null as ready");
+        if (!ready.rows[0]?.ready) throw new Error("Future notice migration is unavailable");
+      }
       if(config.nodeEnv==='production')await checkEmailMatchReadiness(pool,config);
       response.json({ status: "ready" });
     } catch {
@@ -215,6 +224,11 @@ export function createApp(
   const publicSharing = createPublicSharingRouter(pool, config);
   app.use("/sharing", preventCaching, publicSharing);
   app.use("/api/sharing", preventCaching, publicSharing);
+  if (dependencies.futureNoticesEnabled) {
+    const futureNotices = createPublicFutureNoticeRouter(pool, config);
+    app.use("/future-notices", preventCaching, futureNotices);
+    app.use("/api/future-notices", preventCaching, futureNotices);
+  }
 
   if (config.allowSyntheticRecipientRehearsal) {
     const recipientRehearsalRouter = createRecipientRehearsalRouter(pool);
@@ -236,6 +250,7 @@ export function createApp(
   plannerApi.use("/disclosure-rehearsals", createDisclosureRehearsalRouter(pool));
   plannerApi.use("/role-assignments", createRoleAssignmentRouter(pool));
   plannerApi.use("/sharing", createSharingRouter(pool, config, emailVerification));
+  if (dependencies.futureNoticesEnabled) plannerApi.use("/future-notices", createFutureNoticeRouter(pool, config, emailVerification));
   plannerApi.use("/maintenance", createFamilyMaintenanceRouter(pool, config));
   if (stripeExecutor?.providerEnvironment === 'production') {
     plannerApi.use('/commerce/stripe', createStripeProductionCommerceRouter(stripeExecutor, { checkoutEnabled: stripeCheckoutEnabled }, config));

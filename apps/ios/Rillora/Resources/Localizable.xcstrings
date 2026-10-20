@@ -18,6 +18,23 @@
         }
       }
     },
+    "%1$@ has named you for an after-death arrangement.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ has named you for an after-death arrangement."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@已将你指定为一项身后安排的接收人。"
+          }
+        }
+      }
+    },
     "%1$@ invited you": {
       "extractionState": "manual",
       "localizations": {
@@ -1220,6 +1237,40 @@
         }
       }
     },
+    "Acknowledged · Contents remain private": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acknowledged · Contents remain private"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "对方已知悉 · 内容仍保密"
+          }
+        }
+      }
+    },
+    "Acknowledging this notice does not give access to any matters. Contents remain private.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acknowledging this notice does not give access to any matters. Contents remain private."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "确认知悉不代表获得事项查看权限，内容仍然保密。"
+          }
+        }
+      }
+    },
     "Active": {
       "extractionState": "manual",
       "localizations": {
@@ -1628,6 +1679,23 @@
         }
       }
     },
+    "After-death arrangement": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "After-death arrangement"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "身后安排"
+          }
+        }
+      }
+    },
     "After-death request": {
       "extractionState": "manual",
       "localizations": {
@@ -1641,6 +1709,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "身后申请"
+          }
+        }
+      }
+    },
+    "After-death verification and content delivery are not enabled by this notice.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "After-death verification and content delivery are not enabled by this notice."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这份告知不会启用身后核验或内容交付。"
           }
         }
       }
@@ -1743,6 +1828,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "已有账号？登录"
+          }
+        }
+      }
+    },
+    "An active notice already exists for this person or email.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "An active notice already exists for this person or email."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这个人或邮箱已有有效告知，请管理已有安排。"
+          }
+        }
+      }
+    },
+    "An after-death arrangement": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "An after-death arrangement"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一项身后安排"
           }
         }
       }
@@ -2253,6 +2372,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "已归档事项 · %1$lld"
+          }
+        }
+      }
+    },
+    "Arrangement from %1$@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arrangement from %1$@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@的身后安排"
+          }
+        }
+      }
+    },
+    "Arrangement notices are not available in this version.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arrangement notices are not available in this version."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此版本尚未开放身后安排告知。"
           }
         }
       }
@@ -3944,8 +4097,18 @@
     "Could not sign out. Please try again.": {
       "extractionState": "manual",
       "localizations": {
-        "en": { "stringUnit": { "state": "translated", "value": "Could not sign out. Please try again." } },
-        "zh-Hans": { "stringUnit": { "state": "translated", "value": "退出登录未完成，请重试。" } }
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not sign out. Please try again."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "退出登录未完成，请重试。"
+          }
+        }
       }
     },
     "Couldn’t open Settings": {
@@ -3995,6 +4158,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "制作一份可单独保存的指引"
+          }
+        }
+      }
+    },
+    "Create a new link": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create a new link"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "生成新链接"
+          }
+        }
+      }
+    },
+    "Create account": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create account"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "注册账号"
           }
         }
       }
@@ -4063,6 +4260,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "创建新链接"
+          }
+        }
+      }
+    },
+    "Create notice invitation": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create notice invitation"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "创建告知邀请"
           }
         }
       }
@@ -4237,6 +4451,23 @@
         }
       }
     },
+    "DELETE": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DELETE"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "删除"
+          }
+        }
+      }
+    },
     "Dark": {
       "extractionState": "manual",
       "localizations": {
@@ -4352,6 +4583,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "仅供调试 · 非正式登录"
+          }
+        }
+      }
+    },
+    "Decline": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Decline"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "拒绝"
           }
         }
       }
@@ -6328,6 +6576,23 @@
         }
       }
     },
+    "I acknowledge this arrangement": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I acknowledge this arrangement"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "我已知悉这项安排"
+          }
+        }
+      }
+    },
     "I can find it": {
       "extractionState": "manual",
       "localizations": {
@@ -6341,6 +6606,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "我可以找到"
+          }
+        }
+      }
+    },
+    "I have recorded an after-death arrangement for you in Rillora. This invitation does not give access to its contents.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I have recorded an after-death arrangement for you in Rillora. This invitation does not give access to its contents."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "我在 Rillora 为你记录了一项身后安排。这份邀请不会开放任何内容。"
           }
         }
       }
@@ -6889,6 +7171,23 @@
         }
       }
     },
+    "Invitation ready. Send it to the person you selected.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invitation ready. Send it to the person you selected."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "邀请已生成，请发给你指定的人。"
+          }
+        }
+      }
+    },
     "Invite %1$@": {
       "extractionState": "manual",
       "localizations": {
@@ -7382,6 +7681,23 @@
         }
       }
     },
+    "Leave this arrangement": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leave this arrangement"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "退出这项安排"
+          }
+        }
+      }
+    },
     "Leaving or replacing this preview can remove the only recovery key for this copy.": {
       "extractionState": "manual",
       "localizations": {
@@ -7412,6 +7728,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "让信任的人，\n看到你选定的信息。"
+          }
+        }
+      }
+    },
+    "Let this person know an arrangement exists. They will see your Rillora name, but no matter names or contents.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Let this person know an arrangement exists. They will see your Rillora name, but no matter names or contents."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "让对方知道有这项安排。对方会看到你在 Rillora 的姓名，但看不到事项名称或内容。"
           }
         }
       }
@@ -7565,6 +7898,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "正在获取账号信息…"
+          }
+        }
+      }
+    },
+    "Loading arrangement…": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loading arrangement…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在读取安排…"
           }
         }
       }
@@ -8776,6 +9126,23 @@
         }
       }
     },
+    "No acknowledged arrangements": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No acknowledged arrangements"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暂无已确认的身后安排"
+          }
+        }
+      }
+    },
     "No active role applies to this matter.": {
       "extractionState": "manual",
       "localizations": {
@@ -8874,6 +9241,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "未联系任何人"
+          }
+        }
+      }
+    },
+    "No content shared now": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No content shared now"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当前未共享内容"
           }
         }
       }
@@ -9435,6 +9819,57 @@
           "stringUnit": {
             "state": "translated",
             "value": "暂无需要你处理的事项"
+          }
+        }
+      }
+    },
+    "Notice declined or left": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notice declined or left"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "对方已拒绝或退出安排"
+          }
+        }
+      }
+    },
+    "Notice link expired": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notice link expired"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "告知链接已过期"
+          }
+        }
+      }
+    },
+    "Notice revoked": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notice revoked"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "告知已撤销"
           }
         }
       }
@@ -11547,6 +11982,23 @@
         }
       }
     },
+    "Refresh arrangement": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Refresh arrangement"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "刷新安排"
+          }
+        }
+      }
+    },
     "Refresh local purchase history": {
       "extractionState": "manual",
       "localizations": {
@@ -12614,6 +13066,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "已复核 %1$lld / %2$lld 项 · 截止 %3$@"
+          }
+        }
+      }
+    },
+    "Revoke notice": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Revoke notice"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "撤销告知"
           }
         }
       }
@@ -14522,6 +14991,23 @@
         }
       }
     },
+    "Sign in with the invited email to see who sent this. No contents will be opened.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sign in with the invited email to see who sent this. No contents will be opened."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用受邀邮箱登录后，即可确认是谁发来的邀请；不会开放任何内容。"
+          }
+        }
+      }
+    },
     "Sign out": {
       "extractionState": "manual",
       "localizations": {
@@ -15644,6 +16130,40 @@
         }
       }
     },
+    "The arrangement could not be updated. Try again.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The arrangement could not be updated. Try again."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未能更新这项安排，请重试。"
+          }
+        }
+      }
+    },
+    "The arrangement notice could not be verified. Try again.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The arrangement notice could not be verified. Try again."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未能核验这份告知，请重试。"
+          }
+        }
+      }
+    },
     "The contact name must be 120 characters or fewer.": {
       "extractionState": "manual",
       "localizations": {
@@ -16375,6 +16895,23 @@
         }
       }
     },
+    "Their sign-in email": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Their sign-in email"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "对方用于登录的邮箱"
+          }
+        }
+      }
+    },
     "These checks and your decisions stay in review history.": {
       "extractionState": "manual",
       "localizations": {
@@ -16422,6 +16959,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "当前版本无法连接登录服务。"
+          }
+        }
+      }
+    },
+    "This arrangement changed. Refresh before continuing.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This arrangement changed. Refresh before continuing."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这项安排已更新，请刷新后继续。"
           }
         }
       }
@@ -16643,6 +17197,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "此事项已发生变化"
+          }
+        }
+      }
+    },
+    "This notice grants no access. Anything you previously chose to share remains separate.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This notice grants no access. Anything you previously chose to share remains separate."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这份告知不授予查看权限。你以前主动共享的内容仍按原设置处理。"
+          }
+        }
+      }
+    },
+    "This notice is no longer available. Ask for a new link.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This notice is no longer available. Ask for a new link."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这份告知已失效，请发送人提供新链接。"
           }
         }
       }
@@ -17344,6 +17932,23 @@
         }
       }
     },
+    "Use the email address this notice was intended for.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use the email address this notice was intended for."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请使用这份告知指定的邮箱。"
+          }
+        }
+      }
+    },
     "Use the same account and try again. Your changes have not been submitted.": {
       "extractionState": "manual",
       "localizations": {
@@ -17476,6 +18081,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "请先验证电子邮箱再继续。"
+          }
+        }
+      }
+    },
+    "Verify your sign-in email, then try this notice again.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verify your sign-in email, then try this notice again."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请先验证用于登录的邮箱，再重试这份告知。"
           }
         }
       }
@@ -17629,6 +18251,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "正在等待 Apple 批准你的购买。"
+          }
+        }
+      }
+    },
+    "Waiting for acknowledgement": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waiting for acknowledgement"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "等待对方确认知悉"
           }
         }
       }
@@ -18296,6 +18935,23 @@
         }
       }
     },
+    "Your arrangement notices": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your arrangement notices"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "收到的身后安排"
+          }
+        }
+      }
+    },
     "Your changes are still here. Try the action again when you are ready.": {
       "extractionState": "manual",
       "localizations": {
@@ -18568,6 +19224,23 @@
         }
       }
     },
+    "Your response has been saved. No content access was granted.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your response has been saved. No content access was granted."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已保存你的回应，没有开放任何内容。"
+          }
+        }
+      }
+    },
     "Your session expired. Sign in again.": {
       "extractionState": "manual",
       "localizations": {
@@ -18819,23 +19492,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "你的接收人"
-          }
-        }
-      }
-    },
-    "DELETE": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "DELETE"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "删除"
           }
         }
       }

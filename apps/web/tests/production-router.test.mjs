@@ -31,14 +31,14 @@ test('no API or unknown request falls back to a cached HTML response', () => {
 
 test('real invitations survive initial fragment entry, auth return and reload with GET or HEAD',()=>{
   const id='11111111-1111-4111-8111-111111111111';
-  // Fragments never reach CloudFront; /invite is the exact initial HTTP URI.
-  for(const uri of ['/invite',`/invite/${id}`,`/invite/${id}/`]) for(const method of ['GET','HEAD']) {
+  // Fragments never reach CloudFront. Both invitation types must survive login/reload.
+  for(const prefix of ['/invite','/future-invite']) for(const uri of [prefix,`${prefix}/${id}`,`${prefix}/${id}/`]) for(const method of ['GET','HEAD']) {
     const request={uri,method,querystring:{from:{value:'shared'}}};
     const result=route({request});
     assert.equal(result.uri,'/index.html');assert.equal(result.method,method);
     assert.equal(result.querystring.from.value,'shared');
   }
-  for(const uri of ['/invite/nope',`/invite/${id}/extra`,'/invite/%2e%2e']) {
+  for(const prefix of ['/invite','/future-invite']) for(const uri of [`${prefix}/nope`,`${prefix}/${id}/extra`,`${prefix}/%2e%2e`]) {
     assert.equal(route({request:{uri,method:'GET'}}).statusCode,404);
   }
 });

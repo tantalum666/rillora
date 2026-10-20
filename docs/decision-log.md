@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-20 (Asia/Hong_Kong)
+Last updated: 2026-10-20 (Asia/Shanghai)
 
 新条目使用以下模板：
 
@@ -3687,3 +3687,11 @@ local correction/tests and actual restoration remain separate evidence.
 - Work starts oncodex/healthkit-preparation-20261020frommain5e4d6d692. The plan uses heart-rate-only, read-only, local/manual first-slice verification;24hours/200samples is an Agent-selected technical test bound, not a medical or disclosure threshold.
 - The inquiry truthfully presents A optional safety prompts, B possible health-derived nonresponse/conditional access, and C independent death-evidence access. Apple accepts separate case103002496561. Existing review case103001356140is not amended; no Fall/SafetyKit entitlement or App ID capability is requested.
 - Current native source/entitlements/plists/project and release configurations remain byte-identical. No real health samples, contacts, model calls, deployment, TestFlight or new native verification. [Preparation and receipt](healthkit-preparation-20261020.md).
+
+## 2026-10-20 — Implement independent future-recipient notices for the next version
+
+- Status: OWNER-DIRECTED implementation and GitHub delivery; no current-release deployment.
+- Owner explicitly requests the work that does not depend on Apple's reply: designated family/friends know a digital-legacy arrangement exists while obtaining no contents during the planner's life. New work belongs to the next version and must not affect the current review.
+- Agent implements a separate notice/acknowledgement relationship, metadata-only public/private projections, verified-email and account binding, revoke/decline/leave/restore invalidation. It does not reuse Name-level grants or infer future disclosure authority from acknowledgement.
+- Manual link/QR/system sharing is the first delivery surface; no real family email is sent. Seven-day links, one-hour browser handoffs and100active notices are technical bounds selected for this reversible implementation, not approved death/nonresponse thresholds or commercial tier changes.
+- Existing explicit shares/downloaded copies remain separate; no retroactive secrecy claim, HealthKit use, automatic death inference, conditional release, new TestFlight or current AppStore edit. [Implementation and evidence](future-recipient-notices-20261020.md).

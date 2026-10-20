@@ -1,6 +1,7 @@
 import { normalizeCommercialStatus, normalizePurchaseRoute } from "./commercialAccess.js";
 import { validateSharingPreview, validateSharedResponse } from "./sharing.js";
 import { validateFamilyMaintenance } from "./familyMaintenance.js";
+import { validateFutureNoticeEnvelope, validateFutureNoticeList, validateFutureNoticeDecision, validateFutureNoticeLeave } from "./futureNotices.js";
 
 export class ApiClientError extends Error {
   constructor(status, code, message, requestId) {
@@ -147,6 +148,16 @@ export function createApiClient({
   }
 
   return {
+    getFutureNotice: personId => request(`/future-notices/people/${encodeURIComponent(personId)}`).then(validateFutureNoticeEnvelope),
+    createFutureNotice: input => request("/future-notices", { method: "POST", body: input }).then(validateFutureNoticeEnvelope),
+    regenerateFutureNotice: (id, expectedVersion) => request(`/future-notices/${encodeURIComponent(id)}/link`, { method: "POST", body: { expectedVersion } }).then(validateFutureNoticeEnvelope),
+    revokeFutureNotice: (id, expectedVersion) => request(`/future-notices/${encodeURIComponent(id)}`, { method: "DELETE", headers: { "if-match": String(expectedVersion) } }).then(validateFutureNoticeEnvelope),
+    resolveFutureNotice: invitationToken => request("/future-notices/invitations/resolve", { method: "POST", body: { invitationToken } }, { publicAuth: true }).then(value => validateFutureNoticeEnvelope(value, "public")),
+    getFutureInvitation: id => request(`/future-notices/invitations/${encodeURIComponent(id)}`, {}, { publicAuth: true }).then(value => validateFutureNoticeEnvelope(value, "public")),
+    reviewFutureNotice: input => request("/future-notices/invitations/review", { method: "POST", body: input }).then(value => validateFutureNoticeEnvelope(value, "received")),
+    respondFutureNotice: input => request("/future-notices/invitations/respond", { method: "POST", body: input }).then(validateFutureNoticeDecision),
+    getFutureNoticesReceived: () => request("/future-notices/received").then(validateFutureNoticeList),
+    leaveFutureNotice: (id, expectedVersion) => request(`/future-notices/received/${encodeURIComponent(id)}`, { method: "DELETE", headers: { "if-match": String(expectedVersion) } }).then(validateFutureNoticeLeave),
     getAiConnections: () => request('/account/ai-connections'),
     getAiOAuthInteraction: () => request('/account/ai-connections/oauth'),
     completeAiOAuth: input => request('/account/ai-connections/oauth/complete', {method:'POST',body:input}),

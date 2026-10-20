@@ -100,7 +100,7 @@ struct AuthenticatedProfileContent: View {
                         detail: contact.relationshipLabel ?? String(localized: "Relationship not added"),
                         systemImage: contactIcon(for: contact),
                         badge: sharingConnections.first(where: { $0.personPublicId == contact.publicId })?.statusLabel
-                            ?? (sharingLoadFailed ? String(localized: "Connection unavailable") : sharingLoaded ? String(localized: "Not invited") : String(localized: "Checking connection…"))
+                            ?? (sharingLoadFailed ? String(localized: "Connection unavailable") : sharingLoaded ? noCurrentSharingLabel : String(localized: "Checking connection…"))
                     )
                 }
                 .buttonStyle(RilloraQuietButtonStyle())
@@ -117,6 +117,10 @@ struct AuthenticatedProfileContent: View {
         }
         .rilloraProfileActionRows()
         .rilloraEntrance()
+    }
+    private var noCurrentSharingLabel: String {
+        (sharingService as? any FutureNoticeServing)?.futureNoticesEnabled == true
+            ? String(localized: "No content shared now") : String(localized: "Not invited")
     }
 
     @MainActor private func loadConnections() async {
