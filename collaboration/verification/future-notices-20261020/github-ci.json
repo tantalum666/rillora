@@ -1,0 +1,31 @@
+{
+  "commit": "6491fe5c69b3518156d0cc9d368079567490f948",
+  "runId": 39416311489,
+  "runUrl": "https://github.com/tantalum666/rillora/actions/runs/39416311489",
+  "workflow": "Verify source #207",
+  "jobs": [
+    {
+      "id": 118606079613,
+      "name": "source",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 118606080090,
+      "name": "api",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 118606080146,
+      "name": "web-and-infrastructure",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "apiSummary": [
+    "2026-10-20T11:40:25.6414628Z  Test Files  65 passed (65)",
+    "2026-10-20T11:40:25.6424007Z       Tests  590 passed (590)"
+  ],
+  "releaseMutation": false
+}

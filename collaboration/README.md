@@ -1,6 +1,6 @@
 # Rillora — Git / Dot 协作入口
 
-October20当前任务：[独立身后安排告知](../docs/future-recipient-notices-20261020.md)在codex/future-recipient-notices-20261020实现，三端默认关闭、仅下一版本。HealthKit答复不再阻塞此项；本轮没有部署或修改在审构建。实现、测试、推送／CI与实际亲友送达分别记录，当前唯一下一步只看handoff。
+October20当前任务：[独立身后安排告知](../docs/future-recipient-notices-20261020.md)在codex/future-recipient-notices-20261020完成，源码6491fe5c6／CI207三任务通过，远端82文件一致，[回执](verification/future-notices-20261020/README.md)已保存。三端默认关闭、仅下一版本。HealthKit答复不再阻塞此项；本轮没有部署或修改在审构建。实现、测试、推送／CI与实际亲友送达分别记录，当前唯一下一步只看handoff。
 
 October20下一版本：[HealthKit准备与独立用途咨询](../docs/healthkit-preparation-20261020.md)已完成，Apple受理案例103002496561，尚无用途答复。分支codex/healthkit-preparation-20261020仅含方案、双语权限草稿和[安全回执](verification/healthkit-prep-20261020/README.md)，原生／发布配置未变；当前审核材料及旧进度工单不动。当前下一步只看handoff。
 

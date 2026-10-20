@@ -2,7 +2,7 @@
 
 Date: 2026-10-20 (Asia/Shanghai)
 Branch: codex/future-recipient-notices-20261020
-Status: local implementation and acceptance complete; Git/CI receipt is recorded separately when observed.
+Status: implementation and local acceptance complete; code6491fe5c6pushed and Verify source207all3jobs passed. Final documentation publication retains the same application tree.
 
 [Product contract](../../../docs/future-recipient-notices-20261020.md). Owner requested the independent notice slice for the next version, without changing the current review. [Reading continuation](reading.json) retains the project's completed full-read chain.
 
@@ -12,7 +12,7 @@ Dedicated metadata-only notice relationship; no Matter grants, titles, counts, k
 
 ## Results
 
-- API typecheck and complete65files /589tests passed before the last journal assertion was added;10new integration tests use actual migrations, HTTP routes and PostgreSQL RLS ([full result](api-full.log.txt), [final focused result](api-final.log.txt)).
+- API typecheck and complete65files /590tests passed in GitHubCI207 after the last journal assertion; the earlier local full run was589. 10new integration tests use actual migrations, HTTP routes and PostgreSQL RLS ([full result](api-full.log.txt), [final focused result](api-final.log.txt)).
 - Web202Node tests passed;8focused contract/routing checks passed after the final routing assertions. Full browser regression74passed, including8new future-notice flows, English desktop and Chinese mobile ([browser summary](browser-result-summary.json), [contract result](web-contract-final.log.txt)).
 - Native55targeted unit tests passed, including7new tests plus API/client/sharing regression ([result](native-unit-result.json)). Existing API fixtures require English; a prior run inherited Chinese and failed4English-only fixture expectations. Explicit en/US passed without weakening runtime validation. New feature itself passed in both languages.
 - Native2UItests exercise actual compiled app against a separate disposable PostgreSQL/API fixture: create/revoke, exact recipient acknowledgement, zero current sharing grants, receive/leave, English and Chinese ([result](native-ui-result.json)). Physical-device tests were not repeated.
@@ -28,3 +28,7 @@ The first browser build found a JSX closing tag; first browser harness used an e
 The tenPNGfiles in[images](images/)show synthetic Web/native sender, recipient and native inbox screens. The names and email masks are fixture data; links/QRs were never sent to anyone. [Release isolation](release-isolation.json) records default-off flags, unchanged existing plist semantics and no current review/production actions.
 
 Current real data, pricing, charging switches and FanPass remain outside this change. This is not death verification, automatic post-death delivery, HealthKit approval, zero-knowledge encryption or proof a real recipient received a message. Next-version rollout order is documented in the product contract. Raw compiled caches/result bundles stay in the ignored local QA directory; source, reproducible tests, summaries and selected screenshots are versioned.
+
+## GitHub delivery
+
+[Code6491fe5c6](https://github.com/tantalum666/rillora/commit/6491fe5c69b3518156d0cc9d368079567490f948) is pushed to the next-version branch. [Verify source207](https://github.com/tantalum666/rillora/actions/runs/39416311489) passed all3jobs, with65APItest files /590tests and full readable coverage /zero unreviewed findings. [Machine-readable CI](github-ci.json), [independent82-file remote blob comparison](github-readback.json), [complete code-publication check](publication-code-check.json). No PR merge, deployment or AppStore action is implied; main remains the prior release integration checkpoint.

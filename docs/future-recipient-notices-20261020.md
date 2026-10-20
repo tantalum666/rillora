@@ -1,6 +1,6 @@
 # 下一版本：身后安排告知
 
-Status: IMPLEMENTED / LOCAL ACCEPTANCE PASSED / NOT DEPLOYED
+Status: IMPLEMENTED / LOCAL ACCEPTANCE AND CODE CI PASSED / NEXT-VERSION BRANCH / NOT DEPLOYED
 Last updated: 2026-10-20 (Asia/Shanghai)
 Authority scope: Owner批准的独立告知／确认知悉功能；不证明死亡核验、密钥交付、Apple许可或真实通知已送达。
 
@@ -40,4 +40,4 @@ Authority scope: Owner批准的独立告知／确认知悉功能；不证明死�
 
 ## 本轮验证
 
-本机独立PostgreSQL、HTTP接口、浏览器合成夹具和独立模拟器；无真人购买、真实亲友、真实健康资料或提供方登录。API完整589项通过，新增专项最终10项覆盖身份、字段白名单、CSRF、重复确认、过期、换链、旧账号／归档／删除、显式共享独立性、私有导出和恢复失效；另补强制恢复日志实际发布／失败回滚检查。Web新增8项流程覆盖中英文、手机／桌面宽度、匿名与错号、显式确认／退出、接收安全失败和默认关闭。原生55项针对性单元回归（含新增7项）通过，独立模拟器中英文2条实际界面／本机API完整流程通过；Web完整74项浏览器／202项Node检查、原生11项源码／翻译检查、基础设施68项、恢复代理6项通过。最终GitCI待推送后读取。[可读回执与截图](../collaboration/verification/future-notices-20261020/README.md)，原始QA在output/qa/rillora-future-notices-20261020。
+本机独立PostgreSQL、HTTP接口、浏览器合成夹具和独立模拟器；无真人购买、真实亲友、真实健康资料或提供方登录。API本机完整589项通过，最后新增日志断言后GitHubCI完整590项通过；新增专项最终10项覆盖身份、字段白名单、CSRF、重复确认、过期、换链、旧账号／归档／删除、显式共享独立性、私有导出和恢复失效；另补强制恢复日志实际发布／失败回滚检查。Web新增8项流程覆盖中英文、手机／桌面宽度、匿名与错号、显式确认／退出、接收安全失败和默认关闭。原生55项针对性单元回归（含新增7项）通过，独立模拟器中英文2条实际界面／本机API完整流程通过；Web完整74项浏览器／202项Node检查、原生11项源码／翻译检查、基础设施68项、恢复代理6项通过。源码6491fe5c6已推送，[GitHubCI207](https://github.com/tantalum666/rillora/actions/runs/39416311489)的3任务全部通过，远端82份变更文件字节对象一致。[可读回执与截图](../collaboration/verification/future-notices-20261020/README.md)，原始QA在output/qa/rillora-future-notices-20261020。
