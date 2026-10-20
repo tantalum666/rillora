@@ -3728,3 +3728,11 @@ local correction/tests and actual restoration remain separate evidence.
 - [Current options](paid-value-options-20261020.md) prioritize comparing owner-intent-based recipient action materials and coordination, with bounded source-to-draft import as a supporting candidate; scoped family assistance remains segment-specific. Existing basic exports, guides, review tasks and safety cannot be resold under new names.
 - Public primary research supports problem hypotheses, while official free and paid competitors provide counterexamples. No global uniqueness, actual savings, conversion, annual demand or sustainable human-verification cost is claimed.
 - No new software, actual disclosure, real customer data processing, outreach, charging, entitlement, price, deployment, TestFlight or current-review change. Continue only to a reviewable plan; later delivery and genuine voluntary payment remain separate evidence.
+
+## 2026-10-20 — Walk through one fictional household and separate existing value from new service
+
+- Status: OWNER-REQUESTED EXPLANATION / NO DEVELOPMENT; commercial details remain provisional.
+- Owner asks for the complete preparation-to-provider-action flow and incremental value over current Rillora and free official routes, especially the annual fee.
+- [The case](family-action-pack-example-20261020.md) distinguishes current planning/exports/guides, default-off existence notices, proposed materials/case coordination, and unimplemented fact verification/content delivery. Each provider still performs its own review; Rillora cannot guarantee external scope, approval, cancellation or refunds.
+- Agent narrows the commercial inference: a simple three-matter household does not establish a strong annual purchase reason. Existing recipient export and content-before-closure guidance must not be sold again as new features. A finite event-service period is discussed only as a hypothetical costing requirement, not an approved entitlement.
+- Preserve all prices, purchased terms, ordinary runtime, App Review, real data and FanPass. No real application, user test, disclosure, software implementation or provider change occurred.

@@ -8,6 +8,10 @@ Status: FREE / SINGLE ANNUAL FAMILY; WEB88.99 / APPLE119.99 US LOCKED; FREE1 / F
 Last updated: 2026-10-20 (Asia/Shanghai)
 
 
+## October20 family walkthrough — annual value remains unproven
+
+[The fictional household walkthrough](family-action-pack-example-20261020.md) compares preparation and actual provider applications with current guides, recipient exports and Family maintenance. Those existing capabilities are not new premium value. Additional drafts/case coordination may be useful, but three straightforward matters do not establish sustained annual demand. Web88.99 totals266.97/444.95/889.90over3/5/10years under an explicitly constant-price arithmetic scenario, not a bill or forecast. A possible finite post-event service period is only a costing example; no retention, eligibility, purchased right, price or new service promise is approved.
+
 ## October20 outcome-based options — research only, no development
 
 Owner explicitly asks to clarify real problems, differentiation and why users would pay before development. [Current options](paid-value-options-20261020.md) compare owner-intent-based recipient action materials/workflow, bounded source-to-draft import, and scoped family-assisted planning. The first is the Agent's preferred concept to evaluate, not an approved product or entitlement. Free regional services and existing competitor capabilities remain explicit alternatives. Annual willingness to pay, delivery costs and superiority over current guides/export are unproven; existing prices and rights stay intact.
