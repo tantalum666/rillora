@@ -3697,3 +3697,10 @@ local correction/tests and actual restoration remain separate evidence.
 - Existing explicit shares/downloaded copies remain separate; no retroactive secrecy claim, HealthKit use, automatic death inference, conditional release, new TestFlight or current AppStore edit. [Implementation and evidence](future-recipient-notices-20261020.md).
 
 - Implementation result: code6491fe5c6pushed oncodex/future-recipient-notices-20261020; Verify source207all3jobs passed,API590. Web202/browser74, native55unit/2UI/11source,infra68/broker6passed in isolated synthetic environments. Existing main/review/runtime remain unchanged. Four previously approved public Auth0ID spans moved line numbers only, with byte hashes unchanged; no new secret/rule exemption. Exact results are linked from the implementation contract.
+
+## 2026-10-20 — Discuss stronger Family value without silently changing entitlements
+
+- Status: OWNER QUESTION / AGENT RECOMMENDATIONS ONLY.
+- Owner asks what additions could improve willingness to buy and whether the new future notice should be part of paid Family. This does not select a new quota, second-planner entitlement, price or runtime switch.
+- The [proposal](family-value-proposal-20261020.md) suggests Free1 complete notice / Family5, a second independent planner, an actionable handoff workflow and reliable optional notifications. It preserves baseline security/export/revocation and receiver access, and separates actual notice code from unimplemented conditional delivery.
+- Current Web88.99/Apple119.99US, purchased terms, existing Free1/Family5 live sharing, current review and FanPass remain unchanged. No willingness-to-pay or competitor-runtime testing is claimed. Only public official pages and current project contracts were checked.

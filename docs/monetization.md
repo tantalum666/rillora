@@ -4,9 +4,15 @@ Role: canonical commercialization, packaging and subscription-lifecycle contract
 Authority scope: free/paid boundary, launch offer, future tier architecture, billing periods, trials, refunds and safe downgrade  
 Superseded by: later Owner decision recorded in `docs/decision-log.md`  
 Do not use for: proof of willingness to pay, legal/tax advice, current implementation, App Store approval or payment-provider selection  
-Status: FREE / SINGLE ANNUAL FAMILY; WEB88.99 LOCKED; APPLE DIFFERENTIATED; NEW MONTHLY RETIRED; FREE1 / FAMILY5 AND HISTORICAL RECEIPTS PRESERVED; ORDINARY SALES CLOSED
-Last updated: 2026-10-13 (Asia/Hong_Kong)
+Status: FREE / SINGLE ANNUAL FAMILY; WEB88.99 / APPLE119.99 US LOCKED; FREE1 / FAMILY5 RETAINED; NEW VALUE PROPOSALS UNAPPROVED; RUNTIME STATUS IN HANDOFF
+Last updated: 2026-10-20 (Asia/Shanghai)
 
+
+## October20 paid-value discussion — recommendation only
+
+Owner asks which additions could improve purchase motivation and whether the new future notice belongs in paid Family. [The proposal](family-value-proposal-20261020.md) recommends a complete Free1 notice experience, Family5 per planner and paid capabilities for two independent planners under one subscription, with an actionable handoff workflow and reliable optional notifications. These are Agent proposals; no new quota, second planner, capability version, paid promise or price has been approved or applied. The existing notice implementation remains default-off and unpriced.
+
+Runtime wording in the dated sections and older Executive Summary below describes those historical checkpoints. Ordinary Web activation is recorded in [October15 preflight](app-review-preflight-20261014.md) and current handoff; the old “ordinary sales closed/test only” statements are not a new instruction to close billing. This document retains commercial boundaries, while provider/runtime facts have their dated evidence elsewhere.
 
 ## October13 current consumer purchase presentation
 
