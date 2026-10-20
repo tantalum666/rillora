@@ -1,5 +1,7 @@
 # Rillora — Git / Dot 协作入口
 
+October20：[总清单修复与main整合](../docs/git-integration-20261020.md)已复现Dot提醒的26份遗漏，并通过[PR3](https://github.com/tantalum666/rillora/pull/3)推进。所有远端工作分支已包含在当前整合分支，旧main尚需同步；合并和CI最终状态只看当前handoff及该PR，不把旧分支合并记录当作main已更新。新增回执必须与完整readable-manifest一起校验保存。
+
 October18营销复核：[SEO／GEO、MCP和平台矩阵](../docs/marketing/readiness-audit-20261018.md)及[四周获客计划](../docs/marketing/acquisition-plan-20261018.md)已准备，OpenAI简介限制／商店旧状态已纠正；客户MCP和实际增长不冒充完成。[新回执](verification/marketing-readiness-20261018/README.md)以小型可读文件直接Git保存，旧1—47不重封。当前下一步只看handoff。
 
 October18当前：[Qwen续验与官网SEO／GEO](../docs/architecture/ai-seo-20261018.md)已完成；正式www共28个双语页面／6篇文章。Owner否决主导航中的整理方法，已用58780f79b／CI176修正并发布，入口仅留页脚／相关阅读。62份产物实际核对，Google接受地图及代表文章抓取请求，Bing成功解析28URL；不冒称已收录或AI推荐。[本次发布保存](verification/public-seo-rollout-20261018/README.md)追加archive47，[初始候选archive46](verification/ai-seo-20261018/README.md)保持。下方数量和待MFA描述均为当时检查点；当前下一步只看handoff，生产API与App14不变。

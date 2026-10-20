@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-19 (Asia/Hong_Kong)
+Last updated: 2026-10-20 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -3670,3 +3670,10 @@ local correction/tests and actual restoration remain separate evidence.
 - A future-recipient acceptance must not imply present Name/Directions/Details grants. Pre-notice is minimal and owner-selected; no titles, counts, other recipients or health information. Existing live shares and downloaded copies cannot become retroactively secret.
 - Record the automatic-execution goal while retaining independent evidence, identity, effective authority, scope, revocation and cryptographic availability questions. Do not infer Apple permission from local processing or relabel health-derived nonresponse to evade purpose restrictions.
 - This records next-version requirements only. No current review/build, HealthKit capability, health data, family notice, timer, billing or production disclosure change. It supersedes any reading of the prior feasibility answer as dismissing multi-signal confirmation or future conditional delivery altogether, not the established distinction between missing information and a proven death.
+
+## 2026-10-20 — Repair the reported publication failure and consolidate GitHub work
+
+- Status: OWNER-DIRECTED review, repair and merge; actual CI and merge outcomes remain evidence-dependent.
+- Owner asks to inspect Dot's26-file manifest warning and check/merge any outstanding GitHub work. This explicitly authorizes bringing the default main branch up to the reviewed integrated history; it supersedes historical instructions that merely preserved main as an older checkpoint.
+- Independent inspection finds all23 remote branch tips already contained in the current head, no initial open PR, and main200commits behind. The reported run passes application jobs but fails complete readable coverage after source tests/scanning.
+- Repair the generated manifest and retain full scanners. Add the final-receipt regeneration/check step to the repository closeout protocol. Preserve history through[PR3](https://github.com/tantalum666/rillora/pull/3), check its actual CI, and verify merge ancestry/tree without deployments, TestFlight, changed prices, real-data operations or FanPass work.

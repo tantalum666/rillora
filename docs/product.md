@@ -5,9 +5,13 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-10-19 (Asia/Hong_Kong)
+Last updated: 2026-10-20 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-10-20 Git清单修复与主分支整合
+
+Owner要求复核Dot指出的交接CI问题并检查合并GitHub剩余工作。[本轮修复](git-integration-20261020.md)确认26份可读验证文件漏入总清单、main落后200提交；当前工作分支已包含所有远端工作tip。先保持验证器完整并核验，再通过PR3合入main；代码合并不代替部署，不影响现有审核、数据、价格或FanPass。条件披露仍为下一版本设计。
 
 ## 2026-10-19 下一版本条件披露与生前封存
 
